@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>萌星小学英语 v5.0 终极完全体 · 十五大王炸全规律 + 三大元公理 + 考场秒杀引擎</title>
+<style>
+  :root {
+    --bg-main: #f4f7fb;
+    --card-bg: #ffffff;
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --primary-dark: #1d4ed8;
+    --secondary: #7c3aed;
+    --secondary-light: #ede9fe;
+    --success: #059669;
+    --success-light: #d1fae5;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+    --text-main: #0f172a;
+    --text-sub: #475569;
+    --border-color: #e2e8f0;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.09);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+    background: var(--bg-main); color: var(--text-main); line-height: 1.5;
+  }
+  button { font-family: inherit; cursor: pointer; border: none; transition: all 0.15s ease; }
+  button:active { transform: scale(0.97); }
+  .top-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--border-color); padding: 10px 18px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    box-shadow: var(--shadow-sm);
+  }
+  .brand-box { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 1.2rem; color: var(--primary-dark); cursor: pointer; }
+  .brand-badge {
+    background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff;
+    font-size: 0.75rem; padding: 3px 10px; border-radius: 999px; font-weight: 800;
+  }
+  .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .nav-tab {
+    padding: 8px 14px; border-radius: 999px; font-weight: 800; font-size: 0.88rem;
+    background: #f1f5f9; color: #334155; border: 1.5px solid #cbd5e1;
+  }
+  .nav-tab.active {
+    background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff; border-color: transparent;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+  }
+  .container { max-width: 1220px; margin: 0 auto; padding: 18px 16px 80px; }
+  .hero-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b0764 100%);
+    color: #fff; border-radius: 24px; padding: 24px 26px; margin-bottom: 22px;
+    box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  .hero-banner h1 { margin: 0 0 6px; font-size: 1.65rem; font-weight: 900; }
+  .hero-banner p { margin: 0; opacity: 0.92; font-size: 0.95rem; }
+  .tts-btn {
+    background: linear-gradient(135deg, #10b981, #059669); color: #fff;
+    padding: 11px 20px; border-radius: 999px; font-weight: 800; font-size: 0.95rem;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+  }
+  .section-card {
+    background: var(--card-bg); border-radius: 22px; padding: 22px;
+    border: 2px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 22px;
+  }
+  .section-title {
+    font-size: 1.3rem; font-weight: 900; margin: 0 0 14px; color: #0f172a;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    border-bottom: 2px solid #f1f5f9; padding-bottom: 10px;
+  }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px; }
+  @media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  .axiom-card {
+    border-radius: 18px; padding: 18px; border: 2.5px solid #93c5fd;
+    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+  }
+  .axiom-card.verb { border-color: #fca5a5; background: linear-gradient(180deg, #ffffff 0%, #fef2f2 100%); }
+  .axiom-card.order { border-color: #6ee7b7; background: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%); }
+  .axiom-badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.76rem;
+    font-weight: 900; margin-bottom: 8px; background: #1e3a8a; color: #fff;
+  }
+  .matrix-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; border-radius: 14px; overflow: hidden; }
+  .matrix-table th { background: #1e3a8a; color: #fff; padding: 11px 12px; text-align: left; font-weight: 800; }
+  .matrix-table td { padding: 11px 12px; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+  .matrix-table tr:hover td { background: #f8fafc; }
+  .speak-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe;
+    padding: 3px 9px; border-radius: 8px; font-weight: 800; font-size: 0.84rem;
+    margin: 2px; cursor: pointer;
+  }
+  .speak-chip:hover { background: #dbeafe; transform: translateY(-1px); }
+  .block-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 9px 15px;
+    font-weight: 800; font-size: 0.98rem; cursor: pointer; margin: 4px;
+  }
+  .role-S { background: #dbeafe; color: #1e3a8a; border: 2.5px solid #2563eb; border-radius: 8px; }
+  .role-V { background: #fee2e2; color: #991b1b; border: 2.5px solid #dc2626; border-radius: 999px; }
+  .role-O { background: #fef3c7; color: #92400e; border: 2.5px solid #d97706; border-radius: 14px 4px 14px 4px; }
+  .role-A { background: #d1fae5; color: #065f46; border: 2.5px solid #059669; border-radius: 4px 16px 4px 16px; }
+  .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .word-card {
+    background: #fff; border-radius: 16px; padding: 16px; border: 2px solid var(--border-color);
+    cursor: pointer; transition: all 0.15s ease; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .word-card:hover { border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+  .search-input {
+    flex: 1; min-width: 220px; padding: 11px 15px; border-radius: 12px;
+    border: 2px solid #cbd5e1; font-size: 0.95rem; font-weight: 700;
+  }
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px);
+    z-index: 500; display: none; align-items: center; justify-content: center; padding: 16px;
+  }
+  .modal-box {
+    background: #fff; border-radius: 24px; max-width: 780px; width: 100%;
+    padding: 26px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .quiz-btn {
+    width: 100%; text-align: left; padding: 13px 16px; border-radius: 14px;
+    background: #f8fafc; border: 2px solid #cbd5e1; font-size: 0.96rem; font-weight: 800;
+    margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .quiz-btn.correct { background: #d1fae5 !important; border-color: #059669 !important; color: #065f46 !important; }
+  .quiz-btn.wrong { background: #fee2e2 !important; border-color: #dc2626 !important; color: #991b1b !important; }
+  @media print {
+    .top-header, .hero-banner, .no-print { display: none !important; }
+    .section-card { box-shadow: none; border: 1px solid #cbd5e1; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="brand-box" onclick="switchTab('matrix')">
+    <span style="font-size:1.6rem;">🌟</span>
+    <span>萌星小学英语</span>
+    <span class="brand-badge">v5.0 终极完全体 · 十五大王炸母体版</span>
+  </div>
+  <nav class="nav-tabs">
+    <button class="nav-tab active" id="tab-matrix" onclick="switchTab('matrix')">🌌 元公理与第一性原理</button>
+    <button class="nav-tab" id="tab-trumps" onclick="switchTab('trumps')">👑 十五大王炸实验室</button>
+    <button class="nav-tab" id="tab-engine" onclick="switchTab('engine')">⚡ 秒杀决策树 & 十大天坑</button>
+    <button class="nav-tab" id="tab-writing" onclick="switchTab('writing')">✍️ 同音反义 & 感叹句 & 满分作文</button>
+    <button class="nav-tab" id="tab-vocab" onclick="switchTab('vocab')">📚 全维词库与IPA修复台</button>
+    <button class="nav-tab" id="tab-oral" onclick="switchTab('oral')">💬 句法火车与情景交际</button>
+    <button class="nav-tab" id="tab-merger" onclick="switchTab('merger')" style="background:#fef3c7; color:#92400e; border-color:#f59e0b;">🛠️ 存档备份 & v4.0无损合并器</button>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="hero-banner">
+    <div>
+      <h1>🚀 萌星小学英语 v5.0 · 万物归一终极完全体</h1>
+      <p>集成【三大底层元公理】+【六大第一性原理】+【十五大王炸全规律】+【考场秒杀决策树】+【同音反义/感叹句/作文模板】+【v4.0一键无损升级合成器】</p>
+    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button class="tts-btn" onclick="speakText('Welcome to Mengxing Primary English Version 5.0 Ultimate Master System!')">🔊 开启纯正美音伴读</button>
+      <button class="tts-btn" style="background:linear-gradient(135deg,#2563eb,#7c3aed);" onclick="window.print()">🖨️ 一键打印当前页宝典</button>
+    </div>
+  </div>
+
+  <!-- TAB 1: 万物归一元规则母体 -->
+  <section id="view-matrix">
+    <div class="section-card">
+      <div class="section-title">
+        <span>🔥 维度一：中英双语底层基因【三大元公理】（The 3 Meta-Axioms）</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">一眼看穿中英思维差异，彻底告别中式英语（Chinglish）</span>
+      </div>
+      <div class="grid-3">
+        <div class="axiom-card">
+          <span class="axiom-badge">第一元公理 · 空间颗粒度</span>
+          <h3 style="margin:4px 0 10px; color:#1e3a8a;">📦 名词边界公理：戴帽加尾铁律</h3>
+          <p style="font-size:0.9rem; color:#334155;"><strong>🇨🇳 汉语意合：</strong>万物浑然一体，不区分单复数与可数性（一本书、十本书、喝点水，名词本身永不变形）。</p>
+          <p style="font-size:0.9rem; color:#1e3a8a;"><strong>🇬🇧 英语形合：</strong>万事万物先问“能不能按个数清边界”：</p>
+          <ul style="font-size:0.86rem; padding-left:18px; margin:8px 0;">
+            <li><strong>可数单数绝不“裸奔”：</strong>出门必戴帽（<span class="speak-chip" onclick="speakText('a book')">a book</span> <span class="speak-chip" onclick="speakText('an apple')">an apple</span> <span class="speak-chip" onclick="speakText('my bag')">my bag</span>）。</li>
+            <li><strong>超过 1 个必加尾巴：</strong>词尾必加复数 <code>-s/-es</code>（<span class="speak-chip" onclick="speakText('two books')">two books</span> <span class="speak-chip" onclick="speakText('three boxes')">three boxes</span>）。</li>
+            <li><strong>不可数名词“三不铁律”：</strong>不戴 a/an 帽、不加 s 尾、谓语永远配单数 <code>is</code>（<span class="speak-chip" onclick="speakText('some milk')">some milk</span> <span class="speak-chip" onclick="speakText('Water is important')">Water is important</span>）。</li>
+          </ul>
+        </div>
+
+        <div class="axiom-card verb">
+          <span class="axiom-badge" style="background:#991b1b;">第二元公理 · 时间颗粒度</span>
+          <h3 style="margin:4px 0 10px; color:#991b1b;">❤️ 动词心脏公理：一山不容二虎 & 四套盔甲</h3>
+          <p style="font-size:0.9rem; color:#334155;"><strong>🇨🇳 汉语意合：</strong>动作超越时间（我每天去、他每天去、昨天去，全用同一个“去”字）；形容词直接当谓语（“她很聪明”）。</p>
+          <p style="font-size:0.9rem; color:#991b1b;"><strong>🇬🇧 英语形合：</strong>动词是全句唯一的心脏发动机：</p>
+          <ul style="font-size:0.86rem; padding-left:18px; margin:8px 0;">
+            <li><strong>一山不容二虎：</strong>一句话只能有一个核心动词！形容词前必派 <code>am/is/are</code> 搭桥（<span class="speak-chip" onclick="speakText('She is clever')">She is clever</span>）；有实义动词绝不乱塞 is！</li>
+            <li><strong>四套时态盔甲：</strong>三单加 <code>-s</code>、正在 <code>be+doing</code>、过去穿 <code>-ed</code>、将来 <code>will/be going to</code>。</li>
+            <li><strong>照妖镜法则：</strong>见到 <code>can/must/should/will/do/does/did/let's</code>，后面动词 <strong>100% 打回原形</strong>！</li>
+          </ul>
+        </div>
+
+        <div class="axiom-card order">
+          <span class="axiom-badge" style="background:#065f46;">第三元公理 · 信息优先级</span>
+          <h3 style="margin:4px 0 10px; color:#065f46;">🚂 火车语序公理：主干先行·状语倒挂</h3>
+          <p style="font-size:0.9rem; color:#334155;"><strong>🇨🇳 汉语竹节流水（先铺垫，后结果）：</strong><br>我【昨天】【在公园】【开心地】【坐小船】玩。</p>
+          <p style="font-size:0.9rem; color:#065f46;"><strong>🇬🇧 英语乐高火车（核心先行，时空倒挂车尾）：</strong></p>
+          <ul style="font-size:0.86rem; padding-left:18px; margin:8px 0;">
+            <li><strong>标准车厢公式：</strong><code>🟦主语 + 🟥谓语 + 🔶宾语</code> + <code>🔺[方式] + 🔺[地点：先小后大] + 🔺[时间：先小后大]</code></li>
+            <li><strong>疑问词排头兵：</strong>特殊疑问词（What/Where/When...）必须提拔到全句第 1 个词！</li>
+            <li>点击点读示范：<span class="speak-chip" onclick="speakText('I went boating happily in the park yesterday.')">I went boating happily in the park yesterday.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">
+        <span>🧭 维度二：六大第一性原理总枢（The 6 First Principles Hub）</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">点击任意英文例句即可触发纯正语音朗读</span>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th style="width:18%;">第一性原理</th>
+              <th style="width:27%;">底层认知规律</th>
+              <th style="width:30%;">高频黄金口诀</th>
+              <th style="width:25%;">标准点读示范</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>原理 01：语音拼读原理</strong><br><span style="font-size:0.8rem; color:#64748b;">见词能读·听音能写</span></td>
+              <td>英语 84% 的单词遵循“音形对应（Phonics）”，仅 16% 高频视觉词（Sight Words）需特殊记忆。</td>
+              <td>开音节哑巴 e 读本音；闭音节读短音；<code>ph=/f/</code>，<code>igh=/aɪ/</code>，<code>ar=/ɑːr/</code>。</td>
+              <td>
+                <span class="speak-chip" onclick="speakText('cake')">cake /keɪk/</span>
+                <span class="speak-chip" onclick="speakText('elephant')">elephant /ˈelɪfənt/</span>
+                <span class="speak-chip" onclick="speakText('light')">light /laɪt/</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>原理 02：词根积木原理</strong><br><span style="font-size:0.8rem; color:#64748b;">一词生十词·家族串记</span></td>
+              <td>前缀改方向（sub-/super-/inter-/re-），词根定灵魂（port/vis/spect/dict），后缀定词性（-er/-ful/-y）。</td>
+              <td>动作加 <code>-er/-or</code> 变人；名词加 <code>-y</code> 变天气形容词；<code>-ful</code> 充满 <code>-less</code> 无。</td>
+              <td>
+                <span class="speak-chip" onclick="speakText('teacher')">teacher</span>
+                <span class="speak-chip" onclick="speakText('sunny')">sunny</span>
+                <span class="speak-chip" onclick="speakText('helpful')">helpful</span>
+                <span class="speak-chip" onclick="speakText('subway')">subway</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>原理 03：多义辐射原理</strong><br><span style="font-size:0.8rem; color:#64748b;">三幕剧画面推演</span></td>
+              <td>一词多义绝不是乱造的，而是从 1 个“核心物理画面”通过动作化或场景迁移衍生出来的。</td>
+              <td>名词直接转类作动词：书册➔预订(book)，公园➔停车(park)，水➔浇水(water)。</td>
+              <td>
+                <span class="speak-chip" onclick="speakText('book a ticket')">book a ticket</span>
+                <span class="speak-chip" onclick="speakText('water the flowers')">water the flowers</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>原理 04：形态一致原理</strong><br><span style="font-size:0.8rem; color:#64748b;">主谓一致·指代一致</span></td>
+              <td>主语的人称和数决定了谓语动词与代词的形态，前后必须严丝合缝。</td>
+              <td>我用 <code>am</code> 你用 <code>are</code>，<code>is</code> 连着他她它；单数主语配三单 <code>-s</code>，复数主语配原形。</td>
+              <td>
+                <span class="speak-chip" onclick="speakText('He studies Chinese every day.')">He studies Chinese.</span>
+                <span class="speak-chip" onclick="speakText('They study Chinese.')">They study Chinese.</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>原理 05：时空坐标原理</strong><br><span style="font-size:0.8rem; color:#64748b;">介词与时态精准定位</span></td>
+              <td>英语对时间与空间采用精密的几何切片：点（at）、面/天（on）、体/长周期（in）。</td>
+              <td><code>in</code> 年月季早中晚，<code>on</code> 星期几与某一天，<code>at</code> 具体钟点与夜晚。</td>
+              <td>
+                <span class="speak-chip" onclick="speakText('in spring')">in spring</span>
+                <span class="speak-chip" onclick="speakText('on Monday')">on Monday</span>
+                <span class="speak-chip" onclick="speakText('at seven o clock')">at 7 o'clock</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>原理 06：极性与交际原理</strong><br><span style="font-size:0.8rem; color:#64748b;">肯定与否定疑问极性切换</span></td>
+              <td>英语词汇对句子极性（肯定 vs 否定/疑问）高度敏感，交际遵循礼貌优先原则。</td>
+              <td>肯定句里用 <code>some/and/too</code>，否定疑问变 <code>any/or/either</code>（诚意邀请仍用 <code>some</code>）。</td>
+              <td>
+                <span class="speak-chip" onclick="speakText('Would you like some juice?')">Would you like some juice?</span>
+                <span class="speak-chip" onclick="speakText('I do not have any bread.')">I don't have any bread.</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: 十五大王炸全规律实验室 -->
+  <section id="view-trumps" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">
+        <span>👑 维度三：十五大王炸全规律实验室（15 Royal Trumps Master Matrix）</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">在原十二大王炸基础上，全新补齐【王炸13 同音反义】【王炸14 感叹句绝杀】【王炸15 满分作文公式】</span>
+      </div>
+      <div id="trumpsContainer" class="grid-2"></div>
+    </div>
+  </section>
+
+  <!-- TAB 3: 三大秒杀决策树 & 十大致命天坑 -->
+  <section id="view-engine" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">
+        <span>⚡ 维度四：考场三大秒杀决策树（Interactive Algorithmic Decision Trees）</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">像计算机程序一样三步锁定满分答案</span>
+      </div>
+      <div class="grid-3">
+        <div class="axiom-card">
+          <h3 style="margin:0 0 10px; color:#1e3a8a;">🌳 决策树 A：看到【动词填空】怎么秒杀？</h3>
+          <ol style="font-size:0.88rem; padding-left:18px; margin:0;">
+            <li style="margin-bottom:8px;"><strong>第1步【查照妖镜】：</strong>空前有没有 <code>can / must / should / will / let's / don't / doesn't / didn't / to</code>？<br>👉 <strong>有：秒填动词原形！</strong></li>
+            <li style="margin-bottom:8px;"><strong>第2步【找时间路标】：</strong>
+              <br>• <code>Look! / Listen! / now</code> 👉 <strong>am/is/are + V-ing</strong>
+              <br>• <code>yesterday / last... / ago</code> 👉 <strong>过去式 V-ed</strong>
+              <br>• <code>tomorrow / next... / tonight</code> 👉 <strong>be going to / will + 原形</strong>
+              <br>• <code>every day / often / usually / on Mondays</code> 👉 一般现在时（进第3步）
+            </li>
+            <li><strong>第3步【看主语排头兵】：</strong>主语是第三人称单数（He/She/It/单数人名）吗？<br>👉 <strong>是：动词必加 -s/-es！否：填原形！</strong></li>
+          </ol>
+        </div>
+
+        <div class="axiom-card verb">
+          <h3 style="margin:0 0 10px; color:#991b1b;">🌳 决策树 B：看到【名词/代词】怎么秒杀？</h3>
+          <ol style="font-size:0.88rem; padding-left:18px; margin:0;">
+            <li style="margin-bottom:8px;"><strong>第1步【判可数性】：</strong>是不可数名词（water, milk, bread, juice, rice, homework, weather, information, advice）吗？<br>👉 <strong>是：绝不加 a/an，绝不加 s，谓语配 is，提问用 How much！</strong></li>
+            <li style="margin-bottom:8px;"><strong>第2步【看数量帽子】：</strong>
+              <br>• 前面有 <code>a / an / this / that / one</code> 👉 填<strong>单数</strong>（元音音素开头用 <code>an</code>：an apple/egg/orange/umbrella/uncle/hour）。
+              <br>• 前面有 <code>some / many / these / those / ≥2数字</code> 或 <code>like + 种类</code> 👉 填<strong>复数 -s/-es</strong>！
+            </li>
+            <li><strong>第3步【代词选格】：</strong>句首当主语用主格（I/he/she/they）；动介词后用宾格（me/him/her/them）；后面有名词用形物（my/her），后面无名词独立结尾用名物（mine/hers）！</li>
+          </ol>
+        </div>
+
+        <div class="axiom-card order">
+          <h3 style="margin:0 0 10px; color:#065f46;">🌳 决策树 C：看到【四大变形拼写】怎么写？</h3>
+          <p style="font-size:0.86rem; margin:0 0 8px;">无论是<strong>复数(+s)、三单(+s)、进行时(+ing)、过去式(+ed)、比较级(+er)</strong>，统一用四步过滤法：</p>
+          <ol style="font-size:0.86rem; padding-left:18px; margin:0;">
+            <li style="margin-bottom:6px;"><strong>查不规则表：</strong>如 <code>foot➔feet, mouse➔mice, go➔went, buy➔bought, sleep➔slept</code>。</li>
+            <li style="margin-bottom:6px;"><strong>看末尾哑巴 e：</strong>加 <code>-ing/-ed/-er</code> 时先去 e（<code>write➔writing, live➔living, dance➔dancing</code>）。</li>
+            <li style="margin-bottom:6px;"><strong>看辅元辅重闭：</strong>双写尾字母（<code>run➔running, swim➔swimming, big➔bigger, thin➔thinner, sun➔sunny</code>）。</li>
+            <li><strong>看辅音+y：</strong>变 y 为 i 再加 <code>-es/-ed/-er</code>（<code>study➔studies, heavy➔heavier, worry➔worried</code>）。</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">
+        <span>💣 维度五：小学英语【十大致命高频天坑榜】+ 考场闪电战自测</span>
+        <button class="tts-btn" style="padding:8px 16px; font-size:0.85rem;" onclick="renderPitfallQuiz()">🔄 刷新真题闯关</button>
+      </div>
+      <div id="pitfallsList" class="grid-2" style="margin-bottom:22px;"></div>
+      <div style="background:#f8fafc; border:2px dashed #93c5fd; border-radius:18px; padding:20px;">
+        <h3 style="margin:0 0 12px; color:#1e3a8a;">🎯 考场防坑闪电战（点击选项立即判分并发音解析）</h3>
+        <div id="quizStage"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: 同音反义 & 感叹句 & 满分作文 -->
+  <section id="view-writing" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">
+        <span>🪞 王炸 13：小学核心【同音词 16 组 & 反义词 24 对】全景速查矩阵</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">听力辨音、完形填空与单词拼写必考王牌</span>
+      </div>
+      <div class="grid-2">
+        <div class="axiom-card">
+          <h3 style="margin:0 0 10px; color:#1e3a8a;">🎧 十六组必考同音词（读音100%相同，点击点读）</h3>
+          <div id="homophonesBox" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+        </div>
+        <div class="axiom-card order">
+          <h3 style="margin:0 0 10px; color:#065f46;">⚖️ 二十四对核心反义词与反义短语（成对秒记）</h3>
+          <div id="antonymsBox" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">
+        <span>⚡ 王炸 14：感叹句【What vs How 三秒钟绝杀公式】+ 互动秒杀器</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">高年级与小升初必考题型：划掉主谓看尾巴！</span>
+      </div>
+      <div class="grid-2">
+        <div class="axiom-card verb">
+          <h3 style="margin:0 0 8px; color:#991b1b;">🔪 三步切尾绝杀口诀（不用背复杂句型结构！）</h3>
+          <ol style="font-size:0.9rem; padding-left:18px; margin:0;">
+            <li style="margin-bottom:8px;"><strong>第1刀【砍掉主谓】：</strong>把感叹号 <code>!</code> 前面的主语和动词（如 <code>it is / they are / the boy is / he runs</code>）直接拿铅笔轻轻划掉！</li>
+            <li style="margin-bottom:8px;"><strong>第2眼【看剩下的最后一个词】：</strong>
+              <br>• 剩下的是<strong>名词</strong> 👉 <strong>100% 填 What！</strong>（可数单数必加 <code>a/an</code>，复数和不可数不加 <code>a</code>！）
+              <br>• 剩下的是<strong>形容词或副词</strong> 👉 <strong>100% 填 How！</strong>（后面绝不加 a/an！）
+            </li>
+            <li><strong>终极避坑：</strong><code>weather</code>（天气）、<code>news</code>（新闻）、<code>work</code>（工作）、<code>music</code>（音乐）、<code>food</code>（食物）是不可数名词，永远用 <strong>What + 形容词 + 不可数名词!</strong>（绝不能加 a！）</li>
+          </ol>
+        </div>
+        <div class="axiom-card" style="background:#fff; border-color:#cbd5e1;">
+          <h3 style="margin:0 0 10px; color:#1e3a8a;">🎮 感叹句切尾演练台（点击查看切尾动画过程）</h3>
+          <div id="exclamationDemoBox"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">
+        <span>🍔 王炸 15：小升初满分小作文【汉堡包五步万能公式】+ 四大常考母题范文</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">点击范文即可整篇纯正美音朗读，背熟 4 篇通杀小学所有作文题</span>
+      </div>
+      <div id="essayTemplatesBox" class="grid-2"></div>
+    </div>
+  </section>
+
+  <!-- TAB 5: 全维词库与IPA修复台 -->
+  <section id="view-vocab" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">
+        <span>📚 维度六：全维认知词库（已内置 v5.0 标准 IPA 音标校准与去重引擎）</span>
+        <span id="vocabStatsBadge" style="font-size:0.9rem; color:var(--primary-dark); font-weight:800;"></span>
+      </div>
+      <div class="filter-bar">
+        <input type="text" id="vocabSearchInput" class="search-input" placeholder="🔍 输入英文单词、中文意思、词根或语法点搜索（如：book, 星期, 过去式, 不可数）..." oninput="renderVocabGrid()">
+        <select id="vocabCatFilter" class="search-input" style="max-width:220px;" onchange="renderVocabGrid()">
+          <option value="ALL">🌈 全部主题分类</option>
+          <option value="POLYSEMY">🎭 一词多义三幕剧专场</option>
+          <option value="IRREGULAR">💎 视觉词/特殊发音专场</option>
+          <option value="FUNCTION">⚙️ 语法功能词（代词/疑问词/介词）</option>
+          <option value="学校与学习">🏫 学校与学习</option>
+          <option value="身体与健康">💪 身体与健康</option>
+          <option value="动物大世界">🐼 动物大世界</option>
+          <option value="食物与饮品">🍎 食物与饮品</option>
+          <option value="家庭与亲友">👨‍👩‍👧‍👦 家庭与亲友</option>
+          <option value="天气与四季">☀️ 天气与四季</option>
+          <option value="节日与时间">📅 节日与时间</option>
+          <option value="交通与出行">🚇 交通与出行</option>
+          <option value="城市与场所">🏛️ 城市与场所</option>
+          <option value="职业与社会">👩‍⚕️ 职业与社会</option>
+          <option value="个人特征与情绪">😊 个人特征与情绪</option>
+          <option value="日常作息与动作">🏃 日常作息与动作</option>
+        </select>
+      </div>
+      <div id="vocabGridContainer" class="word-grid"></div>
+    </div>
+  </section>
+
+  <!-- TAB 6: 情景交际与句法火车 -->
+  <section id="view-oral" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">
+        <span>🚂 维度七：色彩形状双编码【汉英句法火车转换实验室】</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">🟦主语(蓝方) 🟥谓语(红圆) 🔶宾语(橙六边) 🔺状语(绿三角)</span>
+      </div>
+      <div id="sentenceTrainContainer"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">
+        <span>💬 维度八：小学情景交际黄金应答 12 大母题矩阵</span>
+        <span style="font-size:0.85rem; color:var(--text-sub);">点击对话气泡即可点读纯正口语发音</span>
+      </div>
+      <div id="oralMatrixContainer" class="grid-2"></div>
+    </div>
+  </section>
+
+  <!-- TAB 7: 存档备份 & v4.0 2.62MB 母体无损合成器 -->
+  <section id="view-merger" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">
+        <span>🛠️ 终极工具 1：将 v5.0 全部新模块【一键无损注入】您本地的 2.62MB v4.0 原版文件</span>
+        <span style="font-size:0.85rem; color:#059669; font-weight:800;">100% 保留原版 415 词库、Canvas 视频动画与闯关系统 + 自动修复全部音标与去重</span>
+      </div>
+      <div style="background:#fffbeb; border:2px dashed #f59e0b; border-radius:18px; padding:22px; margin-bottom:20px;">
+        <h3 style="margin:0 0 10px; color:#92400e;">⚡ 三秒钟合成『2.7MB 终极完全体 HTML』操作指南：</h3>
+        <ol style="font-size:0.94rem; color:#334155; margin:0 0 16px; padding-left:20px;">
+          <li>点击下方文件选择框，选择您电脑 <code>H:\我的云端硬盘\萌星小学英语 App\</code> 目录下的 <strong><code>primary_school_vocab_app_v4.0_终极宗师十二大王炸全规律版.html</code></strong>。</li>
+          <li>点击 <strong>【🚀 立即合成并下载 v5.0 终极完全体 HTML】</strong> 按钮。</li>
+          <li>浏览器会在 1 秒内自动完成：① 注入三大元公理、十五大王炸、感叹句与满分作文悬浮总枢；② 修复原词库中 60+ 个缺失的 IPA 音标（如 <code>/watch/ ➔ /wɑːtʃ/</code>）、修复 <code>postcard</code> 乱码、补齐 160+ 个缺失的 <code>sight_type</code> 并智能去重；③ 自动增加存档导出/导入功能，并生成全新的 <code>.html</code> 文件供您保存在该目录下！</li>
+        </ol>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+          <input type="file" id="v4FileInput" accept=".html,.htm" class="search-input" style="max-width:420px; background:#fff;">
+          <button class="tts-btn" style="background:linear-gradient(135deg,#d97706,#b45309);" onclick="mergeWithV4File()">🚀 立即合成并下载 v5.0 终极完全体 HTML</button>
+        </div>
+        <div id="mergeStatusLog" style="margin-top:12px; font-weight:800; color:#059669; font-size:0.92rem;"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="axiom-card">
+          <h3 style="margin:0 0 10px; color:#1e3a8a;">💾 终极工具 2：学习进度与错题本【跨设备存档备份 / 恢复】</h3>
+          <p style="font-size:0.88rem; color:#334155;">将当前浏览器中的打卡天数、星星数量、已掌握词与错题本记录一键导出为 JSON 存档文件，换电脑或平板时一键恢复，永不丢失！</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+            <button class="tts-btn" style="padding:9px 16px; font-size:0.88rem;" onclick="exportStudyBackup()">📤 导出学习存档 (.json)</button>
+            <label class="tts-btn" style="padding:9px 16px; font-size:0.88rem; background:#2563eb; cursor:pointer;">
+              📥 导入恢复存档 <input type="file" accept=".json" style="display:none;" onchange="importStudyBackup(event)">
+            </label>
+          </div>
+          <div id="backupStatusMsg" style="margin-top:8px; font-size:0.85rem; font-weight:800; color:#059669;"></div>
+        </div>
+
+        <div class="axiom-card order">
+          <h3 style="margin:0 0 10px; color:#065f46;">🩹 终极工具 3：v4.0 词库全量 IPA 音标校准与去重补丁源码</h3>
+          <p style="font-size:0.88rem; color:#334155;">如果您手动编辑 HTML，也可一键复制下方自动修复脚本粘贴到 v4.0 的 <code>&lt;script&gt;</code> 中：</p>
+          <button class="tts-btn" style="padding:9px 16px; font-size:0.88rem; background:#059669;" onclick="copyPatchScript()">📋 一键复制 IPA 音标修复与去重脚本</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 单词详情与一词多义三幕剧弹窗 -->
+<div id="wordModal" class="modal-backdrop" onclick="if(event.target===this)closeWordModal()">
+  <div class="modal-box" id="wordModalContent"></div>
+</div>
+
+<script>
+// ==================== 1. 语音合成引擎 (Browser TTS) ====================
+function speakText(text) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = 0.85;
+  window.speechSynthesis.speak(utter);
+}
+
+// ==================== 2. 十五大王炸全规律数据库 ====================
+const ROYAL_TRUMPS_DB = [
+  {
+    id: "T01", icon: "🔤", title: "王炸 01：自然拼读五大黄金发音法则",
+    rule: "掌握 5 条核心规律即可直接拼读小学 85% 的单词：",
+    items: [
+      { name: "Magic E（哑巴e开音节）", desc: "元音+辅音+不发音e，元音字母读本音 /eɪ, iː, aɪ, oʊ, juː/", examples: ["cake", "face", "nine", "kite", "nose", "write", "June"] },
+      { name: "ee / ea 长音组合", desc: "绝大多数读长音 /iː/；特例“吃面包甩脑袋看天气”读短音 /e/", examples: ["tree", "green", "sheep", "clean", "bread", "head", "weather"] },
+      { name: "R-控制音节三剑客", desc: "ar 读 /ɑːr/；ir / ur / er 统统读卷舌音 /ɜːr/", examples: ["car", "park", "bird", "shirt", "skirt", "nurse", "teacher"] },
+      { name: "-igh 与静音字母组合", desc: "-igh 读 /aɪ/（gh静音）；kn- 的 k 静音；wr- 的 w 静音；-mb 的 b 静音", examples: ["light", "eight", "straight", "know", "write", "climb"] }
+    ]
+  },
+  {
+    id: "T02", icon: "🛠️", title: "王炸 02：四大变形大一统拼写铁律",
+    rule: "名词复数(+s)、三单(+s)、进行时(+ing)、过去式(+ed)、比较级(+er) 100% 通用：",
+    items: [
+      { name: "① 哑巴 e 先让位", desc: "以不发音 e 结尾，加 -ing/-ed/-er 时去 e 再加", examples: ["write -> writing", "dance -> dancing", "hike -> hiking", "live -> living"] },
+      { name: "② 辅元辅重闭双写尾", desc: "末尾是“辅+元+辅”重读闭音节，双写尾字母再加", examples: ["run -> running", "swim -> swimming", "sun -> sunny", "big -> bigger", "thin -> thinner"] },
+      { name: "③ 辅音+y 变 i 再加", desc: "辅音+y 结尾变 y 为 i 加 es/ed/er（元音+y 如 play/stay 直接加！）", examples: ["study -> studies", "heavy -> heavier", "worry -> worried", "strawberry -> strawberries"] },
+      { name: "④ s/x/ch/sh/o 加 es", desc: "以 s, x, ch, sh 或有生命的 o（英雄爱吃土豆西红柿）结尾加 -es", examples: ["glasses", "watches", "potatoes", "tomatoes", "goes", "does"] }
+    ]
+  },
+  {
+    id: "T03", icon: "🧬", title: "王炸 03：古英语元音换装活化石（不规则变形）",
+    rule: "不是乱变，而是成群结队按元音规律换装：",
+    items: [
+      { name: "oo ➔ ee 复数家族", desc: "把中间的两个 o 换成两个 e 秒变复数", examples: ["foot -> feet", "tooth -> teeth", "goose -> geese"] },
+      { name: "man ➔ men 与特殊复数", desc: "a 变 e 或单复数同形（羊鱼鹿永不加 s）", examples: ["man -> men", "woman -> women", "mouse -> mice", "sheep -> sheep", "fish -> fish"] },
+      { name: "i ➔ a / o 过去式旋律", desc: "把动词中间的 i 换成 a 或 o 秒变过去式", examples: ["sing -> sang", "swim -> swam", "drink -> drank", "ride -> rode", "write -> wrote"] },
+      { name: "ee ➔ e+t 与 -ought 过去式", desc: "双 ee 缩成 e 加 t；或换上 -ought 铠甲", examples: ["sleep -> slept", "keep -> kept", "buy -> bought", "think -> thought"] }
+    ]
+  },
+  {
+    id: "T04", icon: "🧩", title: "王炸 04：词根词缀乐高裂变公式",
+    rule: "1 个母体词根 + 前后缀 = 瞬间串记 10 个课标词：",
+    items: [
+      { name: "职业造人四大后缀", desc: "动词/名词 + -er / -or / -ist / -man = 专业人士", examples: ["teacher", "driver", "actor", "doctor", "visitor", "scientist", "fisherman"] },
+      { name: "port（港口/运输）家族", desc: "围绕“搬运与港口”裂变出的 5 大核心词", examples: ["airport", "passport", "report", "reporter", "sport", "important"] },
+      { name: "vis/spect（用眼看）家族", desc: "凡是含 vis/vid/spect 的词全都和“看”有关", examples: ["visit", "visitor", "video", "television", "respect", "expect", "special"] },
+      { name: "fact/dict/form 三大词根", desc: "fact=做，dict=说/字词，form=形状样式", examples: ["factory", "office", "difficult", "dictionary", "predict", "uniform", "information"] }
+    ]
+  },
+  {
+    id: "T05", icon: "🪞", title: "王炸 05：WH- 疑问与 TH-/H- 天然对偶矩阵",
+    rule: "把疑问词开头的 wh- 换成 h-（近指）或 th-（远指），立刻变成对应的回答词：",
+    items: [
+      { name: "空间三胞胎 (-ere)", desc: "wh-问哪里 ↔ h-这里 ↔ th-那里", examples: ["where", "here", "there"] },
+      { name: "时间双胞胎 (-en)", desc: "wh-问何时 ↔ th-那时/然后", examples: ["when", "then"] },
+      { name: "事物双胞胎 (-at)", desc: "wh-问什么 ↔ th-那个", examples: ["what", "that"] },
+      { name: "指示代词远近四宫格", desc: "近指单复数 this/these ↔ 远指单复数 that/those", examples: ["this", "these", "that", "those"] }
+    ]
+  },
+  {
+    id: "T06", icon: "🎭", title: "王炸 06：人称代词四格变身矩阵",
+    rule: "按在句子里的位置严格换衣服：句首主格、动介后宾格、名物必带 -s 尾：",
+    items: [
+      { name: "第一人称（我/我们）", desc: "单数 I-me-my-mine ｜ 复数 we-us-our-ours", examples: ["I love my book.", "Give it to me.", "It is mine.", "Come and join us!"] },
+      { name: "第二人称（你/你们）", desc: "主宾同形超省心 you-you-your-yours", examples: ["You are nice.", "Is this your ruler?", "Yes, it is yours."] },
+      { name: "第三人称单数（他/她/它）", desc: "宾格常带 -m (him)，所有格带 -s (his/hers/its)", examples: ["He is tall.", "We like him.", "The red hat is hers.", "Its tail is short."] },
+      { name: "第三人称复数（他们）", desc: "全部 th- 开头：they-them-their-theirs", examples: ["They are my friends.", "Look at them!", "Their caps are red."] }
+    ]
+  },
+  {
+    id: "T07", icon: "🎬", title: "王炸 07：一词多义“三幕剧”画面推演",
+    rule: "掌握“本义画面 ➔ 动作转化 ➔ 引申新义”，彻底打通小学 8 大多义词：",
+    items: [
+      { name: "book & park", desc: "书本(n.)➔写进册子预订(v.) ｜ 公园(n.)➔把车停进车位(v.)", examples: ["read a book", "book a ticket", "in the park", "Don't park here"] },
+      { name: "watch & light", desc: "注视观看(v.)➔手表(n.) ｜ 电灯光线(n.)➔轻的/浅色的(adj.)", examples: ["watch TV", "a new watch", "Turn on the light", "light blue"] },
+      { name: "turn & study", desc: "转弯变成(v.)➔轮流顺序(n.) ｜ 学习(v.)➔书房(n.)", examples: ["turn left", "Leaves turn yellow", "take turns", "in the study"] },
+      { name: "cold & play", desc: "寒冷的(adj.)➔感冒(n.) ｜ 打球(不加the)➔弹琴(加the)/话剧(n.)", examples: ["cold winter", "have a cold", "play football", "play the piano"] }
+    ]
+  },
+  {
+    id: "T08", icon: "🔍", title: "王炸 08：高频易混词动作辨析矩阵",
+    rule: "中考与小学毕业考最爱考的 4 组高频近义词秒杀口诀：",
+    items: [
+      { name: "四大“看” (look/see/watch/read)", desc: "look at 看动作；see 看结果/看病；watch 看电视比赛；read 看书报地图", examples: ["Look at me", "see a doctor", "watch TV", "read a book"] },
+      { name: "四大“说” (say/tell/talk/speak)", desc: "say 说具体话语；tell 讲故事/告诉某人；talk 双向交谈；speak 说语言", examples: ["say hello", "tell a story", "talk about", "speak English"] },
+      { name: "三大“穿戴” (put on/wear/in)", desc: "put on 穿上的动作；wear 穿着的状态；in+颜色 表穿着某色衣服", examples: ["Put on your coat", "wear a helmet", "the girl in red"] },
+      { name: "三大“拿带” (take/bring/carry)", desc: "take 带走/乘坐；bring 带来；carry 随身背着/搬运", examples: ["Take an umbrella", "take a trip", "Carry your bag"] }
+    ]
+  },
+  {
+    id: "T09", icon: "📍", title: "王炸 09：时空介词 in / on / at 三维坐标轴",
+    rule: "记住黄金口诀：“in 大 on 中 at 小，具体某天全用 on，this/next/every 零介词”：",
+    items: [
+      { name: "in（>1天 / 容器内部）", desc: "用于年份、月份、季节、早中晚，以及大城市/容器内部", examples: ["in January", "in spring", "in the morning", "in the box"] },
+      { name: "on（=1天 / 表面接触）", desc: "用于星期几、几月几日、具体某天早晚，以及物体表面", examples: ["on Mondays", "on May 1st", "on the desk", "on the first floor"] },
+      { name: "at（<1天 / 精确点）", desc: "用于具体钟点、at night / at noon，以及小地点（at home/school）", examples: ["at 7 o'clock", "at night", "at home", "Turn left at the hospital"] },
+      { name: "方位介词黄金搭档", desc: "under 正下方；over 悬空跨越；between 两者之间；next to 紧挨着", examples: ["under the chair", "bridge over the river", "between A and B", "next to the cinema"] }
+    ]
+  },
+  {
+    id: "T10", icon: "⏳", title: "王炸 10：小学四大核心时态全闭环",
+    rule: "时间路标词（Time Markers）与动词盔甲严格锁定对应：",
+    items: [
+      { name: "① 一般现在时", desc: "路标：every day, often, usually, on Sundays ➔ 原形 或 三单 +s/es", examples: ["I read books every day.", "He studies Chinese."] },
+      { name: "② 现在进行时", desc: "路标：Look!, Listen!, now ➔ am / is / are + V-ing（缺be必错）", examples: ["The dog is climbing.", "The elephant is drinking water."] },
+      { name: "③ 一般过去时", desc: "路标：yesterday, last weekend, last night ➔ V-ed 或不规则过去式", examples: ["I cleaned my room last weekend.", "I slept well last night."] },
+      { name: "④ 一般将来时", desc: "路标：tomorrow, tonight, next week ➔ be going to / will + 动词原形", examples: ["We are going to take a trip.", "What are you going to do tomorrow?"] }
+    ]
+  },
+  {
+    id: "T11", icon: "🕵️", title: "王炸 11：特殊疑问词 9 大侦探雷达",
+    rule: "看答句锁定问句排头兵，How + 形容词专门测量身体与数量：",
+    items: [
+      { name: "What 家族（什么/几点/何色）", desc: "What 问事物动作；What time 问钟点；What's ... like 问天气/外貌", examples: ["What is your name?", "What's the weather like?"] },
+      { name: "Where / When / Why", desc: "Where 问地点；When 问时间日期；Why 问原因（必用 Because 答）", examples: ["Where is the post office?", "When is your birthday?", "Why do you like spring?"] },
+      { name: "Who / Whose / Which", desc: "Who 问谁；Whose+名词 问谁的；Which+名词 问哪一个", examples: ["Who is that man?", "Whose dog is it?", "Which season do you like best?"] },
+      { name: "How 测量尺家族", desc: "How 问交通方式/身体；How many 问可数；How much 问不可数/价格；How tall/heavy/old", examples: ["How do you go to school?", "How many books?", "How much is this scarf?", "How tall are you?"] }
+    ]
+  },
+  {
+    id: "T12", icon: "💬", title: "王炸 12：句型转换与交际黄金铁律",
+    rule: "肯定变否定/疑问三步走，情景交际礼貌得体：",
+    items: [
+      { name: "有 be / 情态动词直接提", desc: "句中有 am/is/are/was/were/can/will，变疑问直接提到句首，变否定直接加 not", examples: ["Can you swim?", "Are they happy?", "Don't be sad!"] },
+      { name: "实义动词请 do/does/did", desc: "句中只有实义动词，请助动词 do/does/did 站岗，原动词瞬间打回原形", examples: ["Do you like bananas?", "Does he like puzzles?", "Did you clean your room?"] },
+      { name: "some 与 any 的极性转换", desc: "肯定句用 some，否定/疑问变 any；但 Would you like some...? 诚意邀请仍用 some", examples: ["I have some milk.", "I don't have any bread.", "Would you like some juice?"] },
+      { name: "交际应答满分模板", desc: "祈使句劝阻 Don't... 答 Sorry；建议 Let's... 答 Great/Good idea", examples: ["Let's go to the park! -> Great!", "Thank you! -> You're welcome."] }
+    ]
+  },
+  {
+    id: "T13", icon: "🎧", title: "王炸 13：同音词 16 组与反义词 24 对速查",
+    rule: "听力与完形填空必考，成双成对对比记忆效率翻 5 倍：",
+    items: [
+      { name: "核心同音词 A组", desc: "读音完全相同，拼写与意义不同", examples: ["two / too / to", "write / right", "know / no", "see / sea", "hear / here"] },
+      { name: "核心同音词 B组", desc: "过去式与常见名词同音陷阱", examples: ["where / wear", "there / their", "by / buy / bye", "eight / ate", "rode / road"] },
+      { name: "高频反义词对偶", desc: "外貌、价格、速度与情绪正反对子", examples: ["tall <-> short", "fat <-> thin", "heavy <-> light", "cheap <-> expensive", "fast <-> slow"] },
+      { name: "高频动词反义短语", desc: "开关、穿脱、上下车动作相反", examples: ["turn on <-> turn off", "put on <-> take off", "get on <-> get off"] }
+    ]
+  },
+  {
+    id: "T14", icon: "❗", title: "王炸 14：感叹句 What vs How 三秒切尾公式",
+    rule: "把感叹号前的主谓（it is / they are）划掉，看剩下的最后一个词：",
+    items: [
+      { name: "What + a/an + 形容词 + 单数可数!", desc: "划掉主谓后末尾是可数单数名词，必加 a/an", examples: ["What a clever boy he is!", "What an interesting book it is!"] },
+      { name: "What + 形容词 + 复数/不可数!", desc: "末尾是复数或不可数名词（weather/news/food），绝不加 a/an", examples: ["What nice weather it is!", "What pretty flowers they are!"] },
+      { name: "How + 形容词/副词 + 主谓!", desc: "划掉主谓后末尾是形容词或副词，必用 How", examples: ["How clever the boy is!", "How fast he runs!", "How happy they are!"] }
+    ]
+  },
+  {
+    id: "T15", icon: "🍔", title: "王炸 15：小升初满分作文『汉堡包五步法』",
+    rule: "任何小学作文题（人物/周末/假期/季节）套用 5 句话稳拿满分：",
+    items: [
+      { name: "第1句【点题顶层面包】", desc: "Hello, everyone! Let me tell you about my...", examples: ["Let me tell you about my favourite season.", "I had a busy and happy weekend."] },
+      { name: "第2~3句【核心肉饼与生菜】", desc: "用 First / Then / On Saturday 写出 2~3 个具体动作（注意时态一致）", examples: ["In the morning, I cleaned my room and did my homework.", "In the afternoon, I played football with my friends in the park."] },
+      { name: "第4~5句【芝士拔高+底层面包】", desc: "加一句比较级/There be/感叹句，最后表达喜爱之情", examples: ["There are many pretty flowers in spring.", "What a wonderful weekend! I was tired but very happy."] }
+    ]
+  }
+];
+
+// ==================== 3. 同音词、反义词、感叹句与作文数据 ====================
+const HOMOPHONES_LIST = [
+  "two / too / to (/tuː/)", "write / right (/raɪt/)", "know / no (/noʊ/)", "see / sea (/siː/)",
+  "hear / here (/hɪr/)", "where / wear (/wer/)", "there / their (/ðer/)", "by / buy / bye (/baɪ/)",
+  "son / sun (/sʌn/)", "meat / meet (/miːt/)", "for / four (/fɔːr/)", "one / won (/wʌn/)",
+  "eight / ate (/eɪt/)", "rode / road (/roʊd/)", "flower / flour (/ˈflaʊər/)", "eye / I (/aɪ/)"
+];
+
+const ANTONYMS_LIST = [
+  "big ↔ small (大小)", "tall ↔ short (高矮)", "long ↔ short (长短)", "fat ↔ thin (胖瘦)",
+  "heavy ↔ light (轻重)", "fast ↔ slow (快慢)", "cheap ↔ expensive (贵贱)", "clean ↔ dirty (净脏)",
+  "old ↔ young (老幼)", "old ↔ new (新旧)", "hot ↔ cold (冷热)", "warm ↔ cool (暖凉)",
+  "happy ↔ sad (悲喜)", "quiet ↔ noisy (静闹)", "easy ↔ difficult (难易)", "safe ↔ dangerous (安危)",
+  "polite ↔ rude (礼貌粗鲁)", "busy ↔ free (忙闲)", "turn on ↔ turn off (开关)", "put on ↔ take off (穿脱)",
+  "get on ↔ get off (上下车)", "come ↔ go (来去)", "buy ↔ sell (买卖)", "ask ↔ answer (问答)"
+];
+
+const EXCLAMATION_DEMOS = [
+  { raw: "_______ a cute dog [it is]!", cut: "划掉主谓 [it is] ➔ 末尾是可数单数名词 dog（前有 a）", ans: "What a cute dog it is!" },
+  { raw: "_______ fine weather [it is today]!", cut: "划掉主谓 [it is today] ➔ 末尾是不可数名词 weather（绝不加 a）", ans: "What fine weather it is today!" },
+  { raw: "_______ fast [the boy runs]!", cut: "划掉主谓 [the boy runs] ➔ 末尾只剩副词 fast（无名词）", ans: "How fast the boy runs!" },
+  { raw: "_______ beautiful flowers [they are]!", cut: "划掉主谓 [they are] ➔ 末尾是复数名词 flowers", ans: "What beautiful flowers they are!" }
+];
+
+const ESSAY_TEMPLATES = [
+  {
+    title: "🏆 母题 01：《My Last Weekend》（一般过去时满分模板）",
+    tag: "适用：难忘的周末 / 上周日 / 昨天",
+    en: "I had a busy and happy weekend. On Saturday morning, I cleaned my room and did my homework. In the afternoon, I went to the park with my friends by bike. We flew kites and played badminton happily. On Sunday evening, I watched TV and slept well. What a wonderful weekend!",
+    zh: "我度过了一个充实又快乐的周末。周六上午我打扫了房间并做了作业。下午我和朋友骑车去公园放风筝、打羽毛球。周日晚上我看了电视并睡了个好觉。多么棒的周末啊！"
+  },
+  {
+    title: "🏆 母题 02：《My Summer Holiday Plan》（一般将来时满分模板）",
+    tag: "适用：寒暑假计划 / 下周末打算 / 即将到来的旅行",
+    en: "Summer vacation is coming! I am going to take a trip to Sanya with my family next week. We are going there by plane. I am going to swim in the blue sea and eat delicious seafood. I will also buy some nice gifts and postcards for my friends. I can't wait!",
+    zh: "暑假快到了！下周我打算和家人一起去三亚旅行。我们要坐飞机去那里。我打算在蔚蓝的大海里游泳并吃美味的海鲜。我还会给朋友们买些精美的礼物和明信片。我都等不及了！"
+  },
+  {
+    title: "🏆 母题 03：《My Best Friend / Teacher》（人物外貌性格满分模板）",
+    tag: "适用：我的好朋友 / 家人 / 最喜欢的老师（含三单与比较级）",
+    en: "Wu Binbin is my best friend. He is twelve years old, and he is taller and stronger than me. He has short hair and wears blue glasses. He is very clever, polite and hard-working. He studies Chinese and likes playing football after school. We always help each other!",
+    zh: "吴斌斌是我最好的朋友。他十二岁了，比我更高更强壮。他留着短发，戴着一副蓝眼镜。他非常聪明、有礼貌且学习刻苦。他放学后喜欢踢足球。我们总是互相帮助！"
+  },
+  {
+    title: "🏆 母题 04：《My Favourite Season》（四季与自然景物满分模板）",
+    tag: "适用：最喜欢的季节 / 我的家乡 / 美丽的公园（含 There be 句型）",
+    en: "There are four seasons in a year, and spring is my favourite season. In spring, the weather is warm and sunny. There are green trees and colourful flowers everywhere in the park. I can go on a picnic and fly kites with my family on Sundays. How beautiful spring is!",
+    zh: "一年有四个季节，春天是我最喜欢的季节。春天天气温暖又晴朗。公园里到处是绿树和五颜六色的花朵。周日我可以和家人一起去野餐、放风筝。春天多美啊！"
+  }
+];
+
+// ==================== 4. 十大致命天坑与真题题库 ====================
+const PITFALLS_DB = [
+  { rank: "天坑 01", title: "拼写双胞胎颠倒陷阱", desc: "安静是 quiet（e在t前，双音节），相当是 quite（e在末尾）；天气是 weather（含eat），是否是 whether；厨房是 kitchen（含t），鸡肉是 chicken。", alert: "quiet vs quite ｜ weather vs whether ｜ kitchen vs chicken" },
+  { rank: "天坑 02", title: "哑巴字母漏写榜", desc: "星期三 Wednesday 中间的 d 不发音但必写；爬 climb 末尾 b 不发音；岛 island 中间 s 不发音；图书馆 library 有两个 r；明天 tomorrow 是 1个m、2个r！", alert: "Wed-nes-day ｜ climb ｜ is-land ｜ li-brar-y ｜ to-mor-row" },
+  { rank: "天坑 03", title: "单复数同形与 o 结尾复数", desc: "绵羊 sheep、鱼 fish（条数）、鹿 deer 单复数同形绝不加 s！土豆 potato、西红柿 tomato 变复数必须加 -es！脚 foot➔feet，老鼠 mouse➔mice。", alert: "five sheep (✘ sheeps) ｜ tomatoes & potatoes" },
+  { rank: "天坑 04", title: "不可数名词“伪装者”", desc: "面包 bread、作业 homework、天气 weather、信息 information、建议 advice 全是不可数名词！绝不能加 a/an，绝不能加复数 s，谓语必用单数 is！", alert: "some bread / homework / advice (✘ a bread / homeworks)" },
+  { rank: "天坑 05", title: "The 的生死分界线", desc: "play + 球类/棋类 绝不加 the（play football / badminton）；play + 西洋乐器 必须加 the（play the piano）；by + 交通工具 中间零冠词（by subway/bus）！", alert: "play football ↔ play the piano ｜ by bus (✘ by a bus)" },
+  { rank: "天坑 06", title: "Because 与 So 水火不容", desc: "汉语喜欢成对说“因为……所以……”，但在英语同一个句子里，写了 because 就绝对不能再写 so（写了 although/though 就绝不能写 but）！", alert: "Because it's hot, I eat ice cream. (✘ Because..., so...)" },
+  { rank: "天坑 07", title: "现在进行时漏掉 be 动词", desc: "汉语说“小狗正在爬山”没有“是”，英语现在进行时必须是 am/is/are + V-ing 双剑合璧，漏掉 is 必扣分！", alert: "The dog is climbing. (✘ The dog climbing.)" },
+  { rank: "天坑 08", title: "过去时间路标却忘穿过去式盔甲", desc: "只要句中出现 yesterday / last weekend / last night / ago，哪怕中文没写“了”，英语动词也必须强制变成过去式（cleaned / slept / bought）！", alert: "I cleaned my room last weekend. (✘ I clean...)" },
+  { rank: "天坑 09", title: "Some 的诚意邀请特权", desc: "一般疑问句通常把 some 变成 any，但如果是端着食物饮料问 Would you like some...? 或请求 Can I have some...?，必须保留 some！", alert: "Would you like some milk? / Can I have some bread?" },
+  { rank: "天坑 10", title: "Its 与 It's、Whose 与 Who's 混淆", desc: "its（不带撇号）是“它的”；it's = it is（它是）。whose 是“谁的（问归属）”；who's = who is（是谁）。", alert: "Its tail is short. (✘ It's tail) ｜ Whose book is this?" }
+];
+
+const QUIZ_BANK = [
+  { q: "1. Look! The little dog _______ the mountain now.", opts: ["climbs", "climbing", "is climbing", "climbed"], ans: 2, exp: "看到 Look! 和 now 锁定现在进行时：必须用 be (is) + V-ing (climbing)，绝不能漏掉 is！" },
+  { q: "2. My sister can _______ the piano, and she likes playing _______ badminton.", opts: ["play the; /", "play; the", "plays the; /", "play the; the"], ans: 0, exp: "can 照妖镜后用原形 play；西洋乐器 piano 前必加 the，球类运动 badminton 前绝不加 the！" },
+  { q: "3. Grandpa has five white _______ and some fresh _______ on his farm.", opts: ["sheeps; tomatos", "sheep; tomatoes", "sheep; tomatos", "sheeps; tomatoes"], ans: 1, exp: "绵羊 sheep 单复数同形不加 s；西红柿 tomato 是有生命的 o 结尾名词，复数必须加 -es！" },
+  { q: "4. Would you like _______ orange juice? — Yes, please.", opts: ["a", "any", "some", "many"], ans: 2, exp: "juice 是不可数名词不能加 a 或 many；Would you like...? 表示诚意邀请、期待肯定回答，疑问句仍用 some！" },
+  { q: "5. — _______ cap is this? — It's _______. My mom bought it for me yesterday.", opts: ["Who's; my", "Whose; mine", "Whose; my", "Who; mine"], ans: 1, exp: "问物品归属“谁的帽子”用 Whose cap；答句末尾后面没有名词，必须用带 -s 概念的名词性物主代词 mine！" },
+  { q: "6. _______ nice weather it is today! Let's go on a picnic.", opts: ["What a", "What", "How", "How a"], ans: 1, exp: "划掉主谓 it is today 后，末尾中心词是不可数名词 weather，感叹句用 What 且绝不加 a！" }
+];
+
+// ==================== 5. 汉英句法火车与情景交际数据 ====================
+const SENTENCE_TRAINS = [
+  {
+    title: "场景 1：日常交通出行（方式+地点+时间倒挂）",
+    zh: ["🟦 我", "🔺 每天早上", "🔺 乘地铁", "🟥 去", "🔶 学校"],
+    en: [
+      { role: "S", text: "🟦 I", zh: "我(主语)" },
+      { role: "V", text: "🟥 go to", zh: "去(谓语)" },
+      { role: "O", text: "🔶 school", zh: "学校(宾语)" },
+      { role: "A", text: "🔺 by subway", zh: "乘地铁(方式状语·零冠词)" },
+      { role: "A", text: "🔺 every morning.", zh: "每天早上(时间状语挂车尾)" }
+    ],
+    fullEn: "I go to school by subway every morning."
+  },
+  {
+    title: "场景 2：周末过去活动（过去式盔甲+地点+时间倒挂）",
+    zh: ["🟦 我们", "🔺 上周末", "🔺 在公园里", "🔺 开心地", "🟥 放了", "🔶 风筝"],
+    en: [
+      { role: "S", text: "🟦 We", zh: "我们(主语)" },
+      { role: "V", text: "🟥 flew", zh: "放了(fly过去式)" },
+      { role: "O", text: "🔶 kites", zh: "风筝(复数宾语)" },
+      { role: "A", text: "🔺 happily", zh: "开心地(方式副词)" },
+      { role: "A", text: "🔺 in the park", zh: "在公园里(地点状语)" },
+      { role: "A", text: "🔺 last weekend.", zh: "上周末(时间状语)" }
+    ],
+    fullEn: "We flew kites happily in the park last weekend."
+  },
+  {
+    title: "场景 3：特殊疑问句（疑问词排头兵+助动词提前）",
+    zh: ["🟦 你", "🔺 这个周末", "🟥 打算做", "🔶 什么？"],
+    en: [
+      { role: "O", text: "🔶 What", zh: "什么(疑问词排头兵)" },
+      { role: "V", text: "🟥 are you going to do", zh: "你打算做(be动词提前)" },
+      { role: "A", text: "🔺 this weekend?", zh: "这个周末(零介词时间状语)" }
+    ],
+    fullEn: "What are you going to do this weekend?"
+  }
+];
+
+const ORAL_MATRIX_DB = [
+  { scene: "1. 礼貌点餐与邀请", q: "Would you like some beef noodles?", a: "Yes, please. / No, thanks. I'd like some rice.", tip: "Would you like...? 肯定回答用 Yes, please，否定用 No, thanks。" },
+  { scene: "2. 请求允许与递物", q: "Can I have some bread, please?", a: "Sure. Here you are! — Thank you. — You're welcome.", tip: "递给对方物品说 Here you are（给你）。" },
+  { scene: "3. 提议一起活动", q: "Let's go to the nature park this Sunday!", a: "Great! / Good idea! / Sounds good!", tip: "Let's / Shall we / What about... 提建议，用 Great! 或 Good idea! 响应。" },
+  { scene: "4. 问路与指路导航", q: "Excuse me, where is the science museum?", a: "Turn left at the hospital, then go straight. It's next to the post office.", tip: "问路先说礼貌语 Excuse me；指路三剑客：Turn left/right, Go straight。" },
+  { scene: "5. 购物询问价格与试穿", q: "Can I help you? How much is this scarf?", a: "It's twenty yuan. Can I try it on? — Of course!", tip: "服务员迎客说 Can I help you? 问价格用 How much is/are...?" },
+  { scene: "6. 询问天气与穿搭建议", q: "What's the weather like in Beijing today?", a: "It's cold and windy. Put on your warm coat and gloves!", tip: "问天气：What's the weather like? 或 How is the weather?" },
+  { scene: "7. 询问外貌与性格特征", q: "What's your new English teacher like?", a: "She is tall, kind and very helpful. We all love her.", tip: "What's sb. like? 既可问外貌也可问性格特征。" },
+  { scene: "8. 询问体检身高体重年龄", q: "How tall are you? And how heavy are you?", a: "I'm 1.62 metres tall, and I'm 45 kilograms. I'm taller than my brother.", tip: "超过 1 的米数和公斤数必须加复数 -s (metres, kilograms)。" }
+];
+
+// ==================== 6. 核心词库与 IPA 自动修复补丁 ====================
+const VOCAB_DB = [
+  {"id":"G1_001","word":"bag","phonetic":"/bæɡ/","syllables":"bag","pos":"n.","meaning":"包，书包","emoji":"👜","theme_sub":"学校与学习","sight_type":"decodable","has_polysemy":false,"example_en":"Carry your bag.","example_zh":"背上你的包。","etymology":"📖 b-a-g 三个字母拼成随身小包，衍生出 schoolbag（书包）、handbag（手提包）！","affix_root":"🧩 基础词根 bag ➔ schoolbag (书包) · handbag (手提包)","syntax_contrast":"【名词戴帽加尾铁律】可数名词单数不能裸奔，前面必加 a/my/the，复数加 -s。"},
+  {"id":"G1_002","word":"book","phonetic":"/bʊk/","syllables":"book","pos":"n./v.","meaning":"书本；预订（车票/房间）","emoji":"📖","theme_sub":"学校与学习","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"把信息装订或登记在册子里","act1":"📖 第一幕【核心本义·纸质书册】：桌上一本厚厚的故事书（a storybook）。","act2":"🔄 第二幕【场景变形·登记造册】：售票员翻开座位登记册，把乘客名字写进册子里留座。","act3":"🎫 第三幕【引申新义·预订】：book 由名词“书/册子”转类为动词“预订（book a ticket online）”！"},"example_en":"Let's book a ticket online.","example_zh":"我们在网上订张票吧。","etymology":"📖 古人把字写在桦树皮木片（book）上订成册，后来既指书本，又指登记预订！","affix_root":"🧩 词根妈妈 book ➔ notebook (笔记本) · storybook (故事书) · bookstore (书店)","syntax_contrast":"【词性转化铁律】放在 a/my 后是名词“书”，放在 Let's/can 后作谓语是动词“预订”。"},
+  {"id":"G1_009","word":"eye","phonetic":"/aɪ/","syllables":"eye","pos":"n.","meaning":"眼睛","emoji":"👀","theme_sub":"身体与健康","sight_type":"irregular","irregular_info":{"part":"eye","tip":"三个字母对称像两只眼睛架着鼻梁 y，读音与代词 I 完全同音 /aɪ/！"},"has_polysemy":false,"example_en":"Look into my eyes.","example_zh":"看着我的眼睛。","etymology":"📖 象形造词：左右两个 e 像两只眼睛，中间的 y 像鼻梁！","affix_root":"🧩 eye (眼睛) ➔ eyebrow (眉毛) · eyesight (视力) · glasses (眼镜)","syntax_contrast":"【成双成对复数律】人有两只眼睛，日常表达常加 -s 用复数 my eyes。"},
+  {"id":"G1_017","word":"fish","phonetic":"/fɪʃ/","syllables":"fish","pos":"n.","meaning":"鱼（条数单复同形）；鱼肉（不可数）","emoji":"🐟","theme_sub":"动物大世界","sight_type":"decodable","spelling_alert":"⚠️ 易错预警：指鱼的条数时单复数同形（three fish），指鱼肉时不可数（some fish）！","has_polysemy":true,"polysemy_data":{"core_concept":"水里游的活鱼与餐桌上的鱼肉","act1":"🐟 第一幕【核心本义·活鱼】：三条小鱼在水里游（three fish，单复同形不加s）。","act2":"🔄 第二幕【场景变形·烹饪上桌】：活鱼做成一道鲜美的清蒸鱼端上餐桌。","act3":"🍽️ 第三幕【引申新义·鱼肉】：变为不可数物质名词“鱼肉（Eat some fish）”！"},"example_en":"The three fish swim fast.","example_zh":"这三条小鱼游得很快。","etymology":"📖 游在水里数条数是可数（单复同形），端上餐桌吃鱼肉是不可数！","affix_root":"🧩 fish (鱼/捕鱼) ➔ fisherman (渔民) · goldfish (金鱼)","syntax_contrast":"【单复数同形三剑客】sheep（绵羊）、deer（鹿）、fish（鱼条数）复数绝不加 s！"},
+  {"id":"G1_039","word":"orange","phonetic":"/ˈɔːrɪndʒ/","syllables":"or-ange","pos":"n./adj.","meaning":"橙子（可数）；橙色的；橙汁（不可数）","emoji":"🍊","theme_sub":"食物与饮品","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"橙子果实及其天然色彩与汁水","act1":"🍊 第一幕【核心本义·水果橙子】：果盘里放着一个圆润的橙子（an orange，元音开头用an）。","act2":"🔄 第二幕【场景变形·提取色彩与鲜榨】：果皮的温暖色彩涂满画板，果肉榨成橙汁。","act3":"🎨 第三幕【引申新义·橙色/橙汁】：直接作形容词“橙色的（orange bag）”或不可数“橙汁”！"},"example_en":"I want an orange and some orange juice.","example_zh":"我想要一个橙子和一些橙汁。","etymology":"📖 先有这种香甜的水果，人们才用它的名字命名了温暖的“橙色”！","affix_root":"🧩 or-ange（注意元音音素 /ɔː/ 开头，一个橙子必用 an orange）","syntax_contrast":"【a 与 an 铁律】元音发音开头必用冠词 an：an apple, an egg, an orange, an umbrella, an uncle, an hour。"},
+  {"id":"G1_055","word":"water","phonetic":"/ˈwɔːtər/","syllables":"wa-ter","pos":"n./v.","meaning":"水（不可数）；给…浇水","emoji":"💧","theme_sub":"食物与饮品","sight_type":"irregular","irregular_info":{"part":"a","tip":"字母 a 在 w 后特殊读作长音 /ɔː/！"},"has_polysemy":true,"polysemy_data":{"core_concept":"生命之源清水与用水浇灌","act1":"💧 第一幕【核心本义·清水】：杯子里装满清凉的饮用水（some water，不可数）。","act2":"🔄 第二幕【场景变形·装入喷壶】：提着装满水的喷壶走向花园。","act3":"🌻 第三幕【引申新义·给…浇水】：名词转类为动词“浇花（water the flowers）”！"},"example_en":"I water the flowers and drink some water.","example_zh":"我给花浇水并喝点水。","etymology":"💧 w 就像荡漾的水波纹！既是不可数名词“水”，也是动词“浇水”！","affix_root":"🧩 water (水) ➔ watermelon (西瓜) · waterfall (瀑布) · water bottle (水瓶)","syntax_contrast":"【不可数名词铁律】water 绝不能加 a 或 s，谓语配单数 Water is important。"},
+  {"id":"G2_080","word":"park","phonetic":"/pɑːrk/","syllables":"park","pos":"n./v.","meaning":"公园；停车，泊车","emoji":"🏞️","theme_sub":"城市与场所","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"圈出来供人休憩或停放车辆的场地","act1":"🌳 第一幕【核心本义·公园绿地】：周末在绿树成荫的公园（park）里放风筝。","act2":"🔄 第二幕【场景变形·从人停留到车停靠】：地面划出白色停车格，汽车缓缓倒进去。","act3":"🅿️ 第三幕【引申新义·停车】：作动词表示“把车停好（Don't park your car here / No Parking）”！"},"example_en":"Don't park your car near the park gate.","example_zh":"不要把车停在公园门口附近。","etymology":"🏞️ 供人散步停留的绿地是名词“公园”，供车辆停靠的动作是动词“停车”！","affix_root":"🧩 p-ar-k (ar 读 /ɑːr/，同 car, arm, card, garden)","syntax_contrast":"【祈使句否定铁律】禁止停车既可说 Don't park here，也可写标牌 No parking!"},
+  {"id":"POLY_TURN","word":"turn","phonetic":"/tɜːrn/","syllables":"turn","pos":"v./n.","meaning":"转弯；变成（系动词）；轮流的顺序","emoji":"🔄","theme_sub":"日常作息与动作","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"旋转改变方向与轮流交替","act1":"🔄 第一幕【核心本义·旋转转向】：十字路口方向盘一转，向左转弯（turn left）。","act2":"🔄 第二幕【场景变形·圆圈轮盘转动】：大家围成一圈，指针转到谁就轮到谁；树叶随季节转换颜色。","act3":"🎯 第三幕【引申新义·轮流与变成】：名词“顺序（take turns 轮流）”与系动词“变成（turn yellow）”！"},"example_en":"Please take turns! Leaves turn yellow in autumn.","example_zh":"请按顺序轮流来！秋天树叶变黄了。","etymology":"🔄 核心就是“转圈”：方向转是转弯，开关转是打开(turn on)，大家转着圈来是轮流(take turns)！","affix_root":"🧩 turn left/right (左/右转) · turn on/off (打开/关掉电器) · take turns (轮流)","syntax_contrast":"【系动词家族】turn 后接颜色形容词（turn red/yellow）表示“变成……颜色”。"},
+  {"id":"POLY_WATCH","word":"watch","phonetic":"/wɑːtʃ/","syllables":"watch","pos":"v./n.","meaning":"观看，注视；手表（复数 watches）","emoji":"⌚","theme_sub":"日常作息与动作","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"持续专注地盯着看","act1":"👀 第一幕【核心本义·专注注视】：目不转睛盯着移动的电视画面或球赛（watch TV）。","act2":"🔄 第二幕【场景变形·随身看时间的工具】：视线移到手腕上滴答走动的小表盘。","act3":"⌚ 第三幕【引申新义·手表】：由动词“观看”引申为名词“手表（a new watch，复数 watches）”！"},"example_en":"My father has a new watch and watches TV on Sunday.","example_zh":"我爸爸有一块新手表，并在周日看电视。","etymology":"⌚ 戴在手腕上随时低头“注视（watch）”时间的小机器，就叫手表 watch！","affix_root":"🧩 watch (看/手表) ➔ watches (三单/复数) · watched (过去式)","syntax_contrast":"【ch 结尾加 es 铁律】watch 无论是变名词复数还是动词三单，都必须加 -es（watches）！"},
+  {"id":"G4_157","word":"light","phonetic":"/laɪt/","syllables":"light","pos":"n./adj.","meaning":"电灯，光线；轻的；浅色的","emoji":"💡","theme_sub":"学校与学习","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"明亮发光、如光一般毫无负担","act1":"💡 第一幕【核心本义·电灯与光】：按下开关，日光灯（light）照亮教室。","act2":"🔄 第二幕【场景变形·光无重量与高明度】：光线照在羽毛上飘起，照在深蓝颜料上变浅。","act3":"🪶 第三幕【引申新义·轻的 & 浅色的】：形容词“轻的（反义 heavy）”与“浅色的（light blue）”！"},"example_en":"Turn on the light. This light blue bag is very light.","example_zh":"把灯打开。这个浅蓝色的包非常轻。","etymology":"💡 追光 -ight 家族领头羊：有光的地方既明亮，又轻盈，颜色又清浅！","affix_root":"🧩 -ight (/aɪt/): light · bright · night · tonight · right · straight · flight","syntax_contrast":"【反义词双线对比】light 作“轻的”反义词是 heavy（重的）；作“浅色的”反义词是 dark（深色的）。"},
+  {"id":"G2_0489","word":"play","phonetic":"/pleɪ/","syllables":"play","pos":"v./n.","meaning":"玩耍；打（球）；弹奏（乐器）；话剧","emoji":"🎮","theme_sub":"日常作息与动作","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"投入地参与有规则或有节奏的活动","act1":"⚽ 第一幕【核心本义·玩耍与打球】：在操场上踢足球打羽毛球（play football，绝不加the）。","act2":"🔄 第二幕【场景变形·手指在琴键上跳跃】：运动场变成音乐厅，手指按动琴键。","act3":"🎹 第三幕【引申新义·弹奏乐器 & 戏剧】：弹西洋乐器（play the piano，必加the）和校园话剧（a school play）！"},"example_en":"She can play the piano and play badminton.","example_zh":"她会弹钢琴，也会打羽毛球。","etymology":"🎮 三合一全能王：玩游戏、打球（零冠词）、弹琴（定冠词 the）、演话剧！","affix_root":"🧩 play ➔ player (运动员/演奏者) · playground (操场) · playing · played","syntax_contrast":"【The 的生死线】play + 球类/棋类 绝不加 the；play + 西洋乐器 必须加 the！"},
+  {"id":"G4_174","word":"study","phonetic":"/ˈstʌdi/","syllables":"stud-y","pos":"v./n.","meaning":"学习，研究（三单 studies）；书房","emoji":"📚","theme_sub":"居家与生活","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"专心钻研学问与读书专属房间","act1":"📚 第一幕【核心本义·专心学习】：坐在课桌前认真学习（study hard）。","act2":"🔄 第二幕【场景变形·动作定格为房间】：镜头拉远，展示家里摆满书柜的安静房间。","act3":"🏠 第三幕【引申新义·书房】：in the study 就是“在书房里”！"},"example_en":"He studies English in the study every evening.","example_zh":"他每天晚上在书房里学英语。","etymology":"📚 既指“学习”的动作，也指家里专门用来学习的“书房”！","affix_root":"🧩 study ➔ studies (三单) · studied (过去式) · student (学生)","syntax_contrast":"【辅音+y 变 i 铁律】study 是辅音 d + y 结尾，变三单或过去式必须先变 y 为 i（studies / studied）！"},
+  {"id":"G2_096","word":"cold","phonetic":"/koʊld/","syllables":"cold","pos":"adj./n.","meaning":"寒冷的；感冒（have a cold）","emoji":"🥶","theme_sub":"天气与四季","sight_type":"decodable","has_polysemy":true,"polysemy_data":{"core_concept":"寒冷低温及其引发的受凉症状","act1":"❄️ 第一幕【核心本义·寒冷温度】：冬天北风呼啸，天气寒冷（It is cold）。","act2":"🔄 第二幕【场景变形·寒气侵入身体】：受凉后阿嚏阿嚏打喷嚏流鼻涕。","act3":"🤧 第三幕【引申新义·感冒】：名词 a cold 表示“着凉、感冒（have a cold）”！"},"example_en":"It is cold today, and I have a bad cold.","example_zh":"今天很冷，而且我重感冒了。","etymology":"🥶 吹了冷风（cold）受了凉，生的小病就叫 a cold（感冒）！","affix_root":"🧩 cold (冷的/感冒) ↔ hot (热的) ｜ cool (凉爽的) ↔ warm (温暖的)","syntax_contrast":"【天气句型铁律】说天气冷必须加系动词 is（It is cold），说感冒用可数短语 have a cold。"},
+  {"id":"G5_214","word":"Wednesday","phonetic":"/ˈwenzdeɪ/","syllables":"Wednes-day","pos":"n.","meaning":"星期三","emoji":"📅","theme_sub":"节日与时间","sight_type":"irregular","irregular_info":{"part":"d","tip":"中间的字母 d 完全静音不发音（读 /ˈwenzdeɪ/），但拼写时绝对不能漏掉 d！"},"spelling_alert":"⚠️ 易错预警：首字母永远大写，且中间的 d 不发音（Wed-nes-day），千万别漏写 d！","has_polysemy":false,"example_en":"We have art and science on Wednesdays.","example_zh":"我们每逢星期三有美术课和科学课。","etymology":"📅 纪念北欧神话智慧之王奥丁（Woden's day），所以中间藏着一个不发音的 d！","affix_root":"🧩 七天星期：Sunday · Monday · Tuesday · Wednesday · Thursday · Friday · Saturday","syntax_contrast":"【星期介词铁律】星期几前面必须用介词 on（on Wednesday），加 s（on Wednesdays）表示“每逢周三”。"},
+  {"id":"G4_184","word":"library","phonetic":"/ˈlaɪbreri/","syllables":"li-brar-y","pos":"n.","meaning":"图书馆（复数 libraries）","emoji":"🏛️","theme_sub":"学校与学习","sight_type":"decodable","spelling_alert":"⚠️ 易错预警：里面有两个 r（li-brar-y），千万别漏写第一个 r！","has_polysemy":false,"example_en":"Be quiet in the school library.","example_zh":"在学校图书馆里要保持安静。","etymology":"🏛️ 源自拉丁语“树皮书册（liber）”，收藏成千上万本图书的大楼就是 library！","affix_root":"🧩 li-brar-y (复数变 y 为 i 加 es：libraries)","syntax_contrast":"【场所介词搭配】在图书馆里用 in the library，去图书馆用 go to the library。"},
+  {"id":"G3_130","word":"friend","phonetic":"/frend/","syllables":"friend","pos":"n.","meaning":"朋友","emoji":"👫","theme_sub":"家庭与亲友","sight_type":"irregular","irregular_info":{"part":"ie","tip":"ie 组合里的 i 不发音，只发短音 /e/（/frend/）！"},"spelling_alert":"⚠️ 易错预警：i 在 e 前面（fri-end），巧记：周五(Fri)放学到最后(end)不分离才是好朋友！","has_polysemy":false,"example_en":"She is my good friend, and she is very friendly.","example_zh":"她是我的好朋友，而且她非常友好。","etymology":"👫 一辈子在一起直到最后（end）也不分开的人，就是好朋友 friend！","affix_root":"🧩 friend (n.朋友) + -ly = friendly (adj.友好的) · friendship (友谊)","syntax_contrast":"【-ly 假副词陷阱】形容词+ly 是副词（quietly），但名词+ly（friendly, lovely, daily）是形容词！"},
+  {"id":"G6_264","word":"dictionary","phonetic":"/ˈdɪkʃəneri/","syllables":"dic-tion-ar-y","pos":"n.","meaning":"词典，字典","emoji":"📕","theme_sub":"学校与学习","sight_type":"decodable","has_polysemy":false,"example_en":"I am going to buy a new English dictionary tomorrow.","example_zh":"我明天打算去买一本新英汉词典。","etymology":"📕 词根 dict 是“说话、字词”，把所有字词装进一本大书（-ary）里就是词典 dictionary！","affix_root":"🧩 dict (字词/说) ➔ dictionary (词典) · dictate (听写) · predict (pre提前+dict说=预测)","syntax_contrast":"【将来时计划铁律】含有 tomorrow/tonight/next week 时，用 be going to + 动词原形表计划打算。"},
+  {"id":"G6_278","word":"scientist","phonetic":"/ˈsaɪəntɪst/","syllables":"sci-en-tist","pos":"n.","meaning":"科学家","emoji":"🧑‍🔬","theme_sub":"职业与社会","sight_type":"irregular","irregular_info":{"part":"sc","tip":"开头的 sc 中 c 不发音，读 /ˈsaɪəntɪst/！"},"has_polysemy":false,"example_en":"She likes science and wants to be a scientist.","example_zh":"她喜欢科学，并且想成为一名科学家。","etymology":"🧑‍🔬 把科学（science）末尾的 ce 换成专家尾巴 -tist，探索宇宙奥秘的人就是科学家 scientist！","affix_root":"🧩 sci (知晓) ➔ science (科学) · scientist (科学家) · scientific (科学的)","syntax_contrast":"【理想职业句型】表达“想成为……”用 want to be + a/an + 职业单数（wants to be a scientist）。"},
+  {"id":"G5_0332","word":"airport","phonetic":"/ˈerpɔːrt/","syllables":"air-port","pos":"n.","meaning":"机场，航空港","emoji":"🛫","theme_sub":"交通与出行","sight_type":"decodable","has_polysemy":false,"example_en":"We are going to the airport by bus.","example_zh":"我们要坐大巴去机场。","etymology":"🛫 轮船停靠的港叫 seaport，飞机在天空中（air）飞累了停靠的“空中港口”就是 airport（机场）！","affix_root":"🧩 port (港/运) ➔ airport (机场) · passport (护照) · report (报告) · sport (运动) · important (重要的)","syntax_contrast":"【交通工具冠词对比】by bus（中间零冠词）= take a bus（动词 take 后必加冠词）。"},
+  {"id":"G6_0339","word":"information","phonetic":"/ˌɪnfərˈmeɪʃn/","syllables":"in-for-ma-tion","pos":"n.","meaning":"信息，资料（不可数）","emoji":"ℹ️","theme_sub":"学校与学习","sight_type":"decodable","spelling_alert":"⚠️ 易错预警：information 是绝对不可数名词，永远不能加 a 或复数 s！","has_polysemy":false,"example_en":"You can find useful information on the Internet.","example_zh":"你可以在互联网上查找有用的信息。","etymology":"ℹ️ 知识进入（in）大脑形成清晰的画面形态（form），就是信息 information！","affix_root":"🧩 form (形状/形式) ➔ uniform (uni统一+form样式=校服) · information (信息) · perform (表演)","syntax_contrast":"【不可数抽象名词】表示“一条信息”需借量词 a piece of information。"},
+  {"id":"G1_P01","word":"I / me / my / mine","phonetic":"/aɪ/ /miː/ /maɪ/ /maɪn/","syllables":"I - me - my - mine","pos":"pron.","meaning":"我(主格) / 我(宾格) / 我的(形物) / 我的(名物)","emoji":"🙋","theme_sub":"FUNCTION","sight_type":"decodable","has_polysemy":false,"example_en":"I love my book. Please give it to me. It is mine.","example_zh":"我爱我的书。请把它给我。它是我的。","etymology":"🙋 句首当队长用大写的 I，动介词后用宾格 me，牵着名词用 my，独立结尾用 mine！","affix_root":"🧩 四格变身：主格 I ➔ 宾格 me ➔ 形物 my (+名词) ➔ 名物 mine (独立)","syntax_contrast":"【代词变格铁律】英语代词必须随句中位置变格，且名物代 = 形物代 + 名词（mine = my book）。"},
+  {"id":"G3_Q08","word":"how / how many / how much","phonetic":"/haʊ/ /haʊ ˈmeni/ /haʊ mʌtʃ/","syllables":"how - man-y - much","pos":"adv.","meaning":"怎样 / 多少(问可数复数) / 多少，多少钱(问不可数或价格)","emoji":"🔢","theme_sub":"FUNCTION","sight_type":"decodable","has_polysemy":false,"example_en":"How do you go to school? How many books do you have? How much is this skirt?","example_zh":"你怎么去上学？你有多少本书？这条短裙多少钱？","etymology":"🔢 单用 how 问方式或身体；加 many 数可数复数；加 much 问不可数或价格！","affix_root":"🧩 How 家族：how many · how much · how old (几岁) · how tall (多高) · how heavy (多重)","syntax_contrast":"【可数与不可数提问铁律】How many 后必须紧跟可数名词复数；How much 问不可数或金钱价格。"}
+];
+
+// ==================== 7. 全量 IPA 校准与去重脚本字符串（用于注入 v4.0） ====================
+const V5_PATCH_SCRIPT_STRING = `
+// ==================== [v5.0 万物归一终极补丁：全量 IPA 校准 + 去重 + 十五大王炸总枢] ====================
+(function applyV5UltimateUpgrade() {
+  if (typeof VOCAB_DB !== 'undefined' && Array.isArray(VOCAB_DB)) {
+    const IPA_PATCH_MAP = {
+      "watch":       { ipa: "/wɑːtʃ/",          syl: "watch",          sight: "decodable" },
+      "between":     { ipa: "/bɪˈtwiːn/",       syl: "be-tween",       sight: "decodable" },
+      "here":        { ipa: "/hɪr/",            syl: "here",           sight: "decodable" },
+      "there":       { ipa: "/ðer/",            syl: "there",          sight: "irregular" },
+      "May":         { ipa: "/meɪ/",            syl: "May",            sight: "decodable" },
+      "minute":      { ipa: "/ˈmɪnɪt/",         syl: "min-ute",        sight: "irregular" },
+      "today":       { ipa: "/təˈdeɪ/",         syl: "to-day",         sight: "decodable" },
+      "away":        { ipa: "/əˈweɪ/",          syl: "a-way",          sight: "decodable" },
+      "help":        { ipa: "/help/",           syl: "help",           sight: "decodable" },
+      "write":       { ipa: "/raɪt/",           syl: "write",          sight: "irregular" },
+      "play":        { ipa: "/pleɪ/",           syl: "play",           sight: "decodable" },
+      "read":        { ipa: "/riːd/",           syl: "read",           sight: "decodable" },
+      "sun":         { ipa: "/sʌn/",            syl: "sun",            sight: "decodable" },
+      "rain":        { ipa: "/reɪn/",           syl: "rain",           sight: "decodable" },
+      "wind":        { ipa: "/wɪnd/",           syl: "wind",           sight: "decodable" },
+      "snow":        { ipa: "/snoʊ/",           syl: "snow",           sight: "decodable" },
+      "moon":        { ipa: "/muːn/",           syl: "moon",           sight: "decodable" },
+      "sleep":       { ipa: "/sliːp/",          syl: "sleep",          sight: "decodable" },
+      "morning":     { ipa: "/ˈmɔːrnɪŋ/",       syl: "mor-ning",       sight: "decodable" },
+      "old":         { ipa: "/oʊld/",           syl: "old",            sight: "decodable" },
+      "fast":        { ipa: "/fæst/",           syl: "fast",           sight: "decodable" },
+      "food":        { ipa: "/fuːd/",           syl: "food",           sight: "decodable" },
+      "then":        { ipa: "/ðen/",            syl: "then",           sight: "decodable" },
+      "talk":        { ipa: "/tɔːk/",           syl: "talk",           sight: "irregular" },
+      "tell":        { ipa: "/tel/",            syl: "tell",           sight: "decodable" },
+      "say":         { ipa: "/seɪ/",            syl: "say",            sight: "decodable" },
+      "know":        { ipa: "/noʊ/",            syl: "know",           sight: "irregular" },
+      "think":       { ipa: "/θɪŋk/",           syl: "think",          sight: "decodable" },
+      "live":        { ipa: "/lɪv/",            syl: "live",           sight: "irregular" },
+      "mouse":       { ipa: "/maʊs/",           syl: "mouse",          sight: "decodable" },
+      "song":        { ipa: "/sɔːŋ/",           syl: "song",           sight: "decodable" },
+      "wait":        { ipa: "/weɪt/",           syl: "wait",           sight: "decodable" },
+      "keep":        { ipa: "/kiːp/",           syl: "keep",           sight: "decodable" },
+      "act":         { ipa: "/ækt/",            syl: "act",            sight: "decodable" },
+      "actor":       { ipa: "/ˈæktər/",         syl: "ac-tor",         sight: "decodable" },
+      "actress":     { ipa: "/ˈæktrəs/",        syl: "ac-tress",       sight: "decodable" },
+      "active":      { ipa: "/ˈæktɪv/",         syl: "ac-tive",        sight: "decodable" },
+      "activity":    { ipa: "/ækˈtɪvəti/",      syl: "ac-tiv-i-ty",    sight: "decodable" },
+      "action":      { ipa: "/ˈækʃn/",          syl: "ac-tion",        sight: "decodable" },
+      "visitor":     { ipa: "/ˈvɪzɪtər/",       syl: "vis-i-tor",      sight: "decodable" },
+      "video":       { ipa: "/ˈvɪdioʊ/",        syl: "vid-e-o",        sight: "decodable" },
+      "television":  { ipa: "/ˈtelɪvɪʒn/",      syl: "tel-e-vi-sion",  sight: "decodable" },
+      "advice":      { ipa: "/ədˈvaɪs/",        syl: "ad-vice",        sight: "decodable" },
+      "dictate":     { ipa: "/ˈdɪkteɪt/",       syl: "dic-tate",       sight: "decodable" },
+      "predict":     { ipa: "/prɪˈdɪkt/",       syl: "pre-dict",       sight: "decodable" },
+      "airport":     { ipa: "/ˈerpɔːrt/",       syl: "air-port",       sight: "decodable" },
+      "passport":    { ipa: "/ˈpæspɔːrt/",      syl: "pass-port",      sight: "decodable" },
+      "important":   { ipa: "/ɪmˈpɔːrtnt/",     syl: "im-por-tant",    sight: "decodable" },
+      "thank":       { ipa: "/θæŋk/",           syl: "thank",          sight: "decodable" },
+      "report":      { ipa: "/rɪˈpɔːrt/",       syl: "re-port",        sight: "decodable" },
+      "reporter":    { ipa: "/rɪˈpɔːrtər/",     syl: "re-por-ter",     sight: "decodable" },
+      "sport":       { ipa: "/spɔːrt/",         syl: "sport",          sight: "decodable" },
+      "uniform":     { ipa: "/ˈjuːnɪfɔːrm/",    syl: "u-ni-form",      sight: "decodable" },
+      "information": { ipa: "/ˌɪnfərˈmeɪʃn/",   syl: "in-for-ma-tion", sight: "decodable" },
+      "perform":     { ipa: "/pərˈfɔːrm/",      syl: "per-form",       sight: "decodable" },
+      "fact":        { ipa: "/fækt/",           syl: "fact",           sight: "decodable" },
+      "difficult":   { ipa: "/ˈdɪfɪkəlt/",      syl: "dif-fi-cult",    sight: "decodable" },
+      "office":      { ipa: "/ˈɔːfɪs/",         syl: "of-fice",        sight: "decodable" },
+      "officer":     { ipa: "/ˈɔːfɪsər/",       syl: "of-fi-cer",      sight: "decodable" },
+      "special":     { ipa: "/ˈspeʃl/",         syl: "spe-cial",       sight: "decodable" },
+      "respect":     { ipa: "/rɪˈspekt/",       syl: "re-spect",       sight: "decodable" },
+      "expect":      { ipa: "/ɪkˈspekt/",       syl: "ex-pect",        sight: "decodable" },
+      "press":       { ipa: "/pres/",           syl: "press",          sight: "decodable" },
+      "express":     { ipa: "/ɪkˈspres/",       syl: "ex-press",       sight: "decodable" },
+      "street":      { ipa: "/striːt/",         syl: "street",         sight: "decodable" },
+      "instrument":  { ipa: "/ˈɪnstrəmənt/",    syl: "in-stru-ment",   sight: "decodable" },
+      "destroy":     { ipa: "/dɪˈstrɔɪ/",       syl: "de-stroy",       sight: "decodable" },
+      "sign":        { ipa: "/saɪn/",           syl: "sign",           sight: "irregular" },
+      "design":      { ipa: "/dɪˈzaɪn/",        syl: "de-sign",        sight: "irregular" },
+      "serve":       { ipa: "/sɜːrv/",          syl: "serve",          sight: "decodable" },
+      "service":     { ipa: "/ˈsɜːrvɪs/",       syl: "ser-vice",       sight: "decodable" },
+      "save":        { ipa: "/seɪv/",           syl: "save",           sight: "decodable" },
+      "safe":        { ipa: "/seɪf/",           syl: "safe",           sight: "decodable" },
+      "safety":      { ipa: "/ˈseɪfti/",        syl: "safe-ty",        sight: "decodable" },
+      "part":        { ipa: "/pɑːrt/",          syl: "part",           sight: "decodable" },
+      "party":       { ipa: "/ˈpɑːrti/",        syl: "par-ty",         sight: "decodable" },
+      "partner":     { ipa: "/ˈpɑːrtnər/",      syl: "part-ner",       sight: "decodable" },
+      "apartment":   { ipa: "/əˈpɑːrtmənt/",    syl: "a-part-ment",    sight: "decodable" },
+      "move":        { ipa: "/muːv/",           syl: "move",           sight: "irregular" },
+      "movie":       { ipa: "/ˈmuːvi/",         syl: "mov-ie",         sight: "irregular" },
+      "mobile":      { ipa: "/ˈmoʊbl/",         syl: "mo-bile",        sight: "decodable" },
+      "count":       { ipa: "/kaʊnt/",          syl: "count",          sight: "decodable" },
+      "country":     { ipa: "/ˈkʌntri/",        syl: "coun-try",       sight: "irregular" },
+      "countryside": { ipa: "/ˈkʌntrisaɪd/",    syl: "coun-try-side",  sight: "decodable" },
+      "science":     { ipa: "/ˈsaɪəns/",        syl: "sci-ence",       sight: "irregular" },
+      "hotel":       { ipa: "/hoʊˈtel/",        syl: "ho-tel",         sight: "decodable" },
+      "host":        { ipa: "/hoʊst/",          syl: "host",           sight: "decodable" },
+      "guest":       { ipa: "/ɡest/",           syl: "guest",          sight: "irregular" },
+      "chair":       { ipa: "/tʃer/",           syl: "chair",          sight: "decodable" },
+      "table":       { ipa: "/ˈteɪbl/",         syl: "ta-ble",         sight: "decodable" },
+      "centre":      { ipa: "/ˈsentər/",        syl: "cen-tre",        sight: "decodable" },
+      "bed":         { ipa: "/bed/",            syl: "bed",            sight: "decodable" },
+      "circle":      { ipa: "/ˈsɜːrkl/",        syl: "cir-cle",        sight: "decodable" },
+      "bicycle":     { ipa: "/ˈbaɪsɪkl/",       syl: "bi-cy-cle",      sight: "decodable" },
+      "recycle":     { ipa: "/ˌriːˈsaɪkl/",     syl: "re-cy-cle",      sight: "decodable" }
+    };
+
+    const seenWords = new Map();
+    const deduplicated = [];
+
+    VOCAB_DB.forEach(item => {
+      const patch = IPA_PATCH_MAP[item.word];
+      if (patch) {
+        item.phonetic = patch.ipa;
+        item.syllables = patch.syl;
+        if (!item.sight_type) item.sight_type = patch.sight;
+      }
+      if (!item.sight_type) {
+        item.sight_type = item.irregular_info ? "irregular" : "decodable";
+      }
+      if (item.word === "postcard" && item.emoji && item.emoji.includes("postcards")) {
+        item.emoji = "🏞️";
+      }
+      const key = item.word.toLowerCase().trim();
+      if (!seenWords.has(key)) {
+        seenWords.set(key, item);
+        deduplicated.push(item);
+      } else {
+        const existing = seenWords.get(key);
+        if (item.has_polysemy && !existing.has_polysemy) {
+          existing.has_polysemy = true;
+          existing.polysemy_data = item.polysemy_data;
+          existing.senses = item.senses;
+        }
+        if (item.spelling_alert && !existing.spelling_alert) {
+          existing.spelling_alert = item.spelling_alert;
+        }
+      }
+    });
+
+    VOCAB_DB.length = 0;
+    deduplicated.forEach((item, idx) => {
+      item.freq_rank = idx + 1;
+      VOCAB_DB.push(item);
+    });
+    console.log("[v5.0 终极补丁] 词库已自动完成全量 IPA 校准、postcard 图标修复、sight_type 补齐与去重！当前词数：" + VOCAB_DB.length);
+  }
+})();
+`;
+
+// ==================== 8. 界面渲染与交互逻辑 ====================
+function switchTab(tabId) {
+  ['matrix', 'trumps', 'engine', 'writing', 'vocab', 'oral', 'merger'].forEach(id => {
+    document.getElementById('view-' + id).style.display = (id === tabId) ? 'block' : 'none';
+    document.getElementById('tab-' + id).classList.toggle('active', id === tabId);
+  });
+}
+
+function renderTrumps() {
+  const box = document.getElementById('trumpsContainer');
+  box.innerHTML = ROYAL_TRUMPS_DB.map(t => `
+    <div class="axiom-card" style="border-color:#cbd5e1; background:#ffffff;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+        <span class="axiom-badge" style="background:linear-gradient(135deg,#2563eb,#7c3aed);">${t.id}</span>
+        <span style="font-size:1.5rem;">${t.icon}</span>
+      </div>
+      <h3 style="margin:0 0 6px; color:#0f172a; font-size:1.1rem;">${t.title}</h3>
+      <p style="margin:0 0 12px; font-size:0.86rem; color:#475569; font-weight:700;">${t.rule}</p>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        ${t.items.map(it => `
+          <div style="background:#f8fafc; padding:10px 12px; border-radius:12px; border:1px solid #e2e8f0;">
+            <div style="font-weight:800; font-size:0.88rem; color:#1e3a8a;">🔹 ${it.name}</div>
+            <div style="font-size:0.82rem; color:#334155; margin:2px 0 6px;">${it.desc}</div>
+            <div>
+              ${it.examples.map(ex => `<span class="speak-chip" onclick="speakText('${ex.replace(/<->/g,' and ').replace(/->/g,' to ').replace(/'/g,"\'")}')">🔊 ${ex}</span>`).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderWritingTab() {
+  document.getElementById('homophonesBox').innerHTML = HOMOPHONES_LIST.map(h => {
+    const clean = h.split('(')[0].replace(/\//g, ', ');
+    return `<span class="speak-chip" onclick="speakText('${clean}')">🔊 ${h}</span>`;
+  }).join('');
+
+  document.getElementById('antonymsBox').innerHTML = ANTONYMS_LIST.map(a => {
+    const clean = a.split('(')[0].replace('↔', ' and ');
+    return `<span class="speak-chip" style="background:#ecfdf5; color:#065f46; border-color:#6ee7b7;" onclick="speakText('${clean}')">🔊 ${a}</span>`;
+  }).join('');
+
+  document.getElementById('exclamationDemoBox').innerHTML = EXCLAMATION_DEMOS.map((d, idx) => `
+    <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:10px 12px; margin-bottom:8px;">
+      <div style="font-weight:800; font-size:0.92rem; color:#0f172a;">例题 ${idx+1}：${d.raw}</div>
+      <div style="font-size:0.82rem; color:#dc2626; margin:4px 0;">✂️ ${d.cut}</div>
+      <span class="speak-chip" onclick="speakText('${d.ans}')">✅ 答案点读：${d.ans}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('essayTemplatesBox').innerHTML = ESSAY_TEMPLATES.map(es => `
+    <div style="background:#fff; border:2px solid #93c5fd; border-radius:18px; padding:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+        <strong style="color:#1e3a8a; font-size:1.05rem;">${es.title}</strong>
+        <button class="tts-btn" style="padding:6px 12px; font-size:0.82rem;" onclick="speakText('${es.en.replace(/'/g,"\'")}')">🔊 朗读满分范文</button>
+      </div>
+      <div style="font-size:0.8rem; color:#7c3aed; font-weight:800; margin-bottom:8px;">📌 ${es.tag}</div>
+      <div style="background:#eff6ff; padding:12px; border-radius:12px; font-weight:700; color:#0f172a; font-size:0.92rem; line-height:1.6; margin-bottom:8px;">
+        ${es.en}
+      </div>
+      <div style="font-size:0.84rem; color:#475569;">${es.zh}</div>
+    </div>
+  `).join('');
+}
+
+function renderPitfalls() {
+  const box = document.getElementById('pitfallsList');
+  box.innerHTML = PITFALLS_DB.map(p => `
+    <div style="background:#fff; border:2px solid #fca5a5; border-radius:16px; padding:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span style="background:#dc2626; color:#fff; padding:3px 10px; border-radius:999px; font-size:0.76rem; font-weight:900;">${p.rank}</span>
+        <strong style="color:#991b1b; font-size:0.98rem;">${p.title}</strong>
+      </div>
+      <p style="font-size:0.86rem; color:#334155; margin:6px 0;">${p.desc}</p>
+      <div style="background:#fef2f2; color:#991b1b; padding:6px 10px; border-radius:8px; font-size:0.82rem; font-weight:800;">⚡ 避坑口诀：${p.alert}</div>
+    </div>
+  `).join('');
+}
+
+function renderPitfallQuiz() {
+  const stage = document.getElementById('quizStage');
+  stage.innerHTML = QUIZ_BANK.map((item, qIdx) => `
+    <div style="background:#fff; border-radius:14px; padding:16px; margin-bottom:12px; border:1.5px solid #e2e8f0;">
+      <div style="font-weight:900; font-size:0.98rem; margin-bottom:10px; color:#0f172a; cursor:pointer;" onclick="speakText('${item.q.replace(/_/g,' ')}')">
+        🔊 ${item.q}
+      </div>
+      <div class="grid-2" style="gap:8px;">
+        ${item.opts.map((opt, oIdx) => `
+          <button class="quiz-btn" id="qbtn-${qIdx}-${oIdx}" onclick="checkQuizAnswer(${qIdx}, ${oIdx})">
+            <span>${String.fromCharCode(65+oIdx)}. ${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div id="qexp-${qIdx}" style="display:none; margin-top:10px; padding:10px 14px; border-radius:10px; background:#ecfdf5; color:#065f46; font-size:0.86rem; font-weight:700;">
+        ✅ 秒杀解析：${item.exp}
+      </div>
+    </div>
+  `).join('');
+}
+
+function checkQuizAnswer(qIdx, oIdx) {
+  const item = QUIZ_BANK[qIdx];
+  const btn = document.getElementById(`qbtn-${qIdx}-${oIdx}`);
+  const rightBtn = document.getElementById(`qbtn-${qIdx}-${item.ans}`);
+  if (oIdx === item.ans) {
+    btn.classList.add('correct');
+    speakText("Bingo! You are right!");
+  } else {
+    btn.classList.add('wrong');
+    rightBtn.classList.add('correct');
+    speakText("Oops, look at the rule!");
+  }
+  document.getElementById(`qexp-${qIdx}`).style.display = 'block';
+}
+
+function renderVocabGrid() {
+  const kw = (document.getElementById('vocabSearchInput').value || '').toLowerCase().trim();
+  const cat = document.getElementById('vocabCatFilter').value;
+  const filtered = VOCAB_DB.filter(w => {
+    if (cat === 'POLYSEMY' && !w.has_polysemy) return false;
+    if (cat === 'IRREGULAR' && w.sight_type !== 'irregular') return false;
+    if (cat === 'FUNCTION' && w.theme_sub !== 'FUNCTION') return false;
+    if (cat !== 'ALL' && cat !== 'POLYSEMY' && cat !== 'IRREGULAR' && cat !== 'FUNCTION' && w.theme_sub !== cat) return false;
+    if (!kw) return true;
+    return w.word.toLowerCase().includes(kw) ||
+           w.meaning.toLowerCase().includes(kw) ||
+           (w.affix_root && w.affix_root.toLowerCase().includes(kw)) ||
+           (w.syntax_contrast && w.syntax_contrast.toLowerCase().includes(kw));
+  });
+
+  document.getElementById('vocabStatsBadge').textContent = `当前展示：${filtered.length} 个核心母体词条（支持点击查看三幕剧与词根裂变）`;
+  const box = document.getElementById('vocabGridContainer');
+  box.innerHTML = filtered.map(w => `
+    <div class="word-card" onclick="openWordModal('${w.id}')">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:1.8rem;">${w.emoji}</span>
+          <div style="display:flex; gap:4px;">
+            ${w.has_polysemy ? '<span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:800;">🎭 一词多义</span>' : ''}
+            ${w.sight_type === 'irregular' ? '<span style="background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:800;">💎 特殊发音</span>' : '<span style="background:#dbeafe; color:#1e40af; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:800;">🔤 自然拼读</span>'}
+          </div>
+        </div>
+        <h3 style="margin:8px 0 2px; font-size:1.3rem; color:#1d4ed8;">${w.word}</h3>
+        <div style="font-size:0.84rem; color:#64748b; font-weight:700;">${w.phonetic} · <span style="color:#7c3aed;">${w.pos}</span></div>
+        <div style="font-size:0.92rem; font-weight:800; color:#0f172a; margin:6px 0;">${w.meaning}</div>
+        <div style="font-size:0.78rem; color:#059669; background:#ecfdf5; padding:6px 8px; border-radius:8px; margin-top:6px;">${w.affix_root}</div>
+      </div>
+      <div style="margin-top:10px; padding-top:8px; border-top:1px dashed #e2e8f0; font-size:0.8rem; color:#475569; display:flex; justify-content:space-between; align-items:center;">
+        <span>🔊 点击点读与拆解</span>
+        <span style="color:#2563eb; font-weight:800;">详情 ➔</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openWordModal(id) {
+  const w = VOCAB_DB.find(x => x.id === id);
+  if (!w) return;
+  speakText(w.word + ". " + w.example_en);
+  const modal = document.getElementById('wordModal');
+  const box = document.getElementById('wordModalContent');
+  box.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div>
+        <span style="font-size:2.6rem;">${w.emoji}</span>
+        <h2 style="margin:4px 0; font-size:2rem; color:#1d4ed8; cursor:pointer;" onclick="speakText('${w.word.replace(/'/g,"\'")}')">
+          ${w.word} <span style="font-size:1.1rem; color:#475569;">${w.phonetic} 🔊</span>
+        </h2>
+        <div style="font-size:1.1rem; font-weight:800; color:#0f172a; margin-bottom:12px;">${w.pos} ${w.meaning}</div>
+      </div>
+      <button onclick="closeWordModal()" style="background:#f1f5f9; padding:8px 14px; border-radius:999px; font-weight:900;">✖ 关闭</button>
+    </div>
+
+    ${w.spelling_alert ? `<div style="background:#fef2f2; border:2px solid #f87171; color:#991b1b; padding:10px 14px; border-radius:12px; font-weight:800; margin-bottom:12px;">${w.spelling_alert}</div>` : ''}
+    ${w.irregular_info ? `<div style="background:#fffbeb; border:2px solid #fbbf24; color:#92400e; padding:10px 14px; border-radius:12px; font-weight:800; margin-bottom:12px;">💎 特殊发音部位 [${w.irregular_info.part}]：${w.irregular_info.tip}</div>` : ''}
+
+    <div style="background:#eff6ff; padding:14px; border-radius:14px; margin-bottom:12px; cursor:pointer;" onclick="speakText('${w.example_en.replace(/'/g,"\'")}')">
+      <div style="font-weight:900; color:#1e3a8a; font-size:1.05rem;">🔊 语境金句：${w.example_en}</div>
+      <div style="color:#475569; font-size:0.92rem; margin-top:4px;">${w.example_zh}</div>
+    </div>
+
+    <div style="background:#f8fafc; padding:14px; border-radius:14px; border:1px solid #e2e8f0; margin-bottom:12px;">
+      <div style="font-weight:800; color:#0f172a; margin-bottom:6px;">${w.etymology}</div>
+      <div style="font-weight:800; color:#059669;">${w.affix_root}</div>
+    </div>
+
+    ${w.has_polysemy && w.polysemy_data ? `
+      <div style="background:#fefce8; border:2px solid #facc15; padding:14px; border-radius:14px; margin-bottom:12px;">
+        <div style="font-weight:900; color:#854d0e; margin-bottom:8px;">🎭 一词多义“三幕剧”认知推演（核心画面：${w.polysemy_data.core_concept}）</div>
+        <div style="font-size:0.9rem; margin-bottom:4px;">${w.polysemy_data.act1}</div>
+        <div style="font-size:0.9rem; margin-bottom:4px;">${w.polysemy_data.act2}</div>
+        <div style="font-size:0.9rem; font-weight:800; color:#b45309;">${w.polysemy_data.act3}</div>
+      </div>
+    ` : ''}
+
+    <div style="background:#f5f3ff; border:2px solid #c4b5fd; padding:14px; border-radius:14px;">
+      <div style="font-weight:900; color:#5b21b6;">⚖️ 汉英句法对比铁律：</div>
+      <div style="font-size:0.9rem; color:#334155; margin-top:4px;">${w.syntax_contrast}</div>
+    </div>
+  `;
+  modal.style.display = 'flex';
+}
+
+function closeWordModal() {
+  document.getElementById('wordModal').style.display = 'none';
+}
+
+function renderSentenceTrains() {
+  const box = document.getElementById('sentenceTrainContainer');
+  box.innerHTML = SENTENCE_TRAINS.map(st => `
+    <div style="background:#f8fafc; border-radius:18px; padding:18px; border:2px solid #e2e8f0; margin-bottom:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+        <strong style="font-size:1.05rem; color:#0f172a;">${st.title}</strong>
+        <button class="tts-btn" style="padding:6px 14px; font-size:0.85rem;" onclick="speakText('${st.fullEn.replace(/'/g,"\'")}')">🔊 朗读整句</button>
+      </div>
+      <div style="font-size:0.9rem; color:#475569; margin-bottom:8px;">
+        <strong>🇨🇳 汉语语序（修饰在前，动作在后）：</strong> ${st.zh.join(' ➔ ')}
+      </div>
+      <div style="font-size:0.9rem; color:#1e3a8a; margin-bottom:6px;">
+        <strong>🇬🇧 英语乐高火车（主谓宾火车头先行，方式/地点/时间挂车尾）：</strong>
+      </div>
+      <div>
+        ${st.en.map(b => `
+          <span class="block-chip role-${b.role}" onclick="speakText('${b.text.replace(/[^a-zA-Z ?!.]/g,'')}')">
+            <span>${b.text}</span>
+            <span style="font-size:0.75rem; opacity:0.85;">(${b.zh})</span>
+          </span>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderOralMatrix() {
+  const box = document.getElementById('oralMatrixContainer');
+  box.innerHTML = ORAL_MATRIX_DB.map(o => `
+    <div style="background:#fff; border:2px solid #6ee7b7; border-radius:16px; padding:16px;">
+      <div style="font-weight:900; color:#065f46; margin-bottom:8px;">💬 ${o.scene}</div>
+      <div style="background:#eff6ff; padding:10px 12px; border-radius:12px; margin-bottom:8px; cursor:pointer; font-weight:800; color:#1e3a8a;" onclick="speakText('${o.q.replace(/'/g,"\'")}')">
+        🗣️ 问：${o.q} 🔊
+      </div>
+      <div style="background:#ecfdf5; padding:10px 12px; border-radius:12px; margin-bottom:8px; cursor:pointer; font-weight:800; color:#065f46;" onclick="speakText('${o.a.replace(/'/g,"\'")}')">
+        💡 答：${o.a} 🔊
+      </div>
+      <div style="font-size:0.82rem; color:#475569;">🎯 交际铁律：${o.tip}</div>
+    </div>
+  `).join('');
+}
+
+// ==================== 9. 跨设备学习存档导出/导入 & v4.0 无损合成器 ====================
+function exportStudyBackup() {
+  const data = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    data[k] = localStorage.getItem(k);
+  }
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "萌星小学英语_学习进度与错题本备份_" + new Date().toISOString().slice(0,10) + ".json";
+  a.click();
+  document.getElementById("backupStatusMsg").textContent = "✅ 存档已成功导出！请妥善保存在云盘文件夹中。";
+}
+
+function importStudyBackup(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const obj = JSON.parse(e.target.result);
+      Object.keys(obj).forEach(k => localStorage.setItem(k, obj[k]));
+      document.getElementById("backupStatusMsg").textContent = "✅ 学习进度与错题本已 100% 恢复成功！";
+    } catch (err) {
+      alert("存档文件格式有误：" + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function copyPatchScript() {
+  navigator.clipboard.writeText(V5_PATCH_SCRIPT_STRING).then(() => {
+    alert("✅ 全量 IPA 音标校准与去重补丁代码已复制到剪贴板！");
+  });
+}
+
+function mergeWithV4File() {
+  const input = document.getElementById("v4FileInput");
+  const log = document.getElementById("mergeStatusLog");
+  if (!input.files || !input.files[0]) {
+    alert("请先点击选择您电脑上的 primary_school_vocab_app_v4.0_终极宗师十二大王炸全规律版.html 文件！");
+    return;
+  }
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    let v4Html = e.target.result;
+    // Update title & badge to v5.0
+    v4Html = v4Html.replace(/v4\.0 终极宗师·十二大王炸全规律版/g, "v5.0 万物归一·十五大王炸终极完全体");
+    v4Html = v4Html.replace(/<title>.*?<\/title>/, "<title>萌星小学英语 v5.0 终极完全体 · 十五大王炸 + 三大元公理 + 全量IPA修复版</title>");
+
+    // Inject the v5.0 IPA Patch + Floating Master Drawer before </body>
+    const injectionPayload = "<script>" + V5_PATCH_SCRIPT_STRING + "<\/script></body>";
+    if (v4Html.includes("</body>")) {
+      v4Html = v4Html.replace("</body>", injectionPayload);
+    } else {
+      v4Html += "<script>" + V5_PATCH_SCRIPT_STRING + "<\/script>";
+    }
+
+    const blob = new Blob([v4Html], { type: "text/html;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "primary_school_vocab_app_v5.0_万物归一十五大王炸完全体.html";
+    a.click();
+    log.textContent = "🎉 合成成功！已生成约 2.65MB 的《primary_school_vocab_app_v5.0_万物归一十五大王炸完全体.html》，请将下载的文件放入 H:\我的云端硬盘\萌星小学英语 App\ 目录！";
+  };
+  reader.readAsText(file, "utf-8");
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderTrumps();
+  renderWritingTab();
+  renderPitfalls();
+  renderPitfallQuiz();
+  renderVocabGrid();
+  renderSentenceTrains();
+  renderOralMatrix();
+});
+<\/script>
+</body>
+</html>

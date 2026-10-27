@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Put On · 精细化英语教学微课实验室</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+  
+  * { box-sizing: border-box; user-select: none; }
+  body {
+    margin: 0; padding: 20px; background: #f0f4f8;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+    color: #1e293b; display: flex; flex-direction: column; align-items: center;
+  }
+
+  .lesson-card {
+    width: 100%; max-width: 900px; background: #ffffff;
+    border-radius: 28px; border: 4px solid #e2e8f0;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08); overflow: hidden;
+  }
+
+  /* 顶栏信息 */
+  .lesson-header {
+    background: #ffffff; padding: 18px 24px;
+    border-bottom: 3px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;
+  }
+  .lesson-title { font-size: 1.25rem; font-weight: 900; color: #3b82f6; display: flex; align-items: center; gap: 8px; }
+  .badge-tag { background: #eff6ff; color: #1d4ed8; padding: 5px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; }
+
+  /* 矢量绘本舞台 */
+  .vector-stage {
+    position: relative; width: 100%; height: 440px;
+    background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+    overflow: hidden; display: flex; justify-content: center; align-items: center;
+  }
+
+  /* SVG 舞台样式 */
+  svg { width: 100%; height: 100%; display: block; }
+
+  /* 底部控制与互动面板 */
+  .control-dock {
+    background: #ffffff; padding: 20px 24px;
+    border-top: 3px solid #f1f5f9; display: flex; flex-direction: column; gap: 16px;
+  }
+  .script-box {
+    background: #f8fafc; border-radius: 16px; padding: 14px 20px;
+    border: 2px dashed #cbd5e1; display: flex; justify-content: space-between; align-items: center;
+  }
+  .script-text .en { font-size: 1.15rem; font-weight: 900; color: #0f172a; }
+  .script-text .zh { font-size: 0.88rem; font-weight: 700; color: #64748b; margin-top: 2px; }
+  .tts-btn {
+    background: #2563eb; color: #fff; border: none; padding: 10px 18px;
+    border-radius: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.25); transition: 0.15s;
+  }
+  .tts-btn:active { transform: scale(0.96); }
+
+  .btn-toolbar { display: flex; gap: 12px; flex-wrap: wrap; }
+  .stage-btn {
+    flex: 1; min-width: 190px; background: #f1f5f9; color: #334155;
+    border: 2.5px solid #cbd5e1; padding: 12px 18px; border-radius: 16px;
+    font-weight: 800; font-size: 0.95rem; cursor: pointer; transition: all 0.2s;
+    text-align: center;
+  }
+  .stage-btn:hover { background: #e2e8f0; border-color: #94a3b8; }
+  .stage-btn.active {
+    background: #eff6ff; border-color: #2563eb; color: #1d4ed8;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.15);
+  }
+</style>
+</head>
+<body>
+
+<div class="lesson-card">
+  <!-- 顶栏 -->
+  <div class="lesson-header">
+    <div class="lesson-title"><span>📚</span> <span>精细化微课：Put On 的空间逻辑与语法辨析</span></div>
+    <div class="badge-tag">VIPKID / 斑马英语教学级动效</div>
+  </div>
+
+  <!-- 矢量绘本舞台 (SVG 动态渲染) -->
+  <div class="vector-stage">
+    <svg id="vectorSvg" viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg">
+      <!-- 动态背景装饰 -->
+      <g id="bgDecor">
+        <circle cx="100" cy="80" r="30" fill="#e2e8f0" opacity="0.5"/>
+        <circle cx="820" cy="120" r="45" fill="#e2e8f0" opacity="0.3"/>
+        <path d="M 50 380 Q 220 360 450 380 T 850 380" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+      </g>
+
+      <!-- 动态渲染容器层 -->
+      <g id="stageContent"></g>
+    </svg>
+  </div>
+
+  <!-- 底部剧本与控制面板 -->
+  <div class="control-dock">
+    <div class="script-box">
+      <div class="script-text">
+        <div class="en" id="scriptEn">"Put on your coat! It's cold outside."</div>
+        <div class="zh" id="scriptZh">核心原理：大衣沿向量轨迹位移 (put)，紧紧贴合包裹在身体表面 (on)。</div>
+      </div>
+      <button class="tts-btn" onclick="playCurrentAudio()">🔊 听外教发音</button>
+    </div>
+
+    <div class="btn-toolbar">
+      <button class="stage-btn active" id="menu1" onclick="changeScene(1)">🎬 第一幕：Put + On 空间解构</button>
+      <button class="stage-btn" id="menu2" onclick="changeScene(2)">⚡ 第二幕：全场景锚定闪现</button>
+      <button class="stage-btn" id="menu3" onclick="changeScene(3)">🏆 第三幕：Put on vs Wear 满分必考</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// 场景与微课动画控制引擎
+let currentScene = 1;
+let currentSentence = "Put on your coat! It's cold outside.";
+
+function playCurrentAudio() {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(currentSentence);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function changeScene(sceneNum) {
+  currentScene = sceneNum;
+  [1, 2, 3].forEach(n => {
+    document.getElementById('menu' + n).classList.toggle('active', n === sceneNum);
+  });
+  renderScene();
+}
+
+function renderScene() {
+  const container = document.getElementById('stageContent');
+  container.innerHTML = '';
+
+  if (currentScene === 1) {
+    currentSentence = "Put on your coat! Move to the surface.";
+    document.getElementById('scriptEn').innerText = `"${currentSentence}"`;
+    document.getElementById('scriptZh').innerText = "核心原理：大衣沿向量轨迹位移 (put)，紧紧贴合包裹在身体表面 (on)。";
+
+    container.innerHTML = `
+      <!-- 衣架挂着大衣 (起点) -->
+      <g transform="translate(180, 160)">
+        <path d="M 0,-40 L 0,-60 Q 0,-75 20,-75 Q 40,-75 40,-60 L 40,-40" fill="none" stroke="#94a3b8" stroke-width="5" stroke-linecap="round"/>
+        <path d="M -40,-40 L 40,-40 L 60,0 L -60,0 Z" fill="#ef4444" filter="drop-shadow(0 8px 12px rgba(239,68,68,0.25))"/>
+        <text x="0" y="30" font-size="14" font-weight="800" fill="#64748b" text-anchor="middle">Coat (待穿大衣)</text>
+      </g>
+
+      <!-- 橙色发光位移轨迹线 (PUT 矢量) -->
+      <path d="M 240,160 Q 360,60 520,170" fill="none" stroke="#f59e0b" stroke-width="5" stroke-dasharray="10,8" stroke-linecap="round">
+        <animate attributeName="stroke-dashoffset" from="36" to="0" dur="1s" repeatCount="indefinite"/>
+      </path>
+      <text x="380" y="100" font-size="15" font-weight="900" fill="#d97706">① PUT (移动位移)</text>
+
+      <!-- 小学生角色 (终点) -->
+      <g transform="translate(600, 150)">
+        <!-- 身体剪影 -->
+        <circle cx="0" cy="-20" r="35" fill="#ffedd5" stroke="#fed7aa" stroke-width="3"/>
+        <path d="M -35,25 Q 0,15 35,25 L 45,110 L -45,110 Z" fill="#3b82f6" filter="drop-shadow(0 6px 12px rgba(59,130,246,0.2))"/>
+        <!-- 接触表面瞬间的绿色贴合光圈 (ON) -->
+        <circle cx="0" cy="50" r="55" fill="none" stroke="#10b981" stroke-width="5" opacity="0.8">
+          <animate attributeName="r" values="45;65;45" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;0.1;0.9" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <text x="0" y="145" font-size="14" font-weight="800" fill="#059669" text-anchor="middle">② ON (贴合身体表面)</text>
+      </g>
+    `;
+  } 
+  else if (currentScene === 2) {
+    currentSentence = "Put on your cap, coat and shoes!";
+    document.getElementById('scriptEn').innerText = `"${currentSentence}"`;
+    document.getElementById('scriptZh').innerText = "场景锚定：不管帽子、大衣还是鞋子，只要是穿戴动作，动词词根全部稳用 put on！";
+
+    container.innerHTML = `
+      <!-- 三张动态闪卡 (Cap / Coat / Shoes) -->
+      <g transform="translate(120, 110)">
+        <rect width="180" height="200" rx="20" fill="#ffffff" stroke="#3b82f6" stroke-width="3" filter="drop-shadow(0 10px 20px rgba(59,130,246,0.15))"/>
+        <text x="90" y="70" font-size="54" text-anchor="middle">🧢</text>
+        <text x="90" y="125" font-size="18" font-weight="900" fill="#1e293b" text-anchor="middle">Put on cap</text>
+        <text x="90" y="155" font-size="14" font-weight="700" fill="#2563eb" text-anchor="middle">戴上帽子</text>
+      </g>
+
+      <g transform="translate(360, 110)">
+        <rect width="180" height="200" rx="20" fill="#ffffff" stroke="#10b981" stroke-width="3" filter="drop-shadow(0 10px 20px rgba(16,185,129,0.15))"/>
+        <text x="90" y="70" font-size="54" text-anchor="middle">🧥</text>
+        <text x="90" y="125" font-size="18" font-weight="900" fill="#1e293b" text-anchor="middle">Put on coat</text>
+        <text x="90" y="155" font-size="14" font-weight="700" fill="#059669" text-anchor="middle">穿上大衣</text>
+      </g>
+
+      <g transform="translate(600, 110)">
+        <rect width="180" height="200" rx="20" fill="#ffffff" stroke="#f59e0b" stroke-width="3" filter="drop-shadow(0 10px 20px rgba(245,158,11,0.15))"/>
+        <text x="90" y="70" font-size="54" text-anchor="middle">👟</text>
+        <text x="90" y="125" font-size="18" font-weight="900" fill="#1e293b" text-anchor="middle">Put on shoes</text>
+        <text x="90" y="155" font-size="14" font-weight="700" fill="#d97706" text-anchor="middle">穿上鞋子</text>
+      </g>
+    `;
+  }
+  else if (currentScene === 3) {
+    currentSentence = "Put on is an action. Wear is a state.";
+    document.getElementById('scriptEn').innerText = `"${currentSentence}"`;
+    document.getElementById('scriptZh').innerText = "满分必考辨析：左边演示正在穿的瞬时动作 (Put on) ⚡，右边演示穿好后持续的状态 (Wear) ✨。";
+
+    container.innerHTML = `
+      <!-- 动态分割线 -->
+      <line x1="450" y1="40" x2="450" y2="360" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8,8"/>
+
+      <!-- 左半屏：PUT ON (动作 Action) -->
+      <g transform="translate(225, 190)">
+        <rect x="-170" y="-120" width="340" height="240" rx="20" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+        <text x="0" y="-75" font-size="20" font-weight="900" fill="#1d4ed8" text-anchor="middle">⚡ PUT ON (动态过程)</text>
+        <text x="0" y="-20" font-size="46" text-anchor="middle">🧥 ➡️ 🧑</text>
+        <text x="0" y="40" font-size="15" font-weight="800" fill="#334155" text-anchor="middle">强调“从没穿到穿上”的动作</text>
+        <text x="0" y="75" font-size="13" font-weight="700" fill="#64748b" text-anchor="middle">例: Put on your coat now!</text>
+      </g>
+
+      <!-- 右半屏：WEAR (状态 State) -->
+      <g transform="translate(675, 190)">
+        <rect x="-170" y="-120" width="340" height="240" rx="20" fill="#fef3c7" stroke="#fcd34d" stroke-width="2"/>
+        <text x="0" y="-75" font-size="20" font-weight="900" fill="#b45309" text-anchor="middle">✨ WEAR (持续状态)</text>
+        <text x="0" y="-20" font-size="46" text-anchor="middle">🧍‍♂️🧥</text>
+        <text x="0" y="40" font-size="15" font-weight="800" fill="#334155" text-anchor="middle">强调“衣服穿在身上”的状态</text>
+        <text x="0" y="75" font-size="13" font-weight="700" fill="#64748b" text-anchor="middle">例: He wears a blue coat.</text>
+      </g>
+    `;
+  }
+}
+
+// 初始化加载第一幕
+renderScene();
+</script>
+</body>
+</html>
