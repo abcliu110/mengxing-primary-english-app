@@ -1357,6 +1357,11 @@ function speakText(text, langMode = "en", customPitch = 1.0) {
   }
 }
 
+// 第一性原理总枢、十二大王炸实验室里的点读按钮调用 speakEnglishText，但此前从未定义；这些都是英文，交给 speakText 朗读。
+function speakEnglishText(text) {
+  speakText(text, "en");
+}
+
 document.addEventListener("click", function (ev) {
   const el = ev.target.closest("[data-speak]");
   if (!el) return;
@@ -7190,7 +7195,7 @@ function renderFirstPrinciplesHubView() {
           </p>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button onclick="speakEnglishText(${JSON.stringify(act.subEn)})"
+          <button onclick="speakEnglishText(${attrEscape(JSON.stringify(act.subEn))})"
             style="background:linear-gradient(135deg,#f59e0b,#d97706); color:#0f172a; font-weight:900; padding:10px 16px; border-radius:12px; font-size:0.9rem;">
             🔊 朗读本幕核心例句
           </button>
@@ -7247,7 +7252,7 @@ function renderFirstPrinciplesHubView() {
               第 ${i + 1} 幕
             </button>
           `).join("")}
-          <button onclick="speakEnglishText(${JSON.stringify(act.subEn)})"
+          <button onclick="speakEnglishText(${attrEscape(JSON.stringify(act.subEn))})"
             style="padding:7px 13px; border-radius:10px; font-weight:800; font-size:0.84rem; background:#fef3c7; color:#92400e; border:1.5px solid #f59e0b;">
             🔊 听英文发音
           </button>
@@ -8238,7 +8243,7 @@ function renderSuperLabHubView() {
               🧭 <strong>物理空间本源推导：</strong>${combo.literal} ｜ 🗣️ <strong>真题例句：</strong><b>${combo.exEn}</b>（${combo.exZh}）
             </div>
           </div>
-          <button onclick="speakEnglishText(${JSON.stringify(combo.phrase + '. ' + combo.exEn)})"
+          <button onclick="speakEnglishText(${attrEscape(JSON.stringify(combo.phrase + '. ' + combo.exEn))})"
             style="background:#2563eb; color:#fff; font-weight:900; padding:10px 18px; border-radius:12px; font-size:0.9rem;">
             🔊 朗读短语与例句
           </button>
@@ -8252,7 +8257,7 @@ function renderSuperLabHubView() {
             const c = VERB_VECTOR_COMBINATIONS[`${curV.v}_${vec.p}`];
             const active = idx === superLabState.pIdx;
             return `
-              <div onclick="superLabState.pIdx=${idx}; renderSuperLabHubView(); speakEnglishText(${JSON.stringify(c.phrase + '. ' + c.exEn)});"
+              <div onclick="superLabState.pIdx=${idx}; renderSuperLabHubView(); speakEnglishText(${attrEscape(JSON.stringify(c.phrase + '. ' + c.exEn))});"
                 style="padding:12px 14px; border-radius:14px; border:2px solid ${active ? '#f59e0b' : '#e2e8f0'}; background:${active ? '#fefce8' : '#f8fafc'}; cursor:pointer;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                   <span style="font-weight:900; font-size:1.05rem; color:${curV.col};">${c.phrase} 🔊</span>
@@ -8278,7 +8283,7 @@ function renderSuperLabHubView() {
               手术案例 ${idx + 1}
             </button>
           `).join("")}
-          <button onclick="speakEnglishText(${JSON.stringify(curCase.englishOk)})"
+          <button onclick="speakEnglishText(${attrEscape(JSON.stringify(curCase.englishOk))})"
             style="padding:9px 16px; border-radius:12px; font-weight:900; font-size:0.86rem; background:#fef3c7; color:#92400e; border:1.5px solid #f59e0b; margin-left:auto;">
             🔊 朗读地道树状句
           </button>
@@ -8302,7 +8307,7 @@ function renderSuperLabHubView() {
             <div style="font-weight:900; color:#065f46; font-size:0.95rem;">🌳 英语树状单核重构（先立树干 + 后挂树枝）：</div>
             <div style="font-size:0.9rem; color:#047857; font-weight:800; margin:6px 0;">${curCase.trunk}</div>
             <div style="font-size:0.85rem; color:#334155; margin-bottom:8px;">${curCase.branches}</div>
-            <div onclick="speakEnglishText(${JSON.stringify(curCase.englishOk)})"
+            <div onclick="speakEnglishText(${attrEscape(JSON.stringify(curCase.englishOk))})"
               style="font-size:1rem; color:#065f46; font-weight:900; background:#d1fae5; padding:10px 12px; border-radius:8px; cursor:pointer;">
               ✅ ${curCase.englishOk} 🔊
             </div>
@@ -8332,7 +8337,7 @@ function renderSuperLabHubView() {
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px;">
           ${curLaw.pairs.map(p => `
-            <div onclick="speakEnglishText(${JSON.stringify(p.from.split(' ')[0] + ', ' + p.to.split(' ')[0])})"
+            <div onclick="speakEnglishText(${attrEscape(JSON.stringify(p.from.split(' ')[0] + ', ' + p.to.split(' ')[0]))})"
               style="background:#f5f3ff; border-radius:14px; padding:12px 14px; border:1.5px solid #c4b5fd; cursor:pointer;">
               <div style="font-size:0.76rem; font-weight:900; color:#6d28d9; margin-bottom:4px;">⚡ ${p.rule}（点击听对比发音 🔊）</div>
               <div style="font-weight:800; color:#334155; font-size:0.9rem;">原词：${p.from}</div>
@@ -8358,7 +8363,7 @@ function renderSuperLabHubView() {
                 真题专列 ${idx + 1}
               </button>
             `).join("")}
-            <button onclick="speakEnglishText(${JSON.stringify(curEx.en)})"
+            <button onclick="speakEnglishText(${attrEscape(JSON.stringify(curEx.en))})"
               style="padding:8px 14px; border-radius:10px; font-weight:900; font-size:0.84rem; background:#fef3c7; color:#92400e; border:1.5px solid #f59e0b;">
               🔊 朗读本句
             </button>
@@ -8380,7 +8385,7 @@ function renderSuperLabHubView() {
           `).join("")}
         </div>
 
-        <div onclick="speakEnglishText(${JSON.stringify(curEx.en)})"
+        <div onclick="speakEnglishText(${attrEscape(JSON.stringify(curEx.en))})"
           style="background:linear-gradient(135deg,#fdf2f8,#fefce8); border-radius:14px; padding:14px 18px; border:2px solid #db2777; cursor:pointer;">
           <div style="font-weight:900; font-size:1.12rem; color:#831843;">✅ 合成地道语序：<span style="color:#1e40af;">${curEx.en}</span> 🔊</div>
           <div style="font-size:0.88rem; color:#334155; margin-top:4px;">💡 <strong>为什么这样排？</strong>${curEx.why}（秒记口诀：<strong>限观大形龄色国材</strong> —— 美小圆旧黄，法国木书房！）</div>
@@ -8409,7 +8414,7 @@ function renderSuperLabHubView() {
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px;">
           ${curClan.members.map(m => `
-            <div onclick="speakEnglishText(${JSON.stringify(m.ex)})"
+            <div onclick="speakEnglishText(${attrEscape(JSON.stringify(m.ex))})"
               style="background:#fff1f2; border-radius:14px; padding:12px 14px; border:1.5px solid #fda4af; cursor:pointer;">
               <div style="display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-weight:900; font-size:1rem; color:#0f172a;">${m.base} ➔ <span style="color:#dc2626;">${m.past}</span></span>
@@ -8444,7 +8449,7 @@ function renderSuperLabHubView() {
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px;">
           ${curStress.items.map(it => `
-            <div onclick="speakEnglishText(${JSON.stringify(it.ex.replace(/\([^)]*\)/g, ''))})"
+            <div onclick="speakEnglishText(${attrEscape(JSON.stringify(it.ex.replace(/\([^)]*\)/g, '')))})"
               style="background:#f0f9ff; border-radius:14px; padding:13px 15px; border:1.5px solid #7dd3fc; cursor:pointer;">
               <div style="font-weight:900; font-size:1.02rem; color:#0369a1; margin-bottom:4px;">🎯 ${it.word} 🔊</div>
               <div style="font-size:0.85rem; color:#0f172a; font-weight:800;">🔹 ${it.nForm}</div>
@@ -8477,7 +8482,7 @@ function renderSuperLabHubView() {
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px;">
           ${curMeta.cards.map(c => `
-            <div onclick="speakEnglishText(${JSON.stringify(c.ex)})"
+            <div onclick="speakEnglishText(${attrEscape(JSON.stringify(c.ex))})"
               style="background:#fffbeb; border-radius:14px; padding:13px 15px; border:1.5px solid #fcd34d; cursor:pointer;">
               <div style="font-weight:900; font-size:1rem; color:#92400e; margin-bottom:3px;">${c.key} 🔊</div>
               <div style="font-size:0.8rem; color:#64748b; margin-bottom:4px;">物理本源：${c.literal}</div>
@@ -8519,7 +8524,7 @@ function renderSuperLabHubView() {
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px; margin-bottom:12px;">
           ${curTense.subjectSwitch.map(s => `
-            <div onclick="speakEnglishText(${JSON.stringify(s.subj.split('/')[0] + ' ' + s.verb.replace(/\([^)]*\)/g, ''))})"
+            <div onclick="speakEnglishText(${attrEscape(JSON.stringify(s.subj.split('/')[0] + ' ' + s.verb.replace(/\([^)]*\)/g, '')))})"
               style="background:#f8fafc; border-radius:14px; padding:12px 14px; border:2px solid #99f6e4; cursor:pointer;">
               <div style="font-weight:900; font-size:0.98rem; color:#0f172a;">👤 <span style="color:#0d9488;">${s.subj}</span> + <span style="color:#2563eb;">${s.verb}</span> 🔊</div>
               <div style="font-size:0.82rem; color:#475569; font-weight:700; margin-top:5px;">💡 ${s.note}</div>
@@ -8554,28 +8559,28 @@ function renderSuperLabHubView() {
         </div>
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(310px, 1fr)); gap:12px;">
-          <div onclick="speakEnglishText(${JSON.stringify(curAux.affirmative)})"
+          <div onclick="speakEnglishText(${attrEscape(JSON.stringify(curAux.affirmative))})"
             style="background:#f0fdf4; border:2px solid #86efac; border-radius:14px; padding:12px 14px; cursor:pointer;">
             <div style="font-size:0.78rem; font-weight:900; color:#166534;">① 肯定陈述句 (Affirmative) 🔊</div>
             <div style="font-size:1rem; font-weight:900; color:#0f172a; margin:4px 0;">${curAux.affirmative}</div>
             <div style="font-size:0.82rem; color:#475569;">句意：${curAux.zh}</div>
           </div>
 
-          <div onclick="speakEnglishText(${JSON.stringify(curAux.negative.replace(/\([^)]*\)/g, ''))})"
+          <div onclick="speakEnglishText(${attrEscape(JSON.stringify(curAux.negative.replace(/\([^)]*\)/g, '')))})"
             style="background:#fff1f2; border:2px solid #fda4af; border-radius:14px; padding:12px 14px; cursor:pointer;">
             <div style="font-size:0.78rem; font-weight:900; color:#9f1239;">② 变否定句 (Negative) 🔊</div>
             <div style="font-size:1rem; font-weight:900; color:#dc2626; margin:4px 0;">${curAux.negative}</div>
             <div style="font-size:0.82rem; color:#881337; font-weight:700;">⚙️ 变形铁律：${curAux.negRule}</div>
           </div>
 
-          <div onclick="speakEnglishText(${JSON.stringify(curAux.yesNoQ.split('—')[0])})"
+          <div onclick="speakEnglishText(${attrEscape(JSON.stringify(curAux.yesNoQ.split('—')[0]))})"
             style="background:#eff6ff; border:2px solid #93c5fd; border-radius:14px; padding:12px 14px; cursor:pointer;">
             <div style="font-size:0.78rem; font-weight:900; color:#1e40af;">③ 变一般疑问句 (Yes/No Question) 🔊</div>
             <div style="font-size:0.98rem; font-weight:900; color:#1d4ed8; margin:4px 0;">${curAux.yesNoQ}</div>
             <div style="font-size:0.82rem; color:#1e3a8a; font-weight:700;">⚙️ 变形铁律：${curAux.yesNoRule}</div>
           </div>
 
-          <div onclick="speakEnglishText(${JSON.stringify(curAux.whQ.split('（')[0])})"
+          <div onclick="speakEnglishText(${attrEscape(JSON.stringify(curAux.whQ.split('（')[0]))})"
             style="background:#f5f3ff; border:2px solid #c4b5fd; border-radius:14px; padding:12px 14px; cursor:pointer;">
             <div style="font-size:0.78rem; font-weight:900; color:#5b21b6;">④ 变特殊疑问句 (Wh- Question) 🔊</div>
             <div style="font-size:0.98rem; font-weight:900; color:#6d28d9; margin:4px 0;">${curAux.whQ}</div>
@@ -8583,7 +8588,7 @@ function renderSuperLabHubView() {
           </div>
         </div>
 
-        <div onclick="speakEnglishText(${JSON.stringify(curAux.exclam.split('/')[0])})"
+        <div onclick="speakEnglishText(${attrEscape(JSON.stringify(curAux.exclam.split('/')[0]))})"
           style="margin-top:12px; background:linear-gradient(135deg,#fffbeb,#fff7ed); border:2px solid #f59e0b; border-radius:14px; padding:12px 16px; cursor:pointer;">
           <div style="font-weight:900; font-size:0.98rem; color:#92400e;">⑤ 变感叹句 (Exclamatory)：<span style="color:#b45309;">${curAux.exclam}</span> 🔊</div>
           <div style="font-size:0.83rem; color:#78350f; margin-top:3px;">💡 <strong>What vs How 秒杀公式：</strong>${curAux.exclamRule}</div>
@@ -8622,7 +8627,7 @@ function renderSuperLabHubView() {
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(310px, 1fr)); gap:12px;">
           ${curPat.goldExamples.map(g => `
-            <div onclick="speakEnglishText(${JSON.stringify(g.en.split('=')[0])})"
+            <div onclick="speakEnglishText(${attrEscape(JSON.stringify(g.en.split('=')[0]))})"
               style="background:#f8fafc; border:2px solid #c7d2fe; border-radius:14px; padding:13px 15px; cursor:pointer;">
               <div style="font-weight:900; font-size:1rem; color:#3730a3; margin-bottom:5px;">🗣️ ${g.en} 🔊</div>
               <div style="font-size:0.85rem; color:#334155; line-height:1.48;">💡 ${g.zh}</div>
@@ -8653,7 +8658,7 @@ function renderSuperLabHubView() {
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:13px;">
           ${curWrite.formulas.map(f => `
-            <div onclick="speakEnglishText(${JSON.stringify(f.gold.replace('🏆 100分满分句：', '').replace('🏆 高分路标：', '').replace('🏆 满分范句：', '').split('/')[0])})"
+            <div onclick="speakEnglishText(${attrEscape(JSON.stringify(f.gold.replace('🏆 100分满分句：', '').replace('🏆 高分路标：', '').replace('🏆 满分范句：', '').split('/')[0]))})"
               style="background:#fdf4ff; border:2px solid #e879f9; border-radius:15px; padding:14px 16px; cursor:pointer;">
               <div style="font-weight:900; font-size:0.95rem; color:#86198f; margin-bottom:6px;">${f.tag} （点击朗读满分句 🔊）</div>
               <div style="font-size:0.86rem; color:#64748b; background:#fff; padding:6px 10px; border-radius:8px; margin-bottom:6px;">${f.basic}</div>
