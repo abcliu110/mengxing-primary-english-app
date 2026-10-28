@@ -5685,7 +5685,7 @@ function drawHDSceneBackdrop(ctx, W, H, sceneType = "classroom", t = 0) {
 }
 
 // Articulated 2D Cartoon Character Actor Renderer
-function drawHDCharacterActor(ctx, opts = {}) {
+function drawHDCharacterActor(ctx, opts = {}, tArg) {
   const {
     x = 150,
     y = 175,
@@ -5696,10 +5696,14 @@ function drawHDCharacterActor(ctx, opts = {}) {
     talking = false,
     armPose = "wave", // 'wave' | 'point' | 'hold' | 'pass' | 'think'
     propEmoji = "",
-    badgeText = "",
-    t = 0,
+    badgeText: badgeTextOpt = "",
+    t: tOpt,
     walkSpeed = 0
   } = opts;
+  // 兼容两种旧调用：headBadge 作为徽章文字；时间 t 作为第三个参数传入
+  const badgeText = badgeTextOpt || opts.headBadge || "";
+  const badgeColor = opts.badgeColor || "";
+  const t = typeof tOpt === "number" ? tOpt : (typeof tArg === "number" ? tArg : 0);
 
   ctx.save();
   ctx.translate(x, y);
@@ -5914,13 +5918,13 @@ function drawHDCharacterActor(ctx, opts = {}) {
     if (bx + bw > colMaxX) bx = colMaxX - bw;
     const by = y - 82 * scale - 18 + breath * 0.6;
 
-    ctx.fillStyle = "#fef08a";
-    ctx.strokeStyle = "#eab308";
+    ctx.fillStyle = badgeColor || "#fef08a";
+    ctx.strokeStyle = badgeColor ? "rgba(255,255,255,0.85)" : "#eab308";
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.roundRect(bx, by, bw, 20, 999);
     ctx.fill(); ctx.stroke();
-    ctx.fillStyle = "#854d0e";
+    ctx.fillStyle = badgeColor ? "#ffffff" : "#854d0e";
     ctx.textAlign = "center";
     ctx.fillText(label, bx + bw / 2, by + 14);
     ctx.restore();
