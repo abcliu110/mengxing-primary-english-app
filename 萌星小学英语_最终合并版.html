@@ -2146,7 +2146,7 @@ function renderWordGridHTML(words, contextIds) {
               <div style="font-size:0.94rem; color:#334155; font-weight:800; margin-top:4px;">${w.meaning}</div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding-top:8px; border-top:1px dashed #e2e8f0; font-size:0.8rem; color:#2563eb; font-weight:800;">
-              <span onclick="event.stopPropagation(); speakText('${w.word.replace(/'/g,"")}', 'en');">🔊 点读发音</span>
+              <span onclick="event.stopPropagation(); speakText(${attrEscape(JSON.stringify(`${w.word}`))}, 'en');">🔊 点读发音</span>
               <span>翻卡详情 ➔</span>
             </div>
           </div>
@@ -2454,7 +2454,7 @@ function renderSightFlashStage(area) {
       <div class="flashcard-stage">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
           <span style="font-weight:900; color:#d97706;">⚡ 刚才一闪而过的闪电词是什么意思？</span>
-          <button onclick="speakText('${w.word.split('/')[0].replace(/'/g,"")}', 'en')" style="background:#dbeafe; color:#1e40af; padding:8px 14px; border-radius:10px; font-weight:800;">🔊 重听发音</button>
+          <button onclick="speakText(${attrEscape(JSON.stringify(`${w.word.split('/')[0]}`))}, 'en')" style="background:#dbeafe; color:#1e40af; padding:8px 14px; border-radius:10px; font-weight:800;">🔊 重听发音</button>
         </div>
         <div id="sightFlashOptions">
           ${st.options.map((opt, i) => `
@@ -2567,7 +2567,7 @@ function renderVocabPhonicsView() {
                   <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                     <span style="font-size:0.8rem; font-weight:800; color:#7c3aed;">🚂 点击车头换首音拼读：</span>
                     ${it.onsets.map(onset => `
-                      <button onclick="speakText('${onset}, ${it.rime}, ${onset}${it.rime}', 'en')"
+                      <button onclick="speakText(${attrEscape(JSON.stringify(`${onset}, ${it.rime}, ${onset}${it.rime}`))}, 'en')"
                         style="background:#ede9fe; color:#5b21b6; padding:5px 11px; border-radius:8px; font-weight:900; border:1.5px solid #c4b5fd;">
                         ${onset}-${it.rime} 🔊
                       </button>
@@ -2578,7 +2578,7 @@ function renderVocabPhonicsView() {
               <div style="font-size:0.88rem; color:#475569; margin-bottom:12px;">📌 ${it.tip}</div>
               <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(195px, 1fr)); gap:10px;">
                 ${it.examples.map(ex => `
-                  <div onclick="speakText('${ex.w.split(' ')[0].replace(/[^a-zA-Z]/g,'')}', 'en')"
+                  <div onclick="speakText(${attrEscape(JSON.stringify(`${ex.w.split(' ')[0].replace(/[^a-zA-Z]/g,'')}`))}, 'en')"
                     style="background:#fff; padding:12px; border-radius:12px; border:1.5px solid #cbd5e1; cursor:pointer; display:flex; align-items:center; gap:10px;">
                     <span style="font-size:1.6rem;">${ex.emoji}</span>
                     <div>
@@ -2601,7 +2601,7 @@ function renderVocabPhonicsView() {
           <div style="background:#fff; border-radius:18px; padding:18px; border:2px solid #cbd5e1; box-shadow:var(--shadow-sm);">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
               <span style="font-weight:900; font-size:1.15rem; color:#1e40af;">🔊 同音音标：${hm.ipa}</span>
-              <button onclick="speakText('${hm.words[0].w}', 'en')" style="background:#dbeafe; color:#1d4ed8; padding:6px 12px; border-radius:8px; font-weight:800;">▶️ 听发音</button>
+              <button onclick="speakText(${attrEscape(JSON.stringify(`${hm.words[0].w}`))}, 'en')" style="background:#dbeafe; color:#1d4ed8; padding:6px 12px; border-radius:8px; font-weight:800;">▶️ 听发音</button>
             </div>
             <div style="display:grid; gap:10px;">
               ${hm.words.map(w => `
@@ -2638,12 +2638,12 @@ function renderVocabPhonicsView() {
             <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:12px;">
               ${mp.pairs.map(p => `
                 <div style="background:#f8fafc; padding:12px; border-radius:12px; border:1.5px solid #cbd5e1; display:flex; justify-content:space-between; align-items:center;">
-                  <div onclick="speakText('${p.w1}', 'en')" style="cursor:pointer; flex:1; text-align:center; padding:6px; border-right:1px dashed #cbd5e1;">
+                  <div onclick="speakText(${attrEscape(JSON.stringify(`${p.w1}`))}, 'en')" style="cursor:pointer; flex:1; text-align:center; padding:6px; border-right:1px dashed #cbd5e1;">
                     <div style="font-weight:900; font-size:1.15rem; color:#2563eb;">${p.w1} 🔊</div>
                     <div style="font-size:0.78rem; color:#64748b;">${p.ph1}</div>
                     <div style="font-size:0.84rem; font-weight:700;">${p.zh1}</div>
                   </div>
-                  <div onclick="speakText('${p.w2}', 'en')" style="cursor:pointer; flex:1; text-align:center; padding:6px;">
+                  <div onclick="speakText(${attrEscape(JSON.stringify(`${p.w2}`))}, 'en')" style="cursor:pointer; flex:1; text-align:center; padding:6px;">
                     <div style="font-weight:900; font-size:1.15rem; color:#7c3aed;">${p.w2} 🔊</div>
                     <div style="font-size:0.78rem; color:#64748b;">${p.ph2}</div>
                     <div style="font-size:0.84rem; font-weight:700;">${p.zh2}</div>
@@ -2666,7 +2666,7 @@ function renderPhonemicAwarenessGameHTML(games, gameIdx) {
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
         <span style="font-weight:900; color:#5b21b6; font-size:1.05rem;">🎮 音素意识互动小游戏 (${(gameIdx % games.length) + 1}/${games.length})</span>
         <div style="display:flex; gap:8px;">
-          <button onclick="speakText('${g.target_tts}', 'en')" style="background:#7c3aed; color:#fff; padding:8px 14px; border-radius:10px; font-weight:800;">🔊 听示范发音</button>
+          <button onclick="speakText(${attrEscape(JSON.stringify(`${g.target_tts}`))}, 'en')" style="background:#7c3aed; color:#fff; padding:8px 14px; border-radius:10px; font-weight:800;">🔊 听示范发音</button>
           <button onclick="currentView.params.gameIdx=${gameIdx+1}; renderVocabPhonicsView();" style="background:#fff; color:#5b21b6; padding:8px 14px; border-radius:10px; font-weight:800; border:1.5px solid #c4b5fd;">🔄 换一题</button>
         </div>
       </div>
@@ -2717,7 +2717,7 @@ function launchMinimalPairChallenge() {
     <div style="background:#fff; padding:16px; border-radius:14px; border:1.5px solid #93c5fd;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
         <span style="font-weight:800; color:#1e40af;">🎧 正在考察：${group.contrast}</span>
-        <button onclick="speakText('${activeMpTarget.ansWord}', 'en')" style="background:#dbeafe; color:#1e40af; padding:8px 16px; border-radius:10px; font-weight:800;">🔊 重听盲测发音</button>
+        <button onclick="speakText(${attrEscape(JSON.stringify(`${activeMpTarget.ansWord}`))}, 'en')" style="background:#dbeafe; color:#1e40af; padding:8px 16px; border-radius:10px; font-weight:800;">🔊 重听盲测发音</button>
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
         <button onclick="answerMpChallenge('${pair.w1}')" style="padding:16px; border-radius:14px; background:#f8fafc; border:2px solid #cbd5e1; font-size:1.15rem; font-weight:900;">
@@ -2778,7 +2778,7 @@ function renderVocabFormationView() {
     body.innerHTML = `
       <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:14px;">
         ${WORD_FORMATION_DB.compounds.map(c => `
-          <div onclick="speakText('${c.word}', 'en')" style="background:#fff; border-radius:16px; padding:16px; border:2px solid #e2e8f0; cursor:pointer; box-shadow:var(--shadow-sm);">
+          <div onclick="speakText(${attrEscape(JSON.stringify(`${c.word}`))}, 'en')" style="background:#fff; border-radius:16px; padding:16px; border:2px solid #e2e8f0; cursor:pointer; box-shadow:var(--shadow-sm);">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
               <span style="font-size:1.8rem;">${c.emoji}</span>
               <span style="font-weight:900; font-size:1.25rem; color:#5b21b6;">${c.word} 🔊</span>
@@ -2803,7 +2803,7 @@ function renderVocabFormationView() {
             <div style="font-size:0.88rem; font-weight:800; color:#334155; margin-bottom:10px;">含义：${p.meaning}</div>
             <div style="display:grid; gap:6px;">
               ${p.examples.map(ex => `
-                <div onclick="speakText('${ex.split('➔')[1]?.split('(')[0] || ''}', 'en')" style="background:#f8fafc; padding:8px 10px; border-radius:8px; font-size:0.85rem; font-weight:700; cursor:pointer;">
+                <div onclick="speakText(${attrEscape(JSON.stringify(`${ex.split('➔')[1]?.split('(')[0] || ''}`))}, 'en')" style="background:#f8fafc; padding:8px 10px; border-radius:8px; font-size:0.85rem; font-weight:700; cursor:pointer;">
                   🔹 ${ex} 🔊
                 </div>
               `).join("")}
@@ -2821,7 +2821,7 @@ function renderVocabFormationView() {
             <div style="font-size:0.88rem; font-weight:800; color:#334155; margin-bottom:10px;">功能：${s.meaning}</div>
             <div style="display:grid; gap:6px;">
               ${s.examples.map(ex => `
-                <div onclick="speakText('${ex.split('➔')[1]?.split('(')[0] || ex.split('(')[0]}', 'en')" style="background:#f0fdf4; padding:8px 10px; border-radius:8px; font-size:0.85rem; font-weight:700; cursor:pointer;">
+                <div onclick="speakText(${attrEscape(JSON.stringify(`${ex.split('➔')[1]?.split('(')[0] || ex.split('(')[0]}`))}, 'en')" style="background:#f0fdf4; padding:8px 10px; border-radius:8px; font-size:0.85rem; font-weight:700; cursor:pointer;">
                   ✨ ${ex} 🔊
                 </div>
               `).join("")}
@@ -3045,7 +3045,7 @@ function renderConfusableCardHTML(c) {
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:10px;">
         ${c.members.map(m => `
-          <div onclick="speakText('${m.ex.split('(')[0]}', 'en')" style="background:#f8fafc; padding:12px; border-radius:12px; border:1.5px solid #cbd5e1; cursor:pointer;">
+          <div onclick="speakText(${attrEscape(JSON.stringify(`${m.ex.split('(')[0]}`))}, 'en')" style="background:#f8fafc; padding:12px; border-radius:12px; border:1.5px solid #cbd5e1; cursor:pointer;">
             <div style="font-weight:900; font-size:1.1rem; color:#1e40af; margin-bottom:4px;">🔹 ${m.w} 🔊</div>
             <div style="font-size:0.85rem; color:#334155; font-weight:700; margin-bottom:6px;">${m.rule}</div>
             <div style="font-size:0.82rem; color:#059669; font-weight:700;">🗣️ ${m.ex}</div>
@@ -3110,13 +3110,13 @@ function renderVocabFramesView() {
         <div style="font-weight:900; font-size:0.95rem; color:#334155; margin-bottom:8px;">🔄 点击切换不同动词视角（看同一事件如何变换句型）：</div>
         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
           ${fr.perspectives.map((p, idx) => `
-            <button onclick="currentView.params.pIdx=${idx}; renderVocabFramesView(); speakText('${p.sentence.replace(/'/g,"")}', 'en');"
+            <button onclick="currentView.params.pIdx=${idx}; renderVocabFramesView(); speakText(${attrEscape(JSON.stringify(`${p.sentence}`))}, 'en');"
               style="padding:10px 16px; border-radius:12px; font-weight:800; background:${idx===pIdx?'#2563eb':'#f1f5f9'}; color:${idx===pIdx?'#fff':'#1e293b'}; border:2px solid ${idx===pIdx?'#2563eb':'#cbd5e1'};">
               🎯 视角 ${idx+1}：${p.verb}
             </button>
           `).join("")}
         </div>
-        <div onclick="speakText('${persp.sentence.replace(/'/g,"")}', 'en')" style="background:#eff6ff; border-radius:14px; padding:14px 18px; border:2px solid #93c5fd; cursor:pointer;">
+        <div onclick="speakText(${attrEscape(JSON.stringify(`${persp.sentence}`))}, 'en')" style="background:#eff6ff; border-radius:14px; padding:14px 18px; border:2px solid #93c5fd; cursor:pointer;">
           <div style="font-size:0.84rem; font-weight:800; color:#1d4ed8;">📐 角色流向：${persp.focus} ｜ 句型结构：<code>${persp.pattern}</code></div>
           <div style="font-size:1.2rem; font-weight:900; color:#0f172a; margin:6px 0 2px;">🔊 ${persp.sentence}</div>
           <div style="font-size:0.92rem; color:#475569; font-weight:700;">${persp.zh}</div>
@@ -3389,7 +3389,7 @@ function renderWordCardModalContent() {
           </div>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;" onclick="event.stopPropagation();">
-          <button onclick="speakText('${w.word.split('/')[0].replace(/'/g,"")}', 'en')" style="background:#2563eb; color:#fff; padding:10px 16px; border-radius:12px; font-weight:800;">🔊 发音</button>
+          <button onclick="speakText(${attrEscape(JSON.stringify(`${w.word.split('/')[0]}`))}, 'en')" style="background:#2563eb; color:#fff; padding:10px 16px; border-radius:12px; font-weight:800;">🔊 发音</button>
           <button onclick="flipCurrentWordCard()" style="background:#ede9fe; color:#5b21b6; padding:10px 16px; border-radius:12px; font-weight:800;">🔄 ${cardModalState.flipped ? '看正面动画' : '翻转看详解'}</button>
         </div>
       </div>
@@ -3397,7 +3397,7 @@ function renderWordCardModalContent() {
       <!-- Phonics Syllable Chunks Slider -->
       <div class="phonics-slider-box" onclick="event.stopPropagation();">
         <span style="font-size:0.82rem; font-weight:800; color:#64748b;">🪄 音节/拼读滑块：</span>
-        ${chunks.map(c => `<span class="phonics-chunk" onclick="speakText('${c.replace(/'/g,"")}', 'en')">${c}</span>`).join('<span>·</span>')}
+        ${chunks.map(c => `<span class="phonics-chunk" onclick="speakText(${attrEscape(JSON.stringify(`${c}`))}, 'en')">${c}</span>`).join('<span>·</span>')}
       </div>
 
       ${w.spelling_alert ? `
@@ -3836,7 +3836,7 @@ function renderGrammarDetailView() {
       <h3 style="margin:0 0 10px; font-size:1.22rem; color:#1e40af;">👀 第一步：感知语境（点击句子听纯正发音，留意黄色高亮处的变化）</h3>
       <div style="display:grid; gap:10px; margin-bottom:10px;">
         ${g.step1_story.map(line => `
-          <div onclick="speakText('${line.replace(/\*\*/g,"").replace(/'/g,"")}', 'en')"
+          <div onclick="speakText(${attrEscape(JSON.stringify(`${line.replace(/\*\*/g,"")}`))}, 'en')"
             style="background:#eff6ff; padding:12px 16px; border-radius:12px; border-left:4px solid #2563eb; font-size:1.12rem; font-weight:800; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
             <span>${formatHighlight(line)}</span>
             <span style="font-size:0.85rem; color:#2563eb;">🔊 点读</span>
@@ -3885,7 +3885,7 @@ function renderGrammarDetailView() {
       </div>
 
       <!-- Rhythmic Memory Chant -->
-      <div onclick="speakText('${g.chant.replace(/[（）()]/g,"")}', 'zh')"
+      <div onclick="speakText(${attrEscape(JSON.stringify(`${g.chant.replace(/[（）()]/g,"")}`))}, 'zh')"
         style="background:linear-gradient(135deg, #fef3c7, #fde68a); padding:14px 18px; border-radius:14px; border:2px solid #f59e0b; margin-bottom:14px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px;">
         <div>
           <div style="font-size:0.8rem; font-weight:900; color:#b45309;">🎵 秒记拍手口诀（点击可语音播报）：</div>
@@ -4310,7 +4310,7 @@ function renderGrammarPlaygroundView() {
             <h3 style="margin:0 0 10px; font-size:1.22rem; color:#1e3a8a;">${d.icon} ${d.title}</h3>
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-bottom:10px;">
               <div style="background:#fef2f2; padding:12px; border-radius:12px; border:1.5px solid #fca5a5; font-weight:800; color:#991b1b;">${d.error_ex}</div>
-              <div onclick="speakText('${d.correct_ex.replace('✅','').split('/')[0]}', 'en')" style="background:#ecfdf5; padding:12px; border-radius:12px; border:1.5px solid #6ee7b7; font-weight:800; color:#065f46; cursor:pointer;">${d.correct_ex} 🔊</div>
+              <div onclick="speakText(${attrEscape(JSON.stringify(`${d.correct_ex.replace('✅','').split('/')[0]}`))}, 'en')" style="background:#ecfdf5; padding:12px; border-radius:12px; border:1.5px solid #6ee7b7; font-weight:800; color:#065f46; cursor:pointer;">${d.correct_ex} 🔊</div>
             </div>
             <div style="font-size:0.92rem; color:#334155; font-weight:700;">💡 <strong>纠偏原理：</strong>${d.visual_rule}</div>
           </div>
@@ -4395,11 +4395,11 @@ function renderGrammarChantsView() {
     <div class="flashcard-stage">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
         <h2 style="margin:0; color:#5b21b6;">${ch.title}</h2>
-        <button onclick="speakText('${ch.en_lines.join(' ').replace(/'/g,"")}', 'en')" style="background:#7c3aed; color:#fff; padding:10px 20px; border-radius:12px; font-weight:800;">▶️ 播放整首歌谣节奏朗读</button>
+        <button onclick="speakText(${attrEscape(JSON.stringify(`${ch.en_lines.join(' ')}`))}, 'en')" style="background:#7c3aed; color:#fff; padding:10px 20px; border-radius:12px; font-weight:800;">▶️ 播放整首歌谣节奏朗读</button>
       </div>
       <div style="display:grid; gap:12px;">
         ${ch.en_lines.map((line, i) => `
-          <div onclick="speakText('${line.replace(/'/g,"")}', 'en')" style="background:#f5f3ff; padding:14px 18px; border-radius:14px; border-left:5px solid #7c3aed; cursor:pointer;">
+          <div onclick="speakText(${attrEscape(JSON.stringify(`${line}`))}, 'en')" style="background:#f5f3ff; padding:14px 18px; border-radius:14px; border-left:5px solid #7c3aed; cursor:pointer;">
             <div style="font-size:1.2rem; font-weight:900; color:#1e1b4b;">🥁 ${line} 🔊</div>
             <div style="font-size:0.92rem; color:#475569; font-weight:700; margin-top:4px;">${ch.zh_lines[i] || ''}</div>
           </div>
@@ -4519,7 +4519,7 @@ function renderOralScenarioView() {
     <!-- Expression Selector Pills -->
     <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
       ${list.map((item, idx) => `
-        <button onclick="currentView.params.expIdx=${idx}; renderOralScenarioView(); speakText('${item.en.replace(/'/g,"")}', 'en');"
+        <button onclick="currentView.params.expIdx=${idx}; renderOralScenarioView(); speakText(${attrEscape(JSON.stringify(`${item.en}`))}, 'en');"
           style="padding:9px 14px; border-radius:12px; font-weight:800; font-size:0.86rem; background:${idx===(expIdx%list.length)?'#059669':'#fff'}; color:${idx===(expIdx%list.length)?'#fff':'#1e293b'}; border:2px solid ${idx===(expIdx%list.length)?'#059669':'#cbd5e1'};">
           ${idx+1}. ${item.en}
         </button>
@@ -4534,7 +4534,7 @@ function renderOralScenarioView() {
           <div style="font-size:1.05rem; font-weight:800; color:#059669;">${cur.zh}</div>
         </div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <button onclick="speakText('${cur.en.replace(/'/g,"")}', 'en')" style="background:#2563eb; color:#fff; padding:10px 16px; border-radius:12px; font-weight:800;">🔊 朗读核心句</button>
+          <button onclick="speakText(${attrEscape(JSON.stringify(`${cur.en}`))}, 'en')" style="background:#2563eb; color:#fff; padding:10px 16px; border-radius:12px; font-weight:800;">🔊 朗读核心句</button>
           <button onclick="playFullOralDialogue()" style="background:#059669; color:#fff; padding:10px 16px; border-radius:12px; font-weight:800;">▶️ 连续播放情景对话</button>
         </div>
       </div>
@@ -5925,11 +5925,11 @@ function renderGrammarSummaryHubView() {
           <tbody>
             ${INTERROGATIVE_RADAR_DB.map(it => `
               <tr>
-                <td class="clickable-cell" onclick="speakText('${it.word}. ${it.ex_en}', 'en')" style="font-weight:900; font-size:1.1rem; color:#5b21b6;">${it.word} 🔊</td>
+                <td class="clickable-cell" onclick="speakText(${attrEscape(JSON.stringify(`${it.word}. ${it.ex_en}`))}, 'en')" style="font-weight:900; font-size:1.1rem; color:#5b21b6;">${it.word} 🔊</td>
                 <td style="font-weight:800; color:#0f172a;">${it.meaning}</td>
                 <td><span style="background:#ede9fe; color:#5b21b6; padding:3px 8px; border-radius:6px; font-weight:800; font-size:0.8rem;">${it.pos_role}</span></td>
                 <td style="font-weight:800; color:#b45309; font-size:0.85rem;">${it.pair_secret}</td>
-                <td class="clickable-cell" onclick="speakText('${it.ex_en.replace(/'/g,"")}', 'en')" style="font-size:0.86rem;">
+                <td class="clickable-cell" onclick="speakText(${attrEscape(JSON.stringify(`${it.ex_en}`))}, 'en')" style="font-size:0.86rem;">
                   <div style="font-weight:800; color:#1e40af;">${it.formula}</div>
                   <div style="color:#059669; font-weight:800; margin-top:3px;">🗣️ ${it.ex_en}</div>
                 </td>
@@ -5983,8 +5983,8 @@ function renderGrammarSummaryHubView() {
             ${HOW_VS_WHAT_SCENARIOS.map(sc => `
               <tr>
                 <td style="font-weight:900; color:#0f172a; background:#f8fafc;">${sc.scene}</td>
-                <td class="clickable-cell" onclick="speakText('${sc.how_expr.split('(')[0].replace(/'/g,"")}', 'en')" style="font-weight:900; color:#b45309;">🔊 ${sc.how_expr}</td>
-                <td class="clickable-cell" onclick="speakText('${sc.what_expr.split('(')[0].replace(/'/g,"")}', 'en')" style="font-weight:900; color:#1d4ed8;">🔊 ${sc.what_expr}</td>
+                <td class="clickable-cell" onclick="speakText(${attrEscape(JSON.stringify(`${sc.how_expr.split('(')[0]}`))}, 'en')" style="font-weight:900; color:#b45309;">🔊 ${sc.how_expr}</td>
+                <td class="clickable-cell" onclick="speakText(${attrEscape(JSON.stringify(`${sc.what_expr.split('(')[0]}`))}, 'en')" style="font-weight:900; color:#1d4ed8;">🔊 ${sc.what_expr}</td>
                 <td style="font-size:0.86rem; color:#1e293b; font-weight:700;">${sc.principle}</td>
                 <td style="font-size:0.84rem; color:#991b1b; font-weight:800; background:#fef2f2;">${sc.trap}</td>
               </tr>
@@ -9642,7 +9642,7 @@ function renderSentenceTrains() {
         <div class="train-track-bed" id="train-track-${idx}">
           ${getLocomotiveSVG()}
           ${st.zhBlocks.map(b => `
-            <div class="carriage-node role-${b.role}" data-cid="${b.id}" onclick="speakText('${b.enText.replace(/[^a-zA-Z ?!.]/g,'')}')">
+            <div class="carriage-node role-${b.role}" data-cid="${b.id}" onclick="speakText(${attrEscape(JSON.stringify(`${b.enText.replace(/[^a-zA-Z ?!.]/g,'')}`))})">
               <div class="c-main-text">${b.zhText}</div>
               <div style="font-size:0.72rem; opacity:0.85; margin-top:2px;">${b.sub}</div>
               <div class="carriage-wheels">
@@ -9905,7 +9905,7 @@ function renderCinemaWidget(word, mountId) {
         <button class="tts-btn" style="padding:7px 14px; font-size:0.84rem; background:linear-gradient(135deg,#ec4899,#8b5cf6);" onclick="MH.autoPlayCinema('${item.word}', '${mountId}')">
           ▶️ 自动连播三幕剧 + 美音配音
         </button>
-        <button class="tts-btn" style="padding:7px 14px; font-size:0.84rem;" onclick="speakText('${item.example_en.replace(/'/g,"\'")}')">
+        <button class="tts-btn" style="padding:7px 14px; font-size:0.84rem;" onclick="speakText(${attrEscape(JSON.stringify(`${item.example_en}`))})">
           🔊 朗读双关金句：${item.example_en}
         </button>
       </div>
@@ -9947,7 +9947,7 @@ function renderCinemaSelectorBar() {
   const polyWords = MH_VOCAB_DB.filter(x => x.has_polysemy);
   bar.innerHTML = polyWords.map(w => `
     <button class="speak-chip" style="background:${w.word===activeCinemaWord?'#ec4899':'#1e293b'}; color:#fff; border-color:#475569;"
-      onclick="MH.activeCinemaWord='${w.word}'; MH.activeCinemaAct=1; MH.renderCinemaSelectorBar(); MH.renderCinemaWidget('${w.word}', 'mhMainCinemaMount'); speakText('${w.word}');">
+      onclick="MH.activeCinemaWord='${w.word}'; MH.activeCinemaAct=1; MH.renderCinemaSelectorBar(); MH.renderCinemaWidget('${w.word}', 'mhMainCinemaMount'); speakText(${attrEscape(JSON.stringify(`${w.word}`))});">
       ${w.emoji} ${w.word}
     </button>
   `).join('');
@@ -10086,7 +10086,7 @@ function renderTrumps() {
             <div style="font-weight:800; font-size:0.88rem; color:#1e3a8a;">🔹 ${it.name}</div>
             <div style="font-size:0.82rem; color:#334155; margin:2px 0 6px;">${it.desc}</div>
             <div>
-              ${it.examples.map(ex => `<span class="speak-chip" onclick="speakText('${ex.replace(/<->/g,' and ').replace(/->/g,' to ').replace(/'/g,"\'")}')">🔊 ${ex}</span>`).join('')}
+              ${it.examples.map(ex => `<span class="speak-chip" onclick="speakText(${attrEscape(JSON.stringify(`${ex.replace(/<->/g,' and ').replace(/->/g,' to ')}`))})">🔊 ${ex}</span>`).join('')}
             </div>
           </div>
         `).join('')}
@@ -10098,12 +10098,12 @@ function renderTrumps() {
 function renderWritingTab() {
   document.getElementById('mhHomophonesBox').innerHTML = HOMOPHONES_LIST.map(h => {
     const clean = h.split('(')[0].replace(/\//g, ', ');
-    return `<span class="speak-chip" onclick="speakText('${clean}')">🔊 ${h}</span>`;
+    return `<span class="speak-chip" onclick="speakText(${attrEscape(JSON.stringify(`${clean}`))})">🔊 ${h}</span>`;
   }).join('');
 
   document.getElementById('mhAntonymsBox').innerHTML = ANTONYMS_LIST.map(a => {
     const clean = a.split('(')[0].replace('↔', ' and ');
-    return `<span class="speak-chip" style="background:#ecfdf5; color:#065f46; border-color:#6ee7b7;" onclick="speakText('${clean}')">🔊 ${a}</span>`;
+    return `<span class="speak-chip" style="background:#ecfdf5; color:#065f46; border-color:#6ee7b7;" onclick="speakText(${attrEscape(JSON.stringify(`${clean}`))})">🔊 ${a}</span>`;
   }).join('');
 
   renderExclamationStages();
@@ -10112,7 +10112,7 @@ function renderWritingTab() {
     <div style="background:#fff; border:2px solid #93c5fd; border-radius:18px; padding:18px;">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
         <strong style="color:#1e3a8a; font-size:1.05rem;">${es.title}</strong>
-        <button class="tts-btn" style="padding:6px 12px; font-size:0.82rem;" onclick="speakText('${es.en.replace(/'/g,"\'")}')">🔊 朗读满分范文</button>
+        <button class="tts-btn" style="padding:6px 12px; font-size:0.82rem;" onclick="speakText(${attrEscape(JSON.stringify(`${es.en}`))})">🔊 朗读满分范文</button>
       </div>
       <div style="font-size:0.8rem; color:#7c3aed; font-weight:800; margin-bottom:8px;">📌 ${es.tag}</div>
       <div style="background:#eff6ff; padding:12px; border-radius:12px; font-weight:700; color:#0f172a; font-size:0.92rem; line-height:1.6; margin-bottom:8px;">
@@ -10141,7 +10141,7 @@ function renderPitfallQuiz() {
   const stage = document.getElementById('mhQuizStage');
   stage.innerHTML = QUIZ_BANK.map((item, qIdx) => `
     <div style="background:#fff; border-radius:14px; padding:16px; margin-bottom:12px; border:1.5px solid #e2e8f0;">
-      <div style="font-weight:900; font-size:0.98rem; margin-bottom:10px; color:#0f172a; cursor:pointer;" onclick="speakText('${item.q.replace(/_/g,' ')}')">
+      <div style="font-weight:900; font-size:0.98rem; margin-bottom:10px; color:#0f172a; cursor:pointer;" onclick="speakText(${attrEscape(JSON.stringify(`${item.q.replace(/_/g,' ')}`))})">
         🔊 ${item.q}
       </div>
       <div class="grid-2" style="gap:8px;">
@@ -10224,7 +10224,7 @@ function openWordModal(id) {
     <div style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div>
         <span style="font-size:2.6rem;">${w.emoji}</span>
-        <h2 style="margin:4px 0; font-size:2rem; color:#1d4ed8; cursor:pointer;" onclick="speakText('${w.word.replace(/'/g,"\'")}')">
+        <h2 style="margin:4px 0; font-size:2rem; color:#1d4ed8; cursor:pointer;" onclick="speakText(${attrEscape(JSON.stringify(`${w.word}`))})">
           ${w.word} <span style="font-size:1.1rem; color:#475569;">${w.phonetic} 🔊</span>
         </h2>
         <div style="font-size:1.1rem; font-weight:800; color:#0f172a; margin-bottom:12px;">${w.pos} ${w.meaning}</div>
@@ -10242,7 +10242,7 @@ function openWordModal(id) {
       </div>
     ` : ''}
 
-    <div style="background:#eff6ff; padding:14px; border-radius:14px; margin-bottom:12px; cursor:pointer;" onclick="speakText('${w.example_en.replace(/'/g,"\'")}')">
+    <div style="background:#eff6ff; padding:14px; border-radius:14px; margin-bottom:12px; cursor:pointer;" onclick="speakText(${attrEscape(JSON.stringify(`${w.example_en}`))})">
       <div style="font-weight:900; color:#1e3a8a; font-size:1.05rem;">🔊 语境金句：${w.example_en}</div>
       <div style="color:#475569; font-size:0.92rem; margin-top:4px;">${w.example_zh}</div>
     </div>
@@ -10275,10 +10275,10 @@ function renderOralMatrix() {
   box.innerHTML = ORAL_MATRIX_DB.map(o => `
     <div style="background:#fff; border:2px solid #6ee7b7; border-radius:16px; padding:16px;">
       <div style="font-weight:900; color:#065f46; margin-bottom:8px;">💬 ${o.scene}</div>
-      <div style="background:#eff6ff; padding:10px 12px; border-radius:12px; margin-bottom:8px; cursor:pointer; font-weight:800; color:#1e3a8a;" onclick="speakText('${o.q.replace(/'/g,"\'")}')">
+      <div style="background:#eff6ff; padding:10px 12px; border-radius:12px; margin-bottom:8px; cursor:pointer; font-weight:800; color:#1e3a8a;" onclick="speakText(${attrEscape(JSON.stringify(`${o.q}`))})">
         🗣️ 问：${o.q} 🔊
       </div>
-      <div style="background:#ecfdf5; padding:10px 12px; border-radius:12px; margin-bottom:8px; cursor:pointer; font-weight:800; color:#065f46;" onclick="speakText('${o.a.replace(/'/g,"\'")}')">
+      <div style="background:#ecfdf5; padding:10px 12px; border-radius:12px; margin-bottom:8px; cursor:pointer; font-weight:800; color:#065f46;" onclick="speakText(${attrEscape(JSON.stringify(`${o.a}`))})">
         💡 答：${o.a} 🔊
       </div>
       <div style="font-size:0.82rem; color:#475569;">🎯 交际铁律：${o.tip}</div>
