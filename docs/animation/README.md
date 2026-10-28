@@ -1,7 +1,7 @@
 # 动词短语动画技术方案（真人感 3D 角色 + SVG 场景）
 
 > 给后续 AI / 开发者参考：按本文步骤即可为任意动词短语（take off、put on、get up、get on…）生成同风格动画。
-> 参考实现：`docs/animation/take-off/`（take off 试点，已验证效果）。
+> 参考实现：`docs/animation/take-off/`（take off 试点，已验证效果）。可直接用浏览器打开 `take-off/take-off-demo.html` 查看效果（图片已内嵌）。
 
 ## 1. 总体思路
 
