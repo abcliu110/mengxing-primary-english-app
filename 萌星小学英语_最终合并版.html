@@ -3885,7 +3885,7 @@ function renderGrammarDetailView() {
       </div>
 
       <!-- Rhythmic Memory Chant -->
-      <div onclick="speakText(${attrEscape(JSON.stringify(`${g.chant.replace(/[（）()]/g,"")}`))}, 'zh')"
+      <div onclick="speakText(${attrEscape(JSON.stringify(`${g.chant.replace(/[（）()]/g," ").replace(/\s+/g," ").trim()}`))}, 'zh')"
         style="background:linear-gradient(135deg, #fef3c7, #fde68a); padding:14px 18px; border-radius:14px; border:2px solid #f59e0b; margin-bottom:14px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px;">
         <div>
           <div style="font-size:0.8rem; font-weight:900; color:#b45309;">🎵 秒记拍手口诀（点击可语音播报）：</div>
