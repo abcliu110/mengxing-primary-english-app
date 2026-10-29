@@ -39,6 +39,7 @@
 - 01:56｜fp_boundedness 第 2 幕升 v2（a/the 小狗 + 太阳和门 + 🔮 a cat → The cat + 金句卡；R4 running / open）｜`27d5f28`｜`work/shots/fp_boundedness_2_对比总图.png`｜加 📜 徽章前先核了 Etymonline「the」原文（古英语用指示词、the/that 不分）；对比图里偶尔一帧空白是板擦擦除过渡，不是丢内容
 - 02:20｜fp_boundedness 第 3 幕升 v2（楼房外壳 / 去上学两段 + 成对例子单独镜头 + 🔮 go to bed + 金句卡；R4 goes / go / play）｜`04d6495`｜`work/shots/fp_boundedness_3_对比总图.png`（Hark 项目工作区）｜标题较长，表头副标题被徽章挤（与 ze_say 等幕同类，未改）；hospital 例子保留原「to the hospital / in hospital」，术语注明美式常说 in the hospital（✂️）
 - 02:30｜fp_boundedness 第 4 幕升 v2，fp_boundedness 4 幕全部完成（小鸡 → 鸡肉 + 玻璃 / 房间 / 鱼成对例子单独镜头 + 🔮 a cake → some cake + 金句卡；R4 running / make room）｜`1c8b0e3`｜`work/shots/fp_boundedness_4_对比总图.png`｜原橙色小鸡改木色描边 + 荧光黄填充（道具色），可数绿 / 不可数蓝；用户 02:11 定：不用定时器、每个小功能一提交并更新本文件
+- 02:33｜fp_iconicity 升级准备：classic 快照 + FP_DEPS 加 wo_props｜`538872d`｜—｜旧幕渲染不变（只加依赖）
 
 ## 1. 现在做到哪
 
