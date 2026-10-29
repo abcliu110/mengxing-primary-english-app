@@ -13707,6 +13707,67 @@ WB_LAB.fp_boundedness.push(
     ],
   },
 );
+WB_LAB.fp_boundedness.push(
+  // ───────── 3-3 go to school vs go to the school ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：go to school 和 go to the school，差一个 the，意思差多少？");
+      k.header("③ 物理边界感统摄律", "go to school vs go to the school", true);
+      // 学校楼房（外壳组）
+      const shell = k.group();
+      const bd = "M120,270 L120,170 L210,120 L300,170 L300,270 Z";
+      P(bd, go(1), 1, { color: C.blue, w: 3 }); F(bd, go(.2, 0), { color: "#eff6ff", op: 1 });
+      P(k.roughRect(190, 220, 40, 50), go(.3), .3, { color: C.blue, w: 2 });
+      P(k.roughRect(140, 186, 30, 24) + " " + k.roughRect(250, 186, 30, 24), go(.3), .3, { color: C.blue, w: 2 });
+      T("SCHOOL", 210, 166, go(.4), .4, { size: 14, color: C.blue, weight: 900, font: M, anchor: "middle" });
+      k.endGroup();
+      P(k.wl(40, 270, 450, 270, .6), go(.3), .3, { color: C.grey, w: 2 });
+      // 外壳
+      N("加 the：", "说的是看得见、摸得着的那栋楼——有边界的实物。");
+      T("go to the school", 40, 320, go(.8), .8, { size: 22, color: C.blue, weight: 900, font: M });
+      T("家长去学校那栋楼开会", 40, 348, go(.6), .6, { size: 15, color: C.grey });
+      const hl = k.group(); P("M114,276 L114,166 L210,112 L306,166 L306,276 Z", go(.01, 0), .01, { color: C.orange, w: 5 }); k.endGroup(); k.hide(hl);
+      const p = D.person(370, 270, C.purple);
+      const t1 = go(1.6); k.fade(hl, t1, .4, 1); k.move(p, t1, 1.4, -50, 0);
+      k.wait(.4);
+      // 功能
+      N("零冠词：", "什么冠词都不加。这时说的是「做这件事」，不是那栋楼。");
+      const t2 = go(1.4); k.fade(shell, t2, 1, .15); k.fade(hl, t2, 1, 0); k.fade(p, t2, 1, 0);
+      const fn = k.group();
+      P(k.roughRect(176, 170, 70, 52), go(.01, 0), .01, { color: C.red, w: 3 });
+      P("M211,170 L211,222", go(.01, 0), .01, { color: C.red, w: 2 });
+      P("M262,226 l26,-60 l8,4 l-26,60 Z", go(.01, 0), .01, { color: C.orange, w: 2.5 });
+      k.endGroup(); k.hide(fn); k.fade(fn, go(.8), .8, 1);
+      T("go to school", 40, 392, go(.7), .7, { size: 22, color: C.red, weight: 900, font: M });
+      T("去上学（读书、上课这件事）", 40, 420, go(.7), .7, { size: 15, color: C.grey });
+      k.wait(.5);
+      // 右：更多成对例子
+      k.head("看得见的实物", 510, 112, C.blue, "start", 18);
+      k.head("只讲做什么事", 730, 112, C.red, "start", 18);
+      const pair = (a, za, b, zb, y) => {
+        T(a, 510, y, go(.5), .5, { size: 19, color: C.blue, weight: 900, font: M });
+        T(za, 510, y + 22, go(.4), .4, { size: 13, color: C.grey });
+        T(b, 730, y, go(.5), .5, { size: 19, color: C.red, weight: 900, font: M });
+        T(zb, 730, y + 22, go(.4), .4, { size: 13, color: C.grey });
+      };
+      N("", "同样：on the bed 是在床这件家具上面；in bed 是在睡觉。");
+      pair("on the bed", "在床（家具）上", "in bed", "在睡觉", 160);
+      N("", "on a bus 是在一辆车里；by bus 是坐公交这种方式。");
+      pair("on a bus", "在一辆公交车上", "by bus", "坐公交（方式）", 230);
+      N("", "buy a football 是买一个球；play football 是踢足球这项运动。");
+      pair("buy a football", "买一个足球", "play football", "踢足球（运动）", 300);
+      pair("to the hospital", "去医院大楼（探望）", "in hospital", "住院治病", 370);
+      k.wait(.6);
+      N("口诀：", "说楼房加 the，说上学不加。");
+      D.fin("加冠词 = 看得见的实物（外壳）；不加冠词 = 做这件事（功能）", "口诀：说楼房加 the，说上学不加。");
+      k.wait(2);
+    },
+    terms: [
+      ["零冠词", "名词前面什么冠词都不加，如 go to school、play football。说的是活动和功能，不是具体的东西。"],
+    ],
+  },
+);
 
 // ---------- App 接线：王炸实验室白板播放器（所有页签共用） ----------
 // 页签里用 ${wbStageHtml("tab", 当前序号)}：这个页签在 WB_LAB 里登记了案例就出白板，否则出原来的 Canvas。
