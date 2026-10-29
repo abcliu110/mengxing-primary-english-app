@@ -45,6 +45,7 @@
 - 03:00｜fp_iconicity 第 3 幕升 v2（str- / sp- 两镜头 + 🔮 string + 金句卡；R4 walk / come / look）｜`fefb0e4`｜`work/shots/fp_iconicity_3_对比总图.png`｜sport ⚠️ 出处：etymonline.com/word/sport（sport 是 disport 的缩短，来自古法语 desporter「消遣」）
 - 03:15｜fp_iconicity 第 4 幕升 v2，fp_iconicity 4 幕全部完成（数字 / 人两镜头 + 🔮 twins + 金句卡；R4 read / sit）｜`b993831`｜`work/shots/fp_iconicity_4_对比总图.png`｜R3：between 按 etymonline.com/word/between 更正为 bi-（by）+ tweonum（两个两个），原句留小字；twelve 按 etymonline.com/word/twelve =「十之外剩二」，与原讲法一致
 - 03:18｜fp_one_king 升级准备：classic 快照 + FP_DEPS｜`042b5f0`｜—｜第 1 幕是「已搬到 ze_be」占位幕（ze_be 已是 v2），不升级
+- 03:28｜fp_one_king 第 2 幕升 v2（王座 + to 马甲 / doing 马甲两镜头 + 🔮 hope to see + 金句卡；R4 go / reading）｜`bba72c1`｜`work/shots/fp_one_king_2_对比总图.png`｜王座 / 王冠 / 令牌是道具金色，保留；swimming、drawing 动作库无，只作提示
 
 ## 1. 现在做到哪
 
