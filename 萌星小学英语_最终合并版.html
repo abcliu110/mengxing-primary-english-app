@@ -10061,6 +10061,2463 @@ WB_LAB.bamboo_tree = [
   }
 ];
 
+// ==================== 白板脚本：王炸④ 皇家形容词排座次（OSASCOMP）4 个真题专列 ====================
+// 每个案例 = ADJ_ORDER_EXAMPLES 的一项。画一列火车：7 节车厢（ADJ_ORDER_CARRIAGES 的顺序）+ 名词终点站，
+// 把形容词一个个送进对应车厢，空车厢打「—」，最后连成短语。辅助函数都包在 IIFE 里，避免和别的页签重名。
+WB_LAB.adj_order = (function () {
+  // 7 节车厢（与 ADJ_ORDER_CARRIAGES 同顺序）+ 第 8 格名词站
+  const CARS = [
+    { lab: "① 限定词", letter: "", col: "#475569", fill: "#f1f5f9" },
+    { lab: "② 观点", letter: "O", col: "#db2777", fill: "#fce7f3" },
+    { lab: "③ 大小", letter: "S", col: "#2563eb", fill: "#dbeafe" },
+    { lab: "④ 形状/新旧", letter: "A·S", col: "#d97706", fill: "#fef3c7" },
+    { lab: "⑤ 颜色", letter: "C", col: "#059669", fill: "#d1fae5" },
+    { lab: "⑥ 国籍/来源", letter: "O", col: "#7c3aed", fill: "#ede9fe" },
+    { lab: "⑦ 材质/用途", letter: "M·P", col: "#dc2626", fill: "#fee2e2" },
+    { lab: "名词站", letter: "", col: "#059669", fill: "#bbf7d0" }
+  ];
+  const BX = 20, BW = 108, GAP = 8, BY = 236, BH = 70;
+  const cx = i => BX + i * (BW + GAP) + BW / 2;
+  const MONO = '"Courier New",Courier,monospace';
+
+  // 开场：标题 + 中文短语 + 一袋打乱的形容词
+  function intro(k, cfg) {
+    const { C, N, T, go } = k;
+    N("", cfg.open);
+    k.header(cfg.sub, "形容词排座次", false);
+    N("中文：", cfg.zhSay);
+    const zs = Math.min(17, 900 / k.estW("中文：" + cfg.zh, 17) * 17);
+    T("中文：" + cfg.zh, 24, 98, go(1.8), 1.8, { size: zs, color: C.ink });
+    k.wait(.2);
+    N("问题：", cfg.problem);
+    T("这些形容词要排队上车：", 24, 140, go(.9), .9, { size: 17, color: C.grey });
+    let x = 230;
+    cfg.bag.forEach(w => {
+      const fs = 16, cw = w.length * fs * .6 + 20;
+      k.P(k.roughRect(x, 118, cw, 30), go(.25, 0), .25, { color: C.purple, w: 2 });
+      k.F(k.rectD(x, 118, cw, 30), go(.15, 0), { color: "#ede9fe", op: .95 });
+      T(w, x + cw / 2, 139, go(.3, .05), .3, { size: fs, color: C.purple, weight: 700, anchor: "middle", font: MONO });
+      x += cw + 14;
+    });
+    T("谁先谁后？", x + 4, 140, go(.6), .6, { size: 17, color: C.red, weight: 900 });
+    k.wait(.5);
+  }
+
+  // 原理：主观 → 客观 的箭头
+  function principle(k, say) {
+    const { C, N, T, go } = k;
+    N("第一性原理：", say);
+    T("主观：心里的感觉", 24, 192, go(.9), .9, { size: 17, color: "#db2777", weight: 900 });
+    k.arrow(186, 186, 720, 186, C.orange, "越往右，越贴近东西本身，越紧挨名词", 453, 176);
+    T("客观：东西本来的样子", 728, 192, go(1.0), 1.0, { size: 17, color: C.green, weight: 900 });
+    k.wait(.5);
+  }
+
+  // 画第 i 节车厢（车厢 + 轮子 + 顶上字母 + 标签）
+  function car(k, i) {
+    const { T, P, F, go } = k, c = CARS[i], x = BX + i * (BW + GAP);
+    if (i === 7) {
+      // 名词站：站牌 + 小旗
+      P(k.roughRect(x, BY, BW, BH), go(.5, 0), .5, { color: c.col, w: 3 });
+      F(k.rectD(x, BY, BW, BH), go(.2, 0), { color: c.fill, op: .8 });
+      const fx = x + BW - 14;
+      P(k.wl(fx, BY, fx, BY - 34, .4), go(.25), .25, { color: k.C.ink, w: 2 });
+      const fd = `M${fx},${BY - 34} l-22,7 l22,7 Z`;
+      P(fd, go(.25, 0), .25, { color: k.C.red, w: 2 }); F(fd, go(.1), { color: "#fecaca", op: 1 });
+    } else {
+      P(k.roughRect(x, BY, BW, BH), go(.35, 0), .35, { color: c.col, w: 2.5 });
+      F(k.rectD(x, BY, BW, BH), go(.2, 0), { color: c.fill, op: .8 });
+      P(k.ellipse(x + 24, BY + BH + 7, 7, 7) + " " + k.ellipse(x + BW - 24, BY + BH + 7, 7, 7), go(.2, 0), .2, { color: k.C.ink, w: 2 });
+      if (i > 0) P(k.wl(x - GAP - 2, BY + BH - 14, x + 2, BY + BH - 14, .3), go(.1, 0), .1, { color: k.C.ink, w: 3 });
+      if (i === 0) { // 车头烟囱 + 一团烟
+        P(k.roughRect(x + 12, BY - 18, 16, 18), go(.25, 0), .25, { color: c.col, w: 2 });
+        P(k.cloud(x + 36, BY - 30, 14, 8, 5), go(.3, 0), .3, { color: "#94a3b8", w: 1.5 });
+      }
+    }
+    if (c.letter) T(c.letter, cx(i), BY - 8, go(.3, .05), .3, { size: 20, color: c.col, weight: 900, anchor: "middle", font: MONO });
+    T(c.lab, cx(i), BY + 20, go(.3, .05), .3, { size: 13, color: c.col, weight: 900, anchor: "middle" });
+  }
+
+  // 把单词送进第 i 节车厢；word 为 "—" 时画空位
+  function seat(k, i, word, gloss) {
+    const { T, go, C } = k;
+    if (word === "—") { T("—", cx(i), BY + 50, go(.4), .4, { size: 24, color: "#94a3b8", weight: 900, anchor: "middle" }); return; }
+    const fs = word.length > 8 ? 16 : 18, col = i === 7 ? C.green : CARS[i].col;
+    T(word, cx(i), BY + 46, go(.4, .05), .4, { size: fs, color: col, weight: 900, anchor: "middle", font: MONO });
+    if (gloss) T(gloss, cx(i), BY + 64, go(.25), .25, { size: 13, color: C.grey, anchor: "middle" });
+  }
+
+  // 主体：开场 → 原理 → 逐节上车 → 紧贴名词 → 为什么 → 结论
+  function build(k, cfg) {
+    const { C, N, T, go } = k;
+    intro(k, cfg);
+    principle(k, cfg.principle);
+    N("", cfg.trainSay);
+    for (let i = 0; i < 8; i++) {
+      if (cfg.say[i]) N(cfg.say[i][0], cfg.say[i][1]);
+      car(k, i);
+      seat(k, i, cfg.words[i], cfg.gloss[i]);
+      k.wait(cfg.say[i] ? (cfg.words[i] === "—" ? .9 : 1.3) : .1);
+    }
+    // 最后一个形容词紧贴名词：画一条绿色括号把它和名词站连起来
+    const last = cfg.lastAdj, x1 = cx(last) - 30, x2 = cx(7) + 30, y = BY + BH + 22;
+    N("紧贴名词：", cfg.hugSay);
+    k.P(`M${x1},${y - 4} Q${x1},${y + 6} ${x1 + 10},${y + 6} L${x2 - 10},${y + 6} Q${x2},${y + 6} ${x2},${y - 4}`, go(.6), .6, { color: C.green, w: 3 });
+    T("离本质最近 → 紧贴名词", (x1 + x2) / 2, y + 26, go(.8), .8, { size: 15, color: C.green, weight: 900, anchor: "middle" });
+    k.wait(.5);
+    N("为什么这样排？", cfg.whySay);
+    const ws = Math.min(17, 912 / k.estW("💡 " + cfg.why, 17) * 17);
+    T("💡 " + cfg.why, 24, 386, go(1.6), 1.6, { size: ws, color: C.ink, weight: 700 });
+    T("空车厢「—」读的时候直接跳过", 24, 420, go(.9), .9, { size: 16, color: C.grey });
+    k.wait(.6);
+    N("", cfg.finalSay);
+    k.final(cfg.en, [], cfg.finalZh);
+    k.wait(.3);
+    N("口诀：", "限观大形龄色国材 —— " + cfg.rhyme);
+    k.wait(.4);
+  }
+
+  return [
+    // ───────── ① 一张漂亮的小圆木桌 ─────────
+    {
+      build(k) {
+        build(k, {
+          sub: "真题专列 ①  一张漂亮的小圆木桌",
+          open: "这节课：好几个形容词一起修饰一个名词时，英语里谁站前面、谁站后面？",
+          zh: "一张 + 漂亮的(观点) + 小的(大小) + 圆的(形状) + 木头的(材质) + 桌子",
+          zhSay: "先看中文：一张漂亮的小圆木桌。括号里写的是每个词属于哪一类。",
+          problem: "形容词：描述样子、大小、颜色、感觉的词。这里有 4 个，英语里不能乱排。",
+          bag: ["wooden", "nice", "round", "small"],
+          principle: "越是「我觉得」的词站得越靠外，越是东西本来的样子越贴紧名词。",
+          trainSay: "画一列火车：7 节车厢 + 名词终点站，形容词按车厢号上车。",
+          words: ["a", "nice", "small", "round", "—", "—", "wooden", "table"],
+          gloss: ["一张", "漂亮的", "小的", "圆的", "", "", "木头的", "桌子"],
+          say: [
+            ["限定词：", "a、two、that 这类词，先说「几个、哪一个」，永远坐车头。a 就是「一张」。"],
+            ["O = Opinion 观点：", "nice 漂亮，是心里的感觉，每个人想法可能不一样，所以站最外面。"],
+            ["S = Size 大小：", "small 小的，一眼就能看出的个头。"],
+            ["A·S = Age 新旧 / Shape 形状：", "round 圆的，走近才看清的形状。这两样合坐一节车厢。"],
+            ["C = Colour 颜色：", "这张桌子没说颜色，车厢空着，画一道「—」。"],
+            ["O = Origin 来源：", "哪个国家、哪里来的？也没说，空着。"],
+            ["M·P = Material 材质 / Purpose 用途：", "wooden 木头做的，是桌子本身是什么做的。"],
+            ["名词：", "表示人或东西名字的词。table 桌子是终点站，所有形容词都为它服务。"]
+          ],
+          lastAdj: 6,
+          hugSay: "wooden 是桌子的物理本质，离本质最近，所以必须紧贴 table。",
+          why: "漂亮(nice)是主观感受放最外层；木头做的(wooden)是桌子的物理本质，必须紧贴 table！",
+          whySay: "OSASCOMP 就是车厢顶上字母连起来，从主观的心到客观的东西排好队。",
+          finalSay: "空车厢跳过，把乘客连起来，就是地道的英语短语！",
+          en: "a nice small round wooden table",
+          finalZh: "一张漂亮的小圆木桌。  主观在外，本质贴名词！",
+          rhyme: "美小圆旧黄，法国木书房！"
+        });
+      },
+      terms: [
+        ["形容词", "描述人或东西样子、大小、颜色、感觉的词，比如 nice（漂亮的）、small（小的）、red（红色的）。"],
+        ["名词", "表示人或东西名字的词，比如 table（桌子）、cat（猫）、coach（教练）。形容词都是为名词服务的。"],
+        ["排座次", "比喻：好几个形容词一起修饰一个名词时，要像坐火车一样按车厢号排好先后顺序，不能乱坐。"],
+        ["OSASCOMP", "形容词排队顺序的英文首字母缩写：Opinion 观点、Size 大小、Age 新旧、Shape 形状、Colour 颜色、Origin 来源、Material 材质、Purpose 用途。"],
+        ["限定词（冠/数/指）", "放在最前面「锁定是哪个、有几个」的词：冠词 a / the、数词 two、指示词 this / that、物主代词 my。它们坐车头。"],
+        ["冠词", "a / an / the，放在名词前，a 表示「一个、一张」。"],
+        ["观点（Opinion）", "说话人心里的评价，比如 nice、cute、beautiful。每个人想法可能不同，所以排最外面。"],
+        ["大小（Size）", "一眼看出的个头：big、small、tall、long。"],
+        ["形状 / 新旧（Shape / Age）", "形状 round（圆的），新旧或年龄 new、old、young。这列火车里它们合坐一节车厢。"],
+        ["颜色（Colour）", "东西表面的颜色：red、white、blue。"],
+        ["来源 / 国籍（Origin）", "从哪个国家、哪里来：Chinese（中国的）、British（英国的）。"],
+        ["材质 / 用途（Material / Purpose）", "材质是用什么做的：wooden、silk；用途是拿来做什么的：basketball（篮球的）。离东西本质最近，紧贴名词。"],
+        ["主观", "「我觉得」：带着个人感觉的评价，比如漂亮、可爱。"],
+        ["客观", "东西本来就是这样，谁看都一样，比如木头做的、红色的。"],
+        ["第一性原理", "找到最根本的道理再推出规律。这里的根本道理是：越主观越靠外，越接近东西本质越贴紧名词。"]
+      ]
+    },
+    // ───────── ② 两只可爱的小白猫 ─────────
+    {
+      build(k) {
+        build(k, {
+          sub: "真题专列 ②  两只可爱的小白猫",
+          open: "第二列火车：两只可爱的小白猫，英语该怎么排？",
+          zh: "两只 + 可爱的(观点) + 小的(大小) + 白色的(颜色) + 猫咪",
+          zhSay: "中文：两只可爱的小白猫。有 3 个形容词：可爱的、小的、白色的。",
+          problem: "white、cute、little 三个词，谁先上车、谁后上车？",
+          bag: ["white", "cute", "little"],
+          principle: "还是那条原理：「我觉得」的词靠外，东西本来的样子贴紧名词。",
+          trainSay: "同样的 7 节车厢 + 名词站，按车厢号一个个上车。",
+          words: ["two", "cute", "little", "—", "white", "—", "—", "cats"],
+          gloss: ["两只", "可爱的", "小的", "", "白色的", "", "", "猫咪"],
+          say: [
+            ["数词：", "表示数量的词，比如 two（两）。它属于限定词，坐车头。"],
+            ["观点：", "cute 可爱，是心里的感觉，先夸可爱，站最外面。"],
+            ["大小：", "little 小小的，再看个头。"],
+            ["", "形状/新旧车厢：没说是新是旧，空着。"],
+            ["颜色：", "white 白色的，毛的颜色，谁看都一样。"],
+            ["", "来源车厢、材质/用途车厢都没有乘客，空着。"],
+            null,
+            ["复数：", "两只以上要用复数，名词后加 -s：cat 变成 cats。"]
+          ],
+          lastAdj: 4,
+          hugSay: "后面的车厢都空着，所以 white 就是离 cats 最近的那个。",
+          why: "先夸可爱(cute)，再看个头小(little)，最后看毛色白(white)紧贴 cats！",
+          whySay: "从心里的夸奖，到个头，再到毛色，一步步走近猫咪本身。",
+          finalSay: "空车厢跳过，连起来读一遍！",
+          en: "two cute little white cats",
+          finalZh: "两只可爱的小白猫。  先夸可爱，再看大小，颜色贴名词！",
+          rhyme: "美小圆旧黄，法国木书房！"
+        });
+      },
+      terms: [
+        ["数词", "表示数量的词，比如 one、two、three。它属于限定词，排在所有形容词前面。"],
+        ["复数", "两个或更多时，名词要变成复数，一般在词尾加 -s，比如 cat → cats。"],
+        ["little 和 small", "都表示「小」，都坐「大小」车厢。little 常带一点「小小的、可爱」的感觉。"]
+      ]
+    },
+    // ───────── ③ 一件漂亮的崭新红色中国丝绸连衣裙 ─────────
+    {
+      build(k) {
+        build(k, {
+          sub: "真题专列 ③  一件崭新的红色中国丝绸连衣裙",
+          open: "第三列火车最挤：5 个形容词一起上车，看谁坐哪一节！",
+          zh: "一件 + 漂亮的(观点) + 新的(新旧) + 红色的(颜色) + 中国的(国籍) + 丝绸(材质) + 连衣裙",
+          zhSay: "中文：一件漂亮的、崭新的红色中国丝绸连衣裙。",
+          problem: "beautiful、new、red、Chinese、silk，5 个词怎么排才不乱？",
+          bag: ["silk", "red", "beautiful", "Chinese", "new"],
+          principle: "从主观到客观：先说「我觉得」，最后说「它是什么做的」。",
+          trainSay: "按车厢号，一个个对号入座。",
+          words: ["a", "beautiful", "—", "new", "red", "Chinese", "silk", "dress"],
+          gloss: ["一件", "漂亮的", "", "新的", "红色的", "中国的", "丝绸", "连衣裙"],
+          say: [
+            ["", "a 一件，坐车头。"],
+            ["观点：", "beautiful 漂亮，是心里的评价，站最外面。"],
+            ["", "大小车厢：没说大小，空着。"],
+            ["新旧：", "new 新的，是衣服的「年龄」，坐形状/新旧车厢。"],
+            ["颜色：", "red 红色的。"],
+            ["国籍：", "属于哪个国家。Chinese 中国的，表示裙子从哪里来。"],
+            ["材质：", "silk 丝绸，裙子是用什么做的。silk 本来是名词，在这里修饰 dress。"],
+            ["", "dress 连衣裙，终点站。"]
+          ],
+          lastAdj: 6,
+          hugSay: "silk 丝绸就是裙子本身的料子，离本质最近，紧贴 dress。",
+          why: "严格遵循「观点 ➔ 新旧 ➔ 颜色 ➔ 国籍 ➔ 材质 ➔ 名词」由主观到客观的顺序！",
+          whySay: "观点、新旧、颜色、国籍、材质，一节一节从主观走到客观。",
+          finalSay: "5 个形容词一个不乱，连起来读！",
+          en: "a beautiful new red Chinese silk dress",
+          finalZh: "一件漂亮的崭新红色中国丝绸连衣裙。  观点→新旧→颜色→国籍→材质",
+          rhyme: "美小圆旧黄，法国木书房！"
+        });
+      },
+      terms: [
+        ["国籍", "属于哪个国家，比如 Chinese（中国的）、British（英国的）、American（美国的）。坐「来源」车厢。"],
+        ["新旧（Age）", "东西新不新、人年龄大不大，比如 new（新的）、old（旧的）、young（年轻的）。"],
+        ["名词当形容词用", "有些名词可以直接放在另一个名词前面修饰它，比如 silk dress（丝绸连衣裙），silk 坐「材质」车厢。"]
+      ]
+    },
+    // ───────── ④ 那个高个子年轻的英国篮球教练 ─────────
+    {
+      build(k) {
+        build(k, {
+          sub: "真题专列 ④  那个高个子年轻的英国篮球教练",
+          open: "最后一列火车：这次的名词是一个人——篮球教练！",
+          zh: "那个 + 高个子的(大小) + 年轻的(年龄) + 英国的(国籍) + 篮球(用途) + 教练",
+          zhSay: "中文：那个高个子、年轻的英国篮球教练。",
+          problem: "tall、young、British、basketball，形容人也一样要排队！",
+          bag: ["British", "young", "basketball", "tall"],
+          principle: "原理不变：一眼看到的在外面，「他是干什么的」最贴近名词。",
+          trainSay: "开车！按车厢号对号入座。",
+          words: ["that", "—", "tall", "young", "—", "British", "basketball", "coach"],
+          gloss: ["那个", "", "高个子的", "年轻的", "", "英国的", "篮球", "教练"],
+          say: [
+            ["指示词：", "this（这个）、that（那个），用来指出是哪一个。that 属于限定词，坐车头。"],
+            ["", "观点车厢：这里没有夸他，空着。"],
+            ["大小：", "tall 高个子，一眼就能看到的身高。"],
+            ["年龄：", "young 年轻的，坐形状/新旧车厢。"],
+            ["", "颜色车厢：空着。"],
+            ["国籍：", "British 英国的，他从哪个国家来。"],
+            ["用途：", "拿来做什么用。basketball 篮球，说明他是教什么的教练。"],
+            ["", "coach 教练，终点站。"]
+          ],
+          lastAdj: 6,
+          hugSay: "basketball 说明他是「篮球」教练，这是他的身份本质，紧贴 coach。",
+          why: "身高(tall)在年龄(young)前，国籍(British)在专业用途(basketball)前！",
+          whySay: "大小在年龄前；国籍在用途前。用途最贴名词。",
+          finalSay: "空车厢跳过，连起来读一遍！",
+          en: "that tall young British basketball coach",
+          finalZh: "那个高个子年轻的英国篮球教练。  大小→年龄→国籍→用途",
+          rhyme: "美小圆旧黄，法国木书房！"
+        });
+      },
+      terms: [
+        ["指示词", "指出「是哪一个」的词：this（这个）、that（那个）、these、those。属于限定词，坐车头。"],
+        ["用途（Purpose）", "东西或人是做什么用的，比如 basketball coach（教篮球的教练）、sports shoes（运动鞋）。紧贴名词。"],
+        ["年龄", "人年轻还是年老：young（年轻的）、old（老的），和「新旧」坐同一节车厢。"]
+      ]
+    }
+  ];
+})();
+
+// ==================== 白板脚本：⑩ 助动词「照妖镜」与五大句型变形机（4 类护卫）====================
+// 版面：左列 5 个句型标签，右边一行一种句子：① 肯定 ② 否定 ③ 一般疑问 ④ 特殊疑问 ⑤ 感叹；右上角画护卫图标；底部绿框给口诀。
+WB_LAB.aux_transformer = (() => {
+  const SX = 150;                                        // 句子起点 x
+  const ROW = { aff: 112, neg: 182, yn: 252, ans: 274, wh: 330, ex: 400 };
+  // 本页签专用小工具（只在本文件里用）
+  const H = k => {
+    const { C, P, T, F, go, wl, ellipse, roughRect, rectD, estW } = k;
+    const MONO = '"Courier New",Courier,monospace';
+    const h = {
+      label(text, y, color) { T(text, 22, y, go(.6), .6, { size: 17, color, weight: 900 }); },
+      // 等宽句子：太长时自动缩小字号，保证不出右边界
+      line(text, y, color = C.ink, size = 20) {
+        size = Math.min(size, 760 / (text.length * .6));
+        return k.mono(text, SX, y, +size.toFixed(1), color, 700);
+      },
+      // 圈出句子里第 i0 个字符起、长 len 的一段
+      ringAt(m, i0, len, color = C.orange) {
+        const x0 = m.x + i0 * m.cw, x1 = x0 + len * m.cw;
+        P(ellipse((x0 + x1) / 2, m.y - m.size * .34, (x1 - x0) / 2 + 3, m.size * .7), go(.45), .45, { color, w: 2.5 });
+        return { x0, x1, cx: (x0 + x1) / 2 };
+      },
+      ring(m, sub, color = C.orange, nth = 0) { return h.ringAt(m, m.at(sub, nth), sub.length, color); },
+      tag(text, x, y, color = C.grey, o = {}) {
+        const dur = Math.max(.6, text.length * .05);
+        T(text, x, y, go(dur), dur, { size: 14, color, weight: 700, ...o });
+      },
+      // 弧形跳跃箭头：从 x1 跳到 x2（句子上方）
+      jump(m, x1, x2, color = C.blue) {
+        const yb = m.y - m.size * .85, cy = yb - 30, mx = (x1 + x2) / 2;
+        const a = Math.atan2(yb - (cy + yb) / 2, x2 - (mx + x2) / 2), hl = 10;
+        P(`M${x1},${yb} Q${mx},${cy} ${x2},${yb}` + ` M${x2 - hl * Math.cos(a - .5)},${yb - hl * Math.sin(a - .5)} L${x2},${yb} L${x2 - hl * Math.cos(a + .5)},${yb - hl * Math.sin(a + .5)}`,
+          go(.7), .7, { color, w: 2.5 });
+      },
+      // 被提问的部分：灰字写出来再被红线划掉
+      erase(text, x, y, note) {
+        const fs = 17, w = text.length * fs * .6;
+        T(note, x + w / 2, y - 22, go(.6), .6, { size: 13, color: C.purple, weight: 900, anchor: "middle" });
+        T(text, x, y, go(.6), .6, { size: fs, color: C.grey, weight: 700, font: MONO });
+        P(wl(x - 3, y - fs * .32, x + w + 3, y - fs * .32, .5), go(.4), .4, { color: C.red, w: 3 });
+      },
+      // 右上角的护卫图标
+      icon(kind, word, label) {
+        const cx = 900, cy = 86;
+        let d;
+        if (kind === "shield") d = `M${cx},${cy - 30} L${cx + 26},${cy - 20} Q${cx + 26},${cy + 14} ${cx},${cy + 30} Q${cx - 26},${cy + 14} ${cx - 26},${cy - 20} Z`;
+        else if (kind === "star") {
+          d = ""; for (let i = 0; i < 10; i++) { const r = i % 2 ? 13 : 30, a = -Math.PI / 2 + i * Math.PI / 5; d += (i ? " L" : "M") + (cx + Math.cos(a) * r).toFixed(1) + "," + (cy + 2 + Math.sin(a) * r).toFixed(1); } d += " Z";
+        } else d = ellipse(cx, cy - 4, 24, 27);
+        const fill = kind === "shield" ? "#fed7aa" : kind === "star" ? "#fde047" : "#dbeafe", col = kind === "mirror" ? C.blue : C.orange;
+        if (kind === "mirror") P(wl(cx, cy + 23, cx, cy + 40, .4), go(.3), .3, { color: C.brown, w: 6 });
+        P(d, go(.7), .7, { color: col, w: 2.5 });
+        F(d, go(.3, 0), { color: fill, op: .95 });
+        T(word, cx, cy + 8, go(.4), .4, { size: kind === "star" ? 12 : 15, color: C.ink, weight: 900, anchor: "middle", font: MONO });
+        T(label, cx, cy + 58, go(.6), .6, { size: 14, color: col, weight: 900, anchor: "middle" });
+      },
+      // 底部绿框：口诀
+      final(text) {
+        P(roughRect(16, 446, 928, 50), go(1.0), 1.0, { color: C.green, w: 2.5 });
+        F(rectD(16, 446, 928, 50), go(.2, 0), { color: "#d1fae5", op: .55 });
+        const size = Math.min(21, 880 / (estW(text, 1)));
+        T(text, 480, 478, go(1.8), 1.8, { size, color: C.green, weight: 900, anchor: "middle" });
+      }
+    };
+    return h;
+  };
+
+  return [
+    // ───────── ① be 动词护卫 ─────────
+    {
+      build(k) {
+        const { C, N } = k, h = H(k);
+        N("", "这节课：一句话怎么一键变成否定句、疑问句、感叹句？秘密在「护卫」身上。");
+        k.header("第一类：be 动词护卫", "助动词照妖镜", false);
+        N("五大句型变形：", "同一句话变出 5 种样子：肯定、否定、一般疑问、特殊疑问、感叹。");
+        h.label("① 肯定句", ROW.aff, C.green);
+        N("肯定句：", "正面说一件事的句子：她现在正在公园里拍照。");
+        const a = h.line("She is taking photos in the park now.", ROW.aff);
+        h.tag("她现在正在公园里拍照。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        N("be 动词：", "am / is / are / was / were，意思是「是、在」。这句里的 is 就是。");
+        const g = h.ring(a, "is");
+        h.tag("护卫", g.cx, ROW.aff + 24, C.orange, { anchor: "middle", weight: 900 });
+        N("护卫词：", "be 动词、情态动词、助动词。只有护卫能背 not，能跳到主语前面提问。");
+        h.icon("shield", "is", "be 护卫");
+        h.label("② 否定句", ROW.neg, C.red);
+        N("否定句：", "说「不」的句子。not 直接贴在护卫 is 身后：is not = isn't。");
+        const n = h.line("She is not (isn't) taking photos in the park now.", ROW.neg);
+        h.ring(n, "not", C.red);
+        h.tag("直接在护卫 is 身后贴上 not（is not = isn't）", SX, ROW.neg + 22, C.red);
+        h.label("③ 一般疑问", ROW.yn, C.blue);
+        N("一般疑问句：", "能用 Yes / No 回答的问句。把护卫 Is 提到主语 she 前面。");
+        const q = h.line("Is she taking photos in the park now?", ROW.yn, C.blue);
+        N("主语：", "句子在说「谁」，这里是 she（她）。护卫跳过主语，站到句首。");
+        h.jump(q, q.x1("she") + 4, q.x0("Is") + q.cw);
+        h.tag("护卫 Is 提到主语 she 前面", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
+        N("", "回答也请护卫出场：Yes, she is. / No, she isn't.");
+        k.mono("— Yes, she is. / No, she isn't.", SX, ROW.ans, 15, C.grey, 700);
+        h.label("④ 特殊疑问", ROW.wh, C.purple);
+        N("特殊疑问句：", "用疑问词开头、问具体信息的问句，不能只答 Yes / No。");
+        const w = h.line("Where is she taking photos now?", ROW.wh, C.purple);
+        N("疑问词：", "Where 问地点。三步：换 Where → 提护卫 is → 擦掉 in the park。");
+        h.ring(w, "Where", C.purple);
+        h.erase("in the park", w.x + w.text.length * w.cw + 40, ROW.wh, "对地点提问 → 擦掉");
+        h.tag("① 换疑问词 Where ➔ ② 提护卫 is ➔ ③ 擦掉被提问的 in the park", SX, ROW.wh + 22, C.purple);
+        h.label("⑤ 感叹句", ROW.ex, C.orange);
+        N("感叹句：", "表达「多么……啊！」的句子，句末用感叹号。");
+        const e = h.line("What beautiful photos she is taking! / How happy she is!", ROW.ex, C.brown);
+        N("What 和 How：", "感叹名词（photos）用 What 开头；感叹形容词（happy）用 How 开头。");
+        k.underline(e, "What beautiful photos"); k.underline(e, "How happy");
+        h.tag("What + 形容词 + 名词 + 主谓！   How + 形容词 + 主谓！", SX, ROW.ex + 27, C.orange);
+        N("", "五种句子都变出来了！be 动词自己就是护卫，不用请外援 do / does / did。");
+        h.final("有 be 就用 be：not 贴身后，提问跳句首，不请 do / does / did！");
+        N("口诀：", "有 be 就用 be：not 贴在身后，提问跳到句首。");
+      },
+      terms: [
+        ["五大句型变形", "同一句话变出 5 种样子：肯定句、否定句、一般疑问句、特殊疑问句、感叹句。"],
+        ["护卫词", "be 动词、情态动词、助动词的统称。只有它们能在身后加 not，也只有它们能跳到主语前面提问。"],
+        ["助动词", "帮忙的动词，自己没有具体意思，专门帮句子变否定和疑问，比如 do / does / did。"],
+        ["照妖镜", "比喻助动词 does / did：它一出场，就把后面动词身上的 -s/-es 或过去式「照」掉，打回原形。"],
+        ["be 动词", "am / is / are / was / were，意思是「是、在」。句子里有它，它就自己当护卫。"],
+        ["实义动词", "有真正动作意思的动词，比如 like、play、go、watch。它们是「老百姓」，不能自己跳到主语前提问。"],
+        ["主语", "句子在说「谁」或「什么」，比如 she、Leo、Mia、they。"],
+        ["肯定句", "正面陈述一件事的句子，比如 She is taking photos.（她在拍照。）"],
+        ["否定句", "说「不」的句子，在护卫后面加 not，比如 She is not taking photos."],
+        ["一般疑问句", "能用 Yes / No 回答的问句，护卫跳到主语前面，比如 Is she taking photos?"],
+        ["特殊疑问句", "用 What、Where、When、How 等疑问词开头的问句，问具体信息，不能只答 Yes / No。"],
+        ["疑问词", "问具体信息的词：What 问什么、Where 问哪里、When 问什么时候、How 问怎样。"],
+        ["感叹句", "表达「多么……啊！」的句子：What + 名词部分 / How + 形容词或副词，后面接主语和谓语，句末用「!」。"],
+        ["原形", "动词最原本的样子，不加 -s、-es、-ed，比如 watch、go、speak。"]
+      ]
+    },
+    // ───────── ② 情态动词大将军 ─────────
+    {
+      build(k) {
+        const { C, N } = k, h = H(k);
+        N("", "这一类句子里住着一位「大将军」，变形全靠它一个人。");
+        k.header("第二类：情态动词大将军", "助动词照妖镜", false);
+        h.label("① 肯定句", ROW.aff, C.green);
+        N("肯定句：", "Leo can speak English very well. 里奥英语说得非常好。");
+        const a = h.line("Leo can speak English very well.", ROW.aff);
+        h.tag("里奥英语说得非常好。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        N("情态动词：", "can 能、will 将要、must 必须、should 应该，表示能力、打算或要求。");
+        const g = h.ring(a, "can");
+        h.tag("大将军", g.cx, ROW.aff + 24, C.orange, { anchor: "middle", weight: 900 });
+        h.icon("star", "can", "情态大将军");
+        N("免死金牌：", "不管主语是谁，情态动词后面的动词永远用原形：can speak。");
+        h.ring(a, "speak", C.green);
+        h.label("② 否定句", ROW.neg, C.red);
+        N("否定句：", "大将军 can 后面直接加 not，写成 cannot 或 can't。");
+        const n = h.line("Leo cannot (can't) speak English very well.", ROW.neg);
+        h.ring(n, "cannot", C.red);
+        N("", "注意 can + not 要连写成 cannot。后面的 speak 还是原形。");
+        h.ring(n, "speak", C.green);
+        h.tag("直接在大将军 can 后加 not（cannot / can't），后面 speak 保持原形", SX, ROW.neg + 22, C.red);
+        h.label("③ 一般疑问", ROW.yn, C.blue);
+        N("一般疑问句：", "把大将军 Can 直接提到主语 Leo 前面，句末换成问号。");
+        const q = h.line("Can Leo speak English very well?", ROW.yn, C.blue);
+        h.jump(q, q.x1("Leo") + 4, q.x0("Can") + q.cw * 1.5);
+        h.tag("大将军 Can 提到主语 Leo 前面", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
+        N("", "回答也用 can：Yes, he can. / No, he can't.");
+        k.mono("— Yes, he can. / No, he can't.", SX, ROW.ans, 15, C.grey, 700);
+        h.label("④ 特殊疑问", ROW.wh, C.purple);
+        N("特殊疑问句：", "问「说什么」用 What；问「说得多好」用 How well。");
+        const w = h.line("What can Leo speak very well? / How well can Leo speak English?", ROW.wh, C.purple);
+        h.ring(w, "What", C.purple); h.ring(w, "How well", C.purple);
+        N("", "三步：换疑问词 → 提大将军 can → 后面跟主语 + 动词原形。");
+        h.tag("① 换疑问词 What ➔ ② 提大将军 can ➔ ③ 后面主语 + 动词原形", SX, ROW.wh + 22, C.purple);
+        h.label("⑤ 感叹句", ROW.ex, C.orange);
+        N("副词：", "说明动作「怎么样」的词，比如 well（好）。感叹副词要用 How。");
+        const e = h.line("How well Leo can speak English!", ROW.ex, C.brown);
+        k.underline(e, "How well");
+        N("感叹句：", "How well + 主语 Leo + 谓语 can speak，主语在前，不用倒过来！");
+        h.tag("How well + 主语 Leo + 谓语 can speak！", SX, ROW.ex + 27, C.orange);
+        h.final("情态大将军：not 贴身后，提问跳句首，后面动词永远原形！");
+        N("口诀：", "大将军自己会变形：加 not、跳句首，后面动词永远原形。");
+      },
+      terms: [
+        ["情态动词", "can（能）、will（将要）、must（必须）、should（应该）、may（可以）这类词，表示能力、打算或要求。它们也是护卫。"],
+        ["大将军", "比喻情态动词：本领大，变否定、变疑问都不用请 do / does / did 帮忙。"],
+        ["免死金牌", "比喻：情态动词后面的动词，不管主语是谁，永远用原形，比如 Leo can speak，不说 can speaks。"],
+        ["cannot / can't", "can 的否定。can + not 要连在一起写成 cannot，口语里缩写成 can't。"],
+        ["副词", "说明动作「怎么样」的词，比如 well（好）、fast（快）。感叹副词用 How：How well …!"]
+      ]
+    },
+    // ───────── ③ 三单照妖镜 does ─────────
+    {
+      build(k) {
+        const { C, N } = k, h = H(k);
+        N("", "这一句没有护卫！动词只能去请一面照妖镜 does 来帮忙。");
+        k.header("第三类：三单照妖镜 does", "助动词照妖镜", false);
+        h.label("① 肯定句", ROW.aff, C.green);
+        N("肯定句：", "Mia watches TV every Saturday evening. 米娅每周六晚上看电视。");
+        const a = h.line("Mia watches TV every Saturday evening.", ROW.aff);
+        h.tag("米娅每周六晚上看电视。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        N("实义动词：", "watch 是有真正动作的动词，它是「老百姓」，不能自己跑到主语前面。");
+        const i = a.at("watches");
+        N("第三人称单数（单三）：", "主语是一个「他 / 她 / 它」，比如 Mia，现在时的动词要加 -s / -es。");
+        const g = h.ringAt(a, i + 5, 2, C.red);
+        h.tag("单三勋章 -es", g.cx, ROW.aff + 24, C.red, { anchor: "middle", weight: 900 });
+        N("照妖镜 does：", "请来同样带 -es 的助动词 does，它把勋章 -es 吸走，动词打回原形。");
+        h.icon("mirror", "does", "照妖镜 does");
+        h.label("② 否定句", ROW.neg, C.red);
+        N("否定句：", "照妖镜 doesn't 出场，吸走 -es：watches 立刻变回原形 watch。");
+        const n = h.line("Mia does not (doesn't) watch TV every Saturday evening.", ROW.neg);
+        h.ring(n, "does not", C.red);
+        h.ring(n, "watch", C.green);
+        h.tag("照妖镜 doesn't 吸走 -es，watches 打回原形 watch", SX, ROW.neg + 22, C.red);
+        h.label("③ 一般疑问", ROW.yn, C.blue);
+        N("一般疑问句：", "照妖镜 Does 站到句首，把 -es 吸走，后面用原形 watch。");
+        const q = h.line("Does Mia watch TV every Saturday evening?", ROW.yn, C.blue);
+        h.jump(q, q.x1("watch") + 2, q.x0("Does") + q.cw * 2);
+        h.tag("Does 吸走 -es", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
+        N("", "回答也用 does：Yes, she does. / No, she doesn't.");
+        k.mono("— Yes, she does. / No, she doesn't.", SX, ROW.ans, 15, C.grey, 700);
+        h.label("④ 特殊疑问", ROW.wh, C.purple);
+        N("特殊疑问句：", "When 问「什么时候」。这里问的是 every Saturday evening。");
+        const w = h.line("When does Mia watch TV?", ROW.wh, C.purple);
+        h.ring(w, "When", C.purple);
+        h.erase("every Saturday evening", w.x + w.text.length * w.cw + 40, ROW.wh, "对时间提问 → 擦掉");
+        N("黄金三步：", "换 When → 提 does → 主语后面 watches 打回原形 watch。");
+        h.tag("① 换疑问词 When ➔ ② 提助动词 does ➔ ③ 主语后 watches 打回原形 watch", SX, ROW.wh + 22, C.purple);
+        h.label("⑤ 感叹句", ROW.ex, C.orange);
+        N("可数单数名词：", "能一个一个数、只有一个的东西，比如 an evening，前面要有 a / an。");
+        const e = h.line("What a relaxing Saturday evening Mia has!", ROW.ex, C.brown);
+        k.underline(e, "What a relaxing Saturday evening");
+        h.ringAt(e, e.at(" a ") + 1, 1, C.red);
+        N("感叹句：", "What a + 形容词 + 单数名词 + 主谓：What a relaxing evening Mia has!");
+        h.tag("What a + 形容词 + 单数名词 + 主谓！", SX, ROW.ex + 27, C.orange);
+        h.final("单三请 does：-es 被照妖镜吸走，后面动词打回原形！");
+        N("口诀：", "看到 does / doesn't，后面动词立刻打回原形，别再加 -es！");
+      },
+      terms: [
+        ["第三人称单数（单三）", "主语是一个「他 / 她 / 它」，比如 he、she、Mia。现在时里，动词要加 -s 或 -es：Mia watches。"],
+        ["单三勋章 -s/-es", "比喻：单三主语后面，动词身上挂的 -s / -es，比如 watches 的 -es。"],
+        ["does / doesn't", "单三现在时用的助动词。它一出场就把 -es 吸走，后面的动词打回原形：Does Mia watch …?"],
+        ["打回原形", "动词去掉 -s、-es 或过去式的变化，变回最原本的样子：watches → watch，went → go。"],
+        ["可数单数名词", "能一个一个数、而且只有一个的东西，比如 an evening、a trip。前面要有 a / an。"]
+      ]
+    },
+    // ───────── ④ 过去式照妖镜 did ─────────
+    {
+      build(k) {
+        const { C, N } = k, h = H(k);
+        N("", "这一句也没有护卫，动词还是过去式，要请过去式照妖镜 did。");
+        k.header("第四类：过去式照妖镜 did", "助动词照妖镜", false);
+        h.label("① 肯定句", ROW.aff, C.green);
+        N("肯定句：", "They went to Sanya by plane last winter. 他们去年冬天坐飞机去了三亚。");
+        const a = h.line("They went to Sanya by plane last winter.", ROW.aff);
+        h.tag("他们去年冬天坐飞机去了三亚。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        N("过去式：", "表示已经发生的事，动词要变样。went 是 go 的过去式。");
+        const g = h.ring(a, "went", C.red);
+        N("不规则过去式：", "不是加 -ed，而是整个词变了样，比如 go → went、buy → bought。");
+        h.tag("过去式（原形 go）", g.cx, ROW.aff + 24, C.red, { anchor: "middle", weight: 900 });
+        N("照妖镜 did：", "did 自己带着「过去」的标记，照到 went，它就打回原形 go。");
+        h.icon("mirror", "did", "照妖镜 did");
+        h.label("② 否定句", ROW.neg, C.red);
+        N("否定句：", "照妖镜 didn't 出场，吸走过去时：went 瞬间变回 go。");
+        const n = h.line("They did not (didn't) go to Sanya by plane last winter.", ROW.neg);
+        h.ring(n, "did not", C.red);
+        h.ring(n, "go", C.green);
+        h.tag("照妖镜 didn't 吸走过去时，went 打回原形 go", SX, ROW.neg + 22, C.red);
+        h.label("③ 一般疑问", ROW.yn, C.blue);
+        N("一般疑问句：", "照妖镜 Did 站到句首，后面的 went 必须还原成 go。");
+        const q = h.line("Did they go to Sanya by plane last winter?", ROW.yn, C.blue);
+        h.jump(q, q.x1("go") + 2, q.x0("Did") + q.cw * 1.5);
+        h.tag("Did 站句首，went → go", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
+        N("", "回答也用 did：Yes, they did. / No, they didn't.");
+        k.mono("— Yes, they did. / No, they didn't.", SX, ROW.ans, 15, C.grey, 700);
+        h.label("④ 特殊疑问", ROW.wh, C.purple);
+        N("交通方式：", "坐什么去，比如 by plane（坐飞机）。问交通方式用 How（怎样）。");
+        const w = h.line("How did they go to Sanya last winter?", ROW.wh, C.purple);
+        h.ring(w, "How", C.purple);
+        h.erase("by plane", w.x + w.text.length * w.cw + 40, ROW.wh, "对交通方式提问");
+        N("黄金三步：", "换 How → 提过去助动词 did → 主语后 went 还原为 go。");
+        h.tag("① 交通方式用 How ➔ ② 提过去助动词 did ➔ ③ 主语后 went 还原为 go", SX, ROW.wh + 22, C.purple);
+        h.label("⑤ 感叹句", ROW.ex, C.orange);
+        N("感叹句：", "名词 trip 用 What a wonderful trip；副词 fast 用 How fast。");
+        const e = h.line("What a wonderful trip they had last winter! / How fast the plane flew!", ROW.ex, C.brown);
+        k.underline(e, "What a wonderful trip"); k.underline(e, "How fast");
+        N("", "感叹句里本来就是过去的事，所以 had、flew 保持过去式，不用 did。");
+        h.tag("名词 trip 用 What a wonderful trip；副词 fast 用 How fast！", SX, ROW.ex + 27, C.orange);
+        h.final("过去请 did：过去时被照妖镜吸走，went 打回原形 go！");
+        N("口诀：", "看到 did / didn't，后面动词一律打回原形！");
+      },
+      terms: [
+        ["过去式", "表示已经发生的事，动词要变样，比如 play → played、go → went。句子里有 last winter（去年冬天）就用过去式。"],
+        ["不规则过去式", "不是加 -ed，而是整个词变了样的过去式，比如 go → went、buy → bought、see → saw。"],
+        ["did / didn't", "过去时用的助动词。它自己带着「过去」的标记，后面的动词要打回原形：Did they go …?"],
+        ["交通方式", "坐什么去，比如 by plane（坐飞机）、by bus（坐公交）。问交通方式用 How。"]
+      ]
+    }
+  ];
+})();
+
+// ==================== 白板脚本：⑥ 名动重音移位 & 弱读吞音听力机（3 个法则）====================
+// 数据：STRESS_AND_SCHWA_DB（法则 A 名前动后 / 法则 B 后缀重音磁铁 / 法则 C 弱读与连读）。
+// 本页签自带的小工具：音节方块 sylls()、节拍圆点 dot()、礼物 gift()、弧线 arc()。
+(function () {
+  const MONO = '"Courier New",Courier,monospace';
+
+  // 节拍圆点：big=true 重读大橙点；false 弱读小灰点
+  function dot(k, cx, cy, big, r) {
+    const { C } = k;
+    const rr = r ?? (big ? 9 : 4.5);
+    const d = k.ellipse(cx, cy, rr, rr);
+    k.P(d, k.go(.25), .25, { color: big ? C.orange : C.grey, w: 2 });
+    k.F(d, k.go(.1, 0), { color: big ? "#f59e0b" : "#cbd5e1", op: 1 });
+  }
+
+  // 音节方块：parts 每个音节一块；si 重读音节序号；mag 磁铁音节序号（紫色）
+  function sylls(k, parts, x, y, si, o = {}) {
+    const { C } = k;
+    const fs = o.size ?? 24, h = fs + 18, gap = 7;
+    let cx = x; const boxes = [];
+    parts.forEach((p, i) => {
+      const w = Math.max(46, p.length * fs * .6 + 22);
+      const isS = i === si, isM = i === o.mag;
+      const col = isM ? C.purple : isS ? C.orange : C.grey;
+      const fill = isM && isS ? "#fde68a" : isM ? "#ede9fe" : isS ? "#fef3c7" : "#f1f5f9";
+      k.P(k.roughRect(cx, y, w, h), k.go(.35), .35, { color: col, w: isS || isM ? 3 : 2 });
+      k.F(k.rectD(cx, y, w, h), k.go(.15, 0), { color: fill, op: .95 });
+      k.T(p, cx + w / 2, y + h - 12, k.go(.3), .3, { size: fs, color: isS ? C.ink : C.grey, weight: isS ? 900 : 700, anchor: "middle", font: MONO });
+      boxes.push({ x: cx, w, cx: cx + w / 2 });
+      cx += w + gap;
+    });
+    if (o.dots !== false) boxes.forEach((b, i) => dot(k, b.cx, y - 14, i === si));
+    return { boxes, x, y, h, right: cx - gap };
+  }
+
+  // 向下弯的弧线（连读、磁铁吸力）
+  function arc(k, x1, x2, y, depth, color, w = 2.5, head = false) {
+    const mx = (x1 + x2) / 2;
+    let d = `M${x1},${y} Q${mx},${y + depth} ${x2},${y}`;
+    if (head) { const s = x2 < x1 ? 1 : -1; d += ` M${x2 + s * 9},${y + 5} L${x2},${y} L${x2 + s * 2},${y + 10}`; }
+    k.P(d, k.go(.45), .45, { color, w });
+  }
+
+  // 礼物盒
+  function gift(k, x, y) {
+    const { C } = k;
+    k.P(k.roughRect(x, y + 14, 50, 38), k.go(.5), .5, { color: C.red, w: 2.5 });
+    k.F(k.rectD(x, y + 14, 50, 38), k.go(.2, 0), { color: "#fecdd3", op: .9 });
+    k.P(k.wl(x + 25, y + 14, x + 25, y + 52, .4) + " " + k.wl(x, y + 30, x + 50, y + 30, .4), k.go(.35), .35, { color: C.orange, w: 3 });
+    k.P(`M${x + 25},${y + 14} q-16,-16 -18,-2 q4,6 18,2 q16,-16 18,-2 q-4,6 -18,2`, k.go(.4), .4, { color: C.orange, w: 2.5 });
+  }
+
+  WB_LAB.stress_rhythm = [
+    // ───────── 法则 A：名前动后 ─────────
+    {
+      build(k) {
+        const { C, N, T, go } = k;
+        N("", "这节课：同一个单词，换一个地方用力读，意思就变了！");
+        k.header("法则 A  双音节词「名前动后」", "重音与弱读", false);
+        N("音节：", "单词里一口气读出的一小段。present 可以切成 pre 和 sent 两段。");
+        T("present", 40, 122, go(.8), .8, { size: 30, color: C.ink, weight: 900, font: MONO });
+        k.arrow(178, 112, 220, 112, C.grey);
+        sylls(k, ["pre", "sent"], 236, 92, -1, { size: 22, dots: false });
+        N("元音：", "a、e、i、o、u 这类张嘴发出的响亮的音。每个音节里都有一个元音。");
+        k.note("两个音节 = 双音节词", 420, 120);
+        N("重音：", "单词里读得最响、最长的那个音节。音标里在它前面打一个小撇 ˈ。");
+        dot(k, 640, 112, true); T("重读：响、长", 658, 119, go(.6), .6, { size: 17, color: C.orange, weight: 900 });
+        dot(k, 800, 112, false); T("弱读：轻、短", 814, 119, go(.6), .6, { size: 17, color: C.grey, weight: 900 });
+
+        N("名词：", "表示东西、人、地方的词。present 当名词是「礼物」，重音在前面。");
+        k.head("名词 n.  →  前重", 40, 178, C.blue, "start", 21);
+        sylls(k, ["pre", "sent"], 60, 222, 0, { size: 26 });
+        T("ˈpre-sent", 250, 254, go(.7), .7, { size: 24, color: C.blue, weight: 900, font: MONO });
+        gift(k, 395, 206);
+        T("n. 生日礼物 / adj. 现在的", 60, 298, go(1), 1, { size: 16, color: C.ink });
+        N("形容词：", "描述样子的词。adj. 是形容词的缩写，present 还能当「现在的」。");
+        k.wait(1.2);
+
+        N("动词：", "表示动作的词。present 当动词是「颁呈、赠送」，重音跑到后面。");
+        k.head("动词 v.  →  后重", 500, 178, C.purple, "start", 21);
+        sylls(k, ["pre", "sent"], 520, 222, 1, { size: 26 });
+        T("pre-ˈsent", 710, 254, go(.7), .7, { size: 24, color: C.purple, weight: 900, font: MONO });
+        k.arrow(860, 244, 920, 244, C.purple, "送出去", 890, 230);
+        T("v. 颁呈 / 赠送", 520, 298, go(.8), .8, { size: 16, color: C.ink });
+
+        N("为什么？", "名词是静静站着的东西，重心稳稳放在开头。");
+        T("名词像一块石头：重心稳在开头", 60, 334, go(1.4), 1.4, { size: 17, color: C.blue, weight: 900 });
+        N("", "动词是向前用力的动作，力气一路冲到词尾。");
+        T("动词像踢一脚：力气冲向词尾 ➜", 520, 334, go(1.4), 1.4, { size: 17, color: C.purple, weight: 900 });
+
+        N("名前动后：", "拼写一模一样，名词重音在前，动词重音在后。再看三个词！");
+        const rows = [
+          ["record", "ˈre-cord", "n. 最高纪录/唱片", "re-ˈcord", "v. 录音/记录下来"],
+          ["desert", "ˈde-sert", "n. 撒哈拉大沙漠", "de-ˈsert", "v. 抛弃/遗弃"],
+          ["export / import", "ˈex-port", "n. 出口商品", "ex-ˈport", "v. 把商品出口到国外"]
+        ];
+        k.P(k.wl(40, 352, 920, 352, .8), go(.4), .4, { color: "#cbd5e1", w: 1.5 });
+        rows.forEach((r, i) => {
+          const y = 378 + i * 26;
+          T(r[0], 40, y, go(.6), .6, { size: 18, color: C.ink, weight: 900, font: MONO });
+          T(r[1], 230, y, go(.5), .5, { size: 18, color: C.blue, weight: 900, font: MONO });
+          T(r[2], 336, y, go(.6), .6, { size: 15, color: C.grey });
+          T(r[3], 560, y, go(.5), .5, { size: 18, color: C.purple, weight: 900, font: MONO });
+          T(r[4], 666, y, go(.6), .6, { size: 15, color: C.grey });
+          if (i === 0) N("", "record：名词「纪录、唱片」前重；动词「录下来」后重。");
+          if (i === 1) N("", "desert：名词「沙漠」前重；动词「抛弃」后重。");
+          if (i === 2) N("", "export：名词「出口商品」前重；动词「出口」后重。import 也一样。");
+          k.wait(1.2);
+        });
+        N("", "放进句子里听一听：前一个 present 是礼物，后一个 present 是送。");
+        k.final("Here is a ˈpresent for you! Let me preˈsent it to you.", [], "这是送你的礼物！让我把它送给你。  名词前重，动词后重！");
+        N("口诀：", "名前动后：东西稳在头，动作冲到尾。");
+        k.wait(1.5);
+      },
+      terms: [
+        ["音节", "单词里一口气读出的一小段，每段里有一个元音。present 有两个音节：pre + sent，叫双音节词。"],
+        ["元音", "a、e、i、o、u 这类嘴巴张开、声音响亮的音。每个音节的中心都是一个元音。"],
+        ["辅音", "元音以外的音，比如 p、r、s、t、k。它们要靠嘴唇、舌头挡一下才发出来。"],
+        ["音标", "专门记录读音的符号，写在 / / 里，比如 /kən/。"],
+        ["重音（ˈ）", "一个单词里读得最响、最长的音节。音标里在它前面打一个小撇 ˈ，比如 ˈpre-sent。"],
+        ["重读 / 弱读", "重读：用力、读响、拉长；弱读：轻轻地、短短地一带而过。动画里大橙点 = 重读，小灰点 = 弱读。"],
+        ["前重 / 后重", "前重：重音在第一个音节（ˈpre-sent）；后重：重音在第二个音节（pre-ˈsent）。"],
+        ["名词（n.）", "表示东西、人、地方的词，比如 present（礼物）、desert（沙漠）。n. 是它的缩写。"],
+        ["动词（v.）", "表示动作的词，比如 present（赠送）、record（录音）。v. 是它的缩写。"],
+        ["形容词（adj.）", "描述样子、状态的词，比如 present（现在的）。adj. 是它的缩写。"],
+        ["词性", "一个词属于哪一类：名词、动词、形容词……同一个拼写，词性不同，重音就可能不同。"],
+        ["名前动后", "双音节词拼写一样时：当名词重音在前，当动词重音在后。比如 ˈrecord（纪录）、reˈcord（录音）。"],
+        ["弱读 /ə/", "不重要的小词读得又轻又短，元音常变成懒洋洋的 /ə/（嘴巴放松轻轻「呃」一声），比如 can 读成 /kən/。"],
+        ["吞音", "弱读、连读时，有的音读得特别轻，好像被「吞」掉了，听起来像 cuppa tea。"]
+      ]
+    },
+
+    // ───────── 法则 B：后缀重音磁铁 ─────────
+    {
+      build(k) {
+        const { C, N, T, go } = k;
+        N("", "三四个音节的长单词，重音在哪儿？不用查音标，看一眼尾巴就知道！");
+        k.header("法则 B  后缀「重音磁铁」", "重音与弱读", false);
+        N("后缀：", "加在单词尾巴上的一小段，比如 -tion、-ic、-ese。");
+        k.note("长单词找重音：先看尾巴上的后缀！", 40, 96, { size: 18, color: C.ink, weight: 900 });
+        N("重音磁铁：", "比喻：有些后缀像磁铁，总把重音吸到固定的位置。紫色块就是磁铁。");
+        sylls(k, ["磁铁"], 560, 72, -1, { size: 16, mag: 0, dots: false });
+        T("= 后缀", 624, 94, go(.5), .5, { size: 17, color: C.purple, weight: 900 });
+        dot(k, 730, 88, true); T("= 重音被吸到这里", 748, 94, go(.8), .8, { size: 17, color: C.orange, weight: 900 });
+
+        const rowY = [130, 208, 286, 364];
+        const label = (i, a, b, mono) => {
+          T(a, 40, rowY[i] + 26, go(.6), .6, { size: mono ? 18 : 19, color: C.purple, weight: 900, font: mono ? MONO : undefined });
+          T(b, 40, rowY[i] + 50, go(.6), .6, { size: 15, color: C.grey, weight: 700 });
+        };
+        const ex = (i, a, b) => {
+          T(a, 470, rowY[i] + 22, go(Math.max(.8, a.length * .05)), Math.max(.8, a.length * .05), { size: 18, color: C.ink, weight: 700, font: MONO });
+          T(b, 470, rowY[i] + 46, go(.6), .6, { size: 15, color: C.grey });
+        };
+
+        // ① -tion / -sion
+        N("多音节词：", "有三个或更多音节的长单词，比如 va-ca-tion 有三个音节。");
+        label(0, "-tion/-sion", "吸前一个音节", true);
+        let s = sylls(k, ["va", "ca", "tion"], 200, rowY[0], 1, { size: 22, mag: 2 });
+        N("-tion 磁铁：", "重音 100% 吸在它前面那一个音节：va-ˈCA-tion（假期）。");
+        arc(k, s.boxes[2].cx, s.boxes[1].cx + 8, rowY[0] + 44, 14, C.purple, 2.5, true);
+        T("假期", s.right + 12, rowY[0] + 28, go(.4), .4, { size: 15, color: C.grey });
+        ex(0, "di-ˈREC-tion · in-vi-ˈTA-tion", "方向 · 邀请");
+
+        // ② -ic / -ian
+        N("-ic / -ian 磁铁：", "也把重音吸到前一个音节：mu-ˈSI-cian（音乐家）。");
+        label(1, "-ic / -ian", "吸前一个音节", true);
+        s = sylls(k, ["mu", "si", "cian"], 200, rowY[1], 1, { size: 22, mag: 2 });
+        arc(k, s.boxes[2].cx, s.boxes[1].cx + 8, rowY[1] + 44, 14, C.purple, 2.5, true);
+        T("音乐家", s.right + 12, rowY[1] + 28, go(.4), .4, { size: 15, color: C.grey });
+        N("", "四个音节也一样：sci-en-ˈTIF-ic（科学的），重音在 -ic 前面。");
+        ex(1, "ma-ˈGI-cian · sci-en-ˈTIF-ic", "魔术师 · 科学的");
+
+        // ③ -ese / -eer 自吸
+        N("自吸磁铁：", "-ee、-ese、-eer 不吸别人，把重音吸在自己身上：Chi-ˈNESE。");
+        label(2, "-ee/-ese/-eer", "吸在自己身上", true);
+        s = sylls(k, ["Chi", "nese"], 200, rowY[2], 1, { size: 22, mag: 1 });
+        T("中文/中国人", s.right + 12, rowY[2] + 28, go(.5), .5, { size: 15, color: C.grey });
+        ex(2, "Ja-pa-ˈNESE · engi-ˈNEER", "日语/日本人 · 工程师");
+
+        // ④ 合成名词
+        N("合成名词：", "两个名词拼成一个新名词，比如 black + board = 黑板。");
+        label(3, "合成名词", "重音在第一个词", false);
+        s = sylls(k, ["black", "board"], 200, rowY[3], 0, { size: 22 });
+        T("黑板", s.right + 12, rowY[3] + 28, go(.4), .4, { size: 15, color: C.grey });
+        N("前重铁律：", "合成名词的重音永远在第一个词上：ˈBLACK-board、ˈSCHOOL-bag。");
+        ex(3, "ˈSCHOOL-bag · ˈFOOT-ball · ˈSUN-flower", "书包 · 足球 · 向日葵");
+        k.wait(1);
+
+        N("", "放进句子里：vacation 的重音被 -tion 吸到 CA 上。");
+        k.final("I love summer va-CA-tion!", [], "我爱暑假！  -tion/-ic/-ian 吸前一个，-ese/-eer 吸自己，合成名词前重。");
+        N("口诀：", "看尾巴找重音：-tion、-ic 吸前头，-ese、-eer 吸自己。");
+        k.wait(1.5);
+      },
+      terms: [
+        ["后缀", "加在单词尾巴上的一小段，比如 -tion、-sion、-ic、-ian、-ese、-eer。"],
+        ["多音节词", "有三个或更多音节的长单词，比如 va-ca-tion（3 个）、sci-en-tif-ic（4 个）。"],
+        ["重音磁铁", "比喻：某些后缀像磁铁，总把重音吸到固定位置，所以看尾巴就知道重音在哪儿。"],
+        ["-tion / -sion、-ic / -ian", "重音吸在它们前面那一个音节：va-ˈCA-tion、mu-ˈSI-cian、sci-en-ˈTIF-ic。"],
+        ["自吸磁铁（-ee / -ese / -eer）", "重音直接落在后缀自己身上：Chi-ˈNESE、engi-ˈNEER。"],
+        ["合成名词", "两个名词拼成的新名词，比如 black + board = blackboard（黑板）。重音在第一个词：ˈBLACK-board。"]
+      ]
+    },
+
+    // ───────── 法则 C：重音计时节拍 + 弱读 /ə/ + 连读 ─────────
+    {
+      build(k) {
+        const { C, N, T, go } = k;
+        N("", "为什么老外说话像「吞字」，听不清？秘密在节拍和弱读！");
+        k.header("法则 C  弱读 /ə/ 与连读", "重音与弱读", false);
+
+        N("节拍：", "说话的轻重快慢，像音乐里的鼓点。汉语和英语的节拍不一样。");
+        T("汉语：音节计时", 40, 120, go(.8), .8, { size: 18, color: C.brown, weight: 900 });
+        ["我", "会", "游", "泳"].forEach((c, i) => { dot(k, 246 + i * 52, 92, true, 6.5); T(c, 234 + i * 52, 120, go(.3), .3, { size: 24, color: C.ink }); });
+        N("音节计时语言：", "每个字用力一样，像机关枪：哒、哒、哒、哒。");
+        k.note("像机关枪：哒哒哒哒，每个字一样用力", 480, 118, { size: 16 });
+
+        T("英语：重音计时", 40, 172, go(.8), .8, { size: 18, color: C.blue, weight: 900 });
+        const words = [["I", 238, false], ["kən", 272, false], ["ˈSWIM", 336, true]];
+        words.forEach(([w, x, big]) => {
+          dot(k, x + (big ? 34 : w.length * 7.2), 142, big, big ? 10 : 4);
+          T(w, x, 172, go(.3), .3, { size: 24, color: big ? C.ink : C.grey, weight: big ? 900 : 700, font: MONO });
+        });
+        N("重音计时语言：", "重要的词读得又响又长，中间的小词飞快带过，像打鼓：咚—嗒—咚。");
+        k.note("像打鼓：重的拉长，轻的一带而过", 480, 170, { size: 16 });
+
+        N("实词 / 虚词：", "实词是有实在意思的词（swim、tea）；虚词是小帮手（to、of、can）。");
+        T("/ə/", 40, 228, go(.6), .6, { size: 34, color: C.red, weight: 900, font: MONO });
+        T("懒元音 Schwa：嘴巴放松，轻轻「呃」一下", 120, 216, go(1.2), 1.2, { size: 17, color: C.red, weight: 900 });
+        T("to · for · of · and · can 这些虚词，常常压成 /ə/", 120, 242, go(1.2), 1.2, { size: 16, color: C.grey });
+        N("弱读 /ə/：", "虚词读得又轻又短，元音变成懒洋洋的 /ə/，这就是弱读。");
+        k.P(k.wl(40, 260, 920, 260, .8) + " " + k.wl(480, 272, 480, 428, .8), go(.6), .6, { color: "#cbd5e1", w: 1.5 });
+
+        // ① can vs can't
+        N("肯定句 / 否定句：", "肯定句说「会、是」；否定句带 not，说「不会、不是」。");
+        T("can /kən/ vs can't /ˈkɑːnt/", 40, 290, go(1), 1, { size: 18, color: C.blue, weight: 900, font: MONO });
+        T("I kən ˈSWIM.  vs  I ˈKɑːNT ˈSWIM.", 40, 316, go(1.2), 1.2, { size: 17, color: C.ink, weight: 700, font: MONO });
+        N("can 弱读：", "肯定句里 can 轻读成 /kən/，重音给 swim；can't 要重读、张大嘴！");
+        T("can 很轻 = 会游；can't 重读张大嘴 = 不会游", 40, 340, go(1.2), 1.2, { size: 14, color: C.grey });
+
+        // ② of
+        N("of 弱读：", "a cup of tea 里 of 只剩一个 /ə/，连起来听像 cuppa tea。");
+        T("of ➔ /ə/", 500, 290, go(.6), .6, { size: 18, color: C.blue, weight: 900, font: MONO });
+        T("a cup of tea ➔ cuppa tea", 500, 316, go(1), 1, { size: 17, color: C.ink, weight: 700, font: MONO });
+        T("lots of ➔ /ˈlɒtsə/ ｜ kind of ➔ /ˈkaɪndə/", 500, 340, go(1), 1, { size: 14, color: C.grey, font: MONO });
+
+        // ③ to
+        N("缩读：", "口语里几个词缩成一个：want to → wanna，going to → gonna。");
+        T("to ➔ /tə/ · wanna · gonna", 40, 374, go(.9), .9, { size: 18, color: C.blue, weight: 900, font: MONO });
+        T("want to ➔ wanna ｜ going to ➔ gonna", 40, 400, go(1.1), 1.1, { size: 17, color: C.ink, weight: 700, font: MONO });
+        T("I'm gonna (going to) visit my grandpa tomorrow.", 40, 424, go(1.2), 1.2, { size: 13, color: C.green, weight: 700, font: MONO });
+
+        // ④ 连读
+        N("连读：", "前一个词的尾巴是辅音，后一个词以元音开头，就粘成一个音节读。");
+        T("辅音 + 元音  丝滑连读", 500, 374, go(.9), .9, { size: 18, color: C.blue, weight: 900 });
+        const lx = 500, cw = 17 * .6;
+        T("look at it ➔ /ˈlʊ-kæ-tɪt/", lx, 400, go(1), 1, { size: 17, color: C.ink, weight: 700, font: MONO });
+        arc(k, lx + cw * 3.5, lx + cw * 5.5, 405, 8, C.orange, 2.5);
+        arc(k, lx + cw * 6.5, lx + cw * 8.5, 405, 8, C.orange, 2.5);
+        T("put it on ➔ /ˈpʊ-tɪ-tɒn/ ｜ an apple ➔ /ə-ˈnæ-pl/", 500, 424, go(1.2), 1.2, { size: 13, color: C.grey, font: MONO });
+        N("", "看橙色小桥：k 粘上 a，t 粘上 i，look at it 读成一口气。");
+        k.wait(1);
+
+        N("", "最后读一读：每个词都和后面的元音粘在一起！");
+        k.final("Look at it (/lʊ-kæ-tɪt/)! Pick it up (/pɪ-kɪ-tʌp/)!", [], "看它！把它捡起来！  实词重读拉长，虚词弱读成 /ə/，辅音元音粘一起。");
+        N("口诀：", "重的拉长像打鼓，轻的变 /ə/ 一带过，辅音元音手拉手。");
+        k.wait(1.5);
+      },
+      terms: [
+        ["节拍", "说话时轻重快慢的规律，像音乐里的鼓点。"],
+        ["音节计时语言", "每个音节（字）用力差不多、时间差不多的语言，比如汉语，像机关枪「哒哒哒」。"],
+        ["重音计时语言", "重读的词又响又长，中间的小词压得很短的语言，比如英语，像打鼓「咚—嗒—咚」。"],
+        ["实词", "有实在意思的词：名词、动词、形容词等，比如 swim、tea、milk。句子里一般重读。"],
+        ["虚词", "帮忙连接的小词，比如 to、for、of、and、can。句子里常常弱读成 /ə/。"],
+        ["懒元音 /ə/（Schwa）", "英语里最常见、最省力的元音：嘴巴放松、舌头不动，轻轻「呃」一声。"],
+        ["肯定句 / 否定句", "肯定句说「会、是」：I can swim；否定句带 not，说「不会、不是」：I can't swim。"],
+        ["实义动词", "表示真正动作的动词，比如 swim（游泳）。can 只是帮忙的，所以 can 轻、swim 重。"],
+        ["缩读", "口语里把几个词缩成一个：want to → wanna，going to → gonna。"],
+        ["连读", "前一个词以辅音结尾、后一个词以元音开头时，两个词粘在一起读：look at it → /lʊ-kæ-tɪt/。"]
+      ]
+    }
+  ];
+})();
+
+// ==================== 白板脚本：⑤ 不规则过去式「四大门派」破译阵 ====================
+// 每个案例 = IRREGULAR_PAST_CLANS 里的一个门派：门派旗 + 秘诀 → 3 个成员「原形 → 过去式」完整画 → 其余成员列表 → 结论 + 口诀。
+(function () {
+  const MONO = '"Courier New",Courier,monospace';
+  // 本页签的小工具（只在本文件里用）
+  function tools(k) {
+    const { C, P, T, F, go } = k;
+    const W = {};
+    // 门派旗：旗杆 + 飘动的旗面 + 门派招式 + 中文名
+    W.flag = (label, sub, color, fill, lsize = 24) => {
+      P(k.wl(44, 76, 44, 206, .8), go(.5), .5, { color: C.brown, w: 4 });
+      const d = "M46,84 C110,70 170,100 248,84 L248,158 C170,174 110,144 46,158 Z";
+      P(d, go(.9), .9, { color, w: 3 });
+      F(d, go(.3, 0), { color: fill, op: .9 });
+      T(label, 147, 124, go(.9), .9, { size: lsize, color, weight: 900, anchor: "middle", font: MONO });
+      T(sub, 147, 149, go(.8), .8, { size: 15, color: C.ink, weight: 900, anchor: "middle" });
+    };
+    // 在等宽文字 m 的第 i..j-1 个字母外画圈
+    W.ring = (m, i, j, color = C.red) => {
+      const cx = m.x + (i + j) / 2 * m.cw, cy = m.y - m.size * .34;
+      P(k.ellipse(cx, cy, (j - i) * m.cw / 2 + (j - i > 1 ? 3 : 5), m.size * .6), go(.45), .45, { color, w: 3 });
+    };
+    // 一个成员：原形 → 过去式（+ 中文意思 / 音标），右边写秘诀和例句
+    W.row = (o) => {
+      const y = o.y, size = o.size || 28;
+      const mb = k.mono(o.base, 40, y, size, C.ink, 900);
+      T(o.under || o.mean, 40, y + 22, go(.5), .5, { size: 14, color: C.grey, font: o.under ? MONO : undefined });
+      const ax = 40 + o.base.length * size * .6 + 14;
+      if (o.same) {
+        T("=", ax + 22, y - 2, go(.4), .4, { size: 30, color: C.green, weight: 900, anchor: "middle" });
+      } else k.arrow(ax, y - 9, ax + 44, y - 9, C.purple);
+      const px = ax + 58;
+      const mp = k.mono(o.past, px, y, size, C.red, 900);
+      if (o.ipa) T(o.ipa, px, y + 22, go(.5), .5, { size: 14, color: C.grey, font: MONO });
+      return { mb, mp, px, done: () => {
+        if (o.tipN) k.N(o.tipN[0], o.tipN[1]);
+        T(o.tip, 392, y - 8, go(Math.max(.8, o.tip.length * .06)), Math.max(.8, o.tip.length * .06), { size: 16, color: C.brown, weight: 900 });
+        if (o.exN) k.N(o.exN[0], o.exN[1]);
+        const me = k.mono(o.ex, 392, y + 17, 15, C.blue, 700);
+        if (o.exWord) k.underline(me, o.exWord, 0, C.orange);
+      } };
+    };
+    // 其余成员一行
+    W.others = (text) => {
+      T("其余成员：", 40, 428, go(.6), .6, { size: 16, color: C.grey, weight: 900 });
+      k.mono(text, 128, 428, 16, C.ink, 700);
+    };
+    // 结论绿框 + 口诀
+    W.fin = (concl, rhyme) => {
+      const d = k.roughRect(16, 446, 928, 52);
+      P(d, go(1), 1, { color: C.green, w: 2.5 });
+      F(k.rectD(16, 446, 928, 52), go(.2, 0), { color: "#ecfdf5", op: .9 });
+      T(concl, 36, 480, go(2), 2, { size: 20, color: C.green, weight: 900 });
+      T(rhyme, 36, 525, go(1.8), 1.8, { size: 17, color: C.grey, weight: 700 });
+    };
+    return W;
+  }
+
+  WB_LAB.past_clans = [
+    // ───────── ① 金钟罩铁布衫派（AAA）─────────
+    {
+      build(k) {
+        const { C, N, T, go } = k, W = tools(k);
+        N("", "这节课：为什么有的动词变过去式，不加 -ed？");
+        k.header("第一门派：金钟罩铁布衫派", "过去式四大门派", false);
+        N("过去式：", "动词表示「以前发生的事」时的样子。比如 play 变成 played。");
+        const m1 = k.mono("play → played", 290, 110, 22, C.green, 900);
+        k.note("规则动词：直接加 -ed", 520, 110, { color: C.green, weight: 900 });
+        k.wait(1);
+        N("不规则动词：", "不按「加 -ed」规矩变的动词。put 写成 putted 就错了！");
+        const m2 = k.mono("put → putted", 290, 148, 22, C.ink, 900);
+        k.strike(m2, "putted"); k.redX(470, 124);
+        k.note("不规则动词：不加 -ed", 520, 148, { color: C.red, weight: 900 });
+        N("四大门派：", "把不规则动词按发音规律分成 4 组，像武林 4 个门派，一组一组记。");
+        W.flag("A A A", "金钟罩铁布衫派", C.red, "#ffe4e6", 26);
+        N("AAA：", "原形、过去式、过去分词三个样子完全一样，像穿了金钟罩，怎么打都不变。");
+        k.wait(2.6);
+        N("爆破音：", "/t/ /d/ 这种音，舌尖一顶再一弹，又短又脆，像小鞭炮。");
+        T("秘诀：词尾本来就是爆破音 /t/ /d/，再加 -ed 会撞车被吞掉 → 保持原形", 290, 188, go(2.6), 2.6, { size: 17, color: C.purple, weight: 900 });
+        k.wait(.6);
+
+        N("原形：", "动词最原本、没变化的样子，就是词典里查到的样子，比如 put（放）。");
+        const r1 = W.row({ y: 248, base: "put", mean: "放", past: "put", ipa: "/pʊt/", same: true,
+          tip: "短促闭音节 + t 结尾，过去现在一模一样", ex: "He put his book on the desk yesterday.", exWord: "put",
+          exN: ["", "例句里有 yesterday（昨天），动词还是 put，一个字母都不加。"] });
+        N("闭音节：", "元音后面被辅音「关上门」，读得又短又快，比如 put 里 u 后面关着 t。");
+        W.ring(r1.mb, 2, 3); W.ring(r1.mp, 2, 3);
+        r1.done();
+
+        N("", "第二位成员 hurt（弄伤），也是 t 结尾。");
+        const r2 = W.row({ y: 308, base: "hurt", mean: "弄伤 / 疼", past: "hurt", ipa: "/hɜːt/", same: true,
+          tip: "以 t 结尾，千万别写成 hurted！", ex: "I fell off my bike and hurt my foot.", exWord: "hurt",
+          exN: ["", "摔下自行车弄伤了脚：hurt my foot，不是 hurted。"] });
+        W.ring(r2.mb, 3, 4); W.ring(r2.mp, 3, 4);
+        r2.done();
+
+        N("音标：", "斜线 / / 里的符号，专门记一个词怎么读。read 的拼写不变，读音会变！");
+        const r3 = W.row({ y: 368, base: "read", under: "/riːd/ 读", past: "read", ipa: "/red/", same: true,
+          tip: "拼写不变，读音从长音 /riːd/ 缩成短音 /red/", ex: "I read an interesting book last night.", exWord: "read",
+          tipN: ["长音和短音：", "长音 /iː/ 拉长读，短音 /e/ 短短一下。read 的过去式读起来像 red（红色）。"] });
+        k.P(k.ellipse(r3.px + 22, 386, 30, 12), go(.45), .45, { color: C.orange, w: 3 });
+        r3.done();
+
+        N("", "这一派还有：cut、hit、let、cost，过去式都和原形一样。");
+        W.others("cut→cut · hit/let→hit/let · cost→cost");
+        N("", "结论：词尾是短促 /t/ /d/ 的这几个动词，过去式 = 原形。");
+        W.fin("结论：put / cut / hurt / hit / let / cost / read，过去式 = 原形（AAA）",
+          "口诀：t、d 结尾金钟罩，-ed 进不来，原样不变！read 只变读音 /red/。");
+        N("口诀：", "t、d 结尾金钟罩，-ed 进不来，原样不变！");
+      },
+      terms: [
+        ["过去式", "动词表示「以前发生的事」时的样子，比如 play → played、put → put。"],
+        ["原形", "动词最原本、没有变化的样子，也就是词典里查到的样子，比如 put、sing、buy。"],
+        ["规则动词", "过去式按规矩直接加 -ed 的动词，比如 play → played、jump → jumped。"],
+        ["不规则动词", "过去式不按「加 -ed」规矩变的动词，比如 put → put、sing → sang、buy → bought，要单独记。"],
+        ["四大门派", "比喻：把不规则动词按发音规律分成 4 组，像武林里的 4 个门派，同一派的变法一样，一组一组记更快。"],
+        ["过去分词", "动词的另一种变化样子，用在 have 后面（比如 have sung），以后会学。"],
+        ["AAA 型", "原形、过去式、过去分词三个样子完全一样，比如 put - put - put。"],
+        ["金钟罩铁布衫", "比喻：这一派动词像穿了护身铠甲，变过去式时一个字母都不加、不变。"],
+        ["元音 / 辅音", "元音是 a e i o u 发出的「响亮」的音；辅音是 b、t、d、p 这类要靠舌头、嘴唇挡一下的音。"],
+        ["闭音节", "元音后面跟着辅音「关上门」，读得又短又快，比如 put、cut、hit。"],
+        ["爆破音", "像 /t/ /d/ /p/ 这样的音：先堵住气，再一下子放开，又短又脆，像小鞭炮。"],
+        ["舌尖爆破音 /t/ /d/", "舌尖顶住上牙后面，再一弹发出的 /t/ /d/。这一派动词的词尾都是它。"],
+        ["音标", "写在斜线 / / 里的读音符号，告诉你一个词怎么读，比如 read 读 /riːd/。"],
+        ["长音 / 短音", "长音拉长读，比如 /iː/；短音短短一下，比如 /e/。read 的过去式就是从长音变成了短音 /red/。"],
+        ["第一性原理", "从最根本的原因去想问题：不死记，先弄明白「为什么会这样」。"],
+        ["古英语", "一千多年前的英语。很多不规则动词的变法就是那时候留下来的。"]
+      ]
+    },
+    // ───────── ② 水流音乐元音换挡派（i → a）─────────
+    {
+      build(k) {
+        const { C, N, T, go } = k, W = tools(k);
+        N("", "这一派的秘密藏在中间的元音字母里：i 一换成 a，就变成过去式。");
+        k.header("第二门派：水流音乐元音换挡派", "过去式四大门派", false);
+        W.flag("i → a", "元音换挡派", C.blue, "#dbeafe", 28);
+        N("元音交替：", "不加 -ed，只把单词中间的元音换掉来表示时间，就像汽车换挡。");
+        const m = k.mono("sing → sang → sung", 290, 112, 24, C.ink, 900);
+        W.ring(m, 1, 2, C.red); W.ring(m, 8, 9, C.green); W.ring(m, 15, 16, C.purple);
+        N("", "现在 sing 用 i，过去式 sang 用 a，过去分词 sung 用 u。");
+        k.wait(.8);
+        T("现在", m.x + 1.5 * m.cw, 140, go(.5), .5, { size: 14, color: C.red, weight: 900, anchor: "middle" });
+        T("过去式", m.x + 8.5 * m.cw, 140, go(.5), .5, { size: 14, color: C.green, weight: 900, anchor: "middle" });
+        T("过去分词", m.x + 15.5 * m.cw, 140, go(.5), .5, { size: 14, color: C.purple, weight: 900, anchor: "middle" });
+        N("口腔张开度：", "嘴巴张多大。i 嘴扁扁，a 嘴张得最大，u 嘴巴半张收一点。");
+        k.note("i 扁嘴 → a 张大嘴 → u 半张嘴", 600, 112, { color: C.blue, weight: 900 });
+        k.note("例：We sang English songs at the party.", 600, 140, { size: 15, color: C.grey });
+        N("鼻音：", "气从鼻子出来的音，比如 -ng、-nk、-m、-n。带这些音的动词常在这一派。");
+        T("秘诀：带鼻音 -ng / -nk / -m / -n 的常用动词，多数在这一派", 290, 188, go(2.2), 2.2, { size: 17, color: C.purple, weight: 900 });
+        k.wait(.6);
+
+        N("", "成员 swim（游泳）：结尾 m 是鼻音，中间 i 换成 a。");
+        const r1 = W.row({ y: 248, base: "swim", mean: "游泳", past: "swam", ipa: "过去分词 swum",
+          tip: "i ➔ a 元音换挡", ex: "I swam in the blue sea last summer.", exWord: "swam",
+          exN: ["", "去年夏天在大海里游泳：swam。"] });
+        W.ring(r1.mb, 2, 3); W.ring(r1.mp, 2, 3, C.green);
+        r1.done();
+
+        N("", "成员 drink（喝）：结尾 -nk 是鼻音，i 换成 a 就是 drank。");
+        const r2 = W.row({ y: 308, base: "drink", mean: "喝水", past: "drank", ipa: "过去分词 drunk",
+          tip: "i ➔ a 元音换挡", ex: "He drank a big glass of milk.", exWord: "drank",
+          exN: ["", "他喝了一大杯牛奶：drank。"] });
+        W.ring(r2.mb, 2, 3); W.ring(r2.mp, 2, 3, C.green);
+        r2.done();
+
+        N("", "sit（坐）和 give（给）：短 i 变 a 是 sat，长 i_e 变 a_e 是 gave。");
+        const r3 = W.row({ y: 368, size: 22, base: "sit/give", mean: "坐 / 给", past: "sat/gave",
+          tip: "短 i 变 a (sat)，长 i_e 变 a_e (gave)", ex: "She sat down and gave me a smile.", exWord: "sat",
+          tipN: ["i_e：", "i 后面隔一个辅音再跟个不发音的 e，像 give、bike。"] });
+        W.ring(r3.mb, 1, 2); W.ring(r3.mb, 6, 7); W.ring(r3.mp, 1, 2, C.green); W.ring(r3.mp, 5, 6, C.green);
+        r3.done();
+
+        N("", "begin、ring 也是 i 变 a。run、come 变 ran、came，不是 i 变 a，单独记！");
+        W.others("begin/ring→began/rang · run/come→ran/came");
+        T("（不是 i 变 a）", 128 + 39 * 9.6 + 14, 428, go(.8), .8, { size: 15, color: C.red, weight: 900 });
+        N("", "结论：i 换成 a，就是过去式。");
+        W.fin("结论：sing→sang、swim→swam、drink→drank：中间的 i 换成 a = 过去式",
+          "口诀：现在 i 扁嘴，过去 a 张嘴，换个元音就过去！");
+        N("口诀：", "现在 i 扁嘴，过去 a 张嘴，换个元音就过去！");
+      },
+      terms: [
+        ["元音交替（Ablaut）", "不加 -ed，只换掉单词中间的元音来表示时间，比如 sing → sang → sung。"],
+        ["元音换挡", "比喻：像汽车换挡一样，把元音 i 换成 a，动词就「开」到了过去。"],
+        ["口腔张开度", "发音时嘴巴张多大：i 嘴扁扁，a 张得最大，u 半张。"],
+        ["前高元音 i /ɪ/", "舌头往前、抬得高的元音，嘴巴很扁，比如 sing 里的 i。"],
+        ["鼻音", "气从鼻子里出来的音，比如 -ng（sing）、-nk（drink）、-m（swim）、-n（begin）。"],
+        ["日耳曼语", "英语、德语的「老祖宗」语言家族。元音换挡就是从那里传下来的老办法。"],
+        ["i_e（不发音的 e）", "i 后面隔一个辅音再跟一个 e，这个 e 不读，比如 give、bike。"]
+      ]
+    },
+    // ───────── ③ 长音减肥派（ee → e + t）─────────
+    {
+      build(k) {
+        const { C, N, T, P, F, go } = k, W = tools(k);
+        N("", "这一派的动词原来读长长的 /iː/，变过去式时会「减肥」。");
+        k.header("第三门派：长音减肥派", "过去式四大门派", false);
+        W.flag("ee → e+t", "长音减肥派", C.green, "#d1fae5", 22);
+        N("长元音：", "要拉长读的元音，比如 /iː/，读成「衣——」。ee、ea 常读 /iː/。");
+        k.wait(1);
+        T("/iː/ 长", 290, 112, go(.6), .6, { size: 18, color: C.red, weight: 900, font: MONO });
+        let d = k.rectD(370, 98, 200, 18);
+        P(k.roughRect(370, 98, 200, 18), go(.8), .8, { color: C.red, w: 2.5 }); F(d, go(.2, 0), { color: "#fecdd3", op: .9 });
+        N("短元音：", "短短读一下的元音，比如 /e/。从长音变成短音，就像减肥变瘦。");
+        k.wait(.5);
+        k.arrow(590, 107, 640, 107, C.purple);
+        d = k.rectD(660, 98, 60, 18);
+        P(k.roughRect(660, 98, 60, 18), go(.6), .6, { color: C.green, w: 2.5 }); F(d, go(.2, 0), { color: "#bbf7d0", op: .9 });
+        T("/e/ 短", 735, 112, go(.6), .6, { size: 18, color: C.green, weight: 900, font: MONO });
+        N("音节：", "单词里一拍一拍的读音单位。词尾加上 t，这一拍变挤了，长音只好缩短。");
+        k.mono("sleep /sliːp/ → slept /slept/", 290, 150, 20, C.ink, 900);
+        T("秘诀：词尾加 -t，音节变挤 → 长音 /iː/ 减肥成短音 /e/", 290, 188, go(2.2), 2.2, { size: 17, color: C.purple, weight: 900 });
+        k.wait(.6);
+
+        N("", "成员 sleep（睡觉）：ee 缩成一个 e，后面加 t，就是 slept。");
+        const r1 = W.row({ y: 248, base: "sleep", under: "/sliːp/ 睡觉", past: "slept", ipa: "/slept/",
+          tip: "ee 缩成 e + t", ex: "I slept very well last night.", exWord: "slept",
+          exN: ["", "昨晚睡得很好：slept。"] });
+        W.ring(r1.mb, 2, 4); W.ring(r1.mp, 2, 3, C.green); W.ring(r1.mp, 4, 5, C.green);
+        r1.done();
+
+        N("", "成员 feel（感觉）：也是 ee 缩成 e，再加 t，变成 felt。");
+        const r2 = W.row({ y: 308, base: "feel", under: "/fiːl/ 感觉", past: "felt", ipa: "/felt/",
+          tip: "ee 缩成 e + t", ex: "He felt very happy yesterday.", exWord: "felt",
+          exN: ["", "昨天他感觉很开心：felt。"] });
+        W.ring(r2.mb, 1, 3); W.ring(r2.mp, 1, 2, C.green); W.ring(r2.mp, 3, 4, C.green);
+        r2.done();
+
+        N("清音 / 浊音：", "清音喉咙不震动，像 f、t；浊音喉咙会震动，像 v、d。");
+        const r3 = W.row({ y: 368, base: "leave", under: "/liːv/ 离开", past: "left", ipa: "/left/",
+          tip: "ea 缩成 e，浊音 v 变清音 f + t", ex: "The train left ten minutes ago.", exWord: "left",
+          tipN: ["同化：", "两个音挨着，一个变得像另一个。v 挨着清音 t，就变成清音 f。"] });
+        W.ring(r3.mb, 1, 3); W.ring(r3.mb, 3, 4, C.orange); W.ring(r3.mp, 2, 3, C.orange); W.ring(r3.mp, 3, 4, C.green);
+        r3.done();
+
+        N("", "还有 keep、sweep；meet、feed 直接减掉一个 e，变成 met、fed。");
+        W.others("keep→kept · sweep→swept · meet/feed→met/fed");
+        N("", "结论：ee / ea 缩成一个 e，后面加 t。");
+        W.fin("结论：sleep→slept、feel→felt、leave→left：长音 ee/ea 缩成 e，再加 t",
+          "口诀：加 t 太挤要减肥，两个 e 变一个 e！");
+        N("口诀：", "加 t 太挤要减肥，两个 e 变一个 e！");
+      },
+      terms: [
+        ["长元音", "要拉长读的元音，比如 /iː/（读成「衣——」）。ee、ea 经常读 /iː/，比如 sleep、leave。"],
+        ["短元音", "短短读一下的元音，比如 /e/，像 slept、felt 里的 e。"],
+        ["长音减肥", "比喻：长元音 /iː/ 变过去式时缩成短元音 /e/，就像减肥变瘦了。"],
+        ["音节", "单词里一拍一拍的读音单位。sleep 是一拍，加上 t 后这一拍变挤，长音只好缩短。"],
+        ["清音", "发音时喉咙不震动的辅音，比如 f、t、p、k。"],
+        ["浊音", "发音时喉咙会震动的辅音，比如 v、d、b、g。"],
+        ["同化", "两个音挨在一起时，一个变得像另一个。leave 里的浊音 v 挨着清音 t，就变成清音 f：left。"]
+      ]
+    },
+    // ───────── ④ -ought / -aught 四大护法派 ─────────
+    {
+      build(k) {
+        const { C, N, T, P, go } = k, W = tools(k);
+        N("", "bought、brought、caught、taught 长得太像，到底怎么写？");
+        k.header("第四门派：-ought / -aught 护法派", "过去式四大门派", false);
+        N("护法：", "比喻：这一派成员都带着同一个「保镖」尾巴 -ought 或 -aught。");
+        W.flag("-ought/-aught", "四大护法派", C.purple, "#ede9fe", 20);
+        k.wait(.4);
+        N("不发音字母：", "写出来但不读的字母。gh 在这里不发音，ought、aught 都读 /ɔːt/。");
+        const m = k.mono("-ought = -aught = /ɔːt/", 290, 112, 22, C.ink, 900);
+        P(k.wl(m.x0("gh") + 2, 92, m.x1("gh") - 2, 110, .4), go(.35), .35, { color: C.red, w: 3 });
+        P(k.wl(m.x0("gh", 1) + 2, 92, m.x1("gh", 1) - 2, 110, .4), go(.35), .35, { color: C.red, w: 3 });
+        k.note("gh 不发音！", 610, 112, { color: C.red, weight: 900 });
+        N("黄金铁律：", "看原形里有没有字母 a：有 a 写 -aught，没有 a 写 -ought。");
+        T("原形有 a → -aught", 290, 150, go(1.2), 1.2, { size: 19, color: C.orange, weight: 900 });
+        k.note("（teach、catch）", 470, 150, { size: 16 });
+        T("没有 a → -ought", 620, 150, go(1.2), 1.2, { size: 19, color: C.blue, weight: 900 });
+        T("秘诀：先找原形里的字母 a，再决定写 -aught 还是 -ought", 290, 188, go(2.2), 2.2, { size: 17, color: C.purple, weight: 900 });
+        k.wait(.6);
+
+        N("", "成员 buy（买）：原形里没有 a，所以写 -ought：bought。");
+        const r1 = W.row({ y: 248, base: "buy", mean: "买", past: "bought", ipa: "/bɔːt/",
+          tip: "无 a 用 -ought（去商店买礼物）", ex: "Mom bought a new dress for me.", exWord: "bought",
+          exN: ["", "妈妈给我买了一条新裙子：bought。"] });
+        W.ring(r1.mp, 1, 6, C.blue);
+        r1.done();
+
+        N("", "成员 bring（带来）：开头 br- 留着，没有 a，写 brought。");
+        const r2 = W.row({ y: 308, base: "bring", mean: "带来", past: "brought", ipa: "/brɔːt/",
+          tip: "br- 开头保留，别和 bought 混！", ex: "He brought his puppy to the park.", exWord: "brought",
+          exN: ["", "注意：bought 是「买了」，brought 多一个 r，是「带来了」。"] });
+        W.ring(r2.mb, 0, 2, C.orange); W.ring(r2.mp, 0, 2, C.orange); W.ring(r2.mp, 2, 7, C.blue);
+        r2.done();
+
+        N("", "成员 teach（教）：原形 teach 里有字母 a，所以必须写 -aught！");
+        const r3 = W.row({ y: 368, base: "teach", mean: "教课", past: "taught", ipa: "/tɔːt/",
+          tip: "原形 teach 里有字母 a ➔ 必用 -aught！", ex: "Miss White taught us English last year.", exWord: "taught",
+          exN: ["", "去年怀特老师教我们英语：taught。"] });
+        W.ring(r3.mb, 2, 3, C.orange); W.ring(r3.mp, 1, 6, C.orange);
+        r3.done();
+
+        N("", "还有 think→thought、fight→fought；catch 有 a，所以是 caught。");
+        W.others("think→thought · fight→fought · catch→caught");
+        N("", "结论：原形有 a 写 -aught，没有 a 写 -ought，都读 /ɔːt/。");
+        W.fin("结论：有 a → -aught（taught、caught）；没 a → -ought（bought…）",
+          "口诀：原形有 a 用 aught，其余全用 ought，gh 不出声！");
+        N("口诀：", "原形有 a 用 aught，其余全用 ought，gh 不出声！");
+      },
+      terms: [
+        ["-ought / -aught", "这一派过去式共同的尾巴，都读 /ɔːt/，比如 bought、thought、taught、caught。"],
+        ["四大护法", "比喻：这一派成员都带着同一个「保镖」尾巴 -ought 或 -aught，一眼就能认出来。"],
+        ["不发音字母", "写出来但不读的字母。-ought、-aught 里的 gh 就不发音。"],
+        ["黄金铁律", "原形里有字母 a（teach、catch）→ 写 -aught；没有 a（buy、think、bring、fight）→ 写 -ought。"],
+        ["舌根摩擦音", "舌头后部靠近上颚、让气挤出来的音。古英语里 gh 就读这个音，后来不读了。"],
+        ["元音后移", "发元音时舌头的位置往后退，ought / aught 里的元音就是这样变成 /ɔː/ 的。"]
+      ]
+    }
+  ];
+})();
+
+// ==================== 白板脚本：⑫ 高分作文「黄金升级公式」炼金炉 3 个案例 ====================
+// 数据来源：主文件 WRITING_ALCHEMIST_DB（3 项 → 3 个案例）。句子必须和数据一字不差。
+// 本页签的小工具（炼金炉、路标、积木、自动换行英文、结尾绿框）都在这里本地定义，不改引擎。
+(function () {
+  const MONO = '"Courier New",Courier,monospace';
+
+  // 贪心换行：按单词拆，每行不超过 maxChars 个字符；拼回去（用空格）必须等于原句
+  function wrap(text, maxChars) {
+    const out = []; let cur = "";
+    text.split(" ").forEach(w => {
+      if (cur && (cur + " " + w).length > maxChars) { out.push(cur); cur = w; }
+      else cur = cur ? cur + " " + w : w;
+    });
+    if (cur) out.push(cur);
+    return out;
+  }
+  // 等宽英文行（可调书写速度），返回和 k.mono 一样的定位对象
+  function mline(k, text, x, y, size, color, weight = 700, rate = .045) {
+    const dur = Math.max(.6, text.length * rate);
+    k.T(text, x, y, k.go(dur), dur, { size, color, font: MONO, weight });
+    const cw = size * .6;
+    const at = (sub, nth = 0) => {
+      // 按整词找（前后不是字母），避免 had 匹配到别的词里
+      const re = new RegExp("(^|[^A-Za-z])" + sub.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&") + "(?![A-Za-z])", "g");
+      let m, n = 0;
+      while ((m = re.exec(text))) { if (n++ === nth) return m.index + m[1].length; re.lastIndex = m.index + 1; }
+      return -1;
+    };
+    return { x, y, size, cw, text, at, x0: (s, n) => x + at(s, n) * cw, x1: (s, n) => x + (at(s, n) + s.length) * cw };
+  }
+  // 多行英文段落：返回各行对象；find(sub) 找到包含它的那一行
+  function para(k, text, x, y, maxChars, size, color, lh, rate) {
+    const lines = Array.isArray(maxChars) ? maxChars : wrap(text, maxChars);
+    if (lines.join(" ") !== text) throw new Error("wrap mismatch");
+    const ms = lines.map((s, i) => mline(k, s, x, y + i * lh, size, color, 700, rate));
+    return ms;
+  }
+  function locate(ms, sub, nth = 0) { let n = 0; for (const m of ms) { let j = 0; while (m.at(sub, j) >= 0) { if (n++ === nth) return [m, j]; j++; } } throw new Error("not found: " + sub); }
+  const uline = (k, ms, sub, color, nth = 0) => { const [m, j] = locate(ms, sub, nth); k.underline(m, sub, j, color); };
+  const squig = (k, ms, sub, color, nth = 0) => { const [m, j] = locate(ms, sub, nth); k.squiggle(m, sub, j, color); };
+  const ring = (k, ms, sub, color, nth = 0) => {
+    const [m, j] = locate(ms, sub, nth), x0 = m.x0(sub, j), x1 = m.x1(sub, j);
+    k.P(k.ellipse((x0 + x1) / 2, m.y - m.size * .34, (x1 - x0) / 2 + 7, m.size * .66), k.go(.45), .45, { color, w: 2.5 });
+  };
+  // 小标签（60分 / 100分）
+  function tag(k, text, x, y, color, fill) {
+    const w = k.estW(text, 14) + 12;
+    k.P(k.roughRect(x, y - 16, w, 22), k.go(.35, 0), .35, { color, w: 2 });
+    k.F(k.rectD(x, y - 16, w, 22), k.go(.15, 0), { color: fill, op: .95 });
+    k.T(text, x + w / 2, y, k.go(.4), .4, { size: 14, color, weight: 900, anchor: "middle" });
+  }
+  // 炼金炉：x 左边，y 炉口；炉身写公式（两行）
+  function furnace(k, x, y, l1, l2) {
+    const { C, P, F, T, go } = k, w = 130, h = 64;
+    const body = `M${x + 4},${y} C${x - 6},${y + 30} ${x + 10},${y + h} ${x + 24},${y + h} L${x + w - 24},${y + h} C${x + w - 10},${y + h} ${x + w + 6},${y + 30} ${x + w - 4},${y} Z`;
+    P(body, go(.7, 0), .7, { color: C.purple, w: 2.5 }); F(body, go(.3), { color: "#f5d0fe", op: .85 });
+    P(k.wl(x - 8, y, x + w + 8, y, .5), go(.3), .3, { color: C.purple, w: 4 });
+    [32, 65, 98].forEach((dx, i) => {
+      const cx = x + dx, by = y + h + 20;
+      const d = `M${cx - 7},${by} Q${cx - 11},${by - 9} ${cx},${by - 18} Q${cx + 11},${by - 9} ${cx + 7},${by} Z`;
+      P(d, go(.25, 0), .25, { color: C.orange, w: 2 }); F(d, go(.12), { color: i === 1 ? "#fecaca" : "#fde68a", op: 1 });
+    });
+    T(l1, x + w / 2, y + 26, go(.6), .6, { size: 13, color: C.purple, weight: 900, anchor: "middle", font: MONO });
+    if (l2) T(l2, x + w / 2, y + 48, go(.6), .6, { size: 13, color: C.purple, weight: 900, anchor: "middle", font: MONO });
+  }
+  // 路标：左边一根杆子 + 向右指的牌子
+  function signpost(k, x, y, word, label) {
+    const { C, P, F, T, go } = k, w = 138, h = 30;
+    P(k.wl(x + 14, y, x + 14, y + 80, .6), go(.3), .3, { color: C.brown, w: 4 });
+    const d = `M${x},${y} L${x + w - 14},${y} L${x + w},${y + h / 2} L${x + w - 14},${y + h} L${x},${y + h} Z`;
+    P(d, go(.5), .5, { color: C.blue, w: 2.5 }); F(d, go(.2, 0), { color: "#dbeafe", op: 1 });
+    T(word, x + (w - 14) / 2 + 2, y + 20, go(.6), .6, { size: 13, color: C.blue, weight: 900, anchor: "middle", font: MONO });
+    T(label, x + 24, y + 54, go(.5), .5, { size: 14, color: C.grey, weight: 900 });
+  }
+  // 链环：竖着两节，连起两个路标
+  function chainLink(k, cx, y1, y2) {
+    const m = (y1 + y2) / 2, ry = (y2 - y1) / 4 + 3;
+    k.P(k.ellipse(cx, y1 + ry - 2, 7, ry), k.go(.3), .3, { color: k.C.grey, w: 2.5 });
+    k.P(k.ellipse(cx, y2 - ry + 2, 7, ry), k.go(.3), .3, { color: k.C.grey, w: 2.5 });
+    return m;
+  }
+  // 积木：一排彩色方块，返回右端 x
+  function blocks(k, labels, x, y, colors) {
+    const fills = { [k.C.blue]: "#dbeafe", [k.C.purple]: "#ede9fe", [k.C.green]: "#d1fae5", [k.C.orange]: "#fef3c7", [k.C.brown]: "#fde68a" };
+    labels.forEach((s, i) => {
+      const col = colors[i % colors.length], w = k.estW(s, 14) + 16;
+      k.P(k.roughRect(x, y, w, 26), k.go(.35, 0), .35, { color: col, w: 2.2 });
+      k.F(k.rectD(x, y, w, 26), k.go(.15, 0), { color: fills[col], op: .95 });
+      k.T(s, x + w / 2, y + 18, k.go(.45), .45, { size: 14, color: col, weight: 900, anchor: "middle" });
+      if (i < labels.length - 1) k.T("+", x + w + 10, y + 18, k.go(.15), .15, { size: 16, color: k.C.grey, weight: 900, anchor: "middle" });
+      x += w + 20;
+    });
+    return x;
+  }
+  // 结尾绿框：两行（第一行绿色结论，第二行灰色补充），字号自动缩到不出界
+  function finalBox(k, l1, l2, y = 444) {
+    const { C } = k, fit = (s, sz) => Math.min(sz, sz * 880 / k.estW(s, sz));
+    k.P(k.roughRect(16, y, 928, 88), k.go(.9), .9, { color: C.green, w: 2.2 });
+    k.F(k.rectD(16, y, 928, 88), k.go(.2, 0), { color: "#ecfdf5", op: .9 });
+    const s1 = fit(l1, 18), s2 = fit(l2, 16);
+    k.T(l1, 36, y + 34, k.go(Math.max(1.6, l1.length * .04)), Math.max(1.6, l1.length * .04), { size: s1, color: C.green, weight: 900 });
+    k.T(l2, 36, y + 70, k.go(Math.max(1.6, l2.length * .04)), Math.max(1.6, l2.length * .04), { size: s2, color: C.grey, weight: 700 });
+  }
+
+  const GOLD_X = 248, GOLD_CH = 64;
+
+  WB_LAB.writing_alchemist = [
+    // ───────── 炼金术 ①：60 分大白话 → 100 分惊艳句 ─────────
+    {
+      build(k) {
+        const { C, N } = k;
+        N("", "这节课：同一个意思，怎样把 60 分的大白话，炼成 100 分的作文句？");
+        k.header("炼金术 ①  60分 → 100分", "满分作文炼金炉", false);
+        // 公式 1：喜好表达三级跳
+        N("炼金炉：", "传说能把普通铁块炼成金子。这里把平淡的句子炼成满分好句。");
+        furnace(k, 32, 96, "be crazy about", "enjoy doing");
+        N("基础句：", "意思对、但很平淡的句子，只能拿 60 分。比如 I like English very much.");
+        tag(k, "60分", 180, 112, C.grey, "#f1f5f9");
+        const b1 = [mline(k, "I like English very much.", GOLD_X, 112, 18, C.grey)];
+        squig(k, b1, "like", C.red);
+        N("", "阅卷老师一天看几百个 I like，早就看腻了！要换个说法。");
+        N("高级句型：", "更生动、更有变化的说法。be crazy about 意思是「对……着迷」。");
+        tag(k, "100分", 180, 146, C.green, "#d1fae5");
+        const g1 = para(k, "I am crazy about English, and I really enjoy reading English stories in my free time!", GOLD_X, 146, GOLD_CH, 18, C.ink, 26, .04);
+        ring(k, g1, "crazy about", C.purple);
+        N("enjoy doing：", "喜欢做某事，后面动词加 ing：enjoy reading。也可以用 be fond of。");
+        uline(k, g1, "enjoy reading", C.orange);
+        N("时间状语：", "说明「什么时候」的词组。in my free time 就是「在我的空闲时间」。");
+        uline(k, g1, "in my free time", C.green);
+        // 公式 2：开心与感叹升级
+        N("", "第二条公式：写开心的事，别只会说 very happy。");
+        furnace(k, 32, 212, "What a ...!", "How ...!");
+        tag(k, "60分", 180, 228, C.grey, "#f1f5f9");
+        const b2 = [mline(k, "We were very happy yesterday.", GOLD_X, 228, 18, C.grey)];
+        squig(k, b2, "very happy", C.red);
+        N("感叹句：", "表达强烈感情的句子，用 What 或 How 开头，句末用感叹号「!」。");
+        tag(k, "100分", 180, 262, C.green, "#d1fae5");
+        const g2 = para(k, "What a wonderful and unforgettable day we had! How excited we were!", GOLD_X, 262, 48, 18, C.ink, 26, .04);
+        N("What a + 形容词 + 名词：", "多么美好的一天！What a wonderful … day，后面跟 we had。");
+        ring(k, g2, "What a", C.purple); uline(k, g2, "day we had!", C.orange);
+        N("How + 形容词：", "How excited we were! 我们多么激动啊！形容词紧跟在 How 后面。");
+        ring(k, g2, "How excited", C.purple);
+        // 公式 4：重要与好处
+        N("", "第三条公式：说读书有好处，别只写 is good for us。");
+        furnace(k, 32, 328, "not only", "but also");
+        tag(k, "60分", 180, 344, C.grey, "#f1f5f9");
+        const b3 = [mline(k, "Reading books is good for us.", GOLD_X, 344, 18, C.grey)];
+        squig(k, b3, "good for us", C.red);
+        N("连接词：", "把句子连起来的词。not only… but also… 意思是「不仅……而且……」。");
+        tag(k, "100分", 180, 378, C.green, "#d1fae5");
+        const g3 = para(k, "Reading books is not only good for our study, but also opens a window to the world for us!", GOLD_X, 378, ["Reading books is not only good for our study, but also", "opens a window to the world for us!"], 18, C.ink, 26, .04);
+        uline(k, g3, "not only", C.blue); uline(k, g3, "but also", C.blue);
+        N("隐喻：", "打比方：读书 opens a window to the world，给你打开一扇看世界的窗。");
+        ring(k, g3, "opens a window to the world", C.purple);
+        N("五感法则：", "还有一条：眼睛看 look、鼻子闻 smell、耳朵听 singing，把春天写活。");
+        finalBox(k, "口诀：换掉老词 like，加上时间状语，用感叹句和 not only… but also…",
+          "还有一条 · 五感法则：视觉 look + 嗅觉 smell + 听觉 are singing（The park is very nice in spring. 的升级）");
+        N("口诀：", "换掉老词加状语，感叹句和连接词一用，60 分秒变 100 分！");
+      },
+      terms: [
+        ["炼金炉", "比喻：传说中能把普通铁块炼成金子的炉子。这里指把平淡的 60 分句子「炼」成 100 分好句子的方法。"],
+        ["黄金升级公式", "把普通句子变高级的固定套路，比如用 be crazy about 换掉 like。"],
+        ["基础句（60 分句）", "意思对、语法也对，但很平淡的句子，比如 I like English very much.。"],
+        ["高级句型（100 分句）", "意思一样，但用了更生动、更有变化的说法，让阅卷老师眼前一亮的句子。"],
+        ["阅卷老师", "考试时给作文打分的老师。"],
+        ["be crazy about", "对……着迷、超级喜欢，比 like 更有感情：I am crazy about English.。"],
+        ["be fond of", "喜欢……，也可以用来替换 like。"],
+        ["enjoy doing sth.", "喜欢做某事。enjoy 后面的动词要加 ing：enjoy reading（喜欢读书）。sth. 是 something（某事）的缩写。"],
+        ["状语 / 时间状语", "补充说明「什么时候、在哪里、怎么样」的词组。说时间的叫时间状语，比如 in my free time（在空闲时间）、yesterday。"],
+        ["感叹句", "表达强烈感情的句子，用 What 或 How 开头，句末用感叹号：What a wonderful day we had!"],
+        ["What a + adj + n + 主谓", "感叹句公式：What a + 形容词 + 名词 + 主语 + 谓语，比如 What a wonderful day we had!"],
+        ["How + adj + 主谓", "感叹句公式：How + 形容词 + 主语 + 谓语，比如 How excited we were!"],
+        ["adj / n", "adj 是形容词（描述样子、心情的词，比如 wonderful）；n 是名词（人或东西的名字，比如 day）。"],
+        ["主谓", "主语 + 谓语：主语是「谁」（we），谓语是「做什么 / 怎么样」（had、were）。"],
+        ["连接词", "把词或句子连起来的词，比如 and、but、not only… but also…。"],
+        ["not only… but also…", "不仅……而且……：Reading books is not only good for our study, but also opens a window to the world.。"],
+        ["隐喻（比喻）", "打比方。读书「打开一扇通向世界的窗」，意思是读书让你看到更大的世界。"],
+        ["五感法则", "写景时把看到的（look）、闻到的（smell）、听到的（are singing）都写出来，句子就有画面。"]
+      ]
+    },
+    // ───────── 炼金术 ②：四大逻辑衔接词链 ─────────
+    {
+      build(k) {
+        const { C, N } = k;
+        N("", "为什么有的作文读起来像一盘散沙？因为句子和句子之间没有「路标」。");
+        k.header("炼金术 ②  四大逻辑衔接词链", "满分作文炼金炉", false);
+        N("衔接词：", "连接句子、说明前后关系的词，比如 First of all、What's more。");
+        signpost(k, 28, 92, "First of all,", "第一棒：开头");
+        N("逻辑路标：", "像路边的指示牌，告诉老师：现在讲第一点、在补充，还是要转折了。");
+        tag(k, "普通", 180, 112, C.grey, "#f1f5f9");
+        const b1 = [mline(k, "First, I will do homework.", GOLD_X, 112, 18, C.grey)];
+        squig(k, b1, "First,", C.red);
+        N("First of all,：", "「首先」，放在句子开头，后面加逗号。也可以用 To begin with,。");
+        tag(k, "高分", 180, 146, C.green, "#d1fae5");
+        const g1 = para(k, "First of all, / To begin with, I am going to finish my homework carefully.", GOLD_X, 146, GOLD_CH, 18, C.ink, 26, .04);
+        ring(k, g1, "First of all,", C.blue); ring(k, g1, "To begin with,", C.blue);
+        // 第二棒
+        N("Cohesion Chain：", "衔接链。每一句都用衔接词扣住上一句，像链子一环扣一环。");
+        chainLink(k, 42, 174, 206);
+        signpost(k, 28, 208, "What's more,", "第二棒：递进");
+        tag(k, "普通", 180, 228, C.grey, "#f1f5f9");
+        const b2 = [mline(k, "And I also help my mom.", GOLD_X, 228, 18, C.grey)];
+        squig(k, b2, "And", C.red);
+        N("递进：", "意思再往前进一步，「而且」。用 What's more, 或 Besides, 代替 And。");
+        tag(k, "高分", 180, 262, C.green, "#d1fae5");
+        const g2 = para(k, "What's more, / Besides, I often help my parents do some housework, such as sweeping the floor.", GOLD_X, 262, ["What's more, / Besides, I often help my parents do some", "housework, such as sweeping the floor."], 18, C.ink, 26, .04);
+        ring(k, g2, "What's more,", C.blue); ring(k, g2, "Besides,", C.blue);
+        N("such as：", "「比如」，后面举例子：such as sweeping the floor（比如扫地）。");
+        uline(k, g2, "such as sweeping the floor", C.orange);
+        // 第三棒
+        chainLink(k, 42, 290, 322);
+        signpost(k, 28, 324, "Although", "第三棒：转折");
+        N("转折：", "前后意思相反，比如「虽然很累，但是很开心」。");
+        tag(k, "普通", 180, 344, C.grey, "#f1f5f9");
+        const b3 = [mline(k, "I was tired, but I was happy.", GOLD_X, 344, 18, C.grey)];
+        tag(k, "高分", 180, 378, C.green, "#d1fae5");
+        const g3 = para(k, "Although I felt a little tired after the trip, I learned a lot and had a great time!", GOLD_X, 378, GOLD_CH, 18, C.ink, 26, .04);
+        ring(k, g3, "Although", C.blue);
+        N("黄金铁律：", "英语里 Although（虽然）和 but（但是）不能出现在同一个句子里！");
+        const rx = b3[0].x + b3[0].text.length * b3[0].cw + 30;
+        k.T("Although + but", rx, 344, k.go(.7), .7, { size: 16, color: C.red, weight: 900, font: MONO });
+        k.T("不能同句！", rx + 14 * 9.6 + 10, 344, k.go(.5), .5, { size: 16, color: C.red, weight: 900 });
+        N("", "Because（因为）和 so（所以）也一样，二选一，不能一起用！");
+        const g3end = g3[1].x + g3[1].text.length * g3[1].cw + 30;
+        k.T("Because + so", g3end, 404, k.go(.7), .7, { size: 16, color: C.red, weight: 900, font: MONO });
+        k.T("也不能同句！", g3end + 12 * 9.6 + 10, 404, k.go(.5), .5, { size: 16, color: C.red, weight: 900 });
+        // 第四棒：结尾框
+        N("总结：", "最后一棒收尾：All in all,（总而言之）或 In a word,（总之），代替 At last。");
+        finalBox(k, "第四棒 · 收尾：All in all, / In a word, my weekend is busy but meaningful. I can't wait for it!",
+          "口诀：首先 First of all，而且 What's more，虽然 Although 不配 but，总之 All in all！");
+        N("busy but meaningful：", "「忙碌但有意义」。这句只有 but、没有 Although，所以没问题。");
+        N("口诀：", "首先 First of all，而且 What's more，虽然不配 but，总之 All in all！");
+      },
+      terms: [
+        ["衔接词", "连接句子、说明前后关系的词，比如 First of all（首先）、What's more（而且）、Although（虽然）。"],
+        ["逻辑路标", "比喻：衔接词像路边的指示牌，告诉读者现在是第一点、补充、转折还是总结。"],
+        ["Cohesion Chain（衔接链）", "比喻：每句话用衔接词扣住上一句，像链子一环扣一环，文章就连成一整片。"],
+        ["一盘散沙", "比喻：句子之间没有联系，散散的，读起来不连贯。"],
+        ["First of all, / To begin with,", "首先。放在句首，后面加逗号，引出第一点。"],
+        ["递进", "意思再往前进一步，表示「而且、还有」。用 What's more, 或 Besides,。"],
+        ["What's more, / Besides,", "而且、另外。用来补充新的一点，代替满篇的 And。"],
+        ["such as", "比如。后面举例子：such as sweeping the floor（比如扫地）。"],
+        ["转折", "前后意思相反，比如「虽然累，但是开心」。"],
+        ["Although", "虽然。英语里 Although 和 but 不能在同一句里一起用，只留一个。"],
+        ["Because / so", "因为 / 所以。英语里也不能在同一句里一起用，二选一。"],
+        ["All in all, / In a word,", "总而言之 / 总之。放在结尾，把全文收起来，代替 At last。"],
+        ["busy but meaningful", "忙碌但有意义。"]
+      ]
+    },
+    // ───────── 炼金术 ③：三大必考母题范文积木 ─────────
+    {
+      build(k) {
+        const { C, N } = k;
+        N("", "小学考场作文，95% 都逃不出三大母题：写人、写过去的经历、写计划。");
+        k.header("炼金术 ③  三大必考母题", "满分作文炼金炉", false);
+        N("母题：", "最常考的作文题型，像「妈妈题」，很多作文题都是它变出来的。");
+        k.T("母题一：写人篇", 32, 104, k.go(.9), .9, { size: 20, color: C.brown, weight: 900 });
+        N("范文积木：", "把满分范文拆成几块积木，也叫骨架。按顺序搭起来，就是一篇好文章。");
+        blocks(k, ["外貌 with短语", "性格 adj", "爱好 be good at", "榜样力量"], 200, 84, [C.blue, C.purple, C.green, C.orange]);
+        const p1 = para(k, "Linda is a tall and outgoing girl with big bright eyes. Not only is she polite and helpful, but she is also good at playing the piano. Whenever I have trouble with English, she always helps me patiently.", 32, 144, 92, 16, C.ink, 28, .032);
+        N("后置定语：", "放在名词后面修饰它。with big bright eyes 挂在 girl 后面，省掉一句话。");
+        uline(k, p1, "with big bright eyes", C.blue);
+        N("性格品质：", "用形容词写脾气：outgoing 外向，polite 有礼貌，helpful 乐于助人。");
+        uline(k, p1, "outgoing", C.purple); uline(k, p1, "polite", C.purple); uline(k, p1, "helpful", C.purple);
+        N("Not only is she…：", "「她不仅……」。Not only 放在句首时，is 要跑到 she 前面。");
+        ring(k, p1, "Not only is she", C.red);
+        N("be good at：", "擅长……，后面动词加 ing：good at playing the piano（擅长弹钢琴）。");
+        uline(k, p1, "good at playing the piano", C.green);
+        N("Whenever… always…：", "「每当……她总是……」，写出朋友帮助我的小细节，这就是榜样力量。");
+        ring(k, p1, "Whenever", C.orange); ring(k, p1, "always", C.orange);
+        // 母题二
+        k.T("母题二：过去经历篇", 32, 272, k.go(.9), .9, { size: 20, color: C.brown, weight: 900 });
+        blocks(k, ["时间·天气·交通", "上午·下午活动", "感受·感叹"], 240, 252, [C.blue, C.green, C.orange]);
+        const p2 = para(k, "Last Sunday, the weather was sunny and warm. I went to the countryside with my family by car. In the morning, we picked fresh strawberries and fed the cute sheep. In the afternoon, we took many beautiful photos by the lake. Tired as we were, what a fantastic day we had!", 32, 316, 92, 16, C.ink, 30, .032);
+        N("过去式：", "已经发生的事，动词要变样：is→was，go→went，take→took。");
+        ["was", "went", "picked", "fed", "took", "had"].forEach(w => ring(k, p2, w, C.red));
+        N("", "全文动词都锁定过去式：was, went, picked, fed, took, had，一个都不能漏！");
+        uline(k, p2, "In the morning,", C.green); uline(k, p2, "In the afternoon,", C.green);
+        N("Tired as we were：", "「虽然我们很累」。结尾再用感叹句，像画龙点睛，一下子亮起来。");
+        uline(k, p2, "Tired as we were,", C.brown); uline(k, p2, "what a fantastic day we had!", C.orange);
+        N("be going to：", "母题三写计划：be going to「打算做……」，再换着用 will、plan to。");
+        finalBox(k, "母题三 · 计划篇积木：打算总起(be going to) + 三项计划(First/Besides/Finally) + 期待收尾",
+          "口诀：写人抓外貌·性格·爱好；写经历锁定过去式；写计划用 be going to / will / plan to / look forward to！");
+        N("口诀：", "写人抓外貌性格爱好，写经历锁定过去式，写计划要换着用将来的说法！");
+      },
+      terms: [
+        ["母题", "最常考的作文题型，像「妈妈题」，很多作文题都是从它变出来的：写人、写过去的经历、写计划。"],
+        ["范文", "可以学习、模仿的好作文。"],
+        ["积木 / 核心骨架", "比喻：把一篇满分作文拆成几块固定的部分，按顺序搭起来就是一篇好文章。"],
+        ["外貌特征", "人长什么样，比如 tall（高的）、big bright eyes（大大的明亮眼睛）。"],
+        ["性格品质", "人是什么脾气，比如 outgoing（外向的）、polite（有礼貌的）、helpful（乐于助人的）。"],
+        ["with 短语 / 后置定语", "放在名词后面修饰它的词组，比如 a girl with big bright eyes（长着大眼睛的女孩），一句顶两句。"],
+        ["be good at", "擅长……，后面的动词加 ing：be good at playing the piano（擅长弹钢琴）。"],
+        ["Not only is she…, but she is also…", "她不仅……而且……。Not only 放在句首时，is 要跑到 she 前面。"],
+        ["Whenever… always…", "每当……总是……，用来写一件常常发生的小事。"],
+        ["榜样力量", "写出这个人值得学习的地方，比如总是耐心地帮助我。"],
+        ["过去式", "表示已经发生的事，动词要变形：is→was，go→went，pick→picked，feed→fed，take→took，have→had。"],
+        ["Tired as we were", "虽然我们很累。一种高级的「虽然」说法。"],
+        ["画龙点睛", "比喻：在最关键的地方加一笔，让整篇文章一下子生动起来，比如结尾的感叹句。"],
+        ["be going to / will / plan to", "都可以表示将来要做的事：打算、将会、计划。交替使用，句子更丰富。"],
+        ["look forward to", "期待……：I am really looking forward to it!（我真的很期待！）"]
+      ]
+    }
+  ];
+})();
+
+// ==================== 白板脚本：三大隐喻密码（身体 × 颜色 × 动物习性）3 个案例 ====================
+// 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
+// 本文件的小工具都包在 IIFE 里，避免和其他页签文件重名。
+(function () {
+  const MONO = '"Courier New",Courier,monospace';
+  // 写一行字（自动按字数给时长）
+  const tx = (k, s, x, y, o = {}) => {
+    const dur = o.dur ?? Math.max(.35, [...String(s)].length * .05);
+    k.T(s, x, y, k.go(dur), dur, { size: 16, color: k.C.ink, ...o });
+  };
+  // 卡片框：描边 + 淡色底
+  const panel = (k, x, y, w, h, color, fill) => {
+    k.P(k.roughRect(x, y, w, h), k.go(.45, 0), .45, { color, w: 2 });
+    k.F(k.rectD(x, y, w, h), k.go(.1, .05), { color: fill, op: .55 });
+  };
+  // 一笔路径 + 可选涂色
+  const draw = (k, d, color, dur = .4, fill, op = .9, w = 2.5) => {
+    k.P(d, k.go(dur, fill ? 0 : .1), dur, { color, w });
+    if (fill) k.F(d, k.go(.1, .05), { color: fill, op });
+  };
+  // 中文字划掉（按估算宽度）
+  const strikeZh = (k, s, x, y, size = 15) => {
+    const w = k.estW(s, size);
+    k.P(k.wl(x - 2, y - size * .35, x + w + 2, y - size * .35, .5), k.go(.35), .35, { color: k.C.red, w: 2.5 });
+  };
+  // 宽卡片的文字区：英文短语 + 字面（划掉）+ 比喻
+  const cardText = (k, px, py, key, keyColor, keyZh, phrase, lit, fig, litLabel = "字面：", figLabel = "比喻：") => {
+    const { C } = k, x = px + 132;
+    tx(k, key, x, py + 30, { size: 20, color: keyColor, weight: 900, font: MONO });
+    if (keyZh) tx(k, keyZh, x + key.length * 12 + 14, py + 30, { size: 14, color: C.grey });
+    tx(k, phrase, x, py + 62, { size: 17, color: C.ink, weight: 700, font: MONO });
+    const lx = x + k.estW(litLabel, 15);
+    tx(k, litLabel, x, py + 92, { size: 15, color: C.red, weight: 700, dur: .3 });
+    tx(k, lit, lx, py + 92, { size: 15, color: C.red, weight: 700 });
+    if (litLabel === "字面：") strikeZh(k, lit, lx, py + 92);
+    tx(k, figLabel + fig, x, py + 122, { size: 15, color: C.green, weight: 900 });
+  };
+
+  WB_LAB.metaphor_code = [
+    // ───────── ① 人体部位空间隐喻 ─────────
+    {
+      build(k) {
+        const { C, N, P, T, F, go } = k;
+        N("", "这节课：为什么山脚在英语里叫 foot of the mountain（山的脚）？");
+        k.header("密码一  人体部位隐喻", "三大隐喻密码", false);
+        N("隐喻：", "不说「像」，直接把一个东西叫成另一个东西。比如把山的最下面叫「脚」。");
+        tx(k, "身体 = 第一把尺子", 26, 98, { size: 18, color: C.brown, weight: 900 });
+        k.wait(1.6);
+        // —— 小人 ——
+        const cx = 70;
+        N("身体尺子：", "古人用自己的身体去量万物：从头到脚，对应东西的顶、面、口、手、底。");
+        const hd = k.ellipse(cx, 140, 24, 26);
+        draw(k, hd, C.ink, .6, "#fde4cf", .9);
+        P(k.wl(cx - 9, 135, cx - 7, 135, .2) + " " + k.wl(cx + 7, 135, cx + 9, 135, .2), go(.2), .2, { color: C.ink, w: 3.5 });
+        P(`M${cx - 7},${150} Q${cx},${156} ${cx + 7},${150}`, go(.25), .25, { color: C.red, w: 2 });
+        P(k.wl(cx, 166, cx, 182, .3), go(.2), .2, { color: C.ink, w: 3 });
+        P(k.roughRect(cx - 22, 182, 44, 100), go(.6, 0), .6, { color: C.blue, w: 2.5 });
+        F(k.rectD(cx - 22, 182, 44, 100), go(.25), { color: "#dbeafe", op: .9 });
+        P(k.wl(cx - 22, 190, cx - 40, 262, .6) + " " + k.wl(cx + 22, 190, cx + 40, 262, .6), go(.5), .5, { color: C.ink, w: 3 });
+        P(k.wl(cx - 12, 282, cx - 16, 386, .6) + " " + k.wl(cx + 12, 282, cx + 16, 386, .6), go(.5), .5, { color: C.ink, w: 3 });
+        P(k.wl(cx - 16, 388, cx - 34, 390, .3) + " " + k.wl(cx + 16, 388, cx + 34, 390, .3), go(.3), .3, { color: C.ink, w: 4 });
+        // —— 身体标签 ——
+        const lab = (y, fy, fx, en, zh, col) => {
+          P(k.wl(fx, fy, 128, y - 5, .4), go(.25), .25, { color: "#94a3b8", w: 1.5 });
+          tx(k, en, 132, y, { size: 15, color: col, weight: 900, font: MONO });
+          tx(k, zh, 132, y + 19, { size: 13, color: C.grey });
+        };
+        N("字面意思：", "词本来的意思，foot 就是「脚」。比喻意思：借过去用在别的东西上的意思。");
+        lab(122, 118, cx + 18, "head", "最高处·统帅", C.purple);
+        lab(170, 140, cx + 24, "face/eye", "表面·孔洞中心", C.orange);
+        lab(218, 162, cx + 6, "mouth/neck", "出入口·窄处", C.red);
+        lab(276, 262, cx + 42, "hand/arm", "指针·帮手·扶手", C.blue);
+        lab(380, 388, cx + 36, "foot/leg", "最底部·支撑", C.green);
+        const X0 = 290, X1 = 624, W = 324, H = 160, Y0 = 82, Y1 = 252;
+        // —— A：山脚 foot ——
+        N("foot（脚）：", "脚在身体最下面，所以山最下面那一圈，就叫山的脚——山脚。");
+        panel(k, X0, Y0, W, H, C.green, "#ecfdf5");
+        { const px = X0, py = Y0;
+          draw(k, `M${px + 14},${py + 96} L${px + 66},${py + 18} L${px + 122},${py + 96}`, C.brown, .7);
+          draw(k, `M${px + 50},${py + 42} L${px + 66},${py + 18} L${px + 83},${py + 43} L${px + 74},${py + 38} L${px + 66},${py + 46} L${px + 58},${py + 38} Z`, C.grey, .4, "#fff", 1, 1.5);
+          P(k.wl(px + 8, py + 98, px + 128, py + 98, .5), go(.3), .3, { color: C.ink, w: 2 });
+          draw(k, `M${px + 22},${py + 96} v-12 l7,-7 l7,7 v12 Z`, C.red, .35, "#fecaca", 1, 2);
+          P(k.ellipse(px + 66, py + 94, 58, 12), go(.45), .45, { color: C.red, w: 2.5 });
+          tx(k, "字面：脚", px + 145, py + 38, { size: 15, color: C.red, weight: 700 });
+          tx(k, "比喻：最底部", px + 145, py + 66, { size: 15, color: C.green, weight: 900 });
+          tx(k, "→ 山脚下", px + 145, py + 94, { size: 15, color: C.green, weight: 900 });
+          tx(k, "at the foot of the mountain", px + 12, py + 128, { size: 16, color: C.ink, font: MONO });
+          tx(k, "在山脚下", px + 12, py + 150, { size: 14, color: C.grey }); }
+        // —— B：钟面 face + 指针 hand ——
+        N("face（脸）：", "脸是朝外给人看的那一面，所以钟朝外的那一面就叫钟面 clock face。");
+        panel(k, X1, Y0, W, H, C.orange, "#fffbeb");
+        { const px = X1, py = Y0, ccx = px + 66, ccy = py + 56;
+          draw(k, k.ellipse(ccx, ccy, 44, 44), C.orange, .7, "#fef3c7", 1, 3);
+          [[0, -1], [1, 0], [0, 1], [-1, 0]].forEach(([a, b]) => P(k.wl(ccx + a * 36, ccy + b * 36, ccx + a * 42, ccy + b * 42, .2), go(.12, .02), .12, { color: C.ink, w: 3 }));
+          tx(k, "字面：脸、手", px + 145, py + 38, { size: 15, color: C.red, weight: 700 });
+          tx(k, "比喻：钟面、指针", px + 145, py + 66, { size: 15, color: C.green, weight: 900 });
+          N("hand（手）：", "手会指方向，钟上指时间的针就叫 hand。短的那根是时针 hour hand。");
+          P(k.wl(ccx, ccy, ccx, ccy - 34, .3), go(.35), .35, { color: C.ink, w: 3 });
+          P(k.wl(ccx, ccy, ccx, ccy + 22, .3), go(.35), .35, { color: C.blue, w: 5 });
+          tx(k, "短针指 6", px + 145, py + 94, { size: 14, color: C.blue, weight: 700 });
+          tx(k, "face of a clock · hour hand", px + 12, py + 128, { size: 16, color: C.ink, font: MONO });
+          tx(k, "钟面表盘 · 时针", px + 12, py + 150, { size: 14, color: C.grey }); }
+        // —— C：河口 mouth ——
+        N("mouth（嘴）：", "嘴是进出的口子，河流进大海的口子就叫河口 mouth of a river。");
+        panel(k, X0, Y1, W, H, C.blue, "#eff6ff");
+        { const px = X0, py = Y1;
+          draw(k, `M${px + 12},${py + 40} C${px + 50},${py + 34} ${px + 70},${py + 46} ${px + 92},${py + 26}`, C.blue, .45);
+          draw(k, `M${px + 12},${py + 64} C${px + 50},${py + 68} ${px + 70},${py + 60} ${px + 92},${py + 84}`, C.blue, .45);
+          k.F(`M${px + 12},${py + 40} C${px + 50},${py + 34} ${px + 70},${py + 46} ${px + 92},${py + 26} L${px + 128},${py + 14} L${px + 128},${py + 100} L${px + 92},${py + 84} C${px + 70},${py + 60} ${px + 50},${py + 68} ${px + 12},${py + 64} Z`, go(.3), { color: "#bfdbfe", op: .8, back: 2 });
+          P(k.wave(px + 100, px + 124, py + 52, 2), go(.3), .3, { color: C.blue, w: 1.5 });
+          tx(k, "大海", px + 100, py + 96, { size: 12, color: C.blue });
+          P(k.ellipse(px + 92, py + 55, 13, 33), go(.45), .45, { color: C.red, w: 2.5 });
+          tx(k, "字面：嘴", px + 145, py + 38, { size: 15, color: C.red, weight: 700 });
+          tx(k, "比喻：出入口", px + 145, py + 66, { size: 15, color: C.green, weight: 900 });
+          tx(k, "→ 河口、洞口", px + 145, py + 94, { size: 15, color: C.green, weight: 900 });
+          tx(k, "mouth of a river", px + 12, py + 128, { size: 16, color: C.ink, font: MONO });
+          tx(k, "河流入海口", px + 12, py + 150, { size: 14, color: C.grey }); }
+        // —— D：队首 head ——
+        N("head（头）：", "头在最高、最前面，所以排在队伍最前面就是 at the head of the line。");
+        panel(k, X1, Y1, W, H, C.purple, "#f5f3ff");
+        { const px = X1, py = Y1;
+          [0, 1, 2, 3].forEach(i => {
+            const hx = px + 22 + i * 28, big = i === 0;
+            P(k.ellipse(hx, py + 46, big ? 9 : 8, big ? 9 : 8), go(.2, .02), .2, { color: big ? C.purple : C.ink, w: 2.2 });
+            P(k.wl(hx, py + 56, hx, py + 82, .3) + " " + k.wl(hx, py + 82, hx - 6, py + 98, .3) + " " + k.wl(hx, py + 82, hx + 6, py + 98, .3), go(.2, .02), .2, { color: big ? C.purple : C.ink, w: 2.2 });
+          });
+          k.miniCrown(px + 22, py + 32, C.purple);
+          tx(k, "字面：头", px + 145, py + 38, { size: 15, color: C.red, weight: 700 });
+          tx(k, "比喻：最前端、带头人", px + 145, py + 66, { size: 15, color: C.green, weight: 900 });
+          N("headmaster：", "一所学校带头的人，也就是一校之「头」——校长。");
+          tx(k, "headmaster 校长", px + 145, py + 94, { size: 15, color: C.purple, weight: 900 }); k.wait(1);
+          tx(k, "at the head of the line", px + 12, py + 128, { size: 16, color: C.ink, font: MONO });
+          tx(k, "排在队首", px + 12, py + 150, { size: 14, color: C.grey }); }
+        N("还有：", "针眼叫「针的眼睛」，瓶颈叫「瓶子的脖子」，帮忙叫「给我一只手」！");
+        tx(k, "还有：eye of a needle 针眼 · neck of a bottle 瓶颈 · give me a hand 帮把手", 290, 432, { size: 14, color: C.grey, dur: 1.5 }); k.wait(1.6);
+        N("", "连起来读一句：山脚下有一个小村庄。");
+        k.final("There is a small village at the foot of the mountain.", "foot", "山脚下有一个小村庄。  从头到脚：头最高、脸朝外、嘴是口、手会指、脚在底！");
+        N("口诀：", "身体就是尺子：头是顶，脸是面，嘴是口，手会指，脚是底！");
+      },
+      terms: [
+        ["隐喻", "一种打比方的方法：不说「像」，直接把一个东西叫成另一个东西。比如把山的最下面叫 foot（脚）。"],
+        ["隐喻密码", "英语里藏着的打比方规律。懂了它，就知道 foot、blue、bee 这些词为什么会有别的意思。"],
+        ["字面意思", "一个词本来的、最直接的意思，比如 foot 就是「脚」，blue 就是「蓝色」。"],
+        ["比喻意思（隐喻扩展）", "把词借过去用在别的东西上得到的新意思，比如 foot of the mountain 是「山脚」。页面上叫「隐喻扩展」。"],
+        ["物理本源", "页面卡片上的词：这个词最早指的那个看得见、摸得着的东西，比如 hand 本来就是人的「手」。"],
+        ["空间隐喻", "用身体的位置（头在上、脚在下、脸朝外）去说东西的位置，比如山脚、床头、钟面。"],
+        ["习语", "固定说法，几个词合在一起有特别的意思，不能一个词一个词地翻，比如 give me a hand（帮我一把）。"],
+        ["时针 / 分针", "钟上指时间的针：短的叫时针 hour hand，长的叫分针 minute hand。英语里叫它们「手」。"],
+        ["瓶颈 / 入海口", "瓶颈 neck of a bottle：瓶子最细的「脖子」。入海口 mouth of a river：河流进大海的「嘴」。"],
+        ["二手的 second-hand", "被别人用过、再转到你手里的东西，比如二手书。"]
+      ]
+    },
+    // ───────── ② 色彩情绪与文化隐喻 ─────────
+    {
+      build(k) {
+        const { C, N, P, go } = k;
+        N("", "这节课：颜色词只按字面翻译，会闹大笑话！");
+        k.header("密码二  颜色隐喻", "三大隐喻密码", false);
+        N("文化潜台词：", "一个说法背后藏着的、外国人一听就懂的意思，字面上看不出来。");
+        tx(k, "颜色词 ≠ 只是颜色：", 26, 100, { size: 18, color: C.brown, weight: 900 }); k.wait(.6);
+        tx(k, "字面意思", 210, 100, { size: 18, color: C.red, weight: 900 });
+        tx(k, "✗  →", 288, 100, { size: 18, color: C.red, weight: 900 });
+        tx(k, "比喻意思", 336, 100, { size: 18, color: C.green, weight: 900 });
+        const XA = 20, XB = 485, W = 455, H = 148, YA = 118, YB = 280;
+        // —— BLUE ——
+        N("feel blue：", "不是变成蓝色！蓝色像阴沉的大海、忧伤的蓝调音乐，意思是心情低落。");
+        panel(k, XA, YA, W, H, C.blue, "#eff6ff");
+        { const px = XA, py = YA, fx = px + 62, fy = py + 66;
+          draw(k, k.ellipse(fx, fy, 38, 38), C.blue, .6, "#bfdbfe", .9, 3);
+          P(k.wl(fx - 15, fy - 10, fx - 13, fy - 10, .2) + " " + k.wl(fx + 13, fy - 10, fx + 15, fy - 10, .2), go(.2), .2, { color: C.ink, w: 4 });
+          P(`M${fx - 14},${fy + 18} Q${fx},${fy + 6} ${fx + 14},${fy + 18}`, go(.3), .3, { color: C.ink, w: 2.5 });
+          draw(k, `M${fx + 20},${fy - 2} q-6,10 0,13 q6,-3 0,-13 Z`, C.blue, .3, "#60a5fa", 1, 1.5);
+          cardText(k, px, py, "BLUE", C.blue, "蔚蓝 → 忧郁", "feel blue / look blue", "变成蓝色", "心情低落 = feel sad"); }
+        // —— GREEN ——
+        N("a green hand：", "不是绿色的手！绿色像刚长出的嫩芽，嫩嫩的，意思是新手、菜鸟。");
+        panel(k, XB, YA, W, H, C.green, "#ecfdf5");
+        { const px = XB, py = YA;
+          P(`M${px + 40},${py + 124} C${px + 38},${py + 100} ${px + 44},${py + 80} ${px + 42},${py + 64}`, go(.4), .4, { color: C.green, w: 3 });
+          draw(k, `M${px + 42},${py + 70} C${px + 22},${py + 52} ${px + 12},${py + 64} ${px + 14},${py + 74} C${px + 26},${py + 80} ${px + 36},${py + 78} ${px + 42},${py + 70} Z`, C.green, .4, "#86efac", 1, 2);
+          draw(k, `M${px + 42},${py + 66} C${px + 58},${py + 44} ${px + 70},${py + 52} ${px + 70},${py + 60} C${px + 60},${py + 70} ${px + 50},${py + 70} ${px + 42},${py + 66} Z`, C.green, .4, "#86efac", 1, 2);
+          draw(k, k.roughRect(px + 82, py + 30, 28, 82), C.ink, .5, "#334155", 1, 2);
+          [0, 1, 2].forEach(i => { const d = k.ellipse(px + 96, py + 46 + i * 25, 9, 9); P(d, go(.15, 0), .15, { color: C.ink, w: 1.5 }); k.F(d, go(.15), { color: i === 2 ? "#22c55e" : "#64748b", op: 1 }); });
+          cardText(k, px, py, "GREEN", C.green, "嫩芽 → 新手", "a green hand", "绿色的手", "新手、菜鸟");
+          N("give the green light：", "亮绿灯 = 可以走，就是批准、同意。"); k.wait(2.4); }
+        // —— BLACK TEA ——
+        N("black tea：", "不是黑茶！英语看的是干茶叶，乌黑乌黑的；中文看的是泡出来的红色茶水。");
+        panel(k, XA, YB, W, H, C.ink, "#f8fafc");
+        { const px = XA, py = YB;
+          const cup = `M${px + 22},${py + 58} L${px + 30},${py + 108} Q${px + 52},${py + 118} ${px + 74},${py + 108} L${px + 82},${py + 58} Z`;
+          draw(k, cup, C.ink, .6, "#fff", 1, 2.5);
+          draw(k, `M${px + 25},${py + 66} L${px + 79},${py + 66} L${px + 74},${py + 106} Q${px + 52},${py + 114} ${px + 30},${py + 106} Z`, "#b91c1c", .4, "#dc2626", .8, 1.5);
+          P(`M${px + 82},${py + 70} q18,4 8,24 q-4,6 -10,6`, go(.3), .3, { color: C.ink, w: 2.5 });
+          P(k.wl(px + 12, py + 124, px + 96, py + 124, .5), go(.25), .25, { color: C.ink, w: 2.5 });
+          [[88, 30], [104, 44]].forEach(([dx, dy]) => draw(k, `M${px + dx},${py + dy} q8,-12 16,0 q-8,10 -16,0 Z`, C.ink, .25, "#111827", 1, 1.5));
+          tx(k, "干叶黑", px + 86, py + 66, { size: 12, color: C.ink });
+          tx(k, "茶水红", px + 34, py + 140, { size: 12, color: "#b91c1c", weight: 700 });
+          cardText(k, px, py, "BLACK", C.ink, "黑 ≠ 红", "black tea", "黑茶", "红茶（看干茶叶的颜色）", "字面：", "其实：");
+          N("中式错译：", "照着中文硬翻，把红茶说成 red tea，就错啦！"); k.wait(2.4); }
+        // —— WHITE & GOLDEN ——
+        N("a white lie：", "白色像干净的雪，没有坏心眼。white lie 是不伤人的善意的谎言。");
+        panel(k, XB, YB, W, H, C.orange, "#fffbeb");
+        { const px = XB, py = YB;
+          draw(k, `M${px + 14},${py + 22} h86 q8,0 8,8 v42 q0,8 -8,8 h-56 l-14,16 v-16 h-16 q-8,0 -8,-8 v-42 q0,-8 8,-8 Z`, C.grey, .7, "#fff", 1, 2.5);
+          draw(k, `M${px + 58},${py + 66} C${px + 38},${py + 52} ${px + 42},${py + 34} ${px + 58},${py + 44} C${px + 74},${py + 34} ${px + 78},${py + 52} ${px + 58},${py + 66} Z`, C.red, .4, "#fda4af", 1, 2);
+          draw(k, k.ellipse(px + 88, py + 116, 20, 20), C.orange, .4, "#fde047", 1, 2.5);
+          tx(k, "$", px + 83, py + 122, { size: 16, color: C.brown, weight: 900, font: MONO });
+          cardText(k, px, py, "WHITE", C.grey, "& GOLDEN", "a white lie", "白色的谎言", "善意的谎言，不伤人");
+          N("golden：", "金子最宝贵，golden opportunity 就是千载难逢的黄金良机。"); k.wait(2.6); }
+        N("", "连起来读一句：别难过！一切都会好起来的。");
+        k.final("Don't feel blue! Everything will be fine.", [], "别难过！一切都会好起来的。  蓝是忧，绿是新，黑茶是红茶，白谎是善意！");
+        P(k.wl(40 + 11 * 14.4, 487, 40 + 15 * 14.4, 487, .6), go(.4), .4, { color: C.orange, w: 4 });
+        N("口诀：", "颜色藏心情：蓝是忧，绿是新，黑茶是红茶，白谎是善意，金子最宝贵！");
+      },
+      terms: [
+        ["文化潜台词", "一个说法背后藏着的意思，外国人一听就懂，但只看字面看不出来，比如 feel blue 是「心情低落」。"],
+        ["色彩情绪", "用颜色说心情：blue 蓝色 = 忧郁，所以 feel blue 就是不开心。"],
+        ["中式错译", "照着中文一个字一个字硬翻出来的错英语，比如把红茶说成 red tea，正确是 black tea。"],
+        ["a green hand", "新手、菜鸟。绿色像刚长出的嫩芽，还很嫩，经验不足。"],
+        ["give the green light", "亮绿灯 = 可以通行，引申为「批准、同意」。"],
+        ["a red-letter day", "喜庆的大好日子。西方日历上节日用红字印，所以叫「红字的日子」。"],
+        ["a white lie", "善意的谎言：为了不让别人难过而说的、不伤人的小谎。"],
+        ["golden opportunity", "千载难逢的黄金良机，像金子一样宝贵。"]
+      ]
+    },
+    // ───────── ③ 动物习性比喻与同级比较 ─────────
+    {
+      build(k) {
+        const { C, N, P, T, go } = k;
+        N("", "这节课：英语里超爱用动物的特点打比方，背会了写作口语都加分！");
+        k.header("密码三  动物习性比喻", "三大隐喻密码", false);
+        N("同级比较：", "说两样东西「一样……」，用 as + 形容词 + as：和蜜蜂一样忙。");
+        const m = k.mono("as ______ as a ______", 40, 104, 24, C.ink, 900); k.wait(1.4);
+        N("形容词原级：", "形容词本来的样子，不加 -er、-est，比如 busy，不能写成 busier。");
+        tx(k, "形容词原级", m.x0("______") + 2, 130, { size: 14, color: C.purple, weight: 900 });
+        tx(k, "动物", m.x0("______", 1) + 22, 130, { size: 14, color: C.orange, weight: 900 }); k.wait(1.6);
+        N("习性：", "动物天生就有的特点，比如蜜蜂总在忙着采蜜。");
+        tx(k, "动物的习性 → 人的样子", 400, 104, { size: 18, color: C.brown, weight: 900 }); k.wait(1.2);
+        const XA = 20, XB = 485, W = 455, H = 140, YA = 150, YB = 300;
+        // —— BEE ——
+        N("as busy as a bee：", "蜜蜂一天到晚不停地采蜜，所以「像蜜蜂一样忙」就是忙得不可开交。");
+        panel(k, XA, YA, W, H, C.orange, "#fffbeb");
+        { const px = XA, py = YA, bx = px + 62, by = py + 78;
+          draw(k, k.ellipse(bx - 10, by - 28, 16, 12), C.blue, .3, "#e0f2fe", .9, 2);
+          draw(k, k.ellipse(bx + 10, by - 30, 16, 12), C.blue, .3, "#e0f2fe", .9, 2);
+          draw(k, k.ellipse(bx, by, 36, 22), C.ink, .6, "#fde047", 1, 2.5);
+          P(k.wl(bx - 12, by - 20, bx - 12, by + 20, .3) + " " + k.wl(bx + 6, by - 21, bx + 6, by + 21, .3), go(.3), .3, { color: C.ink, w: 5 });
+          P(k.wl(bx + 22, by - 6, bx + 24, by - 6, .1), go(.1), .1, { color: C.ink, w: 4 });
+          P(k.wl(bx - 36, by, bx - 46, by + 2, .2), go(.15), .15, { color: C.ink, w: 2.5 });
+          cardText(k, px, py, "BEE", C.orange, "勤劳小蜜蜂", "as busy as a bee", "蜜蜂不停采蜜", "忙得不可开交", "习性：", "比喻："); }
+        N("谚语：", "流传很久的老话。The early bird catches the worm：早起的鸟儿有虫吃。");
+        tx(k, "谚语：The early bird catches the worm.", 400, 130, { size: 14, color: C.grey, dur: 1.4 });
+        k.wait(1.3);
+        // —— HORSE ——
+        N("as strong as a horse：", "马跑一整天也不累，所以「像马一样壮」就是力大无穷。");
+        panel(k, XB, YA, W, H, C.brown, "#fff7ed");
+        { const px = XB, py = YA, h = py + 40;
+          draw(k, k.ellipse(px + 56, h + 34, 34, 16), C.brown, .5, "#fcd34d", .9, 2.5);
+          draw(k, `M${px + 72},${h + 24} L${px + 86},${h - 8} Q${px + 90},${h - 13} ${px + 96},${h - 8} L${px + 114},${h + 4} Q${px + 117},${h + 11} ${px + 109},${h + 11} L${px + 97},${h + 8} L${px + 88},${h + 32} Z`, C.brown, .6, "#fcd34d", .9, 2.5);
+          draw(k, `M${px + 88},${h - 9} l2,-9 l5,8 Z`, C.brown, .2, "#fcd34d", .9, 2);
+          P(`M${px + 84},${h - 4} Q${px + 76},${h + 6} ${px + 70},${h + 22}`, go(.25), .25, { color: C.ink, w: 3.5 });
+          P(k.wl(px + 101, h + 1, px + 103, h + 1, .1), go(.1), .1, { color: C.ink, w: 3.5 });
+          P([[34, 0], [46, 2], [66, 2], [78, 0]].map(([dx, dd]) => k.wl(px + dx, h + 46, px + dx - dd, h + 82, .3)).join(" "), go(.4), .4, { color: C.brown, w: 2.5 });
+          P(`M${px + 22},${h + 30} q-12,10 -6,28`, go(.2), .2, { color: C.ink, w: 2.5 });
+          cardText(k, px, py, "HORSE", C.brown, "强壮的骏马", "as strong as a horse", "马不知疲倦", "力大无穷、身体棒", "习性：", "比喻：");
+          N("还有：", "as brave as a lion，像狮子一样勇敢。"); k.wait(2.2); }
+        // —— LAMB ——
+        N("as gentle as a lamb：", "小羊乖乖的、软软的，从不发脾气，所以就是温顺得像小羊。");
+        panel(k, XA, YB, W, H, C.green, "#ecfdf5");
+        { const px = XA, py = YB;
+          draw(k, k.cloud(px + 58, py + 70, 34, 22), C.grey, .8, "#fff", 1, 2.5);
+          draw(k, k.ellipse(px + 98, py + 58, 12, 10), C.ink, .3, "#e5e7eb", 1, 2);
+          P([36, 50, 66, 80].map(dx => k.wl(px + dx, py + 92, px + dx, py + 114, .3)).join(" "), go(.4), .4, { color: C.ink, w: 2.5 });
+          cardText(k, px, py, "LAMB", C.green, "温顺的小羊", "as gentle as a lamb", "小羊很温和", "性格温柔、很乖", "习性：", "比喻：");
+          N("还有：", "black sheep 黑羊，比喻害群之马。"); k.wait(2.2); }
+        // —— CATS & DOGS ——
+        N("rain cats and dogs：", "是习语，不是天上掉猫和狗！意思是雨大得吓人，下倾盆大雨。");
+        panel(k, XB, YB, W, H, C.blue, "#eff6ff");
+        { const px = XB, py = YB;
+          draw(k, k.cloud(px + 62, py + 40, 40, 18), C.grey, .7, "#cbd5e1", .9, 2.5);
+          P([30, 50, 70, 90].map((dx, i) => k.wl(px + dx, py + 70 + (i % 2) * 6, px + dx - 8, py + 96 + (i % 2) * 6, .3)).join(" "), go(.4), .4, { color: C.blue, w: 2.5 });
+          draw(k, `M${px + 76},${py + 112} q16,-22 32,0 Z`, C.red, .4, "#fecaca", 1, 2);
+          P(`M${px + 92},${py + 112} v18 q0,5 -5,5`, go(.2), .2, { color: C.ink, w: 2 });
+          cardText(k, px, py, "CAT&DOG", C.blue, "习语", "rain cats and dogs", "天上下猫下狗", "下倾盆大雨");
+          N("更多习语：", "a lucky dog 幸运儿，white elephant 贵又没用的累赘。"); k.wait(2.6); }
+        N("", "连起来读一句：我妈妈每天早上都忙得像只小蜜蜂！");
+        k.final("My mom is as busy as a bee every morning!", "busy", "我妈妈每天早上都忙得像只小蜜蜂！  as + 形容词原级 + as + a 动物");
+        N("口诀：", "as 加原级再加 as，后面放个小动物：忙像蜂，壮像马，乖像羊！");
+      },
+      terms: [
+        ["同级比较", "说两样东西「一样……」：as + 形容词原级 + as，比如 as busy as a bee（和蜜蜂一样忙）。"],
+        ["形容词原级", "形容词本来的样子，不加 -er / -est，比如 busy、strong、gentle。as…as 中间只能放原级。"],
+        ["习性", "动物天生、一直有的特点，比如蜜蜂总在采蜜、马跑不累、小羊很温和。"],
+        ["谚语", "流传很久、讲道理的老话，比如 The early bird catches the worm（早起的鸟儿有虫吃）。"],
+        ["black sheep（害群之马）", "羊群里的黑羊，比喻一群人里最让人头疼、拖后腿的那个人。"],
+        ["love me, love my dog（爱屋及乌）", "喜欢一个人，连他的狗（他身边的东西）也一起喜欢。"],
+        ["white elephant", "白色大象：又贵又没用、还要花钱养着的累赘。"],
+        ["看图写话", "看着图片写几句话的作文题，用上这些动物比喻会很加分。"]
+      ]
+    }
+  ];
+})();
+
+// ==================== 白板脚本：格林音变与清名浊动 3 条定律 ====================
+// 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
+// 本页签局部小工具（不改引擎）：
+const VS_KIT = {
+  // 一行「原词 /音标/ → 变形 /音标/」；a、b = [单词, 音标, [[要标的字母, 第几个, 颜色], ...]]
+  pairRow(k, x, y, a, b, o = {}) {
+    const { C } = k, size = o.size || 22, cw = size * .6, ax = x + (o.ax || 175), bx = ax + 40;
+    const m1 = k.mono(a[0], x, y, size, C.ink);
+    if (a[1]) k.T(a[1], x + a[0].length * cw + 6, y, k.go(.4), .4, { size: 15, color: C.grey, font: WB.MONO, weight: 700 });
+    k.arrow(ax, y - size * .32, ax + 28, y - size * .32, C.purple);
+    const m2 = k.mono(b[0], bx, y, size, C.ink);
+    if (b[1]) k.T(b[1], bx + b[0].length * cw + 6, y, k.go(.4), .4, { size: 15, color: C.grey, font: WB.MONO, weight: 700 });
+    (a[2] || []).forEach(([s, n, c]) => k.underline(m1, s, n || 0, c || C.red));
+    (b[2] || []).forEach(([s, n, c]) => k.underline(m2, s, n || 0, c || C.green));
+    return { m1, m2 };
+  },
+  // 在等宽词的某几个字母外画圈
+  ring(k, m, sub, nth = 0, color) {
+    const x0 = m.x0(sub, nth), x1 = m.x1(sub, nth);
+    k.P(k.ellipse((x0 + x1) / 2, m.y - m.size * .34, (x1 - x0) / 2 + m.size * .12, m.size * .52), k.go(.45), .45, { color: color || k.C.red, w: 3 });
+  },
+  // 普通文字（自动时长）
+  txt(k, s, x, y, o = {}) {
+    const dur = o.dur || Math.max(.5, k.estW(s, o.size || 17) / 220);
+    k.T(s, x, y, k.go(dur), dur, { size: 17, color: k.C.grey, ...o });
+  }
+};
+
+WB_LAB.vowel_shift = [
+  // ───────── 定律 A：元音前移高化律 ─────────
+  {
+    build(k) {
+      const { C, N } = k, V = VS_KIT;
+      N("", "一只脚是 foot，两只脚为什么不是 foots，而是 feet？今天来破译！");
+      k.header("格林音变破译机", "定律 A：元音前移", false);
+      N("格林音变：", "单词里有规律的读音变化。看懂规律，「不规则」的词也能一眼认出来。");
+      const f = k.mono("foot", 60, 165, 48, C.ink);
+      N("元音：", "a、e、i、o、u 这类张开嘴就能响亮发出的音，是单词的「心脏」。");
+      V.ring(k, f, "oo", 0, C.red);
+      k.T("元音", (f.x0("oo") + f.x1("oo")) / 2, 210, k.go(.4), .4, { size: 16, color: C.red, weight: 900, anchor: "middle" });
+      N("辅音：", "f、t 这类要用嘴唇、牙齿或舌头挡一下，才发出来的音。");
+      k.T("辅音", (f.x0("f") + f.x1("f")) / 2, 210, k.go(.4), .4, { size: 16, color: C.blue, weight: 900, anchor: "middle" });
+      k.T("辅音", (f.x0("t") + f.x1("t")) / 2, 210, k.go(.4), .4, { size: 16, color: C.blue, weight: 900, anchor: "middle" });
+      V.txt(k, "元音 = 单词的心脏", 230, 138, { color: C.red, weight: 900, size: 18 });
+      V.txt(k, "辅音 = 挡一下的音", 230, 174, { color: C.blue, weight: 900, size: 18 });
+
+      // 舌头位置示意：前 ←→ 后
+      N("后元音：", "舌头往后缩着发的元音，比如 oo /uː/，像拉长的「乌」。");
+      k.P(k.roughRect(510, 88, 410, 120), k.go(.8), .8, { color: C.ink, w: 2.5 });
+      k.F(k.rectD(510, 88, 410, 120), k.go(.2, 0), { color: "#f8fafc", op: 1 });
+      k.T("舌头的位置", 715, 114, k.go(.5), .5, { size: 16, color: C.grey, weight: 900, anchor: "middle" });
+      k.T("后", 900, 114, k.go(.3), .3, { size: 17, color: C.ink, weight: 900, anchor: "end" });
+      k.T("oo /uː/", 790, 166, k.go(.6), .6, { size: 24, color: C.red, weight: 900, font: WB.MONO });
+      k.T("后元音", 840, 196, k.go(.4), .4, { size: 15, color: C.red, weight: 900, anchor: "middle" });
+      N("前元音：", "舌头往前顶着发的元音，比如 ee /iː/，像拉长的「衣」。");
+      k.T("前", 530, 114, k.go(.3), .3, { size: 17, color: C.ink, weight: 900 });
+      k.T("ee /iː/", 556, 166, k.go(.6), .6, { size: 24, color: C.green, weight: 900, font: WB.MONO });
+      k.T("前元音", 606, 196, k.go(.4), .4, { size: 15, color: C.green, weight: 900, anchor: "middle" });
+      N("前移高化：", "舌头往前挪（前移）、又抬高（高化），oo 就变成了 ee。");
+      k.arrow(778, 158, 682, 158, C.purple, "往前拉", 730, 146);
+
+      // 古英语小故事
+      N("古英语：", "一千多年前的英语。那时想表示「好几个」，要在词尾加一个 -i。");
+      k.head("一千多年前发生了什么？", 40, 246, C.purple, "start", 20);
+      k.T("foot", 40, 290, k.go(.5), .5, { size: 30, color: C.ink, weight: 900, font: WB.MONO });
+      k.T("-i", 112, 290, k.go(.3), .3, { size: 30, color: C.red, weight: 900, font: WB.MONO });
+      V.txt(k, "① 词尾加上 -i", 40, 322, { size: 15 });
+      N("磁铁 -i：", "-i 是前元音，像一块磁铁，把前面的 oo 往前拉成 ee。");
+      k.arrow(168, 280, 232, 280, C.purple);
+      k.T("feet", 250, 290, k.go(.5), .5, { size: 30, color: C.ink, weight: 900, font: WB.MONO });
+      k.T("-i", 322, 290, k.go(.3), .3, { size: 30, color: C.red, weight: 900, font: WB.MONO });
+      k.P(k.wl(268, 298, 304, 298, .6), k.go(.4), .4, { color: C.green, w: 4 });
+      V.txt(k, "② -i 把 oo 拉成 ee", 250, 322, { size: 15 });
+      N("", "后来词尾的 -i 掉了，只留下变好的 ee：foot 就成了 feet！");
+      k.arrow(378, 280, 442, 280, C.purple);
+      k.T("feet", 460, 290, k.go(.5), .5, { size: 30, color: C.green, weight: 900, font: WB.MONO });
+      k.T("-i", 552, 290, k.go(.3), .3, { size: 30, color: "#cbd5e1", weight: 900, font: WB.MONO });
+      k.P(k.wl(550, 280, 584, 280, .5), k.go(.3), .3, { color: C.red, w: 3 });
+      V.txt(k, "③ -i 掉了，ee 留下", 460, 322, { size: 15 });
+      V.txt(k, "→ 今天的 feet", 620, 290, { size: 22, color: C.green, weight: 900 });
+
+      // 两组双胞胎
+      N("复数：", "两个或更多。一般加 -s，这几个词却靠「改元音」变复数。");
+      k.head("单数 → 复数", 40, 360, C.purple, "start", 19);
+      V.pairRow(k, 40, 396, ["foot", "/fʊt/", [["oo"]]], ["feet", "/fiːt/", [["ee"]]]);
+      N("音标：", "斜线 / / 里的符号，写出单词怎么读。ː 表示读长一点。");
+      V.pairRow(k, 40, 430, ["tooth", "/tuːθ/", [["oo"]]], ["teeth", "/tiːθ/", [["ee"]]]);
+      k.T("（goose → geese 也一样）", 168, 360, k.go(.6), .6, { size: 15, color: C.grey, weight: 700 });
+      N("使动动词：", "「让别人变成那样」的动词。food 食物 → feed 把食物喂给它。");
+      k.head("名词、形容词 → 动词", 560, 360, C.blue, "start", 19);
+      V.pairRow(k, 560, 396, ["food", "/fuːd/", [["oo"]]], ["feed", "/fiːd/", [["ee"]]], { ax: 140 });
+      N("", "full 满的 → fill 装满（u 变 i）；blood 血 → bleed 流血。");
+      V.pairRow(k, 560, 430, ["full", "/fʊl/", [["u"]]], ["fill", "/fɪl/", [["i"]]], { ax: 140 });
+      k.T("（blood → bleed 也一样）", 920, 362, k.go(.6), .6, { size: 15, color: C.grey, weight: 700, anchor: "end" });
+      N("", "都是后元音 oo/u 被拉到前面，变成前元音 ee/i！");
+      k.final("foot→feet\u00a0\u00a0tooth→teeth\u00a0\u00a0goose→geese\u00a0\u00a0food→feed", [], "后元音 oo/u 往前拉，变成前元音 ee/i：变复数，或者变成动词。");
+      N("口诀：", "舌头往前拉，oo 变 ee：一只变一群，名词变动词。");
+    },
+    terms: [
+      ["格林音变（音变）", "单词里有规律的读音变化。（格林定律本来是语言学家格林发现的辅音变化规律，这个页签借它的名字，讲英语单词读音变化的几条规律。）"],
+      ["不规则", "不按「加 -s、加 -ed」这种常见办法变化的词，比如 foot 的复数是 feet，不是 foots。"],
+      ["元音", "a、e、i、o、u 这类张开嘴就能响亮发出的音，是单词的「心脏」。"],
+      ["辅音", "f、t、s、v 这类要用嘴唇、牙齿或舌头挡一下才发出来的音。"],
+      ["音标", "斜线 / / 里的符号，专门写出单词怎么读，比如 foot /fʊt/。ː 表示读长一点。"],
+      ["后元音", "舌头往后缩着发的元音，比如 oo /uː/（拉长的「乌」）、/ʊ/（短「乌」）。"],
+      ["前元音", "舌头往前顶着发的元音，比如 ee /iː/（拉长的「衣」）、/ɪ/（短「衣」）。"],
+      ["前移高化", "舌头往前挪、又往上抬，后元音 oo/u 就变成前元音 ee/i。"],
+      ["古英语", "一千多年前的英语。很多今天的「怪词」，都是那时候留下来的。"],
+      ["单数 / 复数", "单数是一个（a foot），复数是两个或更多（two feet）。"],
+      ["名词", "表示人、东西或事情名字的词，比如 food（食物）、blood（血）。"],
+      ["动词", "表示动作的词，比如 feed（喂）、fill（装满）、save（拯救）。"],
+      ["形容词", "描述样子、性质的词，比如 full（满的）、long（长的）、safe（安全的）。"],
+      ["使动动词", "表示「让别人或东西变成那样」的动词：full 满的 → fill 让它变满。"],
+      ["清辅音 / 浊辅音", "发音时声带不震动的辅音叫清辅音（/f/ /s/），声带嗡嗡震动的叫浊辅音（/v/ /z/）。定律 C 会细讲。"]
+    ]
+  },
+  // ───────── 定律 B：元音缩短加 -th ─────────
+  {
+    build(k) {
+      const { C, N } = k, V = VS_KIT;
+      N("", "long 是「长的」，「长度」为什么不是 longth，而是 length？");
+      k.header("形容词 → 名词", "定律 B：缩短元音 + th", false);
+      N("形容词：", "描述样子的词，比如 long（长的）。名词是东西或事情的名字。");
+      const m = k.mono("long + th = longth", 40, 140, 30, C.ink);
+      N("", "照直加 -th 得到 longth？英语里没有这个词！");
+      k.squiggle(m, "longth");
+      k.redX(m.x1("longth") + 10, 116);
+      N("抽象名词：", "说摸不着的东西的名词，比如「长度」「力量」「深度」。");
+      const g = k.mono("length", m.x0("longth"), 190, 30, C.green);
+      V.ring(k, g, "e", 0, C.green);
+      k.T("o 变成了 e！", m.x0("longth") - 12, 190, k.go(.6), .6, { size: 18, color: C.green, weight: 900, anchor: "end" });
+      N("后缀：", "加在词尾、能改变词性的小尾巴。这里的 -th 能把形容词变成名词。");
+      k.underline(g, "th", 0, C.orange);
+
+      // 咬舌音示意
+      N("咬舌音 -th：", "th 读 /θ/，舌尖要伸到上下牙齿中间，嘴巴可忙了。");
+      const tg = "M716,132 C680,129 604,127 576,134 C564,138 564,146 576,149 C604,154 680,152 716,149 Z";
+      k.P(tg, k.go(.6), .6, { color: C.red, w: 2.5 }); k.F(tg, k.go(.2, 0), { color: "#fecdd3", op: .95 });
+      k.P(k.roughRect(600, 100, 96, 24), k.go(.5), .5, { color: C.ink, w: 2.5 }); k.F(k.rectD(600, 100, 96, 24), k.go(.2, 0), { color: "#fff", op: 1 });
+      k.P(k.roughRect(600, 157, 96, 24), k.go(.5), .5, { color: C.ink, w: 2.5 }); k.F(k.rectD(600, 157, 96, 24), k.go(.2, 0), { color: "#fff", op: 1 });
+      k.T("上牙", 648, 118, k.go(.3), .3, { size: 13, color: C.grey, weight: 700, anchor: "middle" });
+      k.T("下牙", 648, 175, k.go(.3), .3, { size: 13, color: C.grey, weight: 700, anchor: "middle" });
+      k.T("舌尖", 548, 146, k.go(.3), .3, { size: 13, color: C.red, weight: 900, anchor: "end" });
+      k.T("th = /θ/", 744, 136, k.go(.6), .6, { size: 24, color: C.red, weight: 900, font: WB.MONO });
+      k.T("舌尖夹在牙齿间", 744, 168, k.go(.6), .6, { size: 16, color: C.grey, weight: 700 });
+      N("缩短：", "嘴巴为了省力，就把前面的元音读得又短又靠前，变成 /e/ 或 /ɪ/。");
+      V.txt(k, "嘴巴省力 → 元音变短、变靠前", 560, 214, { size: 17, color: C.purple, weight: 900 });
+
+      // 四个示范
+      N("长元音 / 短元音：", "/iː/、/aɪ/ 读起来长，/e/、/ɪ/ 读起来又短又快。");
+      k.head("四个例子", 40, 262, C.purple, "start", 19);
+      const row = (y, a, b, rule, zh) => {
+        V.pairRow(k, 40, y, a, b, { ax: 135 });
+        k.T(rule, 360, y, k.go(.6), .6, { size: 17, color: C.purple, weight: 900, font: WB.MONO });
+        k.T(zh, 520, y, k.go(.6), .6, { size: 16, color: C.grey, weight: 700 });
+      };
+      row(300, ["long", "", [["o"]]], ["length", "", [["e"], ["th", 0, C.orange]]], "o ➔ e + th", "长的 → 长度");
+      N("", "strong 强壮的 → strength 力量：也是 o 变 e，再加 th。");
+      row(340, ["strong", "", [["o"]]], ["strength", "", [["e"], ["th", 0, C.orange]]], "o ➔ e + th", "强壮的 → 力量");
+      N("", "deep 深的读长长的 /iː/，加 th 后 ee 缩成短短的 e /e/：depth。");
+      row(380, ["deep", "", [["ee"]]], ["depth", "", [["e"], ["th", 0, C.orange]]], "ee ➔ e + th", "深的 → 深度");
+      N("i_e：", "i 和 e 中间夹一个字母，词尾 e 不出声，让 i 读成 /aɪ/，比如 wide。");
+      row(420, ["wide", "", [["i"], ["e", 0, C.red]]], ["width", "", [["i"], ["th", 0, C.orange]]], "i_e ➔ i + th", "宽的 → 宽度");
+      N("", "加 th 后去掉 e，i 缩成短短的 /ɪ/：wide 就变成了 width。");
+      k.wait(.8);
+
+      // 其余列表
+      N("", "high 高的 → height 高度（加 t）；true → truth、warm → warmth 直接加 th。");
+      k.P(k.roughRect(704, 246, 230, 196), k.go(.7), .7, { color: C.grey, w: 2 });
+      k.T("还有：", 720, 276, k.go(.4), .4, { size: 17, color: C.ink, weight: 900 });
+      [["high → height", "igh ➔ eigh + t"], ["true → truth", "直接 + th"], ["warm → warmth", "直接 + th"]].forEach(([w, r], i) => {
+        k.T(w, 720, 306 + i * 50, k.go(.6), .6, { size: 18, color: C.ink, weight: 900, font: WB.MONO });
+        k.T(r, 722, 326 + i * 50, k.go(.4), .4, { size: 13, color: C.purple, weight: 900 });
+      });
+      N("", "规律：形容词加 th 变名词，前面的元音跟着变短。");
+      k.final("long→length\u00a0\u00a0strong→strength\u00a0\u00a0deep→depth\u00a0\u00a0wide→width", [], "形容词 + th = 抽象名词；元音缩短：o / ee / i_e 变成短 e 或短 i。");
+      N("口诀：", "加上 th，元音缩一缩：long 变 length，deep 变 depth。");
+    },
+    terms: [
+      ["抽象名词", "说摸不着、看不见的东西的名词，比如 length（长度）、strength（力量）、truth（真相）。"],
+      ["后缀", "加在单词尾巴上、能改变词性的小尾巴。这里的 -th 能把形容词变成名词。"],
+      ["词性", "单词的「身份」：名词、动词、形容词……同一个意思换了身份，样子常常会变。"],
+      ["咬舌音 /θ/", "th 的读法：舌尖轻轻伸到上下牙齿中间，往外送气。"],
+      ["长元音 / 短元音", "长元音读得长，比如 /iː/、/aɪ/；短元音读得又短又快，比如 /e/、/ɪ/。"],
+      ["元音缩短", "加上 -th 后，嘴巴为了省力，把前面的长元音或后元音读短、读靠前，比如 deep /iː/ → depth /e/。"],
+      ["i_e（不出声的 e）", "i 和 e 中间夹一个字母（如 wide），词尾的 e 不出声，却让 i 读成 /aɪ/。去掉 e，i 就读短音 /ɪ/：width。"]
+    ]
+  },
+  // ───────── 定律 C：清名浊动交替律 ─────────
+  {
+    build(k) {
+      const { C, N } = k, V = VS_KIT;
+      N("", "safe 是「安全的」，save 是「拯救」。只差一个字母，秘密藏在喉咙里！");
+      k.header("清辅音 ↔ 浊辅音", "定律 C：清名浊动", false);
+      // 两个喉咙
+      const throat = (cx, voiced) => {
+        k.P(k.wl(cx - 32, 92, cx - 28, 200, 1) + " " + k.wl(cx + 32, 92, cx + 28, 200, 1).replace(/^M/, "M"), k.go(.6), .6, { color: C.ink, w: 2.5 });
+        k.T("声带", cx + 40, 126, k.go(.3), .3, { size: 14, color: C.grey, weight: 700 });
+        if (voiced) {
+          k.P(k.wave(cx - 24, cx + 24, 146, 4) + " " + k.wave(cx - 24, cx + 24, 158, 4), k.go(.6), .6, { color: C.purple, w: 3 });
+          k.P("M" + (cx - 46) + ",140 q-8,12 0,24 M" + (cx + 46) + ",140 q8,12 0,24", k.go(.4), .4, { color: C.purple, w: 2 });
+        } else {
+          k.P(k.wl(cx - 24, 146, cx + 24, 146, .3) + " " + k.wl(cx - 24, 158, cx + 24, 158, .3).replace(/^M/, "M"), k.go(.5), .5, { color: C.blue, w: 3 });
+        }
+      };
+      N("声带：", "喉咙里两片薄薄的肉。用手摸着脖子说话，就能感觉它在不在震动。");
+      throat(110, false);
+      N("清辅音：", "发音时声带不震动，只有气流「呼呼」出去，比如 /f/、/θ/、/s/。");
+      k.T("清辅音：不震动", 110, 228, k.go(.6), .6, { size: 17, color: C.blue, weight: 900, anchor: "middle" });
+      k.T("/f/ /θ/ /s/", 110, 256, k.go(.6), .6, { size: 20, color: C.blue, weight: 900, anchor: "middle", font: WB.MONO });
+      N("浊辅音：", "发音时声带「嗡嗡」震动，比如 /v/、/ð/、/z/。");
+      throat(330, true);
+      k.T("浊辅音：嗡嗡震动", 330, 228, k.go(.6), .6, { size: 17, color: C.purple, weight: 900, anchor: "middle" });
+      k.T("/v/ /ð/ /z/", 330, 256, k.go(.6), .6, { size: 20, color: C.purple, weight: 900, anchor: "middle", font: WB.MONO });
+
+      // 右上：清名浊动
+      N("清名浊动：", "词尾是清辅音，词安静地当名词或形容词；换成浊辅音，就「动」起来当动词。");
+      k.P(k.roughRect(500, 82, 430, 196), k.go(.8), .8, { color: C.ink, w: 2 });
+      V.txt(k, "清辅音结尾 = 静：名词 / 形容词", 520, 120, { size: 19, color: C.blue, weight: 900 });
+      V.txt(k, "浊辅音结尾 = 动：动词", 520, 158, { size: 19, color: C.purple, weight: 900 });
+      N("静态和动态：", "静态说「是什么、怎么样」，动态说「做什么」。三对音这样换：");
+      k.T("/f/→/v/\u00a0\u00a0\u00a0/θ/→/ð/\u00a0\u00a0\u00a0/s/→/z/", 520, 210, k.go(.9), .9, { size: 24, color: C.ink, weight: 900, font: WB.MONO });
+      N("/θ/ 和 /ð/：", "都是咬舌音：舌尖夹在牙齿间。/θ/ 只送气，/ð/ 声带还要震动。");
+      V.txt(k, "θ、ð 都是咬舌音：ð 多了「嗡嗡」", 520, 252, { size: 16 });
+
+      // 七对双胞胎
+      N("", "safe 安全的（清音 /f/）→ save 拯救（浊音 /v/）：从「怎么样」变成「做什么」。");
+      const o = { ax: 190 };
+      V.pairRow(k, 30, 316, ["safe", "/seɪf/", [["f", 0, C.blue]]], ["save", "/seɪv/", [["v", 0, C.purple]]], o);
+      N("", "life 生命 → live 居住；连元音也跟着变了：/aɪ/ 变成 /ɪ/。");
+      V.pairRow(k, 30, 354, ["life", "/laɪf/", [["f", 0, C.blue]]], ["live", "/lɪv/", [["v", 0, C.purple]]], o);
+      N("", "breath 一口气（/θ/）→ breathe 呼吸这个动作（/ð/），词尾多了个 e。");
+      V.pairRow(k, 30, 392, ["breath", "/breθ/", [["th", 0, C.blue]]], ["breathe", "/briːð/", [["the", 0, C.purple]]], o);
+      N("", "bath 洗澡（名词）→ bathe 给…洗澡（动词）：/θ/ 变 /ð/。");
+      V.pairRow(k, 30, 430, ["bath", "/bɑːθ/", [["th", 0, C.blue]]], ["bathe", "/beɪð/", [["the", 0, C.purple]]], o);
+      N("同形词：", "拼写一模一样、只靠读音分开的词：use /s/ 是用途，use /z/ 是使用。");
+      V.pairRow(k, 500, 316, ["use", "/juːs/", [["s", 0, C.blue]]], ["use", "/juːz/", [["s", 0, C.purple]]], o);
+      N("", "close /s/ 是「亲近的」，close /z/ 是「关门」。字一样，读音一变就成了动词。");
+      V.pairRow(k, 500, 354, ["close", "/kləʊs/", [["s", 0, C.blue]]], ["close", "/kləʊz/", [["s", 0, C.purple]]], o);
+      N("", "advice 建议（c 读 /s/）→ advise 劝告（s 读 /z/）：拼写和读音一起变。");
+      V.pairRow(k, 500, 392, ["advice", "/ədˈvaɪs/", [["c", 0, C.blue]]], ["advise", "/ədˈvaɪz/", [["s", 0, C.purple]]], o);
+      k.T("蓝色 = 清音（静）｜紫色 = 浊音（动）", 720, 432, k.go(.8), .8, { size: 16, color: C.grey, weight: 900, anchor: "middle" });
+      N("", "规律：清辅音结尾当名词、形容词，浊辅音结尾当动词。");
+      k.final("safe→save\u00a0\u00a0breath→breathe\u00a0\u00a0use /s/→use /z/", [], "词尾清辅音 /f/ /θ/ /s/：名词、形容词；换成浊辅音 /v/ /ð/ /z/：动词。");
+      N("口诀：", "清音静悄悄，名词形容词；浊音嗡嗡响，变成动词跑。");
+    },
+    terms: [
+      ["声带", "喉咙里两片薄薄的肉。说话时用手摸着脖子，能感觉到它震不震动。"],
+      ["清辅音", "发音时声带不震动、只有气流的辅音，比如 /f/、/θ/、/s/。"],
+      ["浊辅音", "发音时声带嗡嗡震动的辅音，比如 /v/、/ð/、/z/。"],
+      ["/θ/ 和 /ð/", "都是 th 的读法，舌尖夹在上下牙齿中间。/θ/ 只送气（breath），/ð/ 声带还要震动（breathe）。"],
+      ["清名浊动", "词尾是清辅音时当名词或形容词（safe、breath），换成浊辅音就当动词（save、breathe）。"],
+      ["静态 / 动态", "静态说「是什么、怎么样」（名词、形容词）；动态说「做什么」（动词）。"],
+      ["同形词", "拼写一模一样、意思不同的词，靠读音分开，比如 use /juːs/（用途）和 use /juːz/（使用）。"]
+    ]
+  }
+];
+
+// ==================== 白板脚本：⑨「时×体」二维时空矩阵沙盘 5 个时态 ====================
+// 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
+// 版面：左上 3×3 时×体矩阵 · 右上时间轴（过去/现在/将来）+ 镜头图 · 中间公式和 4 个例句 · 信号词 · 陷阱 · 底部结论框。
+const TM_KIT = function (k) {
+  const { C, P, T, F, go, wl, ellipse, rectD, roughRect, estW } = k;
+  const MONO = '"Courier New",Courier,monospace';
+  const A = { y: 168, x0: 350, x1: 925, past: 450, now: 640, fut: 830 };
+  const pos = (text, x, y, size) => {
+    const cw = size * .6;
+    const at = (sub, nth = 0) => { let i = -1; for (let n = 0; n <= nth; n++) i = text.indexOf(sub, i + 1); return i; };
+    // atW：按整词找（前后不是字母），用于给 is / are / have 这类短词划线
+    const atW = (sub, nth = 0) => { let c = -1; for (let i = text.indexOf(sub); i >= 0; i = text.indexOf(sub, i + 1)) { if (/[A-Za-z]/.test(text[i - 1] || " ") || /[A-Za-z]/.test(text[i + sub.length] || " ")) continue; if (++c === nth) return i; } return at(sub, nth); };
+    return { x, y, size, cw, text, at, atW, x0: (s, n) => x + at(s, n) * cw, x1: (s, n) => x + (at(s, n) + s.length) * cw, end: x + text.length * cw };
+  };
+  const h = {
+    A,
+    // 时间轴：过去 → 现在 → 将来
+    axis() {
+      P(wl(A.x0, A.y, A.x1, A.y, .8) + ` M${A.x1 - 13},${A.y - 7} L${A.x1},${A.y} L${A.x1 - 13},${A.y + 7}`, go(1.0), 1.0, { color: C.ink, w: 3 });
+      [[A.past, "过去 Past", C.brown], [A.now, "现在 Now", C.red], [A.fut, "将来 Future", C.blue]].forEach(([x, s, c]) => {
+        P(wl(x, A.y - 8, x, A.y + 8, .3), go(.2), .2, { color: c, w: 3 });
+        T(s, x, A.y + 30, go(.6), .6, { size: 16, color: c, weight: 900, anchor: "middle" });
+      });
+    },
+    // 3×3 时×体矩阵：col 0 过去 / 1 现在 / 2 将来；row 0 一般 / 1 进行 / 2 完成
+    matrix(col, row, label, beforeHL) {
+      const x0 = 100, cw = 70, y0 = 102, rh = 34;
+      T("体＼时", 40, 94, go(.4), .4, { size: 13, color: C.grey, weight: 900 });
+      ["过去", "现在", "将来"].forEach((s, i) => T(s, x0 + cw * (i + .5), 94, go(.3), .3, { size: 15, color: C.ink, weight: 900, anchor: "middle" }));
+      ["一般", "进行", "完成"].forEach((s, j) => T(s, 48, y0 + rh * (j + .5) + 6, go(.3), .3, { size: 15, color: C.ink, weight: 900 }));
+      P(roughRect(x0, y0, cw * 3, rh * 3), go(.6), .6, { color: C.grey, w: 2 });
+      for (let i = 1; i < 3; i++) P(wl(x0 + cw * i, y0, x0 + cw * i, y0 + rh * 3, .5), go(.15), .15, { color: C.grey, w: 1.5 });
+      for (let j = 1; j < 3; j++) P(wl(x0, y0 + rh * j, x0 + cw * 3, y0 + rh * j, .5), go(.15), .15, { color: C.grey, w: 1.5 });
+      if (beforeHL) beforeHL();
+      const cx = x0 + cw * col, cy = y0 + rh * row;
+      P(roughRect(cx + 4, cy + 4, cw - 8, rh - 8), go(.5), .5, { color: C.orange, w: 3 });
+      F(rectD(cx + 4, cy + 4, cw - 8, rh - 8), go(.3), { color: "#fde68a", op: .9 });
+      T(label, cx + cw / 2, cy + rh / 2 + 5, go(.6), .6, { size: 11, color: C.red, weight: 900, anchor: "middle" });
+    },
+    dot(x, color = C.orange, r = 6) {
+      const d = ellipse(x, A.y, r, r);
+      P(d, go(.25), .25, { color, w: 2.5 }); F(d, go(.05, 0), { color, op: 1 });
+    },
+    // 快照相机
+    camera(cx, cy) {
+      P(roughRect(cx - 12, cy - 26, 22, 8), go(.3), .3, { color: C.ink, w: 2.5 });
+      P(roughRect(cx - 30, cy - 18, 60, 38), go(.6), .6, { color: C.ink, w: 2.5 });
+      F(rectD(cx - 30, cy - 18, 60, 38), go(.2, 0), { color: "#e0f2fe", op: .95 });
+      const l = ellipse(cx, cy + 1, 11, 11);
+      P(l, go(.4), .4, { color: C.blue, w: 2.5 }); F(l, go(.1, 0), { color: "#fff", op: 1 });
+    },
+    // 录像机
+    video(cx, cy) {
+      const r1 = ellipse(cx - 20, cy - 27, 9, 9), r2 = ellipse(cx + 2, cy - 27, 9, 9);
+      P(r1, go(.3), .3, { color: C.ink, w: 2.5 }); P(r2, go(.3), .3, { color: C.ink, w: 2.5 });
+      P(roughRect(cx - 34, cy - 16, 52, 34), go(.6), .6, { color: C.ink, w: 2.5 });
+      F(rectD(cx - 34, cy - 16, 52, 34), go(.2, 0), { color: "#ede9fe", op: .95 });
+      const tri = `M${cx + 20},${cy + 1} L${cx + 38},${cy - 11} L${cx + 38},${cy + 13} Z`;
+      P(tri, go(.3), .3, { color: C.ink, w: 2.5 }); F(tri, go(.1, 0), { color: "#ede9fe", op: .95 });
+      const rec = ellipse(cx - 24, cy - 6, 4, 4);
+      P(rec, go(.2), .2, { color: C.red, w: 2 }); F(rec, go(.05, 0), { color: C.red, op: 1 });
+      T("REC", cx - 16, cy - 1, go(.3), .3, { size: 11, color: C.red, weight: 900, font: MONO });
+    },
+    // 老照片
+    photo(cx, cy) {
+      P(roughRect(cx - 36, cy - 26, 72, 50), go(.6), .6, { color: C.brown, w: 2.5 });
+      F(rectD(cx - 36, cy - 26, 72, 50), go(.2, 0), { color: "#fef3c7", op: .95 });
+      P(`M${cx - 28},${cy + 18} L${cx - 10},${cy - 6} L${cx + 4},${cy + 10} L${cx + 14},${cy} L${cx + 28},${cy + 18}`, go(.5), .5, { color: C.brown, w: 2 });
+      const s = ellipse(cx + 18, cy - 13, 6, 6);
+      P(s, go(.2), .2, { color: C.orange, w: 2 }); F(s, go(.05, 0), { color: "#fde047", op: 1 });
+    },
+    // 望远镜：从 (x1,y1) 细头到 (x2,y2) 粗头
+    telescope(x1, y1, x2, y2) {
+      const L = Math.hypot(x2 - x1, y2 - y1), nx = -(y2 - y1) / L, ny = (x2 - x1) / L, r1 = 6, r2 = 12;
+      const d = `M${x1 + nx * r1},${y1 + ny * r1} L${x2 + nx * r2},${y2 + ny * r2} L${x2 - nx * r2},${y2 - ny * r2} L${x1 - nx * r1},${y1 - ny * r1} Z`;
+      P(d, go(.7), .7, { color: C.purple, w: 2.5 }); F(d, go(.2, 0), { color: "#ddd6fe", op: .95 });
+      P(wl((x1 * 2 + x2) / 3 + nx * 9, (y1 * 2 + y2) / 3 + ny * 9, (x1 * 2 + x2) / 3 - nx * 9, (y1 * 2 + y2) / 3 - ny * 9, .3), go(.2), .2, { color: C.purple, w: 2.5 });
+      // 三脚架
+      const bx = (x1 + x2) / 2, by = (y1 + y2) / 2 + 4;
+      P(wl(bx, by, bx - 16, A.y - 8, .4) + " " + wl(bx, by, bx + 14, A.y - 8, .4).replace(/^M/, "M"), go(.4), .4, { color: C.ink, w: 2 });
+    },
+    // 奖杯（成果）
+    trophy(cx, cy) {
+      const d = `M${cx - 16},${cy - 18} h32 q0,22 -16,24 q-16,-2 -16,-24 Z`;
+      P(d, go(.5), .5, { color: C.orange, w: 2.5 }); F(d, go(.2, 0), { color: "#fde047", op: 1 });
+      P(wl(cx, cy + 6, cx, cy + 14, .2) + " " + wl(cx - 11, cy + 15, cx + 11, cy + 15, .3), go(.3), .3, { color: C.orange, w: 3 });
+    },
+    // 圈出等宽文字里的一段
+    ring(m, sub, nth = 0, color = C.red) {
+      const x0 = m.x0(sub, nth), x1 = m.x1(sub, nth);
+      P(ellipse((x0 + x1) / 2, m.y - m.size * .32, (x1 - x0) / 2 + 5, m.size * .66), go(.4), .4, { color, w: 2.5 });
+    },
+    uline(m, sub, nth = 0, color = C.orange) { const a = m.x + m.atW(sub, nth) * m.cw; P(wl(a, m.y + 6, a + sub.length * m.cw, m.y + 6, .5), go(.4), .4, { color, w: 3.5 }); },
+    // 公式行
+    formula(text, y, label = "公式：", size = 16) {
+      T(label, 40, y, go(.4), .4, { size, color: C.red, weight: 900 });
+      const dur = Math.max(1, text.length * .06);
+      T(text, 40 + estW(label, size) + 2, y, go(dur), dur, { size, color: C.purple, weight: 900 });
+    },
+    // 例句：主语（青）+ 动词部分（蓝）+ 右边灰色小标签
+    ex(subj, verb, y, tag) {
+      const text = subj + " " + verb, room = (tag ? 935 - estW(tag, 14) - 24 : 935) - 40;
+      const size = Math.min(17, room / (text.length * .6)), cw = size * .6;
+      const d1 = Math.max(.5, subj.length * .05), d2 = Math.max(.9, verb.length * .05);
+      T(subj, 40, y, go(d1, .05), d1, { size, color: "#0d9488", weight: 900, font: MONO });
+      T(verb, 40 + (subj.length + 1) * cw, y, go(d2), d2, { size, color: C.blue, weight: 700, font: MONO });
+      if (tag) T(tag, 935, y, go(.6), .6, { size: 14, color: C.grey, weight: 900, anchor: "end" });
+      return pos(text, 40, y, size);
+    },
+    signals(text, y) {
+      const lab = "信号词：", size = Math.min(15, (895 - estW(lab, 15)) / estW(text, 1));
+      T(lab, 40, y, go(.4), .4, { size: 15, color: C.red, weight: 900 });
+      const dur = Math.max(1.2, text.length * .03);
+      T(text, 40 + estW(lab, 15) + 2, y, go(dur), dur, { size, color: "#0f766e", weight: 800 });
+    },
+    // 陷阱：错句划掉 → 正确句
+    trapFix(bad, badSub, good, y) {
+      T("陷阱：", 40, y, go(.4), .4, { size: 16, color: C.red, weight: 900 });
+      const x = 40 + estW("陷阱：", 16) + 4, dur = Math.max(.8, bad.length * .05);
+      T(bad, x, y, go(dur), dur, { size: 16, color: C.red, weight: 700, font: MONO });
+      const m = pos(bad, x, y, 16);
+      P(wl(m.x0(badSub) - 2, y - 5, m.x1(badSub) + 2, y - 5, .4), go(.35), .35, { color: C.red, w: 3 });
+      T("→", m.end + 12, y, go(.3), .3, { size: 16, color: C.ink, weight: 900 });
+      const d2 = Math.max(.8, good.length * .05);
+      T(good, m.end + 40, y, go(d2), d2, { size: 16, color: C.green, weight: 900, font: MONO });
+      return m;
+    },
+    trapText(text, y) {
+      const size = Math.min(16, 895 / estW("陷阱：" + text, 1));
+      T("陷阱：", 40, y, go(.4), .4, { size, color: C.red, weight: 900 });
+      const dur = Math.max(1, text.length * .05);
+      T(text, 40 + estW("陷阱：", size) + 2, y, go(dur), dur, { size, color: C.red, weight: 800 });
+    }
+  };
+  return h;
+};
+
+WB_LAB.tense_matrix = [
+  // ───────── ① 一般现在时 ─────────
+  {
+    build(k) {
+      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      N("", "同一个 play，为什么有时写 plays、played，有时写 is playing？");
+      k.header("现在 × 一般体", "① 一般现在时", false);
+      N("时态：", "英语动词会「变身」，告诉你事情是什么时候发生、正处在什么样子。");
+      k.wait(1.8);
+      N("时间轴：", "一根从左到右的线：左边是过去，中间是现在，右边是将来。这就是「时」。");
+      h.axis();
+      N("体（镜头）：", "用什么镜头拍这个动作：快照、录像，还是留存成果。这就是「体」。");
+      h.matrix(1, 0, "一般现在时", () => N("时×体矩阵：", "横着选时间，竖着选镜头，两条线交叉的格子，就是一种时态。"));
+      N("一般体：", "像拍一张「档案照」：不管这一秒在不在做，只记下每天反复做的规律。");
+      h.camera(A.now, 110);
+      N("习惯：", "每天都做的事，在时间轴上是一串小圆点：过去有，现在有，将来还有。");
+      [385, 505, 570, 700, 760, 880].forEach(x => h.dot(x, C.orange, 5));
+      k.T("一次又一次", 540, 148, k.go(.6), .6, { size: 14, color: C.grey, weight: 900, anchor: "middle" });
+      N("客观真理：", "永远不变的事实也用它：The earth goes around the sun（地球绕着太阳转）。");
+      k.wait(2.2);
+      N("动词原形：", "动词本来的样子，什么尾巴都没加，比如 play。状态就用 am / is / are。");
+      h.formula("主语 + 动词原形 V / 单三 V-s(es)   ｜   状态：am / is / are", 250);
+      N("", "I、We、They 当主语：动词保持原形 play。");
+      h.ex("I / We / They", "play football every afternoon.", 284, "原形");
+      N("单三勋章：", "单三（第三人称单数）就是另外一个人或东西，比如 Leo，动词要戴 -s 勋章。");
+      const m2 = h.ex("He / She / Leo", "plays football every afternoon.", 314, "+s");
+      h.ring(m2, "s", 0, C.orange);
+      N("", "以 ch、sh、s、x、o 结尾的动词，加 -es：teaches、goes。");
+      const m3 = h.ex("My mom", "teaches English and goes to work by car.", 344, "+es");
+      h.ring(m3, "es", 0, C.orange); h.ring(m3, "es", 1, C.orange);
+      N("辅音 + y：", "辅音就是 a e i o u 以外的字母。辅音 + y 结尾，变 y 为 i 加 -es。");
+      const m4 = h.ex("The little bird", "flies high in the sky.", 374, "y → i + es");
+      h.ring(m4, "ies", 0, C.orange);
+      N("信号词：", "看到 every day、always、usually、often，就知道要用一般现在时。");
+      h.signals("every day (每天) · always (总是) · usually (通常) · often (经常) · sometimes (有时) · on Sundays (每逢周日)", 406);
+      N("照妖镜：", "比喻 doesn't / Does：它们把 -s 勋章拿走了，后面的动词被打回原形。");
+      h.trapFix("He doesn't likes", "likes", "He doesn't like", 434);
+      N("", "结论：单三主语 He，动词戴上 -s 勋章。");
+      k.final("He plays football every afternoon.", "plays", "口诀：习惯真理用一般现在时；单三动词戴勋章，见 does 就脱掉！");
+      N("口诀：", "习惯真理用一般现在时；单三动词戴勋章，见 does / doesn't 就脱掉！");
+    },
+    terms: [
+      ["时态", "英语动词的「变身」，用来告诉你事情发生在什么时候（过去 / 现在 / 将来）、处在什么样子。"],
+      ["时间轴（时）", "一根从左到右的线：左边是过去，中间是现在，右边是将来。时态里的「时」就是在这根线上选位置。"],
+      ["体（镜头）", "用什么镜头看这个动作：一般体像快照，进行体像录像，完成体像把成果留存下来。"],
+      ["时×体矩阵", "横着是时间（过去 / 现在 / 将来），竖着是镜头（一般 / 进行 / 完成），交叉的格子就是一种时态，比如「现在 × 进行 = 现在进行时」。"],
+      ["一般体（快照镜头）", "不管这一秒在不在做，只拍下经常发生的规律、习惯或事实，像一张档案照。"],
+      ["进行体（录像镜头）", "拍下正在发生、还没停下的动作，结构是 be + 动词-ing。"],
+      ["完成体（留存镜头）", "动作已经做完，但成果还留着，结构是 have / has + 过去分词。"],
+      ["一般现在时", "说习惯、规律和永远不变的事实，比如 I play football every afternoon。"],
+      ["客观真理", "永远不变的事实，比如 The earth goes around the sun（地球绕着太阳转），要用一般现在时。"],
+      ["主语", "句子在说「谁」或「什么」，比如 I、He、My mom、The little bird。"],
+      ["动词原形", "动词本来的样子，没有加 -s、-ed、-ing，比如 play、go、fly。"],
+      ["am / is / are（be 动词）", "表示「是、在」等状态的动词：I 用 am，单三用 is，复数和 you 用 are。"],
+      ["第三人称单数（单三）", "除了「我」和「你」以外的一个人或东西：he、she、it、Leo、my mom、the little bird。"],
+      ["单三勋章 -s / -es", "比喻：单三主语后面，一般现在时的动词要加 -s 或 -es，比如 plays、teaches、flies。"],
+      ["辅音字母", "a、e、i、o、u 是元音字母，其余的字母叫辅音字母。辅音 + y 结尾的动词要变 y 为 i 再加 -es。"],
+      ["信号词（标志时间雷达词）", "一看到就能判断用哪个时态的词，比如 every day、always、often。"],
+      ["照妖镜（does / doesn't）", "比喻：句子里出现 doesn't 或 Does，它们已经带走了单三的 -s，后面的动词要变回原形：He doesn't like。"]
+    ]
+  },
+  // ───────── ② 现在进行时 ─────────
+  {
+    build(k) {
+      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      N("", "「看！Leo 正在跑！」这一秒正在发生的动作，英语怎么拍下来？");
+      k.header("现在 × 进行体", "② 现在进行时", false);
+      h.axis();
+      N("现在进行时：", "在矩阵里，它是「现在」这一列和「进行」这一行交叉的格子。");
+      h.matrix(1, 1, "现在进行时");
+      N("进行体：", "像一台高清录像机，正在直播这一秒的动作，动作还没有停。");
+      h.video(A.now - 4, 108);
+      N("", "在时间轴上，它是「现在」附近一段还在动的波浪线。");
+      k.P(k.wave(A.now - 60, A.now + 60, A.y, 5), k.go(.8), .8, { color: C.purple, w: 4 });
+      k.wait(.6);
+      N("助动词：", "帮主要动词说清时间的小帮手。这里的 am / is / are 是句子的「发动机」。");
+      h.formula("am / is / are（助动词画框） + V-ing（动态分词镜头）", 250);
+      N("V-ing（现在分词）：", "动词加 -ing，只是「正在……」的画面，不能自己当谓语。");
+      const bad = k.mono("I playing football", 740, 250, 16, C.red);
+      N("", "所以 I playing football 是错的：少了发动机 am，两样缺一不可！");
+      k.caret(bad, "playing", 0, "am");
+      k.wait(.5);
+      N("重读闭音节：", "run 这类短词是「辅音 + 元音 + 辅音」结尾，而且重读。");
+      const m1 = h.ex("Look! Leo", "is running fast on the playground.", 284, "双写 n");
+      h.uline(m1, "is"); h.ring(m1, "nn", 0, C.orange);
+      N("双写：", "重读闭音节的词，要把最后一个字母写两遍再加 -ing：run → running。");
+      k.wait(1.5);
+      N("不发音的 e：", "dance、make 末尾的 e 不读，去掉 e 再加 -ing：dancing、making。");
+      const m2 = h.ex("Listen! Mia", "is dancing and making a cake.", 314, "去 e + ing");
+      h.uline(m2, "is"); h.ring(m2, "cing", 0, C.orange); h.ring(m2, "king", 0, C.orange);
+      N("", "The children 是复数（好多个），所以用 are；swim 也要双写 m。");
+      const m3 = h.ex("The children", "are swimming in the pool now.", 344, "are + 双写 m");
+      h.uline(m3, "are"); h.ring(m3, "mm", 0, C.orange);
+      N("", "I 配 am；普通动词直接加 -ing：read → reading。");
+      const m4 = h.ex("I", "am reading an English storybook right now.", 374, "直接 + ing");
+      h.uline(m4, "am"); h.ring(m4, "ing", 0, C.orange);
+      N("信号词：", "看到 Look!、Listen!、now、right now，说明镜头正在直播！");
+      h.signals("Look! (看！) · Listen! (听！) · now (现在) · right now (此时此刻) · at the moment (眼下)", 406);
+      N("心理状态词：", "like、know、want、have 是心里的感觉，不是看得见的动作，拍不成录像。");
+      h.trapText("like(喜欢)、know(知道)、want(想要)、have(拥有) 这类心理状态词，通常不用进行时！", 434);
+      N("", "结论：发动机 am + 正在读 reading，一个都不能少。");
+      k.final("I am reading an English storybook right now.", "am", "口诀：此刻正在做，am / is / are 加 V-ing，缺一不可！");
+      N("口诀：", "此刻正在做，am / is / are 加 V-ing，缺一不可！");
+    },
+    terms: [
+      ["现在进行时", "说此时此刻正在做的事，结构是 am / is / are + 动词-ing，比如 I am reading now。"],
+      ["助动词", "帮主要动词表达时间、否定、疑问的小帮手词，比如 am / is / are、do / does、will、have / has。"],
+      ["发动机（be 动词）", "比喻：进行时里的 am / is / are 让句子「动起来」，并且把时间定在「现在」，不能漏掉。"],
+      ["V-ing（现在分词）", "动词加 -ing，表示「正在……」的画面，比如 running、dancing。它自己不能当谓语，前面要有 am / is / are。"],
+      ["谓语", "句子里说「主语在做什么、是什么样」的部分，比如 is running。"],
+      ["重读闭音节", "像 run、swim、stop 这样，以「辅音 + 元音 + 辅音」结尾、读得重的短词。加 -ing 或 -ed 时要双写最后一个字母。"],
+      ["双写", "把单词最后一个字母再写一遍，比如 run → running、swim → swimming。"],
+      ["不发音的 e（哑 e）", "单词末尾不读出声的 e，比如 dance、make。加 -ing 时去掉它：dancing、making。"],
+      ["复数", "两个或更多，比如 the children（孩子们）。复数主语配 are。"],
+      ["心理状态词", "表示心里感觉、想法的词，比如 like、know、want、have（拥有），通常不用进行时。"]
+    ]
+  },
+  // ───────── ③ 一般过去时 ─────────
+  {
+    build(k) {
+      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      N("", "昨天、上周末发生的事，英语就像翻开一张老照片。");
+      k.header("过去 × 一般体", "③ 一般过去时", false);
+      h.axis();
+      N("一般过去时：", "在矩阵里，它是「过去」这一列和「一般」这一行交叉的格子。");
+      h.matrix(0, 0, "一般过去时");
+      N("历史老照片：", "比喻：咔嚓一下，把昨天的事定格在过去。事情已经做完，结束了。");
+      h.photo(A.past, 112);
+      h.dot(A.past, C.brown, 7);
+      k.T("yesterday", A.past + 80, 154, k.go(.6), .6, { size: 15, color: C.grey, weight: 900, font: '"Courier New",Courier,monospace' });
+      N("过去式：", "动词表示「过去」时变的样子，比如 visit → visited、take → took。");
+      h.formula("主语 + 动词过去式 V-ed / 不规则过去式   ｜   状态：was (单) / were (复)", 250);
+      N("", "好消息：过去式「不看主语脸色」，I、He、They 全都一样，不用管单三！");
+      const m1 = h.ex("I / He / They", "visited the museum and took many photos yesterday.", 284, "+ed / 不规则");
+      N("规则动词：", "直接加 -ed 就变成过去式的动词，比如 visit → visited。");
+      h.ring(m1, "ed", 0, C.orange);
+      k.wait(1.2);
+      N("不规则动词：", "过去式不按 -ed 规律、要单独记的动词，比如 take → took。");
+      h.uline(m1, "took");
+      k.wait(1.3);
+      N("", "辅音 + y 结尾：变 y 为 i 再加 -ed，study → studied、cry → cried。");
+      const m2 = h.ex("Mia", "studied hard and cried when she lost her pen.", 314, "y → i + ed");
+      h.ring(m2, "ied", 0, C.orange); h.ring(m2, "ied", 1, C.orange);
+      N("", "stop 是重读闭音节：双写 p 再加 -ed，stopped；plan 也一样变 planned。");
+      const m3 = h.ex("The bus", "stopped at the station five minutes ago.", 344, "双写 + ed");
+      h.ring(m3, "pp", 0, C.orange);
+      N("was / were：", "be 动词的过去式：I、He、She、It 用 was，We、You、They 用 were。");
+      const m4 = h.ex("We", "were very happy at the party last night.", 374, "过去的状态");
+      h.uline(m4, "were");
+      N("信号词：", "yesterday、last night、…ago、just now，一看就是过去的事。");
+      h.signals("yesterday (昨天) · last night/weekend/year (昨晚/上周末/去年) · ...ago (…以前) · just now (刚才) · in 2022", 406);
+      N("陷阱：", "有 didn't 或 Did 时，「过去」已经被它们带走，后面的动词变回原形。");
+      h.trapFix("Did you went there?", "went", "Did you go there?", 434);
+      N("", "结论：stop 双写 p，加 -ed，变成过去式 stopped。");
+      k.final("The bus stopped at the station five minutes ago.", "stopped", "口诀：过去的事用过去式，不看主语人人一样；见 did 变回原形！");
+      N("口诀：", "过去的事用过去式，不看主语人人一样；见 did / didn't 变回原形！");
+    },
+    terms: [
+      ["一般过去时", "说过去某个时间发生、已经做完的事，比如 I visited the museum yesterday。"],
+      ["过去式", "动词表示「过去」时的样子，比如 visit → visited、take → took。"],
+      ["规则动词", "加 -ed 就变过去式的动词，比如 visit → visited、stop → stopped、study → studied。"],
+      ["不规则动词", "过去式不按 -ed 规律变化、要单独记住的动词，比如 take → took、lose → lost。"],
+      ["was / were", "be 动词（am / is / are）的过去式：I / He / She / It 用 was，We / You / They 用 were。"],
+      ["不看主语脸色", "比喻：一般过去时的动词不管主语是谁都用同一个样子，不用加单三的 -s。"],
+      ["did / didn't 还原", "句子里有 didn't 或 Did 提问时，后面的动词要用原形：Did you go there?"]
+    ]
+  },
+  // ───────── ④ 一般将来时 ─────────
+  {
+    build(k) {
+      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      N("", "明天、下周要做的事，英语怎么说？举起望远镜看向未来！");
+      k.header("将来 × 一般", "④ 一般将来时", false);
+      h.axis();
+      N("一般将来时：", "在矩阵里，它是「将来」这一列和「一般」这一行交叉的格子。");
+      h.matrix(2, 0, "一般将来时");
+      N("望远镜：", "比喻：站在「现在」，往右边的「将来」看过去，看到明天要做的事。");
+      h.telescope(A.now - 6, 132, A.now + 70, 104);
+      k.P(k.wl(A.now + 84, 104, A.fut - 10, A.y - 12, .5), k.go(.6), .6, { color: C.purple, w: 2, dash: "5 6" });
+      h.dot(A.fut, C.blue, 7);
+      N("will：", "将来时有两个方案。方案 A：will 原意是「决心」，表示临时决定或一定会发生。");
+      h.formula("方案A：will + 动词原形（意愿/临时决定/客观预测）", 240);
+      N("be going to：", "方案 B：「人已经走在路上了」，表示早有计划，或有迹象马上要发生。");
+      h.formula("方案B：am/is/are going to + 动词原形（早有计划/有迹象要发生）", 266, "      ");
+      k.wait(.6);
+      N("情态助动词：", "will 这样的帮手词，所有人称都一样，后面永远接动词原形。");
+      const m1 = h.ex("I / He / We", "will fly a kite in the park tomorrow.", 298, "人人通用");
+      h.uline(m1, "will");
+      N("", "be going to 里的 be 要跟着主语变：Leo 是单三，用 is。");
+      const m2 = h.ex("Leo", "is going to visit his grandparents this weekend.", 326, "be 随主语变");
+      h.uline(m2, "is going to");
+      N("", "They 是复数，用 are going to，后面接原形 have。");
+      const m3 = h.ex("They", "are going to have a picnic next Sunday.", 354, "复数 are");
+      h.uline(m3, "are going to");
+      N("There be 句型：", "表示「某处有某物」。它的将来时是 There will be 或 There is going to be。");
+      const m4 = h.ex("There", "will be (= is going to be) a football match tomorrow.", 382, "黄金考点");
+      h.uline(m4, "will be");
+      N("信号词：", "tomorrow、next week、this weekend、soon，都在说将来。");
+      h.signals("tomorrow (明天) · next week/month/year (下周/下月/明年) · this evening/weekend (今晚/本周末) · soon (不久) · in the future", 410);
+      N("陷阱：", "别受中文「将要有」影响写 have！「某处有」永远用 be：There will be。");
+      h.trapFix("There is going to have", "have", "There will be / There is going to be", 436);
+      N("", "结论：There be 的将来时，就是 There will be。");
+      k.final("There will be (= is going to be) a football match tomorrow.", "will", "口诀：临时决定用 will，早有计划用 be going to，后面都跟原形！");
+      N("口诀：", "临时决定用 will，早有计划用 be going to，后面都跟动词原形！");
+    },
+    terms: [
+      ["一般将来时", "说将来要发生的事，比如 I will fly a kite tomorrow。有 will 和 be going to 两种说法。"],
+      ["将来体（望远镜镜头）", "页面上的比喻：站在现在，用望远镜看向将来。在矩阵里它就是「将来 × 一般」那一格。"],
+      ["will", "原意是「决心、意愿」，表示临时决定、愿意去做，或一定会发生的预测，比如 Tomorrow will be sunny。"],
+      ["be going to", "am / is / are going to + 动词原形，表示早就计划好，或者有迹象马上要发生，比如 It is going to rain!"],
+      ["情态助动词", "帮主要动词表达「会、能、要」等意思的词，比如 will、can。所有人称都一样，后面接动词原形。"],
+      ["临时决定", "说话的那一刻才决定要做的事，用 will：I will help you!"],
+      ["There be 句型", "表示「某处有某物」：There is / There are。将来时是 There will be 或 There is / are going to be，不能写 There will have。"]
+    ]
+  },
+  // ───────── ⑤ 现在完成时 ─────────
+  {
+    build(k) {
+      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      N("", "「我把钥匙弄丢了」，为什么英语有时说 lost，有时说 have lost？");
+      k.header("现在 × 完成体", "⑤ 现在完成时", false);
+      h.axis();
+      N("现在完成时：", "在矩阵里，它是「现在」这一列和「完成」这一行交叉的格子。");
+      h.matrix(1, 2, "现在完成时");
+      N("完成体：", "像一个「成果留存」镜头：动作在过去做完了，但成果一直留着。");
+      k.wait(1.0);
+      h.dot(A.past, C.brown, 7);
+      k.T("动作做完", A.past - 14, 150, k.go(.6), .6, { size: 14, color: C.brown, weight: 900, anchor: "end" });
+      N("过去连通现在的桥：", "从过去搭一座桥到现在：动作在过去，结果留到现在。");
+      k.P(`M${A.past + 12},${A.y - 10} Q${(A.past + A.now) / 2},${A.y - 110} ${A.now - 12},${A.y - 14} M${A.now - 24},${A.y - 22} L${A.now - 12},${A.y - 14} L${A.now - 14},${A.y - 28}`, k.go(1.0), 1.0, { color: C.purple, w: 3 });
+      h.trophy(A.now + 46, 116);
+      k.T("结果留在现在", A.now + 72, 112, k.go(.7), .7, { size: 14, color: C.orange, weight: 900 });
+      N("have / has：", "本意是「现在手里拥有」；has 给单三主语用。");
+      h.formula("have / has（现在拥有） + V-ed / 过去分词（已经做完的动作状态）", 250);
+      N("过去分词：", "动词的另一种变身，表示「已经做完」，比如 finish → finished、go → gone。");
+      k.wait(1.8);
+      N("", "I lost my key 只说丢了；I have lost my key 是丢了，现在还进不去门！");
+      k.wait(2.2);
+      N("", "作业已经写完了，结果留在现在：现在可以出去玩啦！");
+      const m1 = h.ex("I / We / They", "have already finished our homework.", 284, "成果：能玩了");
+      h.uline(m1, "have"); h.ring(m1, "finished", 0, C.orange);
+      N("for + 时间段：", "表示持续了多久：从 5 年前一直住到现在。单三主语用 has。");
+      const m2 = h.ex("He / She / Mia", "has lived in Beijing for five years.", 314, "一直到现在");
+      h.uline(m2, "has"); h.ring(m2, "lived", 0, C.orange);
+      N("have been to：", "去过某地，人已经回来了，留下一段人生经历。");
+      const m3 = h.ex("Have you", "ever been to the Great Wall?", 344, "去过·已回来");
+      h.ring(m3, "been to", 0, C.green);
+      N("have gone to：", "去某地了，人还在上海或在路上，现在不在说话的地方。");
+      const m4 = h.ex("Mr Wang", "has gone to Shanghai.", 374, "去了·还没回");
+      h.ring(m4, "gone to", 0, C.red);
+      N("信号词：", "already、yet、just、ever、never、since、for，常和现在完成时一起出现。");
+      h.signals("already (已经) · yet (还/尚) · just (刚刚) · ever (曾经) · never (从不) · since (自从) · for + 时间段 (持续了…)", 406);
+      N("陷阱：", "出现明确的过去时间点，就只能用一般过去时，不能用现在完成时。");
+      h.trapText("句子里有 yesterday, last week, two days ago 这类过去时间点，不能用 have/has done！", 434);
+      N("", "结论：have + 过去分词 finished，作业写完的成果留到现在。");
+      k.final("I / We / They have already finished our homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！");
+      N("口诀：", "过去做完，结果留到现在，就用 have / has + 过去分词！");
+    },
+    terms: [
+      ["现在完成时", "动作发生在过去，但结果或影响留到现在，结构是 have / has + 过去分词，比如 I have already finished my homework。"],
+      ["小升初", "小学升初中。现在完成时是初中要学的内容，这里提前学一点。"],
+      ["have / has", "本意是「现在拥有」。在完成时里当助动词：I / We / They 用 have，单三主语用 has。"],
+      ["过去分词", "动词的另一种变身，表示「已经做完」。规则动词和过去式一样加 -ed（finished），不规则的要单独记（go → gone、be → been）。"],
+      ["一般过去时 vs 现在完成时", "I lost my key 只说过去丢了；I have lost my key 强调丢了的结果还在：现在进不去门。"],
+      ["have been to", "去过某地，人已经回来了，比如 Have you ever been to the Great Wall?"],
+      ["have gone to", "去某地了，人现在还在那里或在路上，不在这儿，比如 Mr Wang has gone to Shanghai。"],
+      ["for + 时间段 / since", "for five years 表示「持续了 5 年」；since 表示「自从……以来」，都常和现在完成时一起用。"],
+      ["already / yet / just / ever / never", "已经 / 还（用在否定和疑问里）/ 刚刚 / 曾经 / 从不，都是现在完成时的信号词。"]
+    ]
+  }
+];
+
 // ---------- App 接线：王炸实验室白板播放器（所有页签共用） ----------
 // 页签里用 ${wbStageHtml("tab", 当前序号)}：这个页签在 WB_LAB 里登记了案例就出白板，否则出原来的 Canvas。
 var wbState = { t: 0, playing: true, player: null, key: "" };
