@@ -20,8 +20,14 @@ function wbGlossHtml(tab, idx) {
             </div>`).join("")}
         </div>`;
 }
-function wbStageHtml(tab, idx, withGloss = true) {
+function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {
   const cs = wbCases(tab);
+  if ((!cs || !cs.length) && svgId === "fpWbStage") {
+    // 第一性原理总枢：这条原理还没做白板，保留旧 Canvas
+    return `<div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a;">
+        <canvas id="firstPrinciplesCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
+      </div>`;
+  }
   if (!cs || !cs.length) {
     return `<div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
           <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
@@ -30,7 +36,7 @@ function wbStageHtml(tab, idx, withGloss = true) {
   const i = Math.min(Math.max(0, idx | 0), cs.length - 1);
   return `
         <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#fff; margin-bottom:14px;">
-          <svg id="wbStage" data-tab="${tab}" data-case="${i}" style="width:100%; height:auto; aspect-ratio:960/600; display:block;"></svg>
+          <svg id="${svgId}" data-tab="${tab}" data-case="${i}" style="width:100%; height:auto; aspect-ratio:960/600; display:block;"></svg>
           <div style="display:flex; align-items:center; gap:10px; padding:8px 12px; background:#f8fafc; border-top:1px solid #e2e8f0;">
             <button id="wbPlay" onclick="wbToggle()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#059669; color:#fff; border:0;">⏸ 暂停</button>
             <button onclick="wbReplay()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#e2e8f0; color:#0f172a; border:0;">↺ 重播</button>
@@ -39,7 +45,9 @@ function wbStageHtml(tab, idx, withGloss = true) {
           </div>
         </div>${withGloss ? wbGlossHtml(tab, i) + '<div style="height:14px;"></div>' : ""}`;
 }
-function startWBLoop(stage) {
+// slot = "fp"：第一性原理总枢，动画帧 id 记在 fpAnimId（不和王炸实验室的 superLabAnimId 互相取消）
+function startWBLoop(stage, slot) {
+  const setId = v => { if (slot === "fp") fpAnimId = v; else superLabAnimId = v; };
   const tab = stage.getAttribute("data-tab") || "bamboo_tree";
   const cs = wbCases(tab) || [];
   const idx = Math.min(Number(stage.getAttribute("data-case")) || 0, cs.length - 1);
@@ -52,7 +60,7 @@ function startWBLoop(stage) {
   wbSyncButton();
   let last = performance.now();
   function frame(now) {
-    if (document.getElementById("wbStage") !== stage) { superLabAnimId = null; wbState.player = null; wbState.key = ""; return; }
+    if (document.getElementById(stage.id) !== stage) { setId(null); if (wbState.stage === stage) { wbState.player = null; wbState.key = ""; } return; }
     const dt = Math.min(.05, (now - last) / 1000); last = now;
     const p = wbState.player;
     if (wbState.playing) { wbState.t += dt; if (wbState.t > p.end) wbState.t = 0; }
@@ -60,9 +68,9 @@ function startWBLoop(stage) {
     const seek = document.getElementById("wbSeek"), tm = document.getElementById("wbTime");
     if (seek) seek.value = Math.round(wbState.t / p.end * 1000);
     if (tm) tm.textContent = wbState.t.toFixed(1) + "s / " + p.end.toFixed(0) + "s";
-    superLabAnimId = requestAnimationFrame(frame);
+    setId(requestAnimationFrame(frame));
   }
-  superLabAnimId = requestAnimationFrame(frame);
+  setId(requestAnimationFrame(frame));
 }
 function wbSyncButton() { const b = document.getElementById("wbPlay"); if (b) b.textContent = wbState.playing ? "⏸ 暂停" : "▶ 播放"; }
 function wbToggle() { wbState.playing = !wbState.playing; wbSyncButton(); }
