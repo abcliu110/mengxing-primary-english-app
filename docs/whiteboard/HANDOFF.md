@@ -50,6 +50,7 @@
 - 03:48｜fp_one_king 第 4 幕升 v2，fp_one_king 全部完成（五行骨骼 + 🔮 She gives me an apple + 金句卡；R4 fly / pass / reading / gives）｜`210a197`｜`work/shots/fp_one_king_4_对比总图.png`｜进度条步骤名不用「S V P」（r2check 会当成英文句子），改中文「主系表」等
 - 03:50｜fp_zoom_focus 升级准备：classic 快照 + FP_DEPS｜`632ebc9`｜—｜第 1 幕是「已搬到 ze_modifier」占位幕，不升级
 - 03:58｜fp_zoom_focus 第 2 幕升 v2（Where 跳 / 问句·感叹句两镜头 + 🔮 Where is your cat + 金句卡；R4 going / get up / runs）｜`229acad`｜`work/shots/fp_zoom_focus_2_对比总图.png`｜—
+- 04:08｜fp_zoom_focus 第 4 幕升 v2（时间轴 × 三种拍法 + 🔮 bird is singing + 金句卡；R4 play / reading）｜`fe3e052`｜`work/shots/fp_zoom_focus_4_对比总图.png`｜先做第 4 幕；第 3 幕用 camera 缩放，单独做
 
 ## 1. 现在做到哪
 
