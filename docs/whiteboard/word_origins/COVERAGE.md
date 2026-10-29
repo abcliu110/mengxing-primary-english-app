@@ -1,62 +1,87 @@
-# 单词维度覆盖率报告（决策 25、26）
+# 单词维度覆盖率报告（决策 25 / 26）
 
-> 目标词库：主 HTML `VOCAB_DB` **1487 词**（G1 66、G2 83、G3 130、G4 206、G5 296、G6 204 课标词 985 + V6 扩展 500 + 多义 2；含 43 个词组）。`MH_VOCAB_DB` 22 词是它的子集。
-> 审计日期：2026-10-30（基线，任何补齐之前）。「应有」= Wiktionary 英文词条（2026-10-30 抓取 1487 词，1454 有词条）里有对应内容的词数，是**候选上限**，入库前逐条用 Etymonline / 词典核对，核对不过的不入库并写原因。
-> 「模板充数」定义见 MASTER_DESIGN 决策 26。
+> 版本：审计 v1（2026-10-30 01:20 JST）。目标词库 = 主 HTML `VOCAB_DB` **1487 词**（G1–G6 课标 987 词 + V6 扩展 500 词；含 43 个词组）。`MH_VOCAB_DB` 22 词是子集。
+> 方法：脚本解析主 HTML 数据（基线 `f1cd18f` 之后的 master）；1487 词逐词抓 Wiktionary 英文词条（API，全部抓完，33 词无词条），解析词源 / 同源 / 构词 / 近反义 / 同音 / 义项模板。
+> **「应有」列是候选数**（Wiktionary 有对应数据的词数），入库前逐条核对出处（Etymonline / Wiktionary / 学习词典），核不实的标 ❓ 或不入库并写原因。数字随每批补齐更新。
 
-## 1. 单词卡字段（逐词）
+## 1. 先说最大的问题：V6 扩展 500 词几乎全是模板
 
-| 维度 | 现有（有内容） | 其中模板充数 / 编造 | 真正有效 | 应有（候选上限） | 缺口 |
-|---|---|---|---|---|---|
-| 词源 `etymology` | 1487 | 「记忆锦囊：属于【主题】」模板 445；「秒懂巧记 / 造词小故事」985（编的故事，部分说法错误）；多义抄写 2 | 有出处的真词源 **0**（词卡字段里）；另有身世标签 8 词（port 家族） | 1244（有词源模板；另 63 词词源「不详」，要如实写不详） | ≈1236 |
-| 格林定律 | 溯源幕 ④ 11 个配对（p→f 1、t→th 1、d→t 3、k→h 3…） | — | 11 | 227 个本族词有拉丁 / 希腊同源词；其中词首辅音已能对上规则的约 78 词（下表） | ≈216 |
-| 词根词缀 `affix_root` | 1487 | 「基础独体词 / 音节拼读」235；「积木拆词」748 需逐条核（含伪拆分，如 ear + h = hear） | 未核实 | 383（Wiktionary 有合成 / 前后缀拆分）+ 426 个拉丁 / 希腊 / 法语来源词中可拆词根的部分 | 待核 |
-| 一词多义 `senses` / `has_polysemy` | has_polysemy 17；senses > 1 只有 16 | — | 16 | 1354 词在词典里有 ≥ 2 个义项（展示层按课标挑常用义） | ≈1338 |
-| 搭配 `collocations` | verbs 1291 + adjs 1078 | verbs 就是例句本身 1291（另 196 空）；adjs 只是「a / the / my + 词」881 | adjs 197 | 全部实词（约 1400） | ≈1400 |
-| 场景图 `visual_scene` | 987 | 与 senses.scene 重复 960 | 27 | 全部可画的词 | ≈1400 |
-| 不规则变形 `irregular_info` | 19 | — | 19 | 动词不规则 51 + 名词不规则复数 27 + 形容词比较级不规则 16（候选） | ≈75 |
-| 拼写提醒 `spelling_alert` | 28 | — | 28 | 待定（双写、去 e、ie/ei 等规则可脚本判出） | 待算 |
+V6 500 词里 **445 词**整条是模板：例句「Let's learn and use "xxx" in a sentence!」、中文「核心考点词【xxx】」、`etymology`「记忆锦囊：属于【主题】高频核心词」、`memory_tip` 同模板、`visual_scene` 空。等于只有词和中文意思。
 
-## 2. 维度菜单（词表型）
+## 2. 单词卡字段（每词一条）
 
-| 菜单 | 数据 | 现有条数 | 应有（候选上限） |
-|---|---|---|---|
-| 🔊 同音词 | `HOMOPHONES_LIST` 16 + `HOMOPHONES_DB` 12 组 + `HOMOPHONES_30` 30 | 约 30 组（有重复） | 词库内两边都在库的同音组 52；任一边在库 367 词有同音词（去掉只在某些口音成立的，标 ⚠️） |
-| 🔄 反义词 | `ANTONYMS_LIST` 24 + `ANTONYMS_50` 50 + `WORD_RELATIONS_DB.antonyms` 24 | 约 50 对 | 371 词有反义词 |
-| 近义 / 同义词 | `WORD_RELATIONS_DB.synonyms` 11 | 11 | 1087 词有近义词 |
-| 易混词 | `WORD_RELATIONS_DB.confusables` 8 | 8 | 待定（以学习词典 usage note 为准） |
-| 类属 / 部分整体 | `category_sets` 10、`meronyms` 10 | 20 | 待定 |
-| 最小对立体 | `MINIMAL_PAIRS_DB` 4 组 15 对 | 15 对 | 待算（按音标脚本在 1487 词里配对） |
-| 🧩 变形表 | `MORPH_DERIVATIONS` 70 | 70 | 同上「不规则变形」 |
-| 🌳 词源树 | `ETYMOLOGY_TREES` 5 棵 41 条（其实是后缀族，不是词源） | 41 | 并入词根词缀；真词源走 `ETYM_DB` |
-| 构词 | `WORD_FORMATION_DB`：合成 25、前缀 20、后缀 12、词族 10、词根 6 | 73 | 383 + 词根词 |
-| 词族 / 派生 | 只在 affix_root 文字里 | — | 589 词有派生词（Derived terms） |
-| 框架语义 | `FRAME_SEMANTICS_DB` 10 剧场 | 10 | 待定 |
-| 主题导图 / Sight Words | 按 `theme_sub` / `sight_type` 生成 | sight_type 有值 745 | 全量（数据层已有，改动画见决策 23） |
+| 维度 | 现有真实内容 | 模板 / 编造充数 | 词库中应有（候选） | 说明 |
+|---|---|---|---|---|
+| 例句 `example_en` | 1042 | 445（V6 模板句） | 1487 | R2：每词必须有真例句 |
+| 词源 `etymology` | **0 条有出处** | 985「巧记小故事」（多为编的，部分错，如 ear + h = hear）+ 445「记忆锦囊」模板 + 57 其它 | **1263**（Wiktionary 有词源模板；另 66 词词源不明 / 有争议 → ❓） | 旧故事保留，改标 💡；真词源另立 `ETYM_DB` |
+| 词根词缀 `affix_root` | 748「积木拆词」（质量未核）+ 504 其它 | 235「基础独体词：音节拼读」 | **391** 有 Wiktionary 构词模板（复合 / 前后缀）＋ 432 词是拉丁 / 法语借词，可再拆词根（候选） | 伪拆分加 R3 纠正 |
+| 一词多义 `senses` / `polysemy_data` | 16 词 senses>1；17 词 has_polysemy | — | **1329** 词 ≥2 个义项（1180 词 ≥3） | 展示层只取常用 2–4 义 |
+| 搭配 `collocations.verbs` | 0（1291 词就是例句本身，196 空） | 1291 | 约 1400 个实词 | 来源：学习词典搭配，逐条登记 |
+| 搭配 `collocations.adjs` | 197 | 881（a / the / my + 词） | 约 1400 | 同上 |
+| 场景图 `visual_scene` | 27 | 960（与义项场景重复）+ 500 空 | 1487 | 白板画面用 |
+| 不规则变形 `irregular_info` | 19 | — | 约 130 不规则动词 + 27 不规则名词 + 16 不规则形容词 / 副词（候选） | |
+| 拼写提醒 `spelling_alert` | 28 | — | 待定标准（双写、去 e、y→i、静音字母…可脚本判定） | |
+| 近义词 | 11 组（`WORD_RELATIONS_DB.synonyms`） | — | **1116** 词有近义数据 | |
+| 反义词 | 24 + 24 + 50 条（三处重复） | — | **387** 词有反义数据 | 三处合并（R1） |
+| 同音词 | 16 + 12 + 30 组（三处重复） | — | 词库内互为同音 **52 词**；与常见词同音的约 200 词（候选） | 三处合并 |
+| 最小对立体 | 4 组 15 对 | — | 词库内只差一个音的词对 **808 对**（按音标脚本算，含同音） | 展示按对立类型分组（/ɪ/-/iː/、/æ/-/e/、θ-s、v-w…） |
+| 词族 / 派生 | `MORPH_DERIVATIONS` 70、`WORD_FORMATION_DB` 73、`ETYMOLOGY_TREES` 5 棵 41 条 | — | **1368** 词有 Wiktionary 派生 / 相关词 | |
+| 📖 身世标签 | 8 词（port 家族） | — | = 入库词源数 | 由数据自动生成 |
 
-## 3. 格林定律候选（词首辅音，Wiktionary 同源词，待逐条核对）
+## 3. 格林定律（现有 11 个配对）
 
-| 规则 | 候选数 | 示例 |
+| 对应 | 现有 | 词库候选（自动分组，待核） |
 |---|---|---|
-| p → f | 23 | fish / piscis、five / pente、few / paucus、feather / penna |
-| t → th | 6 | three / tres、thin / tenuis、thunder / tonare |
-| k → h | 21 | heart / cor、head / caput、hill / collis、horn / keras、have / capere |
-| kʷ → hw | 3 | what / quod、when / quando、why / qui |
-| d → t | 11 | two / duo、tooth / dens、tree / doru、teach / dicere |
-| g → k | 12 | knee / genu、know / gnoscere、cold / gelu、corn / granum、king / genus |
-| b → p | 1 | 极少（教科书也只有零星例子），如实写 |
-| bh → b | 16 | brother / frater、bear / ferre、bean / faba、blue / flavus |
-| dh → d | 4 | door / foris、thyra |
-| gh → g | 7 | goose / chen、yellow / chloros、garden / hortus、guest / hostis |
-| 维尔纳定律 | 待核 | father / pater、mother / mater 的 d / th |
+| p → f | foot | 14（fish/piscis、few/paucus、feather/penna、fire、first、father…） |
+| t → th | three | 5（thin/tenuis、thunder/tonō、three、thank / think…） |
+| k → h | hundred、heart、hound | 14（horn/cornū、head/caput、hill/collis、hen、have/capiō…） |
+| kʷ → hw | — | 3（what、who、where 类） |
+| d → t | tooth、ten、two | 7（tree/δόρυ、two、tooth、eat、sit…） |
+| g → k | — | 11（knee/genū、know/gnōscō、corn/grānum、cold/gelū、king…） |
+| gʷ → kw | — | 1（quick/vīvus） |
+| bh → b | — | 12（brother/frāter、bear/ferō、bean/faba、blow/flō…） |
+| dh → d | — | 3（door/foris、day…） |
+| gh → g | — | 6（goose/ānser·χήν、garden/hortus、guest…） |
+| 维尔纳定律 | —（只在 ⚠️ 里提到） | father/pater、mother 等 + was/were、lose/forlorn 类（待核） |
+| 合计 | **11 配对** | 本族词且有拉丁 / 希腊 / 梵语同源记录的 **255 词**；自动能分进规则组 76 个，其余 179 个待人工判断（不少只是同源、辅音不落在格林规则上，会不入库并写原因） |
 
-另：词中、词尾的对应（foot / pedis、heart / cordis、eat / edere、sit / sedere、ten / decem、hundred / centum）没有计入上表，核对时一并补。
+## 4. 「音变与词汇规律」系列（决策 25 扩展，词库可匹配词数，均为候选）
 
-## 4. 未入库原因（补齐后逐批填写）
+| # | 规律 | 词库可匹配（候选） | 例 |
+|---|---|---|---|
+| 1 | 维尔纳定律 | 约 5–10（待核） | was/were、father、mother |
+| 2 | 元音大转移 GVS | 长元音拼写词 186（a_e 类）+ 341（双字母元音） | bite、house、name、meet |
+| 3 | i-变音 | 词对两边都在词库 10、一边在 5 | foot/feet、man/men、mouse/mice、food/feed、long/length |
+| 4 | 元音递变 / 强动词 | 不规则动词约 130 | sing/sang/sung、ride/rode/ridden |
+| 5 | 高地德语辅音推移 | 有德语同源记录 510；经典对照 43 | water/Wasser、apple/Apfel、ten/zehn |
+| 6 | 腭化 / 古诺斯语双形 | 古诺斯语来源 62 | skirt/shirt、egg、sky、give、get |
+| 7 | 诺曼法语 w→g | 约 3 | wise/guise、wait、guide（⚠️） |
+| 8 | 法语脱落 s | 约 6 | forest、hospital、hotel、host、cost、island（⚠️ s 是后加的） |
+| 9 | 双形词 / 层级词汇 | 本族-借词对两边都在词库 9；本族词在词库可挂借词 35；法语借词共 297 | cow/beef、pig/pork、ask/question |
+| 10 | 前缀同化 | 约 7 | impossible、impolite、import、appear、arrive |
+| 11 | 派生音变（短化等） | 两边都在词库 12 对 | nature/natural、five/fifth、wide/width、keep/kept |
+| 12 | 音位转换 + 不发音字母 | 不发音字母 63；音位转换约 3 | bird、third/three、knight、climb、daughter |
 
-| 原因 | 词数 |
-|---|---|
-| 词典无词条（专有名词、词组） | 33 |
-| 词源不详（如实标「不详」，不编） | 63 |
-| 同源有争议 / 只是民间说法 | 待填 |
-| 同音只在部分口音成立 | 待填 |
+审计中发现、建议一并加入：**词尾 -ough 多种读法**（GVS 后续）、**拉丁 / 希腊词根大家族**（432 个借词可拆，如 port、vis、spect、dict）、**复合词重音**（已做，挂词卡）。
+
+## 5. 其它菜单
+
+| 菜单 | 现有 | 判断 |
+|---|---|---|
+| v6 拓展教室「🌳 词源树」 | `ETYMOLOGY_TREES` 5 棵（其实是后缀族，不是词源） | 改名或并入词根词缀；真词源树按 `ETYM_DB` 生成 |
+| v6「🧩 变形表」 | `MORPH_DERIVATIONS` 70 | 补到全部不规则变形 |
+| v6「🔊 同音词」「🔄 反义词」 | 30 组 / 50 对，与单词大世界另两份重复 | 三处合并成一份全量数据 |
+| 框架语义 | 10 剧场 25 视角 | 动词框架可扩（give/take、bring/carry、teach/learn、borrow/lend…），待列候选 |
+| 主题导图 | 按 `theme_sub` 主题 | 1487 词都有主题；导图改白板（决策 28） |
+| Sight Words | 19 词标 irregular，742 词 `sight_type` 空 | 按 Dolch / Fry 名单对 1487 词全量标注 |
+
+## 6. 补齐顺序（每批一提交，更新本表）
+
+1. 格林定律按规则组（p→f 起）+ 维尔纳定律
+2. 词源 `ETYM_DB`（按年级 G1→G6→V6）
+3. 词根词缀 `MORPH_DB`（按词缀族）
+4. 一词多义、搭配、近 / 反义、同音、最小对立体
+5. 音变与词汇规律 2–12
+6. V6 500 词例句与中文（R2）
+
+未入库原因分类：无出处 / 出处冲突（❓）、非同源（只是长得像）、专有名词 / 词组、Wiktionary 无词条（33 词）。
