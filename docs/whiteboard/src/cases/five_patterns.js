@@ -1,119 +1,8 @@
 // ==================== 白板脚本：⑪ 英语「五大基本句型」骨骼透视机 5 个案例 ====================
 // 数据来源：主文件 FIVE_SENTENCE_PATTERNS_DB（5 项 → 5 个案例）。骨骼部件和金句必须和数据一字不差。
-// 版面：上方一排「骨架方块」S / V / O / P / C（y 84–172）→ 中间两句金句，词下面用小括号标出 S/V/O… →
-//       底部绿框写骨骼公式，字幕给口诀。本页签的小工具都在这个 IIFE 里，不改引擎。
-// v2 升级（2026-10-30，决策 24）：逐个案例升引擎 v2 + 讲解员（3 个镜头 → 🔮 预测 → 金句卡），v2 案例用 vtools()；升级前整份文件原样保存在 cases/five_patterns_classic.js。依赖 wo_props。
+// 版面（v2）：上方一排「骨架方块」S / V / O / P / C（y 140–194）→ 金句镜头里词下面用小括号标出 S/V/O… → 公式绿框 + 口诀；讲解员站在右侧 x≈892，内容收在 x≤800。本页签的小工具都在这个 IIFE 里（vtools），不改引擎。
+// v2 升级（2026-10-30，决策 24）：5 个案例已全部升引擎 v2 + 讲解员（每案例 3 个镜头 → 🔮 预测 → 金句卡）；升级前整份文件原样保存在 cases/five_patterns_classic.js（旧版面工具 tools() 只留在 classic 里）。依赖 wo_props。
 (function () {
-  const MONO = '"Courier New",Courier,monospace';
-  const FILL = { "#2563eb": "#dbeafe", "#f59e0b": "#fef3c7", "#7c3aed": "#ede9fe", "#92400e": "#fed7aa", "#059669": "#d1fae5", "#64748b": "#f1f5f9", "#e11d48": "#ffe4e6" };
-
-  function tools(k) {
-    const { C, P, T, F, go, wl, ellipse, roughRect, rectD, estW } = k;
-    const BY = 96, BH = 54, WS = 20;                       // 方块顶边、高度、方块里英文字号
-    const h = {
-      // 排版骨架方块：list = [{ role, word, color, note, dashed, sep }]，从 x0 起左右排开
-      layout(list, x0 = 40, gap = 44) {
-        let x = x0;
-        return list.map((b, i) => {
-          if (i) x += gap;
-          const w = Math.max(b.word.length * WS * .6 + 32, estW(b.role, 16) + 16, 92);
-          const o = { ...b, x, w, cx: x + w / 2, i };
-          x += w;
-          return o;
-        });
-      },
-      // 画一个方块：前面的连接符（+ 或箭头）、上方角色名、方框 + 涂色、下方灰色小注
-      block(b, prev) {
-        if (prev) {
-          const mx = (prev.x + prev.w + b.x) / 2, my = BY + BH / 2;
-          if (b.sep === "arrow") {
-            P(wl(mx - 16, my, mx + 14, my, .5) + ` M${mx + 5},${my - 8} L${mx + 15},${my} L${mx + 5},${my + 8}`, go(.4), .4, { color: C.red, w: 3 });
-          } else T("+", mx, my + 8, go(.3), .3, { size: 26, color: C.grey, weight: 900, anchor: "middle" });
-        }
-        T(b.role, b.cx, BY - 10, go(.6), .6, { size: 16, color: b.color, weight: 900, anchor: "middle" });
-        if (b.dashed) {
-          P(rectD(b.x, BY, b.w, BH), go(.5), .5, { color: b.color, w: 2.5, dash: "7 6" });
-          F(rectD(b.x, BY, b.w, BH), go(.2, 0), { color: FILL[b.color], op: .6 });
-        } else {
-          P(roughRect(b.x, BY, b.w, BH), go(.7), .7, { color: b.color, w: 3 });
-          F(rectD(b.x, BY, b.w, BH), go(.2, 0), { color: FILL[b.color], op: .9 });
-        }
-        if (b.note) T(b.note, b.cx, BY + BH + 22, go(.5), .5, { size: 14, color: C.grey, weight: 700, anchor: "middle" });
-      },
-      // 把骨骼部件里的英文放进方块
-      word(b) {
-        const dur = Math.max(.5, b.word.length * .06);
-        T(b.word, b.cx, BY + BH / 2 + 7, go(dur), dur, { size: WS, color: C.ink, weight: 900, anchor: "middle", font: MONO });
-      },
-      // 等宽英文句子（按整词定位）
-      line(text, y, size = 20, color = C.ink, x = 40) {
-        size = Math.min(size, 860 / (text.length * .6));
-        const dur = Math.max(1, text.length * .05);
-        T(text, x, y, go(dur), dur, { size, color, font: MONO, weight: 700 });
-        const cw = size * .6;
-        const at = (sub, nth = 0) => {
-          const re = new RegExp("(^|[^A-Za-z])" + sub.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&") + "(?![A-Za-z])", "g");
-          let m, n = 0;
-          while ((m = re.exec(text))) { if (n++ === nth) return m.index + m[1].length; re.lastIndex = m.index + 1; }
-          return -1;
-        };
-        return { x, y, size, cw, text, at, x0: (s, n) => x + at(s, n) * cw, x1: (s, n) => x + (at(s, n) + s.length) * cw };
-      },
-      // 句子里某个词组下面画小括号，标上 S / V / O …
-      tag(m, sub, label, color, nth = 0, dur = .3) {
-        const x1 = m.x0(sub, nth) + 2, x2 = m.x1(sub, nth) - 2, y = m.y + 7;
-        const r = Math.min(6, (x2 - x1) / 4);
-        P(`M${x1},${y} Q${x1},${y + 6} ${x1 + r},${y + 6} L${x2 - r},${y + 6} Q${x2},${y + 6} ${x2},${y}`, go(dur), dur, { color, w: 2.2 });
-        T(label, (x1 + x2) / 2, y + 23, go(dur), dur, { size: 14, color, weight: 900, anchor: "middle" });
-      },
-      tags(m, arr) { arr.forEach(a => h.tag(m, a[0], a[1], a[2], a[3] || 0)); },
-      ring(m, sub, color = C.red, nth = 0) {
-        const x0 = m.x0(sub, nth), x1 = m.x1(sub, nth);
-        P(ellipse((x0 + x1) / 2, m.y - m.size * .34, (x1 - x0) / 2 + 5, m.size * .72), go(.45), .45, { color, w: 2.5 });
-        return (x0 + x1) / 2;
-      },
-      strike(m, sub, nth = 0, color = C.red) {
-        P(wl(m.x0(sub, nth) - 2, m.y - m.size * .3, m.x1(sub, nth) + 2, m.y - m.size * .3, .5), go(.35), .35, { color, w: 3 });
-      },
-      // 普通文字（中文或混排）
-      say(text, x, y, o = {}) {
-        const dur = o.dur || Math.max(.6, [...text].length * .06);
-        T(text, x, y, go(dur), dur, { size: 16, color: C.grey, weight: 700, ...o });
-      },
-      // 介词挂钩：J 形钩子挂在 (x, y) 上方
-      hook(x, y, color = C.red) {
-        P(`M${x},${y - 26} L${x},${y - 10} Q${x},${y - 2} ${x - 7},${y - 2} Q${x - 13},${y - 2} ${x - 13},${y - 9}`, go(.4), .4, { color, w: 3 });
-        P(ellipse(x, y - 30, 4, 4), go(.15), .15, { color, w: 2 });
-      },
-      // 爱心
-      heart(x, y, color = C.red) {
-        const d = `M${x},${y + 9} C${x - 16},${y - 2} ${x - 10},${y - 15} ${x},${y - 6} C${x + 10},${y - 15} ${x + 16},${y - 2} ${x},${y + 9} Z`;
-        P(d, go(.4), .4, { color, w: 2.2 }); F(d, go(.1, 0), { color: "#fecdd3", op: 1 });
-      },
-      // 靶子
-      target(x, y) {
-        [26, 17, 8].forEach((r, i) => {
-          const d = ellipse(x, y, r, r);
-          P(d, go(.3), .3, { color: i === 1 ? C.purple : C.red, w: 2.5 });
-        });
-      },
-      // 天平式的等号弧：从 a 方块底部弯到 b 方块底部
-      arc(a, b, label) {
-        const y = BY + BH + 6, mx = (a.cx + b.cx) / 2;
-        P(`M${a.cx},${y} Q${mx},${y + 48} ${b.cx},${y}`, go(.7), .7, { color: C.orange, w: 2.5, dash: "6 5" });
-        T(label, mx, y + 44, go(.8), .8, { size: 15, color: C.orange, weight: 900, anchor: "middle" });
-      },
-      // 结尾绿框：骨骼公式 + 灰色中文
-      final(formula, zhLine) {
-        const w = Math.min(928, Math.max(420, estW(formula, 21) + 50));
-        T(formula, 40, 479, go(1.6), 1.6, { size: 21, color: C.green, weight: 900 });
-        P(roughRect(16, 448, w, 48), go(.9), .9, { color: C.green, w: 2 });
-        T(zhLine, 40, 524, go(1.4), 1.4, { size: 17, color: C.grey });
-      }
-    };
-    return h;
-  }
-
   // ───────── v2 版面（2026-10-30，决策 24）─────────
   // 讲解员站在右侧 x≈892，内容收在 x≤800；骨架方块下移到 y 140（让出右上角的进度条）；原来一屏的方块 + 两句金句 + 铁律拆成 3 个镜头；
   // 配色只用 V3 k.PAL：S 主语墨黑、V 谓语蓝、O / IO 宾语红（靶心 / 收礼的人）、P 表语 / OC 宾补 / DO 物绿、挂件灰；橙 / 紫 / 褐都改 V3。
@@ -776,55 +665,133 @@
         ["for 心意", "花心思替人准备、购买用 for：buy / make / cook / draw / choose / find sth. for sb.。"]
       ]
     },
-    // ───────── ⑤ SVOC 魔法赋能型 ─────────
+    // ───────── ⑤ SVOC 魔法赋能型（v2 + 讲解员，2026-10-30）─────────
+    // 升级前原样保存在 cases/five_patterns_classic.js（R1 零丢失）。原一屏拆成 3 个镜头（骨架 + 小主谓句 / 读书金句 + 形容词宾补避坑 / 使役动词金句 + 带不带 to + 公式）+ 🔮 预测 + 金句卡；
+    // R4：讲解员读到 Reading books 时捧书读、读到 They play happily 时跳起来、读到 read aloud 时捧书读、读到 Let's go 时走一段；场景里两个孩子读到 lets us play games 时跳起来玩；预测题读到 read aloud 时捧书读。
     {
       build(k) {
-        const { C, N } = k, h = tools(k);
+        k.v2();
+        const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = vtools(k, D);
+        const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+        const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
         N("", "句型 ⑤：光有主谓宾还不够，还要说宾语「变成什么样」或「去做什么」。");
-        k.header("魔法赋能型 · 让宾语干某事 / 变某样", "句型 ⑤ SVOC", false);
+        k.act(me, "walk", .3, 1.6, { to: 892 });
+        k.act(me, "wave", 2.0, 1.8);
+        D.scene({ title: "句型 ⑤ SVOC", sub: "魔法赋能型 · 让宾语干某事 / 变某样", badges: ["💡"], steps: ["① 骨架", "② 小主谓", "③ 形容词宾补", "④ 使役动词", "⑤ 公式·口诀", "🔮 预测"], cardDur: 3.6 });
+
+        // ───── 镜头 1 · 骨架方块 + 小主谓句 ─────
+        D.step(0); D.shot();
         const B = h.layout([
-          { role: "S 主语", word: "Good music", color: C.blue },
-          { role: "V 使役谓语", word: "makes", color: C.orange },
-          { role: "O 宾语", word: "us", color: C.purple },
+          { role: "S 主语", word: "Good music", color: C.ink },
+          { role: "V 使役谓语", word: "makes", color: C.blue },
+          { role: "O 宾语", word: "us", color: C.red },
           { role: "OC 宾补", word: "happy / relax", color: C.green }
         ]);
         N("", "Good music makes us：好音乐让我们……话还没说完！");
         h.block(B[0]); h.word(B[0]); h.block(B[1], B[0]); h.word(B[1]); h.block(B[2], B[1]); h.word(B[2]);
+        k.act(me, "think", S.at - .4, 1.4);
         N("宾语补足语 OC：", "补充说明宾语的状态或动作，简称宾补，比如 happy、relax。");
         h.block(B[3], B[2]); h.word(B[3]);
+        D.step(1);
         N("小主谓句：", "宾语 + 宾补连起来像一个小句子：us happy → 我们开心。");
         h.arc(B[2], B[3], "us + happy → 我们开心");
         N("魔法赋能：", "比喻：动词像魔法棒，点一下宾语，让它变个样或去做件事。");
+        // 音符从左边飘过来（好音乐），讲解员听了开心
+        const gN = D.sub();
+        [["♪", 0, 0], ["♫", 46, -22], ["♪", 92, 6]].forEach(([s, dx, dy]) => T(s, 120 + dx, 380 + dy, go(.1, 0), .1, { size: 34, color: C.blue, weight: 900 }));
+        D.back(); k.hide(gN);
+        const syM = sayAt("Good music makes us happy. It makes us relax.", { zh: "好音乐让我们开心。它让我们放松。", word: "Good music makes us happy relax Good music makes us" });
+        k.fade(gN, syM.t + syM.wd, .3, 1);
+        k.path(gN, syM.t + syM.wd, Math.max(1.6, syM.dur - syM.wd), [[180, -30], [380, 10], [560, -20]]);
+        k.fade(gN, syM.t + syM.dur - .3, .3, 0);
+        k.expr(me, "happy", syM.t + syM.wd + 1, 2);
         k.wait(.4);
-        const m1 = h.line("Reading books makes me clever and keeps my mind open.", 270);
+        D.wipe();
+
+        // ───── 镜头 2 · 读书金句 + 形容词作宾补 ─────
+        D.step(2); D.shot();
+        const m1 = h.line("Reading books makes me clever and keeps my mind open.", 170);
         k.say("Reading books makes me clever and keeps my mind open.", { zh: "读书让我变聪明，让我的思想更开阔。" });
-        h.tags(m1, [["Reading books", "S", C.blue], ["makes", "V", C.orange], ["me", "O", C.purple], ["clever", "OC", C.green], ["keeps", "V", C.orange], ["my mind", "O", C.purple], ["open", "OC", C.green]]);
+        h.tags(m1, [["Reading books", "S", C.ink], ["makes", "V", C.blue], ["me", "O", C.red], ["clever", "OC", C.green], ["keeps", "V", C.blue], ["my mind", "O", C.red], ["open", "OC", C.green]]);
+        const bk1 = k.prop("book", 0, 0, { hidden: true });
+        const syRd = sayAt("Reading books makes me clever and keeps my mind open.", { zh: "读书让我变聪明，让我的思想更开阔。", word: "Reading books me clever and keeps my mind open keep" });
+        k.act(me, "read", syRd.t + syRd.wd, Math.max(1.6, syRd.dur - syRd.wd), { prop: bk1, words: ["reading"] });
         N("形容词作宾补：", "make / keep + 宾语 + 形容词，不能写成 -ly 的 happily。");
-        const bad = h.line("makes me happily", 270, 17, C.red, 712);
-        h.strike(bad, "happily"); k.redX(686, 248);
+        const bad = h.line("makes me happily", 256, 17, C.red, 100);
+        h.strike(bad, "happily"); h.redX(64, 234);
+        k.act(me, "surprised", S.at - .4, 1);
+        const syHp = sayAt("Happily, ly. They play happily.", { zh: "快乐地（-ly 副词）。他们玩得很开心。", word: "happily ly", blocks: ["ly"] });
+        k.act(me, "jump", syHp.t + syHp.dur * .5, Math.max(1, syHp.dur * .5), { words: ["play"] });
+        D.hold(1);
+        D.wipe();
+
+        // ───── 镜头 3 · 使役动词 + 带不带 to + 公式 ─────
+        D.step(3); D.shot();
         N("使役动词：", "make、let、have，意思是「让某人做某事」。后面的动词要脱掉 to。");
-        const m2 = h.line("Our teacher asks us to read aloud, and she lets us play games!", 350);
-        k.say("Our teacher asks us to read aloud, and she lets us play games!", { zh: "老师让我们大声朗读，还让我们玩游戏！" });
-        h.tags(m2, [["asks", "V", C.orange], ["us", "O", C.purple], ["to read aloud", "OC", C.green], ["lets", "V", C.orange], ["us", "O", C.purple, 1], ["play games", "OC", C.green]]);
+        const m2 = h.line("Our teacher asks us to read aloud, and she lets us play games!", 170);
+        // 场景：两个孩子读到 lets us play games 时跳起来玩（R4 play）；讲解员读到 read aloud 时捧书读
+        const gK = D.sub();
+        P(k.wl(420, 446, 780, 446, .4), go(.3), .3, { color: C.ink, w: 2 });
+        const kid1 = k.actor("porter", { x: 520, y: 446, s: .6, f: 1, g: gK });
+        const kid2 = k.actor("traveler", { x: 640, y: 446, s: .6, f: -1, g: gK });
+        D.back();
+        const bk2 = k.prop("book", 0, 0, { hidden: true });
+        const syT = sayAt("Our teacher asks us to read aloud, and she lets us play games!", { zh: "老师让我们大声朗读，还让我们玩游戏！" });
+        k.act(me, "read", syT.t, Math.max(1.4, syT.dur * .5), { prop: bk2, words: ["read"] });
+        k.act(kid1, "jump", syT.t + syT.dur * .62, Math.max(1, syT.dur * .38), { words: ["play"] });
+        k.act(kid2, "jump", syT.t + syT.dur * .66, Math.max(1, syT.dur * .34), { words: ["play"] });
+        h.tags(m2, [["asks", "V", C.blue], ["us", "O", C.red], ["to read aloud", "OC", C.green], ["lets", "V", C.blue], ["us", "O", C.red, 1], ["play games", "OC", C.green]]);
+        k.say("Our teacher asks us to read aloud, and she lets us play games!", { zh: "老师让我们大声朗读，还让我们玩游戏！", word: "Our teacher asks to read aloud she lets play games ask us to read" });
         N("动词原形：", "动词本来的样子，不加 to、-s、-ed、-ing，比如 play、laugh。");
         h.ring(m2, "play", C.red);
-        N("", "一般动词 ask、tell、want、invite 要带 to：ask us to read。");
-        h.say("ask / tell / want / invite + sb. + to do", 40, 404, { color: C.blue, size: 16, weight: 900, font: MONO, dur: 1.2 });
-        N("", "使役动词后面用原形：Let's go! Make him laugh!");
-        h.say("make / let / have + sb. + do（不带 to）   Let's go! · Make him laugh!", 40, 428, { color: C.red, size: 16, weight: 900 });
-        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
-        k.say("Good music makes us happy. It makes us relax.", { zh: "好音乐让我们开心。它让我们放松。", word: "Good music makes us happy relax Good music makes us" });
-        k.say("Reading books makes me clever and keeps my mind open.", { zh: "读书让我变聪明，让我的思想更开阔。", word: "Reading books me clever and keeps my mind open keep" });
-        k.say("Happily, ly. They play happily.", { zh: "快乐地（-ly 副词）。他们玩得很开心。", word: "happily ly", blocks: ["ly"] });
-        k.say("Our teacher asks us to read aloud, and she lets us play games!", { zh: "老师让我们大声朗读，还让我们玩游戏！", word: "Our teacher asks to read aloud she lets play games ask us to read" });
-        k.say("Ask, tell, want, invite. Ask us to read! Do it now.", { zh: "请求、告诉、想要、邀请。叫我们来读吧！现在就做。", word: "ask tell want invite do" });
-        k.say("Make, let, have. Let's go! Make him laugh!", { zh: "让。我们走吧！让他笑！", word: "make let have Let's go him laugh do" });
         k.say("Played, playing. Ed, ing.", { zh: "玩了、正在玩。-ed、-ing。", word: "ed ing", blocks: ["ed", "ing"] });
+        D.step(4);
+        N("", "一般动词 ask、tell、want、invite 要带 to：ask us to read。");
+        h.note("ask / tell / want / invite + sb. + to do", 40, 250, { color: C.blue, size: 16, weight: 900, font: D.MONO, dur: 1.2 });
+        k.say("Ask, tell, want, invite. Ask us to read! Do it now.", { zh: "请求、告诉、想要、邀请。叫我们来读吧！现在就做。", word: "ask tell want invite do" });
+        N("", "使役动词后面用原形：Let's go! Make him laugh!");
+        h.note("make / let / have + sb. + do（不带 to）   Let's go! · Make him laugh!", 40, 282, { color: C.red, size: 16, weight: 900 });
+        const syGo = sayAt("Make, let, have. Let's go! Make him laugh!", { zh: "让。我们走吧！让他笑！", word: "make let have Let's go him laugh do" });
+        const tg = syGo.t + syGo.dur * .55, hg = Math.max(.7, syGo.dur * .18);
+        k.act(me, "walk", tg, hg, { to: 840, words: ["go"] });
+        k.act(me, "walk", tg + hg, hg, { to: 892 });
+        k.act(me, "turn", tg + 2 * hg, .3, { to: -1 });
+        k.expr(kid1, "happy", tg + 2 * hg, 1.5); k.expr(kid2, "happy", tg + 2 * hg, 1.5);
         h.final("S + V + O（宾语）+ OC（宾补：形容词 / 名词 / to do / do）", "读书让我变聪明。  make / let / have 后面不带 to！");
         N("口诀：", "make、let、have 不带 to；ask、tell、want 要带 to。");
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 🔮 预测 ─────
+        D.step(5); D.shot();
+        N("预测：", "「老师让我们大声朗读」：makes 是使役动词，后面用 read 还是 to read？先想 3 秒！");
+        h.quiz("🔮 老师让我们大声朗读。", "→  The teacher makes us ___ aloud.  ( read / to read )");
+        k.act(me, "think", S.at, 3.1);
+        D.hold(3);
+        N("揭晓：", "使役动词 make 后面用原形、不带 to：The teacher makes us read aloud.");
+        const tRev = go(.3);
+        h.reveal("The teacher makes us read aloud.");
+        k.sfx("ding", tRev + .9);
+        const bk3 = k.prop("book", 0, 0, { hidden: true });
+        const syQ = sayAt("The teacher makes us read aloud.", { zh: "老师让我们大声朗读。", word: "the teacher makes us read aloud" });
+        k.act(me, "read", syQ.t, Math.max(1.6, syQ.dur), { prop: bk3, words: ["read"] });
+        k.act(me, "cheer", syQ.t + Math.max(1.6, syQ.dur) + .1, 1.2);
+        D.hold(1.4);
+
+        k.quoteCard({ insight: "宾语后面再补一笔：变成什么样或去做什么，\n宾语 + 宾补像一个小句子", rhyme: "口诀：make、let、have 不带 to；\nask、tell、want 要带 to。", hlLines: 2, foot: "🦴 五大基本句型 · 句型 ⑤ SVOC" });
+        k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+        D.hold(2);
+        D.finish(.45);
       },
+      actionWords: [
+        { word: "reading", act: "读到「Reading books makes me clever」时讲解员捧书读（read）" },
+        { word: "play", act: "读到「They play happily」时讲解员跳起来；读到「she lets us play games」时场景里两个孩子先后跳起来玩（jump）" },
+        { word: "read", act: "读到「asks us to read aloud」时讲解员捧书读；预测题揭晓「The teacher makes us read aloud」时再捧书读（read）" },
+        { word: "go", act: "读到「Let's go!」时讲解员往前走一段再走回（walk）" },
+      ],
       r2skip: ["SVOC", "OC", "sb", "makes me happily"],   // 成分标签、sb. 缩写；划掉的错误搭配 makes me happily 不读
       terms: [
+        ["可信度徽章", "💡 魔法赋能、魔法棒、骨架都是帮助记忆的比喻。"],
         ["使役动词", "表示「让某人做某事」的动词：make、let、have。后面的动词用原形，不带 to：let us play。"],
         ["动词原形", "动词本来的样子，不加 to、-s、-ed、-ing，比如 play、laugh、go。"],
         ["小主谓句", "宾语 + 宾补连起来，意思像一个小句子：makes us happy → 我们开心。"],
