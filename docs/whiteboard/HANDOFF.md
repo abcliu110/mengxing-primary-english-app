@@ -6,6 +6,22 @@
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元 / 改完一个文档立即提交；发现 bug 直接修。本文只写现状和下一步，流水写进 `CHANGELOG.md`。
 
 
+## ⏸ 交接（2026-10-30 01:56 JST，额度不足暂停）
+
+**状态**：连续实现已暂停（用户 01:55：额度不多，先写交接）。定时任务「萌星连续实现」（5bcd1df9）和「萌星夜间汇总」（b3c47ef6）都已 **paused**，恢复时在 Hark 里把它们设回 active 即可，按本节接着做。
+
+**已完成（全部已推 master，明细见下方「夜间进度」）**
+- 决策 23–29 写入 MASTER_DESIGN（29 软件优化 = 最后做）；SOP §14/§15；word_origins/COVERAGE.md 审计 v1。
+- 老白板 v2：fp_economy 1–4 幕、fp_vectors 1–4 幕、fp_boundedness 第 1 幕，共 9 幕（每幕一提交，均有 *_classic.js 备份与 `work/shots/<模块>_<幕>_对比总图.png`）。
+
+**下一个接手点**
+1. `work/anim` 里 fp_boundedness.js + 主 HTML 有**未提交改动**（第 2 幕进行中，未验收）。接手先 `git diff` 看一眼：检查全过就提交，不确定就 `git checkout` 丢弃重做。
+2. 然后顺序：fp_boundedness 余下幕 → fp_iconicity → fp_one_king → fp_zoom_focus → bamboo_tree → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
+3. 每幕流程：备份 classic → 改 v2 → `jscheck.py`、`r2check.py <模块> --strict`、`reg_render.py`、`app*.py` → 对比图 → 提交推送 → 本文件「夜间进度」加一行。
+4. 已知遗留：动作库无 swim / eat / 穿脱衣（r2check 只提示，扩 `wb_actor.js` 时补）；`stress_rhythm` 原 3 幕 r2check 失败是旧问题，升级时一并修。
+
+**待用户审**：`work/shots/` 下 9 张对比总图（fp_economy_1–4、fp_vectors_1–4、fp_boundedness_1）。
+
 ## 夜间进度（2026-10-30）
 
 > 用户 01:07 / 01:09 授权连续推进：按 MASTER_DESIGN 顺序全部实现（白板化 → 单词维度 → 词源 / 格林 / 词根 / 音变规律 → 文档清理），软件优化（决策 29）最后做；不询问、不等审片，需要决定时按 R1–R4 选最稳妥方案并在此记理由，阻塞跳过登记。对比图存 `work/shots/`，早上统一审。每行：时间 JST｜做了什么｜提交｜对比图｜决定与理由 / 阻塞。
