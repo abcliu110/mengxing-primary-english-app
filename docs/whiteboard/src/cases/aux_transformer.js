@@ -114,6 +114,13 @@ WB_LAB.aux_transformer = (() => {
         k.underline(e, "What beautiful photos"); k.underline(e, "How happy");
         h.tag("What + 形容词 + 名词 + 主谓！   How + 形容词 + 主谓！", SX, ROW.ex + 27, C.orange);
         N("", "五种句子都变出来了！be 动词自己就是护卫，不用请外援 do / does / did。");
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句
+        k.say("How happy she is!", { zh: "她多开心啊！", word: "How happy" });
+        k.say("She is not taking photos. Is she in the park? Yes, she is. No, she isn't.", { zh: "她没在拍照。她在公园吗？是的，她在。不，她不在。", word: "She is not Yes No" });
+        k.say("Taking photos in the park now.", { zh: "现在在公园里拍照。", word: "taking photos in the park now" });
+        k.say("Where? What? Beautiful!", { zh: "哪里？什么？真漂亮！", word: "Where What beautiful" });
+        k.say("Be: am, is, are, was, were. I am ten. They were happy.", { zh: "be 动词：am、is、are、was、were。我十岁。他们以前很开心。", word: "be am is are was were" });
+        k.say("Do, does, did. Do you like it?", { zh: "do、does、did。你喜欢它吗？", word: "do does did" });
         h.final("有 be 就用 be：not 贴身后，提问跳句首，不请 do / does / did！");
         N("口诀：", "有 be 就用 be：not 贴在身后，提问跳到句首。");
       },
@@ -181,6 +188,12 @@ WB_LAB.aux_transformer = (() => {
         k.underline(e, "How well");
         N("感叹句：", "How well + 主语 Leo + 谓语 can speak，主语在前，不用倒过来！");
         h.tag("How well + 主语 Leo + 谓语 can speak！", SX, ROW.ex + 27, C.orange);
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句
+        k.say("Yes, he can. No, he can't.", { zh: "是的，他会。不，他不会。", word: "Yes he No" });
+        k.say("What can Leo speak very well?", { zh: "里奥什么说得很好？", word: "What" });
+        k.say("Leo can speak English very well.", { zh: "里奥英语说得非常好。", word: "Leo can speak English very well How" });
+        k.say("Cannot. He cannot swim. Not now.", { zh: "不能。他不会游泳。现在不行。", word: "cannot not" });
+        k.say("Will, must, should. You should read every day.", { zh: "将会、必须、应该。你应该每天读书。", word: "will must should" });
         h.final("情态大将军：not 贴身后，提问跳句首，后面动词永远原形！");
         N("口诀：", "大将军自己会变形：加 not、跳句首，后面动词永远原形。");
       },
@@ -241,6 +254,12 @@ WB_LAB.aux_transformer = (() => {
         h.ringAt(e, e.at(" a ") + 1, 1, C.red);
         N("感叹句：", "What a + 形容词 + 单数名词 + 主谓：What a relaxing evening Mia has!");
         h.tag("What a + 形容词 + 单数名词 + 主谓！", SX, ROW.ex + 27, C.orange);
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句
+        k.say("Mia does not watch TV. Does she? Yes, she does. No, she doesn't.", { zh: "米娅不看电视。她看吗？是的，她看。不，她不看。", word: "Mia does not doesn't Yes she No" });
+        k.say("TV, every Saturday evening.", { zh: "电视，每周六晚上。", word: "TV every Saturday evening" });
+        k.say("Watch, watches. Es.", { zh: "看，看（三单加 -es）。", word: "es", blocks: ["es"] });
+        k.say("When? What a relaxing evening Mia has!", { zh: "什么时候？米娅的晚上多轻松啊！", word: "When What a relaxing has" });
+        k.say("An apple. An hour.", { zh: "一个苹果。一小时。", word: "an" });
         h.final("单三请 does：-es 被照妖镜吸走，后面动词打回原形！");
         N("口诀：", "看到 does / doesn't，后面动词立刻打回原形，别再加 -es！");
       },
@@ -299,6 +318,12 @@ WB_LAB.aux_transformer = (() => {
         k.underline(e, "What a wonderful trip"); k.underline(e, "How fast");
         N("", "感叹句里本来就是过去的事，所以 had、flew 保持过去式，不用 did。");
         h.tag("名词 trip 用 What a wonderful trip；副词 fast 用 How fast！", SX, ROW.ex + 27, C.orange);
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句
+        k.say("How fast the plane flew!", { zh: "飞机飞得多快啊！", word: "How fast the flew" });
+        k.say("They did not go. Did they? Yes, they did. No, they didn't.", { zh: "他们没去。他们去了吗？是的，去了。不，没去。", word: "They did not didn't Yes No" });
+        k.say("To Sanya, by plane, last winter.", { zh: "去三亚，坐飞机，去年冬天。", word: "to Sanya by plane last winter" });
+        k.say("What a wonderful trip they had!", { zh: "他们的旅行多棒啊！", word: "What a wonderful trip had" });
+        k.say("Played, ed. Buy, bought. I bought a book.", { zh: "玩了（加 -ed）。买，买了。我买了一本书。", word: "ed buy bought", blocks: ["ed"] });
         h.final("过去请 did：过去时被照妖镜吸走，went 打回原形 go！");
         N("口诀：", "看到 did / didn't，后面动词一律打回原形！");
       },
