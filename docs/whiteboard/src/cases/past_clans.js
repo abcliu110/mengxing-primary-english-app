@@ -249,14 +249,14 @@
         ["同化", "两个音挨在一起时，一个变得像另一个。leave 里的浊音 v 挨着清音 t，就变成清音 f：left。"]
       ]
     },
-    // ───────── ④ -ought / -aught 四大护法派 ─────────
+    // ───────── ④ -ought / -aught 六大护法派 ─────────
     {
       build(k) {
         const { C, N, T, P, go } = k, W = tools(k);
         N("", "bought、brought、caught、taught 长得太像，到底怎么写？");
         k.header("第四门派：-ought / -aught 护法派", "过去式四大门派", false);
         N("护法：", "比喻：这一派成员都带着同一个「保镖」尾巴 -ought 或 -aught。");
-        W.flag("-ought/-aught", "四大护法派", C.purple, "#ede9fe", 20);
+        W.flag("-ought/-aught", "六大护法派", C.purple, "#ede9fe", 20);
         k.wait(.4);
         N("不发音字母：", "写出来但不读的字母。gh 在这里不发音，ought、aught 都读 /ɔːt/。");
         const m = k.mono("-ought = -aught = /ɔːt/", 290, 112, 22, C.ink, 900);
@@ -300,7 +300,7 @@
       },
       terms: [
         ["-ought / -aught", "这一派过去式共同的尾巴，都读 /ɔːt/，比如 bought、thought、taught、caught。"],
-        ["四大护法", "比喻：这一派成员都带着同一个「保镖」尾巴 -ought 或 -aught，一眼就能认出来。"],
+        ["六大护法", "比喻：这一派成员都带着同一个「保镖」尾巴 -ought 或 -aught，一眼就能认出来。"],
         ["不发音字母", "写出来但不读的字母。-ought、-aught 里的 gh 就不发音。"],
         ["黄金铁律", "原形里有字母 a（teach、catch）→ 写 -aught；没有 a（buy、think、bring、fight）→ 写 -ought。"],
         ["舌根摩擦音", "舌头后部靠近上颚、让气挤出来的音。古英语里 gh 就读这个音，后来不读了。"],

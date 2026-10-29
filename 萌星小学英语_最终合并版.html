@@ -10328,7 +10328,7 @@ WB_LAB.adj_order = (function () {
     { lab: "① 限定词", letter: "", col: "#475569", fill: "#f1f5f9" },
     { lab: "② 观点", letter: "O", col: "#db2777", fill: "#fce7f3" },
     { lab: "③ 大小", letter: "S", col: "#2563eb", fill: "#dbeafe" },
-    { lab: "④ 形状/新旧", letter: "A·S", col: "#d97706", fill: "#fef3c7" },
+    { lab: "④ 新旧/形状", letter: "A·S", col: "#d97706", fill: "#fef3c7" },
     { lab: "⑤ 颜色", letter: "C", col: "#059669", fill: "#d1fae5" },
     { lab: "⑥ 国籍/来源", letter: "O", col: "#7c3aed", fill: "#ede9fe" },
     { lab: "⑦ 材质/用途", letter: "M·P", col: "#dc2626", fill: "#fee2e2" },
@@ -10506,7 +10506,7 @@ WB_LAB.adj_order = (function () {
             ["数词：", "表示数量的词，比如 two（两）。它属于限定词，坐车头。"],
             ["观点：", "cute 可爱，是心里的感觉，先夸可爱，站最外面。"],
             ["大小：", "little 小小的，再看个头。"],
-            ["", "形状/新旧车厢：没说是新是旧，空着。"],
+            ["", "新旧/形状车厢：没说是新是旧，空着。"],
             ["颜色：", "white 白色的，毛的颜色，谁看都一样。"],
             ["", "来源车厢、材质/用途车厢都没有乘客，空着。"],
             null,
@@ -10532,7 +10532,7 @@ WB_LAB.adj_order = (function () {
     {
       build(k) {
         build(k, {
-          sub: "真题专列 ③  一件崭新的红色中国丝绸连衣裙",
+          sub: "真题专列 ③  一件漂亮的崭新红色中国丝绸连衣裙",
           open: "第三列火车最挤：5 个形容词一起上车，看谁坐哪一节！",
           zh: "一件 + 漂亮的(观点) + 新的(新旧) + 红色的(颜色) + 中国的(国籍) + 丝绸(材质) + 连衣裙",
           zhSay: "中文：一件漂亮的、崭新的红色中国丝绸连衣裙。",
@@ -10546,7 +10546,7 @@ WB_LAB.adj_order = (function () {
             ["", "a 一件，坐车头。"],
             ["观点：", "beautiful 漂亮，是心里的评价，站最外面。"],
             ["", "大小车厢：没说大小，空着。"],
-            ["新旧：", "new 新的，是衣服的「年龄」，坐形状/新旧车厢。"],
+            ["新旧：", "new 新的，是衣服的「年龄」，坐新旧/形状车厢。"],
             ["颜色：", "red 红色的。"],
             ["国籍：", "属于哪个国家。Chinese 中国的，表示裙子从哪里来。"],
             ["材质：", "silk 丝绸，裙子是用什么做的。silk 本来是名词，在这里修饰 dress。"],
@@ -10586,7 +10586,7 @@ WB_LAB.adj_order = (function () {
             ["指示词：", "this（这个）、that（那个），用来指出是哪一个。that 属于限定词，坐车头。"],
             ["", "观点车厢：这里没有夸他，空着。"],
             ["大小：", "tall 高个子，一眼就能看到的身高。"],
-            ["年龄：", "young 年轻的，坐形状/新旧车厢。"],
+            ["年龄：", "young 年轻的，坐新旧/形状车厢。"],
             ["", "颜色车厢：空着。"],
             ["国籍：", "British 英国的，他从哪个国家来。"],
             ["用途：", "拿来做什么用。basketball 篮球，说明他是教什么的教练。"],
@@ -10862,14 +10862,14 @@ WB_LAB.adj_order = (function () {
         ["同化", "两个音挨在一起时，一个变得像另一个。leave 里的浊音 v 挨着清音 t，就变成清音 f：left。"]
       ]
     },
-    // ───────── ④ -ought / -aught 四大护法派 ─────────
+    // ───────── ④ -ought / -aught 六大护法派 ─────────
     {
       build(k) {
         const { C, N, T, P, go } = k, W = tools(k);
         N("", "bought、brought、caught、taught 长得太像，到底怎么写？");
         k.header("第四门派：-ought / -aught 护法派", "过去式四大门派", false);
         N("护法：", "比喻：这一派成员都带着同一个「保镖」尾巴 -ought 或 -aught。");
-        W.flag("-ought/-aught", "四大护法派", C.purple, "#ede9fe", 20);
+        W.flag("-ought/-aught", "六大护法派", C.purple, "#ede9fe", 20);
         k.wait(.4);
         N("不发音字母：", "写出来但不读的字母。gh 在这里不发音，ought、aught 都读 /ɔːt/。");
         const m = k.mono("-ought = -aught = /ɔːt/", 290, 112, 22, C.ink, 900);
@@ -10913,7 +10913,7 @@ WB_LAB.adj_order = (function () {
       },
       terms: [
         ["-ought / -aught", "这一派过去式共同的尾巴，都读 /ɔːt/，比如 bought、thought、taught、caught。"],
-        ["四大护法", "比喻：这一派成员都带着同一个「保镖」尾巴 -ought 或 -aught，一眼就能认出来。"],
+        ["六大护法", "比喻：这一派成员都带着同一个「保镖」尾巴 -ought 或 -aught，一眼就能认出来。"],
         ["不发音字母", "写出来但不读的字母。-ought、-aught 里的 gh 就不发音。"],
         ["黄金铁律", "原形里有字母 a（teach、catch）→ 写 -aught；没有 a（buy、think、bring、fight）→ 写 -ought。"],
         ["舌根摩擦音", "舌头后部靠近上颚、让气挤出来的音。古英语里 gh 就读这个音，后来不读了。"],
@@ -11885,7 +11885,7 @@ WB_LAB.tense_matrix = [
       N("", "I lost my key 只说丢了；I have lost my key 是丢了，现在还进不去门！");
       k.wait(2.2);
       N("", "作业已经写完了，结果留在现在：现在可以出去玩啦！");
-      const m1 = h.ex("I / We / They", "have already finished our homework.", 284, "成果：能玩了");
+      const m1 = h.ex("I / We / They", "have already finished the homework.", 284, "成果：能玩了");
       h.uline(m1, "have"); h.ring(m1, "finished", 0, C.orange);
       N("for + 时间段：", "表示持续了多久：从 5 年前一直住到现在。单三主语用 has。");
       const m2 = h.ex("He / She / Mia", "has lived in Beijing for five years.", 314, "一直到现在");
@@ -11901,7 +11901,7 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "出现明确的过去时间点，就只能用一般过去时，不能用现在完成时。");
       h.trapText("句子里有 yesterday, last week, two days ago 这类过去时间点，不能用 have/has done！", 434);
       N("", "结论：have + 过去分词 finished，作业写完的成果留到现在。");
-      k.final("I / We / They have already finished our homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！");
+      k.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！");
       N("口诀：", "过去做完，结果留到现在，就用 have / has + 过去分词！");
     },
     terms: [
@@ -12056,9 +12056,9 @@ WB_LAB.aux_transformer = (() => {
         N("", "这一类句子里住着一位「大将军」，变形全靠它一个人。");
         k.header("第二类：情态动词大将军", "助动词照妖镜", false);
         h.label("① 肯定句", ROW.aff, C.green);
-        N("肯定句：", "Leo can speak English very well. 里奥英语说得非常好。");
+        N("肯定句：", "Leo can speak English very well. 里奥能把英语说得非常好。");
         const a = h.line("Leo can speak English very well.", ROW.aff);
-        h.tag("里奥英语说得非常好。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        h.tag("里奥能把英语说得非常好。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("情态动词：", "can 能、will 将要、must 必须、should 应该，表示能力、打算或要求。");
         const g = h.ring(a, "can");
         h.tag("大将军", g.cx, ROW.aff + 24, C.orange, { anchor: "middle", weight: 900 });
@@ -12854,7 +12854,7 @@ WB_LAB.aux_transformer = (() => {
         N("Tired as we were：", "「虽然我们很累」。结尾再用感叹句，像画龙点睛，一下子亮起来。");
         uline(k, p2, "Tired as we were,", C.brown); uline(k, p2, "what a fantastic day we had!", C.orange);
         N("be going to：", "母题三写计划：be going to「打算做……」，再换着用 will、plan to。");
-        finalBox(k, "母题三 · 计划篇积木：打算总起(be going to) + 三项计划(First/Besides/Finally) + 期待收尾",
+        finalBox(k, "母题三 · 计划篇积木：打算总起(be going to) + 三项计划(First/What's more/Finally) + 期待收尾",
           "口诀：写人抓外貌·性格·爱好；写经历锁定过去式；写计划用 be going to / will / plan to / look forward to！");
         N("口诀：", "写人抓外貌性格爱好，写经历锁定过去式，写计划要换着用将来的说法！");
       },
@@ -12955,7 +12955,7 @@ function wbSeekTo(v) { if (!wbState.player) return; wbState.t = v / 1000 * wbSta
 const GRIMM_VOWEL_LAWS = [
   {
     lawName: "定律 A：元音前移高化律（后元音 oo/u ➔ 前元音 ee/i）",
-    essence: "古英语为了表示『复数』或『使别人变成那样（名词变动词）』，在词尾加过一个高元音 -i，它像磁铁一样把前面的后元音 oo/u 往前拉成了前元音 ee/i！后来词尾掉落，就留下了这群最神奇的双胞胎：",
+    essence: "古英语为了表示『复数』或『使别人变成那样（名词/形容词变动词）』，在词尾加过一个高元音 -i，它像磁铁一样把前面的后元音 oo/u 往前拉成了前元音 ee/i！后来词尾掉落，就留下了这群最神奇的双胞胎：",
     pairs: [
       { from: "foot /fʊt/ (单数：一只脚)", to: "feet /fiːt/ (复数：双脚)", rule: "oo ➔ ee 元音前移表复数" },
       { from: "tooth /tuːθ/ (单数：一颗牙)", to: "teeth /tiːθ/ (复数：满口牙)", rule: "oo ➔ ee 元音前移表复数" },
@@ -12998,7 +12998,7 @@ const ADJ_ORDER_CARRIAGES = [
   { step: "① 冠/数/指", name: "限定词车头", why: "先锁定数量和归属", ex: "a / two / my / this", col: "#475569" },
   { step: "② 主观观点", name: "内心评价 (Opinion)", why: "离说话人内心最近，最先脱口而出", ex: "lovely / cute / nice / beautiful", col: "#db2777" },
   { step: "③ 尺寸大小", name: "大小长短 (Size)", why: "一眼看过去的整体体积轮廓", ex: "big / small / tall / long", col: "#2563eb" },
-  { step: "④ 形状/新旧", name: "形状年龄 (Shape/Age)", why: "再走近看几何形状与新旧岁数", ex: "round / new / old / young", col: "#d97706" },
+  { step: "④ 新旧/形状", name: "新旧形状 (Age/Shape)", why: "再走近看新旧岁数与几何形状", ex: "new / old / young / round", col: "#d97706" },
   { step: "⑤ 颜色色彩", name: "表面颜色 (Colour)", why: "物体表面的视觉色彩", ex: "red / blue / yellow / black", col: "#059669" },
   { step: "⑥ 国籍出处", name: "产地来源 (Origin)", why: "客观地理与文化血统", ex: "Chinese / English / American", col: "#7c3aed" },
   { step: "⑦ 材质用途", name: "物理材质 (Material)", why: "离物体物理本质最近，必须紧贴名词！", ex: "wooden / glass / paper / sports", col: "#dc2626" }
@@ -13020,7 +13020,7 @@ const ADJ_ORDER_EXAMPLES = [
     why: "先夸可爱(cute)，再看个头小(little)，最后看毛色白(white)紧贴 cats！"
   },
   {
-    title: "经典真题 ③：一件崭新的红色中国丝绸连衣裙",
+    title: "经典真题 ③：一件漂亮的崭新红色中国丝绸连衣裙",
     zh: "一件 + 漂亮的(观点) + 新的(新旧) + 红色的(颜色) + 中国的(国籍) + 丝绸(材质) + 连衣裙",
     slots: ["a", "beautiful (观点)", "—", "new (新旧)", "red (颜色)", "Chinese (国籍)", "silk (材质)", "dress"],
     en: "a beautiful new red Chinese silk dress",
@@ -13062,7 +13062,7 @@ const IRREGULAR_PAST_CLANS = [
     ]
   },
   {
-    clanName: "✂️ 第三门派：长音减肥派（ee / ea 缩短成单 e，词尾加清音 -t / -d）",
+    clanName: "✂️ 第三门派：长音减肥派（ee / ea 缩短成单 e，词尾多加 -t）",
     secret: "【第一性原理揭秘】当一个含长元音 /iː/（ee 或 ea）的动词在词尾加上过去式 -t/-d 时，音节变拥挤了，口腔为了保持节奏平衡，自动把长元音 /iː/『减肥缩短』成了短元音 /e/！",
     members: [
       { base: "sleep /sliːp/ (睡觉)", past: "slept /slept/", tip: "ee 缩成 e + t", ex: "I slept very well last night." },
@@ -13074,7 +13074,7 @@ const IRREGULAR_PAST_CLANS = [
     ]
   },
   {
-    clanName: "⚔️ 第四门派：买想教抓「-ought / -aught」四大护法派（全读 /ɔːt/，gh静音！）",
+    clanName: "⚔️ 第四门派：买想教抓「-ought / -aught」六大护法派（全读 /ɔːt/，gh静音！）",
     secret: "【第一性原理揭秘】好多同学分不清 bought, thought, brought, caught, taught 怎么写。其实它们全是古英语『元音后移 + 舌根摩擦音 gh(后静音) + t』的产物！记住黄金铁律：【原形有 a 就写 -aught（catch/teach），其余全写 -ought】！",
     members: [
       { base: "buy (买)", past: "bought /bɔːt/", tip: "无 a 用 -ought（去商店买礼物）", ex: "Mom bought a new dress for me." },
@@ -13103,7 +13103,7 @@ const STRESS_AND_SCHWA_DB = [
     title: "法则 B：后缀「重音磁铁」定律（再长的多音节词，看一眼尾巴就知重音在哪！）",
     principle: "遇到三四个音节的长单词（如 vacation, dictionary, musician, scientific）怎么找重音？根本不用查音标——特定后缀就像强力磁铁，永远把重音吸在固定位置！",
     items: [
-      { word: "-tion / -sion 磁铁", nForm: "重音 100% 吸在它前面那一个音节！", vForm: "va-ˈCA-tion · sta-ˈTION · di-ˈREC-tion · in-vi-ˈTA-tion", ex: "I love summer va-CA-tion!" },
+      { word: "-tion / -sion 磁铁", nForm: "重音 100% 吸在它前面那一个音节！", vForm: "va-ˈCA-tion · ˈSTA-tion · di-ˈREC-tion · in-vi-ˈTA-tion", ex: "I love summer va-CA-tion!" },
       { word: "-ic / -ian 磁铁", nForm: "重音 100% 吸在它前面那一个音节！", vForm: "mu-ˈSI-cian (音乐家) · ma-ˈGI-cian (魔术师) · sci-en-ˈTIF-ic (科学的)", ex: "He wants to be a great mu-SI-cian." },
       { word: "-ee / -ese / -eer 自吸磁铁", nForm: "重音直接吸在后缀自己身上！", vForm: "Chi-ˈNESE (中文/中国人) · Ja-pa-ˈNESE · engi-ˈNEER (工程师)", ex: "We speak Chi-NESE every day." },
       { word: "合成名词「前重」铁律", nForm: "两个名词拼成合成词，重音永远在第一个词！", vForm: "ˈBLACK-board (黑板) · ˈSCHOOL-bag (书包) · ˈFOOT-ball (足球) · ˈSUN-flower", ex: "Put your ˈSCHOOL-bag on the desk." }
@@ -13141,7 +13141,7 @@ const METAPHOR_CODES_DB = [
       { key: "🔵 BLUE (蔚蓝 ➔ 忧郁伤感)", literal: "阴郁的海水与蓝调音乐", metaphors: "feel blue / look blue (心情低落、闷闷不乐，= feel sad)", ex: "Don't feel blue! Everything will be fine." },
       { key: "🟢 GREEN (草木绿 ➔ 嫩芽新手 / 许可通行 / 环保)", literal: "刚长出的嫩芽与绿灯", metaphors: "a green hand (经验不足的新手/菜鸟) · give the green light (亮绿灯批准) · green food (绿色健康食品)", ex: "I am still a green hand at cooking." },
       { key: "🔴 RED & ⚫ BLACK (红与黑的中西差异)", literal: "火焰热血 vs 茶叶本色", metaphors: "black tea (红茶——英语按干茶叶乌黑颜色命名) · red tea (❌ 中式错译) · a red-letter day (喜庆的大好日子，日历印红字)", ex: "Grandpa likes drinking a cup of hot black tea." },
-      { key: "⚪ WHITE & 🟡 GOLDEN (洁白无害 vs 黄金宝贵)", literal: "纯净白雪 vs 闪耀黄金", metaphors: "a white lie (善意的谎言，不伤人) · golden opportunity (千载难逢的黄金良机) · golden autumn (金秋)", ex: "Time is gold! Don't miss this golden chance." }
+      { key: "⚪ WHITE & 🟡 GOLDEN (洁白无害 vs 黄金宝贵)", literal: "纯净白雪 vs 闪耀黄金", metaphors: "a white lie (善意的谎言，不伤人) · golden opportunity (千载难逢的黄金良机) · golden autumn (金秋)", ex: "Time is money! Don't miss this golden chance." }
     ]
   },
   {
@@ -13157,7 +13157,7 @@ const METAPHOR_CODES_DB = [
 ];
 
 
-// ==================== 王炸引擎 ⑨ 数据：四大「时×体」二维时空矩阵沙盘 (Tense × Aspect Matrix) ====================
+// ==================== 王炸引擎 ⑨ 数据：五大「时×体」二维时空矩阵沙盘 (Tense × Aspect Matrix) ====================
 const TENSE_ASPECT_MATRIX_DB = [
   {
     id: "present_simple",
@@ -13232,7 +13232,7 @@ const TENSE_ASPECT_MATRIX_DB = [
     whySecret: "【第一性原理】好多初中生都搞不懂『一般过去时』和『现在完成时』的区别！其实看字面就秒懂：`have/has` 是『现在手里攥着』，`done(过去分词)` 是『已经完成的成果』—— 合起来就是：**我此刻手里正拥有着之前做某事留下的结果！** 比如 `I lost my key` 只说明昨天丢了（现在找没找到不知道）；而 `I have lost my key` 意思是『我把钥匙弄丢了，所以现在我还进不去门！』",
     signals: "already (已经) · yet (还/尚) · just (刚刚) · ever (曾经) · never (从不) · since (自从) · for + 时间段 (持续了…)",
     subjectSwitch: [
-      { subj: "I / We / They", verb: "have already finished our homework.", note: "现在结果：作业写完了，现在可以出去玩啦！" },
+      { subj: "I / We / They", verb: "have already finished the homework.", note: "现在结果：作业写完了，现在可以出去玩啦！" },
       { subj: "He / She / Mia", verb: "has lived in Beijing for five years.", note: "三单主语用 has + 过去分词 lived（从5年前一直住到现在）" },
       { subj: "Have you", verb: "ever been to the Great Wall?", note: "have been to = 去过某地（人已经回来了，留下一段人生经历）" },
       { subj: "Mr Wang", verb: "has gone to Shanghai.", note: "has gone to = 去某地了（人还在上海或半路上，现在不在说话现场！）" }
@@ -13263,7 +13263,7 @@ const AUX_TRANSFORMER_CASES = [
     guardType: "⚔️ 自带大将军：情态动词 (can / will / must / should)",
     lawSummary: "【第一性原理】情态动词（can 能、will 将要、must 必须、should 应该）本身就是武功高强的大将军，而且它自带『免死金牌』—— 无论主语是谁，它身后的动词永远保持原形！变否定直接加 not，变疑问直接把大将军提到句首！",
     affirmative: "Leo can speak English very well.",
-    zh: "里奥英语说得非常好。",
+    zh: "里奥能把英语说得非常好。",
     negative: "Leo cannot (can't) speak English very well.",
     negRule: "直接在大将军 can 后加 not（cannot / can't），后面 speak 保持原形",
     yesNoQ: "Can Leo speak English very well? — Yes, he can. / No, he can't.",
@@ -13347,7 +13347,7 @@ const FIVE_SENTENCE_PATTERNS_DB = [
     essence: "【第一性原理】像 give(给)、show(展示)、send(寄)、teach(教)、buy(买)、make(制作)、cook(做饭) 这类词，天生涉及『把某物(sth.)传递给某人(sb.)』！当『人』排在前面时叫双宾语（`give me a book`）；如果把『物』放前面，人放后面，什么时候用 `to`，什么时候用 `for`？记住物理画面：**动作是把现成东西『单向递过去（箭头 ➔）』的用 `to`；动作是『花心思替某人准备/购买（爱心 ❤️）』的用 `for`！**",
     skeletonParts: ["👩 Mum (主语 S)", "gave / bought (双宾动词 V)", "me (人 IO) + a birthday gift (物 DO)"],
     goldExamples: [
-      { en: "Leo gave me a nice pen. = Leo gave a nice pen TO me.", zh: "🏹 方向箭头派（全用 to）：give(给) / show(看) / send(寄) / pass(递) / lend(借) / teach(教) / tell(告诉) sth. TO sb." },
+      { en: "Leo gave me a nice pen. = Leo gave a nice pen TO me.", zh: "🏹 方向箭头派（全用 to）：give(给) / show(展示) / send(寄) / pass(递) / lend(借) / teach(教) / tell(告诉) sth. TO sb." },
       { en: "Dad bought me a new bike. = Dad bought a new bike FOR me.", zh: "❤️ 爱心付出派（全用 for）：buy(买) / make(制作) / cook(烹饪) / draw(画) / choose(挑选) / find(寻找) sth. FOR sb." }
     ]
   },
@@ -13380,7 +13380,7 @@ const WRITING_ALCHEMIST_DB = [
         tag: "🌟 开心与感叹升级",
         basic: "🌱 60分基础句：We were very happy yesterday.",
         gold: "🏆 100分满分句：What a wonderful and unforgettable day we had! How excited we were!",
-        secret: "作文结尾把 I was very happy 升级为 What a + adj + n + 主谓！和 How + adj + 主谓！感叹句，必拿高分亮点！"
+        secret: "作文结尾把 We were very happy 升级为 What a + adj + n + 主谓！和 How + adj + 主谓！感叹句，必拿高分亮点！"
       },
       {
         tag: "🌟 景色与五感立体描写",
@@ -13410,7 +13410,7 @@ const WRITING_ALCHEMIST_DB = [
         tag: "🔗 第二棒：递进与补充亮点",
         basic: "🌱 普通写法：And I also help my mom.",
         gold: "🏆 高分路标：What's more, / Besides, I often help my parents do some housework, such as sweeping the floor.",
-        secret: "戒掉满篇的 And！改用 What's more,（更有甚者/而且）和 such as doing（比如…）举例！"
+        secret: "戒掉满篇的 And！改用 What's more,（而且/此外）和 such as doing（比如…）举例！"
       },
       {
         tag: "🔗 第三棒：转折与原因对比",
@@ -13444,7 +13444,7 @@ const WRITING_ALCHEMIST_DB = [
       },
       {
         tag: "📝 母题三：未来计划与倡议篇（My Summer Holiday Plan / Protect the Earth）",
-        basic: "🌱 核心骨架：打算总起(be going to) + 三项具体计划(First/Besides/Finally) + 期待收尾",
+        basic: "🌱 核心骨架：打算总起(be going to) + 三项具体计划(First/What's more/Finally) + 期待收尾",
         gold: "🏆 满分范句：The summer holiday is coming soon! First of all, I am going to read ten classic English books to open my mind. What's more, I will insist on swimming every day to keep healthy and strong. Finally, I plan to travel to Xi'an with my parents. I am really looking forward to it!",
         secret: "交替使用 is coming soon / am going to / will / plan to / look forward to，句式丰富度直接拉满！"
       }

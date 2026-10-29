@@ -279,7 +279,7 @@
         N("Tired as we were：", "「虽然我们很累」。结尾再用感叹句，像画龙点睛，一下子亮起来。");
         uline(k, p2, "Tired as we were,", C.brown); uline(k, p2, "what a fantastic day we had!", C.orange);
         N("be going to：", "母题三写计划：be going to「打算做……」，再换着用 will、plan to。");
-        finalBox(k, "母题三 · 计划篇积木：打算总起(be going to) + 三项计划(First/Besides/Finally) + 期待收尾",
+        finalBox(k, "母题三 · 计划篇积木：打算总起(be going to) + 三项计划(First/What's more/Finally) + 期待收尾",
           "口诀：写人抓外貌·性格·爱好；写经历锁定过去式；写计划用 be going to / will / plan to / look forward to！");
         N("口诀：", "写人抓外貌性格爱好，写经历锁定过去式，写计划要换着用将来的说法！");
       },

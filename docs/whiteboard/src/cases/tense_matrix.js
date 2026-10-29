@@ -374,7 +374,7 @@ WB_LAB.tense_matrix = [
       N("", "I lost my key 只说丢了；I have lost my key 是丢了，现在还进不去门！");
       k.wait(2.2);
       N("", "作业已经写完了，结果留在现在：现在可以出去玩啦！");
-      const m1 = h.ex("I / We / They", "have already finished our homework.", 284, "成果：能玩了");
+      const m1 = h.ex("I / We / They", "have already finished the homework.", 284, "成果：能玩了");
       h.uline(m1, "have"); h.ring(m1, "finished", 0, C.orange);
       N("for + 时间段：", "表示持续了多久：从 5 年前一直住到现在。单三主语用 has。");
       const m2 = h.ex("He / She / Mia", "has lived in Beijing for five years.", 314, "一直到现在");
@@ -390,7 +390,7 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "出现明确的过去时间点，就只能用一般过去时，不能用现在完成时。");
       h.trapText("句子里有 yesterday, last week, two days ago 这类过去时间点，不能用 have/has done！", 434);
       N("", "结论：have + 过去分词 finished，作业写完的成果留到现在。");
-      k.final("I / We / They have already finished our homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！");
+      k.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！");
       N("口诀：", "过去做完，结果留到现在，就用 have / has + 过去分词！");
     },
     terms: [

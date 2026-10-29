@@ -136,9 +136,9 @@ WB_LAB.aux_transformer = (() => {
         N("", "这一类句子里住着一位「大将军」，变形全靠它一个人。");
         k.header("第二类：情态动词大将军", "助动词照妖镜", false);
         h.label("① 肯定句", ROW.aff, C.green);
-        N("肯定句：", "Leo can speak English very well. 里奥英语说得非常好。");
+        N("肯定句：", "Leo can speak English very well. 里奥能把英语说得非常好。");
         const a = h.line("Leo can speak English very well.", ROW.aff);
-        h.tag("里奥英语说得非常好。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        h.tag("里奥能把英语说得非常好。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("情态动词：", "can 能、will 将要、must 必须、should 应该，表示能力、打算或要求。");
         const g = h.ring(a, "can");
         h.tag("大将军", g.cx, ROW.aff + 24, C.orange, { anchor: "middle", weight: 900 });
