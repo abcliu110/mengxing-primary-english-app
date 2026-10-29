@@ -19,6 +19,7 @@ const WO_PROPS = function (k) {
   // ---------- 镜头管理：一个镜头 = 一个静态组 + 若干动的组；wipe() 一起淡出 ----------
   D.shot = () => { shotG = k.group(); shotList = [shotG]; return shotG; };
   D.sub = () => { const g = k.group(); shotList.push(g); return g; };      // 动的部分单独一组
+  D.adopt = (...gs) => { gs.forEach(g => g && shotList.push(g)); };   // 别的道具自己建的组（如 FP_PROPS 的声带、嘴唇）也归这个镜头，擦黑板时一起擦
   // 回到静态内容：开一个新的静态组（这样后画的东西在 DOM 里也在上层，不会被先画的动组盖住）
   D.back = () => { if (!shotG) { k.S.g = 0; return; } shotG = k.group(); shotList.push(shotG); };
   D.wipe = (dur = .8) => {

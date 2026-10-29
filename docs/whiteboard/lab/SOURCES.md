@@ -14,3 +14,12 @@
 | 6 | 普通话没有屈折变化，靠词序和虚词 | 📜 | "Standard (Mandarin) Chinese does not possess overt inflectional morphology … utilizes word order and particles" |
 | 7 | 「小尾巴」 | 💡 | 比喻 |
 | 8 | -en 只在一部分不规则动词上出现 | ✂️ | 简化说明（has eaten / has written） |
+
+## ② 发音五大坑 + 48 音标口腔地图（`cases/pron_map.js`）
+
+| # | 画面说法 | 徽章 | 依据 |
+|---|---|---|---|
+| 1 | /θ/ /ð/ 舌尖在上下齿间；/v/ 上齿咬下唇；/w/ 圆唇不碰牙；/l/ 气从舌两侧、/n/ 气从鼻腔；/iː/–/ɪ/、/uː/–/ʊ/ 嘴形不同 | 📜 语音学常识 | Wikipedia「English phonology」https://en.wikipedia.org/wiki/English_phonology （辅音按发音部位：bilabial、labiodental、dental、alveolar、postalveolar/palatal、velar、glottal；RP 元音） |
+| 2 | 中国学生常见的 5 个坑（th 读成 s/z、v/w 混、词尾加元音、l/n 混、长短音不分） | ⚠️ | 英语教学中对中国学习者的常见观察；l/n 不分只在部分方言区出现（画面说「有些方言不分」） |
+| 3 | 课本 48 个音标 = 20 元音（12 单 + 8 双）+ 28 辅音（含 tr dr ts dz 组合音），地图画 24 个基本辅音 | ✂️ | 国内小学 / 初中教材的通行分法；按音位学，英语辅音一般计 24 个 |
+| 4 | 发音位置的「从前到后」排序、舌位梯形 | 💡 | 示意图，非精确舌位测量 |

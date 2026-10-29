@@ -26,9 +26,10 @@ const FP_PROPS = function (k) {
     // 气管前壁
     P(`M${pt(102, 200)} L${pt(104, 260)}`, go(.4), .4, { color: C.brown, w: 2.5 });
     // 声带（两片小肉，组：可抖动）
+    const g0 = k.S.g;   // 画完声带组后回到调用方原来的组（v2 镜头组：擦黑板时一起擦掉；旧幕 g0 = 0，画面不变）
     const cords = k.group();
     P(`M${pt(75, 228)} L${pt(88, 222)} M${pt(104, 228)} L${pt(91, 222)}`, go(.5), .5, { color: C.purple, w: 5 });
-    k.endGroup();
+    k.endGroup(); k.S.g = g0;
     T("声带", X(o.labelX ?? -20), Y(232), go(.5), .5, { size: 16, color: C.purple, weight: 900, anchor: "end" });
     P(k.wl(X(o.labelX ?? -16), Y(226), X(72), Y(225), .4), go(.3), .3, { color: C.purple, w: 1.5 });
     return {
@@ -49,6 +50,7 @@ const FP_PROPS = function (k) {
 
   // 正面嘴唇（上唇 / 下唇两个组），闭合：k.move(up, t, d, 0, gap/2) + k.move(lo, t, d, 0, -gap/2)
   D.lips = (cx, cy, w = 90, gap = 22) => {
+    const g0 = k.S.g;
     const up = k.group();
     const du = `M${cx - w / 2},${cy - gap / 2} C${cx - w / 4},${cy - gap / 2 - 16} ${cx - 6},${cy - gap / 2 - 12} ${cx},${cy - gap / 2 - 6} C${cx + 6},${cy - gap / 2 - 12} ${cx + w / 4},${cy - gap / 2 - 16} ${cx + w / 2},${cy - gap / 2} C${cx + w / 4},${cy - gap / 2 + 4} ${cx - w / 4},${cy - gap / 2 + 4} ${cx - w / 2},${cy - gap / 2} Z`;
     P(du, go(.6), .6, { color: C.red, w: 2.5 }); F(du, go(.2, 0), { color: "#fda4af", op: .9 });
@@ -56,7 +58,7 @@ const FP_PROPS = function (k) {
     const lo = k.group();
     const dl = `M${cx - w / 2},${cy + gap / 2} C${cx - w / 4},${cy + gap / 2 - 4} ${cx + w / 4},${cy + gap / 2 - 4} ${cx + w / 2},${cy + gap / 2} C${cx + w / 4},${cy + gap / 2 + 20} ${cx - w / 4},${cy + gap / 2 + 20} ${cx - w / 2},${cy + gap / 2} Z`;
     P(dl, go(.6), .6, { color: C.red, w: 2.5 }); F(dl, go(.2, 0), { color: "#fda4af", op: .9 });
-    k.endGroup();
+    k.endGroup(); k.S.g = g0;
     return { up, lo, close(t, d = .5) { k.move(up, t, d, 0, gap / 2 - 1); k.move(lo, t, d, 0, -gap / 2 + 1); }, open(t, d = .5) { k.move(up, t, d, 0, -gap / 2 + 1); k.move(lo, t, d, 0, gap / 2 - 1); } };
   };
 
