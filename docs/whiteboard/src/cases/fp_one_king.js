@@ -1,6 +1,6 @@
 // ==================== 第一性原理 ④ 一山不容二虎单核谓语律（fp_one_king）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[3].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 2、3 幕已升引擎 v2 + 讲解员（第 1 幕是搬到 ze_be 的占位幕，不升级）；升级前整份文件原样保存在 cases/fp_one_king_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 2–4 幕已升引擎 v2 + 讲解员（第 1 幕是搬到 ze_be 的占位幕，不升级）；升级前整份文件原样保存在 cases/fp_one_king_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_one_king = [
   // ───────── 4-1 为什么不能说 I am like apples？─────────
   {
@@ -261,15 +261,23 @@ WB_LAB.fp_one_king.push(
   },
 );
 WB_LAB.fp_one_king.push(
-  // ───────── 4-4 五副基本骨骼（总览）─────────
+  // ───────── 4-4 五副基本骨骼（总览）（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_one_king_classic.js（R1 零丢失）。五行整体下移 20 给进度条让位；成分配色收进 V3（S 蓝 · V 红 · O / DO 绿 · P / IO / C 墨黑）；新增 🔮 预测和金句卡。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：再长的句子，拆掉装饰，只剩 5 副骨骼。");
-      k.header("④ 一山不容二虎单核谓语律", "五副基本骨骼", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "五副基本骨骼", sub: "④ 一山不容二虎单核谓语律", badges: ["✂️"], steps: ["① 主谓", "② 主系表", "③ 主谓宾", "④ 双宾 · 补语", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+      D.shot();
       N("", "国王动词像一个插线板，决定后面还能插几个部件。");
-      const COL = { S: C.blue, V: C.red, O: C.green, P: C.purple, IO: C.orange, DO: C.green, C: C.brown };
-      const FILL = { S: "#dbeafe", V: "#fee2e2", O: "#d1fae5", P: "#ede9fe", IO: "#fef3c7", DO: "#d1fae5", C: "#fde68a" };
+      const COL = { S: C.blue, V: C.red, O: C.green, P: C.ink, IO: C.ink, DO: C.green, C: C.ink };
+      const FILL = { S: C.tintBlue, V: C.tintRed, O: C.tintGreen, P: "#ffffff", IO: "#ffffff", DO: C.tintGreen, C: "#ffffff" };
       const row = (no, parts, en, y, marks = []) => {
         T(no, 40, y + 8, go(.3), .3, { size: 22, color: C.ink, weight: 900 });
         let x = 76;
@@ -283,39 +291,84 @@ WB_LAB.fp_one_king.push(
         T(en, 372, y + 8, go(.9), .9, { size: 22, color: C.ink, weight: 900, font: M });
         marks.forEach(([sub, p]) => { const i = en.indexOf(sub); P(k.wl(372 + i * 13.2, y + 16, 372 + (i + sub.length) * 13.2, y + 16, .5), go(.3), .3, { color: COL[p], w: 4 }); });
       };
+      D.step(0);
       N("主语 S + 谓语 V：", "谁 + 做什么。动词后面什么都不用插。");
-      row("①", ["S", "V"], "Birds fly.", 120, [["Birds", "S"], ["fly", "V"]]);
-      k.say("Birds fly.", { zh: "鸟会飞。" });
+      row("①", ["S", "V"], "Birds fly.", 140, [["Birds", "S"], ["fly", "V"]]);
+      const syB = sayAt("Birds fly.", { zh: "鸟会飞。" });
+      k.act(me, "jump", syB.t, Math.max(1, syB.dur + .3), { words: ["fly"] });
+      D.step(1);
       N("表语 P：", "跟在系动词后面，说主语「怎么样 / 是什么」。");
-      row("②", ["S", "V", "P"], "The cake smells delicious.", 178, [["The cake", "S"], ["smells", "V"], ["delicious", "P"]]);
-      k.say("The cake smells delicious.", { zh: "蛋糕闻起来很香。" });
+      row("②", ["S", "V", "P"], "The cake smells delicious.", 198, [["The cake", "S"], ["smells", "V"], ["delicious", "P"]]);
+      const syC = sayAt("The cake smells delicious.", { zh: "蛋糕闻起来很香。" });
+      k.expr(me, "happy", syC.t, Math.max(1.2, syC.dur));
+      D.step(2);
       N("宾语 O：", "动作落到的人或东西。");
-      row("③", ["S", "V", "O"], "I love my family.", 236, [["I", "S"], ["love", "V"], ["my family", "O"]]);
-      k.say("I love my family.", { zh: "我爱我的家人。" });
+      row("③", ["S", "V", "O"], "I love my family.", 256, [["I", "S"], ["love", "V"], ["my family", "O"]]);
+      const syL = sayAt("I love my family.", { zh: "我爱我的家人。" });
+      k.act(me, "cheer", syL.t, Math.max(1, syL.dur));
+      D.step(3);
       N("双宾语：", "给谁（IO 人）+ 给什么（DO 物）。祈使句省略了主语 you。");
-      row("④", ["S", "V", "IO", "DO"], "Pass me the book.", 294, [["Pass", "V"], ["me", "IO"], ["the book", "DO"]]);
-      k.say("Pass me the book.", { zh: "把书递给我。" });
+      row("④", ["S", "V", "IO", "DO"], "Pass me the book.", 314, [["Pass", "V"], ["me", "IO"], ["the book", "DO"]]);
+      const syP = sayAt("Pass me the book.", { zh: "把书递给我。" });
+      const bk = k.prop("book", 0, 0, { hidden: true });
+      k.act(me, "holdCard", syP.t, Math.max(1.2, syP.dur + .3), { prop: bk, words: ["pass"] });
       N("补语 C：", "补充说明宾语变成什么样。");
-      row("⑤", ["S", "V", "O", "C"], "Reading makes me clever.", 352, [["Reading", "S"], ["makes", "V"], ["me", "O"], ["clever", "C"]]);
+      row("⑤", ["S", "V", "O", "C"], "Reading makes me clever.", 372, [["Reading", "S"], ["makes", "V"], ["me", "O"], ["clever", "C"]]);
       k.wait(.4);
-      T("①②③ 最常用，小学大部分句子都是它们。详细讲解看「五大句型」实验室。", 40, 412, go(1.4), 1.4, { size: 15, color: C.grey, weight: 700 });
+      T("①②③ 最常用，小学大部分句子都是它们。详细讲解看「五大句型」实验室。", 40, 432, go(1.4), 1.4, { size: 15, color: C.grey, weight: 700 });
       k.wait(.6);
-      k.say("Reading makes me clever.", { zh: "读书让我变聪明。" });
+      const syR = sayAt("Reading makes me clever.", { zh: "读书让我变聪明。" });
+      const rb = k.prop("book", 0, 0, { hidden: true });
+      k.act(me, "read", syR.t, Math.max(1.4, syR.dur), { prop: rb, words: ["reading"] });
+      sayAt("Birds fly. Birds can fly high.", { zh: "鸟会飞。鸟能飞得很高。", word: "Birds fly" });
+      sayAt("The cake smells delicious. I love my family.", { zh: "蛋糕闻起来很香。我爱我的家人。", word: "The cake smells delicious I love my family" });
+      sayAt("Pass me the book. Reading makes me clever.", { zh: "把书递给我。读书让我变聪明。", word: "Pass me book Reading makes clever" });
+      sayAt("Can you pass me the book?", { zh: "你能把书递给我吗？", word: "you" });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "先搭骨架再挂花。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2'）：画面上的英文词单读 + 例句（第 1 幕要搬去中英对照总枢，搬时在新位置补，这里不补）
-      k.say("Birds fly. Birds can fly high.", { zh: "鸟会飞。鸟能飞得很高。", word: "Birds fly" });
-      k.say("The cake smells delicious. I love my family.", { zh: "蛋糕闻起来很香。我爱我的家人。", word: "The cake smells delicious I love my family" });
-      k.say("Pass me the book. Reading makes me clever.", { zh: "把书递给我。读书让我变聪明。", word: "Pass me book Reading makes clever" });
-      k.say("Can you pass me the book?", { zh: "你能把书递给我吗？", word: "you" });
-      D.fin("先把主干骨骼搭对，再往上挂时间、地点、形容词这些装饰", "口诀：先搭骨架再挂花。");
-      k.wait(2);
+      P(k.roughRect(40, 456, 760, 44), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：先搭骨架再挂花。", 60, 486, go(1), 1, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "She gives me an apple. 给谁 + 给什么，是第几副骨骼？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 She gives me an apple.　→　第几副？", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "给谁（me）+ 给什么（an apple）：第 ④ 副：主语 + 谓语 + 人 + 物。");
+      const tRev = go(.3);
+      T("第 ④ 副 —— me 是人，an apple 是物", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      const syG = sayAt("She gives me an apple.", { zh: "她给我一个苹果。", word: "She gives an apple" });
+      const ap = k.prop("card", 0, 0, { hidden: true, text: "apple" });
+      k.act(me, "holdCard", syG.t, Math.max(1.2, syG.dur + .3), { prop: ap, words: ["gives"] });
+      D.hold(2);
+
+      k.quoteCard({ insight: "先把主干骨骼搭对，\n再往上挂时间、地点、形容词这些装饰", rhyme: "口诀：先搭骨架再挂花。", hlLines: 2, foot: "🧠 第一性原理 ④ 一山不容二虎单核谓语律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "fly", act: "讲解员在读到「Birds fly」时跳起来（jump）" },
+      { word: "pass", act: "讲解员把书举起递出（holdCard），与「Pass me the book」同步" },
+      { word: "reading", act: "讲解员捧书读（read），与「Reading makes me clever」同步" },
+      { word: "gives", act: "讲解员举起 apple 词卡（holdCard），与「She gives me an apple」同步" },
+    ],
     r2skip: ["IO", "DO"],   // 双宾语的成分标签缩写（间接 / 直接宾语），和 S V O 一样不读
     terms: [
       ["宾语", "动作落到的人或东西：I love my family 里的 my family。"],
       ["表语", "跟在 be / smell / look 这类系动词后面，说明主语怎么样：The cake smells delicious。"],
       ["补语", "补充说明宾语的状态：Reading makes me clever 里的 clever。"],
       ["双宾语", "一个动词带两个宾语：给谁（人）+ 给什么（物），如 Pass me the book。"],
+      ["可信度徽章", "✂️ 简化说法：五种基本句型是传统语法的归纳，复杂句另有更细的分法。"],
     ],
   },
 );
