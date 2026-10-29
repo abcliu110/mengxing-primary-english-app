@@ -19754,7 +19754,7 @@ WB_LAB.fp_economy.push(
 <script type="text/plain" id="wbmod-fp_vectors" data-deps="wo_props fp_props">
 // ==================== 第一性原理 ⑤ 三维几何向量时空律（fp_vectors）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[4].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 1–3 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_vectors_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：4 幕已全部升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_vectors_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_vectors = [
   // ───────── 5-1 at 点 · on 面 · in 体（v2 + 讲解员，2026-10-30）─────────
   // 升级前原样保存在 cases/fp_vectors_classic.js（R1 零丢失）。三列左移给讲解员让位；配色 V3：at 红 · on 绿 · in 蓝。
@@ -20140,75 +20140,141 @@ WB_LAB.fp_vectors.push(
   },
 );
 WB_LAB.fp_vectors.push(
-  // ───────── 5-4 to · for · from 三个方向箭头 ─────────
+  // ───────── 5-4 to · for · from 三个方向箭头（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_vectors_classic.js（R1 零丢失）。配色 V3：to 蓝 · from 绿 · for 红；look at/for/after 单独一个镜头。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：to、for、from，三个方向箭头。");
-      k.header("⑤ 三维几何向量时空律", "to · for · from", false);
-      const ball = (x, y, color) => {
-        const g = k.group(); const d = `M${x - 8},${y} a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
-        P(d, go(.2), .2, { color, w: 2 }); F(d, go(.1, 0), { color, op: .5 }); k.endGroup(); return g;
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "to · for · from", sub: "⑤ 三维几何向量时空律", badges: ["💡"], steps: ["① to", "② from", "③ for", "④ look", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+      const ball = (x, y, color, tint) => {
+        const g = D.sub(); const d = `M${x - 8},${y} a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
+        P(d, go(.2), .2, { color, w: 2 }); F(d, go(.1, 0), { color: tint, op: 1 }); D.back(); return g;
       };
       const box = (x, y, label, color) => {
         P(k.roughRect(x, y - 22, 70, 44), go(.4), .4, { color, w: 2.5 });
         T(label, x + 35, y + 6, go(.3), .3, { size: 15, color, weight: 900, anchor: "middle" });
       };
-      // to
+
+      // ───── 镜头 1 · to 到终点 ─────
+      D.step(0); D.shot();
       N("to：", "箭头一直走到终点，动作到达了目标。");
-      T("to", 40, 160, go(.4), .4, { size: 34, color: C.blue, weight: 900, font: M });
-      box(330, 150, "终点", C.blue);
-      const b1 = ball(110, 150, C.blue);
-      k.arrow(124, 150, 326, 150, C.blue);
-      k.move(b1, go(1.2), 1.2, 210, 0);
-      T("listen to me", 450, 146, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M });
-      T("声音一直传到我耳朵", 640, 146, go(.6), .6, { size: 15, color: C.grey });
-      T("go to school · give a book to me", 450, 176, go(.8), .8, { size: 17, color: C.blue, weight: 700, font: M });
+      T("to", 40, 170, go(.4), .4, { size: 34, color: C.blue, weight: 900, font: M });
+      box(330, 160, "终点", C.blue);
+      const b1 = ball(110, 160, C.blue, C.tintBlue);
+      k.arrow(124, 160, 326, 160, C.blue);
+      const t1 = go(1.2); k.move(b1, t1, 1.2, 210, 0, { ease: "antic" }); k.squash(b1, t1 + 1.2, .3, .16); k.sfx("pop", t1 + 1.2);
+      T("listen to me", 450, 156, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M });
+      T("声音一直传到我耳朵", 640, 156, go(.6), .6, { size: 15, color: C.grey });
+      T("go to school · give a book to me", 450, 186, go(.8), .8, { size: 17, color: C.blue, weight: 700, font: M });
       k.wait(.4);
-      // from
+
+      // ───── 镜头 1 续 · from 离起点 ─────
+      D.step(1);
       N("from：", "从起点出发、离开源头，方向和 to 正好相反。");
-      T("from", 40, 260, go(.4), .4, { size: 34, color: C.green, weight: 900, font: M });
-      box(130, 250, "起点", C.green);
-      const b2 = ball(214, 250, C.green);
-      k.arrow(204, 250, 410, 250, C.green);
+      T("from", 40, 270, go(.4), .4, { size: 34, color: C.green, weight: 900, font: M });
+      box(130, 260, "起点", C.green);
+      const b2 = ball(214, 260, C.green, C.tintGreen);
+      k.arrow(204, 260, 410, 260, C.green);
       k.move(b2, go(1.2), 1.2, 186, 0);
-      T("come from China", 450, 246, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M });
-      T("从中国出发", 660, 246, go(.5), .5, { size: 15, color: C.grey });
-      T("borrow from you ⇄ lend to him", 450, 276, go(.8), .8, { size: 17, color: C.green, weight: 700, font: M });
-      k.say("I walk to school. The letter is from Grandma.", { zh: "我走路去上学。这封信是奶奶寄来的。" });
+      T("come from China", 450, 256, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M });
+      T("从中国出发", 660, 256, go(.5), .5, { size: 15, color: C.grey });
+      T("borrow from you ⇄ lend to him", 450, 286, go(.8), .8, { size: 17, color: C.green, weight: 700, font: M });
+      const syW = sayAt("I walk to school. The letter is from Grandma.", { zh: "我走路去上学。这封信是奶奶寄来的。" });
+      k.act(me, "walk", syW.t, Math.max(1.2, syW.dur * .45), { to: 840, words: ["walk to"] });
+      const lt = k.prop("doc", 0, 0, { hidden: true });
+      k.act(me, "holdCard", syW.t + syW.dur * .5, Math.max(1.2, syW.dur * .5), { prop: lt });
       N("", "借进来 borrow from（从你那里来），借出去 lend to（到他那里去）。");
       k.wait(.6);
-      // for
+
+      // ───── 镜头 1 续 · for 心里朝着 ─────
+      D.step(2);
       N("for：", "心里朝着目标去，但不一定已经碰到它。");
-      T("for", 40, 360, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M });
-      const tg = (r, op) => P(k.ellipse(370, 350, r, r), go(.25), .25, { color: C.orange, w: 2.5 });
+      T("for", 40, 370, go(.4), .4, { size: 34, color: C.red, weight: 900, font: M });
+      const tg = (r) => P(k.ellipse(370, 360, r, r), go(.25), .25, { color: C.red, w: 2.5 });
       tg(26); tg(14);
-      const b3 = ball(130, 350, C.orange);
-      P(k.wl(144, 350, 336, 350, .3), go(.6), .6, { color: C.orange, w: 2.5, dash: "8 7" });
+      const b3 = ball(130, 360, C.red, C.tintRed);
+      P(k.wl(144, 360, 336, 360, .3), go(.6), .6, { color: C.red, w: 2.5, dash: "8 7" });
       k.move(b3, go(1), 1, 110, 0);
-      T("还没碰到", 250, 384, go(.4), .4, { size: 14, color: C.orange, weight: 900, anchor: "middle" });
-      T("look for my pen", 450, 346, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M });
-      T("心里朝着笔去找", 660, 346, go(.5), .5, { size: 15, color: C.grey });
-      T("wait for the bus · a cake for mom", 450, 376, go(.8), .8, { size: 17, color: C.orange, weight: 700, font: M });
+      T("还没碰到", 250, 394, go(.4), .4, { size: 14, color: C.red, weight: 900, anchor: "middle" });
+      T("look for my pen", 450, 356, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M });
+      T("心里朝着笔去找", 660, 356, go(.5), .5, { size: 15, color: C.grey });
+      T("wait for the bus · a cake for mom", 450, 386, go(.8), .8, { size: 17, color: C.red, weight: 700, font: M });
       k.wait(.5);
-      k.say("This gift is for you.", { zh: "这份礼物是给你的。", word: "for" });
+      const syG = sayAt("This gift is for you.", { zh: "这份礼物是给你的。", word: "for" });
+      const gift = k.prop("box", 0, 0, { hidden: true });
+      k.act(me, "holdCard", syG.t, Math.max(1.2, syG.dur + .3), { prop: gift });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · look at / for / after ─────
+      D.step(3); D.shot();
       N("", "换一个介词，就换一个方向：look at 看一点，look for 找，look after 照看。");
-      T("look at（目光打在一点）· look for（找）· look after（跟在后面照看）", 40, 424, go(1.6), 1.6, { size: 16, color: C.purple, weight: 900 });
-      k.wait(.6);
-      k.say("I look for my cat and look after my sister.", { zh: "我找我的猫，也照看妹妹。" });
+      T("look at（目光打在一点）· look for（找）· look after（跟在后面照看）", 40, 170, go(1.6), 1.6, { size: 16, color: C.blue, weight: 900 });
+      T("look at", 60, 240, go(.5), .5, { size: 24, color: C.blue, weight: 900, font: M });
+      P(k.wl(190, 232, 300, 232, .3), go(.4), .4, { color: C.blue, w: 2.5 }); P(k.ellipse(306, 232, 5, 5), go(.2), .2, { color: C.blue, w: 3 });
+      T("look for", 60, 300, go(.5), .5, { size: 24, color: C.red, weight: 900, font: M });
+      P(k.wl(200, 292, 300, 292, .3), go(.5), .5, { color: C.red, w: 2.5, dash: "8 7" }); T("？", 310, 300, go(.3), .3, { size: 24, color: C.red, weight: 900 });
+      T("look after", 60, 360, go(.5), .5, { size: 24, color: C.green, weight: 900, font: M });
+      P(k.ellipse(250, 352, 9, 9) + " " + k.ellipse(290, 352, 7, 7), go(.5), .5, { color: C.green, w: 2.5 });
+      k.wait(.5);
+      const syLk = sayAt("I look for my cat and look after my sister.", { zh: "我找我的猫，也照看妹妹。" });
+      k.act(me, "turn", syLk.t + .2, .4, { to: 1, words: ["look for"] });
+      k.act(me, "turn", syLk.t + 1.1, .4, { to: -1 });
+      sayAt("To, from, for.", { zh: "到、从、为了。", word: "to from for" });
+      sayAt("Listen to me. Go to school.", { zh: "听我说。去上学。", word: "listen me go school listen to me go to school" });
+      sayAt("Give a book to me. I lend to him.", { zh: "给我一本书。我借给他。", word: "give a book give a book to me lend him lend to him" });
+      sayAt("I come from China. Can I borrow from you?", { zh: "我来自中国。我能向你借吗？", word: "come China borrow you pen come from China borrow from you" });
+      sayAt("Look for my pen. Wait for the bus.", { zh: "找我的笔。等公交车。", word: "look my wait bus look for my pen wait for the bus" });
+      sayAt("A cake for Mom. Look after the baby.", { zh: "给妈妈的蛋糕。照看小宝宝。", word: "cake mom a cake for mom at after" });
+      const syAt = sayAt("Look at me!", { zh: "看着我！", word: "at" });
+      k.act(me, "wave", syAt.t, Math.max(1, syAt.dur + .3), { words: ["look at"] });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "to 到终点，from 离起点，for 心里想着它。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("To, from, for.", { zh: "到、从、为了。", word: "to from for" });
-      k.say("Listen to me. Go to school.", { zh: "听我说。去上学。", word: "listen me go school listen to me go to school" });
-      k.say("Give a book to me. I lend to him.", { zh: "给我一本书。我借给他。", word: "give a book give a book to me lend him lend to him" });
-      k.say("I come from China. Can I borrow from you?", { zh: "我来自中国。我能向你借吗？", word: "come China borrow you pen come from China borrow from you" });
-      k.say("Look for my pen. Wait for the bus.", { zh: "找我的笔。等公交车。", word: "look my wait bus look for my pen wait for the bus" });
-      k.say("A cake for Mom. Look after the baby.", { zh: "给妈妈的蛋糕。照看小宝宝。", word: "cake mom a cake for mom at after" });
-      k.say("Look at me!", { zh: "看着我！", word: "at" });
-      D.fin("to 到达终点 · from 离开起点 · for 朝着目标（还没碰到）", "口诀：to 到终点，from 离起点，for 心里想着它。");
-      k.wait(2);
+      P(k.roughRect(40, 400, 760, 52), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：to 到终点，from 离起点，for 心里想着它。", 60, 434, go(1), 1, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "去公园，一路走到终点。I go ___ the park 填 to、for 还是 from？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 I go ___ the park　→　to、for 还是 from", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "一路走到公园这个终点：I go to the park。");
+      const tRev = go(.3);
+      T("I go to the park —— 到终点 = to", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.sfx("ding", tRev + .9);
+      const syP = sayAt("I go to the park on Sunday.", { zh: "我星期天去公园。", word: "park I" });
+      k.act(me, "walk", syP.t, Math.max(1.2, syP.dur * .6), { to: 860, words: ["go to"] });
+      D.hold(2);
+
+      k.quoteCard({ insight: "to 到达终点 · from 离开起点 · \nfor 朝着目标（还没碰到）", rhyme: "口诀：to 到终点，from 离起点，for 心里想着它。", hlLines: 2, foot: "🧠 第一性原理 ⑤ 三维几何向量时空律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
-    terms: [],
+    actionWords: [
+      { word: "walk to", act: "讲解员往前走（walk），与「I walk to school」同步" },
+      { word: "look for", act: "讲解员转身四处找（turn），与「I look for my cat」同步" },
+      { word: "look at", act: "讲解员挥手让大家看过来（wave），与「Look at me!」同步" },
+      { word: "go to", act: "讲解员往前走（walk），与「I go to the park」同步" },
+    ],
+    terms: [
+      ["可信度徽章", "💡 记忆方法（三个方向箭头）· 📜 有出处的历史 · ✂️ 简化说法 · ⚠️ 有要注意的地方。"],
+    ],
   },
 );
 
