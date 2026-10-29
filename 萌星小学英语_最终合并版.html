@@ -19184,7 +19184,7 @@ const FP_PROPS = function (k) {
 <script type="text/plain" id="wbmod-fp_economy" data-deps="wo_props fp_props">
 // ==================== 第一性原理 ① 口腔省力同化律（fp_economy）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[0].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起）：第 1 幕已升引擎 v2 + 讲解员（试点）；升级前整份文件原样保存在 cases/fp_economy_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起）：第 1、2 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_economy_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_economy = [
   // ───────── 1-1 为什么 -s 和 -ed 都有三种读音？（v2 + 讲解员，2026-10-30 试点）─────────
   // 升级前原样保存在 cases/fp_economy_classic.js（R1 零丢失，可随时回退）；原字幕 / 白板 / 朗读 / 术语逐条保留。
@@ -19340,73 +19340,141 @@ WB_LAB.fp_economy = [
   },
 ];
 WB_LAB.fp_economy.push(
-  // ───────── 1-2 为什么 s/sh/ch/x 加 -es，t/d 加 -ed 要多读 /ɪ/？─────────
+  // ───────── 1-2 为什么 s/sh/ch/x 加 -es，t/d 加 -ed 要多读 /ɪ/？（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_economy_classic.js（R1 零丢失）；原字幕 / 白板 / 朗读 / 术语逐条保留。
+  // v2 六步：① 撞车 ② 插 /ɪ/ ③ -es ④ -ed ⑤ 口诀 🔮 预测。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：buses、wanted 为什么要多读一个 /ɪ/？");
-      k.header("① 口腔省力同化律", "为什么多读一个 /ɪ/？", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "为什么多读一个 /ɪ/？", sub: "① 口腔省力同化律", badges: ["💡"], steps: ["① 撞车", "② 插 /ɪ/", "③ -es", "④ -ed", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 撞车：bus + s 粘成一个 ─────
+      D.step(0); D.shot();
       N("", "先试试：bus 后面直接加一个 /s/……");
-      const m = D.mouth({ x: 66, y: 150, s: .9 });
+      const m = FP.mouth({ x: 66, y: 130, s: .9 }); D.adopt(m.cords); D.back();
       N("舌尖音：", "舌尖顶在上牙后面发的音，比如 /s/ /z/ /t/ /d/。");
       m.glow(166, 132);
-      T("/s/ 在这里", m.X(150), m.Y(100), go(.6), .6, { size: 15, color: C.orange, weight: 900, anchor: "end" });
+      T("/s/ 在这里", m.X(150), m.Y(100), go(.6), .6, { size: 15, color: C.red, weight: 900, anchor: "end" });
+      k.act(me, "point", S.at - .6, 1.4, { at: [m.X(166), m.Y(132)] });
       k.wait(.4);
-      // 撞车动画
       k.head("bus + s", 320, 160, C.ink, "start", 24);
       T("/bʌs/", 320, 220, go(.6), .6, { size: 30, color: C.ink, weight: 900, font: M });
-      const gs = k.group();
+      const gs = D.sub();
       P(k.ellipse(580, 210, 22, 22), go(.4), .4, { color: C.red, w: 2.5 });
       T("s", 580, 220, go(.3), .3, { size: 30, color: C.red, weight: 900, font: M, anchor: "middle" });
-      k.endGroup();
+      D.back();
       N("吞音：", "两个一样的音挨在一起，会粘成一个，听不出来。");
       const tm = go(1.2);
-      k.move(gs, tm, 1.2, -200, 0);
+      k.move(gs, tm, 1.2, -200, 0, { ease: "antic" });
+      k.squash(gs, tm + 1.2, .32, .2); k.sfx("pop", tm + 1.2);
       k.buzz(gs, tm + 1.2, .8, 2);
+      k.act(me, "surprised", tm + 1.1, 1.3); k.expr(me, "oops", tm + 1.1, 1.6);
       k.wait(.4);
       k.redX(372, 234);
       T("粘成一个 /s/，听不出是复数！", 402, 258, go(1), 1, { size: 17, color: C.red, weight: 900 });
       k.wait(.6);
-      // 插 /ɪ/
+
+      // ───── 镜头 1 续 · 插 /ɪ/ 隔开 ─────
+      D.step(1);
       N("", "办法：中间插一个短短的 /ɪ/，把两个音隔开。");
       k.move(gs, go(.8), .8, 200, 0);
+      k.act(me, "think", S.at - .8, 1.4);
       k.wait(.2);
       T("bus + ɪ + z", 320, 316, go(.8), .8, { size: 26, color: C.ink, weight: 900, font: M });
       k.arrow(520, 307, 570, 307, C.grey);
       T("/ˈbʌsɪz/  buses", 586, 316, go(.8), .8, { size: 26, color: C.green, weight: 900, font: M });
-      T("↑ 多了一个 /ɪ/", 434, 344, go(.6), .6, { size: 16, color: C.orange, weight: 900 });
-      k.wait(.6);
+      T("↑ 多了一个 /ɪ/", 434, 344, go(.6), .6, { size: 16, color: C.green, weight: 900 });
+      k.hlText("ɪ", 320 + 6 * 26 * .6, 316, 26, { color: C.hlYellow });
+      k.act(me, "nod", S.at - .4, .8);
+      k.wait(.4);
+      const syBus = sayAt("Two buses are coming.", { zh: "两辆公交车开过来了。", word: "buses" });
+      k.act(me, "point", syBus.t, Math.max(1.2, syBus.dur), { at: [700, 300] });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · -es 和 -ed：同一个道理 ─────
       // 套用：row(原形, 词尾, 音标, x, y)
-      const row = (base, tail, ipa, x, y) => {
-        const cw = 20 * .6;
-        T(base, x, y, go(.4), .4, { size: 20, color: C.ink, weight: 900, font: M });
+      const row = (base, tail, ipa, x, y, size = 22) => {
+        const cw = size * .6;
+        T(base, x, y, go(.4), .4, { size, color: C.ink, weight: 900, font: M });
         const ax = x + base.length * cw + 8;
         k.arrow(ax, y - 6, ax + 26, y - 6, C.grey);
         const bx = ax + 34;
-        D.parts([[base, C.ink], [tail, C.orange]], bx, y, 20);
-        T(ipa, bx + (base.length + tail.length) * cw + 12, y, go(.5), .5, { size: 18, color: C.grey, weight: 700, font: M });
+        FP.parts([[base, C.ink], [tail, C.blue]], bx, y, size);
+        T(ipa, bx + (base.length + tail.length) * cw + 12, y, go(.5), .5, { size: size - 2, color: C.grey, weight: 700, font: M });
       };
-      k.say("Two buses are coming.", { zh: "两辆公交车开过来了。", word: "buses" });
+      D.step(2); D.shot();
+      P(k.wl(470, 120, 470, 330, 1), go(.4), .4, { color: C.grey, w: 2, dash: "6 7" });
+      k.head("-es → /ɪz/", 60, 150, C.blue, "start", 22);
+      k.head("-ed → /ɪd/", 500, 150, C.green, "start", 22);
       N("嘶嘶音：", "/s/ /z/ /ʃ/ /tʃ/ 这类像蛇嘶嘶响的音，加 -es 读 /ɪz/。");
-      row("watch", "es", "/ˈwɒtʃɪz/", 320, 394);
-      row("box", "es", "/ˈbɒksɪz/", 320, 424);
+      row("watch", "es", "/ˈwɒtʃɪz/", 60, 210);
+      row("box", "es", "/ˈbɒksɪz/", 60, 260);
       k.wait(.4);
+      const syW = sayAt("We watch the bus. I need a box.", { zh: "我们看着公交车。我需要一个盒子。", word: "bus watch box need es", blocks: ["es"] });
+      k.act(me, "point", syW.t, Math.max(1.2, syW.dur * .5), { at: [200, 210], words: ["watch"] });
+      const bx2 = k.prop("box", 0, 0, { hidden: true });
+      k.act(me, "holdCard", syW.t + syW.dur * .5, Math.max(1.2, syW.dur * .5 + .3), { prop: bx2 });
+      k.wait(.4);
+
+      D.step(3);
       N("", "-ed 也一样：want 最后是 /t/，再加 /t/ 就粘住了。");
-      row("want", "ed", "/ˈwɒntɪd/", 640, 394);
-      row("need", "ed", "/ˈniːdɪd/", 640, 424);
+      row("want", "ed", "/ˈwɒntɪd/", 500, 210);
+      row("need", "ed", "/ˈniːdɪd/", 500, 260);
       k.wait(.6);
-      k.say("She wanted a red kite.", { zh: "她想要一只红风筝。", word: "wanted" });
+      T("She wanted a red kite.", 500, 310, go(1), 1, { size: 20, color: C.ink, weight: 900, font: M });
+      const syK = sayAt("She wanted a red kite.", { zh: "她想要一只红风筝。", word: "wanted she a red kite" });
+      const kite = k.prop("card", 0, 0, { hidden: true, text: "kite" });
+      k.act(me, "holdCard", syK.t, Math.max(1.4, syK.dur + .3), { prop: kite });
+      sayAt("I want a kite. I wanted a kite.", { zh: "我想要风筝。我以前想要风筝。", word: "want ed", blocks: ["ed"] });
+      k.wait(.4);
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "同位相撞，插个 /ɪ/ 来帮忙。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("We watch the bus. I need a box.", { zh: "我们看着公交车。我需要一个盒子。", word: "bus watch box need es", blocks: ["es"] });
-      k.say("I want a kite. I wanted a kite.", { zh: "我想要风筝。我以前想要风筝。", word: "want ed", blocks: ["ed"] });
-      D.fin("尾音和词缀发音位置一样 → 插 /ɪ/ 隔开：-es 读 /ɪz/，-ed 读 /ɪd/", "口诀：同位相撞，插个 /ɪ/ 来帮忙。");
-      k.wait(2);
+      P(k.roughRect(40, 380, 760, 52), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：同位相撞，插个 /ɪ/ 来帮忙。", 60, 414, go(1), 1, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "kiss 最后是 /s/。kisses 的 -es 读 /s/、/z/ 还是 /ɪz/？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 kiss + es　→　/s/、/z/ 还是 /ɪz/", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      const qm = D.sub(); T("？", 560, 204, go(.3), .3, { size: 34, color: C.red, weight: 900 }); D.back();
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "/s/ 再加 /s/ 会粘住，所以插 /ɪ/：kisses 读 /ˈkɪsɪz/。");
+      const tRev = go(.3);
+      k.fade(qm, tRev, .3, 0);
+      T("kisses /ˈkɪsɪz/ —— /s/ 撞 /s/，插 /ɪ/", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Kiss, kisses. Two kisses for Mum.", { zh: "亲一下，亲两下。给妈妈两个吻。", word: "kiss kisses for Mum" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "尾音和词缀发音位置一样 → 插 /ɪ/ 隔开：\n-es 读 /ɪz/，-ed 读 /ɪd/", rhyme: "口诀：同位相撞，插个 /ɪ/ 来帮忙。", hlLines: 2, foot: "🧠 第一性原理 ① 口腔省力同化律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "watch", act: "讲解员指着看公交车（point），与「We watch the bus」同步" },
+    ],
     terms: [
       ["舌尖音", "舌尖顶在上牙后面发出的音，如 /s/ /z/ /t/ /d/。"],
       ["嘶嘶音", "/s/ /z/ /ʃ/ /ʒ/ /tʃ/ /dʒ/，读起来像蛇嘶嘶响。词尾是 s、x、sh、ch 的词，加 -es 读 /ɪz/。"],
       ["吞音", "两个发音位置一样的音挨在一起，粘成一个，后面那个就听不出来了。"],
+      ["可信度徽章", "💡 记忆方法（口诀）· 📜 有出处的历史 · ✂️ 简化说法 · ⚠️ 有要注意的地方。"],
     ],
   },
 );
