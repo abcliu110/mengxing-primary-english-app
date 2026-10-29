@@ -9709,7 +9709,7 @@ const WB = (function () {
       // 文字 + 荧光底色：text 在 (x, y) 基线；size 字号；mono 等宽
       hlText(text, x, y, size, o = {}) {
         const w = o.mono ? text.length * size * .6 : estW(text, size), ax = o.anchor === "middle" ? x - w / 2 : o.anchor === "end" ? x - w : x;
-        k.hl(ax - 6, y - size * .33, w + 12, size * 1.05, o);
+        k.hl(ax - 6, y - size * .3, w + 12, size * .98, o);
       },
       // 统一片头（V8）：居中标题卡（标题 + 副标题 + 徽章）弹入 → 停留 → 快出；之后正常写 header
       titleCard(o = {}) {
@@ -9739,12 +9739,13 @@ const WB = (function () {
         const t0 = go(.01, 0), dim = group();
         S.items.push({ kind: "fill", d: rectD(0, 0, 960, 544), t: t0, dur: .5, g: S.g, color: PAL.paper, op: .94 });   // 盖在之前所有内容上面
         endGroup();
-        const g = group(), x = 100, y = 104, w = 760, h = 380;
+        const g = group(), x = o.x ?? 70, y = 104, w = o.w ?? 760, h = 380;   // 右边留给讲解员小人
         P(roughRect(x, y, w, h), t0 + .2, .6, { color: PAL.ink, w: 2.8 });
         F(rectD(x, y, w, h), t0 + .3, { color: "#ffffff", op: 1 });
         P(roughRect(x + 10, y + 10, w - 20, h - 20), t0 + .7, .5, { color: PAL.green, w: 1.6 });
         T("💡 一句话洞见", x + 40, y + 56, t0 + 1.1, .5, { size: FS.note + 1, color: PAL.grey, weight: 900 });
-        const wrap = (str, n) => { const out = []; let cur = "", cw = 0; for (const ch of str) { const add = ch.charCodeAt(0) > 0x2e80 ? 1 : .55; if (cw + add > n && cur) { out.push(cur); cur = ""; cw = 0; } cur += ch; cw += add; } if (cur) out.push(cur); return out; };
+        const wrap = (str, n) => String(str).split("\n").flatMap(part => wrap1(part, n));
+        const wrap1 = (str, n) => { const out = []; let cur = "", cw = 0; for (const ch of str) { const add = ch.charCodeAt(0) > 0x2e80 ? 1 : .55; if (cw + add > n && cur) { out.push(cur); cur = ""; cw = 0; } cur += ch; cw += add; } if (cur) out.push(cur); return out; };
         S.at = t0 + 1.5;
         wrap(o.insight || "", 31).forEach((ln, i) => T(ln, x + 40, y + 102 + i * 36, go(Math.max(.6, ln.length * .05)), Math.max(.6, ln.length * .05), { size: FS.sub, color: PAL.ink, weight: 900 }));
         const ry = y + 102 + Math.max(1, wrap(o.insight || "", 31).length) * 36 + 30;
@@ -9985,7 +9986,7 @@ const WB = (function () {
       else if (it.kind === "path") {
         const w = it.w || 3;
         // v2 粗细笔触（V2）：底线略细，再叠一条只覆盖中段的粗线 → 中段粗、起笔收笔细
-        const thick = V2 && !it.hl && !it.dash && w >= 1.8;
+        const thick = V2 && !it.hl && !it.dash && it.alpha == null && w >= 1.8;   // 半透明线不叠加粗线（叠起来会发深）
         it.el = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": thick ? w * .8 : w, "stroke-linecap": it.cap || "round", "stroke-linejoin": "round" }, inkLayer);
         if (it.hl) it.el.setAttribute("stroke-opacity", it.alpha ?? .55);   // 荧光带画在文字下面，不需要混合模式（省合成开销）
         else if (V2 && it.alpha != null) it.el.setAttribute("stroke-opacity", it.alpha);
@@ -10447,7 +10448,7 @@ var WB_ACTOR = (function () {
           if (e.action === "put") p.ev.push({ t: e.t + e.dur * .55, a, drop: true });
           if (e.action === "holdCard") { p.ev.push({ t: e.t + e.dur * .08, a, anchor: "overhead", pop: o.pop !== false }); if (o.release !== false) p.ev.push({ t: e.t + e.dur, a, gone: true }); }
           if (e.action === "read") { p.ev.push({ t: e.t, a, anchor: "book", pop: true }); if (o.release !== false) p.ev.push({ t: e.t + e.dur, a, gone: true }); }
-          if (e.action === "support") p.ev.push({ t: e.t + e.dur * .3, a, anchor: "overhead" });
+          if (e.action === "support") { p.ev.push({ t: e.t + e.dur * .3, a, anchor: "overhead" }); if (o.release !== false) p.ev.push({ t: e.t + e.dur, a, gone: true }); }
         }
       });
       a.exprs.sort((p, q) => p.t - q.t);
@@ -10705,13 +10706,14 @@ var WB_ACTOR = (function () {
         pathE(inner, `M0,-24 L0,-4 M-16,-20 Q-9,-22 -4,-20 M-16,-15 Q-9,-17 -4,-15 M4,-20 Q9,-22 16,-20 M4,-15 Q9,-17 16,-15`, "none", 1.3);
         p.page = pathE(inner, `M0,-24 Q8,-28 16,-26 L16,-6 Q8,-8 0,-4 Z`, "#f8fafc", 1.5);
       } else if (p.kind === "doc") {
+        inner.setAttribute("transform", "scale(1.5)");   // 护照放大一点，看得清印章
         pathE(inner, `M-11,-26 L11,-26 L11,0 L-11,0 Z`, "#dbeafe", 2.1, "#2563eb");
         pathE(inner, `M-6,-19 L6,-19 M-6,-13 L4,-13`, "none", 1.4, "#2563eb");
         p.stampEl = G(inner, { opacity: 0 });
         mk("ellipse", { cx: 1, cy: -8, rx: 9, ry: 5.5, fill: "none", stroke: "#e11d48", "stroke-width": 2 }, p.stampEl);
         const st = mk("text", { x: 1, y: -5, "text-anchor": "middle", "font-size": 8, "font-weight": 900, "font-family": '"Courier New",Courier,monospace', fill: "#e11d48" }, p.stampEl); st.textContent = p.stampText;
         if (p.stampAt != null) {   // 印章：从上方加速砸下 → 压扁 → 抬走（M1/M2）
-          p.hammer = G(g, { opacity: 0 });
+          p.hammer = G(G(g, { transform: "scale(1.5)" }), { opacity: 0 });
           pathE(p.hammer, `M-12,-30 L12,-30 L12,-18 L-12,-18 Z`, "#fda4af", 1.8);
           pathE(p.hammer, `M-4,-46 L4,-46 L4,-30 L-4,-30 Z`, "#f3d9b1", 1.8);
         }
@@ -16194,7 +16196,8 @@ WB_LAB.wo_port = [
       k.actorFade(tv2, syTake.t - .2, .3, 1);
       k.act(tv2, "walk", w0 - .4, wd * .6, { to: 392, words: ["take"] });
       k.actorFade(tv2, w0 + wd * .6 - .5, .4, 0);
-      k.path(plane, w0 + wd * .55, wd * .45 + .8, [[140, -12], [300, -70], [420, -170]], { ease: "in" });
+      k.path(plane, w0 + wd * .55, wd * .45 + .8, [[140, -12], [290, -50], [400, -100]], { ease: "in" });
+      k.fade(plane, w0 + wd + .4, .4, 0);                                              // 飞远了（不压到右上角进度条）
       k.actFx(["take"], w0 + wd * .55, wd * .45 + .8, "旅客登机、飞机起飞");
       k.wait(.6);
       D.wipe();
@@ -16268,7 +16271,7 @@ WB_LAB.wo_port = [
 
       // ───── 收尾金句卡（统一样式，定格可截图复习）─────
       k.fade(gF, S.at, .4, 0); k.actorFade(f1, S.at, .4, 0); k.actorFade(f2, S.at, .4, 0);
-      k.quoteCard({ insight: "港口是罗马世界的大门：一个 port，长出了进、出、穿越、带回、机会。", rhyme: "港口一扇门，进出穿回都靠 port；sup 托住就是 support！", foot: "📖 单词身世 · port 港口" });
+      k.quoteCard({ insight: "港口是罗马世界的大门：\n一个 port，长出了进、出、穿越、带回、机会。", rhyme: "港口一扇门，进出穿回都靠 port；sup 托住就是 support！", foot: "📖 单词身世 · port 港口" });
       k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
       D.hold(2.5);
       D.finish(.42);

@@ -262,7 +262,8 @@ WB_LAB.wo_port = [
       k.actorFade(tv2, syTake.t - .2, .3, 1);
       k.act(tv2, "walk", w0 - .4, wd * .6, { to: 392, words: ["take"] });
       k.actorFade(tv2, w0 + wd * .6 - .5, .4, 0);
-      k.path(plane, w0 + wd * .55, wd * .45 + .8, [[140, -12], [300, -70], [420, -170]], { ease: "in" });
+      k.path(plane, w0 + wd * .55, wd * .45 + .8, [[140, -12], [290, -50], [400, -100]], { ease: "in" });
+      k.fade(plane, w0 + wd + .4, .4, 0);                                              // 飞远了（不压到右上角进度条）
       k.actFx(["take"], w0 + wd * .55, wd * .45 + .8, "旅客登机、飞机起飞");
       k.wait(.6);
       D.wipe();
@@ -336,7 +337,7 @@ WB_LAB.wo_port = [
 
       // ───── 收尾金句卡（统一样式，定格可截图复习）─────
       k.fade(gF, S.at, .4, 0); k.actorFade(f1, S.at, .4, 0); k.actorFade(f2, S.at, .4, 0);
-      k.quoteCard({ insight: "港口是罗马世界的大门：一个 port，长出了进、出、穿越、带回、机会。", rhyme: "港口一扇门，进出穿回都靠 port；sup 托住就是 support！", foot: "📖 单词身世 · port 港口" });
+      k.quoteCard({ insight: "港口是罗马世界的大门：\n一个 port，长出了进、出、穿越、带回、机会。", rhyme: "港口一扇门，进出穿回都靠 port；sup 托住就是 support！", foot: "📖 单词身世 · port 港口" });
       k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
       D.hold(2.5);
       D.finish(.42);

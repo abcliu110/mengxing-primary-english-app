@@ -147,7 +147,7 @@ const WB = (function () {
       // 文字 + 荧光底色：text 在 (x, y) 基线；size 字号；mono 等宽
       hlText(text, x, y, size, o = {}) {
         const w = o.mono ? text.length * size * .6 : estW(text, size), ax = o.anchor === "middle" ? x - w / 2 : o.anchor === "end" ? x - w : x;
-        k.hl(ax - 6, y - size * .33, w + 12, size * 1.05, o);
+        k.hl(ax - 6, y - size * .3, w + 12, size * .98, o);
       },
       // 统一片头（V8）：居中标题卡（标题 + 副标题 + 徽章）弹入 → 停留 → 快出；之后正常写 header
       titleCard(o = {}) {
@@ -177,12 +177,13 @@ const WB = (function () {
         const t0 = go(.01, 0), dim = group();
         S.items.push({ kind: "fill", d: rectD(0, 0, 960, 544), t: t0, dur: .5, g: S.g, color: PAL.paper, op: .94 });   // 盖在之前所有内容上面
         endGroup();
-        const g = group(), x = 100, y = 104, w = 760, h = 380;
+        const g = group(), x = o.x ?? 70, y = 104, w = o.w ?? 760, h = 380;   // 右边留给讲解员小人
         P(roughRect(x, y, w, h), t0 + .2, .6, { color: PAL.ink, w: 2.8 });
         F(rectD(x, y, w, h), t0 + .3, { color: "#ffffff", op: 1 });
         P(roughRect(x + 10, y + 10, w - 20, h - 20), t0 + .7, .5, { color: PAL.green, w: 1.6 });
         T("💡 一句话洞见", x + 40, y + 56, t0 + 1.1, .5, { size: FS.note + 1, color: PAL.grey, weight: 900 });
-        const wrap = (str, n) => { const out = []; let cur = "", cw = 0; for (const ch of str) { const add = ch.charCodeAt(0) > 0x2e80 ? 1 : .55; if (cw + add > n && cur) { out.push(cur); cur = ""; cw = 0; } cur += ch; cw += add; } if (cur) out.push(cur); return out; };
+        const wrap = (str, n) => String(str).split("\n").flatMap(part => wrap1(part, n));
+        const wrap1 = (str, n) => { const out = []; let cur = "", cw = 0; for (const ch of str) { const add = ch.charCodeAt(0) > 0x2e80 ? 1 : .55; if (cw + add > n && cur) { out.push(cur); cur = ""; cw = 0; } cur += ch; cw += add; } if (cur) out.push(cur); return out; };
         S.at = t0 + 1.5;
         wrap(o.insight || "", 31).forEach((ln, i) => T(ln, x + 40, y + 102 + i * 36, go(Math.max(.6, ln.length * .05)), Math.max(.6, ln.length * .05), { size: FS.sub, color: PAL.ink, weight: 900 }));
         const ry = y + 102 + Math.max(1, wrap(o.insight || "", 31).length) * 36 + 30;
@@ -423,7 +424,7 @@ const WB = (function () {
       else if (it.kind === "path") {
         const w = it.w || 3;
         // v2 粗细笔触（V2）：底线略细，再叠一条只覆盖中段的粗线 → 中段粗、起笔收笔细
-        const thick = V2 && !it.hl && !it.dash && w >= 1.8;
+        const thick = V2 && !it.hl && !it.dash && it.alpha == null && w >= 1.8;   // 半透明线不叠加粗线（叠起来会发深）
         it.el = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": thick ? w * .8 : w, "stroke-linecap": it.cap || "round", "stroke-linejoin": "round" }, inkLayer);
         if (it.hl) it.el.setAttribute("stroke-opacity", it.alpha ?? .55);   // 荧光带画在文字下面，不需要混合模式（省合成开销）
         else if (V2 && it.alpha != null) it.el.setAttribute("stroke-opacity", it.alpha);

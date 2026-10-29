@@ -184,7 +184,7 @@ var WB_ACTOR = (function () {
           if (e.action === "put") p.ev.push({ t: e.t + e.dur * .55, a, drop: true });
           if (e.action === "holdCard") { p.ev.push({ t: e.t + e.dur * .08, a, anchor: "overhead", pop: o.pop !== false }); if (o.release !== false) p.ev.push({ t: e.t + e.dur, a, gone: true }); }
           if (e.action === "read") { p.ev.push({ t: e.t, a, anchor: "book", pop: true }); if (o.release !== false) p.ev.push({ t: e.t + e.dur, a, gone: true }); }
-          if (e.action === "support") p.ev.push({ t: e.t + e.dur * .3, a, anchor: "overhead" });
+          if (e.action === "support") { p.ev.push({ t: e.t + e.dur * .3, a, anchor: "overhead" }); if (o.release !== false) p.ev.push({ t: e.t + e.dur, a, gone: true }); }
         }
       });
       a.exprs.sort((p, q) => p.t - q.t);
@@ -442,13 +442,14 @@ var WB_ACTOR = (function () {
         pathE(inner, `M0,-24 L0,-4 M-16,-20 Q-9,-22 -4,-20 M-16,-15 Q-9,-17 -4,-15 M4,-20 Q9,-22 16,-20 M4,-15 Q9,-17 16,-15`, "none", 1.3);
         p.page = pathE(inner, `M0,-24 Q8,-28 16,-26 L16,-6 Q8,-8 0,-4 Z`, "#f8fafc", 1.5);
       } else if (p.kind === "doc") {
+        inner.setAttribute("transform", "scale(1.5)");   // 护照放大一点，看得清印章
         pathE(inner, `M-11,-26 L11,-26 L11,0 L-11,0 Z`, "#dbeafe", 2.1, "#2563eb");
         pathE(inner, `M-6,-19 L6,-19 M-6,-13 L4,-13`, "none", 1.4, "#2563eb");
         p.stampEl = G(inner, { opacity: 0 });
         mk("ellipse", { cx: 1, cy: -8, rx: 9, ry: 5.5, fill: "none", stroke: "#e11d48", "stroke-width": 2 }, p.stampEl);
         const st = mk("text", { x: 1, y: -5, "text-anchor": "middle", "font-size": 8, "font-weight": 900, "font-family": '"Courier New",Courier,monospace', fill: "#e11d48" }, p.stampEl); st.textContent = p.stampText;
         if (p.stampAt != null) {   // 印章：从上方加速砸下 → 压扁 → 抬走（M1/M2）
-          p.hammer = G(g, { opacity: 0 });
+          p.hammer = G(G(g, { transform: "scale(1.5)" }), { opacity: 0 });
           pathE(p.hammer, `M-12,-30 L12,-30 L12,-18 L-12,-18 Z`, "#fda4af", 1.8);
           pathE(p.hammer, `M-4,-46 L4,-46 L4,-30 L-4,-30 Z`, "#f3d9b1", 1.8);
         }
