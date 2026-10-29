@@ -15,7 +15,7 @@
 - 老白板 v2：fp_economy 1–4 幕、fp_vectors 1–4 幕、fp_boundedness 第 1 幕，共 9 幕（每幕一提交，均有 *_classic.js 备份与 `work/shots/<模块>_<幕>_对比总图.png`）。
 
 **下一个接手点**
-1. `work/anim` 里 fp_boundedness.js + 主 HTML 有**未提交改动**（第 2 幕进行中，未验收）。接手先 `git diff` 看一眼：检查全过就提交，不确定就 `git checkout` 丢弃重做。
+1. ~~第 2 幕未提交改动~~ ✅ 已核实：第 2 幕在 `27d5f28` 已提交，无遗留改动（2026-10-30 02:10 接手核对）。
 2. 然后顺序：fp_boundedness 余下幕 → fp_iconicity → fp_one_king → fp_zoom_focus → bamboo_tree → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
 3. 每幕流程：备份 classic → 改 v2 → `jscheck.py`、`r2check.py <模块> --strict`、`reg_render.py`、`app*.py` → 对比图 → 提交推送 → 本文件「夜间进度」加一行。
 4. 已知遗留：动作库无 swim / eat / 穿脱衣（r2check 只提示，扩 `wb_actor.js` 时补）；`stress_rhythm` 原 3 幕 r2check 失败是旧问题，升级时一并修。
@@ -37,6 +37,7 @@
 - 01:51｜fp_vectors 第 4 幕升 v2，fp_vectors 4 幕全部完成（to/from/for 箭头 + look 三兄弟单独镜头 + 🔮 I go to the park + 金句卡；R4 walk to / look for / look at / go to）｜`175335c`｜`work/shots/fp_vectors_4_对比总图.png`｜原 look at/for/after 只有一行字，按 R4 补了三个小示意图（不删原文字）
 - 01:53｜fp_boundedness 第 1 幕升 v2（一刀切 / 容器两镜头 + 🔮 two bowls of rice + 金句卡；R4 give）｜`e27e7ec`｜`work/shots/fp_boundedness_1_对比总图.png`｜fp_props.halves() 只加返回值 gl/gr 让 v2 镜头能擦掉（reg_render 证明旧幕不变）；面包和苹果梗保留木色道具色
 - 01:56｜fp_boundedness 第 2 幕升 v2（a/the 小狗 + 太阳和门 + 🔮 a cat → The cat + 金句卡；R4 running / open）｜`27d5f28`｜`work/shots/fp_boundedness_2_对比总图.png`｜加 📜 徽章前先核了 Etymonline「the」原文（古英语用指示词、the/that 不分）；对比图里偶尔一帧空白是板擦擦除过渡，不是丢内容
+- 02:20｜fp_boundedness 第 3 幕升 v2（楼房外壳 / 去上学两段 + 成对例子单独镜头 + 🔮 go to bed + 金句卡；R4 goes / go / play）｜`04d6495`｜`work/shots/fp_boundedness_3_对比总图.png`（Hark 项目工作区）｜标题较长，表头副标题被徽章挤（与 ze_say 等幕同类，未改）；hospital 例子保留原「to the hospital / in hospital」，术语注明美式常说 in the hospital（✂️）
 
 ## 1. 现在做到哪
 
