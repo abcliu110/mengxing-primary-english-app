@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 01:55 JST（阶段 3：ze_subject 上线，已上线 6/11 幕，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-30 02:10 JST（阶段 3：ze_link 上线，已上线 7/11 幕，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -191,6 +191,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 8 | 新幕 `ze_yesno` Yes / No 跟着事实走（v2 + 讲解员，Q 否定疑问） | ✅ 中文「你不喜欢牛奶吗？——不，我喜欢」→ 照搬成 No, I like ❌（r2skip，讲解员 surprised + oops）→ 英语看事实：Yes, I do. / No, I don't.（讲解员点头）、规则「Yes + 肯定，No + 否定」标 ✂️ → 例子 Isn't it cold? Yes, it is. / Can't you swim? No, I can't. → 口诀「问句有「不」别管它，事实是啥答啥」→ 🔮 Aren't you a student? = Yes, I am. → 金句卡。验收：r2check --strict 18 词 9 句；旧 75 幕渲染逐字节一致；appze 过；截图看过。R4：本幕没有要演的动作动词（swim 只出现在问句里，不演）。 |
 | 9 | 新幕 `ze_borrow` 借：borrow / lend（v2 + 讲解员，N 一字多词） | ✅ 中文一个「借」两个方向 → 照搬分不清 ❌ → borrow ←（讲解员走到汤姆面前拿过书，R4）/ lend →（汤姆从讲解员手里接过书，R4）、borrow from / lend to → Can I borrow your pen? / Can you lend me your pen? → 口诀「借进来 borrow from，借出去 lend to」→ 🔮 汤姆借给我一本书 = Tom lends me a book. → 金句卡。场景角色 traveler 扮汤姆。验收：r2check --strict 14 词 6 句、R4 2/2；旧 76 幕渲染逐字节一致；appze 过；截图看过（修了揭晓词位置）。 |
 | 10 | 新幕 `ze_subject` 句子必须有主语（v2 + 讲解员，A 中英思维） | ✅ 中文「下雨了 / 好冷 / 去上学了」省主语 → 照搬 Is raining. / Is cold. ❌（r2skip）→ 占位主语 it：It is raining. / It is cold! / What time is it? It is seven o'clock. → 有人做的事把人说出来：I go to school.（讲解员走几步，R4）/ He goes too.；✂️ 祈使句例外 Sit down, please. → 口诀「英语句子要有主，没人做事请 it 住」→ 🔮 好热啊！今天是星期一 = It is hot! It is Monday today. → 金句卡。验收：r2check --strict 20 词 8 句、R4 1/1；旧 77 幕渲染逐字节一致；appze 过；截图看过。注意：r2skip 里不要放单个常用词（如 Is），它会把正确句里的同一个词也滤掉。 |
+| 11 | 新幕 `ze_link` 形合 vs 意合（v2 + 讲解员，A 中英思维） | ✅ 中文靠意思连（下雨了，不去了）、「因为……所以……」成对用 → 照搬 Because it rained, so we stayed at home. ❌（r2skip）→ 英语用连接词、because / so 二选一、although / but 二选一（四个正确句都朗读）→ 中文只有逗号的地方英语补 and / so → 口诀「中文靠意思，英语靠钩子」→ 🔮 I was tired, so I went to bed early.（另一种说法也朗读）→ 金句卡。验收：r2check --strict 32 词 8 句；旧 78 幕渲染逐字节一致；appze 过；截图看过。R4：played / went 是过去发生的事，不演。 |
 
 ## 1. 当前状态
 
