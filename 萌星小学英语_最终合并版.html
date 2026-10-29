@@ -20282,7 +20282,7 @@ WB_LAB.fp_vectors.push(
 <script type="text/plain" id="wbmod-fp_boundedness" data-deps="wo_props fp_props">
 // ==================== 第一性原理 ③ 物理边界感统摄律（fp_boundedness）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[2].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 1 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_boundedness_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 1、2 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_boundedness_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_boundedness = [
   // ───────── 3-1 一刀切测试法（v2 + 讲解员，2026-10-30）─────────
   // 升级前原样保存在 cases/fp_boundedness_classic.js（R1 零丢失）。原左（一刀切）右（容器）两半拆成两个镜头，容器镜头左移 450。
@@ -20411,67 +20411,124 @@ WB_LAB.fp_boundedness = [
   },
 ];
 WB_LAB.fp_boundedness.push(
-  // ───────── 3-2 a 就是 one，the 就是 that ─────────
+  // ───────── 3-2 a 就是 one，the 就是 that（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_boundedness_classic.js（R1 零丢失）。右栏左移 30 给讲解员让位；「独一无二」单独一个镜头。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S, WOOD = k.C.brown;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：什么时候用 a，什么时候用 the？");
-      k.header("③ 物理边界感统摄律", "a = one · the = that", true);
-      // 公园和 4 只小狗
-      P(k.wl(30, 290, 450, 290, .8), go(.5), .5, { color: C.green, w: 2.5 });
-      T("park", 420, 314, go(.3), .3, { size: 15, color: C.green, font: M });
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "a = one · the = that", sub: "③ 物理边界感统摄律", badges: ["💡", "📜"], steps: ["① 小狗", "② a = one", "③ the = that", "④ 独一无二", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 公园里的小狗 ─────
+      D.step(0); D.shot();
+      P(k.wl(30, 300, 440, 300, .8), go(.5), .5, { color: C.green, w: 2.5 });
+      T("park", 410, 324, go(.3), .3, { size: 15, color: C.green, font: M });
       const dog = (x, y) => {
-        const g = k.group();
-        P(k.ellipse(x, y, 26, 14), go(.3), .3, { color: C.brown, w: 2.5 });
-        P(k.ellipse(x + 28, y - 14, 11, 10), go(.25), .25, { color: C.brown, w: 2.5 });
-        P(`M${x - 16},${y + 12} v14 M${x + 14},${y + 12} v14 M${x - 26},${y - 4} l-10,-8`, go(.25), .25, { color: C.brown, w: 2.5 });
-        k.endGroup(); return g;
+        const g = D.sub();
+        P(k.ellipse(x, y, 26, 14), go(.3), .3, { color: WOOD, w: 2.5 });
+        P(k.ellipse(x + 28, y - 14, 11, 10), go(.25), .25, { color: WOOD, w: 2.5 });
+        P(`M${x - 16},${y + 12} v14 M${x + 14},${y + 12} v14 M${x - 26},${y - 4} l-10,-8`, go(.25), .25, { color: WOOD, w: 2.5 });
+        D.back(); return g;
       };
       N("", "公园里有好几只小狗。");
-      const ds = [70, 170, 270, 370].map(x => dog(x, 252));
-      // a = one
+      const ds = [70, 170, 270, 370].map(x => dog(x, 262));
+      k.act(me, "point", S.at - .6, 1.4, { at: [220, 262] });
+
+      // ───── a = one ─────
+      D.step(1);
       N("不定冠词 a / an：", "第一次说起，还没指定是哪一个，意思就是「一个」。");
-      T("There is a dog in the park.", 500, 150, go(1.2), 1.2, { size: 21, color: C.ink, weight: 900, font: M });
-      P(k.ellipse(184, 248, 52, 34), go(.6), .6, { color: C.orange, w: 3 });
-      T("a = one", 500, 184, go(.5), .5, { size: 22, color: C.orange, weight: 900, font: M });
-      T("随便圈一只，还没说是哪只", 620, 184, go(.7), .7, { size: 15, color: C.grey });
+      T("There is a dog in the park.", 470, 160, go(1.2), 1.2, { size: 21, color: C.ink, weight: 900, font: M });
+      P(k.ellipse(184, 258, 52, 34), go(.6), .6, { color: C.red, w: 3 });
+      T("a = one", 470, 194, go(.5), .5, { size: 22, color: C.red, weight: 900, font: M });
+      T("随便圈一只，还没说是哪只", 590, 194, go(.7), .7, { size: 15, color: C.grey });
       k.wait(.6);
-      // the = that
-      k.say("I see a dog in the park.", { zh: "我在公园里看见一只狗。" });
+      sayAt("I see a dog in the park.", { zh: "我在公园里看见一只狗。" });
+      sayAt("There is a dog in the park.", { zh: "公园里有一只狗。", word: "There is a dog in the park" });
+
+      // ───── the = that ─────
+      D.step(2);
       N("定冠词 the：", "说话的人和听的人都知道是哪一个，意思像「那个」。");
-      const tg = k.group();
-      P(k.ellipse(184, 248, 30, 30) + " " + k.wl(140, 248, 228, 248, .2) + " " + k.wl(184, 204, 184, 292, .2), go(.01, 0), .01, { color: C.red, w: 2 });
-      k.endGroup(); k.hide(tg);
+      const tg = D.sub();
+      P(k.ellipse(184, 258, 30, 30) + " " + k.wl(140, 258, 228, 258, .2) + " " + k.wl(184, 214, 184, 302, .2), go(.01, 0), .01, { color: C.blue, w: 2 });
+      D.back(); k.hide(tg);
       const tl = go(.8); k.fade(tg, tl, .6, 1);
-      T("The dog is running.", 500, 250, go(1), 1, { size: 21, color: C.ink, weight: 900, font: M });
-      T("the = that", 500, 284, go(.5), .5, { size: 22, color: C.purple, weight: 900, font: M });
-      T("就是刚才那只！", 668, 284, go(.5), .5, { size: 15, color: C.grey });
-      const tr = go(1.4); k.move(ds[1], tr, 1.4, 0, -60); k.move(tg, tr, 1.4, 0, -60);
-      k.wait(.5);
-      // 独一无二
-      k.say("The dog is very cute.", { zh: "那只狗很可爱。" });
+      T("The dog is running.", 470, 260, go(1), 1, { size: 21, color: C.ink, weight: 900, font: M });
+      T("the = that", 470, 294, go(.5), .5, { size: 22, color: C.blue, weight: 900, font: M });
+      T("就是刚才那只！", 638, 294, go(.5), .5, { size: 15, color: C.grey });
+      k.wait(.3);
+      const syRun = sayAt("The dog is running.", { zh: "那只狗在跑。", word: "running" });
+      k.move(ds[1], syRun.t, Math.max(1.4, syRun.dur), 0, -60); k.move(tg, syRun.t, Math.max(1.4, syRun.dur), 0, -60);
+      k.actFx(["running"], syRun.t, Math.max(1.4, syRun.dur), "被圈住的那只小狗跑开");
+      k.act(me, "point", syRun.t, Math.max(1.2, syRun.dur), { at: [184, 200] });
+      k.wait(.4);
+      sayAt("The dog is very cute.", { zh: "那只狗很可爱。" });
+      sayAt("One dog. That dog. The moon.", { zh: "一只狗。那只狗。月亮。", word: "one that moon" });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 独一无二也用 the ─────
+      D.step(3); D.shot();
       N("", "世界上只有一个的东西，大家都知道是哪个，也用 the。");
-      const sun = k.ellipse(80, 370, 18, 18);
-      P(sun, go(.4), .4, { color: C.orange, w: 2.5 }); F(sun, go(.1, 0), { color: "#fde047", op: 1 });
-      P(`M80,342 v-8 M80,398 v8 M52,370 h-8 M108,370 h8`, go(.3), .3, { color: C.orange, w: 2.5 });
-      T("the sun · the moon", 132, 378, go(.7), .7, { size: 20, color: C.ink, weight: 900, font: M });
-      T("Open the door, please!", 500, 360, go(1), 1, { size: 20, color: C.ink, weight: 900, font: M });
-      T("房间里就这一扇门", 500, 388, go(.5), .5, { size: 15, color: C.grey });
-      k.wait(.6);
-      k.say("The sun is hot today.", { zh: "今天太阳很热。", word: "the sun" });
+      const sun = k.ellipse(100, 200, 24, 24);
+      P(sun, go(.4), .4, { color: C.red, w: 2.5 }); F(sun, go(.1, 0), { color: C.hlYellow, op: 1 });
+      P(`M100,164 v-10 M100,236 v10 M64,200 h-10 M136,200 h10`, go(.3), .3, { color: C.red, w: 2.5 });
+      T("the sun · the moon", 170, 208, go(.7), .7, { size: 22, color: C.ink, weight: 900, font: M });
+      const sySun = sayAt("The sun is hot today.", { zh: "今天太阳很热。", word: "the sun" });
+      k.act(me, "point", sySun.t, Math.max(1.2, sySun.dur), { at: [100, 200] });
+      // 房间里唯一的门
+      P(k.roughRect(80, 280, 260, 120), go(.6), .6, { color: C.grey, w: 2 });
+      const door = D.sub(); P(k.roughRect(150, 300, 50, 100), go(.4), .4, { color: WOOD, w: 2.5 }); F(k.rectD(150, 300, 50, 100), go(.1, 0), { color: "#fde68a", op: 1 }); D.back();
+      T("Open the door, please!", 380, 340, go(1), 1, { size: 20, color: C.ink, weight: 900, font: M });
+      T("房间里就这一扇门", 380, 368, go(.5), .5, { size: 15, color: C.grey });
+      k.wait(.4);
+      const syDoor = sayAt("Open the door, please!", { zh: "请开门！", word: "Open door please" });
+      k.act(me, "point", syDoor.t, Math.max(1.2, syDoor.dur), { at: [175, 350], words: ["open"] });
+      k.squash(door, syDoor.t + .3, .5, .25, { cx: 150, cy: 350 });
+      sayAt("An apple, an egg.", { zh: "一个苹果，一个鸡蛋。", word: "an" });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "第一次见用 a，大家都知道用 the。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("There is a dog in the park.", { zh: "公园里有一只狗。", word: "There is a dog in the park" });
-      k.say("The dog is running.", { zh: "那只狗在跑。", word: "running" });
-      k.say("One dog. That dog. The moon.", { zh: "一只狗。那只狗。月亮。", word: "one that moon" });
-      k.say("Open the door, please!", { zh: "请开门！", word: "Open door please" });
-      k.say("An apple, an egg.", { zh: "一个苹果，一个鸡蛋。", word: "an" });
-      D.fin("a / an = 一个（第一次说，随便一个）；the = 那个（双方都知道是哪个）", "口诀：第一次见用 a，大家都知道用 the。");
-      k.wait(2);
+      P(k.roughRect(40, 420, 760, 50), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：第一次见用 a，大家都知道用 the。", 60, 453, go(1), 1, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "先说「我有一只猫」，再说「这只猫是白的」。两个空各填 a 还是 the？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 I have ___ cat. ___ cat is white.", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "第一次说起用 a；再说起，大家都知道是哪只了，用 the。");
+      const tRev = go(.3);
+      T("a cat → The cat —— 第一次 a，再提 the", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("I have a cat. The cat is white.", { zh: "我有一只猫。这只猫是白色的。", word: "I have cat white" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "a / an = 一个（第一次说，随便一个）；\nthe = 那个（双方都知道是哪个）", rhyme: "口诀：第一次见用 a，大家都知道用 the。", hlLines: 2, foot: "🧠 第一性原理 ③ 物理边界感统摄律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "running", act: "被圈住的小狗在读到「The dog is running」时跑开（场景动作 actFx），讲解员指着它" },
+      { word: "open", act: "讲解员指着门，门一晃（point + squash），与「Open the door」同步" },
+    ],
     terms: [
       ["不定冠词", "a / an：第一次提到、不特指哪一个，意思是「一个」。它本来就是从 one 变来的。"],
       ["定冠词", "the：说话双方都知道是哪一个，意思像 that「那个」。"],
+      ["可信度徽章", "💡 记忆方法（a = one、the = that）· 📜 有出处的历史（Etymonline「a」「the」：a/an 来自古英语 ān「一」；the 来自古英语指示词，古英语里 the 和 that 不分）。"],
     ],
   },
 );

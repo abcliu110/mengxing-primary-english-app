@@ -1,4 +1,4 @@
-# 内容清单（R1 零丢失）：第一性原理 ③ fp_boundedness（v2 升级：第 1 幕）
+# 内容清单（R1 零丢失）：第一性原理 ③ fp_boundedness（v2 升级：第 1、2 幕）
 
 > 由 `src/check_upgrade.py` 逐条对照升级前文件 `fp_boundedness_classic.js` 里的全部字幕 / 白板文字 / 朗读 / 术语字符串，检查是否原样出现在新文件 `fp_boundedness.js`（金句卡里的换行不计）。
 
@@ -86,7 +86,7 @@
 | ✅ | The dog is very cute. |
 | ✅ | 那只狗很可爱。 |
 | ✅ | 世界上只有一个的东西，大家都知道是哪个，也用 the。 |
-| ✅ | #fde047 |
+| ❌ | #fde047 |
 | ✅ | the sun · the moon |
 | ✅ | Open the door, please! |
 | ✅ | 房间里就这一扇门 |
@@ -238,5 +238,5 @@
 
 ## 结论
 
-- 共 231 条：✅ 227，❌ 丢失 4。
+- 共 231 条：✅ 226，❌ 丢失 5。
 - 升级前文件原样保留，可随时回退。
