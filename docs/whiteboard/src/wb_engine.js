@@ -13,7 +13,7 @@ const WB = (function () {
 
   // ---------- 脚本工具包 ----------
   function kit(seed) {
-    const S = { items: [], narr: [], at: 0, pathIdx: [] };
+    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [] };
     let s = seed;
     const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280 - .5;
     const wl = (x1, y1, x2, y2, j = 1.6) => {
@@ -47,12 +47,12 @@ const WB = (function () {
       return d + " Z";
     };
 
-    const P = (d, t, dur, o = {}) => { S.pathIdx.push(S.items.length); S.items.push({ kind: "path", d, t, dur, ...o }); };
-    const T = (text, x, y, t, dur, o = {}) => S.items.push({ kind: "text", text: String(text), x, y, t, dur, ...o });
+    const P = (d, t, dur, o = {}) => { S.pathIdx.push(S.items.length); S.items.push({ kind: "path", d, t, dur, g: S.g, ...o }); };
+    const T = (text, x, y, t, dur, o = {}) => S.items.push({ kind: "text", text: String(text), x, y, t, dur, g: S.g, ...o });
     // 涂色：插到最近 back 笔描边的前面（DOM 在下层），这样色块盖住它后面的线、又不盖住自己的描边
     const F = (d, t, o = {}) => {
       const back = o.back ?? 1, pos = S.pathIdx.length >= back ? S.pathIdx[S.pathIdx.length - back] : S.items.length;
-      S.items.splice(pos, 0, { kind: "fill", d, t, dur: .6, ...o });
+      S.items.splice(pos, 0, { kind: "fill", d, t, dur: .6, g: S.g, ...o });
       for (let i = 0; i < S.pathIdx.length; i++) if (S.pathIdx[i] >= pos) S.pathIdx[i]++;
     };
     const go = (dur, gap = .15) => { const st = S.at; S.at += dur + gap; return st; };
@@ -60,8 +60,22 @@ const WB = (function () {
     const N = (term, text) => S.narr.push([S.at, term, text]);
     const rectD = (x, y, w, h) => `M${x},${y} h${w} v${h} h${-w} Z`;
 
+    // ---- 引擎 v2 动效（全部按时间 t 计算，进度条可拖动）----
+    // group() 之后画的元素进同一个 <g>，endGroup() 结束；动效作用在整组上
+    const group = () => (S.g = ++S.gn);
+    const endGroup = () => { S.g = 0; };
+    const move = (g, t, dur, dx, dy, o = {}) => S.fx.push({ type: "move", g, t, dur, dx, dy, ...o });
+    const arc = (g, t, dur, d) => S.fx.push({ type: "arc", g, t, dur, d });           // d：相对路径，从 0,0 出发
+    const buzz = (g, t, dur, amp = 2.5) => S.fx.push({ type: "buzz", g, t, dur, amp });
+    const fade = (g, t, dur, to) => S.fx.push({ type: "fade", g, t, dur, to });
+    const rot = (g, t, dur, deg, cx, cy) => S.fx.push({ type: "rot", g, t, dur, deg, cx, cy });
+    const hide = g => S.fx.push({ type: "fade", g, t: -1, dur: .001, to: 0 });         // 组一开始隐藏，之后用 fade 显示
+    // 镜头：白板区（不含字幕条）在 t 开始、dur 内缩放平移到「以 (x,y) 为中心、放大 z 倍」
+    const camera = (t, dur, x, y, z) => S.cam.push({ t, dur, x, y, z });
+
     const k = {
       estW, C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
+      group, endGroup, move, arc, buzz, fade, rot, hide, camera,
       // 标题 + 中线
       // 标题：title 大字，sub 灰色副标题（自动排在标题右边）；divider=false 时不画中线
       header(sub, title = "竹节句 vs 树干句", divider = true) {
@@ -212,13 +226,20 @@ const WB = (function () {
     const pat = mk("pattern", { id: uid + "g", width: 30, height: 30, patternUnits: "userSpaceOnUse" }, defs);
     mk("path", { d: "M30,0 L0,0 0,30", fill: "none", stroke: "#eef2f5", "stroke-width": 1 }, pat);
     mk("rect", { x: 0, y: 0, width: 960, height: 600, fill: "#fdfdfb" });
-    mk("rect", { x: 0, y: 0, width: 960, height: 544, fill: `url(#${uid}g)` });
+    const bclip = mk("clipPath", { id: uid + "b" }, defs);
+    mk("rect", { x: 0, y: 0, width: 960, height: 544 }, bclip);
+    const boardClip = mk("g", { "clip-path": `url(#${uid}b)` });
+    const board = mk("g", {}, boardClip);
+    mk("rect", { x: -960, y: -600, width: 2880, height: 1744, fill: `url(#${uid}g)` }, board);
     mk("rect", { x: 0, y: 544, width: 960, height: 56, fill: "#f1f5f9" });
     mk("line", { x1: 0, y1: 544, x2: 960, y2: 544, stroke: "#cbd5e1", "stroke-width": 1.5 });
     const narr = mk("text", { x: 24, y: 579, "font-size": 18, "font-family": ZH, "font-weight": 700, fill: "#334155" });
     const nTerm = mk("tspan", { fill: C.red, "font-weight": 900 }, narr), nRest = mk("tspan", {}, narr);
-    const fillLayer = mk("g", {}), inkLayer = fillLayer;
+    const layer = mk("g", {}, board);
+    const groups = {};
+    const parentOf = it => !it.g ? layer : (groups[it.g] || (groups[it.g] = { el: mk("g", {}, layer) })).el;
     items.forEach((it, idx) => {
+      const fillLayer = parentOf(it), inkLayer = fillLayer;
       if (it.kind === "fill") it.el = mk("path", { d: it.d, fill: it.color, opacity: 0 }, fillLayer);
       else if (it.kind === "path") {
         it.el = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": it.w || 3, "stroke-linecap": "round", "stroke-linejoin": "round" }, inkLayer);
@@ -232,6 +253,33 @@ const WB = (function () {
         it.el.textContent = it.text;
       }
     });
+    const FX = k.S.fx, CAM = k.S.cam;
+    FX.forEach(f => { if (f.type === "arc") { f.el = mk("path", { d: f.d, fill: "none" }, defs); f.len = f.el.getTotalLength(); } });
+    let camM = [0, 0, 1];   // 当前镜头：平移 tx,ty + 缩放 z（render 里更新）
+    function camAt(t) {
+      let x = 480, y = 272, z = 1;
+      for (const c of CAM) { const q = ease(clamp((t - c.t) / Math.max(.001, c.dur))); x += (c.x - x) * q; y += (c.y - y) * q; z += (c.z - z) * q; }
+      return [480 - x * z, 272 - y * z, z];
+    }
+    // 第一个镜头在开始前就生效（脚本一开始就设好特写）：camera(0, 0, ...)
+    function fxRender(t) {
+      for (const id in groups) {
+        let dx = 0, dy = 0, op = 1, deg = 0, cx = 0, cy = 0;
+        for (const f of FX) {
+          if (f.g != id) continue;
+          const kk = clamp((t - f.t) / Math.max(.001, f.dur)), q = f.linear ? kk : ease(kk);
+          if (f.type === "move") { dx += f.dx * q; dy += f.dy * q; }
+          else if (f.type === "arc") { const p = f.el.getPointAtLength(f.len * q), p0 = f.el.getPointAtLength(0); dx += p.x - p0.x; dy += p.y - p0.y; }
+          else if (f.type === "buzz") { if (kk > 0 && kk < 1) { dx += Math.sin(t * 71) * f.amp; dy += Math.cos(t * 53) * f.amp * .6; } }
+          else if (f.type === "fade") { if (t >= f.t) op += (f.to - op) * q; }
+          else if (f.type === "rot") { deg += f.deg * q; cx = f.cx; cy = f.cy; }
+        }
+        const g = groups[id].el;
+        g.setAttribute("transform", `translate(${dx.toFixed(2)},${dy.toFixed(2)})` + (deg ? ` rotate(${deg.toFixed(2)},${cx},${cy})` : ""));
+        g.setAttribute("opacity", op.toFixed(3));
+      }
+      if (CAM.length) { camM = camAt(t); board.setAttribute("transform", `translate(${camM[0].toFixed(2)},${camM[1].toFixed(2)}) scale(${camM[2].toFixed(4)})`); }
+    }
     function measure() {
       items.forEach(it => { if (it.kind === "text") { const b = it.el.getBBox(); it.bx = b.x; it.bw = b.width; it.by = b.y; it.bh = b.height; it.clipRect.setAttribute("y", b.y - 6); it.clipRect.setAttribute("height", b.height + 12); } });
     }
@@ -267,6 +315,8 @@ const WB = (function () {
         if (L > 912) narr.setAttribute("font-size", (18 * 912 / L).toFixed(1));
       }
       narr.setAttribute("opacity", clamp((t - NARR[ni][0]) / .35));
+      fxRender(t);
+      if (active && CAM.length) active = [active[0] * camM[2] + camM[0], active[1] * camM[2] + camM[1]];
       const target = active || [905, 525], f = active ? .55 : .12;
       penX += (target[0] - penX) * f; penY += (target[1] - penY) * f;
       pen.setAttribute("transform", `translate(${penX.toFixed(1)},${penY.toFixed(1)}) scale(.8)`);

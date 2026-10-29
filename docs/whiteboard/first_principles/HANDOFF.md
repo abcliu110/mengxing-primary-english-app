@@ -8,7 +8,7 @@
 | 步骤 | 内容 | 状态 |
 |---|---|---|
 | 0 | SOP / 分镜 / 交接文档 | ✅ 2026-10-29 |
-| 1 | 引擎 v2 动效：`group / move / arc / buzz / fade / rot / camera`（SOP §4），回归旧 34 案例 | ⬜ |
+| 1 | 引擎 v2 动效：`group / move / arc / buzz / fade / rot / camera`（SOP §4），回归旧 34 案例 | ✅ 2026-10-29（旧案例截图逐像素一致；`camera` 用法：`k.camera(0,0,x,y,z)` 开场特写，再 `k.camera(go(2),2,480,272,1)` 拉远；`hide(g)` 让组开始时隐藏） |
 | 2 | App 接线：`wbStageHtml` 第 4 参数 svg id、`startFirstPrinciplesCanvasLoop` 走白板、`fpAnimId`、`appfp.py`（SOP §5） | ⬜ |
 | 3 | `fp_props.js` 道具（SOP §3） | ⬜ 按原理边做边加 |
 | 4 | 样板：先做 ① `fp_economy` 1-1（声带道具最能检验方案），给用户看后再批量 | ⬜ |
