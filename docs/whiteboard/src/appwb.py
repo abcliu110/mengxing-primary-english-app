@@ -6,7 +6,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MAIN = os.path.abspath(os.path.join(HERE, '..', '..', '..', '萌星小学英语_最终合并版.html'))
 TAB = sys.argv[1] if len(sys.argv) > 1 else 'bamboo_tree'
 OUT = sys.argv[2] if len(sys.argv) > 2 else '/tmp'
-IDX = {'bamboo_tree': 'btIdx', 'adj_order': 'adjExIdx', 'past_clans': 'clanIdx',
+IDX = {'phrasal_key': 'pkIdx', 'bamboo_tree': 'btIdx', 'adj_order': 'adjExIdx', 'past_clans': 'clanIdx',
        'stress_rhythm': 'stressIdx', 'metaphor_code': 'metaIdx', 'tense_matrix': 'tenseIdx',
        'aux_transformer': 'auxIdx', 'five_patterns': 'patIdx', 'writing_alchemist': 'writeIdx'}[TAB]
 from playwright.async_api import async_playwright

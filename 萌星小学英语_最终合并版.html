@@ -3409,14 +3409,14 @@ function renderHomeView() {
         <span style="font-size:0.85rem; color:#047857; font-weight:800;">新增：⑨ 时×体二维时空沙盘 · ⑩ 助动词照妖镜句型变形机 · ⑪ 五大基本句型骨骼机 · ⑫ 高分作文黄金炼金炉</span>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(225px, 1fr)); gap:11px;">
-        <div onclick="navigateTo('super_lab_hub', { labTab: 'verb_matrix' })"
+        <div onclick="navigateTo('super_lab_hub', { labTab: 'phrasal_key' })"
           style="background:#ffffff; border-radius:15px; padding:13px; border:2px solid #3b82f6; cursor:pointer; box-shadow:var(--shadow-sm);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <span style="font-size:1.45rem;">⚙️</span>
-            <span style="background:#dbeafe; color:#1e40af; padding:2px 8px; border-radius:999px; font-size:0.71rem; font-weight:900;">王炸 ① · 6×6=36短语</span>
+            <span style="font-size:1.45rem;">🔑</span>
+            <span style="background:#dbeafe; color:#1e40af; padding:2px 8px; border-radius:999px; font-size:0.71rem; font-weight:900;">王炸 ① · 白板课 + 36 动画</span>
           </div>
-          <div style="font-weight:900; font-size:0.98rem; color:#1e3a8a; margin-bottom:3px;">万能小动词 × 空间向量转盘</div>
-          <div style="font-size:0.79rem; color:#475569; line-height:1.38;">take/put/get/turn/look/give × on/off/up/down/in/out，1秒推导36个高频短语！</div>
+          <div style="font-weight:900; font-size:0.98rem; color:#1e3a8a; margin-bottom:3px;">短语动词总钥匙（含万能小动词 × 空间向量转盘）</div>
+          <div style="font-size:0.79rem; color:#475569; line-height:1.38;">up/down/out/back/on/off 方向小尾巴 + get/take/make/put 核心义；take/put/get/turn/look/give × on/off/up/down/in/out，1秒推导36个高频短语！</div>
         </div>
 
         <div onclick="navigateTo('super_lab_hub', { labTab: 'bamboo_tree' })"
@@ -11962,7 +11962,9 @@ const WRITING_ALCHEMIST_DB = [
 ];
 
 let superLabState = {
-  labTab: "verb_matrix", // 'verb_matrix' | 'bamboo_tree' | 'adj_order' | 'past_clans' | 'stress_rhythm' | 'metaphor_code' | 'tense_matrix' | 'aux_transformer' | 'five_patterns' | 'writing_alchemist'
+  labTab: "phrasal_key", // 'phrasal_key'（原 verb_matrix 已并入其「🎬 组合区」）| 'bamboo_tree' | 'adj_order' | 'past_clans' | 'stress_rhythm' | 'metaphor_code' | 'tense_matrix' | 'aux_transformer' | 'five_patterns' | 'writing_alchemist'
+  pkView: "wb", // 短语动词总钥匙：'wb' 白板课 | 'vv' 组合区（原 verb_matrix 转盘 + 36 个 VV 动画）
+  pkIdx: 0,
   vIdx: 0,
   pIdx: 1,
   btIdx: 0,
@@ -11977,17 +11979,21 @@ let superLabState = {
 };
 
 function renderSuperLabHubView() {
-  if (currentView.params.labTab) superLabState.labTab = currentView.params.labTab;
+  // 入口参数只用一次（用完就删）：否则页签按钮改了 superLabState.labTab，重绘时又被入口参数改回去，切不了页签（2026-10-29 修）
+  if (currentView.params.labTab) { superLabState.labTab = currentView.params.labTab; delete currentView.params.labTab; }
+  if (currentView.params.pkView) { superLabState.pkView = currentView.params.pkView; delete currentView.params.pkView; }
   // 原「③ 格林音变」页签已并入单词身世「🔤 格林定律」章（元音变异三幕），旧入口自动跳过去
+  // 原「① 万能动词 × 向量转盘」verb_matrix 已并入「🔑 短语动词总钥匙」的「🎬 组合区」，旧入口直接打开组合区
+  if (superLabState.labTab === "verb_matrix") { superLabState.labTab = "phrasal_key"; superLabState.pkView = "vv"; }
   if (superLabState.labTab === "vowel_shift") {
-    superLabState.labTab = "verb_matrix";
+    superLabState.labTab = "phrasal_key";
     navigateTo("word_origins_hub", { scene: "wo_vowel_a" }, false);
     return;
   }
   const tab = superLabState.labTab;
 
   const tabTitles = {
-    verb_matrix: "⚙️ ① 万能动词×向量转盘",
+    phrasal_key: "🔑 ① 短语动词总钥匙（含万能动词×向量转盘）",
     bamboo_tree: "🎋➔🌳 ② 竹节句vs树干句手术台",
     adj_order: "👑🚂 ④ 皇家形容词排座次定律",
     past_clans: "⚔️ ⑤ 不规则过去式四大门派",
@@ -12007,13 +12013,27 @@ function renderSuperLabHubView() {
   const root = document.getElementById("appViewRoot");
   let bodyHtml = "";
 
-  if (tab === "verb_matrix") {
+  if (tab === "phrasal_key") {
+    const pkBtn = (v, label) => `<button onclick="superLabState.pkView='${v}'; renderSuperLabHubView();" style="padding:9px 16px; border-radius:12px; font-weight:900; font-size:0.9rem; background:${(superLabState.pkView || "wb") === v ? "#2563eb" : "#f1f5f9"}; color:${(superLabState.pkView || "wb") === v ? "#fff" : "#1e293b"}; border:1.5px solid ${(superLabState.pkView || "wb") === v ? "#2563eb" : "#cbd5e1"};">${label}</button>`;
+    const pkBar = `<div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">${pkBtn("wb", "📖 白板课：方向小尾巴 + 核心动词")}${pkBtn("vv", "🎬 组合区：6 动词 × 6 方向 = 36 个动画")}</div>`;
+    if ((superLabState.pkView || "wb") !== "vv") {
+      const pkCases = ["① 小品词方向义（up / down / out / back / on / off）", "② 核心动词 + 方向 = 短语（get / take / make / put）"];
+      bodyHtml = pkBar + `
+      <div style="background:#ffffff; border-radius:20px; padding:18px 22px; border:2.5px solid #2563eb; margin-bottom:20px;">
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
+          ${pkCases.map((c, idx) => `<button onclick="superLabState.pkIdx=${idx}; renderSuperLabHubView();" style="padding:9px 14px; border-radius:12px; font-weight:900; font-size:0.86rem; background:${idx === superLabState.pkIdx ? '#2563eb' : '#f1f5f9'}; color:${idx === superLabState.pkIdx ? '#fff' : '#1e293b'}; border:1.5px solid ${idx === superLabState.pkIdx ? '#2563eb' : '#cbd5e1'};">${c}</button>`).join("")}
+        </div>
+        <!-- WB_STAGE:phrasal_key -->${wbStageHtml("phrasal_key", superLabState.pkIdx)}
+      </div>
+    `;
+    } else {
+    // ↓↓↓ 原 verb_matrix 页签正文，原样保留（R1 零丢失）
     const curV = CORE_VERBS_WHEEL[superLabState.vIdx] || CORE_VERBS_WHEEL[0];
     const curP = SPATIAL_VECTORS_WHEEL[superLabState.pIdx] || SPATIAL_VECTORS_WHEEL[0];
     const comboKey = `${curV.v}_${curP.p}`;
     const combo = VERB_VECTOR_COMBINATIONS[comboKey] || VERB_VECTOR_COMBINATIONS["take_off"];
 
-    bodyHtml = `
+    bodyHtml = pkBar + `
       <div style="background:#ffffff; border-radius:20px; padding:18px 22px; border:2.5px solid #2563eb; margin-bottom:20px;">
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px;">
           <div style="background:#f8fafc; border-radius:16px; padding:14px; border:1.5px solid #cbd5e1;">
@@ -12103,6 +12123,7 @@ function renderSuperLabHubView() {
         </div>
       </div>
     `;
+    }
   } else if (tab === "bamboo_tree") {
     const curCase = BAMBOO_TO_TREE_CASES[superLabState.btIdx] || BAMBOO_TO_TREE_CASES[0];
     bodyHtml = `
@@ -12462,9 +12483,9 @@ function renderSuperLabHubView() {
         </div>
       </div>
       <div style="display:flex; gap:6px; flex-wrap:wrap;">
-        <button onclick="superLabState.labTab='verb_matrix'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='verb_matrix'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='verb_matrix'?'#0f172a':'#fff'};">
-          ⚙️ ① 万能动词×向量
+        <button onclick="superLabState.labTab='phrasal_key'; renderSuperLabHubView();"
+          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='phrasal_key'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='phrasal_key'?'#0f172a':'#fff'};">
+          🔑 ① 短语动词总钥匙
         </button>
         <button onclick="superLabState.labTab='bamboo_tree'; renderSuperLabHubView();"
           style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='bamboo_tree'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='bamboo_tree'?'#0f172a':'#fff'};">
@@ -12626,9 +12647,9 @@ function startSuperLabCanvasLoop() {
     const { ctx, W, H } = setup;
     const tab = superLabState.labTab;
 
-    drawHDSceneBackdrop(ctx, W, H, tab === "verb_matrix" || tab === "metaphor_code" || tab === "tense_matrix" ? "park" : tab === "bamboo_tree" || tab === "adj_order" || tab === "five_patterns" ? "classroom" : "home", t);
+    drawHDSceneBackdrop(ctx, W, H, tab === "phrasal_key" || tab === "metaphor_code" || tab === "tense_matrix" ? "park" : tab === "bamboo_tree" || tab === "adj_order" || tab === "five_patterns" ? "classroom" : "home", t);
 
-    if (tab === "verb_matrix") {
+    if (tab === "phrasal_key") {
       const curV = CORE_VERBS_WHEEL[superLabState.vIdx] || CORE_VERBS_WHEEL[0];
       const curP = SPATIAL_VECTORS_WHEEL[superLabState.pIdx] || SPATIAL_VECTORS_WHEEL[0];
       const combo = VERB_VECTOR_COMBINATIONS[`${curV.v}_${curP.p}`] || VERB_VECTOR_COMBINATIONS["take_off"];
@@ -14772,6 +14793,259 @@ V6H.mount = function(root){
 
 </script>
 <!-- <<WB_MODULES_START>> 白板模块（按需加载，不要手改；改 docs/whiteboard/src/cases/*.js 后运行 insert_wb.py） -->
+<script type="text/plain" id="wbmod-phrasal_key" data-deps="wo_props">
+// ==================== 🔑 王炸实验室 · 短语动词总钥匙（phrasal_key）（v2 + 讲解员）====================
+// 决策 4（MASTER_DESIGN）：F 小品词方向义（up / down / out / off / on / back）+ O 核心义动词（get / take / make / put）合成新页签；
+// 旧页签「① 万能动词 × 向量转盘」verb_matrix 并入本页签的「🎬 组合区」：6 × 6 = 36 个 VV 卡通动画、组合表、朗读按钮原样保留（不改成白板）。
+// 本文件是页签上方「📖 白板课」的两幕。徽章：方向画面是 💡 记忆联想；「一个小品词一个核心方向」是 ✂️ 简化说法（真实短语还有很多引申义）。
+// 配色只用 V3 四色。
+WB_LAB.phrasal_key = [
+  // ───────────────────────── 第 1 幕：小品词方向义 ─────────────────────────
+  {
+    build(k) {
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
+      N("", "这一幕：get up、sit down、go out、come back……短语动词那么多，怎么记？先认识 6 个「方向小尾巴」！");
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "小品词方向义", sub: "🔑 短语动词总钥匙 ①", badges: ["💡", "✂️"], steps: ["① 什么是", "② up/down", "③ out/back", "④ on/off", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 动词 + 小尾巴 ─────
+      D.step(0); D.shot();
+      N("短语动词：", "一个动词后面跟一个小词，合起来当一个动词用，比如 sit down（坐下）。");
+      T("sit", 120, 170, go(.5), .5, { size: 30, color: C.blue, weight: 900, font: M });
+      T("+", 200, 170, go(.3), .3, { size: 30, color: C.grey, weight: 900 });
+      T("down", 240, 170, go(.5), .5, { size: 30, color: C.red, weight: 900, font: M });
+      T("= sit down 坐下", 350, 170, go(.6), .6, { size: 26, color: C.green, weight: 900 });
+      N("小品词：", "跟在动词后面的小词：up、down、out、off、on、back……它们大多原本表示方向。");
+      T("小品词 = 方向小尾巴", 120, 230, go(.8), .8, { size: 22, color: C.red, weight: 900 });
+      k.badge("💡", 120 + k.estW("小品词 = 方向小尾巴", 22) + 10, 226, { label: "联想" });
+      T("up · down · out · back · on · off", 120, 280, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      sayAt("Up, down, out, back, on, off.", { zh: "向上、向下、向外、回来、贴上、离开。", word: "up down out back on off" });
+      k.act(me, "point", S.at - 2, 1.4, { at: [300, 276] });
+      N("✂️ 简化说法：", "每个小尾巴先记一个核心方向；真实的短语还有不少引申意思，遇到再学。");
+      k.wait(.5);
+      D.wipe();
+
+      // ───── 镜头 2 · up / down ─────
+      D.step(1); D.shot();
+      P(k.roughRect(862, 474, 60, 64), go(.5), .5, { color: C.ink, w: 2.2 });   // 讲解员要坐的小凳子
+      N("up：", "向上；也表示「做到头、做完」。");
+      k.head("up ⬆ 向上 / 做完", 60, 140, C.blue, "start", 22);
+      T("stand up 站起来 · look up 抬头看 · eat up 吃光", 60, 176, go(1.1), 1.1, { size: 19, color: C.ink, weight: 700 });
+      N("down：", "向下；也表示「减弱、写下来固定住」。");
+      k.head("down ⬇ 向下 / 减弱", 60, 240, C.red, "start", 22);
+      T("sit down 坐下 · write down 写下 · slow down 慢下来", 60, 276, go(1.1), 1.1, { size: 19, color: C.ink, weight: 700 });
+      const sySit = sayAt("Sit down, please.", { zh: "请坐下。", word: "sit down" });
+      k.act(me, "sit", sySit.t, sySit.dur + 1.2, { words: ["sit down"] });
+      const syStand = sayAt("Stand up, please.", { zh: "请站起来。", word: "stand up" });
+      k.act(me, "jump", syStand.t, Math.max(1, syStand.dur), { words: ["stand up"] });
+      const syLook = sayAt("Look up! A bird!", { zh: "抬头看！一只鸟！", word: "look up bird" });
+      k.act(me, "point", syLook.t, Math.max(1.2, syLook.dur), { at: [880, 130], words: ["look up"] });
+      sayAt("Eat up your rice. Write down the words. Slow down!", { zh: "把饭吃光。把这些单词写下来。慢一点！", word: "eat up write down slow down" });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 3 · out / back ─────
+      D.step(2); D.shot();
+      N("out：", "从里面到外面；也表示「出现、弄清楚、用完」。");
+      k.head("out ➡ 向外 / 出现 / 用完", 60, 140, C.blue, "start", 22);
+      T("go out 出去 · find out 弄清楚 · run out 用完", 60, 176, go(1.1), 1.1, { size: 19, color: C.ink, weight: 700 });
+      N("back：", "回到原来的地方或主人那里。");
+      k.head("back ↩ 回来 / 还回去", 60, 240, C.red, "start", 22);
+      T("come back 回来 · give back 还回去 · call back 回电话", 60, 276, go(1.1), 1.1, { size: 19, color: C.ink, weight: 700 });
+      const syOut = sayAt("Let's go out and play.", { zh: "我们出去玩吧。", word: "go out" });
+      k.act(me, "walk", syOut.t, Math.max(1.4, syOut.dur), { to: 1120, words: ["go out"] });
+      const syBack = sayAt("Come back soon!", { zh: "早点回来！", word: "come back" });
+      k.act(me, "walk", syBack.t, Math.max(1.4, syBack.dur), { to: 892, words: ["come back"] });
+      sayAt("Find out the answer. We run out of milk. Give back my book. Call back later.", { zh: "找出答案。我们的牛奶喝完了。把我的书还回来。稍后回电话。", word: "find out run out give back call back" });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 4 · on / off ─────
+      D.step(3); D.shot();
+      N("on：", "贴在表面上、接通；也表示「继续下去」。");
+      k.head("on 📎 贴上 / 接通 / 继续", 60, 140, C.blue, "start", 22);
+      T("put on 穿上 · turn on 打开（电器）· go on 继续", 60, 176, go(1.1), 1.1, { size: 19, color: C.ink, weight: 700 });
+      N("off：", "离开表面、断开。");
+      k.head("off ✂ 离开 / 断开", 60, 240, C.red, "start", 22);
+      T("take off 脱下；起飞 · turn off 关掉 · get off 下车", 60, 276, go(1.1), 1.1, { size: 19, color: C.ink, weight: 700 });
+      const cOn = k.prop("card", 0, 0, { text: "ON", hidden: true }), cOff = k.prop("card", 0, 0, { text: "OFF", hidden: true });
+      const syOn = sayAt("Turn on the light. Put on your coat. Go on!", { zh: "开灯。穿上外套。继续！", word: "turn on put on go on light coat" });
+      k.act(me, "holdCard", syOn.t, Math.max(1.6, syOn.dur), { prop: cOn });
+      const syOff = sayAt("Turn off the TV. Take off your shoes. Get off the bus.", { zh: "关掉电视。脱下鞋子。下公交车。", word: "turn off take off get off TV shoes bus" });
+      k.act(me, "holdCard", syOff.t, Math.max(1.6, syOff.dur), { prop: cOff });
+      T("on ↔ off：一贴一离，正好相反", 60, 340, go(.9), .9, { size: 20, color: C.green, weight: 900 });
+      k.wait(.5);
+
+      // ───── 口诀 ─────
+      D.step(4);
+      N("口诀：", "up 上完，down 下减，out 出现，back 回还，on 贴续，off 离断！");
+      P(k.roughRect(40, 372, 800, 50), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("up 上完 · down 下减 · out 出现 · back 回还 · on 贴续 · off 离断", 60, 404, go(1.2), 1.2, { size: 19, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.5);
+
+      // ───── 🔮 预测 ─────
+      D.step(5);
+      N("预测：", "没学过 turn down 也能猜：down 是「减弱」，turn down the music 是什么意思？先想 3 秒！");
+      P(k.roughRect(16, 440, 824, 92), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(16, 440, 824, 92), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 turn down the music = ？", 36, 478, go(1), 1, { size: 20, color: C.ink, weight: 900 });
+      const qm = D.sub(); T("？", 330, 482, go(.3), .3, { size: 32, color: C.red, weight: 900 }); D.back();
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "把音乐调小声！down 让音量「往下走」。");
+      const tRev = go(.3);
+      k.fade(qm, tRev, .3, 0);
+      T("把音乐调小声（音量往下走）", 36, 516, go(1), 1, { size: 21, color: C.green, weight: 900 });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Please turn down the music.", { zh: "请把音乐调小声。", word: "turn down music the" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "短语动词 = 动词 + 方向小尾巴。\n先认方向，意思就猜得出。", rhyme: "up 上完，down 下减，\nout 出现，back 回还，on 贴续，off 离断！", hlLines: 2, foot: "🔑 短语动词总钥匙 · 小品词方向义" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.42);
+    },
+    actionWords: [
+      { word: "sit down", act: "讲解员坐到小凳子上（sit）" },
+      { word: "stand up", act: "讲解员从凳子上蹦起来（jump）" },
+      { word: "look up", act: "讲解员抬手指向天上的方向（point）" },
+      { word: "go out", act: "讲解员走出画面（walk）" },
+      { word: "come back", act: "讲解员走回画面（walk）" },
+    ],
+    terms: [
+      ["短语动词", "动词 + 小词，合起来当一个动词用：sit down、get up、take off。"],
+      ["小品词", "跟在动词后面的小词：up、down、out、off、on、back、in、away……大多原本表示方向。"],
+      ["方向义", "小品词最基本的意思是方向：up 向上、down 向下、out 向外、back 回来、on 贴上、off 离开。"],
+      ["引申义", "从方向「借」出来的意思：up 做完（eat up）、down 减弱（slow down）、out 用完（run out）、on 继续（go on）。"],
+      ["可信度徽章", "💡 记忆联想 · ✂️ 简化说法（一个小品词先记一个核心方向）· 📜 有出处的历史 · ⚠️ 有要注意的地方。"],
+    ],
+  },
+
+  // ───────────────────────── 第 2 幕：核心动词 + 方向 = 短语 ─────────────────────────
+  {
+    build(k) {
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
+      N("", "这一幕：get、take、make、put 这 4 个小动词，配上方向小尾巴，能拼出一大堆短语！");
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "核心动词 + 方向 = 短语", sub: "🔑 短语动词总钥匙 ②", badges: ["💡", "✂️"], steps: ["① 公式", "② take/put", "③ get", "④ make", "⑤ 组合区", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 公式 ─────
+      D.step(0); D.shot();
+      N("核心义：", "一个词最中心、最基本的意思。get、take、make、put 意思很多，但都从一个核心画面长出来。");
+      T("核心义 + 方向义 = 短语义", 60, 160, go(1), 1, { size: 28, color: C.ink, weight: 900 });
+      k.hlText("核心义", 60, 160, 28, { color: C.hlYellow });
+      T("take（拿走）+ off（离开）= take off 拿掉、脱下", 60, 220, go(1.2), 1.2, { size: 20, color: C.blue, weight: 900 });
+      k.badge("💡", 60 + k.estW("核心义 + 方向义 = 短语义", 28) + 12, 156, { label: "联想" });
+      k.act(me, "point", S.at - 1.6, 1.4, { at: [300, 156] });
+      k.wait(.5);
+      D.wipe();
+
+      // ───── 镜头 2 · take / put ─────
+      D.step(1); D.shot();
+      N("take：", "核心画面是「抓住、拿走」。");
+      k.head("take ✋ 拿走", 60, 140, C.blue, "start", 22);
+      T("take off 脱下；起飞 · take out 拿出来", 60, 176, go(1), 1, { size: 19, color: C.ink, weight: 700 });
+      N("put：", "核心画面是「放到某个位置」。");
+      k.head("put 🫳 放到位置", 60, 240, C.red, "start", 22);
+      T("put on 穿上 · put down 放下 · put away 收起来", 60, 276, go(1), 1, { size: 19, color: C.ink, weight: 700 });
+      const box = k.prop("box", 760, 470, { s: .8 });
+      const syTake = sayAt("Take out your book. The plane takes off.", { zh: "把书拿出来。飞机起飞了。", word: "take out take off plane takes off" });
+      k.act(me, "walk", syTake.t - .8, 1, { to: 800 });
+      k.act(me, "take", syTake.t + .3, Math.max(1.2, syTake.dur - .3), { prop: box, words: ["take out"] });
+      const syPut = sayAt("Put down your bag. Put away your toys. Put on your hat.", { zh: "放下书包。把玩具收起来。戴上帽子。", word: "put down put away put on bag toys hat" });
+      k.act(me, "put", syPut.t, Math.max(1.4, syPut.dur * .5), { prop: box, words: ["put down"] });
+      k.act(me, "walk", S.at + .1, 1, { to: 892 });
+      k.wait(1);
+      D.wipe();
+
+      // ───── 镜头 3 · get ─────
+      D.step(2); D.shot();
+      N("get：", "核心画面是「进入一个新位置或新状态」。");
+      k.head("get 🧲 进入新位置 / 新状态", 60, 140, C.blue, "start", 22);
+      T("get up 起床 · get on 上车 · get off 下车 · get back 回来", 60, 176, go(1.2), 1.2, { size: 19, color: C.ink, weight: 700 });
+      P(k.roughRect(862, 474, 60, 64), go(.4), .4, { color: C.ink, w: 2.2 });   // 小凳子（当床边）
+      const sySleep = sayAt("I get up at seven.", { zh: "我七点起床。", word: "get up seven" });
+      k.act(me, "sit", sySleep.t - 1.6, 1.6);
+      k.act(me, "jump", sySleep.t, Math.max(1, sySleep.dur), { words: ["get up"] });
+      sayAt("Get on the bus. Get off the bus. I get back home at five.", { zh: "上公交车。下公交车。我五点回到家。", word: "get on get off get back bus home five" });
+      T("get + 方向 = 让自己「到」那个方向去", 60, 240, go(1), 1, { size: 20, color: C.green, weight: 900 });
+      k.wait(.5);
+      D.wipe();
+
+      // ───── 镜头 4 · make ─────
+      D.step(3); D.shot();
+      N("make：", "核心画面是「做出来、让东西出现」。");
+      k.head("make 🛠 做出来", 60, 140, C.blue, "start", 22);
+      T("make up a story 编故事 · make a cake 做蛋糕", 60, 176, go(1), 1, { size: 19, color: C.ink, weight: 700 });
+      N("✂️ 注意：", "make up 还有「化妆」「和好」等意思，小学先记「编出来」。");
+      k.badge("✂️", 60 + k.estW("make up a story 编故事 · make a cake 做蛋糕", 19) * 1.05 + 12, 172, { label: "简化" });
+      const syMake = sayAt("Let's make up a story!", { zh: "我们来编个故事吧！", word: "make up story" });
+      k.act(me, "think", syMake.t, Math.max(1.4, syMake.dur), { words: ["make up"] });
+      sayAt("Mum and I make a cake.", { zh: "妈妈和我做蛋糕。", word: "make a cake mum" });
+      k.wait(.5);
+      D.wipe();
+
+      // ───── 镜头 5 · 去组合区 ─────
+      D.step(4); D.shot();
+      N("组合区：", "下面的「🎬 组合区」有 6 个动词 × 6 个方向 = 36 个动画：take、put、get、turn、look、give 配 on、off、up、down、in、out，点一下就演给你看。");
+      T("6 个动词 × 6 个方向 = 36 个动画", 60, 160, go(1), 1, { size: 26, color: C.ink, weight: 900 });
+      T("take · put · get · turn · look · give", 60, 210, go(1), 1, { size: 21, color: C.blue, weight: 900, font: M });
+      T("on · off · up · down · in · out", 60, 250, go(1), 1, { size: 21, color: C.red, weight: 900, font: M });
+      sayAt("Take, put, get, turn, look, give. On, off, up, down, in, out.", { zh: "拿、放、得到、转、看、给。贴上、离开、向上、向下、向里、向外。", word: "take put get turn look give in" });
+      k.act(me, "point", S.at - 2, 1.6, { at: [300, 300] });
+      T("👇 点页签上方「🎬 组合区」试试！", 60, 310, go(.8), .8, { size: 20, color: C.green, weight: 900 });
+      k.wait(.5);
+
+      // ───── 🔮 预测 ─────
+      D.step(5);
+      N("预测：", "put 是「放」，out 是「向外」——消防员 put out the fire 是在做什么？先想 3 秒！");
+      P(k.roughRect(16, 440, 824, 92), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(16, 440, 824, 92), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 The firemen put out the fire. = ？", 36, 478, go(1), 1, { size: 20, color: C.ink, weight: 900 });
+      const qm = D.sub(); T("？", 470, 482, go(.3), .3, { size: 32, color: C.red, weight: 900 }); D.back();
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "把火「弄出去、弄没了」——扑灭大火！");
+      const tRev = go(.3);
+      k.fade(qm, tRev, .3, 0);
+      T("消防员扑灭了大火。", 36, 516, go(1), 1, { size: 21, color: C.green, weight: 900 });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("The firemen put out the fire.", { zh: "消防员扑灭了大火。", word: "the firemen put out fire" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "get 进入、take 拿走、make 做出、put 放置——\n核心义 + 方向义 = 短语义。", rhyme: "动词定动作，\n尾巴定方向！", hlLines: 2, foot: "🔑 短语动词总钥匙 · 核心动词" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.42);
+    },
+    actionWords: [
+      { word: "take out", act: "讲解员走到箱子旁把箱子拿起来（take）" },
+      { word: "put down", act: "讲解员把箱子放下（put）" },
+      { word: "get up", act: "讲解员从凳子上蹦起来（jump）" },
+      { word: "make up", act: "讲解员歪头想故事（think）" },
+    ],
+    terms: [
+      ["核心义", "一个词最中心、最基本的意思，其他意思都从它长出来。"],
+      ["get", "核心：进入新位置 / 新状态。get up、get on、get off、get back。"],
+      ["take", "核心：抓住、拿走。take off、take out。"],
+      ["make", "核心：做出来、让东西出现。make a cake、make up a story。"],
+      ["put", "核心：放到某个位置。put on、put down、put away、put out。"],
+    ],
+  },
+];
+
+</script>
 <script type="text/plain" id="wbmod-bamboo_tree">
 // ==================== 白板脚本：竹节句 vs 树干句 5 个病句手术 ====================
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。

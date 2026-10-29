@@ -14,7 +14,7 @@ FILES = [os.path.abspath(a) for a in A if a.endswith('.html')]   # 多个文件�
 ENTER = {"enter_lab": "navigateTo('super_lab_hub',{labTab:'bamboo_tree'})",
          "enter_fp": "navigateTo('first_principles_hub',{lawIdx:0,actIdx:0})",
          "enter_wo": "navigateTo('word_origins_hub',{scene:'wo_port'})",
-         "enter_vv": "navigateTo('super_lab_hub',{labTab:'verb_matrix'})"}
+         "enter_vv": "navigateTo('super_lab_hub',{labTab:'phrasal_key',pkView:'vv'})"}
 rows = {f: [] for f in FILES}
 with sync_playwright() as pw:
     b = pw.chromium.launch()

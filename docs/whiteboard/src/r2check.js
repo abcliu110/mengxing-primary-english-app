@@ -81,7 +81,9 @@
     declared.forEach(aw => {
       const w = norm(aw.word);
       const acts = res.acts.filter(a => (a.words || []).map(norm).includes(w));
-      const says = res.S.says.filter(sy => sentNorm(sy.en).split(" ").some(x => forms(w).includes(x)) || String(sy.word).toLowerCase().split(/\s+/).includes(w));
+      const says = res.S.says.filter(sy => sentNorm(sy.en).split(" ").some(x => forms(w).includes(x)) || String(sy.word).toLowerCase().split(/\s+/).includes(w)
+        // 多词动作（短语动词，如 sit down）：整句或先读词里出现这个词组
+        || (w.includes(" ") && ((" " + sentNorm(sy.en) + " ").includes(" " + w + " ") || (" " + String(sy.word).toLowerCase() + " ").includes(" " + w + " "))));
       // 同步：至少一个动作的时间段和一句含这个词的朗读重叠
       const sync = acts.some(a => says.some(sy => a.t < sy.t + sy.dur && a.t + a.dur > sy.t));
       out.declared.push({ word: aw.word, act: aw.act, registered: acts.length > 0, acts: acts.map(a => a.action + "@" + a.t.toFixed(1)), sync });
