@@ -182,7 +182,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | # | 内容 | 状态 / 提交 |
 |---|---|---|
 | 1 | 搬迁内容清单（R1 第 1 步）：④-1、⑥-1 逐条导出 | ✅ `zh_en_hub/INVENTORY_4-1.md`（27 条 + 术语 6 + 页面卡片）、`INVENTORY_6-1.md`（32 条 + 术语 + 页面卡片） |
-| 2 | 总枢设计文档 `zh_en_hub/DESIGN.md`（章节 A/Q/正迁移/N/M、每章幕表、出处要求） | 待做 |
+| 2 | 总枢设计文档 `zh_en_hub/DESIGN.md`（章节 A/Q/正迁移/N/M、11 幕幕表、每幕标准、技术接线） | ✅ |
 | 3 | 总枢页面骨架（首页横幅 + `zh_en_hub` 页面 + 章节卡，参照 `wo_hub.js`） | 待做 |
 | 4 | 搬 ④-1 → 「是 ≠ be」幕（原样搬 + v2 + 讲解员 + R2 补齐），清单逐条打勾 | 待做 |
 | 5 | 搬 ⑥-1 → 「修饰语位置」幕，清单逐条打勾 | 待做 |
