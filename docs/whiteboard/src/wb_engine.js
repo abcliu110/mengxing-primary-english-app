@@ -425,7 +425,7 @@ const WB = (function () {
         // v2 粗细笔触（V2）：底线略细，再叠一条只覆盖中段的粗线 → 中段粗、起笔收笔细
         const thick = V2 && !it.hl && !it.dash && w >= 1.8;
         it.el = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": thick ? w * .8 : w, "stroke-linecap": it.cap || "round", "stroke-linejoin": "round" }, inkLayer);
-        if (it.hl) { it.el.setAttribute("stroke-opacity", it.alpha ?? .55); it.el.style.mixBlendMode = "multiply"; }
+        if (it.hl) it.el.setAttribute("stroke-opacity", it.alpha ?? .55);   // 荧光带画在文字下面，不需要混合模式（省合成开销）
         else if (V2 && it.alpha != null) it.el.setAttribute("stroke-opacity", it.alpha);
         it.len = it.el.getTotalLength();
         it.el.setAttribute("stroke-dasharray", it.dash || `${it.len} ${it.len}`);
@@ -503,7 +503,7 @@ const WB = (function () {
             const h = it.size * 1.05, el = document.createElementNS(NS, "rect");
             el.setAttribute("x", (a.x - 3).toFixed(1)); el.setAttribute("y", (it.y - it.size * .82).toFixed(1));
             el.setAttribute("width", (b.x - a.x + 6).toFixed(1)); el.setAttribute("height", h.toFixed(1)); el.setAttribute("rx", 4);
-            el.setAttribute("fill", PAL.hlYellow); el.setAttribute("opacity", 0); el.style.mixBlendMode = "multiply"; el.style.transition = "opacity .14s";
+            el.setAttribute("fill", PAL.hlYellow); el.setAttribute("opacity", 0);
             it.el.parentNode.insertBefore(el, it.el);
             TOKS.push({ w: normW(m[0]), el, it, on: false });
           } catch (e) { /* 字体没好时跳过，remeasure 会再来 */ }

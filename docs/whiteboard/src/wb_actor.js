@@ -460,6 +460,7 @@ var WB_ACTOR = (function () {
         pathE(inner, `M-14,-18 L14,-18 L14,0 L-14,0 Z`, "#ede9fe", 2.1, "#2563eb");
       }
       p.el = g; p.inner = inner; p.host = host;
+      p.mark = mk("g", { "data-slot": p.kind }, host);   // 放回原处时插在这个位置前面：图层顺序固定，拖进度条结果一样
     }
     function star(cx, cy, r, ri) {
       let d = "";
@@ -620,7 +621,7 @@ var WB_ACTOR = (function () {
       : kind === "overhead" ? [(F.arms.F.hand[0] + F.arms.B.hand[0]) / 2, Math.min(F.arms.F.hand[1], F.arms.B.hand[1]) - 2]
       : kind === "book" ? [(F.arms.F.hand[0] + F.arms.B.hand[0]) / 2 + 3, (F.arms.F.hand[1] + F.arms.B.hand[1]) / 2 + 9]
       : [(F.arms.F.hand[0] + F.arms.B.hand[0]) / 2 + 1, (F.arms.F.hand[1] + F.arms.B.hand[1]) / 2 + 13];
-    const reparent = (pr, parent) => { if (pr.el.parentNode !== parent) parent.appendChild(pr.el); };
+    const reparent = (pr, parent) => { if (pr.el.parentNode !== parent) { if (parent === pr.host) parent.insertBefore(pr.el, pr.mark); else parent.appendChild(pr.el); } };
     // 道具状态（纯函数）：最近一个事件决定——在地上 / 挂在某人身上 / 被放下 / 收起
     function renderProp(pr, t) {
       if (pr.stampAt != null) {
