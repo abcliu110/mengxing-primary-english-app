@@ -32,7 +32,7 @@ WO_KITS = {'wo_vowel_kit': ['wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c']}   # 几�
 # ---------- 按需加载（决策 13）：每个模块写成不执行的 <script type="text/plain" id="wbmod-<id>">，
 # 第一次进入时由 wbLoadModule(id) 取出文字执行（见 wb_app.js）；道具文件是依赖（data-deps），先于模块执行。
 # 引擎、讲解员、App 接线、单词身世总枢页面仍然直接执行（首页和各总枢页面要用）。
-LAB_DEPS = {'phrasal_key': 'wo_props', 'eight_endings': 'wo_props', 'pron_map': 'wo_props fp_props', 'intonation_map': 'wo_props', 'irregular_plural': 'wo_props', 'bamboo_tree': 'wo_props', 'aux_transformer': 'wo_props'}   # 用 v2 镜头模板的实验室页签（白板课）
+LAB_DEPS = {'phrasal_key': 'wo_props', 'eight_endings': 'wo_props', 'pron_map': 'wo_props fp_props', 'intonation_map': 'wo_props', 'irregular_plural': 'wo_props', 'bamboo_tree': 'wo_props', 'aux_transformer': 'wo_props', 'five_patterns': 'wo_props'}   # 用 v2 镜头模板的实验室页签（白板课）
 MODS = [(t, LAB_DEPS.get(t, '')) for t in READY]
 if FP_READY:
     MODS += [('fp_props', '')] + [(t, FP_DEPS.get(t, 'fp_props')) for t in FP_READY]
