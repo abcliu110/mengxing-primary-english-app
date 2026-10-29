@@ -13,7 +13,7 @@ const WB = (function () {
 
   // ---------- 脚本工具包 ----------
   function kit(seed) {
-    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [] };
+    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [], says: [] };
     let s = seed;
     const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280 - .5;
     const wl = (x1, y1, x2, y2, j = 1.6) => {
@@ -72,10 +72,18 @@ const WB = (function () {
     const hide = g => S.fx.push({ type: "fade", g, t: -1, dur: .001, to: 0 });         // 组一开始隐藏，之后用 fade 显示
     // 镜头：白板区（不含字幕条）在 t 开始、dur 内缩放平移到「以 (x,y) 为中心、放大 z 倍」
     const camera = (t, dur, x, y, z) => S.cam.push({ t, dur, x, y, z });
+    // 英文例句朗读：在当前时刻读 en（可先单独读 word），时间轴预留朗读时长；读的时候画面停住。只读正确的英文！
+    const say = (en, o = {}) => {
+      en = String(en).trim();
+      const words = en.split(/\s+/).length, wd = o.word ? .4 + String(o.word).split(/\s+/).length * .45 : 0;
+      const dur = wd + .5 + words * .42;
+      S.says.push({ t: S.at, dur, wd, en, zh: o.zh || "", word: o.word || "" });
+      S.at += dur + .25;
+    };
 
     const k = {
       estW, C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
-      group, endGroup, move, arc, buzz, fade, rot, hide, camera,
+      group, endGroup, move, arc, buzz, fade, rot, hide, camera, say,
       // 标题 + 中线
       // 标题：title 大字，sub 灰色副标题（自动排在标题右边）；divider=false 时不画中线
       header(sub, title = "竹节句 vs 树干句", divider = true) {
@@ -198,7 +206,7 @@ const WB = (function () {
         if (label) T(label, lx ?? (x1 + x2) / 2, ly ?? (Math.min(y1, y2) - 8), go(.5), .5, { size: 14, color, weight: 900, anchor: "middle" });
       },
       // 底部完整句：自动缩放字号；crown 指定谓语词下划橙线
-      final(text, crown, zhLine) {
+      final(text, crown, zhLine, o = {}) {
         const size = Math.min(24, 860 / (text.length * .6)), cw = size * .6;
         T(text, 40, 478, go(Math.max(2, text.length * .045)), Math.max(2, text.length * .045), { size, color: C.green, weight: 900, font: MONO });
         (Array.isArray(crown) ? crown : [crown]).forEach(wd => {
@@ -207,6 +215,7 @@ const WB = (function () {
         });
         P(roughRect(16, 448, Math.max(380, text.length * cw + 48), 48), go(1.0), 1.0, { color: C.green, w: 2 });
         T(zhLine, 40, 522, go(1.6), 1.6, { size: 17, color: C.grey });
+        if (!o.noSay) say(text, { zh: o.zh ?? String(zhLine || "").split(/\s{2,}/)[0] });
       }
     };
     return k;
@@ -215,11 +224,13 @@ const WB = (function () {
   // ---------- 播放器：把脚本挂到 svg 上 ----------
   function mount(svg, build, seed = 7) {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    svg.setAttribute("viewBox", "0 0 960 600");
     const k = kit(seed);
     build(k);
     const items = k.S.items, NARR = k.S.narr.length ? k.S.narr : [[0, "", ""]];
     const END = k.S.at + 4;
+    const SAYS = k.S.says, H = SAYS.length ? 650 : 600;
+    svg.setAttribute("viewBox", `0 0 960 ${H}`);
+    svg.style.aspectRatio = `960/${H}`;
     const uid = "wb" + Math.random().toString(36).slice(2, 8);
     const mk = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const a in attrs) e.setAttribute(a, attrs[a]); parent.appendChild(e); return e; };
     const defs = mk("defs", {});
@@ -235,6 +246,16 @@ const WB = (function () {
     mk("line", { x1: 0, y1: 544, x2: 960, y2: 544, stroke: "#cbd5e1", "stroke-width": 1.5 });
     const narr = mk("text", { x: 24, y: 579, "font-size": 18, "font-family": ZH, "font-weight": 700, fill: "#334155" });
     const nTerm = mk("tspan", { fill: C.red, "font-weight": 900 }, narr), nRest = mk("tspan", {}, narr);
+    // 🔊 英文朗读条（600–650）：英文逐词高亮，下面一行中文；点一下重听
+    let strip = null, sEn = null, sZh = null, sWords = [], lastSay = -2, lastHL = -2;
+    if (SAYS.length) {
+      strip = mk("g", { style: "cursor:pointer" });
+      mk("rect", { x: 0, y: 600, width: 960, height: 50, fill: "#ecfdf5" }, strip);
+      mk("line", { x1: 0, y1: 600, x2: 960, y2: 600, stroke: "#a7f3d0", "stroke-width": 1.5 }, strip);
+      mk("text", { x: 14, y: 632, "font-size": 22 }, strip).textContent = "🔊";
+      sEn = mk("text", { x: 50, y: 622, "font-size": 19, "font-family": MONO, "font-weight": 700, fill: "#065f46" }, strip);
+      sZh = mk("text", { x: 50, y: 643, "font-size": 14, "font-family": ZH, fill: "#64748b" }, strip);
+    }
     const layer = mk("g", {}, board);
     const groups = {};
     const parentOf = it => !it.g ? layer : (groups[it.g] || (groups[it.g] = { el: mk("g", {}, layer) })).el;
@@ -315,6 +336,27 @@ const WB = (function () {
         if (L > 912) narr.setAttribute("font-size", (18 * 912 / L).toFixed(1));
       }
       narr.setAttribute("opacity", clamp((t - NARR[ni][0]) / .35));
+      if (strip) {
+        let si = -1; for (let i = 0; i < SAYS.length; i++) if (t >= SAYS[i].t) si = i;
+        if (si !== lastSay) {
+          lastSay = si; lastHL = -2;
+          while (sEn.firstChild) sEn.removeChild(sEn.firstChild);
+          sWords = [];
+          if (si >= 0) {
+            SAYS[si].en.split(/\s+/).forEach((w, j) => { const ts = mk("tspan", {}, sEn); ts.textContent = (j ? " " : "") + w; sWords.push(ts); });
+            sZh.textContent = SAYS[si].zh;
+            sEn.setAttribute("font-size", 19); const L = sEn.getComputedTextLength(); if (L > 890) sEn.setAttribute("font-size", (19 * 890 / L).toFixed(1));
+          } else sZh.textContent = "";
+        }
+        if (si >= 0) {
+          const sy = SAYS[si], n = sWords.length;
+          let hl = -1;
+          if (api.hl && api.hl.i === si) hl = api.hl.w;
+          else { const q = (t - sy.t - sy.wd) / Math.max(.3, sy.dur - sy.wd - .2); hl = q < 0 || q >= 1 ? -1 : Math.floor(q * n); }
+          if (hl !== lastHL) { lastHL = hl; sWords.forEach((ts, j) => { ts.setAttribute("fill", j === hl ? "#e11d48" : "#065f46"); ts.setAttribute("text-decoration", j === hl ? "underline" : "none"); }); }
+          strip.setAttribute("opacity", clamp((t - sy.t) / .3).toFixed(2));
+        } else strip.setAttribute("opacity", 0);
+      }
       fxRender(t);
       if (active && CAM.length) active = [active[0] * camM[2] + camM[0], active[1] * camM[2] + camM[1]];
       const target = active || [905, 525], f = active ? .55 : .12;
@@ -322,7 +364,8 @@ const WB = (function () {
       pen.setAttribute("transform", `translate(${penX.toFixed(1)},${penY.toFixed(1)}) scale(.8)`);
       pen.setAttribute("opacity", t > END - .6 ? clamp((END - t) / .6) : 1);
     }
-    return { render, end: END, remeasure() { measure(); lastNarr = -1; }, resetPen() { penX = 905; penY = 525; } };
+    const api = { render, end: END, says: SAYS, strip, hl: null, remeasure() { measure(); lastNarr = -1; lastSay = -2; }, resetPen() { penX = 905; penY = 525; } };
+    return api;
   }
 
   return { mount, kit, C, ZH, MONO, estW };
