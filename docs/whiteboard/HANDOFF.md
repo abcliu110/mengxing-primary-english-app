@@ -28,7 +28,9 @@
   - 道具：box / card（带字）/ book / doc（可盖章 stampAt）/ scroll；拿起、抱着、举着、放下都是事件，位置是时间纯函数。场景角色 look：porter 搬运工、traveler 旅客。
   - 用法：`k.actor(look,{x,y,s,f,g,hidden})`、`k.act(a, 动作, t, dur, {to, prop, put, at, words})`、`k.expr`、`k.look`、`k.actorFade`、`k.prop`、`k.actFx(words,t,dur,描述)`（场景物体演的动作，只登记给 R4 检查）。
   - 审图：`/workspace/work/mx_shots/narrator_actions_v1.png`（13 个动作定格）、`narrator_expressions_v1.png`（5 表情）。
-- 下一步：wo_props v2 + 经典版备份 → port v2 接入并逐张截图修 → 录屏和对比图。
+- ✅ `cases/wo_props.js` v2 分支（只在 `k.v2()` 时生效）：配色收进 PAL；`D.wipe` → 板擦擦除；`D.scene` → 先出统一片头卡；`D.snap` → 预备后撤 + 贴上压扁回弹 + 「啵」；`D.stamp` → 预备上提、加速砸下、压扁；`D.finish` 不压缩人物动作和片头（`S.keeps`），并通过 `k.remap` 一起改人物 / 擦除 / 音效时间。
+- ✅ R1 零丢失：升级前（已补齐 R2）的 port 原样保存为 `cases/wo_port_classic.js`（`WB_LAB.wo_port_classic`，不进 App，可随时回退）；`r2check.js` 也扫描道具上的文字（词卡）。
+- 下一步：port v2（`cases/wo_port.js`）接入并逐张截图修 → 录屏和对比图。
 
 **朗读覆盖检查用法**（主文件里有全部词库数据，所以先 `insert_wb.py` 再查）：
 ```

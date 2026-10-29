@@ -42,6 +42,7 @@
     const shown = [];
     S.items.forEach(it => { if (it.kind === "text") shown.push({ src: "白板", text: it.text, t: it.t }); });
     (S.narr || []).forEach(n => shown.push({ src: "字幕", text: (n[1] || "") + (n[2] || ""), t: n[0] }));
+    (S.extraTexts || []).forEach(x => shown.push({ src: "道具", text: x.text, t: x.t }));
     const readSet = new Set(), blockSet = new Set();
     says.forEach(sy => {
       String(sy.word || "").split(/\s+/).filter(Boolean).forEach(w => readSet.add(norm(w.replace(/^-|-$/g, ""))));
