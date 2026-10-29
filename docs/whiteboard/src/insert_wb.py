@@ -19,7 +19,7 @@ TABS = {
     'aux_transformer': 'auxIdx', 'five_patterns': 'patIdx', 'writing_alchemist': 'writeIdx',
 }
 # 只写入已验收的页签（做完一个页签就加进来）；其余 cases/*.js 可能还在制作中
-READY = ['bamboo_tree', 'adj_order', 'aux_transformer', 'stress_rhythm', 'past_clans', 'writing_alchemist', 'metaphor_code', 'vowel_shift', 'tense_matrix']
+READY = ['bamboo_tree', 'vowel_shift', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 case_files = [os.path.join(HERE, 'cases', t + '.js') for t in READY]
 block = ('// <<WB_ENGINE_START>>\n' + rd(os.path.join(HERE, 'wb_engine.js')) + '\n'
          + '\n'.join(rd(p) for p in case_files) + '\n' + rd(os.path.join(HERE, 'wb_app.js')) + '// <<WB_ENGINE_END>>\n')
