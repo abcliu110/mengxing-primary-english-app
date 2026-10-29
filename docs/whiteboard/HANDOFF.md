@@ -48,6 +48,7 @@
 - 03:28｜fp_one_king 第 2 幕升 v2（王座 + to 马甲 / doing 马甲两镜头 + 🔮 hope to see + 金句卡；R4 go / reading）｜`bba72c1`｜`work/shots/fp_one_king_2_对比总图.png`｜王座 / 王冠 / 令牌是道具金色，保留；swimming、drawing 动作库无，只作提示
 - 03:38｜fp_one_king 第 3 幕升 v2（令牌飞走 / 侍卫接管两镜头 + 🔮 Does Tom play + 金句卡；R4 went / go / plays）｜`11f5236`｜`work/shots/fp_one_king_3_对比总图.png`｜坑：FP_PROPS 的 token / king 自己开组并 endGroup，之后要 `D.adopt(g); D.back()` 回到镜头组，否则后面的字不随板擦擦掉
 - 03:48｜fp_one_king 第 4 幕升 v2，fp_one_king 全部完成（五行骨骼 + 🔮 She gives me an apple + 金句卡；R4 fly / pass / reading / gives）｜`210a197`｜`work/shots/fp_one_king_4_对比总图.png`｜进度条步骤名不用「S V P」（r2check 会当成英文句子），改中文「主系表」等
+- 03:50｜fp_zoom_focus 升级准备：classic 快照 + FP_DEPS｜`632ebc9`｜—｜第 1 幕是「已搬到 ze_modifier」占位幕，不升级
 
 ## 1. 现在做到哪
 
