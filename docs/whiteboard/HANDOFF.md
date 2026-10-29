@@ -12,7 +12,7 @@
 |---|---|---|
 | 1 | R2 朗读覆盖检查脚本 `src/r2check.py` + `src/r2check.js`（同时做 R4 动作覆盖检查） | ✅ 见下 |
 | 2 | port 幕补齐 R2（每个英文词 / 词块：单独朗读 + 例句） | ✅ 朗读 9 → 21 句；`r2check.py wo_port` 25 个词 / 词块全部 ✔读 ✔句 |
-| 3 | 讲解员小人（v3a 定稿，SVG 骨架 + 动作库 v1 + 5 表情 + 3 口型） | 待做 |
+| 3 | 讲解员小人（v3a 定稿，SVG 骨架 + 动作库 v1 + 5 表情 + 3 口型） | ✅ `src/wb_actor.js`；演示 `cases/narrator_demo.js`（preview.html?tab=narrator_demo&case=0/1/2） |
 | 4 | port 幕 R4：动作词全部由小人 / 角色演出来，与朗读同步 | 待做 |
 | 5 | 引擎 V1–V8 + M1–M12（向后兼容，旧幕回归） | 🔧 引擎 v2 已提交（`k.v2()` 打开才生效；旧 63 幕 SVG 逐字节不变）；port 接入调整中 |
 | 6 | 升级前后录屏 + 关键帧对比 → 给用户审片 | 待做 |
@@ -21,7 +21,14 @@
 - ✅ 引擎 v2（`wb_engine.js`，opt-in）：分类缓动库 `EASE`（move/in/exit/pop/snap/antic/sine）、统一调色板 `PAL`、字号 `FS`、网格 `GRID`；`k.v2()`、`k.pop`（弹入 + 挤压拉伸）、`k.squash`（落地压扁回弹）、`k.hl / k.hlText`（荧光笔底色）、`k.erase`（板擦擦除转场）、`k.titleCard`（统一片头）、`k.quoteCard`（统一收尾金句卡）、`k.sfx`（音效事件）、`k.remap`（节奏压缩时一起改所有时间登记）；v2 渲染：粗细笔触（中段加粗线）、手的位置是时间纯函数（弧线移动、空闲滑出画面）、读到哪个词白板上同一个词亮荧光底色、`prefers-reduced-motion` 降级；DOM 只在值变化时写入（旧幕也受益，输出不变）。
 - ✅ `wb_app.js`：语音事件驱动口型（onstart / onboundary / onend）；v2 时间轴跟着语音走（落后 4 倍速追、超前停住等下一个 onboundary）；音效 Web Audio 现场合成 + 「🔔 音效」一键静音（和朗读分开，朗读时自动压低）。
 - 回归：`/tmp/reg/reg.py` 新旧引擎同时渲染 63 个旧幕 5 个时刻 → 0 差异；`appwb bamboo_tree`、`appfp 0–5`、`appwo` 全过；`node --check` 过。
-- 下一步：提交小人骨架 / 动作库 / 口型（`wb_actor.js`）→ wo_props v2 + 经典版备份 → port v2 接入并逐张截图修 → 录屏和对比图。
+- ✅ 小人（`wb_actor.js`，engine 在 kit / mount 里自动挂上；`insert_wb.py`、`preview.html` 已引入）：
+  - 骨架：骨盆 → 躯干 → 头；肩 → 上臂 → 前臂 → 手；髋 → 大腿 → 小腿 → 脚；正向运动学 + 自动着地（最低的脚踩地 → 走路自然起伏）；手臂比躯干晚 0.05/0.09 秒（重叠动作 M3）；马尾、领巾做阻尼弹簧余摆（对头部加速度卷积，纯函数，拖进度条也对）。
+  - 动作库 v1：idle（呼吸 + 3–5 秒随机眨眼）、wave、point（自动算指向角、头转向）、surprised、holdCard、read、walk、run、carry（弯腰抱起 → 走 → 放下）、take、put、jump（蓄力挤压 → 腾空拉伸 → 落地挤压）、turn；另有 think、cheer、support、nod。动作之间按权重做姿态插值。
+  - 5 表情（happy / think / surprised / proud / oops）+ 3 口型（闭 / 半开 / 全开）；有语音事件时口型跟 onstart/onboundary/onend，没有语音（静音、无英文语音）时按朗读时间段估算。
+  - 道具：box / card（带字）/ book / doc（可盖章 stampAt）/ scroll；拿起、抱着、举着、放下都是事件，位置是时间纯函数。场景角色 look：porter 搬运工、traveler 旅客。
+  - 用法：`k.actor(look,{x,y,s,f,g,hidden})`、`k.act(a, 动作, t, dur, {to, prop, put, at, words})`、`k.expr`、`k.look`、`k.actorFade`、`k.prop`、`k.actFx(words,t,dur,描述)`（场景物体演的动作，只登记给 R4 检查）。
+  - 审图：`/workspace/work/mx_shots/narrator_actions_v1.png`（13 个动作定格）、`narrator_expressions_v1.png`（5 表情）。
+- 下一步：wo_props v2 + 经典版备份 → port v2 接入并逐张截图修 → 录屏和对比图。
 
 **朗读覆盖检查用法**（主文件里有全部词库数据，所以先 `insert_wb.py` 再查）：
 ```
