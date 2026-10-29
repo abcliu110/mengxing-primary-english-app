@@ -181,3 +181,61 @@ WB_LAB.fp_boundedness.push(
     ],
   },
 );
+WB_LAB.fp_boundedness.push(
+  // ───────── 3-4 chicken 既可数又不可数 ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：chicken 为什么有时能加 -s，有时不能？");
+      k.header("③ 物理边界感统摄律", "一个词，两种边界", true);
+      // 小鸡（组）+ 边界圈
+      const chick = k.group();
+      const body = k.ellipse(150, 215, 46, 38);
+      P(body, go(.6), .6, { color: C.orange, w: 3 }); F(body, go(.1, 0), { color: "#fef08a", op: 1 });
+      const head = k.ellipse(196, 172, 22, 20);
+      P(head, go(.4), .4, { color: C.orange, w: 3 }); F(head, go(.1, 0), { color: "#fef08a", op: 1 });
+      P("M216,170 l14,4 l-14,5 M140,252 v20 M162,252 v20", go(.4), .4, { color: C.red, w: 3 });
+      P(k.ellipse(200, 166, 3, 3), go(.1), .1, { color: C.ink, w: 3 });
+      k.endGroup();
+      const edge = k.group(); P(k.ellipse(170, 214, 92, 76), go(.8), .8, { color: C.green, w: 2.5, dash: "9 7" }); k.endGroup();
+      N("", "一只活蹦乱跳的小鸡，有完整的身体边界——可数。");
+      T("a chicken · three chickens", 40, 326, go(1), 1, { size: 19, color: C.green, weight: 900, font: M });
+      T("一只小鸡：有完整边界 → 可数", 40, 352, go(.8), .8, { size: 15, color: C.green, weight: 900 });
+      const tb = go(.6); k.buzz(chick, tb, .6, 2);
+      k.wait(.6);
+      // 变成鸡肉
+      N("", "做成盘子里的鸡肉，完整的边界没了——不可数。");
+      const t2 = go(1.2); k.fade(chick, t2, 1, 0); k.fade(edge, t2, 1, 0);
+      const meat = k.group();
+      P(k.ellipse(170, 236, 96, 26), go(.01, 0), .01, { color: C.grey, w: 3 });
+      [[130, 226], [166, 220], [200, 230], [150, 244], [190, 246]].forEach(([x, y]) => {
+        const d = k.ellipse(x, y, 14, 8); P(d, go(.01, 0), .01, { color: C.brown, w: 2 }); F(d, go(.01, 0), { color: "#fdba74", op: 1 });
+      });
+      k.endGroup(); k.hide(meat); k.fade(meat, go(.8), .8, 1);
+      T("some chicken", 40, 396, go(.7), .7, { size: 19, color: C.purple, weight: 900, font: M });
+      T("鸡肉：没有边界 → 不可数", 40, 422, go(.7), .7, { size: 15, color: C.purple, weight: 900 });
+      k.wait(.6);
+      // 右：更多例子
+      k.head("有完整外壳（可数）", 510, 112, C.green, "start", 18);
+      k.head("变成材料 / 空间（不可数）", 700, 112, C.purple, "start", 16);
+      const pair = (a, za, b, zb, y) => {
+        T(a, 510, y, go(.5), .5, { size: 19, color: C.green, weight: 900, font: M });
+        T(za, 510, y + 22, go(.4), .4, { size: 13, color: C.grey });
+        T(b, 700, y, go(.5), .5, { size: 19, color: C.purple, weight: 900, font: M });
+        T(zb, 700, y + 22, go(.4), .4, { size: 13, color: C.grey });
+      };
+      N("", "a glass 是一个玻璃杯；made of glass 是玻璃这种材料。");
+      pair("a glass", "一个玻璃杯", "made of glass", "玻璃做的（材料）", 170);
+      N("", "a room 是一个房间；make room for you 是腾出地方。");
+      pair("a room", "一个房间", "make room", "腾出空间", 245);
+      N("", "two fish 是两条鱼；some fish 是一些鱼肉。");
+      pair("two fish", "两条鱼", "some fish", "一些鱼肉", 320);
+      T("看它在句子里有没有完整边界，一秒判断", 510, 400, go(1), 1, { size: 15, color: C.orange, weight: 900 });
+      k.wait(.6);
+      N("口诀：", "整只能数，切成肉就不数。");
+      D.fin("同一个词：有完整外壳边界 → 可数；变成肉、材料、空间 → 不可数", "口诀：整只能数，切成肉就不数。");
+      k.wait(2);
+    },
+    terms: [],
+  },
+);
