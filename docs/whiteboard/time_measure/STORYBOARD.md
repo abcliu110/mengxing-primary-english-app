@@ -67,3 +67,75 @@
 | 1:42.4 | 🔊 朗读 | One hundred million is a very big number.  〔先读：million〕 (4.7s) |
 | 1:47.4 | 字幕 | 口诀：十个之外剩一个，eleven；十几都是几加十；中文四位一节，英文三位一节！ |
 | 1:53.1 | 🎭 动作 | narrator · nod 1.0s |
+
+## ② 星期和月份（`cases/wo_time_week.js`）
+| 步 | 画面 | 朗读 | 动作 |
+|---|---|---|---|
+| ① | 天上七位客人（太阳、月亮、火水木金土）📜；日耳曼的神 Tiw、Woden、Thor、Friga；闪电 Thor = 雷神 | Tiw, Woden, Thor and Friga are old gods. / Thor is the god of thunder. | 小人指 |
+| ② | 七天名字表：Sunday = sun + day … Saturday = Saturn's day 📜；Saturday 没换 | 10 句（每天一句 + Tiw's/Woden's/Friga's/Saturn's + A week has seven days.） | 小人走（读到 go） |
+| ③ | 古英语 þunresdæg = 雷神 + 日子 → Thuresday → Thursday 📜 | Thursday is Thor's day. / Thunor is the old English name of Thor. | 惊讶 |
+| ④ | September ← septem（七）；古罗马历从三月开始：Sep/Oct/Nov/Dec = 第 7/8/9/10 个月 📜；后来前面加了一月、二月 | 7 句 | 小人指 |
+| ⑤ | 中文星期按数字排 vs 日语按七位客人排（💡 对照） | — | 指 |
+| 🔮 | Sunday = sun + day，Monday = ？→ moon | The moon is bright tonight. | 想 → 欢呼 |
+| 收尾 | 金句卡「七天七位天上客；九月原来是「七」月！」 | — | 点头 |
+
+英文词 29 个全过，R4 1/1；r2skip：Thuresday（中古英语旧拼法）、þunresdæg 切出的残片。
+
+### 逐条时间码（节奏压缩前）
+总长约 156 秒
+
+| 时间 | 类型 | 内容 |
+|---|---|---|
+| 0:00.0 | 字幕 | 这一幕：Thursday 为什么叫「雷神的日子」？September 明明是 9 月，为什么藏着「七」？ |
+| 0:00.1 | 🎭 动作 | narrator · walk 1.6s |
+| 0:01.8 | 🎭 动作 | narrator · wave 1.8s |
+| 0:07.0 | 字幕 | 可信度徽章：📜 = 查得到出处；💡 = 中文 / 日文对照，不是同源。 |
+| 0:09.2 | 字幕 | 七天：古罗马人用天上的七位「客人」给一星期七天起名：太阳、月亮和五颗行星。 |
+| 0:11.8 | 🎭 动作 | narrator · point 1.4s |
+| 0:12.8 | 字幕 | 日耳曼人：英语的祖先把其中几位换成了自己的神：提尔（Tiw）、沃登（Woden）、雷神（Thor）、弗丽嘉（Friga）。 |
+| 0:13.8 | 🔊 朗读 | Tiw, Woden, Thor and Friga are old gods.  〔先读：Tiw Woden Thor Friga〕 (6.1s) |
+| 0:20.1 | 字幕 | 雷神：Thor 是打雷的神，手里拿着大锤子。 |
+| 0:20.8 | 🔊 朗读 | Thor is the god of thunder.  〔先读：Thor thunder〕 (4.3s) |
+| 0:25.6 | 🧽 转场 | 板擦擦除 1.15s |
+| 0:27.1 | 字幕 | 名字：看！七天的名字都是「谁的日子」：sun 的日子、moon 的日子…… |
+| 0:27.8 | 🔊 朗读 | The sun is hot on Sunday.  〔先读：Sunday sun〕 (4.3s) |
+| 0:33.2 | 🔊 朗读 | We go to school on Monday.  〔先读：Monday moon〕 (4.3s) |
+| 0:34.6 | 🎭 动作 | narrator · walk 2.7s 〔go〕 |
+| 0:38.5 | 🔊 朗读 | I have art on Tuesday.  〔先读：Tuesday〕 (3.5s) |
+| 0:43.0 | 🔊 朗读 | Wednesday is in the middle of the week.  〔先读：Wednesday〕 (4.7s) |
+| 0:48.8 | 🔊 朗读 | Thursday is after Wednesday.  〔先读：Thursday〕 (3.0s) |
+| 0:52.8 | 🔊 朗读 | Friday is my favourite day.  〔先读：Friday〕 (3.5s) |
+| 0:57.3 | 🔊 朗读 | Saturn is a big planet.  〔先读：Saturday Saturn〕 (3.9s) |
+| 1:01.4 | 🔊 朗读 | I sleep late on Saturday.  〔先读：Saturday〕 (3.5s) |
+| 1:05.1 | 🔊 朗读 | Tuesday is Tiw's day. Wednesday is Woden's day.  〔先读：Tiw's Woden's〕 (5.2s) |
+| 1:10.5 | 🔊 朗读 | Friday is Friga's day. Saturday is Saturn's day.  〔先读：Friga's Saturn's〕 (5.2s) |
+| 1:16.0 | 🔊 朗读 | A week has seven days.  〔先读：day week〕 (3.9s) |
+| 1:20.5 | 字幕 | 只有一个没换：Saturday 还是罗马的土星（Saturn），没换成日耳曼的神。 |
+| 1:20.7 | 🎭 动作 | narrator · point 1.4s |
+| 1:22.3 | 🧽 转场 | 板擦擦除 1.15s |
+| 1:23.8 | 字幕 | 老样子：一千多年前，Thursday 写作 þunresdæg：雷神（Thunor）的日子。 |
+| 1:25.7 | 🔊 朗读 | Thursday is Thor's day.  〔先读：Thursday Thor's〕 (3.5s) |
+| 1:29.4 | 🔊 朗读 | Thunor is the old English name of Thor.  〔先读：Thunor〕 (4.7s) |
+| 1:33.8 | 🎭 动作 | narrator · surprised 1.2s |
+| 1:35.1 | 🧽 转场 | 板擦擦除 1.15s |
+| 1:36.5 | 字幕 | 月份：September 里藏着拉丁语 septem（七），可它是 9 月？ |
+| 1:37.1 | 🔊 朗读 | My birthday is in September.  〔先读：September〕 (3.5s) |
+| 1:40.8 | 🔊 朗读 | Septem means seven.  〔先读：septem seven〕 (3.1s) |
+| 1:44.1 | 字幕 | 古罗马历：最古老的罗马历从三月开始：三月第一，September 正好第七！后面三个也一样。 |
+| 1:48.2 | 🔊 朗读 | October is after September.  〔先读：October〕 (3.0s) |
+| 1:51.5 | 🔊 朗读 | Octo means eight. Novem means nine.  〔先读：octo novem〕 (4.3s) |
+| 1:56.1 | 🔊 朗读 | November is cold.  〔先读：November〕 (2.6s) |
+| 1:58.9 | 🔊 朗读 | December is the last month.  〔先读：December〕 (3.5s) |
+| 2:02.6 | 🔊 朗读 | Decem means ten.  〔先读：decem〕 (2.6s) |
+| 2:05.5 | 字幕 | 后来：后来罗马人在前面加了一月、二月，名字没改——所以「七月」跑到了第九个位置。 |
+| 2:05.7 | 🎭 动作 | narrator · point 1.4s |
+| 2:07.3 | 🧽 转场 | 板擦擦除 1.15s |
+| 2:08.8 | 字幕 | 对照：中文的星期按数字排：星期一、二、三……日语按天上的客人排：日、月、火、水、木、金、土——和英语是同一套想法！ |
+| 2:11.1 | 🎭 动作 | narrator · point 1.4s |
+| 2:12.8 | 字幕 | 预测：考考你：Sunday 是太阳的日子，那 Monday 是谁的日子？先想 3 秒！ |
+| 2:14.1 | 🎭 动作 | narrator · think 3.1s |
+| 2:17.1 | 字幕 | 揭晓：Monday = moon + day：月亮的日子！ |
+| 2:17.3 | 🎭 动作 | narrator · cheer 1.3s |
+| 2:19.1 | 🔊 朗读 | The moon is bright tonight.  〔先读：moon〕 (3.5s) |
+| 2:22.8 | 字幕 | 口诀：七天是天上七位客人；September 到 December，古罗马的七、八、九、十！ |
+| 2:28.5 | 🎭 动作 | narrator · nod 1.0s |

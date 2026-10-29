@@ -117,7 +117,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 2 | Bluetooth 示范幕（`cases/wo_bluetooth.js`） | ✅ 见下 |
 | 3 | 身世标签 + 词卡跳转（先给 port 家族） | ✅ 见下 |
 | 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | ✅ 四幕上线、清单 211 条对照完（删旧页签等用户确认）。原记录：① 出处 ✅ `caa1493`（SOURCES ④ 12 条、⑤ 14 条，含纠错）；② 真格林定律幕 `wo_grimm`；③ 元音变异三幕 `wo_vowel_a/b/c`；④ 清单 185 条逐项打勾。**删 `vowel_shift` 页签 / 改入口等用户确认，不动** |
-| 5 | 时间与度量章 | 🔧 进行中：① 出处 ✅ `d9d3c22`（SOURCES ⑥⑦ 14 条）；② 数字与大数幕 `wo_time_num` ✅；③ 星期与月份幕 `wo_time_week` |
+| 5 | 时间与度量章 | ✅ 出处 `d9d3c22`；数字幕 `wo_time_num` `1b9547d`；星期和月份幕 `wo_time_week`（本次） |
 
 **Europe 示范幕（2026-10-29）**
 - 出处先登记：`word_origins/SOURCES.md` ② 12 条（etymonline Europe / European / -an / African / Euro- / Euro；维基 Europa 神话、卫星、欧元纸币；中文维基 欧洲 / 坤舆万国全图）。名字来源三种说法（神话公主、eurys+ops「宽脸」、闪米特语「西方」）**全部标 ❓**，神话标 📜 + ✂️（原故事是「劫走」，讲给小学生简化成「驮过大海」）。
@@ -156,7 +156,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 **时间与度量章（2026-10-29 22:30 起）**
 - ✅ `wo_time_num` 数字的秘密（约 121 秒，18 句朗读）：十个点 = ten → eleven = one + left、twelve = two + left → thirteen/fourteen/nineteen = 几 + ten，-teen = ten → dozen = duo + decem（呼应格林定律 d→t），搬运工抱一打鸡蛋走（carries）→ 中文四位一节 vs 英文三位一节、million = mille + -one、一万 = ten thousand → 🔮 一亿 = one hundred million → 金句卡。验收：r2check --strict 22/22、R4 1/1；旧 70 幕 350 次渲染逐字节一致；jscheck 28 模块；appwo 八幕过。分镜 `time_measure/STORYBOARD.md`。总枢「⏰ 时间与度量的身世」章节上线（`WO_CHAPTERS` 加 scenes）。
-- 下一步：`wo_time_week` 星期与月份。
+- ✅ `wo_time_week` 星期和月份（约 156 秒，23 句朗读）：天上七位客人 → 日耳曼的神（Tiw、Woden、Thor、Friga），闪电雷神 → 七天名字表（Saturday 没换）→ 古英语 þunresdæg → Thursday → September ← septem，古罗马历三月开始（Sep–Dec = 第 7–10 个月），后来前面加了一月二月 → 中文按数字 vs 日语按天体（💡）→ 🔮 Monday = moon + day → 金句卡。验收：r2check --strict 29/29、R4 1/1；旧 71 幕 355 次渲染逐字节一致；jscheck 29 模块；appwo 九幕、appfp 0 过。
+- 时间与度量章两幕完成。已知取舍：①🔮 题 Monday 在镜头 2 已出现过（是回忆题不是推理题），以后可换成「octo = 8 → octopus 有几条腿」（octopus 词源要先补出处）；②没有「a.m. / p.m.、mile = 一千步」（章节卡原写的例子），要做先补出处。
 
 ## 1. 当前状态
 
