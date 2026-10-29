@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 03:15 JST（阶段 3：中英对照总枢 11 幕全部上线，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-30 00:20 JST（阶段 3 收尾：ze_be / ze_modifier 升 v2；阶段 4：短语动词总钥匙（verb_matrix 已并入）、8 个词尾上线；vowel_shift 已删、port 家族词卡已改，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -201,6 +201,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | ✅ | **`ze_modifier` 升 v2 + 讲解员**（2026-10-29 23:50 JST） | 升级前存 `cases/ze_modifier_classic.js`。新版：对照版五步 + 🔮 预测（桌子上的那只猫 → the cat on the table）；树干树枝白板保留；讲解员指中文核心、指树干、举「the boy」卡、读 see 时指、读 tell 时挥手；金句卡。`something important` 紫 → 红（V3 四色，文字不变）。零丢失 `zh_en_hub/INVENTORY_ZE_MODIFIER_V2.md`（66 条，❌ 0）。验收：r2check --strict 23 词 9 句 R4 2/2；reg_render 只有 ze_modifier 变化；appze、appfp 3/5 过。**中英对照总枢 11 幕全部是 v2 + 讲解员。** |
 | ✅ | **阶段 4 ① 短语动词总钥匙 `phrasal_key`**（2026-10-29 23:58 JST） | 新页签：「📖 白板课」两幕（`cases/phrasal_key.js`，v2 + 讲解员：① 小品词方向义 sit down 坐凳子 / stand up 蹦起 / look up 指天 / go out 走出 / come back 走回 / ON·OFF 词卡；② get/take/make/put 核心义 + 方向，take out 拿箱子 / put down 放下 / get up 蹦起 / make up 想故事）+「🎬 组合区」= 原 `verb_matrix` 正文逐字原样（36 个 VV 动画不改）。旧入口 → 组合区。合并记录 `lab/VERB_MATRIX_MERGE.md`（❌ 0）。`insert_wb.py` 新增 `LAB_DEPS`；`r2check.js` R4 支持多词动作（短语动词）；修旧 bug：实验室入口参数覆盖页签导致切不了页签。验收：r2check --strict 2 幕 45 词 R4 9/9；reg_render 其余 80 幕不变；appwb phrasal_key/bamboo_tree/adj_order、appze、appwo、appfp 过；36 组 VV 全挂载。 |
 | ✅ | **阶段 4 ② 英语只剩 8 个词尾 `eight_endings`**（2026-10-30 00:15 JST） | 新页签 ⑬（首页卡片 + 页签按钮 + 说明卡 + 白板一幕 v2 + 讲解员）：中文不变 vs 英语长尾巴 → 名词 2（-s、's）→ 动词 4（-s、-ed、-ing、-ed/-en；讲解员边读边走）→ 形容词 2（-er、-est；跳起来比最高；长词 more/most）→ 📜 古英语 scip 变格 → 词序更重要 → 🔮 She cleaned three rooms yesterday → 金句卡。出处 `lab/SOURCES.md` ①（Wikipedia Inflection，8 条）。验收：r2check --strict 35 词 3 句 R4 3/3；appwb 过；reg_render 其余幕不变。 |
+| ▶ | **下一步（接手从这里继续）** | 阶段 4 剩余：③「发音五大坑 + 48 音标口腔地图」（共用 `fp_props.mouth / lips`）；④「语调地图」（升降调、句重音；先导出 `stress_rhythm` 零丢失清单，连读弱读并入，名前动后 / 合成词重音按 R1 评估）。之后决策 6 五个新模块 → 决策 7 词汇大数据 → 决策 8 家长指南 / 英美对照 / 大写标点 → 决策 9 欧洲文化 6 章 + 美国篇。新实验室页签做法：`cases/<id>.js`（v2 + `WO_PROPS`）→ `insert_wb.py` 的 `READY` + `LAB_DEPS` → 主文件加首页卡片、`tabTitles`、页签按钮、`} else if (tab === …)` 分支（锚点用 `\n  } else if (tab === "bamboo_tree") {\n`）→ `appwb.py` IDX、`preview.html` 名单。 |
 
 ## 1. 当前状态
 
