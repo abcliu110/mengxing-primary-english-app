@@ -25,7 +25,7 @@ READY = ['bamboo_tree', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_co
 WO_READY = ['wo_port', 'wo_europe', 'wo_bluetooth', 'wo_grimm', 'wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c', 'wo_time_num', 'wo_time_week']
 # 中英对照总枢：做完一幕就把 id 加进来（搬迁幕依赖第一性原理道具 fp_props）
 ZE_READY = ['ze_be', 'ze_modifier', 'ze_same', 'ze_yesno', 'ze_borrow', 'ze_subject', 'ze_link', 'ze_mark', 'ze_say', 'ze_wear', 'ze_pronoun']
-ZE_DEPS = {'ze_same': 'wo_props', 'ze_yesno': 'wo_props', 'ze_borrow': 'wo_props', 'ze_subject': 'wo_props', 'ze_link': 'wo_props', 'ze_mark': 'wo_props', 'ze_say': 'wo_props', 'ze_wear': 'wo_props', 'ze_pronoun': 'wo_props'}   # 新做的对照幕用单词身世的 v2 镜头模板（WO_PROPS）；搬迁幕用 fp_props
+ZE_DEPS = {'ze_be': 'wo_props', 'ze_same': 'wo_props', 'ze_yesno': 'wo_props', 'ze_borrow': 'wo_props', 'ze_subject': 'wo_props', 'ze_link': 'wo_props', 'ze_mark': 'wo_props', 'ze_say': 'wo_props', 'ze_wear': 'wo_props', 'ze_pronoun': 'wo_props'}   # 新做的对照幕用单词身世的 v2 镜头模板（WO_PROPS）；搬迁幕用 fp_props
 WO_KITS = {'wo_vowel_kit': ['wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c']}   # 几幕共用的小工具文件（作为依赖先执行）
 # ---------- 按需加载（决策 13）：每个模块写成不执行的 <script type="text/plain" id="wbmod-<id>">，
 # 第一次进入时由 wbLoadModule(id) 取出文字执行（见 wb_app.js）；道具文件是依赖（data-deps），先于模块执行。
