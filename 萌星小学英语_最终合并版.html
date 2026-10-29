@@ -14213,6 +14213,66 @@ WB_LAB.fp_zoom_focus.push(
     ],
   },
 );
+WB_LAB.fp_zoom_focus.push(
+  // ───────── 6-4 3 段时间轴 × 3 种拍法（总览）─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：所有时态，都是「选时间 × 选拍法」。");
+      k.header("⑥ 焦点先行与镜头缩放律", "时间轴 × 镜头拍法", false);
+      N("时态：", "动词的样子告诉你：事情发生在什么时候、是什么状态。");
+      const xs = [300, 540, 790];
+      P(k.wl(190, 130, 920, 130, .8) + " M908,122 L920,130 L908,138", go(1), 1, { color: C.ink, w: 3 });
+      P(k.wl(420, 118, 420, 142, .3) + " " + k.wl(665, 118, 665, 142, .3), go(.4), .4, { color: C.ink, w: 2.5 });
+      T("过去", xs[0], 112, go(.3), .3, { size: 18, color: C.brown, weight: 900, anchor: "middle" });
+      T("现在", xs[1], 112, go(.3), .3, { size: 18, color: C.green, weight: 900, anchor: "middle" });
+      T("将来", xs[2], 112, go(.3), .3, { size: 18, color: C.blue, weight: 900, anchor: "middle" });
+      const mk = k.group(); const md = `M${xs[1] - 8},130 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
+      P(md, go(.2), .2, { color: C.red, w: 2 }); F(md, go(.1, 0), { color: C.red, op: 1 }); k.endGroup();
+      T("第一步：看时间路标词，选位置", 190, 160, go(.8), .8, { size: 14, color: C.grey });
+      k.wait(.4);
+      const head = (t, sub, y, color) => {
+        T(t, 40, y, go(.4), .4, { size: 18, color, weight: 900 });
+        T(sub, 40, y + 22, go(.4), .4, { size: 13, color: C.grey });
+      };
+      const cell = (x, sig, form, y, color) => {
+        T(sig, x, y - 4, go(.5), .5, { size: 14, color: C.grey, weight: 700, font: M, anchor: "middle" });
+        T(form, x, y + 22, go(.5), .5, { size: 19, color, weight: 900, font: M, anchor: "middle" });
+      };
+      // 快照
+      N("一般态（快照）：", "把动作当成一个整体：习惯、规律、事实。");
+      head("📸 快照", "一般态", 216, C.blue);
+      k.move(mk, go(.6), .6, xs[0] - xs[1], 0);
+      cell(xs[0], "yesterday", "did", 216, C.brown);
+      k.move(mk, go(.6), .6, xs[1] - xs[0], 0);
+      cell(xs[1], "every day", "do / does", 216, C.green);
+      k.move(mk, go(.6), .6, xs[2] - xs[1], 0);
+      cell(xs[2], "tomorrow", "will do", 216, C.blue);
+      k.move(mk, go(.6), .6, xs[1] - xs[2], 0);
+      // 录像
+      N("进行态（录像）：", "正在发生的动态画面，be 动词 + doing。");
+      head("🎥 录像", "进行态", 296, C.purple);
+      cell(xs[1], "Look! / now", "am/is/are doing", 296, C.purple);
+      // 结算
+      N("完成态（结算）：", "做完了、有了结果，have / has + done（过去分词）。");
+      head("🏁 结算", "完成态", 376, C.orange);
+      cell(xs[1], "already / just", "have/has done", 376, C.orange);
+      T("第二步：看动作状态，选拍法", 190, 424, go(.8), .8, { size: 14, color: C.grey });
+      T("详细讲解看「时态矩阵」实验室", 640, 424, go(.8), .8, { size: 14, color: C.grey });
+      k.wait(.6);
+      N("口诀：", "先选时间，再选镜头。");
+      D.fin("先看时间路标词选「过去 / 现在 / 将来」，再看动作状态选「快照 / 录像 / 结算」", "口诀：先选时间，再选镜头。");
+      k.wait(2);
+    },
+    terms: [
+      ["时态", "动词的不同样子，表示事情发生的时间（过去 / 现在 / 将来）和状态。"],
+      ["一般态", "像拍快照：把动作当成整体，讲习惯、规律或事实。"],
+      ["进行态", "像录像：动作正在进行，be + doing。"],
+      ["完成态", "像结算：动作已经完成、有了结果，have / has + done。"],
+      ["时间信号词", "提示时态的词：yesterday（过去）、every day（现在）、tomorrow（将来）、now、already……"],
+    ],
+  },
+);
 
 // ---------- App 接线：王炸实验室白板播放器（所有页签共用） ----------
 // 页签里用 ${wbStageHtml("tab", 当前序号)}：这个页签在 WB_LAB 里登记了案例就出白板，否则出原来的 Canvas。
