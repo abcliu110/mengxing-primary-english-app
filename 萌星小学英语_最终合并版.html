@@ -18667,6 +18667,11 @@ WB_LAB.fp_boundedness = [
       k.wait(.6);
       k.say("Give me two pieces of paper, please.", { zh: "请给我两张纸。", word: "two pieces of paper" });
       N("口诀：", "一刀下去还是它，不可数来不加 s。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("An apple. A piece of bread.", { zh: "一个苹果。一块面包。", word: "an apple a piece" });
+      k.say("Water, milk. A glass of milk, please.", { zh: "水，牛奶。请来一杯牛奶。", word: "water milk a glass of milk glass" });
+      k.say("Homework. I have a lot of homework.", { zh: "家庭作业。我有很多作业。", word: "homework" });
+      k.say("Papers. The teacher reads our papers.", { zh: "试卷。老师在看我们的试卷。", word: "papers" });
       D.fin("切开就坏 → 可数；切开不变 → 不可数，用容器来数（-s 加在容器上）", "口诀：一刀下去还是它，不可数来不加 s。");
       k.wait(2);
     },
@@ -18730,6 +18735,12 @@ WB_LAB.fp_boundedness.push(
       k.wait(.6);
       k.say("The sun is hot today.", { zh: "今天太阳很热。", word: "the sun" });
       N("口诀：", "第一次见用 a，大家都知道用 the。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("There is a dog in the park.", { zh: "公园里有一只狗。", word: "There is a dog in the park" });
+      k.say("The dog is running.", { zh: "那只狗在跑。", word: "running" });
+      k.say("One dog. That dog. The moon.", { zh: "一只狗。那只狗。月亮。", word: "one that moon" });
+      k.say("Open the door, please!", { zh: "请开门！", word: "Open door please" });
+      k.say("An apple, an egg.", { zh: "一个苹果，一个鸡蛋。", word: "an" });
       D.fin("a / an = 一个（第一次说，随便一个）；the = 那个（双方都知道是哪个）", "口诀：第一次见用 a，大家都知道用 the。");
       k.wait(2);
     },
@@ -18795,9 +18806,16 @@ WB_LAB.fp_boundedness.push(
       k.wait(.6);
       k.say("Let's play football after school.", { zh: "放学后我们去踢足球吧。", word: "play football" });
       N("口诀：", "说楼房加 the，说上学不加。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("Go to school. Go to the school.", { zh: "去上学。去那所学校（那栋楼）。", word: "go to the school" });
+      k.say("The cat is on the bed. I am in bed.", { zh: "猫在床上。我在睡觉。", word: "on the bed in bed a" });
+      k.say("I am on a bus. I go by bus.", { zh: "我在一辆公交车上。我坐公交车去。", word: "on a bus by bus" });
+      k.say("Buy a football. Play football.", { zh: "买一个足球。踢足球。", word: "buy a football" });
+      k.say("Mum goes to the hospital.", { zh: "妈妈去那家医院。", word: "to the hospital hospital" });
       D.fin("加冠词 = 看得见的实物（外壳）；不加冠词 = 做这件事（功能）", "口诀：说楼房加 the，说上学不加。");
       k.wait(2);
     },
+    r2skip: ["vs"],   // 白板上的对比符号 vs，不是要读的词
     terms: [
       ["零冠词", "名词前面什么冠词都不加，如 go to school、play football。说的是活动和功能，不是具体的东西。"],
     ],
@@ -18858,6 +18876,11 @@ WB_LAB.fp_boundedness.push(
       k.wait(.6);
       k.say("I can see two fish in the river.", { zh: "我能看见河里有两条鱼。" });
       N("口诀：", "整只能数，切成肉就不数。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("A chicken, three chickens.", { zh: "一只鸡，三只鸡。", word: "a three" });
+      k.say("A glass. The window is made of glass.", { zh: "一个玻璃杯。窗户是玻璃做的。", word: "glass made of made of glass" });
+      k.say("A room. I can make room for you.", { zh: "一个房间。我可以给你腾个地方。", word: "room make for you make room for you" });
+      k.say("Two fish. Some fish, please.", { zh: "两条鱼。请来一些鱼肉。", word: "two fish some" });
       D.fin("同一个词：有完整外壳边界 → 可数；变成肉、材料、空间 → 不可数", "口诀：整只能数，切成肉就不数。");
       k.wait(2);
     },

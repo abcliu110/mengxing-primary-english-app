@@ -65,7 +65,7 @@
     const saidN = says.map(sy => sentNorm(sy.en));
     const sents = [];
     shown.forEach(sh => sentences(sh.text).forEach(s => {
-      const n = sentNorm(s);
+      const n = sentNorm(s).split(" ").filter(w => !SKIP.has(w)).join(" ");   // r2skip 的词（如对比符号 vs）不算进整句
       if (!sents.some(x => x.n === n)) sents.push({ text: s, n, where: sh.src, read: saidN.some(x => x === n || x.includes(n)) });
     }));
     return { list, sents, says: says.map(sy => ({ t: +sy.t.toFixed(2), en: sy.en, word: sy.word })), acts: (S.acts || []), S };
