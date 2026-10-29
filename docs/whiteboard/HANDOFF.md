@@ -19,6 +19,7 @@
 - 01:46｜fp_vectors 第 2 幕升 v2（on/off 两镜头 + 🔮 turn on the TV + 金句卡；R4 put on / turn on / get on / take off / takes off / fall off）｜`1bac762`｜`work/shots/fp_vectors_2_对比总图.png`｜飞机起飞从画完立刻飞改为读到「The plane takes off」时才飞（R4 同步）；coat 用词卡道具代替衣服（动作库没有穿脱衣）
 - 01:48｜fp_vectors 第 3 幕升 v2（公交 / 小汽车 + 小旅客上车动作 + 🔮 get on the subway + 金句卡；R4 get on / get in / get off / get out of）｜`2363cc9`｜`work/shots/fp_vectors_3_对比总图.png`｜火柴人（D.person）换成 traveler 角色，R4「描述动作必须人演」；原火柴人弧线路径坐标不再使用（R1 只差坐标）
 - 01:51｜fp_vectors 第 4 幕升 v2，fp_vectors 4 幕全部完成（to/from/for 箭头 + look 三兄弟单独镜头 + 🔮 I go to the park + 金句卡；R4 walk to / look for / look at / go to）｜`175335c`｜`work/shots/fp_vectors_4_对比总图.png`｜原 look at/for/after 只有一行字，按 R4 补了三个小示意图（不删原文字）
+- 01:53｜fp_boundedness 第 1 幕升 v2（一刀切 / 容器两镜头 + 🔮 two bowls of rice + 金句卡；R4 give）｜`e27e7ec`｜`work/shots/fp_boundedness_1_对比总图.png`｜fp_props.halves() 只加返回值 gl/gr 让 v2 镜头能擦掉（reg_render 证明旧幕不变）；面包和苹果梗保留木色道具色
 
 ## 1. 现在做到哪
 
