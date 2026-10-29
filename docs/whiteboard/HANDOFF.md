@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-29 23:25 JST（§0.1 P1–P4 全部完成）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-29 23:35 JST（§0.1 P1–P4 完成 + metaphor_code 补齐）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -122,6 +122,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - R4：旧幕都没有 `actionWords` 清单；补 R2 时同步列清单（例句里的动作动词见 `r2check.py <id> --all-items` 末尾「提示」行）。
 - **P1–P4 之后（2026-10-29 23:25）**：R2 推广清单已做完（第一性原理 22 幕 + 实验室 adj_order / bamboo_tree / aux_transformer / five_patterns / tense_matrix / writing_alchemist）。复算 `r2check.py all --summary`：剩余缺口只在暂缓页签（past_clans 134 词 15 句、stress_rhythm 97/6、metaphor_code 69/13、vowel_shift 42/0）和 ④-1、⑥-1（各 18 词）。
   - 本轮统一做法：旧幕不改画面，只在收尾（`D.fin` / `k.final` / `h.final` / `finalBox`）前追加 `k.say`；画面上的错句、公式标签（S V O、V-ing、adj、sb/sth）、对比符号 vs、拆开的词尾残片一律写进案例 `r2skip`（整句错句可直接写整句）。
+  - ✅ 2026-10-29 23:35 `metaphor_code` 3 案例 R2 69 → 0、句子 13 → 0：按 MASTER_DESIGN 第 81 行，「人体、颜色、动物隐喻留在原页签」，三个案例都不会被搬走，所以先补（原「暂缓」行写的是整页签，过严）。补读：head/face/mouth/hand/foot/arm/leg、face of a clock、mouth of a river、at the head of the line、eye of a needle、neck of a bottle、give me a hand；颜色词、a green hand、a white lie、give the green light、golden opportunity、Don't feel blue!；as busy as a bee、The early bird catches the worm、as gentle as a lamb、as brave as a lion、rain cats and dogs、a lucky dog、black sheep、white elephant、-er/-est。以后「空间隐喻」新页签若要借用这里的某些条目，复制过去即可，这里不删。验收：r2check --strict 83 词 21 句全过；渲染回归只有 metaphor_code 3 幕变化；jscheck、appwb 过。
   - 下一轮候选（不用等用户的）：①R4 动作词清单——旧幕补 `actionWords` 要先有讲解员（视觉 v2 升级），所以和 v2 升级一起做；②暂缓页签里**不会被并走**的部分（past_clans 的过去式部分、metaphor_code 的非空间 / 时间条目）可以先补，复数例、空间 / 时间条目等并入时再补。
 
 ## 0.5 阶段 2 进度（单词身世第一批，2026-10-29 起）
