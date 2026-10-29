@@ -208,3 +208,75 @@ WB_LAB.fp_economy.push(
     ],
   },
 );
+WB_LAB.fp_economy.push(
+  // ───────── 1-4 为什么 run 变 running 要双写 n？─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：run 变 running，为什么要多写一个 n？");
+      k.header("① 口腔省力同化律", "run → running 为什么双写？", true);
+      N("双写：", "把单词最后一个辅音字母再写一遍，比如 run → running。");
+      const w = k.mono("runing ?", 40, 112, 24, C.red, 900);
+      T("很多同学这样写", 200, 112, go(.6), .6, { size: 16, color: C.grey });
+      // 音节房间
+      N("音节：", "单词里一拍一拍的读音单位。run 只有一拍，是一个音节。");
+      P(k.roughRect(60, 160, 170, 90), go(.8), .8, { color: C.ink, w: 2.5 });
+      F(k.rectD(60, 160, 170, 90), go(.2, 0), { color: "#f8fafc", op: 1 });
+      T("r", 84, 222, go(.3), .3, { size: 44, color: C.ink, weight: 900, font: M });
+      const gu = k.group(); T("u", 120, 222, go(.3), .3, { size: 44, color: C.blue, weight: 900, font: M }); k.endGroup();
+      const gn = k.group(); T("n", 160, 222, go(.3), .3, { size: 44, color: C.ink, weight: 900, font: M }); k.endGroup();
+      const gd = k.group();
+      P(k.roughRect(212, 166, 12, 78), go(.5), .5, { color: C.brown, w: 2.5 });
+      F(k.rectD(212, 166, 12, 78), go(.2, 0), { color: "#fde68a", op: 1 });
+      k.endGroup();
+      N("闭音节：", "「辅音+元音+辅音」，元音被后面的辅音关在门里，读短音。");
+      T("门：n 守着", 172, 276, go(.6), .6, { size: 15, color: C.brown, weight: 900, anchor: "middle" });
+      T("u 读短音 /ʌ/", 60, 148, go(.6), .6, { size: 16, color: C.blue, weight: 900 });
+      k.wait(.5);
+      k.chip("ing", 322, 194, null, { size: 22, color: C.green });
+      T("+", 252, 222, go(.3), .3, { size: 28, color: C.grey, weight: 900 });
+      k.wait(.4);
+      // 不双写：n 被 ing 拉走，门开
+      N("开音节：", "元音后面没有辅音挡着，门开了，元音往往读长音。");
+      const t1 = go(1.4);
+      k.move(gn, t1, 1, 132, 0); k.rot(gd, t1 + .3, .8, -75, 218, 166);
+      k.buzz(gu, t1 + 1.1, 1.2, 2.5);
+      T("ru | ning：门开了，u 跑出来读长音 /uː/", 60, 316, go(1.4), 1.4, { size: 17, color: C.red, weight: 900 });
+      T("tap + ing 不双写 → ta | ping，读成 tape 的 /eɪ/", 60, 346, go(1.4), 1.4, { size: 15, color: C.grey, weight: 700 });
+      k.redX(400, 292);
+      k.wait(.8);
+      // 双写：n 回家，第二个 n 来拼尾巴
+      N("", "办法：再派一个 n。第一个 n 守门，第二个 n 去拼 -ing。");
+      const t2 = go(1.2);
+      k.move(gn, t2, .8, -132, 0); k.rot(gd, t2 + .3, .7, 75, 218, 166);
+      const g2 = k.group(); T("n", 292, 222, go(.01, 0), .01, { size: 44, color: C.orange, weight: 900, font: M }); k.endGroup();
+      k.hide(g2); k.fade(g2, go(.6), .6, 1);
+      k.move(g2, go(.01, 0), .01, 0, 0);
+      T("第二个 n", 305, 274, go(.5), .5, { size: 15, color: C.orange, weight: 900, anchor: "middle" });
+      D.parts([["run", C.ink], ["n", C.orange], ["ing", C.green]], 60, 400, 30);
+      T("/ˈrʌnɪŋ/  u 还是短音", 240, 398, go(.8), .8, { size: 18, color: C.green, weight: 900, font: M });
+      k.wait(.6);
+      // 右：套用
+      N("短元音：", "读得又短又快的元音：a /æ/、e /e/、i /ɪ/、o /ɒ/、u /ʌ/。");
+      k.head("辅元辅 + 元音尾巴 → 双写", 520, 112, C.purple, "start", 19);
+      const row = (base, dbl, tail, y) => {
+        T(base, 540, y, go(.4), .4, { size: 24, color: C.ink, weight: 900, font: M });
+        k.arrow(540 + base.length * 14.4 + 10, y - 8, 540 + base.length * 14.4 + 40, y - 8, C.grey);
+        D.parts([[base, C.ink], [dbl, C.orange], [tail, C.green]], 540 + base.length * 14.4 + 52, y, 24);
+      };
+      row("swim", "m", "ing", 170); row("big", "g", "er", 222); row("hot", "t", "est", 274); row("stop", "p", "ed", 326);
+      T("-er 更… · -est 最… · -ed 过去式：都是元音开头的尾巴", 520, 372, go(1.2), 1.2, { size: 15, color: C.grey });
+      k.wait(.6);
+      N("口诀：", "辅元辅，加尾巴，派个守门员看家。");
+      D.fin("「辅元辅」加元音开头的尾巴 → 双写最后的辅音，保住短元音", "口诀：辅元辅，加尾巴，派个守门员看家。");
+      k.wait(2);
+    },
+    terms: [
+      ["音节", "单词里一拍一拍的读音单位。run 一拍（1 个音节），running 两拍（run-ning）。"],
+      ["闭音节", "元音后面有辅音挡着，像关上门，元音读短音，如 run、big。"],
+      ["开音节", "元音后面没有辅音挡着，门开着，元音常读长音（字母本身的音），如 ta-ping 里的 a。"],
+      ["短元音 / 长元音", "短元音又短又快：/æ/ /e/ /ɪ/ /ɒ/ /ʌ/；长元音拉长或滑动：/eɪ/ /iː/ /uː/。"],
+      ["双写", "把最后一个辅音字母再写一遍：run → running、big → bigger。"],
+    ],
+  },
+);

@@ -17,7 +17,7 @@
 
 | # | 原理 id | 中文 | 幕数 | 主要道具 | 状态 |
 |---|---|---|---|---|---|
-| ① | `fp_economy` | 口腔省力同化律 | 4 | mouth、gate | 🔶 3/4（1-1 ✅ 50 秒 · 1-2 ✅ · 1-3 ✅ 嘴唇开合动效） |
+| ① | `fp_economy` | 口腔省力同化律 | 4 | mouth、gate | ✅ 4/4（1-1 声带 buzz · 1-2 撞车 move · 1-3 嘴唇开合 · 1-4 守门员开关门 rot；每幕 45–55 秒） |
 | ② | `fp_iconicity` | 字母象形与音义同源簇 | 4 | letterMorph | ⬜ |
 | ③ | `fp_boundedness` | 物理边界感统摄律 | 4 | knife、ring/target、building | ⬜ |
 | ④ | `fp_one_king` | 一山不容二虎单核谓语律 | 4 | throne、token | ⬜ |
