@@ -10,7 +10,7 @@
 | 0 | SOP / 分镜 / 交接文档 | ✅ 2026-10-29 |
 | 1 | 引擎 v2 动效：`group / move / arc / buzz / fade / rot / camera`（SOP §4），回归旧 34 案例 | ✅ 2026-10-29（旧案例截图逐像素一致；`camera` 用法：`k.camera(0,0,x,y,z)` 开场特写，再 `k.camera(go(2),2,480,272,1)` 拉远；`hide(g)` 让组开始时隐藏） |
 | 2 | App 接线：`wbStageHtml` 第 4 参数 svg id、`startFirstPrinciplesCanvasLoop` 走白板、`fpAnimId`、`appfp.py`（SOP §5） | ✅ 2026-10-29（`insert_wb.py` 里 `FP_READY` 列表登记做完的原理；没登记的原理保持旧 Canvas） |
-| 3 | `fp_props.js` 道具（SOP §3） | 🔶 已有：`knife`（刀切下去再淡出）、`halves`（左右两半分开）、`person`（火柴人组，`bend` 弯腰）、`lips`（正面嘴唇，`close/open` 开合）、`mouth`（口腔侧面 + 声带组 + 波纹 + 发音位置亮点）、`tag`、`parts`（分段上色，**只用于 ASCII**：音标字符 ʌ ɪ ʃ ˈ ː 不在 Courier New 里，宽度不是 0.6×字号，整段音标要单独一个 `T`）、`fin` |
+| 3 | `fp_props.js` 道具（SOP §3） | 🔶 已有：`throne`（王座）、`king`（戴王冠的词牌组）、`knife`（刀切下去再淡出）、`halves`（左右两半分开）、`person`（火柴人组，`bend` 弯腰）、`lips`（正面嘴唇，`close/open` 开合）、`mouth`（口腔侧面 + 声带组 + 波纹 + 发音位置亮点）、`tag`、`parts`（分段上色，**只用于 ASCII**：音标字符 ʌ ɪ ʃ ˈ ː 不在 Courier New 里，宽度不是 0.6×字号，整段音标要单独一个 `T`）、`fin` |
 | 4 | 样板：① `fp_economy` 1-1（声带道具 + buzz 动效） | ✅ 2026-10-29（50 秒）；用户要求做一个提交一个，不停下来等 |
 | 5 | 6 条原理 × 4 幕 | 见下表 |
 | 6 | 朗读开关（可选，SOP §6） | ⬜ 等用户看完画面再定 |
@@ -20,7 +20,7 @@
 | ① | `fp_economy` | 口腔省力同化律 | 4 | mouth、gate | ✅ 4/4（1-1 声带 buzz · 1-2 撞车 move · 1-3 嘴唇开合 · 1-4 守门员开关门 rot；每幕 45–55 秒） |
 | ② | `fp_iconicity` | 字母象形与音义同源簇 | 4 | letterMorph | ⬜ |
 | ③ | `fp_boundedness` | 物理边界感统摄律 | 4 | knife、ring/target、building | ✅ 4/4（3-1 刀切苹果/面包 + 杯子装牛奶 · 3-2 小狗圈一只 a → 靶心 the · 3-3 楼房外壳 → 书本功能 · 3-4 小鸡 → 鸡肉，边界虚线消失；每幕 38–50 秒） |
-| ④ | `fp_one_king` | 一山不容二虎单核谓语律 | 4 | throne、token | ⬜ |
+| ④ | `fp_one_king` | 一山不容二虎单核谓语律 | 4 | throne、token | 🔶 1/4（4-1 ✅ am/like 抢王座打架，am 被挤下） |
 | ⑤ | `fp_vectors` | 三维几何向量时空律 | 4 | dims、vec、vehicle | ✅ 4/4（5-1 点/面/盒 + 小球落下 · 5-2 贴上/弹开、开关灯、飞机 arc 起飞 · 5-3 火柴人上公交 / 钻小车 · 5-4 to/from/for 三条箭头小球；每幕 45–55 秒） |
 | ⑥ | `fp_zoom_focus` | 焦点先行与镜头缩放律 | 4 | xmasTree、spotlight、zoom、timeGrid | ⬜ |
 

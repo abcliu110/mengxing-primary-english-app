@@ -89,6 +89,24 @@ const FP_PROPS = function (k) {
     return { split(t2) { k.move(gl, t2, .5, -gap, 0); k.move(gr, t2, .5, gap, 0); } };
   };
 
+  // 王座：座位中心 (cx, y)，返回座位上方坐人的位置
+  D.throne = (cx, y, color = C.orange) => {
+    const d = `M${cx - 50},${y} L${cx - 50},${y - 90} L${cx - 30},${y - 70} L${cx},${y - 100} L${cx + 30},${y - 70} L${cx + 50},${y - 90} L${cx + 50},${y} Z`;
+    P(d, go(.9), .9, { color, w: 3 }); F(d, go(.2, 0), { color: "#fef3c7", op: 1 });
+    P(k.roughRect(cx - 62, y, 124, 18) + ` M${cx - 54},${y + 18} v30 M${cx + 54},${y + 18} v30`, go(.6), .6, { color: C.brown, w: 3 });
+    T("王座", cx, y + 70, go(.3), .3, { size: 14, color: C.brown, weight: 900, anchor: "middle" });
+    return { x: cx, y: y - 30 };
+  };
+  // 戴王冠的词牌（组）：中心 (cx, y)
+  D.king = (word, cx, y, color = C.red, crown = true) => {
+    const g = k.group();
+    const w = word.length * 22 * .6 + 24;
+    P(k.roughRect(cx - w / 2, y - 18, w, 36), go(.4), .4, { color, w: 2.5 }); F(k.rectD(cx - w / 2, y - 18, w, 36), go(.1, 0), { color: "#fff", op: 1 });
+    T(word, cx, y + 8, go(.3), .3, { size: 22, color, weight: 900, font: MONO, anchor: "middle" });
+    if (crown) { const c = `M${cx - 14},${y - 22} l4,-14 l6,8 l4,-12 l4,12 l6,-8 l4,14 Z`; P(c, go(.3), .3, { color: C.orange, w: 2 }); F(c, go(.1, 0), { color: "#fde047", op: 1 }); }
+    k.endGroup(); return g;
+  };
+
   // 小标签框（等宽英文/音标）
   D.tag = (text, x, y, color = C.blue, size = 20) => {
     const w = text.length * size * .6 + 18, h = size + 14;
