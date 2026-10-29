@@ -27,6 +27,7 @@ const WO_CHAPTERS = [
   { id: "time", icon: "⏰", title: "时间与度量的身世", insight: "eleven = 十个之外剩一个；Thursday = 雷神的日子；September 原来是第七个月。",
     scenes: [
       { id: "wo_time_num", title: "数字的秘密", sub: "eleven、twelve、-teen、dozen；万 / 亿 ↔ thousand / million", badges: ["📜", "✂️", "💡"] },
+      { id: "wo_time_week", title: "星期和月份", sub: "Thursday = 雷神的日子；September 原来是第七个月", badges: ["📜", "💡"] },
     ] },
   { id: "sports", icon: "🎾", title: "体育与音乐词", insight: "piano = 轻声（pianoforte 的缩写）。" },
   { id: "drift", icon: "🎭", title: "词义漂移", insight: "词也会「变脸」：nice 原来是「傻的」。" },

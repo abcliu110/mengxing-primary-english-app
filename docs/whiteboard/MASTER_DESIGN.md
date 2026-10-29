@@ -282,3 +282,11 @@ V1–V8 是「白板味」；本节是「动画质量」——对标商业儿童
 
 ## 讲解员小人定稿（2026-10-29）
 用户选定 v3a 马尾女老师（docs/whiteboard/narrator/narrator_v3a_ponytail.png）：高马尾+星星发夹，绿外套、橙领巾、藏青长裤，星星笔帽马克笔，不戴眼镜。代码阶段按此稿用 SVG 骨架重画，详见 narrator/README.md。
+
+
+---
+
+## 6. 进度追加（2026-10-29 晚）
+- 决策 1 格林定律：✅ 单词身世「🔤 格林定律」章 4 幕上线——`wo_grimm`（真格林定律）+ `wo_vowel_a/b/c`（元音变异，原 `vowel_shift` 三个案例整体搬来并纠错，清单 211 条对照 ✅202 / ✏️9 / ❌0）。**删 `vowel_shift` 页签、改 15 处入口：等用户确认**（§3 总表该行状态：新章已验收，待删）。
+- 决策 3 时间与度量：✅「⏰ 时间与度量的身世」章 2 幕上线——`wo_time_num`（eleven / -teen / dozen / 万 ↔ million）、`wo_time_week`（七天名字、September = 第七个月）。
+- 工具：`r2check.py --summary`（按页签汇总）、`r2skip`（被划掉的错误形式）、`check_inventory.py`（R1 清单对照）、`insert_wb.py WO_KITS`（几幕共用工具）。
