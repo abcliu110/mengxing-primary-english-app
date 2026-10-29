@@ -3,6 +3,7 @@
 <!-- 用法：preview.html?tab=bamboo_tree&case=0 -->
 <svg id="st"></svg>
 <script src="wb_engine.js"></script>
+<script src="wb_actor.js"></script>
 <script>
 const q = new URLSearchParams(location.search), TAB = q.get('tab') || 'bamboo_tree';
 if (TAB.startsWith('fp_')) document.write('<script src="cases/fp_props.js"><\/script>');

@@ -29,6 +29,7 @@ if FP_READY:
 if WO_READY:
     case_files += [os.path.join(HERE, 'cases', 'wo_props.js')] + [os.path.join(HERE, 'cases', t + '.js') for t in WO_READY]
 block = ('// <<WB_ENGINE_START>>\n' + rd(os.path.join(HERE, 'wb_engine.js')) + '\n'
+         + rd(os.path.join(HERE, 'wb_actor.js')) + '\n'
          + '\n'.join(rd(p) for p in case_files) + '\n' + rd(os.path.join(HERE, 'wb_app.js'))
          + rd(os.path.join(HERE, 'wo_hub.js')) + '// <<WB_ENGINE_END>>\n')
 if '// <<WB_ENGINE_START>>' in s:
