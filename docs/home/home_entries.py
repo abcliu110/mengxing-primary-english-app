@@ -9,7 +9,7 @@ with sync_playwright() as pw:
     pg.goto(M); pg.wait_for_timeout(1500)
     ents = pg.evaluate("""()=>[...document.querySelectorAll('#appViewRoot [onclick]')].map(e=>e.getAttribute('onclick'))""")
     h = pg.evaluate("document.body.scrollHeight"); b.close()
-targets = sorted(set(norm(x) for x in ents if 'navigateTo' in x))
+targets = sorted(set(m for x in ents for m in re.findall(r"navigateTo\([^)]*\)", norm(x))))
 print(f"首页高度(430px) {h}px · 入口 {len(ents)} 个 · 去重目标 {len(targets)} 个")
 a = sys.argv[1:]
 if '--save' in a: json.dump(targets, open(a[a.index('--save')+1], 'w'), ensure_ascii=False, indent=1)
