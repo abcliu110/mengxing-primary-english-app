@@ -7,7 +7,7 @@
 //   · 白板上连续 ≥3 个英文词的句子：必须被某句 say 朗读（大小写、标点不计）
 // R4：案例对象上的分镜动作词清单 actionWords: [{ word, act }]，逐个对照 k.act 登记（S.acts），
 //   并检查动作时间和「含这个词的朗读句」有重叠（读到这个词时动作正在发生）。
-// r2skip：案例对象上 r2skip: ["longth"]——画面上故意展示并划掉的错误形式（SOP §7 第 3 条：被划掉的词不读），不计入 R2；必须真的被划掉。
+// r2skip：案例对象上 r2skip: ["longth", "I want go home."]（带空格的条目按整句跳过）——画面上故意展示并划掉的错误形式（SOP §7 第 3 条：被划掉的词不读），不计入 R2；必须真的被划掉。
 //   另外按常见动作动词表提示：例句里有动作动词、但分镜清单里没有的（只提示，不算不通过）。
 (function (root) {
   const ACTION_VERBS = ["carry", "carries", "carried", "run", "runs", "ran", "walk", "walks", "walked", "go", "goes", "went", "come", "comes", "came",
@@ -38,6 +38,7 @@
 
   function scan(build, seed, skip) {
     const SKIP = new Set((skip || []).map(norm));
+    const SKIP_SENT = new Set((skip || []).filter(x => /\s/.test(x)).map(sentNorm));   // r2skip 里带空格的 = 画面上故意展示的错句（如 I want go home.），整句不计
     const k = WB.kit(seed);
     build(k);
     const S = k.S, says = S.says || [];
@@ -66,6 +67,7 @@
     const sents = [];
     shown.forEach(sh => sentences(sh.text).forEach(s => {
       const n = sentNorm(s).split(" ").filter(w => !SKIP.has(w)).join(" ");   // r2skip 的词（如对比符号 vs）不算进整句
+      if (SKIP_SENT.has(sentNorm(s))) return;
       if (!sents.some(x => x.n === n)) sents.push({ text: s, n, where: sh.src, read: saidN.some(x => x === n || x.includes(n)) });
     }));
     return { list, sents, says: says.map(sy => ({ t: +sy.t.toFixed(2), en: sy.en, word: sy.word })), acts: (S.acts || []), S };

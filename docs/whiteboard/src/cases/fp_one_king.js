@@ -92,9 +92,16 @@ WB_LAB.fp_one_king.push(
       T("第 3 件马甲 done：以后学", 510, 404, go(.8), .8, { size: 14, color: C.grey });
       k.wait(.6);
       N("口诀：", "想做穿 to，在做穿 -ing。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2'）：画面上的英文词单读 + 例句（第 1 幕要搬去中英对照总枢，搬时在新位置补，这里不补）
+      k.say("Want to go. Plan to visit. Hope to see.", { zh: "想去。打算拜访。希望见到。", word: "want plan visit hope see want to go plan to visit hope to see" });
+      k.say("I want to go home. I hope to see you.", { zh: "我想回家。我希望见到你。", word: "I home" });
+      k.say("Enjoy, finish. She is swimming.", { zh: "享受、完成。她正在游泳。", word: "enjoy finish She is swimming" });
+      k.say("Finish doing. Good at drawing.", { zh: "做完。擅长画画。", word: "doing good at drawing good at drawing ing", blocks: ["ing"] });
+      k.say("Do, doing, done. I have done my homework.", { zh: "做、正在做、做完了。我做完作业了。", word: "do done" });
       D.fin("王座只坐 1 个动词；其他动词穿马甲：to do（想做）或 doing（正在做 / 享受过程）", "口诀：想做穿 to，在做穿 -ing。");
       k.wait(2);
     },
+    r2skip: ["I want go home."],   // 画面上被打叉的错句（第二个动词没穿马甲），不读
     terms: [
       ["不定式 to do", "to + 动词原形，如 to go。常表示想要、打算、将要去做的事。"],
       ["动名词 / 现在分词 doing", "动词 + -ing，如 reading。表示正在做，或者做这件事本身。"],
@@ -150,9 +157,17 @@ WB_LAB.fp_one_king.push(
       k.wait(.6);
       k.say("She can swim.", { zh: "她会游泳。", word: "swim" });
       N("口诀：", "侍卫拿令牌，动词回原形。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2'）：画面上的英文词单读 + 例句（第 1 幕要搬去中英对照总枢，搬时在新位置补，这里不补）
+      k.say("She went home. Did she go home?", { zh: "她回家了。她回家了吗？", word: "She went home Did" });
+      k.say("He plays football. They went home.", { zh: "他踢足球。他们回家了。", word: "He plays football They" });
+      k.say("Does he play? He doesn't play. Did they go?", { zh: "他踢吗？他不踢。他们去了吗？", word: "Does play doesn't" });
+      k.say("Can, must, will. She can swim.", { zh: "能、必须、将会。她会游泳。", word: "can must will" });
+      k.say("Yes, it is. No, it isn't.", { zh: "是的，它是。不，它不是。", word: "Yes No it" });
+      k.say("I like apples. Do you like apples?", { zh: "我喜欢苹果。你喜欢苹果吗？", word: "apples do" });
       D.fin("一句话只有 1 块令牌（-s / 过去）：侍卫 does / did / can 拿了，动词就用原形", "口诀：侍卫拿令牌，动词回原形。");
       k.wait(2);
     },
+    r2skip: ["Does he plays?", "She can swims.", "swims"],   // 红字「不能说」的错句，不读
     terms: [
       ["三单", "主语是第三人称单数（he / she / it / 一个人名）时，一般现在时的动词加 -s：She likes apples。"],
       ["一般疑问句", "能用 Yes / No 回答的问句：Does she like apples?"],
@@ -203,9 +218,15 @@ WB_LAB.fp_one_king.push(
       k.wait(.6);
       k.say("Reading makes me clever.", { zh: "读书让我变聪明。" });
       N("口诀：", "先搭骨架再挂花。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2'）：画面上的英文词单读 + 例句（第 1 幕要搬去中英对照总枢，搬时在新位置补，这里不补）
+      k.say("Birds fly. Birds can fly high.", { zh: "鸟会飞。鸟能飞得很高。", word: "Birds fly" });
+      k.say("The cake smells delicious. I love my family.", { zh: "蛋糕闻起来很香。我爱我的家人。", word: "The cake smells delicious I love my family" });
+      k.say("Pass me the book. Reading makes me clever.", { zh: "把书递给我。读书让我变聪明。", word: "Pass me book Reading makes clever" });
+      k.say("Can you pass me the book?", { zh: "你能把书递给我吗？", word: "you" });
       D.fin("先把主干骨骼搭对，再往上挂时间、地点、形容词这些装饰", "口诀：先搭骨架再挂花。");
       k.wait(2);
     },
+    r2skip: ["IO", "DO"],   // 双宾语的成分标签缩写（间接 / 直接宾语），和 S V O 一样不读
     terms: [
       ["宾语", "动作落到的人或东西：I love my family 里的 my family。"],
       ["表语", "跟在 be / smell / look 这类系动词后面，说明主语怎么样：The cake smells delicious。"],
