@@ -24,6 +24,7 @@ WB_LAB.wo_port = [
       k.move(mp.eu, tm + 1.4, .6, 0, -10); k.move(mp.af, tm + 1.4, .6, 0, 10); k.move(mp.as, tm + 1.4, .6, 10, 0);
       N("罗马：", "罗马城就在地中海边，罗马人靠船把四周连在一起。");
       mp.dot(12.5, 41.9, "罗马 Rome", { dx: 8, dy: -8 });
+      k.say("Rome is an old city in Italy.", { zh: "罗马是意大利的一座古城。", word: "Rome" });
       T("Mediterranean", 615, 132, go(1), 1, { size: 21, color: C.ink, weight: 900, font: M });
       k.egg(615 + 13 * 21 * .6 + 14, 125, { word: "Mediterranean" });
       N("拆开看：", "Mediterranean = medi（中间）+ terra（陆地）。");
@@ -33,7 +34,8 @@ WB_LAB.wo_port = [
       T("= 陆地中间的海", 615, 262, go(.9), .9, { size: 22, color: C.green, weight: 900 });
       k.badge("📜", 615, 298);
       k.egg(622, 332, { note: true });
-      k.say("The Mediterranean Sea is in the middle of the land.", { zh: "地中海在陆地的中间。", word: "Mediterranean", egg: ["Mediterranean"] });
+      k.say("Medi means middle, and terra means land.", { zh: "medi 是「中间」，terra 是「陆地」。", word: "medi terra", blocks: ["medi", "terra"] });
+      k.say("The Mediterranean Sea is in the middle of the land.", { zh: "地中海在陆地的中间。", word: "Mediterranean", egg: ["Mediterranean"], blocks: ["medi", "terra"] });
       N("", "四周都是陆地，船从哪儿都能到 → 港口就特别重要。");
       T("四周都是陆地 → 船来船往 → 港口最重要", 40, 420, go(1.4), 1.4, { size: 20, color: C.orange, weight: 900 });
       k.wait(1.2);
@@ -63,6 +65,8 @@ WB_LAB.wo_port = [
       k.egg(s2.end + 12 + 13 * 22 * .6 + 14, 128, { word: "opportunity" });
       T("原来指「朝着港口吹的顺风」→ 好时机、机会", 60, 180, go(1.4), 1.4, { size: 18, color: C.ink, weight: 700 });
       k.badge("📜", 60, 214);
+      k.say("Ob portum means toward the port.", { zh: "ob portum（拉丁语）= 朝着港口。", word: "ob portum", blocks: ["ob"] });
+      k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "opportunity", egg: ["opportunity"] });
       k.wait(.8);
       D.wipe();
 
@@ -78,6 +82,7 @@ WB_LAB.wo_port = [
       T("别的港口", 850, 160, go(.4), .4, { size: 15, color: C.blue, weight: 900, anchor: "middle" });
       T("拉丁语 portare = 搬运", 50, 296, go(.9), .9, { size: 18, color: C.blue, weight: 900 });
       k.badge("📜", 260, 296);
+      k.say("Portus means port, and portare means carry.", { zh: "portus = 港口，portare = 搬运（拉丁语）。", word: "portus portare" });
       const col = [50, 500], row = [314, 386], rootX = i => col[i % 2] + 90;   // 词根块在每一列对齐不动
       // ① im：货箱从船上进城
       N("im- 进：", "货箱从船上搬进城里 → import（进口）。");
@@ -86,6 +91,7 @@ WB_LAB.wo_port = [
       k.fade(c1, go(.4), .4, 0);
       const w1 = D.snap("im", "port", rootX(0), row[0], { from: [-40, -70] });
       T("= import 进口", w1.end + 10, row[0] + 24, go(.8), .8, { size: 19, color: C.green, weight: 900 });
+      k.say("Import means to carry things in.", { zh: "import = 把东西搬进来。", word: "im", blocks: ["im"] });
       // ② ex：货箱从城里搬出上船
       N("ex- 出：", "货箱从城里搬出去、装上船 → export（出口）。");
       const c2 = D.crate(205, 222);
@@ -93,19 +99,22 @@ WB_LAB.wo_port = [
       k.fade(c2, go(.4), .4, 0);
       const w2 = D.snap("ex", "port", rootX(1), row[0], { from: [-40, -70] });
       T("= export 出口", w2.end + 10, row[0] + 24, go(.8), .8, { size: 19, color: C.green, weight: 900 });
-      k.say("We import fruit and export tea.", { zh: "我们进口水果，出口茶叶。", word: "import" });
+      k.say("Export means to carry things out.", { zh: "export = 把东西搬出去。", word: "ex", blocks: ["ex"] });
+      k.say("We import fruit and export tea.", { zh: "我们进口水果，出口茶叶。", word: "import export" });
       // ③ trans：船把货运到对岸别的港口
       N("trans- 穿过：", "船穿过大海，把货运到别的港口 → transport（运输）。");
       const c3 = D.crate(470, 222);
       k.path(c3, go(2), 1.9, [[150, -30], [370, -2]]);
       const w3 = D.snap("trans", "port", rootX(0), row[1], { from: [-40, -70] });
       T("= transport 运输", w3.end + 10, row[1] + 24, go(.8), .8, { size: 19, color: C.green, weight: 900 });
+      k.say("Transport means to carry things across.", { zh: "transport = 把东西运过去。", word: "trans", blocks: ["trans"] });
       // ④ re：消息被带回城里
       N("re- 回：", "别的港口发生了什么？把消息带回城里 → report（报告）。");
       const sc = D.scroll(850, 205);
       k.path(sc, go(2.2), 2.1, [[-300, -70], [-600, -60], [-725, 15]]);
       const w4 = D.snap("re", "port", rootX(1), row[1], { from: [-40, -70] });
       T("= report 报告", w4.end + 10, row[1] + 24, go(.8), .8, { size: 19, color: C.green, weight: 900 });
+      k.say("Report means to carry news back.", { zh: "report = 把消息带回来。", word: "re", blocks: ["re"] });
       k.say("Ships transport food across the sea.", { zh: "船把食物运过大海。", word: "transport" });
       k.say("He reports the news to the city.", { zh: "他把消息报告给城里。", word: "report" });
       N("", "词根 port 一直不变，变的只是前面表示方向的小块。");
@@ -128,6 +137,7 @@ WB_LAB.wo_port = [
       D.back();
       N("盖章：", "啪！章盖上了：可以通过港口了。");
       D.stamp(488, 284, "OK", { into: doc });
+      k.say("OK! You can pass now.", { zh: "好了！你现在可以通过了。", word: "OK pass" });
       const tw = go(2);
       k.move(pp, tw, 1.8, 260, 0); k.move(doc, tw, 1.8, 260, 0);
       N("pass + port：", "pass（通过）+ port（港口）= 通过港口的许可 → passport（护照）。");
@@ -162,6 +172,7 @@ WB_LAB.wo_port = [
       const s5 = D.snap("air", "port", 60 + D.chipW("air"), 440, { from: [-20, -60] });
       T("= airport 机场（空中的港口）", s5.end + 12, 464, go(1.2), 1.2, { size: 21, color: C.green, weight: 900 });
       k.badge("📜", 478, 464);
+      k.say("Birds fly in the air.", { zh: "鸟儿在空中飞。", word: "air" });
       k.say("We take a plane at the airport.", { zh: "我们在机场坐飞机。", word: "airport" });
       k.wait(.6);
       D.wipe();
@@ -216,6 +227,7 @@ WB_LAB.wo_port = [
       P(`M720,520 L720,486 M714,494 L720,484 L726,494`, go(.3), .3, { color: C.green, w: 2.5 });
       k.move(bx, go(.8), .6, 0, -6);
       // 把总结图里的「？」也换成答案
+      k.say("Support means to hold something up from below.", { zh: "support = 从下面把东西托住。", word: "sup", blocks: ["sup"] });
       k.say("My friends support me.", { zh: "我的朋友们支持我。", word: "support" });
       N("口诀：", "港口一扇门，进出穿回都靠 port；sup 托住就是 support！");
       D.hold(2.5);
