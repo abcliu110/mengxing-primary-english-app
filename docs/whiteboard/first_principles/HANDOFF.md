@@ -10,14 +10,14 @@
 | 0 | SOP / 分镜 / 交接文档 | ✅ 2026-10-29 |
 | 1 | 引擎 v2 动效：`group / move / arc / buzz / fade / rot / camera`（SOP §4），回归旧 34 案例 | ✅ 2026-10-29（旧案例截图逐像素一致；`camera` 用法：`k.camera(0,0,x,y,z)` 开场特写，再 `k.camera(go(2),2,480,272,1)` 拉远；`hide(g)` 让组开始时隐藏） |
 | 2 | App 接线：`wbStageHtml` 第 4 参数 svg id、`startFirstPrinciplesCanvasLoop` 走白板、`fpAnimId`、`appfp.py`（SOP §5） | ✅ 2026-10-29（`insert_wb.py` 里 `FP_READY` 列表登记做完的原理；没登记的原理保持旧 Canvas） |
-| 3 | `fp_props.js` 道具（SOP §3） | 🔶 已有：`mouth`（口腔侧面 + 声带组 + 波纹 + 发音位置亮点）、`tag`、`fin` |
+| 3 | `fp_props.js` 道具（SOP §3） | 🔶 已有：`mouth`（口腔侧面 + 声带组 + 波纹 + 发音位置亮点）、`tag`、`parts`（分段上色，**只用于 ASCII**：音标字符 ʌ ɪ ʃ ˈ ː 不在 Courier New 里，宽度不是 0.6×字号，整段音标要单独一个 `T`）、`fin` |
 | 4 | 样板：① `fp_economy` 1-1（声带道具 + buzz 动效） | ✅ 2026-10-29（50 秒）；用户要求做一个提交一个，不停下来等 |
 | 5 | 6 条原理 × 4 幕 | 见下表 |
 | 6 | 朗读开关（可选，SOP §6） | ⬜ 等用户看完画面再定 |
 
 | # | 原理 id | 中文 | 幕数 | 主要道具 | 状态 |
 |---|---|---|---|---|---|
-| ① | `fp_economy` | 口腔省力同化律 | 4 | mouth、gate | 🔶 1/4（1-1 ✅ 50 秒） |
+| ① | `fp_economy` | 口腔省力同化律 | 4 | mouth、gate | 🔶 2/4（1-1 ✅ 50 秒 · 1-2 ✅） |
 | ② | `fp_iconicity` | 字母象形与音义同源簇 | 4 | letterMorph | ⬜ |
 | ③ | `fp_boundedness` | 物理边界感统摄律 | 4 | knife、ring/target、building | ⬜ |
 | ④ | `fp_one_king` | 一山不容二虎单核谓语律 | 4 | throne、token | ⬜ |
