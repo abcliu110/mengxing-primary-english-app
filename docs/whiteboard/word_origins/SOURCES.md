@@ -43,3 +43,20 @@
 | 10 | 今天：木星的一颗卫星叫 Europa（欧罗巴）；新版欧元纸币（Europa 系列）的水印和全息图里有她的头像 | 📜 | "The smallest of Jupiter's Galilean moons was named after Europa."；"The second series of euro banknotes is known as the Europa Series and bears her likeness in the watermark and hologram." | https://en.wikipedia.org/wiki/Europa_(consort_of_Zeus) |
 | 11 | 中文「欧洲」是「欧罗巴洲」的简称；利玛窦（意大利传教士）1602 年刻印的《坤舆万国全图》最早用这个名字（图上写作「欧逻巴」） | 📜 | 中文维基「欧洲」：在中文中，"欧洲"是"欧罗巴洲"一词的缩写，后者是由利玛窦于《坤舆万国全图》中率先使用的；「坤舆万国全图」词条：五大洲列表「歐邏巴（歐羅巴洲/歐洲）」，1602 年北京刻印 | https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%B4%B2 ；https://zh.wikipedia.org/wiki/%E5%9D%A4%E8%BC%BF%E8%90%AC%E5%9C%8B%E5%85%A8%E5%9C%96 |
 | 12 | 欧-罗-巴 是照着声音翻译的（音译）；port 幕的「进口、出口」是照着意思对照的 | 💡（中文对照，不是词源） | — | — |
+
+## 溯源幕 ③：Bluetooth 蓝牙（`cases/wo_bluetooth.js`）
+
+> 核对日期：2026-10-29（页面已打开逐条读过）。国王的外号为什么叫「蓝牙」**说法不一**，动画标 ❓。
+
+| # | 动画里的说法 | 徽章 | 出处原文要点 | 网址 |
+|---|---|---|---|---|
+| 1 | 10 世纪丹麦国王哈拉尔（Harald Gormsson，约 985/986 年去世），外号「蓝牙」，当过丹麦和挪威的国王 | 📜 | 维基："Harald 'Bluetooth' Gormsson … died c. 985/86) was a king of Denmark and Norway." | https://en.wikipedia.org/wiki/Harald_Bluetooth |
+| 2 | 他把丹麦各部落统一成一个王国（耶林石碑上刻着这件事） | 📜 | 维基 Harald："Its inscription credits Harald with unifying Denmark"；维基 Bluetooth："King Harald Bluetooth, who united the disparate Danish tribes into a single kingdom"；蓝牙技术联盟（SIG）官网：well known for "Uniting Denmark and Norway in 958" | https://en.wikipedia.org/wiki/Harald_Bluetooth ；https://en.wikipedia.org/wiki/Bluetooth ；https://www.bluetooth.com/about-us/bluetooth-origin/ |
+| 3 | 外号「蓝牙」的来历：传统说法是他有一颗坏牙，颜色发黑发蓝；另一种说法是「蓝色（深色）的首领 thane」。**说法不一** | ❓ | 维基："The traditional explanation is that Harald must have had a conspicuous bad tooth that appeared 'blue' (i.e. 'black' …)"；"Another explanation, proposed by Scocozza (1997), is that he was called 'blue thane'"；SIG 官网说是 "His dead tooth, which was a dark blue/grey color" | https://en.wikipedia.org/wiki/Harald_Bluetooth ；https://www.bluetooth.com/about-us/bluetooth-origin/ |
+| 4 | 古诺尔斯语里的「蓝」（blár）意思是「蓝黑、深色」 | 📜 | 维基："*blár* 'blue' meant 'blue-black', or 'dark-coloured'" | https://en.wikipedia.org/wiki/Harald_Bluetooth |
+| 5 | Bluetooth 是丹麦语 Blåtand（古诺尔斯语 blátǫnn）的英语说法：blue（蓝）+ tooth（牙） | 📜 | 维基 Bluetooth："Bluetooth is the Anglicised version of the Scandinavian *Blåtand*/*Blåtann* (or in Old Norse *blátǫnn*)" | https://en.wikipedia.org/wiki/Bluetooth |
+| 6 | 1997 年（SIG 官网说 1996 年的会议上），英特尔的工程师提议用「蓝牙」做无线技术的名字：国王统一了丹麦，这项技术要把电脑和手机「连在一起」 | 📜 | 维基："The name 'Bluetooth' was proposed in 1997 by Jim Kardach of Intel … Kardach chose the name to imply that Bluetooth similarly unites communication protocols."；SIG："Kardach … 'King Harald Bluetooth…was famous for uniting Scandinavia just as we intended to unite the PC and cellular industries with a short-range wireless link.'" | https://en.wikipedia.org/wiki/Bluetooth ；https://www.bluetooth.com/about-us/bluetooth-origin/ |
+| 7 | 本来只是临时代号，后来没来得及换名字，就一直用到今天 | 📜 | SIG："Bluetooth was only intended as a placeholder … making Bluetooth the only choice." | https://www.bluetooth.com/about-us/bluetooth-origin/ |
+| 8 | 蓝牙标志 = 两个北欧古字母（卢恩字母）ᚼ（H）和 ᛒ（B）合在一起：Harald Bluetooth 的首字母 | 📜 | SIG / 维基："The Bluetooth logo is a bind rune merging the Younger Futhark runes (Hagall) (ᚼ) and (Bjarkan) (ᛒ), Harald's initials." | https://www.bluetooth.com/about-us/bluetooth-origin/ ；https://en.wikipedia.org/wiki/Bluetooth |
+| 9 | 合成词：两个词粘在一起成一个新词——toothbrush = tooth + brush；football = foot + ball；sunflower = sun + flower | 📜 | toothbrush："from tooth (n.) + brush (n.1)"；football："from foot (n.) + ball (n.1)"；sunflower："from sun (n.) + flower (n.)" | https://www.etymonline.com/word/toothbrush ；https://www.etymonline.com/word/football ；https://www.etymonline.com/word/sunflower |
+| 10 | 中文「蓝牙」是照着意思一个字一个字翻的（蓝 + 牙），和 Europe「欧罗巴」照着声音翻（音译）正好相反 | 💡（中文对照，不是词源） | — | — |
