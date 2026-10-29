@@ -17,10 +17,10 @@
 | ⑧ | 单词卡光透视仪 | — | 全词库 1000+ 卡 | — | 不在本轮范围：卡片弹窗，非实验室页签，1000+ 张不能逐个手写脚本 |
 | ⑨ | `tense_matrix` | tenseIdx | `TENSE_ASPECT_MATRIX_DB` | 5 | ✅ 白板完成（5 案例 · 58–60 秒） |
 | ⑩ | `aux_transformer` | auxIdx | `AUX_TRANSFORMER_CASES` | 4 | ✅ 白板完成（4 案例 · 43–48 秒） |
-| ⑪ | `five_patterns` | patIdx | `FIVE_SENTENCE_PATTERNS_DB` | 5 | ⏳ 待做 |
+| ⑪ | `five_patterns` | patIdx | `FIVE_SENTENCE_PATTERNS_DB` | 5 | ✅ 白板完成（5 案例 · 42–51 秒） |
 | ⑫ | `writing_alchemist` | writeIdx | `WRITING_ALCHEMIST_DB` | 3 | ✅ 白板完成（3 案例 · 52–55 秒） |
 
-合计 9 个页签、34 个案例；做完一个，就把页签名加进 `insert_wb.py` 的 `READY` 列表。
+合计 9 个页签、34 个案例，**已全部完成**（2026-10-29）；做完一个，就把页签名加进 `insert_wb.py` 的 `READY` 列表。
 
 ## 2. 代码位置
 
@@ -66,6 +66,7 @@
 - ⑦ `metaphor_code`：颜色卡 4 例句「Time is gold!」常见说法是「Time is money.」。例句没有中文翻译，动画里的中文是自己写的。
 - ⑨ `tense_matrix`：例 5「They have already finished our homework」主语是 They 时应为 their；「将来体」不是真正的体；卡片写 3×3，但只有 5 格有数据；数组上方注释写「四大」，实际 5 项。
 - ⑩ `aux_transformer`：例 2 中文「里奥英语说得非常好」漏了 can 对应的「能」；「五大句型变形」（肯定→感叹五种句式）容易和 ⑪「五大基本句型」混淆，术语表已说明。
+- ⑪ `five_patterns`：例 ④ 金句注释写 show(看)，essence 写 show(展示)，应为「展示」；skeletonParts 里的 emoji 在白板里省略了。
 - ⑫ `writing_alchemist`：公式 2 讲「I was very happy」，但基础句是「We were very happy yesterday.」；「五感法则」只用了 3 种感官；What's more 释义「更有甚者」带贬义；母题三骨架写 Besides，范文用的是 What's more。
 
 - ⑧ 单词卡光透视仪不在本轮（见进度表），需要用户决定是否要做一个「通用模板」自动生成。
