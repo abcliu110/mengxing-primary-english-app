@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 02:25 JST（阶段 3：ze_mark 上线，已上线 8/11 幕，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-30 02:40 JST（阶段 3：ze_say 上线，已上线 9/11 幕，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -193,6 +193,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 10 | 新幕 `ze_subject` 句子必须有主语（v2 + 讲解员，A 中英思维） | ✅ 中文「下雨了 / 好冷 / 去上学了」省主语 → 照搬 Is raining. / Is cold. ❌（r2skip）→ 占位主语 it：It is raining. / It is cold! / What time is it? It is seven o'clock. → 有人做的事把人说出来：I go to school.（讲解员走几步，R4）/ He goes too.；✂️ 祈使句例外 Sit down, please. → 口诀「英语句子要有主，没人做事请 it 住」→ 🔮 好热啊！今天是星期一 = It is hot! It is Monday today. → 金句卡。验收：r2check --strict 20 词 8 句、R4 1/1；旧 77 幕渲染逐字节一致；appze 过；截图看过。注意：r2skip 里不要放单个常用词（如 Is），它会把正确句里的同一个词也滤掉。 |
 | 11 | 新幕 `ze_link` 形合 vs 意合（v2 + 讲解员，A 中英思维） | ✅ 中文靠意思连（下雨了，不去了）、「因为……所以……」成对用 → 照搬 Because it rained, so we stayed at home. ❌（r2skip）→ 英语用连接词、because / so 二选一、although / but 二选一（四个正确句都朗读）→ 中文只有逗号的地方英语补 and / so → 口诀「中文靠意思，英语靠钩子」→ 🔮 I was tired, so I went to bed early.（另一种说法也朗读）→ 金句卡。验收：r2check --strict 32 词 8 句；旧 78 幕渲染逐字节一致；appze 过；截图看过。R4：played / went 是过去发生的事，不演。 |
 | 12 | 新幕 `ze_mark` 单复数和时态要「上身」（v2 + 讲解员，总览幕） | ✅ 中文「一本书 / 三本书、每天去 / 昨天去」词不变 → 照搬 three book / I go yesterday ❌ → 英语换衣服：books（-s）、I go to school every day.（讲解员走，R4）/ I went to school yesterday.、She likes cats.（三单）→ two dogs、They played football yesterday.、✂️ 不规则 child → children、细讲指路（第一性原理 ③、时态矩阵、过去式门派）→ 口诀「中文靠小词，英语换衣服」→ 🔮 I read two books yesterday. → 金句卡。验收：r2check --strict 24 词 6 句、R4 1/1；旧 79 幕渲染逐字节一致；appze 过；截图看过。已知：荧光底色在沙箱截图里比文字略偏上，旧幕（wo_time_num）同样，属引擎 / 字体度量，未改。 |
+| 13 | 新幕 `ze_say` 说：say / speak / talk / tell（v2 + 讲解员，N 一字多词） | ✅ 中文四个「说」→ 照搬 speak hello / say English ❌ → 四张词卡：say hello（讲解员挥手打招呼，R4）、speak English、talk with a friend、tell me a story（+ tell him the news、talk about a film）→ 例子 Say thank you. / The teacher tells us the news. / Let's talk about the film. → 口诀 → 🔮 Can you speak French?（French 标 🥚）→ 金句卡。标题长，副标题缩成「🔀 一字多词」免得压住徽章。验收：r2check --strict 25 词 7 句、R4 1/1；旧 80 幕渲染逐字节一致；appze 过；截图看过。 |
 
 ## 1. 当前状态
 
