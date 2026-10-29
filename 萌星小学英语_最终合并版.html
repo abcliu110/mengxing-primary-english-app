@@ -17874,6 +17874,13 @@ WB_LAB.aux_transformer = (() => {
         N("隐喻：", "打比方：读书 opens a window to the world，给你打开一扇看世界的窗。");
         ring(k, g3, "opens a window to the world", C.purple);
         N("五感法则：", "还有一条：眼睛看 look、鼻子闻 smell、耳朵听 singing，把春天写活。");
+        // R2 补朗读（2026-10-29，旧幕推广 P4）：60 分原句、白板短语和范文段落逐句朗读
+        k.say("I like English very much.", { zh: "我非常喜欢英语。", word: "I like English very much am and really stories yesterday unforgettable books our study" });
+        k.say("Be crazy about, be fond of, enjoy doing. I enjoy reading in my free time.", { zh: "超爱、喜欢、喜欢做。我空闲时喜欢读书。", word: "be crazy about fond of enjoy doing reading in my free time be crazy about be fond of" });
+        k.say("We were very happy yesterday. What a wonderful day! How excited we were!", { zh: "我们昨天很开心。多美好的一天！我们多兴奋啊！", word: "We were happy What a How wonderful day had excited" });
+        k.say("Reading books is good for us. It opens a window to the world.", { zh: "读书对我们有好处。它打开一扇看世界的窗。", word: "is good for us opens window to the world not only but also" });
+        k.say("The park is very nice in spring.", { zh: "春天的公园很美。", word: "The park is very nice in spring" });
+        k.say("Look, smell. The flowers look beautiful and smell sweet. Birds are singing.", { zh: "看、闻。花儿看起来很美，闻起来很香。鸟儿在唱歌。", word: "look smell are singing singing ing", blocks: ["ing"] });
         finalBox(k, "口诀：换掉老词 like，加上时间状语，用感叹句和 not only… but also…",
           "还有一条 · 五感法则：视觉 look + 嗅觉 smell + 听觉 are singing（The park is very nice in spring. 的升级）");
         N("口诀：", "换掉老词加状语，感叹句和连接词一用，60 分秒变 100 分！");
@@ -17950,6 +17957,15 @@ WB_LAB.aux_transformer = (() => {
         k.T("也不能同句！", g3end + 12 * 9.6 + 10, 404, k.go(.5), .5, { size: 16, color: C.red, weight: 900 });
         // 第四棒：结尾框
         N("总结：", "最后一棒收尾：All in all,（总而言之）或 In a word,（总之），代替 At last。");
+        // R2 补朗读（2026-10-29，旧幕推广 P4）：60 分原句、白板短语和范文段落逐句朗读
+        k.say("First, I will do homework. And I also help my mom.", { zh: "首先，我要写作业。我还帮妈妈。", word: "First I will do homework And also help my mom" });
+        k.say("First of all, to begin with, I am going to finish my homework carefully.", { zh: "首先，一开始，我要认真写完作业。", word: "First of all To begin with am going finish my carefully To begin with" });
+        k.say("What's more, besides, I often help my parents do some housework, such as sweeping the floor.", { zh: "而且，另外，我常帮父母做家务，比如扫地。", word: "What's more Besides often parents some housework such as sweeping the floor" });
+        k.say("I was tired, but I was happy.", { zh: "我很累，但我很开心。", word: "was tired but happy is" });
+        k.say("Although I felt a little tired after the trip, I learned a lot and had a great time!", { zh: "虽然旅行后有点累，但我学到很多，玩得很开心！", word: "Although felt a little after trip learned lot had great time" });
+        k.say("Because it rained, we stayed at home. It rained, so we stayed at home.", { zh: "因为下雨，我们待在家里。下雨了，所以我们待在家里。", word: "Because so" });
+        k.say("All in all, in a word, my weekend is busy but meaningful. I can't wait for it!", { zh: "总而言之，总之，我的周末忙碌但有意义。我等不及了！", word: "All in all In a word weekend busy meaningful can't wait for it busy but meaningful" });
+        k.say("At last. Cohesion chain.", { zh: "最后。衔接链。", word: "At last Cohesion Chain" });
         finalBox(k, "第四棒 · 收尾：All in all, / In a word, my weekend is busy but meaningful. I can't wait for it!",
           "口诀：首先 First of all，而且 What's more，虽然 Although 不配 but，总之 All in all！");
         N("busy but meaningful：", "「忙碌但有意义」。这句只有 but、没有 Although，所以没问题。");
@@ -18005,10 +18021,23 @@ WB_LAB.aux_transformer = (() => {
         N("Tired as we were：", "「虽然我们很累」。结尾再用感叹句，像画龙点睛，一下子亮起来。");
         uline(k, p2, "Tired as we were,", C.brown); uline(k, p2, "what a fantastic day we had!", C.orange);
         N("be going to：", "母题三写计划：be going to「打算做……」，再换着用 will、plan to。");
+        // R2 补朗读（2026-10-29，旧幕推广 P4）：60 分原句、白板短语和范文段落逐句朗读
+        k.say("With, be good at. She is good at playing the piano.", { zh: "带有、擅长。她擅长弹钢琴。", word: "with be good at playing the piano good at playing the piano ing", blocks: ["ing"] });
+        k.say("Linda is a tall and outgoing girl with big bright eyes.", { zh: "琳达是个高个子、性格外向的女孩，有一双明亮的大眼睛。", word: "Linda is a tall and outgoing girl big bright eyes I but" });
+        k.say("Not only is she polite and helpful, but she is also good at playing the piano.", { zh: "她不仅有礼貌、乐于助人，还擅长弹钢琴。", word: "Not only she polite helpful also Not only is she" });
+        k.say("Whenever I have trouble with English, she always helps me patiently.", { zh: "每当我英语遇到困难，她总是耐心地帮我。", word: "Whenever have trouble English always helps me patiently" });
+        k.say("Last Sunday, the weather was sunny and warm.", { zh: "上周日，天气晴朗温暖。", word: "Last Sunday weather was sunny warm" });
+        k.say("I went to the countryside with my family by car.", { zh: "我和家人坐车去了乡下。", word: "went to countryside my family by car" });
+        k.say("In the morning, we picked fresh strawberries and fed the cute sheep.", { zh: "上午，我们摘了新鲜的草莓，喂了可爱的小羊。", word: "In morning we picked fresh strawberries fed cute sheep" });
+        k.say("In the afternoon, we took many beautiful photos by the lake.", { zh: "下午，我们在湖边拍了很多漂亮的照片。", word: "afternoon took many beautiful photos lake" });
+        k.say("Tired as we were, what a fantastic day we had!", { zh: "虽然我们很累，但这一天多棒啊！", word: "Tired as were what fantastic day had Tired as we were" });
+        k.say("Was, went, picked, fed, took, had. Go, take.", { zh: "是、去了、摘了、喂了、拍了、有了。去、拍。", word: "was went picked fed took had go take" });
+        k.say("Be going to, will, plan to. First, what's more, finally. I look forward to it!", { zh: "打算、将会、计划。首先、而且、最后。我很期待！", word: "be going to will plan going First What's more Finally look forward look forward to" });
         finalBox(k, "母题三 · 计划篇积木：打算总起(be going to) + 三项计划(First/What's more/Finally) + 期待收尾",
           "口诀：写人抓外貌·性格·爱好；写经历锁定过去式；写计划用 be going to / will / plan to / look forward to！");
         N("口诀：", "写人抓外貌性格爱好，写经历锁定过去式，写计划要换着用将来的说法！");
       },
+      r2skip: ["adj"],   // 公式里的缩写 adj.（形容词），不读
       terms: [
         ["母题", "最常考的作文题型，像「妈妈题」，很多作文题都是从它变出来的：写人、写过去的经历、写计划。"],
         ["范文", "可以学习、模仿的好作文。"],

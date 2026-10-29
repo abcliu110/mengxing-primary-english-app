@@ -64,6 +64,8 @@
     const list = [...words.values()].map(e => ({ word: e.word, raw: e.raw, block: e.block, where: [...e.where].join("+"),
       read: readSet.has(e.word), sentence: hasSentence(e.word, e.block) }));
     const saidN = says.map(sy => sentNorm(sy.en));
+    // 白板上的长段落按版面断行，一行常跨两句：相邻 2–3 句朗读连起来能盖住这一行也算已朗读（朗读按顺序播放）
+    for (let w = 2; w <= 3; w++) for (let i = 0; i + w <= says.length; i++) saidN.push(says.slice(i, i + w).map(sy => sentNorm(sy.en)).join(" "));
     const sents = [];
     shown.forEach(sh => sentences(sh.text).forEach(s => {
       const n = sentNorm(s).split(" ").filter(w => !SKIP.has(w)).join(" ");   // r2skip 的词（如对比符号 vs）不算进整句
