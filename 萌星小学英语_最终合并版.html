@@ -3446,6 +3446,8 @@ function renderHomeView() {
       </div>
     </div>
 
+    <!-- WO_HOME / ZE_HOME：单词身世、中英对照总枢入口已压成下方小卡（首页改版第 3 步）；保留此标记，insert_wb.py 据此不再插入旧横幅 -->
+    <!-- ZE_HOME（同上） -->
     <div class="home-sec">🧭 理解英语：三大总枢</div>
     <div class="hub-minis">
         <div class="hub-mini" onclick="navigateTo('first_principles_hub', { lawIdx: 0, actIdx: 0 })" style="background:#eef2ff; border-color:#4338ca40;">
@@ -11850,6 +11852,20 @@ let superLabState = {
   writeIdx: 0
 };
 
+const LAB_GROUPS = [
+  { name: "👄 发音", tabs: [["pron_map", "👄 发音五大坑 + 口腔地图"], ["intonation_map", "🎵 语调 · 重音 · 弱读"]] },
+  { name: "🔤 词汇", tabs: [["phrasal_key", "🔑 短语动词总钥匙"], ["eight_endings", "🔚 只剩 8 个词尾"], ["irregular_plural", "👣 不规则复数"], ["past_clans", "⚔️ 过去式四大门派"], ["metaphor_code", "🎭 三大隐喻密码"]] },
+  { name: "🧩 语法 · ✍️ 写作", tabs: [["bamboo_tree", "🎋 竹节句 vs 树干句"], ["adj_order", "👑 形容词排座次"], ["tense_matrix", "🧭 时 × 体矩阵"], ["aux_transformer", "🪞 助动词照妖镜"], ["five_patterns", "🦴 五大基本句型"], ["writing_alchemist", "🏆 高分作文炼金炉"]] }
+];
+(function () {
+  const st = document.createElement("style");
+  st.textContent = `.lab-tabgroups{display:flex;flex-direction:column;gap:6px;}
+.lab-tabgroup{display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+.lab-tabgroup-name{font-weight:900;font-size:0.8rem;color:#a7f3d0;min-width:96px;}
+.lab-tab{padding:6px 11px;border-radius:10px;font-weight:900;font-size:0.8rem;background:rgba(255,255,255,0.12);color:#fff;border:0;cursor:pointer;font-family:inherit;}
+.lab-tab.on{background:#f59e0b;color:#0f172a;}`;
+  document.head.appendChild(st);
+})();
 function renderSuperLabHubView() {
   // 入口参数只用一次（用完就删）：否则页签按钮改了 superLabState.labTab，重绘时又被入口参数改回去，切不了页签（2026-10-29 修）
   if (currentView.params.labTab) { superLabState.labTab = currentView.params.labTab; delete currentView.params.labTab; }
@@ -11868,23 +11884,23 @@ function renderSuperLabHubView() {
   const tab = superLabState.labTab;
 
   const tabTitles = {
-    phrasal_key: "🔑 ① 短语动词总钥匙（含万能动词×向量转盘）",
-    bamboo_tree: "🎋➔🌳 ② 竹节句vs树干句手术台",
-    adj_order: "👑🚂 ④ 皇家形容词排座次定律",
-    past_clans: "⚔️ ⑤ 不规则过去式四大门派",
-    intonation_map: "🎵👂 ⑥ 语调地图（含名动重音与弱读连读机）",
-    metaphor_code: "🎭🌈 ⑦ 身体/颜色/动物三大隐喻",
-    tense_matrix: "🧭⏳ ⑨ 时×体二维时空沙盘",
-    aux_transformer: "⚡🪞 ⑩ 助动词照妖镜变形机",
-    five_patterns: "🧱🦴 ⑪ 五大基本句型骨骼机",
-    writing_alchemist: "✍️🏆 ⑫ 高分作文黄金炼金炉",
-    eight_endings: "🔚 ⑬ 英语只剩 8 个词尾",
-    pron_map: "👄 ⑭ 发音五大坑 + 48 音标口腔地图",
-    irregular_plural: "👣 ⑮ 不规则复数"
+    phrasal_key: "🔑 短语动词总钥匙（含万能动词×向量转盘）",
+    bamboo_tree: "🎋➔🌳 竹节句vs树干句手术台",
+    adj_order: "👑🚂 皇家形容词排座次定律",
+    past_clans: "⚔️ 不规则过去式四大门派",
+    intonation_map: "🎵👂 语调地图（含名动重音与弱读连读机）",
+    metaphor_code: "🎭🌈 身体/颜色/动物三大隐喻",
+    tense_matrix: "🧭⏳ 时×体二维时空沙盘",
+    aux_transformer: "⚡🪞 助动词照妖镜变形机",
+    five_patterns: "🧱🦴 五大基本句型骨骼机",
+    writing_alchemist: "✍️🏆 高分作文黄金炼金炉",
+    eight_endings: "🔚 英语只剩 8 个词尾",
+    pron_map: "👄 发音五大坑 + 48 音标口腔地图",
+    irregular_plural: "👣 不规则复数"
   };
 
   renderSubNavbar(
-    ["首页", "🚀 v4.0 十二大王炸规律实验室", tabTitles[tab] || "规律实验室"],
+    ["首页", "⚡ 王炸实验室", tabTitles[tab] || "规律实验室"],
     `<button class="nav-btn quiz-launch" onclick="navigateTo('first_principles_hub', { lawIdx: 0, actIdx: 0 })">🧠 六大第一性原理总枢</button>`
   );
 
@@ -12403,63 +12419,12 @@ function renderSuperLabHubView() {
     <div style="background:linear-gradient(135deg, #064e3b 0%, #0f172a 55%, #311042 100%); color:#fff; border-radius:22px; padding:18px 22px; border:3px solid #10b981; margin-bottom:18px;">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
         <div>
-          <span style="background:#10b981; color:#0f172a; padding:3px 11px; border-radius:999px; font-weight:900; font-size:0.78rem;">🚀 v4.0 终极宗师 · 十二大王炸规律实验室</span>
-          <h2 style="margin:6px 0 2px; font-size:1.36rem; font-weight:900;">⚡ 英语全维度母语级底层规律交互沙盘（点击下方任一王炸引擎立即切换）</h2>
+          <span style="background:#10b981; color:#0f172a; padding:3px 11px; border-radius:999px; font-weight:900; font-size:0.78rem;">⚡ 王炸实验室</span>
+          <h2 style="margin:6px 0 2px; font-size:1.36rem; font-weight:900;">底层规律实验室（按发音、词汇、语法分组，点名字切换）</h2>
         </div>
       </div>
-      <div style="display:flex; gap:6px; flex-wrap:wrap;">
-        <button onclick="superLabState.labTab='phrasal_key'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='phrasal_key'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='phrasal_key'?'#0f172a':'#fff'};">
-          🔑 ① 短语动词总钥匙
-        </button>
-        <button onclick="superLabState.labTab='bamboo_tree'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='bamboo_tree'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='bamboo_tree'?'#0f172a':'#fff'};">
-          🎋➔🌳 ② 竹节vs树干句
-        </button>
-        <button onclick="superLabState.labTab='adj_order'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='adj_order'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='adj_order'?'#0f172a':'#fff'};">
-          👑🚂 ④ 形容词排座次
-        </button>
-        <button onclick="superLabState.labTab='past_clans'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='past_clans'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='past_clans'?'#0f172a':'#fff'};">
-          ⚔️ ⑤ 过去式四大门派
-        </button>
-        <button onclick="superLabState.labTab='intonation_map'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='intonation_map'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='intonation_map'?'#0f172a':'#fff'};">
-          🎵👂 ⑥ 语调地图
-        </button>
-        <button onclick="superLabState.labTab='metaphor_code'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='metaphor_code'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='metaphor_code'?'#0f172a':'#fff'};">
-          🎭🌈 ⑦ 身体/颜色/动物隐喻
-        </button>
-        <button onclick="superLabState.labTab='tense_matrix'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='tense_matrix'?'#f59e0b':'rgba(13,148,136,0.45)'}; color:${tab==='tense_matrix'?'#0f172a':'#fff'}; border:1px solid #2dd4bf;">
-          🧭⏳ ⑨ 时×体二维沙盘
-        </button>
-        <button onclick="superLabState.labTab='aux_transformer'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='aux_transformer'?'#f59e0b':'rgba(234,88,12,0.45)'}; color:${tab==='aux_transformer'?'#0f172a':'#fff'}; border:1px solid #fb923c;">
-          ⚡🪞 ⑩ 助动词照妖镜变形
-        </button>
-        <button onclick="superLabState.labTab='five_patterns'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='five_patterns'?'#f59e0b':'rgba(67,56,202,0.45)'}; color:${tab==='five_patterns'?'#0f172a':'#fff'}; border:1px solid #818cf8;">
-          🧱🦴 ⑪ 五大基本句型骨骼
-        </button>
-        <button onclick="superLabState.labTab='writing_alchemist'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='writing_alchemist'?'#f59e0b':'rgba(162,28,175,0.45)'}; color:${tab==='writing_alchemist'?'#0f172a':'#fff'}; border:1px solid #e879f9;">
-          ✍️🏆 ⑫ 高分作文炼金炉
-        </button>
-        <button onclick="superLabState.labTab='eight_endings'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='eight_endings'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='eight_endings'?'#0f172a':'#fff'};">
-          🔚 ⑬ 只剩 8 个词尾
-        </button>
-        <button onclick="superLabState.labTab='pron_map'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='pron_map'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='pron_map'?'#0f172a':'#fff'};">
-          👄 ⑭ 发音坑 + 口腔地图
-        </button>
-        <button onclick="superLabState.labTab='irregular_plural'; renderSuperLabHubView();"
-          style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='irregular_plural'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${tab==='irregular_plural'?'#0f172a':'#fff'};">
-          👣 ⑮ 不规则复数
-        </button>
+      <div class="lab-tabgroups">${LAB_GROUPS.map(g => `
+        <div class="lab-tabgroup"><span class="lab-tabgroup-name">${g.name}</span>${g.tabs.map(([id, label]) => `<button onclick="superLabState.labTab='${id}'; renderSuperLabHubView();" class="lab-tab${tab === id ? ' on' : ''}">${label}</button>`).join("")}</div>`).join("")}
       </div>
     </div>
     ${bodyHtml}
