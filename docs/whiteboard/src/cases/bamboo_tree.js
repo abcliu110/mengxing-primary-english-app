@@ -236,49 +236,106 @@ WB_LAB.bamboo_tree = [
       ["and（连接词）", "把两个句子连成一句的桥。有了 and，一句话里才可以有两个谓语动词。"]
     ]
   },
-  // ───────── ③ 长定语压塌车头病 ─────────
+  // ───────── ③ 长定语压塌车头病（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/bamboo_tree_classic.js（R1 零丢失）。原左（竹节句 + 病句）右（树干句）两半拆成两个镜头；树整体左移 300；紫（定语括号 / 波浪线）改 V3 蓝 / 红，树干 / 王冠保留道具色。
   {
     build(k) {
-      const { C, N } = k;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一句的毛病：修饰语太长，把最重要的「女孩」压到了后面。");
-      k.header("病句手术 ③  长定语压塌车头病");
-      k.leftHead();
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "竹节句 vs 树干句", sub: "病句手术 ③  长定语压塌车头病", badges: ["💡", "✂️"], steps: ["① 竹节句", "② 车头压塌", "③ 立主干", "④ 修饰后挂", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 竹节句 + 车头压塌 ─────
+      D.step(0); D.shot();
+      k.head("汉语：竹节句", 40, 108, C.ink);
       N("竹节句：", "中文喜欢把所有修饰语都堆在名词前面，越堆越长。");
       const z = k.zh("在树下看书的那个穿红裙子的女孩是我姐姐。", 40, 155, 21);
       N("定语：", "修饰名词的词语，说明是「哪个、什么样的」，比如「穿红裙子的」。");
-      k.bracket(z, 0, 12, "一长串定语");
+      k.bracket(z, 0, 12, "一长串定语", C.blue);
       N("核心名词：", "句子真正在说的那个人或东西：女孩。");
       k.circle(z, 13, 14, C.green);
+      k.act(me, "point", S.at - .6, 1.2, { at: [z.cx(13), z.cy] });
       k.bamboo(["在树下看书的", "穿红裙子的", "女孩"], 212, 50, 449, 18);
       k.note("中文：修饰语全压在「女孩」前面", 40, 290);
+      D.step(1);
       N("中式英语（Chinglish）：", "照着中文的顺序硬翻，主语 the girl 被压到了最后。");
       const m1 = k.mono("Under the tree reading book in red dress", 40, 340, 18);
       const m2 = k.mono("the girl is my sister.", 40, 372, 18);
-      k.squiggle(m1, "Under the tree reading book in red dress", 0, C.purple);
+      k.squiggle(m1, "Under the tree reading book in red dress", 0, C.red);
       k.underline(m2, "the girl", 0, C.green);
       k.redX(12, 320);
+      k.act(me, "surprised", S.at - .3, 1); k.expr(me, "oops", S.at - .3, 1.4);
+      sayAt("Chinglish puts the long part first.", { zh: "中式英语把长长的修饰放在前面。", word: "Chinglish" });
       N("", "英语要第一时间说出核心名词 The girl，修饰语挂在它后面。");
       k.note("英语：先立核心名词，修饰语挂后面！", 40, 414, { size: 17, color: C.red, weight: 900 });
-      k.rightHead();
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 镜头 2 · 树干句：核心名词在前，修饰语后挂 ─────
+      D.step(2); D.shot();
+      k.head("英语：树干句", 40, 108, C.green);
       N("树干句：", "先长出主干 The girl is my sister，再把修饰语挂上去。");
-      k.tree({ gx0: 560 });
+      k.tree({ cx: 420, gx0: 260, gx1: 610 });
       N("主干：", "The girl is my sister（那个女孩是我姐姐）。is 是谓语动词。");
-      const s = k.sign("The girl is my sister", 720, 300, "is", { size: 20, crownTag: "谓语王" });
+      const s = k.sign("The girl is my sister", 420, 300, "is", { size: 20, crownTag: "谓语王" });
+      const syR = sayAt("The girl is reading a book. She is my sister.", { zh: "那个女孩在看书。她是我姐姐。", word: "girl is reading book my sister" });
+      const bk = k.prop("book", 0, 0, { hidden: true });
+      k.act(me, "read", syR.t, Math.max(1.4, syR.dur * .55), { prop: bk, words: ["reading"] });
+      D.step(3);
       N("后置：", "修饰语放到名词后面，叫后置。英语里长的修饰语都挂在名词后面。");
       const gx = s.wordX("girl");
-      k.chip("in a red dress", 520, 362, [gx, s.y + s.h], { string: true, tag: "穿着：挂在 girl 后", tagX: 522, tagY: 412 });
+      k.chip("in a red dress", 220, 362, [gx, s.y + s.h], { string: true, tag: "穿着：挂在 girl 后", tagX: 222, tagY: 412 });
       N("介词短语：", "介词 + 名词，比如 in a red dress（穿红裙子）、under the tree（在树下）。");
-      k.chip("under the tree", 680, 362, [gx, s.y + s.h], { string: true, tag: "位置：挂在 girl 后", tagX: 684, tagY: 412 });
+      k.chip("under the tree", 380, 362, [gx, s.y + s.h], { string: true, tag: "位置：挂在 girl 后", tagX: 384, tagY: 412 });
+      sayAt("Under the tree. In a red dress.", { zh: "在树下。穿红裙子。", word: "under the tree in red dress a" });
+      k.act(me, "walk", S.at, 1, { to: 1010 });
+      k.wait(1);
       N("", "连起来：核心名词在前，修饰语挂后，句子就站稳了！");
       k.final("The girl in a red dress under the tree is my sister.", "is", "在树下看书的那个穿红裙子的女孩是我姐姐。  先说女孩，再挂修饰！");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
-      k.say("Under the tree. In a red dress.", { zh: "在树下。穿红裙子。", word: "under the tree in red dress a" });
-      k.say("The girl is reading a book. She is my sister.", { zh: "那个女孩在看书。她是我姐姐。", word: "girl is reading book my sister" });
-      k.say("Chinglish puts the long part first.", { zh: "中式英语把长长的修饰放在前面。", word: "Chinglish" });
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 口诀 ─────
+      D.step(4); D.shot();
+      k.act(me, "walk", S.at, 1.2, { to: 892 });
       N("口诀：", "先立核心名词，长修饰语往后挂。");
+      P(k.roughRect(40, 118, 760, 48), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：先立核心名词，长修饰语往后挂。", 60, 150, go(1.2), 1.2, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.4);
+
+      // ───── 🔮 预测 ─────
+      D.step(5);
+      N("预测：", "「戴眼镜的那个男孩是我哥哥」：先说哪个词？with glasses（戴眼镜的）挂在哪儿？先想 3 秒！");
+      P(k.roughRect(40, 206, 760, 150), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 206, 760, 150), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 戴眼镜的那个男孩是我哥哥。", 64, 246, go(.8), .8, { size: 22, color: C.ink, weight: 900 });
+      T("The boy ___ is my brother.  ( with glasses )", 64, 284, go(1), 1, { size: 22, color: C.ink, weight: 900, font: D.MONO });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "先说核心名词 The boy，with glasses 挂在 boy 后面。");
+      const tRev = go(.3);
+      T("The boy with glasses is my brother.", 64, 330, go(1), 1, { size: 22, color: C.green, weight: 900, font: D.MONO });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("The boy with glasses is my brother.", { zh: "戴眼镜的那个男孩是我哥哥。", word: "boy with glasses brother my is the" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "英语先把核心名词说出来，\n长长的修饰语像挂件一样挂在后面", rhyme: "口诀：先立核心名词，长修饰语往后挂。", hlLines: 2, foot: "🌳 竹节句 vs 树干句 · 病句手术 ③" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "reading", act: "讲解员捧书读（read），与「The girl is reading a book」同步" },
+    ],
     r2skip: ["vs", "Under the tree reading book in red dress", "the girl is my sister."],   // 病句（长定语压在前面）不读
     terms: [
+      ["可信度徽章", "💡 竹子 / 大树、国王 / 挂件都是帮助记忆的比喻；✂️ 简化说法：「一句只有一个谓语动词」指没有 and 等连接词的简单句。"],
       ["定语", "修饰名词、说明「哪个、什么样的」的词语，比如「穿红裙子的」女孩。"],
       ["核心名词", "一堆修饰语中间，句子真正在说的那个人或东西，比如「女孩」(the girl)。"],
       ["后置", "把修饰语放到名词后面。中文定语在前，英语长的修饰语要后置：the girl in a red dress。"],
