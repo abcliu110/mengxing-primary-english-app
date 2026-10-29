@@ -21,7 +21,7 @@
 | ② | `fp_iconicity` | 字母象形与音义同源簇 | 4 | letterMorph | ⬜ |
 | ③ | `fp_boundedness` | 物理边界感统摄律 | 4 | knife、ring/target、building | ⬜ |
 | ④ | `fp_one_king` | 一山不容二虎单核谓语律 | 4 | throne、token | ⬜ |
-| ⑤ | `fp_vectors` | 三维几何向量时空律 | 4 | dims、vec、vehicle | ⬜ |
+| ⑤ | `fp_vectors` | 三维几何向量时空律 | 4 | dims、vec、vehicle | 🔶 1/4（5-1 ✅ 点/面/盒 + 小球落下） |
 | ⑥ | `fp_zoom_focus` | 焦点先行与镜头缩放律 | 4 | xmasTree、spotlight、zoom、timeGrid | ⬜ |
 
 建议顺序：① → ⑤ → ③ → ④ → ⑥ → ②（道具难度从高到低，先把最难的引擎动效验证掉）。
