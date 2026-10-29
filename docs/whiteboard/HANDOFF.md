@@ -15,6 +15,7 @@
 - 01:36｜fp_economy 第 2 幕升 v2（撞车 → 插 /ɪ/ → -es / -ed 两栏 → 口诀 → 🔮 kisses 预测 → 金句卡；R4 watch）｜`de2c9cd`｜`work/shots/fp_economy_2_对比总图.png`｜原结论条 D.fin 换成 v2 金句卡（文字原样）；旧幕橙色改 V3 四色（橙色不在 v2 调色板，会渲染成 undefined）；新增预测题词 kiss/kisses 都配了朗读
 - 01:38｜fp_economy 第 3 幕升 v2（a→an / in-→im- 拆两个镜头 + 🔮 an elephant + 金句卡；R4 fly）｜`fc4c25e`｜`work/shots/fp_economy_3_对比总图.png`｜徽章加 ✂️（a/an 看读音不看字母属于简化说法）；例句 eat 无对应人物动作，r2check 只作提示，未加
 - 01:42｜fp_economy 第 4 幕升 v2，fp_economy 4 幕全部完成（音节房间动画保留 + 🔮 sitting + 金句卡；R4 running / run / stop / sit / sitting）｜`cc3dd8a`｜`work/shots/fp_economy_4_对比总图.png`｜原左右两半拆两个镜头；门的木色是道具色保留；例句 swim、eat 没有对应人物动作（动作库无游泳 / 吃），r2check 只作提示，留待扩 wb_actor.js 时补
+- 01:44｜fp_vectors 第 1 幕升 v2（at/on/in 点面体 + 时间小图 + 🔮 on Sunday + 金句卡；R4 get up）｜`a54b7f4`｜`work/shots/fp_vectors_1_对比总图.png`｜新建 fp_vectors_classic.js（只改 WB_LAB 名）；三列从 165/480/795 左移到 140/400/660，避免和讲解员重叠；R1 ❌ 只剩颜色 / 路径坐标
 
 ## 1. 现在做到哪
 
