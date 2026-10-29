@@ -109,7 +109,14 @@
           "口诀：t、d 结尾金钟罩，-ed 进不来，原样不变！read 只变读音 /red/。");
         k.say("He cut the cake and hurt his finger.", { zh: "他切蛋糕时弄伤了手指。", word: "cut" });
         N("口诀：", "t、d 结尾金钟罩，-ed 进不来，原样不变！");
+        // R2 补朗读（2026-10-29，旧幕推广：四派都是不规则过去式，不属于将来并走的「复数例」，先补）
+        k.say("Play, played. Ed.", { zh: "玩，玩了。加 -ed。", word: "play played ed", blocks: ["ed"] });
+        k.say("He put his book on the desk yesterday.", { zh: "他昨天把书放在桌上了。", word: "He his book on the desk yesterday" });
+        k.say("I fell off my bike and hurt my foot.", { zh: "我从自行车上摔下来，弄伤了脚。", word: "I fell off my bike and hurt foot hurt my foot" });
+        k.say("I read an interesting book last night. Read sounds like red.", { zh: "我昨晚读了一本有趣的书。read 的过去式读起来像 red。", word: "read an interesting last night red" });
+        k.say("Hit, let, cost. The book cost ten yuan.", { zh: "打、让、花费。这本书花了十元。", word: "hit let cost" });
       },
+      r2skip: ["putted", "hurted", "AAA", "A A A"],   // 红叉错写 putted / hurted；AAA 是派别标签（原形 = 过去式 = 过去分词）
       terms: [
         ["过去式", "动词表示「以前发生的事」时的样子，比如 play → played、put → put。"],
         ["原形", "动词最原本、没有变化的样子，也就是词典里查到的样子，比如 put、sing、buy。"],
@@ -181,6 +188,14 @@
           "口诀：现在 i 扁嘴，过去 a 张嘴，换个元音就过去！");
         k.say("She drank some milk and sat down.", { zh: "她喝了点牛奶，然后坐下了。", word: "drank" });
         N("口诀：", "现在 i 扁嘴，过去 a 张嘴，换个元音就过去！");
+        // R2 补朗读（2026-10-29，旧幕推广：四派都是不规则过去式，不属于将来并走的「复数例」，先补）
+        k.say("Sing, sang, sung. We sang English songs at the party.", { zh: "唱，唱了，唱过。我们在聚会上唱了英文歌。", word: "a sing sung We English songs at the party" });
+        k.say("Swim, swam, swum. I swam in the blue sea last summer.", { zh: "游，游了，游过。去年夏天我在蓝色的大海里游泳。", word: "swim swam swum I in blue sea last summer" });
+        k.say("Drink, drank, drunk. He drank a big glass of milk.", { zh: "喝，喝了，喝过。他喝了一大杯牛奶。", word: "drink drunk He big glass of milk" });
+        k.say("Sit, sat. Give, gave. She sat down and gave me a smile.", { zh: "坐，坐了。给，给了。她坐下来，对我笑了笑。", word: "sit sat give gave She down and me smile" });
+        k.say("Ng, nk. Sing, drink.", { zh: "-ng、-nk 结尾。唱、喝。", word: "ng nk", blocks: ["ng", "nk"] });
+        k.say("Begin, ring, rang. The bell rang.", { zh: "开始、响、响了。铃响了。", word: "begin ring rang" });
+        k.say("Run, ran. Come, came. I ran home and came back. Ride a bike. Ed.", { zh: "跑，跑了。来，来了。我跑回家又回来了。骑自行车。-ed。", word: "run ran come came bike ed", blocks: ["ed"] });
       },
       terms: [
         ["元音交替（Ablaut）", "不加 -ed，只换掉单词中间的元音来表示时间，比如 sing → sang → sung。"],
@@ -244,6 +259,12 @@
           "口诀：加 t 太挤要减肥，两个 e 变一个 e！");
         k.say("We met at the park.", { zh: "我们在公园见面了。", word: "met" });
         N("口诀：", "加 t 太挤要减肥，两个 e 变一个 e！");
+        // R2 补朗读（2026-10-29，旧幕推广：四派都是不规则过去式，不属于将来并走的「复数例」，先补）
+        k.say("Ee, ea. Sleep, feel, leave.", { zh: "ee、ea。睡、感觉、离开。", word: "ee ea sleep feel leave", blocks: ["ee", "ea"] });
+        k.say("I slept very well last night.", { zh: "我昨晚睡得很好。", word: "I very well last night" });
+        k.say("He felt very happy yesterday.", { zh: "他昨天很开心。", word: "felt He happy yesterday" });
+        k.say("The train left ten minutes ago.", { zh: "火车十分钟前开走了。", word: "left The train ten minutes ago" });
+        k.say("Keep, kept. Sweep, swept. Meet. Feed, fed.", { zh: "保持、扫、见面、喂。", word: "keep kept sweep swept meet feed fed" });
       },
       terms: [
         ["长元音", "要拉长读的元音，比如 /iː/（读成「衣——」）。ee、ea 经常读 /iː/，比如 sleep、leave。"],
@@ -305,6 +326,12 @@
           "口诀：原形有 a 用 aught，其余全用 ought，gh 不出声！");
         k.say("I thought he caught the ball.", { zh: "我以为他接住了球。", word: "caught" });
         N("口诀：", "原形有 a 用 aught，其余全用 ought，gh 不出声！");
+        // R2 补朗读（2026-10-29，旧幕推广：四派都是不规则过去式，不属于将来并走的「复数例」，先补）
+        k.say("Ought, aught, gh. Teach, catch, buy, bring, think, fight.", { zh: "-ought、-aught、gh。教、抓、买、带来、想、打架。", word: "ought aught gh a teach catch buy bring think fight", blocks: ["ought", "aught", "gh"] });
+        k.say("Mom bought a new dress for me.", { zh: "妈妈给我买了一条新裙子。", word: "Mom new dress for me" });
+        k.say("Br. He brought his puppy to the park.", { zh: "br-。他把小狗带到了公园。", word: "brought br He his puppy to the park", blocks: ["br"] });
+        k.say("Miss White taught us English last year.", { zh: "怀特老师去年教我们英语。", word: "taught Miss White us English last year" });
+        k.say("I thought about it. They fought.", { zh: "我想了想。他们打架了。", word: "thought fought" });
       },
       terms: [
         ["-ought / -aught", "这一派过去式共同的尾巴，都读 /ɔːt/，比如 bought、thought、taught、caught。"],
