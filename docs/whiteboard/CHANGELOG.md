@@ -457,3 +457,16 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 用户要求小人放大：wo_port.js 讲解员 s 从 0.74 改为 1.15（位置不变），已重建主 HTML。
 - ⚠️ 本次沙箱缺 Chromium 系统依赖，appwo 截图回归未跑成；下一位接手先 `python3 -m playwright install-deps chromium` 后跑 appwo + 截图，确认放大后小人不压住右下角内容（尤其金句卡、护照、托举镜头）。
 - 下一步：样板确认后铺到其他幕；阶段 1 剩余按需加载。
+
+---
+
+## 2026-10-30 文档清理 + 锚点检查
+
+| 提交 | 内容 |
+|---|---|
+| `0b5443a` | MASTER_DESIGN：决策数统一为 20 条（1–19、22，20/21 号未使用）；R1–R4 排序；§1 结构图改成实际结构；§3 合并表、§4 阶段状态、§6 时间更正 |
+| `f737b41` | DESIGN_HANDOFF §3「尚未决定」四项标为已决定 |
+| `c621e39` | README 首页结构、王炸实验室页签数更新 |
+| `121ce9c` | HANDOFF 拆成短 HANDOFF + 本文（全文原样搬来，零丢失脚本核对），加时间更正表 |
+| `562b6d4` | 新增 `src/anchorcheck.py`，接进 jscheck / insert_wb；修 insert_wb.py TABS 里 tense_matrix 被注释吞掉；home_entries.py 去掉写死路径 |
+| （本次） | 新增 `REVIEW_LIST.md` 真机审片清单 |
