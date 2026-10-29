@@ -19303,55 +19303,138 @@ WB_LAB.aux_transformer = (() => {
         ["铁律 / 考点", "铁律：一定要遵守的规则；考点：考试最爱考的地方。"]
       ]
     },
-    // ───────── ② SVP 状态天平型 ─────────
+    // ───────── ② SVP 状态天平型（v2 + 讲解员，2026-10-30）─────────
+    // 升级前原样保存在 cases/five_patterns_classic.js（R1 零丢失）。原一屏拆成 3 个镜头（骨架 + 天平 + 系动词两类 / 金句 + -ly 避坑 + 铁律 / 秋天金句 + 公式）+ 🔮 预测 + 金句卡；
+    // R4：鸡汤读到 smells 时冒出热气；树叶读到 turn yellow 时由绿变黄、飘落一片；读到 gets cool 时吹过一阵凉风；预测题讲解员举起一枝花。系动词本身不是肢体动作（同 bamboo_tree ② 先例），只做场景变化。
     {
       build(k) {
-        const { C, N } = k, h = tools(k);
+        k.v2();
+        const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = vtools(k, D);
+        const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+        const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
         N("", "句型 ②：有一种动词不是动作，而像数学里的等号「=」。");
-        k.header("状态天平型 · 绝不用副词", "句型 ② SVP", false);
+        k.act(me, "walk", .3, 1.6, { to: 892 });
+        k.act(me, "wave", 2.0, 1.8);
+        D.scene({ title: "句型 ② SVP", sub: "状态天平型 · 绝不用副词", badges: ["💡"], steps: ["① 骨架", "② 天平", "③ 金句", "④ 避坑", "⑤ 变化·公式", "🔮 预测"], cardDur: 3.6 });
+
+        // ───── 镜头 1 · 骨架方块 + 状态天平 + 两类系动词 ─────
+        D.step(0); D.shot();
         const B = h.layout([
-          { role: "S 主语", word: "The chicken soup", color: C.blue },
-          { role: "V 感官系动词 =", word: "smells / tastes", color: C.orange },
-          { role: "P 形容词表语", word: "so delicious!", color: C.brown }
+          { role: "S 主语", word: "The chicken soup", color: C.ink },
+          { role: "V 感官系动词 =", word: "smells / tastes", color: C.blue },
+          { role: "P 形容词表语", word: "so delicious!", color: C.green }
         ]);
         N("主语 S：", "The chicken soup（鸡汤），这句话在说它。");
         h.block(B[0]); h.word(B[0]);
         N("系动词：", "不表示动作，像一座「等号桥」，把后面的状态交给主语。");
         h.block(B[1], B[0]); h.word(B[1]);
+        k.act(me, "point", S.at - .6, 1.2, { at: [B[1].cx, h.BY + 20] });
         N("表语 P：", "系动词后面的部分，说主语「是什么、怎么样」，常用形容词。");
         h.block(B[2], B[1]); h.word(B[2]);
         N("形容词：", "描述样子、味道、心情的词，比如 delicious（美味的）、sweet（甜的）。");
-        k.wait(.6);
+        // 场景：一碗鸡汤，读到 smells 时冒热气（R4 场景变化）
+        const bowl = `M560,392 Q620,452 680,392 Z`;
+        P(bowl, go(.5), .5, { color: C.ink, w: 2.5 }); F(bowl, go(.1, 0), { color: C.hlYellow, op: .7 });
+        P(k.wl(548, 392, 692, 392, .4), go(.3), .3, { color: C.ink, w: 2.5 });
+        const gSt = D.sub();
+        [590, 620, 650].forEach(x => P(`M${x},380 q-8,-12 0,-24 q8,-12 0,-24`, go(.2, .02), .2, { color: C.grey, w: 2.2 }));
+        D.back(); k.hide(gSt);
+        const sySoup = sayAt("The chicken soup smells so delicious.", { zh: "鸡汤闻起来太香了。", word: "The chicken soup smells so delicious" });
+        k.fade(gSt, sySoup.t + sySoup.wd, .4, 1);
+        k.move(gSt, sySoup.t + sySoup.wd, Math.max(1.4, sySoup.dur - sySoup.wd), 0, -16, { ease: "move" });
+        k.actFx(["smells"], sySoup.t + sySoup.wd, Math.max(1.4, sySoup.dur - sySoup.wd), "鸡汤冒出三缕热气（闻起来香）");
+        k.look(me, 620, 400, sySoup.t + sySoup.wd, 2); k.expr(me, "happy", sySoup.t + sySoup.wd, 2);
+        D.step(1);
         N("状态天平：", "系动词两边一样重：鸡汤 = 很好吃，说的是同一个东西。");
         h.arc(B[0], B[2], "鸡汤 = 很好吃（两边平衡）");
         N("感官系动词：", "看、听、闻、尝、摸五种感觉：look、sound、smell、taste、feel。");
-        h.say("感官：look · sound · smell · taste · feel", 40, 232, { color: C.orange, size: 16, weight: 900, font: MONO, dur: 1.2 });
-        N("变化系动词：", "get、turn、become，意思都是「变得」。");
-        h.say("变化：get · turn · become", 560, 232, { color: C.purple, size: 16, weight: 900, font: MONO, dur: .9 });
-        N("", "看金句：sounds、tastes 是等号，后面 great、sweet 都是形容词。");
-        const m1 = h.line("That idea sounds great! The cake tastes sweet.", 280);
-        k.say("That idea sounds great! The cake tastes sweet.", { zh: "这个主意听起来很棒！蛋糕尝起来很甜。" });
-        h.tags(m1, [["That idea", "S", C.blue], ["sounds", "V", C.orange], ["great", "P", C.brown], ["The cake", "S", C.blue], ["tastes", "V", C.orange], ["sweet", "P", C.brown]]);
-        N("副词：", "-ly 结尾的词修饰动作，比如 sweetly（甜甜地）。系动词后面不能用它！");
-        const bad = h.line("tastes sweetly", 280, 18, C.red, 640);
-        h.strike(bad, "sweetly"); k.redX(612, 256);
-        N("", "turn 管颜色变化（树叶变黄），get 管天气变化（天气变凉）。");
-        const m2 = h.line("In autumn, the leaves turn yellow and the weather gets cool.", 362);
-        k.say("In autumn, the leaves turn yellow and the weather gets cool.", { zh: "秋天，树叶变黄，天气变凉。" });
-        h.tags(m2, [["In autumn", "时间挂件", C.grey], ["the leaves", "S", C.blue], ["turn", "V", C.orange], ["yellow", "P", C.brown], ["the weather", "S", C.blue], ["gets", "V", C.orange], ["cool", "P", C.brown]]);
-        h.say("铁律：系动词 + 形容词（对）    系动词 + -ly 副词（错）", 40, 422, { color: C.red, size: 17, weight: 900 });
-        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
-        k.say("The chicken soup smells so delicious.", { zh: "鸡汤闻起来太香了。", word: "The chicken soup smells so delicious" });
+        h.note("感官：look · sound · smell · taste · feel", 40, 290, { color: C.blue, size: 16, weight: 900, font: D.MONO, dur: 1.2 });
         k.say("Look, sound, smell, taste, feel. You look happy. I feel good.", { zh: "看、听、闻、尝、摸。你看起来很开心。我感觉很好。", word: "look sound smell taste feel" });
+        N("变化系动词：", "get、turn、become，意思都是「变得」。");
+        h.note("变化：get · turn · become", 40, 322, { color: C.ink, size: 16, weight: 900, font: D.MONO, dur: .9 });
         k.say("Get, turn, become. He becomes tall.", { zh: "变得。他长高了。", word: "get turn become" });
+        k.wait(.4);
+        D.wipe();
+
+        // ───── 镜头 2 · 金句 + -ly 避坑 + 铁律 ─────
+        D.step(2); D.shot();
+        N("", "看金句：sounds、tastes 是等号，后面 great、sweet 都是形容词。");
+        const m1 = h.line("That idea sounds great! The cake tastes sweet.", 170);
+        k.say("That idea sounds great! The cake tastes sweet.", { zh: "这个主意听起来很棒！蛋糕尝起来很甜。" });
+        h.tags(m1, [["That idea", "S", C.ink], ["sounds", "V", C.blue], ["great", "P", C.green], ["The cake", "S", C.ink], ["tastes", "V", C.blue], ["sweet", "P", C.green]]);
         k.say("That idea sounds great! The cake tastes sweet.", { zh: "这个主意听起来很棒！蛋糕尝起来很甜。", word: "That idea sounds great cake tastes sweet" });
+        D.step(3);
+        N("副词：", "-ly 结尾的词修饰动作，比如 sweetly（甜甜地）。系动词后面不能用它！");
+        const bad = h.line("tastes sweetly", 260, 18, C.red, 100);
+        h.strike(bad, "sweetly"); h.redX(64, 238);
+        k.act(me, "surprised", S.at - .4, 1);
         k.say("Sweetly, ly. She sings sweetly.", { zh: "甜甜地（-ly 副词）。她唱得很甜。", word: "sweetly ly", blocks: ["ly"] });
+        h.note("铁律：系动词 + 形容词（对）    系动词 + -ly 副词（错）", 40, 330, { color: C.red, size: 17, weight: 900 });
+        k.act(me, "point", S.at, 1.2, { at: [300, 324] });
+        D.hold(1.3);
+        D.wipe();
+
+        // ───── 镜头 3 · 秋天金句（变化系动词）+ 公式 ─────
+        D.step(4); D.shot();
+        N("", "turn 管颜色变化（树叶变黄），get 管天气变化（天气变凉）。");
+        const m2 = h.line("In autumn, the leaves turn yellow and the weather gets cool.", 170);
+        // 场景：一棵树，读到 turn yellow 时叶子由绿变黄、飘落一片（R4 turn 场景变化）
+        P(k.wl(620, 420, 620, 350, .4), go(.3), .3, { color: C.ink, w: 4 });
+        P(k.wl(540, 420, 700, 420, .4), go(.3), .3, { color: C.ink, w: 2 });
+        const LV = [[596, 336, 30, 22], [646, 332, 30, 22], [620, 304, 34, 24]];
+        LV.forEach(([x, y, rx, ry]) => { P(k.ellipse(x, y, rx, ry), go(.25), .25, { color: C.green, w: 2.5 }); F(k.ellipse(x, y, rx, ry), go(.05, 0), { color: C.tintGreen, op: 1 }); });
+        const gY = D.sub();
+        LV.forEach(([x, y, rx, ry]) => { P(k.ellipse(x, y, rx, ry), go(.05, 0), .05, { color: C.ink, w: 2.5 }); F(k.ellipse(x, y, rx, ry), go(.05, 0), { color: C.hlYellow, op: 1 }); });
+        D.back(); k.hide(gY);
+        const gLf = D.sub();
+        P(k.ellipse(668, 352, 8, 5), go(.05, 0), .05, { color: C.ink, w: 2 }); F(k.ellipse(668, 352, 8, 5), go(.05, 0), { color: C.hlYellow, op: 1 });
+        D.back(); k.hide(gLf);
+        const gW = D.wind(450, 360, 80); k.hide(gW);
+        const syAu = sayAt("In autumn, the leaves turn yellow and the weather gets cool.", { zh: "秋天，树叶变黄，天气变凉。" });
+        k.fade(gY, syAu.t + syAu.dur * .3, .8, 1);
+        k.actFx(["turn"], syAu.t + syAu.dur * .3, 1.2, "树叶由绿变黄");
+        k.fade(gLf, syAu.t + syAu.dur * .45, .2, 1);
+        k.path(gLf, syAu.t + syAu.dur * .45, 2, [[14, 22], [-6, 44], [18, 64]]);
+        k.fade(gW, syAu.t + syAu.dur * .7, .3, 1);
+        k.move(gW, syAu.t + syAu.dur * .7, Math.max(1, syAu.dur * .3), 60, 0, { ease: "move" });
+        k.actFx(["gets"], syAu.t + syAu.dur * .7, Math.max(1, syAu.dur * .3), "一阵凉风吹过（天气变凉）");
+        h.tags(m2, [["In autumn", "时间挂件", C.grey], ["the leaves", "S", C.ink], ["turn", "V", C.blue], ["yellow", "P", C.green], ["the weather", "S", C.ink], ["gets", "V", C.blue], ["cool", "P", C.green]]);
         k.say("In autumn, the leaves turn yellow and the weather gets cool.", { zh: "秋天，树叶变黄，天气变凉。", word: "In autumn leaves yellow and weather gets cool" });
+        k.act(me, "point", S.at - 1.2, 1.2, { at: [620, 320] });
         h.final("S（主语）+ 系动词（=）+ P（表语：名词 / 形容词 / 介词短语）", "那个主意听起来太棒了！蛋糕尝起来很甜。  系动词是等号！");
         N("口诀：", "系动词是等号，后面跟形容词，千万别跟 -ly。");
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 🔮 预测 ─────
+        D.step(5); D.shot();
+        N("预测：", "「这朵花闻起来很香」：smells 是系动词，后面用 sweet 还是 sweetly？先想 3 秒！");
+        h.quiz("🔮 这朵花闻起来很香。", "→  The flower smells ___.  ( sweet / sweetly )");
+        k.act(me, "think", S.at, 3.1);
+        D.hold(3);
+        N("揭晓：", "系动词后面跟形容词 sweet：The flower smells sweet.");
+        const tRev = go(.3);
+        h.reveal("The flower smells sweet.");
+        k.sfx("ding", tRev + .9);
+        const fl = k.prop("flower", 0, 0, { hidden: true });
+        const syQ = sayAt("The flower smells sweet.", { zh: "这朵花闻起来很香。", word: "flower smells sweet" });
+        k.act(me, "holdCard", syQ.t, Math.max(1.4, syQ.dur + .3), { prop: fl });
+        k.act(me, "cheer", syQ.t + Math.max(1.4, syQ.dur + .3) + .1, 1.2);
+        D.hold(1.4);
+
+        k.quoteCard({ insight: "系动词不是动作，是一个等号：\n主语 = 后面的状态", rhyme: "口诀：系动词是等号，后面跟形容词，\n千万别跟 -ly。", hlLines: 2, foot: "🦴 五大基本句型 · 句型 ② SVP" });
+        k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+        D.hold(2);
+        D.finish(.45);
       },
+      actionWords: [
+        { word: "smells", act: "读到「The chicken soup smells so delicious」时鸡汤冒出三缕热气（场景动作 actFx + fade + move），讲解员看过去露出开心表情" },
+        { word: "turn", act: "读到「the leaves turn yellow」时树叶由绿变黄、飘落一片（场景动作 actFx + fade + path）" },
+        { word: "gets", act: "读到「the weather gets cool」时一阵凉风从树旁吹过（场景动作 actFx + fade + move）" },
+      ],
       r2skip: ["SVP"],   // 成分标签，不读
       terms: [
+        ["可信度徽章", "💡 状态天平、等号桥、骨架都是帮助记忆的比喻。"],
         ["系动词", "不表示动作、像等号「=」的动词，把后面的状态交给主语，比如 am / is / are、look、taste、get。"],
         ["感官系动词", "和五种感觉有关的系动词：look 看起来、sound 听起来、smell 闻起来、taste 尝起来、feel 摸起来。"],
         ["变化系动词", "表示「变得」的系动词：get、turn、become。turn 常说颜色变化，get 常说天气变化。"],
