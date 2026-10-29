@@ -21222,7 +21222,7 @@ WB_LAB.fp_zoom_focus.push(
 <script type="text/plain" id="wbmod-fp_iconicity" data-deps="wo_props fp_props">
 // ==================== 第一性原理 ② 字母象形与音义同源簇（fp_iconicity）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[1].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 1 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_iconicity_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 1、2 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_iconicity_classic.js。依赖 wo_props + fp_props。
 // 讲法提醒（HANDOFF §4）：字母象形、音义簇多是「帮助记忆的联想」，字幕用「可以想成 / 像」；tw- = two 是真词源。
 WB_LAB.fp_iconicity = [
   // ───────── 2-1 M / S / B / C 像什么？（v2 + 讲解员，2026-10-30）─────────
@@ -21356,62 +21356,122 @@ WB_LAB.fp_iconicity = [
   },
 ];
 WB_LAB.fp_iconicity.push(
-  // ───────── 2-2 fl- 飘 · gl- 亮 · sl- 滑 ─────────
+  // ───────── 2-2 fl- 飘 · gl- 亮 · sl- 滑（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_iconicity_classic.js（R1 零丢失）。原一排三列拆成两个镜头（fl- · gl- / sl-），给讲解员让位；配色收进 V3 四色。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S, WOOD = k.C.brown;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：fly、flag、flower 开头都是 fl-，是巧合吗？");
-      k.header("② 字母象形与音义同源簇", "fl- 飘 · gl- 亮 · sl- 滑", false);
-      N("辅音丛：", "两三个辅音字母连在一起读，比如 fl-、gl-、sl-。");
-      const xs = [160, 480, 800];
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "fl- 飘 · gl- 亮 · sl- 滑", sub: "② 字母象形与音义同源簇", badges: ["💡", "⚠️"], steps: ["① fl- 飘", "② gl- 亮", "③ sl- 滑", "④ 例外", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
       const list = (x, pre, rest, color) => rest.forEach(([w, zh], i) => {
-        D.parts([[pre, color], [w, C.ink]], x - 80, 330 + i * 32, 20);
-        T(zh, x + 56, 330 + i * 32, go(.3), .3, { size: 15, color: C.grey });
+        FP.parts([[pre, color], [w, C.ink]], x - 80, 340 + i * 32, 20);
+        T(zh, x + 56, 340 + i * 32, go(.3), .3, { size: 15, color: C.grey });
       });
-      // fl-
-      T("fl-", xs[0], 120, go(.4), .4, { size: 34, color: C.blue, weight: 900, font: M, anchor: "middle" });
+
+      // ───── 镜头 1 · fl- 和 gl- ─────
+      D.step(0); D.shot();
+      const xs = [190, 540];
+      N("辅音丛：", "两三个辅音字母连在一起读，比如 fl-、gl-、sl-。");
+      T("fl-", xs[0], 140, go(.4), .4, { size: 34, color: C.blue, weight: 900, font: M, anchor: "middle" });
       N("", "读 fl- 时，上牙碰下唇吹一口气——可以想成风把东西吹得飘起来。");
-      P(`M${xs[0] - 110},180 q20,-8 40,0 M${xs[0] - 110},200 q20,-8 40,0 M${xs[0] - 110},220 q20,-8 40,0`, go(.8), .8, { color: "#94a3b8", w: 2.5 });
-      P(k.wl(xs[0], 270, xs[0], 160, .4), go(.4), .4, { color: C.brown, w: 4 });
-      const flag = k.group(); const fd = `M${xs[0] + 2},164 C${xs[0] + 30},150 ${xs[0] + 50},180 ${xs[0] + 80},166 L${xs[0] + 80},206 C${xs[0] + 50},220 ${xs[0] + 30},190 ${xs[0] + 2},204 Z`;
-      P(fd, go(.6), .6, { color: C.blue, w: 3 }); F(fd, go(.1, 0), { color: "#bfdbfe", op: 1 }); k.endGroup();
-      k.rot(flag, go(.01, 0), .01, 0, xs[0], 184); k.buzz(flag, go(1.4), 1.4, 3);
+      P(`M${xs[0] - 110},200 q20,-8 40,0 M${xs[0] - 110},220 q20,-8 40,0 M${xs[0] - 110},240 q20,-8 40,0`, go(.8), .8, { color: C.grey, w: 2.5 });
+      P(k.wl(xs[0], 290, xs[0], 180, .4), go(.4), .4, { color: WOOD, w: 4 });
+      const flag = D.sub(); const fd = `M${xs[0] + 2},184 C${xs[0] + 30},170 ${xs[0] + 50},200 ${xs[0] + 80},186 L${xs[0] + 80},226 C${xs[0] + 50},240 ${xs[0] + 30},210 ${xs[0] + 2},224 Z`;
+      P(fd, go(.6), .6, { color: C.blue, w: 3 }); F(fd, go(.1, 0), { color: C.tintBlue, op: 1 }); D.back();
+      k.rot(flag, go(.01, 0), .01, 0, xs[0], 204);
       list(xs[0], "fl", [["y", "飞"], ["ag", "旗子"], ["ower", "花"]], C.blue);
       k.wait(.3);
-      // gl-
-      T("gl-", xs[1], 120, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M, anchor: "middle" });
-      k.say("The flag flies in the wind.", { zh: "旗子在风中飘扬。", word: "flag" });
+      const syFl = sayAt("The flag flies in the wind.", { zh: "旗子在风中飘扬。", word: "flag" });
+      k.buzz(flag, syFl.t, Math.max(1.4, syFl.dur), 3);
+      k.actFx(["flies"], syFl.t, Math.max(1.4, syFl.dur), "旗子在风里飘起来");
+      k.act(me, "point", syFl.t, Math.max(1.2, syFl.dur), { at: [xs[0] + 40, 204] });
+      const syFl2 = sayAt("Fl. Fly, flag, flower. Birds fly over the flowers.", { zh: "fl。飞、旗子、花。鸟儿飞过花丛。", word: "fl fly flag flower", blocks: ["fl"] });
+      k.act(me, "jump", syFl2.t + syFl2.dur * .5, 1.1, { words: ["fly"] });
+
+      D.step(1);
+      T("gl-", xs[1], 140, go(.4), .4, { size: 34, color: C.red, weight: 900, font: M, anchor: "middle" });
       N("", "gl- 可以想成光滑、闪亮：透明的玻璃、眉开眼笑。");
-      const gl = `M${xs[1] - 30},160 L${xs[1] - 22},260 L${xs[1] + 22},260 L${xs[1] + 30},160`;
+      const gl = `M${xs[1] - 30},180 L${xs[1] - 22},280 L${xs[1] + 22},280 L${xs[1] + 30},180`;
       P(gl, go(.7), .7, { color: C.blue, w: 3 });
-      const sp = k.group(); P(`M${xs[1] + 50},170 l6,14 l14,6 l-14,6 l-6,14 l-6,-14 l-14,-6 l14,-6 Z M${xs[1] - 56},210 l4,9 l9,4 l-9,4 l-4,9 l-4,-9 l-9,-4 l9,-4 Z`, go(.5), .5, { color: C.orange, w: 2.5 }); k.endGroup();
+      const sp = D.sub(); P(`M${xs[1] + 50},190 l6,14 l14,6 l-14,6 l-6,14 l-6,-14 l-14,-6 l14,-6 Z M${xs[1] - 56},230 l4,9 l9,4 l-9,4 l-4,9 l-4,-9 l-9,-4 l9,-4 Z`, go(.5), .5, { color: C.red, w: 2.5 }); D.back();
       const ts = go(1.6); k.fade(sp, ts, .4, .2); k.fade(sp, ts + .5, .4, 1); k.fade(sp, ts + 1, .4, .2); k.fade(sp, ts + 1.4, .3, 1);
-      list(xs[1], "gl", [["ass", "玻璃"], ["ad", "高兴的"]], C.orange);
+      list(xs[1], "gl", [["ass", "玻璃"], ["ad", "高兴的"]], C.red);
       k.wait(.3);
-      // sl-
-      T("sl-", xs[2], 120, go(.4), .4, { size: 34, color: C.green, weight: 900, font: M, anchor: "middle" });
-      k.say("I am glad to see you.", { zh: "见到你我很高兴。", word: "glad" });
+      const syGl = sayAt("I am glad to see you.", { zh: "见到你我很高兴。", word: "glad" });
+      k.act(me, "wave", syGl.t, Math.max(1.2, syGl.dur)); k.expr(me, "happy", syGl.t, Math.max(1.4, syGl.dur));
+      sayAt("Gl. Glass, glad. The glass is clean.", { zh: "gl。玻璃、高兴的。玻璃杯很干净。", word: "gl glass glad", blocks: ["gl"] });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · sl- 滑 + 例外 ─────
+      D.step(2); D.shot();
+      const x2 = 240;
+      T("sl-", x2, 140, go(.4), .4, { size: 34, color: C.green, weight: 900, font: M, anchor: "middle" });
       N("", "sl- 可以想成轻轻地滑下去：滑梯、慢慢地、滑进梦里。");
-      P(`M${xs[2] - 80},170 L${xs[2] - 60},170 C${xs[2] - 10},180 ${xs[2] + 20},260 ${xs[2] + 90},262`, go(.8), .8, { color: C.green, w: 4 });
-      P(k.wl(xs[2] - 70, 170, xs[2] - 70, 270, .3), go(.3), .3, { color: C.green, w: 3 });
-      const bl = k.group(); const bd = `M${xs[2] - 74},158 a9,9 0 1,0 18,0 a9,9 0 1,0 -18,0`;
-      P(bd, go(.2), .2, { color: C.red, w: 2 }); F(bd, go(.1, 0), { color: "#fecaca", op: 1 }); k.endGroup();
-      k.arc(bl, go(1.6), 1.6, `M0,0 L14,0 C64,10 94,90 158,92`);
-      list(xs[2], "sl", [["ide", "滑梯"], ["ow", "慢的"], ["eep", "睡觉"]], C.green);
-      k.wait(.5);
-      T("这是帮助记忆的规律倾向，也有例外（比如 floor 地板）。", 40, 432, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
-      k.say("Go down the slide slowly.", { zh: "慢慢地滑下滑梯。", word: "slide" });
+      P(`M${x2 - 80},190 L${x2 - 60},190 C${x2 - 10},200 ${x2 + 20},280 ${x2 + 90},282`, go(.8), .8, { color: C.green, w: 4 });
+      P(k.wl(x2 - 70, 190, x2 - 70, 290, .3), go(.3), .3, { color: C.green, w: 3 });
+      const bl = D.sub(); const bd = `M${x2 - 74},178 a9,9 0 1,0 18,0 a9,9 0 1,0 -18,0`;
+      P(bd, go(.2), .2, { color: C.red, w: 2 }); F(bd, go(.1, 0), { color: C.tintRed, op: 1 }); D.back();
+      list(x2, "sl", [["ide", "滑梯"], ["ow", "慢的"], ["eep", "睡觉"]], C.green);
+      k.wait(.3);
+      const sySl = sayAt("Go down the slide slowly.", { zh: "慢慢地滑下滑梯。", word: "slide" });
+      k.arc(bl, sySl.t, Math.max(1.6, sySl.dur), `M0,0 L14,0 C64,10 94,90 158,92`);
+      k.actFx(["go"], sySl.t, Math.max(1.6, sySl.dur), "小球沿滑梯慢慢滑下去");
+      k.act(me, "point", sySl.t, Math.max(1.2, sySl.dur), { at: [x2 + 20, 240] });
+      sayAt("Sl. Slide, slow, sleep. The snail is slow. The cat is sleeping.", { zh: "sl。滑梯、慢的、睡觉。蜗牛很慢。小猫在睡觉。", word: "sl slide slow sleep", blocks: ["sl"] });
+
+      D.step(3);
+      T("这是帮助记忆的规律倾向，也有例外（比如 floor 地板）。", 40, 452, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      P(k.roughRect(470, 200, 300, 90), go(.6), .6, { color: C.red, w: 2.4 });
+      T("⚠️ floor", 490, 240, go(.5), .5, { size: 24, color: C.red, weight: 900, font: M });
+      T("地板：不飘也不飞", 490, 272, go(.5), .5, { size: 15, color: C.grey });
+      const syFlr = sayAt("Floor. The ball is on the floor.", { zh: "地板。球在地板上。", word: "floor" });
+      k.act(me, "surprised", syFlr.t, 1.2); k.expr(me, "oops", syFlr.t, 1.5);
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "fl 飞，gl 亮，sl 滑下来。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("Fl. Fly, flag, flower. Birds fly over the flowers.", { zh: "fl。飞、旗子、花。鸟儿飞过花丛。", word: "fl fly flag flower", blocks: ["fl"] });
-      k.say("Gl. Glass, glad. The glass is clean.", { zh: "gl。玻璃、高兴的。玻璃杯很干净。", word: "gl glass glad", blocks: ["gl"] });
-      k.say("Sl. Slide, slow, sleep. The snail is slow. The cat is sleeping.", { zh: "sl。滑梯、慢的、睡觉。蜗牛很慢。小猫在睡觉。", word: "sl slide slow sleep", blocks: ["sl"] });
-      k.say("Floor. The ball is on the floor.", { zh: "地板。球在地板上。", word: "floor" });
-      D.fin("开头的辅音丛常常带着同一种感觉：一个声音串起一串词", "口诀：fl 飞，gl 亮，sl 滑下来。");
-      k.wait(2);
+      P(k.roughRect(40, 470, 760, 44), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：fl 飞，gl 亮，sl 滑下来。", 60, 500, go(1), 1, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "sl- 像滑下去。冰面上 slip 一下，是滑倒，还是跳起来？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 slip　→　滑倒？还是跳起来？", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "slip 是脚下一滑——sl- 滑下来。");
+      const tRev = go(.3);
+      T("slip = 滑倒 —— sl- 滑下来", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Be careful! Don't slip on the ice.", { zh: "小心！别在冰上滑倒。", word: "slip ice" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "开头的辅音丛常常带着同一种感觉：\n一个声音串起一串词", rhyme: "口诀：fl 飞，gl 亮，sl 滑下来。", hlLines: 2, foot: "🧠 第一性原理 ② 字母象形与音义同源簇" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "flies", act: "旗子在读到「The flag flies」时飘动（场景动作 actFx + buzz），讲解员指着它" },
+      { word: "fly", act: "讲解员在读到「Birds fly」时跳起来（jump）" },
+      { word: "go", act: "小球在读到「Go down the slide」时沿滑梯滑下（场景动作 actFx + arc）" },
+    ],
     r2skip: ["ag", "ower", "ass", "ad", "ide", "ow", "eep"],   // 辅音丛后面的词尾残片（fl|ag、gl|ass、sl|ide 拆开展示），整词已朗读
-    terms: [],
+    terms: [
+      ["可信度徽章", "💡 音义联想是规律倾向（语言学叫「音义联觉」），⚠️ 有很多例外，如 floor、flower 的 fl- 没有「飞」的来源。"],
+    ],
   },
 );
 WB_LAB.fp_iconicity.push(
