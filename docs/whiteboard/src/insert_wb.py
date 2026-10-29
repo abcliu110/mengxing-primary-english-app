@@ -23,15 +23,31 @@ FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoo
 READY = ['bamboo_tree', 'vowel_shift', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
 WO_READY = ['wo_port']
-case_files = [os.path.join(HERE, 'cases', t + '.js') for t in READY]
+# ---------- 按需加载（决策 13）：每个模块写成不执行的 <script type="text/plain" id="wbmod-<id>">，
+# 第一次进入时由 wbLoadModule(id) 取出文字执行（见 wb_app.js）；道具文件是依赖（data-deps），先于模块执行。
+# 引擎、讲解员、App 接线、单词身世总枢页面仍然直接执行（首页和各总枢页面要用）。
+MODS = [(t, '') for t in READY]
 if FP_READY:
-    case_files += [os.path.join(HERE, 'cases', 'fp_props.js')] + [os.path.join(HERE, 'cases', t + '.js') for t in FP_READY]
+    MODS += [('fp_props', '')] + [(t, 'fp_props') for t in FP_READY]
 if WO_READY:
-    case_files += [os.path.join(HERE, 'cases', 'wo_props.js')] + [os.path.join(HERE, 'cases', t + '.js') for t in WO_READY]
+    MODS += [('wo_props', '')] + [(t, 'wo_props') for t in WO_READY]
+case_files = [os.path.join(HERE, 'cases', t + '.js') for t, _ in MODS]
+def mod_tag(mid, deps):
+    src = rd(os.path.join(HERE, 'cases', mid + '.js'))
+    # text/plain 里不能出现这两个序列，否则 HTML 解析器会提前结束或进入转义状态
+    assert '</script' not in src.lower() and '<!--' not in src, mid
+    return f'<script type="text/plain" id="wbmod-{mid}"' + (f' data-deps="{deps}"' if deps else '') + '>\n' + src + '\n</script>\n'
+mods_html = ('<!-- <<WB_MODULES_START>> 白板模块（按需加载，不要手改；改 docs/whiteboard/src/cases/*.js 后运行 insert_wb.py） -->\n'
+             + ''.join(mod_tag(m, d) for m, d in MODS) + '<!-- <<WB_MODULES_END>> -->\n')
 block = ('// <<WB_ENGINE_START>>\n' + rd(os.path.join(HERE, 'wb_engine.js')) + '\n'
          + rd(os.path.join(HERE, 'wb_actor.js')) + '\n'
-         + '\n'.join(rd(p) for p in case_files) + '\n' + rd(os.path.join(HERE, 'wb_app.js'))
+         + rd(os.path.join(HERE, 'wb_app.js'))
          + rd(os.path.join(HERE, 'wo_hub.js')) + '// <<WB_ENGINE_END>>\n')
+if '<!-- <<WB_MODULES_START>>' in s:
+    s = re.sub(r'<!-- <<WB_MODULES_START>>.*?<!-- <<WB_MODULES_END>> -->\n', lambda m: mods_html, s, flags=re.S)
+else:
+    assert s.count('</body>') == 1
+    s = s.replace('</body>', mods_html + '</body>')
 if '// <<WB_ENGINE_START>>' in s:
     s = re.sub(r'// <<WB_ENGINE_START>>.*?// <<WB_ENGINE_END>>\n', lambda m: block, s, flags=re.S)
 else:
@@ -125,5 +141,18 @@ if 'woAnimId' not in s.split(STOP)[1][:300]:
     assert s.count(STOP) == 1
     s = s.replace(STOP, STOP + '  if (typeof woAnimId !== "undefined" && woAnimId) { cancelAnimationFrame(woAnimId); woAnimId = null; }\n')
 
+# ---------- 按需加载（决策 13 第 3 条）：「万能动词 × 向量转盘」VV 动画脚本（约 1.7 MB：webp 素材 base64 + 场景）
+# 只有 verb_matrix 页签用，改成不执行的 wbmod-vv，进入页签渲染时才载入（首页不再解析这 1.7 MB）
+VV_OPEN = '<script>\n/* ===== 万能动词×向量转盘 VV 动画'
+if VV_OPEN in s:
+    assert s.count(VV_OPEN) == 1
+    i = s.index(VV_OPEN); j = s.index('</script>', i)
+    assert '<!--' not in s[i + 8:j]
+    s = s[:i] + '<script type="text/plain" id="wbmod-vv">' + s[i + 8:]
+VV_USE = '${(typeof VV !== "undefined" && VV.has(comboKey))'
+if VV_USE in s:
+    assert s.count(VV_USE) == 1
+    s = s.replace(VV_USE, '${(typeof wbLoadModule === "function" && wbLoadModule("vv"), typeof VV !== "undefined" && VV.has(comboKey))')
+
 open(F, 'w', encoding='utf-8').write(s)
-print('ok, cases:', [os.path.basename(p) for p in case_files])
+print('ok, lazy modules:', [m for m, _ in MODS])

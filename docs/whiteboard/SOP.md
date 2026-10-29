@@ -78,14 +78,15 @@
 - 每个英文词：先 `word` 单独读，再读例句；读的时候画面停住；只读正确英文。
 
 ### ⑤ 验收脚本
-- 写进主文件：`python3 docs/whiteboard/src/insert_wb.py`（登记列表：实验室 `READY`、第一性原理 `FP_READY`、单词身世 `WO_READY`）。
+- 写进主文件：`python3 docs/whiteboard/src/insert_wb.py`（登记列表：实验室 `READY`、第一性原理 `FP_READY`、单词身世 `WO_READY`）。登记的模块写成按需加载的 `<script type="text/plain" id="wbmod-<id>">`，第一次进入时才执行（决策 13）；案例文件里不能出现 `</script` 和 `<!--`（脚本会报错拦下）。
 - 脚本：
-  - `node --check`：抽出主文件全部 `<script>` 拼成一个 js 检查；
+  - `node --check`：`python3 docs/whiteboard/src/jscheck.py`（抽出主文件全部直接执行的 `<script>` + 按需加载模块 `wbmod-*`，拼起来检查并逐个检查）；
   - 实验室 `appwb.py <页签> <目录>`；第一性原理 `appfp.py <0-5> <目录>`；单词身世 `appwo.py <目录>`：每幕 `mounted: True`、`bad: None`、`errors: []`、无 NaN / undefined；
   - 回归：`appwb.py bamboo_tree`、`appfp.py 0`、`appwo.py` 都要过；
   - **朗读覆盖检查（R2）**：`python3 docs/whiteboard/src/r2check.py <幕 id> [--all-items] [--strict]`（先 `insert_wb.py`）：抽出画面上全部英文词 / 词块 / 句子，对照 `say` 登记，报「缺单独朗读 / 缺例句 / 句子缺朗读」；
   - **动作覆盖检查（R4）**：同一个脚本；案例写 `actionWords: [{ word, act }]`，逐个对照 `k.act(…, { words })` / `k.actFx(words, …)` 登记，并检查动作和含该词的朗读时间重叠；
-  - **引擎回归**：改引擎后，旧幕在新旧引擎下渲染结果要逐字节一致（做法见 HANDOFF §0「回归」）；
+  - **引擎回归**：改引擎后，旧幕在新旧引擎下渲染结果要逐字节一致：`reg_render.py 旧.html old.json` → `reg_render.py 新.html new.json` → `reg_render.py --diff old.json new.json`（diff=0 才算过；旧版本用 `git show HEAD:萌星小学英语_最终合并版.html > 旧.html` 取）；
+  - **首屏耗时**（按需加载，决策 13）：`measure_load.py 旧.html 新.html --n 12`，首页可交互（ready）不能变差；
   - **商业动画指标**：`measure_sync.py`（朗读同步误差 ≤0.2 秒）、`measure_fps.py`（fps，和升级前对比不能变差）、`measure_seek.py`（拖动 / 重播三种路径状态一致）；
 
 ### ⑥ 截图逐张看

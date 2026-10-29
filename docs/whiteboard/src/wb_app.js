@@ -39,7 +39,29 @@ function wbVoiceToggle() {
   if (!wbState.voice) wbStopSpeech();
   wbSyncButton();
 }
-function wbCases(tab) { return (typeof WB_LAB !== "undefined" && WB_LAB[tab]) || null; }
+// ---------- 按需加载（决策 13）：白板模块在主文件里是不执行的 <script type="text/plain" id="wbmod-<id>">，
+// 第一次用到时取出文字、生成 <script> 同步执行（登记进 WB_LAB），之后不再重复加载；data-deps 里的道具文件先执行。
+// 仍是单个 HTML、双击即用（不用 fetch，file:// 下也能跑）。
+var wbModsLoaded = {};
+function wbModEl(id) { return typeof document !== "undefined" && id ? document.getElementById("wbmod-" + id) : null; }
+function wbHasModule(id) { return !!((typeof WB_LAB !== "undefined" && WB_LAB[id]) || wbModEl(id)); }
+function wbLoadModule(id) {
+  if (wbModsLoaded[id]) return true;
+  const el = wbModEl(id);
+  if (!el) return false;
+  wbModsLoaded[id] = true;
+  (el.getAttribute("data-deps") || "").split(/\s+/).filter(Boolean).forEach(wbLoadModule);
+  const sc = document.createElement("script");
+  sc.text = el.textContent + "\n//# sourceURL=wbmod-" + id + ".js";
+  (document.head || document.documentElement).appendChild(sc);
+  return true;
+}
+function wbLoadAll() { if (typeof document === "undefined") return; document.querySelectorAll('script[type="text/plain"][id^="wbmod-"]').forEach(e => wbLoadModule(e.id.slice(6))); }
+function wbCases(tab) {
+  if (typeof WB_LAB === "undefined") return null;
+  if (!WB_LAB[tab]) wbLoadModule(tab);
+  return WB_LAB[tab] || null;
+}
 function wbTerms(tab, idx) {
   const cs = wbCases(tab) || [];
   const base = (cs[0] && cs[0].terms) || [], own = idx && cs[idx] ? (cs[idx].terms || []) : [];

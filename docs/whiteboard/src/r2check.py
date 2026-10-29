@@ -25,6 +25,7 @@ with sync_playwright() as p:
     errs = []; pg.on('pageerror', lambda e: errs.append(str(e)))
     pg.goto('file://' + main); pg.wait_for_timeout(800)
     pg.add_script_tag(path=os.path.join(HERE, 'r2check.js'))
+    pg.evaluate("typeof wbLoadAll === 'function' && wbLoadAll()")   # 按需加载：先把全部模块执行
     ids = pg.evaluate('Object.keys(WB_LAB)')
     sel = []
     for s in scope:

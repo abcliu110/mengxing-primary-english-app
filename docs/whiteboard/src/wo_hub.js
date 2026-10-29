@@ -22,7 +22,7 @@ const WO_CHAPTERS = [
   { id: "drift", icon: "🎭", title: "词义漂移", insight: "词也会「变脸」：nice 原来是「傻的」。" },
 ];
 const WO_TIMELINE = [["🏛️", "罗马", "公元前后"], ["⛵", "维京", "约 800 年起"], ["🏰", "诺曼", "1066 年"], ["🧭", "大航海", "约 1500 年"], ["✈️", "现代", "今天"]];
-function woSceneReady(id) { return typeof WB_LAB !== "undefined" && !!(WB_LAB[id] && WB_LAB[id].length); }
+function woSceneReady(id) { return typeof WB_LAB !== "undefined" && (!!(WB_LAB[id] && WB_LAB[id].length) || (typeof wbModEl === "function" && !!wbModEl(id))); }   // 按需加载：模块在主文件里就算已上线（进入时才执行）
 function woFindScene(id) { for (const ch of WO_CHAPTERS) for (const sc of (ch.scenes || [])) if (sc.id === id) return sc; return null; }
 // 可信度徽章（HTML 版，词卡/章节卡片通用）
 function wbBadgeHtml(keys) {
