@@ -30,6 +30,7 @@ w0=s.index('        <div class="lab-group" style="background:#fffbeb;">')
 w1=s.index('        </div>\n',s.index('<div class="lab-chips">',w0))+len('        </div>\n')
 wchip=s[s.index('<button',w0):s.index('</div>',s.index('<button',w0))]
 s=s[:w0]+s[w1:]
+assert s.count('<div class="lab-group-name" style="color:#7c3aed;">🧩 语法</div>')==1  # 锚点没对上就报错（2026-10-30 加）
 s=s.replace('<div class="lab-group-name" style="color:#7c3aed;">🧩 语法</div>','<div class="lab-group-name" style="color:#7c3aed;">🧩 语法 · ✍️ 写作</div>')
 j=s.index('</div>',s.index('<div class="lab-chips">',s.index('🧩 语法 · ✍️ 写作')))
 s=s[:j]+wchip.replace('color:#b45309','color:#7c3aed').replace('#b4530933','#7c3aed33')+s[j:]

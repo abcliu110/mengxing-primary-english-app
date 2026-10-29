@@ -15,7 +15,8 @@ rd = lambda p: open(p, encoding='utf-8').read()
 # 页签 → 当前案例序号变量（和 superLabState 一致）
 TABS = {
     'bamboo_tree': 'btIdx', 'adj_order': 'adjExIdx', 'past_clans': 'clanIdx',
-    'metaphor_code': 'metaIdx',   # stress_rhythm 已并入 intonation_map（WB_STAGE 标记已在主文件里，不再自动替换） 'tense_matrix': 'tenseIdx',
+    'metaphor_code': 'metaIdx',   # stress_rhythm 已并入 intonation_map（WB_STAGE 标记已在主文件里，不再自动替换）
+    'tense_matrix': 'tenseIdx',   # 2026-10-30 修：这一项原来被上一行注释吞掉了（标记已在主文件里，所以没出问题）
     'aux_transformer': 'auxIdx', 'five_patterns': 'patIdx', 'writing_alchemist': 'writeIdx',
 }
 # 只写入已验收的页签（做完一个页签就加进来）；其余 cases/*.js 可能还在制作中
@@ -67,9 +68,9 @@ else:
     s = s.replace(anchor, block + '\n' + anchor)
 
 # 竹节句页签（第一个做的，结构稍有不同）：统一成 wbStageHtml + wbGlossHtml
-s = re.sub(r'        <!-- WB_STAGE -->\n        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#fff; margin-bottom:14px;">\n          <svg id="wbStage".*?\n        </div>\n',
+s, _n_st = re.subn(r'        <!-- WB_STAGE -->\n        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#fff; margin-bottom:14px;">\n          <svg id="wbStage".*?\n        </div>\n',
            '        <!-- WB_STAGE -->${wbStageHtml("bamboo_tree", superLabState.btIdx, false)}\n', s, flags=re.S)
-s = re.sub(r'        <!-- WB_GLOSS -->\n        <div style="margin-top:14px; background:#f8fafc;.*?\.join\(""\)\}\n        </div>\n',
+s, _n_gl = re.subn(r'        <!-- WB_GLOSS -->\n        <div style="margin-top:14px; background:#f8fafc;.*?\.join\(""\)\}\n        </div>\n',
            '        <!-- WB_GLOSS -->${wbGlossHtml("bamboo_tree", superLabState.btIdx)}\n', s, flags=re.S)
 
 # 其余页签：把 tab 分支里第一个 Canvas 外框换成 wbStageHtml
@@ -95,6 +96,7 @@ for tab, var in TABS.items():
 
 old_loop = '''  if (vvStage && typeof VV !== "undefined") { startVVLoop(vvStage); return; }'''
 if 'startWBLoop(wbStage)' not in s:
+    assert s.count(old_loop) == 1, '锚点 old_loop 没对上'
     s = s.replace(old_loop, old_loop + '''
   const wbStage = document.getElementById("wbStage");
   if (wbStage && typeof WB !== "undefined") { startWBLoop(wbStage); return; }''')
@@ -176,8 +178,10 @@ if ZE_READY and '<!-- ZE_HOME' not in s:
     assert s.count(HOME_ANCHOR) == 1
     s = s.replace(HOME_ANCHOR, ZE_HOME + HOME_ANCHOR)
 if ZE_READY and 'zh_en_hub' not in s.split(ROUTE)[1][:400]:
+    assert s.count(ROUTE) == 1
     s = s.replace(ROUTE, ROUTE + '  else if (s === "zh_en_hub") renderZhEnHubView();\n')
 if ZE_READY and 'zeAnimId' not in s.split(STOP)[1][:400]:
+    assert s.count(STOP) == 1
     s = s.replace(STOP, STOP + '  if (typeof zeAnimId !== "undefined" && zeAnimId) { cancelAnimationFrame(zeAnimId); zeAnimId = null; }\n')
 
 # 第一性原理里搬走的幕（act.movedTo）：舞台和术语换成「一句话 + 跳转」卡片（fpMovedHtml 在 ze_hub.js）
@@ -209,5 +213,13 @@ if '<!-- WO_ORIGIN_TAGS -->' not in s:
     assert s.count(CARD_ETY) == 1
     s = s.replace(CARD_ETY, CARD_ETY + '          <!-- WO_ORIGIN_TAGS -->${typeof woOriginTagHtml === "function" ? woOriginTagHtml(w) : ""}\n')
 
+# 写文件前核对：锚点没对上（静默跳过）时，改完的东西会少一块 —— 有问题就不写、报错退出
+import sys
+sys.path.insert(0, HERE)
+import anchorcheck
+_errs = anchorcheck.check(s)
+if _errs:
+    for e in _errs: print('FAIL', e)
+    sys.exit('insert_wb: 锚点 / 插入标记检查不通过，主文件未改动')
 open(F, 'w', encoding='utf-8').write(s)
 print('ok, lazy modules:', [m for m, _ in MODS])
