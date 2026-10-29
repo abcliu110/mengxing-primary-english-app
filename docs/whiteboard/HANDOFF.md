@@ -54,6 +54,7 @@
 - 03:58｜fp_zoom_focus 第 2 幕升 v2（Where 跳 / 问句·感叹句两镜头 + 🔮 Where is your cat + 金句卡；R4 going / get up / runs）｜`229acad`｜`work/shots/fp_zoom_focus_2_对比总图.png`｜—
 - 04:08｜fp_zoom_focus 第 4 幕升 v2（时间轴 × 三种拍法 + 🔮 bird is singing + 金句卡；R4 play / reading）｜`fe3e052`｜`work/shots/fp_zoom_focus_4_对比总图.png`｜先做第 4 幕；第 3 幕用 camera 缩放，单独做
 - 04:18｜fp_zoom_focus 第 3 幕升 v2，**第一性原理 6 条全部 v2 完成**（22 幕；④-1、⑥-1 是搬家占位幕）（地址同心圆 / 时间两镜头 + 🔮 5 Garden Road + 金句卡）｜`f7a216f`｜`work/shots/fp_zoom_focus_3_对比总图.png`｜日历小图用中文「周二 / 九月」，避免 Tue / Sep 缩写还要配例句
+- 05:19｜bamboo_tree 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`7c87cfb`｜—｜旧幕渲染不变（只加依赖）；实验室 INVENTORY 放 docs/whiteboard/lab/（该目录原有实验室合并清单，无 INVENTORY_* 先例）
 
 ## 1. 现在做到哪
 
