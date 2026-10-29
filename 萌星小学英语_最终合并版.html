@@ -18101,6 +18101,9 @@ WB_LAB.fp_economy = [
       T("buses  wanted  → ?", 410, 422, go(1), 1, { size: 18, color: C.grey, weight: 700, font: M });
       k.wait(.6);
       N("口诀：", "前音不震尾不震，前音一震尾也震。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("Books, bags, buses.", { zh: "书、包、公交车。", word: "book books bag bags buses" });
+      k.say("Worked, played, wanted.", { zh: "工作了、玩了、想要了。", word: "worked played wanted ed", blocks: ["ed"] });
       D.fin("清配清，浊配浊：-s / -ed 跟着前一个音的声带走", "口诀：前音不震尾不震，前音一震尾也震。");
       k.wait(2);
     },
@@ -18175,6 +18178,9 @@ WB_LAB.fp_economy.push(
       k.wait(.6);
       k.say("She wanted a red kite.", { zh: "她想要一只红风筝。", word: "wanted" });
       N("口诀：", "同位相撞，插个 /ɪ/ 来帮忙。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("We watch the bus. I need a box.", { zh: "我们看着公交车。我需要一个盒子。", word: "bus watch box need es", blocks: ["es"] });
+      k.say("I want a kite. I wanted a kite.", { zh: "我想要风筝。我以前想要风筝。", word: "want ed", blocks: ["ed"] });
       D.fin("尾音和词缀发音位置一样 → 插 /ɪ/ 隔开：-es 读 /ɪz/，-ed 读 /ɪd/", "口诀：同位相撞，插个 /ɪ/ 来帮忙。");
       k.wait(2);
     },
@@ -18244,6 +18250,10 @@ WB_LAB.fp_economy.push(
       k.wait(.6);
       k.say("It's impossible to fly like a bird.", { zh: "像鸟一样飞是不可能的。", word: "impossible" });
       N("口诀：", "元音前面搭座桥，双唇前面 n 变 m。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("I have a book. The book is useful.", { zh: "我有一本书。这本书很有用。", word: "a the book useful" });
+      k.say("An hour has sixty minutes.", { zh: "一小时有六十分钟。", word: "hour", egg: ["minutes"] });
+      k.say("Be polite. It is possible.", { zh: "要有礼貌。这是可能的。", word: "polite possible in im", blocks: ["in", "im"] });
       D.fin("元音撞元音加 /n/ 架桥（an）；/p/ /b/ /m/ 前面 n 变 m（im-）", "口诀：元音前面搭座桥，双唇前面 n 变 m。");
       k.wait(2);
     },
@@ -18316,9 +18326,15 @@ WB_LAB.fp_economy.push(
       k.wait(.6);
       k.say("The dog is running in the park.", { zh: "小狗在公园里跑。", word: "running" });
       N("口诀：", "辅元辅，加尾巴，派个守门员看家。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("I can run and swim.", { zh: "我会跑步和游泳。", word: "run swim ing", blocks: ["ing"] });
+      k.say("The tap is in the kitchen. This is tape.", { zh: "水龙头在厨房里。这是胶带。", word: "tap tape" });
+      k.say("Big, bigger. Hot, hottest.", { zh: "大，更大。热，最热。", word: "big hot er est", blocks: ["er", "est"] });
+      k.say("Stop! A bus stopped here.", { zh: "停下！一辆公交车停在这里了。", word: "a stop ed", blocks: ["ed"] });
       D.fin("「辅元辅」加元音开头的尾巴 → 双写最后的辅音，保住短元音", "口诀：辅元辅，加尾巴，派个守门员看家。");
       k.wait(2);
     },
+    r2skip: ["runing", "ru", "ning", "ta", "ping"],   // 拼错的 runing 和「ru | ning」「ta | ping」音节切分演示（错误 / 残片，不读）
     terms: [
       ["音节", "单词里一拍一拍的读音单位。run 一拍（1 个音节），running 两拍（run-ning）。"],
       ["闭音节", "元音后面有辅音挡着，像关上门，元音读短音，如 run、big。"],
