@@ -1,6 +1,6 @@
 # 萌星小学英语 · 总设计文档（MASTER DESIGN）
 
-> 版本 v1.1　｜　日期：2026-10-29　｜　状态：**20 条决策已全部确认**（编号 1–19 和 22；**20、21 号未使用**，编号是跳过的，不是丢了；第 18 条：视觉标准，见 §2.5；第 19 条：动作必须演出来，见 §2.6；第 22 条：商业动画标准，见 §2.7），本文把它们写成可执行的设计。
+> 版本 v1.1　｜　日期：2026-10-29　｜　状态：**22 条决策已全部确认**（编号 1–19、22–24；**20、21 号未使用**，编号是跳过的，不是丢了；第 18 条：视觉标准，见 §2.5；第 19 条：动作必须演出来，见 §2.6；第 22 条：商业动画标准，见 §2.7），本文把它们写成可执行的设计。
 > 2026-10-30 文档清理：原头部写「19 条」、§2 标题写「17 条」，都是加决策时没同步改的旧数字，已统一为 20 条（1–19、22）。
 > 本文是**最高层设计**：模块放在哪、哪些旧页签要合并删除、技术方案、实施顺序。
 > 细节文档：候选模块池 `MODULE_ROADMAP.md`（v0.3，本文取代其中的「待讨论」部分）、单词身世 `word_origins/DESIGN.md` + `word_origins/DEPTH_AND_ANIMATION.md`、欧洲文化 `europe_culture/DESIGN.md`、格林定律 `grimm_law/DESIGN.md`。
@@ -46,7 +46,7 @@
 > 原「目标形态」图（首页在最上、王炸实验室「现有 10 个白板页签」）是 2026-10-29 规划时写的，2026-10-30 按实际结构改写；规划内容（各总枢的子章节、待做的新页）都保留在上图里。
 ---
 
-## 2. 20 条决策（1–19、22）→ 落地设计
+## 2. 22 条决策（1–19、22–24）→ 落地设计
 
 ### 决策 1　格林定律（真格林定律 + 吸收 vowel_shift）
 - **放哪**：📖 单词身世总枢的一章「格林定律」。
@@ -146,6 +146,21 @@
 ### 决策 22　商业动画标准（运动品质）→ 见 §2.7
 
 > 决策编号说明：没有决策 20、21（编号跳过）。
+
+### 决策 23　三大厅动画全部白板化 + 动作必须画出来（用户 2026-10-30 00:51）
+- **范围**：首页「今天学什么」三大厅里的全部老动画（主 HTML 里另一套「HD 剧场」canvas：`hdTheaterState`、`drawHDCharacterActor`（Leo / Mia / Robot 站两侧不动，约 45 处调用）、`stepHDClock`、`drawHDSceneBackdrop`、`drawTopPrincipleBanner`、`drawCenterWorkbench`，以及 11 个 CSS keyframes 小动画）都改成白板动画：引擎 v2 + 讲解员，对齐 port 样板（§2.5–§2.7）。
+  - 单词大世界：自然拼读 `startPhonicsStageCanvas`（CVC / Magic E / 字母组合）、构词 `startFormationStageCanvas`（合成 / 前缀 / 后缀）、易混词 `startRelationsStageCanvas`（look/see、borrow/lend、put on/wear）、框架语义 `startFrameSemanticsCanvas`（`FRAME_SEMANTICS_DB` 10 个小剧场、25 个视角）、单词卡 `startWordModalCanvasAnim`（1000+ 词共用模板）、主题思维导图 `drawThemeMindMap`、Sight Words 闪识 `renderSightFlashStage`。
+  - 语法魔法屋：`startGrammarWhyCanvas`（40 个语法点三幕剧场）、`startSummaryHubCanvas`、`renderExclamationStages`。
+  - 日常用语小剧场：`startOralSituationalCanvas`（16 个场景）。
+- **R4 加强**：只要描述的是动作（buy / sell / pay / give / come / go / bring / take / put on / look / cut / tell / ride……），就必须由讲解员或场景角色把动作演出来，并与朗读同步；角色不能只站在两侧不动。
+- **数据驱动的做模板，不逐个手写**：单词卡、框架语义、40 个语法点、16 个口语场景 = 白板模板 + 「动词 → `k.act` 动作」映射表；映射表里缺的动作扩充进 `wb_actor.js` 动作库（只加不改，旧幕回归不变）。
+- **R1 零丢失**：每个入口先导出内容清单（旧文字 / 例句 / 小测），白板版验收（清单 ❌0、r2check --strict、R4 全覆盖）后才拆旧 canvas 代码；拆之前旧 canvas 保留可回退。
+- **顺序**（和「老白板 58 幕升级」一起排）：① 框架语义 FR01 买卖小剧场做试点（动作最密集），与 fp_economy 第 1 幕试点一起出前后对比给用户审；② 用户认可后：框架语义其余 → 易混词 → 自然拼读 → 构词 → 单词卡模板 → 语法 40 点 → 口语 16 场景。每步一提交推 master。
+
+### 决策 24　老白板 58 幕全部升 v2（用户 2026-10-30 00:46）
+- 仍是旧引擎的 15 个案例文件约 58 幕（实验室 bamboo_tree、aux_transformer、five_patterns、tense_matrix、writing_alchemist、past_clans、metaphor_code、adj_order、stress_rhythm；第一性原理 6 条留下的 22 幕；共用 `fp_props`）全部升引擎 v2 + 讲解员 + V3 四色 + R4 `actionWords` + 片头 / 板擦转场 / 金句卡。
+- 做法同 ze_be / ze_modifier：升级前存 `*_classic.js`；`check_upgrade.py` 对照 ❌0；r2check --strict；渲染回归只有被升级的幕变化；一个文件一提交。
+- 试点：fp_economy 第 1 幕先出前后对比，用户认可后按 第一性原理 → bamboo_tree → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist 铺开。
 
 ---
 
