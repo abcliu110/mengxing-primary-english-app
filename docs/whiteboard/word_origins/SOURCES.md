@@ -60,3 +60,43 @@
 | 8 | 蓝牙标志 = 两个北欧古字母（卢恩字母）ᚼ（H）和 ᛒ（B）合在一起：Harald Bluetooth 的首字母 | 📜 | SIG / 维基："The Bluetooth logo is a bind rune merging the Younger Futhark runes (Hagall) (ᚼ) and (Bjarkan) (ᛒ), Harald's initials." | https://www.bluetooth.com/about-us/bluetooth-origin/ ；https://en.wikipedia.org/wiki/Bluetooth |
 | 9 | 合成词：两个词粘在一起成一个新词——toothbrush = tooth + brush；football = foot + ball；sunflower = sun + flower | 📜 | toothbrush："from tooth (n.) + brush (n.1)"；football："from foot (n.) + ball (n.1)"；sunflower："from sun (n.) + flower (n.)" | https://www.etymonline.com/word/toothbrush ；https://www.etymonline.com/word/football ；https://www.etymonline.com/word/sunflower |
 | 10 | 中文「蓝牙」是照着意思一个字一个字翻的（蓝 + 牙），和 Europe「欧罗巴」照着声音翻（音译）正好相反 | 💡（中文对照，不是词源） | — | — |
+
+## 溯源幕 ④：格林定律（真格林定律，`cases/wo_grimm.js`）
+
+> 核对日期：2026-10-29（页面已打开逐条读过）。只用出处里明说的配对；father/paternal（牵涉维尔纳定律）、hound/canine（hound 不是课标词）、triple（*trei- 词条这次没抓到页面）不用。
+
+| # | 动画里的说法 | 徽章 | 出处原文要点 | 网址 |
+|---|---|---|---|---|
+| 1 | 格林定律 = 原始印欧语变成日耳曼语（英语的祖先）时，一组辅音成体系地「挪了一格」：p→f、t→th、k→h，d→t、g→k；发生在公元前一千年左右 | 📜 | 维基："a set of sound laws describing the Proto-Indo-European (PIE) stop consonants as they developed in Proto-Germanic in the first millennium BCE"；chain shift "bʰ > b > p > ɸ; dʰ > d > t > θ; gʰ > g > k > x … each sound moves one position to the right" | https://en.wikipedia.org/wiki/Grimm%27s_law |
+| 2 | 拉丁语、希腊语没有跟着变，还保留旧辅音；英语从它们借来的大词（pedal、dentist、December、century、cardiac）也就保留旧辅音 | 📜 | 维基表格列 "Non-Germanic (unshifted) cognates"：Latin *pēs, pedis*、*trēs*、*canis*、*decem*… vs Germanic (shifted) *foot, three, hound, ten* | https://en.wikipedia.org/wiki/Grimm%27s_law |
+| 3 | 1818 年丹麦学者拉斯克（Rask）先发现，1822 年雅各布·格林（Jacob Grimm，《格林童话》的哥哥）在《德语语法》里系统写出来，所以叫格林定律 | 📜 | 维基："first discovered by Rasmus Rask but systematically put forward by Jacob Grimm"；"In 1818, Rasmus Rask extended the correspondences … In 1822, Jacob Grimm put forth the rule in his book *Deutsche Grammatik*" | https://en.wikipedia.org/wiki/Grimm%27s_law |
+| 4 | p → f：foot（脚）↔ 拉丁语 pes / pedis（脚）↔ pedal（脚踏板） | 📜 | \*ped-："Latin *pes*, genitive *pedis* 'foot;' Old English *fot*"；pedal："from Latin *pedalis* 'of the foot,' from *pes* (genitive *pedis*) 'foot'" | https://www.etymonline.com/word/*ped- ；https://www.etymonline.com/word/pedal |
+| 5 | t → th：three（三）↔ 拉丁语 trēs（三） | 📜 | 维基表格：PIE \*tréyes "three"，Latin *trēs* … \*t > þ [θ] … English *three* | https://en.wikipedia.org/wiki/Grimm%27s_law |
+| 6 | d → t：tooth（牙）↔ 拉丁语 dens / dentis ↔ dentist（牙医） | 📜 | \*dent-："Latin *dens* … Old English *toð*"；dentist "from French *dentiste*, from *dent* 'tooth,' from Latin *dens*" | https://www.etymonline.com/word/*dent- |
+| 7 | d → t：ten（十）↔ 拉丁语 decem（十）↔ December（12 月，古罗马历从三月开始，它原来是「第十个月」） | 📜 | \*dekm-："Latin *decem* … Old English *ten*"；December："from Latin *December*, from *decem* 'ten' … tenth month of the old Roman calendar, which began with March" | https://www.etymonline.com/word/*dekm- ；https://www.etymonline.com/word/December |
+| 8 | d → t：two（二）↔ 拉丁语 duo（二）↔ dual（双的） | 📜 | \*dwo-：forms *dual*, *duet*, *duo* … *two*；"Latin *duo* … Old English *twa*" | https://www.etymonline.com/word/*dwo- |
+| 9 | k → h：hundred（一百）↔ 拉丁语 centum（一百）↔ century（一百年）、cent（分，一元的百分之一） | 📜 | \*dekm- 词根下列 *hundred*、*cent*、*century*；cent "from Latin *centum* 'hundred' (see hundred)"；century "from Latin *centuria* … from *centum* 'hundred'" | https://www.etymonline.com/word/*dekm- |
+| 10 | k → h：heart（心）↔ 希腊语 kardia（心）↔ cardiac（心脏的） | 📜 | \*kerd-："Greek *kardia*, Latin *cor* … Old English *heorte*"；cardiac "from Greek *kardiakos* 'pertaining to the heart,' from *kardia* 'heart'" | https://www.etymonline.com/word/*kerd- |
+| 11 | k → h（补充）：hound（猎犬）↔ 拉丁语 canis（狗） | 📜 | 维基表格：PIE \*ḱwón- "dog"，Latin *canis* … \*k > h … English *hound* | https://en.wikipedia.org/wiki/Grimm%27s_law |
+| 12 | 音变不是 100% 整齐：有例外（后来的维尔纳定律解释了一部分），动画只讲主线 | ✂️ ⚠️ | 维基："He noticed that many words had consonants different from what his law predicted … Karl Verner explained them with Verner's law" | https://en.wikipedia.org/wiki/Grimm%27s_law |
+
+## 溯源幕 ⑤：元音变异（原实验室「③ 格林音变律」三条定律，`cases/wo_vowel.js`）
+
+> 核对日期：2026-10-29。**纠错（R3）**：原页签叫「格林音变律」不准——格林定律讲的是**辅音**（见 ④）；foot→feet 这类叫**元音变异（i-mutation / i-umlaut）**。原「定律 B」「定律 C」的部分讲法也不准，见下表「纠正」列。
+
+| # | 动画里的说法 | 徽章 | 出处原文要点 | 网址 |
+|---|---|---|---|---|
+| 1 | 元音变异（i-mutation）：后一个音节里有 i 或 j（像 y 的音）时，前面的元音被「拉」向前、往上；后来 i/j 掉了，变过的元音留下。发生在古英语有文字之前（约公元 450–500 年起） | 📜 | 维基 Germanic umlaut："starting around 450 or 500 CE … An example of the resulting vowel alternation is the English plural foot ~ feet (from Proto-Germanic \*fōts, pl. \*fōtiz)" | https://en.wikipedia.org/wiki/Germanic_umlaut |
+| 2 | foot→feet、tooth→teeth、goose→geese（还有 man→men、mouse→mice）：英语里靠改元音变复数的少数词 | 📜 | 维基："In English, such plurals are rare: man, woman, tooth, goose, foot, mouse, louse…"；mouse："\*mȳsi, which eventually developed to modern mice" | https://en.wikipedia.org/wiki/Germanic_umlaut |
+| 3 | food→feed：名词变动词，古英语 fōda「食物」、fēdan「喂」，更早是 \*fōdjan（j 就是那块「磁铁」） | 📜 | 维基："fōda 'food,' fēdan 'to feed' < Pre-OE \*fōdjan" | https://en.wikipedia.org/wiki/Germanic_umlaut |
+| 4 | full→fill：形容词变动词（原页面只写「名词变动词」，补上「形容词」），fill 来自 \*fulljan，是从 full 派生的 | 📜 | fill："from Proto-Germanic \*fulljanan 'to fill' … a derivative of adjective \*fullaz 'full'" | https://www.etymonline.com/word/fill |
+| 5 | blood→bleed：bleed 来自 \*blodjan「流血」。**纠正**：今天 blood 读 /blʌd/，不是 /uː/；拼写 oo 保留了古时候的长 o | 📜 + ⚠️ | bleed："from Proto-Germanic \*blodjan 'emit blood'" | https://www.etymonline.com/word/bleed |
+| 6 | long→length、strong→strength：**纠正**原「嘴巴省力把元音缩短」的讲法——真正原因和 foot→feet 是同一块磁铁：古时候的后缀是 \*-itho / \*-iþō，里面的 i 把 o（更早是 a）拉成了 e | 📜 | length："from Proto-Germanic \*langitho, abstract noun from \*langaz 'long' + \*-itho"；维基 umlaut："In the abstract nouns in þ(u) (PGmc \*-iþō) corresponding to certain adjectives – e.g., strang 'strong,' strengþ(u) 'strength'；fūl 'foul,' fȳlþ(u) 'filth'" | https://www.etymonline.com/word/length ；https://en.wikipedia.org/wiki/Germanic_umlaut |
+| 7 | wide→width：width 是 17 世纪（1620 年代）照着 breadth 的样子新造的词，不是很古老的变化；deep→depth、wide→width 今天读音差得远，主要因为 deep、wide 的长元音后来（1400–1700 年「大元音推移」）变了，depth、width 里的短元音没变 | 📜（width）+ ✂️ | width："1620s, formed from wide on model of breadth"；维基 Great Vowel Shift："took place primarily between 1400 and 1700"，meet 原读 /eː/、mite 原读 /iː/ | https://www.etymonline.com/word/width ；https://en.wikipedia.org/wiki/Great_Vowel_Shift |
+| 8 | high→height：height 来自 high 的词根 + 日耳曼语抽象名词后缀 -itha（和 -th 同一个后缀） | 📜 | width 页面 More to explore 引 height："from root of heah 'high' + -itha, Germanic abstract noun suffix" | https://www.etymonline.com/word/width |
+| 9 | 清浊交替的真正来历（本土词）：古英语里 f、th、s 夹在两个浊音（比如两个元音）中间时读成 v、ð、z；动词后面原来有词尾，所以词尾辅音读浊音，名词没有，就读清音（breath/breathe、bath/bathe、life/live 这一类） | 📜（机制）+ ✂️（具体到每个词是简化） | 维基 Old English phonology："The pronunciation of /f θ s/ as [f θ s] versus [v ð z] was generally predictable from context. The voiced allophones [v ð z] were used between voiced sounds (between vowels…)" | https://en.wikipedia.org/wiki/Old_English_phonology |
+| 10 | **纠正**：safe→save 不是这条规律变出来的——两个词都是从法语借来的：save ← 古法语 sauver ← 拉丁语 salvare；safe ← 古法语 sauf ← 拉丁语 salvus。看起来像「清名浊动」，来历不同 | 📜 + ⚠️ | save："from Old French *sauver* … from Late Latin *salvare* 'make safe,' from Latin *salvus* 'safe'"；safe："from Old French *sauf* … from Latin *salvus*" | https://www.etymonline.com/word/save |
+| 11 | **纠正**：use（用途）/ use（使用）也是法语来的（名词 ← 古法语 us，动词 ← 古法语 user），读音分 /s/、/z/ 是英语里后来形成的习惯，不是古英语那条规律 | 📜 + ⚠️ | use (v.)："from Old French *user*"；use (n.)："from Anglo-French and Old French *us*" | https://www.etymonline.com/word/use |
+| 12 | advice / advise：都来自古法语 avis；名词用 c、动词用 s 是 18 世纪定下来的拼写习惯，为了保住名词的 /s/ 音并和动词分开（同类：device/devise、practice/practise） | 📜 | advice："Substitution of -c- for -s- is 18c., to preserve the breath sound and to distinguish from advise. Early Modern English tended to alternate -ce and -se endings … using -se for the verb and -ce for the noun" | https://www.etymonline.com/word/advise |
+| 13 | close（亲近的 /s/）/ close（关上 /z/）：同形词靠读音分开——只当「规律的例子」讲，不讲来历 | ✂️ ⚠️ | （未查来历，不标 📜） | — |
+| 14 | 「元音」「辅音」「清辅音 / 浊辅音」「音标」「前元音 / 后元音」等术语解释 | 💡（教学说法，不是词源） | — | — |
