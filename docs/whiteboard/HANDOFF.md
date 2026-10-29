@@ -76,7 +76,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | # | 内容 | 状态 / 提交 |
 |---|---|---|
 | 1 | Europe 示范幕（`cases/wo_europe.js`，引擎 v2 + 讲解员，对齐 port 样板） | ✅ 见下 |
-| 2 | Bluetooth 示范幕 | 待做 |
+| 2 | Bluetooth 示范幕（`cases/wo_bluetooth.js`） | ✅ 见下 |
 | 3 | 身世标签 `origin_tags` + 词卡跳转（先给 port 家族） | 待做 |
 | 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | 待做 |
 | 5 | 时间与度量章 | 待做 |
@@ -89,6 +89,14 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 同时纠正文档里的讲错处（R3）：`europe_culture/DESIGN.md` 原写「Europe 📜 来自神话公主」→ 改 ❓；`DEPTH_AND_ANIMATION.md` 洞见同步改；总枢章节卡副标题改为「背后有一个神话（来历有好几种说法）」、徽章 📜 ✂️ ❓。
 - 已知取舍：①白牛是道具（不是骨架角色），走路用整体平移 + 轻微挤压起伏，游泳时腿藏进水里；②公主「骑上牛背」用跳起 → 空中换成坐姿角色（0.12 秒交叉淡化）；③没有录屏（沙箱无语音），截图逐张看过；④「-an」规则标 ✂️（European 实际经法语、拉丁语来）。
 - 待用户看：Europe 幕是否满意（画面风格对齐 port 样板，未单独审片）。
+
+**Bluetooth 示范幕（2026-10-29）**
+- 出处：`SOURCES.md` ③ 10 条（维基 Harald Bluetooth / Bluetooth、蓝牙技术联盟官网 Origin of the name、etymonline toothbrush / football / sunflower）；外号来历两种说法标 ❓。
+- 分镜：`word_origins/BLUETOOTH_STORYBOARD.md`。5 步：北欧地图 + 国王统一部落（unites）→ blue + tooth、牙齿变蓝、❓ 两说 → 合成词（toothbrush、football）→ 1997 命名、设备连线（connects）、卢恩字母 H + B 合成标志 → 中文意译 vs 音译 → 🔮 sun + flower = sunflower → 金句卡。总长约 110 秒，9 句朗读。
+- 引擎扩展：`wb_actor.js` 新 look `king`（金冠、长发、胡子、红披风）。
+- 验收：`r2check.py wo_bluetooth --strict` 12/12、R4 2/2；port / europe / bluetooth 三幕合计 48 个词全 ✔、R4 19/19；旧 64 幕 + europe 渲染逐字节不变；`appwo.py` 三幕都 mounted、无报错；fps（统一镜头）平均 60.0、1% 低帧 51.0。
+- 小修：字幕里的卢恩字母字符（ᚼ ᛒ）在常见中文字体里显示成方块，改成文字描述，画面上的字母用线条画。
+- 已知取舍：地图是简化示意（标「不按比例」）；蓝牙标志是黑色线条叠在蓝底上（真实标志是白色）。
 
 ## 1. 当前状态
 
@@ -170,7 +178,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 5. 引擎通用新工具登记
 
 ### 2026-10-29 · 阶段 2（Europe 幕）
-- `wb_actor.js`：look `princess`；动作 `sit`（坐 / 骑：骨盆停在 y − 58×s，坐处由案例放好；坐着时不画地面影子）；道具 `flower`。
+- `wb_actor.js`：look `princess`、`king`；动作 `sit`（坐 / 骑：骨盆停在 y − 58×s，坐处由案例放好；坐着时不画地面影子）；道具 `flower`。
 - `cases/wo_props.js`：`D.bull(x, y, s, {face})` → `{ g, legs, back }`（back = 牛背坐处）。
 - 按需加载：`wbLoadModule(id)`、`wbHasModule(id)`、`wbLoadAll()`（`wb_app.js`）。
 - 脚本：`jscheck.py`（node --check）、`reg_render.py`（渲染回归）、`measure_load.py`（首屏耗时）、`export_storyboard.py <幕>`（导出逐条时间码）；`measure_fps.py` 第 4 个参数可指定溯源幕。

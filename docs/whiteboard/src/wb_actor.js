@@ -11,7 +11,7 @@
 //   k.act(me, "point", t, 1.2, { at: [x, y] });  k.expr(me, "surprised", t, 1.5);  k.look(me, x, y, t, dur)
 // 动作库 v1：idle（待机呼吸眨眼，自动）、wave 挥手、point 指、surprised 惊讶、holdCard 举词卡、read 读书、
 //   walk 走、run 跑、carry 搬、take 拿、put 放、jump 跳、turn 转身；另有 think 想、cheer 欢呼、support 托举、nod 点头、sit 坐（骑）。
-// 角色 look：narrator 讲解员、porter 搬运工、traveler 旅客、princess 神话公主；道具另有 flower 一枝花。
+// 角色 look：narrator 讲解员、porter 搬运工、traveler 旅客、princess 神话公主、king 维京国王；道具另有 flower 一枝花。
 // 表情 5 个：happy 开心、think 思考、surprised 惊讶、proud 得意、oops 哎呀；口型 3 个：0 闭、1 半开、2 全开。
 var WB_ACTOR = (function () {
   const D2R = Math.PI / 180, clamp = v => Math.max(0, Math.min(1, v));
@@ -30,6 +30,8 @@ var WB_ACTOR = (function () {
     traveler: { skin: "#fde3cf", hair: "#4b3326", jacket: "#5b7fd6", jacketD: "#3f5fae", shirt: "#ffffff", scarf: "#e11d48", pants: "#3a3f55", shoe: "#5b4636", style: "hat" },
     // 神话公主（Europe 幕）：披肩长发 + 小金冠，粉色长裙（裙摆画在躯干上，腿用裙子同色）
     princess: { skin: "#fde3cf", hair: "#5b3a24", jacket: "#f9a8d4", jacketD: "#ec7fbf", shirt: "#fff7ed", scarf: "#facc15", pants: "#f9a8d4", shoe: "#be185d", style: "crown", skirt: true },
+    // 维京国王（Bluetooth 幕）：金冠 + 披肩长发 + 胡子，红披风
+    king: { skin: "#f6d2b3", hair: "#a16207", jacket: "#b91c1c", jacketD: "#7f1d1d", shirt: "#fef3c7", scarf: "#facc15", pants: "#3f3f46", shoe: "#3f2d22", style: "crown", beard: true },
   };
   const INK = "#1f2937";
   // ---- 表情参数：眉高、眉角、眼睛大小、眼睛睁开度、嘴型、腮红、汗滴 ----
@@ -415,6 +417,7 @@ var WB_ACTOR = (function () {
         pathE(hd, `M-16.5,-17 Q-18,-34 -2,-38 Q14,-40 17,-24 Q12,-30 2,-30 Q-9,-30 -13,-23 Z`, L.hair, 2.2);
         pathE(hd, `M-22,-31 Q0,-36 22,-31 Q20,-28 0,-30 Q-20,-28 -22,-31 Z M-13,-31 Q-12,-46 0,-46 Q12,-46 13,-31 Z`, "#7c5a3a", 2);
       }
+      if (L.beard) pathE(hd, `M-14,-12 Q-13,2 0,4 Q13,2 15,-12 Q12,-4 6,-4 Q0,-7 -6,-4 Q-11,-4 -14,-12 Z`, L.hair, 1.8);   // 胡子（嘴画在胡子上面）
       // 五官：眉、眼（可眨眼、可放大）、腮红、嘴（3 口型 + 表情嘴）、汗滴
       el.blushL = mk("ellipse", { cx: -9, cy: -11, rx: 3.6, ry: 2.2, fill: "#f9a8a8", opacity: .8 }, hd);
       el.blushR = mk("ellipse", { cx: 12, cy: -11, rx: 3.2, ry: 2.1, fill: "#f9a8a8", opacity: .8 }, hd);
