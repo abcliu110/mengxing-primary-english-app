@@ -60,6 +60,11 @@ function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {
         <canvas id="firstPrinciplesCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
       </div>`;
   }
+  if ((!cs || !cs[idx | 0]) && svgId === "woWbStage") {
+    // 单词身世总枢：这一幕还没做好，显示「即将上线」
+    return `<div style="width:100%; border-radius:16px; border:2px dashed #cbd5e1; background:#f8fafc; padding:48px 16px; text-align:center; color:#64748b; font-weight:800; margin-bottom:14px;">
+        ⏳ 这一幕正在制作中，即将上线。先看看已经上线的 ▶ 溯源幕吧！</div>`;
+  }
   if (!cs || !cs.length) {
     return `<div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
           <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
@@ -78,9 +83,9 @@ function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {
           </div>
         </div>${withGloss ? wbGlossHtml(tab, i) + '<div style="height:14px;"></div>' : ""}`;
 }
-// slot = "fp"：第一性原理总枢，动画帧 id 记在 fpAnimId（不和王炸实验室的 superLabAnimId 互相取消）
+// slot = "fp"：第一性原理总枢，动画帧 id 记在 fpAnimId；slot = "wo"：单词身世总枢，记在 woAnimId（不和王炸实验室的 superLabAnimId 互相取消）
 function startWBLoop(stage, slot) {
-  const setId = v => { if (slot === "fp") fpAnimId = v; else superLabAnimId = v; };
+  const setId = v => { if (slot === "fp") fpAnimId = v; else if (slot === "wo") woAnimId = v; else superLabAnimId = v; };
   const tab = stage.getAttribute("data-tab") || "bamboo_tree";
   const cs = wbCases(tab) || [];
   const idx = Math.min(Number(stage.getAttribute("data-case")) || 0, cs.length - 1);

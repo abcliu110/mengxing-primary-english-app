@@ -6,6 +6,7 @@
 <script>
 const q = new URLSearchParams(location.search), TAB = q.get('tab') || 'bamboo_tree';
 if (TAB.startsWith('fp_')) document.write('<script src="cases/fp_props.js"><\/script>');
+if (TAB.startsWith('wo_')) document.write('<script src="cases/wo_props.js"><\/script>');
 document.write('<script src="cases/' + TAB + '.js"><\/script>');
 </script>
 <script>

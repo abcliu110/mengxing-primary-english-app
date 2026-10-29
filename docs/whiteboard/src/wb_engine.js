@@ -6,6 +6,14 @@ const WB = (function () {
   const C = { ink: "#1f2937", red: "#e11d48", green: "#059669", brown: "#92400e", blue: "#2563eb", orange: "#f59e0b", grey: "#64748b", purple: "#7c3aed" };
   const ZH = '"WenQuanYi Zen Hei","PingFang SC","Microsoft YaHei",sans-serif';
   const MONO = '"Courier New",Courier,monospace';
+  // 可信度徽章（单词身世骨架；全 App 通用）
+  const BADGES = {
+    "📜": { label: "真实词源", full: "真实词源：查得到出处的历史事实", color: "#92400e", fill: "#fef3c7" },
+    "💡": { label: "记忆联想", full: "记忆联想：帮你记住的画面，不是历史", color: "#b45309", fill: "#fff7ed" },
+    "✂️": { label: "简化说法", full: "简化说法：为了小学生好懂，讲得简单了一些", color: "#2563eb", fill: "#dbeafe" },
+    "⚠️": { label: "有例外", full: "有例外，或者是流行的错误说法", color: "#e11d48", fill: "#ffe4e6" },
+    "❓": { label: "有争议", full: "有争议：专家有不同说法，还没有定论", color: "#7c3aed", fill: "#ede9fe" },
+  };
   // 估算文字宽度：中日韩字符按 1 个字号，其他按 0.55 个字号
   const estW = (str, size) => [...String(str)].reduce((w, ch) => w + (ch.charCodeAt(0) > 0x2e80 ? size : size * .55), 0);
   const clamp = v => Math.max(0, Math.min(1, v));
@@ -13,7 +21,7 @@ const WB = (function () {
 
   // ---------- 脚本工具包 ----------
   function kit(seed) {
-    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [], says: [] };
+    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [], says: [], badges: [], eggs: [], hdrEnd: 0 };
     let s = seed;
     const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280 - .5;
     const wl = (x1, y1, x2, y2, j = 1.6) => {
@@ -65,7 +73,9 @@ const WB = (function () {
     const group = () => (S.g = ++S.gn);
     const endGroup = () => { S.g = 0; };
     const move = (g, t, dur, dx, dy, o = {}) => S.fx.push({ type: "move", g, t, dur, dx, dy, ...o });
-    const arc = (g, t, dur, d) => S.fx.push({ type: "arc", g, t, dur, d });           // d：相对路径，从 0,0 出发
+    const arc = (g, t, dur, d, o = {}) => S.fx.push({ type: "arc", g, t, dur, d, ...o });   // d：相对路径，从 0,0 出发
+    // 沿折线移动（船环游、货箱进城）：pts = [[dx,dy], ...] 相对组的当前位置；o.linear 匀速
+    const path = (g, t, dur, pts, o = {}) => arc(g, t, dur, "M0,0 " + pts.map(p => "L" + p[0] + "," + p[1]).join(" "), o);
     const buzz = (g, t, dur, amp = 2.5) => S.fx.push({ type: "buzz", g, t, dur, amp });
     const fade = (g, t, dur, to) => S.fx.push({ type: "fade", g, t, dur, to });
     const rot = (g, t, dur, deg, cx, cy) => S.fx.push({ type: "rot", g, t, dur, deg, cx, cy });
@@ -77,21 +87,51 @@ const WB = (function () {
       en = String(en).trim();
       const words = en.split(/\s+/).length, wd = o.word ? .4 + String(o.word).split(/\s+/).length * .45 : 0;
       const dur = wd + .5 + words * .42;
-      S.says.push({ t: S.at, dur, wd, en, zh: o.zh || "", word: o.word || "" });
+      S.says.push({ t: S.at, dur, wd, en, zh: o.zh || "", word: o.word || "", egg: (o.egg || []).map(w => String(w).toLowerCase()) });
+      (o.egg || []).forEach(w => S.eggs.includes(w) || S.eggs.push(w));
       S.at += dur + .25;
     };
 
     const k = {
       estW, C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
-      group, endGroup, move, arc, buzz, fade, rot, hide, camera, say,
+      group, endGroup, move, arc, path, buzz, fade, rot, hide, camera, say,
       // 标题 + 中线
       // 标题：title 大字，sub 灰色副标题（自动排在标题右边）；divider=false 时不画中线
       header(sub, title = "竹节句 vs 树干句", divider = true) {
         T(title, 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900 });
         T(sub, 40 + estW(title, 32) + 28, 52, go(1.2), 1.2, { size: 20, color: C.grey });
+        S.hdrEnd = 40 + estW(title, 32) + 28 + estW(sub, 20);
         if (divider) P(wl(480, 80, 480, 425, 1), go(.5), .5, { color: "#cbd5e1", w: 2, dash: "6 7" });
       },
-      // 小标题：anchor "start" / "middle" / "end"
+      // ---- 可信度徽章（全 App 通用）：📜 真实词源 / 💡 记忆联想 / ✂️ 简化说法 / ⚠️ 有例外或流行错误说法 / ❓ 有争议 ----
+      // 单个徽章胶囊：左边 x，基线 y；返回 { x, w, end }
+      badge(key, x, y, o = {}) {
+        const b = BADGES[key] || BADGES["📜"], fs = o.size ?? 13, label = key + " " + (o.label ?? b.label);
+        const w = estW(label, fs) + 14, h = fs + 10;
+        P(roughRect(x, y - fs - 2, w, h), go(.35, 0), .35, { color: b.color, w: 1.8 });
+        F(rectD(x, y - fs - 2, w, h), go(.1, 0), { color: b.fill, op: 1 });
+        T(label, x + 7, y + 2, go(.4), .4, { size: fs, color: b.color, weight: 900 });
+        if (!S.badges.includes(key)) S.badges.push(key);
+        return { x, w, end: x + w };
+      },
+      // 一排徽章：默认排在 header 副标题后面（同一行）；放不下就靠右对齐
+      badges(keys, o = {}) {
+        const fs = o.size ?? 13, ws = keys.map(kk => estW(kk + " " + (BADGES[kk] || BADGES["📜"]).label, fs) + 14), tot = ws.reduce((a, b) => a + b, 0) + 8 * (keys.length - 1);
+        let x = o.x ?? (S.hdrEnd + 18);
+        if (x + tot > 948) x = 948 - tot;
+        const y = o.y ?? 48;
+        keys.forEach((kk, i) => { k.badge(kk, x, y, { size: fs }); x += ws[i] + 8; });
+        return x;
+      },
+      // 🥚 彩蛋词标记（超出课标：知道就好，不用背）：手绘小鸡蛋，中心 (x,y)；o.note 加一行小字说明
+      egg(x, y, o = {}) {
+        const s = o.s ?? 8;
+        const d = `M${x},${y - s * 1.3} C${x + s * 1.05},${y - s * 1.3} ${x + s * 1.05},${y + s} ${x},${y + s} C${x - s * 1.05},${y + s} ${x - s * 1.05},${y - s * 1.3} ${x},${y - s * 1.3} Z`;
+        P(d, go(.3), .3, { color: C.orange, w: 2 }); F(d, go(.1, 0), { color: "#fef08a", op: 1 });
+        P(`M${x - s * .8},${y - s * .1} l${s * .4},${-s * .35} l${s * .4},${s * .35} l${s * .4},${-s * .35} l${s * .4},${s * .35}`, go(.15), .15, { color: C.brown, w: 1.4 });
+        if (o.word && !S.eggs.includes(o.word)) S.eggs.push(o.word);
+        if (o.note) T(o.note === true ? "彩蛋词：知道就好，不用背" : o.note, o.nx ?? x + s + 6, o.ny ?? y + 5, go(.6), .6, { size: 12, color: C.grey, weight: 700 });
+      },
       head(text, x, y = 108, color = C.ink, anchor = "start", size = 22) { T(text, x, y, go(.9), .9, { size, color, weight: 900, anchor }); },
       leftHead() { T("汉语：竹节句", 40, 108, go(.9), .9, { size: 22, color: C.brown, weight: 900 }); },
       rightHead() { T("英语：树干句", 930, 108, go(.9), .9, { size: 22, color: C.green, weight: 900, anchor: "end" }); },
@@ -343,7 +383,7 @@ const WB = (function () {
           while (sEn.firstChild) sEn.removeChild(sEn.firstChild);
           sWords = [];
           if (si >= 0) {
-            SAYS[si].en.split(/\s+/).forEach((w, j) => { const ts = mk("tspan", {}, sEn); ts.textContent = (j ? " " : "") + w; sWords.push(ts); });
+            SAYS[si].en.split(/\s+/).forEach((w, j) => { const ts = mk("tspan", {}, sEn); const egg = SAYS[si].egg.includes(w.replace(/[^A-Za-z'-]/g, "").toLowerCase()); ts.textContent = (j ? " " : "") + w + (egg ? "🥚" : ""); sWords.push(ts); });
             sZh.textContent = SAYS[si].zh;
             sEn.setAttribute("font-size", 19); const L = sEn.getComputedTextLength(); if (L > 890) sEn.setAttribute("font-size", (19 * 890 / L).toFixed(1));
           } else sZh.textContent = "";
@@ -364,11 +404,11 @@ const WB = (function () {
       pen.setAttribute("transform", `translate(${penX.toFixed(1)},${penY.toFixed(1)}) scale(.8)`);
       pen.setAttribute("opacity", t > END - .6 ? clamp((END - t) / .6) : 1);
     }
-    const api = { render, end: END, says: SAYS, strip, hl: null, remeasure() { measure(); lastNarr = -1; lastSay = -2; }, resetPen() { penX = 905; penY = 525; } };
+    const api = { render, end: END, says: SAYS, badges: k.S.badges, eggs: k.S.eggs, strip, hl: null, remeasure() { measure(); lastNarr = -1; lastSay = -2; }, resetPen() { penX = 905; penY = 525; } };
     return api;
   }
 
-  return { mount, kit, C, ZH, MONO, estW };
+  return { mount, kit, C, ZH, MONO, estW, BADGES };
 })();
 // 各页签的白板案例都登记在这里：WB_LAB[labTab] = [ { build(k){...}, terms:[[术语, 解释], ...] }, ... ]
 const WB_LAB = {};
