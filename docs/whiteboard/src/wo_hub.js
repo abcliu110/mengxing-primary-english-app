@@ -13,6 +13,9 @@ const WO_CHAPTERS = [
   { id: "grimm", icon: "🔤", title: "格林定律：辅音和元音的大挪移", insight: "foot ↔ pedal、tooth ↔ dentist：英语小词和借来的大词，是同一个老祖宗的两个样子。",
     scenes: [
       { id: "wo_grimm", title: "格林定律 · 辅音挪一格", sub: "p→f、t→th、d→t、k→h：认识 foot 就能猜出 pedal", badges: ["📜", "⚠️", "💡"] },
+      { id: "wo_vowel_a", title: "元音变异 ① foot → feet", sub: "古时候的 -i 像磁铁，把 oo 拉成 ee：变复数、变动词（原实验室定律 A）", badges: ["📜", "✂️", "⚠️"] },
+      { id: "wo_vowel_b", title: "元音变异 ② long → length", sub: "形容词 + th = 名词；o 变 e 也是那块磁铁拉的（原实验室定律 B，已纠错）", badges: ["📜", "✂️"] },
+      { id: "wo_vowel_c", title: "元音变异 ③ 清辅音 ↔ 浊辅音", sub: "breath → breathe：清音当名词，浊音当动词（原实验室定律 C，标出例外）", badges: ["📜", "✂️", "⚠️"] },
     ] },
   { id: "loanwords", icon: "⛵", title: "单词环游世界", insight: "英语是一门「收集者」语言，全世界都往里装过单词。" },
   { id: "places", icon: "🍔", title: "地名、人名变成东西", insight: "东西会带着它出生地的名字去旅行（hamburger、china）。" },

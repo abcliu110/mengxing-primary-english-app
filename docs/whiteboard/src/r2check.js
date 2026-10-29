@@ -7,6 +7,7 @@
 //   · 白板上连续 ≥3 个英文词的句子：必须被某句 say 朗读（大小写、标点不计）
 // R4：案例对象上的分镜动作词清单 actionWords: [{ word, act }]，逐个对照 k.act 登记（S.acts），
 //   并检查动作时间和「含这个词的朗读句」有重叠（读到这个词时动作正在发生）。
+// r2skip：案例对象上 r2skip: ["longth"]——画面上故意展示并划掉的错误形式（SOP §7 第 3 条：被划掉的词不读），不计入 R2；必须真的被划掉。
 //   另外按常见动作动词表提示：例句里有动作动词、但分镜清单里没有的（只提示，不算不通过）。
 (function (root) {
   const ACTION_VERBS = ["carry", "carries", "carried", "run", "runs", "ran", "walk", "walks", "walked", "go", "goes", "went", "come", "comes", "came",
@@ -35,7 +36,8 @@
   const sentNorm = s => norm(s).replace(/[^a-z' ]+/g, " ").replace(/\s+/g, " ").trim();
   const forms = w => { const f = [w, w + "s", w + "es", w + "ed", w + "d", w + "ing", w + "'s"]; if (/y$/.test(w)) f.push(w.slice(0, -1) + "ies"); if (/e$/.test(w)) f.push(w.slice(0, -1) + "ing"); return f; };
 
-  function scan(build, seed) {
+  function scan(build, seed, skip) {
+    const SKIP = new Set((skip || []).map(norm));
     const k = WB.kit(seed);
     build(k);
     const S = k.S, says = S.says || [];
@@ -54,6 +56,7 @@
     const hasSentence = (w, block) => sentWords.some(ws => ws.some(x => forms(w).includes(x) || ((block || blockSet.has(w)) && x.includes(w))));
     const words = new Map();
     shown.forEach(sh => tokens(sh.text).forEach(tk => {
+      if (SKIP.has(tk.w)) return;   // 案例 r2skip：画面上故意展示、被划掉的错误形式（SOP §7.3：不读），如 longth
       const e = words.get(tk.w) || { word: tk.w, raw: tk.raw, block: false, where: new Set() };
       e.block = e.block || tk.block || blockSet.has(tk.w); e.where.add(sh.src); words.set(tk.w, e);
     }));
@@ -91,7 +94,7 @@
       (ids || Object.keys(WB_LAB)).forEach(id => {
         (WB_LAB[id] || []).forEach((cs, i) => {
           let res;
-          try { res = scan(cs.build, 7 + i); } catch (e) { report.push({ id, i, error: String(e) }); return; }
+          try { res = scan(cs.build, 7 + i, cs.r2skip); } catch (e) { report.push({ id, i, error: String(e) }); return; }
           const rr = r4(cs, res);
           report.push({ id, i, says: res.says.length, words: res.list, sents: res.sents.map(({ text, where, read }) => ({ text, where, read })), r4: rr, hasActionList: !!cs.actionWords });
         });

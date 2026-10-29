@@ -199,3 +199,9 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 - `camera` 回到 z=1 时中心必须是 480,272。
 - 单词身世：`D.back()` 每次开新静态组，后画的在上层；`D.finish(f)` 放在 build 最后。
 - 环境：沙箱重置后重装 Playwright（`pip install playwright && python3 -m playwright install chromium && python3 -m playwright install-deps chromium`），并装 `fonts-noto-color-emoji`、`fonts-wqy-zenhei`，否则截图里 emoji 和中文是方块。
+
+
+## 13. 补充（2026-10-29，格林定律章）
+- **共用小工具文件**：几幕共用的局部工具（如元音变异三幕的 `VW_KIT`）放 `cases/<名>_kit.js`，在 `insert_wb.py` 的 `WO_KITS` 登记（`{'wo_vowel_kit': ['wo_vowel_a', …]}`），打包时作为依赖先执行；`preview.html` 按前缀载入。用 `var` 声明，避免和别的模块的 `const` 冲突。
+- **r2skip**：案例对象可写 `r2skip: ["longth"]`，列出画面上**故意展示的错误形式**（被划掉的 longth、字幕里的反例 foots），r2check 不计入 R2（§7 第 3 条：错误形式不读）。只能用于错误形式或字母名，不能拿来躲朗读。
+- **搬旧页签进新幕（R1）**：先导出内容清单（`export_inventory.py`），新幕里把每条字幕 / 白板字 / 术语 / 朗读都搬过去；讲错的改正后保留「原讲法」一行小字说明改了什么；清单逐条打勾写新位置。

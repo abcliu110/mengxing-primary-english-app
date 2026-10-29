@@ -22,7 +22,8 @@ TABS = {
 FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoom_focus', 'fp_iconicity']   # 第一性原理总枢：做完一条原理就把 id 加进来，如 'fp_economy'
 READY = ['bamboo_tree', 'vowel_shift', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
-WO_READY = ['wo_port', 'wo_europe', 'wo_bluetooth', 'wo_grimm']
+WO_READY = ['wo_port', 'wo_europe', 'wo_bluetooth', 'wo_grimm', 'wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c']
+WO_KITS = {'wo_vowel_kit': ['wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c']}   # 几幕共用的小工具文件（作为依赖先执行）
 # ---------- 按需加载（决策 13）：每个模块写成不执行的 <script type="text/plain" id="wbmod-<id>">，
 # 第一次进入时由 wbLoadModule(id) 取出文字执行（见 wb_app.js）；道具文件是依赖（data-deps），先于模块执行。
 # 引擎、讲解员、App 接线、单词身世总枢页面仍然直接执行（首页和各总枢页面要用）。
@@ -30,7 +31,9 @@ MODS = [(t, '') for t in READY]
 if FP_READY:
     MODS += [('fp_props', '')] + [(t, 'fp_props') for t in FP_READY]
 if WO_READY:
-    MODS += [('wo_props', '')] + [(t, 'wo_props') for t in WO_READY]
+    kit_of = {t: kit for kit, ts in WO_KITS.items() for t in ts if t in WO_READY}
+    MODS += [('wo_props', '')] + [(kit, 'wo_props') for kit in WO_KITS if any(kit_of.get(t) == kit for t in WO_READY)]
+    MODS += [(t, 'wo_props' + (' ' + kit_of[t] if t in kit_of else '')) for t in WO_READY]
 case_files = [os.path.join(HERE, 'cases', t + '.js') for t, _ in MODS]
 def mod_tag(mid, deps):
     src = rd(os.path.join(HERE, 'cases', mid + '.js'))
