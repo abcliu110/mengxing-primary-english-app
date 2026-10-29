@@ -23,6 +23,8 @@ FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoo
 READY = ['bamboo_tree', 'vowel_shift', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
 WO_READY = ['wo_port', 'wo_europe', 'wo_bluetooth', 'wo_grimm', 'wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c', 'wo_time_num', 'wo_time_week']
+# 中英对照总枢：做完一幕就把 id 加进来（搬迁幕依赖第一性原理道具 fp_props）
+ZE_READY = ['ze_be']
 WO_KITS = {'wo_vowel_kit': ['wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c']}   # 几幕共用的小工具文件（作为依赖先执行）
 # ---------- 按需加载（决策 13）：每个模块写成不执行的 <script type="text/plain" id="wbmod-<id>">，
 # 第一次进入时由 wbLoadModule(id) 取出文字执行（见 wb_app.js）；道具文件是依赖（data-deps），先于模块执行。
@@ -34,6 +36,9 @@ if WO_READY:
     kit_of = {t: kit for kit, ts in WO_KITS.items() for t in ts if t in WO_READY}
     MODS += [('wo_props', '')] + [(kit, 'wo_props') for kit in WO_KITS if any(kit_of.get(t) == kit for t in WO_READY)]
     MODS += [(t, 'wo_props' + (' ' + kit_of[t] if t in kit_of else '')) for t in WO_READY]
+if ZE_READY:
+    if not FP_READY: MODS += [('fp_props', '')]
+    MODS += [(t, 'fp_props') for t in ZE_READY]
 case_files = [os.path.join(HERE, 'cases', t + '.js') for t, _ in MODS]
 def mod_tag(mid, deps):
     src = rd(os.path.join(HERE, 'cases', mid + '.js'))
@@ -45,7 +50,8 @@ mods_html = ('<!-- <<WB_MODULES_START>> 白板模块（按需加载，不要手�
 block = ('// <<WB_ENGINE_START>>\n' + rd(os.path.join(HERE, 'wb_engine.js')) + '\n'
          + rd(os.path.join(HERE, 'wb_actor.js')) + '\n'
          + rd(os.path.join(HERE, 'wb_app.js'))
-         + rd(os.path.join(HERE, 'wo_hub.js')) + '// <<WB_ENGINE_END>>\n')
+         + rd(os.path.join(HERE, 'wo_hub.js'))
+         + rd(os.path.join(HERE, 'ze_hub.js')) + '// <<WB_ENGINE_END>>\n')
 if '<!-- <<WB_MODULES_START>>' in s:
     s = re.sub(r'<!-- <<WB_MODULES_START>>.*?<!-- <<WB_MODULES_END>> -->\n', lambda m: mods_html, s, flags=re.S)
 else:
@@ -143,6 +149,34 @@ STOP = 'function stopActiveCanvasLoops() {\n'
 if 'woAnimId' not in s.split(STOP)[1][:300]:
     assert s.count(STOP) == 1
     s = s.replace(STOP, STOP + '  if (typeof woAnimId !== "undefined" && woAnimId) { cancelAnimationFrame(woAnimId); woAnimId = null; }\n')
+
+# ---------- 中英对照总枢：首页入口（单词身世横幅下面）+ 路由 + 动画循环登记 ----------
+ZE_HOME = '''    <!-- ZE_HOME：中英对照总枢入口（和第一性原理、单词身世总枢并列） -->
+    <div onclick="navigateTo('zh_en_hub', { scene: 'ze_be' })"
+      style="background:linear-gradient(135deg, #0f172a 0%, #134e4a 60%, #0f766e 100%); color:#ffffff; border-radius:22px; padding:18px 24px; border:3px solid #14b8a6; margin-bottom:24px; cursor:pointer; box-shadow:0 12px 28px rgba(15,23,42,0.18);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+        <div style="flex:1; min-width:290px;">
+          <h2 style="margin:0 0 6px; font-size:1.36rem; color:#ffffff; font-weight:900;">🔀 中英对照总枢：中文的习惯，哪些能搬、哪些不能搬</h2>
+          <p style="margin:0 0 10px; font-size:0.92rem; color:#e2e8f0; line-height:1.55;">为什么不能说 <strong>I am like apples</strong>？「是」不等于 be、长修饰语要挂在名词后面、句子必须有主语……先讲中英文一样的，再讲不一样的。</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(94,234,212,0.5); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#ccfbf1;">✅ 这些你已经会了</span>
+            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(94,234,212,0.5); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#ccfbf1;">🧠 「是」≠ be</span>
+            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(94,234,212,0.5); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#ccfbf1;">❓ Yes / No 怎么答</span>
+            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(94,234,212,0.5); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#ccfbf1;">🔀 借：borrow / lend …</span>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#14b8a6,#0d9488); color:#0f172a; font-weight:900; font-size:1.02rem; padding:14px 22px; border-radius:16px; white-space:nowrap;">进入中英对照总枢 ➔</div>
+      </div>
+    </div>
+
+'''
+if ZE_READY and '<!-- ZE_HOME' not in s:
+    assert s.count(HOME_ANCHOR) == 1
+    s = s.replace(HOME_ANCHOR, ZE_HOME + HOME_ANCHOR)
+if ZE_READY and 'zh_en_hub' not in s.split(ROUTE)[1][:400]:
+    s = s.replace(ROUTE, ROUTE + '  else if (s === "zh_en_hub") renderZhEnHubView();\n')
+if ZE_READY and 'zeAnimId' not in s.split(STOP)[1][:400]:
+    s = s.replace(STOP, STOP + '  if (typeof zeAnimId !== "undefined" && zeAnimId) { cancelAnimationFrame(zeAnimId); zeAnimId = null; }\n')
 
 # ---------- 按需加载（决策 13 第 3 条）：「万能动词 × 向量转盘」VV 动画脚本（约 1.7 MB：webp 素材 base64 + 场景）
 # 只有 verb_matrix 页签用，改成不执行的 wbmod-vv，进入页签渲染时才载入（首页不再解析这 1.7 MB）

@@ -114,7 +114,7 @@ function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {
 }
 // slot = "fp"：第一性原理总枢，动画帧 id 记在 fpAnimId；slot = "wo"：单词身世总枢，记在 woAnimId（不和王炸实验室的 superLabAnimId 互相取消）
 function startWBLoop(stage, slot) {
-  const setId = v => { if (slot === "fp") fpAnimId = v; else if (slot === "wo") woAnimId = v; else superLabAnimId = v; };
+  const setId = v => { if (slot === "fp") fpAnimId = v; else if (slot === "wo") woAnimId = v; else if (slot === "ze") zeAnimId = v; else superLabAnimId = v; };
   const tab = stage.getAttribute("data-tab") || "bamboo_tree";
   const cs = wbCases(tab) || [];
   const idx = Math.min(Number(stage.getAttribute("data-case")) || 0, cs.length - 1);
