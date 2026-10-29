@@ -22,7 +22,7 @@
 | ③ | `fp_boundedness` | 物理边界感统摄律 | 4 | knife、ring/target、building | ✅ 4/4（3-1 刀切苹果/面包 + 杯子装牛奶 · 3-2 小狗圈一只 a → 靶心 the · 3-3 楼房外壳 → 书本功能 · 3-4 小鸡 → 鸡肉，边界虚线消失；每幕 38–50 秒） |
 | ④ | `fp_one_king` | 一山不容二虎单核谓语律 | 4 | throne、token | ✅ 4/4（4-1 am/like 抢王座 · 4-2 to 马甲 / doing 循环 · 4-3 令牌 arc 飞到 Does/Did · 4-4 五副骨骼方块 + 彩色下划线；每幕 40–50 秒） |
 | ⑤ | `fp_vectors` | 三维几何向量时空律 | 4 | dims、vec、vehicle | ✅ 4/4（5-1 点/面/盒 + 小球落下 · 5-2 贴上/弹开、开关灯、飞机 arc 起飞 · 5-3 火柴人上公交 / 钻小车 · 5-4 to/from/for 三条箭头小球；每幕 45–55 秒） |
-| ⑥ | `fp_zoom_focus` | 焦点先行与镜头缩放律 | 4 | xmasTree、spotlight、zoom、timeGrid | ⬜ |
+| ⑥ | `fp_zoom_focus` | 焦点先行与镜头缩放律 | 4 | xmasTree、spotlight、zoom、timeGrid | 🔶 1/4（6-1 ✅ 树干 the boy + 挂件短语，用引擎 tree/sign/chip） |
 
 建议顺序：① → ⑤ → ③ → ④ → ⑥ → ②（道具难度从高到低，先把最难的引擎动效验证掉）。
 
