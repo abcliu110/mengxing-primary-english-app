@@ -18923,6 +18923,7 @@ WB_LAB.aux_transformer = (() => {
 // 数据来源：主文件 FIVE_SENTENCE_PATTERNS_DB（5 项 → 5 个案例）。骨骼部件和金句必须和数据一字不差。
 // 版面：上方一排「骨架方块」S / V / O / P / C（y 84–172）→ 中间两句金句，词下面用小括号标出 S/V/O… →
 //       底部绿框写骨骼公式，字幕给口诀。本页签的小工具都在这个 IIFE 里，不改引擎。
+// v2 升级（2026-10-30，决策 24）：逐个案例升引擎 v2 + 讲解员（3 个镜头 → 🔮 预测 → 金句卡），v2 案例用 vtools()；升级前整份文件原样保存在 cases/five_patterns_classic.js。依赖 wo_props。
 (function () {
   const MONO = '"Courier New",Courier,monospace';
   const FILL = { "#2563eb": "#dbeafe", "#f59e0b": "#fef3c7", "#7c3aed": "#ede9fe", "#92400e": "#fed7aa", "#059669": "#d1fae5", "#64748b": "#f1f5f9", "#e11d48": "#ffe4e6" };
@@ -19034,59 +19035,257 @@ WB_LAB.aux_transformer = (() => {
     return h;
   }
 
+  // ───────── v2 版面（2026-10-30，决策 24）─────────
+  // 讲解员站在右侧 x≈892，内容收在 x≤800；骨架方块下移到 y 140（让出右上角的进度条）；原来一屏的方块 + 两句金句 + 铁律拆成 3 个镜头；
+  // 配色只用 V3 k.PAL：S 主语墨黑、V 谓语蓝、O / IO 宾语红（靶心 / 收礼的人）、P 表语 / OC 宾补 / DO 物绿、挂件灰；橙 / 紫 / 褐都改 V3。
+  const VFILL = { "#2563eb": "#dbeafe", "#e11d48": "#ffe4e6", "#059669": "#d1fae5", "#1f2937": "#f1f5f9", "#64748b": "#f1f5f9" };
+  function vtools(k, D) {
+    const { P, T, F, go, wl, ellipse, roughRect, rectD, estW } = k, C = k.PAL;
+    const BY = 140, BH = 54, WS = 20;                      // v2：方块顶边 140（原 96）
+    const h = {
+      BY, BH,
+      layout(list, x0 = 40, gap = 44) {
+        let x = x0;
+        return list.map((b, i) => {
+          if (i) x += gap;
+          const w = Math.max(b.word.length * WS * .6 + 32, estW(b.role, 16) + 16, 92);
+          const o = { ...b, x, w, cx: x + w / 2, i };
+          x += w;
+          return o;
+        });
+      },
+      block(b, prev) {
+        if (prev) {
+          const mx = (prev.x + prev.w + b.x) / 2, my = BY + BH / 2;
+          if (b.sep === "arrow") {
+            P(wl(mx - 16, my, mx + 14, my, .5) + ` M${mx + 5},${my - 8} L${mx + 15},${my} L${mx + 5},${my + 8}`, go(.4), .4, { color: C.red, w: 3 });
+          } else T("+", mx, my + 8, go(.3), .3, { size: 26, color: C.grey, weight: 900, anchor: "middle" });
+        }
+        T(b.role, b.cx, BY - 10, go(.6), .6, { size: 16, color: b.color, weight: 900, anchor: "middle" });
+        if (b.dashed) {
+          P(rectD(b.x, BY, b.w, BH), go(.5), .5, { color: b.color, w: 2.5, dash: "7 6" });
+          F(rectD(b.x, BY, b.w, BH), go(.2, 0), { color: VFILL[b.color], op: .6 });
+        } else {
+          P(roughRect(b.x, BY, b.w, BH), go(.7), .7, { color: b.color, w: 3 });
+          F(rectD(b.x, BY, b.w, BH), go(.2, 0), { color: VFILL[b.color], op: .9 });
+        }
+        if (b.note) T(b.note, b.cx, BY + BH + 22, go(.5), .5, { size: 14, color: C.grey, weight: 700, anchor: "middle" });
+      },
+      word(b) {
+        const dur = Math.max(.5, b.word.length * .06);
+        T(b.word, b.cx, BY + BH / 2 + 7, go(dur), dur, { size: WS, color: C.ink, weight: 900, anchor: "middle", font: D.MONO });
+      },
+      // 等宽英文句子：太长时自动缩小，保证不越过 x=800（讲解员在右边）
+      line(text, y, size = 20, color = C.ink, x = 40) {
+        size = Math.min(size, (800 - x) / (text.length * .6));
+        const dur = Math.max(1, text.length * .05);
+        T(text, x, y, go(dur), dur, { size, color, font: D.MONO, weight: 700 });
+        const cw = size * .6;
+        const at = (sub, nth = 0) => {
+          const re = new RegExp("(^|[^A-Za-z])" + sub.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&") + "(?![A-Za-z])", "g");
+          let m, n = 0;
+          while ((m = re.exec(text))) { if (n++ === nth) return m.index + m[1].length; re.lastIndex = m.index + 1; }
+          return -1;
+        };
+        return { x, y, size, cw, text, at, x0: (s, n) => x + at(s, n) * cw, x1: (s, n) => x + (at(s, n) + s.length) * cw };
+      },
+      tag(m, sub, label, color, nth = 0, dur = .3) {
+        const x1 = m.x0(sub, nth) + 2, x2 = m.x1(sub, nth) - 2, y = m.y + 7;
+        const r = Math.min(6, (x2 - x1) / 4);
+        P(`M${x1},${y} Q${x1},${y + 6} ${x1 + r},${y + 6} L${x2 - r},${y + 6} Q${x2},${y + 6} ${x2},${y}`, go(dur), dur, { color, w: 2.2 });
+        T(label, (x1 + x2) / 2, y + 23, go(dur), dur, { size: 14, color, weight: 900, anchor: "middle" });
+      },
+      tags(m, arr) { arr.forEach(a => h.tag(m, a[0], a[1], a[2], a[3] || 0)); },
+      ring(m, sub, color = C.red, nth = 0) {
+        const x0 = m.x0(sub, nth), x1 = m.x1(sub, nth);
+        P(ellipse((x0 + x1) / 2, m.y - m.size * .34, (x1 - x0) / 2 + 5, m.size * .72), go(.45), .45, { color, w: 2.5 });
+        return (x0 + x1) / 2;
+      },
+      strike(m, sub, nth = 0, color = C.red) {
+        P(wl(m.x0(sub, nth) - 2, m.y - m.size * .3, m.x1(sub, nth) + 2, m.y - m.size * .3, .5), go(.35), .35, { color, w: 3 });
+      },
+      redX(x, y) { P(wl(x, y, x + 20, y + 30, .6) + " " + wl(x + 20, y, x, y + 30, .6), go(.5), .5, { color: C.red, w: 4 }); },
+      // 普通文字（中文或混排）
+      note(text, x, y, o = {}) {
+        const dur = o.dur || Math.max(.6, [...text].length * .06);
+        T(text, x, y, go(dur), dur, { size: 16, color: C.grey, weight: 700, ...o });
+      },
+      hook(x, y, color = C.red) {
+        P(`M${x},${y - 26} L${x},${y - 10} Q${x},${y - 2} ${x - 7},${y - 2} Q${x - 13},${y - 2} ${x - 13},${y - 9}`, go(.4), .4, { color, w: 3 });
+        P(ellipse(x, y - 30, 4, 4), go(.15), .15, { color, w: 2 });
+      },
+      heart(x, y, color = C.red) {
+        const d = `M${x},${y + 9} C${x - 16},${y - 2} ${x - 10},${y - 15} ${x},${y - 6} C${x + 10},${y - 15} ${x + 16},${y - 2} ${x},${y + 9} Z`;
+        P(d, go(.4), .4, { color, w: 2.2 }); F(d, go(.1, 0), { color: C.tintRed, op: 1 });
+      },
+      target(x, y) {
+        [26, 17, 8].forEach((r, i) => { P(ellipse(x, y, r, r), go(.3), .3, { color: i === 1 ? C.ink : C.red, w: 2.5 }); });
+      },
+      // 天平式的等号弧：从 a 方块底部弯到 b 方块底部
+      arc(a, b, label) {
+        const y = BY + BH + 6, mx = (a.cx + b.cx) / 2;
+        P(`M${a.cx},${y} Q${mx},${y + 48} ${b.cx},${y}`, go(.7), .7, { color: C.blue, w: 2.5, dash: "6 5" });
+        T(label, mx, y + 44, go(.8), .8, { size: 15, color: C.blue, weight: 900, anchor: "middle" });
+      },
+      // 结尾绿框：骨骼公式 + 灰色中文（宽度收在 x≤800，讲解员不用退场）
+      final(formula, zhLine) {
+        const w = Math.min(784, Math.max(420, estW(formula, 21) + 50));
+        P(roughRect(16, 448, w, 48), go(.9), .9, { color: C.green, w: 2 });
+        F(rectD(16, 448, w, 48), go(.2, 0), { color: C.tintGreen, op: .55 });
+        T(formula, 40, 479, go(1.6), 1.6, { size: 21, color: C.green, weight: 900 });
+        T(zhLine, 40, 524, go(1.4), 1.4, { size: 17, color: C.grey });
+      },
+      // 🔮 预测题框
+      quiz(zhLine, ask) {
+        P(roughRect(40, 206, 760, 150), go(.8), .8, { color: C.green, w: 2.5 });
+        F(rectD(40, 206, 760, 150), go(.2, 0), { color: C.tintGreen, op: .9 });
+        T(zhLine, 64, 246, go(.8), .8, { size: 22, color: C.ink, weight: 900 });
+        T(ask, 64, 286, go(1), 1, { size: 21, color: C.ink, weight: 900, font: D.MONO });
+      },
+      reveal(text) { T(text, 64, 330, go(1), 1, { size: 22, color: C.green, weight: 900, font: D.MONO }); }
+    };
+    return h;
+  }
+
   WB_LAB.five_patterns = [
-    // ───────── ① SV 自给自足型 ─────────
+    // ───────── ① SV 自给自足型（v2 + 讲解员，2026-10-30）─────────
+    // 升级前原样保存在 cases/five_patterns_classic.js（R1 零丢失）。原一屏拆成 3 个镜头（骨架 + 挂件 / 金句 / 挂钩 + 铁律 + 公式）+ 🔮 预测 + 金句卡；
+    // R4：太阳读到 rises 时从山后升起；三只鸟读到 fly 时飞过；讲解员读到 run 时跑一段、读到 look at the blackboard 时指黑板、读到 Play with me 时跳起来；预测题 Look at the sky 时指向天空。
     {
       build(k) {
-        const { C, N } = k, h = tools(k);
+        k.v2();
+        const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = vtools(k, D);
+        const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+        const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
         N("", "这节课：拍一张英语句子的「X 光片」，看清它的骨头！");
-        k.header("自给自足型 · 无需宾语", "句型 ① SV", false);
+        k.act(me, "walk", .3, 1.6, { to: 892 });
+        k.act(me, "wave", 2.0, 1.8);
+        D.scene({ title: "句型 ① SV", sub: "自给自足型 · 无需宾语", badges: ["💡", "✂️"], steps: ["① 骨架", "② 挂件", "③ 金句", "④ 挂钩", "⑤ 公式·口诀", "🔮 预测"], cardDur: 3.6 });
+
+        // ───── 镜头 1 · 骨架方块 + 挂件 ─────
+        D.step(0); D.shot();
         N("五大基本句型：", "英语句子最常见的 5 种骨架。句子再长，骨架也逃不出这 5 种。");
         const B = h.layout([
-          { role: "S 主语", word: "The sun", color: C.blue, note: "谁？" },
-          { role: "V 不及物谓语", word: "rises", color: C.orange, note: "做什么？" },
+          { role: "S 主语", word: "The sun", color: C.ink, note: "谁？" },
+          { role: "V 不及物谓语", word: "rises", color: C.blue, note: "做什么？" },
           { role: "地点挂件", word: "in the east", color: C.grey, note: "在哪儿（可有可无）", dashed: true }
         ]);
         N("主语 S：", "句子在说「谁」或「什么」。S 是 Subject（主语）的第一个字母。");
         h.block(B[0]);
         N("谓语 V：", "说主语「做什么」的动词，是句子的核心。V 来自 Verb（动词）。");
         h.block(B[1], B[0]);
+        k.act(me, "point", S.at - .6, 1.2, { at: [B[1].cx, h.BY + 20] });
         N("", "把词放进骨架：The sun 是主语，rises（升起）是谓语。");
         h.word(B[0]); h.word(B[1]);
+        D.step(1);
         N("挂件：", "补充「在哪儿、怎么样」的部分，比如 in the east（在东方）。去掉骨架也不散。");
         h.block(B[2], B[1]); h.word(B[2]);
+        // 场景：太阳从东边的山后升起（R4 rises）——太阳先画，山后画（山的填色盖住太阳下半截）
+        const gSun = D.sub();
+        P(k.ellipse(640, 420, 24, 24), go(.4), .4, { color: C.ink, w: 2.5 }); F(k.ellipse(640, 420, 24, 24), go(.1, 0), { color: C.hlYellow, op: 1 });
+        let rays = ""; for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; rays += ` M${(640 + Math.cos(a) * 31).toFixed(1)},${(420 + Math.sin(a) * 31).toFixed(1)} L${(640 + Math.cos(a) * 40).toFixed(1)},${(420 + Math.sin(a) * 40).toFixed(1)}`; }
+        P(rays.trim(), go(.3), .3, { color: C.ink, w: 2 });
+        D.back();
+        const hill = `M500,440 Q560,392 640,404 Q720,392 790,440 Z`;
+        P(hill, go(.5), .5, { color: C.green, w: 2.5 }); F(hill, go(.1, 0), { color: C.tintGreen, op: 1 });
+        P(k.wl(440, 440, 800, 440, .5), go(.3), .3, { color: C.ink, w: 2 });
+        T("东", 760, 470, go(.3), .3, { size: 15, color: C.grey, weight: 900, anchor: "middle" });
+        const sySun = sayAt("The sun rises in the east.", { zh: "太阳从东方升起。", word: "The sun rises in the east" });
+        k.move(gSun, sySun.t + sySun.wd, Math.max(1.4, sySun.dur - sySun.wd), 0, -96, { ease: "move" });
+        k.actFx(["rises"], sySun.t + sySun.wd, Math.max(1.4, sySun.dur - sySun.wd), "太阳从东边的山后慢慢升起");
         N("不及物动词 Vi：", "主语自己就能完成的动作，力气不用传给别人，后面不用接对象。");
-        h.say("自己就能完成：rise 升起 · fly 飞 · sleep 睡 · run 跑 · smile 笑", 40, 206, { color: C.orange, size: 16, weight: 900 });
-        k.wait(.8);
+        h.note("自己就能完成：rise 升起 · fly 飞 · sleep 睡 · run 跑 · smile 笑", 40, 262, { color: C.blue, size: 16, weight: 900 });
+        const syRun = sayAt("Rise, fly, sleep, run, smile. Babies sleep. Kids run and smile.", { zh: "升起、飞、睡、跑、笑。宝宝睡觉。孩子们跑着、笑着。", word: "rise fly sleep run smile" });
+        const tr = syRun.t + syRun.dur * .62, hr = Math.max(.8, syRun.dur * .2);
+        k.act(me, "run", tr, hr, { to: 830, words: ["run"] });
+        k.act(me, "walk", tr + hr, hr, { to: 892 });
+        k.act(me, "turn", tr + 2 * hr, .3, { to: -1 });
+        k.expr(me, "happy", tr + 2 * hr, 1.2);
+        k.wait(.4);
+        D.wipe();
+
+        // ───── 镜头 2 · 金句 Birds fly ─────
+        D.step(2); D.shot();
         N("", "看金句：Birds fly 就是骨架，后面的部分全是挂件。");
-        const m1 = h.line("Birds fly happily in the blue sky.", 254);
-        k.say("Birds fly happily in the blue sky.", { zh: "鸟儿在蓝天里快乐地飞翔。" });
-        h.tags(m1, [["Birds", "S", C.blue], ["fly", "V", C.orange]]);
+        const m1 = h.line("Birds fly happily in the blue sky.", 170);
+        // 三只鸟飞过蓝天（R4 fly）
+        const gB = D.sub();
+        [[0, 0], [34, 14], [66, -6]].forEach(([dx, dy]) => P(`M${90 + dx},${330 + dy} q8,-9 15,0 q7,-9 15,0`, go(.15, .02), .15, { color: C.ink, w: 2.2 }));
+        D.back(); k.hide(gB);
+        P(k.wl(40, 400, 800, 400, .4), go(.3), .3, { color: C.blue, w: 1.6, dash: "5 8" });
+        const syB = sayAt("Birds fly happily in the blue sky.", { zh: "鸟儿在蓝天里快乐地飞翔。" });
+        k.fade(gB, syB.t, .3, 1);
+        k.path(gB, syB.t, syB.dur, [[200, -30], [420, 6], [600, -24]]);
+        for (let i = 0; i < 6; i++) k.squash(gB, syB.t + .2 + i * (syB.dur - .3) / 6, (syB.dur - .3) / 6, .22);
+        k.actFx(["fly"], syB.t, syB.dur, "三只鸟扇着翅膀飞过蓝天");
+        h.tags(m1, [["Birds", "S", C.ink], ["fly", "V", C.blue]]);
+        k.act(me, "point", S.at - .6, 1.2, { at: [m1.x1("fly"), 160] });
         N("副词：", "说明动作「怎么样」的词，常以 -ly 结尾，比如 happily（快乐地）。");
         h.tags(m1, [["happily", "副词挂件", C.grey], ["in the blue sky", "地点挂件", C.grey]]);
+        k.say("Birds fly happily in the blue sky.", { zh: "鸟儿在蓝天里快乐地飞翔。", word: "Birds happily blue sky ly", blocks: ["ly"] });
+        k.wait(.3);
+        D.wipe();
+
+        // ───── 镜头 3 · 介词挂钩 + 铁律 + 公式 ─────
+        D.step(3); D.shot();
         N("宾语：", "动作的对象，就是「对谁、对什么」。不及物动词不能直接接宾语。");
-        const m2 = h.line("Please listen to the teacher and look at the blackboard!", 350);
+        const m2 = h.line("Please listen to the teacher and look at the blackboard!", 166);
         k.say("Please listen to the teacher and look at the blackboard!", { zh: "请听老师讲，看黑板！", word: "listen to" });
         N("介词挂钩：", "to、at、for、with 这类小词像钩子，挂在不及物动词后面，才能接上对象。");
         const x1 = h.ring(m2, "to"); h.hook(x1, m2.y - 22);
         const x2 = h.ring(m2, "at"); h.hook(x2, m2.y - 22);
-        h.tags(m2, [["listen", "V", C.orange], ["the teacher", "对象", C.purple], ["look", "V", C.orange], ["the blackboard", "对象", C.purple]]);
+        h.tags(m2, [["listen", "V", C.blue], ["the teacher", "对象", C.red], ["look", "V", C.blue], ["the blackboard", "对象", C.red]]);
         N("铁律：", "一定要守的规矩：listen to、look at、wait for，钩子不能丢！");
-        h.say("必考：", 40, 414, { color: C.red, size: 17, weight: 900, dur: .4 });
-        h.say("listen TO · look AT · wait FOR · arrive IN(AT)", 100, 414, { color: C.red, size: 17, weight: 900, font: MONO, dur: 1.4 });
-        N("", "这就是句型 ①：主语 + 不及物动词，挂件随便挂。");
-        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
-        k.say("The sun rises in the east.", { zh: "太阳从东方升起。", word: "The sun rises in the east" });
-        k.say("Rise, fly, sleep, run, smile. Babies sleep. Kids run and smile.", { zh: "升起、飞、睡、跑、笑。宝宝睡觉。孩子们跑着、笑着。", word: "rise fly sleep run smile" });
-        k.say("Birds fly happily in the blue sky.", { zh: "鸟儿在蓝天里快乐地飞翔。", word: "Birds happily blue sky ly", blocks: ["ly"] });
-        k.say("Please look at the blackboard and listen to the teacher.", { zh: "请看黑板，听老师讲。", word: "Please look at blackboard and teacher" });
+        h.note("必考：", 40, 238, { color: C.red, size: 17, weight: 900, dur: .4 });
+        h.note("listen TO · look AT · wait FOR · arrive IN(AT)", 100, 238, { color: C.red, size: 17, weight: 900, font: D.MONO, dur: 1.4 });
+        // 小黑板（R4 look at the blackboard：讲解员读到时指向黑板）
+        P(k.roughRect(470, 280, 300, 110), go(.6), .6, { color: C.ink, w: 3 });
+        F(k.rectD(470, 280, 300, 110), go(.1, 0), { color: C.tintInk, op: 1 });
+        T("黑板", 620, 412, go(.3), .3, { size: 14, color: C.grey, weight: 700, anchor: "middle" });
+        const syL = sayAt("Please look at the blackboard and listen to the teacher.", { zh: "请看黑板，听老师讲。", word: "Please look at blackboard and teacher" });
+        k.act(me, "point", syL.t + syL.wd, Math.max(1.4, syL.dur - syL.wd), { at: [620, 330], words: ["look"] });
+        k.look(me, 620, 330, syL.t + syL.wd, syL.dur - syL.wd);
         k.say("Wait for me! We arrive at school at eight.", { zh: "等等我！我们八点到学校。", word: "wait FOR arrive" });
-        k.say("Subject, verb. Play with me!", { zh: "主语，动词。和我一起玩吧！", word: "Subject Verb with" });
+        D.step(4);
+        N("", "这就是句型 ①：主语 + 不及物动词，挂件随便挂。");
+        const syP = sayAt("Subject, verb. Play with me!", { zh: "主语，动词。和我一起玩吧！", word: "Subject Verb with" });
+        k.act(me, "jump", syP.t + syP.dur * .5, Math.max(1, syP.dur * .5), { words: ["play"] });
         h.final("S（主语）+ Vi（不及物动词）  [+ 副词 / 介词短语挂件]", "鸟儿在蓝天上快乐地飞翔。  自己能做，不带宾语！");
         N("口诀：", "不及物动词自己就能做；想接对象，先挂介词钩。");
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 🔮 预测 ─────
+        D.step(5); D.shot();
+        N("预测：", "「看天空！」look 是不及物动词，后面要接 the sky，中间该挂哪个钩子？先想 3 秒！");
+        h.quiz("🔮 看天空！", "→  Look ___ the sky!");
+        k.act(me, "think", S.at, 3.1);
+        D.hold(3);
+        N("揭晓：", "look 后面挂钩子 at，才能接上 the sky：Look at the sky!");
+        const tRev = go(.3);
+        h.reveal("Look at the sky!");
+        k.sfx("ding", tRev + .9);
+        const syQ = sayAt("Look at the sky!", { zh: "看天空！", word: "look at the sky" });
+        k.act(me, "point", syQ.t, Math.max(1.4, syQ.dur), { at: [700, 110], words: ["look"] });
+        k.look(me, 700, 110, syQ.t, syQ.dur);
+        k.act(me, "cheer", syQ.t + Math.max(1.4, syQ.dur) + .1, 1.2);
+        D.hold(1.4);
+
+        k.quoteCard({ insight: "不及物动词自己就能把事做完，\n后面不直接接宾语；挂件随便挂", rhyme: "口诀：不及物动词自己就能做；\n想接对象，先挂介词钩。", hlLines: 2, foot: "🦴 五大基本句型 · 句型 ① SV" });
+        k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+        D.hold(2);
+        D.finish(.45);
       },
+      actionWords: [
+        { word: "rises", act: "读到「The sun rises in the east」时太阳从东边的山后升起（场景动作 actFx + move）" },
+        { word: "run", act: "读到「Kids run and smile」时讲解员往左跑一段再走回（run）" },
+        { word: "fly", act: "读到「Birds fly happily in the blue sky」时三只鸟扇着翅膀飞过（场景动作 actFx + path + squash）" },
+        { word: "look", act: "读到「Please look at the blackboard」时讲解员指向小黑板并看过去（point + look）；预测题「Look at the sky!」时指向天空" },
+        { word: "play", act: "读到「Play with me!」时讲解员跳起来（jump）" },
+      ],
       r2skip: ["SV", "Vi"],   // 成分标签（主语 S、不及物动词 Vi），不读
       terms: [
+        ["可信度徽章", "💡 骨骼、挂件、介词挂钩、X 光片都是帮助记忆的比喻；✂️ 简化说法：「五大基本句型」是中小学常用的分法，有的语法书分得更细（如 Quirk 等人的《英语语法大全》分 7 种，多出必须带地点等状语的两种）。"],
         ["五大基本句型", "英语句子最常见的 5 种骨架：SV、SVP、SVO、SVOO、SVOC。句子再长，骨架也是这 5 种之一。"],
         ["骨骼 / 骨架", "比喻：句子里最核心、不能少的部分。动画里用一个个方块表示，其他补充内容是挂件。"],
         ["骨骼透视", "比喻：像拍 X 光片一样看穿句子，只看最核心的骨头（S、V、O、P、C）。"],
