@@ -154,3 +154,51 @@ WB_LAB.fp_one_king.push(
     ],
   },
 );
+WB_LAB.fp_one_king.push(
+  // ───────── 4-4 五副基本骨骼（总览）─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：再长的句子，拆掉装饰，只剩 5 副骨骼。");
+      k.header("④ 一山不容二虎单核谓语律", "五副基本骨骼", false);
+      N("", "国王动词像一个插线板，决定后面还能插几个部件。");
+      const COL = { S: C.blue, V: C.red, O: C.green, P: C.purple, IO: C.orange, DO: C.green, C: C.brown };
+      const FILL = { S: "#dbeafe", V: "#fee2e2", O: "#d1fae5", P: "#ede9fe", IO: "#fef3c7", DO: "#d1fae5", C: "#fde68a" };
+      const row = (no, parts, en, y, marks = []) => {
+        T(no, 40, y + 8, go(.3), .3, { size: 22, color: C.ink, weight: 900 });
+        let x = 76;
+        parts.forEach(p => {
+          const w = p.length > 1 ? 48 : 38;
+          P(k.roughRect(x, y - 16, w, 32), go(.25, 0), .25, { color: COL[p], w: 2.5 });
+          F(k.rectD(x, y - 16, w, 32), go(.1, 0), { color: FILL[p], op: 1 });
+          T(p, x + w / 2, y + 7, go(.2), .2, { size: 17, color: COL[p], weight: 900, font: M, anchor: "middle" });
+          x += w + 8;
+        });
+        T(en, 372, y + 8, go(.9), .9, { size: 22, color: C.ink, weight: 900, font: M });
+        marks.forEach(([sub, p]) => { const i = en.indexOf(sub); P(k.wl(372 + i * 13.2, y + 16, 372 + (i + sub.length) * 13.2, y + 16, .5), go(.3), .3, { color: COL[p], w: 4 }); });
+      };
+      N("主语 S + 谓语 V：", "谁 + 做什么。动词后面什么都不用插。");
+      row("①", ["S", "V"], "Birds fly.", 120, [["Birds", "S"], ["fly", "V"]]);
+      N("表语 P：", "跟在系动词后面，说主语「怎么样 / 是什么」。");
+      row("②", ["S", "V", "P"], "The cake smells delicious.", 178, [["The cake", "S"], ["smells", "V"], ["delicious", "P"]]);
+      N("宾语 O：", "动作落到的人或东西。");
+      row("③", ["S", "V", "O"], "I love my family.", 236, [["I", "S"], ["love", "V"], ["my family", "O"]]);
+      N("双宾语：", "给谁（IO 人）+ 给什么（DO 物）。祈使句省略了主语 you。");
+      row("④", ["S", "V", "IO", "DO"], "Pass me the book.", 294, [["Pass", "V"], ["me", "IO"], ["the book", "DO"]]);
+      N("补语 C：", "补充说明宾语变成什么样。");
+      row("⑤", ["S", "V", "O", "C"], "Reading makes me clever.", 352, [["Reading", "S"], ["makes", "V"], ["me", "O"], ["clever", "C"]]);
+      k.wait(.4);
+      T("①②③ 最常用，小学大部分句子都是它们。详细讲解看「五大句型」实验室。", 40, 412, go(1.4), 1.4, { size: 15, color: C.grey, weight: 700 });
+      k.wait(.6);
+      N("口诀：", "先搭骨架再挂花。");
+      D.fin("先把主干骨骼搭对，再往上挂时间、地点、形容词这些装饰", "口诀：先搭骨架再挂花。");
+      k.wait(2);
+    },
+    terms: [
+      ["宾语", "动作落到的人或东西：I love my family 里的 my family。"],
+      ["表语", "跟在 be / smell / look 这类系动词后面，说明主语怎么样：The cake smells delicious。"],
+      ["补语", "补充说明宾语的状态：Reading makes me clever 里的 clever。"],
+      ["双宾语", "一个动词带两个宾语：给谁（人）+ 给什么（物），如 Pass me the book。"],
+    ],
+  },
+);
