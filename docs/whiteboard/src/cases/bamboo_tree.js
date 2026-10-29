@@ -1,47 +1,114 @@
 // ==================== 白板脚本：竹节句 vs 树干句 5 个病句手术 ====================
+// v2 升级（2026-10-30 起，决策 24）：逐个案例升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/bamboo_tree_classic.js。依赖 wo_props。
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
 WB_LAB.bamboo_tree = [
-  // ───────── ① 多动词连动病 ─────────
+  // ───────── ① 多动词连动病（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/bamboo_tree_classic.js（R1 零丢失）。原左（竹节句 + 病句）右（树干句）两半拆成两个镜头；树整体左移 300 给讲解员让位；树干 / 王冠保留道具木色 / 金色。
   {
     build(k) {
-      const { C, N } = k;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这节课：为什么中文顺着说的句子，照着翻成英语就错了？");
-      k.header("病句手术 ①  多动词连动病");
-      k.leftHead();
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "竹节句 vs 树干句", sub: "病句手术 ①  多动词连动病", badges: ["💡", "✂️"], steps: ["① 竹节句", "② 硬翻病句", "③ 立树干", "④ 挂树枝", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 竹节句 + 硬翻的病句 ─────
+      D.step(0); D.shot();
+      k.head("汉语：竹节句", 40, 108, C.ink);
       N("竹节句：", "中文像一根竹子，一节接一节。几个动作按先后排成一串，不用连接词。");
       const z = k.zh("我明天想去图书馆看故事书。", 40, 155);
       N("动词：", "表示动作的词。这句话里有 3 个：想、去、看。");
       k.circle(z, 3); k.circle(z, 4); k.circle(z, 8);
+      k.act(me, "point", S.at - 1, 1.2, { at: [z.cx(4), z.cy] });
       N("", "画成竹子：每个动词占一节，一样长，谁也不比谁重要。");
       k.bamboo(["想 want", "去 go", "看 read"]);
       k.note("三个动词一样高，平起平坐", 40, 272);
+      k.wait(.3);
+      const syW = sayAt("Want, go, read. I want to read.", { zh: "想、去、读。我想读书。", word: "want go read I to" });
+      const half = Math.max(1, syW.dur * .45);
+      k.act(me, "walk", syW.t, half, { to: 850, words: ["go"] });
+      const bk = k.prop("book", 0, 0, { hidden: true });
+      k.act(me, "read", syW.t + half, Math.max(1.2, syW.dur - half), { prop: bk, words: ["read"] });
+      k.act(me, "walk", syW.t + syW.dur + .3, .8, { to: 892 });
+      D.step(1);
       N("中式英语（Chinglish）：", "照着中文一个词一个词硬翻出来的英语。");
       const m = k.mono("I tomorrow want go library read storybook.", 40, 322);
+      sayAt("Chinglish. Chinglish is English in Chinese word order.", { zh: "中式英语。中式英语就是按中文顺序排的英语。", word: "Chinglish" });
       N("", "错在哪？want、go、read 三个动词挤在一起，都想当老大。");
       k.squiggle(m, "go"); k.squiggle(m, "read"); k.redX(12, 302);
+      k.act(me, "surprised", S.at - .4, 1); k.expr(me, "oops", S.at - .4, 1.4);
       N("谓语动词：", "句子里说「主语在做什么」的那个主要动词。英语一句话只能有一个。");
       k.note("英语一句话只能有 1 个谓语动词！", 40, 375, { size: 19, color: C.red, weight: 900 });
-      k.rightHead();
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 镜头 2 · 树干句：先立主干，再挂树枝 ─────
+      D.step(2); D.shot();
+      k.head("英语：树干句", 40, 108, C.green);
       N("树干句：", "英语像一棵树。先长出主干（谁 + 做什么），别的内容像树枝挂上去。");
-      k.tree({});
+      k.tree({ cx: 420, gx0: 260, gx1: 610 });
       N("主干：", "I want（我想要）。want 是这句唯一的谓语动词，所以戴上王冠。");
-      k.sign("I want", 721, 300, "want");
+      k.sign("I want", 421, 300, "want");
+      k.act(me, "point", S.at - .6, 1.2, { at: [430, 300] });
+      D.step(3);
       N("挂件（树枝）：", "挂在主干上的补充内容。go 前加 to，就不再抢谓语的位置。");
-      k.chip("to go to the library", 492, 246, [698, 250], { tag: "挂件 1：去哪儿" });
+      k.chip("to go to the library", 192, 246, [398, 250], { tag: "挂件 1：去哪儿" });
       N("to + 动词：", "动词前加 to，表示「要去做的事」。read 变成 to read，说明去干什么。");
-      k.chip("to read storybooks", 760, 212, [744, 236], { tag: "挂件 2：去干什么" });
+      k.chip("to read storybooks", 460, 212, [444, 236], { tag: "挂件 2：去干什么" });
       N("时间挂件：", "tomorrow 这类时间词，一般挂在英语句子的最后。");
-      k.chip("tomorrow", 796, 358, [746, 350], { color: C.green, tag: "时间挂句尾" });
+      k.chip("tomorrow", 496, 358, [446, 350], { color: C.green, tag: "时间挂句尾" });
+      sayAt("Tomorrow. The library has storybooks.", { zh: "明天。图书馆里有故事书。", word: "tomorrow library storybook storybooks the" });
+      // 整句横跨全宽：讲解员先退到右边
+      k.act(me, "walk", S.at, 1, { to: 1010 });
+      k.wait(1);
       N("", "连起来：主干 + 树枝 = 一句地道的英语！");
       k.final("I want to go to the library to read storybooks tomorrow.", "want", "我明天想去图书馆看故事书。  先立树干，再挂树枝！");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
-      k.say("Want, go, read. I want to read.", { zh: "想、去、读。我想读书。", word: "want go read I to" });
-      k.say("Tomorrow. The library has storybooks.", { zh: "明天。图书馆里有故事书。", word: "tomorrow library storybook storybooks the" });
-      k.say("Chinglish. Chinglish is English in Chinese word order.", { zh: "中式英语。中式英语就是按中文顺序排的英语。", word: "Chinglish" });
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 口诀 ─────
+      D.step(4); D.shot();
+      k.act(me, "walk", S.at, 1.2, { to: 892 });
       N("口诀：", "先立树干，再挂树枝。一句话只留一个谓语动词当国王。");
+      P(k.roughRect(40, 118, 760, 48), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：先立树干，再挂树枝。一句话只留一个谓语动词当国王。", 60, 150, go(1.2), 1.2, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.4);
+
+      // ───── 🔮 预测 ─────
+      D.step(5);
+      N("预测：", "「我想去公园踢足球」，want 已经当国王了，go 和 play 前面各填什么？先想 3 秒！");
+      P(k.roughRect(40, 206, 760, 150), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 206, 760, 150), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 我想去公园踢足球。", 64, 246, go(.8), .8, { size: 22, color: C.ink, weight: 900 });
+      T("I want ___ go to the park ___ play football.", 64, 284, go(1), 1, { size: 22, color: C.ink, weight: 900, font: D.MONO });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "两个空都填 to：go 和 play 穿上 to，就变成挂件，不抢国王的位置。");
+      const tRev = go(.3);
+      T("I want to go to the park to play football.", 64, 330, go(1), 1, { size: 22, color: C.green, weight: 900, font: D.MONO });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      const syP = sayAt("I want to go to the park to play football.", { zh: "我想去公园踢足球。", word: "park play football" });
+      k.act(me, "jump", syP.t + syP.dur * .5, Math.max(1, syP.dur * .5), { words: ["play"] });
+      D.hold(2);
+
+      k.quoteCard({ insight: "中文像竹子，动作一节接一节；\n英语像树，只立一个谓语当主干，其余都挂成树枝", rhyme: "口诀：先立树干，再挂树枝。一句话只留一个谓语动词当国王。", hlLines: 2, foot: "🌳 竹节句 vs 树干句 · 病句手术 ①" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "go", act: "讲解员在读到「Want, go, read」时往前走（walk）" },
+      { word: "read", act: "讲解员接着捧书读（read），与「I want to read」同步" },
+      { word: "play", act: "预测题揭晓读到「to play football」时讲解员跳起来（jump）" },
+    ],
     r2skip: ["vs", "I tomorrow want go library read storybook."],   // vs 对比符号；病句不读
     terms: [
+      ["可信度徽章", "💡 竹子 / 大树、国王 / 挂件都是帮助记忆的比喻；✂️ 简化说法：「一句只有一个谓语动词」指没有 and 等连接词的简单句。"],
       ["竹节句", "中文的句子像竹子，一节接一节：几个动作按先后排成一串，中间不用连接词。比如「我想去图书馆看书」里有想、去、看三个动作。"],
       ["树干句", "英语的句子像一棵树：先说主干（谁 + 做什么），其他内容像树枝一样挂在后面。"],
       ["动词", "表示动作或状态的词，比如 want（想要）、go（去）、read（读）。"],
