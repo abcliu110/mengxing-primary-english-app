@@ -16,7 +16,7 @@
 
 **下一个接手点**
 1. ~~第 2 幕未提交改动~~ ✅ 已核实：第 2 幕在 `27d5f28` 已提交，无遗留改动（2026-10-30 02:10 接手核对）。
-2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → fp_iconicity → fp_one_king → fp_zoom_focus → bamboo_tree → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
+2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → ~~fp_iconicity~~ ✅ → fp_one_king → fp_zoom_focus → bamboo_tree → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
 3. 每幕流程：备份 classic → 改 v2 → `jscheck.py`、`r2check.py <模块> --strict`、`reg_render.py`、`app*.py` → 对比图 → 提交推送 → 本文件「夜间进度」加一行。
 4. 已知遗留：动作库无 swim / eat / 穿脱衣（r2check 只提示，扩 `wb_actor.js` 时补）；`stress_rhythm` 原 3 幕 r2check 失败是旧问题，升级时一并修。
 
@@ -43,6 +43,7 @@
 - 02:42｜fp_iconicity 第 1 幕升 v2（M·S / B·C 两镜头 + 🔮 box + 金句卡；R4 look / open / swims / put / catch）｜`b9eab42`｜`work/shots/fp_iconicity_1_对比总图.png`｜徽章只用 💡（HANDOFF first_principles §4：字母象形是记忆联想）；swim 动作库没有，用蛇的场景动作代替
 - 02:50｜fp_iconicity 第 2 幕升 v2（fl·gl / sl + ⚠️ floor 两镜头 + 🔮 slip + 金句卡；R4 flies / fly / go）｜`12293bd`｜`work/shots/fp_iconicity_2_对比总图.png`｜加 ⚠️ 徽章：音义联觉有统计倾向但例外多（first_principles/HANDOFF §4）；sleeping 动作库无「睡」，只作提示
 - 03:00｜fp_iconicity 第 3 幕升 v2（str- / sp- 两镜头 + 🔮 string + 金句卡；R4 walk / come / look）｜`fefb0e4`｜`work/shots/fp_iconicity_3_对比总图.png`｜sport ⚠️ 出处：etymonline.com/word/sport（sport 是 disport 的缩短，来自古法语 desporter「消遣」）
+- 03:15｜fp_iconicity 第 4 幕升 v2，fp_iconicity 4 幕全部完成（数字 / 人两镜头 + 🔮 twins + 金句卡；R4 read / sit）｜`b993831`｜`work/shots/fp_iconicity_4_对比总图.png`｜R3：between 按 etymonline.com/word/between 更正为 bi-（by）+ tweonum（两个两个），原句留小字；twelve 按 etymonline.com/word/twelve =「十之外剩二」，与原讲法一致
 
 ## 1. 现在做到哪
 
