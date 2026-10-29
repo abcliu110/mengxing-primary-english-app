@@ -28,11 +28,13 @@ WB_LAB.fp_one_king = [
       N("be 动词：", "am / is / are，意思是「是、在」。表示状态，也能当国王。");
       k.head("路线 B：状态王", 510, 240, C.blue, "start", 20);
       T("I am happy.", 510, 280, go(.7), .7, { size: 24, color: C.green, weight: 900, font: M });
+      k.say("I like apples.", { zh: "我喜欢苹果。", word: "like" });
       N("形容词：", "描述样子、心情的词，比如 happy、tall。它不是动词，要 be 动词撑腰。");
       T("happy 不是动词，要请 am 撑腰", 510, 308, go(.8), .8, { size: 15, color: C.grey });
       T("I am ten. · She is tall. · They are in the park.", 510, 348, go(1.4), 1.4, { size: 14, color: C.blue, weight: 700, font: M });
       T("She plays the piano.（动作王自己加 -s）", 510, 380, go(1.2), 1.2, { size: 14, color: C.red, weight: 700, font: M });
       k.wait(.6);
+      k.say("I am happy.", { zh: "我很开心。", word: "am" });
       N("口诀：", "一个句子一个王，be 和 do 不同堂。");
       D.fin("一个简单句只有 1 个谓语国王：要么 be（状态），要么实义动词（动作）", "口诀：一个句子一个王，be 和 do 不同堂。");
       k.wait(2);
@@ -73,6 +75,7 @@ WB_LAB.fp_one_king.push(
       T("want to go · plan to visit · hope to see", 40, 418, go(1.2), 1.2, { size: 15, color: C.orange, weight: 700, font: M });
       k.wait(.6);
       // 右：doing
+      k.say("I want to go home.", { zh: "我想回家。", word: "to go" });
       N("动名词 doing：", "动词加 -ing。表示正在做，或者享受做这件事的过程。");
       k.head("马甲 2：doing", 510, 112, C.green, "start", 22);
       const loop = "M560,170 a26,22 0 1,1 -2,-1";
@@ -84,6 +87,7 @@ WB_LAB.fp_one_king.push(
       T("She is swimming.", 510, 306, go(.8), .8, { size: 22, color: C.ink, weight: 900, font: M });
       T("is 是国王，swimming 穿 -ing 马甲：正在游", 510, 332, go(.9), .9, { size: 14, color: C.grey });
       T("finish doing · good at drawing", 510, 372, go(1), 1, { size: 15, color: C.green, weight: 700, font: M });
+      k.say("I enjoy reading. She is swimming.", { zh: "我喜欢读书。她正在游泳。", word: "reading" });
       N("", "还有第三件马甲 done（表示被做、已完成），以后再学。");
       T("第 3 件马甲 done：以后学", 510, 404, go(.8), .8, { size: 14, color: C.grey });
       k.wait(.6);
@@ -122,6 +126,7 @@ WB_LAB.fp_one_king.push(
       T("like 变回原形", 210, 330, go(.6), .6, { size: 15, color: C.green, weight: 900 });
       P(k.ellipse(238, 280, 42, 20), go(.4), .4, { color: C.green, w: 2.5 });
       k.wait(.5);
+      k.say("Does she like apples?", { zh: "她喜欢苹果吗？", word: "like" });
       N("过去式：", "went 身上戴着「过去」令牌；Did 一出场，went 就变回 go。");
       T("She went home.", 40, 392, go(.8), .8, { size: 20, color: C.ink, weight: 900, font: M });
       k.arrow(216, 386, 246, 386, C.grey);
@@ -130,6 +135,7 @@ WB_LAB.fp_one_king.push(
       k.move(tk2, go(1.2), 1.2, 168, 0);
       k.wait(.4);
       // 右：侍卫接管
+      k.say("Did she go home?", { zh: "她回家了吗？", word: "go" });
       N("助动词：", "do / does / did、can 这些「侍卫」，扛下所有变形，后面永远是原形。");
       k.head("国王自己戴令牌", 510, 112, C.purple, "start", 19);
       T("He plays football.", 510, 150, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
@@ -142,6 +148,7 @@ WB_LAB.fp_one_king.push(
       T("She can swim.", 510, 368, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
       T("不能说 Does he plays? / She can swims.", 510, 408, go(1), 1, { size: 15, color: C.red, weight: 900 });
       k.wait(.6);
+      k.say("She can swim.", { zh: "她会游泳。", word: "swim" });
       N("口诀：", "侍卫拿令牌，动词回原形。");
       D.fin("一句话只有 1 块令牌（-s / 过去）：侍卫 does / did / can 拿了，动词就用原形", "口诀：侍卫拿令牌，动词回原形。");
       k.wait(2);
@@ -179,17 +186,22 @@ WB_LAB.fp_one_king.push(
       };
       N("主语 S + 谓语 V：", "谁 + 做什么。动词后面什么都不用插。");
       row("①", ["S", "V"], "Birds fly.", 120, [["Birds", "S"], ["fly", "V"]]);
+      k.say("Birds fly.", { zh: "鸟会飞。" });
       N("表语 P：", "跟在系动词后面，说主语「怎么样 / 是什么」。");
       row("②", ["S", "V", "P"], "The cake smells delicious.", 178, [["The cake", "S"], ["smells", "V"], ["delicious", "P"]]);
+      k.say("The cake smells delicious.", { zh: "蛋糕闻起来很香。" });
       N("宾语 O：", "动作落到的人或东西。");
       row("③", ["S", "V", "O"], "I love my family.", 236, [["I", "S"], ["love", "V"], ["my family", "O"]]);
+      k.say("I love my family.", { zh: "我爱我的家人。" });
       N("双宾语：", "给谁（IO 人）+ 给什么（DO 物）。祈使句省略了主语 you。");
       row("④", ["S", "V", "IO", "DO"], "Pass me the book.", 294, [["Pass", "V"], ["me", "IO"], ["the book", "DO"]]);
+      k.say("Pass me the book.", { zh: "把书递给我。" });
       N("补语 C：", "补充说明宾语变成什么样。");
       row("⑤", ["S", "V", "O", "C"], "Reading makes me clever.", 352, [["Reading", "S"], ["makes", "V"], ["me", "O"], ["clever", "C"]]);
       k.wait(.4);
       T("①②③ 最常用，小学大部分句子都是它们。详细讲解看「五大句型」实验室。", 40, 412, go(1.4), 1.4, { size: 15, color: C.grey, weight: 700 });
       k.wait(.6);
+      k.say("Reading makes me clever.", { zh: "读书让我变聪明。" });
       N("口诀：", "先搭骨架再挂花。");
       D.fin("先把主干骨骼搭对，再往上挂时间、地点、形容词这些装饰", "口诀：先搭骨架再挂花。");
       k.wait(2);

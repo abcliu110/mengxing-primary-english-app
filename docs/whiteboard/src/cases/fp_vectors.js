@@ -52,6 +52,7 @@ WB_LAB.fp_vectors = [
       T("on the desk", xs[1], 342, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M, anchor: "middle" });
       T("in the room", xs[2], 342, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M, anchor: "middle" });
       k.wait(.6);
+      k.say("The cat is at the door, on the table, in the room.", { zh: "猫在门口、在桌子上、在房间里。" });
       N("", "时间也一样：钟面上一个刻度、日历上一页、一大段时间。");
       T("钟点 = 一个点", xs[0], 384, go(.5), .5, { size: 15, color: C.grey, anchor: "middle" });
       T("某一天 = 一页", xs[1], 384, go(.5), .5, { size: 15, color: C.grey, anchor: "middle" });
@@ -60,6 +61,7 @@ WB_LAB.fp_vectors = [
       T("on Monday", xs[1], 418, go(.5), .5, { size: 20, color: C.green, weight: 900, font: M, anchor: "middle" });
       T("in May · in 2026", xs[2], 418, go(.7), .7, { size: 20, color: C.blue, weight: 900, font: M, anchor: "middle" });
       k.wait(.6);
+      k.say("I get up at seven on Monday in May.", { zh: "五月的星期一，我七点起床。" });
       N("口诀：", "点钟 at，哪天 on，月季年份都用 in。");
       D.fin("点用 at，面用 on，体用 in：空间和时间是同一个道理", "口诀：点钟 at，哪天 on，月季年份都用 in。");
       k.wait(2);
@@ -103,6 +105,7 @@ WB_LAB.fp_vectors.push(
       T("get on the bus：脚踏上车厢地板", 60, 372, go(1), 1, { size: 16, color: C.green, weight: 900 });
       k.wait(.5);
       // OFF 1：鞋子离开脚
+      k.say("Put on your coat. Turn on the light.", { zh: "穿上外套。打开灯。" });
       N("off：", "东西离开一个表面，或者电路断开了。");
       P(k.wl(530, 200, 690, 200, .6), go(.4), .4, { color: C.ink, w: 3 });
       T("脚面", 610, 220, go(.3), .3, { size: 13, color: C.grey, anchor: "middle" });
@@ -126,6 +129,7 @@ WB_LAB.fp_vectors.push(
       T("飞机离开地面", 706, 310, go(.5), .5, { size: 14, color: C.grey });
       T("turn off the TV · get off the bus · fall off", 530, 372, go(1.2), 1.2, { size: 15, color: C.red, weight: 900, font: M });
       k.wait(.6);
+      k.say("Take off your coat. The plane takes off.", { zh: "脱下外套。飞机起飞了。", word: "take off" });
       N("口诀：", "贴上 on，分开 off。");
       D.fin("on = 贴上表面 / 接通；off = 离开表面 / 断开", "口诀：贴上 on，分开 off。");
       k.wait(2);
@@ -161,6 +165,7 @@ WB_LAB.fp_vectors.push(
       P(k.roughRect(650, 188, 50, 24) + " " + k.roughRect(706, 188, 50, 24), go(.3), .3, { color: C.blue, w: 2 });
       P(k.ellipse(612, 254, 16, 16) + " " + k.ellipse(780, 254, 16, 16), go(.5), .5, { color: C.ink, w: 3 });
       P(k.wl(510, 270, 930, 270, .6), go(.4), .4, { color: C.grey, w: 2 });
+      k.say("Let's get on the bus.", { zh: "我们上公交车吧。", word: "get on" });
       N("", "小汽车很矮，人得弯下腰，钻进去坐着。");
       const p2 = D.person(560, 270, C.purple, true);
       const tc = go(1.8);
@@ -173,6 +178,7 @@ WB_LAB.fp_vectors.push(
       // 例子
       T("get on the bus", 60, 320, go(.7), .7, { size: 24, color: C.green, weight: 900, font: M });
       T("get in the car", 540, 320, go(.7), .7, { size: 24, color: C.blue, weight: 900, font: M });
+      k.say("Get in the car, please.", { zh: "请上车。", word: "get in" });
       N("", "同样能站着走的：火车、飞机、轮船，都用 on。");
       T("on the train / plane / ship", 60, 358, go(.9), .9, { size: 18, color: C.ink, weight: 700, font: M });
       N("", "下车：get off the bus；从小车里钻出来：get out of the car。");
@@ -181,6 +187,7 @@ WB_LAB.fp_vectors.push(
       N("", "骑自行车、骑马：人跨坐在上面，也是 on。");
       T("on a bike · on a horse（跨坐在上面）", 60, 426, go(1), 1, { size: 16, color: C.green, weight: 900 });
       k.wait(.6);
+      k.say("Get off the bus and get out of the car.", { zh: "下公交车，从小汽车里出来。" });
       N("口诀：", "站着上车用 on，弯腰钻进用 in。");
       D.fin("能站着走的车 = 平面 → on；要弯腰钻进去的车 = 盒子 → in", "口诀：站着上车用 on，弯腰钻进用 in。");
       k.wait(2);
@@ -224,6 +231,7 @@ WB_LAB.fp_vectors.push(
       T("come from China", 450, 246, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M });
       T("从中国出发", 660, 246, go(.5), .5, { size: 15, color: C.grey });
       T("borrow from you ⇄ lend to him", 450, 276, go(.8), .8, { size: 17, color: C.green, weight: 700, font: M });
+      k.say("I walk to school. The letter is from Grandma.", { zh: "我走路去上学。这封信是奶奶寄来的。" });
       N("", "借进来 borrow from（从你那里来），借出去 lend to（到他那里去）。");
       k.wait(.6);
       // for
@@ -239,9 +247,11 @@ WB_LAB.fp_vectors.push(
       T("心里朝着笔去找", 660, 346, go(.5), .5, { size: 15, color: C.grey });
       T("wait for the bus · a cake for mom", 450, 376, go(.8), .8, { size: 17, color: C.orange, weight: 700, font: M });
       k.wait(.5);
+      k.say("This gift is for you.", { zh: "这份礼物是给你的。", word: "for" });
       N("", "换一个介词，就换一个方向：look at 看一点，look for 找，look after 照看。");
       T("look at（目光打在一点）· look for（找）· look after（跟在后面照看）", 40, 424, go(1.6), 1.6, { size: 16, color: C.purple, weight: 900 });
       k.wait(.6);
+      k.say("I look for my cat and look after my sister.", { zh: "我找我的猫，也照看妹妹。" });
       N("口诀：", "to 到终点，from 离起点，for 心里想着它。");
       D.fin("to 到达终点 · from 离开起点 · for 朝着目标（还没碰到）", "口诀：to 到终点，from 离起点，for 心里想着它。");
       k.wait(2);

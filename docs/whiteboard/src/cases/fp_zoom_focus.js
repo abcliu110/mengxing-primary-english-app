@@ -21,6 +21,7 @@ WB_LAB.fp_zoom_focus = [
       T("the boy in blue under the tree", 40, 428, go(1.2), 1.2, { size: 18, color: C.green, weight: 900, font: M });
       k.wait(.5);
       // 右：两条规则
+      k.say("The boy in blue under the tree is my brother.", { zh: "树下穿蓝衣服的男孩是我弟弟。", word: "the boy" });
       N("", "只有 1 个词的轻修饰，放在名词前面，挡不住核心。");
       k.head("1 个词 → 放前面", 520, 112, C.blue, "start", 20);
       T("a red apple", 520, 150, go(.5), .5, { size: 20, color: C.ink, weight: 900, font: M });
@@ -32,10 +33,12 @@ WB_LAB.fp_zoom_focus = [
       T("穿红裙子的女孩", 520, 302, go(.4), .4, { size: 13, color: C.grey });
       T("the book on the teacher's desk", 520, 338, go(.9), .9, { size: 17, color: C.ink, weight: 900, font: M });
       T("讲台上的书", 520, 362, go(.4), .4, { size: 13, color: C.grey });
+      k.say("I see the girl in a red dress.", { zh: "我看见那个穿红裙子的女孩。" });
       N("不定代词：", "something、anything 这类词，连 1 个词的修饰也放后面。");
       T("something important", 520, 398, go(.7), .7, { size: 17, color: C.purple, weight: 900, font: M });
       T("（特殊：也放后面）", 736, 398, go(.5), .5, { size: 13, color: C.grey });
       k.wait(.6);
+      k.say("I have something important to tell you.", { zh: "我有重要的事要告诉你。", word: "something important" });
       N("口诀：", "先立树干，后挂树枝。");
       D.fin("1 个词的修饰放名词前；2 个词以上的短语挂在名词后", "口诀：先立树干，后挂树枝。");
       k.wait(2);
@@ -80,17 +83,20 @@ WB_LAB.fp_zoom_focus.push(
       T("are 紧跟其后", X(6.5), y + 62, go(.5), .5, { size: 15, color: C.blue, weight: 900 });
       k.wait(.6);
       // 下：套用
+      k.say("Where are you going this weekend?", { zh: "你这个周末去哪里？", word: "Where" });
       N("特殊疑问句：", "用疑问词开头、不能用 Yes / No 回答的问句。公式：疑问词 + 一般疑问句。");
       k.head("提问：焦点词第一个", 40, 300, C.purple, "start", 18);
       T("Where is my bag?", 40, 336, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
       T("When do you get up?", 40, 366, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
       T("How much is this shirt?", 40, 396, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      k.say("When do you get up?", { zh: "你几点起床？" });
       N("感叹句：", "表示强烈感情的句子。被夸的那个词抢到最前面，后面的主谓可以省略。");
       k.head("感叹：被夸的词第一个", 500, 300, C.orange, "start", 18);
       D.parts([["What a clever boy ", C.ink], ["(he is)", "#94a3b8"], ["!", C.ink]], 500, 340, 19);
       D.parts([["How fast ", C.ink], ["(he runs)", "#94a3b8"], ["!", C.ink]], 500, 376, 19);
       T("括号里的部分可以省略", 500, 406, go(.6), .6, { size: 14, color: C.grey });
       k.wait(.6);
+      k.say("What a clever boy!", { zh: "多聪明的男孩啊！" });
       N("口诀：", "焦点先出场。");
       D.fin("最想问的、最想夸的词放第一个；问句里 be / 助动词紧跟其后", "口诀：焦点先出场。");
       k.wait(2);
@@ -137,12 +143,14 @@ WB_LAB.fp_zoom_focus.push(
       T("Building 3, Star School,", 510, 262, go(.8), .8, { size: 19, color: C.ink, weight: 900, font: M });
       T("Beijing.", 510, 290, go(.4), .4, { size: 19, color: C.ink, weight: 900, font: M });
       k.wait(.5);
+      k.say("I am in Room 201, Building 3, Star School, Beijing.", { zh: "我在北京星光学校 3 号楼 201 室。" });
       N("", "时间也一样：先说几点，再说哪一天的上午，最后说几月。");
       k.head("时间：也从小到大", 510, 340, C.purple, "start", 18);
       D.parts([["at 9:00 ", C.red], ["on Tuesday morning", C.orange]], 510, 376, 17);
       D.parts([["in September", C.blue]], 510, 402, 17);
       T("点 → 天 → 月", 690, 402, go(.5), .5, { size: 15, color: C.grey, weight: 900 });
       k.wait(.6);
+      k.say("See you at nine on Tuesday morning.", { zh: "星期二上午九点见。" });
       N("口诀：", "英语拉镜头，从小到大走。");
       D.fin("英语地址、时间从小到大写；中文从大到小，正好相反", "口诀：英语拉镜头，从小到大走。");
       k.wait(2);
@@ -189,16 +197,19 @@ WB_LAB.fp_zoom_focus.push(
       cell(xs[2], "tomorrow", "will do", 216, C.blue);
       k.move(mk, go(.6), .6, xs[1] - xs[2], 0);
       // 录像
+      k.say("I played yesterday. I play every day. I will play tomorrow.", { zh: "我昨天玩了，我每天玩，我明天会玩。" });
       N("进行态（录像）：", "正在发生的动态画面，be 动词 + doing。");
       head("🎥 录像", "进行态", 296, C.purple);
       cell(xs[1], "Look! / now", "am/is/are doing", 296, C.purple);
       // 结算
+      k.say("Look! She is reading now.", { zh: "看！她正在读书。", word: "is reading" });
       N("完成态（结算）：", "做完了、有了结果，have / has + done（过去分词）。");
       head("🏁 结算", "完成态", 376, C.orange);
       cell(xs[1], "already / just", "have/has done", 376, C.orange);
       T("第二步：看动作状态，选拍法", 190, 424, go(.8), .8, { size: 14, color: C.grey });
       T("详细讲解看「时态矩阵」实验室", 640, 424, go(.8), .8, { size: 14, color: C.grey });
       k.wait(.6);
+      k.say("I have already finished my homework.", { zh: "我已经写完作业了。", word: "have finished" });
       N("口诀：", "先选时间，再选镜头。");
       D.fin("先看时间路标词选「过去 / 现在 / 将来」，再看动作状态选「快照 / 录像 / 结算」", "口诀：先选时间，再选镜头。");
       k.wait(2);

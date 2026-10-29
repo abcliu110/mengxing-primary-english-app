@@ -22,6 +22,7 @@ WB_LAB.fp_iconicity = [
       words(xs[0], ["mountain 山", "mouth 嘴", "mother 妈妈"], C.purple);
       k.wait(.3);
       // S
+      k.say("Look at the big mountain!", { zh: "看那座大山！", word: "mountain" });
       N("", "S 弯弯曲曲，像一条蛇，也像水波和笑起来的嘴。");
       const gS = letter("S", xs[1], C.blue);
       k.fade(gS, go(.5), .5, .18);
@@ -30,6 +31,7 @@ WB_LAB.fp_iconicity = [
       words(xs[1], ["snake 蛇", "swim 游泳", "smile 微笑"], C.blue);
       k.wait(.3);
       // B
+      k.say("A snake swims in the sea.", { zh: "一条蛇在海里游。", word: "snake" });
       N("", "B 像两个鼓鼓的包，能装东西：包、盒子、床……");
       const gB = letter("B", xs[2], C.orange);
       k.fade(gB, go(.5), .5, .18);
@@ -39,6 +41,7 @@ WB_LAB.fp_iconicity = [
       words(xs[2], ["bag 包", "box 盒子", "bed 床"], C.orange);
       k.wait(.3);
       // C
+      k.say("Put the book in the bag.", { zh: "把书放进书包里。", word: "bag" });
       N("", "C 像一只弯起来的手，去抓、去握：杯子、帽子、抓住。");
       const gC = letter("C", xs[3], C.red);
       k.fade(gC, go(.5), .5, .18);
@@ -48,6 +51,7 @@ WB_LAB.fp_iconicity = [
       words(xs[3], ["cup 杯子", "cap 帽子", "catch 抓住"], C.red);
       k.wait(.5);
       T("这是帮你记单词的联想：看字母的样子，想起一串词。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      k.say("Catch the cup, please!", { zh: "请接住杯子！", word: "catch" });
       N("口诀：", "M 是山，S 是蛇，B 是包，C 来抓。");
       D.fin("看字母的形状，联想画面，一个字母串起一串词", "口诀：M 是山，S 是蛇，B 是包，C 来抓。");
       k.wait(2);
@@ -86,6 +90,7 @@ WB_LAB.fp_iconicity.push(
       k.wait(.3);
       // gl-
       T("gl-", xs[1], 120, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M, anchor: "middle" });
+      k.say("The flag flies in the wind.", { zh: "旗子在风中飘扬。", word: "flag" });
       N("", "gl- 可以想成光滑、闪亮：透明的玻璃、眉开眼笑。");
       const gl = `M${xs[1] - 30},160 L${xs[1] - 22},260 L${xs[1] + 22},260 L${xs[1] + 30},160`;
       P(gl, go(.7), .7, { color: C.blue, w: 3 });
@@ -95,6 +100,7 @@ WB_LAB.fp_iconicity.push(
       k.wait(.3);
       // sl-
       T("sl-", xs[2], 120, go(.4), .4, { size: 34, color: C.green, weight: 900, font: M, anchor: "middle" });
+      k.say("I am glad to see you.", { zh: "见到你我很高兴。", word: "glad" });
       N("", "sl- 可以想成轻轻地滑下去：滑梯、慢慢地、滑进梦里。");
       P(`M${xs[2] - 80},170 L${xs[2] - 60},170 C${xs[2] - 10},180 ${xs[2] + 20},260 ${xs[2] + 90},262`, go(.8), .8, { color: C.green, w: 4 });
       P(k.wl(xs[2] - 70, 170, xs[2] - 70, 270, .3), go(.3), .3, { color: C.green, w: 3 });
@@ -104,6 +110,7 @@ WB_LAB.fp_iconicity.push(
       list(xs[2], "sl", [["ide", "滑梯"], ["ow", "慢的"], ["eep", "睡觉"]], C.green);
       k.wait(.5);
       T("这是帮助记忆的规律倾向，也有例外（比如 floor 地板）。", 40, 432, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      k.say("Go down the slide slowly.", { zh: "慢慢地滑下滑梯。", word: "slide" });
       N("口诀：", "fl 飞，gl 亮，sl 滑下来。");
       D.fin("开头的辅音丛常常带着同一种感觉：一个声音串起一串词", "口诀：fl 飞，gl 亮，sl 滑下来。");
       k.wait(2);
@@ -132,6 +139,7 @@ WB_LAB.fp_iconicity.push(
       k.wait(.5);
       // sp-
       T("sp-", 510, 120, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M });
+      k.say("Walk straight along the street.", { zh: "沿着这条街一直走。", word: "straight" });
       N("", "sp- 读的时候气流「噗」地往外喷——可以想成向四面八方发散。");
       const cx = 720, cy = 200;
       const dot = `M${cx - 8},${cy} a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
@@ -142,6 +150,7 @@ WB_LAB.fp_iconicity.push(
       row2("eak", "说话（声音向外）", 300); row2("ort", "运动（活力向外）", 334); row2("ace", "太空（向外延展）", 368); row2("ring", "春天（万物冒头）", 402);
       k.wait(.5);
       T("帮助记忆的联想", 940, 432, go(.5), .5, { size: 13, color: C.grey, anchor: "end" });
+      k.say("Flowers come out in spring.", { zh: "春天花开了。", word: "spring" });
       N("口诀：", "str 拉直线，sp 往外喷。");
       D.fin("str- 像拉紧的直线，sp- 像向外喷发：一个画面串起四个词", "口诀：str 拉直线，sp 往外喷。");
       k.wait(2);
@@ -169,11 +178,13 @@ WB_LAB.fp_iconicity.push(
       leaf(0, "twelve", "12 = 2 + 10");
       N("", "twenty：2 个 10，就是 20。");
       leaf(1, "twenty", "20 = 2 × 10");
+      k.say("Ten and two make twelve.", { zh: "十加二等于十二。", word: "twelve" });
       N("", "twice：两次、两倍。");
       leaf(2, "twice", "两次 / 两倍");
       N("", "twin：双胞胎——两个长得一样的孩子。");
       leaf(3, "twin", "双胞胎");
       D.person(xs[3] - 16, 380, C.blue); D.person(xs[3] + 16, 380, C.blue);
+      k.say("They are twins.", { zh: "他们是双胞胎。", word: "twins" });
       N("", "between = be + twain（古英语的「两个」）：在两个之间。");
       P(k.wl(480, 168, xs[4], 222, .6), go(.4), .4, { color: C.grey, w: 2 });
       D.parts([["be", C.ink], ["tw", C.red], ["een", C.ink]], xs[4] - 46, 254, 22);
@@ -186,6 +197,7 @@ WB_LAB.fp_iconicity.push(
       T("× 2", xs[2], 360, go(.4), .4, { size: 24, color: C.grey, weight: 900, font: M, anchor: "middle" });
       k.wait(.5);
       T("这是真正的词源：再也不会把 twelve 和 twenty 弄混。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      k.say("I sit between my twin brothers.", { zh: "我坐在两个双胞胎哥哥中间。", word: "between" });
       N("口诀：", "tw 一出现，成双又成对。");
       D.fin("看到 tw-，想到 2：two · twelve · twenty · twice · twin · between", "口诀：tw 一出现，成双又成对。");
       k.wait(2);

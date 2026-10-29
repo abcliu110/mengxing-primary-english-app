@@ -47,6 +47,7 @@ WB_LAB.fp_economy = [
       T("/z/", 615, 284, go(.4), .4, { size: 22, color: C.green, weight: 900, font: M });
       N("", "bag 最后是 /ɡ/，声带在震，-s 就顺势读会震的 /z/。");
       k.wait(.8);
+      k.say("I have two books and two bags.", { zh: "我有两本书和两个包。" });
       N("过去式：", "表示以前发生的事，规则动词加 -ed。同一条规律！");
       k.mono("worked", 410, 336, 24, C.ink, 900);
       T("/t/", 410, 372, go(.4), .4, { size: 22, color: C.blue, weight: 900, font: M });
@@ -55,6 +56,7 @@ WB_LAB.fp_economy = [
       T("/d/", 615, 372, go(.4), .4, { size: 22, color: C.green, weight: 900, font: M });
       T("/eɪ/ 元音会震", 665, 372, go(.6), .6, { size: 15, color: C.grey });
       k.wait(.6);
+      k.say("I worked hard, and then I played.", { zh: "我努力学习，然后去玩。" });
       N("", "那 buses /ɪz/、wanted /ɪd/ 呢？下一幕讲。");
       T("buses  wanted  → ?", 410, 422, go(1), 1, { size: 18, color: C.grey, weight: 700, font: M });
       k.wait(.6);
@@ -122,6 +124,7 @@ WB_LAB.fp_economy.push(
         D.parts([[base, C.ink], [tail, C.orange]], bx, y, 20);
         T(ipa, bx + (base.length + tail.length) * cw + 12, y, go(.5), .5, { size: 18, color: C.grey, weight: 700, font: M });
       };
+      k.say("Two buses are coming.", { zh: "两辆公交车开过来了。", word: "buses" });
       N("嘶嘶音：", "/s/ /z/ /ʃ/ /tʃ/ 这类像蛇嘶嘶响的音，加 -es 读 /ɪz/。");
       row("watch", "es", "/ˈwɒtʃɪz/", 320, 394);
       row("box", "es", "/ˈbɒksɪz/", 320, 424);
@@ -130,6 +133,7 @@ WB_LAB.fp_economy.push(
       row("want", "ed", "/ˈwɒntɪd/", 640, 394);
       row("need", "ed", "/ˈniːdɪd/", 640, 424);
       k.wait(.6);
+      k.say("She wanted a red kite.", { zh: "她想要一只红风筝。", word: "wanted" });
       N("口诀：", "同位相撞，插个 /ɪ/ 来帮忙。");
       D.fin("尾音和词缀发音位置一样 → 插 /ɪ/ 隔开：-es 读 /ɪz/，-ed 读 /ɪd/", "口诀：同位相撞，插个 /ɪ/ 来帮忙。");
       k.wait(2);
@@ -168,11 +172,13 @@ WB_LAB.fp_economy.push(
       const m2 = k.mono("an hour", 60, 322, 24, C.ink, 900);
       k.strike(m2, "h", 0, C.red);
       T("h 不读，/aʊə/ 开头 → an", 240, 322, go(.8), .8, { size: 16, color: C.green, weight: 900 });
+      k.say("I can eat an apple in an hour.", { zh: "我一小时能吃一个苹果。", word: "an apple" });
       N("", "useful 开头读 /j/，是辅音，所以还是用 a。");
       k.mono("a useful book", 60, 372, 24, C.ink, 900);
       T("u 读 /j/（辅音）→ a", 290, 372, go(.8), .8, { size: 16, color: C.blue, weight: 900 });
       k.wait(.5);
       // 右：in- → im-
+      k.say("This is a useful book.", { zh: "这是一本有用的书。" });
       N("前缀：", "加在单词前面、改变意思的部分。in- 表示「不」。");
       k.head("in- → im-", 510, 108, C.purple, "start", 22);
       N("双唇音：", "上下嘴唇合在一起发的音：/p/ /b/ /m/。");
@@ -196,6 +202,7 @@ WB_LAB.fp_economy.push(
       k.arrow(728, 366, 760, 366, C.grey);
       D.parts([["i", C.green], ["m", C.orange], ["possible", C.green]], 770, 372, 22);
       k.wait(.6);
+      k.say("It's impossible to fly like a bird.", { zh: "像鸟一样飞是不可能的。", word: "impossible" });
       N("口诀：", "元音前面搭座桥，双唇前面 n 变 m。");
       D.fin("元音撞元音加 /n/ 架桥（an）；/p/ /b/ /m/ 前面 n 变 m（im-）", "口诀：元音前面搭座桥，双唇前面 n 变 m。");
       k.wait(2);
@@ -267,6 +274,7 @@ WB_LAB.fp_economy.push(
       row("swim", "m", "ing", 170); row("big", "g", "er", 222); row("hot", "t", "est", 274); row("stop", "p", "ed", 326);
       T("-er 更… · -est 最… · -ed 过去式：都是元音开头的尾巴", 520, 372, go(1.2), 1.2, { size: 15, color: C.grey });
       k.wait(.6);
+      k.say("The dog is running in the park.", { zh: "小狗在公园里跑。", word: "running" });
       N("口诀：", "辅元辅，加尾巴，派个守门员看家。");
       D.fin("「辅元辅」加元音开头的尾巴 → 双写最后的辅音，保住短元音", "口诀：辅元辅，加尾巴，派个守门员看家。");
       k.wait(2);

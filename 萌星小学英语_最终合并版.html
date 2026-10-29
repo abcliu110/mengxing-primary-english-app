@@ -13169,6 +13169,7 @@ WB_LAB.fp_economy = [
       T("/z/", 615, 284, go(.4), .4, { size: 22, color: C.green, weight: 900, font: M });
       N("", "bag 最后是 /ɡ/，声带在震，-s 就顺势读会震的 /z/。");
       k.wait(.8);
+      k.say("I have two books and two bags.", { zh: "我有两本书和两个包。" });
       N("过去式：", "表示以前发生的事，规则动词加 -ed。同一条规律！");
       k.mono("worked", 410, 336, 24, C.ink, 900);
       T("/t/", 410, 372, go(.4), .4, { size: 22, color: C.blue, weight: 900, font: M });
@@ -13177,6 +13178,7 @@ WB_LAB.fp_economy = [
       T("/d/", 615, 372, go(.4), .4, { size: 22, color: C.green, weight: 900, font: M });
       T("/eɪ/ 元音会震", 665, 372, go(.6), .6, { size: 15, color: C.grey });
       k.wait(.6);
+      k.say("I worked hard, and then I played.", { zh: "我努力学习，然后去玩。" });
       N("", "那 buses /ɪz/、wanted /ɪd/ 呢？下一幕讲。");
       T("buses  wanted  → ?", 410, 422, go(1), 1, { size: 18, color: C.grey, weight: 700, font: M });
       k.wait(.6);
@@ -13244,6 +13246,7 @@ WB_LAB.fp_economy.push(
         D.parts([[base, C.ink], [tail, C.orange]], bx, y, 20);
         T(ipa, bx + (base.length + tail.length) * cw + 12, y, go(.5), .5, { size: 18, color: C.grey, weight: 700, font: M });
       };
+      k.say("Two buses are coming.", { zh: "两辆公交车开过来了。", word: "buses" });
       N("嘶嘶音：", "/s/ /z/ /ʃ/ /tʃ/ 这类像蛇嘶嘶响的音，加 -es 读 /ɪz/。");
       row("watch", "es", "/ˈwɒtʃɪz/", 320, 394);
       row("box", "es", "/ˈbɒksɪz/", 320, 424);
@@ -13252,6 +13255,7 @@ WB_LAB.fp_economy.push(
       row("want", "ed", "/ˈwɒntɪd/", 640, 394);
       row("need", "ed", "/ˈniːdɪd/", 640, 424);
       k.wait(.6);
+      k.say("She wanted a red kite.", { zh: "她想要一只红风筝。", word: "wanted" });
       N("口诀：", "同位相撞，插个 /ɪ/ 来帮忙。");
       D.fin("尾音和词缀发音位置一样 → 插 /ɪ/ 隔开：-es 读 /ɪz/，-ed 读 /ɪd/", "口诀：同位相撞，插个 /ɪ/ 来帮忙。");
       k.wait(2);
@@ -13290,11 +13294,13 @@ WB_LAB.fp_economy.push(
       const m2 = k.mono("an hour", 60, 322, 24, C.ink, 900);
       k.strike(m2, "h", 0, C.red);
       T("h 不读，/aʊə/ 开头 → an", 240, 322, go(.8), .8, { size: 16, color: C.green, weight: 900 });
+      k.say("I can eat an apple in an hour.", { zh: "我一小时能吃一个苹果。", word: "an apple" });
       N("", "useful 开头读 /j/，是辅音，所以还是用 a。");
       k.mono("a useful book", 60, 372, 24, C.ink, 900);
       T("u 读 /j/（辅音）→ a", 290, 372, go(.8), .8, { size: 16, color: C.blue, weight: 900 });
       k.wait(.5);
       // 右：in- → im-
+      k.say("This is a useful book.", { zh: "这是一本有用的书。" });
       N("前缀：", "加在单词前面、改变意思的部分。in- 表示「不」。");
       k.head("in- → im-", 510, 108, C.purple, "start", 22);
       N("双唇音：", "上下嘴唇合在一起发的音：/p/ /b/ /m/。");
@@ -13318,6 +13324,7 @@ WB_LAB.fp_economy.push(
       k.arrow(728, 366, 760, 366, C.grey);
       D.parts([["i", C.green], ["m", C.orange], ["possible", C.green]], 770, 372, 22);
       k.wait(.6);
+      k.say("It's impossible to fly like a bird.", { zh: "像鸟一样飞是不可能的。", word: "impossible" });
       N("口诀：", "元音前面搭座桥，双唇前面 n 变 m。");
       D.fin("元音撞元音加 /n/ 架桥（an）；/p/ /b/ /m/ 前面 n 变 m（im-）", "口诀：元音前面搭座桥，双唇前面 n 变 m。");
       k.wait(2);
@@ -13389,6 +13396,7 @@ WB_LAB.fp_economy.push(
       row("swim", "m", "ing", 170); row("big", "g", "er", 222); row("hot", "t", "est", 274); row("stop", "p", "ed", 326);
       T("-er 更… · -est 最… · -ed 过去式：都是元音开头的尾巴", 520, 372, go(1.2), 1.2, { size: 15, color: C.grey });
       k.wait(.6);
+      k.say("The dog is running in the park.", { zh: "小狗在公园里跑。", word: "running" });
       N("口诀：", "辅元辅，加尾巴，派个守门员看家。");
       D.fin("「辅元辅」加元音开头的尾巴 → 双写最后的辅音，保住短元音", "口诀：辅元辅，加尾巴，派个守门员看家。");
       k.wait(2);
@@ -13457,6 +13465,7 @@ WB_LAB.fp_vectors = [
       T("on the desk", xs[1], 342, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M, anchor: "middle" });
       T("in the room", xs[2], 342, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M, anchor: "middle" });
       k.wait(.6);
+      k.say("The cat is at the door, on the table, in the room.", { zh: "猫在门口、在桌子上、在房间里。" });
       N("", "时间也一样：钟面上一个刻度、日历上一页、一大段时间。");
       T("钟点 = 一个点", xs[0], 384, go(.5), .5, { size: 15, color: C.grey, anchor: "middle" });
       T("某一天 = 一页", xs[1], 384, go(.5), .5, { size: 15, color: C.grey, anchor: "middle" });
@@ -13465,6 +13474,7 @@ WB_LAB.fp_vectors = [
       T("on Monday", xs[1], 418, go(.5), .5, { size: 20, color: C.green, weight: 900, font: M, anchor: "middle" });
       T("in May · in 2026", xs[2], 418, go(.7), .7, { size: 20, color: C.blue, weight: 900, font: M, anchor: "middle" });
       k.wait(.6);
+      k.say("I get up at seven on Monday in May.", { zh: "五月的星期一，我七点起床。" });
       N("口诀：", "点钟 at，哪天 on，月季年份都用 in。");
       D.fin("点用 at，面用 on，体用 in：空间和时间是同一个道理", "口诀：点钟 at，哪天 on，月季年份都用 in。");
       k.wait(2);
@@ -13508,6 +13518,7 @@ WB_LAB.fp_vectors.push(
       T("get on the bus：脚踏上车厢地板", 60, 372, go(1), 1, { size: 16, color: C.green, weight: 900 });
       k.wait(.5);
       // OFF 1：鞋子离开脚
+      k.say("Put on your coat. Turn on the light.", { zh: "穿上外套。打开灯。" });
       N("off：", "东西离开一个表面，或者电路断开了。");
       P(k.wl(530, 200, 690, 200, .6), go(.4), .4, { color: C.ink, w: 3 });
       T("脚面", 610, 220, go(.3), .3, { size: 13, color: C.grey, anchor: "middle" });
@@ -13531,6 +13542,7 @@ WB_LAB.fp_vectors.push(
       T("飞机离开地面", 706, 310, go(.5), .5, { size: 14, color: C.grey });
       T("turn off the TV · get off the bus · fall off", 530, 372, go(1.2), 1.2, { size: 15, color: C.red, weight: 900, font: M });
       k.wait(.6);
+      k.say("Take off your coat. The plane takes off.", { zh: "脱下外套。飞机起飞了。", word: "take off" });
       N("口诀：", "贴上 on，分开 off。");
       D.fin("on = 贴上表面 / 接通；off = 离开表面 / 断开", "口诀：贴上 on，分开 off。");
       k.wait(2);
@@ -13566,6 +13578,7 @@ WB_LAB.fp_vectors.push(
       P(k.roughRect(650, 188, 50, 24) + " " + k.roughRect(706, 188, 50, 24), go(.3), .3, { color: C.blue, w: 2 });
       P(k.ellipse(612, 254, 16, 16) + " " + k.ellipse(780, 254, 16, 16), go(.5), .5, { color: C.ink, w: 3 });
       P(k.wl(510, 270, 930, 270, .6), go(.4), .4, { color: C.grey, w: 2 });
+      k.say("Let's get on the bus.", { zh: "我们上公交车吧。", word: "get on" });
       N("", "小汽车很矮，人得弯下腰，钻进去坐着。");
       const p2 = D.person(560, 270, C.purple, true);
       const tc = go(1.8);
@@ -13578,6 +13591,7 @@ WB_LAB.fp_vectors.push(
       // 例子
       T("get on the bus", 60, 320, go(.7), .7, { size: 24, color: C.green, weight: 900, font: M });
       T("get in the car", 540, 320, go(.7), .7, { size: 24, color: C.blue, weight: 900, font: M });
+      k.say("Get in the car, please.", { zh: "请上车。", word: "get in" });
       N("", "同样能站着走的：火车、飞机、轮船，都用 on。");
       T("on the train / plane / ship", 60, 358, go(.9), .9, { size: 18, color: C.ink, weight: 700, font: M });
       N("", "下车：get off the bus；从小车里钻出来：get out of the car。");
@@ -13586,6 +13600,7 @@ WB_LAB.fp_vectors.push(
       N("", "骑自行车、骑马：人跨坐在上面，也是 on。");
       T("on a bike · on a horse（跨坐在上面）", 60, 426, go(1), 1, { size: 16, color: C.green, weight: 900 });
       k.wait(.6);
+      k.say("Get off the bus and get out of the car.", { zh: "下公交车，从小汽车里出来。" });
       N("口诀：", "站着上车用 on，弯腰钻进用 in。");
       D.fin("能站着走的车 = 平面 → on；要弯腰钻进去的车 = 盒子 → in", "口诀：站着上车用 on，弯腰钻进用 in。");
       k.wait(2);
@@ -13629,6 +13644,7 @@ WB_LAB.fp_vectors.push(
       T("come from China", 450, 246, go(.6), .6, { size: 20, color: C.ink, weight: 900, font: M });
       T("从中国出发", 660, 246, go(.5), .5, { size: 15, color: C.grey });
       T("borrow from you ⇄ lend to him", 450, 276, go(.8), .8, { size: 17, color: C.green, weight: 700, font: M });
+      k.say("I walk to school. The letter is from Grandma.", { zh: "我走路去上学。这封信是奶奶寄来的。" });
       N("", "借进来 borrow from（从你那里来），借出去 lend to（到他那里去）。");
       k.wait(.6);
       // for
@@ -13644,9 +13660,11 @@ WB_LAB.fp_vectors.push(
       T("心里朝着笔去找", 660, 346, go(.5), .5, { size: 15, color: C.grey });
       T("wait for the bus · a cake for mom", 450, 376, go(.8), .8, { size: 17, color: C.orange, weight: 700, font: M });
       k.wait(.5);
+      k.say("This gift is for you.", { zh: "这份礼物是给你的。", word: "for" });
       N("", "换一个介词，就换一个方向：look at 看一点，look for 找，look after 照看。");
       T("look at（目光打在一点）· look for（找）· look after（跟在后面照看）", 40, 424, go(1.6), 1.6, { size: 16, color: C.purple, weight: 900 });
       k.wait(.6);
+      k.say("I look for my cat and look after my sister.", { zh: "我找我的猫，也照看妹妹。" });
       N("口诀：", "to 到终点，from 离起点，for 心里想着它。");
       D.fin("to 到达终点 · from 离开起点 · for 朝着目标（还没碰到）", "口诀：to 到终点，from 离起点，for 心里想着它。");
       k.wait(2);
@@ -13678,6 +13696,7 @@ WB_LAB.fp_boundedness = [
       T("→ 有边界：可数", ax, 354, go(.6), .6, { size: 17, color: C.green, weight: 900, anchor: "middle" });
       k.wait(.4);
       // 面包
+      k.say("I have an apple. You have two apples.", { zh: "我有一个苹果，你有两个苹果。", word: "apples" });
       N("不可数名词：", "不能一个一个数的东西，不加 -s，不说 a bread。");
       const bx = 350, by = 220;
       const bL = `M${bx},${by - 34} L${bx - 40},${by - 34} C${bx - 70},${by - 34} ${bx - 72},${by + 30} ${bx - 50},${by + 30} L${bx},${by + 30} Z`;
@@ -13692,6 +13711,7 @@ WB_LAB.fp_boundedness = [
       T("（作业是一大类事，不是一个一个的东西）", 40, 428, go(.8), .8, { size: 14, color: C.grey });
       k.wait(.6);
       // 右：容器赋界
+      k.say("I like bread and water.", { zh: "我喜欢面包和水。", word: "bread" });
       N("量词：", "想数不可数的东西，就给它套一个「容器」：一杯、一张、一块。");
       k.head("想数它？套个容器！", 510, 112, C.purple, "start", 20);
       const cup = "M560,150 L570,240 L620,240 L630,150";
@@ -13707,6 +13727,7 @@ WB_LAB.fp_boundedness = [
       T("-s 加在容器上", 650, 350, go(.5), .5, { size: 15, color: C.orange, weight: 900 });
       k.strike(k.mono("two papers", 650, 396, 18, C.grey, 700), "papers", 0, C.red);
       k.wait(.6);
+      k.say("Give me two pieces of paper, please.", { zh: "请给我两张纸。", word: "two pieces of paper" });
       N("口诀：", "一刀下去还是它，不可数来不加 s。");
       D.fin("切开就坏 → 可数；切开不变 → 不可数，用容器来数（-s 加在容器上）", "口诀：一刀下去还是它，不可数来不加 s。");
       k.wait(2);
@@ -13748,6 +13769,7 @@ WB_LAB.fp_boundedness.push(
       T("随便圈一只，还没说是哪只", 620, 184, go(.7), .7, { size: 15, color: C.grey });
       k.wait(.6);
       // the = that
+      k.say("I see a dog in the park.", { zh: "我在公园里看见一只狗。" });
       N("定冠词 the：", "说话的人和听的人都知道是哪一个，意思像「那个」。");
       const tg = k.group();
       P(k.ellipse(184, 248, 30, 30) + " " + k.wl(140, 248, 228, 248, .2) + " " + k.wl(184, 204, 184, 292, .2), go(.01, 0), .01, { color: C.red, w: 2 });
@@ -13759,6 +13781,7 @@ WB_LAB.fp_boundedness.push(
       const tr = go(1.4); k.move(ds[1], tr, 1.4, 0, -60); k.move(tg, tr, 1.4, 0, -60);
       k.wait(.5);
       // 独一无二
+      k.say("The dog is very cute.", { zh: "那只狗很可爱。" });
       N("", "世界上只有一个的东西，大家都知道是哪个，也用 the。");
       const sun = k.ellipse(80, 370, 18, 18);
       P(sun, go(.4), .4, { color: C.orange, w: 2.5 }); F(sun, go(.1, 0), { color: "#fde047", op: 1 });
@@ -13767,6 +13790,7 @@ WB_LAB.fp_boundedness.push(
       T("Open the door, please!", 500, 360, go(1), 1, { size: 20, color: C.ink, weight: 900, font: M });
       T("房间里就这一扇门", 500, 388, go(.5), .5, { size: 15, color: C.grey });
       k.wait(.6);
+      k.say("The sun is hot today.", { zh: "今天太阳很热。", word: "the sun" });
       N("口诀：", "第一次见用 a，大家都知道用 the。");
       D.fin("a / an = 一个（第一次说，随便一个）；the = 那个（双方都知道是哪个）", "口诀：第一次见用 a，大家都知道用 the。");
       k.wait(2);
@@ -13802,6 +13826,7 @@ WB_LAB.fp_boundedness.push(
       const t1 = go(1.6); k.fade(hl, t1, .4, 1); k.move(p, t1, 1.4, -50, 0);
       k.wait(.4);
       // 功能
+      k.say("The school is very big.", { zh: "那所学校很大。" });
       N("零冠词：", "什么冠词都不加。这时说的是「做这件事」，不是那栋楼。");
       const t2 = go(1.4); k.fade(shell, t2, 1, .15); k.fade(hl, t2, 1, 0); k.fade(p, t2, 1, 0);
       const fn = k.group();
@@ -13821,6 +13846,7 @@ WB_LAB.fp_boundedness.push(
         T(b, 730, y, go(.5), .5, { size: 19, color: C.red, weight: 900, font: M });
         T(zb, 730, y + 22, go(.4), .4, { size: 13, color: C.grey });
       };
+      k.say("I go to school by bus.", { zh: "我坐公交车去上学。", word: "go to school" });
       N("", "同样：on the bed 是在床这件家具上面；in bed 是在睡觉。");
       pair("on the bed", "在床（家具）上", "in bed", "在睡觉", 160);
       N("", "on a bus 是在一辆车里；by bus 是坐公交这种方式。");
@@ -13829,6 +13855,7 @@ WB_LAB.fp_boundedness.push(
       pair("buy a football", "买一个足球", "play football", "踢足球（运动）", 300);
       pair("to the hospital", "去医院大楼（探望）", "in hospital", "住院治病", 370);
       k.wait(.6);
+      k.say("Let's play football after school.", { zh: "放学后我们去踢足球吧。", word: "play football" });
       N("口诀：", "说楼房加 the，说上学不加。");
       D.fin("加冠词 = 看得见的实物（外壳）；不加冠词 = 做这件事（功能）", "口诀：说楼房加 the，说上学不加。");
       k.wait(2);
@@ -13861,6 +13888,7 @@ WB_LAB.fp_boundedness.push(
       const tb = go(.6); k.buzz(chick, tb, .6, 2);
       k.wait(.6);
       // 变成鸡肉
+      k.say("Look! Two chickens are running.", { zh: "看！两只小鸡在跑。", word: "chickens" });
       N("", "做成盘子里的鸡肉，完整的边界没了——不可数。");
       const t2 = go(1.2); k.fade(chick, t2, 1, 0); k.fade(edge, t2, 1, 0);
       const meat = k.group();
@@ -13881,6 +13909,7 @@ WB_LAB.fp_boundedness.push(
         T(b, 700, y, go(.5), .5, { size: 19, color: C.purple, weight: 900, font: M });
         T(zb, 700, y + 22, go(.4), .4, { size: 13, color: C.grey });
       };
+      k.say("I like chicken for dinner.", { zh: "我晚饭喜欢吃鸡肉。", word: "chicken" });
       N("", "a glass 是一个玻璃杯；made of glass 是玻璃这种材料。");
       pair("a glass", "一个玻璃杯", "made of glass", "玻璃做的（材料）", 170);
       N("", "a room 是一个房间；make room for you 是腾出地方。");
@@ -13889,6 +13918,7 @@ WB_LAB.fp_boundedness.push(
       pair("two fish", "两条鱼", "some fish", "一些鱼肉", 320);
       T("看它在句子里有没有完整边界，一秒判断", 510, 400, go(1), 1, { size: 15, color: C.orange, weight: 900 });
       k.wait(.6);
+      k.say("I can see two fish in the river.", { zh: "我能看见河里有两条鱼。" });
       N("口诀：", "整只能数，切成肉就不数。");
       D.fin("同一个词：有完整外壳边界 → 可数；变成肉、材料、空间 → 不可数", "口诀：整只能数，切成肉就不数。");
       k.wait(2);
@@ -13927,11 +13957,13 @@ WB_LAB.fp_one_king = [
       N("be 动词：", "am / is / are，意思是「是、在」。表示状态，也能当国王。");
       k.head("路线 B：状态王", 510, 240, C.blue, "start", 20);
       T("I am happy.", 510, 280, go(.7), .7, { size: 24, color: C.green, weight: 900, font: M });
+      k.say("I like apples.", { zh: "我喜欢苹果。", word: "like" });
       N("形容词：", "描述样子、心情的词，比如 happy、tall。它不是动词，要 be 动词撑腰。");
       T("happy 不是动词，要请 am 撑腰", 510, 308, go(.8), .8, { size: 15, color: C.grey });
       T("I am ten. · She is tall. · They are in the park.", 510, 348, go(1.4), 1.4, { size: 14, color: C.blue, weight: 700, font: M });
       T("She plays the piano.（动作王自己加 -s）", 510, 380, go(1.2), 1.2, { size: 14, color: C.red, weight: 700, font: M });
       k.wait(.6);
+      k.say("I am happy.", { zh: "我很开心。", word: "am" });
       N("口诀：", "一个句子一个王，be 和 do 不同堂。");
       D.fin("一个简单句只有 1 个谓语国王：要么 be（状态），要么实义动词（动作）", "口诀：一个句子一个王，be 和 do 不同堂。");
       k.wait(2);
@@ -13972,6 +14004,7 @@ WB_LAB.fp_one_king.push(
       T("want to go · plan to visit · hope to see", 40, 418, go(1.2), 1.2, { size: 15, color: C.orange, weight: 700, font: M });
       k.wait(.6);
       // 右：doing
+      k.say("I want to go home.", { zh: "我想回家。", word: "to go" });
       N("动名词 doing：", "动词加 -ing。表示正在做，或者享受做这件事的过程。");
       k.head("马甲 2：doing", 510, 112, C.green, "start", 22);
       const loop = "M560,170 a26,22 0 1,1 -2,-1";
@@ -13983,6 +14016,7 @@ WB_LAB.fp_one_king.push(
       T("She is swimming.", 510, 306, go(.8), .8, { size: 22, color: C.ink, weight: 900, font: M });
       T("is 是国王，swimming 穿 -ing 马甲：正在游", 510, 332, go(.9), .9, { size: 14, color: C.grey });
       T("finish doing · good at drawing", 510, 372, go(1), 1, { size: 15, color: C.green, weight: 700, font: M });
+      k.say("I enjoy reading. She is swimming.", { zh: "我喜欢读书。她正在游泳。", word: "reading" });
       N("", "还有第三件马甲 done（表示被做、已完成），以后再学。");
       T("第 3 件马甲 done：以后学", 510, 404, go(.8), .8, { size: 14, color: C.grey });
       k.wait(.6);
@@ -14021,6 +14055,7 @@ WB_LAB.fp_one_king.push(
       T("like 变回原形", 210, 330, go(.6), .6, { size: 15, color: C.green, weight: 900 });
       P(k.ellipse(238, 280, 42, 20), go(.4), .4, { color: C.green, w: 2.5 });
       k.wait(.5);
+      k.say("Does she like apples?", { zh: "她喜欢苹果吗？", word: "like" });
       N("过去式：", "went 身上戴着「过去」令牌；Did 一出场，went 就变回 go。");
       T("She went home.", 40, 392, go(.8), .8, { size: 20, color: C.ink, weight: 900, font: M });
       k.arrow(216, 386, 246, 386, C.grey);
@@ -14029,6 +14064,7 @@ WB_LAB.fp_one_king.push(
       k.move(tk2, go(1.2), 1.2, 168, 0);
       k.wait(.4);
       // 右：侍卫接管
+      k.say("Did she go home?", { zh: "她回家了吗？", word: "go" });
       N("助动词：", "do / does / did、can 这些「侍卫」，扛下所有变形，后面永远是原形。");
       k.head("国王自己戴令牌", 510, 112, C.purple, "start", 19);
       T("He plays football.", 510, 150, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
@@ -14041,6 +14077,7 @@ WB_LAB.fp_one_king.push(
       T("She can swim.", 510, 368, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
       T("不能说 Does he plays? / She can swims.", 510, 408, go(1), 1, { size: 15, color: C.red, weight: 900 });
       k.wait(.6);
+      k.say("She can swim.", { zh: "她会游泳。", word: "swim" });
       N("口诀：", "侍卫拿令牌，动词回原形。");
       D.fin("一句话只有 1 块令牌（-s / 过去）：侍卫 does / did / can 拿了，动词就用原形", "口诀：侍卫拿令牌，动词回原形。");
       k.wait(2);
@@ -14078,17 +14115,22 @@ WB_LAB.fp_one_king.push(
       };
       N("主语 S + 谓语 V：", "谁 + 做什么。动词后面什么都不用插。");
       row("①", ["S", "V"], "Birds fly.", 120, [["Birds", "S"], ["fly", "V"]]);
+      k.say("Birds fly.", { zh: "鸟会飞。" });
       N("表语 P：", "跟在系动词后面，说主语「怎么样 / 是什么」。");
       row("②", ["S", "V", "P"], "The cake smells delicious.", 178, [["The cake", "S"], ["smells", "V"], ["delicious", "P"]]);
+      k.say("The cake smells delicious.", { zh: "蛋糕闻起来很香。" });
       N("宾语 O：", "动作落到的人或东西。");
       row("③", ["S", "V", "O"], "I love my family.", 236, [["I", "S"], ["love", "V"], ["my family", "O"]]);
+      k.say("I love my family.", { zh: "我爱我的家人。" });
       N("双宾语：", "给谁（IO 人）+ 给什么（DO 物）。祈使句省略了主语 you。");
       row("④", ["S", "V", "IO", "DO"], "Pass me the book.", 294, [["Pass", "V"], ["me", "IO"], ["the book", "DO"]]);
+      k.say("Pass me the book.", { zh: "把书递给我。" });
       N("补语 C：", "补充说明宾语变成什么样。");
       row("⑤", ["S", "V", "O", "C"], "Reading makes me clever.", 352, [["Reading", "S"], ["makes", "V"], ["me", "O"], ["clever", "C"]]);
       k.wait(.4);
       T("①②③ 最常用，小学大部分句子都是它们。详细讲解看「五大句型」实验室。", 40, 412, go(1.4), 1.4, { size: 15, color: C.grey, weight: 700 });
       k.wait(.6);
+      k.say("Reading makes me clever.", { zh: "读书让我变聪明。" });
       N("口诀：", "先搭骨架再挂花。");
       D.fin("先把主干骨骼搭对，再往上挂时间、地点、形容词这些装饰", "口诀：先搭骨架再挂花。");
       k.wait(2);
@@ -14125,6 +14167,7 @@ WB_LAB.fp_zoom_focus = [
       T("the boy in blue under the tree", 40, 428, go(1.2), 1.2, { size: 18, color: C.green, weight: 900, font: M });
       k.wait(.5);
       // 右：两条规则
+      k.say("The boy in blue under the tree is my brother.", { zh: "树下穿蓝衣服的男孩是我弟弟。", word: "the boy" });
       N("", "只有 1 个词的轻修饰，放在名词前面，挡不住核心。");
       k.head("1 个词 → 放前面", 520, 112, C.blue, "start", 20);
       T("a red apple", 520, 150, go(.5), .5, { size: 20, color: C.ink, weight: 900, font: M });
@@ -14136,10 +14179,12 @@ WB_LAB.fp_zoom_focus = [
       T("穿红裙子的女孩", 520, 302, go(.4), .4, { size: 13, color: C.grey });
       T("the book on the teacher's desk", 520, 338, go(.9), .9, { size: 17, color: C.ink, weight: 900, font: M });
       T("讲台上的书", 520, 362, go(.4), .4, { size: 13, color: C.grey });
+      k.say("I see the girl in a red dress.", { zh: "我看见那个穿红裙子的女孩。" });
       N("不定代词：", "something、anything 这类词，连 1 个词的修饰也放后面。");
       T("something important", 520, 398, go(.7), .7, { size: 17, color: C.purple, weight: 900, font: M });
       T("（特殊：也放后面）", 736, 398, go(.5), .5, { size: 13, color: C.grey });
       k.wait(.6);
+      k.say("I have something important to tell you.", { zh: "我有重要的事要告诉你。", word: "something important" });
       N("口诀：", "先立树干，后挂树枝。");
       D.fin("1 个词的修饰放名词前；2 个词以上的短语挂在名词后", "口诀：先立树干，后挂树枝。");
       k.wait(2);
@@ -14184,17 +14229,20 @@ WB_LAB.fp_zoom_focus.push(
       T("are 紧跟其后", X(6.5), y + 62, go(.5), .5, { size: 15, color: C.blue, weight: 900 });
       k.wait(.6);
       // 下：套用
+      k.say("Where are you going this weekend?", { zh: "你这个周末去哪里？", word: "Where" });
       N("特殊疑问句：", "用疑问词开头、不能用 Yes / No 回答的问句。公式：疑问词 + 一般疑问句。");
       k.head("提问：焦点词第一个", 40, 300, C.purple, "start", 18);
       T("Where is my bag?", 40, 336, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
       T("When do you get up?", 40, 366, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
       T("How much is this shirt?", 40, 396, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      k.say("When do you get up?", { zh: "你几点起床？" });
       N("感叹句：", "表示强烈感情的句子。被夸的那个词抢到最前面，后面的主谓可以省略。");
       k.head("感叹：被夸的词第一个", 500, 300, C.orange, "start", 18);
       D.parts([["What a clever boy ", C.ink], ["(he is)", "#94a3b8"], ["!", C.ink]], 500, 340, 19);
       D.parts([["How fast ", C.ink], ["(he runs)", "#94a3b8"], ["!", C.ink]], 500, 376, 19);
       T("括号里的部分可以省略", 500, 406, go(.6), .6, { size: 14, color: C.grey });
       k.wait(.6);
+      k.say("What a clever boy!", { zh: "多聪明的男孩啊！" });
       N("口诀：", "焦点先出场。");
       D.fin("最想问的、最想夸的词放第一个；问句里 be / 助动词紧跟其后", "口诀：焦点先出场。");
       k.wait(2);
@@ -14241,12 +14289,14 @@ WB_LAB.fp_zoom_focus.push(
       T("Building 3, Star School,", 510, 262, go(.8), .8, { size: 19, color: C.ink, weight: 900, font: M });
       T("Beijing.", 510, 290, go(.4), .4, { size: 19, color: C.ink, weight: 900, font: M });
       k.wait(.5);
+      k.say("I am in Room 201, Building 3, Star School, Beijing.", { zh: "我在北京星光学校 3 号楼 201 室。" });
       N("", "时间也一样：先说几点，再说哪一天的上午，最后说几月。");
       k.head("时间：也从小到大", 510, 340, C.purple, "start", 18);
       D.parts([["at 9:00 ", C.red], ["on Tuesday morning", C.orange]], 510, 376, 17);
       D.parts([["in September", C.blue]], 510, 402, 17);
       T("点 → 天 → 月", 690, 402, go(.5), .5, { size: 15, color: C.grey, weight: 900 });
       k.wait(.6);
+      k.say("See you at nine on Tuesday morning.", { zh: "星期二上午九点见。" });
       N("口诀：", "英语拉镜头，从小到大走。");
       D.fin("英语地址、时间从小到大写；中文从大到小，正好相反", "口诀：英语拉镜头，从小到大走。");
       k.wait(2);
@@ -14293,16 +14343,19 @@ WB_LAB.fp_zoom_focus.push(
       cell(xs[2], "tomorrow", "will do", 216, C.blue);
       k.move(mk, go(.6), .6, xs[1] - xs[2], 0);
       // 录像
+      k.say("I played yesterday. I play every day. I will play tomorrow.", { zh: "我昨天玩了，我每天玩，我明天会玩。" });
       N("进行态（录像）：", "正在发生的动态画面，be 动词 + doing。");
       head("🎥 录像", "进行态", 296, C.purple);
       cell(xs[1], "Look! / now", "am/is/are doing", 296, C.purple);
       // 结算
+      k.say("Look! She is reading now.", { zh: "看！她正在读书。", word: "is reading" });
       N("完成态（结算）：", "做完了、有了结果，have / has + done（过去分词）。");
       head("🏁 结算", "完成态", 376, C.orange);
       cell(xs[1], "already / just", "have/has done", 376, C.orange);
       T("第二步：看动作状态，选拍法", 190, 424, go(.8), .8, { size: 14, color: C.grey });
       T("详细讲解看「时态矩阵」实验室", 640, 424, go(.8), .8, { size: 14, color: C.grey });
       k.wait(.6);
+      k.say("I have already finished my homework.", { zh: "我已经写完作业了。", word: "have finished" });
       N("口诀：", "先选时间，再选镜头。");
       D.fin("先看时间路标词选「过去 / 现在 / 将来」，再看动作状态选「快照 / 录像 / 结算」", "口诀：先选时间，再选镜头。");
       k.wait(2);
@@ -14341,6 +14394,7 @@ WB_LAB.fp_iconicity = [
       words(xs[0], ["mountain 山", "mouth 嘴", "mother 妈妈"], C.purple);
       k.wait(.3);
       // S
+      k.say("Look at the big mountain!", { zh: "看那座大山！", word: "mountain" });
       N("", "S 弯弯曲曲，像一条蛇，也像水波和笑起来的嘴。");
       const gS = letter("S", xs[1], C.blue);
       k.fade(gS, go(.5), .5, .18);
@@ -14349,6 +14403,7 @@ WB_LAB.fp_iconicity = [
       words(xs[1], ["snake 蛇", "swim 游泳", "smile 微笑"], C.blue);
       k.wait(.3);
       // B
+      k.say("A snake swims in the sea.", { zh: "一条蛇在海里游。", word: "snake" });
       N("", "B 像两个鼓鼓的包，能装东西：包、盒子、床……");
       const gB = letter("B", xs[2], C.orange);
       k.fade(gB, go(.5), .5, .18);
@@ -14358,6 +14413,7 @@ WB_LAB.fp_iconicity = [
       words(xs[2], ["bag 包", "box 盒子", "bed 床"], C.orange);
       k.wait(.3);
       // C
+      k.say("Put the book in the bag.", { zh: "把书放进书包里。", word: "bag" });
       N("", "C 像一只弯起来的手，去抓、去握：杯子、帽子、抓住。");
       const gC = letter("C", xs[3], C.red);
       k.fade(gC, go(.5), .5, .18);
@@ -14367,6 +14423,7 @@ WB_LAB.fp_iconicity = [
       words(xs[3], ["cup 杯子", "cap 帽子", "catch 抓住"], C.red);
       k.wait(.5);
       T("这是帮你记单词的联想：看字母的样子，想起一串词。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      k.say("Catch the cup, please!", { zh: "请接住杯子！", word: "catch" });
       N("口诀：", "M 是山，S 是蛇，B 是包，C 来抓。");
       D.fin("看字母的形状，联想画面，一个字母串起一串词", "口诀：M 是山，S 是蛇，B 是包，C 来抓。");
       k.wait(2);
@@ -14405,6 +14462,7 @@ WB_LAB.fp_iconicity.push(
       k.wait(.3);
       // gl-
       T("gl-", xs[1], 120, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M, anchor: "middle" });
+      k.say("The flag flies in the wind.", { zh: "旗子在风中飘扬。", word: "flag" });
       N("", "gl- 可以想成光滑、闪亮：透明的玻璃、眉开眼笑。");
       const gl = `M${xs[1] - 30},160 L${xs[1] - 22},260 L${xs[1] + 22},260 L${xs[1] + 30},160`;
       P(gl, go(.7), .7, { color: C.blue, w: 3 });
@@ -14414,6 +14472,7 @@ WB_LAB.fp_iconicity.push(
       k.wait(.3);
       // sl-
       T("sl-", xs[2], 120, go(.4), .4, { size: 34, color: C.green, weight: 900, font: M, anchor: "middle" });
+      k.say("I am glad to see you.", { zh: "见到你我很高兴。", word: "glad" });
       N("", "sl- 可以想成轻轻地滑下去：滑梯、慢慢地、滑进梦里。");
       P(`M${xs[2] - 80},170 L${xs[2] - 60},170 C${xs[2] - 10},180 ${xs[2] + 20},260 ${xs[2] + 90},262`, go(.8), .8, { color: C.green, w: 4 });
       P(k.wl(xs[2] - 70, 170, xs[2] - 70, 270, .3), go(.3), .3, { color: C.green, w: 3 });
@@ -14423,6 +14482,7 @@ WB_LAB.fp_iconicity.push(
       list(xs[2], "sl", [["ide", "滑梯"], ["ow", "慢的"], ["eep", "睡觉"]], C.green);
       k.wait(.5);
       T("这是帮助记忆的规律倾向，也有例外（比如 floor 地板）。", 40, 432, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      k.say("Go down the slide slowly.", { zh: "慢慢地滑下滑梯。", word: "slide" });
       N("口诀：", "fl 飞，gl 亮，sl 滑下来。");
       D.fin("开头的辅音丛常常带着同一种感觉：一个声音串起一串词", "口诀：fl 飞，gl 亮，sl 滑下来。");
       k.wait(2);
@@ -14451,6 +14511,7 @@ WB_LAB.fp_iconicity.push(
       k.wait(.5);
       // sp-
       T("sp-", 510, 120, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M });
+      k.say("Walk straight along the street.", { zh: "沿着这条街一直走。", word: "straight" });
       N("", "sp- 读的时候气流「噗」地往外喷——可以想成向四面八方发散。");
       const cx = 720, cy = 200;
       const dot = `M${cx - 8},${cy} a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
@@ -14461,6 +14522,7 @@ WB_LAB.fp_iconicity.push(
       row2("eak", "说话（声音向外）", 300); row2("ort", "运动（活力向外）", 334); row2("ace", "太空（向外延展）", 368); row2("ring", "春天（万物冒头）", 402);
       k.wait(.5);
       T("帮助记忆的联想", 940, 432, go(.5), .5, { size: 13, color: C.grey, anchor: "end" });
+      k.say("Flowers come out in spring.", { zh: "春天花开了。", word: "spring" });
       N("口诀：", "str 拉直线，sp 往外喷。");
       D.fin("str- 像拉紧的直线，sp- 像向外喷发：一个画面串起四个词", "口诀：str 拉直线，sp 往外喷。");
       k.wait(2);
@@ -14488,11 +14550,13 @@ WB_LAB.fp_iconicity.push(
       leaf(0, "twelve", "12 = 2 + 10");
       N("", "twenty：2 个 10，就是 20。");
       leaf(1, "twenty", "20 = 2 × 10");
+      k.say("Ten and two make twelve.", { zh: "十加二等于十二。", word: "twelve" });
       N("", "twice：两次、两倍。");
       leaf(2, "twice", "两次 / 两倍");
       N("", "twin：双胞胎——两个长得一样的孩子。");
       leaf(3, "twin", "双胞胎");
       D.person(xs[3] - 16, 380, C.blue); D.person(xs[3] + 16, 380, C.blue);
+      k.say("They are twins.", { zh: "他们是双胞胎。", word: "twins" });
       N("", "between = be + twain（古英语的「两个」）：在两个之间。");
       P(k.wl(480, 168, xs[4], 222, .6), go(.4), .4, { color: C.grey, w: 2 });
       D.parts([["be", C.ink], ["tw", C.red], ["een", C.ink]], xs[4] - 46, 254, 22);
@@ -14505,6 +14569,7 @@ WB_LAB.fp_iconicity.push(
       T("× 2", xs[2], 360, go(.4), .4, { size: 24, color: C.grey, weight: 900, font: M, anchor: "middle" });
       k.wait(.5);
       T("这是真正的词源：再也不会把 twelve 和 twenty 弄混。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      k.say("I sit between my twin brothers.", { zh: "我坐在两个双胞胎哥哥中间。", word: "between" });
       N("口诀：", "tw 一出现，成双又成对。");
       D.fin("看到 tw-，想到 2：two · twelve · twenty · twice · twin · between", "口诀：tw 一出现，成双又成对。");
       k.wait(2);

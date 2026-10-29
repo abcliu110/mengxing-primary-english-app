@@ -21,6 +21,7 @@ WB_LAB.fp_boundedness = [
       T("→ 有边界：可数", ax, 354, go(.6), .6, { size: 17, color: C.green, weight: 900, anchor: "middle" });
       k.wait(.4);
       // 面包
+      k.say("I have an apple. You have two apples.", { zh: "我有一个苹果，你有两个苹果。", word: "apples" });
       N("不可数名词：", "不能一个一个数的东西，不加 -s，不说 a bread。");
       const bx = 350, by = 220;
       const bL = `M${bx},${by - 34} L${bx - 40},${by - 34} C${bx - 70},${by - 34} ${bx - 72},${by + 30} ${bx - 50},${by + 30} L${bx},${by + 30} Z`;
@@ -35,6 +36,7 @@ WB_LAB.fp_boundedness = [
       T("（作业是一大类事，不是一个一个的东西）", 40, 428, go(.8), .8, { size: 14, color: C.grey });
       k.wait(.6);
       // 右：容器赋界
+      k.say("I like bread and water.", { zh: "我喜欢面包和水。", word: "bread" });
       N("量词：", "想数不可数的东西，就给它套一个「容器」：一杯、一张、一块。");
       k.head("想数它？套个容器！", 510, 112, C.purple, "start", 20);
       const cup = "M560,150 L570,240 L620,240 L630,150";
@@ -50,6 +52,7 @@ WB_LAB.fp_boundedness = [
       T("-s 加在容器上", 650, 350, go(.5), .5, { size: 15, color: C.orange, weight: 900 });
       k.strike(k.mono("two papers", 650, 396, 18, C.grey, 700), "papers", 0, C.red);
       k.wait(.6);
+      k.say("Give me two pieces of paper, please.", { zh: "请给我两张纸。", word: "two pieces of paper" });
       N("口诀：", "一刀下去还是它，不可数来不加 s。");
       D.fin("切开就坏 → 可数；切开不变 → 不可数，用容器来数（-s 加在容器上）", "口诀：一刀下去还是它，不可数来不加 s。");
       k.wait(2);
@@ -91,6 +94,7 @@ WB_LAB.fp_boundedness.push(
       T("随便圈一只，还没说是哪只", 620, 184, go(.7), .7, { size: 15, color: C.grey });
       k.wait(.6);
       // the = that
+      k.say("I see a dog in the park.", { zh: "我在公园里看见一只狗。" });
       N("定冠词 the：", "说话的人和听的人都知道是哪一个，意思像「那个」。");
       const tg = k.group();
       P(k.ellipse(184, 248, 30, 30) + " " + k.wl(140, 248, 228, 248, .2) + " " + k.wl(184, 204, 184, 292, .2), go(.01, 0), .01, { color: C.red, w: 2 });
@@ -102,6 +106,7 @@ WB_LAB.fp_boundedness.push(
       const tr = go(1.4); k.move(ds[1], tr, 1.4, 0, -60); k.move(tg, tr, 1.4, 0, -60);
       k.wait(.5);
       // 独一无二
+      k.say("The dog is very cute.", { zh: "那只狗很可爱。" });
       N("", "世界上只有一个的东西，大家都知道是哪个，也用 the。");
       const sun = k.ellipse(80, 370, 18, 18);
       P(sun, go(.4), .4, { color: C.orange, w: 2.5 }); F(sun, go(.1, 0), { color: "#fde047", op: 1 });
@@ -110,6 +115,7 @@ WB_LAB.fp_boundedness.push(
       T("Open the door, please!", 500, 360, go(1), 1, { size: 20, color: C.ink, weight: 900, font: M });
       T("房间里就这一扇门", 500, 388, go(.5), .5, { size: 15, color: C.grey });
       k.wait(.6);
+      k.say("The sun is hot today.", { zh: "今天太阳很热。", word: "the sun" });
       N("口诀：", "第一次见用 a，大家都知道用 the。");
       D.fin("a / an = 一个（第一次说，随便一个）；the = 那个（双方都知道是哪个）", "口诀：第一次见用 a，大家都知道用 the。");
       k.wait(2);
@@ -145,6 +151,7 @@ WB_LAB.fp_boundedness.push(
       const t1 = go(1.6); k.fade(hl, t1, .4, 1); k.move(p, t1, 1.4, -50, 0);
       k.wait(.4);
       // 功能
+      k.say("The school is very big.", { zh: "那所学校很大。" });
       N("零冠词：", "什么冠词都不加。这时说的是「做这件事」，不是那栋楼。");
       const t2 = go(1.4); k.fade(shell, t2, 1, .15); k.fade(hl, t2, 1, 0); k.fade(p, t2, 1, 0);
       const fn = k.group();
@@ -164,6 +171,7 @@ WB_LAB.fp_boundedness.push(
         T(b, 730, y, go(.5), .5, { size: 19, color: C.red, weight: 900, font: M });
         T(zb, 730, y + 22, go(.4), .4, { size: 13, color: C.grey });
       };
+      k.say("I go to school by bus.", { zh: "我坐公交车去上学。", word: "go to school" });
       N("", "同样：on the bed 是在床这件家具上面；in bed 是在睡觉。");
       pair("on the bed", "在床（家具）上", "in bed", "在睡觉", 160);
       N("", "on a bus 是在一辆车里；by bus 是坐公交这种方式。");
@@ -172,6 +180,7 @@ WB_LAB.fp_boundedness.push(
       pair("buy a football", "买一个足球", "play football", "踢足球（运动）", 300);
       pair("to the hospital", "去医院大楼（探望）", "in hospital", "住院治病", 370);
       k.wait(.6);
+      k.say("Let's play football after school.", { zh: "放学后我们去踢足球吧。", word: "play football" });
       N("口诀：", "说楼房加 the，说上学不加。");
       D.fin("加冠词 = 看得见的实物（外壳）；不加冠词 = 做这件事（功能）", "口诀：说楼房加 the，说上学不加。");
       k.wait(2);
@@ -204,6 +213,7 @@ WB_LAB.fp_boundedness.push(
       const tb = go(.6); k.buzz(chick, tb, .6, 2);
       k.wait(.6);
       // 变成鸡肉
+      k.say("Look! Two chickens are running.", { zh: "看！两只小鸡在跑。", word: "chickens" });
       N("", "做成盘子里的鸡肉，完整的边界没了——不可数。");
       const t2 = go(1.2); k.fade(chick, t2, 1, 0); k.fade(edge, t2, 1, 0);
       const meat = k.group();
@@ -224,6 +234,7 @@ WB_LAB.fp_boundedness.push(
         T(b, 700, y, go(.5), .5, { size: 19, color: C.purple, weight: 900, font: M });
         T(zb, 700, y + 22, go(.4), .4, { size: 13, color: C.grey });
       };
+      k.say("I like chicken for dinner.", { zh: "我晚饭喜欢吃鸡肉。", word: "chicken" });
       N("", "a glass 是一个玻璃杯；made of glass 是玻璃这种材料。");
       pair("a glass", "一个玻璃杯", "made of glass", "玻璃做的（材料）", 170);
       N("", "a room 是一个房间；make room for you 是腾出地方。");
@@ -232,6 +243,7 @@ WB_LAB.fp_boundedness.push(
       pair("two fish", "两条鱼", "some fish", "一些鱼肉", 320);
       T("看它在句子里有没有完整边界，一秒判断", 510, 400, go(1), 1, { size: 15, color: C.orange, weight: 900 });
       k.wait(.6);
+      k.say("I can see two fish in the river.", { zh: "我能看见河里有两条鱼。" });
       N("口诀：", "整只能数，切成肉就不数。");
       D.fin("同一个词：有完整外壳边界 → 可数；变成肉、材料、空间 → 不可数", "口诀：整只能数，切成肉就不数。");
       k.wait(2);
