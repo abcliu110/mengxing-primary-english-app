@@ -122,6 +122,7 @@
         N("高级句型：", "更生动、更有变化的说法。be crazy about 意思是「对……着迷」。");
         tag(k, "100分", 180, 146, C.green, "#d1fae5");
         const g1 = para(k, "I am crazy about English, and I really enjoy reading English stories in my free time!", GOLD_X, 146, GOLD_CH, 18, C.ink, 26, .04);
+        k.say("I am crazy about English, and I really enjoy reading English stories in my free time!", { zh: "我超爱英语，空闲时特别喜欢读英语故事！" });
         ring(k, g1, "crazy about", C.purple);
         N("enjoy doing：", "喜欢做某事，后面动词加 ing：enjoy reading。也可以用 be fond of。");
         uline(k, g1, "enjoy reading", C.orange);
@@ -136,6 +137,7 @@
         N("感叹句：", "表达强烈感情的句子，用 What 或 How 开头，句末用感叹号「!」。");
         tag(k, "100分", 180, 262, C.green, "#d1fae5");
         const g2 = para(k, "What a wonderful and unforgettable day we had! How excited we were!", GOLD_X, 262, 48, 18, C.ink, 26, .04);
+        k.say("What a wonderful and unforgettable day we had! How excited we were!", { zh: "那天真美好、真难忘！我们多兴奋啊！" });
         N("What a + 形容词 + 名词：", "多么美好的一天！What a wonderful … day，后面跟 we had。");
         ring(k, g2, "What a", C.purple); uline(k, g2, "day we had!", C.orange);
         N("How + 形容词：", "How excited we were! 我们多么激动啊！形容词紧跟在 How 后面。");
@@ -149,6 +151,7 @@
         N("连接词：", "把句子连起来的词。not only… but also… 意思是「不仅……而且……」。");
         tag(k, "100分", 180, 378, C.green, "#d1fae5");
         const g3 = para(k, "Reading books is not only good for our study, but also opens a window to the world for us!", GOLD_X, 378, ["Reading books is not only good for our study, but also", "opens a window to the world for us!"], 18, C.ink, 26, .04);
+        k.say("Reading books is not only good for our study, but also opens a window to the world for us!", { zh: "读书不仅对学习有益，还为我们打开一扇看世界的窗！" });
         uline(k, g3, "not only", C.blue); uline(k, g3, "but also", C.blue);
         N("隐喻：", "打比方：读书 opens a window to the world，给你打开一扇看世界的窗。");
         ring(k, g3, "opens a window to the world", C.purple);
@@ -193,6 +196,7 @@
         N("First of all,：", "「首先」，放在句子开头，后面加逗号。也可以用 To begin with,。");
         tag(k, "高分", 180, 146, C.green, "#d1fae5");
         const g1 = para(k, "First of all, / To begin with, I am going to finish my homework carefully.", GOLD_X, 146, GOLD_CH, 18, C.ink, 26, .04);
+        k.say("First of all, I am going to finish my homework carefully.", { zh: "首先，我要认真写完作业。" });
         ring(k, g1, "First of all,", C.blue); ring(k, g1, "To begin with,", C.blue);
         // 第二棒
         N("Cohesion Chain：", "衔接链。每一句都用衔接词扣住上一句，像链子一环扣一环。");
@@ -204,6 +208,7 @@
         N("递进：", "意思再往前进一步，「而且」。用 What's more, 或 Besides, 代替 And。");
         tag(k, "高分", 180, 262, C.green, "#d1fae5");
         const g2 = para(k, "What's more, / Besides, I often help my parents do some housework, such as sweeping the floor.", GOLD_X, 262, ["What's more, / Besides, I often help my parents do some", "housework, such as sweeping the floor."], 18, C.ink, 26, .04);
+        k.say("What's more, I often help my parents do some housework, such as sweeping the floor.", { zh: "而且，我常帮父母做家务，比如扫地。" });
         ring(k, g2, "What's more,", C.blue); ring(k, g2, "Besides,", C.blue);
         N("such as：", "「比如」，后面举例子：such as sweeping the floor（比如扫地）。");
         uline(k, g2, "such as sweeping the floor", C.orange);
@@ -215,6 +220,7 @@
         const b3 = [mline(k, "I was tired, but I was happy.", GOLD_X, 344, 18, C.grey)];
         tag(k, "高分", 180, 378, C.green, "#d1fae5");
         const g3 = para(k, "Although I felt a little tired after the trip, I learned a lot and had a great time!", GOLD_X, 378, GOLD_CH, 18, C.ink, 26, .04);
+        k.say("Although I felt a little tired after the trip, I learned a lot and had a great time!", { zh: "虽然旅行后有点累，但我学到很多，玩得很开心！" });
         ring(k, g3, "Although", C.blue);
         N("黄金铁律：", "英语里 Although（虽然）和 but（但是）不能出现在同一个句子里！");
         const rx = b3[0].x + b3[0].text.length * b3[0].cw + 30;
@@ -258,6 +264,7 @@
         N("范文积木：", "把满分范文拆成几块积木，也叫骨架。按顺序搭起来，就是一篇好文章。");
         blocks(k, ["外貌 with短语", "性格 adj", "爱好 be good at", "榜样力量"], 200, 84, [C.blue, C.purple, C.green, C.orange]);
         const p1 = para(k, "Linda is a tall and outgoing girl with big bright eyes. Not only is she polite and helpful, but she is also good at playing the piano. Whenever I have trouble with English, she always helps me patiently.", 32, 144, 92, 16, C.ink, 28, .032);
+        k.say("Linda is a tall and outgoing girl with big bright eyes.", { zh: "琳达是个高个子、性格外向的女孩，有一双明亮的大眼睛。" });
         N("后置定语：", "放在名词后面修饰它。with big bright eyes 挂在 girl 后面，省掉一句话。");
         uline(k, p1, "with big bright eyes", C.blue);
         N("性格品质：", "用形容词写脾气：outgoing 外向，polite 有礼貌，helpful 乐于助人。");
@@ -272,6 +279,7 @@
         k.T("母题二：过去经历篇", 32, 272, k.go(.9), .9, { size: 20, color: C.brown, weight: 900 });
         blocks(k, ["时间·天气·交通", "上午·下午活动", "感受·感叹"], 240, 252, [C.blue, C.green, C.orange]);
         const p2 = para(k, "Last Sunday, the weather was sunny and warm. I went to the countryside with my family by car. In the morning, we picked fresh strawberries and fed the cute sheep. In the afternoon, we took many beautiful photos by the lake. Tired as we were, what a fantastic day we had!", 32, 316, 92, 16, C.ink, 30, .032);
+        k.say("Last Sunday, I went to the countryside with my family by car.", { zh: "上周日，我和家人坐车去了乡下。" });
         N("过去式：", "已经发生的事，动词要变样：is→was，go→went，take→took。");
         ["was", "went", "picked", "fed", "took", "had"].forEach(w => ring(k, p2, w, C.red));
         N("", "全文动词都锁定过去式：was, went, picked, fed, took, had，一个都不能漏！");

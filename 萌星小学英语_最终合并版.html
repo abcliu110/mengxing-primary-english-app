@@ -9759,7 +9759,7 @@ const WB = (function () {
         });
         P(roughRect(16, 448, Math.max(380, text.length * cw + 48), 48), go(1.0), 1.0, { color: C.green, w: 2 });
         T(zhLine, 40, 522, go(1.6), 1.6, { size: 17, color: C.grey });
-        if (!o.noSay) say(text, { zh: o.zh ?? String(zhLine || "").split(/\s{2,}/)[0] });
+        if (!o.noSay) say(o.say ?? text, { zh: o.zh ?? String(zhLine || "").split(/\s{2,}/)[0], word: o.word });
       }
     };
     return k;
@@ -10250,7 +10250,8 @@ WB_LAB.vowel_shift = [
       V.pairRow(k, 560, 430, ["full", "/fʊl/", [["u"]]], ["fill", "/fɪl/", [["i"]]], { ax: 140 });
       k.T("（blood → bleed 也一样）", 920, 362, k.go(.6), .6, { size: 15, color: C.grey, weight: 700, anchor: "end" });
       N("", "都是后元音 oo/u 被拉到前面，变成前元音 ee/i！");
-      k.final("foot→feet\u00a0\u00a0tooth→teeth\u00a0\u00a0goose→geese\u00a0\u00a0food→feed", [], "后元音 oo/u 往前拉，变成前元音 ee/i：变复数，或者变成动词。");
+      k.final("foot→feet\u00a0\u00a0tooth→teeth\u00a0\u00a0goose→geese\u00a0\u00a0food→feed", [], "后元音 oo/u 往前拉，变成前元音 ee/i：变复数，或者变成动词。", { say: "One foot, two feet. One tooth, two teeth.", zh: "一只脚，两只脚；一颗牙，两颗牙。" });
+      k.say("The geese like the food I feed them.", { zh: "鹅喜欢我喂它们的食物。", word: "feed" });
       N("口诀：", "舌头往前拉，oo 变 ee：一只变一群，名词变动词。");
     },
     terms: [
@@ -10330,7 +10331,8 @@ WB_LAB.vowel_shift = [
         k.T(r, 722, 326 + i * 50, k.go(.4), .4, { size: 13, color: C.purple, weight: 900 });
       });
       N("", "规律：形容词加 th 变名词，前面的元音跟着变短。");
-      k.final("long→length\u00a0\u00a0strong→strength\u00a0\u00a0deep→depth\u00a0\u00a0wide→width", [], "形容词 + th = 抽象名词；元音缩短：o / ee / i_e 变成短 e 或短 i。");
+      k.final("long→length\u00a0\u00a0strong→strength\u00a0\u00a0deep→depth\u00a0\u00a0wide→width", [], "形容词 + th = 抽象名词；元音缩短：o / ee / i_e 变成短 e 或短 i。", { say: "The river is long. What is the length of the river?", zh: "这条河很长。这条河有多长？", word: "length" });
+      k.say("The water is deep. The depth is ten metres.", { zh: "水很深，深度是十米。", word: "depth" });
       N("口诀：", "加上 th，元音缩一缩：long 变 length，deep 变 depth。");
     },
     terms: [
@@ -10398,7 +10400,8 @@ WB_LAB.vowel_shift = [
       V.pairRow(k, 500, 392, ["advice", "/ədˈvaɪs/", [["c", 0, C.blue]]], ["advise", "/ədˈvaɪz/", [["s", 0, C.purple]]], o);
       k.T("蓝色 = 清音（静）｜紫色 = 浊音（动）", 720, 432, k.go(.8), .8, { size: 16, color: C.grey, weight: 900, anchor: "middle" });
       N("", "规律：清辅音结尾当名词、形容词，浊辅音结尾当动词。");
-      k.final("safe→save\u00a0\u00a0breath→breathe\u00a0\u00a0use /s/→use /z/", [], "词尾清辅音 /f/ /θ/ /s/：名词、形容词；换成浊辅音 /v/ /ð/ /z/：动词。");
+      k.final("safe→save\u00a0\u00a0breath→breathe\u00a0\u00a0use /s/→use /z/", [], "词尾清辅音 /f/ /θ/ /s/：名词、形容词；换成浊辅音 /v/ /ð/ /z/：动词。", { say: "Keep your money safe. Save your money.", zh: "把钱放安全。把钱存起来。", word: "save" });
+      k.say("Take a deep breath. Breathe in, breathe out.", { zh: "深吸一口气。吸气，呼气。", word: "breathe" });
       N("口诀：", "清音静悄悄，名词形容词；浊音嗡嗡响，变成动词跑。");
     },
     terms: [
@@ -10523,7 +10526,7 @@ WB_LAB.adj_order = (function () {
     T("空车厢「—」读的时候直接跳过", 24, 420, go(.9), .9, { size: 16, color: C.grey });
     k.wait(.6);
     N("", cfg.finalSay);
-    k.final(cfg.en, [], cfg.finalZh);
+    k.final(cfg.en, [], cfg.finalZh, { word: cfg.en, say: cfg.sayEn, zh: cfg.sayZh });
     k.wait(.3);
     N("口诀：", "限观大形龄色国材 —— " + cfg.rhyme);
     k.wait(.4);
@@ -10560,6 +10563,7 @@ WB_LAB.adj_order = (function () {
           whySay: "OSASCOMP 就是车厢顶上字母连起来，从主观的心到客观的东西排好队。",
           finalSay: "空车厢跳过，把乘客连起来，就是地道的英语短语！",
           en: "a nice small round wooden table",
+          sayEn: "Mom bought a nice small round wooden table.", sayZh: "妈妈买了一张漂亮的小圆木桌。",
           finalZh: "一张漂亮的小圆木桌。  主观在外，本质贴名词！",
           rhyme: "美小圆旧黄，法国木书房！"
         });
@@ -10612,6 +10616,7 @@ WB_LAB.adj_order = (function () {
           whySay: "从心里的夸奖，到个头，再到毛色，一步步走近猫咪本身。",
           finalSay: "空车厢跳过，连起来读一遍！",
           en: "two cute little white cats",
+          sayEn: "I have two cute little white cats.", sayZh: "我有两只可爱的小白猫。",
           finalZh: "两只可爱的小白猫。  先夸可爱，再看大小，颜色贴名词！",
           rhyme: "美小圆旧黄，法国木书房！"
         });
@@ -10652,6 +10657,7 @@ WB_LAB.adj_order = (function () {
           whySay: "观点、新旧、颜色、国籍、材质，一节一节从主观走到客观。",
           finalSay: "5 个形容词一个不乱，连起来读！",
           en: "a beautiful new red Chinese silk dress",
+          sayEn: "She wears a beautiful new red Chinese silk dress.", sayZh: "她穿着一件漂亮的崭新红色中国丝绸连衣裙。",
           finalZh: "一件漂亮的崭新红色中国丝绸连衣裙。  观点→新旧→颜色→国籍→材质",
           rhyme: "美小圆旧黄，法国木书房！"
         });
@@ -10692,6 +10698,7 @@ WB_LAB.adj_order = (function () {
           whySay: "大小在年龄前；国籍在用途前。用途最贴名词。",
           finalSay: "空车厢跳过，连起来读一遍！",
           en: "that tall young British basketball coach",
+          sayEn: "That tall young British basketball coach is my uncle.", sayZh: "那个高个子年轻的英国篮球教练是我叔叔。",
           finalZh: "那个高个子年轻的英国篮球教练。  大小→年龄→国籍→用途",
           rhyme: "美小圆旧黄，法国木书房！"
         });
@@ -10808,11 +10815,13 @@ WB_LAB.adj_order = (function () {
         k.P(k.ellipse(r3.px + 22, 386, 30, 12), go(.45), .45, { color: C.orange, w: 3 });
         r3.done();
 
+        k.say("Yesterday I put my bag on the desk.", { zh: "昨天我把书包放在桌上。", word: "put" });
         N("", "这一派还有：cut、hit、let、cost，过去式都和原形一样。");
         W.others("cut→cut · hit/let→hit/let · cost→cost");
         N("", "结论：词尾是短促 /t/ /d/ 的这几个动词，过去式 = 原形。");
         W.fin("结论：put / cut / hurt / hit / let / cost / read，过去式 = 原形（AAA）",
           "口诀：t、d 结尾金钟罩，-ed 进不来，原样不变！read 只变读音 /red/。");
+        k.say("He cut the cake and hurt his finger.", { zh: "他切蛋糕时弄伤了手指。", word: "cut" });
         N("口诀：", "t、d 结尾金钟罩，-ed 进不来，原样不变！");
       },
       terms: [
@@ -10877,12 +10886,14 @@ WB_LAB.adj_order = (function () {
         W.ring(r3.mb, 1, 2); W.ring(r3.mb, 6, 7); W.ring(r3.mp, 1, 2, C.green); W.ring(r3.mp, 5, 6, C.green);
         r3.done();
 
+        k.say("We sang and swam last summer.", { zh: "去年夏天我们唱歌、游泳。", word: "sang" });
         N("", "begin、ring 也是 i 变 a。run、come 变 ran、came，不是 i 变 a，单独记！");
         W.others("begin/ring→began/rang · run/come→ran/came");
         T("（不是 i 变 a）", 128 + 39 * 9.6 + 14, 428, go(.8), .8, { size: 15, color: C.red, weight: 900 });
         N("", "结论：i 换成 a，就是过去式。");
         W.fin("结论：sing→sang、swim→swam、drink→drank：中间的 i 换成 a = 过去式",
           "口诀：现在 i 扁嘴，过去 a 张嘴，换个元音就过去！");
+        k.say("She drank some milk and sat down.", { zh: "她喝了点牛奶，然后坐下了。", word: "drank" });
         N("口诀：", "现在 i 扁嘴，过去 a 张嘴，换个元音就过去！");
       },
       terms: [
@@ -10939,11 +10950,13 @@ WB_LAB.adj_order = (function () {
         W.ring(r3.mb, 1, 3); W.ring(r3.mb, 3, 4, C.orange); W.ring(r3.mp, 2, 3, C.orange); W.ring(r3.mp, 3, 4, C.green);
         r3.done();
 
+        k.say("I slept well and felt happy.", { zh: "我睡得很好，感觉很开心。", word: "slept" });
         N("", "还有 keep、sweep；meet、feed 直接减掉一个 e，变成 met、fed。");
         W.others("keep→kept · sweep→swept · meet/feed→met/fed");
         N("", "结论：ee / ea 缩成一个 e，后面加 t。");
         W.fin("结论：sleep→slept、feel→felt、leave→left：长音 ee/ea 缩成 e，再加 t",
           "口诀：加 t 太挤要减肥，两个 e 变一个 e！");
+        k.say("We met at the park.", { zh: "我们在公园见面了。", word: "met" });
         N("口诀：", "加 t 太挤要减肥，两个 e 变一个 e！");
       },
       terms: [
@@ -10998,11 +11011,13 @@ WB_LAB.adj_order = (function () {
         W.ring(r3.mb, 2, 3, C.orange); W.ring(r3.mp, 1, 6, C.orange);
         r3.done();
 
+        k.say("Mom bought me a book. Mr. Li taught us English.", { zh: "妈妈给我买了一本书。李老师教我们英语。", word: "bought" });
         N("", "还有 think→thought、fight→fought；catch 有 a，所以是 caught。");
         W.others("think→thought · fight→fought · catch→caught");
         N("", "结论：原形有 a 写 -aught，没有 a 写 -ought，都读 /ɔːt/。");
         W.fin("结论：有 a → -aught（taught、caught）；没 a → -ought（bought…）",
           "口诀：原形有 a 用 aught，其余全用 ought，gh 不出声！");
+        k.say("I thought he caught the ball.", { zh: "我以为他接住了球。", word: "caught" });
         N("口诀：", "原形有 a 用 aught，其余全用 ought，gh 不出声！");
       },
       terms: [
@@ -11127,7 +11142,7 @@ WB_LAB.adj_order = (function () {
           k.wait(1.2);
         });
         N("", "放进句子里听一听：前一个 present 是礼物，后一个 present 是送。");
-        k.final("Here is a ˈpresent for you! Let me preˈsent it to you.", [], "这是送你的礼物！让我把它送给你。  名词前重，动词后重！");
+        k.final("Here is a ˈpresent for you! Let me preˈsent it to you.", [], "这是送你的礼物！让我把它送给你。  名词前重，动词后重！", { say: "Here is a present for you! Let me present it to you." });
         N("口诀：", "名前动后：东西稳在头，动作冲到尾。");
         k.wait(1.5);
       },
@@ -11207,7 +11222,7 @@ WB_LAB.adj_order = (function () {
         k.wait(1);
 
         N("", "放进句子里：vacation 的重音被 -tion 吸到 CA 上。");
-        k.final("I love summer va-CA-tion!", [], "我爱暑假！  -tion/-ic/-ian 吸前一个，-ese/-eer 吸自己，合成名词前重。");
+        k.final("I love summer va-CA-tion!", [], "我爱暑假！  -tion/-ic/-ian 吸前一个，-ese/-eer 吸自己，合成名词前重。", { say: "I love summer vacation!", word: "vacation" });
         N("口诀：", "看尾巴找重音：-tion、-ic 吸前头，-ese、-eer 吸自己。");
         k.wait(1.5);
       },
@@ -11281,7 +11296,7 @@ WB_LAB.adj_order = (function () {
         k.wait(1);
 
         N("", "最后读一读：每个词都和后面的元音粘在一起！");
-        k.final("Look at it (/lʊ-kæ-tɪt/)! Pick it up (/pɪ-kɪ-tʌp/)!", [], "看它！把它捡起来！  实词重读拉长，虚词弱读成 /ə/，辅音元音粘一起。");
+        k.final("Look at it (/lʊ-kæ-tɪt/)! Pick it up (/pɪ-kɪ-tʌp/)!", [], "看它！把它捡起来！  实词重读拉长，虚词弱读成 /ə/，辅音元音粘一起。", { say: "Look at it! Pick it up!", word: "look at it" });
         N("口诀：", "重的拉长像打鼓，轻的变 /ə/ 一带过，辅音元音手拉手。");
         k.wait(1.5);
       },
@@ -11390,6 +11405,7 @@ WB_LAB.adj_order = (function () {
           tx(k, "at the foot of the mountain", px + 12, py + 128, { size: 16, color: C.ink, font: MONO });
           tx(k, "在山脚下", px + 12, py + 150, { size: 14, color: C.grey }); }
         // —— B：钟面 face + 指针 hand ——
+        k.say("My home is at the foot of the hill.", { zh: "我家在小山脚下。", word: "foot" });
         N("face（脸）：", "脸是朝外给人看的那一面，所以钟朝外的那一面就叫钟面 clock face。");
         panel(k, X1, Y0, W, H, C.orange, "#fffbeb");
         { const px = X1, py = Y0, ccx = px + 66, ccy = py + 56;
@@ -11404,6 +11420,7 @@ WB_LAB.adj_order = (function () {
           tx(k, "face of a clock · hour hand", px + 12, py + 128, { size: 16, color: C.ink, font: MONO });
           tx(k, "钟面表盘 · 时针", px + 12, py + 150, { size: 14, color: C.grey }); }
         // —— C：河口 mouth ——
+        k.say("Look at the clock face. The hour hand points to three.", { zh: "看钟面，时针指着三。", word: "clock face" });
         N("mouth（嘴）：", "嘴是进出的口子，河流进大海的口子就叫河口 mouth of a river。");
         panel(k, X0, Y1, W, H, C.blue, "#eff6ff");
         { const px = X0, py = Y1;
@@ -11475,6 +11492,7 @@ WB_LAB.adj_order = (function () {
           draw(k, `M${fx + 20},${fy - 2} q-6,10 0,13 q6,-3 0,-13 Z`, C.blue, .3, "#60a5fa", 1, 1.5);
           cardText(k, px, py, "BLUE", C.blue, "蔚蓝 → 忧郁", "feel blue / look blue", "变成蓝色", "心情低落 = feel sad"); }
         // —— GREEN ——
+        k.say("I feel blue today.", { zh: "我今天心情不好。", word: "feel blue" });
         N("a green hand：", "不是绿色的手！绿色像刚长出的嫩芽，嫩嫩的，意思是新手、菜鸟。");
         panel(k, XB, YA, W, H, C.green, "#ecfdf5");
         { const px = XB, py = YA;
@@ -11500,6 +11518,7 @@ WB_LAB.adj_order = (function () {
           cardText(k, px, py, "BLACK", C.ink, "黑 ≠ 红", "black tea", "黑茶", "红茶（看干茶叶的颜色）", "字面：", "其实：");
           N("中式错译：", "照着中文硬翻，把红茶说成 red tea，就错啦！"); k.wait(2.4); }
         // —— WHITE & GOLDEN ——
+        k.say("I like black tea.", { zh: "我喜欢红茶。", word: "black tea" });
         N("a white lie：", "白色像干净的雪，没有坏心眼。white lie 是不伤人的善意的谎言。");
         panel(k, XB, YB, W, H, C.orange, "#fffbeb");
         { const px = XB, py = YB;
@@ -11554,6 +11573,7 @@ WB_LAB.adj_order = (function () {
         tx(k, "谚语：The early bird catches the worm.", 400, 130, { size: 14, color: C.grey, dur: 1.4 });
         k.wait(1.3);
         // —— HORSE ——
+        k.say("The early bird catches the worm.", { zh: "早起的鸟儿有虫吃。" });
         N("as strong as a horse：", "马跑一整天也不累，所以「像马一样壮」就是力大无穷。");
         panel(k, XB, YA, W, H, C.brown, "#fff7ed");
         { const px = XB, py = YA, h = py + 40;
@@ -11576,6 +11596,7 @@ WB_LAB.adj_order = (function () {
           cardText(k, px, py, "LAMB", C.green, "温顺的小羊", "as gentle as a lamb", "小羊很温和", "性格温柔、很乖", "习性：", "比喻：");
           N("还有：", "black sheep 黑羊，比喻害群之马。"); k.wait(2.2); }
         // —— CATS & DOGS ——
+        k.say("My dad is as strong as a horse.", { zh: "我爸爸壮得像匹马。", word: "as strong as a horse" });
         N("rain cats and dogs：", "是习语，不是天上掉猫和狗！意思是雨大得吓人，下倾盆大雨。");
         panel(k, XB, YB, W, H, C.blue, "#eff6ff");
         { const px = XB, py = YB;
@@ -11585,6 +11606,7 @@ WB_LAB.adj_order = (function () {
           P(`M${px + 92},${py + 112} v18 q0,5 -5,5`, go(.2), .2, { color: C.ink, w: 2 });
           cardText(k, px, py, "CAT&DOG", C.blue, "习语", "rain cats and dogs", "天上下猫下狗", "下倾盆大雨");
           N("更多习语：", "a lucky dog 幸运儿，white elephant 贵又没用的累赘。"); k.wait(2.6); }
+        k.say("It's raining cats and dogs!", { zh: "外面下着倾盆大雨！", word: "raining cats and dogs" });
         N("", "连起来读一句：我妈妈每天早上都忙得像只小蜜蜂！");
         k.final("My mom is as busy as a bee every morning!", "busy", "我妈妈每天早上都忙得像只小蜜蜂！  as + 形容词原级 + as + a 动物");
         N("口诀：", "as 加原级再加 as，后面放个小动物：忙像蜂，壮像马，乖像羊！");
@@ -11769,6 +11791,7 @@ WB_LAB.tense_matrix = [
       h.ring(m2, "s", 0, C.orange);
       N("", "以 ch、sh、s、x、o 结尾的动词，加 -es：teaches、goes。");
       const m3 = h.ex("My mom", "teaches English and goes to work by car.", 344, "+es");
+      k.say("My mom teaches English and goes to work by car.", { zh: "我妈妈教英语，开车去上班。", word: "teaches" });
       h.ring(m3, "es", 0, C.orange); h.ring(m3, "es", 1, C.orange);
       N("辅音 + y：", "辅音就是 a e i o u 以外的字母。辅音 + y 结尾，变 y 为 i 加 -es。");
       const m4 = h.ex("The little bird", "flies high in the sky.", 374, "y → i + es");
@@ -11778,7 +11801,7 @@ WB_LAB.tense_matrix = [
       N("照妖镜：", "比喻 doesn't / Does：它们把 -s 勋章拿走了，后面的动词被打回原形。");
       h.trapFix("He doesn't likes", "likes", "He doesn't like", 434);
       N("", "结论：单三主语 He，动词戴上 -s 勋章。");
-      k.final("He plays football every afternoon.", "plays", "口诀：习惯真理用一般现在时；单三动词戴勋章，见 does 就脱掉！");
+      k.final("He plays football every afternoon.", "plays", "口诀：习惯真理用一般现在时；单三动词戴勋章，见 does 就脱掉！", { zh: "他每天下午踢足球。", word: "plays" });
       N("口诀：", "习惯真理用一般现在时；单三动词戴勋章，见 does / doesn't 就脱掉！");
     },
     terms: [
@@ -11829,6 +11852,7 @@ WB_LAB.tense_matrix = [
       k.wait(1.5);
       N("不发音的 e：", "dance、make 末尾的 e 不读，去掉 e 再加 -ing：dancing、making。");
       const m2 = h.ex("Listen! Mia", "is dancing and making a cake.", 314, "去 e + ing");
+      k.say("Look! Leo is running fast on the playground.", { zh: "看！里奥在操场上飞快地跑。", word: "is running" });
       h.uline(m2, "is"); h.ring(m2, "cing", 0, C.orange); h.ring(m2, "king", 0, C.orange);
       N("", "The children 是复数（好多个），所以用 are；swim 也要双写 m。");
       const m3 = h.ex("The children", "are swimming in the pool now.", 344, "are + 双写 m");
@@ -11841,7 +11865,7 @@ WB_LAB.tense_matrix = [
       N("心理状态词：", "like、know、want、have 是心里的感觉，不是看得见的动作，拍不成录像。");
       h.trapText("like(喜欢)、know(知道)、want(想要)、have(拥有) 这类心理状态词，通常不用进行时！", 434);
       N("", "结论：发动机 am + 正在读 reading，一个都不能少。");
-      k.final("I am reading an English storybook right now.", "am", "口诀：此刻正在做，am / is / are 加 V-ing，缺一不可！");
+      k.final("I am reading an English storybook right now.", "am", "口诀：此刻正在做，am / is / are 加 V-ing，缺一不可！", { zh: "我此刻正在读一本英语故事书。", word: "am reading" });
       N("口诀：", "此刻正在做，am / is / are 加 V-ing，缺一不可！");
     },
     terms: [
@@ -11882,6 +11906,7 @@ WB_LAB.tense_matrix = [
       k.wait(1.3);
       N("", "辅音 + y 结尾：变 y 为 i 再加 -ed，study → studied、cry → cried。");
       const m2 = h.ex("Mia", "studied hard and cried when she lost her pen.", 314, "y → i + ed");
+      k.say("I visited the museum and took many photos yesterday.", { zh: "昨天我参观了博物馆，拍了很多照片。", word: "visited" });
       h.ring(m2, "ied", 0, C.orange); h.ring(m2, "ied", 1, C.orange);
       N("", "stop 是重读闭音节：双写 p 再加 -ed，stopped；plan 也一样变 planned。");
       const m3 = h.ex("The bus", "stopped at the station five minutes ago.", 344, "双写 + ed");
@@ -11894,7 +11919,7 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "有 didn't 或 Did 时，「过去」已经被它们带走，后面的动词变回原形。");
       h.trapFix("Did you went there?", "went", "Did you go there?", 434);
       N("", "结论：stop 双写 p，加 -ed，变成过去式 stopped。");
-      k.final("The bus stopped at the station five minutes ago.", "stopped", "口诀：过去的事用过去式，不看主语人人一样；见 did 变回原形！");
+      k.final("The bus stopped at the station five minutes ago.", "stopped", "口诀：过去的事用过去式，不看主语人人一样；见 did 变回原形！", { zh: "公交车五分钟前停在了车站。", word: "stopped" });
       N("口诀：", "过去的事用过去式，不看主语人人一样；见 did / didn't 变回原形！");
     },
     terms: [
@@ -11930,6 +11955,7 @@ WB_LAB.tense_matrix = [
       h.uline(m1, "will");
       N("", "be going to 里的 be 要跟着主语变：Leo 是单三，用 is。");
       const m2 = h.ex("Leo", "is going to visit his grandparents this weekend.", 326, "be 随主语变");
+      k.say("Leo is going to visit his grandparents this weekend.", { zh: "里奥这个周末打算去看爷爷奶奶。", word: "is going to" });
       h.uline(m2, "is going to");
       N("", "They 是复数，用 are going to，后面接原形 have。");
       const m3 = h.ex("They", "are going to have a picnic next Sunday.", 354, "复数 are");
@@ -11942,7 +11968,7 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "别受中文「将要有」影响写 have！「某处有」永远用 be：There will be。");
       h.trapFix("There is going to have", "have", "There will be / There is going to be", 436);
       N("", "结论：There be 的将来时，就是 There will be。");
-      k.final("There will be (= is going to be) a football match tomorrow.", "will", "口诀：临时决定用 will，早有计划用 be going to，后面都跟原形！");
+      k.final("There will be (= is going to be) a football match tomorrow.", "will", "口诀：临时决定用 will，早有计划用 be going to，后面都跟原形！", { say: "There will be a football match tomorrow.", zh: "明天会有一场足球赛。", word: "will be" });
       N("口诀：", "临时决定用 will，早有计划用 be going to，后面都跟动词原形！");
     },
     terms: [
@@ -11986,6 +12012,7 @@ WB_LAB.tense_matrix = [
       h.uline(m2, "has"); h.ring(m2, "lived", 0, C.orange);
       N("have been to：", "去过某地，人已经回来了，留下一段人生经历。");
       const m3 = h.ex("Have you", "ever been to the Great Wall?", 344, "去过·已回来");
+      k.say("Have you ever been to the Great Wall?", { zh: "你去过长城吗？", word: "ever been" });
       h.ring(m3, "been to", 0, C.green);
       N("have gone to：", "去某地了，人还在上海或在路上，现在不在说话的地方。");
       const m4 = h.ex("Mr Wang", "has gone to Shanghai.", 374, "去了·还没回");
@@ -11995,7 +12022,7 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "出现明确的过去时间点，就只能用一般过去时，不能用现在完成时。");
       h.trapText("句子里有 yesterday, last week, two days ago 这类过去时间点，不能用 have/has done！", 434);
       N("", "结论：have + 过去分词 finished，作业写完的成果留到现在。");
-      k.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！");
+      k.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！", { say: "We have already finished the homework.", zh: "我们已经写完作业了。", word: "have finished" });
       N("口诀：", "过去做完，结果留到现在，就用 have / has + 过去分词！");
     },
     terms: [
@@ -12090,6 +12117,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("① 肯定句", ROW.aff, C.green);
         N("肯定句：", "正面说一件事的句子：她现在正在公园里拍照。");
         const a = h.line("She is taking photos in the park now.", ROW.aff);
+        k.say("She is taking photos in the park now.", { zh: "她现在正在公园里拍照。" });
         h.tag("她现在正在公园里拍照。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("be 动词：", "am / is / are / was / were，意思是「是、在」。这句里的 is 就是。");
         const g = h.ring(a, "is");
@@ -12099,11 +12127,13 @@ WB_LAB.aux_transformer = (() => {
         h.label("② 否定句", ROW.neg, C.red);
         N("否定句：", "说「不」的句子。not 直接贴在护卫 is 身后：is not = isn't。");
         const n = h.line("She is not (isn't) taking photos in the park now.", ROW.neg);
+        k.say("She isn't taking photos in the park now.", { zh: "她现在没在公园里拍照。", word: "isn't" });
         h.ring(n, "not", C.red);
         h.tag("直接在护卫 is 身后贴上 not（is not = isn't）", SX, ROW.neg + 22, C.red);
         h.label("③ 一般疑问", ROW.yn, C.blue);
         N("一般疑问句：", "能用 Yes / No 回答的问句。把护卫 Is 提到主语 she 前面。");
         const q = h.line("Is she taking photos in the park now?", ROW.yn, C.blue);
+        k.say("Is she taking photos in the park now?", { zh: "她现在正在公园里拍照吗？" });
         N("主语：", "句子在说「谁」，这里是 she（她）。护卫跳过主语，站到句首。");
         h.jump(q, q.x1("she") + 4, q.x0("Is") + q.cw);
         h.tag("护卫 Is 提到主语 she 前面", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
@@ -12112,6 +12142,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("④ 特殊疑问", ROW.wh, C.purple);
         N("特殊疑问句：", "用疑问词开头、问具体信息的问句，不能只答 Yes / No。");
         const w = h.line("Where is she taking photos now?", ROW.wh, C.purple);
+        k.say("Where is she taking photos now?", { zh: "她现在在哪里拍照？" });
         N("疑问词：", "Where 问地点。三步：换 Where → 提护卫 is → 擦掉 in the park。");
         h.ring(w, "Where", C.purple);
         h.erase("in the park", w.x + w.text.length * w.cw + 40, ROW.wh, "对地点提问 → 擦掉");
@@ -12119,6 +12150,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("⑤ 感叹句", ROW.ex, C.orange);
         N("感叹句：", "表达「多么……啊！」的句子，句末用感叹号。");
         const e = h.line("What beautiful photos she is taking! / How happy she is!", ROW.ex, C.brown);
+        k.say("What beautiful photos she is taking!", { zh: "她拍的照片多漂亮啊！" });
         N("What 和 How：", "感叹名词（photos）用 What 开头；感叹形容词（happy）用 How 开头。");
         k.underline(e, "What beautiful photos"); k.underline(e, "How happy");
         h.tag("What + 形容词 + 名词 + 主谓！   How + 形容词 + 主谓！", SX, ROW.ex + 27, C.orange);
@@ -12152,6 +12184,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("① 肯定句", ROW.aff, C.green);
         N("肯定句：", "Leo can speak English very well. 里奥能把英语说得非常好。");
         const a = h.line("Leo can speak English very well.", ROW.aff);
+        k.say("Leo can speak English very well.", { zh: "里奥英语说得非常好。" });
         h.tag("里奥能把英语说得非常好。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("情态动词：", "can 能、will 将要、must 必须、should 应该，表示能力、打算或要求。");
         const g = h.ring(a, "can");
@@ -12162,6 +12195,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("② 否定句", ROW.neg, C.red);
         N("否定句：", "大将军 can 后面直接加 not，写成 cannot 或 can't。");
         const n = h.line("Leo cannot (can't) speak English very well.", ROW.neg);
+        k.say("Leo can't speak English very well.", { zh: "里奥英语说得不太好。", word: "can't" });
         h.ring(n, "cannot", C.red);
         N("", "注意 can + not 要连写成 cannot。后面的 speak 还是原形。");
         h.ring(n, "speak", C.green);
@@ -12169,6 +12203,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("③ 一般疑问", ROW.yn, C.blue);
         N("一般疑问句：", "把大将军 Can 直接提到主语 Leo 前面，句末换成问号。");
         const q = h.line("Can Leo speak English very well?", ROW.yn, C.blue);
+        k.say("Can Leo speak English very well?", { zh: "里奥英语说得很好吗？" });
         h.jump(q, q.x1("Leo") + 4, q.x0("Can") + q.cw * 1.5);
         h.tag("大将军 Can 提到主语 Leo 前面", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
         N("", "回答也用 can：Yes, he can. / No, he can't.");
@@ -12176,12 +12211,14 @@ WB_LAB.aux_transformer = (() => {
         h.label("④ 特殊疑问", ROW.wh, C.purple);
         N("特殊疑问句：", "问「说什么」用 What；问「说得多好」用 How well。");
         const w = h.line("What can Leo speak very well? / How well can Leo speak English?", ROW.wh, C.purple);
+        k.say("How well can Leo speak English?", { zh: "里奥英语说得怎么样？" });
         h.ring(w, "What", C.purple); h.ring(w, "How well", C.purple);
         N("", "三步：换疑问词 → 提大将军 can → 后面跟主语 + 动词原形。");
         h.tag("① 换疑问词 What ➔ ② 提大将军 can ➔ ③ 后面主语 + 动词原形", SX, ROW.wh + 22, C.purple);
         h.label("⑤ 感叹句", ROW.ex, C.orange);
         N("副词：", "说明动作「怎么样」的词，比如 well（好）。感叹副词要用 How。");
         const e = h.line("How well Leo can speak English!", ROW.ex, C.brown);
+        k.say("How well Leo can speak English!", { zh: "里奥英语说得多好啊！" });
         k.underline(e, "How well");
         N("感叹句：", "How well + 主语 Leo + 谓语 can speak，主语在前，不用倒过来！");
         h.tag("How well + 主语 Leo + 谓语 can speak！", SX, ROW.ex + 27, C.orange);
@@ -12205,6 +12242,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("① 肯定句", ROW.aff, C.green);
         N("肯定句：", "Mia watches TV every Saturday evening. 米娅每周六晚上看电视。");
         const a = h.line("Mia watches TV every Saturday evening.", ROW.aff);
+        k.say("Mia watches TV every Saturday evening.", { zh: "米娅每周六晚上看电视。", word: "watches" });
         h.tag("米娅每周六晚上看电视。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("实义动词：", "watch 是有真正动作的动词，它是「老百姓」，不能自己跑到主语前面。");
         const i = a.at("watches");
@@ -12216,12 +12254,14 @@ WB_LAB.aux_transformer = (() => {
         h.label("② 否定句", ROW.neg, C.red);
         N("否定句：", "照妖镜 doesn't 出场，吸走 -es：watches 立刻变回原形 watch。");
         const n = h.line("Mia does not (doesn't) watch TV every Saturday evening.", ROW.neg);
+        k.say("Mia doesn't watch TV every Saturday evening.", { zh: "米娅每周六晚上不看电视。", word: "watch" });
         h.ring(n, "does not", C.red);
         h.ring(n, "watch", C.green);
         h.tag("照妖镜 doesn't 吸走 -es，watches 打回原形 watch", SX, ROW.neg + 22, C.red);
         h.label("③ 一般疑问", ROW.yn, C.blue);
         N("一般疑问句：", "照妖镜 Does 站到句首，把 -es 吸走，后面用原形 watch。");
         const q = h.line("Does Mia watch TV every Saturday evening?", ROW.yn, C.blue);
+        k.say("Does Mia watch TV every Saturday evening?", { zh: "米娅每周六晚上看电视吗？" });
         h.jump(q, q.x1("watch") + 2, q.x0("Does") + q.cw * 2);
         h.tag("Does 吸走 -es", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
         N("", "回答也用 does：Yes, she does. / No, she doesn't.");
@@ -12229,6 +12269,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("④ 特殊疑问", ROW.wh, C.purple);
         N("特殊疑问句：", "When 问「什么时候」。这里问的是 every Saturday evening。");
         const w = h.line("When does Mia watch TV?", ROW.wh, C.purple);
+        k.say("When does Mia watch TV?", { zh: "米娅什么时候看电视？" });
         h.ring(w, "When", C.purple);
         h.erase("every Saturday evening", w.x + w.text.length * w.cw + 40, ROW.wh, "对时间提问 → 擦掉");
         N("黄金三步：", "换 When → 提 does → 主语后面 watches 打回原形 watch。");
@@ -12236,6 +12277,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("⑤ 感叹句", ROW.ex, C.orange);
         N("可数单数名词：", "能一个一个数、只有一个的东西，比如 an evening，前面要有 a / an。");
         const e = h.line("What a relaxing Saturday evening Mia has!", ROW.ex, C.brown);
+        k.say("What a relaxing Saturday evening Mia has!", { zh: "米娅的周六晚上多轻松啊！" });
         k.underline(e, "What a relaxing Saturday evening");
         h.ringAt(e, e.at(" a ") + 1, 1, C.red);
         N("感叹句：", "What a + 形容词 + 单数名词 + 主谓：What a relaxing evening Mia has!");
@@ -12260,6 +12302,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("① 肯定句", ROW.aff, C.green);
         N("肯定句：", "They went to Sanya by plane last winter. 他们去年冬天坐飞机去了三亚。");
         const a = h.line("They went to Sanya by plane last winter.", ROW.aff);
+        k.say("They went to Sanya by plane last winter.", { zh: "他们去年冬天坐飞机去了三亚。", word: "went" });
         h.tag("他们去年冬天坐飞机去了三亚。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("过去式：", "表示已经发生的事，动词要变样。went 是 go 的过去式。");
         const g = h.ring(a, "went", C.red);
@@ -12270,12 +12313,14 @@ WB_LAB.aux_transformer = (() => {
         h.label("② 否定句", ROW.neg, C.red);
         N("否定句：", "照妖镜 didn't 出场，吸走过去时：went 瞬间变回 go。");
         const n = h.line("They did not (didn't) go to Sanya by plane last winter.", ROW.neg);
+        k.say("They didn't go to Sanya by plane last winter.", { zh: "他们去年冬天没有坐飞机去三亚。", word: "go" });
         h.ring(n, "did not", C.red);
         h.ring(n, "go", C.green);
         h.tag("照妖镜 didn't 吸走过去时，went 打回原形 go", SX, ROW.neg + 22, C.red);
         h.label("③ 一般疑问", ROW.yn, C.blue);
         N("一般疑问句：", "照妖镜 Did 站到句首，后面的 went 必须还原成 go。");
         const q = h.line("Did they go to Sanya by plane last winter?", ROW.yn, C.blue);
+        k.say("Did they go to Sanya by plane last winter?", { zh: "他们去年冬天坐飞机去三亚了吗？" });
         h.jump(q, q.x1("go") + 2, q.x0("Did") + q.cw * 1.5);
         h.tag("Did 站句首，went → go", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
         N("", "回答也用 did：Yes, they did. / No, they didn't.");
@@ -12283,6 +12328,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("④ 特殊疑问", ROW.wh, C.purple);
         N("交通方式：", "坐什么去，比如 by plane（坐飞机）。问交通方式用 How（怎样）。");
         const w = h.line("How did they go to Sanya last winter?", ROW.wh, C.purple);
+        k.say("How did they go to Sanya last winter?", { zh: "他们去年冬天怎么去的三亚？" });
         h.ring(w, "How", C.purple);
         h.erase("by plane", w.x + w.text.length * w.cw + 40, ROW.wh, "对交通方式提问");
         N("黄金三步：", "换 How → 提过去助动词 did → 主语后 went 还原为 go。");
@@ -12290,6 +12336,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("⑤ 感叹句", ROW.ex, C.orange);
         N("感叹句：", "名词 trip 用 What a wonderful trip；副词 fast 用 How fast。");
         const e = h.line("What a wonderful trip they had last winter! / How fast the plane flew!", ROW.ex, C.brown);
+        k.say("What a wonderful trip they had last winter!", { zh: "他们去年冬天的旅行多棒啊！" });
         k.underline(e, "What a wonderful trip"); k.underline(e, "How fast");
         N("", "感叹句里本来就是过去的事，所以 had、flew 保持过去式，不用 did。");
         h.tag("名词 trip 用 What a wonderful trip；副词 fast 用 How fast！", SX, ROW.ex + 27, C.orange);
@@ -12447,11 +12494,13 @@ WB_LAB.aux_transformer = (() => {
         k.wait(.8);
         N("", "看金句：Birds fly 就是骨架，后面的部分全是挂件。");
         const m1 = h.line("Birds fly happily in the blue sky.", 254);
+        k.say("Birds fly happily in the blue sky.", { zh: "鸟儿在蓝天里快乐地飞翔。" });
         h.tags(m1, [["Birds", "S", C.blue], ["fly", "V", C.orange]]);
         N("副词：", "说明动作「怎么样」的词，常以 -ly 结尾，比如 happily（快乐地）。");
         h.tags(m1, [["happily", "副词挂件", C.grey], ["in the blue sky", "地点挂件", C.grey]]);
         N("宾语：", "动作的对象，就是「对谁、对什么」。不及物动词不能直接接宾语。");
         const m2 = h.line("Please listen to the teacher and look at the blackboard!", 350);
+        k.say("Please listen to the teacher and look at the blackboard!", { zh: "请听老师讲，看黑板！", word: "listen to" });
         N("介词挂钩：", "to、at、for、with 这类小词像钩子，挂在不及物动词后面，才能接上对象。");
         const x1 = h.ring(m2, "to"); h.hook(x1, m2.y - 22);
         const x2 = h.ring(m2, "at"); h.hook(x2, m2.y - 22);
@@ -12508,12 +12557,14 @@ WB_LAB.aux_transformer = (() => {
         h.say("变化：get · turn · become", 560, 232, { color: C.purple, size: 16, weight: 900, font: MONO, dur: .9 });
         N("", "看金句：sounds、tastes 是等号，后面 great、sweet 都是形容词。");
         const m1 = h.line("That idea sounds great! The cake tastes sweet.", 280);
+        k.say("That idea sounds great! The cake tastes sweet.", { zh: "这个主意听起来很棒！蛋糕尝起来很甜。" });
         h.tags(m1, [["That idea", "S", C.blue], ["sounds", "V", C.orange], ["great", "P", C.brown], ["The cake", "S", C.blue], ["tastes", "V", C.orange], ["sweet", "P", C.brown]]);
         N("副词：", "-ly 结尾的词修饰动作，比如 sweetly（甜甜地）。系动词后面不能用它！");
         const bad = h.line("tastes sweetly", 280, 18, C.red, 640);
         h.strike(bad, "sweetly"); k.redX(612, 256);
         N("", "turn 管颜色变化（树叶变黄），get 管天气变化（天气变凉）。");
         const m2 = h.line("In autumn, the leaves turn yellow and the weather gets cool.", 362);
+        k.say("In autumn, the leaves turn yellow and the weather gets cool.", { zh: "秋天，树叶变黄，天气变凉。" });
         h.tags(m2, [["In autumn", "时间挂件", C.grey], ["the leaves", "S", C.blue], ["turn", "V", C.orange], ["yellow", "P", C.brown], ["the weather", "S", C.blue], ["gets", "V", C.orange], ["cool", "P", C.brown]]);
         h.say("铁律：系动词 + 形容词（对）    系动词 + -ly 副词（错）", 40, 422, { color: C.red, size: 17, weight: 900 });
         h.final("S（主语）+ 系动词（=）+ P（表语：名词 / 形容词 / 介词短语）", "那个主意听起来太棒了！蛋糕尝起来很甜。  系动词是等号！");
@@ -12553,12 +12604,14 @@ WB_LAB.aux_transformer = (() => {
         k.wait(.6);
         N("", "看金句：planted（种了）直接射中宾语 trees，中间什么都不加。");
         const m1 = h.line("We planted twenty young trees on Tree Planting Day.", 238);
+        k.say("We planted twenty young trees on Tree Planting Day.", { zh: "植树节我们种了二十棵小树。" });
         h.tags(m1, [["We", "S", C.blue], ["planted", "V", C.orange], ["twenty young trees", "O", C.purple], ["on Tree Planting Day", "时间挂件", C.grey]]);
         N("画蛇添足：", "多此一举。及物动词后面乱加介词，就像给蛇画脚，反而画错了。");
         h.say("直接接宾语，不加介词：", 40, 300, { color: C.red, size: 16, weight: 900 });
         h.say("discuss the plan · marry her · enter the room", 240, 300, { color: C.red, size: 16, weight: 900, font: MONO, dur: 1.3 });
         N("宾语穿制服：", "两个动词连用时，第二个要换成 to do 或 doing，才能当宾语。");
         const m2 = h.line("I want to buy a dictionary, and I enjoy reading stories.", 350);
+        k.say("I want to buy a dictionary, and I enjoy reading stories.", { zh: "我想买一本词典，我也喜欢读故事。" });
         h.tags(m2, [["I", "S", C.blue], ["want", "V", C.orange], ["to buy a dictionary", "O", C.purple], ["I", "S", C.blue, 1], ["enjoy", "V", C.orange], ["reading stories", "O", C.purple]]);
         N("to do：", "盼着将来去做的事用 to do，比如 want to do、hope to do。");
         h.say("将来想做 → want / plan / hope / decide + to do", 40, 404, { color: C.blue, size: 16, weight: 900 });
@@ -12598,12 +12651,14 @@ WB_LAB.aux_transformer = (() => {
         N("", "也可以把物放前面、人放后面，但人前面要加 to 或 for。");
         h.say("人在前：V + sb. + sth.     或     物在前：V + sth. + to / for + sb.", 40, 210, { color: C.ink, size: 17, weight: 900 });
         const m1 = h.line("Leo gave me a nice pen. = Leo gave a nice pen TO me.", 262);
+        k.say("Leo gave me a nice pen. Leo gave a nice pen to me.", { zh: "里奥给了我一支好看的笔。", word: "gave" });
         h.tags(m1, [["me", "IO", C.purple], ["a nice pen", "DO", C.brown], ["a nice pen", "DO", C.brown, 1], ["TO me", "to + 人", C.red]]);
         N("to 指向：", "把现成的东西单向递过去，像一支箭头，就用 to。");
         k.arrow(m1.x1("me", 1) + 18, m1.y - 7, m1.x1("me", 1) + 58, m1.y - 7, C.red);
         h.say("to 派：give / show / send / pass / lend / teach / tell", 40, 322, { color: C.blue, size: 16, weight: 900, font: MONO, dur: 1.4 });
         N("for 心意：", "花心思替别人买、做、准备，像送出一颗爱心，就用 for。");
         const m2 = h.line("Dad bought me a new bike. = Dad bought a new bike FOR me.", 372);
+        k.say("Dad bought me a new bike. Dad bought a new bike for me.", { zh: "爸爸给我买了一辆新自行车。", word: "bought" });
         h.tags(m2, [["me", "IO", C.purple], ["a new bike", "DO", C.brown], ["a new bike", "DO", C.brown, 1], ["FOR me", "for + 人", C.red]]);
         h.heart(m2.x1("me", 1) + 26, m2.y - 7);
         h.say("for 派：buy / make / cook / draw / choose / find", 40, 428, { color: C.red, size: 16, weight: 900, font: MONO, dur: 1.3 });
@@ -12640,12 +12695,14 @@ WB_LAB.aux_transformer = (() => {
         N("魔法赋能：", "比喻：动词像魔法棒，点一下宾语，让它变个样或去做件事。");
         k.wait(.4);
         const m1 = h.line("Reading books makes me clever and keeps my mind open.", 270);
+        k.say("Reading books makes me clever and keeps my mind open.", { zh: "读书让我变聪明，让我的思想更开阔。" });
         h.tags(m1, [["Reading books", "S", C.blue], ["makes", "V", C.orange], ["me", "O", C.purple], ["clever", "OC", C.green], ["keeps", "V", C.orange], ["my mind", "O", C.purple], ["open", "OC", C.green]]);
         N("形容词作宾补：", "make / keep + 宾语 + 形容词，不能写成 -ly 的 happily。");
         const bad = h.line("makes me happily", 270, 17, C.red, 712);
         h.strike(bad, "happily"); k.redX(686, 248);
         N("使役动词：", "make、let、have，意思是「让某人做某事」。后面的动词要脱掉 to。");
         const m2 = h.line("Our teacher asks us to read aloud, and she lets us play games!", 350);
+        k.say("Our teacher asks us to read aloud, and she lets us play games!", { zh: "老师让我们大声朗读，还让我们玩游戏！" });
         h.tags(m2, [["asks", "V", C.orange], ["us", "O", C.purple], ["to read aloud", "OC", C.green], ["lets", "V", C.orange], ["us", "O", C.purple, 1], ["play games", "OC", C.green]]);
         N("动词原形：", "动词本来的样子，不加 to、-s、-ed、-ing，比如 play、laugh。");
         h.ring(m2, "play", C.red);
@@ -12791,6 +12848,7 @@ WB_LAB.aux_transformer = (() => {
         N("高级句型：", "更生动、更有变化的说法。be crazy about 意思是「对……着迷」。");
         tag(k, "100分", 180, 146, C.green, "#d1fae5");
         const g1 = para(k, "I am crazy about English, and I really enjoy reading English stories in my free time!", GOLD_X, 146, GOLD_CH, 18, C.ink, 26, .04);
+        k.say("I am crazy about English, and I really enjoy reading English stories in my free time!", { zh: "我超爱英语，空闲时特别喜欢读英语故事！" });
         ring(k, g1, "crazy about", C.purple);
         N("enjoy doing：", "喜欢做某事，后面动词加 ing：enjoy reading。也可以用 be fond of。");
         uline(k, g1, "enjoy reading", C.orange);
@@ -12805,6 +12863,7 @@ WB_LAB.aux_transformer = (() => {
         N("感叹句：", "表达强烈感情的句子，用 What 或 How 开头，句末用感叹号「!」。");
         tag(k, "100分", 180, 262, C.green, "#d1fae5");
         const g2 = para(k, "What a wonderful and unforgettable day we had! How excited we were!", GOLD_X, 262, 48, 18, C.ink, 26, .04);
+        k.say("What a wonderful and unforgettable day we had! How excited we were!", { zh: "那天真美好、真难忘！我们多兴奋啊！" });
         N("What a + 形容词 + 名词：", "多么美好的一天！What a wonderful … day，后面跟 we had。");
         ring(k, g2, "What a", C.purple); uline(k, g2, "day we had!", C.orange);
         N("How + 形容词：", "How excited we were! 我们多么激动啊！形容词紧跟在 How 后面。");
@@ -12818,6 +12877,7 @@ WB_LAB.aux_transformer = (() => {
         N("连接词：", "把句子连起来的词。not only… but also… 意思是「不仅……而且……」。");
         tag(k, "100分", 180, 378, C.green, "#d1fae5");
         const g3 = para(k, "Reading books is not only good for our study, but also opens a window to the world for us!", GOLD_X, 378, ["Reading books is not only good for our study, but also", "opens a window to the world for us!"], 18, C.ink, 26, .04);
+        k.say("Reading books is not only good for our study, but also opens a window to the world for us!", { zh: "读书不仅对学习有益，还为我们打开一扇看世界的窗！" });
         uline(k, g3, "not only", C.blue); uline(k, g3, "but also", C.blue);
         N("隐喻：", "打比方：读书 opens a window to the world，给你打开一扇看世界的窗。");
         ring(k, g3, "opens a window to the world", C.purple);
@@ -12862,6 +12922,7 @@ WB_LAB.aux_transformer = (() => {
         N("First of all,：", "「首先」，放在句子开头，后面加逗号。也可以用 To begin with,。");
         tag(k, "高分", 180, 146, C.green, "#d1fae5");
         const g1 = para(k, "First of all, / To begin with, I am going to finish my homework carefully.", GOLD_X, 146, GOLD_CH, 18, C.ink, 26, .04);
+        k.say("First of all, I am going to finish my homework carefully.", { zh: "首先，我要认真写完作业。" });
         ring(k, g1, "First of all,", C.blue); ring(k, g1, "To begin with,", C.blue);
         // 第二棒
         N("Cohesion Chain：", "衔接链。每一句都用衔接词扣住上一句，像链子一环扣一环。");
@@ -12873,6 +12934,7 @@ WB_LAB.aux_transformer = (() => {
         N("递进：", "意思再往前进一步，「而且」。用 What's more, 或 Besides, 代替 And。");
         tag(k, "高分", 180, 262, C.green, "#d1fae5");
         const g2 = para(k, "What's more, / Besides, I often help my parents do some housework, such as sweeping the floor.", GOLD_X, 262, ["What's more, / Besides, I often help my parents do some", "housework, such as sweeping the floor."], 18, C.ink, 26, .04);
+        k.say("What's more, I often help my parents do some housework, such as sweeping the floor.", { zh: "而且，我常帮父母做家务，比如扫地。" });
         ring(k, g2, "What's more,", C.blue); ring(k, g2, "Besides,", C.blue);
         N("such as：", "「比如」，后面举例子：such as sweeping the floor（比如扫地）。");
         uline(k, g2, "such as sweeping the floor", C.orange);
@@ -12884,6 +12946,7 @@ WB_LAB.aux_transformer = (() => {
         const b3 = [mline(k, "I was tired, but I was happy.", GOLD_X, 344, 18, C.grey)];
         tag(k, "高分", 180, 378, C.green, "#d1fae5");
         const g3 = para(k, "Although I felt a little tired after the trip, I learned a lot and had a great time!", GOLD_X, 378, GOLD_CH, 18, C.ink, 26, .04);
+        k.say("Although I felt a little tired after the trip, I learned a lot and had a great time!", { zh: "虽然旅行后有点累，但我学到很多，玩得很开心！" });
         ring(k, g3, "Although", C.blue);
         N("黄金铁律：", "英语里 Although（虽然）和 but（但是）不能出现在同一个句子里！");
         const rx = b3[0].x + b3[0].text.length * b3[0].cw + 30;
@@ -12927,6 +12990,7 @@ WB_LAB.aux_transformer = (() => {
         N("范文积木：", "把满分范文拆成几块积木，也叫骨架。按顺序搭起来，就是一篇好文章。");
         blocks(k, ["外貌 with短语", "性格 adj", "爱好 be good at", "榜样力量"], 200, 84, [C.blue, C.purple, C.green, C.orange]);
         const p1 = para(k, "Linda is a tall and outgoing girl with big bright eyes. Not only is she polite and helpful, but she is also good at playing the piano. Whenever I have trouble with English, she always helps me patiently.", 32, 144, 92, 16, C.ink, 28, .032);
+        k.say("Linda is a tall and outgoing girl with big bright eyes.", { zh: "琳达是个高个子、性格外向的女孩，有一双明亮的大眼睛。" });
         N("后置定语：", "放在名词后面修饰它。with big bright eyes 挂在 girl 后面，省掉一句话。");
         uline(k, p1, "with big bright eyes", C.blue);
         N("性格品质：", "用形容词写脾气：outgoing 外向，polite 有礼貌，helpful 乐于助人。");
@@ -12941,6 +13005,7 @@ WB_LAB.aux_transformer = (() => {
         k.T("母题二：过去经历篇", 32, 272, k.go(.9), .9, { size: 20, color: C.brown, weight: 900 });
         blocks(k, ["时间·天气·交通", "上午·下午活动", "感受·感叹"], 240, 252, [C.blue, C.green, C.orange]);
         const p2 = para(k, "Last Sunday, the weather was sunny and warm. I went to the countryside with my family by car. In the morning, we picked fresh strawberries and fed the cute sheep. In the afternoon, we took many beautiful photos by the lake. Tired as we were, what a fantastic day we had!", 32, 316, 92, 16, C.ink, 30, .032);
+        k.say("Last Sunday, I went to the countryside with my family by car.", { zh: "上周日，我和家人坐车去了乡下。" });
         N("过去式：", "已经发生的事，动词要变样：is→was，go→went，take→took。");
         ["was", "went", "picked", "fed", "took", "had"].forEach(w => ring(k, p2, w, C.red));
         N("", "全文动词都锁定过去式：was, went, picked, fed, took, had，一个都不能漏！");

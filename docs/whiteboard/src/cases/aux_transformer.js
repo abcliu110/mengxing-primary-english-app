@@ -76,6 +76,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("① 肯定句", ROW.aff, C.green);
         N("肯定句：", "正面说一件事的句子：她现在正在公园里拍照。");
         const a = h.line("She is taking photos in the park now.", ROW.aff);
+        k.say("She is taking photos in the park now.", { zh: "她现在正在公园里拍照。" });
         h.tag("她现在正在公园里拍照。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("be 动词：", "am / is / are / was / were，意思是「是、在」。这句里的 is 就是。");
         const g = h.ring(a, "is");
@@ -85,11 +86,13 @@ WB_LAB.aux_transformer = (() => {
         h.label("② 否定句", ROW.neg, C.red);
         N("否定句：", "说「不」的句子。not 直接贴在护卫 is 身后：is not = isn't。");
         const n = h.line("She is not (isn't) taking photos in the park now.", ROW.neg);
+        k.say("She isn't taking photos in the park now.", { zh: "她现在没在公园里拍照。", word: "isn't" });
         h.ring(n, "not", C.red);
         h.tag("直接在护卫 is 身后贴上 not（is not = isn't）", SX, ROW.neg + 22, C.red);
         h.label("③ 一般疑问", ROW.yn, C.blue);
         N("一般疑问句：", "能用 Yes / No 回答的问句。把护卫 Is 提到主语 she 前面。");
         const q = h.line("Is she taking photos in the park now?", ROW.yn, C.blue);
+        k.say("Is she taking photos in the park now?", { zh: "她现在正在公园里拍照吗？" });
         N("主语：", "句子在说「谁」，这里是 she（她）。护卫跳过主语，站到句首。");
         h.jump(q, q.x1("she") + 4, q.x0("Is") + q.cw);
         h.tag("护卫 Is 提到主语 she 前面", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
@@ -98,6 +101,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("④ 特殊疑问", ROW.wh, C.purple);
         N("特殊疑问句：", "用疑问词开头、问具体信息的问句，不能只答 Yes / No。");
         const w = h.line("Where is she taking photos now?", ROW.wh, C.purple);
+        k.say("Where is she taking photos now?", { zh: "她现在在哪里拍照？" });
         N("疑问词：", "Where 问地点。三步：换 Where → 提护卫 is → 擦掉 in the park。");
         h.ring(w, "Where", C.purple);
         h.erase("in the park", w.x + w.text.length * w.cw + 40, ROW.wh, "对地点提问 → 擦掉");
@@ -105,6 +109,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("⑤ 感叹句", ROW.ex, C.orange);
         N("感叹句：", "表达「多么……啊！」的句子，句末用感叹号。");
         const e = h.line("What beautiful photos she is taking! / How happy she is!", ROW.ex, C.brown);
+        k.say("What beautiful photos she is taking!", { zh: "她拍的照片多漂亮啊！" });
         N("What 和 How：", "感叹名词（photos）用 What 开头；感叹形容词（happy）用 How 开头。");
         k.underline(e, "What beautiful photos"); k.underline(e, "How happy");
         h.tag("What + 形容词 + 名词 + 主谓！   How + 形容词 + 主谓！", SX, ROW.ex + 27, C.orange);
@@ -138,6 +143,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("① 肯定句", ROW.aff, C.green);
         N("肯定句：", "Leo can speak English very well. 里奥能把英语说得非常好。");
         const a = h.line("Leo can speak English very well.", ROW.aff);
+        k.say("Leo can speak English very well.", { zh: "里奥英语说得非常好。" });
         h.tag("里奥能把英语说得非常好。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("情态动词：", "can 能、will 将要、must 必须、should 应该，表示能力、打算或要求。");
         const g = h.ring(a, "can");
@@ -148,6 +154,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("② 否定句", ROW.neg, C.red);
         N("否定句：", "大将军 can 后面直接加 not，写成 cannot 或 can't。");
         const n = h.line("Leo cannot (can't) speak English very well.", ROW.neg);
+        k.say("Leo can't speak English very well.", { zh: "里奥英语说得不太好。", word: "can't" });
         h.ring(n, "cannot", C.red);
         N("", "注意 can + not 要连写成 cannot。后面的 speak 还是原形。");
         h.ring(n, "speak", C.green);
@@ -155,6 +162,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("③ 一般疑问", ROW.yn, C.blue);
         N("一般疑问句：", "把大将军 Can 直接提到主语 Leo 前面，句末换成问号。");
         const q = h.line("Can Leo speak English very well?", ROW.yn, C.blue);
+        k.say("Can Leo speak English very well?", { zh: "里奥英语说得很好吗？" });
         h.jump(q, q.x1("Leo") + 4, q.x0("Can") + q.cw * 1.5);
         h.tag("大将军 Can 提到主语 Leo 前面", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
         N("", "回答也用 can：Yes, he can. / No, he can't.");
@@ -162,12 +170,14 @@ WB_LAB.aux_transformer = (() => {
         h.label("④ 特殊疑问", ROW.wh, C.purple);
         N("特殊疑问句：", "问「说什么」用 What；问「说得多好」用 How well。");
         const w = h.line("What can Leo speak very well? / How well can Leo speak English?", ROW.wh, C.purple);
+        k.say("How well can Leo speak English?", { zh: "里奥英语说得怎么样？" });
         h.ring(w, "What", C.purple); h.ring(w, "How well", C.purple);
         N("", "三步：换疑问词 → 提大将军 can → 后面跟主语 + 动词原形。");
         h.tag("① 换疑问词 What ➔ ② 提大将军 can ➔ ③ 后面主语 + 动词原形", SX, ROW.wh + 22, C.purple);
         h.label("⑤ 感叹句", ROW.ex, C.orange);
         N("副词：", "说明动作「怎么样」的词，比如 well（好）。感叹副词要用 How。");
         const e = h.line("How well Leo can speak English!", ROW.ex, C.brown);
+        k.say("How well Leo can speak English!", { zh: "里奥英语说得多好啊！" });
         k.underline(e, "How well");
         N("感叹句：", "How well + 主语 Leo + 谓语 can speak，主语在前，不用倒过来！");
         h.tag("How well + 主语 Leo + 谓语 can speak！", SX, ROW.ex + 27, C.orange);
@@ -191,6 +201,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("① 肯定句", ROW.aff, C.green);
         N("肯定句：", "Mia watches TV every Saturday evening. 米娅每周六晚上看电视。");
         const a = h.line("Mia watches TV every Saturday evening.", ROW.aff);
+        k.say("Mia watches TV every Saturday evening.", { zh: "米娅每周六晚上看电视。", word: "watches" });
         h.tag("米娅每周六晚上看电视。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("实义动词：", "watch 是有真正动作的动词，它是「老百姓」，不能自己跑到主语前面。");
         const i = a.at("watches");
@@ -202,12 +213,14 @@ WB_LAB.aux_transformer = (() => {
         h.label("② 否定句", ROW.neg, C.red);
         N("否定句：", "照妖镜 doesn't 出场，吸走 -es：watches 立刻变回原形 watch。");
         const n = h.line("Mia does not (doesn't) watch TV every Saturday evening.", ROW.neg);
+        k.say("Mia doesn't watch TV every Saturday evening.", { zh: "米娅每周六晚上不看电视。", word: "watch" });
         h.ring(n, "does not", C.red);
         h.ring(n, "watch", C.green);
         h.tag("照妖镜 doesn't 吸走 -es，watches 打回原形 watch", SX, ROW.neg + 22, C.red);
         h.label("③ 一般疑问", ROW.yn, C.blue);
         N("一般疑问句：", "照妖镜 Does 站到句首，把 -es 吸走，后面用原形 watch。");
         const q = h.line("Does Mia watch TV every Saturday evening?", ROW.yn, C.blue);
+        k.say("Does Mia watch TV every Saturday evening?", { zh: "米娅每周六晚上看电视吗？" });
         h.jump(q, q.x1("watch") + 2, q.x0("Does") + q.cw * 2);
         h.tag("Does 吸走 -es", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
         N("", "回答也用 does：Yes, she does. / No, she doesn't.");
@@ -215,6 +228,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("④ 特殊疑问", ROW.wh, C.purple);
         N("特殊疑问句：", "When 问「什么时候」。这里问的是 every Saturday evening。");
         const w = h.line("When does Mia watch TV?", ROW.wh, C.purple);
+        k.say("When does Mia watch TV?", { zh: "米娅什么时候看电视？" });
         h.ring(w, "When", C.purple);
         h.erase("every Saturday evening", w.x + w.text.length * w.cw + 40, ROW.wh, "对时间提问 → 擦掉");
         N("黄金三步：", "换 When → 提 does → 主语后面 watches 打回原形 watch。");
@@ -222,6 +236,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("⑤ 感叹句", ROW.ex, C.orange);
         N("可数单数名词：", "能一个一个数、只有一个的东西，比如 an evening，前面要有 a / an。");
         const e = h.line("What a relaxing Saturday evening Mia has!", ROW.ex, C.brown);
+        k.say("What a relaxing Saturday evening Mia has!", { zh: "米娅的周六晚上多轻松啊！" });
         k.underline(e, "What a relaxing Saturday evening");
         h.ringAt(e, e.at(" a ") + 1, 1, C.red);
         N("感叹句：", "What a + 形容词 + 单数名词 + 主谓：What a relaxing evening Mia has!");
@@ -246,6 +261,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("① 肯定句", ROW.aff, C.green);
         N("肯定句：", "They went to Sanya by plane last winter. 他们去年冬天坐飞机去了三亚。");
         const a = h.line("They went to Sanya by plane last winter.", ROW.aff);
+        k.say("They went to Sanya by plane last winter.", { zh: "他们去年冬天坐飞机去了三亚。", word: "went" });
         h.tag("他们去年冬天坐飞机去了三亚。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
         N("过去式：", "表示已经发生的事，动词要变样。went 是 go 的过去式。");
         const g = h.ring(a, "went", C.red);
@@ -256,12 +272,14 @@ WB_LAB.aux_transformer = (() => {
         h.label("② 否定句", ROW.neg, C.red);
         N("否定句：", "照妖镜 didn't 出场，吸走过去时：went 瞬间变回 go。");
         const n = h.line("They did not (didn't) go to Sanya by plane last winter.", ROW.neg);
+        k.say("They didn't go to Sanya by plane last winter.", { zh: "他们去年冬天没有坐飞机去三亚。", word: "go" });
         h.ring(n, "did not", C.red);
         h.ring(n, "go", C.green);
         h.tag("照妖镜 didn't 吸走过去时，went 打回原形 go", SX, ROW.neg + 22, C.red);
         h.label("③ 一般疑问", ROW.yn, C.blue);
         N("一般疑问句：", "照妖镜 Did 站到句首，后面的 went 必须还原成 go。");
         const q = h.line("Did they go to Sanya by plane last winter?", ROW.yn, C.blue);
+        k.say("Did they go to Sanya by plane last winter?", { zh: "他们去年冬天坐飞机去三亚了吗？" });
         h.jump(q, q.x1("go") + 2, q.x0("Did") + q.cw * 1.5);
         h.tag("Did 站句首，went → go", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
         N("", "回答也用 did：Yes, they did. / No, they didn't.");
@@ -269,6 +287,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("④ 特殊疑问", ROW.wh, C.purple);
         N("交通方式：", "坐什么去，比如 by plane（坐飞机）。问交通方式用 How（怎样）。");
         const w = h.line("How did they go to Sanya last winter?", ROW.wh, C.purple);
+        k.say("How did they go to Sanya last winter?", { zh: "他们去年冬天怎么去的三亚？" });
         h.ring(w, "How", C.purple);
         h.erase("by plane", w.x + w.text.length * w.cw + 40, ROW.wh, "对交通方式提问");
         N("黄金三步：", "换 How → 提过去助动词 did → 主语后 went 还原为 go。");
@@ -276,6 +295,7 @@ WB_LAB.aux_transformer = (() => {
         h.label("⑤ 感叹句", ROW.ex, C.orange);
         N("感叹句：", "名词 trip 用 What a wonderful trip；副词 fast 用 How fast。");
         const e = h.line("What a wonderful trip they had last winter! / How fast the plane flew!", ROW.ex, C.brown);
+        k.say("What a wonderful trip they had last winter!", { zh: "他们去年冬天的旅行多棒啊！" });
         k.underline(e, "What a wonderful trip"); k.underline(e, "How fast");
         N("", "感叹句里本来就是过去的事，所以 had、flew 保持过去式，不用 did。");
         h.tag("名词 trip 用 What a wonderful trip；副词 fast 用 How fast！", SX, ROW.ex + 27, C.orange);

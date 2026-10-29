@@ -87,6 +87,7 @@
           tx(k, "at the foot of the mountain", px + 12, py + 128, { size: 16, color: C.ink, font: MONO });
           tx(k, "在山脚下", px + 12, py + 150, { size: 14, color: C.grey }); }
         // —— B：钟面 face + 指针 hand ——
+        k.say("My home is at the foot of the hill.", { zh: "我家在小山脚下。", word: "foot" });
         N("face（脸）：", "脸是朝外给人看的那一面，所以钟朝外的那一面就叫钟面 clock face。");
         panel(k, X1, Y0, W, H, C.orange, "#fffbeb");
         { const px = X1, py = Y0, ccx = px + 66, ccy = py + 56;
@@ -101,6 +102,7 @@
           tx(k, "face of a clock · hour hand", px + 12, py + 128, { size: 16, color: C.ink, font: MONO });
           tx(k, "钟面表盘 · 时针", px + 12, py + 150, { size: 14, color: C.grey }); }
         // —— C：河口 mouth ——
+        k.say("Look at the clock face. The hour hand points to three.", { zh: "看钟面，时针指着三。", word: "clock face" });
         N("mouth（嘴）：", "嘴是进出的口子，河流进大海的口子就叫河口 mouth of a river。");
         panel(k, X0, Y1, W, H, C.blue, "#eff6ff");
         { const px = X0, py = Y1;
@@ -172,6 +174,7 @@
           draw(k, `M${fx + 20},${fy - 2} q-6,10 0,13 q6,-3 0,-13 Z`, C.blue, .3, "#60a5fa", 1, 1.5);
           cardText(k, px, py, "BLUE", C.blue, "蔚蓝 → 忧郁", "feel blue / look blue", "变成蓝色", "心情低落 = feel sad"); }
         // —— GREEN ——
+        k.say("I feel blue today.", { zh: "我今天心情不好。", word: "feel blue" });
         N("a green hand：", "不是绿色的手！绿色像刚长出的嫩芽，嫩嫩的，意思是新手、菜鸟。");
         panel(k, XB, YA, W, H, C.green, "#ecfdf5");
         { const px = XB, py = YA;
@@ -197,6 +200,7 @@
           cardText(k, px, py, "BLACK", C.ink, "黑 ≠ 红", "black tea", "黑茶", "红茶（看干茶叶的颜色）", "字面：", "其实：");
           N("中式错译：", "照着中文硬翻，把红茶说成 red tea，就错啦！"); k.wait(2.4); }
         // —— WHITE & GOLDEN ——
+        k.say("I like black tea.", { zh: "我喜欢红茶。", word: "black tea" });
         N("a white lie：", "白色像干净的雪，没有坏心眼。white lie 是不伤人的善意的谎言。");
         panel(k, XB, YB, W, H, C.orange, "#fffbeb");
         { const px = XB, py = YB;
@@ -251,6 +255,7 @@
         tx(k, "谚语：The early bird catches the worm.", 400, 130, { size: 14, color: C.grey, dur: 1.4 });
         k.wait(1.3);
         // —— HORSE ——
+        k.say("The early bird catches the worm.", { zh: "早起的鸟儿有虫吃。" });
         N("as strong as a horse：", "马跑一整天也不累，所以「像马一样壮」就是力大无穷。");
         panel(k, XB, YA, W, H, C.brown, "#fff7ed");
         { const px = XB, py = YA, h = py + 40;
@@ -273,6 +278,7 @@
           cardText(k, px, py, "LAMB", C.green, "温顺的小羊", "as gentle as a lamb", "小羊很温和", "性格温柔、很乖", "习性：", "比喻：");
           N("还有：", "black sheep 黑羊，比喻害群之马。"); k.wait(2.2); }
         // —— CATS & DOGS ——
+        k.say("My dad is as strong as a horse.", { zh: "我爸爸壮得像匹马。", word: "as strong as a horse" });
         N("rain cats and dogs：", "是习语，不是天上掉猫和狗！意思是雨大得吓人，下倾盆大雨。");
         panel(k, XB, YB, W, H, C.blue, "#eff6ff");
         { const px = XB, py = YB;
@@ -282,6 +288,7 @@
           P(`M${px + 92},${py + 112} v18 q0,5 -5,5`, go(.2), .2, { color: C.ink, w: 2 });
           cardText(k, px, py, "CAT&DOG", C.blue, "习语", "rain cats and dogs", "天上下猫下狗", "下倾盆大雨");
           N("更多习语：", "a lucky dog 幸运儿，white elephant 贵又没用的累赘。"); k.wait(2.6); }
+        k.say("It's raining cats and dogs!", { zh: "外面下着倾盆大雨！", word: "raining cats and dogs" });
         N("", "连起来读一句：我妈妈每天早上都忙得像只小蜜蜂！");
         k.final("My mom is as busy as a bee every morning!", "busy", "我妈妈每天早上都忙得像只小蜜蜂！  as + 形容词原级 + as + a 动物");
         N("口诀：", "as 加原级再加 as，后面放个小动物：忙像蜂，壮像马，乖像羊！");

@@ -215,7 +215,7 @@ const WB = (function () {
         });
         P(roughRect(16, 448, Math.max(380, text.length * cw + 48), 48), go(1.0), 1.0, { color: C.green, w: 2 });
         T(zhLine, 40, 522, go(1.6), 1.6, { size: 17, color: C.grey });
-        if (!o.noSay) say(text, { zh: o.zh ?? String(zhLine || "").split(/\s{2,}/)[0] });
+        if (!o.noSay) say(o.say ?? text, { zh: o.zh ?? String(zhLine || "").split(/\s{2,}/)[0], word: o.word });
       }
     };
     return k;

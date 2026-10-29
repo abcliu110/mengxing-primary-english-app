@@ -93,7 +93,8 @@ WB_LAB.vowel_shift = [
       V.pairRow(k, 560, 430, ["full", "/fʊl/", [["u"]]], ["fill", "/fɪl/", [["i"]]], { ax: 140 });
       k.T("（blood → bleed 也一样）", 920, 362, k.go(.6), .6, { size: 15, color: C.grey, weight: 700, anchor: "end" });
       N("", "都是后元音 oo/u 被拉到前面，变成前元音 ee/i！");
-      k.final("foot→feet\u00a0\u00a0tooth→teeth\u00a0\u00a0goose→geese\u00a0\u00a0food→feed", [], "后元音 oo/u 往前拉，变成前元音 ee/i：变复数，或者变成动词。");
+      k.final("foot→feet\u00a0\u00a0tooth→teeth\u00a0\u00a0goose→geese\u00a0\u00a0food→feed", [], "后元音 oo/u 往前拉，变成前元音 ee/i：变复数，或者变成动词。", { say: "One foot, two feet. One tooth, two teeth.", zh: "一只脚，两只脚；一颗牙，两颗牙。" });
+      k.say("The geese like the food I feed them.", { zh: "鹅喜欢我喂它们的食物。", word: "feed" });
       N("口诀：", "舌头往前拉，oo 变 ee：一只变一群，名词变动词。");
     },
     terms: [
@@ -173,7 +174,8 @@ WB_LAB.vowel_shift = [
         k.T(r, 722, 326 + i * 50, k.go(.4), .4, { size: 13, color: C.purple, weight: 900 });
       });
       N("", "规律：形容词加 th 变名词，前面的元音跟着变短。");
-      k.final("long→length\u00a0\u00a0strong→strength\u00a0\u00a0deep→depth\u00a0\u00a0wide→width", [], "形容词 + th = 抽象名词；元音缩短：o / ee / i_e 变成短 e 或短 i。");
+      k.final("long→length\u00a0\u00a0strong→strength\u00a0\u00a0deep→depth\u00a0\u00a0wide→width", [], "形容词 + th = 抽象名词；元音缩短：o / ee / i_e 变成短 e 或短 i。", { say: "The river is long. What is the length of the river?", zh: "这条河很长。这条河有多长？", word: "length" });
+      k.say("The water is deep. The depth is ten metres.", { zh: "水很深，深度是十米。", word: "depth" });
       N("口诀：", "加上 th，元音缩一缩：long 变 length，deep 变 depth。");
     },
     terms: [
@@ -241,7 +243,8 @@ WB_LAB.vowel_shift = [
       V.pairRow(k, 500, 392, ["advice", "/ədˈvaɪs/", [["c", 0, C.blue]]], ["advise", "/ədˈvaɪz/", [["s", 0, C.purple]]], o);
       k.T("蓝色 = 清音（静）｜紫色 = 浊音（动）", 720, 432, k.go(.8), .8, { size: 16, color: C.grey, weight: 900, anchor: "middle" });
       N("", "规律：清辅音结尾当名词、形容词，浊辅音结尾当动词。");
-      k.final("safe→save\u00a0\u00a0breath→breathe\u00a0\u00a0use /s/→use /z/", [], "词尾清辅音 /f/ /θ/ /s/：名词、形容词；换成浊辅音 /v/ /ð/ /z/：动词。");
+      k.final("safe→save\u00a0\u00a0breath→breathe\u00a0\u00a0use /s/→use /z/", [], "词尾清辅音 /f/ /θ/ /s/：名词、形容词；换成浊辅音 /v/ /ð/ /z/：动词。", { say: "Keep your money safe. Save your money.", zh: "把钱放安全。把钱存起来。", word: "save" });
+      k.say("Take a deep breath. Breathe in, breathe out.", { zh: "深吸一口气。吸气，呼气。", word: "breathe" });
       N("口诀：", "清音静悄悄，名词形容词；浊音嗡嗡响，变成动词跑。");
     },
     terms: [

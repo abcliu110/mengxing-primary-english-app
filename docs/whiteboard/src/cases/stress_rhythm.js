@@ -108,7 +108,7 @@
           k.wait(1.2);
         });
         N("", "放进句子里听一听：前一个 present 是礼物，后一个 present 是送。");
-        k.final("Here is a ˈpresent for you! Let me preˈsent it to you.", [], "这是送你的礼物！让我把它送给你。  名词前重，动词后重！");
+        k.final("Here is a ˈpresent for you! Let me preˈsent it to you.", [], "这是送你的礼物！让我把它送给你。  名词前重，动词后重！", { say: "Here is a present for you! Let me present it to you." });
         N("口诀：", "名前动后：东西稳在头，动作冲到尾。");
         k.wait(1.5);
       },
@@ -188,7 +188,7 @@
         k.wait(1);
 
         N("", "放进句子里：vacation 的重音被 -tion 吸到 CA 上。");
-        k.final("I love summer va-CA-tion!", [], "我爱暑假！  -tion/-ic/-ian 吸前一个，-ese/-eer 吸自己，合成名词前重。");
+        k.final("I love summer va-CA-tion!", [], "我爱暑假！  -tion/-ic/-ian 吸前一个，-ese/-eer 吸自己，合成名词前重。", { say: "I love summer vacation!", word: "vacation" });
         N("口诀：", "看尾巴找重音：-tion、-ic 吸前头，-ese、-eer 吸自己。");
         k.wait(1.5);
       },
@@ -262,7 +262,7 @@
         k.wait(1);
 
         N("", "最后读一读：每个词都和后面的元音粘在一起！");
-        k.final("Look at it (/lʊ-kæ-tɪt/)! Pick it up (/pɪ-kɪ-tʌp/)!", [], "看它！把它捡起来！  实词重读拉长，虚词弱读成 /ə/，辅音元音粘一起。");
+        k.final("Look at it (/lʊ-kæ-tɪt/)! Pick it up (/pɪ-kɪ-tʌp/)!", [], "看它！把它捡起来！  实词重读拉长，虚词弱读成 /ə/，辅音元音粘一起。", { say: "Look at it! Pick it up!", word: "look at it" });
         N("口诀：", "重的拉长像打鼓，轻的变 /ə/ 一带过，辅音元音手拉手。");
         k.wait(1.5);
       },

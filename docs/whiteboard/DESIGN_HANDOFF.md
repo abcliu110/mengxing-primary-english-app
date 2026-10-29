@@ -58,3 +58,14 @@
 ## 7. 本阶段提交
 
 e881d52 → 87edb37 → 151965e → 5415921 → b7272c8 → 085651e → 8d6ddf9 → 1c623ca → 3cae24c → 22efac7 → （本次）
+
+
+## 英文例句朗读（2026-10-29 完成）
+
+- 规范：`docs/whiteboard/SOP.md` 第 7 节；`word_origins/DEPTH_AND_ANIMATION.md` 6.5 节。
+- 引擎：`k.say(en, { zh, word })`；`k.final(text, crown, zhLine, { say, zh, word, noSay })` 自动朗读。舞台下方加 🔊 朗读条（逐词高亮 + 中文字幕，点一下重听），画布变成 960×650。
+- App：`wb_app.js` 读到 say 时间点调用 speechSynthesis（语速 0.85），读的时候时间轴停住，最多多等 4 秒；拖动/重播/离开页面会停止朗读；控制条 🔊/🔇 开关（localStorage `wbVoice`）；设备没有声音时按时间估算高亮。
+- 覆盖：王炸 10 个页签 39 个案例 + 第一性原理 24 幕，每幕 ≥1 句，共约 150 句；只读正确英文。
+- 批量加句子工具：`src/addsay.py <case.js> <spec.json>`（anchor 前加 `>` 表示插在该行之后）。
+- 回归：appwb.py 10 个页签、appfp.py 0–5 全部通过，无报错、无 NaN/undefined。
+- 待用户真机听：语音选择（en-US）、停顿长度是否合适；bamboo_tree、stress_rhythm、adj_order 每幕目前只有 1 句，可以再补。

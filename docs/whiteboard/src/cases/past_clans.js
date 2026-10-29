@@ -101,11 +101,13 @@
         k.P(k.ellipse(r3.px + 22, 386, 30, 12), go(.45), .45, { color: C.orange, w: 3 });
         r3.done();
 
+        k.say("Yesterday I put my bag on the desk.", { zh: "昨天我把书包放在桌上。", word: "put" });
         N("", "这一派还有：cut、hit、let、cost，过去式都和原形一样。");
         W.others("cut→cut · hit/let→hit/let · cost→cost");
         N("", "结论：词尾是短促 /t/ /d/ 的这几个动词，过去式 = 原形。");
         W.fin("结论：put / cut / hurt / hit / let / cost / read，过去式 = 原形（AAA）",
           "口诀：t、d 结尾金钟罩，-ed 进不来，原样不变！read 只变读音 /red/。");
+        k.say("He cut the cake and hurt his finger.", { zh: "他切蛋糕时弄伤了手指。", word: "cut" });
         N("口诀：", "t、d 结尾金钟罩，-ed 进不来，原样不变！");
       },
       terms: [
@@ -170,12 +172,14 @@
         W.ring(r3.mb, 1, 2); W.ring(r3.mb, 6, 7); W.ring(r3.mp, 1, 2, C.green); W.ring(r3.mp, 5, 6, C.green);
         r3.done();
 
+        k.say("We sang and swam last summer.", { zh: "去年夏天我们唱歌、游泳。", word: "sang" });
         N("", "begin、ring 也是 i 变 a。run、come 变 ran、came，不是 i 变 a，单独记！");
         W.others("begin/ring→began/rang · run/come→ran/came");
         T("（不是 i 变 a）", 128 + 39 * 9.6 + 14, 428, go(.8), .8, { size: 15, color: C.red, weight: 900 });
         N("", "结论：i 换成 a，就是过去式。");
         W.fin("结论：sing→sang、swim→swam、drink→drank：中间的 i 换成 a = 过去式",
           "口诀：现在 i 扁嘴，过去 a 张嘴，换个元音就过去！");
+        k.say("She drank some milk and sat down.", { zh: "她喝了点牛奶，然后坐下了。", word: "drank" });
         N("口诀：", "现在 i 扁嘴，过去 a 张嘴，换个元音就过去！");
       },
       terms: [
@@ -232,11 +236,13 @@
         W.ring(r3.mb, 1, 3); W.ring(r3.mb, 3, 4, C.orange); W.ring(r3.mp, 2, 3, C.orange); W.ring(r3.mp, 3, 4, C.green);
         r3.done();
 
+        k.say("I slept well and felt happy.", { zh: "我睡得很好，感觉很开心。", word: "slept" });
         N("", "还有 keep、sweep；meet、feed 直接减掉一个 e，变成 met、fed。");
         W.others("keep→kept · sweep→swept · meet/feed→met/fed");
         N("", "结论：ee / ea 缩成一个 e，后面加 t。");
         W.fin("结论：sleep→slept、feel→felt、leave→left：长音 ee/ea 缩成 e，再加 t",
           "口诀：加 t 太挤要减肥，两个 e 变一个 e！");
+        k.say("We met at the park.", { zh: "我们在公园见面了。", word: "met" });
         N("口诀：", "加 t 太挤要减肥，两个 e 变一个 e！");
       },
       terms: [
@@ -291,11 +297,13 @@
         W.ring(r3.mb, 2, 3, C.orange); W.ring(r3.mp, 1, 6, C.orange);
         r3.done();
 
+        k.say("Mom bought me a book. Mr. Li taught us English.", { zh: "妈妈给我买了一本书。李老师教我们英语。", word: "bought" });
         N("", "还有 think→thought、fight→fought；catch 有 a，所以是 caught。");
         W.others("think→thought · fight→fought · catch→caught");
         N("", "结论：原形有 a 写 -aught，没有 a 写 -ought，都读 /ɔːt/。");
         W.fin("结论：有 a → -aught（taught、caught）；没 a → -ought（bought…）",
           "口诀：原形有 a 用 aught，其余全用 ought，gh 不出声！");
+        k.say("I thought he caught the ball.", { zh: "我以为他接住了球。", word: "caught" });
         N("口诀：", "原形有 a 用 aught，其余全用 ought，gh 不出声！");
       },
       terms: [

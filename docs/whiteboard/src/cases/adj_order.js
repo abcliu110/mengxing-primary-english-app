@@ -108,7 +108,7 @@ WB_LAB.adj_order = (function () {
     T("空车厢「—」读的时候直接跳过", 24, 420, go(.9), .9, { size: 16, color: C.grey });
     k.wait(.6);
     N("", cfg.finalSay);
-    k.final(cfg.en, [], cfg.finalZh);
+    k.final(cfg.en, [], cfg.finalZh, { word: cfg.en, say: cfg.sayEn, zh: cfg.sayZh });
     k.wait(.3);
     N("口诀：", "限观大形龄色国材 —— " + cfg.rhyme);
     k.wait(.4);
@@ -145,6 +145,7 @@ WB_LAB.adj_order = (function () {
           whySay: "OSASCOMP 就是车厢顶上字母连起来，从主观的心到客观的东西排好队。",
           finalSay: "空车厢跳过，把乘客连起来，就是地道的英语短语！",
           en: "a nice small round wooden table",
+          sayEn: "Mom bought a nice small round wooden table.", sayZh: "妈妈买了一张漂亮的小圆木桌。",
           finalZh: "一张漂亮的小圆木桌。  主观在外，本质贴名词！",
           rhyme: "美小圆旧黄，法国木书房！"
         });
@@ -197,6 +198,7 @@ WB_LAB.adj_order = (function () {
           whySay: "从心里的夸奖，到个头，再到毛色，一步步走近猫咪本身。",
           finalSay: "空车厢跳过，连起来读一遍！",
           en: "two cute little white cats",
+          sayEn: "I have two cute little white cats.", sayZh: "我有两只可爱的小白猫。",
           finalZh: "两只可爱的小白猫。  先夸可爱，再看大小，颜色贴名词！",
           rhyme: "美小圆旧黄，法国木书房！"
         });
@@ -237,6 +239,7 @@ WB_LAB.adj_order = (function () {
           whySay: "观点、新旧、颜色、国籍、材质，一节一节从主观走到客观。",
           finalSay: "5 个形容词一个不乱，连起来读！",
           en: "a beautiful new red Chinese silk dress",
+          sayEn: "She wears a beautiful new red Chinese silk dress.", sayZh: "她穿着一件漂亮的崭新红色中国丝绸连衣裙。",
           finalZh: "一件漂亮的崭新红色中国丝绸连衣裙。  观点→新旧→颜色→国籍→材质",
           rhyme: "美小圆旧黄，法国木书房！"
         });
@@ -277,6 +280,7 @@ WB_LAB.adj_order = (function () {
           whySay: "大小在年龄前；国籍在用途前。用途最贴名词。",
           finalSay: "空车厢跳过，连起来读一遍！",
           en: "that tall young British basketball coach",
+          sayEn: "That tall young British basketball coach is my uncle.", sayZh: "那个高个子年轻的英国篮球教练是我叔叔。",
           finalZh: "那个高个子年轻的英国篮球教练。  大小→年龄→国籍→用途",
           rhyme: "美小圆旧黄，法国木书房！"
         });

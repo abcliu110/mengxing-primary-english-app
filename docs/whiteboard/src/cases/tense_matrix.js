@@ -164,6 +164,7 @@ WB_LAB.tense_matrix = [
       h.ring(m2, "s", 0, C.orange);
       N("", "以 ch、sh、s、x、o 结尾的动词，加 -es：teaches、goes。");
       const m3 = h.ex("My mom", "teaches English and goes to work by car.", 344, "+es");
+      k.say("My mom teaches English and goes to work by car.", { zh: "我妈妈教英语，开车去上班。", word: "teaches" });
       h.ring(m3, "es", 0, C.orange); h.ring(m3, "es", 1, C.orange);
       N("辅音 + y：", "辅音就是 a e i o u 以外的字母。辅音 + y 结尾，变 y 为 i 加 -es。");
       const m4 = h.ex("The little bird", "flies high in the sky.", 374, "y → i + es");
@@ -173,7 +174,7 @@ WB_LAB.tense_matrix = [
       N("照妖镜：", "比喻 doesn't / Does：它们把 -s 勋章拿走了，后面的动词被打回原形。");
       h.trapFix("He doesn't likes", "likes", "He doesn't like", 434);
       N("", "结论：单三主语 He，动词戴上 -s 勋章。");
-      k.final("He plays football every afternoon.", "plays", "口诀：习惯真理用一般现在时；单三动词戴勋章，见 does 就脱掉！");
+      k.final("He plays football every afternoon.", "plays", "口诀：习惯真理用一般现在时；单三动词戴勋章，见 does 就脱掉！", { zh: "他每天下午踢足球。", word: "plays" });
       N("口诀：", "习惯真理用一般现在时；单三动词戴勋章，见 does / doesn't 就脱掉！");
     },
     terms: [
@@ -224,6 +225,7 @@ WB_LAB.tense_matrix = [
       k.wait(1.5);
       N("不发音的 e：", "dance、make 末尾的 e 不读，去掉 e 再加 -ing：dancing、making。");
       const m2 = h.ex("Listen! Mia", "is dancing and making a cake.", 314, "去 e + ing");
+      k.say("Look! Leo is running fast on the playground.", { zh: "看！里奥在操场上飞快地跑。", word: "is running" });
       h.uline(m2, "is"); h.ring(m2, "cing", 0, C.orange); h.ring(m2, "king", 0, C.orange);
       N("", "The children 是复数（好多个），所以用 are；swim 也要双写 m。");
       const m3 = h.ex("The children", "are swimming in the pool now.", 344, "are + 双写 m");
@@ -236,7 +238,7 @@ WB_LAB.tense_matrix = [
       N("心理状态词：", "like、know、want、have 是心里的感觉，不是看得见的动作，拍不成录像。");
       h.trapText("like(喜欢)、know(知道)、want(想要)、have(拥有) 这类心理状态词，通常不用进行时！", 434);
       N("", "结论：发动机 am + 正在读 reading，一个都不能少。");
-      k.final("I am reading an English storybook right now.", "am", "口诀：此刻正在做，am / is / are 加 V-ing，缺一不可！");
+      k.final("I am reading an English storybook right now.", "am", "口诀：此刻正在做，am / is / are 加 V-ing，缺一不可！", { zh: "我此刻正在读一本英语故事书。", word: "am reading" });
       N("口诀：", "此刻正在做，am / is / are 加 V-ing，缺一不可！");
     },
     terms: [
@@ -277,6 +279,7 @@ WB_LAB.tense_matrix = [
       k.wait(1.3);
       N("", "辅音 + y 结尾：变 y 为 i 再加 -ed，study → studied、cry → cried。");
       const m2 = h.ex("Mia", "studied hard and cried when she lost her pen.", 314, "y → i + ed");
+      k.say("I visited the museum and took many photos yesterday.", { zh: "昨天我参观了博物馆，拍了很多照片。", word: "visited" });
       h.ring(m2, "ied", 0, C.orange); h.ring(m2, "ied", 1, C.orange);
       N("", "stop 是重读闭音节：双写 p 再加 -ed，stopped；plan 也一样变 planned。");
       const m3 = h.ex("The bus", "stopped at the station five minutes ago.", 344, "双写 + ed");
@@ -289,7 +292,7 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "有 didn't 或 Did 时，「过去」已经被它们带走，后面的动词变回原形。");
       h.trapFix("Did you went there?", "went", "Did you go there?", 434);
       N("", "结论：stop 双写 p，加 -ed，变成过去式 stopped。");
-      k.final("The bus stopped at the station five minutes ago.", "stopped", "口诀：过去的事用过去式，不看主语人人一样；见 did 变回原形！");
+      k.final("The bus stopped at the station five minutes ago.", "stopped", "口诀：过去的事用过去式，不看主语人人一样；见 did 变回原形！", { zh: "公交车五分钟前停在了车站。", word: "stopped" });
       N("口诀：", "过去的事用过去式，不看主语人人一样；见 did / didn't 变回原形！");
     },
     terms: [
@@ -325,6 +328,7 @@ WB_LAB.tense_matrix = [
       h.uline(m1, "will");
       N("", "be going to 里的 be 要跟着主语变：Leo 是单三，用 is。");
       const m2 = h.ex("Leo", "is going to visit his grandparents this weekend.", 326, "be 随主语变");
+      k.say("Leo is going to visit his grandparents this weekend.", { zh: "里奥这个周末打算去看爷爷奶奶。", word: "is going to" });
       h.uline(m2, "is going to");
       N("", "They 是复数，用 are going to，后面接原形 have。");
       const m3 = h.ex("They", "are going to have a picnic next Sunday.", 354, "复数 are");
@@ -337,7 +341,7 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "别受中文「将要有」影响写 have！「某处有」永远用 be：There will be。");
       h.trapFix("There is going to have", "have", "There will be / There is going to be", 436);
       N("", "结论：There be 的将来时，就是 There will be。");
-      k.final("There will be (= is going to be) a football match tomorrow.", "will", "口诀：临时决定用 will，早有计划用 be going to，后面都跟原形！");
+      k.final("There will be (= is going to be) a football match tomorrow.", "will", "口诀：临时决定用 will，早有计划用 be going to，后面都跟原形！", { say: "There will be a football match tomorrow.", zh: "明天会有一场足球赛。", word: "will be" });
       N("口诀：", "临时决定用 will，早有计划用 be going to，后面都跟动词原形！");
     },
     terms: [
@@ -381,6 +385,7 @@ WB_LAB.tense_matrix = [
       h.uline(m2, "has"); h.ring(m2, "lived", 0, C.orange);
       N("have been to：", "去过某地，人已经回来了，留下一段人生经历。");
       const m3 = h.ex("Have you", "ever been to the Great Wall?", 344, "去过·已回来");
+      k.say("Have you ever been to the Great Wall?", { zh: "你去过长城吗？", word: "ever been" });
       h.ring(m3, "been to", 0, C.green);
       N("have gone to：", "去某地了，人还在上海或在路上，现在不在说话的地方。");
       const m4 = h.ex("Mr Wang", "has gone to Shanghai.", 374, "去了·还没回");
@@ -390,7 +395,7 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "出现明确的过去时间点，就只能用一般过去时，不能用现在完成时。");
       h.trapText("句子里有 yesterday, last week, two days ago 这类过去时间点，不能用 have/has done！", 434);
       N("", "结论：have + 过去分词 finished，作业写完的成果留到现在。");
-      k.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！");
+      k.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！", { say: "We have already finished the homework.", zh: "我们已经写完作业了。", word: "have finished" });
       N("口诀：", "过去做完，结果留到现在，就用 have / has + 过去分词！");
     },
     terms: [
