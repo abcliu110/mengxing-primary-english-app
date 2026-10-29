@@ -28,9 +28,11 @@ const WO_PROPS = function (k) {
   };
 
   // ---------- 5 步溯源幕模板：标题 + 徽章 + 进度条 ----------
-  const STEPS = ["① 地图", "② 场景", "③ 词族", "④ 彩蛋", "⑤ 中文", "🔮 预测"];
+  const STEPS0 = ["① 地图", "② 场景", "③ 词族", "④ 彩蛋", "⑤ 中文", "🔮 预测"];
+  let STEPS = STEPS0;   // o.steps 可换成别的进度条（如中英对照幕：① 中文 ② 照搬 ③ 英语 ④ 例子 ⑤ 口诀 🔮 预测）；不传 = 溯源幕原样
   let stepXs = [], stepWs = [], ring = 0, ringAt = -1;
   D.scene = (o) => {
+    if (o.steps) STEPS = o.steps;
     if (V2() && o.card !== false) k.titleCard({ title: o.title, sub: o.sub, badges: o.badges, dur: o.cardDur });   // 统一片头（V8）
     k.header(o.sub || "", o.title, false);
     if (o.badges && o.badges.length) k.badges(o.badges);

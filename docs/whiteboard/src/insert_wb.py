@@ -24,7 +24,8 @@ READY = ['bamboo_tree', 'vowel_shift', 'adj_order', 'past_clans', 'stress_rhythm
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
 WO_READY = ['wo_port', 'wo_europe', 'wo_bluetooth', 'wo_grimm', 'wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c', 'wo_time_num', 'wo_time_week']
 # 中英对照总枢：做完一幕就把 id 加进来（搬迁幕依赖第一性原理道具 fp_props）
-ZE_READY = ['ze_be', 'ze_modifier']
+ZE_READY = ['ze_be', 'ze_modifier', 'ze_same']
+ZE_DEPS = {'ze_same': 'wo_props'}   # 新做的对照幕用单词身世的 v2 镜头模板（WO_PROPS）；搬迁幕用 fp_props
 WO_KITS = {'wo_vowel_kit': ['wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c']}   # 几幕共用的小工具文件（作为依赖先执行）
 # ---------- 按需加载（决策 13）：每个模块写成不执行的 <script type="text/plain" id="wbmod-<id>">，
 # 第一次进入时由 wbLoadModule(id) 取出文字执行（见 wb_app.js）；道具文件是依赖（data-deps），先于模块执行。
@@ -38,7 +39,7 @@ if WO_READY:
     MODS += [(t, 'wo_props' + (' ' + kit_of[t] if t in kit_of else '')) for t in WO_READY]
 if ZE_READY:
     if not FP_READY: MODS += [('fp_props', '')]
-    MODS += [(t, 'fp_props') for t in ZE_READY]
+    MODS += [(t, ZE_DEPS.get(t, 'fp_props')) for t in ZE_READY]
 case_files = [os.path.join(HERE, 'cases', t + '.js') for t, _ in MODS]
 def mod_tag(mid, deps):
     src = rd(os.path.join(HERE, 'cases', mid + '.js'))
