@@ -343,48 +343,104 @@ WB_LAB.bamboo_tree = [
       ["车头压塌", "比喻：把很长的修饰语堆在句子前面，像车头上压了一堆货，核心名词迟迟出不来。"]
     ]
   },
-  // ───────── ④ 时空顺序颠倒病 ─────────
+  // ───────── ④ 时空顺序颠倒病（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/bamboo_tree_classic.js（R1 零丢失）。原左（竹节句 + 病句）右（树干句）两半拆成两个镜头；树整体左移 300；紫色括号 / 波浪线改 V3（时间绿 · 地点蓝 · 病句红），树干 / 王冠保留道具色。
   {
     build(k) {
-      const { C, N } = k;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一句的毛病：时间、地点都挤在动词前面，而且忘了用过去式。");
-      k.header("病句手术 ④  时空顺序颠倒病");
-      k.leftHead();
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "竹节句 vs 树干句", sub: "病句手术 ④  时空顺序颠倒病", badges: ["💡", "✂️"], steps: ["① 竹节句", "② 时空颠倒", "③ 立主干", "④ 从小到大", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 竹节句 + 时空颠倒 ─────
+      D.step(0); D.shot();
+      k.head("汉语：竹节句", 40, 108, C.ink);
       N("竹节句：", "中文习惯先说时间、地点，最后才说做什么。");
       const z = k.zh("我们昨天早上八点在学校操场上做早操。", 40, 155, 24);
-      k.bracket(z, 2, 7, "时间"); k.bracket(z, 8, 13, "地点"); k.circle(z, 14);
+      k.bracket(z, 2, 7, "时间", C.green); k.bracket(z, 8, 13, "地点", C.blue); k.circle(z, 14);
+      k.act(me, "point", S.at - .6, 1.2, { at: [z.cx(15), z.cy] });
       N("", "画成竹子：时间一节、地点一节、动作一节。");
       k.bamboo(["昨天早上八点", "在学校操场上", "做早操"], 212, 50, 449, 18);
       k.note("动作「做早操」排在最后", 40, 290);
+      D.step(1);
       N("中式英语（Chinglish）：", "照着中文的顺序硬翻，时间地点全堆在 do 前面。");
       const m1 = k.mono("We yesterday morning 8 o'clock on school", 40, 340, 18);
       const m2 = k.mono("playground do morning exercises.", 40, 388, 18);
-      k.squiggle(m1, "yesterday morning 8 o'clock on school", 0, C.purple);
+      k.squiggle(m1, "yesterday morning 8 o'clock on school", 0, C.red);
       k.redX(12, 320);
+      k.act(me, "surprised", S.at - .3, 1); k.expr(me, "oops", S.at - .3, 1.4);
+      sayAt("Chinglish puts the time first.", { zh: "中式英语把时间放在最前面。", word: "Chinglish" });
       N("过去式：", "表示已经发生的事，动词要变样：do 变成 did。昨天的事要用过去式。");
       k.strike(m2, "do"); k.above(m2, "do", 0, "did");
       N("", "英语要先说主干「谁做了什么」，时间和地点挂在后面。");
       k.note("英语：主干在前，时间地点挂后面！", 40, 422, { size: 17, color: C.red, weight: 900 });
-      k.rightHead();
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 镜头 2 · 树干句：主干在前，地点、时间挂后 ─────
+      D.step(2); D.shot();
+      k.head("英语：树干句", 40, 108, C.green);
       N("树干句：", "先长出主干 We did morning exercises，再挂地点和时间。");
-      k.tree({});
+      k.tree({ cx: 420, gx0: 260, gx1: 610 });
       N("主干：", "We did morning exercises（我们做了早操）。did 是过去式的谓语动词。");
-      k.sign("We did morning exercises", 715, 300, "did", { size: 18, crownTag: "过去式谓语王" });
+      k.sign("We did morning exercises", 415, 300, "did", { size: 18, crownTag: "过去式谓语王" });
+      D.step(3);
       N("地点挂件：", "说「在哪儿」的部分，挂在主干后面：on the school playground。");
-      k.chip("on the school playground", 486, 236, [692, 250], { size: 13, tag: "地点挂件" });
+      k.chip("on the school playground", 186, 236, [392, 250], { size: 13, tag: "地点挂件" });
+      const syEx = sayAt("On the school playground. Do morning exercises.", { zh: "在学校操场上。做早操。", word: "on school playground do exercises" });
+      k.act(me, "jump", syEx.t + syEx.dur * .45, Math.max(1, syEx.dur * .55), { words: ["exercises"] });
       N("时间挂件：", "时间按「从小到大」排：先说几点 at 8 o'clock，再说哪天早上。");
-      k.chip("at 8 o'clock", 556, 362, [692, 352], { color: C.green, tag: "小：几点" });
-      k.chip("yesterday morning", 756, 362, [744, 352], { color: C.green, tag: "大：哪天早上" });
+      k.chip("at 8 o'clock", 256, 362, [392, 352], { color: C.green, tag: "小：几点" });
+      k.chip("yesterday morning", 456, 362, [444, 352], { color: C.green, tag: "大：哪天早上" });
+      sayAt("We did. Yesterday morning, at eight o'clock.", { zh: "我们做了。昨天早上，八点。", word: "we did yesterday morning at o'clock the" });
+      k.act(me, "walk", S.at, 1, { to: 1010 });
+      k.wait(1);
       N("", "连起来：主干在前，地点其次，时间从小到大挂最后！");
       k.final("We did morning exercises on the school playground at 8 o'clock yesterday morning.", "did", "我们昨天早上八点在学校操场上做早操。  主干在前，时间从小到大！");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
-      k.say("We did. Yesterday morning, at eight o'clock.", { zh: "我们做了。昨天早上，八点。", word: "we did yesterday morning at o'clock the" });
-      k.say("On the school playground. Do morning exercises.", { zh: "在学校操场上。做早操。", word: "on school playground do exercises" });
-      k.say("Chinglish puts the time first.", { zh: "中式英语把时间放在最前面。", word: "Chinglish" });
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 口诀 ─────
+      D.step(4); D.shot();
+      k.act(me, "walk", S.at, 1.2, { to: 892 });
       N("口诀：", "先说谁做了什么，再挂地点，最后挂时间，时间从小到大。");
+      P(k.roughRect(40, 118, 760, 48), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：先说谁做了什么，再挂地点，最后挂时间，时间从小到大。", 60, 150, go(1.2), 1.2, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.4);
+
+      // ───── 🔮 预测 ─────
+      D.step(5);
+      N("预测：", "「我昨天下午三点在家看电视」：主干 I watched TV 之后，三个挂件怎么排？先想 3 秒！");
+      P(k.roughRect(40, 206, 760, 150), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 206, 760, 150), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 我昨天下午三点在家看电视。", 64, 246, go(.8), .8, { size: 22, color: C.ink, weight: 900 });
+      T("I watched TV + yesterday afternoon / at home / at 3 o'clock", 64, 284, go(1), 1, { size: 18, color: C.ink, weight: 900, font: D.MONO });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "先挂地点 at home，再挂时间：小的 at 3 o'clock 在前，大的 yesterday afternoon 在后。");
+      const tRev = go(.3);
+      T("I watched TV at home at 3 o'clock yesterday afternoon.", 64, 330, go(1), 1, { size: 19, color: C.green, weight: 900, font: D.MONO });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("I watched TV at home at three o'clock yesterday afternoon.", { zh: "我昨天下午三点在家看电视。", word: "I watched TV home afternoon" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "英语先说「谁做了什么」，再挂地点，\n最后挂时间；几个时间一起来，从小到大排", rhyme: "口诀：先说谁做了什么，再挂地点，最后挂时间，时间从小到大。", hlLines: 2, foot: "🌳 竹节句 vs 树干句 · 病句手术 ④" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "exercises", act: "讲解员在读到「Do morning exercises」时跳起来做操（jump）" },
+    ],
     r2skip: ["vs", "We yesterday morning", "o'clock on school", "playground do morning exercises."],   // 病句（时空顺序颠倒）不读
     terms: [
+      ["可信度徽章", "💡 竹子 / 大树、国王 / 挂件都是帮助记忆的比喻；✂️ 简化说法：「一句只有一个谓语动词」指没有 and 等连接词的简单句。"],
       ["过去式", "表示已经发生的事，动词要变样，比如 do → did、go → went。句子里有 yesterday（昨天）就要用过去式。"],
       ["地点挂件（地点状语）", "说明「在哪儿」的部分，比如 on the school playground（在学校操场上），英语里挂在主干后面。"],
       ["时间挂件（时间状语）", "说明「什么时候」的部分，比如 at 8 o'clock、yesterday morning，一般挂在句子最后。"],
