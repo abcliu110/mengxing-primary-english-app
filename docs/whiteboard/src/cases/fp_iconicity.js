@@ -1,72 +1,135 @@
 // ==================== 第一性原理 ② 字母象形与音义同源簇（fp_iconicity）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[1].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
+// v2 升级（2026-10-30 起，决策 24）：第 1 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_iconicity_classic.js。依赖 wo_props + fp_props。
 // 讲法提醒（HANDOFF §4）：字母象形、音义簇多是「帮助记忆的联想」，字幕用「可以想成 / 像」；tw- = two 是真词源。
 WB_LAB.fp_iconicity = [
-  // ───────── 2-1 M / S / B / C 像什么？─────────
+  // ───────── 2-1 M / S / B / C 像什么？（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_iconicity_classic.js（R1 零丢失）。原一排四个字母拆成两个镜头（M · S / B · C），给讲解员让位；配色收进 V3 四色。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S, WOOD = k.C.brown;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：把字母当成一幅画，帮你一次记住一串词。");
-      k.header("② 字母象形与音义同源簇", "字母像一幅画", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "字母像一幅画", sub: "② 字母象形与音义同源簇", badges: ["💡"], steps: ["① M 山", "② S 蛇", "③ B 包", "④ C 抓", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+      const xs = [190, 520];
+      const letter = (ch, x, color) => { const g = D.sub(); T(ch, x, 260, go(.6), .6, { size: 120, color, weight: 900, font: M, anchor: "middle" }); D.back(); return g; };
+      const words = (x, list, color) => list.forEach((w, i) => T(w, x, 326 + i * 32, go(.5), .5, { size: 19, color: i ? C.ink : color, weight: 900, font: M, anchor: "middle" }));
+
+      // ───── 镜头 1 · M 和 S ─────
+      D.step(0); D.shot();
       N("象形：", "照着东西的样子画出来的符号。英文字母最早也是从图画变来的。");
-      const xs = [130, 360, 590, 820];
-      const letter = (ch, x, color) => { const g = k.group(); T(ch, x, 250, go(.6), .6, { size: 120, color, weight: 900, font: M, anchor: "middle" }); k.endGroup(); return g; };
-      const words = (x, list, color) => list.forEach((w, i) => T(w, x, 316 + i * 32, go(.5), .5, { size: 19, color: i ? C.ink : color, weight: 900, font: M, anchor: "middle" }));
-      // M
+      k.wait(.3);
       N("", "M 可以想成两座山峰，也像合起来的上下嘴唇。");
-      const gM = letter("M", xs[0], C.purple);
+      const gM = letter("M", xs[0], C.blue);
       k.fade(gM, go(.5), .5, .18);
-      const mt = `M${xs[0] - 60},250 L${xs[0] - 30},170 L${xs[0]},220 L${xs[0] + 30},165 L${xs[0] + 60},250`;
+      const mt = `M${xs[0] - 60},260 L${xs[0] - 30},180 L${xs[0]},230 L${xs[0] + 30},175 L${xs[0] + 60},260`;
       P(mt, go(1), 1, { color: C.green, w: 4 });
-      P(`M${xs[0] - 40},215 l10,-5 l10,6 M${xs[0] + 20},210 l10,-6 l10,6`, go(.4), .4, { color: "#94a3b8", w: 2.5 });
-      words(xs[0], ["mountain 山", "mouth 嘴", "mother 妈妈"], C.purple);
+      P(`M${xs[0] - 40},225 l10,-5 l10,6 M${xs[0] + 20},220 l10,-6 l10,6`, go(.4), .4, { color: C.grey, w: 2.5 });
+      words(xs[0], ["mountain 山", "mouth 嘴", "mother 妈妈"], C.blue);
       k.wait(.3);
-      // S
-      k.say("Look at the big mountain!", { zh: "看那座大山！", word: "mountain" });
+      const syMt = sayAt("Look at the big mountain!", { zh: "看那座大山！", word: "mountain" });
+      k.act(me, "point", syMt.t, Math.max(1.2, syMt.dur), { at: [xs[0], 210], words: ["look"] });
+      const syMo = sayAt("Mouth, mother. Open your mouth, Mother!", { zh: "嘴，妈妈。妈妈，张开嘴！", word: "mouth mother" });
+      k.act(me, "surprised", syMo.t + syMo.dur * .5, 1.2, { words: ["open"] }); k.expr(me, "surprised", syMo.t + syMo.dur * .5, 1.4);
+
+      D.step(1);
       N("", "S 弯弯曲曲，像一条蛇，也像水波和笑起来的嘴。");
-      const gS = letter("S", xs[1], C.blue);
+      const gS = letter("S", xs[1], C.green);
       k.fade(gS, go(.5), .5, .18);
-      P(`M${xs[1] + 30},170 C${xs[1] - 40},150 ${xs[1] - 50},205 ${xs[1]},210 C${xs[1] + 50},215 ${xs[1] + 40},270 ${xs[1] - 34},250`, go(1), 1, { color: C.green, w: 6 });
-      P(k.ellipse(xs[1] + 30, 170, 6, 5), go(.2), .2, { color: C.red, w: 3 });
-      words(xs[1], ["snake 蛇", "swim 游泳", "smile 微笑"], C.blue);
+      const snake = D.sub();
+      P(`M${xs[1] + 30},180 C${xs[1] - 40},160 ${xs[1] - 50},215 ${xs[1]},220 C${xs[1] + 50},225 ${xs[1] + 40},280 ${xs[1] - 34},260`, go(1), 1, { color: C.green, w: 6 });
+      P(k.ellipse(xs[1] + 30, 180, 6, 5), go(.2), .2, { color: C.red, w: 3 });
+      D.back();
+      words(xs[1], ["snake 蛇", "swim 游泳", "smile 微笑"], C.green);
       k.wait(.3);
-      // B
-      k.say("A snake swims in the sea.", { zh: "一条蛇在海里游。", word: "snake" });
+      const sySn = sayAt("A snake swims in the sea.", { zh: "一条蛇在海里游。", word: "snake" });
+      k.buzz(snake, sySn.t, Math.max(1.2, sySn.dur), 3); k.move(snake, sySn.t, Math.max(1.2, sySn.dur), 40, 0);
+      k.actFx(["swims"], sySn.t, Math.max(1.2, sySn.dur), "蛇扭着身子往前游");
+      const sySm = sayAt("Swim and smile. I smile when I swim.", { zh: "游泳，微笑。我游泳的时候会笑。", word: "swim smile" });
+      k.expr(me, "happy", sySm.t, Math.max(1.4, sySm.dur));
+      k.act(me, "nod", sySm.t + .3, .8);
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · B 和 C ─────
+      D.step(2); D.shot();
       N("", "B 像两个鼓鼓的包，能装东西：包、盒子、床……");
-      const gB = letter("B", xs[2], C.orange);
+      const gB = letter("B", xs[0], C.blue);
       k.fade(gB, go(.5), .5, .18);
-      const bag = `M${xs[2] - 40},190 h80 l10,60 h-100 Z`;
-      P(bag, go(.8), .8, { color: C.brown, w: 3.5 }); F(bag, go(.2, 0), { color: "#fde68a", op: .6 });
-      P(`M${xs[2] - 20},190 C${xs[2] - 20},160 ${xs[2] + 20},160 ${xs[2] + 20},190`, go(.4), .4, { color: C.brown, w: 3.5 });
-      words(xs[2], ["bag 包", "box 盒子", "bed 床"], C.orange);
+      const bag = `M${xs[0] - 40},200 h80 l10,60 h-100 Z`;
+      P(bag, go(.8), .8, { color: WOOD, w: 3.5 }); F(bag, go(.2, 0), { color: C.hlYellow, op: .6 });
+      P(`M${xs[0] - 20},200 C${xs[0] - 20},170 ${xs[0] + 20},170 ${xs[0] + 20},200`, go(.4), .4, { color: WOOD, w: 3.5 });
+      words(xs[0], ["bag 包", "box 盒子", "bed 床"], C.blue);
       k.wait(.3);
-      // C
-      k.say("Put the book in the bag.", { zh: "把书放进书包里。", word: "bag" });
+      const bk = k.prop("book", 0, 0, { hidden: true });
+      const syBag = sayAt("Put the book in the bag.", { zh: "把书放进书包里。", word: "bag" });
+      k.act(me, "read", syBag.t - 1.2, 1.2, { prop: bk, release: false });
+      k.act(me, "put", syBag.t, Math.max(1.2, syBag.dur), { prop: bk, words: ["put"] });
+      sayAt("Box, bed. The box is on the bed.", { zh: "盒子，床。盒子在床上。", word: "box bed" });
+
+      D.step(3);
       N("", "C 像一只弯起来的手，去抓、去握：杯子、帽子、抓住。");
-      const gC = letter("C", xs[3], C.red);
+      const gC = letter("C", xs[1], C.red);
       k.fade(gC, go(.5), .5, .18);
-      const cup = `M${xs[3] - 30},180 L${xs[3] - 22},250 L${xs[3] + 22},250 L${xs[3] + 30},180`;
+      const cup = `M${xs[1] - 30},190 L${xs[1] - 22},260 L${xs[1] + 22},260 L${xs[1] + 30},190`;
       P(cup, go(.7), .7, { color: C.blue, w: 3.5 });
-      P(`M${xs[3] + 28},195 c22,0 22,34 -4,36`, go(.4), .4, { color: C.blue, w: 3.5 });
-      words(xs[3], ["cup 杯子", "cap 帽子", "catch 抓住"], C.red);
+      P(`M${xs[1] + 28},205 c22,0 22,34 -4,36`, go(.4), .4, { color: C.blue, w: 3.5 });
+      words(xs[1], ["cup 杯子", "cap 帽子", "catch 抓住"], C.red);
       k.wait(.5);
-      T("这是帮你记单词的联想：看字母的样子，想起一串词。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
-      k.say("Catch the cup, please!", { zh: "请接住杯子！", word: "catch" });
+      T("这是帮你记单词的联想：看字母的样子，想起一串词。", 40, 444, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      const cc = k.prop("card", 0, 0, { hidden: true, text: "cup" });
+      const syCt = sayAt("Catch the cup, please!", { zh: "请接住杯子！", word: "catch" });
+      k.act(me, "holdCard", syCt.t, Math.max(1.2, syCt.dur + .3), { prop: cc, words: ["catch"] });
+      sayAt("Cup, cap. My cap is red. This cup is blue.", { zh: "杯子，帽子。我的帽子是红色的。这个杯子是蓝色的。", word: "cup cap" });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "M 是山，S 是蛇，B 是包，C 来抓。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("Mouth, mother. Open your mouth, Mother!", { zh: "嘴，妈妈。妈妈，张开嘴！", word: "mouth mother" });
-      k.say("Swim and smile. I smile when I swim.", { zh: "游泳，微笑。我游泳的时候会笑。", word: "swim smile" });
-      k.say("Box, bed. The box is on the bed.", { zh: "盒子，床。盒子在床上。", word: "box bed" });
-      k.say("Cup, cap. My cap is red. This cup is blue.", { zh: "杯子，帽子。我的帽子是红色的。这个杯子是蓝色的。", word: "cup cap" });
-      D.fin("看字母的形状，联想画面，一个字母串起一串词", "口诀：M 是山，S 是蛇，B 是包，C 来抓。");
-      k.wait(2);
+      P(k.roughRect(40, 466, 760, 44), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：M 是山，S 是蛇，B 是包，C 来抓。", 60, 496, go(1), 1, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "B 像鼓鼓的包，能装东西。box 和 cup，哪个能用 B 的画面记？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 B 像包　→　box 还是 cup？", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "box 以 B 开头，盒子也能装东西；cup 是 C 家族。");
+      const tRev = go(.3);
+      T("box —— B 是包，能装东西；cup 归 C 来抓", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Put the ball in the box.", { zh: "把球放进盒子里。", word: "box ball" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "看字母的形状，联想画面，\n一个字母串起一串词", rhyme: "口诀：M 是山，S 是蛇，B 是包，C 来抓。", hlLines: 2, foot: "🧠 第一性原理 ② 字母象形与音义同源簇" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "look", act: "讲解员指着画出来的山（point），与「Look at the big mountain」同步" },
+      { word: "open", act: "讲解员吃惊张嘴（surprised），与「Open your mouth」同步" },
+      { word: "swims", act: "蛇在读到「A snake swims」时扭着身子往前游（场景动作 actFx + buzz + move）" },
+      { word: "put", act: "讲解员捧着书放下去（read → put），与「Put the book in the bag」同步" },
+      { word: "catch", act: "讲解员接住并举起 cup 词卡（holdCard），与「Catch the cup」同步" },
+    ],
     terms: [
       ["字母", "英语的 26 个书写符号 A–Z。它们最早是从古代的图画文字（腓尼基字母）演变来的。"],
       ["象形", "照着东西的样子画出来。这里用字母的形状帮忙联想记词，不是每个词真的从字母形状来。"],
       ["辅音丛", "两三个辅音字母连在一起读，如 fl-、str-、sp-。"],
       ["词源", "一个词最早从哪里来、怎么变成今天的样子。"],
       ["音义联想", "某些开头的声音常和某种感觉一起出现，如 fl- 常和「飞、飘」有关。是规律倾向，有例外。"],
+      ["可信度徽章", "💡 记忆联想：M=山、S=蛇、B=包、C=抓是帮助记忆的画面，mountain、snake、bag 这些词和字母形状没有历史关系。"],
     ],
   },
 ];
