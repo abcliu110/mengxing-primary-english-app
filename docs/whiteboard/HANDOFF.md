@@ -60,6 +60,7 @@
 - 05:25｜bamboo_tree ③ 长定语压塌车头病升 v2（竹节句 + 病句 / 树干句两镜头 + 🔮 The boy with glasses + 金句卡；R4 reading）｜`2e64fb1`｜`work/shots/bamboo_tree_3_对比总图.png`｜r2check 提示「Chinglish puts the long part first」的 puts 是抽象说法（不是人搬东西），不列 actionWords；挂件小字压在树干上与升级前相同，未改
 - 05:26｜bamboo_tree ④ 时空顺序颠倒病升 v2（竹节句 + 病句 / 树干句两镜头 + 🔮 at home at 3 o'clock yesterday afternoon + 金句卡；R4 exercises）｜`22e3498`｜`work/shots/bamboo_tree_4_对比总图.png`｜exercises 不在 r2check 动作动词表，但「做早操」是人能演的动作，按 R4 精神列入 actionWords（讲解员 jump）；括号颜色按挂件色统一（时间绿 · 地点蓝），与树干镜头一致
 - 05:29｜bamboo_tree ⑤ There be 双谓语病升 v2，**bamboo_tree 5 个案例全部 v2 完成**（竹节句 + 病句 / 树干句两镜头 + 🔮 three birds singing + 金句卡；R4 swimming / swim 小黄鸭游）｜`37f618f`｜`work/shots/bamboo_tree_5_对比总图.png`｜游泳无人物动作，按 fp_iconicity 先例用场景动作（鸭子 move + actFx）代替；鸭子黄色是道具色；预测题 sing→singing 不列 actionWords（唱歌不是走跑跳类肢体动作，动作库也无）
+- 05:34｜aux_transformer 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`cb8769e`｜—｜旧幕渲染不变（只加依赖）；照 bamboo_tree 先例，INVENTORY 放 docs/whiteboard/lab/
 
 ## 1. 现在做到哪
 
