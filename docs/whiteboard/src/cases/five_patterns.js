@@ -656,52 +656,118 @@
         ["doing（动名词）", "动词加 -ing 当名词用，表示享受、完成、练习正在做或常做的事，常跟在 enjoy / finish / practice / mind 后面。"]
       ]
     },
-    // ───────── ④ SVOO 双手递礼型 ─────────
+    // ───────── ④ SVOO 双手递礼型（v2 + 讲解员，2026-10-30）─────────
+    // 升级前原样保存在 cases/five_patterns_classic.js（R1 零丢失）。原一屏拆成 3 个镜头（骨架 + 人 / 物 + 两种语序 / to 指向 / for 心意 + 公式）+ 🔮 预测 + 金句卡；
+    // R4：场景里的妈妈读到 gave 时把礼物盒搬过去递给「我」；讲解员读到 Give it to me、show 时举起词卡；预测题读到 pass 时把书举起递出。
     {
       build(k) {
-        const { C, N } = k, h = tools(k);
+        k.v2();
+        const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = vtools(k, D);
+        const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+        const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
         N("", "句型 ④：有些动词天生就是「把东西递给人」，所以要带两个宾语。");
-        k.header("双手递礼型 · to 指向 vs for 心意", "句型 ④ SVOO", false);
+        k.act(me, "walk", .3, 1.6, { to: 892 });
+        k.act(me, "wave", 2.0, 1.8);
+        D.scene({ title: "句型 ④ SVOO", sub: "双手递礼型 · to 指向 vs for 心意", badges: ["💡", "✂️"], steps: ["① 骨架", "② 人和物", "③ to 指向", "④ for 心意", "⑤ 公式·口诀", "🔮 预测"], cardDur: 3.6 });
+
+        // ───── 镜头 1 · 骨架方块（人 + 物）+ 两种语序 ─────
+        D.step(0); D.shot();
         const B = h.layout([
-          { role: "S 主语", word: "Mum", color: C.blue },
-          { role: "V 双宾动词", word: "gave / bought", color: C.orange },
-          { role: "IO 人", word: "me", color: C.purple, note: "sb. 某人" },
-          { role: "DO 物", word: "a birthday gift", color: C.brown, note: "sth. 某物" }
+          { role: "S 主语", word: "Mum", color: C.ink },
+          { role: "V 双宾动词", word: "gave / bought", color: C.blue },
+          { role: "IO 人", word: "me", color: C.red, note: "sb. 某人" },
+          { role: "DO 物", word: "a birthday gift", color: C.green, note: "sth. 某物" }
         ]);
         N("双宾动词：", "give、send、buy、make……都是把某物交给某人。");
         h.block(B[0]); h.word(B[0]); h.block(B[1], B[0]); h.word(B[1]);
+        k.act(me, "point", S.at - .6, 1.2, { at: [B[1].cx, h.BY + 20] });
+        D.step(1);
         N("间接宾语 IO：", "收到东西的「人」，比如 me。sb. 是 somebody（某人）的缩写。");
         h.block(B[2], B[1]); h.word(B[2]);
         N("直接宾语 DO：", "递出去的「物」：a birthday gift。sth. 是 something（某物）。");
         h.block(B[3], B[2]); h.word(B[3]);
         N("双宾语：", "一个动词带两个宾语：人在前，物在后。");
-        k.wait(.5);
+        // 场景：妈妈把礼物盒递给「我」（R4 gave）
+        const gS = D.sub();
+        P(k.wl(330, 446, 780, 446, .4), go(.3), .3, { color: C.ink, w: 2 });
+        const mum = k.actor("traveler", { x: 400, y: 446, s: .75, f: 1, g: gS });
+        const kid = k.actor("porter", { x: 680, y: 446, s: .62, f: -1, g: gS });
+        const gift = k.prop("box", 440, 446, { g: gS, s: .8 });
+        D.back();
+        const syG = sayAt("Mum gave me a birthday gift.", { zh: "妈妈送了我一份生日礼物。", word: "Mum me a birthday gift a birthday gift" });
+        k.act(mum, "carry", syG.t, Math.max(2.4, syG.dur), { prop: gift, to: 610, put: true, words: ["gave"] });
+        k.act(kid, "cheer", syG.t + Math.max(2.4, syG.dur) - .2, 1.2);
+        k.say("Somebody, something. Somebody gave me something.", { zh: "某人，某物。有人给了我一样东西。", word: "somebody something" });
         N("", "也可以把物放前面、人放后面，但人前面要加 to 或 for。");
-        h.say("人在前：V + sb. + sth.     或     物在前：V + sth. + to / for + sb.", 40, 210, { color: C.ink, size: 17, weight: 900 });
-        const m1 = h.line("Leo gave me a nice pen. = Leo gave a nice pen TO me.", 262);
+        h.note("人在前：V + sb. + sth.     或     物在前：V + sth. + to / for + sb.", 40, 262, { color: C.ink, size: 17, weight: 900 });
+        k.act(me, "point", S.at, 1.2, { at: [360, 256] });
+        D.hold(1.5);
+        D.wipe();
+
+        // ───── 镜头 2 · to 指向 ─────
+        D.step(2); D.shot();
+        const m1 = h.line("Leo gave me a nice pen. = Leo gave a nice pen TO me.", 170);
         k.say("Leo gave me a nice pen. Leo gave a nice pen to me.", { zh: "里奥给了我一支好看的笔。", word: "gave" });
-        h.tags(m1, [["me", "IO", C.purple], ["a nice pen", "DO", C.brown], ["a nice pen", "DO", C.brown, 1], ["TO me", "to + 人", C.red]]);
+        h.tags(m1, [["me", "IO", C.red], ["a nice pen", "DO", C.green], ["a nice pen", "DO", C.green, 1], ["TO me", "to + 人", C.red]]);
         N("to 指向：", "把现成的东西单向递过去，像一支箭头，就用 to。");
         k.arrow(m1.x1("me", 1) + 18, m1.y - 7, m1.x1("me", 1) + 58, m1.y - 7, C.red);
-        h.say("to 派：give / show / send / pass / lend / teach / tell", 40, 322, { color: C.blue, size: 16, weight: 900, font: MONO, dur: 1.4 });
+        const pen = k.prop("card", 0, 0, { text: "🖊️", hidden: true });
+        const syP = sayAt("Leo gave me a nice pen. Give it to me.", { zh: "里奥给了我一支好看的笔。把它给我。", word: "Leo nice pen give to" });
+        k.act(me, "holdCard", syP.t + syP.dur * .55, Math.max(1.2, syP.dur * .45 + .3), { prop: pen, words: ["give"] });
+        h.note("to 派：give / show / send / pass / lend / teach / tell", 40, 250, { color: C.blue, size: 16, weight: 900, font: D.MONO, dur: 1.4 });
+        const card2 = k.prop("card", 0, 0, { text: "🎁", hidden: true });
+        const syS = sayAt("Give, show, send, pass, lend, teach, tell. Please tell me a story.", { zh: "给、展示、寄、递、借给、教、讲。请给我讲个故事。", word: "show send pass lend teach tell" });
+        k.act(me, "holdCard", syS.t + syS.wd, Math.max(1.4, syS.dur * .45), { prop: card2, words: ["show"] });
+        k.wait(.4);
+        D.wipe();
+
+        // ───── 镜头 3 · for 心意 + 公式 ─────
+        D.step(3); D.shot();
         N("for 心意：", "花心思替别人买、做、准备，像送出一颗爱心，就用 for。");
-        const m2 = h.line("Dad bought me a new bike. = Dad bought a new bike FOR me.", 372);
+        const m2 = h.line("Dad bought me a new bike. = Dad bought a new bike FOR me.", 170);
         k.say("Dad bought me a new bike. Dad bought a new bike for me.", { zh: "爸爸给我买了一辆新自行车。", word: "bought" });
-        h.tags(m2, [["me", "IO", C.purple], ["a new bike", "DO", C.brown], ["a new bike", "DO", C.brown, 1], ["FOR me", "for + 人", C.red]]);
+        h.tags(m2, [["me", "IO", C.red], ["a new bike", "DO", C.green], ["a new bike", "DO", C.green, 1], ["FOR me", "for + 人", C.red]]);
         h.heart(m2.x1("me", 1) + 26, m2.y - 7);
-        h.say("for 派：buy / make / cook / draw / choose / find", 40, 428, { color: C.red, size: 16, weight: 900, font: MONO, dur: 1.3 });
-        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
-        k.say("Mum gave me a birthday gift.", { zh: "妈妈送了我一份生日礼物。", word: "Mum me a birthday gift a birthday gift" });
-        k.say("Leo gave me a nice pen. Give it to me.", { zh: "里奥给了我一支好看的笔。把它给我。", word: "Leo nice pen give to" });
-        k.say("Give, show, send, pass, lend, teach, tell. Please tell me a story.", { zh: "给、展示、寄、递、借给、教、讲。请给我讲个故事。", word: "show send pass lend teach tell" });
+        k.act(me, "point", S.at - .5, 1.2, { at: [m2.x1("me", 1) + 26, m2.y - 7] });
+        h.note("for 派：buy / make / cook / draw / choose / find", 40, 250, { color: C.red, size: 16, weight: 900, font: D.MONO, dur: 1.3 });
         k.say("Dad bought me a new bike. He made a cake for me.", { zh: "爸爸给我买了一辆新自行车。他给我做了蛋糕。", word: "Dad new bike for" });
         k.say("Buy, make, cook, draw, choose, find. Mum cooks dinner for us.", { zh: "买、做、煮、画、挑选、找到。妈妈给我们做晚饭。", word: "buy make cook draw choose find" });
-        k.say("Somebody, something. Somebody gave me something.", { zh: "某人，某物。有人给了我一样东西。", word: "somebody something" });
+        D.step(4);
         h.final("S + V + 人 + 物    或    S + V + 物 + to / for + 人", "妈妈送了我一份生日礼物。  递过去用 to，花心思用 for！");
         N("口诀：", "现成东西递过去用 to，花心思替人准备用 for。");
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 🔮 预测 ─────
+        D.step(5); D.shot();
+        N("预测：", "「请把书递给我」：书是现成的，递过去用 to 还是 for？先想 3 秒！");
+        h.quiz("🔮 请把书递给我。", "→  Please pass the book ___ me.  ( to / for )");
+        k.act(me, "think", S.at, 3.1);
+        D.hold(3);
+        N("揭晓：", "现成的书递过去，用 to：Please pass the book to me.");
+        const tRev = go(.3);
+        h.reveal("Please pass the book to me.");
+        k.sfx("ding", tRev + .9);
+        const bk = k.prop("book", 0, 0, { hidden: true });
+        const syQ = sayAt("Please pass the book to me.", { zh: "请把书递给我。", word: "please pass the book to me" });
+        k.act(me, "holdCard", syQ.t, Math.max(1.4, syQ.dur + .3), { prop: bk, words: ["pass"] });
+        k.act(me, "cheer", syQ.t + Math.max(1.4, syQ.dur + .3) + .1, 1.2);
+        D.hold(1.4);
+
+        k.quoteCard({ insight: "双宾动词把东西交给人：先人后物；\n物放前面时，人前面加 to 或 for", rhyme: "口诀：现成东西递过去用 to，\n花心思替人准备用 for。", hlLines: 2, foot: "🦴 五大基本句型 · 句型 ④ SVOO" });
+        k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+        D.hold(2);
+        D.finish(.45);
       },
+      actionWords: [
+        { word: "gave", act: "读到「Mum gave me a birthday gift」时场景里的妈妈把礼物盒搬过去放到「我」面前（carry + put），「我」欢呼" },
+        { word: "give", act: "读到「Give it to me」时讲解员把 🖊️ 词卡举起递出（holdCard）" },
+        { word: "show", act: "读到「Give, show, send, pass…」时讲解员举起 🎁 词卡给大家看（holdCard）" },
+        { word: "pass", act: "预测题揭晓读到「Please pass the book to me」时讲解员把书举起递出（holdCard）" },
+      ],
       r2skip: ["SVOO", "IO", "DO", "sb", "sth", "vs"],   // 成分标签和 sb./sth. 缩写、对比符号 vs，不读（全称 somebody / something 已读）
       terms: [
+        ["可信度徽章", "💡 双手递礼、to 指向、for 心意都是帮助记忆的比喻；✂️ 简化说法：to 派 / for 派是常见动词的大致分组，遇到新动词时以词典为准。"],
         ["双宾语", "一个动词后面跟两个宾语：先人后物，比如 gave me a pen（给我一支笔）。"],
         ["间接宾语 IO", "收到东西的人，比如 gave me a pen 里的 me。IO 是 Indirect Object 的缩写。"],
         ["直接宾语 DO", "被递出去的东西，比如 gave me a pen 里的 a pen。DO 是 Direct Object 的缩写。"],
