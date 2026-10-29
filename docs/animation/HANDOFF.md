@@ -115,6 +115,7 @@
 
 - 2026-10-29 `fix(super-lab)`：`drawHDCharacterActor` 兼容 `headBadge`/`badgeColor` 和第三个参数 `t`。24 处带 headBadge 的调用原来头顶徽章不显示，现在按动词/向量颜色显示；呼吸和眨眼恢复。
 - 2026-10-29 新建本交接文档。
+- 2026-10-29 `feat(vv)`：LOOK 行 6 格动画完成（look_off 格按 look away 做，场景里用自绘 AWAY 标签 `awayTag`）。新增 10 张姿势 `vv_look_watch/away/cover/upsky/dict/down/peek/magnify/startle/window`；`vv_look_cover` 原图右侧有光斑，已抹掉 x≥360 的像素。视线统一用 `eyeLine` 虚线 + 小圆圈表示。
 - 2026-10-29 `feat(vv)`：TURN 行 6 格动画完成。新增 9 张姿势 `vv_turn_switch/tap/remote/dance/shh/no/give/yawn/wow`；turn up 第二幕用「露面」义，turn in 第二幕用「上床睡觉」义；turn out 第一幕复用 `vv_put_umbrella`、`vv_put_sing`。
 - 工具：`/workspace/work/vv/tools/insert_row.py`（把一行区块和素材插进主文件，可重复执行）、`frames.py`（无头 Chrome 按时间点截帧）、`grid.py`（拼预览图）。
 - 2026-10-29 `feat(vv)`：PUT 行 6 格动画完成。新增 9 张姿势：`vv_put_hat`、`hatdone`、`sing`、`push`、`umbrella`、`raise`、`place`、`blow`、`hose`；新增道具 `snowWindow/stage/calCard/hwCard/rain/tent/blackboard/pencil/toyBox/ball/block/teddy/jar/timeToken/piano/cake/fire/waterJet`。put down 第二幕复用 TAKE 行的 `vv_down_write`（BOY 画框）。
