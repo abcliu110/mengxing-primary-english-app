@@ -42,6 +42,7 @@
 - 02:33｜fp_iconicity 升级准备：classic 快照 + FP_DEPS 加 wo_props｜`538872d`｜—｜旧幕渲染不变（只加依赖）
 - 02:42｜fp_iconicity 第 1 幕升 v2（M·S / B·C 两镜头 + 🔮 box + 金句卡；R4 look / open / swims / put / catch）｜`b9eab42`｜`work/shots/fp_iconicity_1_对比总图.png`｜徽章只用 💡（HANDOFF first_principles §4：字母象形是记忆联想）；swim 动作库没有，用蛇的场景动作代替
 - 02:50｜fp_iconicity 第 2 幕升 v2（fl·gl / sl + ⚠️ floor 两镜头 + 🔮 slip + 金句卡；R4 flies / fly / go）｜`12293bd`｜`work/shots/fp_iconicity_2_对比总图.png`｜加 ⚠️ 徽章：音义联觉有统计倾向但例外多（first_principles/HANDOFF §4）；sleeping 动作库无「睡」，只作提示
+- 03:00｜fp_iconicity 第 3 幕升 v2（str- / sp- 两镜头 + 🔮 string + 金句卡；R4 walk / come / look）｜`fefb0e4`｜`work/shots/fp_iconicity_3_对比总图.png`｜sport ⚠️ 出处：etymonline.com/word/sport（sport 是 disport 的缩短，来自古法语 desporter「消遣」）
 
 ## 1. 现在做到哪
 
