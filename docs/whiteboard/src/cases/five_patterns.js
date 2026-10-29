@@ -524,54 +524,131 @@
         ["介词短语", "介词 + 名词组成的短语，比如 in the east、in the blue sky。"]
       ]
     },
-    // ───────── ③ SVO 一箭穿心型 ─────────
+    // ───────── ③ SVO 一箭穿心型（v2 + 讲解员，2026-10-30）─────────
+    // 升级前原样保存在 cases/five_patterns_classic.js（R1 零丢失）。原一屏拆成 3 个镜头（骨架 + 一箭穿心 / 植树金句 + 画蛇添足 / 宾语穿制服 + 公式）+ 🔮 预测 + 金句卡；
+    // R4：箭从谓语飞进靶心；讲解员读到 reading 时捧书读；场景里的小旅客读到 planted 时把小树苗搬到坑边种下；读到 I decide to go 时讲解员走一段；预测题读到 read 时捧书读。
     {
       build(k) {
-        const { C, N } = k, h = tools(k);
+        k.v2();
+        const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = vtools(k, D);
+        const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+        const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
         N("", "句型 ③：最常见的句型！动作像射出去的箭，一定要射中一个目标。");
-        k.header("一箭穿心型 · 动作击中靶心", "句型 ③ SVO", false);
+        k.act(me, "walk", .3, 1.6, { to: 892 });
+        k.act(me, "wave", 2.0, 1.8);
+        D.scene({ title: "句型 ③ SVO", sub: "一箭穿心型 · 动作击中靶心", badges: ["💡", "✂️"], steps: ["① 骨架", "② 射箭", "③ 金句", "④ 画蛇添足", "⑤ 穿制服·公式", "🔮 预测"], cardDur: 3.6 });
+
+        // ───── 镜头 1 · 骨架方块 + 一箭穿心 ─────
+        D.step(0); D.shot();
         const B = h.layout([
-          { role: "S 主语", word: "Leo", color: C.blue, note: "射箭的人" },
-          { role: "V 及物谓语", word: "loves / enjoys", color: C.orange, note: "弓箭" },
-          { role: "O 宾语靶心", word: "reading English books", color: C.purple, note: "被射中的靶心", sep: "arrow" }
+          { role: "S 主语", word: "Leo", color: C.ink, note: "射箭的人" },
+          { role: "V 及物谓语", word: "loves / enjoys", color: C.blue, note: "弓箭" },
+          { role: "O 宾语靶心", word: "reading English books", color: C.red, note: "被射中的靶心", sep: "arrow" }
         ]);
         N("主语 S：", "Leo，射箭的人。");
         h.block(B[0]); h.word(B[0]);
         N("及物动词 Vt：", "动作要落到对象身上，后面必须接宾语。英语里约 80% 的动词都是它。");
         h.block(B[1], B[0]); h.word(B[1]);
+        k.act(me, "point", S.at - .6, 1.2, { at: [B[1].cx, h.BY + 20] });
         N("宾语靶心 O：", "箭射中的目标，也就是动作的对象：reading English books。");
         h.block(B[2], B[1]); h.word(B[2]);
-        const bx = B[2].x + B[2].w;
-        if (bx + 50 < 940) h.target(bx + 36, 123);
+        const bx = B[2].x + B[2].w, ty = h.BY + h.BH / 2;
+        if (bx + 50 < 800) h.target(bx + 36, ty);
+        D.step(1);
         N("", "箭从 loves 出发，直接射中宾语 reading English books。");
-        k.wait(.6);
+        // 一支箭从谓语方块飞进靶心
+        const ax0 = B[1].x + B[1].w - 4, ay = h.BY + h.BH + 34;
+        const gA = D.sub();
+        P(`M${ax0},${ay} L${ax0 + 34},${ay} M${ax0 + 24},${ay - 7} L${ax0 + 34},${ay} L${ax0 + 24},${ay + 7} M${ax0},${ay} l-8,-6 M${ax0},${ay} l-8,6`, go(.05, 0), .05, { color: C.red, w: 3 });
+        D.back(); k.hide(gA);
+        const tA = S.at;
+        k.fade(gA, tA, .2, 1);
+        k.path(gA, tA + .1, 1.1, [[(bx + 36 - ax0 - 34) / 2, ty - ay - 30], [bx + 36 - ax0 - 34, ty - ay]]);
+        k.sfx("pop", tA + 1.2);
+        D.hold(1.4);
+        const bk1 = k.prop("book", 0, 0, { hidden: true });
+        const syR = sayAt("Leo loves reading English books. He enjoys stories.", { zh: "里奥喜欢读英文书。他喜欢故事。", word: "Leo loves enjoys reading English books stories" });
+        k.act(me, "read", syR.t + syR.wd, Math.max(1.6, syR.dur - syR.wd), { prop: bk1, words: ["reading"] });
+        k.wait(.4);
+        D.wipe();
+
+        // ───── 镜头 2 · 植树金句 + 画蛇添足 ─────
+        D.step(2); D.shot();
         N("", "看金句：planted（种了）直接射中宾语 trees，中间什么都不加。");
-        const m1 = h.line("We planted twenty young trees on Tree Planting Day.", 238);
-        k.say("We planted twenty young trees on Tree Planting Day.", { zh: "植树节我们种了二十棵小树。" });
-        h.tags(m1, [["We", "S", C.blue], ["planted", "V", C.orange], ["twenty young trees", "O", C.purple], ["on Tree Planting Day", "时间挂件", C.grey]]);
-        N("画蛇添足：", "多此一举。及物动词后面乱加介词，就像给蛇画脚，反而画错了。");
-        h.say("直接接宾语，不加介词：", 40, 300, { color: C.red, size: 16, weight: 900 });
-        h.say("discuss the plan · marry her · enter the room", 240, 300, { color: C.red, size: 16, weight: 900, font: MONO, dur: 1.3 });
-        N("宾语穿制服：", "两个动词连用时，第二个要换成 to do 或 doing，才能当宾语。");
-        const m2 = h.line("I want to buy a dictionary, and I enjoy reading stories.", 350);
-        k.say("I want to buy a dictionary, and I enjoy reading stories.", { zh: "我想买一本词典，我也喜欢读故事。" });
-        h.tags(m2, [["I", "S", C.blue], ["want", "V", C.orange], ["to buy a dictionary", "O", C.purple], ["I", "S", C.blue, 1], ["enjoy", "V", C.orange], ["reading stories", "O", C.purple]]);
-        N("to do：", "盼着将来去做的事用 to do，比如 want to do、hope to do。");
-        h.say("将来想做 → want / plan / hope / decide + to do", 40, 404, { color: C.blue, size: 16, weight: 900 });
-        N("doing：", "享受、完成、练习常做的事用 doing，比如 enjoy doing。");
-        h.say("享受常做 → enjoy / finish / practice / mind + doing", 40, 428, { color: C.green, size: 16, weight: 900 });
-        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
-        k.say("Leo loves reading English books. He enjoys stories.", { zh: "里奥喜欢读英文书。他喜欢故事。", word: "Leo loves enjoys reading English books stories" });
+        const m1 = h.line("We planted twenty young trees on Tree Planting Day.", 170);
+        // 场景：小旅客把小树苗搬到坑边种下（R4 planted）
+        const gS = D.sub();
+        P(k.wl(330, 446, 760, 446, .4), go(.3), .3, { color: C.ink, w: 2 });
+        const mound = `M600,446 Q624,430 648,446 Z`;
+        P(mound, go(.3), .3, { color: C.ink, w: 2 }); F(mound, go(.05, 0), { color: C.tintInk, op: 1 });
+        const tv = k.actor("traveler", { x: 380, y: 446, s: .75, f: 1, g: gS });
+        const sap = k.prop("flower", 410, 446, { g: gS, s: .9 });
+        D.back();
+        const syPl = sayAt("We planted twenty young trees on Tree Planting Day.", { zh: "植树节我们种了二十棵小树。" });
+        k.act(tv, "carry", syPl.t, Math.max(2.4, syPl.dur), { prop: sap, to: 580, put: true, words: ["planted"] });
+        h.tags(m1, [["We", "S", C.ink], ["planted", "V", C.blue], ["twenty young trees", "O", C.red], ["on Tree Planting Day", "时间挂件", C.grey]]);
         k.say("We planted twenty young trees on Tree Planting Day.", { zh: "植树节我们种了二十棵小树。", word: "We planted twenty young trees on Tree Planting Day" });
+        D.step(3);
+        N("画蛇添足：", "多此一举。及物动词后面乱加介词，就像给蛇画脚，反而画错了。");
+        h.note("直接接宾语，不加介词：", 40, 252, { color: C.red, size: 16, weight: 900 });
+        h.note("discuss the plan · marry her · enter the room", 240, 252, { color: C.red, size: 16, weight: 900, font: D.MONO, dur: 1.3 });
+        k.act(me, "surprised", S.at - .4, 1);
         k.say("Discuss the plan. Marry her. Enter the room.", { zh: "讨论计划。娶她。进入房间。", word: "discuss the plan marry her enter room" });
+        k.wait(.4);
+        D.wipe();
+
+        // ───── 镜头 3 · 宾语穿制服 + 公式 ─────
+        D.step(4); D.shot();
+        N("宾语穿制服：", "两个动词连用时，第二个要换成 to do 或 doing，才能当宾语。");
+        const m2 = h.line("I want to buy a dictionary, and I enjoy reading stories.", 170);
+        k.say("I want to buy a dictionary, and I enjoy reading stories.", { zh: "我想买一本词典，我也喜欢读故事。" });
+        h.tags(m2, [["I", "S", C.ink], ["want", "V", C.blue], ["to buy a dictionary", "O", C.red], ["I", "S", C.ink, 1], ["enjoy", "V", C.blue], ["reading stories", "O", C.red]]);
         k.say("I want to buy a dictionary, and I enjoy reading stories.", { zh: "我想买一本词典，我也喜欢读故事。", word: "I want to buy a dictionary and enjoy" });
-        k.say("Want to do, hope to do, plan to do. I decide to go.", { zh: "想做、希望做、打算做。我决定去。", word: "hope decide do want to do hope to do" });
+        N("to do：", "盼着将来去做的事用 to do，比如 want to do、hope to do。");
+        h.note("将来想做 → want / plan / hope / decide + to do", 40, 252, { color: C.blue, size: 16, weight: 900 });
+        const syGo = sayAt("Want to do, hope to do, plan to do. I decide to go.", { zh: "想做、希望做、打算做。我决定去。", word: "hope decide do want to do hope to do" });
+        const tg = syGo.t + syGo.dur * .7, hg = Math.max(.8, syGo.dur * .18);
+        k.act(me, "walk", tg, hg, { to: 840, words: ["go"] });
+        k.act(me, "walk", tg + hg, hg, { to: 892 });
+        k.act(me, "turn", tg + 2 * hg, .3, { to: -1 });
+        N("doing：", "享受、完成、练习常做的事用 doing，比如 enjoy doing。");
+        h.note("享受常做 → enjoy / finish / practice / mind + doing", 40, 284, { color: C.green, size: 16, weight: 900 });
         k.say("Enjoy doing. Finish doing, practice doing. Do you mind waiting?", { zh: "喜欢做。做完、练习做。你介意等一下吗？", word: "finish practice mind doing" });
         h.final("S（主语射箭人）+ Vt（及物动词）+ O（宾语靶心）", "我们在植树节种了 20 棵小树苗。  动作直接射中宾语！");
         N("口诀：", "及物动词是支箭，直接射中宾语，不加介词。");
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 🔮 预测 ─────
+        D.step(5); D.shot();
+        N("预测：", "「我想读这个故事」：want 后面的动词要穿哪件制服？to read 还是 reading？先想 3 秒！");
+        h.quiz("🔮 我想读这个故事。", "→  I want ___ this story.  ( to read / reading )");
+        k.act(me, "think", S.at, 3.1);
+        D.hold(3);
+        N("揭晓：", "want 盼着将来去做，穿 to do 制服：I want to read this story.");
+        const tRev = go(.3);
+        h.reveal("I want to read this story.");
+        k.sfx("ding", tRev + .9);
+        const bk2 = k.prop("book", 0, 0, { hidden: true });
+        const syQ = sayAt("I want to read this story.", { zh: "我想读这个故事。", word: "want to read this story" });
+        k.act(me, "read", syQ.t, Math.max(1.6, syQ.dur), { prop: bk2, words: ["read"] });
+        k.act(me, "cheer", syQ.t + Math.max(1.6, syQ.dur) + .1, 1.2);
+        D.hold(1.4);
+
+        k.quoteCard({ insight: "及物动词像一支箭，\n后面直接射中宾语，中间不加介词", rhyme: "口诀：及物动词是支箭，\n直接射中宾语，不加介词。", hlLines: 2, foot: "🦴 五大基本句型 · 句型 ③ SVO" });
+        k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+        D.hold(2);
+        D.finish(.45);
       },
+      actionWords: [
+        { word: "reading", act: "读到「Leo loves reading English books」时讲解员捧书读（read）" },
+        { word: "planted", act: "读到「We planted twenty young trees」时场景里的小旅客把小树苗搬到土坑边放下种好（carry + put）" },
+        { word: "go", act: "读到「I decide to go」时讲解员往前走一段再走回（walk）" },
+        { word: "read", act: "预测题揭晓读到「I want to read this story」时讲解员捧书读（read）" },
+      ],
       r2skip: ["SVO", "Vt"],   // 成分标签，不读
       terms: [
+        ["可信度徽章", "💡 一箭穿心、靶心、画蛇添足、宾语穿制服都是帮助记忆的比喻；✂️ 简化说法：to do 管「将来想做」、doing 管「享受常做」是帮小学生记搭配的大致规律，具体哪个动词跟哪种还要一个个记。"],
         ["宾语靶心", "比喻：及物动词像射出去的箭，宾语就是被射中的靶心，比如 planted trees 里的 trees。"],
         ["画蛇添足", "多此一举。及物动词后面直接接宾语，乱加介词反而错：discuss the plan、enter the room 都不加介词。"],
         ["宾语穿制服", "比喻：两个动词连用时，第二个动词要变成 to do 或 doing 才能当宾语，比如 want to buy、enjoy reading。"],
