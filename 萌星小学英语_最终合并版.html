@@ -17773,7 +17773,7 @@ WB_LAB.adj_order = (function () {
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
 // 版面：左上 3×3 时×体矩阵 · 右上时间轴（过去/现在/将来）+ 镜头图 · 中间公式和 4 个例句 · 信号词 · 陷阱 · 底部结论框。
 // v2 升级（2026-10-30，决策 24）：逐个案例升引擎 v2 + 讲解员（每案例：时间轴 + 格子 / 公式 + 前两句 / 后两句 / 信号词 + 陷阱 + 结论 四个镜头 → 🔮 预测 → 金句卡），版面工具 TM_V2；升级前整份文件原样保存在 cases/tense_matrix_classic.js。依赖 wo_props。
-// 进度：①–④ 已升 v2；⑤ 仍是旧版（TM_KIT），全部升完后删 TM_KIT。
+// 进度：①–⑤ 已全部升 v2；旧版面工具 TM_KIT 已无人使用，下一个提交删除（只留在 classic 里）。
 const TM_KIT = function (k) {
   const { C, P, T, F, go, wl, ellipse, rectD, roughRect, estW } = k;
   const MONO = '"Courier New",Courier,monospace';
@@ -18780,61 +18780,146 @@ WB_LAB.tense_matrix = [
       ["There be 句型", "表示「某处有某物」：There is / There are。将来时是 There will be 或 There is / are going to be，不能写 There will have。"]
     ]
   },
-  // ───────── ⑤ 现在完成时 ─────────
+  // ───────── ⑤ 现在完成时（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/tense_matrix_classic.js（R1 零丢失）。原一屏拆成 4 个镜头（时间轴 + 格子 + 过去连通现在的桥 + 奖杯 / 公式 + 丢钥匙对比 + finished · lived 两句 / been to 与 gone to 两句 + 两个小人 / 信号词 + 过去时间点陷阱 + 结论）+ 🔮 预测 + 金句卡；
+  // R4：读到 Have you ever been to the Great Wall 时左边的小旅客走到长城再走回来（去过 · 已回来）；读到 Mr Wang has gone to Shanghai 时右边的王老师走向「上海」站牌、走出画面不见了（去了 · 还没回）；
+  // 读到 They have already finished the homework 时讲解员举起「✔」卡。
   {
     build(k) {
-      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      k.v2();
+      const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = TM_V2(k, D), A = h.A;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "「我把钥匙弄丢了」，为什么英语有时说 lost，有时说 have lost？");
-      k.header("现在 × 完成体", "⑤ 现在完成时", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "⑤ 现在完成时", sub: "现在 × 完成体", badges: ["💡"], steps: ["① 时间轴", "② 时×体格子", "③ 公式", "④ 例句", "⑤ 信号词·陷阱", "🔮 预测"], cardDur: 3.6 });
+
+      // ───── 镜头 1 · 时间轴 + 格子 + 过去连通现在的桥 + 奖杯 ─────
+      D.step(0); D.shot();
       h.axis();
+      k.say("Past, now, future. Have, has, done.", { zh: "过去、现在、将来。have、has、过去分词。", word: "Past Now Future has done" });
+      D.step(1);
       N("现在完成时：", "在矩阵里，它是「现在」这一列和「完成」这一行交叉的格子。");
-      h.matrix(1, 2, "现在完成时");
+      const cell = h.matrix(1, 2, "现在完成时");
+      k.act(me, "point", S.at - .8, 1.2, { at: cell });
       N("完成体：", "像一个「成果留存」镜头：动作在过去做完了，但成果一直留着。");
       k.wait(1.0);
-      h.dot(A.past, C.brown, 7);
-      k.T("动作做完", A.past - 14, 150, k.go(.6), .6, { size: 14, color: C.brown, weight: 900, anchor: "end" });
+      h.dot(A.past, C.ink, 7);
+      k.T("动作做完", A.past - 14, A.y - 18, k.go(.6), .6, { size: 14, color: C.ink, weight: 900, anchor: "end" });
       N("过去连通现在的桥：", "从过去搭一座桥到现在：动作在过去，结果留到现在。");
-      k.P(`M${A.past + 12},${A.y - 10} Q${(A.past + A.now) / 2},${A.y - 110} ${A.now - 12},${A.y - 14} M${A.now - 24},${A.y - 22} L${A.now - 12},${A.y - 14} L${A.now - 14},${A.y - 28}`, k.go(1.0), 1.0, { color: C.purple, w: 3 });
-      h.trophy(A.now + 46, 116);
-      k.T("结果留在现在", A.now + 72, 112, k.go(.7), .7, { size: 14, color: C.orange, weight: 900 });
+      k.P(`M${A.past + 12},${A.y - 10} Q${(A.past + A.now) / 2},${A.y - 110} ${A.now - 12},${A.y - 14} M${A.now - 24},${A.y - 22} L${A.now - 12},${A.y - 14} L${A.now - 14},${A.y - 28}`, k.go(1.0), 1.0, { color: C.blue, w: 3 });
+      h.trophy(A.now + 46, A.y - 52);
+      k.T("结果留在现在", A.now + 72, A.y - 56, k.go(.7), .7, { size: 14, color: C.green, weight: 900 });
+      k.act(me, "point", S.at - .6, 1.2, { at: [A.now + 46, A.y - 52] });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 公式 + 丢钥匙对比 + finished / lived ─────
+      D.step(2); D.shot();
       N("have / has：", "本意是「现在手里拥有」；has 给单三主语用。");
-      h.formula("have / has（现在拥有） + V-ed / 过去分词（已经做完的动作状态）", 250);
+      h.formula("have / has（现在拥有） + V-ed / 过去分词（已经做完的动作状态）", 150);
       N("过去分词：", "动词的另一种变身，表示「已经做完」，比如 finish → finished、go → gone。");
       k.wait(1.8);
       N("", "I lost my key 只说丢了；I have lost my key 是丢了，现在还进不去门！");
-      k.wait(2.2);
+      k.expr(me, "oops", S.at, 2.5);
+      k.say("I lost my key. I have lost my key. Finish, go.", { zh: "我丢了钥匙。我把钥匙弄丢了（现在还没找到）。完成、去。", word: "lost my key I lost my key I have lost my key finish go" });
+      D.step(3);
       N("", "作业已经写完了，结果留在现在：现在可以出去玩啦！");
-      const m1 = h.ex("I / We / They", "have already finished the homework.", 284, "成果：能玩了");
-      h.uline(m1, "have"); h.ring(m1, "finished", 0, C.orange);
+      const m1 = h.ex("I / We / They", "have already finished the homework.", 214, "成果：能玩了");
+      h.uline(m1, "have"); h.ring(m1, "finished", 0, C.red);
+      const ok = k.prop("card", 0, 0, { text: "✔", hidden: true });
+      const syH = sayAt("They have already finished the homework.", { zh: "他们已经写完作业了。", word: "I We They already the homework They have already finished the homework" });
+      k.act(me, "holdCard", syH.t + syH.wd, Math.max(1.4, syH.dur - syH.wd + .3), { prop: ok });
       N("for + 时间段：", "表示持续了多久：从 5 年前一直住到现在。单三主语用 has。");
-      const m2 = h.ex("He / She / Mia", "has lived in Beijing for five years.", 314, "一直到现在");
-      h.uline(m2, "has"); h.ring(m2, "lived", 0, C.orange);
+      const m2 = h.ex("He / She / Mia", "has lived in Beijing for five years.", 254, "一直到现在");
+      h.uline(m2, "has"); h.ring(m2, "lived", 0, C.red);
+      k.say("Mia has lived in Beijing for five years.", { zh: "米娅在北京住了五年了。", word: "He She Mia lived in Beijing for five years has lived in Beijing for five years" });
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 3 · been to（去过 · 已回来）/ gone to（去了 · 还没回）─────
+      D.shot();
       N("have been to：", "去过某地，人已经回来了，留下一段人生经历。");
-      const m3 = h.ex("Have you", "ever been to the Great Wall?", 344, "去过·已回来");
-      k.say("Have you ever been to the Great Wall?", { zh: "你去过长城吗？", word: "ever been" });
+      const m3 = h.ex("Have you", "ever been to the Great Wall?", 150, "去过·已回来");
+      // 场景：中间是「这儿」；左边长城，右边「上海」站牌
+      h.ground(60, 790, 430);
+      const wall = "M70,430 L70,388 L82,388 L82,378 L96,378 L96,388 L110,388 L110,378 L124,378 L124,388 L138,388 L138,378 L152,378 L152,388 L166,388 L166,378 L180,378 L180,388 L190,388 L190,430 Z";
+      P(wall, go(.6), .6, { color: C.ink, w: 2.5 }); F(wall, go(.1, 0), { color: C.tintInk, op: 1 });
+      T("长城", 130, 452, go(.3), .3, { size: 14, color: C.grey, weight: 900, anchor: "middle" });
+      h.stop(740, 430, "上海");
+      T("这儿", 420, 452, go(.3), .3, { size: 14, color: C.grey, weight: 900, anchor: "middle" });
+      const gA = D.sub();
+      const you = k.actor("traveler", { x: 380, y: 430, s: .7, f: -1, g: gA });
+      D.back();
+      const gB = D.sub();
+      const wang = k.actor("porter", { x: 470, y: 430, s: .7, f: 1, g: gB });
+      D.back();
+      const syE = sayAt("Have you ever been to the Great Wall?", { zh: "你去过长城吗？", word: "ever been" });
+      const te = syE.t + syE.wd * .5, de = Math.max(2.6, syE.dur - syE.wd * .5);
+      k.act(you, "walk", te, de * .45, { to: 220, words: ["been"] });
+      k.act(you, "turn", te + de * .45, .3, { to: 1 });
+      k.act(you, "walk", te + de * .5, de * .45, { to: 380, words: ["been"] });
+      k.act(you, "turn", te + de * .95, .3, { to: -1 });
+      k.actFx(["been"], te, de, "小旅客走到长城又走回来（去过 · 人已回来）");
       h.ring(m3, "been to", 0, C.green);
       N("have gone to：", "去某地了，人还在上海或在路上，现在不在说话的地方。");
-      const m4 = h.ex("Mr Wang", "has gone to Shanghai.", 374, "去了·还没回");
+      const m4 = h.ex("Mr Wang", "has gone to Shanghai.", 190, "去了·还没回");
       h.ring(m4, "gone to", 0, C.red);
-      N("信号词：", "already、yet、just、ever、never、since、for，常和现在完成时一起出现。");
-      h.signals("already (已经) · yet (还/尚) · just (刚刚) · ever (曾经) · never (从不) · since (自从) · for + 时间段 (持续了…)", 406);
-      N("陷阱：", "出现明确的过去时间点，就只能用一般过去时，不能用现在完成时。");
-      h.trapText("句子里有 yesterday, last week, two days ago 这类过去时间点，不能用 have/has done！", 434);
-      N("", "结论：have + 过去分词 finished，作业写完的成果留到现在。");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
-      k.say("Past, now, future. Have, has, done.", { zh: "过去、现在、将来。have、has、过去分词。", word: "Past Now Future has done" });
-      k.say("They have already finished the homework.", { zh: "他们已经写完作业了。", word: "I We They already the homework They have already finished the homework" });
-      k.say("Mia has lived in Beijing for five years.", { zh: "米娅在北京住了五年了。", word: "He She Mia lived in Beijing for five years has lived in Beijing for five years" });
-      k.say("Have you been to the Great Wall? Mr Wang has gone to Shanghai.", { zh: "你去过长城吗？王老师去上海了。", word: "you to Great Wall Mr Wang gone Shanghai has gone to Shanghai" });
+      const syG = sayAt("Have you been to the Great Wall? Mr Wang has gone to Shanghai.", { zh: "你去过长城吗？王老师去上海了。", word: "you to Great Wall Mr Wang gone Shanghai has gone to Shanghai" });
+      const tg = syG.t + syG.wd + (syG.dur - syG.wd) * .45, dg = Math.max(2.2, (syG.dur - syG.wd) * .55);
+      k.act(wang, "walk", tg, dg, { to: 830, words: ["gone"] });
+      k.fade(gB, tg + dg * .75, dg * .3, 0);
+      k.actFx(["gone"], tg, dg, "王老师走向「上海」站牌，走出画面不见了（去了 · 人还没回来）");
       k.say("Have been to, have gone to. He has gone. She has done it.", { zh: "去过（回来了），去了（还没回来）。", word: "have been to have gone to He She" });
+      k.act(me, "point", S.at - 2, 1.2, { at: [420, 400] });
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 4 · 信号词 + 过去时间点陷阱 + 结论 ─────
+      D.step(4); D.shot();
+      N("信号词：", "already、yet、just、ever、never、since、for，常和现在完成时一起出现。");
+      const yS = h.signals("already (已经) · yet (还/尚) · just (刚刚) · ever (曾经) · never (从不) · since (自从) · for + 时间段 (持续了…)", 150);
       k.say("Already, yet, just, never, since. I have just done it.", { zh: "已经、还、刚刚、从未、自从。我刚做完。", word: "already yet just never since" });
+      N("陷阱：", "出现明确的过去时间点，就只能用一般过去时，不能用现在完成时。");
+      h.trapText("句子里有 yesterday, last week, two days ago 这类过去时间点，不能用 have/has done！", yS + 60);
+      k.act(me, "surprised", S.at - .4, 1);
       k.say("Yesterday, last week, two days ago.", { zh: "昨天、上周、两天前。", word: "yesterday last week two days ago" });
-      k.say("I lost my key. I have lost my key. Finish, go.", { zh: "我丢了钥匙。我把钥匙弄丢了（现在还没找到）。完成、去。", word: "lost my key I lost my key I have lost my key finish go" });
-      k.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！", { say: "We have already finished the homework.", zh: "我们已经写完作业了。", word: "have finished" });
+      N("", "结论：have + 过去分词 finished，作业写完的成果留到现在。");
+      h.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！", { say: "We have already finished the homework.", zh: "我们已经写完作业了。", word: "have finished" });
+      k.act(me, "point", S.at - 1.4, 1.2, { at: [200, 470] });
       N("口诀：", "过去做完，结果留到现在，就用 have / has + 过去分词！");
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "「我已经写完作业了」：have 后面用 finish 还是 finished？先想 3 秒！");
+      h.quiz("🔮 我已经写完作业了。", "→  I have ___ my homework.  ( finish / finished )");
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "have 后面跟过去分词 finished：I have finished my homework.");
+      const tRev = go(.3);
+      h.reveal("I have finished my homework.");
+      k.sfx("ding", tRev + .9);
+      const ok2 = k.prop("card", 0, 0, { text: "✔", hidden: true });
+      const syQ = sayAt("I have finished my homework.", { zh: "我已经写完作业了。", word: "I have finish finished my homework" });
+      k.act(me, "holdCard", syQ.t + syQ.wd, Math.max(1.4, syQ.dur - syQ.wd + .3), { prop: ok2 });
+      k.act(me, "cheer", syQ.t + syQ.dur + .4, 1.2);
+      D.hold(1.4);
+
+      k.quoteCard({ insight: "现在完成时是一座桥：\n动作在过去做完，结果一直留到现在", rhyme: "口诀：过去做完，结果留到现在 →\nhave / has + 过去分词！", hlLines: 2, foot: "⏳ 时×体矩阵 · ⑤ 现在完成时" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "been", act: "读到「Have you ever been to the Great Wall?」时左边的小旅客走到长城再转身走回来（walk + turn，去过 · 人已回来）" },
+      { word: "gone", act: "读到「Mr Wang has gone to Shanghai」时右边的王老师走向「上海」站牌、走出画面消失（walk + 淡出，去了 · 人还没回来）" },
+    ],
     r2skip: ["V-ed"],   // 公式标签
     terms: [
+      ["可信度徽章", "💡 桥、奖杯、「成果留存」镜头都是帮助记忆的比喻。"],
       ["现在完成时", "动作发生在过去，但结果或影响留到现在，结构是 have / has + 过去分词，比如 I have already finished my homework。"],
       ["小升初", "小学升初中。现在完成时是初中要学的内容，这里提前学一点。"],
       ["have / has", "本意是「现在拥有」。在完成时里当助动词：I / We / They 用 have，单三主语用 has。"],
