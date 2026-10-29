@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""r2check.py [范围…] [--strict] [--all-items] [--json 路径] [--html 主文件]
+"""r2check.py [范围…] [--strict] [--all-items] [--summary] [--json 路径] [--html 主文件]
 R2 朗读覆盖检查 + R4 动作覆盖检查（规则见 SOP §5、§7、§8）。
 
 范围：all（默认）| lab | fp | wo | 具体 id（如 wo_port、bamboo_tree）。
@@ -8,13 +8,14 @@ R2 朗读覆盖检查 + R4 动作覆盖检查（规则见 SOP §5、§7、§8）
   · 白板上的英文句子（≥3 个英文词）：必须被朗读
   · R4：案例 actionWords 分镜动作词清单 ↔ k.act 登记，且动作和含该词的朗读时间重叠
 默认只列出缺的项；--all-items 列出每幕全部英文词清单。
+--summary：最后按页签 / 幕 id 汇总（案例数、词、缺、句子、缺朗读、R4），按缺口从大到小排（旧幕推广清单用）。
 --strict：所选范围里有任何缺项就返回 1（验收用）。
 """
 import json, os, sys
 from playwright.sync_api import sync_playwright
 HERE = os.path.dirname(os.path.abspath(__file__))
 args = [a for a in sys.argv[1:]]
-strict = '--strict' in args; all_items = '--all-items' in args
+strict = '--strict' in args; all_items = '--all-items' in args; by_scene = '--summary' in args
 jpath = args[args.index('--json') + 1] if '--json' in args else None
 main = args[args.index('--html') + 1] if '--html' in args else os.path.abspath(os.path.join(HERE, '..', '..', '..', '萌星小学英语_最终合并版.html'))
 skip = {jpath, main}
@@ -65,6 +66,20 @@ for r in rep:
     if r['r4']['hints'] and (all_items or r['hasActionList']):
         print("    提示（例句里的动作动词，未在分镜动作词清单）：" + ", ".join(h['word'] for h in r['r4']['hints']))
 print(f"\n合计：{len(rep)} 幕；英文词/词块 {tot_w} 个，缺 {tot_miss}；白板句子 {tot_s} 句，缺朗读 {tot_smiss}；R4 动作词 {tot_a} 个，缺 {tot_amiss}")
+if by_scene:
+    agg = {}
+    for r in rep:
+        a = agg.setdefault(r['id'], {'cases': 0, 'w': 0, 'wm': 0, 's': 0, 'sm': 0, 'says': 0, 'a': 0, 'am': 0, 'err': 0})
+        a['cases'] += 1
+        if 'error' in r: a['err'] += 1; continue
+        a['w'] += len(r['words']); a['wm'] += sum(1 for w in r['words'] if not (w['read'] and w['sentence']))
+        a['s'] += len(r['sents']); a['sm'] += sum(1 for x in r['sents'] if not x['read'])
+        a['says'] += r['says']; a['a'] += len(r['r4']['declared'])
+        a['am'] += sum(1 for x in r['r4']['declared'] if not (x['registered'] and x['sync']))
+    print('\n按页签 / 幕 id 汇总（缺口 = 缺词 + 缺朗读句子，从大到小）：')
+    print(f"{'id':<20}{'案例':>4}{'词':>6}{'缺词':>6}{'句子':>6}{'缺句':>6}{'朗读':>6}{'R4缺':>6}")
+    for i, a in sorted(agg.items(), key=lambda kv: -(kv[1]['wm'] + kv[1]['sm'])):
+        print(f"{i:<20}{a['cases']:>4}{a['w']:>6}{a['wm']:>6}{a['s']:>6}{a['sm']:>6}{a['says']:>6}{a['am']:>6}" + ('  build 出错 ' + str(a['err']) if a['err'] else ''))
 if errs: print('页面报错：', errs)
 if jpath:
     json.dump(rep, open(jpath, 'w', encoding='utf-8'), ensure_ascii=False, indent=1); print('JSON →', jpath)
