@@ -51,12 +51,14 @@
 |---|---|---|---|---|---|---|---|
 | TAKE | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成（PR #1 feat/vv-take-anim） |
 | GET | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成 |
-| PUT | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 下一批 |
-| TURN | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | |
+| PUT | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成 |
+| TURN | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 下一批 |
 | LOOK | ⬜ | ⬜（look away） | ⬜ | ⬜ | ⬜（look in/into） | ⬜ | |
 | GIVE | ⬜（give on，最后做） | ⬜ | ⬜ | ⬜（give back） | ⬜ | ⬜ | |
 
 执行顺序：GET → PUT → TURN → LOOK → GIVE。
+
+每一行的场景代码是 `VV` 里一段独立区块（`// ═════════ XXX 行`），末尾导出 `XXX_SCENES`，再在 `Object.assign(SCENES, ...)` 里合并。
 
 ## 6. 剩余分镜（① 本义幕 ｜ ② 第二义幕 ｜ ③ 共同点）
 
@@ -113,6 +115,7 @@
 
 - 2026-10-29 `fix(super-lab)`：`drawHDCharacterActor` 兼容 `headBadge`/`badgeColor` 和第三个参数 `t`。24 处带 headBadge 的调用原来头顶徽章不显示，现在按动词/向量颜色显示；呼吸和眨眼恢复。
 - 2026-10-29 新建本交接文档。
+- 2026-10-29 `feat(vv)`：PUT 行 6 格动画完成。新增 9 张姿势：`vv_put_hat`、`hatdone`、`sing`、`push`、`umbrella`、`raise`、`place`、`blow`、`hose`；新增道具 `snowWindow/stage/calCard/hwCard/rain/tent/blackboard/pencil/toyBox/ball/block/teddy/jar/timeToken/piano/cake/fire/waterJet`。put down 第二幕复用 TAKE 行的 `vv_down_write`（BOY 画框）。
 - 2026-10-29 `fix(anim)`：`takeoffScene.js` 删除未调用的矢量小男孩代码（drawBoy/armPts/drawArm/jacketBundle/hungJacket）和空 if，从 271 行减到 151 行；`TakeOff.tsx` 用 `delayRender` 预加载图片，避免 Remotion 开头空帧；demo 和主文件播放器都改用 Blob URL，开播前预解码，画面不变时不重建 DOM，按渲染耗时在 30fps 和 20fps 之间自适应。`to_base.webp` 只作出图参考，没有打进主文件。
 - 2026-10-29 `feat(vv)`：GET 行 6 格动画完成（get on/off/up/down/in/out）。新增 15 张素材：`vv_walk`、`vv_get_*`（stepup、stepdown、bike、bikeoff、sleep、sitstretch、stretch、fallen、chair、crouch、carin、wave）、`vv_cat_climb`、`vv_cat_sit`；`poses()` 的影子加了 `spec.shadow` 系数；新增 `G` 画框和 GET 道具。已在无头 Chrome 里逐幕截图检查，控制台无报错。
   - 已知小问题：get on 第二幕“站在车旁 → 骑上车”是交叉淡化，有约 0.3 秒重影；骑车 / 车旁两张图里的自行车细节略有差别。
