@@ -1,6 +1,6 @@
 // ==================== 第一性原理 ④ 一山不容二虎单核谓语律（fp_one_king）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[3].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 2 幕已升引擎 v2 + 讲解员（第 1 幕是搬到 ze_be 的占位幕，不升级）；升级前整份文件原样保存在 cases/fp_one_king_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 2、3 幕已升引擎 v2 + 讲解员（第 1 幕是搬到 ze_be 的占位幕，不升级）；升级前整份文件原样保存在 cases/fp_one_king_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_one_king = [
   // ───────── 4-1 为什么不能说 I am like apples？─────────
   {
@@ -45,9 +45,9 @@ WB_LAB.fp_one_king.push(
       k.mono("I want go home.", 40, 132, 26, C.red, 900);
       k.redX(300, 108);
       FP.throne(150, 300);
-      const kw = FP.king("want", 150, 250, C.red); D.adopt(kw);
+      const kw = FP.king("want", 150, 250, C.red); D.adopt(kw); D.back();
       N("", "want 已经坐在王座上了，go 没有位置坐。");
-      const gg = FP.king("go", 360, 250, C.ink, false); D.adopt(gg);
+      const gg = FP.king("go", 360, 250, C.ink, false); D.adopt(gg); D.back();
       const tb = go(1); k.buzz(gg, tb, 1, 2.5);
       k.act(me, "surprised", tb, 1); k.expr(me, "oops", tb, 1.3);
       D.step(1);
@@ -141,69 +141,122 @@ WB_LAB.fp_one_king.push(
   },
 );
 WB_LAB.fp_one_king.push(
-  // ───────── 4-3 令牌守恒：does / did / can 来了，动词变原形 ─────────
+  // ───────── 4-3 令牌守恒：does / did / can 来了，动词变原形（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_one_king_classic.js（R1 零丢失）。原左（令牌飞走）右（侍卫接管对照表）两半拆成两个镜头；紫 / 橙文字改 V3，令牌保留道具金色。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：为什么加了 does / did / can，后面的动词就变回原形？");
-      k.header("④ 一山不容二虎单核谓语律", "令牌守恒定律", true);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "令牌守恒定律", sub: "④ 一山不容二虎单核谓语律", badges: ["💡"], steps: ["① -s 令牌", "② Does 拿走", "③ 过去令牌", "④ 侍卫接管", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 令牌从动词飞到侍卫 ─────
+      D.step(0); D.shot();
       N("三单：", "主语是 he / she / it 时，一般现在时的动词要加 -s。");
       T("She like", 40, 170, go(.8), .8, { size: 30, color: C.ink, weight: 900, font: M });
-      const tk = D.token("-s", 202, 160);
+      const tk = FP.token("-s", 202, 160); D.adopt(tk); D.back();
       T("apples.", 228, 170, go(.6), .6, { size: 30, color: C.ink, weight: 900, font: M });
-      T("这块 -s 令牌，现在戴在 like 身上", 40, 206, go(.9), .9, { size: 15, color: C.orange, weight: 900 });
+      T("这块 -s 令牌，现在戴在 like 身上", 40, 206, go(.9), .9, { size: 15, color: C.red, weight: 900 });
+      k.act(me, "point", S.at - .8, 1.2, { at: [202, 160] });
       k.wait(.6);
+      D.step(1);
       N("一般疑问句：", "能用 Yes / No 回答的问句。要请侍卫 Does 站到句首。");
       T("Does", 40, 290, go(.5), .5, { size: 30, color: C.blue, weight: 900, font: M });
       T("she like apples?", 130, 290, go(1), 1, { size: 30, color: C.ink, weight: 900, font: M });
       N("", "一句话只有一块令牌：侍卫 Does 拿走了它，like 就变回原形。");
       const t1 = go(1.6);
-      k.arc(tk, t1, 1.5, "M0,0 C30,60 -60,90 -126,92");
+      k.arc(tk, t1, 1.5, "M0,0 C30,60 -60,90 -126,92"); k.sfx("pop", t1 + 1.5);
+      k.act(me, "surprised", t1 + 1.2, 1);
       k.wait(.2);
       T("令牌被侍卫拿走", 40, 330, go(.6), .6, { size: 15, color: C.blue, weight: 900 });
       T("like 变回原形", 210, 330, go(.6), .6, { size: 15, color: C.green, weight: 900 });
       P(k.ellipse(238, 280, 42, 20), go(.4), .4, { color: C.green, w: 2.5 });
       k.wait(.5);
-      k.say("Does she like apples?", { zh: "她喜欢苹果吗？", word: "like" });
+      sayAt("Does she like apples?", { zh: "她喜欢苹果吗？", word: "like" });
+      sayAt("I like apples. Do you like apples?", { zh: "我喜欢苹果。你喜欢苹果吗？", word: "apples do" });
+      D.step(2);
       N("过去式：", "went 身上戴着「过去」令牌；Did 一出场，went 就变回 go。");
       T("She went home.", 40, 392, go(.8), .8, { size: 20, color: C.ink, weight: 900, font: M });
       k.arrow(216, 386, 246, 386, C.grey);
       T("Did she go home?", 256, 392, go(.8), .8, { size: 20, color: C.blue, weight: 900, font: M });
-      const tk2 = D.token("过去", 106, 350, 19);
+      const tk2 = FP.token("过去", 106, 350, 19); D.adopt(tk2); D.back();
       k.move(tk2, go(1.2), 1.2, 168, 0);
       k.wait(.4);
-      // 右：侍卫接管
-      k.say("Did she go home?", { zh: "她回家了吗？", word: "go" });
+      const syGo = sayAt("Did she go home?", { zh: "她回家了吗？", word: "go" });
+      const syW = sayAt("She went home. Did she go home?", { zh: "她回家了。她回家了吗？", word: "She went home Did" });
+      k.act(me, "walk", syW.t, Math.max(1, syW.dur * .5), { to: 830, words: ["went", "go"] });
+      k.act(me, "walk", syW.t + Math.max(1, syW.dur * .5) + .1, .9, { to: 892 });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 侍卫接管令牌 ─────
+      D.step(3); D.shot();
       N("助动词：", "do / does / did、can 这些「侍卫」，扛下所有变形，后面永远是原形。");
-      k.head("国王自己戴令牌", 510, 112, C.purple, "start", 19);
-      T("He plays football.", 510, 150, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
-      T("They went home.", 510, 180, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
-      k.head("侍卫接管令牌 → 动词原形", 510, 240, C.blue, "start", 19);
-      T("Does he play?", 510, 278, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
-      T("He doesn't play.", 510, 308, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
+      k.head("国王自己戴令牌", 60, 132, C.red, "start", 19);
+      T("He plays football.", 60, 170, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      T("They went home.", 60, 200, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      k.head("侍卫接管令牌 → 动词原形", 60, 260, C.blue, "start", 19);
+      T("Does he play?", 60, 298, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
+      T("He doesn't play.", 60, 328, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
       N("情态动词：", "can、must、will 这类表示「能、必须、将要」的侍卫，后面也用原形。");
-      T("Did they go?", 510, 338, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
-      T("She can swim.", 510, 368, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
-      T("不能说 Does he plays? / She can swims.", 510, 408, go(1), 1, { size: 15, color: C.red, weight: 900 });
+      T("Did they go?", 60, 358, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
+      T("She can swim.", 60, 388, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
+      T("不能说 Does he plays? / She can swims.", 60, 428, go(1), 1, { size: 15, color: C.red, weight: 900 });
       k.wait(.6);
-      k.say("She can swim.", { zh: "她会游泳。", word: "swim" });
+      const syPl = sayAt("He plays football. They went home.", { zh: "他踢足球。他们回家了。", word: "He plays football They" });
+      k.act(me, "jump", syPl.t, Math.max(1, syPl.dur * .5), { words: ["plays"] });
+      sayAt("Does he play? He doesn't play. Did they go?", { zh: "他踢吗？他不踢。他们去了吗？", word: "Does play doesn't" });
+      sayAt("She can swim.", { zh: "她会游泳。", word: "swim" });
+      sayAt("Can, must, will. She can swim.", { zh: "能、必须、将会。她会游泳。", word: "can must will" });
+      sayAt("Yes, it is. No, it isn't.", { zh: "是的，它是。不，它不是。", word: "Yes No it" });
+      k.act(me, "nod", S.at - 1.6, .8);
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "侍卫拿令牌，动词回原形。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2'）：画面上的英文词单读 + 例句（第 1 幕要搬去中英对照总枢，搬时在新位置补，这里不补）
-      k.say("She went home. Did she go home?", { zh: "她回家了。她回家了吗？", word: "She went home Did" });
-      k.say("He plays football. They went home.", { zh: "他踢足球。他们回家了。", word: "He plays football They" });
-      k.say("Does he play? He doesn't play. Did they go?", { zh: "他踢吗？他不踢。他们去了吗？", word: "Does play doesn't" });
-      k.say("Can, must, will. She can swim.", { zh: "能、必须、将会。她会游泳。", word: "can must will" });
-      k.say("Yes, it is. No, it isn't.", { zh: "是的，它是。不，它不是。", word: "Yes No it" });
-      k.say("I like apples. Do you like apples?", { zh: "我喜欢苹果。你喜欢苹果吗？", word: "apples do" });
-      D.fin("一句话只有 1 块令牌（-s / 过去）：侍卫 does / did / can 拿了，动词就用原形", "口诀：侍卫拿令牌，动词回原形。");
-      k.wait(2);
+      P(k.roughRect(40, 450, 760, 44), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：侍卫拿令牌，动词回原形。", 60, 480, go(1), 1, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "侍卫 Does 已经站在句首，后面的动词用 play 还是 plays？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 Does Tom ___ football?　→　play / plays", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "令牌在侍卫 Does 手里，动词回原形：play。");
+      const tRev = go(.3);
+      T("Does Tom play football? —— 侍卫拿令牌", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Does Tom play football?", { zh: "汤姆踢足球吗？", word: "Tom play football" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "一句话只有 1 块令牌（-s / 过去）：\n侍卫 does / did / can 拿了，动词就用原形", rhyme: "口诀：侍卫拿令牌，动词回原形。", hlLines: 2, foot: "🧠 第一性原理 ④ 一山不容二虎单核谓语律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "went", act: "讲解员在读到「She went home」时往前走（walk），再走回来" },
+      { word: "go", act: "同上：Did she go home 时讲解员走" },
+      { word: "plays", act: "讲解员在读到「He plays football」时跳起来（jump）" },
+    ],
     r2skip: ["Does he plays?", "She can swims.", "swims"],   // 红字「不能说」的错句，不读
     terms: [
       ["三单", "主语是第三人称单数（he / she / it / 一个人名）时，一般现在时的动词加 -s：She likes apples。"],
       ["一般疑问句", "能用 Yes / No 回答的问句：Does she like apples?"],
       ["否定句", "带 not 的句子：He doesn't play。"],
       ["情态动词", "can（能）、must（必须）、may（可以）、will（将要）……后面接动词原形。"],
+      ["可信度徽章", "💡 记忆方法（令牌、侍卫）：语法书叫「助动词承担时态和人称变化，后接动词原形」。"],
     ],
   },
 );

@@ -1,4 +1,4 @@
-# 内容清单（R1 零丢失）：第一性原理 ④ fp_one_king（v2 升级：第 2 幕）
+# 内容清单（R1 零丢失）：第一性原理 ④ fp_one_king（v2 升级：第 2、3 幕）
 
 > 由 `src/check_upgrade.py` 逐条对照升级前文件 `fp_one_king_classic.js` 里的全部字幕 / 白板文字 / 朗读 / 术语字符串，检查是否原样出现在新文件 `fp_one_king.js`（金句卡里的换行不计）。
 
