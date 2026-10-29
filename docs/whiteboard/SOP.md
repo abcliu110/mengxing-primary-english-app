@@ -1,7 +1,7 @@
 # SOP：白板动画 · 做一幕 / 一个模块的标准流程
 
 > 版本 v2.0（2026-10-29）。适用于**所有白板动画**：王炸实验室页签、第一性原理总枢、📖 单词身世总枢，以及以后的中英对照总枢、新页签、新模块。
-> 上层设计：`MASTER_DESIGN.md`（19 条决策、模块位置、实施顺序）。进度：`HANDOFF.md`。
+> 上层设计：`MASTER_DESIGN.md`（20 条决策：1–19、22；模块位置、实施顺序）。现状与下一步：`HANDOFF.md`（短，只写现状）；进度流水、引擎通用新工具登记：`CHANGELOG.md`（2026-10-30 起，做完一个单元把流水记在这里，HANDOFF 只改现状和下一步）。
 > 分系列补充：第一性原理 `first_principles/SOP.md`；单词身世深度标准 `word_origins/DEPTH_AND_ANIMATION.md`（四层 × 四关）。
 > 样板：王炸实验室 `cases/bamboo_tree.js`；单词身世 `cases/wo_port.js`（5 步溯源幕）。
 
@@ -72,7 +72,7 @@
 - 时间按调用顺序自动排（`k.go(秒)` 返回开始时间并推进游标），停顿 `k.wait(秒)`；同时画用 `k.go(时长, 0)`。
 - 工具：底层 `P / T / F / N`；手绘形状 `wl / roughRect / ellipse / wave / cloud / rectD`；组件 `header / head / zh / circle / bracket / note / mono / squiggle / underline / strike / caret / above / redX / chip / arrow / final …`；动效 `group / move / arc / path / buzz / fade / rot / hide / camera`；徽章与彩蛋 `badges / badge / egg`；朗读 `say`。
 - 系列道具：第一性原理 `cases/fp_props.js`；单词身世 `cases/wo_props.js`（`scene / step / shot / wipe / map / boat / wind / stamp / morph / snap / hold / finish …`）。
-- 新图形先写在案例文件里；**确实通用的**加进引擎或道具文件，并在 `HANDOFF.md`「引擎通用新工具」登记。改引擎后必须回归旧案例。
+- 新图形先写在案例文件里；**确实通用的**加进引擎或道具文件，并在 `CHANGELOG.md` §5「引擎通用新工具」登记。改引擎后必须回归旧案例。
 
 ### ④ 朗读（§7）
 - 每个英文词：先 `word` 单独读，再读例句；读的时候画面停住；只读正确英文。
@@ -96,7 +96,7 @@
 
 ### ⑦ 提交 + 更新文档
 - 做完一幕 / 一个页签就提交一次，**直接推 `master`，不新建分支**；提交说明写清做了什么、改了哪些数据、验收结果。
-- 更新 `HANDOFF.md` 进度表；单词身世类在 `DESIGN_HANDOFF.md` 附「四层 × 四关 + 听读关 + 动作关」自查表。
+- 在 `CHANGELOG.md` 记进度流水、更新 `HANDOFF.md` 现状；单词身世类在 `DESIGN_HANDOFF.md` 附「四层 × 四关 + 听读关 + 动作关」自查表。
 
 ---
 
