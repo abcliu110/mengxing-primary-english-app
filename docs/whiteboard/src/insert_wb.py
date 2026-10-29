@@ -19,7 +19,7 @@ TABS = {
     'aux_transformer': 'auxIdx', 'five_patterns': 'patIdx', 'writing_alchemist': 'writeIdx',
 }
 # 只写入已验收的页签（做完一个页签就加进来）；其余 cases/*.js 可能还在制作中
-FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoom_focus']   # 第一性原理总枢：做完一条原理就把 id 加进来，如 'fp_economy'
+FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoom_focus', 'fp_iconicity']   # 第一性原理总枢：做完一条原理就把 id 加进来，如 'fp_economy'
 READY = ['bamboo_tree', 'vowel_shift', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 case_files = [os.path.join(HERE, 'cases', t + '.js') for t in READY]
 if FP_READY:
