@@ -1,6 +1,6 @@
 // ==================== 第一性原理 ③ 物理边界感统摄律（fp_boundedness）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[2].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 1、2 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_boundedness_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 1–3 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_boundedness_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_boundedness = [
   // ───────── 3-1 一刀切测试法（v2 + 讲解员，2026-10-30）─────────
   // 升级前原样保存在 cases/fp_boundedness_classic.js（R1 零丢失）。原左（一刀切）右（容器）两半拆成两个镜头，容器镜头左移 450。
@@ -251,73 +251,130 @@ WB_LAB.fp_boundedness.push(
   },
 );
 WB_LAB.fp_boundedness.push(
-  // ───────── 3-3 go to school vs go to the school ─────────
+  // ───────── 3-3 go to school vs go to the school（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_boundedness_classic.js（R1 零丢失）。原左（楼房）右（成对例子）两半拆成两个镜头；例子两栏左移给讲解员让位。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：go to school 和 go to the school，差一个 the，意思差多少？");
-      k.header("③ 物理边界感统摄律", "go to school vs go to the school", true);
-      // 学校楼房（外壳组）
-      const shell = k.group();
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "go to school vs go to the school", sub: "③ 物理边界感统摄律", badges: ["💡", "✂️"], steps: ["① 那栋楼", "② 去上学", "③ 床 · 车", "④ 球 · 医院", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 学校楼房：外壳 vs 功能 ─────
+      D.step(0); D.shot();
+      const shell = D.sub();
       const bd = "M120,270 L120,170 L210,120 L300,170 L300,270 Z";
-      P(bd, go(1), 1, { color: C.blue, w: 3 }); F(bd, go(.2, 0), { color: "#eff6ff", op: 1 });
+      P(bd, go(1), 1, { color: C.blue, w: 3 }); F(bd, go(.2, 0), { color: C.tintBlue, op: 1 });
       P(k.roughRect(190, 220, 40, 50), go(.3), .3, { color: C.blue, w: 2 });
       P(k.roughRect(140, 186, 30, 24) + " " + k.roughRect(250, 186, 30, 24), go(.3), .3, { color: C.blue, w: 2 });
       T("SCHOOL", 210, 166, go(.4), .4, { size: 14, color: C.blue, weight: 900, font: M, anchor: "middle" });
-      k.endGroup();
-      P(k.wl(40, 270, 450, 270, .6), go(.3), .3, { color: C.grey, w: 2 });
-      // 外壳
+      D.back();
+      P(k.wl(40, 270, 520, 270, .6), go(.3), .3, { color: C.grey, w: 2 });
       N("加 the：", "说的是看得见、摸得着的那栋楼——有边界的实物。");
       T("go to the school", 40, 320, go(.8), .8, { size: 22, color: C.blue, weight: 900, font: M });
       T("家长去学校那栋楼开会", 40, 348, go(.6), .6, { size: 15, color: C.grey });
-      const hl = k.group(); P("M114,276 L114,166 L210,112 L306,166 L306,276 Z", go(.01, 0), .01, { color: C.orange, w: 5 }); k.endGroup(); k.hide(hl);
-      const p = D.person(370, 270, C.purple);
-      const t1 = go(1.6); k.fade(hl, t1, .4, 1); k.move(p, t1, 1.4, -50, 0);
+      const hl = D.sub(); P("M114,276 L114,166 L210,112 L306,166 L306,276 Z", go(.01, 0), .01, { color: C.red, w: 5 }); D.back(); k.hide(hl);
+      const gMum = D.sub(); const mum = k.actor("traveler", { x: 470, y: 270, s: .5, f: -1, g: gMum }); D.back();
+      const t1 = go(.6); k.fade(hl, t1, .4, 1);
+      k.act(me, "point", t1, 1.4, { at: [210, 200] });
+      const syMum = sayAt("Mum goes to the school.", { zh: "妈妈去学校（那栋楼）。", word: "goes to the school" });
+      k.act(mum, "walk", syMum.t, Math.max(1.6, syMum.dur + .4), { to: 330, words: ["go", "goes"] });
       k.wait(.4);
-      // 功能
-      k.say("The school is very big.", { zh: "那所学校很大。" });
+      sayAt("The school is very big.", { zh: "那所学校很大。" });
+
+      // ───── 去上学：外壳淡掉，功能（书本 + 铅笔）出现 ─────
+      D.step(1);
       N("零冠词：", "什么冠词都不加。这时说的是「做这件事」，不是那栋楼。");
-      const t2 = go(1.4); k.fade(shell, t2, 1, .15); k.fade(hl, t2, 1, 0); k.fade(p, t2, 1, 0);
-      const fn = k.group();
+      const t2 = go(1.4); k.fade(shell, t2, 1, .15); k.fade(hl, t2, 1, 0); k.fade(gMum, t2, 1, 0);
+      const fn = D.sub();
       P(k.roughRect(176, 170, 70, 52), go(.01, 0), .01, { color: C.red, w: 3 });
       P("M211,170 L211,222", go(.01, 0), .01, { color: C.red, w: 2 });
-      P("M262,226 l26,-60 l8,4 l-26,60 Z", go(.01, 0), .01, { color: C.orange, w: 2.5 });
-      k.endGroup(); k.hide(fn); k.fade(fn, go(.8), .8, 1);
+      P("M262,226 l26,-60 l8,4 l-26,60 Z", go(.01, 0), .01, { color: C.blue, w: 2.5 });
+      D.back(); k.hide(fn); const tFn = go(.8); k.fade(fn, tFn, .8, 1); k.squash(fn, tFn + .8, .3, .14, { cx: 230, cy: 200 });
+      k.hlText("go to school", 40, 392, 22, { mono: true });
       T("go to school", 40, 392, go(.7), .7, { size: 22, color: C.red, weight: 900, font: M });
       T("去上学（读书、上课这件事）", 40, 420, go(.7), .7, { size: 15, color: C.grey });
       k.wait(.5);
-      // 右：更多成对例子
-      k.head("看得见的实物", 510, 112, C.blue, "start", 18);
-      k.head("只讲做什么事", 730, 112, C.red, "start", 18);
+      const syGo = sayAt("I go to school by bus.", { zh: "我坐公交车去上学。", word: "go to school" });
+      const bk = k.prop("book", 0, 0, { hidden: true });
+      k.act(me, "read", syGo.t, Math.max(1.4, syGo.dur), { prop: bk });
+      sayAt("Go to school. Go to the school.", { zh: "去上学。去那所学校（那栋楼）。", word: "go to the school" });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 更多成对例子 ─────
+      D.step(2); D.shot();
+      k.head("看得见的实物", 60, 132, C.blue, "start", 18);
+      k.head("只讲做什么事", 420, 132, C.red, "start", 18);
+      P(k.wl(400, 116, 400, 420, .5), go(.4), .4, { color: C.grey, w: 1.6 });
       const pair = (a, za, b, zb, y) => {
-        T(a, 510, y, go(.5), .5, { size: 19, color: C.blue, weight: 900, font: M });
-        T(za, 510, y + 22, go(.4), .4, { size: 13, color: C.grey });
-        T(b, 730, y, go(.5), .5, { size: 19, color: C.red, weight: 900, font: M });
-        T(zb, 730, y + 22, go(.4), .4, { size: 13, color: C.grey });
+        T(a, 60, y, go(.5), .5, { size: 19, color: C.blue, weight: 900, font: M });
+        T(za, 60, y + 22, go(.4), .4, { size: 13, color: C.grey });
+        T(b, 420, y, go(.5), .5, { size: 19, color: C.red, weight: 900, font: M });
+        T(zb, 420, y + 22, go(.4), .4, { size: 13, color: C.grey });
       };
-      k.say("I go to school by bus.", { zh: "我坐公交车去上学。", word: "go to school" });
       N("", "同样：on the bed 是在床这件家具上面；in bed 是在睡觉。");
-      pair("on the bed", "在床（家具）上", "in bed", "在睡觉", 160);
+      pair("on the bed", "在床（家具）上", "in bed", "在睡觉", 180);
+      k.act(me, "point", S.at - .5, 1.2, { at: [420, 180] });
+      sayAt("The cat is on the bed. I am in bed.", { zh: "猫在床上。我在睡觉。", word: "on the bed in bed a" });
       N("", "on a bus 是在一辆车里；by bus 是坐公交这种方式。");
-      pair("on a bus", "在一辆公交车上", "by bus", "坐公交（方式）", 230);
+      pair("on a bus", "在一辆公交车上", "by bus", "坐公交（方式）", 250);
+      sayAt("I am on a bus. I go by bus.", { zh: "我在一辆公交车上。我坐公交车去。", word: "on a bus by bus" });
+      D.step(3);
       N("", "buy a football 是买一个球；play football 是踢足球这项运动。");
-      pair("buy a football", "买一个足球", "play football", "踢足球（运动）", 300);
-      pair("to the hospital", "去医院大楼（探望）", "in hospital", "住院治病", 370);
+      pair("buy a football", "买一个足球", "play football", "踢足球（运动）", 320);
+      pair("to the hospital", "去医院大楼（探望）", "in hospital", "住院治病", 390);
       k.wait(.6);
-      k.say("Let's play football after school.", { zh: "放学后我们去踢足球吧。", word: "play football" });
+      sayAt("Buy a football. Play football.", { zh: "买一个足球。踢足球。", word: "buy a football" });
+      const syPlay = sayAt("Let's play football after school.", { zh: "放学后我们去踢足球吧。", word: "play football" });
+      k.act(me, "jump", syPlay.t, Math.max(1.2, syPlay.dur), { words: ["play"] });
+      k.expr(me, "happy", syPlay.t, Math.max(1.2, syPlay.dur));
+      const syHos = sayAt("Mum goes to the hospital.", { zh: "妈妈去那家医院。", word: "to the hospital hospital" });
+      k.act(me, "point", syHos.t, Math.max(1.2, syHos.dur), { at: [60, 390] });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "说楼房加 the，说上学不加。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("Go to school. Go to the school.", { zh: "去上学。去那所学校（那栋楼）。", word: "go to the school" });
-      k.say("The cat is on the bed. I am in bed.", { zh: "猫在床上。我在睡觉。", word: "on the bed in bed a" });
-      k.say("I am on a bus. I go by bus.", { zh: "我在一辆公交车上。我坐公交车去。", word: "on a bus by bus" });
-      k.say("Buy a football. Play football.", { zh: "买一个足球。踢足球。", word: "buy a football" });
-      k.say("Mum goes to the hospital.", { zh: "妈妈去那家医院。", word: "to the hospital hospital" });
-      D.fin("加冠词 = 看得见的实物（外壳）；不加冠词 = 做这件事（功能）", "口诀：说楼房加 the，说上学不加。");
-      k.wait(2);
+      P(k.roughRect(40, 440, 760, 50), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：说楼房加 the，说上学不加。", 60, 473, go(1), 1, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "晚上十点，该去睡觉了。bed 前面要不要加 the？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 Time to go to ___ bed.　→　加 the 吗？", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "睡觉是一件事，不是那张床：go to bed，不加 the。");
+      const tRev = go(.3);
+      T("go to bed —— 睡觉这件事，不加 the", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("It's ten o'clock. Time to go to bed.", { zh: "十点了，该睡觉了。", word: "time go to bed" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "加冠词 = 看得见的实物（外壳）；\n不加冠词 = 做这件事（功能）", rhyme: "口诀：说楼房加 the，说上学不加。", hlLines: 2, foot: "🧠 第一性原理 ③ 物理边界感统摄律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "goes", act: "妈妈（traveler）在读到「Mum goes to the school」时走向学校大楼" },
+      { word: "go", act: "讲解员捧书读（read）表示上学这件事，与「I go to school by bus」同步；妈妈走向学校同上" },
+      { word: "play", act: "讲解员在读到「play football」时跳起来、开心（jump + happy）" },
+    ],
     r2skip: ["vs"],   // 白板上的对比符号 vs，不是要读的词
     terms: [
       ["零冠词", "名词前面什么冠词都不加，如 go to school、play football。说的是活动和功能，不是具体的东西。"],
+      ["可信度徽章", "💡 记忆方法（外壳 / 功能）· ✂️ 简化说法（英美用法有差别，如美式常说 in the hospital）。"],
     ],
   },
 );
