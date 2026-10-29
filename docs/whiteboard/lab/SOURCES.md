@@ -31,3 +31,14 @@
 | 1 | 陈述句、特殊疑问句多用降调；一般疑问句多用升调；选择疑问句前升后降；列举最后一项降 | ✂️ | 英语语调教学的通行规律（Wikipedia「Intonation (linguistics)」https://en.wikipedia.org/wiki/Intonation_(linguistics) 指出英语一般疑问句常用升调、语调随情绪和语境变化）；画面标「大多数情况」 |
 | 2 | 实词（名、动、形、副）重读，虚词轻读，弱读成 /ə/ | 📜 语音学常识 | Wikipedia「Stress (linguistics)」「Weak and strong forms in English」 |
 | 3 | 重读像鼓点、两句一样多拍 | 💡 ✂️ | 比喻；英语「重音计时」只是倾向，画面注明「不会完全一样长」 |
+
+## ④ 不规则复数（`cases/irregular_plural.js`）
+
+| # | 画面说法 | 徽章 | 依据 |
+|---|---|---|---|
+| 1 | foot/feet、tooth/teeth、goose/geese、man/men、woman/women（/ˈwɪmɪn/）、mouse/mice 是换元音复数，属于古英语的一类词（i 变音） | 📜 | Wikipedia「English plurals」§Apophonic plurals，抓取 2026-10-30：「This group consists of words that historically belong to the Old English consonant declension」；postmen 等合成词同样变 |
+| 2 | child/children、ox/oxen 加 -en，来自古英语弱变化，常用的只剩几个 | 📜 | 同上 §Plurals in -(e)n：「Only the following three are commonly found: ox, child, brother」（画面只讲前两个） |
+| 3 | sheep、deer、fish 单复数同形，很多是动物名 | 📜 | 同上 §Nouns with identical singular and plural |
+| 4 | leaf/leaves、knife/knives；roof 只加 s | 📜 ✂️ | 同上 §Near-regular plurals（roof → roofs） |
+| 5 | person → people（正式场合也用 persons） | 📜 | 同上 §Miscellaneous irregular plurals |
+| 6 | 「磁铁把元音吸变形」 | 💡 | 比喻，解释 i 变音 |
