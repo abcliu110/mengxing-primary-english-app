@@ -111,3 +111,41 @@ WB_LAB.fp_iconicity.push(
     terms: [],
   },
 );
+WB_LAB.fp_iconicity.push(
+  // ───────── 2-3 str- 绷直 · sp- 向外 ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：straight、street、strong、strict，一个画面记住四个难词。");
+      k.header("② 字母象形与音义同源簇", "str- 绷直 · sp- 向外", true);
+      T("str-", 40, 120, go(.4), .4, { size: 34, color: C.red, weight: 900, font: M });
+      N("", "str- 三个辅音挤在一起，读起来很用力——可以想成一根拉紧的绳子。");
+      const loose = k.group(); P(`M80,200 C140,160 180,250 240,200 C300,150 340,240 400,200`, go(1), 1, { color: C.brown, w: 4 }); k.endGroup();
+      const tight = k.group(); P(k.wl(80, 200, 400, 200, .2), go(.01, 0), .01, { color: C.red, w: 4 }); k.endGroup(); k.hide(tight);
+      P(k.ellipse(70, 200, 10, 10) + " " + k.ellipse(410, 200, 10, 10), go(.4), .4, { color: C.ink, w: 3 });
+      const tp = go(1.2); k.fade(loose, tp, .8, 0); k.fade(tight, tp + .2, .8, 1);
+      k.arrow(64, 232, 24, 232, C.red); k.arrow(416, 232, 456, 232, C.red);
+      T("拉紧 → 又直又有力", 240, 254, go(.6), .6, { size: 16, color: C.red, weight: 900, anchor: "middle" });
+      N("", "笔直的、笔直的大街、肌肉绷紧的强壮、要求严格——都是「拉紧的直线」。");
+      const row = (w, zh, y) => { D.parts([["str", C.red], [w, C.ink]], 60, y, 22); T(zh, 260, y, go(.4), .4, { size: 16, color: C.grey }); };
+      row("aight", "笔直的", 300); row("eet", "（笔直的）大街", 334); row("ong", "强壮的（肌肉绷紧）", 368); row("ict", "严格的（要求绷紧）", 402);
+      k.wait(.5);
+      // sp-
+      T("sp-", 510, 120, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M });
+      N("", "sp- 读的时候气流「噗」地往外喷——可以想成向四面八方发散。");
+      const cx = 720, cy = 200;
+      const dot = `M${cx - 8},${cy} a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
+      P(dot, go(.3), .3, { color: C.orange, w: 2 }); F(dot, go(.1, 0), { color: C.orange, op: 1 });
+      for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; P(k.wl(cx + Math.cos(a) * 18, cy + Math.sin(a) * 18, cx + Math.cos(a) * 62, cy + Math.sin(a) * 50, .3), go(.15), .15, { color: C.orange, w: 3 }); }
+      N("", "声音向外说、活力向外放、向外延展的太空、万物冒头的春天。");
+      const row2 = (w, zh, y) => { D.parts([["sp", C.orange], [w, C.ink]], 530, y, 22); T(zh, 700, y, go(.4), .4, { size: 16, color: C.grey }); };
+      row2("eak", "说话（声音向外）", 300); row2("ort", "运动（活力向外）", 334); row2("ace", "太空（向外延展）", 368); row2("ring", "春天（万物冒头）", 402);
+      k.wait(.5);
+      T("帮助记忆的联想", 940, 432, go(.5), .5, { size: 13, color: C.grey, anchor: "end" });
+      N("口诀：", "str 拉直线，sp 往外喷。");
+      D.fin("str- 像拉紧的直线，sp- 像向外喷发：一个画面串起四个词", "口诀：str 拉直线，sp 往外喷。");
+      k.wait(2);
+    },
+    terms: [],
+  },
+);
