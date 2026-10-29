@@ -20,8 +20,9 @@ function wbSpeak(i, sy) {
     const starts = []; let pos = 0;
     sy.en.split(/\s+/).forEach(w => { const j = sy.en.indexOf(w, pos); starts.push(j); pos = j + w.length; });
     const sent = mkU(sy.en);
-    sent.onboundary = e => { if (sp.dead || !wbState.player) return; let w = 0; for (let j = 0; j < starts.length; j++) if (e.charIndex >= starts[j]) w = j; wbState.player.hl = { i, w }; };
-    sent.onend = sent.onerror = () => { sp.done = true; if (!sp.dead && wbState.player) wbState.player.hl = { i, w: -1 }; };
+    sent.onboundary = e => { if (sp.dead || !wbState.player) return; let w = 0; for (let j = 0; j < starts.length; j++) if (e.charIndex >= starts[j]) w = j; sp.gotB = true; wbState.player.hl = { i, w }; };
+    sent.onend = () => { sp.done = true; if (!sp.dead && wbState.player && sp.gotB) wbState.player.hl = { i, w: -1 }; };
+    sent.onerror = () => { sp.done = true; if (!sp.dead && wbState.player) wbState.player.hl = null; };   // 没声音：退回按时间估算高亮
     if (sy.word) { const wu = mkU(sy.word); wu.onerror = () => {}; window.speechSynthesis.speak(wu); }
     window.speechSynthesis.speak(sent);
   } catch (e) { sp.done = true; }
