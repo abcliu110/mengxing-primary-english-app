@@ -240,3 +240,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 商业动画标准（决策 22，2026-10-29）
 用户要求白板动画达到商业动画标准。已写入 MASTER_DESIGN §2.7（动画十二法则 M1–M12 落地表、60fps 等技术硬指标、分镜→样片→精修→录屏审片→用户审片流程、不通过典型）和 SOP 验收清单。port 一幕作为样板幕，用户认可后其他幕对齐。
+
+## 2026-10-29 20:10 用户审片结果
+- 用户选定升级后版本（port_after_v2）作为样板幕，通过。
+- 用户要求小人放大：wo_port.js 讲解员 s 从 0.74 改为 1.15（位置不变），已重建主 HTML。
+- ⚠️ 本次沙箱缺 Chromium 系统依赖，appwo 截图回归未跑成；下一位接手先 `python3 -m playwright install-deps chromium` 后跑 appwo + 截图，确认放大后小人不压住右下角内容（尤其金句卡、护照、托举镜头）。
+- 下一步：样板确认后铺到其他幕；阶段 1 剩余按需加载。
