@@ -246,7 +246,7 @@ V1–V8 是「白板味」；本节是「动画质量」——对标商业儿童
 | 自然拼读里的拼写条目 | 「拼写潜规则」 | 同上 | 待做 |
 | 口语场景里重复的核心句型 | 「交际句型地图」 | 同上 | 待做 |
 | 第一性原理 ④-1、⑥-1 | 中英对照总枢 | 零丢失：内容清单逐条对照通过后才删原幕 | 已确认 |
-| `VOCAB_DB` port 家族 `affix_root`（11 词）、`WORD_FORMATION_DB.roots` 的 port 卡 | 词卡改一句话 + 📖 身世标签 → `wo_port` | 身世标签上线后 | 待做 |
+| `VOCAB_DB` port 家族 `affix_root`（11 词）、`WORD_FORMATION_DB.roots` 的 port 卡 | 词卡改一句话 + 📖 身世标签 → `wo_port` | 身世标签上线后 | ✅ 已完成（2026-10-29；reporter/important/sport 无标签暂不动） |
 | 术语「词源」在 `fp_iconicity` 和 `wo_port` 各有一条 | 统一用一条说法 | 下次改任一文件时 | 待做 |
 
 ---
