@@ -9580,10 +9580,27 @@ const WB = (function () {
   const estW = (str, size) => [...String(str)].reduce((w, ch) => w + (ch.charCodeAt(0) > 0x2e80 ? size : size * .55), 0);
   const clamp = v => Math.max(0, Math.min(1, v));
   const ease = k => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+  // ---- 引擎 v3（视觉标准 V1–V8 + 商业动画 M1–M12）：只对调用了 k.v2() 的案例生效，旧案例画面不变 ----
+  // 分类缓动（V4 / M4）：出现 = 弹入过冲，吸附 = 回弹，移动 = 缓入缓出，退场 = 快出；linear 只给进度条
+  const EASE = {
+    move: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
+    in: x => 1 - Math.pow(1 - x, 3),
+    exit: x => x * x * x,
+    pop: x => { const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); },
+    snap: x => x >= 1 ? 1 : 1 - Math.exp(-6.5 * x) * Math.cos(11 * x),
+    antic: x => { const c = 1.2 * 1.525; return x < .5 ? (Math.pow(2 * x, 2) * ((c + 1) * 2 * x - c)) / 2 : (Math.pow(2 * x - 2, 2) * ((c + 1) * (x * 2 - 2) + c) + 2) / 2; },
+    sine: x => -(Math.cos(Math.PI * x) - 1) / 2,
+    linear: x => x,
+  };
+  // 统一调色板（V3）：墨黑 + 红（错误 / 术语）+ 绿（正确 / 结论）+ 蓝（主角词 / 词根）；灰只用于注释；荧光黄 / 绿只作底色
+  const PAL = { ink: "#1f2937", red: "#e11d48", green: "#059669", blue: "#2563eb", grey: "#64748b",
+    hlYellow: "#fde047", hlGreen: "#86efac", tintBlue: "#dbeafe", tintGreen: "#d1fae5", tintRed: "#ffe4e6", tintInk: "#f1f5f9", paper: "#fdfdfb", sea: "#93c5fd" };
+  const FS = { title: 32, sub: 22, body: 19, note: 14 };    // 字号 4 级
+  const GRID = { col: i => 24 + i * 76, margin: 24 };          // 12 列网格（列宽 76，含边距 24）
 
   // ---------- 脚本工具包 ----------
   function kit(seed) {
-    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [], says: [], badges: [], eggs: [], hdrEnd: 0 };
+    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [], says: [], badges: [], eggs: [], hdrEnd: 0, v2: false, wipes: [], sfx: [], keeps: [] };
     let s = seed;
     const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280 - .5;
     const wl = (x1, y1, x2, y2, j = 1.6) => {
@@ -9634,13 +9651,38 @@ const WB = (function () {
     // group() 之后画的元素进同一个 <g>，endGroup() 结束；动效作用在整组上
     const group = () => (S.g = ++S.gn);
     const endGroup = () => { S.g = 0; };
-    const move = (g, t, dur, dx, dy, o = {}) => S.fx.push({ type: "move", g, t, dur, dx, dy, ...o });
-    const arc = (g, t, dur, d, o = {}) => S.fx.push({ type: "arc", g, t, dur, d, ...o });   // d：相对路径，从 0,0 出发
+    // v2：没写 ease 的动效按类型给默认缓动（移动 = 缓入缓出，淡出 = 快出，淡入 = 缓出）
+    const dflt = (o, e) => (S.v2 && !o.ease && !o.linear ? { ...o, ease: e } : o);
+    const move = (g, t, dur, dx, dy, o = {}) => S.fx.push({ type: "move", g, t, dur, dx, dy, ...dflt(o, "move") });
+    const arc = (g, t, dur, d, o = {}) => S.fx.push({ type: "arc", g, t, dur, d, ...dflt(o, "move") });   // d：相对路径，从 0,0 出发
     // 沿折线移动（船环游、货箱进城）：pts = [[dx,dy], ...] 相对组的当前位置；o.linear 匀速
-    const path = (g, t, dur, pts, o = {}) => arc(g, t, dur, "M0,0 " + pts.map(p => "L" + p[0] + "," + p[1]).join(" "), o);
+    // v2：折线自动变成平滑曲线（Catmull-Rom），运动走弧线（M5）
+    const path = (g, t, dur, pts, o = {}) => {
+      if (!S.v2 || o.sharp) return arc(g, t, dur, "M0,0 " + pts.map(p => "L" + p[0] + "," + p[1]).join(" "), o);
+      const P0 = [[0, 0], ...pts]; let d = "M0,0";
+      for (let i = 0; i < P0.length - 1; i++) {
+        const a = P0[i - 1] || P0[i], b = P0[i], c = P0[i + 1], e = P0[i + 2] || c;
+        d += ` C${(b[0] + (c[0] - a[0]) / 6).toFixed(1)},${(b[1] + (c[1] - a[1]) / 6).toFixed(1)} ${(c[0] - (e[0] - b[0]) / 6).toFixed(1)},${(c[1] - (e[1] - b[1]) / 6).toFixed(1)} ${c[0]},${c[1]}`;
+      }
+      return arc(g, t, dur, d, o);
+    };
     const buzz = (g, t, dur, amp = 2.5) => S.fx.push({ type: "buzz", g, t, dur, amp });
-    const fade = (g, t, dur, to) => S.fx.push({ type: "fade", g, t, dur, to });
-    const rot = (g, t, dur, deg, cx, cy) => S.fx.push({ type: "rot", g, t, dur, deg, cx, cy });
+    const fade = (g, t, dur, to, o = {}) => S.fx.push({ type: "fade", g, t, dur, to, ...dflt(o, to > .5 ? "in" : "exit") });
+    const rot = (g, t, dur, deg, cx, cy) => S.fx.push({ type: "rot", g, t, dur, deg, cx, cy, ...dflt({}, "move") });
+    // v2：弹入（M2 挤压拉伸：从小到大、过冲回弹，体积大致不变）；中心不给就用组的包围盒中心
+    const pop = (g, t, dur = .5, o = {}) => { S.fx.push({ type: "pop", g, t, dur, from: o.from ?? 0, cx: o.cx, cy: o.cy, amp: o.amp ?? .12 }); if (o.sfx !== false) S.sfx.push({ t, name: "pop" }); };
+    // v2：落地挤压（以底边为支点压扁再回弹）
+    const squash = (g, t, dur = .32, amp = .14, o = {}) => S.fx.push({ type: "squash", g, t, dur, amp, cx: o.cx, cy: o.cy });
+    const sfx = (name, t = S.at) => S.sfx.push({ t, name });
+    // v2：板擦擦除转场（V8）：组 gs 在 [t, t+dur] 被板擦一行一行擦掉，结束时整组隐藏
+    const erase = (gs, dur = 1.1, o = {}) => {
+      const t = go(dur, o.gap ?? .1);
+      S.wipes.push({ t, dur, gs: gs.slice(), y0: o.y0 ?? 92, y1: o.y1 ?? 544 });
+      gs.forEach(g => S.fx.push({ type: "fade", g, t: t + dur, dur: .001, to: 0, wipe: true }));
+      S.sfx.push({ t, name: "erase" });
+      return t;
+    };
+    const v2 = (o = {}) => { S.v2 = true; S.v2o = o; };
     const hide = g => S.fx.push({ type: "fade", g, t: -1, dur: .001, to: 0 });         // 组一开始隐藏，之后用 fade 显示
     // 镜头：白板区（不含字幕条）在 t 开始、dur 内缩放平移到「以 (x,y) 为中心、放大 z 倍」
     const camera = (t, dur, x, y, z) => S.cam.push({ t, dur, x, y, z });
@@ -9657,11 +9699,71 @@ const WB = (function () {
     const k = {
       estW, C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
       group, endGroup, move, arc, path, buzz, fade, rot, hide, camera, say,
+      v2, pop, squash, sfx, erase, PAL, FS, GRID, EASE,
+      // 荧光笔底色（V2）：在文字下面先刷一道半透明荧光带（左 → 右），再写字；每屏不超过 3 处
+      hl(x, y, w, h = 24, o = {}) {
+        const yy = y - h * .5;
+        P(`M${x},${(yy + 1.5).toFixed(1)} Q${(x + w / 2).toFixed(1)},${(yy - 1).toFixed(1)} ${x + w},${(yy + .5).toFixed(1)}`, go(o.dur ?? .35, o.gap ?? .05), o.dur ?? .35, { color: o.color || PAL.hlYellow, w: h, alpha: o.alpha ?? .55, hl: true, cap: "butt" });
+      },
+      // 文字 + 荧光底色：text 在 (x, y) 基线；size 字号；mono 等宽
+      hlText(text, x, y, size, o = {}) {
+        const w = o.mono ? text.length * size * .6 : estW(text, size), ax = o.anchor === "middle" ? x - w / 2 : o.anchor === "end" ? x - w : x;
+        k.hl(ax - 6, y - size * .33, w + 12, size * 1.05, o);
+      },
+      // 统一片头（V8）：居中标题卡（标题 + 副标题 + 徽章）弹入 → 停留 → 快出；之后正常写 header
+      titleCard(o = {}) {
+        const t0 = S.at, g = group(), w = o.w ?? 560, h = 214, x = 480 - w / 2, y = 150;
+        P(roughRect(x, y, w, h), t0, .55, { color: PAL.ink, w: 2.6 });
+        F(rectD(x, y, w, h), t0 + .1, { color: "#ffffff", op: 1 });
+        const tw = estW(o.title, FS.title);
+        P(`M${(480 - tw / 2 - 14).toFixed(1)},${y + 76} Q480,${y + 72} ${(480 + tw / 2 + 14).toFixed(1)},${y + 75}`, t0 + .55, .35, { color: PAL.hlYellow, w: 40, alpha: .6, hl: true, cap: "butt" });
+        T(o.title, 480, y + 87, t0 + .9, .7, { size: FS.title, color: PAL.ink, weight: 900, anchor: "middle", noHL: true });
+        if (o.sub) T(o.sub, 480, y + 128, t0 + 1.55, .6, { size: 18, color: PAL.grey, weight: 700, anchor: "middle", noHL: true });
+        S.at = t0 + 1.7;
+        if (o.badges && o.badges.length) {
+          const fs = 14, ws = o.badges.map(kk => estW(kk + " " + (BADGES[kk] || BADGES["📜"]).label, fs) + 14), tot = ws.reduce((a, b) => a + b, 0) + 8 * (ws.length - 1);
+          let bx = 480 - tot / 2;
+          o.badges.forEach((kk, i) => { k.badge(kk, bx, y + 172, { size: fs }); bx += ws[i] + 8; });
+        }
+        endGroup();
+        pop(g, t0, .55, { cx: 480, cy: y + h / 2 });
+        const tOut = t0 + (o.dur ?? 4.2);
+        S.keeps.push([t0 + .6, tOut + .5]);   // 片头停留时间不被节奏压缩
+        move(g, tOut, .45, 0, -40, { ease: "exit" }); fade(g, tOut, .45, 0, { ease: "exit" });
+        S.at = tOut + .5;
+        return g;
+      },
+      // 统一收尾金句卡（V8）：一句话洞见 + 口诀；盖住前面的画面，定格可截图复习
+      quoteCard(o = {}) {
+        const t0 = go(.01, 0), dim = group();
+        F(rectD(0, 0, 960, 544), t0, { color: PAL.paper, op: .94, dur: .5 });
+        endGroup();
+        const g = group(), x = 100, y = 104, w = 760, h = 380;
+        P(roughRect(x, y, w, h), t0 + .2, .6, { color: PAL.ink, w: 2.8 });
+        F(rectD(x, y, w, h), t0 + .3, { color: "#ffffff", op: 1 });
+        P(roughRect(x + 10, y + 10, w - 20, h - 20), t0 + .7, .5, { color: PAL.green, w: 1.6 });
+        T("💡 一句话洞见", x + 40, y + 56, t0 + 1.1, .5, { size: FS.note + 1, color: PAL.grey, weight: 900 });
+        const wrap = (str, n) => { const out = []; let cur = "", cw = 0; for (const ch of str) { const add = ch.charCodeAt(0) > 0x2e80 ? 1 : .55; if (cw + add > n && cur) { out.push(cur); cur = ""; cw = 0; } cur += ch; cw += add; } if (cur) out.push(cur); return out; };
+        S.at = t0 + 1.5;
+        wrap(o.insight || "", 31).forEach((ln, i) => T(ln, x + 40, y + 102 + i * 36, go(Math.max(.6, ln.length * .05)), Math.max(.6, ln.length * .05), { size: FS.sub, color: PAL.ink, weight: 900 }));
+        const ry = y + 102 + Math.max(1, wrap(o.insight || "", 31).length) * 36 + 30;
+        P(wl(x + 40, ry - 24, x + w - 40, ry - 24, .8), go(.4), .4, { color: "#cbd5e1", w: 2, dash: "6 7" });
+        T("🎵 口诀", x + 40, ry + 6, go(.4), .4, { size: FS.note + 1, color: PAL.grey, weight: 900 });
+        wrap(o.rhyme || "", 31).forEach((ln, i) => {
+          if (i < (o.hlLines ?? 1)) k.hlText(ln, x + 40, ry + 46 + i * 36, FS.sub, { color: PAL.hlGreen });
+          T(ln, x + 40, ry + 46 + i * 36, go(Math.max(.6, ln.length * .05)), Math.max(.6, ln.length * .05), { size: FS.sub, color: PAL.green, weight: 900 });
+        });
+        if (o.foot) T(o.foot, x + w - 30, y + h - 24, go(.4), .4, { size: FS.note, color: PAL.grey, weight: 700, anchor: "end" });
+        endGroup();
+        pop(g, t0 + .15, .6, { cx: 480, cy: y + h / 2, from: .2 });
+        sfx("ding", S.at);
+        return { dim, g };
+      },
       // 标题 + 中线
       // 标题：title 大字，sub 灰色副标题（自动排在标题右边）；divider=false 时不画中线
       header(sub, title = "竹节句 vs 树干句", divider = true) {
-        T(title, 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900 });
-        T(sub, 40 + estW(title, 32) + 28, 52, go(1.2), 1.2, { size: 20, color: C.grey });
+        T(title, 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900, noHL: true });
+        T(sub, 40 + estW(title, 32) + 28, 52, go(1.2), 1.2, { size: 20, color: C.grey, noHL: true });
         S.hdrEnd = 40 + estW(title, 32) + 28 + estW(sub, 20);
         if (divider) P(wl(480, 80, 480, 425, 1), go(.5), .5, { color: "#cbd5e1", w: 2, dash: "6 7" });
       },
@@ -9692,7 +9794,7 @@ const WB = (function () {
         P(d, go(.3), .3, { color: C.orange, w: 2 }); F(d, go(.1, 0), { color: "#fef08a", op: 1 });
         P(`M${x - s * .8},${y - s * .1} l${s * .4},${-s * .35} l${s * .4},${s * .35} l${s * .4},${-s * .35} l${s * .4},${s * .35}`, go(.15), .15, { color: C.brown, w: 1.4 });
         if (o.word && !S.eggs.includes(o.word)) S.eggs.push(o.word);
-        if (o.note) T(o.note === true ? "彩蛋词：知道就好，不用背" : o.note, o.nx ?? x + s + 6, o.ny ?? y + 5, go(.6), .6, { size: 12, color: C.grey, weight: 700 });
+        if (o.note) T(o.note === true ? "彩蛋词：知道就好，不用背" : o.note, o.nx ?? x + s + 6, o.ny ?? y + 5, go(.6), .6, { size: S.v2 ? 13 : 12, color: C.grey, weight: 700 });
       },
       head(text, x, y = 108, color = C.ink, anchor = "start", size = 22) { T(text, x, y, go(.9), .9, { size, color, weight: 900, anchor }); },
       leftHead() { T("汉语：竹节句", 40, 108, go(.9), .9, { size: 22, color: C.brown, weight: 900 }); },
@@ -9820,6 +9922,15 @@ const WB = (function () {
         if (!o.noSay) say(o.say ?? text, { zh: o.zh ?? String(zhLine || "").split(/\s{2,}/)[0], word: o.word });
       }
     };
+    // 时间重映射（D.finish 压缩节奏用）：所有带时间的登记一起改；g(t) 单调
+    k.remap = (g) => {
+      const mapD = o => { const t0 = o.t; o.t = g(t0); o.dur = Math.max(.001, g(t0 + o.dur) - o.t); };
+      S.wipes.forEach(mapD); S.sfx.forEach(e => { e.t = g(e.t); });
+      (S.actors || []).forEach(a => { a.acts.forEach(mapD); a.exprs.forEach(mapD); a.looks.forEach(mapD); a.fades.forEach(f => { if (f.t >= 0) mapD(f); }); });
+      (S.acts || []).forEach(r => { if (r.fx) mapD(r.e); r.t = r.e.t; r.dur = r.e.dur; });
+      (S.props || []).forEach(p => { if (p.stampAt != null) p.stampAt = g(p.stampAt); if (p.showAt != null) p.showAt = g(p.showAt); });
+    };
+    if (typeof WB_ACTOR !== "undefined") WB_ACTOR.kit(k);   // 人物骨架与动作库（wb_actor.js）
     return k;
   }
 
@@ -9828,13 +9939,19 @@ const WB = (function () {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     const k = kit(seed);
     build(k);
-    const items = k.S.items, NARR = k.S.narr.length ? k.S.narr : [[0, "", ""]];
-    const END = k.S.at + 4;
-    const SAYS = k.S.says, H = SAYS.length ? 650 : 600;
+    const S = k.S, V2 = !!S.v2;
+    // 尊重「减少动态效果」（只对 v2 案例）：画线写字改淡入、弹入改淡入、擦除改淡出、镜头直接到位、不画手
+    const REDUCED = V2 && typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const items = S.items, NARR = S.narr.length ? S.narr : [[0, "", ""]];
+    const END = S.at + 4;
+    const SAYS = S.says, H = SAYS.length ? 650 : 600;
     svg.setAttribute("viewBox", `0 0 960 ${H}`);
     svg.style.aspectRatio = `960/${H}`;
     const uid = "wb" + Math.random().toString(36).slice(2, 8);
     const mk = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const a in attrs) e.setAttribute(a, attrs[a]); parent.appendChild(e); return e; };
+    // 只在值变了才写 DOM（省掉每帧几千次无用的 setAttribute；写进去的值和以前完全一样）
+    const setA = (el, n, v) => { const c = el.__c || (el.__c = {}); if (c[n] !== v) { c[n] = v; el.setAttribute(n, v); } };
+    const setV = (el, v) => { if (el.__vis !== v) { el.__vis = v; el.style.visibility = v; } };
     const defs = mk("defs", {});
     const pat = mk("pattern", { id: uid + "g", width: 30, height: 30, patternUnits: "userSpaceOnUse" }, defs);
     mk("path", { d: "M30,0 L0,0 0,30", fill: "none", stroke: "#eef2f5", "stroke-width": 1 }, pat);
@@ -9865,9 +9982,16 @@ const WB = (function () {
       const fillLayer = parentOf(it), inkLayer = fillLayer;
       if (it.kind === "fill") it.el = mk("path", { d: it.d, fill: it.color, opacity: 0 }, fillLayer);
       else if (it.kind === "path") {
-        it.el = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": it.w || 3, "stroke-linecap": "round", "stroke-linejoin": "round" }, inkLayer);
+        const w = it.w || 3;
+        // v2 粗细笔触（V2）：底线略细，再叠一条只覆盖中段的粗线 → 中段粗、起笔收笔细
+        const thick = V2 && !it.hl && !it.dash && w >= 1.8;
+        it.el = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": thick ? w * .8 : w, "stroke-linecap": it.cap || "round", "stroke-linejoin": "round" }, inkLayer);
+        if (it.hl) { it.el.setAttribute("stroke-opacity", it.alpha ?? .55); it.el.style.mixBlendMode = "multiply"; }
+        else if (V2 && it.alpha != null) it.el.setAttribute("stroke-opacity", it.alpha);
         it.len = it.el.getTotalLength();
         it.el.setAttribute("stroke-dasharray", it.dash || `${it.len} ${it.len}`);
+        if (thick && it.len > 18) { it.el2 = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": w * 1.32, "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-dashoffset": (-it.len * .15).toFixed(1) }, inkLayer); it.el2.style.visibility = "hidden"; if (it.alpha != null) it.el2.setAttribute("stroke-opacity", it.alpha); }
+        if (REDUCED) it.el.setAttribute("stroke-dasharray", it.dash || "none");
       } else {
         const clip = mk("clipPath", { id: uid + "c" + idx }, defs);
         it.clipRect = mk("rect", { x: 0, y: 0, width: 0, height: 600 }, clip);
@@ -9876,37 +10000,110 @@ const WB = (function () {
         it.el.textContent = it.text;
       }
     });
-    const FX = k.S.fx, CAM = k.S.cam;
+    const FX = S.fx, CAM = S.cam;
     FX.forEach(f => { if (f.type === "arc") { f.el = mk("path", { d: f.d, fill: "none" }, defs); f.len = f.el.getTotalLength(); } });
+    if (REDUCED) FX.forEach(f => { if (f.wipe) { const w = S.wipes.find(w => Math.abs(w.t + w.dur - f.t) < .01); if (w) { f.t = w.t; f.dur = w.dur * .6; } } });
     let camM = [0, 0, 1];   // 当前镜头：平移 tx,ty + 缩放 z（render 里更新）
+    const camEase = V2 ? EASE.move : ease;
     function camAt(t) {
       let x = 480, y = 272, z = 1;
-      for (const c of CAM) { const q = ease(clamp((t - c.t) / Math.max(.001, c.dur))); x += (c.x - x) * q; y += (c.y - y) * q; z += (c.z - z) * q; }
+      for (const c of CAM) { const kq = clamp((t - c.t) / Math.max(.001, c.dur)), q = REDUCED ? (kq >= 1 ? 1 : kq > .5 ? 1 : 0) : camEase(kq); x += (c.x - x) * q; y += (c.y - y) * q; z += (c.z - z) * q; }
       return [480 - x * z, 272 - y * z, z];
     }
     // 第一个镜头在开始前就生效（脚本一开始就设好特写）：camera(0, 0, ...)
     function fxRender(t) {
       for (const id in groups) {
-        let dx = 0, dy = 0, op = 1, deg = 0, cx = 0, cy = 0;
+        let dx = 0, dy = 0, op = 1, deg = 0, cx = 0, cy = 0, sx = 1, sy = 1, scx = null, scy = null;
         for (const f of FX) {
           if (f.g != id) continue;
-          const kk = clamp((t - f.t) / Math.max(.001, f.dur)), q = f.linear ? kk : ease(kk);
+          const kk = clamp((t - f.t) / Math.max(.001, f.dur)), q = f.linear ? kk : f.ease ? (REDUCED && f.type !== "fade" ? (kk >= 1 ? 1 : 0) : EASE[f.ease](kk)) : ease(kk);
           if (f.type === "move") { dx += f.dx * q; dy += f.dy * q; }
           else if (f.type === "arc") { const p = f.el.getPointAtLength(f.len * q), p0 = f.el.getPointAtLength(0); dx += p.x - p0.x; dy += p.y - p0.y; }
           else if (f.type === "buzz") { if (kk > 0 && kk < 1) { dx += Math.sin(t * 71) * f.amp; dy += Math.cos(t * 53) * f.amp * .6; } }
           else if (f.type === "fade") { if (t >= f.t) op += (f.to - op) * q; }
           else if (f.type === "rot") { deg += f.deg * q; cx = f.cx; cy = f.cy; }
+          else if (f.type === "pop") {
+            if (t < f.t) { if (!REDUCED) { sx = sy = Math.max(.001, f.from); } op *= f.from > 0 ? 1 : 0; }
+            else if (kk < 1) {
+              if (REDUCED) op *= kk;
+              else { const s = f.from + (1 - f.from) * EASE.pop(kk), st = Math.sin(Math.PI * Math.min(1, kk * 1.6)) * f.amp; sx *= s * (1 - st * .7); sy *= s * (1 + st); }
+            }
+            const bb = bbOf(id); scx = f.cx ?? bb[0]; scy = f.cy ?? bb[1];
+          } else if (f.type === "squash") {
+            if (kk > 0 && kk < 1 && !REDUCED) { const w = Math.sin(2 * Math.PI * kk) * (1 - kk) * f.amp; sx *= 1 + w; sy *= 1 - w; const bb = bbOf(id); scx = f.cx ?? bb[0]; scy = f.cy ?? bb[2]; }
+          }
         }
-        const g = groups[id].el;
-        g.setAttribute("transform", `translate(${dx.toFixed(2)},${dy.toFixed(2)})` + (deg ? ` rotate(${deg.toFixed(2)},${cx},${cy})` : ""));
-        g.setAttribute("opacity", op.toFixed(3));
+        const G = groups[id]; G.dx = dx; G.dy = dy; G.op = op;
+        let tf = `translate(${dx.toFixed(2)},${dy.toFixed(2)})` + (deg ? ` rotate(${deg.toFixed(2)},${cx},${cy})` : "");
+        if (scx != null && (Math.abs(sx - 1) > 1e-4 || Math.abs(sy - 1) > 1e-4)) tf += ` translate(${scx.toFixed(1)},${scy.toFixed(1)}) scale(${sx.toFixed(4)},${sy.toFixed(4)}) translate(${(-scx).toFixed(1)},${(-scy).toFixed(1)})`;
+        setA(G.el, "transform", tf);
+        setA(G.el, "opacity", op.toFixed(3));
       }
-      if (CAM.length) { camM = camAt(t); board.setAttribute("transform", `translate(${camM[0].toFixed(2)},${camM[1].toFixed(2)}) scale(${camM[2].toFixed(4)})`); }
+      if (CAM.length) { camM = camAt(t); setA(board, "transform", `translate(${camM[0].toFixed(2)},${camM[1].toFixed(2)}) scale(${camM[2].toFixed(4)})`); }
     }
+    // 组的包围盒中心（弹入 / 挤压的支点）；量一次缓存
+    function bbOf(id) {
+      const G = groups[id];
+      if (!G.bb) { try { const tf = G.el.getAttribute("transform"); G.el.removeAttribute("transform"); const b = G.el.getBBox(); if (tf) G.el.setAttribute("transform", tf); G.bb = [b.x + b.width / 2, b.y + b.height / 2, b.y + b.height]; } catch (e) { G.bb = [480, 272, 300]; } }
+      return G.bb;
+    }
+    // V5：白板上的英文词 → 位置（读到这个词时，在它下面亮一道荧光底色）
+    const TOKS = [];
+    const normW = w => String(w).toLowerCase().replace(/[^a-z']/g, "");
     function measure() {
       items.forEach(it => { if (it.kind === "text") { const b = it.el.getBBox(); it.bx = b.x; it.bw = b.width; it.by = b.y; it.bh = b.height; it.clipRect.setAttribute("y", b.y - 6); it.clipRect.setAttribute("height", b.height + 12); } });
+      if (!V2) return;
+      TOKS.forEach(tk => tk.el.remove()); TOKS.length = 0;
+      items.forEach(it => {
+        if (it.kind !== "text" || it.noHL) return;
+        const re = /[A-Za-z][A-Za-z']*/g; let m;
+        while ((m = re.exec(it.text))) {
+          if (m[0].length < 2) continue;
+          try {
+            const a = it.el.getStartPositionOfChar(m.index), b = it.el.getEndPositionOfChar(m.index + m[0].length - 1);
+            const h = it.size * 1.05, el = document.createElementNS(NS, "rect");
+            el.setAttribute("x", (a.x - 3).toFixed(1)); el.setAttribute("y", (it.y - it.size * .82).toFixed(1));
+            el.setAttribute("width", (b.x - a.x + 6).toFixed(1)); el.setAttribute("height", h.toFixed(1)); el.setAttribute("rx", 4);
+            el.setAttribute("fill", PAL.hlYellow); el.setAttribute("opacity", 0); el.style.mixBlendMode = "multiply"; el.style.transition = "opacity .14s";
+            it.el.parentNode.insertBefore(el, it.el);
+            TOKS.push({ w: normW(m[0]), el, it, on: false });
+          } catch (e) { /* 字体没好时跳过，remeasure 会再来 */ }
+        }
+      });
     }
     measure();
+    // ---- v2：板擦擦除转场（V8）：一条和纸一样颜色（带格子）的粗线沿 Z 字路线一行行盖过去，板擦跟着走 ----
+    const WIPES = [];
+    if (V2 && S.wipes.length) {
+      const wl0 = mk("g", {}, board);
+      S.wipes.forEach(w => {
+        let d = "", row = 0;
+        for (let y = w.y0 + 22; y < w.y1 + 30; y += 50, row++) d += (row ? ` L` : `M`) + (row % 2 ? "990," : "-30,") + y + ` L${row % 2 ? -30 : 990},${y + 24}`;
+        const g = mk("g", { opacity: 0 }, wl0);
+        const paper = mk("path", { d, fill: "none", stroke: PAL.paper, "stroke-width": 68, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+        mk("path", { d, fill: "none", stroke: `url(#${uid}g)`, "stroke-width": 68, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+        const smudge = mk("path", { d, fill: "none", stroke: "#94a3b8", "stroke-width": 54, "stroke-linecap": "round", opacity: 0 }, wl0);
+        const len = paper.getTotalLength();
+        g.querySelectorAll("path").forEach(p => p.setAttribute("stroke-dasharray", `${len} ${len}`));
+        WIPES.push({ ...w, g, paper, smudge, len });
+      });
+    }
+    // 人物（讲解员小人 + 场景角色）：讲解员在屏幕层（不跟镜头缩放），场景角色在各自的组里
+    let actorR = null;
+    const api = {};
+    if (typeof WB_ACTOR !== "undefined" && S.actors && S.actors.length) {
+      const screenLayer = mk("g", {}, boardClip);
+      actorR = WB_ACTOR.mount({ S, mk, NS, layer, screenLayer, says: SAYS, end: END, api, reduced: REDUCED,
+        ensureGroup: g => (groups[g] || (groups[g] = { el: mk("g", {}, layer) })).el });
+    }
+    // 板擦（v2）
+    let eraser = null;
+    if (WIPES.length) {
+      eraser = mk("g", { opacity: 0 }, boardClip);
+      mk("path", { d: "M-34,-16 L34,-16 Q40,-16 40,-10 L40,4 L-40,4 L-40,-10 Q-40,-16 -34,-16 Z", fill: "#c08457", stroke: "#1f2937", "stroke-width": 2.2 }, eraser);
+      mk("path", { d: "M-40,4 L40,4 L40,15 L-40,15 Z", fill: "#475569", stroke: "#1f2937", "stroke-width": 2.2 }, eraser);
+      mk("path", { d: "M-26,-9 L26,-9", stroke: "#8a5a35", "stroke-width": 2, "stroke-linecap": "round" }, eraser);
+    }
     // 拿马克笔的手
     const pen = mk("g", {});
     mk("path", { d: "M0,0 L10,-8 L72,-70 L60,-82 L-2,-20 Z", fill: "#1f2937", stroke: "#111", "stroke-width": 1.5 }, pen);
@@ -9914,20 +10111,55 @@ const WB = (function () {
     mk("path", { d: "M22,-36 C30,-18 52,-6 78,-14 C104,-22 118,-52 108,-74 C98,-96 70,-98 56,-84 C46,-74 40,-60 22,-36 Z", fill: "#fde4cf", stroke: "#b45309", "stroke-width": 2, "stroke-linejoin": "round" }, pen);
     mk("path", { d: "M30,-30 C42,-26 52,-30 58,-40 M44,-20 C56,-18 66,-24 70,-34", fill: "none", stroke: "#b45309", "stroke-width": 1.8, "stroke-linecap": "round" }, pen);
     let penX = 905, penY = 525, lastNarr = -1;
+    // v2 手的位置是时间的纯函数（V1）：在画 → 贴着笔尖；两笔之间 → 走弧线移过去；空闲 → 滑出画面
+    const REST = [1000, 640];
+    const STROKES = V2 ? items.filter(it => (it.kind === "path" && !it.dash) || it.kind === "text").filter(it => it.dur > .04) : [];
+    const strokeEnds = it => it.kind === "path" ? [it.el.getPointAtLength(0), it.el.getPointAtLength(it.len)].map(p => [p.x, p.y]) : [[it.bx, it.by + it.bh * .75], [it.bx + it.bw, it.by + it.bh * .75]];
+    const toScreen = (it, p) => { const G = it.g ? groups[it.g] : null; let x = p[0] + (G ? G.dx || 0 : 0), y = p[1] + (G ? G.dy || 0 : 0); if (CAM.length) { x = x * camM[2] + camM[0]; y = y * camM[2] + camM[1]; } return [x, y]; };
+    function penAt(t, active) {
+      if (active) return active;
+      let prev = null, next = null;
+      for (const it of STROKES) {
+        const e = it.t + it.dur;
+        if (e <= t && (!prev || e > prev.t + prev.dur)) prev = it;
+        if (it.t > t && (!next || it.t < next.t)) next = it;
+      }
+      const pe = prev ? toScreen(prev, strokeEnds(prev)[1]) : REST, te = prev ? prev.t + prev.dur : -9;
+      const ps = next ? toScreen(next, strokeEnds(next)[0]) : REST, ts = next ? next.t : 1e9;
+      const gap = ts - te, lift = (a, b, q) => { const d = Math.hypot(b[0] - a[0], b[1] - a[1]); const e = EASE.move(q); return [a[0] + (b[0] - a[0]) * e, a[1] + (b[1] - a[1]) * e - Math.sin(Math.PI * q) * Math.min(40, d * .18)]; };
+      if (gap <= 1.4) return lift(pe, ps, clamp((t - te) / Math.max(.05, gap)));
+      if (t - te < .5) return lift(pe, REST, (t - te) / .5);
+      if (ts - t < .5) return lift(REST, ps, 1 - (ts - t) / .5);
+      return REST;
+    }
+    let drawing = false, curWords = null;
     function render(t) {
-      let active = null;
+      let active = null, activeIt = null;
       for (const it of items) {
         const kk = clamp((t - it.t) / it.dur);
-        if (it.kind === "fill") { it.el.setAttribute("opacity", (it.op ?? 1) * ease(kk)); continue; }
+        if (it.kind === "fill") { setA(it.el, "opacity", V2 ? (it.op ?? 1) * EASE.in(kk) : (it.op ?? 1) * ease(kk)); continue; }
         if (it.kind === "path") {
-          if (it.dash) it.el.setAttribute("opacity", kk > 0 ? Math.min(1, kk * 3) : 0);
-          else it.el.setAttribute("stroke-dashoffset", it.len * (1 - kk));
-          it.el.style.visibility = kk > 0 ? "visible" : "hidden";
-          if (kk > 0 && kk < 1) { const p = it.el.getPointAtLength(it.len * kk); active = [p.x, p.y]; }
+          if (REDUCED) setA(it.el, "opacity", it.dash ? (kk > 0 ? Math.min(1, kk * 3) : 0) : Math.min(1, kk * 2).toFixed(3));
+          else if (it.dash) setA(it.el, "opacity", kk > 0 ? Math.min(1, kk * 3) : 0);
+          else {
+            const q = V2 ? EASE.sine(kk) : kk;
+            setA(it.el, "stroke-dashoffset", it.len * (1 - q));
+            if (it.el2) {   // 中段加粗线：只露出 [15%, 85%] ∩ 已画部分（dashoffset 把起点挪到 15% 处）
+              const a = it.len * .15, b = Math.min(it.len * q, it.len * .85);
+              if (b > a + .5) { setA(it.el2, "stroke-dasharray", `${(b - a).toFixed(1)} ${(it.len * 2).toFixed(0)}`); setV(it.el2, "visible"); }
+              else setV(it.el2, "hidden");
+            }
+          }
+          setV(it.el, kk > 0 ? "visible" : "hidden");
+          if (kk > 0 && kk < 1) { const p = it.el.getPointAtLength(it.len * (V2 ? EASE.sine(kk) : kk)); active = [p.x, p.y]; activeIt = it; }
         } else {
-          it.clipRect.setAttribute("x", it.bx - 4);
-          it.clipRect.setAttribute("width", kk >= 1 ? it.bw + 12 : (it.bw + 8) * kk);
-          if (kk > 0 && kk < 1) active = [it.bx + it.bw * kk, it.by + it.bh * .75 + Math.sin(t * 40) * 3];
+          setA(it.clipRect, "x", it.bx - 4);
+          if (REDUCED) { setA(it.clipRect, "width", it.bw + 12); setA(it.el, "opacity", Math.min(1, kk * 2).toFixed(3)); }
+          else {
+            const q = V2 ? kk * .75 + EASE.sine(kk) * .25 : kk;
+            setA(it.clipRect, "width", kk >= 1 ? it.bw + 12 : (it.bw + 8) * q);
+            if (kk > 0 && kk < 1) { active = [it.bx + it.bw * q, it.by + it.bh * .75 + Math.sin(t * 40) * 3]; activeIt = it; }
+          }
         }
       }
       let ni = 0; for (let i = 0; i < NARR.length; i++) if (t >= NARR[i][0]) ni = i;
@@ -9937,7 +10169,8 @@ const WB = (function () {
         const L = narr.getComputedTextLength();
         if (L > 912) narr.setAttribute("font-size", (18 * 912 / L).toFixed(1));
       }
-      narr.setAttribute("opacity", clamp((t - NARR[ni][0]) / .35));
+      setA(narr, "opacity", clamp((t - NARR[ni][0]) / .35));
+      curWords = null;
       if (strip) {
         let si = -1; for (let i = 0; i < SAYS.length; i++) if (t >= SAYS[i].t) si = i;
         if (si !== lastSay) {
@@ -9956,24 +10189,758 @@ const WB = (function () {
           if (api.hl && api.hl.i === si) hl = api.hl.w;
           else { const q = (t - sy.t - sy.wd) / Math.max(.3, sy.dur - sy.wd - .2); hl = q < 0 || q >= 1 ? -1 : Math.floor(q * n); }
           if (hl !== lastHL) { lastHL = hl; sWords.forEach((ts, j) => { ts.setAttribute("fill", j === hl ? "#e11d48" : "#065f46"); ts.setAttribute("text-decoration", j === hl ? "underline" : "none"); }); }
-          strip.setAttribute("opacity", clamp((t - sy.t) / .3).toFixed(2));
-        } else strip.setAttribute("opacity", 0);
+          setA(strip, "opacity", clamp((t - sy.t) / .3).toFixed(2));
+          // 正在读的词（白板同步高亮用）：先单独读 word（按时间或语音事件），再读句子
+          if (V2) {
+            const live = api.speech && api.speech.live && api.speech.i === si;
+            if (live && api.speech.phase === "word") curWords = String(sy.word).split(/\s+/).map(normW);
+            else if (!live && sy.word && t - sy.t < sy.wd) { const ws = String(sy.word).split(/\s+/); curWords = [normW(ws[Math.min(ws.length - 1, Math.floor((t - sy.t) / Math.max(.1, sy.wd - .3) * ws.length))])]; }
+            else if (hl >= 0 && hl < n) curWords = [normW(sy.en.split(/\s+/)[hl])];
+            if (t > sy.t + sy.dur) curWords = null;
+          }
+        } else setA(strip, "opacity", 0);
       }
       fxRender(t);
-      if (active && CAM.length) active = [active[0] * camM[2] + camM[0], active[1] * camM[2] + camM[1]];
-      const target = active || [905, 525], f = active ? .55 : .12;
-      penX += (target[0] - penX) * f; penY += (target[1] - penY) * f;
-      pen.setAttribute("transform", `translate(${penX.toFixed(1)},${penY.toFixed(1)}) scale(.8)`);
-      pen.setAttribute("opacity", t > END - .6 ? clamp((END - t) / .6) : 1);
+      // V5：白板上同一个词亮荧光底色（只亮已经写完、正在显示的词）
+      if (V2 && TOKS.length) {
+        for (const tk of TOKS) {
+          let on = false;
+          if (curWords && t >= tk.it.t + tk.it.dur) {
+            const G = tk.it.g ? groups[tk.it.g] : null;
+            if (!G || G.op > .5) on = curWords.some(w => w && (w === tk.w || w === tk.w + "s" || w === tk.w + "es" || w === tk.w + "ed" || w === tk.w + "ing"));
+          }
+          if (on !== tk.on) { tk.on = on; tk.el.setAttribute("opacity", on ? .7 : 0); }
+        }
+      }
+      // 擦除转场
+      let er = null;
+      for (const w of WIPES) {
+        const q = (t - w.t) / w.dur;
+        if (REDUCED || q <= 0 || q >= 1) { setA(w.g, "opacity", 0); }
+        else {
+          setA(w.g, "opacity", 1);
+          const e = EASE.sine(q) * .94 + q * .06, off = (w.len * (1 - e)).toFixed(1);
+          w.g.querySelectorAll("path").forEach(p => setA(p, "stroke-dashoffset", off));
+          const p = w.paper.getPointAtLength(w.len * e); er = [p.x, p.y];
+        }
+        const sm = t - (w.t + w.dur);
+        setA(w.smudge, "opacity", REDUCED || sm < 0 || sm > .7 ? 0 : (.08 * (1 - sm / .7)).toFixed(3));
+      }
+      if (eraser) {
+        setA(eraser, "opacity", er ? 1 : 0);
+        if (er) setA(eraser, "transform", `translate(${er[0].toFixed(1)},${er[1].toFixed(1)}) rotate(${(Math.sin(t * 9) * 6).toFixed(1)})`);
+      }
+      if (V2) {
+        if (activeIt) active = toScreen(activeIt, active);
+      } else if (active && CAM.length) active = [active[0] * camM[2] + camM[0], active[1] * camM[2] + camM[1]];
+      drawing = !!active;
+      if (actorR) actorR.render(t, { pen: active });
+      if (V2) {
+        const pp = REDUCED ? REST : penAt(t, active);
+        setA(pen, "transform", `translate(${pp[0].toFixed(1)},${pp[1].toFixed(1)}) scale(.8)`);
+        setA(pen, "opacity", REDUCED ? 0 : 1);
+      } else {
+        const target = active || [905, 525], f = active ? .55 : .12;
+        penX += (target[0] - penX) * f; penY += (target[1] - penY) * f;
+        pen.setAttribute("transform", `translate(${penX.toFixed(1)},${penY.toFixed(1)}) scale(.8)`);
+        pen.setAttribute("opacity", t > END - .6 ? clamp((END - t) / .6) : 1);
+      }
     }
-    const api = { render, end: END, says: SAYS, badges: k.S.badges, eggs: k.S.eggs, strip, hl: null, remeasure() { measure(); lastNarr = -1; lastSay = -2; }, resetPen() { penX = 905; penY = 525; } };
+    // 音效事件（V7）：(t0, t1] 里该响的音效；drawing = 正在画线写字（马克笔沙沙声）
+    const SFX = V2 ? S.sfx.slice().sort((a, b) => a.t - b.t) : [];
+    Object.assign(api, { render, end: END, says: SAYS, badges: S.badges, eggs: S.eggs, strip, hl: null, speech: null, actors: actorR, v2: V2, reduced: REDUCED,
+      sfxBetween(t0, t1) { return SFX.filter(e => e.t > t0 && e.t <= t1).map(e => e.name); },
+      get drawing() { return drawing; },
+      remeasure() { measure(); lastNarr = -1; lastSay = -2; }, resetPen() { penX = 905; penY = 525; } });
     return api;
   }
 
-  return { mount, kit, C, ZH, MONO, estW, BADGES };
+  return { mount, kit, C, ZH, MONO, estW, BADGES, EASE, PAL, FS, GRID };
 })();
 // 各页签的白板案例都登记在这里：WB_LAB[labTab] = [ { build(k){...}, terms:[[术语, 解释], ...] }, ... ]
 const WB_LAB = {};
+
+// ==================== 白板引擎 · 人物骨架与动作库 v1（讲解员小人 + 场景角色）====================
+// 定稿形象：docs/whiteboard/narrator/narrator_v3a_ponytail.png（v3a 马尾女老师）。规范：MASTER_DESIGN §2.6、§2.7；SOP §8。
+// 骨架：骨盆 → 躯干 → 头（马尾、领巾跟随余摆）；肩 → 上臂 → 前臂 → 手；髋 → 大腿 → 小腿 → 脚。
+// 一个「姿态」= 一组关节角度；一个「动作」= 姿态随动作内进度 u 的函数；动作之间按权重插值（姿态到姿态）。
+// 全部是时间 t 的纯函数（马尾余摆也是：对头部加速度做阻尼弹簧卷积），所以进度条拖到哪都正确。
+// 用法（案例脚本里）：
+//   const me = k.actor("narrator", { x: 880, y: 530, s: .9 });          // 讲解员（屏幕层，镜头缩放不影响）
+//   const porter = k.actor("porter", { x: 200, y: 300, s: .6, g: D.sub() }); // 场景角色（放进某个组，跟镜头、擦除走）
+//   const box = k.prop("box", 230, 300, { g: … });                      // 道具：box / card / book / doc / scroll
+//   k.act(porter, "carry", go(2.4), 2.4, { prop: box, to: 520, put: true, words: ["import"] });
+//   k.act(me, "point", t, 1.2, { at: [x, y] });  k.expr(me, "surprised", t, 1.5);  k.look(me, x, y, t, dur)
+// 动作库 v1：idle（待机呼吸眨眼，自动）、wave 挥手、point 指、surprised 惊讶、holdCard 举词卡、read 读书、
+//   walk 走、run 跑、carry 搬、take 拿、put 放、jump 跳、turn 转身；另有 think 想、cheer 欢呼、support 托举、nod 点头。
+// 表情 5 个：happy 开心、think 思考、surprised 惊讶、proud 得意、oops 哎呀；口型 3 个：0 闭、1 半开、2 全开。
+var WB_ACTOR = (function () {
+  const D2R = Math.PI / 180, clamp = v => Math.max(0, Math.min(1, v));
+  const sstep = x => { x = clamp(x); return x * x * (3 - 2 * x); };
+  const eio = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };   // 缓入缓出
+  const eout = x => { x = clamp(x); return 1 - Math.pow(1 - x, 3); };
+  const EASEX = x => x * x * x;   // 加速落下
+  const back = x => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };   // 轻微过冲
+  const lerp = (a, b, q) => a + (b - a) * q;
+  const seg = (u, a, b) => clamp((u - a) / (b - a));
+  const THIGH = 30, SHIN = 28, UARM = 23, FARM = 21, TORSO = 40, SHO = 34;
+  // ---- 服装（v3a 定稿配色；角色色是 V3 调色板的唯一例外，见 SOP §9）----
+  const LOOKS = {
+    narrator: { skin: "#fde3cf", hair: "#7a4a2a", jacket: "#2f8f6f", jacketD: "#256f57", shirt: "#ffffff", scarf: "#f28c28", pants: "#26315f", shoe: "#ffffff", clip: "#facc15", style: "ponytail", marker: true },
+    porter: { skin: "#f6d2b3", hair: "#3f2d22", jacket: "#e8d3b0", jacketD: "#c9ad82", shirt: "#e8d3b0", scarf: "#b45309", pants: "#8a6a48", shoe: "#8a6a48", style: "band" },
+    traveler: { skin: "#fde3cf", hair: "#4b3326", jacket: "#5b7fd6", jacketD: "#3f5fae", shirt: "#ffffff", scarf: "#e11d48", pants: "#3a3f55", shoe: "#5b4636", style: "hat" },
+  };
+  const INK = "#1f2937";
+  // ---- 表情参数：眉高、眉角、眼睛大小、眼睛睁开度、嘴型、腮红、汗滴 ----
+  const EXPR = {
+    neutral: { bh: 0, ba: 0, bi: 0, es: 1, eo: 1, m: "smile", blush: .8, sweat: 0, tilt: 0 },
+    happy: { bh: -1.5, ba: 0, bi: 0, es: 1, eo: 1, m: "grin", blush: 1, sweat: 0, tilt: -2 },
+    think: { bh: -1, ba: 10, bi: 0, es: .95, eo: .9, m: "side", blush: .5, sweat: 0, tilt: 5, lx: -1, ly: -1.2 },
+    surprised: { bh: -4.5, ba: 0, bi: 0, es: 1.35, eo: 1.15, m: "o", blush: .6, sweat: 0, tilt: -4 },
+    proud: { bh: .5, ba: -6, bi: 0, es: 1, eo: .48, m: "smirk", blush: 1, sweat: 0, tilt: -6 },
+    oops: { bh: -2, ba: 0, bi: 14, es: 1.05, eo: .95, m: "wavy", blush: .4, sweat: 1, tilt: 3 },
+  };
+  const NUM = ["bh", "ba", "bi", "es", "eo", "blush", "sweat", "tilt", "lx", "ly"];
+
+  // ---- 基础姿态（待机）----
+  const IDLE = { lean: 0, head: 0, aFs: 10, aFe: 22, aBs: -7, aBe: 12, lFh: 4, lFk: 2, lBh: -4, lBk: 2, crouch: 0, air: 0, sx: 1, sy: 1, ex: 0 };
+  const KEYS = Object.keys(IDLE);
+  function walkLegs(p, ph, amp, kn, arm, el) {
+    const s1 = Math.sin(2 * Math.PI * ph), c1 = Math.cos(2 * Math.PI * ph);
+    p.lFh = amp * s1; p.lBh = -amp * s1;
+    p.lFk = 6 + kn * Math.max(0, c1); p.lBk = 6 + kn * Math.max(0, -c1);
+    if (arm != null) { p.aFs = -arm * s1 + 4; p.aBs = arm * s1 - 2; p.aFe = el; p.aBe = el; }
+  }
+
+  // ---- 动作库 v1：每个动作 = f(u, ctx) → 姿态（覆盖 IDLE 的部分字段）；ctx.ph = 走路相位，ctx.aim = 指向角 ----
+  const ACTIONS = {
+    idle: () => ({}),
+    nod: (u) => ({ head: 9 * Math.sin(u * Math.PI * 2) * (1 - u) }),
+    wave: (u) => {   // 预备下沉 → 抬手 → 前臂左右摆 3 次 → 放下
+      const up = back(seg(u, .08, .3)), sw = Math.sin(seg(u, .25, .9) * Math.PI * 6);
+      return { aFs: lerp(10, 128, up), aFe: lerp(22, 38 + 28 * sw, up), crouch: 4 * Math.sin(seg(u, 0, .12) * Math.PI), lean: -3 * up, head: -4 * up, ex: 1 };
+    },
+    point: (u, c) => {   // 先往回收一点（预备）→ 伸直指过去（过冲）→ 停住
+      const pre = Math.sin(seg(u, 0, .18) * Math.PI), go = back(seg(u, .12, .38));
+      return { aFs: lerp(10, c.aim, go) - 14 * pre, aFe: lerp(22, 4, go) + 30 * pre, lean: 4 * go, head: c.aimHead * go };
+    },
+    surprised: (u) => {   // 缩一下 → 弹起后仰、双手张开 → 回落
+      const pre = Math.sin(seg(u, 0, .14) * Math.PI), pop = back(seg(u, .12, .32)) * (1 - .35 * seg(u, .7, 1));
+      return { crouch: 7 * pre - 3 * pop, air: -7 * Math.sin(seg(u, .12, .4) * Math.PI), lean: -9 * pop, head: -8 * pop, aFs: lerp(10, 112, pop), aFe: lerp(22, 52, pop), aBs: lerp(-7, -112, pop), aBe: lerp(12, -52, pop), sx: 1 - .06 * pre + .03 * pop * (1 - seg(u, .32, .5)), sy: 1 + .07 * pre * -1 + .05 * Math.sin(seg(u, .12, .4) * Math.PI) };
+    },
+    holdCard: (u) => {   // 双手把卡片举过头顶
+      const up = back(seg(u, .1, .32)), pre = Math.sin(seg(u, 0, .14) * Math.PI);
+      return { aFs: lerp(10, 150, up), aFe: lerp(22, 22, up), aBs: lerp(-7, -150, up), aBe: lerp(12, -22, up), crouch: 5 * pre, head: -6 * up, lean: -2 * up, ex: 1, _cardBoth: 1 };
+    },
+    read: (u) => {   // 双手捧书在胸前，低头看
+      const q = eio(seg(u, 0, .2));
+      return { aFs: lerp(10, 16, q), aFe: lerp(22, 104, q), aBs: lerp(-7, 26, q), aBe: lerp(12, 98, q), head: 10 * q + 2 * Math.sin(u * 9), lean: 3 * q };
+    },
+    think: (u) => {
+      const q = eio(seg(u, 0, .25));
+      return { aFs: lerp(10, 32, q), aFe: lerp(22, 138, q), aBs: lerp(-7, 22, q), aBe: lerp(12, 70, q), head: 6 * q, lean: -2 * q };
+    },
+    cheer: (u) => {
+      const pre = Math.sin(seg(u, 0, .16) * Math.PI), up = back(seg(u, .14, .34)), hop = Math.sin(seg(u, .16, .5) * Math.PI);
+      return { crouch: 9 * pre, air: -16 * hop, aFs: lerp(10, 150, up), aFe: 14, aBs: lerp(-7, -150, up), aBe: -14, sy: 1 - .08 * pre + .06 * hop, sx: 1 + .06 * pre - .04 * hop, head: -6 * up, ex: 1 };
+    },
+    walk: (u, c) => { const p = { lean: 4 }; walkLegs(p, c.ph, 22, 30, 18, 18); return p; },
+    run: (u, c) => { const p = { lean: 13, head: -4 }; walkLegs(p, c.ph, 38, 72, 42, 82); p.air = -4 * Math.abs(Math.sin(2 * Math.PI * c.ph * 2)); return p; },
+    // 搬：弯腰（预备）抱起 → 直起身（略后仰，夸张出重量）→ 抱着走 → （put）弯腰放下
+    carry: (u, c) => {
+      const m0 = c.m0, m1 = c.m1;
+      const bend = u < m0 ? Math.sin(seg(u, 0, m0) * Math.PI) : (c.put && u > m1 ? Math.sin(seg(u, m1, 1) * Math.PI) : 0);
+      const hold = u < m0 * .5 ? seg(u, 0, m0 * .5) : 1;
+      const p = { lean: 34 * bend - 4 * (1 - bend), head: 8 * bend, crouch: 0, aFs: lerp(lerp(10, 42, hold), 26, bend), aFe: lerp(lerp(22, 62, hold), 10, bend), aBs: lerp(lerp(-7, 36, hold), 20, bend), aBe: lerp(lerp(12, 66, hold), 10, bend), lFh: 26 * bend, lFk: 52 * bend, lBh: 12 * bend, lBk: 44 * bend, ex: 2 };
+      if (u > m0 && u < m1) walkLegs(p, c.ph, 18, 24, null);
+      return p;
+    },
+    // 拿：伸手 → 握住（u=.45 道具挂到手上）→ 收回胸前
+    take: (u) => {
+      const r = back(seg(u, .05, .4)), b = eio(seg(u, .5, .9)), pre = Math.sin(seg(u, 0, .12) * Math.PI);
+      return { aFs: lerp(10, 72, r) - 30 * b - 10 * pre, aFe: lerp(22, 8, r) + 80 * b, lean: 12 * r * (1 - b), head: 6 * r * (1 - b) };
+    },
+    // 放：从胸前往前下方伸 → 松手（u=.55 道具留在原处）→ 收回
+    put: (u) => {
+      const d = eio(seg(u, 0, .45)), r = eio(seg(u, .6, 1));
+      return { aFs: lerp(lerp(42, 50, d), 10, r), aFe: lerp(lerp(62, 12, d), 22, r), aBs: lerp(lerp(36, 44, d), -7, r), aBe: lerp(lerp(66, 12, d), 12, r), lean: 28 * d * (1 - r), head: 8 * d * (1 - r), lFh: 24 * d * (1 - r), lFk: 46 * d * (1 - r), lBh: 10 * d * (1 - r), lBk: 40 * d * (1 - r) };
+    },
+    // 托举：双手在头顶上方托住（support）
+    support: (u) => {
+      const up = back(seg(u, .1, .35)), pre = Math.sin(seg(u, 0, .15) * Math.PI), push = Math.sin(u * Math.PI * 3) * .5 * up;
+      return { aFs: lerp(10, 152, up), aFe: lerp(22, 26 + 6 * push, up), aBs: lerp(-7, -152, up), aBe: lerp(12, -26 - 6 * push, up), crouch: 8 * pre + 3 * up - 2 * push, lean: -3 * up, head: -10 * up, lFh: 10 * up, lBh: -10 * up, lFk: 10 * up, lBk: 10 * up };
+    },
+    // 跳：下蹲蓄力（挤压）→ 腾空（拉伸）→ 落地（挤压）→ 回弹
+    jump: (u) => {
+      const pre = Math.sin(seg(u, 0, .28) * Math.PI / 2) * (1 - seg(u, .26, .32)), fly = seg(u, .3, .72), land = Math.sin(seg(u, .72, .9) * Math.PI);
+      const h = Math.sin(fly * Math.PI);
+      return { crouch: 12 * pre + 8 * land, lFh: 30 * pre + 20 * h + 24 * land, lFk: 60 * pre + 50 * h + 46 * land, lBh: 14 * pre + 10 * h + 12 * land, lBk: 56 * pre + 40 * h + 40 * land,
+        air: -54 * h, aFs: lerp(-34 * pre, 140, h) + 20 * land, aFe: 20, aBs: lerp(-30 * pre, -140, h) - 20 * land, aBe: -20, lean: 16 * pre - 4 * h + 10 * land,
+        sx: 1 + .1 * pre - .07 * h * (1 - fly) + .12 * land, sy: 1 - .12 * pre + .12 * h * (1 - fly) - .14 * land, ex: 1, _air: fly > 0 && fly < 1 };
+    },
+    turn: (u) => ({ crouch: 4 * Math.sin(u * Math.PI), aFs: 10 + 12 * Math.sin(u * Math.PI), aBs: -7 - 12 * Math.sin(u * Math.PI) }),
+  };
+  const MOVING = { walk: 1, run: 1, carry: 1 };
+  const DEFAULT_EXPR = { wave: "happy", surprised: "surprised", holdCard: "proud", read: "think", think: "think", cheer: "happy", jump: "happy", support: "happy" };
+
+  // ---------- kit 扩展 ----------
+  function kit(k) {
+    const S = k.S;
+    S.actors = S.actors || []; S.acts = S.acts || []; S.props = S.props || []; S.extraTexts = S.extraTexts || [];
+    k.actor = (look = "narrator", o = {}) => {
+      const a = { id: S.actors.length, look, x: o.x ?? 880, y: o.y ?? 530, s: o.s ?? 1, f: o.f ?? -1, g: o.g ?? (look === "narrator" ? 0 : S.g), screen: o.screen ?? (look === "narrator"),
+        narrator: o.narrator ?? (look === "narrator"), acts: [], exprs: [], looks: [], fades: [], seed: S.actors.length * 7 + 3, show: o.show ?? 0 };
+      if (o.hidden) a.fades.push({ t: -1, dur: .001, to: 0 });
+      // 场景角色：在创建时刻（它所在的镜头开始画的时候）才出场，淡入 0.3 秒
+      else if (!a.screen && S.at > 0) { a.fades.push({ t: -1, dur: .001, to: 0 }); a.fades.push({ t: S.at, dur: .3, to: 1 }); }
+      S.actors.push(a); return a;
+    };
+    k.act = (a, action, t, dur = 1, o = {}) => {
+      if (t == null) t = S.at;
+      const e = { action, t, dur, o, words: o.words || [] };
+      a.acts.push(e); S.acts.push({ actor: a.id, look: a.look, action, t, dur, words: e.words, e });
+      if (o.expr || DEFAULT_EXPR[action]) k.expr(a, o.expr || DEFAULT_EXPR[action], t, dur + .3);
+      return t;
+    };
+    k.expr = (a, name, t, dur = 1.5) => { a.exprs.push({ name, t: t ?? S.at, dur }); };
+    k.look = (a, x, y, t, dur = 1.5) => { a.looks.push({ x, y, t: t ?? S.at, dur }); };
+    k.actorFade = (a, t, dur, to) => { a.fades.push({ t, dur, to }); };
+    // 不是人演、而是场景里的东西演的动作（船被风送进港、飞机起飞、鸟飞）：只登记给 R4 检查用，画面由案例自己的动效完成
+    k.actFx = (words, t, dur, desc) => { const e = { t, dur }; S.acts.push({ actor: -1, look: desc, action: desc, t, dur, words, e, fx: true }); return t; };
+    // 道具：box 货箱 / card 词卡（text）/ book 书 / doc 文书（护照）/ scroll 卷轴；x,y = 落在地上的位置（底边中心）
+    k.prop = (kind, x, y, o = {}) => {
+      const p = { id: S.props.length, kind, x, y, text: o.text || "", g: o.g ?? S.g, ev: [], s: o.s ?? 1, hidden: !!o.hidden, color: o.color, stampAt: o.stampAt, stampText: o.stampText || "OK" };
+      if (!o.hidden && S.at > 0) { p.hidden = true; p.showAt = S.at; }   // 放在地上的道具：创建时刻才出现
+      if (p.text) S.extraTexts.push({ text: p.text, t: 0 });
+      S.props.push(p); return p;
+    };
+  }
+
+  // ---------- 播放器扩展 ----------
+  function mount(env) {
+    const { S, mk, NS } = env;
+    if (!S.actors || !S.actors.length) return null;
+    const reduced = env.reduced;
+    const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
+    // ---- 预处理：动作按时间排序；移动动作求起点；道具挂接事件 ----
+    S.actors.forEach(a => {
+      a.acts.sort((p, q) => p.t - q.t);
+      let x = a.x, f = a.f;
+      a.moves = []; a.turns = [];
+      a.acts.forEach(e => {
+        const o = e.o;
+        if (MOVING[e.action] && o.to != null) {
+          const m0 = e.action === "carry" ? (o.pick === false ? 0 : .22) : 0, m1 = e.action === "carry" ? (o.put ? .82 : 1) : 1;
+          e.m0 = m0; e.m1 = m1;
+          const dir = Math.sign(o.to - x) || f;
+          if (dir !== f) { a.turns.push({ t: e.t, dur: .22, from: f, to: dir }); f = dir; }
+          a.moves.push({ t: e.t + m0 * e.dur, dur: (m1 - m0) * e.dur, from: x, to: o.to, kind: e.action, e }); x = o.to;
+        } else if (e.action === "carry") { e.m0 = .22; e.m1 = o.put ? .82 : 1; }
+        if (e.action === "turn") { const to = o.to ?? -f; a.turns.push({ t: e.t, dur: e.dur, from: f, to }); f = to; }
+        if (e.action === "point" && o.at) { const dir = Math.sign(o.at[0] - x); if (dir && dir !== f && o.face !== false) { a.turns.push({ t: e.t - .05, dur: .2, from: f, to: dir }); f = dir; } }
+        // 道具事件
+        if (o.prop) {
+          const p = o.prop;
+          if (e.action === "carry") { p.ev.push({ t: e.t + e.dur * .2, a, anchor: "chest" }); if (o.put) p.ev.push({ t: e.t + e.dur * .92, a, drop: true }); }
+          if (e.action === "take") p.ev.push({ t: e.t + e.dur * .42, a, anchor: "hand" });
+          if (e.action === "put") p.ev.push({ t: e.t + e.dur * .55, a, drop: true });
+          if (e.action === "holdCard") { p.ev.push({ t: e.t + e.dur * .08, a, anchor: "overhead", pop: o.pop !== false }); if (o.release !== false) p.ev.push({ t: e.t + e.dur, a, gone: true }); }
+          if (e.action === "read") { p.ev.push({ t: e.t, a, anchor: "book", pop: true }); if (o.release !== false) p.ev.push({ t: e.t + e.dur, a, gone: true }); }
+          if (e.action === "support") p.ev.push({ t: e.t + e.dur * .3, a, anchor: "overhead" });
+        }
+      });
+      a.exprs.sort((p, q) => p.t - q.t);
+      // 眨眼时刻：3–5 秒随机（种子固定，拖动进度条也一样）
+      let s = a.seed, bt = 1.2; a.blinks = [];
+      const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+      while (bt < env.end + 10) { a.blinks.push(bt); bt += 3 + rnd() * 2; if (rnd() < .18) a.blinks.push(bt - (3 - .25)); }
+      a.blinks.sort((p, q) => p - q);
+    });
+    S.props.forEach(p => p.ev.sort((x, y) => x.t - y.t));
+
+    // ---- 位置 / 朝向（纯函数）----
+    function rootX(a, t) {
+      let x = a.x;
+      for (const m of a.moves) {
+        if (t < m.t) break;
+        const q = (t - m.t) / Math.max(.001, m.dur);
+        if (q >= 1) { x = m.to; continue; }
+        if (reduced) { x = q < .5 ? m.from : m.to; break; }
+        // 两端缓入缓出、中间匀速（速度连续，脚步相位跟着距离走，不打滑）
+        x = lerp(m.from, m.to, smoothRamp(q, m.kind === "run" ? .18 : .22)); break;
+      }
+      return x;
+    }
+    // 匀速段 + 两端缓入缓出（a = 加减速占比），保证速度连续
+    function smoothRamp(q, r) {
+      q = clamp(q); const v = 1 / (1 - r);   // 峰值速度
+      if (q < r) return v * q * q / (2 * r);
+      if (q > 1 - r) { const z = 1 - q; return 1 - v * z * z / (2 * r); }
+      return v * (r / 2) + v * (q - r);
+    }
+    function dist(a, t) {   // 走过的距离（驱动步伐相位，脚不打滑）
+      let d = 0;
+      for (const m of a.moves) { if (t < m.t) break; const x1 = t >= m.t + m.dur ? m.to : rootX(a, t); d += Math.abs(x1 - m.from); if (t < m.t + m.dur) break; }
+      return d;
+    }
+    function facing(a, t) {
+      let f = a.f;
+      for (const tr of a.turns) {
+        if (t < tr.t) break;
+        const q = (t - tr.t) / tr.dur;
+        if (q >= 1) { f = tr.to; continue; }
+        f = lerp(tr.from, tr.to, reduced ? (q < .5 ? 0 : 1) : eio(q)); break;
+      }
+      return f;
+    }
+    function opacity(a, t) {
+      let op = 1;
+      for (const fd of a.fades) if (t >= fd.t) op += (fd.to - op) * eio((t - fd.t) / Math.max(.001, fd.dur));
+      return op;
+    }
+    // ---- 姿态（纯函数）：IDLE + 各动作按权重叠加 ----
+    function pose(a, t, s) {
+      const p = Object.assign({}, IDLE);
+      // 呼吸
+      const br = Math.sin(t * 2 * Math.PI / 3.4 + a.seed);
+      p.aFs += br * 1.2; p.aBs -= br * 1.2; p.head += Math.sin(t * 2 * Math.PI / 5.1 + a.seed) * 1.5;
+      p.breath = br;
+      let air = false, card = false, curMove = null;
+      for (const e of a.acts) {
+        const fadeIn = Math.min(.16, e.dur / 4), fadeOut = e.o.keep ? 0 : .22;
+        if (t < e.t - .001 || t > e.t + e.dur + fadeOut + (e.o.keep || 0)) continue;
+        const u = clamp((t - e.t) / e.dur);
+        let w = Math.min(sstep((t - e.t) / fadeIn), 1);
+        if (t > e.t + e.dur + (e.o.keep || 0)) w *= 1 - sstep((t - e.t - e.dur - (e.o.keep || 0)) / fadeOut);
+        if (MOVING[e.action]) w = Math.min(w, 1);
+        const ctx = { ph: dist(a, t) / (e.action === "run" ? 150 : 86) / (a.s || 1), m0: e.m0 ?? .22, m1: e.m1 ?? 1, put: !!e.o.put, aim: 90, aimHead: 0 };
+        if (e.action === "point" && e.o.at) {
+          const f = facing(a, t), x = rootX(a, t), dx = (e.o.at[0] - x) * f, dy = e.o.at[1] - (a.y - (SHO + 58) * a.s);
+          ctx.aim = Math.max(20, Math.min(175, Math.atan2(dx, dy) / D2R)); ctx.aimHead = Math.max(-12, Math.min(12, (90 - ctx.aim) * .25));
+        }
+        let uu = u;
+        if (reduced && !MOVING[e.action]) uu = Math.max(u, Math.min(.5, u * 4));
+        const q = (ACTIONS[e.action] || ACTIONS.idle)(uu, ctx);
+        if (reduced && MOVING[e.action]) { q.lFh = q.lBh = 0; q.lFk = q.lBk = 2; }
+        for (const kk of KEYS) if (q[kk] != null) p[kk] = lerp(p[kk], q[kk], w);
+        if (q._air) air = true;
+        if (q._cardBoth) card = true;
+        if (MOVING[e.action] && u > 0 && u < 1) curMove = e;
+      }
+      p.airborne = air; p.card = card; p.move = curMove;
+      if (s && reduced) { p.air = 0; p.sx = p.sy = 1; }
+      return p;
+    }
+    // ---- 正向运动学：局部坐标（朝右，脚底 = 0,0，y 向下）----
+    const dir = deg => [Math.sin(deg * D2R), Math.cos(deg * D2R)];
+    function fk(p) {
+      const legs = {};
+      const pel0 = [0, -(THIGH + SHIN)];
+      [["F", 3.5], ["B", -3.5]].forEach(([n, ox]) => {
+        const h = p["l" + n + "h"], kn = p["l" + n + "k"];
+        const hip = [pel0[0] + ox, pel0[1]], d1 = dir(h), knee = [hip[0] + d1[0] * THIGH, hip[1] + d1[1] * THIGH];
+        const sa = h - kn, d2 = dir(sa), ank = [knee[0] + d2[0] * SHIN, knee[1] + d2[1] * SHIN];
+        legs[n] = { hip, knee, ank, h, sa };
+      });
+      // 着地：最低的脚踩在地上（腾空动作除外）→ 自动产生走路起伏和下蹲高度
+      const low = Math.max(legs.F.ank[1], legs.B.ank[1]);
+      const dy = (p.airborne ? 0 : -low) + p.crouch * 0 + p.air;
+      for (const n in legs) for (const kk of ["hip", "knee", "ank"]) legs[n][kk] = [legs[n][kk][0], legs[n][kk][1] + dy];
+      const pel = [pel0[0], pel0[1] + dy + (p.airborne ? 0 : 0)];
+      const lean = p.lean, dt = [Math.sin(lean * D2R), -Math.cos(lean * D2R)];
+      const sh = [pel[0] + dt[0] * SHO, pel[1] + dt[1] * SHO], neck = [pel[0] + dt[0] * TORSO, pel[1] + dt[1] * TORSO];
+      const arms = {};
+      [["F", 8], ["B", -10]].forEach(([n, ox]) => {
+        const s0 = [sh[0] + ox * Math.cos(lean * D2R), sh[1] + ox * Math.sin(lean * D2R)];
+        const ua = p["a" + n + "s"], fa = ua + p["a" + n + "e"], d1 = dir(ua), el = [s0[0] + d1[0] * UARM, s0[1] + d1[1] * UARM], d2 = dir(fa), hand = [el[0] + d2[0] * FARM, el[1] + d2[1] * FARM];
+        arms[n] = { sh: s0, el, hand, ua, fa };
+      });
+      return { legs, pel, sh, neck, arms, lean, head: lean * .5 + p.head };
+    }
+    // 局部 → 世界（root 平移 + 朝向镜像 + 缩放 + 挤压拉伸以脚底为原点）
+    function toWorld(a, t, pt, cache) {
+      const R = cache || rootState(a, t);
+      return [R.x + pt[0] * R.f * R.s * R.sx, R.y + pt[1] * R.s * R.sy];
+    }
+    function rootState(a, t, p) {
+      p = p || pose(a, t, true);
+      return { x: rootX(a, t), y: a.y, f: facing(a, t), s: a.s, sx: p.sx, sy: p.sy, p };
+    }
+    // 头的世界坐标（余摆驱动用，轻量版）
+    function headW(a, t) {
+      const p = pose(a, t), F = fk(p), R = { x: rootX(a, t), y: a.y, f: facing(a, t), s: a.s, sx: p.sx, sy: p.sy };
+      return toWorld(a, t, F.neck, R);
+    }
+    // 阻尼弹簧余摆（M3）：对头部加速度做卷积 → 马尾 / 领巾角度；纯函数
+    function follow(a, t, w, z, gain) {
+      const N = 16, dl = .045; let ax = 0, ay = 0;
+      const H = [];
+      for (let i = 0; i <= N + 1; i++) H.push(headW(a, t - (i - .5) * dl));
+      for (let i = 1; i <= N; i++) {
+        const tau = (i - .5) * dl, h = Math.exp(-z * tau) * Math.sin(w * tau) * dl;
+        const accX = (H[i - 1][0] - 2 * H[i][0] + H[i + 1][0]) / (dl * dl), accY = (H[i - 1][1] - 2 * H[i][1] + H[i + 1][1]) / (dl * dl);
+        ax += h * accX; ay += h * accY;
+      }
+      const vx = (H[0][0] - H[2][0]) / (2 * dl);
+      return { ax: ax * gain, ay: ay * gain, vx };
+    }
+
+    // ---- SVG：一个演员 = 一组分段，每帧只改 transform ----
+    const pathE = (parent, d, fill, w = 2.2, stroke = INK) => mk("path", { d, fill, stroke, "stroke-width": w, "stroke-linejoin": "round", "stroke-linecap": "round" }, parent);
+    const G = (parent, attrs = {}) => mk("g", attrs, parent);
+    function build(a) {
+      const L = LOOKS[a.look] || LOOKS.narrator;
+      const host = a.screen ? env.screenLayer : (a.g ? env.ensureGroup(a.g) : env.layer);
+      const R = G(host, { "data-actor": a.look });
+      const shadow = mk("ellipse", { cx: 0, cy: 0, rx: 26, ry: 4.5, fill: "#1f2937", opacity: .12 }, R);
+      const body = G(R);
+      const el = { R, shadow, body };
+      // 后腿、后臂（在身体后面）
+      const leg = (n) => {
+        const th = G(body), sh = G(body), ft = G(body);
+        pathE(th, `M-6.8,-1 L6.8,-1 Q7.4,14 6.4,${THIGH + 1} L-6,${THIGH + 1} Q-7.4,14 -6.8,-1 Z`, n === "B" ? shade(L.pants) : L.pants, 2.1);
+        pathE(sh, `M-6.2,-1 L6.2,-1 L5.6,${SHIN - 2} L-5.6,${SHIN - 2} Z`, n === "B" ? shade(L.pants) : L.pants, 2.1);
+        pathE(ft, `M-6.5,-4 Q-8,4 -1,4.5 L11,4.5 Q15.5,3.5 12.5,-1.5 Q8,-5.5 2,-5 Z`, L.shoe, 2.1);
+        if (L.shoe === "#ffffff") pathE(ft, `M-6,1.6 L13.5,1.6`, "none", 1.2);
+        return { th, sh, ft };
+      };
+      const arm = (n) => {
+        const ua = G(body), fa = G(body);
+        const jc = n === "B" ? L.jacketD : L.jacket;
+        pathE(ua, `M-5.6,-3 Q-6.4,10 -5,${UARM + 1} L5,${UARM + 1} Q6.4,10 5.6,-3 Q0,-6 -5.6,-3 Z`, jc, 2.1);
+        pathE(fa, `M-4.8,-1 L4.8,-1 L4.4,${FARM - 5} L-4.4,${FARM - 5} Z`, jc, 2.1);
+        pathE(fa, `M-4.6,${FARM - 6} L4.6,${FARM - 6} L4.2,${FARM - 2.5} L-4.2,${FARM - 2.5} Z`, L.shirt, 1.6);
+        const hand = G(fa, { transform: `translate(0,${FARM + 1})` });
+        pathE(hand, `M-4.6,-3 Q-6,3 -1.5,5.6 Q3.5,6.6 5,1.6 Q5.6,-3 1.5,-4.4 Q-2.6,-5 -4.6,-3 Z`, L.skin, 1.9);
+        return { ua, fa, hand };
+      };
+      // 马尾在最后面（比后臂还远），每帧跟着头的变换走
+      el.tail = G(body); el.tailIn = G(el.tail);
+      el.legB = leg("B"); el.armB = arm("B");
+      // 躯干（外套 + 衬衫 + 领巾）
+      el.torso = G(body);
+      pathE(el.torso, `M-12.5,3 Q-13.5,-14 -14.5,-30 Q-15,-36 -9,-38.5 L9,-38.5 Q15,-36 14.5,-30 Q13.5,-14 12.5,3 Q0,5.5 -12.5,3 Z`, L.jacket, 2.3);
+      pathE(el.torso, `M-6.5,-38 L0,-22 L6.5,-38 Z`, L.shirt, 1.6);
+      if (a.look === "narrator") {
+        pathE(el.torso, `M-6.5,-38 L-2,-18 M6.5,-38 L2,-18 M0,-20 L0,2`, "none", 1.4, "#1d5c47");
+        pathE(el.torso, `M-12,1.5 Q0,4 12,1.5 L12,5 Q0,7.5 -12,5 Z`, L.pants, 1.6);
+      } else if (a.look === "porter") {
+        pathE(el.torso, `M-13,-8 Q0,-5 13,-8 L13,-4 Q0,-1 -13,-4 Z`, "#92400e", 1.6);
+      } else {
+        pathE(el.torso, `M-6.5,-38 L-3,-16 M6.5,-38 L3,-16`, "none", 1.4, "#2b437f");
+      }
+      // 领巾结（随身体），领巾尾巴单独一组做余摆
+      el.scarfTail = G(body);
+      pathE(el.scarfTail, `M-3,0 Q-5.5,11 -3.2,23 L1,27 L4.6,22.5 Q4.8,10 3,0 Z`, L.scarf, 1.8);
+      el.neckG = G(body);
+      pathE(el.neckG, `M-4,-6 L4,-6 L4,2 L-4,2 Z`, L.skin, 1.6);
+      pathE(el.neckG, `M-7,-1 Q0,4 7,-1 L5.5,4.5 Q0,7 -5.5,4.5 Z`, L.scarf, 1.7);
+      // 头（马尾在头后面，单独一组做余摆）
+      el.headG = G(body); el.headS = G(el.headG, { transform: "scale(1.12)" });
+      if (L.style === "ponytail") {
+        pathE(el.tailIn, `M2,-1 C-12,-6 -21,6 -18,22 C-16,33 -9,40 -4,44 C-8,34 -6,24 -1,16 C3,9 5,3 2,-1 Z`, L.hair, 2.1);
+        pathE(el.tailIn, `M-12,12 Q-14,22 -9,32`, "none", 1.2);
+        pathE(el.tailIn, `M-2.2,-4.2 Q3.5,-5.5 5,1 Q.5,3 -2.8,1.6 Z`, "#f59e0b", 1.6);
+      }
+      const hd = G(el.headS);
+      // 脸
+      pathE(hd, `M-15.5,-22 Q-17,-6 -6,-1.6 Q2,1.5 9.5,-2 Q17.5,-7 16.5,-21 Q15,-36 0,-37 Q-15,-36 -15.5,-22 Z`, L.skin, 2.3);
+      pathE(hd, `M-15.2,-19 Q-20,-20 -19,-14 Q-18,-9.5 -14,-11`, L.skin, 2);
+      // 头发
+      if (L.style === "ponytail") {
+        pathE(hd, `M-16.5,-17 Q-19,-33 -6,-39.5 Q8,-44 16,-31 Q18.5,-24 17,-18 Q14.5,-27 6,-29.5 Q9,-25 7,-23 Q2,-29 -6,-28.5 Q-10,-27 -12.5,-22 Q-14,-17 -16.5,-17 Z`, L.hair, 2.2);
+        // 星星发夹
+        const st = star(8, -31.5, 4.4, 1.9);
+        pathE(hd, st, L.clip, 1.5);
+      } else if (L.style === "band") {
+        pathE(hd, `M-16.5,-17 Q-18,-34 -2,-39 Q14,-41 17,-24 Q15,-30 4,-31 Q-8,-31 -12.5,-24 Q-14,-19 -16.5,-17 Z`, L.hair, 2.2);
+        pathE(hd, `M-16.4,-25 Q0,-32 16.8,-26 L16.6,-22 Q0,-28 -16.2,-21 Z`, "#e11d48", 1.6);
+      } else {
+        pathE(hd, `M-16.5,-17 Q-18,-34 -2,-38 Q14,-40 17,-24 Q12,-30 2,-30 Q-9,-30 -13,-23 Z`, L.hair, 2.2);
+        pathE(hd, `M-22,-31 Q0,-36 22,-31 Q20,-28 0,-30 Q-20,-28 -22,-31 Z M-13,-31 Q-12,-46 0,-46 Q12,-46 13,-31 Z`, "#7c5a3a", 2);
+      }
+      // 五官：眉、眼（可眨眼、可放大）、腮红、嘴（3 口型 + 表情嘴）、汗滴
+      el.blushL = mk("ellipse", { cx: -9, cy: -11, rx: 3.6, ry: 2.2, fill: "#f9a8a8", opacity: .8 }, hd);
+      el.blushR = mk("ellipse", { cx: 12, cy: -11, rx: 3.2, ry: 2.1, fill: "#f9a8a8", opacity: .8 }, hd);
+      el.eyes = [[-5, -17], [8, -17]].map(([x, y]) => {
+        const g = G(hd, { transform: `translate(${x},${y})` });
+        const e = mk("ellipse", { cx: 0, cy: 0, rx: 2.8, ry: 3.8, fill: INK }, g);
+        const hl = mk("circle", { cx: .8, cy: -1.2, r: .9, fill: "#fff" }, g);
+        const lid = pathE(g, "", "none", 1.8);
+        return { g, e, hl, lid, x, y };
+      });
+      el.brows = [[-5, -23], [8, -23]].map(([x, y]) => pathE(hd, `M${x - 3.5},${y} Q${x},${y - 2} ${x + 3.5},${y}`, "none", 1.8, shade(L.hair, .6)));
+      el.mouth = pathE(hd, "", "#9f1239", 1.7);
+      el.tongue = mk("path", { d: "", fill: "#fb7185", opacity: 0 }, hd);
+      el.sweat = pathE(hd, `M17,-30 Q21,-24 18.5,-21.5 Q15.5,-22.5 17,-30 Z`, "#bae6fd", 1.4, "#2563eb");
+      // 前腿、前臂（在身体前面）
+      el.legF = leg("F");
+      el.propSlot = G(body);       // 抱在胸前的道具画在前臂下面
+      el.armF = arm("F");
+      // 星星笔帽马克笔（讲解员前手）
+      if (L.marker) {
+        el.marker = G(el.armF.hand);
+        pathE(el.marker, `M-2.4,-14 L2.4,-14 L2.4,7 L-2.4,7 Z`, "#2f8f6f", 1.5);
+        pathE(el.marker, `M-2.4,7 L2.4,7 L1,11 L-1,11 Z`, INK, 1.2);
+        pathE(el.marker, star(0, -16.5, 4, 1.7), "#facc15", 1.3);
+      }
+      a.el = el;
+    }
+    // 道具 SVG（局部坐标：底边中心 = 0,0）
+    function buildProp(p) {
+      const host = p.g ? env.ensureGroup(p.g) : env.layer;
+      const g = G(host, { "data-prop": p.kind });
+      const inner = G(g);
+      if (p.kind === "box") {
+        pathE(inner, `M-14,-27 L14,-27 L14,0 L-14,0 Z`, "#f3d9b1", 2.2, "#7c4a1e");
+        pathE(inner, `M-14,-21 L14,-21 M-3,-27 L-3,-21 M3,-27 L3,-21 M-9,-10 L-3,-10`, "none", 1.4, "#7c4a1e");
+      } else if (p.kind === "card") {
+        const w = Math.max(56, p.text.length * 11.5 + 22);
+        pathE(inner, `M${-w / 2},-34 L${w / 2},-34 L${w / 2},0 L${-w / 2},0 Z`, "#ffffff", 2.4);
+        const tx = mk("text", { x: 0, y: -10, "text-anchor": "middle", "font-size": 19, "font-weight": 900, "font-family": '"Courier New",Courier,monospace', fill: "#2563eb" }, inner);
+        tx.textContent = p.text; p.textEl = tx; p.w = w;
+      } else if (p.kind === "book") {
+        pathE(inner, `M0,-4 Q-10,-8 -20,-5 L-20,-25 Q-10,-28 0,-24 Q10,-28 20,-25 L20,-5 Q10,-8 0,-4 Z`, "#ffffff", 2.1);
+        pathE(inner, `M0,-24 L0,-4 M-16,-20 Q-9,-22 -4,-20 M-16,-15 Q-9,-17 -4,-15 M4,-20 Q9,-22 16,-20 M4,-15 Q9,-17 16,-15`, "none", 1.3);
+        p.page = pathE(inner, `M0,-24 Q8,-28 16,-26 L16,-6 Q8,-8 0,-4 Z`, "#f8fafc", 1.5);
+      } else if (p.kind === "doc") {
+        pathE(inner, `M-11,-26 L11,-26 L11,0 L-11,0 Z`, "#dbeafe", 2.1, "#2563eb");
+        pathE(inner, `M-6,-19 L6,-19 M-6,-13 L4,-13`, "none", 1.4, "#2563eb");
+        p.stampEl = G(inner, { opacity: 0 });
+        mk("ellipse", { cx: 1, cy: -8, rx: 9, ry: 5.5, fill: "none", stroke: "#e11d48", "stroke-width": 2 }, p.stampEl);
+        const st = mk("text", { x: 1, y: -5, "text-anchor": "middle", "font-size": 8, "font-weight": 900, "font-family": '"Courier New",Courier,monospace', fill: "#e11d48" }, p.stampEl); st.textContent = p.stampText;
+        if (p.stampAt != null) {   // 印章：从上方加速砸下 → 压扁 → 抬走（M1/M2）
+          p.hammer = G(g, { opacity: 0 });
+          pathE(p.hammer, `M-12,-30 L12,-30 L12,-18 L-12,-18 Z`, "#fda4af", 1.8);
+          pathE(p.hammer, `M-4,-46 L4,-46 L4,-30 L-4,-30 Z`, "#f3d9b1", 1.8);
+        }
+      } else if (p.kind === "scroll") {
+        pathE(inner, `M-15,-20 L15,-20 L15,0 L-15,0 Z`, "#ffffff", 2.1, "#2563eb");
+        pathE(inner, `M-17,-22 Q-19,-10 -17,2 M17,-22 Q19,-10 17,2`, "none", 2.4, "#2563eb");
+        pathE(inner, `M-9,-14 L9,-14 M-9,-8 L5,-8`, "none", 1.4, "#2563eb");
+      } else {
+        pathE(inner, `M-14,-18 L14,-18 L14,0 L-14,0 Z`, "#ede9fe", 2.1, "#2563eb");
+      }
+      p.el = g; p.inner = inner; p.host = host;
+    }
+    function star(cx, cy, r, ri) {
+      let d = "";
+      for (let i = 0; i < 10; i++) { const rr = i % 2 ? ri : r, an = -Math.PI / 2 + i * Math.PI / 5; d += (i ? "L" : "M") + (cx + Math.cos(an) * rr).toFixed(2) + "," + (cy + Math.sin(an) * rr).toFixed(2); }
+      return d + "Z";
+    }
+    function shade(hex, k = .82) {
+      const n = parseInt(hex.slice(1), 16), r = (n >> 16) * k | 0, g = ((n >> 8) & 255) * k | 0, b = (n & 255) * k | 0;
+      return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    }
+    S.actors.forEach(build);
+    S.props.forEach(buildProp);
+    const tr = (g, x, y, deg, sx = 1, sy = 1) => g.setAttribute("transform", `translate(${x.toFixed(2)},${y.toFixed(2)}) rotate(${(-deg).toFixed(2)})` + (sx !== 1 || sy !== 1 ? ` scale(${sx.toFixed(3)},${sy.toFixed(3)})` : ""));
+
+    // ---- 表情（纯函数，0.15 秒交叉过渡）----
+    function exprAt(a, t) {
+      let cur = "neutral", prev = "neutral", t0 = -9;
+      for (const e of a.exprs) {
+        if (t < e.t) break;
+        if (t <= e.t + e.dur) { prev = cur; cur = e.name; t0 = e.t; }
+        else { prev = e.name; cur = "neutral"; t0 = e.t + e.dur; }
+      }
+      const q = sstep((t - t0) / .15), A = EXPR[prev] || EXPR.neutral, B = EXPR[cur] || EXPR.neutral, o = {};
+      NUM.forEach(n => { o[n] = lerp(A[n] || 0, B[n] || 0, q); });
+      o.m = q < .5 ? A.m : B.m; o.name = cur;
+      return o;
+    }
+    // ---- 口型：朗读时按语音事件切换（onstart / onboundary / onend）；没有语音时按时间轴估算 ----
+    function visemeAt(a, t) {
+      if (!a.narrator) return 0;
+      const sp = env.api.speech;
+      if (sp && sp.live) {
+        if (!sp.on) return 0;
+        const ms = now() - (sp.b || sp.start || now());
+        if (ms < 80) return 2; if (ms < 160) return 1; if (ms < 215) return 0;
+        return [1, 2, 1, 0][Math.floor((ms - 215) / 78) % 4];
+      }
+      const says = env.says || [];
+      for (const sy of says) {
+        if (t < sy.t || t > sy.t + sy.dur) continue;
+        const tau = t - sy.t;
+        if (sy.dur - tau < .22) return 0;
+        // 先读单词（wd 秒），停一下，再读句子：每个词约 0.42 秒，词首张大嘴、词中半开、词间闭
+        if (sy.wd && tau < sy.wd) { const n = String(sy.word).split(/\s+/).length, per = (sy.wd - .4) / Math.max(1, n), ph = (tau % (per + .4 / n)) / per; return ph < .15 ? 1 : ph < .55 ? 2 : ph < .85 ? 1 : 0; }
+        const ws = sy.en.split(/\s+/), per = (sy.dur - sy.wd - .5) / ws.length, i = Math.floor((tau - sy.wd) / per), ph = ((tau - sy.wd) % per) / per;
+        if (i < 0 || i >= ws.length) return 0;
+        const syl = Math.max(1, Math.round(ws[i].replace(/[^a-z]/gi, "").length / 3.2)), ps = (ph * syl) % 1;
+        return ps < .12 ? 1 : ps < .55 ? 2 : ps < .82 ? 1 : 0;
+      }
+      return 0;
+    }
+    const isSpeaking = (a, t) => a.narrator && ((env.api.speech && env.api.speech.live && env.api.speech.on) || (env.says || []).some(sy => t >= sy.t && t <= sy.t + sy.dur - .2));
+    function mouthPath(m, v, ex) {
+      // 口型优先：读的时候 1 半开 / 2 全开；闭嘴时用表情嘴
+      if (v === 2) return [`M-4.6,-7.6 Q3,-9 10.6,-7.6 Q10,-0.5 3,0.4 Q-4,-0.5 -4.6,-7.6 Z`, 1];
+      if (v === 1) return [`M-3.6,-7 Q3,-8 9.6,-7 Q8.6,-3.2 3,-2.8 Q-2.6,-3.2 -3.6,-7 Z`, .6];
+      if (m === "o") return [`M0.6,-6.2 Q3,-10 5.4,-6.2 Q5.4,-2 3,-1.6 Q0.6,-2 0.6,-6.2 Z`, .3];
+      if (m === "grin") return [`M-4,-7.2 Q3,-6.6 10,-7.2 Q8.6,-2 3,-1.8 Q-2.6,-2 -4,-7.2 Z`, .5];
+      if (m === "side") return [`M0,-5.5 Q4,-6.4 8,-7.4`, 0];
+      if (m === "smirk") return [`M-1.5,-6 Q4,-3.6 9.5,-7.6`, 0];
+      if (m === "wavy") return [`M-2,-5 Q0.5,-7 3,-5 Q5.5,-3 8,-5`, 0];
+      return [`M-2.6,-6.6 Q3,-3.2 8.6,-6.6`, 0];
+    }
+
+    // ---- 每帧 ----
+    function render(t, info) {
+      const pen = info && info.pen;
+      S.actors.forEach(a => { a.holding = false; });
+      for (const pr of S.props) renderProp(pr, t);
+      for (const a of S.actors) {
+        const el = a.el, op = opacity(a, t);
+        el.R.setAttribute("opacity", op.toFixed(3));
+        if (op < .01) { el.R.style.display = "none"; continue; }
+        el.R.style.display = "";
+        // 姿态：躯干、腿按 t；上臂晚 0.05 秒、前臂晚 0.09 秒（重叠动作 M3）
+        const p = pose(a, t, true), pa = pose(a, t - .05), pf = pose(a, t - .09);
+        p.aFs = pa.aFs; p.aBs = pa.aBs; p.aFe = pf.aFe; p.aBe = pf.aBe;
+        const F = fk(p), x = rootX(a, t), f = facing(a, t);
+        const fs = Math.abs(f) < .22 ? .22 * Math.sign(f || 1) : f;
+        el.R.setAttribute("transform", `translate(${x.toFixed(2)},${a.y.toFixed(2)})`);
+        el.body.setAttribute("transform", `scale(${(fs * a.s * p.sx).toFixed(4)},${(a.s * p.sy).toFixed(4)})`);
+        const airH = -Math.min(0, F.pel[1] + THIGH + SHIN);
+        el.shadow.setAttribute("rx", (26 * a.s * Math.max(.45, 1 - airH / 90)).toFixed(2));
+        el.shadow.setAttribute("opacity", (.13 * Math.max(.4, 1 - airH / 80)).toFixed(3));
+        // 腿
+        for (const n of ["F", "B"]) {
+          const L = F.legs[n], E = el["leg" + n];
+          tr(E.th, L.hip[0], L.hip[1], L.h); tr(E.sh, L.knee[0], L.knee[1], L.sa);
+          tr(E.ft, L.ank[0], L.ank[1] - 3, Math.max(-25, Math.min(25, (L.sa) * .25)));
+        }
+        // 躯干（呼吸：轻微纵向起伏）
+        const breathS = 1 + .014 * p.breath;
+        el.torso.setAttribute("transform", `translate(${F.pel[0].toFixed(2)},${F.pel[1].toFixed(2)}) rotate(${F.lean.toFixed(2)}) scale(1,${breathS.toFixed(4)})`);
+        // 头：看向焦点（笔尖或 look 目标），讲话时轻微点头
+        const ex = exprAt(a, t), v = visemeAt(a, t), spk = isSpeaking(a, t);
+        let lookX = ex.lx || 0, lookY = ex.ly || 0, look = null;
+        for (const lk of a.looks) if (t >= lk.t && t <= lk.t + lk.dur) look = [lk.x, lk.y];
+        if (!look && pen && a.narrator) look = pen;
+        const hw = toWorld(a, t, F.neck, { x, y: a.y, f: fs, s: a.s, sx: p.sx, sy: p.sy });
+        let headTurn = 0;
+        if (look) {
+          const dx = (look[0] - hw[0]) * Math.sign(fs), dy = look[1] - (hw[1] - 20 * a.s);
+          const ang = Math.atan2(dy, Math.abs(dx) + 1) / D2R;
+          lookX = Math.max(-1.4, Math.min(1.6, dx / 120)); lookY = Math.max(-1.4, Math.min(1.4, dy / 120));
+          headTurn = Math.max(-8, Math.min(10, ang * .25)) * (dx < 0 ? -.4 : 1);
+        }
+        const nod = spk && !reduced ? Math.sin(t * 7.3) * 1.6 + (v === 2 ? 1.2 : 0) : 0;
+        const hdeg = F.head + ex.tilt + headTurn + nod;
+        el.neckG.setAttribute("transform", `translate(${F.neck[0].toFixed(2)},${F.neck[1].toFixed(2)}) rotate(${(F.lean * .7).toFixed(2)})`);
+        el.headG.setAttribute("transform", `translate(${(F.neck[0] + Math.sin(F.lean * D2R) * 3).toFixed(2)},${(F.neck[1] - 3).toFixed(2)}) rotate(${hdeg.toFixed(2)})`);
+        // 余摆（M3）：马尾、领巾尾巴
+        let fx = { ax: 0, ay: 0, vx: 0 };
+        if (!reduced) fx = follow(a, t, 2 * Math.PI * 1.5, 3.2, .012);
+        const sway = Math.sin(t * 2 * Math.PI / 2.6 + a.seed) * 2.5;
+        const drag = Math.max(-26, Math.min(26, -fx.vx * .09 * Math.sign(fs)));
+        const tailA = Math.max(-50, Math.min(50, -fx.ax * Math.sign(fs) * 1 + fx.ay * .4 + drag + sway - hdeg * .6));
+        el.tail.setAttribute("transform", el.headG.getAttribute("transform") + " scale(1.12) translate(-12,-34)");
+        el.tailIn.setAttribute("transform", `rotate(${tailA.toFixed(2)})`);
+        const scA = Math.max(-40, Math.min(40, -fx.ax * Math.sign(fs) * .8 + drag * .8 + sway * .6 - F.lean * .5));
+        el.scarfTail.setAttribute("transform", `translate(${(F.neck[0] + 1).toFixed(2)},${(F.neck[1] + 3).toFixed(2)}) rotate(${(F.lean + scA).toFixed(2)})`);
+        // 手臂
+        for (const n of ["F", "B"]) {
+          const A = F.arms[n], E = el["arm" + n];
+          tr(E.ua, A.sh[0], A.sh[1], A.ua); tr(E.fa, A.el[0], A.el[1], A.fa);
+        }
+        // 五官
+        let blink = 0;
+        for (const b of a.blinks) { if (b > t) break; if (t - b < .16) blink = Math.sin((t - b) / .16 * Math.PI); }
+        const eo = Math.max(.08, ex.eo * (1 - blink * .92));
+        el.eyes.forEach((E, i) => {
+          E.e.setAttribute("rx", (2.8 * ex.es).toFixed(2)); E.e.setAttribute("ry", (3.8 * ex.es * eo).toFixed(2));
+          E.g.setAttribute("transform", `translate(${(E.x + lookX * 1.1).toFixed(2)},${(E.y + lookY * 1).toFixed(2)})`);
+          E.hl.setAttribute("opacity", eo > .4 ? 1 : 0);
+          E.lid.setAttribute("d", ex.eo < .7 && blink < .5 ? `M-3.4,${(-3.4 * ex.es * eo).toFixed(2)} L3.4,${(-3.4 * ex.es * eo).toFixed(2)}` : "");
+        });
+        // 眉毛：bh 整体高低；ba 单边挑眉（左眉抬、右眉压）；bi 内端上扬（担心 / 哎呀）
+        el.brows.forEach((B, i) => {
+          const bx = i ? 8 : -5, by = -23 + ex.bh + (i ? ex.ba * .12 : -ex.ba * .2);
+          const innerY = by - ex.bi * .16, outerY = by + ex.bi * .05;
+          const lx = bx - 3.5, rx = bx + 3.5, ly = i ? innerY : outerY, ry = i ? outerY : innerY;
+          B.setAttribute("d", `M${lx},${ly.toFixed(2)} Q${bx},${(Math.min(ly, ry) - 2).toFixed(2)} ${rx},${ry.toFixed(2)}`);
+        });
+        const mp = mouthPath(ex.m, spk ? v : 0, ex);
+        el.mouth.setAttribute("d", mp[0]); el.mouth.setAttribute("fill", mp[1] ? "#9f1239" : "none");
+        el.blushL.setAttribute("opacity", (.75 * ex.blush).toFixed(2)); el.blushR.setAttribute("opacity", (.75 * ex.blush).toFixed(2));
+        el.sweat.setAttribute("opacity", ex.sweat.toFixed(2));
+        if (el.marker) el.marker.setAttribute("opacity", a.holding ? 0 : 1);
+        // 抱着 / 举着的道具画在身体里（前臂下面），跟骨架走
+        for (const pr of S.props) if (pr.holder === a) placeHeld(pr, a, F, fs, t);
+        a._F = F; a._R = { x, y: a.y, f: fs, s: a.s, sx: p.sx, sy: p.sy }; a._p = p;
+      }
+    }
+    function anchorW(a, t, kind) {
+      const p = pose(a, t, true), F = fk(p), R = { x: rootX(a, t), y: a.y, f: facing(a, t), s: a.s, sx: p.sx, sy: p.sy };
+      return { w: toWorld(a, t, localAnchor(F, kind), R), R, F };
+    }
+    const localAnchor = (F, kind) => kind === "hand" ? [F.arms.F.hand[0] + 2, F.arms.F.hand[1] + 9]
+      : kind === "overhead" ? [(F.arms.F.hand[0] + F.arms.B.hand[0]) / 2, Math.min(F.arms.F.hand[1], F.arms.B.hand[1]) - 2]
+      : kind === "book" ? [(F.arms.F.hand[0] + F.arms.B.hand[0]) / 2 + 3, (F.arms.F.hand[1] + F.arms.B.hand[1]) / 2 + 9]
+      : [(F.arms.F.hand[0] + F.arms.B.hand[0]) / 2 + 1, (F.arms.F.hand[1] + F.arms.B.hand[1]) / 2 + 13];
+    const reparent = (pr, parent) => { if (pr.el.parentNode !== parent) parent.appendChild(pr.el); };
+    // 道具状态（纯函数）：最近一个事件决定——在地上 / 挂在某人身上 / 被放下 / 收起
+    function renderProp(pr, t) {
+      if (pr.stampAt != null) {
+        const q = t - pr.stampAt;   // q<0：印章在上面落下；0–.25 压扁；之后抬走
+        const down = q < 0 ? EASEX(clamp((q + .45) / .45)) : 1, up = clamp((q - .3) / .35);
+        pr.hammer.setAttribute("opacity", (q > -.5 && q < .7 && !reduced) ? (1 - up).toFixed(2) : 0);
+        const sq = q >= 0 && q < .3 ? Math.sin(q / .3 * Math.PI) * .25 : 0;
+        pr.hammer.setAttribute("transform", `translate(0,${(-60 * (1 - down) - 40 * eio(up)).toFixed(1)}) scale(${1 + sq},${1 - sq})`);
+        pr.stampEl.setAttribute("opacity", q >= 0 ? 1 : 0);
+      }
+      let st = null;
+      for (const e of pr.ev) if (e.t <= t) st = e;
+      pr.holder = null; pr.st = st;
+      if (st && st.anchor) {
+        const q = clamp((t - st.t) / .16);
+        const prev = pr.ev.filter(e => e.t < st.t).pop();
+        if (q < 1 && !st.pop) {   // 从地上吸到手里的那一下（世界坐标里插值）
+          let x0 = pr.x, y0 = pr.y;
+          if (prev && prev.drop) { const B = anchorW(prev.a, prev.t, "chest"); x0 = B.w[0]; y0 = prev.a.y; }
+          else if (prev && prev.anchor) { const B = anchorW(prev.a, t, prev.anchor); x0 = B.w[0]; y0 = B.w[1]; }   // 从一个手位换到另一个手位
+          const A = anchorW(st.a, t, st.anchor), qq = eio(q);
+          reparent(pr, pr.host);
+          pr.el.setAttribute("transform", `translate(${lerp(x0, A.w[0], qq).toFixed(2)},${lerp(y0, A.w[1], qq).toFixed(2)}) scale(${lerp(pr.s, st.a.s, qq).toFixed(3)})`);
+          pr.el.setAttribute("opacity", 1);
+          return;
+        }
+        pr.holder = st.a; st.a.holding = true; pr.anchor = st.anchor; pr.popQ = st.pop ? clamp((t - st.t) / .3) : 1;
+        // 拿着它的人看不见了（走进城门、淡出）：道具跟着看不见；画在人身上由 placeHeld 负责
+        pr.el.setAttribute("opacity", opacity(st.a, t) < .01 ? 0 : 1);
+        if (opacity(st.a, t) < .01) { reparent(pr, pr.host); pr.holder = null; }
+        return;
+      }
+      reparent(pr, pr.host);
+      let x = pr.x, y = pr.y, sc = pr.s, op = pr.hidden && !st ? (pr.showAt != null && t >= pr.showAt ? eio((t - pr.showAt) / .3) : 0) : 1, sx = 1, sy = 1;
+      if (st && st.gone) {
+        const prev = pr.ev.filter(e => e.t < st.t && e.anchor).pop(), q = clamp((t - st.t) / .25);
+        const A = anchorW(st.a, st.t, prev ? prev.anchor : "overhead"); x = A.w[0]; y = A.w[1]; op = 1 - q; sc = pr.s * (1 - .3 * q);
+      } else if (st && st.drop) {
+        const prev = pr.ev.filter(e => e.t < st.t && e.anchor).pop();
+        const A = anchorW(st.a, st.t, prev ? prev.anchor : "chest"), q = clamp((t - st.t) / .18);
+        x = A.w[0]; y = lerp(A.w[1], st.a.y, q * q);
+        const land = Math.sin(clamp((t - st.t - .18) / .22) * Math.PI);   // 落地挤压（M2）
+        sx = 1 + .14 * land; sy = 1 - .14 * land; sc = st.a.s;
+      }
+      pr.el.setAttribute("transform", `translate(${x.toFixed(2)},${y.toFixed(2)}) scale(${(sc * sx).toFixed(3)},${(sc * sy).toFixed(3)})`);
+      pr.el.setAttribute("opacity", op.toFixed(3));
+    }
+    function placeHeld(pr, a, F, fs, t) {
+      reparent(pr, a.el.propSlot);
+      const pt = localAnchor(F, pr.anchor), q = pr.popQ < 1 ? .4 + .6 * back(pr.popQ) : 1;
+      // 身体被镜像时把道具再翻回来（词卡上的字不能反）
+      pr.el.setAttribute("transform", `translate(${pt[0].toFixed(2)},${pt[1].toFixed(2)}) scale(${(Math.sign(fs) * q).toFixed(3)},${q.toFixed(3)})`);
+      if (pr.page) pr.page.setAttribute("transform", `scale(${Math.cos(t * 1.7) > .93 ? -1 : 1},1)`);
+    }
+    return { render, rootX, pose, fk, anchorW };
+  }
+  return { kit, mount, ACTIONS, EXPR, LOOKS };
+})();
 
 // ==================== 白板脚本：竹节句 vs 树干句 5 个病句手术 ====================
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
@@ -14713,21 +15680,31 @@ const WO_PROPS = function (k) {
   const MONO = '"Courier New",Courier,monospace';
   const D = { MONO };
   let shotG = 0, shotList = [];
+  // v2（视觉标准 V1–V8 + M1–M12，k.v2() 打开）：配色收进统一调色板，吸附 / 盖章 / 擦除 / 片头换成新动效；没开 v2 的旧幕一切照旧
+  const V2 = () => !!k.S.v2;
+  const col = (v1, v2) => (V2() ? v2 : v1);
+  const PAL = k.PAL || {};
+  D.col = col;
 
   // ---------- 镜头管理：一个镜头 = 一个静态组 + 若干动的组；wipe() 一起淡出 ----------
   D.shot = () => { shotG = k.group(); shotList = [shotG]; return shotG; };
   D.sub = () => { const g = k.group(); shotList.push(g); return g; };      // 动的部分单独一组
   // 回到静态内容：开一个新的静态组（这样后画的东西在 DOM 里也在上层，不会被先画的动组盖住）
   D.back = () => { if (!shotG) { k.S.g = 0; return; } shotG = k.group(); shotList.push(shotG); };
-  D.wipe = (dur = .8) => { k.S.g = 0; const t = go(dur); shotList.forEach(g => k.fade(g, t, dur, 0)); shotList = []; shotG = 0; return t; };
+  D.wipe = (dur = .8) => {
+    k.S.g = 0;
+    if (V2()) { const t = k.erase(shotList, 1.15); shotList = []; shotG = 0; return t; }   // 板擦擦除（V8）
+    const t = go(dur); shotList.forEach(g => k.fade(g, t, dur, 0)); shotList = []; shotG = 0; return t;
+  };
 
   // ---------- 5 步溯源幕模板：标题 + 徽章 + 进度条 ----------
   const STEPS = ["① 地图", "② 场景", "③ 词族", "④ 彩蛋", "⑤ 中文", "🔮 预测"];
   let stepXs = [], stepWs = [], ring = 0, ringAt = -1;
   D.scene = (o) => {
+    if (V2() && o.card !== false) k.titleCard({ title: o.title, sub: o.sub, badges: o.badges, dur: o.cardDur });   // 统一片头（V8）
     k.header(o.sub || "", o.title, false);
     if (o.badges && o.badges.length) k.badges(o.badges);
-    const fs = 12, ws = STEPS.map(s => k.estW(s, fs) + 12), tot = ws.reduce((a, b) => a + b, 0) + 5 * (STEPS.length - 1);
+    const fs = V2() ? 13 : 12, ws = STEPS.map(s => k.estW(s, fs) + 12), tot = ws.reduce((a, b) => a + b, 0) + 5 * (STEPS.length - 1);
     let x = 948 - tot; const y = 80;
     const t0 = go(.8);
     STEPS.forEach((s, i) => {
@@ -14756,16 +15733,16 @@ const WO_PROPS = function (k) {
     const pt = (lon, lat) => [box.x + (lon - L0) / (L1 - L0) * box.w, box.y + (A1 - lat) / (A1 - A0) * box.h];
     const poly = pts => pts.map((p, i) => { const [x, y] = pt(p[0], p[1]); return (i ? "L" : "M") + x.toFixed(1) + "," + y.toFixed(1); }).join(" ") + " Z";
     // 海：底色
-    P(k.roughRect(box.x, box.y, box.w, box.h), go(.8), .8, { color: "#93c5fd", w: 2 });
-    F(k.rectD(box.x, box.y, box.w, box.h), go(.2, 0), { color: "#e0f2fe", op: 1 });
+    P(k.roughRect(box.x, box.y, box.w, box.h), go(.8), .8, { color: col("#93c5fd", PAL.blue), w: 2, alpha: col(undefined, .5) });
+    F(k.rectD(box.x, box.y, box.w, box.h), go(.2, 0), { color: col("#e0f2fe", PAL.tintBlue), op: 1 });
     const EU = [[-10, 47], [-10, 43.6], [-9, 43.4], [-9.3, 39], [-8.9, 37], [-6, 36.3], [-5.6, 36], [-2, 36.8], [0, 38.7], [0.5, 40.5], [3.2, 42], [3.1, 43.2], [5, 43.3], [7.5, 43.8], [8.9, 44.4], [10.2, 43.9], [11, 42.4], [12.5, 41.6], [14, 40.8], [15.7, 40], [15.6, 38.2], [16.1, 38], [16.6, 38.5], [17.1, 39], [16.6, 39.7], [17.3, 40.5], [18.5, 40.1], [18, 40.7], [16, 41.6], [14.1, 42.5], [13.6, 43.5], [12.3, 44.5], [12.4, 45.4], [13.7, 45.6], [15, 44.6], [16.4, 43.5], [18.1, 42.6], [19.4, 41.8], [19.4, 40.5], [20.2, 39.5], [21.1, 38.3], [21.7, 36.8], [22.5, 36.4], [23.1, 36.8], [23.2, 37.9], [24, 38.2], [22.8, 39.6], [23, 40.4], [24, 40.8], [26, 40.8], [26.3, 40.3], [27, 40.6], [29, 41.2], [28, 43.4], [29.7, 45.2], [30.5, 47]];
     const AF = [[-10, 29], [-10, 31.5], [-9.6, 32.6], [-6.8, 34], [-6, 35.8], [-5.3, 35.9], [-2, 35.1], [0, 35.8], [3, 36.8], [5, 36.8], [8.6, 36.9], [10, 37.3], [11, 37], [10.5, 36.4], [11, 35.5], [10.2, 34.5], [11, 33.3], [13.2, 32.9], [16, 31.2], [19, 30.3], [20, 30.9], [20.1, 32.2], [22, 32.8], [25, 31.6], [29.9, 31.2], [32.3, 31.2], [34.2, 31.3], [34.2, 29]];
     const AS = [[29, 41.2], [31, 41.1], [35, 42], [38, 41], [41, 41.2], [41, 29], [34.2, 29], [34.4, 31.5], [35, 32.8], [35.5, 34], [35.8, 35.5], [36, 36.6], [34.6, 36.8], [32.5, 36.1], [30.5, 36.6], [28, 36.7], [27.3, 37], [27, 38.4], [26.4, 39.5], [26.3, 40.1], [27, 40.4]];
     const ISL = [[[12.4, 37.8], [15.6, 38.3], [15.1, 36.7]], [[8.4, 41.1], [9.8, 41], [9.6, 39], [8.4, 39]], [[8.6, 43], [9.4, 42.9], [9.2, 41.4], [8.7, 41.6]], [[23.5, 35.6], [26.3, 35.2], [24, 35.1]], [[32.3, 35], [34.5, 35.6], [33.9, 34.7]]];
     const land = (pts, extra = []) => {
       const g = D.sub(), d = poly(pts);
-      P(d, go(1.1), 1.1, { color: C.brown, w: 2.2 }); F(d, go(.2, 0), { color: "#fdf6e3", op: 1 });
-      extra.forEach(isl => { const di = poly(isl); P(di, go(.25), .25, { color: C.brown, w: 1.8 }); F(di, go(.05, 0), { color: "#fdf6e3", op: 1 }); });
+      P(d, go(1.1), 1.1, { color: col(C.brown, PAL.ink), w: 2.2 }); F(d, go(.2, 0), { color: col("#fdf6e3", "#fef9c3"), op: 1 });
+      extra.forEach(isl => { const di = poly(isl); P(di, go(.25), .25, { color: col(C.brown, PAL.ink), w: 1.8 }); F(di, go(.05, 0), { color: col("#fdf6e3", "#fef9c3"), op: 1 }); });
       D.back(); return g;
     };
     const eu = land(EU, ISL.slice(0, 4)), af = land(AF), as = land(AS, ISL.slice(4));
@@ -14781,11 +15758,12 @@ const WO_PROPS = function (k) {
   };
 
   // ---------- 船（组）：吃水线中心 (x,y)，s 缩放；返回组 id ----------
-  D.boat = (x, y, s = 1, color = C.brown) => {
+  D.boat = (x, y, s = 1, color) => {
+    color = color || col(C.brown, PAL.ink);
     const g = D.sub();
     const X = v => (x + v * s).toFixed(1), Y = v => (y + v * s).toFixed(1);
     const hull = `M${X(-46)},${Y(-12)} L${X(46)},${Y(-12)} L${X(32)},${Y(8)} L${X(-34)},${Y(8)} Z`;
-    P(hull, go(.5), .5, { color, w: 2.5 }); F(hull, go(.1, 0), { color: "#fde68a", op: 1 });
+    P(hull, go(.5), .5, { color, w: 2.5 }); F(hull, go(.1, 0), { color: col("#fde68a", "#fef9c3"), op: 1 });
     P(`M${X(0)},${Y(-12)} L${X(0)},${Y(-70)}`, go(.3), .3, { color, w: 2.5 });
     const sail = `M${X(3)},${Y(-66)} Q${X(34)},${Y(-44)} ${X(3)},${Y(-18)} Z`;
     P(sail, go(.4), .4, { color: C.ink, w: 2 }); F(sail, go(.1, 0), { color: "#fff", op: 1 });
@@ -14797,7 +15775,7 @@ const WO_PROPS = function (k) {
     const g = D.sub();
     [-18, 0, 18].forEach((dy, i) => {
       const yy = y + dy, x2 = x + len - i * 8;
-      P(k.wave(x, x2, yy, 3) + ` M${x2 - 8},${yy - 6} L${x2 + 2},${yy} L${x2 - 8},${yy + 6}`, go(.35), .35, { color: "#0ea5e9", w: 2.2 });
+      P(k.wave(x, x2, yy, 3) + ` M${x2 - 8},${yy - 6} L${x2 + 2},${yy} L${x2 - 8},${yy + 6}`, go(.35), .35, { color: col("#0ea5e9", PAL.blue), w: 2.2 });
     });
     D.back(); return g;
   };
@@ -14825,25 +15803,26 @@ const WO_PROPS = function (k) {
   // ---------- 码头（组）：左端 (x,y)，宽 w ----------
   D.pier = (x, y, w = 110) => {
     const g = D.sub();
-    P(k.roughRect(x, y - 10, w, 10), go(.4), .4, { color: C.brown, w: 2.2 }); F(k.rectD(x, y - 10, w, 10), go(.1, 0), { color: "#d6a77a", op: 1 });
-    for (let i = 10; i < w; i += 30) P(k.wl(x + i, y, x + i, y + 24, .3), go(.12), .12, { color: C.brown, w: 2.5 });
+    P(k.roughRect(x, y - 10, w, 10), go(.4), .4, { color: col(C.brown, PAL.ink), w: 2.2 }); F(k.rectD(x, y - 10, w, 10), go(.1, 0), { color: col("#d6a77a", "#fef9c3"), op: 1 });
+    for (let i = 10; i < w; i += 30) P(k.wl(x + i, y, x + i, y + 24, .3), go(.12), .12, { color: col(C.brown, PAL.ink), w: 2.5 });
     D.back(); return g;
   };
   // ---------- 小城（城墙 + 房子）：左下角 (x,y)，宽 w ----------
   D.city = (x, y, w = 150, label) => {
-    P(k.roughRect(x, y - 44, w, 44), go(.6), .6, { color: C.brown, w: 2.5 }); F(k.rectD(x, y - 44, w, 44), go(.1, 0), { color: "#fef3c7", op: 1 });
+    P(k.roughRect(x, y - 44, w, 44), go(.6), .6, { color: col(C.brown, PAL.ink), w: 2.5 }); F(k.rectD(x, y - 44, w, 44), go(.1, 0), { color: col("#fef3c7", "#fef9c3"), op: 1 });
     let crenel = ""; for (let i = 0; i < w; i += 20) crenel += ` M${x + i},${y - 44} v-8 h10 v8`;
-    P(crenel, go(.4), .4, { color: C.brown, w: 2 });
+    P(crenel, go(.4), .4, { color: col(C.brown, PAL.ink), w: 2 });
     const r1 = `M${x + 22},${y - 52} l18,-22 l18,22 Z`, r2 = `M${x + w - 64},${y - 52} l22,-28 l22,28 Z`;
-    P(r1 + " " + r2, go(.4), .4, { color: C.red, w: 2 }); F(r1 + " " + r2, go(.1, 0), { color: "#fecdd3", op: 1 });
+    P(r1 + " " + r2, go(.4), .4, { color: C.red, w: 2 }); F(r1 + " " + r2, go(.1, 0), { color: col("#fecdd3", PAL.tintRed), op: 1 });
     const gate = `M${x + w / 2 - 12},${y} v-20 q12,-14 24,0 v20`;
     P(gate, go(.3), .3, { color: C.ink, w: 2 });
-    if (label) T(label, x + w / 2, y + 22, go(.4), .4, { size: 15, color: C.brown, weight: 900, anchor: "middle" });
+    if (label) T(label, x + w / 2, y + 22, go(.4), .4, { size: 15, color: col(C.brown, PAL.ink), weight: 900, anchor: "middle" });
   };
   // ---------- 货箱 / 卷轴信件（组）：中心 (x,y) ----------
-  D.crate = (x, y, color = C.brown) => {
+  D.crate = (x, y, color) => {
+    color = color || col(C.brown, PAL.ink);
     const g = D.sub();
-    P(k.roughRect(x - 13, y - 13, 26, 26), go(.3), .3, { color, w: 2.2 }); F(k.rectD(x - 13, y - 13, 26, 26), go(.1, 0), { color: "#fcd9a8", op: 1 });
+    P(k.roughRect(x - 13, y - 13, 26, 26), go(.3), .3, { color, w: 2.2 }); F(k.rectD(x - 13, y - 13, 26, 26), go(.1, 0), { color: col("#fcd9a8", "#fef9c3"), op: 1 });
     P(`M${x - 13},${y - 13} L${x + 13},${y + 13} M${x + 13},${y - 13} L${x - 13},${y + 13}`, go(.2), .2, { color, w: 1.4 });
     D.back(); return g;
   };
@@ -14868,8 +15847,8 @@ const WO_PROPS = function (k) {
     P(`M${x - 6},${y - 96} h12 v-30 h-12 Z`, go(.3), .3, { color: C.brown, w: 2.2 }); F(`M${x - 6},${y - 96} h12 v-30 h-12 Z`, go(.1, 0), { color: "#d6a77a", op: 1 });
     D.back();
     const t = go(1.8);
-    k.move(g, t, .5, 0, 74, { linear: true });
-    k.buzz(g, t + .5, .3, 2);
+    if (V2()) { k.move(g, t - .15, .15, 0, -10, { ease: "move" }); k.move(g, t, .5, 0, 84, { ease: "exit" }); k.squash(g, t + .5, .3, .2); k.sfx("pop", t + .5); }   // 预备上提 → 加速砸下 → 压扁回弹
+    else { k.move(g, t, .5, 0, 74, { linear: true }); k.buzz(g, t + .5, .3, 2); }
     if (o.into) k.S.g = o.into;     // 印记跟着文书一起走
     const ring = k.ellipse(x, y - 4, 26, 15);
     P(ring, t + .6, .25, { color: C.red, w: 3 });
@@ -14889,14 +15868,16 @@ const WO_PROPS = function (k) {
   D.chipW = (text, fs = 18) => text.length * fs * .6 + 20;
   D.snap = (prefix, root, rx, y, o = {}) => {
     const fs = o.size ?? 18, pw = D.chipW(prefix, fs), rw = D.chipW(root, fs);
-    if (!o.noRoot) k.chip(root, rx, y, null, { size: fs, color: o.rootColor || C.blue });
+    const tint = c => (V2() ? ({ [PAL.red]: PAL.tintRed, [PAL.green]: PAL.tintGreen, [PAL.blue]: PAL.tintBlue, [PAL.ink]: PAL.tintInk })[c] : undefined);
+    if (!o.noRoot) k.chip(root, rx, y, null, { size: fs, color: o.rootColor || C.blue, fill: tint(o.rootColor || C.blue) });
     const g = D.sub();
-    k.chip(prefix, rx - pw, y, null, { size: fs, color: o.color || C.purple });
+    k.chip(prefix, rx - pw, y, null, { size: fs, color: o.color || C.purple, fill: tint(o.color || C.purple) });
     D.back();
     const [dx, dy] = o.from || [-60, -50];
     k.move(g, -1, .001, dx, dy);
     const t = go(.9);
-    k.move(g, t, .6, -dx, -dy); k.buzz(g, t + .6, .25, 1.6);
+    if (V2()) { k.move(g, t, .6, -dx, -dy, { ease: "antic" }); k.squash(g, t + .6, .32, .16); k.sfx("pop", t + .6); }   // 预备后撤 → 飞过去 → 贴上压扁回弹（M1 + M2）
+    else { k.move(g, t, .6, -dx, -dy); k.buzz(g, t + .6, .25, 1.6); }
     return { x0: rx - pw, end: rx + rw, y, t };
   };
   // ---------- 节奏：画线写字整体加速，朗读和「停下来想」的时间保持原长 ----------
@@ -14905,7 +15886,12 @@ const WO_PROPS = function (k) {
   const keeps = [];
   D.hold = (sec) => { keeps.push([k.S.at, k.S.at + sec]); k.wait(sec); };
   D.finish = (f = .5) => {
-    const S = k.S, iv = keeps.concat(S.says.map(sy => [sy.t, sy.t + sy.dur + .25])).sort((a, b) => a[0] - b[0]);
+    const S = k.S, raw = keeps.concat(S.keeps || [], S.says.map(sy => [sy.t, sy.t + sy.dur + .25]));
+    // v2：人物动作（走、搬、跑……）按原速演，不压缩（否则脚步变快、像快进）
+    if (V2() && S.acts) S.acts.forEach(r => raw.push([r.t, r.t + r.dur]));
+    raw.sort((a, b) => a[0] - b[0]);
+    const iv = [];
+    raw.forEach(([a, b]) => { const l = iv[iv.length - 1]; if (l && a <= l[1]) l[1] = Math.max(l[1], b); else iv.push([a, b]); });
     const g = t => {
       if (t < 0) return t;
       let out = 0, prev = 0;
@@ -14922,6 +15908,7 @@ const WO_PROPS = function (k) {
     S.cam.forEach(c => { const t0 = c.t; c.t = g(t0); c.dur = Math.max(.001, g(t0 + c.dur) - c.t); });
     S.narr.forEach(n => { n[0] = g(n[0]); });
     S.says.forEach(sy => { sy.t = g(sy.t); });
+    if (k.remap) k.remap(g);
     S.at = g(S.at);
     // 字幕至少停留 minGap 秒：太挤的地方整体往后推
     const minGap = 2.2;
@@ -14933,6 +15920,7 @@ const WO_PROPS = function (k) {
       S.fx.forEach(fx => { if (fx.t >= 0) fx.t = sh(fx.t); });
       S.cam.forEach(c => { c.t = sh(c.t); });
       S.says.forEach(sy => { sy.t = sh(sy.t); });
+      if (k.remap) k.remap(sh);
       for (let j = i; j < S.narr.length; j++) S.narr[j][0] += d;
       S.at += d;
     }
@@ -14940,14 +15928,23 @@ const WO_PROPS = function (k) {
   return D;
 };
 
-// ==================== 单词身世 · 溯源幕 ①：port 港口 ====================
-// 分镜：docs/whiteboard/word_origins/DEPTH_AND_ANIMATION.md §6（7 个镜头）；出处：word_origins/SOURCES.md
+// ==================== 单词身世 · 溯源幕 ①：port 港口（v2 样板幕）====================
+// 分镜（带时间码、焦点、小人姿态、口播句、动作词）：docs/whiteboard/word_origins/PORT_STORYBOARD_V2.md；出处：word_origins/SOURCES.md
 // 一句话洞见：港口是罗马世界的大门；一个 port，长出了进、出、穿越、带回、机会。
+// v2 = 视觉标准 V1–V8 + 商业动画标准 M1–M12 + 讲解员小人 / 场景角色演动作（R4）。升级前的版本保留在 wo_port_classic.js（R1 零丢失）。
 WB_LAB.wo_port = [
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const grp = () => { const g = D.sub(); D.back(); return g; };                 // 动的组（跟镜头一起被擦掉）
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };  // 返回这句朗读的时间段
+      const win = sy => [sy.t + sy.wd + .15, sy.dur - sy.wd - .3];                  // 句子部分（先读单词，再读句子）
+      // ── 讲解员小人（v3a 定稿）：屏幕右下角，不跟镜头缩放；从画面外走进来 ──
+      const me = k.actor("narrator", { x: 1010, y: 538, s: .74, f: -1 });
       N("", "这一幕：一个小小的 port（港口），怎么长出一整家单词？");
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
       D.scene({ title: "port 港口", sub: "单词身世 · 欧洲文化密码", badges: ["📜", "💡"] });
       N("可信度徽章：", "📜 = 查得到出处的真实词源；💡 = 帮你记的联想画面，不是历史。");
       k.wait(.6);
@@ -14955,139 +15952,199 @@ WB_LAB.wo_port = [
       // ───── 镜头 1 · 地图：陆地中间的海 ─────
       D.step(0); D.shot();
       N("地图：", "这是欧洲、非洲、亚洲三块大陆，中间围着一片海。");
+      k.act(me, "point", S.at + .4, 2.6, { at: [330, 250] });
       const mp = D.map({ x: 40, y: 100, w: 550, h: 275 });
-      T("欧洲", ...mp.pt(-1, 45.6), go(.4), .4, { size: 18, color: C.brown, weight: 900 });
-      T("非洲", ...mp.pt(-2, 31), go(.4), .4, { size: 18, color: C.brown, weight: 900 });
-      T("亚洲", ...mp.pt(36, 38.6), go(.4), .4, { size: 18, color: C.brown, weight: 900 });
+      T("欧洲", ...mp.pt(-1, 45.6), go(.4), .4, { size: 18, color: C.ink, weight: 900 });
+      T("非洲", ...mp.pt(-2, 31), go(.4), .4, { size: 18, color: C.ink, weight: 900 });
+      T("亚洲", ...mp.pt(36, 38.6), go(.4), .4, { size: 18, color: C.ink, weight: 900 });
       T("地中海", ...mp.pt(15.5, 34.6), go(.6), .6, { size: 20, color: C.blue, weight: 900, anchor: "middle" });
       N("", "三块大陆一起往中间靠：这片海被陆地包在中间。");
       const tm = go(1.4);
       k.move(mp.eu, tm, .8, 0, 10); k.move(mp.af, tm, .8, 0, -10); k.move(mp.as, tm, .8, -10, 0);
-      k.move(mp.eu, tm + 1.4, .6, 0, -10); k.move(mp.af, tm + 1.4, .6, 0, 10); k.move(mp.as, tm + 1.4, .6, 10, 0);
+      k.move(mp.eu, tm + 1.4, .6, 0, -10, { ease: "snap" }); k.move(mp.af, tm + 1.4, .6, 0, 10, { ease: "snap" }); k.move(mp.as, tm + 1.4, .6, 10, 0, { ease: "snap" });
       N("罗马：", "罗马城就在地中海边，罗马人靠船把四周连在一起。");
-      mp.dot(12.5, 41.9, "罗马 Rome", { dx: 8, dy: -8 });
-      k.say("Rome is an old city in Italy.", { zh: "罗马是意大利的一座古城。", word: "Rome" });
-      T("Mediterranean", 615, 132, go(1), 1, { size: 21, color: C.ink, weight: 900, font: M });
-      k.egg(615 + 13 * 21 * .6 + 14, 125, { word: "Mediterranean" });
+      const rome = mp.dot(12.5, 41.9, "罗马 Rome", { dx: 8, dy: -8 });
+      const syRome = sayAt("Rome is an old city in Italy.", { zh: "罗马是意大利的一座古城。", word: "Rome" });
+      k.act(me, "point", syRome.t - .3, syRome.dur + .3, { at: rome });
+      k.hlText("Mediterranean", 615, 132, 20, { mono: true });
+      T("Mediterranean", 615, 132, go(1), 1, { size: 20, color: C.ink, weight: 900, font: M });
+      k.egg(615 + 13 * 20 * .6 + 14, 125, { word: "Mediterranean" });
       N("拆开看：", "Mediterranean = medi（中间）+ terra（陆地）。");
-      const sn = D.snap("medi", "terra", 615 + D.chipW("medi"), 160, { color: C.purple, rootColor: C.brown, from: [0, 60] });
-      T("中间", sn.x0 + D.chipW("medi") / 2, 220, go(.4), .4, { size: 16, color: C.purple, weight: 900, anchor: "middle" });
-      T("陆地", sn.x0 + D.chipW("medi") + D.chipW("terra") / 2, 220, go(.4), .4, { size: 16, color: C.brown, weight: 900, anchor: "middle" });
-      T("= 陆地中间的海", 615, 262, go(.9), .9, { size: 22, color: C.green, weight: 900 });
+      const sn = D.snap("medi", "terra", 615 + D.chipW("medi"), 160, { color: C.red, rootColor: C.blue, from: [0, 60] });
+      T("中间", sn.x0 + D.chipW("medi") / 2, 220, go(.4), .4, { size: 15, color: C.red, weight: 900, anchor: "middle" });
+      T("陆地", sn.x0 + D.chipW("medi") + D.chipW("terra") / 2, 220, go(.4), .4, { size: 15, color: C.blue, weight: 900, anchor: "middle" });
+      k.hlText("= 陆地中间的海", 615, 262, 22, { color: C.hlGreen });
+      const tSea = go(.9);
+      T("= 陆地中间的海", 615, 262, tSea, .9, { size: 22, color: C.green, weight: 900 });
+      k.act(me, "surprised", tSea + .6, 1.3);                                         // 恍然大悟（M8）
       k.badge("📜", 615, 298);
       k.egg(622, 332, { note: true });
       k.say("Medi means middle, and terra means land.", { zh: "medi 是「中间」，terra 是「陆地」。", word: "medi terra", blocks: ["medi", "terra"] });
       k.say("The Mediterranean Sea is in the middle of the land.", { zh: "地中海在陆地的中间。", word: "Mediterranean", egg: ["Mediterranean"], blocks: ["medi", "terra"] });
       N("", "四周都是陆地，船从哪儿都能到 → 港口就特别重要。");
-      T("四周都是陆地 → 船来船往 → 港口最重要", 40, 420, go(1.4), 1.4, { size: 20, color: C.orange, weight: 900 });
+      T("四周都是陆地 → 船来船往 → 港口最重要", 40, 420, go(1.4), 1.4, { size: 20, color: C.green, weight: 900 });
+      k.act(me, "nod", S.at - .4, .8);
       k.wait(1.2);
       D.wipe();
 
       // ───── 镜头 2 · 进港：顺风 = 机会 ─────
       D.step(1); D.shot();
       N("场景：", "一艘罗马商船在海上，岸边是港口小城。");
-      // 岸 + 小城 + 码头
-      const shore = "M640,250 Q628,320 650,430 L948,430 L948,250 Z";
-      P(shore, go(.8), .8, { color: C.brown, w: 2.5 }); F(shore, go(.2, 0), { color: "#fdf6e3", op: 1 });
+      const shore = "M640,250 Q628,320 650,430 L936,430 L936,250 Z";
+      P(shore, go(.8), .8, { color: C.ink, w: 2.5 }); F(shore, go(.2, 0), { color: "#fefce8", op: 1 });
       D.city(700, 300, 200, "港口小城");
       D.pier(560, 340, 100);
-      P(k.wave(40, 620, 348, 3) + " " + k.wave(60, 600, 380, 3) + " " + k.wave(40, 620, 412, 3), go(.8), .8, { color: "#7dd3fc", w: 2 });
-      k.chip("port", 572, 186, null, { size: 22, color: C.blue });
+      P(k.wave(40, 620, 348, 3) + " " + k.wave(60, 600, 380, 3) + " " + k.wave(40, 620, 412, 3), go(.8), .8, { color: C.blue, w: 2, alpha: .45 });
+      k.chip("port", 572, 186, null, { size: 22, color: C.blue, fill: C.tintBlue });
       T("港口", 572 + D.chipW("port", 22) / 2, 240, go(.4), .4, { size: 15, color: C.blue, weight: 900, anchor: "middle" });
       const boat = D.boat(110, 345, .9);
       const wind = D.wind(20, 300, 70);
       N("风：", "顺风从后面推着船，一路把船吹进港口。");
-      const tb = go(3.4);
-      k.path(boat, tb, 3.2, [[180, -8], [330, 0], [395, -4]]);
-      k.path(wind, tb, 3.2, [[180, -8], [330, 0], [380, -4]]); k.fade(wind, tb + 2.8, .5, 0);
-      k.say("The wind takes the ship into the port.", { zh: "风把船送进港口。", word: "port" });
+      k.wait(.3);
+      // 读到 takes 时船正被风推着走（R4：风 + 船演「送进港口」）
+      const syW = sayAt("The wind takes the ship into the port.", { zh: "风把船送进港口。", word: "port" });
+      k.path(boat, syW.t + .1, syW.dur - .1, [[180, -8], [330, 0], [395, -4]]);
+      k.path(wind, syW.t + .1, syW.dur - .1, [[180, -8], [330, 0], [380, -4]]); k.fade(wind, syW.t + syW.dur - .5, .5, 0);
+      k.actFx(["takes"], syW.t + .1, syW.dur - .1, "风推着船进港");
+      k.look(me, 420, 330, syW.t, syW.dur);
       N("机会：", "拉丁语 ob portum = 「朝着港口（吹）」——顺风进港，就是好时机。");
-      const s2 = D.snap("ob", "port", 60 + D.chipW("ob"), 112, { from: [-10, 60] });
+      const s2 = D.snap("ob", "port", 60 + D.chipW("ob"), 112, { from: [-10, 60], color: C.red, rootColor: C.blue });
+      k.hlText("= opportunity", s2.end + 12, 136, 22, { mono: true });
       T("= opportunity", s2.end + 12, 136, go(.9), .9, { size: 22, color: C.green, weight: 900, font: M });
       k.egg(s2.end + 12 + 13 * 22 * .6 + 14, 128, { word: "opportunity" });
       T("原来指「朝着港口吹的顺风」→ 好时机、机会", 60, 180, go(1.4), 1.4, { size: 18, color: C.ink, weight: 700 });
       k.badge("📜", 60, 214);
-      k.say("Ob portum means toward the port.", { zh: "ob portum（拉丁语）= 朝着港口。", word: "ob portum", blocks: ["ob"] });
-      k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "opportunity", egg: ["opportunity"] });
+      const book1 = k.prop("book", 0, 0, { g: 0, hidden: true });
+      const syOb = sayAt("Ob portum means toward the port.", { zh: "ob portum（拉丁语）= 朝着港口。", word: "ob portum", blocks: ["ob"] });
+      k.act(me, "read", syOb.t - .2, syOb.dur + .1, { prop: book1 });              // 翻开拉丁语词典读
+      const syOp = sayAt("This is a good opportunity.", { zh: "这是一个好机会。", word: "opportunity", egg: ["opportunity"] });
+      k.expr(me, "proud", syOp.t, syOp.dur);
       k.wait(.8);
       D.wipe();
 
-      // ───── 镜头 3 · 搬运：方向前缀 + port = 一家人 ─────
+      // ───── 镜头 3 · 搬运：方向前缀 + port = 一家人（搬运工演 import / export，船演 transport，信使演 report）─────
       D.step(2); D.shot();
       N("搬运：", "港口天天在搬货。拉丁语 portare = 搬运，和 portus（港口）是亲戚。");
-      D.city(50, 240, 150, "城里");
-      P(k.wl(215, 245, 940, 245, 1), go(.6), .6, { color: "#7dd3fc", w: 2.5 });
-      P(k.wave(230, 930, 262, 3), go(.5), .5, { color: "#7dd3fc", w: 2 });
-      const ship3 = D.boat(470, 238, .85);
-      void ship3;
-      P(`M820,240 L820,190 L850,175 L880,190 L880,240`, go(.5), .5, { color: C.blue, w: 2.2 });
-      T("别的港口", 850, 160, go(.4), .4, { size: 15, color: C.blue, weight: 900, anchor: "middle" });
-      T("拉丁语 portare = 搬运", 50, 296, go(.9), .9, { size: 18, color: C.blue, weight: 900 });
-      k.badge("📜", 260, 296);
-      k.say("Portus means port, and portare means carry.", { zh: "portus = 港口，portare = 搬运（拉丁语）。", word: "portus portare" });
+      D.city(40, 250, 150, "城里");
+      P(k.wl(24, 250, 330, 250, 1), go(.5), .5, { color: C.ink, w: 2.5 });
+      D.pier(300, 250, 70);
+      P(k.wl(330, 250, 936, 250, 1), go(.6), .6, { color: C.blue, w: 2.5, alpha: .6 });
+      P(k.wave(380, 930, 266, 3), go(.5), .5, { color: C.blue, w: 2, alpha: .45 });
+      const ship3 = D.boat(440, 248, .85);
+      const crate3 = D.crate(446, 226); k.hide(crate3);
+      P(`M820,250 L820,200 L850,185 L880,200 L880,250`, go(.5), .5, { color: C.blue, w: 2.2 });
+      T("别的港口", 850, 172, go(.4), .4, { size: 15, color: C.blue, weight: 900, anchor: "middle" });
+      T("拉丁语 portare = 搬运", 40, 296, go(.9), .9, { size: 18, color: C.blue, weight: 900 });
+      k.badge("📜", 40 + k.estW("拉丁语 portare = 搬运", 18) + 14, 296);
+      const book2 = k.prop("book", 0, 0, { g: 0, hidden: true });
+      k.act(me, "read", S.at - 3.2, 3.0, { prop: book2 });
       const col = [50, 500], row = [314, 386], rootX = i => col[i % 2] + 90;   // 词根块在每一列对齐不动
-      // ① im：货箱从船上进城
+      // 搬运工（场景角色，和小人同一套骨架）：两个人，一进一出
+      const gP = grp();
+      const boxA = k.prop("box", 356, 250, { g: gP, s: .7 }), boxB = k.prop("box", 122, 250, { g: gP, s: .7, hidden: true });
+      const boxC = k.prop("box", 352, 250, { g: gP, s: .7, hidden: true }), boxD = k.prop("box", 122, 250, { g: gP, s: .7, hidden: true });
+      const pA = k.actor("porter", { x: 384, y: 250, s: .7, f: -1, g: gP });
+      const pB = k.actor("porter", { x: 116, y: 250, s: .7, f: 1, g: gP, hidden: true });
+      k.look(me, 250, 210, S.at, 30);
+      const syC = sayAt("Portus means port, and portare means carry.", { zh: "portus = 港口，portare = 搬运（拉丁语）。", word: "portus portare" });
+      let [w0, wd] = win(syC);
+      k.act(pA, "carry", w0 - .3, wd + .3, { prop: boxA, to: 262, put: true, words: ["carry"] });
+      // ① im：搬进城
       N("im- 进：", "货箱从船上搬进城里 → import（进口）。");
-      const c1 = D.crate(450, 222);
-      k.path(c1, go(1.8), 1.7, [[-60, -40], [-200, -40], [-250, -2]]);
-      k.fade(c1, go(.4), .4, 0);
-      const w1 = D.snap("im", "port", rootX(0), row[0], { from: [-40, -70] });
+      const w1 = D.snap("im", "port", rootX(0), row[0], { from: [-40, -70], color: C.red, rootColor: C.blue });
       T("= import 进口", w1.end + 10, row[0] + 24, go(.8), .8, { size: 19, color: C.green, weight: 900 });
-      k.say("Import means to carry things in.", { zh: "import = 把东西搬进来。", word: "im", blocks: ["im"] });
-      // ② ex：货箱从城里搬出上船
+      const syIm = sayAt("Import means to carry things in.", { zh: "import = 把东西搬进来。", word: "im", blocks: ["im"] });
+      [w0, wd] = win(syIm);
+      k.act(pA, "carry", w0 - .4, wd + .4, { prop: boxA, to: 118, words: ["import", "carry"] });
+      k.actorFade(pA, w0 + wd - .1, .35, 0);                                        // 走进城门
+      // ② ex：搬出城
       N("ex- 出：", "货箱从城里搬出去、装上船 → export（出口）。");
-      const c2 = D.crate(205, 222);
-      k.path(c2, go(1.8), 1.7, [[50, -40], [190, -40], [240, -2]]);
-      k.fade(c2, go(.4), .4, 0);
-      const w2 = D.snap("ex", "port", rootX(1), row[0], { from: [-40, -70] });
+      const w2 = D.snap("ex", "port", rootX(1), row[0], { from: [-40, -70], color: C.red, rootColor: C.blue });
       T("= export 出口", w2.end + 10, row[0] + 24, go(.8), .8, { size: 19, color: C.green, weight: 900 });
-      k.say("Export means to carry things out.", { zh: "export = 把东西搬出去。", word: "ex", blocks: ["ex"] });
-      k.say("We import fruit and export tea.", { zh: "我们进口水果，出口茶叶。", word: "import export" });
+      const syEx = sayAt("Export means to carry things out.", { zh: "export = 把东西搬出去。", word: "ex", blocks: ["ex"] });
+      [w0, wd] = win(syEx);
+      k.actorFade(pB, w0 - .6, .3, 1); boxB.showAt = w0 - .6;
+      k.act(pB, "carry", w0 - .3, wd + .3, { prop: boxB, to: 330, put: true, words: ["export", "carry"] });
+      // 一进一出同时演：A 从码头搬进城，B 从城门搬出来
+      const pA2 = k.actor("porter", { x: 384, y: 250, s: .7, f: -1, g: gP, hidden: true });
+      const pB2 = k.actor("porter", { x: 116, y: 250, s: .7, f: 1, g: gP, hidden: true });
+      const syIE = sayAt("We import fruit and export tea.", { zh: "我们进口水果，出口茶叶。", word: "import export" });
+      [w0, wd] = win(syIE);
+      k.actorFade(pB, w0 - .5, .3, 0);
+      k.actorFade(pA2, w0 - .5, .3, 1); k.actorFade(pB2, w0 - .5, .3, 1); boxC.showAt = boxD.showAt = w0 - .5;
+      k.act(pA2, "carry", w0 - .2, wd + .3, { prop: boxC, to: 118, words: ["import"] });
+      k.act(pB2, "carry", w0 - .2, wd + .3, { prop: boxD, to: 300, put: true, words: ["export"] });
+      k.actorFade(pA2, w0 + wd, .3, 0); k.actorFade(pB2, w0 + wd + .4, .3, 0);
       // ③ trans：船把货运到对岸别的港口
       N("trans- 穿过：", "船穿过大海，把货运到别的港口 → transport（运输）。");
-      const c3 = D.crate(470, 222);
-      k.path(c3, go(2), 1.9, [[150, -30], [370, -2]]);
-      const w3 = D.snap("trans", "port", rootX(0), row[1], { from: [-40, -70] });
+      const w3 = D.snap("trans", "port", rootX(0), row[1], { from: [-40, -70], color: C.red, rootColor: C.blue });
       T("= transport 运输", w3.end + 10, row[1] + 24, go(.8), .8, { size: 19, color: C.green, weight: 900 });
-      k.say("Transport means to carry things across.", { zh: "transport = 把东西运过去。", word: "trans", blocks: ["trans"] });
-      // ④ re：消息被带回城里
+      const tLoad = go(.6);
+      k.fade(crate3, tLoad, .4, 1); k.pop(crate3, tLoad, .4, { from: .5 });
+      k.fade(gP, tLoad, .4, 0);                                                         // 码头上的箱子装上船了
+      const syTr = sayAt("Transport means to carry things across.", { zh: "transport = 把东西运过去。", word: "trans", blocks: ["trans"] });
+      [w0, wd] = win(syTr);
+      k.path(ship3, w0 - .2, wd + .2, [[160, -8], [330, 0]]); k.path(crate3, w0 - .2, wd + .2, [[160, -8], [330, 0]]);
+      k.actFx(["transport", "carry"], w0 - .2, wd + .2, "船载着货箱穿过大海");
+      k.look(me, 700, 220, w0, wd);
+      const syTr2 = sayAt("Ships transport food across the sea.", { zh: "船把食物运过大海。", word: "transport" });
+      [w0, wd] = win(syTr2);
+      k.path(ship3, w0 - .2, wd + .2, [[-160, 8], [-330, 0]]); k.path(crate3, w0 - .2, wd + .2, [[-160, 8], [-330, 0]]);
+      k.actFx(["transport"], w0 - .2, wd + .2, "船把货运回来");
+      // ④ re：信使把消息带回城里
       N("re- 回：", "别的港口发生了什么？把消息带回城里 → report（报告）。");
-      const sc = D.scroll(850, 205);
-      k.path(sc, go(2.2), 2.1, [[-300, -70], [-600, -60], [-725, 15]]);
-      const w4 = D.snap("re", "port", rootX(1), row[1], { from: [-40, -70] });
+      const w4 = D.snap("re", "port", rootX(1), row[1], { from: [-40, -70], color: C.red, rootColor: C.blue });
       T("= report 报告", w4.end + 10, row[1] + 24, go(.8), .8, { size: 19, color: C.green, weight: 900 });
-      k.say("Report means to carry news back.", { zh: "report = 把消息带回来。", word: "re", blocks: ["re"] });
-      k.say("Ships transport food across the sea.", { zh: "船把食物运过大海。", word: "transport" });
-      k.say("He reports the news to the city.", { zh: "他把消息报告给城里。", word: "report" });
+      const gM = grp();
+      const scr = k.prop("scroll", 0, 0, { g: gM, s: .7, hidden: true });
+      const msg = k.actor("traveler", { x: 352, y: 250, s: .7, f: -1, g: gM, hidden: true });
+      const syRe = sayAt("Report means to carry news back.", { zh: "report = 把消息带回来。", word: "re", blocks: ["re"] });
+      [w0, wd] = win(syRe);
+      k.actorFade(msg, w0 - .9, .3, 1);
+      k.act(msg, "take", w0 - .7, .6, { prop: scr });
+      k.act(msg, "run", w0 - .05, wd + .05, { to: 150, words: ["report", "carry"] });
+      const syRe2 = sayAt("He reports the news to the city.", { zh: "他把消息报告给城里。", word: "report" });
+      [w0, wd] = win(syRe2);
+      k.act(msg, "holdCard", w0 - .3, wd + .3, { prop: scr, pop: false, words: ["reports"] });
       N("", "词根 port 一直不变，变的只是前面表示方向的小块。");
-      T("词根不变，方向前缀一换，就是一个新词", 50, 470, go(1.4), 1.4, { size: 20, color: C.orange, weight: 900 });
+      k.hlText("词根不变，方向前缀一换，就是一个新词", 40, 470, 20, { color: C.hlGreen });
+      T("词根不变，方向前缀一换，就是一个新词", 40, 470, go(1.4), 1.4, { size: 20, color: C.green, weight: 900 });
+      k.act(me, "nod", S.at - .3, .8);
       k.wait(1);
       D.wipe();
 
-      // ───── 镜头 4 · 港口关卡：盖章 = passport ─────
+      // ───── 镜头 4 · 港口关卡：出示文书 → 盖章 → 走过关卡 = passport ─────
       D.step(2); D.shot();
       N("关卡：", "旅客要从港口出入国境，得先拿文书给守卫看、盖个章。");
-      P(k.wl(40, 340, 940, 340, 1), go(.6), .6, { color: C.ink, w: 2.5 });
+      P(k.wl(24, 340, 936, 340, 1), go(.6), .6, { color: C.ink, w: 2.5 });
       const arch = "M600,340 L600,170 Q680,110 760,170 L760,340 M626,340 L626,184 Q680,140 734,184 L734,340";
-      P(arch, go(1), 1, { color: C.brown, w: 3 });
-      T("港口关卡", 680, 128, go(.5), .5, { size: 17, color: C.brown, weight: 900, anchor: "middle" });
-      P(k.wave(780, 940, 300, 3) + " " + k.wave(790, 930, 322, 3), go(.5), .5, { color: "#7dd3fc", w: 2 });
-      const pp = D.person(420, 338);
-      const doc = D.sub();
-      P(k.roughRect(452, 250, 64, 46), go(.4), .4, { color: C.ink, w: 2 }); F(k.rectD(452, 250, 64, 46), go(.1, 0), { color: "#fff", op: 1 });
-      P(`M460,262 h40 M460,272 h30`, go(.2), .2, { color: C.grey, w: 1.5 });
-      D.back();
+      P(arch, go(1), 1, { color: C.ink, w: 3 });
+      T("港口关卡", 680, 128, go(.5), .5, { size: 18, color: C.ink, weight: 900, anchor: "middle" });
+      P(k.wave(780, 936, 300, 3) + " " + k.wave(790, 930, 322, 3), go(.5), .5, { color: C.blue, w: 2, alpha: .45 });
+      const gT = grp();
+      const doc = k.prop("doc", 0, 0, { g: gT, s: .75, hidden: true });
+      const tv = k.actor("traveler", { x: 140, y: 340, s: .78, f: 1, g: gT });
+      k.act(tv, "walk", go(2.2), 2.2, { to: 520 });
+      const syShow = sayAt("Show me your passport, please.", { zh: "请出示你的护照。", word: "passport" });
+      [w0, wd] = win(syShow);
+      k.act(tv, "holdCard", syShow.t + .2, syShow.dur + .6, { prop: doc, release: false, expr: "happy", words: ["show"] });
+      k.look(me, 520, 230, syShow.t, syShow.dur + 1.5);
       N("盖章：", "啪！章盖上了：可以通过港口了。");
-      D.stamp(488, 284, "OK", { into: doc });
-      k.say("OK! You can pass now.", { zh: "好了！你现在可以通过了。", word: "OK pass" });
-      const tw = go(2);
-      k.move(pp, tw, 1.8, 260, 0); k.move(doc, tw, 1.8, 260, 0);
+      doc.stampAt = go(1.1) + .7; doc.stampText = "OK";
+      k.sfx("pop", doc.stampAt);
+      k.act(me, "surprised", doc.stampAt - .1, 1.1);
+      const syPass = sayAt("OK! You can pass now.", { zh: "好了！你现在可以通过了。", word: "OK pass" });
+      [w0, wd] = win(syPass);
+      k.act(tv, "take", syPass.t + .1, .7, { prop: doc });
+      k.act(tv, "walk", w0 - .1, wd + 1.4, { to: 880, words: ["pass"] });
+      k.wait(1.2);
       N("pass + port：", "pass（通过）+ port（港口）= 通过港口的许可 → passport（护照）。");
-      const s4 = D.snap("pass", "port", 60 + D.chipW("pass"), 384, { from: [-20, -60] });
+      const s4 = D.snap("pass", "port", 60 + D.chipW("pass"), 384, { from: [-20, -60], color: C.red, rootColor: C.blue });
+      k.hlText("= passport 护照", s4.end + 12, 408, 22);
       T("= passport 护照", s4.end + 12, 408, go(.9), .9, { size: 22, color: C.green, weight: 900 });
       T("通过港口、出入国境的许可", 60, 458, go(1), 1, { size: 18, color: C.ink, weight: 700 });
-      k.badge("📜", 300, 458);
-      k.say("Show me your passport, please.", { zh: "请出示你的护照。", word: "passport" });
+      k.badge("📜", 60 + k.estW("通过港口、出入国境的许可", 18) + 14, 458);
+      k.act(me, "point", S.at - .2, 1.6, { at: [s4.end + 60, 400] });
       k.wait(.6);
       D.wipe();
 
@@ -15095,9 +16152,10 @@ WB_LAB.wo_port = [
       D.step(3); D.shot();
       k.camera(go(.01, 0), .01, 480, 285, 1.5);
       N("穿越：", "镜头拉近：古代的海港，一艘帆船靠岸。");
+      k.act(me, "turn", S.at + .2, .5); k.act(me, "turn", S.at + 1.2, .5);           // 转个圈：穿越！
       const seaL = D.sub();
-      T("古代：港口", 480, 160, go(.6), .6, { size: 20, color: C.brown, weight: 900, anchor: "middle" });
-      P(k.wave(250, 720, 300, 3) + " " + k.wave(260, 700, 322, 3), go(.6), .6, { color: "#7dd3fc", w: 2 });
+      T("古代：港口", 480, 160, go(.6), .6, { size: 20, color: C.ink, weight: 900, anchor: "middle" });
+      P(k.wave(250, 720, 300, 3) + " " + k.wave(260, 700, 322, 3), go(.6), .6, { color: C.blue, w: 2, alpha: .45 });
       D.back();
       const oldShip = D.boat(420, 290, 1);
       const oldPier = D.pier(560, 300, 110);
@@ -15107,26 +16165,46 @@ WB_LAB.wo_port = [
       N("变身：", "帆船变成飞机，海港变成机场：古今是同一个道理。");
       const tm5 = D.morph(oldShip, plane, 1.2);
       k.fade(oldPier, tm5 + .4, 1.2, 0); k.fade(seaL, tm5 + .4, 1.2, 0); k.fade(twr, tm5 + .4, 1.2, 1); k.fade(nowL, tm5 + .8, .6, 1);
-      k.move(plane, tm5 + 1.8, 1.6, 40, -40);
+      k.act(me, "jump", tm5 + .5, 1.2);                                              // 哇——变成飞机了！
       k.wait(1.2);
       k.camera(go(1.8), 1.8, 480, 272, 1);
       N("air + port：", "air（空中）+ port（港口）= 空中的港口 → airport（机场）。");
-      const s5 = D.snap("air", "port", 60 + D.chipW("air"), 440, { from: [-20, -60] });
-      T("= airport 机场（空中的港口）", s5.end + 12, 464, go(1.2), 1.2, { size: 21, color: C.green, weight: 900 });
-      k.badge("📜", 478, 464);
-      k.say("Birds fly in the air.", { zh: "鸟儿在空中飞。", word: "air" });
-      k.say("We take a plane at the airport.", { zh: "我们在机场坐飞机。", word: "airport" });
+      const s5 = D.snap("air", "port", 60 + D.chipW("air"), 440, { from: [-20, -60], color: C.red, rootColor: C.blue });
+      k.hlText("= airport 机场（空中的港口）", s5.end + 12, 464, 20);
+      T("= airport 机场（空中的港口）", s5.end + 12, 464, go(1.2), 1.2, { size: 20, color: C.green, weight: 900 });
+      k.badge("📜", s5.end + 12 + k.estW("= airport 机场（空中的港口）", 20) + 10, 464);
+      // 鸟飞过天空（R4：fly）
+      const birds = D.sub();
+      [[0, 0], [34, 14], [66, -6]].forEach(([dx, dy]) => P(`M${120 + dx},${140 + dy} q8,-9 15,0 q7,-9 15,0`, go(.15, .02), .15, { color: C.ink, w: 2.2 }));
+      D.back(); k.hide(birds);
+      const syFly = sayAt("Birds fly in the air.", { zh: "鸟儿在空中飞。", word: "air" });
+      [w0, wd] = win(syFly);
+      k.fade(birds, syFly.t, .3, 1);
+      k.path(birds, syFly.t, syFly.dur, [[220, -20], [470, 10], [700, -16]]);
+      for (let i = 0; i < 7; i++) k.squash(birds, syFly.t + .2 + i * (syFly.dur - .3) / 7, (syFly.dur - .3) / 7, .22);
+      k.fade(birds, syFly.t + syFly.dur - .3, .3, 0);
+      k.actFx(["fly"], syFly.t, syFly.dur, "三只鸟扇着翅膀飞过天空");
+      // 旅客走向飞机（take a plane）→ 飞机起飞
+      const gTk = grp();
+      const tv2 = k.actor("traveler", { x: 250, y: 304, s: .55, f: 1, g: gTk, hidden: true });
+      const syTake = sayAt("We take a plane at the airport.", { zh: "我们在机场坐飞机。", word: "airport" });
+      [w0, wd] = win(syTake);
+      k.actorFade(tv2, syTake.t - .2, .3, 1);
+      k.act(tv2, "walk", w0 - .4, wd * .6, { to: 392, words: ["take"] });
+      k.actorFade(tv2, w0 + wd * .6 - .5, .4, 0);
+      k.path(plane, w0 + wd * .55, wd * .45 + .8, [[140, -12], [300, -70], [420, -170]], { ease: "in" });
+      k.actFx(["take"], w0 + wd * .55, wd * .45 + .8, "旅客登机、飞机起飞");
       k.wait(.6);
       D.wipe();
 
       // ───── 镜头 6 · 定格总结图 + 中文对照 ─────
       D.step(4);
       N("总结：", "港口是罗马世界的大门；一个 port 长出了进、出、穿越、带回、机会。");
-      k.chip("port", 439, 98, null, { size: 26, color: C.blue });
+      k.chip("port", 444, 98, null, { size: 22, color: C.blue, fill: C.tintBlue });
       P(`M445,128 Q330,140 250,160 M515,128 Q630,140 710,160`, go(.6), .6, { color: C.grey, w: 2 });
       // 左：港口线
-      P(k.roughRect(30, 162, 430, 160), go(.6), .6, { color: C.brown, w: 2 });
-      T("港口线：portus（港口）", 46, 192, go(.8), .8, { size: 19, color: C.brown, weight: 900 });
+      P(k.roughRect(30, 162, 430, 160), go(.6), .6, { color: C.ink, w: 2 });
+      T("港口线：portus（港口）", 46, 192, go(.8), .8, { size: 19, color: C.ink, weight: 900 });
       k.badge("📜", 300, 192);
       T("port 港口 · airport 机场", 46, 236, go(.8), .8, { size: 19, color: C.ink, weight: 900 });
       T("passport 护照", 46, 276, go(.6), .6, { size: 19, color: C.ink, weight: 900 });
@@ -15140,41 +16218,74 @@ WB_LAB.wo_port = [
       T("transport 运输 · report 报告", 516, 276, go(.8), .8, { size: 19, color: C.ink, weight: 900 });
       const quiz = D.sub(); T("sup + port = ？（考考你）", 516, 310, go(.6), .6, { size: 19, color: C.grey, weight: 900 }); D.back();
       N("亲戚词：", "portus 和 portare 是同一个古老词根长出的亲戚，不是同一个词。");
+      k.act(me, "point", S.at, 1.4, { at: [245, 240] }); k.act(me, "point", S.at + 1.6, 1.4, { at: [715, 240] });
       k.badge("💡", 30, 360);
-      T("两条线是亲戚（同一个古老词根），不是同一个词；动画用港口场景把它们串起来记", 124, 360, go(1.6), 1.6, { size: 16, color: C.ink, weight: 700 });
+      T("两条线是亲戚（同一个古老词根），不是同一个词；动画用港口场景把它们串起来记", 124, 360, go(1.6), 1.6, { size: 15, color: C.ink, weight: 700 });
       N("中文对照：", "中文也用一个「口」字串起来：港口、进口、出口、口岸。");
-      T("🀄 中文也用一个「口」串起来：港口 · 进口 · 出口 · 口岸", 30, 404, go(1.6), 1.6, { size: 19, color: C.purple, weight: 900 });
-      T("（这是对照，不是同源）", 520, 404, go(.6), .6, { size: 14, color: C.grey });
-      k.say("A port is a door to the world.", { zh: "港口是通向世界的大门。", word: "port" });
+      T("🀄 中文也用一个「口」串起来：港口 · 进口 · 出口 · 口岸", 30, 404, go(1.6), 1.6, { size: 19, color: C.ink, weight: 900 });
+      T("（这是对照，不是同源）", 530, 404, go(.6), .6, { size: 14, color: C.grey });
+      const card = k.prop("card", 0, 0, { g: 0, text: "port", hidden: true });
+      const syDoor = sayAt("A port is a door to the world.", { zh: "港口是通向世界的大门。", word: "port" });
+      k.act(me, "holdCard", syDoor.t - .3, syDoor.dur + .5, { prop: card });
       k.wait(.6);
 
       // ───── 镜头 7 · 预测：sup + port = ? ─────
       D.step(5);
       N("预测：", "考考你：sup（从下面）+ port（扛、搬）= ？先想 3 秒！");
-      P(k.roughRect(16, 438, 928, 92), go(.8), .8, { color: C.green, w: 2.5 });
-      F(k.rectD(16, 438, 928, 92), go(.2, 0), { color: "#ecfdf5", op: .9 });
-      T("🔮 sup（从下面）+ port（扛、搬）=", 36, 474, go(1.4), 1.4, { size: 21, color: C.ink, weight: 900 });
-      const qm = D.sub(); T("？", 392, 476, go(.3), .3, { size: 30, color: C.red, weight: 900 }); D.back();
+      P(k.roughRect(16, 438, 824, 92), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(16, 438, 824, 92), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 sup（从下面）+ port（扛、搬）=", 36, 474, go(1.4), 1.4, { size: 20, color: C.ink, weight: 900 });
+      const qm = D.sub(); T("？", 392, 478, go(.3), .3, { size: 32, color: C.red, weight: 900 }); D.back();
+      k.act(me, "think", S.at, 3.1);
       D.hold(3);
       N("揭晓：", "support = 从下面把东西托住 → 支持。");
-      k.fade(qm, go(.3), .3, 0);
-      T("support 支持", 392, 476, go(.9), .9, { size: 24, color: C.green, weight: 900, font: M });
+      const tRev = go(.3);
+      k.fade(qm, tRev, .3, 0);
+      k.hlText("support 支持", 392, 476, 22, { mono: true, color: C.hlGreen });
+      T("support 支持", 392, 476, go(.9), .9, { size: 22, color: C.green, weight: 900, font: M });
       k.fade(quiz, go(.3), .3, 0);
       T("sup + port = support 支持 ✔", 516, 310, go(.8), .8, { size: 19, color: C.green, weight: 900 });
-      T("从下面托住 → 支持、帮助", 36, 514, go(1), 1, { size: 17, color: C.grey, weight: 700 });
-      k.badge("📜", 250, 514);
-      // 小图：手从下面托住箱子
-      const bx = D.crate(780, 470, C.brown);
-      P(`M752,506 L808,506 M762,506 L766,488 M798,506 L794,488`, go(.4), .4, { color: C.purple, w: 3 });
-      P(`M720,520 L720,486 M714,494 L720,484 L726,494`, go(.3), .3, { color: C.green, w: 2.5 });
-      k.move(bx, go(.8), .6, 0, -6);
-      // 把总结图里的「？」也换成答案
-      k.say("Support means to hold something up from below.", { zh: "support = 从下面把东西托住。", word: "sup", blocks: ["sup"] });
-      k.say("My friends support me.", { zh: "我的朋友们支持我。", word: "support" });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      T("从下面托住 → 支持、帮助", 36, 514, go(1), 1, { size: 15, color: C.grey, weight: 700 });
+      k.badge("📜", 36 + k.estW("从下面托住 → 支持、帮助", 15) + 12, 514);
+      // 小人从下面把箱子托起来（hold up / support）
+      const box7 = k.prop("box", 0, 0, { g: 0, hidden: true });
+      const sySup = sayAt("Support means to hold something up from below.", { zh: "support = 从下面把东西托住。", word: "sup", blocks: ["sup"] });
+      k.act(me, "support", sySup.t - .2, sySup.dur + .3, { prop: box7, words: ["hold", "support"] });
+      // 朋友们一起托住（My friends support me）
+      const gF = grp();
+      const box8 = k.prop("box", 0, 0, { g: gF, hidden: true, s: .55 });
+      const f1 = k.actor("porter", { x: 728, y: 524, s: .5, f: 1, g: gF, hidden: true });
+      const f2 = k.actor("traveler", { x: 790, y: 524, s: .5, f: -1, g: gF, hidden: true });
+      const syFr = sayAt("My friends support me.", { zh: "我的朋友们支持我。", word: "support" });
+      k.actorFade(f1, syFr.t - .4, .3, 1); k.actorFade(f2, syFr.t - .4, .3, 1);
+      k.act(f1, "support", syFr.t - .2, syFr.dur + 1.2, { prop: box8, words: ["support"] });
+      k.act(f2, "support", syFr.t - .1, syFr.dur + 1.1, { words: ["support"] });
       N("口诀：", "港口一扇门，进出穿回都靠 port；sup 托住就是 support！");
+      D.hold(2.5);
+
+      // ───── 收尾金句卡（统一样式，定格可截图复习）─────
+      k.quoteCard({ insight: "港口是罗马世界的大门：一个 port，长出了进、出、穿越、带回、机会。", rhyme: "港口一扇门，进出穿回都靠 port；sup 托住就是 support！", foot: "📖 单词身世 · port 港口" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
       D.hold(2.5);
       D.finish(.42);
     },
+    // 分镜动作词清单（R4）：每个动作词由谁演、怎么演；r2check.py 逐个对照 k.act / k.actFx 登记，并检查和朗读同步
+    actionWords: [
+      { word: "takes", act: "风推着船进港（场景：风 + 船）" },
+      { word: "carry", act: "搬运工弯腰抱起箱子、走、放下" },
+      { word: "import", act: "搬运工把箱子从码头搬进城门" },
+      { word: "export", act: "搬运工把箱子从城门搬出到码头" },
+      { word: "transport", act: "船载着货箱穿过大海、再运回来" },
+      { word: "report", act: "信使拿起卷轴跑回城" },
+      { word: "reports", act: "信使在城门举起卷轴报告" },
+      { word: "show", act: "旅客举起护照给人看" },
+      { word: "pass", act: "旅客拿着盖好章的护照走过关卡" },
+      { word: "fly", act: "三只鸟扇着翅膀飞过天空" },
+      { word: "take", act: "旅客走向飞机登机，飞机起飞" },
+      { word: "hold", act: "讲解员从下面把箱子托起来" },
+      { word: "support", act: "讲解员托举箱子；两个朋友一起托住" },
+    ],
     terms: [
       ["词源", "一个词是从哪里来的、原来是什么意思（单词的「身世」）。"],
       ["词根", "单词里表示核心意思、不变的那一块，比如 port。"],
@@ -15196,7 +16307,7 @@ function wbSpeechOK() { return typeof window !== "undefined" && "speechSynthesis
 function wbStopSpeech() {
   if (wbState.sp) wbState.sp.dead = true;
   wbState.sp = null;
-  if (wbState.player) wbState.player.hl = null;
+  if (wbState.player) { wbState.player.hl = null; wbState.player.speech = null; }
   try { if (wbSpeechOK()) window.speechSynthesis.cancel(); } catch (e) {}
 }
 function wbSpeak(i, sy) {
@@ -15209,11 +16320,17 @@ function wbSpeak(i, sy) {
     const mkU = txt => { const u = new SpeechSynthesisUtterance(txt); u.lang = st.accent || "en-US"; u.rate = Number(st.speechRate) || .85; u.volume = Number.isFinite(Number(st.volume)) ? Number(st.volume) : 1; return u; };
     const starts = []; let pos = 0;
     sy.en.split(/\s+/).forEach(w => { const j = sy.en.indexOf(w, pos); starts.push(j); pos = j + w.length; });
+    // 语音事件 → 讲解员口型（onstart 张嘴、onboundary 每个词重新张嘴、onend 闭嘴）+ v2 时间轴跟着语音走
+    const live = { live: false, on: false, b: 0, i, phase: "", j: -1 };
+    sp.live = live; sp.t0 = performance.now();
+    if (wbState.player) wbState.player.speech = live;
+    const mark = (ph, j) => { if (sp.dead) return; live.live = true; live.on = ph !== "done"; live.phase = ph; if (j != null) live.j = j; live.b = performance.now(); if (wbState.syncLog) wbState.syncLog.push({ i, ph, j: live.j, at: live.b }); };
     const sent = mkU(sy.en);
-    sent.onboundary = e => { if (sp.dead || !wbState.player) return; let w = 0; for (let j = 0; j < starts.length; j++) if (e.charIndex >= starts[j]) w = j; sp.gotB = true; wbState.player.hl = { i, w }; };
-    sent.onend = () => { sp.done = true; if (!sp.dead && wbState.player && sp.gotB) wbState.player.hl = { i, w: -1 }; };
-    sent.onerror = () => { sp.done = true; if (!sp.dead && wbState.player) wbState.player.hl = null; };   // 没声音：退回按时间估算高亮
-    if (sy.word) { const wu = mkU(sy.word); wu.onerror = () => {}; window.speechSynthesis.speak(wu); }
+    sent.onstart = () => mark("sent", 0);
+    sent.onboundary = e => { if (sp.dead || !wbState.player) return; let w = 0; for (let j = 0; j < starts.length; j++) if (e.charIndex >= starts[j]) w = j; sp.gotB = true; wbState.player.hl = { i, w }; mark("sent", w); };
+    sent.onend = () => { sp.done = true; mark("done"); live.on = false; if (!sp.dead && wbState.player && sp.gotB) wbState.player.hl = { i, w: -1 }; };
+    sent.onerror = () => { sp.done = true; live.live = false; live.on = false; if (!sp.dead && wbState.player) wbState.player.hl = null; };   // 没声音：退回按时间估算高亮和口型
+    if (sy.word) { const wu = mkU(sy.word); wu.onstart = () => mark("word"); wu.onboundary = () => { if (live.phase === "word") live.b = performance.now(); }; wu.onend = () => { if (live.phase === "word") { live.on = false; live.phase = "gap"; } }; wu.onerror = () => {}; window.speechSynthesis.speak(wu); }
     window.speechSynthesis.speak(sent);
   } catch (e) { sp.done = true; }
 }
@@ -15266,6 +16383,7 @@ function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {
           <svg id="${svgId}" data-tab="${tab}" data-case="${i}" style="width:100%; height:auto; aspect-ratio:960/600; display:block;"></svg>
           <div style="display:flex; align-items:center; gap:10px; padding:8px 12px; background:#f8fafc; border-top:1px solid #e2e8f0;">
             <button id="wbPlay" onclick="wbToggle()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#059669; color:#fff; border:0;">⏸ 暂停</button>
+            <button id="wbSfxBtn" onclick="wbSfxToggle()" title="音效（马克笔、弹出、叮）开关，和朗读分开" style="display:none; padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#fef9c3; color:#854d0e; border:1px solid #fde047;">🔔 音效</button>
             <button id="wbVoiceBtn" onclick="wbVoiceToggle()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0;">🔊 朗读</button>
             <button onclick="wbReplay()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#e2e8f0; color:#0f172a; border:0;">↺ 重播</button>
             <input id="wbSeek" type="range" min="0" max="1000" value="0" oninput="wbSeekTo(this.value)" style="flex:1;">
@@ -15303,14 +16421,28 @@ function startWBLoop(stage, slot) {
       const sp = wbState.sp;
       if (sp && !sp.done && !sp.manual) {
         const sy = p.says[sp.i];
+        // v2：时间轴跟着语音事件走（误差目标 ≤ 0.2 秒）：读到第 j 个词时，时间轴停在「第 j 个词」的预留区间里，
+        // 落后就 4 倍速追上、超前就停住等下一个 onboundary；没有收到任何语音事件（设备没语音）就按原来的预留时长走
+        if (p.v2 && sp.live) {
+          const L = sp.live, n = sy.en.split(/\s+/).length, per = (sy.dur - sy.wd - .5) / n, est = j => sy.t + sy.wd + .25 + j * per;
+          let lo = -1e9, hi = 1e9;
+          if (!L.live && performance.now() - sp.t0 < 1500) hi = sy.t + .04;                 // 等 onstart（最多 1.5 秒）
+          else if (L.phase === "word") hi = sy.t + Math.max(.05, sy.wd - .1);
+          else if (L.phase === "gap") { lo = sy.t + sy.wd - .3; hi = sy.t + sy.wd + .2; }
+          else if (L.phase === "sent") { lo = est(Math.max(0, L.j)); hi = L.j + 1 < n ? est(L.j + 1) - .03 : sy.t + sy.dur - .05; }
+          if (t1 < lo) t1 = Math.min(lo, t0 + dt * 4);
+          if (t1 > hi) t1 = Math.max(t0, hi);
+        }
         // 预留时间用完了还没读完：时间轴停住等它，最多再等 4 秒（防止设备不回 onend 卡死）
         if (t1 > sy.t + sy.dur) { sp.hold += dt; if (sp.hold < 4) t1 = Math.max(t0, sy.t + sy.dur); }
       }
       if (wbState.voice) for (let i = 0; i < p.says.length; i++) if (p.says[i].t > t0 && p.says[i].t <= t1) { wbSpeak(i, p.says[i]); break; }
+      if (p.v2) for (const nm of p.sfxBetween(t0, t1)) wbSfxPlay(nm);
       wbState.t = t1;
       if (wbState.t > p.end) { wbState.t = 0; wbStopSpeech(); }
     }
     p.render(wbState.t);
+    if (p.v2) wbSfxScratch(wbState.playing && p.drawing, !!(wbState.sp && !wbState.sp.done));
     const seek = document.getElementById("wbSeek"), tm = document.getElementById("wbTime");
     if (seek) seek.value = Math.round(wbState.t / p.end * 1000);
     if (tm) tm.textContent = wbState.t.toFixed(1) + "s / " + p.end.toFixed(0) + "s";
@@ -15320,15 +16452,66 @@ function startWBLoop(stage, slot) {
 }
 function wbSyncButton() {
   const b = document.getElementById("wbPlay"); if (b) b.textContent = wbState.playing ? "⏸ 暂停" : "▶ 播放";
+  const fx = document.getElementById("wbSfxBtn"); if (fx) { fx.textContent = wbSfx.on ? "🔔 音效" : "🔕 音效"; fx.style.display = wbState.player && wbState.player.v2 ? "" : "none"; }
   const v = document.getElementById("wbVoiceBtn"); if (v) { v.textContent = wbState.voice ? "🔊 朗读" : "🔇 静音"; v.style.display = wbState.player && wbState.player.says && wbState.player.says.length ? "" : "none"; }
 }
 function wbToggle() {
+  wbSfxInit();
   wbState.playing = !wbState.playing;
   try { if (wbSpeechOK()) { if (wbState.playing) window.speechSynthesis.resume(); else window.speechSynthesis.pause(); } } catch (e) {}
   wbSyncButton();
 }
-function wbReplay() { wbStopSpeech(); wbState.t = 0; wbState.playing = true; if (wbState.player) wbState.player.resetPen(); wbSyncButton(); }
+function wbReplay() { wbSfxInit(); wbStopSpeech(); wbState.t = 0; wbState.playing = true; if (wbState.player) wbState.player.resetPen(); wbSyncButton(); }
 function wbSeekTo(v) { if (!wbState.player) return; wbStopSpeech(); wbState.t = v / 1000 * wbState.player.end; wbState.player.resetPen(); }
+
+// ---------- 音效（V7）：Web Audio 现场合成，不带任何音频文件；一键静音（和朗读开关分开）；朗读时自动压低 ----------
+// 马克笔沙沙（画线写字时的带通噪声）、弹出「啵」、答对 / 金句卡「叮」、板擦「唰」。默认音量很低。
+var wbSfx = { on: (function () { try { return localStorage.getItem("wbSfx") !== "0"; } catch (e) { return true; } })(), ctx: null, master: null, scratch: null, buf: null, duck: 1 };
+function wbSfxInit() {
+  if (wbSfx.ctx) { if (wbSfx.ctx.state === "suspended") wbSfx.ctx.resume().catch(() => {}); return; }
+  const AC = typeof window !== "undefined" && (window.AudioContext || window.webkitAudioContext);
+  if (!AC) return;
+  try {
+    const c = new AC(), m = c.createGain(); m.gain.value = .16; m.connect(c.destination);
+    const buf = c.createBuffer(1, c.sampleRate, c.sampleRate), d = buf.getChannelData(0);
+    let s = 7; for (let i = 0; i < d.length; i++) { s = (s * 9301 + 49297) % 233280; d[i] = s / 116640 - 1; }
+    const src = c.createBufferSource(); src.buffer = buf; src.loop = true;
+    const bp = c.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 2600; bp.Q.value = .9;
+    const g = c.createGain(); g.gain.value = 0; src.connect(bp); bp.connect(g); g.connect(m); src.start();
+    Object.assign(wbSfx, { ctx: c, master: m, scratch: g, buf });
+  } catch (e) { wbSfx.ctx = null; }
+}
+if (typeof document !== "undefined") document.addEventListener("pointerdown", function wbSfxGesture() { wbSfxInit(); }, { passive: true });
+function wbSfxToggle() {
+  wbSfxInit();
+  wbSfx.on = !wbSfx.on;
+  try { localStorage.setItem("wbSfx", wbSfx.on ? "1" : "0"); } catch (e) {}
+  if (!wbSfx.on && wbSfx.scratch) wbSfx.scratch.gain.setTargetAtTime(0, wbSfx.ctx.currentTime, .02);
+  wbSyncButton();
+}
+function wbSfxScratch(drawing, speaking) {
+  if (!wbSfx.ctx || !wbSfx.scratch) return;
+  wbSfx.duck = speaking ? .3 : 1;
+  const want = wbSfx.on && drawing ? .05 * wbSfx.duck : 0;
+  if (Math.abs((wbSfx.lastScratch ?? -1) - want) > .001) { wbSfx.scratch.gain.setTargetAtTime(want, wbSfx.ctx.currentTime, .04); wbSfx.lastScratch = want; }
+}
+function wbSfxPlay(name) {
+  if (!wbSfx.on || !wbSfx.ctx || wbSfx.ctx.state !== "running") return;
+  const c = wbSfx.ctx, t = c.currentTime, out = c.createGain(), k = wbSfx.duck;
+  out.connect(wbSfx.master);
+  if (name === "pop") {
+    const o = c.createOscillator(); o.type = "sine"; o.frequency.setValueAtTime(620, t); o.frequency.exponentialRampToValueAtTime(240, t + .1);
+    out.gain.setValueAtTime(.45 * k, t); out.gain.exponentialRampToValueAtTime(.001, t + .14); o.connect(out); o.start(t); o.stop(t + .16);
+  } else if (name === "ding") {
+    [1318, 1976].forEach((f, i) => { const o = c.createOscillator(); o.type = "sine"; o.frequency.value = f; o.connect(out); o.start(t + i * .07); o.stop(t + .9); });
+    out.gain.setValueAtTime(.001, t); out.gain.exponentialRampToValueAtTime(.32 * k, t + .02); out.gain.exponentialRampToValueAtTime(.001, t + .85);
+  } else if (name === "erase") {
+    const src = c.createBufferSource(); src.buffer = wbSfx.buf; const bp = c.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 900; bp.Q.value = .7;
+    src.connect(bp); bp.connect(out);
+    out.gain.setValueAtTime(.001, t); for (let i = 0; i < 6; i++) { out.gain.linearRampToValueAtTime(.22 * k, t + i * .16 + .06); out.gain.linearRampToValueAtTime(.05 * k, t + i * .16 + .15); }
+    out.gain.linearRampToValueAtTime(.001, t + 1.05); src.start(t); src.stop(t + 1.1);
+  }
+}
 // ---------- 「📖 单词身世」总枢：页面 + 白板舞台（接线方式同第一性原理总枢） ----------
 // 白板案例登记在 WB_LAB.<场景 id>（如 wo_port）；insert_wb.py 的 WO_READY 列表决定写进主文件的场景。
 // 没登记的场景显示「即将上线」。章节内容来源：docs/whiteboard/word_origins/DESIGN.md、europe_culture/DESIGN.md。

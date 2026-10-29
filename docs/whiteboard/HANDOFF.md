@@ -13,7 +13,7 @@
 | 1 | R2 朗读覆盖检查脚本 `src/r2check.py` + `src/r2check.js`（同时做 R4 动作覆盖检查） | ✅ 见下 |
 | 2 | port 幕补齐 R2（每个英文词 / 词块：单独朗读 + 例句） | ✅ 朗读 9 → 21 句；`r2check.py wo_port` 25 个词 / 词块全部 ✔读 ✔句 |
 | 3 | 讲解员小人（v3a 定稿，SVG 骨架 + 动作库 v1 + 5 表情 + 3 口型） | ✅ `src/wb_actor.js`；演示 `cases/narrator_demo.js`（preview.html?tab=narrator_demo&case=0/1/2） |
-| 4 | port 幕 R4：动作词全部由小人 / 角色演出来，与朗读同步 | 待做 |
+| 4 | port 幕 R4：动作词全部由小人 / 角色演出来，与朗读同步 | 🔧 第一版已接入：`r2check.py wo_port` R4 13/13 ✔（登记 + 与朗读重叠）；逐张截图精修中 |
 | 5 | 引擎 V1–V8 + M1–M12（向后兼容，旧幕回归） | 🔧 引擎 v2 已提交（`k.v2()` 打开才生效；旧 63 幕 SVG 逐字节不变）；port 接入调整中 |
 | 6 | 升级前后录屏 + 关键帧对比 → 给用户审片 | 待做 |
 
@@ -30,7 +30,9 @@
   - 审图：`/workspace/work/mx_shots/narrator_actions_v1.png`（13 个动作定格）、`narrator_expressions_v1.png`（5 表情）。
 - ✅ `cases/wo_props.js` v2 分支（只在 `k.v2()` 时生效）：配色收进 PAL；`D.wipe` → 板擦擦除；`D.scene` → 先出统一片头卡；`D.snap` → 预备后撤 + 贴上压扁回弹 + 「啵」；`D.stamp` → 预备上提、加速砸下、压扁；`D.finish` 不压缩人物动作和片头（`S.keeps`），并通过 `k.remap` 一起改人物 / 擦除 / 音效时间。
 - ✅ R1 零丢失：升级前（已补齐 R2）的 port 原样保存为 `cases/wo_port_classic.js`（`WB_LAB.wo_port_classic`，不进 App，可随时回退）；`r2check.js` 也扫描道具上的文字（词卡）。
-- 下一步：port v2（`cases/wo_port.js`）接入并逐张截图修 → 录屏和对比图。
+- 🔧 port v2 第一版（`cases/wo_port.js`，已写进主文件）：片头卡 + 小人走进来挥手；地图镜头小人指地中海 / 罗马、恍然大悟；进港镜头船在读 takes 时被风推进港、小人翻词典读 ob portum；搬运镜头两个搬运工演 carry/import/export（弯腰抱起 → 走 → 放下 / 走进城门）、船载货 transport 往返、信使拿卷轴跑回城 report、在城门举卷轴 reports；关卡镜头旅客走来、举护照 show、盖章、拿着护照走过关卡 pass；穿越镜头小人转身、变身时跳起来、鸟飞 fly、旅客登机飞机起飞 take；总结镜头小人举「port」词卡；预测镜头小人思考 → 欢呼，托举箱子 hold/support，两个朋友一起托 support；收尾金句卡 + 小人得意点头。分镜动作词清单写在案例 `actionWords`。
+- 已知待修（截图自审发现）：场景角色 / 道具出场时机已改为「镜头开始时」淡入；被拿着的道具在人淡出后隐藏（已修）；其余逐张看。
+- 下一步：逐张截图修 port v2 → 写分镜文档 `word_origins/PORT_STORYBOARD_V2.md` → 录屏（升级前 db13720 / 升级后）和关键帧对比 → fps、同步误差实测。
 
 **朗读覆盖检查用法**（主文件里有全部词库数据，所以先 `insert_wb.py` 再查）：
 ```
