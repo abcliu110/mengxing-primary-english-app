@@ -2,7 +2,7 @@
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
 // 版面：左上 3×3 时×体矩阵 · 右上时间轴（过去/现在/将来）+ 镜头图 · 中间公式和 4 个例句 · 信号词 · 陷阱 · 底部结论框。
 // v2 升级（2026-10-30，决策 24）：逐个案例升引擎 v2 + 讲解员（每案例：时间轴 + 格子 / 公式 + 前两句 / 后两句 / 信号词 + 陷阱 + 结论 四个镜头 → 🔮 预测 → 金句卡），版面工具 TM_V2；升级前整份文件原样保存在 cases/tense_matrix_classic.js。依赖 wo_props。
-// 进度：①② 已升 v2；③–⑤ 仍是旧版（TM_KIT），全部升完后删 TM_KIT。
+// 进度：①②③ 已升 v2；④⑤ 仍是旧版（TM_KIT），全部升完后删 TM_KIT。
 const TM_KIT = function (k) {
   const { C, P, T, F, go, wl, ellipse, rectD, roughRect, estW } = k;
   const MONO = '"Courier New",Courier,monospace';
@@ -314,6 +314,39 @@ const TM_V2 = function (k, D) {
       T(ask, 64, 286, go(1), 1, { size, color: C.ink, weight: 900, font: MONO });
     },
     reveal(text) { T(text, 64, 330, go(1), 1, { size: Math.min(22, 720 / (text.length * .6)), color: C.green, weight: 900, font: MONO }); },
+    // 闪光（相机快门）：中心 (x,y)，先画好藏起来；blink(g, t) 在 t 时刻闪一下
+    flash(x, y) {
+      const g = D.sub(); let d = "";
+      for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4, r0 = 7, r1 = i % 2 ? 13 : 19; d += ` M${(x + Math.cos(a) * r0).toFixed(1)},${(y + Math.sin(a) * r0).toFixed(1)} L${(x + Math.cos(a) * r1).toFixed(1)},${(y + Math.sin(a) * r1).toFixed(1)}`; }
+      k.hide(g);
+      P(d.trim(), go(.05, 0), .05, { color: C.ink, w: 2.2 });
+      F(ellipse(x, y, 6, 6), go(.05, 0), { color: C.hlYellow, op: 1 });
+      D.back();
+      return g;
+    },
+    blink(g, t) { k.fade(g, t, .12, 1); k.fade(g, t + .45, .25, 0); },
+    // 博物馆（柱子 + 三角顶）：底边左端 (x,y)，宽 w
+    museum(x, y, w = 170) {
+      const roof = `M${x - 10},${y - 96} L${x + w / 2},${y - 132} L${x + w + 10},${y - 96} Z`;
+      P(roof, go(.4), .4, { color: C.ink, w: 2.5 }); F(roof, go(.1, 0), { color: C.tintInk, op: 1 });
+      P(k.wl(x - 6, y - 96, x + w + 6, y - 96, .4) + " " + k.wl(x - 6, y, x + w + 6, y, .4), go(.3), .3, { color: C.ink, w: 3 });
+      for (let i = 0; i < 4; i++) P(k.wl(x + 18 + i * (w - 36) / 3, y - 92, x + 18 + i * (w - 36) / 3, y - 4, .3), go(.12), .12, { color: C.ink, w: 4 });
+      T("博物馆", x + w / 2, y - 104, go(.3), .3, { size: 13, color: C.grey, weight: 900, anchor: "middle" });
+    },
+    // 公交车（组）：车底左端 (x,y)
+    bus(x, y) {
+      const g = D.sub();
+      P(roughRect(x, y - 52, 120, 42), go(.5), .5, { color: C.blue, w: 2.5 }); F(rectD(x, y - 52, 120, 42), go(.1, 0), { color: C.tintBlue, op: 1 });
+      [0, 1, 2, 3].forEach(i => P(roughRect(x + 10 + i * 27, y - 46, 20, 14), go(.08), .08, { color: C.blue, w: 1.6 }));
+      [x + 26, x + 94].forEach(wx => { P(ellipse(wx, y - 8, 9, 9), go(.15), .15, { color: C.ink, w: 2.5 }); F(ellipse(wx, y - 8, 9, 9), go(.05, 0), { color: C.ink, op: 1 }); });
+      D.back(); return g;
+    },
+    // 站牌：杆底 (x,y)，牌子写 label
+    stop(x, y, label = "车站") {
+      P(k.wl(x, y, x, y - 70, .3), go(.3), .3, { color: C.ink, w: 3 });
+      P(roughRect(x - 26, y - 92, 52, 24), go(.3), .3, { color: C.green, w: 2.2 }); F(rectD(x - 26, y - 92, 52, 24), go(.1, 0), { color: C.tintGreen, op: 1 });
+      T(label, x, y - 74, go(.3), .3, { size: 13, color: C.green, weight: 900, anchor: "middle" });
+    },
     // 场景小件：地面线
     ground(x0, x1, y) { P(wl(x0, y, x1, y, .6), go(.3), .3, { color: C.ink, w: 2 }); },
     // 足球（组）：中心 (x,y)
@@ -686,59 +719,152 @@ WB_LAB.tense_matrix = [
       ["心理状态词", "表示心里感觉、想法的词，比如 like、know、want、have（拥有），通常不用进行时。"]
     ]
   },
-  // ───────── ③ 一般过去时 ─────────
+  // ───────── ③ 一般过去时（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/tense_matrix_classic.js（R1 零丢失）。原一屏拆成 4 个镜头（时间轴 + 格子 + 老照片 / 公式 + 博物馆两句 / 公交车 + was·were / 信号词 + did 陷阱 + 结论）+ 🔮 预测 + 金句卡；
+  // R4：读到 I visited the museum and took many photos 时场景小旅客走到博物馆前、举起相机拍照（快门闪）；读到 The bus stopped 时公交车开过来停在站牌前；
+  // We went there 时讲解员走一段；Go, went 时再走一段；预测题 Did you play football 时讲解员跳。
   {
     build(k) {
-      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      k.v2();
+      const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = TM_V2(k, D), A = h.A;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "昨天、上周末发生的事，英语就像翻开一张老照片。");
-      k.header("过去 × 一般体", "③ 一般过去时", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "③ 一般过去时", sub: "过去 × 一般体", badges: ["💡"], steps: ["① 时间轴", "② 时×体格子", "③ 公式", "④ 例句", "⑤ 信号词·陷阱", "🔮 预测"], cardDur: 3.6 });
+
+      // ───── 镜头 1 · 时间轴 + 格子 + 老照片 ─────
+      D.step(0); D.shot();
       h.axis();
+      k.say("Past, now, future. Yesterday.", { zh: "过去、现在、将来。昨天。", word: "Past Now Future yesterday" });
+      D.step(1);
       N("一般过去时：", "在矩阵里，它是「过去」这一列和「一般」这一行交叉的格子。");
-      h.matrix(0, 0, "一般过去时");
+      const cell = h.matrix(0, 0, "一般过去时");
+      k.act(me, "point", S.at - .8, 1.2, { at: cell });
       N("历史老照片：", "比喻：咔嚓一下，把昨天的事定格在过去。事情已经做完，结束了。");
-      h.photo(A.past, 112);
-      h.dot(A.past, C.brown, 7);
-      k.T("yesterday", A.past + 80, 154, k.go(.6), .6, { size: 15, color: C.grey, weight: 900, font: '"Courier New",Courier,monospace' });
+      h.photo(A.past, A.y - 58);
+      h.dot(A.past, C.ink, 7);
+      k.T("yesterday", A.past + 80, A.y - 14, k.go(.6), .6, { size: 15, color: C.grey, weight: 900, font: '"Courier New",Courier,monospace' });
+      k.act(me, "point", S.at - .6, 1.2, { at: [A.past, A.y - 58] });
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 镜头 2 · 公式 + 博物馆（规则 -ed / 不规则）+ y → ied ─────
+      D.step(2); D.shot();
       N("过去式：", "动词表示「过去」时变的样子，比如 visit → visited、take → took。");
-      h.formula("主语 + 动词过去式 V-ed / 不规则过去式   ｜   状态：was (单) / were (复)", 250);
+      h.formula("主语 + 动词过去式 V-ed / 不规则过去式   ｜   状态：was (单) / were (复)", 150);
+      D.step(3);
       N("", "好消息：过去式「不看主语脸色」，I、He、They 全都一样，不用管单三！");
-      const m1 = h.ex("I / He / They", "visited the museum and took many photos yesterday.", 284, "+ed / 不规则");
+      const m1 = h.ex("I / He / They", "visited the museum and took many photos yesterday.", 200, "+ed / 不规则");
+      // 场景：小旅客走到博物馆前，举起相机拍照（R4 visited / took）
+      h.ground(60, 790, 430);
+      h.museum(520, 430);
+      const gV = D.sub();
+      const tv = k.actor("traveler", { x: 120, y: 430, s: .72, f: 1, g: gV });
+      const cam = k.prop("card", 0, 0, { text: "📷", hidden: true, g: gV });
+      D.back();
+      const fl = h.flash(470, 350);
+      const syV = sayAt("I visited the museum and took many photos yesterday.", { zh: "昨天我参观了博物馆，拍了很多照片。", word: "visited" });
+      const tv0 = syV.t + syV.wd, dv = Math.max(2.4, syV.dur - syV.wd);
+      k.act(tv, "walk", tv0, dv * .45, { to: 400, words: ["visited"] });
+      k.act(tv, "take", tv0 + dv * .5, Math.max(1.4, dv * .5), { prop: cam, words: ["took"] });
+      h.blink(fl, tv0 + dv * .7); h.blink(fl, tv0 + dv * .7 + .8);
+      k.actFx(["took"], tv0 + dv * .6, Math.max(1, dv * .4), "快门闪两下（咔嚓拍照）");
       N("规则动词：", "直接加 -ed 就变成过去式的动词，比如 visit → visited。");
-      h.ring(m1, "ed", 0, C.orange);
+      h.ring(m1, "ed", 0, C.red);
       k.wait(1.2);
       N("不规则动词：", "过去式不按 -ed 规律、要单独记的动词，比如 take → took。");
-      h.uline(m1, "took");
-      k.wait(1.3);
+      h.uline(m1, "took", 0, C.red);
+      const syV2 = sayAt("I visited the museum and took many photos. Visit, take.", { zh: "我参观了博物馆，拍了很多照片。参观、拍。", word: "the museum and took many photos visit take" });
+      k.act(tv, "take", syV2.t + syV2.wd + syV2.dur * .3, Math.max(1.4, (syV2.dur - syV2.wd) * .6), { prop: cam, words: ["take"] });
+      h.blink(fl, syV2.t + syV2.wd + syV2.dur * .5);
       N("", "辅音 + y 结尾：变 y 为 i 再加 -ed，study → studied、cry → cried。");
-      const m2 = h.ex("Mia", "studied hard and cried when she lost her pen.", 314, "y → i + ed");
-      k.say("I visited the museum and took many photos yesterday.", { zh: "昨天我参观了博物馆，拍了很多照片。", word: "visited" });
-      h.ring(m2, "ied", 0, C.orange); h.ring(m2, "ied", 1, C.orange);
-      N("", "stop 是重读闭音节：双写 p 再加 -ed，stopped；plan 也一样变 planned。");
-      const m3 = h.ex("The bus", "stopped at the station five minutes ago.", 344, "双写 + ed");
-      h.ring(m3, "pp", 0, C.orange);
-      N("was / were：", "be 动词的过去式：I、He、She、It 用 was，We、You、They 用 were。");
-      const m4 = h.ex("We", "were very happy at the party last night.", 374, "过去的状态");
-      h.uline(m4, "were");
-      N("信号词：", "yesterday、last night、…ago、just now，一看就是过去的事。");
-      h.signals("yesterday (昨天) · last night/weekend/year (昨晚/上周末/去年) · ...ago (…以前) · just now (刚才) · in 2022", 406);
-      N("陷阱：", "有 didn't 或 Did 时，「过去」已经被它们带走，后面的动词变回原形。");
-      h.trapFix("Did you went there?", "went", "Did you go there?", 434);
-      N("", "结论：stop 双写 p，加 -ed，变成过去式 stopped。");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
-      k.say("Past, now, future. Yesterday.", { zh: "过去、现在、将来。昨天。", word: "Past Now Future yesterday" });
-      k.say("I was happy. They were happy. He was at home.", { zh: "我很开心。他们很开心。他在家。", word: "was were I He They" });
-      k.say("I visited the museum and took many photos. Visit, take.", { zh: "我参观了博物馆，拍了很多照片。参观、拍。", word: "the museum and took many photos visit take" });
+      const m2 = h.ex("Mia", "studied hard and cried when she lost her pen.", 240, "y → i + ed");
+      h.ring(m2, "ied", 0, C.red); h.ring(m2, "ied", 1, C.red);
       k.say("Mia studied hard and cried when she lost her pen.", { zh: "米娅学习很努力，丢了笔时哭了。", word: "Mia studied hard cried when she lost her pen study cry" });
-      k.say("The bus stopped at the station five minutes ago. Stop, ed.", { zh: "公交车五分钟前停在了车站。停，加 -ed。", word: "bus at station five minutes ago stop ed", blocks: ["ed"] });
-      k.say("We were very happy at the party last night.", { zh: "我们昨晚在聚会上很开心。", word: "We very happy party last night were very happy at the party last night" });
-      k.say("Last night, last year. We went there in May. I just got home.", { zh: "昨晚，去年。我们五月去了那里。我刚到家。", word: "year just in went there" });
-      k.say("Did you go there? No, I didn't go. Go, went.", { zh: "你去那里了吗？不，我没去。去，去了。", word: "Did you go didn't Did you go there" });
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 3 · 双写 stopped + was / were ─────
+      D.shot();
+      N("", "stop 是重读闭音节：双写 p 再加 -ed，stopped；plan 也一样变 planned。");
+      const m3 = h.ex("The bus", "stopped at the station five minutes ago.", 150, "双写 + ed");
+      h.ring(m3, "pp", 0, C.red);
+      // 场景：公交车开过来，停在站牌前（R4 stopped）
+      h.ground(60, 790, 430);
+      h.stop(640, 430);
+      const gBus = h.bus(80, 430);
+      const syS = sayAt("The bus stopped at the station five minutes ago. Stop, ed.", { zh: "公交车五分钟前停在了车站。停，加 -ed。", word: "bus at station five minutes ago stop ed", blocks: ["ed"] });
+      k.move(gBus, syS.t + syS.wd * .5, Math.max(2.2, syS.dur * .55), 396, 0, { ease: "in" });
+      k.squash(gBus, syS.t + syS.wd * .5 + Math.max(2.2, syS.dur * .55), .4, .08);
+      k.actFx(["stopped", "stop"], syS.t + syS.wd * .5, Math.max(2.2, syS.dur * .55) + .4, "公交车开过来，减速停在站牌前");
       k.say("Plan, planned. Be, was. It was fun. I study English. Babies cry.", { zh: "计划，计划了。是，以前是。很好玩。", word: "plan planned be It study cry" });
-      k.final("The bus stopped at the station five minutes ago.", "stopped", "口诀：过去的事用过去式，不看主语人人一样；见 did 变回原形！", { zh: "公交车五分钟前停在了车站。", word: "stopped" });
+      N("was / were：", "be 动词的过去式：I、He、She、It 用 was，We、You、They 用 were。");
+      const m4 = h.ex("We", "were very happy at the party last night.", 190, "过去的状态");
+      h.uline(m4, "were");
+      k.say("I was happy. They were happy. He was at home.", { zh: "我很开心。他们很开心。他在家。", word: "was were I He They" });
+      const syH = sayAt("We were very happy at the party last night.", { zh: "我们昨晚在聚会上很开心。", word: "We very happy party last night were very happy at the party last night" });
+      k.act(me, "cheer", syH.t + syH.wd, 1.4);
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 4 · 信号词 + did 陷阱 + 结论 ─────
+      D.step(4); D.shot();
+      N("信号词：", "yesterday、last night、…ago、just now，一看就是过去的事。");
+      const yS = h.signals("yesterday (昨天) · last night/weekend/year (昨晚/上周末/去年) · ...ago (…以前) · just now (刚才) · in 2022", 150);
+      const syW = sayAt("Last night, last year. We went there in May. I just got home.", { zh: "昨晚，去年。我们五月去了那里。我刚到家。", word: "year just in went there" });
+      const tw = syW.t + syW.dur * .45, dw = Math.max(1, syW.dur * .22);
+      k.act(me, "walk", tw, dw, { to: 840, words: ["went"] });
+      k.act(me, "walk", tw + dw, dw, { to: 892 });
+      k.act(me, "turn", tw + 2 * dw, .3, { to: -1 });
+      N("陷阱：", "有 didn't 或 Did 时，「过去」已经被它们带走，后面的动词变回原形。");
+      h.trapFix("Did you went there?", "went", "Did you go there?", yS + 60);
+      k.act(me, "surprised", S.at - .4, 1);
+      const syG = sayAt("Did you go there? No, I didn't go. Go, went.", { zh: "你去那里了吗？不，我没去。去，去了。", word: "Did you go didn't Did you go there" });
+      const tg = syG.t + syG.dur * .75, dg = Math.max(.9, syG.dur * .12);
+      k.act(me, "walk", tg, dg, { to: 850, words: ["go"] });
+      k.act(me, "walk", tg + dg, dg, { to: 892 });
+      k.act(me, "turn", tg + 2 * dg, .3, { to: -1 });
+      N("", "结论：stop 双写 p，加 -ed，变成过去式 stopped。");
+      h.final("The bus stopped at the station five minutes ago.", "stopped", "口诀：过去的事用过去式，不看主语人人一样；见 did 变回原形！", { zh: "公交车五分钟前停在了车站。", word: "stopped" });
+      k.act(me, "point", S.at - 1.4, 1.2, { at: [200, 470] });
       N("口诀：", "过去的事用过去式，不看主语人人一样；见 did / didn't 变回原形！");
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "「你昨天踢足球了吗？」句首已经有 Did，后面用 play 还是 played？先想 3 秒！");
+      h.quiz("🔮 你昨天踢足球了吗？", "→  Did you ___ football yesterday?  ( play / played )");
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "Did 已经带走了「过去」，后面变回原形 play：Did you play football yesterday?");
+      const tRev = go(.3);
+      h.reveal("Did you play football yesterday?");
+      k.sfx("ding", tRev + .9);
+      const syQ = sayAt("Did you play football yesterday? Yes, I played football yesterday.", { zh: "你昨天踢足球了吗？是的，我昨天踢了足球。", word: "Did you play played football yesterday" });
+      k.act(me, "jump", syQ.t + syQ.wd, Math.max(1.4, syQ.dur - syQ.wd), { words: ["play"] });
+      k.act(me, "cheer", syQ.t + syQ.dur + .2, 1.2);
+      D.hold(1.4);
+
+      k.quoteCard({ insight: "一般过去时是一张老照片：\n事情在过去做完了，定格在那里", rhyme: "口诀：过去的事用过去式，不看主语人人一样；\n见 did 变回原形！", hlLines: 2, foot: "⏳ 时×体矩阵 · ③ 一般过去时" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "visited", act: "读到「I visited the museum」时场景小旅客走到博物馆前（walk）" },
+      { word: "took", act: "读到「took many photos」时小旅客举起相机（take 📷 卡），快门闪两下（actFx）" },
+      { word: "take", act: "读到「Visit, take」时小旅客再举起相机拍一张（take），快门闪" },
+      { word: "stopped", act: "读到「The bus stopped at the station」时公交车开过来、减速停在站牌前（场景动作 actFx + move + squash）" },
+      { word: "went", act: "读到「We went there in May」时讲解员走一段再走回（walk）" },
+      { word: "go", act: "读到「Go, went」时讲解员走一段再走回（walk）" },
+      { word: "play", act: "预测题揭晓读到「Did you play football yesterday?」时讲解员跳起来（jump，踢球）" },
+    ],
     r2skip: ["V-ed", "Did you went there?", "last night year"],   // 公式标签；错句不读；「last night / year」是斜杠并列，已分别朗读
     terms: [
+      ["可信度徽章", "💡 老照片、「不看主语脸色」都是帮助记忆的比喻。"],
       ["一般过去时", "说过去某个时间发生、已经做完的事，比如 I visited the museum yesterday。"],
       ["过去式", "动词表示「过去」时的样子，比如 visit → visited、take → took。"],
       ["规则动词", "加 -ed 就变过去式的动词，比如 visit → visited、stop → stopped、study → studied。"],
