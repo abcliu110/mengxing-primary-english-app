@@ -2,7 +2,7 @@
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
 // 版面：左上 3×3 时×体矩阵 · 右上时间轴（过去/现在/将来）+ 镜头图 · 中间公式和 4 个例句 · 信号词 · 陷阱 · 底部结论框。
 // v2 升级（2026-10-30，决策 24）：逐个案例升引擎 v2 + 讲解员（每案例：时间轴 + 格子 / 公式 + 前两句 / 后两句 / 信号词 + 陷阱 + 结论 四个镜头 → 🔮 预测 → 金句卡），版面工具 TM_V2；升级前整份文件原样保存在 cases/tense_matrix_classic.js。依赖 wo_props。
-// 进度：①②③ 已升 v2；④⑤ 仍是旧版（TM_KIT），全部升完后删 TM_KIT。
+// 进度：①–④ 已升 v2；⑤ 仍是旧版（TM_KIT），全部升完后删 TM_KIT。
 const TM_KIT = function (k) {
   const { C, P, T, F, go, wl, ellipse, rectD, roughRect, estW } = k;
   const MONO = '"Courier New",Courier,monospace';
@@ -874,54 +874,132 @@ WB_LAB.tense_matrix = [
       ["did / didn't 还原", "句子里有 didn't 或 Did 提问时，后面的动词要用原形：Did you go there?"]
     ]
   },
-  // ───────── ④ 一般将来时 ─────────
+  // ───────── ④ 一般将来时（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/tense_matrix_classic.js（R1 零丢失）。原一屏拆成 4 个镜头（时间轴 + 格子 + 望远镜 / 两种方案公式 + will 句 + 放风筝 / be going to 三句 + 去爷爷奶奶家 / 信号词 + There be 陷阱 + 结论）+ 🔮 预测 + 金句卡；
+  // R3：will 的「原意是决心」按 etymonline.com/word/will 核对——动词 will 在古英语里是「想要、愿意」，「决心」是名词 will 的意思；原字幕保留，旁边加一行 📜 查证小字。
+  // R4：读到 He will fly a kite 时场景里的小男孩跑起来、风筝飞上天；读到 Leo is going to visit his grandparents 时 Leo 走到爷爷奶奶家门口。
   {
     build(k) {
-      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      k.v2();
+      const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = TM_V2(k, D), A = h.A;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "明天、下周要做的事，英语怎么说？举起望远镜看向未来！");
-      k.header("将来 × 一般", "④ 一般将来时", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "④ 一般将来时", sub: "将来 × 一般", badges: ["💡", "📜"], steps: ["① 时间轴", "② 时×体格子", "③ 公式", "④ 例句", "⑤ 信号词·陷阱", "🔮 预测"], cardDur: 3.6 });
+
+      // ───── 镜头 1 · 时间轴 + 格子 + 望远镜 ─────
+      D.step(0); D.shot();
       h.axis();
-      N("一般将来时：", "在矩阵里，它是「将来」这一列和「一般」这一行交叉的格子。");
-      h.matrix(2, 0, "一般将来时");
-      N("望远镜：", "比喻：站在「现在」，往右边的「将来」看过去，看到明天要做的事。");
-      h.telescope(A.now - 6, 132, A.now + 70, 104);
-      k.P(k.wl(A.now + 84, 104, A.fut - 10, A.y - 12, .5), k.go(.6), .6, { color: C.purple, w: 2, dash: "5 6" });
-      h.dot(A.fut, C.blue, 7);
-      N("will：", "将来时有两个方案。方案 A：will 原意是「决心」，表示临时决定或一定会发生。");
-      h.formula("方案A：will + 动词原形（意愿/临时决定/客观预测）", 240);
-      N("be going to：", "方案 B：「人已经走在路上了」，表示早有计划，或有迹象马上要发生。");
-      h.formula("方案B：am/is/are going to + 动词原形（早有计划/有迹象要发生）", 266, "      ");
-      k.wait(.6);
-      N("情态助动词：", "will 这样的帮手词，所有人称都一样，后面永远接动词原形。");
-      const m1 = h.ex("I / He / We", "will fly a kite in the park tomorrow.", 298, "人人通用");
-      h.uline(m1, "will");
-      N("", "be going to 里的 be 要跟着主语变：Leo 是单三，用 is。");
-      const m2 = h.ex("Leo", "is going to visit his grandparents this weekend.", 326, "be 随主语变");
-      k.say("Leo is going to visit his grandparents this weekend.", { zh: "里奥这个周末打算去看爷爷奶奶。", word: "is going to" });
-      h.uline(m2, "is going to");
-      N("", "They 是复数，用 are going to，后面接原形 have。");
-      const m3 = h.ex("They", "are going to have a picnic next Sunday.", 354, "复数 are");
-      h.uline(m3, "are going to");
-      N("There be 句型：", "表示「某处有某物」。它的将来时是 There will be 或 There is going to be。");
-      const m4 = h.ex("There", "will be (= is going to be) a football match tomorrow.", 382, "黄金考点");
-      h.uline(m4, "will be");
-      N("信号词：", "tomorrow、next week、this weekend、soon，都在说将来。");
-      h.signals("tomorrow (明天) · next week/month/year (下周/下月/明年) · this evening/weekend (今晚/本周末) · soon (不久) · in the future", 410);
-      N("陷阱：", "别受中文「将要有」影响写 have！「某处有」永远用 be：There will be。");
-      h.trapFix("There is going to have", "have", "There will be / There is going to be", 436);
-      N("", "结论：There be 的将来时，就是 There will be。");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
       k.say("Past, now, future. Am, are going to. Be going to. We are going to swim.", { zh: "过去、现在、将来。我打算游泳。我们打算游泳。", word: "Past Now Future am are I We am are going to are going to be going to" });
-      k.say("He will fly a kite in the park tomorrow.", { zh: "他明天会在公园里放风筝。", word: "He fly a kite in the park will fly a kite in the park tomorrow" });
+      D.step(1);
+      N("一般将来时：", "在矩阵里，它是「将来」这一列和「一般」这一行交叉的格子。");
+      const cell = h.matrix(2, 0, "一般将来时");
+      k.act(me, "point", S.at - .8, 1.2, { at: cell });
+      N("望远镜：", "比喻：站在「现在」，往右边的「将来」看过去，看到明天要做的事。");
+      h.telescope(A.now - 6, A.y - 36, A.now + 70, A.y - 64);
+      k.P(k.wl(A.now + 84, A.y - 64, A.fut - 10, A.y - 12, .5), k.go(.6), .6, { color: C.blue, w: 2, dash: "5 6" });
+      h.dot(A.fut, C.blue, 7);
+      k.look(me, A.fut, A.y, S.at - 1, 1.6);
+      k.act(me, "point", S.at - 1, 1.2, { at: [A.fut, A.y] });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 两种方案 + will 句 + 放风筝 ─────
+      D.step(2); D.shot();
+      N("will：", "将来时有两个方案。方案 A：will 原意是「决心」，表示临时决定或一定会发生。");
+      h.formula("方案A：will + 动词原形（意愿/临时决定/客观预测）", 150);
+      h.note("📜 查证：will 在古英语里原意是「想要、愿意」；「决心」是名词 will 的意思。", 40, 178, { size: 13, color: C.grey });
+      N("be going to：", "方案 B：「人已经走在路上了」，表示早有计划，或有迹象马上要发生。");
+      h.formula("方案B：am/is/are going to + 动词原形（早有计划/有迹象要发生）", 212, "      ");
+      k.wait(.6);
+      D.step(3);
+      N("情态助动词：", "will 这样的帮手词，所有人称都一样，后面永远接动词原形。");
+      const m1 = h.ex("I / He / We", "will fly a kite in the park tomorrow.", 256, "人人通用");
+      h.uline(m1, "will");
+      // 场景：公园里小男孩跑起来，风筝飞上天（R4 fly a kite）
+      h.ground(60, 790, 430);
+      const gK = D.sub();
+      const kid = k.actor("traveler", { x: 150, y: 430, s: .72, f: 1, g: gK });
+      D.back();
+      const gKite = h.kite(200, 370);
+      const syK = sayAt("He will fly a kite in the park tomorrow.", { zh: "他明天会在公园里放风筝。", word: "He fly a kite in the park will fly a kite in the park tomorrow" });
+      const tk = syK.t + syK.wd * .6, dk = Math.max(2.4, syK.dur - syK.wd * .6);
+      k.act(kid, "run", tk, dk * .7, { to: 420, words: ["fly"] });
+      k.path(gKite, tk, dk, [[120, -40], [220, -70], [300, -60]]);
+      k.actFx(["fly"], tk, dk, "风筝被风带着飞上天");
+      k.act(kid, "cheer", tk + dk * .75, 1.2);
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 3 · be going to 三句 + 去爷爷奶奶家 ─────
+      D.shot();
+      N("", "be going to 里的 be 要跟着主语变：Leo 是单三，用 is。");
+      const m2 = h.ex("Leo", "is going to visit his grandparents this weekend.", 150, "be 随主语变");
+      // 场景：Leo 走到爷爷奶奶家门口（R4 visit）
+      h.ground(60, 790, 430);
+      h.house(600, 430, 100);
+      const gL = D.sub();
+      const leo = k.actor("traveler", { x: 140, y: 430, s: .72, f: 1, g: gL });
+      D.back();
+      const syL = sayAt("Leo is going to visit his grandparents this weekend.", { zh: "里奥这个周末打算去看爷爷奶奶。", word: "is going to" });
+      k.act(leo, "walk", syL.t + syL.wd, Math.max(2.4, syL.dur - syL.wd), { to: 560, words: ["visit"] });
+      h.uline(m2, "is going to");
       k.say("Leo is going to visit his grandparents this weekend.", { zh: "里奥这个周末打算去看爷爷奶奶。", word: "Leo visit his grandparents this weekend" });
+      N("", "They 是复数，用 are going to，后面接原形 have。");
+      const m3 = h.ex("They", "are going to have a picnic next Sunday.", 190, "复数 are");
+      h.uline(m3, "are going to");
       k.say("They are going to have a picnic next Sunday.", { zh: "他们下周日要去野餐。", word: "They have picnic next Sunday are going to have a picnic next Sunday" });
+      N("There be 句型：", "表示「某处有某物」。它的将来时是 There will be 或 There is going to be。");
+      const m4 = h.ex("There", "will be (= is going to be) a football match tomorrow.", 230, "黄金考点");
+      h.uline(m4, "will be");
+      k.act(me, "point", S.at - .6, 1.2, { at: [m4.x0("will be") + 30, 222] });
       k.say("There is going to be a football match.", { zh: "将会有一场足球赛。", word: "There football match is going to be There is going to be" });
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 4 · 信号词 + There be 陷阱 + 结论 ─────
+      D.step(4); D.shot();
+      N("信号词：", "tomorrow、next week、this weekend、soon，都在说将来。");
+      const yS = h.signals("tomorrow (明天) · next week/month/year (下周/下月/明年) · this evening/weekend (今晚/本周末) · soon (不久) · in the future", 150);
       k.say("Next week, next year, this evening, soon, in the future.", { zh: "下周、明年、今天晚上、很快、将来。", word: "week year evening soon in the future" });
-      k.final("There will be (= is going to be) a football match tomorrow.", "will", "口诀：临时决定用 will，早有计划用 be going to，后面都跟原形！", { say: "There will be a football match tomorrow.", zh: "明天会有一场足球赛。", word: "will be" });
+      N("陷阱：", "别受中文「将要有」影响写 have！「某处有」永远用 be：There will be。");
+      h.trapFix("There is going to have", "have", "There will be / There is going to be", yS + 60);
+      k.act(me, "surprised", S.at - .4, 1);
+      N("", "结论：There be 的将来时，就是 There will be。");
+      h.final("There will be (= is going to be) a football match tomorrow.", "will", "口诀：临时决定用 will，早有计划用 be going to，后面都跟原形！", { say: "There will be a football match tomorrow.", zh: "明天会有一场足球赛。", word: "will be" });
+      k.act(me, "point", S.at - 1.4, 1.2, { at: [200, 470] });
       N("口诀：", "临时决定用 will，早有计划用 be going to，后面都跟动词原形！");
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "「明天会有一个聚会」：某处有，用 will be 还是 will have？先想 3 秒！");
+      h.quiz("🔮 明天会有一个聚会。", "→  There ___ a party tomorrow.  ( will be / will have )");
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "「某处有」永远用 be：There will be a party tomorrow.");
+      const tRev = go(.3);
+      h.reveal("There will be a party tomorrow.");
+      k.sfx("ding", tRev + .9);
+      const syQ = sayAt("There will be a party tomorrow.", { zh: "明天会有一个聚会。", word: "There will be party tomorrow" });
+      k.act(me, "cheer", syQ.t + syQ.wd, Math.max(1.4, syQ.dur - syQ.wd));
+      D.hold(1.4);
+
+      k.quoteCard({ insight: "一般将来时是一架望远镜：\n站在现在，看向明天要做的事", rhyme: "口诀：临时决定用 will，早有计划用 be going to，\n后面都跟原形！", hlLines: 2, foot: "⏳ 时×体矩阵 · ④ 一般将来时" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "fly", act: "读到「He will fly a kite in the park tomorrow」时场景里的小男孩跑起来（run），风筝飞上天（场景动作 actFx + path），然后欢呼（cheer）" },
+      { word: "visit", act: "读到「Leo is going to visit his grandparents」时 Leo 走到爷爷奶奶家门口（walk）" },
+    ],
     r2skip: ["There is going to have", "next week year"],   // 错句不读；「next week / year」斜杠并列，已分别朗读
     terms: [
+      ["可信度徽章", "💡 望远镜、「人已经走在路上了」都是帮助记忆的比喻；📜 will 的来历：动词 will 在古英语里原意是「想要、愿意」，「决心、意图」是名词 will 的意思（出处：etymonline.com/word/will）。"],
       ["一般将来时", "说将来要发生的事，比如 I will fly a kite tomorrow。有 will 和 be going to 两种说法。"],
       ["将来体（望远镜镜头）", "页面上的比喻：站在现在，用望远镜看向将来。在矩阵里它就是「将来 × 一般」那一格。"],
       ["will", "原意是「决心、意愿」，表示临时决定、愿意去做，或一定会发生的预测，比如 Tomorrow will be sunny。"],
