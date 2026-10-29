@@ -173,6 +173,20 @@
   3. **词根词缀**：可拆成有意义的词根 / 前缀 / 后缀（或合成词的两部分），拆法有出处支持；只是音节切分、或「ear 加 h = hear」这类伪拆分，不算，且要按 R3 纠正。
 - **R1–R3**：旧内容一条不丢（旧字段原样保留，纠错也只加标注不删）；R2 每个入库词有例句和朗读；R3 简化 💡 ✂️、争议 ⚠️、拿不准 ❓，全部登记出处；**不确定的绝不编造**——标 ❓ 或不入库，并写明原因。
 - **数据层与展示分离**：新增独立数据 `ETYM_DB`（每词：来源语言链、出处网址、徽章）、`GRIMM_DB`（每组规则 → 配对列表：英语词、同源词、借词、出处、徽章）、`MORPH_DB`（每词：拆分、各部分义、出处）；展示统一走白板模板（格林定律按规则分组成幕，每组一个模板幕 + 配对轮播），词卡上的 📖 身世标签自动从数据生成，不再手写 `WO_ORIGIN_TAGS`。
+- **扩展：「音变与词汇规律」系列（用户 2026-10-30 01:04：「类似格林定律的还有哪些，全部补充进去」）**。每条规律都对 1487 词全量匹配，满足条件的全部入库（出处登记、不编造、R1–R4、白板动画展示），每条标 ✂️ 小学生简化方式和 ⚠️ / ❓ 争议；审计报告为每条列「词库可匹配词数」：
+  1. 维尔纳定律 Verner（was / were、lose / forlorn）
+  2. 元音大转移 Great Vowel Shift（bite、house、name、meet：解释拼写和读音为什么对不上）
+  3. i-变音 umlaut（foot / feet、man / men、mouse / mice、full / fill、food / feed、gold / gild）
+  4. 元音递变 ablaut（sing / sang / sung / song、ride / rode / ridden：强动词不规则变化）
+  5. 高地德语辅音推移（英德对照 water / Wasser、apple / Apfel、ten / zehn、make / machen）
+  6. 腭化与古诺斯语双形（church / kirk、shirt / skirt、ditch / dike：英语 sh- / ch- 对北欧 sk- / k-）
+  7. 诺曼法语 w → g（war / guerre、warden / guardian、wardrobe、William / Guillaume）
+  8. 法语脱落 s（forest / forêt、hospital / hotel、beast）
+  9. 双形词与层级词汇：本族词对法 / 拉丁借词（cow / beef、pig / pork、sheep / mutton、ask / question、hand / manual、tooth / dental，与格林定律配合）
+  10. 前缀同化（in → im / il / ir：impossible、illegal、irregular；ad → ac / ap）
+  11. 三音节短化等派生音变（nature / natural、nation / national、wise / wisdom、five / fifth）
+  12. 音位转换 metathesis 与不发音字母的历史（bird < brid、third / three、horse；knight、write、night 的 gh、climb）
+  - 审计中发现其它对小学词库有用的规律，一并列出、同样处理。
 - **流程**：① 审计（现有条数、候选条数、缺口）→ 报告先给用户；② 分批补齐（每批一个提交：格林定律按规则组、词源按年级、词根词缀按词缀族）；③ 覆盖率报告（之前 / 之后、各类条数、未入库原因）写进 `word_origins/COVERAGE.md`，每批更新。与白板化试点（决策 23 / 24）并行。
 
 ### 决策 26　单词全部维度菜单：目标词库全量覆盖（用户 2026-10-30 01:00）
