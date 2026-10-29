@@ -1,6 +1,8 @@
 // ==================== 白板脚本：⑨「时×体」二维时空矩阵沙盘 5 个时态 ====================
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
 // 版面：左上 3×3 时×体矩阵 · 右上时间轴（过去/现在/将来）+ 镜头图 · 中间公式和 4 个例句 · 信号词 · 陷阱 · 底部结论框。
+// v2 升级（2026-10-30，决策 24）：逐个案例升引擎 v2 + 讲解员（每案例：时间轴 + 格子 / 公式 + 前两句 / 后两句 / 信号词 + 陷阱 + 结论 四个镜头 → 🔮 预测 → 金句卡），版面工具 TM_V2；升级前整份文件原样保存在 cases/tense_matrix_classic.js。依赖 wo_props。
+// 进度：① 已升 v2；②–⑤ 仍是旧版（TM_KIT），全部升完后删 TM_KIT。
 const TM_KIT = function (k) {
   const { C, P, T, F, go, wl, ellipse, rectD, roughRect, estW } = k;
   const MONO = '"Courier New",Courier,monospace';
@@ -135,61 +137,376 @@ const TM_KIT = function (k) {
   return h;
 };
 
+// ───────── v2 版面（2026-10-30，决策 24）─────────
+// 讲解员站在右侧 x≈892，内容收在 x≤800；原来一屏（矩阵 + 时间轴 + 公式 + 4 例句 + 信号词 + 陷阱 + 结论）拆成 4 个镜头：
+// ① 时间轴 + 时×体格子 + 镜头图 / ② 公式 + 前两句 / ③ 后两句 / ④ 信号词 + 陷阱 + 结论 → 🔮 预测 → 金句卡。
+// 时间轴从 x 350–925 收到 380–800（过去 440 · 现在 600 · 将来 760），在矩阵右边；原来写在句子右边 x=935 的灰色小标签改成右对齐到 x=800。
+// 配色只用 V3 k.PAL：过去墨黑 · 现在红 · 将来蓝；主语墨黑、动词部分蓝；词尾变化红圈、助动词蓝下划线；信号词绿；陷阱红 → 正确绿；橙 / 紫 / 褐 / 青都改 V3。
+const TM_V2 = function (k, D) {
+  const { P, T, F, go, wl, ellipse, rectD, roughRect, estW } = k, C = k.PAL, MONO = D.MONO;
+  const A = { y: 250, x0: 380, x1: 800, past: 440, now: 600, fut: 760 };
+  A.map = x => Math.round(A.x0 + (x - 350) * (A.x1 - A.x0) / 575);      // 旧时间轴 x（350–925）→ 新时间轴 x
+  const pos = (text, x, y, size) => {
+    const cw = size * .6;
+    const at = (sub, nth = 0) => { let i = -1; for (let n = 0; n <= nth; n++) i = text.indexOf(sub, i + 1); return i; };
+    // atW：按整词找（前后不是字母），用于给 is / are / have 这类短词划线
+    const atW = (sub, nth = 0) => { let c = -1; for (let i = text.indexOf(sub); i >= 0; i = text.indexOf(sub, i + 1)) { if (/[A-Za-z]/.test(text[i - 1] || " ") || /[A-Za-z]/.test(text[i + sub.length] || " ")) continue; if (++c === nth) return i; } return at(sub, nth); };
+    return { x, y, size, cw, text, at, atW, x0: (s, n) => x + at(s, n) * cw, x1: (s, n) => x + (at(s, n) + s.length) * cw, end: x + text.length * cw };
+  };
+  const h = {
+    A, pos,
+    // 时间轴：过去 → 现在 → 将来
+    axis() {
+      P(wl(A.x0, A.y, A.x1, A.y, .8) + ` M${A.x1 - 13},${A.y - 7} L${A.x1},${A.y} L${A.x1 - 13},${A.y + 7}`, go(1.0), 1.0, { color: C.ink, w: 3 });
+      [[A.past, "过去 Past", C.ink], [A.now, "现在 Now", C.red], [A.fut, "将来 Future", C.blue]].forEach(([x, s, c]) => {
+        P(wl(x, A.y - 8, x, A.y + 8, .3), go(.2), .2, { color: c, w: 3 });
+        T(s, x, A.y + 30, go(.6), .6, { size: 16, color: c, weight: 900, anchor: "middle" });
+      });
+    },
+    // 3×3 时×体矩阵：col 0 过去 / 1 现在 / 2 将来；row 0 一般 / 1 进行 / 2 完成；返回高亮格中心
+    matrix(col, row, label, beforeHL) {
+      const x0 = 100, cw = 80, y0 = 146, rh = 38;
+      T("体＼时", 40, 136, go(.4), .4, { size: 13, color: C.grey, weight: 900 });
+      ["过去", "现在", "将来"].forEach((s, i) => T(s, x0 + cw * (i + .5), 136, go(.3), .3, { size: 15, color: C.ink, weight: 900, anchor: "middle" }));
+      ["一般", "进行", "完成"].forEach((s, j) => T(s, 48, y0 + rh * (j + .5) + 6, go(.3), .3, { size: 15, color: C.ink, weight: 900 }));
+      P(roughRect(x0, y0, cw * 3, rh * 3), go(.6), .6, { color: C.grey, w: 2 });
+      for (let i = 1; i < 3; i++) P(wl(x0 + cw * i, y0, x0 + cw * i, y0 + rh * 3, .5), go(.15), .15, { color: C.grey, w: 1.5 });
+      for (let j = 1; j < 3; j++) P(wl(x0, y0 + rh * j, x0 + cw * 3, y0 + rh * j, .5), go(.15), .15, { color: C.grey, w: 1.5 });
+      if (beforeHL) beforeHL();
+      const cx = x0 + cw * col, cy = y0 + rh * row;
+      P(roughRect(cx + 4, cy + 4, cw - 8, rh - 8), go(.5), .5, { color: C.red, w: 3 });
+      F(rectD(cx + 4, cy + 4, cw - 8, rh - 8), go(.3), { color: C.hlYellow, op: .75 });
+      T(label, cx + cw / 2, cy + rh / 2 + 5, go(.6), .6, { size: 13, color: C.red, weight: 900, anchor: "middle" });
+      return [cx + cw / 2, cy + rh / 2];
+    },
+    dot(x, color = C.red, r = 6) {
+      const d = ellipse(x, A.y, r, r);
+      P(d, go(.25), .25, { color, w: 2.5 }); F(d, go(.05, 0), { color, op: 1 });
+    },
+    // 快照相机
+    camera(cx, cy) {
+      P(roughRect(cx - 12, cy - 26, 22, 8), go(.3), .3, { color: C.ink, w: 2.5 });
+      P(roughRect(cx - 30, cy - 18, 60, 38), go(.6), .6, { color: C.ink, w: 2.5 });
+      F(rectD(cx - 30, cy - 18, 60, 38), go(.2, 0), { color: C.tintBlue, op: .95 });
+      const l = ellipse(cx, cy + 1, 11, 11);
+      P(l, go(.4), .4, { color: C.blue, w: 2.5 }); F(l, go(.1, 0), { color: "#fff", op: 1 });
+    },
+    // 录像机（REC 红点单独一组，可以闪）
+    video(cx, cy) {
+      const r1 = ellipse(cx - 20, cy - 27, 9, 9), r2 = ellipse(cx + 2, cy - 27, 9, 9);
+      P(r1, go(.3), .3, { color: C.ink, w: 2.5 }); P(r2, go(.3), .3, { color: C.ink, w: 2.5 });
+      P(roughRect(cx - 34, cy - 16, 52, 34), go(.6), .6, { color: C.ink, w: 2.5 });
+      F(rectD(cx - 34, cy - 16, 52, 34), go(.2, 0), { color: C.tintBlue, op: .95 });
+      const tri = `M${cx + 20},${cy + 1} L${cx + 38},${cy - 11} L${cx + 38},${cy + 13} Z`;
+      P(tri, go(.3), .3, { color: C.ink, w: 2.5 }); F(tri, go(.1, 0), { color: C.tintBlue, op: .95 });
+      const rec = ellipse(cx - 24, cy - 6, 4, 4);
+      P(rec, go(.2), .2, { color: C.red, w: 2 }); F(rec, go(.05, 0), { color: C.red, op: 1 });
+      T("REC", cx - 16, cy - 1, go(.3), .3, { size: 11, color: C.red, weight: 900, font: MONO });
+    },
+    // 老照片
+    photo(cx, cy) {
+      P(roughRect(cx - 36, cy - 26, 72, 50), go(.6), .6, { color: C.ink, w: 2.5 });
+      F(rectD(cx - 36, cy - 26, 72, 50), go(.2, 0), { color: C.tintInk, op: .95 });
+      P(`M${cx - 28},${cy + 18} L${cx - 10},${cy - 6} L${cx + 4},${cy + 10} L${cx + 14},${cy} L${cx + 28},${cy + 18}`, go(.5), .5, { color: C.green, w: 2 });
+      const s = ellipse(cx + 18, cy - 13, 6, 6);
+      P(s, go(.2), .2, { color: C.ink, w: 2 }); F(s, go(.05, 0), { color: C.hlYellow, op: 1 });
+    },
+    // 望远镜：从 (x1,y1) 细头到 (x2,y2) 粗头
+    telescope(x1, y1, x2, y2) {
+      const L = Math.hypot(x2 - x1, y2 - y1), nx = -(y2 - y1) / L, ny = (x2 - x1) / L, r1 = 6, r2 = 12;
+      const d = `M${x1 + nx * r1},${y1 + ny * r1} L${x2 + nx * r2},${y2 + ny * r2} L${x2 - nx * r2},${y2 - ny * r2} L${x1 - nx * r1},${y1 - ny * r1} Z`;
+      P(d, go(.7), .7, { color: C.blue, w: 2.5 }); F(d, go(.2, 0), { color: C.tintBlue, op: .95 });
+      P(wl((x1 * 2 + x2) / 3 + nx * 9, (y1 * 2 + y2) / 3 + ny * 9, (x1 * 2 + x2) / 3 - nx * 9, (y1 * 2 + y2) / 3 - ny * 9, .3), go(.2), .2, { color: C.blue, w: 2.5 });
+      const bx = (x1 + x2) / 2, by = (y1 + y2) / 2 + 4;
+      P(wl(bx, by, bx - 16, A.y - 8, .4) + " " + wl(bx, by, bx + 14, A.y - 8, .4), go(.4), .4, { color: C.ink, w: 2 });
+    },
+    // 奖杯（成果）
+    trophy(cx, cy) {
+      const d = `M${cx - 16},${cy - 18} h32 q0,22 -16,24 q-16,-2 -16,-24 Z`;
+      P(d, go(.5), .5, { color: C.ink, w: 2.5 }); F(d, go(.2, 0), { color: C.hlYellow, op: 1 });
+      P(wl(cx, cy + 6, cx, cy + 14, .2) + " " + wl(cx - 11, cy + 15, cx + 11, cy + 15, .3), go(.3), .3, { color: C.ink, w: 3 });
+    },
+    // 圈出等宽文字里的一段（词尾变化：红）
+    ring(m, sub, nth = 0, color = C.red) {
+      const x0 = m.x0(sub, nth), x1 = m.x1(sub, nth);
+      P(ellipse((x0 + x1) / 2, m.y - m.size * .32, (x1 - x0) / 2 + 5, m.size * .66), go(.4), .4, { color, w: 2.5 });
+      return (x0 + x1) / 2;
+    },
+    // 助动词下划线（蓝）
+    uline(m, sub, nth = 0, color = C.blue) { const a = m.x + m.atW(sub, nth) * m.cw; P(wl(a, m.y + 6, a + sub.length * m.cw, m.y + 6, .5), go(.4), .4, { color, w: 3.5 }); return a + sub.length * m.cw / 2; },
+    // 公式行（x≤800）
+    formula(text, y, label = "公式：", size = 16) {
+      size = Math.min(size, 760 / estW(label + text, 1));
+      T(label, 40, y, go(.4), .4, { size, color: C.red, weight: 900 });
+      const dur = Math.max(1, text.length * .06);
+      T(text, 40 + estW(label, size) + 2, y, go(dur), dur, { size, color: C.blue, weight: 900 });
+    },
+    // 例句：主语（墨黑）+ 动词部分（蓝）+ 右边灰色小标签（右对齐到 x=800）
+    ex(subj, verb, y, tag) {
+      const text = subj + " " + verb, room = (tag ? 800 - estW(tag, 14) - 20 : 800) - 40;
+      const size = Math.min(18, room / (text.length * .6)), cw = size * .6;
+      const d1 = Math.max(.5, subj.length * .05), d2 = Math.max(.9, verb.length * .05);
+      T(subj, 40, y, go(d1, .05), d1, { size, color: C.ink, weight: 900, font: MONO });
+      T(verb, 40 + (subj.length + 1) * cw, y, go(d2), d2, { size, color: C.blue, weight: 700, font: MONO });
+      if (tag) T(tag, 800, y, go(.6), .6, { size: 14, color: C.grey, weight: 900, anchor: "end" });
+      return pos(text, 40, y, size);
+    },
+    // 信号词：一行放不下（字号会小于 14）就在「 · 」处折成两行
+    signals(text, y) {
+      const lab = "信号词：", lw = estW(lab, 15) + 2, room = 800 - 40 - lw;
+      T(lab, 40, y, go(.4), .4, { size: 15, color: C.red, weight: 900 });
+      let lines = [text];
+      if (room / estW(text, 1) < 14) {
+        const parts = text.split(" · "), half = estW(text, 1) / 2; let a = [], b = [], w = 0;
+        parts.forEach(p => { if (w < half) { a.push(p); w += estW(p + " · ", 1); } else b.push(p); });
+        lines = [a.join(" · ") + " ·", b.join(" · ")];
+      }
+      lines.forEach((ln, i) => {
+        const size = Math.min(15, room / estW(ln, 1)), dur = Math.max(1, ln.length * .03);
+        T(ln, 40 + lw, y + i * 26, go(dur), dur, { size, color: C.green, weight: 800 });
+      });
+      return y + (lines.length - 1) * 26;
+    },
+    // 陷阱：错句划掉 → 正确句（放不下就把正确句放到下一行）
+    trapFix(bad, badSub, good, y) {
+      T("陷阱：", 40, y, go(.4), .4, { size: 16, color: C.red, weight: 900 });
+      const x = 40 + estW("陷阱：", 16) + 4, dur = Math.max(.8, bad.length * .05);
+      T(bad, x, y, go(dur), dur, { size: 16, color: C.red, weight: 700, font: MONO });
+      const m = pos(bad, x, y, 16);
+      P(wl(m.x0(badSub) - 2, y - 5, m.x1(badSub) + 2, y - 5, .4), go(.35), .35, { color: C.red, w: 3 });
+      const one = m.end + 40 + good.length * 9.6 <= 800, gx = one ? m.end + 40 : x + 28, gy = one ? y : y + 30;
+      T("→", gx - 28, gy, go(.3), .3, { size: 16, color: C.ink, weight: 900 });
+      const d2 = Math.max(.8, good.length * .05);
+      T(good, gx, gy, go(d2), d2, { size: 16, color: C.green, weight: 900, font: MONO });
+      return m;
+    },
+    trapText(text, y) {
+      const size = Math.min(16, 760 / estW("陷阱：" + text, 1));
+      T("陷阱：", 40, y, go(.4), .4, { size, color: C.red, weight: 900 });
+      const dur = Math.max(1, text.length * .05);
+      T(text, 40 + estW("陷阱：", size) + 2, y, go(dur), dur, { size, color: C.red, weight: 800 });
+    },
+    // 普通文字
+    note(text, x, y, o = {}) {
+      const dur = o.dur || Math.max(.6, [...text].length * .06);
+      T(text, x, y, go(dur), dur, { size: 15, color: C.grey, weight: 700, ...o });
+    },
+    // 底部结论框（代替旧 k.final：宽度收在 x≤800，讲解员不用退场）：绿框 + 绿字句子 + 谓语蓝下划线 + 灰色口诀行；同样朗读句子
+    final(text, crown, zhLine, o = {}) {
+      const size = Math.min(22, 740 / (text.length * .6)), cw = size * .6, w = Math.min(784, Math.max(380, text.length * cw + 48));
+      P(roughRect(16, 448, w, 48), go(.9), .9, { color: C.green, w: 2 });
+      F(rectD(16, 448, w, 48), go(.2, 0), { color: C.tintGreen, op: .55 });
+      T(text, 40, 479, go(Math.max(1.6, text.length * .04)), Math.max(1.6, text.length * .04), { size, color: C.green, weight: 900, font: MONO });
+      (Array.isArray(crown) ? crown : [crown]).forEach(wd => {
+        const i = (" " + text + " ").search(new RegExp("[ ,]" + wd + "[ ,.]"));
+        if (i >= 0) P(wl(40 + i * cw, 488, 40 + (i + wd.length) * cw, 488, .6), go(.4), .4, { color: C.blue, w: 4 });
+      });
+      T(zhLine, 40, 524, go(1.4), 1.4, { size: 17, color: C.grey });
+      k.say(o.say ?? text, { zh: o.zh ?? String(zhLine || "").split(/\s{2,}/)[0], word: o.word });
+      return k.S.says[k.S.says.length - 1];
+    },
+    // 🔮 预测题框
+    quiz(zhLine, ask) {
+      P(roughRect(40, 206, 760, 150), go(.8), .8, { color: C.green, w: 2.5 });
+      F(rectD(40, 206, 760, 150), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T(zhLine, 64, 246, go(.8), .8, { size: 22, color: C.ink, weight: 900 });
+      const size = Math.min(21, 720 / (ask.length * .6));
+      T(ask, 64, 286, go(1), 1, { size, color: C.ink, weight: 900, font: MONO });
+    },
+    reveal(text) { T(text, 64, 330, go(1), 1, { size: Math.min(22, 720 / (text.length * .6)), color: C.green, weight: 900, font: MONO }); },
+    // 场景小件：地面线
+    ground(x0, x1, y) { P(wl(x0, y, x1, y, .6), go(.3), .3, { color: C.ink, w: 2 }); },
+    // 足球（组）：中心 (x,y)
+    ball(x, y) {
+      const g = D.sub();
+      P(ellipse(x, y, 9, 9), go(.25), .25, { color: C.ink, w: 2.2 }); F(ellipse(x, y, 9, 9), go(.05, 0), { color: "#fff", op: 1 });
+      P(`M${x - 3},${y - 3} l6,0 l2,5 l-5,3 l-5,-3 Z`, go(.15), .15, { color: C.ink, w: 1.6 });
+      D.back(); return g;
+    },
+    // 小汽车（组）：车底中心 (x,y)
+    car(x, y) {
+      const g = D.sub(), body = `M${x - 46},${y - 10} L${x - 46},${y - 26} L${x - 26},${y - 26} L${x - 14},${y - 42} L${x + 18},${y - 42} L${x + 30},${y - 26} L${x + 46},${y - 26} L${x + 46},${y - 10} Z`;
+      P(body, go(.6), .6, { color: C.blue, w: 2.5 }); F(body, go(.1, 0), { color: C.tintBlue, op: 1 });
+      [x - 26, x + 26].forEach(wx => { P(ellipse(wx, y - 8, 9, 9), go(.2), .2, { color: C.ink, w: 2.5 }); F(ellipse(wx, y - 8, 9, 9), go(.05, 0), { color: C.ink, op: 1 }); });
+      D.back(); return g;
+    },
+    // 小鸟（组）：中心 (x,y)
+    bird(x, y, s = 1.8) {
+      const g = D.sub();
+      P(`M${x - 15 * s},${y} q${8 * s},${-10 * s} ${15 * s},0 q${7 * s},${-10 * s} ${15 * s},0`, go(.25), .25, { color: C.ink, w: 2.8 });
+      D.back(); return g;
+    },
+    // 风筝（组）：中心 (x,y)，线拖到 (hx,hy)
+    kite(x, y) {
+      const g = D.sub(), d = `M${x},${y - 22} L${x + 16},${y} L${x},${y + 26} L${x - 16},${y} Z`;
+      P(d, go(.5), .5, { color: C.red, w: 2.5 }); F(d, go(.1, 0), { color: C.tintRed, op: 1 });
+      P(`M${x},${y + 26} q-6,10 4,18 q8,8 -2,16`, go(.3), .3, { color: C.red, w: 2 });
+      D.back(); return g;
+    },
+    // 房子：底边左端 (x,y)，宽 w
+    house(x, y, w = 90) {
+      const roof = `M${x - 8},${y - 52} L${x + w / 2},${y - 92} L${x + w + 8},${y - 52} Z`;
+      P(roughRect(x, y - 52, w, 52), go(.5), .5, { color: C.ink, w: 2.5 }); F(rectD(x, y - 52, w, 52), go(.1, 0), { color: C.tintInk, op: 1 });
+      P(roof, go(.4), .4, { color: C.red, w: 2.5 }); F(roof, go(.1, 0), { color: C.tintRed, op: 1 });
+      P(roughRect(x + w / 2 - 10, y - 30, 20, 30), go(.3), .3, { color: C.ink, w: 2 });
+    }
+  };
+  return h;
+};
+
 WB_LAB.tense_matrix = [
-  // ───────── ① 一般现在时 ─────────
+  // ───────── ① 一般现在时（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/tense_matrix_classic.js（R1 零丢失）。原一屏拆成 4 个镜头（时间轴 + 格子 + 习惯小圆点 + 地球绕太阳 / 公式 + 原形 · 单三 / -es · y→ies / 信号词 + 照妖镜 + 结论）+ 🔮 预测 + 金句卡；
+  // R4：读到 The earth goes around the sun 时地球绕太阳转一圈；They play football 时讲解员跳起来；He plays football 时场景里的小男孩带球跑、足球滚进球门；
+  // goes to work by car 时小汽车开走；The little bird flies 时小鸟飞过；预测题 She goes to school 时讲解员走一段。
   {
     build(k) {
-      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      k.v2();
+      const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = TM_V2(k, D), A = h.A;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "同一个 play，为什么有时写 plays、played，有时写 is playing？");
-      k.header("现在 × 一般体", "① 一般现在时", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "① 一般现在时", sub: "现在 × 一般体", badges: ["💡", "✂️"], steps: ["① 时间轴", "② 时×体格子", "③ 公式", "④ 例句", "⑤ 信号词·陷阱", "🔮 预测"], cardDur: 3.6 });
+
+      // ───── 镜头 1 · 时间轴 + 时×体格子 + 档案照 + 习惯小圆点 + 客观真理 ─────
+      D.step(0); D.shot();
       N("时态：", "英语动词会「变身」，告诉你事情是什么时候发生、正处在什么样子。");
-      k.wait(1.8);
+      k.wait(1.0);
       N("时间轴：", "一根从左到右的线：左边是过去，中间是现在，右边是将来。这就是「时」。");
       h.axis();
-      N("体（镜头）：", "用什么镜头拍这个动作：快照、录像，还是留存成果。这就是「体」。");
-      h.matrix(1, 0, "一般现在时", () => N("时×体矩阵：", "横着选时间，竖着选镜头，两条线交叉的格子，就是一种时态。"));
-      N("一般体：", "像拍一张「档案照」：不管这一秒在不在做，只记下每天反复做的规律。");
-      h.camera(A.now, 110);
-      N("习惯：", "每天都做的事，在时间轴上是一串小圆点：过去有，现在有，将来还有。");
-      [385, 505, 570, 700, 760, 880].forEach(x => h.dot(x, C.orange, 5));
-      k.T("一次又一次", 540, 148, k.go(.6), .6, { size: 14, color: C.grey, weight: 900, anchor: "middle" });
-      N("客观真理：", "永远不变的事实也用它：The earth goes around the sun（地球绕着太阳转）。");
-      k.wait(2.2);
-      N("动词原形：", "动词本来的样子，什么尾巴都没加，比如 play。状态就用 am / is / are。");
-      h.formula("主语 + 动词原形 V / 单三 V-s(es)   ｜   状态：am / is / are", 250);
-      N("", "I、We、They 当主语：动词保持原形 play。");
-      h.ex("I / We / They", "play football every afternoon.", 284, "原形");
-      N("单三勋章：", "单三（第三人称单数）就是另外一个人或东西，比如 Leo，动词要戴 -s 勋章。");
-      const m2 = h.ex("He / She / Leo", "plays football every afternoon.", 314, "+s");
-      h.ring(m2, "s", 0, C.orange);
-      N("", "以 ch、sh、s、x、o 结尾的动词，加 -es：teaches、goes。");
-      const m3 = h.ex("My mom", "teaches English and goes to work by car.", 344, "+es");
-      k.say("My mom teaches English and goes to work by car.", { zh: "我妈妈教英语，开车去上班。", word: "teaches" });
-      h.ring(m3, "es", 0, C.orange); h.ring(m3, "es", 1, C.orange);
-      N("辅音 + y：", "辅音就是 a e i o u 以外的字母。辅音 + y 结尾，变 y 为 i 加 -es。");
-      const m4 = h.ex("The little bird", "flies high in the sky.", 374, "y → i + es");
-      h.ring(m4, "ies", 0, C.orange);
-      N("信号词：", "看到 every day、always、usually、often，就知道要用一般现在时。");
-      h.signals("every day (每天) · always (总是) · usually (通常) · often (经常) · sometimes (有时) · on Sundays (每逢周日)", 406);
-      N("照妖镜：", "比喻 doesn't / Does：它们把 -s 勋章拿走了，后面的动词被打回原形。");
-      h.trapFix("He doesn't likes", "likes", "He doesn't like", 434);
-      N("", "结论：单三主语 He，动词戴上 -s 勋章。");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
       k.say("Past, now, future.", { zh: "过去、现在、将来。", word: "Past Now Future" });
-      k.say("I am, she is, we are. They play football every afternoon.", { zh: "我是，她是，我们是。他们每天下午踢足球。", word: "am is are I We They She play football every afternoon play football every afternoon" });
-      k.say("He plays football every afternoon. Leo plays too.", { zh: "他每天下午踢足球。里奥也踢。", word: "He Leo" });
-      k.say("My mom teaches English and goes to work by car.", { zh: "我妈妈教英语，开车去上班。", word: "My mom English and goes to work by car" });
-      k.say("The little bird flies high in the sky.", { zh: "小鸟在天上飞得很高。", word: "The little bird flies high in sky" });
-      k.say("Every day, always, usually, often, sometimes, on Sundays.", { zh: "每天、总是、通常、经常、有时、每逢周日。", word: "every day always usually often sometimes on Sundays" });
-      k.say("He likes milk. He doesn't like tea. Does he like juice?", { zh: "他喜欢牛奶。他不喜欢茶。他喜欢果汁吗？", word: "likes like doesn't does He doesn't like" });
-      k.say("Played, playing. The earth goes around the sun.", { zh: "玩了、正在玩。地球绕着太阳转。", word: "played playing earth around sun The earth goes around the sun" });
+      k.act(me, "point", S.at - 1.6, 1.4, { at: [A.now, A.y] });
+      D.step(1);
+      N("体（镜头）：", "用什么镜头拍这个动作：快照、录像，还是留存成果。这就是「体」。");
+      const cell = h.matrix(1, 0, "一般现在时", () => N("时×体矩阵：", "横着选时间，竖着选镜头，两条线交叉的格子，就是一种时态。"));
+      k.act(me, "point", S.at - .8, 1.2, { at: cell });
+      N("一般体：", "像拍一张「档案照」：不管这一秒在不在做，只记下每天反复做的规律。");
+      h.camera(A.now, 190);
+      N("习惯：", "每天都做的事，在时间轴上是一串小圆点：过去有，现在有，将来还有。");
+      [385, 505, 570, 700, 760, 880].forEach(x => h.dot(A.map(x), C.red, 5));
+      k.T("一次又一次", A.map(540), A.y - 20, k.go(.6), .6, { size: 14, color: C.grey, weight: 900, anchor: "middle" });
+      N("客观真理：", "永远不变的事实也用它：The earth goes around the sun（地球绕着太阳转）。");
+      // 场景：太阳 + 地球（R4 goes around：读到时地球绕太阳转一圈）
+      const sx = 200, sy = 380;
+      P(k.ellipse(sx, sy, 22, 22), go(.4), .4, { color: C.ink, w: 2.5 }); F(k.ellipse(sx, sy, 22, 22), go(.1, 0), { color: C.hlYellow, op: 1 });
+      P(k.ellipse(sx, sy, 90, 42), go(.6), .6, { color: C.grey, w: 1.4, dash: "4 6" });
+      const gE = D.sub();
+      P(k.ellipse(sx + 90, sy, 10, 10), go(.3), .3, { color: C.blue, w: 2.5 }); F(k.ellipse(sx + 90, sy, 10, 10), go(.05, 0), { color: C.tintBlue, op: 1 });
+      D.back();
+      const syE = sayAt("Played, playing. The earth goes around the sun.", { zh: "玩了、正在玩。地球绕着太阳转。", word: "played playing earth around sun The earth goes around the sun" });
+      const orb = []; for (let i = 1; i <= 12; i++) { const a = i / 12 * Math.PI * 2; orb.push([+(90 * Math.cos(a) - 90).toFixed(1), +(42 * Math.sin(a)).toFixed(1)]); }
+      k.path(gE, syE.t + syE.wd, Math.max(2, syE.dur - syE.wd), orb, { ease: "linear" });
+      k.actFx(["goes"], syE.t + syE.wd, Math.max(2, syE.dur - syE.wd), "地球绕着太阳转一圈");
+      k.look(me, sx, sy, syE.t + syE.wd, 2);
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 公式 + 原形 / 单三 ─────
+      D.step(2); D.shot();
+      N("动词原形：", "动词本来的样子，什么尾巴都没加，比如 play。状态就用 am / is / are。");
+      h.formula("主语 + 动词原形 V / 单三 V-s(es)   ｜   状态：am / is / are", 150);
+      D.step(3);
+      N("", "I、We、They 当主语：动词保持原形 play。");
+      h.ex("I / We / They", "play football every afternoon.", 200, "原形");
+      const syT = sayAt("I am, she is, we are. They play football every afternoon.", { zh: "我是，她是，我们是。他们每天下午踢足球。", word: "am is are I We They She play football every afternoon play football every afternoon" });
+      k.act(me, "jump", syT.t + syT.dur * .62, Math.max(1, syT.dur * .3), { words: ["play"] });
+      N("单三勋章：", "单三（第三人称单数）就是另外一个人或东西，比如 Leo，动词要戴 -s 勋章。");
+      const m2 = h.ex("He / She / Leo", "plays football every afternoon.", 240, "+s");
+      h.ring(m2, "s", 0, C.red);
+      // 场景：小男孩带球跑，足球滚进球门（R4 plays football）
+      h.ground(60, 790, 430);
+      P(k.roughRect(690, 370, 70, 60), go(.5), .5, { color: C.ink, w: 2.5 });
+      P(k.wl(700, 380, 750, 420, .3) + " " + k.wl(750, 380, 700, 420, .3), go(.3), .3, { color: C.grey, w: 1.2 });
+      const gK = D.sub();
+      const leo = k.actor("traveler", { x: 160, y: 430, s: .72, f: 1, g: gK });
+      D.back();
+      const gBall = h.ball(200, 421);
+      const syP = sayAt("He plays football every afternoon. Leo plays too.", { zh: "他每天下午踢足球。里奥也踢。", word: "He Leo" });
+      const tp = syP.t + syP.wd, dp = Math.max(2.2, syP.dur - syP.wd);
+      k.act(leo, "run", tp, dp * .8, { to: 560, words: ["plays"] });
+      k.move(gBall, tp, dp * .9, 520, 0, { ease: "move" });
+      for (let i = 0; i < 4; i++) k.squash(gBall, tp + i * dp * .22, dp * .2, .2);
+      k.act(leo, "cheer", tp + dp * .85, 1.2);
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 3 · -es / 辅音 + y → ies ─────
+      D.shot();
+      N("", "以 ch、sh、s、x、o 结尾的动词，加 -es：teaches、goes。");
+      const m3 = h.ex("My mom", "teaches English and goes to work by car.", 150, "+es");
+      // 场景：小汽车开去上班（R4 goes to work by car）
+      h.ground(60, 790, 430);
+      const gCar = h.car(140, 430);
+      const syM = sayAt("My mom teaches English and goes to work by car.", { zh: "我妈妈教英语，开车去上班。", word: "teaches" });
+      k.move(gCar, syM.t + syM.dur * .55, Math.max(1.6, syM.dur * .45), 300, 0, { ease: "move" });
+      k.actFx(["goes"], syM.t + syM.dur * .55, Math.max(1.6, syM.dur * .45), "妈妈的小汽车开去上班");
+      h.ring(m3, "es", 0, C.red); h.ring(m3, "es", 1, C.red);
       k.say("Ch, sh, es. Watch, watches. Wash, washes.", { zh: "ch、sh 结尾加 -es。看，（他）看。洗，（他）洗。", word: "ch sh es", blocks: ["ch", "sh", "es"] });
+      k.say("My mom teaches English and goes to work by car.", { zh: "我妈妈教英语，开车去上班。", word: "My mom English and goes to work by car" });
+      N("辅音 + y：", "辅音就是 a e i o u 以外的字母。辅音 + y 结尾，变 y 为 i 加 -es。");
+      const m4 = h.ex("The little bird", "flies high in the sky.", 190, "y → i + es");
       k.say("A, e, i, o, u. A cat, an egg.", { zh: "a、e、i、o、u（元音字母）。一只猫，一个鸡蛋。", word: "a" });
-      k.final("He plays football every afternoon.", "plays", "口诀：习惯真理用一般现在时；单三动词戴勋章，见 does 就脱掉！", { zh: "他每天下午踢足球。", word: "plays" });
+      h.ring(m4, "ies", 0, C.red);
+      // 场景：小鸟飞过天空（R4 flies）
+      const gBd = h.bird(120, 300); k.hide(gBd);
+      const syB = sayAt("The little bird flies high in the sky.", { zh: "小鸟在天上飞得很高。", word: "The little bird flies high in sky" });
+      k.fade(gBd, syB.t, .3, 1);
+      k.path(gBd, syB.t, syB.dur, [[160, -40], [380, -10], [600, -50]]);
+      for (let i = 0; i < 6; i++) k.squash(gBd, syB.t + .2 + i * (syB.dur - .3) / 6, (syB.dur - .3) / 6, .25);
+      k.actFx(["flies"], syB.t, syB.dur, "小鸟扇着翅膀飞过天空");
+      k.look(me, 500, 280, syB.t, syB.dur);
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 4 · 信号词 + 照妖镜 + 结论 ─────
+      D.step(4); D.shot();
+      N("信号词：", "看到 every day、always、usually、often，就知道要用一般现在时。");
+      const yS = h.signals("every day (每天) · always (总是) · usually (通常) · often (经常) · sometimes (有时) · on Sundays (每逢周日)", 150);
+      k.say("Every day, always, usually, often, sometimes, on Sundays.", { zh: "每天、总是、通常、经常、有时、每逢周日。", word: "every day always usually often sometimes on Sundays" });
+      N("照妖镜：", "比喻 doesn't / Does：它们把 -s 勋章拿走了，后面的动词被打回原形。");
+      h.trapFix("He doesn't likes", "likes", "He doesn't like", yS + 60);
+      k.act(me, "surprised", S.at - .4, 1);
+      k.say("He likes milk. He doesn't like tea. Does he like juice?", { zh: "他喜欢牛奶。他不喜欢茶。他喜欢果汁吗？", word: "likes like doesn't does He doesn't like" });
+      N("", "结论：单三主语 He，动词戴上 -s 勋章。");
+      h.final("He plays football every afternoon.", "plays", "口诀：习惯真理用一般现在时；单三动词戴勋章，见 does 就脱掉！", { zh: "他每天下午踢足球。", word: "plays" });
+      k.act(me, "point", S.at - 1.4, 1.2, { at: [160, 470] });
       N("口诀：", "习惯真理用一般现在时；单三动词戴勋章，见 does / doesn't 就脱掉！");
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "「她每天去上学」：She 是单三，go 要不要戴 -es 勋章？先想 3 秒！");
+      h.quiz("🔮 她每天去上学。", "→  She ___ to school every day.  ( go / goes )");
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "单三主语 She，go 戴上 -es 勋章：She goes to school every day.");
+      const tRev = go(.3);
+      h.reveal("She goes to school every day.");
+      k.sfx("ding", tRev + .9);
+      const syQ = sayAt("She goes to school every day.", { zh: "她每天去上学。", word: "go goes She to school every day" });
+      k.act(me, "walk", syQ.t + syQ.wd, Math.max(1.2, (syQ.dur - syQ.wd) / 2), { to: 840, words: ["goes"] });
+      k.act(me, "walk", syQ.t + syQ.wd + Math.max(1.2, (syQ.dur - syQ.wd) / 2), 1.2, { to: 892 });
+      k.act(me, "turn", syQ.t + syQ.dur + 1.3, .3, { to: -1 });
+      k.act(me, "cheer", syQ.t + syQ.dur + 1.7, 1.2);
+      D.hold(1.4);
+
+      k.quoteCard({ insight: "一般现在时是一张「档案照」：\n拍下习惯、规律和永远不变的事实", rhyme: "口诀：习惯真理用一般现在时；\n单三动词戴勋章，见 does 就脱掉！", hlLines: 2, foot: "⏳ 时×体矩阵 · ① 一般现在时" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "goes", act: "读到「The earth goes around the sun」时地球绕太阳转一圈（场景动作 actFx + path）；读到「goes to work by car」时妈妈的小汽车开走（actFx + move）；预测题「She goes to school」时讲解员走一段再走回（walk）" },
+      { word: "play", act: "读到「They play football every afternoon」时讲解员跳起来（jump，踢球的兴奋）" },
+      { word: "plays", act: "读到「He plays football … Leo plays too」时场景里的小男孩带球跑（run）、足球滚进球门（move + squash），进球后欢呼（cheer）" },
+      { word: "flies", act: "读到「The little bird flies high in the sky」时小鸟扇着翅膀飞过天空（场景动作 actFx + path + squash）" },
+    ],
     r2skip: ["V-s", "He doesn't likes"],   // 公式标签；红叉错句不读
     terms: [
+      ["可信度徽章", "💡 快照、录像、望远镜、老照片、奖杯、单三勋章、照妖镜都是帮助记忆的比喻；✂️ 简化说法：「时×体」九宫格是帮小学生看清时态的简化图，真实英语里的时态用法更多，以后再学。"],
       ["时态", "英语动词的「变身」，用来告诉你事情发生在什么时候（过去 / 现在 / 将来）、处在什么样子。"],
       ["时间轴（时）", "一根从左到右的线：左边是过去，中间是现在，右边是将来。时态里的「时」就是在这根线上选位置。"],
       ["体（镜头）", "用什么镜头看这个动作：一般体像快照，进行体像录像，完成体像把成果留存下来。"],
