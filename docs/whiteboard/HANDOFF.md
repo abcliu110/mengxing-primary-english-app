@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 00:25 JST（阶段 3：ze_be、ze_modifier 两幕已搬，下一步原理页删原幕留跳转，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-30 00:40 JST（阶段 3：④-1、⑥-1 搬迁完成；下一步 ze_same 等新幕，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -186,7 +186,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 3 | 总枢页面骨架（首页横幅 + `zh_en_hub` 页面 + 章节卡，参照 `wo_hub.js`） | ✅ `src/ze_hub.js`（`ZE_CHAPTERS` 5 章 11 幕、`renderZhEnHubView`、`zeAnimId`）；`insert_wb.py` 新增 `ZE_READY`、首页横幅 `<!-- ZE_HOME -->`（单词身世横幅下面）、路由 `zh_en_hub`、停循环；`wb_app.js` `startWBLoop(…, "ze")`；验收脚本 `src/appze.py`。没上线的幕按钮禁用、选到时回落到第一个已上线的幕 |
 | 4 | 搬 ④-1 → 「是 ≠ be」幕（原样搬 + v2 + 讲解员 + R2 补齐），清单逐条打勾 | ✅ 第一步：`cases/ze_be.js` 原样整幕搬（依赖 fp_props），标题改「🔀「是」≠ be（原理 ④ 一山不容二虎）」，加一条中英对照字幕，补 R2（r2check --strict 20 词 6 句全过）；清单 27 条 ✅26 / ✏️1 / ❌0、术语 6/6。渲染回归：旧 72 幕 360 项逐字节一致，只多 ze_be 5 项；jscheck 30 模块；appze、appwo 过。**第二步（升 v2 + 讲解员）待做** |
 | 5 | 搬 ⑥-1 → 「修饰语位置」幕，清单逐条打勾 | ✅ 第一步：`cases/ze_modifier.js` 原样整幕搬，标题改「🔀 修饰语位置（原理 ⑥ 焦点先行）」，加一条中英对照字幕，补 R2（22 词 7 句全过）；清单全部 ✅ / ✏️1 / ❌0。渲染回归旧 73 幕逐字节一致；appze 过。第二步（v2 + 讲解员）待做 |
-| 6 | 原理页删 ④-1、⑥-1，留一句话 + 跳转入口 | 待做（新位置验收后） |
+| 6 | 原理页删 ④-1、⑥-1，留一句话 + 跳转入口 | ✅ `FIRST_PRINCIPLES_DB` 两幕加 `movedTo: { scene, title, line }`、标题加「（已搬到 🔀 中英对照总枢）」；`insert_wb.py` 让原理页遇到 `act.movedTo` 时舞台换成 `fpMovedHtml(act)`（一句话 + 「去看这一幕」按钮，在 `ze_hub.js`），术语区隐藏；`WB_LAB.fp_one_king[0]` / `fp_zoom_focus[0]` 换成占位白板（保证幕序号不变；case 0 的 terms 是全原理共用术语，保留）。原内容只在 `cases/ze_be.js`、`ze_modifier.js`。验收：两条原理第 1 幕显示跳转卡、点按钮进入总枢对应幕并挂载；appfp 3/5 过；渲染回归只有两个占位幕变化；r2check 两条原理全过。**搬迁完成** |
 
 ## 1. 当前状态
 
