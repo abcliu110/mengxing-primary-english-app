@@ -55,6 +55,17 @@ const FP_PROPS = function (k) {
     return { x, y, w, h };
   };
 
+  // 分段上色的等宽一行：parts = [["/ˈbʌs", C.ink], ["ɪ", C.orange], ["z/", C.ink]]，返回结束 x
+  D.parts = (parts, x, y, size = 24, weight = 900) => {
+    let cx = x;
+    parts.forEach(([text, color]) => {
+      const dur = Math.max(.3, text.length * .07);
+      T(text, cx, y, go(dur), dur, { size, color, weight, font: MONO });
+      cx += text.length * size * .6;
+    });
+    return cx;
+  };
+
   // 结论绿框 + 口诀（y 446–498 + 525）
   D.fin = (concl, rhyme) => {
     P(k.roughRect(16, 446, 928, 52), go(1), 1, { color: C.green, w: 2.5 });

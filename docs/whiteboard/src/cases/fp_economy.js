@@ -75,3 +75,69 @@ WB_LAB.fp_economy = [
     ],
   },
 ];
+WB_LAB.fp_economy.push(
+  // ───────── 1-2 为什么 s/sh/ch/x 加 -es，t/d 加 -ed 要多读 /ɪ/？─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：buses、wanted 为什么要多读一个 /ɪ/？");
+      k.header("① 口腔省力同化律", "为什么多读一个 /ɪ/？", false);
+      N("", "先试试：bus 后面直接加一个 /s/……");
+      const m = D.mouth({ x: 66, y: 150, s: .9 });
+      N("舌尖音：", "舌尖顶在上牙后面发的音，比如 /s/ /z/ /t/ /d/。");
+      m.glow(166, 132);
+      T("/s/ 在这里", m.X(150), m.Y(100), go(.6), .6, { size: 15, color: C.orange, weight: 900, anchor: "end" });
+      k.wait(.4);
+      // 撞车动画
+      k.head("bus + s", 320, 160, C.ink, "start", 24);
+      T("/bʌs/", 320, 220, go(.6), .6, { size: 30, color: C.ink, weight: 900, font: M });
+      const gs = k.group();
+      P(k.ellipse(580, 210, 22, 22), go(.4), .4, { color: C.red, w: 2.5 });
+      T("s", 580, 220, go(.3), .3, { size: 30, color: C.red, weight: 900, font: M, anchor: "middle" });
+      k.endGroup();
+      N("吞音：", "两个一样的音挨在一起，会粘成一个，听不出来。");
+      const tm = go(1.2);
+      k.move(gs, tm, 1.2, -200, 0);
+      k.buzz(gs, tm + 1.2, .8, 2);
+      k.wait(.4);
+      k.redX(372, 234);
+      T("粘成一个 /s/，听不出是复数！", 402, 258, go(1), 1, { size: 17, color: C.red, weight: 900 });
+      k.wait(.6);
+      // 插 /ɪ/
+      N("", "办法：中间插一个短短的 /ɪ/，把两个音隔开。");
+      k.move(gs, go(.8), .8, 200, 0);
+      k.wait(.2);
+      T("bus + ɪ + z", 320, 316, go(.8), .8, { size: 26, color: C.ink, weight: 900, font: M });
+      k.arrow(520, 307, 570, 307, C.grey);
+      T("/ˈbʌsɪz/  buses", 586, 316, go(.8), .8, { size: 26, color: C.green, weight: 900, font: M });
+      T("↑ 多了一个 /ɪ/", 434, 344, go(.6), .6, { size: 16, color: C.orange, weight: 900 });
+      k.wait(.6);
+      // 套用：row(原形, 词尾, 音标, x, y)
+      const row = (base, tail, ipa, x, y) => {
+        const cw = 20 * .6;
+        T(base, x, y, go(.4), .4, { size: 20, color: C.ink, weight: 900, font: M });
+        const ax = x + base.length * cw + 8;
+        k.arrow(ax, y - 6, ax + 26, y - 6, C.grey);
+        const bx = ax + 34;
+        D.parts([[base, C.ink], [tail, C.orange]], bx, y, 20);
+        T(ipa, bx + (base.length + tail.length) * cw + 12, y, go(.5), .5, { size: 18, color: C.grey, weight: 700, font: M });
+      };
+      N("嘶嘶音：", "/s/ /z/ /ʃ/ /tʃ/ 这类像蛇嘶嘶响的音，加 -es 读 /ɪz/。");
+      row("watch", "es", "/ˈwɒtʃɪz/", 320, 394);
+      row("box", "es", "/ˈbɒksɪz/", 320, 424);
+      k.wait(.4);
+      N("", "-ed 也一样：want 最后是 /t/，再加 /t/ 就粘住了。");
+      row("want", "ed", "/ˈwɒntɪd/", 640, 394);
+      row("need", "ed", "/ˈniːdɪd/", 640, 424);
+      k.wait(.6);
+      N("口诀：", "同位相撞，插个 /ɪ/ 来帮忙。");
+      D.fin("尾音和词缀发音位置一样 → 插 /ɪ/ 隔开：-es 读 /ɪz/，-ed 读 /ɪd/", "口诀：同位相撞，插个 /ɪ/ 来帮忙。");
+      k.wait(2);
+    },
+    terms: [
+      ["舌尖音", "舌尖顶在上牙后面发出的音，如 /s/ /z/ /t/ /d/。"],
+      ["嘶嘶音", "/s/ /z/ /ʃ/ /ʒ/ /tʃ/ /dʒ/，读起来像蛇嘶嘶响。词尾是 s、x、sh、ch 的词，加 -es 读 /ɪz/。"],
+      ["吞音", "两个发音位置一样的音挨在一起，粘成一个，后面那个就听不出来了。"],
+    ],
+  },
+);
