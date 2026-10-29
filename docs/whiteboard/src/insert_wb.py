@@ -20,6 +20,7 @@ TABS = {
     'aux_transformer': 'auxIdx', 'five_patterns': 'patIdx', 'writing_alchemist': 'writeIdx',
 }
 # 只写入已验收的页签（做完一个页签就加进来）；其余 cases/*.js 可能还在制作中
+FP_DEPS = {'fp_economy': 'wo_props fp_props'}   # 升了引擎 v2 + 讲解员的原理（用 WO_PROPS 镜头模板 + fp_props 口型道具）
 FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoom_focus', 'fp_iconicity']   # 第一性原理总枢：做完一条原理就把 id 加进来，如 'fp_economy'
 READY = ['phrasal_key', 'eight_endings', 'pron_map', 'intonation_map', 'irregular_plural', 'bamboo_tree', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
@@ -34,7 +35,7 @@ WO_KITS = {'wo_vowel_kit': ['wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c']}   # 几�
 LAB_DEPS = {'phrasal_key': 'wo_props', 'eight_endings': 'wo_props', 'pron_map': 'wo_props fp_props', 'intonation_map': 'wo_props', 'irregular_plural': 'wo_props'}   # 用 v2 镜头模板的实验室页签（白板课）
 MODS = [(t, LAB_DEPS.get(t, '')) for t in READY]
 if FP_READY:
-    MODS += [('fp_props', '')] + [(t, 'fp_props') for t in FP_READY]
+    MODS += [('fp_props', '')] + [(t, FP_DEPS.get(t, 'fp_props')) for t in FP_READY]
 if WO_READY:
     kit_of = {t: kit for kit, ts in WO_KITS.items() for t in ts if t in WO_READY}
     MODS += [('wo_props', '')] + [(kit, 'wo_props') for kit in WO_KITS if any(kit_of.get(t) == kit for t in WO_READY)]

@@ -1,72 +1,146 @@
 // ==================== 第一性原理 ① 口腔省力同化律（fp_economy）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[0].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
+// v2 升级（2026-10-30 起）：第 1 幕已升引擎 v2 + 讲解员（试点）；升级前整份文件原样保存在 cases/fp_economy_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_economy = [
-  // ───────── 1-1 为什么 -s 和 -ed 都有三种读音？─────────
+  // ───────── 1-1 为什么 -s 和 -ed 都有三种读音？（v2 + 讲解员，2026-10-30 试点）─────────
+  // 升级前原样保存在 cases/fp_economy_classic.js（R1 零丢失，可随时回退）；原字幕 / 白板 / 朗读 / 术语逐条保留。
+  // 结构改成 v2 六步：① 6 种读音？② 声带 ③ 同化 ④ 过去式 ⑤ 口诀 🔮 预测。配色：V3 四色（口腔道具自带颜色，与 pron_map 同）。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：复数 -s 和过去式 -ed，为什么各有三种读音？");
-      k.header("① 口腔省力同化律", "-s 和 -ed 的三种读音", false);
-      N("", "看起来要背 6 种读音……");
-      k.mono("books /s/   bags /z/    buses /ɪz/", 40, 104, 20, C.ink, 700);
-      k.mono("worked /t/  played /d/  wanted /ɪd/", 40, 136, 20, C.ink, 700);
-      N("", "其实只看一件事：前一个音，声带有没有震动。");
-      k.wait(.6);
-      // 口腔图
-      N("声带：", "喉咙里的两片小肉，发某些音时会快速震动。");
-      const m = D.mouth({ x: 70, y: 168, s: .95 });
-      const wv = m.waves();
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "-s 和 -ed 的三种读音", sub: "① 口腔省力同化律", badges: ["💡"], steps: ["① 6 种读音？", "② 声带", "③ 同化", "④ 过去式", "⑤ 口诀", "🔮 预测"] });
       k.wait(.4);
-      // 试 /k/
+
+      // ───── 镜头 1 · 看起来要背 6 种 ─────
+      D.step(0); D.shot();
+      N("", "看起来要背 6 种读音……");
+      k.mono("books /s/   bags /z/    buses /ɪz/", 60, 170, 24, C.ink, 700);
+      k.mono("worked /t/  played /d/  wanted /ɪd/", 60, 220, 24, C.ink, 700);
+      T("6 种？！", 640, 200, go(.6), .6, { size: 30, color: C.red, weight: 900 });
+      k.act(me, "surprised", S.at - .6, 1.3); k.expr(me, "oops", S.at - .6, 1.6);
+      k.wait(.4);
+      N("", "其实只看一件事：前一个音，声带有没有震动。");
+      P(k.roughRect(40, 290, 700, 60), go(.7), .7, { color: C.blue, w: 2.4 });
+      T("只看一件事：前一个音，声带震不震？", 64, 330, go(1), 1, { size: 22, color: C.blue, weight: 900 });
+      k.act(me, "think", S.at - 1.4, 1.6);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 镜头 2 · 声带：清 vs 浊 ─────
+      D.step(1); D.shot();
+      N("声带：", "喉咙里的两片小肉，发某些音时会快速震动。");
+      const m = FP.mouth({ x: 90, y: 120, s: 1.05, labelX: -16 }); D.adopt(m.cords);
+      const wv = m.waves(); D.adopt(wv); D.back();   // waves() 建组后回到 0 组，这里接回镜头组（否则后面的字擦不掉）
+      k.act(me, "point", S.at - .8, 1.6, { at: [m.X(90), m.Y(225)] });
+      k.wait(.4);
       N("清辅音：", "发音时声带不震动的辅音，比如 /k/ /p/ /t/ /s/。");
-      D.tag("/k/", 300, 214, C.blue, 24);
-      T("声带不震", 300, 250, go(.6), .6, { size: 18, color: C.blue, weight: 900 });
-      T("= 清", 300, 276, go(.4), .4, { size: 18, color: C.blue, weight: 900 });
+      FP.tag("/k/", 420, 200, C.blue, 26);
+      T("声带不震", 420, 240, go(.6), .6, { size: 20, color: C.blue, weight: 900 });
+      T("= 清", 420, 268, go(.4), .4, { size: 20, color: C.blue, weight: 900 });
       k.wait(.8);
-      // 试 /ɡ/：声带抖动 + 波纹
       N("浊辅音：", "发音时声带震动的辅音，比如 /ɡ/ /b/ /d/ /v/；元音也都震。");
-      D.tag("/ɡ/", 300, 340, C.green, 24);
+      FP.tag("/ɡ/", 420, 340, C.green, 26);
       const tb = go(.2);
       k.buzz(m.cords, tb, 3.2, 2.2); k.fade(wv, tb, .3, 1); k.fade(wv, tb + 3, .3, 0);
-      T("声带震动", 300, 376, go(.6), .6, { size: 18, color: C.green, weight: 900 });
-      T("= 浊", 300, 402, go(.4), .4, { size: 18, color: C.green, weight: 900 });
+      k.act(me, "point", tb, 1.8, { at: [m.X(90), m.Y(225)] }); k.expr(me, "surprised", tb, 1.8);
+      T("声带震动", 420, 380, go(.6), .6, { size: 20, color: C.green, weight: 900 });
+      T("= 浊", 420, 408, go(.4), .4, { size: 20, color: C.green, weight: 900 });
+      k.badge("💡", 560, 300, { label: "摸喉咙试试" });
       k.wait(1.4);
-      // 右边：两列
-      P(k.wl(595, 170, 595, 395, 1), go(.4), .4, { color: "#cbd5e1", w: 2, dash: "6 7" });
-      k.head("不震 → 尾巴不震", 410, 192, C.blue, "start", 18);
-      k.head("震 → 尾巴也震", 615, 192, C.green, "start", 18);
+      D.wipe();
+
+      // ───── 镜头 3 · 同化：-s 跟着前一个音走 ─────
+      D.step(2); D.shot();
+      P(k.wl(420, 130, 420, 430, 1), go(.4), .4, { color: C.grey, w: 2, dash: "6 7" });
+      k.head("不震 → 尾巴不震", 60, 150, C.blue, "start", 22);
+      k.head("震 → 尾巴也震", 460, 150, C.green, "start", 22);
       N("同化：", "后一个音学前一个音的样子，嘴巴最省力。");
-      const r1 = k.mono("book+s", 410, 236, 24, C.ink, 900);
-      P(k.ellipse(r1.x + 3.5 * r1.cw, r1.y - 8, 10, 16), go(.4), .4, { color: C.blue, w: 2.5 });
-      k.arrow(r1.x + 3.5 * r1.cw + 6, r1.y + 12, r1.x + 5.5 * r1.cw, r1.y + 26, C.blue);
-      T("/s/", 410, 284, go(.4), .4, { size: 22, color: C.blue, weight: 900, font: M });
+      const r1 = k.mono("book+s", 60, 220, 34, C.ink, 900);
+      P(k.ellipse(r1.x + 3.5 * r1.cw, r1.y - 11, 14, 22), go(.4), .4, { color: C.blue, w: 2.5 });
+      k.arrow(r1.x + 3.5 * r1.cw + 8, r1.y + 16, r1.x + 5.5 * r1.cw, r1.y + 36, C.blue);
+      T("/s/", 60, 290, go(.4), .4, { size: 30, color: C.blue, weight: 900, font: M });
       N("", "book 最后是 /k/，声带不震，-s 就顺势读不震的 /s/。");
-      const r2 = k.mono("bag+s", 615, 236, 24, C.ink, 900);
-      P(k.ellipse(r2.x + 2.5 * r2.cw, r2.y - 8, 10, 16), go(.4), .4, { color: C.green, w: 2.5 });
-      k.arrow(r2.x + 2.5 * r2.cw + 6, r2.y + 12, r2.x + 4.5 * r2.cw, r2.y + 26, C.green);
-      T("/z/", 615, 284, go(.4), .4, { size: 22, color: C.green, weight: 900, font: M });
+      k.hlText("k", r1.x + 3 * r1.cw, r1.y, 34, { color: C.hlYellow });
+      const r2 = k.mono("bag+s", 460, 220, 34, C.ink, 900);
+      P(k.ellipse(r2.x + 2.5 * r2.cw, r2.y - 11, 14, 22), go(.4), .4, { color: C.green, w: 2.5 });
+      k.arrow(r2.x + 2.5 * r2.cw + 8, r2.y + 16, r2.x + 4.5 * r2.cw, r2.y + 36, C.green);
+      T("/z/", 460, 290, go(.4), .4, { size: 30, color: C.green, weight: 900, font: M });
       N("", "bag 最后是 /ɡ/，声带在震，-s 就顺势读会震的 /z/。");
-      k.wait(.8);
-      k.say("I have two books and two bags.", { zh: "我有两本书和两个包。" });
+      k.hlText("g", r2.x + 2 * r2.cw, r2.y, 34, { color: C.hlGreen });
+      k.wait(.6);
+      T("I have two books and two bags.", 60, 380, go(1.2), 1.2, { size: 24, color: C.ink, weight: 900, font: M });
+      const bk = k.prop("book", 0, 0, { hidden: true });
+      const syBooks = sayAt("I have two books and two bags.", { zh: "我有两本书和两个包。", word: "I have two and" });
+      k.act(me, "holdCard", syBooks.t - .2, Math.max(1.6, syBooks.dur + .4), { prop: bk });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 4 · 过去式：同一条规律 ─────
+      D.step(3); D.shot();
       N("过去式：", "表示以前发生的事，规则动词加 -ed。同一条规律！");
-      k.mono("worked", 410, 336, 24, C.ink, 900);
-      T("/t/", 410, 372, go(.4), .4, { size: 22, color: C.blue, weight: 900, font: M });
-      T("/k/ 不震", 460, 372, go(.5), .5, { size: 15, color: C.grey });
-      k.mono("played", 615, 336, 24, C.ink, 900);
-      T("/d/", 615, 372, go(.4), .4, { size: 22, color: C.green, weight: 900, font: M });
-      T("/eɪ/ 元音会震", 665, 372, go(.6), .6, { size: 15, color: C.grey });
+      P(k.wl(420, 130, 420, 330, 1), go(.4), .4, { color: C.grey, w: 2, dash: "6 7" });
+      k.mono("worked", 60, 190, 34, C.ink, 900);
+      T("/t/", 60, 250, go(.4), .4, { size: 30, color: C.blue, weight: 900, font: M });
+      T("/k/ 不震", 130, 250, go(.5), .5, { size: 18, color: C.grey });
+      k.mono("played", 460, 190, 34, C.ink, 900);
+      T("/d/", 460, 250, go(.4), .4, { size: 30, color: C.green, weight: 900, font: M });
+      T("/eɪ/ 元音会震", 530, 250, go(.6), .6, { size: 18, color: C.grey });
       k.wait(.6);
-      k.say("I worked hard, and then I played.", { zh: "我努力学习，然后去玩。" });
+      T("I worked hard, and then I played.", 60, 310, go(1.2), 1.2, { size: 22, color: C.ink, weight: 900, font: M });
+      const syWp = sayAt("I worked hard, and then I played.", { zh: "我努力学习，然后去玩。", word: "hard then" });
+      const book2 = k.prop("book", 0, 0, { hidden: true });
+      k.act(me, "read", syWp.t, Math.max(1.2, syWp.dur * .55), { prop: book2, words: ["worked"] });
+      k.act(me, "jump", syWp.t + syWp.dur * .58, Math.max(.9, syWp.dur * .42), { words: ["played"] });
+      k.wait(.4);
       N("", "那 buses /ɪz/、wanted /ɪd/ 呢？下一幕讲。");
-      T("buses  wanted  → ?", 410, 422, go(1), 1, { size: 18, color: C.grey, weight: 700, font: M });
+      T("buses  wanted  → ?", 60, 380, go(1), 1, { size: 22, color: C.grey, weight: 700, font: M });
+      k.act(me, "think", S.at - 1, 1.4);
       k.wait(.6);
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "前音不震尾不震，前音一震尾也震。");
+      P(k.roughRect(40, 410, 760, 52), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：前音不震尾不震，前音一震尾也震。", 60, 444, go(1), 1, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
       // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("Books, bags, buses.", { zh: "书、包、公交车。", word: "book books bag bags buses" });
-      k.say("Worked, played, wanted.", { zh: "工作了、玩了、想要了。", word: "worked played wanted ed", blocks: ["ed"] });
-      D.fin("清配清，浊配浊：-s / -ed 跟着前一个音的声带走", "口诀：前音不震尾不震，前音一震尾也震。");
-      k.wait(2);
+      sayAt("Books, bags, buses.", { zh: "书、包、公交车。", word: "book books bag bags buses" });
+      sayAt("Worked, played, wanted.", { zh: "工作了、玩了、想要了。", word: "worked played wanted ed", blocks: ["ed"] });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "dog 最后是 /ɡ/。dogs 的 -s 读 /s/ 还是 /z/？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 dog + s　→　/s/ 还是 /z/", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      const qm = D.sub(); T("？", 470, 204, go(.3), .3, { size: 34, color: C.red, weight: 900 }); D.back();
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "/ɡ/ 声带在震，-s 也跟着震：dogs 读 /z/。");
+      const tRev = go(.3);
+      k.fade(qm, tRev, .3, 0);
+      T("dogs /dɒɡz/ —— /ɡ/ 震，尾巴也震 → /z/", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Dogs. I have two dogs.", { zh: "狗。我有两只狗。", word: "dog dogs" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "清配清，浊配浊：\n-s / -ed 跟着前一个音的声带走", rhyme: "口诀：前音不震尾不震，\n前音一震尾也震。", hlLines: 2, foot: "🧠 第一性原理 ① 口腔省力同化律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "worked", act: "讲解员捧书认真读（read），与「I worked hard」同步" },
+      { word: "played", act: "讲解员开心地跳起来（jump），与「then I played」同步" },
+    ],
     terms: [
       ["音素", "一个最小的声音单位，音标里的一个符号就是一个音素，比如 /k/。"],
       ["元音 / 辅音", "元音：气流不受阻挡的音，如 /æ/ /eɪ/；辅音：气流被舌头、牙齿或嘴唇挡一下的音，如 /k/ /b/。"],
@@ -77,6 +151,7 @@ WB_LAB.fp_economy = [
       ["复数 / 三单", "复数：两个以上，名词加 -s；三单：主语是 he/she/it 时，动词加 -s。读音规律一样。"],
       ["过去式", "表示过去发生的事，规则动词加 -ed。"],
       ["同化", "后一个音变得像前一个音，让嘴巴少换动作、说起来更省力。"],
+      ["可信度徽章", "💡 记忆方法（口诀、摸喉咙）· 📜 有出处的历史 · ✂️ 简化说法 · ⚠️ 有要注意的地方。"],
     ],
   },
 ];
