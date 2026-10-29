@@ -169,3 +169,7 @@
 
 - ⑧ 单词卡光透视仪不在本轮（见进度表），需要用户决定是否要做一个「通用模板」自动生成。
 - 环境：沙箱重置后需要重装 Playwright：`pip install playwright && python3 -m playwright install chromium && python3 -m playwright install-deps chromium`。
+
+
+## 讲解员小人定稿（2026-10-29）
+用户选定 v3a 马尾女老师（docs/whiteboard/narrator/narrator_v3a_ponytail.png）：高马尾+星星发夹，绿外套、橙领巾、藏青长裤，星星笔帽马克笔，不戴眼镜。代码阶段按此稿用 SVG 骨架重画，详见 narrator/README.md。

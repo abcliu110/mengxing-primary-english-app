@@ -233,3 +233,7 @@
 | `docs/whiteboard/DESIGN_HANDOFF.md` | 单词身世设计阶段记录 + port 幕自查表 |
 | `docs/whiteboard/word_origins/SOURCES.md` | 📜 出处登记 |
 | `docs/whiteboard/src/` | 引擎、案例、App 接线、插入脚本、验收脚本 |
+
+
+## 讲解员小人定稿（2026-10-29）
+用户选定 v3a 马尾女老师（docs/whiteboard/narrator/narrator_v3a_ponytail.png）：高马尾+星星发夹，绿外套、橙领巾、藏青长裤，星星笔帽马克笔，不戴眼镜。代码阶段按此稿用 SVG 骨架重画，详见 narrator/README.md。
