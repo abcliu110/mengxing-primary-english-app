@@ -10,7 +10,7 @@
 | 0 | SOP / 分镜 / 交接文档 | ✅ 2026-10-29 |
 | 1 | 引擎 v2 动效：`group / move / arc / buzz / fade / rot / camera`（SOP §4），回归旧 34 案例 | ✅ 2026-10-29（旧案例截图逐像素一致；`camera` 用法：`k.camera(0,0,x,y,z)` 开场特写，再 `k.camera(go(2),2,480,272,1)` 拉远；`hide(g)` 让组开始时隐藏） |
 | 2 | App 接线：`wbStageHtml` 第 4 参数 svg id、`startFirstPrinciplesCanvasLoop` 走白板、`fpAnimId`、`appfp.py`（SOP §5） | ✅ 2026-10-29（`insert_wb.py` 里 `FP_READY` 列表登记做完的原理；没登记的原理保持旧 Canvas） |
-| 3 | `fp_props.js` 道具（SOP §3） | 🔶 已有：`lips`（正面嘴唇，`close/open` 开合）、`mouth`（口腔侧面 + 声带组 + 波纹 + 发音位置亮点）、`tag`、`parts`（分段上色，**只用于 ASCII**：音标字符 ʌ ɪ ʃ ˈ ː 不在 Courier New 里，宽度不是 0.6×字号，整段音标要单独一个 `T`）、`fin` |
+| 3 | `fp_props.js` 道具（SOP §3） | 🔶 已有：`person`（火柴人组，`bend` 弯腰）、`lips`（正面嘴唇，`close/open` 开合）、`mouth`（口腔侧面 + 声带组 + 波纹 + 发音位置亮点）、`tag`、`parts`（分段上色，**只用于 ASCII**：音标字符 ʌ ɪ ʃ ˈ ː 不在 Courier New 里，宽度不是 0.6×字号，整段音标要单独一个 `T`）、`fin` |
 | 4 | 样板：① `fp_economy` 1-1（声带道具 + buzz 动效） | ✅ 2026-10-29（50 秒）；用户要求做一个提交一个，不停下来等 |
 | 5 | 6 条原理 × 4 幕 | 见下表 |
 | 6 | 朗读开关（可选，SOP §6） | ⬜ 等用户看完画面再定 |
@@ -21,7 +21,7 @@
 | ② | `fp_iconicity` | 字母象形与音义同源簇 | 4 | letterMorph | ⬜ |
 | ③ | `fp_boundedness` | 物理边界感统摄律 | 4 | knife、ring/target、building | ⬜ |
 | ④ | `fp_one_king` | 一山不容二虎单核谓语律 | 4 | throne、token | ⬜ |
-| ⑤ | `fp_vectors` | 三维几何向量时空律 | 4 | dims、vec、vehicle | 🔶 2/4（5-1 ✅ 点/面/盒 + 小球落下 · 5-2 ✅ 贴上/弹开、开关接通灯亮、飞机 arc 起飞） |
+| ⑤ | `fp_vectors` | 三维几何向量时空律 | 4 | dims、vec、vehicle | 🔶 3/4（5-1 ✅ 点/面/盒 + 小球落下 · 5-2 ✅ 贴上/弹开、开关接通灯亮、飞机 arc 起飞 · 5-3 ✅ 火柴人走上公交 / 弯腰钻进小车） |
 | ⑥ | `fp_zoom_focus` | 焦点先行与镜头缩放律 | 4 | xmasTree、spotlight、zoom、timeGrid | ⬜ |
 
 建议顺序：① → ⑤ → ③ → ④ → ⑥ → ②（道具难度从高到低，先把最难的引擎动效验证掉）。
