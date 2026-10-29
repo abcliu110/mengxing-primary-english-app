@@ -116,7 +116,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | P2' | ④ `fp_one_king` 第 2–4 幕、⑥ `fp_zoom_focus` 第 2–4 幕 | ④-1、⑥-1 要零丢失搬去中英对照总枢（阶段 3），**搬的时候在新位置补 R2/R4**，原位置不补 | 先补留下的 6 幕 |
 | P3 | `bamboo_tree`（85，实验室样板页签）→ `aux_transformer`（97）→ `five_patterns`（193）→ `tense_matrix`（262） | 语法核心；bamboo_tree 是实验室样板，先补好给别的页签对齐 | 例句大多已在画面上，主要是补单独朗读 + 整句朗读 |
 | P4 | `writing_alchemist`（228） | 写作，长句多，六年级用；最后做 | 白板长句全部要朗读，先确认朗读条能放下 |
-| 暂缓 | `vowel_shift`（42）| 正在被格林定律章「元音变异」吸收（新位置按 R2 补齐）；删页签等用户确认 | 不补 |
+| ✅ 已删 | `vowel_shift`（42）| 已并入格林定律章「元音变异」；2026-10-29 用户确认后删页签 | 不再统计 |
 | 暂缓 | `stress_rhythm`（103）、`metaphor_code` 空间 / 时间条目、`past_clans` 复数例 | 决策 5 / 6 要部分并入「语调地图」「合成词重音」「空间隐喻」「不规则复数」；先列清单、并入后只补留下的部分 | 等新页签开工时一起定 |
 
 - R4：旧幕都没有 `actionWords` 清单；补 R2 时同步列清单（例句里的动作动词见 `r2check.py <id> --all-items` 末尾「提示」行）。
@@ -124,7 +124,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
   - 本轮统一做法：旧幕不改画面，只在收尾（`D.fin` / `k.final` / `h.final` / `finalBox`）前追加 `k.say`；画面上的错句、公式标签（S V O、V-ing、adj、sb/sth）、对比符号 vs、拆开的词尾残片一律写进案例 `r2skip`（整句错句可直接写整句）。
   - ✅ 2026-10-29 23:35 `metaphor_code` 3 案例 R2 69 → 0、句子 13 → 0：按 MASTER_DESIGN 第 81 行，「人体、颜色、动物隐喻留在原页签」，三个案例都不会被搬走，所以先补（原「暂缓」行写的是整页签，过严）。补读：head/face/mouth/hand/foot/arm/leg、face of a clock、mouth of a river、at the head of the line、eye of a needle、neck of a bottle、give me a hand；颜色词、a green hand、a white lie、give the green light、golden opportunity、Don't feel blue!；as busy as a bee、The early bird catches the worm、as gentle as a lamb、as brave as a lion、rain cats and dogs、a lucky dog、black sheep、white elephant、-er/-est。以后「空间隐喻」新页签若要借用这里的某些条目，复制过去即可，这里不删。验收：r2check --strict 83 词 21 句全过；渲染回归只有 metaphor_code 3 幕变化；jscheck、appwb 过。
   - ✅ 2026-10-29 23:45 `past_clans` 4 案例 R2 134 → 0、句子 15 → 0：四个案例都是不规则过去式（AAA、i→a、ee→e+t、-ought/-aught），白板脚本里没有复数例（MASTER_DESIGN 第 83 行说的「复数例」不在白板案例里），不会被并走，所以先补。补读：四派的例句整句、各派成员（hit/let/cost、sing/sang/sung、swim/swam/swum、drink/drank/drunk、sit/sat、give/gave、begin/ring/rang、run/ran、come/came、sleep/feel/leave、keep/kept、sweep/swept、meet、feed/fed、teach/catch/buy/bring/think/fight 及过去式）和词块 -ed/-ng/-nk/ee/ea/-ought/-aught/gh/br-。`r2skip`：红叉错写 putted、hurted，派别标签 AAA。验收：r2check --strict 139 词 14 句全过；渲染回归只有 past_clans 4 幕变化；jscheck、appwb 过。
-  - 至此 R2 剩余缺口：stress_rhythm（97 词 6 句，要部分并入「语调地图」「合成词重音」，等新页签开工）、vowel_shift（42 词，等用户确认删页签）、④-1 / ⑥-1（等搬迁）。
+  - 至此 R2 剩余缺口：stress_rhythm（97 词 6 句，要部分并入「语调地图」「合成词重音」，等新页签开工）、~~vowel_shift~~（已删页签，2026-10-29）、④-1 / ⑥-1（等搬迁）。
   - 下一轮候选（不用等用户的）：①R4 动作词清单——旧幕补 `actionWords` 要先有讲解员（视觉 v2 升级），所以和 v2 升级一起做；②暂缓页签里**不会被并走**的部分（past_clans 的过去式部分、metaphor_code 的非空间 / 时间条目）可以先补，复数例、空间 / 时间条目等并入时再补。
 
 ## 0.5 阶段 2 进度（单词身世第一批，2026-10-29 起）
@@ -134,7 +134,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 1 | Europe 示范幕（`cases/wo_europe.js`，引擎 v2 + 讲解员，对齐 port 样板） | ✅ 见下 |
 | 2 | Bluetooth 示范幕（`cases/wo_bluetooth.js`） | ✅ 见下 |
 | 3 | 身世标签 + 词卡跳转（先给 port 家族） | ✅ 见下 |
-| 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | ✅ 四幕上线、清单 211 条对照完（删旧页签等用户确认）。原记录：① 出处 ✅ `caa1493`（SOURCES ④ 12 条、⑤ 14 条，含纠错）；② 真格林定律幕 `wo_grimm`；③ 元音变异三幕 `wo_vowel_a/b/c`；④ 清单 185 条逐项打勾。**删 `vowel_shift` 页签 / 改入口等用户确认，不动** |
+| 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | ✅ 四幕上线、清单 211 条对照完（✅ 2026-10-29 用户确认后已删旧页签、改 15 处入口）。原记录：① 出处 ✅ `caa1493`（SOURCES ④ 12 条、⑤ 14 条，含纠错）；② 真格林定律幕 `wo_grimm`；③ 元音变异三幕 `wo_vowel_a/b/c`；④ 清单 185 条逐项打勾。**删 `vowel_shift` 页签 / 改入口等用户确认，不动** |
 | 5 | 时间与度量章 | ✅ 出处 `d9d3c22`；数字幕 `wo_time_num` `1b9547d`；星期和月份幕 `wo_time_week`（本次） |
 
 **Europe 示范幕（2026-10-29）**
@@ -168,7 +168,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - ✅ 元音变异三幕 `wo_vowel_a`（原定律 A，foot→feet）、`wo_vowel_b`（原定律 B，long→length）、`wo_vowel_c`（原定律 C，清浊交替）：原 `vowel_shift` 三个案例的全部画面、字幕、术语、朗读整体搬来（文件 `cases/wo_vowel_a/b/c.js`，共用小工具 `cases/wo_vowel_kit.js`），加 v2 片头卡 + 讲解员 + 每个英文词单读和例句 + 纠错（R3，见上）+ 徽章。讲解员演的动作：fill（take）、bleed（surprised + oops）、feed（put）、save（put）、close（turn）、breathe（cheer）。验收：`r2check wo_vowel_a/b/c --strict` 14/22/15 词全过、R4 3/0/3；旧 67 幕 335 次渲染逐字节一致（新增 15 项都是新幕）；jscheck 27 模块过；appwo 七幕 mounted 无报错；apptags PASS；appwb vowel_shift 旧页签照常。
 - 工具改动（只加不改）：`insert_wb.py` 新增 `WO_KITS`（几幕共用的小工具文件作为依赖先执行，`data-deps="wo_props wo_vowel_kit"`）；`preview.html` 载入 `wo_vowel_kit.js`；`r2check.js` 新增案例字段 `r2skip`（画面上故意展示的错误形式不计入 R2，如 longth、foots；SOP §7 第 3 条）。
 - R4 提示：wo_vowel_c 例句「Take a deep breath」里的 take 不是「拿」的动作，只提示不算缺。
-- **没做（等用户确认）**：删 `vowel_shift` 页签、改实验室里 15 处入口指向新章（清单在 `grimm_law/VOWEL_SHIFT_INVENTORY.md` 末尾）。
+- ✅ 2026-10-29 用户确认后已删 `vowel_shift` 页签、改 15 处入口（首页卡片改「已搬家」跳转卡 → `wo_vowel_a`；旧链接自动跳转）。验收：jscheck OK（39 模块）；reg_render 其余 80 幕 400 次渲染逐字节一致（只少 vowel_shift 15 项）；appwo、apptags PASS；首页卡片、旧链接跳转冒烟无报错。
 - ✅ 清单逐项打勾（`src/check_inventory.py`，可重复运行）：`grimm_law/VOWEL_SHIFT_INVENTORY.md` 里字幕 / 白板 / 朗读 182 条 + 术语 29 条 = 211 条（原记「185 条」是只数了部分行），✅ 原样搬过去 202 条、✏️ 按 R3 改正后搬过去 9 条（原讲法作为「原讲法（已改正，保留备查）」引用留在新幕术语里）、❌ 0 条；页面数据 `GRIMM_VOWEL_LAWS` 19 对词全部在新幕画面上。文件末尾追加了对照汇总和改正清单（原 → 新）。15 处入口未动（等用户确认）。
 - **格林定律章完成**（4 幕：`wo_grimm`、`wo_vowel_a/b/c`）。等用户：①看四幕是否满意；②确认后按 R1 删 `vowel_shift` 页签并把 15 处入口改指新章。
 
