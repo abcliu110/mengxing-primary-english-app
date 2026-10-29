@@ -12930,6 +12930,151 @@ WB_LAB.aux_transformer = (() => {
   ];
 })();
 
+// ==================== 第一性原理总枢 · 共用演示道具 ====================
+// 只给 cases/fp_*.js 用。道具 = 手绘静态部分（P/T/F）+ 引擎 v2 动效（group/move/buzz/fade/rot/camera）。
+// 用法：const D = FP_PROPS(k);  D.mouth(...)
+const FP_PROPS = function (k) {
+  const { C, P, T, F, go } = k;
+  const MONO = '"Courier New",Courier,monospace';
+  const D = { MONO };
+
+  // 口腔侧面图（脸朝右）。返回 { cords: 声带组, lips: 嘴唇组（上唇可合拢）, glow(x,y) 标出发音位置 }
+  // o.x,o.y = 左上角；整个图约 250×260
+  D.mouth = (o = {}) => {
+    const x = o.x ?? 50, y = o.y ?? 170, s = o.s ?? 1;
+    const X = v => x + v * s, Y = v => y + v * s;
+    const pt = (a, b) => `${X(a).toFixed(1)},${Y(b).toFixed(1)}`;
+    // 脸的轮廓：额头 → 鼻子 → 上唇 → 下唇 → 下巴 → 脖子前面
+    P(`M${pt(80, 0)} C${pt(140, 10)} ${pt(160, 40)} ${pt(165, 70)} L${pt(195, 95)} L${pt(170, 108)} C${pt(178, 112)} ${pt(182, 118)} ${pt(178, 124)}`, go(1.1), 1.1, { color: C.ink, w: 3 });
+    P(`M${pt(178, 140)} C${pt(184, 146)} ${pt(180, 154)} ${pt(172, 158)} C${pt(170, 176)} ${pt(160, 190)} ${pt(140, 196)} L${pt(138, 260)}`, go(1), 1, { color: C.ink, w: 3 });
+    // 脖子后面
+    P(`M${pt(20, 60)} C${pt(10, 120)} ${pt(30, 180)} ${pt(40, 260)}`, go(.7), .7, { color: C.ink, w: 3 });
+    // 上颚 + 喉咙后壁
+    P(`M${pt(172, 128)} C${pt(140, 112)} ${pt(100, 108)} ${pt(80, 130)} C${pt(70, 145)} ${pt(72, 170)} ${pt(75, 260)}`, go(1), 1, { color: C.brown, w: 2.5 });
+    // 舌头
+    const tongue = `M${pt(168, 140)} C${pt(150, 128)} ${pt(118, 128)} ${pt(100, 150)} C${pt(95, 165)} ${pt(100, 185)} ${pt(102, 200)}`;
+    P(tongue, go(.8), .8, { color: C.red, w: 3 });
+    F(`${tongue} L${pt(110, 200)} C${pt(130, 175)} ${pt(150, 158)} ${pt(170, 150)} Z`, go(.3, 0), { color: "#fecdd3", op: .8 });
+    // 气管前壁
+    P(`M${pt(102, 200)} L${pt(104, 260)}`, go(.4), .4, { color: C.brown, w: 2.5 });
+    // 声带（两片小肉，组：可抖动）
+    const cords = k.group();
+    P(`M${pt(75, 228)} L${pt(88, 222)} M${pt(104, 228)} L${pt(91, 222)}`, go(.5), .5, { color: C.purple, w: 5 });
+    k.endGroup();
+    T("声带", X(o.labelX ?? -20), Y(232), go(.5), .5, { size: 16, color: C.purple, weight: 900, anchor: "end" });
+    P(k.wl(X(o.labelX ?? -16), Y(226), X(72), Y(225), .4), go(.3), .3, { color: C.purple, w: 1.5 });
+    return {
+      cords, X, Y,
+      // 声带旁边的震动波纹（组），默认隐藏，用 k.fade 显示
+      waves() {
+        const g = k.group();
+        P(`M${pt(58, 214)} q-8,10 0,20 M${pt(50, 208)} q-12,16 0,32 M${pt(120, 214)} q8,10 0,20 M${pt(128, 208)} q12,16 0,32`, go(.01, 0), .01, { color: C.orange, w: 2.5 });
+        k.endGroup(); k.hide(g); return g;
+      },
+      // 在某个位置画一个亮点（发音位置）
+      glow(a, b, color = C.orange) {
+        const d = k.ellipse(X(a), Y(b), 9 * s, 9 * s);
+        P(d, go(.35), .35, { color, w: 3 }); F(d, go(.1, 0), { color: "#fde68a", op: .9 });
+      },
+    };
+  };
+
+  // 小标签框（等宽英文/音标）
+  D.tag = (text, x, y, color = C.blue, size = 20) => {
+    const w = text.length * size * .6 + 18, h = size + 14;
+    P(k.roughRect(x, y - h + 7, w, h), go(.4, 0), .4, { color, w: 2.2 });
+    T(text, x + 9, y, go(Math.max(.4, text.length * .06)), Math.max(.4, text.length * .06), { size, color, weight: 900, font: MONO });
+    return { x, y, w, h };
+  };
+
+  // 结论绿框 + 口诀（y 446–498 + 525）
+  D.fin = (concl, rhyme) => {
+    P(k.roughRect(16, 446, 928, 52), go(1), 1, { color: C.green, w: 2.5 });
+    F(k.rectD(16, 446, 928, 52), go(.2, 0), { color: "#ecfdf5", op: .9 });
+    T(concl, 36, 480, go(Math.max(1.6, concl.length * .07)), Math.max(1.6, concl.length * .07), { size: 20, color: C.green, weight: 900 });
+    T(rhyme, 36, 526, go(1.8), 1.8, { size: 18, color: C.orange, weight: 900 });
+  };
+  return D;
+};
+
+// ==================== 第一性原理 ① 口腔省力同化律（fp_economy）====================
+// 4 幕 = FIRST_PRINCIPLES_DB[0].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
+WB_LAB.fp_economy = [
+  // ───────── 1-1 为什么 -s 和 -ed 都有三种读音？─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：复数 -s 和过去式 -ed，为什么各有三种读音？");
+      k.header("① 口腔省力同化律", "-s 和 -ed 的三种读音", false);
+      N("", "看起来要背 6 种读音……");
+      k.mono("books /s/   bags /z/    buses /ɪz/", 40, 104, 20, C.ink, 700);
+      k.mono("worked /t/  played /d/  wanted /ɪd/", 40, 136, 20, C.ink, 700);
+      N("", "其实只看一件事：前一个音，声带有没有震动。");
+      k.wait(.6);
+      // 口腔图
+      N("声带：", "喉咙里的两片小肉，发某些音时会快速震动。");
+      const m = D.mouth({ x: 70, y: 168, s: .95 });
+      const wv = m.waves();
+      k.wait(.4);
+      // 试 /k/
+      N("清辅音：", "发音时声带不震动的辅音，比如 /k/ /p/ /t/ /s/。");
+      D.tag("/k/", 300, 214, C.blue, 24);
+      T("声带不震", 300, 250, go(.6), .6, { size: 18, color: C.blue, weight: 900 });
+      T("= 清", 300, 276, go(.4), .4, { size: 18, color: C.blue, weight: 900 });
+      k.wait(.8);
+      // 试 /ɡ/：声带抖动 + 波纹
+      N("浊辅音：", "发音时声带震动的辅音，比如 /ɡ/ /b/ /d/ /v/；元音也都震。");
+      D.tag("/ɡ/", 300, 340, C.green, 24);
+      const tb = go(.2);
+      k.buzz(m.cords, tb, 3.2, 2.2); k.fade(wv, tb, .3, 1); k.fade(wv, tb + 3, .3, 0);
+      T("声带震动", 300, 376, go(.6), .6, { size: 18, color: C.green, weight: 900 });
+      T("= 浊", 300, 402, go(.4), .4, { size: 18, color: C.green, weight: 900 });
+      k.wait(1.4);
+      // 右边：两列
+      P(k.wl(595, 170, 595, 395, 1), go(.4), .4, { color: "#cbd5e1", w: 2, dash: "6 7" });
+      k.head("不震 → 尾巴不震", 410, 192, C.blue, "start", 18);
+      k.head("震 → 尾巴也震", 615, 192, C.green, "start", 18);
+      N("同化：", "后一个音学前一个音的样子，嘴巴最省力。");
+      const r1 = k.mono("book+s", 410, 236, 24, C.ink, 900);
+      P(k.ellipse(r1.x + 3.5 * r1.cw, r1.y - 8, 10, 16), go(.4), .4, { color: C.blue, w: 2.5 });
+      k.arrow(r1.x + 3.5 * r1.cw + 6, r1.y + 12, r1.x + 5.5 * r1.cw, r1.y + 26, C.blue);
+      T("/s/", 410, 284, go(.4), .4, { size: 22, color: C.blue, weight: 900, font: M });
+      N("", "book 最后是 /k/，声带不震，-s 就顺势读不震的 /s/。");
+      const r2 = k.mono("bag+s", 615, 236, 24, C.ink, 900);
+      P(k.ellipse(r2.x + 2.5 * r2.cw, r2.y - 8, 10, 16), go(.4), .4, { color: C.green, w: 2.5 });
+      k.arrow(r2.x + 2.5 * r2.cw + 6, r2.y + 12, r2.x + 4.5 * r2.cw, r2.y + 26, C.green);
+      T("/z/", 615, 284, go(.4), .4, { size: 22, color: C.green, weight: 900, font: M });
+      N("", "bag 最后是 /ɡ/，声带在震，-s 就顺势读会震的 /z/。");
+      k.wait(.8);
+      N("过去式：", "表示以前发生的事，规则动词加 -ed。同一条规律！");
+      k.mono("worked", 410, 336, 24, C.ink, 900);
+      T("/t/", 410, 372, go(.4), .4, { size: 22, color: C.blue, weight: 900, font: M });
+      T("/k/ 不震", 460, 372, go(.5), .5, { size: 15, color: C.grey });
+      k.mono("played", 615, 336, 24, C.ink, 900);
+      T("/d/", 615, 372, go(.4), .4, { size: 22, color: C.green, weight: 900, font: M });
+      T("/eɪ/ 元音会震", 665, 372, go(.6), .6, { size: 15, color: C.grey });
+      k.wait(.6);
+      N("", "那 buses /ɪz/、wanted /ɪd/ 呢？下一幕讲。");
+      T("buses  wanted  → ?", 410, 422, go(1), 1, { size: 18, color: C.grey, weight: 700, font: M });
+      k.wait(.6);
+      N("口诀：", "前音不震尾不震，前音一震尾也震。");
+      D.fin("清配清，浊配浊：-s / -ed 跟着前一个音的声带走", "口诀：前音不震尾不震，前音一震尾也震。");
+      k.wait(2);
+    },
+    terms: [
+      ["音素", "一个最小的声音单位，音标里的一个符号就是一个音素，比如 /k/。"],
+      ["元音 / 辅音", "元音：气流不受阻挡的音，如 /æ/ /eɪ/；辅音：气流被舌头、牙齿或嘴唇挡一下的音，如 /k/ /b/。"],
+      ["声带", "喉咙里的两片小肉。用手摸喉咙读 /z/，能感觉到它在震动。"],
+      ["清辅音", "声带不震动的辅音：/p/ /t/ /k/ /f/ /s/ /ʃ/ /tʃ/ /θ/。"],
+      ["浊辅音", "声带震动的辅音：/b/ /d/ /ɡ/ /v/ /z/ /m/ /n/ /l/ 等；所有元音也都震。"],
+      ["音标", "记录读音的符号，写在斜线里，比如 book /bʊk/。"],
+      ["复数 / 三单", "复数：两个以上，名词加 -s；三单：主语是 he/she/it 时，动词加 -s。读音规律一样。"],
+      ["过去式", "表示过去发生的事，规则动词加 -ed。"],
+      ["同化", "后一个音变得像前一个音，让嘴巴少换动作、说起来更省力。"],
+    ],
+  },
+];
+
 // ---------- App 接线：王炸实验室白板播放器（所有页签共用） ----------
 // 页签里用 ${wbStageHtml("tab", 当前序号)}：这个页签在 WB_LAB 里登记了案例就出白板，否则出原来的 Canvas。
 var wbState = { t: 0, playing: true, player: null, key: "" };
@@ -12954,8 +13099,8 @@ function wbGlossHtml(tab, idx) {
 }
 function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {
   const cs = wbCases(tab);
-  if ((!cs || !cs.length) && svgId === "fpWbStage") {
-    // 第一性原理总枢：这条原理还没做白板，保留旧 Canvas
+  if ((!cs || !cs[idx | 0]) && svgId === "fpWbStage") {
+    // 第一性原理总枢：这一幕还没做白板，保留旧 Canvas（可以一幕一幕地做）
     return `<div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a;">
         <canvas id="firstPrinciplesCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
       </div>`;

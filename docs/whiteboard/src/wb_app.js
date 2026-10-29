@@ -22,8 +22,8 @@ function wbGlossHtml(tab, idx) {
 }
 function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {
   const cs = wbCases(tab);
-  if ((!cs || !cs.length) && svgId === "fpWbStage") {
-    // 第一性原理总枢：这条原理还没做白板，保留旧 Canvas
+  if ((!cs || !cs[idx | 0]) && svgId === "fpWbStage") {
+    // 第一性原理总枢：这一幕还没做白板，保留旧 Canvas（可以一幕一幕地做）
     return `<div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a;">
         <canvas id="firstPrinciplesCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
       </div>`;
