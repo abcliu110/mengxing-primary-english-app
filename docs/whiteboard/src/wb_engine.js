@@ -18,10 +18,27 @@ const WB = (function () {
   const estW = (str, size) => [...String(str)].reduce((w, ch) => w + (ch.charCodeAt(0) > 0x2e80 ? size : size * .55), 0);
   const clamp = v => Math.max(0, Math.min(1, v));
   const ease = k => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+  // ---- 引擎 v3（视觉标准 V1–V8 + 商业动画 M1–M12）：只对调用了 k.v2() 的案例生效，旧案例画面不变 ----
+  // 分类缓动（V4 / M4）：出现 = 弹入过冲，吸附 = 回弹，移动 = 缓入缓出，退场 = 快出；linear 只给进度条
+  const EASE = {
+    move: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
+    in: x => 1 - Math.pow(1 - x, 3),
+    exit: x => x * x * x,
+    pop: x => { const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); },
+    snap: x => x >= 1 ? 1 : 1 - Math.exp(-6.5 * x) * Math.cos(11 * x),
+    antic: x => { const c = 1.2 * 1.525; return x < .5 ? (Math.pow(2 * x, 2) * ((c + 1) * 2 * x - c)) / 2 : (Math.pow(2 * x - 2, 2) * ((c + 1) * (x * 2 - 2) + c) + 2) / 2; },
+    sine: x => -(Math.cos(Math.PI * x) - 1) / 2,
+    linear: x => x,
+  };
+  // 统一调色板（V3）：墨黑 + 红（错误 / 术语）+ 绿（正确 / 结论）+ 蓝（主角词 / 词根）；灰只用于注释；荧光黄 / 绿只作底色
+  const PAL = { ink: "#1f2937", red: "#e11d48", green: "#059669", blue: "#2563eb", grey: "#64748b",
+    hlYellow: "#fde047", hlGreen: "#86efac", tintBlue: "#dbeafe", tintGreen: "#d1fae5", tintRed: "#ffe4e6", tintInk: "#f1f5f9", paper: "#fdfdfb", sea: "#93c5fd" };
+  const FS = { title: 32, sub: 22, body: 19, note: 14 };    // 字号 4 级
+  const GRID = { col: i => 24 + i * 76, margin: 24 };          // 12 列网格（列宽 76，含边距 24）
 
   // ---------- 脚本工具包 ----------
   function kit(seed) {
-    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [], says: [], badges: [], eggs: [], hdrEnd: 0 };
+    const S = { items: [], narr: [], at: 0, pathIdx: [], fx: [], g: 0, gn: 0, cam: [], says: [], badges: [], eggs: [], hdrEnd: 0, v2: false, wipes: [], sfx: [], keeps: [] };
     let s = seed;
     const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280 - .5;
     const wl = (x1, y1, x2, y2, j = 1.6) => {
@@ -72,13 +89,38 @@ const WB = (function () {
     // group() 之后画的元素进同一个 <g>，endGroup() 结束；动效作用在整组上
     const group = () => (S.g = ++S.gn);
     const endGroup = () => { S.g = 0; };
-    const move = (g, t, dur, dx, dy, o = {}) => S.fx.push({ type: "move", g, t, dur, dx, dy, ...o });
-    const arc = (g, t, dur, d, o = {}) => S.fx.push({ type: "arc", g, t, dur, d, ...o });   // d：相对路径，从 0,0 出发
+    // v2：没写 ease 的动效按类型给默认缓动（移动 = 缓入缓出，淡出 = 快出，淡入 = 缓出）
+    const dflt = (o, e) => (S.v2 && !o.ease && !o.linear ? { ...o, ease: e } : o);
+    const move = (g, t, dur, dx, dy, o = {}) => S.fx.push({ type: "move", g, t, dur, dx, dy, ...dflt(o, "move") });
+    const arc = (g, t, dur, d, o = {}) => S.fx.push({ type: "arc", g, t, dur, d, ...dflt(o, "move") });   // d：相对路径，从 0,0 出发
     // 沿折线移动（船环游、货箱进城）：pts = [[dx,dy], ...] 相对组的当前位置；o.linear 匀速
-    const path = (g, t, dur, pts, o = {}) => arc(g, t, dur, "M0,0 " + pts.map(p => "L" + p[0] + "," + p[1]).join(" "), o);
+    // v2：折线自动变成平滑曲线（Catmull-Rom），运动走弧线（M5）
+    const path = (g, t, dur, pts, o = {}) => {
+      if (!S.v2 || o.sharp) return arc(g, t, dur, "M0,0 " + pts.map(p => "L" + p[0] + "," + p[1]).join(" "), o);
+      const P0 = [[0, 0], ...pts]; let d = "M0,0";
+      for (let i = 0; i < P0.length - 1; i++) {
+        const a = P0[i - 1] || P0[i], b = P0[i], c = P0[i + 1], e = P0[i + 2] || c;
+        d += ` C${(b[0] + (c[0] - a[0]) / 6).toFixed(1)},${(b[1] + (c[1] - a[1]) / 6).toFixed(1)} ${(c[0] - (e[0] - b[0]) / 6).toFixed(1)},${(c[1] - (e[1] - b[1]) / 6).toFixed(1)} ${c[0]},${c[1]}`;
+      }
+      return arc(g, t, dur, d, o);
+    };
     const buzz = (g, t, dur, amp = 2.5) => S.fx.push({ type: "buzz", g, t, dur, amp });
-    const fade = (g, t, dur, to) => S.fx.push({ type: "fade", g, t, dur, to });
-    const rot = (g, t, dur, deg, cx, cy) => S.fx.push({ type: "rot", g, t, dur, deg, cx, cy });
+    const fade = (g, t, dur, to, o = {}) => S.fx.push({ type: "fade", g, t, dur, to, ...dflt(o, to > .5 ? "in" : "exit") });
+    const rot = (g, t, dur, deg, cx, cy) => S.fx.push({ type: "rot", g, t, dur, deg, cx, cy, ...dflt({}, "move") });
+    // v2：弹入（M2 挤压拉伸：从小到大、过冲回弹，体积大致不变）；中心不给就用组的包围盒中心
+    const pop = (g, t, dur = .5, o = {}) => { S.fx.push({ type: "pop", g, t, dur, from: o.from ?? 0, cx: o.cx, cy: o.cy, amp: o.amp ?? .12 }); if (o.sfx !== false) S.sfx.push({ t, name: "pop" }); };
+    // v2：落地挤压（以底边为支点压扁再回弹）
+    const squash = (g, t, dur = .32, amp = .14, o = {}) => S.fx.push({ type: "squash", g, t, dur, amp, cx: o.cx, cy: o.cy });
+    const sfx = (name, t = S.at) => S.sfx.push({ t, name });
+    // v2：板擦擦除转场（V8）：组 gs 在 [t, t+dur] 被板擦一行一行擦掉，结束时整组隐藏
+    const erase = (gs, dur = 1.1, o = {}) => {
+      const t = go(dur, o.gap ?? .1);
+      S.wipes.push({ t, dur, gs: gs.slice(), y0: o.y0 ?? 92, y1: o.y1 ?? 544 });
+      gs.forEach(g => S.fx.push({ type: "fade", g, t: t + dur, dur: .001, to: 0, wipe: true }));
+      S.sfx.push({ t, name: "erase" });
+      return t;
+    };
+    const v2 = (o = {}) => { S.v2 = true; S.v2o = o; };
     const hide = g => S.fx.push({ type: "fade", g, t: -1, dur: .001, to: 0 });         // 组一开始隐藏，之后用 fade 显示
     // 镜头：白板区（不含字幕条）在 t 开始、dur 内缩放平移到「以 (x,y) 为中心、放大 z 倍」
     const camera = (t, dur, x, y, z) => S.cam.push({ t, dur, x, y, z });
@@ -95,11 +137,71 @@ const WB = (function () {
     const k = {
       estW, C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
       group, endGroup, move, arc, path, buzz, fade, rot, hide, camera, say,
+      v2, pop, squash, sfx, erase, PAL, FS, GRID, EASE,
+      // 荧光笔底色（V2）：在文字下面先刷一道半透明荧光带（左 → 右），再写字；每屏不超过 3 处
+      hl(x, y, w, h = 24, o = {}) {
+        const yy = y - h * .5;
+        P(`M${x},${(yy + 1.5).toFixed(1)} Q${(x + w / 2).toFixed(1)},${(yy - 1).toFixed(1)} ${x + w},${(yy + .5).toFixed(1)}`, go(o.dur ?? .35, o.gap ?? .05), o.dur ?? .35, { color: o.color || PAL.hlYellow, w: h, alpha: o.alpha ?? .55, hl: true, cap: "butt" });
+      },
+      // 文字 + 荧光底色：text 在 (x, y) 基线；size 字号；mono 等宽
+      hlText(text, x, y, size, o = {}) {
+        const w = o.mono ? text.length * size * .6 : estW(text, size), ax = o.anchor === "middle" ? x - w / 2 : o.anchor === "end" ? x - w : x;
+        k.hl(ax - 6, y - size * .33, w + 12, size * 1.05, o);
+      },
+      // 统一片头（V8）：居中标题卡（标题 + 副标题 + 徽章）弹入 → 停留 → 快出；之后正常写 header
+      titleCard(o = {}) {
+        const t0 = S.at, g = group(), w = o.w ?? 560, h = 214, x = 480 - w / 2, y = 150;
+        P(roughRect(x, y, w, h), t0, .55, { color: PAL.ink, w: 2.6 });
+        F(rectD(x, y, w, h), t0 + .1, { color: "#ffffff", op: 1 });
+        const tw = estW(o.title, FS.title);
+        P(`M${(480 - tw / 2 - 14).toFixed(1)},${y + 76} Q480,${y + 72} ${(480 + tw / 2 + 14).toFixed(1)},${y + 75}`, t0 + .55, .35, { color: PAL.hlYellow, w: 40, alpha: .6, hl: true, cap: "butt" });
+        T(o.title, 480, y + 87, t0 + .9, .7, { size: FS.title, color: PAL.ink, weight: 900, anchor: "middle", noHL: true });
+        if (o.sub) T(o.sub, 480, y + 128, t0 + 1.55, .6, { size: 18, color: PAL.grey, weight: 700, anchor: "middle", noHL: true });
+        S.at = t0 + 1.7;
+        if (o.badges && o.badges.length) {
+          const fs = 14, ws = o.badges.map(kk => estW(kk + " " + (BADGES[kk] || BADGES["📜"]).label, fs) + 14), tot = ws.reduce((a, b) => a + b, 0) + 8 * (ws.length - 1);
+          let bx = 480 - tot / 2;
+          o.badges.forEach((kk, i) => { k.badge(kk, bx, y + 172, { size: fs }); bx += ws[i] + 8; });
+        }
+        endGroup();
+        pop(g, t0, .55, { cx: 480, cy: y + h / 2 });
+        const tOut = t0 + (o.dur ?? 4.2);
+        S.keeps.push([t0 + .6, tOut + .5]);   // 片头停留时间不被节奏压缩
+        move(g, tOut, .45, 0, -40, { ease: "exit" }); fade(g, tOut, .45, 0, { ease: "exit" });
+        S.at = tOut + .5;
+        return g;
+      },
+      // 统一收尾金句卡（V8）：一句话洞见 + 口诀；盖住前面的画面，定格可截图复习
+      quoteCard(o = {}) {
+        const t0 = go(.01, 0), dim = group();
+        F(rectD(0, 0, 960, 544), t0, { color: PAL.paper, op: .94, dur: .5 });
+        endGroup();
+        const g = group(), x = 100, y = 104, w = 760, h = 380;
+        P(roughRect(x, y, w, h), t0 + .2, .6, { color: PAL.ink, w: 2.8 });
+        F(rectD(x, y, w, h), t0 + .3, { color: "#ffffff", op: 1 });
+        P(roughRect(x + 10, y + 10, w - 20, h - 20), t0 + .7, .5, { color: PAL.green, w: 1.6 });
+        T("💡 一句话洞见", x + 40, y + 56, t0 + 1.1, .5, { size: FS.note + 1, color: PAL.grey, weight: 900 });
+        const wrap = (str, n) => { const out = []; let cur = "", cw = 0; for (const ch of str) { const add = ch.charCodeAt(0) > 0x2e80 ? 1 : .55; if (cw + add > n && cur) { out.push(cur); cur = ""; cw = 0; } cur += ch; cw += add; } if (cur) out.push(cur); return out; };
+        S.at = t0 + 1.5;
+        wrap(o.insight || "", 31).forEach((ln, i) => T(ln, x + 40, y + 102 + i * 36, go(Math.max(.6, ln.length * .05)), Math.max(.6, ln.length * .05), { size: FS.sub, color: PAL.ink, weight: 900 }));
+        const ry = y + 102 + Math.max(1, wrap(o.insight || "", 31).length) * 36 + 30;
+        P(wl(x + 40, ry - 24, x + w - 40, ry - 24, .8), go(.4), .4, { color: "#cbd5e1", w: 2, dash: "6 7" });
+        T("🎵 口诀", x + 40, ry + 6, go(.4), .4, { size: FS.note + 1, color: PAL.grey, weight: 900 });
+        wrap(o.rhyme || "", 31).forEach((ln, i) => {
+          if (i < (o.hlLines ?? 1)) k.hlText(ln, x + 40, ry + 46 + i * 36, FS.sub, { color: PAL.hlGreen });
+          T(ln, x + 40, ry + 46 + i * 36, go(Math.max(.6, ln.length * .05)), Math.max(.6, ln.length * .05), { size: FS.sub, color: PAL.green, weight: 900 });
+        });
+        if (o.foot) T(o.foot, x + w - 30, y + h - 24, go(.4), .4, { size: FS.note, color: PAL.grey, weight: 700, anchor: "end" });
+        endGroup();
+        pop(g, t0 + .15, .6, { cx: 480, cy: y + h / 2, from: .2 });
+        sfx("ding", S.at);
+        return { dim, g };
+      },
       // 标题 + 中线
       // 标题：title 大字，sub 灰色副标题（自动排在标题右边）；divider=false 时不画中线
       header(sub, title = "竹节句 vs 树干句", divider = true) {
-        T(title, 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900 });
-        T(sub, 40 + estW(title, 32) + 28, 52, go(1.2), 1.2, { size: 20, color: C.grey });
+        T(title, 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900, noHL: true });
+        T(sub, 40 + estW(title, 32) + 28, 52, go(1.2), 1.2, { size: 20, color: C.grey, noHL: true });
         S.hdrEnd = 40 + estW(title, 32) + 28 + estW(sub, 20);
         if (divider) P(wl(480, 80, 480, 425, 1), go(.5), .5, { color: "#cbd5e1", w: 2, dash: "6 7" });
       },
@@ -130,7 +232,7 @@ const WB = (function () {
         P(d, go(.3), .3, { color: C.orange, w: 2 }); F(d, go(.1, 0), { color: "#fef08a", op: 1 });
         P(`M${x - s * .8},${y - s * .1} l${s * .4},${-s * .35} l${s * .4},${s * .35} l${s * .4},${-s * .35} l${s * .4},${s * .35}`, go(.15), .15, { color: C.brown, w: 1.4 });
         if (o.word && !S.eggs.includes(o.word)) S.eggs.push(o.word);
-        if (o.note) T(o.note === true ? "彩蛋词：知道就好，不用背" : o.note, o.nx ?? x + s + 6, o.ny ?? y + 5, go(.6), .6, { size: 12, color: C.grey, weight: 700 });
+        if (o.note) T(o.note === true ? "彩蛋词：知道就好，不用背" : o.note, o.nx ?? x + s + 6, o.ny ?? y + 5, go(.6), .6, { size: S.v2 ? 13 : 12, color: C.grey, weight: 700 });
       },
       head(text, x, y = 108, color = C.ink, anchor = "start", size = 22) { T(text, x, y, go(.9), .9, { size, color, weight: 900, anchor }); },
       leftHead() { T("汉语：竹节句", 40, 108, go(.9), .9, { size: 22, color: C.brown, weight: 900 }); },
@@ -258,6 +360,15 @@ const WB = (function () {
         if (!o.noSay) say(o.say ?? text, { zh: o.zh ?? String(zhLine || "").split(/\s{2,}/)[0], word: o.word });
       }
     };
+    // 时间重映射（D.finish 压缩节奏用）：所有带时间的登记一起改；g(t) 单调
+    k.remap = (g) => {
+      const mapD = o => { const t0 = o.t; o.t = g(t0); o.dur = Math.max(.001, g(t0 + o.dur) - o.t); };
+      S.wipes.forEach(mapD); S.sfx.forEach(e => { e.t = g(e.t); });
+      (S.actors || []).forEach(a => { a.acts.forEach(mapD); a.exprs.forEach(mapD); a.looks.forEach(mapD); a.fades.forEach(f => { if (f.t >= 0) mapD(f); }); });
+      (S.acts || []).forEach(r => { if (r.fx) mapD(r.e); r.t = r.e.t; r.dur = r.e.dur; });
+      (S.props || []).forEach(p => { if (p.stampAt != null) p.stampAt = g(p.stampAt); if (p.showAt != null) p.showAt = g(p.showAt); });
+    };
+    if (typeof WB_ACTOR !== "undefined") WB_ACTOR.kit(k);   // 人物骨架与动作库（wb_actor.js）
     return k;
   }
 
@@ -266,13 +377,19 @@ const WB = (function () {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     const k = kit(seed);
     build(k);
-    const items = k.S.items, NARR = k.S.narr.length ? k.S.narr : [[0, "", ""]];
-    const END = k.S.at + 4;
-    const SAYS = k.S.says, H = SAYS.length ? 650 : 600;
+    const S = k.S, V2 = !!S.v2;
+    // 尊重「减少动态效果」（只对 v2 案例）：画线写字改淡入、弹入改淡入、擦除改淡出、镜头直接到位、不画手
+    const REDUCED = V2 && typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const items = S.items, NARR = S.narr.length ? S.narr : [[0, "", ""]];
+    const END = S.at + 4;
+    const SAYS = S.says, H = SAYS.length ? 650 : 600;
     svg.setAttribute("viewBox", `0 0 960 ${H}`);
     svg.style.aspectRatio = `960/${H}`;
     const uid = "wb" + Math.random().toString(36).slice(2, 8);
     const mk = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const a in attrs) e.setAttribute(a, attrs[a]); parent.appendChild(e); return e; };
+    // 只在值变了才写 DOM（省掉每帧几千次无用的 setAttribute；写进去的值和以前完全一样）
+    const setA = (el, n, v) => { const c = el.__c || (el.__c = {}); if (c[n] !== v) { c[n] = v; el.setAttribute(n, v); } };
+    const setV = (el, v) => { if (el.__vis !== v) { el.__vis = v; el.style.visibility = v; } };
     const defs = mk("defs", {});
     const pat = mk("pattern", { id: uid + "g", width: 30, height: 30, patternUnits: "userSpaceOnUse" }, defs);
     mk("path", { d: "M30,0 L0,0 0,30", fill: "none", stroke: "#eef2f5", "stroke-width": 1 }, pat);
@@ -303,9 +420,16 @@ const WB = (function () {
       const fillLayer = parentOf(it), inkLayer = fillLayer;
       if (it.kind === "fill") it.el = mk("path", { d: it.d, fill: it.color, opacity: 0 }, fillLayer);
       else if (it.kind === "path") {
-        it.el = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": it.w || 3, "stroke-linecap": "round", "stroke-linejoin": "round" }, inkLayer);
+        const w = it.w || 3;
+        // v2 粗细笔触（V2）：底线略细，再叠一条只覆盖中段的粗线 → 中段粗、起笔收笔细
+        const thick = V2 && !it.hl && !it.dash && w >= 1.8;
+        it.el = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": thick ? w * .8 : w, "stroke-linecap": it.cap || "round", "stroke-linejoin": "round" }, inkLayer);
+        if (it.hl) { it.el.setAttribute("stroke-opacity", it.alpha ?? .55); it.el.style.mixBlendMode = "multiply"; }
+        else if (V2 && it.alpha != null) it.el.setAttribute("stroke-opacity", it.alpha);
         it.len = it.el.getTotalLength();
         it.el.setAttribute("stroke-dasharray", it.dash || `${it.len} ${it.len}`);
+        if (thick && it.len > 18) { it.el2 = mk("path", { d: it.d, fill: "none", stroke: it.color, "stroke-width": w * 1.32, "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-dashoffset": (-it.len * .15).toFixed(1) }, inkLayer); it.el2.style.visibility = "hidden"; if (it.alpha != null) it.el2.setAttribute("stroke-opacity", it.alpha); }
+        if (REDUCED) it.el.setAttribute("stroke-dasharray", it.dash || "none");
       } else {
         const clip = mk("clipPath", { id: uid + "c" + idx }, defs);
         it.clipRect = mk("rect", { x: 0, y: 0, width: 0, height: 600 }, clip);
@@ -314,37 +438,110 @@ const WB = (function () {
         it.el.textContent = it.text;
       }
     });
-    const FX = k.S.fx, CAM = k.S.cam;
+    const FX = S.fx, CAM = S.cam;
     FX.forEach(f => { if (f.type === "arc") { f.el = mk("path", { d: f.d, fill: "none" }, defs); f.len = f.el.getTotalLength(); } });
+    if (REDUCED) FX.forEach(f => { if (f.wipe) { const w = S.wipes.find(w => Math.abs(w.t + w.dur - f.t) < .01); if (w) { f.t = w.t; f.dur = w.dur * .6; } } });
     let camM = [0, 0, 1];   // 当前镜头：平移 tx,ty + 缩放 z（render 里更新）
+    const camEase = V2 ? EASE.move : ease;
     function camAt(t) {
       let x = 480, y = 272, z = 1;
-      for (const c of CAM) { const q = ease(clamp((t - c.t) / Math.max(.001, c.dur))); x += (c.x - x) * q; y += (c.y - y) * q; z += (c.z - z) * q; }
+      for (const c of CAM) { const kq = clamp((t - c.t) / Math.max(.001, c.dur)), q = REDUCED ? (kq >= 1 ? 1 : kq > .5 ? 1 : 0) : camEase(kq); x += (c.x - x) * q; y += (c.y - y) * q; z += (c.z - z) * q; }
       return [480 - x * z, 272 - y * z, z];
     }
     // 第一个镜头在开始前就生效（脚本一开始就设好特写）：camera(0, 0, ...)
     function fxRender(t) {
       for (const id in groups) {
-        let dx = 0, dy = 0, op = 1, deg = 0, cx = 0, cy = 0;
+        let dx = 0, dy = 0, op = 1, deg = 0, cx = 0, cy = 0, sx = 1, sy = 1, scx = null, scy = null;
         for (const f of FX) {
           if (f.g != id) continue;
-          const kk = clamp((t - f.t) / Math.max(.001, f.dur)), q = f.linear ? kk : ease(kk);
+          const kk = clamp((t - f.t) / Math.max(.001, f.dur)), q = f.linear ? kk : f.ease ? (REDUCED && f.type !== "fade" ? (kk >= 1 ? 1 : 0) : EASE[f.ease](kk)) : ease(kk);
           if (f.type === "move") { dx += f.dx * q; dy += f.dy * q; }
           else if (f.type === "arc") { const p = f.el.getPointAtLength(f.len * q), p0 = f.el.getPointAtLength(0); dx += p.x - p0.x; dy += p.y - p0.y; }
           else if (f.type === "buzz") { if (kk > 0 && kk < 1) { dx += Math.sin(t * 71) * f.amp; dy += Math.cos(t * 53) * f.amp * .6; } }
           else if (f.type === "fade") { if (t >= f.t) op += (f.to - op) * q; }
           else if (f.type === "rot") { deg += f.deg * q; cx = f.cx; cy = f.cy; }
+          else if (f.type === "pop") {
+            if (t < f.t) { if (!REDUCED) { sx = sy = Math.max(.001, f.from); } op *= f.from > 0 ? 1 : 0; }
+            else if (kk < 1) {
+              if (REDUCED) op *= kk;
+              else { const s = f.from + (1 - f.from) * EASE.pop(kk), st = Math.sin(Math.PI * Math.min(1, kk * 1.6)) * f.amp; sx *= s * (1 - st * .7); sy *= s * (1 + st); }
+            }
+            const bb = bbOf(id); scx = f.cx ?? bb[0]; scy = f.cy ?? bb[1];
+          } else if (f.type === "squash") {
+            if (kk > 0 && kk < 1 && !REDUCED) { const w = Math.sin(2 * Math.PI * kk) * (1 - kk) * f.amp; sx *= 1 + w; sy *= 1 - w; const bb = bbOf(id); scx = f.cx ?? bb[0]; scy = f.cy ?? bb[2]; }
+          }
         }
-        const g = groups[id].el;
-        g.setAttribute("transform", `translate(${dx.toFixed(2)},${dy.toFixed(2)})` + (deg ? ` rotate(${deg.toFixed(2)},${cx},${cy})` : ""));
-        g.setAttribute("opacity", op.toFixed(3));
+        const G = groups[id]; G.dx = dx; G.dy = dy; G.op = op;
+        let tf = `translate(${dx.toFixed(2)},${dy.toFixed(2)})` + (deg ? ` rotate(${deg.toFixed(2)},${cx},${cy})` : "");
+        if (scx != null && (Math.abs(sx - 1) > 1e-4 || Math.abs(sy - 1) > 1e-4)) tf += ` translate(${scx.toFixed(1)},${scy.toFixed(1)}) scale(${sx.toFixed(4)},${sy.toFixed(4)}) translate(${(-scx).toFixed(1)},${(-scy).toFixed(1)})`;
+        setA(G.el, "transform", tf);
+        setA(G.el, "opacity", op.toFixed(3));
       }
-      if (CAM.length) { camM = camAt(t); board.setAttribute("transform", `translate(${camM[0].toFixed(2)},${camM[1].toFixed(2)}) scale(${camM[2].toFixed(4)})`); }
+      if (CAM.length) { camM = camAt(t); setA(board, "transform", `translate(${camM[0].toFixed(2)},${camM[1].toFixed(2)}) scale(${camM[2].toFixed(4)})`); }
     }
+    // 组的包围盒中心（弹入 / 挤压的支点）；量一次缓存
+    function bbOf(id) {
+      const G = groups[id];
+      if (!G.bb) { try { const tf = G.el.getAttribute("transform"); G.el.removeAttribute("transform"); const b = G.el.getBBox(); if (tf) G.el.setAttribute("transform", tf); G.bb = [b.x + b.width / 2, b.y + b.height / 2, b.y + b.height]; } catch (e) { G.bb = [480, 272, 300]; } }
+      return G.bb;
+    }
+    // V5：白板上的英文词 → 位置（读到这个词时，在它下面亮一道荧光底色）
+    const TOKS = [];
+    const normW = w => String(w).toLowerCase().replace(/[^a-z']/g, "");
     function measure() {
       items.forEach(it => { if (it.kind === "text") { const b = it.el.getBBox(); it.bx = b.x; it.bw = b.width; it.by = b.y; it.bh = b.height; it.clipRect.setAttribute("y", b.y - 6); it.clipRect.setAttribute("height", b.height + 12); } });
+      if (!V2) return;
+      TOKS.forEach(tk => tk.el.remove()); TOKS.length = 0;
+      items.forEach(it => {
+        if (it.kind !== "text" || it.noHL) return;
+        const re = /[A-Za-z][A-Za-z']*/g; let m;
+        while ((m = re.exec(it.text))) {
+          if (m[0].length < 2) continue;
+          try {
+            const a = it.el.getStartPositionOfChar(m.index), b = it.el.getEndPositionOfChar(m.index + m[0].length - 1);
+            const h = it.size * 1.05, el = document.createElementNS(NS, "rect");
+            el.setAttribute("x", (a.x - 3).toFixed(1)); el.setAttribute("y", (it.y - it.size * .82).toFixed(1));
+            el.setAttribute("width", (b.x - a.x + 6).toFixed(1)); el.setAttribute("height", h.toFixed(1)); el.setAttribute("rx", 4);
+            el.setAttribute("fill", PAL.hlYellow); el.setAttribute("opacity", 0); el.style.mixBlendMode = "multiply"; el.style.transition = "opacity .14s";
+            it.el.parentNode.insertBefore(el, it.el);
+            TOKS.push({ w: normW(m[0]), el, it, on: false });
+          } catch (e) { /* 字体没好时跳过，remeasure 会再来 */ }
+        }
+      });
     }
     measure();
+    // ---- v2：板擦擦除转场（V8）：一条和纸一样颜色（带格子）的粗线沿 Z 字路线一行行盖过去，板擦跟着走 ----
+    const WIPES = [];
+    if (V2 && S.wipes.length) {
+      const wl0 = mk("g", {}, board);
+      S.wipes.forEach(w => {
+        let d = "", row = 0;
+        for (let y = w.y0 + 22; y < w.y1 + 30; y += 50, row++) d += (row ? ` L` : `M`) + (row % 2 ? "990," : "-30,") + y + ` L${row % 2 ? -30 : 990},${y + 24}`;
+        const g = mk("g", { opacity: 0 }, wl0);
+        const paper = mk("path", { d, fill: "none", stroke: PAL.paper, "stroke-width": 68, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+        mk("path", { d, fill: "none", stroke: `url(#${uid}g)`, "stroke-width": 68, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+        const smudge = mk("path", { d, fill: "none", stroke: "#94a3b8", "stroke-width": 54, "stroke-linecap": "round", opacity: 0 }, wl0);
+        const len = paper.getTotalLength();
+        g.querySelectorAll("path").forEach(p => p.setAttribute("stroke-dasharray", `${len} ${len}`));
+        WIPES.push({ ...w, g, paper, smudge, len });
+      });
+    }
+    // 人物（讲解员小人 + 场景角色）：讲解员在屏幕层（不跟镜头缩放），场景角色在各自的组里
+    let actorR = null;
+    const api = {};
+    if (typeof WB_ACTOR !== "undefined" && S.actors && S.actors.length) {
+      const screenLayer = mk("g", {}, boardClip);
+      actorR = WB_ACTOR.mount({ S, mk, NS, layer, screenLayer, says: SAYS, end: END, api, reduced: REDUCED,
+        ensureGroup: g => (groups[g] || (groups[g] = { el: mk("g", {}, layer) })).el });
+    }
+    // 板擦（v2）
+    let eraser = null;
+    if (WIPES.length) {
+      eraser = mk("g", { opacity: 0 }, boardClip);
+      mk("path", { d: "M-34,-16 L34,-16 Q40,-16 40,-10 L40,4 L-40,4 L-40,-10 Q-40,-16 -34,-16 Z", fill: "#c08457", stroke: "#1f2937", "stroke-width": 2.2 }, eraser);
+      mk("path", { d: "M-40,4 L40,4 L40,15 L-40,15 Z", fill: "#475569", stroke: "#1f2937", "stroke-width": 2.2 }, eraser);
+      mk("path", { d: "M-26,-9 L26,-9", stroke: "#8a5a35", "stroke-width": 2, "stroke-linecap": "round" }, eraser);
+    }
     // 拿马克笔的手
     const pen = mk("g", {});
     mk("path", { d: "M0,0 L10,-8 L72,-70 L60,-82 L-2,-20 Z", fill: "#1f2937", stroke: "#111", "stroke-width": 1.5 }, pen);
@@ -352,20 +549,55 @@ const WB = (function () {
     mk("path", { d: "M22,-36 C30,-18 52,-6 78,-14 C104,-22 118,-52 108,-74 C98,-96 70,-98 56,-84 C46,-74 40,-60 22,-36 Z", fill: "#fde4cf", stroke: "#b45309", "stroke-width": 2, "stroke-linejoin": "round" }, pen);
     mk("path", { d: "M30,-30 C42,-26 52,-30 58,-40 M44,-20 C56,-18 66,-24 70,-34", fill: "none", stroke: "#b45309", "stroke-width": 1.8, "stroke-linecap": "round" }, pen);
     let penX = 905, penY = 525, lastNarr = -1;
+    // v2 手的位置是时间的纯函数（V1）：在画 → 贴着笔尖；两笔之间 → 走弧线移过去；空闲 → 滑出画面
+    const REST = [1000, 640];
+    const STROKES = V2 ? items.filter(it => (it.kind === "path" && !it.dash) || it.kind === "text").filter(it => it.dur > .04) : [];
+    const strokeEnds = it => it.kind === "path" ? [it.el.getPointAtLength(0), it.el.getPointAtLength(it.len)].map(p => [p.x, p.y]) : [[it.bx, it.by + it.bh * .75], [it.bx + it.bw, it.by + it.bh * .75]];
+    const toScreen = (it, p) => { const G = it.g ? groups[it.g] : null; let x = p[0] + (G ? G.dx || 0 : 0), y = p[1] + (G ? G.dy || 0 : 0); if (CAM.length) { x = x * camM[2] + camM[0]; y = y * camM[2] + camM[1]; } return [x, y]; };
+    function penAt(t, active) {
+      if (active) return active;
+      let prev = null, next = null;
+      for (const it of STROKES) {
+        const e = it.t + it.dur;
+        if (e <= t && (!prev || e > prev.t + prev.dur)) prev = it;
+        if (it.t > t && (!next || it.t < next.t)) next = it;
+      }
+      const pe = prev ? toScreen(prev, strokeEnds(prev)[1]) : REST, te = prev ? prev.t + prev.dur : -9;
+      const ps = next ? toScreen(next, strokeEnds(next)[0]) : REST, ts = next ? next.t : 1e9;
+      const gap = ts - te, lift = (a, b, q) => { const d = Math.hypot(b[0] - a[0], b[1] - a[1]); const e = EASE.move(q); return [a[0] + (b[0] - a[0]) * e, a[1] + (b[1] - a[1]) * e - Math.sin(Math.PI * q) * Math.min(40, d * .18)]; };
+      if (gap <= 1.4) return lift(pe, ps, clamp((t - te) / Math.max(.05, gap)));
+      if (t - te < .5) return lift(pe, REST, (t - te) / .5);
+      if (ts - t < .5) return lift(REST, ps, 1 - (ts - t) / .5);
+      return REST;
+    }
+    let drawing = false, curWords = null;
     function render(t) {
-      let active = null;
+      let active = null, activeIt = null;
       for (const it of items) {
         const kk = clamp((t - it.t) / it.dur);
-        if (it.kind === "fill") { it.el.setAttribute("opacity", (it.op ?? 1) * ease(kk)); continue; }
+        if (it.kind === "fill") { setA(it.el, "opacity", V2 ? (it.op ?? 1) * EASE.in(kk) : (it.op ?? 1) * ease(kk)); continue; }
         if (it.kind === "path") {
-          if (it.dash) it.el.setAttribute("opacity", kk > 0 ? Math.min(1, kk * 3) : 0);
-          else it.el.setAttribute("stroke-dashoffset", it.len * (1 - kk));
-          it.el.style.visibility = kk > 0 ? "visible" : "hidden";
-          if (kk > 0 && kk < 1) { const p = it.el.getPointAtLength(it.len * kk); active = [p.x, p.y]; }
+          if (REDUCED) setA(it.el, "opacity", it.dash ? (kk > 0 ? Math.min(1, kk * 3) : 0) : Math.min(1, kk * 2).toFixed(3));
+          else if (it.dash) setA(it.el, "opacity", kk > 0 ? Math.min(1, kk * 3) : 0);
+          else {
+            const q = V2 ? EASE.sine(kk) : kk;
+            setA(it.el, "stroke-dashoffset", it.len * (1 - q));
+            if (it.el2) {   // 中段加粗线：只露出 [15%, 85%] ∩ 已画部分（dashoffset 把起点挪到 15% 处）
+              const a = it.len * .15, b = Math.min(it.len * q, it.len * .85);
+              if (b > a + .5) { setA(it.el2, "stroke-dasharray", `${(b - a).toFixed(1)} ${(it.len * 2).toFixed(0)}`); setV(it.el2, "visible"); }
+              else setV(it.el2, "hidden");
+            }
+          }
+          setV(it.el, kk > 0 ? "visible" : "hidden");
+          if (kk > 0 && kk < 1) { const p = it.el.getPointAtLength(it.len * (V2 ? EASE.sine(kk) : kk)); active = [p.x, p.y]; activeIt = it; }
         } else {
-          it.clipRect.setAttribute("x", it.bx - 4);
-          it.clipRect.setAttribute("width", kk >= 1 ? it.bw + 12 : (it.bw + 8) * kk);
-          if (kk > 0 && kk < 1) active = [it.bx + it.bw * kk, it.by + it.bh * .75 + Math.sin(t * 40) * 3];
+          setA(it.clipRect, "x", it.bx - 4);
+          if (REDUCED) { setA(it.clipRect, "width", it.bw + 12); setA(it.el, "opacity", Math.min(1, kk * 2).toFixed(3)); }
+          else {
+            const q = V2 ? kk * .75 + EASE.sine(kk) * .25 : kk;
+            setA(it.clipRect, "width", kk >= 1 ? it.bw + 12 : (it.bw + 8) * q);
+            if (kk > 0 && kk < 1) { active = [it.bx + it.bw * q, it.by + it.bh * .75 + Math.sin(t * 40) * 3]; activeIt = it; }
+          }
         }
       }
       let ni = 0; for (let i = 0; i < NARR.length; i++) if (t >= NARR[i][0]) ni = i;
@@ -375,7 +607,8 @@ const WB = (function () {
         const L = narr.getComputedTextLength();
         if (L > 912) narr.setAttribute("font-size", (18 * 912 / L).toFixed(1));
       }
-      narr.setAttribute("opacity", clamp((t - NARR[ni][0]) / .35));
+      setA(narr, "opacity", clamp((t - NARR[ni][0]) / .35));
+      curWords = null;
       if (strip) {
         let si = -1; for (let i = 0; i < SAYS.length; i++) if (t >= SAYS[i].t) si = i;
         if (si !== lastSay) {
@@ -394,21 +627,73 @@ const WB = (function () {
           if (api.hl && api.hl.i === si) hl = api.hl.w;
           else { const q = (t - sy.t - sy.wd) / Math.max(.3, sy.dur - sy.wd - .2); hl = q < 0 || q >= 1 ? -1 : Math.floor(q * n); }
           if (hl !== lastHL) { lastHL = hl; sWords.forEach((ts, j) => { ts.setAttribute("fill", j === hl ? "#e11d48" : "#065f46"); ts.setAttribute("text-decoration", j === hl ? "underline" : "none"); }); }
-          strip.setAttribute("opacity", clamp((t - sy.t) / .3).toFixed(2));
-        } else strip.setAttribute("opacity", 0);
+          setA(strip, "opacity", clamp((t - sy.t) / .3).toFixed(2));
+          // 正在读的词（白板同步高亮用）：先单独读 word（按时间或语音事件），再读句子
+          if (V2) {
+            const live = api.speech && api.speech.live && api.speech.i === si;
+            if (live && api.speech.phase === "word") curWords = String(sy.word).split(/\s+/).map(normW);
+            else if (!live && sy.word && t - sy.t < sy.wd) { const ws = String(sy.word).split(/\s+/); curWords = [normW(ws[Math.min(ws.length - 1, Math.floor((t - sy.t) / Math.max(.1, sy.wd - .3) * ws.length))])]; }
+            else if (hl >= 0 && hl < n) curWords = [normW(sy.en.split(/\s+/)[hl])];
+            if (t > sy.t + sy.dur) curWords = null;
+          }
+        } else setA(strip, "opacity", 0);
       }
       fxRender(t);
-      if (active && CAM.length) active = [active[0] * camM[2] + camM[0], active[1] * camM[2] + camM[1]];
-      const target = active || [905, 525], f = active ? .55 : .12;
-      penX += (target[0] - penX) * f; penY += (target[1] - penY) * f;
-      pen.setAttribute("transform", `translate(${penX.toFixed(1)},${penY.toFixed(1)}) scale(.8)`);
-      pen.setAttribute("opacity", t > END - .6 ? clamp((END - t) / .6) : 1);
+      // V5：白板上同一个词亮荧光底色（只亮已经写完、正在显示的词）
+      if (V2 && TOKS.length) {
+        for (const tk of TOKS) {
+          let on = false;
+          if (curWords && t >= tk.it.t + tk.it.dur) {
+            const G = tk.it.g ? groups[tk.it.g] : null;
+            if (!G || G.op > .5) on = curWords.some(w => w && (w === tk.w || w === tk.w + "s" || w === tk.w + "es" || w === tk.w + "ed" || w === tk.w + "ing"));
+          }
+          if (on !== tk.on) { tk.on = on; tk.el.setAttribute("opacity", on ? .7 : 0); }
+        }
+      }
+      // 擦除转场
+      let er = null;
+      for (const w of WIPES) {
+        const q = (t - w.t) / w.dur;
+        if (REDUCED || q <= 0 || q >= 1) { setA(w.g, "opacity", 0); }
+        else {
+          setA(w.g, "opacity", 1);
+          const e = EASE.sine(q) * .94 + q * .06, off = (w.len * (1 - e)).toFixed(1);
+          w.g.querySelectorAll("path").forEach(p => setA(p, "stroke-dashoffset", off));
+          const p = w.paper.getPointAtLength(w.len * e); er = [p.x, p.y];
+        }
+        const sm = t - (w.t + w.dur);
+        setA(w.smudge, "opacity", REDUCED || sm < 0 || sm > .7 ? 0 : (.08 * (1 - sm / .7)).toFixed(3));
+      }
+      if (eraser) {
+        setA(eraser, "opacity", er ? 1 : 0);
+        if (er) setA(eraser, "transform", `translate(${er[0].toFixed(1)},${er[1].toFixed(1)}) rotate(${(Math.sin(t * 9) * 6).toFixed(1)})`);
+      }
+      if (V2) {
+        if (activeIt) active = toScreen(activeIt, active);
+      } else if (active && CAM.length) active = [active[0] * camM[2] + camM[0], active[1] * camM[2] + camM[1]];
+      drawing = !!active;
+      if (actorR) actorR.render(t, { pen: active });
+      if (V2) {
+        const pp = REDUCED ? REST : penAt(t, active);
+        setA(pen, "transform", `translate(${pp[0].toFixed(1)},${pp[1].toFixed(1)}) scale(.8)`);
+        setA(pen, "opacity", REDUCED ? 0 : 1);
+      } else {
+        const target = active || [905, 525], f = active ? .55 : .12;
+        penX += (target[0] - penX) * f; penY += (target[1] - penY) * f;
+        pen.setAttribute("transform", `translate(${penX.toFixed(1)},${penY.toFixed(1)}) scale(.8)`);
+        pen.setAttribute("opacity", t > END - .6 ? clamp((END - t) / .6) : 1);
+      }
     }
-    const api = { render, end: END, says: SAYS, badges: k.S.badges, eggs: k.S.eggs, strip, hl: null, remeasure() { measure(); lastNarr = -1; lastSay = -2; }, resetPen() { penX = 905; penY = 525; } };
+    // 音效事件（V7）：(t0, t1] 里该响的音效；drawing = 正在画线写字（马克笔沙沙声）
+    const SFX = V2 ? S.sfx.slice().sort((a, b) => a.t - b.t) : [];
+    Object.assign(api, { render, end: END, says: SAYS, badges: S.badges, eggs: S.eggs, strip, hl: null, speech: null, actors: actorR, v2: V2, reduced: REDUCED,
+      sfxBetween(t0, t1) { return SFX.filter(e => e.t > t0 && e.t <= t1).map(e => e.name); },
+      get drawing() { return drawing; },
+      remeasure() { measure(); lastNarr = -1; lastSay = -2; }, resetPen() { penX = 905; penY = 525; } });
     return api;
   }
 
-  return { mount, kit, C, ZH, MONO, estW, BADGES };
+  return { mount, kit, C, ZH, MONO, estW, BADGES, EASE, PAL, FS, GRID };
 })();
 // 各页签的白板案例都登记在这里：WB_LAB[labTab] = [ { build(k){...}, terms:[[术语, 解释], ...] }, ... ]
 const WB_LAB = {};
