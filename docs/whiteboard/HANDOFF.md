@@ -15,7 +15,7 @@
 | 3 | 讲解员小人（v3a 定稿，SVG 骨架 + 动作库 v1 + 5 表情 + 3 口型） | ✅ `src/wb_actor.js`；演示 `cases/narrator_demo.js`（preview.html?tab=narrator_demo&case=0/1/2） |
 | 4 | port 幕 R4：动作词全部由小人 / 角色演出来，与朗读同步 | 🔧 第一版已接入：`r2check.py wo_port` R4 13/13 ✔（登记 + 与朗读重叠）；逐张截图精修中 |
 | 5 | 引擎 V1–V8 + M1–M12（向后兼容，旧幕回归） | 🔧 引擎 v2 已提交（`k.v2()` 打开才生效；旧 63 幕 SVG 逐字节不变）；port 接入调整中 |
-| 6 | 升级前后录屏 + 关键帧对比 → 给用户审片 | 待做 |
+| 6 | 升级前后录屏 + 关键帧对比 → 给用户审片 | ✅ 已出，**等用户审片**（见下「审片材料」） |
 
 **当前做到哪 / 下一步（19:20 更新）**
 - ✅ 引擎 v2（`wb_engine.js`，opt-in）：分类缓动库 `EASE`（move/in/exit/pop/snap/antic/sine）、统一调色板 `PAL`、字号 `FS`、网格 `GRID`；`k.v2()`、`k.pop`（弹入 + 挤压拉伸）、`k.squash`（落地压扁回弹）、`k.hl / k.hlText`（荧光笔底色）、`k.erase`（板擦擦除转场）、`k.titleCard`（统一片头）、`k.quoteCard`（统一收尾金句卡）、`k.sfx`（音效事件）、`k.remap`（节奏压缩时一起改所有时间登记）；v2 渲染：粗细笔触（中段加粗线）、手的位置是时间纯函数（弧线移动、空闲滑出画面）、读到哪个词白板上同一个词亮荧光底色、`prefers-reduced-motion` 降级；DOM 只在值变化时写入（旧幕也受益，输出不变）。
@@ -41,7 +41,10 @@
 - 性能：去掉荧光底色的 mix-blend-mode（荧光带本来就在文字下面）。道具放回原处时插回固定位置（图层顺序与播放路径无关）。
 - ✅ 录屏和对比图（`/workspace/work/mx_shots/`，不进仓库）：升级前 `port_before_db13720.mp4`、升级后 `port_after_v2.mp4`（Playwright 实时录屏，分段录再拼接，模拟 TTS 驱动语音事件；视频无声），关键帧对比 `compare_01…09_*.png`（两边按同一句朗读对齐）。
 - 抽帧自审又修：飞机起飞不再飞进右上角进度条；金句卡洞见手动断行、卡片左移给小人留位置；护照放大 1.5 倍看得清印章；托举结束后箱子收起；半透明海浪线不叠加粗线。
-- 下一步：重录升级后视频的后两段、重出对比图 → 更新 SOP / MASTER_DESIGN → 给用户审片（用户确认前不铺开到其他幕）。
+- ✅ 升级后视频已按最新版重录、对比图重出；SOP（验收脚本、引擎 v2 用法）、MASTER_DESIGN（§2.5 / §2.6 进度）已更新。
+- **审片材料**（沙箱 `/workspace/work/mx_shots/`）：`port_before_db13720.mp4`（约 136 秒）、`port_after_v2.mp4`（约 202 秒）、`compare_01_片头 … compare_09_结尾定格.png`、`narrator_actions_v1.png`、`narrator_expressions_v1.png`、`measure_v2.json`。
+- **下一步（等用户）**：用户确认 port 样板幕 → 按样板逐幕铺开（先列清单）；不满意的点按反馈改 port。阶段 1 剩余：⑤ 按需加载。
+- **已知取舍**：①视频无声（沙箱没有英文语音，用模拟 TTS 驱动事件；音效是 Web Audio 实时合成，录屏录不到）；②fps 在无 GPU 沙箱实测平均 59.6、1% 低帧约 39（升级前同环境 31），≥50fps 需真机复核；③词块例句用「X means …」元语言句；④「风送船」「船运货」「鸟飞」「飞机起飞」由场景物体演（`k.actFx` 登记），其余动作词都由人演；⑤角色服装色、徽章色、🥚 不在 V3 四色内（定稿形象 / 全 App 统一标识）。
 
 **朗读覆盖检查用法**（主文件里有全部词库数据，所以先 `insert_wb.py` 再查）：
 ```
@@ -133,7 +136,17 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
    - 术语「词源」在 `fp_iconicity` 和 `wo_port` 各一条；
    - 第一性原理 ② 字母象形「M 像山」将来和「字母身世」并排（💡 vs 📜）。
 
-## 5. 引擎通用新工具登记（2026-10-29，db13720）
+## 5. 引擎通用新工具登记
+
+### 2026-10-29 · 阶段 1（引擎 v2，`k.v2()` 打开才生效）
+- 常量：`WB.EASE`（move / in / exit / pop / snap / antic / sine / linear）、`WB.PAL`、`WB.FS`、`WB.GRID`；kit 上同名 `k.EASE / k.PAL / k.FS / k.GRID`。
+- 动效：`k.pop(g,t,dur,{from,cx,cy})`、`k.squash(g,t,dur,amp)`、`k.erase(groups,dur)`、`k.sfx(name,t)`；`move/arc/path/fade/rot` 支持 `{ease}`，v2 下有分类默认值；v2 的 `k.path` 自动平滑成曲线。
+- 版面：`k.hl / k.hlText`（荧光底色）、`k.titleCard`、`k.quoteCard`（`\n` 手动断行）；`S.keeps`（不被 D.finish 压缩的时间段）、`k.remap`。
+- 人物：`src/wb_actor.js`（见 §0）。
+- App：`wbSfx*` 音效 + 「🔔 音效」按钮（v2 才显示）；`wbSpeak` 语音事件 → `player.speech`（口型）+ v2 时间轴同步；`wbState.syncLog`（测同步用）。
+- 验收脚本：`r2check.py/.js`、`measure_sync.py`、`measure_fps.py`、`measure_seek.py`。
+
+### 2026-10-29 · db13720
 - `k.badges(["📜","💡"], {x,y})`、`k.badge(key, x, y, {label})`；`WB.BADGES` 徽章表；HTML：`wbBadgeHtml(keys)`、`wbBadgeLegendHtml()`。
 - `k.egg(x, y, {word, note})`；`k.say(en, { egg: [...] })`；HTML：`wbEggHtml(word)`。
 - `k.path(组, 开始, 时长, [[dx,dy],…], {linear})`；`k.arc` 第 5 参数 `{linear}`。

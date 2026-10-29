@@ -83,8 +83,10 @@
   - `node --check`：抽出主文件全部 `<script>` 拼成一个 js 检查；
   - 实验室 `appwb.py <页签> <目录>`；第一性原理 `appfp.py <0-5> <目录>`；单词身世 `appwo.py <目录>`：每幕 `mounted: True`、`bad: None`、`errors: []`、无 NaN / undefined；
   - 回归：`appwb.py bamboo_tree`、`appfp.py 0`、`appwo.py` 都要过；
-  - **朗读覆盖检查（R2，待写脚本）**：抽出每幕画面上的全部英文词，逐个对照 `say` 登记表，缺一个就报错；
-  - **动作覆盖检查（R4，待写脚本）**：分镜里的动作词清单逐个对照 `k.act` 登记，缺一个就报错；脚本写好前人工逐条核对。
+  - **朗读覆盖检查（R2）**：`python3 docs/whiteboard/src/r2check.py <幕 id> [--all-items] [--strict]`（先 `insert_wb.py`）：抽出画面上全部英文词 / 词块 / 句子，对照 `say` 登记，报「缺单独朗读 / 缺例句 / 句子缺朗读」；
+  - **动作覆盖检查（R4）**：同一个脚本；案例写 `actionWords: [{ word, act }]`，逐个对照 `k.act(…, { words })` / `k.actFx(words, …)` 登记，并检查动作和含该词的朗读时间重叠；
+  - **引擎回归**：改引擎后，旧幕在新旧引擎下渲染结果要逐字节一致（做法见 HANDOFF §0「回归」）；
+  - **商业动画指标**：`measure_sync.py`（朗读同步误差 ≤0.2 秒）、`measure_fps.py`（fps，和升级前对比不能变差）、`measure_seek.py`（拖动 / 重播三种路径状态一致）；
 
 ### ⑥ 截图逐张看
 - `python3 docs/whiteboard/src/preview_shots.py <id> <目录> 18s,35s,…,1.0`（可写秒数或比例）：**每个镜头结束前、关键动作中间、最后一帧**各截一张。
@@ -162,6 +164,8 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 | V6 | 讲解员小人多姿态 + 口型 | 指、惊讶、举卡、翻书（另有想、欢呼）；朗读时口型开合 | [ ] 小人姿态和讲解内容一致；朗读时嘴在动；不挡内容 |
 | V7 | 音效 | 马克笔沙沙、弹出、答对「叮」；Web Audio 现场合成，几 KB 以内；控制条一键静音（和朗读开关分开）；朗读时音效自动压低 | [ ] 静音键有效；音效不盖过朗读；文件体积增加 < 10 KB |
 | V8 | 擦除式转场 + 统一片头和收尾金句卡 | 镜头之间用板擦擦掉；每幕片头（标题 + 徽章 + 进度条）和收尾金句卡（一句话洞见 + 口诀）统一样式 | [ ] 镜头切换有擦除动画；片头、收尾卡样式和其他幕一致 |
+
+**引擎 v2 用法（2026-10-29，port 样板幕）**：案例 build 第一行 `k.v2()` 打开视觉标准 + 商业动画标准（旧幕不调用就完全不变）。常用：`k.titleCard / k.quoteCard`（统一片头 / 收尾金句卡）、`k.hlText`（荧光底色，每屏 ≤3 处）、`k.pop / k.squash`（弹入、落地挤压）、`D.wipe()`（v2 下自动是板擦擦除）、`k.actor / k.act / k.prop / k.expr / k.look`（讲解员小人和场景角色，见 `src/wb_actor.js` 文件头）；颜色用 `k.PAL`，字号用 `k.FS`。角色服装色是 V3 调色板的唯一例外；可信度徽章、🥚 保持全 App 统一色。样板：`cases/wo_port.js`，分镜：`word_origins/PORT_STORYBOARD_V2.md`。
 
 **升级顺序**：先只用 port 一幕做 V1–V8 升级，出「升级前 / 升级后」对比截图给用户看，满意再铺开（`MASTER_DESIGN.md` §4 阶段 1）。旧幕在升级前沿用旧配色，不算违规。
 
