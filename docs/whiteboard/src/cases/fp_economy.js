@@ -141,3 +141,70 @@ WB_LAB.fp_economy.push(
     ],
   },
 );
+WB_LAB.fp_economy.push(
+  // ───────── 1-3 为什么 a 变 an？为什么 in- 变成 im-？─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：a 为什么变 an？in- 为什么变 im-？");
+      k.header("① 口腔省力同化律", "a → an，in- → im-", true);
+      // 左：a → an
+      N("冠词：", "放在名词前面的小词 a / an / the。a、an 表示「一个」。");
+      k.head("a → an", 40, 108, C.blue, "start", 22);
+      const m1 = k.mono("a apple", 60, 182, 30, C.ink, 900);
+      N("元音：", "气流不受阻挡的音，比如 /æ/ /ɒ/ /aʊ/。两个元音挨着，嘴巴会卡一下。");
+      P(k.wave(m1.x + 1.1 * m1.cw, m1.x + 2 * m1.cw - 2, m1.y - 30, 4), go(.5), .5, { color: C.red, w: 2.5 });
+      T("卡一下！", m1.x + 2.2 * m1.cw, m1.y - 30, go(.5), .5, { size: 16, color: C.red, weight: 900 });
+      k.redX(250, 154);
+      k.wait(.4);
+      N("", "加一个 /n/，像一座小桥，让气流顺顺地过去。");
+      D.parts([["a", C.ink], ["n", C.orange], [" apple", C.ink]], 60, 250, 30);
+      const bx = 60 + 1.5 * 18, ex = 60 + 3.3 * 18;
+      P(`M${bx},${222} Q${(bx + ex) / 2},${196} ${ex},${222}`, go(.6), .6, { color: C.orange, w: 3 });
+      T("/n/ 小桥", (bx + ex) / 2 + 60, 206, go(.5), .5, { size: 16, color: C.orange, weight: 900 });
+      T("/æn ˈæpl/", 260, 250, go(.6), .6, { size: 20, color: C.grey, weight: 700, font: M });
+      k.wait(.5);
+      N("", "看第一个「音」，不看字母：hour 的 h 不读，开头是元音。");
+      const m2 = k.mono("an hour", 60, 322, 24, C.ink, 900);
+      k.strike(m2, "h", 0, C.red);
+      T("h 不读，/aʊə/ 开头 → an", 240, 322, go(.8), .8, { size: 16, color: C.green, weight: 900 });
+      N("", "useful 开头读 /j/，是辅音，所以还是用 a。");
+      k.mono("a useful book", 60, 372, 24, C.ink, 900);
+      T("u 读 /j/（辅音）→ a", 290, 372, go(.8), .8, { size: 16, color: C.blue, weight: 900 });
+      k.wait(.5);
+      // 右：in- → im-
+      N("前缀：", "加在单词前面、改变意思的部分。in- 表示「不」。");
+      k.head("in- → im-", 510, 108, C.purple, "start", 22);
+      N("双唇音：", "上下嘴唇合在一起发的音：/p/ /b/ /m/。");
+      const L = D.lips(600, 176, 96, 24);
+      T("读 /p/：双唇先合上", 670, 182, go(.8), .8, { size: 17, color: C.red, weight: 900 });
+      const tc = go(.2);
+      L.close(tc, .5); L.open(tc + 1.2, .4); L.close(tc + 2, .5);
+      k.wait(2.4);
+      N("鼻音：", "气流从鼻子出来的音，/n/ 和 /m/ 都是。");
+      const m3 = k.mono("in + polite", 520, 270, 28, C.ink, 900);
+      k.underline(m3, "p", 0, C.red);
+      N("", "嘴唇已经为 /p/ 合上了，/n/ 自然变成双唇的 /m/。");
+      k.strike(m3, "n", 0, C.red);
+      k.above(m3, "n", 0, "m", C.orange);
+      k.arrow(520, 300, 560, 300, C.grey);
+      D.parts([["i", C.green], ["m", C.orange], ["polite", C.green]], 574, 308, 28);
+      T("不礼貌的", 760, 306, go(.5), .5, { size: 17, color: C.grey });
+      k.wait(.4);
+      N("", "同理：in + possible，变成 impossible（不可能的）。");
+      D.parts([["in + possible  ", C.ink]], 520, 372, 22);
+      k.arrow(728, 366, 760, 366, C.grey);
+      D.parts([["i", C.green], ["m", C.orange], ["possible", C.green]], 770, 372, 22);
+      k.wait(.6);
+      N("口诀：", "元音前面搭座桥，双唇前面 n 变 m。");
+      D.fin("元音撞元音加 /n/ 架桥（an）；/p/ /b/ /m/ 前面 n 变 m（im-）", "口诀：元音前面搭座桥，双唇前面 n 变 m。");
+      k.wait(2);
+    },
+    terms: [
+      ["冠词", "放在名词前面的小词：a / an（一个）、the（这个、那个）。"],
+      ["前缀", "加在单词前面、改变意思的部分，如 in-、im-、un- 表示「不」。"],
+      ["双唇音", "上下嘴唇合在一起发的音：/p/ /b/ /m/。"],
+      ["鼻音", "气流从鼻子出来的音：/m/ /n/ /ŋ/。"],
+    ],
+  },
+);

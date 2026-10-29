@@ -47,6 +47,19 @@ const FP_PROPS = function (k) {
     };
   };
 
+  // 正面嘴唇（上唇 / 下唇两个组），闭合：k.move(up, t, d, 0, gap/2) + k.move(lo, t, d, 0, -gap/2)
+  D.lips = (cx, cy, w = 90, gap = 22) => {
+    const up = k.group();
+    const du = `M${cx - w / 2},${cy - gap / 2} C${cx - w / 4},${cy - gap / 2 - 16} ${cx - 6},${cy - gap / 2 - 12} ${cx},${cy - gap / 2 - 6} C${cx + 6},${cy - gap / 2 - 12} ${cx + w / 4},${cy - gap / 2 - 16} ${cx + w / 2},${cy - gap / 2} C${cx + w / 4},${cy - gap / 2 + 4} ${cx - w / 4},${cy - gap / 2 + 4} ${cx - w / 2},${cy - gap / 2} Z`;
+    P(du, go(.6), .6, { color: C.red, w: 2.5 }); F(du, go(.2, 0), { color: "#fda4af", op: .9 });
+    k.endGroup();
+    const lo = k.group();
+    const dl = `M${cx - w / 2},${cy + gap / 2} C${cx - w / 4},${cy + gap / 2 - 4} ${cx + w / 4},${cy + gap / 2 - 4} ${cx + w / 2},${cy + gap / 2} C${cx + w / 4},${cy + gap / 2 + 20} ${cx - w / 4},${cy + gap / 2 + 20} ${cx - w / 2},${cy + gap / 2} Z`;
+    P(dl, go(.6), .6, { color: C.red, w: 2.5 }); F(dl, go(.2, 0), { color: "#fda4af", op: .9 });
+    k.endGroup();
+    return { up, lo, close(t, d = .5) { k.move(up, t, d, 0, gap / 2 - 1); k.move(lo, t, d, 0, -gap / 2 + 1); }, open(t, d = .5) { k.move(up, t, d, 0, -gap / 2 + 1); k.move(lo, t, d, 0, gap / 2 - 1); } };
+  };
+
   // 小标签框（等宽英文/音标）
   D.tag = (text, x, y, color = C.blue, size = 20) => {
     const w = text.length * size * .6 + 18, h = size + 14;
@@ -60,7 +73,7 @@ const FP_PROPS = function (k) {
     let cx = x;
     parts.forEach(([text, color]) => {
       const dur = Math.max(.3, text.length * .07);
-      T(text, cx, y, go(dur), dur, { size, color, weight, font: MONO });
+      T(text.replace(/ /g, "\u00a0"), cx, y, go(dur), dur, { size, color, weight, font: MONO });
       cx += text.length * size * .6;
     });
     return cx;
