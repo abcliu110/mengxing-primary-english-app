@@ -10,6 +10,10 @@ const WO_CHAPTERS = [
       { id: "wo_europe", title: "Europe 欧罗巴", sub: "一块大陆的名字，背后有一个神话（来历有好几种说法）", badges: ["📜", "✂️", "❓"] },
       { id: "wo_bluetooth", title: "Bluetooth 蓝牙", sub: "一千年前的国王，今天在「统一」你的耳机", badges: ["📜"] },
     ] },
+  { id: "grimm", icon: "🔤", title: "格林定律：辅音和元音的大挪移", insight: "foot ↔ pedal、tooth ↔ dentist：英语小词和借来的大词，是同一个老祖宗的两个样子。",
+    scenes: [
+      { id: "wo_grimm", title: "格林定律 · 辅音挪一格", sub: "p→f、t→th、d→t、k→h：认识 foot 就能猜出 pedal", badges: ["📜", "⚠️", "💡"] },
+    ] },
   { id: "loanwords", icon: "⛵", title: "单词环游世界", insight: "英语是一门「收集者」语言，全世界都往里装过单词。" },
   { id: "places", icon: "🍔", title: "地名、人名变成东西", insight: "东西会带着它出生地的名字去旅行（hamburger、china）。" },
   { id: "animals", icon: "🦛", title: "动植物名字里的画面", insight: "名字是古人第一眼看到的画面（河里的马 = 河马）。" },
