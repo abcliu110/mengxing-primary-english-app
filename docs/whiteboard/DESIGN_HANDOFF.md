@@ -1,6 +1,6 @@
 # 交接文档：新模块设计阶段（单词身世 / 格林定律 / 路线图）
 
-> 日期：2026-10-29　｜　阶段：**只出设计稿，尚未写代码**
+> 日期：2026-10-29　｜　阶段：**开始制作**：骨架最小集 + 单词身世总枢 + 示范幕 port 已完成（见 §8）
 > 上一阶段（第一性原理总枢 24 幕）见 `first_principles/HANDOFF.md`，已全部完成。
 
 ## 1. 文档清单
@@ -69,3 +69,54 @@ e881d52 → 87edb37 → 151965e → 5415921 → b7272c8 → 085651e → 8d6ddf9 
 - 批量加句子工具：`src/addsay.py <case.js> <spec.json>`（anchor 前加 `>` 表示插在该行之后）。
 - 回归：appwb.py 10 个页签、appfp.py 0–5 全部通过，无报错、无 NaN/undefined。
 - 待用户真机听：语音选择（en-US）、停顿长度是否合适；bamboo_tree、stress_rhythm、adj_order 每幕目前只有 1 句，可以再补。
+
+
+## 8. 制作进度（2026-10-29）
+
+| 步骤 | 内容 | 状态 |
+|---|---|---|
+| 1a | 可信度徽章组件 `k.badges / k.badge`（白板）+ `wbBadgeHtml / wbBadgeLegendHtml`（页面卡片） | ✅ 通用引擎工具，记在 `HANDOFF.md`「引擎通用新工具」 |
+| 1b | 🥚 彩蛋词标记 `k.egg`、朗读条 `say({egg})`、`wbEggHtml` | ✅ |
+| 1c | 5 步溯源幕模板 + 共用道具 `cases/wo_props.js`：`scene / step`（标题 + 徽章 + ①地图 ②场景 ③词族 ④彩蛋 ⑤中文 🔮预测 进度条）、`shot / sub / back / wipe`（一个镜头一组，结束擦掉）、`map`（手绘地中海，三块大陆分组可动）、`boat / wind / plane / tower / pier / city / crate / scroll / person`、`stamp`（盖章）、`morph`（抖一下 → 交叉淡化变身）、`snap`（前缀飞过来吸附到词根）、`k.path`（沿折线移动，引擎通用）、`hold / finish`（画线整体加速、朗读和思考停顿保持原长、字幕至少停 2.2 秒） | ✅ |
+| 2 | 首页入口「📖 单词身世总枢」（在第一性原理总枢横幅下面）+ 总枢页面：世界地图 + 时间线、徽章图例、白板舞台、章节列表（欧洲文化密码 + 10 个方向，未上线的显示「即将上线」） | ✅ `word_origins_hub`；源文件 `src/wo_hub.js`；登记表 `insert_wb.py` 的 `WO_READY`；验收 `src/appwo.py` |
+| 3 | 示范幕 port | ✅ 7 个镜头，约 132 秒（画面约 85 秒 + 9 句朗读约 37 秒 + 预测停 3 秒）；出处 `word_origins/SOURCES.md` |
+| 4 | 示范幕 Europe、Bluetooth | 见下方「待办」 |
+
+### 新增文件
+- `src/cases/wo_props.js`、`src/cases/wo_port.js`、`src/wo_hub.js`、`src/appwo.py`、`word_origins/SOURCES.md`
+
+### port 幕：四层 × 四关自查表（DEPTH_AND_ANIMATION §1、§5、§8）
+
+| 镜头 | 动作 | 深度层 | 朗读 |
+|---|---|---|---|
+| 1 地图 | 手绘地中海；三块大陆往中间挤一下；medi + terra 吸附 | L2 | The Mediterranean🥚 Sea is in the middle of the land. |
+| 2 进港 | 风线推着船沿折线进港；ob + port 吸附 → opportunity🥚 | L1 + L2 | The wind takes the ship into the port. |
+| 3 搬运 | 货箱进城 im-、出城 ex-、过海 trans-、信件带回 re-；词根 port 每列位置不变 | **L3** | We import fruit and export tea. / Ships transport food across the sea. / He reports the news to the city. |
+| 4 关卡 | 盖章（印记跟着文书走）；旅客穿过关卡；pass + port 吸附 | L1 + L2 | Show me your passport, please. |
+| 5 穿越 | 镜头特写 → 帆船抖一下淡成飞机、码头淡成塔台 → 镜头拉远；air + port 吸附 | L3 | We take a plane at the airport. |
+| 6 定格 | 中间 port，左港口线 📜、右搬运线 📜，💡「亲戚，不是同一个词」；🀄 港口·进口·出口·口岸（标明对照，不是同源） | **L4** | A port is a door to the world. |
+| 7 预测 | sup + port = ？停 3 秒 → support；总结图里的「？」同时换成答案 | **L4** | My friends support me. |
+
+| 关 | 结果 | 说明 |
+|---|---|---|
+| 🔇 静音关 | ✅ | 货箱往城里走 = import、往船上走 = export、过海 = transport、信件回城 = report；船变飞机 = airport |
+| 🗣️ 一句话关 | ✅ | 总结镜头字幕就是洞见句：「港口是罗马世界的大门；一个 port 长出了进、出、穿越、带回、机会」 |
+| 🔮 预测关 | ✅ | sup + port = support（停 3 秒再揭晓） |
+| 📜 严谨关 | ✅ | 11 条 📜 都在 SOURCES.md 有 etymonline 网址；portus / portare 标 📜 + 💡；中文「口」标明是对照 |
+| 🔊 听读关 | ✅ | 9 句，只读正确英文；课标外的词（Mediterranean、opportunity）标 🥚 |
+
+**课标词判断**：以词库 `VOCAB_DB`（G1–G6 + V6 课标关联）里有没有这个词为准。port、airport、passport、import、export、transport、report、support、important、sea、ship、wind、plane 都在；Mediterranean、opportunity、porter、portable 不在 → 🥚。
+
+### 和现有内容重叠的地方（用户 2026-10-29 规则：重复的内容以后要删旧并入新模块；本次**只列出，不删**）
+1. `VOCAB_DB` 里 11 个词的 `affix_root`（「👨‍👩‍👧 家族串记：port (港/运) ➔ airport · passport · important · report · sport」）：port、airport、passport、import、export、transport、report、reporter、support、important、sport。airport 的 `etymology` 和 `memory_tip` 也讲了「空中海港」。
+2. `WORD_FORMATION_DB.roots` 里的 port 词根卡（构词 → 词根）：写成「拿，运送，港口」一个词根，origin「拉丁词根：把货物运进运出港口」。按 etymonline，港口（portus）和搬运（portare）是两个亲戚词，合并时建议改成「两条线」并加 📜 + 💡。
+3. 术语「词源」在 `fp_iconicity` 的术语表里也有一条，说法相近。
+4. 第一性原理 ② 字母象形（`fp_iconicity`）里「M 像山」和 word_origins 方向 6「字母的真实身世」（M 来自水波纹）将来会并排出现（§5 已有规定）。
+5. ⑤ 向量律（`fp_vectors`）讲 to / from / for 的方向箭头；port 幕里 im- / ex- / trans- / re- 的方向前缀动作和它相通，目前只是画法相近，没有重复文字。
+- 另：用户已确认 `vowel_shift`（格林音变律）以后删掉、内容并入新的真格林定律模块；本次没有动。
+
+### 待办 / 不确定
+- Europe、Bluetooth 示范幕：见本节下方（做完会更新）。
+- port 幕约 132 秒，比 §6 预算的 85 秒长，多出来的主要是 9 句朗读（读的时候画面停住）。如果嫌长，可以去掉镜头 3 的第 3 句或镜头 6 的一句。
+- 总枢首页世界地图是简化示意（不按比例），只标了 3 个溯源幕的位置。
+- 首页入口做成和第一性原理总枢同宽的横幅，放在它正下方（「并列」理解为上下相邻）。

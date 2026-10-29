@@ -18,7 +18,7 @@
 
 首页进入各模块，顶部有返回首页、返回上一步和面包屑：
 
-- 第一性原理总枢、十二大王炸实验室、方法总枢、v6 拓展教室
+- 第一性原理总枢、📖 单词身世总枢（`word_origins_hub`，溯源幕白板动画，源文件见 `docs/whiteboard/src/wo_hub.js`）、十二大王炸实验室、方法总枢、v6 拓展教室
 - 单词大世界：主题、高频视觉词、自然拼读、构词、词性、词汇关系、框架语义、我的单词本
 - 语法大世界：分类、语法详情、语法游乐场、拍手口诀、语法总结、我的语法本
 - 口语大世界：16 个交际场景、我的口语本
@@ -39,3 +39,4 @@
 
 - 在 HTML 模板里给 `onclick` 传文本时，用 `attrEscape(JSON.stringify(文本))`，或改用 `data-speak="${attrEscape(文本)}"`，否则句子里的撇号或双引号会让按钮报错。
 - 改完可用 `node --check` 检查抽出的内联脚本语法。
+- 白板动画（王炸实验室、第一性原理总枢、单词身世总枢）不要直接改主文件，改 `docs/whiteboard/src/` 下的源文件后运行 `python3 docs/whiteboard/src/insert_wb.py`；做法见 `docs/whiteboard/SOP.md`。

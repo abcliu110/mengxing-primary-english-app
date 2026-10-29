@@ -44,6 +44,16 @@
 | `insert_wb.py` | 把以上全部写进主文件（可重复运行） |
 | `preview.html` / `preview_shots.py` | 不进 App 直接预览、截图：`preview_shots.py <页签> <输出目录> 0.3,0.6,1.0` |
 | `appwb.py` | App 内验收：`appwb.py <页签> <输出目录>` |
+| `wo_hub.js` / `cases/wo_props.js` / `cases/wo_*.js` / `appwo.py` | 📖 单词身世总枢（页面、溯源幕道具和模板、场景、App 验收）；进度见 `DESIGN_HANDOFF.md` |
+
+### 引擎通用新工具（2026-10-29，单词身世骨架，经用户同意新增，全 App 可用）
+- `k.badges(["📜","💡"], {x,y})`：可信度徽章，默认排在 `header` 副标题后面同一行；`k.badge(key, x, y)` 单个胶囊（可放在卡片、词旁边）。徽章表 `WB.BADGES`：📜 真实词源 / 💡 记忆联想 / ✂️ 简化说法 / ⚠️ 有例外或流行错误说法 / ❓ 有争议。HTML 版：`wbBadgeHtml(keys)`、`wbBadgeLegendHtml()`（在 `wo_hub.js`）。
+- `k.egg(x, y, {word, note})`：🥚 彩蛋词标记（手绘小鸡蛋；`note: true` 加一行「彩蛋词：知道就好，不用背」）。HTML 版 `wbEggHtml(word)`。
+- `k.say(en, { egg: ["opportunity"] })`：朗读条上在这些词后面显示 🥚（只影响显示，不影响朗读）。
+- `k.path(组, 开始, 时长, [[dx,dy], …], {linear})`：沿折线移动（`k.arc` 也新增了第 5 个参数 `{linear}`）。
+- `header()` 会记下副标题结束位置 `S.hdrEnd`，给徽章排版用。
+- `preview_shots.py` 的时间点可以写秒数：`preview_shots.py wo_port /tmp/out 18s,35s,1.0`。
+- 回归：`appwb.py bamboo_tree`、`appfp.py 0` 通过（这些改动不调用随机数，旧案例画面不变）。
 
 ## 3. 各页签分镜要点（做之前先看页面原文）
 
