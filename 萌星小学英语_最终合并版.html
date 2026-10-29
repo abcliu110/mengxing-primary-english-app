@@ -922,7 +922,7 @@
   <div class="brand-box" onclick="goHome()" style="cursor:pointer;">
     <span style="font-size:1.6rem;">🌟</span>
     <span>萌星英语乐园</span>
-    <span class="brand-badge">v4.0 终极宗师·十二大王炸全规律版</span>
+    <span class="brand-badge">小学英语 · 课标同步</span>
   </div>
   <div class="stats-bar">
     <div class="stat-pill streak" title="每日学习自动打卡">
@@ -3335,124 +3335,17 @@ function renderHomeView() {
       <p>遵循 2022 义务教育英语课标 · 大道至简 · 用「6大第一性原理」把语音、单词、语法、口语融会贯通</p>
     </div>
 
-    <!-- v1.6 Flagship Banner: 英语大道至简·六大第一性原理总枢 -->
-    <div onclick="navigateTo('first_principles_hub', { lawIdx: 0, actIdx: 0 })"
-      style="background:linear-gradient(135deg, #0f172a 0%, #1e1b4b 52%, #312e81 100%); color:#ffffff; border-radius:22px; padding:22px 26px; border:3px solid #f59e0b; margin-bottom:24px; cursor:pointer; box-shadow:0 12px 28px rgba(15,23,42,0.22); position:relative; overflow:hidden;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-        <div style="flex:1; min-width:290px;">
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
-            <span style="background:linear-gradient(135deg,#f59e0b,#fbbf24); color:#0f172a; padding:4px 12px; border-radius:999px; font-weight:900; font-size:0.82rem;">👑 大道至简</span>
-            <span style="background:rgba(255,255,255,0.14); color:#fde68a; padding:4px 11px; border-radius:999px; font-weight:700; font-size:0.78rem;">一理通百词 · 一理通百句</span>
-          </div>
-          <h2 style="margin:0 0 8px; font-size:1.48rem; color:#ffffff; font-weight:900;">🧠 英语「大道至简」六大第一性原理总枢（融会贯通沙盘）</h2>
-          <p style="margin:0 0 12px; font-size:0.93rem; color:#e2e8f0; line-height:1.55;">
-            把小学到初中看似零散的 <strong>100+ 条拼读、构词、词法、句法、介词与语序规则</strong>，高度浓缩为 <strong>6 条最简单、最深刻的底层第一性原理</strong>！配备四幕无遮挡黄金三区推导剧场与跨模块「一理通百题」实时沙盘。
-          </p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">① 👄 口腔省力同化律</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">② 🔤 字母象形与音义同源簇</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">③ 📦 物理边界感统摄律</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">④ 👑 一山不容二虎单核谓语律</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">⑤ 🧭 三维几何向量时空律</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">⑥ 🔭 焦点先行与镜头缩放律</span>
-          </div>
-        </div>
-        <div style="background:linear-gradient(135deg,#f59e0b,#d97706); color:#0f172a; font-weight:900; font-size:1.02rem; padding:14px 22px; border-radius:16px; box-shadow:0 6px 18px rgba(245,158,11,0.35); white-space:nowrap;">
-          进入第一性原理总枢 ➔
-        </div>
-      </div>
-    </div>
-
-    <!-- WO_HOME：单词身世总枢入口（和第一性原理总枢并列） -->
-    <div onclick="navigateTo('word_origins_hub', { scene: 'wo_port' })"
-      style="background:linear-gradient(135deg, #1e293b 0%, #422006 60%, #78350f 100%); color:#ffffff; border-radius:22px; padding:18px 24px; border:3px solid #f59e0b; margin-bottom:24px; cursor:pointer; box-shadow:0 12px 28px rgba(15,23,42,0.18);">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
-        <div style="flex:1; min-width:290px;">
-          <h2 style="margin:0 0 6px; font-size:1.36rem; color:#ffffff; font-weight:900;">📖 单词身世总枢：每个单词都有自己的故事</h2>
-          <p style="margin:0 0 10px; font-size:0.92rem; color:#e2e8f0; line-height:1.55;">地图 + 时间线：罗马 → 维京 → 诺曼 → 大航海 → 现代。看一个 <strong>port（港口）</strong> 怎么长出 import、export、passport、airport 一整家单词；每个说法都标 📜 真实词源 / 💡 记忆联想。</p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">🏛️ 欧洲文化密码</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">⛵ 单词环游世界</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">🦛 动植物名字里的画面</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(251,191,36,0.45); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#fef3c7;">🔍 辟谣角 …</span>
-          </div>
-        </div>
-        <div style="background:linear-gradient(135deg,#f59e0b,#d97706); color:#0f172a; font-weight:900; font-size:1.02rem; padding:14px 22px; border-radius:16px; white-space:nowrap;">进入单词身世总枢 ➔</div>
-      </div>
-    </div>
-
-    <!-- ZE_HOME：中英对照总枢入口（和第一性原理、单词身世总枢并列） -->
-    <div onclick="navigateTo('zh_en_hub', { scene: 'ze_be' })"
-      style="background:linear-gradient(135deg, #0f172a 0%, #134e4a 60%, #0f766e 100%); color:#ffffff; border-radius:22px; padding:18px 24px; border:3px solid #14b8a6; margin-bottom:24px; cursor:pointer; box-shadow:0 12px 28px rgba(15,23,42,0.18);">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
-        <div style="flex:1; min-width:290px;">
-          <h2 style="margin:0 0 6px; font-size:1.36rem; color:#ffffff; font-weight:900;">🔀 中英对照总枢：中文的习惯，哪些能搬、哪些不能搬</h2>
-          <p style="margin:0 0 10px; font-size:0.92rem; color:#e2e8f0; line-height:1.55;">为什么不能说 <strong>I am like apples</strong>？「是」不等于 be、长修饰语要挂在名词后面、句子必须有主语……先讲中英文一样的，再讲不一样的。</p>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(94,234,212,0.5); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#ccfbf1;">✅ 这些你已经会了</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(94,234,212,0.5); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#ccfbf1;">🧠 「是」≠ be</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(94,234,212,0.5); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#ccfbf1;">❓ Yes / No 怎么答</span>
-            <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(94,234,212,0.5); padding:4px 10px; border-radius:8px; font-size:0.8rem; font-weight:700; color:#ccfbf1;">🔀 借：borrow / lend …</span>
-          </div>
-        </div>
-        <div style="background:linear-gradient(135deg,#14b8a6,#0d9488); color:#0f172a; font-weight:900; font-size:1.02rem; padding:14px 22px; border-radius:16px; white-space:nowrap;">进入中英对照总枢 ➔</div>
-      </div>
-    </div>
-
-    <!-- 王炸实验室入口卡（首页改版第 2 步：15 张卡收成一张，按四组直达） -->
     <style>
-      .lab-entry{background:#fff;border-radius:22px;padding:18px 20px;border:2px solid #10b981;margin-bottom:22px;box-shadow:0 8px 20px rgba(5,150,105,0.10);}
-      .lab-entry-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
-      .lab-entry-head h2{margin:0;font-size:1.3rem;color:#0f172a;font-weight:900;}
-      .lab-entry-head p{margin:3px 0 0;font-size:0.86rem;color:#475569;}
-      .lab-entry-go{background:#059669;color:#fff;border:0;font-weight:900;font-size:0.95rem;padding:10px 16px;border-radius:14px;cursor:pointer;white-space:nowrap;}
-      .lab-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;}
-      .lab-group{border-radius:14px;padding:10px 12px;}
-      .lab-group-name{font-weight:900;font-size:0.92rem;margin-bottom:6px;}
-      .lab-chips{display:flex;flex-wrap:wrap;gap:6px;}
-      .lab-chip{background:#fff;border:1.5px solid;border-radius:999px;padding:5px 10px;font-size:0.8rem;font-weight:800;cursor:pointer;font-family:inherit;}
-      .lab-chip:hover{filter:brightness(0.95);transform:translateY(-1px);}
+      .home-sec{font-size:1.05rem;font-weight:900;color:#334155;margin:6px 2px 10px;}
+      .hub-minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:22px;}
+      .hub-mini{display:flex;align-items:center;gap:12px;border:2px solid;border-radius:16px;padding:12px 14px;cursor:pointer;transition:transform .15s;}
+      .hub-mini:hover{transform:translateY(-2px);}
+      .hub-mini-ic{font-size:1.7rem;}
+      .hub-mini-t{font-weight:900;font-size:1rem;}
+      .hub-mini-d{font-size:0.8rem;color:#475569;margin-top:2px;}
+      .hub-mini-go{margin-left:auto;font-weight:900;}
     </style>
-    <div class="lab-entry">
-      <div class="lab-entry-head">
-        <div>
-          <h2>⚡ 王炸实验室</h2>
-          <p>底层规律按发音、词汇、语法、写作分组，点名字直达。</p>
-        </div>
-        <button type="button" class="lab-entry-go" onclick="navigateTo('super_lab_hub', { labTab: 'phrasal_key' })">进入实验室 ➔</button>
-      </div>
-      <div class="lab-groups">
-        <div class="lab-group" style="background:#fff1f2;">
-          <div class="lab-group-name" style="color:#e11d48;">👄 发音</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'pron_map' })" style="border-color:#e11d4833; color:#e11d48;">👄 发音五大坑 + 口腔地图</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'intonation_map' })" style="border-color:#e11d4833; color:#e11d48;">🎵 语调 · 重音 · 弱读</button></div>
-        </div>
-        <div class="lab-group" style="background:#eff6ff;">
-          <div class="lab-group-name" style="color:#2563eb;">🔤 词汇</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'phrasal_key' })" style="border-color:#2563eb33; color:#2563eb;">🔑 短语动词总钥匙</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'eight_endings' })" style="border-color:#2563eb33; color:#2563eb;">🔚 只剩 8 个词尾</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'irregular_plural' })" style="border-color:#2563eb33; color:#2563eb;">👣 不规则复数</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'past_clans' })" style="border-color:#2563eb33; color:#2563eb;">⚔️ 过去式四大门派</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'metaphor_code' })" style="border-color:#2563eb33; color:#2563eb;">🎭 三大隐喻密码</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('word_origins_hub', { scene: 'wo_vowel_a' })" style="border-color:#2563eb33; color:#2563eb;">🧬 元音变异 foot→feet</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); openWordCardModal('G6_258', ['G6_258','G4_167','G5_208','G1_030','G3_151','G3_152'])" style="border-color:#2563eb33; color:#2563eb;">🔬 单词卡 X 光</button></div>
-        </div>
-        <div class="lab-group" style="background:#f5f3ff;">
-          <div class="lab-group-name" style="color:#7c3aed;">🧩 语法</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'bamboo_tree' })" style="border-color:#7c3aed33; color:#7c3aed;">🎋 竹节句 vs 树干句</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'adj_order' })" style="border-color:#7c3aed33; color:#7c3aed;">👑 形容词排座次</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'tense_matrix' })" style="border-color:#7c3aed33; color:#7c3aed;">🧭 时 × 体矩阵</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'aux_transformer' })" style="border-color:#7c3aed33; color:#7c3aed;">🪞 助动词照妖镜</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'five_patterns' })" style="border-color:#7c3aed33; color:#7c3aed;">🦴 五大基本句型</button></div>
-        </div>
-        <div class="lab-group" style="background:#fffbeb;">
-          <div class="lab-group-name" style="color:#b45309;">✍️ 写作</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'writing_alchemist' })" style="border-color:#b4530933; color:#b45309;">🏆 高分作文炼金炉</button></div>
-        </div>
-      </div>
-    </div>
-
-    <div onclick="navigateTo('v6_hub')"
-      style="background:linear-gradient(135deg,#0c4a6e 0%,#0284c7 45%,#38bdf8 100%); color:#fff; border-radius:22px; padding:20px 24px; border:3px solid #bae6fd; margin-bottom:22px; cursor:pointer; box-shadow:0 12px 28px rgba(2,132,199,0.25);">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
-        <div style="flex:1; min-width:280px;">
-          <span style="background:rgba(255,255,255,0.2); padding:4px 12px; border-radius:999px; font-weight:900; font-size:0.8rem;">🎮 词库 + 闯关厅</span>
-          <h2 style="margin:8px 0 6px; font-size:1.36rem; font-weight:900; color:#fff;">拓展教室 / 闯关游戏厅</h2>
-          <p style="margin:0; font-size:0.92rem; color:#e0f2fe; line-height:1.5;">新增扩展词条 · 4合1闯关 · 12景口语 · 金剪刀 · 同音/反义 · 作文模板 · 词源树 · 变形表</p>
-        </div>
-        <div style="background:#fff; color:#075985; font-weight:900; font-size:1rem; padding:14px 20px; border-radius:16px; white-space:nowrap;">进入拓展教室 ➔</div>
-      </div>
-    </div>
-
+    <div class="home-sec">📚 今天学什么</div>
       <div class="home-portal-grid">
       <!-- 1. 单词大厅 -->
       <div class="portal-card vocab" onclick="navigateTo('vocab_hall')">
@@ -3517,26 +3410,88 @@ function renderHomeView() {
         </div>
         <div class="portal-enter-btn">进入日常用语大厅 ➔</div>
       </div>
-
-      <div class="portal-card method" onclick="navigateTo('method_hub')">
-        <div>
-          <div class="portal-icon">👑</div>
-          <h2 class="portal-title" style="color:#9a3412;">十五大王炸方法论 / 真动画教室</h2>
-          <div class="portal-sub">十五大王炸 · 天坑测验 · 真动画四大剧场</div>
-          <div class="portal-tags">
-            <span class="portal-tag">👑 十五大王炸</span>
-            <span class="portal-tag">⚡ 十大天坑</span>
-            <span class="portal-tag">✂️ 剪刀切尾</span>
-            <span class="portal-tag">🎬 三幕剧微电影</span>
-            <span class="portal-tag">🚂 句法真火车</span>
-            <span class="portal-tag">🧪 变形拼写台</span>
-          </div>
-          <div style="font-size:0.86rem; color:#475569; margin-bottom:14px;">
-            把规律课与真动画练习集中在一间教室，原单词/语法/口语大厅不变。
-          </div>
-        </div>
-        <div class="portal-enter-btn">进入方法论教室 ➔</div>
       </div>
+
+    <div onclick="navigateTo('v6_hub')"
+      style="background:linear-gradient(135deg,#0c4a6e 0%,#0284c7 45%,#38bdf8 100%); color:#fff; border-radius:22px; padding:20px 24px; border:3px solid #bae6fd; margin-bottom:22px; cursor:pointer; box-shadow:0 12px 28px rgba(2,132,199,0.25);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+        <div style="flex:1; min-width:280px;">
+          <span style="background:rgba(255,255,255,0.2); padding:4px 12px; border-radius:999px; font-weight:900; font-size:0.8rem;">🎮 词库 + 闯关厅</span>
+          <h2 style="margin:8px 0 6px; font-size:1.36rem; font-weight:900; color:#fff;">拓展教室 / 闯关游戏厅</h2>
+          <p style="margin:0; font-size:0.92rem; color:#e0f2fe; line-height:1.5;">新增扩展词条 · 4合1闯关 · 12景口语 · 金剪刀 · 同音/反义 · 作文模板 · 词源树 · 变形表</p>
+        </div>
+        <div style="background:#fff; color:#075985; font-weight:900; font-size:1rem; padding:14px 20px; border-radius:16px; white-space:nowrap;">进入拓展教室 ➔</div>
+      </div>
+    </div>
+
+    <div class="home-sec">🧭 理解英语：三大总枢</div>
+    <div class="hub-minis">
+        <div class="hub-mini" onclick="navigateTo('first_principles_hub', { lawIdx: 0, actIdx: 0 })" style="background:#eef2ff; border-color:#4338ca40;">
+          <div class="hub-mini-ic">🧠</div>
+          <div><div class="hub-mini-t" style="color:#4338ca;">六大第一性原理</div><div class="hub-mini-d">一理通百词，一理通百句</div></div>
+          <div class="hub-mini-go" style="color:#4338ca;">➔</div>
+        </div>
+        <div class="hub-mini" onclick="navigateTo('word_origins_hub', { scene: 'wo_port' })" style="background:#f5f3ff; border-color:#7c3aed40;">
+          <div class="hub-mini-ic">📖</div>
+          <div><div class="hub-mini-t" style="color:#7c3aed;">单词身世</div><div class="hub-mini-d">罗马、维京、诺曼、大航海，单词的故事</div></div>
+          <div class="hub-mini-go" style="color:#7c3aed;">➔</div>
+        </div>
+        <div class="hub-mini" onclick="navigateTo('zh_en_hub', { scene: 'ze_be' })" style="background:#f0fdfa; border-color:#0f766e40;">
+          <div class="hub-mini-ic">🔀</div>
+          <div><div class="hub-mini-t" style="color:#0f766e;">中英对照</div><div class="hub-mini-d">中文习惯哪些能搬、哪些不能搬</div></div>
+          <div class="hub-mini-go" style="color:#0f766e;">➔</div>
+        </div>
+    </div>
+
+    <!-- 王炸实验室入口卡（首页改版第 2 步：15 张卡收成一张，按四组直达） -->
+    <style>
+      .lab-entry{background:#fff;border-radius:22px;padding:18px 20px;border:2px solid #10b981;margin-bottom:22px;box-shadow:0 8px 20px rgba(5,150,105,0.10);}
+      .lab-entry-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+      .lab-entry-head h2{margin:0;font-size:1.3rem;color:#0f172a;font-weight:900;}
+      .lab-entry-head p{margin:3px 0 0;font-size:0.86rem;color:#475569;}
+      .lab-entry-go{background:#059669;color:#fff;border:0;font-weight:900;font-size:0.95rem;padding:10px 16px;border-radius:14px;cursor:pointer;white-space:nowrap;}
+      .lab-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;}
+      .lab-group{border-radius:14px;padding:10px 12px;}
+      .lab-group-name{font-weight:900;font-size:0.92rem;margin-bottom:6px;}
+      .lab-chips{display:flex;flex-wrap:wrap;gap:6px;}
+      .lab-chip{background:#fff;border:1.5px solid;border-radius:999px;padding:5px 10px;font-size:0.8rem;font-weight:800;cursor:pointer;font-family:inherit;}
+      .lab-chip:hover{filter:brightness(0.95);transform:translateY(-1px);}
+    </style>
+    <div class="lab-entry">
+      <div class="lab-entry-head">
+        <div>
+          <h2>⚡ 王炸实验室</h2>
+          <p>底层规律按发音、词汇、语法、写作分组，点名字直达。</p>
+        </div>
+        <button type="button" class="lab-entry-go" onclick="navigateTo('super_lab_hub', { labTab: 'phrasal_key' })">进入实验室 ➔</button>
+      </div>
+      <div class="lab-groups">
+        <div class="lab-group" style="background:#fff1f2;">
+          <div class="lab-group-name" style="color:#e11d48;">👄 发音</div>
+          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'pron_map' })" style="border-color:#e11d4833; color:#e11d48;">👄 发音五大坑 + 口腔地图</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'intonation_map' })" style="border-color:#e11d4833; color:#e11d48;">🎵 语调 · 重音 · 弱读</button></div>
+        </div>
+        <div class="lab-group" style="background:#eff6ff;">
+          <div class="lab-group-name" style="color:#2563eb;">🔤 词汇</div>
+          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'phrasal_key' })" style="border-color:#2563eb33; color:#2563eb;">🔑 短语动词总钥匙</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'eight_endings' })" style="border-color:#2563eb33; color:#2563eb;">🔚 只剩 8 个词尾</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'irregular_plural' })" style="border-color:#2563eb33; color:#2563eb;">👣 不规则复数</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'past_clans' })" style="border-color:#2563eb33; color:#2563eb;">⚔️ 过去式四大门派</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'metaphor_code' })" style="border-color:#2563eb33; color:#2563eb;">🎭 三大隐喻密码</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('word_origins_hub', { scene: 'wo_vowel_a' })" style="border-color:#2563eb33; color:#2563eb;">🧬 元音变异 foot→feet</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); openWordCardModal('G6_258', ['G6_258','G4_167','G5_208','G1_030','G3_151','G3_152'])" style="border-color:#2563eb33; color:#2563eb;">🔬 单词卡 X 光</button></div>
+        </div>
+        <div class="lab-group" style="background:#f5f3ff;">
+          <div class="lab-group-name" style="color:#7c3aed;">🧩 语法</div>
+          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'bamboo_tree' })" style="border-color:#7c3aed33; color:#7c3aed;">🎋 竹节句 vs 树干句</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'adj_order' })" style="border-color:#7c3aed33; color:#7c3aed;">👑 形容词排座次</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'tense_matrix' })" style="border-color:#7c3aed33; color:#7c3aed;">🧭 时 × 体矩阵</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'aux_transformer' })" style="border-color:#7c3aed33; color:#7c3aed;">🪞 助动词照妖镜</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'five_patterns' })" style="border-color:#7c3aed33; color:#7c3aed;">🦴 五大基本句型</button></div>
+        </div>
+        <div class="lab-group" style="background:#fffbeb;">
+          <div class="lab-group-name" style="color:#b45309;">✍️ 写作</div>
+          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'writing_alchemist' })" style="border-color:#b4530933; color:#b45309;">🏆 高分作文炼金炉</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-sec">👑 更多</div>
+    <div class="hub-minis">
+        <div class="hub-mini" onclick="navigateTo('method_hub')" style="background:#fffbeb; border-color:#b4530940;">
+          <div class="hub-mini-ic">👑</div>
+          <div><div class="hub-mini-t" style="color:#b45309;">方法论 / 真动画教室</div><div class="hub-mini-d">天坑测验 · 三幕剧 · 句法火车 · 变形拼写台</div></div>
+          <div class="hub-mini-go" style="color:#b45309;">➔</div>
+        </div>
     </div>
   `;
 }
