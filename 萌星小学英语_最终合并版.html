@@ -14778,8 +14778,13 @@ WB_LAB.bamboo_tree = [
       k.chip("tomorrow", 796, 358, [746, 350], { color: C.green, tag: "时间挂句尾" });
       N("", "连起来：主干 + 树枝 = 一句地道的英语！");
       k.final("I want to go to the library to read storybooks tomorrow.", "want", "我明天想去图书馆看故事书。  先立树干，再挂树枝！");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
+      k.say("Want, go, read. I want to read.", { zh: "想、去、读。我想读书。", word: "want go read I to" });
+      k.say("Tomorrow. The library has storybooks.", { zh: "明天。图书馆里有故事书。", word: "tomorrow library storybook storybooks the" });
+      k.say("Chinglish. Chinglish is English in Chinese word order.", { zh: "中式英语。中式英语就是按中文顺序排的英语。", word: "Chinglish" });
       N("口诀：", "先立树干，再挂树枝。一句话只留一个谓语动词当国王。");
     },
+    r2skip: ["vs", "I tomorrow want go library read storybook."],   // vs 对比符号；病句不读
     terms: [
       ["竹节句", "中文的句子像竹子，一节接一节：几个动作按先后排成一串，中间不用连接词。比如「我想去图书馆看书」里有想、去、看三个动作。"],
       ["树干句", "英语的句子像一棵树：先说主干（谁 + 做什么），其他内容像树枝一样挂在后面。"],
@@ -14837,8 +14842,14 @@ WB_LAB.bamboo_tree = [
       k.chip("and", 692, 232, null, { color: C.orange });
       N("", "连起来：两棵树 + and = 一句地道的英语！");
       k.final("I like dogs very much, and they are very happy today.", ["like", "are"], "我非常喜欢小狗，它们今天很开心。  一件事一棵树，用 and 连起来！");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
+      k.say("I like dogs. They are happy.", { zh: "我喜欢小狗。它们很开心。", word: "I like dogs they are happy They are happy" });
+      k.say("Am, is, are. I am happy. She is happy.", { zh: "am、is、are。我很开心。她很开心。", word: "am is" });
+      k.say("Very, very much, today, and.", { zh: "非常、非常（喜欢）、今天、和。", word: "very much today and" });
+      k.say("Chinglish is not good English.", { zh: "中式英语不是地道的英语。", word: "Chinglish" });
       N("口诀：", "一句只能一个国王；想要两个国王，先用 and 搭桥。");
     },
+    r2skip: ["vs", "I am very like dogs", "they very happy today.", "I am very like dogs, they very happy today."],   // 病句不读
     terms: [
       ["双王相撞", "一句话里放了两个谓语动词抢「国王」的位置，比如 am like。英语里 am 和 like 只能留一个。"],
       ["形容词", "描述人或东西样子、心情的词，比如 happy（开心的）、big（大的）。英语里形容词不能自己当谓语。"],
@@ -14882,8 +14893,13 @@ WB_LAB.bamboo_tree = [
       k.chip("under the tree", 680, 362, [gx, s.y + s.h], { string: true, tag: "位置：挂在 girl 后", tagX: 684, tagY: 412 });
       N("", "连起来：核心名词在前，修饰语挂后，句子就站稳了！");
       k.final("The girl in a red dress under the tree is my sister.", "is", "在树下看书的那个穿红裙子的女孩是我姐姐。  先说女孩，再挂修饰！");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
+      k.say("Under the tree. In a red dress.", { zh: "在树下。穿红裙子。", word: "under the tree in red dress a" });
+      k.say("The girl is reading a book. She is my sister.", { zh: "那个女孩在看书。她是我姐姐。", word: "girl is reading book my sister" });
+      k.say("Chinglish puts the long part first.", { zh: "中式英语把长长的修饰放在前面。", word: "Chinglish" });
       N("口诀：", "先立核心名词，长修饰语往后挂。");
     },
+    r2skip: ["vs", "Under the tree reading book in red dress", "the girl is my sister."],   // 病句（长定语压在前面）不读
     terms: [
       ["定语", "修饰名词、说明「哪个、什么样的」的词语，比如「穿红裙子的」女孩。"],
       ["核心名词", "一堆修饰语中间，句子真正在说的那个人或东西，比如「女孩」(the girl)。"],
@@ -14926,8 +14942,13 @@ WB_LAB.bamboo_tree = [
       k.chip("yesterday morning", 756, 362, [744, 352], { color: C.green, tag: "大：哪天早上" });
       N("", "连起来：主干在前，地点其次，时间从小到大挂最后！");
       k.final("We did morning exercises on the school playground at 8 o'clock yesterday morning.", "did", "我们昨天早上八点在学校操场上做早操。  主干在前，时间从小到大！");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
+      k.say("We did. Yesterday morning, at eight o'clock.", { zh: "我们做了。昨天早上，八点。", word: "we did yesterday morning at o'clock the" });
+      k.say("On the school playground. Do morning exercises.", { zh: "在学校操场上。做早操。", word: "on school playground do exercises" });
+      k.say("Chinglish puts the time first.", { zh: "中式英语把时间放在最前面。", word: "Chinglish" });
       N("口诀：", "先说谁做了什么，再挂地点，最后挂时间，时间从小到大。");
     },
+    r2skip: ["vs", "We yesterday morning", "o'clock on school", "playground do morning exercises."],   // 病句（时空顺序颠倒）不读
     terms: [
       ["过去式", "表示已经发生的事，动词要变样，比如 do → did、go → went。句子里有 yesterday（昨天）就要用过去式。"],
       ["地点挂件（地点状语）", "说明「在哪儿」的部分，比如 on the school playground（在学校操场上），英语里挂在主干后面。"],
@@ -14969,8 +14990,14 @@ WB_LAB.bamboo_tree = [
       k.chip("in the park", 760, 362, [744, 352], { tag: "大：公园" });
       N("", "连起来：一个国王 are，其余全挂后面！");
       k.final("There are two yellow ducks swimming on the lake in the park.", "are", "公园的湖面上有两只小黄鸭正在游泳。  There are 当国王，-ing 挂后面！");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
+      k.say("There be. There is a duck. There are two ducks.", { zh: "There be 句型。有一只鸭子。有两只鸭子。", word: "there be is are two ducks" });
+      k.say("Two yellow ducks are swimming. I can swim.", { zh: "两只小黄鸭在游泳。我会游泳。", word: "yellow swimming swim ing", blocks: ["ing"] });
+      k.say("On the lake. In the park. I have a duck.", { zh: "在湖上。在公园里。我有一只鸭子。", word: "on the lake in park have" });
+      k.say("Chinglish says there have.", { zh: "中式英语会说 there have。", word: "Chinglish" });
       N("口诀：", "「某处有」用 There is / are；国王只留一个，其余挂后面。");
     },
+    r2skip: ["vs", "There have two yellow ducks are swimming", "There have ... are swimming ..."],   // 病句（there have + 双谓语）不读
     terms: [
       ["There be 句型", "表示「某处有某物」：There is（一个）/ There are（多个），比如 There are two ducks on the lake。"],
       ["have 和 There be", "have 是「某人拥有」：I have a dog。「某处存在」不能用 have，要用 There is / are。"],
