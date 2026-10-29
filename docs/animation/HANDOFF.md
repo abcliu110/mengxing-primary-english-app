@@ -124,3 +124,8 @@
 - 2026-10-29 `fix(anim)`：`takeoffScene.js` 删除未调用的矢量小男孩代码（drawBoy/armPts/drawArm/jacketBundle/hungJacket）和空 if，从 271 行减到 151 行；`TakeOff.tsx` 用 `delayRender` 预加载图片，避免 Remotion 开头空帧；demo 和主文件播放器都改用 Blob URL，开播前预解码，画面不变时不重建 DOM，按渲染耗时在 30fps 和 20fps 之间自适应。`to_base.webp` 只作出图参考，没有打进主文件。
 - 2026-10-29 `feat(vv)`：GET 行 6 格动画完成（get on/off/up/down/in/out）。新增 15 张素材：`vv_walk`、`vv_get_*`（stepup、stepdown、bike、bikeoff、sleep、sitstretch、stretch、fallen、chair、crouch、carin、wave）、`vv_cat_climb`、`vv_cat_sit`；`poses()` 的影子加了 `spec.shadow` 系数；新增 `G` 画框和 GET 道具。已在无头 Chrome 里逐幕截图检查，控制台无报错。
   - 已知小问题：get on 第二幕“站在车旁 → 骑上车”是交叉淡化，有约 0.3 秒重影；骑车 / 车旁两张图里的自行车细节略有差别。
+
+
+## 附：白板动画
+
+竹节句 vs 树干句页签已改用白板动画，规范和交接见 `docs/whiteboard/SOP.md`、`docs/whiteboard/HANDOFF.md`。

@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>WB preview</title>
+<style>body{margin:0;padding:12px;background:#e9eef2;font-family:sans-serif}#tabs button{margin:2px}svg{width:960px;display:block;background:#fff}</style></head><body>
+<div id="tabs"></div><svg id="st"></svg><div id="info"></div>
+<script src="wb_engine.js"></script><script src="wb_cases.js"></script>
+<script>
+let player=null;
+window.__load=i=>{player=WB.mount(document.getElementById('st'),WB_BAMBOO_CASES[i].build,7+i);return player.end;};
+window.__seek=t=>{for(let i=0;i<40;i++)player.render(t);};
+</script></body></html>
