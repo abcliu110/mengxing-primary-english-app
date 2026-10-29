@@ -6,129 +6,9 @@ const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const seg = (t, a, b) => clamp((t - a) / (b - a));
 const ease = (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
 const lerp = (a, b, k) => a + (b - a) * k;
-const rad = (d) => (d * Math.PI) / 180;
 const FONT = "'PingFang SC','Microsoft YaHei','Noto Sans CJK SC','WenQuanYi Zen Hei',sans-serif";
-const C = {
-  skin: '#f6c7a1', skinShade: '#e9a982', hair: '#4a2c1d', shirt: '#ffd34e', pants: '#3d5a98',
-  shoe: '#2b2b33', jacket: '#e4573d', jacketDark: '#b8402b', ink: '#22304a', accent: '#1f8fff',
-};
+const C = { ink: '#22304a', accent: '#1f8fff' };
 
-// 手臂：side=-1 画面左，+1 画面右；a1 上臂角度（0=下垂，正=向外），a2 肘部相对弯曲
-function armPts(side, a1, a2) {
-  const sx = side * 25, sy = -118, L1 = 36, L2 = 34;
-  const ex = sx + side * L1 * Math.sin(rad(a1)), ey = sy + L1 * Math.cos(rad(a1));
-  const t2 = a1 + a2;
-  const hx = ex + side * L2 * Math.sin(rad(t2)), hy = ey + L2 * Math.cos(rad(t2));
-  return { sx, sy, ex, ey, hx, hy };
-}
-function pointAlong(p, f) {
-  // 沿 肩->肘->手 折线取比例 f 的点
-  const d1 = Math.hypot(p.ex - p.sx, p.ey - p.sy), d2 = Math.hypot(p.hx - p.ex, p.hy - p.ey);
-  const d = f * (d1 + d2);
-  if (d <= d1) return { x: lerp(p.sx, p.ex, d / d1), y: lerp(p.sy, p.ey, d / d1), seg: 1 };
-  return { x: lerp(p.ex, p.hx, (d - d1) / d2), y: lerp(p.ey, p.hy, (d - d1) / d2), seg: 2 };
-}
-function sleevePath(p, f0, f1) {
-  const a = pointAlong(p, f0), b = pointAlong(p, f1);
-  const pts = [`${a.x},${a.y}`];
-  const elbowF = Math.hypot(p.ex - p.sx, p.ey - p.sy) / (Math.hypot(p.ex - p.sx, p.ey - p.sy) + Math.hypot(p.hx - p.ex, p.hy - p.ey));
-  if (f0 < elbowF && f1 > elbowF) pts.push(`${p.ex},${p.ey}`);
-  pts.push(`${b.x},${b.y}`);
-  return `M${pts.join(' L')}`;
-}
-function drawArm(p, jacketF0, jacketOn) {
-  let s = '';
-  // 上臂（T 恤短袖）+ 前臂（皮肤）
-  s += `<path d="M${p.sx},${p.sy} L${p.ex},${p.ey}" stroke="${C.skin}" stroke-width="12" stroke-linecap="round" fill="none"/>`;
-  s += `<path d="M${p.ex},${p.ey} L${p.hx},${p.hy}" stroke="${C.skin}" stroke-width="11" stroke-linecap="round" fill="none"/>`;
-  s += `<path d="${sleevePath(p, 0, 0.32)}" stroke="${C.shirt}" stroke-width="15" stroke-linecap="round" fill="none"/>`;
-  if (jacketOn && jacketF0 < 0.88) {
-    s += `<path d="${sleevePath(p, jacketF0, 0.88)}" stroke="${C.jacket}" stroke-width="16" stroke-linecap="round" fill="none"/>`;
-    const cuff = pointAlong(p, 0.88);
-    s += `<circle cx="${cuff.x}" cy="${cuff.y}" r="8" fill="${C.jacketDark}"/>`;
-  }
-  s += `<circle cx="${p.hx}" cy="${p.hy}" r="7.5" fill="${C.skin}" stroke="${C.skinShade}" stroke-width="1"/>`;
-  return s;
-}
-
-function jacketBundle(x, y, rot = 0, sc = 1) {
-  return `<g transform="translate(${x},${y}) rotate(${rot}) scale(${sc})">
-    <path d="M-16,-6 Q-20,14 -8,20 L10,20 Q20,12 16,-6 Q0,-14 -16,-6Z" fill="${C.jacket}" stroke="${C.jacketDark}" stroke-width="2"/>
-    <path d="M-14,-4 Q-26,6 -22,18" stroke="${C.jacket}" stroke-width="8" stroke-linecap="round" fill="none"/>
-    <path d="M0,-10 L0,18" stroke="${C.jacketDark}" stroke-width="1.5"/>
-  </g>`;
-}
-function hungJacket(x, y, k) {
-  return `<g transform="translate(${x},${y})" opacity="${k}">
-    <path d="M-26,8 Q0,-4 26,8 L30,70 L-30,70Z" fill="${C.jacket}" stroke="${C.jacketDark}" stroke-width="2"/>
-    <path d="M-26,8 L-38,58 L-28,60 L-22,24" fill="${C.jacket}" stroke="${C.jacketDark}" stroke-width="2"/>
-    <path d="M26,8 L38,58 L28,60 L22,24" fill="${C.jacket}" stroke="${C.jacketDark}" stroke-width="2"/>
-    <path d="M0,4 L0,70" stroke="${C.jacketDark}" stroke-width="2"/>
-    <path d="M-12,4 L0,20 L12,4" fill="none" stroke="${C.jacketDark}" stroke-width="2"/>
-  </g>`;
-}
-
-// 小男孩（正面），x,y 为脚底中心
-function drawBoy(o) {
-  const { x, y, t, armL, armR, jacketSlide = 0, jacketOn = true, mood = 'normal', bob = 0 } = o;
-  const breath = Math.sin(t * 3) * 1.2;
-  const blink = (t % 3.4) < 0.12;
-  let s = `<g transform="translate(${x},${y + bob})">`;
-  s += `<ellipse cx="0" cy="4" rx="40" ry="7" fill="rgba(20,30,50,.15)"/>`;
-  // 腿和鞋
-  s += `<rect x="-20" y="-60" width="17" height="54" rx="7" fill="${C.pants}"/><rect x="3" y="-60" width="17" height="54" rx="7" fill="${C.pants}"/>`;
-  s += `<ellipse cx="-13" cy="-4" rx="13" ry="6" fill="${C.shoe}"/><ellipse cx="13" cy="-4" rx="13" ry="6" fill="${C.shoe}"/>`;
-  s += `<g transform="translate(0,${breath})">`;
-  // 手臂在身后的部分先画（拿衣领时手在胸前，所以统一后画手臂）
-  // 躯干：黄色 T 恤
-  s += `<path d="M-28,-122 Q-31,-70 -25,-56 L25,-56 Q31,-70 28,-122 Q0,-131 -28,-122Z" fill="${C.shirt}"/>`;
-  s += `<path d="M-9,-90 l3,7 7,0 -5.5,4.5 2,7 -6.5,-4 -6.5,4 2,-7 -5.5,-4.5 7,0Z" transform="translate(9,0)" fill="#ff9f1c"/>`;
-  // 外套躯干：滑落时向下、变窄、变透明（表示从肩上褪到身后）
-  if (jacketOn && jacketSlide < 1) {
-    const d = ease(jacketSlide);
-    s += `<g opacity="${1 - d}" transform="translate(0,${d * 26}) scale(${1 - d * 0.15},1)">
-      <path d="M-31,-123 Q-34,-70 -28,-52 L-4,-52 L-4,-110 L-14,-126Z" fill="${C.jacket}"/>
-      <path d="M31,-123 Q34,-70 28,-52 L4,-52 L4,-110 L14,-126Z" fill="${C.jacket}"/>
-      <path d="M-14,-126 L-4,-108 L-12,-100 L-22,-122Z" fill="${C.jacketDark}"/>
-      <path d="M14,-126 L4,-108 L12,-100 L22,-122Z" fill="${C.jacketDark}"/>
-      <rect x="-24" y="-80" width="12" height="3" rx="1.5" fill="${C.jacketDark}"/><rect x="12" y="-80" width="12" height="3" rx="1.5" fill="${C.jacketDark}"/>
-    </g>`;
-  }
-  // 脖子和头
-  s += `<rect x="-7" y="-134" width="14" height="14" rx="5" fill="${C.skinShade}"/>`;
-  s += `<g transform="translate(0,-168)">
-    <ellipse cx="-33" cy="4" rx="7" ry="9" fill="${C.skin}"/><ellipse cx="33" cy="4" rx="7" ry="9" fill="${C.skin}"/>
-    <ellipse cx="0" cy="0" rx="33" ry="36" fill="${C.skin}"/>
-    <path d="M-34,-2 Q-38,-38 0,-40 Q36,-40 34,-4 Q30,-20 18,-22 Q14,-12 2,-18 Q-6,-10 -16,-20 Q-28,-16 -34,-2Z" fill="${C.hair}"/>
-    <path d="M-4,-38 Q2,-50 10,-44 Q4,-42 2,-37Z" fill="${C.hair}"/>`;
-  if (blink) {
-    s += `<path d="M-17,4 q6,3 12,0" stroke="${C.ink}" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M5,4 q6,3 12,0" stroke="${C.ink}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
-  } else {
-    s += `<ellipse cx="-11" cy="4" rx="4.2" ry="5.4" fill="${C.ink}"/><ellipse cx="11" cy="4" rx="4.2" ry="5.4" fill="${C.ink}"/>
-      <circle cx="-9.6" cy="2" r="1.5" fill="#fff"/><circle cx="12.4" cy="2" r="1.5" fill="#fff"/>`;
-  }
-  if (mood === 'hot') {
-    s += `<path d="M-19,-9 q7,-4 13,-1" stroke="${C.hair}" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M6,-10 q7,-3 13,1" stroke="${C.hair}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
-    s += `<ellipse cx="0" cy="20" rx="5" ry="${4 + Math.abs(Math.sin(t * 6)) * 2}" fill="#9b3b3b"/>`;
-    s += `<ellipse cx="-20" cy="13" rx="6" ry="3.5" fill="#ff7b7b" opacity=".75"/><ellipse cx="20" cy="13" rx="6" ry="3.5" fill="#ff7b7b" opacity=".75"/>`;
-    const dy = (t * 30) % 20;
-    s += `<path d="M28,${-22 + dy} q4,7 0,10 q-4,-3 0,-10Z" fill="#5bc0ff" opacity="${1 - dy / 20}"/>`;
-  } else if (mood === 'happy') {
-    s += `<path d="M-19,-10 q7,-5 13,-2" stroke="${C.hair}" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M6,-12 q7,-3 13,2" stroke="${C.hair}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
-    s += `<path d="M-9,16 Q0,27 9,16 Q0,20 -9,16Z" fill="#9b3b3b" stroke="#9b3b3b" stroke-width="2" stroke-linejoin="round"/>`;
-    s += `<ellipse cx="-20" cy="13" rx="6" ry="3.5" fill="#ffa0a0" opacity=".6"/><ellipse cx="20" cy="13" rx="6" ry="3.5" fill="#ffa0a0" opacity=".6"/>`;
-  } else {
-    s += `<path d="M-19,-10 q7,-4 13,-2" stroke="${C.hair}" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M6,-12 q7,-2 13,2" stroke="${C.hair}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
-    s += `<path d="M-7,17 Q0,22 7,17" stroke="#9b3b3b" stroke-width="2.6" fill="none" stroke-linecap="round"/>`;
-  }
-  s += `</g>`;
-  // 手臂（袖子从肩部滑向手腕）
-  const pl = armPts(-1, armL[0], armL[1]), pr = armPts(1, armR[0], armR[1]);
-  const f0 = ease(jacketSlide) * 0.88;
-  s += drawArm(pl, f0, jacketOn) + drawArm(pr, f0, jacketOn);
-  s += `</g></g>`;
-  return { svg: s, handR: { x: x + pr.hx, y: y + bob + pr.hy + breath }, handL: { x: x + pl.hx, y: y + bob + pl.hy + breath } };
-}
 
 function arrow(x1, y1, x2, y2, color, w = 4, dash = '') {
   const a = Math.atan2(y2 - y1, x2 - x1), h = 12;
@@ -164,7 +44,7 @@ function scene1(t, A) {
     const [name, st] = keys[k];
     const next = keys[k + 1] ? keys[k + 1][1] : 99;
     const op = clamp(seg(t, st - 0.12, st + 0.12)) * (1 - clamp(seg(t, next - 0.12, next + 0.12)));
-    if (k === 0 && t < 0.12) { /* 第一张从头显示 */ }
+    // 第一张从 t=0 起就完全显示，不做淡入
     const o = k === 0 ? 1 - clamp(seg(t, next - 0.12, next + 0.12)) : op;
     if (o <= 0.001) continue;
     s += `<g transform="translate(300,262) scale(1,${breath}) translate(-300,-262)"><image href="${A[name]}" x="${X}" y="${Y}" width="${W}" height="${H}" opacity="${o}"/></g>`;

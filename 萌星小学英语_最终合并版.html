@@ -9492,6 +9492,18 @@ function vvAssets() {
   });
   return vvBlobUrls;
 }
+// 开播前把所有 Blob 图片解码好，第一帧就有人物，播放中不再临时解码
+let vvDecoded = false, vvDecoding = null;
+function vvPreload() {
+  if (vvDecoding) return vvDecoding;
+  const A = vvAssets();
+  vvDecoding = Promise.all(Object.keys(A).map(function (k) {
+    const im = new Image();
+    im.src = A[k];
+    return (im.decode ? im.decode() : Promise.resolve()).catch(function () {});
+  })).then(function () { vvDecoded = true; vvPlayer.start = performance.now(); });
+  return vvDecoding;
+}
 const vvPlayer = { key: "", start: 0, paused: false, pausedT: 0, act: 0 };
 function vvCurrentT(now) {
   return vvPlayer.paused ? vvPlayer.pausedT : (now - vvPlayer.start) / 1000;
@@ -9527,16 +9539,24 @@ function startVVLoop(stage) {
   vvPlayer.act = 0;
   const pb = document.getElementById("vvPauseBtn");
   if (pb) pb.textContent = vvPlayer.paused ? "▶ 继续" : "⏸ 暂停";
+  vvPreload();
   const A = vvAssets();
   const tm = VV.timing(key);
-  let last = -1;
+  let last = -1, prevHtml = "", gap = 33;
   function frame(now) {
     const el = document.getElementById("vvStage");
     if (!el) { superLabAnimId = null; return; }
-    if (last < 0 || now - last >= 33) {
+    if (!vvDecoded) { superLabAnimId = requestAnimationFrame(frame); return; }
+    if (last < 0 || now - last >= gap) {
       last = now;
       const t = vvCurrentT(now);
-      el.innerHTML = VV.render(key, t, A);
+      const t0 = performance.now();
+      const html = VV.render(key, t, A);
+      // 画面没变（暂停、静止段）就不重建 DOM
+      if (html !== prevHtml) { el.innerHTML = html; prevHtml = html; }
+      // 低端设备自适应降帧：一帧花太久就降到 20fps，避免卡顿闪烁
+      const cost = performance.now() - t0;
+      gap = cost > 18 ? 50 : cost < 8 ? 33 : gap;
       const lt = ((t % tm.dur) + tm.dur) % tm.dur;
       const act = lt < tm.t1 ? 1 : lt < tm.t2 ? 2 : 3;
       if (act !== vvPlayer.act) {
