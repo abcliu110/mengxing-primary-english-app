@@ -16,13 +16,15 @@
 
 **下一个接手点**
 1. ~~第 2 幕未提交改动~~ ✅ 已核实：第 2 幕在 `27d5f28` 已提交，无遗留改动（2026-10-30 02:10 接手核对）。
-2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → ~~fp_iconicity~~ ✅ → ~~fp_one_king~~ ✅ → ~~fp_zoom_focus~~ ✅（第一性原理全部完成） → ~~bamboo_tree~~ ✅ → ~~aux_transformer~~ ✅ → ~~five_patterns~~ ✅ → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
+2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → ~~fp_iconicity~~ ✅ → ~~fp_one_king~~ ✅ → ~~fp_zoom_focus~~ ✅（第一性原理全部完成） → ~~bamboo_tree~~ ✅ → ~~aux_transformer~~ ✅ → ~~five_patterns~~ ✅ → ~~tense_matrix~~ ✅ → ~~past_clans~~ ✅ → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
 3. 每幕流程：备份 classic → 改 v2 → `jscheck.py`、`r2check.py <模块> --strict`、`reg_render.py`、`app*.py` → 对比图 → 提交推送 → 本文件「夜间进度」加一行。
 4. 已知遗留：动作库无 swim / eat / 穿脱衣（r2check 只提示，扩 `wb_actor.js` 时补）；`stress_rhythm` 原 3 幕 r2check 失败是旧问题，升级时一并修。
 
 **待用户审**：对比总图 fp_economy_1–4、fp_vectors_1–4、fp_boundedness_1（旧工作区 `work/shots/`）；2026-10-30 02:10 起新做的 fp_boundedness_2–4、fp_iconicity_1–4、fp_one_king_2–4、fp_zoom_focus_2–4、bamboo_tree_1–5、aux_transformer_1–4、five_patterns_1–5 的对比总图在 Hark 项目工作区 `work/shots/`。
 
-**下一个接手点（2026-10-30 06:15 更新）**：bamboo_tree 5 个、aux_transformer 4 个、five_patterns 5 个案例已全部升 v2（夜间进度见下）。下一个：王炸实验室 **tense_matrix**（照 five_patterns / aux_transformer 做法：先建 `cases/tense_matrix_classic.js` 快照（只改 WB_LAB 名、文件头加注释）、`insert_wb.py` 的 LAB_DEPS 与 `preview.html` 加 wo_props，验收用 `appwb.py tense_matrix`，INVENTORY 放 `docs/whiteboard/lab/INVENTORY_TENSE_MATRIX_V2.md`；一屏多行放不下时拆镜头、说明挪到句子下方；只有全宽内容前讲解员才退到 1010，能收窄到 x≤800 的框就收窄）。之后顺序：tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法白板化 → 思维导图白板化 → 词源 / 格林定律 / 词根词缀 → 文档收尾 → 决策 29 软件优化。
+**下一个接手点（2026-10-30 09:40 更新）**：tense_matrix、past_clans 已全部升 v2。下一个：王炸实验室 **adj_order**（同样先做 classic 快照 + LAB_DEPS / preview.html 加 wo_props，验收 `appwb.py adj_order`，INVENTORY 放 `docs/whiteboard/lab/`）。之后：metaphor_code → stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → …（顺序同下）。
+
+~~下一个接手点（2026-10-30 06:15 更新）~~：bamboo_tree 5 个、aux_transformer 4 个、five_patterns 5 个案例已全部升 v2（夜间进度见下）。下一个：王炸实验室 **tense_matrix**（照 five_patterns / aux_transformer 做法：先建 `cases/tense_matrix_classic.js` 快照（只改 WB_LAB 名、文件头加注释）、`insert_wb.py` 的 LAB_DEPS 与 `preview.html` 加 wo_props，验收用 `appwb.py tense_matrix`，INVENTORY 放 `docs/whiteboard/lab/INVENTORY_TENSE_MATRIX_V2.md`；一屏多行放不下时拆镜头、说明挪到句子下方；只有全宽内容前讲解员才退到 1010，能收窄到 x≤800 的框就收窄）。之后顺序：tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法白板化 → 思维导图白板化 → 词源 / 格林定律 / 词根词缀 → 文档收尾 → 决策 29 软件优化。
 
 ## 夜间进度（2026-10-30）
 
@@ -77,6 +79,8 @@
 - 06:37｜tense_matrix ③ 一般过去时升 v2（时间轴 + 格子 + 老照片 / 公式 + 博物馆 + y→ied / stopped + was·were / 信号词 + did 陷阱 + 结论四镜头 + 🔮 Did you play football yesterday + 金句卡；R4 visited 小旅客走到博物馆、took / take 举相机拍照 + 快门闪、stopped 公交车停站、went / go 讲解员走、play 讲解员跳）｜`12347ee`｜`work/shots/tense_matrix_3_对比总图.png`（Hark 项目工作区）｜拍照照 aux_transformer ① 先例用 take + 📷 词卡 + 快门闪；visit 不在 r2check 动作表，但「参观」是走过去，按 R4 精神列入；预测题揭晓句补一句 Yes, I played football yesterday.（played 出现在选项里，R2 要有例句；无事实性内容）；studied / cried / lost / plan 动作库没有或不是肢体动作，不演；时长 148→158 秒
 - 06:39｜tense_matrix ④ 一般将来时升 v2（时间轴 + 格子 + 望远镜 / 方案 A·B + will 句 + 放风筝 / be going to 三句 + 去爷爷奶奶家 / 信号词 + There be 陷阱 + 结论四镜头 + 🔮 There will be a party tomorrow + 金句卡；R4 fly 小男孩跑 + 风筝飞上天、visit Leo 走到爷爷奶奶家）｜`3e66990`｜`work/shots/tense_matrix_4_对比总图.png`（Hark 项目工作区）｜R3：will「原意是决心」核对 etymonline.com/word/will——动词 will 古英语 willan 原意「想要、愿意」，「决心」是名词 will 的义项；按 fp_iconicity ④ between 先例原字幕保留、加一行 📜 查证小字（不含要朗读的新英文），出处写进术语；We are going to swim 是计划不是正在做，不演（r2check 只提示）；have a picnic 动作库没有，不演；时长 134→141 秒
 - 06:42｜tense_matrix ⑤ 现在完成时升 v2，**tense_matrix 5 个案例全部 v2 完成**（时间轴 + 格子 + 桥 + 奖杯 / 公式 + 丢钥匙 + finished · lived / been to · gone to 两个小人 / 信号词 + 过去时间点陷阱 + 结论四镜头 + 🔮 I have finished my homework + 金句卡；R4 been 小旅客去长城又回来、gone 王老师走向上海后消失）｜`e4e85c0`｜`work/shots/tense_matrix_5_对比总图.png`（Hark 项目工作区）｜been to / gone to 原来只有字，按 R4 用两个场景小人演出「去了又回来」和「走了没回来」（王老师用 porter 形象区分）；Finish, go 只是词表，不演（r2check 只提示 go）；原想加 ✂️ 徽章说明 been to / gone to 的简化，因无现成出处核对，不加，只留 💡；五个案例时长 144→155、129→137、148→158、134→141、145→150 秒（每个都在 +20% 内）
+- 08:50｜past_clans 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`40b389f`｜—｜reg_render diff 0；升级前时长 ①103 ②125 ③95 ④102 秒
+- 09:40｜past_clans ①–④ 四大门派一次升 v2，**past_clans 4 个案例全部 v2 完成**（每派：门派旗 + 秘诀 / 前两个成员 + 场景 / 第三个成员 + 其余成员 + 结论三镜头 + 🔮 预测 + 金句卡；版面工具 PC_V2）｜本提交｜`work/shots/past_clans_1–4_对比总图.png`（Hark 主对话工作区）｜R4：① play 讲解员跳、put 小旅客把书搬到桌上 · 预测举 put 卡、read 捧书；② swam 海里小脑袋游、drank 牛奶杯喝空、sat 小旅客坐凳子、ran / came 讲解员跑出去再跑回；③ slept 月亮旁飘 Zzz、left 火车开走、met 两个小人走到公园见面；④ bought 购物袋冒出新裙子、brought 带小狗去公园、taught 讲解员指黑板、caught 接住飞来的球。预测题：put / sang / swept / bought（错误选项 putted · singed · sweeped · baught 进 r2skip 不读）。R1 341 条 ❌6 全是旧填充色值改 V3；r2check past_clans --strict 0（R4 15 个全同步；drink / swim / sit / give / run / come / catch / bring 原形只在词表朗读里，只作提示）；reg_render 只有 past_clans 20 项变；appwb 4 正常；时长 103→112、125→130、95→101、102→109 秒。四个案例一次提交（同一套版面工具，逐个验收后合并提交）。
 
 ## 1. 现在做到哪
 
