@@ -15945,7 +15945,7 @@ WB_LAB.wo_port = [
       const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };  // 返回这句朗读的时间段
       const win = sy => [sy.t + sy.wd + .15, sy.dur - sy.wd - .3];                  // 句子部分（先读单词，再读句子）
       // ── 讲解员小人（v3a 定稿）：屏幕右下角，不跟镜头缩放；从画面外走进来 ──
-      const me = k.actor("narrator", { x: 1010, y: 538, s: .74, f: -1 });
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：一个小小的 port（港口），怎么长出一整家单词？");
       k.act(me, "walk", .3, 1.6, { to: 892 });
       k.act(me, "wave", 2.0, 1.8);
