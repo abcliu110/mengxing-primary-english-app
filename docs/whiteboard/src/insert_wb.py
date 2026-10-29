@@ -20,7 +20,7 @@ TABS = {
     'aux_transformer': 'auxIdx', 'five_patterns': 'patIdx', 'writing_alchemist': 'writeIdx',
 }
 # 只写入已验收的页签（做完一个页签就加进来）；其余 cases/*.js 可能还在制作中
-FP_DEPS = {'fp_economy': 'wo_props fp_props', 'fp_vectors': 'wo_props fp_props', 'fp_boundedness': 'wo_props fp_props', 'fp_iconicity': 'wo_props fp_props', 'fp_one_king': 'wo_props fp_props'}   # 升了引擎 v2 + 讲解员的原理（用 WO_PROPS 镜头模板 + fp_props 口型道具）
+FP_DEPS = {'fp_economy': 'wo_props fp_props', 'fp_vectors': 'wo_props fp_props', 'fp_boundedness': 'wo_props fp_props', 'fp_iconicity': 'wo_props fp_props', 'fp_one_king': 'wo_props fp_props', 'fp_zoom_focus': 'wo_props fp_props'}   # 升了引擎 v2 + 讲解员的原理（用 WO_PROPS 镜头模板 + fp_props 口型道具）
 FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoom_focus', 'fp_iconicity']   # 第一性原理总枢：做完一条原理就把 id 加进来，如 'fp_economy'
 READY = ['phrasal_key', 'eight_endings', 'pron_map', 'intonation_map', 'irregular_plural', 'bamboo_tree', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
