@@ -1,6 +1,6 @@
 // ==================== 第一性原理 ② 字母象形与音义同源簇（fp_iconicity）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[1].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 1–3 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_iconicity_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 1–4 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_iconicity_classic.js。依赖 wo_props + fp_props。
 // 讲法提醒（HANDOFF §4）：字母象形、音义簇多是「帮助记忆的联想」，字幕用「可以想成 / 像」；tw- = two 是真词源。
 WB_LAB.fp_iconicity = [
   // ───────── 2-1 M / S / B / C 像什么？（v2 + 讲解员，2026-10-30）─────────
@@ -356,54 +356,117 @@ WB_LAB.fp_iconicity.push(
   },
 );
 WB_LAB.fp_iconicity.push(
-  // ───────── 2-4 tw- 家族都等于 2 ─────────
+  // ───────── 2-4 tw- 家族都等于 2（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_iconicity_classic.js（R1 零丢失）。原一棵五叉树拆成两个镜头（数字：twelve / twenty / twice；人：twin / between）。
+  // R3 更正（已打开 Etymonline「between」「twelve」核对）：between 来自古英语 betweonum = bi-「by 旁边」+ tweonum「两个两个」，原讲法「be + twain」不够准确，保留原句作小字说明。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S, WOOD = k.C.brown;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：为什么 12 是 twelve，20 是 twenty？");
-      k.header("② 字母象形与音义同源簇", "tw- 家族都等于 2", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "tw- 家族都等于 2", sub: "② 字母象形与音义同源簇", badges: ["📜"], steps: ["① two = 2", "② 12 · 20", "③ 两次", "④ 双胞胎 · 之间", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · two 长出数字家族 ─────
+      D.step(0); D.shot();
       N("词源：", "一个词最早从哪里来。tw- 这一家，祖先都是数字 two（2）！");
-      D.parts([["tw", C.red], ["o = 2", C.ink]], 400, 150, 40);
-      P(k.ellipse(424, 136, 32, 26), go(.5), .5, { color: C.red, w: 3 });
-      const xs = [110, 300, 480, 660, 850];
+      const cx = 360;
+      FP.parts([["tw", C.red], ["o = 2", C.ink]], cx - 80, 160, 40);
+      k.hlText("tw", cx - 80, 160, 40, { mono: true });
+      const xs = [130, 360, 590];
       const leaf = (i, w, zh) => {
-        P(k.wl(480, 168, xs[i], 222, .6), go(.4), .4, { color: C.grey, w: 2 });
-        D.parts([["tw", C.red], [w.slice(2), C.ink]], xs[i] - w.length * 13.2 / 2, 254, 22);
-        T(zh, xs[i], 284, go(.5), .5, { size: 16, color: C.purple, weight: 900, anchor: "middle" });
+        P(k.wl(cx, 178, xs[i], 232, .6), go(.4), .4, { color: C.grey, w: 2 });
+        FP.parts([["tw", C.red], [w.slice(2), C.ink]], xs[i] - w.length * 13.2 / 2, 264, 22);
+        T(zh, xs[i], 294, go(.5), .5, { size: 16, color: C.blue, weight: 900, anchor: "middle" });
       };
+      D.step(1);
       N("", "twelve：十个手指再加 2 个，就是 12。");
       leaf(0, "twelve", "12 = 2 + 10");
+      T("🖐🖐 + ✌", xs[0], 360, go(.5), .5, { size: 24, color: C.ink, anchor: "middle" });
       N("", "twenty：2 个 10，就是 20。");
       leaf(1, "twenty", "20 = 2 × 10");
-      k.say("Ten and two make twelve.", { zh: "十加二等于十二。", word: "twelve" });
+      T("10 + 10", xs[1], 360, go(.5), .5, { size: 20, color: C.grey, weight: 900, font: M, anchor: "middle" });
+      const sy12 = sayAt("Ten and two make twelve.", { zh: "十加二等于十二。", word: "twelve" });
+      const c12 = k.prop("card", 0, 0, { hidden: true, text: "12" });
+      k.act(me, "holdCard", sy12.t, Math.max(1.2, sy12.dur + .3), { prop: c12 });
+      D.step(2);
       N("", "twice：两次、两倍。");
       leaf(2, "twice", "两次 / 两倍");
-      N("", "twin：双胞胎——两个长得一样的孩子。");
-      leaf(3, "twin", "双胞胎");
-      D.person(xs[3] - 16, 380, C.blue); D.person(xs[3] + 16, 380, C.blue);
-      k.say("They are twins.", { zh: "他们是双胞胎。", word: "twins" });
-      N("", "between = be + twain（古英语的「两个」）：在两个之间。");
-      P(k.wl(480, 168, xs[4], 222, .6), go(.4), .4, { color: C.grey, w: 2 });
-      D.parts([["be", C.ink], ["tw", C.red], ["een", C.ink]], xs[4] - 46, 254, 22);
-      T("在两者之间", xs[4], 284, go(.5), .5, { size: 16, color: C.purple, weight: 900, anchor: "middle" });
-      const tree = x => { P(k.wl(x, 380, x, 350, .3), go(.2), .2, { color: C.brown, w: 3 }); P(k.cloud(x, 336, 14, 14, 5), go(.3), .3, { color: C.green, w: 2.5 }); };
-      tree(xs[4] - 40); tree(xs[4] + 40); D.person(xs[4], 380, C.red);
-      // twelve / twenty 小图
-      T("🖐🖐 + ✌", xs[0], 360, go(.5), .5, { size: 24, color: C.ink, anchor: "middle" });
-      T("10 + 10", xs[1], 360, go(.5), .5, { size: 20, color: C.grey, weight: 900, font: M, anchor: "middle" });
       T("× 2", xs[2], 360, go(.4), .4, { size: 24, color: C.grey, weight: 900, font: M, anchor: "middle" });
-      k.wait(.5);
-      T("这是真正的词源：再也不会把 twelve 和 twenty 弄混。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
-      k.say("I sit between my twin brothers.", { zh: "我坐在两个双胞胎哥哥中间。", word: "between" });
+      k.wait(.4);
+      sayAt("Two tens make twenty. I read it twice.", { zh: "两个十是二十。我读了两遍。", word: "two twenty twice" });
+      const bk = k.prop("book", 0, 0, { hidden: true });
+      k.act(me, "read", S.says[S.says.length - 1].t + S.says[S.says.length - 1].dur * .5, 1.6, { prop: bk, words: ["read"] });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 双胞胎和「在两个之间」─────
+      D.step(3); D.shot();
+      const ys = [170, 480];
+      N("", "twin：双胞胎——两个长得一样的孩子。");
+      FP.parts([["tw", C.red], ["in", C.ink]], ys[0] - 26, 160, 22);
+      T("双胞胎", ys[0], 190, go(.5), .5, { size: 16, color: C.blue, weight: 900, anchor: "middle" });
+      const gT = D.sub(); const tw1 = FP.person(ys[0] - 22, 330, C.blue), tw2 = FP.person(ys[0] + 22, 330, C.blue); D.adopt(tw1, tw2); D.back();
+      const syTw = sayAt("They are twins.", { zh: "他们是双胞胎。", word: "twins" });
+      k.buzz(tw1, syTw.t, 1, 2); k.buzz(tw2, syTw.t, 1, 2);
+      k.act(me, "point", syTw.t, Math.max(1.2, syTw.dur), { at: [ys[0], 300] });
+      N("", "between = be + twain（古英语的「两个」）：在两个之间。");
+      FP.parts([["be", C.ink], ["tw", C.red], ["een", C.ink]], ys[1] - 46, 160, 22);
+      T("在两者之间", ys[1], 190, go(.5), .5, { size: 16, color: C.blue, weight: 900, anchor: "middle" });
+      const tree = x => { P(k.wl(x, 330, x, 300, .3), go(.2), .2, { color: WOOD, w: 3 }); P(k.cloud(x, 286, 14, 14, 5), go(.3), .3, { color: C.green, w: 2.5 }); };
+      tree(ys[1] - 60); tree(ys[1] + 60);
+      const gK = D.sub(); const kid = k.actor("traveler", { x: ys[1] + 150, y: 330, s: .45, f: -1, g: gK }); D.back();
+      T("更准确：be-（by，在旁边）+ tween（古英语「两个两个」）", 40, 400, go(1), 1, { size: 15, color: C.green, weight: 900 });
+      T("原讲法：between = be + twain（古英语的「两个」）", 40, 424, go(.8), .8, { size: 13, color: C.grey });
+      k.wait(.4);
+      const syBt = sayAt("I sit between my twin brothers.", { zh: "我坐在两个双胞胎哥哥中间。", word: "between" });
+      k.act(kid, "walk", syBt.t, Math.max(1, syBt.dur * .5), { to: ys[1] });
+      k.act(kid, "sit", syBt.t + Math.max(1, syBt.dur * .5), 1.4, { words: ["sit"] });
+      sayAt("Twain. Twain is an old word for two.", { zh: "twain。twain 是「两个」的老说法。", word: "twain" });
+      sayAt("By. The cat is by the door.", { zh: "旁边。猫在门旁边。", word: "by" });
+      T("这是真正的词源：再也不会把 twelve 和 twenty 弄混。", 40, 452, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      sayAt("Tw. Two, twelve, twenty, twice, twin, between.", { zh: "tw。二、十二、二十、两次、双胞胎、在……之间。", word: "tw two twelve twenty twice twin between", blocks: ["tw"] });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "tw 一出现，成双又成对。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("Tw. Two, twelve, twenty, twice, twin, between.", { zh: "tw。二、十二、二十、两次、双胞胎、在……之间。", word: "tw two twelve twenty twice twin between", blocks: ["tw"] });
-      k.say("Two tens make twenty. I read it twice.", { zh: "两个十是二十。我读了两遍。", word: "two twenty twice" });
-      k.say("Twain. Twain is an old word for two.", { zh: "twain。twain 是「两个」的老说法。", word: "twain" });
-      D.fin("看到 tw-，想到 2：two · twelve · twenty · twice · twin · between", "口诀：tw 一出现，成双又成对。");
-      k.wait(2);
+      P(k.roughRect(40, 468, 760, 44), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：tw 一出现，成双又成对。", 60, 498, go(1), 1, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "看到 tw- 就想到 2。一对 twins，一共有几个孩子？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 twins　→　几个孩子？", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "tw- = 2：双胞胎是两个孩子。");
+      const tRev = go(.3);
+      T("2 个 —— tw- = two", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Tom and Tim are twins. They are two boys.", { zh: "汤姆和蒂姆是双胞胎。他们是两个男孩。", word: "Tom Tim boys" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "看到 tw-，想到 2：\ntwo · twelve · twenty · twice · twin · between", rhyme: "口诀：tw 一出现，成双又成对。", hlLines: 2, foot: "🧠 第一性原理 ② 字母象形与音义同源簇" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
-    r2skip: ["elve", "enty", "ice", "in", "een", "be"],   // tw|elve、be|tw|een 拆开展示的残片；be 是古前缀（≈ by），不是动词 be，整词已朗读
-    terms: [],
+    actionWords: [
+      { word: "read", act: "讲解员捧书读（read），与「I read it twice」同步" },
+      { word: "sit", act: "小旅客走到两棵树中间坐下（walk + sit），与「I sit between」同步" },
+    ],
+    r2skip: ["elve", "enty", "ice", "in", "een", "be", "tween"],   // tw|elve、be|tw|een 拆开展示的残片；be 是古前缀（≈ by），不是动词 be；tween 是 between 的后半（古英语「两个两个」），整词已朗读
+    terms: [
+      ["可信度徽章", "📜 真实词源（Etymonline「twelve」：古英语 twelf = 「十之外剩二」；「between」：bi-「by」+ tweonum「两个两个」，都来自表示 2 的词根）。"],
+    ],
   },
 );
