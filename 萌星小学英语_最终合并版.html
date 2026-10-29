@@ -16322,6 +16322,13 @@ WB_LAB.adj_order = (function () {
         N("还有：", "针眼叫「针的眼睛」，瓶颈叫「瓶子的脖子」，帮忙叫「给我一只手」！");
         tx(k, "还有：eye of a needle 针眼 · neck of a bottle 瓶颈 · give me a hand 帮把手", 290, 432, { size: 14, color: C.grey, dur: 1.5 }); k.wait(1.6);
         N("", "连起来读一句：山脚下有一个小村庄。");
+        // R2 补朗读（2026-10-29，旧幕推广：人体 / 颜色 / 动物隐喻按 MASTER_DESIGN 留在本页签，先补）
+        k.say("Head, face, mouth, hand, foot.", { zh: "头、脸、嘴、手、脚。", word: "head face mouth hand foot" });
+        k.say("The face of a clock. The hour hand.", { zh: "钟面。时针。", word: "the face of a clock hour face of a clock" });
+        k.say("The mouth of a river. The headmaster is at the head of the line.", { zh: "河口。校长站在队伍最前面。", word: "mouth of a river river headmaster at head line at the head of the line" });
+        k.say("The eye of a needle. The neck of a bottle.", { zh: "针眼。瓶颈。", word: "eye needle neck bottle eye of a needle neck of a bottle" });
+        k.say("Can you give me a hand?", { zh: "你能帮我一下吗？", word: "give me a hand" });
+        k.say("Arm, leg. There is a small village at the foot of the mountain.", { zh: "胳膊、腿。山脚下有一个小村庄。", word: "mountain arm leg There is small village" });
         k.final("There is a small village at the foot of the mountain.", "foot", "山脚下有一个小村庄。  从头到脚：头最高、脸朝外、嘴是口、手会指、脚在底！");
         N("口诀：", "身体就是尺子：头是顶，脸是面，嘴是口，手会指，脚是底！");
       },
@@ -16397,6 +16404,11 @@ WB_LAB.adj_order = (function () {
           cardText(k, px, py, "WHITE", C.grey, "& GOLDEN", "a white lie", "白色的谎言", "善意的谎言，不伤人");
           N("golden：", "金子最宝贵，golden opportunity 就是千载难逢的黄金良机。"); k.wait(2.6); }
         N("", "连起来读一句：别难过！一切都会好起来的。");
+        // R2 补朗读（2026-10-29，旧幕推广：人体 / 颜色 / 动物隐喻按 MASTER_DESIGN 留在本页签，先补）
+        k.say("Blue, green, black, white, golden, red.", { zh: "蓝、绿、黑、白、金、红。", word: "BLUE GREEN BLACK WHITE GOLDEN red" });
+        k.say("He is a green hand. It is a white lie.", { zh: "他是个新手。那是个善意的谎言。", word: "a green hand a white lie a hand lie" });
+        k.say("Please give the green light. It is a golden opportunity.", { zh: "请放行吧。这是个绝佳的机会。", word: "give the light opportunity give the green light" });
+        k.say("You look sad. Don't feel blue! Everything will be fine.", { zh: "你看起来很难过。别难过！一切都会好起来的。", word: "look sad Don't Everything will be fine" });
         k.final("Don't feel blue! Everything will be fine.", [], "别难过！一切都会好起来的。  蓝是忧，绿是新，黑茶是红茶，白谎是善意！");
         P(k.wl(40 + 11 * 14.4, 487, 40 + 15 * 14.4, 487, .6), go(.4), .4, { color: C.orange, w: 4 });
         N("口诀：", "颜色藏心情：蓝是忧，绿是新，黑茶是红茶，白谎是善意，金子最宝贵！");
@@ -16476,6 +16488,14 @@ WB_LAB.adj_order = (function () {
           N("更多习语：", "a lucky dog 幸运儿，white elephant 贵又没用的累赘。"); k.wait(2.6); }
         k.say("It's raining cats and dogs!", { zh: "外面下着倾盆大雨！", word: "raining cats and dogs" });
         N("", "连起来读一句：我妈妈每天早上都忙得像只小蜜蜂！");
+        // R2 补朗读（2026-10-29，旧幕推广：人体 / 颜色 / 动物隐喻按 MASTER_DESIGN 留在本页签，先补）
+        k.say("Bee, busy. As busy as a bee. Busy, busier.", { zh: "蜜蜂、忙。像蜜蜂一样忙。忙，更忙。", word: "BEE busy busier er", blocks: ["er"] });
+        k.say("The early bird catches the worm.", { zh: "早起的鸟儿有虫吃。", word: "The early bird catches worm" });
+        k.say("Lamb, gentle. As gentle as a lamb. As brave as a lion.", { zh: "小羊、温柔。像小羊一样温柔。像狮子一样勇敢。", word: "LAMB gentle brave lion as gentle as a lamb as brave as a lion" });
+        k.say("Dog, cat, rain. It will rain cats and dogs. You are a lucky dog!", { zh: "狗、雨。下着倾盆大雨。你真是个幸运儿！", word: "DOG CAT rain lucky a lucky dog rain cats and dogs" });
+        k.say("My mom is busy every morning.", { zh: "我妈妈每天早上都很忙。", word: "My mom is every morning" });
+        k.say("A black sheep. A white elephant.", { zh: "害群之马。大而无用的东西。", word: "black sheep white elephant" });
+        k.say("Big, biggest. Est.", { zh: "大，最大。-est。", word: "est", blocks: ["est"] });
         k.final("My mom is as busy as a bee every morning!", "busy", "我妈妈每天早上都忙得像只小蜜蜂！  as + 形容词原级 + as + a 动物");
         N("口诀：", "as 加原级再加 as，后面放个小动物：忙像蜂，壮像马，乖像羊！");
       },
