@@ -22,7 +22,7 @@ TABS = {
 FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoom_focus', 'fp_iconicity']   # 第一性原理总枢：做完一条原理就把 id 加进来，如 'fp_economy'
 READY = ['bamboo_tree', 'vowel_shift', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
-WO_READY = ['wo_port']
+WO_READY = ['wo_port', 'wo_europe']
 # ---------- 按需加载（决策 13）：每个模块写成不执行的 <script type="text/plain" id="wbmod-<id>">，
 # 第一次进入时由 wbLoadModule(id) 取出文字执行（见 wb_app.js）；道具文件是依赖（data-deps），先于模块执行。
 # 引擎、讲解员、App 接线、单词身世总枢页面仍然直接执行（首页和各总枢页面要用）。

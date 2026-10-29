@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# fps 实测：python3 measure_fps.py <主文件或旧版 html> <起始秒> <时长秒>（打开单词身世 port 幕播放，记录帧间隔和每帧渲染耗时）
+# fps 实测：python3 measure_fps.py <主文件或旧版 html> <起始秒> <时长秒> [溯源幕 id，默认 wo_port]（打开单词身世某一幕播放，记录帧间隔和每帧渲染耗时）
 import asyncio, json, statistics, sys
 from playwright.async_api import async_playwright
-MAIN=sys.argv[1]; T0=float(sys.argv[2]); DUR=int(sys.argv[3])
+MAIN=sys.argv[1]; T0=float(sys.argv[2]); DUR=int(sys.argv[3]); SC=sys.argv[4] if len(sys.argv)>4 else 'wo_port'
 async def main():
     async with async_playwright() as pw:
         b = await pw.chromium.launch(); pg = await b.new_page(viewport={'width':1280,'height':900})
         await pg.goto('file://'+MAIN); await pg.wait_for_timeout(1200)
-        await pg.evaluate("navigateTo('word_origins_hub',{scene:'wo_port'})"); await pg.wait_for_timeout(1000)
+        await pg.evaluate(f"navigateTo('word_origins_hub',{{scene:'{SC}'}})"); await pg.wait_for_timeout(1000)
         await pg.evaluate("""() => { wbState.voice=false; window.__fr = []; const R = wbState.player.render; wbState.player.render = function (t) { const a = performance.now(); R.call(this, t); window.__fr.push([a, performance.now() - a]); }; }""")
         await pg.evaluate(f"wbSeekTo(Math.round({T0}/wbState.player.end*1000)); wbState.playing=true; window.__fr=[]")
         await pg.wait_for_timeout(DUR*1000)

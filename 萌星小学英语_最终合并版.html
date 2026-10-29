@@ -10274,7 +10274,8 @@ const WB_LAB = {};
 //   k.act(porter, "carry", go(2.4), 2.4, { prop: box, to: 520, put: true, words: ["import"] });
 //   k.act(me, "point", t, 1.2, { at: [x, y] });  k.expr(me, "surprised", t, 1.5);  k.look(me, x, y, t, dur)
 // 动作库 v1：idle（待机呼吸眨眼，自动）、wave 挥手、point 指、surprised 惊讶、holdCard 举词卡、read 读书、
-//   walk 走、run 跑、carry 搬、take 拿、put 放、jump 跳、turn 转身；另有 think 想、cheer 欢呼、support 托举、nod 点头。
+//   walk 走、run 跑、carry 搬、take 拿、put 放、jump 跳、turn 转身；另有 think 想、cheer 欢呼、support 托举、nod 点头、sit 坐（骑）。
+// 角色 look：narrator 讲解员、porter 搬运工、traveler 旅客、princess 神话公主；道具另有 flower 一枝花。
 // 表情 5 个：happy 开心、think 思考、surprised 惊讶、proud 得意、oops 哎呀；口型 3 个：0 闭、1 半开、2 全开。
 var WB_ACTOR = (function () {
   const D2R = Math.PI / 180, clamp = v => Math.max(0, Math.min(1, v));
@@ -10291,6 +10292,8 @@ var WB_ACTOR = (function () {
     narrator: { skin: "#fde3cf", hair: "#7a4a2a", jacket: "#2f8f6f", jacketD: "#256f57", shirt: "#ffffff", scarf: "#f28c28", pants: "#26315f", shoe: "#ffffff", clip: "#facc15", style: "ponytail", marker: true },
     porter: { skin: "#f6d2b3", hair: "#3f2d22", jacket: "#e8d3b0", jacketD: "#c9ad82", shirt: "#e8d3b0", scarf: "#b45309", pants: "#8a6a48", shoe: "#8a6a48", style: "band" },
     traveler: { skin: "#fde3cf", hair: "#4b3326", jacket: "#5b7fd6", jacketD: "#3f5fae", shirt: "#ffffff", scarf: "#e11d48", pants: "#3a3f55", shoe: "#5b4636", style: "hat" },
+    // 神话公主（Europe 幕）：披肩长发 + 小金冠，粉色长裙（裙摆画在躯干上，腿用裙子同色）
+    princess: { skin: "#fde3cf", hair: "#5b3a24", jacket: "#f9a8d4", jacketD: "#ec7fbf", shirt: "#fff7ed", scarf: "#facc15", pants: "#f9a8d4", shoe: "#be185d", style: "crown", skirt: true },
   };
   const INK = "#1f2937";
   // ---- 表情参数：眉高、眉角、眼睛大小、眼睛睁开度、嘴型、腮红、汗滴 ----
@@ -10381,6 +10384,11 @@ var WB_ACTOR = (function () {
         sx: 1 + .1 * pre - .07 * h * (1 - fly) + .12 * land, sy: 1 - .12 * pre + .12 * h * (1 - fly) - .14 * land, ex: 1, _air: fly > 0 && fly < 1 };
     },
     turn: (u) => ({ crouch: 4 * Math.sin(u * Math.PI), aFs: 10 + 12 * Math.sin(u * Math.PI), aBs: -7 - 12 * Math.sin(u * Math.PI) }),
+    // 坐（骑在牛背 / 坐在凳子上）：大腿向前抬平、小腿自然垂下，双手扶在前面；不自动着地（骨盆停在 y - 58×s，坐处由案例放好）
+    sit: (u) => {
+      const q = eio(seg(u, 0, .18)), sway = Math.sin(u * Math.PI * 4) * 2;
+      return { lFh: lerp(4, 84, q), lFk: lerp(2, 88, q), lBh: lerp(-4, 76, q), lBk: lerp(2, 82, q), aFs: lerp(10, 46, q), aFe: lerp(22, 34, q), aBs: lerp(-7, 38, q), aBe: lerp(12, 40, q), lean: -2 * q + sway * .5, head: sway, _air: true, _seat: true };
+    },
   };
   const MOVING = { walk: 1, run: 1, carry: 1 };
   const DEFAULT_EXPR = { wave: "happy", surprised: "surprised", holdCard: "proud", read: "think", think: "think", cheer: "happy", jump: "happy", support: "happy" };
@@ -10507,7 +10515,7 @@ var WB_ACTOR = (function () {
       const br = Math.sin(t * 2 * Math.PI / 3.4 + a.seed);
       p.aFs += br * 1.2; p.aBs -= br * 1.2; p.head += Math.sin(t * 2 * Math.PI / 5.1 + a.seed) * 1.5;
       p.breath = br;
-      let air = false, card = false, curMove = null;
+      let air = false, card = false, curMove = null, seat = false;
       for (const e of a.acts) {
         const fadeIn = Math.min(.16, e.dur / 4), fadeOut = e.o.keep ? 0 : .22;
         if (t < e.t - .001 || t > e.t + e.dur + fadeOut + (e.o.keep || 0)) continue;
@@ -10526,10 +10534,11 @@ var WB_ACTOR = (function () {
         if (reduced && MOVING[e.action]) { q.lFh = q.lBh = 0; q.lFk = q.lBk = 2; }
         for (const kk of KEYS) if (q[kk] != null) p[kk] = lerp(p[kk], q[kk], w);
         if (q._air) air = true;
+        if (q._seat && w > .5) seat = true;
         if (q._cardBoth) card = true;
         if (MOVING[e.action] && u > 0 && u < 1) curMove = e;
       }
-      p.airborne = air; p.card = card; p.move = curMove;
+      p.airborne = air; p.card = card; p.move = curMove; p.seat = seat;
       if (s && reduced) { p.air = 0; p.sx = p.sy = 1; }
       return p;
     }
@@ -10628,6 +10637,8 @@ var WB_ACTOR = (function () {
         pathE(el.torso, `M-12,1.5 Q0,4 12,1.5 L12,5 Q0,7.5 -12,5 Z`, L.pants, 1.6);
       } else if (a.look === "porter") {
         pathE(el.torso, `M-13,-8 Q0,-5 13,-8 L13,-4 Q0,-1 -13,-4 Z`, "#92400e", 1.6);
+      } else if (L.skirt) {
+        pathE(el.torso, `M-12.8,-7.5 Q0,-4.5 12.8,-7.5 L12.8,-4 Q0,-1 -12.8,-4 Z`, L.scarf, 1.5); // 金腰带
       } else {
         pathE(el.torso, `M-6.5,-38 L-3,-16 M6.5,-38 L3,-16`, "none", 1.4, "#2b437f");
       }
@@ -10639,6 +10650,9 @@ var WB_ACTOR = (function () {
       pathE(el.neckG, `M-7,-1 Q0,4 7,-1 L5.5,4.5 Q0,7 -5.5,4.5 Z`, L.scarf, 1.7);
       // 头（马尾在头后面，单独一组做余摆）
       el.headG = G(body); el.headS = G(el.headG, { transform: "scale(1.12)" });
+      if (L.style === "crown") {   // 披肩长发（在头后面，跟着余摆）
+        pathE(el.tailIn, `M10,-4 C-6,-8 -16,4 -15,18 C-14,30 -10,38 -6,42 L8,40 C6,30 8,18 12,8 C14,3 13,-2 10,-4 Z`, L.hair, 2.1);
+      }
       if (L.style === "ponytail") {
         pathE(el.tailIn, `M2,-1 C-12,-6 -21,6 -18,22 C-16,33 -9,40 -4,44 C-8,34 -6,24 -1,16 C3,9 5,3 2,-1 Z`, L.hair, 2.1);
         pathE(el.tailIn, `M-12,12 Q-14,22 -9,32`, "none", 1.2);
@@ -10654,6 +10668,10 @@ var WB_ACTOR = (function () {
         // 星星发夹
         const st = star(8, -31.5, 4.4, 1.9);
         pathE(hd, st, L.clip, 1.5);
+      } else if (L.style === "crown") {
+        pathE(hd, `M-16.5,-14 Q-19,-33 -4,-39 Q12,-43 17,-27 Q18,-20 16.5,-14 Q14,-26 4,-29 Q-6,-30 -12,-23 Q-14.5,-18 -16.5,-14 Z`, L.hair, 2.2);
+        pathE(hd, `M-9,-37 L-7,-47 L-2.5,-40.5 L1,-49 L4.5,-40.5 L9,-47 L10,-36.5 Q0,-39.5 -9,-37 Z`, "#facc15", 1.7);   // 小金冠
+        pathE(hd, star(1, -43, 1.8, .8), "#e11d48", 1);
       } else if (L.style === "band") {
         pathE(hd, `M-16.5,-17 Q-18,-34 -2,-39 Q14,-41 17,-24 Q15,-30 4,-31 Q-8,-31 -12.5,-24 Q-14,-19 -16.5,-17 Z`, L.hair, 2.2);
         pathE(hd, `M-16.4,-25 Q0,-32 16.8,-26 L16.6,-22 Q0,-28 -16.2,-21 Z`, "#e11d48", 1.6);
@@ -10677,6 +10695,11 @@ var WB_ACTOR = (function () {
       el.sweat = pathE(hd, `M17,-30 Q21,-24 18.5,-21.5 Q15.5,-22.5 17,-30 Z`, "#bae6fd", 1.4, "#2563eb");
       // 前腿、前臂（在身体前面）
       el.legF = leg("F");
+      if (L.skirt) {   // 裙摆画在两条腿前面，挂在骨盆上（不跟着躯干前倾旋转）
+        el.skirt = G(body);
+        pathE(el.skirt, `M-13,-4 Q0,-1 13,-4 L20,24 Q0,30 -20,24 Z`, L.jacket, 2.2);
+        pathE(el.skirt, `M-8,8 L-10,22 M2,9 L2,26 M10,8 L12,22`, "none", 1.2, L.jacketD);
+      }
       el.propSlot = G(body);       // 抱在胸前的道具画在前臂下面
       el.armF = arm("F");
       // 星星笔帽马克笔（讲解员前手）
@@ -10717,6 +10740,10 @@ var WB_ACTOR = (function () {
           pathE(p.hammer, `M-12,-30 L12,-30 L12,-18 L-12,-18 Z`, "#fda4af", 1.8);
           pathE(p.hammer, `M-4,-46 L4,-46 L4,-30 L-4,-30 Z`, "#f3d9b1", 1.8);
         }
+      } else if (p.kind === "flower") {   // 一枝花：茎 + 叶 + 五瓣花（底边中心 = 茎的下端）
+        pathE(inner, `M0,0 Q-2,-10 0,-20 M0,-9 Q6,-13 9,-10 Q5,-6 0,-8`, "none", 1.8, "#059669");
+        for (let i = 0; i < 5; i++) { const an = -Math.PI / 2 + i * Math.PI * 2 / 5, cx = Math.cos(an) * 4.6, cy = -24 + Math.sin(an) * 4.6; mk("circle", { cx: cx.toFixed(2), cy: cy.toFixed(2), r: 3.4, fill: p.color || "#fda4af", stroke: INK, "stroke-width": 1.3 }, inner); }
+        mk("circle", { cx: 0, cy: -24, r: 2.4, fill: "#facc15", stroke: INK, "stroke-width": 1.2 }, inner);
       } else if (p.kind === "scroll") {
         pathE(inner, `M-15,-20 L15,-20 L15,0 L-15,0 Z`, "#ffffff", 2.1, "#2563eb");
         pathE(inner, `M-17,-22 Q-19,-10 -17,2 M17,-22 Q19,-10 17,2`, "none", 2.4, "#2563eb");
@@ -10809,7 +10836,7 @@ var WB_ACTOR = (function () {
         el.body.setAttribute("transform", `scale(${(fs * a.s * p.sx).toFixed(4)},${(a.s * p.sy).toFixed(4)})`);
         const airH = -Math.min(0, F.pel[1] + THIGH + SHIN);
         el.shadow.setAttribute("rx", (26 * a.s * Math.max(.45, 1 - airH / 90)).toFixed(2));
-        el.shadow.setAttribute("opacity", (.13 * Math.max(.4, 1 - airH / 80)).toFixed(3));
+        el.shadow.setAttribute("opacity", p.seat ? 0 : (.13 * Math.max(.4, 1 - airH / 80)).toFixed(3));   // 坐着（骑在牛背上）不画地面影子
         // 腿
         for (const n of ["F", "B"]) {
           const L = F.legs[n], E = el["leg" + n];
@@ -10819,6 +10846,7 @@ var WB_ACTOR = (function () {
         // 躯干（呼吸：轻微纵向起伏）
         const breathS = 1 + .014 * p.breath;
         el.torso.setAttribute("transform", `translate(${F.pel[0].toFixed(2)},${F.pel[1].toFixed(2)}) rotate(${F.lean.toFixed(2)}) scale(1,${breathS.toFixed(4)})`);
+        if (el.skirt) el.skirt.setAttribute("transform", `translate(${F.pel[0].toFixed(2)},${F.pel[1].toFixed(2)}) rotate(${(F.lean * .4).toFixed(2)})`);
         // 头：看向焦点（笔尖或 look 目标），讲话时轻微点头
         const ex = exprAt(a, t), v = visemeAt(a, t), spk = isSpeaking(a, t);
         let lookX = ex.lx || 0, lookY = ex.ly || 0, look = null;
@@ -11190,7 +11218,7 @@ const WO_CHAPTERS = [
   { id: "europe", icon: "🏛️", title: "欧洲文化密码", insight: "一个英语词，往往装着一个欧洲场景：先把场景演出来，词族自己就长出来了。",
     scenes: [
       { id: "wo_port", title: "port 港口", sub: "地中海的港口 → import / export / passport / airport", badges: ["📜", "💡"] },
-      { id: "wo_europe", title: "Europe 欧罗巴", sub: "一块大陆的名字，来自一个神话", badges: ["📜"] },
+      { id: "wo_europe", title: "Europe 欧罗巴", sub: "一块大陆的名字，背后有一个神话（来历有好几种说法）", badges: ["📜", "✂️", "❓"] },
       { id: "wo_bluetooth", title: "Bluetooth 蓝牙", sub: "一千年前的国王，今天在「统一」你的耳机", badges: ["📜"] },
     ] },
   { id: "loanwords", icon: "⛵", title: "单词环游世界", insight: "英语是一门「收集者」语言，全世界都往里装过单词。" },
@@ -19441,7 +19469,7 @@ WB_LAB.fp_iconicity.push(
 //   D.scene({ title, sub, badges })        → 标题 + 可信度徽章 + 5 步进度条（①地图 ②场景 ③词族 ④彩蛋 ⑤中文 🔮预测）
 //   D.step(i)                              → 进度条高亮第 i 步（0–5）
 //   D.shot() / D.sub() / D.back() / D.wipe() → 一个镜头的内容放进组里，镜头结束整组擦掉（淡出）
-//   D.map(box)  D.boat  D.wind  D.plane  D.tower  D.city  D.crate  D.scroll  D.person  D.stamp  D.morph  D.snap
+//   D.map(box)  D.boat  D.wind  D.plane  D.tower  D.city  D.crate  D.scroll  D.person  D.bull  D.stamp  D.morph  D.snap
 const WO_PROPS = function (k) {
   const { C, P, T, F, go } = k;
   const MONO = '"Courier New",Courier,monospace';
@@ -19606,6 +19634,25 @@ const WO_PROPS = function (k) {
     P(k.ellipse(x, y - 52, 8, 8), go(.3), .3, { color, w: 2.5 });
     P(`M${x},${y - 44} L${x},${y - 18} M${x},${y - 18} L${x - 9},${y} M${x},${y - 18} L${x + 9},${y} M${x - 12},${y - 34} L${x + 14},${y - 30}`, go(.4), .4, { color, w: 2.5 });
     D.back(); return g;
+  };
+  // ---------- 白牛（组，Europe 幕）：脚底中心 (x,y)，s 缩放，默认头朝左；返回 { g, back:[x,y]（牛背坐处）, legs（腿的组，游泳时可藏进水里）} ----------
+  D.bull = (x, y, s = 1, o = {}) => {
+    const f = o.face === "right" ? -1 : 1;
+    const X = v => (x - v * s * f).toFixed(1), Y = v => (y + v * s).toFixed(1);   // v 以「头的方向」为正
+    const ink = col(C.ink, PAL.ink);
+    const legs = D.sub();   // 腿单独一组（游泳时淡出，像藏进水里）；身体一组；移动时两组一起动
+    [[-28, 0], [-14, 0], [22, 0], [34, 0]].forEach(([lx]) => P(`M${X(lx)},${Y(-30)} L${X(lx + 1)},${Y(-2)} M${X(lx - 3)},${Y(0)} L${X(lx + 4)},${Y(0)}`, go(.12), .12, { color: ink, w: 2.6 }));
+    const g = D.sub();
+    const body = `M${X(-44)},${Y(-40)} Q${X(-48)},${Y(-62)} ${X(-24)},${Y(-64)} L${X(26)},${Y(-64)} Q${X(44)},${Y(-62)} ${X(46)},${Y(-44)} Q${X(44)},${Y(-26)} ${X(26)},${Y(-26)} L${X(-26)},${Y(-26)} Q${X(-44)},${Y(-26)} ${X(-44)},${Y(-40)} Z`;
+    P(body, go(.6), .6, { color: ink, w: 2.5 }); F(body, go(.1, 0), { color: "#ffffff", op: 1 });
+    const head = `M${X(40)},${Y(-60)} Q${X(52)},${Y(-74)} ${X(64)},${Y(-68)} Q${X(74)},${Y(-60)} ${X(70)},${Y(-46)} Q${X(66)},${Y(-38)} ${X(56)},${Y(-40)} Q${X(46)},${Y(-44)} ${X(40)},${Y(-60)} Z`;
+    P(head, go(.4), .4, { color: ink, w: 2.5 }); F(head, go(.1, 0), { color: "#ffffff", op: 1 });
+    P(`M${X(50)},${Y(-70)} Q${X(44)},${Y(-86)} ${X(54)},${Y(-90)} M${X(62)},${Y(-70)} Q${X(66)},${Y(-86)} ${X(76)},${Y(-86)}`, go(.3), .3, { color: col(C.orange, PAL.ink), w: 3 });   // 角（金色角是神话里的标志，用描边表示）
+    P(`M${X(-44)},${Y(-50)} Q${X(-58)},${Y(-46)} ${X(-56)},${Y(-30)}`, go(.2), .2, { color: ink, w: 2.2 });   // 尾巴
+    const eye = k.ellipse(+X(60), +Y(-58), 1.8, 1.8); P(eye, go(.1), .1, { color: ink, w: 2.4 }); F(eye, go(.05, 0), { color: ink, op: 1 });
+    P(`M${X(66)},${Y(-46)} q${(-3 * f).toFixed(1)},2 ${(-5 * f).toFixed(1)},0`, go(.1), .1, { color: ink, w: 1.6 });
+    D.back();
+    return { g, legs, back: [x - 2 * s * f, y - 64 * s] };
   };
   // ---------- 盖章：印章从上面压到 (x,y)，留下红色印记 label ----------
   D.stamp = (x, y, label = "OK", o = {}) => {
@@ -20066,6 +20113,319 @@ WB_LAB.wo_port = [
       ["可信度徽章", "📜 真实词源（查得到出处）· 💡 记忆联想 · ✂️ 简化说法 · ⚠️ 有例外或流行错误说法 · ❓ 有争议。"],
       ["🥚 彩蛋词", "超出小学课标的词，知道就好，不用背。"],
       ["地中海", "被欧洲、非洲、亚洲三块大陆围在中间的海。Mediterranean = medi（中间）+ terra（陆地）。"],
+    ],
+  },
+];
+
+</script>
+<script type="text/plain" id="wbmod-wo_europe" data-deps="wo_props">
+// ==================== 单词身世 · 溯源幕 ②：Europe 欧罗巴（v2，对齐 port 样板幕）====================
+// 分镜：docs/whiteboard/word_origins/EUROPE_STORYBOARD.md；出处：word_origins/SOURCES.md「溯源幕 ②」
+// 一句话洞见：一块大陆的名字，背后有一个神话；名字到底怎么来的有好几种说法（❓）——神话今天还在给新东西取名。
+// 严谨：Europe 的来源「不确定」（etymonline），三种说法全部标 ❓；神话本身有古书记载（📜），但讲给小学生时简化了（✂️）。
+WB_LAB.wo_europe = [
+  {
+    build(k) {
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const grp = () => { const g = D.sub(); D.back(); return g; };
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const win = sy => [sy.t + sy.wd + .15, sy.dur - sy.wd - .3];
+      const mw = (txt, fs) => txt.length * fs * .6;                                   // 等宽字宽
+      // 后缀吸附：词根块固定在 (rx, y)，后缀块从右边飞过来贴在右边（D.snap 的镜像）
+      const snapR = (root, suf, rx, y, o = {}) => {
+        const fs = o.size ?? 18, rw = D.chipW(root, fs);
+        k.chip(root, rx, y, null, { size: fs, color: C.blue, fill: C.tintBlue });
+        const g = D.sub(); k.chip(suf, rx + rw, y, null, { size: fs, color: C.red, fill: C.tintRed }); D.back();
+        k.move(g, -1, .001, 60, -50);
+        const t = go(.9); k.move(g, t, .6, -60, 50, { ease: "antic" }); k.squash(g, t + .6, .32, .16); k.sfx("pop", t + .6);
+        return { end: rx + rw + D.chipW(suf, fs), t };
+      };
+      // ── 讲解员小人：右下角，从画面外走进来 ──
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
+      N("", "这一幕：Europe（欧洲）这个名字，是从哪儿来的？");
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "Europe 欧罗巴", sub: "单词身世 · 欧洲文化密码", badges: ["📜", "✂️", "❓"] });
+      N("可信度徽章：", "📜 = 查得到出处；✂️ = 为小朋友讲简单了；❓ = 有好几种说法，没有定论。");
+      k.wait(.6);
+
+      // ───── 镜头 1 · 地图：欧洲在哪 ─────
+      D.step(0); D.shot();
+      N("地图：", "地中海北边是欧洲，南边是非洲，东边是亚洲。");
+      const mp = D.map({ x: 40, y: 100, w: 550, h: 275 });
+      T("欧洲", ...mp.pt(-1, 45.6), go(.4), .4, { size: 18, color: C.ink, weight: 900 });
+      T("非洲", ...mp.pt(-2, 31), go(.4), .4, { size: 18, color: C.ink, weight: 900 });
+      T("亚洲", ...mp.pt(36, 38.6), go(.4), .4, { size: 18, color: C.ink, weight: 900 });
+      const [ex, ey] = mp.pt(-1, 45.6);
+      k.act(me, "point", S.at, 2.4, { at: [ex + 70, ey] });
+      k.hlText("Europe", ex + 46, ey, 18, { mono: true });
+      T("Europe", ex + 46, ey, go(.8), .8, { size: 18, color: C.blue, weight: 900, font: M });
+      k.egg(ex + 46 + mw("Europe", 18) + 12, ey - 6, { word: "Europe" });
+      mp.dot(12.5, 41.9, "罗马", { dx: 8, dy: -6 });
+      const syEu = sayAt("Rome is in Europe.", { zh: "罗马在欧洲。", word: "Europe", egg: ["Europe"] });
+      k.look(me, ex + 60, ey, syEu.t, syEu.dur);
+      N("公主的家：", "神话里，公主欧罗巴住在地中海东岸的提尔城（今天的黎巴嫩）。");
+      const tyre = mp.dot(35.2, 33.3, "提尔", { dx: -10, dy: -10, anchor: "end" });
+      N("克里特岛：", "她后来到了海中间的克里特岛——等会儿看她是怎么过去的。");
+      const crete = mp.dot(24.9, 35.2, "克里特岛", { dx: 0, dy: 24, anchor: "middle" });
+      const route = `M${tyre[0] - 6},${tyre[1] - 4} Q${(tyre[0] + crete[0]) / 2},${crete[1] - 34} ${crete[0] + 10},${crete[1] - 4}`;
+      P(route, go(1.2), 1.2, { color: C.red, w: 2.4, dash: "7 6" });
+      P(`M${crete[0] + 20},${crete[1] - 12} L${crete[0] + 9},${crete[1] - 4} L${crete[0] + 21},${crete[1] + 1}`, go(.2), .2, { color: C.red, w: 2.4 });
+      k.act(me, "point", S.at - 1.2, 1.6, { at: crete });
+      N("问题：", "这块大陆为什么叫 Europe？先听一个古希腊神话。");
+      T("🤔 为什么叫 Europe？", 615, 150, go(1), 1, { size: 22, color: C.ink, weight: 900 });
+      T("先听一个古希腊神话 ↓", 615, 192, go(.8), .8, { size: 18, color: C.grey, weight: 700 });
+      k.act(me, "think", S.at - .4, 2.2);
+      k.wait(1);
+      D.wipe();
+
+      // ───── 镜头 2 · 场景：公主、白牛、游过大海 ─────
+      D.step(1); D.shot();
+      N("神话：", "这是古希腊神话（古书里有记载，但不是真事）：公主欧罗巴在海边采花。");
+      T("古希腊神话 · 公主 Europa", 40, 134, go(1), 1, { size: 20, color: C.ink, weight: 900 });
+      const bw = 40 + k.estW("古希腊神话 · 公主 Europa", 20) + 14;
+      const bb = k.badge("📜", bw, 134, { label: "神话有古书记载" }); k.badge("✂️", bb.end + 8, 134, { label: "讲简单了" });
+      T("（神话故事，不是真事）", 40, 166, go(.5), .5, { size: 14, color: C.grey, weight: 700 });
+      // 海、东岸（右）、克里特岛（左）
+      const WL = 400;
+      P(k.wl(24, WL, 640, WL, 1), go(.5), .5, { color: C.blue, w: 2.5, alpha: .6 });
+      P(k.wave(40, 620, WL + 22, 3) + " " + k.wave(60, 600, WL + 50, 3) + " " + k.wave(40, 620, WL + 78, 3), go(.6), .6, { color: C.blue, w: 2, alpha: .45 });
+      const shore = `M620,${WL} Q640,${WL - 4} 660,380 L936,380 L936,470 L620,470 Z`;
+      P(`M620,${WL} Q640,${WL - 4} 660,380 L936,380`, go(.6), .6, { color: C.ink, w: 2.5 }); F(shore, go(.2, 0), { color: "#fef9c3", op: 1 });
+      T("东岸 · 提尔", 690, 412, go(.4), .4, { size: 15, color: C.ink, weight: 900 });
+      const isle = `M40,${WL} Q70,352 120,348 Q170,352 200,${WL} Z`;
+      P(isle, go(.6), .6, { color: C.ink, w: 2.4 }); F(isle, go(.1, 0), { color: "#fef9c3", op: 1 });
+      T("克里特岛", 120, WL + 30, go(.4), .4, { size: 15, color: C.ink, weight: 900, anchor: "middle" });
+      // 岸上的花
+      [[690, 0], [712, 6], [830, 2]].forEach(([fx, d]) => {
+        P(`M${fx},380 Q${fx - 2},${370 - d} ${fx},${362 - d}`, go(.12), .12, { color: C.green, w: 1.8 });
+        const c = k.ellipse(fx, 359 - d, 4, 4); P(c, go(.1), .1, { color: C.red, w: 2 }); F(c, go(.05, 0), { color: C.tintRed, op: 1 });
+      });
+      const gPr = grp();
+      const fl = k.prop("flower", 742, 380, { g: gPr, s: 1 });
+      const pr = k.actor("princess", { x: 770, y: 380, s: .78, f: -1, g: gPr });
+      const syPr = sayAt("Europa is a princess.", { zh: "欧罗巴是一位公主。", word: "Europa" });
+      k.act(pr, "wave", syPr.t, syPr.dur);
+      const gLab = grp(); k.S.g = gLab; T("公主 Europa", 770, 256, syPr.t, .6, { size: 15, color: C.blue, weight: 900, anchor: "middle" }); D.back();
+      const syPick = sayAt("She picks flowers by the sea.", { zh: "她在海边采花。", word: "" });
+      let [w0, wd] = win(syPick);
+      k.act(pr, "take", w0 - .2, 1.2, { prop: fl, words: ["picks"] });
+      k.expr(pr, "happy", w0, wd + 1);
+      // 白牛从右边走过来（神话里是宙斯变的）
+      N("白牛：", "这时，一头雪白、温顺的公牛走了过来（神话里，它是宙斯变的）。");
+      const bl = D.bull(860, 380, 1.25);
+      const gRide = grp();
+      const pr2 = k.actor("princess", { x: bl.back[0] + 6, y: bl.back[1] + 4 + 58 * .7, s: .7, f: -1, g: gRide, hidden: true });
+      const bullGs = [bl.g, bl.legs, gRide];
+      const tIn = go(2.4);
+      bullGs.forEach(g => { k.move(g, -1, .001, 180, 0); k.path(g, tIn, 2.4, [[-90, -3], [-180, 0]], { ease: "move" }); });
+      for (let i = 0; i < 4; i++) k.squash(bl.g, tIn + .2 + i * .55, .5, .05);
+      k.act(me, "surprised", tIn + .6, 1.2);
+      k.look(pr, 860, 330, tIn, 3);
+      // 公主坐上牛背（rides）：走过去 → 跳 → 在空中换成「坐着的公主」
+      const syRide = sayAt("She rides on the white bull.", { zh: "她骑上了白牛。", word: "", egg: ["bull"] });
+      [w0, wd] = win(syRide);
+      k.act(pr, "walk", syRide.t - .1, .9, { to: 800 });
+      const tJ = syRide.t + .85;
+      k.act(pr, "jump", tJ, .8);
+      k.actorFade(pr, tJ + .34, .12, 0); k.actorFade(pr2, tJ + .34, .12, 1); k.fade(gLab, tJ + .2, .3, 0);
+      const tSwimEnd = tJ + .5 + 11;
+      k.act(pr2, "sit", tJ + .3, tSwimEnd - tJ, { words: ["rides"], expr: "happy" });
+      N("游过大海：", "白牛驮着公主跳进大海，一直往西游，游到了克里特岛。");
+      const sySw = sayAt("The bull swims across the sea.", { zh: "公牛游过了大海。", word: "", egg: ["bull"] });
+      [w0, wd] = win(sySw);
+      const tS = sySw.t - .2, dS = sySw.dur + 2.6;
+      bullGs.forEach(g => k.path(g, tS, dS, [[-150, 4], [-230, 24], [-420, 22], [-584, 24]], { ease: "move" }));
+      k.fade(bl.legs, tS + dS * .32, .5, 0);                                         // 腿藏进水里
+      for (let i = 0; i < 7; i++) k.squash(bl.g, tS + .6 + i * (dS - .8) / 7, (dS - .8) / 7, .06);
+      k.actFx(["swims"], tS, dS, "白牛驮着公主游过大海");
+      k.look(me, 420, 360, tS, dS);
+      k.expr(pr2, "surprised", tS + dS * .4, 1.2);
+      S.at = Math.max(S.at, tS + dS + .2);                                            // 游到岸边再讲下一句
+      N("到了：", "在克里特岛，公主成了那里的第一位王后（神话）。");
+      T("🏝️ 公主成了克里特岛的王后", 260, 220, go(1.2), 1.2, { size: 18, color: C.green, weight: 900 });
+      k.act(me, "nod", S.at - .4, .8);
+      k.wait(1);
+      D.wipe();
+
+      // ───── 镜头 3 · 名字从哪来：三种说法都打 ❓ ─────
+      D.step(2); D.shot();
+      N("名字：", "公主叫 Europa，大陆叫 Europe：只差最后一个字母。");
+      const ex0 = 60, ey0 = 148;
+      // 整个词一起「变身」：等宽字体，前 5 个字母位置不变，看起来只有最后一个字母 a → e
+      const gA = D.sub(); T("Europa", ex0, ey0, go(1), 1, { size: 34, color: C.blue, weight: 900, font: M }); D.back();
+      const gE = D.sub(); T("Europe", ex0, ey0, go(.01, 0), .01, { size: 34, color: C.green, weight: 900, font: M }); D.back(); k.hide(gE);
+      const tm3 = D.morph(gA, gE, .8);
+      T("拉丁语 Europa → 英语 Europe", ex0 + mw("Europe", 34) + 30, ey0 - 4, go(1), 1, { size: 18, color: C.ink, weight: 700 });
+      k.badge("📜", ex0 + mw("Europe", 34) + 30 + k.estW("拉丁语 Europa → 英语 Europe", 18) + 12, ey0 - 4);
+      k.act(me, "point", tm3, 1.4, { at: [ex0 + 120, ey0 - 12] });
+      N("可是：", "这个名字到底是什么意思？学者有好几种说法，谁也没法证明——所以每种都打上 ❓。");
+      const cards = [[24, "① 公主的名字"], [330, "② 宽宽的脸"], [636, "③ 太阳落下的地方"]];
+      cards.forEach(([cx, title]) => {
+        P(k.roughRect(cx, 196, 296, 178), go(.5), .5, { color: C.ink, w: 2 });
+        T(title, cx + 14, 228, go(.6), .6, { size: 19, color: C.ink, weight: 900 });
+        k.badge("❓", cx + 296 - 72, 226, { label: "有争议" });
+      });
+      k.act(me, "think", S.at - 1, 3.4);
+      T("传统说法：大陆的名字", 24 + 14, 268, go(.8), .8, { size: 16, color: C.ink, weight: 700 });
+      T("来自神话公主 Europa", 24 + 14, 294, go(.8), .8, { size: 16, color: C.ink, weight: 700 });
+      T("（维基：「可能」来自她）", 24 + 14, 324, go(.6), .6, { size: 14, color: C.grey, weight: 700 });
+      const sn = D.snap("eurys", "ops", 330 + 14 + D.chipW("eurys", 16), 250, { size: 16, color: C.red, rootColor: C.blue, from: [-10, 50] });
+      T("eurys = 宽，ops = 脸、眼睛", 330 + 14, 312, go(.8), .8, { size: 16, color: C.ink, weight: 700 });
+      T("合起来 →「宽脸」", 330 + 14, 340, go(.6), .6, { size: 16, color: C.ink, weight: 700 });
+      k.say("Eurys means wide, and ops means face.", { zh: "（希腊语）eurys 是「宽」，ops 是「脸」。", word: "eurys ops", blocks: ["eurys", "ops"] });
+      T("古代闪米特语：「傍晚、", 636 + 14, 268, go(.8), .8, { size: 16, color: C.ink, weight: 700 });
+      T("太阳落山」→ 西方", 636 + 14, 294, go(.8), .8, { size: 16, color: C.ink, weight: 700 });
+      T("（多数学者认为不太可能）", 636 + 14, 324, go(.6), .6, { size: 14, color: C.grey, weight: 700 });
+      N("结论：", "三种说法都有人讲，都没有定论。好故事 ≠ 真历史，查证很重要！");
+      k.hlText("❓ 三种说法，没有定论：好故事 ≠ 真历史", 24, 430, 20);
+      T("❓ 三种说法，没有定论：好故事 ≠ 真历史", 24, 430, go(1.4), 1.4, { size: 20, color: C.ink, weight: 900 });
+      k.act(me, "nod", S.at - .3, .8);
+      k.wait(1);
+      D.wipe();
+
+      // ───── 镜头 3b · 词族：-an（……的、……人）和 euro ─────
+      D.step(2); D.shot();
+      N("一家人：", "Europe 还长出了自己的小家族：加上词尾 -an，就是「欧洲的、欧洲人」。");
+      const s1 = snapR("Europe", "-an", 60, 120, { size: 20 });
+      k.hlText("= European 欧洲的、欧洲人", s1.end + 14, 146, 20);
+      T("= European 欧洲的、欧洲人", s1.end + 14, 146, go(1), 1, { size: 20, color: C.green, weight: 900 });
+      k.egg(s1.end + 14 + k.estW("= European 欧洲的、欧洲人", 20) + 14, 140, { word: "European" });
+      T("-an =「属于……的」", 60, 196, go(.8), .8, { size: 17, color: C.ink, weight: 700 });
+      const bx1 = 60 + k.estW("-an =「属于……的」", 17) + 12;
+      const bb1 = k.badge("📜", bx1, 196); k.badge("✂️", bb1.end + 8, 196, { label: "简化：其实经法语、拉丁语变来" });
+      const syAn = sayAt("European means from Europe.", { zh: "European = 来自欧洲的。", word: "an", blocks: ["an"] });
+      k.act(me, "point", syAn.t, 1.6, { at: [s1.end - 20, 132] });
+      sayAt("She is a European girl.", { zh: "她是一个欧洲女孩。", word: "European", egg: ["European"] });
+      N("欧元：", "Euro- 就是「欧洲」：欧洲很多国家一起用的钱，叫 euro（欧元），1996 年定的名字。");
+      const coin = k.ellipse(110, 300, 40, 40);
+      P(coin, go(.6), .6, { color: C.ink, w: 2.5 }); F(coin, go(.1, 0), { color: "#fef9c3", op: 1 });
+      P(k.ellipse(110, 300, 31, 31), go(.4), .4, { color: C.ink, w: 1.4 });
+      T("€", 110, 313, go(.4), .4, { size: 34, color: C.blue, weight: 900, anchor: "middle", noHL: true });
+      T("Euro-（欧洲）→ euro 欧元", 176, 296, go(1), 1, { size: 20, color: C.ink, weight: 900 });
+      k.badge("📜", 176 + k.estW("Euro-（欧洲）→ euro 欧元", 20) + 12, 296);
+      T("1996 年起用这个名字", 176, 330, go(.6), .6, { size: 15, color: C.grey, weight: 700 });
+      const card = k.prop("card", 0, 0, { g: 0, text: "euro", hidden: true });
+      const syHave = sayAt("I have one euro.", { zh: "我有一欧元。", word: "euro", egg: ["euro"] });
+      k.act(me, "holdCard", syHave.t - .3, syHave.dur + .5, { prop: card, words: ["have"] });
+      N("", "一个名字，长出「欧洲的、欧洲人、欧元」一家子。");
+      k.hlText("Europe → European · euro", 60, 420, 22, { mono: true, color: C.hlGreen });
+      T("Europe → European · euro", 60, 420, go(1.2), 1.2, { size: 22, color: C.green, weight: 900, font: M });
+      k.wait(1);
+      D.wipe();
+
+      // ───── 镜头 4 · 彩蛋：神话今天还在取名（木星的卫星、欧元纸币）─────
+      D.step(3); D.shot();
+      N("彩蛋：", "神话今天还在给新东西取名：木星有一颗卫星，就叫 Europa（欧罗巴）。");
+      const jx = 230, jy = 300;
+      const jup = k.ellipse(jx, jy, 86, 86);
+      P(jup, go(.8), .8, { color: C.ink, w: 2.5 }); F(jup, go(.1, 0), { color: "#fef3c7", op: 1 });
+      P(`M${jx - 80},${jy - 30} Q${jx},${jy - 40} ${jx + 80},${jy - 30} M${jx - 86},${jy + 4} Q${jx},${jy - 6} ${jx + 86},${jy + 4} M${jx - 74},${jy + 40} Q${jx},${jy + 32} ${jx + 74},${jy + 40}`, go(.6), .6, { color: C.red, w: 2, alpha: .6 });
+      T("木星", jx, jy + 112, go(.4), .4, { size: 16, color: C.ink, weight: 900, anchor: "middle" });
+      P(`M${jx - 150},${jy} A150,46 0 1,0 ${jx + 150},${jy} A150,46 0 1,0 ${jx - 150},${jy}`, go(.8), .8, { color: C.grey, w: 1.4, dash: "5 6" });
+      const gMoon = grp();
+      k.S.g = gMoon;
+      const mo = k.ellipse(jx + 150, jy, 13, 13); P(mo, go(.3), .3, { color: C.blue, w: 2.4 }); F(mo, go(.05, 0), { color: C.tintBlue, op: 1 });
+      D.back();
+      T("卫星 Europa", jx + 150, jy - 26, go(.6), .6, { size: 16, color: C.blue, weight: 900, anchor: "middle" });
+      k.badge("📜", jx + 100, jy + 86);
+      const syMoon = sayAt("Europa is also a moon.", { zh: "欧罗巴也是一颗卫星的名字。", word: "" });
+      k.act(me, "point", syMoon.t - .2, syMoon.dur, { at: [jx + 150, jy] });
+      k.path(gMoon, syMoon.t - .4, syMoon.dur + 1.6, [[-150, 46], [-300, 0], [-150, -46], [0, 0]], { ease: "sine" });
+      N("欧元纸币：", "新版欧元纸币叫「Europa 系列」，水印里藏着公主欧罗巴的头像。");
+      const nx = 520, ny = 210;
+      P(k.roughRect(nx, ny, 300, 150), go(.8), .8, { color: C.ink, w: 2.4 }); F(k.rectD(nx, ny, 300, 150), go(.1, 0), { color: "#ecfdf5", op: 1 });
+      T("€", nx + 24, ny + 46, go(.3), .3, { size: 30, color: C.green, weight: 900, noHL: true });
+      T("5", nx + 260, ny + 46, go(.3), .3, { size: 30, color: C.green, weight: 900, anchor: "middle", noHL: true });
+      const face = `M${nx + 150},${ny + 40} Q${nx + 176},${ny + 42} ${nx + 176},${ny + 76} Q${nx + 174},${ny + 108} ${nx + 150},${ny + 112} Q${nx + 126},${ny + 108} ${nx + 124},${ny + 76} Q${nx + 124},${ny + 42} ${nx + 150},${ny + 40} Z`;
+      P(face, go(.6), .6, { color: C.grey, w: 1.8, alpha: .7 });
+      P(`M${nx + 124},${ny + 70} Q${nx + 112},${ny + 112} ${nx + 118},${ny + 132} M${nx + 176},${ny + 70} Q${nx + 188},${ny + 112} ${nx + 182},${ny + 132}`, go(.4), .4, { color: C.grey, w: 1.8, alpha: .7 });
+      T("水印：公主 Europa 的头像", nx + 150, ny + 182, go(.8), .8, { size: 15, color: C.ink, weight: 900, anchor: "middle" });
+      k.badge("📜", nx + 230, ny + 214);
+      T("（2013 年起的 Europa 系列）", nx + 10, ny + 214, go(.6), .6, { size: 14, color: C.grey, weight: 700 });
+      k.act(me, "point", S.at - .6, 1.6, { at: [nx + 150, ny + 76] });
+      N("", "一个三千年前的神话，今天还在给卫星、纸币取名。");
+      k.hlText("神话 → 今天的名字：卫星、纸币……", 24, 470, 20, { color: C.hlGreen });
+      T("神话 → 今天的名字：卫星、纸币……", 24, 470, go(1.2), 1.2, { size: 20, color: C.green, weight: 900 });
+      k.wait(1);
+      D.wipe();
+
+      // ───── 镜头 5 · 中文对照：欧罗巴洲 → 欧洲（音译）＋ 🔮 预测 ─────
+      D.step(4);
+      N("中文：", "中文「欧洲」从哪来？1602 年，意大利人利玛窦在北京刻印世界地图《坤舆万国全图》。");
+      P(k.roughRect(24, 104, 300, 120), go(.7), .7, { color: C.ink, w: 2.2 }); F(k.rectD(24, 104, 300, 120), go(.1, 0), { color: "#fefce8", op: 1 });
+      T("《坤舆万国全图》", 174, 146, go(.8), .8, { size: 20, color: C.ink, weight: 900, anchor: "middle" });
+      T("1602 · 利玛窦", 174, 180, go(.6), .6, { size: 16, color: C.grey, weight: 700, anchor: "middle" });
+      k.badge("📜", 174 - 26, 210);
+      N("照着声音翻：", "Eu、ro、pa → 欧、逻、巴：照着声音翻译，叫「音译」。今天写作「欧罗巴」。");
+      const syl = [["Eu", "欧"], ["ro", "逻"], ["pa", "巴"]];
+      syl.forEach(([en, zh], i) => {
+        const x = 380 + i * 100;
+        k.chip(en, x, 110, null, { size: 20, color: C.blue, fill: C.tintBlue });
+        P(k.wl(x + 28, 152, x + 28, 178, .3) + ` M${x + 22},${172} L${x + 28},${180} L${x + 34},${172}`, go(.3), .3, { color: C.grey, w: 2 });
+        T(zh, x + 28, 210, go(.4), .4, { size: 26, color: C.red, weight: 900, anchor: "middle" });
+      });
+      T("（图上写「欧逻巴」，今天写「欧罗巴」）", 380, 242, go(.6), .6, { size: 14, color: C.grey, weight: 700 });
+      k.say("Europa is a name from a story.", { zh: "欧罗巴是故事里的名字。", word: "Eu ro pa", blocks: ["eu", "ro", "pa"] });
+      N("简称：", "欧罗巴洲，后来简称「欧洲」。");
+      T("欧罗巴洲", 380, 300, go(.6), .6, { size: 24, color: C.ink, weight: 900 });
+      P(k.wl(380 + 24 - 2, 291, 380 + 72 + 2, 291, .4), go(.35), .35, { color: C.red, w: 3 });
+      T("→ 欧洲", 380 + 104, 300, go(.6), .6, { size: 24, color: C.green, weight: 900 });
+      k.act(me, "point", S.at - .6, 1.4, { at: [470, 290] });
+      k.badge("💡", 24, 300, { label: "对照" });
+      T("上一幕的「进口、出口」是照着意思对照；「欧洲」是照着声音翻", 24, 346, go(1.4), 1.4, { size: 16, color: C.ink, weight: 700 });
+      T("（中文对照，不是词源）", 24, 374, go(.5), .5, { size: 14, color: C.grey });
+      k.wait(.6);
+
+      // ───── 🔮 预测：Africa + -an = ? ─────
+      D.step(5);
+      N("预测：", "考考你：Europe + -an = European。那 Africa（非洲）+ -an = ？先想 3 秒！");
+      const syAf = sayAt("Africa is very big.", { zh: "非洲非常大。", word: "Africa", egg: ["Africa"] });
+      P(k.roughRect(16, 410, 824, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(16, 410, 824, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 Europe + -an = European", 36, 444, go(1), 1, { size: 19, color: C.ink, weight: 900 });
+      T("Africa（非洲）+ -an =", 36, 482, go(1), 1, { size: 19, color: C.ink, weight: 900 });
+      const qx = 36 + Math.round(k.estW("Africa（非洲）+ -an =", 19) * .9) + 10;
+      const qm = D.sub(); T("？", qx, 486, go(.3), .3, { size: 32, color: C.red, weight: 900 }); D.back();
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "African = 非洲的、非洲人。规律用上了！");
+      const tRev = go(.3);
+      k.fade(qm, tRev, .3, 0);
+      k.hlText("African", qx, 484, 22, { mono: true, color: C.hlGreen });
+      T("African", qx, 484, go(.9), .9, { size: 22, color: C.green, weight: 900, font: M });
+      k.egg(qx + mw("African", 22) + 14, 478, { word: "African" });
+      const ax2 = qx + mw("African", 22) + 34;
+      T("= 非洲的、非洲人", ax2, 484, go(.8), .8, { size: 18, color: C.green, weight: 900 });
+      k.badge("📜", ax2 + k.estW("= 非洲的、非洲人", 18) + 10, 484);
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("She is an African girl.", { zh: "她是一个非洲女孩。", word: "African", egg: ["African"] });
+      N("口诀：", "公主骑白牛，名字打问号；加上 -an，就是「哪儿的人」！");
+      D.hold(2.5);
+
+      // ───── 收尾金句卡 ─────
+      k.quoteCard({ insight: "一块大陆的名字，背后有一个神话；\n名字到底怎么来的有好几种说法（❓），\n神话今天还在给卫星、纸币取名。", rhyme: "公主骑白牛，名字打问号；\n加上 -an，就是「哪儿的人」！", hlLines: 2, foot: "📖 单词身世 · Europe 欧罗巴" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.42);
+    },
+    // 分镜动作词清单（R4）
+    actionWords: [
+      { word: "picks", act: "公主弯腰伸手，把花拿到手里" },
+      { word: "rides", act: "公主跳上牛背，坐着（sit）跟白牛一起走" },
+      { word: "swims", act: "白牛驮着公主游过大海（场景：牛身起伏前进，腿藏进水里）" },
+      { word: "have", act: "讲解员举起 euro 词卡（我有一欧元）" },
+    ],
+    terms: [
+      ["神话", "古时候的人讲的神仙故事，不是真事，但会留在名字和语言里。"],
+      ["词源", "一个词是从哪里来的、原来是什么意思（单词的「身世」）。"],
+      ["❓ 有争议", "专家有好几种说法，谁也证明不了，所以不能当成定论。Europe 名字的来历就是这样。"],
+      ["词尾（后缀）", "加在词后面、改变意思的小块：-an =「属于……的、……地方的人」。"],
+      ["音译", "照着声音翻译：Europa → 欧罗巴。对比：照着意思翻译叫「意译」。"],
+      ["卫星", "绕着行星转的星球。木星有一颗卫星叫 Europa（欧罗巴）。"],
+      ["可信度徽章", "📜 真实词源（查得到出处）· 💡 记忆联想 · ✂️ 简化说法 · ⚠️ 有例外或流行错误说法 · ❓ 有争议。"],
+      ["🥚 彩蛋词", "超出小学课标的词，知道就好，不用背。"],
     ],
   },
 ];

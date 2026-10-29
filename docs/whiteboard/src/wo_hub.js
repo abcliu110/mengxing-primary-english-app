@@ -7,7 +7,7 @@ const WO_CHAPTERS = [
   { id: "europe", icon: "🏛️", title: "欧洲文化密码", insight: "一个英语词，往往装着一个欧洲场景：先把场景演出来，词族自己就长出来了。",
     scenes: [
       { id: "wo_port", title: "port 港口", sub: "地中海的港口 → import / export / passport / airport", badges: ["📜", "💡"] },
-      { id: "wo_europe", title: "Europe 欧罗巴", sub: "一块大陆的名字，来自一个神话", badges: ["📜"] },
+      { id: "wo_europe", title: "Europe 欧罗巴", sub: "一块大陆的名字，背后有一个神话（来历有好几种说法）", badges: ["📜", "✂️", "❓"] },
       { id: "wo_bluetooth", title: "Bluetooth 蓝牙", sub: "一千年前的国王，今天在「统一」你的耳机", badges: ["📜"] },
     ] },
   { id: "loanwords", icon: "⛵", title: "单词环游世界", insight: "英语是一门「收集者」语言，全世界都往里装过单词。" },

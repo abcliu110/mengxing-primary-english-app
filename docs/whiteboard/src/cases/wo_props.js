@@ -4,7 +4,7 @@
 //   D.scene({ title, sub, badges })        → 标题 + 可信度徽章 + 5 步进度条（①地图 ②场景 ③词族 ④彩蛋 ⑤中文 🔮预测）
 //   D.step(i)                              → 进度条高亮第 i 步（0–5）
 //   D.shot() / D.sub() / D.back() / D.wipe() → 一个镜头的内容放进组里，镜头结束整组擦掉（淡出）
-//   D.map(box)  D.boat  D.wind  D.plane  D.tower  D.city  D.crate  D.scroll  D.person  D.stamp  D.morph  D.snap
+//   D.map(box)  D.boat  D.wind  D.plane  D.tower  D.city  D.crate  D.scroll  D.person  D.bull  D.stamp  D.morph  D.snap
 const WO_PROPS = function (k) {
   const { C, P, T, F, go } = k;
   const MONO = '"Courier New",Courier,monospace';
@@ -169,6 +169,25 @@ const WO_PROPS = function (k) {
     P(k.ellipse(x, y - 52, 8, 8), go(.3), .3, { color, w: 2.5 });
     P(`M${x},${y - 44} L${x},${y - 18} M${x},${y - 18} L${x - 9},${y} M${x},${y - 18} L${x + 9},${y} M${x - 12},${y - 34} L${x + 14},${y - 30}`, go(.4), .4, { color, w: 2.5 });
     D.back(); return g;
+  };
+  // ---------- 白牛（组，Europe 幕）：脚底中心 (x,y)，s 缩放，默认头朝左；返回 { g, back:[x,y]（牛背坐处）, legs（腿的组，游泳时可藏进水里）} ----------
+  D.bull = (x, y, s = 1, o = {}) => {
+    const f = o.face === "right" ? -1 : 1;
+    const X = v => (x - v * s * f).toFixed(1), Y = v => (y + v * s).toFixed(1);   // v 以「头的方向」为正
+    const ink = col(C.ink, PAL.ink);
+    const legs = D.sub();   // 腿单独一组（游泳时淡出，像藏进水里）；身体一组；移动时两组一起动
+    [[-28, 0], [-14, 0], [22, 0], [34, 0]].forEach(([lx]) => P(`M${X(lx)},${Y(-30)} L${X(lx + 1)},${Y(-2)} M${X(lx - 3)},${Y(0)} L${X(lx + 4)},${Y(0)}`, go(.12), .12, { color: ink, w: 2.6 }));
+    const g = D.sub();
+    const body = `M${X(-44)},${Y(-40)} Q${X(-48)},${Y(-62)} ${X(-24)},${Y(-64)} L${X(26)},${Y(-64)} Q${X(44)},${Y(-62)} ${X(46)},${Y(-44)} Q${X(44)},${Y(-26)} ${X(26)},${Y(-26)} L${X(-26)},${Y(-26)} Q${X(-44)},${Y(-26)} ${X(-44)},${Y(-40)} Z`;
+    P(body, go(.6), .6, { color: ink, w: 2.5 }); F(body, go(.1, 0), { color: "#ffffff", op: 1 });
+    const head = `M${X(40)},${Y(-60)} Q${X(52)},${Y(-74)} ${X(64)},${Y(-68)} Q${X(74)},${Y(-60)} ${X(70)},${Y(-46)} Q${X(66)},${Y(-38)} ${X(56)},${Y(-40)} Q${X(46)},${Y(-44)} ${X(40)},${Y(-60)} Z`;
+    P(head, go(.4), .4, { color: ink, w: 2.5 }); F(head, go(.1, 0), { color: "#ffffff", op: 1 });
+    P(`M${X(50)},${Y(-70)} Q${X(44)},${Y(-86)} ${X(54)},${Y(-90)} M${X(62)},${Y(-70)} Q${X(66)},${Y(-86)} ${X(76)},${Y(-86)}`, go(.3), .3, { color: col(C.orange, PAL.ink), w: 3 });   // 角（金色角是神话里的标志，用描边表示）
+    P(`M${X(-44)},${Y(-50)} Q${X(-58)},${Y(-46)} ${X(-56)},${Y(-30)}`, go(.2), .2, { color: ink, w: 2.2 });   // 尾巴
+    const eye = k.ellipse(+X(60), +Y(-58), 1.8, 1.8); P(eye, go(.1), .1, { color: ink, w: 2.4 }); F(eye, go(.05, 0), { color: ink, op: 1 });
+    P(`M${X(66)},${Y(-46)} q${(-3 * f).toFixed(1)},2 ${(-5 * f).toFixed(1)},0`, go(.1), .1, { color: ink, w: 1.6 });
+    D.back();
+    return { g, legs, back: [x - 2 * s * f, y - 64 * s] };
   };
   // ---------- 盖章：印章从上面压到 (x,y)，留下红色印记 label ----------
   D.stamp = (x, y, label = "OK", o = {}) => {

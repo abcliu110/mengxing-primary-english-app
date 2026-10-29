@@ -10,7 +10,8 @@
 //   k.act(porter, "carry", go(2.4), 2.4, { prop: box, to: 520, put: true, words: ["import"] });
 //   k.act(me, "point", t, 1.2, { at: [x, y] });  k.expr(me, "surprised", t, 1.5);  k.look(me, x, y, t, dur)
 // 动作库 v1：idle（待机呼吸眨眼，自动）、wave 挥手、point 指、surprised 惊讶、holdCard 举词卡、read 读书、
-//   walk 走、run 跑、carry 搬、take 拿、put 放、jump 跳、turn 转身；另有 think 想、cheer 欢呼、support 托举、nod 点头。
+//   walk 走、run 跑、carry 搬、take 拿、put 放、jump 跳、turn 转身；另有 think 想、cheer 欢呼、support 托举、nod 点头、sit 坐（骑）。
+// 角色 look：narrator 讲解员、porter 搬运工、traveler 旅客、princess 神话公主；道具另有 flower 一枝花。
 // 表情 5 个：happy 开心、think 思考、surprised 惊讶、proud 得意、oops 哎呀；口型 3 个：0 闭、1 半开、2 全开。
 var WB_ACTOR = (function () {
   const D2R = Math.PI / 180, clamp = v => Math.max(0, Math.min(1, v));
@@ -27,6 +28,8 @@ var WB_ACTOR = (function () {
     narrator: { skin: "#fde3cf", hair: "#7a4a2a", jacket: "#2f8f6f", jacketD: "#256f57", shirt: "#ffffff", scarf: "#f28c28", pants: "#26315f", shoe: "#ffffff", clip: "#facc15", style: "ponytail", marker: true },
     porter: { skin: "#f6d2b3", hair: "#3f2d22", jacket: "#e8d3b0", jacketD: "#c9ad82", shirt: "#e8d3b0", scarf: "#b45309", pants: "#8a6a48", shoe: "#8a6a48", style: "band" },
     traveler: { skin: "#fde3cf", hair: "#4b3326", jacket: "#5b7fd6", jacketD: "#3f5fae", shirt: "#ffffff", scarf: "#e11d48", pants: "#3a3f55", shoe: "#5b4636", style: "hat" },
+    // 神话公主（Europe 幕）：披肩长发 + 小金冠，粉色长裙（裙摆画在躯干上，腿用裙子同色）
+    princess: { skin: "#fde3cf", hair: "#5b3a24", jacket: "#f9a8d4", jacketD: "#ec7fbf", shirt: "#fff7ed", scarf: "#facc15", pants: "#f9a8d4", shoe: "#be185d", style: "crown", skirt: true },
   };
   const INK = "#1f2937";
   // ---- 表情参数：眉高、眉角、眼睛大小、眼睛睁开度、嘴型、腮红、汗滴 ----
@@ -117,6 +120,11 @@ var WB_ACTOR = (function () {
         sx: 1 + .1 * pre - .07 * h * (1 - fly) + .12 * land, sy: 1 - .12 * pre + .12 * h * (1 - fly) - .14 * land, ex: 1, _air: fly > 0 && fly < 1 };
     },
     turn: (u) => ({ crouch: 4 * Math.sin(u * Math.PI), aFs: 10 + 12 * Math.sin(u * Math.PI), aBs: -7 - 12 * Math.sin(u * Math.PI) }),
+    // 坐（骑在牛背 / 坐在凳子上）：大腿向前抬平、小腿自然垂下，双手扶在前面；不自动着地（骨盆停在 y - 58×s，坐处由案例放好）
+    sit: (u) => {
+      const q = eio(seg(u, 0, .18)), sway = Math.sin(u * Math.PI * 4) * 2;
+      return { lFh: lerp(4, 84, q), lFk: lerp(2, 88, q), lBh: lerp(-4, 76, q), lBk: lerp(2, 82, q), aFs: lerp(10, 46, q), aFe: lerp(22, 34, q), aBs: lerp(-7, 38, q), aBe: lerp(12, 40, q), lean: -2 * q + sway * .5, head: sway, _air: true, _seat: true };
+    },
   };
   const MOVING = { walk: 1, run: 1, carry: 1 };
   const DEFAULT_EXPR = { wave: "happy", surprised: "surprised", holdCard: "proud", read: "think", think: "think", cheer: "happy", jump: "happy", support: "happy" };
@@ -243,7 +251,7 @@ var WB_ACTOR = (function () {
       const br = Math.sin(t * 2 * Math.PI / 3.4 + a.seed);
       p.aFs += br * 1.2; p.aBs -= br * 1.2; p.head += Math.sin(t * 2 * Math.PI / 5.1 + a.seed) * 1.5;
       p.breath = br;
-      let air = false, card = false, curMove = null;
+      let air = false, card = false, curMove = null, seat = false;
       for (const e of a.acts) {
         const fadeIn = Math.min(.16, e.dur / 4), fadeOut = e.o.keep ? 0 : .22;
         if (t < e.t - .001 || t > e.t + e.dur + fadeOut + (e.o.keep || 0)) continue;
@@ -262,10 +270,11 @@ var WB_ACTOR = (function () {
         if (reduced && MOVING[e.action]) { q.lFh = q.lBh = 0; q.lFk = q.lBk = 2; }
         for (const kk of KEYS) if (q[kk] != null) p[kk] = lerp(p[kk], q[kk], w);
         if (q._air) air = true;
+        if (q._seat && w > .5) seat = true;
         if (q._cardBoth) card = true;
         if (MOVING[e.action] && u > 0 && u < 1) curMove = e;
       }
-      p.airborne = air; p.card = card; p.move = curMove;
+      p.airborne = air; p.card = card; p.move = curMove; p.seat = seat;
       if (s && reduced) { p.air = 0; p.sx = p.sy = 1; }
       return p;
     }
@@ -364,6 +373,8 @@ var WB_ACTOR = (function () {
         pathE(el.torso, `M-12,1.5 Q0,4 12,1.5 L12,5 Q0,7.5 -12,5 Z`, L.pants, 1.6);
       } else if (a.look === "porter") {
         pathE(el.torso, `M-13,-8 Q0,-5 13,-8 L13,-4 Q0,-1 -13,-4 Z`, "#92400e", 1.6);
+      } else if (L.skirt) {
+        pathE(el.torso, `M-12.8,-7.5 Q0,-4.5 12.8,-7.5 L12.8,-4 Q0,-1 -12.8,-4 Z`, L.scarf, 1.5); // 金腰带
       } else {
         pathE(el.torso, `M-6.5,-38 L-3,-16 M6.5,-38 L3,-16`, "none", 1.4, "#2b437f");
       }
@@ -375,6 +386,9 @@ var WB_ACTOR = (function () {
       pathE(el.neckG, `M-7,-1 Q0,4 7,-1 L5.5,4.5 Q0,7 -5.5,4.5 Z`, L.scarf, 1.7);
       // 头（马尾在头后面，单独一组做余摆）
       el.headG = G(body); el.headS = G(el.headG, { transform: "scale(1.12)" });
+      if (L.style === "crown") {   // 披肩长发（在头后面，跟着余摆）
+        pathE(el.tailIn, `M10,-4 C-6,-8 -16,4 -15,18 C-14,30 -10,38 -6,42 L8,40 C6,30 8,18 12,8 C14,3 13,-2 10,-4 Z`, L.hair, 2.1);
+      }
       if (L.style === "ponytail") {
         pathE(el.tailIn, `M2,-1 C-12,-6 -21,6 -18,22 C-16,33 -9,40 -4,44 C-8,34 -6,24 -1,16 C3,9 5,3 2,-1 Z`, L.hair, 2.1);
         pathE(el.tailIn, `M-12,12 Q-14,22 -9,32`, "none", 1.2);
@@ -390,6 +404,10 @@ var WB_ACTOR = (function () {
         // 星星发夹
         const st = star(8, -31.5, 4.4, 1.9);
         pathE(hd, st, L.clip, 1.5);
+      } else if (L.style === "crown") {
+        pathE(hd, `M-16.5,-14 Q-19,-33 -4,-39 Q12,-43 17,-27 Q18,-20 16.5,-14 Q14,-26 4,-29 Q-6,-30 -12,-23 Q-14.5,-18 -16.5,-14 Z`, L.hair, 2.2);
+        pathE(hd, `M-9,-37 L-7,-47 L-2.5,-40.5 L1,-49 L4.5,-40.5 L9,-47 L10,-36.5 Q0,-39.5 -9,-37 Z`, "#facc15", 1.7);   // 小金冠
+        pathE(hd, star(1, -43, 1.8, .8), "#e11d48", 1);
       } else if (L.style === "band") {
         pathE(hd, `M-16.5,-17 Q-18,-34 -2,-39 Q14,-41 17,-24 Q15,-30 4,-31 Q-8,-31 -12.5,-24 Q-14,-19 -16.5,-17 Z`, L.hair, 2.2);
         pathE(hd, `M-16.4,-25 Q0,-32 16.8,-26 L16.6,-22 Q0,-28 -16.2,-21 Z`, "#e11d48", 1.6);
@@ -413,6 +431,11 @@ var WB_ACTOR = (function () {
       el.sweat = pathE(hd, `M17,-30 Q21,-24 18.5,-21.5 Q15.5,-22.5 17,-30 Z`, "#bae6fd", 1.4, "#2563eb");
       // 前腿、前臂（在身体前面）
       el.legF = leg("F");
+      if (L.skirt) {   // 裙摆画在两条腿前面，挂在骨盆上（不跟着躯干前倾旋转）
+        el.skirt = G(body);
+        pathE(el.skirt, `M-13,-4 Q0,-1 13,-4 L20,24 Q0,30 -20,24 Z`, L.jacket, 2.2);
+        pathE(el.skirt, `M-8,8 L-10,22 M2,9 L2,26 M10,8 L12,22`, "none", 1.2, L.jacketD);
+      }
       el.propSlot = G(body);       // 抱在胸前的道具画在前臂下面
       el.armF = arm("F");
       // 星星笔帽马克笔（讲解员前手）
@@ -453,6 +476,10 @@ var WB_ACTOR = (function () {
           pathE(p.hammer, `M-12,-30 L12,-30 L12,-18 L-12,-18 Z`, "#fda4af", 1.8);
           pathE(p.hammer, `M-4,-46 L4,-46 L4,-30 L-4,-30 Z`, "#f3d9b1", 1.8);
         }
+      } else if (p.kind === "flower") {   // 一枝花：茎 + 叶 + 五瓣花（底边中心 = 茎的下端）
+        pathE(inner, `M0,0 Q-2,-10 0,-20 M0,-9 Q6,-13 9,-10 Q5,-6 0,-8`, "none", 1.8, "#059669");
+        for (let i = 0; i < 5; i++) { const an = -Math.PI / 2 + i * Math.PI * 2 / 5, cx = Math.cos(an) * 4.6, cy = -24 + Math.sin(an) * 4.6; mk("circle", { cx: cx.toFixed(2), cy: cy.toFixed(2), r: 3.4, fill: p.color || "#fda4af", stroke: INK, "stroke-width": 1.3 }, inner); }
+        mk("circle", { cx: 0, cy: -24, r: 2.4, fill: "#facc15", stroke: INK, "stroke-width": 1.2 }, inner);
       } else if (p.kind === "scroll") {
         pathE(inner, `M-15,-20 L15,-20 L15,0 L-15,0 Z`, "#ffffff", 2.1, "#2563eb");
         pathE(inner, `M-17,-22 Q-19,-10 -17,2 M17,-22 Q19,-10 17,2`, "none", 2.4, "#2563eb");
@@ -545,7 +572,7 @@ var WB_ACTOR = (function () {
         el.body.setAttribute("transform", `scale(${(fs * a.s * p.sx).toFixed(4)},${(a.s * p.sy).toFixed(4)})`);
         const airH = -Math.min(0, F.pel[1] + THIGH + SHIN);
         el.shadow.setAttribute("rx", (26 * a.s * Math.max(.45, 1 - airH / 90)).toFixed(2));
-        el.shadow.setAttribute("opacity", (.13 * Math.max(.4, 1 - airH / 80)).toFixed(3));
+        el.shadow.setAttribute("opacity", p.seat ? 0 : (.13 * Math.max(.4, 1 - airH / 80)).toFixed(3));   // 坐着（骑在牛背上）不画地面影子
         // 腿
         for (const n of ["F", "B"]) {
           const L = F.legs[n], E = el["leg" + n];
@@ -555,6 +582,7 @@ var WB_ACTOR = (function () {
         // 躯干（呼吸：轻微纵向起伏）
         const breathS = 1 + .014 * p.breath;
         el.torso.setAttribute("transform", `translate(${F.pel[0].toFixed(2)},${F.pel[1].toFixed(2)}) rotate(${F.lean.toFixed(2)}) scale(1,${breathS.toFixed(4)})`);
+        if (el.skirt) el.skirt.setAttribute("transform", `translate(${F.pel[0].toFixed(2)},${F.pel[1].toFixed(2)}) rotate(${(F.lean * .4).toFixed(2)})`);
         // 头：看向焦点（笔尖或 look 目标），讲话时轻微点头
         const ex = exprAt(a, t), v = visemeAt(a, t), spk = isSpeaking(a, t);
         let lookX = ex.lx || 0, lookY = ex.ly || 0, look = null;
