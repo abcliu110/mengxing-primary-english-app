@@ -9541,7 +9541,7 @@ const BAMBOO_TO_TREE_CASES = [
 ];
 
 // <<WB_ENGINE_START>>
-// ==================== 白板动画引擎 WB（竹节句 vs 树干句）====================
+// ==================== 白板动画引擎 WB（王炸实验室通用）====================
 // 画布 960×600：上方 0–544 白板，下方 544–600 讲解字幕条。
 // 每个案例 = build(k) 脚本；k 提供带「时间游标」的绘制工具，按调用顺序自动排时间。
 const WB = (function () {
@@ -9549,6 +9549,8 @@ const WB = (function () {
   const C = { ink: "#1f2937", red: "#e11d48", green: "#059669", brown: "#92400e", blue: "#2563eb", orange: "#f59e0b", grey: "#64748b", purple: "#7c3aed" };
   const ZH = '"WenQuanYi Zen Hei","PingFang SC","Microsoft YaHei",sans-serif';
   const MONO = '"Courier New",Courier,monospace';
+  // 估算文字宽度：中日韩字符按 1 个字号，其他按 0.55 个字号
+  const estW = (str, size) => [...String(str)].reduce((w, ch) => w + (ch.charCodeAt(0) > 0x2e80 ? size : size * .55), 0);
   const clamp = v => Math.max(0, Math.min(1, v));
   const ease = k => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
 
@@ -9602,13 +9604,16 @@ const WB = (function () {
     const rectD = (x, y, w, h) => `M${x},${y} h${w} v${h} h${-w} Z`;
 
     const k = {
-      C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
+      estW, C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
       // 标题 + 中线
-      header(sub) {
-        T("竹节句 vs 树干句", 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900 });
-        T(sub, 330, 52, go(1.2), 1.2, { size: 20, color: C.grey });
-        P(wl(480, 80, 480, 425, 1), go(.5), .5, { color: "#cbd5e1", w: 2, dash: "6 7" });
+      // 标题：title 大字，sub 灰色副标题（自动排在标题右边）；divider=false 时不画中线
+      header(sub, title = "竹节句 vs 树干句", divider = true) {
+        T(title, 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900 });
+        T(sub, 40 + estW(title, 32) + 28, 52, go(1.2), 1.2, { size: 20, color: C.grey });
+        if (divider) P(wl(480, 80, 480, 425, 1), go(.5), .5, { color: "#cbd5e1", w: 2, dash: "6 7" });
       },
+      // 小标题：anchor "start" / "middle" / "end"
+      head(text, x, y = 108, color = C.ink, anchor = "start", size = 22) { T(text, x, y, go(.9), .9, { size, color, weight: 900, anchor }); },
       leftHead() { T("汉语：竹节句", 40, 108, go(.9), .9, { size: 22, color: C.brown, weight: 900 }); },
       rightHead() { T("英语：树干句", 930, 108, go(.9), .9, { size: 22, color: C.green, weight: 900, anchor: "end" }); },
       // 中文句子（等宽方块字），返回字位置
@@ -9813,12 +9818,14 @@ const WB = (function () {
     return { render, end: END, remeasure() { measure(); lastNarr = -1; }, resetPen() { penX = 905; penY = 525; } };
   }
 
-  return { mount, kit, C };
+  return { mount, kit, C, ZH, MONO, estW };
 })();
+// 各页签的白板案例都登记在这里：WB_LAB[labTab] = [ { build(k){...}, terms:[[术语, 解释], ...] }, ... ]
+const WB_LAB = {};
 
 // ==================== 白板脚本：竹节句 vs 树干句 5 个病句手术 ====================
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
-const WB_BAMBOO_CASES = [
+WB_LAB.bamboo_tree = [
   // ───────── ① 多动词连动病 ─────────
   {
     build(k) {
@@ -10054,20 +10061,61 @@ const WB_BAMBOO_CASES = [
   }
 ];
 
-// ---------- App 接线：竹节句 vs 树干句 白板播放器 ----------
-var wbState = { t: 0, playing: true, player: null, caseIdx: -1 };
+// ---------- App 接线：王炸实验室白板播放器（所有页签共用） ----------
+// 页签里用 ${wbStageHtml("tab", 当前序号)}：这个页签在 WB_LAB 里登记了案例就出白板，否则出原来的 Canvas。
+var wbState = { t: 0, playing: true, player: null, key: "" };
+function wbCases(tab) { return (typeof WB_LAB !== "undefined" && WB_LAB[tab]) || null; }
+function wbTerms(tab, idx) {
+  const cs = wbCases(tab) || [];
+  const base = (cs[0] && cs[0].terms) || [], own = idx && cs[idx] ? (cs[idx].terms || []) : [];
+  return [...base, ...own];
+}
+function wbGlossHtml(tab, idx) {
+  const terms = wbTerms(tab, idx);
+  if (!terms.length) return "";
+  return `
+        <div style="margin-top:14px; background:#f8fafc; border-radius:14px; padding:14px 16px; border:2px solid #cbd5e1;">
+          <div style="font-weight:900; color:#065f46; font-size:0.98rem; margin-bottom:8px;">📖 术语小词典（看不懂的词点这里看）</div>
+          ${terms.map(([k, v]) => `
+            <div style="display:flex; gap:10px; font-size:0.88rem; line-height:1.55; padding:4px 0; border-bottom:1px dashed #e2e8f0;">
+              <div style="flex:0 0 150px; font-weight:900; color:#e11d48;">${k}</div>
+              <div style="color:#334155;">${v}</div>
+            </div>`).join("")}
+        </div>`;
+}
+function wbStageHtml(tab, idx, withGloss = true) {
+  const cs = wbCases(tab);
+  if (!cs || !cs.length) {
+    return `<div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
+          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
+        </div>`;
+  }
+  const i = Math.min(Math.max(0, idx | 0), cs.length - 1);
+  return `
+        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#fff; margin-bottom:14px;">
+          <svg id="wbStage" data-tab="${tab}" data-case="${i}" style="width:100%; height:auto; aspect-ratio:960/600; display:block;"></svg>
+          <div style="display:flex; align-items:center; gap:10px; padding:8px 12px; background:#f8fafc; border-top:1px solid #e2e8f0;">
+            <button id="wbPlay" onclick="wbToggle()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#059669; color:#fff; border:0;">⏸ 暂停</button>
+            <button onclick="wbReplay()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#e2e8f0; color:#0f172a; border:0;">↺ 重播</button>
+            <input id="wbSeek" type="range" min="0" max="1000" value="0" oninput="wbSeekTo(this.value)" style="flex:1;">
+            <span id="wbTime" style="font:700 12px monospace; color:#475569; min-width:92px; text-align:right;">0.0s</span>
+          </div>
+        </div>${withGloss ? wbGlossHtml(tab, i) + '<div style="height:14px;"></div>' : ""}`;
+}
 function startWBLoop(stage) {
-  const idx = Number(stage.getAttribute("data-case")) || 0;
-  const c = WB_BAMBOO_CASES[idx] || WB_BAMBOO_CASES[0];
-  if (wbState.caseIdx !== idx || !wbState.player || wbState.stage !== stage) {
-    wbState.player = WB.mount(stage, c.build, 7 + idx);
-    wbState.caseIdx = idx; wbState.stage = stage; wbState.t = 0; wbState.playing = true;
+  const tab = stage.getAttribute("data-tab") || "bamboo_tree";
+  const cs = wbCases(tab) || [];
+  const idx = Math.min(Number(stage.getAttribute("data-case")) || 0, cs.length - 1);
+  const key = tab + "#" + idx;
+  if (wbState.key !== key || !wbState.player || wbState.stage !== stage) {
+    wbState.player = WB.mount(stage, cs[idx].build, 7 + idx);
+    wbState.key = key; wbState.stage = stage; wbState.t = 0; wbState.playing = true;
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (wbState.player) wbState.player.remeasure(); });
   }
   wbSyncButton();
   let last = performance.now();
   function frame(now) {
-    if (document.getElementById("wbStage") !== stage) { superLabAnimId = null; wbState.player = null; wbState.caseIdx = -1; return; }
+    if (document.getElementById("wbStage") !== stage) { superLabAnimId = null; wbState.player = null; wbState.key = ""; return; }
     const dt = Math.min(.05, (now - last) / 1000); last = now;
     const p = wbState.player;
     if (wbState.playing) { wbState.t += dt; if (wbState.t > p.end) wbState.t = 0; }
@@ -10079,7 +10127,6 @@ function startWBLoop(stage) {
   }
   superLabAnimId = requestAnimationFrame(frame);
 }
-function curIdxTerms(i) { const c = WB_BAMBOO_CASES[i]; return c ? c.terms : []; }
 function wbSyncButton() { const b = document.getElementById("wbPlay"); if (b) b.textContent = wbState.playing ? "⏸ 暂停" : "▶ 播放"; }
 function wbToggle() { wbState.playing = !wbState.playing; wbSyncButton(); }
 function wbReplay() { wbState.t = 0; wbState.playing = true; if (wbState.player) wbState.player.resetPen(); wbSyncButton(); }
@@ -10744,16 +10791,7 @@ function renderSuperLabHubView() {
 
         <h3 style="margin:0 0 10px; font-size:1.22rem; color:#064e3b; font-weight:900;">${curCase.title}</h3>
 
-        <!-- WB_STAGE -->
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#fff; margin-bottom:14px;">
-          <svg id="wbStage" data-case="${superLabState.btIdx}" style="width:100%; height:auto; aspect-ratio:960/600; display:block;"></svg>
-          <div style="display:flex; align-items:center; gap:10px; padding:8px 12px; background:#f8fafc; border-top:1px solid #e2e8f0;">
-            <button id="wbPlay" onclick="wbToggle()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#059669; color:#fff; border:0;">⏸ 暂停</button>
-            <button onclick="wbReplay()" style="padding:7px 14px; border-radius:10px; font-weight:900; font-size:0.85rem; background:#e2e8f0; color:#0f172a; border:0;">↺ 重播</button>
-            <input id="wbSeek" type="range" min="0" max="1000" value="0" oninput="wbSeekTo(this.value)" style="flex:1;">
-            <span id="wbTime" style="font:700 12px monospace; color:#475569; min-width:92px; text-align:right;">0.0s</span>
-          </div>
-        </div>
+        <!-- WB_STAGE -->${wbStageHtml("bamboo_tree", superLabState.btIdx, false)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
           <div style="background:#fff1f2; border-radius:14px; padding:14px; border:2px solid #fda4af;">
@@ -10773,15 +10811,7 @@ function renderSuperLabHubView() {
             </div>
           </div>
         </div>
-        <!-- WB_GLOSS -->
-        <div style="margin-top:14px; background:#f8fafc; border-radius:14px; padding:14px 16px; border:2px solid #cbd5e1;">
-          <div style="font-weight:900; color:#065f46; font-size:0.98rem; margin-bottom:8px;">📖 术语小词典（看不懂的词点这里看）</div>
-          ${[...(curIdxTerms(0)), ...(superLabState.btIdx ? curIdxTerms(superLabState.btIdx) : [])].map(([k, v]) => `
-            <div style="display:flex; gap:10px; font-size:0.88rem; line-height:1.55; padding:4px 0; border-bottom:1px dashed #e2e8f0;">
-              <div style="flex:0 0 150px; font-weight:900; color:#e11d48;">${k}</div>
-              <div style="color:#334155;">${v}</div>
-            </div>`).join("")}
-        </div>
+        <!-- WB_GLOSS -->${wbGlossHtml("bamboo_tree", superLabState.btIdx)}
       </div>
     `;
   } else if (tab === "vowel_shift") {
@@ -10800,9 +10830,7 @@ function renderSuperLabHubView() {
         <h3 style="margin:0 0 8px; font-size:1.22rem; color:#4c1d95; font-weight:900;">🧬 ${curLaw.lawName}</h3>
         <p style="margin:0 0 14px; font-size:0.92rem; color:#334155; line-height:1.55;">${curLaw.essence}</p>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:vowel_shift -->${wbStageHtml("vowel_shift", superLabState.grimmIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px;">
           ${curLaw.pairs.map(p => `
@@ -10839,9 +10867,7 @@ function renderSuperLabHubView() {
           </div>
         </div>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:adj_order -->${wbStageHtml("adj_order", superLabState.adjExIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(125px, 1fr)); gap:8px; margin-bottom:14px;">
           ${ADJ_ORDER_CARRIAGES.map((c, idx) => `
@@ -10877,9 +10903,7 @@ function renderSuperLabHubView() {
         <h3 style="margin:0 0 6px; font-size:1.22rem; color:#991b1b; font-weight:900;">${curClan.clanName}</h3>
         <p style="margin:0 0 14px; font-size:0.92rem; color:#334155; line-height:1.55;">${curClan.secret}</p>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:past_clans -->${wbStageHtml("past_clans", superLabState.clanIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px;">
           ${curClan.members.map(m => `
@@ -10912,9 +10936,7 @@ function renderSuperLabHubView() {
         <h3 style="margin:0 0 6px; font-size:1.22rem; color:#075985; font-weight:900;">🎵 ${curStress.title}</h3>
         <p style="margin:0 0 14px; font-size:0.92rem; color:#334155; line-height:1.55;">${curStress.principle}</p>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:stress_rhythm -->${wbStageHtml("stress_rhythm", superLabState.stressIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px;">
           ${curStress.items.map(it => `
@@ -10945,9 +10967,7 @@ function renderSuperLabHubView() {
         <h3 style="margin:0 0 6px; font-size:1.22rem; color:#92400e; font-weight:900;">${curMeta.catTitle}</h3>
         <p style="margin:0 0 14px; font-size:0.92rem; color:#334155; line-height:1.55;">${curMeta.desc}</p>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:metaphor_code -->${wbStageHtml("metaphor_code", superLabState.metaIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px;">
           ${curMeta.cards.map(c => `
@@ -10987,9 +11007,7 @@ function renderSuperLabHubView() {
           <div style="font-size:0.84rem; color:#0f766e; font-weight:800; margin-top:5px;">📡 标志时间雷达词：${curTense.signals}</div>
         </div>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:tense_matrix -->${wbStageHtml("tense_matrix", superLabState.tenseIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px; margin-bottom:12px;">
           ${curTense.subjectSwitch.map(s => `
@@ -11023,9 +11041,7 @@ function renderSuperLabHubView() {
         <h3 style="margin:8px 0 6px; font-size:1.22rem; color:#9a3412; font-weight:900;">⚡ ${curAux.title}</h3>
         <p style="margin:0 0 14px; font-size:0.9rem; color:#334155; line-height:1.55;">${curAux.lawSummary}</p>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:aux_transformer -->${wbStageHtml("aux_transformer", superLabState.auxIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(310px, 1fr)); gap:12px;">
           <div onclick="speakEnglishText(${attrEscape(JSON.stringify(curAux.affirmative))})"
@@ -11082,9 +11098,7 @@ function renderSuperLabHubView() {
         <div style="font-weight:900; color:#4338ca; font-size:0.94rem; margin-bottom:6px;">📐 骨骼公式：${curPat.formula}</div>
         <p style="margin:0 0 14px; font-size:0.9rem; color:#334155; line-height:1.55;">${curPat.essence}</p>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:five_patterns -->${wbStageHtml("five_patterns", superLabState.patIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-bottom:14px;">
           ${curPat.skeletonParts.map((sp, i) => `
@@ -11121,9 +11135,7 @@ function renderSuperLabHubView() {
         <h3 style="margin:0 0 6px; font-size:1.22rem; color:#701a75; font-weight:900;">✍️ ${curWrite.category}</h3>
         <p style="margin:0 0 14px; font-size:0.92rem; color:#334155; line-height:1.55;">${curWrite.subtitle}</p>
 
-        <div style="width:100%; overflow:hidden; border-radius:16px; border:2px solid #94a3b8; background:#0f172a; margin-bottom:16px;">
-          <canvas id="superLabCanvas" style="width:100%; max-width:100%; height:auto; aspect-ratio:740/320; display:block;"></canvas>
-        </div>
+        <!-- WB_STAGE:writing_alchemist -->${wbStageHtml("writing_alchemist", superLabState.writeIdx)}
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:13px;">
           ${curWrite.formulas.map(f => `

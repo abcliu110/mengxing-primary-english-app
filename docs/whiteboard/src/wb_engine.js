@@ -1,4 +1,4 @@
-// ==================== 白板动画引擎 WB（竹节句 vs 树干句）====================
+// ==================== 白板动画引擎 WB（王炸实验室通用）====================
 // 画布 960×600：上方 0–544 白板，下方 544–600 讲解字幕条。
 // 每个案例 = build(k) 脚本；k 提供带「时间游标」的绘制工具，按调用顺序自动排时间。
 const WB = (function () {
@@ -6,6 +6,8 @@ const WB = (function () {
   const C = { ink: "#1f2937", red: "#e11d48", green: "#059669", brown: "#92400e", blue: "#2563eb", orange: "#f59e0b", grey: "#64748b", purple: "#7c3aed" };
   const ZH = '"WenQuanYi Zen Hei","PingFang SC","Microsoft YaHei",sans-serif';
   const MONO = '"Courier New",Courier,monospace';
+  // 估算文字宽度：中日韩字符按 1 个字号，其他按 0.55 个字号
+  const estW = (str, size) => [...String(str)].reduce((w, ch) => w + (ch.charCodeAt(0) > 0x2e80 ? size : size * .55), 0);
   const clamp = v => Math.max(0, Math.min(1, v));
   const ease = k => k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
 
@@ -59,13 +61,16 @@ const WB = (function () {
     const rectD = (x, y, w, h) => `M${x},${y} h${w} v${h} h${-w} Z`;
 
     const k = {
-      C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
+      estW, C, S, P, T, F, go, wait, N, wl, roughRect, ellipse, wave, cloud, rectD,
       // 标题 + 中线
-      header(sub) {
-        T("竹节句 vs 树干句", 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900 });
-        T(sub, 330, 52, go(1.2), 1.2, { size: 20, color: C.grey });
-        P(wl(480, 80, 480, 425, 1), go(.5), .5, { color: "#cbd5e1", w: 2, dash: "6 7" });
+      // 标题：title 大字，sub 灰色副标题（自动排在标题右边）；divider=false 时不画中线
+      header(sub, title = "竹节句 vs 树干句", divider = true) {
+        T(title, 40, 52, go(1.4), 1.4, { size: 32, color: C.ink, weight: 900 });
+        T(sub, 40 + estW(title, 32) + 28, 52, go(1.2), 1.2, { size: 20, color: C.grey });
+        if (divider) P(wl(480, 80, 480, 425, 1), go(.5), .5, { color: "#cbd5e1", w: 2, dash: "6 7" });
       },
+      // 小标题：anchor "start" / "middle" / "end"
+      head(text, x, y = 108, color = C.ink, anchor = "start", size = 22) { T(text, x, y, go(.9), .9, { size, color, weight: 900, anchor }); },
       leftHead() { T("汉语：竹节句", 40, 108, go(.9), .9, { size: 22, color: C.brown, weight: 900 }); },
       rightHead() { T("英语：树干句", 930, 108, go(.9), .9, { size: 22, color: C.green, weight: 900, anchor: "end" }); },
       // 中文句子（等宽方块字），返回字位置
@@ -270,5 +275,7 @@ const WB = (function () {
     return { render, end: END, remeasure() { measure(); lastNarr = -1; }, resetPen() { penX = 905; penY = 525; } };
   }
 
-  return { mount, kit, C };
+  return { mount, kit, C, ZH, MONO, estW };
 })();
+// 各页签的白板案例都登记在这里：WB_LAB[labTab] = [ { build(k){...}, terms:[[术语, 解释], ...] }, ... ]
+const WB_LAB = {};
