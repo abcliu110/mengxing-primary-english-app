@@ -11,7 +11,7 @@
 | 步骤 | 内容 | 状态 / 提交 |
 |---|---|---|
 | 1 | R2 朗读覆盖检查脚本 `src/r2check.py` + `src/r2check.js`（同时做 R4 动作覆盖检查） | ✅ 见下 |
-| 2 | port 幕补齐 R2（每个英文词 / 词块：单独朗读 + 例句） | 待做 |
+| 2 | port 幕补齐 R2（每个英文词 / 词块：单独朗读 + 例句） | ✅ 朗读 9 → 21 句；`r2check.py wo_port` 25 个词 / 词块全部 ✔读 ✔句 |
 | 3 | 讲解员小人（v3a 定稿，SVG 骨架 + 动作库 v1 + 5 表情 + 3 口型） | 待做 |
 | 4 | port 幕 R4：动作词全部由小人 / 角色演出来，与朗读同步 | 待做 |
 | 5 | 引擎 V1–V8 + M1–M12（向后兼容，旧幕回归） | 待做 |
@@ -48,7 +48,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | （本次） | 本交接文档 |
 
 ### 1.3 已知不足（按新规则复查 port 幕，阶段 1 要补）
-- **R2 朗读**：opportunity 没有例句；Rome、Mediterranean 以外的专有名词和词块（medi、terra、ob、im、ex、trans、re、pass、air、sup）没有单独朗读。
+- ~~**R2 朗读**：opportunity 没有例句；Rome、Mediterranean 以外的专有名词和词块（medi、terra、ob、im、ex、trans、re、pass、air、sup）没有单独朗读。~~ ✅ 阶段 1 第 2 步已补（新增 12 句：Rome / medi+terra / ob portum / opportunity / portus+portare / im / ex / trans / re / OK+pass / air / sup；export 补单独朗读）
 - **R4 动作**：搬运、进出城、过关卡是「箱子 / 卷轴自己移动」+ 火柴人平移，人没有做搬、拿、走的动作；support 没有人托。
 - **视觉标准**：配色超出新调色板、只有一种缓动、镜头间是淡出不是擦除、白板上的词不随朗读高亮、没有小人、没有音效。
 - 欧洲（Europe）幕的出处已查（etymonline「Europe」：名字来源**不确定**，常被解释为「宽脸」，传统上联系神话公主 Europa；维基百科：腓尼基公主、宙斯化白牛、驮到克里特；中文「欧洲」= 利玛窦《坤舆万国全图》里的「欧罗巴洲」缩写）——**还没写进 SOURCES.md、没写代码**；做的时候名字来源必须标 ❓。
