@@ -197,4 +197,85 @@ WB_LAB.intonation_map = [
       ["节拍", "重读的词像鼓点（💡 比喻）；✂️ 真实说话里每拍长短不会完全一样。"],
     ],
   },
+
+  // ───────────────────────── 第 3 幕：合成词重音（BLACKboard vs black BOARD）─────────────────────────
+  // 决策 6「合成词重音」：做在语调地图旁边（本页签第 3 幕）。原 stress_rhythm 没有合成词条目，无需搬迁。
+  {
+    build(k) {
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
+      N("", "这一幕：blackboard 和 black board，写法差一个空格，重音一换，意思就变了！");
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "合成词重音", sub: "🎵 语调地图 ③", badges: ["✂️", "💡"], steps: ["① 对比", "② 规律", "③ 更多例子", "④ 句子里", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.3);
+
+      D.step(0); D.shot();
+      N("合成词：", "两个词拼成一个新词，表示一样新东西，比如 blackboard（黑板）。");
+      T("BLACKboard　黑板（教室里写字的板）", 60, 160, go(1), 1, { size: 24, color: C.blue, weight: 900, font: M });
+      T("black BOARD　一块黑色的木板", 60, 210, go(1), 1, { size: 24, color: C.red, weight: 900, font: M });
+      sayAt("Blackboard. A black board.", { zh: "黑板。一块黑色的板。", word: "blackboard black board a" });
+      k.act(me, "point", S.at - 1.6, 1.4, { at: [200, 156] });
+      k.wait(.3);
+
+      D.step(1);
+      N("✂️ 规律：", "合成名词重音多在前面一个词；「形容词 + 名词」的普通短语，重音落在后面的名词上。");
+      T("合成名词：重音在前　　形容词 + 名词：重音在后", 60, 270, go(1), 1, { size: 20, color: C.green, weight: 900 });
+      k.badge("✂️", 60 + k.estW("合成名词：重音在前　　形容词 + 名词：重音在后", 20) + 10, 266, { label: "大多数" });
+      k.wait(.4);
+      D.wipe();
+
+      D.step(2); D.shot();
+      N("更多例子：", "greenhouse 温室 / green house 绿色的房子；hotdog 热狗 / hot dog 很热的狗。");
+      T("GREENhouse 温室　·　green HOUSE 绿房子", 60, 150, go(1), 1, { size: 21, color: C.ink, weight: 900, font: M });
+      T("HOTdog 热狗　·　hot DOG 很热的狗", 60, 192, go(1), 1, { size: 21, color: C.ink, weight: 900, font: M });
+      T("WHITE House 白宫　·　white HOUSE 白色的房子", 60, 234, go(1), 1, { size: 21, color: C.ink, weight: 900, font: M });
+      sayAt("Greenhouse, green house. Hotdog, hot dog.", { zh: "温室，绿色的房子。热狗，很热的狗。", word: "greenhouse green house hotdog hot dog" });
+      sayAt("The White House is a white house.", { zh: "白宫是一座白色的房子。", word: "white house the is" });
+      k.act(me, "surprised", S.at - 1.2, 1);
+      k.wait(.3);
+
+      D.step(3);
+      N("句子里：", "读对重音，别人才知道你说的是哪一个。");
+      T("Look at the BLACKboard, please.", 60, 300, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      const syLook = sayAt("Look at the blackboard, please.", { zh: "请看黑板。", word: "look at please" });
+      k.act(me, "point", syLook.t, Math.max(1.2, syLook.dur), { at: [300, 296], words: ["look"] });
+      k.wait(.3);
+
+      D.step(4);
+      N("口诀：", "合成名词前面重，普通短语后面重。");
+      P(k.roughRect(40, 340, 800, 50), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("合成名词前面重，普通短语后面重。", 60, 372, go(.9), .9, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.4);
+
+      D.step(5);
+      N("预测：", "football（足球）的重音在哪儿？先想 3 秒！");
+      P(k.roughRect(16, 420, 824, 112), go(.6), .6, { color: C.green, w: 2.5 });
+      F(k.rectD(16, 420, 824, 112), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 football 足球：重音在前还是在后？", 36, 460, go(.9), .9, { size: 20, color: C.ink, weight: 900 });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "合成名词，重音在前：FOOTball。");
+      T("FOOTball（合成名词，前面重）", 36, 502, go(.8), .8, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", S.at - .3, 1.3); k.sfx("ding", S.at + .2);
+      sayAt("Football. I play football.", { zh: "足球。我踢足球。", word: "football I play" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "两个词拼成新东西（合成名词）：重音在前；\n形容词 + 名词：重音在后。", rhyme: "合成名词前面重，\n普通短语后面重！", hlLines: 2, foot: "🎵 语调地图 · 合成词重音" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.42);
+    },
+    actionWords: [
+      { word: "look", act: "讲解员读 Look at the blackboard 时指向黑板（point）" },
+    ],
+    terms: [
+      ["合成词", "两个词拼成的新词：blackboard、football、greenhouse。"],
+      ["合成名词重音", "✂️ 大多数合成名词重音在前一个词：BLACKboard、FOOTball。"],
+      ["短语重音", "形容词 + 名词的普通短语，重音在后面的名词：black BOARD。"],
+    ],
+  },
 ];
