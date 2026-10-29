@@ -197,6 +197,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 14 | 新幕 `ze_wear` 穿 / 带 / 教学（v2 + 讲解员，N 一字多词） | ✅ 穿：wear（穿着）/ put on（穿上），照搬 Wear your coat quickly! ❌ → She wears a red dress. / Put on your coat, please!；带：take（讲解员抱起箱子走开，R4）/ bring（抱回来放下，R4）、Take the box to the classroom. / Bring your book to me.；教 / 学：Miss Li teaches us English. / We learn English from her. → 口诀 → 🔮 Bring your photos to me. → 金句卡。验收：r2check --strict 30 词 7 句、R4 2/2；旧 81 幕渲染逐字节一致；appze 过；截图看过。 |
 | 15 | 新幕 `ze_pronoun` I / me / my / mine（v2 + 讲解员，M 代词变格） | ✅ 出处先登记 `zh_en_hub/SOURCES.md`（维基 Declension：古英语是变格语言、现代英语大多丢了；名词不分主宾格靠词序；代词还留着 I/me/my/mine、he/him）。中文一个「我」→ 照搬 Him likes I. ❌ → 四列代词表（主语 / 宾语 / + 名词 / 单独用，5 行）→ 📜 古英语变格、The dog sees the cat. / The cat sees the dog. 名词不变、He sees him. / You see me. 代词还在变、💡「活化石」→ 口诀「做主语 I，当宾语 me，带名词 my，单独用 mine」→ 🔮 She is my friend. I like her. → 金句卡。验收：r2check --strict 28 词 5 句；旧 83 幕渲染逐字节一致；appze 过；截图看过。 |
 | — | **中英对照总枢 11 幕全部上线**（2026-10-30 03:15） | 下一步：① 搬迁幕 `ze_be`、`ze_modifier` 升引擎 v2 + 讲解员（先存 `_classic` 回退文件）；② MASTER_DESIGN §4 阶段 4「实验室新页签」（短语动词总钥匙等，删 `verb_matrix` 前要零丢失清单）。 |
+| ✅ | **`ze_be` 升 v2 + 讲解员**（2026-10-29 23:35 JST） | 升级前存 `cases/ze_be_classic.js`（不进 App）。新版：对照版五步 + 🔮 预测；两个 king 角色举「am」「like」词卡走向王座、跳起来打架，am 国王退场、like 国王欢呼；讲解员思考 / 惊讶 / 指 / 举「am」卡 / 欢呼；金句卡。依赖改 `wo_props`（`ZE_DEPS`）。零丢失对照新工具 `src/check_upgrade.py` → `zh_en_hub/INVENTORY_ZE_BE_V2.md`（54 条，❌ 0）。`preview.html` 支持 `ze_*`。验收：r2check --strict 23 词 7 句 R4 2/2；reg_render 只有 ze_be 变化；appze 过；截图检查。 |
 
 ## 1. 当前状态
 
