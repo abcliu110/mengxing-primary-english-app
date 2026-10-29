@@ -71,6 +71,7 @@
 - 06:07｜five_patterns ③ SVO 一箭穿心型升 v2（骨架 + 一箭穿心 / 植树金句 + 画蛇添足 / 宾语穿制服 + 公式三镜头 + 🔮 I want to read this story + 金句卡；R4 reading 捧书、planted 小旅客种树苗、go 讲解员走、read 捧书）｜`796b68c`｜`work/shots/five_patterns_3_对比总图.png`（Hark 项目工作区）｜小树苗用道具库的 flower（动作库没有「种」，用 carry + put 搬到土坑边放下表现）；✂️ 徽章只写「大致规律、要逐个记」，不加新的事实性说法；enter the room 的 enter 不在 r2check 动作表、只是例词串，不演；时长 109→119 秒
 - 06:12｜five_patterns ④ SVOO 双手递礼型升 v2（骨架 + 两种语序 / to 指向 / for 心意 + 公式三镜头 + 🔮 Please pass the book to me + 金句卡；R4 gave 妈妈递礼物盒、give / show 讲解员举词卡、pass 举书递出）｜`ec58b68`｜`work/shots/five_patterns_4_对比总图.png`（Hark 项目工作区）｜「给」动作库没有，按 fp_one_king ④ 先例用 carry + put（场景）和 holdCard（讲解员）代替；bought / made / cook 动作库没有买、做饭，不演（不在 r2check 动作表）；✂️ 徽章去掉「个别动词两种都能用」这类未核实说法，只写「以词典为准」；时长 105→116 秒
 - 06:15｜five_patterns ⑤ SVOC 魔法赋能型升 v2，**five_patterns 5 个案例全部 v2 完成**（骨架 + 小主谓句 / 读书金句 + 形容词宾补避坑 / 使役动词 + 带不带 to + 公式三镜头 + 🔮 The teacher makes us read aloud + 金句卡；R4 reading / read 捧书、play 讲解员跳 + 两个孩子跳、go 讲解员走）｜`14c396b`｜`work/shots/five_patterns_5_对比总图.png`（Hark 项目工作区）｜「makes me happily」原在 x712 会越过讲解员，挪到下一行；laugh 动作库没有，只给场景孩子开心表情、不列 actionWords；keeps my mind open 的 open 是形容词，r2check 只作提示；删掉旧版面工具 tools()（只留在 classic）；五个案例时长 92→108、97→109、109→119、105→116、118→127 秒（每个都在 +20% 内）
+- 06:20｜tense_matrix 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`8a4dd20`｜—｜旧幕渲染不变（reg_render diff 0，只加依赖）；照 five_patterns 先例，INVENTORY 放 docs/whiteboard/lab/；升级前时长 ①144 ②129 ③148 ④134 ⑤145 秒（每个案例 v2 上限 ×1.2：173 / 155 / 178 / 161 / 174）
 
 ## 1. 现在做到哪
 
