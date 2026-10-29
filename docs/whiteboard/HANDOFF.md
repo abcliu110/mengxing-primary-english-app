@@ -61,6 +61,7 @@
 - 05:26｜bamboo_tree ④ 时空顺序颠倒病升 v2（竹节句 + 病句 / 树干句两镜头 + 🔮 at home at 3 o'clock yesterday afternoon + 金句卡；R4 exercises）｜`22e3498`｜`work/shots/bamboo_tree_4_对比总图.png`｜exercises 不在 r2check 动作动词表，但「做早操」是人能演的动作，按 R4 精神列入 actionWords（讲解员 jump）；括号颜色按挂件色统一（时间绿 · 地点蓝），与树干镜头一致
 - 05:29｜bamboo_tree ⑤ There be 双谓语病升 v2，**bamboo_tree 5 个案例全部 v2 完成**（竹节句 + 病句 / 树干句两镜头 + 🔮 three birds singing + 金句卡；R4 swimming / swim 小黄鸭游）｜`37f618f`｜`work/shots/bamboo_tree_5_对比总图.png`｜游泳无人物动作，按 fp_iconicity 先例用场景动作（鸭子 move + actFx）代替；鸭子黄色是道具色；预测题 sing→singing 不列 actionWords（唱歌不是走跑跳类肢体动作，动作库也无）
 - 05:34｜aux_transformer 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`cb8769e`｜—｜旧幕渲染不变（只加依赖）；照 bamboo_tree 先例，INVENTORY 放 docs/whiteboard/lab/
+- 05:41｜aux_transformer ① be 动词护卫升 v2（① 肯定 + ② 否定 / ③ 一般疑问 + ④ 特殊疑问 / ⑤ 感叹 + 回顾 + 口诀三镜头 + 🔮 Is he reading a book + 金句卡；R4 taking photos 场景人物拿相机 + 快门闪、reading 讲解员捧书）｜`1f30f96`｜`work/shots/aux_transformer_1_对比总图.png`｜原一屏 5 行在讲解员让位（内容 x≤800）后放不下，按 R1 稳妥拆成三镜头，文字一条不删只换位置；动作库没有「拍照」，用 take + 📷 词卡 + 快门闪（actFx）代替；镜头 3 原本只剩一句，补前四句灰色回顾（都是已朗读的原句，不加新事实）；时长 102→128 秒
 
 ## 1. 现在做到哪
 
