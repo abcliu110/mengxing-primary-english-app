@@ -178,6 +178,14 @@ if ZE_READY and 'zh_en_hub' not in s.split(ROUTE)[1][:400]:
 if ZE_READY and 'zeAnimId' not in s.split(STOP)[1][:400]:
     s = s.replace(STOP, STOP + '  if (typeof zeAnimId !== "undefined" && zeAnimId) { cancelAnimationFrame(zeAnimId); zeAnimId = null; }\n')
 
+# 第一性原理里搬走的幕（act.movedTo）：舞台和术语换成「一句话 + 跳转」卡片（fpMovedHtml 在 ze_hub.js）
+FP_ST = '<!-- WB_STAGE:fp -->${wbStageHtml(law.id, fpState.actIdx, false, "fpWbStage")}'
+if FP_ST in s:
+    s = s.replace(FP_ST, '<!-- WB_STAGE:fp -->${act.movedTo ? fpMovedHtml(act) : wbStageHtml(law.id, fpState.actIdx, false, "fpWbStage")}')
+FP_GL = '<!-- WB_GLOSS:fp -->${wbGlossHtml(law.id, fpState.actIdx)}'
+if FP_GL in s:
+    s = s.replace(FP_GL, '<!-- WB_GLOSS:fp -->${act.movedTo ? "" : wbGlossHtml(law.id, fpState.actIdx)}')
+
 # ---------- 按需加载（决策 13 第 3 条）：「万能动词 × 向量转盘」VV 动画脚本（约 1.7 MB：webp 素材 base64 + 场景）
 # 只有 verb_matrix 页签用，改成不执行的 wbmod-vv，进入页签渲染时才载入（首页不再解析这 1.7 MB）
 VV_OPEN = '<script>\n/* ===== 万能动词×向量转盘 VV 动画'

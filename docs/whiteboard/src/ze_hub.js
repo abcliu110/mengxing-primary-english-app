@@ -91,3 +91,13 @@ function startZhEnLoop() {
   const st = document.getElementById("zeWbStage");
   if (st) startWBLoop(st, "ze");
 }
+// 第一性原理里搬到本总枢的幕：原位置只留一句话 + 跳转（FIRST_PRINCIPLES_DB 的 act.movedTo = { scene, title, line }）
+function fpMovedHtml(act) {
+  const m = act.movedTo;
+  return `<div id="fpMovedBox" style="background:linear-gradient(135deg,#f0fdfa,#ccfbf1); border:2.5px dashed #14b8a6; border-radius:16px; padding:22px 24px; text-align:center;">
+    <div style="font-size:1.6rem;">🔀</div>
+    <div style="font-weight:900; color:#0f172a; font-size:1.08rem; margin:6px 0;">这一幕已经搬到「中英对照总枢」</div>
+    <div style="color:#334155; font-size:0.92rem; line-height:1.6; max-width:640px; margin:0 auto 14px;">${m.line}</div>
+    <button onclick="navigateTo('zh_en_hub', { scene: '${m.scene}' })" style="background:linear-gradient(135deg,#14b8a6,#0d9488); color:#fff; font-weight:900; padding:10px 20px; border-radius:12px; font-size:0.95rem;">去看「${m.title}」这一幕 ➔</button>
+  </div>`;
+}
