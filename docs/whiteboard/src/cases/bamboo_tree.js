@@ -122,58 +122,113 @@ WB_LAB.bamboo_tree = [
       ["单核", "一个句子只有一个核心，也就是只有一个谓语动词。"]
     ]
   },
-  // ───────── ② 双王相撞病 ─────────
+  // ───────── ② 双王相撞病（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/bamboo_tree_classic.js（R1 零丢失）。原左（竹节句 + 病句）右（两棵树）两半拆成两个镜头；两棵树整体左移 300；紫（程度）改墨黑、橙（and）改蓝（V3），树干 / 王冠保留道具色。
   {
     build(k) {
-      const { C, N } = k;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一句有两个毛病：两个国王抢一个王座，还有一个形容词没有国王。");
-      k.header("病句手术 ②  双王相撞病");
-      k.leftHead();
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "竹节句 vs 树干句", sub: "病句手术 ②  双王相撞病", badges: ["💡", "✂️"], steps: ["① 竹节句", "② 双王相撞", "③ 两棵树", "④ 挂件和桥", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 竹节句 + 双王相撞 ─────
+      D.step(0); D.shot();
+      k.head("汉语：竹节句", 40, 108, C.ink);
       N("竹节句：", "中文里「喜欢」是动作，「开心」是心情，都能直接当句子的核心。");
       const z = k.zh("我非常喜欢小狗，它们今天很开心。", 40, 155, 26);
       k.circle(z, 3, 4); k.circle(z, 13, 14);
+      k.act(me, "point", S.at - .8, 1.2, { at: [z.cx(13), z.cy] });
       N("", "画成竹子：「喜欢」一节，「开心」一节。");
       k.bamboo(["喜欢 like", "开心 happy"]);
       k.note("中文里「开心」可以直接当谓语", 40, 272);
+      D.step(1);
       N("中式英语（Chinglish）：", "照着中文硬翻：I am very like dogs, they very happy today.");
       const m1 = k.mono("I am very like dogs,", 40, 322);
       const m2 = k.mono("they very happy today.", 40, 372);
       k.redX(12, 302);
+      sayAt("Chinglish is not good English.", { zh: "中式英语不是地道的英语。", word: "Chinglish" });
       N("双王相撞：", "am 和 like 都是动词，挤在同一个王座上打架。一句只能有一个国王！");
       k.miniCrown((m1.x0("am") + m1.x1("am")) / 2, m1.y - 22);
       k.miniCrown((m1.x0("like") + m1.x1("like")) / 2, m1.y - 22);
       k.bolt((m1.x0("very") + m1.x1("very")) / 2, m1.y - 50);
+      k.act(me, "surprised", S.at - .3, 1); k.expr(me, "oops", S.at - .3, 1.4);
       k.strike(m1, "am");
       N("形容词：", "描述样子、心情的词，比如 happy。英语里它不能自己当谓语，要靠 are 搭桥。");
       k.caret(m2, "very", 0, "are");
       k.note("① 一句只能一个国王  ② 形容词要靠 are 搭桥", 40, 414, { size: 17, color: C.red, weight: 900 });
-      k.rightHead();
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 镜头 2 · 两件事，两棵树 ─────
+      D.step(2); D.shot();
+      k.head("英语：树干句", 40, 108, C.green);
       N("树干句：", "这句话说了两件事，英语就长两棵树，再用 and 连起来。");
-      k.tree({ cx: 600, gx0: 500, gx1: 930, crownRx: 70, crownRy: 40, crownY: 172, trunkW: 44 });
-      k.tree({ cx: 830, groundLine: false, crownRx: 70, crownRy: 40, crownY: 172, trunkW: 44 });
+      k.tree({ cx: 300, gx0: 200, gx1: 630, crownRx: 70, crownRy: 40, crownY: 172, trunkW: 44 });
+      k.tree({ cx: 530, groundLine: false, crownRx: 70, crownRy: 40, crownY: 172, trunkW: 44 });
       N("主干 1：", "I like dogs（我喜欢小狗）。like 是这棵树的谓语动词。");
-      k.sign("I like dogs", 600, 290, "like", { size: 20, crownTag: false });
+      k.sign("I like dogs", 300, 290, "like", { size: 20, crownTag: false });
       N("系动词：", "am / is / are，像一座桥，把主语和形容词连起来：They are happy。");
-      k.sign("They are happy", 830, 290, "are", { size: 20, crownTag: false });
+      k.sign("They are happy", 530, 290, "are", { size: 20, crownTag: false });
+      const syH = sayAt("I like dogs. They are happy.", { zh: "我喜欢小狗。它们很开心。", word: "I like dogs they are happy They are happy" });
+      k.act(me, "cheer", syH.t + syH.dur * .5, 1.2);
+      sayAt("Am, is, are. I am happy. She is happy.", { zh: "am、is、are。我很开心。她很开心。", word: "am is" });
+      D.step(3);
       N("程度挂件：", "very much（非常）修饰 like，挂在句子后面；very 修饰 happy。");
-      k.chip("very much", 550, 354, [600, 326], { string: true, color: C.purple, tag: "程度：多喜欢", tagX: 548 });
-      k.chip("very", 760, 354, [788, 326], { string: true, color: C.purple, tag: "多开心", tagX: 760 });
+      k.chip("very much", 250, 354, [300, 326], { string: true, color: C.ink, fill: C.tintInk, tag: "程度：多喜欢", tagX: 248 });
+      k.chip("very", 460, 354, [488, 326], { string: true, color: C.ink, fill: C.tintInk, tag: "多开心", tagX: 460 });
       N("时间挂件：", "today 挂在句尾。");
-      k.chip("today", 846, 354, [872, 326], { string: true, color: C.green, tag: "时间", tagX: 856 });
+      k.chip("today", 546, 354, [572, 326], { string: true, color: C.green, tag: "时间", tagX: 556 });
       N("and：", "连接词，像一座桥把两个句子连起来。有了 and，一句话里才能有两个谓语。");
-      k.P("M622,240 C660,256 770,256 808,240", k.go(.6), .6, { color: C.orange, w: 3 });
-      k.chip("and", 692, 232, null, { color: C.orange });
+      P("M322,240 C360,256 470,256 508,240", k.go(.6), .6, { color: C.blue, w: 3 });
+      k.chip("and", 392, 232, null, { color: C.blue });
+      k.act(me, "point", S.at - .5, 1.2, { at: [415, 245] });
+      sayAt("Very, very much, today, and.", { zh: "非常、非常（喜欢）、今天、和。", word: "very much today and" });
+      k.act(me, "walk", S.at, 1, { to: 1010 });
+      k.wait(1);
       N("", "连起来：两棵树 + and = 一句地道的英语！");
       k.final("I like dogs very much, and they are very happy today.", ["like", "are"], "我非常喜欢小狗，它们今天很开心。  一件事一棵树，用 and 连起来！");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
-      k.say("I like dogs. They are happy.", { zh: "我喜欢小狗。它们很开心。", word: "I like dogs they are happy They are happy" });
-      k.say("Am, is, are. I am happy. She is happy.", { zh: "am、is、are。我很开心。她很开心。", word: "am is" });
-      k.say("Very, very much, today, and.", { zh: "非常、非常（喜欢）、今天、和。", word: "very much today and" });
-      k.say("Chinglish is not good English.", { zh: "中式英语不是地道的英语。", word: "Chinglish" });
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 口诀 ─────
+      D.step(4); D.shot();
+      k.act(me, "walk", S.at, 1.2, { to: 892 });
       N("口诀：", "一句只能一个国王；想要两个国王，先用 and 搭桥。");
+      P(k.roughRect(40, 118, 760, 48), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：一句只能一个国王；想要两个国王，先用 and 搭桥。", 60, 150, go(1.2), 1.2, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.4);
+
+      // ───── 🔮 预测 ─────
+      D.step(5);
+      N("预测：", "「她很高」：tall（高的）是形容词，不能自己当国王。空里填什么？先想 3 秒！");
+      P(k.roughRect(40, 206, 760, 150), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 206, 760, 150), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 她很高。", 64, 246, go(.8), .8, { size: 22, color: C.ink, weight: 900 });
+      T("She ___ very tall.", 64, 284, go(1), 1, { size: 22, color: C.ink, weight: 900, font: D.MONO });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "填 is：she 后面用 is 搭桥，形容词 tall 才站得住。");
+      const tRev = go(.3);
+      T("She is very tall. —— is 搭桥", 64, 330, go(1), 1, { size: 22, color: C.green, weight: 900, font: D.MONO });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("She is very tall.", { zh: "她很高。", word: "she is very tall" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "一件事一棵树，每棵树只有一个国王；\n形容词不能当国王，要靠 am / is / are 搭桥", rhyme: "口诀：一句只能一个国王；想要两个国王，先用 and 搭桥。", hlLines: 2, foot: "🌳 竹节句 vs 树干句 · 病句手术 ②" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [],   // 本案例例句里没有要人演的动作动词（like / be 是心理、状态动词）
     r2skip: ["vs", "I am very like dogs", "they very happy today.", "I am very like dogs, they very happy today."],   // 病句不读
     terms: [
+      ["可信度徽章", "💡 竹子 / 大树、国王 / 挂件都是帮助记忆的比喻；✂️ 简化说法：「一句只有一个谓语动词」指没有 and 等连接词的简单句。"],
       ["双王相撞", "一句话里放了两个谓语动词抢「国王」的位置，比如 am like。英语里 am 和 like 只能留一个。"],
       ["形容词", "描述人或东西样子、心情的词，比如 happy（开心的）、big（大的）。英语里形容词不能自己当谓语。"],
       ["系动词", "am / is / are 这类「搭桥」的动词，把主语和形容词连起来：They are happy。"],
