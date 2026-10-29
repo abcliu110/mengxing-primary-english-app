@@ -17773,7 +17773,7 @@ WB_LAB.adj_order = (function () {
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
 // 版面：左上 3×3 时×体矩阵 · 右上时间轴（过去/现在/将来）+ 镜头图 · 中间公式和 4 个例句 · 信号词 · 陷阱 · 底部结论框。
 // v2 升级（2026-10-30，决策 24）：逐个案例升引擎 v2 + 讲解员（每案例：时间轴 + 格子 / 公式 + 前两句 / 后两句 / 信号词 + 陷阱 + 结论 四个镜头 → 🔮 预测 → 金句卡），版面工具 TM_V2；升级前整份文件原样保存在 cases/tense_matrix_classic.js。依赖 wo_props。
-// 进度：① 已升 v2；②–⑤ 仍是旧版（TM_KIT），全部升完后删 TM_KIT。
+// 进度：①② 已升 v2；③–⑤ 仍是旧版（TM_KIT），全部升完后删 TM_KIT。
 const TM_KIT = function (k) {
   const { C, P, T, F, go, wl, ellipse, rectD, roughRect, estW } = k;
   const MONO = '"Courier New",Courier,monospace';
@@ -18297,60 +18297,154 @@ WB_LAB.tense_matrix = [
       ["照妖镜（does / doesn't）", "比喻：句子里出现 doesn't 或 Does，它们已经带走了单三的 -s，后面的动词要变回原形：He doesn't like。"]
     ]
   },
-  // ───────── ② 现在进行时 ─────────
+  // ───────── ② 现在进行时（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/tense_matrix_classic.js（R1 零丢失）。原一屏拆成 4 个镜头（时间轴 + 格子 + 录像机 / 公式 + 缺发动机的错句 + Leo 跑 / 跳舞 · 游泳 · 读书三句 / 信号词 + 心理状态词陷阱 + 结论）+ 🔮 预测 + 金句卡；
+  // 错句 I playing football 原在公式右边 x740（会越过讲解员），挪到公式下一行。
+  // R4：读到 I am playing football now 时讲解员跳起来（踢球）；Leo is running 时场景里的 Leo 在操场上跑；Mia is dancing 时 Mia 跳舞（跳 + 转身）；
+  // The children are swimming 时泳池里三个小脑袋游过去；I am reading 时讲解员捧书读；预测题 The boy is jumping 时讲解员跳。
   {
     build(k) {
-      const { C, N } = k, h = TM_KIT(k), A = h.A;
+      k.v2();
+      const { N, P, T, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = TM_V2(k, D), A = h.A;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "「看！Leo 正在跑！」这一秒正在发生的动作，英语怎么拍下来？");
-      k.header("现在 × 进行体", "② 现在进行时", false);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "② 现在进行时", sub: "现在 × 进行体", badges: ["💡"], steps: ["① 时间轴", "② 时×体格子", "③ 公式", "④ 例句", "⑤ 信号词·陷阱", "🔮 预测"], cardDur: 3.6 });
+
+      // ───── 镜头 1 · 时间轴 + 格子 + 录像机 ─────
+      D.step(0); D.shot();
       h.axis();
+      const syN = sayAt("Past, now, future. I am playing football now.", { zh: "过去、现在、将来。我现在正在踢足球。", word: "Past Now Future am are I playing football" });
+      k.act(me, "jump", syN.t + syN.dur * .62, Math.max(1, syN.dur * .32), { words: ["play"] });
+      D.step(1);
       N("现在进行时：", "在矩阵里，它是「现在」这一列和「进行」这一行交叉的格子。");
-      h.matrix(1, 1, "现在进行时");
+      const cell = h.matrix(1, 1, "现在进行时");
+      k.act(me, "point", S.at - .8, 1.2, { at: cell });
       N("进行体：", "像一台高清录像机，正在直播这一秒的动作，动作还没有停。");
-      h.video(A.now - 4, 108);
+      h.video(A.now - 4, A.y - 60);
       N("", "在时间轴上，它是「现在」附近一段还在动的波浪线。");
-      k.P(k.wave(A.now - 60, A.now + 60, A.y, 5), k.go(.8), .8, { color: C.purple, w: 4 });
+      k.P(k.wave(A.now - 60, A.now + 60, A.y, 5), k.go(.8), .8, { color: C.blue, w: 4 });
+      k.act(me, "point", S.at - .6, 1.2, { at: [A.now, A.y] });
       k.wait(.6);
+      D.wipe();
+
+      // ───── 镜头 2 · 公式 + 缺发动机的错句 + 双写 run → running ─────
+      D.step(2); D.shot();
       N("助动词：", "帮主要动词说清时间的小帮手。这里的 am / is / are 是句子的「发动机」。");
-      h.formula("am / is / are（助动词画框） + V-ing（动态分词镜头）", 250);
+      h.formula("am / is / are（助动词画框） + V-ing（动态分词镜头）", 150);
       N("V-ing（现在分词）：", "动词加 -ing，只是「正在……」的画面，不能自己当谓语。");
-      const bad = k.mono("I playing football", 740, 250, 16, C.red);
+      const bad = k.mono("I playing football", 100, 214, 16, C.red);
+      h.note("✗", 64, 214, { size: 20, color: C.red, weight: 900, dur: .3 });
       N("", "所以 I playing football 是错的：少了发动机 am，两样缺一不可！");
       k.caret(bad, "playing", 0, "am");
+      k.act(me, "surprised", S.at - .4, 1);
       k.wait(.5);
+      D.step(3);
       N("重读闭音节：", "run 这类短词是「辅音 + 元音 + 辅音」结尾，而且重读。");
-      const m1 = h.ex("Look! Leo", "is running fast on the playground.", 284, "双写 n");
-      h.uline(m1, "is"); h.ring(m1, "nn", 0, C.orange);
+      const m1 = h.ex("Look! Leo", "is running fast on the playground.", 262, "双写 n");
+      h.uline(m1, "is"); h.ring(m1, "nn", 0, C.red);
+      // 场景：操场上 Leo 在跑（R4 running）
+      h.ground(60, 790, 430);
+      const gL = D.sub();
+      const leo = k.actor("traveler", { x: 140, y: 430, s: .72, f: 1, g: gL });
+      D.back();
+      const syR = sayAt("Look! Leo is running fast on the playground.", { zh: "看！里奥在操场上飞快地跑。", word: "is running" });
+      k.act(leo, "run", syR.t + syR.wd, Math.max(2, syR.dur - syR.wd), { to: 560, words: ["running"] });
+      k.look(me, 400, 400, syR.t + syR.wd, 2);
       N("双写：", "重读闭音节的词，要把最后一个字母写两遍再加 -ing：run → running。");
-      k.wait(1.5);
-      N("不发音的 e：", "dance、make 末尾的 e 不读，去掉 e 再加 -ing：dancing、making。");
-      const m2 = h.ex("Listen! Mia", "is dancing and making a cake.", 314, "去 e + ing");
-      k.say("Look! Leo is running fast on the playground.", { zh: "看！里奥在操场上飞快地跑。", word: "is running" });
-      h.uline(m2, "is"); h.ring(m2, "cing", 0, C.orange); h.ring(m2, "king", 0, C.orange);
-      N("", "The children 是复数（好多个），所以用 are；swim 也要双写 m。");
-      const m3 = h.ex("The children", "are swimming in the pool now.", 344, "are + 双写 m");
-      h.uline(m3, "are"); h.ring(m3, "mm", 0, C.orange);
-      N("", "I 配 am；普通动词直接加 -ing：read → reading。");
-      const m4 = h.ex("I", "am reading an English storybook right now.", 374, "直接 + ing");
-      h.uline(m4, "am"); h.ring(m4, "ing", 0, C.orange);
-      N("信号词：", "看到 Look!、Listen!、now、right now，说明镜头正在直播！");
-      h.signals("Look! (看！) · Listen! (听！) · now (现在) · right now (此时此刻) · at the moment (眼下)", 406);
-      N("心理状态词：", "like、know、want、have 是心里的感觉，不是看得见的动作，拍不成录像。");
-      h.trapText("like(喜欢)、know(知道)、want(想要)、have(拥有) 这类心理状态词，通常不用进行时！", 434);
-      N("", "结论：发动机 am + 正在读 reading，一个都不能少。");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
-      k.say("Past, now, future. I am playing football now.", { zh: "过去、现在、将来。我现在正在踢足球。", word: "Past Now Future am are I playing football" });
-      k.say("Look! Leo is running fast on the playground. Listen!", { zh: "看！里奥在操场上飞快地跑。听！", word: "Look Leo fast on the playground Listen" });
-      k.say("Mia is dancing and making a cake.", { zh: "米娅一边跳舞一边做蛋糕。", word: "Mia dancing and making a cake is dancing and making a cake" });
-      k.say("The children are swimming in the pool now.", { zh: "孩子们现在正在泳池里游泳。", word: "children swimming in pool are swimming in the pool now" });
+      const syR2 = sayAt("Look! Leo is running fast on the playground. Listen!", { zh: "看！里奥在操场上飞快地跑。听！", word: "Look Leo fast on the playground Listen" });
+      k.act(leo, "turn", syR2.t + syR2.wd, .4, { to: -1 });
+      k.act(leo, "run", syR2.t + syR2.wd + .5, Math.max(1.6, syR2.dur - syR2.wd - .6), { to: 260, words: ["running"] });
       k.say("Run, dance, make, swim, read. Ing.", { zh: "跑、跳舞、做、游泳、读。加 -ing。", word: "run dance make swim read ing", blocks: ["ing"] });
-      k.say("I am reading an English storybook right now, at the moment.", { zh: "我此刻正在读一本英语故事书。", word: "an English storybook right at moment at the moment" });
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 3 · 去 e 加 ing / 复数 are + 双写 m / 直接加 ing ─────
+      D.shot();
+      N("不发音的 e：", "dance、make 末尾的 e 不读，去掉 e 再加 -ing：dancing、making。");
+      const m2 = h.ex("Listen! Mia", "is dancing and making a cake.", 150, "去 e + ing");
+      h.uline(m2, "is"); h.ring(m2, "cing", 0, C.red); h.ring(m2, "king", 0, C.red);
+      // 场景：Mia 跳舞（R4 dancing：跳 + 转身）
+      h.ground(60, 790, 430);
+      const gM = D.sub();
+      const mia = k.actor("traveler", { x: 170, y: 430, s: .72, f: 1, g: gM });
+      D.back();
+      const syD = sayAt("Mia is dancing and making a cake.", { zh: "米娅一边跳舞一边做蛋糕。", word: "Mia dancing and making a cake is dancing and making a cake" });
+      const td = syD.t + syD.wd * .5, dd = Math.max(2.4, syD.dur - syD.wd * .5) / 4;
+      for (let i = 0; i < 4; i++) k.act(mia, i % 2 ? "turn" : "jump", td + i * dd, dd, { to: i % 4 === 1 ? -1 : 1, words: ["dance"] });
+      N("", "The children 是复数（好多个），所以用 are；swim 也要双写 m。");
+      const m3 = h.ex("The children", "are swimming in the pool now.", 190, "are + 双写 m");
+      h.uline(m3, "are"); h.ring(m3, "mm", 0, C.red);
+      // 场景：泳池里三个小脑袋游过去（R4 swimming）
+      const pool = k.rectD(360, 370, 400, 60);
+      P(k.roughRect(360, 370, 400, 60), go(.5), .5, { color: C.blue, w: 2.5 }); F(pool, go(.1, 0), { color: C.tintBlue, op: 1 });
+      const gW = D.sub();
+      [0, 46, 92].forEach(dx => { P(k.ellipse(400 + dx, 392, 9, 9), go(.2, .02), .2, { color: C.ink, w: 2.2 }); F(k.ellipse(400 + dx, 392, 9, 9), go(.05, 0), { color: C.tintInk, op: 1 }); });
+      P(k.wave(384, 520, 404, 3), go(.3), .3, { color: C.blue, w: 2 });
+      D.back();
+      const syW = sayAt("The children are swimming in the pool now.", { zh: "孩子们现在正在泳池里游泳。", word: "children swimming in pool are swimming in the pool now" });
+      k.move(gW, syW.t + syW.wd * .5, Math.max(2, syW.dur - syW.wd * .5), 200, 0, { ease: "move" });
+      for (let i = 0; i < 5; i++) k.squash(gW, syW.t + syW.wd * .5 + i * .5, .45, .12);
+      k.actFx(["swimming"], syW.t + syW.wd * .5, Math.max(2, syW.dur - syW.wd * .5), "泳池里三个小脑袋划着水游过去");
+      N("", "I 配 am；普通动词直接加 -ing：read → reading。");
+      const m4 = h.ex("I", "am reading an English storybook right now.", 230, "直接 + ing");
+      h.uline(m4, "am"); h.ring(m4, "ing", 0, C.red);
+      const bk1 = k.prop("book", 0, 0, { hidden: true });
+      const syB = sayAt("I am reading an English storybook right now, at the moment.", { zh: "我此刻正在读一本英语故事书。", word: "an English storybook right at moment at the moment" });
+      k.act(me, "read", syB.t + syB.wd * .4, Math.max(1.8, syB.dur - syB.wd * .4), { prop: bk1, words: ["read"] });
+      k.wait(.3);
+      D.wipe();
+
+      // ───── 镜头 4 · 信号词 + 心理状态词陷阱 + 结论 ─────
+      D.step(4); D.shot();
+      N("信号词：", "看到 Look!、Listen!、now、right now，说明镜头正在直播！");
+      const yS = h.signals("Look! (看！) · Listen! (听！) · now (现在) · right now (此时此刻) · at the moment (眼下)", 150);
+      k.act(me, "point", S.at - .6, 1.2, { at: [200, 146] });
+      N("心理状态词：", "like、know、want、have 是心里的感觉，不是看得见的动作，拍不成录像。");
+      h.trapText("like(喜欢)、know(知道)、want(想要)、have(拥有) 这类心理状态词，通常不用进行时！", yS + 60);
+      k.act(me, "think", S.at - .4, 1.6);
       k.say("I like it. I know. I want it. I have a dog.", { zh: "我喜欢它。我知道。我想要它。我有一只狗。", word: "like know want have" });
-      k.final("I am reading an English storybook right now.", "am", "口诀：此刻正在做，am / is / are 加 V-ing，缺一不可！", { zh: "我此刻正在读一本英语故事书。", word: "am reading" });
+      N("", "结论：发动机 am + 正在读 reading，一个都不能少。");
+      const bk2 = k.prop("book", 0, 0, { hidden: true });
+      const syF = h.final("I am reading an English storybook right now.", "am", "口诀：此刻正在做，am / is / are 加 V-ing，缺一不可！", { zh: "我此刻正在读一本英语故事书。", word: "am reading" });
+      k.act(me, "read", syF.t + syF.wd, Math.max(1.6, syF.dur - syF.wd), { prop: bk2, words: ["read"] });
       N("口诀：", "此刻正在做，am / is / are 加 V-ing，缺一不可！");
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "「看！那个男孩正在跳！」这一秒正在发生，发动机该怎么放？先想 3 秒！");
+      h.quiz("🔮 看！那个男孩正在跳！", "→  Look! The boy ___.  ( is jumping / jumping )");
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "The boy 是单三，发动机用 is，再加 jumping：Look! The boy is jumping.");
+      const tRev = go(.3);
+      h.reveal("Look! The boy is jumping.");
+      k.sfx("ding", tRev + .9);
+      const syQ = sayAt("Look! The boy is jumping.", { zh: "看！那个男孩正在跳！", word: "Look boy is jumping" });
+      k.act(me, "jump", syQ.t + syQ.wd, Math.max(1.4, syQ.dur - syQ.wd), { words: ["jump"] });
+      k.act(me, "cheer", syQ.t + syQ.dur + .2, 1.2);
+      D.hold(1.4);
+
+      k.quoteCard({ insight: "现在进行时是一台录像机：\n拍下这一秒正在做、还没停下的动作", rhyme: "口诀：此刻正在做，am / is / are 加 V-ing，\n缺一不可！", hlLines: 2, foot: "⏳ 时×体矩阵 · ② 现在进行时" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "play", act: "读到「I am playing football now」时讲解员跳起来（jump，踢球）" },
+      { word: "running", act: "读到「Look! Leo is running fast on the playground」时场景里的 Leo 在操场上跑过去（run），第二遍转身再跑回来" },
+      { word: "dance", act: "读到「Mia is dancing」时场景里的 Mia 跳舞（jump + turn 交替）" },
+      { word: "swimming", act: "读到「The children are swimming in the pool」时泳池里三个小脑袋划着水游过去（场景动作 actFx + move + squash）" },
+      { word: "read", act: "读到「I am reading an English storybook」时讲解员捧书读（read），结论句再读一遍时也捧书" },
+      { word: "jump", act: "预测题揭晓读到「Look! The boy is jumping」时讲解员跳起来（jump）" },
+    ],
     r2skip: ["V-ing", "REC", "I playing football"],   // 公式标签、录像图标字样 REC；缺 am 的错句不读
     terms: [
+      ["可信度徽章", "💡 录像机、发动机、镜头都是帮助记忆的比喻。"],
       ["现在进行时", "说此时此刻正在做的事，结构是 am / is / are + 动词-ing，比如 I am reading now。"],
       ["助动词", "帮主要动词表达时间、否定、疑问的小帮手词，比如 am / is / are、do / does、will、have / has。"],
       ["发动机（be 动词）", "比喻：进行时里的 am / is / are 让句子「动起来」，并且把时间定在「现在」，不能漏掉。"],
