@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 01:15 JST（阶段 3：ze_yesno 上线，下一步 ze_borrow，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-30 01:35 JST（阶段 3：ze_borrow 上线，已上线 5/11 幕，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -189,6 +189,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 6 | 原理页删 ④-1、⑥-1，留一句话 + 跳转入口 | ✅ `FIRST_PRINCIPLES_DB` 两幕加 `movedTo: { scene, title, line }`、标题加「（已搬到 🔀 中英对照总枢）」；`insert_wb.py` 让原理页遇到 `act.movedTo` 时舞台换成 `fpMovedHtml(act)`（一句话 + 「去看这一幕」按钮，在 `ze_hub.js`），术语区隐藏；`WB_LAB.fp_one_king[0]` / `fp_zoom_focus[0]` 换成占位白板（保证幕序号不变；case 0 的 terms 是全原理共用术语，保留）。原内容只在 `cases/ze_be.js`、`ze_modifier.js`。验收：两条原理第 1 幕显示跳转卡、点按钮进入总枢对应幕并挂载；appfp 3/5 过；渲染回归只有两个占位幕变化；r2check 两条原理全过。**搬迁完成** |
 | 7 | 新幕 `ze_same` 这些你已经会了（引擎 v2 + 讲解员，正迁移） | ✅ 4 个镜头：我爱妈妈 / I love my mom（顺序一样）→ a red apple / a big cat（形容词在前，⚠️ 长修饰挂后面）→ three books（数字在前，⚠️ 加 -s）+ I can jump（讲解员跳起来，R4）→ 口诀 → 🔮 他喜欢小狗 = He likes dogs → 金句卡。`wo_props.js` 的 `D.scene` 新增 `steps` 选项（换进度条文字：① 中文 ② 对一对 ③ 英语 ④ 例子 ⑤ 口诀 🔮 预测；不传 = 溯源幕原样，旧幕渲染不变）；`insert_wb.py` 新增 `ZE_DEPS`（新对照幕依赖 wo_props）。配色只用 V3 四色。验收：r2check --strict 21 词 4 句、R4 1/1；旧 74 幕渲染逐字节一致；jscheck 32 模块；appze 过；截图逐张看过（修了 purple / orange 不在调色板、books 荧光位置不准） |
 | 8 | 新幕 `ze_yesno` Yes / No 跟着事实走（v2 + 讲解员，Q 否定疑问） | ✅ 中文「你不喜欢牛奶吗？——不，我喜欢」→ 照搬成 No, I like ❌（r2skip，讲解员 surprised + oops）→ 英语看事实：Yes, I do. / No, I don't.（讲解员点头）、规则「Yes + 肯定，No + 否定」标 ✂️ → 例子 Isn't it cold? Yes, it is. / Can't you swim? No, I can't. → 口诀「问句有「不」别管它，事实是啥答啥」→ 🔮 Aren't you a student? = Yes, I am. → 金句卡。验收：r2check --strict 18 词 9 句；旧 75 幕渲染逐字节一致；appze 过；截图看过。R4：本幕没有要演的动作动词（swim 只出现在问句里，不演）。 |
+| 9 | 新幕 `ze_borrow` 借：borrow / lend（v2 + 讲解员，N 一字多词） | ✅ 中文一个「借」两个方向 → 照搬分不清 ❌ → borrow ←（讲解员走到汤姆面前拿过书，R4）/ lend →（汤姆从讲解员手里接过书，R4）、borrow from / lend to → Can I borrow your pen? / Can you lend me your pen? → 口诀「借进来 borrow from，借出去 lend to」→ 🔮 汤姆借给我一本书 = Tom lends me a book. → 金句卡。场景角色 traveler 扮汤姆。验收：r2check --strict 14 词 6 句、R4 2/2；旧 76 幕渲染逐字节一致；appze 过；截图看过（修了揭晓词位置）。 |
 
 ## 1. 当前状态
 
