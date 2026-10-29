@@ -100,3 +100,55 @@ WB_LAB.fp_zoom_focus.push(
     ],
   },
 );
+WB_LAB.fp_zoom_focus.push(
+  // ───────── 6-3 镜头从小拉到大 ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：写地址和时间，英语和中文的顺序为什么正好相反？");
+      k.header("⑥ 焦点先行与镜头缩放律", "镜头从小拉到大", true);
+      N("", "中文像推镜头：先说最大的北京，再一步步推到 201 室。");
+      T("中文：北京 → 星光学校 → 3 号楼 → 201 室", 510, 112, go(1.4), 1.4, { size: 17, color: C.grey, weight: 900 });
+      T("（从大到小）", 510, 140, go(.5), .5, { size: 15, color: C.grey });
+      k.wait(.4);
+      // 镜头推到最小的点
+      const cx = 240, cy = 272;
+      N("", "英语像拉镜头：先对准脚下最小的地方——201 室这扇门。");
+      k.camera(go(1.6), 1.5, cx, cy, 4.2);
+      const door = k.roughRect(cx - 9, cy - 14, 18, 28);
+      P(door, go(.5), .5, { color: C.brown, w: 1.5 }); F(k.rectD(cx - 9, cy - 14, 18, 28), go(.1, 0), { color: "#fde68a", op: 1 });
+      T("Room 201", cx, cy - 20, go(.6), .6, { size: 10, color: C.red, weight: 900, font: M, anchor: "middle" });
+      k.wait(.6);
+      const ring = (rx, ry, label, color, z) => {
+        k.camera(go(1.3), 1.2, z === 1 ? 480 : cx, z === 1 ? 272 : cy, z);
+        P(k.ellipse(cx, cy, rx, ry), go(.8), .8, { color, w: 2.5 / Math.max(1, z / 1.6) });
+        T(label, cx, cy - ry + (z === 1 ? 38 : 18 / Math.max(1, z / 1.4)), go(.5), .5, { size: Math.max(12, 26 / z), color, weight: 900, font: M, anchor: "middle" });
+      };
+      N("", "镜头往外拉：3 号楼……");
+      ring(70, 50, "Building 3", C.orange, 2.4);
+      N("", "……星光学校……");
+      ring(135, 92, "Star School", C.green, 1.5);
+      N("同心圆：", "一圈套一圈、圆心相同的圆。英语地址从最里面一圈往外写。");
+      ring(205, 140, "Beijing", C.blue, 1);
+      k.wait(.4);
+      // 右：英文写法
+      k.head("英语：从小到大", 510, 196, C.green, "start", 20);
+      T("I am in Room 201,", 510, 234, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      T("Building 3, Star School,", 510, 262, go(.8), .8, { size: 19, color: C.ink, weight: 900, font: M });
+      T("Beijing.", 510, 290, go(.4), .4, { size: 19, color: C.ink, weight: 900, font: M });
+      k.wait(.5);
+      N("", "时间也一样：先说几点，再说哪一天的上午，最后说几月。");
+      k.head("时间：也从小到大", 510, 340, C.purple, "start", 18);
+      D.parts([["at 9:00 ", C.red], ["on Tuesday morning", C.orange]], 510, 376, 17);
+      D.parts([["in September", C.blue]], 510, 402, 17);
+      T("点 → 天 → 月", 690, 402, go(.5), .5, { size: 15, color: C.grey, weight: 900 });
+      k.wait(.6);
+      N("口诀：", "英语拉镜头，从小到大走。");
+      D.fin("英语地址、时间从小到大写；中文从大到小，正好相反", "口诀：英语拉镜头，从小到大走。");
+      k.wait(2);
+    },
+    terms: [
+      ["同心圆", "圆心相同、一圈套一圈的圆。英语地址就像从最里面一圈往外写。"],
+    ],
+  },
+);
