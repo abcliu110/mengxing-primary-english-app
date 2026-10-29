@@ -24,7 +24,10 @@ const WO_CHAPTERS = [
   { id: "vikings", icon: "⚔️", title: "维京人与诺曼人", insight: "词汇是社会阶层的化石：农民养 cow，贵族吃 beef。" },
   { id: "letters", icon: "🔤", title: "字母的真实身世", insight: "字母来自古代的图画：A 原来是一个牛头。" },
   { id: "daily", icon: "🌅", title: "日常词里的古老画面", insight: "breakfast = 打破（一夜的）禁食。" },
-  { id: "time", icon: "⏰", title: "时间与度量的身世", insight: "a.m. / p.m.、mile = 一千步。" },
+  { id: "time", icon: "⏰", title: "时间与度量的身世", insight: "eleven = 十个之外剩一个；Thursday = 雷神的日子；September 原来是第七个月。",
+    scenes: [
+      { id: "wo_time_num", title: "数字的秘密", sub: "eleven、twelve、-teen、dozen；万 / 亿 ↔ thousand / million", badges: ["📜", "✂️", "💡"] },
+    ] },
   { id: "sports", icon: "🎾", title: "体育与音乐词", insight: "piano = 轻声（pianoforte 的缩写）。" },
   { id: "drift", icon: "🎭", title: "词义漂移", insight: "词也会「变脸」：nice 原来是「傻的」。" },
 ];

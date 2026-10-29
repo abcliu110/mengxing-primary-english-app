@@ -117,7 +117,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 2 | Bluetooth 示范幕（`cases/wo_bluetooth.js`） | ✅ 见下 |
 | 3 | 身世标签 + 词卡跳转（先给 port 家族） | ✅ 见下 |
 | 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | ✅ 四幕上线、清单 211 条对照完（删旧页签等用户确认）。原记录：① 出处 ✅ `caa1493`（SOURCES ④ 12 条、⑤ 14 条，含纠错）；② 真格林定律幕 `wo_grimm`；③ 元音变异三幕 `wo_vowel_a/b/c`；④ 清单 185 条逐项打勾。**删 `vowel_shift` 页签 / 改入口等用户确认，不动** |
-| 5 | 时间与度量章 | 🔧 进行中：① 出处 ✅（SOURCES ⑥⑦ 14 条）；② 数字与大数幕 `wo_time_num`；③ 星期与月份幕 `wo_time_week` |
+| 5 | 时间与度量章 | 🔧 进行中：① 出处 ✅ `d9d3c22`（SOURCES ⑥⑦ 14 条）；② 数字与大数幕 `wo_time_num` ✅；③ 星期与月份幕 `wo_time_week` |
 
 **Europe 示范幕（2026-10-29）**
 - 出处先登记：`word_origins/SOURCES.md` ② 12 条（etymonline Europe / European / -an / African / Euro- / Euro；维基 Europa 神话、卫星、欧元纸币；中文维基 欧洲 / 坤舆万国全图）。名字来源三种说法（神话公主、eurys+ops「宽脸」、闪米特语「西方」）**全部标 ❓**，神话标 📜 + ✂️（原故事是「劫走」，讲给小学生简化成「驮过大海」）。
@@ -153,6 +153,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - **没做（等用户确认）**：删 `vowel_shift` 页签、改实验室里 15 处入口指向新章（清单在 `grimm_law/VOWEL_SHIFT_INVENTORY.md` 末尾）。
 - ✅ 清单逐项打勾（`src/check_inventory.py`，可重复运行）：`grimm_law/VOWEL_SHIFT_INVENTORY.md` 里字幕 / 白板 / 朗读 182 条 + 术语 29 条 = 211 条（原记「185 条」是只数了部分行），✅ 原样搬过去 202 条、✏️ 按 R3 改正后搬过去 9 条（原讲法作为「原讲法（已改正，保留备查）」引用留在新幕术语里）、❌ 0 条；页面数据 `GRIMM_VOWEL_LAWS` 19 对词全部在新幕画面上。文件末尾追加了对照汇总和改正清单（原 → 新）。15 处入口未动（等用户确认）。
 - **格林定律章完成**（4 幕：`wo_grimm`、`wo_vowel_a/b/c`）。等用户：①看四幕是否满意；②确认后按 R1 删 `vowel_shift` 页签并把 15 处入口改指新章。
+
+**时间与度量章（2026-10-29 22:30 起）**
+- ✅ `wo_time_num` 数字的秘密（约 121 秒，18 句朗读）：十个点 = ten → eleven = one + left、twelve = two + left → thirteen/fourteen/nineteen = 几 + ten，-teen = ten → dozen = duo + decem（呼应格林定律 d→t），搬运工抱一打鸡蛋走（carries）→ 中文四位一节 vs 英文三位一节、million = mille + -one、一万 = ten thousand → 🔮 一亿 = one hundred million → 金句卡。验收：r2check --strict 22/22、R4 1/1；旧 70 幕 350 次渲染逐字节一致；jscheck 28 模块；appwo 八幕过。分镜 `time_measure/STORYBOARD.md`。总枢「⏰ 时间与度量的身世」章节上线（`WO_CHAPTERS` 加 scenes）。
+- 下一步：`wo_time_week` 星期与月份。
 
 ## 1. 当前状态
 
