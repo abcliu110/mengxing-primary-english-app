@@ -80,7 +80,7 @@
 ### ⑤ 验收脚本
 - 写进主文件：`python3 docs/whiteboard/src/insert_wb.py`（登记列表：实验室 `READY`、第一性原理 `FP_READY`、单词身世 `WO_READY`）。登记的模块写成按需加载的 `<script type="text/plain" id="wbmod-<id>">`，第一次进入时才执行（决策 13）；案例文件里不能出现 `</script` 和 `<!--`（脚本会报错拦下）。
 - 脚本：
-  - `node --check`：`python3 docs/whiteboard/src/jscheck.py`（抽出主文件全部直接执行的 `<script>` + 按需加载模块 `wbmod-*`，拼起来检查并逐个检查）；
+  - `node --check`：`python3 docs/whiteboard/src/jscheck.py`（抽出主文件全部直接执行的 `<script>` + 按需加载模块 `wbmod-*`，拼起来检查并逐个检查；末尾自动跑 `anchorcheck.py`，核对补丁锚点 / 插入标记没有静默丢失）；
   - 实验室 `appwb.py <页签> <目录>`；第一性原理 `appfp.py <0-5> <目录>`；单词身世 `appwo.py <目录>`：每幕 `mounted: True`、`bad: None`、`errors: []`、无 NaN / undefined；
   - 回归：`appwb.py bamboo_tree`、`appfp.py 0`、`appwo.py` 都要过；
   - **朗读覆盖检查（R2）**：`python3 docs/whiteboard/src/r2check.py <幕 id> [--all-items] [--strict]`（先 `insert_wb.py`）：抽出画面上全部英文词 / 词块 / 句子，对照 `say` 登记，报「缺单独朗读 / 缺例句 / 句子缺朗读」；

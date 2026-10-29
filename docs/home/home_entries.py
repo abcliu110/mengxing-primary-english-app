@@ -2,7 +2,8 @@
 用法：python3 docs/home/home_entries.py [--save 基线文件] [--check 基线文件]"""
 import sys, json, re
 from playwright.sync_api import sync_playwright
-M = "file:///workspace/work/mengxing-primary-english-app/萌星小学英语_最终合并版.html"
+import os, pathlib  # 2026-10-30：原来写死沙箱路径 /workspace/work/mengxing-primary-english-app，换个目录克隆就打不开；改为相对本脚本找主文件
+M = pathlib.Path(os.path.dirname(os.path.abspath(__file__)), "..", "..", "萌星小学英语_最终合并版.html").resolve().as_uri()
 def norm(s): return re.sub(r"\s+", "", s)
 with sync_playwright() as pw:
     b = pw.chromium.launch(); pg = b.new_page(viewport={'width': 430, 'height': 900})
