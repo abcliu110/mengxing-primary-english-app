@@ -14111,6 +14111,56 @@ WB_LAB.fp_zoom_focus = [
     ],
   },
 ];
+WB_LAB.fp_zoom_focus.push(
+  // ───────── 6-2 疑问词抢句首 ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：为什么英语的疑问词总是放在句子第一个？");
+      k.header("⑥ 焦点先行与镜头缩放律", "焦点抢头条", false);
+      const z = k.zh("你周末打算去哪里？", 40, 112, 26);
+      k.circle(z, 6, 7, C.red);
+      T("中文：疑问词「哪里」在后面", 300, 112, go(.8), .8, { size: 15, color: C.grey, weight: 700 });
+      k.wait(.4);
+      N("疑问词：", "Where（哪里）、When（什么时候）、How（怎样）……是提问的焦点。");
+      const cw = 15.6, X = n => 60 + n * cw, y = 200, st = { size: 26, weight: 900, font: M };
+      const word = (w, n, color) => { const g = k.group(); T(w, X(n), y, go(.4), .4, { ...st, color }); k.endGroup(); return g; };
+      const gYou = word("you", 0, C.ink), gAre = word("are", 4, C.blue), gBase = word("going this weekend", 8, C.ink), gWh = word("Where", 27, C.red);
+      const gLab = k.group(); T("按中文顺序排：", 60, 160, go(.5), .5, { size: 15, color: C.grey }); k.endGroup();
+      k.wait(.6);
+      N("", "英语要第一秒就让人听清「问的是地点」：Where 跳到句首！");
+      const t1 = go(2); k.fade(gLab, t1, .6, 0);
+      k.arc(gWh, t1, 1.6, `M0,0 C${-9 * cw},-80 ${-18 * cw},-80 ${-27 * cw},0`);
+      k.move(gBase, t1 + .3, 1.2, 6 * cw, 0);
+      k.move(gYou, t1 + .3, 1.2, 10 * cw, 0);
+      N("", "助动词 / be 动词 are 也提上来，紧跟在疑问词后面。");
+      k.move(gAre, go(1), 1, 2 * cw, 0);
+      T("?", X(32), y, go(.3), .3, { ...st, color: C.ink });
+      P(k.ellipse(X(2.5), y - 9, 56, 26), go(.5), .5, { color: C.orange, w: 3 });
+      T("焦点先出场", X(2.5), y + 40, go(.5), .5, { size: 15, color: C.orange, weight: 900, anchor: "middle" });
+      T("are 紧跟其后", X(6.5), y + 62, go(.5), .5, { size: 15, color: C.blue, weight: 900 });
+      k.wait(.6);
+      // 下：套用
+      N("特殊疑问句：", "用疑问词开头、不能用 Yes / No 回答的问句。公式：疑问词 + 一般疑问句。");
+      k.head("提问：焦点词第一个", 40, 300, C.purple, "start", 18);
+      T("Where is my bag?", 40, 336, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
+      T("When do you get up?", 40, 366, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
+      T("How much is this shirt?", 40, 396, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      N("感叹句：", "表示强烈感情的句子。被夸的那个词抢到最前面，后面的主谓可以省略。");
+      k.head("感叹：被夸的词第一个", 500, 300, C.orange, "start", 18);
+      D.parts([["What a clever boy ", C.ink], ["(he is)", "#94a3b8"], ["!", C.ink]], 500, 340, 19);
+      D.parts([["How fast ", C.ink], ["(he runs)", "#94a3b8"], ["!", C.ink]], 500, 376, 19);
+      T("括号里的部分可以省略", 500, 406, go(.6), .6, { size: 14, color: C.grey });
+      k.wait(.6);
+      N("口诀：", "焦点先出场。");
+      D.fin("最想问的、最想夸的词放第一个；问句里 be / 助动词紧跟其后", "口诀：焦点先出场。");
+      k.wait(2);
+    },
+    terms: [
+      ["特殊疑问句", "用 what / where / when / how 等疑问词开头的问句，不能用 Yes / No 回答。"],
+    ],
+  },
+);
 
 // ---------- App 接线：王炸实验室白板播放器（所有页签共用） ----------
 // 页签里用 ${wbStageHtml("tab", 当前序号)}：这个页签在 WB_LAB 里登记了案例就出白板，否则出原来的 Canvas。
