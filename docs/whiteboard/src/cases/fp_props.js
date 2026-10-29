@@ -73,6 +73,22 @@ const FP_PROPS = function (k) {
     k.endGroup(); return g;
   };
 
+  // 一刀切：在 (x, y0) 上方画刀，切到 y1，然后淡出。返回切下去的时间
+  D.knife = (x, y0, y1) => {
+    const g = k.group();
+    const d = `M${x - 4},${y0 - 60} L${x + 4},${y0 - 60} L${x + 4},${y0} L${x - 4},${y0 - 8} Z M${x - 6},${y0 - 90} h12 v30 h-12 Z`;
+    P(d, go(.5), .5, { color: C.ink, w: 2 }); F(d, go(.1, 0), { color: "#cbd5e1", op: 1 });
+    k.endGroup();
+    const t = go(1); k.move(g, t, .8, 0, y1 - y0 + 40); k.fade(g, t + .9, .3, 0);
+    return t + .6;
+  };
+  // 左右两半（组）：pathL / pathR 已在一起，t 时刻分开 gap
+  D.halves = (dL, dR, color, fill, t, gap = 12) => {
+    const gl = k.group(); P(dL, go(.6, 0), .6, { color, w: 2.5 }); F(dL, go(.1, 0), { color: fill, op: .9 }); k.endGroup();
+    const gr = k.group(); P(dR, go(.6), .6, { color, w: 2.5 }); F(dR, go(.1, 0), { color: fill, op: .9 }); k.endGroup();
+    return { split(t2) { k.move(gl, t2, .5, -gap, 0); k.move(gr, t2, .5, gap, 0); } };
+  };
+
   // 小标签框（等宽英文/音标）
   D.tag = (text, x, y, color = C.blue, size = 20) => {
     const w = text.length * size * .6 + 18, h = size + 14;
