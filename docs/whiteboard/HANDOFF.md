@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 02:55 JST（阶段 3：ze_wear 上线，已上线 10/11 幕；剩 ze_pronoun 要先登记出处，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-30 03:15 JST（阶段 3：中英对照总枢 11 幕全部上线，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -195,6 +195,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 12 | 新幕 `ze_mark` 单复数和时态要「上身」（v2 + 讲解员，总览幕） | ✅ 中文「一本书 / 三本书、每天去 / 昨天去」词不变 → 照搬 three book / I go yesterday ❌ → 英语换衣服：books（-s）、I go to school every day.（讲解员走，R4）/ I went to school yesterday.、She likes cats.（三单）→ two dogs、They played football yesterday.、✂️ 不规则 child → children、细讲指路（第一性原理 ③、时态矩阵、过去式门派）→ 口诀「中文靠小词，英语换衣服」→ 🔮 I read two books yesterday. → 金句卡。验收：r2check --strict 24 词 6 句、R4 1/1；旧 79 幕渲染逐字节一致；appze 过；截图看过。已知：荧光底色在沙箱截图里比文字略偏上，旧幕（wo_time_num）同样，属引擎 / 字体度量，未改。 |
 | 13 | 新幕 `ze_say` 说：say / speak / talk / tell（v2 + 讲解员，N 一字多词） | ✅ 中文四个「说」→ 照搬 speak hello / say English ❌ → 四张词卡：say hello（讲解员挥手打招呼，R4）、speak English、talk with a friend、tell me a story（+ tell him the news、talk about a film）→ 例子 Say thank you. / The teacher tells us the news. / Let's talk about the film. → 口诀 → 🔮 Can you speak French?（French 标 🥚）→ 金句卡。标题长，副标题缩成「🔀 一字多词」免得压住徽章。验收：r2check --strict 25 词 7 句、R4 1/1；旧 80 幕渲染逐字节一致；appze 过；截图看过。 |
 | 14 | 新幕 `ze_wear` 穿 / 带 / 教学（v2 + 讲解员，N 一字多词） | ✅ 穿：wear（穿着）/ put on（穿上），照搬 Wear your coat quickly! ❌ → She wears a red dress. / Put on your coat, please!；带：take（讲解员抱起箱子走开，R4）/ bring（抱回来放下，R4）、Take the box to the classroom. / Bring your book to me.；教 / 学：Miss Li teaches us English. / We learn English from her. → 口诀 → 🔮 Bring your photos to me. → 金句卡。验收：r2check --strict 30 词 7 句、R4 2/2；旧 81 幕渲染逐字节一致；appze 过；截图看过。 |
+| 15 | 新幕 `ze_pronoun` I / me / my / mine（v2 + 讲解员，M 代词变格） | ✅ 出处先登记 `zh_en_hub/SOURCES.md`（维基 Declension：古英语是变格语言、现代英语大多丢了；名词不分主宾格靠词序；代词还留着 I/me/my/mine、he/him）。中文一个「我」→ 照搬 Him likes I. ❌ → 四列代词表（主语 / 宾语 / + 名词 / 单独用，5 行）→ 📜 古英语变格、The dog sees the cat. / The cat sees the dog. 名词不变、He sees him. / You see me. 代词还在变、💡「活化石」→ 口诀「做主语 I，当宾语 me，带名词 my，单独用 mine」→ 🔮 She is my friend. I like her. → 金句卡。验收：r2check --strict 28 词 5 句；旧 83 幕渲染逐字节一致；appze 过；截图看过。 |
+| — | **中英对照总枢 11 幕全部上线**（2026-10-30 03:15） | 下一步：① 搬迁幕 `ze_be`、`ze_modifier` 升引擎 v2 + 讲解员（先存 `_classic` 回退文件）；② MASTER_DESIGN §4 阶段 4「实验室新页签」（短语动词总钥匙等，删 `verb_matrix` 前要零丢失清单）。 |
 
 ## 1. 当前状态
 

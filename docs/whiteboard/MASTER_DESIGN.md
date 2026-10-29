@@ -291,3 +291,4 @@ V1–V8 是「白板味」；本节是「动画质量」——对标商业儿童
 - 决策 3 时间与度量：✅「⏰ 时间与度量的身世」章 2 幕上线——`wo_time_num`（eleven / -teen / dozen / 万 ↔ million）、`wo_time_week`（七天名字、September = 第七个月）。
 - 工具：`r2check.py --summary`（按页签汇总）、`r2skip`（被划掉的错误形式）、`check_inventory.py`（R1 清单对照）、`insert_wb.py WO_KITS`（几幕共用工具）。
 - 决策 2 中英对照总枢（2026-10-30）：✅ 首页横幅 + `zh_en_hub` 页面（5 章 11 幕，设计 `zh_en_hub/DESIGN.md`）；✅ ④-1 → `ze_be`、⑥-1 → `ze_modifier` 零丢失搬迁完成（清单 ❌0），原理页留「一句话 + 跳转」。其余 9 幕待做；两幕搬迁幕的 v2 + 讲解员升级待做。
+- 决策 2 中英对照总枢（2026-10-30 03:15）：✅ 11 幕全部上线（ze_same、ze_be、ze_modifier、ze_subject、ze_link、ze_mark、ze_yesno、ze_borrow、ze_say、ze_wear、ze_pronoun）；新做的 9 幕是引擎 v2 + 讲解员；搬迁的 2 幕待升 v2。
