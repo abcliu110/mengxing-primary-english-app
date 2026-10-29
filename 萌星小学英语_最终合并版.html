@@ -181,6 +181,28 @@
   .portal-card.grammar .portal-enter-btn { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
   .portal-card.oral .portal-enter-btn { background: linear-gradient(135deg, #059669, #047857); }
 
+
+  /* 首页改版第 4 步：瘦身 */
+  .tts-unlock-banner { padding: 8px 14px; margin-bottom: 12px; gap: 10px; border-width: 1.5px; }
+  .tts-unlock-banner > div > span { font-size: 1.4rem !important; }
+  .tts-unlock-banner > div > div > div:first-child { font-size: 0.92rem !important; }
+  .tts-unlock-btn { font-size: 0.9rem; padding: 7px 16px; min-height: 38px; box-shadow: none; }
+  .home-hero-title { margin: 2px 0 12px; }
+  .home-hero-title h1 { font-size: 1.45rem; margin: 0 0 2px; }
+  .home-hero-title p { font-size: 0.86rem; }
+  .portal-card { padding: 16px 18px; min-height: 0; border-width: 2px; }
+  .portal-card > div:first-child { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: center; }
+  .portal-card > div:first-child > :not(.portal-icon):not(.portal-title):not(.portal-sub) { grid-column: 1 / -1; }
+  .portal-icon { font-size: 2.3rem; margin: 0; grid-row: span 2; }
+  .portal-title { font-size: 1.3rem; margin: 0; }
+  .portal-sub { font-size: 0.84rem; margin: 2px 0 0; }
+  .portal-tags { margin: 10px 0 8px; }
+  .portal-tag:nth-child(n+4) { display: none; }
+  .portal-enter-btn { padding: 10px; min-height: 0; font-size: 0.98rem; }
+  .home-portal-grid { gap: 14px; margin-bottom: 18px; }
+  #uiStudyDateBadge { display: none; }
+  @media (max-width: 640px) { .home-hero-title p { display: none; } }
+
   /* Vocabulary Hall Visual Hierarchy: Primary Hero Cards + Secondary Grid + My Status */
   .section-banner {
     display: flex; align-items: center; justify-content: space-between;
@@ -3475,12 +3497,8 @@ function renderHomeView() {
           <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'phrasal_key' })" style="border-color:#2563eb33; color:#2563eb;">🔑 短语动词总钥匙</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'eight_endings' })" style="border-color:#2563eb33; color:#2563eb;">🔚 只剩 8 个词尾</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'irregular_plural' })" style="border-color:#2563eb33; color:#2563eb;">👣 不规则复数</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'past_clans' })" style="border-color:#2563eb33; color:#2563eb;">⚔️ 过去式四大门派</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'metaphor_code' })" style="border-color:#2563eb33; color:#2563eb;">🎭 三大隐喻密码</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('word_origins_hub', { scene: 'wo_vowel_a' })" style="border-color:#2563eb33; color:#2563eb;">🧬 元音变异 foot→feet</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); openWordCardModal('G6_258', ['G6_258','G4_167','G5_208','G1_030','G3_151','G3_152'])" style="border-color:#2563eb33; color:#2563eb;">🔬 单词卡 X 光</button></div>
         </div>
         <div class="lab-group" style="background:#f5f3ff;">
-          <div class="lab-group-name" style="color:#7c3aed;">🧩 语法</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'bamboo_tree' })" style="border-color:#7c3aed33; color:#7c3aed;">🎋 竹节句 vs 树干句</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'adj_order' })" style="border-color:#7c3aed33; color:#7c3aed;">👑 形容词排座次</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'tense_matrix' })" style="border-color:#7c3aed33; color:#7c3aed;">🧭 时 × 体矩阵</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'aux_transformer' })" style="border-color:#7c3aed33; color:#7c3aed;">🪞 助动词照妖镜</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'five_patterns' })" style="border-color:#7c3aed33; color:#7c3aed;">🦴 五大基本句型</button></div>
-        </div>
-        <div class="lab-group" style="background:#fffbeb;">
-          <div class="lab-group-name" style="color:#b45309;">✍️ 写作</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'writing_alchemist' })" style="border-color:#b4530933; color:#b45309;">🏆 高分作文炼金炉</button></div>
+          <div class="lab-group-name" style="color:#7c3aed;">🧩 语法 · ✍️ 写作</div>
+          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'bamboo_tree' })" style="border-color:#7c3aed33; color:#7c3aed;">🎋 竹节句 vs 树干句</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'adj_order' })" style="border-color:#7c3aed33; color:#7c3aed;">👑 形容词排座次</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'tense_matrix' })" style="border-color:#7c3aed33; color:#7c3aed;">🧭 时 × 体矩阵</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'aux_transformer' })" style="border-color:#7c3aed33; color:#7c3aed;">🪞 助动词照妖镜</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'five_patterns' })" style="border-color:#7c3aed33; color:#7c3aed;">🦴 五大基本句型</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'writing_alchemist' })" style="border-color:#7c3aed33; color:#7c3aed;">🏆 高分作文炼金炉</button></div>
         </div>
       </div>
     </div>
