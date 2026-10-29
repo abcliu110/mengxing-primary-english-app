@@ -1,0 +1,960 @@
+{
+ "GRIMM_VOWEL_LAWS": [
+  {
+   "lawName": "定律 A：元音前移高化律（后元音 oo/u ➔ 前元音 ee/i）",
+   "essence": "古英语为了表示『复数』或『使别人变成那样（名词变动词）』，在词尾加过一个高元音 -i，它像磁铁一样把前面的后元音 oo/u 往前拉成了前元音 ee/i！后来词尾掉落，就留下了这群最神奇的双胞胎：",
+   "pairs": [
+    {
+     "from": "foot /fʊt/ (单数：一只脚)",
+     "to": "feet /fiːt/ (复数：双脚)",
+     "rule": "oo ➔ ee 元音前移表复数"
+    },
+    {
+     "from": "tooth /tuːθ/ (单数：一颗牙)",
+     "to": "teeth /tiːθ/ (复数：满口牙)",
+     "rule": "oo ➔ ee 元音前移表复数"
+    },
+    {
+     "from": "goose /ɡuːs/ (单数：一只鹅)",
+     "to": "geese /ɡiːs/ (复数：一群鹅)",
+     "rule": "oo ➔ ee 元音前移表复数"
+    },
+    {
+     "from": "food /fuːd/ (名词：食物)",
+     "to": "feed /fiːd/ (动词：把食物喂给…吃)",
+     "rule": "oo ➔ ee 名词变使动动词"
+    },
+    {
+     "from": "full /fʊl/ (形容词：满的)",
+     "to": "fill /fɪl/ (动词：把…装满)",
+     "rule": "u ➔ i 形容词变使动动词"
+    },
+    {
+     "from": "blood /blʌd/ (名词：血)",
+     "to": "bleed /bliːd/ (动词：流血)",
+     "rule": "oo ➔ ee 名词变动词"
+    }
+   ]
+  },
+  {
+   "lawName": "定律 B：元音缩短加 -th 抽象名词律（形容词 ➔ 名词）",
+   "essence": "为什么 long 变名词不是 longth 而是 length？为什么 strong 变名词是 strength？为什么 wide 变 width、deep 变 depth？因为加上咬舌音后缀 -th 时，口腔为了省力，自动把前面的长元音/后元音缩短前移成了 /e/ 或 /ɪ/！",
+   "pairs": [
+    {
+     "from": "long (adj. 长的)",
+     "to": "length (n. 长度 — o 变 e + th)",
+     "rule": "o ➔ e + th"
+    },
+    {
+     "from": "strong (adj. 强壮的)",
+     "to": "strength (n. 力量/长处 — o 变 e + th)",
+     "rule": "o ➔ e + th"
+    },
+    {
+     "from": "deep (adj. 深的 /iː/)",
+     "to": "depth (n. 深度 — ee 缩成 e /e/ + th)",
+     "rule": "ee ➔ e + th"
+    },
+    {
+     "from": "wide (adj. 宽的 /aɪ/)",
+     "to": "width (n. 宽度 — i_e 缩成 i /ɪ/ + th)",
+     "rule": "i_e ➔ i + th"
+    },
+    {
+     "from": "high (adj. 高的 /aɪ/)",
+     "to": "height (n. 身高/高度 — + t)",
+     "rule": "igh ➔ eigh + t"
+    },
+    {
+     "from": "true (adj. 真的) / warm (暖的)",
+     "to": "truth (n. 真相) / warmth (n. 温暖)",
+     "rule": "直接 + th 变抽象名词"
+    }
+   ]
+  },
+  {
+   "lawName": "定律 C：清辅音是名词/形容词 ↔ 浊辅音是动词（清名浊动交替律）",
+   "essence": "英语里有一批长得极为相似的孪生词：当词尾读『声带不震动的清辅音 (/f/, /θ/, /s/)』时，它是静态的名词或形容词；当词尾变成『声带震动的浊辅音 (/v/, /ð/, /z/)』时，它瞬间激活变成了动态的动词！",
+   "pairs": [
+    {
+     "from": "safe /seɪf/ (adj. 安全的 — 清音/f/)",
+     "to": "save /seɪv/ (v. 拯救/节省 — 浊音/v/)",
+     "rule": "/f/ 静 ➔ /v/ 动"
+    },
+    {
+     "from": "life /laɪf/ (n. 生命/生活 — 清音/f/)",
+     "to": "live /lɪv/ (v. 居住/生活 — 浊音/v/)",
+     "rule": "/f/ 名 ➔ /v/ 动"
+    },
+    {
+     "from": "breath /breθ/ (n. 呼吸一口气 — 清音/θ/)",
+     "to": "breathe /briːð/ (v. 呼吸动作 — 浊音/ð/)",
+     "rule": "/θ/ 名 ➔ /ð/ 动"
+    },
+    {
+     "from": "bath /bɑːθ/ (n. 洗澡 — 清音/θ/)",
+     "to": "bathe /beɪð/ (v. 给…洗澡 — 浊音/ð/)",
+     "rule": "/θ/ 名 ➔ /ð/ 动"
+    },
+    {
+     "from": "use /juːs/ (n. 用途 — 清音/s/)",
+     "to": "use /juːz/ (v. 使用 — 浊音/z/)",
+     "rule": "/s/ 名 ➔ /z/ 动"
+    },
+    {
+     "from": "close /kləʊs/ (adj. 亲近的 — 清音/s/)",
+     "to": "close /kləʊz/ (v. 关门 — 浊音/z/)",
+     "rule": "/s/ 形 ➔ /z/ 动"
+    },
+    {
+     "from": "advice /ədˈvaɪs/ (n. 建议 — 清音/s/)",
+     "to": "advise /ədˈvaɪz/ (v. 劝告 — 浊音/z/)",
+     "rule": "c(/s/) 名 ➔ s(/z/) 动"
+    }
+   ]
+  }
+ ],
+ "ADJ_ORDER_EXAMPLES": [
+  {
+   "title": "经典真题 ①：一张漂亮的小圆木桌",
+   "zh": "一张 + 漂亮的(观点) + 小的(大小) + 圆的(形状) + 木头的(材质) + 桌子",
+   "slots": [
+    "a",
+    "nice (观点)",
+    "small (大小)",
+    "round (形状)",
+    "—",
+    "—",
+    "wooden (材质)",
+    "table"
+   ],
+   "en": "a nice small round wooden table",
+   "why": "漂亮(nice)是主观感受放最外层；木头做的(wooden)是桌子的物理本质，必须紧贴 table！"
+  },
+  {
+   "title": "经典真题 ②：两只可爱的小白猫",
+   "zh": "两只 + 可爱的(观点) + 小的(大小) + 白色的(颜色) + 猫咪",
+   "slots": [
+    "two",
+    "cute (观点)",
+    "little (大小)",
+    "—",
+    "white (颜色)",
+    "—",
+    "—",
+    "cats"
+   ],
+   "en": "two cute little white cats",
+   "why": "先夸可爱(cute)，再看个头小(little)，最后看毛色白(white)紧贴 cats！"
+  },
+  {
+   "title": "经典真题 ③：一件崭新的红色中国丝绸连衣裙",
+   "zh": "一件 + 漂亮的(观点) + 新的(新旧) + 红色的(颜色) + 中国的(国籍) + 丝绸(材质) + 连衣裙",
+   "slots": [
+    "a",
+    "beautiful (观点)",
+    "—",
+    "new (新旧)",
+    "red (颜色)",
+    "Chinese (国籍)",
+    "silk (材质)",
+    "dress"
+   ],
+   "en": "a beautiful new red Chinese silk dress",
+   "why": "严格遵循「观点 ➔ 新旧 ➔ 颜色 ➔ 国籍 ➔ 材质 ➔ 名词」由主观到客观的顺序！"
+  },
+  {
+   "title": "经典真题 ④：那个高个子年轻的英国篮球教练",
+   "zh": "那个 + 高个子的(大小) + 年轻的(年龄) + 英国的(国籍) + 篮球(用途) + 教练",
+   "slots": [
+    "that",
+    "—",
+    "tall (大小)",
+    "young (年龄)",
+    "—",
+    "British (国籍)",
+    "basketball (用途)",
+    "coach"
+   ],
+   "en": "that tall young British basketball coach",
+   "why": "身高(tall)在年龄(young)前，国籍(British)在专业用途(basketball)前！"
+  }
+ ],
+ "IRREGULAR_PAST_CLANS": [
+  {
+   "clanName": "🛡️ 第一门派：金钟罩铁布衫派（AAA 原形=过去式，全以短促 -t/-d 结尾！）",
+   "secret": "【第一性原理揭秘】为什么 put, cut, hit, hurt, let, set, cost, read 的过去式不加 -ed？因为它们词尾本来就是短促的舌尖爆破音 /t/ 或 /d/！古英语里加上 -ed 后跟词尾撞在一起直接被吞掉了，于是保留了原形同形！",
+   "members": [
+    {
+     "base": "put (放)",
+     "past": "put /pʊt/",
+     "tip": "短促闭音节 + t 结尾，过去现在一模一样",
+     "ex": "He put his book on the desk yesterday."
+    },
+    {
+     "base": "cut (切/剪)",
+     "past": "cut /kʌt/",
+     "tip": "短促闭音节 + t 结尾，原形即过去式",
+     "ex": "Mom cut the watermelon into pieces."
+    },
+    {
+     "base": "hurt (弄伤/疼)",
+     "past": "hurt /hɜːt/",
+     "tip": "以 t 结尾，千万别写成 hurted！",
+     "ex": "I fell off my bike and hurt my foot."
+    },
+    {
+     "base": "hit (击打) / let (让)",
+     "past": "hit / let",
+     "tip": "短音 i/e + t 结尾，永不变形",
+     "ex": "He hit the ball hard!"
+    },
+    {
+     "base": "cost (花费/值)",
+     "past": "cost /kɒst/",
+     "tip": "以 st 结尾，物作主语过去式仍是 cost",
+     "ex": "The new dictionary cost me 30 yuan."
+    },
+    {
+     "base": "read /riːd/ (读)",
+     "past": "read /red/",
+     "tip": "拼写100%不变，但读音从长音 /riːd/ 缩成了短音 /red/（像红色 red）！",
+     "ex": "I read an interesting book last night."
+    }
+   ]
+  },
+  {
+   "clanName": "🎵 第二门派：水流音乐元音换挡派（i ➔ a ➔ u 口腔张开度三级跳！）",
+   "secret": "【第一性原理揭秘】日耳曼语最经典的「元音交替 (Ablaut)」：现在时用最扁的前高元音 i (/ɪ/)，过去式张大嘴巴变成 a (/æ/)，过去分词拢圆变成 u (/ʌ/)！凡是带鼻音 -ng/-nk/-m/-n 的高频动作几乎都在这一派：",
+   "members": [
+    {
+     "base": "sing (唱歌)",
+     "past": "sang (过去分词 sung)",
+     "tip": "i ➔ a 元音换挡（名词歌曲是 song）",
+     "ex": "We sang English songs at the party."
+    },
+    {
+     "base": "swim (游泳)",
+     "past": "swam (过去分词 swum)",
+     "tip": "i ➔ a 元音换挡",
+     "ex": "I swam in the blue sea last summer."
+    },
+    {
+     "base": "drink (喝水)",
+     "past": "drank (过去分词 drunk)",
+     "tip": "i ➔ a 元音换挡",
+     "ex": "He drank a big glass of milk."
+    },
+    {
+     "base": "begin (开始) / ring (响铃)",
+     "past": "began / rang",
+     "tip": "上课铃响了：The bell rang and class began!",
+     "ex": "The bell rang and class began."
+    },
+    {
+     "base": "sit (坐) / give (给)",
+     "past": "sat / gave",
+     "tip": "短 i 变 a (sat)，长 i_e 变 a_e (gave)",
+     "ex": "She sat down and gave me a smile."
+    },
+    {
+     "base": "run (跑) / come (来)",
+     "past": "ran / came",
+     "tip": "come→came、run→ran 不是 sing 那种 i 变 a。",
+     "ex": "He ran fast and came home early."
+    }
+   ]
+  },
+  {
+   "clanName": "✂️ 第三门派：长音减肥派（ee / ea 缩短成单 e，词尾加清音 -t / -d）",
+   "secret": "【第一性原理揭秘】当一个含长元音 /iː/（ee 或 ea）的动词在词尾加上过去式 -t/-d 时，音节变拥挤了，口腔为了保持节奏平衡，自动把长元音 /iː/『减肥缩短』成了短元音 /e/！",
+   "members": [
+    {
+     "base": "sleep /sliːp/ (睡觉)",
+     "past": "slept /slept/",
+     "tip": "ee 缩成 e + t",
+     "ex": "I slept very well last night."
+    },
+    {
+     "base": "keep /kiːp/ (保持)",
+     "past": "kept /kept/",
+     "tip": "ee 缩成 e + t",
+     "ex": "She kept her room clean and tidy."
+    },
+    {
+     "base": "sweep /swiːp/ (扫地)",
+     "past": "swept /swept/",
+     "tip": "ee 缩成 e + t",
+     "ex": "We swept the classroom floor."
+    },
+    {
+     "base": "feel /fiːl/ (感觉)",
+     "past": "felt /felt/",
+     "tip": "ee 缩成 e + t",
+     "ex": "He felt very happy yesterday."
+    },
+    {
+     "base": "leave /liːv/ (离开)",
+     "past": "left /left/",
+     "tip": "ea(/iː/) 缩成 e，浊音 v 同化为清音 f + t！",
+     "ex": "The train left ten minutes ago."
+    },
+    {
+     "base": "meet /miːt/ (遇见) / feed (喂)",
+     "past": "met / fed",
+     "tip": "双 ee 直接减掉一个 e 变成短音 met / fed！",
+     "ex": "I met my old friend in the park."
+    }
+   ]
+  },
+  {
+   "clanName": "⚔️ 第四门派：买想教抓「-ought / -aught」四大护法派（全读 /ɔːt/，gh静音！）",
+   "secret": "【第一性原理揭秘】好多同学分不清 bought, thought, brought, caught, taught 怎么写。其实它们全是古英语『元音后移 + 舌根摩擦音 gh(后静音) + t』的产物！记住黄金铁律：【原形有 a 就写 -aught（catch/teach），其余全写 -ought】！",
+   "members": [
+    {
+     "base": "buy (买)",
+     "past": "bought /bɔːt/",
+     "tip": "无 a 用 -ought（去商店买礼物）",
+     "ex": "Mom bought a new dress for me."
+    },
+    {
+     "base": "think (思考/想)",
+     "past": "thought /θɔːt/",
+     "tip": "th- 开头保留，无 a 用 -ought",
+     "ex": "I thought the movie was great."
+    },
+    {
+     "base": "bring (带来)",
+     "past": "brought /brɔːt/",
+     "tip": "br- 开头保留，无 a 用 -ought（别和 bought 混！）",
+     "ex": "He brought his puppy to the park."
+    },
+    {
+     "base": "fight (战斗/努力)",
+     "past": "fought /fɔːt/",
+     "tip": "f- 开头保留，无 a 用 -ought",
+     "ex": "The firemen fought the fire bravely."
+    },
+    {
+     "base": "teach (教课 — 含字母a!)",
+     "past": "taught /tɔːt/",
+     "tip": "🌟 原形 teach 里有字母 a ➔ 过去式必用 -aught！",
+     "ex": "Miss White taught us English last year."
+    },
+    {
+     "base": "catch (抓住/赶上 — 含字母a!)",
+     "past": "caught /kɔːt/",
+     "tip": "🌟 原形 catch 里有字母 a ➔ 过去式必用 -aught！",
+     "ex": "The cat caught a mouse last night."
+    }
+   ]
+  }
+ ],
+ "STRESS_AND_SCHWA_DB": [
+  {
+   "title": "法则 A：双音节词「名前动后」重音铁律（拼写一模一样，重音一换词性立变！）",
+   "principle": "为什么同样拼写的词，当名词时重音在第一音节（前重），当动词时重音移到第二音节（后重）？因为名词代表『静态定格的事物（重心稳在开头）』，而动词代表『向前推进发力的动作（能量冲向词尾）』！",
+   "items": [
+    {
+     "word": "present",
+     "nForm": "ˈpre-sent (前重：n. 生日礼物 / adj. 现在的)",
+     "vForm": "pre-ˈsent (后重：v. 颁呈/赠送)",
+     "ex": "Here is a ˈpresent for you! Let me preˈsent it to you."
+    },
+    {
+     "word": "record",
+     "nForm": "ˈre-cord (前重：n. 最高纪录/唱片)",
+     "vForm": "re-ˈcord (后重：v. 录音/记录下来)",
+     "ex": "He broke the school ˈrecord! Let's reˈcord the song."
+    },
+    {
+     "word": "desert",
+     "nForm": "ˈde-sert (前重：n. 撒哈拉大沙漠)",
+     "vForm": "de-ˈsert (后重：v. 抛弃/遗弃)",
+     "ex": "Camels live in the dry ˈdesert."
+    },
+    {
+     "word": "export / import",
+     "nForm": "ˈex-port (前重：n. 出口商品)",
+     "vForm": "ex-ˈport (后重：v. 把商品出口到国外)",
+     "ex": "China exˈports many cars."
+    }
+   ]
+  },
+  {
+   "title": "法则 B：后缀「重音磁铁」定律（再长的多音节词，看一眼尾巴就知重音在哪！）",
+   "principle": "遇到三四个音节的长单词（如 vacation, dictionary, musician, scientific）怎么找重音？根本不用查音标——特定后缀就像强力磁铁，永远把重音吸在固定位置！",
+   "items": [
+    {
+     "word": "-tion / -sion 磁铁",
+     "nForm": "重音 100% 吸在它前面那一个音节！",
+     "vForm": "va-ˈCA-tion · sta-ˈTION · di-ˈREC-tion · in-vi-ˈTA-tion",
+     "ex": "I love summer va-CA-tion!"
+    },
+    {
+     "word": "-ic / -ian 磁铁",
+     "nForm": "重音 100% 吸在它前面那一个音节！",
+     "vForm": "mu-ˈSI-cian (音乐家) · ma-ˈGI-cian (魔术师) · sci-en-ˈTIF-ic (科学的)",
+     "ex": "He wants to be a great mu-SI-cian."
+    },
+    {
+     "word": "-ee / -ese / -eer 自吸磁铁",
+     "nForm": "重音直接吸在后缀自己身上！",
+     "vForm": "Chi-ˈNESE (中文/中国人) · Ja-pa-ˈNESE · engi-ˈNEER (工程师)",
+     "ex": "We speak Chi-NESE every day."
+    },
+    {
+     "word": "合成名词「前重」铁律",
+     "nForm": "两个名词拼成合成词，重音永远在第一个词！",
+     "vForm": "ˈBLACK-board (黑板) · ˈSCHOOL-bag (书包) · ˈFOOT-ball (足球) · ˈSUN-flower",
+     "ex": "Put your ˈSCHOOL-bag on the desk."
+    }
+   ]
+  },
+  {
+   "title": "法则 C：母语者听力破译 —— 英语「重音计时节拍」与懒元音 /ə/ (Schwa) 弱读吞音",
+   "principle": "汉语是『音节计时语言（每个字用力均匀，像机关枪哒哒哒）』；英语是『重音计时语言（实词重读拉长，夹在中间的虚词 to/for/of/and/can 全部压缩成极轻极短的懒元音 /ə/）』！听懂弱读和连读，听力瞬间开窍：",
+   "items": [
+    {
+     "word": "can /kən/ vs can't /ˈkɑːnt/",
+     "nForm": "肯定句里 can 弱读成极轻的 /kən/，重音在实义动词上！",
+     "vForm": "否定句里 can't 重读且张大嘴读 /ˈkɑːnt/！",
+     "ex": "I kən ˈSWIM. (我会游) vs I ˈKɑːNT ˈSWIM. (我不会游)"
+    },
+    {
+     "word": "of 弱读连读 ➔ /ə/",
+     "nForm": "a cup of tea ➔ 连读成 /ə ˈkʌpə ˈtiː/ (听起来像 cuppa tea)",
+     "vForm": "lots of ➔ /ˈlɒtsə/ ｜ kind of ➔ /ˈkaɪndə/",
+     "ex": "Would you like a cup of (/kʌpə/) milk?"
+    },
+    {
+     "word": "to 弱读缩音 ➔ /tə/ 或 wanna/gonna",
+     "nForm": "want to ➔ 口语常缩读为 wanna /ˈwɒnə/",
+     "vForm": "going to (表打算) ➔ 口语常缩读为 gonna /ˈɡɒnə/",
+     "ex": "I'm gonna (going to) visit my grandpa tomorrow."
+    },
+    {
+     "word": "辅音+元音「丝滑连读」",
+     "nForm": "前词尾辅音 + 后词首元音 ➔ 直接拼成一个音节！",
+     "vForm": "look at it ➔ /ˈlʊ-kæ-tɪt/ ｜ put it on ➔ /ˈpʊ-tɪ-tɒn/ ｜ an apple ➔ /ə-ˈnæ-pl/",
+     "ex": "Look at it (/lʊ-kæ-tɪt/)! Pick it up (/pɪ-kɪ-tʌp/)!"
+    }
+   ]
+  }
+ ],
+ "METAPHOR_CODES_DB": [
+  {
+   "catTitle": "🧍 密码一：人体部位空间隐喻（古人以自己身体为尺子丈量万物！）",
+   "desc": "为什么山脚叫 foot of the mountain？为什么针眼叫 eye of a needle？因为人类认知世界的第一把尺子就是自己的身体——从头到脚对应万物的『顶、面、口、心、手、底』：",
+   "cards": [
+    {
+     "key": "🗣️ HEAD (头 ➔ 最高端/统帅)",
+     "literal": "人体最高指挥中心",
+     "metaphors": "headmaster (一校之长=校长) · at the head of the line (排在队首) · head of the bed (床头)",
+     "ex": "Our headmaster stood at the head of the line."
+    },
+    {
+     "key": "😊 FACE & EYE (脸/眼 ➔ 表面与孔洞中心)",
+     "literal": "五官朝外呈现的面与视觉孔",
+     "metaphors": "face of a clock (钟面表盘) · face the problem (面对困难) · eye of a needle (针眼) · bull's-eye (靶心)",
+     "ex": "Look at the big clock face on the tower!"
+    },
+    {
+     "key": "👄 MOUTH & NECK (嘴/颈 ➔ 出入口与狭窄处)",
+     "literal": "进出通道与瓶颈",
+     "metaphors": "mouth of a river (河流入海口) · mouth of a cave (山洞口) · neck of a bottle (瓶颈)",
+     "ex": "Shanghai is at the mouth of the Yangtze River."
+    },
+    {
+     "key": "✋ HAND & ARM (手/臂 ➔ 指针、帮手与扶手)",
+     "literal": "干活指示的肢体",
+     "metaphors": "hour/minute hand (时针/分针) · give me a hand (搭把手帮忙) · armchair (扶手椅) · second-hand (二手的)",
+     "ex": "The short hand of the clock points to six. Can you give me a hand?"
+    },
+    {
+     "key": "🦶 FOOT & LEG (脚/腿 ➔ 最底部基座与支撑柱)",
+     "literal": "撑起全身的底部",
+     "metaphors": "at the foot of the mountain (在山脚下) · at the foot of the page (在书页底部) · four legs of a table (四条桌腿)",
+     "ex": "There is a small village at the foot of the mountain."
+    }
+   ]
+  },
+  {
+   "catTitle": "🎨 密码二：色彩情绪与文化隐喻（颜色词背后的西方文化潜台词）",
+   "desc": "颜色词如果只按字面翻译就会闹大笑话！比如 black tea 不是黑茶而是红茶，green hand 不是绿手而是新手，feel blue 不是变成蓝色而是心情低落：",
+   "cards": [
+    {
+     "key": "🔵 BLUE (蔚蓝 ➔ 忧郁伤感)",
+     "literal": "阴郁的海水与蓝调音乐",
+     "metaphors": "feel blue / look blue (心情低落、闷闷不乐，= feel sad)",
+     "ex": "Don't feel blue! Everything will be fine."
+    },
+    {
+     "key": "🟢 GREEN (草木绿 ➔ 嫩芽新手 / 许可通行 / 环保)",
+     "literal": "刚长出的嫩芽与绿灯",
+     "metaphors": "a green hand (经验不足的新手/菜鸟) · give the green light (亮绿灯批准) · green food (绿色健康食品)",
+     "ex": "I am still a green hand at cooking."
+    },
+    {
+     "key": "🔴 RED & ⚫ BLACK (红与黑的中西差异)",
+     "literal": "火焰热血 vs 茶叶本色",
+     "metaphors": "black tea (红茶——英语按干茶叶乌黑颜色命名) · red tea (❌ 中式错译) · a red-letter day (喜庆的大好日子，日历印红字)",
+     "ex": "Grandpa likes drinking a cup of hot black tea."
+    },
+    {
+     "key": "⚪ WHITE & 🟡 GOLDEN (洁白无害 vs 黄金宝贵)",
+     "literal": "纯净白雪 vs 闪耀黄金",
+     "metaphors": "a white lie (善意的谎言，不伤人) · golden opportunity (千载难逢的黄金良机) · golden autumn (金秋)",
+     "ex": "Time is gold! Don't miss this golden chance."
+    }
+   ]
+  },
+  {
+   "catTitle": "🦁 密码三：动物习性比喻与同级比较谚语（写作与口语满分亮点！）",
+   "desc": "英语母语者超爱用动物的鲜明特征来打比方（as + 形容词原级 + as + a 动物）。背会下面这组句子，看图写话和口语表达立刻脱颖而出：",
+   "cards": [
+    {
+     "key": "🐝 勤劳小蜜蜂 & 🐦 早起小鸟",
+     "literal": "不停采蜜的蜂与清晨觅食的鸟",
+     "metaphors": "as busy as a bee (忙得不可开交) · The early bird catches the worm (早起的鸟儿有虫吃/笨鸟先飞)",
+     "ex": "My mom is as busy as a bee every morning!"
+    },
+    {
+     "key": "🐴 强壮的骏马 & 🦁 勇敢的雄狮",
+     "literal": "草原上不知疲倦的马与百兽之王",
+     "metaphors": "as strong as a horse (健壮如牛/力大无穷) · eat like a horse (胃口大得惊人) · as brave as a lion (勇猛如狮)",
+     "ex": "My uncle exercises every day and he is as strong as a horse!"
+    },
+    {
+     "key": "🐑 温顺的小羊 & 🦚 骄傲的孔雀",
+     "literal": "绵羊的温和与孔雀开屏",
+     "metaphors": "as gentle as a lamb (温顺如小羊) · as proud as a peacock (骄傲得像孔雀) · black sheep (羊群里的黑羊=害群之马/败家子)",
+     "ex": "Our English teacher is as gentle as a lamb."
+    },
+    {
+     "key": "🐶🐱 猫狗与大象的趣味习语",
+     "literal": "日常宠物与巨兽意象",
+     "metaphors": "rain cats and dogs (下倾盆大雨) · a lucky dog (幸运儿) · love me, love my dog (爱屋及乌) · white elephant (昂贵却无用的累赘)",
+     "ex": "Take an umbrella! It's raining cats and dogs outside!"
+    }
+   ]
+  }
+ ],
+ "TENSE_ASPECT_MATRIX_DB": [
+  {
+   "id": "present_simple",
+   "timeAxis": "📍 现在时间轴 (Present)",
+   "aspectLens": "📸 一般体·常态快照镜头 (Simple = 习惯/真理/规律)",
+   "title": "① 一般现在时 (Present Simple)：拍下永恒不变的习惯与客观真理",
+   "formula": "主语 + 动词原形 V / 单三 V-s(es)   ｜   状态：am / is / are",
+   "whySecret": "【第一性原理】为什么叫『一般体(Simple)』？因为它不关心这一秒钟动作有没有正在做，而是像拍一张『个人档案照』，记录每天反复发生的规律（every day/often）或宇宙真理（The earth goes around the sun）！记住：当主语是单个第三人称(he/she/it/单数名词)时，动词必须佩戴一枚『单三勋章 -s/-es』！",
+   "signals": "every day (每天) · always (总是) · usually (通常) · often (经常) · sometimes (有时) · on Sundays (每逢周日)",
+   "subjectSwitch": [
+    {
+     "subj": "I / We / They",
+     "verb": "play football every afternoon.",
+     "note": "复数/第一二人称：动词保持原形 play"
+    },
+    {
+     "subj": "He / She / Leo",
+     "verb": "plays football every afternoon.",
+     "note": "三单主语：动词佩戴 -s 勋章 plays！"
+    },
+    {
+     "subj": "My mom",
+     "verb": "teaches English and goes to work by car.",
+     "note": "以 ch/sh/s/x/o 结尾加 -es (teaches / goes)"
+    },
+    {
+     "subj": "The little bird",
+     "verb": "flies high in the sky.",
+     "note": "辅音+y 结尾：变 y 为 i 加 -es (fly ➔ flies)"
+    }
+   ],
+   "trapAlert": "🚨 考场头号陷阱：只要句中出现 doesn't 或 Does 提问，后面的单三动词立刻被『照妖镜』打回原形！（❌ He doesn't likes ➔ ✅ He doesn't like）"
+  },
+  {
+   "id": "present_prog",
+   "timeAxis": "📍 现在时间轴 (Present)",
+   "aspectLens": "🎥 进行体·高清动态录像机 (Progressive = be + V-ing)",
+   "title": "② 现在进行时 (Present Progressive)：摄像机正在直播这一秒的动作！",
+   "formula": "am / is / are（助动词画框） + V-ing（动态分词镜头）",
+   "whySecret": "【第一性原理】很多同学写进行时总是漏掉 be 动词（❌ I playing football），或者漏掉 -ing！为什么缺一不可？因为『V-ing』本身只是个形容词性的动态画面（正在踢球的...），必须靠『am/is/are』充当句子的谓语发动机，把此刻的时间锚定在『现在』！",
+   "signals": "Look! (看！) · Listen! (听！) · now (现在) · right now (此时此刻) · at the moment (眼下)",
+   "subjectSwitch": [
+    {
+     "subj": "Look! Leo",
+     "verb": "is running fast on the playground.",
+     "note": "重读闭音节辅元辅：双写尾字母 + ing (run ➔ running)"
+    },
+    {
+     "subj": "Listen! Mia",
+     "verb": "is dancing and making a cake.",
+     "note": "不发音 e 结尾：去哑 e + ing (dance ➔ dancing, make ➔ making)"
+    },
+    {
+     "subj": "The children",
+     "verb": "are swimming in the pool now.",
+     "note": "复数主语用 are + swimming (双写 m)"
+    },
+    {
+     "subj": "I",
+     "verb": "am reading an English storybook right now.",
+     "note": "普通动词直接 + ing (read ➔ reading)"
+    }
+   ],
+   "trapAlert": "🚨 考场头号陷阱：像 like(喜欢)、know(知道)、want(想要)、have(拥有) 这类『心理状态词』不能放进录像机拍慢动作，通常不用进行时！"
+  },
+  {
+   "id": "past_simple",
+   "timeAxis": "⏪ 过去时间轴 (Past)",
+   "aspectLens": "📸 一般体·历史老照片镜头 (Simple Past = 过去某个时间点完成的事)",
+   "title": "③ 一般过去时 (Past Simple)：咔嚓！定格在昨天/上周末的历史老照片",
+   "formula": "主语 + 动词过去式 V-ed / 不规则过去式   ｜   状态：was (单) / were (复)",
+   "whySecret": "【第一性原理】过去时是最好学的时态，因为它『不看主语脸色』！无论主语是 I、you、he 还是 they，实义动词过去式全部一视同仁（全用 played / went / saw），再也不用操心第三人称单数！（只有 be 动词分单数 was 和复数 were）。",
+   "signals": "yesterday (昨天) · last night/weekend/year (昨晚/上周末/去年) · ...ago (…以前) · just now (刚才) · in 2022",
+   "subjectSwitch": [
+    {
+     "subj": "I / He / They",
+     "verb": "visited the museum and took many photos yesterday.",
+     "note": "规则动词 +ed (visited)，不规则变过去式 (take ➔ took)"
+    },
+    {
+     "subj": "Mia",
+     "verb": "studied hard and cried when she lost her pen.",
+     "note": "辅音+y 变 i 加 ed (study ➔ studied, cry ➔ cried)"
+    },
+    {
+     "subj": "The bus",
+     "verb": "stopped at the station five minutes ago.",
+     "note": "重读闭音节双写 +ed (stop ➔ stopped, plan ➔ planned)"
+    },
+    {
+     "subj": "We",
+     "verb": "were very happy at the party last night.",
+     "note": "过去的状态：I/He/She/It 用 was，We/You/They 用 were"
+    }
+   ],
+   "trapAlert": "🚨 考场头号陷阱：句中有 didn't 或 Did 提问时，过去式立刻还原为动词原形！（❌ Did you went there? ➔ ✅ Did you go there?）"
+  },
+  {
+   "id": "future_simple",
+   "timeAxis": "⏩ 将来时间轴 (Future)",
+   "aspectLens": "🔭 将来体·未来望远镜镜头 (will + V原 / be going to + V原)",
+   "title": "④ 一般将来时 (Future Simple)：举起望远镜看向明天与未来计划",
+   "formula": "方案A：will + 动词原形（意愿/临时决定/客观预测） ｜ 方案B：am/is/are going to + 动词原形（早有计划/有迹象要发生）",
+   "whySecret": "【第一性原理】为什么将来时有两种说法？① `will` 原义是『意志、决心』，代表临时起意或必然趋势（I will help you! / Tomorrow will be sunny.）；② `be going to` 的物理画面是『人已经走在去往某事的路上了』，所以表示事先计划好、或者乌云密布马上要下雨（Look at the black clouds! It is going to rain!）！",
+   "signals": "tomorrow (明天) · next week/month/year (下周/下月/明年) · this evening/weekend (今晚/本周末) · soon (不久) · in the future",
+   "subjectSwitch": [
+    {
+     "subj": "I / He / We",
+     "verb": "will fly a kite in the park tomorrow.",
+     "note": "will 是情态助动词，所有人称通用，后面永远接动词原形！"
+    },
+    {
+     "subj": "Leo",
+     "verb": "is going to visit his grandparents this weekend.",
+     "note": "be going to 里的 be 必须随主语变 am/is/are！"
+    },
+    {
+     "subj": "They",
+     "verb": "are going to have a picnic next Sunday.",
+     "note": "复数主语用 are going to + 动词原形 have"
+    },
+    {
+     "subj": "There",
+     "verb": "will be (= is going to be) a football match tomorrow.",
+     "note": "🌟 黄金考点：There be 句型的将来时是 There will be 或 There is/are going to be（绝不能写 There will have！）"
+    }
+   ],
+   "trapAlert": "🚨 考场头号陷阱：There be 将来时永远是 There will be / There is going to be，千万别受中文影响写成 ❌ There is going to have！"
+  },
+  {
+   "id": "present_perfect",
+   "timeAxis": "🌉 过去连通现在桥 (Past ➔ Present)",
+   "aspectLens": "🏆 完成体·经验与成果留存镜头 (Perfect = have / has + V-ed过去分词)",
+   "title": "⑤ 小升初拔高·现在完成时 (Present Perfect)：动作发生在过去，但结果留在现在！",
+   "formula": "have / has（现在拥有） + V-ed / 过去分词（已经做完的动作状态）",
+   "whySecret": "【第一性原理】好多初中生都搞不懂『一般过去时』和『现在完成时』的区别！其实看字面就秒懂：`have/has` 是『现在手里攥着』，`done(过去分词)` 是『已经完成的成果』—— 合起来就是：**我此刻手里正拥有着之前做某事留下的结果！** 比如 `I lost my key` 只说明昨天丢了（现在找没找到不知道）；而 `I have lost my key` 意思是『我把钥匙弄丢了，所以现在我还进不去门！』",
+   "signals": "already (已经) · yet (还/尚) · just (刚刚) · ever (曾经) · never (从不) · since (自从) · for + 时间段 (持续了…)",
+   "subjectSwitch": [
+    {
+     "subj": "I / We / They",
+     "verb": "have already finished our homework.",
+     "note": "现在结果：作业写完了，现在可以出去玩啦！"
+    },
+    {
+     "subj": "He / She / Mia",
+     "verb": "has lived in Beijing for five years.",
+     "note": "三单主语用 has + 过去分词 lived（从5年前一直住到现在）"
+    },
+    {
+     "subj": "Have you",
+     "verb": "ever been to the Great Wall?",
+     "note": "have been to = 去过某地（人已经回来了，留下一段人生经历）"
+    },
+    {
+     "subj": "Mr Wang",
+     "verb": "has gone to Shanghai.",
+     "note": "has gone to = 去某地了（人还在上海或半路上，现在不在说话现场！）"
+    }
+   ],
+   "trapAlert": "🚨 考场头号陷阱：一旦句子里出现明确表示过去的时间点（如 yesterday, last week, two days ago），绝对不能用 have/has done，必须用一般过去时！"
+  }
+ ],
+ "AUX_TRANSFORMER_CASES": [
+  {
+   "title": "第一类：自带「be 动词护卫 (am / is / are / was / were)」的句子",
+   "guardType": "🛡️ 自带皇室护卫：be 动词 (is / are / am / was / were)",
+   "lawSummary": "【第一性原理】英语规定：只有『护卫词（be动词、情态动词、助动词）』才有资格跨过主语去提问，或者在身后背负否定词 not！如果句子里本来就有 be 动词，它亲自上阵，根本不需要请外援 do/does/did！",
+   "affirmative": "She is taking photos in the park now.",
+   "zh": "她现在正在公园里拍照。",
+   "negative": "She is not (isn't) taking photos in the park now.",
+   "negRule": "直接在护卫 is 身后贴上 not（is not = isn't）",
+   "yesNoQ": "Is she taking photos in the park now? — Yes, she is. / No, she isn't.",
+   "yesNoRule": "把护卫 Is 直接提到主语 she 前面！",
+   "whQ": "Where is she taking photos now?（对地点 in the park 提问）",
+   "whRule": "① 换疑问词 Where ➔ ② 提护卫 is ➔ ③ 擦掉被提问的 in the park",
+   "exclam": "What beautiful photos she is taking! / How happy she is!",
+   "exclamRule": "感叹名词短语用 What (+ a/an) + adj + n + 主谓！感叹形容词/副词用 How + adj/adv + 主谓！"
+  },
+  {
+   "title": "第二类：自带「情态动词大将军 (can / will / must / should / may)」的句子",
+   "guardType": "⚔️ 自带大将军：情态动词 (can / will / must / should)",
+   "lawSummary": "【第一性原理】情态动词（can 能、will 将要、must 必须、should 应该）本身就是武功高强的大将军，而且它自带『免死金牌』—— 无论主语是谁，它身后的动词永远保持原形！变否定直接加 not，变疑问直接把大将军提到句首！",
+   "affirmative": "Leo can speak English very well.",
+   "zh": "里奥英语说得非常好。",
+   "negative": "Leo cannot (can't) speak English very well.",
+   "negRule": "直接在大将军 can 后加 not（cannot / can't），后面 speak 保持原形",
+   "yesNoQ": "Can Leo speak English very well? — Yes, he can. / No, he can't.",
+   "yesNoRule": "把大将军 Can 直接提到主语 Leo 前面！",
+   "whQ": "What can Leo speak very well? / How well can Leo speak English?",
+   "whRule": "① 换疑问词 What ➔ ② 提大将军 can ➔ ③ 后面主语 + 动词原形",
+   "exclam": "How well Leo can speak English!",
+   "exclamRule": "修饰副词 well 用 How well + 主语 Leo + 谓语 can speak！"
+  },
+  {
+   "title": "第三类：实义动词「三单现在时 (-s/-es)」—— 召唤照妖镜 does！",
+   "guardType": "🪞 召唤三单照妖镜：助动词 does / doesn't",
+   "lawSummary": "【第一性原理】为什么实义动词（like, play, go, watch）不能自己跑到主语前面提问？（不能说 ❌ Likes he...?）因为实义动词是老百姓，没有跨过主语提问的特权！必须去请助动词护卫 `do / does / did`！当原句动词带着单三勋章 `-s/-es` 时，请出同样带 `-es` 的 `does` 照妖镜 —— **勋章被 does 吸走了，原句动词必须立刻打回原形！**",
+   "affirmative": "Mia watches TV every Saturday evening.",
+   "zh": "米娅每周六晚上看电视。",
+   "negative": "Mia does not (doesn't) watch TV every Saturday evening.",
+   "negRule": "🪞 照妖镜 doesn't 出场吸走 -es，后面的 watches 立刻打回原形 watch！",
+   "yesNoQ": "Does Mia watch TV every Saturday evening? — Yes, she does. / No, she doesn't.",
+   "yesNoRule": "🪞 照妖镜 Does 站句首吸走 -es，句中的 watches 必须打回原形 watch！",
+   "whQ": "When does Mia watch TV?（对时间 every Saturday evening 提问）",
+   "whRule": "黄金三步公式：① 换疑问词 When ➔ ② 提助动词 does ➔ ③ 主语后 watches 打回原形 watch！",
+   "exclam": "What a relaxing Saturday evening Mia has!",
+   "exclamRule": "可数单数名词 evening 前必须加 a：What a + 形容词 + 单数名词 + 主谓！"
+  },
+  {
+   "title": "第四类：实义动词「过去式 (-ed / 不规则过去式)」—— 召唤照妖镜 did！",
+   "guardType": "🪞 召唤过去式照妖镜：助动词 did / didn't",
+   "lawSummary": "【第一性原理】当句子里没有 was/were，而是实义动词过去式（如 went, bought, saw, played）时，变否定和疑问必须请出过去式助动词护卫 `did`！**因为 did 自己已经承担了『过去时』的标记，它就像一面强力照妖镜，照到 went / bought / played 身上，立刻把它们统统打回动词原形 go / buy / play！**",
+   "affirmative": "They went to Sanya by plane last winter.",
+   "zh": "他们去年冬天坐飞机去了三亚。",
+   "negative": "They did not (didn't) go to Sanya by plane last winter.",
+   "negRule": "🪞 照妖镜 didn't 出场吸走过去时，不规则过去式 went 瞬间打回原形 go！",
+   "yesNoQ": "Did they go to Sanya by plane last winter? — Yes, they did. / No, they didn't.",
+   "yesNoRule": "🪞 照妖镜 Did 站句首，后面的 went 必须还原成原形 go！",
+   "whQ": "How did they go to Sanya last winter?（对交通方式 by plane 提问）",
+   "whRule": "黄金三步公式：① 交通方式用 How ➔ ② 提过去助动词 did ➔ ③ 主语后 went 还原为 go！",
+   "exclam": "What a wonderful trip they had last winter! / How fast the plane flew!",
+   "exclamRule": "名词 trip 用 What a wonderful trip；副词 fast 用 How fast！"
+  }
+ ],
+ "FIVE_SENTENCE_PATTERNS_DB": [
+  {
+   "code": "句型 ①：SV（主语 + 不及物动词）",
+   "badge": "🦅 自给自足型 · 无需宾语",
+   "formula": "Subject (主语) + Vi (不及物动词)  [+ 副词/介词短语挂件]",
+   "essence": "【第一性原理】有些动作（如太阳升起 rise、小鸟飞翔 fly、睡眠 sleep、奔跑 run、微笑 smile）是主语自己独立就能完成的，能量不需要传导给别人，所以叫『不及物动词 (Vi)』。⚠️ 核心考点：如果它们后面硬要接承受对象，**必须先安装一个『介词挂钩 (to / at / for / with)』**！",
+   "skeletonParts": [
+    "🌞 The sun (主语 S)",
+    "rises (不及物谓语 V)",
+    "in the east (地点挂件)"
+   ],
+   "goldExamples": [
+    {
+     "en": "Birds fly happily in the blue sky.",
+     "zh": "鸟儿在蓝天上快乐地飞翔。（fly 不及物，后面挂副词 happily 和地点 in the sky）"
+    },
+    {
+     "en": "Please listen to the teacher and look at the blackboard!",
+     "zh": "🔥 必考铁律：listen(听)、look(看)、wait(等)、arrive(到达) 全是不及物动词，接宾语必须加挂钩：listen TO / look AT / wait FOR / arrive IN(AT)！"
+    }
+   ]
+  },
+  {
+   "code": "句型 ②：SVP（主语 + 系动词 + 表语）",
+   "badge": "⚖️ 状态天平型 · 绝不用副词",
+   "formula": "Subject (主语) + Link Verb (系动词=等号) + Predicative (表语: 名词/形容词/介词短语)",
+   "essence": "【第一性原理】系动词（Linking Verb）不是动作，而是一座『状态等号桥（＝）』！它把后面的形容词或身份直接赋给主语。除了 `am/is/are`，小学最常考的是**五大感官系动词（look看起来 / sound听起来 / smell闻起来 / taste尝起来 / feel摸起来）**和**三大变化系动词（get / turn / become 变得）**！⚠️ 铁律：系动词后面永远接**形容词**说明主语的状态，绝不能接 `-ly` 副词！",
+   "skeletonParts": [
+    "🍲 The chicken soup (主语 S)",
+    "smells / tastes (感官系动词 = )",
+    "so delicious! (形容词表语 P)"
+   ],
+   "goldExamples": [
+    {
+     "en": "That idea sounds great! The cake tastes sweet.",
+     "zh": "那个主意听起来太棒了！蛋糕尝起来很甜。（✅ taste sweet，千万别写 ❌ taste sweetly！）"
+    },
+    {
+     "en": "In autumn, the leaves turn yellow and the weather gets cool.",
+     "zh": "秋天树叶变黄，天气变凉爽。（turn 管颜色变化，get 管天气/长短变化）"
+    }
+   ]
+  },
+  {
+   "code": "句型 ③：SVO（主语 + 及物动词 + 宾语）",
+   "badge": "🏹 一箭穿心型 · 动作击中靶心",
+   "formula": "Subject (主语射箭人) + Vt (及物动词弓箭) + Object (宾语靶心)",
+   "essence": "【第一性原理】80% 的英语动词是『及物动词 (Vt)』—— 动作像射出去的箭，必须直接击中后面的『宾语靶心 (Object)』句子才完整！⚠️ 核心考点：及物动词后面**直接接宾语**，千万不要画蛇添足乱加介词（比如 ✅ discuss the plan / ✅ marry her / ✅ enter the room，都不加介词）！另外，如果两个动词连用（想做某事、喜欢做某事），第二个动词必须穿制服变成 `to do` 或 `doing` 充当宾语！",
+   "skeletonParts": [
+    "👦 Leo (主语 S)",
+    "loves / enjoys (及物谓语 V)",
+    "reading English books (宾语靶心 O)"
+   ],
+   "goldExamples": [
+    {
+     "en": "We planted twenty young trees on Tree Planting Day.",
+     "zh": "我们在植树节种了20棵小树苗。（planted 直接击中宾语 trees）"
+    },
+    {
+     "en": "I want to buy a dictionary, and I enjoy reading stories.",
+     "zh": "🔥 宾语穿制服铁律：期盼未来去做的事用 to do (want/plan/hope/decide to do)；享受正在或习惯做的事用 doing (enjoy/finish/practice/mind doing)！"
+    }
+   ]
+  },
+  {
+   "code": "句型 ④：SVOO（主语 + 谓语 + 间接宾语人 + 直接宾语物）",
+   "badge": "🎁 双手递礼型 · to指向 vs for心意",
+   "formula": "Subject + V + sb.(间接宾语人) + sth.(直接宾语物)  ⇄  Subject + V + sth. + to/for + sb.",
+   "essence": "【第一性原理】像 give(给)、show(展示)、send(寄)、teach(教)、buy(买)、make(制作)、cook(做饭) 这类词，天生涉及『把某物(sth.)传递给某人(sb.)』！当『人』排在前面时叫双宾语（`give me a book`）；如果把『物』放前面，人放后面，什么时候用 `to`，什么时候用 `for`？记住物理画面：**动作是把现成东西『单向递过去（箭头 ➔）』的用 `to`；动作是『花心思替某人准备/购买（爱心 ❤️）』的用 `for`！**",
+   "skeletonParts": [
+    "👩 Mum (主语 S)",
+    "gave / bought (双宾动词 V)",
+    "me (人 IO) + a birthday gift (物 DO)"
+   ],
+   "goldExamples": [
+    {
+     "en": "Leo gave me a nice pen. = Leo gave a nice pen TO me.",
+     "zh": "🏹 方向箭头派（全用 to）：give(给) / show(看) / send(寄) / pass(递) / lend(借) / teach(教) / tell(告诉) sth. TO sb."
+    },
+    {
+     "en": "Dad bought me a new bike. = Dad bought a new bike FOR me.",
+     "zh": "❤️ 爱心付出派（全用 for）：buy(买) / make(制作) / cook(烹饪) / draw(画) / choose(挑选) / find(寻找) sth. FOR sb."
+    }
+   ]
+  },
+  {
+   "code": "句型 ⑤：SVOC（主语 + 谓语 + 宾语 + 宾语补足语）",
+   "badge": "⚡ 魔法赋能型 · 让宾语干某事/变某样",
+   "formula": "Subject + V + Object (宾语) + Complement (宾补: 形容词 / 名词 / to do / 省略to的原形 do)",
+   "essence": "【第一性原理】光有主谓宾还不够，后面的『宾语补足语 (OC)』专门用来补充说明**宾语变成了什么状态，或者宾语去做了什么动作**（宾语 + 宾补 合起来在逻辑上等于一个小主谓句！）。⚠️ 必考三大使役动词（`make / let / have` 让某人做某事）：因为语气太直接迫切，它们后面的宾补动词必须**脱掉 to，直接用动词原形 (`make/let sb. do sth.`)**！而一般动词（`ask / tell / want / invite`）必须带 `to` (`ask sb. to do sth.`)！",
+   "skeletonParts": [
+    "🎵 Good music (主语 S)",
+    "makes (使役谓语 V)",
+    "us (宾语 O) + happy / relax (宾补 OC)"
+   ],
+   "goldExamples": [
+    {
+     "en": "Reading books makes me clever and keeps my mind open.",
+     "zh": "形容词作宾补：make/keep + 宾语 + 形容词（千万别写 ❌ makes me happily！）"
+    },
+    {
+     "en": "Our teacher asks us to read aloud, and she lets us play games!",
+     "zh": "🔥 必考对比：ask/tell/want sb. TO DO sth.（带 to） vs Let's go! / Make him laugh!（let/make sb. DO sth. 省略 to 用原形！）"
+    }
+   ]
+  }
+ ],
+ "WRITING_ALCHEMIST_DB": [
+  {
+   "category": "炼金术 ①：把 60 分『干瘪大白话』一键炼成 100 分『考场惊艳句』",
+   "subtitle": "阅卷老师最怕看到满篇的 I like / It is good / I am happy。用下面 4 条黄金公式瞬间拉开档次：",
+   "formulas": [
+    {
+     "tag": "🌟 喜好表达三级跳",
+     "basic": "🌱 60分基础句：I like English very much.",
+     "gold": "🏆 100分满分句：I am crazy about English, and I really enjoy reading English stories in my free time!",
+     "secret": "用 be crazy about / be fond of / enjoy doing sth. 替代千篇一律的 like，并顺手加上时间状语 in my free time！"
+    },
+    {
+     "tag": "🌟 开心与感叹升级",
+     "basic": "🌱 60分基础句：We were very happy yesterday.",
+     "gold": "🏆 100分满分句：What a wonderful and unforgettable day we had! How excited we were!",
+     "secret": "作文结尾把 I was very happy 升级为 What a + adj + n + 主谓！和 How + adj + 主谓！感叹句，必拿高分亮点！"
+    },
+    {
+     "tag": "🌟 景色与五感立体描写",
+     "basic": "🌱 60分基础句：The park is very nice in spring.",
+     "gold": "🏆 100分满分句：In spring, the sky looks bright blue, the flowers smell sweet, and birds are singing happily in the green trees.",
+     "secret": "调用『视觉 look + 嗅觉 smell + 听觉 are singing』五感法则，一句话写出画面、色彩、气味与声音！"
+    },
+    {
+     "tag": "🌟 重要与好处升级公式",
+     "basic": "🌱 60分基础句：Reading books is good for us.",
+     "gold": "🏆 100分满分句：Reading books is not only good for our study, but also opens a window to the world for us!",
+     "secret": "用 not only... but also...（不仅…而且…）+ 形象隐喻 opens a window to the world，瞬间具备名校范文质感！"
+    }
+   ]
+  },
+  {
+   "category": "炼金术 ②：考场作文「四大逻辑衔接词链 (Cohesion Chain)」",
+   "subtitle": "为什么别人的作文读起来像行云流水，你的作文像一盘散沙？因为满分作文每一句都有『逻辑路标』：",
+   "formulas": [
+    {
+     "tag": "🔗 第一棒：引出话题与第一点",
+     "basic": "🌱 普通写法：First, I will do homework.",
+     "gold": "🏆 高分路标：First of all, / To begin with, I am going to finish my homework carefully.",
+     "secret": "句首用 First of all,（首先）加上逗号，立刻让阅卷老师一眼看清你的文章结构！"
+    },
+    {
+     "tag": "🔗 第二棒：递进与补充亮点",
+     "basic": "🌱 普通写法：And I also help my mom.",
+     "gold": "🏆 高分路标：What's more, / Besides, I often help my parents do some housework, such as sweeping the floor.",
+     "secret": "戒掉满篇的 And！改用 What's more,（更有甚者/而且）和 such as doing（比如…）举例！"
+    },
+    {
+     "tag": "🔗 第三棒：转折与原因对比",
+     "basic": "🌱 普通写法：I was tired, but I was happy.",
+     "gold": "🏆 高分路标：Although I felt a little tired after the trip, I learned a lot and had a great time!",
+     "secret": "⚠️ 黄金铁律：英语里 Although(虽然) 和 but(但是) 绝不能同时出现在一个句子里！Because(因为) 和 so(所以) 也绝不共处一室！"
+    },
+    {
+     "tag": "🔗 第四棒：收尾总结升华",
+     "basic": "🌱 普通写法：At last, I love my weekend.",
+     "gold": "🏆 高分路标：All in all, / In a word, my weekend is busy but meaningful. I can't wait for it!",
+     "secret": "结尾用 All in all,（总而言之）或 In a word,（总之）收束全文，搭配 busy but meaningful（充实而有意义）！"
+    }
+   ]
+  },
+  {
+   "category": "炼金术 ③：小学毕业考「三大必考母题」满分范文积木",
+   "subtitle": "小学阶段 95% 的考场作文都逃不出【写人介绍 / 过去难忘经历 / 周末假期计划】这三大母题：",
+   "formulas": [
+    {
+     "tag": "📝 母题一：写人篇（My Best Friend / My Favourite Teacher）",
+     "basic": "🌱 核心骨架：外貌特征(with短语) + 性格品质(adj) + 爱好特长(be good at) + 榜样力量",
+     "gold": "🏆 满分范句：Linda is a tall and outgoing girl with big bright eyes. Not only is she polite and helpful, but she is also good at playing the piano. Whenever I have trouble with English, she always helps me patiently.",
+     "secret": "用 with big bright eyes 作后置定语，省去一句话；用 Whenever... she always... 展现人物乐于助人的细节！"
+    },
+    {
+     "tag": "📝 母题二：过去经历篇（My Last Weekend / An Unforgettable Trip）",
+     "basic": "🌱 核心骨架：时间天气交通(过去式) + 上午下午活动(First/Then) + 感受感叹(What a day!)",
+     "gold": "🏆 满分范句：Last Sunday, the weather was sunny and warm. I went to the countryside with my family by car. In the morning, we picked fresh strawberries and fed the cute sheep. In the afternoon, we took many beautiful photos by the lake. Tired as we were, what a fantastic day we had!",
+     "secret": "全文动词稳稳锁定过去式（was, went, picked, fed, took, had），结尾用感叹句画龙点睛！"
+    },
+    {
+     "tag": "📝 母题三：未来计划与倡议篇（My Summer Holiday Plan / Protect the Earth）",
+     "basic": "🌱 核心骨架：打算总起(be going to) + 三项具体计划(First/Besides/Finally) + 期待收尾",
+     "gold": "🏆 满分范句：The summer holiday is coming soon! First of all, I am going to read ten classic English books to open my mind. What's more, I will insist on swimming every day to keep healthy and strong. Finally, I plan to travel to Xi'an with my parents. I am really looking forward to it!",
+     "secret": "交替使用 is coming soon / am going to / will / plan to / look forward to，句式丰富度直接拉满！"
+    }
+   ]
+  }
+ ]
+}
