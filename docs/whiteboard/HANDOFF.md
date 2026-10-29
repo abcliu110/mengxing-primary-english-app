@@ -159,7 +159,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - **没加标签的**（SOURCES 里没有出处行，按 SOP §11.6 不加）：reporter、important、sport。important 的词源（拉丁语 importare）、sport（disport）要加的话先补 SOURCES。
 - 词卡：背面「📖 词源与巧记故事」下面多一块「📖 身世标签」，点一下关闭词卡、跳到 `navigateTo('word_origins_hub', { scene })`。由 `insert_wb.py` 插入（标记 `<!-- WO_ORIGIN_TAGS -->`，可重复运行）。
 - 验收：`src/apptags.py`——8 个词都在词库、指向的幕已上线；8 个词翻到背面都有标签、reporter 没有；点 passport 的标签 → 词卡关闭、进入单词身世总枢 port 幕且白板已挂载；无报错。PASS。
-- **没做（等用户确认，HANDOFF §4 第 5 条）**：词卡里原有的 port 家族长段落（`affix_root`「家族串记」、import 的「运进我们的港口」讲法把港口和搬运混成一个词根）按 R1 应改成一句话 + 身世标签——涉及删改词库原文，清单在 §4，等用户点头再动。
+- ✅ 2026-10-29 用户确认后已处理 port 家族词卡（HANDOFF §4 第 5 条）：7 张有标签的卡 + port 卡的旧「家族串记」换成「两条亲戚线」（⚓ 港口线 airport·passport ｜ 📦 搬运线 import·export·transport·report·support·important·sport，成员一个不少）；import / export / passport 的积木拆词、巧记、小故事里把港口和搬运混讲的地方按出处改正；`WORD_FORMATION_DB.roots` port 卡改成两条亲戚线；第二词库 airport 同步。reporter / important / sport 没有身世标签，原段落不动。逐字段清单 `word_origins/PORT_FAMILY_INVENTORY.md`（16 字段，❌ 0）。验收：jscheck OK；reg_render 80 幕逐字节一致；apptags PASS；词卡、构词法页截图正常无报错。
 
 **格林定律章（2026-10-29 21:40 起，进行中）**
 - 出处（`caa1493`）：`word_origins/SOURCES.md` ④ 真格林定律 12 条、⑤ 元音变异 14 条。纠错要点（R3，写进新幕，旧页签不动）：①「格林音变律」名字不准——格林定律是辅音挪位，foot→feet 是元音变异（i-mutation）；② length/strength 的 o→e 也是 i 变异（后缀 \*-itho 里的 i），不是「嘴巴省力缩短」；③ width 是 1620 年代仿 breadth 新造的，deep/depth、wide/width 读音差距主要来自 1400–1700 大元音推移（✂️）；④ safe/save、use/use 是法语借词，不属于古英语清浊交替（⚠️）；⑤ blood 读 /ʌ/ 不是 /uː/；⑥ full→fill 是形容词变动词。
@@ -270,8 +270,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 3. **port 视觉升级效果**：升级前后对比图确认后再铺开。
 4. 决策 6 五个新模块的**具体位置**（MASTER_DESIGN 表里是建议）。
 5. 重叠内容的处理（只列出、未删除）：
-   - `VOCAB_DB` 里 11 个词的 port 家族 `affix_root`（port、airport、passport、import、export、transport、report、reporter、support、important、sport），airport 的 `etymology` / `memory_tip`；
-   - `WORD_FORMATION_DB.roots` 的 port 卡（把港口、搬运写成一个词根，应改成「两条亲戚线」）；
+   - ✅（2026-10-29 已处理，见 `word_origins/PORT_FAMILY_INVENTORY.md`）`VOCAB_DB` 里 11 个词的 port 家族 `affix_root`（port、airport、passport、import、export、transport、report、reporter、support、important、sport），airport 的 `etymology` / `memory_tip`；
+   - ✅（已处理）`WORD_FORMATION_DB.roots` 的 port 卡（把港口、搬运写成一个词根，应改成「两条亲戚线」）；
    - 术语「词源」在 `fp_iconicity` 和 `wo_port` 各一条；
    - 第一性原理 ② 字母象形「M 像山」将来和「字母身世」并排（💡 vs 📜）。
 
