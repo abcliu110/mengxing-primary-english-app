@@ -77,7 +77,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 |---|---|---|
 | 1 | Europe 示范幕（`cases/wo_europe.js`，引擎 v2 + 讲解员，对齐 port 样板） | ✅ 见下 |
 | 2 | Bluetooth 示范幕（`cases/wo_bluetooth.js`） | ✅ 见下 |
-| 3 | 身世标签 `origin_tags` + 词卡跳转（先给 port 家族） | 待做 |
+| 3 | 身世标签 + 词卡跳转（先给 port 家族） | ✅ 见下 |
 | 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | 待做 |
 | 5 | 时间与度量章 | 待做 |
 
@@ -97,6 +97,13 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 验收：`r2check.py wo_bluetooth --strict` 12/12、R4 2/2；port / europe / bluetooth 三幕合计 48 个词全 ✔、R4 19/19；旧 64 幕 + europe 渲染逐字节不变；`appwo.py` 三幕都 mounted、无报错；fps（统一镜头）平均 60.0、1% 低帧 51.0。
 - 小修：字幕里的卢恩字母字符（ᚼ ᛒ）在常见中文字体里显示成方块，改成文字描述，画面上的字母用线条画。
 - 已知取舍：地图是简化示意（标「不按比例」）；蓝牙标志是黑色线条叠在蓝底上（真实标志是白色）。
+
+**📖 身世标签 + 词卡跳转（2026-10-29，port 家族）**
+- 数据：`wo_hub.js` 的 `WO_ORIGIN_TAGS`（按单词小写登记 `{ scene, badge, line }`，和 MASTER_DESIGN 决策 12 的 `origin_tags` 字段同一格式；放在总枢源文件里而不是改 `VOCAB_DB` 本体，词库数据不动）。已登记 8 个词：port、airport、passport、import、export、transport、report、support（都在 `SOURCES.md` ① 有出处行）。
+- **没加标签的**（SOURCES 里没有出处行，按 SOP §11.6 不加）：reporter、important、sport。important 的词源（拉丁语 importare）、sport（disport）要加的话先补 SOURCES。
+- 词卡：背面「📖 词源与巧记故事」下面多一块「📖 身世标签」，点一下关闭词卡、跳到 `navigateTo('word_origins_hub', { scene })`。由 `insert_wb.py` 插入（标记 `<!-- WO_ORIGIN_TAGS -->`，可重复运行）。
+- 验收：`src/apptags.py`——8 个词都在词库、指向的幕已上线；8 个词翻到背面都有标签、reporter 没有；点 passport 的标签 → 词卡关闭、进入单词身世总枢 port 幕且白板已挂载；无报错。PASS。
+- **没做（等用户确认，HANDOFF §4 第 5 条）**：词卡里原有的 port 家族长段落（`affix_root`「家族串记」、import 的「运进我们的港口」讲法把港口和搬运混成一个词根）按 R1 应改成一句话 + 身世标签——涉及删改词库原文，清单在 §4，等用户点头再动。
 
 ## 1. 当前状态
 
@@ -181,6 +188,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `wb_actor.js`：look `princess`、`king`；动作 `sit`（坐 / 骑：骨盆停在 y − 58×s，坐处由案例放好；坐着时不画地面影子）；道具 `flower`。
 - `cases/wo_props.js`：`D.bull(x, y, s, {face})` → `{ g, legs, back }`（back = 牛背坐处）。
 - 按需加载：`wbLoadModule(id)`、`wbHasModule(id)`、`wbLoadAll()`（`wb_app.js`）。
+- 身世标签：`WO_ORIGIN_TAGS`、`woOriginTags(w)`、`woOriginTagHtml(w)`（`wo_hub.js`）；验收 `apptags.py`。
 - 脚本：`jscheck.py`（node --check）、`reg_render.py`（渲染回归）、`measure_load.py`（首屏耗时）、`export_storyboard.py <幕>`（导出逐条时间码）；`measure_fps.py` 第 4 个参数可指定溯源幕。
 
 ### 2026-10-29 · 阶段 1（引擎 v2，`k.v2()` 打开才生效）

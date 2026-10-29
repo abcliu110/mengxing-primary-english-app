@@ -154,5 +154,13 @@ if VV_USE in s:
     assert s.count(VV_USE) == 1
     s = s.replace(VV_USE, '${(typeof wbLoadModule === "function" && wbLoadModule("vv"), typeof VV !== "undefined" && VV.has(comboKey))')
 
+# ---------- 📖 身世标签（决策 11 + 12）：词卡背面「词源与巧记故事」下面插入标签（woOriginTagHtml 在 wo_hub.js）----------
+CARD_ETY = """            <div style="font-size:0.9rem; color:#334155; margin-top:4px;">${w.etymology || w.memory_tip}</div>
+          </div>
+"""
+if '<!-- WO_ORIGIN_TAGS -->' not in s:
+    assert s.count(CARD_ETY) == 1
+    s = s.replace(CARD_ETY, CARD_ETY + '          <!-- WO_ORIGIN_TAGS -->${typeof woOriginTagHtml === "function" ? woOriginTagHtml(w) : ""}\n')
+
 open(F, 'w', encoding='utf-8').write(s)
 print('ok, lazy modules:', [m for m, _ in MODS])

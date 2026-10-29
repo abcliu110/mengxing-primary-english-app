@@ -5377,6 +5377,7 @@ function renderWordCardModalContent() {
             <div style="font-weight:900; color:#1e40af; font-size:0.9rem;">📖 词源与巧记故事</div>
             <div style="font-size:0.9rem; color:#334155; margin-top:4px;">${w.etymology || w.memory_tip}</div>
           </div>
+          <!-- WO_ORIGIN_TAGS -->${typeof woOriginTagHtml === "function" ? woOriginTagHtml(w) : ""}
           <div style="background:#fff; padding:12px 14px; border-radius:12px; border-left:4px solid #7c3aed;">
             <div style="font-weight:900; color:#5b21b6; font-size:0.9rem;">🧩 构词与词族规律</div>
             <div style="font-size:0.9rem; color:#334155; margin-top:4px;">${w.affix_root}</div>
@@ -11237,6 +11238,30 @@ const WO_CHAPTERS = [
 ];
 const WO_TIMELINE = [["🏛️", "罗马", "公元前后"], ["⛵", "维京", "约 800 年起"], ["🏰", "诺曼", "1066 年"], ["🧭", "大航海", "约 1500 年"], ["✈️", "现代", "今天"]];
 function woSceneReady(id) { return typeof WB_LAB !== "undefined" && (!!(WB_LAB[id] && WB_LAB[id].length) || (typeof wbModEl === "function" && !!wbModEl(id))); }   // 按需加载：模块在主文件里就算已上线（进入时才执行）
+// ---------- 📖 身世标签（决策 11 + 12）：词卡上点一下，跳到对应溯源幕 ----------
+// 规则（SOP §11.6）：只给 word_origins/SOURCES.md 里有出处行的词；没有出处的词不加（reporter、important、sport 暂不加）。
+// 按单词（小写）登记，一个词可以有多个标签：{ scene, badge, line }。先给 port 家族（阶段 2 第 3 步）。
+const WO_ORIGIN_TAGS = {
+  port: [{ scene: "wo_port", badge: "📜", line: "port = 港口（拉丁语 portus）：罗马世界的大门" }],
+  airport: [{ scene: "wo_port", badge: "📜", line: "air（空中）+ port（港口）= 空中的港口" }],
+  passport: [{ scene: "wo_port", badge: "📜", line: "pass（通过）+ port（港口）= 通过港口的许可" }],
+  import: [{ scene: "wo_port", badge: "📜", line: "im（进）+ port（搬运，拉丁语 portare）= 运进来" }],
+  export: [{ scene: "wo_port", badge: "📜", line: "ex（出）+ port（搬运）= 运出去" }],
+  transport: [{ scene: "wo_port", badge: "📜", line: "trans（穿过）+ port（搬运）= 运过去" }],
+  report: [{ scene: "wo_port", badge: "📜", line: "re（回）+ port（搬运）= 把消息带回来" }],
+  support: [{ scene: "wo_port", badge: "📜", line: "sup（从下面）+ port（扛）= 从下面托住" }],
+};
+function woOriginTags(w) { const word = String((w && w.word) || w || "").toLowerCase().trim(); return WO_ORIGIN_TAGS[word] || []; }
+function woOriginTagHtml(w) {
+  const tags = woOriginTags(w);
+  if (!tags.length) return "";
+  return `<div data-origin-tags="${tags.length}" style="background:#fffbeb; padding:10px 14px; border-radius:12px; border-left:4px solid #f59e0b;">
+    <div style="font-weight:900; color:#92400e; font-size:0.9rem; margin-bottom:6px;">📖 身世标签（点一下看溯源动画）</div>
+    ${tags.map(t => { const sc = woFindScene(t.scene); return `<button onclick="event.stopPropagation(); closeDetailModal(); navigateTo('word_origins_hub', { scene: '${t.scene}' });" style="display:flex; align-items:center; gap:8px; width:100%; text-align:left; background:#fff; border:1.5px solid #fcd34d; border-radius:10px; padding:7px 10px; margin-top:4px; cursor:pointer; font-size:0.88rem; color:#334155;">
+      <span style="flex:1;">${wbBadgeHtml([t.badge])}${t.line}</span>
+      <span style="white-space:nowrap; font-weight:900; color:#b45309;">▶ ${sc ? sc.title : "溯源幕"}</span></button>`; }).join("")}
+  </div>`;
+}
 function woFindScene(id) { for (const ch of WO_CHAPTERS) for (const sc of (ch.scenes || [])) if (sc.id === id) return sc; return null; }
 // 可信度徽章（HTML 版，词卡/章节卡片通用）
 function wbBadgeHtml(keys) {
