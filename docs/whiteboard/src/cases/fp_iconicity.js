@@ -1,6 +1,6 @@
 // ==================== 第一性原理 ② 字母象形与音义同源簇（fp_iconicity）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[1].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 1、2 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_iconicity_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 1–3 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_iconicity_classic.js。依赖 wo_props + fp_props。
 // 讲法提醒（HANDOFF §4）：字母象形、音义簇多是「帮助记忆的联想」，字幕用「可以想成 / 像」；tw- = two 是真词源。
 WB_LAB.fp_iconicity = [
   // ───────── 2-1 M / S / B / C 像什么？（v2 + 讲解员，2026-10-30）─────────
@@ -253,49 +253,106 @@ WB_LAB.fp_iconicity.push(
   },
 );
 WB_LAB.fp_iconicity.push(
-  // ───────── 2-3 str- 绷直 · sp- 向外 ─────────
+  // ───────── 2-3 str- 绷直 · sp- 向外（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_iconicity_classic.js（R1 零丢失）。原左（str-）右（sp-）两半拆成两个镜头；橙色改 V3 四色（str- 红 · sp- 蓝）。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S, WOOD = k.C.brown;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：straight、street、strong、strict，一个画面记住四个难词。");
-      k.header("② 字母象形与音义同源簇", "str- 绷直 · sp- 向外", true);
-      T("str-", 40, 120, go(.4), .4, { size: 34, color: C.red, weight: 900, font: M });
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "str- 绷直 · sp- 向外", sub: "② 字母象形与音义同源簇", badges: ["💡", "⚠️"], steps: ["① 拉紧绳子", "② str- 四兄弟", "③ sp- 喷出", "④ sp- 四兄弟", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · str- 拉紧的绳子 ─────
+      D.step(0); D.shot();
+      T("str-", 40, 140, go(.4), .4, { size: 34, color: C.red, weight: 900, font: M });
       N("", "str- 三个辅音挤在一起，读起来很用力——可以想成一根拉紧的绳子。");
-      const loose = k.group(); P(`M80,200 C140,160 180,250 240,200 C300,150 340,240 400,200`, go(1), 1, { color: C.brown, w: 4 }); k.endGroup();
-      const tight = k.group(); P(k.wl(80, 200, 400, 200, .2), go(.01, 0), .01, { color: C.red, w: 4 }); k.endGroup(); k.hide(tight);
-      P(k.ellipse(70, 200, 10, 10) + " " + k.ellipse(410, 200, 10, 10), go(.4), .4, { color: C.ink, w: 3 });
-      const tp = go(1.2); k.fade(loose, tp, .8, 0); k.fade(tight, tp + .2, .8, 1);
-      k.arrow(64, 232, 24, 232, C.red); k.arrow(416, 232, 456, 232, C.red);
-      T("拉紧 → 又直又有力", 240, 254, go(.6), .6, { size: 16, color: C.red, weight: 900, anchor: "middle" });
+      const loose = D.sub(); P(`M80,220 C140,180 180,270 240,220 C300,170 340,260 400,220`, go(1), 1, { color: WOOD, w: 4 }); D.back();
+      const tight = D.sub(); P(k.wl(80, 220, 400, 220, .2), go(.01, 0), .01, { color: C.red, w: 4 }); D.back(); k.hide(tight);
+      P(k.ellipse(70, 220, 10, 10) + " " + k.ellipse(410, 220, 10, 10), go(.4), .4, { color: C.ink, w: 3 });
+      const tp = go(1.2); k.fade(loose, tp, .8, 0); k.fade(tight, tp + .2, .8, 1); k.sfx("pop", tp + .6);
+      k.act(me, "surprised", tp + .3, 1); 
+      k.arrow(64, 252, 24, 252, C.red); k.arrow(416, 252, 456, 252, C.red);
+      T("拉紧 → 又直又有力", 240, 274, go(.6), .6, { size: 16, color: C.red, weight: 900, anchor: "middle" });
+      D.step(1);
       N("", "笔直的、笔直的大街、肌肉绷紧的强壮、要求严格——都是「拉紧的直线」。");
-      const row = (w, zh, y) => { D.parts([["str", C.red], [w, C.ink]], 60, y, 22); T(zh, 260, y, go(.4), .4, { size: 16, color: C.grey }); };
-      row("aight", "笔直的", 300); row("eet", "（笔直的）大街", 334); row("ong", "强壮的（肌肉绷紧）", 368); row("ict", "严格的（要求绷紧）", 402);
+      const row = (w, zh, y) => { FP.parts([["str", C.red], [w, C.ink]], 60, y, 22); T(zh, 260, y, go(.4), .4, { size: 16, color: C.grey }); };
+      row("aight", "笔直的", 320); row("eet", "（笔直的）大街", 354); row("ong", "强壮的（肌肉绷紧）", 388); row("ict", "严格的（要求绷紧）", 422);
       k.wait(.5);
-      // sp-
-      T("sp-", 510, 120, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M });
-      k.say("Walk straight along the street.", { zh: "沿着这条街一直走。", word: "straight" });
+      const sySt = sayAt("Walk straight along the street.", { zh: "沿着这条街一直走。", word: "straight" });
+      k.act(me, "walk", sySt.t, Math.max(1.2, sySt.dur * .7), { to: 840, words: ["walk"] });
+      k.act(me, "walk", sySt.t + Math.max(1.2, sySt.dur * .7) + .2, 1, { to: 892 });
+      sayAt("Str. Straight, street, strong, strict.", { zh: "str。笔直的、大街、强壮的、严格的。", word: "str straight street strong strict", blocks: ["str"] });
+      const syStr = sayAt("He is strong. Our teacher is strict.", { zh: "他很强壮。我们的老师很严格。", word: "strong strict" });
+      k.act(me, "cheer", syStr.t, 1.1); k.expr(me, "proud", syStr.t, 1.4);
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · sp- 向外喷 ─────
+      D.step(2); D.shot();
+      T("sp-", 40, 140, go(.4), .4, { size: 34, color: C.blue, weight: 900, font: M });
       N("", "sp- 读的时候气流「噗」地往外喷——可以想成向四面八方发散。");
-      const cx = 720, cy = 200;
+      const cx = 240, cy = 230;
       const dot = `M${cx - 8},${cy} a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
-      P(dot, go(.3), .3, { color: C.orange, w: 2 }); F(dot, go(.1, 0), { color: C.orange, op: 1 });
-      for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; P(k.wl(cx + Math.cos(a) * 18, cy + Math.sin(a) * 18, cx + Math.cos(a) * 62, cy + Math.sin(a) * 50, .3), go(.15), .15, { color: C.orange, w: 3 }); }
+      P(dot, go(.3), .3, { color: C.blue, w: 2 }); F(dot, go(.1, 0), { color: C.blue, op: 1 });
+      const rays = D.sub();
+      for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; P(k.wl(cx + Math.cos(a) * 18, cy + Math.sin(a) * 18, cx + Math.cos(a) * 62, cy + Math.sin(a) * 50, .3), go(.15), .15, { color: C.blue, w: 3 }); }
+      D.back();
+      D.step(3);
       N("", "声音向外说、活力向外放、向外延展的太空、万物冒头的春天。");
-      const row2 = (w, zh, y) => { D.parts([["sp", C.orange], [w, C.ink]], 530, y, 22); T(zh, 700, y, go(.4), .4, { size: 16, color: C.grey }); };
-      row2("eak", "说话（声音向外）", 300); row2("ort", "运动（活力向外）", 334); row2("ace", "太空（向外延展）", 368); row2("ring", "春天（万物冒头）", 402);
+      const row2 = (w, zh, y) => { FP.parts([["sp", C.blue], [w, C.ink]], 60, y, 22); T(zh, 230, y, go(.4), .4, { size: 16, color: C.grey }); };
+      row2("eak", "说话（声音向外）", 320); row2("ort", "运动（活力向外）", 354); row2("ace", "太空（向外延展）", 388); row2("ring", "春天（万物冒头）", 422);
       k.wait(.5);
-      T("帮助记忆的联想", 940, 432, go(.5), .5, { size: 13, color: C.grey, anchor: "end" });
-      k.say("Flowers come out in spring.", { zh: "春天花开了。", word: "spring" });
+      T("帮助记忆的联想", 800, 452, go(.5), .5, { size: 13, color: C.grey, anchor: "end" });
+      const sySp = sayAt("Flowers come out in spring.", { zh: "春天花开了。", word: "spring" });
+      k.squash(rays, sySp.t, Math.max(1, sySp.dur), .2, { cx, cy });
+      k.actFx(["come"], sySp.t, Math.max(1, sySp.dur), "放射线再向外喷一次（花冒出来）");
+      sayAt("Sp. Speak, sport, space, spring.", { zh: "sp。说话、运动、太空、春天。", word: "sp speak sport space spring", blocks: ["sp"] });
+      const sySpk = sayAt("Speak English. I like sport. Look at space!", { zh: "说英语。我喜欢运动。看看太空！", word: "speak sport space" });
+      k.act(me, "point", sySpk.t + sySpk.dur * .6, 1.2, { at: [cx, cy], words: ["look"] });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "str 拉直线，sp 往外喷。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("Str. Straight, street, strong, strict.", { zh: "str。笔直的、大街、强壮的、严格的。", word: "str straight street strong strict", blocks: ["str"] });
-      k.say("He is strong. Our teacher is strict.", { zh: "他很强壮。我们的老师很严格。", word: "strong strict" });
-      k.say("Sp. Speak, sport, space, spring.", { zh: "sp。说话、运动、太空、春天。", word: "sp speak sport space spring", blocks: ["sp"] });
-      k.say("Speak English. I like sport. Look at space!", { zh: "说英语。我喜欢运动。看看太空！", word: "speak sport space" });
-      D.fin("str- 像拉紧的直线，sp- 像向外喷发：一个画面串起四个词", "口诀：str 拉直线，sp 往外喷。");
-      k.wait(2);
+      P(k.roughRect(40, 466, 760, 44), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：str 拉直线，sp 往外喷。", 60, 496, go(1), 1, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "str- 像拉紧的绳子。string 是绳子，还是杯子？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 string　→　绳子？还是杯子？", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "string 是细绳、琴弦——一拉就绷直。");
+      const tRev = go(.3);
+      T("string = 绳子 —— str- 拉直线", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("I have a long string.", { zh: "我有一根长绳子。", word: "string long" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "str- 像拉紧的直线，sp- 像向外喷发：\n一个画面串起四个词", rhyme: "口诀：str 拉直线，sp 往外喷。", hlLines: 2, foot: "🧠 第一性原理 ② 字母象形与音义同源簇" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "walk", act: "讲解员在读到「Walk straight」时往前走一段再回来（walk）" },
+      { word: "come", act: "sp- 放射线在读到「Flowers come out」时再向外喷一次（场景动作 actFx + squash）" },
+      { word: "look", act: "讲解员指着向外发散的图（point），与「Look at space」同步" },
+    ],
     r2skip: ["aight", "eet", "ong", "ict", "eak", "ort", "ace", "ring"],   // str|aight、sp|eak 拆开展示的词尾残片，整词已朗读
-    terms: [],
+    terms: [
+      ["可信度徽章", "💡 音义联想（拉紧 / 向外喷）是帮助记忆的画面；⚠️ 有例外：sport 是 disport（消遣、玩耍）的缩短形式，sp- 并不是「向外」的来源（Etymonline「sport」https://www.etymonline.com/word/sport）。"],
+    ],
   },
 );
 WB_LAB.fp_iconicity.push(

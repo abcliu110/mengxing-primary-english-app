@@ -1,4 +1,4 @@
-# 内容清单（R1 零丢失）：第一性原理 ② fp_iconicity（v2 升级：第 1、2 幕）
+# 内容清单（R1 零丢失）：第一性原理 ② fp_iconicity（v2 升级：第 1–3 幕）
 
 > 由 `src/check_upgrade.py` 逐条对照升级前文件 `fp_iconicity_classic.js` 里的全部字幕 / 白板文字 / 朗读 / 术语字符串，检查是否原样出现在新文件 `fp_iconicity.js`（金句卡里的换行不计）。
 
