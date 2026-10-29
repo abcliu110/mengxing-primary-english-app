@@ -87,7 +87,7 @@ const WB = (function () {
       en = String(en).trim();
       const words = en.split(/\s+/).length, wd = o.word ? .4 + String(o.word).split(/\s+/).length * .45 : 0;
       const dur = wd + .5 + words * .42;
-      S.says.push({ t: S.at, dur, wd, en, zh: o.zh || "", word: o.word || "", egg: (o.egg || []).map(w => String(w).toLowerCase()) });
+      S.says.push({ t: S.at, dur, wd, en, zh: o.zh || "", word: o.word || "", egg: (o.egg || []).map(w => String(w).toLowerCase()), blocks: o.blocks || [] });
       (o.egg || []).forEach(w => S.eggs.includes(w) || S.eggs.push(w));
       S.at += dur + .25;
     };
