@@ -1,6 +1,6 @@
 // ==================== 单词身世 · 格林定律章 ②③④：元音变异——三幕共用小工具（wo_vowel_kit）====================
 // 三幕：cases/wo_vowel_a.js（原定律 A）、wo_vowel_b.js（原定律 B）、wo_vowel_c.js（原定律 C）。
-// 来源：原王炸实验室「③ 格林音变律」（cases/vowel_shift.js，页签暂不删，等用户确认）按 R1 零丢失整体搬来，
+// 来源：原王炸实验室「③ 格林音变律」（cases/vowel_shift.js；旧页签已于 2026-10-29 经用户确认删除，原文件见 git 历史 adb2106）按 R1 零丢失整体搬来，
 //   逐条对照 grimm_law/VOWEL_SHIFT_INVENTORY.md（185 条）；讲错处按 R3 改正（出处 word_origins/SOURCES.md ⑤）：
 //   ① 名字：不是「格林音变」——格林定律是辅音（见 wo_grimm），这里是元音变异（i-mutation）；
 //   ② 定律 B：o→e 的真正原因也是 i 变异（古后缀 *-itho 里的 i），不是「嘴巴省力缩短」；width 是 1620 年代仿 breadth 造的；

@@ -72,6 +72,6 @@ if write:
     s += f"\n## 对照结果（`src/check_inventory.py`，2026-10-29）\n\n新位置：📖 单词身世总枢 → 格林定律章 → " + '、'.join(f"`{i}`" for i in ids) + "。\n\n"
     s += f"- 字幕 / 白板 / 朗读 / 术语：✅ 原样搬过去 {stats['✅']} 条；✏️ 按 R3 改正后搬过去 {stats['✏️']} 条（逐条见下）；❌ 丢失 {stats['❌']} 条。\n"
     s += f"- 页面数据 `GRIMM_VOWEL_LAWS` 的 {len(data_ok)} 对词：" + ('全部出现在新幕画面上。' if not any(d[2] for d in data_ok) else '有缺：' + '; '.join(f"{d[1]} 缺 {d[2]}" for d in data_ok if d[2])) + "\n"
-    s += "- 入口 / 登记（上面 15 处）：**还没动**——删 `vowel_shift` 页签、改入口要等用户确认（R1）。\n\n### ✏️ 改正清单（原 → 新）\n\n| 新幕 | 原内容 | 新位置的内容 |\n|---|---|---|\n"
+    s += "- 入口 / 登记（上面 15 处）：✅ 2026-10-29 用户确认后已删页签、改入口。\n\n### ✏️ 改正清单（原 → 新）\n\n| 新幕 | 原内容 | 新位置的内容 |\n|---|---|---|\n"
     s += ''.join(f"| {nid} | {norm(a)} | {norm(b2)} |\n" for nid, a, b2 in edits)
     open(inv, 'w', encoding='utf-8').write(s); print('写入', inv)

@@ -357,24 +357,26 @@
 ]
 ```
 
-## 主文件里的入口 / 登记（删旧时逐个处理）
+## 主文件里的入口 / 登记（2026-10-29 用户确认后已全部处理）
 
-- ☐ 第 3414 行：`<div onclick="navigateTo('super_lab_hub', { labTab: 'vowel_shift' })"`
-- ☐ 第 11372 行：`const GRIMM_VOWEL_LAWS = [`
-- ☐ 第 11873 行：`labTab: "verb_matrix", // 'verb_matrix' | 'bamboo_tree' | 'vowel_shift' | 'adj_order' | 'past_clans' | 'stress_rhythm' | 'metaphor_code' | 'tense_matrix' | 'aux`
-- ☐ 第 11877 行：`grimmIdx: 0,`
-- ☐ 第 11895 行：`vowel_shift: "🧬 ③ 格林音变与清名浊动",`
-- ☐ 第 12052 行：`} else if (tab === "vowel_shift") {`
-- ☐ 第 12053 行：`const curLaw = GRIMM_VOWEL_LAWS[superLabState.grimmIdx] || GRIMM_VOWEL_LAWS[0];`
-- ☐ 第 12057 行：`${GRIMM_VOWEL_LAWS.map((g, idx) => ´`
-- ☐ 第 12058 行：`<button onclick="superLabState.grimmIdx=${idx}; renderSuperLabHubView();"`
-- ☐ 第 12059 行：`style="padding:9px 14px; border-radius:12px; font-weight:900; font-size:0.86rem; background:${idx === superLabState.grimmIdx ? '#7c3aed' : '#f1f5f9'}; color:${i`
-- ☐ 第 12068 行：`<!-- WB_STAGE:vowel_shift -->${wbStageHtml("vowel_shift", superLabState.grimmIdx)}`
-- ☐ 第 12407 行：`<button onclick="superLabState.labTab='vowel_shift'; renderSuperLabHubView();"`
-- ☐ 第 12408 行：`style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='vowel_shift'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${ta`
-- ☐ 第 12622 行：`} else if (tab === "vowel_shift") {`
-- ☐ 第 12623 行：`const curLaw = GRIMM_VOWEL_LAWS[superLabState.grimmIdx] || GRIMM_VOWEL_LAWS[0];`
-- ☐ 第 12643 行：`drawHDSubtitleBar(ctx, W, H, ´音变律${superLabState.grimmIdx + 1}´, curLaw.pairs[0].from + " -> " + curLaw.pairs[0].to, curLaw.lawName);`
+- ✅ 第 3414 行：`<div onclick="navigateTo('super_lab_hub', { labTab: 'vowel_shift' })"`
+- ✅ 第 11372 行：`const GRIMM_VOWEL_LAWS = [`
+- ✅ 第 11873 行：`labTab: "verb_matrix", // 'verb_matrix' | 'bamboo_tree' | 'vowel_shift' | 'adj_order' | 'past_clans' | 'stress_rhythm' | 'metaphor_code' | 'tense_matrix' | 'aux`
+- ✅ 第 11877 行：`grimmIdx: 0,`
+- ✅ 第 11895 行：`vowel_shift: "🧬 ③ 格林音变与清名浊动",`
+- ✅ 第 12052 行：`} else if (tab === "vowel_shift") {`
+- ✅ 第 12053 行：`const curLaw = GRIMM_VOWEL_LAWS[superLabState.grimmIdx] || GRIMM_VOWEL_LAWS[0];`
+- ✅ 第 12057 行：`${GRIMM_VOWEL_LAWS.map((g, idx) => ´`
+- ✅ 第 12058 行：`<button onclick="superLabState.grimmIdx=${idx}; renderSuperLabHubView();"`
+- ✅ 第 12059 行：`style="padding:9px 14px; border-radius:12px; font-weight:900; font-size:0.86rem; background:${idx === superLabState.grimmIdx ? '#7c3aed' : '#f1f5f9'}; color:${i`
+- ✅ 第 12068 行：`<!-- WB_STAGE:vowel_shift -->${wbStageHtml("vowel_shift", superLabState.grimmIdx)}`
+- ✅ 第 12407 行：`<button onclick="superLabState.labTab='vowel_shift'; renderSuperLabHubView();"`
+- ✅ 第 12408 行：`style="padding:7px 11px; border-radius:10px; font-weight:900; font-size:0.8rem; background:${tab==='vowel_shift'?'#f59e0b':'rgba(255,255,255,0.12)'}; color:${ta`
+- ✅ 第 12622 行：`} else if (tab === "vowel_shift") {`
+- ✅ 第 12623 行：`const curLaw = GRIMM_VOWEL_LAWS[superLabState.grimmIdx] || GRIMM_VOWEL_LAWS[0];`
+- ✅ 第 12643 行：`drawHDSubtitleBar(ctx, W, H, ´音变律${superLabState.grimmIdx + 1}´, curLaw.pairs[0].from + " -> " + curLaw.pairs[0].to, curLaw.lawName);`
+
+> 处理方式：首页卡片改为「已搬家」跳转卡 → `word_origins_hub` / `wo_vowel_a`；实验室页签按钮、`tabTitles`、`grimmIdx`、`GRIMM_VOWEL_LAWS`、正文与画布两个分支、`cases/vowel_shift.js`、`insert_wb.py` / `appwb.py` 登记全部删除；旧链接 `labTab:'vowel_shift'` 自动跳到 `wo_vowel_a`。
 
 ## 对照结果（`src/check_inventory.py`，2026-10-29）
 
@@ -382,7 +384,7 @@
 
 - 字幕 / 白板 / 朗读 / 术语：✅ 原样搬过去 202 条；✏️ 按 R3 改正后搬过去 9 条（逐条见下）；❌ 丢失 0 条。
 - 页面数据 `GRIMM_VOWEL_LAWS` 的 19 对词：全部出现在新幕画面上。
-- 入口 / 登记（上面 15 处）：**还没动**——删 `vowel_shift` 页签、改入口要等用户确认（R1）。
+- 入口 / 登记（上面 15 处）：✅ 2026-10-29 用户确认后已删页签、改入口。
 
 ### ✏️ 改正清单（原 → 新）
 

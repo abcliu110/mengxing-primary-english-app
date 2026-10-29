@@ -14,13 +14,13 @@ rd = lambda p: open(p, encoding='utf-8').read()
 
 # 页签 → 当前案例序号变量（和 superLabState 一致）
 TABS = {
-    'bamboo_tree': 'btIdx', 'vowel_shift': 'grimmIdx', 'adj_order': 'adjExIdx', 'past_clans': 'clanIdx',
+    'bamboo_tree': 'btIdx', 'adj_order': 'adjExIdx', 'past_clans': 'clanIdx',
     'stress_rhythm': 'stressIdx', 'metaphor_code': 'metaIdx', 'tense_matrix': 'tenseIdx',
     'aux_transformer': 'auxIdx', 'five_patterns': 'patIdx', 'writing_alchemist': 'writeIdx',
 }
 # 只写入已验收的页签（做完一个页签就加进来）；其余 cases/*.js 可能还在制作中
 FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoom_focus', 'fp_iconicity']   # 第一性原理总枢：做完一条原理就把 id 加进来，如 'fp_economy'
-READY = ['bamboo_tree', 'vowel_shift', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
+READY = ['bamboo_tree', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
 WO_READY = ['wo_port', 'wo_europe', 'wo_bluetooth', 'wo_grimm', 'wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c', 'wo_time_num', 'wo_time_week']
 # 中英对照总枢：做完一幕就把 id 加进来（搬迁幕依赖第一性原理道具 fp_props）
