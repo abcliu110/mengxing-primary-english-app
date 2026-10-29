@@ -9,7 +9,7 @@
 - 页面：十二大王炸实验室 → ① 万能动词×向量转盘（`labTab: 'verb_matrix'`）。
 - 共 6 动词 × 6 小品词 = 36 格。有动画的组合播放 VV 动画；没有的保持原来的 Canvas 双人画面。
 - 不限制文件体积（用户确认）。
-- 工作分支：`feat/vv-anim-all`，每组一个提交。
+- 直接提交到 `master`，不新建分支（用户 2026-10-29 要求），每组一个提交。
 
 ## 2. 代码位置（主文件内，行号会漂移，按关键字搜索）
 
@@ -23,6 +23,8 @@
 | `VERB_VECTOR_COMBINATIONS` | 36 格的文字数据（短语、本义、释义、例句） |
 
 ## 3. 约定
+
+- 写新场景时以主文件 `VV` 里的 TAKE 和 GET 场景为模板，不要参考已删除的矢量小男孩写法。
 
 - **场景函数**：`xxx1(t, A)` 和 `xxx2(lt, A)` 返回 SVG 片段，画布 740×320，必须是纯函数（只依赖时间）。
 - **默认时长**：本义幕 0–7.0s，第二义幕 7.0–12.0s，合成幕 12.0–16.4s，幕间 0.3s 白场。
@@ -48,7 +50,7 @@
 | 动词行 | on | off | up | down | in | out | 状态 |
 |---|---|---|---|---|---|---|---|
 | TAKE | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成（PR #1 feat/vv-take-anim） |
-| GET | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成（feat/vv-anim-all） |
+| GET | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成 |
 | PUT | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | 下一批 |
 | TURN | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | |
 | LOOK | ⬜ | ⬜（look away） | ⬜ | ⬜ | ⬜（look in/into） | ⬜ | |
@@ -111,5 +113,6 @@
 
 - 2026-10-29 `fix(super-lab)`：`drawHDCharacterActor` 兼容 `headBadge`/`badgeColor` 和第三个参数 `t`。24 处带 headBadge 的调用原来头顶徽章不显示，现在按动词/向量颜色显示；呼吸和眨眼恢复。
 - 2026-10-29 新建本交接文档。
+- 2026-10-29 `fix(anim)`：`takeoffScene.js` 删除未调用的矢量小男孩代码（drawBoy/armPts/drawArm/jacketBundle/hungJacket）和空 if，从 271 行减到 151 行；`TakeOff.tsx` 用 `delayRender` 预加载图片，避免 Remotion 开头空帧；demo 和主文件播放器都改用 Blob URL，开播前预解码，画面不变时不重建 DOM，按渲染耗时在 30fps 和 20fps 之间自适应。`to_base.webp` 只作出图参考，没有打进主文件。
 - 2026-10-29 `feat(vv)`：GET 行 6 格动画完成（get on/off/up/down/in/out）。新增 15 张素材：`vv_walk`、`vv_get_*`（stepup、stepdown、bike、bikeoff、sleep、sitstretch、stretch、fallen、chair、crouch、carin、wave）、`vv_cat_climb`、`vv_cat_sit`；`poses()` 的影子加了 `spec.shadow` 系数；新增 `G` 画框和 GET 道具。已在无头 Chrome 里逐幕截图检查，控制台无报错。
   - 已知小问题：get on 第二幕“站在车旁 → 骑上车”是交叉淡化，有约 0.3 秒重影；骑车 / 车旁两张图里的自行车细节略有差别。
