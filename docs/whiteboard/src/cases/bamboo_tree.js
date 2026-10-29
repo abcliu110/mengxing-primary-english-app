@@ -1,5 +1,5 @@
 // ==================== 白板脚本：竹节句 vs 树干句 5 个病句手术 ====================
-// v2 升级（2026-10-30 起，决策 24）：逐个案例升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/bamboo_tree_classic.js。依赖 wo_props。
+// v2 升级（2026-10-30 起，决策 24）：5 个案例已全部升引擎 v2 + 讲解员（每案例：竹节句 + 病句 / 树干句两个镜头 → 口诀 → 🔮 预测 → 金句卡）；升级前整份文件原样保存在 cases/bamboo_tree_classic.js。依赖 wo_props。
 // 每个案例：build(k) 白板脚本 + terms 术语小词典。k 的工具见 WB 引擎（按调用顺序自动排时间）。
 WB_LAB.bamboo_tree = [
   // ───────── ① 多动词连动病（v2 + 讲解员，2026-10-30）─────────
@@ -447,49 +447,118 @@ WB_LAB.bamboo_tree = [
       ["从小到大", "几个时间（或地点）一起出现时，英语先说小的再说大的：at 8 o'clock（几点）→ yesterday morning（哪天早上）。"]
     ]
   },
-  // ───────── ⑤ There be 双谓语病 ─────────
+  // ───────── ⑤ There be 双谓语病（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/bamboo_tree_classic.js（R1 零丢失）。原左（竹节句 + 病句）右（树干句）两半拆成两个镜头；树整体左移 300；紫色 -ing 挂件改 V3 绿；新增湖面 + 两只小黄鸭（R4：读到 swimming / swim 时鸭子游动），鸭子黄色、树干 / 王冠保留道具色。
   {
     build(k) {
-      const { C, N } = k;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一句的毛病：用错了「有」，又多出一个国王。");
-      k.header("病句手术 ⑤  There be 双谓语病");
-      k.leftHead();
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "竹节句 vs 树干句", sub: "病句手术 ⑤  There be 双谓语病", badges: ["💡", "✂️"], steps: ["① 竹节句", "② 用错「有」", "③ 立主干", "④ -ing 挂件", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 竹节句 + 双谓语 ─────
+      D.step(0); D.shot();
+      k.head("汉语：竹节句", 40, 108, C.ink);
       N("竹节句：", "中文一个「有」字，既能表示「拥有」，也能表示「某处存在某物」。");
       const z = k.zh("公园的湖面上有两只小黄鸭正在游泳。", 40, 155, 24);
       k.circle(z, 6); k.circle(z, 14, 15);
+      k.act(me, "point", S.at - .6, 1.2, { at: [z.cx(6), z.cy] });
       N("", "画成竹子：「有」一节，「游泳」一节，两个动词平起平坐。");
       k.bamboo(["有 have?", "游泳 swim"]);
       k.note("中文：「有」+「在游泳」两个动作", 40, 272);
+      D.step(1);
       N("中式英语（Chinglish）：", "照着中文硬翻：There have ... are swimming ...");
       const m1 = k.mono("There have two yellow ducks are swimming", 40, 330, 18);
       k.mono("on the lake in the park.", 40, 362, 18);
       k.redX(12, 310);
+      k.act(me, "surprised", S.at - .3, 1); k.expr(me, "oops", S.at - .3, 1.4);
+      sayAt("Chinglish says there have.", { zh: "中式英语会说 there have。", word: "Chinglish" });
       N("There be 句型：", "表示「某处有某物」，要用 There is / There are，不能用 have（have 是「拥有」）。");
       k.strike(m1, "have"); k.above(m1, "have", 0, "are");
+      sayAt("On the lake. In the park. I have a duck.", { zh: "在湖上。在公园里。我有一只鸭子。", word: "on the lake in park have" });
       N("", "后面又来一个 are，第二个国王！一山不容二虎，删掉它。");
       k.strike(m1, "are");
       k.note("国王只留一个，swimming 直接挂后面！", 40, 404, { size: 17, color: C.red, weight: 900 });
-      k.rightHead();
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 镜头 2 · 树干句：There are 当国王，-ing 挂后面 ─────
+      D.step(2); D.shot();
+      k.head("英语：树干句", 40, 108, C.green);
       N("树干句：", "先长出主干 There are two yellow ducks，再挂上「正在游」和地点。");
-      k.tree({});
+      k.tree({ cx: 420, gx0: 260, gx1: 610 });
       N("主干：", "There are two yellow ducks（有两只小黄鸭）。are 是唯一的谓语动词。");
-      k.sign("There are two yellow ducks", 715, 300, "are", { size: 18 });
+      k.sign("There are two yellow ducks", 415, 300, "are", { size: 18 });
+      sayAt("There be. There is a duck. There are two ducks.", { zh: "There be 句型。有一只鸭子。有两只鸭子。", word: "there be is are two ducks" });
+      D.step(3);
       N("现在分词（-ing）：", "动词加 -ing（swimming）表示「正在……」，直接挂在名词后面，不当谓语。");
-      k.chip("swimming", 760, 212, [744, 236], { color: C.purple, tag: "-ing 挂件：正在游" });
+      k.chip("swimming", 460, 212, [444, 236], { color: C.green, tag: "-ing 挂件：正在游" });
+      // 湖面 + 两只小黄鸭（道具色）：读到 swimming / swim 时游起来
+      P(k.ellipse(712, 404, 84, 18), go(.6), .6, { color: C.blue, w: 2.2 }); F(k.ellipse(712, 404, 84, 18), go(.1, 0), { color: C.tintBlue, op: 1 });
+      const ducks = D.sub();
+      [[660, 400], [700, 406]].forEach(([x, y]) => {
+        const body = `M${x - 14},${y - 4} Q${x - 12},${y + 8} ${x + 2},${y + 8} Q${x + 16},${y + 7} ${x + 14},${y - 4} Q${x},${y} ${x - 14},${y - 4} Z`;
+        P(body, go(.3), .3, { color: C.ink, w: 1.8 }); F(body, go(.1, 0), { color: C.hlYellow, op: 1 });
+        P(k.ellipse(x + 9, y - 12, 6, 6), go(.2), .2, { color: C.ink, w: 1.8 }); F(k.ellipse(x + 9, y - 12, 6, 6), go(.1, 0), { color: C.hlYellow, op: 1 });
+        P(`M${x + 15},${y - 13} l7,2 l-7,2 Z`, go(.1), .1, { color: C.ink, w: 1.4 });
+      });
+      D.back();
+      const syS = sayAt("Two yellow ducks are swimming. I can swim.", { zh: "两只小黄鸭在游泳。我会游泳。", word: "yellow swimming swim ing", blocks: ["ing"] });
+      k.move(ducks, syS.t, Math.max(1.6, syS.dur), 50, 0, { ease: "sine" });
+      k.actFx(["swimming", "swim"], syS.t, Math.max(1.6, syS.dur), "两只小黄鸭在湖面上游过去");
+      k.act(me, "point", syS.t, 1.2, { at: [720, 400] });
       N("地点挂件：", "地点也从小到大：先说湖面 on the lake，再说公园 in the park。");
-      k.chip("on the lake", 540, 362, [692, 352], { tag: "小：湖面" });
-      k.chip("in the park", 760, 362, [744, 352], { tag: "大：公园" });
+      k.chip("on the lake", 240, 362, [392, 352], { tag: "小：湖面" });
+      k.chip("in the park", 460, 362, [444, 352], { tag: "大：公园" });
+      k.act(me, "walk", S.at, 1, { to: 1010 });
+      k.wait(1);
       N("", "连起来：一个国王 are，其余全挂后面！");
       k.final("There are two yellow ducks swimming on the lake in the park.", "are", "公园的湖面上有两只小黄鸭正在游泳。  There are 当国王，-ing 挂后面！");
-      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（病句不读，见 r2skip）
-      k.say("There be. There is a duck. There are two ducks.", { zh: "There be 句型。有一只鸭子。有两只鸭子。", word: "there be is are two ducks" });
-      k.say("Two yellow ducks are swimming. I can swim.", { zh: "两只小黄鸭在游泳。我会游泳。", word: "yellow swimming swim ing", blocks: ["ing"] });
-      k.say("On the lake. In the park. I have a duck.", { zh: "在湖上。在公园里。我有一只鸭子。", word: "on the lake in park have" });
-      k.say("Chinglish says there have.", { zh: "中式英语会说 there have。", word: "Chinglish" });
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 口诀 ─────
+      D.step(4); D.shot();
+      k.act(me, "walk", S.at, 1.2, { to: 892 });
       N("口诀：", "「某处有」用 There is / are；国王只留一个，其余挂后面。");
+      P(k.roughRect(40, 118, 760, 48), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：「某处有」用 There is / are；国王只留一个，其余挂后面。", 60, 150, go(1.2), 1.2, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.4);
+
+      // ───── 🔮 预测 ─────
+      D.step(5);
+      N("预测：", "「树上有三只小鸟在唱歌」：第一个空当国王，第二个空给 sing 穿马甲。先想 3 秒！");
+      P(k.roughRect(40, 206, 760, 150), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 206, 760, 150), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 树上有三只小鸟在唱歌。", 64, 246, go(.8), .8, { size: 22, color: C.ink, weight: 900 });
+      T("There ___ three birds ___ in the tree.  ( sing )", 64, 284, go(1), 1, { size: 22, color: C.ink, weight: 900, font: D.MONO });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "are 当国王（三只鸟是多个），sing 穿 -ing 马甲：singing 挂在 birds 后面。");
+      const tRev = go(.3);
+      T("There are three birds singing in the tree.", 64, 330, go(1), 1, { size: 22, color: C.green, weight: 900, font: D.MONO });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("There are three birds singing in the tree.", { zh: "树上有三只小鸟在唱歌。", word: "three birds singing sing tree in there are" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "「某处有」让 There is / are 当唯一的国王，\n正在做的动作穿上 -ing，挂在后面", rhyme: "口诀：「某处有」用 There is / are；\n国王只留一个，其余挂后面。", hlLines: 2, foot: "🌳 竹节句 vs 树干句 · 病句手术 ⑤" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "swimming", act: "湖面上两只小黄鸭在读到「Two yellow ducks are swimming」时游过去（场景动作 actFx + move），讲解员指着它们" },
+      { word: "swim", act: "同一句「I can swim」，鸭子继续游（动作库没有人物游泳，用场景动作代替）" },
+    ],
     r2skip: ["vs", "There have two yellow ducks are swimming", "There have ... are swimming ..."],   // 病句（there have + 双谓语）不读
     terms: [
+      ["可信度徽章", "💡 竹子 / 大树、国王 / 挂件都是帮助记忆的比喻；✂️ 简化说法：「一句只有一个谓语动词」指没有 and 等连接词的简单句。"],
       ["There be 句型", "表示「某处有某物」：There is（一个）/ There are（多个），比如 There are two ducks on the lake。"],
       ["have 和 There be", "have 是「某人拥有」：I have a dog。「某处存在」不能用 have，要用 There is / are。"],
       ["现在分词（-ing）", "动词加 -ing，比如 swimming，表示「正在……」。它可以挂在名词后面当挂件，不当谓语。"],
