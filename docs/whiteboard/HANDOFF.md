@@ -116,7 +116,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 1 | Europe 示范幕（`cases/wo_europe.js`，引擎 v2 + 讲解员，对齐 port 样板） | ✅ 见下 |
 | 2 | Bluetooth 示范幕（`cases/wo_bluetooth.js`） | ✅ 见下 |
 | 3 | 身世标签 + 词卡跳转（先给 port 家族） | ✅ 见下 |
-| 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | 待做 |
+| 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | 🔧 进行中：① 出处 ✅ `caa1493`（SOURCES ④ 12 条、⑤ 14 条，含纠错）；② 真格林定律幕 `wo_grimm`；③ 元音变异三幕 `wo_vowel_a/b/c`；④ 清单 185 条逐项打勾。**删 `vowel_shift` 页签 / 改入口等用户确认，不动** |
 | 5 | 时间与度量章 | 待做 |
 
 **Europe 示范幕（2026-10-29）**
@@ -142,6 +142,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 词卡：背面「📖 词源与巧记故事」下面多一块「📖 身世标签」，点一下关闭词卡、跳到 `navigateTo('word_origins_hub', { scene })`。由 `insert_wb.py` 插入（标记 `<!-- WO_ORIGIN_TAGS -->`，可重复运行）。
 - 验收：`src/apptags.py`——8 个词都在词库、指向的幕已上线；8 个词翻到背面都有标签、reporter 没有；点 passport 的标签 → 词卡关闭、进入单词身世总枢 port 幕且白板已挂载；无报错。PASS。
 - **没做（等用户确认，HANDOFF §4 第 5 条）**：词卡里原有的 port 家族长段落（`affix_root`「家族串记」、import 的「运进我们的港口」讲法把港口和搬运混成一个词根）按 R1 应改成一句话 + 身世标签——涉及删改词库原文，清单在 §4，等用户点头再动。
+
+**格林定律章（2026-10-29 21:40 起，进行中）**
+- 出处（`caa1493`）：`word_origins/SOURCES.md` ④ 真格林定律 12 条、⑤ 元音变异 14 条。纠错要点（R3，写进新幕，旧页签不动）：①「格林音变律」名字不准——格林定律是辅音挪位，foot→feet 是元音变异（i-mutation）；② length/strength 的 o→e 也是 i 变异（后缀 \*-itho 里的 i），不是「嘴巴省力缩短」；③ width 是 1620 年代仿 breadth 新造的，deep/depth、wide/width 读音差距主要来自 1400–1700 大元音推移（✂️）；④ safe/save、use/use 是法语借词，不属于古英语清浊交替（⚠️）；⑤ blood 读 /ʌ/ 不是 /uː/；⑥ full→fill 是形容词变动词。
+- 下一步：写 `cases/wo_grimm.js` → `cases/wo_vowel.js` → 清单打勾。
 
 ## 1. 当前状态
 
