@@ -64,3 +64,59 @@ WB_LAB.fp_boundedness = [
     ],
   },
 ];
+WB_LAB.fp_boundedness.push(
+  // ───────── 3-2 a 就是 one，the 就是 that ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：什么时候用 a，什么时候用 the？");
+      k.header("③ 物理边界感统摄律", "a = one · the = that", true);
+      // 公园和 4 只小狗
+      P(k.wl(30, 290, 450, 290, .8), go(.5), .5, { color: C.green, w: 2.5 });
+      T("park", 420, 314, go(.3), .3, { size: 15, color: C.green, font: M });
+      const dog = (x, y) => {
+        const g = k.group();
+        P(k.ellipse(x, y, 26, 14), go(.3), .3, { color: C.brown, w: 2.5 });
+        P(k.ellipse(x + 28, y - 14, 11, 10), go(.25), .25, { color: C.brown, w: 2.5 });
+        P(`M${x - 16},${y + 12} v14 M${x + 14},${y + 12} v14 M${x - 26},${y - 4} l-10,-8`, go(.25), .25, { color: C.brown, w: 2.5 });
+        k.endGroup(); return g;
+      };
+      N("", "公园里有好几只小狗。");
+      const ds = [70, 170, 270, 370].map(x => dog(x, 252));
+      // a = one
+      N("不定冠词 a / an：", "第一次说起，还没指定是哪一个，意思就是「一个」。");
+      T("There is a dog in the park.", 500, 150, go(1.2), 1.2, { size: 21, color: C.ink, weight: 900, font: M });
+      P(k.ellipse(184, 248, 52, 34), go(.6), .6, { color: C.orange, w: 3 });
+      T("a = one", 500, 184, go(.5), .5, { size: 22, color: C.orange, weight: 900, font: M });
+      T("随便圈一只，还没说是哪只", 620, 184, go(.7), .7, { size: 15, color: C.grey });
+      k.wait(.6);
+      // the = that
+      N("定冠词 the：", "说话的人和听的人都知道是哪一个，意思像「那个」。");
+      const tg = k.group();
+      P(k.ellipse(184, 248, 30, 30) + " " + k.wl(140, 248, 228, 248, .2) + " " + k.wl(184, 204, 184, 292, .2), go(.01, 0), .01, { color: C.red, w: 2 });
+      k.endGroup(); k.hide(tg);
+      const tl = go(.8); k.fade(tg, tl, .6, 1);
+      T("The dog is running.", 500, 250, go(1), 1, { size: 21, color: C.ink, weight: 900, font: M });
+      T("the = that", 500, 284, go(.5), .5, { size: 22, color: C.purple, weight: 900, font: M });
+      T("就是刚才那只！", 668, 284, go(.5), .5, { size: 15, color: C.grey });
+      const tr = go(1.4); k.move(ds[1], tr, 1.4, 0, -60); k.move(tg, tr, 1.4, 0, -60);
+      k.wait(.5);
+      // 独一无二
+      N("", "世界上只有一个的东西，大家都知道是哪个，也用 the。");
+      const sun = k.ellipse(80, 370, 18, 18);
+      P(sun, go(.4), .4, { color: C.orange, w: 2.5 }); F(sun, go(.1, 0), { color: "#fde047", op: 1 });
+      P(`M80,342 v-8 M80,398 v8 M52,370 h-8 M108,370 h8`, go(.3), .3, { color: C.orange, w: 2.5 });
+      T("the sun · the moon", 132, 378, go(.7), .7, { size: 20, color: C.ink, weight: 900, font: M });
+      T("Open the door, please!", 500, 360, go(1), 1, { size: 20, color: C.ink, weight: 900, font: M });
+      T("房间里就这一扇门", 500, 388, go(.5), .5, { size: 15, color: C.grey });
+      k.wait(.6);
+      N("口诀：", "第一次见用 a，大家都知道用 the。");
+      D.fin("a / an = 一个（第一次说，随便一个）；the = 那个（双方都知道是哪个）", "口诀：第一次见用 a，大家都知道用 the。");
+      k.wait(2);
+    },
+    terms: [
+      ["不定冠词", "a / an：第一次提到、不特指哪一个，意思是「一个」。它本来就是从 one 变来的。"],
+      ["定冠词", "the：说话双方都知道是哪一个，意思像 that「那个」。"],
+    ],
+  },
+);
