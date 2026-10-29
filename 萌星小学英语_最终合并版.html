@@ -16671,9 +16671,21 @@ WB_LAB.tense_matrix = [
       N("照妖镜：", "比喻 doesn't / Does：它们把 -s 勋章拿走了，后面的动词被打回原形。");
       h.trapFix("He doesn't likes", "likes", "He doesn't like", 434);
       N("", "结论：单三主语 He，动词戴上 -s 勋章。");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
+      k.say("Past, now, future.", { zh: "过去、现在、将来。", word: "Past Now Future" });
+      k.say("I am, she is, we are. They play football every afternoon.", { zh: "我是，她是，我们是。他们每天下午踢足球。", word: "am is are I We They She play football every afternoon play football every afternoon" });
+      k.say("He plays football every afternoon. Leo plays too.", { zh: "他每天下午踢足球。里奥也踢。", word: "He Leo" });
+      k.say("My mom teaches English and goes to work by car.", { zh: "我妈妈教英语，开车去上班。", word: "My mom English and goes to work by car" });
+      k.say("The little bird flies high in the sky.", { zh: "小鸟在天上飞得很高。", word: "The little bird flies high in sky" });
+      k.say("Every day, always, usually, often, sometimes, on Sundays.", { zh: "每天、总是、通常、经常、有时、每逢周日。", word: "every day always usually often sometimes on Sundays" });
+      k.say("He likes milk. He doesn't like tea. Does he like juice?", { zh: "他喜欢牛奶。他不喜欢茶。他喜欢果汁吗？", word: "likes like doesn't does He doesn't like" });
+      k.say("Played, playing. The earth goes around the sun.", { zh: "玩了、正在玩。地球绕着太阳转。", word: "played playing earth around sun The earth goes around the sun" });
+      k.say("Ch, sh, es. Watch, watches. Wash, washes.", { zh: "ch、sh 结尾加 -es。看，（他）看。洗，（他）洗。", word: "ch sh es", blocks: ["ch", "sh", "es"] });
+      k.say("A, e, i, o, u. A cat, an egg.", { zh: "a、e、i、o、u（元音字母）。一只猫，一个鸡蛋。", word: "a" });
       k.final("He plays football every afternoon.", "plays", "口诀：习惯真理用一般现在时；单三动词戴勋章，见 does 就脱掉！", { zh: "他每天下午踢足球。", word: "plays" });
       N("口诀：", "习惯真理用一般现在时；单三动词戴勋章，见 does / doesn't 就脱掉！");
     },
+    r2skip: ["V-s", "He doesn't likes"],   // 公式标签；红叉错句不读
     terms: [
       ["时态", "英语动词的「变身」，用来告诉你事情发生在什么时候（过去 / 现在 / 将来）、处在什么样子。"],
       ["时间轴（时）", "一根从左到右的线：左边是过去，中间是现在，右边是将来。时态里的「时」就是在这根线上选位置。"],
@@ -16735,9 +16747,18 @@ WB_LAB.tense_matrix = [
       N("心理状态词：", "like、know、want、have 是心里的感觉，不是看得见的动作，拍不成录像。");
       h.trapText("like(喜欢)、know(知道)、want(想要)、have(拥有) 这类心理状态词，通常不用进行时！", 434);
       N("", "结论：发动机 am + 正在读 reading，一个都不能少。");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
+      k.say("Past, now, future. I am playing football now.", { zh: "过去、现在、将来。我现在正在踢足球。", word: "Past Now Future am are I playing football" });
+      k.say("Look! Leo is running fast on the playground. Listen!", { zh: "看！里奥在操场上飞快地跑。听！", word: "Look Leo fast on the playground Listen" });
+      k.say("Mia is dancing and making a cake.", { zh: "米娅一边跳舞一边做蛋糕。", word: "Mia dancing and making a cake is dancing and making a cake" });
+      k.say("The children are swimming in the pool now.", { zh: "孩子们现在正在泳池里游泳。", word: "children swimming in pool are swimming in the pool now" });
+      k.say("Run, dance, make, swim, read. Ing.", { zh: "跑、跳舞、做、游泳、读。加 -ing。", word: "run dance make swim read ing", blocks: ["ing"] });
+      k.say("I am reading an English storybook right now, at the moment.", { zh: "我此刻正在读一本英语故事书。", word: "an English storybook right at moment at the moment" });
+      k.say("I like it. I know. I want it. I have a dog.", { zh: "我喜欢它。我知道。我想要它。我有一只狗。", word: "like know want have" });
       k.final("I am reading an English storybook right now.", "am", "口诀：此刻正在做，am / is / are 加 V-ing，缺一不可！", { zh: "我此刻正在读一本英语故事书。", word: "am reading" });
       N("口诀：", "此刻正在做，am / is / are 加 V-ing，缺一不可！");
     },
+    r2skip: ["V-ing", "REC", "I playing football"],   // 公式标签、录像图标字样 REC；缺 am 的错句不读
     terms: [
       ["现在进行时", "说此时此刻正在做的事，结构是 am / is / are + 动词-ing，比如 I am reading now。"],
       ["助动词", "帮主要动词表达时间、否定、疑问的小帮手词，比如 am / is / are、do / does、will、have / has。"],
@@ -16789,9 +16810,20 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "有 didn't 或 Did 时，「过去」已经被它们带走，后面的动词变回原形。");
       h.trapFix("Did you went there?", "went", "Did you go there?", 434);
       N("", "结论：stop 双写 p，加 -ed，变成过去式 stopped。");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
+      k.say("Past, now, future. Yesterday.", { zh: "过去、现在、将来。昨天。", word: "Past Now Future yesterday" });
+      k.say("I was happy. They were happy. He was at home.", { zh: "我很开心。他们很开心。他在家。", word: "was were I He They" });
+      k.say("I visited the museum and took many photos. Visit, take.", { zh: "我参观了博物馆，拍了很多照片。参观、拍。", word: "the museum and took many photos visit take" });
+      k.say("Mia studied hard and cried when she lost her pen.", { zh: "米娅学习很努力，丢了笔时哭了。", word: "Mia studied hard cried when she lost her pen study cry" });
+      k.say("The bus stopped at the station five minutes ago. Stop, ed.", { zh: "公交车五分钟前停在了车站。停，加 -ed。", word: "bus at station five minutes ago stop ed", blocks: ["ed"] });
+      k.say("We were very happy at the party last night.", { zh: "我们昨晚在聚会上很开心。", word: "We very happy party last night were very happy at the party last night" });
+      k.say("Last night, last year. We went there in May. I just got home.", { zh: "昨晚，去年。我们五月去了那里。我刚到家。", word: "year just in went there" });
+      k.say("Did you go there? No, I didn't go. Go, went.", { zh: "你去那里了吗？不，我没去。去，去了。", word: "Did you go didn't Did you go there" });
+      k.say("Plan, planned. Be, was. It was fun. I study English. Babies cry.", { zh: "计划，计划了。是，以前是。很好玩。", word: "plan planned be It study cry" });
       k.final("The bus stopped at the station five minutes ago.", "stopped", "口诀：过去的事用过去式，不看主语人人一样；见 did 变回原形！", { zh: "公交车五分钟前停在了车站。", word: "stopped" });
       N("口诀：", "过去的事用过去式，不看主语人人一样；见 did / didn't 变回原形！");
     },
+    r2skip: ["V-ed", "Did you went there?", "last night year"],   // 公式标签；错句不读；「last night / year」是斜杠并列，已分别朗读
     terms: [
       ["一般过去时", "说过去某个时间发生、已经做完的事，比如 I visited the museum yesterday。"],
       ["过去式", "动词表示「过去」时的样子，比如 visit → visited、take → took。"],
@@ -16838,9 +16870,17 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "别受中文「将要有」影响写 have！「某处有」永远用 be：There will be。");
       h.trapFix("There is going to have", "have", "There will be / There is going to be", 436);
       N("", "结论：There be 的将来时，就是 There will be。");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
+      k.say("Past, now, future. Am, are going to. Be going to. We are going to swim.", { zh: "过去、现在、将来。我打算游泳。我们打算游泳。", word: "Past Now Future am are I We am are going to are going to be going to" });
+      k.say("He will fly a kite in the park tomorrow.", { zh: "他明天会在公园里放风筝。", word: "He fly a kite in the park will fly a kite in the park tomorrow" });
+      k.say("Leo is going to visit his grandparents this weekend.", { zh: "里奥这个周末打算去看爷爷奶奶。", word: "Leo visit his grandparents this weekend" });
+      k.say("They are going to have a picnic next Sunday.", { zh: "他们下周日要去野餐。", word: "They have picnic next Sunday are going to have a picnic next Sunday" });
+      k.say("There is going to be a football match.", { zh: "将会有一场足球赛。", word: "There football match is going to be There is going to be" });
+      k.say("Next week, next year, this evening, soon, in the future.", { zh: "下周、明年、今天晚上、很快、将来。", word: "week year evening soon in the future" });
       k.final("There will be (= is going to be) a football match tomorrow.", "will", "口诀：临时决定用 will，早有计划用 be going to，后面都跟原形！", { say: "There will be a football match tomorrow.", zh: "明天会有一场足球赛。", word: "will be" });
       N("口诀：", "临时决定用 will，早有计划用 be going to，后面都跟动词原形！");
     },
+    r2skip: ["There is going to have", "next week year"],   // 错句不读；「next week / year」斜杠并列，已分别朗读
     terms: [
       ["一般将来时", "说将来要发生的事，比如 I will fly a kite tomorrow。有 will 和 be going to 两种说法。"],
       ["将来体（望远镜镜头）", "页面上的比喻：站在现在，用望远镜看向将来。在矩阵里它就是「将来 × 一般」那一格。"],
@@ -16892,9 +16932,19 @@ WB_LAB.tense_matrix = [
       N("陷阱：", "出现明确的过去时间点，就只能用一般过去时，不能用现在完成时。");
       h.trapText("句子里有 yesterday, last week, two days ago 这类过去时间点，不能用 have/has done！", 434);
       N("", "结论：have + 过去分词 finished，作业写完的成果留到现在。");
+      // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（错句、V-s 这类公式标签不读，见 r2skip）
+      k.say("Past, now, future. Have, has, done.", { zh: "过去、现在、将来。have、has、过去分词。", word: "Past Now Future has done" });
+      k.say("They have already finished the homework.", { zh: "他们已经写完作业了。", word: "I We They already the homework They have already finished the homework" });
+      k.say("Mia has lived in Beijing for five years.", { zh: "米娅在北京住了五年了。", word: "He She Mia lived in Beijing for five years has lived in Beijing for five years" });
+      k.say("Have you been to the Great Wall? Mr Wang has gone to Shanghai.", { zh: "你去过长城吗？王老师去上海了。", word: "you to Great Wall Mr Wang gone Shanghai has gone to Shanghai" });
+      k.say("Have been to, have gone to. He has gone. She has done it.", { zh: "去过（回来了），去了（还没回来）。", word: "have been to have gone to He She" });
+      k.say("Already, yet, just, never, since. I have just done it.", { zh: "已经、还、刚刚、从未、自从。我刚做完。", word: "already yet just never since" });
+      k.say("Yesterday, last week, two days ago.", { zh: "昨天、上周、两天前。", word: "yesterday last week two days ago" });
+      k.say("I lost my key. I have lost my key. Finish, go.", { zh: "我丢了钥匙。我把钥匙弄丢了（现在还没找到）。完成、去。", word: "lost my key I lost my key I have lost my key finish go" });
       k.final("I / We / They have already finished the homework.", "have", "口诀：过去做完，结果留到现在 → have / has + 过去分词！", { say: "We have already finished the homework.", zh: "我们已经写完作业了。", word: "have finished" });
       N("口诀：", "过去做完，结果留到现在，就用 have / has + 过去分词！");
     },
+    r2skip: ["V-ed"],   // 公式标签
     terms: [
       ["现在完成时", "动作发生在过去，但结果或影响留到现在，结构是 have / has + 过去分词，比如 I have already finished my homework。"],
       ["小升初", "小学升初中。现在完成时是初中要学的内容，这里提前学一点。"],
