@@ -98,3 +98,59 @@ WB_LAB.fp_one_king.push(
     ],
   },
 );
+WB_LAB.fp_one_king.push(
+  // ───────── 4-3 令牌守恒：does / did / can 来了，动词变原形 ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：为什么加了 does / did / can，后面的动词就变回原形？");
+      k.header("④ 一山不容二虎单核谓语律", "令牌守恒定律", true);
+      N("三单：", "主语是 he / she / it 时，一般现在时的动词要加 -s。");
+      T("She like", 40, 170, go(.8), .8, { size: 30, color: C.ink, weight: 900, font: M });
+      const tk = D.token("-s", 202, 160);
+      T("apples.", 228, 170, go(.6), .6, { size: 30, color: C.ink, weight: 900, font: M });
+      T("这块 -s 令牌，现在戴在 like 身上", 40, 206, go(.9), .9, { size: 15, color: C.orange, weight: 900 });
+      k.wait(.6);
+      N("一般疑问句：", "能用 Yes / No 回答的问句。要请侍卫 Does 站到句首。");
+      T("Does", 40, 290, go(.5), .5, { size: 30, color: C.blue, weight: 900, font: M });
+      T("she like apples?", 130, 290, go(1), 1, { size: 30, color: C.ink, weight: 900, font: M });
+      N("", "一句话只有一块令牌：侍卫 Does 拿走了它，like 就变回原形。");
+      const t1 = go(1.6);
+      k.arc(tk, t1, 1.5, "M0,0 C30,60 -60,90 -126,92");
+      k.wait(.2);
+      T("令牌被侍卫拿走", 40, 330, go(.6), .6, { size: 15, color: C.blue, weight: 900 });
+      T("like 变回原形", 210, 330, go(.6), .6, { size: 15, color: C.green, weight: 900 });
+      P(k.ellipse(238, 280, 42, 20), go(.4), .4, { color: C.green, w: 2.5 });
+      k.wait(.5);
+      N("过去式：", "went 身上戴着「过去」令牌；Did 一出场，went 就变回 go。");
+      T("She went home.", 40, 392, go(.8), .8, { size: 20, color: C.ink, weight: 900, font: M });
+      k.arrow(216, 386, 246, 386, C.grey);
+      T("Did she go home?", 256, 392, go(.8), .8, { size: 20, color: C.blue, weight: 900, font: M });
+      const tk2 = D.token("过去", 106, 350, 19);
+      k.move(tk2, go(1.2), 1.2, 168, 0);
+      k.wait(.4);
+      // 右：侍卫接管
+      N("助动词：", "do / does / did、can 这些「侍卫」，扛下所有变形，后面永远是原形。");
+      k.head("国王自己戴令牌", 510, 112, C.purple, "start", 19);
+      T("He plays football.", 510, 150, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      T("They went home.", 510, 180, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      k.head("侍卫接管令牌 → 动词原形", 510, 240, C.blue, "start", 19);
+      T("Does he play?", 510, 278, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
+      T("He doesn't play.", 510, 308, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
+      N("情态动词：", "can、must、will 这类表示「能、必须、将要」的侍卫，后面也用原形。");
+      T("Did they go?", 510, 338, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
+      T("She can swim.", 510, 368, go(.6), .6, { size: 19, color: C.blue, weight: 900, font: M });
+      T("不能说 Does he plays? / She can swims.", 510, 408, go(1), 1, { size: 15, color: C.red, weight: 900 });
+      k.wait(.6);
+      N("口诀：", "侍卫拿令牌，动词回原形。");
+      D.fin("一句话只有 1 块令牌（-s / 过去）：侍卫 does / did / can 拿了，动词就用原形", "口诀：侍卫拿令牌，动词回原形。");
+      k.wait(2);
+    },
+    terms: [
+      ["三单", "主语是第三人称单数（he / she / it / 一个人名）时，一般现在时的动词加 -s：She likes apples。"],
+      ["一般疑问句", "能用 Yes / No 回答的问句：Does she like apples?"],
+      ["否定句", "带 not 的句子：He doesn't play。"],
+      ["情态动词", "can（能）、must（必须）、may（可以）、will（将要）……后面接动词原形。"],
+    ],
+  },
+);

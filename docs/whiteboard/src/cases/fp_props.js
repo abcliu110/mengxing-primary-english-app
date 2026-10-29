@@ -107,6 +107,15 @@ const FP_PROPS = function (k) {
     k.endGroup(); return g;
   };
 
+  // 令牌（组）：金色圆牌，中心 (cx, cy)
+  D.token = (label, cx, cy, r = 17) => {
+    const g = k.group();
+    const d = k.ellipse(cx, cy, r, r);
+    P(d, go(.4), .4, { color: C.orange, w: 3 }); F(d, go(.1, 0), { color: "#fde047", op: 1 });
+    T(label, cx, cy + 6, go(.3), .3, { size: label.length > 2 ? 13 : 17, color: C.brown, weight: 900, font: MONO, anchor: "middle" });
+    k.endGroup(); return g;
+  };
+
   // 小标签框（等宽英文/音标）
   D.tag = (text, x, y, color = C.blue, size = 20) => {
     const w = text.length * size * .6 + 18, h = size + 14;
