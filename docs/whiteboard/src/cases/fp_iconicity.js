@@ -149,3 +149,47 @@ WB_LAB.fp_iconicity.push(
     terms: [],
   },
 );
+WB_LAB.fp_iconicity.push(
+  // ───────── 2-4 tw- 家族都等于 2 ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：为什么 12 是 twelve，20 是 twenty？");
+      k.header("② 字母象形与音义同源簇", "tw- 家族都等于 2", false);
+      N("词源：", "一个词最早从哪里来。tw- 这一家，祖先都是数字 two（2）！");
+      D.parts([["tw", C.red], ["o = 2", C.ink]], 400, 150, 40);
+      P(k.ellipse(424, 136, 32, 26), go(.5), .5, { color: C.red, w: 3 });
+      const xs = [110, 300, 480, 660, 850];
+      const leaf = (i, w, zh) => {
+        P(k.wl(480, 168, xs[i], 222, .6), go(.4), .4, { color: C.grey, w: 2 });
+        D.parts([["tw", C.red], [w.slice(2), C.ink]], xs[i] - w.length * 13.2 / 2, 254, 22);
+        T(zh, xs[i], 284, go(.5), .5, { size: 16, color: C.purple, weight: 900, anchor: "middle" });
+      };
+      N("", "twelve：十个手指再加 2 个，就是 12。");
+      leaf(0, "twelve", "12 = 2 + 10");
+      N("", "twenty：2 个 10，就是 20。");
+      leaf(1, "twenty", "20 = 2 × 10");
+      N("", "twice：两次、两倍。");
+      leaf(2, "twice", "两次 / 两倍");
+      N("", "twin：双胞胎——两个长得一样的孩子。");
+      leaf(3, "twin", "双胞胎");
+      D.person(xs[3] - 16, 380, C.blue); D.person(xs[3] + 16, 380, C.blue);
+      N("", "between = be + twain（古英语的「两个」）：在两个之间。");
+      P(k.wl(480, 168, xs[4], 222, .6), go(.4), .4, { color: C.grey, w: 2 });
+      D.parts([["be", C.ink], ["tw", C.red], ["een", C.ink]], xs[4] - 46, 254, 22);
+      T("在两者之间", xs[4], 284, go(.5), .5, { size: 16, color: C.purple, weight: 900, anchor: "middle" });
+      const tree = x => { P(k.wl(x, 380, x, 350, .3), go(.2), .2, { color: C.brown, w: 3 }); P(k.cloud(x, 336, 14, 14, 5), go(.3), .3, { color: C.green, w: 2.5 }); };
+      tree(xs[4] - 40); tree(xs[4] + 40); D.person(xs[4], 380, C.red);
+      // twelve / twenty 小图
+      T("🖐🖐 + ✌", xs[0], 360, go(.5), .5, { size: 24, color: C.ink, anchor: "middle" });
+      T("10 + 10", xs[1], 360, go(.5), .5, { size: 20, color: C.grey, weight: 900, font: M, anchor: "middle" });
+      T("× 2", xs[2], 360, go(.4), .4, { size: 24, color: C.grey, weight: 900, font: M, anchor: "middle" });
+      k.wait(.5);
+      T("这是真正的词源：再也不会把 twelve 和 twenty 弄混。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      N("口诀：", "tw 一出现，成双又成对。");
+      D.fin("看到 tw-，想到 2：two · twelve · twenty · twice · twin · between", "口诀：tw 一出现，成双又成对。");
+      k.wait(2);
+    },
+    terms: [],
+  },
+);
