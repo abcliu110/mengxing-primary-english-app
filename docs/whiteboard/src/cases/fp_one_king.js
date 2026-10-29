@@ -47,3 +47,54 @@ WB_LAB.fp_one_king = [
     ],
   },
 ];
+WB_LAB.fp_one_king.push(
+  // ───────── 4-2 第二个动词出场：穿马甲 ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：王座上已经有国王了，第二个动词怎么办？");
+      k.header("④ 一山不容二虎单核谓语律", "第二个动词：穿马甲", true);
+      k.mono("I want go home.", 40, 112, 26, C.red, 900);
+      k.redX(300, 88);
+      D.throne(150, 280);
+      const kw = D.king("want", 150, 230, C.red);
+      N("", "want 已经坐在王座上了，go 没有位置坐。");
+      const gg = D.king("go", 360, 230, C.ink, false);
+      k.buzz(gg, go(1), 1, 2.5);
+      N("不定式 to do：", "to + 动词原形。to 像一个指向将来的箭头 → 想做、打算做的事。");
+      const vest = k.group();
+      const vd = "M268,212 h46 l12,18 l-12,18 h-46 Z";
+      P(vd, go(.01, 0), .01, { color: C.orange, w: 2.5 }); F(vd, go(.01, 0), { color: "#fed7aa", op: 1 });
+      T("to", 292, 237, go(.01, 0), .01, { size: 20, color: C.orange, weight: 900, font: M, anchor: "middle" });
+      k.endGroup(); k.hide(vest);
+      k.fade(vest, go(.7), .7, 1);
+      T("随从穿上 to 马甲", 330, 280, go(.6), .6, { size: 15, color: C.orange, weight: 900, anchor: "middle" });
+      T("I want to go home.", 40, 388, go(1), 1, { size: 24, color: C.green, weight: 900, font: M });
+      T("want to go · plan to visit · hope to see", 40, 418, go(1.2), 1.2, { size: 15, color: C.orange, weight: 700, font: M });
+      k.wait(.6);
+      // 右：doing
+      N("动名词 doing：", "动词加 -ing。表示正在做，或者享受做这件事的过程。");
+      k.head("马甲 2：doing", 510, 112, C.green, "start", 22);
+      const loop = "M560,170 a26,22 0 1,1 -2,-1";
+      P(loop, go(.8), .8, { color: C.green, w: 3 });
+      P("M556,160 l4,10 l-10,2", go(.3), .3, { color: C.green, w: 3 });
+      T("一直在进行", 600, 176, go(.5), .5, { size: 16, color: C.green, weight: 900 });
+      T("I enjoy reading.", 510, 236, go(.8), .8, { size: 22, color: C.ink, weight: 900, font: M });
+      T("享受读书的过程", 510, 262, go(.5), .5, { size: 14, color: C.grey });
+      T("She is swimming.", 510, 306, go(.8), .8, { size: 22, color: C.ink, weight: 900, font: M });
+      T("is 是国王，swimming 穿 -ing 马甲：正在游", 510, 332, go(.9), .9, { size: 14, color: C.grey });
+      T("finish doing · good at drawing", 510, 372, go(1), 1, { size: 15, color: C.green, weight: 700, font: M });
+      N("", "还有第三件马甲 done（表示被做、已完成），以后再学。");
+      T("第 3 件马甲 done：以后学", 510, 404, go(.8), .8, { size: 14, color: C.grey });
+      k.wait(.6);
+      N("口诀：", "想做穿 to，在做穿 -ing。");
+      D.fin("王座只坐 1 个动词；其他动词穿马甲：to do（想做）或 doing（正在做 / 享受过程）", "口诀：想做穿 to，在做穿 -ing。");
+      k.wait(2);
+    },
+    terms: [
+      ["不定式 to do", "to + 动词原形，如 to go。常表示想要、打算、将要去做的事。"],
+      ["动名词 / 现在分词 doing", "动词 + -ing，如 reading。表示正在做，或者做这件事本身。"],
+      ["动词原形", "动词最原本的样子，不加 -s、-ed、-ing，如 go、play。"],
+    ],
+  },
+);
