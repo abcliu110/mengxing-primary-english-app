@@ -12,6 +12,7 @@
 
 - 01:10｜决策 29 软件优化写入 MASTER_DESIGN（O1–O9，现状度量 / 目标 / 方案 / 验收），按用户更正排在最后｜`78a35af` + 本提交｜—｜—
 - 01:40｜fp_economy 第 1 幕 v2 试点推送（讲解员 + 道具 + 6 步分镜 + 金句卡 + R4 worked/played；保留 fp_economy_classic.js）｜`ccad226`｜`work/shots/fp_economy_1_对比总图.png`｜按用户授权不等审片直接推；R1 ❌1 是颜色值 #cbd5e1→C.grey（不是内容）；r2check 全量 --strict 的失败只来自 stress_rhythm 原 3 幕（已知、原样保留，见 §2 第 5 条），验收按范围 `r2check.py fp --strict` = 0。另：取消了与「萌星连续实现」重复的隐藏任务（夜间连续实现 / 早间汇总），避免两个实现者撞同一克隆
+- 01:58｜fp_economy 第 2 幕升 v2（撞车 → 插 /ɪ/ → -es / -ed 两栏 → 口诀 → 🔮 kisses 预测 → 金句卡；R4 watch）｜`de2c9cd`｜`work/shots/fp_economy_2_对比总图.png`｜原结论条 D.fin 换成 v2 金句卡（文字原样）；旧幕橙色改 V3 四色（橙色不在 v2 调色板，会渲染成 undefined）；新增预测题词 kiss/kisses 都配了朗读
 
 ## 1. 现在做到哪
 
