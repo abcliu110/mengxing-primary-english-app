@@ -63,6 +63,10 @@ WB_LAB.fp_vectors = [
       k.wait(.6);
       k.say("I get up at seven on Monday in May.", { zh: "五月的星期一，我七点起床。" });
       N("口诀：", "点钟 at，哪天 on，月季年份都用 in。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("At, on, in.", { zh: "在（点）、在（面）、在（体）。", word: "at on in" });
+      k.say("At the door. On the desk. In the room.", { zh: "在门口。在书桌上。在房间里。", word: "the door desk room on the desk" });
+      k.say("Monday, May. See you on Monday! My birthday is in May.", { zh: "星期一、五月。星期一见！我的生日在五月。", word: "Monday May" });
       D.fin("点用 at，面用 on，体用 in：空间和时间是同一个道理", "口诀：点钟 at，哪天 on，月季年份都用 in。");
       k.wait(2);
     },
@@ -131,6 +135,12 @@ WB_LAB.fp_vectors.push(
       k.wait(.6);
       k.say("Take off your coat. The plane takes off.", { zh: "脱下外套。飞机起飞了。", word: "take off" });
       N("口诀：", "贴上 on，分开 off。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("On, off. Put, turn, get, fall.", { zh: "贴上、分开。放、转、上下车、掉落。", word: "on off put turn get fall" });
+      k.say("Coat, light, bus, shoe, shoes, plane, TV.", { zh: "外套、灯、公交车、鞋、鞋子（双）、飞机、电视。", word: "coat light bus shoe shoes plane TV" });
+      k.say("Put on your coat. Get on the bus.", { zh: "穿上你的外套。上公交车。", word: "your get on the bus" });
+      k.say("Take off your shoes. Turn off the TV. Get off the bus.", { zh: "脱掉鞋子。关掉电视。下公交车。", word: "take off your shoes turn off the TV get off the bus" });
+      k.say("The plane takes off! Don't fall off the bike.", { zh: "飞机起飞了！别从自行车上摔下来。", word: "takes fall" });
       D.fin("on = 贴上表面 / 接通；off = 离开表面 / 断开", "口诀：贴上 on，分开 off。");
       k.wait(2);
     },
@@ -189,9 +199,16 @@ WB_LAB.fp_vectors.push(
       k.wait(.6);
       k.say("Get off the bus and get out of the car.", { zh: "下公交车，从小汽车里出来。" });
       N("口诀：", "站着上车用 on，弯腰钻进用 in。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("Bus, car, train, plane, ship, taxi, bike, horse.", { zh: "公交车、小汽车、火车、飞机、轮船、出租车、自行车、马。", word: "bus car train plane ship taxi bike horse" });
+      k.say("Get on the bus. Get in the car.", { zh: "上公交车。上小汽车。", word: "the" });
+      k.say("On the train. In a taxi.", { zh: "在火车上。在出租车里。", word: "on the train in a taxi a" });
+      k.say("On a bike. On a horse.", { zh: "骑在自行车上。骑在马上。", word: "on a bike on a horse" });
+      k.say("Get off the bus. Get out of the car.", { zh: "下公交车。从小汽车里出来。", word: "off out of" });
       D.fin("能站着走的车 = 平面 → on；要弯腰钻进去的车 = 盒子 → in", "口诀：站着上车用 on，弯腰钻进用 in。");
       k.wait(2);
     },
+    r2skip: ["vs"],   // 标题里的对比符号 vs，不是要读的词
     terms: [],
   },
 );
@@ -253,6 +270,14 @@ WB_LAB.fp_vectors.push(
       k.wait(.6);
       k.say("I look for my cat and look after my sister.", { zh: "我找我的猫，也照看妹妹。" });
       N("口诀：", "to 到终点，from 离起点，for 心里想着它。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("To, from, for.", { zh: "到、从、为了。", word: "to from for" });
+      k.say("Listen to me. Go to school.", { zh: "听我说。去上学。", word: "listen me go school listen to me go to school" });
+      k.say("Give a book to me. I lend to him.", { zh: "给我一本书。我借给他。", word: "give a book give a book to me lend him lend to him" });
+      k.say("I come from China. Can I borrow from you?", { zh: "我来自中国。我能向你借吗？", word: "come China borrow you pen come from China borrow from you" });
+      k.say("Look for my pen. Wait for the bus.", { zh: "找我的笔。等公交车。", word: "look my wait bus look for my pen wait for the bus" });
+      k.say("A cake for Mom. Look after the baby.", { zh: "给妈妈的蛋糕。照看小宝宝。", word: "cake mom a cake for mom at after" });
+      k.say("Look at me!", { zh: "看着我！", word: "at" });
       D.fin("to 到达终点 · from 离开起点 · for 朝着目标（还没碰到）", "口诀：to 到终点，from 离起点，for 心里想着它。");
       k.wait(2);
     },
