@@ -18681,65 +18681,149 @@ WB_LAB.aux_transformer = (() => {
         ["副词", "说明动作「怎么样」的词，比如 well（好）、fast（快）。感叹副词用 How：How well …!"]
       ]
     },
-    // ───────── ③ 三单照妖镜 does ─────────
+    // ───────── ③ 三单照妖镜 does（v2 + 讲解员，2026-10-30）─────────
+    // 升级前原样保存在 cases/aux_transformer_classic.js（R1 零丢失）。原一屏 5 行拆成 3 个镜头 + 🔮 预测 + 金句卡；
+    // R4：场景里的 Mia 读到 watches / watch 时坐在小凳上看电视（sit，电视屏幕闪动）；预测题读到 plays / play 时讲解员跳起来（踢球）。
     {
       build(k) {
-        const { C, N } = k, h = H(k);
+        k.v2();
+        const { N, T, P, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = V(k, D);
+        const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+        const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
         N("", "这一句没有护卫！动词只能去请一面照妖镜 does 来帮忙。");
-        k.header("第三类：三单照妖镜 does", "助动词照妖镜", false);
-        h.label("① 肯定句", ROW.aff, C.green);
+        k.act(me, "walk", .3, 1.6, { to: 892 });
+        k.act(me, "wave", 2.0, 1.8);
+        D.scene({ title: "助动词照妖镜", sub: "第三类：三单照妖镜 does", badges: ["💡", "✂️"], steps: STEPS });
+        k.wait(.4);
+
+        // ───── 镜头 1 · ① 肯定句 + ② 否定句 ─────
+        D.step(0); D.shot();
+        h.label("① 肯定句", R1, C.green);
         N("肯定句：", "Mia watches TV every Saturday evening. 米娅每周六晚上看电视。");
-        const a = h.line("Mia watches TV every Saturday evening.", ROW.aff);
-        k.say("Mia watches TV every Saturday evening.", { zh: "米娅每周六晚上看电视。", word: "watches" });
-        h.tag("米娅每周六晚上看电视。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        const a = h.line("Mia watches TV every Saturday evening.", R1);
+        // 场景：电视 + 小凳子 + Mia（R4 watch：坐下看电视，屏幕闪动）
+        const tv = k.roughRect(300, 342, 120, 72);
+        P(tv, go(.5), .5, { color: C.ink, w: 2.5 }); F(k.rectD(300, 342, 120, 72), go(.1, 0), { color: C.tintInk, op: 1 });
+        P(k.wl(330, 414, 320, 440, .3) + " " + k.wl(390, 414, 400, 440, .3) + " " + k.wl(280, 440, 600, 440, .6), go(.4), .4, { color: C.ink, w: 2.2 });
+        P(k.wl(500, 399, 548, 399, .3) + " " + k.wl(506, 399, 504, 440, .3) + " " + k.wl(542, 399, 544, 440, .3), go(.4), .4, { color: C.ink, w: 2.5 });
+        const gTV = D.sub();
+        k.hide(gTV);
+        F(k.rectD(306, 348, 108, 60), go(.05, 0), { color: C.tintBlue, op: 1 });
+        P(k.ellipse(345, 370, 10, 10) + " " + k.wave(368, 404, 392, 4), go(.05, 0), .05, { color: C.blue, w: 2.2 });
+        P(k.wl(330, 395, 392, 360, .3), go(.05, 0), .05, { color: C.green, w: 2.2 });
+        D.back();
+        const gM = D.sub();
+        const mia = k.actor("traveler", { x: 580, y: 440, s: .75, f: -1, g: gM });
+        D.back();
+        k.wait(.3);
+        const syA = sayAt("Mia watches TV every Saturday evening.", { zh: "米娅每周六晚上看电视。", word: "watches" });
+        k.act(mia, "walk", syA.t, .9, { to: 524 });
+        const syW = sayAt("Watch, watches. Es.", { zh: "看，看（三单加 -es）。", word: "es", blocks: ["es"] });
+        k.act(mia, "sit", syA.t + .9, syW.t + syW.dur - syA.t - .4, { words: ["watches", "watch"] });
+        k.fade(gTV, syA.t + .6, .3, 1); k.fade(gTV, syW.t + syW.dur + .2, .3, 0);
+        k.actFx(["watches", "watch"], syA.t + .6, syW.t + syW.dur - syA.t - .4, "电视屏幕亮起、画面闪动");
+        h.tag("米娅每周六晚上看电视。", SX, R1 + 50, C.grey, { size: 15 });
         N("实义动词：", "watch 是有真正动作的动词，它是「老百姓」，不能自己跑到主语前面。");
         const i = a.at("watches");
         N("第三人称单数（单三）：", "主语是一个「他 / 她 / 它」，比如 Mia，现在时的动词要加 -s / -es。");
         const g = h.ringAt(a, i + 5, 2, C.red);
-        h.tag("单三勋章 -es", g.cx, ROW.aff + 24, C.red, { anchor: "middle", weight: 900 });
+        k.act(me, "point", S.at - .5, 1.2, { at: [g.cx, R1 - 8] });
+        h.tag("单三勋章 -es", g.cx, R1 + 24, C.red, { anchor: "middle", weight: 900 });
         N("照妖镜 does：", "请来同样带 -es 的助动词 does，它把勋章 -es 吸走，动词打回原形。");
         h.icon("mirror", "does", "照妖镜 does");
-        h.label("② 否定句", ROW.neg, C.red);
+        D.step(1);
+        h.label("② 否定句", R2, C.red);
         N("否定句：", "照妖镜 doesn't 出场，吸走 -es：watches 立刻变回原形 watch。");
-        const n = h.line("Mia does not (doesn't) watch TV every Saturday evening.", ROW.neg);
+        const n = h.line("Mia does not (doesn't) watch TV every Saturday evening.", R2);
         k.say("Mia doesn't watch TV every Saturday evening.", { zh: "米娅每周六晚上不看电视。", word: "watch" });
         h.ring(n, "does not", C.red);
         h.ring(n, "watch", C.green);
-        h.tag("照妖镜 doesn't 吸走 -es，watches 打回原形 watch", SX, ROW.neg + 22, C.red);
-        h.label("③ 一般疑问", ROW.yn, C.blue);
+        k.act(me, "point", S.at - .3, 1.2, { at: [n.x0("watch") + 20, R2 - 8] });
+        h.tag("照妖镜 doesn't 吸走 -es，watches 打回原形 watch", SX, R2 + 22, C.red);
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 镜头 2 · ③ 一般疑问 + ④ 特殊疑问 ─────
+        D.step(2); D.shot();
+        h.label("③ 一般疑问", RQ, C.blue);
         N("一般疑问句：", "照妖镜 Does 站到句首，把 -es 吸走，后面用原形 watch。");
-        const q = h.line("Does Mia watch TV every Saturday evening?", ROW.yn, C.blue);
+        const q = h.line("Does Mia watch TV every Saturday evening?", RQ, C.blue);
         k.say("Does Mia watch TV every Saturday evening?", { zh: "米娅每周六晚上看电视吗？" });
         h.jump(q, q.x1("watch") + 2, q.x0("Does") + q.cw * 2);
-        h.tag("Does 吸走 -es", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
+        k.act(me, "point", S.at - .7, 1.2, { at: [q.x0("Does") + 24, RQ - 30] });
+        h.tag("Does 吸走 -es", SX, RQ + 24, C.blue, { size: 15 });
         N("", "回答也用 does：Yes, she does. / No, she doesn't.");
-        k.mono("— Yes, she does. / No, she doesn't.", SX, ROW.ans, 15, C.grey, 700);
-        h.label("④ 特殊疑问", ROW.wh, C.purple);
-        N("特殊疑问句：", "When 问「什么时候」。这里问的是 every Saturday evening。");
-        const w = h.line("When does Mia watch TV?", ROW.wh, C.purple);
-        k.say("When does Mia watch TV?", { zh: "米娅什么时候看电视？" });
-        h.ring(w, "When", C.purple);
-        h.erase("every Saturday evening", w.x + w.text.length * w.cw + 40, ROW.wh, "对时间提问 → 擦掉");
-        N("黄金三步：", "换 When → 提 does → 主语后面 watches 打回原形 watch。");
-        h.tag("① 换疑问词 When ➔ ② 提助动词 does ➔ ③ 主语后 watches 打回原形 watch", SX, ROW.wh + 22, C.purple);
-        h.label("⑤ 感叹句", ROW.ex, C.orange);
-        N("可数单数名词：", "能一个一个数、只有一个的东西，比如 an evening，前面要有 a / an。");
-        const e = h.line("What a relaxing Saturday evening Mia has!", ROW.ex, C.brown);
-        k.say("What a relaxing Saturday evening Mia has!", { zh: "米娅的周六晚上多轻松啊！" });
-        k.underline(e, "What a relaxing Saturday evening");
-        h.ringAt(e, e.at(" a ") + 1, 1, C.red);
-        N("感叹句：", "What a + 形容词 + 单数名词 + 主谓：What a relaxing evening Mia has!");
-        h.tag("What a + 形容词 + 单数名词 + 主谓！", SX, ROW.ex + 27, C.orange);
-        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句
+        k.mono("— Yes, she does. / No, she doesn't.", SX, RQ + 54, 15, C.grey, 700);
         k.say("Mia does not watch TV. Does she? Yes, she does. No, she doesn't.", { zh: "米娅不看电视。她看吗？是的，她看。不，她不看。", word: "Mia does not doesn't Yes she No" });
+        D.step(3);
+        h.label("④ 特殊疑问", RW, C.ink);
+        N("特殊疑问句：", "When 问「什么时候」。这里问的是 every Saturday evening。");
+        const w = h.line("When does Mia watch TV?", RW, C.ink);
+        k.say("When does Mia watch TV?", { zh: "米娅什么时候看电视？" });
+        h.ring(w, "When", C.blue);
+        h.erase("every Saturday evening", w.x + w.text.length * w.cw + 40, RW, "对时间提问 → 擦掉");
+        k.act(me, "surprised", S.at - .4, 1);
+        N("黄金三步：", "换 When → 提 does → 主语后面 watches 打回原形 watch。");
+        h.tag("① 换疑问词 When ➔ ② 提助动词 does ➔ ③ 主语后 watches 打回原形 watch", SX, RW + 22, C.blue);
         k.say("TV, every Saturday evening.", { zh: "电视，每周六晚上。", word: "TV every Saturday evening" });
-        k.say("Watch, watches. Es.", { zh: "看，看（三单加 -es）。", word: "es", blocks: ["es"] });
-        k.say("When? What a relaxing evening Mia has!", { zh: "什么时候？米娅的晚上多轻松啊！", word: "When What a relaxing has" });
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 镜头 3 · ⑤ 感叹句 + 口诀 ─────
+        D.step(4); D.shot();
+        h.label("⑤ 感叹句", RE, C.ink);
+        N("可数单数名词：", "能一个一个数、只有一个的东西，比如 an evening，前面要有 a / an。");
+        const e = h.line("What a relaxing Saturday evening Mia has!", RE, C.ink);
+        k.say("What a relaxing Saturday evening Mia has!", { zh: "米娅的周六晚上多轻松啊！" });
+        k.underline(e, "What a relaxing Saturday evening", 0, C.green);
+        h.ringAt(e, e.at(" a ") + 1, 1, C.red);
+        k.act(me, "point", S.at - .4, 1.2, { at: [e.x + (e.at(" a ") + 1.5) * e.cw, RE - 8] });
+        N("感叹句：", "What a + 形容词 + 单数名词 + 主谓：What a relaxing evening Mia has!");
+        h.tag("What a + 形容词 + 单数名词 + 主谓！", SX, RE + 27, C.green);
         k.say("An apple. An hour.", { zh: "一个苹果。一小时。", word: "an" });
+        k.say("When? What a relaxing evening Mia has!", { zh: "什么时候？米娅的晚上多轻松啊！", word: "When What a relaxing has" });
+        h.recap(["Mia watches TV every Saturday evening.", "Mia does not (doesn't) watch TV every Saturday evening.", "Does Mia watch TV every Saturday evening?", "When does Mia watch TV?"]);
+        k.act(me, "point", S.at - .8, 1.2, { at: [300, 300] });
+        k.wait(.6);
+        // 口诀横跨全宽：讲解员先退到右边
+        k.act(me, "walk", S.at, 1, { to: 1010 });
+        k.wait(1);
         h.final("单三请 does：-es 被照妖镜吸走，后面动词打回原形！");
         N("口诀：", "看到 does / doesn't，后面动词立刻打回原形，别再加 -es！");
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 🔮 预测 ─────
+        D.step(5); D.shot();
+        k.act(me, "walk", S.at, 1.2, { to: 892 });
+        N("预测：", "「他每天踢足球」变成一般疑问句：句首请谁来？plays 要变成什么？先想 3 秒！");
+        h.quiz("🔮 他每天踢足球。He plays football every day.", "→  ___ he ___ football every day?  ( play )");
+        const syS = sayAt("He plays football every day.", { zh: "他每天踢足球。", word: "he plays football every day" });
+        k.act(me, "jump", syS.t + syS.dur * .3, Math.max(1, syS.dur * .7), { words: ["plays"] });
+        k.act(me, "think", S.at, 3.1);
+        D.hold(3);
+        N("揭晓：", "照妖镜 Does 站句首，吸走 -s：plays 打回原形 play。Does he play football every day?");
+        const tRev = go(.3);
+        h.reveal("Does he play football every day?");
+        k.sfx("ding", tRev + .9);
+        const syP = sayAt("Does he play football every day?", { zh: "他每天踢足球吗？", word: "does play" });
+        k.act(me, "jump", syP.t + syP.dur * .3, Math.max(1, syP.dur * .7), { words: ["play"] });
+        k.act(me, "cheer", syP.t + syP.dur + .1, 1.2);
+        D.hold(1.5);
+
+        k.quoteCard({ insight: "句子里没有护卫，就请 does 来帮忙；\n-es 被 does 吸走，动词打回原形", rhyme: "口诀：单三请 does：-es 被照妖镜吸走，\n后面动词打回原形！", hlLines: 2, foot: "🪞 助动词照妖镜 · 第三类 三单照妖镜 does" });
+        k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+        D.hold(2.5);
+        D.finish(.45);
       },
+      actionWords: [
+        { word: "watches", act: "场景里的 Mia 读到「Mia watches TV every Saturday evening」时走到小凳前坐下看电视（walk + sit），电视屏幕亮起闪动（actFx）" },
+        { word: "watch", act: "接着读「Watch, watches」时 Mia 继续坐着看电视" },
+        { word: "plays", act: "预测题读到「He plays football every day」时讲解员跳起来（jump，踢球）" },
+        { word: "play", act: "揭晓读到「Does he play football every day?」时讲解员再跳一次（jump）" },
+      ],
       terms: [
+        ["可信度徽章", "💡 护卫、大将军、照妖镜、勋章都是帮助记忆的比喻；✂️ 简化说法：「只有护卫能背 not、能跳到主语前面提问」说的是小学阶段常见的句子。"],
         ["第三人称单数（单三）", "主语是一个「他 / 她 / 它」，比如 he、she、Mia。现在时里，动词要加 -s 或 -es：Mia watches。"],
         ["单三勋章 -s/-es", "比喻：单三主语后面，动词身上挂的 -s / -es，比如 watches 的 -es。"],
         ["does / doesn't", "单三现在时用的助动词。它一出场就把 -es 吸走，后面的动词打回原形：Does Mia watch …?"],
