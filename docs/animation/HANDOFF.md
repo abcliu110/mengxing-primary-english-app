@@ -53,8 +53,8 @@
 | GET | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成 |
 | PUT | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成 |
 | TURN | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 已完成 |
-| LOOK | ⬜ | ⬜（look away） | ⬜ | ⬜ | ⬜（look in/into） | ⬜ | |
-| GIVE | ⬜（give on，最后做） | ⬜ | ⬜ | ⬜（give back） | ⬜ | ⬜ | |
+| LOOK | ✅ | ✅（look away） | ✅ | ✅ | ✅（look in/into） | ✅ | 已完成 |
+| GIVE | ✅（give on） | ✅ | ✅ | ✅（give back） | ✅ | ✅ | 已完成 |
 
 执行顺序：GET → PUT → TURN → LOOK → GIVE。
 
@@ -115,6 +115,8 @@
 
 - 2026-10-29 `fix(super-lab)`：`drawHDCharacterActor` 兼容 `headBadge`/`badgeColor` 和第三个参数 `t`。24 处带 headBadge 的调用原来头顶徽章不显示，现在按动词/向量颜色显示；呼吸和眨眼恢复。
 - 2026-10-29 新建本交接文档。
+- 2026-10-29 `feat(vv)`：GIVE 行 6 格动画完成，**动词矩阵 6×6 共 36 格全部有动画**。新增 5 张姿势 `vv_give_smell/warm/quit/pull/hand`；give back 格用自绘 BACK 标签 `backTag`。`synth()` 新增可选 `cfg.pLabel` / `cfg.pZh`，用来覆盖小品词卡片上的文字（look_off 显示 AWAY，give_down 显示 BACK）。
+- 验收脚本：遍历 36 格、每 0.5 秒渲染一帧，检查没有 `undefined` / `NaN`，无页面报错；`tools/appshot.py vIdx pIdx out.png` 在 App 里打开某格截图。
 - 2026-10-29 `feat(vv)`：LOOK 行 6 格动画完成（look_off 格按 look away 做，场景里用自绘 AWAY 标签 `awayTag`）。新增 10 张姿势 `vv_look_watch/away/cover/upsky/dict/down/peek/magnify/startle/window`；`vv_look_cover` 原图右侧有光斑，已抹掉 x≥360 的像素。视线统一用 `eyeLine` 虚线 + 小圆圈表示。
 - 2026-10-29 `feat(vv)`：TURN 行 6 格动画完成。新增 9 张姿势 `vv_turn_switch/tap/remote/dance/shh/no/give/yawn/wow`；turn up 第二幕用「露面」义，turn in 第二幕用「上床睡觉」义；turn out 第一幕复用 `vv_put_umbrella`、`vv_put_sing`。
 - 工具：`/workspace/work/vv/tools/insert_row.py`（把一行区块和素材插进主文件，可重复执行）、`frames.py`（无头 Chrome 按时间点截帧）、`grid.py`（拼预览图）。
