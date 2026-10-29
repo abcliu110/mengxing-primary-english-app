@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-29 23:45 JST（§0.1 P1–P4 完成 + metaphor_code、past_clans 补齐）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-29 23:55 JST（阶段 3 开工：搬迁清单已导出，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -176,6 +176,17 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - ✅ `wo_time_num` 数字的秘密（约 121 秒，18 句朗读）：十个点 = ten → eleven = one + left、twelve = two + left → thirteen/fourteen/nineteen = 几 + ten，-teen = ten → dozen = duo + decem（呼应格林定律 d→t），搬运工抱一打鸡蛋走（carries）→ 中文四位一节 vs 英文三位一节、million = mille + -one、一万 = ten thousand → 🔮 一亿 = one hundred million → 金句卡。验收：r2check --strict 22/22、R4 1/1；旧 70 幕 350 次渲染逐字节一致；jscheck 28 模块；appwo 八幕过。分镜 `time_measure/STORYBOARD.md`。总枢「⏰ 时间与度量的身世」章节上线（`WO_CHAPTERS` 加 scenes）。
 - ✅ `wo_time_week` 星期和月份（约 156 秒，23 句朗读）：天上七位客人 → 日耳曼的神（Tiw、Woden、Thor、Friga），闪电雷神 → 七天名字表（Saturday 没换）→ 古英语 þunresdæg → Thursday → September ← septem，古罗马历三月开始（Sep–Dec = 第 7–10 个月），后来前面加了一月二月 → 中文按数字 vs 日语按天体（💡）→ 🔮 Monday = moon + day → 金句卡。验收：r2check --strict 29/29、R4 1/1；旧 71 幕 355 次渲染逐字节一致；jscheck 29 模块；appwo 九幕、appfp 0 过。
 - 时间与度量章两幕完成。已知取舍：①🔮 题 Monday 在镜头 2 已出现过（是回忆题不是推理题），以后可换成「octo = 8 → octopus 有几条腿」（octopus 词源要先补出处）；②没有「a.m. / p.m.、mile = 一千步」（章节卡原写的例子），要做先补出处。
+
+## 0.6 阶段 3 进度（中英对照总枢，2026-10-29 23:55 起）
+
+| # | 内容 | 状态 / 提交 |
+|---|---|---|
+| 1 | 搬迁内容清单（R1 第 1 步）：④-1、⑥-1 逐条导出 | ✅ `zh_en_hub/INVENTORY_4-1.md`（27 条 + 术语 6 + 页面卡片）、`INVENTORY_6-1.md`（32 条 + 术语 + 页面卡片） |
+| 2 | 总枢设计文档 `zh_en_hub/DESIGN.md`（章节 A/Q/正迁移/N/M、每章幕表、出处要求） | 待做 |
+| 3 | 总枢页面骨架（首页横幅 + `zh_en_hub` 页面 + 章节卡，参照 `wo_hub.js`） | 待做 |
+| 4 | 搬 ④-1 → 「是 ≠ be」幕（原样搬 + v2 + 讲解员 + R2 补齐），清单逐条打勾 | 待做 |
+| 5 | 搬 ⑥-1 → 「修饰语位置」幕，清单逐条打勾 | 待做 |
+| 6 | 原理页删 ④-1、⑥-1，留一句话 + 跳转入口 | 待做（新位置验收后） |
 
 ## 1. 当前状态
 
