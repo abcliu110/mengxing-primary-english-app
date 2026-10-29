@@ -17,6 +17,7 @@
 - 01:42｜fp_economy 第 4 幕升 v2，fp_economy 4 幕全部完成（音节房间动画保留 + 🔮 sitting + 金句卡；R4 running / run / stop / sit / sitting）｜`cc3dd8a`｜`work/shots/fp_economy_4_对比总图.png`｜原左右两半拆两个镜头；门的木色是道具色保留；例句 swim、eat 没有对应人物动作（动作库无游泳 / 吃），r2check 只作提示，留待扩 wb_actor.js 时补
 - 01:44｜fp_vectors 第 1 幕升 v2（at/on/in 点面体 + 时间小图 + 🔮 on Sunday + 金句卡；R4 get up）｜`a54b7f4`｜`work/shots/fp_vectors_1_对比总图.png`｜新建 fp_vectors_classic.js（只改 WB_LAB 名）；三列从 165/480/795 左移到 140/400/660，避免和讲解员重叠；R1 ❌ 只剩颜色 / 路径坐标
 - 01:46｜fp_vectors 第 2 幕升 v2（on/off 两镜头 + 🔮 turn on the TV + 金句卡；R4 put on / turn on / get on / take off / takes off / fall off）｜`1bac762`｜`work/shots/fp_vectors_2_对比总图.png`｜飞机起飞从画完立刻飞改为读到「The plane takes off」时才飞（R4 同步）；coat 用词卡道具代替衣服（动作库没有穿脱衣）
+- 01:48｜fp_vectors 第 3 幕升 v2（公交 / 小汽车 + 小旅客上车动作 + 🔮 get on the subway + 金句卡；R4 get on / get in / get off / get out of）｜`2363cc9`｜`work/shots/fp_vectors_3_对比总图.png`｜火柴人（D.person）换成 traveler 角色，R4「描述动作必须人演」；原火柴人弧线路径坐标不再使用（R1 只差坐标）
 
 ## 1. 现在做到哪
 
