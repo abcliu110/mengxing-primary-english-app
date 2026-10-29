@@ -147,7 +147,11 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 出处（`caa1493`）：`word_origins/SOURCES.md` ④ 真格林定律 12 条、⑤ 元音变异 14 条。纠错要点（R3，写进新幕，旧页签不动）：①「格林音变律」名字不准——格林定律是辅音挪位，foot→feet 是元音变异（i-mutation）；② length/strength 的 o→e 也是 i 变异（后缀 \*-itho 里的 i），不是「嘴巴省力缩短」；③ width 是 1620 年代仿 breadth 新造的，deep/depth、wide/width 读音差距主要来自 1400–1700 大元音推移（✂️）；④ safe/save、use/use 是法语借词，不属于古英语清浊交替（⚠️）；⑤ blood 读 /ʌ/ 不是 /uː/；⑥ full→fill 是形容词变动词。
 - ✅ 第 1 幕 `wo_grimm`（真格林定律，约 142 秒，18 句朗读）：老祖宗分两家 → 时光机 pes→foot、pedal 没变 → 一排都挪（tres/three、dentist/tooth、December/ten、dual/two、century/hundred、cardiac/heart）→ 彩蛋 December 第十个月 + Jacob Grimm → 中文「脚 ↔ 足」💡 → 🔮 ped = foot、pedestrian 行人走过 → 金句卡。验收：`r2check wo_grimm --strict` 21/21、R4 2/2；旧 66 幕 330 次渲染逐字节一致（只多 wo_grimm 5 项）；jscheck 23 模块过；appwo 四幕 mounted、无报错；appwb bamboo_tree、appfp 0 过。分镜 `grimm_law/GRIMM_STORYBOARD.md`。总枢新增章节「🔤 格林定律：辅音和元音的大挪移」（`wo_hub.js` WO_CHAPTERS），`WO_READY` 加 `wo_grimm`。
 - 已知取舍：截图逐张看过（时光机、词族表、罗马历、预测、金句卡），没有录屏；行人在金句卡前淡出。
-- 下一步：`cases/wo_vowel.js`（三幕）→ 清单打勾。
+- ✅ 元音变异三幕 `wo_vowel_a`（原定律 A，foot→feet）、`wo_vowel_b`（原定律 B，long→length）、`wo_vowel_c`（原定律 C，清浊交替）：原 `vowel_shift` 三个案例的全部画面、字幕、术语、朗读整体搬来（文件 `cases/wo_vowel_a/b/c.js`，共用小工具 `cases/wo_vowel_kit.js`），加 v2 片头卡 + 讲解员 + 每个英文词单读和例句 + 纠错（R3，见上）+ 徽章。讲解员演的动作：fill（take）、bleed（surprised + oops）、feed（put）、save（put）、close（turn）、breathe（cheer）。验收：`r2check wo_vowel_a/b/c --strict` 14/22/15 词全过、R4 3/0/3；旧 67 幕 335 次渲染逐字节一致（新增 15 项都是新幕）；jscheck 27 模块过；appwo 七幕 mounted 无报错；apptags PASS；appwb vowel_shift 旧页签照常。
+- 工具改动（只加不改）：`insert_wb.py` 新增 `WO_KITS`（几幕共用的小工具文件作为依赖先执行，`data-deps="wo_props wo_vowel_kit"`）；`preview.html` 载入 `wo_vowel_kit.js`；`r2check.js` 新增案例字段 `r2skip`（画面上故意展示的错误形式不计入 R2，如 longth、foots；SOP §7 第 3 条）。
+- R4 提示：wo_vowel_c 例句「Take a deep breath」里的 take 不是「拿」的动作，只提示不算缺。
+- **没做（等用户确认）**：删 `vowel_shift` 页签、改实验室里 15 处入口指向新章（清单在 `grimm_law/VOWEL_SHIFT_INVENTORY.md` 末尾）。
+- 下一步：清单 185 条逐项打勾（对照新位置）。
 
 ## 1. 当前状态
 
