@@ -53,6 +53,11 @@ WB_LAB.fp_iconicity = [
       T("这是帮你记单词的联想：看字母的样子，想起一串词。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
       k.say("Catch the cup, please!", { zh: "请接住杯子！", word: "catch" });
       N("口诀：", "M 是山，S 是蛇，B 是包，C 来抓。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("Mouth, mother. Open your mouth, Mother!", { zh: "嘴，妈妈。妈妈，张开嘴！", word: "mouth mother" });
+      k.say("Swim and smile. I smile when I swim.", { zh: "游泳，微笑。我游泳的时候会笑。", word: "swim smile" });
+      k.say("Box, bed. The box is on the bed.", { zh: "盒子，床。盒子在床上。", word: "box bed" });
+      k.say("Cup, cap. My cap is red. This cup is blue.", { zh: "杯子，帽子。我的帽子是红色的。这个杯子是蓝色的。", word: "cup cap" });
       D.fin("看字母的形状，联想画面，一个字母串起一串词", "口诀：M 是山，S 是蛇，B 是包，C 来抓。");
       k.wait(2);
     },
@@ -112,9 +117,15 @@ WB_LAB.fp_iconicity.push(
       T("这是帮助记忆的规律倾向，也有例外（比如 floor 地板）。", 40, 432, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
       k.say("Go down the slide slowly.", { zh: "慢慢地滑下滑梯。", word: "slide" });
       N("口诀：", "fl 飞，gl 亮，sl 滑下来。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("Fl. Fly, flag, flower. Birds fly over the flowers.", { zh: "fl。飞、旗子、花。鸟儿飞过花丛。", word: "fl fly flag flower", blocks: ["fl"] });
+      k.say("Gl. Glass, glad. The glass is clean.", { zh: "gl。玻璃、高兴的。玻璃杯很干净。", word: "gl glass glad", blocks: ["gl"] });
+      k.say("Sl. Slide, slow, sleep. The snail is slow. The cat is sleeping.", { zh: "sl。滑梯、慢的、睡觉。蜗牛很慢。小猫在睡觉。", word: "sl slide slow sleep", blocks: ["sl"] });
+      k.say("Floor. The ball is on the floor.", { zh: "地板。球在地板上。", word: "floor" });
       D.fin("开头的辅音丛常常带着同一种感觉：一个声音串起一串词", "口诀：fl 飞，gl 亮，sl 滑下来。");
       k.wait(2);
     },
+    r2skip: ["ag", "ower", "ass", "ad", "ide", "ow", "eep"],   // 辅音丛后面的词尾残片（fl|ag、gl|ass、sl|ide 拆开展示），整词已朗读
     terms: [],
   },
 );
@@ -152,9 +163,15 @@ WB_LAB.fp_iconicity.push(
       T("帮助记忆的联想", 940, 432, go(.5), .5, { size: 13, color: C.grey, anchor: "end" });
       k.say("Flowers come out in spring.", { zh: "春天花开了。", word: "spring" });
       N("口诀：", "str 拉直线，sp 往外喷。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("Str. Straight, street, strong, strict.", { zh: "str。笔直的、大街、强壮的、严格的。", word: "str straight street strong strict", blocks: ["str"] });
+      k.say("He is strong. Our teacher is strict.", { zh: "他很强壮。我们的老师很严格。", word: "strong strict" });
+      k.say("Sp. Speak, sport, space, spring.", { zh: "sp。说话、运动、太空、春天。", word: "sp speak sport space spring", blocks: ["sp"] });
+      k.say("Speak English. I like sport. Look at space!", { zh: "说英语。我喜欢运动。看看太空！", word: "speak sport space" });
       D.fin("str- 像拉紧的直线，sp- 像向外喷发：一个画面串起四个词", "口诀：str 拉直线，sp 往外喷。");
       k.wait(2);
     },
+    r2skip: ["aight", "eet", "ong", "ict", "eak", "ort", "ace", "ring"],   // str|aight、sp|eak 拆开展示的词尾残片，整词已朗读
     terms: [],
   },
 );
@@ -199,9 +216,14 @@ WB_LAB.fp_iconicity.push(
       T("这是真正的词源：再也不会把 twelve 和 twenty 弄混。", 40, 424, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
       k.say("I sit between my twin brothers.", { zh: "我坐在两个双胞胎哥哥中间。", word: "between" });
       N("口诀：", "tw 一出现，成双又成对。");
+      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
+      k.say("Tw. Two, twelve, twenty, twice, twin, between.", { zh: "tw。二、十二、二十、两次、双胞胎、在……之间。", word: "tw two twelve twenty twice twin between", blocks: ["tw"] });
+      k.say("Two tens make twenty. I read it twice.", { zh: "两个十是二十。我读了两遍。", word: "two twenty twice" });
+      k.say("Twain. Twain is an old word for two.", { zh: "twain。twain 是「两个」的老说法。", word: "twain" });
       D.fin("看到 tw-，想到 2：two · twelve · twenty · twice · twin · between", "口诀：tw 一出现，成双又成对。");
       k.wait(2);
     },
+    r2skip: ["elve", "enty", "ice", "in", "een", "be"],   // tw|elve、be|tw|een 拆开展示的残片；be 是古前缀（≈ by），不是动词 be，整词已朗读
     terms: [],
   },
 );

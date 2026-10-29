@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-29 21:30 JST（21:20 补旧幕推广清单 §0.1）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-29 22:30 JST（§0.1 P2-② fp_iconicity 完成）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -102,6 +102,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | P1 | `adj_order` 4 案例（缺 13 词、0 句） | 缺口最小，一轮就能补齐，用来定「旧幕补 R2」的标准做法和每幕耗时 | 补朗读 + 列动作词清单；视觉不升 v2（保持旧样式，单独一轮再升） |
 | ✅ P1 完成（2026-10-29 23:00） | `adj_order` R2 13 → 0 | 做法：案例配置加 `extraSays`（在原 `k.final` 朗读之后补读：八类首字母词 Opinion…Purpose、OSASCOMP、two/that、cat、this），画面不动；r2check --strict 4/4 幕 37 词全过。渲染回归：只有 adj_order 第 1、2、4 幕变化（多了朗读，时间轴变长），第 3 幕和其他 71 幕逐字节一致；appwb adj_order 过。例句里的 bought / wears 不在动作词表，R4 未列清单（视觉 v2 升级时一起补演）。 | 下一个：P2 `fp_economy` |
 | ✅ P2-① 完成（2026-10-29 23:20） | `fp_economy`（第一性原理 ①）R2 42 → 0、白板句子缺朗读 2 → 0 | 做法同 P1：每幕在收尾 `D.fin` 前补朗读（books/bags/buses、worked/played/wanted、watch/box/want/need、a/the/book/useful/hour/polite/possible、run/swim/tap/tape/big/hot/stop + 词块 ed/es/in/im/ing/er/est）；第 4 幕 `r2skip` 拼错的 runing 和音节切分残片 ru/ning/ta/ping。验收：r2check --strict 43/43；渲染回归只有 fp_economy 4 幕变化（20 项），其余 68 幕逐字节一致；jscheck、appfp 0 过；截图看过。R4：例句里 run/swim/stop 是动作词，第一性原理幕还没有讲解员，留到视觉 v2 升级时补演。 | 下一个：P2 `fp_iconicity` |
+| ✅ P2-② 完成（2026-10-29 22:30） | `fp_iconicity`（第一性原理 ②）R2 46 → 0 | 做法同 P1/P2-①：每幕收尾 `D.fin` 前补朗读（mouth/mother、swim/smile、box/bed、cup/cap；fl/gl/sl 词块 + fly/flag/flower/glass/glad/slide/slow/sleep/floor；str/sp 词块 + straight/street/strong/strict/speak/sport/space/spring；tw 词块 + two/twelve/twenty/twice/twin/between/twain）；第 2–4 幕 `r2skip` 辅音丛拆开后的词尾残片（ag/ower/ass/ad/ide/ow/eep、aight/eet/ong/ict/eak/ort/ace/ring、elve/enty/ice/in/een）和 between 里的古前缀 be（≈ by，不是动词 be，不单读）。验收：r2check --strict 33/33；渲染回归只有 fp_iconicity 4 幕变化（20 项），其余 68 幕逐字节一致；jscheck 29 模块、appfp 0/1 过。R4：例句里 put/catch/fly/swim/walk/sit 是动作词，第一性原理幕没有讲解员，留到视觉 v2 升级时补演。 | 下一个：P2 `fp_boundedness` |
 | P2 | 第一性原理 ① `fp_economy`（44）→ ② `fp_iconicity`（46）→ ③ `fp_boundedness`（57）→ ⑤ `fp_vectors`（82） | 首页总枢，24 幕都会被看到；①②缺口小 | 每条原理一次提交；`appfp.py` 回归 |
 | P2' | ④ `fp_one_king` 第 2–4 幕、⑥ `fp_zoom_focus` 第 2–4 幕 | ④-1、⑥-1 要零丢失搬去中英对照总枢（阶段 3），**搬的时候在新位置补 R2/R4**，原位置不补 | 先补留下的 6 幕 |
 | P3 | `bamboo_tree`（85，实验室样板页签）→ `aux_transformer`（97）→ `five_patterns`（193）→ `tense_matrix`（262） | 语法核心；bamboo_tree 是实验室样板，先补好给别的页签对齐 | 例句大多已在画面上，主要是补单独朗读 + 整句朗读 |
