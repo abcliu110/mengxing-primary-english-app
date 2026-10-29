@@ -77,11 +77,9 @@
 - `insert_wb.py`：`READY` 加 6 个 fp id，`case_files` 加 `fp_props.js`（必须排在 6 个 fp 文件前面）。
 - 预览/验收脚本：`preview_shots.py fp_economy …` 直接可用；App 验收新写 `appfp.py <lawIdx> <输出目录>`：进入 `first_principles_hub`，逐幕点「下一幕」，每幕检查 `mounted / bad / errors / NaN`。
 
-## 6. 朗读（可选，第二阶段）
+## 6. 朗读（2026-10-29 改为必做，默认开）
 
-- 白板控制条加一个「🔈 朗读」开关，**默认关**。
-- 打开后：字幕换句时，用 App 现有的 `speakText` 读出**英文例词/例句**（字幕里 MONO 的部分），中文不读。时间轴不因朗读暂停。
-- 等 24 幕画面全部完成、用户看过后再做。
+见 `docs/whiteboard/SOP.md` 第 7 节「英文例句朗读」：每幕至少读 1 句，只读正确的英文，读的时候画面停住，逐词高亮，中文只显示字幕。
 
 ## 7. 做一条原理的步骤
 
