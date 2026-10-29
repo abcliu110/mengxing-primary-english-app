@@ -154,9 +154,17 @@
         h.say("必考：", 40, 414, { color: C.red, size: 17, weight: 900, dur: .4 });
         h.say("listen TO · look AT · wait FOR · arrive IN(AT)", 100, 414, { color: C.red, size: 17, weight: 900, font: MONO, dur: 1.4 });
         N("", "这就是句型 ①：主语 + 不及物动词，挂件随便挂。");
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
+        k.say("The sun rises in the east.", { zh: "太阳从东方升起。", word: "The sun rises in the east" });
+        k.say("Rise, fly, sleep, run, smile. Babies sleep. Kids run and smile.", { zh: "升起、飞、睡、跑、笑。宝宝睡觉。孩子们跑着、笑着。", word: "rise fly sleep run smile" });
+        k.say("Birds fly happily in the blue sky.", { zh: "鸟儿在蓝天里快乐地飞翔。", word: "Birds happily blue sky ly", blocks: ["ly"] });
+        k.say("Please look at the blackboard and listen to the teacher.", { zh: "请看黑板，听老师讲。", word: "Please look at blackboard and teacher" });
+        k.say("Wait for me! We arrive at school at eight.", { zh: "等等我！我们八点到学校。", word: "wait FOR arrive" });
+        k.say("Subject, verb. Play with me!", { zh: "主语，动词。和我一起玩吧！", word: "Subject Verb with" });
         h.final("S（主语）+ Vi（不及物动词）  [+ 副词 / 介词短语挂件]", "鸟儿在蓝天上快乐地飞翔。  自己能做，不带宾语！");
         N("口诀：", "不及物动词自己就能做；想接对象，先挂介词钩。");
       },
+      r2skip: ["SV", "Vi"],   // 成分标签（主语 S、不及物动词 Vi），不读
       terms: [
         ["五大基本句型", "英语句子最常见的 5 种骨架：SV、SVP、SVO、SVOO、SVOC。句子再长，骨架也是这 5 种之一。"],
         ["骨骼 / 骨架", "比喻：句子里最核心、不能少的部分。动画里用一个个方块表示，其他补充内容是挂件。"],
@@ -212,9 +220,17 @@
         k.say("In autumn, the leaves turn yellow and the weather gets cool.", { zh: "秋天，树叶变黄，天气变凉。" });
         h.tags(m2, [["In autumn", "时间挂件", C.grey], ["the leaves", "S", C.blue], ["turn", "V", C.orange], ["yellow", "P", C.brown], ["the weather", "S", C.blue], ["gets", "V", C.orange], ["cool", "P", C.brown]]);
         h.say("铁律：系动词 + 形容词（对）    系动词 + -ly 副词（错）", 40, 422, { color: C.red, size: 17, weight: 900 });
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
+        k.say("The chicken soup smells so delicious.", { zh: "鸡汤闻起来太香了。", word: "The chicken soup smells so delicious" });
+        k.say("Look, sound, smell, taste, feel. You look happy. I feel good.", { zh: "看、听、闻、尝、摸。你看起来很开心。我感觉很好。", word: "look sound smell taste feel" });
+        k.say("Get, turn, become. He becomes tall.", { zh: "变得。他长高了。", word: "get turn become" });
+        k.say("That idea sounds great! The cake tastes sweet.", { zh: "这个主意听起来很棒！蛋糕尝起来很甜。", word: "That idea sounds great cake tastes sweet" });
+        k.say("Sweetly, ly. She sings sweetly.", { zh: "甜甜地（-ly 副词）。她唱得很甜。", word: "sweetly ly", blocks: ["ly"] });
+        k.say("In autumn, the leaves turn yellow and the weather gets cool.", { zh: "秋天，树叶变黄，天气变凉。", word: "In autumn leaves yellow and weather gets cool" });
         h.final("S（主语）+ 系动词（=）+ P（表语：名词 / 形容词 / 介词短语）", "那个主意听起来太棒了！蛋糕尝起来很甜。  系动词是等号！");
         N("口诀：", "系动词是等号，后面跟形容词，千万别跟 -ly。");
       },
+      r2skip: ["SVP"],   // 成分标签，不读
       terms: [
         ["系动词", "不表示动作、像等号「=」的动词，把后面的状态交给主语，比如 am / is / are、look、taste、get。"],
         ["感官系动词", "和五种感觉有关的系动词：look 看起来、sound 听起来、smell 闻起来、taste 尝起来、feel 摸起来。"],
@@ -262,9 +278,17 @@
         h.say("将来想做 → want / plan / hope / decide + to do", 40, 404, { color: C.blue, size: 16, weight: 900 });
         N("doing：", "享受、完成、练习常做的事用 doing，比如 enjoy doing。");
         h.say("享受常做 → enjoy / finish / practice / mind + doing", 40, 428, { color: C.green, size: 16, weight: 900 });
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
+        k.say("Leo loves reading English books. He enjoys stories.", { zh: "里奥喜欢读英文书。他喜欢故事。", word: "Leo loves enjoys reading English books stories" });
+        k.say("We planted twenty young trees on Tree Planting Day.", { zh: "植树节我们种了二十棵小树。", word: "We planted twenty young trees on Tree Planting Day" });
+        k.say("Discuss the plan. Marry her. Enter the room.", { zh: "讨论计划。娶她。进入房间。", word: "discuss the plan marry her enter room" });
+        k.say("I want to buy a dictionary, and I enjoy reading stories.", { zh: "我想买一本词典，我也喜欢读故事。", word: "I want to buy a dictionary and enjoy" });
+        k.say("Want to do, hope to do, plan to do. I decide to go.", { zh: "想做、希望做、打算做。我决定去。", word: "hope decide do want to do hope to do" });
+        k.say("Enjoy doing. Finish doing, practice doing. Do you mind waiting?", { zh: "喜欢做。做完、练习做。你介意等一下吗？", word: "finish practice mind doing" });
         h.final("S（主语射箭人）+ Vt（及物动词）+ O（宾语靶心）", "我们在植树节种了 20 棵小树苗。  动作直接射中宾语！");
         N("口诀：", "及物动词是支箭，直接射中宾语，不加介词。");
       },
+      r2skip: ["SVO", "Vt"],   // 成分标签，不读
       terms: [
         ["宾语靶心", "比喻：及物动词像射出去的箭，宾语就是被射中的靶心，比如 planted trees 里的 trees。"],
         ["画蛇添足", "多此一举。及物动词后面直接接宾语，乱加介词反而错：discuss the plan、enter the room 都不加介词。"],
@@ -307,9 +331,17 @@
         h.tags(m2, [["me", "IO", C.purple], ["a new bike", "DO", C.brown], ["a new bike", "DO", C.brown, 1], ["FOR me", "for + 人", C.red]]);
         h.heart(m2.x1("me", 1) + 26, m2.y - 7);
         h.say("for 派：buy / make / cook / draw / choose / find", 40, 428, { color: C.red, size: 16, weight: 900, font: MONO, dur: 1.3 });
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
+        k.say("Mum gave me a birthday gift.", { zh: "妈妈送了我一份生日礼物。", word: "Mum me a birthday gift a birthday gift" });
+        k.say("Leo gave me a nice pen. Give it to me.", { zh: "里奥给了我一支好看的笔。把它给我。", word: "Leo nice pen give to" });
+        k.say("Give, show, send, pass, lend, teach, tell. Please tell me a story.", { zh: "给、展示、寄、递、借给、教、讲。请给我讲个故事。", word: "show send pass lend teach tell" });
+        k.say("Dad bought me a new bike. He made a cake for me.", { zh: "爸爸给我买了一辆新自行车。他给我做了蛋糕。", word: "Dad new bike for" });
+        k.say("Buy, make, cook, draw, choose, find. Mum cooks dinner for us.", { zh: "买、做、煮、画、挑选、找到。妈妈给我们做晚饭。", word: "buy make cook draw choose find" });
+        k.say("Somebody, something. Somebody gave me something.", { zh: "某人，某物。有人给了我一样东西。", word: "somebody something" });
         h.final("S + V + 人 + 物    或    S + V + 物 + to / for + 人", "妈妈送了我一份生日礼物。  递过去用 to，花心思用 for！");
         N("口诀：", "现成东西递过去用 to，花心思替人准备用 for。");
       },
+      r2skip: ["SVOO", "IO", "DO", "sb", "sth", "vs"],   // 成分标签和 sb./sth. 缩写、对比符号 vs，不读（全称 somebody / something 已读）
       terms: [
         ["双宾语", "一个动词后面跟两个宾语：先人后物，比如 gave me a pen（给我一支笔）。"],
         ["间接宾语 IO", "收到东西的人，比如 gave me a pen 里的 me。IO 是 Indirect Object 的缩写。"],
@@ -355,9 +387,18 @@
         h.say("ask / tell / want / invite + sb. + to do", 40, 404, { color: C.blue, size: 16, weight: 900, font: MONO, dur: 1.2 });
         N("", "使役动词后面用原形：Let's go! Make him laugh!");
         h.say("make / let / have + sb. + do（不带 to）   Let's go! · Make him laugh!", 40, 428, { color: C.red, size: 16, weight: 900 });
+        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句（S V O 这类成分标签不读，见 r2skip）
+        k.say("Good music makes us happy. It makes us relax.", { zh: "好音乐让我们开心。它让我们放松。", word: "Good music makes us happy relax Good music makes us" });
+        k.say("Reading books makes me clever and keeps my mind open.", { zh: "读书让我变聪明，让我的思想更开阔。", word: "Reading books me clever and keeps my mind open keep" });
+        k.say("Happily, ly. They play happily.", { zh: "快乐地（-ly 副词）。他们玩得很开心。", word: "happily ly", blocks: ["ly"] });
+        k.say("Our teacher asks us to read aloud, and she lets us play games!", { zh: "老师让我们大声朗读，还让我们玩游戏！", word: "Our teacher asks to read aloud she lets play games ask us to read" });
+        k.say("Ask, tell, want, invite. Ask us to read! Do it now.", { zh: "请求、告诉、想要、邀请。叫我们来读吧！现在就做。", word: "ask tell want invite do" });
+        k.say("Make, let, have. Let's go! Make him laugh!", { zh: "让。我们走吧！让他笑！", word: "make let have Let's go him laugh do" });
+        k.say("Played, playing. Ed, ing.", { zh: "玩了、正在玩。-ed、-ing。", word: "ed ing", blocks: ["ed", "ing"] });
         h.final("S + V + O（宾语）+ OC（宾补：形容词 / 名词 / to do / do）", "读书让我变聪明。  make / let / have 后面不带 to！");
         N("口诀：", "make、let、have 不带 to；ask、tell、want 要带 to。");
       },
+      r2skip: ["SVOC", "OC", "sb", "makes me happily"],   // 成分标签、sb. 缩写；划掉的错误搭配 makes me happily 不读
       terms: [
         ["使役动词", "表示「让某人做某事」的动词：make、let、have。后面的动词用原形，不带 to：let us play。"],
         ["动词原形", "动词本来的样子，不加 to、-s、-ed、-ing，比如 play、laugh、go。"],
