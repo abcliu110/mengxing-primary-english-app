@@ -14337,6 +14337,56 @@ WB_LAB.fp_iconicity = [
     ],
   },
 ];
+WB_LAB.fp_iconicity.push(
+  // ───────── 2-2 fl- 飘 · gl- 亮 · sl- 滑 ─────────
+  {
+    build(k) {
+      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      N("", "这一幕：fly、flag、flower 开头都是 fl-，是巧合吗？");
+      k.header("② 字母象形与音义同源簇", "fl- 飘 · gl- 亮 · sl- 滑", false);
+      N("辅音丛：", "两三个辅音字母连在一起读，比如 fl-、gl-、sl-。");
+      const xs = [160, 480, 800];
+      const list = (x, pre, rest, color) => rest.forEach(([w, zh], i) => {
+        D.parts([[pre, color], [w, C.ink]], x - 80, 330 + i * 32, 20);
+        T(zh, x + 56, 330 + i * 32, go(.3), .3, { size: 15, color: C.grey });
+      });
+      // fl-
+      T("fl-", xs[0], 120, go(.4), .4, { size: 34, color: C.blue, weight: 900, font: M, anchor: "middle" });
+      N("", "读 fl- 时，上牙碰下唇吹一口气——可以想成风把东西吹得飘起来。");
+      P(`M${xs[0] - 110},180 q20,-8 40,0 M${xs[0] - 110},200 q20,-8 40,0 M${xs[0] - 110},220 q20,-8 40,0`, go(.8), .8, { color: "#94a3b8", w: 2.5 });
+      P(k.wl(xs[0], 270, xs[0], 160, .4), go(.4), .4, { color: C.brown, w: 4 });
+      const flag = k.group(); const fd = `M${xs[0] + 2},164 C${xs[0] + 30},150 ${xs[0] + 50},180 ${xs[0] + 80},166 L${xs[0] + 80},206 C${xs[0] + 50},220 ${xs[0] + 30},190 ${xs[0] + 2},204 Z`;
+      P(fd, go(.6), .6, { color: C.blue, w: 3 }); F(fd, go(.1, 0), { color: "#bfdbfe", op: 1 }); k.endGroup();
+      k.rot(flag, go(.01, 0), .01, 0, xs[0], 184); k.buzz(flag, go(1.4), 1.4, 3);
+      list(xs[0], "fl", [["y", "飞"], ["ag", "旗子"], ["ower", "花"]], C.blue);
+      k.wait(.3);
+      // gl-
+      T("gl-", xs[1], 120, go(.4), .4, { size: 34, color: C.orange, weight: 900, font: M, anchor: "middle" });
+      N("", "gl- 可以想成光滑、闪亮：透明的玻璃、眉开眼笑。");
+      const gl = `M${xs[1] - 30},160 L${xs[1] - 22},260 L${xs[1] + 22},260 L${xs[1] + 30},160`;
+      P(gl, go(.7), .7, { color: C.blue, w: 3 });
+      const sp = k.group(); P(`M${xs[1] + 50},170 l6,14 l14,6 l-14,6 l-6,14 l-6,-14 l-14,-6 l14,-6 Z M${xs[1] - 56},210 l4,9 l9,4 l-9,4 l-4,9 l-4,-9 l-9,-4 l9,-4 Z`, go(.5), .5, { color: C.orange, w: 2.5 }); k.endGroup();
+      const ts = go(1.6); k.fade(sp, ts, .4, .2); k.fade(sp, ts + .5, .4, 1); k.fade(sp, ts + 1, .4, .2); k.fade(sp, ts + 1.4, .3, 1);
+      list(xs[1], "gl", [["ass", "玻璃"], ["ad", "高兴的"]], C.orange);
+      k.wait(.3);
+      // sl-
+      T("sl-", xs[2], 120, go(.4), .4, { size: 34, color: C.green, weight: 900, font: M, anchor: "middle" });
+      N("", "sl- 可以想成轻轻地滑下去：滑梯、慢慢地、滑进梦里。");
+      P(`M${xs[2] - 80},170 L${xs[2] - 60},170 C${xs[2] - 10},180 ${xs[2] + 20},260 ${xs[2] + 90},262`, go(.8), .8, { color: C.green, w: 4 });
+      P(k.wl(xs[2] - 70, 170, xs[2] - 70, 270, .3), go(.3), .3, { color: C.green, w: 3 });
+      const bl = k.group(); const bd = `M${xs[2] - 74},158 a9,9 0 1,0 18,0 a9,9 0 1,0 -18,0`;
+      P(bd, go(.2), .2, { color: C.red, w: 2 }); F(bd, go(.1, 0), { color: "#fecaca", op: 1 }); k.endGroup();
+      k.arc(bl, go(1.6), 1.6, `M0,0 L14,0 C64,10 94,90 158,92`);
+      list(xs[2], "sl", [["ide", "滑梯"], ["ow", "慢的"], ["eep", "睡觉"]], C.green);
+      k.wait(.5);
+      T("这是帮助记忆的规律倾向，也有例外（比如 floor 地板）。", 40, 432, go(1.2), 1.2, { size: 15, color: C.grey, weight: 700 });
+      N("口诀：", "fl 飞，gl 亮，sl 滑下来。");
+      D.fin("开头的辅音丛常常带着同一种感觉：一个声音串起一串词", "口诀：fl 飞，gl 亮，sl 滑下来。");
+      k.wait(2);
+    },
+    terms: [],
+  },
+);
 
 // ---------- App 接线：王炸实验室白板播放器（所有页签共用） ----------
 // 页签里用 ${wbStageHtml("tab", 当前序号)}：这个页签在 WB_LAB 里登记了案例就出白板，否则出原来的 Canvas。
