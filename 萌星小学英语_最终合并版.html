@@ -18538,63 +18538,142 @@ WB_LAB.aux_transformer = (() => {
         ["原形", "动词最原本的样子，不加 -s、-es、-ed，比如 watch、go、speak。"]
       ]
     },
-    // ───────── ② 情态动词大将军 ─────────
+    // ───────── ② 情态动词大将军（v2 + 讲解员，2026-10-30）─────────
+    // 升级前原样保存在 cases/aux_transformer_classic.js（R1 零丢失）。原一屏 5 行拆成 3 个镜头 + 🔮 预测 + 金句卡；
+    // R4：场景里的 Leo 读到 speak 时挥手开口、头顶冒出说话气泡；读到 read 时讲解员捧书读；预测题读到 jump 时讲解员跳起来。
     {
       build(k) {
-        const { C, N } = k, h = H(k);
+        k.v2();
+        const { N, T, P, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = V(k, D);
+        const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+        const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
         N("", "这一类句子里住着一位「大将军」，变形全靠它一个人。");
-        k.header("第二类：情态动词大将军", "助动词照妖镜", false);
-        h.label("① 肯定句", ROW.aff, C.green);
+        k.act(me, "walk", .3, 1.6, { to: 892 });
+        k.act(me, "wave", 2.0, 1.8);
+        D.scene({ title: "助动词照妖镜", sub: "第二类：情态动词大将军", badges: ["💡", "✂️"], steps: STEPS });
+        k.wait(.4);
+
+        // ───── 镜头 1 · ① 肯定句 + ② 否定句 ─────
+        D.step(0); D.shot();
+        h.label("① 肯定句", R1, C.green);
         N("肯定句：", "Leo can speak English very well. 里奥能把英语说得非常好。");
-        const a = h.line("Leo can speak English very well.", ROW.aff);
-        k.say("Leo can speak English very well.", { zh: "里奥英语说得非常好。" });
-        h.tag("里奥能把英语说得非常好。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        const a = h.line("Leo can speak English very well.", R1);
+        // 场景：Leo 开口说英语（R4 speak）——挥手 + 说话气泡
+        const gL = D.sub();
+        const leo = k.actor("traveler", { x: 470, y: 440, s: .75, f: 1, g: gL });
+        D.back();
+        const gB = D.sub();
+        const bub = "M534,346 Q534,334 546,334 L638,334 Q650,334 650,346 L650,368 Q650,380 638,380 L546,380 Q534,380 534,368 L534,366 L512,360 L534,356 Z";
+        k.hide(gB);
+        P(bub, go(.05, 0), .05, { color: C.ink, w: 2.2 }); F(bub, go(.05, 0), { color: "#ffffff", op: 1 });
+        T("Hello!", 592, 364, go(.05, 0), .05, { size: 18, color: C.blue, weight: 900, anchor: "middle", font: D.MONO });
+        D.back();
+        k.wait(.3);
+        const syA = sayAt("Leo can speak English very well.", { zh: "里奥英语说得非常好。" });
+        k.act(leo, "wave", syA.t, Math.max(1.6, syA.dur), { words: ["speak"] });
+        const syH = sayAt("Hello! I can speak English.", { zh: "你好！我会说英语。", word: "hello" });
+        k.fade(gB, syH.t, .25, 1); k.pop(gB, syH.t, .4, { cx: 592, cy: 357 }); k.fade(gB, syH.t + syH.dur + .6, .3, 0);
+        k.act(leo, "wave", syH.t, Math.max(1.6, syH.dur), { words: ["speak"] });
+        h.tag("里奥能把英语说得非常好。", SX, R1 + 50, C.grey, { size: 15 });
         N("情态动词：", "can 能、will 将要、must 必须、should 应该，表示能力、打算或要求。");
         const g = h.ring(a, "can");
-        h.tag("大将军", g.cx, ROW.aff + 24, C.orange, { anchor: "middle", weight: 900 });
+        k.act(me, "point", S.at - .5, 1.2, { at: [g.cx, R1 - 8] });
+        h.tag("大将军", g.cx, R1 + 24, C.blue, { anchor: "middle", weight: 900 });
         h.icon("star", "can", "情态大将军");
         N("免死金牌：", "不管主语是谁，情态动词后面的动词永远用原形：can speak。");
         h.ring(a, "speak", C.green);
-        h.label("② 否定句", ROW.neg, C.red);
+        k.say("Will, must, should. You should read every day.", { zh: "将会、必须、应该。你应该每天读书。", word: "will must should" });
+        const bk = k.prop("book", 0, 0, { hidden: true });
+        { const sy = S.says[S.says.length - 1]; k.act(me, "read", sy.t + sy.dur * .5, Math.max(1.4, sy.dur * .5), { prop: bk, words: ["read"] }); }
+        D.step(1);
+        h.label("② 否定句", R2, C.red);
         N("否定句：", "大将军 can 后面直接加 not，写成 cannot 或 can't。");
-        const n = h.line("Leo cannot (can't) speak English very well.", ROW.neg);
+        const n = h.line("Leo cannot (can't) speak English very well.", R2);
         k.say("Leo can't speak English very well.", { zh: "里奥英语说得不太好。", word: "can't" });
         h.ring(n, "cannot", C.red);
+        k.act(me, "point", S.at - .3, 1.2, { at: [n.x0("cannot") + 30, R2 - 8] });
         N("", "注意 can + not 要连写成 cannot。后面的 speak 还是原形。");
         h.ring(n, "speak", C.green);
-        h.tag("直接在大将军 can 后加 not（cannot / can't），后面 speak 保持原形", SX, ROW.neg + 22, C.red);
-        h.label("③ 一般疑问", ROW.yn, C.blue);
+        h.tag("直接在大将军 can 后加 not（cannot / can't），后面 speak 保持原形", SX, R2 + 22, C.red);
+        k.say("Cannot. He cannot swim. Not now.", { zh: "不能。他不会游泳。现在不行。", word: "cannot not" });
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 镜头 2 · ③ 一般疑问 + ④ 特殊疑问 ─────
+        D.step(2); D.shot();
+        h.label("③ 一般疑问", RQ, C.blue);
         N("一般疑问句：", "把大将军 Can 直接提到主语 Leo 前面，句末换成问号。");
-        const q = h.line("Can Leo speak English very well?", ROW.yn, C.blue);
+        const q = h.line("Can Leo speak English very well?", RQ, C.blue);
         k.say("Can Leo speak English very well?", { zh: "里奥英语说得很好吗？" });
         h.jump(q, q.x1("Leo") + 4, q.x0("Can") + q.cw * 1.5);
-        h.tag("大将军 Can 提到主语 Leo 前面", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
+        k.act(me, "point", S.at - .7, 1.2, { at: [q.x0("Can") + 18, RQ - 30] });
+        h.tag("大将军 Can 提到主语 Leo 前面", SX, RQ + 24, C.blue, { size: 15 });
         N("", "回答也用 can：Yes, he can. / No, he can't.");
-        k.mono("— Yes, he can. / No, he can't.", SX, ROW.ans, 15, C.grey, 700);
-        h.label("④ 特殊疑问", ROW.wh, C.purple);
-        N("特殊疑问句：", "问「说什么」用 What；问「说得多好」用 How well。");
-        const w = h.line("What can Leo speak very well? / How well can Leo speak English?", ROW.wh, C.purple);
-        k.say("How well can Leo speak English?", { zh: "里奥英语说得怎么样？" });
-        h.ring(w, "What", C.purple); h.ring(w, "How well", C.purple);
-        N("", "三步：换疑问词 → 提大将军 can → 后面跟主语 + 动词原形。");
-        h.tag("① 换疑问词 What ➔ ② 提大将军 can ➔ ③ 后面主语 + 动词原形", SX, ROW.wh + 22, C.purple);
-        h.label("⑤ 感叹句", ROW.ex, C.orange);
-        N("副词：", "说明动作「怎么样」的词，比如 well（好）。感叹副词要用 How。");
-        const e = h.line("How well Leo can speak English!", ROW.ex, C.brown);
-        k.say("How well Leo can speak English!", { zh: "里奥英语说得多好啊！" });
-        k.underline(e, "How well");
-        N("感叹句：", "How well + 主语 Leo + 谓语 can speak，主语在前，不用倒过来！");
-        h.tag("How well + 主语 Leo + 谓语 can speak！", SX, ROW.ex + 27, C.orange);
-        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句
+        k.mono("— Yes, he can. / No, he can't.", SX, RQ + 54, 15, C.grey, 700);
         k.say("Yes, he can. No, he can't.", { zh: "是的，他会。不，他不会。", word: "Yes he No" });
+        D.step(3);
+        h.label("④ 特殊疑问", RW, C.ink);
+        N("特殊疑问句：", "问「说什么」用 What；问「说得多好」用 How well。");
+        const w = h.line("What can Leo speak very well? / How well can Leo speak English?", RW, C.ink);
+        k.say("How well can Leo speak English?", { zh: "里奥英语说得怎么样？" });
+        h.ring(w, "What", C.blue); h.ring(w, "How well", C.blue);
         k.say("What can Leo speak very well?", { zh: "里奥什么说得很好？", word: "What" });
+        N("", "三步：换疑问词 → 提大将军 can → 后面跟主语 + 动词原形。");
+        h.tag("① 换疑问词 What ➔ ② 提大将军 can ➔ ③ 后面主语 + 动词原形", SX, RW + 22, C.blue);
+        k.act(me, "nod", S.at - .6, .8);
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 镜头 3 · ⑤ 感叹句 + 口诀 ─────
+        D.step(4); D.shot();
+        h.label("⑤ 感叹句", RE, C.ink);
+        N("副词：", "说明动作「怎么样」的词，比如 well（好）。感叹副词要用 How。");
+        const e = h.line("How well Leo can speak English!", RE, C.ink);
+        k.say("How well Leo can speak English!", { zh: "里奥英语说得多好啊！" });
+        k.underline(e, "How well", 0, C.green);
+        k.act(me, "cheer", S.at - 1.4, 1.2);
+        N("感叹句：", "How well + 主语 Leo + 谓语 can speak，主语在前，不用倒过来！");
+        h.tag("How well + 主语 Leo + 谓语 can speak！", SX, RE + 27, C.green);
+        h.recap(["Leo can speak English very well.", "Leo cannot (can't) speak English very well.", "Can Leo speak English very well?", "What can Leo speak very well? / How well can Leo speak English?"]);
         k.say("Leo can speak English very well.", { zh: "里奥英语说得非常好。", word: "Leo can speak English very well How" });
-        k.say("Cannot. He cannot swim. Not now.", { zh: "不能。他不会游泳。现在不行。", word: "cannot not" });
-        k.say("Will, must, should. You should read every day.", { zh: "将会、必须、应该。你应该每天读书。", word: "will must should" });
+        k.act(me, "point", S.at - 1.2, 1.2, { at: [300, 300] });
+        // 口诀横跨全宽：讲解员先退到右边
+        k.act(me, "walk", S.at, 1, { to: 1010 });
+        k.wait(1);
         h.final("情态大将军：not 贴身后，提问跳句首，后面动词永远原形！");
         N("口诀：", "大将军自己会变形：加 not、跳句首，后面动词永远原形。");
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 🔮 预测 ─────
+        D.step(5); D.shot();
+        k.act(me, "walk", S.at, 1.2, { to: 892 });
+        N("预测：", "「她能跳得很高」变成一般疑问句：大将军 can 该站到哪里？jump 要不要变？先想 3 秒！");
+        h.quiz("🔮 她能跳得很高。She can jump high.", "→  ___ she jump high?");
+        sayAt("She can jump high.", { zh: "她能跳得很高。", word: "she jump high" });
+        k.act(me, "think", S.at, 3.1);
+        D.hold(3);
+        N("揭晓：", "大将军 Can 跳到句首，jump 还是原形：Can she jump high?");
+        const tRev = go(.3);
+        h.reveal("Can she jump high?");
+        k.sfx("ding", tRev + .9);
+        const syP = sayAt("Can she jump high?", { zh: "她能跳得很高吗？", word: "can she jump high" });
+        k.act(me, "jump", syP.t, Math.max(1.2, syP.dur), { words: ["jump"] });
+        k.act(me, "cheer", syP.t + Math.max(1.2, syP.dur) + .1, 1.2);
+        D.hold(1.5);
+
+        k.quoteCard({ insight: "情态动词是大将军：自己会变形，\n后面的动词永远用原形", rhyme: "口诀：情态大将军：not 贴身后，\n提问跳句首，后面动词永远原形！", hlLines: 2, foot: "🪞 助动词照妖镜 · 第二类 情态动词大将军" });
+        k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+        D.hold(2.5);
+        D.finish(.45);
       },
+      actionWords: [
+        { word: "speak", act: "场景里的 Leo 在读到「Leo can speak English very well」「Hello! I can speak English」时挥手开口（wave），第二句头顶冒出说话气泡" },
+        { word: "read", act: "读到「You should read every day」时讲解员捧书读（read）" },
+        { word: "jump", act: "预测题揭晓读到「Can she jump high?」时讲解员跳起来（jump）" },
+      ],
       terms: [
+        ["可信度徽章", "💡 护卫、大将军、照妖镜、勋章都是帮助记忆的比喻；✂️ 简化说法：「只有护卫能背 not、能跳到主语前面提问」说的是小学阶段常见的句子。"],
         ["情态动词", "can（能）、will（将要）、must（必须）、should（应该）、may（可以）这类词，表示能力、打算或要求。它们也是护卫。"],
         ["大将军", "比喻情态动词：本领大，变否定、变疑问都不用请 do / does / did 帮忙。"],
         ["免死金牌", "比喻：情态动词后面的动词，不管主语是谁，永远用原形，比如 Leo can speak，不说 can speaks。"],
