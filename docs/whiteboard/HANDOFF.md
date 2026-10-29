@@ -57,6 +57,7 @@
 - 05:19｜bamboo_tree 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`7c87cfb`｜—｜旧幕渲染不变（只加依赖）；实验室 INVENTORY 放 docs/whiteboard/lab/（该目录原有实验室合并清单，无 INVENTORY_* 先例）
 - 05:22｜bamboo_tree ① 多动词连动病升 v2（竹节句 + 病句 / 树干句两镜头 + 🔮 to go … to play + 金句卡；R4 go / read / play）｜`7dfce92`｜`work/shots/bamboo_tree_1_对比总图.png`｜INVENTORY 放 docs/whiteboard/lab/（实验室清单目录）；「汉语：竹节句」原 k.leftHead 棕色改 V3 墨黑（自画标题，同理「英语：树干句」放 x=40）；预测题 football 的黄底是引擎生词高亮，未关
 - 05:23｜bamboo_tree ② 双王相撞病升 v2（竹节句 + 病句 / 两棵树两镜头 + 🔮 She is very tall + 金句卡）｜`dd839ce`｜`work/shots/bamboo_tree_2_对比总图.png`｜例句只有 like / be（心理、状态动词），按 R4 无需人演，actionWords 留空注明；讲解员在「开心」「and」处 point、「They are happy」处 cheer 只作表演
+- 05:25｜bamboo_tree ③ 长定语压塌车头病升 v2（竹节句 + 病句 / 树干句两镜头 + 🔮 The boy with glasses + 金句卡；R4 reading）｜`2e64fb1`｜`work/shots/bamboo_tree_3_对比总图.png`｜r2check 提示「Chinglish puts the long part first」的 puts 是抽象说法（不是人搬东西），不列 actionWords；挂件小字压在树干上与升级前相同，未改
 
 ## 1. 现在做到哪
 
