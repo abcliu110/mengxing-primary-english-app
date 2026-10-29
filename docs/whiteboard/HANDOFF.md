@@ -69,6 +69,7 @@
 - 05:59｜five_patterns ① SV 自给自足型升 v2（骨架 + 挂件 / 金句 / 挂钩 + 铁律 + 公式三镜头 + 🔮 Look at the sky + 金句卡；R4 rises 太阳升起、fly 鸟飞过、run 讲解员跑、look 指黑板、play 跳）｜`b944d70`｜`work/shots/five_patterns_1_对比总图.png`（Hark 项目工作区）｜方块下移到 y140 让出进度条；公式绿框只有约 500–620 宽，收窄到 x≤800 后讲解员不必退场（R1 不受影响，比照 aux 只在全宽内容前退场）；✂️ 徽章出处 en.wikipedia.org/wiki/English_clause_element（Quirk 等 1985 分 7 种）；新版面工具 vtools() 与旧 tools() 并存，全部案例升完再删旧工具；时长 92→108 秒
 - 06:04｜five_patterns ② SVP 状态天平型升 v2（骨架 + 天平 + 系动词两类 / 金句 + -ly 避坑 + 铁律 / 秋天金句 + 公式三镜头 + 🔮 The flower smells sweet + 金句卡；R4 smells 冒热气、turn 叶子变黄、gets 凉风）｜`be84ae7`｜`work/shots/five_patterns_2_对比总图.png`（Hark 项目工作区）｜系动词是状态不是肢体动作，按 bamboo_tree ② 先例不让人演，只做与朗读同步的场景变化并列入 actionWords；「Get, turn, become」词表里的 get 只作提示；鸡汤 / 黄叶用荧光黄作填充底色（V3 允许）；时长 97→109 秒
 - 06:07｜five_patterns ③ SVO 一箭穿心型升 v2（骨架 + 一箭穿心 / 植树金句 + 画蛇添足 / 宾语穿制服 + 公式三镜头 + 🔮 I want to read this story + 金句卡；R4 reading 捧书、planted 小旅客种树苗、go 讲解员走、read 捧书）｜`796b68c`｜`work/shots/five_patterns_3_对比总图.png`（Hark 项目工作区）｜小树苗用道具库的 flower（动作库没有「种」，用 carry + put 搬到土坑边放下表现）；✂️ 徽章只写「大致规律、要逐个记」，不加新的事实性说法；enter the room 的 enter 不在 r2check 动作表、只是例词串，不演；时长 109→119 秒
+- 06:12｜five_patterns ④ SVOO 双手递礼型升 v2（骨架 + 两种语序 / to 指向 / for 心意 + 公式三镜头 + 🔮 Please pass the book to me + 金句卡；R4 gave 妈妈递礼物盒、give / show 讲解员举词卡、pass 举书递出）｜`ec58b68`｜`work/shots/five_patterns_4_对比总图.png`（Hark 项目工作区）｜「给」动作库没有，按 fp_one_king ④ 先例用 carry + put（场景）和 holdCard（讲解员）代替；bought / made / cook 动作库没有买、做饭，不演（不在 r2check 动作表）；✂️ 徽章去掉「个别动词两种都能用」这类未核实说法，只写「以词典为准」；时长 105→116 秒
 
 ## 1. 现在做到哪
 
