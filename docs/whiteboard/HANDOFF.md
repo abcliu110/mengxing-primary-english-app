@@ -16,7 +16,7 @@
 
 **下一个接手点**
 1. ~~第 2 幕未提交改动~~ ✅ 已核实：第 2 幕在 `27d5f28` 已提交，无遗留改动（2026-10-30 02:10 接手核对）。
-2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → ~~fp_iconicity~~ ✅ → fp_one_king → fp_zoom_focus → bamboo_tree → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
+2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → ~~fp_iconicity~~ ✅ → ~~fp_one_king~~ ✅ → fp_zoom_focus → bamboo_tree → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
 3. 每幕流程：备份 classic → 改 v2 → `jscheck.py`、`r2check.py <模块> --strict`、`reg_render.py`、`app*.py` → 对比图 → 提交推送 → 本文件「夜间进度」加一行。
 4. 已知遗留：动作库无 swim / eat / 穿脱衣（r2check 只提示，扩 `wb_actor.js` 时补）；`stress_rhythm` 原 3 幕 r2check 失败是旧问题，升级时一并修。
 
@@ -47,6 +47,7 @@
 - 03:18｜fp_one_king 升级准备：classic 快照 + FP_DEPS｜`042b5f0`｜—｜第 1 幕是「已搬到 ze_be」占位幕（ze_be 已是 v2），不升级
 - 03:28｜fp_one_king 第 2 幕升 v2（王座 + to 马甲 / doing 马甲两镜头 + 🔮 hope to see + 金句卡；R4 go / reading）｜`bba72c1`｜`work/shots/fp_one_king_2_对比总图.png`｜王座 / 王冠 / 令牌是道具金色，保留；swimming、drawing 动作库无，只作提示
 - 03:38｜fp_one_king 第 3 幕升 v2（令牌飞走 / 侍卫接管两镜头 + 🔮 Does Tom play + 金句卡；R4 went / go / plays）｜`11f5236`｜`work/shots/fp_one_king_3_对比总图.png`｜坑：FP_PROPS 的 token / king 自己开组并 endGroup，之后要 `D.adopt(g); D.back()` 回到镜头组，否则后面的字不随板擦擦掉
+- 03:48｜fp_one_king 第 4 幕升 v2，fp_one_king 全部完成（五行骨骼 + 🔮 She gives me an apple + 金句卡；R4 fly / pass / reading / gives）｜`210a197`｜`work/shots/fp_one_king_4_对比总图.png`｜进度条步骤名不用「S V P」（r2check 会当成英文句子），改中文「主系表」等
 
 ## 1. 现在做到哪
 
