@@ -10,14 +10,14 @@
 | 0 | SOP / 分镜 / 交接文档 | ✅ 2026-10-29 |
 | 1 | 引擎 v2 动效：`group / move / arc / buzz / fade / rot / camera`（SOP §4），回归旧 34 案例 | ✅ 2026-10-29（旧案例截图逐像素一致；`camera` 用法：`k.camera(0,0,x,y,z)` 开场特写，再 `k.camera(go(2),2,480,272,1)` 拉远；`hide(g)` 让组开始时隐藏） |
 | 2 | App 接线：`wbStageHtml` 第 4 参数 svg id、`startFirstPrinciplesCanvasLoop` 走白板、`fpAnimId`、`appfp.py`（SOP §5） | ✅ 2026-10-29（`insert_wb.py` 里 `FP_READY` 列表登记做完的原理；没登记的原理保持旧 Canvas） |
-| 3 | `fp_props.js` 道具（SOP §3） | ⬜ 按原理边做边加 |
-| 4 | 样板：先做 ① `fp_economy` 1-1（声带道具最能检验方案），给用户看后再批量 | ⬜ |
+| 3 | `fp_props.js` 道具（SOP §3） | 🔶 已有：`mouth`（口腔侧面 + 声带组 + 波纹 + 发音位置亮点）、`tag`、`fin` |
+| 4 | 样板：① `fp_economy` 1-1（声带道具 + buzz 动效） | ✅ 2026-10-29（50 秒）；用户要求做一个提交一个，不停下来等 |
 | 5 | 6 条原理 × 4 幕 | 见下表 |
 | 6 | 朗读开关（可选，SOP §6） | ⬜ 等用户看完画面再定 |
 
 | # | 原理 id | 中文 | 幕数 | 主要道具 | 状态 |
 |---|---|---|---|---|---|
-| ① | `fp_economy` | 口腔省力同化律 | 4 | mouth、gate | ⬜ |
+| ① | `fp_economy` | 口腔省力同化律 | 4 | mouth、gate | 🔶 1/4（1-1 ✅ 50 秒） |
 | ② | `fp_iconicity` | 字母象形与音义同源簇 | 4 | letterMorph | ⬜ |
 | ③ | `fp_boundedness` | 物理边界感统摄律 | 4 | knife、ring/target、building | ⬜ |
 | ④ | `fp_one_king` | 一山不容二虎单核谓语律 | 4 | throne、token | ⬜ |
@@ -38,6 +38,8 @@
 | `let fpState` / `var fpAnimId` | 当前原理、当前幕；动画帧 id |
 | `switchFirstPrincipleLaw` / `switchFirstPrincipleAct` | 切原理 / 切幕（会重新 render 页面） |
 | `navigateTo('first_principles_hub', { lawIdx, actIdx })` | 入口：首页横幅、导航按钮、实验室里 3 处跳转（lawIdx 0/1/3） |
+
+**一幕一幕地做**：`wbStageHtml(..., "fpWbStage")` 在这一幕没有白板案例时输出旧 Canvas，所以原理可以先登记进 `FP_READY`，再逐幕补案例。`preview.html?tab=fp_xxx` 会自动先加载 `fp_props.js`。
 
 **源文件**：沿用 `docs/whiteboard/src/`；新增 `cases/fp_props.js`、`cases/fp_<原理>.js` ×6、`appfp.py`。
 
