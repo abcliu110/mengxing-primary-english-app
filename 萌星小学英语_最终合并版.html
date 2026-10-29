@@ -18236,73 +18236,9 @@ WB_LAB.tense_matrix = [
 </script>
 <script type="text/plain" id="wbmod-aux_transformer" data-deps="wo_props">
 // ==================== 白板脚本：⑩ 助动词「照妖镜」与五大句型变形机（4 类护卫）====================
-// v2 升级（2026-10-30 起，决策 24）：逐案例升引擎 v2 + 讲解员（每案例：① 肯定 + ② 否定 / ③ 一般疑问 + ④ 特殊疑问 / ⑤ 感叹 + 口诀 三个镜头 → 🔮 预测 → 金句卡）；升级前整份文件原样保存在 cases/aux_transformer_classic.js。依赖 wo_props。
-// 旧版面（未升级的案例仍用 H）：左列 5 个句型标签，右边一行一种句子：① 肯定 ② 否定 ③ 一般疑问 ④ 特殊疑问 ⑤ 感叹；右上角画护卫图标；底部绿框给口诀。
+// v2 升级（2026-10-30，决策 24）：4 个案例已全部升引擎 v2 + 讲解员（每案例：① 肯定 + ② 否定 / ③ 一般疑问 + ④ 特殊疑问 / ⑤ 感叹 + 口诀 三个镜头 → 🔮 预测 → 金句卡）；升级前整份文件原样保存在 cases/aux_transformer_classic.js。依赖 wo_props。
 WB_LAB.aux_transformer = (() => {
   const SX = 150;                                        // 句子起点 x
-  const ROW = { aff: 112, neg: 182, yn: 252, ans: 274, wh: 330, ex: 400 };
-  // 本页签专用小工具（只在本文件里用）
-  const H = k => {
-    const { C, P, T, F, go, wl, ellipse, roughRect, rectD, estW } = k;
-    const MONO = '"Courier New",Courier,monospace';
-    const h = {
-      label(text, y, color) { T(text, 22, y, go(.6), .6, { size: 17, color, weight: 900 }); },
-      // 等宽句子：太长时自动缩小字号，保证不出右边界
-      line(text, y, color = C.ink, size = 20) {
-        size = Math.min(size, 760 / (text.length * .6));
-        return k.mono(text, SX, y, +size.toFixed(1), color, 700);
-      },
-      // 圈出句子里第 i0 个字符起、长 len 的一段
-      ringAt(m, i0, len, color = C.orange) {
-        const x0 = m.x + i0 * m.cw, x1 = x0 + len * m.cw;
-        P(ellipse((x0 + x1) / 2, m.y - m.size * .34, (x1 - x0) / 2 + 3, m.size * .7), go(.45), .45, { color, w: 2.5 });
-        return { x0, x1, cx: (x0 + x1) / 2 };
-      },
-      ring(m, sub, color = C.orange, nth = 0) { return h.ringAt(m, m.at(sub, nth), sub.length, color); },
-      tag(text, x, y, color = C.grey, o = {}) {
-        const dur = Math.max(.6, text.length * .05);
-        T(text, x, y, go(dur), dur, { size: 14, color, weight: 700, ...o });
-      },
-      // 弧形跳跃箭头：从 x1 跳到 x2（句子上方）
-      jump(m, x1, x2, color = C.blue) {
-        const yb = m.y - m.size * .85, cy = yb - 30, mx = (x1 + x2) / 2;
-        const a = Math.atan2(yb - (cy + yb) / 2, x2 - (mx + x2) / 2), hl = 10;
-        P(`M${x1},${yb} Q${mx},${cy} ${x2},${yb}` + ` M${x2 - hl * Math.cos(a - .5)},${yb - hl * Math.sin(a - .5)} L${x2},${yb} L${x2 - hl * Math.cos(a + .5)},${yb - hl * Math.sin(a + .5)}`,
-          go(.7), .7, { color, w: 2.5 });
-      },
-      // 被提问的部分：灰字写出来再被红线划掉
-      erase(text, x, y, note) {
-        const fs = 17, w = text.length * fs * .6;
-        T(note, x + w / 2, y - 22, go(.6), .6, { size: 13, color: C.purple, weight: 900, anchor: "middle" });
-        T(text, x, y, go(.6), .6, { size: fs, color: C.grey, weight: 700, font: MONO });
-        P(wl(x - 3, y - fs * .32, x + w + 3, y - fs * .32, .5), go(.4), .4, { color: C.red, w: 3 });
-      },
-      // 右上角的护卫图标
-      icon(kind, word, label) {
-        const cx = 900, cy = 86;
-        let d;
-        if (kind === "shield") d = `M${cx},${cy - 30} L${cx + 26},${cy - 20} Q${cx + 26},${cy + 14} ${cx},${cy + 30} Q${cx - 26},${cy + 14} ${cx - 26},${cy - 20} Z`;
-        else if (kind === "star") {
-          d = ""; for (let i = 0; i < 10; i++) { const r = i % 2 ? 13 : 30, a = -Math.PI / 2 + i * Math.PI / 5; d += (i ? " L" : "M") + (cx + Math.cos(a) * r).toFixed(1) + "," + (cy + 2 + Math.sin(a) * r).toFixed(1); } d += " Z";
-        } else d = ellipse(cx, cy - 4, 24, 27);
-        const fill = kind === "shield" ? "#fed7aa" : kind === "star" ? "#fde047" : "#dbeafe", col = kind === "mirror" ? C.blue : C.orange;
-        if (kind === "mirror") P(wl(cx, cy + 23, cx, cy + 40, .4), go(.3), .3, { color: C.brown, w: 6 });
-        P(d, go(.7), .7, { color: col, w: 2.5 });
-        F(d, go(.3, 0), { color: fill, op: .95 });
-        T(word, cx, cy + 8, go(.4), .4, { size: kind === "star" ? 12 : 15, color: C.ink, weight: 900, anchor: "middle", font: MONO });
-        T(label, cx, cy + 58, go(.6), .6, { size: 14, color: col, weight: 900, anchor: "middle" });
-      },
-      // 底部绿框：口诀
-      final(text) {
-        P(roughRect(16, 446, 928, 50), go(1.0), 1.0, { color: C.green, w: 2.5 });
-        F(rectD(16, 446, 928, 50), go(.2, 0), { color: "#d1fae5", op: .55 });
-        const size = Math.min(21, 880 / (estW(text, 1)));
-        T(text, 480, 478, go(1.8), 1.8, { size, color: C.green, weight: 900, anchor: "middle" });
-      }
-    };
-    return h;
-  };
-
   // ───────── v2 版面（2026-10-30，决策 24）─────────
   // 讲解员站在右侧 x≈892，内容收在 x≤800：原来一屏 5 行拆成 3 个镜头（① 肯定 + ② 否定 / ③ 一般疑问 + ④ 特殊疑问 / ⑤ 感叹 + 口诀），
   // 原来写在句子右边的中文 / 说明改到句子下方；护卫图标从右上角 (900,86) 挪到 (730,150)；配色只用 V3 k.PAL（橙→蓝、紫→蓝 / 墨黑、褐→墨黑）。
@@ -18831,63 +18767,147 @@ WB_LAB.aux_transformer = (() => {
         ["可数单数名词", "能一个一个数、而且只有一个的东西，比如 an evening、a trip。前面要有 a / an。"]
       ]
     },
-    // ───────── ④ 过去式照妖镜 did ─────────
+    // ───────── ④ 过去式照妖镜 did（v2 + 讲解员，2026-10-30）─────────
+    // 升级前原样保存在 cases/aux_transformer_classic.js（R1 零丢失）。原一屏 5 行拆成 3 个镜头 + 🔮 预测 + 金句卡；
+    // R4：两位旅客读到 went 时走向飞机、登机，飞机起飞；读到 How fast the plane flew 时飞机飞快掠过；预测题读到 go 时讲解员走一段。
     {
       build(k) {
-        const { C, N } = k, h = H(k);
+        k.v2();
+        const { N, T, P, F, go } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, h = V(k, D);
+        const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+        const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
         N("", "这一句也没有护卫，动词还是过去式，要请过去式照妖镜 did。");
-        k.header("第四类：过去式照妖镜 did", "助动词照妖镜", false);
-        h.label("① 肯定句", ROW.aff, C.green);
+        k.act(me, "walk", .3, 1.6, { to: 892 });
+        k.act(me, "wave", 2.0, 1.8);
+        D.scene({ title: "助动词照妖镜", sub: "第四类：过去式照妖镜 did", badges: ["💡", "✂️"], steps: STEPS });
+        k.wait(.4);
+
+        // ───── 镜头 1 · ① 肯定句 + ② 否定句 ─────
+        D.step(0); D.shot();
+        h.label("① 肯定句", R1, C.green);
         N("肯定句：", "They went to Sanya by plane last winter. 他们去年冬天坐飞机去了三亚。");
-        const a = h.line("They went to Sanya by plane last winter.", ROW.aff);
-        k.say("They went to Sanya by plane last winter.", { zh: "他们去年冬天坐飞机去了三亚。", word: "went" });
-        h.tag("他们去年冬天坐飞机去了三亚。", a.x + a.text.length * a.cw + 18, ROW.aff, C.grey, { size: 15 });
+        const a = h.line("They went to Sanya by plane last winter.", R1);
+        // 场景：跑道 + 飞机 + 两位旅客（R4 went：走过去登机，飞机起飞）
+        P(k.wl(260, 440, 780, 440, .6), go(.4), .4, { color: C.ink, w: 2.2 });
+        const gP = D.plane(660, 410, .8);
+        const gT = D.sub();
+        const t1 = k.actor("traveler", { x: 300, y: 440, s: .6, f: 1, g: gT }), t2 = k.actor("traveler", { x: 350, y: 440, s: .6, f: 1, g: gT });
+        D.back();
+        k.wait(.3);
+        const syA = sayAt("They went to Sanya by plane last winter.", { zh: "他们去年冬天坐飞机去了三亚。", word: "went" });
+        const half = Math.max(1.4, syA.dur * .5);
+        k.act(t1, "walk", syA.t, half, { to: 560, words: ["went"] }); k.act(t2, "walk", syA.t, half, { to: 600, words: ["went"] });
+        k.fade(gT, syA.t + half, .4, 0);
+        k.move(gP, syA.t + half + .2, 1.8, 120, -70, { ease: "in" });
+        k.actFx(["went"], syA.t + half + .2, 1.8, "旅客登机后，飞机起飞飞走");
+        k.fade(gP, syA.t + half + 1.6, .5, 0);
+        h.tag("他们去年冬天坐飞机去了三亚。", SX, R1 + 50, C.grey, { size: 15 });
         N("过去式：", "表示已经发生的事，动词要变样。went 是 go 的过去式。");
         const g = h.ring(a, "went", C.red);
+        k.act(me, "point", S.at - .5, 1.2, { at: [g.cx, R1 - 8] });
         N("不规则过去式：", "不是加 -ed，而是整个词变了样，比如 go → went、buy → bought。");
-        h.tag("过去式（原形 go）", g.cx, ROW.aff + 24, C.red, { anchor: "middle", weight: 900 });
+        h.tag("过去式（原形 go）", g.cx, R1 + 24, C.red, { anchor: "middle", weight: 900 });
+        k.say("Played, ed. Buy, bought. I bought a book.", { zh: "玩了（加 -ed）。买，买了。我买了一本书。", word: "ed buy bought", blocks: ["ed"] });
         N("照妖镜 did：", "did 自己带着「过去」的标记，照到 went，它就打回原形 go。");
         h.icon("mirror", "did", "照妖镜 did");
-        h.label("② 否定句", ROW.neg, C.red);
+        D.step(1);
+        h.label("② 否定句", R2, C.red);
         N("否定句：", "照妖镜 didn't 出场，吸走过去时：went 瞬间变回 go。");
-        const n = h.line("They did not (didn't) go to Sanya by plane last winter.", ROW.neg);
+        const n = h.line("They did not (didn't) go to Sanya by plane last winter.", R2);
         k.say("They didn't go to Sanya by plane last winter.", { zh: "他们去年冬天没有坐飞机去三亚。", word: "go" });
         h.ring(n, "did not", C.red);
         h.ring(n, "go", C.green);
-        h.tag("照妖镜 didn't 吸走过去时，went 打回原形 go", SX, ROW.neg + 22, C.red);
-        h.label("③ 一般疑问", ROW.yn, C.blue);
+        k.act(me, "point", S.at - .3, 1.2, { at: [n.x0("go") + 10, R2 - 8] });
+        h.tag("照妖镜 didn't 吸走过去时，went 打回原形 go", SX, R2 + 22, C.red);
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 镜头 2 · ③ 一般疑问 + ④ 特殊疑问 ─────
+        D.step(2); D.shot();
+        h.label("③ 一般疑问", RQ, C.blue);
         N("一般疑问句：", "照妖镜 Did 站到句首，后面的 went 必须还原成 go。");
-        const q = h.line("Did they go to Sanya by plane last winter?", ROW.yn, C.blue);
+        const q = h.line("Did they go to Sanya by plane last winter?", RQ, C.blue);
         k.say("Did they go to Sanya by plane last winter?", { zh: "他们去年冬天坐飞机去三亚了吗？" });
         h.jump(q, q.x1("go") + 2, q.x0("Did") + q.cw * 1.5);
-        h.tag("Did 站句首，went → go", q.x + q.text.length * q.cw + 16, ROW.yn, C.blue, { size: 15 });
+        k.act(me, "point", S.at - .7, 1.2, { at: [q.x0("Did") + 18, RQ - 30] });
+        h.tag("Did 站句首，went → go", SX, RQ + 24, C.blue, { size: 15 });
         N("", "回答也用 did：Yes, they did. / No, they didn't.");
-        k.mono("— Yes, they did. / No, they didn't.", SX, ROW.ans, 15, C.grey, 700);
-        h.label("④ 特殊疑问", ROW.wh, C.purple);
-        N("交通方式：", "坐什么去，比如 by plane（坐飞机）。问交通方式用 How（怎样）。");
-        const w = h.line("How did they go to Sanya last winter?", ROW.wh, C.purple);
-        k.say("How did they go to Sanya last winter?", { zh: "他们去年冬天怎么去的三亚？" });
-        h.ring(w, "How", C.purple);
-        h.erase("by plane", w.x + w.text.length * w.cw + 40, ROW.wh, "对交通方式提问");
-        N("黄金三步：", "换 How → 提过去助动词 did → 主语后 went 还原为 go。");
-        h.tag("① 交通方式用 How ➔ ② 提过去助动词 did ➔ ③ 主语后 went 还原为 go", SX, ROW.wh + 22, C.purple);
-        h.label("⑤ 感叹句", ROW.ex, C.orange);
-        N("感叹句：", "名词 trip 用 What a wonderful trip；副词 fast 用 How fast。");
-        const e = h.line("What a wonderful trip they had last winter! / How fast the plane flew!", ROW.ex, C.brown);
-        k.say("What a wonderful trip they had last winter!", { zh: "他们去年冬天的旅行多棒啊！" });
-        k.underline(e, "What a wonderful trip"); k.underline(e, "How fast");
-        N("", "感叹句里本来就是过去的事，所以 had、flew 保持过去式，不用 did。");
-        h.tag("名词 trip 用 What a wonderful trip；副词 fast 用 How fast！", SX, ROW.ex + 27, C.orange);
-        // R2 补朗读（2026-10-29，旧幕推广 P3）：画面上的英文词单读 + 例句
-        k.say("How fast the plane flew!", { zh: "飞机飞得多快啊！", word: "How fast the flew" });
+        k.mono("— Yes, they did. / No, they didn't.", SX, RQ + 54, 15, C.grey, 700);
         k.say("They did not go. Did they? Yes, they did. No, they didn't.", { zh: "他们没去。他们去了吗？是的，去了。不，没去。", word: "They did not didn't Yes No" });
+        D.step(3);
+        h.label("④ 特殊疑问", RW, C.ink);
+        N("交通方式：", "坐什么去，比如 by plane（坐飞机）。问交通方式用 How（怎样）。");
+        const w = h.line("How did they go to Sanya last winter?", RW, C.ink);
+        k.say("How did they go to Sanya last winter?", { zh: "他们去年冬天怎么去的三亚？" });
+        h.ring(w, "How", C.blue);
+        h.erase("by plane", w.x + w.text.length * w.cw + 40, RW, "对交通方式提问");
+        k.act(me, "surprised", S.at - .4, 1);
+        N("黄金三步：", "换 How → 提过去助动词 did → 主语后 went 还原为 go。");
+        h.tag("① 交通方式用 How ➔ ② 提过去助动词 did ➔ ③ 主语后 went 还原为 go", SX, RW + 22, C.blue);
         k.say("To Sanya, by plane, last winter.", { zh: "去三亚，坐飞机，去年冬天。", word: "to Sanya by plane last winter" });
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 镜头 3 · ⑤ 感叹句 + 口诀 ─────
+        D.step(4); D.shot();
+        h.label("⑤ 感叹句", RE, C.ink);
+        N("感叹句：", "名词 trip 用 What a wonderful trip；副词 fast 用 How fast。");
+        const e = h.line("What a wonderful trip they had last winter! / How fast the plane flew!", RE, C.ink);
+        k.say("What a wonderful trip they had last winter!", { zh: "他们去年冬天的旅行多棒啊！" });
+        k.underline(e, "What a wonderful trip", 0, C.green); k.underline(e, "How fast", 0, C.green);
+        // 飞机飞快掠过（R4 flew）
+        const gF = D.plane(90, 410, .7);
+        const syF = sayAt("How fast the plane flew!", { zh: "飞机飞得多快啊！", word: "How fast the flew" });
+        k.move(gF, syF.t + .3, 1.3, 640, -10, { ease: "move" });
+        k.actFx(["flew"], syF.t + .3, 1.3, "飞机从左往右飞快掠过");
+        k.fade(gF, syF.t + 1.4, .4, 0);
+        k.act(me, "surprised", syF.t + .6, 1);
+        N("", "感叹句里本来就是过去的事，所以 had、flew 保持过去式，不用 did。");
+        h.tag("名词 trip 用 What a wonderful trip；副词 fast 用 How fast！", SX, RE + 27, C.green);
         k.say("What a wonderful trip they had!", { zh: "他们的旅行多棒啊！", word: "What a wonderful trip had" });
-        k.say("Played, ed. Buy, bought. I bought a book.", { zh: "玩了（加 -ed）。买，买了。我买了一本书。", word: "ed buy bought", blocks: ["ed"] });
+        h.recap(["They went to Sanya by plane last winter.", "They did not (didn't) go to Sanya by plane last winter.", "Did they go to Sanya by plane last winter?", "How did they go to Sanya last winter?"]);
+        k.act(me, "point", S.at - .8, 1.2, { at: [300, 300] });
+        k.wait(.6);
+        // 口诀横跨全宽：讲解员先退到右边
+        k.act(me, "walk", S.at, 1, { to: 1010 });
+        k.wait(1);
         h.final("过去请 did：过去时被照妖镜吸走，went 打回原形 go！");
         N("口诀：", "看到 did / didn't，后面动词一律打回原形！");
+        k.wait(.6);
+        D.wipe();
+
+        // ───── 🔮 预测 ─────
+        D.step(5); D.shot();
+        k.act(me, "walk", S.at, 1.2, { to: 892 });
+        N("预测：", "「她坐公交车去上学了」变成一般疑问句：句首请谁来？went 要变成什么？先想 3 秒！");
+        h.quiz("🔮 她坐公交车去上学了。She went to school by bus.", "→  ___ she ___ to school by bus?  ( go )");
+        sayAt("She went to school by bus.", { zh: "她坐公交车去上学了。", word: "she went school bus" });
+        k.act(me, "think", S.at, 3.1);
+        D.hold(3);
+        N("揭晓：", "照妖镜 Did 站句首，went 打回原形 go：Did she go to school by bus?");
+        const tRev = go(.3);
+        h.reveal("Did she go to school by bus?");
+        k.sfx("ding", tRev + .9);
+        const syP = sayAt("Did she go to school by bus?", { zh: "她是坐公交车去上学的吗？", word: "did go" });
+        const hp = Math.max(1, syP.dur * .5);
+        k.act(me, "walk", syP.t, hp, { to: 846, words: ["go"] });
+        k.act(me, "walk", syP.t + hp, hp, { to: 892 });
+        k.act(me, "turn", syP.t + 2 * hp, .3, { to: -1 });
+        k.act(me, "cheer", syP.t + 2 * hp + .1, 1.2);
+        D.hold(1.5);
+
+        k.quoteCard({ insight: "过去的事没有护卫，就请 did 来帮忙；\n过去时被 did 吸走，动词打回原形", rhyme: "口诀：过去请 did：过去时被照妖镜吸走，\nwent 打回原形 go！", hlLines: 2, foot: "🪞 助动词照妖镜 · 第四类 过去式照妖镜 did" });
+        k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+        D.hold(2.5);
+        D.finish(.45);
       },
+      actionWords: [
+        { word: "went", act: "两位旅客在读到「They went to Sanya by plane last winter」时走向飞机（walk），登机后飞机起飞（actFx + move）" },
+        { word: "flew", act: "读到「How fast the plane flew!」时飞机从左往右飞快掠过（actFx + move），讲解员吃惊" },
+        { word: "go", act: "预测题揭晓读到「Did she go to school by bus?」时讲解员往前走一段再走回（walk）" },
+      ],
       terms: [
+        ["可信度徽章", "💡 护卫、大将军、照妖镜、勋章都是帮助记忆的比喻；✂️ 简化说法：「只有护卫能背 not、能跳到主语前面提问」说的是小学阶段常见的句子。"],
         ["过去式", "表示已经发生的事，动词要变样，比如 play → played、go → went。句子里有 last winter（去年冬天）就用过去式。"],
         ["不规则过去式", "不是加 -ed，而是整个词变了样的过去式，比如 go → went、buy → bought、see → saw。"],
         ["did / didn't", "过去时用的助动词。它自己带着「过去」的标记，后面的动词要打回原形：Did they go …?"],
