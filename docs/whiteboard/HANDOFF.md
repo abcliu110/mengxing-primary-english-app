@@ -44,6 +44,7 @@
 - 02:50｜fp_iconicity 第 2 幕升 v2（fl·gl / sl + ⚠️ floor 两镜头 + 🔮 slip + 金句卡；R4 flies / fly / go）｜`12293bd`｜`work/shots/fp_iconicity_2_对比总图.png`｜加 ⚠️ 徽章：音义联觉有统计倾向但例外多（first_principles/HANDOFF §4）；sleeping 动作库无「睡」，只作提示
 - 03:00｜fp_iconicity 第 3 幕升 v2（str- / sp- 两镜头 + 🔮 string + 金句卡；R4 walk / come / look）｜`fefb0e4`｜`work/shots/fp_iconicity_3_对比总图.png`｜sport ⚠️ 出处：etymonline.com/word/sport（sport 是 disport 的缩短，来自古法语 desporter「消遣」）
 - 03:15｜fp_iconicity 第 4 幕升 v2，fp_iconicity 4 幕全部完成（数字 / 人两镜头 + 🔮 twins + 金句卡；R4 read / sit）｜`b993831`｜`work/shots/fp_iconicity_4_对比总图.png`｜R3：between 按 etymonline.com/word/between 更正为 bi-（by）+ tweonum（两个两个），原句留小字；twelve 按 etymonline.com/word/twelve =「十之外剩二」，与原讲法一致
+- 03:18｜fp_one_king 升级准备：classic 快照 + FP_DEPS｜`042b5f0`｜—｜第 1 幕是「已搬到 ze_be」占位幕（ze_be 已是 v2），不升级
 
 ## 1. 现在做到哪
 
