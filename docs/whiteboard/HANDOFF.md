@@ -16,13 +16,13 @@
 
 **下一个接手点**
 1. ~~第 2 幕未提交改动~~ ✅ 已核实：第 2 幕在 `27d5f28` 已提交，无遗留改动（2026-10-30 02:10 接手核对）。
-2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → ~~fp_iconicity~~ ✅ → ~~fp_one_king~~ ✅ → ~~fp_zoom_focus~~ ✅（第一性原理全部完成） → ~~bamboo_tree~~ ✅ → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
+2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → ~~fp_iconicity~~ ✅ → ~~fp_one_king~~ ✅ → ~~fp_zoom_focus~~ ✅（第一性原理全部完成） → ~~bamboo_tree~~ ✅ → ~~aux_transformer~~ ✅ → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
 3. 每幕流程：备份 classic → 改 v2 → `jscheck.py`、`r2check.py <模块> --strict`、`reg_render.py`、`app*.py` → 对比图 → 提交推送 → 本文件「夜间进度」加一行。
 4. 已知遗留：动作库无 swim / eat / 穿脱衣（r2check 只提示，扩 `wb_actor.js` 时补）；`stress_rhythm` 原 3 幕 r2check 失败是旧问题，升级时一并修。
 
-**待用户审**：对比总图 fp_economy_1–4、fp_vectors_1–4、fp_boundedness_1（旧工作区 `work/shots/`）；2026-10-30 02:10 起新做的 fp_boundedness_2–4、fp_iconicity_1–4、fp_one_king_2–4、fp_zoom_focus_2–4、bamboo_tree_1–5 的对比总图在 Hark 项目工作区 `work/shots/`。
+**待用户审**：对比总图 fp_economy_1–4、fp_vectors_1–4、fp_boundedness_1（旧工作区 `work/shots/`）；2026-10-30 02:10 起新做的 fp_boundedness_2–4、fp_iconicity_1–4、fp_one_king_2–4、fp_zoom_focus_2–4、bamboo_tree_1–5、aux_transformer_1–4 的对比总图在 Hark 项目工作区 `work/shots/`。
 
-**下一个接手点（2026-10-30 05:29 更新）**：bamboo_tree 5 个案例已全部升 v2（夜间进度见下）。下一个：王炸实验室 **aux_transformer**（照 bamboo_tree 做法：先建 `cases/aux_transformer_classic.js` 快照、`insert_wb.py` 的 LAB_DEPS 与 `preview.html` 加 wo_props，验收用 `appwb.py aux_transformer`，INVENTORY 放 `docs/whiteboard/lab/`）。之后顺序：aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法白板化 → 思维导图白板化 → 词源 / 格林定律 / 词根词缀 → 文档收尾 → 决策 29 软件优化。
+**下一个接手点（2026-10-30 05:50 更新）**：bamboo_tree 5 个案例、aux_transformer 4 个案例已全部升 v2（夜间进度见下）。下一个：王炸实验室 **five_patterns**（照 aux_transformer / bamboo_tree 做法：先建 `cases/five_patterns_classic.js` 快照、`insert_wb.py` 的 LAB_DEPS 与 `preview.html` 加 wo_props，验收用 `appwb.py five_patterns`，INVENTORY 放 `docs/whiteboard/lab/`；一屏多行放不下时按 aux_transformer 先例拆镜头、说明挪到句子下方）。之后顺序：five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法白板化 → 思维导图白板化 → 词源 / 格林定律 / 词根词缀 → 文档收尾 → 决策 29 软件优化。
 
 ## 夜间进度（2026-10-30）
 
