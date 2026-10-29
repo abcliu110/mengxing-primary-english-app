@@ -19754,7 +19754,7 @@ WB_LAB.fp_economy.push(
 <script type="text/plain" id="wbmod-fp_vectors" data-deps="wo_props fp_props">
 // ==================== 第一性原理 ⑤ 三维几何向量时空律（fp_vectors）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[4].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 1、2 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_vectors_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 1–3 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_vectors_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_vectors = [
   // ───────── 5-1 at 点 · on 面 · in 体（v2 + 讲解员，2026-10-30）─────────
   // 升级前原样保存在 cases/fp_vectors_classic.js（R1 零丢失）。三列左移给讲解员让位；配色 V3：at 红 · on 绿 · in 蓝。
@@ -20019,68 +20019,124 @@ WB_LAB.fp_vectors.push(
   },
 );
 WB_LAB.fp_vectors.push(
-  // ───────── 5-3 get on the bus vs get in the car ─────────
+  // ───────── 5-3 get on the bus vs get in the car（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_vectors_classic.js（R1 零丢失）。火柴人换成会走、会弯腰坐的小旅客（R4：上车动作人演）；
+  // 小汽车左移 60 给讲解员让位；例子单独一个镜头。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：上公交说 get on，上小汽车为什么说 get in？");
-      k.header("⑤ 三维几何向量时空律", "get on the bus vs get in the car", true);
-      // 公交
-      P(k.roughRect(110, 140, 300, 110), go(1), 1, { color: C.green, w: 3 }); F(k.rectD(110, 140, 300, 110), go(.2, 0), { color: "#ecfdf5", op: 1 });
-      for (let i = 0; i < 4; i++) P(k.roughRect(180 + i * 56, 156, 40, 34), go(.2), .2, { color: C.green, w: 2 });
-      P(k.roughRect(122, 156, 40, 84), go(.3), .3, { color: C.green, w: 2 });
-      P(k.ellipse(160, 254, 16, 16) + " " + k.ellipse(360, 254, 16, 16), go(.5), .5, { color: C.ink, w: 3 });
-      P(k.wl(30, 270, 450, 270, .6), go(.4), .4, { color: C.grey, w: 2 });
-      T("BUS", 360, 236, go(.3), .3, { size: 18, color: C.green, weight: 900, font: M });
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "get on the bus vs get in the car", sub: "⑤ 三维几何向量时空律", badges: ["💡"], steps: ["① 公交", "② on 地板", "③ 小汽车", "④ in 盒子", "⑤ 例子", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · 公交：站着走 = 地板平面 ─────
+      D.step(0); D.shot();
+      P(k.roughRect(110, 150, 300, 110), go(1), 1, { color: C.green, w: 3 }); F(k.rectD(110, 150, 300, 110), go(.2, 0), { color: C.tintGreen, op: 1 });
+      for (let i = 0; i < 4; i++) P(k.roughRect(180 + i * 56, 166, 40, 34), go(.2), .2, { color: C.green, w: 2 });
+      P(k.roughRect(122, 166, 40, 84), go(.3), .3, { color: C.green, w: 2 });
+      P(k.ellipse(160, 264, 16, 16) + " " + k.ellipse(360, 264, 16, 16), go(.5), .5, { color: C.ink, w: 3 });
+      P(k.wl(30, 280, 430, 280, .6), go(.4), .4, { color: C.grey, w: 2 });
+      T("BUS", 360, 246, go(.3), .3, { size: 18, color: C.green, weight: 900, font: M });
       N("", "公交车很高，人上去以后能站着、走来走去。");
-      const p1 = D.person(70, 270, C.purple);
-      k.arc(p1, go(1.8), 1.8, "M0,0 C30,0 50,-10 72,-30 L170,-30");
-      k.wait(.2);
+      const gP1 = D.sub(); const p1 = k.actor("traveler", { x: 60, y: 280, s: .5, f: 1, g: gP1 }); D.back();
+      const syBus = sayAt("Let's get on the bus.", { zh: "我们上公交车吧。", word: "get on" });
+      k.act(p1, "walk", syBus.t, 1, { to: 120, words: ["get on"] });
+      k.move(gP1, syBus.t + 1, .6, 20, -30, { ease: "antic" });   // 跨上台阶
+      k.act(p1, "walk", syBus.t + 1.6, 1.4, { to: 210 });
+      k.wait(.4);
+      D.step(1);
       N("on：", "能站着走的车，就像一个平台、一块地板——当成平面，用 on。");
-      P(k.wl(122, 240, 400, 240, .4), go(.5), .5, { color: C.orange, w: 4 });
-      T("站着走 = 地板平面", 260, 122, go(.7), .7, { size: 16, color: C.orange, weight: 900, anchor: "middle" });
+      P(k.wl(122, 250, 400, 250, .4), go(.5), .5, { color: C.red, w: 4 });
+      T("站着走 = 地板平面", 260, 132, go(.7), .7, { size: 16, color: C.red, weight: 900, anchor: "middle" });
+      k.act(me, "point", S.at - .6, 1.4, { at: [260, 250] });
       k.wait(.5);
-      // 小汽车
-      const car = "M560,250 L560,215 L610,212 L640,180 L760,180 L790,212 L830,216 L830,250 Z";
-      P(car, go(1), 1, { color: C.blue, w: 3 }); F(car, go(.2, 0), { color: "#eff6ff", op: 1 });
-      P(k.roughRect(650, 188, 50, 24) + " " + k.roughRect(706, 188, 50, 24), go(.3), .3, { color: C.blue, w: 2 });
-      P(k.ellipse(612, 254, 16, 16) + " " + k.ellipse(780, 254, 16, 16), go(.5), .5, { color: C.ink, w: 3 });
-      P(k.wl(510, 270, 930, 270, .6), go(.4), .4, { color: C.grey, w: 2 });
-      k.say("Let's get on the bus.", { zh: "我们上公交车吧。", word: "get on" });
+
+      // ───── 镜头 1 续 · 小汽车：弯腰钻进 = 盒子 ─────
+      D.step(2);
+      const car = "M500,260 L500,225 L550,222 L580,190 L700,190 L730,222 L770,226 L770,260 Z";
+      P(car, go(1), 1, { color: C.blue, w: 3 }); F(car, go(.2, 0), { color: C.tintBlue, op: 1 });
+      P(k.roughRect(590, 198, 50, 24) + " " + k.roughRect(646, 198, 50, 24), go(.3), .3, { color: C.blue, w: 2 });
+      P(k.ellipse(552, 264, 16, 16) + " " + k.ellipse(720, 264, 16, 16), go(.5), .5, { color: C.ink, w: 3 });
+      P(k.wl(460, 280, 840, 280, .6), go(.4), .4, { color: C.grey, w: 2 });
       N("", "小汽车很矮，人得弯下腰，钻进去坐着。");
-      const p2 = D.person(560, 270, C.purple, true);
-      const tc = go(1.8);
-      k.arc(p2, tc, 1.6, "M0,0 C40,0 70,-8 110,-30");
-      k.fade(p2, tc + 1.2, .5, .45);
+      const gP2 = D.sub(); const p2 = k.actor("traveler", { x: 470, y: 280, s: .5, f: 1, g: gP2 }); D.back();
+      const syCar = sayAt("Get in the car, please.", { zh: "请上车。", word: "get in" });
+      k.act(p2, "walk", syCar.t, .9, { to: 560 });
+      k.act(p2, "sit", syCar.t + .9, Math.max(1.4, syCar.dur), { words: ["get in"] });
+      k.move(gP2, syCar.t + 1.1, .9, 50, -24);
+      k.fade(gP2, syCar.t + 1.6, .5, .45);
+      D.step(3);
       N("in：", "要钻进去、被车厢包起来的，就像一个盒子——用 in。");
-      P(k.roughRect(640, 176, 124, 74), go(.6), .6, { color: C.orange, w: 3 });
-      T("钻进去 = 盒子", 700, 160, go(.6), .6, { size: 16, color: C.orange, weight: 900, anchor: "middle" });
+      P(k.roughRect(580, 186, 124, 74), go(.6), .6, { color: C.red, w: 3 });
+      T("钻进去 = 盒子", 640, 170, go(.6), .6, { size: 16, color: C.red, weight: 900, anchor: "middle" });
+      k.act(me, "point", S.at - .6, 1.4, { at: [640, 220] });
       k.wait(.5);
-      // 例子
-      T("get on the bus", 60, 320, go(.7), .7, { size: 24, color: C.green, weight: 900, font: M });
-      T("get in the car", 540, 320, go(.7), .7, { size: 24, color: C.blue, weight: 900, font: M });
-      k.say("Get in the car, please.", { zh: "请上车。", word: "get in" });
+      T("get on the bus", 60, 340, go(.7), .7, { size: 24, color: C.green, weight: 900, font: M });
+      T("get in the car", 480, 340, go(.7), .7, { size: 24, color: C.blue, weight: 900, font: M });
+      sayAt("Get on the bus. Get in the car.", { zh: "上公交车。上小汽车。", word: "the" });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 例子 ─────
+      D.step(4); D.shot();
+      k.head("on：站着走 · 跨坐", 60, 140, C.green, "start", 20);
+      k.head("in：钻进去坐", 480, 140, C.blue, "start", 20);
       N("", "同样能站着走的：火车、飞机、轮船，都用 on。");
-      T("on the train / plane / ship", 60, 358, go(.9), .9, { size: 18, color: C.ink, weight: 700, font: M });
+      T("on the train / plane / ship", 60, 190, go(.9), .9, { size: 18, color: C.ink, weight: 700, font: M });
       N("", "下车：get off the bus；从小车里钻出来：get out of the car。");
-      T("get off the bus", 60, 392, go(.6), .6, { size: 18, color: C.ink, weight: 700, font: M });
-      T("in a taxi · get out of the car", 540, 358, go(.9), .9, { size: 18, color: C.ink, weight: 700, font: M });
+      T("get off the bus", 60, 230, go(.6), .6, { size: 18, color: C.ink, weight: 700, font: M });
+      T("in a taxi · get out of the car", 480, 190, go(.9), .9, { size: 18, color: C.ink, weight: 700, font: M });
       N("", "骑自行车、骑马：人跨坐在上面，也是 on。");
-      T("on a bike · on a horse（跨坐在上面）", 60, 426, go(1), 1, { size: 16, color: C.green, weight: 900 });
+      T("on a bike · on a horse（跨坐在上面）", 60, 270, go(1), 1, { size: 16, color: C.green, weight: 900 });
       k.wait(.6);
-      k.say("Get off the bus and get out of the car.", { zh: "下公交车，从小汽车里出来。" });
+      const syOut = sayAt("Get off the bus and get out of the car.", { zh: "下公交车，从小汽车里出来。" });
+      k.act(me, "walk", syOut.t, Math.max(1, syOut.dur * .5), { to: 860, words: ["get off", "get out of"] });
+      sayAt("Bus, car, train, plane, ship, taxi, bike, horse.", { zh: "公交车、小汽车、火车、飞机、轮船、出租车、自行车、马。", word: "bus car train plane ship taxi bike horse" });
+      sayAt("On the train. In a taxi.", { zh: "在火车上。在出租车里。", word: "on the train in a taxi a" });
+      sayAt("On a bike. On a horse.", { zh: "骑在自行车上。骑在马上。", word: "on a bike on a horse" });
+      sayAt("Get off the bus. Get out of the car.", { zh: "下公交车。从小汽车里出来。", word: "off out of" });
       N("口诀：", "站着上车用 on，弯腰钻进用 in。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("Bus, car, train, plane, ship, taxi, bike, horse.", { zh: "公交车、小汽车、火车、飞机、轮船、出租车、自行车、马。", word: "bus car train plane ship taxi bike horse" });
-      k.say("Get on the bus. Get in the car.", { zh: "上公交车。上小汽车。", word: "the" });
-      k.say("On the train. In a taxi.", { zh: "在火车上。在出租车里。", word: "on the train in a taxi a" });
-      k.say("On a bike. On a horse.", { zh: "骑在自行车上。骑在马上。", word: "on a bike on a horse" });
-      k.say("Get off the bus. Get out of the car.", { zh: "下公交车。从小汽车里出来。", word: "off out of" });
-      D.fin("能站着走的车 = 平面 → on；要弯腰钻进去的车 = 盒子 → in", "口诀：站着上车用 on，弯腰钻进用 in。");
-      k.wait(2);
+      P(k.roughRect(40, 400, 760, 52), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：站着上车用 on，弯腰钻进用 in。", 60, 434, go(1), 1, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "地铁车厢里，人能站着走来走去。上地铁说 get on 还是 get in？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 get ___ the subway　→　on 还是 in", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "能站着走 = 地板平面：get on the subway。");
+      const tRev = go(.3);
+      T("get on the subway —— 站着走 = on", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Let's get on the subway.", { zh: "我们上地铁吧。", word: "subway let's" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "能站着走的车 = 平面 → on；\n要弯腰钻进去的车 = 盒子 → in", rhyme: "口诀：站着上车用 on，弯腰钻进用 in。", hlLines: 2, foot: "🧠 第一性原理 ⑤ 三维几何向量时空律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "get on", act: "小旅客走过去跨上公交台阶（walk + 上移），与「Let's get on the bus」同步" },
+      { word: "get in", act: "小旅客弯腰坐进小汽车（sit + 钻入淡出），与「Get in the car」同步" },
+      { word: "get off", act: "讲解员走下来（walk），与「Get off the bus」同步" },
+      { word: "get out of", act: "讲解员走出来（walk），与「get out of the car」同步" },
+    ],
     r2skip: ["vs"],   // 标题里的对比符号 vs，不是要读的词
-    terms: [],
+    terms: [
+      ["可信度徽章", "💡 记忆方法（地板 / 盒子）· 📜 有出处的历史 · ✂️ 简化说法 · ⚠️ 有要注意的地方。"],
+    ],
   },
 );
 WB_LAB.fp_vectors.push(
