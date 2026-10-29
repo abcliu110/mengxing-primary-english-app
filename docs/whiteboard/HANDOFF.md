@@ -66,6 +66,7 @@
 - 05:47｜aux_transformer ③ 三单照妖镜 does 升 v2（三镜头 + 🔮 Does he play football every day + 金句卡；R4 watches / watch Mia 坐下看电视、plays / play 讲解员跳）｜`ba6b1fc`｜`work/shots/aux_transformer_3_对比总图.png`｜「看电视」动作库没有 watch，用场景人物 walk + sit + 电视屏幕亮起（actFx）表现；电视 / 凳子只用墨黑 + 浅蓝底；时长 90→117 秒
 - 05:49｜aux_transformer ④ 过去式照妖镜 did 升 v2，**aux_transformer 4 个案例全部 v2 完成**（三镜头 + 🔮 Did she go to school by bus + 金句卡；R4 went 旅客登机 + 飞机起飞、flew 飞机掠过、go 讲解员走）｜`5fb5bab`｜`work/shots/aux_transformer_4_对比总图.png`｜飞机用 wo_props 的 D.plane（已是 V3 蓝），起飞 / 掠过是场景动作（actFx + move）；讲解员预测题走回后加 turn 朝左，避免金句卡时背对；旧版面工具 H 已无人用，删除（字符串在 build 之外，不影响 R1 对照）；时长 103→127 秒
 - 05:52｜five_patterns 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`260c4c2`｜—｜旧幕渲染不变（reg_render diff 0，只加依赖）；照 aux_transformer / bamboo_tree 先例，INVENTORY 放 docs/whiteboard/lab/
+- 05:59｜five_patterns ① SV 自给自足型升 v2（骨架 + 挂件 / 金句 / 挂钩 + 铁律 + 公式三镜头 + 🔮 Look at the sky + 金句卡；R4 rises 太阳升起、fly 鸟飞过、run 讲解员跑、look 指黑板、play 跳）｜`b944d70`｜`work/shots/five_patterns_1_对比总图.png`（Hark 项目工作区）｜方块下移到 y140 让出进度条；公式绿框只有约 500–620 宽，收窄到 x≤800 后讲解员不必退场（R1 不受影响，比照 aux 只在全宽内容前退场）；✂️ 徽章出处 en.wikipedia.org/wiki/English_clause_element（Quirk 等 1985 分 7 种）；新版面工具 vtools() 与旧 tools() 并存，全部案例升完再删旧工具；时长 92→108 秒
 
 ## 1. 现在做到哪
 
