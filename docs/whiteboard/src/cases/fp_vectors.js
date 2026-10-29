@@ -1,6 +1,6 @@
 // ==================== 第一性原理 ⑤ 三维几何向量时空律（fp_vectors）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[4].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 1 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_vectors_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 1、2 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_vectors_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_vectors = [
   // ───────── 5-1 at 点 · on 面 · in 体（v2 + 讲解员，2026-10-30）─────────
   // 升级前原样保存在 cases/fp_vectors_classic.js（R1 零丢失）。三列左移给讲解员让位；配色 V3：at 红 · on 绿 · in 蓝。
@@ -136,73 +136,132 @@ WB_LAB.fp_vectors = [
   },
 ];
 WB_LAB.fp_vectors.push(
-  // ───────── 5-2 on 贴上接通 · off 脱离断开 ─────────
+  // ───────── 5-2 on 贴上接通 · off 脱离断开（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_vectors_classic.js（R1 零丢失）；原左右两半拆成两个镜头（右半整体左移 470）。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：take off 为什么既是「脱衣服」，又是「飞机起飞」？");
-      k.header("⑤ 三维几何向量时空律", "on 贴上 · off 分开", true);
-      k.head("ON：贴上、接通", 40, 108, C.green, "start", 22);
-      k.head("OFF：离开、断开", 510, 108, C.red, "start", 22);
-      // ON 1：方块贴到表面
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "on 贴上 · off 分开", sub: "⑤ 三维几何向量时空律", badges: ["💡"], steps: ["① 贴上", "② 接通", "③ 离开", "④ 起飞", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · ON：贴上、接通 ─────
+      D.step(0); D.shot();
+      k.head("ON：贴上、接通", 40, 128, C.green, "start", 22);
       N("on：", "东西贴到一个表面上，或者电路接上了。");
-      P(k.wl(60, 200, 220, 200, .6), go(.4), .4, { color: C.ink, w: 3 });
-      T("身体表面", 140, 220, go(.4), .4, { size: 13, color: C.grey, anchor: "middle" });
-      const coat = k.group();
-      P(k.roughRect(110, 130, 60, 30), go(.4), .4, { color: C.green, w: 2.5 }); F(k.rectD(110, 130, 60, 30), go(.1, 0), { color: "#bbf7d0", op: 1 });
-      T("coat", 140, 151, go(.3), .3, { size: 15, color: C.green, weight: 900, font: M, anchor: "middle" });
-      k.endGroup();
-      k.move(coat, go(.9), .9, 0, 40);
-      T("put on your coat", 240, 180, go(.8), .8, { size: 19, color: C.ink, weight: 900, font: M });
-      T("衣服贴到身上", 240, 204, go(.5), .5, { size: 14, color: C.grey });
-      // ON 2：开关接通，灯亮
-      P(k.wl(60, 290, 110, 290, .3) + " " + k.wl(160, 290, 210, 290, .3), go(.4), .4, { color: C.ink, w: 3 });
-      const lever = k.group(); P(k.wl(110, 290, 150, 262, .2), go(.3), .3, { color: C.green, w: 4 }); k.endGroup();
-      const bulb = k.ellipse(232, 278, 13, 15);
+      P(k.wl(60, 220, 220, 220, .6), go(.4), .4, { color: C.ink, w: 3 });
+      T("身体表面", 140, 240, go(.4), .4, { size: 13, color: C.grey, anchor: "middle" });
+      const coat = D.sub();
+      P(k.roughRect(110, 150, 60, 30), go(.4), .4, { color: C.green, w: 2.5 }); F(k.rectD(110, 150, 60, 30), go(.1, 0), { color: C.tintGreen, op: 1 });
+      T("coat", 140, 171, go(.3), .3, { size: 15, color: C.green, weight: 900, font: M, anchor: "middle" });
+      D.back();
+      const tc = go(.9); k.move(coat, tc, .9, 0, 40, { ease: "antic" }); k.squash(coat, tc + .9, .3, .14); k.sfx("pop", tc + .9);
+      T("put on your coat", 240, 200, go(.8), .8, { size: 19, color: C.ink, weight: 900, font: M });
+      T("衣服贴到身上", 240, 224, go(.5), .5, { size: 14, color: C.grey });
+      k.wait(.3);
+      D.step(1);
+      P(k.wl(60, 310, 110, 310, .3) + " " + k.wl(160, 310, 210, 310, .3), go(.4), .4, { color: C.ink, w: 3 });
+      const lever = D.sub(); P(k.wl(110, 310, 150, 282, .2), go(.3), .3, { color: C.green, w: 4 }); D.back();
+      const bulb = k.ellipse(232, 298, 13, 15);
       P(bulb, go(.3), .3, { color: C.ink, w: 2 });
-      const glow = k.group(); F(bulb, go(.01, 0), { color: "#fde047", op: 1 }); P(`M232,252 v-8 M252,262 l7,-6 M212,262 l-7,-6`, go(.01, 0), .01, { color: C.orange, w: 2 }); k.endGroup(); k.hide(glow);
-      const tl = go(.8); k.rot(lever, tl, .6, 35, 110, 290); k.fade(glow, tl + .6, .3, 1);
-      T("turn on the light", 272, 286, go(.8), .8, { size: 17, color: C.ink, weight: 900, font: M });
-      T("开关接通", 280, 310, go(.4), .4, { size: 14, color: C.grey });
-      T("get on the bus：脚踏上车厢地板", 60, 372, go(1), 1, { size: 16, color: C.green, weight: 900 });
+      const glow = D.sub(); F(bulb, go(.01, 0), { color: C.hlYellow, op: 1 }); P(`M232,272 v-8 M252,282 l7,-6 M212,282 l-7,-6`, go(.01, 0), .01, { color: C.red, w: 2 }); D.back(); k.hide(glow);
+      const tl = go(.8); k.rot(lever, tl, .6, 35, 110, 310); k.fade(glow, tl + .6, .3, 1); k.sfx("ding", tl + .6);
+      T("turn on the light", 272, 306, go(.8), .8, { size: 17, color: C.ink, weight: 900, font: M });
+      T("开关接通", 280, 330, go(.4), .4, { size: 14, color: C.grey });
+      T("get on the bus：脚踏上车厢地板", 60, 392, go(1), 1, { size: 16, color: C.green, weight: 900 });
       k.wait(.5);
-      // OFF 1：鞋子离开脚
-      k.say("Put on your coat. Turn on the light.", { zh: "穿上外套。打开灯。" });
+      const syOn = sayAt("Put on your coat. Turn on the light.", { zh: "穿上外套。打开灯。" });
+      const cc = k.prop("card", 0, 0, { hidden: true, text: "coat" });
+      k.act(me, "holdCard", syOn.t, Math.max(1.2, syOn.dur * .5), { prop: cc, words: ["put on"] });
+      k.act(me, "point", syOn.t + syOn.dur * .5, Math.max(1, syOn.dur * .5), { at: [232, 298], words: ["turn on"] });
+      const syBus = sayAt("Put on your coat. Get on the bus.", { zh: "穿上你的外套。上公交车。", word: "your get on the bus" });
+      k.act(me, "walk", syBus.t + syBus.dur * .5, Math.max(1, syBus.dur * .5), { to: 860, words: ["get on"] });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · OFF：离开、断开 ─────
+      D.step(2); D.shot();
+      k.head("OFF：离开、断开", 40, 128, C.red, "start", 22);
       N("off：", "东西离开一个表面，或者电路断开了。");
-      P(k.wl(530, 200, 690, 200, .6), go(.4), .4, { color: C.ink, w: 3 });
-      T("脚面", 610, 220, go(.3), .3, { size: 13, color: C.grey, anchor: "middle" });
-      const shoe = k.group();
-      P(k.roughRect(580, 170, 60, 30), go(.4), .4, { color: C.red, w: 2.5 }); F(k.rectD(580, 170, 60, 30), go(.1, 0), { color: "#fecdd3", op: 1 });
-      T("shoe", 610, 191, go(.3), .3, { size: 15, color: C.red, weight: 900, font: M, anchor: "middle" });
-      k.endGroup();
-      k.move(shoe, go(.9), .9, 0, -42);
-      T("take off your shoes", 706, 180, go(.8), .8, { size: 17, color: C.ink, weight: 900, font: M });
-      T("鞋子离开脚", 706, 204, go(.5), .5, { size: 14, color: C.grey });
-      // OFF 2：飞机离开跑道
+      P(k.wl(60, 220, 220, 220, .6), go(.4), .4, { color: C.ink, w: 3 });
+      T("脚面", 140, 240, go(.3), .3, { size: 13, color: C.grey, anchor: "middle" });
+      const shoe = D.sub();
+      P(k.roughRect(110, 190, 60, 30), go(.4), .4, { color: C.red, w: 2.5 }); F(k.rectD(110, 190, 60, 30), go(.1, 0), { color: C.tintRed, op: 1 });
+      T("shoe", 140, 211, go(.3), .3, { size: 15, color: C.red, weight: 900, font: M, anchor: "middle" });
+      D.back();
+      k.move(shoe, go(.9), .9, 0, -42, { ease: "antic" });
+      T("take off your shoes", 236, 200, go(.8), .8, { size: 17, color: C.ink, weight: 900, font: M });
+      T("鞋子离开脚", 236, 224, go(.5), .5, { size: 14, color: C.grey });
+      k.wait(.3);
+      D.step(3);
       N("", "飞机离开跑道，也是「离开表面」——所以起飞也叫 take off！");
-      P(k.wl(530, 300, 700, 300, .5), go(.4), .4, { color: C.ink, w: 3 });
-      T("跑道", 560, 320, go(.3), .3, { size: 13, color: C.grey });
-      const plane = k.group();
-      const pd = "M540,292 l40,0 l14,-8 l6,0 l-6,8 l8,0 l0,4 l-62,0 Z M562,292 l8,-12 l6,0 l-4,12 Z";
-      P(pd, go(.5), .5, { color: C.blue, w: 2 }); F(pd, go(.1, 0), { color: "#bfdbfe", op: 1 });
-      k.endGroup();
-      k.arc(plane, go(1.6), 1.6, "M0,0 C60,0 100,-10 150,-50");
-      T("The plane takes off!", 706, 286, go(.8), .8, { size: 17, color: C.ink, weight: 900, font: M });
-      T("飞机离开地面", 706, 310, go(.5), .5, { size: 14, color: C.grey });
-      T("turn off the TV · get off the bus · fall off", 530, 372, go(1.2), 1.2, { size: 15, color: C.red, weight: 900, font: M });
+      P(k.wl(60, 320, 230, 320, .5), go(.4), .4, { color: C.ink, w: 3 });
+      T("跑道", 90, 340, go(.3), .3, { size: 13, color: C.grey });
+      const plane = D.sub();
+      const pd = "M70,312 l40,0 l14,-8 l6,0 l-6,8 l8,0 l0,4 l-62,0 Z M92,312 l8,-12 l6,0 l-4,12 Z";
+      P(pd, go(.5), .5, { color: C.blue, w: 2 }); F(pd, go(.1, 0), { color: C.tintBlue, op: 1 });
+      D.back();
+      T("The plane takes off!", 236, 306, go(.8), .8, { size: 17, color: C.ink, weight: 900, font: M });
+      T("飞机离开地面", 236, 330, go(.5), .5, { size: 14, color: C.grey });
+      T("turn off the TV · get off the bus · fall off", 60, 392, go(1.2), 1.2, { size: 15, color: C.red, weight: 900, font: M });
       k.wait(.6);
-      k.say("Take off your coat. The plane takes off.", { zh: "脱下外套。飞机起飞了。", word: "take off" });
+      const syTk = sayAt("Take off your coat. The plane takes off.", { zh: "脱下外套。飞机起飞了。", word: "take off" });
+      const cc2 = k.prop("card", 0, 0, { hidden: true, text: "coat" });
+      k.act(me, "put", syTk.t, Math.max(1.2, syTk.dur * .5), { prop: cc2, words: ["take off"] });
+      const tp = syTk.t + syTk.dur * .45; k.arc(plane, tp, Math.max(1.6, syTk.dur * .55), "M0,0 C60,0 100,-10 150,-50");   // 飞机在读到「The plane takes off」时起飞
+      k.actFx(["takes off"], tp, Math.max(1.6, syTk.dur * .55), "飞机沿弧线离开跑道");
+      sayAt("On, off. Put, turn, get, fall.", { zh: "贴上、分开。放、转、上下车、掉落。", word: "on off put turn get fall" });
+      sayAt("Coat, light, bus, shoe, shoes, plane, TV.", { zh: "外套、灯、公交车、鞋、鞋子（双）、飞机、电视。", word: "coat light bus shoe shoes plane TV" });
+      sayAt("Take off your shoes. Turn off the TV. Get off the bus.", { zh: "脱掉鞋子。关掉电视。下公交车。", word: "take off your shoes turn off the TV get off the bus" });
+      const syF = sayAt("The plane takes off! Don't fall off the bike.", { zh: "飞机起飞了！别从自行车上摔下来。", word: "takes fall" });
+      k.act(me, "surprised", syF.t + syF.dur * .45, Math.max(1, syF.dur * .55), { words: ["fall off"] });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "贴上 on，分开 off。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("On, off. Put, turn, get, fall.", { zh: "贴上、分开。放、转、上下车、掉落。", word: "on off put turn get fall" });
-      k.say("Coat, light, bus, shoe, shoes, plane, TV.", { zh: "外套、灯、公交车、鞋、鞋子（双）、飞机、电视。", word: "coat light bus shoe shoes plane TV" });
-      k.say("Put on your coat. Get on the bus.", { zh: "穿上你的外套。上公交车。", word: "your get on the bus" });
-      k.say("Take off your shoes. Turn off the TV. Get off the bus.", { zh: "脱掉鞋子。关掉电视。下公交车。", word: "take off your shoes turn off the TV get off the bus" });
-      k.say("The plane takes off! Don't fall off the bike.", { zh: "飞机起飞了！别从自行车上摔下来。", word: "takes fall" });
-      D.fin("on = 贴上表面 / 接通；off = 离开表面 / 断开", "口诀：贴上 on，分开 off。");
-      k.wait(2);
+      P(k.roughRect(40, 420, 760, 50), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：贴上 on，分开 off。", 60, 453, go(1), 1, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "想看电视，要把开关接通。turn ___ the TV 填 on 还是 off？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 turn ___ the TV（打开）→ on 还是 off", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "打开 = 电路接通 = on：turn on the TV。");
+      const tRev = go(.3);
+      T("turn on the TV —— 接通 = on", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.sfx("ding", tRev + .9);
+      const syTv = sayAt("Turn on the TV, please.", { zh: "请打开电视。", word: "please" });
+      k.act(me, "point", syTv.t, Math.max(1.2, syTv.dur), { at: [600, 220], words: ["turn on"] });
+      D.hold(2);
+
+      k.quoteCard({ insight: "on = 贴上表面 / 接通；\noff = 离开表面 / 断开", rhyme: "口诀：贴上 on，分开 off。", hlLines: 2, foot: "🧠 第一性原理 ⑤ 三维几何向量时空律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
-    terms: [],
+    actionWords: [
+      { word: "put on", act: "讲解员举起 coat 词卡（holdCard），与「Put on your coat」同步" },
+      { word: "turn on", act: "讲解员指向开关（point），与「Turn on the light / the TV」同步" },
+      { word: "get on", act: "讲解员走上前（walk），与「Get on the bus」同步" },
+      { word: "take off", act: "讲解员把 coat 词卡放下（put），与「Take off your coat」同步" },
+      { word: "takes off", act: "飞机沿弧线离开跑道（场景动作 actFx），与「The plane takes off」同步" },
+      { word: "fall off", act: "讲解员吓一跳（surprised），与「Don't fall off the bike」同步" },
+    ],
+    terms: [
+      ["可信度徽章", "💡 记忆方法（贴上 / 分开）· 📜 有出处的历史 · ✂️ 简化说法 · ⚠️ 有要注意的地方。"],
+    ],
   },
 );
 WB_LAB.fp_vectors.push(
