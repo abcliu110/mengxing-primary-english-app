@@ -35,7 +35,7 @@
 | `const FIRST_PRINCIPLES_DB` | 6 条原理的数据：`id / num / shortTitle / fullTitle / badge / themeColor / coreEssence / mentalFormula / unifiesList / acts[4] / quiz` |
 | `function renderFirstPrinciplesHubView` | 总枢页面；`<canvas id="firstPrinciplesCanvas">` 就是要替换成白板的位置 |
 | `function startFirstPrinciplesCanvasLoop` | 旧 Canvas 动画（背景 + 两个卡通人物 + 中间推导卡片）；白板接好后作为没做完原理的后备 |
-| `var fpState` / `var fpAnimId` | 当前原理、当前幕；动画帧 id |
+| `let fpState` / `var fpAnimId` | 当前原理、当前幕；动画帧 id |
 | `switchFirstPrincipleLaw` / `switchFirstPrincipleAct` | 切原理 / 切幕（会重新 render 页面） |
 | `navigateTo('first_principles_hub', { lawIdx, actIdx })` | 入口：首页横幅、导航按钮、实验室里 3 处跳转（lawIdx 0/1/3） |
 
