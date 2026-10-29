@@ -88,7 +88,7 @@ const FP_PROPS = function (k) {
   D.halves = (dL, dR, color, fill, t, gap = 12) => {
     const gl = k.group(); P(dL, go(.6, 0), .6, { color, w: 2.5 }); F(dL, go(.1, 0), { color: fill, op: .9 }); k.endGroup();
     const gr = k.group(); P(dR, go(.6), .6, { color, w: 2.5 }); F(dR, go(.1, 0), { color: fill, op: .9 }); k.endGroup();
-    return { split(t2) { k.move(gl, t2, .5, -gap, 0); k.move(gr, t2, .5, gap, 0); } };
+    return { gl, gr, split(t2) { k.move(gl, t2, .5, -gap, 0); k.move(gr, t2, .5, gap, 0); } };   // gl / gr：v2 镜头里 D.adopt(h.gl, h.gr) 让擦黑板时一起擦（2026-10-30 只加返回值）
   };
 
   // 王座：座位中心 (cx, y)，返回座位上方坐人的位置
