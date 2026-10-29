@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 00:40 JST（阶段 3：④-1、⑥-1 搬迁完成；下一步 ze_same 等新幕，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-30 01:00 JST（阶段 3：ze_same 上线，下一步 ze_yesno，见 §0.6）　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
 > **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
@@ -187,6 +187,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 4 | 搬 ④-1 → 「是 ≠ be」幕（原样搬 + v2 + 讲解员 + R2 补齐），清单逐条打勾 | ✅ 第一步：`cases/ze_be.js` 原样整幕搬（依赖 fp_props），标题改「🔀「是」≠ be（原理 ④ 一山不容二虎）」，加一条中英对照字幕，补 R2（r2check --strict 20 词 6 句全过）；清单 27 条 ✅26 / ✏️1 / ❌0、术语 6/6。渲染回归：旧 72 幕 360 项逐字节一致，只多 ze_be 5 项；jscheck 30 模块；appze、appwo 过。**第二步（升 v2 + 讲解员）待做** |
 | 5 | 搬 ⑥-1 → 「修饰语位置」幕，清单逐条打勾 | ✅ 第一步：`cases/ze_modifier.js` 原样整幕搬，标题改「🔀 修饰语位置（原理 ⑥ 焦点先行）」，加一条中英对照字幕，补 R2（22 词 7 句全过）；清单全部 ✅ / ✏️1 / ❌0。渲染回归旧 73 幕逐字节一致；appze 过。第二步（v2 + 讲解员）待做 |
 | 6 | 原理页删 ④-1、⑥-1，留一句话 + 跳转入口 | ✅ `FIRST_PRINCIPLES_DB` 两幕加 `movedTo: { scene, title, line }`、标题加「（已搬到 🔀 中英对照总枢）」；`insert_wb.py` 让原理页遇到 `act.movedTo` 时舞台换成 `fpMovedHtml(act)`（一句话 + 「去看这一幕」按钮，在 `ze_hub.js`），术语区隐藏；`WB_LAB.fp_one_king[0]` / `fp_zoom_focus[0]` 换成占位白板（保证幕序号不变；case 0 的 terms 是全原理共用术语，保留）。原内容只在 `cases/ze_be.js`、`ze_modifier.js`。验收：两条原理第 1 幕显示跳转卡、点按钮进入总枢对应幕并挂载；appfp 3/5 过；渲染回归只有两个占位幕变化；r2check 两条原理全过。**搬迁完成** |
+| 7 | 新幕 `ze_same` 这些你已经会了（引擎 v2 + 讲解员，正迁移） | ✅ 4 个镜头：我爱妈妈 / I love my mom（顺序一样）→ a red apple / a big cat（形容词在前，⚠️ 长修饰挂后面）→ three books（数字在前，⚠️ 加 -s）+ I can jump（讲解员跳起来，R4）→ 口诀 → 🔮 他喜欢小狗 = He likes dogs → 金句卡。`wo_props.js` 的 `D.scene` 新增 `steps` 选项（换进度条文字：① 中文 ② 对一对 ③ 英语 ④ 例子 ⑤ 口诀 🔮 预测；不传 = 溯源幕原样，旧幕渲染不变）；`insert_wb.py` 新增 `ZE_DEPS`（新对照幕依赖 wo_props）。配色只用 V3 四色。验收：r2check --strict 21 词 4 句、R4 1/1；旧 74 幕渲染逐字节一致；jscheck 32 模块；appze 过；截图逐张看过（修了 purple / orange 不在调色板、books 荧光位置不准） |
 
 ## 1. 当前状态
 
