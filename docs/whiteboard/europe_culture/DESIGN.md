@@ -265,7 +265,7 @@
 - **Python** 编程语言：名字来自英国喜剧团体 Monty Python，不是蟒蛇（反例，防止过度联想）⚠️
 
 ### 14.3 地球和宇宙
-- **Europe** 📜：来自神话公主 **Europa**（宙斯化成白牛把她带到克里特岛）。**「欧洲」这个名字本身就是一个神话。** ★★（适合作为整个模块的开场）
+- **Europe** ❓（2026-10-29 纠正：原写 📜「来自神话公主」不准确）：etymonline 说来源**不确定**，传统上和神话公主 **Europa**（宙斯化成白牛把她带到克里特岛）联系在一起，另有「宽脸」、闪米特语「西方」等说法；神话本身 📜。已做成溯源幕 `wo_europe`，出处见 `word_origins/SOURCES.md` ②。★★（适合作为整个模块的开场）
 - **Atlantic Ocean 大西洋** 📜：来自巨人 Atlas
 - **太阳系行星和卫星**：Mercury、Venus、Mars、Jupiter（卫星 Europa、Io）、Saturn。中文按五行取名
 - **星座**：Orion、Gemini、Leo

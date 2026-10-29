@@ -1,8 +1,8 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-29 20:40 JST　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
+> 更新：2026-10-29 21:30 JST　｜　接手先读：`MASTER_DESIGN.md`（总设计，19 条决策）→ `SOP.md`（v2.0 标准流程 + 验收清单）→ 本文。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元就提交；发现 bug 直接修；每写完一个文档也立即提交。
-> **当前阶段：代码阶段 · 阶段 1（用户「开始做」，2026-10-29 19:00 起）——只做 port 一幕作为「样板幕」，其他幕等用户审片确认后再铺开。** 阶段 1 进度见 §0。
+> **当前阶段：阶段 1 已完成（port 样板幕审片通过、按需加载完成）→ 阶段 2 单词身世第一批（进度见 §0.5）。**
 
 ---
 
@@ -70,6 +70,25 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - R4：案例对象写 `actionWords: [{ word: "import", act: "carry" }, …]`（分镜动作词清单），脚本逐个对照 `k.act(…, { words: ["import"] })` 登记，并检查动作时间和含这个词的朗读重叠；例句里出现常见动作动词但没列进清单的，只提示。
 - `--strict` 有缺项返回 1（验收用）。
 - **全 App 基线（2026-10-29，升级前）**：64 幕，英文词 / 词块 1618 个，缺 1479；白板句子 324 句，缺朗读 195。旧幕按「持续」待办逐步补，本阶段只补 port。
+
+## 0.5 阶段 2 进度（单词身世第一批，2026-10-29 起）
+
+| # | 内容 | 状态 / 提交 |
+|---|---|---|
+| 1 | Europe 示范幕（`cases/wo_europe.js`，引擎 v2 + 讲解员，对齐 port 样板） | ✅ 见下 |
+| 2 | Bluetooth 示范幕 | 待做 |
+| 3 | 身世标签 `origin_tags` + 词卡跳转（先给 port 家族） | 待做 |
+| 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | 待做 |
+| 5 | 时间与度量章 | 待做 |
+
+**Europe 示范幕（2026-10-29）**
+- 出处先登记：`word_origins/SOURCES.md` ② 12 条（etymonline Europe / European / -an / African / Euro- / Euro；维基 Europa 神话、卫星、欧元纸币；中文维基 欧洲 / 坤舆万国全图）。名字来源三种说法（神话公主、eurys+ops「宽脸」、闪米特语「西方」）**全部标 ❓**，神话标 📜 + ✂️（原故事是「劫走」，讲给小学生简化成「驮过大海」）。
+- 分镜：`word_origins/EUROPE_STORYBOARD.md`（镜头总表、英文词清单、动作词清单、四层 × 四关自查、逐条时间码）。5 步：地图 → 神话（公主采花、骑白牛、游到克里特岛）→ 名字三说 ❓ + 词族（-an → European，Euro- → euro）→ 彩蛋（木星卫星 Europa、欧元纸币水印）→ 中文（利玛窦 1602 音译「欧逻巴」→ 欧洲）→ 🔮 Africa + -an = African → 金句卡。总长约 148 秒，13 句朗读。
+- 引擎 / 道具扩展（只加不改，旧幕不受影响）：`wb_actor.js` 新角色 look `princess`（披肩长发 + 小金冠 + 长裙，裙摆在腿前面）、新动作 `sit`（坐 / 骑，不自动着地、不画地面影子）、新道具 `flower`；`wo_props.js` 新道具 `D.bull`（白牛，身体和腿分组，游泳时腿淡出）。
+- 验收：`r2check.py wo_europe --strict` 英文词 / 词块 12/12、R4 动作词 4/4（picks / rides / swims / have，均与朗读重叠）；`jscheck.py` 过（21 个按需加载模块）；`reg_render.py` 旧 64 幕 × 5 时刻逐字节一致（只多出 wo_europe 5 项）；`appwo.py` port + europe 都 mounted、无报错、无 NaN，bluetooth 占位正常；fps（游泳镜头 38–58 秒）平均 60.0、1% 低帧 52.6、每帧渲染 1.41 ms。
+- 同时纠正文档里的讲错处（R3）：`europe_culture/DESIGN.md` 原写「Europe 📜 来自神话公主」→ 改 ❓；`DEPTH_AND_ANIMATION.md` 洞见同步改；总枢章节卡副标题改为「背后有一个神话（来历有好几种说法）」、徽章 📜 ✂️ ❓。
+- 已知取舍：①白牛是道具（不是骨架角色），走路用整体平移 + 轻微挤压起伏，游泳时腿藏进水里；②公主「骑上牛背」用跳起 → 空中换成坐姿角色（0.12 秒交叉淡化）；③没有录屏（沙箱无语音），截图逐张看过；④「-an」规则标 ✂️（European 实际经法语、拉丁语来）。
+- 待用户看：Europe 幕是否满意（画面风格对齐 port 样板，未单独审片）。
 
 ## 1. 当前状态
 
@@ -149,6 +168,12 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
    - 第一性原理 ② 字母象形「M 像山」将来和「字母身世」并排（💡 vs 📜）。
 
 ## 5. 引擎通用新工具登记
+
+### 2026-10-29 · 阶段 2（Europe 幕）
+- `wb_actor.js`：look `princess`；动作 `sit`（坐 / 骑：骨盆停在 y − 58×s，坐处由案例放好；坐着时不画地面影子）；道具 `flower`。
+- `cases/wo_props.js`：`D.bull(x, y, s, {face})` → `{ g, legs, back }`（back = 牛背坐处）。
+- 按需加载：`wbLoadModule(id)`、`wbHasModule(id)`、`wbLoadAll()`（`wb_app.js`）。
+- 脚本：`jscheck.py`（node --check）、`reg_render.py`（渲染回归）、`measure_load.py`（首屏耗时）、`export_storyboard.py <幕>`（导出逐条时间码）；`measure_fps.py` 第 4 个参数可指定溯源幕。
 
 ### 2026-10-29 · 阶段 1（引擎 v2，`k.v2()` 打开才生效）
 - 常量：`WB.EASE`（move / in / exit / pop / snap / antic / sine / linear）、`WB.PAL`、`WB.FS`、`WB.GRID`；kit 上同名 `k.EASE / k.PAL / k.FS / k.GRID`。
