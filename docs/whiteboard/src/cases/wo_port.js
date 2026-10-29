@@ -206,7 +206,7 @@ WB_LAB.wo_port = [
       const syPass = sayAt("OK! You can pass now.", { zh: "好了！你现在可以通过了。", word: "OK pass" });
       [w0, wd] = win(syPass);
       k.act(tv, "take", syPass.t + .1, .7, { prop: doc });
-      k.act(tv, "walk", w0 - .1, wd + 1.4, { to: 880, words: ["pass"] });
+      k.act(tv, "walk", w0 - .1, wd + 1.4, { to: 820, words: ["pass"] });
       k.wait(1.2);
       N("pass + port：", "pass（通过）+ port（港口）= 通过港口的许可 → passport（护照）。");
       const s4 = D.snap("pass", "port", 60 + D.chipW("pass"), 384, { from: [-20, -60], color: C.red, rootColor: C.blue });
@@ -335,6 +335,7 @@ WB_LAB.wo_port = [
       D.hold(2.5);
 
       // ───── 收尾金句卡（统一样式，定格可截图复习）─────
+      k.fade(gF, S.at, .4, 0); k.actorFade(f1, S.at, .4, 0); k.actorFade(f2, S.at, .4, 0);
       k.quoteCard({ insight: "港口是罗马世界的大门：一个 port，长出了进、出、穿越、带回、机会。", rhyme: "港口一扇门，进出穿回都靠 port；sup 托住就是 support！", foot: "📖 单词身世 · port 港口" });
       k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
       D.hold(2.5);

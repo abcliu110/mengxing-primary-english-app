@@ -116,6 +116,7 @@ const WB = (function () {
     const erase = (gs, dur = 1.1, o = {}) => {
       const t = go(dur, o.gap ?? .1);
       S.wipes.push({ t, dur, gs: gs.slice(), y0: o.y0 ?? 92, y1: o.y1 ?? 544 });
+      S.keeps.push([t, t + dur]);   // 擦除按原速，不被节奏压缩
       gs.forEach(g => S.fx.push({ type: "fade", g, t: t + dur, dur: .001, to: 0, wipe: true }));
       S.sfx.push({ t, name: "erase" });
       return t;
@@ -174,7 +175,7 @@ const WB = (function () {
       // 统一收尾金句卡（V8）：一句话洞见 + 口诀；盖住前面的画面，定格可截图复习
       quoteCard(o = {}) {
         const t0 = go(.01, 0), dim = group();
-        F(rectD(0, 0, 960, 544), t0, { color: PAL.paper, op: .94, dur: .5 });
+        S.items.push({ kind: "fill", d: rectD(0, 0, 960, 544), t: t0, dur: .5, g: S.g, color: PAL.paper, op: .94 });   // 盖在之前所有内容上面
         endGroup();
         const g = group(), x = 100, y = 104, w = 760, h = 380;
         P(roughRect(x, y, w, h), t0 + .2, .6, { color: PAL.ink, w: 2.8 });
