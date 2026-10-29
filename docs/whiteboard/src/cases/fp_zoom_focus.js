@@ -1,5 +1,6 @@
 // ==================== 第一性原理 ⑥ 焦点先行与镜头缩放律（fp_zoom_focus）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[5].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
+// v2 升级（2026-10-30 起，决策 24）：第 2 幕已升引擎 v2 + 讲解员（第 1 幕是搬到 ze_modifier 的占位幕，不升级）；升级前整份文件原样保存在 cases/fp_zoom_focus_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_zoom_focus = [
   // ───────── 6-1 长修饰放名词后面：先立树干，后挂树枝 ─────────
   {
@@ -24,62 +25,117 @@ WB_LAB.fp_zoom_focus = [
   },
 ];
 WB_LAB.fp_zoom_focus.push(
-  // ───────── 6-2 疑问词抢句首 ─────────
+  // ───────── 6-2 疑问词抢句首（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_zoom_focus_classic.js（R1 零丢失）。上（Where 跳句首）下（问句 / 感叹句套用）拆成两个镜头；紫 / 橙改 V3。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：为什么英语的疑问词总是放在句子第一个？");
-      k.header("⑥ 焦点先行与镜头缩放律", "焦点抢头条", false);
-      const z = k.zh("你周末打算去哪里？", 40, 112, 26);
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "焦点抢头条", sub: "⑥ 焦点先行与镜头缩放律", badges: ["💡"], steps: ["① 中文顺序", "② Where 跳", "③ 问句", "④ 感叹句", "⑤ 口诀", "🔮 预测"] });
+      k.wait(.4);
+
+      // ───── 镜头 1 · Where 跳到句首 ─────
+      D.step(0); D.shot();
+      const z = k.zh("你周末打算去哪里？", 40, 132, 26);
       k.circle(z, 6, 7, C.red);
-      T("中文：疑问词「哪里」在后面", 300, 112, go(.8), .8, { size: 15, color: C.grey, weight: 700 });
+      T("中文：疑问词「哪里」在后面", 300, 132, go(.8), .8, { size: 15, color: C.grey, weight: 700 });
       k.wait(.4);
       N("疑问词：", "Where（哪里）、When（什么时候）、How（怎样）……是提问的焦点。");
-      const cw = 15.6, X = n => 60 + n * cw, y = 200, st = { size: 26, weight: 900, font: M };
-      const word = (w, n, color) => { const g = k.group(); T(w, X(n), y, go(.4), .4, { ...st, color }); k.endGroup(); return g; };
+      const cw = 15.6, X = n => 60 + n * cw, y = 230, st = { size: 26, weight: 900, font: M };
+      const word = (w, n, color) => { const g = D.sub(); T(w, X(n), y, go(.4), .4, { ...st, color }); D.back(); return g; };
       const gYou = word("you", 0, C.ink), gAre = word("are", 4, C.blue), gBase = word("going this weekend", 8, C.ink), gWh = word("Where", 27, C.red);
-      const gLab = k.group(); T("按中文顺序排：", 60, 160, go(.5), .5, { size: 15, color: C.grey }); k.endGroup();
+      const gLab = D.sub(); T("按中文顺序排：", 60, 190, go(.5), .5, { size: 15, color: C.grey }); D.back();
       k.wait(.6);
+      D.step(1);
       N("", "英语要第一秒就让人听清「问的是地点」：Where 跳到句首！");
       const t1 = go(2); k.fade(gLab, t1, .6, 0);
-      k.arc(gWh, t1, 1.6, `M0,0 C${-9 * cw},-80 ${-18 * cw},-80 ${-27 * cw},0`);
+      k.arc(gWh, t1, 1.6, `M0,0 C${-9 * cw},-80 ${-18 * cw},-80 ${-27 * cw},0`); k.sfx("pop", t1 + 1.6);
       k.move(gBase, t1 + .3, 1.2, 6 * cw, 0);
       k.move(gYou, t1 + .3, 1.2, 10 * cw, 0);
+      k.act(me, "surprised", t1 + .2, 1.2);
       N("", "助动词 / be 动词 are 也提上来，紧跟在疑问词后面。");
       k.move(gAre, go(1), 1, 2 * cw, 0);
       T("?", X(32), y, go(.3), .3, { ...st, color: C.ink });
-      P(k.ellipse(X(2.5), y - 9, 56, 26), go(.5), .5, { color: C.orange, w: 3 });
-      T("焦点先出场", X(2.5), y + 40, go(.5), .5, { size: 15, color: C.orange, weight: 900, anchor: "middle" });
+      P(k.ellipse(X(2.5), y - 9, 56, 26), go(.5), .5, { color: C.red, w: 3 });
+      T("焦点先出场", X(2.5), y + 40, go(.5), .5, { size: 15, color: C.red, weight: 900, anchor: "middle" });
       T("are 紧跟其后", X(6.5), y + 62, go(.5), .5, { size: 15, color: C.blue, weight: 900 });
       k.wait(.6);
-      // 下：套用
-      k.say("Where are you going this weekend?", { zh: "你这个周末去哪里？", word: "Where" });
+      const syW = sayAt("Where are you going this weekend?", { zh: "你这个周末去哪里？", word: "Where" });
+      k.act(me, "point", syW.t, Math.max(1.2, syW.dur), { at: [X(2.5), y - 9] });
+      sayAt("You are going to the park this weekend.", { zh: "你这个周末要去公园。", word: "you are going weekend" });
+      k.act(me, "walk", S.says[S.says.length - 1].t, 1.2, { to: 840, words: ["going"] });
+      k.act(me, "walk", S.says[S.says.length - 1].t + 1.4, .9, { to: 892 });
+      k.wait(.4);
+      D.wipe();
+
+      // ───── 镜头 2 · 套用：问句和感叹句 ─────
+      D.step(2); D.shot();
       N("特殊疑问句：", "用疑问词开头、不能用 Yes / No 回答的问句。公式：疑问词 + 一般疑问句。");
-      k.head("提问：焦点词第一个", 40, 300, C.purple, "start", 18);
-      T("Where is my bag?", 40, 336, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
-      T("When do you get up?", 40, 366, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
-      T("How much is this shirt?", 40, 396, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
-      k.say("When do you get up?", { zh: "你几点起床？" });
+      k.head("提问：焦点词第一个", 60, 140, C.blue, "start", 18);
+      T("Where is my bag?", 60, 176, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
+      T("When do you get up?", 60, 206, go(.6), .6, { size: 19, color: C.ink, weight: 900, font: M });
+      T("How much is this shirt?", 60, 236, go(.7), .7, { size: 19, color: C.ink, weight: 900, font: M });
+      const syUp = sayAt("When do you get up?", { zh: "你几点起床？" });
+      k.act(me, "jump", syUp.t + syUp.dur * .4, 1, { words: ["get up"] });
+      sayAt("Where is my bag?", { zh: "我的书包在哪里？", word: "is my bag" });
+      sayAt("How much is this shirt?", { zh: "这件衬衫多少钱？", word: "How much shirt this" });
+      sayAt("When do you get up? I get up at seven.", { zh: "你几点起床？我七点起床。", word: "When do get up" });
+      D.step(3);
       N("感叹句：", "表示强烈感情的句子。被夸的那个词抢到最前面，后面的主谓可以省略。");
-      k.head("感叹：被夸的词第一个", 500, 300, C.orange, "start", 18);
-      D.parts([["What a clever boy ", C.ink], ["(he is)", "#94a3b8"], ["!", C.ink]], 500, 340, 19);
-      D.parts([["How fast ", C.ink], ["(he runs)", "#94a3b8"], ["!", C.ink]], 500, 376, 19);
-      T("括号里的部分可以省略", 500, 406, go(.6), .6, { size: 14, color: C.grey });
+      k.head("感叹：被夸的词第一个", 60, 296, C.red, "start", 18);
+      FP.parts([["What a clever boy ", C.ink], ["(he is)", C.grey], ["!", C.ink]], 60, 336, 19);
+      FP.parts([["How fast ", C.ink], ["(he runs)", C.grey], ["!", C.ink]], 60, 372, 19);
+      T("括号里的部分可以省略", 60, 402, go(.6), .6, { size: 14, color: C.grey });
       k.wait(.6);
-      k.say("What a clever boy!", { zh: "多聪明的男孩啊！" });
+      const syCl = sayAt("What a clever boy!", { zh: "多聪明的男孩啊！" });
+      k.act(me, "cheer", syCl.t, Math.max(1, syCl.dur));
+      const syRun = sayAt("What a clever boy he is! How fast he runs!", { zh: "他是多么聪明的男孩啊！他跑得多快啊！", word: "What a clever boy he fast runs" });
+      k.act(me, "run", syRun.t + syRun.dur * .5, 1, { to: 830, words: ["runs"] });
+      k.act(me, "walk", syRun.t + syRun.dur * .5 + 1.1, .8, { to: 892 });
+      sayAt("Be. Is he a boy? Yes, he is. No, he isn't.", { zh: "be 动词。他是男孩吗？是的。不，不是。", word: "be Yes No" });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "焦点先出场。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2'）：画面上的英文词单读 + 例句（第 1 幕要搬去中英对照总枢，搬时在新位置补，这里不补）
-      k.say("Where is my bag?", { zh: "我的书包在哪里？", word: "is my bag" });
-      k.say("How much is this shirt?", { zh: "这件衬衫多少钱？", word: "How much shirt this" });
-      k.say("You are going to the park this weekend.", { zh: "你这个周末要去公园。", word: "you are going weekend" });
-      k.say("When do you get up? I get up at seven.", { zh: "你几点起床？我七点起床。", word: "When do get up" });
-      k.say("What a clever boy he is! How fast he runs!", { zh: "他是多么聪明的男孩啊！他跑得多快啊！", word: "What a clever boy he fast runs" });
-      k.say("Be. Is he a boy? Yes, he is. No, he isn't.", { zh: "be 动词。他是男孩吗？是的。不，不是。", word: "be Yes No" });
-      D.fin("最想问的、最想夸的词放第一个；问句里 be / 助动词紧跟其后", "口诀：焦点先出场。");
-      k.wait(2);
+      P(k.roughRect(40, 440, 760, 44), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：焦点先出场。", 60, 470, go(1), 1, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "「你的猫在哪里？」英语里「哪里」应该放在哪？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 你的猫在哪里？　→　___ is your cat?", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "问的是地点，Where 抢头条。");
+      const tRev = go(.3);
+      T("Where is your cat? —— 焦点先出场", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Where is your cat?", { zh: "你的猫在哪里？", word: "Where your cat" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "最想问的、最想夸的词放第一个；\n问句里 be / 助动词紧跟其后", rhyme: "口诀：焦点先出场。", hlLines: 2, foot: "🧠 第一性原理 ⑥ 焦点先行与镜头缩放律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "going", act: "讲解员在读到「You are going to the park」时往前走（walk），再走回来" },
+      { word: "get up", act: "讲解员在读到「When do you get up」时跳起来（jump）" },
+      { word: "runs", act: "讲解员在读到「How fast he runs」时跑一小段（run）" },
+    ],
     terms: [
       ["特殊疑问句", "用 what / where / when / how 等疑问词开头的问句，不能用 Yes / No 回答。"],
+      ["可信度徽章", "💡 记忆方法（焦点先出场）：语法书叫「特殊疑问句 = 疑问词 + 一般疑问句」。"],
     ],
   },
 );
