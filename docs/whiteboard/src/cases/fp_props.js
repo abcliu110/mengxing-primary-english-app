@@ -60,6 +60,19 @@ const FP_PROPS = function (k) {
     return { up, lo, close(t, d = .5) { k.move(up, t, d, 0, gap / 2 - 1); k.move(lo, t, d, 0, -gap / 2 + 1); }, open(t, d = .5) { k.move(up, t, d, 0, -gap / 2 + 1); k.move(lo, t, d, 0, gap / 2 - 1); } };
   };
 
+  // 火柴人（组）：脚底在 (x,y)，bend=true 弯腰；返回组 id
+  D.person = (x, y, color = C.purple, bend = false) => {
+    const g = k.group();
+    if (!bend) {
+      P(k.ellipse(x, y - 52, 8, 8), go(.3), .3, { color, w: 2.5 });
+      P(`M${x},${y - 44} L${x},${y - 18} M${x},${y - 18} L${x - 9},${y} M${x},${y - 18} L${x + 9},${y} M${x - 12},${y - 34} L${x + 12},${y - 34}`, go(.4), .4, { color, w: 2.5 });
+    } else {
+      P(k.ellipse(x + 20, y - 34, 8, 8), go(.3), .3, { color, w: 2.5 });
+      P(`M${x + 13},${y - 29} L${x - 2},${y - 18} M${x - 2},${y - 18} L${x - 8},${y} M${x - 2},${y - 18} L${x + 8},${y} M${x + 6},${y - 24} L${x + 18},${y - 14}`, go(.4), .4, { color, w: 2.5 });
+    }
+    k.endGroup(); return g;
+  };
+
   // 小标签框（等宽英文/音标）
   D.tag = (text, x, y, color = C.blue, size = 20) => {
     const w = text.length * size * .6 + 18, h = size + 14;
