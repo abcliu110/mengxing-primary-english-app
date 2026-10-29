@@ -100,3 +100,24 @@
 | 12 | advice / advise：都来自古法语 avis；名词用 c、动词用 s 是 18 世纪定下来的拼写习惯，为了保住名词的 /s/ 音并和动词分开（同类：device/devise、practice/practise） | 📜 | advice："Substitution of -c- for -s- is 18c., to preserve the breath sound and to distinguish from advise. Early Modern English tended to alternate -ce and -se endings … using -se for the verb and -ce for the noun" | https://www.etymonline.com/word/advise |
 | 13 | close（亲近的 /s/）/ close（关上 /z/）：同形词靠读音分开——只当「规律的例子」讲，不讲来历 | ✂️ ⚠️ | （未查来历，不标 📜） | — |
 | 14 | 「元音」「辅音」「清辅音 / 浊辅音」「音标」「前元音 / 后元音」等术语解释 | 💡（教学说法，不是词源） | — | — |
+
+## 溯源幕 ⑥⑦：时间与度量章（`cases/wo_time_num.js` 数字与大数、`cases/wo_time_week.js` 星期与月份）
+
+> 核对日期：2026-10-29（页面已打开逐条读过）。决策 3：H 数字 + I 星期月份 + P 大数换算。
+
+| # | 动画里的说法 | 徽章 | 出处原文要点 | 网址 |
+|---|---|---|---|---|
+| 1 | eleven = 「(十之外) 剩下一个」：古英语 endleofan，one + 「剩下」 | 📜 | eleven："from Old English *enleofan*, *endleofan*, literally 'one left' (over ten) … a compound of \*ain 'one' + from PIE root \*leikw- 'to leave'" | https://www.etymonline.com/word/eleven |
+| 2 | twelve = 「(十之外) 剩下两个」：two + 「剩下」 | 📜 | twelve（同页 Entries linking）："Old English *twelf* 'twelve,' literally 'two left' (over ten)" | https://www.etymonline.com/word/eleven |
+| 3 | -teen = 「再加十」：thirteen = three + ten … nineteen；和 ten 同一个词根 | 📜 | -teen："word-forming element making cardinal numbers from 13 to 19, meaning 'ten more than' … an inflected form of the root of *ten*" | https://www.etymonline.com/word/-teen |
+| 4 | dozen（一打，12 个）来自法语，再往上是拉丁语 duodecim = duo（二）+ decem（十）；和 two、ten 是亲戚（呼应格林定律章） | 📜 | dozen："from Old French *dozaine* … from Latin *duodecim* 'twelve,' from *duo* 'two' + *decem* 'ten'"；"exactly 12, not about 12" | https://www.etymonline.com/word/dozen |
+| 5 | 英语里还藏着「12 进位」的影子（一打、一英尺 12 英寸）；eleven、twelve 本该是 teen 家族的头两个 | 📜 + ✂️ | duodecimal（dozen 页）："English, like many other Germanic languages, retains a shadow number system based on 12. Eleven and twelve ought to be the first numbers of the 'teens' series." | https://www.etymonline.com/word/dozen |
+| 6 | million = 意大利语 millione：mille（一千）+ -one（「大」）→「大大的一千」= 一千个一千 | 📜 | 维基 Million："one thousand thousand … derived from the early Italian *millione* … from *mille*, 'thousand', plus the augmentative suffix -one" | https://en.wikipedia.org/wiki/Million |
+| 7 | 中文是「四位一节」：万 = 10,000，亿 = 万万（1 亿 = 100,000,000）；英文是「三位一节」：thousand、million | 📜 | 维基 Myriad："Chinese, Japanese, Korean … grouped into ten thousands rather than thousands. The character for myriad is 萬 / 万"；维基 Chinese numerals："each represents a myriad, 萬; wàn times the previous" | https://en.wikipedia.org/wiki/Myriad ；https://en.wikipedia.org/wiki/Chinese_numerals |
+| 8 | 一万 = ten thousand；十万 = one hundred thousand；一百万 = one million；一亿 = one hundred million | 💡（换算练习，不是词源） | — | — |
+| 9 | 星期名字来自古罗马的「七个天体」，英语换成了日耳曼的神：Sunday 太阳日、Monday 月亮日、Tuesday 提尔（Tiw）日、Wednesday 沃登（Woden）日、Thursday 雷神（Thor）日、Friday 弗丽嘉（Friga）日、Saturday 土星（Saturn）日——只有 Saturday 没换 | 📜 | 维基 Week："In English, the days use Germanic equivalents of the Roman names, apart from Saturday, which had no equivalent: Sunday (Sol/sun day), Monday (Luna/moon day), Tuesday (Mars/Tiw's day), Wednesday (Mercury/Woden's day), Thursday (Jupiter/Thor's day), Friday (Venus/Friga's day), and Saturday (Saturn day)." | https://en.wikipedia.org/wiki/Week |
+| 10 | Thursday：古英语 þunresdæg，雷神的日子（雷神 Thunor / Thor） | 📜 | 维基 Thursday："derived from Old English *þunresdæg* … named after the Old English god Thunor. Thunor and Thor are derived from the name of the Germanic god of thunder" | https://en.wikipedia.org/wiki/Thursday |
+| 11 | Saturday：罗马人叫它「萨图恩（土星）的日子」 | 📜 | 维基 Saturday："the Romans named Saturday *diēs Sāturnī* ('Saturn's Day') for the god Saturn" | https://en.wikipedia.org/wiki/Saturday |
+| 12 | September 来自拉丁语 septem（七）：最古老的罗马历从三月开始，September 原来是第七个月 | 📜 | 维基 September："September (from Latin *septem*, 'seven') was originally the seventh month in the oldest known Roman calendar … with March … being the first month" | https://en.wikipedia.org/wiki/September |
+| 13 | October = octo（八）、November = novem（九）、December = decem（十）：古罗马历第八、九、十个月 | 📜 | October："from *octo* 'eight' … The eighth month of the old Roman calendar … which began the year in March"；November："from *novem* 'nine' … The ninth month of the Roman calendar"（etymonline December 页 Entries linking） | https://www.etymonline.com/word/December |
+| 14 | 中文「星期一、二、三……」按数字排；日语「月曜日、火曜日……」按天体排（和英语同源的那套） | 💡（中文 / 日文对照，不是同源） | — | — |

@@ -117,7 +117,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 2 | Bluetooth 示范幕（`cases/wo_bluetooth.js`） | ✅ 见下 |
 | 3 | 身世标签 + 词卡跳转（先给 port 家族） | ✅ 见下 |
 | 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | ✅ 四幕上线、清单 211 条对照完（删旧页签等用户确认）。原记录：① 出处 ✅ `caa1493`（SOURCES ④ 12 条、⑤ 14 条，含纠错）；② 真格林定律幕 `wo_grimm`；③ 元音变异三幕 `wo_vowel_a/b/c`；④ 清单 185 条逐项打勾。**删 `vowel_shift` 页签 / 改入口等用户确认，不动** |
-| 5 | 时间与度量章 | 待做 |
+| 5 | 时间与度量章 | 🔧 进行中：① 出处 ✅（SOURCES ⑥⑦ 14 条）；② 数字与大数幕 `wo_time_num`；③ 星期与月份幕 `wo_time_week` |
 
 **Europe 示范幕（2026-10-29）**
 - 出处先登记：`word_origins/SOURCES.md` ② 12 条（etymonline Europe / European / -an / African / Euro- / Euro；维基 Europa 神话、卫星、欧元纸币；中文维基 欧洲 / 坤舆万国全图）。名字来源三种说法（神话公主、eurys+ops「宽脸」、闪米特语「西方」）**全部标 ❓**，神话标 📜 + ✂️（原故事是「劫走」，讲给小学生简化成「驮过大海」）。
