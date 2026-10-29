@@ -65,6 +65,7 @@
 - 05:44｜aux_transformer ② 情态动词大将军升 v2（三镜头 + 🔮 Can she jump high + 金句卡；R4 speak 场景人物 Leo 挥手 + Hello! 气泡、read 讲解员捧书、jump 讲解员跳）｜`cf3428c`｜`work/shots/aux_transformer_2_对比总图.png`｜说话动作库没有，用 wave（开口打招呼）+ 气泡代替；气泡需要英文，新增例句 Hello! I can speak English.（含朗读，无事实性内容）；He cannot swim 是否定句（没在游），不演，r2check 只提示；时长 86→111 秒
 - 05:47｜aux_transformer ③ 三单照妖镜 does 升 v2（三镜头 + 🔮 Does he play football every day + 金句卡；R4 watches / watch Mia 坐下看电视、plays / play 讲解员跳）｜`ba6b1fc`｜`work/shots/aux_transformer_3_对比总图.png`｜「看电视」动作库没有 watch，用场景人物 walk + sit + 电视屏幕亮起（actFx）表现；电视 / 凳子只用墨黑 + 浅蓝底；时长 90→117 秒
 - 05:49｜aux_transformer ④ 过去式照妖镜 did 升 v2，**aux_transformer 4 个案例全部 v2 完成**（三镜头 + 🔮 Did she go to school by bus + 金句卡；R4 went 旅客登机 + 飞机起飞、flew 飞机掠过、go 讲解员走）｜`5fb5bab`｜`work/shots/aux_transformer_4_对比总图.png`｜飞机用 wo_props 的 D.plane（已是 V3 蓝），起飞 / 掠过是场景动作（actFx + move）；讲解员预测题走回后加 turn 朝左，避免金句卡时背对；旧版面工具 H 已无人用，删除（字符串在 build 之外，不影响 R1 对照）；时长 103→127 秒
+- 05:52｜five_patterns 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`260c4c2`｜—｜旧幕渲染不变（reg_render diff 0，只加依赖）；照 aux_transformer / bamboo_tree 先例，INVENTORY 放 docs/whiteboard/lab/
 
 ## 1. 现在做到哪
 
