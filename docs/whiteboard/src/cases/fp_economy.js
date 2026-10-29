@@ -1,6 +1,6 @@
 // ==================== 第一性原理 ① 口腔省力同化律（fp_economy）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[0].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起）：第 1–3 幕已升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_economy_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起）：4 幕已全部升引擎 v2 + 讲解员；升级前整份文件原样保存在 cases/fp_economy_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_economy = [
   // ───────── 1-1 为什么 -s 和 -ed 都有三种读音？（v2 + 讲解员，2026-10-30 试点）─────────
   // 升级前原样保存在 cases/fp_economy_classic.js（R1 零丢失，可随时回退）；原字幕 / 白板 / 朗读 / 术语逐条保留。
@@ -424,74 +424,136 @@ WB_LAB.fp_economy.push(
   },
 );
 WB_LAB.fp_economy.push(
-  // ───────── 1-4 为什么 run 变 running 要双写 n？─────────
+  // ───────── 1-4 为什么 run 变 running 要双写 n？（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_economy_classic.js（R1 零丢失）；原左右两半拆成两个镜头。
+  // v2 六步：① 音节房间 ② 门开了 ③ 守门员 ④ 套用 ⑤ 口诀 🔮 预测。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), FP = FP_PROPS(k), M = D.MONO, C = k.PAL, S = k.S, WOOD = k.C.brown;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：run 变 running，为什么要多写一个 n？");
-      k.header("① 口腔省力同化律", "run → running 为什么双写？", true);
-      N("双写：", "把单词最后一个辅音字母再写一遍，比如 run → running。");
-      const w = k.mono("runing ?", 40, 112, 24, C.red, 900);
-      T("很多同学这样写", 200, 112, go(.6), .6, { size: 16, color: C.grey });
-      // 音节房间
-      N("音节：", "单词里一拍一拍的读音单位。run 只有一拍，是一个音节。");
-      P(k.roughRect(60, 160, 170, 90), go(.8), .8, { color: C.ink, w: 2.5 });
-      F(k.rectD(60, 160, 170, 90), go(.2, 0), { color: "#f8fafc", op: 1 });
-      T("r", 84, 222, go(.3), .3, { size: 44, color: C.ink, weight: 900, font: M });
-      const gu = k.group(); T("u", 120, 222, go(.3), .3, { size: 44, color: C.blue, weight: 900, font: M }); k.endGroup();
-      const gn = k.group(); T("n", 160, 222, go(.3), .3, { size: 44, color: C.ink, weight: 900, font: M }); k.endGroup();
-      const gd = k.group();
-      P(k.roughRect(212, 166, 12, 78), go(.5), .5, { color: C.brown, w: 2.5 });
-      F(k.rectD(212, 166, 12, 78), go(.2, 0), { color: "#fde68a", op: 1 });
-      k.endGroup();
-      N("闭音节：", "「辅音+元音+辅音」，元音被后面的辅音关在门里，读短音。");
-      T("门：n 守着", 172, 276, go(.6), .6, { size: 15, color: C.brown, weight: 900, anchor: "middle" });
-      T("u 读短音 /ʌ/", 60, 148, go(.6), .6, { size: 16, color: C.blue, weight: 900 });
-      k.wait(.5);
-      k.chip("ing", 322, 194, null, { size: 22, color: C.green });
-      T("+", 252, 222, go(.3), .3, { size: 28, color: C.grey, weight: 900 });
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "run → running 为什么双写？", sub: "① 口腔省力同化律", badges: ["💡"], steps: ["① 音节房间", "② 门开了", "③ 守门员", "④ 套用", "⑤ 口诀", "🔮 预测"] });
       k.wait(.4);
-      // 不双写：n 被 ing 拉走，门开
+
+      // ───── 镜头 1 · 音节房间：u 被 n 关在门里 ─────
+      D.step(0); D.shot();
+      N("双写：", "把单词最后一个辅音字母再写一遍，比如 run → running。");
+      k.mono("runing ?", 40, 132, 24, C.red, 900);
+      T("很多同学这样写", 200, 132, go(.6), .6, { size: 16, color: C.grey });
+      k.act(me, "think", S.at - .6, 1.4);
+      N("音节：", "单词里一拍一拍的读音单位。run 只有一拍，是一个音节。");
+      P(k.roughRect(60, 180, 170, 90), go(.8), .8, { color: C.ink, w: 2.5 });
+      F(k.rectD(60, 180, 170, 90), go(.2, 0), { color: C.tintInk, op: 1 });
+      T("r", 84, 242, go(.3), .3, { size: 44, color: C.ink, weight: 900, font: M });
+      const gu = D.sub(); T("u", 120, 242, go(.3), .3, { size: 44, color: C.blue, weight: 900, font: M }); D.back();
+      const gn = D.sub(); T("n", 160, 242, go(.3), .3, { size: 44, color: C.ink, weight: 900, font: M }); D.back();
+      const gd = D.sub();
+      P(k.roughRect(212, 186, 12, 78), go(.5), .5, { color: WOOD, w: 2.5 });
+      F(k.rectD(212, 186, 12, 78), go(.2, 0), { color: "#fde68a", op: 1 });
+      D.back();
+      N("闭音节：", "「辅音+元音+辅音」，元音被后面的辅音关在门里，读短音。");
+      T("门：n 守着", 172, 296, go(.6), .6, { size: 15, color: C.grey, weight: 900, anchor: "middle" });
+      T("u 读短音 /ʌ/", 60, 168, go(.6), .6, { size: 16, color: C.blue, weight: 900 });
+      k.act(me, "point", S.at - .6, 1.4, { at: [218, 226] });
+      k.wait(.5);
+      k.chip("ing", 322, 214, null, { size: 22, color: C.green });
+      T("+", 252, 242, go(.3), .3, { size: 28, color: C.grey, weight: 900 });
+      k.wait(.4);
+
+      // ───── 镜头 1 续 · 不双写：门开了 ─────
+      D.step(1);
       N("开音节：", "元音后面没有辅音挡着，门开了，元音往往读长音。");
       const t1 = go(1.4);
-      k.move(gn, t1, 1, 132, 0); k.rot(gd, t1 + .3, .8, -75, 218, 166);
+      k.move(gn, t1, 1, 132, 0, { ease: "antic" }); k.rot(gd, t1 + .3, .8, -75, 218, 186);
       k.buzz(gu, t1 + 1.1, 1.2, 2.5);
-      T("ru | ning：门开了，u 跑出来读长音 /uː/", 60, 316, go(1.4), 1.4, { size: 17, color: C.red, weight: 900 });
-      T("tap + ing 不双写 → ta | ping，读成 tape 的 /eɪ/", 60, 346, go(1.4), 1.4, { size: 15, color: C.grey, weight: 700 });
-      k.redX(400, 292);
-      k.wait(.8);
-      // 双写：n 回家，第二个 n 来拼尾巴
+      k.act(me, "surprised", t1 + 1, 1.3); k.expr(me, "oops", t1 + 1, 1.6);
+      T("ru | ning：门开了，u 跑出来读长音 /uː/", 60, 336, go(1.4), 1.4, { size: 17, color: C.red, weight: 900 });
+      T("tap + ing 不双写 → ta | ping，读成 tape 的 /eɪ/", 60, 366, go(1.4), 1.4, { size: 15, color: C.grey, weight: 700 });
+      k.redX(400, 312);
+      sayAt("The tap is in the kitchen. This is tape.", { zh: "水龙头在厨房里。这是胶带。", word: "tap tape" });
+      k.wait(.4);
+
+      // ───── 镜头 1 续 · 双写：再派一个 n 守门 ─────
+      D.step(2);
       N("", "办法：再派一个 n。第一个 n 守门，第二个 n 去拼 -ing。");
       const t2 = go(1.2);
-      k.move(gn, t2, .8, -132, 0); k.rot(gd, t2 + .3, .7, 75, 218, 166);
-      const g2 = k.group(); T("n", 292, 222, go(.01, 0), .01, { size: 44, color: C.orange, weight: 900, font: M }); k.endGroup();
-      k.hide(g2); k.fade(g2, go(.6), .6, 1);
+      k.move(gn, t2, .8, -132, 0); k.rot(gd, t2 + .3, .7, 75, 218, 186);
+      const g2 = D.sub(); T("n", 292, 242, go(.01, 0), .01, { size: 44, color: C.blue, weight: 900, font: M }); D.back();
+      k.hide(g2); const tp = go(.6); k.fade(g2, tp, .6, 1); k.squash(g2, tp + .6, .32, .16); k.sfx("pop", tp + .6);
       k.move(g2, go(.01, 0), .01, 0, 0);
-      T("第二个 n", 305, 274, go(.5), .5, { size: 15, color: C.orange, weight: 900, anchor: "middle" });
-      D.parts([["run", C.ink], ["n", C.orange], ["ing", C.green]], 60, 400, 30);
-      T("/ˈrʌnɪŋ/  u 还是短音", 240, 398, go(.8), .8, { size: 18, color: C.green, weight: 900, font: M });
-      k.wait(.6);
-      // 右：套用
+      T("第二个 n", 305, 294, go(.5), .5, { size: 15, color: C.blue, weight: 900, anchor: "middle" });
+      FP.parts([["run", C.ink], ["n", C.blue], ["ing", C.green]], 60, 420, 30);
+      T("/ˈrʌnɪŋ/  u 还是短音", 240, 418, go(.8), .8, { size: 18, color: C.green, weight: 900, font: M });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.4);
+      const syR = sayAt("The dog is running in the park.", { zh: "小狗在公园里跑。", word: "running" });
+      k.act(me, "run", syR.t, Math.max(1.2, syR.dur), { to: 820, words: ["running"] });
+      k.act(me, "walk", syR.t + Math.max(1.2, syR.dur) + .1, 1, { to: 892 });
+      k.act(me, "turn", syR.t + Math.max(1.2, syR.dur) + 1.15, .3, { to: -1 });
+      k.wait(.8);
+      D.wipe();
+
+      // ───── 镜头 2 · 套用：辅元辅 + 元音尾巴 ─────
+      D.step(3); D.shot();
       N("短元音：", "读得又短又快的元音：a /æ/、e /e/、i /ɪ/、o /ɒ/、u /ʌ/。");
-      k.head("辅元辅 + 元音尾巴 → 双写", 520, 112, C.purple, "start", 19);
+      k.head("辅元辅 + 元音尾巴 → 双写", 60, 132, C.blue, "start", 19);
       const row = (base, dbl, tail, y) => {
-        T(base, 540, y, go(.4), .4, { size: 24, color: C.ink, weight: 900, font: M });
-        k.arrow(540 + base.length * 14.4 + 10, y - 8, 540 + base.length * 14.4 + 40, y - 8, C.grey);
-        D.parts([[base, C.ink], [dbl, C.orange], [tail, C.green]], 540 + base.length * 14.4 + 52, y, 24);
+        T(base, 80, y, go(.4), .4, { size: 24, color: C.ink, weight: 900, font: M });
+        k.arrow(80 + base.length * 14.4 + 10, y - 8, 80 + base.length * 14.4 + 40, y - 8, C.grey);
+        FP.parts([[base, C.ink], [dbl, C.blue], [tail, C.green]], 80 + base.length * 14.4 + 52, y, 24);
       };
-      row("swim", "m", "ing", 170); row("big", "g", "er", 222); row("hot", "t", "est", 274); row("stop", "p", "ed", 326);
-      T("-er 更… · -est 最… · -ed 过去式：都是元音开头的尾巴", 520, 372, go(1.2), 1.2, { size: 15, color: C.grey });
+      row("swim", "m", "ing", 190); row("big", "g", "er", 242); row("hot", "t", "est", 294); row("stop", "p", "ed", 346);
+      T("-er 更… · -est 最… · -ed 过去式：都是元音开头的尾巴", 60, 392, go(1.2), 1.2, { size: 15, color: C.grey });
+      k.act(me, "point", S.at - 1, 1.4, { at: [300, 270] });
       k.wait(.6);
-      k.say("The dog is running in the park.", { zh: "小狗在公园里跑。", word: "running" });
+      const syRS = sayAt("I can run and swim.", { zh: "我会跑步和游泳。", word: "run swim ing", blocks: ["ing"] });
+      k.act(me, "run", syRS.t, Math.max(1, syRS.dur * .5), { words: ["run"] });
+      sayAt("Big, bigger. Hot, hottest.", { zh: "大，更大。热，最热。", word: "big hot er est", blocks: ["er", "est"] });
+      const syS = sayAt("Stop! A bus stopped here.", { zh: "停下！一辆公交车停在这里了。", word: "a stop ed", blocks: ["ed"] });
+      k.act(me, "point", syS.t, Math.max(.9, syS.dur * .3), { at: [700, 300], words: ["stop"] });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "辅元辅，加尾巴，派个守门员看家。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2）：画面上的英文词单读 + 例句
-      k.say("I can run and swim.", { zh: "我会跑步和游泳。", word: "run swim ing", blocks: ["ing"] });
-      k.say("The tap is in the kitchen. This is tape.", { zh: "水龙头在厨房里。这是胶带。", word: "tap tape" });
-      k.say("Big, bigger. Hot, hottest.", { zh: "大，更大。热，最热。", word: "big hot er est", blocks: ["er", "est"] });
-      k.say("Stop! A bus stopped here.", { zh: "停下！一辆公交车停在这里了。", word: "a stop ed", blocks: ["ed"] });
-      D.fin("「辅元辅」加元音开头的尾巴 → 双写最后的辅音，保住短元音", "口诀：辅元辅，加尾巴，派个守门员看家。");
-      k.wait(2);
+      P(k.roughRect(40, 420, 760, 50), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：辅元辅，加尾巴，派个守门员看家。", 60, 453, go(1), 1, { size: 21, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "sit 是「辅元辅」。sit 加 -ing 怎么写？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 sit + ing　→　?", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "派个守门员 t：sitting，i 还是短音 /ɪ/。");
+      const tRev = go(.3);
+      FP.parts([["sit", C.ink], ["t", C.blue], ["ing", C.green]], 64, 248, 24);
+      T("—— 双写 t，i 读短音 /ɪ/", 240, 248, go(1), 1, { size: 22, color: C.green, weight: 900 });
+      k.sfx("ding", tRev + .9);
+      const sySit = sayAt("Sit, sitting. I am sitting on a chair.", { zh: "坐，正在坐。我正坐在椅子上。", word: "sit sitting chair on am" });
+      k.act(me, "sit", sySit.t, Math.max(1.2, sySit.dur), { words: ["sit", "sitting"] });
+      D.hold(2);
+
+      k.quoteCard({ insight: "「辅元辅」加元音开头的尾巴 → \n双写最后的辅音，保住短元音", rhyme: "口诀：辅元辅，加尾巴，派个守门员看家。", hlLines: 2, foot: "🧠 第一性原理 ① 口腔省力同化律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "running", act: "讲解员原地跑起来（run），与「The dog is running」同步" },
+      { word: "stop", act: "讲解员伸手示意停下（point），与「Stop!」同步" },
+      { word: "run", act: "讲解员原地跑（run），与「I can run」同步" },
+      { word: "sit", act: "讲解员坐下（sit），与「Sit, sitting」同步" },
+      { word: "sitting", act: "讲解员坐下（sit），与「I am sitting on a chair」同步" },
+    ],
     r2skip: ["runing", "ru", "ning", "ta", "ping"],   // 拼错的 runing 和「ru | ning」「ta | ping」音节切分演示（错误 / 残片，不读）
     terms: [
       ["音节", "单词里一拍一拍的读音单位。run 一拍（1 个音节），running 两拍（run-ning）。"],
@@ -499,6 +561,7 @@ WB_LAB.fp_economy.push(
       ["开音节", "元音后面没有辅音挡着，门开着，元音常读长音（字母本身的音），如 ta-ping 里的 a。"],
       ["短元音 / 长元音", "短元音又短又快：/æ/ /e/ /ɪ/ /ɒ/ /ʌ/；长元音拉长或滑动：/eɪ/ /iː/ /uː/。"],
       ["双写", "把最后一个辅音字母再写一遍：run → running、big → bigger。"],
+      ["可信度徽章", "💡 记忆方法（守门员、音节房间）· 📜 有出处的历史 · ✂️ 简化说法 · ⚠️ 有要注意的地方。"],
     ],
   },
 );
