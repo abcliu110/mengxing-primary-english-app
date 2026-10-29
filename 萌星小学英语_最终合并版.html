@@ -21167,7 +21167,7 @@ WB_LAB.fp_one_king.push(
 <script type="text/plain" id="wbmod-fp_zoom_focus" data-deps="wo_props fp_props">
 // ==================== 第一性原理 ⑥ 焦点先行与镜头缩放律（fp_zoom_focus）====================
 // 4 幕 = FIRST_PRINCIPLES_DB[5].acts。分镜见 docs/whiteboard/first_principles/STORYBOARD.md。
-// v2 升级（2026-10-30 起，决策 24）：第 2 幕已升引擎 v2 + 讲解员（第 1 幕是搬到 ze_modifier 的占位幕，不升级）；升级前整份文件原样保存在 cases/fp_zoom_focus_classic.js。依赖 wo_props + fp_props。
+// v2 升级（2026-10-30 起，决策 24）：第 2、4 幕已升引擎 v2 + 讲解员（第 1 幕是搬到 ze_modifier 的占位幕，不升级）；升级前整份文件原样保存在 cases/fp_zoom_focus_classic.js。依赖 wo_props + fp_props。
 WB_LAB.fp_zoom_focus = [
   // ───────── 6-1 长修饰放名词后面：先立树干，后挂树枝 ─────────
   {
@@ -21365,25 +21365,33 @@ WB_LAB.fp_zoom_focus.push(
   },
 );
 WB_LAB.fp_zoom_focus.push(
-  // ───────── 6-4 3 段时间轴 × 3 种拍法（总览）─────────
+  // ───────── 6-4 3 段时间轴 × 3 种拍法（总览）（v2 + 讲解员，2026-10-30）─────────
+  // 升级前原样保存在 cases/fp_zoom_focus_classic.js（R1 零丢失）。时间轴左移收窄（190–920 → 130–760）给讲解员让位，三行下移 20；褐 / 紫 / 橙改 V3（过去 红 · 现在 绿 · 将来 蓝；拍法 墨黑）。
   {
     build(k) {
-      const { C, N, T, P, F, go } = k, D = FP_PROPS(k), M = D.MONO;
+      k.v2();
+      const { N, T, P, F, go } = k, D = WO_PROPS(k), M = D.MONO, C = k.PAL, S = k.S;
+      const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+      const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
       N("", "这一幕：所有时态，都是「选时间 × 选拍法」。");
-      k.header("⑥ 焦点先行与镜头缩放律", "时间轴 × 镜头拍法", false);
-      N("时态：", "动词的样子告诉你：事情发生在什么时候、是什么状态。");
-      const xs = [300, 540, 790];
-      P(k.wl(190, 130, 920, 130, .8) + " M908,122 L920,130 L908,138", go(1), 1, { color: C.ink, w: 3 });
-      P(k.wl(420, 118, 420, 142, .3) + " " + k.wl(665, 118, 665, 142, .3), go(.4), .4, { color: C.ink, w: 2.5 });
-      T("过去", xs[0], 112, go(.3), .3, { size: 18, color: C.brown, weight: 900, anchor: "middle" });
-      T("现在", xs[1], 112, go(.3), .3, { size: 18, color: C.green, weight: 900, anchor: "middle" });
-      T("将来", xs[2], 112, go(.3), .3, { size: 18, color: C.blue, weight: 900, anchor: "middle" });
-      const mk = k.group(); const md = `M${xs[1] - 8},130 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
-      P(md, go(.2), .2, { color: C.red, w: 2 }); F(md, go(.1, 0), { color: C.red, op: 1 }); k.endGroup();
-      T("第一步：看时间路标词，选位置", 190, 160, go(.8), .8, { size: 14, color: C.grey });
+      k.act(me, "walk", .3, 1.6, { to: 892 });
+      k.act(me, "wave", 2.0, 1.8);
+      D.scene({ title: "时间轴 × 镜头拍法", sub: "⑥ 焦点先行与镜头缩放律", badges: ["✂️"], steps: ["① 时间轴", "② 快照", "③ 录像", "④ 结算", "⑤ 口诀", "🔮 预测"] });
       k.wait(.4);
-      const head = (t, sub, y, color) => {
-        T(t, 40, y, go(.4), .4, { size: 18, color, weight: 900 });
+      D.step(0); D.shot();
+      N("时态：", "动词的样子告诉你：事情发生在什么时候、是什么状态。");
+      const xs = [230, 450, 670];
+      P(k.wl(130, 150, 760, 150, .8) + " M748,142 L760,150 L748,158", go(1), 1, { color: C.ink, w: 3 });
+      P(k.wl(340, 138, 340, 162, .3) + " " + k.wl(560, 138, 560, 162, .3), go(.4), .4, { color: C.ink, w: 2.5 });
+      T("过去", xs[0], 132, go(.3), .3, { size: 18, color: C.red, weight: 900, anchor: "middle" });
+      T("现在", xs[1], 132, go(.3), .3, { size: 18, color: C.green, weight: 900, anchor: "middle" });
+      T("将来", xs[2], 132, go(.3), .3, { size: 18, color: C.blue, weight: 900, anchor: "middle" });
+      const mk = D.sub(); const md = `M${xs[1] - 8},150 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0`;
+      P(md, go(.2), .2, { color: C.red, w: 2 }); F(md, go(.1, 0), { color: C.red, op: 1 }); D.back();
+      T("第一步：看时间路标词，选位置", 130, 180, go(.8), .8, { size: 14, color: C.grey });
+      k.wait(.4);
+      const head = (t, sub, y) => {
+        T(t, 40, y, go(.4), .4, { size: 18, color: C.ink, weight: 900 });
         T(sub, 40, y + 22, go(.4), .4, { size: 13, color: C.grey });
       };
       const cell = (x, sig, form, y, color) => {
@@ -21391,47 +21399,84 @@ WB_LAB.fp_zoom_focus.push(
         T(form, x, y + 22, go(.5), .5, { size: 19, color, weight: 900, font: M, anchor: "middle" });
       };
       // 快照
+      D.step(1);
       N("一般态（快照）：", "把动作当成一个整体：习惯、规律、事实。");
-      head("📸 快照", "一般态", 216, C.blue);
+      head("📸 快照", "一般态", 236);
       k.move(mk, go(.6), .6, xs[0] - xs[1], 0);
-      cell(xs[0], "yesterday", "did", 216, C.brown);
+      cell(xs[0], "yesterday", "did", 236, C.red);
       k.move(mk, go(.6), .6, xs[1] - xs[0], 0);
-      cell(xs[1], "every day", "do / does", 216, C.green);
+      cell(xs[1], "every day", "do / does", 236, C.green);
       k.move(mk, go(.6), .6, xs[2] - xs[1], 0);
-      cell(xs[2], "tomorrow", "will do", 216, C.blue);
+      cell(xs[2], "tomorrow", "will do", 236, C.blue);
       k.move(mk, go(.6), .6, xs[1] - xs[2], 0);
+      const syPl = sayAt("I played yesterday. I play every day. I will play tomorrow.", { zh: "我昨天玩了，我每天玩，我明天会玩。" });
+      k.act(me, "jump", syPl.t + syPl.dur * .3, 1, { words: ["play", "played"] });
+      sayAt("Yesterday, did. Every day, do, does. Tomorrow, will.", { zh: "昨天，做了。每天，做。明天，将会。", word: "yesterday did every day do does tomorrow will" });
+      sayAt("Did you play yesterday? He does his homework every day.", { zh: "你昨天玩了吗？他每天写作业。", word: "did does" });
       // 录像
-      k.say("I played yesterday. I play every day. I will play tomorrow.", { zh: "我昨天玩了，我每天玩，我明天会玩。" });
+      D.step(2);
       N("进行态（录像）：", "正在发生的动态画面，be 动词 + doing。");
-      head("🎥 录像", "进行态", 296, C.purple);
-      cell(xs[1], "Look! / now", "am/is/are doing", 296, C.purple);
+      head("🎥 录像", "进行态", 316);
+      cell(xs[1], "Look! / now", "am/is/are doing", 316, C.green);
+      const syRd = sayAt("Look! She is reading now.", { zh: "看！她正在读书。", word: "is reading" });
+      const bk = k.prop("book", 0, 0, { hidden: true });
+      k.act(me, "read", syRd.t, Math.max(1.4, syRd.dur), { prop: bk, words: ["reading"] });
+      sayAt("Look, now. Is, am, are doing.", { zh: "看，现在。is、am、are 正在做。", word: "look now am are doing" });
+      sayAt("Be quiet, please. The baby is sleeping.", { zh: "请安静。宝宝在睡觉。", word: "be" });
+      sayAt("I am doing my homework. We are doing sports.", { zh: "我正在写作业。我们正在运动。", word: "am are doing am are doing" });
       // 结算
-      k.say("Look! She is reading now.", { zh: "看！她正在读书。", word: "is reading" });
+      D.step(3);
       N("完成态（结算）：", "做完了、有了结果，have / has + done（过去分词）。");
-      head("🏁 结算", "完成态", 376, C.orange);
-      cell(xs[1], "already / just", "have/has done", 376, C.orange);
-      T("第二步：看动作状态，选拍法", 190, 424, go(.8), .8, { size: 14, color: C.grey });
-      T("详细讲解看「时态矩阵」实验室", 640, 424, go(.8), .8, { size: 14, color: C.grey });
+      head("🏁 结算", "完成态", 396);
+      cell(xs[1], "already / just", "have/has done", 396, C.green);
+      T("第二步：看动作状态，选拍法", 130, 444, go(.8), .8, { size: 14, color: C.grey });
+      T("详细讲解看「时态矩阵」实验室", 520, 444, go(.8), .8, { size: 14, color: C.grey });
       k.wait(.6);
-      k.say("I have already finished my homework.", { zh: "我已经写完作业了。", word: "have finished" });
+      const syF = sayAt("I have already finished my homework.", { zh: "我已经写完作业了。", word: "have finished" });
+      k.act(me, "cheer", syF.t, Math.max(1, syF.dur));
+      sayAt("Already, just. Has, have, done.", { zh: "已经，刚刚。has、have、做完。", word: "already just has done" });
+      sayAt("She has just done her homework.", { zh: "她刚刚写完作业。", word: "has just done" });
+
+      // ───── 口诀 ─────
+      D.step(4);
       N("口诀：", "先选时间，再选镜头。");
-      // R2 补朗读（2026-10-29，旧幕推广 P2'）：画面上的英文词单读 + 例句（第 1 幕要搬去中英对照总枢，搬时在新位置补，这里不补）
-      k.say("Yesterday, did. Every day, do, does. Tomorrow, will.", { zh: "昨天，做了。每天，做。明天，将会。", word: "yesterday did every day do does tomorrow will" });
-      k.say("Did you play yesterday? He does his homework every day.", { zh: "你昨天玩了吗？他每天写作业。", word: "did does" });
-      k.say("Look, now. Is, am, are doing.", { zh: "看，现在。is、am、are 正在做。", word: "look now am are doing" });
-      k.say("Be quiet, please. The baby is sleeping.", { zh: "请安静。宝宝在睡觉。", word: "be" });
-      k.say("I am doing my homework. We are doing sports.", { zh: "我正在写作业。我们正在运动。", word: "am are doing am are doing" });
-      k.say("Already, just. Has, have, done.", { zh: "已经，刚刚。has、have、做完。", word: "already just has done" });
-      k.say("She has just done her homework.", { zh: "她刚刚写完作业。", word: "has just done" });
-      D.fin("先看时间路标词选「过去 / 现在 / 将来」，再看动作状态选「快照 / 录像 / 结算」", "口诀：先选时间，再选镜头。");
-      k.wait(2);
+      P(k.roughRect(40, 466, 760, 44), go(.6), .6, { color: C.blue, w: 2.4 });
+      T("口诀：先选时间，再选镜头。", 60, 496, go(1), 1, { size: 20, color: C.blue, weight: 900 });
+      k.act(me, "nod", S.at - .5, .8);
+      k.wait(.6);
+      D.wipe();
+
+      // ───── 🔮 预测 ─────
+      D.step(5); D.shot();
+      N("预测：", "Listen! 小鸟此刻正在唱歌。选哪个时间、哪种拍法？先想 3 秒！");
+      P(k.roughRect(40, 150, 760, 120), go(.8), .8, { color: C.green, w: 2.5 });
+      F(k.rectD(40, 150, 760, 120), go(.2, 0), { color: C.tintGreen, op: .9 });
+      T("🔮 Listen! The bird ___ (sing).", 64, 200, go(1), 1, { size: 24, color: C.ink, weight: 900, font: M });
+      k.act(me, "think", S.at, 3.1);
+      D.hold(3);
+      N("揭晓：", "Listen 说明就是现在、正在发生：现在 × 录像 = is singing。");
+      const tRev = go(.3);
+      T("is singing —— 现在 × 🎥 录像", 64, 248, go(1), 1, { size: 22, color: C.green, weight: 900, font: M });
+      k.act(me, "cheer", tRev + .4, 1.3); k.sfx("ding", tRev + .9);
+      sayAt("Listen! The bird is singing.", { zh: "听！小鸟在唱歌。", word: "listen the bird sing singing" });
+      D.hold(2);
+
+      k.quoteCard({ insight: "先看时间路标词选「过去 / 现在 / 将来」，\n再看动作状态选「快照 / 录像 / 结算」", rhyme: "口诀：先选时间，再选镜头。", hlLines: 2, foot: "🧠 第一性原理 ⑥ 焦点先行与镜头缩放律" });
+      k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+      D.hold(2.5);
+      D.finish(.45);
     },
+    actionWords: [
+      { word: "play", act: "讲解员在读到「I play every day」时跳起来（jump）" },
+      { word: "reading", act: "讲解员捧书读（read），与「She is reading now」同步" },
+    ],
     terms: [
       ["时态", "动词的不同样子，表示事情发生的时间（过去 / 现在 / 将来）和状态。"],
       ["一般态", "像拍快照：把动作当成整体，讲习惯、规律或事实。"],
       ["进行态", "像录像：动作正在进行，be + doing。"],
       ["完成态", "像结算：动作已经完成、有了结果，have / has + done。"],
       ["时间信号词", "提示时态的词：yesterday（过去）、every day（现在）、tomorrow（将来）、now、already……"],
+      ["可信度徽章", "✂️ 简化说法：这里只讲小学常用的几格，完整的时态表看「时态矩阵」实验室。"],
     ],
   },
 );
