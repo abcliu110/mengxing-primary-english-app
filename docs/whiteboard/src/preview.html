@@ -8,7 +8,7 @@
 const q = new URLSearchParams(location.search), TAB = q.get('tab') || 'bamboo_tree';
 if (TAB.startsWith('fp_')) document.write('<script src="cases/fp_props.js"><\/script>');
 if (TAB.startsWith('ze_') || TAB === 'pron_map') document.write('<script src="cases/fp_props.js"><\/script>');
-if (TAB.startsWith('wo_') || TAB.startsWith('ze_') || TAB.startsWith('fp_') || ['phrasal_key', 'eight_endings', 'pron_map', 'intonation_map', 'irregular_plural', 'bamboo_tree', 'aux_transformer', 'five_patterns', 'tense_matrix', 'past_clans', 'adj_order'].includes(TAB)) document.write('<script src="cases/wo_props.js"><\/script>');
+if (TAB.startsWith('wo_') || TAB.startsWith('ze_') || TAB.startsWith('fp_') || ['phrasal_key', 'eight_endings', 'pron_map', 'intonation_map', 'irregular_plural', 'bamboo_tree', 'aux_transformer', 'five_patterns', 'tense_matrix', 'past_clans', 'adj_order', 'metaphor_code'].includes(TAB)) document.write('<script src="cases/wo_props.js"><\/script>');
 if (TAB.startsWith('wo_vowel_')) document.write('<script src="cases/wo_vowel_kit.js"><\/script>');
 document.write('<script src="cases/' + TAB + '.js"><\/script>');
 </script>
