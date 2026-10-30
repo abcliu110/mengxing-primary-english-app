@@ -4,14 +4,14 @@
 
 ## 数字
 
-- 入库 **182** / 1487 词
+- 入库 **191** / 1487 词
 - G1：0 / 66
 - G3：13 / 130
 - G2：9 / 83
 - POLY：0 / 2
-- G5：69 / 296
-- G4：32 / 206
-- G6：39 / 204
+- G5：75 / 296
+- G4：34 / 206
+- G6：40 / 204
 - V6：20 / 500
 
 ## 入库词表
@@ -26,6 +26,8 @@
 | strawberry | compound | straw + berry |
 | fifteen | affix | five（五，五个） + -teen（十几） |
 | sixteen | affix | six（六，六个） + -teen（十几） |
+| blackboard | compound | black（黑色的；黑色） + board |
+| classroom | compound | class（班级/课） + room（房间） |
 | window | compound | wind（风） + eye（眼睛） |
 | friendly | affix | friend（朋友） + -ly（……地 / 有……样子的） |
 | bathroom | compound | bath + room（房间） |
@@ -47,6 +49,7 @@
 | tomorrow | affix | to- + morrow |
 | angry | affix | anger + -y（有……的 / 多……的） |
 | happy | affix | hap + -y（有……的 / 多……的） |
+| actor | affix | act（表演；行动；扮演） + -or（……的人 / 物） |
 | actress | affix | actor（男演员，演员） + -ess |
 | airport | compound | air（空气，天空，大气（不可数）） + port（港口） |
 | telephone | affix | tele- + -phone |
@@ -70,11 +73,13 @@
 | somewhere | compound | some（一些(肯定句/礼貌请求)） + where（在哪里，到哪里（询问地点、位置与方向）） |
 | careful | affix | care（关心，在乎；照料，小心） + -ful（充满……的） |
 | careless | affix | care（关心，在乎；照料，小心） + -less（没有……的） |
+| useful | affix | use（使用，利用；用途） + -ful（充满……的） |
 | hopeful | affix | hope（希望，盼望） + -ful（充满……的） |
 | wonderful | affix | wonder（想知道；奇迹，惊奇） + -ful（充满……的） |
 | beautiful | affix | beauty（美，美丽；美人） + -ful（充满……的） |
 | unhappy | affix | un-（不 / 反） + happy（快乐的，高兴的） |
 | tidy | affix | tide + -y（有……的 / 多……的） |
+| review | affix | re-（再 / 回） + view |
 | disappear | affix | dis-（不 / 相反） + appear（出现，显得） |
 | international | affix | inter- + national（国家的，全国的，民族的） |
 | pianist | affix | piano（钢琴） + -ist（……的人（专家）） |
@@ -96,8 +101,10 @@
 | ninety | affix | nine（九，九个） + -ty（几十） |
 | fourth | affix | four（四，四个） + -th（（序数 / 变名词）） |
 | fifth | affix | five（五，五个） + -th（（序数 / 变名词）） |
+| seventh | affix | seven（七，七个） + -th（（序数 / 变名词）） |
 | eighth | affix | eight（八，八个） + -th（（序数 / 变名词）） |
 | ninth | affix | nine（九，九个） + -th（（序数 / 变名词）） |
+| tenth | affix | ten（十，十个） + -th（（序数 / 变名词）） |
 | twelfth | affix | twelve（十二） + -th（（序数 / 变名词）） |
 | twice | affix | twi- + -ce |
 | once | compound | one（一，一个） + -s |
@@ -134,6 +141,7 @@
 | firefly | compound | fire（火，炉火；火灾） + fly（飞；放飞（风筝）） |
 | ladybug | compound | lady + bug |
 | grasshopper | compound | grass（草，草地） + hopper |
+| earthworm | compound | earth（地球；泥土，大地） + worm |
 | housewife | compound | house（房子/住宅） + wife |
 | gentleman | compound | gentle + man（成年男子，男人） |
 | friendship | affix | friend（朋友） + -ship |
@@ -159,6 +167,7 @@
 | forgetful | affix | forget（忘记，遗忘） + -ful（充满……的） |
 | forget | affix | for- + get（得到/变得(get up起床)） |
 | darkness | affix | dark（黑暗的，暗的；深色的） + -ness（（变名词）……的状态） |
+| weakness | affix | weak（弱的，虚弱的；不擅长的） + -ness（（变名词）……的状态） |
 | disagree | affix | dis-（不 / 相反） + agree（同意，赞成，答应） |
 | enjoy | affix | en- + joy（欢乐，喜悦，乐趣） |
 | shopkeeper | compound | shop（商店，店铺；去购物） + keeper（饲养员，看守人，管理员） |

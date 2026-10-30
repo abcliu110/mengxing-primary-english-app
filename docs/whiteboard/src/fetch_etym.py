@@ -48,6 +48,13 @@ def etymo(w):
     r = subprocess.run(['curl', '-sL', '--compressed', '-m', '50', '-A', UA_B, '-w', '\n%{http_code}',
                         'https://web.archive.org/web/2026id_/https://www.etymonline.com/word/' + urllib.parse.quote(q)], capture_output=True)
     out = r.stdout.decode('utf-8', 'ignore'); t, _, code = out.rpartition('\n'); st = int(code) if code.strip().isdigit() else 0
+    if st == 403:                            # 2026-10-31：最近快照常是 Cloudflare 403 页，改取 CDX 里最近一次 200 快照
+        ts = subprocess.run(['curl', '-s', '-m', '40', 'https://web.archive.org/cdx/search/cdx?url=www.etymonline.com/word/'
+                             + urllib.parse.quote(q) + '&filter=statuscode:200&limit=-1&fl=timestamp'], capture_output=True).stdout.decode().strip()
+        if ts.isdigit():
+            r = subprocess.run(['curl', '-sL', '--compressed', '-m', '50', '-A', UA_B, '-w', '\n%{http_code}',
+                                'https://web.archive.org/web/' + ts + 'id_/https://www.etymonline.com/word/' + urllib.parse.quote(q)], capture_output=True)
+            out = r.stdout.decode('utf-8', 'ignore'); t, _, code = out.rpartition('\n'); st = int(code) if code.strip().isdigit() else 0
     b = body(t) if st == 200 else ''
     if st == 200 and not b: st = 0          # 拿到的不是词条页（限流页等）：不落盘，下次重抓
     if st in (200, 404): p.write_text(b, encoding='utf-8')

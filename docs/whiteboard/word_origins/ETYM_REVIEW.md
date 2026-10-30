@@ -4,23 +4,23 @@
 
 ## 数字
 
-- 入库 **603** / 1487 词
-- G1：32 / 66
+- 入库 **625** / 1487 词
+- G1：34 / 66
 - G3：60 / 130
-- G2：35 / 83
+- G2：38 / 83
 - POLY：2 / 2
-- G5：94 / 296
-- G4：80 / 206
-- G6：62 / 204
-- V6：238 / 500
+- G5：97 / 296
+- G4：82 / 206
+- G6：64 / 204
+- V6：248 / 500
 
 ## 未入库原因
 
 | 原因 | 词数 |
 |---|---|
-| Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） | 413 |
-| Etymonline 尚未抓取（存档抓取进行中，抓完重跑） | 179 |
-| Wiktionary 词源无可解析的来源链 / 构词模板 | 149 |
+| Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） | 441 |
+| Wiktionary 词源无可解析的来源链 / 构词模板 | 155 |
+| Etymonline 尚未抓取（存档抓取进行中，抓完重跑） | 123 |
 | Wiktionary 无英语词源小节 | 71 |
 | 词组 / 多词条目（词组不单独溯源） | 37 |
 | Etymonline 无词条（或存档无快照） | 35 |
@@ -30,7 +30,6 @@
 | id | 词 | 原因 |
 |---|---|---|
 | G1_001 | bag | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G1_002 | book | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G1_004 | pencil | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G1_005 | ruler | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G1_006 | schoolbag | Etymonline 无词条（或存档无快照） |
@@ -50,7 +49,6 @@
 | G1_043 | car | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G1_044 | doll | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G1_045 | kite | Wiktionary 词源无可解析的来源链 / 构词模板 |
-| G1_048 | cake | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G1_049 | chicken | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G1_050 | egg | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G3_140 | in | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -63,7 +61,7 @@
 | G2_062 | father | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G2_063 | grandfather | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G2_064 | grandmother | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G2_066 | sister | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G2_066 | sister | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G2_068 | big | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G2_069 | handsome | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G2_071 | short | Wiktionary 词源无可解析的来源链 / 构词模板 |
@@ -94,7 +92,7 @@
 | G5_Q06 | which | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_Q07 | whose | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G3_112 | brown | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G3_113 | orange | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G3_113 | orange | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G3_122 | elephant | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G3_124 | panda | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G3_125 | rabbit | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -111,8 +109,8 @@
 | G3_P08 | this / that / these / those | 词组 / 多词条目（词组不单独溯源） |
 | G3_Q02 | who / whom | 词组 / 多词条目（词组不单独溯源） |
 | G3_Q08 | how / how many / how much | 词组 / 多词条目（词组不单独溯源） |
-| G4_153 | blackboard | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G4_154 | classroom | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G4_153 | blackboard | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
+| G4_154 | classroom | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_155 | computer | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G4_156 | fan | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_158 | picture | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -126,7 +124,6 @@
 | G2_0595 | here | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G2_0596 | there | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G2_0414 | today | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G2_0489 | play | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G2_0502 | rain | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G2_0504 | snow | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G3_0512 | sleep | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -139,8 +136,7 @@
 | G4_177 | noodles | Wiktionary 无英语词源小节 |
 | G1_0564 | morning | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_179 | vegetables | Wiktionary 无英语词源小节 |
-| G4_180 | doctor | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G4_181 | driver | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G4_181 | driver | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_183 | garden | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G1_0574 | old | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_185 | playground | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -216,7 +212,7 @@
 | G6_291 | stayed | Wiktionary 无英语词源小节 |
 | G6_292 | washed | Wiktionary 无英语词源小节 |
 | G6_293 | watched | Etymonline 无词条（或存档无快照） |
-| G6_294 | bought | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G6_294 | bought | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G6_297 | rode | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G6_298 | Internet | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G6_299 | badminton | Wiktionary 词源无可解析的来源链 / 构词模板 |
@@ -224,7 +220,7 @@
 | G6_301 | gym | Wiktionary 无英语词源小节 |
 | G6_Q09 | how old / how tall / how heavy | 词组 / 多词条目（词组不单独溯源） |
 | G4_0320 | act | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G5_0321 | actor | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G5_0321 | actor | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0322 | actress | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0326 | visitor | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G3_0328 | television | Wiktionary 词源无可解析的来源链 / 构词模板 |
@@ -234,16 +230,14 @@
 | G3_0337 | sport | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G5_0341 | fact | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0342 | difficult | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G6_0346 | respect | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G4_0350 | street | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G6_0351 | instrument | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G6_0354 | design | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0356 | service | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G5_0359 | safety | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0362 | partner | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0365 | movie | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G3_0367 | count | Wiktionary 词源无可解析的来源链 / 构词模板 |
-| G5_0368 | country | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G5_0368 | country | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G5_0369 | countryside | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G5_0373 | guest | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G2_0930 | table | Wiktionary 词源无可解析的来源链 / 构词模板 |
@@ -279,13 +273,13 @@
 | G1_0995 | toy | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0407 | sunlight | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G4_0408 | sunglasses | Wiktionary 词源无可解析的来源链 / 构词模板 |
-| G1_1000 | boy | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G1_1000 | boy | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0409 | sunflower | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0410 | raincoat | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G3_0411 | rainbow | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G2_0413 | birthday | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0415 | yesterday | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G5_0417 | weekday | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G5_0417 | weekday | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0418 | sometimes | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G5_0419 | always | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0421 | railway | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -304,7 +298,7 @@
 | G5_0438 | somewhere | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0440 | careful | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0443 | use | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G5_0444 | useful | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G5_0444 | useful | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0445 | useless | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G6_0447 | hopeful | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0449 | wonderful | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -320,8 +314,6 @@
 | G5_0461 | untidy | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G4_0462 | tidy | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0464 | usually | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G5_0465 | review | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G4_0468 | remember | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G5_0470 | dislike | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0471 | disappear | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0476 | impossible | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -367,11 +359,11 @@
 | G4_0553 | eighty | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0554 | ninety | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0555 | fourth | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G5_0557 | sixth | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G5_0558 | seventh | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G5_0557 | sixth | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
+| G5_0558 | seventh | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0559 | eighth | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G5_0561 | tenth | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G3_0565 | evening | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G5_0561 | tenth | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
+| G3_0565 | evening | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G5_0566 | building | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0568 | excited | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G5_0569 | exciting | Wiktionary 无英语词源小节 |
@@ -401,14 +393,14 @@
 | G6_0618 | themselves | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0620 | speaker | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0624 | retell | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G6_0627 | knowledge | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G6_0627 | knowledge | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0629 | learner | Etymonline 无词条（或存档无快照） |
 | G5_0633 | tour | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0634 | tourist | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0635 | travel | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0636 | traveller | Etymonline 无词条（或存档无快照） |
 | G5_0638 | across | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G2_0642 | listen | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G2_0642 | listen | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0644 | feeling | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0645 | smell | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G4_0649 | shopping | Wiktionary 词源无可解析的来源链 / 构词模板 |
@@ -423,7 +415,6 @@
 | G6_0671 | swam | Wiktionary 无英语词源小节 |
 | G6_0672 | drank | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G6_0674 | exactly | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G5_0675 | perfect | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G6_0677 | photograph | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0679 | transport | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0681 | import | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -492,7 +483,7 @@
 | G3_0754 | popcorn | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G3_0755 | hotdog | Wiktionary 无英语词源小节 |
 | G3_0756 | hamburger | Wiktionary 词源无可解析的来源链 / 构词模板 |
-| G4_0757 | dumpling | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G4_0757 | dumpling | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G4_0758 | duckling | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G3_0759 | butterfly | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0760 | dragonfly | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
@@ -503,7 +494,7 @@
 | G3_0765 | honeybee | Etymonline 无词条（或存档无快照） |
 | G4_0766 | polar bear | 词组 / 多词条目（词组不单独溯源） |
 | G5_0767 | seahorse | Wiktionary 无英语词源小节 |
-| G5_0768 | earthworm | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G5_0768 | earthworm | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0769 | housewife | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0770 | grandparents | Wiktionary 无英语词源小节 |
 | G4_0771 | parents | Wiktionary 无英语词源小节 |
@@ -518,7 +509,7 @@
 | G6_0782 | magician | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G4_0783 | magic | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G6_0784 | librarian | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G5_0786 | painter | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G5_0786 | painter | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0788 | painting | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G4_0789 | drawing | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G3_0790 | draw | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -566,16 +557,15 @@
 | G6_0843 | deeply | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G6_0845 | widely | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0848 | luckily | Wiktionary 词源无可解析的来源链 / 构词模板 |
-| G6_0849 | peaceful | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G6_0849 | peaceful | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0853 | painful | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0854 | forgetful | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0856 | happiness | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G6_0857 | sadness | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G6_0858 | darkness | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G6_0860 | weakness | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G6_0860 | weakness | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0863 | invitation | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G6_0869 | excitement | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G5_0872 | agree | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G6_0875 | enjoyable | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G4_0876 | enjoy | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G6_0878 | valuable | Wiktionary 词源无可解析的来源链 / 构词模板 |
@@ -626,8 +616,7 @@
 | G3_0933 | floor | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G2_0936 | cup | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G3_0943 | meat | Wiktionary 词源无可解析的来源链 / 构词模板 |
-| G2_0946 | peach | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| G3_0947 | lemon | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| G3_0947 | lemon | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0952 | kangaroo | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G4_0953 | koala | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0955 | shark | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -647,7 +636,6 @@
 | G4_0985 | city | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0987 | bank | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G5_0988 | club | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| G2_0990 | game | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | G3_0996 | bell | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | G4_0997 | flag | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | G3_0998 | king | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
@@ -658,7 +646,6 @@
 | V6_学校_31 | maths | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_学校_35 | PE | Wiktionary 无英语词源小节 |
 | V6_学校_39 | exam | Wiktionary 无英语词源小节 |
-| V6_学校_45 | page | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_学校_53 | chalk | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_学校_55 | scissors | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_学校_58 | pencil-box | Wiktionary 无英语词源小节 |
@@ -669,14 +656,13 @@
 | V6_学校_79 | explain | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_身体_8 | tongue | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_身体_10 | shoulder | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_身体_15 | knee | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_身体_15 | knee | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_身体_17 | toe | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_身体_21 | blood | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_身体_24 | voice | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_身体_32 | stomachache | Etymonline 无词条（或存档无快照） |
-| V6_身体_33 | cough | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_身体_33 | cough | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_身体_38 | hurt | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_身体_41 | wake | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_身体_59 | fit | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_动物_0 | animal | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_动物_1 | pet | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -687,7 +673,7 @@
 | V6_动物_35 | penguin | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_动物_39 | dinosaur | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_动物_40 | insect | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_动物_44 | spider | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_动物_44 | spider | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_动物_53 | fur | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_食物_7 | pizza | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_食物_13 | mutton | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -711,7 +697,7 @@
 | V6_家庭_12 | grandma | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_家庭_17 | cousin | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_家庭_20 | baby | Wiktionary 词源无可解析的来源链 / 构词模板 |
-| V6_家庭_24 | girl | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_家庭_24 | girl | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_家庭_27 | people | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_家庭_28 | person | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_家庭_35 | house | Wiktionary 词源无可解析的来源链 / 构词模板 |
@@ -719,7 +705,6 @@
 | V6_家庭_54 | mirror | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_家庭_56 | lock | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_天气_20 | lightning | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_天气_33 | fine | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_天气_38 | shine | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_节日_1 | year | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_节日_2 | month | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -746,7 +731,7 @@
 | V6_交通_27 | wheel | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_交通_34 | stop | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_交通_40 | south | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_交通_42 | left | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_交通_42 | left | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_交通_48 | far | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_城市_13 | theatre | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_城市_18 | store | Wiktionary 词源无可解析的来源链 / 构词模板 |
@@ -755,9 +740,7 @@
 | V6_城市_25 | fire station | 词组 / 多词条目（词组不单独溯源） |
 | V6_城市_26 | company | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_城市_34 | gate | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_城市_37 | lift | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_职业_0 | job | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_职业_4 | pupil | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_职业_11 | police officer | 词组 / 多词条目（词组不单独溯源） |
 | V6_职业_17 | businessman | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_职业_29 | secretary | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -765,7 +748,6 @@
 | V6_职业_38 | robot | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_日常_3 | do | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_日常_13 | sweep | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_日常_15 | eat | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_日常_19 | find | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_日常_20 | look for | 词组 / 多词条目（词组不单独溯源） |
 | V6_日常_24 | start | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -799,7 +781,7 @@
 | V6_服装_11 | jeans | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_服装_13 | sock | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_服装_24 | pocket | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_服装_28 | size | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_服装_28 | size | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_服装_29 | wear | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_服装_30 | put on | 词组 / 多词条目（词组不单独溯源） |
 | V6_服装_31 | take off | 词组 / 多词条目（词组不单独溯源） |
@@ -810,8 +792,7 @@
 | V6_情感_13 | nervous | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_情感_15 | boring | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_情感_16 | lonely | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_情感_24 | wise | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
-| V6_情感_30 | lazy | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_情感_30 | lazy | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_情感_36 | popular | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_运动_6 | ping-pong | Wiktionary 无英语词源小节 |
 | V6_运动_7 | table tennis | 词组 / 多词条目（词组不单独溯源） |
@@ -823,7 +804,7 @@
 | V6_运动_17 | boating | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_运动_20 | hobby | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_运动_22 | violin | Wiktionary 词源无可解析的来源链 / 构词模板 |
-| V6_运动_24 | drum | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_运动_24 | drum | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_运动_25 | flute | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_运动_36 | stamp | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_0 | I | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -831,7 +812,6 @@
 | V6_核心_2 | my | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_6 | yours | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_7 | he | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_核心_9 | his | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_核心_10 | she | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_12 | hers | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_13 | it | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -841,10 +821,8 @@
 | V6_核心_18 | ours | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_21 | their | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_22 | theirs | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_核心_24 | that | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_核心_25 | these | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_26 | those | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_核心_28 | who | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_核心_39 | above | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_核心_42 | in front of | 词组 / 多词条目（词组不单独溯源） |
 | V6_核心_43 | beside | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
@@ -859,13 +837,13 @@
 | V6_核心_59 | or | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_核心_60 | because | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_64 | than | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_核心_67 | often | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_核心_67 | often | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_70 | already | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_73 | also | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_74 | too | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_75 | either | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_核心_77 | quite | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
-| V6_MORPH_6 | geese | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_MORPH_6 | geese | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_MORPH_7 | leaves | Wiktionary 无英语词源小节 |
 | V6_MORPH_8 | knives | Wiktionary 无英语词源小节 |
 | V6_MORPH_9 | wolves | Wiktionary 无英语词源小节 |
@@ -895,7 +873,7 @@
 | V6_MORPH_40 | wrote | Wiktionary 无英语词源小节 |
 | V6_MORPH_43 | flew | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_MORPH_44 | drew | Wiktionary 无英语词源小节 |
-| V6_MORPH_46 | kept | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
+| V6_MORPH_46 | kept | Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错） |
 | V6_MORPH_47 | swept | Etymonline 尚未抓取（存档抓取进行中，抓完重跑） |
 | V6_MORPH_50 | met | Wiktionary 词源无可解析的来源链 / 构词模板 |
 | V6_MORPH_51 | sent | Etymonline 无词条（或存档无快照） |
@@ -918,6 +896,7 @@
 
 | 词 | 类型 | 来源链（新 → 旧） |
 |---|---|---|
+| book | native | 中古英语 bok ← 古英语 bōc |
 | pen | native | 中古英语 pen ← 古英语 penn（enclosure, fold, pen） |
 | ear | native | 中古英语 eare ← 古英语 ēare（ear） |
 | eye | native | 中古英语 e ← 古英语 ēage |
@@ -941,6 +920,7 @@
 | pear | loan | 中古英语 pere ← 古英语 pere ← 原始西日耳曼语 *peru ← 通俗拉丁语 pira |
 | plane | loan | 拉丁语 plānum（flat surface） |
 | train | loan | 中古英语 trayne（train） ← 古法语 train（a delay, a drawing out） |
+| cake | loan | 中古英语 cake ← 古诺斯语 kaka（cake） |
 | juice | loan | 中古英语 jus ← 古法语 jus ← 拉丁语 ius（broth, soup, sauce） |
 | milk | native | 中古英语 mylk ← 古英语 meolc |
 | rice | loan | 中古英语 rys ← 古法语 ris |
@@ -1012,6 +992,7 @@
 | away | native | 中古英语 away ← 古英语 āweġ |
 | help | native | 中古英语 help ← 古英语 help（help, aid, assistance, relief） ← 原始日耳曼语 *helpō（help） |
 | write | native | 中古英语 writen ← 古英语 wrītan |
+| play | native | 中古英语 pleyen ← 中古英语 pleye ← 古英语 plegian |
 | read | native | 中古英语 reden ← 古英语 rǣdan（to counsel, advise, consult; interpret, read） |
 | sun | native | 中古英语 soen ← 古英语 sunna ← 原始西日耳曼语 *sunnā ← 原始日耳曼语 *sunnǭ（sun） |
 | wind | native | 中古英语 wynd ← 古英语 wind（wind） |
@@ -1019,6 +1000,7 @@
 | kitchen | loan | 中古英语 kichene ← 古英语 cyċen ← 原始西日耳曼语 *kukinā ← 晚期拉丁语 cocīna ← 原始印欧语 *pekʷ-（to cook, become ripe） |
 | fork | loan | 中古英语 forke（digging fork） ← 古英语 force ← 原始西日耳曼语 *furkō（fork） ← 拉丁语 furca（pitchfork, forked stake; gallows, beam, stake, support post, yoke） |
 | spoon | native | 中古英语 spoon ← 古英语 spōn（sliver, chip of wood, shaving） |
+| doctor | loan | 中古英语 doctor ← 盎格鲁-诺曼法语 doctour ← 拉丁语 doctor（teacher） |
 | nurse | loan | 中古英语 norice ← 古法语 norrice ← 晚期拉丁语 nūtrīcia ← 拉丁语 nūtrīcius（that which nourishes） |
 | library | loan | 中古英语 librarie ← 盎格鲁-诺曼法语 librarie ← 古法语 librairie ← 拉丁语 librarium（bookcase, chest for books） |
 | dinner | loan | 中古英语 dyner ← 古法语 disner（lunch”, but originally “breakfast） |
@@ -1082,9 +1064,11 @@
 | office | loan | 中古英语 office ← 古法语 office ← 拉丁语 officium（personal, official, or moral duty; official position; function; ceremony, esp. last rites） |
 | officer | loan | 中古英语 officer ← 盎格鲁-诺曼法语 officer ← 古法语 officer ← 晚期拉丁语 officiarius（official） ← 拉丁语 officium（office） |
 | special | loan | 中古英语 *special ← 古法语 especial |
+| respect | loan | 中古英语 respect ← 古法语 respect ← 拉丁语 respectus（a looking at, regard, respect） |
 | expect | loan | 拉丁语 expectāre |
 | press | native | 中古英语 presse（throng, crowd, clothespress） ← 古英语 press（clothespress） |
 | express | loan | 法语 exprès ← 拉丁语 expressus |
+| instrument | loan | 中古英语 instrument ← 古法语 instrument ← 拉丁语 īnstrūmentum（an implement, tool） |
 | destroy | loan | 中古英语 destroyen ← 古法语 destruire |
 | sign | loan | 中古英语 signe ← 古英语 seġn（sign; mark; token） ← 古法语 signe ← 拉丁语 signum（a mark; sign; token） |
 | serve | loan | 中古英语 serven ← 古法语 servir |
@@ -1116,8 +1100,10 @@
 | famous | loan | 中古英语 famous ← 盎格鲁-诺曼法语 famous ← 拉丁语 fāmōsus |
 | danger | loan | 中古英语 daunger（power, dominion, peril） ← 古法语 dangier |
 | usual | loan | 中古英语 usual ← 古法语 usuel ← 拉丁语 ūsuālis（for use, fit for use, also of common use, customary, common, ordinary, usual） |
+| review | loan | 中古英语 revewe ← 古法语 reveue |
 | return | loan | 中古英语 returnen ← 盎格鲁-诺曼法语 returner ← 古法语 retourner ← 中世纪拉丁语 retornare（to turn back） |
 | repeat | loan | 中古英语 repeten ← 古法语 repeter |
+| remember | loan | 中古英语 remembren ← 古法语 remembrer（to remember） ← 晚期拉丁语 rememorari（to remember again） |
 | reply | loan | 中古英语 replyen ← 古法语 replier（to reply） |
 | appear | loan | 中古英语 apperen ← 古法语 aparoir |
 | discover | loan | 中古英语 discoveren ← 古法语 descovrir ← 晚期拉丁语 discoperīre ← 拉丁语 dis- |
@@ -1197,6 +1183,7 @@
 | mice | native | 中古英语 mys ← 古英语 mȳs（mice） |
 | child | native | 中古英语 child ← 古英语 ċild |
 | exact | loan | 拉丁语 exāctus |
+| perfect | loan | 中古英语 perfit ← 古法语 parfit |
 | camera | loan | 拉丁语 camera（chamber or bedchamber） |
 | geography | loan | 中古法语 géographie ← 拉丁语 geōgraphia |
 | export | loan | 拉丁语 exportare |
@@ -1238,6 +1225,7 @@
 | protect | loan | 拉丁语 prōtēctus（covered, protected） |
 | movement | loan | 中古英语 mevement ← 古法语 movement |
 | agreement | loan | 中古英语 agrement ← 古法语 agrement |
+| agree | loan | 中古英语 agreen ← 古法语 agreer（to accept or receive kindly） |
 | disagree | loan | 中古英语 disagre（to refuse to assent to） ← 盎格鲁-诺曼法语 disagreer ← 古法语 desagreer |
 | comfortable | loan | 中古英语 comfortable ← 古法语 confortable |
 | joy | loan | 中古英语 joye ← 古法语 joie ← 晚期拉丁语 gaudia |
@@ -1258,6 +1246,7 @@
 | pork | loan | 中古英语 pork ← 古法语 porc（swine, hog, pig; pork） ← 拉丁语 porcus（domestic hog, pig） |
 | tea | loan | 荷兰语 thee |
 | coffee | loan | 荷兰语 koffie |
+| peach | loan | 中古英语 peche ← 古法语 pesche |
 | mango | loan | 葡萄牙语 manga |
 | cherry | loan | 中古英语 chery ← 盎格鲁-诺曼法语 cherise |
 | lion | loan | 中古英语 lyoun ← 古法语 lion ← 拉丁语 leō |
@@ -1278,6 +1267,7 @@
 | air | loan | 中古英语 aire ← 古法语 air ← 拉丁语 āēr |
 | fire | native | 中古英语 fyr ← 古英语 fȳr（fire） |
 | team | native | 中古英语 tem ← 古英语 tēam（child-bearing, offspring, brood, set of draught animals） |
+| game | native | 中古英语 game ← 古英语 gamen（sport, joy, mirth, pastime, game, amusement, pleasure） |
 | race | loan | 中古英语 race ← 古英语 rǣs（a race, swift or violent running, rush, onset） ← 原始西日耳曼语 *rās ← 古诺斯语 rás（a running, race） |
 | prize | loan | 中古英语 prise ← 古法语 prise（a taking, capture, a seizure, a thing seized, a prize, booty, also hold, purchase） |
 | present | loan | 中古英语 present ← 古法语 present ← 拉丁语 praesens |
@@ -1295,6 +1285,7 @@
 | word | native | 中古英语 word ← 古英语 word ← 原始西日耳曼语 *word ← 原始日耳曼语 *wurdą（word） |
 | sentence | loan | 中古法语 sentence |
 | story | loan | 中古英语 storie ← 盎格鲁-诺曼法语 estorie ← 拉丁语 historia |
+| page | loan | 中古法语 page |
 | grade | loan | 中古法语 grade（a grade, degree） ← 拉丁语 gradus（a step, pace, degree） |
 | group | loan | 法语 groupe（cluster, group） ← 意大利语 gruppo |
 | rule | loan | 中古英语 reule ← 古法语 riule ← 拉丁语 regula（straight stick, bar, ruler, pattern） |
@@ -1318,6 +1309,7 @@
 | medicine | loan | 中古英语 medicin ← 中古法语 medicine ← 古法语 medecine ← 拉丁语 medicīna（the healing art, medicine, a physician's shop, a remedy, medicine） |
 | pain | loan | 中古英语 peyne ← 盎格鲁-诺曼法语 peine ← 拉丁语 poena（punishment, pain） |
 | rest | native | 中古英语 rest ← 古英语 ræst ← 原始西日耳曼语 *rastu ← 原始日耳曼语 *rastō |
+| wake | native | 中古英语 waken ← 古英语 wacan |
 | wash | native | 中古英语 wasshen（to wash） ← 古英语 wascan（to wash） ← 原始西日耳曼语 *waskan（to wash） ← 原始日耳曼语 *waskaną（to wash, get wet） ← 原始印欧语 *wed-（wet, water） |
 | brush | loan | 中古英语 brusshe ← 古法语 broisse |
 | comb | native | 中古英语 comb ← 古英语 camb（comb） ← 原始西日耳曼语 *kamb ← 原始日耳曼语 *kambaz（comb） ← 原始印欧语 *ǵómbʰos（tooth） |
@@ -1362,6 +1354,7 @@
 | thunder | native | 中古英语 thonder ← 古英语 þunor（thunder） ← 原始西日耳曼语 *þunr ← 原始日耳曼语 *þunraz |
 | wet | native | 中古英语 wet（wet, moistened） ← 中古英语 weten（to wet） ← 古英语 wǣtan（to wet, moisten, water） ← 原始西日耳曼语 *wātijan ← 原始日耳曼语 *wētijaną（to wet, make wet） ← 原始印欧语 *wed-（water, wet） |
 | dry | native | 中古英语 drye ← 古英语 drȳġe（dry; parched, withered） |
+| fine | loan | 中古英语 fin ← 古法语 fin（fine, minute, exact） |
 | degree | loan | 中古英语 degre ← 古法语 degré |
 | temperature | loan | 拉丁语 temperātūra |
 | blow | native | 中古英语 blowen ← 古英语 blāwan（to blow, breathe, inflate, sound） |
@@ -1395,8 +1388,10 @@
 | corner | loan | 中古英语 corner ← 盎格鲁-诺曼法语 cornere |
 | entrance | loan | 中古法语 entrance（entry） |
 | exit | loan | 中古英语 exit ← 拉丁语 exitus（departure, going out; way by which one may go out, egress; (figuratively) conclusion, termination; (figuratively) death; income, revenue） |
+| lift | loan | 中古英语 liften ← 古诺斯语 lypta（to lift, air） |
 | toilet | loan | 中古法语 toilette |
 | work | native | 中古英语 work ← 古英语 weorc ← 原始西日耳曼语 *werk ← 原始日耳曼语 *werką（work） ← 原始印欧语 *wérǵom（work） ← 原始印欧语 *werǵ-（to make） |
+| pupil | loan | 中古英语 pupille ← 盎格鲁-诺曼法语 pupille（orphan） ← 拉丁语 pūpillus（orphan, minor） |
 | guide | loan | 中古英语 guide ← 古法语 guide |
 | prince | loan | 中古英语 prince ← 盎格鲁-诺曼法语 prince ← 拉丁语 prī̆nceps（first, foremost (person)） |
 | princess | loan | 中古英语 princesse ← 盎格鲁-诺曼法语 princesse ← 古法语 princesse |
@@ -1411,6 +1406,7 @@
 | give | loan | 中古英语 given ← 古英语 ġefan ← 古诺斯语 gefa（to give） |
 | put | native | 中古英语 putten ← 古英语 putian |
 | open | native | 中古英语 open ← 古英语 open（open） ← 原始西日耳曼语 *opan ← 原始日耳曼语 *upanaz（open） ← 原始印欧语 *upo（up from under, over） |
+| eat | native | 中古英语 eten ← 古英语 etan（to eat） |
 | look | native | 中古英语 loken ← 古英语 lōcian |
 | see | native | 中古英语 seen ← 古英语 sēon（to see, look, behold, perceive, observe, discern, understand, know） ← 原始西日耳曼语 *sehwan ← 原始日耳曼语 *sehwaną（to see） ← 原始印欧语 *sekʷ-（to see, notice） |
 | try | loan | 中古英语 trien（to separate out, sift, choose, select, evaluate, try a legal case） ← 盎格鲁-诺曼法语 trier ← 古法语 trier（to choose, pick out or separate from others, sift, cull） |
@@ -1481,6 +1477,7 @@
 | glad | native | 中古英语 glad ← 古英语 glæd（shining; bright; cheerful; glad） ← 原始日耳曼语 *gladaz（shiny; gleaming; radiant; happy; glossy; smooth; flat） |
 | proud | native | 中古英语 proud ← 古英语 prūd |
 | sorry | native | 中古英语 sory ← 古英语 sāriġ（feeling or expressing grief, sorry, grieved, sorrowful, sad, mournful, bitter） |
+| wise | native | 中古英语 wys ← 古英语 wīs（wise） |
 | brave | loan | 中古法语 brave ← 意大利语 bravo |
 | shy | native | 中古英语 shy（shy） ← 古英语 sċēoh（shy） |
 | match | native | 中古英语 macche ← 古英语 mæċċa ← 原始西日耳曼语 *makkjō ← 原始日耳曼语 *makô ← 原始印欧语 *mag-（to knead, work） |
@@ -1494,11 +1491,14 @@
 | you | native | 中古英语 you ← 古英语 ēow（you） ← 原始西日耳曼语 *iwwi（you） ← 原始日耳曼语 *iwwiz（you） |
 | your | native | 中古英语 your ← 古英语 ēower |
 | him | native | 中古英语 him ← 古英语 him |
+| his | native | 中古英语 hes ← 古英语 his（his; its） |
 | her | native | 中古英语 here ← 古英语 hire（her） |
 | our | native | 中古英语 oure ← 古英语 ūre |
 | they | loan | 中古英语 þei ← 古诺斯语 þeir |
 | them | loan | 中古英语 þem ← 古诺斯语 þeim |
 | this | native | 中古英语 þis ← 古英语 þis |
+| that | native | 中古英语 that ← 古英语 þæt（the, that） ← 原始西日耳曼语 *þat ← 原始日耳曼语 *þat |
+| who | native | 中古英语 who ← 古英语 hwā |
 | how | native | 中古英语 how ← 古英语 hū ← 原始西日耳曼语 *hwō ← 原始日耳曼语 *hwō（through what, how） |
 | at | native | 中古英语 at ← 古英语 æt（at, near, by, toward） |
 | over | native | 中古英语 over ← 古英语 ofer ← 原始西日耳曼语 *obar ← 原始日耳曼语 *uber（over） ← 原始印欧语 *upér（above; over） |
