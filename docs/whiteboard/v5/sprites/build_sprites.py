@@ -1,5 +1,5 @@
 """build_sprites.py —— v5 角色帧库：绿幕 PNG → 抠图 / 去溢色 / 裁边 / 锚点 → sprites/<lib>.js（WebP data URI）
-用法：python3 build_sprites.py <lib名> name[:flip] ...   （源图在 sprites/src/<name>.png）
+用法：python3 build_sprites.py <lib名> name[:flip] ...   （源图 sprites/src/<name>.png，没有就读仓库帧库 sprites/cast/<name>.webp）
 锚点：bottom 脚底行；ax 上 30% 的水平中心（身体轴）；foot 下半部最右点（踢球接触点）；hand 中段最右点。"""
 import sys, json, base64, io, os
 import numpy as np
@@ -9,14 +9,17 @@ lib, names = sys.argv[1], sys.argv[2:]
 FR, FI = {}, {}
 for spec in names:
     name, *opt = spec.split(':')
-    im = Image.open(f'{HERE}/src/{name}.png').convert('RGB')
-    a = np.array(im).astype(int); r, g, b = a[..., 0], a[..., 1], a[..., 2]
-    green = (g > 150) & (g > r + 50) & (g > b + 50)
-    edge = (g > r + 15) & (g > b + 15) & ~green          # 半透明边：去溢色
-    alpha = np.where(green, 0, 255).astype(np.uint8)
-    a[..., 1] = np.where(edge, np.maximum(r, b), g)
-    rgba = np.dstack([a.astype(np.uint8), alpha])
-    img = Image.fromarray(rgba, 'RGBA')
+    if os.path.exists(f'{HERE}/src/{name}.png'):
+        im = Image.open(f'{HERE}/src/{name}.png').convert('RGB')
+        a = np.array(im).astype(int); r, g, b = a[..., 0], a[..., 1], a[..., 2]
+        green = (g > 150) & (g > r + 50) & (g > b + 50)
+        edge = (g > r + 15) & (g > b + 15) & ~green          # 半透明边：去溢色
+        alpha = np.where(green, 0, 255).astype(np.uint8)
+        a[..., 1] = np.where(edge, np.maximum(r, b), g)
+        rgba = np.dstack([a.astype(np.uint8), alpha])
+        img = Image.fromarray(rgba, 'RGBA')
+    else:                                                 # 仓库里的人物帧库（pack_cast.py 已抠好）
+        img = Image.open(f'{HERE}/cast/{name}.webp').convert('RGBA'); alpha = np.array(img)[..., 3]
     # 去掉孤立绿噪点：alpha 轻微收缩
     ys, xs = np.nonzero(alpha > 0); img = img.crop((xs.min() - 2, ys.min() - 2, xs.max() + 3, ys.max() + 3))
     if 'flip' in opt: img = img.transpose(Image.FLIP_LEFT_RIGHT)

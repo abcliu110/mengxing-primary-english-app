@@ -485,3 +485,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - tense_matrix ①：12 块白板 4×3 版面，镜头逐块推进，最后拉远全图；新帧库 `tm1`（16 帧）；R1 91/91；控制台 0 报错、sandbox 0 报错、确定性通过；单文件 862 KB（16 帧角色约 527 KB，长课超出单句 650 KB 预算，记入 §2.9 F 待定）。
 - 踩坑：AI 出图常把「踢球准备」画成腿往前（3 次失败），最终用「双脚着地、俯身看球」作准备帧；有一张女孩走路帧多画了一个人、一张带了狗，重出。
 
+
+
+## 2026-10-30 12:05 JST · v5 人物先行帧库（决策 32 第 2 阶段）
+- 用户 11:28 要求先重画所有旧白板动画中的人物和动作帧，再重画版面。
+- AI 绿幕联排图 tm2a/b、tm3a/b、tm4a、L1–L15、V01–V34（原图在 Hark 工作区 `/workspace/work/kf/`，不进仓库）→ 切出 331 帧 → `v5/sprites/cast/*.webp`（透明，MAXH 520，Q78，共 7.1 MB）。
+- 新工具：`split_sheet.py`、`cut_box.py`、`pack_cast.py`；`build_sprites.py` 增加 cast/ 回退读取。
+- 登记：`v5/CAST_V5.md`。已知待返工：l_lift0–2、missw_give、V29 Leo 发色。
