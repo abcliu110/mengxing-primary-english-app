@@ -917,3 +917,75 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · vv_turn_out 第2幕 v5.1 重画并替换进 App
 - 🎬 万能动词 · turn out ②：R1 20/20，19 s，主文件 38,281,135 bytes。
+
+## 2026-10-30 · vv_look_on 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look on ①：R1 6/6，11 s，主文件 38,484,762 bytes。
+
+## 2026-10-30 · vv_look_on 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look on ②：R1 19/19，20 s，主文件 38,757,373 bytes。
+
+## 2026-10-30 · vv_look_off 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look away ①：R1 8/8，12 s，主文件 38,973,038 bytes。
+
+## 2026-10-30 · vv_look_off 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look away ②：R1 16/16，18 s，主文件 39,115,004 bytes。
+
+## 2026-10-30 · vv_look_up 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look up ①：R1 7/7，11 s，主文件 39,255,286 bytes。
+
+## 2026-10-30 · vv_look_up 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look up ②：R1 21/21，19 s，主文件 39,494,601 bytes。
+
+## 2026-10-30 · vv_look_down 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look down ①：R1 7/7，12 s，主文件 39,689,812 bytes。
+
+## 2026-10-30 · vv_look_down 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look down ②：R1 17/17，18 s，主文件 39,831,320 bytes。
+
+## 2026-10-30 · vv_look_in 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look in ①：R1 9/9，12 s，主文件 40,015,419 bytes。
+
+## 2026-10-30 · vv_look_in 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look in ②：R1 20/20，19 s，主文件 40,214,206 bytes。
+
+## 2026-10-30 · vv_look_out 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look out ①：R1 8/8，12 s，主文件 40,431,839 bytes。
+
+## 2026-10-30 · vv_look_out 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · look out ②：R1 17/17，18 s，主文件 40,643,048 bytes。
+
+## 2026-10-30 · vv_give_on 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give on ①：R1 6/6，11 s，主文件 40,809,763 bytes。
+
+## 2026-10-30 · vv_give_on 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give on ②：R1 18/18，19 s，主文件 40,980,762 bytes。
+
+## 2026-10-30 · vv_give_off 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give off ①：R1 7/7，12 s，主文件 41,173,425 bytes。
+
+## 2026-10-30 · vv_give_off 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give off ②：R1 17/17，17 s，主文件 41,339,386 bytes。
+
+## 2026-10-30 · vv_give_up 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give up ①：R1 9/9，13 s，主文件 41,523,928 bytes。
+
+## 2026-10-30 · vv_give_up 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give up ②：R1 18/18，18 s，主文件 41,754,737 bytes。
+
+## 2026-10-30 · vv_give_down 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give back ①：R1 9/9，13 s，主文件 41,981,604 bytes。
+
+## 2026-10-30 · vv_give_down 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give back ②：R1 21/21，20 s，主文件 42,220,675 bytes。
+
+## 2026-10-30 · vv_give_in 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give in ①：R1 9/9，12 s，主文件 42,433,862 bytes。
+
+## 2026-10-30 · vv_give_in 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give in ②：R1 19/19，19 s，主文件 42,693,045 bytes。
+
+## 2026-10-30 · vv_give_out 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give out ①：R1 7/7，12 s，主文件 42,888,708 bytes。
+
+## 2026-10-30 · vv_give_out 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · give out ②：R1 17/17，18 s，主文件 43,053,209 bytes。
