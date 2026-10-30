@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-31 00:05 JST（COVERAGE 数字）；2026-10-31 00:02 JST（引擎块再次合并）；2026-10-30 23:45 JST（18 条规律章）；2026-10-30 23:28 JST（格林规则组 4 幕）；2026-10-30 23:22 JST（词源第 2 批）；23:15 JST（合并重复引擎块 + 字体缓存）；23:06 JST（O1 VOCAB_DB 拆分提交）；此前 23:10 JST（用户 22:13 授权完成全部，进度见 §5.2）；22:30 JST（主题思维导图讲解幕 ✅、第一性原理核查 ✅；词源系列待开工，分阶段计划见 §5.1 ⑥）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
+> 更新：2026-10-31 01:05 JST（坏帧返工 ✅、旧 canvas 兜底退役 ✅、人物帧压画质用户叫停；词源 Etymonline 缓存随沙箱重置丢失，正在重抓，见 §5.2 1b）；2026-10-31 00:05 JST（COVERAGE 数字）；2026-10-31 00:02 JST（引擎块再次合并）；2026-10-30 23:45 JST（18 条规律章）；2026-10-30 23:28 JST（格林规则组 4 幕）；2026-10-30 23:22 JST（词源第 2 批）；23:15 JST（合并重复引擎块 + 字体缓存）；23:06 JST（O1 VOCAB_DB 拆分提交）；此前 23:10 JST（用户 22:13 授权完成全部，进度见 §5.2）；22:30 JST（主题思维导图讲解幕 ✅、第一性原理核查 ✅；词源系列待开工，分阶段计划见 §5.1 ⑥）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
 > 设计稿：`DESIGN_MINDMAP_WORDCARD.md`（用户 2026-10-30 19:39「按照你的来」已确认）：普通单词卡通用模板 ✅；思维导图讲解幕待做。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，§2.9 = v5.1 标准画法）→ `SOP.md`（§17 = v5.1 验收）。流水、历史决策、每幕验收数字都在 `CHANGELOG.md`（文末有本文 16:10 之前的完整快照）。
 > 本文只写现状、做法、风险、下一步；做完一件事：流水追加到 CHANGELOG，本文只改现状。
@@ -45,7 +45,7 @@
 - **节奏**（2026-10-30 用户：白板太快）：`scenes/auto.js` 的 `readT()` 按小学生阅读速度给每段留时间（中文 5 字/秒、英文 2.2 词/秒），换板前 `HOLD` = 1.5 秒，中文字幕没读完不进下一句；手工幕（tense_matrix / past_clans / adj_order）用 `scene({ stretch: 1.5 })` 整体放慢（`wb5.js` 在 `K.done()` 里缩放时间轴和朗读提示）。用户嫌慢 / 嫌快就只调这两个数，再 `rebuild_all.py`。
 - **框架语义挂载**：`wb5HDSwap(canvas, 页签, 幕)` 第三个参数给定时 = 由页面自己的视角按钮选幕，不另出分幕按钮（`hd_fr01`–`hd_fr10`，幕 = pIdx）。导出时 `HD_ACT=0` 固定剧场内动画幕；原 canvas 把核心事物名截到 16 字，清单里已换回全名（只增不减）。
 - **验收 / 回归**：单幕 `python3 v5/shots.py <out.html> <png> <秒…>`（确定性、errors、sandbox）；App 内 `app_check.py <页签> <状态字段> <幕数>`（白板案例，如 `tense_matrix tenseIdx 5`、`adj_order adjExIdx 4`、`aux_transformer auxIdx 4`）、`app_check2.py <fp|wo|ze> <幕 id> <幕数>`、`app_check3.py vv_<动词>_<方向>`、`app_check4.py hd_<单元> "navigateTo(...)"`（HD 剧场，检查旧 canvas 已消失、每幕可播）。主脚本语法 + 锚点：`python3 src/jscheck.py`。
-- **环境**（沙箱重置后）：`pip install -q numpy pillow playwright fonttools brotli && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium`；`cd docs/whiteboard/v5 && npm i`；字体放 `/workspace/work/fonts/wk.ttf`（LXGW WenKai v1.501）、`kalam.ttf`；git 身份丢了就 `git config user.name/user.email` 沿用上一次提交的作者。
+- **环境**（沙箱重置后）：pip 会装到用户目录，`install-deps` 写成 `sudo env PYTHONPATH=/home/sandbox/.local/lib/python3.12/site-packages python3 -m playwright install-deps chromium`；`pip install -q numpy pillow playwright fonttools brotli && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium`；`cd docs/whiteboard/v5 && npm i`；字体放 `/workspace/work/fonts/wk.ttf`（LXGW WenKai v1.501）、`kalam.ttf`；git 身份丢了就 `git config user.name/user.email` 沿用上一次提交的作者。
 
 - **主题思维导图讲解幕**：页签 `hd_mindmap`（幕号 = VOCAB_DB 子主题首次出现顺序），场景由 `v5/gen_mindmap.py` 从 VOCAB_DB + `mindmap_groups.json` 生成（勿手改场景，改规则 / 数据后重跑），版式 `auto.js` 的 `mindmapBuild`；App 里导图卡片上方的空舞台 `themeMindMapWb5` 由 `wb5HDSwap(…, "hd_mindmap", 幕号)` 换成 iframe，下方交互导图代码未动。回归 `python3 v5/app_check6.py [序号…]`。
 - **通用模板幕**（普通单词卡）：App 里只存一幕 `wordcard_tpl`；`embed_app.py` 的 `wb5TplSwap / wb5TplAct`（标记 `WB5_EMBED_TPL`）把词条 JSON 通过 `fr.__wb5Inject` 注入 srcdoc（`WB5_MOUNT_V4`），模板里 `autoBuild` 现场排版。改 `wordcard_items.js` 后：重建模板 → `embed_app.py wordcard_tpl 0 out/wordcard_tpl.html` → `check_wordcard_tpl.py`（分 4 片 `--part k/4`，再 `--merge 4` 出报告）→ `app_check5.py`。
@@ -70,14 +70,15 @@
 
 - **审片缺口**：161 幕 v5.1 只有样板和 tense_matrix 经用户看过，其余为截图自审；真机（尤其手机）上的加载速度、帧率、英文朗读同步未验证。
 - 双人帧（如 `tug` 拔河、give in ②）本身就是一张图里两个人，属正常；若用户仍觉得重叠，需要重画那几张帧。
-- cast 帧待返工：`l_lift0–2`（杠铃粘连）、`missw_give`（底部残留）、V29 Leo 黑发。
+- cast 帧：`l_lift1/2`、`missw_give`、V29 已返工（2026-10-31）；`l_lift0` 右边缘杠铃片被原图裁到，未动。
 - `embed_app.py` 插入新块必须锚在第一个 `<script type="text/plain" id="wb5html-` 前；主脚本注释里也有 `id="wbmod-<id>"` 字样，曾因锚错位置破坏主脚本（已修）。旧引擎删除时误删过通用函数 `stopActiveCanvasLoops`，已从 `2817e97` 主文件恢复后重新嵌入。
 - **VOCAB_DB 已拆分（O1）**：主文件里 `const VOCAB_DB` 只剩轻字段，`senses / etymology / memory_tip / example_en …` 等 10 个重字段在 `<script type="application/json" id="VOCAB_HEAVY_JSON">`，词对象原型上的 getter 按需解析。离线工具取全量一律用 `node src/vocab_extract.js <主文件>`（或已改好的合并片段），**不要再直接 eval `const VOCAB_DB`**，否则拿不到重字段。
 - 补丁脚本靠字符串锚点改主文件：新补丁先 `assert s.count(锚点) == 1`，并登记进 `src/anchorcheck.py`。
 
 ## 5. 下一步（按顺序）
 
-1. 等用户决定：是否再压一轮人物帧画质（§3 第一条）。
+1. 词源第 2 批补齐：等 Etymonline 重抓完 → parse → build → 提交（§5.2 1b/1c/1f）。
+1b. 人物帧压画质：用户叫停，不做。
 2. 三大厅 HD 剧场：构词法 ✅ → 框架语义 ✅ → 易混词 ✅ → 自然拼读 ✅ → 语法总结中心 ✅ → 语法 40 点 ✅（56 幕；三幕内容相同的合并为 1 幕）→ 日常用语 144 句 ✅（每句 1 幕放完整对话）→ 单词卡一词多义 17 词 ✅（51 幕）→ 普通单词卡通用模板 ✅（1425 词，功能词旧版本来就不播动画）→ 主题思维导图讲解幕 ✅（25 幕，见 §5.1）→ 第一性原理总枢余下旧 canvas ✅（已核查无残留，见 §5.1 ⑤）→ **词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实，分阶段计划见 §5.1 ⑥a–⑥g）**→ 文档收尾。
 3. 等用户点头：练习闭环 + 总地图（决策 14）、决策 6 剩余三个新模块、决策 29 软件优化。
 
@@ -86,7 +87,7 @@
 | # | 项 | 状态 | 提交 |
 |---|---|---|---|
 | 1a | 词源抓取 / 解析 / 交叉核对工具：`src/fetch_etym.py`（Wiktionary 原文 + Etymonline 经 Wayback 存档）、`src/parse_etym.py` | ✅ | fa2845b |
-| 1b | `ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`） | 🟡 第 2 批：Etymonline 缓存 755 / 1487 时入库 **352** 词（核对规则已收紧：语言名后 3 词内紧跟词形才算对上）；抓完后重跑 `parse_etym.py` → `build_etym_db.py etym` / `morph` 再提交一次 | e025d90；第 2 批 本提交 |
+| 1b | ⚠️ 2026-10-31 沙箱重置，`/workspace/work/etym/` 缓存全丢，正在重抓（Wiktionary 1487/1487 已完成；Etymonline 三个进程 `etymo` / `etymo-rev` / `etymo-mid` 约 18 词/分钟）。抓完：`python3 src/parse_etym.py` → `build_etym_db.py etym` / `morph` → app_check8 → 提交，再改 COVERAGE §7。缓存没抓完时**不要**重跑 build（会按缺 Etymonline 把已入库的词判成未入库）。`ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`） | 🟡 第 2 批：Etymonline 缓存 755 / 1487 时入库 **352** 词（核对规则已收紧：语言名后 3 词内紧跟词形才算对上）；抓完后重跑 `parse_etym.py` → `build_etym_db.py etym` / `morph` 再提交一次 | e025d90；第 2 批 本提交 |
 | 1c | `MORPH_DB` 真实构词（Wiktionary 构词模板 + 各部分都在 Etymonline 正文出现；`-s` 不再标「复数」） | 🟡 111 词（随 1b 一起补齐） | 本提交 |
 | 1d | 格林定律按规则组：4 幕 `wo_grimm_voiceless` / `wo_grimm_voiced` / `wo_grimm_aspirate` / `wo_grimm_verner` 并入「格林定律」章（`src/patch_wo_grimm.py`；内容稿 `content/wo_grimm_*_1.txt`；逐条核对 `word_origins/GRIMM_GROUPS.md`：30 对同源词，Etymonline + Wiktionary 都写了才用） | ✅ R1 缺 0、确定性、0 报错；`app_check2.py wo wo_grimm_<组> 1` 4/4 | 本提交 |
 | 1e | 音变与词汇规律 12 + 6 条：单词身世总枢「🔤 格林定律」章后新章「🔬 音变与词汇规律」18 条（规律 1 复用 `wo_grimm_verner`、规律 3 复用 `wo_vowel_a`，其余 16 个新幕 `wo_rule_*`；`src/patch_wo_rules.py`；核对 `word_origins/RULES_REVIEW.md`） | ✅ 16 幕 R1 缺 0、0 报错；`app_check2.py` 16/16；总地图按 key 去重 | 本提交 |
@@ -94,9 +95,9 @@
 | 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 58721a8 |
 | 2b | 决策 6 剩余：空间隐喻 ✅（实验室「三大隐喻密码」加密码四 + 白板第 4 幕）/ 拼写潜规则 ✅（自然拼读页顶部剧场第四幕，不新开页签）/ 交际句型地图 ✅（口语大厅入口卡 → 新页 `oral_func_map`：白板 2 幕 + 点读句型表）。新内容做幕的通用工具：`v5/new_scene.py content/<幕>.txt`（内容稿 → R1 清单 → 生成 → 打包 → 核对 → 嵌入） | ✅ | 空间隐喻 64f1285；拼写潜规则 5a9e61e；交际句型地图 本提交 |
 | 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | 🟡 O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py`；O2/O7 ✅ `src/leakcheck.py` + 播放器后台暂停（随下次 rebuild_all 生效）；O3 ✅ 语音缓存 + 无英文语音提示；O1 ✅ VOCAB_DB 首屏轻字段 + 重字段按需（`src/split_vocab.py`，首屏脚本 2.06 MB → 0.52 MB）；O5 ✅ `src/offlinecheck.py`（代码随 f82736b 误带进，文档补记） | O9 db0ac3a；O8 f82736b；O2/O7 3740e2f；O3 6e7021d；O1 本提交 |
-| 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅） | ⬜ | |
-| 4 | 人物帧重压 Q60 / 400 px（单独可回退提交） | ⬜ | |
-| 5 | 坏帧 l_lift0–2、missw_give、V29 Leo 头发 | ⬜ | |
+| 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅 + 实验室 + 词卡）：`src/retire_canvas.py` 截掉 10 个旧绘制循环 → `wb5MissingStage` 提示，再删 10 个无人调用的绘图函数（−91 K 字符）；工具 `src/fnranges.js`（acorn） | ✅ 91 个 HD 单元 app_check4 全过；runall --full 全过 | 本提交 |
+| 4 | 人物帧重压 Q60 / 400 px | ⏸ 用户 2026-10-31 00:59「压画质先不做」。注意：`build_sprites.py` 的 MAXH 同时决定人物显示尺寸，直接降到 400 px 人物会变小，要做得先改成「只压编码不改显示尺寸」 | |
+| 5 | 坏帧：l_lift1/2 去邻帧残留、missw_give 补下半身 + 去灯塔、V29 l_banana0/2 + l_win0–2 头发改浅棕（`l_lift0` 未动） | ✅ 5 幕重建嵌入，截图自审 + app_check2/3 0 报错 | 本提交 |
 | 6 | 文档总收尾 | ⬜ | |
 
 本轮已定的设计决定（用户授权自行决定，理由写在 CHANGELOG）：
@@ -130,9 +131,9 @@
 
 ## 6. 待用户确认
 
-1. 人物帧是否再压画质换体积。
+1. ~~人物帧是否再压画质换体积~~：用户 2026-10-31「先不做」。
 0c. 词源 / 格林 / 规律系列开工前要定两件事：①「音变与词汇规律」12+6 条模板幕放在 App 哪里；② 旧「巧记小故事」改标 💡 后在词卡上怎么和真词源并排显示（见 §5.1 ⑥）。
-0b. 各厅旧 canvas 兜底代码（第一性原理 `firstPrinciplesCanvas`、三大厅 HD 剧场旧循环）现在都只在缺 v5 幕时才跑，是否统一退役删掉（可省主文件体积，但没了兜底）。
+0b. ~~各厅旧 canvas 兜底代码~~（已按 22:13 授权退役，2026-10-31）（第一性原理 `firstPrinciplesCanvas`、三大厅 HD 剧场旧循环）现在都只在缺 v5 幕时才跑，是否统一退役删掉（可省主文件体积，但没了兜底）。
 0. 主题思维导图语义分组表 `v5/mindmap_groups.json`（25 个子主题，规则见 `v5/gen_mindmap_groups.py`）有空看一眼；不合适的组名 / 归组直接改规则重跑即可。
 2. 161 幕 v5.1 真机审片（`REVIEW_LIST.md`）。
 3. 练习闭环（决策 14）是否开工；决策 6 剩余模块位置。

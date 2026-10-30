@@ -2453,3 +2453,16 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 00:05 JST · COVERAGE 数字更新（1f）
 - `word_origins/COVERAGE.md` 新增 §7「补齐进度」：ETYM_DB 0 → 352（分年级）、MORPH_DB 0 → 111、格林配对 11 → 30 对（1 + 4 幕）、音变与词汇规律 18 / 18 条有幕；§2、§3 表里对应格子加了指向 §7 的现值。未入库原因分类照抄 ETYM_REVIEW。只改文档，主文件未动（回归沿用上一提交 `runall --full` 全过）。
+
+## 2026-10-31 00:35 JST · 坏帧返工（§5.2 第 5 项）
+- 沙箱又重置过：按 HANDOFF §2 重装环境（注意：`pip` 装在用户目录，`sudo playwright install-deps` 要加 `env PYTHONPATH=/home/sandbox/.local/lib/python3.12/site-packages`），字体从 LXGW WenKai v1.501 / Google Fonts Kalam 重新下载；重建后共享引擎块仍 1 份（字体子集逐字节一致）。
+- `l_lift1`：删掉左下角邻帧的杠铃片；`l_lift2`：删掉左侧邻帧的举重人和汗滴（连通域筛选，`l_lift0` 不动）。
+- `missw_give`：AI 重绘补全老师下半身（米色长裤 + 白鞋），删掉底部灯塔残留；`l_banana0/2`、`l_win0–2`（V29）头发由黑色改回 Leo 的浅棕色（AI 只改发色，姿势 / 构图不变）。源图放 `sprites/src/`（不进仓库），`Q=74 pack_cast.py` 打回 `cast/*.webp`；`CAST_V5.md` 三行状态改 ✅。
+- 重建并嵌入受影响的 5 幕：`vv_give_out` ①、`vv_give_up` ①、`vv_look_out` ①②、`wo_port` ①（`hd_sum_how_what` ② 只用 `l_lift0`，未动）。截图自审 + `app_check3.py` 3/3、`app_check2.py wo wo_port 1`，0 报错。
+
+## 2026-10-31 00:45 JST · 退役旧 canvas 兜底（§5.2 第 3 项）
+- `src/retire_canvas.py`（幂等，走 appwrite）：10 个 `start*Canvas` 函数（构词法 / 框架语义 / 易混词 / 自然拼读 / 语法总结 / 语法 40 点 / 日常用语 / 词卡 / 实验室 / 第一性原理）只保留开头「换成 v5 白板」的判断，删掉后面的旧 canvas 绘制循环，换成 `wb5MissingStage(canvas)`（缺 v5 幕时只画一行「这一幕的白板动画还没收录」）。
+- 无人调用清理（全文件词边界计数只剩定义的顶层函数，迭代到不动点）：再删 10 个绘图函数 `drawMechanism*`×4、`drawTopPrincipleBanner`、`stepHDClock`、`drawHDSubtitleBar`、`drawHDCharacterActor`、`drawHDSceneBackdrop`、`drawCenterWorkbench`。主脚本 −91,279 字符。主题思维导图的交互 canvas（`initThemeMindMapCanvas`）不是兜底，保留。
+- 新工具 `src/fnranges.js`：acorn 解析主文件直接执行的脚本，输出顶层函数位置（已把 UTF-16 下标换成码位下标，emoji 不会错位）；需要 `npm i acorn`（放 `/tmp/acorn` 即可，不进仓库）。
+- 回归：91 个 HD 单元（`units.json` 里 field=hd 的全部）逐个 `app_check4.py`，不合格 0、0 报错；`runall.py --full` 见下一行。
+- `runall.py --full`（退役后主文件）13 项全部通过：offlinecheck 882 段、app_check5 55 词 / app_check6 0 不合格、leakcheck OK、0 报错。主文件约 15.82 MB。
