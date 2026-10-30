@@ -2343,3 +2343,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · 主题思维导图讲解幕 阶段③ 第 1 批（幕 1–8（学校与学习 … 服装与穿戴））生成并替换进 App
 - 每幕 R1 37–40 条缺 0、deterministic True、errors / sandbox none，时长 66–74 s；app_check6 8/8 合格（讲解幕在导图上方、幕号对、16 节点可点开卡、缩放 / 滚轮 / 拖拽 / 复位正常），0 报错；主文件 15,491,698 bytes。
+
+## 2026-10-30 · 主题思维导图讲解幕 阶段③ 第 2 批（幕 9–16（语法功能与指代 … 交通与出行））生成并替换进 App
+- 每幕 R1 37–40 条缺 0、deterministic True、errors / sandbox none，时长 68–83 s（幕 9 语法功能与指代词义很长，116 s，超过设计目标 90 s，未删内容）；app_check6 8/8 合格，0 报错；主文件 15,518,815 bytes。
