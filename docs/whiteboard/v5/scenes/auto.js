@@ -19,8 +19,9 @@ export function autoBuild(SP, D) {
   const isKey = s => /^(口诀|结论|秘诀|💡|🎵|铁律)/.test(s) || /➔/.test(s);
   const wrapLines = (s, size, maxW) => {
     const out = []; let line = '';
-    const toks = isEn(s) ? s.split(/(\s+)/) : [...s];
-    for (const tk of toks) { if (K.measure(line + tk, size) > maxW && line.trim()) { out.push(line.trimEnd()); line = tk.trimStart(); } else line += tk; }
+    // 中英混排（2026-10-30）：英文单词整词换行，不在词中间断开；句末标点不放到行首
+    const toks = isEn(s) ? s.split(/(\s+)/) : (s.match(/[A-Za-z0-9'’\-]+|\s+|[\s\S]/gu) || []);
+    for (const tk of toks) { if (K.measure(line + tk, size) > maxW && line.trim() && !/^[，。、；：！？）】」』”’,.!?;:)]$/.test(tk)) { out.push(line.trimEnd()); line = tk.trimStart(); } else line += tk; }
     if (line.trim()) out.push(line.trimEnd()); return out;
   };
 

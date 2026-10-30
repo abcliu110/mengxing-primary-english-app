@@ -29,7 +29,7 @@ function wb5Blob(h) {   // 共享块：图片 / 字体 data URI 原样存；引�
   const b = document.getElementById("wb5blob-" + h), t = b ? b.textContent : "";
   return (wb5BlobCache[h] = t.slice(0, 3) === "gz:" ? wb5Gz(t.slice(3)) : Promise.resolve(t));
 }
-function wb5Mount(fr) {   // WB5_MOUNT_V3：gzip + 共享块（图片 / 字体 / 引擎，wb5blob-*），按需解压
+function wb5Mount(fr) {   // WB5_MOUNT_V3 WB5_MOUNT_V4：gzip + 共享块（图片 / 字体 / 引擎，wb5blob-*），按需解压；V4：模板幕可由 fr.__wb5Inject 注入数据脚本
   if (fr.getAttribute("data-on")) return;
   const el = wb5El(fr.getAttribute("data-tab"), fr.getAttribute("data-case"));
   if (!el) return;
@@ -40,7 +40,7 @@ function wb5Mount(fr) {   // WB5_MOUNT_V3：gzip + 共享块（图片 / 字体 /
   const text = el.getAttribute("data-gz") ? (() => { const b = atob(el.textContent.trim()), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
     return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text(); })() : Promise.resolve(el.textContent);
   text.then(t => { t = t.replace(/<\/wb5-script/g, "</script"); const hs = [...new Set([...t.matchAll(/@@B:([0-9a-f]{16})@@/g)].map(m => m[1]))];
-    return Promise.all(hs.map(wb5Blob)).then(vs => { const M = {}; hs.forEach((h, i) => { M[h] = vs[i]; }); fr.srcdoc = t.replace(/@@B:([0-9a-f]{16})@@/g, (m, h) => M[h] || ""); }); })
+    return Promise.all(hs.map(wb5Blob)).then(vs => { const M = {}; hs.forEach((h, i) => { M[h] = vs[i]; }); let h2 = t.replace(/@@B:([0-9a-f]{16})@@/g, (m, h) => M[h] || ""); if (fr.__wb5Inject) h2 = h2.replace("<script data-wb5-engine>", () => fr.__wb5Inject + "<script data-wb5-engine>"); fr.srcdoc = h2; }); })
     .catch(e => { try { console.warn("wb5", e); } catch (_) {} });
 }
 '''
@@ -107,6 +107,28 @@ if 'WB5_EMBED_HD2' not in s:   # 三大厅 HD 剧场（canvas）：有 v5 幕就
     else:
         i = s.index('function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {')
         s = s[:i] + HD_FN + s[i:]
+TPL_FN = """function wb5TplSwap(canvasId, tab, data, act) {   // WB5_EMBED_TPL：通用模板幕（如普通单词卡）——一个模板 + 运行时注入词条数据现场排版，见 docs/whiteboard/DESIGN_MINDMAP_WORDCARD.md
+  const cv = document.getElementById(canvasId); if (!cv || !wb5El(tab, 0) || !data) return false;
+  const w = cv.closest(".hd-video-wrapper") || cv.parentNode;
+  const labels = [...w.querySelectorAll('[id^="hdActBtn_"]')].map(b => b.textContent.replace(/^\\s*🎬\\s*/, "").trim());
+  w.classList.remove("hd-video-wrapper"); w.setAttribute("data-wb5tpl", tab); w.setAttribute("data-labels", JSON.stringify(labels)); w.__wb5Data = data;
+  wb5TplAct(w, Math.max(0, Math.min(Math.max(labels.length, 1) - 1, act | 0)));
+  return true;
+}
+function wb5TplAct(w, a) {
+  if (!w || !w.__wb5Data) return;
+  const tab = w.getAttribute("data-wb5tpl"); let labels = []; try { labels = JSON.parse(w.getAttribute("data-labels") || "[]"); } catch (e) {}
+  if (typeof hdTheaterState !== "undefined") { hdTheaterState.actIdx = a; hdTheaterState.manualActLock = true; }
+  const btn = i => `<button onclick="wb5TplAct(this.closest('[data-wb5tpl]'), ${i})" style="background:${i === a ? '#2563eb' : '#e2e8f0'}; color:${i === a ? '#fff' : '#0f172a'}; font-weight:900; padding:8px 14px; border-radius:10px; font-size:0.85rem; border:0;">🎬 ${labels[i]}</button>`;
+  w.innerHTML = `<div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">${labels.length > 1 ? labels.map((_, i) => btn(i)).join("") : ""}</div>${wb5StageHtml(tab, 0, false)}`;
+  const f = w.querySelector("#wb5Frame"); if (!f) return;
+  f.__wb5Inject = "<script>globalThis.__WB5_WORD__=" + JSON.stringify(w.__wb5Data).replace(/</g, "\\\\u003c") + ";globalThis.__WB5_ACT__=" + (a | 0) + ";</" + "script>";
+  wb5Mount(f);
+}
+"""
+if 'WB5_EMBED_TPL' not in s:
+    i = s.index('function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {')
+    s = s[:i] + TPL_FN + s[i:]
 # 各剧场的挂钩：(锚点, 插入的判断)；幂等（按标记）
 HD_HOOKS = [
     ('  const canvas = document.getElementById("formationStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("formationStageCanvas", "hd_formation")) return;   // WB5_HD:formation\n'),
@@ -114,6 +136,7 @@ HD_HOOKS = [
     ('  const canvas = document.getElementById("summaryHubCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("summaryHubCanvas", "hd_sum_" + (summaryTab || "syntax"))) return;   // WB5_HD:summary\n'),
     ('  if (oralAnimId) cancelAnimationFrame(oralAnimId);\n  const canvas = document.getElementById("oralSceneCanvas");\n  if (!canvas) return;\n', '  if (oralAnimId) cancelAnimationFrame(oralAnimId);\n  if (wb5HDSwap("oralSceneCanvas", "hd_oral_" + String(cur.scenario_id || "").toLowerCase(), DAILY_EXPRESSIONS_DB.filter(e => e.scenario_id === cur.scenario_id).indexOf(cur))) return;   // WB5_HD:oral\n'),
     ('  if (cardModalState.animFrame) cancelAnimationFrame(cardModalState.animFrame);\n  const canvas = document.getElementById("wordModalCanvas");\n  if (!canvas) return;\n', '  if (w.has_polysemy && w.polysemy_data && wb5HDSwap("wordModalCanvas", "hd_poly_" + String(w.id).toLowerCase(), polyAct | 0)) return;   // WB5_HD:poly\n'),
+    ('  if (w.has_polysemy && w.polysemy_data && wb5HDSwap("wordModalCanvas", "hd_poly_" + String(w.id).toLowerCase(), polyAct | 0)) return;   // WB5_HD:poly\n', '  if (!(w.has_polysemy && w.polysemy_data) && wb5TplSwap("wordModalCanvas", "wordcard_tpl", w, hdTheaterState.manualActLock ? hdTheaterState.actIdx : 0)) return;   // WB5_HD:wordcard\n'),
     ('  const canvas = document.getElementById("phonicsStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("phonicsStageCanvas", "hd_phonics")) return;   // WB5_HD:phonics\n'),
     ('  const canvas = document.getElementById("relationsStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("relationsStageCanvas", "hd_relations")) return;   // WB5_HD:relations\n'),
     ('  const canvas = document.getElementById("frameSemanticsCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("frameSemanticsCanvas", "hd_fr" + String(FRAME_SEMANTICS_DB.indexOf(fr) + 1).padStart(2, "0"), pIdx)) return;   // WB5_HD:frames\n'),
@@ -124,7 +147,7 @@ for a, ins in HD_HOOKS:
     s = s.replace(a, a + ins, 1)
 
 import hashlib, gzip, base64
-if 'WB5_MOUNT_V3' not in s:   # 升级已装的运行时（V3：引擎共享块）
+if 'WB5_MOUNT_V4' not in s:   # 升级已装的运行时（V3：引擎共享块；V4：模板注入）
     a = s.index('function wb5Gz(b64) {') if 'function wb5Gz(b64) {' in s else s.index('function wb5Mount(fr) {'); b = s.index('\n}\n', s.index('function wb5Mount(fr) {')) + 3
     s = s[:a] + new_mount_js + s[b:]
 BLOB = re.compile(r'data:(?:image/webp|font/woff);base64,[A-Za-z0-9+/=]{2000,}')
