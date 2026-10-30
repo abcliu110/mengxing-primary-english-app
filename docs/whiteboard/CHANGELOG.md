@@ -498,3 +498,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 动作：开场 Leo 跑过；踢球 3 次对齐 playing；录像机 REC 闪烁 + 镜头里 Leo 跑；时间轴波浪线一直在动；发动机齿轮转；Leo 绕操场跑对齐 running；Mia 跳舞换帧对齐 dancing、做蛋糕对齐 making；三个孩子游泳对齐 swimming；Mia 读书；like / have 演示 + 打叉 REC；男孩连跳 4 次对齐 jumping。
 - 验收：R1 85/85（新工具 `v5/r1v5.py`，`lab/INVENTORY_TM2_V5.md`）；普通页面 / sandbox 0 报错；确定性 ✓；单文件 674,940 bytes（>650 KB，字体占大头，与 ① 一起待优化）。
 - 引擎只加不改：`K.actor({ dy: t => px })`。
+
+## 2026-10-30 12:35 JST · tense_matrix ③ 一般过去时 v5.1 重画
+- `v5/scenes/tense_matrix_3.js`（12 块白板，172 s）+ 帧库 `sprites/tm3.js`（cam / m_study / m_cry / bus / party / l_no / l_w0–3 / kick0–2）。
+- 动作：Leo 拍照「咔嚓」→ 老照片定格；拍博物馆 3 张照片对齐 took；Mia 伏案学习 → 哭对齐 studied / cried；公交车减速停在车站对齐 stopped；三个孩子聚会欢呼对齐 were；Leo 提礼物走回家对齐 went；摇头摆手对齐 didn't go；踢球两次对齐 played。
+- 验收：R1 88/88；0 报错；确定性 ✓；607,348 bytes。

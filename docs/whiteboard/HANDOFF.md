@@ -13,7 +13,8 @@
 - 下一步：用户审 ① → 按同一模板做 tense_matrix ②–⑥ → 按 `REDRAW_V5.md` 顺序推进；全部审过后再统一并入主 App（替换旧 SVG 白板，播放器 / rough / GSAP 只打一份）。
 - ✅ **人物先行阶段（2026-10-30 11:28 用户要求先画人物帧、再画版面）**：331 帧透明 WebP 人物 / 动作帧库 `v5/sprites/cast/`（约 7 MB，进仓库），登记表 `v5/CAST_V5.md`（每帧对应的旧案例动作 + 万能动词 24 义项 72 组）。工具：`split_sheet.py`（联排图自动切帧）、`cut_box.py`（粘连帧按坐标切）、`pack_cast.py`（抠绿 → cast/）；`build_sprites.py` 找不到 src 时自动读 cast/。⚠️ 待返工：`l_lift0–2`（杠铃粘连）、`missw_give`（底部残留）、V29 Leo 黑发。
 - ✅ tense_matrix ② 现在进行时 v5.1（12 块白板 162 s，R1 85/85 `lab/INVENTORY_TM2_V5.md`，0 报错，确定性 ✓，675 KB 略超预算；新增 `v5/r1v5.py` 自动 R1 核对、wb5 `actor.dy(t)` 竖直位移）。
-- **下一步（不再询问用户；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：tense_matrix ③–⑥ → past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
+- ✅ tense_matrix ③ 一般过去时 v5.1（12 块白板 172 s，R1 88/88 `lab/INVENTORY_TM3_V5.md`，0 报错，确定性 ✓，607 KB ≤ 预算）。
+- **下一步（不再询问用户；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：tense_matrix ④–⑥ → past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
 
 ## 🟢 动作系统 v5（决策 31，2026-10-30 10:28 JST 用户确认）——先读这一节
