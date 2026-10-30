@@ -1736,3 +1736,117 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · hd_g40 第1幕 v5.1 重画并替换进 App
 - 📘 G40 底层原理：R1 10/10，94 s，主文件 14,901,933 bytes。
+
+## 2026-10-30 · hd_oral_sc01 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc01`（问候与告别 · Nice to meet you!：R1 9/9，48 s，主文件 14,904,949 bytes。
+
+## 2026-10-30 · hd_oral_sc01 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc01`（问候与告别 · How are you?：R1 15/15，66 s，主文件 14,907,869 bytes。
+
+## 2026-10-30 · hd_oral_sc01 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc01`（问候与告别 · See you tomorrow!：R1 15/15，64 s，主文件 14,910,692 bytes。
+
+## 2026-10-30 · hd_oral_sc01 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc01`（问候与告别 · Good morning! — Good morning!：R1 15/15，61 s，主文件 14,913,479 bytes。
+
+## 2026-10-30 · hd_oral_sc01 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc01`（问候与告别 · Good afternoon!：R1 15/15，61 s，主文件 14,916,302 bytes。
+
+## 2026-10-30 · hd_oral_sc01 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc01`（问候与告别 · Good night! Sweet dreams!：R1 15/15，63 s，主文件 14,919,113 bytes。
+
+## 2026-10-30 · hd_oral_sc01 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc01`（问候与告别 · How is it going? — Pretty good!：R1 15/15，69 s，主文件 14,922,008 bytes。
+
+## 2026-10-30 · hd_oral_sc02 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc02`（感谢与道歉 · Thank you! — You're welcome.：R1 15/15，63 s，主文件 14,924,851 bytes。
+
+## 2026-10-30 · hd_oral_sc02 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc02`（感谢与道歉 · I'm sorry. — That's OK!：R1 15/15，75 s，主文件 14,927,770 bytes。
+
+## 2026-10-30 · hd_oral_sc02 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc02`（感谢与道歉 · Excuse me.：R1 15/15，67 s，主文件 14,930,681 bytes。
+
+## 2026-10-30 · hd_oral_sc02 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc02`（感谢与道歉 · After you! — Thank you!：R1 15/15，64 s，主文件 14,933,596 bytes。
+
+## 2026-10-30 · hd_oral_sc02 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc02`（感谢与道歉 · Welcome to our school!：R1 15/15，74 s，主文件 14,936,499 bytes。
+
+## 2026-10-30 · hd_oral_sc02 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc02`（感谢与道歉 · Thank you so much!：R1 15/15，56 s，主文件 14,939,242 bytes。
+
+## 2026-10-30 · hd_oral_sc02 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc02`（感谢与道歉 · My pleasure.：R1 11/11，42 s，主文件 14,941,893 bytes。
+
+## 2026-10-30 · hd_oral_sc02 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc02`（感谢与道歉 · I'm sorry I'm late.：R1 11/11，53 s，主文件 14,944,620 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · Can you say it again?：R1 15/15，75 s，主文件 14,947,527 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · It's time for class!：R1 15/15，72 s，主文件 14,950,410 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · Let's play together!：R1 15/15，73 s，主文件 14,953,317 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · What's this in English?：R1 15/15，81 s，主文件 14,956,228 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · How do you spell it?：R1 15/15，69 s，主文件 14,959,043 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · Put up your hand!：R1 15/15，69 s，主文件 14,961,886 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · Open your books to page 10.：R1 15/15，67 s，主文件 14,964,777 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · Whose book is this?：R1 15/15，69 s，主文件 14,967,708 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · Keep your desk clean!：R1 15/15，72 s，主文件 14,970,595 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第10幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · Work quietly in the library!：R1 15/15，70 s，主文件 14,973,475 bytes。
+
+## 2026-10-30 · hd_oral_sc03 第11幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc03`（课堂用语 · Let's clean the classroom!：R1 15/15，71 s，主文件 14,976,376 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · What's your name? — My name's...：R1 15/15，78 s，主文件 14,979,315 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · Where are you from? — I'm from China.：R1 15/15，80 s，主文件 14,982,246 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · How old are you? — I'm ten years old.：R1 15/15，78 s，主文件 14,985,177 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · What are your hobbies?：R1 15/15，74 s，主文件 14,988,144 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · What's he like? — He's kind and funny.：R1 15/15，89 s，主文件 14,991,135 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · What does your father do?：R1 15/15，80 s，主文件 14,994,046 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · Can you play ping-pong with me?：R1 15/15，82 s，主文件 14,996,985 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · Would you like to be my pen pal?：R1 15/15，90 s，主文件 14,999,988 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · Keep in touch! Write to me soon!：R1 15/15，83 s，主文件 15,002,975 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第10幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · Hello, my name is Chen Jie.：R1 15/15，63 s，主文件 15,005,743 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第11幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · I'm ten years old.：R1 15/15，57 s，主文件 15,008,420 bytes。
+
+## 2026-10-30 · hd_oral_sc04 第12幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · I'm in Class Two, Grade Four.：R1 15/15，61 s，主文件 15,011,133 bytes。
