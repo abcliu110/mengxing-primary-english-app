@@ -25,6 +25,7 @@
 - 环境提醒：沙盒可能重置，缺依赖时 `pip install playwright numpy pillow && python3 -m playwright install chromium && sudo apt-get install -y libatk1.0-0t64 libatk-bridge2.0-0t64 libcups2t64 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2t64 libnss3 libnspr4`。
 - ✅ `adj_order` 第1/4幕 一张漂亮的小圆木桌（共用版面引擎 scenes/adj_train.js） v5.1 重画并替换进 App（`v5/scenes/adj_order_1.js`，R1 91/91，154 s，0 报错；主文件 11,770,109 bytes）
 - ✅ `adj_order` 第2/4幕 ②  两只可爱的小白猫 v5.1 重画并替换进 App（`v5/scenes/adj_order_2.js`，R1 86/86，~120 s，0 报错；主文件 12,087,206 bytes）
+- ✅ `adj_order` 第3/4幕 ③  一件漂亮的崭新红色中国丝绸连衣裙 v5.1 重画并替换进 App（`v5/scenes/adj_order_3.js`，R1 90/90，~120 s，0 报错；主文件 12,423,920 bytes）
 - **用户规则（2026-10-30 14:05）：不要停，直到全部完成**——单元之间也不停、不等待回复，连续推进。
 - **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
