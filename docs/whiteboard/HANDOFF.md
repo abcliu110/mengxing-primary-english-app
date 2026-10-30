@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 15:05 JST（第一性原理 fp_* 22 幕 v5.1 替换进 App（fp_one_king ①、fp_zoom_focus ① 已迁中英对照，不重画）；万能动词 VV 72 幕清单已导出 vv_inventory.py；metaphor_code 3、writing_alchemist 3、phrasal_key 2、pron_map 3、stress_rhythm 3、intonation_map 3 幕 v5.1 替换进 App；five_patterns 5、bamboo_tree 5、eight_endings 1、irregular_plural 2 幕 v5.1 替换进 App；aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
+> 更新：2026-10-30 15:11 JST（单词身世 wo_* 9 幕 + 中英对照 ze_* 11 幕；第一性原理 fp_* 22 幕 v5.1 替换进 App（fp_one_king ①、fp_zoom_focus ① 已迁中英对照，不重画）；万能动词 VV 72 幕清单已导出 vv_inventory.py；metaphor_code 3、writing_alchemist 3、phrasal_key 2、pron_map 3、stress_rhythm 3、intonation_map 3 幕 v5.1 替换进 App；five_patterns 5、bamboo_tree 5、eight_endings 1、irregular_plural 2 幕 v5.1 替换进 App；aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
 > **当前阶段（2026-10-30 09:14 起）**：决策 30 动作系统重建最优先（见下方「🔴 优先级变更」）。以下为旧描述——阶段 0–4、首页改版 1–6 步已完成；**正在做：阶段 7 全 App 白板化试点（fp_economy 第 1 幕已出对比图待用户审，FR01 买卖待做）+ 阶段 8 / 9 词源与单词全部维度审计**；练习闭环（决策 14）等用户点头。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，26 条决策：1–19、22–28）→ `SOP.md`（标准流程 + 验收清单）。历史进度、每步验收数字、引擎新工具登记都在 `CHANGELOG.md`（原 HANDOFF 全文，章节号不变）。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元 / 改完一个文档立即提交；发现 bug 直接修。本文只写现状和下一步，流水写进 `CHANGELOG.md`。
@@ -85,6 +85,28 @@
 - ✅ `fp_zoom_focus` 第2/4幕 🔍 第一性原理 · 由大到小 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_2.js`，R1 62/62，88 s，0 报错；主文件 23,598,843 bytes）
 - ✅ `fp_zoom_focus` 第3/4幕 🔍 第一性原理 · 由大到小 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_3.js`，R1 54/54，70 s，0 报错；主文件 23,770,134 bytes）
 - ✅ `fp_zoom_focus` 第4/4幕 🔍 第一性原理 · 由大到小 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_4.js`，R1 62/62，95 s，0 报错；主文件 23,954,469 bytes）
+- ✅ `vv_take_on` 第1/2幕 🎬 万能动词 · take on ① v5.1 重画并替换进 App（`v5/scenes/vv_take_on_1.js`，R1 9/9，12 s，0 报错；主文件 24,169,216 bytes）
+- ✅ `vv_take_on` 第2/2幕 🎬 万能动词 · take on ② v5.1 重画并替换进 App（`v5/scenes/vv_take_on_2.js`，R1 19/19，18 s，0 报错；主文件 24,403,871 bytes）
+- ✅ `wo_port` 第1/1幕 📖 单词身世 · port · 1 v5.1 重画并替换进 App（`v5/scenes/wo_port_1.js`，R1 142/142，185 s，0 报错；主文件 24,767,369 bytes）
+- ✅ `wo_europe` 第1/1幕 📖 单词身世 · Europe · 1 v5.1 重画并替换进 App（`v5/scenes/wo_europe_1.js`，R1 142/142，139 s，0 报错；主文件 25,122,494 bytes）
+- ✅ `wo_grimm` 第1/1幕 📖 单词身世 · 格林定律 · 1 v5.1 重画并替换进 App（`v5/scenes/wo_grimm_1.js`，R1 160/160，135 s，0 报错；主文件 25,338,874 bytes）
+- ✅ `wo_bluetooth` 第1/1幕 📖 单词身世 · Bluetooth · 1 v5.1 重画并替换进 App（`v5/scenes/wo_bluetooth_1.js`，R1 106/106，100 s，0 报错；主文件 25,628,371 bytes）
+- ✅ `wo_time_num` 第1/1幕 📖 单词身世 · 时间与数字 · 1 v5.1 重画并替换进 App（`v5/scenes/wo_time_num_1.js`，R1 94/94，131 s，0 报错；主文件 25,842,472 bytes）
+- ✅ `wo_time_week` 第1/1幕 📖 单词身世 · 星期 · 1 v5.1 重画并替换进 App（`v5/scenes/wo_time_week_1.js`，R1 129/129，160 s，0 报错；主文件 26,062,152 bytes）
+- ✅ `wo_vowel_a` 第1/1幕 📖 单词身世 · 元音 a · 1 v5.1 重画并替换进 App（`v5/scenes/wo_vowel_a_1.js`，R1 89/89，108 s，0 报错；主文件 26,341,719 bytes）
+- ✅ `wo_vowel_b` 第1/1幕 📖 单词身世 · 元音 b · 1 v5.1 重画并替换进 App（`v5/scenes/wo_vowel_b_1.js`，R1 75/75，117 s，0 报错；主文件 26,556,004 bytes）
+- ✅ `wo_vowel_c` 第1/1幕 📖 单词身世 · 元音 c · 1 v5.1 重画并替换进 App（`v5/scenes/wo_vowel_c_1.js`，R1 82/82，112 s，0 报错；主文件 26,861,727 bytes）
+- ✅ `ze_be` 第1/1幕 🔀 中英对照 · be · 1 v5.1 重画并替换进 App（`v5/scenes/ze_be_1.js`，R1 57/57，72 s，0 报错；主文件 27,058,644 bytes）
+- ✅ `ze_borrow` 第1/1幕 🔀 中英对照 · 借 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_borrow_1.js`，R1 57/57，74 s，0 报错；主文件 27,289,531 bytes）
+- ✅ `ze_link` 第1/1幕 🔀 中英对照 · 连接 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_link_1.js`，R1 58/58，92 s，0 报错；主文件 27,458,106 bytes）
+- ✅ `ze_mark` 第1/1幕 🔀 中英对照 · 标记 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_mark_1.js`，R1 74/74，83 s，0 报错；主文件 27,639,164 bytes）
+- ✅ `ze_modifier` 第1/1幕 🔀 中英对照 · 修饰语 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_modifier_1.js`，R1 61/61，100 s，0 报错；主文件 27,860,062 bytes）
+- ✅ `ze_pronoun` 第1/1幕 🔀 中英对照 · 代词 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_pronoun_1.js`，R1 83/83，90 s，0 报错；主文件 28,035,443 bytes）
+- ✅ `ze_same` 第1/1幕 🔀 中英对照 · 相同 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_same_1.js`，R1 73/73，80 s，0 报错；主文件 28,216,100 bytes）
+- ✅ `ze_say` 第1/1幕 🔀 中英对照 · 说 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_say_1.js`，R1 69/69，92 s，0 报错；主文件 28,426,471 bytes）
+- ✅ `ze_subject` 第1/1幕 🔀 中英对照 · 主语 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_subject_1.js`，R1 59/59，73 s，0 报错；主文件 28,599,791 bytes）
+- ✅ `ze_wear` 第1/1幕 🔀 中英对照 · 穿戴 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_wear_1.js`，R1 66/66，77 s，0 报错；主文件 28,797,373 bytes）
+- ✅ `ze_yesno` 第1/1幕 🔀 中英对照 · 是非 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_yesno_1.js`，R1 71/71，78 s，0 报错；主文件 28,969,022 bytes）
 - **用户规则（2026-10-30 14:05）：不要停，直到全部完成**——单元之间也不停、不等待回复，连续推进。
 - **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
