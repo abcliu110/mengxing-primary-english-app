@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-31 01:05 JST（坏帧返工 ✅、旧 canvas 兜底退役 ✅、人物帧压画质用户叫停；词源 Etymonline 缓存随沙箱重置丢失，正在重抓，见 §5.2 1b）；2026-10-31 00:05 JST（COVERAGE 数字）；2026-10-31 00:02 JST（引擎块再次合并）；2026-10-30 23:45 JST（18 条规律章）；2026-10-30 23:28 JST（格林规则组 4 幕）；2026-10-30 23:22 JST（词源第 2 批）；23:15 JST（合并重复引擎块 + 字体缓存）；23:06 JST（O1 VOCAB_DB 拆分提交）；此前 23:10 JST（用户 22:13 授权完成全部，进度见 §5.2）；22:30 JST（主题思维导图讲解幕 ✅、第一性原理核查 ✅；词源系列待开工，分阶段计划见 §5.1 ⑥）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
+> 更新：2026-10-31 02:05 JST（词源第 3 批：Etymonline 重抓到 1288 / 1487，ETYM_DB 603、MORPH_DB 182；剩 199 词抓取失败的以后再抓）；2026-10-31 01:05 JST（坏帧返工 ✅、旧 canvas 兜底退役 ✅、人物帧压画质用户叫停；词源 Etymonline 缓存随沙箱重置丢失，正在重抓，见 §5.2 1b）；2026-10-31 00:05 JST（COVERAGE 数字）；2026-10-31 00:02 JST（引擎块再次合并）；2026-10-30 23:45 JST（18 条规律章）；2026-10-30 23:28 JST（格林规则组 4 幕）；2026-10-30 23:22 JST（词源第 2 批）；23:15 JST（合并重复引擎块 + 字体缓存）；23:06 JST（O1 VOCAB_DB 拆分提交）；此前 23:10 JST（用户 22:13 授权完成全部，进度见 §5.2）；22:30 JST（主题思维导图讲解幕 ✅、第一性原理核查 ✅；词源系列待开工，分阶段计划见 §5.1 ⑥）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
 > 设计稿：`DESIGN_MINDMAP_WORDCARD.md`（用户 2026-10-30 19:39「按照你的来」已确认）：普通单词卡通用模板 ✅；思维导图讲解幕待做。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，§2.9 = v5.1 标准画法）→ `SOP.md`（§17 = v5.1 验收）。流水、历史决策、每幕验收数字都在 `CHANGELOG.md`（文末有本文 16:10 之前的完整快照）。
 > 本文只写现状、做法、风险、下一步；做完一件事：流水追加到 CHANGELOG，本文只改现状。
@@ -77,7 +77,7 @@
 
 ## 5. 下一步（按顺序）
 
-1. 词源第 2 批补齐：等 Etymonline 重抓完 → parse → build → 提交（§5.2 1b/1c/1f）。
+1. 词源补抓剩余 199 词 → parse → build → 提交（§5.2 1b，命令写在表里）。
 1b. 人物帧压画质：用户叫停，不做。
 2. 三大厅 HD 剧场：构词法 ✅ → 框架语义 ✅ → 易混词 ✅ → 自然拼读 ✅ → 语法总结中心 ✅ → 语法 40 点 ✅（56 幕；三幕内容相同的合并为 1 幕）→ 日常用语 144 句 ✅（每句 1 幕放完整对话）→ 单词卡一词多义 17 词 ✅（51 幕）→ 普通单词卡通用模板 ✅（1425 词，功能词旧版本来就不播动画）→ 主题思维导图讲解幕 ✅（25 幕，见 §5.1）→ 第一性原理总枢余下旧 canvas ✅（已核查无残留，见 §5.1 ⑤）→ **词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实，分阶段计划见 §5.1 ⑥a–⑥g）**→ 文档收尾。
 3. 等用户点头：练习闭环 + 总地图（决策 14）、决策 6 剩余三个新模块、决策 29 软件优化。
@@ -87,18 +87,18 @@
 | # | 项 | 状态 | 提交 |
 |---|---|---|---|
 | 1a | 词源抓取 / 解析 / 交叉核对工具：`src/fetch_etym.py`（Wiktionary 原文 + Etymonline 经 Wayback 存档）、`src/parse_etym.py` | ✅ | fa2845b |
-| 1b | ⚠️ 2026-10-31 沙箱重置，`/workspace/work/etym/` 缓存全丢，正在重抓（Wiktionary 1487/1487 已完成；Etymonline 三个进程 `etymo` / `etymo-rev` / `etymo-mid` 约 18 词/分钟）。抓完：`python3 src/parse_etym.py` → `build_etym_db.py etym` / `morph` → app_check8 → 提交，再改 COVERAGE §7。缓存没抓完时**不要**重跑 build（会按缺 Etymonline 把已入库的词判成未入库）。`ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`） | 🟡 第 2 批：Etymonline 缓存 755 / 1487 时入库 **352** 词（核对规则已收紧：语言名后 3 词内紧跟词形才算对上）；抓完后重跑 `parse_etym.py` → `build_etym_db.py etym` / `morph` 再提交一次 | e025d90；第 2 批 本提交 |
-| 1c | `MORPH_DB` 真实构词（Wiktionary 构词模板 + 各部分都在 Etymonline 正文出现；`-s` 不再标「复数」） | 🟡 111 词（随 1b 一起补齐） | 本提交 |
+| 1b | `ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`）。2026-10-31 沙箱重置后缓存重抓：Wiktionary 1487 / 1487，Etymonline **1288 / 1487**（剩 199 词是 Wayback 限流 / 断连没拿到，用户 01:58 说「剩余的等会再抓」）。**补抓**：`cd src && python3 fetch_etym.py etymo 1 & python3 fetch_etym.py etymo-rev 1`（断点续抓，已落盘的跳过；每轮约补 100 词，失败的不落盘下轮重试；不要 `pkill -f fetch_etym`，会连带杀掉当前 shell），抓完 `python3 src/parse_etym.py` → `build_etym_db.py etym` / `morph` → `runall.py` → 改 COVERAGE §7 → 提交 | 🟡 第 3 批入库 **603** 词（G1 32 / G2 35 / G3 60 / G4 80 / G5 94 / G6 62 / V6 238 / POLY 2）；未入库：两处对不上 413、尚未抓取 179、无可解析来源链 149、无英语词源小节 71、词组 37、无词条 35 | e025d90；df2ae6c；第 3 批 本提交 |
+| 1c | `MORPH_DB` 真实构词（Wiktionary 构词模板 + 各部分都在 Etymonline 正文出现；`-s` 不再标「复数」） | 🟡 182 词（随 1b 补抓再涨） | 本提交 |
 | 1d | 格林定律按规则组：4 幕 `wo_grimm_voiceless` / `wo_grimm_voiced` / `wo_grimm_aspirate` / `wo_grimm_verner` 并入「格林定律」章（`src/patch_wo_grimm.py`；内容稿 `content/wo_grimm_*_1.txt`；逐条核对 `word_origins/GRIMM_GROUPS.md`：30 对同源词，Etymonline + Wiktionary 都写了才用） | ✅ R1 缺 0、确定性、0 报错；`app_check2.py wo wo_grimm_<组> 1` 4/4 | 本提交 |
 | 1e | 音变与词汇规律 12 + 6 条：单词身世总枢「🔤 格林定律」章后新章「🔬 音变与词汇规律」18 条（规律 1 复用 `wo_grimm_verner`、规律 3 复用 `wo_vowel_a`，其余 16 个新幕 `wo_rule_*`；`src/patch_wo_rules.py`；核对 `word_origins/RULES_REVIEW.md`） | ✅ 16 幕 R1 缺 0、0 报错；`app_check2.py` 16/16；总地图按 key 去重 | 本提交 |
-| 1f | `word_origins/COVERAGE.md` 数字更新：新增 §7 补齐进度（ETYM 352、MORPH 111、格林 11 → 30 对、规律 18 / 18 条有幕） | ✅（Etymonline 抓完后 §7 数字随 1b 再改一次） | 本提交 |
+| 1f | `word_origins/COVERAGE.md` 数字更新：新增 §7 补齐进度（ETYM 603、MORPH 182、格林 11 → 30 对、规律 18 / 18 条有幕） | ✅（Etymonline 抓完后 §7 数字随 1b 再改一次） | 本提交 |
 | 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 58721a8 |
 | 2b | 决策 6 剩余：空间隐喻 ✅（实验室「三大隐喻密码」加密码四 + 白板第 4 幕）/ 拼写潜规则 ✅（自然拼读页顶部剧场第四幕，不新开页签）/ 交际句型地图 ✅（口语大厅入口卡 → 新页 `oral_func_map`：白板 2 幕 + 点读句型表）。新内容做幕的通用工具：`v5/new_scene.py content/<幕>.txt`（内容稿 → R1 清单 → 生成 → 打包 → 核对 → 嵌入） | ✅ | 空间隐喻 64f1285；拼写潜规则 5a9e61e；交际句型地图 本提交 |
 | 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | 🟡 O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py`；O2/O7 ✅ `src/leakcheck.py` + 播放器后台暂停（随下次 rebuild_all 生效）；O3 ✅ 语音缓存 + 无英文语音提示；O1 ✅ VOCAB_DB 首屏轻字段 + 重字段按需（`src/split_vocab.py`，首屏脚本 2.06 MB → 0.52 MB）；O5 ✅ `src/offlinecheck.py`（代码随 f82736b 误带进，文档补记） | O9 db0ac3a；O8 f82736b；O2/O7 3740e2f；O3 6e7021d；O1 本提交 |
 | 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅 + 实验室 + 词卡）：`src/retire_canvas.py` 截掉 10 个旧绘制循环 → `wb5MissingStage` 提示，再删 10 个无人调用的绘图函数（−91 K 字符）；工具 `src/fnranges.js`（acorn） | ✅ 91 个 HD 单元 app_check4 全过；runall --full 全过 | 本提交 |
 | 4 | 人物帧重压 Q60 / 400 px | ⏸ 用户 2026-10-31 00:59「压画质先不做」。注意：`build_sprites.py` 的 MAXH 同时决定人物显示尺寸，直接降到 400 px 人物会变小，要做得先改成「只压编码不改显示尺寸」 | |
 | 5 | 坏帧：l_lift1/2 去邻帧残留、missw_give 补下半身 + 去灯塔、V29 l_banana0/2 + l_win0–2 头发改浅棕（`l_lift0` 未动） | ✅ 5 幕重建嵌入，截图自审 + app_check2/3 0 报错 | 本提交 |
-| 6 | 文档总收尾 | ⬜ | |
+| 6 | 文档总收尾：HANDOFF §5.1 ⑥a–⑥g 旧表标成已转 §5.2、⑤ 旧 canvas 改为已退役；COVERAGE §7 数字更新；CHANGELOG 补记 | ✅（词源补抓后数字再改一次） | 本提交 |
 
 本轮已定的设计决定（用户授权自行决定，理由写在 CHANGELOG）：
 - **12 + 6 条规律幕的位置**：放在单词身世总枢，紧跟「🔤 格林定律」章之后新开一章「🔬 音变与词汇规律」；格林定律的规则组幕直接并入原「格林定律」章（和 `wo_grimm` 并列）。
@@ -113,15 +113,15 @@
 | ② | `scenes/auto.js` 新增 `mindmapBuild` 版式 + `v5/gen_mindmap.py`；引擎变了 → `rebuild_all.py` 全量重建（484 幕，主 App 共享引擎块仍只 1 份）；`embed_app.py` 装导图舞台挂钩（无幕时舞台为空、不报错）；主文件 15.47 MB；抽样回归 tense_matrix / hd_formation / fp_economy / 单词卡模板 55 词全过、0 报错 | ✅ 本阶段提交 |
 | ③ | 25 幕分 3 批生成 → R1 → 联络表 → 嵌入（1–8 / 9–16 / 17–25），每批一提交 | 第 1 批 幕 1–8（学校与学习 … 服装与穿戴） ✅；第 2 批 幕 9–16（语法功能与指代 … 交通与出行） ✅；第 3 批 幕 17–25（交际与礼仪 … 核心语法功能词） ✅ |
 | ④ | `v5/app_check6.py` 全量 App 回归：25/25 合格（讲解幕在导图上方、幕号对、时长 65–116 s；16 节点可点开卡、➕/➖/滚轮缩放、拖拽、复位正常），0 报错；`jscheck` / `anchorcheck` OK；第一性原理总枢 24 幕仍正常 | ✅ 本阶段提交 |
-| ⑤ | 第一性原理总枢余下旧 canvas 核查：`v5/app_check7.py` 6 原理 × 4 幕——22 幕 v5 iframe、2 幕（fp_one_king ①、fp_zoom_focus ①）是迁去中英对照的跳转，页面上已无任何旧 canvas，0 报错。旧 canvas 代码（`startFirstPrinciplesCanvasLoop` 的 canvas 分支、`wbStageHtml` 的 `firstPrinciplesCanvas` 兜底）只在缺 v5 幕时才会用到，按各厅惯例保留作兜底，退役等用户决定（§6） | ✅ 本阶段提交（无需改 App） |
-| ⑥ | 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实） | ⏸ 未开工（2026-10-30 22:30）：原审计用的 Wiktionary 抓取缓存 `work/etym` 随沙箱重置丢失，要重抓 1487 词（API 可用，已试 foot）；之后每条都要对照 Etymonline / Wiktionary 人工核实，是多轮的研究工作量，按下面 ⑥a–⑥g 分阶段做，每阶段一提交 |
-| ⑥a | `src/fetch_etym.py`：按 VOCAB_DB 抓 Wiktionary wikitext（限速、断点续抓）→ `work/etym/`（缓存不进仓库）；`src/parse_etym.py` 解析词源 / 同源 / 构词模板 → 候选表 `word_origins/CANDIDATES_*.md`（进仓库，标「候选，未核」） | ⬜ |
-| ⑥b | 格林定律 p→f 组（COVERAGE §3 候选 14 个）逐条核实（Etymonline + Wiktionary 两处都对上才入库，否则写原因）→ 数据 + 白板模板幕 | ⬜ |
-| ⑥c | 格林其余规则组（t→th、k→h、kʷ→hw、d→t、g→k、gʷ→kw、bh→b、dh→d、gh→g）+ 维尔纳定律，每组一提交 | ⬜ |
-| ⑥d | 词源 `ETYM_DB`（按年级 G1→G6→V6，每年级一提交；旧「巧记小故事」保留并标 💡） | ⬜ 需用户定：标 💡 的展示方式 |
-| ⑥e | 词根词缀 `MORPH_DB`（按词缀族，每族一提交；伪拆分加 R3 纠正） | ⬜ |
-| ⑥f | 音变与词汇规律 12 + 6 条（COVERAGE §4），每条：核实可匹配词 → 一个白板模板幕 | ⬜ 需用户定：这些规律幕挂在 App 哪里（单词身世总枢新页签？） |
-| ⑥g | 每批后更新 `word_origins/COVERAGE.md` 数字 | ⬜ |
+| ⑤ | 第一性原理总枢余下旧 canvas 核查：`v5/app_check7.py` 6 原理 × 4 幕——22 幕 v5 iframe、2 幕（fp_one_king ①、fp_zoom_focus ①）是迁去中英对照的跳转，页面上已无任何旧 canvas，0 报错。旧 canvas 代码（`startFirstPrinciplesCanvasLoop` 的 canvas 分支、`wbStageHtml` 的 `firstPrinciplesCanvas` 兜底）只在缺 v5 幕时才会用到，2026-10-31 已退役（§5.2 第 3 项） | ✅ 本阶段提交（无需改 App） |
+| ⑥ | 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实） | 🟡 已转到 §5.2 第 1 项执行（下面 ⑥a–⑥g 只留作历史对照）。原记录（2026-10-30 22:30）：原审计用的 Wiktionary 抓取缓存 `work/etym` 随沙箱重置丢失，要重抓 1487 词（API 可用，已试 foot）；之后每条都要对照 Etymonline / Wiktionary 人工核实，是多轮的研究工作量，按下面 ⑥a–⑥g 分阶段做，每阶段一提交 |
+| ⑥a | ✅ 见 §5.2 1a。`src/fetch_etym.py`：按 VOCAB_DB 抓 Wiktionary wikitext（限速、断点续抓）→ `work/etym/`（缓存不进仓库）；`src/parse_etym.py` 解析词源 / 同源 / 构词模板 → 候选表 `word_origins/CANDIDATES_*.md`（进仓库，标「候选，未核」） | ✅ |
+| ⑥b | 格林定律 p→f 组（COVERAGE §3 候选 14 个）逐条核实（Etymonline + Wiktionary 两处都对上才入库，否则写原因）→ 数据 + 白板模板幕 | ✅ 见 §5.2 1d（`wo_grimm_voiceless`） |
+| ⑥c | 格林其余规则组（t→th、k→h、kʷ→hw、d→t、g→k、gʷ→kw、bh→b、dh→d、gh→g）+ 维尔纳定律，每组一提交 | ✅ 见 §5.2 1d（按清浊 / 送气合成 3 幕 + 维尔纳 1 幕） |
+| ⑥d | 词源 `ETYM_DB`（按年级 G1→G6→V6，每年级一提交；旧「巧记小故事」保留并标 💡） | 🟡 见 §5.2 1b（展示方式已按 22:13 授权自行决定） |
+| ⑥e | 词根词缀 `MORPH_DB`（按词缀族，每族一提交；伪拆分加 R3 纠正） | 🟡 见 §5.2 1c |
+| ⑥f | 音变与词汇规律 12 + 6 条（COVERAGE §4），每条：核实可匹配词 → 一个白板模板幕 | ✅ 见 §5.2 1e（挂在单词身世总枢新章「🔬 音变与词汇规律」） |
+| ⑥g | 每批后更新 `word_origins/COVERAGE.md` 数字 | 🟡 见 §5.2 1f |
 | ⑦ | 文档收尾（本轮：HANDOFF 现状表 / §5.1 / §6、REDRAW_V5 H 节、CHANGELOG、设计稿 §1.7 已同步；全部完成后再做总收尾） | 🟡 本轮已同步 |
 
 接手须知：

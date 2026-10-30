@@ -2466,3 +2466,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新工具 `src/fnranges.js`：acorn 解析主文件直接执行的脚本，输出顶层函数位置（已把 UTF-16 下标换成码位下标，emoji 不会错位）；需要 `npm i acorn`（放 `/tmp/acorn` 即可，不进仓库）。
 - 回归：91 个 HD 单元（`units.json` 里 field=hd 的全部）逐个 `app_check4.py`，不合格 0、0 报错；`runall.py --full` 见下一行。
 - `runall.py --full`（退役后主文件）13 项全部通过：offlinecheck 882 段、app_check5 55 词 / app_check6 0 不合格、leakcheck OK、0 报错。主文件约 15.82 MB。
+
+## 2026-10-31 02:10 JST · 词源 ETYM_DB / MORPH_DB 第 3 批（Etymonline 缓存 1288 / 1487）+ 文档总收尾
+- 沙箱重置后 `/workspace/work/etym/` 缓存全丢，重抓：Wiktionary 1487 / 1487；Etymonline（Wayback）三个单连接进程断点续抓到 **1288 / 1487**。剩 199 词是 Wayback 限流 / 断连没拿到（失败的不落盘），用户 01:58 说「剩余的等会再抓」，补抓命令写在 HANDOFF §5.2 1b。
+- `parse_etym.py` → `build_etym_db.py etym` / `morph`（核对规则不变）：`ETYM_DB` 352 → **603** 词（G1 32 / G2 35 / G3 60 / G4 80 / G5 94 / G6 62 / V6 238 / POLY 2），`MORPH_DB` 111 → **182** 词；未入库原因见 `word_origins/ETYM_REVIEW.md`（两处对不上 413、尚未抓取 179、无可解析来源链 149、无英语词源小节 71、词组 37、无词条 35）。
+- 文档总收尾（§5.2 第 6 项）：HANDOFF §5.1 ⑥a–⑥g 旧待办表标为已转 §5.2 执行，⑤ 旧 canvas 改为已退役；COVERAGE §7 数字更新。
+- 坑：`pkill -f fetch_etym` 会连带杀掉发命令的 shell（命令行里也有这个字符串）；沙箱局部重置会丢 pip 包（playwright 等），runall 前先 `python3 -c "import playwright"`。
+- 回归 `runall.py --full` 13 项全部通过（app_check8 25 词 0 不合格、offlinecheck 882 段、leakcheck OK、0 报错）。主文件 15,766,619 bytes。
