@@ -85,8 +85,6 @@
 - ✅ `fp_zoom_focus` 第2/4幕 🔍 第一性原理 · 由大到小 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_2.js`，R1 62/62，88 s，0 报错；主文件 23,598,843 bytes）
 - ✅ `fp_zoom_focus` 第3/4幕 🔍 第一性原理 · 由大到小 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_3.js`，R1 54/54，70 s，0 报错；主文件 23,770,134 bytes）
 - ✅ `fp_zoom_focus` 第4/4幕 🔍 第一性原理 · 由大到小 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_4.js`，R1 62/62，95 s，0 报错；主文件 23,954,469 bytes）
-- ✅ `vv_take_on` 第1/2幕 🎬 万能动词 · take on ① v5.1 重画并替换进 App（`v5/scenes/vv_take_on_1.js`，R1 9/9，12 s，0 报错；主文件 24,169,216 bytes）
-- ✅ `vv_take_on` 第2/2幕 🎬 万能动词 · take on ② v5.1 重画并替换进 App（`v5/scenes/vv_take_on_2.js`，R1 19/19，18 s，0 报错；主文件 24,403,871 bytes）
 - ✅ `wo_port` 第1/1幕 📖 单词身世 · port · 1 v5.1 重画并替换进 App（`v5/scenes/wo_port_1.js`，R1 142/142，185 s，0 报错；主文件 24,767,369 bytes）
 - ✅ `wo_europe` 第1/1幕 📖 单词身世 · Europe · 1 v5.1 重画并替换进 App（`v5/scenes/wo_europe_1.js`，R1 142/142，139 s，0 报错；主文件 25,122,494 bytes）
 - ✅ `wo_grimm` 第1/1幕 📖 单词身世 · 格林定律 · 1 v5.1 重画并替换进 App（`v5/scenes/wo_grimm_1.js`，R1 160/160，135 s，0 报错；主文件 25,338,874 bytes）
@@ -107,6 +105,30 @@
 - ✅ `ze_subject` 第1/1幕 🔀 中英对照 · 主语 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_subject_1.js`，R1 59/59，73 s，0 报错；主文件 28,599,791 bytes）
 - ✅ `ze_wear` 第1/1幕 🔀 中英对照 · 穿戴 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_wear_1.js`，R1 66/66，77 s，0 报错；主文件 28,797,373 bytes）
 - ✅ `ze_yesno` 第1/1幕 🔀 中英对照 · 是非 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_yesno_1.js`，R1 71/71，78 s，0 报错；主文件 28,969,022 bytes）
+- ✅ `vv_take_on` 第1/2幕 🎬 万能动词 · take on ① v5.1 重画并替换进 App（`v5/scenes/vv_take_on_1.js`，R1 9/9，12 s，0 报错；主文件 28,969,022 bytes）
+- ✅ `vv_take_on` 第2/2幕 🎬 万能动词 · take on ② v5.1 重画并替换进 App（`v5/scenes/vv_take_on_2.js`，R1 19/19，18 s，0 报错；主文件 28,969,022 bytes）
+- ✅ `vv_take_off` 第1/2幕 🎬 万能动词 · take off ① v5.1 重画并替换进 App（`v5/scenes/vv_take_off_1.js`，R1 10/10，12 s，0 报错；主文件 29,129,092 bytes）
+- ✅ `vv_take_off` 第2/2幕 🎬 万能动词 · take off ② v5.1 重画并替换进 App（`v5/scenes/vv_take_off_2.js`，R1 18/18，18 s，0 报错；主文件 29,272,950 bytes）
+- ✅ `vv_take_up` 第1/2幕 🎬 万能动词 · take up ① v5.1 重画并替换进 App（`v5/scenes/vv_take_up_1.js`，R1 8/8，12 s，0 报错；主文件 29,508,261 bytes）
+- ✅ `vv_take_up` 第2/2幕 🎬 万能动词 · take up ② v5.1 重画并替换进 App（`v5/scenes/vv_take_up_2.js`，R1 40/40，21 s，0 报错；主文件 29,726,788 bytes）
+- ✅ `vv_take_down` 第1/2幕 🎬 万能动词 · take down ① v5.1 重画并替换进 App（`v5/scenes/vv_take_down_1.js`，R1 9/9，12 s，0 报错；主文件 29,933,731 bytes）
+- ✅ `vv_take_down` 第2/2幕 🎬 万能动词 · take down ② v5.1 重画并替换进 App（`v5/scenes/vv_take_down_2.js`，R1 22/22，19 s，0 报错；主文件 30,140,778 bytes）
+- ✅ `vv_take_in` 第1/2幕 🎬 万能动词 · take in ① v5.1 重画并替换进 App（`v5/scenes/vv_take_in_1.js`，R1 8/8，12 s，0 报错；主文件 30,346,481 bytes）
+- ✅ `vv_take_in` 第2/2幕 🎬 万能动词 · take in ② v5.1 重画并替换进 App（`v5/scenes/vv_take_in_2.js`，R1 21/21，18 s，0 报错；主文件 30,563,128 bytes）
+- ✅ `vv_take_out` 第1/2幕 🎬 万能动词 · take out ① v5.1 重画并替换进 App（`v5/scenes/vv_take_out_1.js`，R1 9/9，12 s，0 报错；主文件 30,701,846 bytes）
+- ✅ `vv_take_out` 第2/2幕 🎬 万能动词 · take out ② v5.1 重画并替换进 App（`v5/scenes/vv_take_out_2.js`，R1 18/18，17 s，0 报错；主文件 30,845,400 bytes）
+- ✅ `vv_put_on` 第1/2幕 🎬 万能动词 · put on ① v5.1 重画并替换进 App（`v5/scenes/vv_put_on_1.js`，R1 10/10，12 s，0 报错；主文件 31,035,657 bytes）
+- ✅ `vv_put_on` 第2/2幕 🎬 万能动词 · put on ② v5.1 重画并替换进 App（`v5/scenes/vv_put_on_2.js`，R1 19/19，18 s，0 报错；主文件 31,265,804 bytes）
+- ✅ `vv_put_off` 第1/2幕 🎬 万能动词 · put off ① v5.1 重画并替换进 App（`v5/scenes/vv_put_off_1.js`，R1 14/14，13 s，0 报错；主文件 31,456,018 bytes）
+- ✅ `vv_put_off` 第2/2幕 🎬 万能动词 · put off ② v5.1 重画并替换进 App（`v5/scenes/vv_put_off_2.js`，R1 20/20，20 s，0 报错；主文件 31,648,360 bytes）
+- ✅ `vv_put_up` 第1/2幕 🎬 万能动词 · put up ① v5.1 重画并替换进 App（`v5/scenes/vv_put_up_1.js`，R1 9/9，11 s，0 报错；主文件 31,837,600 bytes）
+- ✅ `vv_put_up` 第2/2幕 🎬 万能动词 · put up ② v5.1 重画并替换进 App（`v5/scenes/vv_put_up_2.js`，R1 18/18，18 s，0 报错；主文件 32,050,089 bytes）
+- ✅ `vv_put_down` 第1/2幕 🎬 万能动词 · put down ① v5.1 重画并替换进 App（`v5/scenes/vv_put_down_1.js`，R1 9/9，13 s，0 报错；主文件 32,189,587 bytes）
+- ✅ `vv_put_down` 第2/2幕 🎬 万能动词 · put down ② v5.1 重画并替换进 App（`v5/scenes/vv_put_down_2.js`，R1 22/22，19 s，0 报错；主文件 32,391,184 bytes）
+- ✅ `vv_put_in` 第1/2幕 🎬 万能动词 · put in ① v5.1 重画并替换进 App（`v5/scenes/vv_put_in_1.js`，R1 10/10，12 s，0 报错；主文件 32,616,713 bytes）
+- ✅ `vv_put_in` 第2/2幕 🎬 万能动词 · put in ② v5.1 重画并替换进 App（`v5/scenes/vv_put_in_2.js`，R1 23/23，19 s，0 报错；主文件 32,860,786 bytes）
+- ✅ `vv_put_out` 第1/2幕 🎬 万能动词 · put out ① v5.1 重画并替换进 App（`v5/scenes/vv_put_out_1.js`，R1 8/8，13 s，0 报错；主文件 33,084,985 bytes）
+- ✅ `vv_put_out` 第2/2幕 🎬 万能动词 · put out ② v5.1 重画并替换进 App（`v5/scenes/vv_put_out_2.js`，R1 18/18，18 s，0 报错；主文件 33,362,652 bytes）
 - **用户规则（2026-10-30 14:05）：不要停，直到全部完成**——单元之间也不停、不等待回复，连续推进。
 - **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
