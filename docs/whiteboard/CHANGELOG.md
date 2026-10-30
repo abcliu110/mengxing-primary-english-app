@@ -2379,3 +2379,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新页 `app_map`「🗺️ 总地图」：实验室 / 单词身世 / 中英对照 / 第一性原理四区 39 个节点（○ 没看 / ✓ 看过 / 🏅 过关），三条推荐路径（发音线、语法线、词汇词源线）；首页「继续上次」条加入口；第一性原理按 `fp:<序号>` 记看过（它自带原有习题，不另加小测）。
 - **假设记录**（设计稿未细化，按最小忠实版自定）：题型固定 认出→选择→拼写；过关线 60%；推荐路径的站点由我按 MODULE_ROADMAP「发音线 / 语法线 / 词汇词源线」挑现有模块；三大厅 HD 剧场、语法 40 点、口语不进总地图（它们有各自的「我的」进度页）。
 - 回归：`jscheck` / `anchorcheck` OK；新 `v5/app_check9.py`：33 个模块面板都在白板下方、3 个模块完整答题（第 1 题故意错 → 进错题本、4/5 点亮）、总地图 39 节点 / 点亮 3 / 点节点跳转正常、首页按钮在；`app_check2.py wo wo_port` 白板仍正常；0 报错。主文件 15,582,607 bytes。
+
+## 2026-10-31 00:30 · 决策 6 空间隐喻（metaphor_code 密码四）
+- 位置按 MODULE_ROADMAP G「metaphor_code 加一个密码四」：`METAPHOR_CODES_DB` 加第 4 类（4 张卡：上下=多少、上下=心情、前后=将来/过去、时间=钱；含 ⚠️ 中文「以前 / 前天」的「前」= 过去），`src/patch_metaphor4.py`（幂等）。出处 Lakoff & Johnson《Metaphors We Live By》1980（MORE IS UP、HAPPY IS UP、TIME IS MONEY）。
+- 白板第 4 幕：内容稿 `content/metaphor_code_4.txt` → 新工具 `v5/new_scene.py`（内容稿 → `lab/INVENTORY_METAPHOR_CODE_4_NEW.md` → gen_auto → 打包 → r1v5 → shots → embed）：29 条缺 0、111 s、deterministic、0 报错；动作 up / down / look / spend / save 用现成帧（l_lookup、l_ldown*、l_point、l_piggy）。`units.json` 登记 case 4。
+- MODULE_QUIZ 重新生成（metaphor_code 小测词表含新幕的词）。回归：`app_check.py metaphor_code metaIdx 4` 4 幕全 v5、0 报错；jscheck / anchorcheck OK。主文件 16,516,847 bytes。

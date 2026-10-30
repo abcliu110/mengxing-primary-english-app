@@ -8,7 +8,7 @@
 | lab:eight_endings | 1 | 27 | ✅ 8 词 |
 | lab:irregular_plural | 2 | 38 | ✅ 8 词 |
 | lab:past_clans | 4 | 68 | ✅ 8 词 |
-| lab:metaphor_code | 3 | 70 | ✅ 8 词 |
+| lab:metaphor_code | 4 | 80 | ✅ 8 词 |
 | lab:bamboo_tree | 5 | 58 | ✅ 8 词 |
 | lab:adj_order | 4 | 44 | ✅ 8 词 |
 | lab:tense_matrix | 5 | 76 | ✅ 8 词 |
