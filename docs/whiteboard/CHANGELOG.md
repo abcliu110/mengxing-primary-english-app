@@ -472,3 +472,4 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | （本次） | 新增 `REVIEW_LIST.md` 真机审片清单 |
 
 - 2026-10-30 10:20 JST：动作系统 v5 样板 takeout_wb（huashu-art-motion 白板 + AI 关键帧 + Remotion 出片/Player）；MP4 1.58 MB、单文件 HTML 1.02 MB。
+- 2026-10-30 10:30 JST：决策 31 写入 MASTER_DESIGN（动作系统 v5 工具组合定稿），HANDOFF 顶部改为 v5 现状。
