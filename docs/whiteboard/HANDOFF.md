@@ -90,7 +90,7 @@
 | 1f | `word_origins/COVERAGE.md` 数字更新 | ⬜ | |
 | 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 58721a8 |
 | 2b | 决策 6 剩余：空间隐喻 ✅（实验室「三大隐喻密码」加密码四 + 白板第 4 幕）/ 拼写潜规则 ✅（自然拼读页顶部剧场第四幕，不新开页签）/ 交际句型地图 ✅（口语大厅入口卡 → 新页 `oral_func_map`：白板 2 幕 + 点读句型表）。新内容做幕的通用工具：`v5/new_scene.py content/<幕>.txt`（内容稿 → R1 清单 → 生成 → 打包 → 核对 → 嵌入） | ✅ | 空间隐喻 64f1285；拼写潜规则 5a9e61e；交际句型地图 本提交 |
-| 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | 🟡 O9 ✅ `src/runall.py` | O9：本提交 |
+| 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | 🟡 O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py` | O9 db0ac3a；O8 本提交 |
 | 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅） | ⬜ | |
 | 4 | 人物帧重压 Q60 / 400 px（单独可回退提交） | ⬜ | |
 | 5 | 坏帧 l_lift0–2、missw_give、V29 Leo 头发 | ⬜ | |

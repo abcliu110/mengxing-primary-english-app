@@ -57,7 +57,7 @@ def patch(block_id, data):
         anchor = '<script type="text/plain" id="wb5html-'
         assert s.count(anchor) >= 1; i = s.index(anchor)
         s = s[:i] + tag + js + '</script>\n' + s[i:]
-    APP.write_text(s, encoding='utf-8')
+    __import__('appwrite').save(s)   # O8：写前锚点检查、写后 jscheck，不过就还原
 if __name__ == '__main__':
     mode = sys.argv[1]; dry = '--dry' in sys.argv
     db, miss = {}, []

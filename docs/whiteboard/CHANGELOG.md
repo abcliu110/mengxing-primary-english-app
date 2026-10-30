@@ -2397,3 +2397,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 01:20 · 决策 29 O9 测试基座 runall.py
 - `src/runall.py`：一条命令跑全套——快速档 jscheck（含 anchorcheck）、offlinecheck、app_check8 / 9、tense_matrix、wo_grimm、hd_phonics、oral_func；`--full` 另加 app_check5 / 6 / 7、leakcheck。判定：返回码 0 且输出无 BAD / FAIL / 不合格 N>0 / 非 none 的 errors。首跑快速档 8 项全部通过（约 95 s）。环境安装见 HANDOFF §2（另：sudo 装依赖要 `sudo env PYTHONPATH=$(python3 -c 'import site;print(site.getusersitepackages())') python3 -m playwright install-deps chromium`）。
+
+## 2026-10-31 01:25 · 决策 29 O8 写主文件统一入口 appwrite.py
+- `src/appwrite.py` `save(s)`：写前 `anchorcheck.check(s)` 必须 0 问题，否则不写；写后跑 `jscheck.py`，不过就把原文件写回去并退出非 0。本轮所有改主文件的脚本（patch_etym_card / patch_practice / patch_metaphor4 / patch_phonics4 / patch_oral_func / gen_module_quiz / build_etym_db）改用它。
+- 当场拦下一个真问题：patch_practice 重跑时按「到 renderCurrentView 为止」换函数块，会把后插的交际句型地图函数一起删掉——anchorcheck 报 ORAL_FUNC_MAP_V1 出现 0 次，未写入；已改成只换到下一个块标记前。全部补丁脚本重跑后主文件逐字节不变（幂等）。旧的 `docs/home/step*.py` 一次性补丁早已删除，只剩 `docs/home/home_entries.py`（只读检查）。

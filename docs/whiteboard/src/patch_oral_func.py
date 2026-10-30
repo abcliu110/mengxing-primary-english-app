@@ -1,7 +1,7 @@
 """patch_oral_func.py —— 决策 6 交际句型地图（口语大世界新入口，幂等）。
 - 口语大厅顶部加入口卡；新页 oral_func_map：v5 白板剧场 2 幕（oral_func ① 礼貌阶梯 ② 五大交际功能，canvas 由 wb5HDSwap 换成 v5）+ 点读句型表。
 - 旧口语场景一句不删（R1）；本页只做「骨架句型」汇总。"""
-import pathlib
+import pathlib, sys; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
 s = APP.read_text(encoding='utf-8'); MARK = '// ORAL_FUNC_MAP_V1'
 FUNCS = r'''// ORAL_FUNC_MAP_V1 ---------- 决策 6：交际句型地图（礼貌阶梯 + 五大交际功能；src/patch_oral_func.py） ----------
@@ -55,4 +55,4 @@ else:
     ]
     for a, b in reps: assert s.count(a) == 1, a[:40]; s = s.replace(a, b)
     j = s.index('function renderCurrentView() {'); s = s[:j] + FUNCS + s[j:]; print('patched')
-APP.write_text(s, encoding='utf-8')
+__import__('appwrite').save(s)   # O8：写前锚点检查、写后 jscheck，不过就还原

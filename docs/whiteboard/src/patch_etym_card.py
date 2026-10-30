@@ -2,7 +2,7 @@
 ① 📖 真实词源 📜：读 <script type="application/json" id="ETYM_DB_JSON">（build_etym_db.py 写入），按需 JSON.parse；
    有条目 = 来源链 + 两个出处链接；没有 = 写「暂未收录」。真实构词（MORPH_DB_JSON，有就显示）。
 ② 💡 巧记小故事：原 etymology 原文（只把「📖 【秒懂巧记小故事】」类前缀换成新标题），没有就用 memory_tip。R1：旧文字不删。"""
-import pathlib, re, sys
+import pathlib, re, sys; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
 s = APP.read_text(encoding='utf-8')
 MARK = '// ETYM_CARD_V1'
@@ -46,11 +46,11 @@ OLD2 = '''      <div style="font-weight:800; color:#0f172a; margin-bottom:6px;">
 NEW2 = '''      <!-- ETYM_CARD:grid --><div style="display:grid; gap:8px; margin-bottom:8px;">${etymRealHtml(w)}${etymTipHtml(w)}</div>'''
 if MARK in s:   # 已打过：只换函数块（改版式后重跑）
     i = s.index(MARK); i = s.rindex('\n', 0, i) + 1; j = s.index('function woFindScene(id) {', i)
-    s = s[:i] + FUNCS.lstrip('\n') + s[j:]; APP.write_text(s, encoding='utf-8'); print('funcs updated')
+    s = s[:i] + FUNCS.lstrip('\n') + s[j:]; __import__('appwrite').save(s); print('funcs updated')   # O8：写前锚点检查、写后 jscheck，不过就还原
 elif True:
     for o in (OLD1, OLD2): assert s.count(o) == 1, o[:60]
     s = s.replace(OLD1, NEW1).replace(OLD2, NEW2)
     anchor = 'function woFindScene(id) {'
     assert s.count(anchor) >= 1
     i = s.index(anchor); s = s[:i] + FUNCS.lstrip('\n') + s[i:]
-    APP.write_text(s, encoding='utf-8'); print('patched')
+    __import__('appwrite').save(s); print('patched')   # O8
