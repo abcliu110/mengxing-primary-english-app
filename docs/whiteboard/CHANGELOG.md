@@ -2384,3 +2384,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 位置按 MODULE_ROADMAP G「metaphor_code 加一个密码四」：`METAPHOR_CODES_DB` 加第 4 类（4 张卡：上下=多少、上下=心情、前后=将来/过去、时间=钱；含 ⚠️ 中文「以前 / 前天」的「前」= 过去），`src/patch_metaphor4.py`（幂等）。出处 Lakoff & Johnson《Metaphors We Live By》1980（MORE IS UP、HAPPY IS UP、TIME IS MONEY）。
 - 白板第 4 幕：内容稿 `content/metaphor_code_4.txt` → 新工具 `v5/new_scene.py`（内容稿 → `lab/INVENTORY_METAPHOR_CODE_4_NEW.md` → gen_auto → 打包 → r1v5 → shots → embed）：29 条缺 0、111 s、deterministic、0 报错；动作 up / down / look / spend / save 用现成帧（l_lookup、l_ldown*、l_point、l_piggy）。`units.json` 登记 case 4。
 - MODULE_QUIZ 重新生成（metaphor_code 小测词表含新幕的词）。回归：`app_check.py metaphor_code metaIdx 4` 4 幕全 v5、0 报错；jscheck / anchorcheck OK。主文件 16,516,847 bytes。
+
+## 2026-10-31 00:45 · 决策 6 拼写潜规则（自然拼读剧场第四幕）
+- 位置按 MODULE_ROADMAP B「并入自然拼读，不新开页签」：自然拼读页顶部剧场 `hd_phonics` 加第四幕「拼写潜规则」（`src/patch_phonics4.py` 加按钮标签，幂等）。内容稿 `content/hd_phonics_4.txt`：① 词尾不放 v 补 e（have / give / love）② 词尾用 y、加词尾 y 变 i（happy→happier、try→tries）③ c、g 遇 e/i/y 读软音（city、giant；⚠️ get / give / girl）④ q 后跟 u（queen、question、quick；⚠️ 少数外来名字如 Iraq）；口诀。徽章 ✂️ ⚠️。
+- `new_scene.py`：34 条缺 0、145 s、deterministic、0 报错。`app_check4.py hd_phonics` 4 幕全换成 v5、旧 canvas 不在、0 报错。
+- 发现：metaphor_code 第 4 幕有字表外新字，嵌入时多了一份共享引擎块（+0.93 MB，主文件 16,520,656 bytes）；登记 HANDOFF §4，本轮新幕做完后 `gen_font_chars.py` + `rebuild_all.py` 合并。

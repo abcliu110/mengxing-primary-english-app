@@ -61,6 +61,9 @@ MARKERS = [
     ('if (typeof mqMount === "function") mqMount();', 1, 1),
     ('<script type="application/json" id="MODULE_QUIZ_JSON">', 1, 1),
     ('data-home-map', 1, 1),
+    # 决策 6：空间隐喻（metaphor_code 密码四）、拼写潜规则（自然拼读剧场第四幕）
+    ('catTitle: "🧭 密码四', 1, 1),
+    ('"第三幕·双元音/字母组合合唱", "第四幕·拼写潜规则"]', 1, 1),
 ]
 
 
