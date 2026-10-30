@@ -46,6 +46,14 @@ if 'WB5_EMBED' not in s:
                   '  const wb5F = document.getElementById("wb5Frame");   // WB5_EMBED\n  if (wb5F) { wb5Mount(wb5F); return; }\n  const wbStage = document.getElementById("wbStage");\n  if (wbStage && typeof WB !== "undefined") { startWBLoop(wbStage); return; }', 1)
     assert s.count('WB5_EMBED') == 3, s.count('WB5_EMBED')
 
+if 'WB5_EMBED_V2' not in s:   # 第一性原理 / 单词身世 / 中英对照 的舞台也能替换（任意 svgId）
+    s = s.replace('  if (svgId === "wbStage" && wb5El(tab, idx)) return wb5StageHtml(tab, idx, withGloss);   // WB5_EMBED\n',
+                  '  if (wb5El(tab, idx)) return wb5StageHtml(tab, idx, withGloss);   // WB5_EMBED WB5_EMBED_V2\n', 1)
+    M = '  { const wb5F = document.getElementById("wb5Frame"); if (wb5F) { wb5Mount(wb5F); return; } }   // WB5_EMBED_V2\n'
+    for a in ['  const fpStage = document.getElementById("fpWbStage");\n', '  const st = document.getElementById("woWbStage");\n', '  const st = document.getElementById("zeWbStage");\n']:
+        assert s.count(a) == 1, a; s = s.replace(a, M + a, 1)
+    assert s.count('WB5_EMBED_V2') == 4, s.count('WB5_EMBED_V2')
+
 import hashlib, gzip, base64
 if 'WB5_MOUNT_V2' not in s:   # 升级已装的运行时
     a = s.index('function wb5Mount(fr) {'); b = s.index('\n}\n', a) + 3

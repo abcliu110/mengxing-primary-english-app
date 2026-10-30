@@ -1,34 +1,1195 @@
 {
- "aux_transformer": {"field": "auxIdx", "lib": "at", "name": "🪞 助动词照妖镜", "cases": {
-  "1": {"title": "🪞 助动词照妖镜 · ① be 动词护卫", "acts": {"taking": ["m_photo"], "reading": ["l_read"]}},
-  "2": {"title": "🪞 助动词照妖镜 · ② 情态动词大将军", "acts": {"speak": ["l_speak"], "read": ["l_read"], "jump": ["l_jc", "l_ja"]}},
-  "3": {"title": "🪞 助动词照妖镜 · ③ 三单照妖镜 does", "acts": {"watches": ["m_tv"], "watch": ["m_tv"], "plays": ["kick0", "kick1", "kick2"], "play": ["kick0", "kick1", "kick2"]}},
-  "4": {"title": "🪞 助动词照妖镜 · ④ 过去式照妖镜 did", "acts": {"went": ["l_goout"], "flew": ["plane"], "go": ["l_w0", "l_w1", "l_w2"]}}}},
- "five_patterns": {"field": "patIdx", "lib": "fpat", "name": "🧱 五大基本句型", "cases": {
-  "1": {"title": "🧱 五大基本句型 · ① SV 自给自足型", "acts": {"rises": ["sunny"], "run": ["l_r0", "l_r1", "l_r2"], "fly": ["bird_up", "bird_down"], "look": ["l_point"], "play": ["kick0", "kick1", "kick2"], "sleep": ["baby"]}},
-  "2": {"title": "🧱 五大基本句型 · ② SVP 状态天平型", "acts": {"smells": ["m_smell"]}},
-  "3": {"title": "🧱 五大基本句型 · ③ SVO 一箭穿心型", "acts": {"reading": ["l_read"], "planted": ["plant"], "go": ["l_w0", "l_w1", "l_w2"], "read": ["l_read"]}},
-  "4": {"title": "🧱 五大基本句型 · ④ SVOO 双手递礼型", "acts": {"gave": ["mom_gift"], "give": ["l_pen"], "show": ["l_pen"], "pass": ["m_pass"]}},
-  "5": {"title": "🧱 五大基本句型 · ⑤ SVOC 魔法赋能型", "acts": {"reading": ["m_aloud"], "read": ["m_aloud"], "play": ["kick0", "kick1", "kick2"], "go": ["l_w0", "l_w1", "l_w2"], "laugh": ["l_laugh"]}}}},
- "bamboo_tree": {"field": "btIdx", "lib": "bt", "name": "🎋 竹节句 vs 树干句", "cases": {
-  "1": {"acts": {"go": ["l_w0", "l_w1", "l_w2"], "read": ["l_read"], "play": ["kick0", "kick1", "kick2"]}},
-  "3": {"acts": {"reading": ["l_read"]}},
-  "4": {"acts": {"exercises": ["l_ex0", "l_ex1", "l_ex2"]}},
-  "5": {"acts": {"swimming": ["ducks"], "swim": ["ducks"]}}}},
- "eight_endings": {"field": "dummyIdx", "lib": "ee", "name": "🎭 八大词尾", "cases": {
-  "1": {"acts": {"walks": ["l_w0", "l_w1", "l_w2"], "walking": ["l_w0", "l_w1", "l_w2"], "tallest": ["heights"]}}}},
- "irregular_plural": {"field": "ipIdx", "lib": "ip", "name": "👣 不规则复数", "cases": {
-  "1": {"acts": {"stand": ["l_stand"], "men": ["man"], "women": ["woman"]}},
-  "2": {"acts": {"children": ["child"], "postmen": ["postman"]}}}},
- "metaphor_code": {"field": "metaIdx", "lib": "mc", "name": "🔐 三大隐喻密码", "cases": {
-  "1": {"acts": {"look": ["l_point"], "give": ["linda_help"]}},
-  "2": {"acts": {"give": ["l_hand1"]}},
-  "3": {"acts": {"quiet": ["l_shh"], "busy": ["mom_busy"], "strong": ["dad_strong"], "bird": ["bird_worm"]}}}},
- "writing_alchemist": {"field": "writeIdx", "lib": "wa", "name": "✍️ 写作炼金术", "cases": {
-  "1": {"acts": {"piano": ["linda_piano"], "sweeping": ["m_sweep"], "strawberries": ["m_berry"], "sheep": ["l_sheep"], "helps": ["linda_help"]}},
-  "2": {"acts": {"piano": ["linda_piano"], "sweeping": ["m_sweep"], "strawberries": ["m_berry"], "sheep": ["l_sheep"], "helps": ["linda_help"]}},
-  "3": {"acts": {"piano": ["linda_piano"], "sweeping": ["m_sweep"], "strawberries": ["m_berry"], "sheep": ["l_sheep"], "helps": ["linda_help"]}}}},
- "phrasal_key": {"field": "pkIdx", "lib": "pk", "name": "🔑 短语动词钥匙", "cases": {
-  "1": {"acts": {"sit down": ["l_stand", "l_sit"], "stand up": ["l_sit", "l_stand"], "look up": ["l_lookup"], "go out": ["l_goout"], "come back": ["l_back"]}},
-  "2": {"acts": {"take out": ["l_bag0", "l_bag1", "l_bag2"], "put down": ["l_heavy0", "l_heavy1", "l_heavy2"], "get up": ["l_bed0", "l_bed1", "l_bed2"], "make up": ["m_story"]}}}}
+ "aux_transformer": {
+  "field": "auxIdx",
+  "lib": "at",
+  "name": "🪞 助动词照妖镜",
+  "cases": {
+   "1": {
+    "title": "🪞 助动词照妖镜 · ① be 动词护卫",
+    "acts": {
+     "taking": [
+      "m_photo"
+     ],
+     "reading": [
+      "l_read"
+     ]
+    }
+   },
+   "2": {
+    "title": "🪞 助动词照妖镜 · ② 情态动词大将军",
+    "acts": {
+     "speak": [
+      "l_speak"
+     ],
+     "read": [
+      "l_read"
+     ],
+     "jump": [
+      "l_jc",
+      "l_ja"
+     ]
+    }
+   },
+   "3": {
+    "title": "🪞 助动词照妖镜 · ③ 三单照妖镜 does",
+    "acts": {
+     "watches": [
+      "m_tv"
+     ],
+     "watch": [
+      "m_tv"
+     ],
+     "plays": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ],
+     "play": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ]
+    }
+   },
+   "4": {
+    "title": "🪞 助动词照妖镜 · ④ 过去式照妖镜 did",
+    "acts": {
+     "went": [
+      "l_goout"
+     ],
+     "flew": [
+      "plane"
+     ],
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ]
+    }
+   }
+  }
+ },
+ "five_patterns": {
+  "field": "patIdx",
+  "lib": "fpat",
+  "name": "🧱 五大基本句型",
+  "cases": {
+   "1": {
+    "title": "🧱 五大基本句型 · ① SV 自给自足型",
+    "acts": {
+     "rises": [
+      "sunny"
+     ],
+     "run": [
+      "l_r0",
+      "l_r1",
+      "l_r2"
+     ],
+     "fly": [
+      "bird_up",
+      "bird_down"
+     ],
+     "look": [
+      "l_point"
+     ],
+     "play": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ],
+     "sleep": [
+      "baby"
+     ]
+    }
+   },
+   "2": {
+    "title": "🧱 五大基本句型 · ② SVP 状态天平型",
+    "acts": {
+     "smells": [
+      "m_smell"
+     ]
+    }
+   },
+   "3": {
+    "title": "🧱 五大基本句型 · ③ SVO 一箭穿心型",
+    "acts": {
+     "reading": [
+      "l_read"
+     ],
+     "planted": [
+      "plant"
+     ],
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "read": [
+      "l_read"
+     ]
+    }
+   },
+   "4": {
+    "title": "🧱 五大基本句型 · ④ SVOO 双手递礼型",
+    "acts": {
+     "gave": [
+      "mom_gift"
+     ],
+     "give": [
+      "l_pen"
+     ],
+     "show": [
+      "l_pen"
+     ],
+     "pass": [
+      "m_pass"
+     ]
+    }
+   },
+   "5": {
+    "title": "🧱 五大基本句型 · ⑤ SVOC 魔法赋能型",
+    "acts": {
+     "reading": [
+      "m_aloud"
+     ],
+     "read": [
+      "m_aloud"
+     ],
+     "play": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ],
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "laugh": [
+      "l_laugh"
+     ]
+    }
+   }
+  }
+ },
+ "bamboo_tree": {
+  "field": "btIdx",
+  "lib": "bt",
+  "name": "🎋 竹节句 vs 树干句",
+  "cases": {
+   "1": {
+    "acts": {
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "read": [
+      "l_read"
+     ],
+     "play": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "reading": [
+      "l_read"
+     ]
+    }
+   },
+   "4": {
+    "acts": {
+     "exercises": [
+      "l_ex0",
+      "l_ex1",
+      "l_ex2"
+     ]
+    }
+   },
+   "5": {
+    "acts": {
+     "swimming": [
+      "ducks"
+     ],
+     "swim": [
+      "ducks"
+     ]
+    }
+   }
+  }
+ },
+ "eight_endings": {
+  "field": "dummyIdx",
+  "lib": "ee",
+  "name": "🎭 八大词尾",
+  "cases": {
+   "1": {
+    "acts": {
+     "walks": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "walking": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "tallest": [
+      "heights"
+     ]
+    }
+   }
+  }
+ },
+ "irregular_plural": {
+  "field": "ipIdx",
+  "lib": "ip",
+  "name": "👣 不规则复数",
+  "cases": {
+   "1": {
+    "acts": {
+     "stand": [
+      "l_stand"
+     ],
+     "men": [
+      "man"
+     ],
+     "women": [
+      "woman"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "children": [
+      "child"
+     ],
+     "postmen": [
+      "postman"
+     ]
+    }
+   }
+  }
+ },
+ "metaphor_code": {
+  "field": "metaIdx",
+  "lib": "mc",
+  "name": "🔐 三大隐喻密码",
+  "cases": {
+   "1": {
+    "acts": {
+     "look": [
+      "l_point"
+     ],
+     "give": [
+      "linda_help"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "give": [
+      "l_hand1"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "quiet": [
+      "l_shh"
+     ],
+     "busy": [
+      "mom_busy"
+     ],
+     "strong": [
+      "dad_strong"
+     ],
+     "bird": [
+      "bird_worm"
+     ]
+    }
+   }
+  }
+ },
+ "writing_alchemist": {
+  "field": "writeIdx",
+  "lib": "wa",
+  "name": "✍️ 写作炼金术",
+  "cases": {
+   "1": {
+    "acts": {
+     "piano": [
+      "linda_piano"
+     ],
+     "sweeping": [
+      "m_sweep"
+     ],
+     "strawberries": [
+      "m_berry"
+     ],
+     "sheep": [
+      "l_sheep"
+     ],
+     "helps": [
+      "linda_help"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "piano": [
+      "linda_piano"
+     ],
+     "sweeping": [
+      "m_sweep"
+     ],
+     "strawberries": [
+      "m_berry"
+     ],
+     "sheep": [
+      "l_sheep"
+     ],
+     "helps": [
+      "linda_help"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "piano": [
+      "linda_piano"
+     ],
+     "sweeping": [
+      "m_sweep"
+     ],
+     "strawberries": [
+      "m_berry"
+     ],
+     "sheep": [
+      "l_sheep"
+     ],
+     "helps": [
+      "linda_help"
+     ]
+    }
+   }
+  }
+ },
+ "phrasal_key": {
+  "field": "pkIdx",
+  "lib": "pk",
+  "name": "🔑 短语动词钥匙",
+  "cases": {
+   "1": {
+    "acts": {
+     "sit down": [
+      "l_stand",
+      "l_sit"
+     ],
+     "stand up": [
+      "l_sit",
+      "l_stand"
+     ],
+     "look up": [
+      "l_lookup"
+     ],
+     "go out": [
+      "l_goout"
+     ],
+     "come back": [
+      "l_back"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "take out": [
+      "l_bag0",
+      "l_bag1",
+      "l_bag2"
+     ],
+     "put down": [
+      "l_heavy0",
+      "l_heavy1",
+      "l_heavy2"
+     ],
+     "get up": [
+      "l_bed0",
+      "l_bed1",
+      "l_bed2"
+     ],
+     "make up": [
+      "m_story"
+     ]
+    }
+   }
+  }
+ },
+ "fp_economy": {
+  "field": "fp",
+  "lib": "fe",
+  "name": "⚙️ 第一性原理 · 经济原则",
+  "cases": {
+   "1": {
+    "acts": {
+     "worked": [
+      "l_hw2"
+     ],
+     "played": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "watch": [
+      "m_tv"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "fly": [
+      "bird_up",
+      "bird_down"
+     ]
+    }
+   },
+   "4": {
+    "acts": {
+     "running": [
+      "l_r0",
+      "l_r1",
+      "l_r2"
+     ],
+     "run": [
+      "l_r0",
+      "l_r1",
+      "l_r2"
+     ],
+     "stop": [
+      "l_stand"
+     ],
+     "sit": [
+      "l_sit"
+     ],
+     "sitting": [
+      "l_sit"
+     ],
+     "swim": [
+      "sw0",
+      "sw1",
+      "sw2"
+     ]
+    }
+   }
+  }
+ },
+ "fp_iconicity": {
+  "field": "fp",
+  "lib": "fi",
+  "name": "🔤 第一性原理 · 象似性",
+  "cases": {
+   "1": {
+    "acts": {
+     "look": [
+      "l_point"
+     ],
+     "open": [
+      "m_door"
+     ],
+     "swims": [
+      "snake"
+     ],
+     "put": [
+      "l_put"
+     ],
+     "catch": [
+      "l_catch"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "flies": [
+      "bird_up",
+      "bird_down"
+     ],
+     "fly": [
+      "bird_up",
+      "bird_down"
+     ],
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "walk": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "come": [
+      "l_back"
+     ],
+     "look": [
+      "l_point"
+     ]
+    }
+   },
+   "4": {
+    "acts": {
+     "read": [
+      "l_read"
+     ],
+     "sit": [
+      "l_sit"
+     ]
+    }
+   }
+  }
+ },
+ "fp_boundedness": {
+  "field": "fp",
+  "lib": "fb",
+  "name": "📦 第一性原理 · 有界无界",
+  "cases": {
+   "1": {
+    "acts": {
+     "give": [
+      "l_pen"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "running": [
+      "l_r0",
+      "l_r1",
+      "l_r2"
+     ],
+     "open": [
+      "m_door"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "goes": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "play": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ]
+    }
+   },
+   "4": {
+    "acts": {
+     "running": [
+      "chick0",
+      "chick1",
+      "chick2",
+      "chick3"
+     ],
+     "make room": [
+      "l_box"
+     ]
+    }
+   }
+  }
+ },
+ "fp_vectors": {
+  "field": "fp",
+  "lib": "fv",
+  "name": "🧭 第一性原理 · 方向向量",
+  "cases": {
+   "1": {
+    "acts": {
+     "get up": [
+      "l_bed0",
+      "l_bed1",
+      "l_bed2"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "put on": [
+      "l_coat1",
+      "l_coat2",
+      "l_coat3"
+     ],
+     "turn on": [
+      "l_switch"
+     ],
+     "get on": [
+      "l_bike0",
+      "l_bike1",
+      "l_bike2"
+     ],
+     "take off": [
+      "l_coff0",
+      "l_coff1",
+      "l_coff2"
+     ],
+     "takes off": [
+      "plane0",
+      "plane1",
+      "plane2"
+     ],
+     "fall off": [
+      "l_fall"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "get on": [
+      "bus2",
+      "bus1",
+      "bus0"
+     ],
+     "get in": [
+      "car_in0",
+      "car_in1",
+      "car_in2"
+     ],
+     "get off": [
+      "bus0",
+      "bus1",
+      "bus2"
+     ],
+     "get out of": [
+      "car_out0",
+      "car_out1",
+      "car_out2"
+     ]
+    }
+   },
+   "4": {
+    "acts": {
+     "walk to": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "look for": [
+      "l_search"
+     ],
+     "look at": [
+      "l_point"
+     ],
+     "go to": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ]
+    }
+   }
+  }
+ },
+ "fp_one_king": {
+  "field": "fp",
+  "lib": "fk",
+  "name": "👑 第一性原理 · 一句一王",
+  "cases": {
+   "2": {
+    "acts": {
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "reading": [
+      "l_read"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "went": [
+      "l_goout"
+     ],
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "plays": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ]
+    }
+   },
+   "4": {
+    "acts": {
+     "fly": [
+      "bird_up",
+      "bird_down"
+     ],
+     "pass": [
+      "m_pass"
+     ],
+     "reading": [
+      "l_read"
+     ],
+     "gives": [
+      "mom_gift"
+     ]
+    }
+   }
+  }
+ },
+ "fp_zoom_focus": {
+  "field": "fp",
+  "lib": "fz",
+  "name": "🔍 第一性原理 · 由大到小",
+  "cases": {
+   "2": {
+    "acts": {
+     "going": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "get up": [
+      "l_bed0",
+      "l_bed1",
+      "l_bed2"
+     ],
+     "runs": [
+      "l_r0",
+      "l_r1",
+      "l_r2"
+     ]
+    }
+   },
+   "3": {
+    "acts": {}
+   },
+   "4": {
+    "acts": {
+     "play": [
+      "kick0",
+      "kick1",
+      "kick2"
+     ],
+     "reading": [
+      "l_read"
+     ]
+    }
+   }
+  }
+ },
+ "pron_map": {
+  "field": "pmIdx",
+  "lib": "pm",
+  "name": "👄 发音地图",
+  "cases": {
+   "1": {
+    "acts": {
+     "think": [
+      "l_think"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "think": [
+      "l_think"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "think": [
+      "l_think"
+     ]
+    }
+   }
+  }
+ },
+ "stress_rhythm": {
+  "field": "stressIdx",
+  "lib": "sr",
+  "name": "🎯 重音与弱读",
+  "cases": {}
+ },
+ "intonation_map": {
+  "field": "imIdx",
+  "lib": "im",
+  "name": "🎵 语调地图",
+  "cases": {
+   "1": {
+    "acts": {
+     "jump": [
+      "l_jc",
+      "l_ja"
+     ]
+    }
+   },
+   "2": {
+    "acts": {
+     "look": [
+      "l_point"
+     ]
+    }
+   },
+   "3": {
+    "acts": {
+     "jump": [
+      "l_jc",
+      "l_ja"
+     ],
+     "look": [
+      "l_point"
+     ]
+    }
+   }
+  }
+ },
+ "wo_port": {
+  "field": "wo",
+  "lib": "wop",
+  "name": "📖 单词身世 · port",
+  "cases": {
+   "1": {
+    "acts": {
+     "takes": [
+      "ship"
+     ],
+     "carry": [
+      "porter"
+     ],
+     "import": [
+      "porter"
+     ],
+     "export": [
+      "porter"
+     ],
+     "transport": [
+      "porter"
+     ],
+     "report": [
+      "l_report"
+     ],
+     "reports": [
+      "l_report"
+     ],
+     "pass": [
+      "l_passport"
+     ],
+     "take": [
+      "ship"
+     ],
+     "hold": [
+      "l_lift1"
+     ],
+     "support": [
+      "dad_strong"
+     ]
+    }
+   }
+  }
+ },
+ "wo_europe": {
+  "field": "wo",
+  "lib": "woe",
+  "name": "📖 单词身世 · Europe",
+  "cases": {
+   "1": {
+    "acts": {
+     "picks": [
+      "m_pick"
+     ],
+     "rides": [
+      "europa0",
+      "europa1"
+     ],
+     "swims": [
+      "europa1"
+     ]
+    }
+   }
+  }
+ },
+ "wo_grimm": {
+  "field": "wo",
+  "lib": "wog",
+  "name": "📖 单词身世 · 格林定律",
+  "cases": {
+   "1": {
+    "acts": {
+     "walk": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ],
+     "walks": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ]
+    }
+   }
+  }
+ },
+ "wo_bluetooth": {
+  "field": "wo",
+  "lib": "wob",
+  "name": "📖 单词身世 · Bluetooth",
+  "cases": {
+   "1": {
+    "acts": {
+     "unites": [
+      "king"
+     ],
+     "connects": [
+      "l_connect"
+     ]
+    }
+   }
+  }
+ },
+ "wo_time_num": {
+  "field": "wo",
+  "lib": "won",
+  "name": "📖 单词身世 · 时间与数字",
+  "cases": {
+   "1": {
+    "acts": {
+     "carries": [
+      "m_eggs"
+     ]
+    }
+   }
+  }
+ },
+ "wo_time_week": {
+  "field": "wo",
+  "lib": "wow",
+  "name": "📖 单词身世 · 星期",
+  "cases": {
+   "1": {
+    "acts": {
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ]
+    }
+   }
+  }
+ },
+ "wo_vowel_a": {
+  "field": "wo",
+  "lib": "woa",
+  "name": "📖 单词身世 · 元音 a",
+  "cases": {
+   "1": {
+    "acts": {
+     "fill": [
+      "l_fill"
+     ],
+     "bleed": [
+      "l_plaster"
+     ],
+     "feed": [
+      "m_geese"
+     ]
+    }
+   }
+  }
+ },
+ "wo_vowel_b": {
+  "field": "wo",
+  "lib": "wovb",
+  "name": "📖 单词身世 · 元音 b",
+  "cases": {}
+ },
+ "wo_vowel_c": {
+  "field": "wo",
+  "lib": "woc",
+  "name": "📖 单词身世 · 元音 c",
+  "cases": {
+   "1": {
+    "acts": {
+     "save": [
+      "l_piggy"
+     ],
+     "close": [
+      "l_close"
+     ],
+     "breathe": [
+      "l_breath"
+     ]
+    }
+   }
+  }
+ },
+ "ze_be": {
+  "field": "ze",
+  "lib": "zbe",
+  "name": "🔀 中英对照 · be",
+  "cases": {
+   "1": {
+    "acts": {
+     "like": [
+      "m_like"
+     ]
+    }
+   }
+  }
+ },
+ "ze_borrow": {
+  "field": "ze",
+  "lib": "zbo",
+  "name": "🔀 中英对照 · 借",
+  "cases": {
+   "1": {
+    "acts": {
+     "borrow": [
+      "borrow"
+     ],
+     "lend": [
+      "tom_book"
+     ]
+    }
+   }
+  }
+ },
+ "ze_link": {
+  "field": "ze",
+  "lib": "zli",
+  "name": "🔀 中英对照 · 连接",
+  "cases": {}
+ },
+ "ze_mark": {
+  "field": "ze",
+  "lib": "zma",
+  "name": "🔀 中英对照 · 标记",
+  "cases": {
+   "1": {
+    "acts": {
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ]
+    }
+   }
+  }
+ },
+ "ze_modifier": {
+  "field": "ze",
+  "lib": "zmo",
+  "name": "🔀 中英对照 · 修饰语",
+  "cases": {
+   "1": {
+    "acts": {
+     "see": [
+      "l_point"
+     ],
+     "tell": [
+      "whisper"
+     ]
+    }
+   }
+  }
+ },
+ "ze_pronoun": {
+  "field": "ze",
+  "lib": "zpr",
+  "name": "🔀 中英对照 · 代词",
+  "cases": {}
+ },
+ "ze_same": {
+  "field": "ze",
+  "lib": "zsa",
+  "name": "🔀 中英对照 · 相同",
+  "cases": {
+   "1": {
+    "acts": {
+     "jump": [
+      "l_jc",
+      "l_ja"
+     ]
+    }
+   }
+  }
+ },
+ "ze_say": {
+  "field": "ze",
+  "lib": "zsy",
+  "name": "🔀 中英对照 · 说",
+  "cases": {
+   "1": {
+    "acts": {
+     "say": [
+      "hello"
+     ]
+    }
+   }
+  }
+ },
+ "ze_subject": {
+  "field": "ze",
+  "lib": "zsu",
+  "name": "🔀 中英对照 · 主语",
+  "cases": {
+   "1": {
+    "acts": {
+     "go": [
+      "l_w0",
+      "l_w1",
+      "l_w2"
+     ]
+    }
+   }
+  }
+ },
+ "ze_wear": {
+  "field": "ze",
+  "lib": "zwe",
+  "name": "🔀 中英对照 · 穿戴",
+  "cases": {
+   "1": {
+    "acts": {
+     "take": [
+      "l_box"
+     ],
+     "bring": [
+      "m_bring"
+     ]
+    }
+   }
+  }
+ },
+ "ze_yesno": {
+  "field": "ze",
+  "lib": "zyn",
+  "name": "🔀 中英对照 · 是非",
+  "cases": {}
+ }
 }
