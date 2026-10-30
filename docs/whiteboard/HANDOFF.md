@@ -6,6 +6,13 @@
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元 / 改完一个文档立即提交；发现 bug 直接修。本文只写现状和下一步，流水写进 `CHANGELOG.md`。
 
 
+
+## 🟢 动作系统 v5（2026-10-30 10:20 JST）——取代上面第 2 步的 SVG 骨架路线
+- 用户否定 SVG 小人 v1–v3、指出 v4 狗腿方向/步态错误；同意改为**有限动画（关键姿势帧）**，引擎改用 `huashu-art-motion`（白板画风）+ Remotion（时间轴、MP4、App 内 Player）。
+- 样板 `He takes the dog out.` 已完成：`docs/whiteboard/takeout_wb/`（README 写了分层、构建命令、体积、已知问题）。
+- 下一步：用户审片 → 按同一管线回改既有单元（tense_matrix、past_clans、adj_order）的人物动作 → 继续原计划。
+- 上面第 2 步的 `wb_verbs.js` 手写骨架（v1–v3 系）用户已否定，不再扩展；第 3、4 步的回改和原顺序照旧，只是人物动作改走 v5 管线（AI 关键帧 + huashu 白板 + Remotion）。
+
 ## 🔴 优先级变更（2026-10-30 09:14 JST，用户确认）——先读这一节
 
 **用户审片结论**：白板动画质量差，**完全没有表现出人物动作**。用户要的是插画式动词演示，参考「男孩牵狗出门 He takes the dog out.」。原因分析和新设计已写进 `MASTER_DESIGN.md` **决策 30** + **§2.8 动作系统 v2**、`SOP.md` **§16 R4v2 验收**。

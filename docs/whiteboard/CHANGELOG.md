@@ -470,3 +470,5 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | `121ce9c` | HANDOFF 拆成短 HANDOFF + 本文（全文原样搬来，零丢失脚本核对），加时间更正表 |
 | `562b6d4` | 新增 `src/anchorcheck.py`，接进 jscheck / insert_wb；修 insert_wb.py TABS 里 tense_matrix 被注释吞掉；home_entries.py 去掉写死路径 |
 | （本次） | 新增 `REVIEW_LIST.md` 真机审片清单 |
+
+- 2026-10-30 10:20 JST：动作系统 v5 样板 takeout_wb（huashu-art-motion 白板 + AI 关键帧 + Remotion 出片/Player）；MP4 1.58 MB、单文件 HTML 1.02 MB。
