@@ -2358,3 +2358,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-30 · 第一性原理总枢余下旧 canvas 核查
 - 新增 `v5/app_check7.py`：真 App 里逐一打开 6 条原理 × 4 幕，记录每幕是 v5 iframe / 跳转 / 旧 canvas、页面里所有 canvas。结果：22 幕 v5、2 幕跳转（fp_one_king ①、fp_zoom_focus ① 已迁中英对照）、旧 canvas 0、报错 0 → 总枢已没有要重画的旧 canvas，主文件不改。
 - 旧 canvas 代码保留作兜底（与三大厅一致），是否退役列入 HANDOFF §6 待用户确认。
+
+## 2026-10-30 22:30 · 词源 / 格林 / 词根词缀 + 12+6 条：拆成分阶段计划（未开工）
+- 原审计的 Wiktionary 抓取缓存 `work/etym` 随沙箱重置丢失；Wiktionary API 可用（已试 foot）。全量需重抓 1487 词 + 逐条人工核实，工作量大，本轮不开工，只把计划拆成 ⑥a–⑥g 写进 HANDOFF §5.1，并列出开工前要用户定的两件事（HANDOFF §6 0c）。
