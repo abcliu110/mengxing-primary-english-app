@@ -2473,3 +2473,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 文档总收尾（§5.2 第 6 项）：HANDOFF §5.1 ⑥a–⑥g 旧待办表标为已转 §5.2 执行，⑤ 旧 canvas 改为已退役；COVERAGE §7 数字更新。
 - 坑：`pkill -f fetch_etym` 会连带杀掉发命令的 shell（命令行里也有这个字符串）；沙箱局部重置会丢 pip 包（playwright 等），runall 前先 `python3 -c "import playwright"`。
 - 回归 `runall.py --full` 13 项全部通过（app_check8 25 词 0 不合格、offlinecheck 882 段、leakcheck OK、0 报错）。主文件 15,766,619 bytes。
+
+### 2026-10-31 02:45 JST · 词源第 4 批
+- Etymonline 缓存 1288 → 1347 / 1487。发现剩余词在 Wayback「最近快照」里存的是 Cloudflare 403 页：`src/fetch_etym.py` 遇 403 改查 CDX（`filter=statuscode:200`）取最近一次正常快照再抓。之后 Wayback 对本沙箱限流（连接被重置），剩 140 词以后再跑 §5.2 1b。
+- `parse_etym.py` → `build_etym_db.py etym / morph`：ETYM_DB 603 → **625**，MORPH_DB 182 → **191**；`ETYM_REVIEW.md` / `MORPH_REVIEW.md` / `COVERAGE.md` §7 数字随之更新。
+- 回归：`runall.py --full` 全过。
+
