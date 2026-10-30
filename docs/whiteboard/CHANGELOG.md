@@ -527,3 +527,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · past_clans ③ v5.1 重画并替换进 App
 - `v5/scenes/past_clans_3.js`：长音条「减肥」变短、一拍盒子挤进 t、清浊喉咙震动、火车开走、扫地、公园见面；R1 78/78，128 s。
+
+## 2026-10-30 · past_clans ④ v5.1 重画并替换进 App —— past_clans 单元完成
+- `v5/scenes/past_clans_4.js`：保镖尾巴名牌（gh 变灰划掉）、放大镜找字母 a、b-r-ought 圈 r、小黑板、打架乱线、六护法全家福、放风筝；R1 78/78，158 s。主文件 11,451,107 bytes。
