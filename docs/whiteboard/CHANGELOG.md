@@ -2425,3 +2425,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - metaphor_code ④、oral_func ② 用到字表外新字，打包时多出两份共享引擎块（各约 0.93 MB）。`python3 v5/gen_font_chars.py`（3302 字）→ `python3 v5/rebuild_all.py` 全量重建 488 幕 + 模板并重新嵌入：主文件 wb5blob 里 `gz:` 引擎块回到 **1 份**，主文件 17,483,815 → **15,630,085 bytes**（-1.85 MB）。O7 播放器「切后台暂停」随本次重建进入全部幕。
 - `v5/build.mjs`：pyftsubset 结果按「字体路径 + 字表 + 参数」sha1 缓存到 `/tmp/wb5_fontcache`（先写临时名再 rename，两路并行安全）。同一幕缓存前后打包逐字节一致（cmp 验证）；全量重建打包阶段从约 2–3 幕/分钟提到约 300 幕/分钟。
 - 回归 `runall.py --full` 13 项全部通过（offlinecheck 861 段 0 违规、app_check5 55 词 / app_check6 25 幕 0 不合格、leakcheck OK、0 报错）。
+
+## 2026-10-30 23:55 JST · 词源 ETYM_DB / MORPH_DB 第 2 批（Etymonline 缓存 755 / 1487）
+- 核对规则收紧（`src/parse_etym.py` verify）：来源链某级要算「对上」，Etymonline 正文里必须是「语言名 + 3 个词以内 + 该词形」（如 Old English heorte），原来只要两样都在正文某处出现。起因：robot 被误配成「德语 Robot」（Wiktionary 有 `{{der|en|de|Robot}}`，Etymonline 正文另有 "German Arbeit"）。收紧后误配消失，入库 376 → **352** 词。
+- `src/build_etym_db.py`：释义去掉 wiki 斜体标记与残留引号（black 曾显示 dark", ''also'' "ink）；`-s` / `-es` 不再自动注「复数」（always 的 -s 是副词词尾）；未入库原因分出「Etymonline 尚未抓取（677）」和「Etymonline 无词条（23）」。
+- 结果：`ETYM_DB` 352 词（G1 19 / G2 16 / G3 35 / G4 49 / G5 60 / G6 40 / V6 132 / POLY 1），`MORPH_DB` 111 词；逐词明细与未入库原因见 `word_origins/ETYM_REVIEW.md`、`MORPH_REVIEW.md`。主文件 15,681,417 bytes。
+- 回归 `runall.py`（快速档 9 项）全部通过，app_check8 25 词 0 不合格。

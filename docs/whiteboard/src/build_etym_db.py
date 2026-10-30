@@ -19,7 +19,8 @@ AFFIX = {  # 常见英语词缀的中文义（只收意思单一、不会讲错�
  '-ing': '（动名词 / 进行）', '-ed': '（过去 / 被……的）', '-est': '最……', '-ment': '（变名词）', '-tion': '（变名词）', '-ion': '（变名词）', '-able': '能被……的',
  '-ish': '有点……的 / ……国的', '-th': '（序数 / 变名词）', '-teen': '十几', '-ty': '几十', '-ist': '……的人（专家）', '-ian': '……的人', '-or': '……的人 / 物',
  'un-': '不 / 反', 're-': '再 / 回', 'dis-': '不 / 相反', 'im-': None, 'in-': None, 'over-': '在上 / 过度', 'under-': '在下', 'out-': '向外 / 超过', 'mis-': '错误地',
- '-s': '（复数）', '-es': '（复数）', '-en': '（变动词 / 材料）', '-ward': '向……', '-self': '……自己', '-day': '……日',
+ '-s': None, '-es': None,   # 2026-10-30：-s 不一定是复数（always 的 -s 是副词词尾），不给义，免得讲错
+ '-en': '（变动词 / 材料）', '-ward': '向……', '-self': '……自己', '-day': '……日',
 }
 def morph_entry(word, r):
     m = r.get('morph'); v = r.get('verify', {})
@@ -39,12 +40,15 @@ def etym_entry(word, r):
     if all(l in NATIVE for l in langs): k = 'native' if 'ang' in langs else 'other'
     else: k = 'loan'
     if all(l == 'enm' for l in langs): return None   # 只追到中古英语（多半同形）：没有信息量，不入库
-    return {'k': k, 'c': [[LANG[c[1]][0], c[2], c[3]] for c in ch]}
+    cg = lambda g: re.sub(r'\s+', ' ', re.sub(r"''+|\"", '', g)).strip(' ,;')   # 去 wiki 斜体标记和残留引号（black 的释义曾显示成 dark", ''also'' "ink）
+    return {'k': k, 'c': [[LANG[c[1]][0], c[2], cg(c[3])] for c in ch]}
 def reason(word, r):
     if ' ' in word.strip() or '/' in word: return '词组 / 多词条目（词组不单独溯源）'
     if r.get('status') == 'not_fetched': return 'Wiktionary 未抓到'
     if not r.get('has_wikt_ety'): return 'Wiktionary 无英语词源小节'
-    if not r.get('etymo_fetched'): return 'Etymonline 无词条（或存档无快照）'
+    ef = C / 'etymo' / (re.sub(r'[^A-Za-z0-9_-]', '_', word) + '.txt')
+    if not ef.exists(): return 'Etymonline 尚未抓取（存档抓取进行中，抓完重跑）'
+    if not ef.stat().st_size: return 'Etymonline 无词条（或存档无快照）'
     if not r.get('chain') and not r.get('morph'): return 'Wiktionary 词源无可解析的来源链 / 构词模板'
     return 'Wiktionary 与 Etymonline 的语言名 + 词形对不上（不入库，避免讲错）'
 def patch(block_id, data):

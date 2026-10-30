@@ -90,7 +90,8 @@ def verify(word, r, ety):
         if lang not in LANG: break
         names = LANG[lang][1]; f = norm(form)
         if len(f.strip('-')) < 3: continue        # 太短的词形（an、a）在正文里随处可见，不能算对上
-        if any(n.lower() in E for n in names) and re.search(r'(?<![a-z])' + re.escape(f.strip('-')) + r'(?![a-z])', E): last = k + 1
+        # 2026-10-30 收紧：语言名后 3 个词以内紧跟这个词形才算对上（原来只要两者都在正文里出现——robot 曾因正文另有 "German Arbeit" 被误配成「德语 Robot」）
+        if any(re.search(re.escape(n.lower()) + r'\s+(?:\S+\s+){0,2}?\*?' + re.escape(f.strip('-')) + r'(?![a-z])', E) for n in names): last = k + 1
     res['chain_ok'] = last
     if r['morph']:
         ps = [norm(p).strip('-') for p in r['morph']['parts'] if p.strip('-')]
