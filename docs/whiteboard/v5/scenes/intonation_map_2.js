@@ -1,0 +1,58 @@
+// 🎵 语调地图 · 2 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/intonation_map.js 案例 2；对照清单 lab/INVENTORY_INTONATION_MAP_2_V5.md
+// 角色关键帧：sprites/im2.js（人物先行帧库 cast/）
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/im2.js';
+const ACTS = {"look": ["l_point"]};
+const ITEMS = [
+  ['n', '这一幕：一句英语里，哪些词读得重、哪些词读得轻？像打鼓一样找节拍！'],
+  ['p', 'RED'],
+  ['w', '句重音：实词重、虚词轻'],
+  ['w', '🎵 语调地图 ②'],
+  ['w', '💡 记忆联想'],
+  ['w', '✂️ 简化说法'],
+  ['w', '句重音：实词重、虚词轻'],
+  ['w', '🎵 语调地图 ②'],
+  ['w', '💡 记忆联想'],
+  ['m', '✂️ 简化说法'],
+  ['m', '① 实词虚词'],
+  ['m', '② 打节拍'],
+  ['m', '③ 换重音'],
+  ['m', '④ 弱读'],
+  ['m', '⑤ 口诀'],
+  ['m', '🔮 预测'],
+  ['n', '实词：带着主要意思的词：名词、动词、形容词、副词，比如 want、go、park。它们读得重。'],
+  ['n', '虚词：帮忙连接的小词：a、the、to、and、of……它们读得轻、读得快。'],
+  ['w', 'I WANT to GO to the PARK.'],
+  ['w', '大写 = 重读的实词；小写 = 轻轻带过的虚词'],
+  ['s', 'I want to go to the park.', '我想去公园。', 'I want go park to the'],
+  ['n', '💡 打节拍：重读的词像鼓点，一拍一拍；中间的小词被挤得又轻又快。'],
+  ['w', 'CATS　EAT　FISH.'],
+  ['w', 'The CATS will EAT the FISH.'],
+  ['w', '✂️ 简化'],
+  ['n', '✂️ 简化说法：两句都是 3 个鼓点，第二句多出来的小词要说得快一些。真实说话不会完全一样长。'],
+  ['s', 'Cats eat fish. The cats will eat the fish.', '猫吃鱼。猫会吃鱼。', 'cats eat fish will'],
+  ['n', '换重音：想强调哪个词，就把哪个词读重——意思的焦点跟着变。'],
+  ['w', 'I like the RED one.（不是蓝的）'],
+  ['w', 'I LIKE the red one.（不是讨厌）'],
+  ['s', 'I like the red one.', '我喜欢红色的那个。', 'like red one'],
+  ['n', '弱读：虚词读轻时，元音常常变成最懒的 /ə/：to 读成 /tə/，and 读成 /ən/。'],
+  ['w', 'to /tə/ · and /ən/ · a /ə/ · of /əv/'],
+  ['s', 'Bread and butter. A cup of tea.', '面包和黄油。一杯茶。', 'bread and butter a cup of tea'],
+  ['w', '👉 更多名前动后、弱读连读：点页签上方「🎯 重音与弱读」'],
+  ['n', '口诀：实词重如鼓，虚词轻如风；想强调哪个，哪个就加重。'],
+  ['w', '实词重如鼓，虚词轻如风；想强调哪个，哪个就加重。'],
+  ['n', '预测：I want a cup of tea. 哪几个词读重？先想 3 秒！'],
+  ['w', '🔮 I want a cup of tea. 重读哪几个？'],
+  ['n', '揭晓：want、cup、tea 三个实词读重；a、of 轻轻带过。'],
+  ['w', 'I WANT a CUP of TEA.'],
+  ['s', 'I want a cup of tea.', '我想要一杯茶。', 'want cup tea'],
+  ['w', '💡 一句话洞见'],
+  ['w', '实词（名、动、形、副）读重，像鼓点；'],
+  ['w', '虚词（a、the、to、of）读轻，常弱成 /ə/。'],
+  ['w', '🎵 口诀'],
+  ['w', '实词重如鼓，'],
+  ['w', '虚词轻如风！'],
+  ['w', '🎵 语调地图 · 句重音']
+];
+export default function build() { return autoBuild(SP, { title: '🎵 语调地图 · 2', items: ITEMS, acts: ACTS }); }
