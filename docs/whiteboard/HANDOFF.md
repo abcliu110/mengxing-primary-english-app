@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 23:55 JST（词源第 2 批）；23:40 JST（合并重复引擎块 + 字体缓存）；23:06 JST（O1 VOCAB_DB 拆分提交）；此前 23:10 JST（用户 22:13 授权完成全部，进度见 §5.2）；22:30 JST（主题思维导图讲解幕 ✅、第一性原理核查 ✅；词源系列待开工，分阶段计划见 §5.1 ⑥）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
+> 更新：2026-10-30 23:28 JST（格林规则组 4 幕）；2026-10-30 23:22 JST（词源第 2 批）；23:15 JST（合并重复引擎块 + 字体缓存）；23:06 JST（O1 VOCAB_DB 拆分提交）；此前 23:10 JST（用户 22:13 授权完成全部，进度见 §5.2）；22:30 JST（主题思维导图讲解幕 ✅、第一性原理核查 ✅；词源系列待开工，分阶段计划见 §5.1 ⑥）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
 > 设计稿：`DESIGN_MINDMAP_WORDCARD.md`（用户 2026-10-30 19:39「按照你的来」已确认）：普通单词卡通用模板 ✅；思维导图讲解幕待做。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，§2.9 = v5.1 标准画法）→ `SOP.md`（§17 = v5.1 验收）。流水、历史决策、每幕验收数字都在 `CHANGELOG.md`（文末有本文 16:10 之前的完整快照）。
 > 本文只写现状、做法、风险、下一步；做完一件事：流水追加到 CHANGELOG，本文只改现状。
@@ -60,7 +60,9 @@
 
 ## 4. 已知风险
 
-- ~~临时多两份共享引擎块~~ 已解决（2026-10-30 23:40 JST）：`gen_font_chars.py` + `rebuild_all.py` 全量重建 488 幕，共享引擎块回到 1 份，主文件 17.48 → 15.63 MB；播放器后台暂停（O7）随这次重建生效。`build.mjs` 加了字体子集缓存（`/tmp/wb5_fontcache`，按字体 + 字表哈希，输出逐字节不变），全量重建从约 1 小时降到约 8 分钟（主要耗时变成 embed）。
+- **又多出两份共享引擎块（各约 0.93 MB）**：格林规则组幕用到字表外的字（ʷ、ē 等），主文件 15.68 → 17.56 MB。1e（12+6 条规律幕）做完后再跑一次 `python3 v5/gen_font_chars.py` + `python3 v5/rebuild_all.py`（有字体缓存，约 8 分钟）合并回 1 份。
+
+- ~~临时多两份共享引擎块~~ 已解决（2026-10-30 23:15 JST）：`gen_font_chars.py` + `rebuild_all.py` 全量重建 488 幕，共享引擎块回到 1 份，主文件 17.48 → 15.63 MB；播放器后台暂停（O7）随这次重建生效。`build.mjs` 加了字体子集缓存（`/tmp/wb5_fontcache`，按字体 + 字表哈希，输出逐字节不变），全量重建从约 1 小时降到约 8 分钟（主要耗时变成 embed）。
 
 - 思维导图讲解幕：组合 emoji（👩‍🏫、1️⃣8️⃣ 等）在无头浏览器里拆成两个字显示，是沙箱字体问题，真机应正常——真机审片时留意；幕 9「语法功能与指代」词义很长，116 s（设计目标 60–90 s），内容未删；分组表为规则分组 + 自审，未经用户过目（§6）。
 
@@ -86,7 +88,7 @@
 | 1a | 词源抓取 / 解析 / 交叉核对工具：`src/fetch_etym.py`（Wiktionary 原文 + Etymonline 经 Wayback 存档）、`src/parse_etym.py` | ✅ | fa2845b |
 | 1b | `ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`） | 🟡 第 2 批：Etymonline 缓存 755 / 1487 时入库 **352** 词（核对规则已收紧：语言名后 3 词内紧跟词形才算对上）；抓完后重跑 `parse_etym.py` → `build_etym_db.py etym` / `morph` 再提交一次 | e025d90；第 2 批 本提交 |
 | 1c | `MORPH_DB` 真实构词（Wiktionary 构词模板 + 各部分都在 Etymonline 正文出现；`-s` 不再标「复数」） | 🟡 111 词（随 1b 一起补齐） | 本提交 |
-| 1d | 格林定律按规则组（`GRIMM_DB` + 白板幕） | ⬜ | |
+| 1d | 格林定律按规则组：4 幕 `wo_grimm_voiceless` / `wo_grimm_voiced` / `wo_grimm_aspirate` / `wo_grimm_verner` 并入「格林定律」章（`src/patch_wo_grimm.py`；内容稿 `content/wo_grimm_*_1.txt`；逐条核对 `word_origins/GRIMM_GROUPS.md`：30 对同源词，Etymonline + Wiktionary 都写了才用） | ✅ R1 缺 0、确定性、0 报错；`app_check2.py wo wo_grimm_<组> 1` 4/4 | 本提交 |
 | 1e | 音变与词汇规律 12 + 6 条白板幕 | ⬜ | |
 | 1f | `word_origins/COVERAGE.md` 数字更新 | ⬜ | |
 | 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 58721a8 |
