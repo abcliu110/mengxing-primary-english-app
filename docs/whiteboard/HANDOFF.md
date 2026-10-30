@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 15:00 JST（metaphor_code 3、writing_alchemist 3、phrasal_key 2、pron_map 3、stress_rhythm 3、intonation_map 3 幕 v5.1 替换进 App；five_patterns 5、bamboo_tree 5、eight_endings 1、irregular_plural 2 幕 v5.1 替换进 App；aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
+> 更新：2026-10-30 15:05 JST（第一性原理 fp_* 22 幕 v5.1 替换进 App（fp_one_king ①、fp_zoom_focus ① 已迁中英对照，不重画）；万能动词 VV 72 幕清单已导出 vv_inventory.py；metaphor_code 3、writing_alchemist 3、phrasal_key 2、pron_map 3、stress_rhythm 3、intonation_map 3 幕 v5.1 替换进 App；five_patterns 5、bamboo_tree 5、eight_endings 1、irregular_plural 2 幕 v5.1 替换进 App；aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
 > **当前阶段（2026-10-30 09:14 起）**：决策 30 动作系统重建最优先（见下方「🔴 优先级变更」）。以下为旧描述——阶段 0–4、首页改版 1–6 步已完成；**正在做：阶段 7 全 App 白板化试点（fp_economy 第 1 幕已出对比图待用户审，FR01 买卖待做）+ 阶段 8 / 9 词源与单词全部维度审计**；练习闭环（决策 14）等用户点头。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，26 条决策：1–19、22–28）→ `SOP.md`（标准流程 + 验收清单）。历史进度、每步验收数字、引擎新工具登记都在 `CHANGELOG.md`（原 HANDOFF 全文，章节号不变）。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元 / 改完一个文档立即提交；发现 bug 直接修。本文只写现状和下一步，流水写进 `CHANGELOG.md`。
@@ -63,6 +63,28 @@
 - ✅ `intonation_map` 第1/3幕 🎵 语调地图 · 1 v5.1 重画并替换进 App（`v5/scenes/intonation_map_1.js`，R1 57/57，90 s，0 报错；主文件 18,599,601 bytes）
 - ✅ `intonation_map` 第2/3幕 🎵 语调地图 · 2 v5.1 重画并替换进 App（`v5/scenes/intonation_map_2.js`，R1 49/49，68 s，0 报错；主文件 18,781,155 bytes）
 - ✅ `intonation_map` 第3/3幕 🎵 语调地图 · 3 v5.1 重画并替换进 App（`v5/scenes/intonation_map_3.js`，R1 45/45，59 s，0 报错；主文件 18,951,959 bytes）
+- ✅ `fp_economy` 第1/4幕 ⚙️ 第一性原理 · 经济原则 · 1 v5.1 重画并替换进 App（`v5/scenes/fp_economy_1.js`，R1 69/69，75 s，0 报错；主文件 19,167,017 bytes）
+- ✅ `fp_economy` 第2/4幕 ⚙️ 第一性原理 · 经济原则 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_economy_2.js`，R1 66/66，65 s，0 报错；主文件 19,345,115 bytes）
+- ✅ `fp_economy` 第3/4幕 ⚙️ 第一性原理 · 经济原则 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_economy_3.js`，R1 69/69，81 s，0 报错；主文件 19,546,882 bytes）
+- ✅ `fp_economy` 第4/4幕 ⚙️ 第一性原理 · 经济原则 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_economy_4.js`，R1 75/75，71 s，0 报错；主文件 19,768,718 bytes）
+- ✅ `fp_iconicity` 第1/4幕 🔤 第一性原理 · 象似性 · 1 v5.1 重画并替换进 App（`v5/scenes/fp_iconicity_1.js`，R1 57/57，76 s，0 报错；主文件 20,051,532 bytes）
+- ✅ `fp_iconicity` 第2/4幕 🔤 第一性原理 · 象似性 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_iconicity_2.js`，R1 69/69，75 s，0 报错；主文件 20,235,006 bytes）
+- ✅ `fp_iconicity` 第3/4幕 🔤 第一性原理 · 象似性 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_iconicity_3.js`，R1 66/66，67 s，0 报错；主文件 20,415,260 bytes）
+- ✅ `fp_iconicity` 第4/4幕 🔤 第一性原理 · 象似性 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_iconicity_4.js`，R1 64/64，78 s，0 报错；主文件 20,608,111 bytes）
+- ✅ `fp_boundedness` 第1/4幕 📦 第一性原理 · 有界无界 · 1 v5.1 重画并替换进 App（`v5/scenes/fp_boundedness_1.js`，R1 57/57，85 s，0 报错；主文件 20,780,417 bytes）
+- ✅ `fp_boundedness` 第2/4幕 📦 第一性原理 · 有界无界 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_boundedness_2.js`，R1 50/50，74 s，0 报错；主文件 20,954,338 bytes）
+- ✅ `fp_boundedness` 第3/4幕 📦 第一性原理 · 有界无界 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_boundedness_3.js`，R1 65/65，91 s，0 报错；主文件 21,135,057 bytes）
+- ✅ `fp_boundedness` 第4/4幕 📦 第一性原理 · 有界无界 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_boundedness_4.js`，R1 60/60，78 s，0 报错；主文件 21,381,732 bytes）
+- ✅ `fp_vectors` 第1/4幕 🧭 第一性原理 · 方向向量 · 1 v5.1 重画并替换进 App（`v5/scenes/fp_vectors_1.js`，R1 57/57，73 s，0 报错；主文件 21,555,080 bytes）
+- ✅ `fp_vectors` 第2/4幕 🧭 第一性原理 · 方向向量 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_vectors_2.js`，R1 55/55，82 s，0 报错；主文件 22,076,180 bytes）
+- ✅ `fp_vectors` 第3/4幕 🧭 第一性原理 · 方向向量 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_vectors_3.js`，R1 52/52，89 s，0 报错；主文件 22,669,379 bytes）
+- ✅ `fp_vectors` 第4/4幕 🧭 第一性原理 · 方向向量 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_vectors_4.js`，R1 61/61，110 s，0 报错；主文件 22,869,434 bytes）
+- ✅ `fp_one_king` 第2/4幕 👑 第一性原理 · 一句一王 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_one_king_2.js`，R1 55/55，84 s，0 报错；主文件 23,047,333 bytes）
+- ✅ `fp_one_king` 第3/4幕 👑 第一性原理 · 一句一王 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_one_king_3.js`，R1 61/61，87 s，0 报错；主文件 23,225,567 bytes）
+- ✅ `fp_one_king` 第4/4幕 👑 第一性原理 · 一句一王 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_one_king_4.js`，R1 69/69，83 s，0 报错；主文件 23,413,575 bytes）
+- ✅ `fp_zoom_focus` 第2/4幕 🔍 第一性原理 · 由大到小 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_2.js`，R1 62/62，88 s，0 报错；主文件 23,598,843 bytes）
+- ✅ `fp_zoom_focus` 第3/4幕 🔍 第一性原理 · 由大到小 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_3.js`，R1 54/54，70 s，0 报错；主文件 23,770,134 bytes）
+- ✅ `fp_zoom_focus` 第4/4幕 🔍 第一性原理 · 由大到小 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_4.js`，R1 62/62，95 s，0 报错；主文件 23,954,469 bytes）
 - **用户规则（2026-10-30 14:05）：不要停，直到全部完成**——单元之间也不停、不等待回复，连续推进。
 - **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。

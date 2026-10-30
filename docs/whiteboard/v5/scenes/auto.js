@@ -80,13 +80,13 @@ export function autoBuild(SP, D) {
     }
     if (k === 's') {
       const en = a, zh = b, w = c || null; const st = T;
-      const toks = ' ' + en.split(/\s+/).map(norm).join(' ') + ' '; const hit = Object.keys(D.acts || {}).filter(x => toks.includes(' ' + x.split(/\s+/).map(norm).join(' ') + ' '));
+      const toks = ' ' + en.split(/\s+/).map(norm).join(' ') + ' '; const hit = Object.keys(D.acts || {}).filter(x => toks.includes(' ' + x.split(/\s+/).map(norm).join(' ') + ' ')); if (!hit.length && D.acts && D.acts['*']) hit.push('*');
       if (hit.length && !gold) {
-        const fr = D.acts[hit[0]], wt = wordT(st, en, w, norm(hit[0].split(/\s+/)[0]));
+        const fr = D.acts[hit[0]], wt = hit[0] === '*' ? st + 1.2 : wordT(st, en, w, norm(hit[0].split(/\s+/)[0]));
         const keys = fr.length === 1 ? [[0, fr[0]]] : fr.length === 2 ? [[0, fr[0]], [wt, fr[1]]] : [[0, fr[0]], [wt - 0.5, fr[1]], [wt + 0.5, fr[2]]];
         if (actor && actor.board === bi) { const base = Math.max(st - 0.3, actor.last + 0.01); keys.forEach(([kt, kk], j) => actor.keys.push([j ? Math.max(kt, base + 0.01 * j) : base, kk])); actor.last = Math.max(...actor.keys.map(q => q[0])); }
         else { actor = K.actor({ keys: keys.map(([kt, kk], j) => [j ? kt : 0, kk]), x: ox + AX(fr), ground: oy + 1110, h: 470, reveal: Math.max(0, st - 0.6) }); actor.board = bi; actor.last = Math.max(...keys.map(q => q[0])); }
-        hit.forEach((hw, hj) => { const t2 = wordT(st, en, w, norm(hw.split(/\s+/)[0])); K.pop(t2, hw, ox + 1600, oy + 470 + hj * 110, 84, { out: t2 + 2.2 }); });
+        hit.filter(h => h !== '*').forEach((hw, hj) => { const t2 = wordT(st, en, w, norm(hw.split(/\s+/)[0])); K.pop(t2, hw, ox + 1600, oy + 470 + hj * 110, 84, { out: t2 + 2.2 }); });
       }
       K.say(st, en, { word: w, key: hit.flatMap(h => h.split(/\s+/).map(norm)), zh });
       T = st + sayLen(en, w) + 0.3; return;
