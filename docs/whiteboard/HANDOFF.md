@@ -10,8 +10,8 @@
 ## 🟢 动作系统 v5（决策 31，2026-10-30 10:28 JST 用户确认）——先读这一节
 - **路线**：有限动画 / 关键姿势帧。人物 = AI 绿幕关键帧（准备 → 发力 → 结果 + 走路 / 小跑 4 帧），代码只做位移、换帧、牵绳、镜头、高亮、字幕。上面「🔴 优先级变更」第 2 步的 `wb_verbs.js` 手写骨架已被用户否定，不再扩展。
 - **工具组合**（详见 MASTER_DESIGN 决策 31）：huashu-art-motion（画风 / 马克笔 / 揭开）+ rough.js（场景线条）+ GSAP（时间轴）+ 自写播放循环（App 内）+ Remotion（开发端出 MP4 / 截图）+ Python 抠图。App 里不带 React / Remotion Player。
-- **样板** `He takes the dog out.`：`docs/whiteboard/takeout_wb/`。v5.0（huashu + Remotion Player，HTML 1.02 MB）已推；**v5.1 已交付待用户审**（rough.js + GSAP + 自写播放器，`takeout_wb/v51/`，单文件 614 KB，联络表 `out/v51_keyframes.png`）。
-- **下一步**：~~v5.1 交付~~ ✅ → 用户审片 → 按同一管线回改 tense_matrix ①–⑤、past_clans ①–④、adj_order ①–④ → 原顺序剩余单元（「🔴」第 4 步）。
+- **样板** `He takes the dog out.`：`docs/whiteboard/takeout_wb/`。v5.0（huashu + Remotion Player，HTML 1.02 MB）已推；**v5.1 用户 2026-10-30 10:54 确认「完美，就这样」→ 定为标准画法**（规格 MASTER_DESIGN §2.9，流程 + 验收 SOP §17；rough.js + GSAP + 自写播放器，`takeout_wb/v51/`，单文件 614 KB，联络表 `out/v51_keyframes.png`）。
+- **下一步**：~~v5.1 交付~~ ✅ → ~~用户审片~~ ✅ 定稿 → 按 §2.9 / SOP §17回改 tense_matrix ①–⑤、past_clans ①–④、adj_order ①–④ → 原顺序剩余单元（「🔴」第 4 步）。
 - **接手要点**：素材制作 `build_assets.py`（绿幕阈值、溢色、项圈橙色识别）；出片 `npx remotion render`；Remotion 自带 Chrome Headless Shell 在 `node_modules/.remotion/`，截图用 `remotion still`。
 
 ## 🔴 优先级变更（2026-10-30 09:14 JST，用户确认）——先读这一节
