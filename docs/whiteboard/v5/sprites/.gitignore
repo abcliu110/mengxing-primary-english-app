@@ -1,1 +1,7 @@
 src/
+# 自动生成的角色包（do_unit.py / run_auto.sh 用 build_sprites.py 从 cast/ 帧库重建，不进仓库）
+*.js
+# 手工版（源图 src/ 不在仓库，不能重建）保留
+!tm[0-9].js
+!pc[0-9].js
+!ao[0-9].js

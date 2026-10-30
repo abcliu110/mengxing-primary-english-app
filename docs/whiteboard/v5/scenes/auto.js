@@ -37,7 +37,7 @@ export function autoBuild(SP, D) {
   const sayLen = (en, word) => (word ? 0.45 + word.split(/\s+/).length * 0.42 : 0) + en.split(/\s+/).length * 0.36 + 0.9;
 
   board(T);
-  if (hasActs) { const f0 = Object.values(D.acts)[0]; K.actor({ keys: [[0, f0[f0.length - 1]]], x: AX(f0), ground: 1110, h: 470, reveal: 1.0 }); }
+  if (hasActs) { const f0 = Object.values(D.acts)[0]; actor = K.actor({ keys: [[0, f0[f0.length - 1]]], x: AX(f0), ground: 1110, h: 470, reveal: 1.0 }); actor.board = 0; actor.last = 0; }   // 第一块板的开场角色就是后面动作的同一个人（不再另起一个叠在原地）
   D.items.forEach((it, idx) => {
     const [k, a, b, c] = it;
     if (k === 'n') {

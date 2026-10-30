@@ -989,3 +989,13 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · vv_give_out 第2幕 v5.1 重画并替换进 App
 - 🎬 万能动词 · give out ②：R1 17/17，18 s，主文件 43,053,209 bytes。
+
+## 2026-10-30 16:00 JST · 主文件瘦身 43 MB → 16.9 MB + 人物重叠修复
+
+- **字体共用**：`v5/gen_font_chars.py` 收集所有场景用字（1544 字）→ `v5/font_chars.txt`；`build.mjs` 统一按全表子集化，格式改 woff2（文楷 343 KB、Kalam 14 KB），全 App 只存一份（原来 174 份按幕子集 woff，共 14.6 MB）。
+- **引擎共用**：新增 `v5/engine.js`（wb5 / auto / adj_train / 播放器 / 字体），每幕 HTML 拆成「引擎脚本 + 场景脚本」两段；场景脚本里的 wb5 / auto / adj_train 由 esbuild 插件改成从 `globalThis.__WB5__` 取。`embed_app.py` 把引擎整段存成 `gz:` 共享块；App 运行时升级为 `WB5_MOUNT_V3`（共享块按需解压、同页缓存）。
+- **挂载竞态修复**：字体已缓存时 fontsReady 会在两段脚本之间兑现，场景还没定义 → `player.js` 改为同时等 DOMContentLoaded。（App 里切到第二幕才会出现，回归已覆盖。）
+- **人物重叠修复**（用户反馈）：`scenes/auto.js` 第一块板的开场角色和后面句子的动作角色原来是两个独立角色、叠在同一位置；现在是同一个角色接着做动作。影响全部 148 幕自动版面，已全部重建。双人帧（如 tug 拔河）本身是两人画在一张图里，属正常。
+- `v5/rebuild_all.py`：一键全部重建 + 重新嵌入（缺角色包时按场景 ACTS 从 `cast/` 重建，抽查 6 幕逐字节一致）。
+- **仓库清理**：`v5/out/`（174 个构建产物，约 63 MB）和自动生成的角色包 `v5/sprites/*.js`（152 个，可从 cast/ 重建）移出 git 并加 .gitignore；手工版 tm/pc/ao 角色包（源图不在仓库）保留。
+- 回归：tense_matrix 5、adj_order 4、aux_transformer 4、fp_vectors 4、wo_grimm、ze_be、vv_take_on、vv_give_in 全部 v5 挂载、时长正确、errors none。

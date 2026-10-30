@@ -1,6 +1,6 @@
 // v5 通用播放器：requestAnimationFrame 循环 → drawFrame(ctx, t)。不带 React / Remotion Player。
-// 场景由 build.mjs 通过别名 @scene 注入；字体子集由 build.mjs 通过 __FONTS__ 注入。
-import buildScene from '@scene';
+// 场景脚本（每幕单独一段，在引擎之后加载）把 build 函数挂到 globalThis.__WB5_SCENE__；字体由 build.mjs 通过 __FONTS__ 注入（全 App 共用一份）。
+const buildScene = () => globalThis.__WB5_SCENE__();
 let drawFrame, loadAssets, W = 1920, H = 1080, DUR = 1, CUES = [];
 const cv = document.getElementById('stage'); cv.width = W; cv.height = H;
 const g = cv.getContext('2d');
@@ -51,7 +51,9 @@ bar.oninput = () => { pause(); t = +bar.value; show(); };
 cv.onclick = () => (playing ? pause() : play());
 // 先装字体（场景排版要量真实字宽）→ 建场景 → 装角色帧 → 画第一帧。浏览器要求先点一下才能出声，所以不自动播放。
 const fontsReady = Promise.all([['WK', __FONTS__.wk], ['Kalam', __FONTS__.kalam]].map(([n, u]) => new FontFace(n, `url(${u})`).load().then(f => document.fonts.add(f)).catch(() => {})));
-window.__ready = fontsReady.then(() => {
+// 场景脚本在引擎之后执行；字体若已缓存，fontsReady 会在两段脚本之间就兑现 → 必须等 DOMContentLoaded（此时场景脚本一定已跑完）
+const sceneReady = new Promise(r => (document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', r) : r()));
+window.__ready = Promise.all([fontsReady, sceneReady]).then(() => {
   const SC = buildScene(); ({ drawFrame, loadAssets, W, H, DUR, CUES } = SC);
   bar.max = DUR; bar.step = 1 / 30; window.__cues = CUES; window.__dur = DUR;   return loadAssets();
 }).then(() => { show(); });
