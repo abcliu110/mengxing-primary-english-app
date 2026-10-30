@@ -2354,3 +2354,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `v5/app_check6.py`（全部 25 个子主题）：25/25 合格——讲解幕 iframe 在交互导图上方、幕号 = 子主题顺序、时长 65–116 s；交互导图 16 节点（颜色与形状 14）点击开词卡、➕/➖/滚轮缩放、拖拽、复位都正常；0 报错。`jscheck` / `anchorcheck` OK；第一性原理总枢 22 幕 v5 + 2 幕跳转照常。
 - `DESIGN_MINDMAP_WORDCARD.md` 加 §1.7 实施记录（分组规则、自审改正、版式、R1、App 挂钩）。
 - 主题思维导图讲解幕完成（提交 d5db815 → 0de2169 → fd302d3 → 327cc89 → f25bb23 → 本提交）；主文件 15,548,445 bytes（25 幕共约 +83 KB，角色帧全部复用共享块）。
+
+## 2026-10-30 · 第一性原理总枢余下旧 canvas 核查
+- 新增 `v5/app_check7.py`：真 App 里逐一打开 6 条原理 × 4 幕，记录每幕是 v5 iframe / 跳转 / 旧 canvas、页面里所有 canvas。结果：22 幕 v5、2 幕跳转（fp_one_king ①、fp_zoom_focus ① 已迁中英对照）、旧 canvas 0、报错 0 → 总枢已没有要重画的旧 canvas，主文件不改。
+- 旧 canvas 代码保留作兜底（与三大厅一致），是否退役列入 HANDOFF §6 待用户确认。

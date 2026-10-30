@@ -73,7 +73,7 @@
 ## 5. 下一步（按顺序）
 
 1. 等用户决定：是否再压一轮人物帧画质（§3 第一条）。
-2. 三大厅 HD 剧场：构词法 ✅ → 框架语义 ✅ → 易混词 ✅ → 自然拼读 ✅ → 语法总结中心 ✅ → 语法 40 点 ✅（56 幕；三幕内容相同的合并为 1 幕）→ 日常用语 144 句 ✅（每句 1 幕放完整对话）→ 单词卡一词多义 17 词 ✅（51 幕）→ 普通单词卡通用模板 ✅（1425 词，功能词旧版本来就不播动画）→ 主题思维导图讲解幕 ✅（25 幕，见 §5.1）→ **第一性原理总枢余下旧 canvas** → 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实）→ 文档收尾。
+2. 三大厅 HD 剧场：构词法 ✅ → 框架语义 ✅ → 易混词 ✅ → 自然拼读 ✅ → 语法总结中心 ✅ → 语法 40 点 ✅（56 幕；三幕内容相同的合并为 1 幕）→ 日常用语 144 句 ✅（每句 1 幕放完整对话）→ 单词卡一词多义 17 词 ✅（51 幕）→ 普通单词卡通用模板 ✅（1425 词，功能词旧版本来就不播动画）→ 主题思维导图讲解幕 ✅（25 幕，见 §5.1）→ 第一性原理总枢余下旧 canvas ✅（已核查无残留，见 §5.1 ⑤）→ 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实）→ 文档收尾。
 3. 等用户点头：练习闭环 + 总地图（决策 14）、决策 6 剩余三个新模块、决策 29 软件优化。
 
 ## 5.1 进行中：主题思维导图讲解幕（分阶段，每阶段一提交）
@@ -84,7 +84,9 @@
 | ② | `scenes/auto.js` 新增 `mindmapBuild` 版式 + `v5/gen_mindmap.py`；引擎变了 → `rebuild_all.py` 全量重建（484 幕，主 App 共享引擎块仍只 1 份）；`embed_app.py` 装导图舞台挂钩（无幕时舞台为空、不报错）；主文件 15.47 MB；抽样回归 tense_matrix / hd_formation / fp_economy / 单词卡模板 55 词全过、0 报错 | ✅ 本阶段提交 |
 | ③ | 25 幕分 3 批生成 → R1 → 联络表 → 嵌入（1–8 / 9–16 / 17–25），每批一提交 | 第 1 批 幕 1–8（学校与学习 … 服装与穿戴） ✅；第 2 批 幕 9–16（语法功能与指代 … 交通与出行） ✅；第 3 批 幕 17–25（交际与礼仪 … 核心语法功能词） ✅ |
 | ④ | `v5/app_check6.py` 全量 App 回归：25/25 合格（讲解幕在导图上方、幕号对、时长 65–116 s；16 节点可点开卡、➕/➖/滚轮缩放、拖拽、复位正常），0 报错；`jscheck` / `anchorcheck` OK；第一性原理总枢 24 幕仍正常 | ✅ 本阶段提交 |
-| ⑤ | 第一性原理总枢余下旧 canvas 核查 → 词源 / 格林 / 词根词缀 + 12+6 条 → 文档收尾 | ⬜ |
+| ⑤ | 第一性原理总枢余下旧 canvas 核查：`v5/app_check7.py` 6 原理 × 4 幕——22 幕 v5 iframe、2 幕（fp_one_king ①、fp_zoom_focus ①）是迁去中英对照的跳转，页面上已无任何旧 canvas，0 报错。旧 canvas 代码（`startFirstPrinciplesCanvasLoop` 的 canvas 分支、`wbStageHtml` 的 `firstPrinciplesCanvas` 兜底）只在缺 v5 幕时才会用到，按各厅惯例保留作兜底，退役等用户决定（§6） | ✅ 本阶段提交（无需改 App） |
+| ⑥ | 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实） | ⬜ 见 §5 第 2 步说明 |
+| ⑦ | 文档收尾 | ⬜ |
 
 接手须知：
 - 环境按 §2 装好后：`python3 v5/gen_mindmap_groups.py --review`（看逐词分组依据）→ `python3 src/gen_mindmap_inventory.py` → `python3 v5/gen_mindmap.py` → `python3 sprites/build_sprites.py mindmap l_speak l_point l_think l_idea0`（在 v5/ 下）→ 每幕 `node build.mjs scenes/hd_mindmap_<n>.js out/hd_mindmap_<n>.html "<标题>"`、`python3 r1v5.py ../lab/INVENTORY_HD_MINDMAP_EXPORT.md <n> scenes/hd_mindmap_<n>.js ../lab/INVENTORY_HD_MINDMAP_<n>_V5.md`、`python3 shots.py out/hd_mindmap_<n>.html /tmp/x.png 5 25 45 65 85`、`python3 embed_app.py hd_mindmap <n-1> out/hd_mindmap_<n>.html`。
@@ -94,6 +96,7 @@
 ## 6. 待用户确认
 
 1. 人物帧是否再压画质换体积。
+0b. 各厅旧 canvas 兜底代码（第一性原理 `firstPrinciplesCanvas`、三大厅 HD 剧场旧循环）现在都只在缺 v5 幕时才跑，是否统一退役删掉（可省主文件体积，但没了兜底）。
 0. 主题思维导图语义分组表 `v5/mindmap_groups.json`（25 个子主题，规则见 `v5/gen_mindmap_groups.py`）有空看一眼；不合适的组名 / 归组直接改规则重跑即可。
 2. 161 幕 v5.1 真机审片（`REVIEW_LIST.md`）。
 3. 练习闭环（决策 14）是否开工；决策 6 剩余模块位置。
