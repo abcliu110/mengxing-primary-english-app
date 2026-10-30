@@ -10,6 +10,7 @@ const norm = x => x.toLowerCase().replace(/[^a-z']/g, '');
 const wordT = (t, en, word, w) => t + (word ? 0.45 + word.split(/\s+/).length * 0.42 : 0) + Math.max(0, en.split(/\s+/).findIndex(x => norm(x) === w)) * 0.36;
 const say = (t, en, o = {}) => { K.say(t, en, o); return (o.word ? 0.45 + o.word.split(/\s+/).length * 0.42 : 0) + en.split(/\s+/).length * 0.36 + 0.9; };
 const N = (zh, t) => { const d = Math.max(3.2, zh.length * 0.13 + 0.8); K.narr(zh, t, t + d); return d; };
+const fit = (s, size, maxW = 1700) => Math.min(size, Math.floor(size * maxW / K.measure(s, size)));
 const sayS = (t, [en, zh, word], key) => say(t, en, { word, zh, key: key || word.split(' ').slice(-1) });
 // 小火车车头（画面只由 t 决定：冒烟）
 const loco = (x, y, from) => K.prop((g, t) => { const q = Math.min(1, (t - from) / 0.5); if (q <= 0) return; g.save(); g.globalAlpha = q; g.strokeStyle = INK; g.lineWidth = 6; g.fillStyle = OR2;
@@ -23,7 +24,7 @@ let T;
 {
   const [ox, oy] = REG(0); K.camSet(ox + 960, oy + 540, 1);
   const d0 = N(S.n0, 0.1);
-  K.at(0.3).text(S.title, ox + 150, oy + 330, S.titleSize || 84);
+  K.at(0.3).text(S.title, ox + 150, oy + 330, fit(S.title, S.titleSize || 84, 1650));
   K.text(S.sub, ox + 160, oy + 450, 60, { col: OR });
   K.rect(ox + 160, oy + 520, 380, 84, { w: 4, rough: 1.4 }).text(S.badges[0], ox + 190, oy + 578, 44);
   K.rect(ox + 580, oy + 520, 380, 84, { w: 4, rough: 1.4 }).text(S.badges[1], ox + 610, oy + 578, 44);
@@ -38,7 +39,7 @@ let T;
 {
   const [ox, oy] = REG(1); go(1, T);
   const d1 = N(S.cn.n, T);
-  K.at(T + 0.1).text(S.cn.text, ox + 120, oy + 200, 44, { rate: 30 });
+  K.at(T + 0.1).text(S.cn.text, ox + 120, oy + 200, fit(S.cn.text, 44), { rate: 30 });
   T += Math.max(d1, 3.0);
   const d2 = N(S.prob.n, T);
   K.at(T + 0.1).text(S.prob.head, ox + 120, oy + 330, 56, { col: OR });
@@ -68,7 +69,7 @@ let T;
   const cw = 200, x0 = ox + 40, ty = oy + 380;
   K.at(T - 1.6).line(ox + 20, ty + 300, ox + 1900, ty + 300, { w: 4, col: GREY, min: 0.05 });
   S.cars.forEach((c, k) => {
-    const x = x0 + k * (cw + 10), d = N(c.n, T), on = c.w !== '—';
+    const x = x0 + k * (cw + 10), d = c.n ? N(c.n, T) : 1.4, on = c.w !== '—';
     K.at(T + 0.3);
     if (c.top) K.text(c.top, x + 70, ty - 40, 56, { col: OR });
     K.rect(x, ty, cw, 260, { w: 5, rough: 1.2, col: on ? INK : GREY, fill: on && k ? OR2 : null });
@@ -91,12 +92,12 @@ let T;
 {
   const [ox, oy] = REG(4); go(4, T - 0.3);
   const d1 = N(S.why.n, T);
-  K.at(T + 0.2).text(S.why.text, ox + 120, oy + 200, 42, { rate: 30 });
+  K.at(T + 0.2).text(S.why.text, ox + 120, oy + 200, fit(S.why.text, 42), { rate: 30 });
   K.at(T + 1.4).text(S.why.skip, ox + 120, oy + 300, 46, { col: GREY });
   T += Math.max(d1, 3.6);
   const d2 = N(S.join.n, T);
-  K.at(T + 0.2).text(S.join.phrase, ox + 120, oy + 470, 84, { col: OR });
-  K.at(T + 1.0).text(S.join.zh, ox + 120, oy + 580, 46);
+  K.at(T + 0.2).text(S.join.phrase, ox + 120, oy + 470, fit(S.join.phrase, 84), { col: OR });
+  K.at(T + 1.0).text(S.join.zh, ox + 120, oy + 580, fit(S.join.zh, 46));
   T += d2;
   if (S.join.actor) K.actor({ keys: [[0, S.join.actor]], x: ox + 1550, ground: oy + 1150, h: 420, reveal: T - 1.0 });
   S.says.forEach(s => { T += sayS(T, s, s[3]) + 0.2; });
@@ -111,11 +112,11 @@ let T;
   T += d0;
   const d1 = N(S.pred.n, T);
   K.at(T + 0.4).text(S.pred.cn, ox + 130, oy + 300, 60);
-  K.text(S.pred.q, ox + 130, oy + 410, 48, { rate: 30 });
+  K.text(S.pred.q, ox + 130, oy + 410, fit(S.pred.q, 48, 1600), { rate: 30 });
   ['3', '2', '1'].forEach((n, i) => K.pop(T + 2.4 + i * 0.8, n, ox + 1750, oy + 300, 110, { out: T + 2.4 + i * 0.8 + 0.7 }));
   T += Math.max(d1, 5.0);
   const d2 = N(S.pred.rn, T);
-  K.at(T + 0.2).text(S.pred.ans, ox + 130, oy + 540, 70, { col: OR });
+  K.at(T + 0.2).text(S.pred.ans, ox + 130, oy + 540, fit(S.pred.ans, 70, 1600), { col: OR });
   if (S.pred.actor) K.actor({ keys: [[0, S.pred.actor]], x: ox + 1450, ground: oy + 1150, h: S.pred.h || 420, reveal: T + 0.4 });
   if (S.pred.balloon) { const bt = T + 0.6; K.prop((g, t) => { if (t < bt) return; const q = Math.min(1, (t - bt) / 0.5), y = oy + 720 + Math.sin(t * 2) * 12; g.save(); g.globalAlpha = q; g.fillStyle = '#e8553a'; g.strokeStyle = INK; g.lineWidth = 5; g.beginPath(); g.ellipse(ox + 1450, y, 120, 150, 0, 0, 7); g.fill(); g.stroke(); g.beginPath(); g.moveTo(ox + 1450, y + 150); g.quadraticCurveTo(ox + 1420, y + 260, ox + 1460, y + 380); g.stroke(); g.restore(); }, { from: bt }); }
   const st = T + 0.8;
@@ -125,7 +126,7 @@ let T;
 // ───────── 7 小剧场：火车开进名词站 ─────────
 {
   const [ox, oy] = REG(6); go(6, T - 0.3);
-  K.at(T).text(S.join.phrase, ox + 160, oy + 220, 70);
+  K.at(T).text(S.join.phrase, ox + 160, oy + 220, fit(S.join.phrase, 70, 1600));
   K.line(ox + 60, oy + 900, ox + 1860, oy + 900, { w: 4, col: GREY, min: 0.05 });
   K.prop((g, t) => { const s = T + 0.6; if (t < s) return; const p = Math.min(1, (t - s) / 3), e = 1 - (1 - p) * (1 - p), x = ox - 600 + e * 900;
     g.save(); g.strokeStyle = INK; g.lineWidth = 5; g.fillStyle = OR2; g.font = '40px Kalam, WK';
@@ -140,14 +141,14 @@ let T;
   const [ox, oy] = REG(7); go(7, T - 0.4);
   K.at(T).rect(ox + 140, oy + 150, 1640, 760, { w: 6, rough: 1.2 });
   K.text(S.gold[0], ox + 220, oy + 260, 54, { col: OR });
-  K.text(S.gold[1], ox + 220, oy + 350, 56);
+  K.text(S.gold[1], ox + 220, oy + 350, fit(S.gold[1], 56, 1500));
   K.text(S.gold[2], ox + 220, oy + 440, 56);
   K.text(S.gold[3], ox + 220, oy + 560, 54, { col: OR });
   K.text(S.gold[4], ox + 220, oy + 650, 54);
   K.text(S.gold[5], ox + 220, oy + 740, 54);
-  K.text(S.gold[6], ox + 220, oy + 860, 40, { col: GREY, rate: 24 });
+  K.text(S.gold[6], ox + 220, oy + 860, fit(S.gold[6], 40, 1500), { col: GREY, rate: 24 });
   T = K.cur + 1.6;
-  K.cam(T, { x: 4150, y: 1165, z: 0.34, d: 1.6 });
+  K.cam(T, { x: 4150, y: 1165, z: 0.225, d: 1.6 });
   K.shade(T + 2.0);
   K.end(T + 3.4);
 }
