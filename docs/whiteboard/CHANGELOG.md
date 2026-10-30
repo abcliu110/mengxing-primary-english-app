@@ -2361,3 +2361,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 22:30 · 词源 / 格林 / 词根词缀 + 12+6 条：拆成分阶段计划（未开工）
 - 原审计的 Wiktionary 抓取缓存 `work/etym` 随沙箱重置丢失；Wiktionary API 可用（已试 foot）。全量需重抓 1487 词 + 逐条人工核实，工作量大，本轮不开工，只把计划拆成 ⑥a–⑥g 写进 HANDOFF §5.1，并列出开工前要用户定的两件事（HANDOFF §6 0c）。
+
+## 2026-10-30 23:10 · ⑥a 词源抓取 / 解析 / 交叉核对工具（用户 22:13 授权完成全部）
+- `src/fetch_etym.py wikt|etymo|etymo-rev`：Wiktionary 原始 wikitext（`index.php?action=raw`，带联系方式 UA；API 端点曾回 429）；Etymonline 沙箱直连 403、无头浏览器超时，改读 Wayback 存档原文 `web.archive.org/web/2026id_/https://www.etymonline.com/word/<词>`（返回 zstd 压缩，用 curl `--compressed`）；6 并发会被断连 → 单连接 1.5 秒间隔，正反两进程。缓存在 `/workspace/work/etym/`（不进仓库），断点续抓。
+- `src/parse_etym.py`：取英语词源小节第一句的来源链（inh / der / bor…，遇句号、「+」、括号、calque / Compare / Ultimately 等即停）、构词模板（compound / affix / suffix / prefix，记语言）、同源词 cog；逐级核对 Etymonline 正文里「语言名 + 词形」（去附加符号；词形 < 3 个字母不算），链截到最后一个对上的级别。
+- `src/build_etym_db.py`（下一提交使用）：生成 ETYM_DB / MORPH_DB 与核对报告。
+- 决定（授权自定，理由）：12+6 条规律幕放单词身世总枢「格林定律」章之后新开一章——与格林定律同属「音变」，孩子从格林定律自然走到其余规律；词卡真词源在前、旧巧记故事改标 💡 在后——R1 不删旧内容，同时让家长一眼分清事实和联想（R3 徽章惯例）。
