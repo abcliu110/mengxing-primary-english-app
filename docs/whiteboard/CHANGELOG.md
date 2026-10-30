@@ -1502,3 +1502,39 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · hd_phonics 第3幕 v5.1 重画并替换进 App
 - 🔤 拼读剧场 ③ 字母组合与最小对立对（ship / sheep）：R1 10/10，67 s，主文件 14,696,979 bytes。
+
+## 2026-10-30 · hd_sum_pronouns 第1幕 v5.1 重画并替换进 App
+- 📊 代词全局原理 · 第1幕 主格 vs 宾格：过了动词门就换装：R1 17/17，67 s，主文件 14,700,127 bytes。
+
+## 2026-10-30 · hd_sum_pronouns 第2幕 v5.1 重画并替换进 App
+- 📊 代词全局原理 · 第2幕 my + book = mine 吞噬合体：R1 14/14，71 s，主文件 14,703,124 bytes。
+
+## 2026-10-30 · hd_sum_pronouns 第3幕 v5.1 重画并替换进 App
+- 📊 代词全局原理 · 第3幕 this / these / that / those 远近 × 单复数：R1 14/14，59 s，主文件 14,706,045 bytes。
+
+## 2026-10-30 · hd_sum_interrogatives 第1幕 v5.1 重画并替换进 App
+- 🦉 疑问词词源雷达 · 第1幕 wh- 提问头 ↔ th- 远指 ↔ h- 近指：R1 15/15，61 s，主文件 14,708,978 bytes。
+
+## 2026-10-30 · hd_sum_interrogatives 第2幕 v5.1 重画并替换进 App
+- 🦉 疑问词词源雷达 · 第2幕 Who / Whose / Which 精准靶心：R1 15/15，64 s，主文件 14,711,915 bytes。
+
+## 2026-10-30 · hd_sum_interrogatives 第3幕 v5.1 重画并替换进 App
+- 🦉 疑问词词源雷达 · 第3幕 疑问词冲到句首：R1 9/9，63 s，主文件 14,714,840 bytes。
+
+## 2026-10-30 · hd_sum_how_what 第1幕 v5.1 重画并替换进 App
+- 🔍 How vs What 原理 · 第1幕 有介词 like 必用 What：R1 11/11，69 s，主文件 14,717,701 bytes。
+
+## 2026-10-30 · hd_sum_how_what 第2幕 v5.1 重画并替换进 App
+- 🔍 How vs What 原理 · 第2幕 old / tall / many 前用 How：R1 16/16，72 s，主文件 14,720,622 bytes。
+
+## 2026-10-30 · hd_sum_how_what 第3幕 v5.1 重画并替换进 App
+- 🔍 How vs What 原理 · 第3幕 感叹句：遮住主谓看核心词：R1 15/15，77 s，主文件 14,723,623 bytes。
+
+## 2026-10-30 · hd_sum_syntax 第1幕 v5.1 重画并替换进 App
+- 🌳 汉英语序对比 · 第1幕 英语主谓宾先行：R1 9/9，64 s，主文件 14,726,612 bytes。
+
+## 2026-10-30 · hd_sum_syntax 第2幕 v5.1 重画并替换进 App
+- 🌳 汉英语序对比 · 第2幕 先地点后时间、从小到大、长定语后置：R1 10/10，70 s，主文件 14,729,733 bytes。
+
+## 2026-10-30 · hd_sum_syntax 第3幕 v5.1 重画并替换进 App
+- 🌳 汉英语序对比 · 第3幕 动词变形、单数加冠词、because 连接：R1 15/15，68 s，主文件 14,732,790 bytes。
