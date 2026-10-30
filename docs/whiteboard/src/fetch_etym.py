@@ -54,7 +54,7 @@ def etymo(w):
     time.sleep(1.5)                          # Wayback 并发 / 过快会被断连（2026-10-30 实测 6 并发全部失败）
 if __name__ == '__main__':
     mode = sys.argv[1]; n = int(sys.argv[2]) if len(sys.argv) > 2 else 2
-    fn = {'wikt': wikt, 'etymo': etymo, 'etymo-rev': etymo}[mode]
-    ws = words[::-1] if mode.endswith('-rev') else words   # 第二个进程倒着抓，两头往中间（Wayback 单连接约 15 词/分钟）
+    fn = {'wikt': wikt, 'etymo': etymo, 'etymo-rev': etymo, 'etymo-mid': etymo}[mode]
+    ws = words[::-1] if mode.endswith('-rev') else words[len(words) // 2:] + words[:len(words) // 2] if mode.endswith('-mid') else words   # 第二个进程倒着抓，两头往中间（Wayback 单连接约 15 词/分钟）
     with cf.ThreadPoolExecutor(n) as ex: list(ex.map(fn, ws))
     print('done', sys.argv[1], len(words))

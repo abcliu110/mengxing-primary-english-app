@@ -49,6 +49,12 @@ MARKERS = [
     ('<!-- WB5_HD:mindmap_stage -->', 1, 1),
     ('// WB5_HD:mindmap（讲解幕；下方交互导图照常）', 1, 1),
     ('<canvas id="themeMindMapCanvas"', 1, 1),
+    # 词卡真实词源 / 💡 巧记小故事分开（src/patch_etym_card.py，2026-10-30）
+    ('// ETYM_CARD_V1', 1, 1),
+    ('<!-- ETYM_CARD:modal -->${etymRealHtml(w)}', 1, 1),
+    ('<!-- ETYM_CARD:grid -->', 1, 1),
+    ('<script type="application/json" id="ETYM_DB_JSON">', 1, 1),
+    ('📖 词源与巧记故事', 0, 0),          # 旧的混排标题不能回来
 ]
 
 

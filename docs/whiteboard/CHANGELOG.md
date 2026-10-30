@@ -2367,3 +2367,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `src/parse_etym.py`：取英语词源小节第一句的来源链（inh / der / bor…，遇句号、「+」、括号、calque / Compare / Ultimately 等即停）、构词模板（compound / affix / suffix / prefix，记语言）、同源词 cog；逐级核对 Etymonline 正文里「语言名 + 词形」（去附加符号；词形 < 3 个字母不算），链截到最后一个对上的级别。
 - `src/build_etym_db.py`（下一提交使用）：生成 ETYM_DB / MORPH_DB 与核对报告。
 - 决定（授权自定，理由）：12+6 条规律幕放单词身世总枢「格林定律」章之后新开一章——与格林定律同属「音变」，孩子从格林定律自然走到其余规律；词卡真词源在前、旧巧记故事改标 💡 在后——R1 不删旧内容，同时让家长一眼分清事实和联想（R3 徽章惯例）。
+
+## 2026-10-30 23:40 · ⑥d 词卡词源两块显示 + ETYM_DB 首批
+- `src/build_etym_db.py etym`：只收 Wiktionary 与 Etymonline「语言名 + 词形」逐级对上的条目（来源链截到最后对上的一级；只追到中古英语同形的不收）；写主文件 `<script type="application/json" id="ETYM_DB_JSON">`（按需 JSON.parse，不进首屏解析）；报告 `word_origins/ETYM_REVIEW.md`（入库表 + 未入库逐词原因）。首批 76 词（Etymonline 存档仍在抓，抓完补齐）。
+- `src/patch_etym_card.py`（幂等）：词卡背面原「📖 词源与巧记故事」一块拆成两块——① 📖 词源 📜（类型：本族词 / 外来词、来源链、出处链接 Wiktionary · Etymonline；未收录写「暂未收录」）；② 💡 巧记小故事（帮助记忆的联想，不是真实词源）＝旧 etymology 原文（只换标题前缀，R1 不丢字）。词表弹窗同样两块。功能词卡旧版就不显示词源，未改。`anchorcheck` 登记 5 个标记（旧标题出现次数必须为 0）。
+- 回归：`jscheck` OK；新 `v5/app_check8.py` 25 词 0 不合格（在库 real + 2 个链接、不在库 none、巧记文字与旧字段一致）；`app_check5.py` 单词卡模板 55 词 0 不合格；0 报错。主文件 15,562,866 bytes。
