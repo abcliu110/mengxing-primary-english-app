@@ -1,118 +1,171 @@
 // ==================== 白板脚本：王炸④ 皇家形容词排座次（OSASCOMP）4 个真题专列 ====================
 // 每个案例 = ADJ_ORDER_EXAMPLES 的一项。画一列火车：7 节车厢（ADJ_ORDER_CARRIAGES 的顺序）+ 名词终点站，
 // 把形容词一个个送进对应车厢，空车厢打「—」，最后连成短语。辅助函数都包在 IIFE 里，避免和别的页签重名。
+// v2 升级（2026-10-30，决策 24）：4 个案例共用一个 build，一次升引擎 v2 + 讲解员：
+// 镜头 1 中文 + 一袋形容词 + 主观 → 客观箭头 / 镜头 2 火车（车厢收窄到 x≤800）+ 逐个上车（词从车厢上方落进座位）+ 紧贴名词 + 为什么 + 结论框 → 🔮 预测 → 金句卡。
+// 升级前整份文件原样保存在 cases/adj_order_classic.js。依赖 wo_props。
+// 配色只用 V3 k.PAL：主观（观点车厢）红 → 中间车厢蓝 → 客观（材质 / 用途车厢、名词站）绿，限定词灰，和「主观 → 客观」箭头同色；旧粉 / 橙 / 紫 / 琥珀都改 V3。
 WB_LAB.adj_order = (function () {
-  // 7 节车厢（与 ADJ_ORDER_CARRIAGES 同顺序）+ 第 8 格名词站
-  const CARS = [
-    { lab: "① 限定词", letter: "", col: "#475569", fill: "#f1f5f9" },
-    { lab: "② 观点", letter: "O", col: "#db2777", fill: "#fce7f3" },
-    { lab: "③ 大小", letter: "S", col: "#2563eb", fill: "#dbeafe" },
-    { lab: "④ 新旧/形状", letter: "A·S", col: "#d97706", fill: "#fef3c7" },
-    { lab: "⑤ 颜色", letter: "C", col: "#059669", fill: "#d1fae5" },
-    { lab: "⑥ 国籍/来源", letter: "O", col: "#7c3aed", fill: "#ede9fe" },
-    { lab: "⑦ 材质/用途", letter: "M·P", col: "#dc2626", fill: "#fee2e2" },
-    { lab: "名词站", letter: "", col: "#059669", fill: "#bbf7d0" }
-  ];
-  const BX = 20, BW = 108, GAP = 8, BY = 236, BH = 70;
+  // 旧 7 节车厢配色（与 ADJ_ORDER_CARRIAGES 同顺序，只留作 R1 对照）："#475569" "#db2777" "#2563eb" "#d97706" "#059669" "#7c3aed" "#dc2626"
+  const BX = 20, BW = 88, GAP = 6, BY = 150, BH = 66;
   const cx = i => BX + i * (BW + GAP) + BW / 2;
-  const MONO = '"Courier New",Courier,monospace';
+  const BADGE_TERM = ["可信度徽章", "💡 火车、车厢、排座次、口诀都是帮助记忆的比喻；✂️ 简化说法：OSASCOMP 是常见的排列习惯，不是死规定，「新旧」和「形状」在这里合坐一节车厢，真实英语里偶尔也能换顺序。"];
 
-  // 开场：标题 + 中文短语 + 一袋打乱的形容词
-  function intro(k, cfg) {
-    const { C, N, T, go } = k;
+  function cars(C) {
+    const L = { col: C.grey, fill: C.tintInk }, R = { col: C.red, fill: C.tintRed }, B = { col: C.blue, fill: C.tintBlue }, G = { col: C.green, fill: C.tintGreen };
+    return [
+      { lab: "① 限定词", letter: "", ...L },
+      { lab: "② 观点", letter: "O", ...R },
+      { lab: "③ 大小", letter: "S", ...B },
+      { lab: "④ 新旧/形状", letter: "A·S", ...B },
+      { lab: "⑤ 颜色", letter: "C", ...B },
+      { lab: "⑥ 国籍/来源", letter: "O", ...B },
+      { lab: "⑦ 材质/用途", letter: "M·P", ...G },
+      { lab: "名词站", letter: "", col: C.green, fill: C.hlGreen }
+    ];
+  }
+
+  function build(k, cfg) {
+    k.v2();
+    const { N, T, P, F, go, estW } = k, D = WO_PROPS(k), C = k.PAL, S = k.S, MONO = D.MONO, CARS = cars(C);
+    const sayAt = (en, o) => { k.say(en, o); return S.says[S.says.length - 1]; };
+    const fit = (text, max, room) => Math.min(max, room / Math.max(1, estW(text, 1)));
+    const me = k.actor("narrator", { x: 1010, y: 538, s: 1.15, f: -1 });
     N("", cfg.open);
-    k.header(cfg.sub, "形容词排座次", false);
+    k.act(me, "walk", .3, 1.6, { to: 892 });
+    k.act(me, "wave", 2.0, 1.8);
+    D.scene({ title: cfg.sub.replace(/^真题专列\s*/, ""), sub: "真题专列 · 形容词排座次", badges: ["💡", "✂️"], steps: ["① 中文", "② 原理", "③ 上车", "④ 连读", "🔮 预测"], cardDur: 3.6 });
+
+    // ───── 镜头 1 · 中文 + 一袋形容词 + 主观 → 客观 ─────
+    D.step(0); D.shot();
     N("中文：", cfg.zhSay);
-    const zs = Math.min(17, 900 / k.estW("中文：" + cfg.zh, 17) * 17);
-    T("中文：" + cfg.zh, 24, 98, go(1.8), 1.8, { size: zs, color: C.ink });
+    const zl = "中文：" + cfg.zh;
+    T(zl, 24, 140, go(1.8), 1.8, { size: fit(zl, 17, 770), color: C.ink });
     k.wait(.2);
     N("问题：", cfg.problem);
-    T("这些形容词要排队上车：", 24, 140, go(.9), .9, { size: 17, color: C.grey });
+    T("这些形容词要排队上车：", 24, 196, go(.9), .9, { size: 17, color: C.grey });
     let x = 230;
     cfg.bag.forEach(w => {
       const fs = 16, cw = w.length * fs * .6 + 20;
-      k.P(k.roughRect(x, 118, cw, 30), go(.25, 0), .25, { color: C.purple, w: 2 });
-      k.F(k.rectD(x, 118, cw, 30), go(.15, 0), { color: "#ede9fe", op: .95 });
-      T(w, x + cw / 2, 139, go(.3, .05), .3, { size: fs, color: C.purple, weight: 700, anchor: "middle", font: MONO });
+      P(k.roughRect(x, 174, cw, 30), go(.25, 0), .25, { color: C.blue, w: 2 });
+      F(k.rectD(x, 174, cw, 30), go(.15, 0), { color: C.tintBlue, op: .95 });
+      T(w, x + cw / 2, 195, go(.3, .05), .3, { size: fs, color: C.blue, weight: 700, anchor: "middle", font: MONO });
       x += cw + 14;
     });
-    T("谁先谁后？", x + 4, 140, go(.6), .6, { size: 17, color: C.red, weight: 900 });
+    T("谁先谁后？", x + 4, 196, go(.6), .6, { size: 17, color: C.red, weight: 900 });
+    k.act(me, "think", S.at - .6, 2);
     k.wait(.5);
-  }
+    D.step(1);
+    N("第一性原理：", cfg.principle);
+    T("主观：心里的感觉", 24, 276, go(.9), .9, { size: 17, color: C.red, weight: 900 });
+    k.arrow(186, 270, 596, 270, C.blue, "越往右，越贴近东西本身，越紧挨名词", 391, 254);
+    T("客观：东西本来的样子", 606, 276, go(1.0), 1.0, { size: 17, color: C.green, weight: 900 });
+    // 小图：左边一颗心（我觉得），右边一块木头方块（东西本身）
+    const heart = "M100,330 C100,316 78,312 78,328 C78,342 100,352 100,360 C100,352 122,342 122,328 C122,312 100,316 100,330 Z";
+    P(heart, go(.5), .5, { color: C.red, w: 2.5 }); F(heart, go(.1, 0), { color: C.tintRed, op: 1 });
+    P(k.roughRect(660, 312, 50, 46), go(.5), .5, { color: C.green, w: 2.5 }); F(k.rectD(660, 312, 50, 46), go(.1, 0), { color: C.tintGreen, op: 1 });
+    k.act(me, "point", S.at - 1.2, 1.2, { at: [606, 270] });
+    k.wait(.6);
+    D.wipe();
 
-  // 原理：主观 → 客观 的箭头
-  function principle(k, say) {
-    const { C, N, T, go } = k;
-    N("第一性原理：", say);
-    T("主观：心里的感觉", 24, 192, go(.9), .9, { size: 17, color: "#db2777", weight: 900 });
-    k.arrow(186, 186, 720, 186, C.orange, "越往右，越贴近东西本身，越紧挨名词", 453, 176);
-    T("客观：东西本来的样子", 728, 192, go(1.0), 1.0, { size: 17, color: C.green, weight: 900 });
-    k.wait(.5);
-  }
-
-  // 画第 i 节车厢（车厢 + 轮子 + 顶上字母 + 标签）
-  function car(k, i) {
-    const { T, P, F, go } = k, c = CARS[i], x = BX + i * (BW + GAP);
-    if (i === 7) {
-      // 名词站：站牌 + 小旗
-      P(k.roughRect(x, BY, BW, BH), go(.5, 0), .5, { color: c.col, w: 3 });
-      F(k.rectD(x, BY, BW, BH), go(.2, 0), { color: c.fill, op: .8 });
-      const fx = x + BW - 14;
-      P(k.wl(fx, BY, fx, BY - 34, .4), go(.25), .25, { color: k.C.ink, w: 2 });
-      const fd = `M${fx},${BY - 34} l-22,7 l22,7 Z`;
-      P(fd, go(.25, 0), .25, { color: k.C.red, w: 2 }); F(fd, go(.1), { color: "#fecaca", op: 1 });
-    } else {
-      P(k.roughRect(x, BY, BW, BH), go(.35, 0), .35, { color: c.col, w: 2.5 });
-      F(k.rectD(x, BY, BW, BH), go(.2, 0), { color: c.fill, op: .8 });
-      P(k.ellipse(x + 24, BY + BH + 7, 7, 7) + " " + k.ellipse(x + BW - 24, BY + BH + 7, 7, 7), go(.2, 0), .2, { color: k.C.ink, w: 2 });
-      if (i > 0) P(k.wl(x - GAP - 2, BY + BH - 14, x + 2, BY + BH - 14, .3), go(.1, 0), .1, { color: k.C.ink, w: 3 });
-      if (i === 0) { // 车头烟囱 + 一团烟
-        P(k.roughRect(x + 12, BY - 18, 16, 18), go(.25, 0), .25, { color: c.col, w: 2 });
-        P(k.cloud(x + 36, BY - 30, 14, 8, 5), go(.3, 0), .3, { color: "#94a3b8", w: 1.5 });
-      }
-    }
-    if (c.letter) T(c.letter, cx(i), BY - 8, go(.3, .05), .3, { size: 20, color: c.col, weight: 900, anchor: "middle", font: MONO });
-    T(c.lab, cx(i), BY + 20, go(.3, .05), .3, { size: 13, color: c.col, weight: 900, anchor: "middle" });
-  }
-
-  // 把单词送进第 i 节车厢；word 为 "—" 时画空位
-  function seat(k, i, word, gloss) {
-    const { T, go, C } = k;
-    if (word === "—") { T("—", cx(i), BY + 50, go(.4), .4, { size: 24, color: "#94a3b8", weight: 900, anchor: "middle" }); return; }
-    const fs = word.length > 8 ? 16 : 18, col = i === 7 ? C.green : CARS[i].col;
-    T(word, cx(i), BY + 46, go(.4, .05), .4, { size: fs, color: col, weight: 900, anchor: "middle", font: MONO });
-    if (gloss) T(gloss, cx(i), BY + 64, go(.25), .25, { size: 13, color: C.grey, anchor: "middle" });
-  }
-
-  // 主体：开场 → 原理 → 逐节上车 → 紧贴名词 → 为什么 → 结论
-  function build(k, cfg) {
-    const { C, N, T, go } = k;
-    intro(k, cfg);
-    principle(k, cfg.principle);
+    // ───── 镜头 2 · 火车 + 逐个上车 + 紧贴名词 + 为什么 + 结论 ─────
+    D.step(2); D.shot();
     N("", cfg.trainSay);
+    const car = (i) => {
+      const c = CARS[i], x0 = BX + i * (BW + GAP);
+      if (i === 7) {
+        P(k.roughRect(x0, BY, BW, BH), go(.5, 0), .5, { color: c.col, w: 3 });
+        F(k.rectD(x0, BY, BW, BH), go(.2, 0), { color: c.fill, op: .6 });
+        const fx = x0 + BW - 12;
+        P(k.wl(fx, BY, fx, BY - 34, .4), go(.25), .25, { color: C.ink, w: 2 });
+        const fd = `M${fx},${BY - 34} l-22,7 l22,7 Z`;
+        P(fd, go(.25, 0), .25, { color: C.red, w: 2 }); F(fd, go(.1), { color: C.tintRed, op: 1 });
+      } else {
+        P(k.roughRect(x0, BY, BW, BH), go(.35, 0), .35, { color: c.col, w: 2.5 });
+        F(k.rectD(x0, BY, BW, BH), go(.2, 0), { color: c.fill, op: .8 });
+        P(k.ellipse(x0 + 20, BY + BH + 7, 7, 7) + " " + k.ellipse(x0 + BW - 20, BY + BH + 7, 7, 7), go(.2, 0), .2, { color: C.ink, w: 2 });
+        if (i > 0) P(k.wl(x0 - GAP - 2, BY + BH - 14, x0 + 2, BY + BH - 14, .3), go(.1, 0), .1, { color: C.ink, w: 3 });
+        if (i === 0) {   // 车头烟囱 + 一团烟（烟单独一组，开车时冒烟）
+          P(k.roughRect(x0 + 10, BY - 18, 16, 18), go(.25, 0), .25, { color: c.col, w: 2 });
+        }
+      }
+      if (c.letter) T(c.letter, cx(i), BY - 8, go(.3, .05), .3, { size: 20, color: c.col, weight: 900, anchor: "middle", font: MONO });
+      T(c.lab, cx(i), BY + 20, go(.3, .05), .3, { size: fit(c.lab, 13, BW - 6), color: c.col, weight: 900, anchor: "middle" });
+    };
+    // 上车：词先在车厢上方出现，再落进座位（squash 一下）
+    const seat = (i, word, gloss) => {
+      if (word === "—") { T("—", cx(i), BY + 50, go(.4), .4, { size: 24, color: C.grey, weight: 900, anchor: "middle" }); return; }
+      const fs = Math.min(18, (BW - 8) / (word.length * .6)), col = i === 7 ? C.green : CARS[i].col;
+      const g = D.sub(); k.hide(g);
+      T(word, cx(i), BY + 46, go(.05, 0), .05, { size: fs, color: col, weight: 900, anchor: "middle", font: MONO });
+      D.back();
+      const t = go(.5);
+      k.fade(g, t, .2, 1); k.move(g, t - .01, .01, 0, -44); k.move(g, t, .45, 0, 44, { ease: "move" }); k.squash(g, t + .42, .3, .2);
+      if (gloss) T(gloss, cx(i), BY + 64, go(.25), .25, { size: 13, color: C.grey, anchor: "middle" });
+    };
+    const smoke = D.sub(); k.hide(smoke);
+    P(k.cloud(BX + 34, BY - 30, 14, 8, 5), go(.05, 0), .05, { color: C.grey, w: 1.5 });
+    D.back();
     for (let i = 0; i < 8; i++) {
       if (cfg.say[i]) N(cfg.say[i][0], cfg.say[i][1]);
-      car(k, i);
-      seat(k, i, cfg.words[i], cfg.gloss[i]);
+      car(i);
+      if (i === 0) { const ts = S.at; k.fade(smoke, ts, .3, 1); k.move(smoke, ts, 2.4, 6, -14, { ease: "move" }); }
+      seat(i, cfg.words[i], cfg.gloss[i]);
+      if (cfg.words[i] !== "—" && i > 0 && i < 7) k.look(me, cx(i), BY + 40, S.at - .6, .8);
       k.wait(cfg.say[i] ? (cfg.words[i] === "—" ? .9 : 1.3) : .1);
     }
-    // 最后一个形容词紧贴名词：画一条绿色括号把它和名词站连起来
+    // 最后一个形容词紧贴名词：绿色括号把它和名词站连起来
     const last = cfg.lastAdj, x1 = cx(last) - 30, x2 = cx(7) + 30, y = BY + BH + 22;
     N("紧贴名词：", cfg.hugSay);
-    k.P(`M${x1},${y - 4} Q${x1},${y + 6} ${x1 + 10},${y + 6} L${x2 - 10},${y + 6} Q${x2},${y + 6} ${x2},${y - 4}`, go(.6), .6, { color: C.green, w: 3 });
-    T("离本质最近 → 紧贴名词", (x1 + x2) / 2, y + 26, go(.8), .8, { size: 15, color: C.green, weight: 900, anchor: "middle" });
+    P(`M${x1},${y - 4} Q${x1},${y + 6} ${x1 + 10},${y + 6} L${x2 - 10},${y + 6} Q${x2},${y + 6} ${x2},${y - 4}`, go(.6), .6, { color: C.green, w: 3 });
+    T("离本质最近 → 紧贴名词", Math.min((x1 + x2) / 2, 700), y + 26, go(.8), .8, { size: 15, color: C.green, weight: 900, anchor: "middle" });
+    k.act(me, "point", S.at - 1, 1.2, { at: [(x1 + x2) / 2, y] });
     k.wait(.5);
+    D.step(3);
     N("为什么这样排？", cfg.whySay);
-    const ws = Math.min(17, 912 / k.estW("💡 " + cfg.why, 17) * 17);
-    T("💡 " + cfg.why, 24, 386, go(1.6), 1.6, { size: ws, color: C.ink, weight: 700 });
-    T("空车厢「—」读的时候直接跳过", 24, 420, go(.9), .9, { size: 16, color: C.grey });
+    const wl = "💡 " + cfg.why;
+    T(wl, 24, 330, go(1.6), 1.6, { size: fit(wl, 17, 770), color: C.ink, weight: 700 });
+    T("空车厢「—」读的时候直接跳过", 24, 364, go(.9), .9, { size: 16, color: C.grey });
     k.wait(.6);
     N("", cfg.finalSay);
-    k.final(cfg.en, [], cfg.finalZh, { word: cfg.en, say: cfg.sayEn, zh: cfg.sayZh });
+    // 结论框（代替旧 k.final：宽度收在 x≤800）
+    const en = cfg.en, fsz = Math.min(22, 740 / (en.length * .6)), bw = Math.min(784, Math.max(380, en.length * fsz * .6 + 48));
+    P(k.roughRect(16, 448, bw, 48), go(.9), .9, { color: C.green, w: 2 });
+    F(k.rectD(16, 448, bw, 48), go(.2, 0), { color: C.tintGreen, op: .55 });
+    T(en, 40, 479, go(Math.max(1.6, en.length * .04)), Math.max(1.6, en.length * .04), { size: fsz, color: C.green, weight: 900, font: MONO });
+    T(cfg.finalZh, 40, 524, go(1.4), 1.4, { size: fit(cfg.finalZh, 17, 760), color: C.grey });
+    const syF = sayAt(cfg.sayEn, { zh: cfg.sayZh, word: cfg.en });
+    k.act(me, "cheer", syF.t + syF.dur * .6, 1.3);
     (cfg.extraSays || []).forEach(([en, zh, word, egg]) => k.say(en, { zh, word, egg: egg || [] }));   // R2 补朗读（2026-10-29：字幕里出现的英文词单读 + 例句）
     k.wait(.3);
     N("口诀：", "限观大形龄色国材 —— " + cfg.rhyme);
     k.wait(.4);
+    D.wipe();
+
+    // ───── 🔮 预测 ─────
+    const q = cfg.quiz;
+    D.step(4); D.shot();
+    N("预测：", q.ask);
+    P(k.roughRect(40, 206, 760, 150), go(.8), .8, { color: C.green, w: 2.5 });
+    F(k.rectD(40, 206, 760, 150), go(.2, 0), { color: C.tintGreen, op: .9 });
+    T("🔮 " + q.zh, 64, 246, go(.8), .8, { size: 22, color: C.ink, weight: 900 });
+    T(q.line, 64, 286, go(1), 1, { size: Math.min(21, 720 / (q.line.length * .6)), color: C.ink, weight: 900, font: MONO });
+    k.act(me, "think", S.at, 3.1);
+    D.hold(3);
+    N("揭晓：", q.why);
+    const tRev = go(.3);
+    T(q.ans, 64, 330, go(1), 1, { size: Math.min(22, 720 / (q.ans.length * .6)), color: C.green, weight: 900, font: MONO });
+    k.sfx("ding", tRev + .9);
+    const ok = k.prop("card", 0, 0, { text: "✔", hidden: true });
+    const syQ = sayAt(q.ansSay, { zh: q.ansZh, word: q.word });
+    k.act(me, "holdCard", syQ.t + syQ.wd, Math.max(1.4, syQ.dur - syQ.wd + .3), { prop: ok });
+    k.act(me, "cheer", syQ.t + syQ.dur + .4, 1.2);
+    D.hold(1.4);
+
+    k.quoteCard({ insight: "形容词排队，从「我觉得」走到「它本来是」：\n越主观越靠外，越接近本质越贴紧名词", rhyme: "口诀：限观大形龄色国材 ——\n" + cfg.rhyme, hlLines: 2, foot: "🚂 形容词排座次 · " + cfg.sub.replace(/^真题专列\s*/, "") });
+    k.act(me, "nod", S.at - 1.2, 1); k.expr(me, "proud", S.at - 1.2, 9);
+    D.hold(2);
+    D.finish(.45);
   }
 
   return [
@@ -151,10 +204,14 @@ WB_LAB.adj_order = (function () {
             ["OSASCOMP helps me remember the order.", "OSASCOMP 帮我记住顺序。", "OSASCOMP", ["OSASCOMP"]],
             ["I have two pens. That pen is red.", "我有两支笔。那支笔是红的。", "two that"]],
           finalZh: "一张漂亮的小圆木桌。  主观在外，本质贴名词！",
-          rhyme: "美小圆旧黄，法国木书房！"
+          rhyme: "美小圆旧黄，法国木书房！",
+          quiz: {"zh": "一个漂亮的大红气球", "ask": "「一个漂亮的大红气球」：nice、big、red 谁坐前面？先想 3 秒！", "line": "→  a ___ balloon  ( red big nice / nice big red )", "why": "观点 nice → 大小 big → 颜色 red：a nice big red balloon.", "ans": "a nice big red balloon", "ansSay": "I have a nice big red balloon.", "ansZh": "我有一个漂亮的大红气球。", "word": "balloon nice big red"}
         });
       },
+      actionWords: [],   // 例句只有 bought / have / wears / is（买、有、穿、是），没有走跑跳拿放类肢体动作，按 bamboo_tree ② 先例留空；上车用「词落进车厢」的场景动画表现
+      r2skip: ["red big nice", "yellow little cute", "sports white new", "Chinese young friendly"],   // 预测题里排错的选项（不读）
       terms: [
+        BADGE_TERM,
         ["形容词", "描述人或东西样子、大小、颜色、感觉的词，比如 nice（漂亮的）、small（小的）、red（红色的）。"],
         ["名词", "表示人或东西名字的词，比如 table（桌子）、cat（猫）、coach（教练）。形容词都是为名词服务的。"],
         ["排座次", "比喻：好几个形容词一起修饰一个名词时，要像坐火车一样按车厢号排好先后顺序，不能乱坐。"],
@@ -205,10 +262,14 @@ WB_LAB.adj_order = (function () {
           sayEn: "I have two cute little white cats.", sayZh: "我有两只可爱的小白猫。",
           extraSays: [["I have a cat.", "我有一只猫。", "cat"]],
           finalZh: "两只可爱的小白猫。  先夸可爱，再看大小，颜色贴名词！",
-          rhyme: "美小圆旧黄，法国木书房！"
+          rhyme: "美小圆旧黄，法国木书房！",
+          quiz: {"zh": "三只可爱的小黄鸭", "ask": "「三只可爱的小黄鸭」：yellow、little、cute 怎么排？先想 3 秒！", "line": "→  three ___ ducks  ( yellow little cute / cute little yellow )", "why": "先夸可爱，再看大小，颜色贴名词：three cute little yellow ducks.", "ans": "three cute little yellow ducks", "ansSay": "Look at the three cute little yellow ducks.", "ansZh": "看那三只可爱的小黄鸭。", "word": "three cute little yellow ducks"}
         });
       },
+      actionWords: [],   // 例句只有 bought / have / wears / is（买、有、穿、是），没有走跑跳拿放类肢体动作，按 bamboo_tree ② 先例留空；上车用「词落进车厢」的场景动画表现
+      r2skip: ["red big nice", "yellow little cute", "sports white new", "Chinese young friendly"],   // 预测题里排错的选项（不读）
       terms: [
+        BADGE_TERM,
         ["数词", "表示数量的词，比如 one、two、three。它属于限定词，排在所有形容词前面。"],
         ["复数", "两个或更多时，名词要变成复数，一般在词尾加 -s，比如 cat → cats。"],
         ["little 和 small", "都表示「小」，都坐「大小」车厢。little 常带一点「小小的、可爱」的感觉。"]
@@ -246,10 +307,14 @@ WB_LAB.adj_order = (function () {
           en: "a beautiful new red Chinese silk dress",
           sayEn: "She wears a beautiful new red Chinese silk dress.", sayZh: "她穿着一件漂亮的崭新红色中国丝绸连衣裙。",
           finalZh: "一件漂亮的崭新红色中国丝绸连衣裙。  观点→新旧→颜色→国籍→材质",
-          rhyme: "美小圆旧黄，法国木书房！"
+          rhyme: "美小圆旧黄，法国木书房！",
+          quiz: {"zh": "一双崭新的白色运动鞋", "ask": "「一双崭新的白色运动鞋」：new、white、sports 怎么排？先想 3 秒！", "line": "→  a pair of ___ shoes  ( sports white new / new white sports )", "why": "新旧 new → 颜色 white → 用途 sports 紧贴名词：a pair of new white sports shoes.", "ans": "a pair of new white sports shoes", "ansSay": "I want a pair of new white sports shoes.", "ansZh": "我想要一双崭新的白色运动鞋。", "word": "pair of new white sports shoes"}
         });
       },
+      actionWords: [],   // 例句只有 bought / have / wears / is（买、有、穿、是），没有走跑跳拿放类肢体动作，按 bamboo_tree ② 先例留空；上车用「词落进车厢」的场景动画表现
+      r2skip: ["red big nice", "yellow little cute", "sports white new", "Chinese young friendly"],   // 预测题里排错的选项（不读）
       terms: [
+        BADGE_TERM,
         ["国籍", "属于哪个国家，比如 Chinese（中国的）、British（英国的）、American（美国的）。坐「来源」车厢。"],
         ["新旧（Age）", "东西新不新、人年龄大不大，比如 new（新的）、old（旧的）、young（年轻的）。"],
         ["名词当形容词用", "有些名词可以直接放在另一个名词前面修饰它，比如 silk dress（丝绸连衣裙），silk 坐「材质」车厢。"]
@@ -288,10 +353,14 @@ WB_LAB.adj_order = (function () {
           sayEn: "That tall young British basketball coach is my uncle.", sayZh: "那个高个子年轻的英国篮球教练是我叔叔。",
           extraSays: [["This is my uncle.", "这是我叔叔。", "this"]],
           finalZh: "那个高个子年轻的英国篮球教练。  大小→年龄→国籍→用途",
-          rhyme: "美小圆旧黄，法国木书房！"
+          rhyme: "美小圆旧黄，法国木书房！",
+          quiz: {"zh": "一位友好的年轻中国老师", "ask": "「一位友好的年轻中国老师」：Chinese、young、friendly 怎么排？先想 3 秒！", "line": "→  a ___ teacher  ( Chinese young friendly / friendly young Chinese )", "why": "观点 friendly → 年龄 young → 国籍 Chinese：a friendly young Chinese teacher.", "ans": "a friendly young Chinese teacher", "ansSay": "She is a friendly young Chinese teacher.", "ansZh": "她是一位友好的年轻中国老师。", "word": "a friendly young Chinese teacher"}
         });
       },
+      actionWords: [],   // 例句只有 bought / have / wears / is（买、有、穿、是），没有走跑跳拿放类肢体动作，按 bamboo_tree ② 先例留空；上车用「词落进车厢」的场景动画表现
+      r2skip: ["red big nice", "yellow little cute", "sports white new", "Chinese young friendly"],   // 预测题里排错的选项（不读）
       terms: [
+        BADGE_TERM,
         ["指示词", "指出「是哪一个」的词：this（这个）、that（那个）、these、those。属于限定词，坐车头。"],
         ["用途（Purpose）", "东西或人是做什么用的，比如 basketball coach（教篮球的教练）、sports shoes（运动鞋）。紧贴名词。"],
         ["年龄", "人年轻还是年老：young（年轻的）、old（老的），和「新旧」坐同一节车厢。"]
