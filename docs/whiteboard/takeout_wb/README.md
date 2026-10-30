@@ -37,4 +37,5 @@ npx esbuild src/player.jsx --bundle --minify --loader:.woff=dataurl --define:pro
 - 构建：`npm i && node v51/build51.mjs && python3 v51/shots51.py`
 - 产物：`out/take_out_v51.html` 614 KB（v5.0 1.02 MB，去掉 React + Remotion Player）；`out/v51_keyframes.png` 9 个时间点自审，控制台 0 报错。
 - 相对 v5.0 的修正：扣项圈橙圈在走路前淡出（v5.0 留在原地、狗走后变成空圈）；takes 走路前缩小让到墙角，不再压男孩头。
+- **英文朗读（2026-10-30 10:5x）**：Web Speech API，en-US、语速 0.85（与 App `wb_app.js` 同规则）。朗读点在 `scene51.js` 的 `CUES`：3.45 He takes（扣项圈）→ 4.45 the dog → 6.70 out!（跨门线）→ 9.35 take out（手写）→ 10.35 整句 He takes the dog out.；上一句没念完就到下一个点时时间轴停住等，最多 4 秒；拖动 / 暂停 / 循环会停止朗读；🔊/🔇 开关存 localStorage `wbVoice`；浏览器要求先点一下才能出声，所以不自动播放。总长改为 12.5 秒（结尾整句念完）。无头浏览器打桩验证：5 个朗读点按时触发、0 报错；真机声音待听。
 - 待审：真机播放流畅度、k3 → 走路硬切、静音盲测。
