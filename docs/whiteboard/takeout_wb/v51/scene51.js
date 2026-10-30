@@ -9,7 +9,16 @@ import '../src/assets.js';
 import rough from 'roughjs/bundled/rough.esm.js';
 import { gsap } from 'gsap';
 
-export const W = 1920, H = 1080, FPS = 30, DUR = 11.5;
+export const W = 1920, H = 1080, FPS = 30, DUR = 12.5;
+// 英文朗读点（播放器读到 t 就念；还没念完又到下一个点时，时间轴停住等，最多 4 秒——与 App wb_app.js 同规则）
+// 动作时分段念，和画面同步；结尾整句自然语速再念一遍（R2：每句都有朗读）
+export const CUES = [
+  [3.45, 'He takes'],            // 扣项圈：takes 变橙
+  [4.45, 'the dog'],
+  [6.70, 'out!'],                // 跨门线：out! 弹出
+  [9.35, 'take out'],            // 手写 take out
+  [10.35, 'He takes the dog out.'],
+];
 const INK = '#0A0503', OR = '#EF7226', OR2 = '#E9A67C', BOARD = '#FBFBFB';
 const GROUND = 880, DOORX = 780;
 const { clamp, lerp } = U;
