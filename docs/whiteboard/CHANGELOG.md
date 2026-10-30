@@ -2517,3 +2517,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ### 2026-10-31 04:05 JST · 重复内容合并第 5 步：白板重复句报告
 - 新增 `lab/DUP_SENTENCES_REPORT.md`：85 句朗读句出现在 ≥2 幕（共 282 次），按 5 类给建议；只出报告，未重建任何幕。
 
+### 2026-10-31 04:20 JST · 决策 34-A：词根词缀实例从全部单词里取
+- 对 1487 词全量扫描，经 Wiktionary / Etymonline 核实的真派生全部挂上：59 个词缀、273 对（272 词），不设上限、只用词库词；21 个词缀词库里没有真派生词，单列不硬凑；历史拆分 / 屈折形式 44 对列为待定未上 App。
+- 构词页：前缀、后缀页签末尾各加「📚 词库里的真派生词」（每个词缀一张卡，点词开词卡、可朗读），派生词族页签加「🌱 词库里的派生词族」（按词根归组）。
+- MORPH_DB 191 → 358：词卡「🧩 真实构词」随之覆盖这些派生词。
+- 新增 `src/build_affix_db.py`、`word_origins/AFFIX_WORDS.json` / `AFFIX_REVIEW.md`、`src/patch_affix_vocab.py`，`build_etym_db.py morph` 并入派生词；新回归 `v5/app_check13.py` 入 runall；`runall.py --full` 全过。
+
