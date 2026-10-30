@@ -492,3 +492,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - AI 绿幕联排图 tm2a/b、tm3a/b、tm4a、L1–L15、V01–V34（原图在 Hark 工作区 `/workspace/work/kf/`，不进仓库）→ 切出 331 帧 → `v5/sprites/cast/*.webp`（透明，MAXH 520，Q78，共 7.1 MB）。
 - 新工具：`split_sheet.py`、`cut_box.py`、`pack_cast.py`；`build_sprites.py` 增加 cast/ 回退读取。
 - 登记：`v5/CAST_V5.md`。已知待返工：l_lift0–2、missw_give、V29 Leo 发色。
+
+## 2026-10-30 12:20 JST · tense_matrix ② 现在进行时 v5.1 重画
+- `v5/scenes/tense_matrix_2.js`（12 块白板，162 s）+ 帧库 `sprites/tm2.js`（kick / Leo 跑步 4 帧 / 下蹲 + 起跳 / Mia 跳舞 2 帧 / 做蛋糕 / 读书 / 喜欢 / 牵狗 / 游泳 4 帧，MAXH 360 Q64）。
+- 动作：开场 Leo 跑过；踢球 3 次对齐 playing；录像机 REC 闪烁 + 镜头里 Leo 跑；时间轴波浪线一直在动；发动机齿轮转；Leo 绕操场跑对齐 running；Mia 跳舞换帧对齐 dancing、做蛋糕对齐 making；三个孩子游泳对齐 swimming；Mia 读书；like / have 演示 + 打叉 REC；男孩连跳 4 次对齐 jumping。
+- 验收：R1 85/85（新工具 `v5/r1v5.py`，`lab/INVENTORY_TM2_V5.md`）；普通页面 / sandbox 0 报错；确定性 ✓；单文件 674,940 bytes（>650 KB，字体占大头，与 ① 一起待优化）。
+- 引擎只加不改：`K.actor({ dy: t => px })`。
