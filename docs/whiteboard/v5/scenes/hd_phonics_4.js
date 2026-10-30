@@ -1,0 +1,43 @@
+// 🪄 自然拼读 · 第四幕 拼写潜规则 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/hd_phonics.js 案例 4；对照清单 lab/INVENTORY_HD_PHONICS_4_V5.md
+// 角色关键帧：sprites/hdph4.js（人物先行帧库 cast/）
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/hdph4.js';
+const ACTS = {"give": ["l_hand1"], "love": ["m_like"], "try": ["l_think"], "tries": ["l_think"]};
+const ITEMS = [
+  ['n', '第四幕：拼写潜规则。英语拼写不是乱来的，有四条「暗规则」，记住了少写错一大半。'],
+  ['w', '第四幕 · 拼写潜规则'],
+  ['w', '✂️ 简化说法 ⚠️ 有例外'],
+  ['n', '规则一：英语单词几乎不用 v 结尾，所以后面要补一个不发音的 e。'],
+  ['w', '① 词尾不放 v → 补一个 e'],
+  ['s', 'I have a dog.', '我有一只狗。', 'have'],
+  ['s', 'Give me the ball, please.', '请把球给我。', 'give'],
+  ['s', 'I love my mom.', '我爱我的妈妈。', 'love'],
+  ['w', 'have · give · love · five'],
+  ['n', '规则二：英语单词很少用 i 结尾，要用 y；加词尾的时候，辅音后面的 y 再变回 i。'],
+  ['w', '② 词尾用 y 不用 i；加词尾 y 变 i'],
+  ['s', 'I am happy.', '我很开心。', 'happy'],
+  ['s', 'She is happier today.', '她今天更开心了。', 'happier'],
+  ['s', 'Try again!', '再试一次！', 'try'],
+  ['s', 'He tries again.', '他又试了一次。', 'tries'],
+  ['w', 'happy → happier try → tries'],
+  ['n', '规则三：c 和 g 碰到 e、i、y，常常读软音：c 读 /s/，g 读 /dʒ/。'],
+  ['w', '③ c、g + e / i / y → 软音'],
+  ['s', 'I live in a big city.', '我住在一个大城市。', 'city'],
+  ['s', 'The giant is very tall.', '那个巨人非常高。', 'giant'],
+  ['w', 'city /s/ · giant /dʒ/'],
+  ['n', '要小心：g 的软音例外很多，get、give、girl 里的 g 还是硬音 /g/。'],
+  ['w', '⚠️ get · give · girl 的 g 读 /g/'],
+  ['n', '规则四：英语里的 q 几乎总带着好朋友 u，一起读 /kw/。'],
+  ['w', '④ q 后面跟 u → /kw/'],
+  ['s', 'The queen has a crown.', '女王戴着王冠。', 'queen'],
+  ['s', 'Can I ask a question?', '我可以问个问题吗？', 'question'],
+  ['s', 'Be quick!', '快一点！', 'quick'],
+  ['n', '例外只出现在少数外来名字里，比如 Iraq；小学课本里的 q 都带着 u。'],
+  ['w', '⚠️ 例外：少数外来名字（如 Iraq）'],
+  ['n', '口诀：v 不站词尾，i 让给 y；c、g 遇 e i y 变软；q 和 u 手拉手。'],
+  ['w', '🎵 v 不站词尾，i 让给 y；'],
+  ['w', 'c、g 遇 e i y 变软；'],
+  ['w', 'q 和 u 手拉手！']
+];
+export default function build() { return autoBuild(SP, { title: '🪄 自然拼读 · 第四幕 拼写潜规则', items: ITEMS, acts: ACTS }); }
