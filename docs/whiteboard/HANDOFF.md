@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
+> 更新：2026-10-30 21:45 JST（主题思维导图讲解幕分阶段进行中，见 §5.1）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
 > 设计稿：`DESIGN_MINDMAP_WORDCARD.md`（用户 2026-10-30 19:39「按照你的来」已确认）：普通单词卡通用模板 ✅；思维导图讲解幕待做。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，§2.9 = v5.1 标准画法）→ `SOP.md`（§17 = v5.1 验收）。流水、历史决策、每幕验收数字都在 `CHANGELOG.md`（文末有本文 16:10 之前的完整快照）。
 > 本文只写现状、做法、风险、下一步；做完一件事：流水追加到 CHANGELOG，本文只改现状。
@@ -11,6 +11,7 @@
 - 流程：重画 → R1 零丢失 / 技术验收 → `embed_app.py` 替换进主 App → App 回归 → 提交推送 → 更新 `REDRAW_V5.md`、`CHANGELOG.md`、本文。
 - **不提交无用文件**（用户 2026-10-30 15:34）：构建产物、可重建的生成物、截图、`node_modules`、环境文件一律不进仓库；提交前 `git status --short` 逐个核对。已忽略：`docs/whiteboard/v5/out/`、自动生成的角色包 `v5/sprites/*.js`（手工版 tm/pc/ao 保留）、`v5/sprites/src/`、`node_modules/`。
 - 练习闭环（决策 14）、新模块、决策 29 软件优化：等用户点头再开工。
+- **分阶段提交**（用户 2026-10-30 21:36）：不攒大提交。每个小阶段（清单 / 分组表 → 版式 → 每批幕嵌入 → App 回归 → 下一项…）单独 commit + push `master`，**每次都同步改本文（现状表、§5.1 进度、风险）和 `CHANGELOG.md` 流水**，任何时候中断，下一个人按 §5.1 接着做。
 
 ## 1. 现在做到哪
 
@@ -27,6 +28,7 @@
 | docs 清理：删旧 SVG 源码/工具、构建产物、过时素材与报告（299 个文件） | ✅ | `8e38f05` |
 | 仓库清理：`v5/out/` 174 个构建产物（约 63 MB）+ 152 个可重建角色包移出 git | ✅ | `72c5323` |
 | 普通单词卡 1425 词 × 3 幕 → **一个通用 v5 模板**（`scenes/wordcard_tpl.js` + `wordcard_items.js`），开卡时注入词条现场排版；主文件只增约 7 KB | ✅ 逐词验收 `lab/WORDCARD_TPL_REPORT.md`：R1 缺 0、0 报错、4275/4275 确定；App 回归 55 词 0 不合格 | ac74705 |
+| 主题思维导图讲解幕（25 幕，交互导图保留）| 🟡 分阶段进行中，进度见 §5.1 | 见 git log |
 | 自动版面中英混排换行：英文整词不拆、句末标点不落行首（`auto.js`），全部 458 幕 + 模板重建，全量技术回归 0 不合格 | ✅ | ac74705 |
 
 不需替换（已在 REDRAW_V5 标注）：`fp_one_king` ①、`fp_zoom_focus` ①（已迁中英对照，只留跳转）；`wo_vowel_kit`（共用小工具）；`verb_demo`、`narrator_demo`（开发样板，App 未挂载）。`REDRAW_V5.md` 里剩下的 1 个 `⬜` 是图例行，不是待办。
@@ -69,8 +71,24 @@
 2. 三大厅 HD 剧场：构词法 ✅ → 框架语义 ✅ → 易混词 ✅ → 自然拼读 ✅ → 语法总结中心 ✅ → 语法 40 点 ✅（56 幕；三幕内容相同的合并为 1 幕）→ 日常用语 144 句 ✅（每句 1 幕放完整对话）→ 单词卡一词多义 17 词 ✅（51 幕）→ 普通单词卡通用模板 ✅（1425 词，功能词旧版本来就不播动画）→ **主题思维导图讲解幕**（25 幕，保留交互导图，先出语义分组表 `v5/mindmap_groups.json` 人工过目，见设计稿 §1）→ 第一性原理总枢余下旧 canvas → 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实）→ 文档收尾。
 3. 等用户点头：练习闭环 + 总地图（决策 14）、决策 6 剩余三个新模块、决策 29 软件优化。
 
+## 5.1 进行中：主题思维导图讲解幕（分阶段，每阶段一提交）
+
+| 阶段 | 内容 | 状态 |
+|---|---|---|
+| ① | `src/gen_mindmap_inventory.py` → `lab/INVENTORY_HD_MINDMAP_EXPORT.md`（R1 清单，25 幕 994 条）；`v5/gen_mindmap_groups.py` → `v5/mindmap_groups.json`（规则分组，已自审） | ✅ 本阶段提交 |
+| ② | `scenes/auto.js` 新增 `mindmapBuild` 版式 + `v5/gen_mindmap.py`；引擎变了 → `rebuild_all.py` 全量重建（主 App 共享引擎块换新）；`embed_app.py` 装导图舞台挂钩（无幕时不显示） | ⬜ |
+| ③ | 25 幕分 3 批生成 → R1 → 联络表 → 嵌入（1–8 / 9–16 / 17–25），每批一提交 | ⬜ |
+| ④ | `v5/app_check6.py` App 回归（讲解幕挂载 + 交互导图点词开卡 / 缩放 / 拖拽 / 0 报错） | ⬜ |
+| ⑤ | 第一性原理总枢余下旧 canvas 核查 → 词源 / 格林 / 词根词缀 + 12+6 条 → 文档收尾 | ⬜ |
+
+接手须知：
+- 环境按 §2 装好后：`python3 v5/gen_mindmap_groups.py --review`（看逐词分组依据）→ `python3 src/gen_mindmap_inventory.py` → `python3 v5/gen_mindmap.py` → `python3 sprites/build_sprites.py mindmap l_speak l_point l_think l_idea0`（在 v5/ 下）→ 每幕 `node build.mjs scenes/hd_mindmap_<n>.js out/hd_mindmap_<n>.html "<标题>"`、`python3 r1v5.py ../lab/INVENTORY_HD_MINDMAP_EXPORT.md <n> scenes/hd_mindmap_<n>.js ../lab/INVENTORY_HD_MINDMAP_<n>_V5.md`、`python3 shots.py out/hd_mindmap_<n>.html /tmp/x.png 5 25 45 65 85`、`python3 embed_app.py hd_mindmap <n-1> out/hd_mindmap_<n>.html`。
+- 幕号 = VOCAB_DB 子主题首次出现顺序（= `mindmap_groups.json` 的 `idx`）；改了 VOCAB_DB 子主题顺序或前 16 个词，要重跑分组表和清单。
+- 后台跑长任务：`(setsid nohup python3 rebuild_all.py > /tmp/rb.log 2>&1 < /dev/null &)`；沙箱重置后角色包要全部重建（约 460 个，单线程约 30 分钟，可先并行预生成）。
+
 ## 6. 待用户确认
 
 1. 人物帧是否再压画质换体积。
+0. 主题思维导图语义分组表 `v5/mindmap_groups.json`（25 个子主题，规则见 `v5/gen_mindmap_groups.py`）有空看一眼；不合适的组名 / 归组直接改规则重跑即可。
 2. 161 幕 v5.1 真机审片（`REVIEW_LIST.md`）。
 3. 练习闭环（决策 14）是否开工；决策 6 剩余模块位置。

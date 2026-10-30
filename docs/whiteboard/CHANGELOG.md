@@ -2328,3 +2328,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - App：`embed_app.py` 新增 `WB5_EMBED_TPL`（`wb5TplSwap / wb5TplAct`）+ `WB5_MOUNT_V4`（srcdoc 注入数据脚本）+ hook `WB5_HD:wordcard`；多义词仍走 `hd_poly_*`。
 - 验收：`check_wordcard_tpl.py` 1425 词 × 3 幕 = 4275 幕，R1 旧文字 5 万余条缺 0、0 报错、确定性 4275/4275，时长 50–155 s（中位 99 s，换行修正后复验）；`app_check5.py` 25 个子主题首词 + 随机 30 词，开卡 / 切三幕 / 揭示释义重渲染全部通过，0 报错。分片结果目录可用 `WCT_DIR` 指定（默认 /tmp）。主文件 15,463,455 bytes。
 - `auto.js` 中英混排换行改为英文整词不拆、句末标点不落行首；`rebuild_all.py` 修个位案例号 glob 漏重建（≥10 号幕）、加两路并行与 `--resume`；`build.mjs` 临时字体文件按进程号区分（并行打包串字体导致 ze_link 多一份引擎，已重建）。458 幕 + 模板全部重建，`check_all_out.py` 全量回归 0 不合格。主文件 15,463,455 bytes。
+
+## 2026-10-30 21:45 · 主题思维导图讲解幕 阶段①：R1 清单 + 语义分组表
+- 新增 `src/gen_mindmap_inventory.py`：从 VOCAB_DB 导出旧交互导图 canvas 上的全部文字（中心名、提示语、16 个节点 emoji+单词+**完整**词义、两框标题 + 各前 3 条搭配）→ `lab/INVENTORY_HD_MINDMAP_EXPORT.md`（25 幕，994 条）。
+- 新增 `v5/gen_mindmap_groups.py` → `v5/mindmap_groups.json`：只按 `pos` / `meaning` / `senses[0].scene` 规则分组，先中先得，分不出的进「更多」；叶子 = 旧导图画出来的 16 个节点；一组 ≤ 6 词、每幕 4–6 枝。自审改正 6 处误分（pencil box、dog、who/when、kilo、cheap、banana）。
+- 用户 21:36 新要求：分阶段提交，每阶段同步 HANDOFF / CHANGELOG（已写进 HANDOFF §0、§5.1）。
