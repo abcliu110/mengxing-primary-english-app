@@ -845,3 +845,75 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · vv_put_out 第2幕 v5.1 重画并替换进 App
 - 🎬 万能动词 · put out ②：R1 18/18，18 s，主文件 33,362,652 bytes。
+
+## 2026-10-30 · vv_get_on 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get on ①：R1 9/9，13 s，主文件 33,503,378 bytes。
+
+## 2026-10-30 · vv_get_on 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get on ②：R1 18/18，17 s，主文件 33,649,172 bytes。
+
+## 2026-10-30 · vv_get_off 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get off ①：R1 8/8，12 s，主文件 33,790,632 bytes。
+
+## 2026-10-30 · vv_get_off 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get off ②：R1 18/18，17 s，主文件 34,042,291 bytes。
+
+## 2026-10-30 · vv_get_up 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get up ①：R1 9/9，12 s，主文件 34,182,457 bytes。
+
+## 2026-10-30 · vv_get_up 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get up ②：R1 19/19，19 s，主文件 34,385,594 bytes。
+
+## 2026-10-30 · vv_get_down 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get down ①：R1 8/8，13 s，主文件 34,600,675 bytes。
+
+## 2026-10-30 · vv_get_down 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get down ②：R1 18/18，18 s，主文件 34,808,856 bytes。
+
+## 2026-10-30 · vv_get_in 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get in ①：R1 8/8，12 s，主文件 34,949,310 bytes。
+
+## 2026-10-30 · vv_get_in 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get in ②：R1 20/20，18 s，主文件 35,132,977 bytes。
+
+## 2026-10-30 · vv_get_out 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get out ①：R1 10/10，13 s，主文件 35,273,345 bytes。
+
+## 2026-10-30 · vv_get_out 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · get out ②：R1 19/19，19 s，主文件 35,475,032 bytes。
+
+## 2026-10-30 · vv_turn_on 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn on ①：R1 9/9，12 s，主文件 35,687,715 bytes。
+
+## 2026-10-30 · vv_turn_on 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn on ②：R1 17/17，18 s，主文件 35,911,030 bytes。
+
+## 2026-10-30 · vv_turn_off 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn off ①：R1 10/10，13 s，主文件 36,156,279 bytes。
+
+## 2026-10-30 · vv_turn_off 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn off ②：R1 18/18，18 s，主文件 36,388,172 bytes。
+
+## 2026-10-30 · vv_turn_up 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn up ①：R1 7/7，11 s，主文件 36,642,871 bytes。
+
+## 2026-10-30 · vv_turn_up 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn up ②：R1 19/19，18 s，主文件 36,892,202 bytes。
+
+## 2026-10-30 · vv_turn_down 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn down ①：R1 8/8，13 s，主文件 37,108,188 bytes。
+
+## 2026-10-30 · vv_turn_down 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn down ②：R1 18/18，19 s，主文件 37,363,271 bytes。
+
+## 2026-10-30 · vv_turn_in 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn in ①：R1 9/9，13 s，主文件 37,596,422 bytes。
+
+## 2026-10-30 · vv_turn_in 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn in ②：R1 20/20，19 s，主文件 37,824,537 bytes。
+
+## 2026-10-30 · vv_turn_out 第1幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn out ①：R1 8/8，12 s，主文件 38,057,090 bytes。
+
+## 2026-10-30 · vv_turn_out 第2幕 v5.1 重画并替换进 App
+- 🎬 万能动词 · turn out ②：R1 20/20，19 s，主文件 38,281,135 bytes。
