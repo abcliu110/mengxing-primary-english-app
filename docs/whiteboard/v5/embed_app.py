@@ -89,7 +89,7 @@ function wb5HDAct(tab, i) {
   const f = w.querySelector("#wb5Frame"); if (f) wb5Mount(f);
 }
 function wb5HDSwap(canvasId, tab, act) {   // 剧场 canvas 所在的框整体换成 v5；返回 true = 已换，调用方不再跑旧 canvas 循环。act 给定 = 幕由页面自己的按钮选（如框架语义的视角），不另出分幕按钮
-  const cv = document.getElementById(canvasId); if (!cv || !wb5El(tab, 0)) return false;
+  const cv = document.getElementById(canvasId); if (!cv || !wb5El(tab, 0) || (act != null && !wb5El(tab, act))) return false;
   const w = cv.closest(".hd-video-wrapper") || cv.parentNode;
   const labels = [...w.querySelectorAll('[id^="hdActBtn_"]')].map(b => b.textContent.replace(/^\\s*🎬\\s*/, "").trim());
   w.classList.remove("hd-video-wrapper"); w.setAttribute("data-wb5hd", tab); w.setAttribute("data-labels", JSON.stringify(labels));
@@ -112,6 +112,7 @@ HD_HOOKS = [
     ('  const canvas = document.getElementById("formationStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("formationStageCanvas", "hd_formation")) return;   // WB5_HD:formation\n'),
     ('  const canvas = document.getElementById("grammarWhyCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("grammarWhyCanvas", "hd_" + g.id.toLowerCase(), g.id === "G14" ? prepDemoIdx : undefined)) return;   // WB5_HD:grammar\n'),
     ('  const canvas = document.getElementById("summaryHubCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("summaryHubCanvas", "hd_sum_" + (summaryTab || "syntax"))) return;   // WB5_HD:summary\n'),
+    ('  if (oralAnimId) cancelAnimationFrame(oralAnimId);\n  const canvas = document.getElementById("oralSceneCanvas");\n  if (!canvas) return;\n', '  if (oralAnimId) cancelAnimationFrame(oralAnimId);\n  if (wb5HDSwap("oralSceneCanvas", "hd_oral_" + String(cur.scenario_id || "").toLowerCase(), DAILY_EXPRESSIONS_DB.filter(e => e.scenario_id === cur.scenario_id).indexOf(cur))) return;   // WB5_HD:oral\n'),
     ('  const canvas = document.getElementById("phonicsStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("phonicsStageCanvas", "hd_phonics")) return;   // WB5_HD:phonics\n'),
     ('  const canvas = document.getElementById("relationsStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("relationsStageCanvas", "hd_relations")) return;   // WB5_HD:relations\n'),
     ('  const canvas = document.getElementById("frameSemanticsCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("frameSemanticsCanvas", "hd_fr" + String(FRAME_SEMANTICS_DB.indexOf(fr) + 1).padStart(2, "0"), pIdx)) return;   // WB5_HD:frames\n'),
