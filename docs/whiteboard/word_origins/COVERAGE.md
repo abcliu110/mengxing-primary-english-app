@@ -91,7 +91,7 @@ V6 500 词里 **445 词**整条是模板：例句「Let's learn and use "xxx" in
 | 项 | 审计时 | 现在 | 明细 |
 |---|---|---|---|
 | 真实词源 `ETYM_DB`（Wiktionary + Etymonline 两处互证） | 0 | **625 / 1487**（G1 34、G2 38、G3 60、G4 82、G5 97、G6 64、V6 248、POLY 2；Etymonline 缓存 1347 / 1487 时） | `ETYM_REVIEW.md`；未入库：两处对不上 441、Wiktionary 无可解析来源链 155、Etymonline 尚未抓到 123（Wayback 最新快照为 Cloudflare 403 / 限流）、无英语词源小节 71、词组 37、Etymonline 无词条 35 |
-| 真实构词 `MORPH_DB` | 0 | **191** | `MORPH_REVIEW.md` |
+| 真实构词 `MORPH_DB` | 0 | **358**（191 互证 + 决策 34-A 词库派生词 167，见 `AFFIX_REVIEW.md`） | `MORPH_REVIEW.md` |
 | 格林定律配对 | 11（1 幕） | **30 对**（原 1 幕 + 规则组 4 幕：清音 / 浊音 / 送气音 / 维尔纳） | `GRIMM_GROUPS.md`（每对两处互证；未用的逐条写原因） |
 | 音变与词汇规律（§4 的 12 条 + 审计补充 6 条） | 0 幕 | **18 / 18 条有幕**（16 个新幕 + 复用 2 幕），共约 60 个例词 | `RULES_REVIEW.md` |
 | 词卡「📖 词源 📜」/「💡 巧记小故事」分开显示 | — | ✅ 1487 词全部分开；未核实的词写「暂未收录」 | `src/patch_etym_card.py` |

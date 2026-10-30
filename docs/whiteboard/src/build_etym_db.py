@@ -70,6 +70,15 @@ if __name__ == '__main__':
         if e:
             e['w'] = word; e['e'] = word.lower().replace(' ', '-'); db[word] = e
         elif mode == 'etym': miss.append((w['id'], word, reason(word, r)))
+    if mode == 'morph' and (WO / 'AFFIX_WORDS.json').exists():   # 决策 34-A：build_affix_db.py 核实过的词库派生词并进来（已有条目不覆盖）
+        AW = json.loads((WO / 'AFFIX_WORDS.json').read_text(encoding='utf-8')); added = 0
+        AZ = {k.strip(): y['zh'] for y in AW['affixes'] + AW['zero'] for k in [y['affix']] + y['affix'].replace('(', '/').replace(')', '').split('/')}
+        for x in AW['affixes']:
+            for word, wid, split, ev in x['words']:
+                if word in db: continue
+                parts = [q.strip() for q in split.split(' + ')]
+                db[word] = {'k': 'affix', 'p': [[q, AZ.get(q, '') if (q.startswith('-') or q.endswith('-') or q in AZ) else mean.get(q.lower(), '')] for q in parts], 'w': word, 'e': word.lower()}; added += 1
+        print('morph + AFFIX_WORDS', added)
     grade = lambda i: i.split('_')[0]
     by = {}
     for w in V: by.setdefault(grade(w['id']), [0, 0]); by[grade(w['id'])][0] += 1; by[grade(w['id'])][1] += w['word'].strip() in db

@@ -4,15 +4,15 @@
 
 ## 数字
 
-- 入库 **191** / 1487 词
-- G1：0 / 66
-- G3：13 / 130
-- G2：9 / 83
+- 入库 **358** / 1487 词
+- G1：2 / 66
+- G3：23 / 130
+- G2：13 / 83
 - POLY：0 / 2
-- G5：75 / 296
-- G4：34 / 206
-- G6：40 / 204
-- V6：20 / 500
+- G5：140 / 296
+- G4：57 / 206
+- G6：93 / 204
+- V6：30 / 500
 
 ## 入库词表
 
@@ -209,3 +209,170 @@
 | but | affix | be- + out |
 | never | compound | ne + ever |
 | also | compound | all（所有的(≥3)） + so（所以/如此） |
+| granddaughter | affix | grand-（（亲属）隔一代） + daughter（女儿） |
+| grandson | affix | grand-（（亲属）隔一代） + son（儿子(同音sun)） |
+| grandma | affix | grand-（（亲属）隔一代） + ma |
+| unhealthy | affix | un-（不；做相反动作） + healthy（健康的，有益健康的） |
+| unlucky | affix | un-（不；做相反动作） + lucky（幸运的，好运的） |
+| untidy | affix | un-（不；做相反动作） + tidy（整洁的，整齐的；整理） |
+| unusual | affix | un-（不；做相反动作） + usual（通常的，平常的） |
+| across | affix | a-（在…（状态/位置）） + cross（穿过，横过；十字，叉号） |
+| return | affix | re-（再；回） + turn（转弯，转动；变成（颜色/天气变化） / （轮到的）顺序，机会（take turns 轮流）） |
+| recycle | affix | re-（再；回） + cycle |
+| retell | affix | re-（再；回） + tell（告诉，讲述，吩咐） |
+| dislike | affix | dis-（不；相反；分开） + like（喜欢/像…一样） |
+| impolite | affix | im-（不；向内） + polite（有礼貌的，客气的） |
+| impossible | affix | im-（不；向内） + possible（可能的，做得到的） |
+| overcoat | affix | over-（过度；在上） + coat（外衣，大衣） |
+| overweight | affix | over-（过度；在上） + weight（重量，体重） |
+| television | affix | tele-（远） + vision |
+| underground | affix | under-（在下；不足） + ground |
+| bicycle | affix | bi-（二） + cycle |
+| outside | affix | out-（向外；超过） + side |
+| upstairs | affix | up-（向上） + stair + -s（副词/名词性物主） |
+| ruler | affix | rule（规则） + -er（做…的人/物） |
+| teacher | affix | teach（教，讲授，教导） + -er（做…的人/物） |
+| eraser | affix | erase + -er（做…的人/物） |
+| hamburger | affix | Hamburg + -er（做…的人/物） |
+| computer | affix | compute + -er（做…的人/物） |
+| driver | affix | drive（驾驶(过去式drove)） + -er（做…的人/物） |
+| farmer | affix | farm（农场，农庄） + -er（做…的人/物） |
+| sweater | affix | sweat + -er（做…的人/物） |
+| worker | affix | work（工作(作名词不可数!)） + -er（做…的人/物） |
+| baker | affix | bake（烘烤，烘焙（面包/蛋糕）） + -er（做…的人/物） |
+| cleaner | affix | clean（打扫；干净的，整洁的） + -er（做…的人/物） |
+| dancer | affix | dance（跳舞） + -er（做…的人/物） |
+| keeper | affix | keep（保持；保存，留着；饲养） + -er（做…的人/物） |
+| painter | affix | paint（用颜料画；刷油漆；颜料） + -er（做…的人/物） |
+| player | affix | play（玩耍；打（球）；弹奏（乐器）；戏剧） + -er（做…的人/物） |
+| reader | affix | read（读，阅读，看（书/报）） + -er（做…的人/物） |
+| runner | affix | run（跑，奔跑） + -er（做…的人/物） |
+| singer | affix | sing（唱歌） + -er（做…的人/物） |
+| swimmer | affix | swim（游泳） + -er（做…的人/物） |
+| waiter | affix | wait（等，等待，等候（常配 for）） + -er（做…的人/物） |
+| winner | affix | win（赢，获胜，赢得） + -er（做…的人/物） |
+| writer | affix | write（写，写字，写作） + -er（做…的人/物） |
+| climber | affix | climb（爬，攀登，攀爬（末尾b不发音）） + -er（做…的人/物） |
+| leader | affix | lead（带路，引领，通向） + -er（做…的人/物） |
+| officer | affix | office（办公室） + -er（做…的人/物） |
+| reporter | affix | report（报告，报道；成绩单） + -er（做…的人/物） |
+| speaker | affix | speak（说（某种语言）；发言，讲话） + -er（做…的人/物） |
+| stranger | affix | strange（奇怪的，陌生的） + -er（做…的人/物） |
+| traveller | affix | travel（旅行，游历；传播） + -er（做…的人/物） |
+| villager | affix | village（村庄，村镇） + -er（做…的人/物） |
+| rooster | affix | roost + -er（做…的人/物） |
+| cloudy | affix | cloud（云，云朵） + -y（小…；亲昵） |
+| sunny | affix | sun（太阳，阳光） + -y（小…；亲昵） |
+| windy | affix | wind（风） + -y（小…；亲昵） |
+| funny | affix | fun（乐趣，开心；有趣的） + -y（小…；亲昵） |
+| party | affix | part（部分；角色；零件） + -y（小…；亲昵） |
+| tasty | affix | taste（品尝；尝起来；味道） + -y（小…；亲昵） |
+| thirsty | affix | thirst + -y（小…；亲昵） |
+| healthy | affix | health（健康，卫生） + -y（小…；亲昵） |
+| messy | affix | mess + -y（小…；亲昵） |
+| noisy | affix | noise（噪音，吵闹声，响声） + -y（小…；亲昵） |
+| sleepy | affix | sleep（睡觉，睡眠） + -y（小…；亲昵） |
+| usually | affix | usual（通常的，平常的） + -ly（…地；有…样子的） |
+| carefully | affix | careful（小心的，仔细的，认真的） + -ly（…地；有…样子的） |
+| clearly | affix | clear（清澈的，晴朗的，清楚的；清理） + -ly（…地；有…样子的） |
+| easily | affix | easy（容易的，不费力的） + -ly（…地；有…样子的） |
+| finally | affix | final + -ly（…地；有…样子的） |
+| happily | affix | happy（快乐的，高兴的） + -ly（…地；有…样子的） |
+| loudly | affix | loud（大声的，响亮的，吵闹的） + -ly（…地；有…样子的） |
+| politely | affix | polite（有礼貌的，客气的） + -ly（…地；有…样子的） |
+| quickly | affix | quick（快的，迅速的，敏捷的） + -ly（…地；有…样子的） |
+| quietly | affix | quiet（安静的，文静的） + -ly（…地；有…样子的） |
+| safely | affix | safe（安全的，平安的） + -ly（…地；有…样子的） |
+| angrily | affix | angry（生气的，愤怒的） + -ly（…地；有…样子的） |
+| deeply | affix | deep（深的，深厚的） + -ly（…地；有…样子的） |
+| heavily | affix | heavy（重的，沉重的；（雨雪）大的） + -ly（…地；有…样子的） |
+| luckily | affix | lucky（幸运的，好运的） + -ly（…地；有…样子的） |
+| warmly | affix | warm（温暖的，暖和的） + -ly（…地；有…样子的） |
+| drawing | affix | draw（画，绘画；拉，吸引） + -ing（动作；…的东西） |
+| interesting | affix | interest + -ing（动作；…的东西） |
+| shopping | affix | shop（商店，店铺；去购物） + -ing（动作；…的东西） |
+| building | affix | build（建造，建筑，搭起） + -ing（动作；…的东西） |
+| climbing | affix | climb（爬，攀登，攀爬（末尾b不发音）） + -ing（动作；…的东西） |
+| drinking | affix | drink（喝(过去式drank)/饮料） + -ing（动作；…的东西） |
+| feeling | affix | feel（感觉，觉得；触摸） + -ing（动作；…的东西） |
+| painting | affix | paint（用颜料画；刷油漆；颜料） + -ing（动作；…的东西） |
+| sleeping | affix | sleep（睡觉，睡眠） + -ing（动作；…的东西） |
+| crossing | affix | cross（穿过，横过；十字，叉号） + -ing（动作；…的东西） |
+| moving | affix | move（移动，搬家） + -ing（动作；…的东西） |
+| boating | affix | boat（小船） + -ing（动作；…的东西） |
+| boring | affix | bore + -ing（动作；…的东西） |
+| cycling | affix | cycle + -ing（动作；…的东西） |
+| fishing | affix | fish（鱼肉；鱼） + -ing（动作；…的东西） |
+| sixth | affix | six（六，六个） + -th（第…（序数）；名词化） |
+| depth | affix | deep（深的，深厚的） + -th（第…（序数）；名词化） |
+| width | affix | wide（宽的，宽阔的；张得大大的） + -th（第…（序数）；名词化） |
+| colourful | affix | colour（颜色；涂色（美式拼作 color）） + -ful（充满…的） |
+| peaceful | affix | peace（和平，平静，安宁） + -ful（充满…的） |
+| vacation | affix | vacate + -tion（动作；结果） |
+| collection | affix | collect（收集，采集，收藏） + -tion（动作；结果） |
+| competition | affix | compete + -tion（动作；结果） |
+| direction | affix | direct + -tion（动作；结果） |
+| education | affix | educate + -tion（动作；结果） |
+| information | affix | inform + -tion（动作；结果） |
+| instruction | affix | instruct + -tion（动作；结果） |
+| invention | affix | invent（发明，创造） + -tion（动作；结果） |
+| invitation | affix | invite（邀请，约请） + -tion（动作；结果） |
+| pollution | affix | pollute + -tion（动作；结果） |
+| protection | affix | protect（保护，防护） + -tion（动作；结果） |
+| fireman | affix | fire（火，炉火；火灾） + -man（人） |
+| policeman | affix | police + -man（人） |
+| postman | affix | post + -man（人） |
+| spaceman | affix | space（太空/空间） + -man（人） |
+| fisherman | affix | fisher + -man（人） |
+| twenty | affix | two（二，两个） + -ty（几十） |
+| fifty | affix | five（五，五个） + -ty（几十） |
+| forty | affix | four（四，四个） + -ty（几十） |
+| seventy | affix | seven（七，七个） + -ty（几十） |
+| closed | affix | close（关，关闭；亲密的，靠近的） + -ed（感到…的；被…的） |
+| tired | affix | tire + -ed（感到…的；被…的） |
+| bored | affix | bore + -ed（感到…的；被…的） |
+| excited | affix | excite + -ed（感到…的；被…的） |
+| interested | affix | interest + -ed（感到…的；被…的） |
+| herself | affix | her（她(宾格)/她的(形物)） + -self（自己） |
+| himself | affix | him（他(宾格)） + -self（自己） |
+| ourselves | affix | our（我们的(形物)） + -self（自己） |
+| themselves | affix | them（他/她/它们(宾格)） + -self（自己） |
+| yourselves | affix | your（你的/你们的(形物)） + -self（自己） |
+| eighteen | affix | eight（八，八个） + -teen（十几） |
+| nineteen | affix | nine（九，九个） + -teen（十几） |
+| broken | affix | broke + -en（…制的；使变得…） |
+| fallen | affix | fall（秋天(美)/落下） + -en（…制的；使变得…） |
+| happiness | affix | happy（快乐的，高兴的） + -ness（性质；状态） |
+| illness | affix | ill（生病的，不舒服的） + -ness（性质；状态） |
+| sadness | affix | sad（难过的，悲伤的） + -ness（性质；状态） |
+| artist | affix | art（美术，艺术） + -ist（从事…的人） |
+| scientist | affix | science（科学，自然科学） + -ist（从事…的人） |
+| apartment | affix | apart + -ment（行为；结果） |
+| agreement | affix | agree（同意，赞成，答应） + -ment（行为；结果） |
+| excitement | affix | excite + -ment（行为；结果） |
+| movement | affix | move（移动，搬家） + -ment（行为；结果） |
+| comfortable | affix | comfort + -able（能够被…的） |
+| enjoyable | affix | enjoy（享受…的乐趣；喜爱，欣赏） + -able（能够被…的） |
+| valuable | affix | value + -able（能够被…的） |
+| aircraft | affix | air（空气，天空，大气（不可数）） + -craft（手艺） |
+| spacecraft | affix | space（太空/空间） + -craft（手艺） |
+| visitor | affix | visit（拜访，看望，参观） + -or（做…的人） |
+| inventor | affix | invent（发明，创造） + -or（做…的人） |
+| dangerous | affix | danger（危险） + -ous（具有…的） |
+| famous | affix | fame + -ous（具有…的） |
+| nervous | affix | nerve + -ous（具有…的） |
+| earphone | affix | ear（耳朵） + -phone（声音） |
+| headphone | affix | head（头，头部） + -phone（声音） |
+| festival | affix | festive + -al（属于…的） |
+| student | affix | study（书房；学习） + -ant（…的人/的） |
+| important | affix | import（进口，输入） + -ant（…的人/的） |
+| princess | affix | prince（王子） + -ess（女性） |
+| musician | affix | music（音乐，乐曲） + -ian（…的人；…国的） |
+| music | affix | muse + -ic（…的） |
+| magic | affix | mage + -ic（…的） |
+| baby | affix | babe + -ie（小…；亲昵） |
+| useless | affix | use（使用，利用；用途） + -less（没有…的） |
+| neighbourhood | affix | neighbour（邻居（美式拼作 neighbor）） + -hood（身份；时期） |
+| activity | affix | active（活跃的，积极的） + -ity（性质） |
+| expensive | affix | expense + -ive（有…倾向的） |
+| duckling | affix | duck（鸭子） + -ling（小） |
