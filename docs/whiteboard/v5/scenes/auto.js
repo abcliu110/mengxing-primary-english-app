@@ -32,8 +32,11 @@ export function autoBuild(SP, D) {
     if (bi === 0) K.camSet(ox + 960, oy + 540, 1); else K.cam(Math.max(0, t - 0.3), { x: ox + 960, y: oy + 540, z: 1, d: 0.9, ease: 'power2.inOut' });
     if (isGoldCard) { K.at(t).rect(ox + 120, oy + 170, hasActs ? 1680 : 1680, 800, { w: 6, rough: 1.2 }); y = oy * 0 + 280; }
   };
-  const need = (h, t) => { if (bi < 0 || y + h > YMAX) board(t); };
+  const need = (h, t) => { if (bi < 0 || y + h > YMAX) { if (bi >= 0) T += HOLD; board(T); } };
   const wordT = (t, en, word, w) => t + (word ? 0.45 + word.split(/\s+/).length * 0.42 : 0) + Math.max(0, en.split(/\s+/).findIndex(x => norm(x) === w)) * 0.36;
+  // 阅读节奏（2026-10-30 用户：白板太快）：每段写完按小学生阅读速度留时间——中文约 5 字/秒、英文约 2.2 词/秒；换板前多停 HOLD 秒
+  const HOLD = 1.5;
+  const readT = s => { const str = String(s).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); const cjk = (str.match(/[\u3400-\u9fff]/g) || []).length; const en = (str.replace(/[\u3400-\u9fff]/g, ' ').match(/[A-Za-z]+/g) || []).length; return Math.max(0.8, cjk / 5 + en / 2.2); };
   const sayLen = (en, word) => (word ? 0.45 + word.split(/\s+/).length * 0.42 : 0) + en.split(/\s+/).length * 0.36 + 0.9;
 
   board(T);
@@ -41,41 +44,41 @@ export function autoBuild(SP, D) {
   D.items.forEach((it, idx) => {
     const [k, a, b, c] = it;
     if (k === 'n') {
-      const d = Math.max(3.2, a.length * 0.13 + 0.8); K.narr(a, T, T + d); if (!(bi === 0 && y === Y0)) T += Math.min(d, 2.2); lastW = -9; return;
+      const d = Math.max(3.2, readT(a) + 1.0); K.narr(a, T, T + d); if (!(bi === 0 && y === Y0)) T += d - 0.6; lastW = -9; return;
     }
     if (k === 'm') {
       if (seen.has(a)) return; seen.add(a);
       const w = K.measure(a, 44) + 40;
       if (!row || idx !== lastW + 1 || row.x + w > ox + XMAX) { need(110, T); row = { x: ox + X0, y: y + 52 }; y += 110; }
       K.at(T).rect(row.x, oy + row.y - 56, w, 76, { w: 3, rough: 1.2, col: GREY, min: 0.08 }).text(a, row.x + 20, oy + row.y, 44, { col: GREY, rate: 30 });
-      row.x += w + 22; lastW = idx; T += 0.15; return;
+      row.x += w + 22; lastW = idx; T += 0.3 + readT(a) * 0.7; return;
     }
     if (k === 'p') { K.at(T).text(a, ox + 1600, oy + 360, 110); return; }
     if (k === 'w') {
       if (seen.has(a)) return; seen.add(a);
-      if (isGold(a)) { board(T + 0.4, true); T += 0.6; K.at(T).text(a, ox + 200, oy + y, 56, { col: OR }); y += 96; T += 0.5; return; }
+      if (isGold(a)) { if (bi >= 0) T += HOLD; board(T + 0.4, true); T += 0.6; K.at(T).text(a, ox + 200, oy + y, 56, { col: OR }); y += 96; T += 0.5; return; }
       if (gold) {
         const sz = 54, ls = wrapLines(a, sz, 1500);
-        if (y + ls.length * 84 > 960) { board(T + 0.3, true); T += 0.5; }
-        ls.forEach(l => { K.at(T).text(l, ox + 200, oy + y, sz, { col: /^🎵|^💡/.test(a) ? OR : (/^🪞|^⚔️|·/.test(a) && a.length < 30 ? GREY : INK), rate: 30 }); y += 84; T += 0.35; });
+        if (y + ls.length * 84 > 960) { T += HOLD; board(T + 0.3, true); T += 0.5; }
+        ls.forEach(l => { K.at(T).text(l, ox + 200, oy + y, sz, { col: /^🎵|^💡/.test(a) ? OR : (/^🪞|^⚔️|·/.test(a) && a.length < 30 ? GREY : INK), rate: 30 }); y += 84; T += 0.3 + readT(l); });
         return;
       }
       const short = [...a].length <= 9 && !isEn(a) && !(bi === 0 && y === Y0);
       // 连续出现的短词（菜单 / 标签）横着排成一行
       if (short && !isHead(a) && row && idx === lastW + 1 && row.x + K.measure(a, 44) + 70 < ox + XMAX) {
         const w = K.measure(a, 44) + 40; K.at(T).rect(row.x, oy + row.y - 56, w, 76, { w: 3, rough: 1.2, col: GREY, min: 0.08 }).text(a, row.x + 20, oy + row.y, 44, { col: GREY, rate: 30 });
-        row.x += w + 22; lastW = idx; T += 0.15; return;
+        row.x += w + 22; lastW = idx; T += 0.3 + readT(a) * 0.7; return;
       }
-      if (isHead(a)) { if (bi === 0 && y === Y0) {} else board(T + 0.3); T += bi ? 0.5 : 0; K.at(T).text(a, ox + X0, oy + y, 76, { col: OR }); y += 120; row = null; lastW = idx; T += 0.5; return; }
+      if (isHead(a)) { if (bi === 0 && y === Y0) {} else { T += HOLD; board(T + 0.3); } T += bi ? 0.5 : 0; K.at(T).text(a, ox + X0, oy + y, 76, { col: OR }); y += 120; row = null; lastW = idx; T += 0.4 + readT(a); return; }
       if (short && !isKey(a)) {
         need(110, T); const w = K.measure(a, 44) + 40;
         K.at(T).rect(ox + X0, oy + y - 4, w, 76, { w: 3, rough: 1.2, col: GREY, min: 0.08 }).text(a, ox + X0 + 20, oy + y + 52, 44, { col: GREY, rate: 30 });
-        row = { x: ox + X0 + w + 22, y: y + 52 }; y += 110; lastW = idx; T += 0.25; return;
+        row = { x: ox + X0 + w + 22, y: y + 52 }; y += 110; lastW = idx; T += 0.3 + readT(a) * 0.7; return;
       }
       const sz = bi === 0 && y === Y0 ? 86 : (isEn(a) ? 64 : 56), lh = Math.round(sz * 1.45);
       const ls = wrapLines(a, sz, XMAX - X0); need(ls.length * lh + 20, T);
       const col = bi === 0 && y === Y0 ? INK : isKey(a) ? OR : INK;
-      ls.forEach(l => { K.at(T).text(l, ox + X0, oy + y + sz, sz, { col, rate: sz >= 80 ? 12 : 26 }); y += lh; T += 0.3 + l.length * 0.012; });
+      ls.forEach(l => { K.at(T).text(l, ox + X0, oy + y + sz, sz, { col, rate: sz >= 80 ? 12 : 26 }); y += lh; T += 0.3 + readT(l); });
       y += 18; row = null; lastW = idx; return;
     }
     if (k === 's') {
@@ -88,12 +91,13 @@ export function autoBuild(SP, D) {
         else { actor = K.actor({ keys: keys.map(([kt, kk], j) => [j ? kt : 0, kk]), x: ox + AX(fr), ground: oy + 1110, h: 470, reveal: Math.max(0, st - 0.6) }); actor.board = bi; actor.last = Math.max(...keys.map(q => q[0])); }
         hit.filter(h => h !== '*').forEach((hw, hj) => { const t2 = wordT(st, en, w, norm(hw.split(/\s+/)[0])); K.pop(t2, hw, ox + 1600, oy + 470 + hj * 110, 84, { out: t2 + 2.2 }); });
       }
-      K.say(st, en, { word: w, key: hit.flatMap(h => h.split(/\s+/).map(norm)), zh });
-      T = st + sayLen(en, w) + 0.3; return;
+      const L = Math.max(sayLen(en, w), readT(zh) + 0.8);   // 中文字幕要读完
+      K.say(st, en, { word: w, key: hit.flatMap(h => h.split(/\s+/).map(norm)), zh, len: L });
+      T = st + L + 0.8; return;
     }
   });
-  if (!gold) { board(T + 0.3); T += 0.6; K.at(T).text(D.title, ox + 200, oy + 460, 70, { col: OR }); T += 1.5; }
-  T = Math.max(T, K.cur) + 1.4;
+  if (!gold) { T += HOLD; board(T + 0.3); T += 0.6; K.at(T).text(D.title, ox + 200, oy + 460, 70, { col: OR }); T += 1.5 + readT(D.title); }
+  T = Math.max(T, K.cur) + 2.0;
   const cols = Math.min(COLS, bi + 1), rows = Math.floor(bi / COLS) + 1;
   K.cam(T, { x: (cols * BW - (BW - 1920)) / 2, y: (rows * BH - (BH - 1080)) / 2, z: Math.min(1920 / (cols * BW), 1080 / (rows * BH)) * 0.98, d: 1.6 });
   K.shade(T + 2.0);

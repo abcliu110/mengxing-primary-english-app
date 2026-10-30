@@ -6,7 +6,7 @@ import { scene, OR, OR2, INK, GREY } from '../wb5.js';
 import * as SP from '../sprites/tm2.js';
 
 export default function build() {
-const K = scene({ sprites: SP });
+const K = scene({ sprites: SP, stretch: 1.5 });
 const REG = i => [(i % 4) * 2100, Math.floor(i / 4) * 1250];
 const go = (i, t, d = 0.9, z = 1) => { const [x, y] = REG(i); K.cam(t, { x: x + 960, y: y + 540, z, d, ease: 'power2.inOut' }); };
 const norm = x => x.toLowerCase().replace(/[^a-z']/g, '');

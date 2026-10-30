@@ -2184,5 +2184,297 @@
     }
    }
   }
+ },
+ "hd_fr01": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 0, pIdx: 0 })",
+  "lib": "fr01_",
+  "name": "🛒 买卖交易小剧场",
+  "cases": {
+   "1": {
+    "title": "🛒 买卖交易小剧场 · 视角 1 buy (买)",
+    "acts": {
+     "*": [
+      "mom_dress"
+     ]
+    }
+   },
+   "2": {
+    "title": "🛒 买卖交易小剧场 · 视角 2 sell (卖)",
+    "acts": {
+     "*": [
+      "m_offer",
+      "offer_ok"
+     ]
+    }
+   },
+   "3": {
+    "title": "🛒 买卖交易小剧场 · 视角 3 pay (付钱)",
+    "acts": {
+     "*": [
+      "l_piggy"
+     ]
+    }
+   },
+   "4": {
+    "title": "🛒 买卖交易小剧场 · 视角 4 cost (花费/值…钱)",
+    "acts": {
+     "*": [
+      "l_think"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr02": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 1, pIdx: 0 })",
+  "lib": "fr02_",
+  "name": "🎁 给予传递小剧场",
+  "cases": {
+   "1": {
+    "title": "🎁 给予传递小剧场 · 视角 1 give / send / pass / show sb sth",
+    "acts": {
+     "*": [
+      "mom_gift"
+     ]
+    }
+   },
+   "2": {
+    "title": "🎁 给予传递小剧场 · 视角 2 give / send / pass / show sth to sb",
+    "acts": {
+     "*": [
+      "m_pass"
+     ]
+    }
+   },
+   "3": {
+    "title": "🎁 给予传递小剧场 · 视角 3 buy / make / cook sth for sb",
+    "acts": {
+     "*": [
+      "m_cake"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr03": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 2, pIdx: 0 })",
+  "lib": "fr03_",
+  "name": "🧭 位移方向小剧场",
+  "cases": {
+   "1": {
+    "title": "🧭 位移方向小剧场 · 视角 1 come & bring (朝向说话人)",
+    "acts": {
+     "*": [
+      "m_bring"
+     ]
+    }
+   },
+   "2": {
+    "title": "🧭 位移方向小剧场 · 视角 2 go & take (离开说话人)",
+    "acts": {
+     "*": [
+      "l_goout"
+     ]
+    }
+   },
+   "3": {
+    "title": "🧭 位移方向小剧场 · 视角 3 put (放置到目标位)",
+    "acts": {
+     "*": [
+      "l_put"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr04": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 3, pIdx: 0 })",
+  "lib": "fr04_",
+  "name": "🧥 穿戴变化小剧场",
+  "cases": {
+   "1": {
+    "title": "🧥 穿戴变化小剧场 · 视角 1 put on (穿上的瞬间动作)",
+    "acts": {
+     "*": [
+      "l_coat1",
+      "l_coat2",
+      "l_coat3"
+     ]
+    }
+   },
+   "2": {
+    "title": "🧥 穿戴变化小剧场 · 视角 2 wear (穿着/戴着的持续状态)",
+    "acts": {
+     "*": [
+      "mom_dress"
+     ]
+    }
+   },
+   "3": {
+    "title": "🧥 穿戴变化小剧场 · 视角 3 take off (脱下的瞬间动作)",
+    "acts": {
+     "*": [
+      "l_coff0",
+      "l_coff1",
+      "l_coff2"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr05": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 4, pIdx: 0 })",
+  "lib": "fr05_",
+  "name": "👀 视听感知小剧场",
+  "cases": {
+   "1": {
+    "title": "👀 视听感知小剧场 · 视角 1 look at / listen to (主动感知动作)",
+    "acts": {
+     "*": [
+      "l_lookup",
+      "l_ear"
+     ]
+    }
+   },
+   "2": {
+    "title": "👀 视听感知小剧场 · 视角 2 see / hear (感知结果)",
+    "acts": {
+     "*": [
+      "l_point"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr06": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 5, pIdx: 0 })",
+  "lib": "fr06_",
+  "name": "🔨 动作改变与工具小剧场",
+  "cases": {
+   "1": {
+    "title": "🔨 动作改变与工具小剧场 · 视角 1 cut / clean / open / break + Patient + with Instrument",
+    "acts": {
+     "*": [
+      "l_point"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr07": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 6, pIdx: 0 })",
+  "lib": "fr07_",
+  "name": "🧠 认知与思维小剧场",
+  "cases": {
+   "1": {
+    "title": "🧠 认知与思维小剧场 · 视角 1 learn (学习：从不会到会)",
+    "acts": {
+     "*": [
+      "sw0",
+      "sw1",
+      "sw2"
+     ]
+    }
+   },
+   "2": {
+    "title": "🧠 认知与思维小剧场 · 视角 2 know / think (知道 / 认为)",
+    "acts": {
+     "*": [
+      "l_think"
+     ]
+    }
+   },
+   "3": {
+    "title": "🧠 认知与思维小剧场 · 视角 3 remember ↔ forget (记住 ↔ 忘记)",
+    "acts": {
+     "*": [
+      "l_switch"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr08": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 7, pIdx: 0 })",
+  "lib": "fr08_",
+  "name": "💬 言语交流小剧场",
+  "cases": {
+   "1": {
+    "title": "💬 言语交流小剧场 · 视角 1 tell sb sth / tell sb to do",
+    "acts": {
+     "*": [
+      "missw"
+     ]
+    }
+   },
+   "2": {
+    "title": "💬 言语交流小剧场 · 视角 2 ask ↔ answer",
+    "acts": {
+     "*": [
+      "l_hand0",
+      "l_hand1",
+      "l_hand2"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr09": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 8, pIdx: 0 })",
+  "lib": "fr09_",
+  "name": "🚌 交通出行小剧场",
+  "cases": {
+   "1": {
+    "title": "🚌 交通出行小剧场 · 视角 1 方式一：介词短语放句尾 (by + 交通工具 / on foot)",
+    "acts": {
+     "*": [
+      "bus"
+     ]
+    }
+   },
+   "2": {
+    "title": "🚌 交通出行小剧场 · 视角 2 方式二：动词短语作谓语 (take a... / ride a... / walk)",
+    "acts": {
+     "*": [
+      "l_bike0",
+      "l_bike1",
+      "l_bike2"
+     ]
+    }
+   }
+  }
+ },
+ "hd_fr10": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_frames', { frameIdx: 9, pIdx: 0 })",
+  "lib": "fr10_",
+  "name": "🤩 情感触发小剧场",
+  "cases": {
+   "1": {
+    "title": "🤩 情感触发小剧场 · 视角 1 -ing 形容词 (修饰刺激源事物：令人…的)",
+    "acts": {
+     "*": [
+      "party_cheer"
+     ]
+    }
+   },
+   "2": {
+    "title": "🤩 情感触发小剧场 · 视角 2 -ed 形容词 (修饰体验者人：感到…的)",
+    "acts": {
+     "*": [
+      "l_laugh"
+     ]
+    }
+   }
+  }
  }
 }
