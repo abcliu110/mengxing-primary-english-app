@@ -521,3 +521,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-30 · past_clans ① v5.1 重画并替换进 App
 - 新增 `v5/scenes/past_clans_1.js`（12 块白板：门派旗 / 规则 vs 不规则 / 四面门派旗 + 金钟罩 / 爆破音小鞭炮 / put·hurt·read / 书包场景 / 其余成员 / 结论 / 预测 / 金句卡），R1 83/83，143 s。
 - 新增 `v5/app_check.py`：替换后的 App 回归脚本。主文件 9,946,789 bytes。
+
+## 2026-10-30 · past_clans ② v5.1 重画并替换进 App
+- `v5/scenes/past_clans_2.js`：换挡杆 i/a/u、嘴型张开度、鼻音气流、游泳 / 喝牛奶 / 坐下 / 摇铃 / 跑回家；R1 81/81，168 s。主文件 10,496,967 bytes。
