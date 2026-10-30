@@ -517,3 +517,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-30 12:35 JST · tense_matrix 5 幕 v5.1 替换进 App
 - 新增 `v5/embed_app.py`：v5 HTML 存进主文件 text/plain 块，`wbStageHtml` / `startSuperLabCanvasLoop` 有 v5 版就挂 iframe srcdoc（标记 WB5_EMBED），没有就照旧 SVG。
 - 回归：tense_matrix ①–⑤ iframe 挂载、时长 179.5 / 162.1 / 171.6 / 160.4 / 169.2 s、0 报错；其他页签旧 SVG 正常。主文件 6,027,070 → 9,321,636 bytes。
+
+## 2026-10-30 · past_clans ① v5.1 重画并替换进 App
+- 新增 `v5/scenes/past_clans_1.js`（12 块白板：门派旗 / 规则 vs 不规则 / 四面门派旗 + 金钟罩 / 爆破音小鞭炮 / put·hurt·read / 书包场景 / 其余成员 / 结论 / 预测 / 金句卡），R1 83/83，143 s。
+- 新增 `v5/app_check.py`：替换后的 App 回归脚本。主文件 9,946,789 bytes。
