@@ -50,7 +50,7 @@
 - **通用模板幕**（普通单词卡）：App 里只存一幕 `wordcard_tpl`；`embed_app.py` 的 `wb5TplSwap / wb5TplAct`（标记 `WB5_EMBED_TPL`）把词条 JSON 通过 `fr.__wb5Inject` 注入 srcdoc（`WB5_MOUNT_V4`），模板里 `autoBuild` 现场排版。改 `wordcard_items.js` 后：重建模板 → `embed_app.py wordcard_tpl 0 out/wordcard_tpl.html` → `check_wordcard_tpl.py`（分 4 片 `--part k/4`，再 `--merge 4` 出报告）→ `app_check5.py`。
 - **全量重建**：`rebuild_all.py`（两路并行；超时后 `--resume` 只补没重建的）→ `check_all_out.py --part k/2` 全量技术回归。`build.mjs` 的临时字体文件已按进程号区分（并行打包曾串字体）。
 
-## 3. 体积现状（主文件 15.47 MB，2026-10-30 21:55；14.68 MB 之后加了单词卡模板等）
+## 3. 体积现状（主文件 15.49 MB，2026-10-30 21:55；14.68 MB 之后加了单词卡模板等）
 
 - 人物帧 WebP 共享块约 9.7 MB（366 帧，Q74，最高 520 px）——下一步可压：降到 Q60 / 最高 400 px 预计省 3–4 MB，需看画质。
 - 各幕 gzip 后的场景数据约 3–4 MB；共享字体约 0.5 MB；引擎 1 份。
@@ -79,7 +79,7 @@
 |---|---|---|
 | ① | `src/gen_mindmap_inventory.py` → `lab/INVENTORY_HD_MINDMAP_EXPORT.md`（R1 清单，25 幕 994 条）；`v5/gen_mindmap_groups.py` → `v5/mindmap_groups.json`（规则分组，已自审） | ✅ 本阶段提交 |
 | ② | `scenes/auto.js` 新增 `mindmapBuild` 版式 + `v5/gen_mindmap.py`；引擎变了 → `rebuild_all.py` 全量重建（484 幕，主 App 共享引擎块仍只 1 份）；`embed_app.py` 装导图舞台挂钩（无幕时舞台为空、不报错）；主文件 15.47 MB；抽样回归 tense_matrix / hd_formation / fp_economy / 单词卡模板 55 词全过、0 报错 | ✅ 本阶段提交 |
-| ③ | 25 幕分 3 批生成 → R1 → 联络表 → 嵌入（1–8 / 9–16 / 17–25），每批一提交 | ⬜ |
+| ③ | 25 幕分 3 批生成 → R1 → 联络表 → 嵌入（1–8 / 9–16 / 17–25），每批一提交 | 第 1 批 幕 1–8（学校与学习 … 服装与穿戴） ✅ |
 | ④ | `v5/app_check6.py` App 回归（讲解幕挂载 + 交互导图点词开卡 / 缩放 / 拖拽 / 0 报错） | ⬜ |
 | ⑤ | 第一性原理总枢余下旧 canvas 核查 → 词源 / 格林 / 词根词缀 + 12+6 条 → 文档收尾 | ⬜ |
 
