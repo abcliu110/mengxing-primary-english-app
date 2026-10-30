@@ -2450,3 +2450,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 00:02 JST · 引擎块再次合并（格林规则组 + 18 条规律幕之后）
 - 中途沙箱重置一次（重建跑到 embed 阶段被打断，主文件处在半嵌入状态 25.09 MB）：按 HANDOFF §2 重装 numpy / pillow / playwright / fonttools / brotli + chromium + 系统依赖后，`gen_font_chars.py`（3329 字）→ `rebuild_all.py` 重跑完成（embed 幂等，半嵌入状态被完整覆盖）。
 - 结果：共享引擎块 1 份，主文件 24,151,290 → **15,766,777 bytes**。回归 `runall.py --full` 13 项全过（offlinecheck 882 段、app_check5 55 词 / app_check6 25 幕 0 不合格、leakcheck OK、0 报错）。
+
+## 2026-10-31 00:05 JST · COVERAGE 数字更新（1f）
+- `word_origins/COVERAGE.md` 新增 §7「补齐进度」：ETYM_DB 0 → 352（分年级）、MORPH_DB 0 → 111、格林配对 11 → 30 对（1 + 4 幕）、音变与词汇规律 18 / 18 条有幕；§2、§3 表里对应格子加了指向 §7 的现值。未入库原因分类照抄 ETYM_REVIEW。只改文档，主文件未动（回归沿用上一提交 `runall --full` 全过）。
