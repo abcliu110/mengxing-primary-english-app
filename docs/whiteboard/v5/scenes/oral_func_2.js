@@ -1,0 +1,38 @@
+// 💬 交际句型地图 · ② 五大交际功能 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/oral_func.js 案例 2；对照清单 lab/INVENTORY_ORAL_FUNC_2_V5.md
+// 角色关键帧：sprites/of2.js（人物先行帧库 cast/）
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/of2.js';
+const ACTS = {"go": ["l_w0", "l_w1", "l_w2"], "turn": ["l_point"], "try": ["mom_dress"], "take": ["l_hand1"], "speak": ["l_speak"], "come": ["l_w0", "l_w1", "l_w2"], "use": ["l_pencil"]};
+const ITEMS = [
+  ['n', '这一幕：生活里最常用的五件事，每件只要记三句核心句型。'],
+  ['w', '五大交际功能 · 每个三句'],
+  ['n', '第一件：问路。先说 Excuse me，再问在哪儿、怎么走。'],
+  ['w', '🧭 问路'],
+  ['s', 'Excuse me, where is the library?', '打扰一下，图书馆在哪儿？', 'where'],
+  ['s', 'How can I get to the zoo?', '我怎么去动物园？', 'how'],
+  ['s', 'Go straight and turn left.', '一直走，然后左转。', 'turn'],
+  ['n', '第二件：购物。问价钱、试一试、决定买。'],
+  ['w', '🛍️ 购物'],
+  ['s', 'How much is this T-shirt?', '这件 T 恤多少钱？', 'much'],
+  ['s', 'Can I try it on?', '我可以试穿吗？', 'try'],
+  ['s', 'I\'ll take it.', '我买了。', 'take'],
+  ['n', '第三件：打电话。英语电话里介绍自己说 This is，不说 I am。'],
+  ['w', '📞 打电话 ⚠️ 说 This is ...'],
+  ['s', 'Hello, this is Amy.', '你好，我是埃米。', 'this'],
+  ['s', 'May I speak to Tom, please?', '请问汤姆在吗？', 'speak'],
+  ['s', 'Hold on, please.', '请稍等。', 'hold'],
+  ['n', '第四件：请求许可。用 May I 或 Can I，回答 Sure。'],
+  ['w', '🙋 请求许可'],
+  ['s', 'May I come in?', '我可以进来吗？', 'may'],
+  ['s', 'Can I use your pencil?', '我可以用你的铅笔吗？', 'use'],
+  ['s', 'Sure, go ahead.', '当然，用吧。', 'sure'],
+  ['n', '第五件：道歉和回应。别人道歉，你可以说 That\'s OK 或 Never mind。'],
+  ['w', '🙇 道歉与回应'],
+  ['s', 'I\'m sorry I\'m late.', '对不起，我迟到了。', 'sorry'],
+  ['s', 'That\'s OK.', '没关系。', 'OK'],
+  ['s', 'Never mind.', '别在意。', 'never'],
+  ['n', '记住：每件事都从礼貌的一句开始，Excuse me、May I、Could you，都是好帮手。'],
+  ['w', '💡 先礼貌，再说事']
+];
+export default function build() { return autoBuild(SP, { title: '💬 交际句型地图 · ② 五大交际功能', items: ITEMS, acts: ACTS }); }

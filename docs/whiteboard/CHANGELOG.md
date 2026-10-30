@@ -2389,3 +2389,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 位置按 MODULE_ROADMAP B「并入自然拼读，不新开页签」：自然拼读页顶部剧场 `hd_phonics` 加第四幕「拼写潜规则」（`src/patch_phonics4.py` 加按钮标签，幂等）。内容稿 `content/hd_phonics_4.txt`：① 词尾不放 v 补 e（have / give / love）② 词尾用 y、加词尾 y 变 i（happy→happier、try→tries）③ c、g 遇 e/i/y 读软音（city、giant；⚠️ get / give / girl）④ q 后跟 u（queen、question、quick；⚠️ 少数外来名字如 Iraq）；口诀。徽章 ✂️ ⚠️。
 - `new_scene.py`：34 条缺 0、145 s、deterministic、0 报错。`app_check4.py hd_phonics` 4 幕全换成 v5、旧 canvas 不在、0 报错。
 - 发现：metaphor_code 第 4 幕有字表外新字，嵌入时多了一份共享引擎块（+0.93 MB，主文件 16,520,656 bytes）；登记 HANDOFF §4，本轮新幕做完后 `gen_font_chars.py` + `rebuild_all.py` 合并。
+
+## 2026-10-31 01:00 · 决策 6 交际句型地图（口语大世界新入口）
+- `src/patch_oral_func.py`（幂等）：口语大厅顶部入口卡「🗺️ 交际句型地图（新）」→ 新页 `oral_func_map`：v5 白板剧场 2 幕（`oral_func` ① 礼貌阶梯 Give me → Please → Can you → Could you → Would you mind，含 ⚠️ 答应说 Not at all、Excuse me / Sorry 分工；② 问路 / 购物 / 打电话（⚠️ This is）/ 请求许可 / 道歉与回应，各 3 句）+ 页内点读句型表（20 句）。旧 16 个口语场景一句不删。
+- 内容稿 `content/oral_func_1.txt`、`oral_func_2.txt` → `new_scene.py`：各 29 条缺 0、114–115 s、deterministic、0 报错；`app_check4.py oral_func` 2 幕换成 v5；口语大厅入口点击可达、0 报错。`units.json` 登记 `oral_func`。
+- 决策 6 五个新模块全部完成（合成词重音、不规则复数、空间隐喻、拼写潜规则、交际句型地图）。主文件 17,462,008 bytes（含两份临时多出的引擎块，待字表重建合并）。

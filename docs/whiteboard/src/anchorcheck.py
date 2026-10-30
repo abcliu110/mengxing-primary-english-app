@@ -64,6 +64,9 @@ MARKERS = [
     # 决策 6：空间隐喻（metaphor_code 密码四）、拼写潜规则（自然拼读剧场第四幕）
     ('catTitle: "🧭 密码四', 1, 1),
     ('"第三幕·双元音/字母组合合唱", "第四幕·拼写潜规则"]', 1, 1),
+    ('// ORAL_FUNC_MAP_V1', 1, 1),
+    ('else if (s === "oral_func_map") renderOralFuncMapView();', 1, 1),
+    ('data-oral-func-entry', 1, 1),
 ]
 
 
