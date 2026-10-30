@@ -9,7 +9,7 @@
 
 | # | 单元 | 幕数 | 状态 | 提交 |
 |---|---|---|---|---|
-| 1 | `tense_matrix` | 6 | ⬜ | |
+| 1 | `tense_matrix` | 6 | 🟡 ① 一般现在时 v5.1 已重画待审（`v5/scenes/tense_matrix_1.js`，179 s，R1 91/91） | 本提交 |
 | 2 | `past_clans` | 4 | ⬜ | |
 | 3 | `adj_order` | 4 | ⬜ | |
 | 4 | `aux_transformer` | 4 | ⬜ | |

@@ -479,3 +479,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `368f1e4` 修：预览框 sandbox iframe 里读 localStorage 抛错 → 整个播放器停掉、无法播放；localStorage / speechSynthesis 包 try/catch，sandbox iframe 实测可播、0 报错。
 - 10:54 用户确认「完美，就这样，把这个画法写入设计文档」：MASTER_DESIGN 决策 31 加定稿说明 + 新增 §2.9 标准画法规格；SOP v2.1 新增 §17（流程 9 步 + 验收 12 条，含 sandbox iframe 测试）。
 
+## 2026-10-30 · 决策 32 启动：v5 公共引擎 + tense_matrix ① 重画
+- `d31bc27` 决策 32 + `REDRAW_V5.md`（白板 99 幕 + 万能动词剧场 72 幕）。
+- 公共引擎 `v5/`：`wb5.js`（rough 线条 / 手写 / 关键帧角色按距离换帧 / 镜头 / 弹字 / 讲解字幕 / 朗读字幕）、通用播放器、按场景字体子集打包、`shots.py` 联络表 + 确定性 + sandbox 验收、`build_sprites.py` 绿幕抠图锚点。
+- tense_matrix ①：12 块白板 4×3 版面，镜头逐块推进，最后拉远全图；新帧库 `tm1`（16 帧）；R1 91/91；控制台 0 报错、sandbox 0 报错、确定性通过；单文件 862 KB（16 帧角色约 527 KB，长课超出单句 650 KB 预算，记入 §2.9 F 待定）。
+- 踩坑：AI 出图常把「踢球准备」画成腿往前（3 次失败），最终用「双脚着地、俯身看球」作准备帧；有一张女孩走路帧多画了一个人、一张带了狗，重出。
+
