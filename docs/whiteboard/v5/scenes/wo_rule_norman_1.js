@@ -1,4 +1,4 @@
-// 🔬 规律 7 · 诺曼法语的 w，巴黎法语的 g —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 🔬 规律 7 · 诺曼法语的 w，其他地方古法语的 g —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
 // 内容来源（R1 零丢失）：src/cases/wo_rule_norman.js 案例 1；对照清单 lab/INVENTORY_WO_RULE_NORMAN_1_V5.md
 // 角色关键帧：sprites/nm1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
@@ -18,4 +18,4 @@ const ITEMS = [
   ['n', '出处：Etymonline 和 Wiktionary 都写了这些词的来路。'],
   ['w', '出处：Etymonline · Wiktionary']
 ];
-export default function build() { return autoBuild(SP, { title: '🔬 规律 7 · 诺曼法语的 w，巴黎法语的 g', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🔬 规律 7 · 诺曼法语的 w，其他地方古法语的 g', items: ITEMS, acts: ACTS }); }
