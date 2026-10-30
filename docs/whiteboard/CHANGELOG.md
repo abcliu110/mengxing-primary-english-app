@@ -2027,3 +2027,144 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · hd_oral_sc10 第8幕 v5.1 重画并替换进 App
 - 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · The same to you!：R1 11/11，47 s，主文件 15,182,198 bytes。
+
+## 2026-10-30 · hd_oral_sc11 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc11`（打电话 · Hello! This is Wu Binbin speaking.：R1 15/15，80 s，主文件 15,185,121 bytes。
+
+## 2026-10-30 · hd_oral_sc11 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc11`（打电话 · May I speak to Tom, please?：R1 15/15，76 s，主文件 15,188,032 bytes。
+
+## 2026-10-30 · hd_oral_sc11 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc11`（打电话 · Hold on, please. — Thank you!：R1 15/15，77 s，主文件 15,190,979 bytes。
+
+## 2026-10-30 · hd_oral_sc11 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc11`（打电话 · Hold on, please.：R1 15/15，59 s，主文件 15,193,714 bytes。
+
+## 2026-10-30 · hd_oral_sc11 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc11`（打电话 · Can I take a message?：R1 15/15，63 s，主文件 15,196,453 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · What's wrong with you?：R1 15/15，80 s，主文件 15,199,440 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · Take some medicine and drink warm water.：R1 15/15，87 s，主文件 15,202,487 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · How do you feel?：R1 15/15，79 s，主文件 15,205,478 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · Open your mouth and say "Ah".：R1 15/15，76 s，主文件 15,208,425 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · You should see a doctor.：R1 15/15，77 s，主文件 15,211,368 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · Take a deep breath and count to ten.：R1 15/15，91 s，主文件 15,214,371 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · Don't be afraid! I'm here with you.：R1 15/15，84 s，主文件 15,217,346 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · Have a good rest and get well soon!：R1 15/15，90 s，主文件 15,220,353 bytes。
+
+## 2026-10-30 · hd_oral_sc12 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc12`（看病与身体不适 · Why are you so happy today?：R1 15/15，82 s，主文件 15,223,344 bytes。
+
+## 2026-10-30 · hd_oral_sc13 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc13`（时间与日期 · Time to get up!：R1 15/15，70 s，主文件 15,226,223 bytes。
+
+## 2026-10-30 · hd_oral_sc13 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc13`（时间与日期 · What time is it now?：R1 15/15，61 s，主文件 15,228,938 bytes。
+
+## 2026-10-30 · hd_oral_sc13 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc13`（时间与日期 · What day is it today?：R1 15/15，58 s，主文件 15,231,625 bytes。
+
+## 2026-10-30 · hd_oral_sc13 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc13`（时间与日期 · What's the date today?：R1 15/15，59 s，主文件 15,234,340 bytes。
+
+## 2026-10-30 · hd_oral_sc13 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc13`（时间与日期 · Time for bed!：R1 15/15，52 s，主文件 15,237,031 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · Cheer up! You can do it!：R1 15/15，84 s，主文件 15,240,034 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · Please take turns!：R1 15/15，78 s，主文件 15,243,001 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · Keep to the right, please!：R1 15/15，73 s，主文件 15,245,956 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · How tall are you? — I'm 1.6 metres.：R1 15/15，73 s，主文件 15,248,807 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · Look at me! I can swim fast!：R1 15/15，75 s，主文件 15,251,782 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · Practice makes perfect!：R1 15/15，74 s，主文件 15,254,765 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · Congratulations! We won!：R1 15/15，75 s，主文件 15,257,744 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · Let's count from one to ten!：R1 15/15，84 s，主文件 15,260,703 bytes。
+
+## 2026-10-30 · hd_oral_sc14 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc14`（爱好与运动 · Whose turn is it now? — It's my turn!：R1 15/15，81 s，主文件 15,263,574 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · Where are my keys?：R1 15/15，72 s，主文件 15,266,473 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · Can you make the bed?：R1 15/15，72 s，主文件 15,269,344 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · Let me help you sweep the floor.：R1 15/15，82 s，主文件 15,272,295 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · Turn on the light, please.：R1 15/15，74 s，主文件 15,275,194 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · Take off your shoes at the door.：R1 15/15，73 s，主文件 15,278,125 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · Wash your hands before meals!：R1 15/15，68 s，主文件 15,281,012 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · What are you doing? — I'm reading.：R1 15/15，74 s，主文件 15,283,943 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · I usually do my homework at 5:00.：R1 15/15，72 s，主文件 15,286,786 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · May I watch TV now?：R1 15/15，77 s，主文件 15,289,725 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第10幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · Did you clean your room?：R1 15/15，73 s，主文件 15,292,613 bytes。
+
+## 2026-10-30 · hd_oral_sc15 第11幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc15`（居家与家务 · Put away your toys, please!：R1 15/15，75 s，主文件 15,295,506 bytes。
+
+## 2026-10-30 · hd_oral_sc16 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · Don't worry! I can help you.：R1 15/15，82 s，主文件 15,298,453 bytes。
+
+## 2026-10-30 · hd_oral_sc16 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · Well done! Good job!：R1 15/15，74 s，主文件 15,301,380 bytes。
+
+## 2026-10-30 · hd_oral_sc16 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · Don't give up! Try again!：R1 15/15，71 s，主文件 15,304,231 bytes。
+
+## 2026-10-30 · hd_oral_sc16 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · You are a great team player!：R1 15/15，86 s，主文件 15,307,202 bytes。
+
+## 2026-10-30 · hd_oral_sc16 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · Don't give up! Keep trying!：R1 15/15，59 s，主文件 15,309,925 bytes。
+
+## 2026-10-30 · hd_oral_sc16 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · You look so cool today!：R1 15/15，58 s，主文件 15,312,672 bytes。
+
+## 2026-10-30 · hd_oral_sc16 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · Practice makes perfect!：R1 15/15，55 s，主文件 15,315,387 bytes。
+
+## 2026-10-30 · hd_oral_sc16 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · I'm proud of you!：R1 11/11，51 s，主文件 15,318,090 bytes。
