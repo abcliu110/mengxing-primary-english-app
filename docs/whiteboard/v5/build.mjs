@@ -13,10 +13,10 @@ const GLOBAL = path.join(HERE, 'font_chars.txt');
 const chars = new Set([...(existsSync(GLOBAL) ? readFileSync(GLOBAL, 'utf8') : '')].filter(ch => ch.charCodeAt(0) > 127));
 [...src].filter(ch => ch.charCodeAt(0) > 127).forEach(ch => chars.add(ch));
 const ascii = Array.from({ length: 95 }, (_, i) => String.fromCharCode(32 + i)).join('');
-const txt = '/tmp/wb5_chars.txt'; writeFileSync(txt, ascii + [...chars].sort().join('') + '…「」：，。？！、（）×→←✓✗');
+const txt = `/tmp/wb5_chars_${process.pid}.txt`; writeFileSync(txt, ascii + [...chars].sort().join('') + '…「」：，。？！、（）×→←✓✗');
 const sub = (ttf, out, extra) => { execFileSync('pyftsubset', [ttf, `--text-file=${txt}`, '--flavor=woff2', `--output-file=${out}`, '--layout-features=*', ...extra]); return 'data:font/woff2;base64,' + readFileSync(out).toString('base64'); };
-const wk = sub(path.join(FONT_DIR, 'wk.ttf'), '/tmp/wb5_wk.woff2', []);
-const kalam = sub(path.join(FONT_DIR, 'kalam.ttf'), '/tmp/wb5_kalam.woff2', []);
+const wk = sub(path.join(FONT_DIR, 'wk.ttf'), `/tmp/wb5_wk_${process.pid}.woff2`, []);
+const kalam = sub(path.join(FONT_DIR, 'kalam.ttf'), `/tmp/wb5_kalam_${process.pid}.woff2`, []);
 // 引擎（全 App 一份，内容与幕无关）+ 场景（只有这一幕的数据；wb5 / auto / adj_train 从引擎的 globalThis.__WB5__ 取）
 const common = { bundle: true, minify: true, write: false, format: 'iife', legalComments: 'none', nodePaths: [path.join(HERE, 'node_modules')] };
 const eng = await build({ ...common, entryPoints: [path.join(HERE, 'engine.js')], define: { __FONTS__: JSON.stringify({ wk, kalam }) } });

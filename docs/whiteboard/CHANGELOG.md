@@ -2321,3 +2321,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · hd_poly_v6_p14 第3幕 v5.1 重画并替换进 App
 - 🎞️ letter · 一词多义第3幕：R1 11/11，43 s，主文件 15,456,521 bytes。
+
+## 2026-10-30 晚 · 普通单词卡 → 一个通用 v5 白板模板（设计稿 DESIGN_MINDMAP_WORDCARD.md §2，用户确认「按照你的来」）
+- 新增 `v5/scenes/wordcard_items.js`（词条 → ITEMS 纯函数）+ `wordcard_tpl.js`（模板幕，读注入的 `__WB5_WORD__` / `__WB5_ACT__`），角色包 `wordtpl`（8 帧，与其他幕共享块）。
+- 三幕保留（按钮沿用旧标签）：每幕写全旧舞台全部文字（完整原句，不再 slice 截断），本幕重点框排最前并多读一句；补写数据里已有的构词家族、搭配、拼写提醒；一行若已整句包含在另一行里只写长的那行。
+- App：`embed_app.py` 新增 `WB5_EMBED_TPL`（`wb5TplSwap / wb5TplAct`）+ `WB5_MOUNT_V4`（srcdoc 注入数据脚本）+ hook `WB5_HD:wordcard`；多义词仍走 `hd_poly_*`。
+- 验收：`check_wordcard_tpl.py` 1425 词 × 3 幕 = 4275 幕，R1 旧文字 5 万余条缺 0、0 报错、确定性 4275/4275，时长 50–155 s（中位 99 s，换行修正后复验）；`app_check5.py` 25 个子主题首词 + 随机 30 词，开卡 / 切三幕 / 揭示释义重渲染全部通过，0 报错。分片结果目录可用 `WCT_DIR` 指定（默认 /tmp）。主文件 15,463,455 bytes。
+- `auto.js` 中英混排换行改为英文整词不拆、句末标点不落行首；`rebuild_all.py` 修个位案例号 glob 漏重建（≥10 号幕）、加两路并行与 `--resume`；`build.mjs` 临时字体文件按进程号区分（并行打包串字体导致 ze_link 多一份引擎，已重建）。458 幕 + 模板全部重建，`check_all_out.py` 全量回归 0 不合格。主文件 15,463,455 bytes。
