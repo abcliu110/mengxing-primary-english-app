@@ -5,11 +5,13 @@
 - 每个王炸页签的 Canvas 外框换成 ${wbStageHtml("tab", superLabState.xxxIdx)}；
   没有登记案例的页签，wbStageHtml 会原样输出旧 Canvas，所以可以一个页签一个页签地做。
 """
-import re, os, glob
+import re, os, glob, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 F = os.path.join(ROOT, '萌星小学英语_最终合并版.html')
 s = open(F, encoding='utf-8').read()
+if '// <<WB_OLD_RETIRED>>' in s:   # 2026-10-30：旧 SVG 白板已退役（v5/retire_old_wb.py），本脚本再跑会把旧模块装回去
+    sys.exit('insert_wb.py：旧 SVG 白板已退役，白板改用 docs/whiteboard/v5（embed_app.py / rebuild_all.py），不要再跑本脚本')
 rd = lambda p: open(p, encoding='utf-8').read()
 
 # 页签 → 当前案例序号变量（和 superLabState 一致）

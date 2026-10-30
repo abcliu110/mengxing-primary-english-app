@@ -60,9 +60,15 @@ def registry():
     return out
 
 
+RETIRED = '// <<WB_OLD_RETIRED>>'   # 2026-10-30 v5/retire_old_wb.py 删了旧 SVG 白板模块和引擎：相关标记不再检查
+RETIRED_SKIP = ('// <<WB_ENGINE_START>>', '// <<WB_ENGINE_END>>', '<script type="text/plain" id="wbmod-vv">')
+
+
 def check(s):
     errs = []
+    retired = RETIRED in s
     for m, lo, hi in MARKERS:
+        if retired and m in RETIRED_SKIP: continue
         n = s.count(m)
         if n < lo or (hi is not None and n > hi):
             want = f'{lo}' if lo == hi else f'{lo}–{hi if hi is not None else "∞"}'
@@ -73,7 +79,7 @@ def check(s):
     if reg.get('WO_READY'):
         mods.append('wo_props')
         mods += [k for k, ts in reg.get('WO_KITS', {}).items() if any(t in reg['WO_READY'] for t in ts)]
-    for mid in mods:
+    for mid in ([] if retired else mods):
         n = len(re.findall(r'<script type="text/plain" id="wbmod-%s"' % re.escape(mid), s))
         if n != 1:
             errs.append(f'按需加载模块 wbmod-{mid} 出现 {n} 次（应为 1）')
