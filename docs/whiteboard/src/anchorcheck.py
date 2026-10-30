@@ -73,6 +73,7 @@ MARKERS = [
     ('// WO_RULES_CHAPTER_V1', 1, 1),
     ('<script type="application/json" id="VOCAB_HEAVY_JSON">', 1, 1),
     ('function etymIsPlaceholderTip(t)', 1, 1), ('<!-- DEDUP_A:sight -->', 1, 1),   # 重复内容合并 1：V6 占位巧记不显示（patch_etym_card.py / patch_dedup_a.py）
+    ('// WORD_ALIAS_V1 ----------', 1, 1), ('function wordFormsHtml(w)', 1, 1), ('migrateWordAliasRecords();   // WORD_ALIAS_V1', 1, 1),   # 重复内容合并 2：别名词条（patch_dedup_b.py）
     # 决策 33 ①：档案与自测合一（src/patch_my_study.py，2026-10-31）——标记要么全无（补丁前）要么各 1
 ]
 MY_STUDY = [

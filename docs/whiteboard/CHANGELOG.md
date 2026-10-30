@@ -2493,3 +2493,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 改动：`src/patch_etym_card.py`（新增 `etymIsPlaceholderTip`，重跑）、新补丁 `src/patch_dedup_a.py`，anchorcheck 登记；`v5/app_check8.py` 加占位词抽查。`runall.py --full` 全过。
 - 未改：v5 单词卡模板 box1 的重复行（需重建模板，且涉及 R1 基线）。
 
+### 2026-10-31 03:30 JST · 重复内容合并第 2 步：重复词条并到原形 / 主拼写
+- 51 个 V6 空壳词条设别名：48 个变形词（went、saw、ate、brought、caught、took、made、drove、babies、cities、libraries、dictionaries…）→ 原形，color → colour，gray → grey，its → it。别名词条不再出现在列表 / 小测干扰项 / 计数里；旧 id、按词形跳卡、小测题单、模块小测、学习记录全部转到主词条；主词条卡上多一行「过去式：went 🔊」「美式：color 🔊」。
+- 读档迁移：别名 id 的学习记录并进主 id（错题 > 学习中 > 已掌握，错次相加，打卡日合并），localStorage 键不变，错题本计数与列表一致。
+- 课标单列的只合并显示：center ↔ centre 互链、studies ↔ study、broken 标「原形：break（词库未收）」。代词组：词组卡链接成员单词卡，单词卡链回词组卡。
+- 补丁 `src/patch_dedup_b.py`、数据 `src/dedup_b_data.json`，anchorcheck 登记 WORD_ALIAS_V1；新回归 `v5/app_check11.py` 入 runall；`runall.py --full` 全过。
+
