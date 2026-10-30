@@ -1,5 +1,8 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
+
+> **2026-10-30 16:00 更新**：主文件已瘦身到 16.9 MB（字体、引擎全 App 共用一份，见 CHANGELOG 同日条目）；修复自动版面人物重叠。改了引擎 / 字体 / auto.js 后跑 `python3 docs/whiteboard/v5/rebuild_all.py` 全部重建。`v5/out/` 和自动角色包不再进仓库。
+
 > 更新：2026-10-30 15:35 JST（老白板全部 v5.1 替换完成；万能动词剧场 look、give 12 组 24 幕（VV 72 幕全部完成）；万能动词剧场 get、turn 12 组 24 幕（环境重装后重跑）；万能动词剧场 get、turn 12 组 24 幕；单词身世 wo_* 9 幕 + 中英对照 ze_* 11 幕；第一性原理 fp_* 22 幕 v5.1 替换进 App（fp_one_king ①、fp_zoom_focus ① 已迁中英对照，不重画）；万能动词 VV 72 幕清单已导出 vv_inventory.py；metaphor_code 3、writing_alchemist 3、phrasal_key 2、pron_map 3、stress_rhythm 3、intonation_map 3 幕 v5.1 替换进 App；five_patterns 5、bamboo_tree 5、eight_endings 1、irregular_plural 2 幕 v5.1 替换进 App；aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
 > **当前阶段（2026-10-30 09:14 起）**：决策 30 动作系统重建最优先（见下方「🔴 优先级变更」）。以下为旧描述——阶段 0–4、首页改版 1–6 步已完成；**正在做：阶段 7 全 App 白板化试点（fp_economy 第 1 幕已出对比图待用户审，FR01 买卖待做）+ 阶段 8 / 9 词源与单词全部维度审计**；练习闭环（决策 14）等用户点头。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，26 条决策：1–19、22–28）→ `SOP.md`（标准流程 + 验收清单）。历史进度、每步验收数字、引擎新工具登记都在 `CHANGELOG.md`（原 HANDOFF 全文，章节号不变）。

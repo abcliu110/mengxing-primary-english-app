@@ -22,7 +22,14 @@ function wb5StageHtml(tab, idx, withGloss) {
           <iframe id="wb5Frame" data-tab="${tab}" data-case="${idx | 0}" title="白板动画" allow="autoplay" style="width:100%; height:560px; border:0; display:block;"></iframe>
         </div>${withGloss ? wbGlossHtml(tab, idx | 0) + '<div style="height:14px;"></div>' : ""}`;
 }
-function wb5Mount(fr) {   // WB5_MOUNT_V2：gzip + 共享图片/字体块（wb5blob-*），按需解压
+function wb5Gz(b64) { const b = atob(b64), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text(); }
+var wb5BlobCache = {};
+function wb5Blob(h) {   // 共享块：图片 / 字体 data URI 原样存；引擎脚本存成 "gz:" + gzip base64，用到才解压（同一页只解一次）
+  if (wb5BlobCache[h]) return wb5BlobCache[h];
+  const b = document.getElementById("wb5blob-" + h), t = b ? b.textContent : "";
+  return (wb5BlobCache[h] = t.slice(0, 3) === "gz:" ? wb5Gz(t.slice(3)) : Promise.resolve(t));
+}
+function wb5Mount(fr) {   // WB5_MOUNT_V3：gzip + 共享块（图片 / 字体 / 引擎，wb5blob-*），按需解压
   if (fr.getAttribute("data-on")) return;
   const el = wb5El(fr.getAttribute("data-tab"), fr.getAttribute("data-case"));
   if (!el) return;
@@ -32,11 +39,12 @@ function wb5Mount(fr) {   // WB5_MOUNT_V2：gzip + 共享图片/字体块（wb5b
   fr.addEventListener("load", () => { fit(); setTimeout(fit, 300); try { new ResizeObserver(fit).observe(fr.contentDocument.body); } catch (e) {} });
   const text = el.getAttribute("data-gz") ? (() => { const b = atob(el.textContent.trim()), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
     return new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text(); })() : Promise.resolve(el.textContent);
-  text.then(t => { fr.srcdoc = t.replace(/<\/wb5-script/g, "</script").replace(/@@B:([0-9a-f]{16})@@/g, (m, h) => { const b = document.getElementById("wb5blob-" + h); return b ? b.textContent : ""; }); })
+  text.then(t => { t = t.replace(/<\/wb5-script/g, "</script"); const hs = [...new Set([...t.matchAll(/@@B:([0-9a-f]{16})@@/g)].map(m => m[1]))];
+    return Promise.all(hs.map(wb5Blob)).then(vs => { const M = {}; hs.forEach((h, i) => { M[h] = vs[i]; }); fr.srcdoc = t.replace(/@@B:([0-9a-f]{16})@@/g, (m, h) => M[h] || ""); }); })
     .catch(e => { try { console.warn("wb5", e); } catch (_) {} });
 }
 '''
-new_mount_js = RUNTIME[RUNTIME.index('function wb5Mount(fr) {'):]
+new_mount_js = RUNTIME[RUNTIME.index('function wb5Gz(b64) {'):]
 if 'WB5_EMBED' not in s:
     i = s.index('function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {')
     s = s[:i] + RUNTIME.lstrip('\n') + s[i:]
@@ -68,8 +76,8 @@ if 'WB5_EMBED_VV' not in s:   # 万能动词剧场：词组有 v5 幕就换成 �
     s = s[:i] + fn + s[i:]
 
 import hashlib, gzip, base64
-if 'WB5_MOUNT_V2' not in s:   # 升级已装的运行时
-    a = s.index('function wb5Mount(fr) {'); b = s.index('\n}\n', a) + 3
+if 'WB5_MOUNT_V3' not in s:   # 升级已装的运行时（V3：引擎共享块）
+    a = s.index('function wb5Gz(b64) {') if 'function wb5Gz(b64) {' in s else s.index('function wb5Mount(fr) {'); b = s.index('\n}\n', s.index('function wb5Mount(fr) {')) + 3
     s = s[:a] + new_mount_js + s[b:]
 BLOB = re.compile(r'data:(?:image/webp|font/woff);base64,[A-Za-z0-9+/=]{2000,}')
 def pack(html):
@@ -77,6 +85,11 @@ def pack(html):
     def sub(m):
         h = hashlib.sha1(m.group(0).encode()).hexdigest()[:16]; hs.append(h); blobs.setdefault(h, m.group(0)); return f'@@B:{h}@@'
     html = BLOB.sub(sub, html)
+    def eng(m):   # 共享引擎脚本：整段抽成 gz 共享块（各幕完全相同，只存一份）
+        body = m.group(1); h = hashlib.sha1(body.encode()).hexdigest()[:16]; hs.append(h)
+        blobs.setdefault(h, 'gz:' + base64.b64encode(gzip.compress(body.encode('utf-8'), 9, mtime=0)).decode())
+        return f'<script data-wb5-engine>@@B:{h}@@</wb5-script>'
+    html = re.sub(r'<script data-wb5-engine>(.*?)</wb5-script>', eng, html, count=1, flags=re.S)
     return base64.b64encode(gzip.compress(html.encode('utf-8'), 9, mtime=0)).decode(), sorted(set(hs))
 blobs = {}
 anchor = s.index('<script type="text/plain" id="wbmod-')
