@@ -16,7 +16,9 @@
 - ✅ tense_matrix ③ 一般过去时 v5.1（12 块白板 172 s，R1 88/88 `lab/INVENTORY_TM3_V5.md`，0 报错，确定性 ✓，607 KB ≤ 预算）。
 - ✅ tense_matrix ④ 一般将来时 v5.1（12 块白板 160 s，R1 84/84，0 报错，确定性 ✓，646 KB）。
 - ✅ tense_matrix ⑤ 现在完成时 v5.1（169 s，R1 89/89，0 报错，确定性 ✓，502 KB）→ **tense_matrix 单元 5 幕全部完成**（旧清单只有 5 个案例，REDRAW_V5 原写 6 已更正）。
-- **下一步（不再询问用户；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
+- ✅ **tense_matrix 5 幕已替换进 App**（用户 12:27「现在替换吧」、12:29「改一个替换一个，提交，写好交接文档」）：`v5/embed_app.py`（幂等）；App 回归：5 幕 iframe 挂载、时长正确、0 报错，bamboo_tree / adj_order / past_clans 仍旧 SVG 正常；主文件 9.32 MB（字体每幕一份，待共享优化）。规则写在 REDRAW_V5.md「替换规则」。
+- 环境提醒：沙盒重置过一次，需 `pip install playwright && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium` 才能跑 shots.py。
+- **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
 
 ## 🟢 动作系统 v5（决策 31，2026-10-30 10:28 JST 用户确认）——先读这一节

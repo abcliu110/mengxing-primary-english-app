@@ -513,3 +513,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `v5/scenes/tense_matrix_5.js`（12 块白板，169 s）+ 帧库 `sprites/tm5.js`（l_key / m_hw / wang / l_kite / l_w0–3 / m_like）。
 - 动作：桥从过去拱到现在；Leo 摸空口袋 + 锁着的门抖动「进不去门」；Mia 举起写完的作业 ✔ → Leo 放风筝跑出去（成果：能玩了）；2021–现在逐年点亮 + 北京的家；Leo 走去长城再走回来（been to）、王老师拖箱子走远淡出（gone to）。
 - 验收：R1 89/89；0 报错；确定性 ✓；501,507 bytes。tense_matrix 5 幕全部完成（旧清单 5 个案例）。
+
+## 2026-10-30 12:35 JST · tense_matrix 5 幕 v5.1 替换进 App
+- 新增 `v5/embed_app.py`：v5 HTML 存进主文件 text/plain 块，`wbStageHtml` / `startSuperLabCanvasLoop` 有 v5 版就挂 iframe srcdoc（标记 WB5_EMBED），没有就照旧 SVG。
+- 回归：tense_matrix ①–⑤ iframe 挂载、时长 179.5 / 162.1 / 171.6 / 160.4 / 169.2 s、0 报错；其他页签旧 SVG 正常。主文件 6,027,070 → 9,321,636 bytes。
