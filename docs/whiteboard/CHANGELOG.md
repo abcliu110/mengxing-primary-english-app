@@ -542,3 +542,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · adj_order 第4幕 v5.1 重画并替换进 App
 - ④  那个高个子年轻的英国篮球教练：R1 89/89，~120 s，主文件 12,756,036 bytes。
+
+## 2026-10-30 · 主文件体积优化 v1
+- embed_app.py：共享块 wb5blob-<hash> + gzip 存放；13 幕重新嵌入，12.76 → 10.91 MB。
