@@ -10,7 +10,7 @@
 ## 🔴 决策 32（2026-10-30 10:57）：全部白板动画按 v5.1 标准重画——最优先
 - 范围约 171 幕（白板案例 99 + 万能动词剧场 72），清单 / 进度 `REDRAW_V5.md`；标准 MASTER_DESIGN §2.9，验收 SOP §17。
 - ✅ 公共引擎 `v5/`（README 有 API 与帧库登记）；🟡 tense_matrix ① 重画完成待用户审（`v5/out/tense_matrix_1.html`，联络表 `_keyframes.png`，R1 清单 `lab/INVENTORY_TM1_V5.md` 91/91）。
-- 下一步：用户审 ① → 按同一模板做 tense_matrix ②–⑥ → 按 `REDRAW_V5.md` 顺序推进；全部审过后再统一并入主 App（替换旧 SVG 白板，播放器 / rough / GSAP 只打一份）。
+- 下一步：按 `REDRAW_V5.md` 顺序推进；**改一个替换一个**（用户 2026-10-30 12:29）：每幕重画验收后立即用 `v5/embed_app.py` 替换进主 App、回归、提交、更新本表。tense_matrix ①–⑤ 已替换（7728afa）。
 - ✅ **人物先行阶段（2026-10-30 11:28 用户要求先画人物帧、再画版面）**：331 帧透明 WebP 人物 / 动作帧库 `v5/sprites/cast/`（约 7 MB，进仓库），登记表 `v5/CAST_V5.md`（每帧对应的旧案例动作 + 万能动词 24 义项 72 组）。工具：`split_sheet.py`（联排图自动切帧）、`cut_box.py`（粘连帧按坐标切）、`pack_cast.py`（抠绿 → cast/）；`build_sprites.py` 找不到 src 时自动读 cast/。⚠️ 待返工：`l_lift0–2`（杠铃粘连）、`missw_give`（底部残留）、V29 Leo 黑发。
 - ✅ tense_matrix ② 现在进行时 v5.1（12 块白板 162 s，R1 85/85 `lab/INVENTORY_TM2_V5.md`，0 报错，确定性 ✓，675 KB 略超预算；新增 `v5/r1v5.py` 自动 R1 核对、wb5 `actor.dy(t)` 竖直位移）。
 - ✅ tense_matrix ③ 一般过去时 v5.1（12 块白板 172 s，R1 88/88 `lab/INVENTORY_TM3_V5.md`，0 报错，确定性 ✓，607 KB ≤ 预算）。
