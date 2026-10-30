@@ -35,7 +35,7 @@
 
 **待用户审**：对比总图 fp_economy_1–4、fp_vectors_1–4、fp_boundedness_1（旧工作区 `work/shots/`）；2026-10-30 02:10 起新做的 fp_boundedness_2–4、fp_iconicity_1–4、fp_one_king_2–4、fp_zoom_focus_2–4、bamboo_tree_1–5、aux_transformer_1–4、five_patterns_1–5 的对比总图在 Hark 项目工作区 `work/shots/`。
 
-**下一个接手点（2026-10-30 09:40 更新）**：tense_matrix、past_clans 已全部升 v2。adj_order 也已完成（09:25）。下一个：**metaphor_code**（同样先做 classic 快照 + LAB_DEPS / preview.html 加 wo_props）。之后： → stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → …（顺序同下）。
+**下一个接手点（2026-10-30 09:50 更新）**：tense_matrix、past_clans、adj_order、metaphor_code 已全部升 v2。下一个：**stress_rhythm**（同样先做 classic 快照 + LAB_DEPS / preview.html 加 wo_props；原 3 幕 r2check 失败一并修）。之后： → writing_alchemist → 三大厅 HD 剧场 FR01 → …（顺序同下）。
 
 ~~下一个接手点（2026-10-30 06:15 更新）~~：bamboo_tree 5 个、aux_transformer 4 个、five_patterns 5 个案例已全部升 v2（夜间进度见下）。下一个：王炸实验室 **tense_matrix**（照 five_patterns / aux_transformer 做法：先建 `cases/tense_matrix_classic.js` 快照（只改 WB_LAB 名、文件头加注释）、`insert_wb.py` 的 LAB_DEPS 与 `preview.html` 加 wo_props，验收用 `appwb.py tense_matrix`，INVENTORY 放 `docs/whiteboard/lab/INVENTORY_TENSE_MATRIX_V2.md`；一屏多行放不下时拆镜头、说明挪到句子下方；只有全宽内容前讲解员才退到 1010，能收窄到 x≤800 的框就收窄）。之后顺序：tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法白板化 → 思维导图白板化 → 词源 / 格林定律 / 词根词缀 → 文档收尾 → 决策 29 软件优化。
 
@@ -98,6 +98,7 @@
 - 09:25｜adj_order ①–④ 四列真题专列一次升 v2（共用 build），**adj_order 4 个案例全部 v2 完成**（中文 + 一袋形容词 + 主观→客观箭头 / 火车逐个上车 + 紧贴名词 + 为什么 + 结论框两镜头 + 🔮 预测 + 金句卡）｜本提交｜`work/shots/adj_order_1–4_对比总图.png`（Hark 主对话工作区）｜车厢 108→88 宽收进 x≤800；车厢色改 V3：观点红（主观）→ 中间蓝 → 材质用途 / 名词站绿（客观），与箭头同色；词「上车」做成从车厢上方落进座位；新增预测题 nice big red balloon / cute little yellow ducks / new white sports shoes / friendly young Chinese teacher（排错选项进 r2skip）；例句只有 bought / have / wears / is，无肢体动作词，actionWords 留空注明。R1 208 条 ❌0；r2check adj_order --strict 0；reg_render 只有 adj_order 20 项变；appwb 4 正常；时长 83→94、66→77、68→79、69→80 秒
 - 09:20｜metaphor_code 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；appwb 3 正常；升级前时长 ①130 ②98 ③129 秒（v2 上限 ×1.2：156 / 118 / 155）；本项目（Hark 项目「萌星小学英语」）接手连续推进
 - 09:30｜**优先级变更（用户 09:14）**：设计文档写入决策 30 动作系统重建（原因 5 条 + 新设计 D1–D6）、MASTER_DESIGN §2.8 动作系统 v2、阶段表加 6.5、SOP R4v2 + §16、HANDOFF 新任务顺序｜本提交｜—｜metaphor_code 只做到升级准备（`07ee259`），v2 暂停；k.act 使用统计已按代码核对（964 次，17 个动作）
+- 09:50｜metaphor_code ①–③ 三大隐喻密码一次升 v2，**metaphor_code 3 个案例全部 v2 完成**（每个案例：讲解员 + 五步进度；原 2×2 卡片一屏放不下 x≤800，拆成「两张卡一个镜头」；连读镜头每读一句先把原朗读句写上板；结论框收进 x≤800 代替旧 k.final；🔮 床头 the head of the bed / 红茶 black tea / as quiet as a mouse 预测 + 金句卡）｜本提交｜`work/shots/metaphor_code_1–3_对比总图.png`（Hark 项目「萌星小学英语」工作区）｜R3：① 原图时针指 6、朗读却是「points to three」，按 R1 两条都留，读到这句时让时针转到 3（场景动作）并补「→ 转到 3」小字；R4：look 讲解员指钟面、give me a hand 讲解员伸手托（support）、give the green light 红绿灯亮绿（actFx）；look sad 是系动词，按 five_patterns ② 先例不演；③ 无肢体动作词，蜜蜂嗡嗡、雨点落下用场景动画；red tea 进 r2skip。徽章 💡✂️（black tea 的「干叶颜色」说法查了 Wikipedia Black tea 条，只说中文按茶色叫红茶，没核实到英文命名理由，所以标 ✂️ 不标 📜）。R1 342 条 ❌0；r2check metaphor_code --strict 0；reg_render 只有 metaphor_code 15 项变；appwb 3 正常；时长 130→146、98→106、129→139 秒（都在 +20% 内）
 
 ## 1. 现在做到哪
 
