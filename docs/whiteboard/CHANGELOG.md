@@ -1850,3 +1850,180 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · hd_oral_sc04 第12幕 v5.1 重画并替换进 App
 - 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc04`（自我介绍 · I'm in Class Two, Grade Four.：R1 15/15，61 s，主文件 15,011,133 bytes。
+
+## 2026-10-30 · hd_oral_sc05 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc05`（询问与求助 · May I come in?：R1 15/15，72 s，主文件 15,014,016 bytes。
+
+## 2026-10-30 · hd_oral_sc05 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc05`（询问与求助 · Can I borrow your ruler?：R1 15/15，63 s，主文件 15,016,803 bytes。
+
+## 2026-10-30 · hd_oral_sc05 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc05`（询问与求助 · Could you help me, please?：R1 15/15，60 s，主文件 15,019,562 bytes。
+
+## 2026-10-30 · hd_oral_sc05 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc05`（询问与求助 · Can I borrow your dictionary?：R1 15/15，59 s，主文件 15,022,293 bytes。
+
+## 2026-10-30 · hd_oral_sc05 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc05`（询问与求助 · What does this word mean?：R1 15/15，61 s，主文件 15,025,072 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · What would you like?：R1 15/15，73 s，主文件 15,028,015 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · Help yourself!：R1 15/15，73 s，主文件 15,031,030 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · Can I have some water, please?：R1 15/15，75 s，主文件 15,033,969 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · Would you like some more?：R1 15/15，76 s，主文件 15,036,928 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · What's your favourite food?：R1 15/15，72 s，主文件 15,039,803 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · Pass me the spoon, please.：R1 15/15，75 s，主文件 15,042,750 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · I can use chopsticks!：R1 15/15，72 s，主文件 15,045,661 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · What would you like to drink?：R1 15/15，77 s，主文件 15,048,616 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · It tastes so delicious!：R1 15/15，71 s，主文件 15,051,539 bytes。
+
+## 2026-10-30 · hd_oral_sc06 第10幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc06`（就餐与点菜 · May I have the bill, please?：R1 15/15，78 s，主文件 15,054,511 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · Can I help you?：R1 15/15，78 s，主文件 15,057,478 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · How much is this?：R1 15/15，73 s，主文件 15,060,381 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · Can I try it on?：R1 15/15，75 s，主文件 15,063,344 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · I'll take it!：R1 15/15，70 s，主文件 15,066,247 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · It's too expensive!：R1 15/15，67 s，主文件 15,069,170 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · What size are your shoes?：R1 15/15，69 s，主文件 15,072,045 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · How much are these shoes?：R1 15/15，74 s，主文件 15,074,968 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · Do you have a smaller one?：R1 15/15，81 s，主文件 15,077,891 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · What colour would you like?：R1 15/15，83 s，主文件 15,080,862 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第10幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · Just looking, thank you.：R1 15/15，66 s，主文件 15,083,738 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第11幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · They are on sale today!：R1 15/15，72 s，主文件 15,086,699 bytes。
+
+## 2026-10-30 · hd_oral_sc07 第12幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc07`（购物与问价 · Here is your change.：R1 15/15，76 s，主文件 15,089,624 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · Excuse me, where is the library?：R1 15/15，74 s，主文件 15,092,495 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · Go straight and turn left.：R1 15/15，81 s，主文件 15,095,514 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · How do you come to school?：R1 15/15，87 s，主文件 15,098,517 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · Stop and wait at a red light!：R1 15/15，87 s，主文件 15,101,520 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · Is it far from here?：R1 15/15，78 s，主文件 15,104,471 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · How can I get to the hospital?：R1 15/15，81 s，主文件 15,107,418 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · Turn right at the first crossing.：R1 15/15，73 s，主文件 15,110,317 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · Take the No. 5 bus over there.：R1 15/15，81 s，主文件 15,113,248 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · Get on at the Cinema Stop.：R1 15/15，79 s，主文件 15,116,135 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第10幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · Don't forget to wear your helmet!：R1 15/15，76 s，主文件 15,119,055 bytes。
+
+## 2026-10-30 · hd_oral_sc08 第11幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc08`（问路与交通 · How long does it take? — Ten minutes.：R1 15/15，76 s，主文件 15,121,960 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · Have a good time!：R1 15/15，77 s，主文件 15,124,879 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · What a great day!：R1 15/15，77 s，主文件 15,127,834 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · What's the weather like today?：R1 15/15，74 s，主文件 15,130,717 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · It's raining! Take an umbrella.：R1 15/15，77 s，主文件 15,133,664 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · Which season do you like best?：R1 15/15，78 s，主文件 15,136,579 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · What day is it today? — It's Friday.：R1 15/15，71 s，主文件 15,139,466 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · What do you do on the weekend?：R1 15/15，78 s，主文件 15,142,409 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · What are you going to do tomorrow?：R1 15/15，80 s，主文件 15,145,364 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第9幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · Where did you go last weekend?：R1 15/15，76 s，主文件 15,148,323 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第10幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · Let's go on a picnic in the park!：R1 15/15，87 s，主文件 15,151,307 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第11幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · Let's make a snowman outside!：R1 15/15，77 s，主文件 15,154,248 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第12幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · What time is it now? — It's 4:30.：R1 15/15，73 s，主文件 15,157,189 bytes。
+
+## 2026-10-30 · hd_oral_sc09 第13幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc09`（天气与闲聊 · How was your summer vacation?：R1 15/15，80 s，主文件 15,160,154 bytes。
+
+## 2026-10-30 · hd_oral_sc10 第1幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · Happy birthday to you!：R1 15/15，77 s，主文件 15,163,093 bytes。
+
+## 2026-10-30 · hd_oral_sc10 第2幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · Cheers! Happy New Year!：R1 15/15，70 s，主文件 15,165,944 bytes。
+
+## 2026-10-30 · hd_oral_sc10 第3幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · When is your birthday? — On May 1st.：R1 15/15，82 s，主文件 15,168,871 bytes。
+
+## 2026-10-30 · hd_oral_sc10 第4幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · Happy Birthday to you!：R1 15/15，58 s，主文件 15,171,578 bytes。
+
+## 2026-10-30 · hd_oral_sc10 第5幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · Happy New Year!：R1 15/15，49 s，主文件 15,174,221 bytes。
+
+## 2026-10-30 · hd_oral_sc10 第6幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · Happy Children's Day!：R1 11/11，49 s，主文件 15,176,844 bytes。
+
+## 2026-10-30 · hd_oral_sc10 第7幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · Have a good trip!：R1 15/15，56 s，主文件 15,179,531 bytes。
+
+## 2026-10-30 · hd_oral_sc10 第8幕 v5.1 重画并替换进 App
+- 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc10`（节日与祝福 · The same to you!：R1 11/11，47 s，主文件 15,182,198 bytes。
