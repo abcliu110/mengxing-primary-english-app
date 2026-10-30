@@ -7,11 +7,12 @@
 
 
 
-## 🟢 动作系统 v5（2026-10-30 10:20 JST）——取代上面第 2 步的 SVG 骨架路线
-- 用户否定 SVG 小人 v1–v3、指出 v4 狗腿方向/步态错误；同意改为**有限动画（关键姿势帧）**，引擎改用 `huashu-art-motion`（白板画风）+ Remotion（时间轴、MP4、App 内 Player）。
-- 样板 `He takes the dog out.` 已完成：`docs/whiteboard/takeout_wb/`（README 写了分层、构建命令、体积、已知问题）。
-- 下一步：用户审片 → 按同一管线回改既有单元（tense_matrix、past_clans、adj_order）的人物动作 → 继续原计划。
-- 上面第 2 步的 `wb_verbs.js` 手写骨架（v1–v3 系）用户已否定，不再扩展；第 3、4 步的回改和原顺序照旧，只是人物动作改走 v5 管线（AI 关键帧 + huashu 白板 + Remotion）。
+## 🟢 动作系统 v5（决策 31，2026-10-30 10:28 JST 用户确认）——先读这一节
+- **路线**：有限动画 / 关键姿势帧。人物 = AI 绿幕关键帧（准备 → 发力 → 结果 + 走路 / 小跑 4 帧），代码只做位移、换帧、牵绳、镜头、高亮、字幕。上面「🔴 优先级变更」第 2 步的 `wb_verbs.js` 手写骨架已被用户否定，不再扩展。
+- **工具组合**（详见 MASTER_DESIGN 决策 31）：huashu-art-motion（画风 / 马克笔 / 揭开）+ rough.js（场景线条）+ GSAP（时间轴）+ 自写播放循环（App 内）+ Remotion（开发端出 MP4 / 截图）+ Python 抠图。App 里不带 React / Remotion Player。
+- **样板** `He takes the dog out.`：`docs/whiteboard/takeout_wb/`。v5.0（huashu + Remotion Player，HTML 1.02 MB）已推；**v5.1 按定稿组合重做中**（rough.js + GSAP + 自写播放器）。
+- **下一步**：v5.1 交付 → 用户审片 → 按同一管线回改 tense_matrix ①–⑤、past_clans ①–④、adj_order ①–④ → 原顺序剩余单元（「🔴」第 4 步）。
+- **接手要点**：素材制作 `build_assets.py`（绿幕阈值、溢色、项圈橙色识别）；出片 `npx remotion render`；Remotion 自带 Chrome Headless Shell 在 `node_modules/.remotion/`，截图用 `remotion still`。
 
 ## 🔴 优先级变更（2026-10-30 09:14 JST，用户确认）——先读这一节
 
