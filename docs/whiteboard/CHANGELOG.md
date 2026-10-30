@@ -999,3 +999,368 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `v5/rebuild_all.py`：一键全部重建 + 重新嵌入（缺角色包时按场景 ACTS 从 `cast/` 重建，抽查 6 幕逐字节一致）。
 - **仓库清理**：`v5/out/`（174 个构建产物，约 63 MB）和自动生成的角色包 `v5/sprites/*.js`（152 个，可从 cast/ 重建）移出 git 并加 .gitignore；手工版 tm/pc/ao 角色包（源图不在仓库）保留。
 - 回归：tense_matrix 5、adj_order 4、aux_transformer 4、fp_vectors 4、wo_grimm、ze_be、vv_take_on、vv_give_in 全部 v5 挂载、时长正确、errors none。
+
+
+---
+
+# 原 HANDOFF 快照（2026-10-30 16:10 JST 搬来，一字不改）
+
+> HANDOFF.md 又长到 83 KB、交接和流水混写，按「HANDOFF 只写现状，流水进 CHANGELOG」的规矩整份搬到这里；新的短交接见 HANDOFF.md。
+
+# 交接文档（HANDOFF）· 白板动画与新模块
+
+
+> **2026-10-30 16:00 更新**：主文件已瘦身到 16.9 MB（字体、引擎全 App 共用一份，见 CHANGELOG 同日条目）；修复自动版面人物重叠。改了引擎 / 字体 / auto.js 后跑 `python3 docs/whiteboard/v5/rebuild_all.py` 全部重建。`v5/out/` 和自动角色包不再进仓库。
+
+> 更新：2026-10-30 15:35 JST（老白板全部 v5.1 替换完成；万能动词剧场 look、give 12 组 24 幕（VV 72 幕全部完成）；万能动词剧场 get、turn 12 组 24 幕（环境重装后重跑）；万能动词剧场 get、turn 12 组 24 幕；单词身世 wo_* 9 幕 + 中英对照 ze_* 11 幕；第一性原理 fp_* 22 幕 v5.1 替换进 App（fp_one_king ①、fp_zoom_focus ① 已迁中英对照，不重画）；万能动词 VV 72 幕清单已导出 vv_inventory.py；metaphor_code 3、writing_alchemist 3、phrasal_key 2、pron_map 3、stress_rhythm 3、intonation_map 3 幕 v5.1 替换进 App；five_patterns 5、bamboo_tree 5、eight_endings 1、irregular_plural 2 幕 v5.1 替换进 App；aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
+> **当前阶段（2026-10-30 09:14 起）**：决策 30 动作系统重建最优先（见下方「🔴 优先级变更」）。以下为旧描述——阶段 0–4、首页改版 1–6 步已完成；**正在做：阶段 7 全 App 白板化试点（fp_economy 第 1 幕已出对比图待用户审，FR01 买卖待做）+ 阶段 8 / 9 词源与单词全部维度审计**；练习闭环（决策 14）等用户点头。
+> 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，26 条决策：1–19、22–28）→ `SOP.md`（标准流程 + 验收清单）。历史进度、每步验收数字、引擎新工具登记都在 `CHANGELOG.md`（原 HANDOFF 全文，章节号不变）。
+> 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元 / 改完一个文档立即提交；发现 bug 直接修。本文只写现状和下一步，流水写进 `CHANGELOG.md`。
+
+
+
+## 🔴 决策 32（2026-10-30 10:57）：全部白板动画按 v5.1 标准重画——最优先
+- 范围约 171 幕（白板案例 99 + 万能动词剧场 72），清单 / 进度 `REDRAW_V5.md`；标准 MASTER_DESIGN §2.9，验收 SOP §17。
+- ✅ 公共引擎 `v5/`（README 有 API 与帧库登记）；🟡 tense_matrix ① 重画完成待用户审（`v5/out/tense_matrix_1.html`，联络表 `_keyframes.png`，R1 清单 `lab/INVENTORY_TM1_V5.md` 91/91）。
+- 下一步：按 `REDRAW_V5.md` 顺序推进；**改一个替换一个**（用户 2026-10-30 12:29）：每幕重画验收后立即用 `v5/embed_app.py` 替换进主 App、回归、提交、更新本表。tense_matrix ①–⑤ 已替换（7728afa）。
+- ✅ **人物先行阶段（2026-10-30 11:28 用户要求先画人物帧、再画版面）**：331 帧透明 WebP 人物 / 动作帧库 `v5/sprites/cast/`（约 7 MB，进仓库），登记表 `v5/CAST_V5.md`（每帧对应的旧案例动作 + 万能动词 24 义项 72 组）。工具：`split_sheet.py`（联排图自动切帧）、`cut_box.py`（粘连帧按坐标切）、`pack_cast.py`（抠绿 → cast/）；`build_sprites.py` 找不到 src 时自动读 cast/。⚠️ 待返工：`l_lift0–2`（杠铃粘连）、`missw_give`（底部残留）、V29 Leo 黑发。
+- ✅ tense_matrix ② 现在进行时 v5.1（12 块白板 162 s，R1 85/85 `lab/INVENTORY_TM2_V5.md`，0 报错，确定性 ✓，675 KB 略超预算；新增 `v5/r1v5.py` 自动 R1 核对、wb5 `actor.dy(t)` 竖直位移）。
+- ✅ tense_matrix ③ 一般过去时 v5.1（12 块白板 172 s，R1 88/88 `lab/INVENTORY_TM3_V5.md`，0 报错，确定性 ✓，607 KB ≤ 预算）。
+- ✅ tense_matrix ④ 一般将来时 v5.1（12 块白板 160 s，R1 84/84，0 报错，确定性 ✓，646 KB）。
+- ✅ tense_matrix ⑤ 现在完成时 v5.1（169 s，R1 89/89，0 报错，确定性 ✓，502 KB）→ **tense_matrix 单元 5 幕全部完成**（旧清单只有 5 个案例，REDRAW_V5 原写 6 已更正）。
+- ✅ **tense_matrix 5 幕已替换进 App**（用户 12:27「现在替换吧」、12:29「改一个替换一个，提交，写好交接文档」）：`v5/embed_app.py`（幂等）；App 回归：5 幕 iframe 挂载、时长正确、0 报错，bamboo_tree / adj_order / past_clans 仍旧 SVG 正常；主文件 9.32 MB（字体每幕一份，待共享优化）。规则写在 REDRAW_V5.md「替换规则」。
+- 环境提醒：沙盒重置过一次，需 `pip install playwright && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium` 才能跑 shots.py。
+- ✅ **past_clans ① 金钟罩铁布衫派** v5.1 重画（`v5/scenes/past_clans_1.js`，帧库 `sprites/pc1.js`，R1 83/83 → `lab/INVENTORY_PC1_V5.md`，143 s，0 报错，确定性 ✓）并已替换进 App；回归 `python3 v5/app_check.py past_clans clanIdx 4`：①为 v5，②–④仍旧 SVG，其他页签正常。旧版完整导出清单存 `lab/INVENTORY_PAST_CLANS_EXPORT.md`（r1v5.py 直接用它）。
+- ✅ **past_clans ② 元音换挡派** v5.1 重画（`v5/scenes/past_clans_2.js`，帧库 `pc2`，R1 81/81，168 s，0 报错）并已替换进 App；回归 ①② v5、③④旧 SVG。
+- ✅ **past_clans ③ 长音减肥派** v5.1 重画（`v5/scenes/past_clans_3.js`，帧库 `pc3`，R1 78/78，128 s，0 报错）并已替换进 App。
+- ✅ **past_clans ④ 护法派** v5.1 重画（`v5/scenes/past_clans_4.js`，帧库 `pc4`，R1 78/78，158 s，0 报错）并已替换进 App —— **past_clans 单元完成**（4/4 幕在 App 里都是 v5）。主文件 11.45 MB（字体每幕一份，待共享优化）。下一单元：`adj_order`（4 幕）：先 `python3 src/export_inventory.py adj_order > lab/INVENTORY_ADJ_ORDER_EXPORT.md`，查 CAST_V5 帧（coach / teacher_cn 等），再画版面，每幕画完立即 `embed_app.py` + `app_check.py adj_order <状态字段> 4` + 提交。
+- 环境提醒：沙盒可能重置，缺依赖时 `pip install playwright numpy pillow && python3 -m playwright install chromium && sudo apt-get install -y libatk1.0-0t64 libatk-bridge2.0-0t64 libcups2t64 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libasound2t64 libnss3 libnspr4`。
+- ✅ `adj_order` 第1/4幕 一张漂亮的小圆木桌（共用版面引擎 scenes/adj_train.js） v5.1 重画并替换进 App（`v5/scenes/adj_order_1.js`，R1 91/91，154 s，0 报错；主文件 11,770,109 bytes）
+- ✅ `adj_order` 第2/4幕 ②  两只可爱的小白猫 v5.1 重画并替换进 App（`v5/scenes/adj_order_2.js`，R1 86/86，~120 s，0 报错；主文件 12,087,206 bytes）
+- ✅ `adj_order` 第3/4幕 ③  一件漂亮的崭新红色中国丝绸连衣裙 v5.1 重画并替换进 App（`v5/scenes/adj_order_3.js`，R1 90/90，~120 s，0 报错；主文件 12,423,920 bytes）
+- ✅ `adj_order` 第4/4幕 ④  那个高个子年轻的英国篮球教练 v5.1 重画并替换进 App（`v5/scenes/adj_order_4.js`，R1 89/89，~120 s，0 报错；主文件 12,756,036 bytes）
+- ✅ **体积优化 v1（embed_app.py WB5_MOUNT_V2）**：幕内图片 / 字体 data URI 按内容哈希抽成共享块 `wb5blob-<hash>`（同帧同字体全 App 一份），其余 HTML gzip+base64，挂载时 DecompressionStream 解压。13 幕全部重新嵌入，主文件 12.76 → 10.91 MB，三个单元回归 0 报错。下一步体积优化：文楷（wk）改为全 App 一份共享子集（约 3300 字），预计每幕再省约 125 KB。
+- ✅ `aux_transformer` 第1/4幕 🪞 助动词照妖镜 · ① be 动词护卫 v5.1 重画并替换进 App（`v5/scenes/aux_transformer_1.js`，R1 81/81，134 s，0 报错；主文件 11,147,117 bytes）
+- ✅ `aux_transformer` 第2/4幕 🪞 助动词照妖镜 · ② 情态动词大将军 v5.1 重画并替换进 App（`v5/scenes/aux_transformer_2.js`，R1 77/77，118 s，0 报错；主文件 11,398,851 bytes）
+- ✅ `aux_transformer` 第3/4幕 🪞 助动词照妖镜 · ③ 三单照妖镜 does v5.1 重画并替换进 App（`v5/scenes/aux_transformer_3.js`，R1 77/77，119 s，0 报错；主文件 11,706,342 bytes）
+- ✅ `aux_transformer` 第4/4幕 🪞 助动词照妖镜 · ④ 过去式照妖镜 did v5.1 重画并替换进 App（`v5/scenes/aux_transformer_4.js`，R1 77/77，129 s，0 报错；主文件 12,008,559 bytes）
+- ✅ **老白板 v5.1 全部替换完成（2026-10-30 15:35）**：App 里挂载的白板案例 + 万能动词剧场 72 幕全部换成 v5.1（每幕 R1 零丢失、确定性、0 报错，embed 后 App 回归通过）。不需替换：fp_one_king ①、fp_zoom_focus ①（已迁中英对照，只留跳转）、wo_vowel_kit（共用小工具）、verb_demo / narrator_demo（开发样板，App 未挂载）。万能动词剧场：旧 ①②③ 三幕 → 新 ①（本义）②（第二义 + 合成卡），清单由 `v5/vv_inventory.py` 逐帧导出；App 内 ① / ② 两个按钮切换（`wb5VVHtml`，旧 SVG 留作兜底）。环境注意：沙箱重置后需 `pip install numpy pillow playwright fonttools brotli && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium`；`batch.sh` 有任何一幕失败就不提交。
+- **下一步**：老动画替换已完成 → 按原顺序进入三大厅 HD 剧场 FR01 → 语法 40 点 → 思维导图 → 词源 / 格林 / 词根 → 文档收尾 → 决策 29 软件优化（等用户确认再开始，见用户规则）。
+- ✅ **批量重画流水线（2026-10-30 14:30，Hark 主对话接手）**：通用版面引擎 `v5/scenes/auto.js`（内容清单 → 一块块白板，镜头逐块推；菜单短词排成一行、①②… 小标题开新板、金句卡带框；例句里的动作词由 cast/ 关键帧演出、读到即橙色弹字；结尾拉远看全图）+ `v5/gen_auto.py`（清单 → `scenes/<页签>_<n>.js`，字幕 / 白板 / 朗读原样写入，R1 一字不差）+ `v5/run_auto.sh`（生成 → 打包 → r1v5 → 联络表）+ `v5/do_unit.py v5/units.json <页签>`（整单元：每幕验收全过才 embed_app + log_done，最后 app_check）。动作词 → 帧的映射写在 `v5/units.json`。`log_done.py` 已改为幂等（重跑不重复记）。环境：字体 wk.ttf 用 LXGW WenKai v1.501（v1.330 的 cmap 让 fontTools 4.61 报错）。
+- ✅ `five_patterns` 第1/5幕 🧱 五大基本句型 · ① SV 自给自足型 v5.1 重画并替换进 App（`v5/scenes/five_patterns_1.js`，R1 77/77，110 s，0 报错；主文件 12,437,087 bytes）
+- ✅ `five_patterns` 第2/5幕 🧱 五大基本句型 · ② SVP 状态天平型 v5.1 重画并替换进 App（`v5/scenes/five_patterns_2.js`，R1 75/75，106 s，0 报错；主文件 12,652,212 bytes）
+- ✅ `five_patterns` 第3/5幕 🧱 五大基本句型 · ③ SVO 一箭穿心型 v5.1 重画并替换进 App（`v5/scenes/five_patterns_3.js`，R1 74/74，118 s，0 报错；主文件 12,886,789 bytes）
+- ✅ `five_patterns` 第4/5幕 🧱 五大基本句型 · ④ SVOO 双手递礼型 v5.1 重画并替换进 App（`v5/scenes/five_patterns_4.js`，R1 74/74，111 s，0 报错；主文件 13,155,706 bytes）
+- ✅ `five_patterns` 第5/5幕 🧱 五大基本句型 · ⑤ SVOC 魔法赋能型 v5.1 重画并替换进 App（`v5/scenes/five_patterns_5.js`，R1 80/80，123 s，0 报错；主文件 13,383,963 bytes）
+- ✅ `bamboo_tree` 第1/5幕 🎋 竹节句 vs 树干句 · 1 v5.1 重画并替换进 App（`v5/scenes/bamboo_tree_1.js`，R1 64/64，83 s，0 报错；主文件 13,571,797 bytes）
+- ✅ `bamboo_tree` 第2/5幕 🎋 竹节句 vs 树干句 · 2 v5.1 重画并替换进 App（`v5/scenes/bamboo_tree_2.js`，R1 67/67，86 s，0 报错；主文件 13,753,336 bytes）
+- ✅ `bamboo_tree` 第3/5幕 🎋 竹节句 vs 树干句 · 3 v5.1 重画并替换进 App（`v5/scenes/bamboo_tree_3.js`，R1 62/62，82 s，0 报错；主文件 13,933,472 bytes）
+- ✅ `bamboo_tree` 第4/5幕 🎋 竹节句 vs 树干句 · 4 v5.1 重画并替换进 App（`v5/scenes/bamboo_tree_4.js`，R1 66/66，83 s，0 报错；主文件 14,171,581 bytes）
+- ✅ `bamboo_tree` 第5/5幕 🎋 竹节句 vs 树干句 · 5 v5.1 重画并替换进 App（`v5/scenes/bamboo_tree_5.js`，R1 65/65，91 s，0 报错；主文件 14,360,874 bytes）
+- ✅ `eight_endings` 第1/1幕 🎭 八大词尾 · 1 v5.1 重画并替换进 App（`v5/scenes/eight_endings_1.js`，R1 76/76，123 s，0 报错；主文件 14,612,238 bytes）
+- ✅ `irregular_plural` 第1/2幕 👣 不规则复数 · 1 v5.1 重画并替换进 App（`v5/scenes/irregular_plural_1.js`，R1 66/66，66 s，0 报错；主文件 14,858,189 bytes）
+- ✅ `irregular_plural` 第2/2幕 👣 不规则复数 · 2 v5.1 重画并替换进 App（`v5/scenes/irregular_plural_2.js`，R1 80/80，76 s，0 报错；主文件 15,070,222 bytes）
+- ✅ `metaphor_code` 第1/3幕 🔐 三大隐喻密码 · 1 v5.1 重画并替换进 App（`v5/scenes/metaphor_code_1.js`，R1 101/101，139 s，0 报错；主文件 15,307,424 bytes）
+- ✅ `metaphor_code` 第2/3幕 🔐 三大隐喻密码 · 2 v5.1 重画并替换进 App（`v5/scenes/metaphor_code_2.js`，R1 88/88，104 s，0 报错；主文件 15,532,169 bytes）
+- ✅ `metaphor_code` 第3/3幕 🔐 三大隐喻密码 · 3 v5.1 重画并替换进 App（`v5/scenes/metaphor_code_3.js`，R1 96/96，143 s，0 报错；主文件 15,825,604 bytes）
+- ✅ `writing_alchemist` 第1/3幕 ✍️ 写作炼金术 · 1 v5.1 重画并替换进 App（`v5/scenes/writing_alchemist_1.js`，R1 50/50，137 s，0 报错；主文件 16,149,968 bytes）
+- ✅ `writing_alchemist` 第2/3幕 ✍️ 写作炼金术 · 2 v5.1 重画并替换进 App（`v5/scenes/writing_alchemist_2.js`，R1 53/53，149 s，0 报错；主文件 16,342,192 bytes）
+- ✅ `writing_alchemist` 第3/3幕 ✍️ 写作炼金术 · 3 v5.1 重画并替换进 App（`v5/scenes/writing_alchemist_3.js`，R1 50/50，167 s，0 报错；主文件 16,552,444 bytes）
+- ✅ `phrasal_key` 第1/2幕 🔑 短语动词钥匙 · 1 v5.1 重画并替换进 App（`v5/scenes/phrasal_key_1.js`，R1 71/71，120 s，0 报错；主文件 16,814,643 bytes）
+- ✅ `phrasal_key` 第2/2幕 🔑 短语动词钥匙 · 2 v5.1 重画并替换进 App（`v5/scenes/phrasal_key_2.js`，R1 59/59，100 s，0 报错；主文件 17,247,650 bytes）
+- ✅ `pron_map` 第1/3幕 👄 发音地图 · 1 v5.1 重画并替换进 App（`v5/scenes/pron_map_1.js`，R1 63/63，92 s，0 报错；主文件 17,481,881 bytes）
+- ✅ `pron_map` 第2/3幕 👄 发音地图 · 2 v5.1 重画并替换进 App（`v5/scenes/pron_map_2.js`，R1 57/57，76 s，0 报错；主文件 17,678,551 bytes）
+- ✅ `pron_map` 第3/3幕 👄 发音地图 · 3 v5.1 重画并替换进 App（`v5/scenes/pron_map_3.js`，R1 65/65，65 s，0 报错；主文件 17,879,749 bytes）
+- ✅ `stress_rhythm` 第1/3幕 🎯 重音与弱读 · 1 v5.1 重画并替换进 App（`v5/scenes/stress_rhythm_1.js`，R1 54/54，57 s，0 报错；主文件 18,060,620 bytes）
+- ✅ `stress_rhythm` 第2/3幕 🎯 重音与弱读 · 2 v5.1 重画并替换进 App（`v5/scenes/stress_rhythm_2.js`，R1 51/51，49 s，0 报错；主文件 18,232,063 bytes）
+- ✅ `stress_rhythm` 第3/3幕 🎯 重音与弱读 · 3 v5.1 重画并替换进 App（`v5/scenes/stress_rhythm_3.js`，R1 45/45，56 s，0 报错；主文件 18,410,322 bytes）
+- ✅ `intonation_map` 第1/3幕 🎵 语调地图 · 1 v5.1 重画并替换进 App（`v5/scenes/intonation_map_1.js`，R1 57/57，90 s，0 报错；主文件 18,599,601 bytes）
+- ✅ `intonation_map` 第2/3幕 🎵 语调地图 · 2 v5.1 重画并替换进 App（`v5/scenes/intonation_map_2.js`，R1 49/49，68 s，0 报错；主文件 18,781,155 bytes）
+- ✅ `intonation_map` 第3/3幕 🎵 语调地图 · 3 v5.1 重画并替换进 App（`v5/scenes/intonation_map_3.js`，R1 45/45，59 s，0 报错；主文件 18,951,959 bytes）
+- ✅ `fp_economy` 第1/4幕 ⚙️ 第一性原理 · 经济原则 · 1 v5.1 重画并替换进 App（`v5/scenes/fp_economy_1.js`，R1 69/69，75 s，0 报错；主文件 19,167,017 bytes）
+- ✅ `fp_economy` 第2/4幕 ⚙️ 第一性原理 · 经济原则 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_economy_2.js`，R1 66/66，65 s，0 报错；主文件 19,345,115 bytes）
+- ✅ `fp_economy` 第3/4幕 ⚙️ 第一性原理 · 经济原则 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_economy_3.js`，R1 69/69，81 s，0 报错；主文件 19,546,882 bytes）
+- ✅ `fp_economy` 第4/4幕 ⚙️ 第一性原理 · 经济原则 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_economy_4.js`，R1 75/75，71 s，0 报错；主文件 19,768,718 bytes）
+- ✅ `fp_iconicity` 第1/4幕 🔤 第一性原理 · 象似性 · 1 v5.1 重画并替换进 App（`v5/scenes/fp_iconicity_1.js`，R1 57/57，76 s，0 报错；主文件 20,051,532 bytes）
+- ✅ `fp_iconicity` 第2/4幕 🔤 第一性原理 · 象似性 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_iconicity_2.js`，R1 69/69，75 s，0 报错；主文件 20,235,006 bytes）
+- ✅ `fp_iconicity` 第3/4幕 🔤 第一性原理 · 象似性 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_iconicity_3.js`，R1 66/66，67 s，0 报错；主文件 20,415,260 bytes）
+- ✅ `fp_iconicity` 第4/4幕 🔤 第一性原理 · 象似性 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_iconicity_4.js`，R1 64/64，78 s，0 报错；主文件 20,608,111 bytes）
+- ✅ `fp_boundedness` 第1/4幕 📦 第一性原理 · 有界无界 · 1 v5.1 重画并替换进 App（`v5/scenes/fp_boundedness_1.js`，R1 57/57，85 s，0 报错；主文件 20,780,417 bytes）
+- ✅ `fp_boundedness` 第2/4幕 📦 第一性原理 · 有界无界 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_boundedness_2.js`，R1 50/50，74 s，0 报错；主文件 20,954,338 bytes）
+- ✅ `fp_boundedness` 第3/4幕 📦 第一性原理 · 有界无界 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_boundedness_3.js`，R1 65/65，91 s，0 报错；主文件 21,135,057 bytes）
+- ✅ `fp_boundedness` 第4/4幕 📦 第一性原理 · 有界无界 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_boundedness_4.js`，R1 60/60，78 s，0 报错；主文件 21,381,732 bytes）
+- ✅ `fp_vectors` 第1/4幕 🧭 第一性原理 · 方向向量 · 1 v5.1 重画并替换进 App（`v5/scenes/fp_vectors_1.js`，R1 57/57，73 s，0 报错；主文件 21,555,080 bytes）
+- ✅ `fp_vectors` 第2/4幕 🧭 第一性原理 · 方向向量 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_vectors_2.js`，R1 55/55，82 s，0 报错；主文件 22,076,180 bytes）
+- ✅ `fp_vectors` 第3/4幕 🧭 第一性原理 · 方向向量 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_vectors_3.js`，R1 52/52，89 s，0 报错；主文件 22,669,379 bytes）
+- ✅ `fp_vectors` 第4/4幕 🧭 第一性原理 · 方向向量 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_vectors_4.js`，R1 61/61，110 s，0 报错；主文件 22,869,434 bytes）
+- ✅ `fp_one_king` 第2/4幕 👑 第一性原理 · 一句一王 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_one_king_2.js`，R1 55/55，84 s，0 报错；主文件 23,047,333 bytes）
+- ✅ `fp_one_king` 第3/4幕 👑 第一性原理 · 一句一王 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_one_king_3.js`，R1 61/61，87 s，0 报错；主文件 23,225,567 bytes）
+- ✅ `fp_one_king` 第4/4幕 👑 第一性原理 · 一句一王 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_one_king_4.js`，R1 69/69，83 s，0 报错；主文件 23,413,575 bytes）
+- ✅ `fp_zoom_focus` 第2/4幕 🔍 第一性原理 · 由大到小 · 2 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_2.js`，R1 62/62，88 s，0 报错；主文件 23,598,843 bytes）
+- ✅ `fp_zoom_focus` 第3/4幕 🔍 第一性原理 · 由大到小 · 3 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_3.js`，R1 54/54，70 s，0 报错；主文件 23,770,134 bytes）
+- ✅ `fp_zoom_focus` 第4/4幕 🔍 第一性原理 · 由大到小 · 4 v5.1 重画并替换进 App（`v5/scenes/fp_zoom_focus_4.js`，R1 62/62，95 s，0 报错；主文件 23,954,469 bytes）
+- ✅ `wo_port` 第1/1幕 📖 单词身世 · port · 1 v5.1 重画并替换进 App（`v5/scenes/wo_port_1.js`，R1 142/142，185 s，0 报错；主文件 24,767,369 bytes）
+- ✅ `wo_europe` 第1/1幕 📖 单词身世 · Europe · 1 v5.1 重画并替换进 App（`v5/scenes/wo_europe_1.js`，R1 142/142，139 s，0 报错；主文件 25,122,494 bytes）
+- ✅ `wo_grimm` 第1/1幕 📖 单词身世 · 格林定律 · 1 v5.1 重画并替换进 App（`v5/scenes/wo_grimm_1.js`，R1 160/160，135 s，0 报错；主文件 25,338,874 bytes）
+- ✅ `wo_bluetooth` 第1/1幕 📖 单词身世 · Bluetooth · 1 v5.1 重画并替换进 App（`v5/scenes/wo_bluetooth_1.js`，R1 106/106，100 s，0 报错；主文件 25,628,371 bytes）
+- ✅ `wo_time_num` 第1/1幕 📖 单词身世 · 时间与数字 · 1 v5.1 重画并替换进 App（`v5/scenes/wo_time_num_1.js`，R1 94/94，131 s，0 报错；主文件 25,842,472 bytes）
+- ✅ `wo_time_week` 第1/1幕 📖 单词身世 · 星期 · 1 v5.1 重画并替换进 App（`v5/scenes/wo_time_week_1.js`，R1 129/129，160 s，0 报错；主文件 26,062,152 bytes）
+- ✅ `wo_vowel_a` 第1/1幕 📖 单词身世 · 元音 a · 1 v5.1 重画并替换进 App（`v5/scenes/wo_vowel_a_1.js`，R1 89/89，108 s，0 报错；主文件 26,341,719 bytes）
+- ✅ `wo_vowel_b` 第1/1幕 📖 单词身世 · 元音 b · 1 v5.1 重画并替换进 App（`v5/scenes/wo_vowel_b_1.js`，R1 75/75，117 s，0 报错；主文件 26,556,004 bytes）
+- ✅ `wo_vowel_c` 第1/1幕 📖 单词身世 · 元音 c · 1 v5.1 重画并替换进 App（`v5/scenes/wo_vowel_c_1.js`，R1 82/82，112 s，0 报错；主文件 26,861,727 bytes）
+- ✅ `ze_be` 第1/1幕 🔀 中英对照 · be · 1 v5.1 重画并替换进 App（`v5/scenes/ze_be_1.js`，R1 57/57，72 s，0 报错；主文件 27,058,644 bytes）
+- ✅ `ze_borrow` 第1/1幕 🔀 中英对照 · 借 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_borrow_1.js`，R1 57/57，74 s，0 报错；主文件 27,289,531 bytes）
+- ✅ `ze_link` 第1/1幕 🔀 中英对照 · 连接 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_link_1.js`，R1 58/58，92 s，0 报错；主文件 27,458,106 bytes）
+- ✅ `ze_mark` 第1/1幕 🔀 中英对照 · 标记 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_mark_1.js`，R1 74/74，83 s，0 报错；主文件 27,639,164 bytes）
+- ✅ `ze_modifier` 第1/1幕 🔀 中英对照 · 修饰语 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_modifier_1.js`，R1 61/61，100 s，0 报错；主文件 27,860,062 bytes）
+- ✅ `ze_pronoun` 第1/1幕 🔀 中英对照 · 代词 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_pronoun_1.js`，R1 83/83，90 s，0 报错；主文件 28,035,443 bytes）
+- ✅ `ze_same` 第1/1幕 🔀 中英对照 · 相同 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_same_1.js`，R1 73/73，80 s，0 报错；主文件 28,216,100 bytes）
+- ✅ `ze_say` 第1/1幕 🔀 中英对照 · 说 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_say_1.js`，R1 69/69，92 s，0 报错；主文件 28,426,471 bytes）
+- ✅ `ze_subject` 第1/1幕 🔀 中英对照 · 主语 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_subject_1.js`，R1 59/59，73 s，0 报错；主文件 28,599,791 bytes）
+- ✅ `ze_wear` 第1/1幕 🔀 中英对照 · 穿戴 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_wear_1.js`，R1 66/66，77 s，0 报错；主文件 28,797,373 bytes）
+- ✅ `ze_yesno` 第1/1幕 🔀 中英对照 · 是非 · 1 v5.1 重画并替换进 App（`v5/scenes/ze_yesno_1.js`，R1 71/71，78 s，0 报错；主文件 28,969,022 bytes）
+- ✅ `vv_take_on` 第1/2幕 🎬 万能动词 · take on ① v5.1 重画并替换进 App（`v5/scenes/vv_take_on_1.js`，R1 9/9，12 s，0 报错；主文件 28,969,022 bytes）
+- ✅ `vv_take_on` 第2/2幕 🎬 万能动词 · take on ② v5.1 重画并替换进 App（`v5/scenes/vv_take_on_2.js`，R1 19/19，18 s，0 报错；主文件 28,969,022 bytes）
+- ✅ `vv_take_off` 第1/2幕 🎬 万能动词 · take off ① v5.1 重画并替换进 App（`v5/scenes/vv_take_off_1.js`，R1 10/10，12 s，0 报错；主文件 29,129,092 bytes）
+- ✅ `vv_take_off` 第2/2幕 🎬 万能动词 · take off ② v5.1 重画并替换进 App（`v5/scenes/vv_take_off_2.js`，R1 18/18，18 s，0 报错；主文件 29,272,950 bytes）
+- ✅ `vv_take_up` 第1/2幕 🎬 万能动词 · take up ① v5.1 重画并替换进 App（`v5/scenes/vv_take_up_1.js`，R1 8/8，12 s，0 报错；主文件 29,508,261 bytes）
+- ✅ `vv_take_up` 第2/2幕 🎬 万能动词 · take up ② v5.1 重画并替换进 App（`v5/scenes/vv_take_up_2.js`，R1 40/40，21 s，0 报错；主文件 29,726,788 bytes）
+- ✅ `vv_take_down` 第1/2幕 🎬 万能动词 · take down ① v5.1 重画并替换进 App（`v5/scenes/vv_take_down_1.js`，R1 9/9，12 s，0 报错；主文件 29,933,731 bytes）
+- ✅ `vv_take_down` 第2/2幕 🎬 万能动词 · take down ② v5.1 重画并替换进 App（`v5/scenes/vv_take_down_2.js`，R1 22/22，19 s，0 报错；主文件 30,140,778 bytes）
+- ✅ `vv_take_in` 第1/2幕 🎬 万能动词 · take in ① v5.1 重画并替换进 App（`v5/scenes/vv_take_in_1.js`，R1 8/8，12 s，0 报错；主文件 30,346,481 bytes）
+- ✅ `vv_take_in` 第2/2幕 🎬 万能动词 · take in ② v5.1 重画并替换进 App（`v5/scenes/vv_take_in_2.js`，R1 21/21，18 s，0 报错；主文件 30,563,128 bytes）
+- ✅ `vv_take_out` 第1/2幕 🎬 万能动词 · take out ① v5.1 重画并替换进 App（`v5/scenes/vv_take_out_1.js`，R1 9/9，12 s，0 报错；主文件 30,701,846 bytes）
+- ✅ `vv_take_out` 第2/2幕 🎬 万能动词 · take out ② v5.1 重画并替换进 App（`v5/scenes/vv_take_out_2.js`，R1 18/18，17 s，0 报错；主文件 30,845,400 bytes）
+- ✅ `vv_put_on` 第1/2幕 🎬 万能动词 · put on ① v5.1 重画并替换进 App（`v5/scenes/vv_put_on_1.js`，R1 10/10，12 s，0 报错；主文件 31,035,657 bytes）
+- ✅ `vv_put_on` 第2/2幕 🎬 万能动词 · put on ② v5.1 重画并替换进 App（`v5/scenes/vv_put_on_2.js`，R1 19/19，18 s，0 报错；主文件 31,265,804 bytes）
+- ✅ `vv_put_off` 第1/2幕 🎬 万能动词 · put off ① v5.1 重画并替换进 App（`v5/scenes/vv_put_off_1.js`，R1 14/14，13 s，0 报错；主文件 31,456,018 bytes）
+- ✅ `vv_put_off` 第2/2幕 🎬 万能动词 · put off ② v5.1 重画并替换进 App（`v5/scenes/vv_put_off_2.js`，R1 20/20，20 s，0 报错；主文件 31,648,360 bytes）
+- ✅ `vv_put_up` 第1/2幕 🎬 万能动词 · put up ① v5.1 重画并替换进 App（`v5/scenes/vv_put_up_1.js`，R1 9/9，11 s，0 报错；主文件 31,837,600 bytes）
+- ✅ `vv_put_up` 第2/2幕 🎬 万能动词 · put up ② v5.1 重画并替换进 App（`v5/scenes/vv_put_up_2.js`，R1 18/18，18 s，0 报错；主文件 32,050,089 bytes）
+- ✅ `vv_put_down` 第1/2幕 🎬 万能动词 · put down ① v5.1 重画并替换进 App（`v5/scenes/vv_put_down_1.js`，R1 9/9，13 s，0 报错；主文件 32,189,587 bytes）
+- ✅ `vv_put_down` 第2/2幕 🎬 万能动词 · put down ② v5.1 重画并替换进 App（`v5/scenes/vv_put_down_2.js`，R1 22/22，19 s，0 报错；主文件 32,391,184 bytes）
+- ✅ `vv_put_in` 第1/2幕 🎬 万能动词 · put in ① v5.1 重画并替换进 App（`v5/scenes/vv_put_in_1.js`，R1 10/10，12 s，0 报错；主文件 32,616,713 bytes）
+- ✅ `vv_put_in` 第2/2幕 🎬 万能动词 · put in ② v5.1 重画并替换进 App（`v5/scenes/vv_put_in_2.js`，R1 23/23，19 s，0 报错；主文件 32,860,786 bytes）
+- ✅ `vv_put_out` 第1/2幕 🎬 万能动词 · put out ① v5.1 重画并替换进 App（`v5/scenes/vv_put_out_1.js`，R1 8/8，13 s，0 报错；主文件 33,084,985 bytes）
+- ✅ `vv_put_out` 第2/2幕 🎬 万能动词 · put out ② v5.1 重画并替换进 App（`v5/scenes/vv_put_out_2.js`，R1 18/18，18 s，0 报错；主文件 33,362,652 bytes）
+- ✅ `vv_get_on` 第1/2幕 🎬 万能动词 · get on ① v5.1 重画并替换进 App（`v5/scenes/vv_get_on_1.js`，R1 9/9，13 s，0 报错；主文件 33,503,378 bytes）
+- ✅ `vv_get_on` 第2/2幕 🎬 万能动词 · get on ② v5.1 重画并替换进 App（`v5/scenes/vv_get_on_2.js`，R1 18/18，17 s，0 报错；主文件 33,649,172 bytes）
+- ✅ `vv_get_off` 第1/2幕 🎬 万能动词 · get off ① v5.1 重画并替换进 App（`v5/scenes/vv_get_off_1.js`，R1 8/8，12 s，0 报错；主文件 33,790,632 bytes）
+- ✅ `vv_get_off` 第2/2幕 🎬 万能动词 · get off ② v5.1 重画并替换进 App（`v5/scenes/vv_get_off_2.js`，R1 18/18，17 s，0 报错；主文件 34,042,291 bytes）
+- ✅ `vv_get_up` 第1/2幕 🎬 万能动词 · get up ① v5.1 重画并替换进 App（`v5/scenes/vv_get_up_1.js`，R1 9/9，12 s，0 报错；主文件 34,182,457 bytes）
+- ✅ `vv_get_up` 第2/2幕 🎬 万能动词 · get up ② v5.1 重画并替换进 App（`v5/scenes/vv_get_up_2.js`，R1 19/19，19 s，0 报错；主文件 34,385,594 bytes）
+- ✅ `vv_get_down` 第1/2幕 🎬 万能动词 · get down ① v5.1 重画并替换进 App（`v5/scenes/vv_get_down_1.js`，R1 8/8，13 s，0 报错；主文件 34,600,675 bytes）
+- ✅ `vv_get_down` 第2/2幕 🎬 万能动词 · get down ② v5.1 重画并替换进 App（`v5/scenes/vv_get_down_2.js`，R1 18/18，18 s，0 报错；主文件 34,808,856 bytes）
+- ✅ `vv_get_in` 第1/2幕 🎬 万能动词 · get in ① v5.1 重画并替换进 App（`v5/scenes/vv_get_in_1.js`，R1 8/8，12 s，0 报错；主文件 34,949,310 bytes）
+- ✅ `vv_get_in` 第2/2幕 🎬 万能动词 · get in ② v5.1 重画并替换进 App（`v5/scenes/vv_get_in_2.js`，R1 20/20，18 s，0 报错；主文件 35,132,977 bytes）
+- ✅ `vv_get_out` 第1/2幕 🎬 万能动词 · get out ① v5.1 重画并替换进 App（`v5/scenes/vv_get_out_1.js`，R1 10/10，13 s，0 报错；主文件 35,273,345 bytes）
+- ✅ `vv_get_out` 第2/2幕 🎬 万能动词 · get out ② v5.1 重画并替换进 App（`v5/scenes/vv_get_out_2.js`，R1 19/19，19 s，0 报错；主文件 35,475,032 bytes）
+- ✅ `vv_turn_on` 第1/2幕 🎬 万能动词 · turn on ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_on_1.js`，R1 9/9，12 s，0 报错；主文件 35,687,715 bytes）
+- ✅ `vv_turn_on` 第2/2幕 🎬 万能动词 · turn on ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_on_2.js`，R1 17/17，18 s，0 报错；主文件 35,911,030 bytes）
+- ✅ `vv_turn_off` 第1/2幕 🎬 万能动词 · turn off ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_off_1.js`，R1 10/10，13 s，0 报错；主文件 36,156,279 bytes）
+- ✅ `vv_turn_off` 第2/2幕 🎬 万能动词 · turn off ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_off_2.js`，R1 18/18，18 s，0 报错；主文件 36,388,172 bytes）
+- ✅ `vv_turn_up` 第1/2幕 🎬 万能动词 · turn up ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_up_1.js`，R1 7/7，11 s，0 报错；主文件 36,642,871 bytes）
+- ✅ `vv_turn_up` 第2/2幕 🎬 万能动词 · turn up ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_up_2.js`，R1 19/19，18 s，0 报错；主文件 36,892,202 bytes）
+- ✅ `vv_turn_down` 第1/2幕 🎬 万能动词 · turn down ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_down_1.js`，R1 8/8，13 s，0 报错；主文件 37,108,188 bytes）
+- ✅ `vv_turn_down` 第2/2幕 🎬 万能动词 · turn down ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_down_2.js`，R1 18/18，19 s，0 报错；主文件 37,363,271 bytes）
+- ✅ `vv_turn_in` 第1/2幕 🎬 万能动词 · turn in ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_in_1.js`，R1 9/9，13 s，0 报错；主文件 37,596,422 bytes）
+- ✅ `vv_turn_in` 第2/2幕 🎬 万能动词 · turn in ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_in_2.js`，R1 20/20，19 s，0 报错；主文件 37,824,537 bytes）
+- ✅ `vv_turn_out` 第1/2幕 🎬 万能动词 · turn out ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_out_1.js`，R1 8/8，12 s，0 报错；主文件 38,057,090 bytes）
+- ✅ `vv_turn_out` 第2/2幕 🎬 万能动词 · turn out ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_out_2.js`，R1 20/20，19 s，0 报错；主文件 38,281,135 bytes）
+- ✅ `vv_look_on` 第1/2幕 🎬 万能动词 · look on ① v5.1 重画并替换进 App（`v5/scenes/vv_look_on_1.js`，R1 6/6，11 s，0 报错；主文件 38,484,762 bytes）
+- ✅ `vv_look_on` 第2/2幕 🎬 万能动词 · look on ② v5.1 重画并替换进 App（`v5/scenes/vv_look_on_2.js`，R1 19/19，20 s，0 报错；主文件 38,757,373 bytes）
+- ✅ `vv_look_off` 第1/2幕 🎬 万能动词 · look away ① v5.1 重画并替换进 App（`v5/scenes/vv_look_off_1.js`，R1 8/8，12 s，0 报错；主文件 38,973,038 bytes）
+- ✅ `vv_look_off` 第2/2幕 🎬 万能动词 · look away ② v5.1 重画并替换进 App（`v5/scenes/vv_look_off_2.js`，R1 16/16，18 s，0 报错；主文件 39,115,004 bytes）
+- ✅ `vv_look_up` 第1/2幕 🎬 万能动词 · look up ① v5.1 重画并替换进 App（`v5/scenes/vv_look_up_1.js`，R1 7/7，11 s，0 报错；主文件 39,255,286 bytes）
+- ✅ `vv_look_up` 第2/2幕 🎬 万能动词 · look up ② v5.1 重画并替换进 App（`v5/scenes/vv_look_up_2.js`，R1 21/21，19 s，0 报错；主文件 39,494,601 bytes）
+- ✅ `vv_look_down` 第1/2幕 🎬 万能动词 · look down ① v5.1 重画并替换进 App（`v5/scenes/vv_look_down_1.js`，R1 7/7，12 s，0 报错；主文件 39,689,812 bytes）
+- ✅ `vv_look_down` 第2/2幕 🎬 万能动词 · look down ② v5.1 重画并替换进 App（`v5/scenes/vv_look_down_2.js`，R1 17/17，18 s，0 报错；主文件 39,831,320 bytes）
+- ✅ `vv_look_in` 第1/2幕 🎬 万能动词 · look in ① v5.1 重画并替换进 App（`v5/scenes/vv_look_in_1.js`，R1 9/9，12 s，0 报错；主文件 40,015,419 bytes）
+- ✅ `vv_look_in` 第2/2幕 🎬 万能动词 · look in ② v5.1 重画并替换进 App（`v5/scenes/vv_look_in_2.js`，R1 20/20，19 s，0 报错；主文件 40,214,206 bytes）
+- ✅ `vv_look_out` 第1/2幕 🎬 万能动词 · look out ① v5.1 重画并替换进 App（`v5/scenes/vv_look_out_1.js`，R1 8/8，12 s，0 报错；主文件 40,431,839 bytes）
+- ✅ `vv_look_out` 第2/2幕 🎬 万能动词 · look out ② v5.1 重画并替换进 App（`v5/scenes/vv_look_out_2.js`，R1 17/17，18 s，0 报错；主文件 40,643,048 bytes）
+- ✅ `vv_give_on` 第1/2幕 🎬 万能动词 · give on ① v5.1 重画并替换进 App（`v5/scenes/vv_give_on_1.js`，R1 6/6，11 s，0 报错；主文件 40,809,763 bytes）
+- ✅ `vv_give_on` 第2/2幕 🎬 万能动词 · give on ② v5.1 重画并替换进 App（`v5/scenes/vv_give_on_2.js`，R1 18/18，19 s，0 报错；主文件 40,980,762 bytes）
+- ✅ `vv_give_off` 第1/2幕 🎬 万能动词 · give off ① v5.1 重画并替换进 App（`v5/scenes/vv_give_off_1.js`，R1 7/7，12 s，0 报错；主文件 41,173,425 bytes）
+- ✅ `vv_give_off` 第2/2幕 🎬 万能动词 · give off ② v5.1 重画并替换进 App（`v5/scenes/vv_give_off_2.js`，R1 17/17，17 s，0 报错；主文件 41,339,386 bytes）
+- ✅ `vv_give_up` 第1/2幕 🎬 万能动词 · give up ① v5.1 重画并替换进 App（`v5/scenes/vv_give_up_1.js`，R1 9/9，13 s，0 报错；主文件 41,523,928 bytes）
+- ✅ `vv_give_up` 第2/2幕 🎬 万能动词 · give up ② v5.1 重画并替换进 App（`v5/scenes/vv_give_up_2.js`，R1 18/18，18 s，0 报错；主文件 41,754,737 bytes）
+- ✅ `vv_give_down` 第1/2幕 🎬 万能动词 · give back ① v5.1 重画并替换进 App（`v5/scenes/vv_give_down_1.js`，R1 9/9，13 s，0 报错；主文件 41,981,604 bytes）
+- ✅ `vv_give_down` 第2/2幕 🎬 万能动词 · give back ② v5.1 重画并替换进 App（`v5/scenes/vv_give_down_2.js`，R1 21/21，20 s，0 报错；主文件 42,220,675 bytes）
+- ✅ `vv_give_in` 第1/2幕 🎬 万能动词 · give in ① v5.1 重画并替换进 App（`v5/scenes/vv_give_in_1.js`，R1 9/9，12 s，0 报错；主文件 42,433,862 bytes）
+- ✅ `vv_give_in` 第2/2幕 🎬 万能动词 · give in ② v5.1 重画并替换进 App（`v5/scenes/vv_give_in_2.js`，R1 19/19，19 s，0 报错；主文件 42,693,045 bytes）
+- ✅ `vv_give_out` 第1/2幕 🎬 万能动词 · give out ① v5.1 重画并替换进 App（`v5/scenes/vv_give_out_1.js`，R1 7/7，12 s，0 报错；主文件 42,888,708 bytes）
+- ✅ `vv_give_out` 第2/2幕 🎬 万能动词 · give out ② v5.1 重画并替换进 App（`v5/scenes/vv_give_out_2.js`，R1 17/17，18 s，0 报错；主文件 43,053,209 bytes）
+- **用户规则（2026-10-30 14:05）：不要停，直到全部完成**——单元之间也不停、不等待回复，连续推进。
+- **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
+- 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
+
+## 🟢 动作系统 v5（决策 31，2026-10-30 10:28 JST 用户确认）——先读这一节
+- **路线**：有限动画 / 关键姿势帧。人物 = AI 绿幕关键帧（准备 → 发力 → 结果 + 走路 / 小跑 4 帧），代码只做位移、换帧、牵绳、镜头、高亮、字幕。上面「🔴 优先级变更」第 2 步的 `wb_verbs.js` 手写骨架已被用户否定，不再扩展。
+- **工具组合**（详见 MASTER_DESIGN 决策 31）：huashu-art-motion（画风 / 马克笔 / 揭开）+ rough.js（场景线条）+ GSAP（时间轴）+ 自写播放循环（App 内）+ Remotion（开发端出 MP4 / 截图）+ Python 抠图。App 里不带 React / Remotion Player。
+- **样板** `He takes the dog out.`：`docs/whiteboard/takeout_wb/`。v5.0（huashu + Remotion Player，HTML 1.02 MB）已推；**v5.1 用户 2026-10-30 10:54 确认「完美，就这样」→ 定为标准画法**（规格 MASTER_DESIGN §2.9，流程 + 验收 SOP §17；rough.js + GSAP + 自写播放器，`takeout_wb/v51/`，单文件 614 KB，联络表 `out/v51_keyframes.png`）。
+- **下一步**：~~v5.1 交付~~ ✅ → ~~用户审片~~ ✅ 定稿 → 按 §2.9 / SOP §17回改 tense_matrix ①–⑤、past_clans ①–④、adj_order ①–④ → 原顺序剩余单元（「🔴」第 4 步）。
+- **接手要点**：素材制作 `build_assets.py`（绿幕阈值、溢色、项圈橙色识别）；出片 `npx remotion render`；Remotion 自带 Chrome Headless Shell 在 `node_modules/.remotion/`，截图用 `remotion still`。
+
+## 🔴 优先级变更（2026-10-30 09:14 JST，用户确认）——先读这一节
+
+**用户审片结论**：白板动画质量差，**完全没有表现出人物动作**。用户要的是插画式动词演示，参考「男孩牵狗出门 He takes the dog out.」。原因分析和新设计已写进 `MASTER_DESIGN.md` **决策 30** + **§2.8 动作系统 v2**、`SOP.md` **§16 R4v2 验收**。
+
+**新任务顺序（取代下方所有「下一个接手点」）**
+1. ✅ 设计文档（决策 30、§2.8、SOP §16、本节）——单独提交。
+2. 🟡 **动作系统重建 + 样板**（第一步已推：`wb_verbs.js` 骨架 v2 / 狗 / 门 / 牵绳 / 院子房子场景 / 动词 take · clip · open · walk · take_out 等 + R4v2 检查 + `actsheet.py` + 样板 `verb_demo`；对照图 `work/shots/sample_take_dog_out_对照.png`、动作表 `work/shots/verb_demo_1_动作表.png`（Hark 项目工作区）。下一步：扩到前 60 个动词 + 更多道具 / 动物 / 场景）：骨架 v2（手掌 + 握持点、躯干 / 头转动、正面 / 侧面视角，`wb_actor.js` 只加不改）→ 互动道具和动物（狗、牵绳、门、球、杯子…，grab / follow / affect）→ 简笔场景（房子门口、教室、公园、厨房）→ `wb_verbs.js` 动词专属动作（先做样板要用的 take / walk / open / take…out，再扩到前 60 个）→ r2check R4v2（动词 → 专属动作语义核对、禁止空 `actionWords`）+ `actsheet.py` 动作联络表 → **样板「He takes the dog out.」**，和用户参考插画并排对照截图。
+3. ⬜ **回改已完成单元**（样板达标后）：tense_matrix ①–⑤、past_clans ①–④、adj_order ①–④（取消 `actionWords: []` 豁免），其后第一性原理、bamboo_tree、aux_transformer、five_patterns 中用讲解员手势代演的动作词。
+4. ⬜ **原顺序剩余单元**：metaphor_code（`07ee259` 已做升级准备，v2 暂停，按新动作系统做）→ stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法 40 点 → 思维导图 → 单词维度 / 词源 / 格林 / 词根 / 12+6 条规律 → 文档收尾 → 决策 29 软件优化。
+
+规矩不变：不询问、直接推 `master`、每个单元一提交并在「夜间进度」加一行。
+
+
+## ⏸ 交接（2026-10-30 01:56 JST，额度不足暂停）
+
+**状态**：连续实现已暂停（用户 01:55：额度不多，先写交接）。定时任务「萌星连续实现」（5bcd1df9）和「萌星夜间汇总」（b3c47ef6）都已 **paused**，恢复时在 Hark 里把它们设回 active 即可，按本节接着做。
+
+**已完成（全部已推 master，明细见下方「夜间进度」）**
+- 决策 23–29 写入 MASTER_DESIGN（29 软件优化 = 最后做）；SOP §14/§15；word_origins/COVERAGE.md 审计 v1。
+- 老白板 v2：fp_economy 1–4 幕、fp_vectors 1–4 幕、fp_boundedness 第 1 幕，共 9 幕（每幕一提交，均有 *_classic.js 备份与 `work/shots/<模块>_<幕>_对比总图.png`）。
+
+**下一个接手点**
+1. ~~第 2 幕未提交改动~~ ✅ 已核实：第 2 幕在 `27d5f28` 已提交，无遗留改动（2026-10-30 02:10 接手核对）。
+2. 然后顺序：~~fp_boundedness 余下幕~~ ✅ → ~~fp_iconicity~~ ✅ → ~~fp_one_king~~ ✅ → ~~fp_zoom_focus~~ ✅（第一性原理全部完成） → ~~bamboo_tree~~ ✅ → ~~aux_transformer~~ ✅ → ~~five_patterns~~ ✅ → ~~tense_matrix~~ ✅ → ~~past_clans~~ ✅ → ~~adj_order~~ ✅ → metaphor_code → stress_rhythm → writing_alchemist（老白板约 49 幕剩余）→ 三大厅 HD 剧场（FR01 买卖先）→ 语法 40 点（先一般过去时）→ 思维导图（先一张主题导图）→ 单词维度 / 词源 / 格林（先 p→f）/ 词根 / 12+6 条规律（数据 `work/etym`，逐条核实不编造）→ 文档收尾 → 决策 29 软件优化。
+3. 每幕流程：备份 classic → 改 v2 → `jscheck.py`、`r2check.py <模块> --strict`、`reg_render.py`、`app*.py` → 对比图 → 提交推送 → 本文件「夜间进度」加一行。
+4. 已知遗留：动作库无 swim / eat / 穿脱衣（r2check 只提示，扩 `wb_actor.js` 时补）；`stress_rhythm` 原 3 幕 r2check 失败是旧问题，升级时一并修。
+
+**待用户审**：对比总图 fp_economy_1–4、fp_vectors_1–4、fp_boundedness_1（旧工作区 `work/shots/`）；2026-10-30 02:10 起新做的 fp_boundedness_2–4、fp_iconicity_1–4、fp_one_king_2–4、fp_zoom_focus_2–4、bamboo_tree_1–5、aux_transformer_1–4、five_patterns_1–5 的对比总图在 Hark 项目工作区 `work/shots/`。
+
+**下一个接手点（2026-10-30 09:50 更新）**：tense_matrix、past_clans、adj_order、metaphor_code 已全部升 v2。下一个：**stress_rhythm**（同样先做 classic 快照 + LAB_DEPS / preview.html 加 wo_props；原 3 幕 r2check 失败一并修）。之后： → writing_alchemist → 三大厅 HD 剧场 FR01 → …（顺序同下）。
+
+~~下一个接手点（2026-10-30 06:15 更新）~~：bamboo_tree 5 个、aux_transformer 4 个、five_patterns 5 个案例已全部升 v2（夜间进度见下）。下一个：王炸实验室 **tense_matrix**（照 five_patterns / aux_transformer 做法：先建 `cases/tense_matrix_classic.js` 快照（只改 WB_LAB 名、文件头加注释）、`insert_wb.py` 的 LAB_DEPS 与 `preview.html` 加 wo_props，验收用 `appwb.py tense_matrix`，INVENTORY 放 `docs/whiteboard/lab/INVENTORY_TENSE_MATRIX_V2.md`；一屏多行放不下时拆镜头、说明挪到句子下方；只有全宽内容前讲解员才退到 1010，能收窄到 x≤800 的框就收窄）。之后顺序：tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法白板化 → 思维导图白板化 → 词源 / 格林定律 / 词根词缀 → 文档收尾 → 决策 29 软件优化。
+
+## 夜间进度（2026-10-30）
+
+> 用户 01:07 / 01:09 授权连续推进：按 MASTER_DESIGN 顺序全部实现（白板化 → 单词维度 → 词源 / 格林 / 词根 / 音变规律 → 文档清理），软件优化（决策 29）最后做；不询问、不等审片，需要决定时按 R1–R4 选最稳妥方案并在此记理由，阻塞跳过登记。对比图存 `work/shots/`，早上统一审。每行：时间 JST｜做了什么｜提交｜对比图｜决定与理由 / 阻塞。
+
+- 01:10｜决策 29 软件优化写入 MASTER_DESIGN（O1–O9，现状度量 / 目标 / 方案 / 验收），按用户更正排在最后｜`78a35af` + 本提交｜—｜—
+- 01:32｜fp_economy 第 1 幕 v2 试点推送（讲解员 + 道具 + 6 步分镜 + 金句卡 + R4 worked/played；保留 fp_economy_classic.js）｜`ccad226`｜`work/shots/fp_economy_1_对比总图.png`｜按用户授权不等审片直接推；R1 ❌1 是颜色值 #cbd5e1→C.grey（不是内容）；r2check 全量 --strict 的失败只来自 stress_rhythm 原 3 幕（已知、原样保留，见 §2 第 5 条），验收按范围 `r2check.py fp --strict` = 0。另：取消了与「萌星连续实现」重复的隐藏任务（夜间连续实现 / 早间汇总），避免两个实现者撞同一克隆
+- 01:36｜fp_economy 第 2 幕升 v2（撞车 → 插 /ɪ/ → -es / -ed 两栏 → 口诀 → 🔮 kisses 预测 → 金句卡；R4 watch）｜`de2c9cd`｜`work/shots/fp_economy_2_对比总图.png`｜原结论条 D.fin 换成 v2 金句卡（文字原样）；旧幕橙色改 V3 四色（橙色不在 v2 调色板，会渲染成 undefined）；新增预测题词 kiss/kisses 都配了朗读
+- 01:38｜fp_economy 第 3 幕升 v2（a→an / in-→im- 拆两个镜头 + 🔮 an elephant + 金句卡；R4 fly）｜`fc4c25e`｜`work/shots/fp_economy_3_对比总图.png`｜徽章加 ✂️（a/an 看读音不看字母属于简化说法）；例句 eat 无对应人物动作，r2check 只作提示，未加
+- 01:42｜fp_economy 第 4 幕升 v2，fp_economy 4 幕全部完成（音节房间动画保留 + 🔮 sitting + 金句卡；R4 running / run / stop / sit / sitting）｜`cc3dd8a`｜`work/shots/fp_economy_4_对比总图.png`｜原左右两半拆两个镜头；门的木色是道具色保留；例句 swim、eat 没有对应人物动作（动作库无游泳 / 吃），r2check 只作提示，留待扩 wb_actor.js 时补
+- 01:44｜fp_vectors 第 1 幕升 v2（at/on/in 点面体 + 时间小图 + 🔮 on Sunday + 金句卡；R4 get up）｜`a54b7f4`｜`work/shots/fp_vectors_1_对比总图.png`｜新建 fp_vectors_classic.js（只改 WB_LAB 名）；三列从 165/480/795 左移到 140/400/660，避免和讲解员重叠；R1 ❌ 只剩颜色 / 路径坐标
+- 01:46｜fp_vectors 第 2 幕升 v2（on/off 两镜头 + 🔮 turn on the TV + 金句卡；R4 put on / turn on / get on / take off / takes off / fall off）｜`1bac762`｜`work/shots/fp_vectors_2_对比总图.png`｜飞机起飞从画完立刻飞改为读到「The plane takes off」时才飞（R4 同步）；coat 用词卡道具代替衣服（动作库没有穿脱衣）
+- 01:48｜fp_vectors 第 3 幕升 v2（公交 / 小汽车 + 小旅客上车动作 + 🔮 get on the subway + 金句卡；R4 get on / get in / get off / get out of）｜`2363cc9`｜`work/shots/fp_vectors_3_对比总图.png`｜火柴人（D.person）换成 traveler 角色，R4「描述动作必须人演」；原火柴人弧线路径坐标不再使用（R1 只差坐标）
+- 01:51｜fp_vectors 第 4 幕升 v2，fp_vectors 4 幕全部完成（to/from/for 箭头 + look 三兄弟单独镜头 + 🔮 I go to the park + 金句卡；R4 walk to / look for / look at / go to）｜`175335c`｜`work/shots/fp_vectors_4_对比总图.png`｜原 look at/for/after 只有一行字，按 R4 补了三个小示意图（不删原文字）
+- 01:53｜fp_boundedness 第 1 幕升 v2（一刀切 / 容器两镜头 + 🔮 two bowls of rice + 金句卡；R4 give）｜`e27e7ec`｜`work/shots/fp_boundedness_1_对比总图.png`｜fp_props.halves() 只加返回值 gl/gr 让 v2 镜头能擦掉（reg_render 证明旧幕不变）；面包和苹果梗保留木色道具色
+- 01:56｜fp_boundedness 第 2 幕升 v2（a/the 小狗 + 太阳和门 + 🔮 a cat → The cat + 金句卡；R4 running / open）｜`27d5f28`｜`work/shots/fp_boundedness_2_对比总图.png`｜加 📜 徽章前先核了 Etymonline「the」原文（古英语用指示词、the/that 不分）；对比图里偶尔一帧空白是板擦擦除过渡，不是丢内容
+- 02:20｜fp_boundedness 第 3 幕升 v2（楼房外壳 / 去上学两段 + 成对例子单独镜头 + 🔮 go to bed + 金句卡；R4 goes / go / play）｜`04d6495`｜`work/shots/fp_boundedness_3_对比总图.png`（Hark 项目工作区）｜标题较长，表头副标题被徽章挤（与 ze_say 等幕同类，未改）；hospital 例子保留原「to the hospital / in hospital」，术语注明美式常说 in the hospital（✂️）
+- 02:30｜fp_boundedness 第 4 幕升 v2，fp_boundedness 4 幕全部完成（小鸡 → 鸡肉 + 玻璃 / 房间 / 鱼成对例子单独镜头 + 🔮 a cake → some cake + 金句卡；R4 running / make room）｜`1c8b0e3`｜`work/shots/fp_boundedness_4_对比总图.png`｜原橙色小鸡改木色描边 + 荧光黄填充（道具色），可数绿 / 不可数蓝；用户 02:11 定：不用定时器、每个小功能一提交并更新本文件
+- 02:33｜fp_iconicity 升级准备：classic 快照 + FP_DEPS 加 wo_props｜`538872d`｜—｜旧幕渲染不变（只加依赖）
+- 02:42｜fp_iconicity 第 1 幕升 v2（M·S / B·C 两镜头 + 🔮 box + 金句卡；R4 look / open / swims / put / catch）｜`b9eab42`｜`work/shots/fp_iconicity_1_对比总图.png`｜徽章只用 💡（HANDOFF first_principles §4：字母象形是记忆联想）；swim 动作库没有，用蛇的场景动作代替
+- 02:50｜fp_iconicity 第 2 幕升 v2（fl·gl / sl + ⚠️ floor 两镜头 + 🔮 slip + 金句卡；R4 flies / fly / go）｜`12293bd`｜`work/shots/fp_iconicity_2_对比总图.png`｜加 ⚠️ 徽章：音义联觉有统计倾向但例外多（first_principles/HANDOFF §4）；sleeping 动作库无「睡」，只作提示
+- 03:00｜fp_iconicity 第 3 幕升 v2（str- / sp- 两镜头 + 🔮 string + 金句卡；R4 walk / come / look）｜`fefb0e4`｜`work/shots/fp_iconicity_3_对比总图.png`｜sport ⚠️ 出处：etymonline.com/word/sport（sport 是 disport 的缩短，来自古法语 desporter「消遣」）
+- 03:15｜fp_iconicity 第 4 幕升 v2，fp_iconicity 4 幕全部完成（数字 / 人两镜头 + 🔮 twins + 金句卡；R4 read / sit）｜`b993831`｜`work/shots/fp_iconicity_4_对比总图.png`｜R3：between 按 etymonline.com/word/between 更正为 bi-（by）+ tweonum（两个两个），原句留小字；twelve 按 etymonline.com/word/twelve =「十之外剩二」，与原讲法一致
+- 03:18｜fp_one_king 升级准备：classic 快照 + FP_DEPS｜`042b5f0`｜—｜第 1 幕是「已搬到 ze_be」占位幕（ze_be 已是 v2），不升级
+- 03:28｜fp_one_king 第 2 幕升 v2（王座 + to 马甲 / doing 马甲两镜头 + 🔮 hope to see + 金句卡；R4 go / reading）｜`bba72c1`｜`work/shots/fp_one_king_2_对比总图.png`｜王座 / 王冠 / 令牌是道具金色，保留；swimming、drawing 动作库无，只作提示
+- 03:38｜fp_one_king 第 3 幕升 v2（令牌飞走 / 侍卫接管两镜头 + 🔮 Does Tom play + 金句卡；R4 went / go / plays）｜`11f5236`｜`work/shots/fp_one_king_3_对比总图.png`｜坑：FP_PROPS 的 token / king 自己开组并 endGroup，之后要 `D.adopt(g); D.back()` 回到镜头组，否则后面的字不随板擦擦掉
+- 03:48｜fp_one_king 第 4 幕升 v2，fp_one_king 全部完成（五行骨骼 + 🔮 She gives me an apple + 金句卡；R4 fly / pass / reading / gives）｜`210a197`｜`work/shots/fp_one_king_4_对比总图.png`｜进度条步骤名不用「S V P」（r2check 会当成英文句子），改中文「主系表」等
+- 03:50｜fp_zoom_focus 升级准备：classic 快照 + FP_DEPS｜`632ebc9`｜—｜第 1 幕是「已搬到 ze_modifier」占位幕，不升级
+- 03:58｜fp_zoom_focus 第 2 幕升 v2（Where 跳 / 问句·感叹句两镜头 + 🔮 Where is your cat + 金句卡；R4 going / get up / runs）｜`229acad`｜`work/shots/fp_zoom_focus_2_对比总图.png`｜—
+- 04:08｜fp_zoom_focus 第 4 幕升 v2（时间轴 × 三种拍法 + 🔮 bird is singing + 金句卡；R4 play / reading）｜`fe3e052`｜`work/shots/fp_zoom_focus_4_对比总图.png`｜先做第 4 幕；第 3 幕用 camera 缩放，单独做
+- 04:18｜fp_zoom_focus 第 3 幕升 v2，**第一性原理 6 条全部 v2 完成**（22 幕；④-1、⑥-1 是搬家占位幕）（地址同心圆 / 时间两镜头 + 🔮 5 Garden Road + 金句卡）｜`f7a216f`｜`work/shots/fp_zoom_focus_3_对比总图.png`｜日历小图用中文「周二 / 九月」，避免 Tue / Sep 缩写还要配例句
+- 05:19｜bamboo_tree 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`7c87cfb`｜—｜旧幕渲染不变（只加依赖）；实验室 INVENTORY 放 docs/whiteboard/lab/（该目录原有实验室合并清单，无 INVENTORY_* 先例）
+- 05:22｜bamboo_tree ① 多动词连动病升 v2（竹节句 + 病句 / 树干句两镜头 + 🔮 to go … to play + 金句卡；R4 go / read / play）｜`7dfce92`｜`work/shots/bamboo_tree_1_对比总图.png`｜INVENTORY 放 docs/whiteboard/lab/（实验室清单目录）；「汉语：竹节句」原 k.leftHead 棕色改 V3 墨黑（自画标题，同理「英语：树干句」放 x=40）；预测题 football 的黄底是引擎生词高亮，未关
+- 05:23｜bamboo_tree ② 双王相撞病升 v2（竹节句 + 病句 / 两棵树两镜头 + 🔮 She is very tall + 金句卡）｜`dd839ce`｜`work/shots/bamboo_tree_2_对比总图.png`｜例句只有 like / be（心理、状态动词），按 R4 无需人演，actionWords 留空注明；讲解员在「开心」「and」处 point、「They are happy」处 cheer 只作表演
+- 05:25｜bamboo_tree ③ 长定语压塌车头病升 v2（竹节句 + 病句 / 树干句两镜头 + 🔮 The boy with glasses + 金句卡；R4 reading）｜`2e64fb1`｜`work/shots/bamboo_tree_3_对比总图.png`｜r2check 提示「Chinglish puts the long part first」的 puts 是抽象说法（不是人搬东西），不列 actionWords；挂件小字压在树干上与升级前相同，未改
+- 05:26｜bamboo_tree ④ 时空顺序颠倒病升 v2（竹节句 + 病句 / 树干句两镜头 + 🔮 at home at 3 o'clock yesterday afternoon + 金句卡；R4 exercises）｜`22e3498`｜`work/shots/bamboo_tree_4_对比总图.png`｜exercises 不在 r2check 动作动词表，但「做早操」是人能演的动作，按 R4 精神列入 actionWords（讲解员 jump）；括号颜色按挂件色统一（时间绿 · 地点蓝），与树干镜头一致
+- 05:29｜bamboo_tree ⑤ There be 双谓语病升 v2，**bamboo_tree 5 个案例全部 v2 完成**（竹节句 + 病句 / 树干句两镜头 + 🔮 three birds singing + 金句卡；R4 swimming / swim 小黄鸭游）｜`37f618f`｜`work/shots/bamboo_tree_5_对比总图.png`｜游泳无人物动作，按 fp_iconicity 先例用场景动作（鸭子 move + actFx）代替；鸭子黄色是道具色；预测题 sing→singing 不列 actionWords（唱歌不是走跑跳类肢体动作，动作库也无）
+- 05:34｜aux_transformer 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`cb8769e`｜—｜旧幕渲染不变（只加依赖）；照 bamboo_tree 先例，INVENTORY 放 docs/whiteboard/lab/
+- 05:41｜aux_transformer ① be 动词护卫升 v2（① 肯定 + ② 否定 / ③ 一般疑问 + ④ 特殊疑问 / ⑤ 感叹 + 回顾 + 口诀三镜头 + 🔮 Is he reading a book + 金句卡；R4 taking photos 场景人物拿相机 + 快门闪、reading 讲解员捧书）｜`1f30f96`｜`work/shots/aux_transformer_1_对比总图.png`｜原一屏 5 行在讲解员让位（内容 x≤800）后放不下，按 R1 稳妥拆成三镜头，文字一条不删只换位置；动作库没有「拍照」，用 take + 📷 词卡 + 快门闪（actFx）代替；镜头 3 原本只剩一句，补前四句灰色回顾（都是已朗读的原句，不加新事实）；时长 102→128 秒
+- 05:44｜aux_transformer ② 情态动词大将军升 v2（三镜头 + 🔮 Can she jump high + 金句卡；R4 speak 场景人物 Leo 挥手 + Hello! 气泡、read 讲解员捧书、jump 讲解员跳）｜`cf3428c`｜`work/shots/aux_transformer_2_对比总图.png`｜说话动作库没有，用 wave（开口打招呼）+ 气泡代替；气泡需要英文，新增例句 Hello! I can speak English.（含朗读，无事实性内容）；He cannot swim 是否定句（没在游），不演，r2check 只提示；时长 86→111 秒
+- 05:47｜aux_transformer ③ 三单照妖镜 does 升 v2（三镜头 + 🔮 Does he play football every day + 金句卡；R4 watches / watch Mia 坐下看电视、plays / play 讲解员跳）｜`ba6b1fc`｜`work/shots/aux_transformer_3_对比总图.png`｜「看电视」动作库没有 watch，用场景人物 walk + sit + 电视屏幕亮起（actFx）表现；电视 / 凳子只用墨黑 + 浅蓝底；时长 90→117 秒
+- 05:49｜aux_transformer ④ 过去式照妖镜 did 升 v2，**aux_transformer 4 个案例全部 v2 完成**（三镜头 + 🔮 Did she go to school by bus + 金句卡；R4 went 旅客登机 + 飞机起飞、flew 飞机掠过、go 讲解员走）｜`5fb5bab`｜`work/shots/aux_transformer_4_对比总图.png`｜飞机用 wo_props 的 D.plane（已是 V3 蓝），起飞 / 掠过是场景动作（actFx + move）；讲解员预测题走回后加 turn 朝左，避免金句卡时背对；旧版面工具 H 已无人用，删除（字符串在 build 之外，不影响 R1 对照）；时长 103→127 秒
+- 05:52｜five_patterns 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`260c4c2`｜—｜旧幕渲染不变（reg_render diff 0，只加依赖）；照 aux_transformer / bamboo_tree 先例，INVENTORY 放 docs/whiteboard/lab/
+- 05:59｜five_patterns ① SV 自给自足型升 v2（骨架 + 挂件 / 金句 / 挂钩 + 铁律 + 公式三镜头 + 🔮 Look at the sky + 金句卡；R4 rises 太阳升起、fly 鸟飞过、run 讲解员跑、look 指黑板、play 跳）｜`b944d70`｜`work/shots/five_patterns_1_对比总图.png`（Hark 项目工作区）｜方块下移到 y140 让出进度条；公式绿框只有约 500–620 宽，收窄到 x≤800 后讲解员不必退场（R1 不受影响，比照 aux 只在全宽内容前退场）；✂️ 徽章出处 en.wikipedia.org/wiki/English_clause_element（Quirk 等 1985 分 7 种）；新版面工具 vtools() 与旧 tools() 并存，全部案例升完再删旧工具；时长 92→108 秒
+- 06:04｜five_patterns ② SVP 状态天平型升 v2（骨架 + 天平 + 系动词两类 / 金句 + -ly 避坑 + 铁律 / 秋天金句 + 公式三镜头 + 🔮 The flower smells sweet + 金句卡；R4 smells 冒热气、turn 叶子变黄、gets 凉风）｜`be84ae7`｜`work/shots/five_patterns_2_对比总图.png`（Hark 项目工作区）｜系动词是状态不是肢体动作，按 bamboo_tree ② 先例不让人演，只做与朗读同步的场景变化并列入 actionWords；「Get, turn, become」词表里的 get 只作提示；鸡汤 / 黄叶用荧光黄作填充底色（V3 允许）；时长 97→109 秒
+- 06:07｜five_patterns ③ SVO 一箭穿心型升 v2（骨架 + 一箭穿心 / 植树金句 + 画蛇添足 / 宾语穿制服 + 公式三镜头 + 🔮 I want to read this story + 金句卡；R4 reading 捧书、planted 小旅客种树苗、go 讲解员走、read 捧书）｜`796b68c`｜`work/shots/five_patterns_3_对比总图.png`（Hark 项目工作区）｜小树苗用道具库的 flower（动作库没有「种」，用 carry + put 搬到土坑边放下表现）；✂️ 徽章只写「大致规律、要逐个记」，不加新的事实性说法；enter the room 的 enter 不在 r2check 动作表、只是例词串，不演；时长 109→119 秒
+- 06:12｜five_patterns ④ SVOO 双手递礼型升 v2（骨架 + 两种语序 / to 指向 / for 心意 + 公式三镜头 + 🔮 Please pass the book to me + 金句卡；R4 gave 妈妈递礼物盒、give / show 讲解员举词卡、pass 举书递出）｜`ec58b68`｜`work/shots/five_patterns_4_对比总图.png`（Hark 项目工作区）｜「给」动作库没有，按 fp_one_king ④ 先例用 carry + put（场景）和 holdCard（讲解员）代替；bought / made / cook 动作库没有买、做饭，不演（不在 r2check 动作表）；✂️ 徽章去掉「个别动词两种都能用」这类未核实说法，只写「以词典为准」；时长 105→116 秒
+- 06:15｜five_patterns ⑤ SVOC 魔法赋能型升 v2，**five_patterns 5 个案例全部 v2 完成**（骨架 + 小主谓句 / 读书金句 + 形容词宾补避坑 / 使役动词 + 带不带 to + 公式三镜头 + 🔮 The teacher makes us read aloud + 金句卡；R4 reading / read 捧书、play 讲解员跳 + 两个孩子跳、go 讲解员走）｜`14c396b`｜`work/shots/five_patterns_5_对比总图.png`（Hark 项目工作区）｜「makes me happily」原在 x712 会越过讲解员，挪到下一行；laugh 动作库没有，只给场景孩子开心表情、不列 actionWords；keeps my mind open 的 open 是形容词，r2check 只作提示；删掉旧版面工具 tools()（只留在 classic）；五个案例时长 92→108、97→109、109→119、105→116、118→127 秒（每个都在 +20% 内）
+- 06:20｜tense_matrix 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`8a4dd20`｜—｜旧幕渲染不变（reg_render diff 0，只加依赖）；照 five_patterns 先例，INVENTORY 放 docs/whiteboard/lab/；升级前时长 ①144 ②129 ③148 ④134 ⑤145 秒（每个案例 v2 上限 ×1.2：173 / 155 / 178 / 161 / 174）
+- 06:29｜tense_matrix ① 一般现在时升 v2（时间轴 + 格子 / 公式 + 原形·单三 / -es · y→ies / 信号词 + 照妖镜 + 结论四镜头 + 🔮 She goes to school + 金句卡；R4 goes 地球绕太阳 · 小汽车开走 · 讲解员走、play 讲解员跳、plays 小男孩带球跑、flies 小鸟飞）｜`821d791`｜`work/shots/tense_matrix_1_对比总图.png`（Hark 项目工作区）｜原一屏 9 块内容在讲解员让位（x≤800）后放不下，按 R1 稳妥拆成四个镜头，文字一条不删；原文件末尾集中补的 R2 朗读挪到对应画面旁（如 The earth goes around the sun 放到「客观真理」并让地球转起来）；旧 k.final 横跨 860 宽，改用收窄到 784 的结论框（同样朗读）；teaches / watches / washes 不是肢体动作或动作库没有，不演；✂️ 徽章只写「九宫格是简化图」，不加新事实；时长 144→155 秒
+- 06:33｜tense_matrix ② 现在进行时升 v2（时间轴 + 格子 + 录像机 / 公式 + 错句 + running / dancing · swimming · reading / 信号词 + 心理状态词陷阱 + 结论四镜头 + 🔮 Look! The boy is jumping + 金句卡；R4 playing 讲解员跳、running Leo 跑、dancing Mia 跳舞、swimming 泳池小脑袋游、reading 讲解员捧书、jumping 讲解员跳）｜`2d06b93`｜`work/shots/tense_matrix_2_对比总图.png`（Hark 项目工作区）｜跳舞动作库没有，用 jump + turn 交替代替；游泳无人物动作，按 bamboo_tree ⑤ 先例用场景动作（泳池里小脑袋 move + squash）；r2check 的词形只认 -ing 直接加，running / swimming（双写）要原样写进 actionWords 才能对上朗读；making a cake 动作库没有「做」，不演；时长 129→137 秒
+- 06:37｜tense_matrix ③ 一般过去时升 v2（时间轴 + 格子 + 老照片 / 公式 + 博物馆 + y→ied / stopped + was·were / 信号词 + did 陷阱 + 结论四镜头 + 🔮 Did you play football yesterday + 金句卡；R4 visited 小旅客走到博物馆、took / take 举相机拍照 + 快门闪、stopped 公交车停站、went / go 讲解员走、play 讲解员跳）｜`12347ee`｜`work/shots/tense_matrix_3_对比总图.png`（Hark 项目工作区）｜拍照照 aux_transformer ① 先例用 take + 📷 词卡 + 快门闪；visit 不在 r2check 动作表，但「参观」是走过去，按 R4 精神列入；预测题揭晓句补一句 Yes, I played football yesterday.（played 出现在选项里，R2 要有例句；无事实性内容）；studied / cried / lost / plan 动作库没有或不是肢体动作，不演；时长 148→158 秒
+- 06:39｜tense_matrix ④ 一般将来时升 v2（时间轴 + 格子 + 望远镜 / 方案 A·B + will 句 + 放风筝 / be going to 三句 + 去爷爷奶奶家 / 信号词 + There be 陷阱 + 结论四镜头 + 🔮 There will be a party tomorrow + 金句卡；R4 fly 小男孩跑 + 风筝飞上天、visit Leo 走到爷爷奶奶家）｜`3e66990`｜`work/shots/tense_matrix_4_对比总图.png`（Hark 项目工作区）｜R3：will「原意是决心」核对 etymonline.com/word/will——动词 will 古英语 willan 原意「想要、愿意」，「决心」是名词 will 的义项；按 fp_iconicity ④ between 先例原字幕保留、加一行 📜 查证小字（不含要朗读的新英文），出处写进术语；We are going to swim 是计划不是正在做，不演（r2check 只提示）；have a picnic 动作库没有，不演；时长 134→141 秒
+- 06:42｜tense_matrix ⑤ 现在完成时升 v2，**tense_matrix 5 个案例全部 v2 完成**（时间轴 + 格子 + 桥 + 奖杯 / 公式 + 丢钥匙 + finished · lived / been to · gone to 两个小人 / 信号词 + 过去时间点陷阱 + 结论四镜头 + 🔮 I have finished my homework + 金句卡；R4 been 小旅客去长城又回来、gone 王老师走向上海后消失）｜`e4e85c0`｜`work/shots/tense_matrix_5_对比总图.png`（Hark 项目工作区）｜been to / gone to 原来只有字，按 R4 用两个场景小人演出「去了又回来」和「走了没回来」（王老师用 porter 形象区分）；Finish, go 只是词表，不演（r2check 只提示 go）；原想加 ✂️ 徽章说明 been to / gone to 的简化，因无现成出处核对，不加，只留 💡；五个案例时长 144→155、129→137、148→158、134→141、145→150 秒（每个都在 +20% 内）
+- 08:50｜past_clans 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`40b389f`｜—｜reg_render diff 0；升级前时长 ①103 ②125 ③95 ④102 秒
+- 09:40｜past_clans ①–④ 四大门派一次升 v2，**past_clans 4 个案例全部 v2 完成**（每派：门派旗 + 秘诀 / 前两个成员 + 场景 / 第三个成员 + 其余成员 + 结论三镜头 + 🔮 预测 + 金句卡；版面工具 PC_V2）｜本提交｜`work/shots/past_clans_1–4_对比总图.png`（Hark 主对话工作区）｜R4：① play 讲解员跳、put 小旅客把书搬到桌上 · 预测举 put 卡、read 捧书；② swam 海里小脑袋游、drank 牛奶杯喝空、sat 小旅客坐凳子、ran / came 讲解员跑出去再跑回；③ slept 月亮旁飘 Zzz、left 火车开走、met 两个小人走到公园见面；④ bought 购物袋冒出新裙子、brought 带小狗去公园、taught 讲解员指黑板、caught 接住飞来的球。预测题：put / sang / swept / bought（错误选项 putted · singed · sweeped · baught 进 r2skip 不读）。R1 341 条 ❌6 全是旧填充色值改 V3；r2check past_clans --strict 0（R4 15 个全同步；drink / swim / sit / give / run / come / catch / bring 原形只在词表朗读里，只作提示）；reg_render 只有 past_clans 20 项变；appwb 4 正常；时长 103→112、125→130、95→101、102→109 秒。四个案例一次提交（同一套版面工具，逐个验收后合并提交）。
+- 09:10｜adj_order 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；升级前时长 ①83 ②66 ③68 ④69 秒；用户 09:02：「不要询问，把所有任务全部做完，及时更新交接文档」
+- 09:25｜adj_order ①–④ 四列真题专列一次升 v2（共用 build），**adj_order 4 个案例全部 v2 完成**（中文 + 一袋形容词 + 主观→客观箭头 / 火车逐个上车 + 紧贴名词 + 为什么 + 结论框两镜头 + 🔮 预测 + 金句卡）｜本提交｜`work/shots/adj_order_1–4_对比总图.png`（Hark 主对话工作区）｜车厢 108→88 宽收进 x≤800；车厢色改 V3：观点红（主观）→ 中间蓝 → 材质用途 / 名词站绿（客观），与箭头同色；词「上车」做成从车厢上方落进座位；新增预测题 nice big red balloon / cute little yellow ducks / new white sports shoes / friendly young Chinese teacher（排错选项进 r2skip）；例句只有 bought / have / wears / is，无肢体动作词，actionWords 留空注明。R1 208 条 ❌0；r2check adj_order --strict 0；reg_render 只有 adj_order 20 项变；appwb 4 正常；时长 83→94、66→77、68→79、69→80 秒
+- 09:20｜metaphor_code 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；appwb 3 正常；升级前时长 ①130 ②98 ③129 秒（v2 上限 ×1.2：156 / 118 / 155）；本项目（Hark 项目「萌星小学英语」）接手连续推进
+- 09:30｜**优先级变更（用户 09:14）**：设计文档写入决策 30 动作系统重建（原因 5 条 + 新设计 D1–D6）、MASTER_DESIGN §2.8 动作系统 v2、阶段表加 6.5、SOP R4v2 + §16、HANDOFF 新任务顺序｜本提交｜—｜metaphor_code 只做到升级准备（`07ee259`），v2 暂停；k.act 使用统计已按代码核对（964 次，17 个动作）
+- 09:50｜metaphor_code ①–③ 三大隐喻密码一次升 v2，**metaphor_code 3 个案例全部 v2 完成**（每个案例：讲解员 + 五步进度；原 2×2 卡片一屏放不下 x≤800，拆成「两张卡一个镜头」；连读镜头每读一句先把原朗读句写上板；结论框收进 x≤800 代替旧 k.final；🔮 床头 the head of the bed / 红茶 black tea / as quiet as a mouse 预测 + 金句卡）｜本提交｜`work/shots/metaphor_code_1–3_对比总图.png`（Hark 项目「萌星小学英语」工作区）｜R3：① 原图时针指 6、朗读却是「points to three」，按 R1 两条都留，读到这句时让时针转到 3（场景动作）并补「→ 转到 3」小字；R4：look 讲解员指钟面、give me a hand 讲解员伸手托（support）、give the green light 红绿灯亮绿（actFx）；look sad 是系动词，按 five_patterns ② 先例不演；③ 无肢体动作词，蜜蜂嗡嗡、雨点落下用场景动画；red tea 进 r2skip。徽章 💡✂️（black tea 的「干叶颜色」说法查了 Wikipedia Black tea 条，只说中文按茶色叫红茶，没核实到英文命名理由，所以标 ✂️ 不标 📜）。R1 342 条 ❌0；r2check metaphor_code --strict 0；reg_render 只有 metaphor_code 15 项变；appwb 3 正常；时长 130→146、98→106、129→139 秒（都在 +20% 内）
+- 09:58｜stress_rhythm 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；appwb 3 正常；升级前时长 ①61 ②57 ③50 秒；本页签已并入语调地图「🎯 重音与弱读」区（模块 id 不变）
+- 09:55｜**决策 30 动作系统 v2 第一步 + 样板「He takes the dog out.」**：新引擎文件 `src/wb_verbs.js`（`k.cast / k.verb / k.to / k.attach / k.scenery`；男孩骨架 v2 带手掌 + 握持点、转身经过正面视角、depth 远近；狗走 / 趴 / 站 / 摇尾巴 / 项圈；门开合；牵绳挂钩 → 手 → 项圈按绳长下垂；院子 / 房子 / 公园 / 教室 / 厨房简笔场景；专属动作 walk · run · take · clip · open · close · put · give · wave · take_out + VERB_TABLE / PHASES），引擎只加两处挂钩；`r2check` 加 R4v2（`--r4v2` 或案例 `r4v2: true`：专属动作 + 语义 + 禁止空清单）；新脚本 `actsheet.py`（每个专属动作 预备 / 发力 / 结果 三帧联络表）；样板 `cases/verb_demo.js`（SAMPLES 按需模块，不进页签）｜本提交｜`work/shots/sample_take_dog_out_对照.png`、`work/shots/verb_demo_1_动作表.png`（Hark 项目工作区）｜reg_render 旧 455 项 diff 0（只新增 verb_demo 5 项）；r2check verb_demo --strict 0（R4v2 4 个动作词全过）；时长 45 秒。注意：有另一个实现者在 09:14 之后仍按旧顺序推了 metaphor_code v2（`53e1d21`）和 stress_rhythm 准备（`3e6ea28`）——按决策 30 这两项算「待回改」，**所有实现者请先读顶部「🔴 优先级变更」，停止原顺序单元**
+
+## 1. 现在做到哪
+
+| 阶段（MASTER_DESIGN §4） | 状态 | 最后一个提交 |
+|---|---|---|
+| 0 文档、1 骨架补齐（引擎 v2、讲解员、R2/R4 检查、port 样板幕、按需加载） | ✅ | `abb050c` port 审片通过、`f575002` 按需加载 |
+| 2 单词身世第一批（Europe、Bluetooth、身世标签、格林定律章 4 幕、时间与度量 2 幕；删 `vowel_shift`） | ✅ | `a29cb70`、`4347111` |
+| 3 中英对照总枢（11 幕，全部 v2 + 讲解员；④-1 / ⑥-1 零丢失搬迁） | ✅ | `b8366bd` |
+| 4 实验室新页签（phrasal_key 并入 verb_matrix、eight_endings、pron_map、intonation_map 并入 stress_rhythm） | ✅ | `f497a1a` |
+| 旧幕 R2 补朗读（P1–P4 + metaphor_code + past_clans） | ✅ | `0a5d255` |
+| 5 新模块（决策 6）：✅ 合成词重音（语调地图第 3 幕）、✅ 不规则复数（页签 ⑮）；⬜ 空间隐喻、拼写潜规则、交际句型地图 | 进行中 | `52b7121` |
+| 首页改版 1–6 步（继续上次 → 三大厅 → 三大总枢小卡 → 王炸实验室入口卡 → 更多） | ✅ | `f1cd18f` |
+| **中点：练习闭环 + 总地图（决策 14）** | ⏰ 已到点未做 | — |
+| 文档清理（HANDOFF 拆分、计数、时间戳、§3 总表、README）+ 锚点检查 + 审片清单 | ✅ | `121ce9c`、`562b6d4`、`c27c278` |
+| 7 全 App 白板化（决策 23 / 24）：试点 fp_economy 第 1 幕 | 🟡 已做，待用户审对比图（未推送） | — |
+| 8 词源 / 格林定律 / 词根词缀全量入库（决策 25） | 🟡 审计中 | `3cc5e98`（决策） |
+| 9 单词全部维度菜单全量覆盖（决策 26） | 🟡 审计中 | `0af9976`（决策） |
+| 10 语法全部白板动画（决策 27） | ⬜ 先试点 1 个语法点 | `0af9976`（决策） |
+| 11 思维导图白板化（决策 28） | ⬜ 先试点 1 张主题导图 | `b70b47a`（决策） |
+| 单词维度审计 v1（`word_origins/COVERAGE.md`） | ✅ 已出，待用户看 | `5631b28` |
+| 11 思维导图白板化（决策 28） | ⬜ 先试点 1 张主题导图 | `58d5665`（决策） |
+| 8b 音变与词汇规律 12 + 6 条（决策 25 扩展） | 🟡 审计完成，待补齐 | `1245397`、`37a7ab5`（COVERAGE.md） |
+
+## 2. 下一步（按优先级）
+
+0. **全 App 白板化（决策 23 / 24，用户 2026-10-30 定为最优先）**：用户认可 fp_economy 第 1 幕对比图 → 推送 → 框架语义 FR01 买卖小剧场试点（与 fp_economy 一起审）→ 老白板 58 幕逐文件升 v2 → 三大厅：框架语义 → 易混词 → 自然拼读 → 构词 → 单词卡模板 → 语法 40 点 → 口语 16 场景。流程见 `SOP.md` §14。**每个入口先导出旧内容清单，验收后才拆旧 canvas。**
+0b. **词源 / 格林定律 / 词根词缀 + 单词全部维度菜单全量覆盖（决策 25 / 26，并行）**：审计表先给用户 → 按维度分批补齐 → `word_origins/COVERAGE.md`。流程见 `SOP.md` §15。
+0d. **思维导图白板化（决策 28）**：试点 1 张主题导图，和其它试点一起审。
+0c. **语法全部白板动画（决策 27）**：试点一般过去时或现在进行时，出前后对比给用户审，认可后模板化其余约 40 点。流程见 `SOP.md` §14。
+1. **用户真机审片**（清单见 `REVIEW_LIST.md`）——除 port 外的新幕都没正式审过。
+2. **练习闭环 + 全 App 总地图（决策 14）**：每模块 3–5 道小测（认出 → 选择 → 拼写），答错进现有错题本（跨 2 个学习日、连续答对 3 次消错），完成度存 `localStorage`、总地图点亮；不接第三方统计。**等用户点头再开工。**
+3. 决策 6 剩余三个新模块：空间隐喻 → 拼写潜规则 → 交际句型地图（开工前和用户确认位置，MASTER_DESIGN 决策 6 表是建议）。
+4. 之后：决策 7 词汇大数据 → 决策 8 家长指南 / 英美对照 / 大写标点 → 决策 9 欧洲文化 6 章 + 美国篇。
+5. 持续：旧幕补 R4 `actionWords`（要和视觉 v2 升级一起做，旧幕还没有讲解员）；R2 剩余缺口只在 stress_rhythm 原 3 幕（已并入语调地图「🎯 重音与弱读」区，原样保留）。
+
+## 3. 已知风险
+
+- **审片缺口**：只有 port 幕经过用户正式审片。Europe、Bluetooth、格林定律 4 幕、时间与度量 2 幕、中英对照 11 幕、实验室新页签（phrasal_key、eight_endings、pron_map、intonation_map 3 幕、irregular_plural 2 幕）只做了截图自审。首页改版第 4–6 步是在 `20581e9`「待用户看截图确认」之后直接做的，用户还没看。
+- **实测环境**：fps、朗读同步都只在无 GPU 的 headless 沙箱 + 模拟 TTS 下测过；port v2 的 1% 低帧约 39（目标 ≥ 50），需真机复核；真实语音（尤其中文设备上的英文语音包）下的口型和时间轴跟随没验证过。
+- **时长**：port v2 约 202 秒（升级前约 136 秒），对小学生偏长，审片时请用户判断要不要剪。
+- **补丁脚本靠字符串锚点改 5.7 MB 主文件**（`src/insert_wb.py`、`docs/home/step*.py`）：锚点没匹配上时可能静默不改。✅ 2026-10-30 已加 `src/anchorcheck.py`（见 §5）；它只核对已知标记，新加的补丁要把自己的标记登记进去。
+- **R4 缺口**：旧幕（王炸实验室 6 个老页签、第一性原理 22 幕）都没有 `actionWords` 清单。
+
+- **文档问题清单（2026-10-30 审计，已处理，留档备查）**：① HANDOFF 头部「当前阶段」过期（写阶段 2，实际 1–4 + 首页 1–6 已完成）✅ 已改；② HANDOFF 时间戳不可信（如 irregular_plural 写 01:45、实际提交 00:06；中英对照 11 幕写 10-30 03:15、实际 10-29 23:06）✅ 已按 git log 更正（CHANGELOG 开头更正表）；③ MASTER_DESIGN 计数乱（头部 19 条、§2 标题 17 条、有 22 无 20/21、规则顺序 R1 R2 R4 R3）✅ 已统一；④ §3 合并总表过期（stress_rhythm、不规则复数仍写待做）✅；⑤ 过期待办（port R4、讲解员、port 审片、首页优化方案、DESIGN_HANDOFF「尚未决定」）✅；⑥ README 写「十二大王炸」和旧首页结构 ✅；⑦ HANDOFF 87 KB 过大、流水和交接混写 ✅ 已拆成本文 + CHANGELOG。**以后**：本文只写现状，流水只写 CHANGELOG；计数改动时同步头部和标题。
+- **练习闭环拖延**：决策 14 约定「新模块做到一半时做」，已过点未做，需用户点头。
+- **白板化工作量**：三大厅 HD 剧场 + 老白板 58 幕规模大，必须模板化；动作库不够时扩 `wb_actor.js`（只加不改）。
+- **词源质量**：`VOCAB_DB.etymology` 多数是「秒懂巧记小故事」（记忆法，不是词源），部分含错误说法（如「ear 加 h = hear」），决策 25 要纠正标注，不删。
+
+## 4. 待用户确认
+
+0. fp_economy 第 1 幕 v2 对比图是否认可（认可后才铺开白板化）。
+0b. 词源 + 单词维度审计表（决策 25 / 26）。
+0c. 语法白板化试点（决策 27）、思维导图试点（决策 28）。
+0d. 思维导图试点（决策 28）。
+1. 真机审片（同 §3 第一条）。
+2. 决策 14 练习闭环是否现在开工。
+3. 决策 6 剩余三个模块的位置。
+4. 术语「词源」在 `fp_iconicity` 和 `wo_port` 各一条，统一说法（MASTER_DESIGN §3，下次改任一文件时做）。
+5. 第一性原理 ②「M 像山」（💡）将来和「字母身世」（📜）并排。
+
+## 5. 常用做法速查
+
+- **验收**（先 `python3 docs/whiteboard/src/insert_wb.py` 再查）：`jscheck.py`（node --check，必跑）、`r2check.py <幕|all|lab|fp|wo> [--strict|--summary]`、`reg_render.py`（旧幕渲染逐字节回归）、`appwb.py <页签>` / `appfp.py <原理>` / `appwo.py` / `appze.py` / `apptags.py`（App 内冒烟）、`docs/home/home_entries.py --check`（首页入口零丢失）。
+- **补丁锚点检查**：`src/anchorcheck.py` 核对主文件里各插入标记（引擎 / 模块区块、总枢入口、路由、停循环、每个页签的 `WB_STAGE`、每个 `wbmod-*`、首页改版标记）次数正确、`LAB_GROUPS` 页签都已登记进 `READY`；`jscheck.py` 末尾自动跑，`insert_wb.py` 写文件前也跑，不通过就不写。新写补丁脚本：替换前 `assert s.count(锚点) == 1`，并把新标记加进 `anchorcheck.MARKERS`。
+- **新实验室页签接线**：`cases/<id>.js`（v2 + `WO_PROPS`）→ `insert_wb.py` 的 `READY` + `LAB_DEPS` → 主文件 `LAB_GROUPS` 加一项 + 首页 `.lab-entry` 对应组加 `.lab-chip`（onclick `navigateTo('super_lab_hub', { labTab: '<id>' })`）、`tabTitles`、`} else if (tab === …)` 分支（锚点 `\n  } else if (tab === "bamboo_tree") {\n`）→ `appwb.py` IDX、`preview.html` 名单。
+- **环境**：沙箱重启后 `/tmp` 清空，Playwright 要重装：`pip install playwright pillow && python3 -m playwright install chromium && python3 -m playwright install-deps chromium`。
+- **零丢失（R1）**：搬迁 / 合并前先导出清单（`export_inventory.py`），搬完逐条对照（`check_inventory.py`、`check_upgrade.py`），❌ 必须为 0 才删旧。
