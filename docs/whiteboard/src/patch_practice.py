@@ -124,7 +124,7 @@ function renderAppMapView() {
 '''
 if MARK in s:
     i = s.index(MARK); i = s.rindex('\n', 0, i) + 1
-    ends = [k for k in (s.find('// ORAL_FUNC_MAP_V1', i), s.find('function renderCurrentView() {', i)) if k > 0]   # 后面还插了别的块（交际句型地图）：只换到它前面
+    ends = [k for k in (s.find('// ORAL_FUNC_MAP_V1', i), s.find('// MY_STUDY_V1 ----------', i), s.find('// DEDUP_C_V1 ----------', i), s.find('function renderCurrentView() {', i)) if k > 0]   # 后面插的块（我的学习 / 重复内容合并 3）也不能冲掉   # 后面还插了别的块（交际句型地图）：只换到它前面
     j = min(ends); j = s.rindex('\n', 0, j) + 1 if s[j:j + 2] == '//' else j
     s = s[:i] + FUNCS + s[j:]; print('funcs updated')
 else:

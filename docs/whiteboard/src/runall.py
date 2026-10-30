@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """runall.py [--full] —— 决策 29 O9：一条命令跑全套回归，全绿才提交（返回码非 0 = 不通过）。
 快速档（默认，约 3–4 分钟）：jscheck（node --check + anchorcheck）→ offlinecheck（有就跑）→ App 回归抽样：
-  app_check8（词卡词源）、app_check9（练习闭环 + 总地图）、app_check10（我的学习 + 综合自测）、app_check11（别名词条）、app_check.py tense_matrix、app_check2.py wo wo_grimm、app_check4.py hd_phonics、app_check4.py oral_func。
+  app_check8（词卡词源）、app_check9（练习闭环 + 总地图）、app_check10（我的学习 + 综合自测）、app_check11（别名词条）、app_check12（模块互链 + 总地图知识点）、app_check.py tense_matrix、app_check2.py wo wo_grimm、app_check4.py hd_phonics、app_check4.py oral_func。
 完整档 --full 另加：app_check5（单词卡模板 55 词）、app_check6（思维导图 25 幕）、app_check7（第一性原理 24 幕）、leakcheck（有就跑）。
 每项判定：返回码 0，且输出里没有 BAD / FAIL / 「不合格 N」(N>0) / 非 none 的 errors。"""
 import subprocess, sys, os, re, time
@@ -14,6 +14,7 @@ Q = [
     ('练习闭环 app_check9', [sys.executable, 'app_check9.py'], V5),
     ('我的学习 + 综合自测 app_check10', [sys.executable, 'app_check10.py'], V5),
     ('别名词条 app_check11', [sys.executable, 'app_check11.py'], V5),
+    ('模块互链 app_check12', [sys.executable, 'app_check12.py'], V5),
     ('实验室 tense_matrix', [sys.executable, 'app_check.py', 'tense_matrix', 'tenseIdx', '5'], V5),
     ('单词身世 wo_grimm', [sys.executable, 'app_check2.py', 'wo', 'wo_grimm', '1'], V5),
     ('自然拼读剧场 hd_phonics', [sys.executable, 'app_check4.py', 'hd_phonics', "navigateTo('vocab_phonics', { tab: 'steps', stepIdx: 0 })"], V5),
