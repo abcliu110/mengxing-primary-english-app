@@ -1493,3 +1493,12 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · hd_relations 第3幕 v5.1 重画并替换进 App
 - 🧨 易混词剧场 ③ 三个「穿」put on / wear / in：R1 10/10，68 s，主文件 14,688,181 bytes。
+
+## 2026-10-30 · hd_phonics 第1幕 v5.1 重画并替换进 App
+- 🔤 拼读剧场 ① CVC 首音 + 韵尾（-at 家族）：R1 10/10，55 s，主文件 14,691,133 bytes。
+
+## 2026-10-30 · hd_phonics 第2幕 v5.1 重画并替换进 App
+- 🔤 拼读剧场 ② Magic E 魔法棒（cap → cape）：R1 10/10，59 s，主文件 14,693,984 bytes。
+
+## 2026-10-30 · hd_phonics 第3幕 v5.1 重画并替换进 App
+- 🔤 拼读剧场 ③ 字母组合与最小对立对（ship / sheep）：R1 10/10，67 s，主文件 14,696,979 bytes。
