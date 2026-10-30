@@ -54,6 +54,19 @@ if 'WB5_EMBED_V2' not in s:   # 第一性原理 / 单词身世 / 中英对照 �
         assert s.count(a) == 1, a; s = s.replace(a, M + a, 1)
     assert s.count('WB5_EMBED_V2') == 4, s.count('WB5_EMBED_V2')
 
+if 'WB5_EMBED_VV' not in s:   # 万能动词剧场：词组有 v5 幕就换成 ①/② 两幕 iframe（旧 SVG 保留为兜底）
+    a = '${(typeof wbLoadModule === "function" && wbLoadModule("vv"), typeof VV !== "undefined" && VV.has(comboKey)) ? `'
+    assert s.count(a) == 1
+    s = s.replace(a, '${wb5El("vv_" + comboKey, 0) ? wb5VVHtml(comboKey) /* WB5_EMBED_VV */ : ' + a[2:], 1)
+    fn = """function wb5VVHtml(k) {   // WB5_EMBED_VV
+  const a = (superLabState.vvAct | 0) && wb5El("vv_" + k, 1) ? 1 : 0;
+  const btn = (i, t) => wb5El("vv_" + k, i) ? `<button onclick="superLabState.vvAct=${i}; renderSuperLabHubView();" style="background:${i === a ? '#2563eb' : '#e2e8f0'}; color:${i === a ? '#fff' : '#0f172a'}; font-weight:900; padding:8px 14px; border-radius:10px; font-size:0.85rem;">${t}</button>` : "";
+  return `<div style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">${btn(0, "① 本义")}${btn(1, "② 第二义 + 合成")}</div><div style="margin-top:10px;">${wb5StageHtml("vv_" + k, a, false)}</div>`;
+}
+"""
+    i = s.index('function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {')
+    s = s[:i] + fn + s[i:]
+
 import hashlib, gzip, base64
 if 'WB5_MOUNT_V2' not in s:   # 升级已装的运行时
     a = s.index('function wb5Mount(fr) {'); b = s.index('\n}\n', a) + 3
