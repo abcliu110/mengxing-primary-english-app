@@ -2401,3 +2401,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 01:25 · 决策 29 O8 写主文件统一入口 appwrite.py
 - `src/appwrite.py` `save(s)`：写前 `anchorcheck.check(s)` 必须 0 问题，否则不写；写后跑 `jscheck.py`，不过就把原文件写回去并退出非 0。本轮所有改主文件的脚本（patch_etym_card / patch_practice / patch_metaphor4 / patch_phonics4 / patch_oral_func / gen_module_quiz / build_etym_db）改用它。
 - 当场拦下一个真问题：patch_practice 重跑时按「到 renderCurrentView 为止」换函数块，会把后插的交际句型地图函数一起删掉——anchorcheck 报 ORAL_FUNC_MAP_V1 出现 0 次，未写入；已改成只换到下一个块标记前。全部补丁脚本重跑后主文件逐字节不变（幂等）。旧的 `docs/home/step*.py` 一次性补丁早已删除，只剩 `docs/home/home_entries.py`（只读检查）。
+
+## 2026-10-31 01:35 · 决策 29 O2 / O7 泄漏检查 + 播放器后台暂停
+- `src/leakcheck.py`（`--twice` 走两轮）：加载前注入探针包住 rAF / setInterval / window·document 监听，进出 20 个入口后回首页量。实测：基线 rAF 0、interval 0、监听 3；白板页主页面 rAF 0（白板都在 iframe 里，切页 iframe 被移除即停）；两轮 40 次进出后回首页仍 0 / 0 / 3——**没有泄漏**，所以不另做统一调度器 / pageScope（避免为不存在的问题改 384 处 onclick 代码）。已接进 runall --full。
+- `v5/player.js`：标签页切到后台（visibilitychange hidden）就暂停——原来回到前台时 `performance.now() - last` 一次性推进时间轴，跳过一大段、朗读错位。引擎变了，**随本轮字表重建的 rebuild_all 一起生效**（HANDOFF §4 那条）。

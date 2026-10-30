@@ -48,6 +48,8 @@ function play() { if (playing) return; if (t >= DUR) t = 0; playing = true; last
 function pause() { playing = false; hush(); show(); }
 btn.onclick = () => (playing ? pause() : play());
 bar.oninput = () => { pause(); t = +bar.value; show(); };
+// 决策 29 O2：标签页切到后台就暂停（否则回来时时间轴一下跳过一大段、朗读和画面错位）
+document.addEventListener('visibilitychange', () => { if (document.hidden && playing) pause(); });
 cv.onclick = () => (playing ? pause() : play());
 // 先装字体（场景排版要量真实字宽）→ 建场景 → 装角色帧 → 画第一帧。浏览器要求先点一下才能出声，所以不自动播放。
 const fontsReady = Promise.all([['WK', __FONTS__.wk], ['Kalam', __FONTS__.kalam]].map(([n, u]) => new FontFace(n, `url(${u})`).load().then(f => document.fonts.add(f)).catch(() => {})));
