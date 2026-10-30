@@ -508,3 +508,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `v5/scenes/tense_matrix_4.js`（12 块白板，160 s）+ 帧库 `sprites/tm4.js`（l_kite / l_w0–3 / grand / picnic / party / kick0–2 / sw0–3）。
 - 动作：望远镜视线扫向将来；将来那头泳池里游起来对齐 swim；Leo 放风筝跑过公园对齐 fly；Leo 提礼物走向挥手的爷爷奶奶对齐 visit；一家野餐 + 下周日日历；球场里踢球对齐 match；三个孩子聚会对齐 party。
 - 验收：R1 84/84；0 报错；确定性 ✓；645,734 bytes。
+
+## 2026-10-30 13:05 JST · tense_matrix ⑤ 现在完成时 v5.1 重画（tense_matrix 单元完成）
+- `v5/scenes/tense_matrix_5.js`（12 块白板，169 s）+ 帧库 `sprites/tm5.js`（l_key / m_hw / wang / l_kite / l_w0–3 / m_like）。
+- 动作：桥从过去拱到现在；Leo 摸空口袋 + 锁着的门抖动「进不去门」；Mia 举起写完的作业 ✔ → Leo 放风筝跑出去（成果：能玩了）；2021–现在逐年点亮 + 北京的家；Leo 走去长城再走回来（been to）、王老师拖箱子走远淡出（gone to）。
+- 验收：R1 89/89；0 报错；确定性 ✓；501,507 bytes。tense_matrix 5 幕全部完成（旧清单 5 个案例）。
