@@ -539,3 +539,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · adj_order 第3幕 v5.1 重画并替换进 App
 - ③  一件漂亮的崭新红色中国丝绸连衣裙：R1 90/90，~120 s，主文件 12,423,920 bytes。
+
+## 2026-10-30 · adj_order 第4幕 v5.1 重画并替换进 App
+- ④  那个高个子年轻的英国篮球教练：R1 89/89，~120 s，主文件 12,756,036 bytes。
