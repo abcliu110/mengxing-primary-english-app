@@ -1,7 +1,8 @@
 // 打包一幕为单文件 HTML：node v5/build.mjs <scene.js> <out.html> "<标题>"
 // 字体：从场景源码收集用到的字（含讲解字幕），pyftsubset 子集化 LXGW WenKai / Kalam → woff data URI 内嵌。
 import { build } from 'esbuild';
-import { writeFileSync, readFileSync, mkdirSync, existsSync } from 'fs';
+import { writeFileSync, readFileSync, mkdirSync, existsSync, copyFileSync, renameSync } from 'fs';
+import { createHash } from 'crypto';
 import { execFileSync } from 'child_process';
 import path from 'path';
 const [scenePath, outPath, title = '白板动画 v5'] = process.argv.slice(2);
@@ -14,7 +15,12 @@ const chars = new Set([...(existsSync(GLOBAL) ? readFileSync(GLOBAL, 'utf8') : '
 [...src].filter(ch => ch.charCodeAt(0) > 127).forEach(ch => chars.add(ch));
 const ascii = Array.from({ length: 95 }, (_, i) => String.fromCharCode(32 + i)).join('');
 const txt = `/tmp/wb5_chars_${process.pid}.txt`; writeFileSync(txt, ascii + [...chars].sort().join('') + '…「」：，。？！、（）×→←✓✗');
-const sub = (ttf, out, extra) => { execFileSync('pyftsubset', [ttf, `--text-file=${txt}`, '--flavor=woff2', `--output-file=${out}`, '--layout-features=*', ...extra]); return 'data:font/woff2;base64,' + readFileSync(out).toString('base64'); };
+// 2026-10-30：子集化结果按「字体 + 字表」哈希缓存在 /tmp/wb5_fontcache（同一份字表的幕不再重复跑 pyftsubset，全量重建快很多；输出逐字节不变）
+const CACHE = '/tmp/wb5_fontcache'; mkdirSync(CACHE, { recursive: true });
+const sub = (ttf, out, extra) => {
+  const key = createHash('sha1').update(ttf + '\0' + readFileSync(txt, 'utf8') + '\0' + extra.join(' ')).digest('hex'), hit = path.join(CACHE, key + '.woff2');
+  if (!existsSync(hit)) { execFileSync('pyftsubset', [ttf, `--text-file=${txt}`, '--flavor=woff2', `--output-file=${out}`, '--layout-features=*', ...extra]); copyFileSync(out, hit + '.' + process.pid); renameSync(hit + '.' + process.pid, hit); }
+  return 'data:font/woff2;base64,' + readFileSync(hit).toString('base64'); };
 const wk = sub(path.join(FONT_DIR, 'wk.ttf'), `/tmp/wb5_wk_${process.pid}.woff2`, []);
 const kalam = sub(path.join(FONT_DIR, 'kalam.ttf'), `/tmp/wb5_kalam_${process.pid}.woff2`, []);
 // 引擎（全 App 一份，内容与幕无关）+ 场景（只有这一幕的数据；wb5 / auto / adj_train 从引擎的 globalThis.__WB5__ 取）

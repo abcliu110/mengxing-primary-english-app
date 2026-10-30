@@ -2420,3 +2420,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 23:06 JST · 决策 29 O5 离线可用检查（补记）
 - `src/offlinecheck.py` 已随 `f82736b`（O8）一起提交，当时漏记：扫主文件明文 + 全部 wb5html / wb5blob 压缩块解开后的内容，不得出现从 http(s) 加载资源的写法（script src、link href、img/audio/video/iframe src、CSS url()、@import、fetch()、import()、Worker/WebSocket）；普通 `<a href>`（词源出处链接）允许。现扫 863 段 0 违规，已接进 runall 快速档。
+
+## 2026-10-30 23:40 JST · 合并两份重复的共享引擎块（字表重建）
+- metaphor_code ④、oral_func ② 用到字表外新字，打包时多出两份共享引擎块（各约 0.93 MB）。`python3 v5/gen_font_chars.py`（3302 字）→ `python3 v5/rebuild_all.py` 全量重建 488 幕 + 模板并重新嵌入：主文件 wb5blob 里 `gz:` 引擎块回到 **1 份**，主文件 17,483,815 → **15,630,085 bytes**（-1.85 MB）。O7 播放器「切后台暂停」随本次重建进入全部幕。
+- `v5/build.mjs`：pyftsubset 结果按「字体路径 + 字表 + 参数」sha1 缓存到 `/tmp/wb5_fontcache`（先写临时名再 rename，两路并行安全）。同一幕缓存前后打包逐字节一致（cmp 验证）；全量重建打包阶段从约 2–3 幕/分钟提到约 300 幕/分钟。
+- 回归 `runall.py --full` 13 项全部通过（offlinecheck 861 段 0 违规、app_check5 55 词 / app_check6 25 幕 0 不合格、leakcheck OK、0 报错）。
