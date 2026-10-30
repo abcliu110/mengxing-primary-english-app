@@ -76,6 +76,7 @@ MARKERS = [
     ('// WORD_ALIAS_V1 ----------', 1, 1), ('function wordFormsHtml(w)', 1, 1), ('migrateWordAliasRecords();   // WORD_ALIAS_V1', 1, 1),   # 重复内容合并 2：别名词条（patch_dedup_b.py）
     ('// DEDUP_C_V1 ----------', 1, 1), ('if (typeof kpMount === "function") kpMount();', 1, 1), ('GRAMMAR_FIXED_ACT[g.id]', 1, 1), ('g.id === "G14" ? prepDemoIdx : undefined)) return;', 0, 0),   # 重复内容合并 3（patch_dedup_c.py）
     ('// AFFIX_VOCAB_V1 ----------', 1, 1), ('}, 0);   // AFFIX_VOCAB_V1', 1, 1), ('<script type="application/json" id="AFFIX_WORDS_JSON">', 1, 1),   # 决策 34-A（patch_affix_vocab.py）
+    ('// GRAMMAR_EX_V1 ----------', 1, 1), ('if (typeof grexMount === "function") grexMount();', 1, 1), ('<script type="application/json" id="GRAMMAR_EX_JSON">', 1, 1),   # 决策 34-B（patch_grammar_examples.py）
     # 决策 33 ①：档案与自测合一（src/patch_my_study.py，2026-10-31）——标记要么全无（补丁前）要么各 1
 ]
 MY_STUDY = [

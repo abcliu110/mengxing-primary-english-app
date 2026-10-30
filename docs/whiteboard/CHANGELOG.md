@@ -2523,3 +2523,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - MORPH_DB 191 → 358：词卡「🧩 真实构词」随之覆盖这些派生词。
 - 新增 `src/build_affix_db.py`、`word_origins/AFFIX_WORDS.json` / `AFFIX_REVIEW.md`、`src/patch_affix_vocab.py`，`build_etym_db.py morph` 并入派生词；新回归 `v5/app_check13.py` 入 runall；`runall.py --full` 全过。
 
+### 2026-10-31 04:35 JST · 决策 34-B：语法例句从全部单词和课文里取
+- 40 个语法课底部加「📚 例句库」：共 3809 句，来自词库例句、日常用语 144 句和各模块英文句，按语法特征自动筛选 + 抽查，实词都在词库；按句型筛选、按主语人称分组，点句子朗读。
+- 没有少于 5 句的语法点；少于 15 句：G17 13, G23 13, G37 5, G39 13。数量表 `lab/GRAMMAR_EXAMPLES_REVIEW.md`。
+- 新增 `src/build_grammar_examples.py`、`lab/GRAMMAR_EXAMPLES.json`、`src/patch_grammar_examples.py`（主文件 +190 KB）；`patch_affix_vocab.py` 重跑不再冲掉后面的例句块；新回归 `v5/app_check14.py` 入 runall；`runall.py --full` 全过。
+
