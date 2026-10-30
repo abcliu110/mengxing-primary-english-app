@@ -3204,7 +3204,7 @@ function renderVocabSightView() {
                 </div>
               ` : `
                 <div style="background:#f0fdf4; padding:7px 10px; border-radius:8px; font-size:0.8rem; color:#166534; margin-top:8px;">
-                  ✨ 拼读规律：${w.syllables}（${w.memory_tip}）
+                  ✨ 拼读规律：${w.syllables}${etymIsPlaceholderTip(w.memory_tip) ? "" : `（${w.memory_tip}）`}<!-- DEDUP_A:sight -->
                 </div>
               `}
             </div>
@@ -7252,11 +7252,12 @@ function woOriginTagHtml(w) {
 // ETYM_CARD_V1 ---------- 词卡：真实词源（ETYM_DB / MORPH_DB，Wiktionary + Etymonline 互证）与 💡 巧记小故事分开显示 ----------
 var __etymCache = {};
 function etymData(id) { if (!(id in __etymCache)) { const el = document.getElementById(id); try { __etymCache[id] = el ? JSON.parse(el.textContent) : {}; } catch (e) { __etymCache[id] = {}; } } return __etymCache[id]; }
-function etymLookup(id, w) { const d = etymData(id), k = String((w && w.word) || "").trim(); return d[k] || d[k.toLowerCase()] || null; }
+function etymLookup(id, w) { if (w && /^V6_MORPH_/.test(w.id || "")) return null; const d = etymData(id), k = String((w && w.word) || "").trim(); return d[k] || d[k.toLowerCase()] || null; }   // DEDUP_A：变形词（saw / drove / felt…）按拼写会查到同形名词的词源，不查
+function etymIsPlaceholderTip(t) { t = String(t || "").trim(); return /^记忆锦囊：属于【[^】]*】高频核心词。?$/.test(t) || t === "考场必考不规则/拼写变形词"; }   // DEDUP_A：V6 扩展词的占位文字，不当巧记显示
 function etymEsc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 function etymTipText(w) {
   const t = String(w.etymology || w.memory_tip || "").replace(/^📖\s*【[^】]*】\s*/, "");
-  return t;
+  return etymIsPlaceholderTip(t) ? "" : t;
 }
 function etymRealHtml(w) {
   const e = etymLookup("ETYM_DB_JSON", w), m = etymLookup("MORPH_DB_JSON", w);
@@ -7271,7 +7272,12 @@ function etymRealHtml(w) {
 }
 function etymTipHtml(w) {
   const t = etymTipText(w);
-  if (!t) return "";
+  if (!t) {   // DEDUP_A：模板「属于【X】高频核心词」改成主题标签；变形词占位改成指向原形的说明
+    const raw = String(w.memory_tip || w.etymology || "").trim(), m = raw.match(/^记忆锦囊：属于【([^】]*)】高频核心词/);
+    if (m) return `<div data-etym-theme="1" style="font-size:0.85rem; color:#475569;"><span style="background:#eef2ff; color:#3730a3; border-radius:999px; padding:3px 10px; font-weight:800;">🏷️ ${etymEsc(m[1])}</span> <span style="color:#64748b;">高频核心词</span></div>`;
+    if (raw === "考场必考不规则/拼写变形词") return `<div data-etym-theme="1" style="font-size:0.85rem; color:#475569;"><span style="background:#fef3c7; color:#92400e; border-radius:999px; padding:3px 10px; font-weight:800;">🔁 不规则 / 拼写变形词</span> <span style="color:#64748b;">词源看它的原形</span></div>`;
+    return "";
+  }
   return `<div data-etym-tip="1" style="background:#fffbeb; padding:12px 14px; border-radius:12px; border-left:4px solid #f59e0b;">
     <div style="font-weight:900; color:#92400e; font-size:0.9rem;">💡 巧记小故事 <span style="font-weight:700; color:#b45309; font-size:0.78rem;">（帮助记忆的联想，不是真实词源）</span></div>
     <div style="font-size:0.9rem; color:#334155; margin-top:4px;">${t}</div>

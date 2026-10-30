@@ -2486,3 +2486,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - localStorage 学习记录键、消错规则（跨 2 个学习日连对 3 次）不动。补丁 `src/patch_my_study.py`（appwrite 写入，anchorcheck 登记 MY_STUDY 标记）；新回归 `v5/app_check10.py` 入 runall；`runall.py --full` 全过。
 - 决策 33 ②–⑤ 按用户要求暂停，等修订版。
 
+### 2026-10-31 03:10 JST · 重复内容合并第 1 步：词卡占位
+- V6 扩展词 499 个占位巧记（445 个「记忆锦囊：属于【X】高频核心词」、54 个「考场必考不规则/拼写变形词」）不再显示成 💡 巧记小故事：模板词显示主题标签「🏷️ X 高频核心词」，变形词显示「🔁 不规则 / 拼写变形词 · 词源看它的原形」。etymology 与 memory_tip 一字不差的 500 词现在只出一块（letter 保留一块真巧记）。
+- 认读卡「✨ 拼读规律」后面不再接占位文字。
+- V6_MORPH 变形词不再按拼写查 ETYM_DB（saw / drove / felt 之前显示的是锯子 / 畜群 / 毛毡的词源）。
+- 改动：`src/patch_etym_card.py`（新增 `etymIsPlaceholderTip`，重跑）、新补丁 `src/patch_dedup_a.py`，anchorcheck 登记；`v5/app_check8.py` 加占位词抽查。`runall.py --full` 全过。
+- 未改：v5 单词卡模板 box1 的重复行（需重建模板，且涉及 R1 基线）。
+
