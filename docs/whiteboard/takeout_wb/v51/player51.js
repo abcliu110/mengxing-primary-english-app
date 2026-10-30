@@ -9,19 +9,21 @@ const btn = document.getElementById('play'), bar = document.getElementById('bar'
 let t = 0, playing = false, last = 0, loop = true;
 
 // ---------- 英文朗读（Web Speech API，en-US，语速 0.85） ----------
-const TTS = window.speechSynthesis;
-let voiceOn = localStorage.getItem('wbVoice') !== '0', voice = null, talking = false, holdStart = 0;
+// 预览框（sandbox iframe）里读 localStorage 会直接抛错，整段脚本停掉 → 包一层
+const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+let TTS = null; try { TTS = window.speechSynthesis || null; } catch (e) {}
+let voiceOn = store.get('wbVoice') !== '0', voice = null, talking = false, holdStart = 0;
 function pickVoice() { const vs = TTS ? TTS.getVoices() : []; voice = vs.find(v => /en[-_]US/i.test(v.lang) && /Samantha|Google|Microsoft|Natural/i.test(v.name)) || vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null; }
 if (TTS) { pickVoice(); TTS.onvoiceschanged = pickVoice; }
 function say(text) {
   if (!TTS || !voiceOn) return;
   const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 0.85; if (voice) u.voice = voice;
   u.onstart = () => { talking = true; }; u.onend = u.onerror = () => { talking = false; };
-  talking = true; TTS.speak(u);
+  talking = true; try { TTS.speak(u); } catch (e) { talking = false; }
 }
 function hush() { if (TTS) TTS.cancel(); talking = false; }
 function showVoice() { vbtn.textContent = voiceOn ? '🔊' : '🔇'; vbtn.title = TTS ? (voiceOn ? '英文朗读：开' : '英文朗读：关') : '这台设备没有语音，改看字幕'; }
-vbtn.onclick = () => { voiceOn = !voiceOn; localStorage.setItem('wbVoice', voiceOn ? '1' : '0'); if (!voiceOn) hush(); showVoice(); };
+vbtn.onclick = () => { voiceOn = !voiceOn; store.set('wbVoice', voiceOn ? '1' : '0'); if (!voiceOn) hush(); showVoice(); };
 showVoice();
 
 function show() { drawFrame(g, t); bar.value = t; lab.textContent = `${t.toFixed(1)} / ${DUR.toFixed(1)} s`; btn.textContent = playing ? '❚❚' : '▶'; }
