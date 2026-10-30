@@ -1,0 +1,19 @@
+// 📘 G18 底层原理 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/hd_g18.js 案例 1；对照清单 lab/INVENTORY_HD_G18_1_V5.md
+// 角色关键帧：sprites/hdg18_1.js（人物先行帧库 cast/）
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/hdg18_1.js';
+const ACTS = {"*": ["l_write0", "l_speak", "l_think"]};
+const ITEMS = [
+  ['w', 'G18 底层原理'],
+  ['w', '一般现在时：习惯作息与客观真理 —— 表示经常反复发生的动作、日常习惯或永恒不变的自然规律'],
+  ['w', '【一般现在时是“现在这一秒正在做”吗？】不是！它画的是一个跨越过去、现在、未来的时间圆环——如“每天7点起床”“地球'],
+  ['w', '🔬 G18 · 一般现在时：习惯作息与客观真理 底层结构拆解与汉英思维对比'],
+  ['w', '① 典型语境：I get up at 7:00 every morning.'],
+  ['w', '我每天早上7点起床。我们经常放学后踢足球。地球绕着太阳转。'],
+  ['w', '② 核心结构规律：① 三大用法：日常习惯与规律作息；现在的状态与爱好；客观真理与自然事实'],
+  ['w', '③ 进阶要点：② 动词形式：`I / you / we / they / 复数` 直接用动词原形；三单'],
+  ['w', 'G18 第1幕'],
+  ['s', 'I get up at 7:00 every morning.', '一般现在表经常，习惯真理它担当；every day, often 与 usually，看到它们用原形（三单主语加 -s）！']
+];
+export default function build() { return autoBuild(SP, { title: '📘 G18 底层原理', items: ITEMS, acts: ACTS }); }
