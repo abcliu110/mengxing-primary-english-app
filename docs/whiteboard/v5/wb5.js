@@ -85,7 +85,7 @@ export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK' } = {})
   K.measure = (str, size) => { const c = K._mc || (K._mc = document.createElement('canvas').getContext('2d')); c.font = `${size}px ${font}`; return c.measureText(str).width; };
 
   // ---- 角色：关键帧 / 走路帧库 ----
-  // K.actor({ keys:[[t,'k1'],[t,'k2']…], x, ground, h(显示高度), anchor:'ax'|'center', reveal:t, until:t, flip, walk:{keys:[…], x0, x1, t0, t1, step:50, ease} , z })
+  // K.actor({ keys:[[t,'k1'],[t,'k2']…], x, ground, h(显示高度), dy:t=>px(竖直位移), anchor:'ax'|'center', reveal:t, until:t, flip, walk:{keys:[…], x0, x1, t0, t1, step:50, ease} , z })
   K.actor = spec => { spec.z = spec.z || 0; LAYER.push({ type: 'actor', ...spec }); if (spec.walk) { const st = { p: 0 }; spec.walk.st = st; tl.to(st, { p: 1, duration: spec.walk.t1 - spec.walk.t0, ease: spec.walk.ease || 'power1.inOut' }, spec.walk.t0); } return spec; };
   // 自定义道具（每帧画）：K.prop((g, t, k) => {...}, {from, until, z})
   K.prop = (fn, { from = 0, until = 1e9, z = 1 } = {}) => { LAYER.push({ type: 'prop', fn, from, until, z }); return K; };
@@ -113,7 +113,7 @@ export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK' } = {})
   function drawActor(g, a, t) {
     if (t < (a.reveal ?? a.from ?? 0) || t >= (a.until ?? 1e9)) return;
     const key = frameAt(a, t), x = K.actorPos(a, t), r = rectOf(a, key, x), im = IMG[key];
-    const bob = a.bob ? Math.abs(Math.sin(t * a.bob)) * -6 : 0;
+    const bob = (a.bob ? Math.abs(Math.sin(t * a.bob)) * -6 : 0) + (a.dy ? a.dy(t) : 0);   // dy(t)：跳起等竖直位移（只由 t 决定）
     const fade = a.fadeOut ? 1 - clamp((t - a.fadeOut[0]) / (a.fadeOut[1] - a.fadeOut[0])) : 1; if (fade <= 0) return;
     g.save(); g.globalAlpha = fade;
     const draw = () => { if (a.flip) { g.translate(r.x + r.w, r.y + bob); g.scale(-1, 1); g.drawImage(im, 0, 0, r.w, r.h); } else g.drawImage(im, r.x, r.y + bob, r.w, r.h); };
