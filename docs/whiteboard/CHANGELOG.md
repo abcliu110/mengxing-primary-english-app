@@ -1391,3 +1391,13 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 过时核对报告：`*_V2.md` 清单、`zh_en_hub/INVENTORY_*`（搬迁已完成）、`lab/INVENTORY_*_V5.md`（r1v5.py 自动生成，加入 .gitignore；原始内容清单 `INVENTORY_*_EXPORT.md` 保留）。
 - 保留：v5 工具链、cast 帧库、手工角色包、`takeout_wb/src` + `v51`（wb5 依赖 huashu_libs.js；v5.1 标准样板）、各设计文档 / SOURCES / COVERAGE、`lab_data.json`。
 - `src/anchorcheck.py` 的页签登记表冻结到 `src/wb_registry.json`；`jscheck.py` 适配（不再假设有旧模块），检查 OK。
+
+## 2026-10-30 16:40 JST · 三大厅 HD 剧场 ① 构词法剧场 → v5.1
+
+- 旧剧场：`vocab_formation` 页 `formationStageCanvas`，3 幕（合成词积木合体 / 前缀改变词义方向 / 后缀转换词性套装）。
+- 新工具：`src/export_hd_inventory.py`（HD 旧内容导出，横幅/工作台原句完整保留）→ `lab/INVENTORY_HD_FORMATION_EXPORT.md`；`v5/app_check4.py`（HD App 回归）；`do_unit.py` 支持 HD 单元（无清单拒跑）。
+- 场景：`v5/scenes/hd_formation_1–3.js`（16.6 s / 19.4 s / 19.5 s），R1 零丢失。
+- 挂载：`embed_app.py` 新增 `wb5HDHtml / wb5HDAct / wb5HDSwap`，进页面时把旧 canvas 换成 v5 iframe（hook：`formationStageCanvas → hd_formation`）。锚点改为第一个 `wb5html-*` 块（修复注释误命中）。
+- 字表：`gen_font_chars.py` 扩到全部 v5 场景 + 主 App 正文，3280 字；全量 `rebuild_all.py` 重建 161+3 幕。
+- 修复：旧引擎删除时误删的 `stopActiveCanvasLoops` 已随 `2817e97` 主文件恢复。
+- 回归：hd_formation 3 幕（compounds / prefixes 两个入口）swapped、oldCanvas=false、errors none；tense_matrix 5、fp_vectors 4、vv_give_in 2 全通过；jscheck + anchorcheck OK。主文件 14,498,036 bytes。

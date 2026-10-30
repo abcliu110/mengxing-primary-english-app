@@ -20,6 +20,8 @@
 | 用户反馈「人物会重合」：自动版面第一块板开场角色和动作角色叠在一起 | ✅ 已修，148 幕自动版面全部重建 | `72c5323` |
 | App 内切到第二幕挂载失败（字体缓存后的竞态） | ✅ 已修 | `72c5323` |
 | 删除旧 SVG 白板兜底（45 个 `wbmod-*` + 旧引擎），术语小词典改读 `WB_TERMS`，主文件 → **14.12 MB** | ✅ 逐字比对一致，回归通过 | 见 git log |
+| 三大厅 HD 剧场 ① 构词法剧场（`vocab_formation` 的 `formationStageCanvas`）3 幕 → v5.1 白板，主文件 **14.50 MB** | ✅ R1 零丢失，App 回归通过 | 见 git log |
+| docs 清理：删旧 SVG 源码/工具、构建产物、过时素材与报告（299 个文件） | ✅ | `8e38f05` |
 | 仓库清理：`v5/out/` 174 个构建产物（约 63 MB）+ 152 个可重建角色包移出 git | ✅ | `72c5323` |
 
 不需替换（已在 REDRAW_V5 标注）：`fp_one_king` ①、`fp_zoom_focus` ①（已迁中英对照，只留跳转）；`wo_vowel_kit`（共用小工具）；`verb_demo`、`narrator_demo`（开发样板，App 未挂载）。`REDRAW_V5.md` 里剩下的 1 个 `⬜` 是图例行，不是待办。
@@ -32,10 +34,11 @@
 - **嵌入** `python3 v5/embed_app.py <页签> <序号(0 起)> <out.html> …`：幂等。≥2 KB 的图片 / 字体 data URI 抽成共享块 `wb5blob-<hash>`，引擎整段存成 `gz:` 共享块，其余 HTML gzip+base64；App 运行时 `WB5_MOUNT_V3` 按需解压、同页缓存。无引用的旧共享块自动清掉。
 - **一键全部重建**：改了 `wb5.js` / `auto.js` / `player.js` / `engine.js` / 字体后，`python3 docs/whiteboard/v5/rebuild_all.py`（约 10 分钟）。
 - **新单元批量流水线**：`python3 v5/do_unit.py v5/units.json <页签>`（生成 → 打包 → `r1v5.py` R1 → 联络表 → embed → `log_done.py` → App 回归）；动作词 → 帧的映射写在 `units.json`。`batch.sh` 有任何一幕失败就不提交。
-- **验收 / 回归**：单幕 `python3 v5/shots.py <out.html> <png> <秒…>`（确定性、errors、sandbox）；App 内 `app_check.py <页签> <状态字段> <幕数>`（白板案例，如 `tense_matrix tenseIdx 5`、`adj_order adjExIdx 4`、`aux_transformer auxIdx 4`）、`app_check2.py <fp|wo|ze> <幕 id> <幕数>`、`app_check3.py vv_<动词>_<方向>`。
+- **HD Canvas 剧场替换**（三大厅老剧场）：`python3 src/export_hd_inventory.py <单元>` 先导出旧内容清单 `lab/INVENTORY_HD_<单元>_EXPORT.md` → 写 `scenes/hd_<单元>_<n>.js` + `units.json` 登记 → `do_unit.py`（HD 单元没有清单会拒绝运行，回归用 `app_check4.py`）。App 内由 `embed_app.py` 的 `wb5HDHtml / wb5HDAct / wb5HDSwap` 接管：页面里旧 `<canvas id>` 被换成 v5 iframe，挂载表在 `embed_app.py` 的 HD hook（目前 `formationStageCanvas → hd_formation`）。新增 HD 单元 = 加一条 hook。
+- **验收 / 回归**：单幕 `python3 v5/shots.py <out.html> <png> <秒…>`（确定性、errors、sandbox）；App 内 `app_check.py <页签> <状态字段> <幕数>`（白板案例，如 `tense_matrix tenseIdx 5`、`adj_order adjExIdx 4`、`aux_transformer auxIdx 4`）、`app_check2.py <fp|wo|ze> <幕 id> <幕数>`、`app_check3.py vv_<动词>_<方向>`、`app_check4.py hd_<单元> "navigateTo(...)"`（HD 剧场，检查旧 canvas 已消失、每幕可播）。主脚本语法 + 锚点：`python3 src/jscheck.py`。
 - **环境**（沙箱重置后）：`pip install -q numpy pillow playwright fonttools brotli && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium`；`cd docs/whiteboard/v5 && npm i`；字体放 `/workspace/work/fonts/wk.ttf`（LXGW WenKai v1.501）、`kalam.ttf`；git 身份丢了就 `git config user.name/user.email` 沿用上一次提交的作者。
 
-## 3. 体积现状（16.94 MB 里都是什么）
+## 3. 体积现状（主文件 14.50 MB）
 
 - 人物帧 WebP 共享块约 9.7 MB（366 帧，Q74，最高 520 px）——下一步可压：降到 Q60 / 最高 400 px 预计省 3–4 MB，需看画质。
 - 各幕 gzip 后的场景数据约 3–4 MB；共享字体约 0.5 MB；引擎 1 份。
@@ -47,12 +50,13 @@
 - **审片缺口**：161 幕 v5.1 只有样板和 tense_matrix 经用户看过，其余为截图自审；真机（尤其手机）上的加载速度、帧率、英文朗读同步未验证。
 - 双人帧（如 `tug` 拔河、give in ②）本身就是一张图里两个人，属正常；若用户仍觉得重叠，需要重画那几张帧。
 - cast 帧待返工：`l_lift0–2`（杠铃粘连）、`missw_give`（底部残留）、V29 Leo 黑发。
+- `embed_app.py` 插入新块必须锚在第一个 `<script type="text/plain" id="wb5html-` 前；主脚本注释里也有 `id="wbmod-<id>"` 字样，曾因锚错位置破坏主脚本（已修）。旧引擎删除时误删过通用函数 `stopActiveCanvasLoops`，已从 `2817e97` 主文件恢复后重新嵌入。
 - 补丁脚本靠字符串锚点改主文件：新补丁先 `assert s.count(锚点) == 1`，并登记进 `src/anchorcheck.py`。
 
 ## 5. 下一步（按顺序）
 
 1. 等用户决定：是否再压一轮人物帧画质（§3 第一条）。
-2. 三大厅 HD 剧场 FR01（买卖小剧场）→ 语法 40 点白板化（先一般过去时）→ 思维导图白板化（先一张主题导图）→ 词源 / 格林定律 / 词根词缀 + 12+6 条规律（数据逐条核实，不编造）→ 文档收尾。每个模块：实现 → 验收 → App 回归 → 提交推送 → 更新文档。
+2. 三大厅 HD 剧场：构词法 ✅ → **FR01 框架语义买卖剧场（下一个）** → 易混词 → 自然拼读 → 单词卡 / 构词其余剧场 → 语法 40 点白板化（先一般过去时）→ 思维导图白板化（先一张主题导图）→ 词源 / 格林定律 / 词根词缀 + 12+6 条规律（数据逐条核实，不编造）→ 文档收尾。每个模块：实现 → 验收 → App 回归 → 提交推送 → 更新文档。
 3. 等用户点头：练习闭环 + 总地图（决策 14）、决策 6 剩余三个新模块、决策 29 软件优化。
 
 ## 6. 待用户确认
