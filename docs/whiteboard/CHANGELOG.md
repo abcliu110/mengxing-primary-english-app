@@ -1364,3 +1364,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - **新实验室页签接线**：`cases/<id>.js`（v2 + `WO_PROPS`）→ `insert_wb.py` 的 `READY` + `LAB_DEPS` → 主文件 `LAB_GROUPS` 加一项 + 首页 `.lab-entry` 对应组加 `.lab-chip`（onclick `navigateTo('super_lab_hub', { labTab: '<id>' })`）、`tabTitles`、`} else if (tab === …)` 分支（锚点 `\n  } else if (tab === "bamboo_tree") {\n`）→ `appwb.py` IDX、`preview.html` 名单。
 - **环境**：沙箱重启后 `/tmp` 清空，Playwright 要重装：`pip install playwright pillow && python3 -m playwright install chromium && python3 -m playwright install-deps chromium`。
 - **零丢失（R1）**：搬迁 / 合并前先导出清单（`export_inventory.py`），搬完逐条对照（`check_inventory.py`、`check_upgrade.py`），❌ 必须为 0 才删旧。
+
+## 2026-10-30 16:20 JST · 删除旧 SVG 白板兜底（用户 16:11「解决问题 2」）
+
+- `v5/retire_old_wb.py`（幂等）：删掉 45 个旧白板按需模块 `wbmod-*`（含旧万能动词 SVG 剧场 1.75 MB、道具、开发样板 verb_demo）和旧 SVG 引擎 WB / 人物骨架 / 动作库（约 127 KB）。主文件 16.94 MB → **14.12 MB**。
+- 保留：可信度徽章 `WB.BADGES`；术语小词典改读 `WB_TERMS`（`v5/wb_terms.json`，41 个页签从旧案例原样导出）。删除前后对 82 项 `wbGlossHtml` / `woSceneReady` 输出逐字比对，完全一致。
+- `wbStageHtml` 没有 v5 版时不再出旧 SVG；`src/insert_wb.py` 检测到 `<<WB_OLD_RETIRED>>` 直接退出（防止把旧模块装回去）；`src/anchorcheck.py` 退役后跳过旧模块标记，检查 OK。
+- 回归：tense_matrix 5、bamboo_tree 5、past_clans 4、fp_one_king / fp_zoom_focus（①为已迁中英对照的跳转页，②–④ v5）、wo_vowel_a、ze_be、vv_take_on、vv_give_in 全部 errors none。
