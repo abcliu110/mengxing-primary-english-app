@@ -524,3 +524,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · past_clans ② v5.1 重画并替换进 App
 - `v5/scenes/past_clans_2.js`：换挡杆 i/a/u、嘴型张开度、鼻音气流、游泳 / 喝牛奶 / 坐下 / 摇铃 / 跑回家；R1 81/81，168 s。主文件 10,496,967 bytes。
+
+## 2026-10-30 · past_clans ③ v5.1 重画并替换进 App
+- `v5/scenes/past_clans_3.js`：长音条「减肥」变短、一拍盒子挤进 t、清浊喉咙震动、火车开走、扫地、公园见面；R1 78/78，128 s。

@@ -19,7 +19,8 @@
 - ✅ **tense_matrix 5 幕已替换进 App**（用户 12:27「现在替换吧」、12:29「改一个替换一个，提交，写好交接文档」）：`v5/embed_app.py`（幂等）；App 回归：5 幕 iframe 挂载、时长正确、0 报错，bamboo_tree / adj_order / past_clans 仍旧 SVG 正常；主文件 9.32 MB（字体每幕一份，待共享优化）。规则写在 REDRAW_V5.md「替换规则」。
 - 环境提醒：沙盒重置过一次，需 `pip install playwright && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium` 才能跑 shots.py。
 - ✅ **past_clans ① 金钟罩铁布衫派** v5.1 重画（`v5/scenes/past_clans_1.js`，帧库 `sprites/pc1.js`，R1 83/83 → `lab/INVENTORY_PC1_V5.md`，143 s，0 报错，确定性 ✓）并已替换进 App；回归 `python3 v5/app_check.py past_clans clanIdx 4`：①为 v5，②–④仍旧 SVG，其他页签正常。旧版完整导出清单存 `lab/INVENTORY_PAST_CLANS_EXPORT.md`（r1v5.py 直接用它）。
-- ✅ **past_clans ② 元音换挡派** v5.1 重画（`v5/scenes/past_clans_2.js`，帧库 `pc2`，R1 81/81，168 s，0 报错）并已替换进 App；回归 ①② v5、③④旧 SVG。下一幕：past_clans ③ 长音减肥派（帧：l_sleep、meet、train、m_sweep、l_w*）。
+- ✅ **past_clans ② 元音换挡派** v5.1 重画（`v5/scenes/past_clans_2.js`，帧库 `pc2`，R1 81/81，168 s，0 报错）并已替换进 App；回归 ①② v5、③④旧 SVG。
+- ✅ **past_clans ③ 长音减肥派** v5.1 重画（`v5/scenes/past_clans_3.js`，帧库 `pc3`，R1 78/78，128 s，0 报错）并已替换进 App。下一幕：past_clans ④ -ought/-aught 护法派（帧：mom_dress、l_puppy、missw、l_catch、l_think）。
 - **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
 
