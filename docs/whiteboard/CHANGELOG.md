@@ -2446,3 +2446,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 核对（不编造）：例词的古词形 / 来路要 Etymonline 和 Wiktionary 都写了；规律表述按 Wikipedia 对应条目。查不到的说法删掉或改弱（如「现代法语用小帽子代替 s」「k、w 当年怎么读」「诺曼贵族吃肉」），逐条见 `word_origins/RULES_REVIEW.md`。
 - 修：两条规律复用其它章的幕，总地图 `appMapNodes` 原来会把同一幕列两次（app_check9 报 59 ≠ 61），改为按 key 去重。`runall.py` 快速档全过。
 - 已知：字表外新字导致共享引擎块多份，主文件暂 24,151,290 bytes，下一提交重建合并。
+
+## 2026-10-31 00:02 JST · 引擎块再次合并（格林规则组 + 18 条规律幕之后）
+- 中途沙箱重置一次（重建跑到 embed 阶段被打断，主文件处在半嵌入状态 25.09 MB）：按 HANDOFF §2 重装 numpy / pillow / playwright / fonttools / brotli + chromium + 系统依赖后，`gen_font_chars.py`（3329 字）→ `rebuild_all.py` 重跑完成（embed 幂等，半嵌入状态被完整覆盖）。
+- 结果：共享引擎块 1 份，主文件 24,151,290 → **15,766,777 bytes**。回归 `runall.py --full` 13 项全过（offlinecheck 882 段、app_check5 55 词 / app_check6 25 幕 0 不合格、leakcheck OK、0 报错）。
