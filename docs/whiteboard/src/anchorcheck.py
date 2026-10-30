@@ -72,6 +72,17 @@ MARKERS = [
     ('// WO_GRIMM_GROUPS_V1', 1, 1),
     ('// WO_RULES_CHAPTER_V1', 1, 1),
     ('<script type="application/json" id="VOCAB_HEAVY_JSON">', 1, 1),
+    # 决策 33 ①：档案与自测合一（src/patch_my_study.py，2026-10-31）——标记要么全无（补丁前）要么各 1
+]
+MY_STUDY = [
+    ('// MY_STUDY_V1 ----------', 1, 1),
+    ('else if (s === "my_study") renderMyStudyView();', 1, 1),
+    ('else if (s === "self_test") renderSelfTestView();', 1, 1),
+    ('// MY_STUDY_V1: 旧档案页重定向', 1, 1),
+    ('data-home-my', 1, 1),
+    ('data-home-test', 1, 1),
+    ("navigateTo('vocab_my'", 0, 0), ("navigateTo('grammar_my'", 0, 0), ("navigateTo('oral_my'", 0, 0),
+    ('else if (s === "grammar_my") renderGrammarMyView();', 0, 0),
 ]
 
 
@@ -87,7 +98,7 @@ RETIRED_SKIP = ('// <<WB_ENGINE_START>>', '// <<WB_ENGINE_END>>', '<script type=
 def check(s):
     errs = []
     retired = RETIRED in s
-    for m, lo, hi in MARKERS:
+    for m, lo, hi in MARKERS + (MY_STUDY if 'function renderMyStudyView()' in s else []):
         if retired and m in RETIRED_SKIP: continue
         n = s.count(m)
         if n < lo or (hi is not None and n > hi):

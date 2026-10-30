@@ -2681,7 +2681,7 @@ function importStudyBackupJSON(event) {
 function renderVocabHall() {
   renderSubNavbar(
     ["首页", "📘 单词大世界"],
-    `<button class="nav-btn quiz-launch" onclick="startQuizSession('vocab', VOCAB_DB.slice(0,30).map(w=>w.id), '高频核心词综合自测')">🎯 单词综合自测</button>`
+    `<button class="nav-btn quiz-launch" onclick="navigateTo('self_test', { kind: 'vocab' })">🎯 单词综合自测</button>`
   );
   const counts = countDomainStatus("vocab");
   const sightCount = VOCAB_DB.filter(w => w.sight_type).length;
@@ -2796,21 +2796,21 @@ function renderVocabHall() {
       <h2>📖 我的单词学习档案（统一状态机追踪）</h2>
     </div>
     <div class="my-status-strip">
-      <div class="status-card mistake" onclick="navigateTo('vocab_my', { filter: 'mistake' })">
+      <div class="status-card mistake" onclick="navigateTo('my_study', { kind: 'vocab', filter: 'mistake' })">
         <div>
           <div style="font-weight:900; font-size:1.1rem; color:#991b1b;">📕 错题本 (常错词)</div>
           <div style="font-size:0.8rem; color:#b91c1c;">跨2个学习日连对3次即可消错毕业</div>
         </div>
         <span class="status-count" style="color:#dc2626;">${counts.mistake}</span>
       </div>
-      <div class="status-card learning" onclick="navigateTo('vocab_my', { filter: 'learning' })">
+      <div class="status-card learning" onclick="navigateTo('my_study', { kind: 'vocab', filter: 'learning' })">
         <div>
           <div style="font-weight:900; font-size:1.1rem; color:#92400e;">📖 学习中 (模糊/待巩固)</div>
           <div style="font-size:0.8rem; color:#b45309;">正在接触或自评模糊的单词</div>
         </div>
         <span class="status-count" style="color:#d97706;">${counts.learning}</span>
       </div>
-      <div class="status-card mastered" onclick="navigateTo('vocab_my', { filter: 'mastered' })">
+      <div class="status-card mastered" onclick="navigateTo('my_study', { kind: 'vocab', filter: 'mastered' })">
         <div>
           <div style="font-weight:900; font-size:1.1rem; color:#065f46;">🌟 已掌握 (通关词库)</div>
           <div style="font-size:0.8rem; color:#047857;">熟练掌握的课标词汇</div>
@@ -3988,16 +3988,15 @@ function startFrameSemanticsCanvas(fr, persp, pIdx) {
 // ==================== 6.8 📖 我的单词档案 (错题本/学习中/已掌握 + 跨日消错验证) ====================
 function renderVocabMyView() {
   const { filter = "mistake" } = currentView.params;
-  renderSubNavbar(["首页", "📘 单词大世界", "📖 我的单词学习档案"]);
   const counts = countDomainStatus("vocab");
   const matched = VOCAB_DB.filter(w => getItemStatus("vocab", w.id) === filter);
 
   const root = document.getElementById("appViewRoot");
   root.innerHTML = `
     <div class="pill-tabs">
-      <button class="pill-tab ${filter==='mistake'?'active':''}" onclick="currentView.params.filter='mistake'; renderVocabMyView();">📕 错题本 (${counts.mistake})</button>
-      <button class="pill-tab ${filter==='learning'?'active':''}" onclick="currentView.params.filter='learning'; renderVocabMyView();">📖 学习中 (${counts.learning})</button>
-      <button class="pill-tab ${filter==='mastered'?'active':''}" onclick="currentView.params.filter='mastered'; renderVocabMyView();">🌟 已掌握 (${counts.mastered})</button>
+      <button class="pill-tab ${filter==='mistake'?'active':''}" onclick="currentView.params.filter='mistake'; renderMyStudyView();">📕 错题本 (${counts.mistake})</button>
+      <button class="pill-tab ${filter==='learning'?'active':''}" onclick="currentView.params.filter='learning'; renderMyStudyView();">📖 学习中 (${counts.learning})</button>
+      <button class="pill-tab ${filter==='mastered'?'active':''}" onclick="currentView.params.filter='mastered'; renderMyStudyView();">🌟 已掌握 (${counts.mastered})</button>
     </div>
 
     <div style="background:#fff; border-radius:18px; padding:16px 20px; border:2px solid #cbd5e1; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
@@ -4255,7 +4254,7 @@ let blockBuilderState = { gId: "", pool: [], placed: [], dragIdx: null };
 function renderGrammarHall() {
   renderSubNavbar(
     ["首页", "🧩 语法魔法屋"],
-    `<button class="nav-btn quiz-launch" onclick="startQuizSession('grammar', GRAMMAR_DB.map(g=>g.id), '核心语法综合闯关')">🎯 语法综合闯关 (40点)</button>`
+    `<button class="nav-btn quiz-launch" onclick="navigateTo('self_test', { kind: 'grammar' })">🎯 语法综合闯关 (40点)</button>`
   );
   const counts = countDomainStatus("grammar");
   const c1 = GRAMMAR_DB.filter(g => g.cat === "词法");
@@ -4353,15 +4352,15 @@ function renderGrammarHall() {
     <!-- My Grammar Status -->
     <div class="section-banner"><h2>📖 我的语法学习档案</h2></div>
     <div class="my-status-strip">
-      <div class="status-card mistake" onclick="navigateTo('grammar_my', { filter: 'mistake' })">
+      <div class="status-card mistake" onclick="navigateTo('my_study', { kind: 'grammar', filter: 'mistake' })">
         <div><div style="font-weight:900; font-size:1.08rem; color:#991b1b;">📕 语法错题本</div><div style="font-size:0.8rem; color:#b91c1c;">跨2个学习日连对3次消错</div></div>
         <span class="status-count" style="color:#dc2626;">${counts.mistake}</span>
       </div>
-      <div class="status-card learning" onclick="navigateTo('grammar_my', { filter: 'learning' })">
+      <div class="status-card learning" onclick="navigateTo('my_study', { kind: 'grammar', filter: 'learning' })">
         <div><div style="font-weight:900; font-size:1.08rem; color:#92400e;">📖 学习中语法点</div><div style="font-size:0.8rem; color:#b45309;">正在探索练习的语法点</div></div>
         <span class="status-count" style="color:#d97706;">${counts.learning}</span>
       </div>
-      <div class="status-card mastered" onclick="navigateTo('grammar_my', { filter: 'mastered' })">
+      <div class="status-card mastered" onclick="navigateTo('my_study', { kind: 'grammar', filter: 'mastered' })">
         <div><div style="font-weight:900; font-size:1.08rem; color:#065f46;">🌟 已掌握语法点</div><div style="font-size:0.8rem; color:#047857;">已熟练通关的语法规则</div></div>
         <span class="status-count" style="color:#059669;">${counts.mastered}</span>
       </div>
@@ -4855,16 +4854,15 @@ function renderGrammarChantsView() {
 
 function renderGrammarMyView() {
   const { filter = "mistake" } = currentView.params;
-  renderSubNavbar(["首页", "🧩 语法魔法屋", "📖 我的语法档案"]);
   const counts = countDomainStatus("grammar");
   const matched = GRAMMAR_DB.filter(g => getItemStatus("grammar", g.id) === filter);
 
   const root = document.getElementById("appViewRoot");
   root.innerHTML = `
     <div class="pill-tabs">
-      <button class="pill-tab ${filter==='mistake'?'active':''}" onclick="currentView.params.filter='mistake'; renderGrammarMyView();">📕 语法错题本 (${counts.mistake})</button>
-      <button class="pill-tab ${filter==='learning'?'active':''}" onclick="currentView.params.filter='learning'; renderGrammarMyView();">📖 学习中 (${counts.learning})</button>
-      <button class="pill-tab ${filter==='mastered'?'active':''}" onclick="currentView.params.filter='mastered'; renderGrammarMyView();">🌟 已掌握 (${counts.mastered})</button>
+      <button class="pill-tab ${filter==='mistake'?'active':''}" onclick="currentView.params.filter='mistake'; renderMyStudyView();">📕 语法错题本 (${counts.mistake})</button>
+      <button class="pill-tab ${filter==='learning'?'active':''}" onclick="currentView.params.filter='learning'; renderMyStudyView();">📖 学习中 (${counts.learning})</button>
+      <button class="pill-tab ${filter==='mastered'?'active':''}" onclick="currentView.params.filter='mastered'; renderMyStudyView();">🌟 已掌握 (${counts.mastered})</button>
     </div>
     <div style="background:#fff; padding:16px; border-radius:16px; border:2px solid #cbd5e1; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
       <span style="font-weight:800;">当前学习日：<b>${getTodayDateStr()}</b>（错题需跨2个学习日连对3次消错）</span>
@@ -4897,7 +4895,7 @@ let oralSpeakingTurn = 0;
 function renderOralHall() {
   renderSubNavbar(
     ["首页", "💬 日常用语小剧场"],
-    `<button class="nav-btn quiz-launch" onclick="startQuizSession('oral', DAILY_EXPRESSIONS_DB.slice(0,30).map(e=>e.id), '日常用语综合情景自测')">🎯 日常用语综合自测</button>`
+    `<button class="nav-btn quiz-launch" onclick="navigateTo('self_test', { kind: 'oral' })">🎯 日常用语综合自测</button>`
   );
   const counts = countDomainStatus("oral");
 
@@ -4934,15 +4932,15 @@ function renderOralHall() {
 
     <div class="section-banner"><h2>📖 我的日常用语档案</h2></div>
     <div class="my-status-strip">
-      <div class="status-card mistake" onclick="navigateTo('oral_my', { filter: 'mistake' })">
+      <div class="status-card mistake" onclick="navigateTo('my_study', { kind: 'oral', filter: 'mistake' })">
         <div><div style="font-weight:900; font-size:1.08rem; color:#991b1b;">📕 口语错题本</div><div style="font-size:0.8rem; color:#b91c1c;">跨2个学习日连对3次消错</div></div>
         <span class="status-count" style="color:#dc2626;">${counts.mistake}</span>
       </div>
-      <div class="status-card learning" onclick="navigateTo('oral_my', { filter: 'learning' })">
+      <div class="status-card learning" onclick="navigateTo('my_study', { kind: 'oral', filter: 'learning' })">
         <div><div style="font-weight:900; font-size:1.08rem; color:#92400e;">📖 学习中口语</div><div style="font-size:0.8rem; color:#b45309;">待熟练跟读的表达</div></div>
         <span class="status-count" style="color:#d97706;">${counts.learning}</span>
       </div>
-      <div class="status-card mastered" onclick="navigateTo('oral_my', { filter: 'mastered' })">
+      <div class="status-card mastered" onclick="navigateTo('my_study', { kind: 'oral', filter: 'mastered' })">
         <div><div style="font-weight:900; font-size:1.08rem; color:#065f46;">🌟 已掌握口语</div><div style="font-size:0.8rem; color:#047857;">脱口而出的交际句</div></div>
         <span class="status-count" style="color:#059669;">${counts.mastered}</span>
       </div>
@@ -5055,16 +5053,15 @@ function startOralSituationalCanvas(cur) {
 
 function renderOralMyView() {
   const { filter = "mistake" } = currentView.params;
-  renderSubNavbar(["首页", "💬 日常用语小剧场", "📖 我的日常用语档案"]);
   const counts = countDomainStatus("oral");
   const matched = DAILY_EXPRESSIONS_DB.filter(e => getItemStatus("oral", e.id) === filter);
 
   const root = document.getElementById("appViewRoot");
   root.innerHTML = `
     <div class="pill-tabs">
-      <button class="pill-tab ${filter==='mistake'?'active':''}" onclick="currentView.params.filter='mistake'; renderOralMyView();">📕 口语错题本 (${counts.mistake})</button>
-      <button class="pill-tab ${filter==='learning'?'active':''}" onclick="currentView.params.filter='learning'; renderOralMyView();">📖 学习中 (${counts.learning})</button>
-      <button class="pill-tab ${filter==='mastered'?'active':''}" onclick="currentView.params.filter='mastered'; renderOralMyView();">🌟 已掌握 (${counts.mastered})</button>
+      <button class="pill-tab ${filter==='mistake'?'active':''}" onclick="currentView.params.filter='mistake'; renderMyStudyView();">📕 口语错题本 (${counts.mistake})</button>
+      <button class="pill-tab ${filter==='learning'?'active':''}" onclick="currentView.params.filter='learning'; renderMyStudyView();">📖 学习中 (${counts.learning})</button>
+      <button class="pill-tab ${filter==='mastered'?'active':''}" onclick="currentView.params.filter='mastered'; renderMyStudyView();">🌟 已掌握 (${counts.mastered})</button>
     </div>
     <div style="background:#fff; padding:16px; border-radius:16px; border:2px solid #cbd5e1; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
       <span style="font-weight:800;">当前学习日：<b>${getTodayDateStr()}</b></span>
@@ -8739,7 +8736,7 @@ function homeContinueHtml() {
   const go = lv && lv.screen
     ? `<button type="button" class="hc-go" onclick="homeResumeLast()">▶ 继续上次<span class="hc-label">${attrEscape(lv.label || lv.screen)}</span></button>`
     : `<button type="button" class="hc-go" onclick="navigateTo('vocab_hall')">▶ 第一次来？<span class="hc-label">从单词大世界开始</span></button>`;
-  return `<div class="home-continue">${go}<button type="button" data-home-map onclick="navigateTo('app_map')" style="background:#1e3a8a; color:#fff; border:0; border-radius:12px; padding:9px 12px; font-weight:900; cursor:pointer; white-space:nowrap;">🗺️ 总地图</button><span class="hc-streak">${fire}</span></div>`;
+  return `<div class="home-continue">${go}<button type="button" data-home-my onclick="navigateTo('my_study')" style="background:#be123c; color:#fff; border:0; border-radius:12px; padding:9px 12px; font-weight:900; cursor:pointer; white-space:nowrap;">📒 我的学习</button><button type="button" data-home-test onclick="navigateTo('self_test')" style="background:#047857; color:#fff; border:0; border-radius:12px; padding:9px 12px; font-weight:900; cursor:pointer; white-space:nowrap;">🎯 综合自测</button><button type="button" data-home-map onclick="navigateTo('app_map')" style="background:#1e3a8a; color:#fff; border:0; border-radius:12px; padding:9px 12px; font-weight:900; cursor:pointer; white-space:nowrap;">🗺️ 总地图</button><span class="hc-streak">${fire}</span></div>`;
 }
 function homeResumeLast() {
   const lv = appState.lastView;
@@ -8883,6 +8880,51 @@ function renderAppMapView() {
     <div style="display:grid; gap:10px; margin-bottom:18px;">${APP_MAP_PATHS.map(p => `<div style="background:#fff; border:2px solid #c7d2fe; border-radius:14px; padding:10px 12px;"><div style="font-weight:900; color:#3730a3; margin-bottom:6px;">${p.name}</div><div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center;">${p.keys.map(byKey).filter(Boolean).map(chip).join('<span style="color:#94a3b8;">→</span>')}</div></div>`).join("")}</div>
     ${areas.map(a => `<div style="background:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:12px 14px; margin-bottom:12px;"><div style="font-weight:900; color:#0f172a; margin-bottom:8px;">${a}</div><div style="display:flex; flex-wrap:wrap; gap:6px;">${nodes.filter(n => n.area === a).map(chip).join("")}</div></div>`).join("")}`;
 }
+// MY_STUDY_V1 ---------- 决策 33 ①：我的学习（错题本 / 学习中 / 已掌握，按单词 / 语法 / 口语筛选）+ 综合自测（src/patch_my_study.py） ----------
+const MY_KINDS = [["vocab", "📘 单词"], ["grammar", "🧩 语法"], ["oral", "💬 口语"]];
+function myKindTabs(screen, kind) {
+  return `<div class="pill-tabs" data-my-kinds style="margin-bottom:8px;">${MY_KINDS.map(([k, t]) => { const c = countDomainStatus(k); return `<button class="pill-tab ${kind === k ? "active" : ""}" data-my-kind="${k}" onclick="currentView.params.kind='${k}'; ${screen}();">${t}（错 ${c.mistake} · 学 ${c.learning} · 会 ${c.mastered}）</button>`; }).join("")}</div>`;
+}
+function renderMyStudyView() {
+  const p = currentView.params;
+  if (!["vocab", "grammar", "oral"].includes(p.kind)) p.kind = "vocab";
+  if (!["mistake", "learning", "mastered"].includes(p.filter)) p.filter = "mistake";
+  ({ vocab: renderVocabMyView, grammar: renderGrammarMyView, oral: renderOralMyView })[p.kind]();
+  renderSubNavbar(["首页", "📒 我的学习"], `<button class="nav-btn quiz-launch" onclick="navigateTo('self_test', { kind: '${p.kind}' })">🎯 综合自测</button>`);
+  const root = document.getElementById("appViewRoot");
+  root.insertAdjacentHTML("afterbegin", `<div data-my-study style="background:linear-gradient(135deg,#fff1f2,#ffe4e6); border:2px solid #fda4af; border-radius:18px; padding:12px 16px; margin-bottom:12px;"><div style="font-weight:900; font-size:1.2rem; color:#9f1239; margin-bottom:8px;">📒 我的学习 · 单词、语法、口语一处看</div>${myKindTabs("renderMyStudyView", p.kind)}</div>`);
+}
+const SELF_TESTS = {
+  vocab: { title: "高频核心词综合自测", desc: "从高频核心词里抽 30 个，混合英译中 / 中译英 / 听音选词等题型。", ids: () => VOCAB_DB.slice(0, 30).map(w => w.id) },
+  grammar: { title: "核心语法综合闯关", desc: "40 个语法点全部上场。", ids: () => GRAMMAR_DB.map(g => g.id) },
+  oral: { title: "日常用语综合情景自测", desc: "从 16 个场景里抽 30 句，情景选句 + 听音。", ids: () => DAILY_EXPRESSIONS_DB.slice(0, 30).map(e => e.id) },
+};
+const SELF_TEST_POOL = { vocab: () => VOCAB_DB, grammar: () => GRAMMAR_DB, oral: () => DAILY_EXPRESSIONS_DB };
+function startSelfTest(kind, onlyMistakes) {
+  const t = SELF_TESTS[kind];
+  if (!onlyMistakes) return startQuizSession(kind, t.ids(), t.title);
+  const ids = SELF_TEST_POOL[kind]().filter(x => getItemStatus(kind, x.id) === "mistake").map(x => x.id);
+  if (ids.length) startQuizSession(kind, ids, "错题本消错 · " + t.title.replace(/综合.*$/, ""));
+}
+function renderSelfTestView() {
+  const p = currentView.params;
+  if (!SELF_TESTS[p.kind]) p.kind = "vocab";
+  const t = SELF_TESTS[p.kind], c = countDomainStatus(p.kind);
+  renderSubNavbar(["首页", "🎯 综合自测"], `<button class="nav-btn" onclick="navigateTo('my_study', { kind: '${p.kind}' })">📒 我的学习</button>`);
+  document.getElementById("appViewRoot").innerHTML = `
+    <div data-self-test style="background:linear-gradient(135deg,#ecfdf5,#d1fae5); border:2px solid #6ee7b7; border-radius:18px; padding:12px 16px; margin-bottom:14px;">
+      <div style="font-weight:900; font-size:1.2rem; color:#065f46; margin-bottom:8px;">🎯 综合自测 · 选一种类型开测</div>
+      ${myKindTabs("renderSelfTestView", p.kind)}
+    </div>
+    <div style="background:#fff; border:2px solid #cbd5e1; border-radius:18px; padding:16px 20px;">
+      <div style="font-weight:900; font-size:1.1rem; color:#0f172a;">${t.title}</div>
+      <div style="font-size:0.9rem; color:#475569; margin:6px 0 12px;">${t.desc} 答题结果照常记进「我的学习」：错题需跨 2 个学习日连对 3 次才消错。</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button data-self-start onclick="startSelfTest('${p.kind}', false)" style="background:#059669; color:#fff; border:0; padding:10px 18px; border-radius:12px; font-weight:800; cursor:pointer;">🎯 开始${t.title}</button>
+        ${c.mistake ? `<button data-self-mistake onclick="startSelfTest('${p.kind}', true)" style="background:#dc2626; color:#fff; border:0; padding:10px 18px; border-radius:12px; font-weight:800; cursor:pointer;">📕 只测错题本（${c.mistake}）</button>` : ""}
+      </div>
+    </div>`;
+}
 // ORAL_FUNC_MAP_V1 ---------- 决策 6：交际句型地图（礼貌阶梯 + 五大交际功能；src/patch_oral_func.py） ----------
 const ORAL_FUNC_LADDER = [
   ["① 命令", "Give me the pen.", "把笔给我。"], ["② 加 please", "Please give me the pen.", "请把笔给我。"],
@@ -8930,7 +8972,9 @@ function renderCurrentView() {
   else if (s === "vocab_pos") renderVocabPosView();
   else if (s === "vocab_relations") renderVocabRelationsView();
   else if (s === "vocab_frames") renderVocabFramesView();
-  else if (s === "vocab_my") renderVocabMyView();
+  else if (s === "vocab_my" || s === "grammar_my" || s === "oral_my") { currentView = { screen: "my_study", params: Object.assign({ kind: s.split("_")[0] }, currentView.params), scrollY: 0 }; renderMyStudyView(); noteLastView(); return; }   // MY_STUDY_V1: 旧档案页重定向
+  else if (s === "my_study") renderMyStudyView();
+  else if (s === "self_test") renderSelfTestView();
   else if (s === "grammar_hall") renderGrammarHall();
   else if (s === "first_principles_hub") renderFirstPrinciplesHubView();
   else if (s === "zh_en_hub") renderZhEnHubView();
@@ -8941,10 +8985,8 @@ function renderCurrentView() {
   else if (s === "grammar_detail") renderGrammarDetailView();
   else if (s === "grammar_playground") renderGrammarPlaygroundView();
   else if (s === "grammar_chants") renderGrammarChantsView();
-  else if (s === "grammar_my") renderGrammarMyView();
   else if (s === "oral_hall") renderOralHall();
   else if (s === "oral_scenario") renderOralScenarioView();
-  else if (s === "oral_my") renderOralMyView();
   else if (s === "quiz_engine") renderQuizEngineView();
   else if (s === "method_hub") renderMethodHubView();
   else if (s === "v6_hub") renderV6HubView();
