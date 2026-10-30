@@ -3,7 +3,7 @@
 import json, pathlib, subprocess
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 APP = ROOT / '萌星小学英语_最终合并版.html'
-js = "const fs=require('fs');const s=fs.readFileSync(process.argv[1],'utf8');const i=s.indexOf('const VOCAB_DB = ');const j=s.indexOf('];\\n',i);const d=eval(s.slice(i+16,j+1));console.log(JSON.stringify(d.filter(w=>w.has_polysemy&&w.polysemy_data)))"
+js = "const fs=require('fs');const s=fs.readFileSync(process.argv[1],'utf8');const i=s.indexOf('const VOCAB_DB = ');const j=s.indexOf('];\\n',i);const d=(()=>{const d=eval(s.slice(i+16,j+1));const a=s.indexOf('VOCAB_HEAVY_JSON');if(a>=0){const b=s.indexOf('>',a)+1;const h=JSON.parse(s.slice(b,s.indexOf('</script>',b)));for(const w of d)Object.assign(w,h[w.id]||{});}return d;})();console.log(JSON.stringify(d.filter(w=>w.has_polysemy&&w.polysemy_data)))"
 ws = json.loads(subprocess.run(['node', '-e', js, str(APP)], capture_output=True, text=True, check=True).stdout)
 nz = lambda x: ' '.join(str(x).replace('|', '｜').split())
 for w in ws:

@@ -8,7 +8,7 @@ V = json.load(open('/workspace/work/etym/vocab.json')) if pathlib.Path('/workspa
 s = APP.read_text(encoding='utf-8')
 if V is None:
     import subprocess
-    js = "const fs=require('fs');const s=fs.readFileSync(process.argv[1],'utf8');const i=s.indexOf('const VOCAB_DB = ');const j=s.indexOf('];\\n',i);console.log(JSON.stringify(eval(s.slice(i+16,j+1))))"
+    js = "const fs=require('fs');const s=fs.readFileSync(process.argv[1],'utf8');const i=s.indexOf('const VOCAB_DB = ');const j=s.indexOf('];\\n',i);console.log(JSON.stringify((()=>{const d=eval(s.slice(i+16,j+1));const a=s.indexOf('VOCAB_HEAVY_JSON');if(a>=0){const b=s.indexOf('>',a)+1;const h=JSON.parse(s.slice(b,s.indexOf('</script>',b)));for(const w of d)Object.assign(w,h[w.id]||{});}return d;})()))"
     V = json.loads(subprocess.run(['node', '-e', js, str(APP)], capture_output=True, text=True, check=True).stdout)
 lex = {}
 for w in V:
