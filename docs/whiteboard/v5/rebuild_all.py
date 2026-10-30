@@ -23,6 +23,9 @@ for f in sorted(glob.glob('scenes/*_[0-9]*.js')):   # 2026-10-30：原 glob 只�
         else: open(f'sprites/{lib}.js', 'w').write('export const FR = {}; export const FI = {};\n')
     if not fresh(f'out/{tab}_{n}.html'): jobs.append(['node', 'build.mjs', f, f'out/{tab}_{n}.html', title])
     tabs[tab].append((n - 1, f'out/{tab}_{n}.html'))
+if not os.path.exists('sprites/wordtpl.js'):   # 2026-10-30：模板幕的角色包不在 scenes/*_<n>.js 里，沙箱重置后也要重建（帧 = wordcard_items.js 的 ACT_FRAMES）
+    fr = sorted(set(re.findall(r"'(l_[a-z0-9_]+)'", open('scenes/wordcard_items.js', encoding='utf-8').read().split('export const ACT_NAMES')[0])))
+    subprocess.run(['python3', 'sprites/build_sprites.py', 'wordtpl', *fr], check=True, capture_output=True)
 jobs.append(['node', 'build.mjs', 'scenes/wordcard_tpl.js', 'out/wordcard_tpl.html', '单词卡 · 通用白板模板'])
 print('build', len(jobs), flush=True)
 with ThreadPoolExecutor(2) as ex: list(ex.map(lambda c: subprocess.run(c, check=True, capture_output=True), jobs))   # 普通单词卡通用模板（App 运行时注入词条）

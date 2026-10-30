@@ -45,6 +45,10 @@ MARKERS = [
     ('class="lab-entry', 1, None),
     ('十五大王炸方法论</h', 0, 0),          # step1 删掉的重复横幅不能回来
     ('v4.0 终极宗师·十二大王炸全规律版', 0, 0),  # step3 去掉的顶栏版本号不能回来
+    # 主题思维导图讲解幕（v5/embed_app.py HD_HOOKS，2026-10-30）：舞台 + 挂钩各 1 处；交互导图本身必须还在
+    ('<!-- WB5_HD:mindmap_stage -->', 1, 1),
+    ('// WB5_HD:mindmap（讲解幕；下方交互导图照常）', 1, 1),
+    ('<canvas id="themeMindMapCanvas"', 1, 1),
 ]
 
 

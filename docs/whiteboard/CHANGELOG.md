@@ -2333,3 +2333,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新增 `src/gen_mindmap_inventory.py`：从 VOCAB_DB 导出旧交互导图 canvas 上的全部文字（中心名、提示语、16 个节点 emoji+单词+**完整**词义、两框标题 + 各前 3 条搭配）→ `lab/INVENTORY_HD_MINDMAP_EXPORT.md`（25 幕，994 条）。
 - 新增 `v5/gen_mindmap_groups.py` → `v5/mindmap_groups.json`：只按 `pos` / `meaning` / `senses[0].scene` 规则分组，先中先得，分不出的进「更多」；叶子 = 旧导图画出来的 16 个节点；一组 ≤ 6 词、每幕 4–6 枝。自审改正 6 处误分（pencil box、dog、who/when、kilo、cheap、banana）。
 - 用户 21:36 新要求：分阶段提交，每阶段同步 HANDOFF / CHANGELOG（已写进 HANDOFF §0、§5.1）。
+
+## 2026-10-30 21:55 · 主题思维导图讲解幕 阶段②：mindmap 版式 + 全量重建 + 导图舞台挂钩
+- `scenes/auto.js` 新增 `mindmapBuild(SP, D)`：世界 3840×2160；中心椭圆「🌍 子主题」+ 提示语 + 讲解员（l_speak → l_point → l_think → l_idea0）；枝分左右两侧（前几组右、其余左，两侧高度均衡）；每组镜头推过去，组名橙字框，叶子逐个写「emoji 单词」+ 中文（长词组缩字号、词义按整词换行），写一个读一个（英文朗读 + 中文字幕，阅读节奏同 autoBuild）；组太高时镜头跟着叶子上下移、不缩小字；中心下方两框「常用搭配动词 / 评价形容词」各读第一条；收尾镜头框住整张图。
+- `v5/gen_mindmap.py`：由 VOCAB_DB + `mindmap_groups.json` 生成 `scenes/hd_mindmap_<n>.js`（场景文件下一阶段分批提交）。
+- 引擎变了 → `rebuild_all.py` 全量重建 484 幕并重新嵌入（共享引擎块仍 1 份）；修 `rebuild_all.py`：沙箱重置后会补建模板幕角色包 `wordtpl.js`。
+- `embed_app.py` HD_HOOKS 加两条：交互导图卡片上方的空舞台 `WB5_HD:mindmap_stage` + `initThemeMindMapCanvas` 开头 `WB5_HD:mindmap`（只换舞台、不 return，交互导图照常）；`src/anchorcheck.py` 登记这两个标记 + `themeMindMapCanvas` 必须还在。
+- 回归：`jscheck` OK；`app_check.py tense_matrix` 5 幕、`app_check4.py hd_formation` 3 幕、`app_check2.py fp fp_economy` 4 幕、`app_check5.py` 单词卡模板 55 词不合格 0，全部 0 报错。主文件 15,465,894 bytes。
