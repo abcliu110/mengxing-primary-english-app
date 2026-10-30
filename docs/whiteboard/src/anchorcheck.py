@@ -69,6 +69,7 @@ MARKERS = [
     ('data-oral-func-entry', 1, 1),
     ('{ const v = ttsPickVoice(utter.lang); if (v) utter.voice = v; }', 1, 1),
     ('// VOCAB_SPLIT_V1', 1, 1),
+    ('// WO_GRIMM_GROUPS_V1', 1, 1),
     ('<script type="application/json" id="VOCAB_HEAVY_JSON">', 1, 1),
 ]
 

@@ -2421,13 +2421,21 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-30 23:06 JST · 决策 29 O5 离线可用检查（补记）
 - `src/offlinecheck.py` 已随 `f82736b`（O8）一起提交，当时漏记：扫主文件明文 + 全部 wb5html / wb5blob 压缩块解开后的内容，不得出现从 http(s) 加载资源的写法（script src、link href、img/audio/video/iframe src、CSS url()、@import、fetch()、import()、Worker/WebSocket）；普通 `<a href>`（词源出处链接）允许。现扫 863 段 0 违规，已接进 runall 快速档。
 
-## 2026-10-30 23:40 JST · 合并两份重复的共享引擎块（字表重建）
+## 2026-10-30 23:15 JST · 合并两份重复的共享引擎块（字表重建）
 - metaphor_code ④、oral_func ② 用到字表外新字，打包时多出两份共享引擎块（各约 0.93 MB）。`python3 v5/gen_font_chars.py`（3302 字）→ `python3 v5/rebuild_all.py` 全量重建 488 幕 + 模板并重新嵌入：主文件 wb5blob 里 `gz:` 引擎块回到 **1 份**，主文件 17,483,815 → **15,630,085 bytes**（-1.85 MB）。O7 播放器「切后台暂停」随本次重建进入全部幕。
 - `v5/build.mjs`：pyftsubset 结果按「字体路径 + 字表 + 参数」sha1 缓存到 `/tmp/wb5_fontcache`（先写临时名再 rename，两路并行安全）。同一幕缓存前后打包逐字节一致（cmp 验证）；全量重建打包阶段从约 2–3 幕/分钟提到约 300 幕/分钟。
 - 回归 `runall.py --full` 13 项全部通过（offlinecheck 861 段 0 违规、app_check5 55 词 / app_check6 25 幕 0 不合格、leakcheck OK、0 报错）。
 
-## 2026-10-30 23:55 JST · 词源 ETYM_DB / MORPH_DB 第 2 批（Etymonline 缓存 755 / 1487）
+## 2026-10-30 23:22 JST · 词源 ETYM_DB / MORPH_DB 第 2 批（Etymonline 缓存 755 / 1487）
 - 核对规则收紧（`src/parse_etym.py` verify）：来源链某级要算「对上」，Etymonline 正文里必须是「语言名 + 3 个词以内 + 该词形」（如 Old English heorte），原来只要两样都在正文某处出现。起因：robot 被误配成「德语 Robot」（Wiktionary 有 `{{der|en|de|Robot}}`，Etymonline 正文另有 "German Arbeit"）。收紧后误配消失，入库 376 → **352** 词。
 - `src/build_etym_db.py`：释义去掉 wiki 斜体标记与残留引号（black 曾显示 dark", ''also'' "ink）；`-s` / `-es` 不再自动注「复数」（always 的 -s 是副词词尾）；未入库原因分出「Etymonline 尚未抓取（677）」和「Etymonline 无词条（23）」。
 - 结果：`ETYM_DB` 352 词（G1 19 / G2 16 / G3 35 / G4 49 / G5 60 / G6 40 / V6 132 / POLY 1），`MORPH_DB` 111 词；逐词明细与未入库原因见 `word_origins/ETYM_REVIEW.md`、`MORPH_REVIEW.md`。主文件 15,681,417 bytes。
 - 回归 `runall.py`（快速档 9 项）全部通过，app_check8 25 词 0 不合格。
+
+〔时间更正：上面两条「23:40」「23:55」是写文档时估错的，实际提交时间分别约 23:15（86d54fa）、23:22（df2ae6c）JST，已在本文和 HANDOFF 改正。〕
+
+## 2026-10-30 23:28 JST · 格林定律按规则组（1d）
+- 4 幕新内容（`v5/new_scene.py`），挂在单词身世总枢「🔤 格林定律」章、紧跟 `wo_grimm`：① `wo_grimm_voiceless` p t k kʷ → f th h hw（foot/pes→pedal、father/pater、few/paucus、full/plenus；three/tres、thin/tenuis、thunder/tonare；heart/cor·kardia→cardiac、hundred/centum、horn/cornu→unicorn、head/caput→captain、hill/collis；what/quod、who/quis；⚠️ 是兄弟不是父子；⚠️ s 后不变 stand/stare）45 条 178 s；② `wo_grimm_voiced` d g gʷ → t k kw（tooth/dens→dentist、eat/edere、sit/sedere；knee/genu、cold/gelu；queen/gynē、come/venire）29 条 121 s；③ `wo_grimm_aspirate` bh dh gh → b d g（brother/frater→fraternal、bloom/flos、beech/fagus；door/thyra·foris→foreign、red/ruber、middle/medius；goose/anser·khēn、garden/hortus；链式挪一格）31 条 130 s；④ `wo_grimm_verner` 维尔纳定律（brother 重音在前 → th，father 重音在后 → 古英语 fæder；今天的 -th- 是中古英语后改的；was/were；lose/forlorn）21 条 113 s。全部 R1 缺 0、deterministic、0 报错。
+- 核对（不编造）：每对同源词要求 Etymonline（词条或其 PIE 词根页）和 Wiktionary 英语词条都写了该拉丁 / 希腊形；没对上的（fish、five、fire、hound、ten、two、tree、know、corn、blow、bear、daughter、do、guest 等）不用，原因逐条写在 `word_origins/GRIMM_GROUPS.md`。规则表述出自 Wikipedia「Grimm's law」「Verner's law」。
+- `src/patch_wo_grimm.py`（幂等，走 appwrite）加 4 个场景条目；`anchorcheck` 登记 `WO_GRIMM_GROUPS_V1`；`units.json` 登记 4 个页签。`app_check2.py wo wo_grimm_<组> 1` 4/4 v5、0 报错；`runall.py` 快速档全过。
+- 已知：新幕字表外的字使共享引擎块多 2 份（主文件 17,559,675 bytes），1e 后统一重建合并（HANDOFF §4）。
