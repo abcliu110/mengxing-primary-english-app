@@ -1,6 +1,6 @@
 """patch_metaphor4.py —— 决策 6 空间隐喻：METAPHOR_CODES_DB 加「密码四」（幂等）。白板幕 = metaphor_code 第 4 幕（content/metaphor_code_4.txt）。
 出处：Lakoff & Johnson, Metaphors We Live By (1980)：MORE IS UP、HAPPY IS UP、TIME IS MONEY 等方位 / 结构隐喻。"""
-import pathlib
+import pathlib, sys; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
 s = APP.read_text(encoding='utf-8'); MARK = 'catTitle: "🧭 密码四'
 ENTRY = '''  {
@@ -17,5 +17,5 @@ ENTRY = '''  {
 if MARK not in s:
     i = s.index('const METAPHOR_CODES_DB = ['); j = s.index('\n];', i)
     s = s[:j] + ',\n' + ENTRY.rstrip(',\n') + s[j:] if not s[:j].rstrip().endswith(',') else s[:j] + '\n' + ENTRY.rstrip(',\n') + s[j:]
-    APP.write_text(s, encoding='utf-8'); print('patched')
+    __import__('appwrite').save(s)   # O8：写前锚点检查、写后 jscheck，不过就还原; print('patched')
 else: print('already')

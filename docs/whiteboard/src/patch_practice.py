@@ -5,7 +5,7 @@
 - 答对 ≥ 60% = 本模块点亮，记 appState.moduleQuiz[key]（随 saveAppState 存 localStorage）；不接任何第三方统计。
 - 新页面 app_map「🗺️ 总地图」：四大区全部模块，○ 没看过 / ✓ 看过 / 🏅 小测过关；三条推荐路径（发音线 / 语法线 / 词汇词源线）；
   小测面板里显示「上一站 → 本站 → 下一站」。首页「继续上次」条加入口按钮。第一性原理按 fp:<序号> 记「看过」（它自带原有习题，不另加小测）。"""
-import pathlib
+import pathlib, sys; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
 s = APP.read_text(encoding='utf-8')
 MARK = '// PRACTICE_LOOP_V1'
@@ -123,7 +123,9 @@ function renderAppMapView() {
 }
 '''
 if MARK in s:
-    i = s.index(MARK); i = s.rindex('\n', 0, i) + 1; j = s.index('function renderCurrentView() {', i)
+    i = s.index(MARK); i = s.rindex('\n', 0, i) + 1
+    ends = [k for k in (s.find('// ORAL_FUNC_MAP_V1', i), s.find('function renderCurrentView() {', i)) if k > 0]   # 后面还插了别的块（交际句型地图）：只换到它前面
+    j = min(ends); j = s.rindex('\n', 0, j) + 1 if s[j:j + 2] == '//' else j
     s = s[:i] + FUNCS + s[j:]; print('funcs updated')
 else:
     reps = [
@@ -136,4 +138,4 @@ else:
     ]
     for a, b in reps: assert s.count(a) == 1, a[:50]; s = s.replace(a, b)
     j = s.index('function renderCurrentView() {'); s = s[:j] + FUNCS + s[j:]; print('patched')
-APP.write_text(s, encoding='utf-8')
+__import__('appwrite').save(s)   # O8：写前锚点检查、写后 jscheck，不过就还原
