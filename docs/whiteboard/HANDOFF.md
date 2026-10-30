@@ -86,8 +86,8 @@
 | 1d | 格林定律按规则组（`GRIMM_DB` + 白板幕） | ⬜ | |
 | 1e | 音变与词汇规律 12 + 6 条白板幕 | ⬜ | |
 | 1f | `word_origins/COVERAGE.md` 数字更新 | ⬜ | |
-| 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 本提交 |
-| 2b | 决策 6 剩余：拼写潜规则 / 空间隐喻 / 交际句型地图 | ⬜ | |
+| 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 58721a8 |
+| 2b | 决策 6 剩余：空间隐喻 ✅（实验室「三大隐喻密码」加密码四 + 白板第 4 幕）/ 拼写潜规则 ⬜ / 交际句型地图 ⬜。新内容做幕的通用工具：`v5/new_scene.py content/<幕>.txt`（内容稿 → R1 清单 → 生成 → 打包 → 核对 → 嵌入） | 🟡 | 空间隐喻：本提交 |
 | 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | ⬜ | |
 | 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅） | ⬜ | |
 | 4 | 人物帧重压 Q60 / 400 px（单独可回退提交） | ⬜ | |
