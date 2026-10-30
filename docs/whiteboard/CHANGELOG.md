@@ -533,3 +533,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · adj_order 第1幕 v5.1 重画并替换进 App
 - 一张漂亮的小圆木桌（共用版面引擎 scenes/adj_train.js）：R1 91/91，154 s，主文件 11,770,109 bytes。
+
+## 2026-10-30 · adj_order 第2幕 v5.1 重画并替换进 App
+- ②  两只可爱的小白猫：R1 86/86，~120 s，主文件 12,087,206 bytes。
