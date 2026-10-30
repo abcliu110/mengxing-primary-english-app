@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 23:10 JST（用户 22:13 授权完成全部，进度见 §5.2）；22:30 JST（主题思维导图讲解幕 ✅、第一性原理核查 ✅；词源系列待开工，分阶段计划见 §5.1 ⑥）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
+> 更新：2026-10-30 23:06 JST（O1 VOCAB_DB 拆分提交）；此前 23:10 JST（用户 22:13 授权完成全部，进度见 §5.2）；22:30 JST（主题思维导图讲解幕 ✅、第一性原理核查 ✅；词源系列待开工，分阶段计划见 §5.1 ⑥）；16:20 JST（删旧 SVG 兜底）；16:10 JST · 最新提交见 `git log -1`（本次：老白板 v5.1 全部替换完成 + 主文件瘦身 + 人物重叠修复）
 > 设计稿：`DESIGN_MINDMAP_WORDCARD.md`（用户 2026-10-30 19:39「按照你的来」已确认）：普通单词卡通用模板 ✅；思维导图讲解幕待做。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，§2.9 = v5.1 标准画法）→ `SOP.md`（§17 = v5.1 验收）。流水、历史决策、每幕验收数字都在 `CHANGELOG.md`（文末有本文 16:10 之前的完整快照）。
 > 本文只写现状、做法、风险、下一步；做完一件事：流水追加到 CHANGELOG，本文只改现状。
@@ -70,6 +70,7 @@
 - 双人帧（如 `tug` 拔河、give in ②）本身就是一张图里两个人，属正常；若用户仍觉得重叠，需要重画那几张帧。
 - cast 帧待返工：`l_lift0–2`（杠铃粘连）、`missw_give`（底部残留）、V29 Leo 黑发。
 - `embed_app.py` 插入新块必须锚在第一个 `<script type="text/plain" id="wb5html-` 前；主脚本注释里也有 `id="wbmod-<id>"` 字样，曾因锚错位置破坏主脚本（已修）。旧引擎删除时误删过通用函数 `stopActiveCanvasLoops`，已从 `2817e97` 主文件恢复后重新嵌入。
+- **VOCAB_DB 已拆分（O1）**：主文件里 `const VOCAB_DB` 只剩轻字段，`senses / etymology / memory_tip / example_en …` 等 10 个重字段在 `<script type="application/json" id="VOCAB_HEAVY_JSON">`，词对象原型上的 getter 按需解析。离线工具取全量一律用 `node src/vocab_extract.js <主文件>`（或已改好的合并片段），**不要再直接 eval `const VOCAB_DB`**，否则拿不到重字段。
 - 补丁脚本靠字符串锚点改主文件：新补丁先 `assert s.count(锚点) == 1`，并登记进 `src/anchorcheck.py`。
 
 ## 5. 下一步（按顺序）
@@ -90,7 +91,7 @@
 | 1f | `word_origins/COVERAGE.md` 数字更新 | ⬜ | |
 | 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 58721a8 |
 | 2b | 决策 6 剩余：空间隐喻 ✅（实验室「三大隐喻密码」加密码四 + 白板第 4 幕）/ 拼写潜规则 ✅（自然拼读页顶部剧场第四幕，不新开页签）/ 交际句型地图 ✅（口语大厅入口卡 → 新页 `oral_func_map`：白板 2 幕 + 点读句型表）。新内容做幕的通用工具：`v5/new_scene.py content/<幕>.txt`（内容稿 → R1 清单 → 生成 → 打包 → 核对 → 嵌入） | ✅ | 空间隐喻 64f1285；拼写潜规则 5a9e61e；交际句型地图 本提交 |
-| 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | 🟡 O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py`；O2/O7 ✅ `src/leakcheck.py` + 播放器后台暂停（随下次 rebuild_all 生效）；O3 ✅ 语音缓存 + 无英文语音提示 | O9 db0ac3a；O8 f82736b；O2/O7 3740e2f；O3 本提交 |
+| 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | 🟡 O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py`；O2/O7 ✅ `src/leakcheck.py` + 播放器后台暂停（随下次 rebuild_all 生效）；O3 ✅ 语音缓存 + 无英文语音提示；O1 ✅ VOCAB_DB 首屏轻字段 + 重字段按需（`src/split_vocab.py`，首屏脚本 2.06 MB → 0.52 MB）；O5 ✅ `src/offlinecheck.py`（代码随 f82736b 误带进，文档补记） | O9 db0ac3a；O8 f82736b；O2/O7 3740e2f；O3 6e7021d；O1 本提交 |
 | 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅） | ⬜ | |
 | 4 | 人物帧重压 Q60 / 400 px（单独可回退提交） | ⬜ | |
 | 5 | 坏帧 l_lift0–2、missw_give、V29 Leo 头发 | ⬜ | |

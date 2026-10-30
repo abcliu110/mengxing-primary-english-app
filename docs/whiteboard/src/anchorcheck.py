@@ -68,6 +68,8 @@ MARKERS = [
     ('else if (s === "oral_func_map") renderOralFuncMapView();', 1, 1),
     ('data-oral-func-entry', 1, 1),
     ('{ const v = ttsPickVoice(utter.lang); if (v) utter.voice = v; }', 1, 1),
+    ('// VOCAB_SPLIT_V1', 1, 1),
+    ('<script type="application/json" id="VOCAB_HEAVY_JSON">', 1, 1),
 ]
 
 

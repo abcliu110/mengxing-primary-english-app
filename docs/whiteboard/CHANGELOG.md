@@ -2410,3 +2410,13 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 现状核对：朗读其实已统一走 `window.speakText`（方法馆 MH.speakText 优先调它；白板点读同步 8485 行另有专用逻辑，不动）。缺的是选语音和失败提示。
 - `src/patch_tts.py`（幂等，走 appwrite）：新增 `ttsPickVoice(lang)`——先用 localStorage `ttsVoice_<en|zh>` 记住的语音（还在列表里才用），否则选同语言的第一个并记住；没有该语言语音时提示「这台设备没有英文朗读语音，请看文字」，不报错。
 - 新 `src/ttscheck.py`（模拟语音列表）：en→Fake US、zh→Fake ZH、记住的 Fake GB 被沿用、无英文语音时提示，0 报错；接进 runall。jscheck / anchorcheck OK。
+
+## 2026-10-30 23:06 JST · 决策 29 O1 VOCAB_DB 首屏拆分
+- 〔时间注：本轮上面几条 O9–O3 标的「10-31 00:10–01:50」是写文档时的估计，实际提交在 2026-10-30 22:xx JST，以 `git log` 为准。〕
+- `src/split_vocab.py`（幂等，走 appwrite）：`const VOCAB_DB` 只留列表 / 搜索 / 导航用的轻字段（2,061,503 → 520,072 bytes，首屏要解析的 JS 少 1.54 MB）；10 个重字段（senses、affix_root、collocations、etymology、syntax_contrast、memory_tip、visual_scene、example_zh、polysemy_data、example_en）挪进不执行的 `<script type="application/json" id="VOCAB_HEAVY_JSON">`（1.04 MB），词对象原型上挂 getter，第一次读才 `JSON.parse`，赋值变自有属性。全文件核对过没有对词对象 stringify / 展开 / Object.keys。
+- 离线工具改读全量：新 `src/vocab_extract.js`；gen_mindmap_inventory / gen_module_quiz / gen_poly_inventory / check_wordcard_tpl / gen_mindmap_groups 改用合并片段。`anchorcheck` 登记 2 个标记。
+- R1：拆分前后 1487 词全部字段逐字段比对一致。主文件 17,463,137 → 17,483,815 bytes（JSON 块多一层键名，体积略增；收益在首屏解析量）。
+- 回归 `runall.py --full` 13 项全部通过（app_check5 55 词 / app_check6 25 幕 / app_check8 25 词 0 不合格，leakcheck OK，0 报错）。
+
+## 2026-10-30 23:06 JST · 决策 29 O5 离线可用检查（补记）
+- `src/offlinecheck.py` 已随 `f82736b`（O8）一起提交，当时漏记：扫主文件明文 + 全部 wb5html / wb5blob 压缩块解开后的内容，不得出现从 http(s) 加载资源的写法（script src、link href、img/audio/video/iframe src、CSS url()、@import、fetch()、import()、Worker/WebSocket）；普通 `<a href>`（词源出处链接）允许。现扫 863 段 0 违规，已接进 runall 快速档。
