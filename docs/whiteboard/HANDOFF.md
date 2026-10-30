@@ -81,6 +81,7 @@
 - 06:42｜tense_matrix ⑤ 现在完成时升 v2，**tense_matrix 5 个案例全部 v2 完成**（时间轴 + 格子 + 桥 + 奖杯 / 公式 + 丢钥匙 + finished · lived / been to · gone to 两个小人 / 信号词 + 过去时间点陷阱 + 结论四镜头 + 🔮 I have finished my homework + 金句卡；R4 been 小旅客去长城又回来、gone 王老师走向上海后消失）｜`e4e85c0`｜`work/shots/tense_matrix_5_对比总图.png`（Hark 项目工作区）｜been to / gone to 原来只有字，按 R4 用两个场景小人演出「去了又回来」和「走了没回来」（王老师用 porter 形象区分）；Finish, go 只是词表，不演（r2check 只提示 go）；原想加 ✂️ 徽章说明 been to / gone to 的简化，因无现成出处核对，不加，只留 💡；五个案例时长 144→155、129→137、148→158、134→141、145→150 秒（每个都在 +20% 内）
 - 08:50｜past_clans 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜`40b389f`｜—｜reg_render diff 0；升级前时长 ①103 ②125 ③95 ④102 秒
 - 09:40｜past_clans ①–④ 四大门派一次升 v2，**past_clans 4 个案例全部 v2 完成**（每派：门派旗 + 秘诀 / 前两个成员 + 场景 / 第三个成员 + 其余成员 + 结论三镜头 + 🔮 预测 + 金句卡；版面工具 PC_V2）｜本提交｜`work/shots/past_clans_1–4_对比总图.png`（Hark 主对话工作区）｜R4：① play 讲解员跳、put 小旅客把书搬到桌上 · 预测举 put 卡、read 捧书；② swam 海里小脑袋游、drank 牛奶杯喝空、sat 小旅客坐凳子、ran / came 讲解员跑出去再跑回；③ slept 月亮旁飘 Zzz、left 火车开走、met 两个小人走到公园见面；④ bought 购物袋冒出新裙子、brought 带小狗去公园、taught 讲解员指黑板、caught 接住飞来的球。预测题：put / sang / swept / bought（错误选项 putted · singed · sweeped · baught 进 r2skip 不读）。R1 341 条 ❌6 全是旧填充色值改 V3；r2check past_clans --strict 0（R4 15 个全同步；drink / swim / sit / give / run / come / catch / bring 原形只在词表朗读里，只作提示）；reg_render 只有 past_clans 20 项变；appwb 4 正常；时长 103→112、125→130、95→101、102→109 秒。四个案例一次提交（同一套版面工具，逐个验收后合并提交）。
+- 09:10｜adj_order 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；升级前时长 ①83 ②66 ③68 ④69 秒；用户 09:02：「不要询问，把所有任务全部做完，及时更新交接文档」
 
 ## 1. 现在做到哪
 
