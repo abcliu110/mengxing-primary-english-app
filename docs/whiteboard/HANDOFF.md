@@ -21,6 +21,8 @@
 | App 内切到第二幕挂载失败（字体缓存后的竞态） | ✅ 已修 | `72c5323` |
 | 删除旧 SVG 白板兜底（45 个 `wbmod-*` + 旧引擎），术语小词典改读 `WB_TERMS`，主文件 → **14.12 MB** | ✅ 逐字比对一致，回归通过 | 见 git log |
 | 三大厅 HD 剧场 ① 构词法剧场（`vocab_formation` 的 `formationStageCanvas`）3 幕 → v5.1 白板，主文件 **14.50 MB** | ✅ R1 零丢失，App 回归通过 | 见 git log |
+| 三大厅 HD 剧场 ② 框架语义 10 个剧场 25 个视角（`vocab_frames` 的 `frameSemanticsCanvas`）→ v5.1，一视角一幕，页签 `hd_fr01`–`hd_fr10` | ✅ R1 零丢失，App 回归通过 | 见 git log |
+| 用户反馈「白板太快」：自动版面按阅读速度留时间（中文 5 字/秒、英文 2.2 词/秒，换板前停 1.5 秒），手工幕整体放慢 1.5 倍 | ✅ 全部重建，主文件 14.68 MB | 见 git log |
 | docs 清理：删旧 SVG 源码/工具、构建产物、过时素材与报告（299 个文件） | ✅ | `8e38f05` |
 | 仓库清理：`v5/out/` 174 个构建产物（约 63 MB）+ 152 个可重建角色包移出 git | ✅ | `72c5323` |
 
@@ -35,10 +37,12 @@
 - **一键全部重建**：改了 `wb5.js` / `auto.js` / `player.js` / `engine.js` / 字体后，`python3 docs/whiteboard/v5/rebuild_all.py`（约 10 分钟）。
 - **新单元批量流水线**：`python3 v5/do_unit.py v5/units.json <页签>`（生成 → 打包 → `r1v5.py` R1 → 联络表 → embed → `log_done.py` → App 回归）；动作词 → 帧的映射写在 `units.json`。`batch.sh` 有任何一幕失败就不提交。
 - **HD Canvas 剧场替换**（三大厅老剧场）：`python3 src/export_hd_inventory.py <单元>` 先导出旧内容清单 `lab/INVENTORY_HD_<单元>_EXPORT.md` → 写 `scenes/hd_<单元>_<n>.js` + `units.json` 登记 → `do_unit.py`（HD 单元没有清单会拒绝运行，回归用 `app_check4.py`）。App 内由 `embed_app.py` 的 `wb5HDHtml / wb5HDAct / wb5HDSwap` 接管：页面里旧 `<canvas id>` 被换成 v5 iframe，挂载表在 `embed_app.py` 的 HD hook（目前 `formationStageCanvas → hd_formation`）。新增 HD 单元 = 加一条 hook。
+- **节奏**（2026-10-30 用户：白板太快）：`scenes/auto.js` 的 `readT()` 按小学生阅读速度给每段留时间（中文 5 字/秒、英文 2.2 词/秒），换板前 `HOLD` = 1.5 秒，中文字幕没读完不进下一句；手工幕（tense_matrix / past_clans / adj_order）用 `scene({ stretch: 1.5 })` 整体放慢（`wb5.js` 在 `K.done()` 里缩放时间轴和朗读提示）。用户嫌慢 / 嫌快就只调这两个数，再 `rebuild_all.py`。
+- **框架语义挂载**：`wb5HDSwap(canvas, 页签, 幕)` 第三个参数给定时 = 由页面自己的视角按钮选幕，不另出分幕按钮（`hd_fr01`–`hd_fr10`，幕 = pIdx）。导出时 `HD_ACT=0` 固定剧场内动画幕；原 canvas 把核心事物名截到 16 字，清单里已换回全名（只增不减）。
 - **验收 / 回归**：单幕 `python3 v5/shots.py <out.html> <png> <秒…>`（确定性、errors、sandbox）；App 内 `app_check.py <页签> <状态字段> <幕数>`（白板案例，如 `tense_matrix tenseIdx 5`、`adj_order adjExIdx 4`、`aux_transformer auxIdx 4`）、`app_check2.py <fp|wo|ze> <幕 id> <幕数>`、`app_check3.py vv_<动词>_<方向>`、`app_check4.py hd_<单元> "navigateTo(...)"`（HD 剧场，检查旧 canvas 已消失、每幕可播）。主脚本语法 + 锚点：`python3 src/jscheck.py`。
 - **环境**（沙箱重置后）：`pip install -q numpy pillow playwright fonttools brotli && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium`；`cd docs/whiteboard/v5 && npm i`；字体放 `/workspace/work/fonts/wk.ttf`（LXGW WenKai v1.501）、`kalam.ttf`；git 身份丢了就 `git config user.name/user.email` 沿用上一次提交的作者。
 
-## 3. 体积现状（主文件 14.50 MB）
+## 3. 体积现状（主文件 14.68 MB）
 
 - 人物帧 WebP 共享块约 9.7 MB（366 帧，Q74，最高 520 px）——下一步可压：降到 Q60 / 最高 400 px 预计省 3–4 MB，需看画质。
 - 各幕 gzip 后的场景数据约 3–4 MB；共享字体约 0.5 MB；引擎 1 份。
@@ -56,7 +60,7 @@
 ## 5. 下一步（按顺序）
 
 1. 等用户决定：是否再压一轮人物帧画质（§3 第一条）。
-2. 三大厅 HD 剧场：构词法 ✅ → **FR01 框架语义买卖剧场（下一个）** → 易混词 → 自然拼读 → 单词卡 / 构词其余剧场 → 语法 40 点白板化（先一般过去时）→ 思维导图白板化（先一张主题导图）→ 词源 / 格林定律 / 词根词缀 + 12+6 条规律（数据逐条核实，不编造）→ 文档收尾。每个模块：实现 → 验收 → App 回归 → 提交推送 → 更新文档。
+2. 三大厅 HD 剧场：构词法 ✅ → 框架语义 10 剧场 ✅ → **易混词（下一个）** → 自然拼读 → 单词卡 / 构词其余剧场 → 语法 40 点白板化（先一般过去时）→ 思维导图白板化（先一张主题导图）→ 词源 / 格林定律 / 词根词缀 + 12+6 条规律（数据逐条核实，不编造）→ 文档收尾。每个模块：实现 → 验收 → App 回归 → 提交推送 → 更新文档。
 3. 等用户点头：练习闭环 + 总地图（决策 14）、决策 6 剩余三个新模块、决策 29 软件优化。
 
 ## 6. 待用户确认

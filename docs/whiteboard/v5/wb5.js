@@ -34,7 +34,7 @@ function flatten(drawable, type = 'path') {
   return out.filter(p => p.length > 1).map(pts => ({ pts, cum: DG.cum(pts) }));
 }
 
-export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK' } = {}) {
+export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK', stretch = 1 } = {}) {   // stretch：整幕放慢倍数（2026-10-30 用户：白板太快；手工幕按绝对时间写，统一放慢）
   const FR = sprites.FR, FI = sprites.FI, IMG = {};
   const B = DG.board({ ink: INK, lw: 6.5, speed: 2600, font });
   const tl = gsap.timeline({ paused: true });
@@ -209,6 +209,7 @@ export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK' } = {})
       const pp = penPos(t, cam, tip); if (pp) DG.pen(c, pp[0], pp[1], col || B.penColor(t));
       narrBar(c, t); sayBar(c, t);
     };
+    if (stretch !== 1) return { W, H, DUR: dur * stretch, CUES: CUES.map(([ct, ...r]) => [ct * stretch, ...r]), drawFrame: (c, t) => drawFrame(c, t / stretch), loadAssets, NARR, SAYS };
     return { W, H, DUR: dur, CUES, drawFrame, loadAssets, NARR, SAYS };
   };
   return K;

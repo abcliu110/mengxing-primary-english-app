@@ -1401,3 +1401,86 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 字表：`gen_font_chars.py` 扩到全部 v5 场景 + 主 App 正文，3280 字；全量 `rebuild_all.py` 重建 161+3 幕。
 - 修复：旧引擎删除时误删的 `stopActiveCanvasLoops` 已随 `2817e97` 主文件恢复。
 - 回归：hd_formation 3 幕（compounds / prefixes 两个入口）swapped、oldCanvas=false、errors none；tense_matrix 5、fp_vectors 4、vv_give_in 2 全通过；jscheck + anchorcheck OK。主文件 14,498,036 bytes。
+
+## 2026-10-30 · hd_fr01 第1幕 v5.1 重画并替换进 App
+- 🛒 买卖交易小剧场 · 视角 1 buy (买)：R1 10/10，53 s，主文件 15,454,551 bytes。
+
+## 2026-10-30 · hd_fr01 第2幕 v5.1 重画并替换进 App
+- 🛒 买卖交易小剧场 · 视角 2 sell (卖)：R1 10/10，54 s，主文件 15,457,163 bytes。
+
+## 2026-10-30 · hd_fr01 第3幕 v5.1 重画并替换进 App
+- 🛒 买卖交易小剧场 · 视角 3 pay (付钱)：R1 10/10，55 s，主文件 15,459,698 bytes。
+
+## 2026-10-30 · hd_fr01 第4幕 v5.1 重画并替换进 App
+- 🛒 买卖交易小剧场 · 视角 4 cost (花费/值…钱)：R1 10/10，52 s，主文件 15,462,253 bytes。
+
+## 2026-10-30 · hd_fr02 第1幕 v5.1 重画并替换进 App
+- 🎁 给予传递小剧场 · 视角 1 give / send / pass / show sb sth：R1 10/10，61 s，主文件 15,464,796 bytes。
+
+## 2026-10-30 · hd_fr02 第2幕 v5.1 重画并替换进 App
+- 🎁 给予传递小剧场 · 视角 2 give / send / pass / show sth to sb：R1 10/10，66 s，主文件 15,467,367 bytes。
+
+## 2026-10-30 · hd_fr02 第3幕 v5.1 重画并替换进 App
+- 🎁 给予传递小剧场 · 视角 3 buy / make / cook sth for sb：R1 10/10，64 s，主文件 16,420,592 bytes。
+
+## 2026-10-30 · hd_fr03 第1幕 v5.1 重画并替换进 App
+- 🧭 位移方向小剧场 · 视角 1 come & bring (朝向说话人)：R1 10/10，60 s，主文件 17,349,056 bytes。
+
+## 2026-10-30 · hd_fr03 第2幕 v5.1 重画并替换进 App
+- 🧭 位移方向小剧场 · 视角 2 go & take (离开说话人)：R1 10/10，60 s，主文件 17,351,615 bytes。
+
+## 2026-10-30 · hd_fr03 第3幕 v5.1 重画并替换进 App
+- 🧭 位移方向小剧场 · 视角 3 put (放置到目标位)：R1 10/10，55 s，主文件 17,354,166 bytes。
+
+## 2026-10-30 · hd_fr04 第1幕 v5.1 重画并替换进 App
+- 🧥 穿戴变化小剧场 · 视角 1 put on (穿上的瞬间动作)：R1 10/10，64 s，主文件 17,356,959 bytes。
+
+## 2026-10-30 · hd_fr04 第2幕 v5.1 重画并替换进 App
+- 🧥 穿戴变化小剧场 · 视角 2 wear (穿着/戴着的持续状态)：R1 10/10，62 s，主文件 17,359,542 bytes。
+
+## 2026-10-30 · hd_fr04 第3幕 v5.1 重画并替换进 App
+- 🧥 穿戴变化小剧场 · 视角 3 take off (脱下的瞬间动作)：R1 10/10，63 s，主文件 17,362,307 bytes。
+
+## 2026-10-30 · hd_fr05 第1幕 v5.1 重画并替换进 App
+- 👀 视听感知小剧场 · 视角 1 look at / listen to (主动感知动作)：R1 10/10，70 s，主文件 17,385,640 bytes。
+
+## 2026-10-30 · hd_fr05 第2幕 v5.1 重画并替换进 App
+- 👀 视听感知小剧场 · 视角 2 see / hear (感知结果)：R1 10/10，62 s，主文件 17,388,195 bytes。
+
+## 2026-10-30 · hd_fr06 第1幕 v5.1 重画并替换进 App
+- 🔨 动作改变与工具小剧场 · 视角 1 cut / clean / open / break + Patient + with Instrument：R1 10/10，76 s，主文件 17,390,794 bytes。
+
+## 2026-10-30 · hd_fr07 第1幕 v5.1 重画并替换进 App
+- 🧠 认知与思维小剧场 · 视角 1 learn (学习：从不会到会)：R1 11/11，68 s，主文件 17,393,563 bytes。
+
+## 2026-10-30 · hd_fr07 第2幕 v5.1 重画并替换进 App
+- 🧠 认知与思维小剧场 · 视角 2 know / think (知道 / 认为)：R1 10/10，63 s，主文件 17,396,122 bytes。
+
+## 2026-10-30 · hd_fr07 第3幕 v5.1 重画并替换进 App
+- 🧠 认知与思维小剧场 · 视角 3 remember ↔ forget (记住 ↔ 忘记)：R1 10/10，62 s，主文件 17,398,697 bytes。
+
+## 2026-10-30 · hd_fr08 第1幕 v5.1 重画并替换进 App
+- 💬 言语交流小剧场 · 视角 1 tell sb sth / tell sb to do：R1 10/10，66 s，主文件 17,425,661 bytes。
+
+## 2026-10-30 · hd_fr08 第2幕 v5.1 重画并替换进 App
+- 💬 言语交流小剧场 · 视角 2 ask ↔ answer：R1 10/10，57 s，主文件 17,428,358 bytes。
+
+## 2026-10-30 · hd_fr09 第1幕 v5.1 重画并替换进 App
+- 🚌 交通出行小剧场 · 视角 1 方式一：介词短语放句尾 (by + 交通工具 / on foot)：R1 10/10，82 s，主文件 17,448,278 bytes。
+
+## 2026-10-30 · hd_fr09 第2幕 v5.1 重画并替换进 App
+- 🚌 交通出行小剧场 · 视角 2 方式二：动词短语作谓语 (take a... / ride a... / walk)：R1 10/10，85 s，主文件 17,451,207 bytes。
+
+## 2026-10-30 · hd_fr10 第1幕 v5.1 重画并替换进 App
+- 🤩 情感触发小剧场 · 视角 1 -ing 形容词 (修饰刺激源事物：令人…的)：R1 10/10，67 s，主文件 17,453,894 bytes。
+
+## 2026-10-30 · hd_fr10 第2幕 v5.1 重画并替换进 App
+- 🤩 情感触发小剧场 · 视角 2 -ed 形容词 (修饰体验者人：感到…的)：R1 10/10，70 s，主文件 17,456,585 bytes。
+
+## 2026-10-30 17:30 JST · 白板放慢（用户：太快）+ 三大厅 HD ② 框架语义 25 幕
+
+- 节奏：`auto.js` 新增 `readT()`（中文 5 字/秒、英文 2.2 词/秒）和换板停顿 `HOLD` 1.5 s；朗读句的中文字幕留够阅读时间；结尾总览多停 0.6 s。手工幕 13 幕 `stretch: 1.5`（`wb5.js` 新参数，时间轴 + CUES 同步缩放）。
+- 时长示例：构词 ① 16.6 → 49.6 s；bamboo_tree ① 83 → 207 s；vv_give_in ① 12 → 22 s；tense_matrix ① 179 → 269 s；adj_order ① → 231 s。
+- 框架语义：`export_hd_inventory.py` 支持 `HD_ACT`；10 份清单 `lab/INVENTORY_HD_FR01–10_EXPORT.md`；`units.json` 新增 `hd_fr01`–`hd_fr10`（动作帧：买衣服、递东西、做蛋糕、穿脱外套、抬头听、游泳、开关灯、举手、公交 / 骑车、欢呼 / 大笑）；`scenes/hd_fr*_N.js` 共 25 幕，R1 全部缺 0。
+- `embed_app.py`：HD 运行时升级 V2（`WB5_EMBED_HD2`，`wb5HDSwap` 支持页面自己选幕），新增 frames 挂钩。
+- 全量 `rebuild_all.py` 重建 189 幕；回归：hd_formation 3、hd_fr01 4 / fr05 2 / fr10 2、tense_matrix 5、adj_order 4、vv_give_in 2 全部 errors none、旧 canvas 已消失；jscheck + anchorcheck OK。主文件 14,679,350 bytes。

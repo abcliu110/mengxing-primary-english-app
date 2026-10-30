@@ -1,7 +1,7 @@
-"""export_hd_inventory.py <名称> <幕数> '<进入页面的 JS>' [每幕前额外 JS 模板，{i} = 幕号] —— 三大厅 HD 剧场（canvas）内容清单导出（R1 零丢失，决策 23）。
+"""export_hd_inventory.py <名称> <幕数> '<进入页面的 JS>' [每幕前额外 JS 模板，{i} = 幕号]（环境变量 HD_ACT=k：剧场内动画幕固定为 k，幕号只用于每幕 JS，如框架语义按视角分幕） —— 三大厅 HD 剧场（canvas）内容清单导出（R1 零丢失，决策 23）。
 做法：在真 App 里打开页面，每一幕锁定 hdTheaterState.actIdx，跑约 4 秒动画，截获 canvas 上画出的每一段文字（fillText，按首次出现顺序去重）
 和字幕条 drawHDSubtitleBar(标签, 英文, 中文)（= 同步配音解说的内容）。输出格式与 export_inventory.py 相同（v5/gen_auto.py、r1v5.py 直接用）。"""
-import asyncio, pathlib, sys
+import asyncio, os, pathlib, sys
 from playwright.async_api import async_playwright
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
 name, n, enter = sys.argv[1], int(sys.argv[2]), sys.argv[3]
@@ -25,7 +25,7 @@ async def main():
         for i in range(n):
             await pg.evaluate(enter); await pg.wait_for_timeout(300)
             if per: await pg.evaluate(per.replace('{i}', str(i))); 
-            await pg.evaluate(f"hdTheaterState.actIdx = {i}; hdTheaterState.manualActLock = true; window.__hdTxt = []; window.__hdSub = []; window.__hdFull = []; window.__hdOn = 1;")
+            await pg.evaluate(f"hdTheaterState.actIdx = {os.environ.get('HD_ACT', i)}; hdTheaterState.manualActLock = true; window.__hdTxt = []; window.__hdSub = []; window.__hdFull = []; window.__hdOn = 1;")
             await pg.wait_for_timeout(4500)
             txt, sub, full = await pg.evaluate("(() => { window.__hdOn = 0; return [window.__hdTxt, window.__hdSub, window.__hdFull]; })()")
             seen, rows, t = set(), [], 0.0
