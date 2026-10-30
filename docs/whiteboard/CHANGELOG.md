@@ -2499,3 +2499,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 课标单列的只合并显示：center ↔ centre 互链、studies ↔ study、broken 标「原形：break（词库未收）」。代词组：词组卡链接成员单词卡，单词卡链回词组卡。
 - 补丁 `src/patch_dedup_b.py`、数据 `src/dedup_b_data.json`，anchorcheck 登记 WORD_ALIAS_V1；新回归 `v5/app_check11.py` 入 runall；`runall.py --full` 全过。
 
+### 2026-10-31 03:45 JST · 重复内容合并第 3 步：模块去重与互链
+- 代词：G07–G10 与「代词全局原理」五处共用的三块「深度机制」演示板不再重复播放——代词全局原理三幕全播，G07 / G08 / G09 / G10 各只播与本课相关的一幕（第 1 / 2 / 3 / 1 幕），不出分幕按钮。
+- 代词、名词复数、be·否定疑问、时态 4 个知识点组：组内页面（语法课、总结页、实验室页签、单词身世幕、中英对照幕）顶部加「🔗 同一知识点另见 →」，当前页高亮，并写明 f/fe→ves 两种归类、did「能量吸收器」就是照妖镜 ④、时 × 体矩阵各幕对应哪几课。
+- 总地图：加语法魔法屋 40 课和 3 个总结页节点（进页记「看过」），推荐路径下面加「🔗 按知识点」一节。
+- 补丁 `src/patch_dedup_c.py`（DEDUP_C_V1），anchorcheck 登记；`patch_practice.py` 重跑不再冲掉后插的块；新回归 `v5/app_check12.py` 入 runall；`runall.py --full` 全过。
+- 没合并：复数、be / 时态组没有一字不差的段落；G10、G21、G22、G24 演示板不对题等内容错误需重建场景、动 R1 基线，列在 HANDOFF 待用户定。
+
