@@ -30,3 +30,11 @@ npx esbuild src/player.jsx --bundle --minify --loader:.woff=dataurl --define:pro
 - k3 → 走路帧在 5.5 s 是硬切（有限动画允许），真机审片看是否需要加 1 帧过渡。
 - 单文件 1 MB 偏大：并入主 App 时 React + Player 只打一份，所有句子共用。
 - 剪影 / 静音盲测、真机审片未做。
+
+## v5.1（决策 31 定稿组合，2026-10-30）
+- 源文件 `v51/`：`scene51.js`（场景 + 时间轴）、`player51.js`（自写播放循环，▶/❚❚、拖动条、点画面暂停）、`build51.mjs`（esbuild 打成单文件）、`shots51.py`（Playwright 关键帧联络表）。
+- 分工：rough.js 画房子 / 门 / 画框 / 狗碗 / 橙圈 / 箭头（种子固定，展开成折线后「画到一半」，笔尖跟随，两遍描边同时推进，狗碗 hachure 排线描完淡入）；GSAP `timeline({paused:true})` 只用 `tl.time(t)` 取值：镜头快推 / 拉回 / 跟随权重 / 拉远、takes · out! 弹出（back.out）、takes 让位到墙角、走路进度、狗领先距离、收尾浅灰；huashu 负责笔、逐字手写、之字形揭开角色；角色帧库与 v5.0 相同。
+- 构建：`npm i && node v51/build51.mjs && python3 v51/shots51.py`
+- 产物：`out/take_out_v51.html` 614 KB（v5.0 1.02 MB，去掉 React + Remotion Player）；`out/v51_keyframes.png` 9 个时间点自审，控制台 0 报错。
+- 相对 v5.0 的修正：扣项圈橙圈在走路前淡出（v5.0 留在原地、狗走后变成空圈）；takes 走路前缩小让到墙角，不再压男孩头。
+- 待审：真机播放流畅度、k3 → 走路硬切、静音盲测。
