@@ -27,6 +27,7 @@
 - ✅ `adj_order` 第2/4幕 ②  两只可爱的小白猫 v5.1 重画并替换进 App（`v5/scenes/adj_order_2.js`，R1 86/86，~120 s，0 报错；主文件 12,087,206 bytes）
 - ✅ `adj_order` 第3/4幕 ③  一件漂亮的崭新红色中国丝绸连衣裙 v5.1 重画并替换进 App（`v5/scenes/adj_order_3.js`，R1 90/90，~120 s，0 报错；主文件 12,423,920 bytes）
 - ✅ `adj_order` 第4/4幕 ④  那个高个子年轻的英国篮球教练 v5.1 重画并替换进 App（`v5/scenes/adj_order_4.js`，R1 89/89，~120 s，0 报错；主文件 12,756,036 bytes）
+- ✅ **体积优化 v1（embed_app.py WB5_MOUNT_V2）**：幕内图片 / 字体 data URI 按内容哈希抽成共享块 `wb5blob-<hash>`（同帧同字体全 App 一份），其余 HTML gzip+base64，挂载时 DecompressionStream 解压。13 幕全部重新嵌入，主文件 12.76 → 10.91 MB，三个单元回归 0 报错。下一步体积优化：文楷（wk）改为全 App 一份共享子集（约 3300 字），预计每幕再省约 125 KB。
 - **用户规则（2026-10-30 14:05）：不要停，直到全部完成**——单元之间也不停、不等待回复，连续推进。
 - **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
