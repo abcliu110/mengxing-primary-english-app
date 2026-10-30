@@ -19,4 +19,5 @@ for n in range(1, n_all + 1):
     assert r1.group(2) == '0' and 'errors none sandbox none' in out.stdout and 'deterministic True' in out.stdout, 'acceptance failed'
     subprocess.run(['python3', 'embed_app.py', tab, str(n - 1), f'out/{tab}_{n}.html'], check=True, capture_output=True)
     subprocess.run(['python3', 'log_done.py', tab, str(n), str(n_all), f'{r1.group(1)}/{r1.group(1)}', str(round(float(dur))), title], check=True)
-print(subprocess.run(['python3', 'app_check.py', tab, u['field'], str(n_all)], capture_output=True, text=True).stdout)
+chk = ['python3', 'app_check2.py', u['field'], tab, str(n_all)] if u['field'] in ('fp', 'wo', 'ze') else ['python3', 'app_check.py', tab, u['field'], str(n_all)]
+r = subprocess.run(chk, capture_output=True, text=True); print(r.stdout, r.stderr[-800:])
