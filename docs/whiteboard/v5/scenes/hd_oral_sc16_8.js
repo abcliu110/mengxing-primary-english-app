@@ -1,4 +1,4 @@
-// 💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · I'm proud of you! —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 💬 日常用语 · 赞美与鼓励 · I'm proud of you! —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
 // 内容来源（R1 零丢失）：src/cases/hd_oral_sc16.js 案例 8；对照清单 lab/INVENTORY_HD_ORAL_SC16_8_V5.md
 // 角色关键帧：sprites/hdo16_8.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
@@ -17,4 +17,4 @@ const ITEMS = [
   ['w', '干得漂亮！我为你骄傲！'],
   ['s', 'Well done! I\'m proud of you!', '干得漂亮！我为你骄傲！']
 ];
-export default function build() { return autoBuild(SP, { title: '💬 R1 零丢失）：日常用语小剧场 `hd_oral_sc16`（赞美与鼓励 · I\'m proud of you!', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '💬 日常用语 · 赞美与鼓励 · I\'m proud of you!', items: ITEMS, acts: ACTS }); }

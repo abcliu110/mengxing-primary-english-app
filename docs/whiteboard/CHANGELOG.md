@@ -2506,3 +2506,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 补丁 `src/patch_dedup_c.py`（DEDUP_C_V1），anchorcheck 登记；`patch_practice.py` 重跑不再冲掉后插的块；新回归 `v5/app_check12.py` 入 runall；`runall.py --full` 全过。
 - 没合并：复数、be / 时态组没有一字不差的段落；G10、G21、G22、G24 演示板不对题等内容错误需重建场景、动 R1 基线，列在 HANDOFF 待用户定。
 
+### 2026-10-31 04:00 JST · 重复内容合并第 4 步：units.json 名字与口语幕白板残文
+- 日常用语小剧场 16 单元 144 幕：name / 幕标题里的文档残文「R1 零丢失）：日常用语小剧场 `hd_oral_scNN`（…」改成「💬 日常用语 · 问候与告别 · Nice to meet you!」这样的真名字；这段残文以前会在幕尾写在白板上，现在白板上是正确标题。144 个场景文件改标题后重打包、重嵌入，R1 全部缺 0。
+- 格林 4 组、音变规律 16 幕的 units.json name 各自取 App 里的标题。
+- `wo_rule_norman` 标题「巴黎法语的 g」→「其他地方古法语的 g」（RULES_REVIEW 第 7 条），重建该幕。
+- `v5/rebuild_all.py` 新增 `--tabs=前缀,…`：只重建指定页签（不重做字表）。
+- `runall.py --full` 全过。
+- 顺带修：`embed_app.py` 的语法课白板挂钩文字没跟上第 3 步的「固定播一幕」，重嵌入时会再插一行旧挂钩（G07–G10 又出分幕按钮）；挂钩文字已更新，重复行已删，anchorcheck 登记旧挂钩必须为 0。
