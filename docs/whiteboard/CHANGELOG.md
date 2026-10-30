@@ -2340,3 +2340,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 引擎变了 → `rebuild_all.py` 全量重建 484 幕并重新嵌入（共享引擎块仍 1 份）；修 `rebuild_all.py`：沙箱重置后会补建模板幕角色包 `wordtpl.js`。
 - `embed_app.py` HD_HOOKS 加两条：交互导图卡片上方的空舞台 `WB5_HD:mindmap_stage` + `initThemeMindMapCanvas` 开头 `WB5_HD:mindmap`（只换舞台、不 return，交互导图照常）；`src/anchorcheck.py` 登记这两个标记 + `themeMindMapCanvas` 必须还在。
 - 回归：`jscheck` OK；`app_check.py tense_matrix` 5 幕、`app_check4.py hd_formation` 3 幕、`app_check2.py fp fp_economy` 4 幕、`app_check5.py` 单词卡模板 55 词不合格 0，全部 0 报错。主文件 15,465,894 bytes。
+
+## 2026-10-30 · 主题思维导图讲解幕 阶段③ 第 1 批（幕 1–8（学校与学习 … 服装与穿戴））生成并替换进 App
+- 每幕 R1 37–40 条缺 0、deterministic True、errors / sandbox none，时长 66–74 s；app_check6 8/8 合格（讲解幕在导图上方、幕号对、16 节点可点开卡、缩放 / 滚轮 / 拖拽 / 复位正常），0 报错；主文件 15,491,698 bytes。
