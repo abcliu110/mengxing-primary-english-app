@@ -9,7 +9,9 @@
 
 ## 🔴 决策 32（2026-10-30 10:57）：全部白板动画按 v5.1 标准重画——最优先
 - 范围约 171 幕（白板案例 99 + 万能动词剧场 72），清单 / 进度 `REDRAW_V5.md`；标准 MASTER_DESIGN §2.9，验收 SOP §17。
-- 下一步：抽公共引擎 `v5/` → tense_matrix ① 重画试点 → 按 `REDRAW_V5.md` 顺序推进。
+- ✅ 公共引擎 `v5/`（README 有 API 与帧库登记）；🟡 tense_matrix ① 重画完成待用户审（`v5/out/tense_matrix_1.html`，联络表 `_keyframes.png`，R1 清单 `lab/INVENTORY_TM1_V5.md` 91/91）。
+- 下一步：用户审 ① → 按同一模板做 tense_matrix ②–⑥ → 按 `REDRAW_V5.md` 顺序推进；全部审过后再统一并入主 App（替换旧 SVG 白板，播放器 / rough / GSAP 只打一份）。
+- 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
 
 ## 🟢 动作系统 v5（决策 31，2026-10-30 10:28 JST 用户确认）——先读这一节
 - **路线**：有限动画 / 关键姿势帧。人物 = AI 绿幕关键帧（准备 → 发力 → 结果 + 走路 / 小跑 4 帧），代码只做位移、换帧、牵绳、镜头、高亮、字幕。上面「🔴 优先级变更」第 2 步的 `wb_verbs.js` 手写骨架已被用户否定，不再扩展。
