@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 15:18 JST（万能动词剧场 get、turn 12 组 24 幕；单词身世 wo_* 9 幕 + 中英对照 ze_* 11 幕；第一性原理 fp_* 22 幕 v5.1 替换进 App（fp_one_king ①、fp_zoom_focus ① 已迁中英对照，不重画）；万能动词 VV 72 幕清单已导出 vv_inventory.py；metaphor_code 3、writing_alchemist 3、phrasal_key 2、pron_map 3、stress_rhythm 3、intonation_map 3 幕 v5.1 替换进 App；five_patterns 5、bamboo_tree 5、eight_endings 1、irregular_plural 2 幕 v5.1 替换进 App；aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
+> 更新：2026-10-30 15:25 JST（万能动词剧场 get、turn 12 组 24 幕（环境重装后重跑）；万能动词剧场 get、turn 12 组 24 幕；单词身世 wo_* 9 幕 + 中英对照 ze_* 11 幕；第一性原理 fp_* 22 幕 v5.1 替换进 App（fp_one_king ①、fp_zoom_focus ① 已迁中英对照，不重画）；万能动词 VV 72 幕清单已导出 vv_inventory.py；metaphor_code 3、writing_alchemist 3、phrasal_key 2、pron_map 3、stress_rhythm 3、intonation_map 3 幕 v5.1 替换进 App；five_patterns 5、bamboo_tree 5、eight_endings 1、irregular_plural 2 幕 v5.1 替换进 App；aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
 > **当前阶段（2026-10-30 09:14 起）**：决策 30 动作系统重建最优先（见下方「🔴 优先级变更」）。以下为旧描述——阶段 0–4、首页改版 1–6 步已完成；**正在做：阶段 7 全 App 白板化试点（fp_economy 第 1 幕已出对比图待用户审，FR01 买卖待做）+ 阶段 8 / 9 词源与单词全部维度审计**；练习闭环（决策 14）等用户点头。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，26 条决策：1–19、22–28）→ `SOP.md`（标准流程 + 验收清单）。历史进度、每步验收数字、引擎新工具登记都在 `CHANGELOG.md`（原 HANDOFF 全文，章节号不变）。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元 / 改完一个文档立即提交；发现 bug 直接修。本文只写现状和下一步，流水写进 `CHANGELOG.md`。
@@ -129,6 +129,30 @@
 - ✅ `vv_put_in` 第2/2幕 🎬 万能动词 · put in ② v5.1 重画并替换进 App（`v5/scenes/vv_put_in_2.js`，R1 23/23，19 s，0 报错；主文件 32,860,786 bytes）
 - ✅ `vv_put_out` 第1/2幕 🎬 万能动词 · put out ① v5.1 重画并替换进 App（`v5/scenes/vv_put_out_1.js`，R1 8/8，13 s，0 报错；主文件 33,084,985 bytes）
 - ✅ `vv_put_out` 第2/2幕 🎬 万能动词 · put out ② v5.1 重画并替换进 App（`v5/scenes/vv_put_out_2.js`，R1 18/18，18 s，0 报错；主文件 33,362,652 bytes）
+- ✅ `vv_get_on` 第1/2幕 🎬 万能动词 · get on ① v5.1 重画并替换进 App（`v5/scenes/vv_get_on_1.js`，R1 9/9，13 s，0 报错；主文件 33,503,378 bytes）
+- ✅ `vv_get_on` 第2/2幕 🎬 万能动词 · get on ② v5.1 重画并替换进 App（`v5/scenes/vv_get_on_2.js`，R1 18/18，17 s，0 报错；主文件 33,649,172 bytes）
+- ✅ `vv_get_off` 第1/2幕 🎬 万能动词 · get off ① v5.1 重画并替换进 App（`v5/scenes/vv_get_off_1.js`，R1 8/8，12 s，0 报错；主文件 33,790,632 bytes）
+- ✅ `vv_get_off` 第2/2幕 🎬 万能动词 · get off ② v5.1 重画并替换进 App（`v5/scenes/vv_get_off_2.js`，R1 18/18，17 s，0 报错；主文件 34,042,291 bytes）
+- ✅ `vv_get_up` 第1/2幕 🎬 万能动词 · get up ① v5.1 重画并替换进 App（`v5/scenes/vv_get_up_1.js`，R1 9/9，12 s，0 报错；主文件 34,182,457 bytes）
+- ✅ `vv_get_up` 第2/2幕 🎬 万能动词 · get up ② v5.1 重画并替换进 App（`v5/scenes/vv_get_up_2.js`，R1 19/19，19 s，0 报错；主文件 34,385,594 bytes）
+- ✅ `vv_get_down` 第1/2幕 🎬 万能动词 · get down ① v5.1 重画并替换进 App（`v5/scenes/vv_get_down_1.js`，R1 8/8，13 s，0 报错；主文件 34,600,675 bytes）
+- ✅ `vv_get_down` 第2/2幕 🎬 万能动词 · get down ② v5.1 重画并替换进 App（`v5/scenes/vv_get_down_2.js`，R1 18/18，18 s，0 报错；主文件 34,808,856 bytes）
+- ✅ `vv_get_in` 第1/2幕 🎬 万能动词 · get in ① v5.1 重画并替换进 App（`v5/scenes/vv_get_in_1.js`，R1 8/8，12 s，0 报错；主文件 34,949,310 bytes）
+- ✅ `vv_get_in` 第2/2幕 🎬 万能动词 · get in ② v5.1 重画并替换进 App（`v5/scenes/vv_get_in_2.js`，R1 20/20，18 s，0 报错；主文件 35,132,977 bytes）
+- ✅ `vv_get_out` 第1/2幕 🎬 万能动词 · get out ① v5.1 重画并替换进 App（`v5/scenes/vv_get_out_1.js`，R1 10/10，13 s，0 报错；主文件 35,273,345 bytes）
+- ✅ `vv_get_out` 第2/2幕 🎬 万能动词 · get out ② v5.1 重画并替换进 App（`v5/scenes/vv_get_out_2.js`，R1 19/19，19 s，0 报错；主文件 35,475,032 bytes）
+- ✅ `vv_turn_on` 第1/2幕 🎬 万能动词 · turn on ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_on_1.js`，R1 9/9，12 s，0 报错；主文件 35,687,715 bytes）
+- ✅ `vv_turn_on` 第2/2幕 🎬 万能动词 · turn on ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_on_2.js`，R1 17/17，18 s，0 报错；主文件 35,911,030 bytes）
+- ✅ `vv_turn_off` 第1/2幕 🎬 万能动词 · turn off ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_off_1.js`，R1 10/10，13 s，0 报错；主文件 36,156,279 bytes）
+- ✅ `vv_turn_off` 第2/2幕 🎬 万能动词 · turn off ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_off_2.js`，R1 18/18，18 s，0 报错；主文件 36,388,172 bytes）
+- ✅ `vv_turn_up` 第1/2幕 🎬 万能动词 · turn up ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_up_1.js`，R1 7/7，11 s，0 报错；主文件 36,642,871 bytes）
+- ✅ `vv_turn_up` 第2/2幕 🎬 万能动词 · turn up ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_up_2.js`，R1 19/19，18 s，0 报错；主文件 36,892,202 bytes）
+- ✅ `vv_turn_down` 第1/2幕 🎬 万能动词 · turn down ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_down_1.js`，R1 8/8，13 s，0 报错；主文件 37,108,188 bytes）
+- ✅ `vv_turn_down` 第2/2幕 🎬 万能动词 · turn down ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_down_2.js`，R1 18/18，19 s，0 报错；主文件 37,363,271 bytes）
+- ✅ `vv_turn_in` 第1/2幕 🎬 万能动词 · turn in ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_in_1.js`，R1 9/9，13 s，0 报错；主文件 37,596,422 bytes）
+- ✅ `vv_turn_in` 第2/2幕 🎬 万能动词 · turn in ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_in_2.js`，R1 20/20，19 s，0 报错；主文件 37,824,537 bytes）
+- ✅ `vv_turn_out` 第1/2幕 🎬 万能动词 · turn out ① v5.1 重画并替换进 App（`v5/scenes/vv_turn_out_1.js`，R1 8/8，12 s，0 报错；主文件 38,057,090 bytes）
+- ✅ `vv_turn_out` 第2/2幕 🎬 万能动词 · turn out ② v5.1 重画并替换进 App（`v5/scenes/vv_turn_out_2.js`，R1 20/20，19 s，0 报错；主文件 38,281,135 bytes）
 - **用户规则（2026-10-30 14:05）：不要停，直到全部完成**——单元之间也不停、不等待回复，连续推进。
 - **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
