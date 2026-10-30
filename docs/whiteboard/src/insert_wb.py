@@ -23,6 +23,7 @@ TABS = {
 FP_DEPS = {'fp_economy': 'wo_props fp_props', 'fp_vectors': 'wo_props fp_props', 'fp_boundedness': 'wo_props fp_props', 'fp_iconicity': 'wo_props fp_props', 'fp_one_king': 'wo_props fp_props', 'fp_zoom_focus': 'wo_props fp_props'}   # 升了引擎 v2 + 讲解员的原理（用 WO_PROPS 镜头模板 + fp_props 口型道具）
 FP_READY = ['fp_economy', 'fp_vectors', 'fp_boundedness', 'fp_one_king', 'fp_zoom_focus', 'fp_iconicity']   # 第一性原理总枢：做完一条原理就把 id 加进来，如 'fp_economy'
 READY = ['phrasal_key', 'eight_endings', 'pron_map', 'intonation_map', 'irregular_plural', 'bamboo_tree', 'adj_order', 'past_clans', 'stress_rhythm', 'metaphor_code', 'tense_matrix', 'aux_transformer', 'five_patterns', 'writing_alchemist']
+SAMPLES = ['verb_demo']   # 样板模块（决策 30 动作系统 v2）：只写进按需模块供验收 / 审片（wbLoadAll 可见），不进页签、没有 WB_STAGE
 # 单词身世总枢：做完一个溯源幕就把场景 id 加进来（没登记的场景在总枢里显示「即将上线」）
 WO_READY = ['wo_port', 'wo_europe', 'wo_bluetooth', 'wo_grimm', 'wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c', 'wo_time_num', 'wo_time_week']
 # 中英对照总枢：做完一幕就把 id 加进来（搬迁幕依赖第一性原理道具 fp_props）
@@ -32,8 +33,8 @@ WO_KITS = {'wo_vowel_kit': ['wo_vowel_a', 'wo_vowel_b', 'wo_vowel_c']}   # 几�
 # ---------- 按需加载（决策 13）：每个模块写成不执行的 <script type="text/plain" id="wbmod-<id>">，
 # 第一次进入时由 wbLoadModule(id) 取出文字执行（见 wb_app.js）；道具文件是依赖（data-deps），先于模块执行。
 # 引擎、讲解员、App 接线、单词身世总枢页面仍然直接执行（首页和各总枢页面要用）。
-LAB_DEPS = {'phrasal_key': 'wo_props', 'eight_endings': 'wo_props', 'pron_map': 'wo_props fp_props', 'intonation_map': 'wo_props', 'irregular_plural': 'wo_props', 'bamboo_tree': 'wo_props', 'aux_transformer': 'wo_props', 'five_patterns': 'wo_props', 'tense_matrix': 'wo_props', 'past_clans': 'wo_props', 'adj_order': 'wo_props', 'metaphor_code': 'wo_props', 'stress_rhythm': 'wo_props'}   # 用 v2 镜头模板的实验室页签（白板课）
-MODS = [(t, LAB_DEPS.get(t, '')) for t in READY]
+LAB_DEPS = {'phrasal_key': 'wo_props', 'eight_endings': 'wo_props', 'pron_map': 'wo_props fp_props', 'intonation_map': 'wo_props', 'irregular_plural': 'wo_props', 'bamboo_tree': 'wo_props', 'aux_transformer': 'wo_props', 'five_patterns': 'wo_props', 'tense_matrix': 'wo_props', 'past_clans': 'wo_props', 'adj_order': 'wo_props', 'metaphor_code': 'wo_props', 'stress_rhythm': 'wo_props', 'verb_demo': 'wo_props'}   # 用 v2 镜头模板的实验室页签（白板课）
+MODS = [(t, LAB_DEPS.get(t, '')) for t in READY + SAMPLES]
 if FP_READY:
     MODS += [('fp_props', '')] + [(t, FP_DEPS.get(t, 'fp_props')) for t in FP_READY]
 if WO_READY:
@@ -53,6 +54,7 @@ mods_html = ('<!-- <<WB_MODULES_START>> 白板模块（按需加载，不要手�
              + ''.join(mod_tag(m, d) for m, d in MODS) + '<!-- <<WB_MODULES_END>> -->\n')
 block = ('// <<WB_ENGINE_START>>\n' + rd(os.path.join(HERE, 'wb_engine.js')) + '\n'
          + rd(os.path.join(HERE, 'wb_actor.js')) + '\n'
+         + rd(os.path.join(HERE, 'wb_verbs.js')) + '\n'
          + rd(os.path.join(HERE, 'wb_app.js'))
          + rd(os.path.join(HERE, 'wo_hub.js'))
          + rd(os.path.join(HERE, 'ze_hub.js')) + '// <<WB_ENGINE_END>>\n')

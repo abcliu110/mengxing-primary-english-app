@@ -371,6 +371,7 @@ const WB = (function () {
       (S.props || []).forEach(p => { if (p.stampAt != null) p.stampAt = g(p.stampAt); if (p.showAt != null) p.showAt = g(p.showAt); });
     };
     if (typeof WB_ACTOR !== "undefined") WB_ACTOR.kit(k);   // 人物骨架与动作库（wb_actor.js）
+    if (typeof WB_VERBS !== "undefined") WB_VERBS.kit(k);   // 动作系统 v2：骨架 v2 + 动词专属动作 + 道具 / 动物 + 场景（wb_verbs.js，决策 30）
     return k;
   }
 
@@ -530,7 +531,10 @@ const WB = (function () {
     }
     // 人物（讲解员小人 + 场景角色）：讲解员在屏幕层（不跟镜头缩放），场景角色在各自的组里
     let actorR = null;
+    let verbR = null;
     const api = {};
+    if (typeof WB_VERBS !== "undefined" && S.cast && S.cast.length)
+      verbR = WB_VERBS.mount({ S, mk, NS, layer, end: END, reduced: REDUCED, ensureGroup: g => (groups[g] || (groups[g] = { el: mk("g", {}, layer) })).el });
     if (typeof WB_ACTOR !== "undefined" && S.actors && S.actors.length) {
       const screenLayer = mk("g", {}, boardClip);
       actorR = WB_ACTOR.mount({ S, mk, NS, layer, screenLayer, says: SAYS, end: END, api, reduced: REDUCED,
@@ -674,6 +678,7 @@ const WB = (function () {
         if (activeIt) active = toScreen(activeIt, active);
       } else if (active && CAM.length) active = [active[0] * camM[2] + camM[0], active[1] * camM[2] + camM[1]];
       drawing = !!active;
+      if (verbR) verbR.render(t);
       if (actorR) actorR.render(t, { pen: active });
       if (V2) {
         const pp = REDUCED ? REST : penAt(t, active);

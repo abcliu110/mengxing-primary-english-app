@@ -75,7 +75,8 @@
     return { list, sents, says: says.map(sy => ({ t: +sy.t.toFixed(2), en: sy.en, word: sy.word })), acts: (S.acts || []), S };
   }
 
-  function r4(cs, res) {
+  function r4(cs, res, forceV2) {
+    const v2 = !!(forceV2 || cs.r4v2);
     const out = { declared: [], hints: [] };
     const declared = (cs.actionWords || []);
     declared.forEach(aw => {
@@ -86,8 +87,19 @@
         || (w.includes(" ") && ((" " + sentNorm(sy.en) + " ").includes(" " + w + " ") || (" " + String(sy.word).toLowerCase() + " ").includes(" " + w + " "))));
       // 同步：至少一个动作的时间段和一句含这个词的朗读重叠
       const sync = acts.some(a => says.some(sy => a.t < sy.t + sy.dur && a.t + a.dur > sy.t));
-      out.declared.push({ word: aw.word, act: aw.act, registered: acts.length > 0, acts: acts.map(a => a.action + "@" + a.t.toFixed(1)), sync });
+      const rec = { word: aw.word, act: aw.act, registered: acts.length > 0, acts: acts.map(a => a.action + "@" + a.t.toFixed(1)), sync };
+      // R4v2（决策 30）：动作必须是这个动词的专属动作（wb_verbs.js 的 VERB_TABLE），且登记的 k.verb 动作 id 一致；讲解员手势 / 别的动作不算
+      if (v2) {
+        const T = (typeof WB_VERBS !== "undefined" && WB_VERBS.VERB_TABLE) || {};
+        const want = T[w];
+        const semOK = !want || want === aw.act;
+        const vActs = acts.filter(a => a.action === "verb:" + aw.act);
+        rec.v2 = { semOK, want: want || null, verbOK: vActs.length > 0, syncOK: vActs.some(a => says.some(sy => a.t < sy.t + sy.dur && a.t + a.dur > sy.t)) };
+        rec.registered = rec.registered && rec.v2.verbOK && semOK; rec.sync = rec.sync && rec.v2.syncOK;
+      }
+      out.declared.push(rec);
     });
+    if (v2 && !declared.length) out.declared.push({ word: "（空 actionWords）", act: "—", registered: false, acts: [], sync: false, v2: { empty: true } });
     const declaredW = new Set(declared.map(a => norm(a.word)));
     res.S.says.forEach(sy => sentNorm(sy.en).split(" ").forEach(x => { if (ACTION_VERBS.includes(x) && !declaredW.has(x) && !out.hints.some(h => h.word === x)) out.hints.push({ word: x, en: sy.en }); }));
     return out;
@@ -95,14 +107,14 @@
 
   root.R2CHECK = {
     tokens, sentences,
-    run(ids) {
+    run(ids, forceV2) {
       const report = [];
       (ids || Object.keys(WB_LAB)).forEach(id => {
         (WB_LAB[id] || []).forEach((cs, i) => {
           let res;
           try { res = scan(cs.build, 7 + i, cs.r2skip); } catch (e) { report.push({ id, i, error: String(e) }); return; }
-          const rr = r4(cs, res);
-          report.push({ id, i, says: res.says.length, words: res.list, sents: res.sents.map(({ text, where, read }) => ({ text, where, read })), r4: rr, hasActionList: !!cs.actionWords });
+          const rr = r4(cs, res, forceV2);
+          report.push({ id, i, says: res.says.length, words: res.list, sents: res.sents.map(({ text, where, read }) => ({ text, where, read })), r4: rr, hasActionList: !!cs.actionWords || !!(forceV2 || cs.r4v2), r4v2: !!(forceV2 || cs.r4v2) });
         });
       });
       return report;

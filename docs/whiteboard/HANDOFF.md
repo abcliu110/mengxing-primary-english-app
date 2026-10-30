@@ -12,7 +12,7 @@
 
 **新任务顺序（取代下方所有「下一个接手点」）**
 1. ✅ 设计文档（决策 30、§2.8、SOP §16、本节）——单独提交。
-2. ⬜ **动作系统重建 + 样板**：骨架 v2（手掌 + 握持点、躯干 / 头转动、正面 / 侧面视角，`wb_actor.js` 只加不改）→ 互动道具和动物（狗、牵绳、门、球、杯子…，grab / follow / affect）→ 简笔场景（房子门口、教室、公园、厨房）→ `wb_verbs.js` 动词专属动作（先做样板要用的 take / walk / open / take…out，再扩到前 60 个）→ r2check R4v2（动词 → 专属动作语义核对、禁止空 `actionWords`）+ `actsheet.py` 动作联络表 → **样板「He takes the dog out.」**，和用户参考插画并排对照截图。
+2. 🟡 **动作系统重建 + 样板**（第一步已推：`wb_verbs.js` 骨架 v2 / 狗 / 门 / 牵绳 / 院子房子场景 / 动词 take · clip · open · walk · take_out 等 + R4v2 检查 + `actsheet.py` + 样板 `verb_demo`；对照图 `work/shots/sample_take_dog_out_对照.png`、动作表 `work/shots/verb_demo_1_动作表.png`（Hark 项目工作区）。下一步：扩到前 60 个动词 + 更多道具 / 动物 / 场景）：骨架 v2（手掌 + 握持点、躯干 / 头转动、正面 / 侧面视角，`wb_actor.js` 只加不改）→ 互动道具和动物（狗、牵绳、门、球、杯子…，grab / follow / affect）→ 简笔场景（房子门口、教室、公园、厨房）→ `wb_verbs.js` 动词专属动作（先做样板要用的 take / walk / open / take…out，再扩到前 60 个）→ r2check R4v2（动词 → 专属动作语义核对、禁止空 `actionWords`）+ `actsheet.py` 动作联络表 → **样板「He takes the dog out.」**，和用户参考插画并排对照截图。
 3. ⬜ **回改已完成单元**（样板达标后）：tense_matrix ①–⑤、past_clans ①–④、adj_order ①–④（取消 `actionWords: []` 豁免），其后第一性原理、bamboo_tree、aux_transformer、five_patterns 中用讲解员手势代演的动作词。
 4. ⬜ **原顺序剩余单元**：metaphor_code（`07ee259` 已做升级准备，v2 暂停，按新动作系统做）→ stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法 40 点 → 思维导图 → 单词维度 / 词源 / 格林 / 词根 / 12+6 条规律 → 文档收尾 → 决策 29 软件优化。
 
@@ -100,6 +100,7 @@
 - 09:30｜**优先级变更（用户 09:14）**：设计文档写入决策 30 动作系统重建（原因 5 条 + 新设计 D1–D6）、MASTER_DESIGN §2.8 动作系统 v2、阶段表加 6.5、SOP R4v2 + §16、HANDOFF 新任务顺序｜本提交｜—｜metaphor_code 只做到升级准备（`07ee259`），v2 暂停；k.act 使用统计已按代码核对（964 次，17 个动作）
 - 09:50｜metaphor_code ①–③ 三大隐喻密码一次升 v2，**metaphor_code 3 个案例全部 v2 完成**（每个案例：讲解员 + 五步进度；原 2×2 卡片一屏放不下 x≤800，拆成「两张卡一个镜头」；连读镜头每读一句先把原朗读句写上板；结论框收进 x≤800 代替旧 k.final；🔮 床头 the head of the bed / 红茶 black tea / as quiet as a mouse 预测 + 金句卡）｜本提交｜`work/shots/metaphor_code_1–3_对比总图.png`（Hark 项目「萌星小学英语」工作区）｜R3：① 原图时针指 6、朗读却是「points to three」，按 R1 两条都留，读到这句时让时针转到 3（场景动作）并补「→ 转到 3」小字；R4：look 讲解员指钟面、give me a hand 讲解员伸手托（support）、give the green light 红绿灯亮绿（actFx）；look sad 是系动词，按 five_patterns ② 先例不演；③ 无肢体动作词，蜜蜂嗡嗡、雨点落下用场景动画；red tea 进 r2skip。徽章 💡✂️（black tea 的「干叶颜色」说法查了 Wikipedia Black tea 条，只说中文按茶色叫红茶，没核实到英文命名理由，所以标 ✂️ 不标 📜）。R1 342 条 ❌0；r2check metaphor_code --strict 0；reg_render 只有 metaphor_code 15 项变；appwb 3 正常；时长 130→146、98→106、129→139 秒（都在 +20% 内）
 - 09:58｜stress_rhythm 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；appwb 3 正常；升级前时长 ①61 ②57 ③50 秒；本页签已并入语调地图「🎯 重音与弱读」区（模块 id 不变）
+- 09:55｜**决策 30 动作系统 v2 第一步 + 样板「He takes the dog out.」**：新引擎文件 `src/wb_verbs.js`（`k.cast / k.verb / k.to / k.attach / k.scenery`；男孩骨架 v2 带手掌 + 握持点、转身经过正面视角、depth 远近；狗走 / 趴 / 站 / 摇尾巴 / 项圈；门开合；牵绳挂钩 → 手 → 项圈按绳长下垂；院子 / 房子 / 公园 / 教室 / 厨房简笔场景；专属动作 walk · run · take · clip · open · close · put · give · wave · take_out + VERB_TABLE / PHASES），引擎只加两处挂钩；`r2check` 加 R4v2（`--r4v2` 或案例 `r4v2: true`：专属动作 + 语义 + 禁止空清单）；新脚本 `actsheet.py`（每个专属动作 预备 / 发力 / 结果 三帧联络表）；样板 `cases/verb_demo.js`（SAMPLES 按需模块，不进页签）｜本提交｜`work/shots/sample_take_dog_out_对照.png`、`work/shots/verb_demo_1_动作表.png`（Hark 项目工作区）｜reg_render 旧 455 项 diff 0（只新增 verb_demo 5 项）；r2check verb_demo --strict 0（R4v2 4 个动作词全过）；时长 45 秒。注意：有另一个实现者在 09:14 之后仍按旧顺序推了 metaphor_code v2（`53e1d21`）和 stress_rhythm 准备（`3e6ea28`）——按决策 30 这两项算「待回改」，**所有实现者请先读顶部「🔴 优先级变更」，停止原顺序单元**
 
 ## 1. 现在做到哪
 

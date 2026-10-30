@@ -10,12 +10,14 @@ R2 朗读覆盖检查 + R4 动作覆盖检查（规则见 SOP §5、§7、§8）
 默认只列出缺的项；--all-items 列出每幕全部英文词清单。
 --summary：最后按页签 / 幕 id 汇总（案例数、词、缺、句子、缺朗读、R4），按缺口从大到小排（旧幕推广清单用）。
 --strict：所选范围里有任何缺项就返回 1（验收用）。
+--r4v2：所选范围全部按 R4v2（决策 30）检查：动作词必须用 wb_verbs.js 的专属动作（k.verb）且语义对得上、actionWords 不能为空。
+         案例对象写 r4v2: true 的，不加这个参数也按 R4v2 检查（新做 / 回改完的案例都要写）。
 """
 import json, os, sys
 from playwright.sync_api import sync_playwright
 HERE = os.path.dirname(os.path.abspath(__file__))
 args = [a for a in sys.argv[1:]]
-strict = '--strict' in args; all_items = '--all-items' in args; by_scene = '--summary' in args
+strict = '--strict' in args; r4v2 = '--r4v2' in args; all_items = '--all-items' in args; by_scene = '--summary' in args
 jpath = args[args.index('--json') + 1] if '--json' in args else None
 main = args[args.index('--html') + 1] if '--html' in args else os.path.abspath(os.path.join(HERE, '..', '..', '..', '萌星小学英语_最终合并版.html'))
 skip = {jpath, main}
@@ -36,7 +38,7 @@ with sync_playwright() as p:
         elif s == 'lab': sel += [i for i in ids if not i.startswith(('fp_', 'wo_'))]
         else: sel.append(s)
     sel = list(dict.fromkeys(sel))
-    rep = pg.evaluate('ids => R2CHECK.run(ids)', sel)
+    rep = pg.evaluate('([ids, v2]) => R2CHECK.run(ids, v2)', [sel, r4v2])
     b.close()
 
 tot_w = tot_miss = tot_s = tot_smiss = tot_a = tot_amiss = 0
@@ -62,7 +64,8 @@ for r in rep:
     for a in r['r4']['declared']:
         if all_items or a in am:
             print(f"    {'✔' if a in r['r4']['declared'] and a not in am else '✘'} 动作词 {a['word']} → {a['act']}  "
-                  f"{'✔已登记 ' + ','.join(a['acts']) if a['registered'] else '✘没有 k.act 登记'}  {'✔和朗读同步' if a['sync'] else '✘没和朗读重叠'}")
+                  f"{'✔已登记 ' + ','.join(a['acts']) if a['registered'] else '✘没有 k.act 登记'}  {'✔和朗读同步' if a['sync'] else '✘没和朗读重叠'}"
+                  + (("  R4v2:" + ("✘ actionWords 为空" if a['v2'].get('empty') else (("✔" if a['v2']['semOK'] else f"✘ 语义不符（应为 {a['v2']['want']}）") + (" ✔专属动作" if a['v2']['verbOK'] else " ✘缺 k.verb 专属动作")))) if a.get('v2') else ""))
     if r['r4']['hints'] and (all_items or r['hasActionList']):
         print("    提示（例句里的动作动词，未在分镜动作词清单）：" + ", ".join(h['word'] for h in r['r4']['hints']))
 print(f"\n合计：{len(rep)} 幕；英文词/词块 {tot_w} 个，缺 {tot_miss}；白板句子 {tot_s} 句，缺朗读 {tot_smiss}；R4 动作词 {tot_a} 个，缺 {tot_amiss}")
