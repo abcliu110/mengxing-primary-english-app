@@ -1484,3 +1484,12 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 框架语义：`export_hd_inventory.py` 支持 `HD_ACT`；10 份清单 `lab/INVENTORY_HD_FR01–10_EXPORT.md`；`units.json` 新增 `hd_fr01`–`hd_fr10`（动作帧：买衣服、递东西、做蛋糕、穿脱外套、抬头听、游泳、开关灯、举手、公交 / 骑车、欢呼 / 大笑）；`scenes/hd_fr*_N.js` 共 25 幕，R1 全部缺 0。
 - `embed_app.py`：HD 运行时升级 V2（`WB5_EMBED_HD2`，`wb5HDSwap` 支持页面自己选幕），新增 frames 挂钩。
 - 全量 `rebuild_all.py` 重建 189 幕；回归：hd_formation 3、hd_fr01 4 / fr05 2 / fr10 2、tense_matrix 5、adj_order 4、vv_give_in 2 全部 errors none、旧 canvas 已消失；jscheck + anchorcheck OK。主文件 14,679,350 bytes。
+
+## 2026-10-30 · hd_relations 第1幕 v5.1 重画并替换进 App
+- 🧨 易混词剧场 ① 四个「看」look at / see / watch / read：R1 14/14，65 s，主文件 14,682,360 bytes。
+
+## 2026-10-30 · hd_relations 第2幕 v5.1 重画并替换进 App
+- 🧨 易混词剧场 ② 两个「借」borrow 借入 vs lend 借出：R1 10/10，64 s，主文件 14,685,190 bytes。
+
+## 2026-10-30 · hd_relations 第3幕 v5.1 重画并替换进 App
+- 🧨 易混词剧场 ③ 三个「穿」put on / wear / in：R1 10/10，68 s，主文件 14,688,181 bytes。
