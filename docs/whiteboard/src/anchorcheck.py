@@ -55,6 +55,12 @@ MARKERS = [
     ('<!-- ETYM_CARD:grid -->', 1, 1),
     ('<script type="application/json" id="ETYM_DB_JSON">', 1, 1),
     ('📖 词源与巧记故事', 0, 0),          # 旧的混排标题不能回来
+    # 决策 14 练习闭环 + 总地图（src/patch_practice.py，2026-10-30）
+    ('// PRACTICE_LOOP_V1', 1, 1),
+    ('else if (s === "app_map") renderAppMapView();', 1, 1),
+    ('if (typeof mqMount === "function") mqMount();', 1, 1),
+    ('<script type="application/json" id="MODULE_QUIZ_JSON">', 1, 1),
+    ('data-home-map', 1, 1),
 ]
 
 

@@ -81,12 +81,12 @@
 | # | 项 | 状态 | 提交 |
 |---|---|---|---|
 | 1a | 词源抓取 / 解析 / 交叉核对工具：`src/fetch_etym.py`（Wiktionary 原文 + Etymonline 经 Wayback 存档）、`src/parse_etym.py` | ✅ | fa2845b |
-| 1b | `ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`） | 🟡 版式 + 首批 76 词已上；Etymonline 存档还在抓（缓存约 1/6），抓完重跑 `parse_etym.py` → `build_etym_db.py etym` 再提交一次补齐 | 本提交 |
+| 1b | `ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`） | 🟡 版式 + 首批 76 词已上；Etymonline 存档还在抓（缓存约 1/6），抓完重跑 `parse_etym.py` → `build_etym_db.py etym` 再提交一次补齐 | e025d90 |
 | 1c | `MORPH_DB` 真实构词 | ⬜ | |
 | 1d | 格林定律按规则组（`GRIMM_DB` + 白板幕） | ⬜ | |
 | 1e | 音变与词汇规律 12 + 6 条白板幕 | ⬜ | |
 | 1f | `word_origins/COVERAGE.md` 数字更新 | ⬜ | |
-| 2a | 决策 14 练习闭环 + 总地图 | ⬜ | |
+| 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 本提交 |
 | 2b | 决策 6 剩余：拼写潜规则 / 空间隐喻 / 交际句型地图 | ⬜ | |
 | 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | ⬜ | |
 | 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅） | ⬜ | |
