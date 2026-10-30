@@ -2439,3 +2439,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 核对（不编造）：每对同源词要求 Etymonline（词条或其 PIE 词根页）和 Wiktionary 英语词条都写了该拉丁 / 希腊形；没对上的（fish、five、fire、hound、ten、two、tree、know、corn、blow、bear、daughter、do、guest 等）不用，原因逐条写在 `word_origins/GRIMM_GROUPS.md`。规则表述出自 Wikipedia「Grimm's law」「Verner's law」。
 - `src/patch_wo_grimm.py`（幂等，走 appwrite）加 4 个场景条目；`anchorcheck` 登记 `WO_GRIMM_GROUPS_V1`；`units.json` 登记 4 个页签。`app_check2.py wo wo_grimm_<组> 1` 4/4 v5、0 报错；`runall.py` 快速档全过。
 - 已知：新幕字表外的字使共享引擎块多 2 份（主文件 17,559,675 bytes），1e 后统一重建合并（HANDOFF §4）。
+
+## 2026-10-30 23:45 JST · 「🔬 音变与词汇规律」章（1e，12 + 6 条）
+- 位置按 HANDOFF 设计决定：单词身世总枢「🔤 格林定律」章之后新开一章（`src/patch_wo_rules.py`，幂等，走 appwrite，标记 `WO_RULES_CHAPTER_V1` 登记进 anchorcheck）。18 条：1 维尔纳（复用 `wo_grimm_verner`）、2 元音大转移、3 i-变音（复用 `wo_vowel_a`）、4 元音递变、5 英德辅音推移、6 维京双胞胎词、7 诺曼 w↔g、8 法语丢 s、9 动物和肉、10 前缀同化、11 词变长元音变短、12 换位与不发音字母、13 老复数 -en、14 希腊拼写、15 英美拼写、16 外来复数、17 sh 本族 / sk 维京、18 c 变 ch。
+- 16 个新幕 `wo_rule_*`（`v5/new_scene.py`，内容稿 `content/wo_rule_*_1.txt`）：每幕 11–17 条 R1 缺 0、deterministic、0 报错；`app_check2.py wo wo_rule_<规律> 1` 16/16 是 v5、0 报错。`units.json` 登记。
+- 核对（不编造）：例词的古词形 / 来路要 Etymonline 和 Wiktionary 都写了；规律表述按 Wikipedia 对应条目。查不到的说法删掉或改弱（如「现代法语用小帽子代替 s」「k、w 当年怎么读」「诺曼贵族吃肉」），逐条见 `word_origins/RULES_REVIEW.md`。
+- 修：两条规律复用其它章的幕，总地图 `appMapNodes` 原来会把同一幕列两次（app_check9 报 59 ≠ 61），改为按 key 去重。`runall.py` 快速档全过。
+- 已知：字表外新字导致共享引擎块多份，主文件暂 24,151,290 bytes，下一提交重建合并。
