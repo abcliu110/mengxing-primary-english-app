@@ -75,6 +75,40 @@ if 'WB5_EMBED_VV' not in s:   # 万能动词剧场：词组有 v5 幕就换成 �
     i = s.index('function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {')
     s = s[:i] + fn + s[i:]
 
+if 'WB5_EMBED_HD' not in s:   # 三大厅 HD 剧场（canvas）：有 v5 幕就把整个剧场框换成 v5 iframe + 分幕按钮（决策 23）
+    fn = """function wb5HDHtml(tab, a, labels) {   // WB5_EMBED_HD
+  let n = 0; while (wb5El(tab, n)) n++;
+  const btn = i => `<button onclick="wb5HDAct('${tab}', ${i})" style="background:${i === a ? '#2563eb' : '#e2e8f0'}; color:${i === a ? '#fff' : '#0f172a'}; font-weight:900; padding:8px 14px; border-radius:10px; font-size:0.85rem; border:0;">🎬 ${labels[i] || ('第' + (i + 1) + '幕')}</button>`;
+  return `<div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">${n > 1 ? Array.from({ length: n }, (_, i) => btn(i)).join("") : ""}</div>${wb5StageHtml(tab, a, false)}`;
+}
+function wb5HDAct(tab, i) {
+  if (typeof hdTheaterState !== "undefined") { hdTheaterState.actIdx = i; hdTheaterState.manualActLock = true; }
+  const w = document.querySelector('[data-wb5hd="' + tab + '"]'); if (!w) return;
+  let labels = []; try { labels = JSON.parse(w.getAttribute("data-labels") || "[]"); } catch (e) {}
+  w.innerHTML = wb5HDHtml(tab, i, labels);
+  const f = w.querySelector("#wb5Frame"); if (f) wb5Mount(f);
+}
+function wb5HDSwap(canvasId, tab) {   // 剧场 canvas 所在的框整体换成 v5；返回 true = 已换，调用方不再跑旧 canvas 循环
+  const cv = document.getElementById(canvasId); if (!cv || !wb5El(tab, 0)) return false;
+  const w = cv.closest(".hd-video-wrapper") || cv.parentNode;
+  const labels = [...w.querySelectorAll('[id^="hdActBtn_"]')].map(b => b.textContent.replace(/^\\s*🎬\\s*/, "").trim());
+  w.classList.remove("hd-video-wrapper"); w.setAttribute("data-wb5hd", tab); w.setAttribute("data-labels", JSON.stringify(labels));
+  let n = 0; while (wb5El(tab, n)) n++;
+  wb5HDAct(tab, Math.min(n - 1, Math.max(0, typeof hdTheaterState !== "undefined" ? hdTheaterState.actIdx | 0 : 0)));
+  return true;
+}
+"""
+    i = s.index('function wbStageHtml(tab, idx, withGloss = true, svgId = "wbStage") {')
+    s = s[:i] + fn + s[i:]
+# 各剧场的挂钩：(锚点, 插入的判断)；幂等（按标记）
+HD_HOOKS = [
+    ('  const canvas = document.getElementById("formationStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("formationStageCanvas", "hd_formation")) return;   // WB5_HD:formation\n'),
+]
+for a, ins in HD_HOOKS:
+    if ins in s: continue
+    if s.count(a) != 1: continue
+    s = s.replace(a, a + ins, 1)
+
 import hashlib, gzip, base64
 if 'WB5_MOUNT_V3' not in s:   # 升级已装的运行时（V3：引擎共享块）
     a = s.index('function wb5Gz(b64) {') if 'function wb5Gz(b64) {' in s else s.index('function wb5Mount(fr) {'); b = s.index('\n}\n', s.index('function wb5Mount(fr) {')) + 3
@@ -92,7 +126,7 @@ def pack(html):
     html = re.sub(r'<script data-wb5-engine>(.*?)</wb5-script>', eng, html, count=1, flags=re.S)
     return base64.b64encode(gzip.compress(html.encode('utf-8'), 9, mtime=0)).decode(), sorted(set(hs))
 blobs = {}
-anchor = s.index('<script type="text/plain" id="wbmod-')
+ANCH = lambda: s.index('<script type="text/plain" id="wb5html-')   # 新幕插在第一个 v5 幕前（注意：JS 注释里有字面量 id="wbmod-<id>"，不能拿 wbmod 当锚点）
 for k in range(0, len(pairs), 2):
     idx, f = int(pairs[k]), pathlib.Path(pairs[k + 1]).resolve()
     html = f.read_text(encoding='utf-8').replace('</script', '</wb5-script')
@@ -100,7 +134,7 @@ for k in range(0, len(pairs), 2):
     blk = f'<script type="text/plain" id="wb5html-{tab}-{idx}" data-gz="1" data-blobs="{" ".join(hs)}" data-src="docs/whiteboard/v5/{f.relative_to(ROOT / "docs/whiteboard/v5")}">{gz}</script>\n'
     pat = re.compile(rf'<script type="text/plain" id="wb5html-{re.escape(tab)}-{idx}"[^>]*>.*?</script>\n', re.S)
     if pat.search(s): s = pat.sub(lambda m: blk, s, 1)
-    else: anchor = s.index('<script type="text/plain" id="wbmod-'); s = s[:anchor] + blk + s[anchor:]
+    else: anchor = ANCH(); s = s[:anchor] + blk + s[anchor:]
     print('embedded', tab, idx, f.name, len(html), 'bytes')
 # 共享块：缺的补上，没人引用的删掉
 used = set(h for m in re.finditer(r'data-blobs="([^"]*)"', s) for h in m.group(1).split())
