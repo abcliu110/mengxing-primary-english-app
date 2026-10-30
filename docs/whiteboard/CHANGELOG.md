@@ -473,3 +473,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 - 2026-10-30 10:20 JST：动作系统 v5 样板 takeout_wb（huashu-art-motion 白板 + AI 关键帧 + Remotion 出片/Player）；MP4 1.58 MB、单文件 HTML 1.02 MB。
 - 2026-10-30 10:30 JST：决策 31 写入 MASTER_DESIGN（动作系统 v5 工具组合定稿），HANDOFF 顶部改为 v5 现状。
+
+## 2026-10-30 · 动作系统 v5.1 定稿为标准画法
+- `6bbd234` v5.1 加英文朗读（Web Speech en-US 0.85，5 个 CUES，时间轴等朗读最多 4 秒，总长 12.5 s）。
+- `368f1e4` 修：预览框 sandbox iframe 里读 localStorage 抛错 → 整个播放器停掉、无法播放；localStorage / speechSynthesis 包 try/catch，sandbox iframe 实测可播、0 报错。
+- 10:54 用户确认「完美，就这样，把这个画法写入设计文档」：MASTER_DESIGN 决策 31 加定稿说明 + 新增 §2.9 标准画法规格；SOP v2.1 新增 §17（流程 9 步 + 验收 12 条，含 sandbox iframe 测试）。
+

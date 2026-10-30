@@ -1,5 +1,7 @@
 # He takes the dog out. —— 动作系统 v5 样板（huashu-art-motion × Remotion）
 
+> ✅ 2026-10-30 10:54 用户确认 **v5.1（`v51/`）为全 App 标准画法**：规格见 `MASTER_DESIGN.md` §2.9，流程与验收见 `SOP.md` §17。下面 v5.0（Remotion Player）部分仅留档。
+
 **决定（2026-10-30，用户同意）**：废弃手写 SVG 小人 v1–v3 和插画切件骨骼 v4，改用**有限动画 / 关键姿势帧**。
 
 | 层 | 用什么 | 负责 |
