@@ -2513,5 +2513,43 @@
     }
    }
   }
+ },
+ "hd_phonics": {
+  "field": "hd",
+  "enter": "navigateTo('vocab_phonics', { tab: 'steps', stepIdx: 0 })",
+  "lib": "hdp",
+  "name": "🔤 自然拼读原理剧场",
+  "cases": {
+   "1": {
+    "title": "🔤 拼读剧场 ① CVC 首音 + 韵尾（-at 家族）",
+    "acts": {
+     "*": [
+      "l_speak",
+      "l_cap0",
+      "l_point"
+     ]
+    }
+   },
+   "2": {
+    "title": "🔤 拼读剧场 ② Magic E 魔法棒（cap → cape）",
+    "acts": {
+     "*": [
+      "l_cap1",
+      "l_cap2",
+      "l_idea1"
+     ]
+    }
+   },
+   "3": {
+    "title": "🔤 拼读剧场 ③ 字母组合与最小对立对（ship / sheep）",
+    "acts": {
+     "*": [
+      "l_sheep",
+      "ship",
+      "l_ear"
+     ]
+    }
+   }
+  }
  }
 }
