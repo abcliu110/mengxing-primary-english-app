@@ -1,6 +1,6 @@
 # 交接文档（HANDOFF）· 白板动画与新模块
 
-> 更新：2026-10-30 12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
+> 更新：2026-10-30 14:30 JST（aux_transformer 4 幕 v5.1 替换进 App；批量流水线 auto.js / do_unit.py）；12:20 JST（tense_matrix ② 重画）；12:05 人物先行帧库入库；此前 2026-10-30 01:10 JST（新增决策 23 三大厅白板化、24 老白板 58 幕升 v2、25 词源 / 格林定律 / 词根词缀全量入库、26 单词全部维度菜单全量覆盖、27 语法全部白板动画、28 思维导图白板化；决策 25 扩展音变与词汇规律 12 + 6 条；总表见 MASTER_DESIGN「决策 23–28 总表」）
 > **当前阶段（2026-10-30 09:14 起）**：决策 30 动作系统重建最优先（见下方「🔴 优先级变更」）。以下为旧描述——阶段 0–4、首页改版 1–6 步已完成；**正在做：阶段 7 全 App 白板化试点（fp_economy 第 1 幕已出对比图待用户审，FR01 买卖待做）+ 阶段 8 / 9 词源与单词全部维度审计**；练习闭环（决策 14）等用户点头。
 > 接手先读：本文（现状 + 下一步）→ `MASTER_DESIGN.md`（总设计，26 条决策：1–19、22–28）→ `SOP.md`（标准流程 + 验收清单）。历史进度、每步验收数字、引擎新工具登记都在 `CHANGELOG.md`（原 HANDOFF 全文，章节号不变）。
 > 用户规矩：直接提交推送 `master`，不新建分支；做完一个单元 / 改完一个文档立即提交；发现 bug 直接修。本文只写现状和下一步，流水写进 `CHANGELOG.md`。
@@ -28,6 +28,11 @@
 - ✅ `adj_order` 第3/4幕 ③  一件漂亮的崭新红色中国丝绸连衣裙 v5.1 重画并替换进 App（`v5/scenes/adj_order_3.js`，R1 90/90，~120 s，0 报错；主文件 12,423,920 bytes）
 - ✅ `adj_order` 第4/4幕 ④  那个高个子年轻的英国篮球教练 v5.1 重画并替换进 App（`v5/scenes/adj_order_4.js`，R1 89/89，~120 s，0 报错；主文件 12,756,036 bytes）
 - ✅ **体积优化 v1（embed_app.py WB5_MOUNT_V2）**：幕内图片 / 字体 data URI 按内容哈希抽成共享块 `wb5blob-<hash>`（同帧同字体全 App 一份），其余 HTML gzip+base64，挂载时 DecompressionStream 解压。13 幕全部重新嵌入，主文件 12.76 → 10.91 MB，三个单元回归 0 报错。下一步体积优化：文楷（wk）改为全 App 一份共享子集（约 3300 字），预计每幕再省约 125 KB。
+- ✅ `aux_transformer` 第1/4幕 🪞 助动词照妖镜 · ① be 动词护卫 v5.1 重画并替换进 App（`v5/scenes/aux_transformer_1.js`，R1 81/81，134 s，0 报错；主文件 11,147,117 bytes）
+- ✅ `aux_transformer` 第2/4幕 🪞 助动词照妖镜 · ② 情态动词大将军 v5.1 重画并替换进 App（`v5/scenes/aux_transformer_2.js`，R1 77/77，118 s，0 报错；主文件 11,398,851 bytes）
+- ✅ `aux_transformer` 第3/4幕 🪞 助动词照妖镜 · ③ 三单照妖镜 does v5.1 重画并替换进 App（`v5/scenes/aux_transformer_3.js`，R1 77/77，119 s，0 报错；主文件 11,706,342 bytes）
+- ✅ `aux_transformer` 第4/4幕 🪞 助动词照妖镜 · ④ 过去式照妖镜 did v5.1 重画并替换进 App（`v5/scenes/aux_transformer_4.js`，R1 77/77，129 s，0 报错；主文件 12,008,559 bytes）
+- ✅ **批量重画流水线（2026-10-30 14:30，Hark 主对话接手）**：通用版面引擎 `v5/scenes/auto.js`（内容清单 → 一块块白板，镜头逐块推；菜单短词排成一行、①②… 小标题开新板、金句卡带框；例句里的动作词由 cast/ 关键帧演出、读到即橙色弹字；结尾拉远看全图）+ `v5/gen_auto.py`（清单 → `scenes/<页签>_<n>.js`，字幕 / 白板 / 朗读原样写入，R1 一字不差）+ `v5/run_auto.sh`（生成 → 打包 → r1v5 → 联络表）+ `v5/do_unit.py v5/units.json <页签>`（整单元：每幕验收全过才 embed_app + log_done，最后 app_check）。动作词 → 帧的映射写在 `v5/units.json`。`log_done.py` 已改为幂等（重跑不重复记）。环境：字体 wk.ttf 用 LXGW WenKai v1.501（v1.330 的 cmap 让 fontTools 4.61 报错）。
 - **用户规则（2026-10-30 14:05）：不要停，直到全部完成**——单元之间也不停、不等待回复，连续推进。
 - **下一步（不再询问用户；每幕重画后立即替换进 App 再提交；用户 12:08 再次强调：重画老白板排在所有任务前面）**：按单元重画白板版面：past_clans → adj_order → aux_transformer → five_patterns → bamboo_tree …；每单元 R1 清单 → `v5/scenes/<id>_<n>.js` → 构建 → 全部验收 → 更新 REDRAW_V5 / CHANGELOG / 本文 → 提交推 master。
 - 注意：字体源文件（LXGW WenKai、Kalam，OFL）与绿幕原图不进仓库，在 Hark 工作区 `/workspace/work/fonts`、`v5/sprites/src/`；重建时先放回。
