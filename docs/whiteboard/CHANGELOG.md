@@ -545,3 +545,15 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · 主文件体积优化 v1
 - embed_app.py：共享块 wb5blob-<hash> + gzip 存放；13 幕重新嵌入，12.76 → 10.91 MB。
+
+## 2026-10-30 · aux_transformer 第1幕 v5.1 重画并替换进 App
+- 🪞 助动词照妖镜 · ① be 动词护卫：R1 81/81，134 s，主文件 11,147,117 bytes。
+
+## 2026-10-30 · aux_transformer 第2幕 v5.1 重画并替换进 App
+- 🪞 助动词照妖镜 · ② 情态动词大将军：R1 77/77，118 s，主文件 11,398,851 bytes。
+
+## 2026-10-30 · aux_transformer 第3幕 v5.1 重画并替换进 App
+- 🪞 助动词照妖镜 · ③ 三单照妖镜 does：R1 77/77，119 s，主文件 11,706,342 bytes。
+
+## 2026-10-30 · aux_transformer 第4幕 v5.1 重画并替换进 App
+- 🪞 助动词照妖镜 · ④ 过去式照妖镜 did：R1 77/77，129 s，主文件 12,008,559 bytes。

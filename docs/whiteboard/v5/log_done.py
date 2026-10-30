@@ -14,7 +14,9 @@ if m:
 if '--redraw-only' in sys.argv: sys.exit()
 p = os.path.join(D, 'HANDOFF.md'); s = open(p, encoding='utf-8').read()
 line = f'- ✅ `{tab}` 第{n}/{tot}幕 {name} v5.1 重画并替换进 App（`v5/scenes/{tab}_{n}.js`，R1 {r1}，{dur} s，0 报错；主文件 {app:,} bytes）'
+s = re.sub(rf'^- ✅ `{tab}` 第{n}/{tot}幕 .*\n', '', s, flags=re.M)
 s = s.replace('- **用户规则（2026-10-30 14:05）', line + '\n- **用户规则（2026-10-30 14:05）', 1)
 open(p, 'w', encoding='utf-8').write(s)
-open(os.path.join(D, 'CHANGELOG.md'), 'a', encoding='utf-8').write(f'\n## {datetime.date.today()} · {tab} 第{n}幕 v5.1 重画并替换进 App\n- {name}：R1 {r1}，{dur} s，主文件 {app:,} bytes。\n')
+cl = open(os.path.join(D, 'CHANGELOG.md'), encoding='utf-8').read()
+if f'· {tab} 第{n}幕 v5.1' not in cl: open(os.path.join(D, 'CHANGELOG.md'), 'a', encoding='utf-8').write(f'\n## {datetime.date.today()} · {tab} 第{n}幕 v5.1 重画并替换进 App\n- {name}：R1 {r1}，{dur} s，主文件 {app:,} bytes。\n')
 print('logged', tab, n, tot)
