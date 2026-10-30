@@ -503,3 +503,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `v5/scenes/tense_matrix_3.js`（12 块白板，172 s）+ 帧库 `sprites/tm3.js`（cam / m_study / m_cry / bus / party / l_no / l_w0–3 / kick0–2）。
 - 动作：Leo 拍照「咔嚓」→ 老照片定格；拍博物馆 3 张照片对齐 took；Mia 伏案学习 → 哭对齐 studied / cried；公交车减速停在车站对齐 stopped；三个孩子聚会欢呼对齐 were；Leo 提礼物走回家对齐 went；摇头摆手对齐 didn't go；踢球两次对齐 played。
 - 验收：R1 88/88；0 报错；确定性 ✓；607,348 bytes。
+
+## 2026-10-30 12:50 JST · tense_matrix ④ 一般将来时 v5.1 重画
+- `v5/scenes/tense_matrix_4.js`（12 块白板，160 s）+ 帧库 `sprites/tm4.js`（l_kite / l_w0–3 / grand / picnic / party / kick0–2 / sw0–3）。
+- 动作：望远镜视线扫向将来；将来那头泳池里游起来对齐 swim；Leo 放风筝跑过公园对齐 fly；Leo 提礼物走向挥手的爷爷奶奶对齐 visit；一家野餐 + 下周日日历；球场里踢球对齐 match；三个孩子聚会对齐 party。
+- 验收：R1 84/84；0 报错；确定性 ✓；645,734 bytes。
