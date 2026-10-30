@@ -2372,3 +2372,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `src/build_etym_db.py etym`：只收 Wiktionary 与 Etymonline「语言名 + 词形」逐级对上的条目（来源链截到最后对上的一级；只追到中古英语同形的不收）；写主文件 `<script type="application/json" id="ETYM_DB_JSON">`（按需 JSON.parse，不进首屏解析）；报告 `word_origins/ETYM_REVIEW.md`（入库表 + 未入库逐词原因）。首批 76 词（Etymonline 存档仍在抓，抓完补齐）。
 - `src/patch_etym_card.py`（幂等）：词卡背面原「📖 词源与巧记故事」一块拆成两块——① 📖 词源 📜（类型：本族词 / 外来词、来源链、出处链接 Wiktionary · Etymonline；未收录写「暂未收录」）；② 💡 巧记小故事（帮助记忆的联想，不是真实词源）＝旧 etymology 原文（只换标题前缀，R1 不丢字）。词表弹窗同样两块。功能词卡旧版就不显示词源，未改。`anchorcheck` 登记 5 个标记（旧标题出现次数必须为 0）。
 - 回归：`jscheck` OK；新 `v5/app_check8.py` 25 词 0 不合格（在库 real + 2 个链接、不在库 none、巧记文字与旧字段一致）；`app_check5.py` 单词卡模板 55 词 0 不合格；0 报错。主文件 15,562,866 bytes。
+
+## 2026-10-31 00:10 · 决策 14 练习闭环 + 总地图（最小忠实版）
+- `src/gen_module_quiz.py` → 主文件 `MODULE_QUIZ_JSON`：33 个模块（实验室 15 页签、单词身世 9 幕、中英对照 11 幕中有白板的）各取白板朗读句里出现的课标实词（最多 8 个，非功能词）；手工幕 tense_matrix / past_clans / adj_order 取引号里的英文整句。报告 `lab/MODULE_QUIZ_REPORT.md`（33/33 有小测）。
+- `src/patch_practice.py`（幂等）：白板下方挂「🎯 小测」——3–5 题：① 认出（TTS 读词，4 选 1 拼写）② 选择（选中文义）③ 拼写（看中文 + 音标输入）；干扰项取同模块词 + 词库随机实词（按模块 + 当天日期定种子）。答题调用现有 `recordQuizResult('vocab', id, ok)`：答错进现有错题本，消错规则不变。答对 ≥ 60% 记 `appState.moduleQuiz[key]`（存 localStorage，不接统计）。小测面板显示所在推荐路径的上一站 / 下一站。
+- 新页 `app_map`「🗺️ 总地图」：实验室 / 单词身世 / 中英对照 / 第一性原理四区 39 个节点（○ 没看 / ✓ 看过 / 🏅 过关），三条推荐路径（发音线、语法线、词汇词源线）；首页「继续上次」条加入口；第一性原理按 `fp:<序号>` 记看过（它自带原有习题，不另加小测）。
+- **假设记录**（设计稿未细化，按最小忠实版自定）：题型固定 认出→选择→拼写；过关线 60%；推荐路径的站点由我按 MODULE_ROADMAP「发音线 / 语法线 / 词汇词源线」挑现有模块；三大厅 HD 剧场、语法 40 点、口语不进总地图（它们有各自的「我的」进度页）。
+- 回归：`jscheck` / `anchorcheck` OK；新 `v5/app_check9.py`：33 个模块面板都在白板下方、3 个模块完整答题（第 1 题故意错 → 进错题本、4/5 点亮）、总地图 39 节点 / 点亮 3 / 点节点跳转正常、首页按钮在；`app_check2.py wo wo_port` 白板仍正常；0 报错。主文件 15,582,607 bytes。
