@@ -2216,6 +2216,18 @@ function unlockBrowserTTS() {
   saveAppState();
 }
 
+// TTS_VOICE_CACHE（决策 29 O3）：记住选中的语音；没有对应语言的语音时给提示，不让朗读静默失败
+function ttsPickVoice(lang) {
+  try {
+    const vs = window.speechSynthesis.getVoices() || []; if (!vs.length) return null;   // 有的浏览器首次为空：交给默认语音
+    const pre = String(lang || "en").slice(0, 2).toLowerCase(), key = "ttsVoice_" + pre;
+    const saved = localStorage.getItem(key); let v = saved && vs.find(x => x.name === saved && x.lang.toLowerCase().startsWith(pre));
+    if (!v) v = vs.find(x => x.lang.toLowerCase().replace("_", "-") === String(lang).toLowerCase()) || vs.find(x => x.lang.toLowerCase().startsWith(pre));
+    if (v) { if (v.name !== saved) localStorage.setItem(key, v.name); return v; }
+    const note = document.getElementById("ttsStatusNote"); if (note) note.textContent = pre === "en" ? "这台设备没有英文朗读语音，请看文字。" : "这台设备没有中文朗读语音，请看文字。";
+  } catch (e) {}
+  return null;
+}
 function speakText(text, langMode = "en", customPitch = 1.0) {
   if (!text) return;
   try {
@@ -2231,6 +2243,7 @@ function speakText(text, langMode = "en", customPitch = 1.0) {
     utter.rate = langMode === "zh" ? 0.95 : (Number(appState.speechRate) || 0.85);
     utter.pitch = customPitch;
     utter.volume = Number.isFinite(Number(appState.volume)) ? Number(appState.volume) : 1;
+    { const v = ttsPickVoice(utter.lang); if (v) utter.voice = v; }   // TTS_VOICE_CACHE（决策 29 O3）
     utter.onerror = function () {
       const note = document.getElementById("ttsStatusNote");
       if (note) note.textContent = "这次没有声音，请再点一次。";
