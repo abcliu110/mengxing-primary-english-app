@@ -2349,3 +2349,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-30 · 主题思维导图讲解幕 阶段③ 第 3 批（幕 17–25（交际与礼仪 … 核心语法功能词））生成并替换进 App
 - 每幕 R1 36–40 条缺 0、deterministic True、errors / sandbox none，时长 65–79 s（颜色与形状只有 14 词，14 个叶子）；app_check6 9/9 合格，0 报错；主文件 15,548,445 bytes。
+
+## 2026-10-30 · 主题思维导图讲解幕 阶段④：全量 App 回归 + 设计稿记录
+- `v5/app_check6.py`（全部 25 个子主题）：25/25 合格——讲解幕 iframe 在交互导图上方、幕号 = 子主题顺序、时长 65–116 s；交互导图 16 节点（颜色与形状 14）点击开词卡、➕/➖/滚轮缩放、拖拽、复位都正常；0 报错。`jscheck` / `anchorcheck` OK；第一性原理总枢 22 幕 v5 + 2 幕跳转照常。
+- `DESIGN_MINDMAP_WORDCARD.md` 加 §1.7 实施记录（分组规则、自审改正、版式、R1、App 挂钩）。
+- 主题思维导图讲解幕完成（提交 d5db815 → 0de2169 → fd302d3 → 327cc89 → f25bb23 → 本提交）；主文件 15,548,445 bytes（25 幕共约 +83 KB，角色帧全部复用共享块）。
