@@ -9,6 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); V5 = os.path.join(HERE, '..',
 Q = [
     ('jscheck', [sys.executable, 'jscheck.py'], HERE),
     ('offlinecheck', [sys.executable, 'offlinecheck.py'], HERE),
+    ('朗读 ttscheck', [sys.executable, 'ttscheck.py'], HERE),
     ('词卡词源 app_check8', [sys.executable, 'app_check8.py'], V5),
     ('练习闭环 app_check9', [sys.executable, 'app_check9.py'], V5),
     ('实验室 tense_matrix', [sys.executable, 'app_check.py', 'tense_matrix', 'tenseIdx', '5'], V5),

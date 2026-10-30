@@ -67,6 +67,7 @@ MARKERS = [
     ('// ORAL_FUNC_MAP_V1', 1, 1),
     ('else if (s === "oral_func_map") renderOralFuncMapView();', 1, 1),
     ('data-oral-func-entry', 1, 1),
+    ('{ const v = ttsPickVoice(utter.lang); if (v) utter.voice = v; }', 1, 1),
 ]
 
 

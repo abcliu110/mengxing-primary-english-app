@@ -2405,3 +2405,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 01:35 · 决策 29 O2 / O7 泄漏检查 + 播放器后台暂停
 - `src/leakcheck.py`（`--twice` 走两轮）：加载前注入探针包住 rAF / setInterval / window·document 监听，进出 20 个入口后回首页量。实测：基线 rAF 0、interval 0、监听 3；白板页主页面 rAF 0（白板都在 iframe 里，切页 iframe 被移除即停）；两轮 40 次进出后回首页仍 0 / 0 / 3——**没有泄漏**，所以不另做统一调度器 / pageScope（避免为不存在的问题改 384 处 onclick 代码）。已接进 runall --full。
 - `v5/player.js`：标签页切到后台（visibilitychange hidden）就暂停——原来回到前台时 `performance.now() - last` 一次性推进时间轴，跳过一大段、朗读错位。引擎变了，**随本轮字表重建的 rebuild_all 一起生效**（HANDOFF §4 那条）。
+
+## 2026-10-31 01:50 · 决策 29 O3 朗读：语音缓存 + 无语音提示
+- 现状核对：朗读其实已统一走 `window.speakText`（方法馆 MH.speakText 优先调它；白板点读同步 8485 行另有专用逻辑，不动）。缺的是选语音和失败提示。
+- `src/patch_tts.py`（幂等，走 appwrite）：新增 `ttsPickVoice(lang)`——先用 localStorage `ttsVoice_<en|zh>` 记住的语音（还在列表里才用），否则选同语言的第一个并记住；没有该语言语音时提示「这台设备没有英文朗读语音，请看文字」，不报错。
+- 新 `src/ttscheck.py`（模拟语音列表）：en→Fake US、zh→Fake ZH、记住的 Fake GB 被沿用、无英文语音时提示，0 报错；接进 runall。jscheck / anchorcheck OK。
