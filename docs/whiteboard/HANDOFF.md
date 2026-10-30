@@ -28,7 +28,7 @@
 | docs 清理：删旧 SVG 源码/工具、构建产物、过时素材与报告（299 个文件） | ✅ | `8e38f05` |
 | 仓库清理：`v5/out/` 174 个构建产物（约 63 MB）+ 152 个可重建角色包移出 git | ✅ | `72c5323` |
 | 普通单词卡 1425 词 × 3 幕 → **一个通用 v5 模板**（`scenes/wordcard_tpl.js` + `wordcard_items.js`），开卡时注入词条现场排版；主文件只增约 7 KB | ✅ 逐词验收 `lab/WORDCARD_TPL_REPORT.md`：R1 缺 0、0 报错、4275/4275 确定；App 回归 55 词 0 不合格 | ac74705 |
-| 主题思维导图讲解幕（25 幕，交互导图保留）| 🟡 分阶段进行中，进度见 §5.1 | 见 git log |
+| 主题思维导图讲解幕（25 幕，交互导图保留在下方）：分组表 `v5/mindmap_groups.json`、版式 `auto.js` `mindmapBuild`、页签 `hd_mindmap` | ✅ 25 幕 R1 缺 0、确定性、0 报错；`app_check6.py` 25/25（点词开卡 / 缩放 / 拖拽正常） | d5db815 … f25bb23 |
 | 自动版面中英混排换行：英文整词不拆、句末标点不落行首（`auto.js`），全部 458 幕 + 模板重建，全量技术回归 0 不合格 | ✅ | ac74705 |
 
 不需替换（已在 REDRAW_V5 标注）：`fp_one_king` ①、`fp_zoom_focus` ①（已迁中英对照，只留跳转）；`wo_vowel_kit`（共用小工具）；`verb_demo`、`narrator_demo`（开发样板，App 未挂载）。`REDRAW_V5.md` 里剩下的 1 个 `⬜` 是图例行，不是待办。
@@ -47,6 +47,7 @@
 - **验收 / 回归**：单幕 `python3 v5/shots.py <out.html> <png> <秒…>`（确定性、errors、sandbox）；App 内 `app_check.py <页签> <状态字段> <幕数>`（白板案例，如 `tense_matrix tenseIdx 5`、`adj_order adjExIdx 4`、`aux_transformer auxIdx 4`）、`app_check2.py <fp|wo|ze> <幕 id> <幕数>`、`app_check3.py vv_<动词>_<方向>`、`app_check4.py hd_<单元> "navigateTo(...)"`（HD 剧场，检查旧 canvas 已消失、每幕可播）。主脚本语法 + 锚点：`python3 src/jscheck.py`。
 - **环境**（沙箱重置后）：`pip install -q numpy pillow playwright fonttools brotli && python3 -m playwright install chromium && sudo python3 -m playwright install-deps chromium`；`cd docs/whiteboard/v5 && npm i`；字体放 `/workspace/work/fonts/wk.ttf`（LXGW WenKai v1.501）、`kalam.ttf`；git 身份丢了就 `git config user.name/user.email` 沿用上一次提交的作者。
 
+- **主题思维导图讲解幕**：页签 `hd_mindmap`（幕号 = VOCAB_DB 子主题首次出现顺序），场景由 `v5/gen_mindmap.py` 从 VOCAB_DB + `mindmap_groups.json` 生成（勿手改场景，改规则 / 数据后重跑），版式 `auto.js` 的 `mindmapBuild`；App 里导图卡片上方的空舞台 `themeMindMapWb5` 由 `wb5HDSwap(…, "hd_mindmap", 幕号)` 换成 iframe，下方交互导图代码未动。回归 `python3 v5/app_check6.py [序号…]`。
 - **通用模板幕**（普通单词卡）：App 里只存一幕 `wordcard_tpl`；`embed_app.py` 的 `wb5TplSwap / wb5TplAct`（标记 `WB5_EMBED_TPL`）把词条 JSON 通过 `fr.__wb5Inject` 注入 srcdoc（`WB5_MOUNT_V4`），模板里 `autoBuild` 现场排版。改 `wordcard_items.js` 后：重建模板 → `embed_app.py wordcard_tpl 0 out/wordcard_tpl.html` → `check_wordcard_tpl.py`（分 4 片 `--part k/4`，再 `--merge 4` 出报告）→ `app_check5.py`。
 - **全量重建**：`rebuild_all.py`（两路并行；超时后 `--resume` 只补没重建的）→ `check_all_out.py --part k/2` 全量技术回归。`build.mjs` 的临时字体文件已按进程号区分（并行打包曾串字体）。
 
@@ -59,6 +60,8 @@
 
 ## 4. 已知风险
 
+- 思维导图讲解幕：组合 emoji（👩‍🏫、1️⃣8️⃣ 等）在无头浏览器里拆成两个字显示，是沙箱字体问题，真机应正常——真机审片时留意；幕 9「语法功能与指代」词义很长，116 s（设计目标 60–90 s），内容未删；分组表为规则分组 + 自审，未经用户过目（§6）。
+
 - `rebuild_all.py` 以前不会重建模板幕角色包 `sprites/wordtpl.js`（沙箱重置后整轮在最后一步失败），2026-10-30 已补（按 `wordcard_items.js` 的 ACT_FRAMES 重建）。
 
 - **审片缺口**：161 幕 v5.1 只有样板和 tense_matrix 经用户看过，其余为截图自审；真机（尤其手机）上的加载速度、帧率、英文朗读同步未验证。
@@ -70,7 +73,7 @@
 ## 5. 下一步（按顺序）
 
 1. 等用户决定：是否再压一轮人物帧画质（§3 第一条）。
-2. 三大厅 HD 剧场：构词法 ✅ → 框架语义 ✅ → 易混词 ✅ → 自然拼读 ✅ → 语法总结中心 ✅ → 语法 40 点 ✅（56 幕；三幕内容相同的合并为 1 幕）→ 日常用语 144 句 ✅（每句 1 幕放完整对话）→ 单词卡一词多义 17 词 ✅（51 幕）→ 普通单词卡通用模板 ✅（1425 词，功能词旧版本来就不播动画）→ **主题思维导图讲解幕**（25 幕，保留交互导图，先出语义分组表 `v5/mindmap_groups.json` 人工过目，见设计稿 §1）→ 第一性原理总枢余下旧 canvas → 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实）→ 文档收尾。
+2. 三大厅 HD 剧场：构词法 ✅ → 框架语义 ✅ → 易混词 ✅ → 自然拼读 ✅ → 语法总结中心 ✅ → 语法 40 点 ✅（56 幕；三幕内容相同的合并为 1 幕）→ 日常用语 144 句 ✅（每句 1 幕放完整对话）→ 单词卡一词多义 17 词 ✅（51 幕）→ 普通单词卡通用模板 ✅（1425 词，功能词旧版本来就不播动画）→ 主题思维导图讲解幕 ✅（25 幕，见 §5.1）→ **第一性原理总枢余下旧 canvas** → 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实）→ 文档收尾。
 3. 等用户点头：练习闭环 + 总地图（决策 14）、决策 6 剩余三个新模块、决策 29 软件优化。
 
 ## 5.1 进行中：主题思维导图讲解幕（分阶段，每阶段一提交）
@@ -80,7 +83,7 @@
 | ① | `src/gen_mindmap_inventory.py` → `lab/INVENTORY_HD_MINDMAP_EXPORT.md`（R1 清单，25 幕 994 条）；`v5/gen_mindmap_groups.py` → `v5/mindmap_groups.json`（规则分组，已自审） | ✅ 本阶段提交 |
 | ② | `scenes/auto.js` 新增 `mindmapBuild` 版式 + `v5/gen_mindmap.py`；引擎变了 → `rebuild_all.py` 全量重建（484 幕，主 App 共享引擎块仍只 1 份）；`embed_app.py` 装导图舞台挂钩（无幕时舞台为空、不报错）；主文件 15.47 MB；抽样回归 tense_matrix / hd_formation / fp_economy / 单词卡模板 55 词全过、0 报错 | ✅ 本阶段提交 |
 | ③ | 25 幕分 3 批生成 → R1 → 联络表 → 嵌入（1–8 / 9–16 / 17–25），每批一提交 | 第 1 批 幕 1–8（学校与学习 … 服装与穿戴） ✅；第 2 批 幕 9–16（语法功能与指代 … 交通与出行） ✅；第 3 批 幕 17–25（交际与礼仪 … 核心语法功能词） ✅ |
-| ④ | `v5/app_check6.py` App 回归（讲解幕挂载 + 交互导图点词开卡 / 缩放 / 拖拽 / 0 报错） | ⬜ |
+| ④ | `v5/app_check6.py` 全量 App 回归：25/25 合格（讲解幕在导图上方、幕号对、时长 65–116 s；16 节点可点开卡、➕/➖/滚轮缩放、拖拽、复位正常），0 报错；`jscheck` / `anchorcheck` OK；第一性原理总枢 24 幕仍正常 | ✅ 本阶段提交 |
 | ⑤ | 第一性原理总枢余下旧 canvas 核查 → 词源 / 格林 / 词根词缀 + 12+6 条 → 文档收尾 | ⬜ |
 
 接手须知：
