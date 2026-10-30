@@ -70,12 +70,12 @@
 | `V26` | m_drop、l_hero1、m_admire、l_spider0–2 | look on ② 把…看作英雄；look away 移开视线 | ✅ |
 | `V27` | l_dict0–2、l_ldown0–2 | look up ② 查词典；look down 低头看 | ✅ |
 | `V28` | l_boxwalk、box_lid、l_peek、puppy_pop、l_detect0–3 | look in ① 往箱子里看 / ② 调查 | ✅ |
-| `V29` | l_banana0、m_shout、l_banana2、l_win0–2 | look out ① 当心 / ② 向窗外看（Leo 头发画成黑色，⚠️ 场景里可接受，后续可返工） | ✅ |
+| `V29` | l_banana0、m_shout、l_banana2、l_win0–2 | look out ① 当心 / ② 向窗外看（2026-10-31 返工：l_banana0/2、l_win0–2 头发改回 Leo 的浅棕色） | ✅ |
 | `V30` | l_shutter、l_gdoor、m_bread、m_flower、l_fire、l_lantern | give on ① 窗朝大海 / ② 门通花园；give off ① 散发香味 / ② 散发热量；give out ② 发光 | ✅ |
-| `V31` | l_lift0–2、dad_candy、dad_apple | give up ① 放弃 / ② 戒掉甜食 | ⚠️ l_lift 帧与邻帧杠铃粘连，用前返工 |
+| `V31` | l_lift0–2、dad_candy、dad_apple | give up ① 放弃 / ② 戒掉甜食（2026-10-31 返工：l_lift1 删掉左下角邻帧杠铃片，l_lift2 删掉左侧邻帧举重人）| ✅ |
 | `V32` | l_pencil、m_lost、pencil_back、l_books、l_return、librarian | give back ① 还铅笔 / ② 还书 | ✅ |
 | `V33` | l_exam0–1、missw_paper、tug0–2 | give in ① 交考卷 / ② 让步 | ✅ |
-| `V34` | missw_hold、missw_give | give out ① 发卷子（灯塔改用 rough 线条画） | ⚠️ missw_give 底部残留，用前返工 |
+| `V34` | missw_hold、missw_give | give out ① 发卷子（灯塔改用 rough 线条画；2026-10-31 返工：missw_give 补画老师下半身、删掉底部灯塔残留）| ✅ |
 | 已有 | l_r0–3、l_jc / l_ja、l_w0–3、bird_up / down、kick0–2 | look up ① 抬头看（l_lookup）、get in ② 火车到站（train + l_wave）、take out ② 样板（takeout_wb） | ✅ |
 
 > 合计约 330 帧（`sprites/cast/*.webp`，透明 WebP，仓库内）。下一步：按 `REDRAW_V5.md` 逐幕重画白板版面，每幕用 `build_sprites.py <库> 帧…` 只打包用到的帧。
