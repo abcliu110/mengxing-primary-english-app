@@ -140,6 +140,9 @@ HD_HOOKS = [
     ('  const canvas = document.getElementById("phonicsStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("phonicsStageCanvas", "hd_phonics")) return;   // WB5_HD:phonics\n'),
     ('  const canvas = document.getElementById("relationsStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("relationsStageCanvas", "hd_relations")) return;   // WB5_HD:relations\n'),
     ('  const canvas = document.getElementById("frameSemanticsCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("frameSemanticsCanvas", "hd_fr" + String(FRAME_SEMANTICS_DB.indexOf(fr) + 1).padStart(2, "0"), pIdx)) return;   // WB5_HD:frames\n'),
+    # 主题思维导图讲解幕（DESIGN_MINDMAP_WORDCARD.md §1）：交互导图上方加一个 v5 舞台（幕 = VOCAB_DB 子主题首次出现顺序），下方交互导图照常初始化（不 return）
+    ('    ${viewMode === "mindmap" ? `\n', '      <div data-wb5mm="1" style="margin-bottom:16px;"><canvas id="themeMindMapWb5" width="4" height="4" style="display:none;"></canvas></div><!-- WB5_HD:mindmap_stage -->\n'),
+    ('function initThemeMindMapCanvas(sub, words, colloc, allSubIds) {\n', '  try { wb5HDSwap("themeMindMapWb5", "hd_mindmap", [...new Set(VOCAB_DB.map(w => w.theme_sub))].indexOf(sub)); } catch (e) {}   // WB5_HD:mindmap（讲解幕；下方交互导图照常）\n'),
 ]
 for a, ins in HD_HOOKS:
     if ins in s: continue

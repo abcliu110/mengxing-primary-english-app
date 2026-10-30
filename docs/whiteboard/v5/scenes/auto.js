@@ -105,3 +105,102 @@ export function autoBuild(SP, D) {
   K.end(T + 3.4);
   return K.done();
 }
+
+// ---- 主题思维导图讲解幕（DESIGN_MINDMAP_WORDCARD.md §1.3，2026-10-30）----
+// mindmapBuild(SP, D)：中央手写圆圈 + 「🌍 子主题」→ 4–6 条粗枝（语义小组，v5/mindmap_groups.json）→ 每组叶子逐个写上去（emoji 单词 + 中文，写一个读一个）
+// → 下方两框「常用搭配动词」「评价形容词」各读一句 → 拉远看整张导图。世界 3840×2160，镜头逐组推过去；画面只由 t 决定。
+//   D：{ title, center, hint, groups:[{ name, leaves:[[emoji+单词, 中文词义, 朗读英文]] }], vTitle, verbs:[], aTitle, adjs:[], intro, outro,
+//        frames:{ speak, point, think, idea } }
+export function mindmapBuild(SP, D) {
+  const K = scene({ sprites: SP });
+  const WW = 3840, WH = 2160, CX = 1920, CY = 620, EW = 640, EH = 280, HOLD = 1.2;
+  const readT = s => { const str = String(s).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); const cjk = (str.match(/[\u3400-\u9fff]/g) || []).length; const en = (str.replace(/[\u3400-\u9fff]/g, ' ').match(/[A-Za-z]+/g) || []).length; return Math.max(0.8, cjk / 5 + en / 2.2); };
+  const sayLen = en => en.split(/\s+/).length * 0.36 + 0.9;
+  const wrap = (s, size, maxW) => {   // 英文整词不拆、句末标点不落行首（同 autoBuild）
+    const out = []; let line = '';
+    for (const tk of (String(s).match(/[A-Za-z0-9'’\-]+|\s+|[\s\S]/gu) || [])) { if (K.measure(line + tk, size) > maxW && line.trim() && !/^[，。、；：！？）】」』”’,.!?;:)]$/.test(tk)) { out.push(line.trimEnd()); line = tk.trimStart(); } else line += tk; }
+    if (line.trim()) out.push(line.trimEnd()); return out;
+  };
+  // ---- 版面（纯计算）----
+  const WS = 58, MS = 40, MLH = 52, LW = 660, NS = 54, NMAX = 400, GAP = 56;
+  const G = D.groups.map(g => {
+    const leaves = g.leaves.map(([wd, zh, en]) => { const ml = wrap(zh, MS, LW); return { wd, zh, en, ml, h: 74 + ml.length * MLH + 30 }; });
+    const nl = wrap(g.name, NS, NMAX), nw = Math.max(...nl.map(l => K.measure(l, NS))) + 64, nh = nl.length * 70 + 34;
+    return { name: g.name, leaves, nl, nw, nh, h: Math.max(nh + 40, leaves.reduce((a, l) => a + l.h, 0)) };
+  });
+  const tot = G.reduce((a, g) => a + g.h, 0); let acc = 0;
+  G.forEach((g, i) => { g.side = i === 0 || acc + g.h / 2 <= tot / 2 ? 1 : -1; acc += g.h; });   // 前几组放右边（从上到下），其余放左边；两边高度大致相等
+  if (!G.some(g => g.side === -1) && G.length > 1) G[G.length - 1].side = -1;
+  for (const sd of [1, -1]) {
+    const gs = G.filter(g => g.side === sd), H = gs.reduce((a, g) => a + g.h, 0) + GAP * (gs.length - 1);
+    let y = Math.max(90, (WH - H) / 2);
+    gs.forEach(g => { g.y0 = y; g.y1 = y + g.h; g.gy = y + g.h / 2; g.gx = CX + sd * 900; y += g.h + GAP; });
+  }
+  const P = D.frames || {};
+  // ---- 开场 ----
+  let T = 0.1;
+  K.camSet(CX, 700, 1);
+  const actor = K.actor({ keys: [[0, P.speak]], x: CX, ground: 1135, h: 360, reveal: 0.6 });
+  const key = (t, f) => { if (f && SP.FI[f]) actor.keys.push([Math.max(t, actor.keys[actor.keys.length - 1][0] + 0.01), f]); };
+  K.at(T).ellipse(CX, CY, EW, EH, { w: 7, rough: 1.3 });
+  K.text(D.center, CX, CY + 12, 72, { align: 'center', rate: 9 });
+  K.text(D.hint, CX, CY + 84, 36, { align: 'center', col: GREY, rate: 18 });
+  const d0 = Math.max(3.2, readT(D.intro) + 1.0); K.narr(D.intro, 0.4, 0.4 + d0); T = Math.max(K.cur, 0.4 + d0) + 0.3;
+  // ---- 每一组：镜头推过去 → 粗枝 → 组名 → 叶子 ----
+  G.forEach((g, gi) => {
+    const sd = g.side, ex = CX + sd * EW / 2, ne = g.gx - sd * g.nw / 2;
+    const lx = g.gx + sd * (g.nw / 2 + 90), rx0 = Math.min(ne, lx + (sd > 0 ? 0 : -LW)), rx1 = Math.max(ne, lx + (sd > 0 ? LW : 0));
+    // 镜头：一组放得下就整组一个镜头；组太高（长词义）就不缩小字，改成跟着正在写的叶子上下移（字始终够大）
+    const zFit = Math.min(1.15, 780 / (g.y1 - g.y0 + 60), 1800 / (rx1 - rx0 + 160)), tall = zFit < 0.85;
+    const z = tall ? Math.min(0.95, 1800 / (rx1 - rx0 + 160)) : zFit, camX = (rx0 + rx1) / 2 - sd * 60;
+    const camY = y => Math.max(g.y0 + 390 / z, Math.min(g.y1 - 390 / z, y));
+    T += 0.3; K.cam(T, { x: camX, y: tall ? camY(g.gy) : (g.y0 + g.y1) / 2 + 30 / z, z, d: 0.9, ease: 'power2.inOut' }); T += 0.8;
+    if (gi === 0) key(T, P.point);
+    const nar = `第 ${gi + 1} 组：${g.name}`; K.narr(nar, T, T + Math.max(2.4, readT(nar) + 1.2));
+    const dx = ne - ex, dy = g.gy - CY;
+    K.at(T).curve([[ex, CY], [ex + dx * 0.6, CY + dy * 0.08], [ne - dx * 0.08, CY + dy * 0.7], [ne, g.gy]], { w: 7, rough: 1.2, bow: 1.4 });
+    K.rect(g.gx - g.nw / 2, g.gy - g.nh / 2, g.nw, g.nh, { w: 5, rough: 1.3 });
+    g.nl.forEach((l, j) => K.text(l, g.gx, g.gy - g.nh / 2 + 17 + 56 + j * 70, NS, { align: 'center', col: OR, rate: 12 }));
+    T = K.cur + 0.4;
+    let ly = g.y0 + (g.h - g.leaves.reduce((a, l) => a + l.h, 0)) / 2;
+    g.leaves.forEach(l => {
+      if (tall) { K.cam(T, { x: camX, y: camY(ly + l.h / 2 + 30 / z), z, d: 0.6, ease: 'power2.inOut' }); T += 0.5; }
+      const st = T, cy = ly + 48;
+      K.at(T).curve([[g.gx + sd * g.nw / 2, g.gy], [g.gx + sd * (g.nw / 2 + 50), (g.gy + cy) / 2], [lx - sd * 18, cy]], { w: 4, rough: 1.0, col: GREY, min: 0.15 });
+      const wsz = Math.min(WS, Math.floor(WS * LW * 0.85 / K.measure(l.wd, WS))), ww = K.measure(l.wd, wsz);   // 长词组（如 they / them / their / theirs）缩字号，不出版面
+      K.text(l.wd, sd > 0 ? lx : lx - ww, ly + 66, wsz, { rate: 14 });
+      l.ml.forEach((m, j) => { const mw = K.measure(m, MS); K.text(m, sd > 0 ? lx : lx - mw, ly + 74 + (j + 1) * MLH - 6, MS, { col: GREY, rate: 22 }); });
+      const L = Math.max(sayLen(l.en), readT(l.zh) + 0.8);
+      K.say(st, l.en, { key: l.en.split(/\s+/).map(x => x.toLowerCase().replace(/[^a-z'\-]/g, '')), zh: l.zh, len: L });
+      T = Math.max(K.cur, st + L) + 0.25; ly += l.h;
+    });
+    T += HOLD;
+  });
+  // ---- 常用搭配：中心下方两个手绘框 ----
+  const BW = 600, BX = [CX - 20 - BW, CX + 20], BY = 1200;
+  const boxes = [[D.vTitle, D.verbs], [D.aTitle, D.adjs]].map(([tt, xs]) => { const ls = xs.map(x => wrap(x, 40, BW - 60)); return { tt, xs, ls, h: 110 + ls.reduce((a, l) => a + l.length * 52 + 14, 0) + 20 }; });
+  const bh = Math.max(...boxes.map(b => b.h));
+  T += 0.2; K.cam(T, { x: CX, y: Math.min(BY + bh / 2 + 10, 1480), z: Math.min(1, 760 / (bh + 120)), d: 1.0, ease: 'power2.inOut' }); T += 0.9;
+  key(T, P.think);
+  K.narr('常用搭配：配着这些词一起用', T, T + 3.2);
+  boxes.forEach((b, i) => {
+    K.at(T).rect(BX[i], BY, BW, b.h, { w: 5, rough: 1.3 });
+    K.text(b.tt, BX[i] + 30, BY + 70, 46, { col: OR, rate: 12 });
+    let y = BY + 110; const st = K.cur;
+    b.ls.forEach(ls => { ls.forEach(l => { K.text(l, BX[i] + 30, y + 40, 40, { rate: 20 }); y += 52; }); y += 14; });
+    if (b.xs.length) { const L = sayLen(b.xs[0]); K.say(st, b.xs[0], { len: L }); T = Math.max(K.cur, st + L) + 0.4; } else T = K.cur + 0.6;
+  });
+  // ---- 收束：拉远看整张导图 ----
+  T += HOLD; key(T, P.idea);
+  {   // 镜头框住整张导图（内容外接框），不按世界大小拉远——图更大、更好认
+    const xs = [CX - EW / 2, CX + EW / 2, BX[0], BX[1] + BW], ys = [CY - EH / 2 - 20, BY + bh];
+    G.forEach(g => { xs.push(g.gx + g.side * (g.nw / 2 + 90 + LW)); xs.push(g.gx - g.side * g.nw / 2); ys.push(g.y0, g.y1); });
+    const x0 = Math.min(...xs) - 120, x1 = Math.max(...xs) + 120, y0 = Math.min(...ys) - 60, y1 = Math.max(...ys) + 60;
+    const zf = Math.min(1920 / (x1 - x0), 1080 / (y1 - y0), 1);
+    K.cam(T, { x: (x0 + x1) / 2, y: (y0 + y1) / 2, z: zf, d: 1.6 });
+  }
+  const d1 = Math.max(3.4, readT(D.outro) + 1.2); K.narr(D.outro, T + 0.6, T + 0.6 + d1);
+  T = Math.max(T + 0.6 + d1, K.cur) + 0.4;
+  K.shade(T); K.end(T + 1.6);
+  return K.done();
+}
