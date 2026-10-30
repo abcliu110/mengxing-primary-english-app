@@ -2479,3 +2479,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `parse_etym.py` → `build_etym_db.py etym / morph`：ETYM_DB 603 → **625**，MORPH_DB 182 → **191**；`ETYM_REVIEW.md` / `MORPH_REVIEW.md` / `COVERAGE.md` §7 数字随之更新。
 - 回归：`runall.py --full` 全过。
 
+### 2026-10-31 03:00 JST · 决策 33 ①：我的学习 + 综合自测
+- 三套档案页 `vocab_my / grammar_my / oral_my` 合成一个 `my_study`「📒 我的学习」：上方「📘 单词 / 🧩 语法 / 💬 口语」标签（带错 / 学 / 会计数），下面沿用原错题本 / 学习中 / 已掌握列表；旧 screen 名重定向（kind、filter 带过去，上次学习记 my_study）。三大厅状态卡改跳 my_study。
+- 三大厅「综合自测」按钮合成一个 `self_test`「🎯 综合自测」：按类型切换，开测调用与原按钮相同，另加「📕 只测错题本」。
+- 首页「▶ 继续上次」一行加「📒 我的学习」「🎯 综合自测」两个入口（首页改版属第 ② 步，暂停）。
+- localStorage 学习记录键、消错规则（跨 2 个学习日连对 3 次）不动。补丁 `src/patch_my_study.py`（appwrite 写入，anchorcheck 登记 MY_STUDY 标记）；新回归 `v5/app_check10.py` 入 runall；`runall.py --full` 全过。
+- 决策 33 ②–⑤ 按用户要求暂停，等修订版。
+
