@@ -110,6 +110,7 @@ if 'WB5_EMBED_HD2' not in s:   # 三大厅 HD 剧场（canvas）：有 v5 幕就
 # 各剧场的挂钩：(锚点, 插入的判断)；幂等（按标记）
 HD_HOOKS = [
     ('  const canvas = document.getElementById("formationStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("formationStageCanvas", "hd_formation")) return;   // WB5_HD:formation\n'),
+    ('  const canvas = document.getElementById("grammarWhyCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("grammarWhyCanvas", "hd_" + g.id.toLowerCase(), g.id === "G14" ? prepDemoIdx : undefined)) return;   // WB5_HD:grammar\n'),
     ('  const canvas = document.getElementById("summaryHubCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("summaryHubCanvas", "hd_sum_" + (summaryTab || "syntax"))) return;   // WB5_HD:summary\n'),
     ('  const canvas = document.getElementById("phonicsStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("phonicsStageCanvas", "hd_phonics")) return;   // WB5_HD:phonics\n'),
     ('  const canvas = document.getElementById("relationsStageCanvas");\n  if (!canvas) return;\n', '  if (wb5HDSwap("relationsStageCanvas", "hd_relations")) return;   // WB5_HD:relations\n'),
