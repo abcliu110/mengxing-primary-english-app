@@ -2513,3 +2513,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `v5/rebuild_all.py` 新增 `--tabs=前缀,…`：只重建指定页签（不重做字表）。
 - `runall.py --full` 全过。
 - 顺带修：`embed_app.py` 的语法课白板挂钩文字没跟上第 3 步的「固定播一幕」，重嵌入时会再插一行旧挂钩（G07–G10 又出分幕按钮）；挂钩文字已更新，重复行已删，anchorcheck 登记旧挂钩必须为 0。
+
+### 2026-10-31 04:05 JST · 重复内容合并第 5 步：白板重复句报告
+- 新增 `lab/DUP_SENTENCES_REPORT.md`：85 句朗读句出现在 ≥2 幕（共 282 次），按 5 类给建议；只出报告，未重建任何幕。
+
