@@ -1371,3 +1371,23 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 保留：可信度徽章 `WB.BADGES`；术语小词典改读 `WB_TERMS`（`v5/wb_terms.json`，41 个页签从旧案例原样导出）。删除前后对 82 项 `wbGlossHtml` / `woSceneReady` 输出逐字比对，完全一致。
 - `wbStageHtml` 没有 v5 版时不再出旧 SVG；`src/insert_wb.py` 检测到 `<<WB_OLD_RETIRED>>` 直接退出（防止把旧模块装回去）；`src/anchorcheck.py` 退役后跳过旧模块标记，检查 OK。
 - 回归：tense_matrix 5、bamboo_tree 5、past_clans 4、fp_one_king / fp_zoom_focus（①为已迁中英对照的跳转页，②–④ v5）、wo_vowel_a、ze_be、vv_take_on、vv_give_in 全部 errors none。
+
+## 2026-10-30 · hd_formation 第1幕 v5.1 重画并替换进 App
+- 🤖 构词剧场 ① 合成词积木合体：R1 10/10，17 s，主文件 14,686,277 bytes。
+
+## 2026-10-30 · hd_formation 第2幕 v5.1 重画并替换进 App
+- 🤖 构词剧场 ② 前缀改变词义方向：R1 9/9，19 s，主文件 15,249,527 bytes。
+
+## 2026-10-30 · hd_formation 第3幕 v5.1 重画并替换进 App
+- 🤖 构词剧场 ③ 后缀转换词性套装：R1 10/10，19 s，主文件 15,813,455 bytes。
+
+## 2026-10-30 16:30 JST · docs 清理：删掉不再需要的文件（用户 16:23）
+
+删除并不再进版本（都留在 git 历史里，需要时可从历史找回）：
+- 旧 SVG 白板源码和工具（引擎已退役）：`src/cases/`（62 个旧案例及 `*_classic.js` 备份）、`src/wb_engine.js` / `wb_actor.js` / `wb_verbs.js` / `wb_app.js` / `wo_hub.js` / `ze_hub.js`、`insert_wb.py`、`r2check.*`、`reg_render.py`、`appwb/appfp/appwo/appze/apptags.py`、`actsheet.py`、`addsay.py`、`check_upgrade.py`、`check_inventory.py`、`export_inventory.py`、`export_storyboard.py`、`preview.html`、`preview_shots.py`、`measure_*.py`。
+- 构建产物 / 审片图：`takeout_wb/out/`（mp4、html、联络表）、`sample_case1_v1.html`。
+- 过时设计素材：`narrator/`（旧讲解员形象图，v5 改用 cast 人物）、`docs/animation/take-off/`（v5 之前的 Remotion 原型）。
+- 已执行完的一次性补丁：`docs/home/step1–6_*.py`（`home_entries.py --check` 保留）。
+- 过时核对报告：`*_V2.md` 清单、`zh_en_hub/INVENTORY_*`（搬迁已完成）、`lab/INVENTORY_*_V5.md`（r1v5.py 自动生成，加入 .gitignore；原始内容清单 `INVENTORY_*_EXPORT.md` 保留）。
+- 保留：v5 工具链、cast 帧库、手工角色包、`takeout_wb/src` + `v51`（wb5 依赖 huashu_libs.js；v5.1 标准样板）、各设计文档 / SOURCES / COVERAGE、`lab_data.json`。
+- `src/anchorcheck.py` 的页签登记表冻结到 `src/wb_registry.json`；`jscheck.py` 适配（不再假设有旧模块），检查 OK。

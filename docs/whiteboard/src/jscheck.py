@@ -8,7 +8,7 @@ MAIN = sys.argv[1] if len(sys.argv) > 1 else os.path.abspath(os.path.join(HERE, 
 s = open(MAIN, encoding='utf-8').read()
 tags = list(re.finditer(r'<script([^>]*)>(.*?)</script>', s, flags=re.S))
 inline = [m.group(2) for m in tags if 'type=' not in m.group(1) and 'src=' not in m.group(1)]
-mods = [(re.search(r'id="([^"]+)"', m.group(1)).group(1), m.group(2)) for m in tags if 'wbmod-' in m.group(1)]
+mods = [(re.search(r'id="([^"]+)"', m.group(1)).group(1), m.group(2)) for m in tags if re.search(r'id="wbmod-[a-z_]+"', m.group(1))]   # 旧模块 2026-10-30 已退役，通常为 0 个
 def check(code, name):
     with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False, encoding='utf-8') as f: f.write(code)
     r = subprocess.run(['node', '--check', f.name], capture_output=True, text=True); os.unlink(f.name)
@@ -17,7 +17,7 @@ def check(code, name):
 ok = check('\n;\n'.join(inline + [c for _, c in mods]), f'all ({len(inline)} inline + {len(mods)} modules)')
 for mid, c in mods: ok = check(c, mid) and ok
 print(f"node --check: inline scripts={len(inline)}, lazy modules={len(mods)} →", 'OK' if ok else 'FAIL')
-# 补丁锚点 / 插入标记检查（anchorcheck.py）：insert_wb.py、docs/home/step*.py 锚点没对上时会在这里报出来
+# 补丁锚点 / 插入标记检查（anchorcheck.py）
 sys.path.insert(0, HERE)
 import anchorcheck
 aerrs = anchorcheck.check(s)

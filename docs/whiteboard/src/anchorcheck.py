@@ -11,7 +11,7 @@ insert_wb.py 和 docs/home/step*.py 都是按字符串锚点改 5.7 MB 主文件
 
 用法：独立运行；jscheck.py 末尾自动调用；insert_wb.py 写文件前调用 check(s)，有问题就不写、报错退出。
 """
-import ast, os, re, sys
+import ast, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_MAIN = os.path.abspath(os.path.join(HERE, '..', '..', '..', '萌星小学英语_最终合并版.html'))
 
@@ -49,15 +49,8 @@ MARKERS = [
 
 
 def registry():
-    """从 insert_wb.py 源码里读登记表（不执行它）。"""
-    src = open(os.path.join(HERE, 'insert_wb.py'), encoding='utf-8').read()
-    out = {}
-    for node in ast.parse(src).body:
-        if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
-            name = node.targets[0].id
-            if name in ('TABS', 'READY', 'FP_READY', 'WO_READY', 'ZE_READY', 'WO_KITS'):
-                out[name] = ast.literal_eval(node.value)
-    return out
+    """页签登记表：原来从 insert_wb.py 读；旧 SVG 白板退役（2026-10-30）后 insert_wb.py 已删，登记表冻结在 wb_registry.json。"""
+    return json.load(open(os.path.join(HERE, 'wb_registry.json'), encoding='utf-8'))
 
 
 RETIRED = '// <<WB_OLD_RETIRED>>'   # 2026-10-30 v5/retire_old_wb.py 删了旧 SVG 白板模块和引擎：相关标记不再检查
@@ -93,7 +86,7 @@ def check(s):
         group_tabs = re.findall(r'\["(\w+)", "', m.group(1))
         miss = [t for t in group_tabs if t not in reg.get('READY', [])]
         if miss:
-            errs.append(f'LAB_GROUPS 里的页签没登记进 insert_wb.py READY：{miss}')
+            errs.append(f'LAB_GROUPS 里的页签没登记进 wb_registry.json READY：{miss}')
     return errs
 
 
