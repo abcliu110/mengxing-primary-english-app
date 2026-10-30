@@ -2394,3 +2394,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `src/patch_oral_func.py`（幂等）：口语大厅顶部入口卡「🗺️ 交际句型地图（新）」→ 新页 `oral_func_map`：v5 白板剧场 2 幕（`oral_func` ① 礼貌阶梯 Give me → Please → Can you → Could you → Would you mind，含 ⚠️ 答应说 Not at all、Excuse me / Sorry 分工；② 问路 / 购物 / 打电话（⚠️ This is）/ 请求许可 / 道歉与回应，各 3 句）+ 页内点读句型表（20 句）。旧 16 个口语场景一句不删。
 - 内容稿 `content/oral_func_1.txt`、`oral_func_2.txt` → `new_scene.py`：各 29 条缺 0、114–115 s、deterministic、0 报错；`app_check4.py oral_func` 2 幕换成 v5；口语大厅入口点击可达、0 报错。`units.json` 登记 `oral_func`。
 - 决策 6 五个新模块全部完成（合成词重音、不规则复数、空间隐喻、拼写潜规则、交际句型地图）。主文件 17,462,008 bytes（含两份临时多出的引擎块，待字表重建合并）。
+
+## 2026-10-31 01:20 · 决策 29 O9 测试基座 runall.py
+- `src/runall.py`：一条命令跑全套——快速档 jscheck（含 anchorcheck）、offlinecheck、app_check8 / 9、tense_matrix、wo_grimm、hd_phonics、oral_func；`--full` 另加 app_check5 / 6 / 7、leakcheck。判定：返回码 0 且输出无 BAD / FAIL / 不合格 N>0 / 非 none 的 errors。首跑快速档 8 项全部通过（约 95 s）。环境安装见 HANDOFF §2（另：sudo 装依赖要 `sudo env PYTHONPATH=$(python3 -c 'import site;print(site.getusersitepackages())') python3 -m playwright install-deps chromium`）。
