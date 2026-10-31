@@ -584,7 +584,6 @@
     background: linear-gradient(135deg, #2563eb, #7c3aed, #db2777); color: #fff;
     font-size: 0.75rem; padding: 4px 11px; border-radius: 999px; font-weight: 800;
     box-shadow: 0 3px 10px rgba(124, 58, 237, 0.3);
-    animation: pulseGlow 2.5s infinite ease-in-out;
   }
 .method-hub .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .method-hub .nav-tab {
@@ -670,58 +669,6 @@
     margin: 3px; cursor: pointer; transition: all 0.18s ease;
   }
 .method-hub .speak-chip:hover { background: #dbeafe; transform: translateY(-2px) scale(1.03); }
-.method-hub /* ==================== TRUE ANIMATION KEYFRAMES ==================== */
-  @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.45); }
-    50% { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
-  }
-.method-hub @keyframes wheelSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-.method-hub @keyframes steamRise {
-    0% { transform: translateY(0) scale(0.5); opacity: 0.85; }
-    100% { transform: translateY(-38px) translateX(-16px) scale(1.65); opacity: 0; }
-  }
-.method-hub @keyframes chugBounce {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-3px); }
-  }
-.method-hub @keyframes scissorFlyIn {
-    0% { transform: translate(60px, -50px) rotate(-35deg) scale(0.5); opacity: 0; }
-    45% { transform: translate(0px, 0px) rotate(0deg) scale(1.15); opacity: 1; }
-    65% { transform: translate(0px, 4px) rotate(-18deg) scale(1.2); opacity: 1; }
-    85% { transform: translate(0px, 0px) rotate(8deg) scale(1.1); opacity: 1; }
-    100% { transform: translate(-20px, -30px) rotate(0deg) scale(0.8); opacity: 0; }
-  }
-.method-hub @keyframes tailCutDrop {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-    25% { transform: translate(6px, -6px) rotate(6deg); opacity: 1; background: #fee2e2; border-color: #ef4444; }
-    100% { transform: translate(36px, 88px) rotate(32deg) scale(0.75); opacity: 0; }
-  }
-.method-hub @keyframes rocketFlyIn {
-    0% { transform: translateY(-55px) scale(0.3); opacity: 0; }
-    65% { transform: translateY(6px) scale(1.14); opacity: 1; }
-    85% { transform: translateY(-3px) scale(0.96); opacity: 1; }
-    100% { transform: translateY(0) scale(1); opacity: 1; }
-  }
-.method-hub @keyframes radarScan {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6), 0 0 18px rgba(16, 185, 129, 0.35); transform: scale(1.06); }
-    50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0), 0 0 26px rgba(16, 185, 129, 0.6); transform: scale(1.11); }
-  }
-.method-hub @keyframes floatBob {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-7px); }
-  }
-.method-hub @keyframes letterDropOut {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(48px) rotate(38deg) scale(0.4); opacity: 0; }
-  }
-.method-hub @keyframes suffixPopIn {
-    0% { transform: translateX(40px) scale(0.2); opacity: 0; }
-    70% { transform: translateX(-4px) scale(1.18); opacity: 1; }
-    100% { transform: translateX(0) scale(1); opacity: 1; }
-  }
 .method-hub /* ==================== UPGRADE A: SYNTAX TRAIN ENGINE ==================== */
   .train-stage-card {
     background: linear-gradient(180deg, #e0f2fe 0%, #f0fdf4 75%, #dcfce7 100%);
@@ -737,16 +684,14 @@
   }
 .method-hub .locomotive-wrap {
     display: inline-flex; align-items: center; margin-right: 4px; position: relative;
-    animation: chugBounce 0.65s infinite ease-in-out;
   }
 .method-hub .locomotive-wheel {
     transform-origin: center; transform-box: fill-box;
-    animation: wheelSpin 1.4s linear infinite;
   }
 .method-hub .steam-puff {
     position: absolute; top: -12px; left: 22px; width: 16px; height: 16px;
     border-radius: 50%; background: rgba(255, 255, 255, 0.88);
-    animation: steamRise 1.8s infinite ease-out; pointer-events: none;
+    pointer-events: none;
   }
 .method-hub .steam-puff.p2 { animation-delay: 0.6s; left: 28px; }
 .method-hub .steam-puff.p3 { animation-delay: 1.2s; left: 18px; }
@@ -767,7 +712,6 @@
 .method-hub .mini-wheel {
     width: 13px; height: 13px; border-radius: 50%; background: #1e293b;
     border: 2.5px solid #cbd5e1; display: inline-block;
-    animation: wheelSpin 1.4s linear infinite;
   }
 .method-hub .role-S { background: #dbeafe; color: #1e3a8a; border: 3px solid #2563eb; border-radius: 12px; }
 .method-hub .role-V { background: #fee2e2; color: #991b1b; border: 3px solid #dc2626; border-radius: 999px; }
@@ -794,7 +738,6 @@
 .method-hub .excl-blank-slot.filled {
     border-style: solid; border-color: #2563eb;
     background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff;
-    animation: rocketFlyIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
   }
 .method-hub .excl-core-word {
@@ -808,7 +751,6 @@
   }
 .method-hub .excl-tail-focus.scanned {
     background: #ecfdf5; border-color: #059669; color: #065f46;
-    animation: radarScan 1.2s infinite ease-in-out;
   }
 .method-hub .excl-cut-zone {
     display: inline-flex; align-items: center; position: relative;
@@ -816,14 +758,12 @@
     border: 2px dashed #ef4444; color: #991b1b; font-weight: 800; font-size: 1.02rem;
   }
 .method-hub .excl-cut-zone.cutting {
-    animation: tailCutDrop 0.95s cubic-bezier(0.55, 0.08, 0.68, 0.53) forwards;
   }
 .method-hub .scissor-actor {
     position: absolute; left: -18px; top: -22px; width: 42px; height: 42px;
     pointer-events: none; opacity: 0; z-index: 20;
   }
 .method-hub .scissor-actor.snipping {
-    animation: scissorFlyIn 0.9s ease-in-out forwards;
   }
 .method-hub /* ==================== UPGRADE C: 3-ACT POLYSEMY CINEMA PLAYER ==================== */
   .cinema-box {
@@ -870,15 +810,12 @@
   }
 .method-hub .letter-tile.drop-e {
     background: #dc2626; border-color: #f87171;
-    animation: letterDropOut 0.75s forwards ease-in;
   }
 .method-hub .letter-tile.clone-pop {
     background: #f59e0b; border-color: #fde047; color: #0f172a;
-    animation: suffixPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 .method-hub .letter-tile.suffix-tile {
     background: #10b981; border-color: #6ee7b7; color: #fff;
-    animation: suffixPopIn 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 .method-hub /* Word Grid & Modal */
   .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
@@ -2076,18 +2013,7 @@ function bumpStreakOnceToday(rec) {
   return true;
 }
 
-function currentGradeWords() {
-  const g = Number(appState.grade) || 0;
-  if (g < 1 || g > 6) return VOCAB_DB;
-  const prefix = "G" + g + "_";
-  return VOCAB_DB.filter(w => String(w.id).startsWith(prefix));
-}
 
-function setStudyGrade(g) {
-  appState.grade = g;
-  saveAppState();
-  renderCurrentView();
-}
 
 function vocabIdForHeadword(word) {
   const head = String(word || "").split("/")[0].trim().toLowerCase();
@@ -2527,10 +2453,6 @@ function openParentGateChallenge() {
   `;
 }
 
-function startPgHold() {}
-function cancelPgHold() {
-  if (pgHoldTimer) clearTimeout(pgHoldTimer);
-}
 function verifyParentGateMath() {
   const val = parseInt(document.getElementById("pgMathInput")?.value || "0", 10);
   if (val === pgMathAns) {
@@ -5472,48 +5394,6 @@ function setupHiDPICanvas(canvas, logicalW = 740, logicalH = 320) {
 // Articulated 2D Cartoon Character Actor Renderer
 
 // Crisp Comic Speech Bubble & Bottom TV Bilingual Subtitle Bar
-function drawHDSpeechBubble(ctx, x, y, textEn, textZh = "", borderColor = "#2563eb", tailDir = "left") {
-  ctx.save();
-  ctx.font = "bold 13.5px sans-serif";
-  const wEn = ctx.measureText(textEn || "").width;
-  ctx.font = "bold 12px sans-serif";
-  const wZh = ctx.measureText(textZh || "").width;
-  const boxW = Math.min(370, Math.max(150, Math.max(wEn, wZh) + 28));
-  const boxH = textZh ? 48 : 32;
-  const bx = x - boxW / 2;
-  const by = y - boxH / 2;
-
-  ctx.fillStyle = "rgba(255, 255, 255, 0.97)";
-  ctx.strokeStyle = borderColor;
-  ctx.lineWidth = 2.5;
-  ctx.beginPath();
-  ctx.roundRect(bx, by, boxW, boxH, 14);
-  ctx.fill();
-  ctx.stroke();
-
-  // Speech bubble pointer triangle
-  const tx = tailDir === "left" ? bx + 28 : tailDir === "right" ? bx + boxW - 28 : x;
-  ctx.beginPath();
-  ctx.moveTo(tx - 7, by + boxH);
-  ctx.lineTo(tx + 7, by + boxH);
-  ctx.lineTo(tx + (tailDir === "left" ? -6 : 6), by + boxH + 9);
-  ctx.closePath();
-  ctx.fillStyle = "#ffffff";
-  ctx.fill();
-  ctx.strokeStyle = borderColor;
-  ctx.stroke();
-
-  ctx.textAlign = "center";
-  ctx.fillStyle = "#0f172a";
-  ctx.font = "bold 13.5px sans-serif";
-  ctx.fillText((textEn || "").slice(0, 48), x, by + 20);
-  if (textZh) {
-    ctx.fillStyle = "#475569";
-    ctx.font = "bold 11.5px sans-serif";
-    ctx.fillText((textZh || "").slice(0, 38), x, by + 38);
-  }
-  ctx.restore();
-}
 
 
 // Helper to advance 3-act clock smoothly
@@ -6826,7 +6706,6 @@ function wbVoiceToggle() {
 // 仍是单个 HTML、双击即用（不用 fetch，file:// 下也能跑）。
 var wbModsLoaded = {};
 function wbModEl(id) { return typeof document !== "undefined" && id ? document.getElementById("wbmod-" + id) : null; }
-function wbHasModule(id) { return !!((typeof WB_LAB !== "undefined" && WB_LAB[id]) || wbModEl(id)); }
 function wbLoadModule(id) {
   if (wbModsLoaded[id]) return true;
   const el = wbModEl(id);
@@ -6838,7 +6717,6 @@ function wbLoadModule(id) {
   (document.head || document.documentElement).appendChild(sc);
   return true;
 }
-function wbLoadAll() { if (typeof document === "undefined") return; document.querySelectorAll('script[type="text/plain"][id^="wbmod-"]').forEach(e => wbLoadModule(e.id.slice(6))); }
 function wbCases(tab) {   // 旧 SVG 白板已删：只剩术语（WB_TERMS）
   return typeof WB_TERMS !== "undefined" && WB_TERMS[tab] ? WB_TERMS[tab].map(t => ({ terms: t })) : null;
 }
@@ -7216,7 +7094,6 @@ function wbBadgeHtml(keys) {
   return (keys || []).map(kk => { const b = B[kk]; if (!b) return ""; return `<span title="${b.full}" style="display:inline-block; padding:1px 8px; margin:0 4px 2px 0; border-radius:8px; border:1.5px solid ${b.color}; background:${b.fill}; color:${b.color}; font-size:0.75rem; font-weight:900; white-space:nowrap;">${kk} ${b.label}</span>`; }).join("");
 }
 // 🥚 彩蛋词标记（超出课标：知道就好，不用背）
-function wbEggHtml(word) { return `<span title="彩蛋词：知道就好，不用背" style="white-space:nowrap;">${word}<span style="font-size:0.8em;">🥚</span></span>`; }
 function wbBadgeLegendHtml() {
   const B = (typeof WB !== "undefined" && WB.BADGES) || {};
   return `<div style="display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center; font-size:0.8rem; color:#334155;">
@@ -9940,7 +9817,7 @@ function getPolysemyStageSVG(word, act) {
     if (act === 1) {
       return `
         <svg class="cinema-stage-svg" viewBox="0 0 360 140">
-          <g style="animation: floatBob 2s infinite ease-in-out;">
+          <g style="">
             <path d="M95 30 Q135 20 180 35 Q225 20 265 30 L265 115 Q225 105 180 120 Q135 105 95 115 Z" fill="#fef3c7" stroke="#f59e0b" stroke-width="4"/>
             <line x1="180" y1="35" x2="180" y2="120" stroke="#d97706" stroke-width="4"/>
             <line x1="115" y1="55" x2="162" y2="55" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
@@ -9956,7 +9833,7 @@ function getPolysemyStageSVG(word, act) {
           <rect x="105" y="25" width="150" height="95" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="4"/>
           <line x1="125" y1="55" x2="235" y2="55" stroke="#1d4ed8" stroke-width="3"/>
           <line x1="125" y1="80" x2="205" y2="80" stroke="#1d4ed8" stroke-width="3"/>
-          <g style="animation: floatBob 1.2s infinite ease-in-out;">
+          <g style="">
             <polygon points="215,75 255,35 267,47 227,87" fill="#ef4444"/>
             <polygon points="210,80 215,75 227,87" fill="#fde047"/>
           </g>
@@ -9965,7 +9842,7 @@ function getPolysemyStageSVG(word, act) {
     } else {
       return `
         <svg class="cinema-stage-svg" viewBox="0 0 360 140">
-          <g style="animation: floatBob 1.8s infinite ease-in-out;">
+          <g style="">
             <rect x="75" y="38" width="210" height="76" rx="14" fill="#10b981" stroke="#a7f3d0" stroke-width="4"/>
             <circle cx="75" cy="76" r="12" fill="#0f172a"/>
             <circle cx="285" cy="76" r="12" fill="#0f172a"/>
@@ -9984,7 +9861,7 @@ function getPolysemyStageSVG(word, act) {
         <svg class="cinema-stage-svg" viewBox="0 0 360 140">
           <rect x="40" y="100" width="280" height="22" rx="10" fill="#10b981"/>
           <rect x="115" y="68" width="14" height="35" fill="#78350f"/>
-          <circle cx="122" cy="52" r="28" fill="#22c55e" style="animation: floatBob 2.5s infinite;"/>
+          <circle cx="122" cy="52" r="28" fill="#22c55e" style=""/>
           <rect x="210" y="82" width="55" height="8" fill="#f59e0b"/>
           <text x="180" y="22" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="900">🌳 in the park (名词：草木葱茏的公园)</text>
         </svg>`;
@@ -9998,7 +9875,7 @@ function getPolysemyStageSVG(word, act) {
     } else {
       return `
         <svg class="cinema-stage-svg" viewBox="0 0 360 140">
-          <g style="animation: floatBob 1.5s infinite ease-in-out;">
+          <g style="">
             <rect x="95" y="62" width="130" height="36" rx="10" fill="#3b82f6"/>
             <path d="M115 62 L130 40 H190 L205 62 Z" fill="#60a5fa"/>
             <circle cx="125" cy="100" r="12" fill="#0f172a" stroke="#e2e8f0" stroke-width="4"/>
@@ -10017,7 +9894,7 @@ function getPolysemyStageSVG(word, act) {
       return `
         <svg class="cinema-stage-svg" viewBox="0 0 360 140">
           <rect x="115" y="34" width="130" height="82" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="4"/>
-          <circle cx="180" cy="75" r="18" fill="#fde047" style="animation: floatBob 1.4s infinite;"/>
+          <circle cx="180" cy="75" r="18" fill="#fde047" style=""/>
           <text x="180" y="22" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="900">📺 watch TV (动词：专注注视移动画面)</text>
         </svg>`;
     } else if (act === 2) {
@@ -10045,14 +9922,14 @@ function getPolysemyStageSVG(word, act) {
     if (act === 1) {
       return `
         <svg class="cinema-stage-svg" viewBox="0 0 360 140">
-          <circle cx="180" cy="68" r="34" fill="#fde047" style="animation: pulseGlow 1.5s infinite;"/>
+          <circle cx="180" cy="68" r="34" fill="#fde047" style=""/>
           <rect x="168" y="98" width="24" height="16" rx="4" fill="#94a3b8"/>
           <text x="180" y="20" text-anchor="middle" fill="#fde047" font-size="14" font-weight="900">💡 Turn on the light (名词：电灯/光线)</text>
         </svg>`;
     } else if (act === 2) {
       return `
         <svg class="cinema-stage-svg" viewBox="0 0 360 140">
-          <path d="M130 95 Q180 35 235 65 Q195 105 130 95 Z" fill="#a7f3d0" stroke="#10b981" stroke-width="3" style="animation: floatBob 1.6s infinite;"/>
+          <path d="M130 95 Q180 35 235 65 Q195 105 130 95 Z" fill="#a7f3d0" stroke="#10b981" stroke-width="3" style=""/>
           <text x="180" y="24" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="900">🪶 像光芒和羽毛一样毫无重量负担</text>
         </svg>`;
     } else {
@@ -10073,8 +9950,8 @@ function getPolysemyStageSVG(word, act) {
   const colors = ["#38bdf8", "#f59e0b", "#10b981"];
   return `
     <svg class="cinema-stage-svg" viewBox="0 0 360 140">
-      <circle cx="180" cy="76" r="44" fill="${colors[act-1]}22" stroke="${colors[act-1]}" stroke-width="4" style="animation: pulseGlow 2s infinite;"/>
-      <text x="180" y="90" text-anchor="middle" font-size="44" style="animation: floatBob 1.8s infinite;">${item.emoji}</text>
+      <circle cx="180" cy="76" r="44" fill="${colors[act-1]}22" stroke="${colors[act-1]}" stroke-width="4" style=""/>
+      <text x="180" y="90" text-anchor="middle" font-size="44" style="">${item.emoji}</text>
       <text x="180" y="22" text-anchor="middle" fill="${colors[act-1]}" font-size="14" font-weight="900">${badges[act-1]} (${item.word})</text>
     </svg>
   `;
@@ -10572,7 +10449,7 @@ function renderMethodHubView() {
 
 <header class="top-header">
   <div class="brand-box" onclick="MH.switchTab('matrix')">
-    <span style="font-size:1.65rem; display:inline-block; animation:floatBob 2.2s infinite ease-in-out;">🚂</span>
+    <span style="font-size:1.65rem; display:inline-block;">🚂</span>
     <span>萌星小学英语</span>
     <span class="brand-badge">v5.1 方法论+真动画教室</span>
   </div>

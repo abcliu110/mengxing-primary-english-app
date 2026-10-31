@@ -86,7 +86,7 @@
    - C 补数据：C1 最小对立体 ⬜ C2 一词多义 ⬜ C3 口语少的场景 ⬜ C4 闯关题 ⬜ C5 语法测验 ⬜ C6 例句库 ⬜
    - D 原理补缺：D1 语序收敛 ⬜ D2 主谓一致 ⬜ D3 限定词 ⬜ D4 介词空间图 ⬜ D5 语用礼貌 ⬜ D6 音节划分 ⬜ D7 书写与标点 ⬜ D8 时间日期价钱 ⬜ D9 英美差异 ⬜
    - E 课本同步：人教 PEP ⬜ → 外研 ⬜ → 译林 ⬜
-   - 顺延到决策 35 之后：O6（旧 @keyframes / 死代码）→ 词源补抓 140 词（`fetch_etym.py` 工作区有未提交的旧版页面解析改动，到时先核对）→ 决策 7 → 决策 8（英美对照、大写标点已并入 D9 / D7）→ 决策 9。已完成：思维导图分组修正 2e4fe86、O4 手机 / 平板适配 cf6a9f6。
+   - 顺延到决策 35 之后：词源补抓 140 词（`fetch_etym.py` 工作区有未提交的旧版页面解析改动，到时先核对）→ 决策 7 → 决策 8（英美对照、大写标点已并入 D9 / D7）→ 决策 9。已完成：思维导图分组修正 2e4fe86、O4 手机 / 平板适配 cf6a9f6、O6 死代码（本提交，决策 35 下达前已改完验完）。
 
 1. 词源补抓：第 4 批已入库（1347 / 1487）；剩 140 词以后再抓（Wayback 限流时整轮只补几个词，隔几小时再跑 §5.2 1b 命令即可）。
 1b. 人物帧压画质：用户叫停，不做。
@@ -115,7 +115,7 @@
 | 1f | `word_origins/COVERAGE.md` 数字更新：新增 §7 补齐进度（ETYM 603、MORPH 182、格林 11 → 30 对、规律 18 / 18 条有幕） | ✅（Etymonline 抓完后 §7 数字随 1b 再改一次） | 本提交 |
 | 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 58721a8 |
 | 2b | 决策 6 剩余：空间隐喻 ✅（实验室「三大隐喻密码」加密码四 + 白板第 4 幕）/ 拼写潜规则 ✅（自然拼读页顶部剧场第四幕，不新开页签）/ 交际句型地图 ✅（口语大厅入口卡 → 新页 `oral_func_map`：白板 2 幕 + 点读句型表）。新内容做幕的通用工具：`v5/new_scene.py content/<幕>.txt`（内容稿 → R1 清单 → 生成 → 打包 → 核对 → 嵌入） | ✅ | 空间隐喻 64f1285；拼写潜规则 5a9e61e；交际句型地图 本提交 |
-| 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | 🟡 O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py`；O2/O7 ✅ `src/leakcheck.py` + 播放器后台暂停（随下次 rebuild_all 生效）；O3 ✅ 语音缓存 + 无英文语音提示；O1 ✅ VOCAB_DB 首屏轻字段 + 重字段按需（`src/split_vocab.py`，首屏脚本 2.06 MB → 0.52 MB）；O5 ✅ `src/offlinecheck.py`（代码随 f82736b 误带进，文档补记）；O4 ✅ `src/mobilecheck.py`（390 / 768 / 1024 三视口 24 页：无横向滚动、触控 ≥44 px、文字 ≥12 px，已入 runall）+ `src/patch_mobile.py`（样式块 MOBILE_O4_V1，0.72/0.74rem → 0.75rem） | O9 db0ac3a；O8 f82736b；O2/O7 3740e2f；O3 6e7021d；O1 本提交 |
+| 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | ✅ O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py`；O2/O7 ✅ `src/leakcheck.py` + 播放器后台暂停（随下次 rebuild_all 生效）；O3 ✅ 语音缓存 + 无英文语音提示；O1 ✅ VOCAB_DB 首屏轻字段 + 重字段按需（`src/split_vocab.py`，首屏脚本 2.06 MB → 0.52 MB）；O5 ✅ `src/offlinecheck.py`（代码随 f82736b 误带进，文档补记）；O4 ✅ `src/mobilecheck.py`（390 / 768 / 1024 三视口 24 页：无横向滚动、触控 ≥44 px、文字 ≥12 px，已入 runall）+ `src/patch_mobile.py`（样式块 MOBILE_O4_V1，0.72/0.74rem → 0.75rem）；O6 ✅ `src/deadcode.py`（零引用顶层函数，迭代到不动点，wb5 共享块解压后一起搜；@keyframes 无引用 / 不生效）+ `src/patch_deadcode.py`：删 8 个零引用函数；11 个 @keyframes 写成 `.method-hub @keyframes x`、浏览器整条丢弃（实测 0 个生效），连同 23 处 animation 声明删除，页面前后截图无变化。动态拼名调用扫不出，以后报 ReferenceError 先看 deadcode.py 的 KEEP 白名单 | O9 db0ac3a；O8 f82736b；O2/O7 3740e2f；O3 6e7021d；O1 本提交 |
 | 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅 + 实验室 + 词卡）：`src/retire_canvas.py` 截掉 10 个旧绘制循环 → `wb5MissingStage` 提示，再删 10 个无人调用的绘图函数（−91 K 字符）；工具 `src/fnranges.js`（acorn） | ✅ 91 个 HD 单元 app_check4 全过；runall --full 全过 | 本提交 |
 | 4 | 人物帧重压 Q60 / 400 px | ⏸ 用户 2026-10-31 00:59「压画质先不做」。注意：`build_sprites.py` 的 MAXH 同时决定人物显示尺寸，直接降到 400 px 人物会变小，要做得先改成「只压编码不改显示尺寸」 | |
 | 5 | 坏帧：l_lift1/2 去邻帧残留、missw_give 补下半身 + 去灯塔、V29 l_banana0/2 + l_win0–2 头发改浅棕（`l_lift0` 未动） | ✅ 5 幕重建嵌入，截图自审 + app_check2/3 0 报错 | 本提交 |
