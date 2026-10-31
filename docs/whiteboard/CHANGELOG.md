@@ -2875,3 +2875,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 调查：collocations 里没有一条真搭配——adjs 882 词模板「a/the/my X」、188 词整句；verbs 1245 条整句（1268 词与例句逐字相同）、46 条「Morph form」占位。
 - `src/patch_a4_collocations.py`：删模板 / 占位 / 与例句重复的整句；不重复的整句搬进新字段 more_ex（R1 不丢句，词卡「📝 更多例句」）；搭配为空时词卡、主题页头、交互导图两框都不显示；去掉「use / see / good / nice」假兜底（COLLOC_A4_V1）。
 - `src/datacheck.py` 加 A4 段。`v5/scenes/wordcard_items.js`：搭配为空不写「常用搭配动词：本词」，第 ③ 框改读 more_ex[0]。
+
+## 2026-10-31 19:07 JST · 决策 38 35-A6 重复词条：datacheck 加 A6 段（词组卡 ↔ 单词卡互链视为合规，现 0 条）（WIP）
+- A6 现状核对：30 个重复词形（代词 26、who / how / some / any）全部是「词组卡 G1_P01 等 ↔ 单词卡 V6_核心_*」，已由重复内容合并第 2 步的 WORD_GROUP_MEMBERS 互链（卡上互有入口），不再并成别名（会丢单词卡的独立例句 / 白板）。
+- `src/datacheck.py` 加 A6：同一词形多个主词条且不属同一词组 → 不合格；当前 0。
