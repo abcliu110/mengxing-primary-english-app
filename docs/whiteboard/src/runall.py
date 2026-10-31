@@ -13,6 +13,7 @@ Q = [
     ('音标 phoncheck', [sys.executable, 'phoncheck.py'], HERE),
     ('手机/平板适配 mobilecheck', [sys.executable, 'mobilecheck.py'], HERE),
     ('语法白板串板 wbdupcheck', [sys.executable, 'wbdupcheck.py'], HERE),
+    ('白板手机播放框 playercheck（R37-01）', [sys.executable, 'playercheck.py'], HERE),
     ('词卡词源 app_check8', [sys.executable, 'app_check8.py'], V5),
     ('练习闭环 app_check9', [sys.executable, 'app_check9.py'], V5),
     ('我的学习 + 综合自测 app_check10', [sys.executable, 'app_check10.py'], V5),

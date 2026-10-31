@@ -2600,3 +2600,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 原 8 行一字不差移到 `aux_transformer_4`（助动词照妖镜 ④）末尾「⑥ 操作词总论」，补「有操作词直接加 not / 提前，没有就请 do」（审计 1.4）。决定：总论放在现有照妖镜页而不新建原理幕（新原理幕归道 4）；底层原理 hub 的入口由道 4 挂。
 - 新检查 `src/wbdupcheck.py`（不同语法点之间连续 ≥3 行白板字相同 = 串板）入 runall；①2 的 10 对暂列白名单。13 幕重打包嵌入，确定性 / 0 报错；runall --full 全过。前后对比图在工作区 shots/l3/36_1（不入库）。
 - 2026-10-31 13:05 JST：决策 37（手机端可用性与内容真实性 14 条）写入 MASTER_DESIGN；新建 REQUIREMENTS.md；HANDOFF 下一步 00 置顶。
+
+### 2026-10-31 13:11 JST · 决策 37 R37-01 白板手机播放框
+- 根因：iframe 写死 height:560px，`fit()` 用 documentElement.scrollHeight（不会小于 iframe 自身高度）→ 手机画面约 190 px、下面 370 px 灰色空白；控制条不折行，时间被截断。
+- `src/patch_r37_player.py`（标记 R37_01_PLAYER，只改 App 运行时 + `embed_app.py` RUNTIME，不重建各幕）：播放框初始 16:9 自适应，加载后按 #wrap 实际底边定高；挂载时往每幕 srcdoc 注入 WB5_PLAYER_CSS / WB5_PLAYER_JS：边距收窄，窄屏（≤560 px）控制条浮在画面底部、播放 1.8 秒后自动隐去，点画面暂停时再出来；时间不截断。
+- 新增「⛶ 全屏」按钮：铺满屏幕，竖屏时画面转 90° 横过来（先尝试 requestFullscreen + 锁横屏，不支持就 CSS 旋转兜底）；390×844 下画面宽 679 px（0.35 倍），场景里 ≥ 35 px 的字 ≥ 12 px。非全屏竖屏下画面只有约 300 px 宽，最小字仍 < 12 px——要彻底满足「竖屏不全屏也 ≥ 12 px」需要各幕放大字号重建（并入 R37-05 / 07 重做幕时按 390 px 校字号）。
+- 术语小词典左列 150 px 固定宽改为 min(150px, 32%)，窄屏不再把解释挤成一字一行。
+- 新检查 `src/playercheck.py`（4 处白板：画面占框 ≥ 90%、时间不截断、全屏铺满 + 画面 ≥ 600 px、退出复原）入 runall；runall 全过。390 px 截图自检（不入库）。
