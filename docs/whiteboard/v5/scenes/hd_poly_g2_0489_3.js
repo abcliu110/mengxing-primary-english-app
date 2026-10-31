@@ -1,7 +1,7 @@
-// 🎞️ play · 一词多义第3幕 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 🎞️ play · 一词多义第3幕 —— 决策 38 ⑩ 啊哈重做（一词多义通用版式 scenes/poly.js；啊哈卡 lab/audit38/aha/10_hd_poly.md）
 // 内容来源（R1 零丢失）：src/cases/hd_poly_g2_0489.js 案例 3；对照清单 lab/INVENTORY_HD_POLY_G2_0489_3_V5.md
 // 角色关键帧：sprites/hdpg20489_3.js（人物先行帧库 cast/）
-import { autoBuild } from './auto.js';
+import { polyBuild } from './poly.js';
 import * as SP from '../sprites/hdpg20489_3.js';
 const ACTS = {"*": ["l_idea1", "l_hand0", "l_laugh"]};
 const ITEMS = [
@@ -17,4 +17,4 @@ const ITEMS = [
   ['w', '多义第3幕'],
   ['s', 'She can play the piano.', '🎹 第三幕【引申新义·演奏乐器与舞台剧】：引申为“演奏乐器”（play the piano）和舞台上的“话剧演出”（a play）！']
 ];
-export default function build() { return autoBuild(SP, { title: '🎞️ play · 一词多义第3幕', items: ITEMS, acts: ACTS }); }
+export default function build() { return polyBuild(SP, { title: '🎞️ play · 一词多义第3幕', items: ITEMS, acts: ACTS }); }

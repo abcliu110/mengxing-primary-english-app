@@ -2733,3 +2733,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:18 JST · WIP 决策 38 第 9 幕 hd_fr01 + 全量重建完成
 - 新 `v5/scenes/fr_lib.js`：同一笔买卖两条流（书 卖家→买家、钱 买家→卖家）循环 → 聚光灯照主语 → 预测 buy / sell / pay / cost 哪张贴纸 → 句子按角色上色。hd_fr01_1–4 改用它（各 ~48 s，check_r38 0）。啊哈卡 `lab/audit38/aha/09_hd_fr01.md`。
 - 全量 rebuild_all（字表 3350 字）完成；hd_g37–39、hd_fr01 后改的版本单独重嵌。曾因 2 个新字（踮 / 😵）多出一份 943 KB 共享引擎 → 场景里换掉这两个字、字表复原、重嵌，回到 1 份引擎。主 HTML 16.22 MB（口语 + 第 3–9 幕全部嵌入），待 check_oral + runall 后提交。
+
+## 2026-10-31 17:20 JST · WIP 决策 38 第 10 幕 一词多义 51 幕模板
+- 新 `v5/scenes/poly.js`（polyBuild，解析原 ITEMS）+ `v5/gen_poly38.py`（幂等切换 51 幕，ITEMS / ACTS 一字不动）+ `v5/check_poly.py`（由 check_oral 改写：知识点 / 啊哈卡 / 预测 / 规则顺序 / 确定性 / 0 报错）。样板 book 第 1 幕 47 s、0 不合格。
+- 未 embed：poly.js 计划并进共享引擎后与第 11–15 幕一起全量重建。
