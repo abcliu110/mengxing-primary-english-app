@@ -6,8 +6,8 @@ title, body, bp = sys.argv[1:4]; D=os.environ.get('DEC','38'); files=sys.argv[4:
 now=subprocess.check_output(['bash','-c','TZ=Asia/Tokyo date "+%Y-%m-%d %H:%M"']).decode().strip()
 with open(W+'/CHANGELOG.md','a') as f: f.write(f"\n## {now} JST · 决策 {D} {title}\n{body}\n")
 h=open(W+'/HANDOFF.md').read()
-blk=f"<!--R38BP-->**断点（{now} JST）**：{bp}<!--/R38BP-->"
-if '<!--R38BP-->' in h: h=re.sub(r'<!--R38BP-->.*?<!--/R38BP-->', lambda m: blk, h, flags=re.S)
+M=f'R{D}BP'; blk=f"<!--{M}-->**断点（{now} JST）**：{bp}<!--/{M}-->"
+if f'<!--{M}-->' in h: h=re.sub(f'<!--{M}-->.*?<!--/{M}-->', lambda m: blk, h, flags=re.S)
 else:
     a='   **做法（接手照抄）**'; assert h.count(a)==1; h=h.replace(a, '   '+blk+'\n'+a)
 h=re.sub(r'^> 更新：', f'> 更新：{now} JST（决策 {D} {title}）；', h, count=1, flags=re.M)

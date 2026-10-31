@@ -47,8 +47,9 @@ F = [
     ('第一性原理 app_check7', [sys.executable, 'app_check7.py'], V5),
     ('泄漏 leakcheck', [sys.executable, 'leakcheck.py'], HERE),
 ]
-WARN = {'长幕时长 durcheck（决策 36-②，仅提示）'}   # 只报不判：36-② 长幕还没拆完，拆完后从这里删掉即转为必过
+WARN = {'长幕时长 durcheck（决策 36-②，仅提示）', '专题纵深 depthcheck（决策 39，仅提示）'}   # 只报不判：36-② 长幕还没拆完，拆完后从这里删掉即转为必过
 Q.insert(8, ('长幕时长 durcheck（决策 36-②，仅提示）', [sys.executable, 'durcheck.py'], HERE))
+Q.insert(9, ('专题纵深 depthcheck（决策 39，仅提示）', [sys.executable, 'depthcheck.py'], HERE))   # 推广完后去掉 WARN 并加 --strict
 def bad(out):
     if re.search(r'\bBAD\b|\bFAIL\b', out): return True
     if any(int(n) > 0 for n in re.findall(r'不合格 (\d+)', out)): return True

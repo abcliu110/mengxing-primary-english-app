@@ -8,6 +8,11 @@
   ④ 板上文字面积 ≤ 40%：逐帧（均匀取 24 帧）记录 fillText 的文字框（按当前变换求外接矩形，在 1920×1080 画布上按 20 px 网格去重），
      顶部讲解字幕（40px WK）与底部朗读字幕（58px Kalam / 34px WK）不算；每帧文字格数 ÷ 画布格数，取最大值 ≤ 0.40。
   另查：页面 0 报错。
+决策 39（SOP_COGNITIVE_UPGRADE.md / SOP §18）：源码里有 `// @step1_hook` 的幕 = 决策 39 幕，另外强制：
+  ⑤ 四段标记 // @step1_hook / @step2_mechanism / @step3_transfer / @step4_punchline 齐，且场景调了 C.step(1..4)；
+  ⑥ 四段时长占比与 15 / 45 / 25 / 15 % 偏差 ≤ 10 个百分点；
+  ⑦ 动态时长（concept 组件记下的 DYN 时间窗并集）≥ 60%；静态字时长（取样帧里文字面积 ≥ 5% 且不在任何 DYN 窗内）≤ 25%。
+  其余 v6 幕 ⑤–⑦ 只打「提示」，不计不合格（推广到哪批，哪批转强制）。
 模板幕（wordcard_tpl）按 SAMPLE_WORDS 逐词 × 3 幕检查：词条取主 App 的 wb5PlainData（含 __etym / __morph），覆盖时间轴 / 构词 / 盖字母三条分支。
 --report N：另外从 v5/out/ 里已打包的非 v6 幕均匀抽 N 幕，只量文字面积并报告（不计入不合格）。
 输出最后一行「insightcheck 不合格 N」，N>0 返回码 1。"""
@@ -17,6 +22,7 @@ HERE = pathlib.Path(__file__).resolve().parent; V5 = HERE.parent / 'v5'
 APP = HERE.parents[2] / '萌星小学英语_最终合并版.html'
 SAMPLE_WORDS = ['apple', 'foot', 'teacher', 'classroom', 'book', 'beautiful', 'I']
 MAXTEXT = 0.40
+STEP_TARGET = {1: .15, 2: .45, 3: .25, 4: .15}; STEP_TOL = .10; DYN_MIN = .60; STATIC_MAX = .25; STATIC_AREA = .05
 HOOK = r"""
 (() => {
   const SUB = new Set(['40px WK', '58px Kalam', '34px WK']);
@@ -53,6 +59,7 @@ def v6_scenes():
         elif re.search(r"from '\./oral\.js'", src): oral.append(pathlib.Path(f))   # 决策 38 ②：口语通用版式（oral.js 内部用 concept.js）
     if oral and '--all-oral' not in sys.argv and len(oral) > ORAL_SAMPLE + 1:
         oral = [oral[0]] + oral[1::max(1, (len(oral) - 1) // ORAL_SAMPLE)][:ORAL_SAMPLE]
+    if '--demo' in sys.argv: out.append(V5 / 'selftest' / 'concept39_demo.js')   # 决策 39 五组件自测幕（不进 App、不进字表）：--demo 才查
     return out + oral
 
 async def measure(b, html, inj='', frames=24):
@@ -63,7 +70,34 @@ async def measure(b, html, inj='', frames=24):
     dur = await pg.evaluate('window.__dur'); ins = await pg.evaluate('globalThis.__WB5_INSIGHT__ || null')
     fr = [await pg.evaluate(f'window.__textFrac({dur * (i + 0.5) / frames})') for i in range(frames)]
     await pg.close()
+    if ins is not None: ins['_frames'] = fr
     return dur, ins, max(fr) if fr else 0, errs
+
+def d39(ins, dur):
+    """决策 39 指标：返回 (问题列表, 摘要)。时间都换算成场景时间（DYN / STEPS 记的是放慢前的时间）。"""
+    bad = []; sd = (ins or {}).get('sdur') or dur or 1; k = (dur / sd) if sd else 1
+    win = sorted([a, b] for a, b in (ins or {}).get('dyn') or [])
+    mer = []
+    for a, b in win:
+        a, b = max(0, a), min(sd, b)
+        if b <= a: continue
+        if mer and a <= mer[-1][1]: mer[-1][1] = max(mer[-1][1], b)
+        else: mer.append([a, b])
+    dyn = sum(b - a for a, b in mer) / sd if sd else 0
+    fr = (ins or {}).get('_frames') or []; n = len(fr) or 1
+    inwin = lambda t: any(a <= t <= b for a, b in mer)
+    st = sum(1 for i, f in enumerate(fr) if f >= STATIC_AREA and not inwin(dur * (i + 0.5) / n / k)) / n
+    steps = sorted((x['t'], x['n']) for x in (ins or {}).get('steps') or [])
+    share = {}
+    for i, (t0, nn) in enumerate(steps): share[nn] = share.get(nn, 0) + ((steps[i + 1][0] if i + 1 < len(steps) else sd) - t0) / sd
+    if sorted(share) != [1, 2, 3, 4]: bad.append('C.step 四段不齐（有 ' + ','.join(map(str, sorted(share))) + '）')
+    else:
+        for nn, tgt in STEP_TARGET.items():
+            if abs(share[nn] - tgt) > STEP_TOL: bad.append(f'第 {nn} 段占 {share[nn]:.0%}（目标 {tgt:.0%}±10）')
+    if dyn < DYN_MIN: bad.append(f'动态时长 {dyn:.0%} < 60%')
+    if st > STATIC_MAX: bad.append(f'静态字时长 {st:.0%} > 25%')
+    return bad, f'动态 {dyn:.0%} 静态字 {st:.0%} 分段 ' + '/'.join(f'{share.get(i, 0):.0%}' for i in (1, 2, 3, 4))
+MARKS = ['// @step1_hook', '// @step2_mechanism', '// @step3_transfer', '// @step4_punchline']
 
 def judge(ins, tmax, errs):
     bad = []
@@ -103,9 +137,17 @@ async def main():
                     if not d: print(f'❌ wordcard_tpl 样本词 {w} 在主 App 里取不到'); fails += 1
             for tag, inj in runs:
                 dur, ins, tmax, errs = await measure(b, out, inj)
-                bad = judge(ins, tmax, errs); fails += bool(bad)
+                bad = judge(ins, tmax, errs)
+                src = s.read_text(encoding='utf-8'); is39 = MARKS[0] in src
+                b39, sm39 = d39(ins, dur)
+                if is39:
+                    miss = [m for m in MARKS if m not in src]
+                    if miss: b39.insert(0, '缺标记 ' + ' '.join(miss))
+                    bad += b39
+                fails += bool(bad)
                 pr = (ins or {}).get('predicts') or []
-                print(f"{'❌' if bad else '✅'} {s.stem}{' ' + tag if tag else ''}  {dur:.1f}s  预测 {len(pr)} 个  规则 {(ins or {}).get('ruleAt')}  文字 {tmax:.0%}  {'；'.join(bad)}")
+                print(f"{'❌' if bad else '✅'} {s.stem}{' ' + tag if tag else ''}  {dur:.1f}s  预测 {len(pr)} 个  规则 {(ins or {}).get('ruleAt')}  文字 {tmax:.0%}  {'[决策39] ' if is39 else ''}{sm39}  {'；'.join(bad)}"
+                      + ('' if is39 or not b39 else f"  （决策 39 提示：{'；'.join(b39)}）"))
         if rep:   # 未重做幕抽样：现场打包到 /tmp，只量文字面积（角色包缺时打包会失败，跳过）
             pool = [f for f in sorted(glob.glob(str(V5 / 'scenes' / '*.js'))) if pathlib.Path(f).stem not in {s.stem for s in scenes} and re.search(r'_\d+\.js$', f)]
             for f in pool[::max(1, len(pool) // rep)][:rep]:

@@ -2899,3 +2899,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 用户提交 SOP_COGNITIVE_UPGRADE.md（aed318d）；决策 39 写进 MASTER_DESIGN（接口：啊哈卡对应四步、预测停顿取 3 s、文字面积 40% + 静态时长 25% 双门、模板幕保留、多幕门禁另起 depthcheck.py、门禁先提示后阻断）。
 - SOP.md 新增 §18 四步剧本流程与验收 17–21；ci.py 支持 DEC=39。
 - 现状：hd_g / wo_rule / ze 68 个专题中 58 个单幕。
+
+## 2026-10-31 21:25 JST · 决策 39 ② concept.js 五个认知组件 + insightcheck 四段 / 动态时长门禁 + depthcheck
+- v5/lib/concept.js：新增 C.step / morphLetters / schemaContainer / syntaxSlotMachine / timelineCamera / contrastSplitScreen；chip 移动 / 换装 / 落位与新组件记动态时间窗 DYN，C.finish() 带出 dyn / steps / sdur。
+- src/insightcheck.py：源码有 // @step1_hook 的幕按决策 39 强制（四段标记 + C.step 齐、分段 15/45/25/15 ±10、动态 ≥ 60%、静态字 ≤ 25%）；其余 v6 幕只提示。--demo 加查 v5/selftest/concept39_demo.js（通过：动态 79%、静态字 4%）。insightcheck 不合格 0。
+- src/depthcheck.py（新）：hd_g / wo_rule / ze 每专题 ≥ 3 幕，现 67 个专题里 57 个 1 幕、2 个 2 幕；runall 里仅提示。
+- src/ci.py 断点块按 DEC 区分（R39BP）；SOP §18 补组件速查、引擎多份提示。
+- 沙箱补装 playwright / brotli（环境，不进仓库）。

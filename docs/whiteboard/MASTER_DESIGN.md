@@ -586,7 +586,7 @@ G18 一般现在时（与进行时对比、时间圆环、He go / Does he goes�
 1. 四步剧本：①冲突 Hook 15%（5–8 s，不出术语）→ ②机制 Mechanism 45%（concept 动态推演）→ ③迁移 Transfer 25%（同一个图式不动，换 3 个例子）→ ④锚点 Punchline 15%（反推挑战，停顿后揭晓）。场景源码用 `// @step1_hook`、`// @step2_mechanism`、`// @step3_transfer`、`// @step4_punchline` 标出四段。
 2. 三层动画：具象情境（cast 角色、实物）→ 几何图式（容器、力箭头、时间轴取景框）→ 符号变形（字母变形、词缀拼装、句法卡槽）。角色动作必须对应语法结构或空间图式，不为热闹走位。
 3. `v5/lib/concept.js` 新增五个组件：`morphLetters`、`schemaContainer`（enter / exit / expand / deplete）、`syntaxSlotMachine`（冲突电弧 → to / -ing 降级挂入）、`timelineCamera`（推近 / 拉远）、`contrastSplitScreen`（双屏同步对比）。
-4. 纵深：`hd_g*`、`wo_rule_*`、`ze_*` 每个专题 ≥ 3 幕（①破障 ②建模 ③边界辨析，④炼金可选）。现状：这三类 68 个专题里 58 个只有 1 幕、2 个 2 幕、8 个 3 幕。
+4. 纵深：`hd_g*`、`wo_rule_*`、`ze_*` 每个专题 ≥ 3 幕（①破障 ②建模 ③边界辨析，④炼金可选）。现状（`src/depthcheck.py`）：这三类 67 个专题里 57 个只有 1 幕、2 个 2 幕、8 个 ≥ 3 幕。
 5. 扩充包（排在 1–4 之后）：一词多义 17 → 64 词（四大认知域）、词源 5 → 30 专题（12 词根 × 3 幕 + 18 文明史）、第一性原理 6 → 10（+ fp_distance / fp_info_flow / fp_force_dynamics / fp_figure_ground，hd_g01–g40 挂到十大原理下）、拼读 4 → 16 幕。
 6. 门禁：静态 wbtext 时长 ≤ 25%、concept 动态时长 ≥ 60%（不达标 = D 级，阻断）；四段标记齐全；多幕专题 ≥ 3 幕；Hook 与 Mechanism 前半段禁术语（jargoncheck）。
 

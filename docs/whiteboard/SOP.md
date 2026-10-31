@@ -314,7 +314,17 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 2. **每幕写四段剧本**：冲突 15% → 机制 45% → 迁移 25%（同一图式不动，3 个例子）→ 锚点 15%（反推，`C.predict` ≥ 3 s 后揭晓）。前两段不出术语，先画后命名。
 3. **画面三层**：具象（角色 / 实物）→ 图式（`schemaContainer` / `timelineCamera` / 力箭头）→ 符号（`morphLetters` / `syntaxSlotMachine` / 词缀拼装）。易混点用 `contrastSplitScreen`。
 4. **源码标四段**：`// @step1_hook` … `// @step4_punchline`，各段开始处一行。
-5. **只重建本页签**：`python3 v5/rebuild_all.py --tabs=<页签>`；改了 concept.js / 引擎 / 字表才全量。
+5. **只重建本页签**：`python3 v5/rebuild_all.py --tabs=<页签>`；改了 concept.js / 引擎 / 字表才全量。注意 concept.js 打在共享引擎里：改了它再 `--tabs` 嵌入，主 HTML 会多一份新引擎（旧幕仍用旧引擎，能播但体积 +约 0.4 MB），一批幕做完再全量重建一次收回。
+6. **组件自测**：`python3 src/insightcheck.py --demo` 会加查 `v5/selftest/concept39_demo.js`（五组件 + 四段标记，不进 App、不进字表）；改了 concept.js 先跑它。
+
+### concept.js 决策 39 组件速查
+- `C.step(n, t)`：四段分段（1 冲突 / 2 机制 / 3 迁移 / 4 锚点），配合源码注释 `// @stepN_…`。
+- `C.morphLetters({ from, to, x, y, t, d, appear })`：公共子序列字母平移标绿，其余压扁消失 / 长出，变化处气流波。
+- `C.schemaContainer({ x, y, w, h, content, states:[[t,'unbounded'|'bounded'|'enter'|'exit'|'expand'|'deplete']], count, label })`。
+- `C.syntaxSlotMachine({ x, y, subj, verb, second, fix:'to'|'-ing', tIn, tFix, after })`：撞主槽电弧弹开 → 装 🪝 to / ⚙️ -ing 落副轨。
+- `C.timelineCamera({ x0, x1, y, shots:[[t,'wide'|'in'|'out', p]], events:[{p,label}] })`：推近见流动波浪，拉远压成胶囊。
+- `C.contrastSplitScreen({ left:{label,beats:[[t,emoji]]}, right, diff:[t] })`：双屏同步换画，diff 时刻双框闪 ⚡。
+- 动态时长 = 这些组件和 chip 移动 / 换装 / 落位记下的时间窗并集（流体、耗尽、推近后的波浪整段算动态）；讲解员站桩、静态字、预测停顿不算。
 
 ### 验收（在 §17 表后追加）
 | # | 项 | 检查 |
