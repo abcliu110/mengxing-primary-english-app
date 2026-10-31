@@ -1,4 +1,4 @@
-// ⚙️ 第一性原理 · 经济原则 · 1 —— 决策 38 ⑮ 啊哈重做「喉咙剖面」（概念原语 lib/concept.js；啊哈卡 lab/audit38/aha/15_fp_economy.md）
+// ⚙️ 第一性原理 · 经济原则 · 1 —— 决策 38 ⑮ 啊哈重做「喉咙剖面」· 第 1 节（决策 36-② 拆分：④ 过去式 / ⑤ 口诀 / 预测 dogs 在第 2 节 fp_economy_p2_1，App 白板下「第 2 节」按钮；概念原语 lib/concept.js；啊哈卡 lab/audit38/aha/15_fp_economy.md）
 // 内容来源（R1 零丢失）：旧版 auto.js 场景（src/cases/fp_economy.js 案例 1；清单 lab/INVENTORY_FP_ECONOMY_1_V5.md）全部文字在 KNOW。
 // 画面：左边一个喉咙剖面（脖子 + 两片声带），发浊音时声带抖、冒波纹，发清音时声带静止。
 //   6 个读音摆出来「要背 6 种？」→ 只看声带 → /k/ 静、/ɡ/ 抖 → 摸喉咙 → 先猜 book+s 的 -s 抖不抖 → /s/；bag+s 声带一路抖到底 → /z/
@@ -9,23 +9,44 @@ import * as SP from '../sprites/fpeco1.js';
 const ACTS = {};
 void ACTS;
 export const KNOW = [
-  '这一幕：复数 -s 和过去式 -ed，为什么各有三种读音？', '-s 和 -ed 的三种读音', '① 口腔省力同化律', '💡 记忆联想',
-  '① 6 种读音？', '② 声带', '③ 同化', '④ 过去式', '⑤ 口诀', '🔮 预测',
-  '看起来要背 6 种读音……', 'books /s/   bags /z/    buses /ɪz/', 'worked /t/  played /d/  wanted /ɪd/', '6 种？！',
-  '其实只看一件事：前一个音，声带有没有震动。', '只看一件事：前一个音，声带震不震？',
-  '声带：喉咙里的两片小肉，发某些音时会快速震动。', '声带',
-  '清辅音：发音时声带不震动的辅音，比如 /k/ /p/ /t/ /s/。', '/k/', '声带不震', '= 清',
-  '浊辅音：发音时声带震动的辅音，比如 /ɡ/ /b/ /d/ /v/；元音也都震。', '/ɡ/', '声带震动', '= 浊',
-  '💡 摸喉咙试试', '不震 → 尾巴不震', '震 → 尾巴也震',
-  '同化：后一个音学前一个音的样子，嘴巴最省力。', 'book+s', '/s/', 'book 最后是 /k/，声带不震，-s 就顺势读不震的 /s/。',
-  'bag+s', '/z/', 'bag 最后是 /ɡ/，声带在震，-s 就顺势读会震的 /z/。', 'I have two books and two bags.', '我有两本书和两个包。',
-  '过去式：表示以前发生的事，规则动词加 -ed。同一条规律！', 'worked', '/t/', '/k/ 不震', 'played', '/d/', '/eɪ/ 元音会震',
-  'I worked hard, and then I played.', '我努力学习，然后去玩。',
-  '那 buses /ɪz/、wanted /ɪd/ 呢？下一幕讲。', 'buses  wanted  → ?',
-  '口诀：前音不震尾不震，前音一震尾也震。', 'Books, bags, buses.', '书、包、公交车。', 'Worked, played, wanted.', '工作了、玩了、想要了。',
-  '预测：dog 最后是 /ɡ/。dogs 的 -s 读 /s/ 还是 /z/？先想 3 秒！', '🔮 dog + s　→　/s/ 还是 /z/', '？',
-  '揭晓：/ɡ/ 声带在震，-s 也跟着震：dogs 读 /z/。', 'dogs /dɒɡz/ —— /ɡ/ 震，尾巴也震 → /z/', 'Dogs. I have two dogs.', '狗。我有两只狗。',
-  '💡 一句话洞见', '清配清，浊配浊：', '-s / -ed 跟着前一个音的声带走', '🎵 口诀', '口诀：前音不震尾不震，', '前音一震尾也震。', '🧠 第一性原理 ① 口腔省力同化律',
+  "这一幕：复数 -s 和过去式 -ed，为什么各有三种读音？",
+  "-s 和 -ed 的三种读音",
+  "① 口腔省力同化律",
+  "💡 记忆联想",
+  "① 6 种读音？",
+  "② 声带",
+  "③ 同化",
+  "④ 过去式",
+  "⑤ 口诀",
+  "🔮 预测",
+  "看起来要背 6 种读音……",
+  "books /s/   bags /z/    buses /ɪz/",
+  "worked /t/  played /d/  wanted /ɪd/",
+  "6 种？！",
+  "其实只看一件事：前一个音，声带有没有震动。",
+  "只看一件事：前一个音，声带震不震？",
+  "声带：喉咙里的两片小肉，发某些音时会快速震动。",
+  "声带",
+  "清辅音：发音时声带不震动的辅音，比如 /k/ /p/ /t/ /s/。",
+  "/k/",
+  "声带不震",
+  "= 清",
+  "浊辅音：发音时声带震动的辅音，比如 /ɡ/ /b/ /d/ /v/；元音也都震。",
+  "/ɡ/",
+  "声带震动",
+  "= 浊",
+  "💡 摸喉咙试试",
+  "不震 → 尾巴不震",
+  "震 → 尾巴也震",
+  "同化：后一个音学前一个音的样子，嘴巴最省力。",
+  "book+s",
+  "/s/",
+  "book 最后是 /k/，声带不震，-s 就顺势读不震的 /s/。",
+  "bag+s",
+  "/z/",
+  "bag 最后是 /ɡ/，声带在震，-s 就顺势读会震的 /z/。",
+  "I have two books and two bags.",
+  "我有两本书和两个包。",
 ];
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const readT = s => { const str = String(s).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); const cjk = (str.match(/[\u3400-\u9fff]/g) || []).length; const en = (str.replace(/[\u3400-\u9fff]/g, ' ').match(/[A-Za-z]+/g) || []).length; return Math.max(0.8, cjk / 5 + en / 2.2); };
@@ -36,7 +57,7 @@ export default function build() {
   C.aha({
     see: '左边一个喉咙剖面，两片声带；读 /k/ 时声带一动不动，读 /ɡ/ 时声带抖起来、冒出波纹；孩子把手放在自己喉咙上试',
     guess: 'book 最后是 /k/，声带没抖——后面的 -s 会抖还是不抖？（读 /s/ 还是 /z/）',
-    reveal: '声带从 /k/ 到 -s 一直静止 → /s/；bag 的 /ɡ/ 抖起来后一路抖到 -s → /z/；worked / played 的 -ed 一模一样',
+    reveal: '声带从 /k/ 到 -s 一直静止 → /s/；bag 的 /ɡ/ 抖起来后一路抖到 -s → /z/',
     rule: '前音不震尾不震，前音一震尾也震（清配清，浊配浊）',
   });
   const narr = (s, t, min = 2.6) => { const d = Math.max(min, readT(s) + 0.8); K.narr(s, t, t + d); return t + d; };
@@ -141,61 +162,10 @@ export default function build() {
   C.label('震 → 尾巴也震', 1300, 780, { size: 44, col: RED, from: T + 0.8, out: B0 + 30 });
   T = say(T + 1.2, 'I have two books and two bags.', '我有两本书和两个包。', ['books', 'bags']);
   C.label('I have two books and two bags.', 1300, 880, { size: 40, col: INK, from: T - 3, out: B0 + 30 });
+  C.rule(T);
+  T = narr('口诀：前音不震尾不震，前音一震尾也震。', T, 4.4);
   T = Math.max(T + 0.6, B0 + 30.4);
 
-  // ===== ④ 过去式 =====
-  stepAt[3] = T;
-  T = narr('过去式：表示以前发生的事，规则动词加 -ed。同一条规律！', T, 4.6);
-  const D0 = T;
-  C.chip({ text: 'worked', x: 1120, y: 380, size: 64, from: D0, out: D0 + 24 });
-  sound(D0 + 0.4, D0 + 2.6, '/k/ → /t/', false);
-  C.label('/k/ 不震', 1120, 470, { size: 38, col: GREEN, from: D0 + 0.6, out: D0 + 24 });
-  C.chip({ text: '/t/', x: 1440, y: 380, size: 64, from: D0 + 1.6, col: GREEN, bd: GREEN, out: D0 + 24 });
-  C.chip({ text: 'played', x: 1120, y: 580, size: 64, from: D0 + 3.4, out: D0 + 24 });
-  sound(D0 + 3.8, D0 + 6.2, '/eɪ/ → /d/', true);
-  C.label('/eɪ/ 元音会震', 1120, 670, { size: 38, col: RED, from: D0 + 4.0, out: D0 + 24 });
-  C.chip({ text: '/d/', x: 1440, y: 580, size: 64, from: D0 + 5.0, col: RED, bd: RED, out: D0 + 24 });
-  T = say(D0 + 6.6, 'I worked hard, and then I played.', '我努力学习，然后去玩。', ['worked', 'played']);
-  C.label('I worked hard, and then I played.', 1300, 800, { size: 40, from: D0 + 6.6, out: D0 + 24 });
-  T = narr('那 buses /ɪz/、wanted /ɪd/ 呢？下一幕讲。', T, 3.6);
-  C.label('buses  wanted  → ?', 1300, 900, { size: 44, col: GREY, from: T - 3.4, out: D0 + 24 });
-  T = Math.max(T + 0.4, D0 + 24.4);
-
-  // ===== ⑤ 口诀（孩子先自己说） =====
-  stepAt[4] = T;
-  C.rule(T);
-  sound(T, T + 2.6, '/k/ → /s/', false); sound(T + 2.8, T + 5.4, '/ɡ/ → /z/', true);
-  T = narr('口诀：前音不震尾不震，前音一震尾也震。', T, 5.4);
-  T = say(T, 'Books, bags, buses.', '书、包、公交车。', ['books', 'bags', 'buses']);
-  T = say(T, 'Worked, played, wanted.', '工作了、玩了、想要了。', ['worked', 'played', 'wanted']);
-  C.label('口诀：前音不震尾不震，前音一震尾也震。', 1260, 420, { size: 50, col: OR, from: stepAt[4], out: T, bold: true });
-  T += 0.6;
-
-  // ===== 🔮 预测：dogs =====
-  stepAt[5] = T;
-  T = narr('预测：dog 最后是 /ɡ/。dogs 的 -s 读 /s/ 还是 /z/？先想 3 秒！', T, 4.4);
-  const E0 = T;
-  C.label('🔮 dog + s　→　/s/ 还是 /z/', 1260, 400, { size: 54, from: E0 - 4, out: E0 + 16 });
-  const q = C.chip({ text: '？', x: 1260, y: 540, size: 90, from: E0 - 3.6, col: OR, bd: OR, out: E0 + 16 });
-  T = C.predict(E0, { q: 'dog 最后是 /ɡ/——dogs 的 -s 读 /s/ 还是 /z/？', sec: 4 });
-  C.swap(q, T + 0.2, '/z/', RED, '#fff', RED);
-  sound(T, T + 4, '/ɡ/ → /z/', true);
-  T = narr('揭晓：/ɡ/ 声带在震，-s 也跟着震：dogs 读 /z/。', T + 0.2, 4.4);
-  C.label('dogs /dɒɡz/ —— /ɡ/ 震，尾巴也震 → /z/', 1260, 700, { size: 44, col: RED, from: T - 3, out: E0 + 16 });
-  T = say(T, 'Dogs. I have two dogs.', '狗。我有两只狗。', ['dogs']);
-  T = Math.max(T + 0.4, E0 + 16.4);
-
-  // ===== 收尾洞见卡 =====
-  const F0 = T;
-  C.label('💡 一句话洞见', 1260, 260, { size: 46, col: OR, from: F0, bold: true });
-  C.label('清配清，浊配浊：', 1260, 360, { size: 52, col: INK, from: F0 + 0.6, bold: true });
-  C.label('-s / -ed 跟着前一个音的声带走', 1260, 450, { size: 48, col: INK, from: F0 + 1.2 });
-  C.label('🎵 口诀', 1260, 580, { size: 44, col: OR, from: F0 + 2.0 });
-  C.label('口诀：前音不震尾不震，', 1260, 670, { size: 48, col: GREEN, from: F0 + 2.4 });
-  C.label('前音一震尾也震。', 1260, 750, { size: 48, col: RED, from: F0 + 3.0 });
-  C.label('🧠 第一性原理 ① 口腔省力同化律', 1260, 880, { size: 40, col: GREY, from: F0 + 3.6 });
-  sound(F0 + 1.2, F0 + 3.0, '/s/', false); sound(F0 + 3.2, F0 + 5.0, '/z/', true);
-  T = narr('清配清，浊配浊：-s / -ed 跟着前一个音的声带走', F0, 5) + 2.4;
-  K.end(T);
+  K.end(T + 0.6);
   return C.finish();
 }

@@ -14,3 +14,6 @@
 
 ## 知识点不丢
 旧板全部文字（66 条 ITEMS）在 `KNOW`；`v5/check_r38.py fp_economy_1` 0 不合格，145 s（超 60–90 s 目标，待 36-② 拆分时把 ④ 过去式拆到第 2 幕前半）。
+
+## 决策 36-② 分两节（2026-10-31 18:05 JST）
+145 s → 第 1 节 `fp_economy_1`（6 种？→ 声带 → 摸喉咙 → 预测 book+s → bag+s → 口诀，76 s）；第 2 节 `fp_economy_p2_1`（worked /t/ → 预测 played 的 -ed /t/ 还是 /d/ → 口诀 + 朗读 → 预测 dogs → 洞见卡，77 s）。第一性原理幕号绑 law.acts，第 2 节走子页签 `fp_economy_p2`（`src/patch_wb5_parts.py`）。
