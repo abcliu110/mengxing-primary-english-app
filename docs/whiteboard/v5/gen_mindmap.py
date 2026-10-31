@@ -20,8 +20,8 @@ for o in G:
     title = f'🗺️ {sub} · 思维导图讲解'
     groups = ',\n'.join('  { name: %s, leaves: [\n%s\n  ] }' % (q(g['name']), ',\n'.join(
         f"    [{q(byid[i]['emoji'] + ' ' + byid[i]['word'])}, {q(byid[i]['meaning'])}, {q(byid[i]['word'])}]" for i in g['ids'])) for g in o['groups'])
-    src = f"""// {title} —— v5.1 标准画法（主题思维导图讲解幕，DESIGN_MINDMAP_WORDCARD.md §1；版式 scenes/auto.js 的 mindmapBuild）
-// 内容来源（R1 零丢失）：主文件 VOCAB_DB「{sub}」旧交互导图的全部节点 + 搭配框；分组表 v5/mindmap_groups.json；对照清单 lab/INVENTORY_HD_MINDMAP_{n}_V5.md
+    src = f"""// {title} —— 决策 38 ⑪ 啊哈重做（开场「找不同」+ 导图；版式 scenes/auto.js 的 mindmapBuild，啊哈卡 lab/audit38/aha/11_hd_mindmap.md）
+// 内容来源（R1 零丢失）：主文件 VOCAB_DB「{sub}」旧交互导图的全部节点（「常用搭配 / 评价形容词」两框是首词的模板占位，按 R37-03 / 决策 38 删去）；分组表 v5/mindmap_groups.json；对照清单 lab/INVENTORY_HD_MINDMAP_{n}_V5.md
 // 由 v5/gen_mindmap.py 生成，勿手改。角色关键帧：sprites/mindmap.js（25 幕共用）
 import {{ mindmapBuild }} from './auto.js';
 import * as SP from '../sprites/mindmap.js';
@@ -31,8 +31,7 @@ const GROUPS = [
 ];
 export default function build() {{
   return mindmapBuild(SP, {{ title: {q(title)}, center: {q('🌍 ' + sub)}, hint: '点击周围节点开卡学习', groups: GROUPS,
-    vTitle: '🔗 常用搭配动词', verbs: [{', '.join(q(v) for v in (col.get('verbs') or [])[:3])}],
-    aTitle: '✨ 评价形容词', adjs: [{', '.join(q(a) for a in (col.get('adjs') or [])[:3])}],
+    odd: true,
     intro: {q(f'今天用一张思维导图学「{sub}」：{nn} 个单词分成 {len(o["groups"])} 组。')},
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {json.dumps(FRAMES)} }});
