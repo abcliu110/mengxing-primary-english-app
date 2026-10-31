@@ -2725,3 +2725,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:13 JST · WIP 决策 38 第 8 幕 比较三兄弟 ① G37
 - 新 `v5/scenes/cmp_lib.js`（身高尺 ruler + 人柱 person）。hd_g37_1：Tom、Jim 同高 150 cm 头顶水平线 → 预测 as ___ as 放 tall / taller / tallest → tall 落位「没人冒尖 → 不变形」；跑得和马一样快；温度计今天矮一截 → not as warm as。check_r38 0，96 s。
+
+## 2026-10-31 17:15 JST · WIP 决策 38 第 8 幕 比较三兄弟 ② G38 ③ G39
+- hd_g38_1：头顶多出一截涂橙 = -er、than 立中间；big→bigger、heavy→heavier 拆步；预测 interesting + -er → 「interestinger」😵 → more 站前面。check_r38 0，109 s。
+- hd_g39_1：两根柱子比较级 → 四个动物 + 范围框 in the zoo → 预测冠军戴什么 → 👑 the 落下、the tallest；构成 / 范围词。check_r38 0，103 s。啊哈卡 `lab/audit38/aha/08_hd_g37_39.md`。
