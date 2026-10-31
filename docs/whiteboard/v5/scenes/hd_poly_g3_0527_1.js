@@ -6,7 +6,7 @@ import * as SP from '../sprites/hdpg30527_1.js';
 const ACTS = {"*": ["l_books", "l_read", "l_think"]};
 const ITEMS = [
   ['w', '一词多义演变'],
-  ['w', '👵 kind /kind/ — 【adj./n.】慈祥的，善良的，友好的；种类'],
+  ['w', '👵 kind /kaɪnd/ — 【adj./n.】慈祥的，善良的，友好的；种类'],
   ['w', '核心意象纽带：同宗同族的类别与亲人般的仁慈'],
   ['w', '① 本义具象：adj. 体贴的，友好的，仁慈的'],
   ['w', 'Our English teacher is very kind.'],
