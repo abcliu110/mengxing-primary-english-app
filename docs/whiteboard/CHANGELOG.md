@@ -2879,3 +2879,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 19:07 JST · 决策 38 35-A6 重复词条：datacheck 加 A6 段（词组卡 ↔ 单词卡互链视为合规，现 0 条）（WIP）
 - A6 现状核对：30 个重复词形（代词 26、who / how / some / any）全部是「词组卡 G1_P01 等 ↔ 单词卡 V6_核心_*」，已由重复内容合并第 2 步的 WORD_GROUP_MEMBERS 互链（卡上互有入口），不再并成别名（会丢单词卡的独立例句 / 白板）。
 - `src/datacheck.py` 加 A6：同一词形多个主词条且不属同一词组 → 不合格；当前 0。
+
+## 2026-10-31 19:09 JST · 决策 38 35-A7 英美拼写：定案（方案 B）写进 MASTER_DESIGN；patch_a7_spelling.py + datacheck A7 段（WIP，未打进主 HTML）
+- 定案：主拼写英式、美式作别名；音标方案 B（保留美式音标，卡上标 🇺🇸）；weekend 正文按人教 on、注英式 at。
+- `src/patch_a7_spelling.py`：math→maths、mom→mum、center→centre 并为「美式」别名（去掉 centre / center 的 WORD_SEE 互指）；G14 at 时间例改注；词卡音标后 🇺🇸（A7_US_PHON）。
+- `src/datacheck.py` 加 A7 段（当前 3 条：centre/center、maths/math、mum/mom，打补丁后 0）。woolen→woollen 留下一轮。
