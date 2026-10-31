@@ -2599,3 +2599,4 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - hd_g19、g20、g21、g22、g23、g24、g25、g26、g27、g29、g30、g33 共 12 幕中段原是同一块「🧲 did / does / can / will 吸走过去时与三单」板，按本课重做「结构公式 + 对比 + 常错」：G19 三单加法 + /s/ /z/ /ɪz/ + does 否定疑问；G20 be + -ing 变法；G21 -ed 四规则 + /t/ /d/ /ɪd/（引第一性原理 · 经济原则）；G22 不规则分组；G23 did 吸收器（专讲 did）；G24 计划 / 迹象两板（📅 / 🌧️）+ will 对比；G25 will 三用法；G26 can 能力 / 许可；G27 口气梯子 + mustn't ≠ don't have to；G29 否定两条路；G30 句首信号灯 + 怎问怎答；G33 祈使句四种口气。新英文例句都配朗读，字幕给译文。
 - 原 8 行一字不差移到 `aux_transformer_4`（助动词照妖镜 ④）末尾「⑥ 操作词总论」，补「有操作词直接加 not / 提前，没有就请 do」（审计 1.4）。决定：总论放在现有照妖镜页而不新建原理幕（新原理幕归道 4）；底层原理 hub 的入口由道 4 挂。
 - 新检查 `src/wbdupcheck.py`（不同语法点之间连续 ≥3 行白板字相同 = 串板）入 runall；①2 的 10 对暂列白名单。13 幕重打包嵌入，确定性 / 0 报错；runall --full 全过。前后对比图在工作区 shots/l3/36_1（不入库）。
+- 2026-10-31 13:05 JST：决策 37（手机端可用性与内容真实性 14 条）写入 MASTER_DESIGN；新建 REQUIREMENTS.md；HANDOFF 下一步 00 置顶。
