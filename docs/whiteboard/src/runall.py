@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """runall.py [--full] —— 决策 29 O9：一条命令跑全套回归，全绿才提交（返回码非 0 = 不通过）。
-快速档（默认，约 3–4 分钟）：jscheck（node --check + anchorcheck）→ wbdupcheck（语法白板跨课串板，决策 36 ①1）→ offlinecheck（有就跑）→ App 回归抽样：
+快速档（默认，约 3–4 分钟）：jscheck（node --check + anchorcheck）→ wbdupcheck（语法白板跨课串板，决策 36 ①1）→ wbtextcheck（截断句 / ** / 字幕口诀，决策 36 ①3）→ offlinecheck（有就跑）→ App 回归抽样：
   app_check8（词卡词源）、app_check9（练习闭环 + 总地图）、app_check10（我的学习 + 综合自测）、app_check11（别名词条）、app_check12（模块互链 + 总地图知识点）、app_check13（构词派生词）、app_check14（语法例句库）、app_check15（决策 33 菜单去重）、app_check.py tense_matrix、app_check2.py wo wo_grimm、app_check4.py hd_phonics、app_check4.py oral_func。
 完整档 --full 另加：app_check5（单词卡模板 55 词）、app_check6（思维导图 25 幕）、app_check7（第一性原理 24 幕）、leakcheck（有就跑）。
 每项判定：返回码 0，且输出里没有 BAD / FAIL / 「不合格 N」(N>0) / 非 none 的 errors。"""
@@ -14,6 +14,7 @@ Q = [
     ('课标词覆盖 kebiaocheck（35-A2）', [sys.executable, 'kebiaocheck.py'], HERE),
     ('手机/平板适配 mobilecheck', [sys.executable, 'mobilecheck.py'], HERE),
     ('语法白板串板 wbdupcheck', [sys.executable, 'wbdupcheck.py'], HERE),
+    ('白板截断句 / Markdown / 字幕口诀 wbtextcheck（决策 36 ①3）', [sys.executable, 'wbtextcheck.py'], HERE),
     ('白板手机播放框 playercheck（R37-01）', [sys.executable, 'playercheck.py'], HERE),
     ('家长门按钮 gatecheck（R37-13）', [sys.executable, 'gatecheck.py'], HERE),
     ('Markdown 残留 mdcheck（R37-04）', [sys.executable, 'mdcheck.py'], HERE),

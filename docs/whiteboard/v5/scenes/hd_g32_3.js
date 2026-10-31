@@ -2,13 +2,18 @@
 // 内容来源（R1 零丢失）：src/cases/hd_g32.js 案例 3；对照清单 lab/INVENTORY_HD_G32_3_V5.md
 // 角色关键帧：sprites/hdg32_3.js（人物先行帧库 cast/）
 // 决策 36 ①2（fix36_cross）：只放本课的板，口诀进讲解字幕
+// 决策 36 ①3（fix36_trunc）：截断句补全、按语义拆行、剥 ** / 反引号、字幕给译文
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/hdg32_3.js';
 const ACTS = {"*": ["l_wave", "l_speak", "l_laugh"]};
 const ITEMS = [
   ['w', 'G32 底层原理'],
   ['w', '深度原理突破：How 与 What 到底怎么选？ —— 告别死记硬背！看懂「What 是代词（追问事物/名词）vs How 是副词（追问方式/状态/形容词程度）」'],
-  ['w', '【核心原理揭秘：为什么同样问天气，一句话是 How is the weather? 另一句话却是 What is t'],
+  ['w', '【核心原理揭秘：为什么同样问天气，一句话是 How is the weather? 另一句话却是 What is the weather like?】'],
+  ['w', '• What 的本质是【疑问代词（替身名词）】：填补名词空缺！'],
+  ['w', '在 What is the weather like? 里，like 是介词“像……”，后面缺一个宾语名词，所以必须派代词 What 去当 like 的宾语！'],
+  ['w', '• How 的本质是【疑问副词（方式与程度探针）】：修饰动词（问方式 How do you go?）或修饰形容词/副词（问状态程度 How is the weather? / How old / How tall）！'],
+  ['w', '没有介词 like 时，直接问状态形容词，必须派副词 How 出场！'],
   ['w', '🔬 What + 名词家族 vs How + 形容词家族'],
   ['w', 'What colour / What time / What day / What date / What size'],
   ['w', 'What day 问星期几 ｜ What date 问几月几号'],

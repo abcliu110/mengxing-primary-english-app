@@ -2,13 +2,15 @@
 // 内容来源（R1 零丢失）：src/cases/hd_g10.js 案例 1；对照清单 lab/INVENTORY_HD_G10_1_V5.md
 // 角色关键帧：sprites/hdg10_1.js（人物先行帧库 cast/）
 // 决策 36 ①2（fix36_cross）：只放本课的板，口诀进讲解字幕
+// 决策 36 ①3（fix36_trunc）：截断句补全、按语义拆行、剥 ** / 反引号、字幕给译文
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/hdg10_1.js';
 const ACTS = {"*": ["l_books", "l_think", "l_point"]};
 const ITEMS = [
   ['w', 'G10 底层原理'],
   ['w', '不定代词 some 与 any 的地盘分工 —— some 住肯定句和热情邀请屋；any 住否定句和普通疑问屋！'],
-  ['w', '【为什么疑问句和否定句要把 some 换成 any？】some 默认“肯定有这么一些”；而在疑问或否定句里换上表示“'],
+  ['w', '【为什么疑问句和否定句要把 some 换成 any？】some 默认“肯定有这么一些”；而在疑问或否定句里换上表示“任何一点”的 any！'],
+  ['w', '但如果你端着蛋糕热情邀请别人 Would you like some cake?，你真心希望对方说 Yes，所以保留 some！'],
   ['w', '🔬 some / any 的共同本领：都表示「一些」'],
   ['w', '后面能接可数名词复数：some storybooks'],
   ['w', '也能接不可数名词：some milk'],

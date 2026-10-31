@@ -2664,3 +2664,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新文件：`src/gen_vocab_a2.py`、`src/patch_vocab_add.py`（幂等，id 已在就跳过）、`src/kebiaocheck.py`、`v5/app_check_vocab_add.py`、`lab/audit35/a2_kebiao_add.json`、`lab/audit35/A2_KEBIAO_ADD.md`；`phon_same_ok.json` 加 let。kebiaocheck、app_check_vocab_add 入 runall。
 - 验收：kebiaocheck 500/500；phoncheck 1547 词 0 不合格；app_check_vocab_add 60 词（功能词 8）开卡 / 模板挂载 / 单词表可搜 0 不合格、0 报错；jscheck、app_check8、app_check11、wordlistcheck、jargoncheck、etymcheck 通过。
 - 遗留：better / best / worse / worst / was / were 现在有了原形（good、bad、be），并入原形放 A5；Dolch 220 视觉词为第 2 批。
+
+### 2026-10-31 16:20 JST · 决策 36 ①3 白板截断句 / Markdown 残留 / 字幕口诀（道 3）
+- 根因：旧 HD 剧场导出清单时把 GRAMMAR_DB 的 why_explanation、典型语境、核心规律等按字数硬截（「……在中间垫一个鼻音 n 变成」「two ➔ second (」），v5 照抄上板。逐幕扫描（白板字去掉「① 典型语境：」等标签后是否为原字段的真前缀）后，截断全部在语法白板 hd_g*；口语 / 一词多义的「截断」属道 r38 的模板重做。
+- `v5/fix36_trunc.py`（幂等）：44 幕（G01–G04、G06、G08–G13、G15–G17、G20–G36、G40 全部幕）补回原句，按换行 / 条目、再按 。！？；】 拆行（右括号、引号、以逗号 / 冒号开头的段并回前段），不按字数截；剥 `**` 与反引号；末句朗读的中文原是口诀 → 改成这句英文的译文（step1_zh 对应句，G24 / G32 / G36 手工校），口诀进讲解字幕「🎵 口诀：…」保留。只增不删，对照表 `lab/audit36/R1_36_3_TRUNC.md`。
+- 新检查 `src/wbtextcheck.py` 入 runall：全部场景 `**` / 反引号 = 0；hd_g 截断句 = 0；hd_g 底部字幕 ≠ 口诀。决策 38 样板幕 G05、G07、G14、G18、G19、G37–G39 归道 r38，在白名单 `lab/audit36/wbtext_allow.json`。
+- 44 幕重打包嵌入：确定性 / 0 报错（普通 + sandbox）。补全后时长 75–144 s，hd_g32 ①②③ 121–144 s、hd_g24 120 s 超过 120 s，随 ② 长幕拆分处理。jscheck / wbdupcheck / wbtextcheck / mdcheck / app_check12 / app_check4 hd_g32 通过。
