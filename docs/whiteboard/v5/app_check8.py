@@ -26,12 +26,12 @@ async def main():
                 if not ok or k < 3: print(word, 'OK' if ok else 'BAD', x['real'], x['links'], x['tip'][:50])
             await pg.evaluate("closeDetailModal && closeDetailModal()")
         ph = await pg.evaluate("VOCAB_DB.filter(w=>/^V6_/.test(w.id)&&etymIsPlaceholderTip(w.memory_tip)).map(w=>w.id)")
-        for wid in ph[::60] + ['V6_MORPH_26']:
+        for wid in ph[::60]:   # V6_MORPH_26（was）35-A2 起是 be 的别名，开卡落到 be 主卡，不再按占位词抽
             await pg.evaluate(f"openWordCardModal({json.dumps(wid)}, []); cardModalState.revealed=true; cardModalState.flipped=true; renderWordCardModalContent()"); await pg.wait_for_timeout(300)
             y = await pg.evaluate("({theme: !!document.querySelector('[data-etym-theme]'), tip: document.querySelectorAll('[data-etym-tip]').length, ph: /记忆锦囊：属于|考场必考不规则\\/拼写变形词/.test(document.body.innerText), real: (document.querySelector('[data-etym]')||{}).dataset?.etym})")
             ok = y['theme'] and y['tip'] == 0 and not y['ph'] and (y['real'] == 'none' if wid.startswith('V6_MORPH_') else True); bad += not ok
             if not ok: print(wid, 'BAD 占位', y)
             await pg.evaluate("closeDetailModal && closeDetailModal()")
-        print(f'占位词 {len(ph)}（抽 {len(ph[::60]) + 1}）')
+        print(f'占位词 {len(ph)}（抽 {len(ph[::60])}）')
         print(f'{len(sample)} 词（在库 {min(15, len(inn))}），不合格 {bad}；errors', errs[:5] or 'none'); await b.close()
 asyncio.run(main())
