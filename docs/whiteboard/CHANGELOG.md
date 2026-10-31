@@ -2889,3 +2889,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 全量 rebuild_all 完成（549 幕，主 HTML 16.39 MB，字表 3354 不变）：含 tense_matrix① 4 节、past_clans① 3 节、adj_order① 3 节。
 - durcheck --scan 全量：仍有 80 幕 > 120 s（最长 irregular_plural_2 / ze_be_1 166 s，fp_* 多幕 140–165 s），见 `lab/audit36/durations.json`。
 - 主 HTML 工作区：patch_a3_examples（例句 445、搭配占位 410、构词占位 445）→ patch_a4_collocations（模板 882、Morph 54、重复整句 988 删，35 句搬 more_ex）→ patch_a7_spelling；datacheck 0。两个脚本的词头正则兼容 `dolch` 等插在 word 前的字段。wordcard_tpl 重建嵌入。
+
+## 2026-10-31 20:40 JST · 决策 38 主 HTML 补交（A3 / A4 / A7 + 全量重建）
+- 19:13 那次只提交了脚本和文档，主 HTML 没入库，工作区随沙箱丢失；本次在新沙箱重跑：patch_a3_examples（例句 445、搭配占位 410、构词占位 445）→ patch_a4_collocations（模板 882、Morph 54、重复整句 988，35 句搬 more_ex）→ patch_a7_spelling → datacheck 0 → rebuild_all（549 幕 + 模板，字表 3355）。主 HTML 16,317,803 字节。
+- 回归：app_check_parts / 8 / 11 0 不合格，runall 全部通过（durcheck 仍 80 幕 > 120 s，仅提示）。app_check11 期望改为 center = centre 的「美式」别名（35-A7 方案 B）；app_check8 不再抽 V6_MORPH_26（35-A2 起 was 是 be 的别名）。
+- app_check5 在 2 核沙箱偶发个别词 dur=None（每次不同词），不在 runall 内，未处理。

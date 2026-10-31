@@ -1,6 +1,6 @@
 """app_check11.py —— 重复内容合并第 2 步回归：别名词条（src/patch_dedup_b.py）。
 ① 别名词条不在 VOCAB_DB 列表里；每个别名的主词条存在、无环；② 旧 id 打开词卡 → 主词条，主词条卡上有「过去式：went」类标签；
-③ 旧记录读档迁移进主 id，错题本计数与列表一致；④ 按词形跳卡 / 小测题单 / 模块小测都转主词条；⑤ center↔centre、studies、代词组只互链不重定向。0 报错。"""
+③ 旧记录读档迁移进主 id，错题本计数与列表一致；④ 按词形跳卡 / 小测题单 / 模块小测都转主词条；⑤ center 并为 centre 的「美式」别名（决策 35-A7 方案 B）；studies、代词组只互链不重定向。0 报错。"""
 import asyncio, pathlib, json
 from playwright.async_api import async_playwright
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
@@ -16,7 +16,7 @@ async def main():
         if r['n'] < 51 or r['inList'] or r['noMain'] or r['noEntry'] or r['see'] or r['grp']: bad.append(f'别名表 {r}')
         if list(r['rec']) != ['V6_日常_1'] or r['rec']['V6_日常_1']['status'] != 'mistake' or r['rec']['V6_日常_1']['wrongCount'] != 2: bad.append(f'迁移 {r["rec"]}')
         EXP = [('V6_MORPH_20', 'V6_日常_1', '过去式'), ('V6_颜色_1', 'G2_0452', '美式'), ('V6_颜色_12', 'V6_颜色_11', '美式'), ('V6_MORPH_16', 'V6_家庭_20', '复数'), ('V6_核心_14', 'V6_核心_13', '物主代词'),
-               ('G5_0689', 'G5_0689', '英式'), ('G5_0374', 'G5_0374', '美式'), ('G6_273', 'G6_273', '原形'), ('G4_174', 'G4_174', '三单'), ('G1_P01', 'G1_P01', '单词卡'), ('V6_核心_0', 'V6_核心_0', '词组卡')]
+               ('G5_0689', 'G5_0374', '美式'), ('G5_0374', 'G5_0374', '美式'), ('G6_273', 'G6_273', '原形'), ('G4_174', 'G4_174', '三单'), ('G1_P01', 'G1_P01', '单词卡'), ('V6_核心_0', 'V6_核心_0', '词组卡')]
         for wid, main, lab in EXP:
             await pg.evaluate(f"openWordCardModal('{wid}', ['{wid}'])"); await pg.wait_for_timeout(200)
             x = await pg.evaluate("[cardModalState.wordId, (document.querySelector('[data-word-forms]')||{}).innerText||'']")
