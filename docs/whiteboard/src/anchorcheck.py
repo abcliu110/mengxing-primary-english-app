@@ -103,6 +103,16 @@ MENU_V2 = [
     ('王炸实验室 · " + g.name', 0, 0),
 ]
 
+MENU_V3 = [   # 决策 33 ③（src/patch_menu_hubs.py）
+    ('// MENU_HUBS_V3 ----------', 1, 1),
+    ('if (typeof d33Mount === "function") d33Mount();', 1, 1),
+    ('V6H.data = { ORAL_12_SCENES', 1, 1),
+    ('<!-- MENU_HUBS_V3:principles -->', 1, 1),
+    ('<!-- MENU_HUBS_V3:practice -->', 1, 1),
+    ("navigateTo('method_hub')", 0, 0),     # 不带 tab 的方法论入口不能回来
+    ('Did you anything else?', 0, 0),
+]
+
 
 def registry():
     """页签登记表：原来从 insert_wb.py 读；旧 SVG 白板退役（2026-10-30）后 insert_wb.py 已删，登记表冻结在 wb_registry.json。"""
@@ -117,7 +127,7 @@ def check(s):
     errs = []
     retired = RETIRED in s
     menu2 = '// MENU_HOME_V2 ----------' in s
-    for m, lo, hi in MARKERS + (MY_STUDY if 'function renderMyStudyView()' in s else []) + (MENU_V2 if menu2 else PRE_MENU):
+    for m, lo, hi in MARKERS + (MY_STUDY if 'function renderMyStudyView()' in s else []) + (MENU_V2 if menu2 else PRE_MENU) + (MENU_V3 if '// MENU_HUBS_V3 ----------' in s else []):
         if retired and m in RETIRED_SKIP: continue
         n = s.count(m)
         if n < lo or (hi is not None and n > hi):
