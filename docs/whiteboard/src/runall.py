@@ -10,6 +10,7 @@ Q = [
     ('jscheck', [sys.executable, 'jscheck.py'], HERE),
     ('offlinecheck', [sys.executable, 'offlinecheck.py'], HERE),
     ('朗读 ttscheck', [sys.executable, 'ttscheck.py'], HERE),
+    ('手机/平板适配 mobilecheck', [sys.executable, 'mobilecheck.py'], HERE),
     ('词卡词源 app_check8', [sys.executable, 'app_check8.py'], V5),
     ('练习闭环 app_check9', [sys.executable, 'app_check9.py'], V5),
     ('我的学习 + 综合自测 app_check10', [sys.executable, 'app_check10.py'], V5),

@@ -2564,3 +2564,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 「怎样做：……地」→「做事的样子」；颜色与形状「窄、厚、低」「巨大和最大」合成「尺寸大小」（原「宽窄、厚薄、高低、大小」在导图框里会断成两行）；数字与计量「钟表」1 词并进「数字 11–18 和钟表」。
 - `gen_mindmap_groups.py`：同名规则合成一组，条件可写 dict 列表（任一满足）。17 幕重生成 → 打包 → R1 缺 0 → 确定性 0 报错 → 嵌入；`app_check6.py` 25/25、jscheck OK。
 
+### 2026-10-31 11:00 JST · 决策 29 O4：手机 / 平板适配
+- 新检查 `src/mobilecheck.py`（入 runall 快速档）：手机 390×844、平板竖 768×1024、平板横 1024×768，24 个主要页面（含单词卡弹窗），查横向滚动、触控目标 < 44 px、文字 < 12 px。改前：横向滚动 0；小目标 / 小字共 3293 处（主要是按钮高 28–43 px、「🔊 点读发音」小标签 72×19、0.72 / 0.74rem 字号）。
+- `src/patch_mobile.py`（幂等）：新样式块 `<style id="mobile-o4">`（MOBILE_O4_V1）——按钮 / 可点元素最小 44×44，可点行内 span / a 改 inline-flex，正文段落里的内联链接不动；html/body overflow-x: hidden 保险；23 处 0.72 / 0.74rem 字号 → 0.75rem（12 px）。改后三视口 0 不合格，runall 全过；390 px 截图自审版面正常。
+
