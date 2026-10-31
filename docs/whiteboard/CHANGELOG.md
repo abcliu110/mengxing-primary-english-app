@@ -2839,3 +2839,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:26 JST · 决策 38 联络表脚本 sheet38.py 入库；runall 进行中（WIP）
 - `/workspace/work/sheet38.py` → `docs/whiteboard/v5/sheet38.py`（沙箱外脚本入库，HANDOFF 做法段改指向）。
 - runall 后台跑中（`/workspace/work/c38/runall4.log`）。
+
+## 2026-10-31 18:31 JST · 决策 38 wb5 scene clip 时间窗分节（手工长幕用；WIP，未重建）
+- `v5/wb5.js`：`scene({ clip: [t0, t1] })` / `globalThis.__WB5_CLIP`——只播场景时间 [t0, t1)，t0 前的板书直接在场，CUES / NARR / SAYS 平移到 0 起。给 tense_matrix① / past_clans① / adj_order① 这类按绝对时间手写的长幕分节用（分节文件 import 原幕 build 再设 clip）。
+- ⚠️ 引擎改了：之后任何单页签 embed 都会带第二份引擎，必须先全量 `rebuild_all.py`。
