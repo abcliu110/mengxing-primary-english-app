@@ -42,7 +42,6 @@ MARKERS = [
     ('${homeContinueHtml()}', 1, 1),
     ('function noteLastView', 1, 1),
     ('class="lab-tab${tab === id ? \' on\' : \'\'}">${labDoneMark(id)}', 1, 1),
-    ('class="lab-entry', 1, None),
     ('十五大王炸方法论</h', 0, 0),          # step1 删掉的重复横幅不能回来
     ('v4.0 终极宗师·十二大王炸全规律版', 0, 0),  # step3 去掉的顶栏版本号不能回来
     # 主题思维导图讲解幕（v5/embed_app.py HD_HOOKS，2026-10-30）：舞台 + 挂钩各 1 处；交互导图本身必须还在
@@ -91,6 +90,20 @@ MY_STUDY = [
 ]
 
 
+# 决策 33 ②：首页 5 入口（src/patch_menu_home.py，2026-10-31）。补丁前首页还有实验室入口卡；补丁后入口卡必须没了、5 张卡和新页面各 1
+PRE_MENU = [('class="lab-entry', 1, None)]
+MENU_V2 = [
+    ('// MENU_HOME_V2 ----------', 1, 1),
+    ('data-home-five', 1, 1),
+    ('else if (s === "principles_hub") renderPrinciplesHubView();', 1, 1),
+    ('else if (s === "practice_hub") renderPracticeHubView();', 1, 1),
+    ('<!-- MENU_HOME_V2:vocab_zone -->${vocabZonesHtml()}', 1, 1),
+    ('<!-- MENU_HOME_V2:grammar_cat_zone -->${grammarCatZoneHtml(cat)}', 1, 1),
+    ('class="lab-entry"', 0, 0),
+    ('王炸实验室 · " + g.name', 0, 0),
+]
+
+
 def registry():
     """页签登记表：原来从 insert_wb.py 读；旧 SVG 白板退役（2026-10-30）后 insert_wb.py 已删，登记表冻结在 wb_registry.json。"""
     return json.load(open(os.path.join(HERE, 'wb_registry.json'), encoding='utf-8'))
@@ -103,7 +116,8 @@ RETIRED_SKIP = ('// <<WB_ENGINE_START>>', '// <<WB_ENGINE_END>>', '<script type=
 def check(s):
     errs = []
     retired = RETIRED in s
-    for m, lo, hi in MARKERS + (MY_STUDY if 'function renderMyStudyView()' in s else []):
+    menu2 = '// MENU_HOME_V2 ----------' in s
+    for m, lo, hi in MARKERS + (MY_STUDY if 'function renderMyStudyView()' in s else []) + (MENU_V2 if menu2 else PRE_MENU):
         if retired and m in RETIRED_SKIP: continue
         n = s.count(m)
         if n < lo or (hi is not None and n > hi):

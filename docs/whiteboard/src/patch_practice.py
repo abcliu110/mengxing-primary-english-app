@@ -98,7 +98,7 @@ function mqMount() {
 }
 function appMapNodes() {
   const out = [];
-  if (typeof LAB_GROUPS !== "undefined") LAB_GROUPS.forEach(g => g.tabs.forEach(([id, t]) => out.push({ area: "🧪 王炸实验室 · " + g.name, key: "lab:" + id, title: t, go: `navigateTo('super_lab_hub', { labTab: '${id}' })` })));
+  if (typeof LAB_GROUPS !== "undefined") LAB_GROUPS.forEach(g => g.tabs.forEach(([id, t]) => out.push({ area: g.name, key: "lab:" + id, title: t, go: `navigateTo('super_lab_hub', { labTab: '${id}' })` })));
   if (typeof WO_CHAPTERS !== "undefined") WO_CHAPTERS.forEach(ch => (ch.scenes || []).forEach(s => { if (typeof woSceneReady !== "function" || woSceneReady(s.id)) out.push({ area: "📖 单词身世 · " + ch.icon + " " + ch.title, key: "wo:" + s.id, title: s.title, go: `navigateTo('word_origins_hub', { scene: '${s.id}' })` }); }));
   if (typeof ZE_CHAPTERS !== "undefined") ZE_CHAPTERS.forEach(ch => (ch.scenes || []).forEach(s => out.push({ area: "🔀 中英对照 · " + ch.icon + " " + ch.title, key: "ze:" + s.id, title: s.title, go: `navigateTo('zh_en_hub', { scene: '${s.id}' })` })));
   if (typeof FIRST_PRINCIPLES_DB !== "undefined") FIRST_PRINCIPLES_DB.forEach((l, i) => out.push({ area: "🧠 第一性原理", key: "fp:" + i, title: l.shortTitle || l.num, go: `navigateTo('first_principles_hub', { lawIdx: ${i}, actIdx: 0 })` }));

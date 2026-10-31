@@ -927,6 +927,19 @@
 .method-hub #mhConfettiCanvas, .method-hub canvas#mhConfettiCanvas {
   position: fixed; pointer-events: none; inset: 0; width: 100%; height: 100%; z-index: 9998;
 }
+/* MENU_HOME_V2：首页第 4、5 张入口卡 */
+.portal-card.principles { border-color: #a5b4fc; background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%); }
+.portal-card.principles .portal-enter-btn { background: linear-gradient(135deg, #4f46e5, #4338ca); }
+.portal-card.practice { border-color: #fda4af; background: linear-gradient(180deg, #ffffff 0%, #fff1f2 100%); }
+.portal-card.practice .portal-enter-btn { background: linear-gradient(135deg, #e11d48, #be123c); }
+.home-five .portal-card { min-height: 0 !important; }
+.home-practice-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+.home-practice-btns button { color: #fff; border: 0; border-radius: 12px; padding: 10px 12px; min-height: 44px; font-weight: 900; cursor: pointer; font-family: inherit; font-size: 0.9rem; }
+.hub-zone { background: #fff; border: 2px solid #e2e8f0; border-radius: 18px; padding: 14px 16px; margin-bottom: 14px; }
+.hub-zone-t { font-weight: 900; font-size: 1.02rem; margin-bottom: 8px; }
+.hub-zone-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.hub-chip { background: #fff; border: 1.5px solid; border-radius: 999px; padding: 9px 14px; min-height: 44px; font-size: 0.88rem; font-weight: 800; cursor: pointer; font-family: inherit; }
+.hub-chip:hover { filter: brightness(0.96); }
 .portal-card.method {
   border-color: #f59e0b;
   background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
@@ -2421,151 +2434,56 @@ function renderHomeView() {
       .hub-mini-d{font-size:0.8rem;color:#475569;margin-top:2px;}
       .hub-mini-go{margin-left:auto;font-weight:900;}
     </style>
-    <div class="home-sec">📚 今天学什么</div>
-      <div class="home-portal-grid">
-      <!-- 1. 单词大厅 -->
-      <div class="portal-card vocab" onclick="navigateTo('vocab_hall')">
+    <!-- MENU_HOME_V2：决策 33 ②，首页只留 5 个入口（src/patch_menu_home.py）。原三大总枢小卡、王炸实验室入口卡、闯关厅横幅、方法论小卡已按分区挪进各入口 -->
+    <!-- WO_HOME / ZE_HOME：单词身世入口在「📚 单词」大厅的「🧭 单词专项」区，中英对照入口在「🧠 底层原理」；保留此标记，insert_wb.py 据此不再插入旧横幅 -->
+    <!-- ZE_HOME（同上） -->
+    <div class="home-portal-grid home-five" data-home-five>
+      <div class="portal-card vocab" data-home-entry="vocab" onclick="navigateTo('vocab_hall')">
         <div>
-          <div class="portal-icon">📘</div>
-          <h2 class="portal-title" style="color:#1e40af;">单词大世界</h2>
-          <div class="portal-sub">1,000+ 课标核心词 · 6+1 多维理解网络</div>
-          <div class="portal-tags">
-            <span class="portal-tag">🌍 三大主题思维导图</span>
-            <span class="portal-tag">⚡ Sight Words 闪认</span>
-            <span class="portal-tag">🪄 9步自然拼读</span>
-            <span class="portal-tag">🤖 构词变形金刚</span>
-            <span class="portal-tag">👨‍👩‍👧 词语亲戚反查</span>
-            <span class="portal-tag">🎬 10大动作框架剧场</span>
-          </div>
-          <div style="font-size:0.86rem; color:#475569; margin-bottom:14px;">
-            🌟 已掌握 <b>${wCounts.mastered}</b> 词 ｜ 📖 学习中 <b>${wCounts.learning}</b> ｜ 📕 错题本 <b>${wCounts.mistake}</b>
-          </div>
+          <div class="portal-icon">📚</div>
+          <h2 class="portal-title" style="color:#1e40af;">单词</h2>
+          <div class="portal-sub">单词表 · 发音与拼读 · 构词与变形 · 词语关系 · 单词身世</div>
+          <div style="font-size:0.86rem; color:#475569; margin:10px 0 12px;">🌟 已掌握 <b>${wCounts.mastered}</b> 词 ｜ 📖 学习中 <b>${wCounts.learning}</b> ｜ 📕 错题本 <b>${wCounts.mistake}</b></div>
         </div>
-        <div class="portal-enter-btn">进入单词大厅 ➔</div>
+        <div class="portal-enter-btn">进入单词 ➔</div>
       </div>
-
-      <!-- 2. 语法大厅 -->
-      <div class="portal-card grammar" onclick="navigateTo('grammar_hall')">
+      <div class="portal-card grammar" data-home-entry="grammar" onclick="navigateTo('grammar_hall')">
         <div>
           <div class="portal-icon">🧩</div>
-          <h2 class="portal-title" style="color:#5b21b6;">语法魔法屋</h2>
-          <div class="portal-sub">40 个核心语法点 · 感知→发现→归纳→应用</div>
-          <div class="portal-tags">
-            <span class="portal-tag">📊 四大总结总表(代词/疑问词/How与What/语序)</span>
-            <span class="portal-tag">🎬 高清2D角色三幕剧场</span>
-            <span class="portal-tag">🔍 How vs What 原理</span>
-            <span class="portal-tag">⏳ in/on/at 空间隐喻</span>
-            <span class="portal-tag">🧱 双编码句子积木</span>
-            <span class="portal-tag">🎮 语法纠偏游乐场</span>
-            <span class="portal-tag">🎵 8首语法韵律歌谣</span>
-          </div>
-          <div style="font-size:0.86rem; color:#475569; margin-bottom:14px;">
-            🌟 已掌握 <b>${gCounts.mastered}</b> 点 ｜ 📖 学习中 <b>${gCounts.learning}</b> ｜ 📕 错题本 <b>${gCounts.mistake}</b>
-          </div>
+          <h2 class="portal-title" style="color:#5b21b6;">语法</h2>
+          <div class="portal-sub">40 个核心语法点：词法 15 · 时态 12 · 句型 13，每类末尾有总结与专项</div>
+          <div style="font-size:0.86rem; color:#475569; margin:10px 0 12px;">🌟 已掌握 <b>${gCounts.mastered}</b> 点 ｜ 📖 学习中 <b>${gCounts.learning}</b> ｜ 📕 错题本 <b>${gCounts.mistake}</b></div>
         </div>
-        <div class="portal-enter-btn">进入语法大厅 ➔</div>
+        <div class="portal-enter-btn">进入语法 ➔</div>
       </div>
-
-      <!-- 3. 日常用语大厅 -->
-      <div class="portal-card oral" onclick="navigateTo('oral_hall')">
+      <div class="portal-card oral" data-home-entry="oral" onclick="navigateTo('oral_hall')">
         <div>
           <div class="portal-icon">💬</div>
-          <h2 class="portal-title" style="color:#065f46;">日常用语小剧场</h2>
-          <div class="portal-sub">16 大真实交际场景 · 144 句高频地道口语</div>
-          <div class="portal-tags">
-            <span class="portal-tag">👋 问候/感谢/课堂</span>
-            <span class="portal-tag">🍽️ 就餐/购物/问路</span>
-            <span class="portal-tag">🩺 看病/电话/节日</span>
-            <span class="portal-tag">🎬 高清情景动画</span>
-            <span class="portal-tag">🗣️ 多轮分角色点读</span>
-            <span class="portal-tag">🎯 听音与情景应用</span>
-          </div>
-          <div style="font-size:0.86rem; color:#475569; margin-bottom:14px;">
-            🌟 已掌握 <b>${oCounts.mastered}</b> 句 ｜ 📖 学习中 <b>${oCounts.learning}</b> ｜ 📕 错题本 <b>${oCounts.mistake}</b>
-          </div>
+          <h2 class="portal-title" style="color:#065f46;">口语</h2>
+          <div class="portal-sub">16 大交际场景 · ${DAILY_EXPRESSIONS_DB.length} 句高频口语 · 交际句型地图</div>
+          <div style="font-size:0.86rem; color:#475569; margin:10px 0 12px;">🌟 已掌握 <b>${oCounts.mastered}</b> 句 ｜ 📖 学习中 <b>${oCounts.learning}</b> ｜ 📕 错题本 <b>${oCounts.mistake}</b></div>
         </div>
-        <div class="portal-enter-btn">进入日常用语大厅 ➔</div>
+        <div class="portal-enter-btn">进入口语 ➔</div>
       </div>
-      </div>
-
-    <div onclick="navigateTo('v6_hub')"
-      style="background:linear-gradient(135deg,#0c4a6e 0%,#0284c7 45%,#38bdf8 100%); color:#fff; border-radius:22px; padding:20px 24px; border:3px solid #bae6fd; margin-bottom:22px; cursor:pointer; box-shadow:0 12px 28px rgba(2,132,199,0.25);">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
-        <div style="flex:1; min-width:280px;">
-          <span style="background:rgba(255,255,255,0.2); padding:4px 12px; border-radius:999px; font-weight:900; font-size:0.8rem;">🎮 词库 + 闯关厅</span>
-          <h2 style="margin:8px 0 6px; font-size:1.36rem; font-weight:900; color:#fff;">拓展教室 / 闯关游戏厅</h2>
-          <p style="margin:0; font-size:0.92rem; color:#e0f2fe; line-height:1.5;">新增扩展词条 · 4合1闯关 · 12景口语 · 金剪刀 · 同音/反义 · 作文模板 · 词源树 · 变形表</p>
-        </div>
-        <div style="background:#fff; color:#075985; font-weight:900; font-size:1rem; padding:14px 20px; border-radius:16px; white-space:nowrap;">进入拓展教室 ➔</div>
-      </div>
-    </div>
-
-    <!-- WO_HOME / ZE_HOME：单词身世、中英对照总枢入口已压成下方小卡（首页改版第 3 步）；保留此标记，insert_wb.py 据此不再插入旧横幅 -->
-    <!-- ZE_HOME（同上） -->
-    <div class="home-sec">🧭 理解英语：三大总枢</div>
-    <div class="hub-minis">
-        <div class="hub-mini" onclick="navigateTo('first_principles_hub', { lawIdx: 0, actIdx: 0 })" style="background:#eef2ff; border-color:#4338ca40;">
-          <div class="hub-mini-ic">🧠</div>
-          <div><div class="hub-mini-t" style="color:#4338ca;">六大第一性原理</div><div class="hub-mini-d">一理通百词，一理通百句</div></div>
-          <div class="hub-mini-go" style="color:#4338ca;">➔</div>
-        </div>
-        <div class="hub-mini" onclick="navigateTo('word_origins_hub', { scene: 'wo_port' })" style="background:#f5f3ff; border-color:#7c3aed40;">
-          <div class="hub-mini-ic">📖</div>
-          <div><div class="hub-mini-t" style="color:#7c3aed;">单词身世</div><div class="hub-mini-d">罗马、维京、诺曼、大航海，单词的故事</div></div>
-          <div class="hub-mini-go" style="color:#7c3aed;">➔</div>
-        </div>
-        <div class="hub-mini" onclick="navigateTo('zh_en_hub', { scene: 'ze_be' })" style="background:#f0fdfa; border-color:#0f766e40;">
-          <div class="hub-mini-ic">🔀</div>
-          <div><div class="hub-mini-t" style="color:#0f766e;">中英对照</div><div class="hub-mini-d">中文习惯哪些能搬、哪些不能搬</div></div>
-          <div class="hub-mini-go" style="color:#0f766e;">➔</div>
-        </div>
-    </div>
-
-    <!-- 王炸实验室入口卡（首页改版第 2 步：15 张卡收成一张，按四组直达） -->
-    <style>
-      .lab-entry{background:#fff;border-radius:22px;padding:18px 20px;border:2px solid #10b981;margin-bottom:22px;box-shadow:0 8px 20px rgba(5,150,105,0.10);}
-      .lab-entry-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
-      .lab-entry-head h2{margin:0;font-size:1.3rem;color:#0f172a;font-weight:900;}
-      .lab-entry-head p{margin:3px 0 0;font-size:0.86rem;color:#475569;}
-      .lab-entry-go{background:#059669;color:#fff;border:0;font-weight:900;font-size:0.95rem;padding:10px 16px;border-radius:14px;cursor:pointer;white-space:nowrap;}
-      .lab-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;}
-      .lab-group{border-radius:14px;padding:10px 12px;}
-      .lab-group-name{font-weight:900;font-size:0.92rem;margin-bottom:6px;}
-      .lab-chips{display:flex;flex-wrap:wrap;gap:6px;}
-      .lab-chip{background:#fff;border:1.5px solid;border-radius:999px;padding:5px 10px;font-size:0.8rem;font-weight:800;cursor:pointer;font-family:inherit;}
-      .lab-chip:hover{filter:brightness(0.95);transform:translateY(-1px);}
-    </style>
-    <div class="lab-entry">
-      <div class="lab-entry-head">
+      <div class="portal-card principles" data-home-entry="principles" onclick="navigateTo('principles_hub')">
         <div>
-          <h2>⚡ 王炸实验室</h2>
-          <p>底层规律按发音、词汇、语法、写作分组，点名字直达。</p>
+          <div class="portal-icon">🧠</div>
+          <h2 class="portal-title" style="color:#4338ca;">底层原理</h2>
+          <div class="portal-sub">六大第一性原理 · 中英对照 · 三大隐喻密码 · 竹节句 vs 树干句</div>
         </div>
-        <button type="button" class="lab-entry-go" onclick="navigateTo('super_lab_hub', { labTab: 'phrasal_key' })">进入实验室 ➔</button>
+        <div class="portal-enter-btn">进入底层原理 ➔</div>
       </div>
-      <div class="lab-groups">
-        <div class="lab-group" style="background:#fff1f2;">
-          <div class="lab-group-name" style="color:#e11d48;">👄 发音</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'pron_map' })" style="border-color:#e11d4833; color:#e11d48;">👄 发音五大坑 + 口腔地图</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'intonation_map' })" style="border-color:#e11d4833; color:#e11d48;">🎵 语调 · 重音 · 弱读</button></div>
+      <div class="portal-card practice" data-home-entry="practice" onclick="navigateTo('practice_hub')">
+        <div>
+          <div class="portal-icon">🎯</div>
+          <h2 class="portal-title" style="color:#be123c;">练习与档案</h2>
+          <div class="portal-sub">综合自测 · 错题本 / 学习中 / 已掌握 · 闯关游戏 · 总地图</div>
+          <div class="home-practice-btns">
+            <button type="button" data-home-my onclick="event.stopPropagation(); navigateTo('my_study')" style="background:#be123c;">📒 我的学习</button><button type="button" data-home-test onclick="event.stopPropagation(); navigateTo('self_test')" style="background:#047857;">🎯 综合自测</button><button type="button" data-home-map onclick="event.stopPropagation(); navigateTo('app_map')" style="background:#1e3a8a;">🗺️ 总地图</button>
+          </div>
         </div>
-        <div class="lab-group" style="background:#eff6ff;">
-          <div class="lab-group-name" style="color:#2563eb;">🔤 词汇</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'phrasal_key' })" style="border-color:#2563eb33; color:#2563eb;">🔑 短语动词总钥匙</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'eight_endings' })" style="border-color:#2563eb33; color:#2563eb;">🔚 只剩 8 个词尾</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'irregular_plural' })" style="border-color:#2563eb33; color:#2563eb;">👣 不规则复数</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'past_clans' })" style="border-color:#2563eb33; color:#2563eb;">⚔️ 过去式四大门派</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'metaphor_code' })" style="border-color:#2563eb33; color:#2563eb;">🎭 三大隐喻密码</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('word_origins_hub', { scene: 'wo_vowel_a' })" style="border-color:#2563eb33; color:#2563eb;">🧬 元音变异 foot→feet</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); openWordCardModal('G6_258', ['G6_258','G4_167','G5_208','G1_030','G3_151','G3_152'])" style="border-color:#2563eb33; color:#2563eb;">🔬 单词卡 X 光</button></div>
-        </div>
-        <div class="lab-group" style="background:#f5f3ff;">
-          <div class="lab-group-name" style="color:#7c3aed;">🧩 语法 · ✍️ 写作</div>
-          <div class="lab-chips"><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'bamboo_tree' })" style="border-color:#7c3aed33; color:#7c3aed;">🎋 竹节句 vs 树干句</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'adj_order' })" style="border-color:#7c3aed33; color:#7c3aed;">👑 形容词排座次</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'tense_matrix' })" style="border-color:#7c3aed33; color:#7c3aed;">🧭 时 × 体矩阵</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'aux_transformer' })" style="border-color:#7c3aed33; color:#7c3aed;">🪞 助动词照妖镜</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'five_patterns' })" style="border-color:#7c3aed33; color:#7c3aed;">🦴 五大基本句型</button><button type="button" class="lab-chip" onclick="event.stopPropagation(); navigateTo('super_lab_hub', { labTab: 'writing_alchemist' })" style="border-color:#7c3aed33; color:#7c3aed;">🏆 高分作文炼金炉</button></div>
-        </div>
+        <div class="portal-enter-btn">进入练习与档案 ➔</div>
       </div>
-    </div>
-
-    <div class="home-sec">👑 更多</div>
-    <div class="hub-minis">
-        <div class="hub-mini" onclick="navigateTo('method_hub')" style="background:#fffbeb; border-color:#b4530940;">
-          <div class="hub-mini-ic">👑</div>
-          <div><div class="hub-mini-t" style="color:#b45309;">方法论 / 真动画教室</div><div class="hub-mini-d">天坑测验 · 三幕剧 · 句法火车 · 变形拼写台</div></div>
-          <div class="hub-mini-go" style="color:#b45309;">➔</div>
-        </div>
     </div>
   `;
 }
@@ -2829,6 +2747,7 @@ function renderVocabHall() {
       </div>
     </div>
 
+    <!-- MENU_HOME_V2:vocab_zone -->${vocabZonesHtml()}
     <!-- My Vocabulary Learning Status (我的) -->
     <div class="section-banner">
       <h2>📖 我的单词学习档案（统一状态机追踪）</h2>
@@ -4448,6 +4367,7 @@ function renderGrammarCatView() {
         `;
       }).join("")}
     </div>
+    <!-- MENU_HOME_V2:grammar_cat_zone -->${grammarCatZoneHtml(cat)}
   `;
 }
 
@@ -8026,9 +7946,12 @@ let superLabState = {
 };
 
 const LAB_GROUPS = [
-  { name: "👄 发音", tabs: [["pron_map", "👄 发音五大坑 + 口腔地图"], ["intonation_map", "🎵 语调 · 重音 · 弱读"]] },
-  { name: "🔤 词汇", tabs: [["phrasal_key", "🔑 短语动词总钥匙"], ["eight_endings", "🔚 只剩 8 个词尾"], ["irregular_plural", "👣 不规则复数"], ["past_clans", "⚔️ 过去式四大门派"], ["metaphor_code", "🎭 三大隐喻密码"]] },
-  { name: "🧩 语法 · ✍️ 写作", tabs: [["bamboo_tree", "🎋 竹节句 vs 树干句"], ["adj_order", "👑 形容词排座次"], ["tense_matrix", "🧭 时 × 体矩阵"], ["aux_transformer", "🪞 助动词照妖镜"], ["five_patterns", "🦴 五大基本句型"], ["writing_alchemist", "🏆 高分作文炼金炉"]] }
+  { name: "📚 单词 · 发音与拼读", home: "vocab_hall", tabs: [["pron_map", "👄 发音五大坑 + 口腔地图"], ["intonation_map", "🎵 语调 · 重音 · 弱读"]] },
+  { name: "📚 单词 · 构词与变形", home: "vocab_hall", tabs: [["eight_endings", "🔚 只剩 8 个词尾"], ["irregular_plural", "👣 不规则复数"], ["past_clans", "⚔️ 过去式四大门派"]] },
+  { name: "📚 单词 · 词语关系", home: "vocab_hall", tabs: [["phrasal_key", "🔑 短语动词总钥匙"]] },
+  { name: "🧩 语法 · 时态", home: "grammar_hall", tabs: [["tense_matrix", "🧭 时 × 体矩阵"], ["aux_transformer", "🪞 助动词照妖镜"]] },
+  { name: "🧩 语法 · 句型与写作", home: "grammar_hall", tabs: [["five_patterns", "🦴 五大基本句型"], ["adj_order", "👑 形容词排座次"], ["writing_alchemist", "🏆 高分作文炼金炉"]] },
+  { name: "🧠 底层原理", home: "principles_hub", tabs: [["metaphor_code", "🎭 三大隐喻密码"], ["bamboo_tree", "🎋 竹节句 vs 树干句"]] }
 ];
 (function () {
   const st = document.createElement("style");
@@ -8072,9 +7995,10 @@ function renderSuperLabHubView() {
     irregular_plural: "👣 不规则复数"
   };
 
+  const labG = labGroupOf(tab), labTopName = labTop(labG);   // MENU_HOME_V2：按所属分区显示
   renderSubNavbar(
-    ["首页", "⚡ 王炸实验室", tabTitles[tab] || "规律实验室"],
-    `<button class="nav-btn quiz-launch" onclick="navigateTo('first_principles_hub', { lawIdx: 0, actIdx: 0 })">🧠 六大第一性原理总枢</button>`
+    ["首页", labTopName, tabTitles[tab] || "规律实验室"],
+    `<button class="nav-btn" data-lab-back onclick="navigateTo('${labG.home}')">↩ 回到 ${labTopName}</button><button class="nav-btn quiz-launch" onclick="navigateTo('first_principles_hub', { lawIdx: 0, actIdx: 0 })">🧠 六大第一性原理总枢</button>`
   );
 
   const root = document.getElementById("appViewRoot");
@@ -8592,11 +8516,11 @@ function renderSuperLabHubView() {
     <div style="background:linear-gradient(135deg, #064e3b 0%, #0f172a 55%, #311042 100%); color:#fff; border-radius:22px; padding:18px 22px; border:3px solid #10b981; margin-bottom:18px;">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
         <div>
-          <span style="background:#10b981; color:#0f172a; padding:3px 11px; border-radius:999px; font-weight:900; font-size:0.78rem;">⚡ 王炸实验室</span>
-          <h2 style="margin:6px 0 2px; font-size:1.36rem; font-weight:900;">底层规律实验室（按发音、词汇、语法分组，点名字切换）</h2>
+          <span style="background:#10b981; color:#0f172a; padding:3px 11px; border-radius:999px; font-weight:900; font-size:0.78rem;">${labTopName} · 专项</span>
+          <h2 style="margin:6px 0 2px; font-size:1.36rem; font-weight:900;">${labTopName}专项规律（同一分区的页签，点名字切换）</h2>
         </div>
       </div>
-      <div class="lab-tabgroups">${LAB_GROUPS.map(g => `
+      <div class="lab-tabgroups">${LAB_GROUPS.filter(g => labTop(g) === labTopName).map(g => `
         <div class="lab-tabgroup"><span class="lab-tabgroup-name">${g.name}</span>${g.tabs.map(([id, label]) => `<button onclick="superLabState.labTab='${id}'; renderSuperLabHubView();" class="lab-tab${tab === id ? ' on' : ''}">${labDoneMark(id)}${label}</button>`).join("")}</div>`).join("")}
       </div>
     </div>
@@ -8787,7 +8711,7 @@ function homeContinueHtml() {
   const go = lv && lv.screen
     ? `<button type="button" class="hc-go" onclick="homeResumeLast()">▶ 继续上次<span class="hc-label">${attrEscape(lv.label || lv.screen)}</span></button>`
     : `<button type="button" class="hc-go" onclick="navigateTo('vocab_hall')">▶ 第一次来？<span class="hc-label">从单词大世界开始</span></button>`;
-  return `<div class="home-continue">${go}<button type="button" data-home-my onclick="navigateTo('my_study')" style="background:#be123c; color:#fff; border:0; border-radius:12px; padding:9px 12px; font-weight:900; cursor:pointer; white-space:nowrap;">📒 我的学习</button><button type="button" data-home-test onclick="navigateTo('self_test')" style="background:#047857; color:#fff; border:0; border-radius:12px; padding:9px 12px; font-weight:900; cursor:pointer; white-space:nowrap;">🎯 综合自测</button><button type="button" data-home-map onclick="navigateTo('app_map')" style="background:#1e3a8a; color:#fff; border:0; border-radius:12px; padding:9px 12px; font-weight:900; cursor:pointer; white-space:nowrap;">🗺️ 总地图</button><span class="hc-streak">${fire}</span></div>`;
+  return `<div class="home-continue">${go}<span class="hc-streak">${fire}</span></div>`;
 }
 function homeResumeLast() {
   const lv = appState.lastView;
@@ -8908,7 +8832,7 @@ function mqMount() {
 }
 function appMapNodes() {
   const out = [];
-  if (typeof LAB_GROUPS !== "undefined") LAB_GROUPS.forEach(g => g.tabs.forEach(([id, t]) => out.push({ area: "🧪 王炸实验室 · " + g.name, key: "lab:" + id, title: t, go: `navigateTo('super_lab_hub', { labTab: '${id}' })` })));
+  if (typeof LAB_GROUPS !== "undefined") LAB_GROUPS.forEach(g => g.tabs.forEach(([id, t]) => out.push({ area: g.name, key: "lab:" + id, title: t, go: `navigateTo('super_lab_hub', { labTab: '${id}' })` })));
   if (typeof WO_CHAPTERS !== "undefined") WO_CHAPTERS.forEach(ch => (ch.scenes || []).forEach(s => { if ((typeof woSceneReady !== "function" || woSceneReady(s.id)) && !out.some(o => o.key === "wo:" + s.id)) out.push({ area: "📖 单词身世 · " + ch.icon + " " + ch.title, key: "wo:" + s.id, title: s.title, go: `navigateTo('word_origins_hub', { scene: '${s.id}' })` }); }));
   if (typeof ZE_CHAPTERS !== "undefined") ZE_CHAPTERS.forEach(ch => (ch.scenes || []).forEach(s => out.push({ area: "🔀 中英对照 · " + ch.icon + " " + ch.title, key: "ze:" + s.id, title: s.title, go: `navigateTo('zh_en_hub', { scene: '${s.id}' })` })));
   if (typeof FIRST_PRINCIPLES_DB !== "undefined") FIRST_PRINCIPLES_DB.forEach((l, i) => out.push({ area: "🧠 第一性原理", key: "fp:" + i, title: l.shortTitle || l.num, go: `navigateTo('first_principles_hub', { lawIdx: ${i}, actIdx: 0 })` }));
@@ -9076,6 +9000,62 @@ function grexMount(force) {
     const h = grexHtml(gId); if (h) root.insertAdjacentHTML("beforeend", h);
   } catch (e) { console.warn("grexMount", e); }
 }
+// MENU_HOME_V2 ---------- 决策 33 ②：首页 5 入口，实验室 13 页签按单词 / 语法 / 底层原理分区（src/patch_menu_home.py） ----------
+function labGroupOf(id) { return LAB_GROUPS.find(g => g.tabs.some(t => t[0] === id)) || LAB_GROUPS[0]; }
+function labTop(g) { return (g && g.name || "").split(" · ")[0]; }
+function labTabLabel(id) { const g = labGroupOf(id), t = g.tabs.find(x => x[0] === id); return t ? t[1] : id; }
+function labChipHtml(id, color) { return `<button type="button" class="hub-chip" data-lab-chip="${id}" onclick="navigateTo('super_lab_hub', { labTab: '${id}' })" style="border-color:${color}55; color:${color};">${typeof labDoneMark === "function" ? labDoneMark(id) : ""}${labTabLabel(id)}</button>`; }
+function hubChip(label, go, color, attr) { return `<button type="button" class="hub-chip" ${attr || ""} onclick="${go}" style="border-color:${color}55; color:${color};">${label}</button>`; }
+function hubZone(title, color, bg, chips, attr) { return `<div class="hub-zone" ${attr || ""} style="border-color:${color}40; background:${bg};"><div class="hub-zone-t" style="color:${color};">${title}</div><div class="hub-zone-chips">${chips}</div></div>`; }
+function vocabZonesHtml() {
+  return `<div class="section-banner"><h2>🧭 单词专项（发音与拼读 · 构词与变形 · 词语关系 · 单词身世）</h2></div>
+    ${hubZone("👄 发音与拼读", "#e11d48", "#fff1f2", hubChip("🪄 自然拼读 9 步", "navigateTo('vocab_phonics', { tab: 'steps', stepIdx: 0 })", "#e11d48") + labChipHtml("pron_map", "#e11d48") + labChipHtml("intonation_map", "#e11d48"), 'data-vocab-zone="pron"')}
+    ${hubZone("🤖 构词与变形", "#7c3aed", "#f5f3ff", hubChip("🤖 合成词 / 前后缀 / 派生词族", "navigateTo('vocab_formation', { tab: 'compounds' })", "#7c3aed") + labChipHtml("eight_endings", "#7c3aed") + labChipHtml("irregular_plural", "#7c3aed") + labChipHtml("past_clans", "#7c3aed") + hubChip("🧬 元音变异 foot→feet", "navigateTo('word_origins_hub', { scene: 'wo_vowel_a' })", "#7c3aed") + hubChip("🔬 单词卡 X 光", "openWordCardModal('G6_258', ['G6_258','G4_167','G5_208','G1_030','G3_151','G3_152'])", "#7c3aed"), 'data-vocab-zone="form"')}
+    ${hubZone("👨‍👩‍👧 词语关系", "#d97706", "#fffbeb", hubChip("👨‍👩‍👧 易混词 / 反义词 / 同义词", "navigateTo('vocab_relations', { tab: 'confusables', query: '' })", "#d97706") + hubChip("🎬 框架小剧场", "navigateTo('vocab_frames', { frameIdx: 0, pIdx: 0 })", "#d97706") + labChipHtml("phrasal_key", "#d97706"), 'data-vocab-zone="rel"')}
+    ${hubZone("📖 单词身世", "#7c3aed", "#faf5ff", hubChip("📖 单词身世：罗马、维京、诺曼、大航海，单词的故事", "navigateTo('word_origins_hub', { scene: 'wo_port' })", "#7c3aed", "data-vocab-wo"), 'data-vocab-zone="wo"')}`;
+}
+const GRAMMAR_CAT_ZONES = {
+  "动词与时态": { title: "⏳ 时态类收尾专项", tabs: ["tense_matrix", "aux_transformer"] },
+  "句型": { title: "🚂 句型类收尾专项", tabs: ["five_patterns", "adj_order", "writing_alchemist"] }
+};
+function grammarCatZoneHtml(cat) {
+  const z = GRAMMAR_CAT_ZONES[cat]; if (!z) return "";
+  return `<div style="margin-top:18px;" data-grammar-cat-zone="${cat}">${hubZone(z.title, "#7c3aed", "#f5f3ff", z.tabs.map(id => labChipHtml(id, "#7c3aed")).join(""))}</div>`;
+}
+function hubCard(icon, title, desc, go, color, bg, attr) {
+  return `<div class="hub-mini" ${attr || ""} onclick="${go}" style="background:${bg}; border-color:${color}40; display:flex; align-items:center; gap:12px; border:2px solid ${color}40; border-radius:16px; padding:12px 14px; cursor:pointer; min-height:44px;"><div style="font-size:1.7rem;">${icon}</div><div style="flex:1;"><div style="font-weight:900; font-size:1rem; color:${color};">${title}</div><div style="font-size:0.84rem; color:#475569; margin-top:2px;">${desc}</div></div><div style="font-weight:900; color:${color};">➔</div></div>`;
+}
+function renderPrinciplesHubView() {
+  renderSubNavbar(["首页", "🧠 底层原理"]);
+  document.getElementById("appViewRoot").innerHTML = `
+    <div data-principles-hub style="background:linear-gradient(135deg,#eef2ff,#e0e7ff); border:2px solid #a5b4fc; border-radius:18px; padding:14px 18px; margin-bottom:14px;">
+      <div style="font-weight:900; font-size:1.25rem; color:#3730a3;">🧠 底层原理 · 一理通百词，一理通百句</div>
+      <div style="font-size:0.88rem; color:#475569; margin-top:4px;">语音、单词、语法背后的共同规律；中文习惯哪些能搬进英语、哪些不能。</div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px;">
+      ${hubCard("🧠", "六大第一性原理", "6 条原理 × 4 幕白板动画", "navigateTo('first_principles_hub', { lawIdx: 0, actIdx: 0 })", "#4338ca", "#eef2ff", 'data-principles-card="fp"')}
+      ${hubCard("🔀", "中英对照", "句法与思维差异：中文习惯哪些能搬、哪些不能搬", "navigateTo('zh_en_hub', { scene: 'ze_be' })", "#0f766e", "#f0fdfa", 'data-principles-card="ze"')}
+      ${hubCard("🎭", "三大隐喻密码", "身体 / 颜色 / 动物 + 空间隐喻", "navigateTo('super_lab_hub', { labTab: 'metaphor_code' })", "#db2777", "#fdf2f8", 'data-principles-card="metaphor_code"')}
+      ${hubCard("🎋", "竹节句 vs 树干句", "汉语竹节句 → 英语树干句手术台", "navigateTo('super_lab_hub', { labTab: 'bamboo_tree' })", "#15803d", "#f0fdf4", 'data-principles-card="bamboo_tree"')}
+      <!-- MENU_HOME_V2:method_card -->${hubCard("👑", "方法论 / 真动画教室", "天坑测验 · 三幕剧 · 句法火车 · 变形拼写台（整理中，内容将并入各分区）", "navigateTo('method_hub')", "#b45309", "#fffbeb", 'data-principles-card="method"')}
+    </div>`;
+}
+function renderPracticeHubView() {
+  renderSubNavbar(["首页", "🎯 练习与档案"]);
+  const c = { vocab: countDomainStatus("vocab"), grammar: countDomainStatus("grammar"), oral: countDomainStatus("oral") };
+  const sum = k => c.vocab[k] + c.grammar[k] + c.oral[k];
+  document.getElementById("appViewRoot").innerHTML = `
+    <div data-practice-hub style="background:linear-gradient(135deg,#fff1f2,#ffe4e6); border:2px solid #fda4af; border-radius:18px; padding:14px 18px; margin-bottom:14px;">
+      <div style="font-weight:900; font-size:1.25rem; color:#9f1239;">🎯 练习与档案</div>
+      <div style="font-size:0.88rem; color:#475569; margin-top:4px;">📕 错题本 <b>${sum("mistake")}</b> ｜ 📖 学习中 <b>${sum("learning")}</b> ｜ 🌟 已掌握 <b>${sum("mastered")}</b>（单词 + 语法 + 口语）</div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px;">
+      ${hubCard("🎯", "综合自测", "按单词 / 语法 / 口语选类型开测，可只测错题本", "navigateTo('self_test')", "#047857", "#ecfdf5", 'data-practice-card="test"')}
+      ${hubCard("📒", "我的学习", "错题本 / 学习中 / 已掌握，三类合在一处", "navigateTo('my_study')", "#be123c", "#fff1f2", 'data-practice-card="my"')}
+      <!-- MENU_HOME_V2:games_card -->${hubCard("🎮", "闯关游戏厅", "4 合 1 闯关 · 单词闪电战 · 考场捉虫 · 金剪刀", "navigateTo('v6_hub')", "#0284c7", "#f0f9ff", 'data-practice-card="games"')}
+      ${hubCard("🗺️", "总地图", "全部模块一张图，学过的点亮", "navigateTo('app_map')", "#1e3a8a", "#eff6ff", 'data-practice-card="map"')}
+    </div>`;
+}
 // ORAL_FUNC_MAP_V1 ---------- 决策 6：交际句型地图（礼貌阶梯 + 五大交际功能；src/patch_oral_func.py） ----------
 const ORAL_FUNC_LADDER = [
   ["① 命令", "Give me the pen.", "把笔给我。"], ["② 加 please", "Please give me the pen.", "请把笔给我。"],
@@ -9126,6 +9106,8 @@ function renderCurrentView() {
   else if (s === "vocab_my" || s === "grammar_my" || s === "oral_my") { currentView = { screen: "my_study", params: Object.assign({ kind: s.split("_")[0] }, currentView.params), scrollY: 0 }; renderMyStudyView(); noteLastView(); return; }   // MY_STUDY_V1: 旧档案页重定向
   else if (s === "my_study") renderMyStudyView();
   else if (s === "self_test") renderSelfTestView();
+  else if (s === "principles_hub") renderPrinciplesHubView();   // MENU_HOME_V2
+  else if (s === "practice_hub") renderPracticeHubView();   // MENU_HOME_V2
   else if (s === "grammar_hall") renderGrammarHall();
   else if (s === "first_principles_hub") renderFirstPrinciplesHubView();
   else if (s === "zh_en_hub") renderZhEnHubView();
