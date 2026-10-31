@@ -304,3 +304,24 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 | 14 | **决策 38 预测停顿**：讲规则之前 ≥1 个 ≥3 秒的 `C.predict`；`C.rule` 记的规则命名时刻不早于第一个停顿结束 | `src/insightcheck.py` |
 | 15 | **决策 38 遮字幕测**：不看字幕、不听旁白，只看画面，孩子能说出规律（取代 / 加严第 11 条）；板上文字面积 ≤ 40%（讲解 / 朗读字幕不算），规则句进字幕或要点卡 | 390 px 联络表目视 + `insightcheck.py` |
 | 16 | **决策 38 R1 / R4 修订**：R1 =「知识点不丢」（板上、讲解字幕、朗读字幕任一处），不再要求旧文字一字不差上黑板；规则类课不强制动词动作，讲解员姿势不算动作 | 每幕的知识点核对（如 `check_wordcard_tpl.py`） |
+
+## 18. 认知动画四步剧本（决策 39，用户 2026-10-31）
+
+> 规范原文 `SOP_COGNITIVE_UPGRADE.md`；本仓库落地与取舍见 `MASTER_DESIGN.md` 决策 39。§17 的 v5.1 技术验收和决策 38 第 13–16 条照旧，下面是规则类幕（hd_g、wo_rule、ze、fp、vv_schema、hd_phonics）另加的。
+
+### 流程
+1. **专题先拆幕**：①破障（中英冲突 / 来历）②建模（一个底层模型）③边界（易混双屏）④炼金（口语 / 写作，可选）。一个专题 ≥ 3 幕。
+2. **每幕写四段剧本**：冲突 15% → 机制 45% → 迁移 25%（同一图式不动，3 个例子）→ 锚点 15%（反推，`C.predict` ≥ 3 s 后揭晓）。前两段不出术语，先画后命名。
+3. **画面三层**：具象（角色 / 实物）→ 图式（`schemaContainer` / `timelineCamera` / 力箭头）→ 符号（`morphLetters` / `syntaxSlotMachine` / 词缀拼装）。易混点用 `contrastSplitScreen`。
+4. **源码标四段**：`// @step1_hook` … `// @step4_punchline`，各段开始处一行。
+5. **只重建本页签**：`python3 v5/rebuild_all.py --tabs=<页签>`；改了 concept.js / 引擎 / 字表才全量。
+
+### 验收（在 §17 表后追加）
+| # | 项 | 检查 |
+|---|---|---|
+| 17 | 四段标记齐全，比例偏差 ≤ ±10 个百分点 | `src/insightcheck.py` |
+| 18 | 静态 wbtext 时长 ≤ 25%，concept 动态时长 ≥ 60% | `src/insightcheck.py` |
+| 19 | 迁移段同一图式连续解释 ≥ 3 例 | 人工 + 啊哈卡 |
+| 20 | 专题 ≥ 3 幕，幕间有递进，不是同一套卡拆页 | `src/depthcheck.py` + 人工 |
+| 21 | 静音测、前 5 秒抓人、例句查重（`lab/DUP_SENTENCES_REPORT.md`） | 人工 |
+

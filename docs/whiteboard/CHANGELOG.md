@@ -2894,3 +2894,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 19:13 那次只提交了脚本和文档，主 HTML 没入库，工作区随沙箱丢失；本次在新沙箱重跑：patch_a3_examples（例句 445、搭配占位 410、构词占位 445）→ patch_a4_collocations（模板 882、Morph 54、重复整句 988，35 句搬 more_ex）→ patch_a7_spelling → datacheck 0 → rebuild_all（549 幕 + 模板，字表 3355）。主 HTML 16,317,803 字节。
 - 回归：app_check_parts / 8 / 11 0 不合格，runall 全部通过（durcheck 仍 80 幕 > 120 s，仅提示）。app_check11 期望改为 center = centre 的「美式」别名（35-A7 方案 B）；app_check8 不再抽 V6_MORPH_26（35-A2 起 was 是 be 的别名）。
 - app_check5 在 2 核沙箱偶发个别词 dur=None（每次不同词），不在 runall 内，未处理。
+
+## 2026-10-31 21:15 JST · 决策 39 认知动画系统升级写成决策 39（MASTER_DESIGN / SOP §18 / HANDOFF）
+- 用户提交 SOP_COGNITIVE_UPGRADE.md（aed318d）；决策 39 写进 MASTER_DESIGN（接口：啊哈卡对应四步、预测停顿取 3 s、文字面积 40% + 静态时长 25% 双门、模板幕保留、多幕门禁另起 depthcheck.py、门禁先提示后阻断）。
+- SOP.md 新增 §18 四步剧本流程与验收 17–21；ci.py 支持 DEC=39。
+- 现状：hd_g / wo_rule / ze 68 个专题中 58 个单幕。

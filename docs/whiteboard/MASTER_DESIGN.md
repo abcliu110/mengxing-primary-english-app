@@ -578,6 +578,32 @@ G18 一般现在时（与进行时对比、时间圆环、He go / Does he goes�
 
 15 幕全部达到 A 并经用户审片后，按模块推广到其余 493 幕（模板类一次改模板即覆盖整批）。与决策 37-05 / 07、36-① / ② 重叠的幕合并处理，不重复做。
 
+### 决策 39　认知动画系统升级（用户 2026-10-31 21:0x 提交 `SOP_COGNITIVE_UPGRADE.md`，21:14 确认按序开工；在决策 38 之上加严）
+
+**规范原文**：`SOP_COGNITIVE_UPGRADE.md`（以下简称「认知 SOP」）。本条只写本仓库怎么落地、与决策 38 的接口和取舍。
+
+**要求（摘要）**
+1. 四步剧本：①冲突 Hook 15%（5–8 s，不出术语）→ ②机制 Mechanism 45%（concept 动态推演）→ ③迁移 Transfer 25%（同一个图式不动，换 3 个例子）→ ④锚点 Punchline 15%（反推挑战，停顿后揭晓）。场景源码用 `// @step1_hook`、`// @step2_mechanism`、`// @step3_transfer`、`// @step4_punchline` 标出四段。
+2. 三层动画：具象情境（cast 角色、实物）→ 几何图式（容器、力箭头、时间轴取景框）→ 符号变形（字母变形、词缀拼装、句法卡槽）。角色动作必须对应语法结构或空间图式，不为热闹走位。
+3. `v5/lib/concept.js` 新增五个组件：`morphLetters`、`schemaContainer`（enter / exit / expand / deplete）、`syntaxSlotMachine`（冲突电弧 → to / -ing 降级挂入）、`timelineCamera`（推近 / 拉远）、`contrastSplitScreen`（双屏同步对比）。
+4. 纵深：`hd_g*`、`wo_rule_*`、`ze_*` 每个专题 ≥ 3 幕（①破障 ②建模 ③边界辨析，④炼金可选）。现状：这三类 68 个专题里 58 个只有 1 幕、2 个 2 幕、8 个 3 幕。
+5. 扩充包（排在 1–4 之后）：一词多义 17 → 64 词（四大认知域）、词源 5 → 30 专题（12 词根 × 3 幕 + 18 文明史）、第一性原理 6 → 10（+ fp_distance / fp_info_flow / fp_force_dynamics / fp_figure_ground，hd_g01–g40 挂到十大原理下）、拼读 4 → 16 幕。
+6. 门禁：静态 wbtext 时长 ≤ 25%、concept 动态时长 ≥ 60%（不达标 = D 级，阻断）；四段标记齐全；多幕专题 ≥ 3 幕；Hook 与 Mechanism 前半段禁术语（jargoncheck）。
+
+**与决策 38 的接口**
+- 啊哈卡保留：`C.aha({see,guess,reveal,rule})` 对应 ①冲突 = see+guess、②机制 = reveal、④锚点 = 反推；③迁移是决策 39 新加的硬要求。
+- 预测停顿取严：决策 38 的 `C.predict` ≥ 3 s 不变（认知 SOP 写 2 s，取 3 s）；`C.rule` 仍不早于第一个停顿结束。
+- 板上文字：决策 38「面积 ≤ 40%」保留，另加「静态字时长 ≤ 25%」，两条都要过。
+- 小学生口径：Hook 用孩子见过的场景（中式英语翻车、字面反差），不用「印刷术」「Image Schema」这类成人词；认知 SOP 的成人例子落地时改写成小学口径。
+- 模板幕：认知 SOP「冻结 wordcard_tpl / gen_auto 裸跑」= **不再用 gen_auto 给规则类内容批量出新幕**；已按决策 38 重做的模板幕（单词卡 1425 词、口语 144 幕、导图 25 幕、一词多义模板）属于词卡 / 总结类，保留，不算违规；新增四段标记只要求规则类幕（hd_g、wo_rule、ze、fp、vv_schema、hd_phonics）。
+- 门禁名字：`src/gatecheck.py` 已是 R37-13 家长门检查，多幕门禁另起 `src/depthcheck.py`；时长占比与四段标记加进 `src/insightcheck.py`。门禁先以「提示」入 runall，样板通过后对新幕改为阻断，旧幕按推广进度逐批转阻断（避免 runall 一次性全红）。
+
+**顺序（每步一提交，HANDOFF 断点同步）**
+1. 本条入文档（MASTER_DESIGN / SOP §18 / HANDOFF / CHANGELOG）。
+2. concept.js 五组件 + `src/concept_demo` 自测幕；insightcheck 加时长占比与四段标记（提示级）；新建 depthcheck（提示级）。
+3. 样板：`fp_boundedness` 现有 4 幕按四步剧本重做（coffee 两杯冲突 → 无界流体装进边界框 → work / time 同框迁移 → a chicken / chicken 锚点），只重建该页签（`python3 v5/rebuild_all.py --tabs=fp_boundedness`），交用户审片。
+4. 审片通过后推广：hd_g（30 个单幕专题）→ wo_rule（16）→ ze（11）→ vv_schema 总纲 → 第一性原理新增 4 个 → 一词多义 / 词源 / 拼读扩充包。每个专题一提交；只有引擎、字表或共享素材变了才全量重建，否则 `--tabs`。
+
 ### 决策 23–28 总表（用户 2026-10-30 00:50–01:06 确认「全部加上，写入设计文档」）
 
 | # | 决策 | 范围 | 判定 / 硬规则 | 验收 | 顺序 |
