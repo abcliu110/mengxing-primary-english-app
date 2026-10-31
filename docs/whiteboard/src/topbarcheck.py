@@ -4,7 +4,7 @@
 import asyncio, pathlib
 from playwright.async_api import async_playwright
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
-SUBS = ["navigateTo('word_list')", "navigateTo('grammar_detail', { gId: 'G01' })", "navigateTo('super_lab_hub', { labTab: 'tense_matrix' })", "navigateTo('oral_hub')"]
+SUBS = ["navigateTo('word_list')", "navigateTo('grammar_detail', { gId: 'G01' })", "navigateTo('super_lab_hub', { labTab: 'tense_matrix' })", "navigateTo('oral_hall')"]
 BARS = """()=>{const v=[...document.querySelectorAll('body > .top-header, #globalSubNav')].filter(e=>getComputedStyle(e).display!=='none'); return v.reduce((a,e)=>a+e.getBoundingClientRect().height,0)}"""
 BACK = """()=>{const b=document.querySelector('#globalSubNav .nav-btn.back'); if(!b) return null; const r=b.getBoundingClientRect(); const el=document.elementFromPoint(r.left+r.width/2, r.top+r.height/2); return {top:Math.round(r.top), hit: !!(el && (el===b || b.contains(el)))}}"""
 async def main():

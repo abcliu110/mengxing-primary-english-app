@@ -3,7 +3,7 @@
 import asyncio, json, pathlib, re
 from playwright.async_api import async_playwright
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
-SCREENS = ["goHome()", "navigateTo('grammar_hub')", "navigateTo('vocab_hub')", "navigateTo('oral_hub')", "navigateTo('principles_hub')",
+SCREENS = ["goHome()", "navigateTo('grammar_hall')", "navigateTo('vocab_hall')", "navigateTo('oral_hall')", "navigateTo('principles_hub')",
            "navigateTo('practice_hub')", "navigateTo('word_list')", "navigateTo('my_study')", "navigateTo('app_map')", "navigateTo('method_hub')"]
 SCAN = """()=>{const t=document.body.innerText; const m=[...t.matchAll(/.{0,12}(`|\\*\\*).{0,12}/g)].map(x=>x[0]); return m.slice(0,3).concat(m.length?['共 '+m.length]:[])}"""
 async def main():

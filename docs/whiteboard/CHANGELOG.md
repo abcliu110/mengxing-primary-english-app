@@ -2617,3 +2617,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 现象：GRAMMAR_DB 31 / 40 个语法点的文字带 `…` 反引号（结构公式），页面原样显示；部分 ** 加粗符号跨了高亮函数没处理的位置，也露在外面。
 - `src/patch_r37_md.py`（标记 R37_04_MD）：全 App 文本出口统一过滤——MutationObserver 盯 document.body，新渲染的文本节点里成对 `…` → <code class="md-code">（浅紫底等宽），成对 **…** → <b>，落单的反引号 / ** 去掉；跳过 script / style / 输入框 / 白板 iframe。数据不改。
 - 新检查 `src/mdcheck.py`（40 个语法点含底部页签、10 个大厅 / 列表页、5 张词卡，innerText 里 ` 与 ** = 0）入 runall；runall 全过。
+
+### 2026-10-31 13:37 JST · 决策 37 R37-09 手机顶栏一层吸顶
+- 现状（390 px）：首页顶栏 170 px（品牌 + 打卡 + 星星 + 家长门折 3 行）；子页面再叠 155 px 的回首页 / 返回 / 面包屑 / 上一点下一点，共 325 px；且 mobile-o4 的 `html, body { overflow-x:hidden }` 让 body 成了滚动容器，position:sticky 失效，滚下去找不到返回。
+- `src/patch_r37_topbar.py`（标记 R37_09_TOPBAR，只在 ≤ 640 px 生效，电脑 / 平板不变）：overflow-x:hidden → clip（不横滚、吸顶恢复）；首页一层 56 px（品牌 + 🔥天数 + ⭐ + ⚙️）；子页面一层 56 px 吸顶「⬅ 返回 + 当前位置（面包屑最后两级）+ ☰」，回首页 / 完整面包屑 / 上一点下一点等本页按钮 / 打卡星星家长门收进 ☰ 菜单。短字用 r37-short / r37-full 两个 span 切换（不用 font-size:0，mobilecheck 不判小字）。
+- 新检查 `src/topbarcheck.py`（首页顶栏 ≤ 56 px；单词表 / 语法点 / 实验室 / 口语大厅顶栏 ≤ 60 px、滚 1200 px 后返回仍在顶部可点、☰ 菜单含回首页；1280 宽仍是原两层）入 runall；runall 全过。另：几个检查脚本里写错的 screen 名（grammar_hub / oral_hub / vocab_hub → *_hall）已改正。

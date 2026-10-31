@@ -12,7 +12,7 @@ s = APP.read_text(encoding='utf-8'); n = 0
 CSS = '''<style id="r37-topbar">
 /* R37_09_TOPBAR */
 html, body { overflow-x: clip !important; }
-.r37-menu-btn, .r37-menu { display: none; }
+.r37-menu-btn, .r37-menu, .r37-short { display: none; }
 @media (max-width: 640px) {
   body > .top-header { height: 56px; box-sizing: border-box; padding: 6px 10px; flex-wrap: nowrap; gap: 6px; }
   body > .top-header .brand-box { font-size: 1rem; gap: 4px; min-width: 0; white-space: nowrap; overflow: hidden; }
@@ -20,20 +20,19 @@ html, body { overflow-x: clip !important; }
   body > .top-header .brand-badge, body > .top-header #uiStudyDateBadge { display: none; }
   body > .top-header .stats-bar { flex-wrap: nowrap; gap: 4px; flex-shrink: 0; }
   body > .top-header .stat-pill { padding: 4px 8px; font-size: 0.85rem; gap: 2px; }
-  body > .top-header .stat-pill > span:first-child { font-size: 0; }
-  body > .top-header .stat-pill.streak > span:first-child::before { content: "🔥"; font-size: 0.9rem; }
-  body > .top-header .stat-pill.stars > span:first-child::before { content: "⭐"; font-size: 0.9rem; }
-  body > .top-header .parent-gate-btn { font-size: 0; padding: 0; width: 44px; min-height: 44px; }
-  body > .top-header .parent-gate-btn::before { content: "⚙️"; font-size: 1.15rem; }
+  .r37-full { display: none; } .r37-short { display: inline; }
+  .r37-menu .r37-full { display: inline !important; } .r37-menu .r37-short { display: none !important; }
+  body > .top-header .parent-gate-btn { padding: 0; width: 44px; min-height: 44px; font-size: 1.1rem; }
   body.r37-sub > .top-header { display: none; }
   .sub-navbar { top: 0 !important; height: 56px; box-sizing: border-box; padding: 6px 8px; flex-wrap: nowrap !important; gap: 6px; }
   .sub-navbar .nav-left-group { flex-wrap: nowrap; min-width: 0; flex: 1 1 auto; gap: 6px; }
   .sub-navbar .nav-btn.home, #uiSubNavRight { display: none !important; }
-  .sub-navbar .nav-btn.back { font-size: 0; padding: 0 12px; min-height: 44px; min-width: 48px; justify-content: center; flex-shrink: 0; }
-  .sub-navbar .nav-btn.back::before { content: "⬅ 返回"; font-size: 0.9rem; }
+  .sub-navbar .nav-btn.back { font-size: 0.9rem; padding: 0 12px; min-height: 44px; min-width: 48px; justify-content: center; flex-shrink: 0; }
   .sub-navbar .breadcrumb-trail { flex-wrap: nowrap; overflow: hidden; min-width: 0; font-size: 1rem; }
-  .sub-navbar .breadcrumb-trail span:not(.active) { display: none; }
-  .sub-navbar .breadcrumb-trail span.active { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #0f172a; }
+  .sub-navbar .breadcrumb-trail { display: block !important; white-space: nowrap; text-overflow: ellipsis; }
+  .sub-navbar .breadcrumb-trail span { display: none; }
+  .sub-navbar .breadcrumb-trail span:nth-last-child(-n+3) { display: inline; margin-right: 4px; }
+  .sub-navbar .breadcrumb-trail span.active { color: #0f172a; }
   .r37-menu-btn { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 48px; min-height: 44px; border-radius: 12px; border: 1.5px solid #cbd5e1; background: #f8fafc; font-size: 1.25rem; font-weight: 900; color: #0f172a; }
   .r37-menu.on { display: block; position: fixed; top: 58px; left: 8px; right: 8px; z-index: 300; max-height: calc(100vh - 80px); overflow-y: auto; background: #fff; border: 2px solid #cbd5e1; border-radius: 16px; box-shadow: 0 12px 32px rgba(15,23,42,.22); padding: 12px; }
   .r37-menu .r37-sec { font-size: 0.8rem; font-weight: 800; color: #475569; margin: 8px 2px 6px; }
@@ -57,7 +56,7 @@ JS = r'''<script>
       menu.innerHTML = '<div class="r37-row"><button type="button" class="nav-btn home" onclick="goHome()">🏠 回首页</button><button type="button" class="nav-btn back" onclick="goBackStep()">⬅️ 返回上一步</button></div>'
         + (bc && bc.textContent.trim() ? '<div class="r37-sec">你在这里</div><div class="r37-crumb">' + bc.innerHTML + "</div>" : "")
         + (right && right.innerHTML.trim() ? '<div class="r37-sec">本页</div><div class="r37-row">' + right.innerHTML + "</div>" : "")
-        + (stats ? '<div class="r37-sec">我的</div><div class="r37-row">' + stats.innerHTML + "</div>" : "");
+        + (stats ? '<div class="r37-sec">我的</div><div class="r37-row">' + stats.innerHTML.replace(/ id="/g, ' data-id="') + "</div>" : "");
     }
     btn.addEventListener("click", function (e) { e.stopPropagation(); if (menu.classList.contains("on")) { close(); return; } fill(); menu.classList.add("on"); btn.textContent = "✕"; });
     menu.addEventListener("click", function (e) { if (e.target.closest("button,[onclick]")) setTimeout(close, 0); });
@@ -75,5 +74,14 @@ if '/* R37_09_TOPBAR */' not in s:
     a = '<style id="mobile-o4">'; assert s.count(a) == 1; s = s.replace(a, CSS + a); n += 1
 if '/* R37_09_TOPBAR：' not in s:
     a = '\n</body>'; i = s.rindex(a); s = s[:i] + '\n' + JS.rstrip('\n') + s[i:]; n += 1
+HTML = [   # 手机上换短字（不用 font-size:0，免得 mobilecheck 判小字）
+    ('<span>🔥 连续打卡</span>', '<span><span class="r37-full">🔥 连续打卡</span><span class="r37-short">🔥</span></span>'),
+    ('<span>⭐ 星星</span>', '<span><span class="r37-full">⭐ 星星</span><span class="r37-short">⭐</span></span>'),
+    ('<button class="parent-gate-btn" onclick="openParentGateChallenge()">⚙️ 家长门</button>', '<button class="parent-gate-btn" onclick="openParentGateChallenge()" title="家长门"><span class="r37-full">⚙️ 家长门</span><span class="r37-short">⚙️</span></button>'),
+    ('<button class="nav-btn back" onclick="goBackStep()">⬅️ 返回上一步</button>\n    <div id="uiBreadcrumb"', '<button class="nav-btn back" onclick="goBackStep()"><span class="r37-full">⬅️ 返回上一步</span><span class="r37-short">⬅ 返回</span></button>\n    <div id="uiBreadcrumb"'),
+]
+for old, new in HTML:
+    if new in s: continue
+    assert s.count(old) == 1, old; s = s.replace(old, new); n += 1
 if n: __import__('appwrite').save(s)
 print('patched', n)
