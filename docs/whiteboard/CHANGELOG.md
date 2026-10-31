@@ -2577,3 +2577,11 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 发现：11 个 @keyframes（火车 / 剪刀 / 火箭 / 雷达 / 字母掉落等）都写成 `.method-hub @keyframes x {…}`，CSS 把整条当非法选择器丢弃，页面上一个都没生效（styleSheets 实测 0 个）。
 - `src/patch_deadcode.py`：删 8 个零引用函数（currentGradeWords、setStudyGrade、startPgHold、cancelPgHold、drawHDSpeechBubble、wbHasModule、wbLoadAll、wbEggHtml，约 2.2 K 字符）、11 段 @keyframes、23 处引用它们的 animation 声明（本来就不动）。复查 deadcode 0；26 个页面 390 px 整页截图前后对比无变化（只有同版本两次截图也会出现的随机内容 / 抗锯齿差异）；runall 全过。
 
+### 2026-10-31 12:10 JST · 决策 35 A1：假音标重生成
+- 判定：音标只有 ASCII 字母的 621 个词进候选，再和 CMUdict 读音比对——/pen/ /red/ /bed/ 这类本来就和拼写同形的 47 个放行（白名单 `lab/audit35/phon_same_ok.json`），其余 **574 个**是假音标（审计估 566）。
+- 新音标：CMUdict（ARPAbet → IPA，美式、长音带 ː、ɜːr / ər、oʊ，与词库原有真音标同一口径；只标一个主重音，主重音后的次重音不标，紧挨主重音的弱前缀 in- / im- 不标次重音）；CMUdict 有多个读音时取与 Wiktionary 美式最接近的；CMUdict 没有的合成词按两段拼（toothache、mooncake），英式拼写转美式再查（colourful）。Wiktionary 622 个词条重抓（缓存在仓库外）。
+- 人工定 59 个：多音词两个读音都列（close /kloʊz/ /kloʊs/、use /juːz/ /juːs/），CMUdict 首选读音不常用的改常用读音（thirty、perfect、lead、direction、sometimes、nobody、February、July、librarian 等）。
+- 逐音素与 Wiktionary 美式一致 383 / 574；其余差异是弱读 ə / ɪ、次重音写法、英美差异，抽查 40 词无错。
+- 一词多义幕 kind / right / draw（hd_poly_g3_0527 / 0600 / 0790 各 3 幕）横幅里也是假音标，场景与 R1 清单同步改（纠错改动），重打包嵌入。
+- 新检查 `src/phoncheck.py`（格式、非 IPA 字母、音标 = 拼写且不在白名单）入 runall：1487 词 0 不合格。
+

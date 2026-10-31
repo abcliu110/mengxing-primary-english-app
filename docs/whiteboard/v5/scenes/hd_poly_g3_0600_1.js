@@ -6,7 +6,7 @@ import * as SP from '../sprites/hdpg30600_1.js';
 const ACTS = {"*": ["l_books", "l_read", "l_think"]};
 const ITEMS = [
   ['w', '一词多义演变'],
-  ['w', '➡️ right /right/ — 【adj./adv./n.】右边的；正确的；正好'],
+  ['w', '➡️ right /raɪt/ — 【adj./adv./n.】右边的；正确的；正好'],
   ['w', '核心意象纽带：笔直不偏斜（右手边/正确无误/权利）'],
   ['w', '① 本义具象：adj./n./adv. 右边的，向右（大多数人强壮灵巧的右手侧）'],
   ['w', 'Turn right at the library.'],

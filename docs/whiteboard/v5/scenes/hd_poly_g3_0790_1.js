@@ -6,7 +6,7 @@ import * as SP from '../sprites/hdpg30790_1.js';
 const ACTS = {"*": ["l_books", "l_read", "l_think"]};
 const ITEMS = [
   ['w', '一词多义演变'],
-  ['w', '🖍️ draw /draw/ — 【v.】画，绘画；拉，吸引'],
+  ['w', '🖍️ draw /drɔː/ — 【v.】画，绘画；拉，吸引'],
   ['w', '核心意象纽带：用线条牵引拉动'],
   ['w', '① 本义具象：v. 画，绘画（牵引画笔在纸上拉出线条）'],
   ['w', 'Can you draw a cute panda?'],
