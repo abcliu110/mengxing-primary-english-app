@@ -13,7 +13,7 @@ const GROUPS = [
     ['💐 thank', '感谢，谢谢（常复数 thanks）', 'thank'],
     ['🙇 respect', '尊敬，尊重', 'respect']
   ] },
-  { name: '怎样做：……地', leaves: [
+  { name: '做事的样子', leaves: [
     ['🤫 quietly', '安静地，轻声地', 'quietly'],
     ['👌 exactly', '恰好，完全正确，正是如此', 'exactly'],
     ['🙇 politely', '礼貌地，客气地', 'politely'],

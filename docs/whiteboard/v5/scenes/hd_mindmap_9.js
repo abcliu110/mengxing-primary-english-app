@@ -12,11 +12,9 @@ const GROUPS = [
     ['👧 she / her / hers', '她(主格) / 她(宾格) & 她的(形物) / 她的(名物)', 'she / her / hers'],
     ['🐱 it / its / itself', '它(主/宾格) / 它的(形物/名物) / 它自己', 'it / its / itself']
   ] },
-  { name: '我们、他们', leaves: [
+  { name: '我们、他们、这那', leaves: [
     ['👫 we / us / our / ours', '我们(主格) / 我们(宾格) / 我们的(形物/名物)', 'we / us / our / ours'],
-    ['👨‍👩‍👧‍👦 they / them / their / theirs', '他们/她们/它们(主格/宾格) / 他们的(形物/名物)', 'they / them / their / theirs']
-  ] },
-  { name: '这和那', leaves: [
+    ['👨‍👩‍👧‍👦 they / them / their / theirs', '他们/她们/它们(主格/宾格) / 他们的(形物/名物)', 'they / them / their / theirs'],
     ['👆 this / that / these / those', '这，这个 / 那，那个 / 这些 / 那些（指示代词）', 'this / that / these / those']
   ] },
   { name: '问什么、哪个、谁', leaves: [
@@ -36,7 +34,7 @@ export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 语法功能与指代 · 思维导图讲解', center: '🌍 语法功能与指代', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['I love my book. Please give it to me. It is mine.'],
     aTitle: '✨ 评价形容词', adjs: [],
-    intro: '今天用一张思维导图学「语法功能与指代」：16 个单词分成 5 组。',
+    intro: '今天用一张思维导图学「语法功能与指代」：16 个单词分成 4 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

@@ -11,32 +11,30 @@ const GROUPS = [
   ] },
   { name: '树上和森林', leaves: [
     ['🐵 monkey', '猴子', 'monkey'],
-    ['🐯 tiger', '老虎', 'tiger']
+    ['🐯 tiger', '老虎', 'tiger'],
+    ['🐻 bear', '熊', 'bear']
   ] },
   { name: '草地和草原', leaves: [
+    ['🐘 elephant', '大象', 'elephant'],
     ['🦒 giraffe', '长颈鹿', 'giraffe'],
     ['🐼 panda', '大熊猫', 'panda'],
     ['🐰 rabbit', '兔子', 'rabbit'],
     ['🐄 cow', '奶牛，母牛', 'cow'],
     ['🐴 horse', '马', 'horse']
   ] },
-  { name: '蔬菜', leaves: [
-    ['🥕 carrot', '胡萝卜', 'carrot'],
-    ['🥔 potato', '马铃薯，土豆', 'potato']
-  ] },
-  { name: '更多', leaves: [
+  { name: '农场和菜园', leaves: [
     ['🐱 cat', '猫', 'cat'],
     ['🐶 dog', '狗', 'dog'],
     ['🐷 pig', '猪', 'pig'],
-    ['🐻 bear', '熊', 'bear'],
-    ['🐘 elephant', '大象', 'elephant']
+    ['🥕 carrot', '胡萝卜', 'carrot'],
+    ['🥔 potato', '马铃薯，土豆', 'potato']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 动物大世界 · 思维导图讲解', center: '🌍 动物大世界', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['The bird can fly.'],
     aTitle: '✨ 评价形容词', adjs: ['a bird', 'the bird', 'my bird'],
-    intro: '今天用一张思维导图学「动物大世界」：16 个单词分成 5 组。',
+    intro: '今天用一张思维导图学「动物大世界」：16 个单词分成 4 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

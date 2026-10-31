@@ -13,8 +13,10 @@ const GROUPS = [
     ['📚 study', '书房；学习', 'study'],
     ['🏢 apartment', '一套公寓房间', 'apartment']
   ] },
-  { name: '家具', leaves: [
+  { name: '家具和摆设', leaves: [
     ['🛋️ sofa', '沙发', 'sofa'],
+    ['🍼 bottle', '瓶子（water bottle 水瓶）', 'bottle'],
+    ['🪴 plant', '植物；种植', 'plant'],
     ['🍽️ table', '桌子，餐桌；表格', 'table'],
     ['🛏️ bed', '床', 'bed'],
     ['🚪 closet', '衣橱，壁柜', 'closet']
@@ -24,17 +26,13 @@ const GROUPS = [
     ['📺 television', '电视，电视机 (TV)', 'television'],
     ['☎️ phone', '电话，手机；打电话', 'phone'],
     ['📞 telephone', '电话机', 'telephone']
-  ] },
-  { name: '更多', leaves: [
-    ['🍼 bottle', '瓶子（water bottle 水瓶）', 'bottle'],
-    ['🪴 plant', '植物；种植', 'plant']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 居家与生活 · 思维导图讲解', center: '🌍 居家与生活', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['Wash your hands in the bathroom.'],
     aTitle: '✨ 评价形容词', adjs: ['a bathroom', 'the bathroom', 'my bathroom'],
-    intro: '今天用一张思维导图学「居家与生活」：16 个单词分成 4 组。',
+    intro: '今天用一张思维导图学「居家与生活」：16 个单词分成 3 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

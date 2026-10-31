@@ -18,12 +18,10 @@ const GROUPS = [
     ['👉 point', '点/指着', 'point'],
     ['⚪ round', '圆的', 'round']
   ] },
-  { name: '窄、厚、低', leaves: [
+  { name: '尺寸大小', leaves: [
     ['🤏 narrow', '窄的', 'narrow'],
     ['📕 thick', '厚的/浓的', 'thick'],
-    ['📉 low', '低的/矮的', 'low']
-  ] },
-  { name: '巨大和最大', leaves: [
+    ['📉 low', '低的/矮的', 'low'],
     ['🐳 huge', '巨大的', 'huge'],
     ['🐳 biggest', 'big的最高级(最大的)', 'biggest']
   ] }
@@ -32,7 +30,7 @@ export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 颜色与形状 · 思维导图讲解', center: '🌍 颜色与形状', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['Let\'s learn and use "color" in a sentence!'],
     aTitle: '✨ 评价形容词', adjs: ['a color', 'the color', 'my color'],
-    intro: '今天用一张思维导图学「颜色与形状」：14 个单词分成 4 组。',
+    intro: '今天用一张思维导图学「颜色与形状」：14 个单词分成 3 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

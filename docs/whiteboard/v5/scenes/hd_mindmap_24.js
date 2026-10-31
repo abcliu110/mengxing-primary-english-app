@@ -25,7 +25,7 @@ const GROUPS = [
     ['🥁 drum', '鼓', 'drum'],
     ['🪈 flute', '长笛', 'flute']
   ] },
-  { name: '更多', leaves: [
+  { name: '爱好和电影', leaves: [
     ['🎨 hobby', '业余爱好(复数hobbies)', 'hobby'],
     ['🎞️ film', '电影(see a film)', 'film']
   ] }

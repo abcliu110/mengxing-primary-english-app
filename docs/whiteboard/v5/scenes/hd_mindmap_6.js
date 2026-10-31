@@ -13,10 +13,11 @@ const GROUPS = [
     ['🍓 strawberry', '草莓', 'strawberry'],
     ['🍉 watermelon', '西瓜', 'watermelon']
   ] },
-  { name: '饭和点心', leaves: [
+  { name: '饭、点心和筷子', leaves: [
     ['🎂 cake', '蛋糕', 'cake'],
     ['🍚 rice', '米饭，大米', 'rice'],
-    ['🍞 bread', '面包', 'bread']
+    ['🍞 bread', '面包', 'bread'],
+    ['🥢 chopsticks', '筷子（常复数）', 'chopsticks']
   ] },
   { name: '肉和蛋', leaves: [
     ['🍗 chicken', '鸡肉；小鸡', 'chicken'],
@@ -27,16 +28,13 @@ const GROUPS = [
     ['🧃 juice', '果汁', 'juice'],
     ['🥛 milk', '牛奶', 'milk'],
     ['💧 water', '水', 'water']
-  ] },
-  { name: '更多', leaves: [
-    ['🥢 chopsticks', '筷子（常复数）', 'chopsticks']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 食物与饮品 · 思维导图讲解', center: '🌍 食物与饮品', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['An apple a day keeps the doctor away.'],
     aTitle: '✨ 评价形容词', adjs: ['a apple', 'the apple', 'my apple'],
-    intro: '今天用一张思维导图学「食物与饮品」：16 个单词分成 5 组。',
+    intro: '今天用一张思维导图学「食物与饮品」：16 个单词分成 4 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }
