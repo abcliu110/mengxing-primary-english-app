@@ -19,6 +19,9 @@ async def main():
             await pg.evaluate(f"openWordCardModal({json.dumps(wid)}, {json.dumps(ids)})"); await pg.wait_for_timeout(2200 if k == 0 else 700)
             await pg.evaluate("cardModalState.revealed=true; renderWordCardModalContent()"); await pg.wait_for_timeout(500)
             x = await pg.evaluate(INFO)
+            for _ in range(10):   # 模板 iframe 偶尔晚于 500 ms 注入词条（机器忙时 flaky）：最多再等 5 s
+                if fn or not x['tpl'] or x['word'] == wid: break
+                await pg.wait_for_timeout(500); x = await pg.evaluate(INFO)
             ok = (word.split(' / ')[0] in x['text']) and ((not x['tpl']) if fn else (x['tpl'] and x['word'] == wid and x['btns'] == 3))
             if not ok: bad += 1; print('BAD', wid, word, fn, {k2: v for k2, v in x.items() if k2 != 'text'})
         await pg.evaluate("window.closeWordCardModal && closeWordCardModal()")

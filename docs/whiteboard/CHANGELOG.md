@@ -2853,3 +2853,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:44 JST · 决策 38 playercheck 等播放器排好版再量（修偶发 ratio 85）；app_check_parts 加手工分节幕（WIP）
 - runall4（分节 V2 + 39 幕主 HTML）：除已知 V6_MORPH_26 外，playercheck 偶发（播放器时间文字未出就量，ratio 85）→ 改为等时间文字出现再量，单跑 0 不合格；app_check_parts 旧版单跑 0 不合格（runall 里失败是因为脚本已提前改成含未嵌入的手工分节幕）；app_check_vocab_add 单跑中。
 - `app_check_parts.py` 加 tense_matrix 0 / past_clans 0 / adj_order 0，不分节样本改 tense_matrix 1。
+
+## 2026-10-31 18:50 JST · 决策 38 主 HTML：分节 V2 + wo_port / wo_time / five_patterns / aux 分节 + tense_matrix③ / fp_economy① / hd_g07 两节（回归通过）
+- 主 HTML 提交：分节补丁 V2（第 2…N 节）、39 幕重建嵌入（wo_port 5 节、wo_time_week 4 节、wo_time_num 3 节、five_patterns ①–⑤ 各 3 节、aux ①②④ 分节；③ 未动）、此前的 tense_matrix③ / fp_economy① / hd_g07 两节。
+- 回归：runall4 除已知 app_check8 V6_MORPH_26 外全过（playercheck / app_check_parts / app_check_vocab_add 单跑 0 不合格）。
+- `app_check_vocab_add.py`：模板词条注入最多再等 5 s（机器忙时 flaky 的根因），单跑 0 不合格。
