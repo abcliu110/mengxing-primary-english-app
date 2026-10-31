@@ -15,15 +15,17 @@ export function wordParts(w) {
   const ety = str(str(w.etymology).replace('📖 【秒懂造词小故事】', '').replace('📖 【秒懂巧记小故事】', ''));
   const aff = str(w.affix_root).replace('🧩 ', '');
   const fam = aff.split('｜').slice(1).join('｜').trim();
+  // R37-02：字母象形之类的记忆联想不是词源——不放 ① 词源框，放 ③ 框最后并标「非词源」
+  const assoc = (w.memory_assoc || []).map(str).filter(Boolean).length ? `🧠 记忆联想（非词源，只帮着记）：${(w.memory_assoc || []).map(str).filter(Boolean).join('；')}` : '';
   return {
     title: '词源与构词原理',
     banner: `${w.emoji} ${w.word} ${w.phonetic} — 【${w.pos}】${w.meaning}`,
     sub: str(w.affix_root || w.memory_tip),
-    bench: `🔬 『${w.word}』三维深度解剖：象形词源 × 构词家族 × 汉英句法防坑`,
+    bench: `🔬 『${w.word}』三维深度解剖：词源 × 构词家族 × 汉英句法防坑`,
     box1: [`① 词源与音节拆解：【${w.syllables}】${str(w.memory_tip)}`, ety],
     box2: [`② 积木构词与搭配：${aff.split('｜')[0]}`, fam ? `🧩 构词家族：${fam}` : '', `常用搭配动词：${verbs}`,
       co.adjs && co.adjs.length ? `常用搭配：${co.adjs.join(' / ')}` : ''],
-    box3: [`③ 地道例句：${s0.ex_en} (${s0.ex_zh})`, str(w.syntax_contrast), str(w.spelling_alert) ? `✏️ 拼写提醒：${str(w.spelling_alert)}` : ''],
+    box3: [`③ 地道例句：${s0.ex_en} (${s0.ex_zh})`, str(w.syntax_contrast), str(w.spelling_alert) ? `✏️ 拼写提醒：${str(w.spelling_alert)}` : '', assoc],
     s0, ss,
   };
 }
@@ -51,5 +53,5 @@ export function wordItems(w, a) {
 export function wordInventory(w, a) {
   const P = wordParts(w);
   return [P.title, P.banner, P.sub, P.bench, P.box1[0], P.box1[1], P.box2[0], P.box2[2], P.box3[0], P.box3[1], `精讲第${a + 1}幕`,
-    str(P.s0.ex_en), `${w.word} (${w.pos} ${w.meaning})：${str(P.s0.ex_zh)}`].filter(x => str(x));
+    str(P.s0.ex_en), `${w.word} (${w.pos} ${w.meaning})：${str(P.s0.ex_zh)}`, P.box3[3]].filter(x => str(x));
 }

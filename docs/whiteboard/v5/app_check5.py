@@ -5,7 +5,7 @@ from playwright.async_api import async_playwright
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
 INFO = """(()=>{const w=document.querySelector('[data-wb5tpl]'), p=document.querySelector('[data-wb5hd]'), f=document.getElementById('wb5Frame');
   const cw=f&&f.contentWindow; return {tpl: !!w, poly: p && p.getAttribute('data-wb5hd'), word: cw && cw.__WB5_WORD__ && cw.__WB5_WORD__.id, act: cw && cw.__WB5_ACT__,
-  dur: cw && cw.__dur && Math.round(cw.__dur), btns: w ? w.querySelectorAll('button').length : 0, oldCanvas: !!document.getElementById('wordModalCanvas')}})()"""
+  dur: cw && cw.__dur && Math.round(cw.__dur), btns: w ? w.querySelectorAll('button:not(.wb5-fs)').length : 0, oldCanvas: !!document.getElementById('wordModalCanvas')}})()"""
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(); pg = await b.new_page(viewport={'width': 1280, 'height': 900}); errs = []
