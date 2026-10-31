@@ -137,3 +137,10 @@
 - 每幕重画验收通过后，立刻执行 `python3 v5/embed_app.py <页签> <序号(0 起)> v5/out/<幕>.html` 替换进主 App，再跑 App 回归（`/tmp/apptest*.py` 同款：切到该页签逐幕检查 iframe 挂载、时长、0 报错；其他页签仍是旧 SVG），然后提交推送 + 更新 HANDOFF。
 - 原理：v5 HTML 存在主文件 `<script type="text/plain" id="wb5html-页签-序号">`（`</script` 写成 `</wb5-script`），`wbStageHtml` 发现有 v5 版就输出 `<iframe id="wb5Frame">`，`startSuperLabCanvasLoop` 挂载 srcdoc；没 v5 版的幕照旧走旧 SVG。旧案例代码 WB_LAB 不删（术语小词典仍从它读）。
 - 体积：每幕带一份字体，主文件 6.03 MB → 9.32 MB（tense_matrix 5 幕）。待办：字体抽成主文件共享一份再注入 iframe。
+
+## 决策 36 修复（道 3）
+
+| 项 | 幕 | 状态 |
+|---|---|---|
+| ①1 能量吸收器串板 | hd_g19–g27、g29、g30、g33 中段板 + aux_transformer ④ | ✅ 1a8a2f0 |
+| ①2 模板串课 | hd_g08 ①③、g09 ①②、g10 ①–③、g31 ①–③、g32 ③、g34 ①–③、g35；g08 ② / g09 ③ 末句字幕 | ✅ 见 git log（G07 ②③ 留 r38） |

@@ -21,7 +21,7 @@ const APP_MAP_KP = [
   { kp: "🪞 be 动词 / 否定 / 疑问", keys: ["gr:G16", "gr:G17", "gr:G29", "gr:G30", "gr:G23", "lab:aux_transformer", "ze:ze_be", "ze:ze_yesno"], note: "否定和疑问的变法，4 类「护卫」在实验室「助动词照妖镜」里一套讲透；语法课里的「did 能量吸收器」和照妖镜 ④ 说的是同一件事。" },
   { kp: "🧭 时态", keys: ["lab:tense_matrix", "gr:G18", "gr:G19", "gr:G20", "gr:G21", "gr:G22", "gr:G23", "gr:G24", "gr:G25", "lab:past_clans", "ze:ze_mark"], note: "时 × 体矩阵是总览：G18 / G19 → 第 1 幕，G20 → 第 2 幕，G21–G23 → 第 3 幕，G24 / G25 → 第 4 幕。" },
 ];
-const GRAMMAR_FIXED_ACT = { G07: 0, G08: 1, G09: 2, G10: 0 };   // 代词课只播相关的一幕（另两幕在代词全局原理）
+const GRAMMAR_FIXED_ACT = { G07: 0 };   // 代词课只播相关的一幕（另两幕在代词全局原理）；决策 36 ①2 后 G08–G10 三幕都是本课板，照常三幕
 const SUM_TAB_TITLE = { pronouns: "📊 代词全局原理", interrogatives: "📊 疑问词总表", how_what: "📊 How 与 What" };
 const __appMapNodes0 = appMapNodes;
 appMapNodes = function () {
