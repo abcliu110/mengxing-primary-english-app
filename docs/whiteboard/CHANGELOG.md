@@ -2622,3 +2622,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 现状（390 px）：首页顶栏 170 px（品牌 + 打卡 + 星星 + 家长门折 3 行）；子页面再叠 155 px 的回首页 / 返回 / 面包屑 / 上一点下一点，共 325 px；且 mobile-o4 的 `html, body { overflow-x:hidden }` 让 body 成了滚动容器，position:sticky 失效，滚下去找不到返回。
 - `src/patch_r37_topbar.py`（标记 R37_09_TOPBAR，只在 ≤ 640 px 生效，电脑 / 平板不变）：overflow-x:hidden → clip（不横滚、吸顶恢复）；首页一层 56 px（品牌 + 🔥天数 + ⭐ + ⚙️）；子页面一层 56 px 吸顶「⬅ 返回 + 当前位置（面包屑最后两级）+ ☰」，回首页 / 完整面包屑 / 上一点下一点等本页按钮 / 打卡星星家长门收进 ☰ 菜单。短字用 r37-short / r37-full 两个 span 切换（不用 font-size:0，mobilecheck 不判小字）。
 - 新检查 `src/topbarcheck.py`（首页顶栏 ≤ 56 px；单词表 / 语法点 / 实验室 / 口语大厅顶栏 ≤ 60 px、滚 1200 px 后返回仍在顶部可点、☰ 菜单含回首页；1280 宽仍是原两层）入 runall；runall 全过。另：几个检查脚本里写错的 screen 名（grammar_hub / oral_hub / vocab_hub → *_hall）已改正。
+
+### 2026-10-31 13:48 JST · 决策 37 R37-10 单词表分页
+- 现状：word_list 一次渲染 1436 张卡。
+- `src/patch_r37_wordlist.py`（标记 R37_10_WORDLIST）：每页 40 张，上下翻页条（⏮ ◀ 第 n / N 页 ▶ ⏭）；新增「🔤 首字母」索引（只列当前筛选里有的字母，手机上一行横滑）；换任何筛选 / 搜索回第 1 页；词卡弹窗上一个 / 下一个仍按整个筛选结果走；「共 N 词」仍是总数。
+- 新检查 `src/wordlistcheck.py`（首屏 ≤ 40、翻完 36 页 = 1436 词不丢、末页余数、首字母 B 筛选、搜索）入 runall；`v5/app_check15.py` 的「网格卡数 = 总数」改为「= min(总数, 40)」。runall 全过，mobilecheck 0 不合格。

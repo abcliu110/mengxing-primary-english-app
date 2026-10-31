@@ -17,6 +17,7 @@ Q = [
     ('家长门按钮 gatecheck（R37-13）', [sys.executable, 'gatecheck.py'], HERE),
     ('Markdown 残留 mdcheck（R37-04）', [sys.executable, 'mdcheck.py'], HERE),
     ('手机顶栏 topbarcheck（R37-09）', [sys.executable, 'topbarcheck.py'], HERE),
+    ('单词表分页 wordlistcheck（R37-10）', [sys.executable, 'wordlistcheck.py'], HERE),
     ('词卡词源 app_check8', [sys.executable, 'app_check8.py'], V5),
     ('练习闭环 app_check9', [sys.executable, 'app_check9.py'], V5),
     ('我的学习 + 综合自测 app_check10', [sys.executable, 'app_check10.py'], V5),

@@ -130,7 +130,7 @@ async def main():
         if r != {'wl': 1, 'fl': 1, 'old': 0}: bad.append(f'单词大厅入口 {r}')
         await pg.click('[data-wl-entry]'); await pg.wait_for_timeout(500)
         total = await pg.evaluate("VOCAB_DB.length"); r = await pg.evaluate(WL)
-        if not (r['s'] == 'word_list' and r['n'] == total and r['grid'] == total): bad.append(f'单词表全部 {r} / {total}')
+        if not (r['s'] == 'word_list' and r['n'] == total and r['grid'] == min(total, 40)): bad.append(f'单词表全部 {r} / {total}')   # R37-10：每页 40 张
         for old, want in (("navigateTo('vocab_theme')", {}), ("navigateTo('vocab_theme', { sub: '天气与四季', viewMode: 'list' })", {'theme': '天气与四季', 'q': ''}),
                           ("navigateTo('vocab_sight', { filter: 'all', mode: 'browse' })", {'sight': 'irregular'}), ("navigateTo('vocab_pos', { posKey: 'adj.' })", {'pos': 'adj.'})):
             await pg.evaluate(old); await pg.wait_for_timeout(400); r = await pg.evaluate(WL)
