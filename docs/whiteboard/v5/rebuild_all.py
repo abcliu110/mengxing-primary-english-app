@@ -8,7 +8,7 @@ RESUME = '--resume' in sys.argv
 ONLY = [a.split('=', 1)[1].split(',') for a in sys.argv if a.startswith('--tabs=')]   # --tabs=hd_oral_sc,wo_rule_norman：只重建页签名以这些前缀开头的幕（标题 / 文字改动，不动引擎和字表时用）
 ONLY = ONLY[0] if ONLY else None
 if not RESUME and not ONLY: subprocess.run(['python3', 'gen_font_chars.py'], check=True)
-SRC_T = max(os.path.getmtime(x) for x in ['scenes/auto.js', 'wb5.js', 'player.js', 'engine.js', 'font_chars.txt', 'build.mjs'])
+SRC_T = max(os.path.getmtime(x) for x in ['scenes/auto.js', 'scenes/oral.js', 'lib/concept.js', 'wb5.js', 'player.js', 'engine.js', 'font_chars.txt', 'build.mjs'])
 fresh = lambda o: RESUME and os.path.exists(o) and os.path.getmtime(o) > SRC_T
 jobs = []
 tabs = collections.defaultdict(list)

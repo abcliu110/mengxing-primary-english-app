@@ -2718,3 +2718,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:09 JST · WIP 决策 38 第 7 幕 hd_g07 主格 / 宾格
 - hd_g07_1 改 concept.js：主语区 / 动词门（likes → with → at）/ 宾语区；预测「I 过门还叫 I 吗」→ me；he/she/we/they 过门换装、you/it 不变。check_r38 0，143 s。啊哈卡 `lab/audit38/aha/07_hd_g07.md`。未 embed。
 - 口语 144 幕：角色包重建完、打包完，正在 embed 进主 HTML（rebuild_all.py --tabs=hd_oral）。
+
+## 2026-10-31 17:10 JST · WIP 决策 38：concept.js / oral.js 并入共享引擎
+- 口语 144 幕按 oral.js 重建嵌入后主 HTML 16.16 → 17.36 MB：concept.js + oral.js 被打进每一幕。`v5/engine.js` 加 concept / oral，`build.mjs` 共享表加两项（口语场景脚本去掉图片后 3 KB），`rebuild_all.py` 源码时间加 oral.js / concept.js。
+- 引擎变了 + 新场景有新字 → 后台全量 `rebuild_all.py`（字表 → 全部幕 → embed）。主 HTML 待全量重建 + runall 通过后再提交。

@@ -26,9 +26,9 @@ const kalam = sub(path.join(FONT_DIR, 'kalam.ttf'), `/tmp/wb5_kalam_${process.pi
 // 引擎（全 App 一份，内容与幕无关）+ 场景（只有这一幕的数据；wb5 / auto / adj_train 从引擎的 globalThis.__WB5__ 取）
 const common = { bundle: true, minify: true, write: false, format: 'iife', legalComments: 'none', nodePaths: [path.join(HERE, 'node_modules')] };
 const eng = await build({ ...common, entryPoints: [path.join(HERE, 'engine.js')], define: { __FONTS__: JSON.stringify({ wk, kalam }) } });
-const SHARED = { 'wb5.js': 'wb5', 'auto.js': 'auto', 'adj_train.js': 'adj_train' };
+const SHARED = { 'wb5.js': 'wb5', 'auto.js': 'auto', 'adj_train.js': 'adj_train', 'concept.js': 'concept', 'oral.js': 'oral' };
 const shared = { name: 'wb5-shared', setup(b) {
-  b.onResolve({ filter: /(^|\/)(wb5|auto|adj_train)\.js$/ }, a => ({ path: SHARED[path.basename(a.path)], namespace: 'wb5shared' }));
+  b.onResolve({ filter: /(^|\/)(wb5|auto|adj_train|concept|oral)\.js$/ }, a => ({ path: SHARED[path.basename(a.path)], namespace: 'wb5shared' }));
   b.onLoad({ filter: /.*/, namespace: 'wb5shared' }, a => ({ contents: `module.exports = globalThis.__WB5__[${JSON.stringify(a.path)}];`, loader: 'js' }));
 } };
 const scn = await build({ ...common, stdin: { contents: `import b from ${JSON.stringify(path.resolve(scenePath))}; globalThis.__WB5_SCENE__ = b;`, resolveDir: HERE, loader: 'js' }, plugins: [shared] });
