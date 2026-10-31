@@ -2759,3 +2759,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:34 JST · 决策 38 poly.js 并进共享引擎（WIP）；4 个 HD 单元 app_check4 通过
 - `v5/engine.js` / `build.mjs` SHARED / `rebuild_all.py` 源码时间：一词多义版式 `scenes/poly.js` 并进共享引擎（hd_poly 场景脚本不再各带一份）。单幕试打包 hd_poly_g1_002_1：47.1 s、确定、0 报错。
 - 主 HTML（17:19 全量重建版，共享引擎 1 份）App 回归：`app_check4.py` hd_g18（102 s）、hd_g14 三幕（76 / 116 / 110 s）、hd_fr01 四视角（47–49 s）、hd_oral_sc01 七幕（41–46 s）全部挂载、0 报错。runall 进行中。
+
+## 2026-10-31 17:37 JST · 决策 38 第 15 幕 fp_economy① 喉咙剖面重做（WIP，未嵌入）
+- `v5/scenes/fp_economy_1.js` 改 concept.js：喉咙剖面（声带清音静止 / 浊音抖动冒波纹）+ 顶部 6 步进度条；预测 book+s → /s/、bag+s 一路抖到 /z/；worked /t/ played /d/；口诀；第二次预测 dogs → /z/；洞见卡。66 条旧文字全在 KNOW。check_r38 0 不合格，145 s；390 px 联络表自检（修了 bag+s 残留、口诀与预测叠字、进度条挤字）。啊哈卡 `lab/audit38/aha/15_fp_economy.md`。
+- 角色包 `sprites/fpeco1.js`（空包，不入库，rebuild_all 缺包自动生成）。
