@@ -2691,3 +2691,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新 `v5/gen_oral38.py`（幂等）：144 个 `scenes/hd_oral_*_*.js` 只改首行说明 / import / `autoBuild→oralBuild` / ACTS 加 `M`、`F` 帧组，ITEMS 一字不动（脚本内 assert）。
 - `scenes/oral.js`：按角色 emoji 选人物（女性 emoji → Mia 帧组，其余 → Leo 帧组，Leo 站右边镜像），标签 / 开场字幕 / 预测问句去掉 Leo、Mia 名字，修「👧 角色 A · Leo」错配（A 女 B 男 48 幕、同性 38 幕）。
 - 主 HTML 未动（待打包 + check_oral + runall）。
+
+## 2026-10-31 17:03 JST · WIP 决策 38 第 3 幕 hd_g18：场景重做 + 通用验收
+- `v5/scenes/hd_g18_1.js` 改用 concept.js：左「一周」日历每天 7:00 落点 + Leo 每天起床 vs 右「此刻 📸」踢球快照 → 预测句子属于哪边 → 点连成跨以前 / 以后的环线；often 4 天 ⚽；地球绕太阳；第二次预测三张时间词卡归位 → 规则字幕 + 要点卡。why_explanation 按 GRAMMAR_DB 补全（旧板截断）。
+- 新 `v5/check_r38.py`：手工重做幕验收（场景 `export const KNOW` 每条须在板上 / 讲解 / 朗读字幕出现 + 啊哈卡 / 预测 / 规则顺序 + 确定性 + 0 报错）。hd_g18_1：0 不合格，102 s。
+- 口语 144 幕 `rebuild_all.py --tabs=hd_oral` 仍在后台重建角色包；主 HTML 未提交。
