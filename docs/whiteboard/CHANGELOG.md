@@ -2745,3 +2745,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:24 JST · WIP 决策 38 第 12 幕 out 一列
 - vv_take_out_2 改 concept.js：里面 / 门线 / 外面，take out、take … out、get out、give out（预测）、look out、put out 依次跨线 → 五张动词卡圈成一列 → 「OUT = 从里面到外面」。check_r38 0，52 s。啊哈卡 `lab/audit38/aha/12_vv_out.md`。
+
+## 2026-10-31 17:26 JST · WIP 决策 38 第 13 幕 一般过去时
+- tense_matrix_3 改 concept.js：昨天老照片 / 今天分屏找不同 → 预测两句差在哪 → -ed 邮戳；不看主语、take→took 换装、拼写细节只进字幕、was / were、信号词、Did 陷阱、预测 play / played。38 条 KNOW 全在，check_r38 0，144 s。啊哈卡 `lab/audit38/aha/13_tense_matrix_3.md`。
