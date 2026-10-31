@@ -12,6 +12,7 @@ def items(f):
     src = open(f, encoding='utf-8').read()
     m = re.search(r'const ITEMS = (\[.*?\n\]);', src, re.S)
     out = []
+    if not m: return out   # 决策 38 重做幕（concept.js，用 KNOW、板上无逐行白板字）没有 ITEMS：不参与串板比对
     for mm in re.finditer(r"^\s*\['(\w)', '((?:[^'\\]|\\.)*)'", m.group(1), re.M):
         k, a = mm.group(1), mm.group(2).replace("\\'", "'").replace('\\\\', '\\')
         if k != 'w' or re.match(r'^G\d\d (底层原理|第\d+幕)$', a): out.append(None); continue

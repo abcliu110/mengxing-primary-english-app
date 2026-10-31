@@ -2751,3 +2751,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:29 JST · WIP 决策 38 第 14 幕 格林定律「时光机」
 - wo_grimm_1 改 concept.js：家族树 → 时光机（预测 pes 出来是什么 → foot）→ pedal 绕机器不变 → 6 对词一行行过机器 → 古罗马历月份条 → 格林是谁 → 中文对照 → 预测 ped / pedestrian → 洞见口诀。34 条字幕 / 朗读原样，check_r38 0，174 s。啊哈卡 `lab/audit38/aha/14_wo_grimm.md`。
+
+## 2026-10-31 17:32 JST · 决策 38 wbdupcheck 跳过无 ITEMS 的重做幕；交接断点
+- `src/wbdupcheck.py`：决策 38 重做幕（concept.js 场景用 KNOW，无 ITEMS）不参与串板比对，修 runall 里 wbdupcheck 对第 12–14 幕崩溃。
+- font_chars.txt 已在 17:10 全量重建前提交过，本次无改动。主 HTML（17:19 全量重建 + hd_g37–39 / hd_fr01 重嵌）待回归，未提交。
