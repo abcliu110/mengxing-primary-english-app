@@ -12,3 +12,6 @@
 
 ## 知识点不丢 / 删去
 全部讲解字幕与朗读句原样；板书要点（树的各节点、三千年、小词 / 大词、pedal、December、古罗马历、Jacob Grimm 三行、中文对照、ped、洞见、口诀、下一幕预告）在 KNOW。删去的只有旧版目录板（① 地图 ② 场景 … 🔮 预测）和重复出现的徽章标题（📜 / ⚠️ / 💡 仍在画面上出现一次）。`v5/check_r38.py wo_grimm_1`，174 s（旧版同样很长，决策 36-② 长幕拆分时可按「树 + 时光机 / 一排都挪 / 彩蛋 + 格林 + 预测」拆 3 幕）。
+
+## 决策 36-② 拆 3 节（2026-10-31 17:52 JST）
+174 s → ① `wo_grimm_1` 时光机 + pes→foot + pedal（65 s）；② `wo_grimm_rows_1` 一排都挪：预测 tres → three，再 6 对词过机器 + 例外（56 s）；③ `wo_grimm_more_1` December 彩蛋 + 古罗马历 + 格林是谁 + 中文对照 + 预测 ped / pedestrian + 口诀（65 s）。每节自己的啊哈卡 / 预测 / 规则；三节 KNOW 合起来 = 原幕 KNOW（逐条核对 0 缺）。App：`src/patch_wo_grimm_split.py` 在「格林定律」章 wo_grimm 后面加 wo_grimm_rows、wo_grimm_more 两个幕卡。

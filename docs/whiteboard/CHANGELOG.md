@@ -2783,3 +2783,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:50 JST · 决策 38 36-② 长幕拆分：hd_g19 140 s → 68 s + 74 s（WIP，未嵌入）
 - `hd_g19_1`：勋章飞到动词 + 主语轮换 + 对比，68 s；新 `hd_g19_2`：常错 goes → 预测 does 吸走勋章 → 加法 / 读音 / 语境 / 口诀，74 s。各自啊哈卡 / 预测 / 规则，check_r38 0 不合格；390 px 联络表自检。units.json hd_g19 加第 2 幕。
+
+## 2026-10-31 17:52 JST · 决策 38 36-② 长幕拆分：wo_grimm 174 s → 3 节 65 / 56 / 65 s（WIP，未嵌入）
+- `wo_grimm_1` 只留时光机 + pes→foot + pedal + 口诀预告（65 s）；新 `wo_grimm_rows_1`（预测 tres → three + 6 对词 + 例外，56 s）、`wo_grimm_more_1`（彩蛋 / 格林是谁 / 中文对照 / 预测 ped，65 s）。各自啊哈卡 / 预测 / 规则；check_r38 三节 0 不合格；三节 KNOW 并集 = 原幕。
+- App 挂载：新补丁 `src/patch_wo_grimm_split.py`（WO_GRIMM_SPLIT_V1，格林定律章加两张幕卡），units.json 加 wo_grimm_rows / wo_grimm_more。补丁等全量 rebuild 写完主 HTML 后再跑。
