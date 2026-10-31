@@ -2849,3 +2849,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - past_clans① 215 s → 3 节（切点 54.7 / 102.2）。
 - adj_order① 231 s → 35 / 91 / 105 s（切点 23.2 / 84.0；buildAdj 内部建 scene，原幕用 own 标记设默认窗）。
 - 分节文件 `scenes/<页签>_p<k>_1.js` = import 原幕 build + `globalThis.__WB5_CLIP`；单独打包抽查时长对、联络表 0 报错（第 2 节开头板书已在场）。
+
+## 2026-10-31 18:44 JST · 决策 38 playercheck 等播放器排好版再量（修偶发 ratio 85）；app_check_parts 加手工分节幕（WIP）
+- runall4（分节 V2 + 39 幕主 HTML）：除已知 V6_MORPH_26 外，playercheck 偶发（播放器时间文字未出就量，ratio 85）→ 改为等时间文字出现再量，单跑 0 不合格；app_check_parts 旧版单跑 0 不合格（runall 里失败是因为脚本已提前改成含未嵌入的手工分节幕）；app_check_vocab_add 单跑中。
+- `app_check_parts.py` 加 tense_matrix 0 / past_clans 0 / adj_order 0，不分节样本改 tense_matrix 1。
