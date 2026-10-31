@@ -8,6 +8,9 @@ CASES = [   # (页签, 幕号, 进入页面的 JS)
     ('tense_matrix', 2, "navigateTo('super_lab_hub', { labTab: 'tense_matrix' }); superLabState.tenseIdx=2; renderSuperLabHubView();"),
     ('fp_economy', 0, "navigateTo('first_principles_hub', { lawIdx: FIRST_PRINCIPLES_DB.findIndex(l => l.id === 'fp_economy'), actIdx: 0 })"),
     ('hd_g07', 0, "navigateTo('grammar_detail', { gId: 'G07' })"),
+    ('wo_port', 0, "navigateTo('word_origins_hub', { scene: 'wo_port' }); woSelectScene('wo_port')"),
+    ('aux_transformer', 0, "navigateTo('super_lab_hub', { labTab: 'aux_transformer' }); superLabState.auxIdx=0; renderSuperLabHubView();"),
+    ('five_patterns', 4, "navigateTo('super_lab_hub', { labTab: 'five_patterns' }); superLabState.patIdx=4; renderSuperLabHubView();"),
 ]
 NONE = [('tense_matrix', 0, "navigateTo('super_lab_hub', { labTab: 'tense_matrix' }); superLabState.tenseIdx=0; renderSuperLabHubView();")]
 INFO = "(()=>{const f=document.getElementById('wb5Frame'); return f ? {tab:f.dataset.tab, case:f.dataset.case, dur:f.contentWindow.__dur && Math.round(f.contentWindow.__dur*10)/10, parts:document.querySelectorAll('.wb5-parts button').length} : null})()"
@@ -20,12 +23,13 @@ async def main():
         for tab, i, js in CASES:
             await pg.evaluate(js); await pg.wait_for_timeout(2500)
             a = await pg.evaluate(INFO)
-            await pg.click('.wb5-parts button[data-wb5part="1"]'); await pg.wait_for_timeout(2500)
+            last = (a or {}).get('parts', 0) - 1
+            await pg.click(f'.wb5-parts button[data-wb5part="{max(last, 1)}"]'); await pg.wait_for_timeout(2500)
             c = await pg.evaluate(INFO)
             await pg.click('.wb5-parts button[data-wb5part="0"]'); await pg.wait_for_timeout(2500)
             d = await pg.evaluate(INFO)
-            ok = bool(a and a['parts'] == 2 and a['tab'] == tab and a['dur'] and c and c['tab'] == tab + '_p2' and c['case'] == str(i) and c['dur'] and d and d['tab'] == tab and d['dur'])
-            bad += not ok; print('✅' if ok else '❌', tab, i, '第1节', a, '第2节', c, '回第1节', d)
+            ok = bool(a and a['parts'] >= 2 and a['tab'] == tab and a['dur'] and c and c['tab'] == f"{tab}_p{a['parts']}" and c['case'] == str(i) and c['dur'] and d and d['tab'] == tab and d['dur'])
+            bad += not ok; print('✅' if ok else '❌', tab, i, '第1节', a, '最后一节', c, '回第1节', d)
         for tab, i, js in NONE:
             await pg.evaluate(js); await pg.wait_for_timeout(2000)
             a = await pg.evaluate(INFO); ok = bool(a and a['parts'] == 0 and a['dur'])

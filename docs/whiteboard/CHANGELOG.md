@@ -2822,3 +2822,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:09 JST · 决策 38 36-② split_auto.py：11 个 auto 长幕按讲解段拆节（WIP，未嵌入）
 - 新 `v5/split_auto.py`：auto.js 幕只在讲解句前下刀，按估计时长切成 ≤ 90 s 的 k 节（k = ceil(时长 / 90)），ITEMS 原行原样搬、自检拼回 = 原 ITEMS；第 1 节留原文件，第 j 节写 `<页签>_p<j>_<n>.js`。
 - 已拆（估计每节 55–105 s）：wo_port 361 s → 5 节；wo_time_week 321 s → 4；wo_time_num 256 s → 3；five_patterns ①–⑤ 217–249 s → 各 3；aux_transformer ①②④ → 4 / 3 / 4（③ 按交代不动）。抽打包 wo_port 第 2 节 79 s、0 报错、确定。
+
+## 2026-10-31 18:13 JST · 决策 38 app_check_parts 扩到多节（wo_port / aux① / five_patterns⑤）（WIP）
+- `v5/app_check_parts.py`：点最后一节按钮、检查子页签 `<页签>_p<N>`；新增 wo_port（5 节）、aux_transformer ①（4 节）、five_patterns ⑤（3 节）三处，等 V2 补丁和嵌入后生效。
