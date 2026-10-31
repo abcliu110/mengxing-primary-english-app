@@ -2809,3 +2809,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:05 JST · 决策 38 主 HTML：poly.js 进共享引擎全量重建 + 第 10–15 幕嵌入 + hd_g05 / hd_g19 / wo_grimm 拆分幕（回归通过）
 - 主 HTML（16.24 MB，共享引擎 1 份）+ `v5/font_chars.txt`（3354 字）：一词多义 51 幕 poly.js、导图 25 幕找不同、vv_take_out②、tense_matrix③（旧整幕版）、wo_grimm 三节、fp_economy①（整幕版）、hd_g05 两幕、hd_g19 两幕；格林定律章新幕卡 wo_grimm_rows / wo_grimm_more（patch_wo_grimm_split）。
 - 回归：runall 全部项过，除 app_check8 V6_MORPH_26（HEAD 既有）；insightcheck 失败是跑到一半删掉的临时草稿 zzs_g7_*，重跑 0 不合格；app_check_vocab_add G3_K21 一次超时，单独重跑 0 不合格。单项：check_poly 51/51、check_r38 10 幕、app_check6 导图 25/25、app_check4 hd_g05 / hd_g19、app_check2 wo / fp、app_check3 vv_take_out 全过 0 报错。
+
+## 2026-10-31 18:06 JST · 决策 38 分节补丁打进主 HTML（WIP）；app_check_parts 0 不合格，入 runall
+- `src/patch_wb5_parts.py` 已打进工作区主 HTML；`rebuild_all.py --tabs=tense_matrix,fp_economy,hd_g07` 嵌入 tense_matrix③ 两节（61 / 85 s）、fp_economy① 两节（76 / 77 s）、G07 两节（63 / 89 s）。
+- `app_check_parts.py` 3 处分节切换 + 1 处不分节 0 不合格、0 报错；已加进 runall。runall 后台跑（/workspace/work/c38/runall3.log），过了再提交主 HTML。
