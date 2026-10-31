@@ -43,7 +43,7 @@ function wlLetterBar(p) {   // R37_10_WORDLIST：首字母索引（只列当前�
   const q = Object.assign({}, p); delete q.letter; delete q.page;
   const have = new Set(wlFilter(q).map(w => (w.word || "").trim().charAt(0).toUpperCase()).filter(c => /[A-Z]/.test(c)));
   if (have.size < 2) return "";
-  return `<div data-wl-letters class="pill-tabs" style="margin:0 0 10px; gap:4px;"><span style="font-weight:900; color:#475569; font-size:0.84rem; align-self:center;">🔤 首字母</span>${[...have].sort().map(c => wlChip(c, p.letter === c, `wlSet('letter', '${c}')`, `data-wl-letter="${c}"`)).join("")}</div>`;
+  return `<div data-wl-letters class="pill-tabs" style="margin:0 0 10px; gap:4px; flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px;"><span style="font-weight:900; color:#475569; font-size:0.84rem; align-self:center;">🔤 首字母</span>${[...have].sort().map(c => wlChip(c, p.letter === c, `wlSet('letter', '${c}')`, `data-wl-letter="${c}"`)).join("")}</div>`;
 }'''),
  # 清除筛选也清 letter
  ('''${(p.theme || p.pos || p.sight || p.grade || p.q) ? wlChip(''', '''${(p.theme || p.pos || p.sight || p.grade || p.q || p.letter) ? wlChip('''),
