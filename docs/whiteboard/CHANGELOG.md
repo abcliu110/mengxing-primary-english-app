@@ -2657,3 +2657,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `v5/fix36_cross.py`（幂等）：一个点只放本点的板。G08 / G09 / G10 原来三幕都是「代词全局原理」的三块深度机制板 → 只留本课那块（G08 ② 物主代词、G09 ③ 指示代词），G08 ①③（粘人精 vs 独行侠、看空格后有无名词 + 常错）、G09 ①②（问答换 it / they、打电话 This is / Is that + 数的一致）、G10 ①–③（some / any 共同本领、常规分工、邀请请求特例）换成本课板；G31 三幕原是 G32 的 How / What 板 → Who / Whose / Who's、Where / When / What time、Why–Because / Which；G32 ③ 原是感叹句「遮住主谓」板 → What + 名词 / How + 形容词家族；G34 ① 改用「遮住主谓」板开场（原第 3 幕），② 三大公式，③ 常错；G35 原是 G36 的双轨板 → 就近原则。新内容全部取自该语法点 GRAMMAR_DB 的 step1 例句 / step3 规则 / step4 题目，不新编；新英文句配朗读、字幕给译文；动过的幕末句中文原是口诀，口诀改成讲解字幕（🎵 口诀：…）保留。
 - 拿掉的共用板原文仍在 G07、G08 ②、G09 ③、代词总结、G32 ①②、G34 ①、G36 ①（对照表 `lab/audit36/R1_36_2_CROSS.md`，知识点不丢）。`GRAMMAR_FIXED_ACT` 改为只固定 G07（`src/patch_dedup_c.py` + 主文件），G08–G10 照常三幕；`app_check12.py` 同步。
 - wbdupcheck 白名单只剩 G07|G08、G07|G09（G07 ②③ 与 G08 ② / G09 ③ 同板，要改 G07 = 决策 38 第 7 幕，道 r38）。17 幕重打包嵌入：确定性 / 0 报错（普通 + sandbox），66–105 s；app_check12 0 不合格、app_check4 hd_g08 / hd_g34 每幕可播、jscheck OK。
+
+
+## 2026-10-31 15:55 JST · 决策 35 A2 第 1 批：课标二级缺词 60 个补成词条（道 1 l1_data）
+- 课标二级词表（kebiao2.json 500 词）缺的 60 个词（a / an、the、be、can、will、must、should、not、no、yes、please、OK、hi、good、bad、nice、great、name、age、money、busy、late、early、free、cute、sit、stand、call、let、hurry、wrong、welcome、sure、next、middle、top、up、down、out、front、now、again、ago、last、well、lot、dear、candle、chore、email、TV、favourite、Mr、Mrs、Ms、Miss、hard、police、China、cream）新建词条：音标 CMUdict + Wiktionary 对照（功能词强 / 弱读都列），释义 / 补写例句 / 语法提示人工撰写（例句只用课标词），词源 / 构词 / 搭配不编留空；8 个功能词走功能词卡挂 G05 / G06 / G16 / G25 / G26 / G27 / G29。id `G<年级>_K<序号>`，年级暂定（人教社区表有的取其年级，否则 G3），新字段 `kebiao_level`、`added_by`。
+- 新文件：`src/gen_vocab_a2.py`、`src/patch_vocab_add.py`（幂等，id 已在就跳过）、`src/kebiaocheck.py`、`v5/app_check_vocab_add.py`、`lab/audit35/a2_kebiao_add.json`、`lab/audit35/A2_KEBIAO_ADD.md`；`phon_same_ok.json` 加 let。kebiaocheck、app_check_vocab_add 入 runall。
+- 验收：kebiaocheck 500/500；phoncheck 1547 词 0 不合格；app_check_vocab_add 60 词（功能词 8）开卡 / 模板挂载 / 单词表可搜 0 不合格、0 报错；jscheck、app_check8、app_check11、wordlistcheck、jargoncheck、etymcheck 通过。
+- 遗留：better / best / worse / worst / was / were 现在有了原形（good、bad、be），并入原形放 A5；Dolch 220 视觉词为第 2 批。
