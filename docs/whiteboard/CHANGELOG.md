@@ -2825,3 +2825,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 18:13 JST · 决策 38 app_check_parts 扩到多节（wo_port / aux① / five_patterns⑤）（WIP）
 - `v5/app_check_parts.py`：点最后一节按钮、检查子页签 `<页签>_p<N>`；新增 wo_port（5 节）、aux_transformer ①（4 节）、five_patterns ⑤（3 节）三处，等 V2 补丁和嵌入后生效。
+
+## 2026-10-31 18:15 JST · 决策 38 接手断点；ci.py 提交脚本移入仓库（WIP）
+- runall3：除 app_check8 V6_MORPH_26（已知）外，app_check_parts 失败（主 HTML 仍是分节补丁 v1，脚本已按多节 V2 写）；先跑 patch_wb5_parts.py 再回归，主 HTML 暂不提交。
+- `/workspace/work/c38/ci.py` → `docs/whiteboard/src/ci.py`（路径改相对仓库）。
