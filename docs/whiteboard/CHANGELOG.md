@@ -2687,7 +2687,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 验收：kebiaocheck 0 不合格（Dolch 221/221）；phoncheck 1567 词 0；app_check_vocab_add 69 词 + 17 别名 0 不合格；app_check11、app_check9、app_check6、jscheck 通过。
 - 遗留：人教社区词表缺词（merry、kick、poor、guess、different 等约 40 个单词 + 200 多条短语）只作线索，要对照教材核实后再补；Dolch 名词表（95 个）未做。
 
-## 2026-10-31 17:00 JST · WIP 决策 38 第 2 幕阶段 ②：144 口语幕场景切 oral.js
+## 2026-10-31 16:51 JST · WIP 决策 38 第 2 幕阶段 ②：144 口语幕场景切 oral.js
 - 新 `v5/gen_oral38.py`（幂等）：144 个 `scenes/hd_oral_*_*.js` 只改首行说明 / import / `autoBuild→oralBuild` / ACTS 加 `M`、`F` 帧组，ITEMS 一字不动（脚本内 assert）。
 - `scenes/oral.js`：按角色 emoji 选人物（女性 emoji → Mia 帧组，其余 → Leo 帧组，Leo 站右边镜像），标签 / 开场字幕 / 预测问句去掉 Leo、Mia 名字，修「👧 角色 A · Leo」错配（A 女 B 男 48 幕、同性 38 幕）。
 - 主 HTML 未动（待打包 + check_oral + runall）。
