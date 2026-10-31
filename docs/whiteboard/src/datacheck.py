@@ -26,7 +26,7 @@ i0 = s.index('const VOCAB_DB = ['); seg = s[i0:s.index('\n];', i0)]
 WA = json.loads(re.search(r'const WORD_ALIAS = (\{.*?\});', s).group(1)); GM = json.loads(re.search(r'const WORD_GROUP_MEMBERS = (\{.*?\});', s).group(1))
 GOF = {m: g for g, ms in GM.items() for m in ms}
 forms = collections.defaultdict(set)
-for m in re.finditer(r'\{"id":"([^"]+)","word":"((?:[^"\\]|\\.)*)"', seg):
+for m in re.finditer(r'\{"id":"([^"]+)"(?:,"[a-z_]+":(?:"[^"]*"|null|true|false|[0-9]+))*?,"word":"((?:[^"\\]|\\.)*)"', seg):
     i, w = m.group(1), m.group(2)
     if i in WA: continue
     for f in w.split(' / '): forms[f.strip().lower()].add(i)

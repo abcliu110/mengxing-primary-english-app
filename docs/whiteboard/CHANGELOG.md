@@ -2884,3 +2884,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 定案：主拼写英式、美式作别名；音标方案 B（保留美式音标，卡上标 🇺🇸）；weekend 正文按人教 on、注英式 at。
 - `src/patch_a7_spelling.py`：math→maths、mom→mum、center→centre 并为「美式」别名（去掉 centre / center 的 WORD_SEE 互指）；G14 at 时间例改注；词卡音标后 🇺🇸（A7_US_PHON）。
 - `src/datacheck.py` 加 A7 段（当前 3 条：centre/center、maths/math、mum/mom，打补丁后 0）。woolen→woollen 留下一轮。
+
+## 2026-10-31 19:13 JST · 决策 38 全量重建（wb5 clip）+ A3 / A4 / A7 补丁已打进工作区主 HTML，datacheck 0（WIP，回归中）
+- 全量 rebuild_all 完成（549 幕，主 HTML 16.39 MB，字表 3354 不变）：含 tense_matrix① 4 节、past_clans① 3 节、adj_order① 3 节。
+- durcheck --scan 全量：仍有 80 幕 > 120 s（最长 irregular_plural_2 / ze_be_1 166 s，fp_* 多幕 140–165 s），见 `lab/audit36/durations.json`。
+- 主 HTML 工作区：patch_a3_examples（例句 445、搭配占位 410、构词占位 445）→ patch_a4_collocations（模板 882、Morph 54、重复整句 988 删，35 句搬 more_ex）→ patch_a7_spelling；datacheck 0。两个脚本的词头正则兼容 `dolch` 等插在 word 前的字段。wordcard_tpl 重建嵌入。

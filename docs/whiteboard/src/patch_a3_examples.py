@@ -14,7 +14,7 @@ rows = [l.rstrip('\n').split('\t') for f in sorted(glob.glob(str(ROOT / 'lab/aud
 EX = {w: (en, zh) for w, en, zh in rows}
 n = nv = na = 0
 light = {}   # id → 词头（VOCAB_DB 里没有的 3 个词条按 meaning 认）
-for m in re.finditer(r'\{"id":"([^"]+)","word":"([^"]+)"', s): light.setdefault(m.group(1), m.group(2))
+for m in re.finditer(r'\{"id":"([^"]+)"(?:,"[a-z_]+":(?:"[^"]*"|null|true|false|[0-9]+))*?,"word":"([^"]+)"', s): light.setdefault(m.group(1), m.group(2))
 EXTRA = {'V6_颜色_1': 'color', 'V6_颜色_12': 'gray', 'V6_核心_14': 'its'}
 for k, v in H.items():
     sen = v.get('senses') or []
