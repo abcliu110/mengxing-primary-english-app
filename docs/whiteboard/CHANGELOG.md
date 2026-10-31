@@ -2591,3 +2591,5 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 与决策 35 重叠的 10 类合并处理并逐条标注去向；决策 35-F 顺延行改为先做决策 36。
 - HANDOFF §5 加 0b 决策 36 进度清单；审计全文与抽取脚本入 `lab/audit36/`（截图与解包幕不入库）。
 
+### 2026-10-31 11:45 JST · 并行与断点规则写入 HANDOFF
+- 用户要求加速但额度紧：并行降到 3 道（数据 / 内容纠错 / 白板），单一集成者负责主 HTML 与提交；每道半成品落盘 `/workspace/work/par/<道>/PROGRESS.md`；每项验证通过立即单独提交推送。HANDOFF §5 新增 0a。
