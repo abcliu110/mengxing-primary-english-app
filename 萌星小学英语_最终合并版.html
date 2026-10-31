@@ -893,6 +893,15 @@
 .wb5-fs { position:absolute; top:6px; right:6px; z-index:3; border:0; border-radius:10px; padding:6px 10px; background:rgba(15,23,42,.78); color:#fff; font-weight:900; font-size:0.8rem; cursor:pointer; }
 .wb5-fson { position:fixed !important; inset:0; z-index:99999; margin:0 !important; border:0 !important; border-radius:0 !important; background:#eceae6 !important; }
 </style>
+<style id="r37-gate">
+/* R37_13_GATE */
+#parentGateContent button, #parentGateContent label { white-space: nowrap; flex-shrink: 0; }
+#parentGateContent div[style*="display:flex"] { flex-wrap: wrap; row-gap: 8px; }
+#parentGateContent h3 { flex: 1 1 200px; min-width: 0; }
+#parentGateContent input[type="number"] { min-width: 0; flex: 1 1 140px !important; }
+#parentGateContent button[onclick^="setAppAccent"] { flex: 1 1 0 !important; min-width: 0; white-space: normal; }
+.parent-gate-btn { white-space: nowrap; }
+</style>
 <style id="mobile-o4">
 /* MOBILE_O4_V1 */
 /* 决策 29 O4：触控目标 ≥ 44 px（src/patch_mobile.py 生成，检查 src/mobilecheck.py） */
@@ -2484,8 +2493,8 @@ function renderParentSettingsPanel() {
       <div style="background:#f8fafc; padding:14px; border-radius:14px; border:1.5px solid #e2e8f0;">
         <div style="font-weight:800; margin-bottom:8px;">🎙️ 英语发音口音 (Accent)</div>
         <div style="display:flex; gap:10px;">
-          <button onclick="setAppAccent('en-US')" style="flex:1; padding:10px; border-radius:10px; font-weight:800; background:${appState.accent==='en-US'?'#2563eb':'#e2e8f0'}; color:${appState.accent==='en-US'?'#fff':'#1e293b'};">🇺🇸 美式发音 (en-US)</button>
-          <button onclick="setAppAccent('en-GB')" style="flex:1; padding:10px; border-radius:10px; font-weight:800; background:${appState.accent==='en-GB'?'#2563eb':'#e2e8f0'}; color:${appState.accent==='en-GB'?'#fff':'#1e293b'};">🇬🇧 英式发音 (en-GB)</button>
+          <button onclick="setAppAccent('en-US')" style="flex:1; padding:10px; border-radius:10px; font-weight:800; background:${appState.accent==='en-US'?'#2563eb':'#e2e8f0'}; color:${appState.accent==='en-US'?'#fff':'#1e293b'};">🇺🇸 美式发音 <span style="white-space:nowrap">(en-US)</span></button>
+          <button onclick="setAppAccent('en-GB')" style="flex:1; padding:10px; border-radius:10px; font-weight:800; background:${appState.accent==='en-GB'?'#2563eb':'#e2e8f0'}; color:${appState.accent==='en-GB'?'#fff':'#1e293b'};">🇬🇧 英式发音 <span style="white-space:nowrap">(en-GB)</span></button>
         </div>
       </div>
 
