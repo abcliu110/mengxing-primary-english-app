@@ -12,38 +12,38 @@
 
 | 条目 | 原记 | 实际提交时间（JST） | 提交 |
 |---|---|---|---|
-| P1 adj_order | 2026-10-29 23:00 | 2026-10-29 21:35 | `b909fd2` |
-| P2-① fp_economy | 2026-10-29 23:20 | 2026-10-29 21:37 | `7d06116` |
-| P2-② fp_iconicity | 2026-10-29 22:30 | 2026-10-29 22:12 | `7428be6` |
-| P2-③ fp_boundedness | 2026-10-29 22:45 | 2026-10-29 22:14 | `5026314` |
-| P2-⑤ fp_vectors | 2026-10-29 23:00 | 2026-10-29 22:15 | `bc2e7f0` |
-| P2'-④ fp_one_king | 2026-10-29 23:15 | 2026-10-29 22:17 | `48a097a` |
-| P2'-⑥ fp_zoom_focus | 2026-10-29 23:30 | 2026-10-29 22:18 | `a4bdc36` |
-| P3-① bamboo_tree | 2026-10-29 22:30 | 2026-10-29 22:23 | `17a5ccf` |
-| P3-② aux_transformer | 2026-10-29 22:40 | 2026-10-29 22:24 | `209c2d6` |
-| P3-③ five_patterns | 2026-10-29 22:55 | 2026-10-29 22:26 | `64e7408` |
-| P3-④ tense_matrix | 2026-10-29 23:10 | 2026-10-29 22:28 | `a2e4386` |
-| P4 writing_alchemist | 2026-10-29 23:25 | 2026-10-29 22:31 | `7ec20c7` |
-| P1–P4 之后 | 2026-10-29 23:25 | 2026-10-29 22:31 | `7ec20c7` |
-| metaphor_code R2 | 2026-10-29 23:35 | 2026-10-29 22:32 | `5b17a2a` |
-| past_clans R2 | 2026-10-29 23:45 | 2026-10-29 22:34 | `0a5d255` |
-| 格林定律章开始（出处提交） | 2026-10-29 21:40 | 2026-10-29 21:12 | `caa1493` |
-| 时间与度量章开始（出处提交） | 2026-10-29 22:30 | 2026-10-29 21:27 | `d9d3c22` |
-| 阶段 3 开始（R1 清单） | 2026-10-29 23:55 | 2026-10-29 22:35 | `f38e32c` |
-| 中英对照 11 幕全部上线 | 2026-10-30 03:15 | 2026-10-29 23:06 | `adb2106` |
-| ze_be 升 v2 | 2026-10-29 23:35 | 2026-10-29 23:23 | `b55a01c` |
-| ze_modifier 升 v2 | 2026-10-29 23:50 | 2026-10-29 23:25 | `b8366bd` |
-| phrasal_key | 2026-10-29 23:58 | 2026-10-29 23:34 | `53a8d60` |
-| eight_endings | 2026-10-30 00:15 | 2026-10-29 23:37 | `8d1377b` |
-| pron_map | 2026-10-30 00:45 | 2026-10-29 23:43 | `60020bf` |
-| intonation_map | 2026-10-30 01:10 | 2026-10-29 23:47 | `f497a1a` |
-| 合成词重音 | 2026-10-30 01:20 | 2026-10-29 23:48 | `09f2847` |
-| irregular_plural | 2026-10-30 01:45 | 2026-10-30 00:06 | `52b7121` |
-| 首页改版第 6 步 | 2026-10-30 00:50 | 2026-10-30 00:33 | `f1cd18f` |
-| 按需加载 | 2026-10-29 20:40 | 2026-10-29 20:31 | `f575002` |
-| r2check --summary 复算 | 2026-10-29 21:20 | 2026-10-29 21:08 | `62ae7cc` |
+| P1 adj_order | 2026-10-29 23:00 | 2026-10-29 21:35 | `198f603` |
+| P2-① fp_economy | 2026-10-29 23:20 | 2026-10-29 21:37 | `9c5ff2e` |
+| P2-② fp_iconicity | 2026-10-29 22:30 | 2026-10-29 22:12 | `f1cb31a` |
+| P2-③ fp_boundedness | 2026-10-29 22:45 | 2026-10-29 22:14 | `5055a5b` |
+| P2-⑤ fp_vectors | 2026-10-29 23:00 | 2026-10-29 22:15 | `40b6735` |
+| P2'-④ fp_one_king | 2026-10-29 23:15 | 2026-10-29 22:17 | `effe856` |
+| P2'-⑥ fp_zoom_focus | 2026-10-29 23:30 | 2026-10-29 22:18 | `d59731a` |
+| P3-① bamboo_tree | 2026-10-29 22:30 | 2026-10-29 22:23 | `dc0ce9f` |
+| P3-② aux_transformer | 2026-10-29 22:40 | 2026-10-29 22:24 | `e1ceeff` |
+| P3-③ five_patterns | 2026-10-29 22:55 | 2026-10-29 22:26 | `26fc918` |
+| P3-④ tense_matrix | 2026-10-29 23:10 | 2026-10-29 22:28 | `29a229a` |
+| P4 writing_alchemist | 2026-10-29 23:25 | 2026-10-29 22:31 | `df56015` |
+| P1–P4 之后 | 2026-10-29 23:25 | 2026-10-29 22:31 | `df56015` |
+| metaphor_code R2 | 2026-10-29 23:35 | 2026-10-29 22:32 | `525fecd` |
+| past_clans R2 | 2026-10-29 23:45 | 2026-10-29 22:34 | `f9c9dea` |
+| 格林定律章开始（出处提交） | 2026-10-29 21:40 | 2026-10-29 21:12 | `12d1ec9` |
+| 时间与度量章开始（出处提交） | 2026-10-29 22:30 | 2026-10-29 21:27 | `8f0f997` |
+| 阶段 3 开始（R1 清单） | 2026-10-29 23:55 | 2026-10-29 22:35 | `1d73ab3` |
+| 中英对照 11 幕全部上线 | 2026-10-30 03:15 | 2026-10-29 23:06 | `384b14c` |
+| ze_be 升 v2 | 2026-10-29 23:35 | 2026-10-29 23:23 | `a67dd16` |
+| ze_modifier 升 v2 | 2026-10-29 23:50 | 2026-10-29 23:25 | `10c9c77` |
+| phrasal_key | 2026-10-29 23:58 | 2026-10-29 23:34 | `65bac5a` |
+| eight_endings | 2026-10-30 00:15 | 2026-10-29 23:37 | `1bef9d5` |
+| pron_map | 2026-10-30 00:45 | 2026-10-29 23:43 | `da7118a` |
+| intonation_map | 2026-10-30 01:10 | 2026-10-29 23:47 | `135ce04` |
+| 合成词重音 | 2026-10-30 01:20 | 2026-10-29 23:48 | `9a9d205` |
+| irregular_plural | 2026-10-30 01:45 | 2026-10-30 00:06 | `fb57236` |
+| 首页改版第 6 步 | 2026-10-30 00:50 | 2026-10-30 00:33 | `630f7d4` |
+| 按需加载 | 2026-10-29 20:40 | 2026-10-29 20:31 | `d243770` |
+| r2check --summary 复算 | 2026-10-29 21:20 | 2026-10-29 21:08 | `2c2a51a` |
 
-其余时间（如 port 审片 20:10 ≈ abb050c 20:08、首页方案 00:07 是用户提出时间、文件头「更新 2026-10-30 00:20」是最后一次改头部的时间）误差在几分钟内或不是提交时间，未改。
+其余时间（如 port 审片 20:10 ≈ ef118fd 20:08、首页方案 00:07 是用户提出时间、文件头「更新 2026-10-30 00:20」是最后一次改头部的时间）误差在几分钟内或不是提交时间，未改。
 
 ---
 
@@ -64,7 +64,7 @@
 | 3 | 讲解员小人（v3a 定稿，SVG 骨架 + 动作库 v1 + 5 表情 + 3 口型） | ✅ `src/wb_actor.js`；演示 `cases/narrator_demo.js`（preview.html?tab=narrator_demo&case=0/1/2） |
 | 4 | port 幕 R4：动作词全部由小人 / 角色演出来，与朗读同步 | 🔧 第一版已接入：`r2check.py wo_port` R4 13/13 ✔（登记 + 与朗读重叠）；逐张截图精修中 |
 | 5 | 引擎 V1–V8 + M1–M12（向后兼容，旧幕回归） | 🔧 引擎 v2 已提交（`k.v2()` 打开才生效；旧 63 幕 SVG 逐字节不变）；port 接入调整中 |
-| 6 | 升级前后录屏 + 关键帧对比 → 给用户审片 | ✅ 用户 20:10 审片通过（abb050c） |
+| 6 | 升级前后录屏 + 关键帧对比 → 给用户审片 | ✅ 用户 20:10 审片通过（ef118fd） |
 | 7 | ⑤ 按需加载（决策 13） | ✅ 见下「按需加载」 |
 
 **当前做到哪 / 下一步（19:20 更新）**
@@ -85,18 +85,18 @@
 - ✅ 分镜文档 `word_origins/PORT_STORYBOARD_V2.md`（镜头总表 + 从实际时间轴导出的逐条时间码）。
 - ✅ 实测（沙箱无 GPU 的 headless Chromium，偏保守）：
   - 朗读同步（`src/measure_sync.py`，模拟 TTS 随机时序）：36 个 onboundary 事件，白板时间轴到达该词的误差平均 0.035 秒、最大 0.129 秒，36/36 ≤ 0.2 秒。
-  - fps（`src/measure_fps.py`，同一环境前 30 秒）：升级后平均 59.6、1% 低帧 38.9、每帧 JS 渲染 1.56 ms（p99 8.4 ms）；升级前 db13720 平均 58.4、1% 低帧 31.2、2.29 ms。搬运镜头（最重）平均 59.3。1% 低帧受沙箱软件渲染限制，真机待用户确认。
+  - fps（`src/measure_fps.py`，同一环境前 30 秒）：升级后平均 59.6、1% 低帧 38.9、每帧 JS 渲染 1.56 ms（p99 8.4 ms）；升级前 f7a2c91 平均 58.4、1% 低帧 31.2、2.29 ms。搬运镜头（最重）平均 59.3。1% 低帧受沙箱软件渲染限制，真机待用户确认。
   - 拖动 / 重播（`src/measure_seek.py`）：14 个时刻 × 3 种到达方式，DOM 状态一致，截图只有个别抗锯齿像素差。
   - 减少动态（`prefers-reduced-motion`）：降级为淡入、不画手、镜头直接到位，无报错。
 - 性能：去掉荧光底色的 mix-blend-mode（荧光带本来就在文字下面）。道具放回原处时插回固定位置（图层顺序与播放路径无关）。
-- ✅ 录屏和对比图（`/workspace/work/mx_shots/`，不进仓库）：升级前 `port_before_db13720.mp4`、升级后 `port_after_v2.mp4`（Playwright 实时录屏，分段录再拼接，模拟 TTS 驱动语音事件；视频无声），关键帧对比 `compare_01…09_*.png`（两边按同一句朗读对齐）。
+- ✅ 录屏和对比图（`/workspace/work/mx_shots/`，不进仓库）：升级前 `port_before_f7a2c91.mp4`、升级后 `port_after_v2.mp4`（Playwright 实时录屏，分段录再拼接，模拟 TTS 驱动语音事件；视频无声），关键帧对比 `compare_01…09_*.png`（两边按同一句朗读对齐）。
 - 抽帧自审又修：飞机起飞不再飞进右上角进度条；金句卡洞见手动断行、卡片左移给小人留位置；护照放大 1.5 倍看得清印章；托举结束后箱子收起；半透明海浪线不叠加粗线。
 - ✅ 升级后视频已按最新版重录、对比图重出；SOP（验收脚本、引擎 v2 用法）、MASTER_DESIGN（§2.5 / §2.6 进度）已更新。
-- **审片材料**（沙箱 `/workspace/work/mx_shots/`）：`port_before_db13720.mp4`（约 136 秒）、`port_after_v2.mp4`（约 202 秒）、`compare_01_片头 … compare_09_结尾定格.png`、`narrator_actions_v1.png`、`narrator_expressions_v1.png`、`measure_v2.json`。
+- **审片材料**（沙箱 `/workspace/work/mx_shots/`）：`port_before_f7a2c91.mp4`（约 136 秒）、`port_after_v2.mp4`（约 202 秒）、`compare_01_片头 … compare_09_结尾定格.png`、`narrator_actions_v1.png`、`narrator_expressions_v1.png`、`measure_v2.json`。
 - ~~下一步（等用户）~~：用户已确认 port 样板幕（20:10）；阶段 1 ⑤ 按需加载已完成（见下）。下一步：阶段 2（Europe → Bluetooth → 身世标签 → 格林定律章）。
 - **已知取舍**：①视频无声（沙箱没有英文语音，用模拟 TTS 驱动事件；音效是 Web Audio 实时合成，录屏录不到）；②fps 在无 GPU 沙箱实测平均 59.6、1% 低帧约 39（升级前同环境 31），≥50fps 需真机复核；③词块例句用「X means …」元语言句；④「风送船」「船运货」「鸟飞」「飞机起飞」由场景物体演（`k.actFx` 登记），其余动作词都由人演；⑤角色服装色、徽章色、🥚 不在 V3 四色内（定稿形象 / 全 App 统一标识）。
 
-**按需加载（阶段 1 ⑤，2026-10-29 20:40）**〔按 git log 更正：2026-10-29 20:31 JST，`f575002`〕
+**按需加载（阶段 1 ⑤，2026-10-29 20:40）**〔按 git log 更正：2026-10-29 20:31 JST，`d243770`〕
 - 做法：`insert_wb.py` 把 19 个白板模块（10 个实验室页签、6 条原理、port，外加道具 `fp_props` / `wo_props`）写成不执行的 `<script type="text/plain" id="wbmod-<id>">`，放在 `</body>` 前的 `<<WB_MODULES_START>> … <<WB_MODULES_END>>` 区块；道具用 `data-deps` 声明依赖。引擎、讲解员、App 接线、单词身世总枢页面仍直接执行。
 - 「万能动词 × 向量转盘」VV 动画脚本（约 1.7 MB：webp 素材 base64 + 场景，只有 `verb_matrix` 页签用）同样改成 `wbmod-vv`，页签渲染时才载入（`insert_wb.py` 自动改写，可重复运行）。
 - 运行时（`wb_app.js`）：`wbCases(tab)` 第一次用到某模块时调 `wbLoadModule(id)`——取出文字生成 `<script>` 同步执行，之后不重复；`wbHasModule(id)`、`wbLoadAll()`（验收脚本用）；`woSceneReady` 认模块是否在主文件里。不用 fetch，仍是单个 HTML 双击即用。
@@ -104,7 +104,7 @@
 - 验收：`jscheck.py`（2→1 个直接执行的 script + 20 个模块，node --check 全过）；`reg_render.py` 64 幕 × 5 时刻 = 320 次渲染与改动前逐字节一致；`appwb.py` 10 个页签、`appfp.py 0–5`、`appwo.py` 全过、无报错；`r2check.py wo_port --strict` 通过；verb_matrix 的 VV 动画进入页签后正常播放。
 - 首屏实测（`measure_load.py` 新旧交替各 12 次，中位数，沙箱无 GPU）：首页可交互 256.7 → 237.9 ms，DOMContentLoaded 187.1 → 174.5 ms，首次绘制 102 → 96 ms；首次进入竹节句 / 原理① / port 基本不变（50.7/43.3/85.1 → 52.2/44.7/85.6 ms）；首次进入 verb_matrix 40 → 52 ms（多一次载入 1.7 MB，之后不再重复）。
 - 新验收脚本（这些以前在 /tmp 里，沙箱重置会丢，现进仓库）：`src/jscheck.py`（node --check）、`src/reg_render.py`（渲染回归，替代 `/tmp/reg/reg.py`）、`src/measure_load.py`（首屏耗时）。
-- 顺手补了 abb050c 留下的截图回归：小人放大到 1.15 后，金句卡、护照、托举、词卡镜头都没压住内容（托举镜头小人笔尖贴近绿框右边，不挡字）。
+- 顺手补了 ef118fd 留下的截图回归：小人放大到 1.15 后，金句卡、护照、托举、词卡镜头都没压住内容（托举镜头小人笔尖贴近绿框右边，不挡字）。
 - 还没分块的大数据：`VOCAB_DB` 等词库数据首页就要用（词卡、搜索），本轮不动；以后新模块的大数据按同样方式写成 `wbmod-*`。
 
 **朗读覆盖检查用法**（主文件里有全部词库数据，所以先 `insert_wb.py` 再查）：
@@ -119,7 +119,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - R4：案例对象写 `actionWords: [{ word: "import", act: "carry" }, …]`（分镜动作词清单），脚本逐个对照 `k.act(…, { words: ["import"] })` 登记，并检查动作时间和含这个词的朗读重叠；例句里出现常见动作动词但没列进清单的，只提示。
 - `--strict` 有缺项返回 1（验收用）。
 - **全 App 基线（2026-10-29，升级前）**：64 幕，英文词 / 词块 1618 个，缺 1479；白板句子 324 句，缺朗读 195。旧幕按「持续」待办逐步补，本阶段只补 port。
-- **复算（2026-10-29 21:20，`r2check.py all --summary`）**〔按 git log 更正：2026-10-29 21:08 JST，`62ae7cc`〕：66 幕（多了 europe、bluetooth），英文词 / 词块 1641 个，缺 1462；白板句子 324 句，缺朗读 195；R4 只有 3 个新幕列了动作词清单（19 个，缺 0），旧幕都还没列。`--summary` 是本次新增的「按页签汇总」（原来只有逐幕行和总计，没有按页签的汇总，拿来排推广顺序不方便）。
+- **复算（2026-10-29 21:20，`r2check.py all --summary`）**〔按 git log 更正：2026-10-29 21:08 JST，`2c2a51a`〕：66 幕（多了 europe、bluetooth），英文词 / 词块 1641 个，缺 1462；白板句子 324 句，缺朗读 195；R4 只有 3 个新幕列了动作词清单（19 个，缺 0），旧幕都还没列。`--summary` 是本次新增的「按页签汇总」（原来只有逐幕行和总计，没有按页签的汇总，拿来排推广顺序不方便）。
 
 ### 0.1 旧幕推广清单（R2 补朗读 + R4 补动作 + v2 视觉，按优先级；**只列清单，不批量改**）
 
@@ -149,13 +149,13 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 优先级 | 幕 | 理由 | 做法 |
 |---|---|---|---|
 | P1 | `adj_order` 4 案例（缺 13 词、0 句） | 缺口最小，一轮就能补齐，用来定「旧幕补 R2」的标准做法和每幕耗时 | 补朗读 + 列动作词清单；视觉不升 v2（保持旧样式，单独一轮再升） |
-| ✅ P1 完成（2026-10-29 23:00）〔按 git log 更正：2026-10-29 21:35 JST，`b909fd2`〕 | `adj_order` R2 13 → 0 | 做法：案例配置加 `extraSays`（在原 `k.final` 朗读之后补读：八类首字母词 Opinion…Purpose、OSASCOMP、two/that、cat、this），画面不动；r2check --strict 4/4 幕 37 词全过。渲染回归：只有 adj_order 第 1、2、4 幕变化（多了朗读，时间轴变长），第 3 幕和其他 71 幕逐字节一致；appwb adj_order 过。例句里的 bought / wears 不在动作词表，R4 未列清单（视觉 v2 升级时一起补演）。 | 下一个：P2 `fp_economy` |
-| ✅ P2-① 完成（2026-10-29 23:20）〔按 git log 更正：2026-10-29 21:37 JST，`7d06116`〕 | `fp_economy`（第一性原理 ①）R2 42 → 0、白板句子缺朗读 2 → 0 | 做法同 P1：每幕在收尾 `D.fin` 前补朗读（books/bags/buses、worked/played/wanted、watch/box/want/need、a/the/book/useful/hour/polite/possible、run/swim/tap/tape/big/hot/stop + 词块 ed/es/in/im/ing/er/est）；第 4 幕 `r2skip` 拼错的 runing 和音节切分残片 ru/ning/ta/ping。验收：r2check --strict 43/43；渲染回归只有 fp_economy 4 幕变化（20 项），其余 68 幕逐字节一致；jscheck、appfp 0 过；截图看过。R4：例句里 run/swim/stop 是动作词，第一性原理幕还没有讲解员，留到视觉 v2 升级时补演。 | 下一个：P2 `fp_iconicity` |
-| ✅ P2-② 完成（2026-10-29 22:30）〔按 git log 更正：2026-10-29 22:12 JST，`7428be6`〕 | `fp_iconicity`（第一性原理 ②）R2 46 → 0 | 做法同 P1/P2-①：每幕收尾 `D.fin` 前补朗读（mouth/mother、swim/smile、box/bed、cup/cap；fl/gl/sl 词块 + fly/flag/flower/glass/glad/slide/slow/sleep/floor；str/sp 词块 + straight/street/strong/strict/speak/sport/space/spring；tw 词块 + two/twelve/twenty/twice/twin/between/twain）；第 2–4 幕 `r2skip` 辅音丛拆开后的词尾残片（ag/ower/ass/ad/ide/ow/eep、aight/eet/ong/ict/eak/ort/ace/ring、elve/enty/ice/in/een）和 between 里的古前缀 be（≈ by，不是动词 be，不单读）。验收：r2check --strict 33/33；渲染回归只有 fp_iconicity 4 幕变化（20 项），其余 68 幕逐字节一致；jscheck 29 模块、appfp 0/1 过。R4：例句里 put/catch/fly/swim/walk/sit 是动作词，第一性原理幕没有讲解员，留到视觉 v2 升级时补演。 | 下一个：P2 `fp_boundedness` |
-| ✅ P2-③ 完成（2026-10-29 22:45）〔按 git log 更正：2026-10-29 22:14 JST，`5026314`〕 | `fp_boundedness`（第一性原理 ③）R2 45 → 0、白板句子缺朗读 12 → 0 | 做法同上：每幕收尾前补朗读（an apple / a piece / a glass of milk / homework / papers；There is a dog in the park. / The dog is running. / Open the door, please! / one / that / moon；go to school vs go to the school、on the bed / in bed、on a bus / by bus、buy a football、to the hospital；three chickens、made of glass、make room for you、two fish / some fish）。第 3 幕 `r2skip: ["vs"]`（标题里的对比符号）。**工具小改**：`r2check.js` 判断白板整句是否被朗读时，先去掉 r2skip 的词（否则「go to school vs go to the school」永远对不上）；全 App `--summary` 其余幕结果不变。验收：r2check --strict 59 词、14 句全过；渲染回归只有 fp_boundedness 4 幕变化（20 项）；jscheck、appfp 2 过。 | 下一个：P2 `fp_vectors` |
-| ✅ P2-⑤ 完成（2026-10-29 23:00）〔按 git log 更正：2026-10-29 22:15 JST，`bc2e7f0`〕 | `fp_vectors`（第一性原理 ⑤）R2 63 → 0、白板句子缺朗读 19 → 0 | 做法同上：每幕收尾前补朗读（at/on/in、on the desk、Monday/May；on/off 动词 + 名词、get on the bus、take off your shoes、turn off the TV、get off the bus；八种交通工具、on the train / in a taxi / on a bike / on a horse；to/from/for、listen to me、go to school、give a book to me、come from China、borrow from you、lend to him、look for my pen、wait for the bus、a cake for mom、look at / look after）。第 3 幕 `r2skip: ["vs"]`。验收：r2check --strict 68 词、28 句全过；渲染回归只有 fp_vectors 4 幕变化（20 项）；jscheck、appfp 4 过。**P2 四条原理全部完成**。 | 下一个：P2' `fp_one_king` 第 2–4 幕 |
-| ✅ P2'-④ 完成（2026-10-29 23:15）〔按 git log 更正：2026-10-29 22:17 JST，`48a097a`〕 | `fp_one_king`（第一性原理 ④）第 2–4 幕 R2 补齐（第 1 幕按计划留到搬去中英对照总枢时在新位置补，原位置仍缺 18 词 5 句） | 补朗读：want/plan/hope to…、enjoy/finish、good at drawing、do/doing/done；She went home / He plays football / They went home / Does he play? / He doesn't play. / Did they go?、can/must/will、Yes/No；五副骨骼的例句词。`r2skip`：第 2 幕打叉错句「I want go home.」、第 3 幕红字错句「Does he plays? / She can swims.」、第 4 幕成分标签 IO / DO。**工具小改**：`r2check.js` 的 r2skip 支持整句条目（带空格 = 按整句跳过错句），旧条目照常。验收：第 2–4 幕 r2check 全过（63 词、22 句）；渲染回归只有 fp_one_king 第 2–4 幕变化（15 项）；jscheck、appfp 3 过。 | 下一个：P2' `fp_zoom_focus` 第 2–4 幕 |
-| ✅ P2'-⑥ 完成（2026-10-29 23:30）〔按 git log 更正：2026-10-29 22:18 JST，`a4bdc36`〕 | `fp_zoom_focus`（第一性原理 ⑥）第 2–4 幕 R2 补齐（第 1 幕同样留到搬迁时补，原位置仍缺 18 词 4 句） | 补朗读：Where is my bag? / How much is this shirt? / What a clever boy he is! How fast he runs!、Yes/No；Room/Building/Star School/Beijing、in/at/on、Tuesday morning、September；yesterday/did、every day/do/does、tomorrow/will、now/am/are/is doing、already/just/has/done 各配例句。验收：第 2–4 幕 r2check 全过（58 词、6 句）；渲染回归只有 fp_zoom_focus 第 2–4 幕变化（15 项）；jscheck、appfp 5 过。**P2 / P2' 全部完成**（第一性原理 24 幕里只剩 ④-1、⑥-1 两幕按计划待搬迁）。 | 下一个：P3 `bamboo_tree` || ✅ P3-① 完成（2026-10-29 22:30）〔按 git log 更正：2026-10-29 22:23 JST，`17a5ccf`〕 | `bamboo_tree`（实验室样板页签，5 个病句案例）R2 73 → 0、白板句子缺朗读 12 → 0 | 每个案例在 `k.final` 正确句之后补朗读：拆开的主干 / 挂件词（want/go/read/tomorrow/library/storybooks；I like dogs / They are happy、am/is/are、very much/and；under the tree / in a red dress / reading a book / my sister；yesterday morning / at eight o'clock / on the school playground / do morning exercises；there be / two yellow ducks / swimming / on the lake / in the park / have）+ 每幕一句 Chinglish 例句。`r2skip`：vs 和每幕的中式病句整句（画面上作为错误示范，SOP §7.3 不读）。验收：r2check --strict 68 词、18 句全过；渲染回归只有 bamboo_tree 5 幕变化（25 项），其余逐字节一致；jscheck、appwb bamboo_tree 过。R4：go/read/swim 等动作词留到视觉 v2 升级时由讲解员补演。 | 下一个：P3 `aux_transformer` || ✅ P3-② 完成（2026-10-29 22:40）〔按 git log 更正：2026-10-29 22:24 JST，`209c2d6`〕 | `aux_transformer`（助动词变形金刚，4 案例）R2 82 → 0、白板句子缺朗读 15 → 0 | 每个案例在 `h.final` 前补朗读：否定 / 简短回答（She is not、Yes, she is. / No, she isn't.、Yes, he can. / No, he can't.、Yes, she does. / No, she doesn't.、Yes, they did. / No, they didn't.）、第二个感叹句（How happy she is! / How fast the plane flew!）、What can Leo speak very well?、句子成分词组（taking photos in the park now、every Saturday evening、to Sanya by plane last winter）、字幕里列举的 am/is/are/was/were、do/does/did、will/must/should、-es、-ed、buy/bought、an。验收：r2check --strict 88 词、38 句全过；渲染回归只有 aux_transformer 4 幕变化（20 项）；jscheck、appwb aux_transformer 过。 | 下一个：P3 `five_patterns` || ✅ P3-③ 完成（2026-10-29 22:55）〔按 git log 更正：2026-10-29 22:26 JST，`64e7408`〕 | `five_patterns`（五大句型，5 案例）R2 180 → 0、白板句子缺朗读 13 → 0 | 每个案例在 `h.final` 前补朗读：骨架例句（The sun rises in the east. / The chicken soup smells so delicious. / Leo loves reading English books. / Mum gave me a birthday gift. / Good music makes us happy.）、金句里每个词、字幕和白板列举的动词表（rise/fly/sleep/run/smile；look/sound/smell/taste/feel、get/turn/become；discuss the plan / marry her / enter the room、want/hope/plan/decide to do、enjoy/finish/practice/mind doing；give/show/send/pass/lend/teach/tell、buy/make/cook/draw/choose/find；ask/tell/want/invite、make/let/have、Let's go! Make him laugh!）和 -ly/-ed/-ing、somebody/something。`r2skip`：成分标签 SV/SVP/SVO/SVOO/SVOC/Vi/Vt/IO/DO/OC、缩写 sb/sth、vs、被划掉的 makes me happily（sweetly 是字幕里讲的副词，单读 + 例句，不跳过）。验收：r2check --strict 170 词、24 句全过；渲染回归只有 five_patterns 5 幕变化（25 项）；jscheck、appwb five_patterns 过；截图看过。 | 下一个：P3 `tense_matrix` || ✅ P3-④ 完成（2026-10-29 23:10）〔按 git log 更正：2026-10-29 22:28 JST，`a2e4386`〕 | `tense_matrix`（时态矩阵，5 案例）R2 228 → 0、白板句子缺朗读 34 → 0 | 每个案例在 `k.final` 前补朗读：时间轴 Past/Now/Future；主语替换后的完整句（They play football every afternoon. / The little bird flies high in the sky. / Mia is dancing and making a cake. / The children are swimming in the pool now. / Mia studied hard and cried when she lost her pen. / We were very happy at the party last night. / He will fly a kite in the park tomorrow. / They are going to have a picnic next Sunday. / Mia has lived in Beijing for five years. / Mr Wang has gone to Shanghai.）；时间路标词（every day/always/usually/often/sometimes/on Sundays、right now/at the moment、yesterday/ago/last night、next week/soon/in the future、already/yet/just/never/since）；字幕里的 The earth goes around the sun、ch/sh/es、a e i o u、状态动词 like/know/want/have、have been to / have gone to、I lost my key / I have lost my key。`r2skip`：公式标签 V-s/V-ing/V-ed、REC，红叉错句 He doesn't likes / I playing football / Did you went there? / There is going to have，斜杠并列残片 last night year、next week year。验收：r2check --strict 240 词、42 句全过；渲染回归只有 tense_matrix 5 幕变化（25 项）；jscheck、appwb tense_matrix 过。**P3 语法核心四个页签全部完成**。 | 下一个：P4 `writing_alchemist` || ✅ P4 完成（2026-10-29 23:25）〔按 git log 更正：2026-10-29 22:31 JST，`7ec20c7`〕 | `writing_alchemist`（满分作文炼金炉，3 案例）R2 198 → 0、白板句子缺朗读 30 → 0 | 每个案例在 `finalBox` 前补朗读：「60 分」原句（I like English very much. / We were very happy yesterday. / Reading books is good for us. / The park is very nice in spring. / First, I will do homework. / And I also help my mom. / I was tired, but I was happy.）、替换短语（be crazy about / be fond of / enjoy doing、To begin with / Besides / All in all / In a word / At last、Because / so、be good at、be going to / will / plan to / look forward to）、五感 look/smell/are singing；母题范文两段**逐句**朗读（每句一条，朗读条放得下：最长一句 93 字符，截图确认一行显示完）。`r2skip: ["adj"]`。**工具小改**：`r2check.js` 白板长段落按版面断行、一行常跨两句，相邻 2–3 条朗读连起来能盖住这一行也算已朗读（全 App `--summary` 其余幕结果不变）。验收：r2check --strict 197 词、45 句全过；渲染回归只有 writing_alchemist 3 幕变化（15 项）；jscheck、appwb writing_alchemist 过。**§0.1 推广清单 P1–P4 全部完成**；剩下的只有「暂缓」行（vowel_shift、stress_rhythm、metaphor_code、past_clans，等并入新页签时再补）和 ④-1、⑥-1（等搬迁）。 | 下一步见 §0.1 末尾「P1–P4 之后」 |
+| ✅ P1 完成（2026-10-29 23:00）〔按 git log 更正：2026-10-29 21:35 JST，`198f603`〕 | `adj_order` R2 13 → 0 | 做法：案例配置加 `extraSays`（在原 `k.final` 朗读之后补读：八类首字母词 Opinion…Purpose、OSASCOMP、two/that、cat、this），画面不动；r2check --strict 4/4 幕 37 词全过。渲染回归：只有 adj_order 第 1、2、4 幕变化（多了朗读，时间轴变长），第 3 幕和其他 71 幕逐字节一致；appwb adj_order 过。例句里的 bought / wears 不在动作词表，R4 未列清单（视觉 v2 升级时一起补演）。 | 下一个：P2 `fp_economy` |
+| ✅ P2-① 完成（2026-10-29 23:20）〔按 git log 更正：2026-10-29 21:37 JST，`9c5ff2e`〕 | `fp_economy`（第一性原理 ①）R2 42 → 0、白板句子缺朗读 2 → 0 | 做法同 P1：每幕在收尾 `D.fin` 前补朗读（books/bags/buses、worked/played/wanted、watch/box/want/need、a/the/book/useful/hour/polite/possible、run/swim/tap/tape/big/hot/stop + 词块 ed/es/in/im/ing/er/est）；第 4 幕 `r2skip` 拼错的 runing 和音节切分残片 ru/ning/ta/ping。验收：r2check --strict 43/43；渲染回归只有 fp_economy 4 幕变化（20 项），其余 68 幕逐字节一致；jscheck、appfp 0 过；截图看过。R4：例句里 run/swim/stop 是动作词，第一性原理幕还没有讲解员，留到视觉 v2 升级时补演。 | 下一个：P2 `fp_iconicity` |
+| ✅ P2-② 完成（2026-10-29 22:30）〔按 git log 更正：2026-10-29 22:12 JST，`f1cb31a`〕 | `fp_iconicity`（第一性原理 ②）R2 46 → 0 | 做法同 P1/P2-①：每幕收尾 `D.fin` 前补朗读（mouth/mother、swim/smile、box/bed、cup/cap；fl/gl/sl 词块 + fly/flag/flower/glass/glad/slide/slow/sleep/floor；str/sp 词块 + straight/street/strong/strict/speak/sport/space/spring；tw 词块 + two/twelve/twenty/twice/twin/between/twain）；第 2–4 幕 `r2skip` 辅音丛拆开后的词尾残片（ag/ower/ass/ad/ide/ow/eep、aight/eet/ong/ict/eak/ort/ace/ring、elve/enty/ice/in/een）和 between 里的古前缀 be（≈ by，不是动词 be，不单读）。验收：r2check --strict 33/33；渲染回归只有 fp_iconicity 4 幕变化（20 项），其余 68 幕逐字节一致；jscheck 29 模块、appfp 0/1 过。R4：例句里 put/catch/fly/swim/walk/sit 是动作词，第一性原理幕没有讲解员，留到视觉 v2 升级时补演。 | 下一个：P2 `fp_boundedness` |
+| ✅ P2-③ 完成（2026-10-29 22:45）〔按 git log 更正：2026-10-29 22:14 JST，`5055a5b`〕 | `fp_boundedness`（第一性原理 ③）R2 45 → 0、白板句子缺朗读 12 → 0 | 做法同上：每幕收尾前补朗读（an apple / a piece / a glass of milk / homework / papers；There is a dog in the park. / The dog is running. / Open the door, please! / one / that / moon；go to school vs go to the school、on the bed / in bed、on a bus / by bus、buy a football、to the hospital；three chickens、made of glass、make room for you、two fish / some fish）。第 3 幕 `r2skip: ["vs"]`（标题里的对比符号）。**工具小改**：`r2check.js` 判断白板整句是否被朗读时，先去掉 r2skip 的词（否则「go to school vs go to the school」永远对不上）；全 App `--summary` 其余幕结果不变。验收：r2check --strict 59 词、14 句全过；渲染回归只有 fp_boundedness 4 幕变化（20 项）；jscheck、appfp 2 过。 | 下一个：P2 `fp_vectors` |
+| ✅ P2-⑤ 完成（2026-10-29 23:00）〔按 git log 更正：2026-10-29 22:15 JST，`40b6735`〕 | `fp_vectors`（第一性原理 ⑤）R2 63 → 0、白板句子缺朗读 19 → 0 | 做法同上：每幕收尾前补朗读（at/on/in、on the desk、Monday/May；on/off 动词 + 名词、get on the bus、take off your shoes、turn off the TV、get off the bus；八种交通工具、on the train / in a taxi / on a bike / on a horse；to/from/for、listen to me、go to school、give a book to me、come from China、borrow from you、lend to him、look for my pen、wait for the bus、a cake for mom、look at / look after）。第 3 幕 `r2skip: ["vs"]`。验收：r2check --strict 68 词、28 句全过；渲染回归只有 fp_vectors 4 幕变化（20 项）；jscheck、appfp 4 过。**P2 四条原理全部完成**。 | 下一个：P2' `fp_one_king` 第 2–4 幕 |
+| ✅ P2'-④ 完成（2026-10-29 23:15）〔按 git log 更正：2026-10-29 22:17 JST，`effe856`〕 | `fp_one_king`（第一性原理 ④）第 2–4 幕 R2 补齐（第 1 幕按计划留到搬去中英对照总枢时在新位置补，原位置仍缺 18 词 5 句） | 补朗读：want/plan/hope to…、enjoy/finish、good at drawing、do/doing/done；She went home / He plays football / They went home / Does he play? / He doesn't play. / Did they go?、can/must/will、Yes/No；五副骨骼的例句词。`r2skip`：第 2 幕打叉错句「I want go home.」、第 3 幕红字错句「Does he plays? / She can swims.」、第 4 幕成分标签 IO / DO。**工具小改**：`r2check.js` 的 r2skip 支持整句条目（带空格 = 按整句跳过错句），旧条目照常。验收：第 2–4 幕 r2check 全过（63 词、22 句）；渲染回归只有 fp_one_king 第 2–4 幕变化（15 项）；jscheck、appfp 3 过。 | 下一个：P2' `fp_zoom_focus` 第 2–4 幕 |
+| ✅ P2'-⑥ 完成（2026-10-29 23:30）〔按 git log 更正：2026-10-29 22:18 JST，`d59731a`〕 | `fp_zoom_focus`（第一性原理 ⑥）第 2–4 幕 R2 补齐（第 1 幕同样留到搬迁时补，原位置仍缺 18 词 4 句） | 补朗读：Where is my bag? / How much is this shirt? / What a clever boy he is! How fast he runs!、Yes/No；Room/Building/Star School/Beijing、in/at/on、Tuesday morning、September；yesterday/did、every day/do/does、tomorrow/will、now/am/are/is doing、already/just/has/done 各配例句。验收：第 2–4 幕 r2check 全过（58 词、6 句）；渲染回归只有 fp_zoom_focus 第 2–4 幕变化（15 项）；jscheck、appfp 5 过。**P2 / P2' 全部完成**（第一性原理 24 幕里只剩 ④-1、⑥-1 两幕按计划待搬迁）。 | 下一个：P3 `bamboo_tree` || ✅ P3-① 完成（2026-10-29 22:30）〔按 git log 更正：2026-10-29 22:23 JST，`dc0ce9f`〕 | `bamboo_tree`（实验室样板页签，5 个病句案例）R2 73 → 0、白板句子缺朗读 12 → 0 | 每个案例在 `k.final` 正确句之后补朗读：拆开的主干 / 挂件词（want/go/read/tomorrow/library/storybooks；I like dogs / They are happy、am/is/are、very much/and；under the tree / in a red dress / reading a book / my sister；yesterday morning / at eight o'clock / on the school playground / do morning exercises；there be / two yellow ducks / swimming / on the lake / in the park / have）+ 每幕一句 Chinglish 例句。`r2skip`：vs 和每幕的中式病句整句（画面上作为错误示范，SOP §7.3 不读）。验收：r2check --strict 68 词、18 句全过；渲染回归只有 bamboo_tree 5 幕变化（25 项），其余逐字节一致；jscheck、appwb bamboo_tree 过。R4：go/read/swim 等动作词留到视觉 v2 升级时由讲解员补演。 | 下一个：P3 `aux_transformer` || ✅ P3-② 完成（2026-10-29 22:40）〔按 git log 更正：2026-10-29 22:24 JST，`e1ceeff`〕 | `aux_transformer`（助动词变形金刚，4 案例）R2 82 → 0、白板句子缺朗读 15 → 0 | 每个案例在 `h.final` 前补朗读：否定 / 简短回答（She is not、Yes, she is. / No, she isn't.、Yes, he can. / No, he can't.、Yes, she does. / No, she doesn't.、Yes, they did. / No, they didn't.）、第二个感叹句（How happy she is! / How fast the plane flew!）、What can Leo speak very well?、句子成分词组（taking photos in the park now、every Saturday evening、to Sanya by plane last winter）、字幕里列举的 am/is/are/was/were、do/does/did、will/must/should、-es、-ed、buy/bought、an。验收：r2check --strict 88 词、38 句全过；渲染回归只有 aux_transformer 4 幕变化（20 项）；jscheck、appwb aux_transformer 过。 | 下一个：P3 `five_patterns` || ✅ P3-③ 完成（2026-10-29 22:55）〔按 git log 更正：2026-10-29 22:26 JST，`26fc918`〕 | `five_patterns`（五大句型，5 案例）R2 180 → 0、白板句子缺朗读 13 → 0 | 每个案例在 `h.final` 前补朗读：骨架例句（The sun rises in the east. / The chicken soup smells so delicious. / Leo loves reading English books. / Mum gave me a birthday gift. / Good music makes us happy.）、金句里每个词、字幕和白板列举的动词表（rise/fly/sleep/run/smile；look/sound/smell/taste/feel、get/turn/become；discuss the plan / marry her / enter the room、want/hope/plan/decide to do、enjoy/finish/practice/mind doing；give/show/send/pass/lend/teach/tell、buy/make/cook/draw/choose/find；ask/tell/want/invite、make/let/have、Let's go! Make him laugh!）和 -ly/-ed/-ing、somebody/something。`r2skip`：成分标签 SV/SVP/SVO/SVOO/SVOC/Vi/Vt/IO/DO/OC、缩写 sb/sth、vs、被划掉的 makes me happily（sweetly 是字幕里讲的副词，单读 + 例句，不跳过）。验收：r2check --strict 170 词、24 句全过；渲染回归只有 five_patterns 5 幕变化（25 项）；jscheck、appwb five_patterns 过；截图看过。 | 下一个：P3 `tense_matrix` || ✅ P3-④ 完成（2026-10-29 23:10）〔按 git log 更正：2026-10-29 22:28 JST，`29a229a`〕 | `tense_matrix`（时态矩阵，5 案例）R2 228 → 0、白板句子缺朗读 34 → 0 | 每个案例在 `k.final` 前补朗读：时间轴 Past/Now/Future；主语替换后的完整句（They play football every afternoon. / The little bird flies high in the sky. / Mia is dancing and making a cake. / The children are swimming in the pool now. / Mia studied hard and cried when she lost her pen. / We were very happy at the party last night. / He will fly a kite in the park tomorrow. / They are going to have a picnic next Sunday. / Mia has lived in Beijing for five years. / Mr Wang has gone to Shanghai.）；时间路标词（every day/always/usually/often/sometimes/on Sundays、right now/at the moment、yesterday/ago/last night、next week/soon/in the future、already/yet/just/never/since）；字幕里的 The earth goes around the sun、ch/sh/es、a e i o u、状态动词 like/know/want/have、have been to / have gone to、I lost my key / I have lost my key。`r2skip`：公式标签 V-s/V-ing/V-ed、REC，红叉错句 He doesn't likes / I playing football / Did you went there? / There is going to have，斜杠并列残片 last night year、next week year。验收：r2check --strict 240 词、42 句全过；渲染回归只有 tense_matrix 5 幕变化（25 项）；jscheck、appwb tense_matrix 过。**P3 语法核心四个页签全部完成**。 | 下一个：P4 `writing_alchemist` || ✅ P4 完成（2026-10-29 23:25）〔按 git log 更正：2026-10-29 22:31 JST，`df56015`〕 | `writing_alchemist`（满分作文炼金炉，3 案例）R2 198 → 0、白板句子缺朗读 30 → 0 | 每个案例在 `finalBox` 前补朗读：「60 分」原句（I like English very much. / We were very happy yesterday. / Reading books is good for us. / The park is very nice in spring. / First, I will do homework. / And I also help my mom. / I was tired, but I was happy.）、替换短语（be crazy about / be fond of / enjoy doing、To begin with / Besides / All in all / In a word / At last、Because / so、be good at、be going to / will / plan to / look forward to）、五感 look/smell/are singing；母题范文两段**逐句**朗读（每句一条，朗读条放得下：最长一句 93 字符，截图确认一行显示完）。`r2skip: ["adj"]`。**工具小改**：`r2check.js` 白板长段落按版面断行、一行常跨两句，相邻 2–3 条朗读连起来能盖住这一行也算已朗读（全 App `--summary` 其余幕结果不变）。验收：r2check --strict 197 词、45 句全过；渲染回归只有 writing_alchemist 3 幕变化（15 项）；jscheck、appwb writing_alchemist 过。**§0.1 推广清单 P1–P4 全部完成**；剩下的只有「暂缓」行（vowel_shift、stress_rhythm、metaphor_code、past_clans，等并入新页签时再补）和 ④-1、⑥-1（等搬迁）。 | 下一步见 §0.1 末尾「P1–P4 之后」 |
 
 
 
@@ -169,10 +169,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 暂缓 | `stress_rhythm`（103）、`metaphor_code` 空间 / 时间条目、`past_clans` 复数例 | 决策 5 / 6 要部分并入「语调地图」「合成词重音」「空间隐喻」「不规则复数」；先列清单、并入后只补留下的部分 | 等新页签开工时一起定 |
 
 - R4：旧幕都没有 `actionWords` 清单；补 R2 时同步列清单（例句里的动作动词见 `r2check.py <id> --all-items` 末尾「提示」行）。
-- **P1–P4 之后（2026-10-29 23:25）**〔按 git log 更正：2026-10-29 22:31 JST，`7ec20c7`〕：R2 推广清单已做完（第一性原理 22 幕 + 实验室 adj_order / bamboo_tree / aux_transformer / five_patterns / tense_matrix / writing_alchemist）。复算 `r2check.py all --summary`：剩余缺口只在暂缓页签（past_clans 134 词 15 句、stress_rhythm 97/6、metaphor_code 69/13、vowel_shift 42/0）和 ④-1、⑥-1（各 18 词）。
+- **P1–P4 之后（2026-10-29 23:25）**〔按 git log 更正：2026-10-29 22:31 JST，`df56015`〕：R2 推广清单已做完（第一性原理 22 幕 + 实验室 adj_order / bamboo_tree / aux_transformer / five_patterns / tense_matrix / writing_alchemist）。复算 `r2check.py all --summary`：剩余缺口只在暂缓页签（past_clans 134 词 15 句、stress_rhythm 97/6、metaphor_code 69/13、vowel_shift 42/0）和 ④-1、⑥-1（各 18 词）。
   - 本轮统一做法：旧幕不改画面，只在收尾（`D.fin` / `k.final` / `h.final` / `finalBox`）前追加 `k.say`；画面上的错句、公式标签（S V O、V-ing、adj、sb/sth）、对比符号 vs、拆开的词尾残片一律写进案例 `r2skip`（整句错句可直接写整句）。
-  - ✅ 2026-10-29 23:35 `metaphor_code`〔按 git log 更正：2026-10-29 22:32 JST，`5b17a2a`〕 3 案例 R2 69 → 0、句子 13 → 0：按 MASTER_DESIGN 第 81 行，「人体、颜色、动物隐喻留在原页签」，三个案例都不会被搬走，所以先补（原「暂缓」行写的是整页签，过严）。补读：head/face/mouth/hand/foot/arm/leg、face of a clock、mouth of a river、at the head of the line、eye of a needle、neck of a bottle、give me a hand；颜色词、a green hand、a white lie、give the green light、golden opportunity、Don't feel blue!；as busy as a bee、The early bird catches the worm、as gentle as a lamb、as brave as a lion、rain cats and dogs、a lucky dog、black sheep、white elephant、-er/-est。以后「空间隐喻」新页签若要借用这里的某些条目，复制过去即可，这里不删。验收：r2check --strict 83 词 21 句全过；渲染回归只有 metaphor_code 3 幕变化；jscheck、appwb 过。
-  - ✅ 2026-10-29 23:45 `past_clans`〔按 git log 更正：2026-10-29 22:34 JST，`0a5d255`〕 4 案例 R2 134 → 0、句子 15 → 0：四个案例都是不规则过去式（AAA、i→a、ee→e+t、-ought/-aught），白板脚本里没有复数例（MASTER_DESIGN 第 83 行说的「复数例」不在白板案例里），不会被并走，所以先补。补读：四派的例句整句、各派成员（hit/let/cost、sing/sang/sung、swim/swam/swum、drink/drank/drunk、sit/sat、give/gave、begin/ring/rang、run/ran、come/came、sleep/feel/leave、keep/kept、sweep/swept、meet、feed/fed、teach/catch/buy/bring/think/fight 及过去式）和词块 -ed/-ng/-nk/ee/ea/-ought/-aught/gh/br-。`r2skip`：红叉错写 putted、hurted，派别标签 AAA。验收：r2check --strict 139 词 14 句全过；渲染回归只有 past_clans 4 幕变化；jscheck、appwb 过。
+  - ✅ 2026-10-29 23:35 `metaphor_code`〔按 git log 更正：2026-10-29 22:32 JST，`525fecd`〕 3 案例 R2 69 → 0、句子 13 → 0：按 MASTER_DESIGN 第 81 行，「人体、颜色、动物隐喻留在原页签」，三个案例都不会被搬走，所以先补（原「暂缓」行写的是整页签，过严）。补读：head/face/mouth/hand/foot/arm/leg、face of a clock、mouth of a river、at the head of the line、eye of a needle、neck of a bottle、give me a hand；颜色词、a green hand、a white lie、give the green light、golden opportunity、Don't feel blue!；as busy as a bee、The early bird catches the worm、as gentle as a lamb、as brave as a lion、rain cats and dogs、a lucky dog、black sheep、white elephant、-er/-est。以后「空间隐喻」新页签若要借用这里的某些条目，复制过去即可，这里不删。验收：r2check --strict 83 词 21 句全过；渲染回归只有 metaphor_code 3 幕变化；jscheck、appwb 过。
+  - ✅ 2026-10-29 23:45 `past_clans`〔按 git log 更正：2026-10-29 22:34 JST，`f9c9dea`〕 4 案例 R2 134 → 0、句子 15 → 0：四个案例都是不规则过去式（AAA、i→a、ee→e+t、-ought/-aught），白板脚本里没有复数例（MASTER_DESIGN 第 83 行说的「复数例」不在白板案例里），不会被并走，所以先补。补读：四派的例句整句、各派成员（hit/let/cost、sing/sang/sung、swim/swam/swum、drink/drank/drunk、sit/sat、give/gave、begin/ring/rang、run/ran、come/came、sleep/feel/leave、keep/kept、sweep/swept、meet、feed/fed、teach/catch/buy/bring/think/fight 及过去式）和词块 -ed/-ng/-nk/ee/ea/-ought/-aught/gh/br-。`r2skip`：红叉错写 putted、hurted，派别标签 AAA。验收：r2check --strict 139 词 14 句全过；渲染回归只有 past_clans 4 幕变化；jscheck、appwb 过。
   - 至此 R2 剩余缺口：stress_rhythm（97 词 6 句，要部分并入「语调地图」「合成词重音」，等新页签开工）、~~vowel_shift~~（已删页签，2026-10-29）、④-1 / ⑥-1（等搬迁）。
   - 下一轮候选（不用等用户的）：①R4 动作词清单——旧幕补 `actionWords` 要先有讲解员（视觉 v2 升级），所以和 v2 升级一起做；②暂缓页签里**不会被并走**的部分（past_clans 的过去式部分、metaphor_code 的非空间 / 时间条目）可以先补，复数例、空间 / 时间条目等并入时再补。
 
@@ -183,8 +183,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 1 | Europe 示范幕（`cases/wo_europe.js`，引擎 v2 + 讲解员，对齐 port 样板） | ✅ 见下 |
 | 2 | Bluetooth 示范幕（`cases/wo_bluetooth.js`） | ✅ 见下 |
 | 3 | 身世标签 + 词卡跳转（先给 port 家族） | ✅ 见下 |
-| 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | ✅ 四幕上线、清单 211 条对照完（✅ 2026-10-29 用户确认后已删旧页签、改 15 处入口）。原记录：① 出处 ✅ `caa1493`（SOURCES ④ 12 条、⑤ 14 条，含纠错）；② 真格林定律幕 `wo_grimm`；③ 元音变异三幕 `wo_vowel_a/b/c`；④ 清单 185 条逐项打勾。**删 `vowel_shift` 页签 / 改入口等用户确认，不动** |
-| 5 | 时间与度量章 | ✅ 出处 `d9d3c22`；数字幕 `wo_time_num` `1b9547d`；星期和月份幕 `wo_time_week`（本次） |
+| 4 | 格林定律章（吸收并删除 `vowel_shift`，R1 零丢失流程） | ✅ 四幕上线、清单 211 条对照完（✅ 2026-10-29 用户确认后已删旧页签、改 15 处入口）。原记录：① 出处 ✅ `12d1ec9`（SOURCES ④ 12 条、⑤ 14 条，含纠错）；② 真格林定律幕 `wo_grimm`；③ 元音变异三幕 `wo_vowel_a/b/c`；④ 清单 185 条逐项打勾。**删 `vowel_shift` 页签 / 改入口等用户确认，不动** |
+| 5 | 时间与度量章 | ✅ 出处 `8f0f997`；数字幕 `wo_time_num` `acbc876`；星期和月份幕 `wo_time_week`（本次） |
 
 **Europe 示范幕（2026-10-29）**
 - 出处先登记：`word_origins/SOURCES.md` ② 12 条（etymonline Europe / European / -an / African / Euro- / Euro；维基 Europa 神话、卫星、欧元纸币；中文维基 欧洲 / 坤舆万国全图）。名字来源三种说法（神话公主、eurys+ops「宽脸」、闪米特语「西方」）**全部标 ❓**，神话标 📜 + ✂️（原故事是「劫走」，讲给小学生简化成「驮过大海」）。
@@ -210,8 +210,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 验收：`src/apptags.py`——8 个词都在词库、指向的幕已上线；8 个词翻到背面都有标签、reporter 没有；点 passport 的标签 → 词卡关闭、进入单词身世总枢 port 幕且白板已挂载；无报错。PASS。
 - ✅ 2026-10-29 用户确认后已处理 port 家族词卡（HANDOFF §4 第 5 条）：7 张有标签的卡 + port 卡的旧「家族串记」换成「两条亲戚线」（⚓ 港口线 airport·passport ｜ 📦 搬运线 import·export·transport·report·support·important·sport，成员一个不少）；import / export / passport 的积木拆词、巧记、小故事里把港口和搬运混讲的地方按出处改正；`WORD_FORMATION_DB.roots` port 卡改成两条亲戚线；第二词库 airport 同步。reporter / important / sport 没有身世标签，原段落不动。逐字段清单 `word_origins/PORT_FAMILY_INVENTORY.md`（16 字段，❌ 0）。验收：jscheck OK；reg_render 80 幕逐字节一致；apptags PASS；词卡、构词法页截图正常无报错。
 
-**格林定律章（2026-10-29 21:40 起，进行中）**〔按 git log 更正：2026-10-29 21:12 JST，`caa1493`〕
-- 出处（`caa1493`）：`word_origins/SOURCES.md` ④ 真格林定律 12 条、⑤ 元音变异 14 条。纠错要点（R3，写进新幕，旧页签不动）：①「格林音变律」名字不准——格林定律是辅音挪位，foot→feet 是元音变异（i-mutation）；② length/strength 的 o→e 也是 i 变异（后缀 \*-itho 里的 i），不是「嘴巴省力缩短」；③ width 是 1620 年代仿 breadth 新造的，deep/depth、wide/width 读音差距主要来自 1400–1700 大元音推移（✂️）；④ safe/save、use/use 是法语借词，不属于古英语清浊交替（⚠️）；⑤ blood 读 /ʌ/ 不是 /uː/；⑥ full→fill 是形容词变动词。
+**格林定律章（2026-10-29 21:40 起，进行中）**〔按 git log 更正：2026-10-29 21:12 JST，`12d1ec9`〕
+- 出处（`12d1ec9`）：`word_origins/SOURCES.md` ④ 真格林定律 12 条、⑤ 元音变异 14 条。纠错要点（R3，写进新幕，旧页签不动）：①「格林音变律」名字不准——格林定律是辅音挪位，foot→feet 是元音变异（i-mutation）；② length/strength 的 o→e 也是 i 变异（后缀 \*-itho 里的 i），不是「嘴巴省力缩短」；③ width 是 1620 年代仿 breadth 新造的，deep/depth、wide/width 读音差距主要来自 1400–1700 大元音推移（✂️）；④ safe/save、use/use 是法语借词，不属于古英语清浊交替（⚠️）；⑤ blood 读 /ʌ/ 不是 /uː/；⑥ full→fill 是形容词变动词。
 - ✅ 第 1 幕 `wo_grimm`（真格林定律，约 142 秒，18 句朗读）：老祖宗分两家 → 时光机 pes→foot、pedal 没变 → 一排都挪（tres/three、dentist/tooth、December/ten、dual/two、century/hundred、cardiac/heart）→ 彩蛋 December 第十个月 + Jacob Grimm → 中文「脚 ↔ 足」💡 → 🔮 ped = foot、pedestrian 行人走过 → 金句卡。验收：`r2check wo_grimm --strict` 21/21、R4 2/2；旧 66 幕 330 次渲染逐字节一致（只多 wo_grimm 5 项）；jscheck 23 模块过；appwo 四幕 mounted、无报错；appwb bamboo_tree、appfp 0 过。分镜 `grimm_law/GRIMM_STORYBOARD.md`。总枢新增章节「🔤 格林定律：辅音和元音的大挪移」（`wo_hub.js` WO_CHAPTERS），`WO_READY` 加 `wo_grimm`。
 - 已知取舍：截图逐张看过（时光机、词族表、罗马历、预测、金句卡），没有录屏；行人在金句卡前淡出。
 - ✅ 元音变异三幕 `wo_vowel_a`（原定律 A，foot→feet）、`wo_vowel_b`（原定律 B，long→length）、`wo_vowel_c`（原定律 C，清浊交替）：原 `vowel_shift` 三个案例的全部画面、字幕、术语、朗读整体搬来（文件 `cases/wo_vowel_a/b/c.js`，共用小工具 `cases/wo_vowel_kit.js`），加 v2 片头卡 + 讲解员 + 每个英文词单读和例句 + 纠错（R3，见上）+ 徽章。讲解员演的动作：fill（take）、bleed（surprised + oops）、feed（put）、save（put）、close（turn）、breathe（cheer）。验收：`r2check wo_vowel_a/b/c --strict` 14/22/15 词全过、R4 3/0/3；旧 67 幕 335 次渲染逐字节一致（新增 15 项都是新幕）；jscheck 27 模块过；appwo 七幕 mounted 无报错；apptags PASS；appwb vowel_shift 旧页签照常。
@@ -221,12 +221,12 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - ✅ 清单逐项打勾（`src/check_inventory.py`，可重复运行）：`grimm_law/VOWEL_SHIFT_INVENTORY.md` 里字幕 / 白板 / 朗读 182 条 + 术语 29 条 = 211 条（原记「185 条」是只数了部分行），✅ 原样搬过去 202 条、✏️ 按 R3 改正后搬过去 9 条（原讲法作为「原讲法（已改正，保留备查）」引用留在新幕术语里）、❌ 0 条；页面数据 `GRIMM_VOWEL_LAWS` 19 对词全部在新幕画面上。文件末尾追加了对照汇总和改正清单（原 → 新）。15 处入口未动（等用户确认）。
 - **格林定律章完成**（4 幕：`wo_grimm`、`wo_vowel_a/b/c`）。等用户：①看四幕是否满意；②确认后按 R1 删 `vowel_shift` 页签并把 15 处入口改指新章。
 
-**时间与度量章（2026-10-29 22:30 起）**〔按 git log 更正：2026-10-29 21:27 JST，`d9d3c22`〕
+**时间与度量章（2026-10-29 22:30 起）**〔按 git log 更正：2026-10-29 21:27 JST，`8f0f997`〕
 - ✅ `wo_time_num` 数字的秘密（约 121 秒，18 句朗读）：十个点 = ten → eleven = one + left、twelve = two + left → thirteen/fourteen/nineteen = 几 + ten，-teen = ten → dozen = duo + decem（呼应格林定律 d→t），搬运工抱一打鸡蛋走（carries）→ 中文四位一节 vs 英文三位一节、million = mille + -one、一万 = ten thousand → 🔮 一亿 = one hundred million → 金句卡。验收：r2check --strict 22/22、R4 1/1；旧 70 幕 350 次渲染逐字节一致；jscheck 28 模块；appwo 八幕过。分镜 `time_measure/STORYBOARD.md`。总枢「⏰ 时间与度量的身世」章节上线（`WO_CHAPTERS` 加 scenes）。
 - ✅ `wo_time_week` 星期和月份（约 156 秒，23 句朗读）：天上七位客人 → 日耳曼的神（Tiw、Woden、Thor、Friga），闪电雷神 → 七天名字表（Saturday 没换）→ 古英语 þunresdæg → Thursday → September ← septem，古罗马历三月开始（Sep–Dec = 第 7–10 个月），后来前面加了一月二月 → 中文按数字 vs 日语按天体（💡）→ 🔮 Monday = moon + day → 金句卡。验收：r2check --strict 29/29、R4 1/1；旧 71 幕 355 次渲染逐字节一致；jscheck 29 模块；appwo 九幕、appfp 0 过。
 - 时间与度量章两幕完成。已知取舍：①🔮 题 Monday 在镜头 2 已出现过（是回忆题不是推理题），以后可换成「octo = 8 → octopus 有几条腿」（octopus 词源要先补出处）；②没有「a.m. / p.m.、mile = 一千步」（章节卡原写的例子），要做先补出处。
 
-## 0.6 阶段 3 进度（中英对照总枢，2026-10-29 23:55 起）〔按 git log 更正：2026-10-29 22:35 JST，`f38e32c`〕
+## 0.6 阶段 3 进度（中英对照总枢，2026-10-29 23:55 起）〔按 git log 更正：2026-10-29 22:35 JST，`1d73ab3`〕
 
 | # | 内容 | 状态 / 提交 |
 |---|---|---|
@@ -245,27 +245,27 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 | 13 | 新幕 `ze_say` 说：say / speak / talk / tell（v2 + 讲解员，N 一字多词） | ✅ 中文四个「说」→ 照搬 speak hello / say English ❌ → 四张词卡：say hello（讲解员挥手打招呼，R4）、speak English、talk with a friend、tell me a story（+ tell him the news、talk about a film）→ 例子 Say thank you. / The teacher tells us the news. / Let's talk about the film. → 口诀 → 🔮 Can you speak French?（French 标 🥚）→ 金句卡。标题长，副标题缩成「🔀 一字多词」免得压住徽章。验收：r2check --strict 25 词 7 句、R4 1/1；旧 80 幕渲染逐字节一致；appze 过；截图看过。 |
 | 14 | 新幕 `ze_wear` 穿 / 带 / 教学（v2 + 讲解员，N 一字多词） | ✅ 穿：wear（穿着）/ put on（穿上），照搬 Wear your coat quickly! ❌ → She wears a red dress. / Put on your coat, please!；带：take（讲解员抱起箱子走开，R4）/ bring（抱回来放下，R4）、Take the box to the classroom. / Bring your book to me.；教 / 学：Miss Li teaches us English. / We learn English from her. → 口诀 → 🔮 Bring your photos to me. → 金句卡。验收：r2check --strict 30 词 7 句、R4 2/2；旧 81 幕渲染逐字节一致；appze 过；截图看过。 |
 | 15 | 新幕 `ze_pronoun` I / me / my / mine（v2 + 讲解员，M 代词变格） | ✅ 出处先登记 `zh_en_hub/SOURCES.md`（维基 Declension：古英语是变格语言、现代英语大多丢了；名词不分主宾格靠词序；代词还留着 I/me/my/mine、he/him）。中文一个「我」→ 照搬 Him likes I. ❌ → 四列代词表（主语 / 宾语 / + 名词 / 单独用，5 行）→ 📜 古英语变格、The dog sees the cat. / The cat sees the dog. 名词不变、He sees him. / You see me. 代词还在变、💡「活化石」→ 口诀「做主语 I，当宾语 me，带名词 my，单独用 mine」→ 🔮 She is my friend. I like her. → 金句卡。验收：r2check --strict 28 词 5 句；旧 83 幕渲染逐字节一致；appze 过；截图看过。 |
-| — | **中英对照总枢 11 幕全部上线**（2026-10-30 03:15）〔按 git log 更正：2026-10-29 23:06 JST，`adb2106`〕 | 下一步：① 搬迁幕 `ze_be`、`ze_modifier` 升引擎 v2 + 讲解员（先存 `_classic` 回退文件）；② MASTER_DESIGN §4 阶段 4「实验室新页签」（短语动词总钥匙等，删 `verb_matrix` 前要零丢失清单）。 |
-| ✅ | **`ze_be` 升 v2 + 讲解员**（2026-10-29 23:35 JST）〔按 git log 更正：2026-10-29 23:23 JST，`b55a01c`〕 | 升级前存 `cases/ze_be_classic.js`（不进 App）。新版：对照版五步 + 🔮 预测；两个 king 角色举「am」「like」词卡走向王座、跳起来打架，am 国王退场、like 国王欢呼；讲解员思考 / 惊讶 / 指 / 举「am」卡 / 欢呼；金句卡。依赖改 `wo_props`（`ZE_DEPS`）。零丢失对照新工具 `src/check_upgrade.py` → `zh_en_hub/INVENTORY_ZE_BE_V2.md`（54 条，❌ 0）。`preview.html` 支持 `ze_*`。验收：r2check --strict 23 词 7 句 R4 2/2；reg_render 只有 ze_be 变化；appze 过；截图检查。 |
-| ✅ | **`ze_modifier` 升 v2 + 讲解员**（2026-10-29 23:50 JST）〔按 git log 更正：2026-10-29 23:25 JST，`b8366bd`〕 | 升级前存 `cases/ze_modifier_classic.js`。新版：对照版五步 + 🔮 预测（桌子上的那只猫 → the cat on the table）；树干树枝白板保留；讲解员指中文核心、指树干、举「the boy」卡、读 see 时指、读 tell 时挥手；金句卡。`something important` 紫 → 红（V3 四色，文字不变）。零丢失 `zh_en_hub/INVENTORY_ZE_MODIFIER_V2.md`（66 条，❌ 0）。验收：r2check --strict 23 词 9 句 R4 2/2；reg_render 只有 ze_modifier 变化；appze、appfp 3/5 过。**中英对照总枢 11 幕全部是 v2 + 讲解员。** |
-| ✅ | **阶段 4 ① 短语动词总钥匙 `phrasal_key`**（2026-10-29 23:58 JST）〔按 git log 更正：2026-10-29 23:34 JST，`53a8d60`〕 | 新页签：「📖 白板课」两幕（`cases/phrasal_key.js`，v2 + 讲解员：① 小品词方向义 sit down 坐凳子 / stand up 蹦起 / look up 指天 / go out 走出 / come back 走回 / ON·OFF 词卡；② get/take/make/put 核心义 + 方向，take out 拿箱子 / put down 放下 / get up 蹦起 / make up 想故事）+「🎬 组合区」= 原 `verb_matrix` 正文逐字原样（36 个 VV 动画不改）。旧入口 → 组合区。合并记录 `lab/VERB_MATRIX_MERGE.md`（❌ 0）。`insert_wb.py` 新增 `LAB_DEPS`；`r2check.js` R4 支持多词动作（短语动词）；修旧 bug：实验室入口参数覆盖页签导致切不了页签。验收：r2check --strict 2 幕 45 词 R4 9/9；reg_render 其余 80 幕不变；appwb phrasal_key/bamboo_tree/adj_order、appze、appwo、appfp 过；36 组 VV 全挂载。 |
-| ✅ | **阶段 4 ② 英语只剩 8 个词尾 `eight_endings`**（2026-10-30 00:15 JST）〔按 git log 更正：2026-10-29 23:37 JST，`8d1377b`〕 | 新页签 ⑬（首页卡片 + 页签按钮 + 说明卡 + 白板一幕 v2 + 讲解员）：中文不变 vs 英语长尾巴 → 名词 2（-s、's）→ 动词 4（-s、-ed、-ing、-ed/-en；讲解员边读边走）→ 形容词 2（-er、-est；跳起来比最高；长词 more/most）→ 📜 古英语 scip 变格 → 词序更重要 → 🔮 She cleaned three rooms yesterday → 金句卡。出处 `lab/SOURCES.md` ①（Wikipedia Inflection，8 条）。验收：r2check --strict 35 词 3 句 R4 3/3；appwb 过；reg_render 其余幕不变。 |
-| ✅ | **阶段 4 ③ 发音五大坑 + 48 音标口腔地图 `pron_map`**（2026-10-30 00:45 JST）〔按 git log 更正：2026-10-29 23:43 JST，`60020bf`〕 | 新页签 ⑭（首页卡片、页签按钮、说明卡、三幕切换按钮 `pmIdx`）。三幕 v2 + 讲解员：① 五大坑（th 夹舌带侧面口腔图、v/w 嘴唇开合、尾音不加「呃」、l/n、sheep/ship 长短音）② 辅音口腔地图（侧面口腔图 7 个位置依次亮点，24 个基本辅音 + 例词）③ 元音舌位梯形（12 单 + 8 双 = 20）。口型道具复用 `FP_PROPS.mouth / lips`：修了它们建组后把当前组清零的问题（现在回到调用方的组；`WO_PROPS` 新增 `D.adopt()` 让声带 / 嘴唇组跟镜头一起擦；旧幕 fp_economy 渲染逐字节不变）。依赖 `wo_props fp_props`。出处 `lab/SOURCES.md` ②。验收：r2check --strict 3 幕 73 词 0 缺；appwb 3 幕过；reg_render 只多出 pron_map 15 张。 |
-| ✅ | **阶段 4 ④ 语调地图 `intonation_map`（并入 `stress_rhythm`）**（2026-10-30 01:10 JST）〔按 git log 更正：2026-10-29 23:47 JST，`f497a1a`〕 | 王炸 ⑥ 位置改为「🎵👂 ⑥ 语调地图」：切换条「🎵 语调」（新两幕 v2 + 讲解员：升调与降调、句重音）｜「🎯 重音与弱读」（原 stress_rhythm 正文、DB、3 幕白板逐字原样）。旧入口 → 🎯 区。合并记录 `lab/STRESS_RHYTHM_MERGE.md`（❌ 0），出处 `lab/SOURCES.md` ③。`insert_wb.py` TABS 去掉 stress_rhythm（标记已在主文件）。验收：r2check --strict 新两幕 49 词 0 缺；appwb intonation_map 2 幕、stress_rhythm 3 幕过；App 冒烟（卡片 / 旧入口 / 切换 / 换页签）无报错；reg_render 只多出新幕。 |
-| ✅ | **决策 6 ① 合成词重音**（2026-10-30 01:20 JST）〔按 git log 更正：2026-10-29 23:48 JST，`09f2847`〕 | 做成语调地图「🎵 语调」区第 3 幕（v2 + 讲解员）：BLACKboard / black BOARD、GREENhouse、HOTdog、WHITE House，句子里 Look at the BLACKboard（讲解员指），🔮 FOOTball。原 stress_rhythm 没有合成词条目，无需搬迁。验收：r2check --strict 3 幕 64 词 0 缺；appwb 3 幕过。 |
-| ✅ | **决策 6 ② 不规则复数 `irregular_plural`**（2026-10-30 01:45 JST）〔按 git log 更正：2026-10-30 00:06 JST，`52b7121`〕 | 新页签 ⑮（首页卡片、页签按钮、说明卡、两幕切换 `ipIdx`）。两幕 v2 + 讲解员：① 换元音（feet / teeth / geese / men / women / mice，古英语 i 变音的来历，🔮 postmen）② 另外四种（children / oxen、sheep / deer / fish、leaves / knives / wolves 与例外 roofs、people，🔮 three sheep）。出处 `lab/SOURCES.md` ④（Wikipedia English plurals）。**重叠旧内容的处理**：首页「王炸 03 古英语元音换装活化石」卡（ROYAL_TRUMPS_DB T03）里的复数条目和过去式条目在同一张速记卡上，格林章讲的是历史，二者都保留不删（删一半会让速记卡残缺）；本页签负责练习。验收：r2check --strict 41 词 0 缺；appwb 2 幕过；reg_render 455 张 0 错误。注意：沙箱重启后 /tmp 清空、playwright 要重装（`pip install playwright pillow && python3 -m playwright install chromium`）。 |
-| ✅ | **首页改版第 6 步（首页收尾）：继续上次 + 王炸 ✓ 已学**（2026-10-30 00:50 JST）〔按 git log 更正：2026-10-30 00:33 JST，`f1cd18f`〕 | `docs/home/step6_continue.py`（可重复运行）：首屏标题下加「▶ 继续上次」一行（显示上次页面的面包屑标题，一点 `navigateTo` 回原页面和原页签 / 原幕；第一次来显示「从单词大世界开始」）+ 「🔥 已连续打卡 N 天」（断签超过 1 天显示「今天学一点，开始打卡」）。记录：`renderCurrentView` 末尾 `noteLastView()`，实验室 / 单词身世 / 中英对照三个页内重绘函数启动时包一层也会记；存 `appState.lastView`、`appState.visited`（键 `lab:<页签>`、`wo:<幕>`、`ze:<幕>`）。首页 `.lab-chip` 和实验室页内 `.lab-tab` 学过的前面加绿色 ✓。验收：入口缺失 0；jscheck OK；appwb irregular_plural 过；冒烟（开 3 个页签 / 1 幕 → 回首页 4 个 ✓、刷新后仍在、点继续上次回到 eight_endings）无报错。**首页改版全部完成。** |
+| — | **中英对照总枢 11 幕全部上线**（2026-10-30 03:15）〔按 git log 更正：2026-10-29 23:06 JST，`384b14c`〕 | 下一步：① 搬迁幕 `ze_be`、`ze_modifier` 升引擎 v2 + 讲解员（先存 `_classic` 回退文件）；② MASTER_DESIGN §4 阶段 4「实验室新页签」（短语动词总钥匙等，删 `verb_matrix` 前要零丢失清单）。 |
+| ✅ | **`ze_be` 升 v2 + 讲解员**（2026-10-29 23:35 JST）〔按 git log 更正：2026-10-29 23:23 JST，`a67dd16`〕 | 升级前存 `cases/ze_be_classic.js`（不进 App）。新版：对照版五步 + 🔮 预测；两个 king 角色举「am」「like」词卡走向王座、跳起来打架，am 国王退场、like 国王欢呼；讲解员思考 / 惊讶 / 指 / 举「am」卡 / 欢呼；金句卡。依赖改 `wo_props`（`ZE_DEPS`）。零丢失对照新工具 `src/check_upgrade.py` → `zh_en_hub/INVENTORY_ZE_BE_V2.md`（54 条，❌ 0）。`preview.html` 支持 `ze_*`。验收：r2check --strict 23 词 7 句 R4 2/2；reg_render 只有 ze_be 变化；appze 过；截图检查。 |
+| ✅ | **`ze_modifier` 升 v2 + 讲解员**（2026-10-29 23:50 JST）〔按 git log 更正：2026-10-29 23:25 JST，`10c9c77`〕 | 升级前存 `cases/ze_modifier_classic.js`。新版：对照版五步 + 🔮 预测（桌子上的那只猫 → the cat on the table）；树干树枝白板保留；讲解员指中文核心、指树干、举「the boy」卡、读 see 时指、读 tell 时挥手；金句卡。`something important` 紫 → 红（V3 四色，文字不变）。零丢失 `zh_en_hub/INVENTORY_ZE_MODIFIER_V2.md`（66 条，❌ 0）。验收：r2check --strict 23 词 9 句 R4 2/2；reg_render 只有 ze_modifier 变化；appze、appfp 3/5 过。**中英对照总枢 11 幕全部是 v2 + 讲解员。** |
+| ✅ | **阶段 4 ① 短语动词总钥匙 `phrasal_key`**（2026-10-29 23:58 JST）〔按 git log 更正：2026-10-29 23:34 JST，`65bac5a`〕 | 新页签：「📖 白板课」两幕（`cases/phrasal_key.js`，v2 + 讲解员：① 小品词方向义 sit down 坐凳子 / stand up 蹦起 / look up 指天 / go out 走出 / come back 走回 / ON·OFF 词卡；② get/take/make/put 核心义 + 方向，take out 拿箱子 / put down 放下 / get up 蹦起 / make up 想故事）+「🎬 组合区」= 原 `verb_matrix` 正文逐字原样（36 个 VV 动画不改）。旧入口 → 组合区。合并记录 `lab/VERB_MATRIX_MERGE.md`（❌ 0）。`insert_wb.py` 新增 `LAB_DEPS`；`r2check.js` R4 支持多词动作（短语动词）；修旧 bug：实验室入口参数覆盖页签导致切不了页签。验收：r2check --strict 2 幕 45 词 R4 9/9；reg_render 其余 80 幕不变；appwb phrasal_key/bamboo_tree/adj_order、appze、appwo、appfp 过；36 组 VV 全挂载。 |
+| ✅ | **阶段 4 ② 英语只剩 8 个词尾 `eight_endings`**（2026-10-30 00:15 JST）〔按 git log 更正：2026-10-29 23:37 JST，`1bef9d5`〕 | 新页签 ⑬（首页卡片 + 页签按钮 + 说明卡 + 白板一幕 v2 + 讲解员）：中文不变 vs 英语长尾巴 → 名词 2（-s、's）→ 动词 4（-s、-ed、-ing、-ed/-en；讲解员边读边走）→ 形容词 2（-er、-est；跳起来比最高；长词 more/most）→ 📜 古英语 scip 变格 → 词序更重要 → 🔮 She cleaned three rooms yesterday → 金句卡。出处 `lab/SOURCES.md` ①（Wikipedia Inflection，8 条）。验收：r2check --strict 35 词 3 句 R4 3/3；appwb 过；reg_render 其余幕不变。 |
+| ✅ | **阶段 4 ③ 发音五大坑 + 48 音标口腔地图 `pron_map`**（2026-10-30 00:45 JST）〔按 git log 更正：2026-10-29 23:43 JST，`da7118a`〕 | 新页签 ⑭（首页卡片、页签按钮、说明卡、三幕切换按钮 `pmIdx`）。三幕 v2 + 讲解员：① 五大坑（th 夹舌带侧面口腔图、v/w 嘴唇开合、尾音不加「呃」、l/n、sheep/ship 长短音）② 辅音口腔地图（侧面口腔图 7 个位置依次亮点，24 个基本辅音 + 例词）③ 元音舌位梯形（12 单 + 8 双 = 20）。口型道具复用 `FP_PROPS.mouth / lips`：修了它们建组后把当前组清零的问题（现在回到调用方的组；`WO_PROPS` 新增 `D.adopt()` 让声带 / 嘴唇组跟镜头一起擦；旧幕 fp_economy 渲染逐字节不变）。依赖 `wo_props fp_props`。出处 `lab/SOURCES.md` ②。验收：r2check --strict 3 幕 73 词 0 缺；appwb 3 幕过；reg_render 只多出 pron_map 15 张。 |
+| ✅ | **阶段 4 ④ 语调地图 `intonation_map`（并入 `stress_rhythm`）**（2026-10-30 01:10 JST）〔按 git log 更正：2026-10-29 23:47 JST，`135ce04`〕 | 王炸 ⑥ 位置改为「🎵👂 ⑥ 语调地图」：切换条「🎵 语调」（新两幕 v2 + 讲解员：升调与降调、句重音）｜「🎯 重音与弱读」（原 stress_rhythm 正文、DB、3 幕白板逐字原样）。旧入口 → 🎯 区。合并记录 `lab/STRESS_RHYTHM_MERGE.md`（❌ 0），出处 `lab/SOURCES.md` ③。`insert_wb.py` TABS 去掉 stress_rhythm（标记已在主文件）。验收：r2check --strict 新两幕 49 词 0 缺；appwb intonation_map 2 幕、stress_rhythm 3 幕过；App 冒烟（卡片 / 旧入口 / 切换 / 换页签）无报错；reg_render 只多出新幕。 |
+| ✅ | **决策 6 ① 合成词重音**（2026-10-30 01:20 JST）〔按 git log 更正：2026-10-29 23:48 JST，`9a9d205`〕 | 做成语调地图「🎵 语调」区第 3 幕（v2 + 讲解员）：BLACKboard / black BOARD、GREENhouse、HOTdog、WHITE House，句子里 Look at the BLACKboard（讲解员指），🔮 FOOTball。原 stress_rhythm 没有合成词条目，无需搬迁。验收：r2check --strict 3 幕 64 词 0 缺；appwb 3 幕过。 |
+| ✅ | **决策 6 ② 不规则复数 `irregular_plural`**（2026-10-30 01:45 JST）〔按 git log 更正：2026-10-30 00:06 JST，`fb57236`〕 | 新页签 ⑮（首页卡片、页签按钮、说明卡、两幕切换 `ipIdx`）。两幕 v2 + 讲解员：① 换元音（feet / teeth / geese / men / women / mice，古英语 i 变音的来历，🔮 postmen）② 另外四种（children / oxen、sheep / deer / fish、leaves / knives / wolves 与例外 roofs、people，🔮 three sheep）。出处 `lab/SOURCES.md` ④（Wikipedia English plurals）。**重叠旧内容的处理**：首页「王炸 03 古英语元音换装活化石」卡（ROYAL_TRUMPS_DB T03）里的复数条目和过去式条目在同一张速记卡上，格林章讲的是历史，二者都保留不删（删一半会让速记卡残缺）；本页签负责练习。验收：r2check --strict 41 词 0 缺；appwb 2 幕过；reg_render 455 张 0 错误。注意：沙箱重启后 /tmp 清空、playwright 要重装（`pip install playwright pillow && python3 -m playwright install chromium`）。 |
+| ✅ | **首页改版第 6 步（首页收尾）：继续上次 + 王炸 ✓ 已学**（2026-10-30 00:50 JST）〔按 git log 更正：2026-10-30 00:33 JST，`630f7d4`〕 | `docs/home/step6_continue.py`（可重复运行）：首屏标题下加「▶ 继续上次」一行（显示上次页面的面包屑标题，一点 `navigateTo` 回原页面和原页签 / 原幕；第一次来显示「从单词大世界开始」）+ 「🔥 已连续打卡 N 天」（断签超过 1 天显示「今天学一点，开始打卡」）。记录：`renderCurrentView` 末尾 `noteLastView()`，实验室 / 单词身世 / 中英对照三个页内重绘函数启动时包一层也会记；存 `appState.lastView`、`appState.visited`（键 `lab:<页签>`、`wo:<幕>`、`ze:<幕>`）。首页 `.lab-chip` 和实验室页内 `.lab-tab` 学过的前面加绿色 ✓。验收：入口缺失 0；jscheck OK；appwb irregular_plural 过；冒烟（开 3 个页签 / 1 幕 → 回首页 4 个 ✓、刷新后仍在、点继续上次回到 eight_endings）无报错。**首页改版全部完成。** |
 | ✅ | **首页改版第 5 步：实验室页内页签分组** | `docs/home/step5_lab_tabs.py`：super_lab_hub 顶部 13 个页签按钮改由常量 `LAB_GROUPS` 生成，分 👄 发音 / 🔤 词汇 / 🧩 语法 · ✍️ 写作 三行（与首页入口卡一致）；去「v4.0 终极宗师」角标、面包屑改「⚡ 王炸实验室」、`tabTitles` 去圈号。首页加 `<!-- WO_HOME -->`、`<!-- ZE_HOME -->` 标记，`insert_wb.py` 重跑不再插回旧横幅（已验证重跑后文件不变）。**新增实验室页签的接线改为**：`LAB_GROUPS` 里加一项 + 首页 `.lab-entry` 对应组加一个 `.lab-chip`（onclick 用 `navigateTo('super_lab_hub', { labTab: '<id>' })`），不再手写页签按钮和首页大卡；其余（tabTitles、`} else if (tab === …)` 分支、READY / LAB_DEPS、appwb IDX、preview 名单）照旧。验收：jscheck OK；appwb phrasal_key / intonation_map / irregular_plural / writing_alchemist 过；点击分组按钮切页签实测正确；首页入口缺失 0。首页剩余：「继续上次」一行、王炸按钮 ✓ 已学。 |
 | ✅ | **首页改版第 4 步：瘦身（下一轮优化 ①②④⑥ 的前半）** | `docs/home/step4_slim.py`：语音欢迎条压成一行小条；标题缩小、手机隐藏副标题；三大厅卡片图标与标题同行、标签只显示前 3 个（其余 display:none，内容未删）、按钮变矮；王炸卡「写作」并入「🧩 语法 · ✍️ 写作」组，电脑版变三栏；顶栏打卡日期隐藏。验收：入口缺失 0；手机首页 3371→2516px（约 2.8 屏）；jscheck OK；无页面报错。剩余：③ 首屏「继续上次」；⑤ super_lab_hub 页内页签分组 + 去「v4.0 终极宗师」角标；⑥ 王炸按钮标 ✓ 已学。用户规则更新：修改完立即提交（2026-10-30 00:26）。 |
 | ✅ | **首页改版第 3 步：三大厅上移、总枢压成小卡（首页改版完成）** | `docs/home/step3_reorder.py`：首页新顺序 = 标题 → 「📚 今天学什么」（单词 / 语法 / 口语三大厅）→ 拓展教室 / 闯关横卡 → 「🧭 理解英语：三大总枢」三张并排小卡（第一性原理 / 单词身世 / 中英对照，onclick 逐字保留）→ 王炸实验室入口卡 → 「👑 更多」方法论 / 真动画教室小卡（原 portal 大卡换成小卡，目标 method_hub 不变）。顶栏角标「v4.0 终极宗师·十二大王炸全规律版」改为「小学英语 · 课标同步」。验收：入口缺失 0（22 目标）；手机首页 6820（改前）→ 3371px，约 3.7 屏；三张总枢小卡与方法论小卡点击实测进对页；jscheck OK；appwb pron_map 过；430 / 1280 截图无溢出、无页面报错。可选后续：实验室页内部页签按四组重排（2b）；super_lab_hub 页内「v4.0 终极宗师」角标（第 12388 行附近）去版本号。之后回到决策 6：空间隐喻 → 拼写潜规则 → 交际句型地图。 |
 | ✅ | **首页改版第 2 步：首页王炸区收成一张入口卡** | `docs/home/step2_lab_card.py`：首页 15 张王炸大卡换成一张「⚡ 王炸实验室」卡，分 👄 发音 / 🔤 词汇 / 🧩 语法 / ✍️ 写作 四组小按钮；每个按钮的 onclick 从旧卡逐字取出（含单词身世 wo_vowel_a、单词卡 X 光 openWordCardModal），外加「进入实验室」按钮。`home_entries.py` 改为从 onclick 中提取 navigateTo(...)。验收：入口缺失 0；手机首页 6431→4715px；不规则复数 / 元音变异 / 单词卡 / 进入实验室四个按钮点击实测正确；jscheck OK；无页面报错；430 与 1280 宽截图检查无溢出。实验室页内部页签的分组重排留作第 2b 步（可选）。下一步：第 3 步（单词 / 语法 / 口语三大厅上移到首屏，三大总枢压成并排小卡）。 |
 | ✅ | **首页改版第 1 步：入口清单 + 删重复 + 去版本号** | 新增 `docs/home/home_entries.py`（导出首页全部 navigateTo 入口；`--save` 存基线，`--check` 核对缺失）与基线 `docs/home/home_entries_baseline.json`（22 个去重目标）。`docs/home/step1_cleanup.py`：删掉重复的「十五大王炸方法论」渐变横幅（底部同名卡片保留，目标 method_hub 仍可达）；去掉 v1.6 / v4.0 / v6 标签和王炸卡片「v4.0全新」「新」角标；王炸栏标题「十二大…」改为「⚡ 王炸实验室（点任一卡片直达）」，去掉「新增：⑨…⑫」说明行；「v6 拓展教室」改名「拓展教室 / 闯关游戏厅」。验收：入口核对缺失 0；手机首页 6820→6431px；jscheck OK；appwb irregular_plural 过；首页 / method_hub / v6_hub 切换无页面报错。下一步：第 2 步（实验室按发音 / 词汇 / 语法 / 写作四组重排，首页王炸区收成一张入口卡）。 |
-| ✅ | **首页优化方案（用户 2026-10-30 00:07 提出首页混乱，已给方案，待做）**〔✅ 已做完：首页改版 1–6 步，566710b … f1cd18f，2026-10-30 00:16–00:33 JST；方案记录提交 557fac9 00:09〕 | 问题：日常三大厅（单词 / 语法 / 口语）压在最底；手机首页约 6800px（7 屏多）；「十五大王炸方法论 / 真动画教室」入口重复两次；王炸栏标题写「十二大」实有 15 张、③ 是「已搬家」空卡、缺 ⑧；v1.6 / v4.0 / v5.1 / v6 等开发标签外露；卡片颜色、大小、徽章不统一。方案四层：① 今天学什么（继续上次 + 单词 / 语法 / 口语三大卡 + 闯关横卡）② 三大总枢并排小卡 ③ 王炸实验室收成一张入口卡（发音 / 词汇 / 语法 / 写作四个分组按钮），15 张卡移进实验室首页按组重新编号、去掉空卡 ④ 底部方法论 / 家长指南只留一个。去所有版本号，每层一个主色，卡片等高、说明一行。零丢失：先导出首页全部 navigateTo 入口清单，改完逐条核对。顺序（各自单独提交）：1 入口清单 + 删重复 + 去版本号；2 实验室按四组重排 + 首页王炸区收成入口卡；3 三大厅上移、总枢压成小卡；4 截图对比 + App 冒烟。 |
+| ✅ | **首页优化方案（用户 2026-10-30 00:07 提出首页混乱，已给方案，待做）**〔✅ 已做完：首页改版 1–6 步，5c3162b … 630f7d4，2026-10-30 00:16–00:33 JST；方案记录提交 e377045 00:09〕 | 问题：日常三大厅（单词 / 语法 / 口语）压在最底；手机首页约 6800px（7 屏多）；「十五大王炸方法论 / 真动画教室」入口重复两次；王炸栏标题写「十二大」实有 15 张、③ 是「已搬家」空卡、缺 ⑧；v1.6 / v4.0 / v5.1 / v6 等开发标签外露；卡片颜色、大小、徽章不统一。方案四层：① 今天学什么（继续上次 + 单词 / 语法 / 口语三大卡 + 闯关横卡）② 三大总枢并排小卡 ③ 王炸实验室收成一张入口卡（发音 / 词汇 / 语法 / 写作四个分组按钮），15 张卡移进实验室首页按组重新编号、去掉空卡 ④ 底部方法论 / 家长指南只留一个。去所有版本号，每层一个主色，卡片等高、说明一行。零丢失：先导出首页全部 navigateTo 入口清单，改完逐条核对。顺序（各自单独提交）：1 入口清单 + 删重复 + 去版本号；2 实验室按四组重排 + 首页王炸区收成入口卡；3 三大厅上移、总枢压成小卡；4 截图对比 + App 冒烟。 |
 | ▶ | **下一步（接手从这里继续）** | **阶段 4 完成；首页改版 1–6 步完成；决策 6 已做合成词重音、不规则复数。** 接着决策 6 其余三个新模块（空间隐喻、拼写潜规则、交际句型地图） → 决策 7 词汇大数据 → 决策 8 家长指南 / 英美对照 / 大写标点 → 决策 9 欧洲文化 6 章 + 美国篇。新实验室页签做法：`cases/<id>.js`（v2 + `WO_PROPS`）→ `insert_wb.py` 的 `READY` + `LAB_DEPS` → 主文件 `LAB_GROUPS` 加一项 + 首页 `.lab-entry` 对应组加 `.lab-chip`、`tabTitles`、`} else if (tab === …)` 分支（锚点用 `\n  } else if (tab === "bamboo_tree") {\n`）→ `appwb.py` IDX、`preview.html` 名单。 |
 
 ## 1. 当前状态
 
-### 1.1 已上线（提交 `db13720`，2026-10-29）
+### 1.1 已上线（提交 `f7a2c91`，2026-10-29）
 - **骨架最小集**（通用引擎工具，见 §5）：可信度徽章 `k.badges / k.badge`（📜 💡 ✂️ ⚠️ ❓）+ 页面版 `wbBadgeHtml / wbBadgeLegendHtml`；🥚 彩蛋词 `k.egg`、`say({egg})`、`wbEggHtml`；沿折线移动 `k.path`；5 步溯源幕模板与道具 `cases/wo_props.js`。
 - **📖 单词身世总枢**：首页横幅（在第一性原理总枢横幅正下方）→ `word_origins_hub` 页面：手绘世界地图 + 时间线（罗马 → 维京 → 诺曼 → 大航海 → 现代）、徽章图例、白板舞台、章节列表（欧洲文化密码 + 10 个方向，未上线显示「即将上线」）。源文件 `src/wo_hub.js`，登记表 `insert_wb.py` 的 `WO_READY`，验收 `src/appwo.py`。
 - **示范幕 port**（`cases/wo_port.js`）：7 个镜头约 132 秒，9 句朗读；出处 `word_origins/SOURCES.md`（11 条 📜，etymonline）。
@@ -274,13 +274,13 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ### 1.2 文档阶段提交（本轮）
 | 提交 | 内容 |
 |---|---|
-| `12048d4` | 新增 `MASTER_DESIGN.md`（决策 1–17 落地设计、合并删旧总表、实施阶段） |
-| `a3eb7e8` | MASTER_DESIGN §2.5 视觉标准 V1–V8（决策 18） |
-| `dc26a82` | MASTER_DESIGN 硬规则 R4 + §2.6 人物动作库（决策 19） |
-| `9ce7219` | `SOP.md` v2.0 |
+| `c4e0802` | 新增 `MASTER_DESIGN.md`（决策 1–17 落地设计、合并删旧总表、实施阶段） |
+| `69105fa` | MASTER_DESIGN §2.5 视觉标准 V1–V8（决策 18） |
+| `541c69f` | MASTER_DESIGN 硬规则 R4 + §2.6 人物动作库（决策 19） |
+| `47542e8` | `SOP.md` v2.0 |
 | （本次） | 本交接文档 |
 
-### 1.3 已知不足（按新规则复查 port 幕，阶段 1 要补）〔✅ 2026-10-30 复核：下列 R4、视觉标准、Europe 出处三项都已在阶段 1–2 解决——port v2（2f4df49 … abb050c，用户 20:08 审片通过）人演搬 / 拿 / 走 / 托、v2 视觉全套；Europe 出处 29b97ee、幕 eb480aa〕
+### 1.3 已知不足（按新规则复查 port 幕，阶段 1 要补）〔✅ 2026-10-30 复核：下列 R4、视觉标准、Europe 出处三项都已在阶段 1–2 解决——port v2（6f90acf … ef118fd，用户 20:08 审片通过）人演搬 / 拿 / 走 / 托、v2 视觉全套；Europe 出处 73efdea、幕 86acdd4〕
 - ~~**R2 朗读**：opportunity 没有例句；Rome、Mediterranean 以外的专有名词和词块（medi、terra、ob、im、ex、trans、re、pass、air、sup）没有单独朗读。~~ ✅ 阶段 1 第 2 步已补（新增 12 句：Rome / medi+terra / ob portum / opportunity / portus+portare / im / ex / trans / re / OK+pass / air / sup；export 补单独朗读）
 - **R4 动作**：搬运、进出城、过关卡是「箱子 / 卷轴自己移动」+ 火柴人平移，人没有做搬、拿、走的动作；support 没有人托。
 - **视觉标准**：配色超出新调色板、只有一种缓动、镜头间是淡出不是擦除、白板上的词不随朗读高亮、没有小人、没有音效。
@@ -331,8 +331,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 4. 待用户确认
 
 1. ✅ **中英对照搬迁清单已确认**（2026-10-29）：搬 ④-1（I am like）、⑥-1（先立树干）；⑥-2、⑥-3、③-1、③-4 留在第一性原理。**内容零丢失**：先导出原幕内容清单，逐条对照，新位置验收通过后才删原幕，原位置留跳转入口。
-2. **讲解员小人形象**：阶段 1 出设计稿后确认。〔✅ 已确认：v3a 马尾女老师，881843f〕
-3. **port 视觉升级效果**：升级前后对比图确认后再铺开。〔✅ 已确认：用户 2026-10-29 20:08 审片通过 v2 样板幕，abb050c〕
+2. **讲解员小人形象**：阶段 1 出设计稿后确认。〔✅ 已确认：v3a 马尾女老师，b6c1d06〕
+3. **port 视觉升级效果**：升级前后对比图确认后再铺开。〔✅ 已确认：用户 2026-10-29 20:08 审片通过 v2 样板幕，ef118fd〕
 4. 决策 6 五个新模块的**具体位置**（MASTER_DESIGN 表里是建议）。〔部分已定：合成词重音 = 语调地图第 3 幕、不规则复数 = 实验室页签 ⑮；空间隐喻、拼写潜规则、交际句型地图仍待确认〕
 5. 重叠内容的处理（只列出、未删除）：
    - ✅（2026-10-29 已处理，见 `word_origins/PORT_FAMILY_INVENTORY.md`）`VOCAB_DB` 里 11 个词的 port 家族 `affix_root`（port、airport、passport、import、export、transport、report、reporter、support、important、sport），airport 的 `etymology` / `memory_tip`；
@@ -357,7 +357,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - App：`wbSfx*` 音效 + 「🔔 音效」按钮（v2 才显示）；`wbSpeak` 语音事件 → `player.speech`（口型）+ v2 时间轴同步；`wbState.syncLog`（测同步用）。
 - 验收脚本：`r2check.py/.js`、`measure_sync.py`、`measure_fps.py`、`measure_seek.py`。
 
-### 2026-10-29 · db13720
+### 2026-10-29 · f7a2c91
 - `k.badges(["📜","💡"], {x,y})`、`k.badge(key, x, y, {label})`；`WB.BADGES` 徽章表；HTML：`wbBadgeHtml(keys)`、`wbBadgeLegendHtml()`。
 - `k.egg(x, y, {word, note})`；`k.say(en, { egg: [...] })`；HTML：`wbEggHtml(word)`。
 - `k.path(组, 开始, 时长, [[dx,dy],…], {linear})`；`k.arc` 第 5 参数 `{linear}`。
@@ -464,23 +464,23 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 | 提交 | 内容 |
 |---|---|
-| `0b5443a` | MASTER_DESIGN：决策数统一为 20 条（1–19、22，20/21 号未使用）；R1–R4 排序；§1 结构图改成实际结构；§3 合并表、§4 阶段状态、§6 时间更正 |
-| `f737b41` | DESIGN_HANDOFF §3「尚未决定」四项标为已决定 |
-| `c621e39` | README 首页结构、王炸实验室页签数更新 |
-| `121ce9c` | HANDOFF 拆成短 HANDOFF + 本文（全文原样搬来，零丢失脚本核对），加时间更正表 |
-| `562b6d4` | 新增 `src/anchorcheck.py`，接进 jscheck / insert_wb；修 insert_wb.py TABS 里 tense_matrix 被注释吞掉；home_entries.py 去掉写死路径 |
+| `cbf05a3` | MASTER_DESIGN：决策数统一为 20 条（1–19、22，20/21 号未使用）；R1–R4 排序；§1 结构图改成实际结构；§3 合并表、§4 阶段状态、§6 时间更正 |
+| `5e266bb` | DESIGN_HANDOFF §3「尚未决定」四项标为已决定 |
+| `17c10ed` | README 首页结构、王炸实验室页签数更新 |
+| `33bc171` | HANDOFF 拆成短 HANDOFF + 本文（全文原样搬来，零丢失脚本核对），加时间更正表 |
+| `63b7be4` | 新增 `src/anchorcheck.py`，接进 jscheck / insert_wb；修 insert_wb.py TABS 里 tense_matrix 被注释吞掉；home_entries.py 去掉写死路径 |
 | （本次） | 新增 `REVIEW_LIST.md` 真机审片清单 |
 
 - 2026-10-30 10:20 JST：动作系统 v5 样板 takeout_wb（huashu-art-motion 白板 + AI 关键帧 + Remotion 出片/Player）；MP4 1.58 MB、单文件 HTML 1.02 MB。
 - 2026-10-30 10:30 JST：决策 31 写入 MASTER_DESIGN（动作系统 v5 工具组合定稿），HANDOFF 顶部改为 v5 现状。
 
 ## 2026-10-30 · 动作系统 v5.1 定稿为标准画法
-- `6bbd234` v5.1 加英文朗读（Web Speech en-US 0.85，5 个 CUES，时间轴等朗读最多 4 秒，总长 12.5 s）。
-- `368f1e4` 修：预览框 sandbox iframe 里读 localStorage 抛错 → 整个播放器停掉、无法播放；localStorage / speechSynthesis 包 try/catch，sandbox iframe 实测可播、0 报错。
+- `e8a7a67` v5.1 加英文朗读（Web Speech en-US 0.85，5 个 CUES，时间轴等朗读最多 4 秒，总长 12.5 s）。
+- `0704efb` 修：预览框 sandbox iframe 里读 localStorage 抛错 → 整个播放器停掉、无法播放；localStorage / speechSynthesis 包 try/catch，sandbox iframe 实测可播、0 报错。
 - 10:54 用户确认「完美，就这样，把这个画法写入设计文档」：MASTER_DESIGN 决策 31 加定稿说明 + 新增 §2.9 标准画法规格；SOP v2.1 新增 §17（流程 9 步 + 验收 12 条，含 sandbox iframe 测试）。
 
 ## 2026-10-30 · 决策 32 启动：v5 公共引擎 + tense_matrix ① 重画
-- `d31bc27` 决策 32 + `REDRAW_V5.md`（白板 99 幕 + 万能动词剧场 72 幕）。
+- `c36a2b9` 决策 32 + `REDRAW_V5.md`（白板 99 幕 + 万能动词剧场 72 幕）。
 - 公共引擎 `v5/`：`wb5.js`（rough 线条 / 手写 / 关键帧角色按距离换帧 / 镜头 / 弹字 / 讲解字幕 / 朗读字幕）、通用播放器、按场景字体子集打包、`shots.py` 联络表 + 确定性 + sandbox 验收、`build_sprites.py` 绿幕抠图锚点。
 - tense_matrix ①：12 块白板 4×3 版面，镜头逐块推进，最后拉远全图；新帧库 `tm1`（16 帧）；R1 91/91；控制台 0 报错、sandbox 0 报错、确定性通过；单文件 862 KB（16 帧角色约 527 KB，长课超出单句 650 KB 预算，记入 §2.9 F 待定）。
 - 踩坑：AI 出图常把「踢球准备」画成腿往前（3 次失败），最终用「双脚着地、俯身看球」作准备帧；有一张女孩走路帧多画了一个人、一张带了狗，重出。
@@ -1022,7 +1022,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 🔴 决策 32（2026-10-30 10:57）：全部白板动画按 v5.1 标准重画——最优先
 - 范围约 171 幕（白板案例 99 + 万能动词剧场 72），清单 / 进度 `REDRAW_V5.md`；标准 MASTER_DESIGN §2.9，验收 SOP §17。
 - ✅ 公共引擎 `v5/`（README 有 API 与帧库登记）；🟡 tense_matrix ① 重画完成待用户审（`v5/out/tense_matrix_1.html`，联络表 `_keyframes.png`，R1 清单 `lab/INVENTORY_TM1_V5.md` 91/91）。
-- 下一步：按 `REDRAW_V5.md` 顺序推进；**改一个替换一个**（用户 2026-10-30 12:29）：每幕重画验收后立即用 `v5/embed_app.py` 替换进主 App、回归、提交、更新本表。tense_matrix ①–⑤ 已替换（7728afa）。
+- 下一步：按 `REDRAW_V5.md` 顺序推进；**改一个替换一个**（用户 2026-10-30 12:29）：每幕重画验收后立即用 `v5/embed_app.py` 替换进主 App、回归、提交、更新本表。tense_matrix ①–⑤ 已替换（11d8f24）。
 - ✅ **人物先行阶段（2026-10-30 11:28 用户要求先画人物帧、再画版面）**：331 帧透明 WebP 人物 / 动作帧库 `v5/sprites/cast/`（约 7 MB，进仓库），登记表 `v5/CAST_V5.md`（每帧对应的旧案例动作 + 万能动词 24 义项 72 组）。工具：`split_sheet.py`（联排图自动切帧）、`cut_box.py`（粘连帧按坐标切）、`pack_cast.py`（抠绿 → cast/）；`build_sprites.py` 找不到 src 时自动读 cast/。⚠️ 待返工：`l_lift0–2`（杠铃粘连）、`missw_give`（底部残留）、V29 Leo 黑发。
 - ✅ tense_matrix ② 现在进行时 v5.1（12 块白板 162 s，R1 85/85 `lab/INVENTORY_TM2_V5.md`，0 报错，确定性 ✓，675 KB 略超预算；新增 `v5/r1v5.py` 自动 R1 核对、wb5 `actor.dy(t)` 竖直位移）。
 - ✅ tense_matrix ③ 一般过去时 v5.1（12 块白板 172 s，R1 88/88 `lab/INVENTORY_TM3_V5.md`，0 报错，确定性 ✓，607 KB ≤ 预算）。
@@ -1210,7 +1210,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 1. ✅ 设计文档（决策 30、§2.8、SOP §16、本节）——单独提交。
 2. 🟡 **动作系统重建 + 样板**（第一步已推：`wb_verbs.js` 骨架 v2 / 狗 / 门 / 牵绳 / 院子房子场景 / 动词 take · clip · open · walk · take_out 等 + R4v2 检查 + `actsheet.py` + 样板 `verb_demo`；对照图 `work/shots/sample_take_dog_out_对照.png`、动作表 `work/shots/verb_demo_1_动作表.png`（Hark 项目工作区）。下一步：扩到前 60 个动词 + 更多道具 / 动物 / 场景）：骨架 v2（手掌 + 握持点、躯干 / 头转动、正面 / 侧面视角，`wb_actor.js` 只加不改）→ 互动道具和动物（狗、牵绳、门、球、杯子…，grab / follow / affect）→ 简笔场景（房子门口、教室、公园、厨房）→ `wb_verbs.js` 动词专属动作（先做样板要用的 take / walk / open / take…out，再扩到前 60 个）→ r2check R4v2（动词 → 专属动作语义核对、禁止空 `actionWords`）+ `actsheet.py` 动作联络表 → **样板「He takes the dog out.」**，和用户参考插画并排对照截图。
 3. ⬜ **回改已完成单元**（样板达标后）：tense_matrix ①–⑤、past_clans ①–④、adj_order ①–④（取消 `actionWords: []` 豁免），其后第一性原理、bamboo_tree、aux_transformer、five_patterns 中用讲解员手势代演的动作词。
-4. ⬜ **原顺序剩余单元**：metaphor_code（`07ee259` 已做升级准备，v2 暂停，按新动作系统做）→ stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法 40 点 → 思维导图 → 单词维度 / 词源 / 格林 / 词根 / 12+6 条规律 → 文档收尾 → 决策 29 软件优化。
+4. ⬜ **原顺序剩余单元**：metaphor_code（`cf2e967` 已做升级准备，v2 暂停，按新动作系统做）→ stress_rhythm → writing_alchemist → 三大厅 HD 剧场 FR01 → 语法 40 点 → 思维导图 → 单词维度 / 词源 / 格林 / 词根 / 12+6 条规律 → 文档收尾 → 决策 29 软件优化。
 
 规矩不变：不询问、直接推 `master`、每个单元一提交并在「夜间进度」加一行。
 
@@ -1239,7 +1239,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 > 用户 01:07 / 01:09 授权连续推进：按 MASTER_DESIGN 顺序全部实现（白板化 → 单词维度 → 词源 / 格林 / 词根 / 音变规律 → 文档清理），软件优化（决策 29）最后做；不询问、不等审片，需要决定时按 R1–R4 选最稳妥方案并在此记理由，阻塞跳过登记。对比图存 `work/shots/`，早上统一审。每行：时间 JST｜做了什么｜提交｜对比图｜决定与理由 / 阻塞。
 
-- 01:10｜决策 29 软件优化写入 MASTER_DESIGN（O1–O9，现状度量 / 目标 / 方案 / 验收），按用户更正排在最后｜`78a35af` + 本提交｜—｜—
+- 01:10｜决策 29 软件优化写入 MASTER_DESIGN（O1–O9，现状度量 / 目标 / 方案 / 验收），按用户更正排在最后｜`0bd3ab7` + 本提交｜—｜—
 - 01:32｜fp_economy 第 1 幕 v2 试点推送（讲解员 + 道具 + 6 步分镜 + 金句卡 + R4 worked/played；保留 fp_economy_classic.js）｜`ccad226`｜`work/shots/fp_economy_1_对比总图.png`｜按用户授权不等审片直接推；R1 ❌1 是颜色值 #cbd5e1→C.grey（不是内容）；r2check 全量 --strict 的失败只来自 stress_rhythm 原 3 幕（已知、原样保留，见 §2 第 5 条），验收按范围 `r2check.py fp --strict` = 0。另：取消了与「萌星连续实现」重复的隐藏任务（夜间连续实现 / 早间汇总），避免两个实现者撞同一克隆
 - 01:36｜fp_economy 第 2 幕升 v2（撞车 → 插 /ɪ/ → -es / -ed 两栏 → 口诀 → 🔮 kisses 预测 → 金句卡；R4 watch）｜`de2c9cd`｜`work/shots/fp_economy_2_对比总图.png`｜原结论条 D.fin 换成 v2 金句卡（文字原样）；旧幕橙色改 V3 四色（橙色不在 v2 调色板，会渲染成 undefined）；新增预测题词 kiss/kisses 都配了朗读
 - 01:38｜fp_economy 第 3 幕升 v2（a→an / in-→im- 拆两个镜头 + 🔮 an elephant + 金句卡；R4 fly）｜`fc4c25e`｜`work/shots/fp_economy_3_对比总图.png`｜徽章加 ✂️（a/an 看读音不看字母属于简化说法）；例句 eat 无对应人物动作，r2check 只作提示，未加
@@ -1293,32 +1293,32 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 09:10｜adj_order 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；升级前时长 ①83 ②66 ③68 ④69 秒；用户 09:02：「不要询问，把所有任务全部做完，及时更新交接文档」
 - 09:25｜adj_order ①–④ 四列真题专列一次升 v2（共用 build），**adj_order 4 个案例全部 v2 完成**（中文 + 一袋形容词 + 主观→客观箭头 / 火车逐个上车 + 紧贴名词 + 为什么 + 结论框两镜头 + 🔮 预测 + 金句卡）｜本提交｜`work/shots/adj_order_1–4_对比总图.png`（Hark 主对话工作区）｜车厢 108→88 宽收进 x≤800；车厢色改 V3：观点红（主观）→ 中间蓝 → 材质用途 / 名词站绿（客观），与箭头同色；词「上车」做成从车厢上方落进座位；新增预测题 nice big red balloon / cute little yellow ducks / new white sports shoes / friendly young Chinese teacher（排错选项进 r2skip）；例句只有 bought / have / wears / is，无肢体动作词，actionWords 留空注明。R1 208 条 ❌0；r2check adj_order --strict 0；reg_render 只有 adj_order 20 项变；appwb 4 正常；时长 83→94、66→77、68→79、69→80 秒
 - 09:20｜metaphor_code 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；appwb 3 正常；升级前时长 ①130 ②98 ③129 秒（v2 上限 ×1.2：156 / 118 / 155）；本项目（Hark 项目「萌星小学英语」）接手连续推进
-- 09:30｜**优先级变更（用户 09:14）**：设计文档写入决策 30 动作系统重建（原因 5 条 + 新设计 D1–D6）、MASTER_DESIGN §2.8 动作系统 v2、阶段表加 6.5、SOP R4v2 + §16、HANDOFF 新任务顺序｜本提交｜—｜metaphor_code 只做到升级准备（`07ee259`），v2 暂停；k.act 使用统计已按代码核对（964 次，17 个动作）
+- 09:30｜**优先级变更（用户 09:14）**：设计文档写入决策 30 动作系统重建（原因 5 条 + 新设计 D1–D6）、MASTER_DESIGN §2.8 动作系统 v2、阶段表加 6.5、SOP R4v2 + §16、HANDOFF 新任务顺序｜本提交｜—｜metaphor_code 只做到升级准备（`cf2e967`），v2 暂停；k.act 使用统计已按代码核对（964 次，17 个动作）
 - 09:50｜metaphor_code ①–③ 三大隐喻密码一次升 v2，**metaphor_code 3 个案例全部 v2 完成**（每个案例：讲解员 + 五步进度；原 2×2 卡片一屏放不下 x≤800，拆成「两张卡一个镜头」；连读镜头每读一句先把原朗读句写上板；结论框收进 x≤800 代替旧 k.final；🔮 床头 the head of the bed / 红茶 black tea / as quiet as a mouse 预测 + 金句卡）｜本提交｜`work/shots/metaphor_code_1–3_对比总图.png`（Hark 项目「萌星小学英语」工作区）｜R3：① 原图时针指 6、朗读却是「points to three」，按 R1 两条都留，读到这句时让时针转到 3（场景动作）并补「→ 转到 3」小字；R4：look 讲解员指钟面、give me a hand 讲解员伸手托（support）、give the green light 红绿灯亮绿（actFx）；look sad 是系动词，按 five_patterns ② 先例不演；③ 无肢体动作词，蜜蜂嗡嗡、雨点落下用场景动画；red tea 进 r2skip。徽章 💡✂️（black tea 的「干叶颜色」说法查了 Wikipedia Black tea 条，只说中文按茶色叫红茶，没核实到英文命名理由，所以标 ✂️ 不标 📜）。R1 342 条 ❌0；r2check metaphor_code --strict 0；reg_render 只有 metaphor_code 15 项变；appwb 3 正常；时长 130→146、98→106、129→139 秒（都在 +20% 内）
 - 09:58｜stress_rhythm 升级准备：classic 快照 + LAB_DEPS 加 wo_props（preview.html 同步）｜本提交｜—｜reg_render diff 0；appwb 3 正常；升级前时长 ①61 ②57 ③50 秒；本页签已并入语调地图「🎯 重音与弱读」区（模块 id 不变）
-- 09:55｜**决策 30 动作系统 v2 第一步 + 样板「He takes the dog out.」**：新引擎文件 `src/wb_verbs.js`（`k.cast / k.verb / k.to / k.attach / k.scenery`；男孩骨架 v2 带手掌 + 握持点、转身经过正面视角、depth 远近；狗走 / 趴 / 站 / 摇尾巴 / 项圈；门开合；牵绳挂钩 → 手 → 项圈按绳长下垂；院子 / 房子 / 公园 / 教室 / 厨房简笔场景；专属动作 walk · run · take · clip · open · close · put · give · wave · take_out + VERB_TABLE / PHASES），引擎只加两处挂钩；`r2check` 加 R4v2（`--r4v2` 或案例 `r4v2: true`：专属动作 + 语义 + 禁止空清单）；新脚本 `actsheet.py`（每个专属动作 预备 / 发力 / 结果 三帧联络表）；样板 `cases/verb_demo.js`（SAMPLES 按需模块，不进页签）｜本提交｜`work/shots/sample_take_dog_out_对照.png`、`work/shots/verb_demo_1_动作表.png`（Hark 项目工作区）｜reg_render 旧 455 项 diff 0（只新增 verb_demo 5 项）；r2check verb_demo --strict 0（R4v2 4 个动作词全过）；时长 45 秒。注意：有另一个实现者在 09:14 之后仍按旧顺序推了 metaphor_code v2（`53e1d21`）和 stress_rhythm 准备（`3e6ea28`）——按决策 30 这两项算「待回改」，**所有实现者请先读顶部「🔴 优先级变更」，停止原顺序单元**
+- 09:55｜**决策 30 动作系统 v2 第一步 + 样板「He takes the dog out.」**：新引擎文件 `src/wb_verbs.js`（`k.cast / k.verb / k.to / k.attach / k.scenery`；男孩骨架 v2 带手掌 + 握持点、转身经过正面视角、depth 远近；狗走 / 趴 / 站 / 摇尾巴 / 项圈；门开合；牵绳挂钩 → 手 → 项圈按绳长下垂；院子 / 房子 / 公园 / 教室 / 厨房简笔场景；专属动作 walk · run · take · clip · open · close · put · give · wave · take_out + VERB_TABLE / PHASES），引擎只加两处挂钩；`r2check` 加 R4v2（`--r4v2` 或案例 `r4v2: true`：专属动作 + 语义 + 禁止空清单）；新脚本 `actsheet.py`（每个专属动作 预备 / 发力 / 结果 三帧联络表）；样板 `cases/verb_demo.js`（SAMPLES 按需模块，不进页签）｜本提交｜`work/shots/sample_take_dog_out_对照.png`、`work/shots/verb_demo_1_动作表.png`（Hark 项目工作区）｜reg_render 旧 455 项 diff 0（只新增 verb_demo 5 项）；r2check verb_demo --strict 0（R4v2 4 个动作词全过）；时长 45 秒。注意：有另一个实现者在 09:14 之后仍按旧顺序推了 metaphor_code v2（`c96b3c6`）和 stress_rhythm 准备（`4e1f5e3`）——按决策 30 这两项算「待回改」，**所有实现者请先读顶部「🔴 优先级变更」，停止原顺序单元**
 
 ## 1. 现在做到哪
 
 | 阶段（MASTER_DESIGN §4） | 状态 | 最后一个提交 |
 |---|---|---|
-| 0 文档、1 骨架补齐（引擎 v2、讲解员、R2/R4 检查、port 样板幕、按需加载） | ✅ | `abb050c` port 审片通过、`f575002` 按需加载 |
-| 2 单词身世第一批（Europe、Bluetooth、身世标签、格林定律章 4 幕、时间与度量 2 幕；删 `vowel_shift`） | ✅ | `a29cb70`、`4347111` |
-| 3 中英对照总枢（11 幕，全部 v2 + 讲解员；④-1 / ⑥-1 零丢失搬迁） | ✅ | `b8366bd` |
-| 4 实验室新页签（phrasal_key 并入 verb_matrix、eight_endings、pron_map、intonation_map 并入 stress_rhythm） | ✅ | `f497a1a` |
-| 旧幕 R2 补朗读（P1–P4 + metaphor_code + past_clans） | ✅ | `0a5d255` |
-| 5 新模块（决策 6）：✅ 合成词重音（语调地图第 3 幕）、✅ 不规则复数（页签 ⑮）；⬜ 空间隐喻、拼写潜规则、交际句型地图 | 进行中 | `52b7121` |
-| 首页改版 1–6 步（继续上次 → 三大厅 → 三大总枢小卡 → 王炸实验室入口卡 → 更多） | ✅ | `f1cd18f` |
+| 0 文档、1 骨架补齐（引擎 v2、讲解员、R2/R4 检查、port 样板幕、按需加载） | ✅ | `ef118fd` port 审片通过、`d243770` 按需加载 |
+| 2 单词身世第一批（Europe、Bluetooth、身世标签、格林定律章 4 幕、时间与度量 2 幕；删 `vowel_shift`） | ✅ | `cfe75a1`、`4b048bd` |
+| 3 中英对照总枢（11 幕，全部 v2 + 讲解员；④-1 / ⑥-1 零丢失搬迁） | ✅ | `10c9c77` |
+| 4 实验室新页签（phrasal_key 并入 verb_matrix、eight_endings、pron_map、intonation_map 并入 stress_rhythm） | ✅ | `135ce04` |
+| 旧幕 R2 补朗读（P1–P4 + metaphor_code + past_clans） | ✅ | `f9c9dea` |
+| 5 新模块（决策 6）：✅ 合成词重音（语调地图第 3 幕）、✅ 不规则复数（页签 ⑮）；⬜ 空间隐喻、拼写潜规则、交际句型地图 | 进行中 | `fb57236` |
+| 首页改版 1–6 步（继续上次 → 三大厅 → 三大总枢小卡 → 王炸实验室入口卡 → 更多） | ✅ | `630f7d4` |
 | **中点：练习闭环 + 总地图（决策 14）** | ⏰ 已到点未做 | — |
-| 文档清理（HANDOFF 拆分、计数、时间戳、§3 总表、README）+ 锚点检查 + 审片清单 | ✅ | `121ce9c`、`562b6d4`、`c27c278` |
+| 文档清理（HANDOFF 拆分、计数、时间戳、§3 总表、README）+ 锚点检查 + 审片清单 | ✅ | `33bc171`、`63b7be4`、`e1c5d21` |
 | 7 全 App 白板化（决策 23 / 24）：试点 fp_economy 第 1 幕 | 🟡 已做，待用户审对比图（未推送） | — |
-| 8 词源 / 格林定律 / 词根词缀全量入库（决策 25） | 🟡 审计中 | `3cc5e98`（决策） |
-| 9 单词全部维度菜单全量覆盖（决策 26） | 🟡 审计中 | `0af9976`（决策） |
-| 10 语法全部白板动画（决策 27） | ⬜ 先试点 1 个语法点 | `0af9976`（决策） |
-| 11 思维导图白板化（决策 28） | ⬜ 先试点 1 张主题导图 | `b70b47a`（决策） |
-| 单词维度审计 v1（`word_origins/COVERAGE.md`） | ✅ 已出，待用户看 | `5631b28` |
-| 11 思维导图白板化（决策 28） | ⬜ 先试点 1 张主题导图 | `58d5665`（决策） |
-| 8b 音变与词汇规律 12 + 6 条（决策 25 扩展） | 🟡 审计完成，待补齐 | `1245397`、`37a7ab5`（COVERAGE.md） |
+| 8 词源 / 格林定律 / 词根词缀全量入库（决策 25） | 🟡 审计中 | `84bfd21`（决策） |
+| 9 单词全部维度菜单全量覆盖（决策 26） | 🟡 审计中 | `0988dce`（决策） |
+| 10 语法全部白板动画（决策 27） | ⬜ 先试点 1 个语法点 | `0988dce`（决策） |
+| 11 思维导图白板化（决策 28） | ⬜ 先试点 1 张主题导图 | `d5f1716`（决策） |
+| 单词维度审计 v1（`word_origins/COVERAGE.md`） | ✅ 已出，待用户看 | `383b4ac` |
+| 11 思维导图白板化（决策 28） | ⬜ 先试点 1 张主题导图 | `719a78e`（决策） |
+| 8b 音变与词汇规律 12 + 6 条（决策 25 扩展） | 🟡 审计完成，待补齐 | `e3d815d`、`8946f9f`（COVERAGE.md） |
 
 ## 2. 下一步（按优先级）
 
@@ -1334,7 +1334,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 3. 已知风险
 
-- **审片缺口**：只有 port 幕经过用户正式审片。Europe、Bluetooth、格林定律 4 幕、时间与度量 2 幕、中英对照 11 幕、实验室新页签（phrasal_key、eight_endings、pron_map、intonation_map 3 幕、irregular_plural 2 幕）只做了截图自审。首页改版第 4–6 步是在 `20581e9`「待用户看截图确认」之后直接做的，用户还没看。
+- **审片缺口**：只有 port 幕经过用户正式审片。Europe、Bluetooth、格林定律 4 幕、时间与度量 2 幕、中英对照 11 幕、实验室新页签（phrasal_key、eight_endings、pron_map、intonation_map 3 幕、irregular_plural 2 幕）只做了截图自审。首页改版第 4–6 步是在 `65a0242`「待用户看截图确认」之后直接做的，用户还没看。
 - **实测环境**：fps、朗读同步都只在无 GPU 的 headless 沙箱 + 模拟 TTS 下测过；port v2 的 1% 低帧约 39（目标 ≥ 50），需真机复核；真实语音（尤其中文设备上的英文语音包）下的口型和时间轴跟随没验证过。
 - **时长**：port v2 约 202 秒（升级前约 136 秒），对小学生偏长，审片时请用户判断要不要剪。
 - **补丁脚本靠字符串锚点改 5.7 MB 主文件**（`src/insert_wb.py`、`docs/home/step*.py`）：锚点没匹配上时可能静默不改。✅ 2026-10-30 已加 `src/anchorcheck.py`（见 §5）；它只核对已知标记，新加的补丁要把自己的标记登记进去。
@@ -1399,7 +1399,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 场景：`v5/scenes/hd_formation_1–3.js`（16.6 s / 19.4 s / 19.5 s），R1 零丢失。
 - 挂载：`embed_app.py` 新增 `wb5HDHtml / wb5HDAct / wb5HDSwap`，进页面时把旧 canvas 换成 v5 iframe（hook：`formationStageCanvas → hd_formation`）。锚点改为第一个 `wb5html-*` 块（修复注释误命中）。
 - 字表：`gen_font_chars.py` 扩到全部 v5 场景 + 主 App 正文，3280 字；全量 `rebuild_all.py` 重建 161+3 幕。
-- 修复：旧引擎删除时误删的 `stopActiveCanvasLoops` 已随 `2817e97` 主文件恢复。
+- 修复：旧引擎删除时误删的 `stopActiveCanvasLoops` 已随 `92ea6e3` 主文件恢复。
 - 回归：hd_formation 3 幕（compounds / prefixes 两个入口）swapped、oldCanvas=false、errors none；tense_matrix 5、fp_vectors 4、vv_give_in 2 全通过；jscheck + anchorcheck OK。主文件 14,498,036 bytes。
 
 ## 2026-10-30 · hd_fr01 第1幕 v5.1 重画并替换进 App
@@ -2353,7 +2353,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-30 · 主题思维导图讲解幕 阶段④：全量 App 回归 + 设计稿记录
 - `v5/app_check6.py`（全部 25 个子主题）：25/25 合格——讲解幕 iframe 在交互导图上方、幕号 = 子主题顺序、时长 65–116 s；交互导图 16 节点（颜色与形状 14）点击开词卡、➕/➖/滚轮缩放、拖拽、复位都正常；0 报错。`jscheck` / `anchorcheck` OK；第一性原理总枢 22 幕 v5 + 2 幕跳转照常。
 - `DESIGN_MINDMAP_WORDCARD.md` 加 §1.7 实施记录（分组规则、自审改正、版式、R1、App 挂钩）。
-- 主题思维导图讲解幕完成（提交 d5db815 → 0de2169 → fd302d3 → 327cc89 → f25bb23 → 本提交）；主文件 15,548,445 bytes（25 幕共约 +83 KB，角色帧全部复用共享块）。
+- 主题思维导图讲解幕完成（提交 ed520ef → e265781 → 72becf9 → 7fc52a0 → cee9d2b → 本提交）；主文件 15,548,445 bytes（25 幕共约 +83 KB，角色帧全部复用共享块）。
 
 ## 2026-10-30 · 第一性原理总枢余下旧 canvas 核查
 - 新增 `v5/app_check7.py`：真 App 里逐一打开 6 条原理 × 4 幕，记录每幕是 v5 iframe / 跳转 / 旧 canvas、页面里所有 canvas。结果：22 幕 v5、2 幕跳转（fp_one_king ①、fp_zoom_focus ① 已迁中英对照）、旧 canvas 0、报错 0 → 总枢已没有要重画的旧 canvas，主文件不改。
@@ -2419,7 +2419,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 回归 `runall.py --full` 13 项全部通过（app_check5 55 词 / app_check6 25 幕 / app_check8 25 词 0 不合格，leakcheck OK，0 报错）。
 
 ## 2026-10-30 23:06 JST · 决策 29 O5 离线可用检查（补记）
-- `src/offlinecheck.py` 已随 `f82736b`（O8）一起提交，当时漏记：扫主文件明文 + 全部 wb5html / wb5blob 压缩块解开后的内容，不得出现从 http(s) 加载资源的写法（script src、link href、img/audio/video/iframe src、CSS url()、@import、fetch()、import()、Worker/WebSocket）；普通 `<a href>`（词源出处链接）允许。现扫 863 段 0 违规，已接进 runall 快速档。
+- `src/offlinecheck.py` 已随 `5a600c0`（O8）一起提交，当时漏记：扫主文件明文 + 全部 wb5html / wb5blob 压缩块解开后的内容，不得出现从 http(s) 加载资源的写法（script src、link href、img/audio/video/iframe src、CSS url()、@import、fetch()、import()、Worker/WebSocket）；普通 `<a href>`（词源出处链接）允许。现扫 863 段 0 违规，已接进 runall 快速档。
 
 ## 2026-10-30 23:15 JST · 合并两份重复的共享引擎块（字表重建）
 - metaphor_code ④、oral_func ② 用到字表外新字，打包时多出两份共享引擎块（各约 0.93 MB）。`python3 v5/gen_font_chars.py`（3302 字）→ `python3 v5/rebuild_all.py` 全量重建 488 幕 + 模板并重新嵌入：主文件 wb5blob 里 `gz:` 引擎块回到 **1 份**，主文件 17,483,815 → **15,630,085 bytes**（-1.85 MB）。O7 播放器「切后台暂停」随本次重建进入全部幕。
@@ -2432,7 +2432,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 结果：`ETYM_DB` 352 词（G1 19 / G2 16 / G3 35 / G4 49 / G5 60 / G6 40 / V6 132 / POLY 1），`MORPH_DB` 111 词；逐词明细与未入库原因见 `word_origins/ETYM_REVIEW.md`、`MORPH_REVIEW.md`。主文件 15,681,417 bytes。
 - 回归 `runall.py`（快速档 9 项）全部通过，app_check8 25 词 0 不合格。
 
-〔时间更正：上面两条「23:40」「23:55」是写文档时估错的，实际提交时间分别约 23:15（86d54fa）、23:22（df2ae6c）JST，已在本文和 HANDOFF 改正。〕
+〔时间更正：上面两条「23:40」「23:55」是写文档时估错的，实际提交时间分别约 23:15（2202197）、23:22（6fbd216）JST，已在本文和 HANDOFF 改正。〕
 
 ## 2026-10-30 23:28 JST · 格林定律按规则组（1d）
 - 4 幕新内容（`v5/new_scene.py`），挂在单词身世总枢「🔤 格林定律」章、紧跟 `wo_grimm`：① `wo_grimm_voiceless` p t k kʷ → f th h hw（foot/pes→pedal、father/pater、few/paucus、full/plenus；three/tres、thin/tenuis、thunder/tonare；heart/cor·kardia→cardiac、hundred/centum、horn/cornu→unicorn、head/caput→captain、hill/collis；what/quod、who/quis；⚠️ 是兄弟不是父子；⚠️ s 后不变 stand/stare）45 条 178 s；② `wo_grimm_voiced` d g gʷ → t k kw（tooth/dens→dentist、eat/edere、sit/sedere；knee/genu、cold/gelu；queen/gynē、come/venire）29 条 121 s；③ `wo_grimm_aspirate` bh dh gh → b d g（brother/frater→fraternal、bloom/flos、beech/fagus；door/thyra·foris→foreign、red/ruber、middle/medius；goose/anser·khēn、garden/hortus；链式挪一格）31 条 130 s；④ `wo_grimm_verner` 维尔纳定律（brother 重音在前 → th，father 重音在后 → 古英语 fæder；今天的 -th- 是中古英语后改的；was/were；lose/forlorn）21 条 113 s。全部 R1 缺 0、deterministic、0 报错。
@@ -2586,7 +2586,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新检查 `src/phoncheck.py`（格式、非 IPA 字母、音标 = 拼写且不在白名单）入 runall：1487 词 0 不合格。
 
 ### 2026-10-31 11:40 JST · 决策 36：内容与动画审计修复写入开发计划
-- 用户 11:33 批准把内容质量审计第 2 轮（只读，HEAD e1c6b96；抽查 43 幕，15 幕逐张看截图）的全部问题列入计划，排在决策 35 之后、词源补抓与决策 7 / 8 / 9 之前。
+- 用户 11:33 批准把内容质量审计第 2 轮（只读，HEAD a4592cd；抽查 43 幕，15 幕逐张看截图）的全部问题列入计划，排在决策 35 之后、词源补抓与决策 7 / 8 / 9 之前。
 - `MASTER_DESIGN.md` 新增决策 36：① 白板事实 / 画面错误 12 项（12 个语法点共用「能量吸收器」板、G09 / G10 / G31 / G34 串板、约 89 幕截断句与 11 幕 `**` 残留、G14 IN>1 天矛盾与重复幕、give down / look off / take on 伪搭配与误用、look away / turn down / take out / put off 画面不符、hd_fr01 角色错、格林定律高亮 / 动作 / duo、past_clans 等未标注简化、口语两角色画成同一男孩、单词卡模板 a apple 与无关复数、中文讲解不朗读）→ ② 长幕拆分（wo_port 361 s 等 13 幕，tense_matrix① 删 a/an 插段）→ ③ 总结层 11 项 → ④ 加深最浅 10 页 → ⑤ 补内容 5 类；每项写了方案与验收（新检查 wbdupcheck / wbtextcheck / durcheck 入 runall）。
 - 与决策 35 重叠的 10 类合并处理并逐条标注去向；决策 35-F 顺延行改为先做决策 36。
 - HANDOFF §5 加 0b 决策 36 进度清单；审计全文与抽取脚本入 `lab/audit36/`（截图与解包幕不入库）。
@@ -2629,14 +2629,14 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新检查 `src/wordlistcheck.py`（首屏 ≤ 40、翻完 36 页 = 1436 词不丢、末页余数、首字母 B 筛选、搜索）入 runall；`v5/app_check15.py` 的「网格卡数 = 总数」改为「= min(总数, 40)」。runall 全过，mobilecheck 0 不合格。
 
 ### 2026-10-31 14:14 JST · 决策 37 R37-14 按钮对比度
-- R37-14 按钮对比度（83dd930）：`src/patch_r37_contrast.py`（标记 R37_14_CONTRAST）——常用绿底白字按钮换深一档（emerald-700 / teal-700 / green-700）+ 运行时对比度守卫（深字浅底压暗字色、浅字深底压暗背景含渐变色标，色相不变）；`contrastcheck.py` 入 runall，runall 全部通过。
+- R37-14 按钮对比度（3812181）：`src/patch_r37_contrast.py`（标记 R37_14_CONTRAST）——常用绿底白字按钮换深一档（emerald-700 / teal-700 / green-700）+ 运行时对比度守卫（深字浅底压暗字色、浅字深底压暗背景含渐变色标，色相不变）；`contrastcheck.py` 入 runall，runall 全部通过。
 
 ### 2026-10-31 14:22 JST · 决策 37 R37-12 过时文案与重复入口
-- R37-12（fbe5238）：`src/patch_r37_copy.py` 10 处替换——7 处过时文案（高清 Canvas 情景互动动画 / 高清 2D 三幕视频级动画 / 四大全局总结矩阵 / 高清角色拼读小剧场 / 高清卡通角色分幕演绎 / 核心主推双引擎 / 高清动态录像机）改成现在的说法；单词大厅「🧭 单词专项」区与上方大卡重复的 4 个小按钮删掉（大卡保留）。`jargoncheck.py` 新增同页重复入口检查（总地图、首页继续条、🔗 另见条不算），入 runall；原交接里提到的 G07 重复入口复扫为 0，不需要白名单。runall 全部通过。
+- R37-12（7445b65）：`src/patch_r37_copy.py` 10 处替换——7 处过时文案（高清 Canvas 情景互动动画 / 高清 2D 三幕视频级动画 / 四大全局总结矩阵 / 高清角色拼读小剧场 / 高清卡通角色分幕演绎 / 核心主推双引擎 / 高清动态录像机）改成现在的说法；单词大厅「🧭 单词专项」区与上方大卡重复的 4 个小按钮删掉（大卡保留）。`jargoncheck.py` 新增同页重复入口检查（总地图、首页继续条、🔗 另见条不算），入 runall；原交接里提到的 G07 重复入口复扫为 0，不需要白名单。runall 全部通过。
 - 2026-10-31 14:35 JST：决策 38（白板启发性重做）写入 MASTER_DESIGN、REQUIREMENTS（R38-01…07）、HANDOFF 000 置顶；审计报告与逐幕评分入 `lab/audit38/`。
 
 ### 2026-10-31 14:33 JST · 决策 37 R37-02 自造象形词源
-- R37-02（f9cbb2b）：判定 `src/iconic.py`（按句：拉丁字母 + 像 / 形状 / 弯弯，或「象形」）；`src/patch_r37_iconic.py` 把 memory_tip / etymology / affix_root 里 66 处象形句（27 词）挪进新重字段 memory_assoc，原句一字不删；方法论页内嵌小词库 MH_VOCAB_DB 2 条同改。词卡新块「🧠 记忆联想 · 非词源」放卡片最后，不挨「📖 词源」；认读卡 memory_tip 为空不出空括号。
+- R37-02（f9c48c1）：判定 `src/iconic.py`（按句：拉丁字母 + 像 / 形状 / 弯弯，或「象形」）；`src/patch_r37_iconic.py` 把 memory_tip / etymology / affix_root 里 66 处象形句（27 词）挪进新重字段 memory_assoc，原句一字不删；方法论页内嵌小词库 MH_VOCAB_DB 2 条同改。词卡新块「🧠 记忆联想 · 非词源」放卡片最后，不挨「📖 词源」；认读卡 memory_tip 为空不出空括号。
 - 顺带修：O1 拆分后 VOCAB 重字段挂在原型 getter 上，单词卡白板模板用 JSON.stringify 注入只拿到轻字段——词源 / 构词 / 例句框一直是空的（G1_001 幕长 37 s → 83 s）。新增 `wb5PlainData`。注意：模板幕现在有的超过 90 s（G6_Q09 153 s），R37-07 / 决策 38 ① 处理。
 - 字体核对：App 内 LXGW WenKai 子集 618208 B，与 build.mjs 按 font_chars.txt 现做的子集逐字节相同（sha1 fca113bc…），模板重建后共享块数 373 不变，没有多带字体（交接里「343 KB」不成立）。环境：沙箱重置后需 `pip install playwright brotli` + `playwright install chromium` + `sudo -n env PYTHONPATH=~/.local/lib/python3.12/site-packages python3 -m playwright install-deps chromium`。
 - app_check5（--full）原来因 R37-01 的 ⛶ 全屏按钮被算成幕按钮一直报 BAD，已改选择器，55 词 0 不合格。
@@ -2779,7 +2779,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 全量 rebuild_all 17:47 起后台跑（/workspace/work/rb_all2.log），已打包到 vv_*。
 
 ## 2026-10-31 17:49 JST · 决策 38 units.json 恢复原缩进（上一提交误整体重排）
-- 上一提交 32254d4 用 indent=2 重写了 units.json（12k 行无关差异）；本提交恢复原 1 空格缩进，相对 d83f924 之前只多 hd_g05 第 2 幕 4 行。
+- 上一提交 9837365 用 indent=2 重写了 units.json（12k 行无关差异）；本提交恢复原 1 空格缩进，相对 2cc8603 之前只多 hd_g05 第 2 幕 4 行。
 
 ## 2026-10-31 17:50 JST · 决策 38 36-② 长幕拆分：hd_g19 140 s → 68 s + 74 s（WIP，未嵌入）
 - `hd_g19_1`：勋章飞到动词 + 主语轮换 + 对比，68 s；新 `hd_g19_2`：常错 goes → 预测 does 吸走勋章 → 加法 / 读音 / 语境 / 口诀，74 s。各自啊哈卡 / 预测 / 规则，check_r38 0 不合格；390 px 联络表自检。units.json hd_g19 加第 2 幕。
@@ -2896,7 +2896,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - app_check5 在 2 核沙箱偶发个别词 dur=None（每次不同词），不在 runall 内，未处理。
 
 ## 2026-10-31 21:15 JST · 决策 39 认知动画系统升级写成决策 39（MASTER_DESIGN / SOP §18 / HANDOFF）
-- 用户提交 SOP_COGNITIVE_UPGRADE.md（aed318d）；决策 39 写进 MASTER_DESIGN（接口：啊哈卡对应四步、预测停顿取 3 s、文字面积 40% + 静态时长 25% 双门、模板幕保留、多幕门禁另起 depthcheck.py、门禁先提示后阻断）。
+- 用户提交 SOP_COGNITIVE_UPGRADE.md（420ba5c）；决策 39 写进 MASTER_DESIGN（接口：啊哈卡对应四步、预测停顿取 3 s、文字面积 40% + 静态时长 25% 双门、模板幕保留、多幕门禁另起 depthcheck.py、门禁先提示后阻断）。
 - SOP.md 新增 §18 四步剧本流程与验收 17–21；ci.py 支持 DEC=39。
 - 现状：hd_g / wo_rule / ze 68 个专题中 58 个单幕。
 
@@ -2912,3 +2912,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - insightcheck：动态 72 / 72 / 77 / 80%，静态字 21 / 8 / 17 / 12%；预测停顿均 ≥3 s；check_r38 不合格 0。
 - `rebuild_all.py --tabs=fp_boundedness` 嵌入主 HTML（17.24 MB，新旧引擎并存多约 0.9 MB，全量重建收回）；runall 全部通过。
 - 状态：待用户审片，④ 推广暂缓。
+
+### 2026-10-31 22:50 JST · 仓库瘦身（用户「要」确认改写历史）
+- `git filter-repo --refs master`：历史里只保留当前仍在仓库的路径，主 HTML（`萌星小学英语_最终合并版.html`，254 个历史版本约 207 MB）从旧提交中移除，只在本提交重新加入；已删的 narrator 图、takeout_wb/out 视频等旧大文件一并清出。
+- 所有提交号已变；文档里的旧短哈希已按 commit-map 批量换成新号（262 处）。旧提交检出时没有主 HTML，要旧版主 HTML 只能看备份包。
+- 远端 `feat/vv-anim-all`、`feat/vv-take-anim` 两个旧分支未改写。

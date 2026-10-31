@@ -17,19 +17,19 @@
 
 | 项 | 状态 | 提交 |
 |---|---|---|
-| 决策 32：老白板全部按 v5.1 重画并替换进 App——白板案例 89 幕 + 万能动词剧场 72 幕（共 161 幕） | ✅ 每幕 R1 缺 0、确定性、0 报错，App 回归通过 | `208901e` … `660a1d3` |
-| 主文件瘦身：43.05 MB → **16.94 MB**（字体 / 引擎全 App 共用一份） | ✅ | `72c5323` |
-| 用户反馈「人物会重合」：自动版面第一块板开场角色和动作角色叠在一起 | ✅ 已修，148 幕自动版面全部重建 | `72c5323` |
-| App 内切到第二幕挂载失败（字体缓存后的竞态） | ✅ 已修 | `72c5323` |
+| 决策 32：老白板全部按 v5.1 重画并替换进 App——白板案例 89 幕 + 万能动词剧场 72 幕（共 161 幕） | ✅ 每幕 R1 缺 0、确定性、0 报错，App 回归通过 | `3dd36d9` … `2e5d424` |
+| 主文件瘦身：43.05 MB → **16.94 MB**（字体 / 引擎全 App 共用一份） | ✅ | `9faf1d7` |
+| 用户反馈「人物会重合」：自动版面第一块板开场角色和动作角色叠在一起 | ✅ 已修，148 幕自动版面全部重建 | `9faf1d7` |
+| App 内切到第二幕挂载失败（字体缓存后的竞态） | ✅ 已修 | `9faf1d7` |
 | 删除旧 SVG 白板兜底（45 个 `wbmod-*` + 旧引擎），术语小词典改读 `WB_TERMS`，主文件 → **14.12 MB** | ✅ 逐字比对一致，回归通过 | 见 git log |
 | 三大厅 HD 剧场 ① 构词法剧场（`vocab_formation` 的 `formationStageCanvas`）3 幕 → v5.1 白板，主文件 **14.50 MB** | ✅ R1 零丢失，App 回归通过 | 见 git log |
 | 三大厅 HD 剧场 ② 框架语义 10 个剧场 25 个视角（`vocab_frames` 的 `frameSemanticsCanvas`）→ v5.1，一视角一幕，页签 `hd_fr01`–`hd_fr10` | ✅ R1 零丢失，App 回归通过 | 见 git log |
 | 用户反馈「白板太快」：自动版面按阅读速度留时间（中文 5 字/秒、英文 2.2 词/秒，换板前停 1.5 秒），手工幕整体放慢 1.5 倍 | ✅ 全部重建，主文件 14.68 MB | 见 git log |
-| docs 清理：删旧 SVG 源码/工具、构建产物、过时素材与报告（299 个文件） | ✅ | `8e38f05` |
-| 仓库清理：`v5/out/` 174 个构建产物（约 63 MB）+ 152 个可重建角色包移出 git | ✅ | `72c5323` |
-| 普通单词卡 1425 词 × 3 幕 → **一个通用 v5 模板**（`scenes/wordcard_tpl.js` + `wordcard_items.js`），开卡时注入词条现场排版；主文件只增约 7 KB | ✅ 逐词验收 `lab/WORDCARD_TPL_REPORT.md`：R1 缺 0、0 报错、4275/4275 确定；App 回归 55 词 0 不合格 | ac74705 |
-| 主题思维导图讲解幕（25 幕，交互导图保留在下方）：分组表 `v5/mindmap_groups.json`、版式 `auto.js` `mindmapBuild`、页签 `hd_mindmap` | ✅ 25 幕 R1 缺 0、确定性、0 报错；`app_check6.py` 25/25（点词开卡 / 缩放 / 拖拽正常） | d5db815 … f25bb23 |
-| 自动版面中英混排换行：英文整词不拆、句末标点不落行首（`auto.js`），全部 458 幕 + 模板重建，全量技术回归 0 不合格 | ✅ | ac74705 |
+| docs 清理：删旧 SVG 源码/工具、构建产物、过时素材与报告（299 个文件） | ✅ | `7f7ecce` |
+| 仓库清理：`v5/out/` 174 个构建产物（约 63 MB）+ 152 个可重建角色包移出 git | ✅ | `9faf1d7` |
+| 普通单词卡 1425 词 × 3 幕 → **一个通用 v5 模板**（`scenes/wordcard_tpl.js` + `wordcard_items.js`），开卡时注入词条现场排版；主文件只增约 7 KB | ✅ 逐词验收 `lab/WORDCARD_TPL_REPORT.md`：R1 缺 0、0 报错、4275/4275 确定；App 回归 55 词 0 不合格 | c173f42 |
+| 主题思维导图讲解幕（25 幕，交互导图保留在下方）：分组表 `v5/mindmap_groups.json`、版式 `auto.js` `mindmapBuild`、页签 `hd_mindmap` | ✅ 25 幕 R1 缺 0、确定性、0 报错；`app_check6.py` 25/25（点词开卡 / 缩放 / 拖拽正常） | ed520ef … cee9d2b |
+| 自动版面中英混排换行：英文整词不拆、句末标点不落行首（`auto.js`），全部 458 幕 + 模板重建，全量技术回归 0 不合格 | ✅ | c173f42 |
 | 决策 33 菜单去重 ①–⑤：我的学习 + 综合自测；首页 5 入口；方法论 / 闯关厅收编；总结表 / 歌谣 / 纠偏并入语法；单词表合一（新结构见 MASTER_DESIGN §1） | ✅ 全部完成，逐段对比 `lab/MENU_D33_AUDIT.md` | ② 见 git log |
 | 思维导图分组修正（用户 2026-10-31）：动物里不再单列「蔬菜」（→ 农场和菜园）、城市里「花草树木 / 随身物品 / 价钱」改名（公园里的花草树 / 出门带上 / 便宜和贵）、「这和那」1 词并入「我们、他们、这那」、1–2 词的「更多」组规则补进正式组（剩下的「更多」都 ≥3 词）、「怎样做：……地」→「做事的样子」、颜色与形状「窄厚低 / 巨大最大」→「尺寸大小」、钟表 1 词并入「数字 11–18 和钟表」；`gen_mindmap_groups.py` 支持同名规则合组、条件可写成列表（任一满足） | ✅ 17 幕（2 3 4 6 7 8 9 10 12 13 16 17 18 19 21 23 24）重生成、R1 缺 0、确定性、0 报错，`app_check6.py` 25/25 | 见 git log |
 | 决策 37 手机端可用性与内容真实性（R37-01…14，`REQUIREMENTS.md`） | 01 ✅ · 13 ✅ · 04 ✅ · 09 ✅ · 10 ✅ · 14 ✅ · 12 ✅ · 02 ✅ | 见 git log |
@@ -74,7 +74,7 @@
 - **审片缺口**：161 幕 v5.1 只有样板和 tense_matrix 经用户看过，其余为截图自审；真机（尤其手机）上的加载速度、帧率、英文朗读同步未验证。
 - 双人帧（如 `tug` 拔河、give in ②）本身就是一张图里两个人，属正常；若用户仍觉得重叠，需要重画那几张帧。
 - cast 帧：`l_lift1/2`、`missw_give`、V29 已返工（2026-10-31）；`l_lift0` 右边缘杠铃片被原图裁到，未动。
-- `embed_app.py` 插入新块必须锚在第一个 `<script type="text/plain" id="wb5html-` 前；主脚本注释里也有 `id="wbmod-<id>"` 字样，曾因锚错位置破坏主脚本（已修）。旧引擎删除时误删过通用函数 `stopActiveCanvasLoops`，已从 `2817e97` 主文件恢复后重新嵌入。
+- `embed_app.py` 插入新块必须锚在第一个 `<script type="text/plain" id="wb5html-` 前；主脚本注释里也有 `id="wbmod-<id>"` 字样，曾因锚错位置破坏主脚本（已修）。旧引擎删除时误删过通用函数 `stopActiveCanvasLoops`，已从 `92ea6e3` 主文件恢复后重新嵌入。
 - **VOCAB_DB 已拆分（O1）**：主文件里 `const VOCAB_DB` 只剩轻字段，`senses / etymology / memory_tip / example_en …` 等 10 个重字段在 `<script type="application/json" id="VOCAB_HEAVY_JSON">`，词对象原型上的 getter 按需解析。离线工具取全量一律用 `node src/vocab_extract.js <主文件>`（或已改好的合并片段），**不要再直接 eval `const VOCAB_DB`**，否则拿不到重字段。
 - 决策 33 ③：闯关厅「感叹句快刀手 / 考场捉虫」仍是手写题，没改成从语法题库出题（语法题库没有现成的四选一格式）；方法论教室「维度八 情景交际 8 大母题」原来就只有标题、内容空，未补。
 - 补丁脚本靠字符串锚点改主文件：新补丁先 `assert s.count(锚点) == 1`，并登记进 `src/anchorcheck.py`。
@@ -82,9 +82,9 @@
 ## 5. 下一步（按顺序）
 
 0000. **决策 39 认知动画系统升级（用户 2026-10-31 提交 `SOP_COGNITIVE_UPGRADE.md`，21:14 确认开工；最高优先级，在决策 38 之上加严）**：落地方案、与决策 38 的接口见 `MASTER_DESIGN.md` 决策 39，作业流程与验收 `SOP.md` §18。顺序：① 文档 ✅ → ② concept.js 五组件（morphLetters / schemaContainer / syntaxSlotMachine / timelineCamera / contrastSplitScreen）+ insightcheck 时长占比与四段标记 + depthcheck（先提示级）✅（自测幕 `v5/selftest/concept39_demo.js`，`insightcheck.py --demo` 通过：动态 79%、静态字 4%、分段 15/44/24/18；现有 32 个 v6 幕全是「提示」：动态 0–22%，推广时逐幕重做） → ③ 样板 fp_boundedness 4 幕重做（只 `--tabs`）✅ 已嵌入，**待用户审片**（insightcheck：动态 72 / 72 / 77 / 80%，静态字 21 / 8 / 17 / 12%，分段都在 ±10 内；check_r38 0；`rebuild_all.py --tabs=fp_boundedness` 6 秒；主 HTML 17.24 MB，多出的约 0.9 MB 是新旧两份引擎并存，下次全量重建收回） → ④ 推广 hd_g 30 → wo_rule 16 → ze 11 → vv_schema → fp 新 4 个 → 扩充包 ⬜（等审片意见再推）。做一幕的快路：改场景 → `python3 src/insightcheck.py --only=<幕>`（几秒）→ `python3 v5/check_r38.py <幕>` → `python3 v5/rebuild_all.py --tabs=<页签>` → 对应 app_check → runall。样板写法见 `v5/scenes/fp_boundedness_1..4.js` + `fb39_lib.js`（say() 同步「词块拼句」）。提交用 `DEC=39 python3 src/ci.py …`。
-   <!--R39BP-->**断点（2026-10-31 22:05 JST）**：③ 完成并提交（fp_boundedness 4 幕决策 39 重做 + 嵌入主 HTML；runall 全部通过）。下一步：等用户审片；认可后按 ④ 推广（hd_g 30 起）。<!--/R39BP-->
+   <!--R39BP-->**注意（2026-10-31 22:50）**：master 历史已改写瘦身，提交号全变，旧克隆须重新 clone（或 `git fetch && git reset --hard origin/master`）。**断点（2026-10-31 22:05 JST）**：③ 完成并提交（fp_boundedness 4 幕决策 39 重做 + 嵌入主 HTML；runall 全部通过）。下一步：等用户审片；认可后按 ④ 推广（hd_g 30 起）。<!--/R39BP-->
 000. **决策 38 白板启发性重做（用户 2026-10-31 14:27「把启发性重做写成决策 38，从报告里列的 15 幕开始重做」，当前最高优先级）**：审计 `lab/audit38/INSIGHT_AUDIT.md`（508 幕 A 0 / B 147 / C 361），方案与 15 幕表在 `MASTER_DESIGN.md` 决策 38，需求 `REQUIREMENTS.md` R38。做法：先建 `v5/lib/concept.js` 概念原语 + `insightcheck.py` → 按表 1→15 逐幕重做（每幕先写啊哈卡，再分镜，再实现；一幕一提交）→ 每幕 390 px 联络表自检 → 15 幕做完交用户审片 → 推广。R37 正在做的那一项收尾提交后再切过来；R37-05（G01）/ 07（长幕）与 38 合并做。
-   **进度**：<!--R38P-->基建 ✅（`v5/lib/concept.js` + `src/insightcheck.py` 入 runall）· **15 幕全部重做并嵌入 App（2026-10-31 18:05 JST 50bf076；分节 18:1x）**：1 wordcard_tpl ✅ · 2 hd_oral 144 幕 oral.js ✅ · 3 hd_g18 ✅ 102 s · 4 hd_g19 ✅（拆 2 幕 68 / 74 s）· 5 hd_g14 三幕 ✅ · 6 hd_g05 ✅（拆 2 幕 56 / 97 s）· 7 hd_g07 ✅（分 2 节 63 / 89 s，第 2 节 = 子页签 hd_g07_p2）· 8 hd_g37–39 ✅ · 9 hd_fr01 ✅ · 10 hd_poly 51 幕 ✅（poly.js 进共享引擎）· 11 hd_mindmap 25 幕 ✅ · 12 vv_take_out② ✅ 52 s · 13 tense_matrix③ ✅（分 2 节 61 / 85 s）· 14 wo_grimm ✅（拆 3 节 65 / 56 / 65 s：wo_grimm / wo_grimm_rows / wo_grimm_more）· 15 fp_economy① 喉咙剖面 ✅（分 2 节 76 / 77 s）。啊哈卡 `lab/audit38/aha/01–15`。**下一步：交用户审片（15 幕），用户认可后推广到其余 C 级幕**<!--/R38P-->
+   **进度**：<!--R38P-->基建 ✅（`v5/lib/concept.js` + `src/insightcheck.py` 入 runall）· **15 幕全部重做并嵌入 App（2026-10-31 18:05 JST f6e3816；分节 18:1x）**：1 wordcard_tpl ✅ · 2 hd_oral 144 幕 oral.js ✅ · 3 hd_g18 ✅ 102 s · 4 hd_g19 ✅（拆 2 幕 68 / 74 s）· 5 hd_g14 三幕 ✅ · 6 hd_g05 ✅（拆 2 幕 56 / 97 s）· 7 hd_g07 ✅（分 2 节 63 / 89 s，第 2 节 = 子页签 hd_g07_p2）· 8 hd_g37–39 ✅ · 9 hd_fr01 ✅ · 10 hd_poly 51 幕 ✅（poly.js 进共享引擎）· 11 hd_mindmap 25 幕 ✅ · 12 vv_take_out② ✅ 52 s · 13 tense_matrix③ ✅（分 2 节 61 / 85 s）· 14 wo_grimm ✅（拆 3 节 65 / 56 / 65 s：wo_grimm / wo_grimm_rows / wo_grimm_more）· 15 fp_economy① 喉咙剖面 ✅（分 2 节 76 / 77 s）。啊哈卡 `lab/audit38/aha/01–15`。**下一步：交用户审片（15 幕），用户认可后推广到其余 C 级幕**<!--/R38P-->
    <!--R38BP-->**断点（2026-10-31 20:40 JST）**：主 HTML 已提交（A3 / A4 / A7 补丁 + 全量重建 549 幕，16.32 MB；runall 全部通过；app_check8 / 11 按 35-A2 / A7 改了期望）。注意：`app_check5.py` 在 2 核沙箱偶发 1–5 词 dur=None（每次不同词，超时类），不在 runall 内。下一步：split_auto.py 处理 80 个长幕（先 auto 类：ze_be / hd_g32 / irregular_plural / intonation_map…，fp_* 是手工幕用 clip 分节）；15 幕样板待用户审片。<!--/R38BP-->
    **做法（接手照抄）**：场景 `import { concept } from '../lib/concept.js'`，`C.aha({see,guess,reveal,rule})` → 画面用 `C.chip / swap / move / drop / split / cover / axis / slot / pic / label / arrow` → 揭晓前 `C.predict(t,{q})`（≥3 s）→ 规则命名处 `C.rule(t)` → `export default … return C.finish()`。import 了 concept.js 的场景自动被 `insightcheck.py` 强制检查（啊哈卡四项、≥3 s 预测、规则晚于第一次预测、板上文字面积 ≤ 40%、0 报错）；没 import 的只报告。啊哈卡文档 `lab/audit38/aha/NN_<幕>.md`。联络表（390 px 宽、8 帧，不入库）：`python3 v5/sheet38.py <out.html> <png> [--times t1,t2,…]`（已入库）。
    **旧断点（已完成，详见 CHANGELOG 2026-10-31 16:51–18:05）**：口语 144 幕 oral.js 三阶段、第 3–15 幕嵌入均已完成并回归。长幕分节机制：`src/patch_wb5_parts.py`（第 2 节 = `<页签>_p2` 子页签同号幕，场景 `v5/scenes/<页签>_p2_<n>.js`，回归 `v5/app_check_parts.py`）；幕号不绑数据的页签（hd_g05 / hd_g19）直接加第 2 幕，单词身世拆成新幕卡（`src/patch_wo_grimm_split.py`）。
@@ -96,12 +96,12 @@
    - D 原理补缺：D1 语序收敛 ⬜ D2 主谓一致 ⬜ D3 限定词 ⬜ D4 介词空间图 ⬜ D5 语用礼貌 ⬜ D6 音节划分 ⬜ D7 书写与标点 ⬜ D8 时间日期价钱 ⬜ D9 英美差异 ⬜
    - E 课本同步：人教 PEP ⬜ → 外研 ⬜ → 译林 ⬜
 0a. **并行与断点规则（用户 2026-10-31 11:40，额度紧）**：并行最多 3 道；只有集成者改主 HTML、跑 runall、commit、push、改 HANDOFF / CHANGELOG；子道只在自己的目录落盘（仓库外 `/workspace/work/par/<道>/`，半成品也随时写盘，每道目录里放 `PROGRESS.md`：做到哪、下一步、产物清单）。任何一项验证通过立即集成、单独提交推送，不攒批。**每次 commit + push 之后立即给用户汇报一次**（一两句：提交号、完成了什么、下一步是什么；用户 2026-10-31 11:48）。三道：
-   - 道 1 数据：35-A2 补词 → A3 占位例句 → A4 模板搭配 → A8 可数性 → A5 课标标签 / 年级 → A6 代词合并 → A7 英美拼写（产出 JSON + `src/patch_*.py`）。目录 `par/l1_data/`。进度：A1 ✅ 1d8366f，A2 起 ⬜。
+   - 道 1 数据：35-A2 补词 → A3 占位例句 → A4 模板搭配 → A8 可数性 → A5 课标标签 / 年级 → A6 代词合并 → A7 英美拼写（产出 JSON + `src/patch_*.py`）。目录 `par/l1_data/`。进度：A1 ✅ b2da365，A2 起 ⬜。
    - 道 2 内容纠错：35-B1 口语第 3 句 → B2 语法硬伤 → B3 空章节与旧文案 → B4 词缀；36-①9 未标注简化里不涉及幕重建的文字。目录 `par/l2_fix/`。⬜
    - 道 3 白板：36-①1–①8、①10–①11 → ②长幕拆分（只改 / 新增 `v5/scenes/*.js`，按场景文件分，不与别的道重叠）。目录 `par/l3_wb/`。⬜
    - 之后：35-C / D / E 与 36-③④⑤。
 0c. **多 agent 并行（用户 2026-10-31 12:18 / 12:25：「不要定时任务，立即开多 agent 一起做」）**：定时任务已全部取消，不再新建。协议 `/workspace/work/par/PROTOCOL.md`（沙箱内，不入库）：每道独立 clone `/workspace/work/par/<道>/repo`，只改自己范围；共享文件（主 HTML、units.json、font_chars.txt、runall.py、anchorcheck.py、本文、CHANGELOG）只在推送锁 `/workspace/work/par/push.lock`（mkdir 互斥）内改；rebase 冲突时取上游主 HTML 再重放本次幂等补丁 / embed；每次推送记 `/workspace/work/par/PUSHLOG.md`，每道进度 `/workspace/work/par/<道>/PROGRESS.md`。一道结束后协调者按 PROGRESS 派下一批。第一批（12:22 派出）：
-   - 道 1 数据（l1_data）：35-A2 补词 → A3 → A4 → A8 → A5 → A6 → A7，之后 C2 义项数据。范围 VOCAB_DB / VOCAB_HEAVY_JSON、`src/kebiaocheck.py`、`src/datacheck.py`、`src/patch_vocab_*.py`、单词卡模板数据。<!--L1P-->**道 1 进度**：A2 ✅（第 1 批 f63d69e 课标二级缺词 60 个新词条；第 2 批 Dolch：221 个 Dolch 词全部在库——新建 9 词、11 个屈折 / 缩写形式建别名并到原形、was / were / better / best / worse / worst 并到 be / good / bad，WORD_ALIAS 51 → 68，202 个词条打 `dolch` 级别字段，`lab/audit35/A2_DOLCH.md`；`kebiaocheck.py` 课标二级 + Dolch 必须全覆盖；人教社区表缺词只作线索未补，见遗留）· A3 ⬜ → A4 ⬜ → A8 ⬜ → A5 ⬜ → A6 ⬜ → A7 ⬜<!--/L1P-->
+   - 道 1 数据（l1_data）：35-A2 补词 → A3 → A4 → A8 → A5 → A6 → A7，之后 C2 义项数据。范围 VOCAB_DB / VOCAB_HEAVY_JSON、`src/kebiaocheck.py`、`src/datacheck.py`、`src/patch_vocab_*.py`、单词卡模板数据。<!--L1P-->**道 1 进度**：A2 ✅（第 1 批 70aea06 课标二级缺词 60 个新词条；第 2 批 Dolch：221 个 Dolch 词全部在库——新建 9 词、11 个屈折 / 缩写形式建别名并到原形、was / were / better / best / worse / worst 并到 be / good / bad，WORD_ALIAS 51 → 68，202 个词条打 `dolch` 级别字段，`lab/audit35/A2_DOLCH.md`；`kebiaocheck.py` 课标二级 + Dolch 必须全覆盖；人教社区表缺词只作线索未补，见遗留）· A3 ⬜ → A4 ⬜ → A8 ⬜ → A5 ⬜ → A6 ⬜ → A7 ⬜<!--/L1P-->
    - 道 2 内容（l2_fix）：35-B1 → 36-①10 → B2 → B3 → B4 → C3 → C4 → C5 → C6 → 36-①9 纯文字项。范围 DAILY_EXPRESSIONS_DB、GRAMMAR_DB / 积木 / 测验 / 例句库、口语幕 `hd_oral_*`、闯关厅、单词身世文案。**道 2 进度**<!--L2P-->：B2 ✅（积木 C 表语、G05 / G15 / G22 / G28 / G32 / G35 等、重音规律、例句库；`grammarcheck.py` 入 runall）。**待道 3 / r38 重建**：GRAMMAR_DB 文字改了，`fix36_trunc.py` 补回的 hd_g 板文字（hd_g28 ② 等）需按新 GRAMMAR_DB 重跑；hd_g05_1、fp_economy_3（a/an 方向）、stress_rhythm_1/2、intonation_map_2（名前动后 / 100%）的板书见 GRAMMAR_FIX.md §6<!--/L2P-->
    - 道 3 白板（l3_wb）：36-①1–①8、①9 改幕部分、①11、①12 → ② 长幕拆分。范围：除 `hd_oral_*` 和新原理幕外的现有 `v5/scenes`、`auto.js` / `gen_auto.py` 等生成脚本。道 2 文字纠错波及的 hd_g 幕由道 3 重建。**道 3 进度**：①1 ✅ · ①2 ✅（G07 ②③ 与 G08 ② / G09 ③ 同板仍在白名单，要改 G07 → 留给道 r38 决策 38 第 7 幕）· ①3 ✅（r38 的 8 个语法样板幕在 `lab/audit36/wbtext_allow.json` 白名单）；下一步 ①4（fp_vectors；G14 归 r38）。
    - 道 4 原理（l4_new）：35-D1–D9 → 36-⑤2 新语法点。范围：新页签场景、`content/*.txt`、`src/patch_principle_*.py`、原理 hub 入口。
@@ -114,7 +114,7 @@
    - ③ 总结层 ③1–③11 ⬜
    - ④ 加深最浅 10 页 ⬜
    - ⑤ 补内容 ⑤1–⑤5（字母书写、短语、读法；新语法点；口语新功能与会话策略；新题型；分级短文）⬜
-   - 顺延到决策 35、36 之后：词源补抓 140 词（`fetch_etym.py` 工作区有未提交的旧版页面解析改动，到时先核对）→ 决策 7 → 决策 8（英美对照、大写标点已并入 D9 / D7）→ 决策 9。已完成：思维导图分组修正 2e4fe86、O4 手机 / 平板适配 cf6a9f6、O6 死代码（本提交，决策 35 下达前已改完验完）。
+   - 顺延到决策 35、36 之后：词源补抓 140 词（`fetch_etym.py` 工作区有未提交的旧版页面解析改动，到时先核对）→ 决策 7 → 决策 8（英美对照、大写标点已并入 D9 / D7）→ 决策 9。已完成：思维导图分组修正 a1ae782、O4 手机 / 平板适配 bfb68be、O6 死代码（本提交，决策 35 下达前已改完验完）。
 
 1. 词源补抓：第 4 批已入库（1347 / 1487）；剩 140 词以后再抓（Wayback 限流时整轮只补几个词，隔几小时再跑 §5.2 1b 命令即可）。
 1b. 人物帧压画质：用户叫停，不做。
@@ -135,15 +135,15 @@
 
 | # | 项 | 状态 | 提交 |
 |---|---|---|---|
-| 1a | 词源抓取 / 解析 / 交叉核对工具：`src/fetch_etym.py`（Wiktionary 原文 + Etymonline 经 Wayback 存档）、`src/parse_etym.py` | ✅ | fa2845b |
-| 1b | `ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`）。2026-10-31 沙箱重置后缓存重抓：Wiktionary 1487 / 1487，Etymonline **1347 / 1487**（2026-10-31 02:45；剩 140 词：Wayback 最新快照常是 Cloudflare 403 页——`fetch_etym.py` 已改为遇 403 去 CDX 取最近一次 200 快照——其余为限流 / 断连，多为变形词 / 派生词）。**补抓**：`cd src && python3 fetch_etym.py etymo 1 & python3 fetch_etym.py etymo-rev 1`（断点续抓，已落盘的跳过；每轮约补 100 词，失败的不落盘下轮重试；不要 `pkill -f fetch_etym`，会连带杀掉当前 shell），抓完 `python3 src/parse_etym.py` → `build_etym_db.py etym` / `morph` → `runall.py` → 改 COVERAGE §7 → 提交 | 🟡 第 4 批入库 **625** 词（G1 34 / G2 38 / G3 60 / G4 82 / G5 97 / G6 64 / V6 248 / POLY 2）；未入库：两处对不上 441、无可解析来源链 155、尚未抓到 123、无英语词源小节 71、词组 37、无词条 35 | e025d90；df2ae6c；第 3 批 本提交 |
+| 1a | 词源抓取 / 解析 / 交叉核对工具：`src/fetch_etym.py`（Wiktionary 原文 + Etymonline 经 Wayback 存档）、`src/parse_etym.py` | ✅ | ecb283a |
+| 1b | `ETYM_DB` 入库（只收两处互证条目）+ 词卡「📖 词源 📜」与「💡 巧记小故事」分开显示（`src/build_etym_db.py`、`src/patch_etym_card.py`，回归 `v5/app_check8.py`）。2026-10-31 沙箱重置后缓存重抓：Wiktionary 1487 / 1487，Etymonline **1347 / 1487**（2026-10-31 02:45；剩 140 词：Wayback 最新快照常是 Cloudflare 403 页——`fetch_etym.py` 已改为遇 403 去 CDX 取最近一次 200 快照——其余为限流 / 断连，多为变形词 / 派生词）。**补抓**：`cd src && python3 fetch_etym.py etymo 1 & python3 fetch_etym.py etymo-rev 1`（断点续抓，已落盘的跳过；每轮约补 100 词，失败的不落盘下轮重试；不要 `pkill -f fetch_etym`，会连带杀掉当前 shell），抓完 `python3 src/parse_etym.py` → `build_etym_db.py etym` / `morph` → `runall.py` → 改 COVERAGE §7 → 提交 | 🟡 第 4 批入库 **625** 词（G1 34 / G2 38 / G3 60 / G4 82 / G5 97 / G6 64 / V6 248 / POLY 2）；未入库：两处对不上 441、无可解析来源链 155、尚未抓到 123、无英语词源小节 71、词组 37、无词条 35 | 9c4fca1；6fbd216；第 3 批 本提交 |
 | 1c | `MORPH_DB` 真实构词（Wiktionary 构词模板 + 各部分都在 Etymonline 正文出现；`-s` 不再标「复数」） | 🟡 358 词（191 互证 + 决策 34-A 词库派生词 167） | 本提交 |
 | 1d | 格林定律按规则组：4 幕 `wo_grimm_voiceless` / `wo_grimm_voiced` / `wo_grimm_aspirate` / `wo_grimm_verner` 并入「格林定律」章（`src/patch_wo_grimm.py`；内容稿 `content/wo_grimm_*_1.txt`；逐条核对 `word_origins/GRIMM_GROUPS.md`：30 对同源词，Etymonline + Wiktionary 都写了才用） | ✅ R1 缺 0、确定性、0 报错；`app_check2.py wo wo_grimm_<组> 1` 4/4 | 本提交 |
 | 1e | 音变与词汇规律 12 + 6 条：单词身世总枢「🔤 格林定律」章后新章「🔬 音变与词汇规律」18 条（规律 1 复用 `wo_grimm_verner`、规律 3 复用 `wo_vowel_a`，其余 16 个新幕 `wo_rule_*`；`src/patch_wo_rules.py`；核对 `word_origins/RULES_REVIEW.md`） | ✅ 16 幕 R1 缺 0、0 报错；`app_check2.py` 16/16；总地图按 key 去重 | 本提交 |
 | 1f | `word_origins/COVERAGE.md` 数字更新：新增 §7 补齐进度（ETYM 603、MORPH 182、格林 11 → 30 对、规律 18 / 18 条有幕） | ✅（Etymonline 抓完后 §7 数字随 1b 再改一次） | 本提交 |
-| 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 58721a8 |
-| 2b | 决策 6 剩余：空间隐喻 ✅（实验室「三大隐喻密码」加密码四 + 白板第 4 幕）/ 拼写潜规则 ✅（自然拼读页顶部剧场第四幕，不新开页签）/ 交际句型地图 ✅（口语大厅入口卡 → 新页 `oral_func_map`：白板 2 幕 + 点读句型表）。新内容做幕的通用工具：`v5/new_scene.py content/<幕>.txt`（内容稿 → R1 清单 → 生成 → 打包 → 核对 → 嵌入） | ✅ | 空间隐喻 64f1285；拼写潜规则 5a9e61e；交际句型地图 本提交 |
-| 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | ✅ O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py`；O2/O7 ✅ `src/leakcheck.py` + 播放器后台暂停（随下次 rebuild_all 生效）；O3 ✅ 语音缓存 + 无英文语音提示；O1 ✅ VOCAB_DB 首屏轻字段 + 重字段按需（`src/split_vocab.py`，首屏脚本 2.06 MB → 0.52 MB）；O5 ✅ `src/offlinecheck.py`（代码随 f82736b 误带进，文档补记）；O4 ✅ `src/mobilecheck.py`（390 / 768 / 1024 三视口 24 页：无横向滚动、触控 ≥44 px、文字 ≥12 px，已入 runall）+ `src/patch_mobile.py`（样式块 MOBILE_O4_V1，0.72/0.74rem → 0.75rem）；O6 ✅ `src/deadcode.py`（零引用顶层函数，迭代到不动点，wb5 共享块解压后一起搜；@keyframes 无引用 / 不生效）+ `src/patch_deadcode.py`：删 8 个零引用函数；11 个 @keyframes 写成 `.method-hub @keyframes x`、浏览器整条丢弃（实测 0 个生效），连同 23 处 animation 声明删除，页面前后截图无变化。动态拼名调用扫不出，以后报 ReferenceError 先看 deadcode.py 的 KEEP 白名单 | O9 db0ac3a；O8 f82736b；O2/O7 3740e2f；O3 6e7021d；O1 本提交 |
+| 2a | 决策 14 练习闭环 + 总地图：模块白板下方「🎯 小测」（认出 → 选择 → 拼写，3–5 题，题目全部取自 VOCAB_DB，词表 `MODULE_QUIZ_JSON` 由 `src/gen_module_quiz.py` 从该模块白板句子里取课标实词）；答题走现有 `recordQuizResult`（错题本规则不变）；≥60% 点亮 `appState.moduleQuiz`；新页 `app_map` 总地图（39 个模块、三条推荐路径）；首页入口按钮。`src/patch_practice.py`（幂等），回归 `v5/app_check9.py` | ✅（先于 1c–1f 做：Etymonline 存档还在抓） | 60b1e2d |
+| 2b | 决策 6 剩余：空间隐喻 ✅（实验室「三大隐喻密码」加密码四 + 白板第 4 幕）/ 拼写潜规则 ✅（自然拼读页顶部剧场第四幕，不新开页签）/ 交际句型地图 ✅（口语大厅入口卡 → 新页 `oral_func_map`：白板 2 幕 + 点读句型表）。新内容做幕的通用工具：`v5/new_scene.py content/<幕>.txt`（内容稿 → R1 清单 → 生成 → 打包 → 核对 → 嵌入） | ✅ | 空间隐喻 efb532e；拼写潜规则 16665d8；交际句型地图 本提交 |
+| 2c | 决策 29 软件优化（O9 → O8 → O2/O7 → O3 → O1 → O4 → O6 → O5） | ✅ O9 ✅ `src/runall.py`；O8 ✅ `src/appwrite.py`；O2/O7 ✅ `src/leakcheck.py` + 播放器后台暂停（随下次 rebuild_all 生效）；O3 ✅ 语音缓存 + 无英文语音提示；O1 ✅ VOCAB_DB 首屏轻字段 + 重字段按需（`src/split_vocab.py`，首屏脚本 2.06 MB → 0.52 MB）；O5 ✅ `src/offlinecheck.py`（代码随 5a600c0 误带进，文档补记）；O4 ✅ `src/mobilecheck.py`（390 / 768 / 1024 三视口 24 页：无横向滚动、触控 ≥44 px、文字 ≥12 px，已入 runall）+ `src/patch_mobile.py`（样式块 MOBILE_O4_V1，0.72/0.74rem → 0.75rem）；O6 ✅ `src/deadcode.py`（零引用顶层函数，迭代到不动点，wb5 共享块解压后一起搜；@keyframes 无引用 / 不生效）+ `src/patch_deadcode.py`：删 8 个零引用函数；11 个 @keyframes 写成 `.method-hub @keyframes x`、浏览器整条丢弃（实测 0 个生效），连同 23 处 animation 声明删除，页面前后截图无变化。动态拼名调用扫不出，以后报 ReferenceError 先看 deadcode.py 的 KEEP 白名单 | O9 73bd16c；O8 5a600c0；O2/O7 e1d8d99；O3 89e1f47；O1 本提交 |
 | 3 | 退役旧 canvas 兜底（第一性原理 + 三大厅 + 实验室 + 词卡）：`src/retire_canvas.py` 截掉 10 个旧绘制循环 → `wb5MissingStage` 提示，再删 10 个无人调用的绘图函数（−91 K 字符）；工具 `src/fnranges.js`（acorn） | ✅ 91 个 HD 单元 app_check4 全过；runall --full 全过 | 本提交 |
 | 4 | 人物帧重压 Q60 / 400 px | ⏸ 用户 2026-10-31 00:59「压画质先不做」。注意：`build_sprites.py` 的 MAXH 同时决定人物显示尺寸，直接降到 400 px 人物会变小，要做得先改成「只压编码不改显示尺寸」 | |
 | 5 | 坏帧：l_lift1/2 去邻帧残留、missw_give 补下半身 + 去灯塔、V29 l_banana0/2 + l_win0–2 头发改浅棕（`l_lift0` 未动） | ✅ 5 幕重建嵌入，截图自审 + app_check2/3 0 报错 | 本提交 |

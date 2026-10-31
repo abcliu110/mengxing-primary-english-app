@@ -1,6 +1,6 @@
 # 萌星小学英语 · 业务缺陷审计（只读）
 
-- 审计对象：`/workspace/work/mengxing-primary-english-app/萌星小学英语_最终合并版.html`（16,061,043 字节，HEAD `e9d02bc`，决策 33 ⑤ 之后）
+- 审计对象：`/workspace/work/mengxing-primary-english-app/萌星小学英语_最终合并版.html`（16,061,043 字节，HEAD `125c6fc`，决策 33 ⑤ 之后）
 - 方法：`node docs/whiteboard/src/vocab_extract.js` 取 VOCAB_DB 全量（1487 条，界面上显示 1436 条，因为有 51 条别名）；Playwright 在 390×844 视口走了 34 个 screen，打开词卡，点了总地图全部 153 个入口；在页面里取 GRAMMAR_DB / DAILY_EXPRESSIONS_DB 等全局数据；对照两份外部词表：
   - **课标**：《义务教育英语课程标准（2022 年版）》附录 3 二级词汇表（505 词）。来源是出版社 PDF https://www.esph.com.cn/docs/2025-10/705da262a6e74b088ac658bfe2d757ba.pdf （教育部原件 http://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582349487953.pdf ）。PDF 是 OCR 文本，我手工纠了 13 处 OCR 错，最后比对了约 500 / 505 词；数词、月份、星期在课标里单独列出，没有参与比对。
   - **教材**：GitHub 社区整理的人教版 1–6 年级词表，900 条，版本没有标明，看起来像一年级起点版（https://github.com/billyjr/pep-english-vocabulary ，`public/data/pep_english_vocabulary_full.csv`）。它只当参考，不算权威。

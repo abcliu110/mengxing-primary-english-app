@@ -1,6 +1,6 @@
 # 萌星小学英语 · 内容质量审计（只读，第 2 轮）
 
-- 对象：`/workspace/work/mengxing-primary-english-app/萌星小学英语_最终合并版.html`（HEAD `e1c6b96`）。仓库文件一个都没改。
+- 对象：`/workspace/work/mengxing-primary-english-app/萌星小学英语_最终合并版.html`（HEAD `a4592cd`）。仓库文件一个都没改。
 - 已在 `/workspace/work/audit/BIZ_AUDIT.md` 报过的问题（假音标、缺课标词、占位例句、a X 模板搭配、口语第 3 轮接不上、G05/G28/G15 等规则硬伤、空章节、英美拼写、伪原理）本文不再重复；只在动画里出现「同一错误被放大」时一句带过。
 - 方法
   - 白板：用 `/workspace/work/audit2/extract.py` 从主文件解出全部 508 幕（`/workspace/work/audit2/html/<页签>-<幕>.html`，就是 App 里实际播放的版本，没有用 build.mjs 重打包）。用 `/workspace/work/audit2/snap.py` 在每幕时长内等距截 8 帧，联络表在 `/workspace/work/audit2/shots/<幕>.png`，时长和朗读点在同名 `.json`。

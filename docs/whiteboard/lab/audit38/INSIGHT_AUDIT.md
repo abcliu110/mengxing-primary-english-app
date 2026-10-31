@@ -1,6 +1,6 @@
 # 萌星小学英语 · 白板动画「启发性」审计（只读）
 
-- 对象：仓库 `/workspace/work/mengxing-primary-english-app`，HEAD `eb1b568`（工作区有另一位开发者未提交的改动，本审计没有动仓库里任何文件，没有 pull / checkout / commit）。
+- 对象：仓库 `/workspace/work/mengxing-primary-english-app`，HEAD `3da28ec`（工作区有另一位开发者未提交的改动，本审计没有动仓库里任何文件，没有 pull / checkout / commit）。
 - 范围：App 里实际嵌入的 **508 幕**白板（从 `萌星小学英语_最终合并版.html` 的 `wb5html-*` 标签里数出来），与 `docs/whiteboard/v5/scenes/*.js` 一一对应（App 幕号从 0 开始，文件从 1 开始：`hd_g21-0` = `hd_g21_1.js`）。
 - 目标标准对照：`MASTER_DESIGN.md` §2.7（商业动画 M1–M12）、§2.9（v5.1 标准画法）、决策 27（「规则用画面推导出来，不直接贴结论」）、决策 36（审计修复）；流程 `SOP.md` §17；`REDRAW_V5.md`；生成器 `v5/gen_auto.py`、引擎 `v5/scenes/auto.js`；内容稿 `docs/whiteboard/content/*.txt`。
 - 逐幕评分表：`/workspace/work/insight_audit/scene_grades.csv`（508 行，五项分 + 等级 + 板书行数 + 引擎）。
