@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """insightcheck.py [--report N] —— 决策 38 / R38：白板「启发性」硬指标检查。
-强制对象 = 已按决策 38 重做的幕：`v5/scenes/*.js` 里 import 了 `../lib/concept.js` 的场景（v6）。其余幕只报告数量、不拦。
+强制对象 = 已按决策 38 重做的幕：`v5/scenes/*.js` 里 import 了 `../lib/concept.js` 的场景（v6），以及用口语通用版式 `./oral.js` 的场景（抽样 1+8 幕，`--all-oral` 全查）。其余幕只报告数量、不拦。
 每个强制幕现场打包到 /tmp（`node v5/build.mjs`），无头浏览器打开，读 `globalThis.__WB5_INSIGHT__`（concept.js 的 C.finish() 挂上）：
   ① 啊哈卡四项齐：see / guess / reveal / rule 都非空；
   ② ≥1 个 ≥3 秒的预测停顿（C.predict）；
@@ -43,12 +43,17 @@ HOOK = r"""
 })();
 """
 
+ORAL_SAMPLE = 8   # 口语 144 幕共用 scenes/oral.js：强制检查 sc01_1 + 均匀抽 8 幕（--all-oral 全查；全量另由 v5/check_oral.py 逐幕核对）
 def v6_scenes():
-    out = []
+    out, oral = [], []
     for f in sorted(glob.glob(str(V5 / 'scenes' / '*.js'))):
         src = open(f, encoding='utf-8').read()
+        if not re.search(r'^export default', src, re.M): continue   # 版式库（如 scenes/oral.js）不是一幕
         if re.search(r"from '\.\./lib/concept\.js'", src): out.append(pathlib.Path(f))
-    return out
+        elif re.search(r"from '\./oral\.js'", src): oral.append(pathlib.Path(f))   # 决策 38 ②：口语通用版式（oral.js 内部用 concept.js）
+    if oral and '--all-oral' not in sys.argv and len(oral) > ORAL_SAMPLE + 1:
+        oral = [oral[0]] + oral[1::max(1, (len(oral) - 1) // ORAL_SAMPLE)][:ORAL_SAMPLE]
+    return out + oral
 
 async def measure(b, html, inj='', frames=24):
     pg = await b.new_page(viewport={'width': 960, 'height': 540}); errs = []
@@ -110,7 +115,7 @@ async def main():
                 dur, ins, tmax, errs = await measure(b, out, '', 12)
                 print(f'   报告（不拦）{st}  {dur:.0f}s  文字 {tmax:.0%}  啊哈卡 {"有" if ins else "无"}')
         await b.close()
-    print(f'强制检查 {len(scenes)} 幕（v6 / 决策 38），未重做 {total - len(scenes)} 个场景文件只报告不拦')
+    print(f'强制检查 {len(scenes)} 幕（v6 / 决策 38；口语 oral.js 幕为抽样），其余场景文件只报告不拦')
     print(f'insightcheck 不合格 {fails}'); sys.exit(1 if fails else 0)
 
 asyncio.run(main())

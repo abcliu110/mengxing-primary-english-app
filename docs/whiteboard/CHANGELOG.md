@@ -2647,3 +2647,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - App：`src/patch_r38_wordcard.py`（标记 R38_01_WORDCARD）注入词条时带上 `__etym / __morph`（etymLookup，互证收录才有）。
 - `v5/check_wordcard_tpl.py` 的 R1 按决策 38 修订改为「知识点不丢」（`knowledge()`：每幕该讲的知识点在板上词块 / 标签、讲解字幕、朗读字幕任一处出现）：1425 词 × 3 = 4275 幕，知识点 13071 条缺 0、0 报错、4275/4275 确定，时长 12–35 s（中位 18 s）。`app_check5` 55 词 0 不合格。
 - 新检查 `src/insightcheck.py` 入 runall：import 了 concept.js 的幕强制（啊哈卡四项、≥3 s 预测、规则不早于第一个预测结束、板上文字面积 ≤ 40%、0 报错；模板按 7 个样本词 × 3 幕），其余幕只报告。SOP §17 验收表加 13–16（啊哈卡、预测停顿、遮字幕测、R1/R4 修订）。runall 全过。
+
+### 2026-10-31 15:50 JST · 决策 38 ② 阶段 ①：口语通用版式 oral.js + 样板 hd_oral_sc01-0
+- 新版式 `v5/scenes/oral.js` `oralBuild`：Leo（A）/ Mia（B）面对面，气泡轮流高亮；第 1 轮后 B 气泡盖「？」，`C.predict` 4 s「B 会怎么回答？」→ 揭晓；两气泡里与核心句相同的词一起变橙；核心交际句、💡 提示整句进讲解字幕（提示 = `C.rule`）；收尾核心句卡 + 中文卡朗读。不用讲解员，节奏沿用阅读速度（中文 5 字/秒、英文 2.2 词/秒，HOLD 1.5 s）。
+- 样板只切 `scenes/hd_oral_sc01_1.js`（ITEMS 不动；ACTS 加 A / B 帧）：45.7 s、预测 4 s、规则 25.3 s、板上文字 18%、确定、0 报错；`check_oral.py` 知识点 21 条缺 0。App 内尚未替换（阶段 ③）。
+- 啊哈卡 `lab/audit38/aha/02_hd_oral_sc01.md`；新检查 `v5/check_oral.py`；`src/insightcheck.py` 识别 `./oral.js` 场景（抽样 1 + 8 幕，`--all-oral` 全查），跳过版式库文件。
