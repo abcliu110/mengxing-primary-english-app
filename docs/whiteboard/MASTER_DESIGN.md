@@ -395,6 +395,8 @@
 | A7 英美拼写 | colour / color、grey / gray、centre / center、maths / math、mum / mom 都单独成条；traveller、neighbour 英式，woolen 美式；音标全美式；at the weekend（G14）vs on the weekend（口语 13 处，人教用 on）；favourite 缺 | 定主拼写：跟课标用英式，美式作别名显示 🇺🇸；音标与拼写口径一致的方案写清；weekend 介词统一 | 主拼写英式（课标用英式）；别名卡显示美式拼写；音标方案二选一（A：改英式音标，B：保留美式音标并在卡上标 🇺🇸 发音）在动手前写进本文；at / on the weekend：正文按人教用 on，注明英式 at | `datacheck.py`：同一词英美两种拼写都是主词条 → 不合格；全文 Mum / Mom、maths / math 用法统计报告 |
 | A8 可数性 | advice、fruit、hair、paper 被判「可数」，卡上又写「a water」 | 可数性单独字段，人工核对 | 新字段 `countable`（可数 / 不可数 / 两用）逐词核，词卡原理③读这个字段 | 抽查表；与 A4 一起 0 冲突 |
 
+**A7 定案（2026-10-31 19:09 JST，决策 38 接手人按本表「二选一写进本文」执行）**：主拼写英式（colour / grey / centre / maths / mum / metre / theatre / favourite / neighbour / traveller / practise），美式作别名（WORD_ALIAS「美式」，主卡显示标签）；音标选**方案 B**——保留美式音标（与 A1 CMUdict 重生成一致），词卡音标后标 🇺🇸；weekend 介词正文按人教用 on，注明英式 at。woolen（G6_0830）英式应为 woollen，改词头会影响词卡 / 白板，留待下一轮。`src/patch_a7_spelling.py`，检查 `src/datacheck.py` A7 段。
+
 #### B. 内容错误
 
 | # | 现状 | 目标 | 方案 | 验收 |
