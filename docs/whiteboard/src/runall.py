@@ -15,6 +15,7 @@ Q = [
     ('手机/平板适配 mobilecheck', [sys.executable, 'mobilecheck.py'], HERE),
     ('语法白板串板 wbdupcheck', [sys.executable, 'wbdupcheck.py'], HERE),
     ('白板截断句 / Markdown / 字幕口诀 wbtextcheck（决策 36 ①3）', [sys.executable, 'wbtextcheck.py'], HERE),
+    ('语法硬伤 grammarcheck（35-B2）', [sys.executable, 'grammarcheck.py'], HERE),
     ('白板手机播放框 playercheck（R37-01）', [sys.executable, 'playercheck.py'], HERE),
     ('家长门按钮 gatecheck（R37-13）', [sys.executable, 'gatecheck.py'], HERE),
     ('Markdown 残留 mdcheck（R37-04）', [sys.executable, 'mdcheck.py'], HERE),
