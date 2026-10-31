@@ -2670,3 +2670,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `v5/fix36_trunc.py`（幂等）：44 幕（G01–G04、G06、G08–G13、G15–G17、G20–G36、G40 全部幕）补回原句，按换行 / 条目、再按 。！？；】 拆行（右括号、引号、以逗号 / 冒号开头的段并回前段），不按字数截；剥 `**` 与反引号；末句朗读的中文原是口诀 → 改成这句英文的译文（step1_zh 对应句，G24 / G32 / G36 手工校），口诀进讲解字幕「🎵 口诀：…」保留。只增不删，对照表 `lab/audit36/R1_36_3_TRUNC.md`。
 - 新检查 `src/wbtextcheck.py` 入 runall：全部场景 `**` / 反引号 = 0；hd_g 截断句 = 0；hd_g 底部字幕 ≠ 口诀。决策 38 样板幕 G05、G07、G14、G18、G19、G37–G39 归道 r38，在白名单 `lab/audit36/wbtext_allow.json`。
 - 44 幕重打包嵌入：确定性 / 0 报错（普通 + sandbox）。补全后时长 75–144 s，hd_g32 ①②③ 121–144 s、hd_g24 120 s 超过 120 s，随 ② 长幕拆分处理。jscheck / wbdupcheck / wbtextcheck / mdcheck / app_check12 / app_check4 hd_g32 通过。
+
+### 2026-10-31 16:35 JST · 决策 35-B2 语法硬伤（道 2）
+- `src/patch_b2_grammar.py`（幂等，appwrite）：句子积木新增 C（表语）角色——渲染「◇ 表语」紫色块、O 改名「◆ 宾语」、图例加紫色；G04/08/09/11/16/17/25/27/31/32/34/37/38/39 共 14 点的表语从 O 改 C，G40 改成 Thank / you / for helping me learn English。
+- 讲解：G05 a/an 改正为「an 是原形（古英语 ān），辅音前丢 n 变 a」（Etymonline）；G15「否定句 and 必须换 or」→「通常换」+ ✂️，改错题换成 tea and milk → or；G22 删补丁残文（i 变 a / o、u 变 a 分开）；G28「时间词放句尾」改为可放句首、⚠️ 频度副词在主谓之间；G32 删补丁残文；G35 clear river + 就近原则 ✂️；G11 smells delicious；G01 -o 复数口诀标 💡；G07 复数排序标 ⚠️。
+- 重音规律表：名前动后「铁律」→规律（至少 170 对，反例 visit / report）；后缀「100%」→通常 + 例外。口腔省力原理 a→an 方向改正（数据；fp_economy 场景归 r38）。
+- 例句：best→better（两项比较）4 处、very delicious、clean river、The rain stopped and look… 改；G39 删 2 句、G20 删 1 句（进行时表将来）；词卡 transport 例句改 Buses and subways are public transport.；例句库 3809 → 3806。`src/patch_b2_grex.py` 只重写 GRAMMAR_EX_JSON 块（`patch_grammar_examples.py` 的函数块替换已与后来的补丁不兼容，重跑会冲掉 lab-entry）。
+- 新检查 `src/grammarcheck.py` 入 runall：系动词后标 O、非法角色、16 条已纠正硬伤黑名单；改前 39 处 → 0。对照表 `lab/audit35/GRAMMAR_FIX.md`。回归：jscheck / mdcheck / mobilecheck / insightcheck / app_check8–15 / tense_matrix / wo_grimm / hd_phonics / oral_func 通过；playercheck 改前改后都报 1–3 处（负载下 iframe 尺寸时序，未改播放器）。
