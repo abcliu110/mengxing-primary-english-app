@@ -2702,3 +2702,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - hd_g19_1 改 concept.js：s 勋章——The boy[s] like vs The boy like → 预测勋章去哪 → 飞到 likes；主语轮换勋章飞走 / 飞回；He go ✗→goes；预测 do 出场 → 勋章被吸走变 does、like 回原形；加法 / 读音 / 语境 / 口诀（why、口诀按 GRAMMAR_DB 补全）。啊哈卡 `lab/audit38/aha/04_hd_g19.md`。check_r38 0 不合格，140 s。
 - `check_r38.py` 的 KNOW 解析改用 node 求值（含 \' 转义的句子曾被误判缺失）。
 - 两幕都还没 embed（等口语 144 幕重建嵌入完成，避免两个进程同时写主 HTML）。
+
+## 2026-10-31 17:04 JST · WIP 决策 38 第 5 幕 hd_g14 ①② 
+- 新 `v5/scenes/g14_lib.js`（三张图：盒子 / 桌面 / 靶心，glow 时段闪几何特征）。
+- hd_g14_1 空间：三张图都写「在」→ 预测「英语为什么分三个词」→ 体积 / 接触面 / 点依次闪、in / on / at 落下（76 s）。
+- hd_g14_2 时间：时间卡飞进三格 → 预测 the morning（盒子）→ 预测 Sunday morning（桌面，锁定具体某天）→ noon / night 例外钉靶心 → 规则（116 s）。**纠正**旧板「IN (>1天长时段容器)…in the morning」矛盾；加 weekend 英式 at / 美式（人教）on。
+- 两幕 check_r38 0 不合格、390 px 联络表自检过；未 embed。
