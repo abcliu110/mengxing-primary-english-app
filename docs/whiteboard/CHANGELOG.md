@@ -2755,3 +2755,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:32 JST · 决策 38 wbdupcheck 跳过无 ITEMS 的重做幕；交接断点
 - `src/wbdupcheck.py`：决策 38 重做幕（concept.js 场景用 KNOW，无 ITEMS）不参与串板比对，修 runall 里 wbdupcheck 对第 12–14 幕崩溃。
 - font_chars.txt 已在 17:10 全量重建前提交过，本次无改动。主 HTML（17:19 全量重建 + hd_g37–39 / hd_fr01 重嵌）待回归，未提交。
+
+## 2026-10-31 17:34 JST · 决策 38 poly.js 并进共享引擎（WIP）；4 个 HD 单元 app_check4 通过
+- `v5/engine.js` / `build.mjs` SHARED / `rebuild_all.py` 源码时间：一词多义版式 `scenes/poly.js` 并进共享引擎（hd_poly 场景脚本不再各带一份）。单幕试打包 hd_poly_g1_002_1：47.1 s、确定、0 报错。
+- 主 HTML（17:19 全量重建版，共享引擎 1 份）App 回归：`app_check4.py` hd_g18（102 s）、hd_g14 三幕（76 / 116 / 110 s）、hd_fr01 四视角（47–49 s）、hd_oral_sc01 七幕（41–46 s）全部挂载、0 报错。runall 进行中。
