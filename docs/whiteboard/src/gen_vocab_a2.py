@@ -174,4 +174,76 @@ def build():
     (LAB / 'A2_KEBIAO_ADD.md').write_text('\n'.join(md) + '\n', encoding='utf-8')
     print('a2 entries', len(out))
 
-if __name__ == '__main__': build()
+if __name__ == '__main__' and '--dolch' not in sys.argv: build()
+
+# ---------------- A2 第 2 批：Dolch 220 视觉高频词（lab/audit35/dolch220.json） ----------------
+# 词库没有的 20 个：9 个新建完整词条；11 个屈折 / 缩写形式建别名词条并到原形（走 WORD_ALIAS，主卡显示「过去式：said」类标签）；
+# 另把 A2 第 1 批补进原形后、原来没原形的 6 个 V6_MORPH 变形词（was / were / better / best / worse / worst）也并到原形。
+DOLCH_NEW = [
+ ('G3_K40', 'into', '/ˈɪntuː/', 'in - to', 'prep.', '进入，到……里面', '📥', N, '色彩与空间方位',
+  ('介词', 'G14', '表示从外到里的动作：go into the room；in 只表示在里面的位置。'), '',
+  [('prep.', '进入，到……里面', 'The cat runs into the house.', '猫跑进了房子。')], ''),
+ ('G3_K41', 'soon', '/suːn/', 'soon', 'adv.', '很快，不久', '🔜', S, '节日与时间', None, '',
+  [('adv.', '很快，不久', 'Dinner will be ready soon.', '晚饭很快就好。')], ''),
+ ('G3_K42', 'as', '/æz/ /əz/', 'as', 'adv./conj./prep.', '像……一样；作为', '🟰', Z, '语法功能与指代',
+  ('连词 / 副词', 'G37', 'as + 形容词原级 + as 表示“和……一样”：I am as tall as Tom.'), '',
+  [('adv.', '和……一样（as … as）', 'I am as tall as my brother.', '我和我哥哥一样高。')], ''),
+ ('G3_K43', 'around', '/əˈraʊnd/', 'a - round', 'prep./adv.', '在……周围；到处', '🔄', N, '色彩与空间方位', None, '',
+  [('prep.', '在……周围', 'We sit around the table.', '我们围着桌子坐。')], ''),
+ ('G3_K44', 'off', '/ɔːf/', 'off', 'adv./prep.', '离开；（电器）关着', '📴', N, '色彩与空间方位', None, '',
+  [('adv.', '关着（turn off）', 'Please turn off the light.', '请关灯。'), ('adv.', '脱下，离开（take off）', 'Take off your coat.', '脱下你的外套。')], ''),
+ ('G3_K45', 'pull', '/pʊl/', 'pull', 'v.', '拉', '🪢', Z, '日常作息与动作', None, '',
+  [('v.', '拉', 'Pull the door. Don\'t push it.', '拉门，别推。')], ''),
+ ('G3_K46', 'upon', '/əˈpɑːn/', 'up - on', 'prep.', '在……上面（= on，多用于书面）', '📖', Z, '语法功能与指代',
+  ('介词', 'G14', '意思和 on 一样，多用在书面和故事里：Once upon a time（从前）。'), '',
+  [('prep.', '在……上面', 'Once upon a time, there was a little rabbit.', '从前，有一只小兔子。')], ''),
+ ('G3_K47', 'own', '/oʊn/', 'own', 'adj./v.', '自己的；拥有', '🏠', Z, '个人特征与情绪', None, '',
+  [('adj.', '自己的', 'I have my own room.', '我有我自己的房间。')], ''),
+ ('G3_K48', 'shall', '/ʃæl/ /ʃəl/', 'shall', 'modal v.', '将；……好吗（提建议）', '🤔', Z, '语法功能与指代',
+  ('情态动词', 'G25', '多用于 I / we 开头的问句提建议：Shall we go now?（我们现在走好吗？）'), '',
+  [('modal v.', '……好吗（提建议）', 'Shall we play football after school?', '放学后我们踢足球好吗？')], ''),
+]
+# (别名 id, 词, 音标, 词性, 释义, 例句, 译文, 主词条 id, 关系)
+DOLCH_ALIAS = [
+ ('G3_KA01', 'said', '/sed/', 'v.', 'say 的过去式（说了）', 'She said hello to me.', '她跟我打了招呼。', 'G3_0625', '过去式'),
+ ('G3_KA02', 'goes', '/ɡoʊz/', 'v.', 'go 的第三人称单数', 'He goes to school by bus.', '他坐公交车上学。', 'V6_日常_1', '三单'),
+ ('G3_KA03', 'going', '/ˈɡoʊɪŋ/', 'v.', 'go 的现在分词', 'I am going to the park.', '我正要去公园。', 'V6_日常_1', '现在分词'),
+ ('G3_KA04', 'does', '/dʌz/', 'v.', 'do 的第三人称单数', 'She does her homework every day.', '她每天做作业。', 'V6_日常_3', '三单'),
+ ('G3_KA05', 'done', '/dʌn/', 'v.', 'do 的过去分词', 'I have done my homework.', '我已经做完作业了。', 'V6_日常_3', '过去分词'),
+ ('G3_KA06', "don't", '/doʊnt/', 'v.', 'do not 的缩写（不）', "I don't like milk.", '我不喜欢牛奶。', 'V6_日常_3', '否定缩写'),
+ ('G3_KA07', 'has', '/hæz/', 'v.', 'have 的第三人称单数', 'He has a new bike.', '他有一辆新自行车。', 'V6_日常_5', '三单'),
+ ('G3_KA08', 'got', '/ɡɑːt/', 'v.', 'get 的过去式', 'I got a gift yesterday.', '我昨天收到一份礼物。', 'V6_日常_0', '过去式'),
+ ('G3_KA09', 'been', '/bɪn/', 'v.', 'be 的过去分词', 'I have been to Beijing.', '我去过北京。', 'G3_K01', '过去分词'),
+ ('G3_KA10', 'could', '/kʊd/', 'modal v.', 'can 的过去式（能，会）', 'I could swim when I was five.', '我五岁时就会游泳了。', 'G1_K03', '过去式'),
+ ('G3_KA11', 'would', '/wʊd/', 'modal v.', 'will 的过去式（将会）', 'He said he would come.', '他说他会来。', 'G3_K02', '过去式'),
+]
+OLD_ALIAS = {'V6_MORPH_26': ['G3_K01', '过去式'], 'V6_MORPH_27': ['G3_K01', '过去式'], 'V6_MORPH_60': ['G3_K08', '比较级'],
+             'V6_MORPH_61': ['G3_K08', '最高级'], 'V6_MORPH_62': ['G3_K09', '比较级'], 'V6_MORPH_63': ['G3_K09', '最高级']}
+
+def build_dolch():
+    out = []
+    for (i, word, ph, syl, pos, mean, emo, mac, sub, func, alert, senses, sc) in DOLCH_NEW:
+        ss = [{'pos': p, 'meaning': m, 'ex_en': e, 'ex_zh': z, 'scene': ''} for p, m, e, z in senses]
+        out.append({'light': {'id': i, 'word': word, 'phonetic': ph, 'syllables': syl, 'pos': pos, 'meaning': mean, 'emoji': emo,
+                              'freq_rank': 9100 + len(out), 'is_function_word': bool(func),
+                              'func_info': {'type': func[0], 'grammar_id': func[1], 'tip': func[2]} if func else None,
+                              'theme_macro': mac, 'theme_sub': sub, 'sight_type': '', 'irregular_info': None, 'has_polysemy': False,
+                              'spelling_alert': alert, 'kebiao_level': '', 'added_by': '35-A2 Dolch'},
+                    'heavy': {'senses': ss, 'affix_root': '', 'collocations': {'verbs': [], 'adjs': []}, 'etymology': '', 'syntax_contrast': sc,
+                              'memory_tip': '', 'visual_scene': '', 'example_zh': ss[0]['ex_zh'], 'polysemy_data': None, 'example_en': ss[0]['ex_en']}})
+    alias = dict(OLD_ALIAS)
+    for (i, word, ph, pos, mean, en, zh, main, rel) in DOLCH_ALIAS:
+        out.append({'light': {'id': i, 'word': word, 'phonetic': ph, 'syllables': word, 'pos': pos, 'meaning': mean, 'emoji': '🔁',
+                              'freq_rank': 9100 + len(out), 'is_function_word': False, 'func_info': None, 'theme_macro': '人与自我',
+                              'theme_sub': '语法功能与指代', 'sight_type': '', 'irregular_info': None, 'has_polysemy': False, 'spelling_alert': '',
+                              'kebiao_level': '', 'added_by': '35-A2 Dolch 别名'},
+                    'heavy': {'senses': [{'pos': pos, 'meaning': mean, 'ex_en': en, 'ex_zh': zh, 'scene': ''}], 'affix_root': '',
+                              'collocations': {'verbs': [], 'adjs': []}, 'etymology': '', 'syntax_contrast': '', 'memory_tip': '', 'visual_scene': '',
+                              'example_zh': zh, 'polysemy_data': None, 'example_en': en},
+                    'alias': [main, rel]})
+        alias[i] = [main, rel]
+    (LAB / 'a2_dolch_add.json').write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding='utf-8')
+    (LAB / 'a2_alias.json').write_text(json.dumps(alias, ensure_ascii=False, indent=1), encoding='utf-8')
+    print('dolch entries', len(out), 'alias', len(alias))
+
+if __name__ == '__main__' and '--dolch' in sys.argv: build_dolch()
