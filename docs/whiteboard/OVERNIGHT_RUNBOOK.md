@@ -11,14 +11,14 @@
 | 号 | 任务 | 状态 |
 |---|---|---|
 | T0 | 既有成果入库（方案文档+模型+boundedness 家族+fb39_lib 改名） | 进行中（主会话） |
-| T1 | 框架库审查（FRAME_SEMANTICS 等 10 库） | 进行中（子代理 dfd04d1a） |
-| T2 | 语法 G01–G40 入模：model/grammar.yaml（纲领+概念+修正后主张+讲法）+ model/updates/grammar_update.md | 待领 |
-| T3 | 词汇修正入模：model/vocab_fixes.yaml（12 错误+分型修正+全称降格，含 MH↔VOCAB 联动）+ updates/vocab_update.md | 待领 |
-| T4 | 表达修正：model/expressions_fixes.json（DAILY 问题条目修正版）+ 收尾句生成机制 + WRITING 去虚假承诺，updates/expressions_update.md | 待领 |
-| T5 | 白板台词修正集：model/scene_fixes.yaml（45 条问题项更正文，hd_g03_1 与 boundedness 模型对齐）+ updates/scenes_update.md | 待领 |
-| T6 | 框架库修正入模（待 T1 报告） | 阻塞于 T1 |
+| T1 | 框架库审查（FRAME_SEMANTICS 等 10 库） | 已完成（报告 report_frameworks.md：概念层 3 成立/6 基本成立/1 过度简化；硬伤 T05 伪构词律、T07 light 假词源） |
+| T2 | 语法 G01–G40 入模：model/grammar.yaml（纲领+概念+修正后主张+讲法）+ model/updates/grammar_update.md | 进行中（子代理，02:12 派发） |
+| T3 | 词汇修正入模：model/vocab_fixes.yaml（12 错误+分型修正+全称降格，含 MH↔VOCAB 联动）+ updates/vocab_update.md | 进行中（子代理，02:12 派发） |
+| T4 | 表达修正：model/expressions_fixes.json（DAILY 问题条目修正版）+ 收尾句生成机制 + WRITING 去虚假承诺，updates/expressions_update.md | 进行中（子代理，02:12 派发） |
+| T5 | 白板台词修正集：model/scene_fixes.yaml（45 条问题项更正文，hd_g03_1 与 boundedness 模型对齐）+ updates/scenes_update.md | 进行中（子代理，02:12 派发） |
+| T6 | 框架库修正入模（待 T1 报告） | 进行中（子代理，02:13 派发） |
 | T7 | 领域纲领 v1：model/domains.yaml（每领域 coreView/unifies/conflicts） | 待领（主会话综合，依赖 T2–T6） |
-| T8 | 阐述设计基线（研究 15 条规则）并入 REWRITE_TECH_PLAN §3.3 附则 | 待领 |
+| T8 阐述设计基线（研究 15 条规则）并入 REWRITE_TECH_PLAN §3.3 附则 | 已完成（主会话，待提交） |
 | T9 | 主 HTML 旧库外科补丁：按 T2–T6 更新包逐项修正旧库原文，抽取脚本复验 DB 可解析 + 抽样回读 | 待领（依赖 T2–T6） |
 | T10 | 原理 ①②④⑤⑥ 建模：model/phonology.yaml、letters.yaml、sentence.yaml、rules5.yaml、viewpoint.yaml（名称以内容定）按 THEORY_AUDIT 修复清单 + T5 修正集 | 待领（依赖 T5、T7） |
 | T11 | 五大家族场景生成（spec→gen→build→insightcheck 0 失败）+ 独立逻辑审查 | 待领（依赖 T10） |
