@@ -2865,3 +2865,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 18:54 JST · 决策 38 35-A3 例句第 2–3 批（累计 335/445，WIP）
 - `lab/audit35/a3/b2.tsv`（drink … pupil，110 条）、`b3.tsv`（police officer … pocket，115 条）。
+
+## 2026-10-31 18:57 JST · 决策 38 35-A3 例句第 4 批（445/445）+ patch_a3_examples.py + datacheck.py 入 runall（WIP，未打进主 HTML）
+- `lab/audit35/a3/b4.tsv`（ring … together，110 条），445 条齐；按词库核对：例句里词库外实词 10 句改写（aloud / chest / crown / joke / minus / pool / wagging / weighs 等）。
+- `src/patch_a3_examples.py`：写 senses[0].ex_en/ex_zh + example_en/zh；collocations.verbs 去占位；affix_root「课标关联：」清空；词卡构词栏 / 搭配动词为空不显示（WORDCARD_A3_V1）。
+- `src/datacheck.py` 入 runall（当前主 HTML：占位 1745 处，打补丁后应为 0）。
