@@ -2843,3 +2843,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:31 JST · 决策 38 wb5 scene clip 时间窗分节（手工长幕用；WIP，未重建）
 - `v5/wb5.js`：`scene({ clip: [t0, t1] })` / `globalThis.__WB5_CLIP`——只播场景时间 [t0, t1)，t0 前的板书直接在场，CUES / NARR / SAYS 平移到 0 起。给 tense_matrix① / past_clans① / adj_order① 这类按绝对时间手写的长幕分节用（分节文件 import 原幕 build 再设 clip）。
 - ⚠️ 引擎改了：之后任何单页签 embed 都会带第二份引擎，必须先全量 `rebuild_all.py`。
+
+## 2026-10-31 18:33 JST · 决策 38 36-② 手工长幕时间窗分节：tense_matrix① 4 节、past_clans① 3 节、adj_order① 3 节（WIP，未嵌入）
+- tense_matrix① 269 s → 69 / 82 / 65 / 53 s（场景时间切点 45.8 / 100.5 / 144.0，均在换板处）。
+- past_clans① 215 s → 3 节（切点 54.7 / 102.2）。
+- adj_order① 231 s → 35 / 91 / 105 s（切点 23.2 / 84.0；buildAdj 内部建 scene，原幕用 own 标记设默认窗）。
+- 分节文件 `scenes/<页签>_p<k>_1.js` = import 原幕 build + `globalThis.__WB5_CLIP`；单独打包抽查时长对、联络表 0 报错（第 2 节开头板书已在场）。
