@@ -315,7 +315,8 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 3. **画面三层**：具象（角色 / 实物）→ 图式（`schemaContainer` / `timelineCamera` / 力箭头）→ 符号（`morphLetters` / `syntaxSlotMachine` / 词缀拼装）。易混点用 `contrastSplitScreen`。
 4. **源码标四段**：`// @step1_hook` … `// @step4_punchline`，各段开始处一行。
 5. **只重建本页签**：`python3 v5/rebuild_all.py --tabs=<页签>`；改了 concept.js / 引擎 / 字表才全量。注意 concept.js 打在共享引擎里：改了它再 `--tabs` 嵌入，主 HTML 会多一份新引擎（旧幕仍用旧引擎，能播但体积 +约 0.4 MB），一批幕做完再全量重建一次收回。
-6. **组件自测**：`python3 src/insightcheck.py --demo` 会加查 `v5/selftest/concept39_demo.js`（五组件 + 四段标记，不进 App、不进字表）；改了 concept.js 先跑它。
+6. **单幕快检**：`python3 src/insightcheck.py --only=<幕名>` 只查这一幕（几秒）；改完再嵌入。
+7. **组件自测**：`python3 src/insightcheck.py --demo` 会加查 `v5/selftest/concept39_demo.js`（五组件 + 四段标记，不进 App、不进字表）；改了 concept.js 先跑它。
 
 ### concept.js 决策 39 组件速查
 - `C.step(n, t)`：四段分段（1 冲突 / 2 机制 / 3 迁移 / 4 锚点），配合源码注释 `// @stepN_…`。

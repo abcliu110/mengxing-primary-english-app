@@ -2906,3 +2906,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - src/depthcheck.py（新）：hd_g / wo_rule / ze 每专题 ≥ 3 幕，现 67 个专题里 57 个 1 幕、2 个 2 幕；runall 里仅提示。
 - src/ci.py 断点块按 DEC 区分（R39BP）；SOP §18 补组件速查、引擎多份提示。
 - 沙箱补装 playwright / brotli（环境，不进仓库）。
+
+### 2026-10-31 22:05 JST · 决策 39 ③ fp_boundedness 4 幕样板
+- `v5/scenes/fp_boundedness_1..4.js` 按四步剧本（Hook / Mechanism / Transfer / Punchline）重做，共用 `fb39_lib.js`，角色包 `sprites/fb39_1..4`（生成物，忽略）。
+- insightcheck：动态 72 / 72 / 77 / 80%，静态字 21 / 8 / 17 / 12%；预测停顿均 ≥3 s；check_r38 不合格 0。
+- `rebuild_all.py --tabs=fp_boundedness` 嵌入主 HTML（17.24 MB，新旧引擎并存多约 0.9 MB，全量重建收回）；runall 全部通过。
+- 状态：待用户审片，④ 推广暂缓。

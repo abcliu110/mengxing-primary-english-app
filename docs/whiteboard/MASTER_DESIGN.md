@@ -602,6 +602,7 @@ G18 一般现在时（与进行时对比、时间圆环、He go / Does he goes�
 1. 本条入文档（MASTER_DESIGN / SOP §18 / HANDOFF / CHANGELOG）。
 2. concept.js 五组件 + `src/concept_demo` 自测幕；insightcheck 加时长占比与四段标记（提示级）；新建 depthcheck（提示级）。
 3. 样板：`fp_boundedness` 现有 4 幕按四步剧本重做（coffee 两杯冲突 → 无界流体装进边界框 → work / time 同框迁移 → a chicken / chicken 锚点），只重建该页签（`python3 v5/rebuild_all.py --tabs=fp_boundedness`），交用户审片。
+**进度（2026-10-31）**：1 ✅ · 2 ✅（`86ae034`）· 3 ✅ 已嵌入待审片 · 4 ⬜
 4. 审片通过后推广：hd_g（30 个单幕专题）→ wo_rule（16）→ ze（11）→ vv_schema 总纲 → 第一性原理新增 4 个 → 一词多义 / 词源 / 拼读扩充包。每个专题一提交；只有引擎、字表或共享素材变了才全量重建，否则 `--tabs`。
 
 ### 决策 23–28 总表（用户 2026-10-30 00:50–01:06 确认「全部加上，写入设计文档」）

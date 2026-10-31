@@ -15,6 +15,7 @@
   其余 v6 幕 ⑤–⑦ 只打「提示」，不计不合格（推广到哪批，哪批转强制）。
 模板幕（wordcard_tpl）按 SAMPLE_WORDS 逐词 × 3 幕检查：词条取主 App 的 wb5PlainData（含 __etym / __morph），覆盖时间轴 / 构词 / 盖字母三条分支。
 --report N：另外从 v5/out/ 里已打包的非 v6 幕均匀抽 N 幕，只量文字面积并报告（不计入不合格）。
+--only=幕名,…：只查这几幕（改一幕时用）。
 输出最后一行「insightcheck 不合格 N」，N>0 返回码 1。"""
 import asyncio, glob, json, os, pathlib, re, subprocess, sys
 from playwright.async_api import async_playwright
@@ -60,6 +61,8 @@ def v6_scenes():
     if oral and '--all-oral' not in sys.argv and len(oral) > ORAL_SAMPLE + 1:
         oral = [oral[0]] + oral[1::max(1, (len(oral) - 1) // ORAL_SAMPLE)][:ORAL_SAMPLE]
     if '--demo' in sys.argv: out.append(V5 / 'selftest' / 'concept39_demo.js')   # 决策 39 五组件自测幕（不进 App、不进字表）：--demo 才查
+    ONLY = [a.split('=', 1)[1].split(',') for a in sys.argv if a.startswith('--only=')]   # --only=fp_boundedness_1,…：只查这几幕（改一幕时用，几秒出结果）
+    if ONLY: return [f for f in out + oral if f.stem in ONLY[0]]
     return out + oral
 
 async def measure(b, html, inj='', frames=24):

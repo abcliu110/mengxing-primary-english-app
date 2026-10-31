@@ -152,6 +152,7 @@ export function concept(K) {
   C.pic = ({ emoji, x, y, size = 300, from = 0, until = 1e9, morph = [], bob = 0 }) => {
     use('pic');
     const ks = [[from, emoji], ...morph];
+    dyn(from, from + 0.5); for (const [mt] of morph) dyn(mt, mt + 0.8); if (bob) dyn(from, until);
     K.prop((g, t) => {
       if (t < from) return; const pop = EASE.back(clamp((t - from) / 0.5));
       let i = 0; for (let k = 0; k < ks.length; k++) if (t >= ks[k][0]) i = k;
@@ -203,6 +204,7 @@ export function concept(K) {
   C.rule = t => { C.RULE = t; return C; };
 
   // —— 决策 39 认知组件 ——
+  C.motion = (t0, t1) => { dyn(t0, t1); return C; };   // 场景自己画的连续动画（K.prop 里随 t 运动）登记为动态时间窗
   C.step = (n, t) => { if (![1, 2, 3, 4].includes(n)) throw new Error('C.step 只收 1–4'); C.STEPS.push({ n, t }); return t; };
 
   // 最长公共子序列：morphLetters 用来找「不变的骨架」
@@ -246,7 +248,7 @@ export function concept(K) {
   };
 
   // ⑧ 边界容器：unbounded（没有边：内容像流体铺开）/ bounded（实线发光边框，右上角弹数字 count）/ enter（内容从左外侧刺入）/ exit（内容顶破右壁出去）/ expand（框里绽放放大）/ deplete（框内能量条耗尽）
-  C.schemaContainer = ({ x = 960, y = 520, w = 420, h = 320, content = '☕', from = 0, until = 1e9, states = [[0, 'bounded']], label = '', count = null, col = BLUE, csize = 150 }) => {
+  C.schemaContainer = ({ x = 960, y = 520, w = 420, h = 320, content = '☕', from = 0, until = 1e9, states = [[0, 'bounded']], label = '', count = null, col = BLUE, csize = 150, fluid = 'rgba(146,64,14,.18)', spread = 1.5 }) => {
     use('schemaContainer'); if (label) C.TEXTS.push(label);
     const ST = [...states].sort((p, q) => p[0] - q[0]);
     for (let i = 0; i < ST.length; i++) { const nx = Math.min(ST[i + 1] ? ST[i + 1][0] : 1e9, until); dyn(ST[i][0], ['unbounded', 'deplete'].includes(ST[i][1]) ? nx : Math.min(ST[i][0] + 1.4, nx)); }   // 流体 / 耗尽一直在动，整段算动态
@@ -260,15 +262,15 @@ export function concept(K) {
       g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = `${csize}px sans-serif`;
       let cx = x, cy = y, cs = 1, ca = 1;
       if (st === 'unbounded') {   // 流体铺开：一片淡色波浪 + 内容影子扩散
-        const spread = 0.6 + e * 0.9; g.fillStyle = 'rgba(146,64,14,.18)'; g.beginPath();
-        for (let i = 0; i <= 40; i++) { const px = x - w * spread + (2 * w * spread) * i / 40, py = y + h * 0.35 + Math.sin(i * 0.7 + t * 3) * 14; i ? g.lineTo(px, py) : g.moveTo(px, py); }
-        g.lineTo(x + w * spread, y + h * 0.5); g.lineTo(x - w * spread, y + h * 0.5); g.closePath(); g.fill(); cs = 1 - e * 0.2; ca = 0.85;
+        const sp = 0.6 + e * (spread - 0.6); g.fillStyle = fluid; g.beginPath();
+        for (let i = 0; i <= 40; i++) { const px = x - w * sp + (2 * w * sp) * i / 40, py = y + h * 0.35 + Math.sin(i * 0.7 + t * 3) * 14; i ? g.lineTo(px, py) : g.moveTo(px, py); }
+        g.lineTo(x + w * sp, y + h * 0.5); g.lineTo(x - w * sp, y + h * 0.5); g.closePath(); g.fill(); cs = 1 - e * 0.2; ca = 0.85;
       }
       if (st === 'enter') { cx = x - w * 1.1 * (1 - e); }
       if (st === 'exit') { cx = x + w * 1.05 * e; }
       if (st === 'expand') { cs = 1 + e * 0.6; }
       if (st === 'deplete') { cs = 1; }
-      g.globalAlpha = ca; g.save(); g.translate(cx, cy); g.scale(cs, cs); g.fillText(content, 0, 0); g.restore(); g.globalAlpha = 1;
+      if (content) { g.globalAlpha = ca; g.save(); g.translate(cx, cy); g.scale(cs, cs); g.fillText(content, 0, 0); g.restore(); g.globalAlpha = 1; }
       // 边框
       const bulge = st === 'exit' ? Math.sin(Math.PI * clamp(e * 1.3)) * 60 : 0;
       if (bq > 0) {
