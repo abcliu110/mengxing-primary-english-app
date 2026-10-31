@@ -2722,3 +2722,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:10 JST · WIP 决策 38：concept.js / oral.js 并入共享引擎
 - 口语 144 幕按 oral.js 重建嵌入后主 HTML 16.16 → 17.36 MB：concept.js + oral.js 被打进每一幕。`v5/engine.js` 加 concept / oral，`build.mjs` 共享表加两项（口语场景脚本去掉图片后 3 KB），`rebuild_all.py` 源码时间加 oral.js / concept.js。
 - 引擎变了 + 新场景有新字 → 后台全量 `rebuild_all.py`（字表 → 全部幕 → embed）。主 HTML 待全量重建 + runall 通过后再提交。
+
+## 2026-10-31 17:13 JST · WIP 决策 38 第 8 幕 比较三兄弟 ① G37
+- 新 `v5/scenes/cmp_lib.js`（身高尺 ruler + 人柱 person）。hd_g37_1：Tom、Jim 同高 150 cm 头顶水平线 → 预测 as ___ as 放 tall / taller / tallest → tall 落位「没人冒尖 → 不变形」；跑得和马一样快；温度计今天矮一截 → not as warm as。check_r38 0，96 s。
