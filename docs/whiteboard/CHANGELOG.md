@@ -2737,3 +2737,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:20 JST · WIP 决策 38 第 10 幕 一词多义 51 幕模板
 - 新 `v5/scenes/poly.js`（polyBuild，解析原 ITEMS）+ `v5/gen_poly38.py`（幂等切换 51 幕，ITEMS / ACTS 一字不动）+ `v5/check_poly.py`（由 check_oral 改写：知识点 / 啊哈卡 / 预测 / 规则顺序 / 确定性 / 0 报错）。样板 book 第 1 幕 47 s、0 不合格。
 - 未 embed：poly.js 计划并进共享引擎后与第 11–15 幕一起全量重建。
+
+## 2026-10-31 17:22 JST · WIP 决策 38 第 11 幕 导图找不同；口语 / 多义验收
+- `scenes/auto.js` mindmapBuild：`odd: true` 时开场摆 4 张图（第 1 组 3 张 + 最后一组 1 张）→ 预测哪张不是一伙 → 混入者升走、组名亮出 → 再画导图；不给 verbs 就不画「常用搭配 / 评价形容词」两框（首词模板占位，R37-03）。25 个 hd_mindmap 场景 + gen_mindmap.py 模板同步。啊哈卡 `lab/audit38/aha/11_hd_mindmap.md`、`10_hd_poly.md`。
+- check_oral：144 幕 0 不合格（31.9–55.3 s）；check_poly：51 幕 0 不合格（43.7–57.2 s）。
+- auto.js 改动 = 引擎改动，最后统一全量重建。

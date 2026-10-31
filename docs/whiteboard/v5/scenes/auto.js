@@ -5,6 +5,7 @@
 //   items：['n', 字幕] / ['w', 白板字] / ['p', 道具] / ['s', 英文, 中文, 先读词]
 //   acts：{ 动作词: [帧, 帧, 帧] }（1–3 帧：准备 / 发力 / 结果；词形原样写，如 running、took）
 import { scene, OR, OR2, INK, GREY } from '../wb5.js';
+import { concept } from '../lib/concept.js';   // 决策 38 ⑪：导图幕开场「找不同」用概念原语
 
 export function autoBuild(SP, D) {
   const K = scene({ sprites: SP });
@@ -112,7 +113,7 @@ export function autoBuild(SP, D) {
 //   D：{ title, center, hint, groups:[{ name, leaves:[[emoji+单词, 中文词义, 朗读英文]] }], vTitle, verbs:[], aTitle, adjs:[], intro, outro,
 //        frames:{ speak, point, think, idea } }
 export function mindmapBuild(SP, D) {
-  const K = scene({ sprites: SP });
+  const K = scene({ sprites: SP }), C = concept(K);
   const WW = 3840, WH = 2160, CX = 1920, CY = 620, EW = 640, EH = 280, HOLD = 1.2;
   const readT = s => { const str = String(s).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); const cjk = (str.match(/[\u3400-\u9fff]/g) || []).length; const en = (str.replace(/[\u3400-\u9fff]/g, ' ').match(/[A-Za-z]+/g) || []).length; return Math.max(0.8, cjk / 5 + en / 2.2); };
   const sayLen = en => en.split(/\s+/).length * 0.36 + 0.9;
@@ -146,6 +147,42 @@ export function mindmapBuild(SP, D) {
   K.text(D.center, CX, CY + 12, 72, { align: 'center', rate: 9 });
   K.text(D.hint, CX, CY + 84, 36, { align: 'center', col: GREY, rate: 18 });
   const d0 = Math.max(3.2, readT(D.intro) + 1.0); K.narr(D.intro, 0.4, 0.4 + d0); T = Math.max(K.cur, 0.4 + d0) + 0.3;
+  // ---- 决策 38 ⑪ 开场「找不同」：第 1 组的 3 张图 + 混进来的 1 张（最后一组的第 1 个词）→ 先猜哪张不是一伙 → 揭晓组名（啊哈卡 lab/audit38/aha/11_hd_mindmap.md）----
+  const ODD = D.odd && G.length >= 2 && G[0].leaves.length >= 2 ? (() => {
+    const g0 = G[0], gl = G[G.length - 1], three = g0.leaves.slice(0, 3), intr = gl.leaves[0];
+    const pic = l => (l.wd.match(/^(\S+)\s/) || [, l.wd])[1], word = l => l.wd.replace(/^\S+\s/, '');
+    const cards = [...three]; cards.splice(Math.min(2, cards.length), 0, intr);
+    C.aha({ see: `导图开画前，先摆出 ${cards.length} 张图：${cards.map(pic).join(' ')}`, guess: '哪一张和其他几张不是一伙的？它们的共同点是什么？',
+      reveal: `${pic(intr)} ${word(intr)} 被拎出去（它属于「${gl.name}」），剩下的 ${three.map(word).join(' / ')} 头上亮出组名「${g0.name}」`, rule: `同一组 = 有共同点：${g0.name}` });
+    const OY = 1700, X0 = CX - (cards.length - 1) * 230; let t = T;
+    K.cam(t, { x: CX, y: OY - 60, z: 1, d: 0.9, ease: 'power2.inOut' }); t += 1.0;
+    const tOut = { v: 1e9 };
+    const out = cards.map((l, i) => { const x = X0 + i * 460, isI = l === intr;
+      return { l, isI, x, chip: null, pic: pic(l), word: word(l) }; });
+    const nq = '先别急着画导图：这几张图里，哪一张和其他几张不是一伙的？';
+    t = K.narr(nq, t, t + Math.max(2.6, readT(nq) + 0.6)) && t + Math.max(2.6, readT(nq) + 0.6);
+    const P0 = t; t = C.predict(t, { q: '哪一张不是一伙的？它们有什么共同点？', sec: 4, y: OY - 560 });
+    const R = t + 0.2;
+    out.forEach(o => {
+      K.prop((g, tt) => { const a = Math.min(1, Math.max(0, (tt - (P0 - 2.6)) / 0.4)) * (tt > tOut.v ? Math.max(0, 1 - (tt - tOut.v) / 0.5) : 1); if (a <= 0) return;
+        const lift = o.isI ? Math.min(1, Math.max(0, (tt - R) / 0.8)) : 0;
+        g.save(); g.globalAlpha = a * (o.isI ? 1 - 0.6 * lift : 1); g.translate(o.x, OY - lift * 400);
+        g.fillStyle = '#fff'; g.strokeStyle = o.isI && tt >= R ? GREY : (tt >= R ? OR : INK); g.lineWidth = 6; g.beginPath(); g.roundRect(-190, -170, 380, 340, 28); g.fill(); g.stroke();
+        g.font = '170px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#000'; g.fillText(o.pic, 0, -20);
+        if (tt >= R) { g.font = '48px Kalam, WK'; g.fillStyle = o.isI ? GREY : INK; g.fillText(o.word, 0, 125); }
+        g.restore(); }, { from: P0 - 2.6, z: 6 });
+    });
+    const keep = out.filter(o => !o.isI), gx = keep.reduce((a, o) => a + o.x, 0) / keep.length;
+    K.prop((g, tt) => { const a = Math.min(1, Math.max(0, (tt - R - 0.8) / 0.4)) * (tt > tOut.v ? Math.max(0, 1 - (tt - tOut.v) / 0.5) : 1); if (a <= 0) return;
+      g.save(); g.globalAlpha = a; g.font = '64px Kalam, WK'; g.fillStyle = OR; g.textAlign = 'center'; g.fillText('「' + g0.name + '」', gx, OY + 250); g.restore(); }, { from: R, z: 6 });
+    C.TEXTS.push(g0.name, gl.name);
+    const nr = `${three.map(word).join('、')} 是一伙：${g0.name}。${word(intr)} 属于另一组「${gl.name}」。`;
+    K.narr(nr, R + 0.3, R + 0.3 + Math.max(3.4, readT(nr) + 0.8)); t = R + 0.3 + Math.max(3.4, readT(nr) + 0.8);
+    C.rule(t - 1.0);
+    tOut.v = t; T = t + 0.4;
+    K.cam(T, { x: CX, y: 700, z: 1, d: 1.0, ease: 'power2.inOut' }); T += 1.1;
+    return true;
+  })() : false;
   // ---- 每一组：镜头推过去 → 粗枝 → 组名 → 叶子 ----
   G.forEach((g, gi) => {
     const sd = g.side, ex = CX + sd * EW / 2, ne = g.gx - sd * g.nw / 2;
@@ -161,6 +198,7 @@ export function mindmapBuild(SP, D) {
     K.at(T).curve([[ex, CY], [ex + dx * 0.6, CY + dy * 0.08], [ne - dx * 0.08, CY + dy * 0.7], [ne, g.gy]], { w: 7, rough: 1.2, bow: 1.4 });
     K.rect(g.gx - g.nw / 2, g.gy - g.nh / 2, g.nw, g.nh, { w: 5, rough: 1.3 });
     g.nl.forEach((l, j) => K.text(l, g.gx, g.gy - g.nh / 2 + 17 + 56 + j * 70, NS, { align: 'center', col: OR, rate: 12 }));
+    C.TEXTS.push(g.name);
     T = K.cur + 0.4;
     let ly = g.y0 + (g.h - g.leaves.reduce((a, l) => a + l.h, 0)) / 2;
     g.leaves.forEach(l => {
@@ -169,6 +207,7 @@ export function mindmapBuild(SP, D) {
       K.at(T).curve([[g.gx + sd * g.nw / 2, g.gy], [g.gx + sd * (g.nw / 2 + 50), (g.gy + cy) / 2], [lx - sd * 18, cy]], { w: 4, rough: 1.0, col: GREY, min: 0.15 });
       const wsz = Math.min(WS, Math.floor(WS * LW * 0.85 / K.measure(l.wd, WS))), ww = K.measure(l.wd, wsz);   // 长词组（如 they / them / their / theirs）缩字号，不出版面
       K.text(l.wd, sd > 0 ? lx : lx - ww, ly + 66, wsz, { rate: 14 });
+      C.TEXTS.push(l.wd, l.zh);
       l.ml.forEach((m, j) => { const mw = K.measure(m, MS); K.text(m, sd > 0 ? lx : lx - mw, ly + 74 + (j + 1) * MLH - 6, MS, { col: GREY, rate: 22 }); });
       const L = Math.max(sayLen(l.en), readT(l.zh) + 0.8);
       K.say(st, l.en, { key: l.en.split(/\s+/).map(x => x.toLowerCase().replace(/[^a-z'\-]/g, '')), zh: l.zh, len: L });
@@ -178,8 +217,9 @@ export function mindmapBuild(SP, D) {
   });
   // ---- 常用搭配：中心下方两个手绘框 ----
   const BW = 600, BX = [CX - 20 - BW, CX + 20], BY = 1200;
-  const boxes = [[D.vTitle, D.verbs], [D.aTitle, D.adjs]].map(([tt, xs]) => { const ls = xs.map(x => wrap(x, 40, BW - 60)); return { tt, xs, ls, h: 110 + ls.reduce((a, l) => a + l.length * 52 + 14, 0) + 20 }; });
-  const bh = Math.max(...boxes.map(b => b.h));
+  const boxes = (D.verbs && D.verbs.length ? [[D.vTitle, D.verbs], [D.aTitle, D.adjs]] : []).map(([tt, xs]) => { const ls = xs.map(x => wrap(x, 40, BW - 60)); return { tt, xs, ls, h: 110 + ls.reduce((a, l) => a + l.length * 52 + 14, 0) + 20 }; });
+  const bh = boxes.length ? Math.max(...boxes.map(b => b.h)) : 0;
+  if (boxes.length) {
   T += 0.2; K.cam(T, { x: CX, y: Math.min(BY + bh / 2 + 10, 1480), z: Math.min(1, 760 / (bh + 120)), d: 1.0, ease: 'power2.inOut' }); T += 0.9;
   key(T, P.think);
   K.narr('常用搭配：配着这些词一起用', T, T + 3.2);
@@ -190,10 +230,11 @@ export function mindmapBuild(SP, D) {
     b.ls.forEach(ls => { ls.forEach(l => { K.text(l, BX[i] + 30, y + 40, 40, { rate: 20 }); y += 52; }); y += 14; });
     if (b.xs.length) { const L = sayLen(b.xs[0]); K.say(st, b.xs[0], { len: L }); T = Math.max(K.cur, st + L) + 0.4; } else T = K.cur + 0.6;
   });
+  }
   // ---- 收束：拉远看整张导图 ----
   T += HOLD; key(T, P.idea);
   {   // 镜头框住整张导图（内容外接框），不按世界大小拉远——图更大、更好认
-    const xs = [CX - EW / 2, CX + EW / 2, BX[0], BX[1] + BW], ys = [CY - EH / 2 - 20, BY + bh];
+    const xs = [CX - EW / 2, CX + EW / 2, ...(boxes.length ? [BX[0], BX[1] + BW] : [])], ys = [CY - EH / 2 - 20, boxes.length ? BY + bh : CY + EH / 2 + 20];
     G.forEach(g => { xs.push(g.gx + g.side * (g.nw / 2 + 90 + LW)); xs.push(g.gx - g.side * g.nw / 2); ys.push(g.y0, g.y1); });
     const x0 = Math.min(...xs) - 120, x1 = Math.max(...xs) + 120, y0 = Math.min(...ys) - 60, y1 = Math.max(...ys) + 60;
     const zf = Math.min(1920 / (x1 - x0), 1080 / (y1 - y0), 1);
@@ -202,5 +243,5 @@ export function mindmapBuild(SP, D) {
   const d1 = Math.max(3.4, readT(D.outro) + 1.2); K.narr(D.outro, T + 0.6, T + 0.6 + d1);
   T = Math.max(T + 0.6 + d1, K.cur) + 0.4;
   K.shade(T); K.end(T + 1.6);
-  return K.done();
+  return ODD ? C.finish() : K.done();
 }
