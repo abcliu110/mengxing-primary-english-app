@@ -2585,3 +2585,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 一词多义幕 kind / right / draw（hd_poly_g3_0527 / 0600 / 0790 各 3 幕）横幅里也是假音标，场景与 R1 清单同步改（纠错改动），重打包嵌入。
 - 新检查 `src/phoncheck.py`（格式、非 IPA 字母、音标 = 拼写且不在白名单）入 runall：1487 词 0 不合格。
 
+### 2026-10-31 11:40 JST · 决策 36：内容与动画审计修复写入开发计划
+- 用户 11:33 批准把内容质量审计第 2 轮（只读，HEAD e1c6b96；抽查 43 幕，15 幕逐张看截图）的全部问题列入计划，排在决策 35 之后、词源补抓与决策 7 / 8 / 9 之前。
+- `MASTER_DESIGN.md` 新增决策 36：① 白板事实 / 画面错误 12 项（12 个语法点共用「能量吸收器」板、G09 / G10 / G31 / G34 串板、约 89 幕截断句与 11 幕 `**` 残留、G14 IN>1 天矛盾与重复幕、give down / look off / take on 伪搭配与误用、look away / turn down / take out / put off 画面不符、hd_fr01 角色错、格林定律高亮 / 动作 / duo、past_clans 等未标注简化、口语两角色画成同一男孩、单词卡模板 a apple 与无关复数、中文讲解不朗读）→ ② 长幕拆分（wo_port 361 s 等 13 幕，tense_matrix① 删 a/an 插段）→ ③ 总结层 11 项 → ④ 加深最浅 10 页 → ⑤ 补内容 5 类；每项写了方案与验收（新检查 wbdupcheck / wbtextcheck / durcheck 入 runall）。
+- 与决策 35 重叠的 10 类合并处理并逐条标注去向；决策 35-F 顺延行改为先做决策 36。
+- HANDOFF §5 加 0b 决策 36 进度清单；审计全文与抽取脚本入 `lab/audit36/`（截图与解包幕不入库）。
+
