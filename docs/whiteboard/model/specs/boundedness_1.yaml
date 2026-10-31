@@ -1,0 +1,59 @@
+# 场景规格 · boundedness 第 1 幕（由知识模型生成，禁止手改产物 gen_boundedness_1.js）
+# 分工：模型拥有「主张」（Claim/Chant 记录），场景拥有「实例台词」；
+# 实例台词必须与所引主张一致（teaches 字段供逻辑审查对照）。
+# 判据与口诀两行由模型直供（claim_say / chant 引用），改模型即改本幕。
+
+scene: gen_boundedness_1
+family: boundedness
+pattern: concept_demo_cafe        # 模式：固定舞台 + 演示 + 对比 + 预测 + 命名规则 + 要点卡
+template: fp_boundedness_1_v3.js  # 模式实现（编排模板，家族共用，单独维护）
+
+title: "可数还是不可数？看成一个个还是一摊"
+
+aha:
+  see: "同一间咖啡馆里：桌上语法书写着 coffee 不加 -s，Linda 却端着咖啡听见 Two coffees；数字块飞去贴咖啡，全滑了下来"
+  guess: "咖啡装进杯子以后能数吗？面包切开还数不数？rice 能不能加 -s？"
+  reveal: "数字贴得住的，是能看成一个个的地方：杯子里是一杯、数字弹出；苹果切开「一个」没了，面包切开还是面包；-s 被 paper 弹开、落到单位 pieces / bowls 上"
+  rule: "可不可数，看英语把它看成一个个还是一摊；一摊的要数就借个单位，-s 加在单位上（这条看法留到最后揭晓）"
+
+# 19 行旁白/台词，序号与编排模板的节拍一一对应
+know:
+  - { text: "书上说 coffee 不加 -s，咖啡馆里却说 Two coffees！谁错了？", kind: narrative }
+  - { text: "咖啡倒出来是一大摊，分不出「一个」来，数不出一、二、三。", kind: line, teaches: cl-packaging }
+  - { text: "装进杯子，就把它看成「一杯」了。看成一个个的，就能数：两杯咖啡。", kind: line, teaches: cl-container }
+  - { text: "Two coffees, please.", kind: dialogue, note: "口语省略说法，依据 xc-two-coffees" }
+  - { text: "苹果切一刀，就不是「一个苹果」了：它是一个个的单位 → 可数，an apple、two apples。", kind: line, teaches: cl-cut-test }
+  - { text: "面包切一刀，两块还是面包；水倒一半还是水：切开、倒走还是它自己，是一摊 → 不可数，不说 a bread。", kind: line, teaches: cl-cut-test }
+  - { text: "I have an apple. You have two apples.", kind: dialogue }
+  - { text: "I like bread and water.", kind: dialogue }
+  - { text: "想数一摊的东西？借个单位：一杯、一张、一碗。", kind: line, teaches: cl-container }
+  - { text: "A glass of milk, please.", kind: dialogue }
+  - { text: "两张纸：-s 加在单位 piece 上，paper 不加。", kind: line, teaches: cl-container }
+  - { text: "Two pieces of paper. A piece of bread.", kind: dialogue }
+  - { text: "homework 是一大类事，不加 -s；试卷 papers 是一份份的，能加。", kind: line, teaches: cl-packaging, note: "抽象名词依据 xc-homework-uncuttable" }
+  - { text: "I have a lot of homework.", kind: dialogue }
+  - { text: "一碗米饭切一刀还是米饭——rice 能加 -s 吗？", kind: predict, teaches: cl-cut-test, note: "预测点；米粒例外 xc-rice-grains 在揭晓时由碗收口" }
+  - { text: "揭晓：还是米饭 → 不可数：two bowls of rice，-s 在 bowl 上。米粒再分明，也整摊看。", kind: line, teaches: cl-container, note: "后半句落实例外 xc-rice-grains（审查附注 4）" }
+  - { text: "I want two bowls of rice.", kind: dialogue }
+  - { chant: ch-cut, prefix: "口诀：", kind: chant }
+  - { claim_say: cl-packaging, prefix: "记住：", kind: rule }
+
+endcard:
+  line1: "☕ 咖啡面包这类：切开、倒出还是它 → 不可数"
+  line2: "🥛 借个单位来数 → -s 加在单位上"
+  teacher: "给老师看：可数性看「看法」（识解），不是看东西有没有边"
+
+# 事实表（逻辑审查对照；与模型记录一致）
+facts:
+  objects:
+    - { name: coffee, kind: substance, states: "壶 → 倒成一摊（还是 coffee）→ 装杯（借 cup 数）" }
+    - { name: apple, kind: unit, states: "整只（an apple）→ 切开 = 两半（不再是『一个苹果』）" }
+    - { name: bread, kind: substance, states: "整块 → 切开 = 两块（每块仍是 bread）" }
+    - { name: milk / paper / homework, kind: substance, states: "借 glass / piece 数；homework 为一类事，无单位可借时不加 -s" }
+    - { name: rice, kind: substance, states: "借 bowl 数；颗粒形态不改变其『一摊』看法（xc-rice-grains）" }
+  invariants:
+    - "切分不产生新的整只：一个苹果只能得到两半"
+    - "-s 只落在单位/容器词（pieces / bowls / cups）上，永不落在物质词上"
+    - "计数徽章只由容器产生；物质本身无徽章"
+    - "先借单位，后计数（因果顺序）"
+    - "倒水必须从壶嘴出；出水前壶须倾斜到壶嘴轴线朝下，停水后才回正（器物因果保真）"

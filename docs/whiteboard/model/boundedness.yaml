@@ -1,0 +1,196 @@
+# 知识模型 · ③ 可数性家族（旧称「物理边界感统摄律」，按 THEORY_AUDIT P0 改判据）
+# 规范见 REWRITE_TECH_PLAN.md §3：Claim 必须分型；tendency 必带例外；mnemonic 必链真内容；
+# statement 禁用「物理定律/统摄/绝对/物理边界」等措辞（校验器硬拦）。
+
+family: boundedness
+title: "可数性：看成一个个，还是看成一摊"
+
+concepts:
+  - id: c-countability
+    name: "可数性识解"
+    gloss: "英语数东西之前，先决定把东西看成一个个个体，还是一摊料、一类事"
+  - id: c-definiteness
+    name: "a / the 的分工"
+    gloss: "第一次提 vs 说听双方都知道是哪一个"
+  - id: c-zero-article
+    name: "零冠词的功能读法"
+    gloss: "机构名词表示『做那件事』时不加冠词"
+  - id: c-whole-material
+    name: "整只 ⇄ 材料"
+    gloss: "同一个词，当整只看可数，当材料看不可数"
+
+claims:
+  - id: cl-packaging
+    type: rule
+    concept: c-countability
+    statement: "英语数东西先看『看法』：看成一个个独立个体的（苹果、杯子、豌豆），能直接数；看成一摊料、一类事的（水、面包、米饭、作业），不能直接数，要借单位词来数。"
+    say: "看成一个个的，就能数；看成一摊的，不能直接数。"
+    scope: "名词可数性的总框架；决定因素是英语的习惯看法（识解），不是物体本身有没有边"
+    exceptions: [xc-dual-life]
+
+  - id: cl-cut-test
+    type: mnemonic
+    concept: c-countability
+    linkedClaim: cl-packaging
+    statement: "入门演示法：一刀切下去，还是不是它自己——还是，说明它被当成一摊料；不是了，说明它是一个单位。这只是演示，不是定义。"
+    say: "我们来切一切看：切开还是它自己的，是一摊；切开就不是它了，是一个个的。"
+    note: "演示法对颗粒物和抽象名词失效，见例外；不得称『测试法定律』"
+    exceptions: [xc-rice-grains, xc-homework-uncuttable, xc-bottle-water]
+
+  - id: cl-container
+    type: rule
+    concept: c-countability
+    statement: "不可数名词要计数，借单位词或容器词：a cup of water、two pieces of bread、two bowls of rice；复数记号 -s 加在单位词上，不加在料本身上。"
+    say: "想数一摊的东西，就给它借个单位：pieces、bowls、cups，-s 加在单位上。"
+    exceptions: [xc-two-coffees]
+
+  - id: cl-a-first
+    type: rule
+    concept: c-definiteness
+    statement: "第一次提到某样东西、还不特指是哪一个时，用 a / an。"
+    say: "第一次见用 a。"
+    exceptions: []
+
+  - id: cl-the-known
+    type: rule
+    concept: c-definiteness
+    statement: "说的人和听的人都知道指的是哪一个时，用 the。"
+    say: "大家都知道是哪一个，用 the。"
+    exceptions: [xc-generic-the]
+
+  - id: cl-a-etym
+    type: etymology
+    concept: c-definiteness
+    statement: "a / an 来自古英语 ān『一』：an 是原形，在辅音前弱化成 a；the 来自古英语的指示词系统。所以 a 约等于 one，the 约等于『就那个』。"
+    source: "古英语 ān『one』；the < 古英语指示词 þe / sē"
+    exceptions: []
+
+  - id: cl-zero-func
+    type: tendency
+    concept: c-zero-article
+    statement: "学校、床、医院这类机构名词，表示『去做那件事』时一般不加冠词（go to school＝去上学）；表示那栋建筑时加 the（go to the school＝去那所学校）。"
+    say: "说上学不加，说楼房加 the。"
+    scope: "机构名词的活动读法 vs 建筑读法"
+    exceptions: [xc-piano, xc-hospital-us]
+
+  - id: cl-whole-material
+    type: tendency
+    concept: c-whole-material
+    statement: "同一个词有两种看法：当整只、整间看时可数（a chicken 一只鸡、a glass 一个杯子、a room 一个房间、a paper 一份报纸）；当材料、空间看时不可数（chicken 鸡肉、glass 玻璃、room 空间、paper 纸）。"
+    say: "整只看，能数；当材料看，不能数。"
+    scope: "可数⇄不可数的双生活名词，靠语境决定当次的看法"
+    exceptions: [xc-some-fish]
+
+examples:
+  - id: ex-apple-peas
+    text: "an apple / two apples; a pea / many peas"
+    gloss: "看成一个个的个体，直接数"
+    supports: cl-packaging
+  - id: ex-water-bread
+    text: "some water; some bread; a bowl of rice"
+    gloss: "看成一摊的料，借单位数"
+    supports: cl-packaging
+  - id: ex-cut-apple
+    text: "切开一个苹果，两半不再是『一个苹果』"
+    gloss: "切开就不是它了 → 单位"
+    supports: cl-cut-test
+  - id: ex-cut-bread
+    text: "切开面包，每一块仍然是面包 bread"
+    gloss: "切开还是它 → 一摊料"
+    supports: cl-cut-test
+  - id: ex-pieces
+    text: "two pieces of paper; two bowls of rice; a glass of milk"
+    gloss: "-s 在 pieces / bowls 上，不在 paper / rice / milk 上"
+    supports: cl-container
+  - id: ex-bottle-cups
+    text: "a bottle of water; three cups of tea"
+    gloss: "借瓶、借杯来数水和茶"
+    supports: cl-container
+  - id: ex-a-cat-teacher
+    text: "I saw a cat under the tree. Miss Li is a teacher."
+    gloss: "第一次提到一只猫、泛指一种身份，用 a"
+    supports: cl-a-first
+  - id: ex-the-book-window
+    text: "Pass me the book, please. Close the window!"
+    gloss: "当场双方都知道是哪一本、哪一扇，用 the"
+    supports: cl-the-known
+  - id: ex-dog-park
+    text: "There is a dog in the park. The dog is running."
+    gloss: "第一次提 a；再提到同一只、双方都知道了，用 the"
+    supports: cl-a-first
+  - id: ex-sun-door
+    text: "the sun; Open the door, please!"
+    gloss: "独一无二、或当场都知道是哪一个，用 the"
+    supports: cl-the-known
+  - id: ex-school
+    text: "go to school（上学） / go to the school（去那所学校办事）"
+    gloss: "做事不加 the，指建筑加 the"
+    supports: cl-zero-func
+  - id: ex-bed-bus
+    text: "in bed（睡觉） / on the bed（在床面上）; by bus（坐车） / on a bus（一辆公交车上）"
+    gloss: "功能读法 vs 实物读法"
+    supports: cl-zero-func
+  - id: ex-chicken
+    text: "a chicken（一只鸡） / some chicken（一些鸡肉）"
+    gloss: "整只可数，肉不可数"
+    supports: cl-whole-material
+  - id: ex-glass-room
+    text: "a glass（杯子） / made of glass（玻璃）; a room（房间） / make room（腾地方）"
+    gloss: "整间可数，材料/空间不可数"
+    supports: cl-whole-material
+
+exceptions:
+  - id: xc-dual-life
+    exceptionOf: cl-packaging
+    text: "cake、paper、coffee 这类词两种看法都行"
+    note: "不是框架的反例，而是 cl-whole-material 管的『双生活』现象；框架据此预测它们可数性可变"
+  - id: xc-rice-grains
+    exceptionOf: cl-cut-test
+    text: "米粒颗颗分明，却不能说 a rice"
+    note: "颗粒太小、太多，英语习惯整摊看待；一刀切演示对颗粒物失效，须借碗数（cl-container）"
+  - id: xc-homework-uncuttable
+    exceptionOf: cl-cut-test
+    text: "homework、information、advice 没有形状，切不了"
+    note: "抽象名词被看成『一类事』，演示法不适用，直接按 cl-packaging 判"
+  - id: xc-bottle-water
+    exceptionOf: cl-cut-test
+    text: "一瓶水边界清清楚楚，还是不说 a water（日常义）"
+    note: "证明决定因素是看法不是物理边界；要数借瓶：a bottle of water"
+  - id: xc-two-coffees
+    exceptionOf: cl-container
+    text: "口语 two coffees"
+    note: "是 two cups of coffee 的省略说法，-s 仍然落在被省略的单位上，不是 coffee 本身变可数"
+  - id: xc-generic-the
+    exceptionOf: cl-the-known
+    text: "The tiger is endangered.（类指：指整个物种，不是某一只）"
+    note: "高年级内容，低年级不展开，但记录在案，防止『the＝锁定某一个』被当成全称规则"
+  - id: xc-piano
+    exceptionOf: cl-zero-func
+    text: "play the piano"
+    note: "乐器类活动读法也加 the，属习惯搭配，单记"
+  - id: xc-hospital-us
+    exceptionOf: cl-zero-func
+    text: "美式英语 in the hospital（住院）"
+    note: "英式 in hospital 零冠词；美式加 the。功能读法是倾向，不是全称规则"
+  - id: xc-some-fish
+    exceptionOf: cl-whole-material
+    text: "Some fish, please. 可以指几条整鱼；two fishes 可指两种/几条鱼（种类义）"
+    note: "『some fish＝鱼肉』只是其中一读，释义不得写死"
+
+chants:
+  - id: ch-cut
+    text: "一刀下去还是它，不可数来不加 s"
+    for: cl-cut-test
+    kind: mnemonic
+  - id: ch-athe
+    text: "第一次见用 a，大家都知道用 the"
+    for: cl-a-first
+    kind: rule
+  - id: ch-school
+    text: "说楼房加 the，说上学不加"
+    for: cl-zero-func
+    kind: rule
+  - id: ch-whole
+    text: "整只看能数，材料看不数"
+    for: cl-whole-material
+    kind: rule

@@ -13,7 +13,7 @@ export function kit(K, C, title, n) {
     ws.forEach((w, i) => { const cx = x + W[i] / 2; x += W[i]; const on = kk.includes(w.toLowerCase().replace(/[^a-z']/g, ''));
       C.chip({ text: w, x: cx, y: y - 90, size, pad: 17, col: on ? OR : INK, bd: on ? OR : '#9ca3af', from: t + i * 0.36, until: until ?? t + L + 0.4, path: [[t + i * 0.36, cx, y, 0.5, 'back']], z: 5 }); });
     return t + L + 0.4; };
-  C.label(`📦 第一性原理 · 有界无界 · ${n}`, 60, 1060, { size: 34, col: GREY, from: 0.2, align: 'left' });
+  C.label(`📦 第一性原理 · 可数性 · ${n}`, 60, 1060, { size: 34, col: GREY, from: 0.2, align: 'left' });
   C.label(title, 1860, 1060, { size: 34, col: INK, from: 0.3, align: 'right', bold: true });   // 顶部留给讲解字幕
   // 刀：从 (x, y0) 往下切到 y1，t 开始 0.6 秒；切完留一条虚线
   const knife = (x, y0, y1, t, until) => {

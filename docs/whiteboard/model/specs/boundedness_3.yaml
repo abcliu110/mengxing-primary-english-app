@@ -1,0 +1,55 @@
+# 场景规格 · boundedness 第 3 幕（零冠词）——台词行数与节拍角色与模板严格对齐
+scene: gen_boundedness_3
+family: boundedness
+pattern: concept_demo_zero_article
+template: fp_boundedness_3.js
+
+title: "加不加 the？看实物还是看做事"
+
+aha:
+  see: "左边妈妈走进学校大楼（说的是那栋楼）；右边小朋友背书包去上课（说的是上学这件事）；同一栋楼，左边写 the school，右边只写 school"
+  guess: "去的是同一栋楼，为什么一个加 the，一个不加？晚上十点 go to ___ bed 要不要加 the？"
+  reveal: "说那栋楼时加 the；说做一件事（上学、睡觉、坐车、踢球）时不加；床、公交、足球、医院全一样"
+  rule: "加冠词 = 说实物；不加冠词 = 说做一件事"
+
+know:
+  - { text: "go to school 和 go to the school，差一个 the，意思差多少？", kind: narrative }
+  - { text: "Mum goes to the school.", kind: dialogue }
+  - { text: "I go to school by bus.", kind: dialogue }
+  - { text: "妈妈去开家长会，你去上课，去的是同一栋楼——为什么一个加 the，一个不加？", kind: narrative }
+  - { text: "加 the：说的是那栋看得见的楼，是在说实物。", kind: line, teaches: cl-zero-func }
+  - { text: "The school is very big.", kind: dialogue }
+  - { text: "零冠词：什么冠词都不加。说的不是楼，是「做这件事」：去上学（读书、上课）。", kind: line, teaches: cl-zero-func }
+  - { text: "Go to school. Go to the school.", kind: dialogue }
+  - { text: "同样：on the bed 是在床这件家具上面；in bed 是在睡觉。", kind: line, teaches: cl-zero-func }
+  - { text: "The cat is on the bed. I am in bed.", kind: dialogue }
+  - { text: "on a bus 是在一辆车里；by bus 是坐公交这种方式。", kind: line, teaches: cl-zero-func }
+  - { text: "I am on a bus. I go by bus.", kind: dialogue }
+  - { text: "buy a football 是买一个球；play football 是踢足球这项运动。", kind: line, teaches: cl-zero-func }
+  - { text: "Buy a football. Let's play football after school.", kind: dialogue }
+  - { text: "to the hospital 是去医院大楼（探望）；in hospital 是住院治病（美式也常加 the）。", kind: line, teaches: cl-zero-func, note: "美式 in the hospital 为模型例外 xc-hospital-us，记录在案" }
+  - { text: "Mum goes to the hospital.", kind: dialogue }
+  - { text: "晚上十点，该去睡觉了。Time to go to ___ bed. bed 前面要不要加 the？", kind: predict }
+  - { text: "揭晓：睡觉是一件事，不是那张床：go to bed，不加 the。", kind: line, teaches: cl-zero-func }
+  - { text: "It's ten o'clock. Time to go to bed.", kind: dialogue }
+  - { chant: ch-school, prefix: "口诀：", kind: chant }
+  - { text: "一句话：加冠词是说实物；不加冠词是说做一件事。（小例外：play the piano 要加 the，单记。）", kind: rule, teaches: cl-zero-func, note: "例外 xc-piano 已上屏" }
+
+replace:
+  - ["右边这个 school，外面那圈框还在吗？", "右边这个 school，说的是那栋楼，还是上学这件事？"]
+  - ["加 the 看外壳，不加看做的事", "加 the 看实物，不加看做的事"]
+  - ["第 3 幕「边界」", "第 3 幕「实物还是做事」"]
+  - ["楼房外面一圈实线框（the = 看得见的外壳）；框一化开只剩书本（不加 = 做这件事）", "指那栋楼时套框（the = 说实物）；说做一件事时不套框，只剩书本（不加 = 做这件事）"]
+  - ["机制：外壳框 vs 化开的框", "机制：实物读法 vs 活动读法"]
+  - ["左：外壳框一直亮着；右：框在预测之后化开成一片（流体），楼变书本 = 去上课；最后一段换成医院", "左：指实物，框一直亮着；右：预测之后转活动读法（流体），楼变书本 = 去上课；最后一段换成医院"]
+  - ["迁移：同一块双屏，左边有外壳，右边做的事", "迁移：同一块双屏，左边说实物，右边说做的事"]
+  - ["同一个模型：左边套上外壳框", "同一个模型：左边套框指实物"]
+  - ["右边外壳化开，只剩做的事", "右边转活动读法，只剩做的事"]
+
+facts:
+  objects:
+    - { name: school / bed / hospital, kind: institution, states: "建筑读法（加 the）⇄ 活动读法（零冠词）" }
+    - { name: bus / football, kind: thing-or-activity, states: "实物读法（加冠词）⇄ 方式/运动读法（零冠词）" }
+  invariants:
+    - "零冠词只出现在活动读法；同一名词两种读法靠语境区分"
+    - "倾向型主张 cl-zero-func 的例外（piano、美式 hospital）必须在模型在册，piano 已上屏"

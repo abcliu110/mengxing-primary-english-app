@@ -1,0 +1,304 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：model/boundedness.yaml；改本幕台词/结构：model/specs/boundedness_1.yaml；改编排：模板 fp_boundedness_1_v3.js（家族共用）。
+// 判据/口诀来源：cl-container、cl-cut-test、cl-packaging、ch-cut。生成器 model/gen_scene.py。
+// 📦 第一性原理 · 有界无界 · 1 —— v3 试点（2026-11-01）：动画技术升级方案试点——弹簧运动 + 程序化液体 + 人物平滑层（呼吸/微摆/姿势交淡/落定余摆）；布局与时间轴沿用 v2 已验收版本，KNOW 原文一字不改。
+// 与决策 39 样板（fp_boundedness_1.js）的区别（全部用 v5 原有技术：wb5 引擎 + concept 原语 + kit + cast 素材）：
+//   ① 固定舞台：全幕在一间咖啡馆里演完——Linda（cast 帧 l_*）全程站在左侧，靠换帧表演（思考/端咖啡/指点/想通/笑）；
+//      不用 contrastSplitScreen 分屏、不切板，所有道具都在同一张桌子上出现和消失。
+//   ② 因果动作统一语法：数字块贴流体 → 滑落消失（chip path + out）；贴到有边容器 → 容器的 count 徽章弹出；
+//      -s 先凑近 paper 被「弹开」（path 抖动折返），再 drop 落到 pieces 上变绿；homework 的 -s 同样滑落。用「贴得住/贴不住」讲规则。
+//   ③ 规则命名（KNOW[18] 原理原名）移到全幕最后、收尾要点卡之前（原样板在第 2 步中段就念了）；预测停顿只保留 rice 一处（原样板两处）。
+//   ④ 苹果/面包不再用 emoji 瞬间换装：同一位置先整只出现、刀切（kit.knife）后原地分开成两半，苹果的数字 2 drop 贴住，面包的数字 1 滑落。
+// 内容来源：旧版 auto.js 场景（src/cases/fp_boundedness.js 案例 1）的知识点全部在 KNOW（R1 = 知识点不丢），与 fp_boundedness_1.js 的 KNOW 逐字一致。
+import { scene, OR, INK, GREY } from '../wb5.js';
+import { concept, BLUE, GREEN, RED } from '../lib/concept.js';
+import { kit } from './fb39_lib.js';
+import * as SP from '../sprites/fb39v2.js';
+
+export const KNOW = [
+  '书上说 coffee 不加 -s，咖啡馆里却说 Two coffees！谁错了？',
+  '咖啡倒出来是一大摊，分不出「一个」来，数不出一、二、三。',
+  '装进杯子，就把它看成「一杯」了。看成一个个的，就能数：两杯咖啡。',
+  'Two coffees, please.',
+  '苹果切一刀，就不是「一个苹果」了：它是一个个的单位 → 可数，an apple、two apples。',
+  '面包切一刀，两块还是面包；水倒一半还是水：切开、倒走还是它自己，是一摊 → 不可数，不说 a bread。',
+  'I have an apple. You have two apples.',
+  'I like bread and water.',
+  '想数一摊的东西？借个单位：一杯、一张、一碗。',
+  'A glass of milk, please.',
+  '两张纸：-s 加在单位 piece 上，paper 不加。',
+  'Two pieces of paper. A piece of bread.',
+  'homework 是一大类事，不加 -s；试卷 papers 是一份份的，能加。',
+  'I have a lot of homework.',
+  '一碗米饭切一刀还是米饭——rice 能加 -s 吗？',
+  '揭晓：还是米饭 → 不可数：two bowls of rice，-s 在 bowl 上。米粒再分明，也整摊看。',
+  'I want two bowls of rice.',
+  '口诀：一刀下去还是它，不可数来不加 s',
+  '记住：看成一个个的，就能数；看成一摊的，不能直接数。',
+];
+
+export default function build() {
+  const K = scene({ sprites: SP }), C = concept(K);
+  C.aha({
+    see: '同一间咖啡馆里：桌上语法书写着 coffee 不加 -s，Linda 却端着咖啡听见 Two coffees；数字块飞去贴咖啡，全滑了下来',
+    guess: '咖啡装进杯子以后能数吗？面包切开还数不数？rice 能不能加 -s？',
+    reveal: '数字贴得住的，是能看成一个个的地方：杯子里是一杯、数字弹出；苹果切开「一个」没了，面包切开还是面包；-s 被 paper 弹开、落到单位 pieces / bowls 上',
+    rule: '可不可数，看英语把它看成一个个还是一摊；一摊的要数就借个单位，-s 加在单位上（这条看法留到最后揭晓）',
+  });
+  const { narr, say, knife } = kit(K, C, '可数还是不可数？看成一个个还是一摊', 1);
+  const LK = [[0.4, 'l_coff0'], [1.6, 'l_think']];   // Linda 的换帧表（最后统一登记 actor）
+  // ===== v3 技术层（场景内原型，验证后下沉 concept.js）=====
+  // 解析阻尼弹簧：0→1 的进度本身是 t 的闭式函数（可 seek）；zeta<1 欠阻尼带过冲——轻物摇摆、重物沉稳只差参数
+  const spring01 = (u, zeta = 0.35, wn = 11) => { if (u <= 0) return 0; if (zeta < 1) { const wd = wn * Math.sqrt(1 - zeta * zeta); return 1 - Math.exp(-zeta * wn * u) * (Math.cos(wd * u) + (zeta * wn / wd) * Math.sin(wd * u)); } const r = wn * u; return 1 - Math.exp(-r) * (1 + r); };
+  const spr = (u, a, b, zeta, wn) => a + (b - a) * spring01(u, zeta, wn);
+  const settle = (u) => u < 0 || u > 1.1 ? 0 : Math.sin(u * 13) * Math.exp(-u * 6.5);   // 落定余摆（姿势切换/物体落点共用）
+  // 种子伪随机（同一 t 同一帧，截图可复现）
+  const srand = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+  const EMOJI_FONT = '"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif';
+  const drawEmoji = (g, e, x, y, size, rot = 0, alpha = 1) => { g.save(); g.globalAlpha = alpha; g.translate(x, y); if (rot) g.rotate(rot); g.font = `${size}px ${EMOJI_FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(e, 0, size * 0.04); g.restore(); };
+  // 上升粒子（蒸汽共用）：每粒一个固定种子，位置只由 t 决定
+  const steam = (g, t, cx, y0, y1, t0, spread = 26, n = 3, col = '160,150,140') => {
+    for (let i = 0; i < n; i++) for (let j = 0; j < 3; j++) {
+      const cyc = 2.4 + srand(i * 7 + j) * 1.1, ph = ((t - t0) / cyc + srand(i * 13 + j * 3)) % 1;
+      if (ph < 0) continue;
+      const x = cx + (i - (n - 1) / 2) * spread + Math.sin(ph * 5 + i * 2 + j) * 9, y = y0 + (y1 - y0) * ph, r = 5 + ph * 9;
+      g.beginPath(); g.fillStyle = `rgba(${col},${(0.5 * Math.sin(ph * Math.PI)).toFixed(3)})`; g.arc(x, y, r, 0, 7); g.fill();
+    } };
+  // 呼吸光圈：讲解哪件展品，哪件就被一圈呼吸光标出来（信号原则），同时让画面保持真实动态
+  const pulse = (x, y, w, h, t0, t1) => {
+    K.prop((g, t) => { const a = 0.28 + 0.18 * Math.sin(t * 2.4); g.save(); g.strokeStyle = `rgba(217,119,6,${a.toFixed(3)})`; g.lineWidth = 5; g.beginPath(); g.roundRect(x - w / 2, y - h / 2, w, h, 26); g.stroke(); g.restore(); }, { from: t0, until: t1, z: 3 });
+    C.motion(t0, t1);
+  };
+
+  // —— 固定舞台：地板、桌子、招牌，全幕不撤 ——
+  K.prop((g, t) => {
+    g.save();
+    g.fillStyle = '#f5ead6'; g.fillRect(0, 838, 1920, 242);
+    g.fillStyle = '#e7d3ae'; g.fillRect(0, 838, 1920, 8);
+    g.fillStyle = '#b07a45'; g.beginPath(); g.roundRect(500, 796, 990, 26, 10); g.fill();
+    g.fillStyle = '#96622f'; g.fillRect(560, 822, 22, 60); g.fillRect(1408, 822, 22, 60);
+    g.font = '30px Kalam, WK'; g.fillStyle = '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText('☕ 萌星咖啡馆', 995, 810);
+    g.restore();
+  }, { from: 0.2, until: 1e9, z: -2 });
+
+  let T = 0.5;
+
+  // @step1_hook —— 冲突：同一张桌子上，书说不加 -s，咖啡馆里却在数
+  C.step(1, T);
+  K.actor({ keys: [[0.6, 'woman']], x: 1520, ground: 838, h: 500, reveal: 0.6, fadeOut: [9.8, 10.8], until: 10.9, z: 0 });
+  C.pic({ emoji: '📖', x: 640, y: 430, size: 165, from: T + 0.2, until: T + 11 });
+  C.chip({ text: 'coffee ✗ -s', x: 640, y: 620, size: 50, col: RED, bd: RED, from: T + 0.6, until: T + 11 });
+  C.chip({ text: 'Two coffees, please!', x: 1400, y: 272, size: 47, col: BLUE, bd: BLUE, from: T + 2.4, until: T + 11, hi: [[T + 4.3, T + 6.3]] });
+  C.pic({ emoji: '❓', x: 300, y: 235, size: 100, from: T + 1.9, until: 9.3, morph: [[T + 4.5, '🤔']] });
+  T = narr(KNOW[0], T + 0.4, 5);
+  LK.push([T - 1.2, 'l_idea0']);
+  T = say(T + 0.2, KNOW[3], '请来两杯咖啡。', ['coffees']);
+  // 冲突留白：Linda 想通了一点，端着书走到桌边（走路帧 l_w0–3，引擎 walk 机制）
+  const W0 = T;
+  C.motion(W0, W0 + 2.2);
+  T = W0 + 2.6;
+
+  // @step2_mechanism —— 机制：流体贴不住数字 → 杯子围出边、数字弹出 → 一刀切测试（同桌左右各一份）
+  C.step(2, T);
+  const M0 = T;
+  // 茶壶自绘：倒水时必须向壶嘴一侧倾斜、水柱必须从壶嘴出（因果保真）——pic 静态贴图做不到，改 K.prop
+  const potTilt = (t) => 1.15 * spring01((t - (M0 + 0.35)) / 0.9) * (1 - spring01((t - (M0 + 5.2)) / 0.9));
+  const potTip = (t) => { const th = potTilt(t), c = Math.cos(th), si = Math.sin(th); return [700 + 94 * c + 31 * si, 300 + 94 * si - 31 * c]; };
+  let potCv = null;   // 壶预栅格化：位图 emoji 直接旋转 fillText 会被 Chrome 画淡，改走 drawImage
+  const potImg = () => { if (!potCv) { potCv = document.createElement('canvas'); potCv.width = potCv.height = 400; const cx = potCv.getContext('2d'); cx.font = `400px ${EMOJI_FONT}`; cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.fillText('🫖', 200, 216); } return potCv; };
+  K.prop((g, t) => {
+    const aIn = Math.min(1, (t - (M0 + 0.2)) / 0.3), aOut = Math.min(1, (M0 + 7.6 - t) / 0.3);
+    g.save(); g.globalAlpha = Math.max(0, Math.min(aIn, aOut)); g.translate(700, 300); g.rotate(potTilt(t));
+    g.drawImage(potImg(), -82.5, -82.5, 165, 165); g.restore();
+  }, { from: M0 + 0.2, until: M0 + 7.6, z: 3 });
+  C.motion(M0 + 1.05, M0 + 9.2);
+  // v3 真液体：倒水柱（收细+摆动+水花）→ 桌面上摊开的咖啡滩（弹簧摊开+表面起伏+落点涟漪），无边就是「没有框」
+  const LANDS = [[M0 + 2.9, 760, 756], [M0 + 4.3, 850, 758], [M0 + 5.7, 805, 757]];
+  K.prop((g, t) => {
+    const pourU = (t - (M0 + 1.05)) / 3.95, pouring = pourU >= 0 && pourU <= 1;
+    const surfRx = spr(t - (M0 + 1.05), 26, 235, 0.62, 1.9) * (1 + 0.008 * Math.sin(t * 2.2));
+    const cxL = 820, cyL = 780, ryL = Math.max(6, surfRx * 0.09);
+    if (pouring) {   // 水柱：收细的锥形水流（上宽下窄+亮芯+首尾淡入淡出），落点溅起种子水花
+      const [tipX, tipY] = potTip(t); const sx = tipX + Math.sin(t * 31) * 1.2, sy = tipY, ex = 806, ey = cyL - ryL * 0.4;
+      const fadeS = Math.min(1, (t - (M0 + 1.05)) / 0.3, (M0 + 5.0 - t) / 0.3 + 0.001);
+      const mx = sx + 16 + Math.sin(t * 17) * 4, my = (sy + ey) / 2;
+      g.save(); g.globalAlpha = Math.max(0, fadeS);
+      g.beginPath(); g.moveTo(sx - 6, sy); g.quadraticCurveTo(mx - 3.4, my, ex - 2.2, ey); g.lineTo(ex + 2.2, ey); g.quadraticCurveTo(mx + 3.4, my, sx + 6, sy); g.closePath();
+      g.fillStyle = 'rgba(122,62,16,.78)'; g.fill();
+      g.strokeStyle = 'rgba(196,128,56,.75)'; g.lineWidth = 2.4; g.lineCap = 'round'; g.beginPath(); g.moveTo(sx, sy + 4); g.quadraticCurveTo(mx, my, ex, ey - 2); g.stroke(); g.restore();
+      for (let i = 0; i < 7; i++) { const ph = ((t * 1.7 + srand(i * 3.3)) % 1), dx = (srand(i * 7.1) - 0.5) * 90 * ph, dy = -34 * Math.sin(ph * Math.PI) * (0.5 + srand(i * 5.7));
+        g.beginPath(); g.fillStyle = `rgba(122,62,16,${(0.55 * (1 - ph)).toFixed(3)})`; g.arc(ex + dx, ey + dy + ph * 16, 3.6 - ph * 1.6, 0, 7); g.fill(); }
+    }
+    if (surfRx > 8) {   // 咖啡滩：先落接触阴影把液体钉在桌面上，再画极坐标起伏边缘 + 深浅渐变 + 高光
+      g.save(); g.beginPath(); g.ellipse(cxL, 795, surfRx * 0.99, 7, 0, 0, 7); g.fillStyle = 'rgba(80,45,8,.20)'; g.fill(); g.restore();
+      g.save(); g.beginPath();
+      for (let a = 0; a <= 64; a++) { const th = a / 64 * Math.PI * 2, rr = 1 + 0.045 * Math.sin(3 * th + t * 1.25) + 0.035 * Math.sin(5 * th - t * 0.85);
+        const px = cxL + Math.cos(th) * surfRx * rr, py = cyL + Math.sin(th) * ryL * rr; a ? g.lineTo(px, py) : g.moveTo(px, py); }
+      g.closePath();
+      const gr = g.createRadialGradient(cxL - 40, cyL - 8, 20, cxL, cyL, surfRx);
+      gr.addColorStop(0, '#8a4d1c'); gr.addColorStop(0.75, '#7a4212'); gr.addColorStop(1, '#653a0e');
+      g.fillStyle = gr; g.fill();
+      g.beginPath(); g.ellipse(cxL - surfRx * 0.3, cyL - ryL * 0.34, surfRx * 0.36, ryL * 0.4, -0.06, 0, 7); g.fillStyle = 'rgba(255,235,200,.13)'; g.fill();
+      g.restore();
+      for (const [lt, lx, ly] of LANDS) { const u = (t - lt) / 0.9;   // 数字块落点涟漪
+        if (u > 0 && u < 1) { g.save(); g.globalAlpha = 0.4 * (1 - u); g.strokeStyle = '#a4712f'; g.lineWidth = 3; g.beginPath(); g.ellipse(lx, ly, 14 + u * 44, (14 + u * 44) * 0.3, 0, 0, 7); g.stroke(); g.restore(); } }
+    }
+  }, { from: M0 + 1.05, until: M0 + 9.2, z: 2 });
+  C.label('coffee', 820, 864, { size: 50, col: '#92400e', from: M0 + 1.6, until: M0 + 9.2, bold: true });   // 桌前下方题注（液体本体太薄，字不压液体）
+  // 数字块贴流体：一个个飞过去、贴不住、滑落消失（与后面「贴得住」形成对照）
+  C.chip({ text: '1', x: 280, y: 235, size: 52, col: INK, bd: GREY, from: M0 + 2.2, until: M0 + 6.2, path: [[M0 + 2.9, 760, 756, 0.75, 'io'], [M0 + 4.1, 905, 778, 0.9, 'io'], [M0 + 5.0, 990, 788, 0.7, 'io']], out: M0 + 5.5 });
+  C.chip({ text: '2', x: 300, y: 235, size: 52, col: INK, bd: GREY, from: M0 + 3.6, until: M0 + 7.6, path: [[M0 + 4.3, 850, 758, 0.75, 'io'], [M0 + 5.5, 1010, 782, 0.9, 'io'], [M0 + 6.4, 1095, 790, 0.7, 'io']], out: M0 + 6.9 });
+  C.chip({ text: '3', x: 320, y: 235, size: 52, col: INK, bd: GREY, from: M0 + 5.0, until: M0 + 8.0, path: [[M0 + 5.7, 805, 757, 0.75, 'io'], [M0 + 6.9, 950, 780, 0.85, 'io']], out: M0 + 7.3 });
+  const Tn1 = narr(KNOW[1], M0 + 0.4, 4);
+  // 杯子进场围出边：数字徽章自己弹出（schemaContainer 的 count）
+  C.schemaContainer({ x: 730, y: 630, w: 300, h: 280, content: '☕', from: M0 + 8.6, until: M0 + 17.0, states: [[M0 + 8.6, 'enter'], [M0 + 9.8, 'bounded']], count: 1 });
+  C.schemaContainer({ x: 1170, y: 630, w: 300, h: 280, content: '☕', from: M0 + 9.2, until: M0 + 17.0, states: [[M0 + 9.2, 'enter'], [M0 + 10.4, 'bounded']], count: 2 });
+  LK.push([M0 + 8.6, 'l_point'], [M0 + 10.6, 'l_coff2']);
+  C.morphLetters({ from: 'coffee', to: 'coffees', x: 960, y: 905, size: 76, t: M0 + 12.6, d: 2.2, appear: M0 + 12.2, until: M0 + 17.2 });
+  // 杯子上的热气一直在飘（连续小动画，结果帧留在桌上陪着后面的测试）
+  C.motion(M0 + 12.4, M0 + 17.0);
+  K.prop((g, t) => { g.save(); for (const cx of [730, 1170]) steam(g, t, cx, 470, 392, M0 + 12.4); g.restore(); }, { from: M0 + 12.4, until: M0 + 17.0, z: 3 });
+  const Tn2 = narr(KNOW[2], M0 + 9.2, 3.8);
+  T = Math.max(Tn1, Tn2, M0 + 17.4);
+  // 一刀切测试：苹果（左）与面包（右）在同一张桌子上同时切开，结果当场分开
+  const A0 = T;
+  C.pic({ emoji: '🍎', x: 680, y: 555, size: 150, from: A0 + 0.2, until: A0 + 2.4 });
+  C.pic({ emoji: '🍞', x: 1360, y: 555, size: 150, from: A0 + 0.2, until: A0 + 2.4 });
+  C.label('apple', 680, 728, { size: 40, col: INK, from: A0 + 0.4, until: A0 + 22.5 });
+  C.motion(A0 + 0.4, A0 + 4.4);
+  const cutFx = (cx, e, size, col) => {   // 一刀：蓄势上抬 → 弹簧斩落；两半弹簧滑开微转，切口落碎屑
+    K.prop((g, t) => { const u = t - (A0 + 0.5);
+      if (u > 0 && t < A0 + 3.4) { const ky = u < 0.65 ? 292 - 46 * spring01(u / 0.65, 1, 6) : spr(u - 0.65, 246, 600, 0.9, 24);
+        drawEmoji(g, '🔪', cx, ky, 96, -0.5, t > A0 + 2.9 ? Math.max(0, 1 - (t - (A0 + 2.9)) / 0.5) : 1); }
+    }, { from: A0 + 0.5, until: A0 + 3.4, z: 3 });
+    K.prop((g, t) => { const u = t - (A0 + 2.4), off = spr(u, 0, 92, 0.38, 8.5), rot = spr(u, 0, 0.07, 0.38, 8.5);
+      // 两半必须真的是「半个」：整图沿切线裁开（clip），切面补果肉/面包芯和籽——一个苹果切开是两半，不会变成两个苹果
+      const drawHalf = (dir, r2) => {
+        g.save(); g.translate(cx + dir * off, 568); g.rotate(r2);
+        g.beginPath(); g.rect(dir < 0 ? -size * 0.58 : 0, -size * 0.62, size * 0.58, size * 1.24); g.clip();
+        g.font = `${size}px ${EMOJI_FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(e, 0, size * 0.04);
+        g.restore();
+        g.save(); g.translate(cx + dir * off, 568); g.rotate(r2);
+        g.beginPath(); g.ellipse(dir * size * 0.05, 0, size * 0.048, size * 0.29, 0, 0, 7); g.fillStyle = e === '🍎' ? '#f9e7bb' : '#f6e3b4'; g.fill();
+        if (e === '🍎') { g.fillStyle = '#7a4a1f'; for (const sy of [-0.09, 0.09]) { g.beginPath(); g.ellipse(dir * size * 0.05, size * sy, size * 0.015, size * 0.033, dir * 0.3, 0, 7); g.fill(); } }
+        g.restore();
+      };
+      drawHalf(-1, -rot); drawHalf(1, rot);
+      if (u > 0 && u < 1.3) for (let i = 0; i < 7; i++) { const px = cx + (srand(i * 3.1 + cx) - 0.5) * 60, py = 520 + 300 * u * u * (0.5 + srand(i * 7.7 + cx)), a = Math.max(0, 0.75 - u * 0.55);
+        g.save(); g.globalAlpha = a; g.fillStyle = col; g.beginPath(); g.arc(px + (srand(i * 9.3 + cx) - 0.5) * 46 * u, py, 4.5, 0, 7); g.fill(); g.restore(); }
+    }, { from: A0 + 2.4, until: A0 + 22.5, z: 2 });
+  };
+  cutFx(680, '🍎', 108, '#c2372a'); cutFx(1360, '🍞', 104, '#d99a3a');
+  C.label('✗ 刚才的「一个」没了', 680, 330, { size: 36, col: RED, from: A0 + 3.5, until: A0 + 22.5 });
+  const b2 = C.chip({ text: '2', x: 300, y: 300, size: 52, col: INK, bd: GREY, from: A0 + 3.2, until: A0 + 22.5 });
+  C.drop(b2, A0 + 3.6, 680, 432);
+  C.label('bread', 1278, 712, { size: 34, col: '#92400e', from: A0 + 3.4, until: A0 + 22.5 });
+  C.label('bread', 1442, 712, { size: 34, col: '#92400e', from: A0 + 3.4, until: A0 + 22.5 });
+  C.chip({ text: '1', x: 1080, y: 290, size: 52, col: INK, bd: GREY, from: A0 + 4.6, until: A0 + 7.6, path: [[A0 + 5.2, 1360, 420, 0.65, 'io'], [A0 + 6.2, 1545, 585, 0.85, 'io']], out: A0 + 6.8 });
+  C.chip({ text: '一个就是一个 ✓', x: 680, y: 262, size: 40, col: GREEN, bd: GREEN, from: A0 + 5.4, until: A0 + 22.5 });
+  C.chip({ text: '切开还是面包', x: 1360, y: 262, size: 40, col: OR, bd: OR, from: A0 + 7.2, until: A0 + 22.5 });
+  LK.push([A0 + 0.2, 'l_point'], [A0 + 6.0, 'l_coff0']);
+  T = narr(KNOW[4], A0 + 0.3, 3.6);
+  T = narr(KNOW[5], T, 3.6);
+  T = say(T, KNOW[6], '我有一个苹果，你有两个苹果。', ['apples']);
+  T = say(T - 0.3, KNOW[7], '我喜欢面包和水。', ['bread']);
+  pulse(680, 555, 336, 300, A0 + 5.4, A0 + 22.9); pulse(1360, 555, 336, 300, A0 + 7.2, A0 + 22.9);
+  T = Math.max(T, A0 + 22.9);
+
+  // @step3_transfer —— 迁移：舞台中央同一个位置，轮流换三样东西，边界框语法不变
+  C.step(3, T);
+  const BX = 960, BY = 520;
+  const box = (t0, t1, content, label, count, fluid) => C.schemaContainer({ x: BX, y: BY, w: 380, h: 300, content, from: t0, until: t1, states: [[t0, 'unbounded'], [t0 + 2.6, 'enter'], [t0 + 3.6, 'bounded']], label, count, fluid, spread: 0.9 });
+  const X0 = T;
+  LK.push([X0, 'l_coff0']);
+  box(X0, X0 + 5.4, '🥛', 'a glass of milk', 1, 'rgba(229,231,235,.9)');
+  T = narr(KNOW[8], X0 + 0.2, 2.6);
+  T = say(Math.max(T, X0 + 3.4), KNOW[9], '请来一杯牛奶。', ['glass']);
+  pulse(BX, BY, 404, 324, X0, X0 + 5.4);
+  const X1 = Math.max(T, X0 + 5.4);
+  box(X1, X1 + 6.4, '📄', 'two pieces of paper', 2, 'rgba(219,234,254,.9)');
+  const schip = C.chip({ text: '-s', x: 1520, y: 270, size: 56, col: OR, bd: OR, from: X1 + 1.0, until: X1 + 6.4, path: [[X1 + 1.7, 1100, 712, 0.7, 'io'], [X1 + 2.35, 1155, 682, 0.32, 'io'], [X1 + 2.7, 1100, 712, 0.32, 'io']] });
+  C.drop(schip, X1 + 3.3, 918, 712);
+  C.swap(schip, X1 + 4.15, '-s', GREEN, '#ecfdf5', GREEN);
+  T = narr(KNOW[10], X1 + 0.2, 3);
+  T = say(Math.max(T, X1 + 4.4), KNOW[11], '两张纸。一块面包。', ['pieces', 'piece']);
+  pulse(BX, BY, 404, 324, X1, X1 + 6.4);
+  const X2 = Math.max(T, X1 + 6.4);
+  LK.push([X2 + 1.0, 'l_point']);
+  box(X2, X2 + 9.2, '📚', 'homework', null, 'rgba(254,243,199,.9)');
+  C.chip({ text: '-s', x: 1520, y: 270, size: 56, col: RED, bd: RED, from: X2 + 1.2, until: X2 + 4.6, path: [[X2 + 1.9, 960, 395, 0.7, 'io'], [X2 + 2.9, 1215, 570, 0.85, 'io']], out: X2 + 3.5 });
+  C.chip({ text: 'papers ✓', x: 1500, y: 845, size: 46, col: GREEN, bd: GREEN, from: X2 + 2.6, until: X2 + 9.2, path: [[X2 + 2.6, 1500, 720, 2.2, 'out']] });
+  // 一份份的试卷单独摆出来：有边，数字 1 当场 drop 贴住（和 homework 的 -s 滑落对照）
+  C.pic({ emoji: '📄', x: 1310, y: 520, size: 120, from: X2 + 4.2, until: X2 + 9.2 });
+  const p1 = C.chip({ text: '1', x: 1150, y: 300, size: 50, col: INK, bd: GREY, from: X2 + 4.4, until: X2 + 9.2 });
+  C.drop(p1, X2 + 4.6, 1310, 408);
+  T = narr(KNOW[12], X2 + 0.2, 4);
+  T = say(T - 0.3, KNOW[13], '我有很多作业。', ['homework']);
+  pulse(BX, BY, 404, 324, X2, X2 + 9.2);
+  T = Math.max(T, X2 + 9.2);
+
+  // @step4_punchline —— 锚点：rice 能不能加 -s？（全幕唯一的预测停顿）猜完才揭晓，最后才命名规则
+  C.step(4, T);
+  const P0 = T;
+  LK.push([P0 + 0.2, 'l_think']);
+  C.schemaContainer({ x: 960, y: 520, w: 420, h: 300, content: '🍚', from: P0, until: P0 + 13.4, states: [[P0, 'unbounded'], [P0 + 5.6, 'enter'], [P0 + 6.8, 'bounded']], count: 2, fluid: 'rgba(229,231,235,.9)', spread: 1.0 });
+  const rc = C.chip({ text: 'rices ?', x: 960, y: 262, size: 58, col: RED, bd: RED, from: P0 + 0.4, until: P0 + 13.4 });
+  T = C.predict(P0 + 0.6, { q: KNOW[14] });
+  C.swap(rc, T + 0.5, 'two bowls of rice', GREEN, '#fff', GREEN);
+  C.motion(T + 0.5, P0 + 13.4);
+  K.prop((g, t) => { g.save(); steam(g, t, 960, 455, 378, T + 0.5, 30); g.restore(); }, { from: T + 0.5, until: P0 + 13.4, z: 3 });
+  LK.push([T + 0.6, 'l_laugh']);
+  T = narr(KNOW[15], T + 0.6, 3.6);
+  T = say(T - 0.2, KNOW[16], '我要两碗米饭。', ['bowls']);
+  T = narr(KNOW[17], T - 0.2, 3);
+  C.rule(T);
+  const Tn18 = narr(KNOW[18], T, 3.6);
+  LK.push([T, 'l_laugh']);
+  // 收尾要点卡：主线讲完才出现；原理原名只在卡片角落（给老师看）
+  const EC = T + 0.4;
+  K.prop((g, t) => {
+    g.save();
+    g.fillStyle = 'rgba(64,50,36,0.28)'; g.fillRect(0, 0, 1920, 1080);
+    g.fillStyle = '#fffdf7'; g.beginPath(); g.roundRect(430, 250, 1060, 470, 26); g.fill();
+    g.strokeStyle = '#e0cdaa'; g.lineWidth = 4; g.stroke();
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.font = '52px Kalam, WK'; g.fillStyle = INK; g.fillText('要点卡 · 这一幕讲完啦', 960, 322);
+    g.font = '42px Kalam, WK'; g.fillStyle = '#92400e';
+    g.fillText('☕ 咖啡面包这类：切开、倒出还是它 → 不可数', 960, 412);
+    g.fillText('🥛 借个单位来数 → -s 加在单位上', 960, 492);
+    g.fillStyle = GREEN; g.fillText('口诀：一刀下去还是它，不可数来不加 s', 960, 572);
+    g.font = '30px Kalam, WK'; g.fillStyle = GREY;
+    g.fillText('给老师看：可数性看「看法」（识解），不是看东西有没有边', 960, 662);
+    g.restore();
+  }, { from: EC, until: 1e9, z: 9 });
+
+  // v3 人物平滑层：Linda 改用自绘（K.prop + K.IMG/K.FI，rectOf 公式与引擎一致）——
+  // 姿势切换 0.16s 交淡（不再整帧跳变）+ 呼吸（纵向 0.6% 起伏）+ 微摆 + 切换落定余摆 + 走路前倾与平滑重心跳
+  const RIG_KEYS = [...LK, [W0 + 2.05, 'l_coff0']].sort((a, b) => a[0] - b[0]);
+  K.prop((g, t) => {
+    if (t < 0.3) return;
+    const FI = K.FI, IMG = K.IMG, REF = FI['l_coff0']; if (!REF || !IMG['l_coff0']) return;
+    const ground = 838, H0 = 520, walking = t >= W0 && t <= W0 + 2.2;
+    let x = t < W0 ? 300 : 380, key = RIG_KEYS[0][1], tc = 0.4, prev = null;
+    for (const [kt, kk] of RIG_KEYS) if (t >= kt) { if (kk !== key) { prev = key; tc = kt; } key = kk; }
+    if (walking) { const u = (t - W0) / 2.2, p = u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2; x = 300 + 80 * p;
+      key = ['l_w0', 'l_w1', 'l_w2', 'l_w3'][Math.floor(Math.abs(x - 300) / 46) % 4]; prev = null; }
+    else if (t > W0 && t <= W0 + 2.36) { prev = 'l_w0'; tc = W0 + 2.2; }
+    const drawPose = (k, alpha, dyExtra, lean) => {
+      const f = FI[k], im = IMG[k]; if (!f || !im) return;
+      const sc = H0 / REF.bottom, w = f.w * sc, h = f.h * sc, ax = (f.ax ?? f.w / 2) * sc;
+      g.save(); g.globalAlpha = alpha;
+      g.translate(x, ground); g.rotate(lean); const br = walking ? 0 : Math.sin(t * 1.7) * 0.006; g.scale(1 - br * 0.6, 1 + br); g.translate(-x, -ground);
+      g.drawImage(im, x - ax, ground - f.bottom * sc + dyExtra, w, h); g.restore();
+    };
+    const fadeIn = Math.min(1, (t - 0.3) / 0.5), uSet = t - tc;
+    const lean = walking ? 0.028 + Math.sin(Math.abs(x - 300) / 46 * Math.PI) * 0.006 : Math.sin(t * 0.8) * 0.005;
+    const dySet = walking ? -Math.abs(Math.sin(Math.abs(x - 300) / 46 * Math.PI)) * 7 : settle(uSet) * 5;
+    const blend = (!walking && prev && uSet >= 0 && uSet < 0.16) ? uSet / 0.16 : 1;
+    if (blend < 1) drawPose(prev, fadeIn * (1 - blend), dySet, lean);
+    drawPose(key, fadeIn * blend, dySet, lean);
+  }, { from: 0.3, until: 1e9, z: 0 });
+  C.motion(0.3, W0 + 2.6);   // 人物平滑层在钩子+走路段持续运动（如实登记）
+  K.end(Math.max(Tn18 + 0.3, EC + 5.0));
+  return C.finish();
+}

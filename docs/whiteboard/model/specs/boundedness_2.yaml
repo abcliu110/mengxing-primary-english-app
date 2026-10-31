@@ -1,0 +1,49 @@
+# 场景规格 · boundedness 第 2 幕（a / the）——台词行数与节拍角色与模板严格对齐
+scene: gen_boundedness_2
+family: boundedness
+pattern: concept_demo_articles
+template: fp_boundedness_2.js
+
+title: "a 还是 the？看大家知不知道"
+
+aha:
+  see: "公园里三只小狗；一个橙色框在三只狗之间跳来跳去（还没定是哪只），再提起时框停在一只狗身上（就是那只），那只狗跑起来，框跟着走"
+  guess: "再说起这只狗，指的是随便哪只还是就是那只？I have ___ cat. ___ cat is white. 两个空填什么？"
+  reveal: "第一次说起，还没定是哪只（a = one，随便一只）；再说起，都知道是哪只（the = that，就是那只）；太阳、月亮只有一个，不用挑"
+  rule: "第一次见用 a，大家都知道用 the"
+
+know:
+  - { text: "同一只狗，前面说 a dog，后面说 the dog——变的是什么？", kind: narrative }
+  - { text: "I see a dog in the park.", kind: dialogue }
+  - { text: "The dog is running.", kind: dialogue }
+  - { text: "公园里有好几只小狗。", kind: narrative }
+  - { text: "a / an：第一次说起，还没指定是哪一只，意思就是「一个」。", kind: line, teaches: cl-a-first }
+  - { text: "There is a dog in the park.", kind: dialogue }
+  - { text: "再说起它，你我都知道是哪一只了，还用 a 吗？", kind: predict, teaches: cl-the-known }
+  - { text: "the：说的人和听的人都知道是哪一个，意思像「那个」。", kind: line, teaches: cl-the-known }
+  - { text: "The dog is very cute.", kind: dialogue }
+  - { text: "真实词源：a / an 就是从 one 变来的，the 和 that 是同源的一家。a = one，the = 那个。", kind: line, teaches: cl-a-etym }
+  - { text: "One dog. That dog. The moon.", kind: dialogue }
+  - { text: "世界上只有一个的东西，大家都知道是哪个：the sun、the moon。", kind: line, teaches: cl-the-known }
+  - { text: "The sun is hot today.", kind: dialogue }
+  - { text: "房间里就这一扇门，大家都知道是哪扇：Open the door, please!", kind: line, teaches: cl-the-known }
+  - { text: "Open the door, please!", kind: dialogue }
+  - { text: "开头是元音音的词前面，a 变成 an：an apple、an egg、an hour。", kind: line }
+  - { text: "An apple, an egg.", kind: dialogue }
+  - { text: "I have ___ cat. ___ cat is white. 两个空填 a 还是 the？", kind: predict }
+  - { text: "揭晓：第一次说起用 a；再说起，大家都知道是哪只了，用 the。", kind: line, teaches: cl-a-first }
+  - { text: "I have a cat. The cat is white.", kind: dialogue }
+  - { chant: ch-athe, prefix: "口诀：", kind: chant }
+  - { claim_say: cl-the-known, prefix: "所以记住：", kind: rule }
+
+facts:
+  objects:
+    - { name: dog / cat（指称对象）, kind: unit, states: "首次提及（未定指）→ 再次提及（双方已知）" }
+    - { name: sun / moon / door, kind: unit, states: "独一无二或当场已知，直接 the" }
+  invariants:
+    - "a 只用于首次提及、未定指；the 只用于双方已知所指"
+    - "画面上的框是『指哪一只』的选择器，不是物体的边"
+    - "词源陈述（a←one、the←that）为真词源 cl-a-etym，不得改写成联想"
+
+replace:
+  - ["a 是乱跳的框，the 是锁住的框", "a 是未定指（随便一只），the 是已定指（就是那只）"]

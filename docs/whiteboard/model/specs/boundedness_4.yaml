@@ -1,0 +1,56 @@
+# 场景规格 · boundedness 第 4 幕（整只 ⇄ 材料）——台词行数与节拍角色与模板严格对齐
+scene: gen_boundedness_4
+family: boundedness
+pattern: concept_demo_whole_material
+template: fp_boundedness_4.js
+
+title: "一个词，两种看法"
+
+aha:
+  see: "左边小鸡在跑，是完整的一只，弹出 3；右边盘子里的鸡肉，是一些肉；chickens 末尾的 s 掉了下来"
+  guess: "做成鸡肉以后，还能算「一只」吗？切下来的一块蛋糕说 a cake 还是 some cake？"
+  reveal: "当整只看 → 可数（three chickens）；当肉、当材料、当空间看 → 不可数（some chicken / made of glass / make room）"
+  rule: "同一个词：当整只看 → 可数；当材料看 → 不可数"
+
+know:
+  - { text: "同一个 chicken，一会儿加 -s，一会儿不加——为什么？", kind: narrative }
+  - { text: "Look! Two chickens are running.", kind: dialogue }
+  - { text: "I like chicken for dinner.", kind: dialogue }
+  - { text: "一只活蹦乱跳的小鸡，是完整的一只——可数：a chicken、three chickens。", kind: line, teaches: cl-whole-material }
+  - { text: "A chicken, three chickens.", kind: dialogue }
+  - { text: "做成盘子里的鸡肉，还是「一只」吗？", kind: predict, teaches: cl-whole-material }
+  - { text: "做成鸡肉，不再是「一只」了，是一些肉——不可数：some chicken。", kind: line, teaches: cl-whole-material }
+  - { text: "同一个词：当整只看 → 可数；变成肉、材料、空间 → 不可数。", kind: line, teaches: cl-whole-material }
+  - { text: "a glass 是一个玻璃杯；made of glass 是玻璃这种材料。", kind: line, teaches: cl-whole-material }
+  - { text: "A glass. The window is made of glass.", kind: dialogue }
+  - { text: "a room 是一个房间；make room for you 是腾出地方（空间）。", kind: line, teaches: cl-whole-material }
+  - { text: "A room. I can make room for you.", kind: dialogue }
+  - { text: "two fish 是两条鱼；some fish 可以是一些鱼肉，也可以是几条鱼。", kind: line, teaches: cl-whole-material, note: "释义按 xc-some-fish 放宽，不得写死为鱼肉" }
+  - { text: "I can see two fish in the river. Some fish, please.", kind: dialogue }
+  - { text: "看它在句子里是当整只还是当材料，一秒判断。", kind: line, teaches: cl-whole-material }
+  - { text: "一整个蛋糕切开，分给你一块——切下来那块，说 a cake 还是 some cake？", kind: predict }
+  - { text: "揭晓：整个蛋糕当整只看：a cake；切下来那块当材料看：some cake，像 some chicken。", kind: line, teaches: cl-whole-material }
+  - { text: "We have a cake. Can I have some cake?", kind: dialogue }
+  - { chant: ch-whole, prefix: "口诀：", kind: chant }
+  - { chant: ch-whole, kind: chant, note: "与上一行拼接作中段收束（模板 narr(KNOW[14]+KNOW[19])）" }
+
+facts:
+  objects:
+    - { name: chicken / cake, kind: dual-life, states: "整只（可数）⇄ 肉/材料（不可数）" }
+    - { name: glass / room, kind: dual-life, states: "器物/房间（可数）⇄ 材料/空间（不可数）" }
+    - { name: fish, kind: dual-life, states: "条（可数，复数同形）⇄ 鱼肉或几条（some fish 两读）" }
+  invariants:
+    - "同一词的可数性由当次看法决定，不由物体属性决定"
+    - "-s 只在整只看法下出现；some fish 的释义不得写死"
+
+# 模板内屏上标签与注释的旧理论措辞一并订正（生成器 replace）
+replace:
+  - ["有完整外壳（可数）", "当整只看（可数）"]
+  - ["变成材料 / 空间（不可数）", "当材料 / 空间看（不可数）"]
+  - ["小鸡外面一圈完整的边（可数，three chickens）", "小鸡是完整的一只（可数，three chickens）"]
+  - ["做成鸡肉后边化开（不可数），chickens 的 s 掉下来", "做成鸡肉后不再是「一只」（不可数），chickens 的 s 掉下来"]
+  - ["机制：整只有完整的边；做成肉，边化开", "机制：当整只看能数；做成肉，当材料看不数"]
+  - ["同一个双屏边界框：a glass / made of glass、a room / make room、two fish / some fish", "同一个双屏对比：a glass / made of glass、a room / make room、two fish / some fish"]
+  - ["迁移：同一个双屏边界框，换三个词", "迁移：同一个双屏对比，换三个词"]
+  - ["第 4 幕「炼金」：同一个词，两种边界", "第 4 幕「炼金」：同一个词，两种看法"]
+  - ["请来一些鱼肉。", "请来一些鱼。"]
