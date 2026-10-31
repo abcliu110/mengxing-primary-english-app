@@ -2780,3 +2780,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:49 JST · 决策 38 units.json 恢复原缩进（上一提交误整体重排）
 - 上一提交 32254d4 用 indent=2 重写了 units.json（12k 行无关差异）；本提交恢复原 1 空格缩进，相对 d83f924 之前只多 hd_g05 第 2 幕 4 行。
+
+## 2026-10-31 17:50 JST · 决策 38 36-② 长幕拆分：hd_g19 140 s → 68 s + 74 s（WIP，未嵌入）
+- `hd_g19_1`：勋章飞到动词 + 主语轮换 + 对比，68 s；新 `hd_g19_2`：常错 goes → 预测 does 吸走勋章 → 加法 / 读音 / 语境 / 口诀，74 s。各自啊哈卡 / 预测 / 规则，check_r38 0 不合格；390 px 联络表自检。units.json hd_g19 加第 2 幕。
