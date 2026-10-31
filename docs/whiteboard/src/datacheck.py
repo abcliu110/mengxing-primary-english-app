@@ -20,8 +20,7 @@ for k, v in H.items():
     c = v.get('collocations') or {}; ad = c.get('adjs') or []
     if len(ad) == 3 and ad[1].startswith('the ') and ad[2].startswith('my ') and ad[1][4:] == ad[2][3:]: bad.setdefault('A4 模板搭配 a/the/my X', []).append(k)
     if any(x.startswith('Morph form') or re.search(r'[.!?。！？]$', x.strip()) for x in (c.get('verbs') or []) + ad): bad.setdefault('A4 搭配栏放了整句 / Morph 占位', []).append(k)
-# A7：英美两种拼写都是主词条 → 0（主拼写英式，美式走 WORD_ALIAS）。
-A6：同一词形多个非别名词条 → 只允许「词组卡 ↔ 单词卡」互链（WORD_GROUP_MEMBERS，重复内容合并第 2 步的设计：G1_P01「I / me / my / mine」↔ V6_核心_0–3）
+# A6：同一词形多个非别名词条 → 只允许「词组卡 ↔ 单词卡」互链（WORD_GROUP_MEMBERS，重复内容合并第 2 步的设计：G1_P01「I / me / my / mine」↔ V6_核心_0–3）
 import collections
 i0 = s.index('const VOCAB_DB = ['); seg = s[i0:s.index('\n];', i0)]
 WA = json.loads(re.search(r'const WORD_ALIAS = (\{.*?\});', s).group(1)); GM = json.loads(re.search(r'const WORD_GROUP_MEMBERS = (\{.*?\});', s).group(1))
