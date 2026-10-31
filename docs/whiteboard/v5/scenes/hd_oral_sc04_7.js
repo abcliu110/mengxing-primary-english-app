@@ -1,9 +1,9 @@
-// 💬 日常用语 · 自我介绍 · Can you play ping-pong with me? —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 💬 日常用语 · 自我介绍 · Can you play ping-pong with me? —— 决策 38 ② 啊哈重做（口语通用版式 scenes/oral.js；啊哈卡 lab/audit38/aha/02_hd_oral_sc01.md）
 // 内容来源（R1 零丢失）：src/cases/hd_oral_sc04.js 案例 7；对照清单 lab/INVENTORY_HD_ORAL_SC04_7_V5.md
 // 角色关键帧：sprites/hdo04_7.js（人物先行帧库 cast/）
-import { autoBuild } from './auto.js';
+import { oralBuild } from './oral.js';
 import * as SP from '../sprites/hdo04_7.js';
-const ACTS = {"*": ["missw", "l_hand0", "l_books"]};
+const ACTS = {"*": ["missw", "l_hand0", "l_books"], "M": ["l_speak", "l_ear", "l_wave"], "F": ["m_story", "m_admire", "m_admire"]};
 const ITEMS = [
   ['w', '自我介绍'],
   ['w', '核心交际句：Can you play ping-pong with me? （你能和我一起打乒乓球吗？）'],
@@ -21,4 +21,4 @@ const ITEMS = [
   ['w', '我也很高兴认识你！'],
   ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
 ];
-export default function build() { return autoBuild(SP, { title: '💬 日常用语 · 自我介绍 · Can you play ping-pong with me?', items: ITEMS, acts: ACTS }); }
+export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · Can you play ping-pong with me?', items: ITEMS, acts: ACTS }); }

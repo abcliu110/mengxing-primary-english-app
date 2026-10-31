@@ -1,9 +1,9 @@
-// 💬 日常用语 · 感谢与道歉 · Thank you! — You're welcome. —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 💬 日常用语 · 感谢与道歉 · Thank you! — You're welcome. —— 决策 38 ② 啊哈重做（口语通用版式 scenes/oral.js；啊哈卡 lab/audit38/aha/02_hd_oral_sc01.md）
 // 内容来源（R1 零丢失）：src/cases/hd_oral_sc02.js 案例 1；对照清单 lab/INVENTORY_HD_ORAL_SC02_1_V5.md
 // 角色关键帧：sprites/hdo02_1.js（人物先行帧库 cast/）
-import { autoBuild } from './auto.js';
+import { oralBuild } from './oral.js';
 import * as SP from '../sprites/hdo02_1.js';
-const ACTS = {"*": ["hello", "l_wave", "l_speak"]};
+const ACTS = {"*": ["hello", "l_wave", "l_speak"], "M": ["l_speak", "l_ear", "l_wave"], "F": ["m_story", "m_admire", "m_admire"]};
 const ITEMS = [
   ['w', '感谢与道歉'],
   ['w', '核心交际句：Thank you! — You\'re welcome. （谢谢你！— 不用谢 / 别客气。）'],
@@ -21,4 +21,4 @@ const ITEMS = [
   ['w', '不客气！'],
   ['s', 'You\'re welcome!', '不客气！']
 ];
-export default function build() { return autoBuild(SP, { title: '💬 日常用语 · 感谢与道歉 · Thank you! — You\'re welcome.', items: ITEMS, acts: ACTS }); }
+export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 感谢与道歉 · Thank you! — You\'re welcome.', items: ITEMS, acts: ACTS }); }

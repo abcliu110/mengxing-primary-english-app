@@ -3,7 +3,7 @@
 // 角色关键帧：sprites/hdo01_1.js（人物先行帧库 cast/）
 import { oralBuild } from './oral.js';
 import * as SP from '../sprites/hdo01_1.js';
-const ACTS = {"*": ["hello", "l_wave", "l_speak"], "A": ["l_speak", "l_ear", "l_wave"], "B": ["m_story", "m_admire", "m_admire"]};
+const ACTS = {"*": ["hello", "l_wave", "l_speak"], "M": ["l_speak", "l_ear", "l_wave"], "F": ["m_story", "m_admire", "m_admire"]};
 const ITEMS = [
   ['w', '问候与告别'],
   ['w', '核心交际句：Nice to meet you! （很高兴认识你！（初次见面必会））'],

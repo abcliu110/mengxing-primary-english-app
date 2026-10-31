@@ -1,9 +1,9 @@
-// 💬 日常用语 · 看病与身体不适 · Open your mouth and say "Ah". —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 💬 日常用语 · 看病与身体不适 · Open your mouth and say "Ah". —— 决策 38 ② 啊哈重做（口语通用版式 scenes/oral.js；啊哈卡 lab/audit38/aha/02_hd_oral_sc01.md）
 // 内容来源（R1 零丢失）：src/cases/hd_oral_sc12.js 案例 4；对照清单 lab/INVENTORY_HD_ORAL_SC12_4_V5.md
 // 角色关键帧：sprites/hdo12_4.js（人物先行帧库 cast/）
-import { autoBuild } from './auto.js';
+import { oralBuild } from './oral.js';
 import * as SP from '../sprites/hdo12_4.js';
-const ACTS = {"*": ["l_plaster", "l_speak", "l_breath"]};
+const ACTS = {"*": ["l_plaster", "l_speak", "l_breath"], "M": ["l_speak", "l_ear", "l_wave"], "F": ["m_story", "m_admire", "m_admire"]};
 const ITEMS = [
   ['w', '看病与身体不适'],
   ['w', '核心交际句：Open your mouth and say "Ah". （张开嘴说“啊——”。（看病检查必会））'],
@@ -21,4 +21,4 @@ const ITEMS = [
   ['w', '谢谢，我会休息。'],
   ['s', 'Thank you. I\'ll have a rest.', '谢谢，我会休息。']
 ];
-export default function build() { return autoBuild(SP, { title: '💬 日常用语 · 看病与身体不适 · Open your mouth and say "Ah".', items: ITEMS, acts: ACTS }); }
+export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 看病与身体不适 · Open your mouth and say "Ah".', items: ITEMS, acts: ACTS }); }
