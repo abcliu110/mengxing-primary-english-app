@@ -2742,3 +2742,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `scenes/auto.js` mindmapBuild：`odd: true` 时开场摆 4 张图（第 1 组 3 张 + 最后一组 1 张）→ 预测哪张不是一伙 → 混入者升走、组名亮出 → 再画导图；不给 verbs 就不画「常用搭配 / 评价形容词」两框（首词模板占位，R37-03）。25 个 hd_mindmap 场景 + gen_mindmap.py 模板同步。啊哈卡 `lab/audit38/aha/11_hd_mindmap.md`、`10_hd_poly.md`。
 - check_oral：144 幕 0 不合格（31.9–55.3 s）；check_poly：51 幕 0 不合格（43.7–57.2 s）。
 - auto.js 改动 = 引擎改动，最后统一全量重建。
+
+## 2026-10-31 17:24 JST · WIP 决策 38 第 12 幕 out 一列
+- vv_take_out_2 改 concept.js：里面 / 门线 / 外面，take out、take … out、get out、give out（预测）、look out、put out 依次跨线 → 五张动词卡圈成一列 → 「OUT = 从里面到外面」。check_r38 0，52 s。啊哈卡 `lab/audit38/aha/12_vv_out.md`。
