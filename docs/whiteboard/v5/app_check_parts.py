@@ -10,9 +10,12 @@ CASES = [   # (页签, 幕号, 进入页面的 JS)
     ('hd_g07', 0, "navigateTo('grammar_detail', { gId: 'G07' })"),
     ('wo_port', 0, "navigateTo('word_origins_hub', { scene: 'wo_port' }); woSelectScene('wo_port')"),
     ('aux_transformer', 0, "navigateTo('super_lab_hub', { labTab: 'aux_transformer' }); superLabState.auxIdx=0; renderSuperLabHubView();"),
+    ('tense_matrix', 0, "navigateTo('super_lab_hub', { labTab: 'tense_matrix' }); superLabState.tenseIdx=0; renderSuperLabHubView();"),
+    ('past_clans', 0, "navigateTo('super_lab_hub', { labTab: 'past_clans' }); superLabState.clanIdx=0; renderSuperLabHubView();"),
+    ('adj_order', 0, "navigateTo('super_lab_hub', { labTab: 'adj_order' }); superLabState.adjExIdx=0; renderSuperLabHubView();"),
     ('five_patterns', 4, "navigateTo('super_lab_hub', { labTab: 'five_patterns' }); superLabState.patIdx=4; renderSuperLabHubView();"),
 ]
-NONE = [('tense_matrix', 0, "navigateTo('super_lab_hub', { labTab: 'tense_matrix' }); superLabState.tenseIdx=0; renderSuperLabHubView();")]
+NONE = [('tense_matrix', 1, "navigateTo('super_lab_hub', { labTab: 'tense_matrix' }); superLabState.tenseIdx=1; renderSuperLabHubView();")]
 INFO = "(()=>{const f=document.getElementById('wb5Frame'); return f ? {tab:f.dataset.tab, case:f.dataset.case, dur:f.contentWindow.__dur && Math.round(f.contentWindow.__dur*10)/10, parts:document.querySelectorAll('.wb5-parts button').length} : null})()"
 async def main():
     bad = 0

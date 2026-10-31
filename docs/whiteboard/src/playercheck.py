@@ -26,7 +26,7 @@ async def main():
             await pg.evaluate(js); m = None
             for _ in range(20):
                 await pg.wait_for_timeout(500); m = await pg.evaluate(MEAS)
-                if m and not m.get('wait'): break
+                if m and not m.get('wait') and m.get('time'): break   # 播放器排好版（时间文字出来）才量，否则偶发量到半成品（ratio 85）
             if not m or m.get('wait'): print(name, '无白板 BAD'); bad += 1; continue
             fs = await pg.evaluate(FS); await pg.wait_for_timeout(300)
             fs2 = await pg.evaluate("(()=>{const c=document.getElementById('wb5Frame').contentDocument.getElementById('stage').getBoundingClientRect(); return Math.round(Math.max(c.width,c.height))})()")
