@@ -2748,3 +2748,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:26 JST · WIP 决策 38 第 13 幕 一般过去时
 - tense_matrix_3 改 concept.js：昨天老照片 / 今天分屏找不同 → 预测两句差在哪 → -ed 邮戳；不看主语、take→took 换装、拼写细节只进字幕、was / were、信号词、Did 陷阱、预测 play / played。38 条 KNOW 全在，check_r38 0，144 s。啊哈卡 `lab/audit38/aha/13_tense_matrix_3.md`。
+
+## 2026-10-31 17:29 JST · WIP 决策 38 第 14 幕 格林定律「时光机」
+- wo_grimm_1 改 concept.js：家族树 → 时光机（预测 pes 出来是什么 → foot）→ pedal 绕机器不变 → 6 对词一行行过机器 → 古罗马历月份条 → 格林是谁 → 中文对照 → 预测 ped / pedestrian → 洞见口诀。34 条字幕 / 朗读原样，check_r38 0，174 s。啊哈卡 `lab/audit38/aha/14_wo_grimm.md`。
