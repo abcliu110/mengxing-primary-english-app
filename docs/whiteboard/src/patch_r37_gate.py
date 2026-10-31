@@ -10,7 +10,7 @@ CSS = '''<style id="r37-gate">
 #parentGateContent div[style*="display:flex"] { flex-wrap: wrap; row-gap: 8px; }
 #parentGateContent h3 { flex: 1 1 200px; min-width: 0; }
 #parentGateContent input[type="number"] { min-width: 0; flex: 1 1 140px !important; }
-#parentGateContent button[onclick^="setAppAccent"] { flex: 1 1 140px !important; }
+#parentGateContent button[onclick^="setAppAccent"] { flex: 1 1 0 !important; min-width: 0; white-space: normal; }
 .parent-gate-btn { white-space: nowrap; }
 </style>
 '''
@@ -21,5 +21,9 @@ for acc, lab in (('en-US', '🇺🇸 美式发音 (en-US)'), ('en-GB', '🇬🇧
     new = f"color:${{appState.accent==='{acc}'?'#fff':'#1e293b'}};\">{lab}</button>\n"
     if new not in s:
         assert s.count(old) == 1, acc; s = s.replace(old, new); n += 1
+for x in ('(en-US)', '(en-GB)'):
+    old = f"发音 {x}</button>"; new = f'发音 <span style="white-space:nowrap">{x}</span></button>'
+    if new not in s:
+        assert s.count(old) == 1, x; s = s.replace(old, new); n += 1
 if n: __import__('appwrite').save(s)
 print('patched', n)

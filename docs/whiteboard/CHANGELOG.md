@@ -2607,3 +2607,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新增「⛶ 全屏」按钮：铺满屏幕，竖屏时画面转 90° 横过来（先尝试 requestFullscreen + 锁横屏，不支持就 CSS 旋转兜底）；390×844 下画面宽 679 px（0.35 倍），场景里 ≥ 35 px 的字 ≥ 12 px。非全屏竖屏下画面只有约 300 px 宽，最小字仍 < 12 px——要彻底满足「竖屏不全屏也 ≥ 12 px」需要各幕放大字号重建（并入 R37-05 / 07 重做幕时按 390 px 校字号）。
 - 术语小词典左列 150 px 固定宽改为 min(150px, 32%)，窄屏不再把解释挤成一字一行。
 - 新检查 `src/playercheck.py`（4 处白板：画面占框 ≥ 90%、时间不截断、全屏铺满 + 画面 ≥ 600 px、退出复原）入 runall；runall 全过。390 px 截图自检（不入库）。
+
+### 2026-10-31 13:14 JST · 决策 37 R37-13 家长门按钮
+- 现象：390 px 下家长门验证页「✖ 关闭」「验证进入」被挤成一字一行（输入框 flex:1 没有 min-width:0，把按钮压到 30 px 宽）；设置页口音按钮也被压成两行。
+- `src/patch_r37_gate.py`（样式块 R37_13_GATE）：家长门弹窗里按钮 / label nowrap + flex-shrink:0，弹性行可换行，输入框 min-width:0；口音两个按钮并排各占一半，「(en-US)」不拆行。
+- 新检查 `src/gatecheck.py`（顶栏家长门 + 验证页 + 设置页：按钮最多 2 行且每行 ≥ 5 字，即不再竖排）入 runall；mobilecheck 24 页 0 不合格。390 px 截图自检（不入库）。

@@ -1,9 +1,9 @@
-"""gatecheck.py —— 决策 37 / R37-13：390 px 下家长门弹窗（验证页 + 设置页）和顶栏家长门按钮里，每个按钮的文字都只占一行（高度 < 字号 × 2.2）。入 runall。"""
+"""gatecheck.py —— 决策 37 / R37-13：390 px 下家长门弹窗（验证页 + 设置页）和顶栏家长门按钮里，按钮不被挤成竖排：最多 2 行且每行 ≥ 5 个字符（原问题是一字一行）。入 runall。"""
 import asyncio, pathlib
 from playwright.async_api import async_playwright
 APP = pathlib.Path(__file__).resolve().parents[3] / '萌星小学英语_最终合并版.html'
 JS = """(sel)=>[...document.querySelectorAll(sel)].filter(b=>b.offsetParent).map(b=>{const cs=getComputedStyle(b), fs=parseFloat(cs.fontSize), r=document.createRange(); r.selectNodeContents(b); const rects=[...r.getClientRects()]; const lines=new Set(rects.map(x=>Math.round(x.top/(fs*0.8)))).size;
- return {t:b.textContent.trim().slice(0,14), lines}}).filter(x=>x.t && x.lines>1)"""
+ const n=b.textContent.trim().length; return {t:b.textContent.trim().slice(0,14), lines, per: n/lines}}).filter(x=>x.t && x.lines>1 && (x.lines>2 || x.per<5))"""
 async def main():
     bad = 0
     async with async_playwright() as p:
