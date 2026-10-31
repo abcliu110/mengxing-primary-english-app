@@ -2787,3 +2787,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:52 JST · 决策 38 36-② 长幕拆分：wo_grimm 174 s → 3 节 65 / 56 / 65 s（WIP，未嵌入）
 - `wo_grimm_1` 只留时光机 + pes→foot + pedal + 口诀预告（65 s）；新 `wo_grimm_rows_1`（预测 tres → three + 6 对词 + 例外，56 s）、`wo_grimm_more_1`（彩蛋 / 格林是谁 / 中文对照 / 预测 ped，65 s）。各自啊哈卡 / 预测 / 规则；check_r38 三节 0 不合格；三节 KNOW 并集 = 原幕。
 - App 挂载：新补丁 `src/patch_wo_grimm_split.py`（WO_GRIMM_SPLIT_V1，格林定律章加两张幕卡），units.json 加 wo_grimm_rows / wo_grimm_more。补丁等全量 rebuild 写完主 HTML 后再跑。
+
+## 2026-10-31 17:54 JST · 决策 38 全量重建（poly 并进引擎）+ 第 10–15 幕与拆分幕嵌入；单项回归过（WIP，主 HTML 待 runall）
+- 17:47–17:53 全量 rebuild_all（字表 3354 字，508 幕 + 模板；共享引擎仍 1 份，主文件 16.24 MB）；`patch_wo_grimm_split.py` 已打进主 HTML；`rebuild_all.py --tabs=hd_g05,hd_g19,wo_grimm` 嵌入拆分幕。
+- 单项回归：check_poly 51/51（43.7–57.2 s）；check_r38 10 幕 0 不合格；app_check4 hd_g05 两幕（55.7 / 97.4 s）、hd_g19 两幕（68.3 / 73.7 s）0 报错；app_check2 wo_grimm / wo_grimm_rows / wo_grimm_more、fp_economy 4 幕 0 报错；app_check3 vv_take_out 两幕 0 报错；app_check6 导图进行中。
