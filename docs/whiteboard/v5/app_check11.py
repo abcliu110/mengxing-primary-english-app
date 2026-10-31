@@ -13,7 +13,7 @@ async def main():
         await pg.evaluate("""localStorage.setItem(STORAGE_KEY, JSON.stringify({wordRecords:{'V6_MORPH_20':{status:'mistake',streak:0,streakDays:['2026-10-30'],wrongCount:2},'V6_日常_1':{status:'mastered',streak:3,streakDays:['2026-10-01'],wrongCount:0}}}))""")
         await pg.reload(); await pg.wait_for_timeout(1500)
         r = await pg.evaluate("""(()=>{const ids=new Set(VOCAB_DB.map(w=>w.id)); const a=Object.keys(WORD_ALIAS); return {n:a.length, inList:a.filter(k=>ids.has(k)), noMain:a.filter(k=>!ids.has(resolveWordId(k))), noEntry:a.filter(k=>!VOCAB_ALIAS_ENTRY[k]), see:Object.values(WORD_SEE).flat().filter(x=>/^G\\d_|^V6_/.test(x[1])&&!ids.has(x[1])), grp:Object.values(WORD_GROUP_MEMBERS).flat().filter(m=>!ids.has(m)), rec:appState.wordRecords, cnt:countDomainStatus('vocab')}})()""")
-        if r['n'] != 51 or r['inList'] or r['noMain'] or r['noEntry'] or r['see'] or r['grp']: bad.append(f'别名表 {r}')
+        if r['n'] < 51 or r['inList'] or r['noMain'] or r['noEntry'] or r['see'] or r['grp']: bad.append(f'别名表 {r}')
         if list(r['rec']) != ['V6_日常_1'] or r['rec']['V6_日常_1']['status'] != 'mistake' or r['rec']['V6_日常_1']['wrongCount'] != 2: bad.append(f'迁移 {r["rec"]}')
         EXP = [('V6_MORPH_20', 'V6_日常_1', '过去式'), ('V6_颜色_1', 'G2_0452', '美式'), ('V6_颜色_12', 'V6_颜色_11', '美式'), ('V6_MORPH_16', 'V6_家庭_20', '复数'), ('V6_核心_14', 'V6_核心_13', '物主代词'),
                ('G5_0689', 'G5_0689', '英式'), ('G5_0374', 'G5_0374', '美式'), ('G6_273', 'G6_273', '原形'), ('G4_174', 'G4_174', '三单'), ('G1_P01', 'G1_P01', '单词卡'), ('V6_核心_0', 'V6_核心_0', '词组卡')]

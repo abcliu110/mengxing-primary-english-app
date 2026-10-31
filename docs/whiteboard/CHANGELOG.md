@@ -2677,3 +2677,12 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 重音规律表：名前动后「铁律」→规律（至少 170 对，反例 visit / report）；后缀「100%」→通常 + 例外。口腔省力原理 a→an 方向改正（数据；fp_economy 场景归 r38）。
 - 例句：best→better（两项比较）4 处、very delicious、clean river、The rain stopped and look… 改；G39 删 2 句、G20 删 1 句（进行时表将来）；词卡 transport 例句改 Buses and subways are public transport.；例句库 3809 → 3806。`src/patch_b2_grex.py` 只重写 GRAMMAR_EX_JSON 块（`patch_grammar_examples.py` 的函数块替换已与后来的补丁不兼容，重跑会冲掉 lab-entry）。
 - 新检查 `src/grammarcheck.py` 入 runall：系动词后标 O、非法角色、16 条已纠正硬伤黑名单；改前 39 处 → 0。对照表 `lab/audit35/GRAMMAR_FIX.md`。回归：jscheck / mdcheck / mobilecheck / insightcheck / app_check8–15 / tense_matrix / wo_grimm / hd_phonics / oral_func 通过；playercheck 改前改后都报 1–3 处（负载下 iframe 尺寸时序，未改播放器）。
+
+
+## 2026-10-31 16:05 JST · 决策 35 A2 第 2 批：Dolch 视觉高频词全覆盖（道 1 l1_data）
+- 来源：Dolch 1936 / 1948，按 Wikipedia「Dolch word list」(oldid=1362792935) 分级转录 221 个非名词 → `lab/audit35/dolch220.json`。改前在库 201 / 221。
+- 新建 9 个完整词条：into、soon、as、around、off、pull、upon、own、shall（into / as / upon / shall 走功能词卡挂 G14 / G37 / G25）。11 个屈折 / 缩写形式建别名词条并到原形（said→say、goes / going / does / done / don't → go / do、has→have、got→get、been→be、could→can、would→will），主卡显示「过去式：said」类标签。A2 第 1 批补了原形后，was / were → be、better / best → good、worse / worst → bad 也并进去。WORD_ALIAS 51 → 68（`lab/audit35/a2_alias.json`，`patch_vocab_add.py` 写进 WORD_ALIAS 表）。
+- 202 个词条加首屏字段 `dolch`（pre-primer / primer / grade1–3）；界面暂不显示，`sight_type`（闪认训练）未改。对照表 `lab/audit35/A2_DOLCH.md`。
+- `kebiaocheck.py` 改为课标二级 500 + Dolch 221 都必须在库；`app_check_vocab_add.py` 加别名检查（不在列表、开卡转主词条、主卡有标签）；`app_check11.py` 别名数 `!= 51` 改 `< 51`（别名表会继续增长）。
+- 验收：kebiaocheck 0 不合格（Dolch 221/221）；phoncheck 1567 词 0；app_check_vocab_add 69 词 + 17 别名 0 不合格；app_check11、app_check9、app_check6、jscheck 通过。
+- 遗留：人教社区词表缺词（merry、kick、poor、guess、different 等约 40 个单词 + 200 多条短语）只作线索，要对照教材核实后再补；Dolch 名词表（95 个）未做。
