@@ -2,13 +2,15 @@
 // 内容来源（R1 零丢失）：src/cases/hd_g31.js 案例 3；对照清单 lab/INVENTORY_HD_G31_3_V5.md
 // 角色关键帧：sprites/hdg31_3.js（人物先行帧库 cast/）
 // 决策 36 ①2（fix36_cross）：只放本课的板，口诀进讲解字幕
+// 决策 36 ①3（fix36_trunc）：截断句补全、按语义拆行、剥 ** / 反引号、字幕给译文
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/hdg31_3.js';
 const ACTS = {"*": ["l_wave", "l_speak", "l_laugh"]};
 const ITEMS = [
   ['w', 'G31 底层原理'],
   ['w', '特殊疑问词全家福 (5W1H 精准分工) —— what / who / whose / where / when / why / which / how —— 缺什么信息就派谁站句首！'],
-  ['w', '【为什么英语疑问词几乎都以 wh- 开头，而且必须放在句首第一个词？】英语把疑问词放在句首第一位（焦点前置），就像给'],
+  ['w', '【为什么英语疑问词几乎都以 wh- 开头，而且必须放在句首第一个词？】'],
+  ['w', '英语把疑问词放在句首第一位（焦点前置），就像给听话人大脑发送一条检索指令：“请立刻去搜索【地点 Where / 时间 When / 人物 Who / 原因 Why】！”'],
   ['w', '🔬 Why 和 Because 锁死配对'],
   ['w', '用 Why 提问，回答必用 Because ...'],
   ['w', 'Which 哪一个：在几样里挑一个'],

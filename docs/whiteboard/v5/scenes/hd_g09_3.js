@@ -2,13 +2,15 @@
 // 内容来源（R1 零丢失）：src/cases/hd_g09.js 案例 3；对照清单 lab/INVENTORY_HD_G09_3_V5.md
 // 角色关键帧：sprites/hdg09_3.js（人物先行帧库 cast/）
 // 决策 36 ①2（fix36_cross）：只放本课的板，口诀进讲解字幕
+// 决策 36 ①3（fix36_trunc）：截断句补全、按语义拆行、剥 ** / 反引号、字幕给译文
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/hdg09_3.js';
 const ACTS = {"*": ["l_read", "l_hand0", "l_think"]};
 const ITEMS = [
   ['w', 'G09 底层原理'],
   ['w', '指示代词四兄妹 (this / that / these / those) —— 近处单数 this、远处单数 that；近处复数 these、远处复数 those！'],
-  ['w', '【为什么指示词也要分单复数？】英语讲究“数的一致”：指着 1 个苹果说 this is an apple，指着一堆苹'],
+  ['w', '【为什么指示词也要分单复数？】'],
+  ['w', '英语讲究“数的一致”：指着 1 个苹果说 this is an apple，指着一堆苹果必须同步把指示词和系动词都变成复数 these are apples！'],
   ['w', '🔬 深度机制 3：指示代词『距离远近 × 单复数』空间雷达四宫格'],
   ['w', '👉 近处 + 单数(1个)'],
   ['w', 'this is 🍎'],
