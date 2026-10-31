@@ -2528,3 +2528,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 没有少于 5 句的语法点；少于 15 句：G17 13, G23 13, G37 5, G39 13。数量表 `lab/GRAMMAR_EXAMPLES_REVIEW.md`。
 - 新增 `src/build_grammar_examples.py`、`lab/GRAMMAR_EXAMPLES.json`、`src/patch_grammar_examples.py`（主文件 +190 KB）；`patch_affix_vocab.py` 重跑不再冲掉后面的例句块；新回归 `v5/app_check14.py` 入 runall；`runall.py --full` 全过。
 
+
+### 2026-10-31 09:50 JST · 决策 33 ②：首页 5 入口、撤首页 13 张实验室卡
+- 用户 2026-10-31 09:10 确认决策 33 ②–⑤ 按原方案连续做完。
+- 首页「继续上次」之后只剩 5 张入口卡：📚 单词 / 🧩 语法 / 💬 口语 / 🧠 底层原理 / 🎯 练习与档案；我的学习、综合自测、总地图三个按钮移进第 5 张卡。原闯关厅横幅、三大总枢小卡、王炸实验室入口卡、方法论小卡撤下首页，内容不删、换位置。
+- 新页 `principles_hub`、`practice_hub`；13 个实验室页签按 B 分进单词（发音与拼读 / 构词与变形 / 词语关系）、语法（时态 / 句型与写作，挂在语法分类页末尾）、底层原理；实验室页面包屑与页签条按所属分区，旧入口照常可用。
+- 新增 `src/patch_menu_home.py`、回归 `v5/app_check15.py`（入 runall）；anchorcheck 加 MENU_V2 标记组；`runall.py --full` 全过。
