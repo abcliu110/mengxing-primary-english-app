@@ -2708,3 +2708,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - hd_g14_1 空间：三张图都写「在」→ 预测「英语为什么分三个词」→ 体积 / 接触面 / 点依次闪、in / on / at 落下（76 s）。
 - hd_g14_2 时间：时间卡飞进三格 → 预测 the morning（盒子）→ 预测 Sunday morning（桌面，锁定具体某天）→ noon / night 例外钉靶心 → 规则（116 s）。**纠正**旧板「IN (>1天长时段容器)…in the morning」矛盾；加 weekend 英式 at / 美式（人教）on。
 - 两幕 check_r38 0 不合格、390 px 联络表自检过；未 embed。
+
+## 2026-10-31 17:06 JST · WIP 决策 38 第 5 幕 hd_g14 ③ + 啊哈卡
+- hd_g14_3 状态隐喻：预测「红衣服包住进哪格」→ in red / in English、on duty / on foot / on TV、at work / look at / be good at 归位（110 s，check_r38 0）。啊哈卡 `lab/audit38/aha/05_hd_g14.md`（含纠错说明）。
