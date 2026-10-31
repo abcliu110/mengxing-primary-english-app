@@ -12,7 +12,9 @@ PAGE = open(V5 / 'check_oral.py', encoding='utf-8').read().split('PAGE = """', 1
 def know_of(src):
     m = re.search(r'export const KNOW = (\[.*?\n\]);', src, re.S)
     if not m: return None
-    return [x.replace('**', '').replace('`', '') for x in json.loads(re.sub(r",\s*\]$", "]", m.group(1).replace("'", '"')))]
+    import subprocess
+    arr = json.loads(subprocess.run(['node', '-e', 'console.log(JSON.stringify(eval(process.argv[1])))', m.group(1)], capture_output=True, text=True, check=True).stdout)
+    return [x.replace('**', '').replace('`', '') for x in arr]
 
 async def main():
     names = [a for a in sys.argv[1:] if not a.startswith('--')]; bad = 0
