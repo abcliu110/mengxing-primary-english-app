@@ -1,7 +1,7 @@
-// 🎞️ orange · 一词多义第1幕 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 🎞️ orange · 一词多义第1幕 —— 决策 38 ⑩ 啊哈重做（一词多义通用版式 scenes/poly.js；啊哈卡 lab/audit38/aha/10_hd_poly.md）
 // 内容来源（R1 零丢失）：src/cases/hd_poly_g3_113.js 案例 1；对照清单 lab/INVENTORY_HD_POLY_G3_113_1_V5.md
 // 角色关键帧：sprites/hdpg3113_1.js（人物先行帧库 cast/）
-import { autoBuild } from './auto.js';
+import { polyBuild } from './poly.js';
 import * as SP from '../sprites/hdpg3113_1.js';
 const ACTS = {"*": ["l_books", "l_read", "l_think"]};
 const ITEMS = [
@@ -17,4 +17,4 @@ const ITEMS = [
   ['w', '多义第1幕'],
   ['s', 'I\'d like an orange.', '🍊 第一幕【核心本义·水果橙子】：果盘里放着一个圆溜溜、酸甜多汁的橙子（an orange）。']
 ];
-export default function build() { return autoBuild(SP, { title: '🎞️ orange · 一词多义第1幕', items: ITEMS, acts: ACTS }); }
+export default function build() { return polyBuild(SP, { title: '🎞️ orange · 一词多义第1幕', items: ITEMS, acts: ACTS }); }

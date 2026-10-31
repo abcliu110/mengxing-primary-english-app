@@ -1,7 +1,7 @@
-// 🎞️ kind · 一词多义第1幕 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 🎞️ kind · 一词多义第1幕 —— 决策 38 ⑩ 啊哈重做（一词多义通用版式 scenes/poly.js；啊哈卡 lab/audit38/aha/10_hd_poly.md）
 // 内容来源（R1 零丢失）：src/cases/hd_poly_g3_0527.js 案例 1；对照清单 lab/INVENTORY_HD_POLY_G3_0527_1_V5.md
 // 角色关键帧：sprites/hdpg30527_1.js（人物先行帧库 cast/）
-import { autoBuild } from './auto.js';
+import { polyBuild } from './poly.js';
 import * as SP from '../sprites/hdpg30527_1.js';
 const ACTS = {"*": ["l_books", "l_read", "l_think"]};
 const ITEMS = [
@@ -17,4 +17,4 @@ const ITEMS = [
   ['w', '多义第1幕'],
   ['s', 'Our English teacher is very kind.', '🗂️ 第一幕【核心本义·家族类别】：果园里把同一品种（kind）的苹果归为一类。']
 ];
-export default function build() { return autoBuild(SP, { title: '🎞️ kind · 一词多义第1幕', items: ITEMS, acts: ACTS }); }
+export default function build() { return polyBuild(SP, { title: '🎞️ kind · 一词多义第1幕', items: ITEMS, acts: ACTS }); }
