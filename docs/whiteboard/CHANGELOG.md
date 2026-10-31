@@ -2640,3 +2640,10 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 顺带修：O1 拆分后 VOCAB 重字段挂在原型 getter 上，单词卡白板模板用 JSON.stringify 注入只拿到轻字段——词源 / 构词 / 例句框一直是空的（G1_001 幕长 37 s → 83 s）。新增 `wb5PlainData`。注意：模板幕现在有的超过 90 s（G6_Q09 153 s），R37-07 / 决策 38 ① 处理。
 - 字体核对：App 内 LXGW WenKai 子集 618208 B，与 build.mjs 按 font_chars.txt 现做的子集逐字节相同（sha1 fca113bc…），模板重建后共享块数 373 不变，没有多带字体（交接里「343 KB」不成立）。环境：沙箱重置后需 `pip install playwright brotli` + `playwright install chromium` + `sudo -n env PYTHONPATH=~/.local/lib/python3.12/site-packages python3 -m playwright install-deps chromium`。
 - app_check5（--full）原来因 R37-01 的 ⛶ 全屏按钮被算成幕按钮一直报 BAD，已改选择器，55 词 0 不合格。
+
+### 2026-10-31 15:40 JST · 决策 38 ① 单词卡模板 v6（啊哈重做）+ insightcheck
+- 概念原语 `v5/lib/concept.js`：词块移动 / 换装（chip、move、swap）、并排对比（split）、遮挡揭晓（cover）、时间轴（axis）、拖放挂钩（slot、drop）、预测停顿（predict，≥3 s 倒数）、大图（pic）、标签 / 箭头；`C.aha` 登记啊哈卡、`C.rule` 记规则命名时刻、`C.finish()` 把啊哈卡 / 预测 / 原语用量 / 板上文字挂到 `globalThis.__WB5_INSIGHT__`。全部只由 t 决定。
+- `v5/scenes/wordcard_tpl.js` v6（不再用讲解员）：① 看图猜词——英文盖住先猜 3 s → 揭开（音标、词性中文）→ 两色音节块拆开再合上 → 再盖住自己说（第 2 个 3 s）；② 来历——有 ETYM_DB 互证词源走时间轴一站站换装、有 MORPH_DB 真实构词两块拼进格子、都没有就盖第一个元音字母先猜，并明说「来历两本词源词典还没对上，先不讲」；巧记 / 记忆联想进字幕并标「不是真实词源」；③ 词库例句打散成词块先猜第一个，再逐块落格朗读（>8 词分两行，整句不截断）；句法提示 / 拼写提醒进字幕。啊哈卡 `lab/audit38/aha/01_wordcard_tpl.md`。
+- App：`src/patch_r38_wordcard.py`（标记 R38_01_WORDCARD）注入词条时带上 `__etym / __morph`（etymLookup，互证收录才有）。
+- `v5/check_wordcard_tpl.py` 的 R1 按决策 38 修订改为「知识点不丢」（`knowledge()`：每幕该讲的知识点在板上词块 / 标签、讲解字幕、朗读字幕任一处出现）：1425 词 × 3 = 4275 幕，知识点 13071 条缺 0、0 报错、4275/4275 确定，时长 12–35 s（中位 18 s）。`app_check5` 55 词 0 不合格。
+- 新检查 `src/insightcheck.py` 入 runall：import 了 concept.js 的幕强制（啊哈卡四项、≥3 s 预测、规则不早于第一个预测结束、板上文字面积 ≤ 40%、0 报错；模板按 7 个样本词 × 3 幕），其余幕只报告。SOP §17 验收表加 13–16（啊哈卡、预测停顿、遮字幕测、R1/R4 修订）。runall 全过。

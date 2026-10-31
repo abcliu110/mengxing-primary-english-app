@@ -1,12 +1,12 @@
 # 普通单词卡通用白板模板 · 逐词验收报告
 
-> 由 `v5/check_wordcard_tpl.py` 生成（设计：`DESIGN_MINDMAP_WORDCARD.md` §2.4）。模板：`v5/scenes/wordcard_tpl.js` + `wordcard_items.js`，App 运行时注入词条现场排版。
+> 由 `v5/check_wordcard_tpl.py` 生成。模板 v6（决策 38 ①，啊哈卡 `lab/audit38/aha/01_wordcard_tpl.md`）：`v5/scenes/wordcard_tpl.js` + 概念原语 `v5/lib/concept.js`，App 运行时注入词条现场排版。
 
 - 词数：1425（VOCAB_DB 全部普通词：非多义、非功能词）× 3 幕 = 4275 幕
-- R1：旧舞台文字 54078 条（完整原句），缺 0 条
+- 知识点（R1 修订：知识点不丢，板上 / 讲解字幕 / 朗读字幕任一处）：13071 条，缺 0 条
 - 报错：0 幕；页面控制台错误 0 条
 - 确定性：4275/4275 幕同一时刻两次绘制像素一致
-- 时长：最短 50s · 中位 99s · 最长 155s
+- 时长：最短 12s · 中位 18s · 最长 35s
 
 ## 不合格清单（0）
 
