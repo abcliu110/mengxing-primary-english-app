@@ -134,7 +134,7 @@ export default function build() {
   T = narr('book 最后是 /k/，声带不震，-s 就顺势读不震的 /s/。', T + 0.4, 4.4);
   C.chip({ text: 'bag+s', x: 1120, y: 520, size: 64, from: T, out: B0 + 30 });
   sound(T + 0.4, T + 4.4, '/ɡ/ → /z/', true);
-  const zChip = C.chip({ text: '?', x: 1440, y: 520, size: 64, from: T + 0.4, bd: OR, col: OR, out: T + 30 });
+  const zChip = C.chip({ text: '?', x: 1440, y: 520, size: 64, from: T + 0.4, bd: OR, col: OR, out: B0 + 30 });
   C.swap(zChip, T + 2.2, '/z/', RED, '#fff', RED);
   T = narr('bag 最后是 /ɡ/，声带在震，-s 就顺势读会震的 /z/。', T + 0.4, 4.4);
   C.label('不震 → 尾巴不震', 1300, 700, { size: 44, col: GREEN, from: T, out: B0 + 30 });
