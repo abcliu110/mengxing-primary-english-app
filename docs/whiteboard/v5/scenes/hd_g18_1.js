@@ -38,8 +38,8 @@ export default function build() {
   const say = (t, en, zh, key = []) => { const L = Math.max(sayLen(en), readT(zh) + 0.6); K.say(t, en, { zh, key, len: L }); return t + L + 0.5; };
 
   // ---- 版面 ----
-  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], CX = i => 180 + i * 140, LX0 = 90, LX1 = 1110, PY0 = 190, PY1 = 470;
-  const RX0 = 1220, RX1 = 1820, RY0 = 190, RY1 = 640, DOTY = 420;
+  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], CX = i => 180 + i * 140, LX0 = 90, LX1 = 1110, PY0 = 240, PY1 = 520;
+  const RX0 = 1220, RX1 = 1820, RY0 = 240, RY1 = 690, DOTY = 470;
   C.label('📘 G18 底层原理 · 一般现在时', 60, 1060, { size: 34, col: GREY, from: 0.2, align: 'left' });
 
   let T = 0.3;
@@ -61,7 +61,7 @@ export default function build() {
   const W0 = Math.max(2.4, tIntro2 - 0.4), DAY = 0.95;
   const leoKeys = [[0, 'l_bed0']];
   DAYS.forEach((d, i) => { const t = W0 + i * DAY; leoKeys.push([t, 'l_bed0'], [t + 0.3, 'l_bed1'], [t + 0.6, 'l_bed2']); });
-  const leo = K.actor({ keys: leoKeys, x: 250, ground: 905, h: 330, reveal: W0 - 0.5 });
+  const leo = K.actor({ keys: leoKeys, x: 250, ground: 910, h: 300, reveal: W0 - 0.5 });
   K.prop((g, t) => {   // 高亮格
     const p = (t - W0) / DAY; if (p < 0 || p >= 7) return;
     const i = Math.floor(p), a = Math.min(1, (p - i) * 4, (1 - (p - i)) * 4 + 0.3);
@@ -89,9 +89,9 @@ export default function build() {
   T = C.predict(T, { q: '这句话说的是左边「一周」（天天这样），还是右边「此刻」（这一秒）？', sec: 4 });
   // 揭晓
   const REV = T + 0.2;
-  C.move(sent, REV, 600, 520, 0.8);
+  C.move(sent, REV, 600, 568, 0.8);
   C.swap(sent, REV + 0.9, 'I get up at 7:00 every morning.', INK, '#fff', OR);
-  C.label('every morning ✔', 600, 590, { size: 34, col: OR, from: REV + 1.0, out: REV + 6 });
+  C.label('every morning ✔', 600, 640, { size: 34, col: OR, from: REV + 1.0, out: REV + 6 });
   K.at(REV + 1.0).curve([[70, DOTY + 40], [CX(0), DOTY], [CX(1), DOTY - 6], [CX(2), DOTY + 4], [CX(3), DOTY - 4], [CX(4), DOTY + 6], [CX(5), DOTY - 4], [CX(6), DOTY], [1140, DOTY - 40]], { col: OR, w: 6, speed: 1500 });
   C.label('← 以前', 120, PY1 + 48, { size: 32, col: GREY, from: REV + 1.6 });
   C.label('以后 →', 1060, PY1 + 48, { size: 32, col: GREY, from: REV + 2.4 });
@@ -104,11 +104,11 @@ export default function build() {
   C.swap(sent, T, S2, INK, '#fff', OR);
   T = say(T + 0.3, S2, '我们经常放学后踢足球。', ['often']);
   BALL.forEach((i, k) => C.pic({ emoji: '⚽', x: CX(i), y: DOTY - 70, size: 56, from: T - 2.4 + k * 0.35 }));
-  C.label('often：不是天天，也一次又一次', 600, 600, { size: 32, col: GREY, from: T - 1.0, out: T + 2.6 });
+  C.label('often：不是天天，也一次又一次', 600, 650, { size: 32, col: GREY, from: T - 1.0, out: T + 2.6 });
   T += 2.4;
 
   // 第 3 句：地球绕太阳（永远如此）
-  const S3 = 'The earth goes around the sun.', OX = 640, OY = 760, OR_R = 105, ORB0 = T;
+  const S3 = 'The earth goes around the sun.', OX = 640, OY = 790, OR_R = 105, ORB0 = T;
   C.swap(sent, T, S3, INK, '#fff', OR);
   C.pic({ emoji: '☀️', x: OX, y: OY, size: 90, from: T, until: 1e9 });
   K.prop((g, t) => {
@@ -122,7 +122,8 @@ export default function build() {
   const ORB_END = T;
   // 收起：句子卡、太阳、Leo 淡出（太阳用 until 不好算，盖一层板色）
   K.prop((g, t) => { const a = clamp((t - ORB_END) / 0.4); g.save(); g.globalAlpha = a; g.fillStyle = '#FBFBFB'; g.fillRect(OX - 120, OY - 80, 240, 160); g.restore(); }, { from: ORB_END, z: 4.5 });
-  sent.keys.push([ORB_END, [600, 520]]);
+  sent.keys.push([ORB_END, [600, 568]]);
+  K.prop((g, t) => { const a = clamp((t - ORB_END) / 0.4); g.save(); g.globalAlpha = a; g.fillStyle = '#FBFBFB'; g.fillRect(60, 600, 380, 320); g.restore(); }, { from: ORB_END, z: 4.5 });   // Leo 退场
   void leo;
 
   // 第二次预测：三张时间词卡各去哪边
@@ -132,7 +133,7 @@ export default function build() {
   T = narr('哪些时间标志词提醒我们要用“一般现在时”？', P0, 3.0);
   T = C.predict(T, { q: '三张时间词卡：哪张贴进左边「一周」？哪张飞去右边「此刻」？哪张两边都不是？', sec: 4 });
   const R2 = T + 0.2;
-  C.drop(oc[0], R2, 600, 640); C.swap(oc[0], R2 + 0.75, OPT[0], INK, '#ecfdf5', GREEN);
+  C.drop(oc[0], R2, 600, 690); C.swap(oc[0], R2 + 0.75, OPT[0], INK, '#ecfdf5', GREEN);
   C.drop(oc[1], R2 + 0.9, (RX0 + RX1) / 2, RY1 + 50); C.swap(oc[1], R2 + 1.65, OPT[1], INK, '#fff', OR);
   C.move(oc[2], R2 + 1.8, 1360, 880, 0.6); C.swap(oc[2], R2 + 2.4, OPT[2], GREY, '#f3f4f6', GREY);
   C.label('→ 已经过去了，别的课', 1360, 950 - 10, { size: 30, col: GREY, from: R2 + 2.5, out: R2 + 6 });
@@ -143,9 +144,9 @@ export default function build() {
   T = narr('① 三大用法：日常习惯与规律作息；现在的状态与爱好；客观真理与自然事实', T, 4.2);
   T = narr('② 动词形式：I / you / we / they / 复数 直接用动词原形；三单主语加 -s/-es', T, 4.4);
   const FIN = T;
-  C.chip({ text: '经常 · 习惯 · 真理', x: 760, y: 730, size: 40, from: FIN - 8.0, col: BLUE, bd: BLUE, z: 7, bold: true });
-  C.chip({ text: 'I / you / we / they → 原形', x: 760, y: 800, size: 34, from: FIN - 4.0, z: 7 });
-  C.chip({ text: 'he / she / it → +s / -es', x: 760, y: 870, size: 34, from: FIN - 3.2, col: OR, bd: OR, z: 7 });
+  C.chip({ text: '经常 · 习惯 · 真理', x: 760, y: 755, size: 40, from: FIN - 8.0, col: BLUE, bd: BLUE, z: 7, bold: true });
+  C.chip({ text: 'I / you / we / they → 原形', x: 760, y: 820, size: 34, from: FIN - 4.0, z: 7 });
+  C.chip({ text: 'he / she / it → +s / -es', x: 760, y: 882, size: 34, from: FIN - 3.2, col: OR, bd: OR, z: 7 });
   K.say(FIN + 0.2, 'I get up at 7:00 every morning.', { zh: '一般现在表经常，习惯真理它担当；every day, often 与 usually，看到它们用原形（三单主语加 -s）！', key: ['every', 'morning.'], len: 7.5 });
   T = FIN + 0.2 + 7.5 + 1.5;
   K.end(T);

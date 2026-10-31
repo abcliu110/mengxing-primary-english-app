@@ -2692,7 +2692,13 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `scenes/oral.js`：按角色 emoji 选人物（女性 emoji → Mia 帧组，其余 → Leo 帧组，Leo 站右边镜像），标签 / 开场字幕 / 预测问句去掉 Leo、Mia 名字，修「👧 角色 A · Leo」错配（A 女 B 男 48 幕、同性 38 幕）。
 - 主 HTML 未动（待打包 + check_oral + runall）。
 
-## 2026-10-31 17:03 JST · WIP 决策 38 第 3 幕 hd_g18：场景重做 + 通用验收
+## 2026-10-31 16:57 JST · WIP 决策 38 第 3 幕 hd_g18：场景重做 + 通用验收
 - `v5/scenes/hd_g18_1.js` 改用 concept.js：左「一周」日历每天 7:00 落点 + Leo 每天起床 vs 右「此刻 📸」踢球快照 → 预测句子属于哪边 → 点连成跨以前 / 以后的环线；often 4 天 ⚽；地球绕太阳；第二次预测三张时间词卡归位 → 规则字幕 + 要点卡。why_explanation 按 GRAMMAR_DB 补全（旧板截断）。
 - 新 `v5/check_r38.py`：手工重做幕验收（场景 `export const KNOW` 每条须在板上 / 讲解 / 朗读字幕出现 + 啊哈卡 / 预测 / 规则顺序 + 确定性 + 0 报错）。hd_g18_1：0 不合格，102 s。
 - 口语 144 幕 `rebuild_all.py --tabs=hd_oral` 仍在后台重建角色包；主 HTML 未提交。
+
+## 2026-10-31 17:01 JST · WIP 决策 38 第 3 / 4 幕：hd_g18 联络表自检 + hd_g19 三单 -s 重做
+- hd_g18_1：390 px 联络表自检后下移两块板（避开两行讲解字幕）、Leo 缩小并在第二次预测前退场；仍 check_r38 0 不合格。
+- hd_g19_1 改 concept.js：s 勋章——The boy[s] like vs The boy like → 预测勋章去哪 → 飞到 likes；主语轮换勋章飞走 / 飞回；He go ✗→goes；预测 do 出场 → 勋章被吸走变 does、like 回原形；加法 / 读音 / 语境 / 口诀（why、口诀按 GRAMMAR_DB 补全）。啊哈卡 `lab/audit38/aha/04_hd_g19.md`。check_r38 0 不合格，140 s。
+- `check_r38.py` 的 KNOW 解析改用 node 求值（含 \' 转义的句子曾被误判缺失）。
+- 两幕都还没 embed（等口语 144 幕重建嵌入完成，避免两个进程同时写主 HTML）。
