@@ -2766,3 +2766,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:42 JST · 决策 38 第 15 幕联络表复查修残留（WIP）
 - fp_economy_1：bag+s 的 /z/ 卡片在过去式段残留 → 跟本段一起淡出；联络表复查无叠字。runall 仍在跑（已过 jscheck…app_check15 / vocab_add，到 tense_matrix）。
+
+## 2026-10-31 17:44 JST · 决策 38 主 HTML：口语 144 幕 oral.js + 第 3–9 幕嵌入（17:19 全量重建）回归通过
+- 主 HTML 提交：17:19 全量重建（共享引擎 1 份，含 concept / oral）+ 口语 144 幕 oral.js 版 + hd_g18 / hd_g19 / hd_g14 三幕 / hd_g05 / hd_g07 / hd_g37–39 / hd_fr01 四视角。
+- 回归：app_check4 hd_g18 / hd_g14 / hd_fr01 / hd_oral_sc01 全部挂载、0 报错；runall 快速档 2 项不过，都不是本 HTML 的问题：app_check8 V6_MORPH_26（HEAD 既有）、insightcheck wo_grimm_1 板上文字 44% > 40%（读的是 out/ 里未嵌入的第 14 幕新场景，接下来修）。
