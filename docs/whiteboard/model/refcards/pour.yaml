@@ -1,0 +1,67 @@
+# 动作事实卡 · 倒（液体倾倒 pour）
+# 依据 REWRITE_TECH_PLAN §4 / §8.5：事实卡是原语的实现约束 + 验证层第 5 项（参照对比审查）的核对表。
+# 本卡吸收 boundedness_1 既有教训（咖啡壶事件两轮修正）并泛化到一切带出口的容器（壶/瓶/杯/罐）。
+
+id: refcard-pour
+action: pour
+title: "倒：液体从容器出口倾倒而出"
+version: 1
+updated: 2026-11-01
+primitive: pour        # 白板原语名；spec 的 invariants 引用本卡 id
+
+refs:
+  - id: pour-photo-1
+    kind: photo
+    file: refs/pour_teapot_stream.jpg
+    source: "Vecteezy 图库照片（茶壶向杯中倒茶，侧面机位）"
+    url: "https://es.vecteezy.com/foto/68575812-un-taza-de-te-con-seco-hojas"
+    shows: "壶身倾斜约 35–40°，壶嘴尖为壶的最低点；液柱自嘴尖脱离、近竖直落入杯中，下段明显变细；倒的过程中壶保持倾斜未回正"
+  - id: pour-photo-2
+    kind: photo
+    file: refs/pour_kettle_spout.jpg
+    source: "BoldSky 健康栏目配图（茶壶倒热水入杯，黑白照片）"
+    url: "https://www.boldsky.com/health/wellness/2019/health-benefits-of-drinking-hot-water-128631.html"
+    shows: "壶嘴口沿是全壶最低点，细液柱从嘴尖正下方脱离并竖直下落；壶腹、壶身任何部位都没有液体流出"
+  - id: pour-text-1
+    kind: text
+    source: "Wikipedia: Teapot effect（茶壶效应）"
+    url: "https://en.wikipedia.org/wiki/Teapot_effect"
+    shows: "倒得太慢/出口未到位时液体不脱离出口成柱，而是贴着出口外壁往下淌（dribbling）——成柱与贴壁是同一出口的两种状态，液体永远只从出口离开容器"
+  - id: pour-text-2
+    kind: text
+    source: "ScienceABC: Why Does Water Stick To Glass When Pouring?"
+    url: "https://www.scienceabc.com/eyeopeners/why-do-liquids-sometimes-run-down-the-side-of-the-container-when-they-are-poured-out"
+    shows: "流速/倾角决定液柱在唇边脱离还是被表面张力锚住沿外壁下淌；唇缘尖锐、脱离点明确时液柱干净脱离"
+
+facts:
+  - id: pour-f1
+    statement: "出口唯一：液体只能从容器的出口（壶嘴尖、瓶口、杯沿最低点）离开容器；壶腹、壶身侧面、底部在任何倾斜姿态下都不出液。"
+    assertion: "出流原点与「出口」语义标签的距离 ≤10px；出流期间容器轮廓其他位置不得出现液柱或液滴源"
+    basis: [pour-photo-1, pour-photo-2, pour-text-1]
+  - id: pour-f2
+    statement: "出口朝下才出流：必须先把容器倾斜到出口轴线（壶嘴/瓶口的指向）低于水平、且容器内液面高于出口，液体才开始离开出口；轴线仍朝上或水平时，再倾斜也不出流。（咖啡壶事件教训：🫖 字形壶嘴天然上翘约 50°，倾角不够时壶嘴仍朝上，出流即为假。）"
+    assertion: "出流起始帧：出口轴线与水平面夹角 <0（朝下）；倾斜未到位期间的每一帧都不得有液柱"
+    basis: [pour-photo-1, pour-photo-2]
+  - id: pour-f3
+    statement: "先后顺序不可换：倾斜到位 → 出流开始 → 出流停止 → 容器才开始回正；回正途中与回正后都不能再有液柱。停流瞬间出口处可留一滴残滴。"
+    assertion: "stream_start ≥ tilt_settled_frame；stream_end ≤ return_start_frame（回正首帧之前液流已断）"
+    basis: [pour-photo-1]
+  - id: pour-f4
+    statement: "液柱轨迹：液柱离开出口时先沿出口轴线方向短距射出，随即被重力拉成近竖直下落，落点位于出口正下方附近；下落中因加速拉伸，液柱自上而下变细，不横飘、不上弯。"
+    assertion: "液柱下段与竖直方向夹角 ≤10°；液柱宽度沿下落方向单调不增；落点水平偏差 ≤ 出口直径量级"
+    basis: [pour-photo-1, pour-photo-2, pour-text-2]
+  - id: pour-f5
+    statement: "量守恒与结束状态：出流期间源容器液面只降、目标容器（或地面液摊）只增；容器回正后源容器内液面恢复水平。慢速收尾时最后一股液体可能贴出口下方的外壁淌下（茶壶效应），但贴壁流也只能出现在出口正下方的外壁上。"
+    assertion: "源液面高度单调不增、目标液面/液摊面积单调不减；回正末帧源容器液面为水平线；贴壁流若出现，其路径 ⊆ 出口正下方外壁"
+    basis: [pour-text-1, pour-text-2, pour-photo-2]
+
+invariants:
+  - "倒液必须从出口出：出流原点贴出口尖端（壶嘴尖/瓶口/杯沿最低点）"
+  - "出流前容器须倾斜到出口轴线朝下，停流之后容器才回正"
+  - "倾斜未到位与回正途中不得出流"
+  - "液柱出流后转为近竖直下落，落点在出口正下方"
+  - "源容器液面只降不升、目标液面只升不降（出流量守恒）"
+
+pending_refs:
+  - "液柱直径随下落距离的定量收缩比（现仅有定性断言『单调不增』）——待补慢动作逐帧参照"
+  - "不同出口形状（尖嘴/圆唇/直筒口）的临界出流倾角差异——待补参照"

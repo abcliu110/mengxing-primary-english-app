@@ -1,0 +1,59 @@
+# 动作事实卡 · 装杯（把颗粒/液体装入杯子 fill_cup）
+# 依据 REWRITE_TECH_PLAN §4 / §8.5。液体入杯的出流段服从 refcard-pour；本卡管「进入杯口之后」的堆积/液面形态。
+
+id: refcard-fill-cup
+action: fill_cup
+title: "装杯：颗粒或液体从上方装入敞口容器"
+version: 1
+updated: 2026-11-01
+primitive: fill
+
+refs:
+  - id: fill-photo-1
+    kind: photo
+    file: refs/fill_rice_grains.jpg
+    source: "photo-ac 图库照片（摄影师 yuto；量杯盛满米粒正倾倒回米堆）"
+    url: "https://ru.photo-ac.com/photo/22796426/how-to-cook-rice-(1)-search-word---rice-creator-name---yuto-@-photographer"
+    shows: "量杯装满时米粒堆出杯口成小丘；倾斜时颗粒从杯沿最低处成束流出、近竖直落下，下方米堆呈锥形堆积"
+  - id: fill-text-1
+    kind: text
+    source: "LibreTexts / Cambridge DoITPoMS: Granular Materials — Angle of Repose"
+    url: "https://eng.libretexts.org/Bookshelves/Materials_Science/TLP_Library_I/33:_Granular_Materials/33.4:_Angle_of_Repose"
+    shows: "点源倾倒颗粒形成锥形堆，坡角 = 休止角（多数颗粒物约 25–40°）；坡面过陡时颗粒以滚动方式下滑、把坡角维持在休止角"
+  - id: fill-ref-1
+    kind: cross_ref
+    source: "本库 refcard-pour（pour.yaml）的两张倒液照片"
+    url: ""
+    shows: "液体从上方注入杯中：液面保持水平、随注入单调上升，直到与杯口齐平"
+
+facts:
+  - id: fill-f1
+    statement: "入口在上方：被装材料只能从杯口上方落入，落点全程位于杯口轮廓之内；不得穿过杯壁从侧面进入，也不得在杯口之外凭空出现于杯内。"
+    assertion: "装填流（颗粒束/液柱）的水平位置 ⊆ 杯口内径范围；杯内填充量增长的首帧 ≥ 装填流到达杯内的帧"
+    basis: [fill-photo-1, fill-ref-1]
+  - id: fill-f2
+    statement: "颗粒堆丘：颗粒先落到杯底（空杯）或已有料面上，以落点为顶堆成锥形小丘；丘坡不超过休止角（约 25–40°），过陡处颗粒滚落摊平。杯中料面永远是『中高边低』的丘形，不是平面、不是凹坑。"
+    assertion: "任一帧料面轮廓为单峰丘形且坡度 ≤40°；料面高度只升不降（装填期间）"
+    basis: [fill-photo-1, fill-text-1]
+  - id: fill-f3
+    statement: "液体成平面：液体装杯时表面始终保持水平，随装入单调上升；同为『装满』，液体面平、颗粒面丘——两种形态不可混画。"
+    assertion: "液体液面在每一帧为水平线段；液面高度单调不减（装填期间）"
+    basis: [fill-ref-1]
+  - id: fill-f4
+    statement: "满与溢的判据不同：颗粒可堆出杯口以上成丘（丘坡仍 ≤ 休止角）；液体升到与杯口齐平即满，再继续注入必然沿杯口外壁溢出，不可能出现『液面高出杯口成丘』。源头停止（源容器回正/移开）在先，流入停止在后。"
+    assertion: "液体液面高度 ≤ 杯口平面，除非同帧画有外壁溢流；颗粒丘顶可高于杯口但坡角 ≤40°；流入停止帧 ≥ 源容器停止动作的帧"
+    basis: [fill-photo-1, fill-text-1, fill-ref-1]
+  - id: fill-f5
+    statement: "结束状态稳定：装填结束后杯中量只增不减、形态冻结（颗粒丘不自行塌成平面，液面保持水平）；杯中物减少只能经由『倒』（refcard-pour）或舀取等另一动作发生，不得凭空消失。"
+    assertion: "装填结束帧之后，杯内填充高度与轮廓逐帧不变（直至另一动作原语介入）"
+    basis: [fill-photo-1, fill-text-1]
+
+invariants:
+  - "装填物只从杯口上方进入，落点在杯口之内"
+  - "颗粒成丘（坡角 ≤ 休止角约 40°），液体成平面（液面水平），两种形态不混画"
+  - "液体齐杯口即满，再注必溢；颗粒可堆出杯口成丘"
+  - "装填期间杯内量只增不减，结束后形态冻结"
+
+pending_refs:
+  - "液体注入时的飞溅、气泡与漩涡形态——待补慢动作参照（当前动画一律不画飞溅）"
+  - "颗粒从高处落入已满杯子时的溅出范围——待补参照"

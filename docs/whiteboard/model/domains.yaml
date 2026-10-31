@@ -1,0 +1,202 @@
+# 知识模型 · 领域纲领 v1（Domain Insights，TECH_PLAN §3.0）
+# 通宵任务 T7 产出。依据：grammar.yaml 纲领草案（校订收编）、boundedness.yaml、
+# 五个修正包（T2–T6：grammar/vocab/expressions/scenes/frameworks fixes + updates）、
+# 五份审查报告（content-audit/report_*.md）概念层结论、方法研究综合笔记（分域结论）。
+# 规范：每条纲领含 id / domain / coreView / unifies（真实记录 ID）/ conflicts（旧库说法 + 裁决）/ basis（来源）。
+# 质量纪律：coreView 只写有来源支撑的真机制；无单一机制的领域如实声明组织方式，绝不编造统一律。
+# 入模顺序：纲领 → 概念 → 主张；挂不上任何纲领的数据先停待裁区。
+
+domains:
+
+  # ──────────────────────────────────────────────
+  - id: dom-vocab-etymology
+    domain: "词汇与词源"
+    coreView: "词的形式和意义都有真实的历史：词根词缀是历史上真发生过的拼合，词义是用法在时间里长出来的。所以'讲来历'必须可溯源——查得到的讲真词源（etymology），查不到的只能标成帮记的联想（mnemonic）；联想可以帮记忆，但永远不许冒充来历。真词源精细加工对记忆有实证支持（Boers），假词源则同时污染历史与机制两层。"
+    unifies:
+      - "VF-001–VF-046（vocab_fixes.yaml 词汇修正全量 46 条：VOCAB_DB + MH_VOCAB_DB + WORD_FORMATION_DB + WORD_RELATIONS_DB + HOMOPHONES_DB）"
+      - "VF-001、VF-002（watch：'手表'义经'守夜/值更'中转，非'注视'直接引申——MH 与 VOCAB 跨库联动订正）"
+      - "VF-003（light：'光' *leuk- 与'轻' *legʷʰ- 同形异源，拆分登记；与 frameworks T07、scene sf-003/sf-005 三处同题，以本条为准）"
+      - "VF-036（pre- 前缀）、VF-037（auto- 前缀）、VF-038（mis- 前缀）、VF-039（vis/vid 词根透明度分级）、VF-035（newspaper 复合词）——构词类修正"
+      - "ROYAL_TRUMPS T04 修正（frameworks_fixes：vis/vid/spect 家族由'全都和看有关'降为倾向 + 透明度分级）"
+    conflicts:
+      - "旧 MH_VOCAB etymology 字段被联想系统性殖民（watch=注视、friend 拆字、news=N/E/W/S 方位缩写等）：裁决——无词源学来源的'来历故事'一律降格 mnemonic 并标 linkedClaim，真词源以 Etymonline/OED 为准。"
+      - "旧库全称量词滥用（fish 绝不加 s、play+乐器必须 the 类表述散见于词汇字段）：裁决——降格 tendency 并登记例外，口径与 boundedness 模型对齐。"
+      - "旧库约 20 条 func_info 为模板套话冒充语法注、sight_type 分类半途而废（52% 为空）、英美音标混标（water 拼合式音标）：裁决——套话删除或改注，音标并注英美双式，全 App 统一（见 frameworks_update 联动表）。"
+    basis: "审查报告 report_vocab.md（354 单元全查，Etymonline/OED 逐条核对）；方法研究：Boers 词源精细加工（双重编码 + 加工水平；成人证据为主，对儿童属方向性借鉴，已在研究 D 节标注）；TECH_PLAN §3.2 分型规则。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-grammar
+    domain: "语法（形态与句法）"
+    coreView: "语法不是背下来的规矩清单，而是说话人为了让听话人准确接收信息而形成的标记系统：形式跟着功能走——数、人称、时、指称、连接，每一种形式变化都在替听话人传递一条信息（几个？谁做的？何时？指哪一个？两句是什么关系？）。儿童学语法 = 学每个形式在'干什么活'。（由 grammar.yaml 纲领草案校订收编）"
+    unifies:
+      - "grammar.yaml 全部 21 个概念：c-noun-plural、c-measure-units、c-possessive、c-articles、c-pronouns、c-some-any、c-adj-adv、c-numbers、c-prep-schema、c-connectors、c-agreement、c-tense、c-future、c-modals、c-sentence-order、c-negation、c-questions、c-sentence-types、c-there-be、c-comparison、c-verb-complement"
+      - "主谓一致组：g16-be-present、g17-be-past、g19-third-s、g19-s-history（复数 -s g01-plural-default 与三单 -s 同为向主语对齐的标记；-s 的来历是两条独立源流，见 g19-s-history）"
+      - "指称管理组：g05-sound-rule、g06-the-known、g06-zero-activity、g06-instrument、g07-case-position、g07-polite-order、g08-possessive-pair、g09-demonstratives（冠词/指示/物主代词细节与 dom-countability-articles 共管）"
+      - "时态标记组：g18-present-meaning、g20-progressive、g21-ed、g22-irregular-past、g22-groups-mnemonic、g23-did、g24-going-to、g24-etym、g25-will、g25-etym（'时态全句只标记一次'统摄 g23-did 的 did/does 回原形；时态的看法维度与 dom-tense-aspect 共管）"
+      - "连接与立场组：g10-basic-split、g10-request-some、g15-because-so、g15-and-or、g29-two-tracks、g29-some-any-neg（some/any、because/so 是说话人的立场与连接选择，不是铁律）"
+      - "信息包装组：g28-svo-order、g28-place-time（语序 = 先给事件、后给背景；与 dom-questions-info 共管）"
+    conflicts:
+      - "旧库六处假机制——G03 物理形状论、G19 三单 -s '补偿/勋章转移'叙事、G28 '焦点先行思维'自造标签、G15 '语法树会断'伪结构学、G04 '最重要的放前面'伪机制、G22 不规则过去式'一律内部元音变'：裁决——全部改判，机制只认功能与可查的历史事实（逐点对照见 grammar_update.md）。"
+      - "旧库八点绝对化措辞（G01'多数变 ves'、G03、G04、G06、G10、G14、G29、G31 的一律/绝不/必用类）：裁决——全部降格 tendency 并强制自带例外注记；G01 规则⑤、G07 规则③、G35 规则②'主动声明口诀不是真规则'的诚实体例立为全库范式。"
+      - "旧 G28 填空题把合乎语法的 'last night at home' 设为错误选项、G08 把 second floor 译作'一楼'：裁决——内容层已订正，测验答案今后独立复算（SOP 工序 2）。"
+    basis: "审查报告 report_grammar.md（G01–G40 全查，概念层：成立 4 / 基本成立 30 / 过度简化 5 / 错误 1）；基准来源 Quirk《英语语法大全》、CGEL、Swan《Practical English Usage》；grammar.yaml insight 草案。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-countability-articles
+    domain: "可数性与冠词"
+    coreView: "英语数东西之前，先决定把东西看成一个个的个体，还是一摊料、一类事——形式跟着说话人的看法（识解 construal）走，不跟着物体的物理形状走；看法定了，数法（直接数 / 借单位数）和冠词（第一次提 a、双方都知道是哪一个 the、做那件事时零冠词）跟着定。汉语量词是现成的正迁移资源：'一碗饭'的碗，就是英语借单位的老办法。（与 boundedness 模型 cl-packaging 同源同义）"
+    unifies:
+      - "boundedness.yaml 概念：c-countability、c-definiteness、c-zero-article、c-whole-material"
+      - "boundedness.yaml 主张：cl-packaging（识解总框架）、cl-cut-test（演示法 mnemonic)、cl-container（借单位）、cl-a-first、cl-the-known、cl-a-etym（a/an ← ān、the ← 指示词系）、cl-zero-func（机构名词功能读法）、cl-whole-material（双生活名词）"
+      - "boundedness.yaml 例外登记：xc-dual-life、xc-rice-grains、xc-homework-uncuttable、xc-bottle-water、xc-two-coffees、xc-generic-the、xc-piano、xc-hospital-us、xc-some-fish"
+      - "grammar.yaml 共管条：g03-construal（G03 改判后的识解口径）、g03-measure、g05-sound-rule、g06-the-known、g06-zero-activity、g06-instrument"
+      - "scene_fixes：sf-010（hd_g03_1 可数性台词换识解口径）、sf-029（双栖词移出必背不可数名单）、sf-031（冠词总口诀按听话人可识别性重写，含联动行 [255]）"
+      - "frameworks_fixes：ZH_EN_SYNTAX_CONTRAST 维度 5 修正（冠词铁律改写，与 cl-zero-func 互引）"
+    conflicts:
+      - "旧'第一性原理 ③ 物理边界感统摄律'及 GRAMMAR_DB G03、旧 boundedness、白板 hd_g03_1 三份拷贝的'没有固定形状，所以不能加 a 或 -s'：裁决——理论错误，识解说取代物理判据（反例：rice 颗粒分明不可数、furniture 件件有形不可数、cake/paper 双面）；三份拷贝已全部有修正文（boundedness 重写 + T2 + sf-010）。"
+      - "ZH_EN 对比库'单数可数名词绝要加冠词铁律'与自家零冠词内容（go to school / in bed / by bus）跨库自相矛盾：裁决——以本纲领为准，铁律改写为'指称具体事物时亮明身份，功能/活动读法零冠词'。"
+      - "旧'一刀切'演示被讲成定义/定律：裁决——降格 mnemonic（cl-cut-test)，对颗粒物与抽象名词失效，例外 xc-rice-grains、xc-homework-uncuttable 已登记。"
+    basis: "Langacker 认知语法识解说（bounded 是呈现方式而非物体属性；Nicolas 批评：有界既非必要也非充分）；Taylor 2002；方法研究 B 域结论（儿童讲法 = 照相机取景/镜头；汉语量词正迁移；冠词按 hearer identifiability，参 Gundel 共知层级、Ionin 波动假说揭示的 specificity 误用）；THEORY_AUDIT 对 ③ 家族的裁定。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-tense-aspect
+    domain: "时态与体"
+    coreView: "时态是两件事的组合，不是十二个格子：时间（过去 / 非过去，英语只有这两个形态时态）× 看法（体）——说话人把镜头放在哪里：全景看整件事（一般体）、钻进事件内部只看中间（进行体）、对准事情留给现在的痕迹（完成体）。将来不是一种'体'，是借 will（意愿的语法化）和 be going to（'走在路上'的语法化）谈未来。同一件事，选哪种看法，就选哪个时态。"
+    unifies:
+      - "frameworks_fixes TENSE_ASPECT_MATRIX_DB：库级更名（'常用时态速查网格（节选）'、'将来体'订正）、五条目统一'镜头-看法'讲法基线、future_simple（aspectLens + whySecret 词源定性）、present_prog（whySecret 改标联想、trapAlert 中 have 归类订正）、present_perfect（whySecret 收紧：对立点 = 是否点名过去时间 / 结果是否关乎现在）"
+      - "grammar.yaml 共管条：g18-present-meaning、g20-progressive、g21-ed、g22-irregular-past、g22-groups-mnemonic、g23-did、g24-going-to、g24-etym、g25-will、g25-etym（将来两条的语法化史在此登记为 etymology 型）"
+      - "scene_fixes：sf-037、sf-038（现在完成时口诀由'过去做完'换为'和现在有关系'，同幕两行合并一份）"
+      - "frameworks_fixes PITFALLS_DB 天坑 08（'必须强制变过去式'→'默认' + 历史现在时注 + 两步判据讲法）"
+      - "frameworks_fixes ROYAL_TRUMPS T10（'路标严格锁定'降格，时刻表现在时 The train leaves tomorrow 等例外同级登记）"
+    conflicts:
+      - "旧矩阵'时间轴 × 体透镜'把 will 列为'将来体'、3×N 网格暗示体系完备：裁决——'将来体'命名错误，网格更名'节选'，不暗示完备性（概念层 C-4）。"
+      - "旧现在完成时口诀'过去做完'（白板 tense_matrix_5 两行 + 旧库多处）：裁决——遗漏持续义与现时相关性，换 Comrie 口径'当前相关性'（sf-037/sf-038）；方法研究同步禁用'时间轴点位'讲完成时。"
+      - "旧 present_perfect'攥着结果'字面解、present_prog'谓语发动机'被冠以'第一性原理'：裁决——前者改标'来历故事'（完成体确源于所有格结果结构，Bybee et al. 1994，但不是 have 的词义本身），后者改标联想式讲法，摘冠名。"
+    basis: "Langacker 识解框架（Drożdż 2011 以认知语法工具教现在完成时；2024 JRL 准实验认知解释组胜出）；Comrie 1976 完成体定义；Bybee, Perkins & Pagliuca 1994 语法化；方法研究：tense×aspect 两维组合式讲法降低初学负荷（ERIC EJ1511004）；证据诚实标注——时态 CL 教学证据内部不一致（Bielak & Pawlak 2011 仅与传统相当），属'方向有据、低龄待验'。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-prepositions
+    domain: "介词"
+    coreView: "每个介词有一个原型场景，其余用法都是从原型一步步推出来的亲戚（principled polysemy)：in = 在容器里面，on = 贴在面上、有接触和支撑，at = 当作一个点。时间用法是把同一张图借到时间上（in the morning 是'泡在一段时间里'，at night 是'日程表上的一个点'，on Monday 是'贴在那一天上面')——所谓'例外'大多是没看出借的是哪张图。"
+    unifies:
+      - "frameworks_fixes ROYAL_TRUMPS T09（时长轴定义整段删除，换 Tyler & Evans 原型图式；'in 大 on 中 at 小'口诀保留为图式的顺口溜版）"
+      - "grammar.yaml：g14-schema（空间三图式）、g14-time-borrow（时间借用 + 例外老习惯登记）"
+      - "scene_fixes：sf-013（介词'原封不动映射'改'原型图第一猜测 + 约定例外单记')、sf-021（for 三站：为了谁/奔着哪儿/持续多久）、sf-022（for 讲解句与三站口径对齐）"
+    conflicts:
+      - "旧 T09 以时长定介词（>1 天 in、=1 天 on、<1 天 at)：裁决——伪规则，被自家例词 in the morning / at night 当场推翻，整段删除，换原型图式。"
+      - "旧白板'介词从空间原封不动映射到时间'：裁决——过度简化，改为'原型图是第一猜测，约定俗成的例外（如 at night）单记'（sf-013）。"
+      - "旧中文对译清单式讲法（一介词对一串中文义项）：裁决——方法研究明令禁用，改原型 + 系统性引申网络（Hung et al. 2018 准实验：CL 讲法组胜出）。"
+    basis: "Tyler & Evans 2003《The Semantics of English Prepositions》principled polysemy（proto-scene + 引申网络）；Tyler et al. 2011 多义网络教法延迟后测胜出；方法研究 B 域介词结论。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-constructions
+    domain: "句型构式"
+    coreView: "句型不只是单词的排队：模具本身带意思（构式义）。双宾模具自带'让某人收到某物'的意思，所以 bake 填进去能长出'给'义（He baked her a cake.)，而 explain 进不了这个模具（*explain me this 不成立）——一个模具同时解释'为什么能变'和'为什么有的不能变'。动词决定大半，但模具也在说话；孩子学句型 = 学每个模具自带的戏（谁给谁、谁变样、谁在哪儿）。"
+    unifies:
+      - "frameworks_fixes FIVE_SENTENCE_PATTERNS_DB：库级 Goldberg 构式讲法基线（新增 explain)、句型③ SVO（伪统计删除）、句型② SVP（表语范围订正 + 虚构分工注删除）、句型① SV（SVA 边界登记）、句型④ SVOO（explain/say/donate 只能 to 式边界）"
+      - "scene_fixes：sf-015（谓语'国王'范围收窄到简单句/分句）、sf-043（副词改功能定义，-ly 只作识别提示）、sf-019（to/-ing 由二分口诀改'动词决定搭配')、sf-028（动名词/现在分词'两件马甲'拆清）、sf-035、sf-036（G40 like/love 双搭配订正）"
+      - "grammar.yaml 共管条：g35-proximity、g36-there-vs-have（There be 存现构式）、g40-one-finite、g40-to-vs-ing（一个分句一个限定动词）"
+    conflicts:
+      - "旧句型③'80% 动词及物'伪统计：裁决——无来源数字删除，改'很多动词'。"
+      - "旧句型②虚构分工注'turn 管颜色、get 管天气'：裁决——编造，删除（It turned cold. / get red 均成立）。"
+      - "旧讲法只有'动词决定句型'一层：裁决——不完整，叠加构式义一层；但构式讲法管'模具义'不管形式细节，失效边界已在 fixes 中写明。"
+    basis: "Goldberg 1995《Constructions》论元结构构式；Bencini & Goldberg 2000 句子分类实验（学习者按构式而非动词分类）；方法研究 B 域句型结论（禁用语序平移论）。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-questions-info
+    domain: "疑问与信息结构"
+    coreView: "问句是按'缺哪一块信息'分工的：疑问词各管一块拼图（谁、什么、何时、哪里、为何、怎样），它们的词形有真实出身——印欧疑问词系 *kʷo-（古英语 hw-）与指示词系 *to-（þ-）是两大家族，押韵只是表面热闹。句子层面的另一半是信息包装：先给主干事件，新信息和焦点常落在句尾（end-focus)，状语前置是变强调——都是'帮听话人排信息'的选择，不是神秘的'先行思维'。"
+    unifies:
+      - "frameworks_fixes INTERROGATIVE_RADAR_DB：Where、Who、What、When、Why、Whose/Why 各条（pair_secret 分层：词族押韵 vs 答语搭档；拆字式表述删除；whose=hwæs 属格、why=hwȳ 工具格真词源点名）"
+      - "frameworks_fixes ROYAL_TRUMPS T05（伪构词律降格 mnemonic)、T05-accurate（新增真框架记录：*kʷo- / *to- / *ḱe- 三词干家族）、T11（Why'必用 Because'降格，三答并置）"
+      - "grammar.yaml：g28-svo-order、g28-place-time、g30-yesno、g31-wh-words、g31-why-answer、g32-how-what"
+      - "frameworks_fixes ZH_EN_SYNTAX_CONTRAST 维度 1（'先地点后时间'由定律改倾向 + end-focus 讲法；'焦点先行'标签废止）"
+      - "scene_fixes：sf-027（疑问词'总是第一'限定化，补从句居中例）"
+    conflicts:
+      - "旧 T05'wh- 换 th-/h- 即得回答词'伪构词律：裁决——错误，疑问词干 hw-（*kʷo-）与指示词干 þ-（*to-）从未互相派生，here 与 he 同属近指 *ḱe- 系、更非 where 减 w；整条降格押韵口诀，真框架由 T05-accurate 承载。"
+      - "旧 G28'焦点先行思维'自造标签（且传染到 ZH_EN 维度 1)：裁决——两处统一废止，改 end-focus/信息结构表述，以 grammar 包 G28 裁定为准。"
+      - "旧 RADAR'Where = w + here'拆字、Why'必用 Because'（与 grammar G31、expressions L-3 同错三处）：裁决——拆字删除；Because 口径全 App 统一为'多用 Because 答原因，也可答目的（To/For）'，应试'Because 最稳妥'由 expressions 包承载。"
+    basis: "Mitchell & Robinson《A Guide to Old English》（hw- 词族形态：hwæs 属格、hwȳ 工具格）；印欧词干 *kʷo- / *to- / *ḱe- 通行词源学；Quirk 信息结构（end-focus）；审查报告 report_frameworks.md T05/INTERROGATIVE 条与 report_grammar.md G28/G31 条。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-phonetics
+    domain: "语音与拼读"
+    coreView: "本领域无单一机制，按三条真依据组织（不编统一律）：①字母—读音对应是统计倾向不是定律——系统拼读先学最稳的对应（这是全领域最硬的教学证据，NRP 元分析 d=0.41)，其余按'变脸名单'逐个单记；②重音与弱读是真现象：schwa /ə/ 是英语最常见的元音，节奏是'重音突显程度'的连续统，不是'音节计时 vs 重音计时'的二选一；③发音的'为什么'大多在历史里：格林定律、i-变音、元音大推移都是可查的真实音变，可以讲成真历史故事，不必编口诀冒充原因。"
+    unifies:
+      - "frameworks_fixes ROYAL_TRUMPS T01（ea 分组订正、-er 重读 /ɜːr/ 与词尾弱读 /ə/ 拆分，与 STRESS 库 schwa 口径打通）、T03（i-变音/ablaut 真历史替换'换装'假说）"
+      - "frameworks_fixes STRESS_AND_SCHWA_DB：法则 C（节奏改连续统表述）、法则 C can't 音标并注英美、法则 A（无出处数字模糊化）"
+      - "frameworks_fixes MINIMAL_PAIRS_DB（库级：内容零修正，仅补语境句对把听辨推进到句子层）"
+      - "scene_fixes：sf-007（'同位相撞'术语订正为嘶声后元音插入）、sf-008（闭音节 a'永远 /æ/'降格 + 变脸名单）、sf-020（格林定律口诀删错误尾句）、sf-039（元音组合口诀加'多半'、ea 变脸单记）、sf-040（i-变音去意愿化）"
+      - "vocab_fixes 中音标口径相关订正条（英美混标改并注双式，全 App 口径由 vocab 包定版）"
+    conflicts:
+      - "旧'同位相撞'自造术语：裁决——订正为语音学正名'嘶声（sibilant）后的元音插入'（sf-007）。"
+      - "旧闭音节 a'永远发 /æ/'：裁决——全称错误（ball /ɔː/、was /ɒ/ 为反例），降格'默认读法 + 变脸名单'。"
+      - "旧 STRESS 库'音节计时/重音计时'二分定论、'至少 170 对'无出处数字、ROYAL T01 把 teacher 词尾 -er 误标 /ɜːr/（与自家 STRESS 库冲突）：裁决——分别改连续统表述（Dauer 1983;Grabe & Low 2002)、模糊化、订正为 /ə/。"
+    basis: "National Reading Panel 系统拼读元分析（Ehri et al. 2001，d=0.41、早开始 0.55）；Dauer 1983 / Grabe & Low 2002 节奏连续统；Bauer 形态音位（嘶声后插入）；审查报告 report_frameworks.md STRESS/MINIMAL 条、report_scenes.md 语音条、report_vocab.md 音标条。注：STRESS 库'自带例外 + 明说比喻不是原因'的体例经审查立为全库范本。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-frames
+    domain: "词义与框架"
+    coreView: "理解一个词，就是想起它出场的那一幕生活场景、和场景里有哪几个角色（Fillmore 框架语义）：buy、sell、pay、cost 不是四个孤立的词，是同一幕'买卖戏'换了镜头对准谁——对准买家是 buy、对准卖家是 sell、对准钱是 pay、对准货物是 cost。学词 = 先认戏，再认每个词站在哪个机位。（本域自词汇域拆出：框架是独立的真机制，与词源史分属两条线，混编会重蹈'一个故事包打一切'的旧病。）"
+    unifies:
+      - "frameworks_fixes FRAME_SEMANTICS_DB：FR09（on foot 伪因果注脚删除，改注固定习语）"
+      - "frameworks_fixes FRAME_SEMANTICS_DB（库级）讲法补注：'隐形角色追问'（FrameNet profiling 儿童版）+ buy/sell/pay/cost 四句并置看机位"
+      - "FRAME_SEMANTICS_DB FR01–FR10 本体（与 FrameNet Commerce_buy 框架 Buyer/Seller/Goods/Money 逐项吻合，经审查概念/内容双基本成立以上，为全批质量最高的库之一）"
+    conflicts:
+      - "旧 FR09 测验解析'because 用双脚踩在地面上接触所以用 on'伪因果：裁决——注脚删除，on foot 是固定习语（与 on horseback 成对），'背下来，不用编理由'；搭配与答案本身不变。"
+    basis: "Fillmore 框架语义学与 FrameNet（Commerce_buy 等框架的参与者角色结构）；审查报告 report_frameworks.md FRAME 条（概念层判'成立'）。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-expressions
+    domain: "日常表达与会话"
+    coreView: "本领域无单一机制，按言语行为与会话进程组织：每句话先看它在干什么活（问候、感谢、邀请、道歉、请求、祝福……)，再看说话人是谁、上文说了什么。一句回应'对不对'，不在句子本身，在它跟角色和上文合不合——同一句 'It tastes good.' 出自食客是夸奖、出自服务员就是错位；带 too 的句子必须在前文找得到被回指的原句。会话数据今后一律逐条过'角色—进程—指称'三问，不许按场景类型模板填充。"
+    unifies:
+      - "expressions_fixes.json daily_fixes 42 条：EXP_004、EXP_005、EXP_007、EXP_013、EXP_015、EXP_016、EXP_017、EXP_018、EXP_025、EXP_026、EXP_027、EXP_028、EXP_032、EXP_035、EXP_041、EXP_042、EXP_053、EXP_062、EXP_063、EXP_066、EXP_071、EXP_083、EXP_084、EXP_085、EXP_086、EXP_087、EXP_088–EXP_096、EXP_101、EXP_111、EXP_130、EXP_131、EXP_132、EXP_133、EXP_134（第三轮收尾句按角色+上文逐条重写或删轮，笔记伪规则同步降格）"
+      - "expressions_fixes.json oral_fixes 2 条：ORAL_SCENE_5（压扁对话拆五轮 + 角色标注）、ORAL_SCENE_8（weigh 句式 + 年龄问答补齐）"
+      - "expressions_update.md 第一节'收尾句生成机制规范 + 回归检查定义'（本域的生产规范，地位等同纲领的操作面）"
+      - "报告讲法编号 L-2（The same to you'镜子'类比 + 失效边界）、L-3（Why→Because 功能目的式）、L-5（Size 38'标签'讲法）、L-6（heavy vs weigh 对比）已随各条 change_note 落地"
+    conflicts:
+      - "旧库 C-2 结构性病灶：全库对话第三轮按 scene_type 机械填充收尾句（dining 一律 It tastes good.、phone 一律 I'll call later.、clinic 一律 I'll have a rest.)，29 条错误中 26 条源于此：裁决——修机制不逐条打补丁，生成规范与'收尾句逐条语境复核'回归检查已立（expressions_update.md 第一节）。"
+      - "旧笔记口诀把启发式说成铁律（'必须用 I'd like''永远是 Because''热饮 cup/冷饮 glass'）且库内自相矛盾（EXP_018 笔记教'生日别说 You too'、同条对话却误用 The same to you!;EXP_071 笔记刚区分 on sale≠half price、对话却喊 half price)：裁决——口诀降格 + 失效边界，笔记与对话逐条对齐。"
+      - "旧 scene_type 与 scenario_title 两套分类互相打架（感谢/道歉归 greeting、节日归 school)：裁决——按功能重新归类（EXP_130–133 等已改），分类从'一句话干什么活'出发。"
+    basis: "审查报告 report_expressions.md（DAILY 144 条全查：成立 89 / 基本成立 24 / 过度简化 2 / 错误 29，错误 26 条同源于 C-2 机制）；言语行为与会话结构为语言学通行框架；生成规范由本包按裁定理由制定并经 T4 独立复核。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-writing
+    domain: "写作"
+    coreView: "写作是请读者到你脑子里看一幅画：第一步把画说清楚（谁、在哪、做什么），第二步加细节，第三步把几幅画按顺序排好。公式和句型是帮你把画搭稳的支架（功能目的），不是把分数'炼'出来的炼金术——句子变长不是目的，让读者看得见、跟得上才是；任何'保分/满分'承诺都无来源，禁止出现。"
+    unifies:
+      - "expressions_update.md 第二节 WRITING 改写全套：总标题与导语诚实版文案、公式标签去分数化、衔接词链重新归类（C-6:Although 移出改'句型升级：让步句')、三大母题更名、三条范句订正（W-1 insist on 误用、W-4 not only 并列不对齐、W-5 open my mind 搭配）"
+      - "讲法 L-1（'炼金术'→功能目的式'请读者看一幅画' + 乐高类比三步，失效边界：感叹句是调料、公式不保分数）、L-7（Although/but'一河一桥' + 考场安全规则边界）"
+      - "scene_fixes：sf-042（白板'60 分秒变 100 分'口号删除，口号明示为口号）"
+      - "frameworks_fixes ROYAL_TRUMPS T15（'任何题套用稳拿满分'→'打底支架'；跨域联动：保分话术全 App 清零，以本域口径为准）"
+    conflicts:
+      - "旧'炼金术'框架虚假承诺（一键炼成 100 分、必拿高分、95% 的考场作文逃不出三大母题伪统计、60 分/100 分分数标签）：裁决——概念层错误，全套删除，换诚实版框架文案；若对家长展示，严重度为高。"
+      - "旧'衔接词链'第三棒混入 Although 语法点、归类名实不符（C-6)：裁决——改名'三棒衔接 + 一棒句型升级'，Although 单列。"
+    basis: "审查报告 report_expressions.md WRITING 条（C-1 概念层错误、W-1/W-4/W-5 内容订正、C-6 归类）；讲法 L-1/L-7（功能目的式，源自本包讲法升级清单并经复核）。"
+
+  # ─────────────────────────────────────────────
+  - id: dom-metaphor
+    domain: "隐喻与文化"
+    coreView: "人确实习惯用熟悉的领域去想陌生的领域（概念隐喻：'多就是上'、'争论是战争'，Lakoff & Johnson)，这类映射是真的思维习惯，可以讲、且必须写明'像在哪、哪里不像'；但大量习语、谚语不是推出来的，是文化里约定俗成的存货——三类（概念隐喻 / 文化习语 / 明喻谚语）必须分开标注：能推的讲映射，不能推的明说'背下来'，不许用一个'密码'故事把三类混装成一套可推导的系统。"
+    unifies:
+      - "frameworks_fixes METAPHOR_CODES_DB：密码一 HAND 卡（second-hand 归类订正：hand 第四义'经手')、密码二 WHITE & GOLDEN 卡（golden autumn 降为拓展例并注明直译回输风险）、密码三 骏马卡（注文订正）、库级体例分层（三类标注 + 每卡失效边界）"
+      - "scene_fixes：sf-045（forward '总是朝将来'降格：时间义多半 + 空间义补充）"
+    conflicts:
+      - "旧'密码'体例把概念隐喻、文化习语、明喻谚语混装成'可破译的密码'：裁决——体例保留趣味名，但每卡强制三类标注，习语整卡标'约定俗成、不可推导'。"
+      - "旧 HAND 卡把 second-hand 归入'指针/帮手'义组：裁决——归类错误，此 hand 是'经手（所有权传递）'义，移出并单注。"
+    basis: "Lakoff & Johnson 概念隐喻理论（理论本身真实，经审查判'基本成立、包装过度简化')；Boers 2000 / Beréndi et al. 2008 隐喻意识教学（按隐喻组织词汇 + 类比三步）；Gentner 结构映射与 Glynn 类比失效边界（方法研究规则 10：只映射关系结构、专设一句'哪里不成立')。"
+
+  # ──────────────────────────────────────────────
+  - id: dom-contrast-pitfalls
+    domain: "易错与对比（中英差异）"
+    coreView: "孩子的错大多不是粗心，是汉语的系统在替英语做决定：汉语没有冠词、没有时态变形、没有复数与三单标记、介词系统也不同——错误就集中在这些'汉语没有或不一样'的地方（中国学生自由写作语料中冠词错误居首，时态形式、复数、三单 -s、介词次之）。所以本域按'中英系统差异点'组织（不是随机错题集），讲法明示'中文不是这样'；同时每条'铁律'都要还原成带例外的倾向——把倾向说成铁律，本身就是本域最大的易错源。"
+    unifies:
+      - "frameworks_fixes ZH_EN_SYNTAX_CONTRAST_DB：维度 5（冠词铁律改写，与 dom-countability-articles 互引）、维度 2（中式直译例 Class 2, Grade 5 订正）、维度 1（状语位置律改倾向 + end-focus）"
+      - "frameworks_fixes PITFALLS_DB：天坑 03（fish'绝不加 s'降格，与 boundedness 口径对齐）、天坑 05（play the piano'必须加 the'降格，与 xc-piano 例外登记对齐）、天坑 08（过去式'必须强制'改'默认' + 两步判据）"
+      - "方法研究规则 14 的落地形态：每域一集'中文不是这样'对比课（冠词、时态、复数/三单、介词四域优先），本域为其总登记处"
+    conflicts:
+      - "旧维度 5'单数可数名词绝要加冠词铁律'与自家零冠词内容（go to school / in bed / by bus / play football）跨库自相矛盾（审查判'全批最危险一类')：裁决——铁律废止，以 boundedness 模型 cl-zero-func / cl-a-first 口径为准。"
+      - "旧 PITFALLS'fish 绝不加 s''play the piano 必须加 the'等倾向写成全称，与自家模型已登记的例外（xc-some-fish、xc-piano）口径打架：裁决——全 App 统一为倾向表述 + 例外注记。"
+      - "旧 ZH_EN'先地点后时间放句尾'定律化 + '焦点先行'自造标签：裁决——改倾向 + end-focus 真讲法，标签废止（与 dom-questions-info 同步）。"
+    basis: "汉语负迁移语料证据（ERIC EJ1075686：中国 EFL 自由写作错误分布，冠词最难；研究综合笔记 Chinese transfer 条）；审查报告 report_frameworks.md ZH_EN / PITFALLS 条；方法研究规则 14 与 D 节（'了/过 ≠ 现在完成时'等具体错位点）。"

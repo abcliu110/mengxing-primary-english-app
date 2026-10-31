@@ -1,0 +1,110 @@
+# 场景规格 · phonology 第 4 幕（双写拼写）——items 模式，禁止手改产物 gen_phonology_4.js
+# 条目类型与分组与原模板 fp_economy_4.js 严格对齐；
+# 按模型 ph-cl-doubling 改写：双写是 tendency 不是铁律——「多半」入词；
+# 守门员画面换成模型 mnemonic 的「双岗哨」（ph-cl-doubling-picture）并标帮记画面；
+# 例外入词：重音不在末音节不双写（visit/open）、w/x/y 结尾不双写（fix/snow）。
+scene: gen_phonology_4
+family: phonology
+pattern: auto_morph_demo
+template: fp_economy_4.js
+
+title: "⚙️ 第一性原理 · 口腔小机关 · 4"
+teaches: [ph-cl-doubling, ph-cl-doubling-picture]
+
+aha:
+  see: "run + ing 写成 runing：n 被 -ing 拉走，u 没人守，要被读成长音"
+  guess: "sit 加 -ing 怎么写？"
+  reveal: "再派一个辅音站岗：running、sitting，双写保住短元音；但重音不在末音节、w/x/y 结尾不双写"
+  rule: "辅元辅加后缀，多半双写保短音"
+
+items:
+  - [n, "这一幕：run 变 running，为什么要多写一个 n？"]
+  - [w, "run → running 为什么双写？"]
+  - [w, "① 双写拼写"]
+  - [w, "💡 记忆联想"]
+  - [w, "run → running 为什么双写？"]
+  - [w, "① 双写拼写"]
+  - [m, "💡 记忆联想"]
+  - [m, "① 辅元辅"]
+  - [m, "② 没人守"]
+  - [m, "③ 双岗哨"]
+  - [m, "④ 套用"]
+  - [m, "⑤ 口诀"]
+  - [m, "🔮 预测"]
+  - [n, "双写：把单词最后一个辅音字母再写一遍，比如 run → running。"]
+  - [w, "runing ?"]
+  - [w, "很多同学这样写"]
+  - [n, "音节：单词里一拍一拍的读音单位。run 只有一拍，是一个音节。"]
+  - [m, "r"]
+  - [m, "u"]
+  - [m, "n"]
+  - [n, "闭音节：「辅音+元音+辅音」，元音后面有辅音收尾，读短音。run 就是辅元辅。"]
+  - [m, "岗哨：n 守着短音"]
+  - [m, "u 读短音 /ʌ/"]
+  - [m, "ing"]
+  - [m, "+"]
+  - [n, "帮记画面：如果不双写，n 被 -ing 拉走，短元音就没人守了——u 会被读成长音 /uː/。"]
+  - [w, "ru / ning：没人守，u 读成长音 /uː/ ✗"]
+  - [w, "tap 不双写，就读成 tape 的 /eɪ/"]
+  - [s, "The tap is in the kitchen. This is tape.", "水龙头在厨房里。这是胶带。", "tap tape"]
+  - [n, "办法：再派一个 n 站岗——两个 n 是「双岗哨」，守住短元音。记住：双写是拼写记号，不改变读音本身。"]
+  - [m, "n"]
+  - [m, "第二个 n（岗哨）"]
+  - [m, "run"]
+  - [m, "n"]
+  - [m, "ing"]
+  - [w, "/ˈrʌnɪŋ/  u 还是短音"]
+  - [s, "The dog is running in the park.", "小狗在公园里跑。", "running"]
+  - [n, "短元音：读得又短又快的元音：a /æ/、e /e/、i /ɪ/、o /ɒ/、u /ʌ/。"]
+  - [w, "辅元辅 + 元音尾巴 → 多半双写"]
+  - [w, "swim"]
+  - [m, "swim"]
+  - [m, "m"]
+  - [m, "ing"]
+  - [m, "big"]
+  - [m, "big"]
+  - [m, "g"]
+  - [m, "er"]
+  - [m, "hot"]
+  - [m, "hot"]
+  - [m, "t"]
+  - [m, "est"]
+  - [m, "stop"]
+  - [m, "stop"]
+  - [m, "p"]
+  - [m, "ed"]
+  - [w, "-er 更… · -est 最… · -ed 过去式：都是元音开头的尾巴"]
+  - [s, "I can run and swim.", "我会跑步和游泳。", "run swim ing"]
+  - [s, "Big, bigger. Hot, hottest.", "大，更大。热，最热。", "big hot er est"]
+  - [s, "Stop! A bus stopped here.", "停下！一辆公交车停在这里了。", "a stop ed"]
+  - [n, "先别急着套：visit、open 的重音不在最后一拍，加 -ing 不双写：visiting、opening。"]
+  - [w, "重音不在末音节 → 不双写（visit、open）"]
+  - [n, "还有：fix、snow 词尾是 x、w——w、x、y 结尾的词从不双写：fixing、snowing。"]
+  - [w, "w、x、y 结尾 → 不双写（fix、snow）"]
+  - [n, "口诀：辅元辅加后缀，多半双写保短音。"]
+  - [w, "辅元辅加后缀，多半双写保短音。"]
+  - [n, "预测：sit 是「辅元辅」。sit 加 -ing 怎么写？先想 3 秒！"]
+  - [w, "🔮 sit + ing　→　?"]
+  - [n, "揭晓：再派一个 t 站岗：sitting，i 还是短音 /ɪ/。"]
+  - [m, "sit"]
+  - [m, "t"]
+  - [m, "ing"]
+  - [w, "—— 双写 t，i 读短音 /ɪ/"]
+  - [s, "Sit, sitting. I am sitting on a chair.", "坐，正在坐。我正坐在椅子上。", "sit sitting chair on am"]
+  - [w, "💡 一句话洞见"]
+  - [w, "「辅元辅」加重读、加元音开头的尾巴 →"]
+  - [w, "多半双写最后的辅音，保住短元音"]
+  - [w, "🎵 口诀"]
+  - [w, "口诀：辅元辅加后缀，多半双写保短音。"]
+  - [w, "🧠 第一性原理 ① 双写拼写（拼写层约定）"]
+
+facts:
+  objects:
+    - { name: run / swim / big / hot / stop / sit, kind: example, states: "辅元辅 + 重读 + 元音起首后缀 → 双写末尾辅音，短元音不变" }
+    - { name: visit / open, kind: exception, states: "重音不在末音节 → 不双写（ph-xc-doubling-unstressed）" }
+    - { name: fix / snow, kind: exception, states: "w、x、y 结尾 → 不双写（ph-xc-doubling-wxy）" }
+    - { name: hopping / hoping, kind: contrast, states: "双写与否是拼写记号：双写标短音，不双写标长音" }
+  invariants:
+    - "双写只改拼写、不改读音：双写前后词的读音里辅音只有一个"
+    - "双写是倾向不是铁律：重音位置与 w/x/y 排除条件先行检查"
+    - "英式 travel→travelling 的 l 双写为例外名单，本幕未展开（模型已登记 ph-xc-doubling-british-l）"

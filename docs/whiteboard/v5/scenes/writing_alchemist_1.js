@@ -54,6 +54,6 @@ const ITEMS = [
   ['s', 'Look, smell. The flowers look beautiful and smell sweet. Birds are singing.', '看、闻。花儿看起来很美，闻起来很香。鸟儿在唱歌。', 'look smell are singing singing ing'],
   ['w', '口诀：换掉老词 like，加上时间状语，用感叹句和 not only… but also…'],
   ['w', '还有一条 · 五感法则：视觉 look + 嗅觉 smell + 听觉 are singing（The park is very nice in spring. 的升级）'],
-  ['n', '口诀：换掉老词加状语，感叹句和连接词一用，60 分秒变 100 分！']
+  ['n', '口诀：换掉老词加状语，感叹句和连接词用得好，作文更出彩！（句式只是评分的一面：内容对题、句子写对更重要。这句是加油口号，不是分数保证。）']
 ];
 export default function build() { return autoBuild(SP, { title: '✍️ 写作炼金术 · 1', items: ITEMS, acts: ACTS }); }

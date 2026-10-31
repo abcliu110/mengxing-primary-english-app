@@ -22,7 +22,7 @@ const ITEMS = [
   ['w', 'V'],
   ['w', 'P'],
   ['s', 'That idea sounds great! The cake tastes sweet.', '这个主意听起来很棒！蛋糕尝起来很甜。', 'That idea sounds great cake tastes sweet'],
-  ['n', '副词：-ly 结尾的词修饰动作，比如 sweetly（甜甜地）。系动词后面不能用它！'],
+  ['n', '副词是\'加说明\'的词：说明动作怎么做（run fast）、程度多深（very good）、多久一次（often）。很多副词带 -ly（quickly），但 fast、hard、often 不带也是；friendly 带 -ly 却是形容词——看它干什么活，别只看尾巴。'],
   ['w', 'tastes sweetly'],
   ['s', 'Sweetly, ly. She sings sweetly.', '甜甜地（-ly 副词）。她唱得很甜。', 'sweetly ly'],
   ['w', '铁律：系动词 + 形容词（对）    系动词 + -ly 副词（错）'],

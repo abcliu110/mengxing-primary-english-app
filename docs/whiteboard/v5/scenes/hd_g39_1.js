@@ -10,7 +10,7 @@ const ACTS = {};
 export const KNOW = [
   'G39 底层原理',
   '最高级：the + -est / most...（三者及以上夺冠） —— 在三个或一群对象里选出“最……的冠军”——形容词最高级前必戴定冠词 the 王冠！',
-  '【为什么最高级前面必须加 the？】因为全班最高的人是唯一锁定（特指）的冠军，自然要戴上定冠词王冠 the（the tallest / the biggest）！',
+  '因为全班最高的那一个是唯一锁定的冠军，用 the 指明\'就是那一个\'（the tallest / the biggest）。两个例外先记着：① 前面已经有 my、his 这类\'主人\'时，不再加 the（my best friend）；② 最高级修饰动作时常常省掉 the（He runs fastest.）。',
   '🔬 G39 · 最高级：the + -est / most...（三者及以上夺冠） 底层结构拆解与汉英思维对比',
   'The giraffe is the tallest animal in the zoo.', 'Blue whales are the biggest animals in the world.', 'Spring is the best season of the four.',
   '长颈鹿是动物园里最高的动物。蓝鲸是世上最大的动物。春天是四季中最好的季节。',
@@ -57,7 +57,7 @@ export default function build() {
   T = say(R + 1.4, 'The giraffe is the tallest animal in the zoo.', '长颈鹿是动物园里最高的动物。', ['the', 'tallest', 'in']);
   T = narr('两者（2个）比较用比较级；三者及以上（≥3个）且常带 in/of 范围时用 the + 最高级！', T, 4);
   C.rule(T);
-  T = narr('【为什么最高级前面必须加 the？】因为全班最高的人是唯一锁定（特指）的冠军，自然要戴上定冠词王冠 the（the tallest / the biggest）！', T, 5);
+  T = narr('因为全班最高的那一个是唯一锁定的冠军，用 the 指明\'就是那一个\'（the tallest / the biggest）。两个例外先记着：① 前面已经有 my、his 这类\'主人\'时，不再加 the（my best friend）；② 最高级修饰动作时常常省掉 the（He runs fastest.）。', T, 5);
   // 变化卡
   const RX = 1480, RY = 500;
   [['big', 'the biggest'], ['heavy', 'the heaviest'], ['interesting', 'the most interesting'], ['good', 'the best']].forEach(([a, b], i) => {

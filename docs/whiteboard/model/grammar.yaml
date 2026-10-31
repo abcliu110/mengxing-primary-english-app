@@ -1,0 +1,1411 @@
+# 知识模型 · 语法 G01–G40（GRAMMAR_DB 全量入模，依据 content-audit/report_grammar.md 裁定）
+# 规范见 REWRITE_TECH_PLAN.md §3：Claim 必须分型；tendency 必带 scope 与例外；mnemonic 必链真内容；
+# etymology 必带 source；statement 禁用「物理定律/统摄/物理边界/绝对」，tendency/mnemonic 另禁「一律/永远/从来都」（校验器硬拦）。
+# 与 boundedness.yaml 的分工：可数性判据本体、a/an 词源登记在 boundedness 模型，本文件只登记 G03 的更正口径与借单位规则，并以 note 指回，避免同一事实两处登记。
+
+family: grammar
+title: "语法 G01–G40：形式跟着功能走"
+
+# 领域纲领草案（TECH_PLAN §3.0 Domain Insight；T7 汇总时并入 domains.yaml）
+insight:
+  coreView: "语法不是背下来的规矩清单，而是说话人为了让听话人准确接收信息而形成的标记系统：形式跟着功能走——数、人称、时、指称、连接，每一种形式变化都在替听话人传递一条信息（几个？谁做的？何时？指哪一个？两句是什么关系？）。儿童学语法 = 学每个形式在『干什么活』。"
+  unifies: "复数 -s、三单 -s、be 动词变位统一为主谓一致（动词与名词向主语对齐的标记）；冠词、指示代词、物主代词统一为指称管理（帮听话人锁定指哪一个）；did/does 的『回原形』统一为『时态全句只标记一次』；some/any、because/so 统一为说话人的立场与连接选择；语序统一为信息包装（先给事件，后给背景）。"
+  conflicts: "与旧库口径的冲突集中在两点：①旧库多处把功能标记讲成假机制——G03 物理形状论、G19 补偿/勋章转移、G28 焦点先行思维、G15 语法树会断、G04 重要性在前、G22 统一元音传统，本纲领下一律改判（机制只认功能与可查的历史事实）；②旧库把倾向讲成铁律（一律/绝不/必用/铁律），本纲领下全部降格为 tendency 并强制自带例外注记。"
+
+concepts:
+  - id: c-noun-plural
+    name: "名词复数形式"
+    gloss: "可数名词表复数在词尾加记号；少数老词保留古英语的老变法"
+    points: [G01, G02]
+  - id: c-measure-units
+    name: "不可数名词借单位计数"
+    gloss: "判据是英语的习惯看法（本体见 boundedness 模型）；不可数名词自己不数，借单位/容器来数"
+    points: [G03]
+  - id: c-possessive
+    name: "名词所有格"
+    gloss: "'s 是默认的贴身标签，of 是后置的说明牌；选择是倾向不是生物分界线"
+    points: [G04]
+  - id: c-articles
+    name: "冠词系统"
+    gloss: "a/an 看第一个音；the 指『就是那个双方都知道的』；泛指活动时零冠词"
+    points: [G05, G06]
+  - id: c-pronouns
+    name: "代词系统"
+    gloss: "代词按位置（主格/宾格）、归属（形物代/名物代）、距离（指示代词）分工"
+    points: [G07, G08, G09]
+  - id: c-some-any
+    name: "some 与 any 的分工"
+    gloss: "默认肯定 some、否定疑问 any；说话人期待肯定答复时问句也用 some"
+    points: [G10]
+  - id: c-adj-adv
+    name: "形容词与副词"
+    gloss: "形容词管名词与状态（作谓语要系动词搭桥），副词管动作，频率副词位置固定"
+    points: [G11, G12]
+  - id: c-numbers
+    name: "基数词与序数词"
+    gloss: "序数词表『第几个』，构成有几处变形要点，前常加 the"
+    points: [G13]
+  - id: c-prep-schema
+    name: "介词图式 in / on / at"
+    gloss: "空间三图式：容器（in）、表面（on）、点（at）；时间用法是借用，有例外老习惯"
+    points: [G14]
+  - id: c-connectors
+    name: "连词与关系连接"
+    gloss: "and/but/or 管并列，because/so 管因果——同一关系只能选一种接法"
+    points: [G15]
+  - id: c-agreement
+    name: "主谓一致"
+    gloss: "动词随主语的人称与数变身：be 动词变位、三单 -s 都是向主语对齐的标记"
+    points: [G16, G17, G19]
+  - id: c-tense
+    name: "时态系统"
+    gloss: "一般现在时表习惯与真理；进行时 be+V-ing；过去时 -ed 与老词变法；时态全句只标记一次（did/does 承担）"
+    points: [G18, G20, G21, G22, G23]
+  - id: c-future
+    name: "将来表达"
+    gloss: "be going to 表打算（语法化自『走在路上』），will 表意愿演化来的将来"
+    points: [G24, G25]
+  - id: c-modals
+    name: "情态动词"
+    gloss: "can/must/should/may 不随主语变，后接原形；mustn't 是严禁不是不必"
+    points: [G26, G27]
+  - id: c-sentence-order
+    name: "语序与信息顺序"
+    gloss: "先说主干事件，补充信息随后；句尾先地点后时间只是常见倾向"
+    points: [G28]
+  - id: c-negation
+    name: "否定句"
+    gloss: "有 be/情态直接加 not；只有实义动词请 don't/doesn't/didn't 帮忙"
+    points: [G29]
+  - id: c-questions
+    name: "疑问句"
+    gloss: "一般疑问句助动词站句首；特殊疑问词按所缺信息分工站句首"
+    points: [G30, G31, G32]
+  - id: c-sentence-types
+    name: "祈使句与感叹句"
+    gloss: "祈使句省主语、原形开头；感叹句 What 管名词、How 管程度，与疑问句同理"
+    points: [G33, G34]
+  - id: c-there-be
+    name: "There be 存现句"
+    gloss: "『某地有某物』用 There be（就近定单复数），『某人有』用 have/has，两轨不交叉"
+    points: [G35, G36]
+  - id: c-comparison
+    name: "比较结构"
+    gloss: "同级 as...as 用原级；比较级 -er/more + than；最高级唯一锁定故加 the"
+    points: [G37, G38, G39]
+  - id: c-verb-complement
+    name: "动词后接形式"
+    gloss: "一个分句只有一个限定动词；第二个动词按动词家族选 to do 或 doing"
+    points: [G40]
+
+claims:
+  # ── G01 名词复数 ──
+  - id: g01-plural-default
+    type: rule
+    concept: c-noun-plural
+    point: G01
+    statement: "可数名词表复数在词尾加记号：一般加 -s；以 s、x、ch、sh 结尾加 -es（读 /ɪz/，多出一个音节，读得出才加得上）；辅音字母 + y 结尾变 y 为 i 加 -es，元音 + y 直接加 s。"
+    say: "一个变多个，词尾加尾巴：一般加 s，嘶嘶结尾加 es。"
+    exceptions: []
+    explain:
+      method: "功能目的"
+      carrier: "词尾变身动画：名词排队戴尾巴，嘶嘶结尾的多长一节"
+      boundary: "讲的是拼写与读音的对应，不延伸到不规则复数（G02 另管）"
+
+  - id: g01-ves-list
+    type: tendency
+    concept: c-noun-plural
+    point: G01
+    statement: "以 f 或 fe 结尾的名词里，只有一小队常用词会把 f 变 v 再加 -es（leaf、knife、wife、life、wolf、half、calf、shelf、thief、loaf 等，约十余个，逐个记）；其余 f/fe 结尾的名词只加 -s，那才是大多数。"
+    say: "变 ves 的只有一小队名单，其余 f 结尾只加 s。"
+    scope: "f/fe 结尾名词的复数形式"
+    exceptions: [xc-g01-ves-rest]
+    explain:
+      method: "对比案例"
+      carrier: "两队分列：变 v 小队名单墙 vs 只加 s 的大队"
+      boundary: "名单是封闭的，不能按『像不像 leaf』类推名单外的词；旧口诀『多数变 ves』是量化错误，已废"
+
+  - id: g01-o-words
+    type: mnemonic
+    concept: c-noun-plural
+    point: G01
+    linkedClaim: g01-plural-default
+    statement: "记忆分组：o 结尾名词多数只加 -s；potato、tomato、hero 等少数加 -es，单独记。旧口诀『有生命加 es、无生命加 s』不是真规则（kangaroo 是动物也只加 s），本条只是背诵分组，不作判断依据。"
+    say: "o 结尾大多加 s，potato、tomato、hero 加 es 单独记。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "分组卡片墙，加 es 的三个词单独描红"
+      boundary: "『有生命/无生命』是假分界，kangaroo 即反例；此分组只帮记，不许拿去推新词"
+
+  # ── G02 不规则复数 ──
+  - id: g02-irregular-groups
+    type: rule
+    concept: c-noun-plural
+    point: G02
+    statement: "一批最高频的老词不用 -s 表复数，分三组记：换元音组（man→men、foot→feet、tooth→teeth、goose→geese、mouse→mice）；特殊变形组（child→children、woman→women）；同形组（sheep、deer、fish、Chinese 单复数同形）。"
+    say: "老词有老变法：换元音、特殊变、或不变，分组记。"
+    exceptions: [xc-g02-fishes]
+    explain:
+      method: "分层递进"
+      carrier: "三组名单墙逐组点亮，同形组配『一只羊/一群羊同形』画面"
+      boundary: "分组是记忆组织法；fish 的同形只管『条数』义，种类义见例外"
+
+  - id: g02-etym
+    type: etymology
+    concept: c-noun-plural
+    point: G02
+    statement: "这批词是古英语留下的高频老词：那时表复数靠换中间的元音或干脆不变；后来『加 -s』成了新规矩，新词都照办，老词却保留了老样子。所以这一组没有规律可推，当作老前辈名单逐个记。"
+    source: "古英语复数方式：元音变音（i-mutation）与零复数遗留（审查报告引历史语法通行说法）"
+    exceptions: []
+    explain:
+      method: "类比"
+      carrier: "时间线叙事：老词穿古装保留老规矩，新词穿新装加 -s"
+      boundary: "类比（老词像『原住民』）只借『老资格保留老规矩』一点；真实原因是古英语复数方式的遗留，名单外不可类推"
+
+  # ── G03 不可数与量词（判据本体在 boundedness 模型）──
+  - id: g03-construal
+    type: rule
+    concept: c-measure-units
+    point: G03
+    statement: "决定一个名词能不能直接数，不是它有没有固定形状，而是英语的习惯看法：看成一个个的能数，看成一整摊、一类的不能直接数（判据本体见 boundedness 模型 cl-packaging，此处为 G03 更正口径）。形状分明的 rice、furniture 照样不可数；同一物质换个看法就能数（a cake 一整个 / some cake 一块）。"
+    say: "决定可数不可数的不是形状，是英语的习惯看法。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "最小对立双屏：rice vs beans——差不多大、差不多颗粒，待遇相反"
+      boundary: "看法可以切换：cake、paper、glass、chicken 这类双面词按『当时怎么看』判断，不能让孩子以为词的可数性是刻死的"
+
+  - id: g03-measure
+    type: rule
+    concept: c-measure-units
+    point: G03
+    statement: "不可数名词本身不加 a/an、不加 -s，作主语时谓语用单数；要计数就借单位或容器：数词 + 单位词（复数）+ of + 不可数名词（two pieces of bread、a cup of water），-s 加在单位词上，不加在料本身上。"
+    say: "不可数名词自己不数，借杯子、片、碗来数。"
+    exceptions: [xc-g03-hair-time, xc-g03-dual]
+    explain:
+      method: "镜头-看法框架"
+      carrier: "整摊倒进容器计数的动作演示，-s 高亮落在单位词上"
+      boundary: "『不加 a、不加 s』管的是整摊看法；同一词换成一个个的看法时按可数处理，见例外"
+
+  # ── G04 所有格 ──
+  - id: g04-s-form
+    type: rule
+    concept: c-possessive
+    point: G04
+    statement: "表所属先试 's：单数名词与不以 s 结尾的复数名词加 's（Tom's book、Children's Day）；以 s 结尾的复数名词只加撇号（the teachers' office）；两人共有在最后一人后加 's，各自拥有则分别加。"
+    say: "表『谁的』，先贴 's 标签。"
+    exceptions: []
+    explain:
+      method: "动作体验"
+      carrier: "给物品贴归属标签的动作演示"
+      boundary: "讲的是 's 的加法位置，不涉及 's 与 of 的选择（下一条）"
+
+  - id: g04-of-tendency
+    type: tendency
+    concept: c-possessive
+    point: G04
+    statement: "of 结构（the legs of the desk）多用于无生命的事物，或所属短语较长、较重时；但这只是倾向：'s 的地盘包括人、动物、国家、组织、时间（today's news、the book's cover 都对），有生命的名词也能用 of（the daughter of the king；a friend of mine 双重所有格必须用 of）。"
+    say: "'s 是贴身标签，of 是挂在后面的说明牌；先试 's，长短语常用 of。"
+    scope: "'s 与 of 的选择"
+    exceptions: [xc-g04-things-s, xc-g04-of-person]
+    explain:
+      method: "类比"
+      carrier: "标签贴在拥有者身上 vs 说明牌挂在物品后面，双画面对照"
+      boundary: "标签/说明牌只类比位置与贴合感，不讲『重要性在前』（旧库机制为编造，已撤）；生物/非生物不是分界线，反例见例外"
+
+  # ── G05 a / an ──
+  - id: g05-sound-rule
+    type: rule
+    concept: c-articles
+    point: G05
+    statement: "a 与 an 的选择只看后面词的第一个音：辅音音素开头用 a，元音音素开头用 an——看发音，不看字母。h 不发音的 hour 用 an（an hour）；u 读 /juː/ 的 useful、university 用 a。"
+    say: "选 a 还是 an，听第一个音。"
+    exceptions: []
+    note: "词源（an ← 古英语 ān『一』）登记在 boundedness 模型 cl-a-etym，本文件不重复登记；G05 原 why 的词源叙述经审查成立，为全库范本。"
+    explain:
+      method: "功能目的"
+      carrier: "耳朵听音动画：第一个音是元音就戴 an，避免两个元音相撞读着顺"
+      boundary: "判断依据是音素不是拼写字母；hour/useful 不是『例外』，正是听音原则本身的证据"
+
+  # ── G06 the 与零冠词 ──
+  - id: g06-the-known
+    type: rule
+    concept: c-articles
+    point: G06
+    statement: "the 用于说的人和听的人都能确定是哪一个时：再次提到同一事物、世上独一无二（the sun）、序数词与最高级之前、当场上下文明确的（Pass me the book）。"
+    say: "就是那个你我都知道的，用 the。"
+    exceptions: []
+    note: "与 boundedness 模型 cl-the-known 同义（单一事实源在该模型），本条为 G06 教学点的登记口径。"
+    explain:
+      method: "说话人-听话人视角"
+      carrier: "说话人手指点向双方都看得见的那一个"
+      boundary: "类指 the（The tiger is endangered）是高年级内容，低年级不展开，已在 boundedness 模型登记为例外"
+
+  - id: g06-zero-activity
+    type: tendency
+    concept: c-articles
+    point: G06
+    statement: "泛指『做一件事』时多用零冠词：球类棋类（play football）、三餐（have lunch）、学科、by + 交通工具；一旦指某个具体的东西，就恢复冠词（the lunch we had）。分界不在词本身，在这次说的是活动还是东西。"
+    say: "说活动不加冠词，说东西要加。"
+    scope: "机构/活动类名词的泛指活动读法"
+    exceptions: [xc-g06-piano, xc-g06-the-lunch]
+    explain:
+      method: "镜头-看法框架"
+      carrier: "同一场景双镜头：进行比赛的活动镜头 vs 特写一个球的物体镜头"
+      boundary: "『活动就不加』只管泛指活动；乐器类在教材口径按东西读法加 the，见例外与 g06-instrument"
+
+  - id: g06-instrument
+    type: rule
+    concept: c-articles
+    point: G06
+    statement: "教材与考试口径：play + the + 西洋乐器（play the piano、play the violin）。"
+    say: "弹乐器加 the。"
+    exceptions: [xc-g06-us-piano]
+    explain:
+      method: "对比案例"
+      carrier: "play football 与 play the piano 并排对照"
+      boundary: "这是教材口径的搭配记法；美式日常口语有不加 the 的说法，见例外"
+
+  # ── G07 人称代词格 ──
+  - id: g07-case-position
+    type: rule
+    concept: c-pronouns
+    point: G07
+    statement: "人称代词按位置变身：站在动词前作主语用主格（I、you、he、she、it、we、they），站在动词或介词后面作宾语用宾格（me、you、him、her、it、us、them）；you 与 it 主宾同形。"
+    say: "动词前主格，动词和介词后面宾格。"
+    exceptions: []
+    explain:
+      method: "类比"
+      carrier: "代词按站位换制服的动画"
+      boundary: "『制服』是位置类比，不是真的换装；you、it 不换，不要给它们硬派宾格新形"
+
+  - id: g07-polite-order
+    type: tendency
+    concept: c-pronouns
+    point: G07
+    statement: "几个人并列时，礼貌排序是把自己放最后（you, he and I）。国内教辅流传的复数口诀『we, you and they』在英语里并无固定规定，不当规则记。"
+    say: "几个人一起提，把自己放最后。"
+    scope: "并列人称代词的提及顺序"
+    exceptions: [xc-g07-we-they]
+    explain:
+      method: "功能目的"
+      carrier: "排队合影动画：自己站到最后一位"
+      boundary: "这是礼貌习惯不是语法对错；无固定口诀的场合不要编口诀补位"
+
+  # ── G08 物主代词 ──
+  - id: g08-possessive-pair
+    type: rule
+    concept: c-pronouns
+    point: G08
+    statement: "形容词性物主代词（my、your、her、our、their）后面必须跟名词；名词性物主代词（mine、yours、hers、ours、theirs）等于『形物代 + 名词』的浓缩，单独使用。判断看空格后面有没有名词：有名词选形物代，没名词选名物代。"
+    say: "后面有名词用 my，没名词用 mine。"
+    exceptions: []
+    explain:
+      method: "功能目的"
+      carrier: "my book 合体浓缩成 mine 的变形动画"
+      boundary: "讲的是避免重复的功能；his 的形物代与名物代同形，不在此对比之列"
+
+  # ── G09 指示代词 ──
+  - id: g09-demonstratives
+    type: rule
+    concept: c-pronouns
+    point: G09
+    statement: "指示代词按距离 × 单复数四分：this（近·单）、that（远·单）、these（近·复）、those（远·复），be 动词随之用 is 或 are；问答回应时单数用 it、复数用 they；电话里自报家门用 This is ...，问对方用 Who's that?"
+    say: "近单 this、远单 that、近复 these、远复 those。"
+    exceptions: []
+    explain:
+      method: "动作体验"
+      carrier: "角色伸手指向近处/远处、一个/一堆的实景演示"
+      boundary: "四分法管指物；this/that 指时间（this morning / that day）是引申用法，不在此展开"
+
+  # ── G10 some / any ──
+  - id: g10-basic-split
+    type: rule
+    concept: c-some-any
+    point: G10
+    statement: "some 与 any 都可接可数名词复数或不可数名词；默认分工：肯定句用 some，否定句与一般疑问句用 any。"
+    say: "肯定 some，否定疑问 any。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "同一句肯定/否定/疑问三态切换对照"
+      boundary: "这是默认分工；请求与邀请问句的 some 见 g10-request-some"
+
+  - id: g10-request-some
+    type: tendency
+    concept: c-some-any
+    point: G10
+    statement: "表示诚意邀请或礼貌请求的问句（Would you like some cake? / Can I have some water?）多用 some，因为说话人期待对方答应。但这是强偏好不是铁律：用 any 并非语法错误，只是语气中性、疏远。"
+    say: "真心请人、开口求人，问句也用 some。"
+    scope: "请求/邀请类问句中 some/any 的选择"
+    exceptions: [xc-g10-any-ok]
+    explain:
+      method: "说话人-听话人视角"
+      carrier: "端着蛋糕邀请的场景：说话人心里盼着对方点头"
+      boundary: "不得把 any 版请求句设为改错题的『错句』（旧库 G10 改错题已按此订正）；考试答题仍按 some 为最稳"
+
+  # ── G11 形容词位置与搭桥 ──
+  - id: g11-adj-position
+    type: rule
+    concept: c-adj-adv
+    point: G11
+    statement: "形容词作定语放在名词前面（a red apple），但修饰 something、anything、nothing 时放在后面（something new）；形容词作表语不能单独连主语，必须由 be 或感官系动词（look、sound、smell、taste、feel）搭桥（I am happy）。"
+    say: "形容词在名词前面；作谓语要 be 搭桥。"
+    exceptions: []
+    explain:
+      method: "类比"
+      carrier: "系动词在主语与形容词之间架桥的动画"
+      boundary: "『桥』只类比连接功能；汉语形容词可直接作谓语，差异来自英语形容词没有动词功能，不要延伸成『汉语落后』式解读"
+
+  - id: g11-very-delicious
+    type: tendency
+    concept: c-adj-adv
+    point: G11
+    statement: "传统教法提醒：delicious 本身已含『非常好吃』，一般不叠加 very。这是风格提醒，不是语法禁区。"
+    say: "delicious 已经很『非常』了，一般不再加 very。"
+    scope: "程度副词修饰强义形容词的传统规范提醒"
+    exceptions: [xc-g11-very-delicious]
+    explain:
+      method: "对比案例"
+      carrier: "教材说法 vs 真实口语字幕并排"
+      boundary: "本条只作提醒呈现，不得据此把 very delicious 判为语法错误（与本库『这不是真规则』式诚实标注对齐）"
+
+  # ── G12 副词与频率副词 ──
+  - id: g12-adverb-form
+    type: rule
+    concept: c-adj-adv
+    point: G12
+    statement: "方式副词多由形容词加 -ly 构成（slow→slowly、happy→happily），放在实义动词后面修饰动作；fast、early、late、hard 形副同形，good 的副词形式是 well。"
+    say: "副词管动作，常加 -ly；fast、hard 形副同形，good 变 well。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "形容词贴名词、副词贴动词的双栏对照"
+      boundary: "加 -ly 是多数派造法不是全部：friendly 等以 -ly 结尾的词是形容词，不在此列（小学阶段只提醒 fast/hard 特例）"
+
+  - id: g12-frequency-position
+    type: rule
+    concept: c-adj-adv
+    point: G12
+    statement: "频率副词（always、usually、often、sometimes、never）的位置：放在 be 动词或情态动词之后、实义动词之前。"
+    say: "频率副词：be 后面，实义动词前面。"
+    exceptions: []
+    explain:
+      method: "动作体验"
+      carrier: "频率副词卡片插进句子槽位的演示"
+      boundary: "sometimes、usually 可移到句首强调（Sometimes I walk home），属位置变体，不在本条基本位置之外另立规则"
+
+  # ── G13 序数词 ──
+  - id: g13-ordinals
+    type: rule
+    concept: c-numbers
+    point: G13
+    statement: "序数词表『第几个』，前面常加 the。构成要点：first、second、third 特殊记；eight 去 t（eighth）、nine 去 e（ninth）；five、twelve 的 ve 变 f 再加 th（fifth、twelfth）；整十的 y 变 ie 加 th（twentieth）；几十几只变个位（twenty-first）。"
+    say: "一二三特殊，八去 t、九去 e，ve 变 f。"
+    exceptions: []
+    explain:
+      method: "分层递进"
+      carrier: "基数词逐个变身序数词的变形演示，易错四词描红"
+      boundary: "讲的是拼写变形；序数词前加 the 是常态，作副词等少数场合可省，小学阶段不展开"
+
+  # ── G14 介词图式 ──
+  - id: g14-schema
+    type: rule
+    concept: c-prep-schema
+    point: G14
+    statement: "in、on、at 的空间图式：in 是进到容器里面（in the box），on 是贴在一个面上（on the desk），at 是盯住一个点（at the door）。先按空间把三个画面记牢。"
+    say: "in 在里面，on 在面上，at 在一个点。"
+    exceptions: []
+    explain:
+      method: "镜头-看法框架"
+      carrier: "镜头推进：钻进盒子（in）、贴上桌面（on）、锁定门点（at）"
+      boundary: "图式是原型，不是每个用法的来源；时间用法是借用且有老习惯例外，见 g14-time-borrow"
+
+  - id: g14-time-borrow
+    type: tendency
+    concept: c-prep-schema
+    point: G14
+    statement: "时间用法是空间图式的借用：长时段像大盒子用 in（in May、in 2026），具体某一天像一个面用 on（on Monday、on June 1st），钟点像一个点用 at（at 7:30）。借用不是百分百对齐，有几个老习惯要单独记（见例外）。"
+    say: "时间借空间：长时段 in、某一天 on、钟点 at。"
+    scope: "时间介词 in/on/at 的原型分布"
+    exceptions: [xc-g14-at-night, xc-g14-on-morning, xc-g14-at-weekend]
+    explain:
+      method: "镜头-看法框架"
+      carrier: "日历盒子（in）、日历页（on）、钟表点（at）三画面"
+      boundary: "失效边界必须随讲：at night（夜里算点）、in the morning 被某天锁定时变 on Sunday morning、英式 at the weekend——图式猜不出来，单独记；旧 chant『早中晚都用 in』已更正"
+
+  # ── G15 连词 ──
+  - id: g15-because-so
+    type: rule
+    concept: c-connectors
+    point: G15
+    statement: "because 与 so 干同一件活（连接原因与结果），但接法不同：because 把原因做成挂在主句上的半句话（Because it rained, we stayed home——前半句自己站不住），so 把两个完整句子并排连起来（It rained, so we stayed home）。同一对句子只能选一种接法，两个一起用等于把同一件事接了两遍。汉语『因为…所以…』是成对关联词，英语不是。"
+    say: "because 和 so 只能选一个用。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "同一内容两种正确接法并排演示，叠用版打叉"
+      boundary: "旧库『语法树就断了』是编造机制，已撤；口语中偶见 because…so 属不规范用法，写作与考试不用"
+
+  - id: g15-and-or
+    type: rule
+    concept: c-connectors
+    point: G15
+    statement: "肯定句并列用 and；否定句表示『两样都不』时，通常把 and 换成 or（I don't like pears or peaches）。"
+    say: "肯定 and，否定多换 or。"
+    exceptions: [xc-g15-and-neg]
+    explain:
+      method: "对比案例"
+      carrier: "肯定/否定句对并排切换"
+      boundary: "or 替换是默认倾向：and 在否定句中表『不能同时做两件事』时保留，见例外（本库原规则已自带此诚实标注）"
+
+  # ── G16 be 现在时 ──
+  - id: g16-be-present
+    type: rule
+    concept: c-agreement
+    point: G16
+    statement: "be 动词现在时随主语变身：I 用 am；he、she、it、单数名词、不可数名词用 is；you、we、they、复数名词用 are。这叫主谓一致：动词向主语报出自己跟的是哪一档（我 / 单数 / 复数）。am not 没有缩略形式。"
+    say: "I 用 am，单数 is，复数 are。"
+    exceptions: []
+    explain:
+      method: "功能目的"
+      carrier: "be 动词按主语换装上场的演示"
+      boundary: "必须随讲的边界（旧 why 已按此修正）：be 只报三档，is 分不清是他、她还是一张桌子，要听后面的词才知道"
+
+  # ── G17 be 过去时 ──
+  - id: g17-be-past
+    type: rule
+    concept: c-agreement
+    point: G17
+    statement: "be 动词的过去时：am、is 变 was，are 变 were（否定 wasn't、weren't）；出现 yesterday、last night/week、...ago、in 2020 等过去时间标志时用过去式。"
+    say: "am/is 变 was，are 变 were。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "同一句现在/过去双版本对照，时间标志词高亮"
+      boundary: "讲的是 be 的变位；实义动词的过去式走 -ed 与不规则变法（G21、G22）"
+
+  # ── G18 一般现在时的意义 ──
+  - id: g18-present-meaning
+    type: rule
+    concept: c-tense
+    point: G18
+    statement: "一般现在时不是『现在这一秒正在做』，而是表经常反复的习惯、现在的状态与爱好、以及客观真理与自然事实。动词形式：主语不是三单时用原形，是三单时加 -s/-es。"
+    say: "一般现在时讲习惯和真理，不是正在做。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "『每天七点起床』的重复日历 vs 『此刻正在起床』的单帧画面对照"
+      boundary: "与现在进行时（G20）的分工靠『习惯 vs 此刻』判断；个别表将来时刻的用法（时刻表）留待中学"
+
+  # ── G19 三单 -s ──
+  - id: g19-third-s
+    type: rule
+    concept: c-agreement
+    point: G19
+    statement: "一般现在时肯定句里，主语是单个的他/她/它（第三人称单数，含单数名词、不可数名词、everyone 等）时，动词加 -s 或 -es：这是主谓一致留下的主语标记，动词用它表明自己跟的是单数主语。加法：一般加 -s；s、x、ch、sh、o 结尾加 -es；辅音 + y 变 i 加 -es；have 变 has。"
+    say: "主语是单个他她它，动词戴 -s 对暗号。"
+    exceptions: [xc-g19-does]
+    explain:
+      method: "功能目的"
+      carrier: "主语与动词互对暗号的演示：单数主语一出场，动词亮出 -s"
+      boundary: "『暗号』只管一般现在时三单肯定句；它与名词复数 -s 只是长得像、两码事（见 g19-s-history）；切勿延伸出『一句只能有一个 -s』——名词该加的 -s 照加"
+
+  - id: g19-s-history
+    type: etymology
+    concept: c-agreement
+    point: G19
+    statement: "动词三单 -s 与名词复数 -s 历史上是两个无关的词尾：三单 -s 源自古英语动词变位词尾（北部方言 -es 一支后来胜出，取代了南部的 -eth）；名词复数 -s 源自古英语名词词尾 -as。两者是独立源流，从不存在『名词缺 s 就补到动词上』的转移或补偿。"
+    source: "历史语法通行说法（审查报告引 Swan/CGEL 口径判定补偿叙事为伪史；台词审查另引 Wiktionary 与历史语法研究核对 -es/-as 两条源流）"
+    exceptions: []
+    explain:
+      method: "分层递进"
+      carrier: "两条河流分源的时间线图：动词词尾一支、名词词尾一支，从不汇合"
+      boundary: "本条是撤谣记录：旧库『-s 勋章转移/补偿平衡』叙事禁止再用；课堂讲法只用 g19-third-s 的功能说法"
+
+  # ── G20 现在进行时 ──
+  - id: g20-progressive
+    type: rule
+    concept: c-tense
+    point: G20
+    statement: "现在进行时 = be（am/is/are）+ 动词 -ing，表此时此刻正在发生，信号词有 Look!、Listen!、now、at the moment，两部分缺一不可。-ing 加法：一般直接加；不发音的 e 结尾去 e 再加（writing）；重读闭音节双写尾辅音再加（running、swimming）。"
+    say: "正在做的事：be 加 doing，两个都不能少。"
+    exceptions: []
+    explain:
+      method: "镜头-看法框架"
+      carrier: "镜头钻进事件内部看动作进行中的画面，与 G18 的习惯日历对照"
+      boundary: "讲的是此刻进行；表将来安排的进行时（I'm leaving tomorrow）留待中学"
+
+  # ── G21 规则过去式 ──
+  - id: g21-ed
+    type: rule
+    concept: c-tense
+    point: G21
+    statement: "规则动词的过去式加 -ed：一般直接加 -ed；以 e 结尾加 -d；辅音 + y 变 i 加 -ed；重读闭音节双写尾字母加 -ed。发音三读：清辅音后读 /t/，浊辅音和元音后读 /d/，/t/、/d/ 后读 /ɪd/。"
+    say: "过去的事，动词盖 -ed 章。"
+    exceptions: []
+    explain:
+      method: "功能目的"
+      carrier: "动词盖上 -ed 印章、时间标签翻到过去的演示"
+      boundary: "讲的是规则动词；高频老词的不规则变法在 G22，不要拿 -ed 去套它们"
+
+  # ── G22 不规则过去式 ──
+  - id: g22-irregular-past
+    type: rule
+    concept: c-tense
+    point: G22
+    statement: "高频老词的过去式没有总规律，分组逐个记：换元音组（sing→sang、swim→swam、drink→drank）；换词组（go→went，借了 wend 的过去式，与 go 本无词源关系）；带音变的弱变化组（buy→bought、have→had、teach→taught）；同形组（put、cut、hurt、read，拼写不变，read 读音变 /red/）。"
+    say: "老词各有老变法，分组记，没有总规律。"
+    exceptions: []
+    explain:
+      method: "分层递进"
+      carrier: "四组名单墙：换元音、换词、弱变化、同形，逐组点亮"
+      boundary: "旧 why『完整保留变换内部元音的传统』失实，已撤：元音变换只覆盖一组；『老词』是频率与历史的合称，不要反推生僻词都规则"
+
+  - id: g22-groups-mnemonic
+    type: mnemonic
+    concept: c-tense
+    point: G22
+    linkedClaim: g22-irregular-past
+    statement: "按拼写变化的样子分组背诵（i→a 组、ought 组、同形组等），只是记忆分组法，帮助成串记词；分组不代表这些词有共同的词源或统一的规律。"
+    say: "分组只是为了好背，不是规律。"
+    exceptions: []
+    explain:
+      method: "分层递进"
+      carrier: "单词按外形归堆的收纳演示"
+      boundary: "失效边界必须随讲：gave 的来历与 sang 不同类，分组只看外形像不像，不许当历史讲"
+
+  # ── G23 did ──
+  - id: g23-did
+    type: rule
+    concept: c-tense
+    point: G23
+    statement: "一般过去时的否定句与疑问句请助动词 did 出场：did 或 didn't 后面的实义动词恢复原形（I didn't go；Did you go?）。因为过去时标记全句只出现一次，由 did 承担，动词不必再变。答句里没有 did 时，动词恢复过去式。"
+    say: "did 一出场，动词回原形。"
+    exceptions: []
+    explain:
+      method: "类比"
+      carrier: "did 像海绵吸走过去能量的演示，动词随之还原"
+      boundary: "『海绵』是比喻，真事实是『时态只标记一次』；不要延伸成其他助动词也『吸』别的成分"
+
+  # ── G24 be going to ──
+  - id: g24-going-to
+    type: rule
+    concept: c-future
+    point: G24
+    statement: "be going to + 动词原形，表心里已经想好的计划、打算，或根据眼前迹象判断就要发生的事；be 随主语变（am/is/are），to 后接原形。标志词：tomorrow、next week、soon 等。"
+    say: "早想好的打算，用 be going to。"
+    exceptions: []
+    note: "family 等集合名词作主语时单复两可（看作整体用单数、看作成员用复数）；旧库测验把 is/are 并成一个选项属选项设计问题，见更新包存疑清单。"
+    explain:
+      method: "功能目的"
+      carrier: "计划表与眼前乌云两个场景：打算好、和看迹象要下雨"
+      boundary: "讲的是打算与迹象预测；与 will 的临时决定分工是倾向，小学阶段只点一句，不细抠"
+
+  - id: g24-etym
+    type: etymology
+    concept: c-future
+    point: G24
+    statement: "be going to 的来历是真实的语法化：它本是『走在去做某事的路上』（运动义的 go + 目的），人已经在路上，下一步自然就是做那件事，于是引申出『打算、将要』。"
+    source: "语法化通行叙述：运动 go + 目的不定式 → 将来/打算标记（审查报告确认其为真实语法化路径）"
+    exceptions: []
+    explain:
+      method: "动作体验"
+      carrier: "角色背起包走在去做某事的路上，画面渐变为计划表"
+      boundary: "『走在路上』是它真实的历史来源，不是编的比喻；但今天用它时不再含『走路』义，不要据此推它只能用于要出门的事"
+
+  # ── G25 will ──
+  - id: g25-will
+    type: rule
+    concept: c-future
+    point: G25
+    statement: "will + 动词原形表将来（意愿、承诺、临时决定、预测），不随主语的人称和数变化；否定是 won't。will 后面接形容词时不能漏掉原形 be（It will be sunny tomorrow）。"
+    say: "将来用 will，后面跟原形，谁来都不变。"
+    exceptions: []
+    explain:
+      method: "功能目的"
+      carrier: "角色当场拍板答应帮忙的场景，凸显 will 的『愿意』味"
+      boundary: "讲的是 will 的基本职守；shall 等其他将来表达不在小学范围"
+
+  - id: g25-etym
+    type: etymology
+    concept: c-future
+    point: G25
+    statement: "will 本义是『意愿、决心』：它来自古英语 willan『想要』，后来演化成通用的将来标记，所以 will 至今带着一点『愿意、承诺』的味道。"
+    source: "古英语 willan『to want, wish』（审查报告确认其为真词源）"
+    exceptions: []
+    explain:
+      method: "分层递进"
+      carrier: "词义时间线：想要 → 打算 → 将会"
+      boundary: "词源只解释它为何常带承诺味；判断一句是不是将来时看结构 will + 原形，不靠猜『意愿』"
+
+  # ── G26 can ──
+  - id: g26-can
+    type: rule
+    concept: c-modals
+    point: G26
+    statement: "can 表能力（会、能）或许可（可以），不随主语变化，后面紧接动词原形（He can swim）；否定直接变 can't，疑问把 Can 提到句首。"
+    say: "can 后面动词用原形，谁来都不变。"
+    exceptions: []
+    explain:
+      method: "类比"
+      carrier: "can 像保护伞罩住后面的动词，动词保持原形"
+      boundary: "『保护伞』只类比『后接原形』这一条；can 的过去式 could 的用法留待后续，不在此推"
+
+  # ── G27 情态家族 ──
+  - id: g27-modal-family
+    type: rule
+    concept: c-modals
+    point: G27
+    statement: "情态动词家族规矩相同：后面接动词原形。must 是『必须』，mustn't 是『严禁、千万不准』（不是『不必』）；should 是『应该』，用于温和建议；may 用在 May I ...? 里表礼貌请求。"
+    say: "mustn't 是禁止，不是『不必』。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "红灯前 mustn't cross 与『不必绕路』的 don't have to 双场景对照"
+      boundary: "mustn't 与 don't have to 的区别只作陷阱提醒点到为止；情态动词的否定细节（needn't 等）留待中学"
+
+  # ── G28 语序 ──
+  - id: g28-svo-order
+    type: rule
+    concept: c-sentence-order
+    point: G28
+    statement: "英语陈述句先把主干说完——主语 + 谓语 + 宾语，把『谁做了什么』这件事先交代清楚；方式、地点、时间是补充信息，一般排在句尾，想强调时也可以把状语提到句首（Every morning, I read English）。频率副词 always、often 等是另一路，站在主语和谓语之间。"
+    say: "先说谁做了什么，地点时间排后面。"
+    exceptions: []
+    explain:
+      method: "说话人-听话人视角"
+      carrier: "报新闻式演示：先播事件画面，再依次挂上地点、时间标签"
+      boundary: "旧库『焦点先行思维』是自造标签，已定案为假统一概念，禁止再用；本条讲的是信息顺序习惯，不是民族思维"
+
+  - id: g28-place-time
+    type: tendency
+    concept: c-sentence-order
+    point: G28
+    statement: "句尾状语的常见顺序是先地点、后时间（at home last night），但这只是常见倾向：时间排在地点前面（last night at home）同样正确、同样常见。"
+    say: "句尾一般先地点后时间，反过来也对。"
+    scope: "句尾地点状语与时间状语的相对顺序"
+    exceptions: [xc-g28-time-first]
+    explain:
+      method: "对比案例"
+      carrier: "同一句两种排法并排，都打对勾"
+      boundary: "失效边界必须随讲：不得据此倾向把任何一序设为错误选项（旧库 G28 fill 题已按此订正）"
+
+  # ── G29 否定双轨 ──
+  - id: g29-two-tracks
+    type: rule
+    concept: c-negation
+    point: G29
+    statement: "变否定句分两轨：句中有 be 动词或情态动词（can、will、must、should 等），直接在它们后面加 not；句中只有实义动词时，请 don't、doesn't、didn't 站到动词前面帮忙，其后的实义动词恢复原形。"
+    say: "有 be、情态直接加 not；只有实义动词，请 don't 来帮忙。"
+    exceptions: []
+    explain:
+      method: "类比"
+      carrier: "助动词像保镖站到实义动词前面的演示"
+      boundary: "『保镖』只类比『助动词出面承担否定与时态』；实义动词自己不能直接加 not 是结构事实，不靠比喻推"
+
+  - id: g29-some-any-neg
+    type: tendency
+    concept: c-negation
+    point: G29
+    statement: "否定句里 some 通常改成 any、and 通常改成 or，这是默认倾向。some 在否定句中可以保留表特指（I didn't buy some of the books = 其中一部分没买），and 也有保留用法——与 G15 的口径一致。"
+    say: "否定句默认 some 变 any，特指的时候可以不变。"
+    scope: "否定句中 some→any、and→or 的默认替换"
+    exceptions: [xc-g29-some-kept, xc-g15-and-neg]
+    explain:
+      method: "对比案例"
+      carrier: "全否与部分否定的双场景：书全没买 vs 只没买其中一部分"
+      boundary: "小学卷面按默认替换答题；特指保留是理解注记，不要求低年级产出，但不得把保留用法讲成错误"
+
+  # ── G30 一般疑问句 ──
+  - id: g30-yesno
+    type: rule
+    concept: c-questions
+    point: G30
+    statement: "一般疑问句把信号提到句首：有 be 或情态动词就提它们，没有就请 Do、Does、Did 站句首（实义动词随之恢复原形）；一、二人称互换（I/we ↔ you）；简短回答与问句用同一个助动词，答句主语用人称代词（Yes, he does）。"
+    say: "疑问句把助动词提到最前面，怎问怎答。"
+    exceptions: []
+    explain:
+      method: "功能目的"
+      carrier: "句首亮起信号灯的演示：听话人一开口就知道要回答 Yes/No"
+      boundary: "讲的是陈述句变一般疑问句的常规变法；答句主语用代词是为避免重复原名词，不延伸到其他句型"
+
+  # ── G31 特殊疑问词 ──
+  - id: g31-wh-words
+    type: rule
+    concept: c-questions
+    point: G31
+    statement: "特殊疑问词按所缺的信息分工并站句首：what（什么）、who（谁）、whose（谁的，问归属，与 Who、Who's 分清）、where（哪里）、when（何时，问任何时间）、which（哪一个）、why（为什么）、how（怎样）；What time 专问钟表上的几点几分。"
+    say: "缺什么信息，就派哪个疑问词站句首。"
+    exceptions: []
+    note: "旧 why 的『焦点前置/检索指令』是修辞说法，其中『焦点』一词与 G28 已定案的假统一标签同名，本模型不采用该词，只登记 wh- 前置这一事实（见存疑清单）。"
+    explain:
+      method: "功能目的"
+      carrier: "疑问词像工具箱里的专用工具，缺哪样信息取哪件"
+      boundary: "讲的是分工与位置；疑问词后接陈述语序（特殊疑问句的语序细节）按教材逐句落实，不靠本条类推"
+
+  - id: g31-why-answer
+    type: tendency
+    concept: c-questions
+    point: G31
+    statement: "Why 提问的回答多用 Because ...（因为……），这是首选而不是唯一：也可以用 to 不定式回答（—Why did you come? —To help you.）。"
+    say: "Why 多用 because 回答，也能用 to 回答。"
+    scope: "Why 问句答句的形式选择"
+    exceptions: [xc-g31-to-answer]
+    explain:
+      method: "对比案例"
+      carrier: "同一 Why 问句的两种答法并排"
+      boundary: "旧规则『必用 Because』已降格：考试造句按 because 最稳，但不得把 to 答句判错"
+
+  # ── G32 How vs What ──
+  - id: g32-how-what
+    type: rule
+    concept: c-questions
+    point: G32
+    statement: "缺的是『东西』就用 What：What 是替身名词，去站名词空缺的位置——What is the weather like? 里 like（像）后面必须跟一个东西，What 就去当这个东西。问程度、状态、方式用 How：How 后跟形容词问『到什么程度』（How old、How is the weather），How many、How much 问的是数量这个程度，仍归 How 家族。"
+    say: "缺名词用 What，问程度用 How。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "最小对立并排：How is the weather? / What is the weather like?，空缺位置高亮"
+      boundary: "旧 why 的『疑问代词填补名词空缺/程度探针』术语密度过高，已降维为本说法；How many/much 后跟名词不推翻本条——它们问的是数量"
+
+  # ── G33 祈使句 ──
+  - id: g33-imperative
+    type: rule
+    concept: c-sentence-types
+    point: G33
+    statement: "祈使句直接对眼前的听话人发指令，一般省去主语 you，以动词原形开头（Open your book）；接形容词时用 Be + 形容词（Be careful）；加 please 表客气；否定用 Don't + 原形；Let's + 原形是邀伙伴一起做。标语可用 No + 动词-ing（No swimming）。"
+    say: "祈使句省主语，动词原形站第一。"
+    exceptions: []
+    explain:
+      method: "动作体验"
+      carrier: "角色面对面下指令，听话人立刻照做"
+      boundary: "『省主语』是常态；强调时可把 You 说出来（You sit down!），属语气强调，不在本条展开"
+
+  # ── G34 感叹句 ──
+  - id: g34-exclamatory
+    type: rule
+    concept: c-sentence-types
+    point: G34
+    statement: "感叹句与疑问句同理：被感叹的核心是名词用 What（单数可数：What + a/an + 形容词 + 名词；复数与不可数名词只用 What，不加 a/an），核心是形容词或副词用 How（How + 形容词/副词 + 主语 + 谓语）。判断法：划掉句尾的主语和谓语，看剩下的核心词。"
+    say: "感叹名词用 What，感叹形容词用 How。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "What a nice day! 与 How nice the day is! 并排，核心词高亮"
+      boundary: "与 G32 共用『名词归 What、程度归 How』的底层分工；口语中省略式感叹（What a day!）不在公式展开内"
+
+  # ── G35 There be 就近 ──
+  - id: g35-proximity
+    type: rule
+    concept: c-there-be
+    point: G35
+    statement: "There be 表『某处有某物』：There is/are + 事物 + 地点。并列多个事物时，be 的单复数由紧挨着它的第一个名词决定（就近原则）。就近是考试与正式写作的约定，不是英语唯一的说法。"
+    say: "There be 看身后第一个名词定单复数。"
+    exceptions: [xc-g35-theres-plural]
+    explain:
+      method: "类比"
+      carrier: "be 动词像近视眼，只看清紧挨自己的第一个名词"
+      boundary: "失效边界必须随讲（旧 why 已按此补充）：『就近』是约定——口语 There's 后跟复数非常常见；不可数主语恒用 is，不在就近讨论内"
+
+  # ── G36 There be vs have ──
+  - id: g36-there-vs-have
+    type: rule
+    concept: c-there-be
+    point: G36
+    statement: "汉语的『有』在英语里分两轨：空间里客观存在某物用 There is/are（There is a tree in the garden）；某人拥有某物用主语 + have/has（I have a bike）。两轨不交叉，不存在 There have 这种拼法。"
+    say: "『某地有』用 There be，『某人有』用 have。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "花园里有棵树（存在）vs 我有一辆车（拥有）双场景"
+      boundary: "讲的是存现与拥有的分工；have 表『吃、经历』等其他义项不在此列"
+
+  # ── G37 as...as ──
+  - id: g37-as-as
+    type: rule
+    concept: c-comparison
+    point: G37
+    statement: "as ... as 表两者同级，中间放形容词或副词的原级：比较级是给『不一样』准备的，两边一样时不用。否定式 not as/so ... as 表前者不如后者，中间仍然用原级。"
+    say: "一样高就不用比较级，as 中间放原级。"
+    exceptions: []
+    explain:
+      method: "类比"
+      carrier: "类比三步：天平两边一样沉（一样）→ 不许加砝码（不用比较级）→ 中间放原级"
+      boundary: "天平只借『相等不用比较级』一条；as...as 可比高、快、安静等任何性质，不限轻重；否定式靠规则记，不靠类比推（旧 why 的循环解释已替换）"
+
+  # ── G38 比较级 ──
+  - id: g38-comparative
+    type: rule
+    concept: c-comparison
+    point: G38
+    statement: "比较级表两者比高低：短词尾加 -er（以 e 结尾加 -r；辅音 + y 变 i 加 -er；重读闭音节双写尾字母），长词前面加 more，后面跟 than。good/well 变 better、bad 变 worse、many/much 变 more，单独记。"
+    say: "比高低：短词加 er，长词加 more，后面跟 than。"
+    exceptions: [xc-g38-two-syllable]
+    explain:
+      method: "分层递进"
+      carrier: "两人 PK 身高条：短词尾巴变长、长词前面加 more"
+      boundary: "『短/长』以音节与词形为准；两音节词有两种活法，见例外"
+
+  # ── G39 最高级 ──
+  - id: g39-superlative
+    type: rule
+    concept: c-comparison
+    point: G39
+    statement: "最高级表三者及以上里的『最』：短词尾加 -est，长词前面加 most，前面要加 the——因为最高级把所指唯一锁定（全班最高的那一个），正合 the『就是那一个』的本职。范围词：空间用 in（in our class），同类群体用 of（of all）。good/well 变 the best、bad 变 the worst。"
+    say: "最高的人只有一个，所以戴 the。"
+    exceptions: []
+    explain:
+      method: "功能目的"
+      carrier: "全班选冠军的画面：唯一胜出者被 the 点名锁定"
+      boundary: "本讲法解释教材范围内最高级前 the 的来由；副词最高级等细节留待中学，不靠本条类推"
+
+  # ── G40 动词搭配 ──
+  - id: g40-one-finite
+    type: rule
+    concept: c-verb-complement
+    point: G40
+    statement: "一个分句里只有一个限定动词作谓语；后面再出现动词，必须变形为 to do 或 doing，不能再用原形（不说 I like swim、I want go）。"
+    say: "一句话只有一个谓语，第二个动词要变身。"
+    exceptions: []
+    explain:
+      method: "类比"
+      carrier: "一位国王坐上谓语宝座，第二个动词换上 to/doing 礼服入场"
+      boundary: "『国王』只借『限定动词只有一个』这条事实；第二个动词具体选 to 还是 -ing 由下一条管"
+
+  - id: g40-to-vs-ing
+    type: tendency
+    concept: c-verb-complement
+    point: G40
+    statement: "第二个动词选 to do 还是 doing，大方向看动词家族：want、plan、would like 望向一个还没实现的目标，用 to do；enjoy、finish 是泡在活动里（享受或做完），用 doing；like、love 站在中间两可——like doing 多是享受、习惯，like to do 多是觉得该做、选择做。硬搭配先背：enjoy/finish 只接 doing，want/would like 只接 to do，介词后接 doing，let/make + 宾语 + 原形。"
+    say: "想做没做的用 to，做着享受的用 doing；like 两边都行。"
+    scope: "双动词结构中第二动词形式的选择"
+    exceptions: [xc-g40-like-both, xc-g40-stop-remember]
+    explain:
+      method: "功能目的"
+      carrier: "望向远方目标（to）vs 泡在活动里（doing）的双画面，先猜后揭晓"
+      boundary: "失效边界必须随讲：这是大方向不是铁开关——stop、remember 换形式会换意思，留到中学细学，不要用本讲法去推它们；旧 chant 把 like 钉死在 doing 一侧已更正"
+
+examples:
+  - id: ex-g01-s
+    text: "book → books; pen → pens; bag → bags"
+    gloss: "一般情况直接加 -s"
+    supports: g01-plural-default
+  - id: ex-g01-es
+    text: "bus → buses; box → boxes; watch → watches; dish → dishes"
+    gloss: "s/x/ch/sh 结尾加 -es，读 /ɪz/"
+    supports: g01-plural-default
+  - id: ex-g01-ies
+    text: "baby → babies; story → stories; boy → boys; toy → toys"
+    gloss: "辅音 + y 变 i 加 -es；元音 + y 直接加 s"
+    supports: g01-plural-default
+  - id: ex-g01-ves
+    text: "leaf → leaves; knife → knives; wife → wives; wolf → wolves"
+    gloss: "变 v 小队的成员"
+    supports: g01-ves-list
+  - id: ex-g01-s-only
+    text: "roof → roofs; chief → chiefs; proof → proofs; giraffe → giraffes"
+    gloss: "只加 -s 的才是大多数"
+    supports: g01-ves-list
+  - id: ex-g02-vowel
+    text: "man → men; foot → feet; tooth → teeth; goose → geese; mouse → mice"
+    gloss: "换元音组"
+    supports: g02-irregular-groups
+  - id: ex-g02-same
+    text: "one sheep / two sheep; one fish / two fish"
+    gloss: "同形组：单复数一个样"
+    supports: g02-irregular-groups
+  - id: ex-g02-children
+    text: "child → children; woman → women (/ˈwɪmɪn/)"
+    gloss: "特殊变形组"
+    supports: g02-irregular-groups
+  - id: ex-g03-rice-beans
+    text: "beans 一颗颗能数（two beans）；rice 不说 rices，要说 two bowls of rice"
+    gloss: "大小颗粒相近，待遇相反——差别在习惯看法不在形状"
+    supports: g03-construal
+  - id: ex-g03-cake
+    text: "a cake（一整个蛋糕）/ some cake（一块蛋糕）"
+    gloss: "同一物质换看法就能数"
+    supports: g03-construal
+  - id: ex-g03-pieces
+    text: "two pieces of bread; three pieces of paper"
+    gloss: "-s 在 pieces 上，不在 bread、paper 上"
+    supports: g03-measure
+  - id: ex-g03-cup
+    text: "a cup of water; two glasses of juice"
+    gloss: "借杯、借玻璃杯计数"
+    supports: g03-measure
+  - id: ex-g04-tom
+    text: "Tom's book; Children's Day"
+    gloss: "单数与不以 s 结尾的复数加 's"
+    supports: g04-s-form
+  - id: ex-g04-teachers
+    text: "the teachers' office; Mike and Lucy's classroom（共有）"
+    gloss: "s 结尾复数只加撇号；共有在最后加"
+    supports: g04-s-form
+  - id: ex-g05-apple-book
+    text: "an apple; an egg; a book; a pen"
+    gloss: "元音音素前 an，辅音音素前 a"
+    supports: g05-sound-rule
+  - id: ex-g05-hour-useful
+    text: "an hour; an honest boy; a useful book; a university"
+    gloss: "看音不看字母：h 静音用 an，u 读 /juː/ 用 a"
+    supports: g05-sound-rule
+  - id: ex-g06-sun
+    text: "the sun; the moon; the first day; the tallest boy"
+    gloss: "独一无二、序数词、最高级前用 the"
+    supports: g06-the-known
+  - id: ex-g06-dog
+    text: "There is a dog in the park. The dog is running."
+    gloss: "第二次提到同一只，双方都知道了，用 the"
+    supports: g06-the-known
+  - id: ex-g06-piano
+    text: "play the piano"
+    gloss: "西洋乐器前加 the（教材口径）"
+    supports: g06-instrument
+  - id: ex-g06-violin
+    text: "play the violin; play the guitar"
+    gloss: "乐器家族同款"
+    supports: g06-instrument
+  - id: ex-g07-love-her
+    text: "I love her. He helps me."
+    gloss: "主语主格、宾语宾格"
+    supports: g07-case-position
+  - id: ex-g07-look-at-me
+    text: "Look at me! Play with her."
+    gloss: "介词后面也用宾格"
+    supports: g07-case-position
+  - id: ex-g08-my-mine
+    text: "This is my book. = This book is mine."
+    gloss: "形物代 + 名词 = 名物代"
+    supports: g08-possessive-pair
+  - id: ex-g08-hers
+    text: "Her dress is blue, and mine is yellow."
+    gloss: "没名词跟随，用名物代"
+    supports: g08-possessive-pair
+  - id: ex-g09-this
+    text: "This is an apple. — Is this your pen? — Yes, it is."
+    gloss: "近单 this，问答用 it 回"
+    supports: g09-demonstratives
+  - id: ex-g09-those
+    text: "Those are apples over there. — Are those your books? — Yes, they are."
+    gloss: "远复 those，问答用 they 回"
+    supports: g09-demonstratives
+  - id: ex-g10-some
+    text: "I have some comic books. She has some milk."
+    gloss: "肯定句用 some"
+    supports: g10-basic-split
+  - id: ex-g10-any
+    text: "I don't have any comic books. Do you have any milk?"
+    gloss: "否定与一般疑问用 any"
+    supports: g10-basic-split
+  - id: ex-g11-red
+    text: "a red apple; something new"
+    gloss: "定语在名词前；修饰 something 时在后"
+    supports: g11-adj-position
+  - id: ex-g11-bridge
+    text: "I am happy. She looks tired. It smells delicious."
+    gloss: "表语要 be 或感官动词搭桥"
+    supports: g11-adj-position
+  - id: ex-g12-happily
+    text: "sing happily; walk slowly; work carefully"
+    gloss: "形容词加 -ly 变方式副词"
+    supports: g12-adverb-form
+  - id: ex-g12-fast-well
+    text: "run fast; work hard; play football well"
+    gloss: "形副同形与 good→well"
+    supports: g12-adverb-form
+  - id: ex-g12-always
+    text: "He is always happy. You are never late."
+    gloss: "频率副词在 be 之后"
+    supports: g12-frequency-position
+  - id: ex-g12-often
+    text: "We often play football. She sometimes reads at night."
+    gloss: "频率副词在实义动词之前"
+    supports: g12-frequency-position
+  - id: ex-g13-first
+    text: "the first; the second; the third; the fifth; the twelfth"
+    gloss: "一二三特殊与 ve 变 f"
+    supports: g13-ordinals
+  - id: ex-g13-twenty-first
+    text: "the twentieth; the twenty-first (21st)"
+    gloss: "整十变 ie，几十几只变个位"
+    supports: g13-ordinals
+  - id: ex-g14-box-desk
+    text: "in the box; on the desk"
+    gloss: "容器里面 in，表面贴着 on"
+    supports: g14-schema
+  - id: ex-g14-door
+    text: "at the door; at the bus stop"
+    gloss: "锁定一个点 at"
+    supports: g14-schema
+  - id: ex-g14-time
+    text: "in May; in 2026; on Monday; on June 1st; at 7:30"
+    gloss: "时间借空间：长时段、某一天、钟点"
+    supports: g14-time-borrow
+  - id: ex-g15-because
+    text: "Because it rained, we stayed home."
+    gloss: "because 把原因挂在主句上"
+    supports: g15-because-so
+  - id: ex-g15-so
+    text: "It rained, so we stayed home."
+    gloss: "so 把两个完整句子并排连起来"
+    supports: g15-because-so
+  - id: ex-g15-and
+    text: "I have pens and pencils."
+    gloss: "肯定并列用 and"
+    supports: g15-and-or
+  - id: ex-g15-or
+    text: "I don't have pens or pencils."
+    gloss: "否定『两样都不』换 or"
+    supports: g15-and-or
+  - id: ex-g16-am
+    text: "I am a student. It is a desk. The water is clean."
+    gloss: "I 用 am，单数与不可数用 is"
+    supports: g16-be-present
+  - id: ex-g16-are
+    text: "You are right. They are friends. Tom and Jerry are here."
+    gloss: "you 与复数用 are"
+    supports: g16-be-present
+  - id: ex-g17-was
+    text: "I was at home yesterday. She was happy last week."
+    gloss: "am/is 的过去式 was"
+    supports: g17-be-past
+  - id: ex-g17-were
+    text: "They were in the park two days ago."
+    gloss: "are 的过去式 were"
+    supports: g17-be-past
+  - id: ex-g18-habit
+    text: "I get up at seven every day. We have English on Mondays."
+    gloss: "习惯与规律作息"
+    supports: g18-present-meaning
+  - id: ex-g18-truth
+    text: "The earth goes around the sun. Water boils at 100°C."
+    gloss: "客观真理"
+    supports: g18-present-meaning
+  - id: ex-g19-boy
+    text: "The boy likes reading. The boys like reading."
+    gloss: "单数主语动词戴 -s，复数不戴"
+    supports: g19-third-s
+  - id: ex-g19-watches
+    text: "She watches TV. He studies hard. It has a long tail."
+    gloss: "-es、变 ies、has 的加法现场"
+    supports: g19-third-s
+  - id: ex-g20-running
+    text: "He is running. They are swimming now."
+    gloss: "be + doing 表正在进行"
+    supports: g20-progressive
+  - id: ex-g20-look
+    text: "Look! The baby is crying. Listen! Someone is singing."
+    gloss: "信号词 Look/Listen 引出进行时"
+    supports: g20-progressive
+  - id: ex-g21-played
+    text: "played; lived; studied; stopped"
+    gloss: "-ed 四种加法各一例"
+    supports: g21-ed
+  - id: ex-g21-visited
+    text: "wanted /ˈwɒntɪd/; visited /ˈvɪzɪtɪd/; helped /helpt/"
+    gloss: "/t//d/ 后读 /ɪd/，清辅音后读 /t/"
+    supports: g21-ed
+  - id: ex-g22-went
+    text: "go → went; see → saw; eat → ate; take → took"
+    gloss: "换词与高频必背组"
+    supports: g22-irregular-past
+  - id: ex-g22-sang-put
+    text: "sing → sang; swim → swam; put → put; read → read (/red/)"
+    gloss: "换元音组与同形组"
+    supports: g22-irregular-past
+  - id: ex-g23-q
+    text: "Did you go to the zoo? — Yes, I did. / No, I didn't."
+    gloss: "疑问句 did 站句首，动词回原形"
+    supports: g23-did
+  - id: ex-g23-neg
+    text: "I didn't watch TV last night."
+    gloss: "否定句 didn't + 原形"
+    supports: g23-did
+  - id: ex-g24-plan
+    text: "I am going to clean my room this weekend."
+    gloss: "已定计划用 be going to"
+    supports: g24-going-to
+  - id: ex-g24-rain
+    text: "Look at the black clouds! It is going to rain."
+    gloss: "凭迹象判断就要发生"
+    supports: g24-going-to
+  - id: ex-g25-help
+    text: "I will help you. We will win!"
+    gloss: "承诺与意愿用 will"
+    supports: g25-will
+  - id: ex-g25-sunny
+    text: "It will be sunny tomorrow."
+    gloss: "接形容词不能漏 be"
+    supports: g25-will
+  - id: ex-g26-swim
+    text: "He can swim. She can draw very well."
+    gloss: "can 表能力，后接原形"
+    supports: g26-can
+  - id: ex-g26-question
+    text: "Can you help me? — Yes, I can. / Sorry, I can't."
+    gloss: "疑问提句首，否定 can't"
+    supports: g26-can
+  - id: ex-g27-mustnt
+    text: "You mustn't cross the road here. You mustn't play with fire."
+    gloss: "mustn't 是严禁"
+    supports: g27-modal-family
+  - id: ex-g27-may
+    text: "May I come in? You should rest now."
+    gloss: "May I 礼貌请求，should 温和建议"
+    supports: g27-modal-family
+  - id: ex-g28-football
+    text: "I play football at school every day."
+    gloss: "主干在前，地点、时间随后"
+    supports: g28-svo-order
+  - id: ex-g28-fronted
+    text: "Every morning, I read English in my room."
+    gloss: "想强调时状语可提句首"
+    supports: g28-svo-order
+  - id: ex-g30-are
+    text: "Are you a student? — Yes, I am. / No, I'm not."
+    gloss: "be 提前，怎问怎答"
+    supports: g30-yesno
+  - id: ex-g30-does
+    text: "Does he like music? — Yes, he does."
+    gloss: "实义动词请 Does 站句首，答句用代词 + does"
+    supports: g30-yesno
+  - id: ex-g31-where
+    text: "Where is my book? Whose bag is this?"
+    gloss: "缺地点派 where，缺归属派 whose"
+    supports: g31-wh-words
+  - id: ex-g31-what-time
+    text: "What time is it? When is your birthday?"
+    gloss: "What time 专问钟点，When 问任何时间"
+    supports: g31-wh-words
+  - id: ex-g32-what-like
+    text: "What is the weather like? — It's sunny."
+    gloss: "like 后面缺一个东西，What 去站位"
+    supports: g32-how-what
+  - id: ex-g32-how
+    text: "How is the weather? How old are you?"
+    gloss: "问状态与程度用 How"
+    supports: g32-how-what
+  - id: ex-g33-open
+    text: "Open your book. Be careful! Please sit down."
+    gloss: "原形开头，接形容词用 Be"
+    supports: g33-imperative
+  - id: ex-g33-dont
+    text: "Don't run in the classroom! Let's go home. No swimming!"
+    gloss: "否定、邀请与标语三种祈使"
+    supports: g33-imperative
+  - id: ex-g34-what
+    text: "What a nice day! What beautiful flowers!"
+    gloss: "核心是名词用 What，复数不加 a/an"
+    supports: g34-exclamatory
+  - id: ex-g34-how
+    text: "How nice the day is! How fast he runs!"
+    gloss: "核心是形容词/副词用 How"
+    supports: g34-exclamatory
+  - id: ex-g35-is
+    text: "There is a book and two pens on the desk."
+    gloss: "第一个名词是单数，用 is"
+    supports: g35-proximity
+  - id: ex-g35-are
+    text: "There are two pens and a book on the desk."
+    gloss: "第一个名词是复数，用 are"
+    supports: g35-proximity
+  - id: ex-g36-tree
+    text: "There is a tree in the garden."
+    gloss: "空间存在用 There be"
+    supports: g36-there-vs-have
+  - id: ex-g36-bike
+    text: "I have a bike. She has a new bag."
+    gloss: "拥有归属用 have/has"
+    supports: g36-there-vs-have
+  - id: ex-g37-tall
+    text: "He is as tall as his brother."
+    gloss: "同级比较中间用原级"
+    supports: g37-as-as
+  - id: ex-g37-not
+    text: "I am not as tall as you."
+    gloss: "否定式仍用原级"
+    supports: g37-as-as
+  - id: ex-g38-taller
+    text: "taller; bigger; heavier; happier"
+    gloss: "短词加 -er 的四种拼写情形"
+    supports: g38-comparative
+  - id: ex-g38-more
+    text: "more beautiful; more interesting; better than; worse than"
+    gloss: "长词加 more，不规则单独记"
+    supports: g38-comparative
+  - id: ex-g39-tallest
+    text: "the tallest boy in our class; the biggest apple of all"
+    gloss: "最高级加 the，范围 in/of 分工"
+    supports: g39-superlative
+  - id: ex-g39-best
+    text: "the best; the worst; the most interesting"
+    gloss: "不规则与长词最高级"
+    supports: g39-superlative
+  - id: ex-g40-want
+    text: "I want to buy a book. She plans to travel."
+    gloss: "目标未实现，第二个动词用 to do"
+    supports: g40-one-finite
+  - id: ex-g40-enjoy
+    text: "I enjoy swimming. He finished reading the story."
+    gloss: "泡在活动里，第二个动词用 doing"
+    supports: g40-one-finite
+  - id: ex-g29-track-one
+    text: "She is not happy. They can't swim. He will not go."
+    gloss: "轨道一：be 与情态动词直接加 not"
+    supports: g29-two-tracks
+  - id: ex-g29-track-two
+    text: "He doesn't like apples. We didn't go yesterday."
+    gloss: "轨道二：请 doesn't/didn't 帮忙，动词回原形"
+    supports: g29-two-tracks
+
+exceptions:
+  - id: xc-g01-ves-rest
+    exceptionOf: g01-ves-list
+    text: "roofs、chiefs、proofs、safes、giraffes 只加 -s——只加 s 的是大多数"
+    note: "旧 chant 把 giraffe 当唯一例外并称变 v 者为『多数』，量化颠倒；本例外登记只加 -s 的多数派，防止旧口诀复活"
+  - id: xc-g02-fishes
+    exceptionOf: g02-irregular-groups
+    text: "fishes 在『鱼的种类』义上成立（many fishes in the sea = 许多种鱼）"
+    note: "fish 同形只管『条数』义；旧规则的『永远不加 s』已删『永远』"
+  - id: xc-g03-hair-time
+    exceptionOf: g03-measure
+    text: "a hair（一根头发）、two hairs 成立；three times（三次）、times（时代）成立"
+    note: "hair、time 是整体看不可数、逐根/逐次看可数的双面词；旧规则①把它们无条件列为不可数，已加注"
+  - id: xc-g03-dual
+    exceptionOf: g03-measure
+    text: "cake、paper、glass、chicken 在『整只/整份』看法下直接可数（a cake、a paper 一份报纸），不必借单位"
+    note: "双面词的可数性随看法切换，见 boundedness 模型 cl-whole-material"
+  - id: xc-g04-things-s
+    exceptionOf: g04-of-tendency
+    text: "today's news、China's capital、the book's cover、a day's work——无生命照样用 's"
+    note: "『有生命 's / 无生命 of』的生物分界线不成立，'s 对时间、国家、物品都是默认首选"
+  - id: xc-g04-of-person
+    exceptionOf: g04-of-tendency
+    text: "a friend of mine（双重所有格，必须 of）、the daughter of the king——有生命也能用 of"
+    note: "双重所有格是硬性结构，不是倾向问题"
+  - id: xc-g06-piano
+    exceptionOf: g06-zero-activity
+    text: "play the piano——乐器类在教材口径里按『东西』读法加 the，不套活动零冠词"
+    note: "与 boundedness 模型 xc-piano 同一事实，彼处为零冠词家族登记，此处为 G06 教学点登记"
+  - id: xc-g06-the-lunch
+    exceptionOf: g06-zero-activity
+    text: "the lunch we had yesterday——特指某一顿饭时，三餐也要加 the"
+    note: "『活动不加冠词』只管泛指活动"
+  - id: xc-g06-us-piano
+    exceptionOf: g06-instrument
+    text: "美式日常口语常说 play piano（不加 the）"
+    note: "考试与教材按 the；口语变体只作理解注记（审查报告 G06 讲法边界）"
+  - id: xc-g07-we-they
+    exceptionOf: g07-polite-order
+    text: "复数并列『we, you and they』无固定规定"
+    note: "旧库 G07 规则③已自带此诚实声明：那是国内教辅口诀，不是英语规则"
+  - id: xc-g10-any-ok
+    exceptionOf: g10-request-some
+    text: "Can I have any water, Mum? 语法成立，只是语气中性、疏远，不显期待"
+    note: "Swan 口径：some 是期待肯定答复时的强偏好；旧库把此句设为改错题属误判，已订正"
+  - id: xc-g11-very-delicious
+    exceptionOf: g11-very-delicious
+    text: "very delicious 在现代英语（尤其美式口语）中常见且可接受"
+    note: "故 g11 本条只作风格提醒，不得据此判错（审查报告 G11 注记）"
+  - id: xc-g14-at-night
+    exceptionOf: g14-time-borrow
+    text: "at night——夜里用 at，不用 in；at noon 同理"
+    note: "图式猜不出的老习惯，单独记；旧 chant『早中晚都用 in』与自家规则冲突，已更正"
+  - id: xc-g14-on-morning
+    exceptionOf: g14-time-borrow
+    text: "on Sunday morning——in the morning 一旦被某一天锁定，改用 on"
+    note: "『某一天的某个时段』整体算『某一天』，用 on"
+  - id: xc-g14-at-weekend
+    exceptionOf: g14-time-borrow
+    text: "英式英语说 at the weekend，人教版用 on the weekend"
+    note: "旧库规则③已自带此注记，属地区变体而非错误"
+  - id: xc-g15-and-neg
+    exceptionOf: g15-and-or
+    text: "I can't sing and dance 也是对的，意思是『不能边唱边跳』"
+    note: "本库 G15 原规则①自带的诚实标注：and 在否定句中表『同时做两件事』时保留"
+  - id: xc-g19-does
+    exceptionOf: g19-third-s
+    text: "does / doesn't 出场后，实义动词恢复原形（Does he like ...?）"
+    note: "『暗号被 does 领走』是功能说法：-s 不消失，是转由 does 承担三单标记"
+  - id: xc-g28-time-first
+    exceptionOf: g28-place-time
+    text: "We had a big dinner last night at home.——时间在地点前，完全合乎语法且常见"
+    note: "旧库 G28 fill 题曾把此序设为错误选项，属误判，已按审查裁定订正（题目改为两序都接受或改排序题）"
+  - id: xc-g29-some-kept
+    exceptionOf: g29-some-any-neg
+    text: "I didn't buy some of the books.（其中一部分没买）——some 在否定句中保留表特指"
+    note: "旧库 G29 未作此标注，与 G15 口径不一，已对齐"
+  - id: xc-g31-to-answer
+    exceptionOf: g31-why-answer
+    text: "—Why did you come? —To help you.（用 to 不定式回答 Why，成立）"
+    note: "because 是首选不是唯一；旧规则③『必用 Because』已降格"
+  - id: xc-g35-theres-plural
+    exceptionOf: g35-proximity
+    text: "日常口语里 There's 后跟复数非常常见（There's two books on the desk）"
+    note: "旧库规则②已自带此诚实注记：口语听懂即可，写作与考试按就近原则"
+  - id: xc-g38-two-syllable
+    exceptionOf: g38-comparative
+    text: "两音节词如 clever、quiet 两种形式都有：cleverer 与 more clever 均可"
+    note: "『短词 -er、长词 more』的中间地带（Swan 口径）；-y 结尾的两音节词走变 i 加 -er（heavier）"
+  - id: xc-g40-like-both
+    exceptionOf: g40-to-vs-ing
+    text: "like to do 成立（I like to swim in the morning = 我选择早上去游泳），与 like doing（享受游泳）意义有别"
+    note: "旧 chant 把 like 钉死在 doing 一侧属过度简化，已更正；enjoy/finish 则只能接 doing"
+  - id: xc-g40-stop-remember
+    exceptionOf: g40-to-vs-ing
+    text: "stop doing（停下手头的事）与 stop to do（停下来去做另一件事）、remember doing 与 remember to do，换形式即换意思"
+    note: "留待中学细学；不得用 g40 的『目标 vs 活动』大方向去硬推这类词（审查报告 G40 失效边界）"
+
+chants:
+  - id: ch-g01
+    text: "一般加 s，嘶嘶加 es；辅音 y 变 ies；变 ves 的只有一小队，其余 f 尾只加 s"
+    for: g01-ves-list
+    kind: mnemonic
+  - id: ch-g02
+    text: "男女脚牙鹅变 e，老鼠变 mice，孩子变 children；羊鹿鱼和 Chinese，单复数一个样"
+    for: g02-irregular-groups
+    kind: mnemonic
+  - id: ch-g03
+    text: "看法决定数不数：一个个能数，一整摊借单位"
+    for: g03-construal
+    kind: rule
+  - id: ch-g04
+    text: "'s 是标签先贴上，又长又重用 of 讲"
+    for: g04-of-tendency
+    kind: mnemonic
+  - id: ch-g14
+    text: "年月季节用 in（at night 单记），某天某日用 on，几点几分用 at"
+    for: g14-time-borrow
+    kind: mnemonic
+  - id: ch-g15
+    text: "because、so 选一个，同一件事不接两遍"
+    for: g15-because-so
+    kind: rule
+  - id: ch-g19
+    text: "主语单个他她它，动词 -s 来对暗号；does 来了 -s 走，动词回到原形样"
+    for: g19-third-s
+    kind: mnemonic
+  - id: ch-g28
+    text: "先说谁做了什么，地点时间随后挂；先地后时是常样，反着说也不算差"
+    for: g28-place-time
+    kind: mnemonic
+  - id: ch-g31
+    text: "为什么用 why 来问，because 回答最稳当"
+    for: g31-why-answer
+    kind: mnemonic
+  - id: ch-g35
+    text: "There be 近视眼，身后第一定单复；就近是约定，写作要守住"
+    for: g35-proximity
+    kind: mnemonic
+  - id: ch-g37
+    text: "天平两边一样沉，中间原级不加码"
+    for: g37-as-as
+    kind: mnemonic
+  - id: ch-g40
+    text: "想做没做 to 来带，做着享受 doing 来；like 两边都能站"
+    for: g40-to-vs-ing
+    kind: mnemonic

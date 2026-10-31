@@ -1,0 +1,63 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：model/spacetime.yaml；改本幕台词/结构：model/specs/spacetime_2.yaml；改编排：模板 fp_vectors_2.js（家族共用）。
+// 判据/口诀来源：sp-cl-on-off。生成器 model/gen_scene.py（items 模式）。
+// 🧭 联想工具箱 ⑤ 介词看图猜 · 2 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/fp_vectors.js 案例 2；对照清单 lab/INVENTORY_FP_VECTORS_2_V5.md
+// 角色关键帧：sprites/fv2.js（人物先行帧库 cast/）
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/fv2.js';
+const ACTS = {"put on": ["l_coat1", "l_coat2", "l_coat3"], "turn on": ["l_switch"], "get on": ["l_bike0", "l_bike1", "l_bike2"], "take off": ["l_coff0", "l_coff1", "l_coff2"], "takes off": ["plane0", "plane1", "plane2"], "fall off": ["l_fall"]};
+const ITEMS = [
+  ['n', '这一幕：take off 为什么既是「脱衣服」，又是「飞机起飞」？'],
+  ['p', '🧥'],
+  ['w', 'on 贴上 · off 离开'],
+  ['w', '⑤ 介词看图猜'],
+  ['w', '💡 记忆联想'],
+  ['w', 'on 贴上 · off 离开'],
+  ['w', '⑤ 介词看图猜'],
+  ['m', '💡 记忆联想'],
+  ['m', '① 贴上'],
+  ['m', '② 接通'],
+  ['m', '③ 离开'],
+  ['m', '④ 断开'],
+  ['m', '⑤ 口诀'],
+  ['m', '🔮 预测'],
+  ['w', 'ON：贴上、接通'],
+  ['n', 'on、off 有一条主线：on 是贴上或接通。先看贴上——put on your coat，外套贴到身上。'],
+  ['w', 'put on your coat'],
+  ['w', '衣服贴到身上'],
+  ['n', '再看接通：turn on the light，开关接通，灯就亮了。'],
+  ['w', 'turn on the light'],
+  ['w', '开关接通，灯亮了'],
+  ['s', 'Put on your coat. Turn on the light.', '穿上外套。打开灯。', 'put on turn on'],
+  ['w', 'OFF：离开、断开'],
+  ['n', 'off 是离开或断开：take off your shoes，鞋子离开脚；turn off the light，电路断开，灯就灭了。'],
+  ['w', 'take off your shoes'],
+  ['w', '鞋子离开脚'],
+  ['w', 'turn off the light'],
+  ['n', '飞机离开跑道，也是「离开表面」——所以起飞也叫 take off！'],
+  ['w', 'The plane takes off!'],
+  ['w', '飞机离开地面'],
+  ['s', 'Take off your shoes. Turn off the light.', '脱掉鞋子。关掉灯。', 'take off turn off'],
+  ['s', 'The plane takes off! Don\'t fall off the bike.', '飞机起飞了！别从自行车上摔下来。', 'takes fall'],
+  ['w', '⚠️ 有例外'],
+  ['n', '但主线不是全部。闹钟响起来，说 go off——明明是「响起来」，和「断开」正好相反！这个图推不出来，单独记。'],
+  ['w', 'go off = 响起来（闹钟、火警）'],
+  ['s', 'The alarm goes off at seven.', '闹钟七点响起来。', 'goes off'],
+  ['n', '还有几个也不按主线：put off 是推迟，on fire 是着火，the meeting is off 是会议取消——遇到就按习惯说法记。'],
+  ['w', 'put off 推迟 · on fire 着火'],
+  ['w', 'the meeting is off 会议取消'],
+  ['n', '口诀：on 是贴上，off 是离开，go off 响起来单记。'],
+  ['w', '口诀：on 是贴上，off 是离开，go off 响起来单记'],
+  ['n', '预测：想看电视，要把开关接通。turn ___ the TV 填 on 还是 off？先想 3 秒！'],
+  ['w', '🔮 turn ___ the TV（打开）→ on 还是 off'],
+  ['n', '揭晓：打开 = 接通 = on：turn on the TV。'],
+  ['w', 'turn on the TV —— 接通 = on'],
+  ['s', 'Turn on the TV, please.', '请打开电视。', 'please'],
+  ['w', '💡 一句话洞见'],
+  ['w', 'on、off 先猜贴和离：'],
+  ['w', '主线之外，约定单记'],
+  ['w', '🎵 口诀'],
+  ['w', 'on 是贴上，off 是离开，go off 响起来单记'],
+  ['w', '📦 联想工具箱 ⑤ 介词看图猜'],
+];
+export default function build() { return autoBuild(SP, { title: 'on 贴上 · off 离开', items: ITEMS, acts: ACTS }); }

@@ -1,0 +1,219 @@
+# 知识模型 · 联想工具箱 ⑥ 站位与顺序的四个小机关（按 THEORY_AUDIT 改法：四幕各讲各的机制，不设统一机制）
+# 规范见 REWRITE_TECH_PLAN.md §3：tendency 必带 scope 与例外；mnemonic 必链真内容；
+# 每条主张带 explain（方法 / 载体 / 失效边界）与 mechanism（真机制 / 帮记故事）。
+
+family: viewpoint
+title: "联想工具箱 ⑥ 站位与顺序的四个小机关——各讲各的，不是一条律"
+
+insight:
+  domain:
+    - dom-grammar
+    - dom-questions-info
+    - dom-tense-aspect
+  domainNote: "无单一纲领：四幕按内容分挂三域，不硬挂一条统一纲领"
+  coreView: "四幕没有共同机制：形容词位置是重量倾向，疑问词移位是句法规则，地址与日期顺序是书写惯例，完成时是时态看法；各讲各的，不得互相解释。"
+  mechanisms:
+    - "6-1 重量倾向：轻的形容词一般前置，重的形容词短语一般后置；连字符打包后可前置"
+    - "6-2 移位规则：英语主句疑问词移至句首，汉语疑问词留在原地"
+    - "6-3 书写惯例：地址从小到大写；日期写法各国不同，另学"
+    - "6-4 时态隐喻：完成时讲过去的事与现在的关联"
+  conflicts: "旧总纲把四幕说成一条焦点先行机制：裁决——这种统一关系不存在；『焦点先行思维』标签已废止，改按四幕各自的机制讲。"
+
+concepts:
+  - id: vp-c-adj-position
+    name: "形容词位置"
+    gloss: "轻的前置、重的后置；连字符打包的形容词可前置"
+  - id: vp-c-wh-movement
+    name: "疑问词移位"
+    gloss: "英语主句疑问词移至句首，汉语疑问词留在原地"
+  - id: vp-c-order
+    name: "地址与日子锚点顺序"
+    gloss: "地址从小到大写；morning 带具体日子时从 day 的 on"
+  - id: vp-c-perfect
+    name: "现在完成时"
+    gloss: "过去发生、和现在有关系的时态看法"
+
+claims:
+  - id: vp-cl-adj-position
+    type: tendency
+    concept: vp-c-adj-position
+    statement: "形容词一般放在名词前面（a red apple）；重的、长的形容词短语一般放在名词后面（a man afraid of dogs）。『一般』是本条的关键词，不是包打一切的断言。"
+    say: "轻的前置，重的后置。"
+    scope: "形容词与形容词短语在名词前后的位置"
+    exceptions: [vp-xc-people-present]
+    explain:
+      method: "对比案例"
+      carrier: "a red apple（轻的前置）对照 a man afraid of dogs（重的后置）"
+      boundary: "重量倾向只管轻重与位置的大方向；连字符打包形容词另见打包条，不在本条的轻重判断里"
+    mechanism: "真机制"
+
+  - id: vp-cl-hyphen-pack
+    type: rule
+    concept: vp-c-adj-position
+    statement: "几个词用连字符打包成一个形容词后，可以放在名词前面：a five-year-old boy、a two-hour trip。打包后它在句法上就是一个前置形容词。"
+    say: "连字符一打包，长的也能站前面。"
+    exceptions: []
+    explain:
+      method: "动作体验"
+      carrier: "把 five-year-old 用连字符捆成一捆，再放到 boy 前面的动手画面"
+      boundary: "只管连字符打包后的前置；没有打包的长短语仍按重量倾向后置"
+    mechanism: "真机制"
+
+  - id: vp-cl-wh-fronting
+    type: rule
+    concept: vp-c-wh-movement
+    statement: "英语主句特殊疑问句里，疑问词移到句首（What is it?、Where did you go?）；汉语疑问词留在原地，不移位（你买了什么？）。"
+    say: "英语疑问词站第一，汉语疑问词留在原地。"
+    exceptions: [vp-xc-echo, vp-xc-embedded]
+    explain:
+      method: "对比案例"
+      carrier: "What is it? 对照汉语『这是什么？』，疑问词位置一动一不动"
+      boundary: "本条只管主句特殊疑问句；回声问句与从句中的疑问词位置见例外"
+    mechanism: "真机制"
+
+  - id: vp-cl-address-order
+    type: rule
+    concept: vp-c-order
+    statement: "只管一件事——写地址：英语从小排到大（先门牌、再街道、然后城市、最后国家），和中文正好反过来。本条不推广到时间与日期。"
+    say: "写地址从小到大，日期写法另学。"
+    note: "本条只管地址；日期写法各国不同，另学。"
+    exceptions: [vp-xc-date-us]
+    explain:
+      method: "对比案例"
+      carrier: "英文地址小到大与中文地址大到小，两行倒序对照"
+      boundary: "适用域只限地址；时间、日期的顺序不在本条内，日期写法见例外"
+    mechanism: "真机制"
+
+  - id: vp-cl-time-anchor
+    type: rule
+    concept: vp-c-order
+    statement: "morning 单独出现时用 in（in the morning）；前面加了具体日子，就改从 day 的 on（on Tuesday morning、on Sunday morning）。"
+    say: "有日子锚点时从 day 的 on。"
+    note: "有日子锚点时从 day 的 on：on Tuesday morning（morning 单独用 in，带具体日子改从 day 的 on）"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "in the morning 对照 on Tuesday morning，同一 morning 有无日子锚点换介词"
+      boundary: "本条只管 morning 加日子锚点的换介词；at night、in the morning 本身的约定性见介词模型例外条"
+    mechanism: "真机制"
+
+  - id: vp-cl-perfect
+    type: rule
+    concept: vp-c-perfect
+    statement: "现在完成时用 have、has 加过去分词，讲过去发生的事与现在的关联，和现在有关系：做完了、结果还摆在现在（I have lost my key，钥匙现在还没找到）；一直持续到现在（I have lived here for ten years，现在还住在这儿，事情没做完）。"
+    say: "过去发生，和现在有关系 → have、has 加过去分词！"
+    source: "Comrie（1976: 52）完成体定义：a past situation's continuing present relevance（过去情境对现在的持续相关性）；四分含 perfect of persistent situation（持续义）。与 scene_fixes sf-037/sf-038 同源"
+    note: "『做完了』不能概括完成时：I have lived here for ten years 的事没做完；小学先立结果、持续两支，经历与刚发生两格中学补全。旧判据『结算＝做完了』已废止，见 superseded。"
+    exceptions: [vp-xc-perfect-yesterday]
+    explain:
+      method: "对比案例"
+      carrier: "I have lost my key（结果支）对照 I have lived here for ten years（持续支），两支并置"
+      boundary: "本条只讲结果与持续两支；经历、刚发生两格是同一框架的另外两格，中学补全，不在本条展开"
+    mechanism: "真机制"
+
+examples:
+  - id: vp-ex-red-apple
+    text: "a red apple；a tall tree"
+    gloss: "轻的形容词前置"
+    supports: vp-cl-adj-position
+  - id: vp-ex-man-afraid
+    text: "a man afraid of dogs；students interested in science"
+    gloss: "重的形容词短语后置"
+    supports: vp-cl-adj-position
+  - id: vp-ex-five-year-old
+    text: "a five-year-old boy"
+    gloss: "连字符打包形容词前置"
+    supports: vp-cl-hyphen-pack
+  - id: vp-ex-two-hour-trip
+    text: "a two-hour trip；a ten-minute walk"
+    gloss: "连字符打包形容词前置的第二组例证"
+    supports: vp-cl-hyphen-pack
+  - id: vp-ex-what-is-it
+    text: "What is it?；Who came?"
+    gloss: "主句疑问词站句首"
+    supports: vp-cl-wh-fronting
+  - id: vp-ex-where-did-you-go
+    text: "Where did you go?"
+    gloss: "主句疑问词站句首，助动词随后"
+    supports: vp-cl-wh-fronting
+  - id: vp-ex-address-small-big
+    text: "10 Downing Street, London, UK"
+    gloss: "地址从小到大：街道、城市、国家"
+    supports: vp-cl-address-order
+  - id: vp-ex-flat-high-street
+    text: "Flat 2, 25 High Street, Oxford, England"
+    gloss: "地址从小到大：门牌、街道、城市、国家"
+    supports: vp-cl-address-order
+  - id: vp-ex-in-morning
+    text: "in the morning"
+    gloss: "morning 单独出现时用 in"
+    supports: vp-cl-time-anchor
+  - id: vp-ex-tuesday-morning
+    text: "on Tuesday morning；on Sunday morning"
+    gloss: "morning 带具体日子时改从 day 的 on"
+    supports: vp-cl-time-anchor
+  - id: vp-ex-lost-key
+    text: "I have lost my key.（钥匙现在还没找到）"
+    gloss: "完成时结果支：结果留到现在"
+    supports: vp-cl-perfect
+  - id: vp-ex-lived-ten-years
+    text: "I have lived here for ten years.（现在还住在这儿）"
+    gloss: "完成时持续支：事情没做完、一直持续到现在"
+    supports: vp-cl-perfect
+
+exceptions:
+  - id: vp-xc-people-present
+    exceptionOf: vp-cl-adj-position
+    text: "people present（在场的人们）：单个形容词 present 后置"
+    note: "后置单形容词是重量倾向的反向例证；present 这类后置形容词逐个记"
+  - id: vp-xc-echo
+    exceptionOf: vp-cl-wh-fronting
+    text: "回声问句：疑问词可留在原地（You bought what?）"
+    note: "回声问句为重复确认而问，疑问词不移位；小学作『见过即可』"
+  - id: vp-xc-embedded
+    exceptionOf: vp-cl-wh-fronting
+    text: "从句居中：Tell me what you want.（告诉我你想要什么）"
+    note: "疑问词藏在长句子中间，不站句首；小学主攻主句句首位，中句位置作『见过即可』"
+  - id: vp-xc-date-us
+    exceptionOf: vp-cl-address-order
+    text: "日期写法各国不同：美式 September 9 是月→日→年，不按地址小→大的顺序硬套"
+    note: "本条只管地址；日期写法另学，美式月→日→年作注记"
+  - id: vp-xc-perfect-yesterday
+    exceptionOf: vp-cl-perfect
+    text: "现在完成时不能单独配 yesterday、last night 这类点名过去时间点的状语：说昨天用一般过去时（I went yesterday）"
+    note: "完成时讲与现在的关联，点名过去时间就改用一般过去时；since yesterday 除外：I have lived here since yesterday 合法——since 接的是从昨天到现在的时段，不是单独的过去时间点"
+
+chants:
+  - id: vp-ch-adj
+    text: "轻的前置，重的后置，打包的也能站前面"
+    for: vp-cl-adj-position
+    kind: rule
+  - id: vp-ch-wh
+    text: "疑问词站第一，回声、从句不硬套"
+    for: vp-cl-wh-fronting
+    kind: rule
+  - id: vp-ch-address
+    text: "写地址从小到大，日期写法另学"
+    for: vp-cl-address-order
+    kind: rule
+  - id: vp-ch-perfect
+    text: "过去发生，和现在有关系 → have、has 加过去分词！"
+    for: vp-cl-perfect
+    kind: rule
+
+superseded:
+  - old: "第一性原理 ⑥ 焦点先行与镜头缩放律（家族名 + 一条统一律统摄四幕）"
+    verdict: "假统一：四幕实为四种不同机制（重量倾向 / 移位规则 / 书写惯例 / 时态看法），统摄关系不存在（THEORY_AUDIT ⑥ 家族判定、跨层通病 1；scene_fixes sf-014）"
+    replacedBy: "本文件四条分立记录（vp-cl-adj-position、vp-cl-wh-fronting、vp-cl-address-order、vp-cl-perfect），家族改称『联想工具箱 ⑥ 站位与顺序的四个小机关』"
+  - old: "『焦点先行思维』标签（原理 ⑥ 总纲及 GRAMMAR_DB G28、ZH_EN 维度 1 的同名自造概念）"
+    verdict: "自造标签冒充机制：grammar.yaml g28-svo-order 已定案废止，全 App 统一以信息顺序 / end-focus 表述"
+    replacedBy: "grammar.yaml g28-svo-order、g28-place-time（信息包装口径）；本文件不再使用该标签"
+  - old: "6-1 『一律 / 只有 1 个词才能前置』"
+    verdict: "过度简化·中：被连字符打包形容词（a five-year-old boy）与后置单形容词（people present）双向推翻（THEORY_AUDIT 6-1）"
+    replacedBy: "vp-cl-adj-position（『一般』+ 重量倾向）+ vp-cl-hyphen-pack + 例外 vp-xc-people-present"
+  - old: "6-4 完成态判据『结算＝做完了』"
+    verdict: "最著名的完成体误解：I have lived here for ten years 没做完（THEORY_AUDIT 6-4、P2）"
+    replacedBy: "vp-cl-perfect『结果留到现在 / 和现在有关系』（Comrie 1976 现时相关性，结果支 + 持续支并置）"
+  - old: "⑥ DB 总纲：汉语疑问词『在最后』"
+    verdict: "表述错误：汉语疑问词是留在原地，不是排到最后（THEORY_AUDIT P3）"
+    replacedBy: "vp-cl-wh-fronting『汉语疑问词留在原地』"

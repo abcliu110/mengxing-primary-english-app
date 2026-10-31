@@ -18,6 +18,7 @@ const ITEMS = [
   ['w', '③ 进阶要点：② 零冠词场景：play + 球类/棋类；have + 三餐；星期月份季节前；学科语言前；by + 交通工具'],
   ['w', 'G06 第1幕'],
   ['s', 'I see a dog. The dog is very cute.', '我看见一只狗。这只狗很可爱。'],
-  ['n', '🎵 口诀：特指双知用定冠(the)，世上独一太阳蓝天(the sun/sky)；西洋乐器必加 the（play the piano），球类棋类三餐前，冠词统统靠边站（play football / have dinner）！']
+  ['n', '第一次提，用 a：听的人还不知道是哪一个；两人都知道是哪一个，用 the；说\'去做那件事\'——上学、睡觉、踢球、吃饭——冠词放假；弹钢琴的 the 是老习惯，跟着说 play the piano。'],
+  ['n', 'go to school 是\'去上学\'（做学生该做的事），go to the school 是\'去那栋楼\'（人未必是学生）。同一个词，看你说的是做事还是东西。']
 ];
 export default function build() { return autoBuild(SP, { title: '📘 G06 底层原理', items: ITEMS, acts: ACTS }); }

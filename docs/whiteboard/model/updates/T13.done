@@ -1,0 +1,19 @@
+# T13 完成标记 · 参照图库首批（动作事实卡 ×4）
+
+产出（docs/whiteboard/model/refcards/）：
+- pour.yaml —— 倒：5 条事实、5 条 invariants、参照 4 源（照片 2 + 文本 2）
+- cut.yaml —— 切：5 条事实、4 条 invariants、参照 3 源（照片 1 + 文本 2）
+- fill_cup.yaml —— 装杯：5 条事实、4 条 invariants、参照 3 源（照片 1 + 文本 1 + 交叉引用 pour 照片）
+- tear.yaml —— 撕纸：5 条事实、4 条 invariants、参照 3 源（照片 1 + 文本 2）
+
+参照图落盘：5 张，全部在 docs/whiteboard/model/refcards/refs/ 并已逐张目视核验内容与动作相符：
+- pour_teapot_stream.jpg（茶壶倒茶：壶倾斜、嘴尖最低、液柱自嘴尖脱离变细）
+- pour_kettle_spout.jpg（壶嘴为最低点、细柱竖直入杯）
+- cut_apple_halves.jpg（刀未切通、两半已被楔开、切面互补）
+- fill_rice_grains.jpg（量杯满米成丘、颗粒自杯沿成束流出、下方锥形堆）
+- tear_paper_hands.jpg（双手反向拉、裂口推进至中部、两片裂尖相连、撕边毛糙）
+
+要点：
+- pour 卡全量吸收 boundedness_1 的壶嘴 invariants（出口轴线朝下才出水、停水后才回正、出流原点贴嘴尖）并泛化到一切带出口容器；另纳入茶壶效应（贴壁淌流只能出现在出口正下方外壁）。
+- 每卡均有 pending_refs「待补参照」区：液柱收缩定量比、软质材料切压量、液体入杯飞溅、顺/逆纹撕线差异等证据不足项一律未写死断言。
+- 自验：python3 yaml.safe_load 解析 4 卡全部通过。

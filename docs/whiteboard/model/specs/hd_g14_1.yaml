@@ -1,0 +1,31 @@
+# spec 存档 · hd_g14_1（B5 批手改幕，T12 阶段二）
+# 管线：手写 E 型幕逐幕手改（T12_plan B5），修正文案唯一来源 = model/scene_fixes.yaml
+scene: hd_g14_1
+family: grammar G14（介词 in / on / at 空间图式）
+engine: 手写（wb5 scene + lib/concept.js + scenes/g14_lib.js；sprites/hdg14_1.js 空包，克隆缺失已按原文件头声明补齐）
+fixes_applied:
+  - id: sf-013
+    verdict: 过度简化（「原封不动映射」失实：图式延伸是受约束的倾向，大量用法由约定决定）
+    targets:
+      - KNOW[2]（导出 KNOW 数组第 3 条）
+      - build() 内 narr() 调用（与 KNOW[2] 同文，紧接 C.rule(T) 之后）
+    replacement: scene_fixes.yaml sf-013 fixed_lines[0]（role 台词）逐字，两处运行时字符串脚本核对一致
+    rendering_notes:
+      - 定稿无 ** 标记、无 ASCII 引号，源码直引，无渲染层归一
+    duration_effect: 旁白时长由 readT 自动推导，全幕 76.4s → 80.9s（仍在 40–240s 参考区间）
+facts:
+  objects: [盒子（in）, 桌面（on）, 靶心/门口（at）, ⚽ 球 ×3]
+  invariants:
+    - 三幅原型图（容器内/表面上/一个点）是本幕空间部分的主干，sf-013 定稿予以保留并明确其身份为「原型图/第一猜测」
+    - 时间与抽象域只作预告（chips：in May / on Monday / at 7:30）；「原封不动映射」断言已删除，例外（at night / in the morning / on the bus）随定稿旁白当场给出
+stop_check:
+  framework_conflict: 无。被裁定表述仅出现于 why 行（KNOW[2] 与其旁白镜像），非模板槽位/版式隐喻/全幕框架；本幕框架（空间原型图）正是定稿肯定的部分。替换后定稿的「第一猜测+约定例外」口径统摄其后的时间预告与口诀，无同幕自相矛盾（口诀为倾向性顺口溜，口径张力见 residual 第 2 条，属未裁定散文，不在本批处置权内）。
+residual_for_review:
+  - KNOW[1] 标题行「一通百通！」为宣传语，不在 scene_fixes 覆盖范围内，未动。
+  - KNOW[8] 结尾口诀「时间看漏斗：年月季节早中晚，范围宽大都用in」中「早中晚」字面与定稿旁白的 at night 例外存在口径张力；该口诀无现成定稿，按不自编纪律未改，提请后续裁定（可考虑按 sf-013 boundary 为口诀补例外注或修订「晚」字口径）。
+validation:
+  build: gen-stock-hd_g14_1.html（~/workspace/your_files/，1,041,453 字节）
+  ic_gen8: 不合格 0（80.9s，文字峰值 12%）
+  insightcheck_official: 不合格 0（--only=hd_g14_1；决策 39 提示为讲授型既有提示，非不合格项）
+  shots: 42s 帧定稿旁白整段上屏（原型图+三例外齐全）；58s 帧时间 chips 与朗读句正常
+  zero_hit: sf-013 original 全仓 586 场景文件逐字+归一化双通道零命中

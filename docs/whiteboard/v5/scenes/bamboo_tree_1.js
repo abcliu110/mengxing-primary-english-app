@@ -55,8 +55,8 @@ const ITEMS = [
   ['w', 'I want to go to the library to read storybooks tomorrow.'],
   ['w', '我明天想去图书馆看故事书。  先立树干，再挂树枝！'],
   ['s', 'I want to go to the library to read storybooks tomorrow.', '我明天想去图书馆看故事书。'],
-  ['n', '口诀：先立树干，再挂树枝。一句话只留一个谓语动词当国王。'],
-  ['w', '口诀：先立树干，再挂树枝。一句话只留一个谓语动词当国王。'],
+  ['n', '口诀：先立树干，再挂树枝。一个简单句（一个分句）只留一个谓语动词当国王；长句子可以有几个分句，每个分句各立一位国王（I know he likes it 里，know 和 likes 各管一个分句）。'],
+  ['w', '口诀：先立树干，再挂树枝。一个简单句（一个分句）只留一个谓语动词当国王；长句子可以有几个分句，每个分句各立一位国王（I know he likes it 里，know 和 likes 各管一个分句）。'],
   ['n', '预测：「我想去公园踢足球」，want 已经当国王了，go 和 play 前面各填什么？先想 3 秒！'],
   ['w', '🔮 我想去公园踢足球。'],
   ['w', 'I want ___ go to the park ___ play football.'],
@@ -67,7 +67,7 @@ const ITEMS = [
   ['w', '中文像竹子，动作一节接一节；'],
   ['w', '英语像树，只立一个谓语当主干，其余都挂成树枝'],
   ['w', '🎵 口诀'],
-  ['w', '口诀：先立树干，再挂树枝。一句话只留一个谓语动词当国王。'],
+  ['w', '口诀：先立树干，再挂树枝。一个简单句（一个分句）只留一个谓语动词当国王；长句子可以有几个分句，每个分句各立一位国王（I know he likes it 里，know 和 likes 各管一个分句）。'],
   ['w', '🌳 竹节句 vs 树干句 · 病句手术 ①']
 ];
 export default function build() { return autoBuild(SP, { title: '🎋 竹节句 vs 树干句 · 1', items: ITEMS, acts: ACTS }); }

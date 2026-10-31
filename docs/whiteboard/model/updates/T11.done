@@ -1,0 +1,82 @@
+T11 五大家族场景生成（2026-11-01 协调执行，未提交、未改 runbook、未推送）
+
+结论总览：20 幕全部建成（5 家族 × 4 幕），内容与独立逻辑审查全部通过，阻塞 0；
+但“每幕 insightcheck 不合格 0”的字面门禁未全部达成——官方工具强制集只收
+concept.js/oral.js 幕，autoBuild 幕（19 幕）输出的“不合格 0”是空集的 0，
+唯一真正跑通官方工具的是 phonology_1。是否接受等效校验、或立项给 autoBuild
+接 insight 数据（V1），待主会话拍板。旗舰幕误读探针三家族均已写题、均未实测。
+
+一、phonology 家族（① 口腔省力同化）—— 已完成（复验入库，未重建）
+- 1 清浊顺行同化：已完成。官方 insightcheck 不合格 0（125.7s，文字 14%）；
+  T11a 两中问题（步骤条失效、-ed 无演示）已修复。
+- 2：已完成（内容/溯源/逻辑全过）。交付 HTML 缺 __WB5_INSIGHT__ 数据（V1，
+  auto.js:246 只有带 D.odd 的幕才调 C.finish()，本幕走 K.done()）；文字 9–14%，页面零报错。
+- 3：同上（V1）。观察：impatient、inbox 两模型例证词未入幕（取舍）。
+- 4：同上（V1）。观察：hopping/hoping 正面对照未入幕，改用 tap/tape 类比。
+- 验证报告：updates/T11_verify_phon_letters.md。存疑 0 条；node --check 8/8；
+  重建与交付 HTML 逐字节一致；letters 旧钩子清零；-s/-ed 三变体齐全。
+
+二、letters 家族（② 字母象形与音义同源簇）—— 已完成（复验入库，未重建）
+- 1–4：已完成（内容/溯源/逻辑全过，旧钩子 M 山/S 蛇/B 包/C 抓清零，
+  “手”只归 K）。4 幕均缺 __WB5_INSIGHT__ 数据（V1，同上）；文字 9–14%，页面零报错。
+- 验证报告同上。存疑 0 条。
+
+三、sentence 家族（④ 单核谓语）—— 已完成（已审版上补缺口 + 重建重验）
+- 1 一个分句一个王（旗舰）：已完成。189.4s，文字 13%，报错 0；断言全过；
+  探针已写（复述判据 + 数国王 + 并列句迁移 + 驳斥题），未实测。
+- 2 第二个动词跟谁走：已完成。212.9s，文字 13%，报错 0。
+- 3 时态只标一次：已完成。175.5s，文字 12%，报错 0。
+- 4 五副骨架搭句子：已完成。160.4s，文字 14%，报错 0。
+- 官方 insightcheck：强制检查 0 幕（空集）；实质证据为同口径直接量测
+  （tools/measure_sentence.py）+ 断言检查器（model/check_sentence_assertions.py，4 幕全过）。
+- 构建报告：updates/T11_sentence_build.md。模板注：第 1 幕沿用已审版 ze_be_1.js，
+  是否改回 fp_one_king 骨架待裁定。Q4 第六种与 there be 仅提醒登记，未展开。
+  精灵库 fk2/fk3/fk4.js 被 gitignore 忽略（工作区在位、不入库），后续重建需确认在位。
+
+四、spacetime 家族（⑤ 三维几何向量时空）—— 已完成（复核 + 删改 + 重验）
+- 1 空间三图式与时间借用（旗舰）：已完成。195.0s（本轮删除时长定介词旧说法
+  一行后由 203.4s 缩短），文字 13%；探针 4 题已写，未实测。
+- 2 on/off 贴离主线：已完成。164.5s，文字 15%。
+- 3 交通工具记法窍门：已完成。147.1s，文字 11%。
+- 4 to/from + for 三站：已完成。166.6s，文字 11%。
+- 等效校验 tools/check_spacetime.py 不合格 0（静态断言 A1–A6）；官方 insightcheck
+  为空集 0。for 三站四处一致；Q5 电梯/小船只登记未断言具体形式；日子锚点判据三处一致。
+- 构建报告：updates/T11_spacetime_build.md。注意：本轮第 1 幕删改事后被并行会话
+  T12 提交顺带收录（非本组提交）。
+
+五、viewpoint 家族（⑥ 四个小机关）—— 已完成（补缺口 + 全量重验）
+- 1 形容词站哪边（旗舰）：已完成。149.2s，文字 12%；探针 P0–P4 已写，未实测。
+- 2 疑问词站第一：已完成。148.7s，文字 16%（本轮删两处模型外说法后缩短约 6s）。
+- 3 写地址从小到大：已完成。139.7s，文字 11%。
+- 4 完成时：已完成。160.1s，文字 14%。
+- 等效校验 tools/ic_gen8.py 页面零报错；官方 insightcheck 为空集 0。
+  “焦点先行思维”零残留；四幕分挂三域，无统一律表述。
+- 构建报告：updates/T11_viewpoint_build.md。模板注：adj_order_1.js 未用
+  （OSASCOMP 七车厢顺序不在模型内），第 1 幕改用 ze_modifier_1.js。
+
+六、独立逻辑审查（updates/T11.review.md，审查者与编写者分离）
+- 12 幕（sentence/spacetime/viewpoint）全部通过，阻塞 0；phonology/letters
+  由独立验证组复验通过（见一、二）。
+- 一般问题 3 项（不阻塞放行）：G-1 viewpoint 构建报告称收束句上屏，实际未上屏，
+  报告措辞应更正，建议 P2 补一句屏上声明；G-2 spacetime 构建报告对第 3 幕
+  get off/get out of 定性有误（是旁白叙述行非 ACTS 搭档句），内容可接受、报告应更正；
+  G-3 sentence 4 板书“小学大部分句子都是它们”是无模型来源的数量断言，建议删半句或补来源。
+- 存疑清单 17 项：16 项接受（规则应用/合法派生/附披露），1 项即 G-3 需删改。
+- 观察项 9 项（车辆精灵溢出、换板文字先行、L2 横幅断字、报告字节数约 +250 漂移等）已写入审查报告。
+
+七、未完成 / 续接点（不得写成全部完成）
+1. V1 模板层决策（影响 19 幕的字面门禁）：接受等效校验放行，或立项给 autoBuild
+   接 C.aha/C.predict/C.rule/C.finish 后重验 19 幕。phonology_1 是唯一官方工具实测通过幕。
+2. 旗舰幕误读探针实测（sentence 1、spacetime 1、viewpoint 1）：题目已入库，
+   均未对真实儿童实测；实测通过前旗舰幕不算验收通过。
+3. G-1/G-2 报告措辞更正、G-3 半句删改（均小改，改后无需重审全量，但 G-3 改动需复核一行）。
+4. T11.done 本文件与各构建报告的提交、推送：由接班运行按步骤 2/4 处理（本协调未提交、未推送）。
+5. 物理参照审查：五家族均无倒水/切分/装杯/撕纸动作，refcards/ 本轮不适用；
+   语义标签 + 构建期断言已落地为静态断言检查器（sentence/spacetime），viewpoint 无因果修复故无新增断言。
+
+交付文件一览：
+- specs：model/specs/{phonology,letters,sentence,spacetime,viewpoint}_1–4.yaml
+- 场景：v5/scenes/gen_{phonology,letters,sentence,spacetime,viewpoint}_1–4.js
+- 产物：~/workspace/your_files/gen-{phonology,letters,sentence,spacetime,viewpoint}-1–4.html
+- 报告：updates/T11_verify_phon_letters.md、T11_sentence_build.md、
+  T11_spacetime_build.md、T11_viewpoint_build.md、T11.review.md

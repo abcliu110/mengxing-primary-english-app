@@ -1,0 +1,113 @@
+# 场景规格 · sentence 第 2 幕（第二个动词跟谁走）——由知识模型生成，禁止手改产物 gen_sentence_2.js
+# items 模式（autoBuild）：台词只从 sentence.yaml 组装；口诀/判据句逐字引模型记录。
+# 落实：to 箭头降格 mnemonic 并链真规则（st-cl-to-arrow → st-cl-verb-decides）；done 独立成条（st-cl-done-separate），不与 to/doing 并列。
+# 纲领：sentence.yaml insight.domain = dom-constructions；coManaged = dom-grammar（g40：一个分句一个限定动词；动词后接形式）
+# 机制 4-2 动词决定搭配：to do、doing 的选择看前面的动词；done 另管被动与完成
+# 例示说明：want 一家的例示含 plan、hope（规则例示，非新主张；模型未逐词枚举，见构建报告）
+scene: gen_sentence_2
+family: sentence
+pattern: auto_items_sentence
+template: fp_one_king_2.js
+
+title: "第二个动词跟谁走"
+teaches: [st-cl-verb-decides, st-cl-to-arrow, st-cl-ing-two, st-cl-done-separate]
+
+replace:
+  - ["第一性原理 · 一句一王 · 2", "第一性原理 ④ 单核谓语 · 2"]
+
+items:
+  - [n, "这一幕：王座上已经有国王了，第二个动词怎么办？它穿哪件，看第一个动词。"]
+  - [w, "第二个动词：跟谁走看动词"]
+  - [w, "④ 单核谓语"]
+  - [w, "💡 记忆联想"]
+  - [w, "✂️ 简化说法"]
+  - [w, "第二个动词：跟谁走看动词"]
+  - [w, "④ 单核谓语"]
+  - [w, "💡 记忆联想"]
+  - [m, "✂️ 简化说法"]
+  - [m, "① 抢王座"]
+  - [m, "② want 接 to"]
+  - [m, "③ enjoy 接 -ing"]
+  - [m, "④ done 另管"]
+  - [m, "⑤ 口诀"]
+  - [m, "🔮 预测"]
+  - [w, "I want go home."]
+  - [w, "王座"]
+  - [w, "want"]
+  - [n, "want 已经坐在王座上了，go 是第二个动词——它不能裸着站，要换上非限定的样子。"]
+  - [w, "go"]
+  - [n, "换哪件，看前面的动词：want 一家，后接 to do。"]
+  - [w, "to"]
+  - [w, "want 一家 → to do"]
+  - [w, "I want to go home."]
+  - [w, "want to go · plan to visit · hope to see"]
+  - [s, "I want to go home.", "我想回家。", "to go"]
+  - [s, "Want to go. Plan to visit. Hope to see.", "想去。打算拜访。希望见到。", "want plan visit hope see"]
+  - [n, "帮记联想：to 可以想成一支指向将来的箭头——想做的事还没发生。"]
+  - [w, "to 像箭头（帮记，不是定义）"]
+  - [n, "但箭头会漏：used to 说的是过去的事，箭头不向将来；like to 是习惯，也不只是将来。拿不准，以「看动词」为准。"]
+  - [w, "⚠️ used to 指过去：箭头失效"]
+  - [n, "动名词 doing：enjoy 一家，后接 -ing。enjoy swimming——享受游泳这件事。"]
+  - [w, "doing：enjoy 一家"]
+  - [w, "enjoy 一家 → doing"]
+  - [w, "I enjoy swimming."]
+  - [w, "enjoy swimming：享受过程"]
+  - [n, "注意分工：finish doing 是「做完」，不是享受过程；享受过程是 enjoy doing。"]
+  - [w, "finish doing = 做完 ≠ 享受"]
+  - [n, "-ing 还有另一件马甲：跟在 be 后面，是「正在做」。She is swimming.——前面有没有 be，分清两件马甲。"]
+  - [w, "She is swimming."]
+  - [w, "be + doing = 正在做"]
+  - [n, "like、love 两边都站：like swimming 和 like to swim 都对，一个偏爱好，一个偏某次的选择。"]
+  - [w, "like 两边都站"]
+  - [w, "like swimming · like to swim"]
+  - [s, "I enjoy reading. I enjoy swimming.", "我喜欢读书。我喜欢游泳。", "reading swimming"]
+  - [n, "还有 done——它不跟 to、doing 排一队：done 是过去分词，另管两件事。"]
+  - [w, "done 另管：不与 to、doing 并列"]
+  - [n, "被动：be 加 done——The window was broken。完成：have 加 done——I have washed the dishes。"]
+  - [w, "was broken（被动）"]
+  - [w, "have washed（完成）"]
+  - [s, "The window was broken. I have washed the dishes.", "窗户被打破了。我洗完碗了。", "broken washed"]
+  - [n, "口诀：跟谁走，看动词：want 一家后接 to，enjoy 一家后接 -ing，like、love 两边都站。"]
+  - [w, "口诀：跟谁走，看动词"]
+  - [n, "预测：hope 已经是国王了，see 跟谁走？hope 是 want 一家，还是 enjoy 一家？先想 3 秒！"]
+  - [w, "🔮 I hope ___ see you. → to see / seeing？"]
+  - [n, "揭晓：hope 跟 want 一家，后接 to：I hope to see you。"]
+  - [w, "I hope to see you —— hope 接 to"]
+  - [s, "I hope to see you soon.", "我希望很快见到你。", "hope to see soon you"]
+  - [w, "💡 一句话洞见"]
+  - [w, "第二个动词穿 to 还是 -ing，"]
+  - [w, "由前面的动词决定"]
+  - [w, "🎵 口诀"]
+  - [w, "跟谁走，看动词：want 一家后接 to，"]
+  - [w, "enjoy 一家后接 -ing，like、love 两边都站"]
+  - [w, "🧠 第一性原理 ④ 单核谓语"]
+
+facts:
+  objects:
+    - { name: "第二个动词（非限定形式）", kind: "接法类", states: "to do / doing 二选一，由前面的动词决定：want 一家接 to、enjoy 一家接 -ing、like/love 两边都站（st-cl-verb-decides）" }
+    - { name: "done（过去分词）", kind: "分词类", states: "不属接法类：be + done 管被动（was broken），have + done 管完成（have washed）（st-cl-done-separate）" }
+    - { name: "used to", kind: "反例位", states: "指过去，是 to 箭头联想的失效边界（st-xc-used-to）" }
+  invariants:
+    - "to 箭头只以 mnemonic 出场并当场给出失效边界（used to 指过去、like to 表习惯），不得写成 to 的定义"
+    - "done 不与 to、doing 并列成「三件马甲」：单独成段，标明另管被动与完成"
+    - "finish doing 只 gloss 为「做完」，不得说成享受过程；享受过程归 enjoy doing"
+    - "-ing 两件马甲靠「前面有没有 be」区分（be + doing 正在做 / 单独站出来当名词），两种用法都上屏"
+    - "屏上不出现旧口诀「想做穿 to，在做穿 -ing」"
+
+# 语义标签（构建期断言只引用标签，不认裸坐标；checker：model/check_sentence_assertions.py）
+tags:
+  old-chant: ["想做穿 to，在做穿 -ing"]
+  old-trio: ["三件马甲"]
+  chant: ["跟谁走，看动词：want 一家后接 to，enjoy 一家后接 -ing，like、love 两边都站"]
+  used-to: ["used to"]
+  was-broken: ["was broken"]
+  have-washed: ["have washed"]
+  doing-label: ["doing：enjoy 一家"]
+assertions:
+  - { check: absent, tag: old-chant }
+  - { check: absent, tag: old-trio }
+  - { check: present, tag: chant }
+  - { check: present, tag: used-to }
+  - { check: present, tag: was-broken }
+  - { check: present, tag: have-washed }
+  - { check: present, tag: doing-label }

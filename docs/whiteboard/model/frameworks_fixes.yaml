@@ -1,0 +1,525 @@
+# T6 框架库修正入模记录
+# 依据：~/workspace/content-audit/report_frameworks.md（框架与概念体系审查，十库全查）
+# 纪律：修正文以报告所引一级来源为准绳；报告未给实据且无法确证者进 pending_doubts，不猜测填充。
+# fix_type 取值：命名降格 / 全称降格 / 内容订正 / 伪因果删除 / 假词源订正 / 讲法升级 / 分层标注 / 新增记录 / 例外登记 / 口径对齐
+meta:
+  task: T6
+  date: 2026-11-01
+  source_report: content-audit/report_frameworks.md
+  scope: FRAME_SEMANTICS_DB、METAPHOR_CODES_DB、ROYAL_TRUMPS_DB、TENSE_ASPECT_MATRIX_DB、FIVE_SENTENCE_PATTERNS_DB、INTERROGATIVE_RADAR_DB、ZH_EN_SYNTAX_CONTRAST_DB、PITFALLS_DB、STRESS_AND_SCHWA_DB、MINIMAL_PAIRS_DB
+
+fixes:
+
+  # ================= ROYAL_TRUMPS_DB =================
+  - db: ROYAL_TRUMPS_DB
+    id: （库级）
+    field: 全库定性与命名基调（title/rule 中的「王炸/铁律/大一统/黄金法则/100%/严格锁定」）
+    original: 本库以「王炸／铁律／大一统／100% 通用／严格锁定对应」命名整套口诀与联想工具（如 T01「五大黄金发音法则」、T02「100% 通用」、T10「严格锁定对应」）。
+    fixed: 整库定性降格为「口诀/联想工具箱」：逐条按主张分型重标（rule 规则 / tendency 倾向 / mnemonic 口诀 / etymology 词源），条目级标题与 rule 字段清除「铁律、大一统、100%、严格、黄金法则」类全称措辞；确有真实内核的条目（T03 词变、T04 词根）保留内容、只换包装。个别条目的具体改法见本库以下各条。
+    fix_type: 命名降格
+    source: 报告概念层 C-1（与已被定案的「物理边界感统摄律」同病：把启发式包装成定律）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T01
+    field: title + rule
+    original: title「王炸 01：自然拼读五大黄金发音法则」；rule「掌握 5 条核心规律即可直接拼读小学 85% 的单词：」
+    fixed: title 改「拼读口诀 01：自然拼读五组常见读音」；rule 改「掌握这 5 组常见读音规律，能拼读小学课标词里的大部分单词（每组都配例外卡，遇到例外查词典）：」。删除无出处的「85%」营销数字与「黄金法则」定性。
+    fix_type: 命名降格
+    source: 报告内容层 ROYAL 条（85% 无出处，属营销数字，须删除或改「大部分」）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T01
+    field: items[1]「ee / ea 长音组合」desc
+    original: 绝大多数读长音 /iː/；特例“吃面包甩脑袋看天气”读短音 /e/
+    fixed: ee 几乎都读 /iː/；ea 大多数读 /iː/，三组例外要分开记：①读 /e/ 的一小队（bread, head, weather…口诀照旧）；②读 /eɪ/ 的三个高频词 great, break, steak；③其余拿不准查词典。
+    fix_type: 内容订正
+    source: 报告内容层 ROYAL 条（原文漏掉 ea 读 /eɪ/ 的一组高频词 great、break、steak）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T01
+    field: items[2]「R-控制音节三剑客」desc 与例词 teacher
+    original: ar 读 /ɑːr/；ir / ur / er 统统读卷舌音 /ɜːr/（例词含 teacher）
+    fixed: 拆为两项：①重读的 ir / ur / er 读 /ɜːr/（bird, nurse, first）；②词尾不重读的 -er 读弱化的 /ə/（teacher /ˈtiːtʃə/、worker、sister）——词尾 -er 的弱读正是 STRESS_AND_SCHWA_DB 里 schwa /ə/ 的主场，两处口径一致。
+    fix_type: 内容订正
+    source: 报告内容层 ROYAL 条（非重读词尾 -er 读 /ə(r)/，/ɜːr/ 只用于重读 ir/ur/er；原表述与 STRESS_AND_SCHWA_DB 冲突）；牛津/剑桥词典 teacher 音标 /ˈtiːtʃə(r)/
+
+  - db: ROYAL_TRUMPS_DB
+    id: T01
+    field: items[3]「-igh 与静音字母组合」desc 与例词 eight、straight
+    original: -igh 读 /aɪ/（gh静音）；kn- 的 k 静音；wr- 的 w 静音；-mb 的 b 静音（例词：light, eight, straight, know, write, climb）
+    fixed: 例词按读音拆组：-igh 读 /aɪ/（light, night, right）；eigh 读 /eɪ/（eight, straight 是 eigh 不是 igh，别混）；静音字母：kn- 的 k 不发音（know）、wr- 的 w 不发音（write）、-mb 的 b 不发音（climb）。
+    fix_type: 内容订正
+    source: 报告内容层 ROYAL 条（eight、straight 是 eigh 读 /eɪ/，与同条「-igh 读 /aɪ/」自相矛盾，条目内部混杂两组）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T02
+    field: title + rule
+    original: title「王炸 02：四大变形大一统拼写铁律」；rule「名词复数(+s)、三单(+s)、进行时(+ing)、过去式(+ed)、比较级(+er) 100% 通用：」
+    fixed: title 改「拼读口诀 02：四大变形拼写规律」；rule 改「名词复数(+s)、三单(+s)、进行时(+ing)、过去式(+ed)、比较级(+er) 都走这四条拼写规律（各有例外卡）：」。删除「大一统、铁律、100% 通用」。
+    fix_type: 全称降格
+    source: 报告概念层 C-1；内容层 ROYAL 条（标题「100% 通用」与内容冲突，反例见下条）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T02
+    field: items[0]「① 哑巴 e 先让位」与 items[1]「② 辅元辅重闭双写尾」例外登记
+    original: ①「以不发音 e 结尾，加 -ing/-ed/-er 时去 e 再加」；②「末尾是“辅+元+辅”重读闭音节，双写尾字母再加」（均无例外注）
+    fixed: ①补例外卡：dye→dyeing（留 e 是为了和 dying 分开）、singe→singeing、die→dying 是 ie 变 y 的特殊户。②补适用边界：词尾是 x / w / y 时不双写（fixing, snowing, playing）；末音节不重读时不双写（visiting, opening）。正文原有「重读闭音节」限定保留，与标题全称脱钩。
+    fix_type: 例外登记
+    source: 报告内容层 ROYAL 条（去 e 规则与双写规则的反例清单）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T02
+    field: items[3]「④ s/x/ch/sh/o 加 es」desc
+    original: 以 s, x, ch, sh 或有生命的 o（土豆、西红柿、英雄）结尾加 -es。kangaroo 和 photo 只加 -s
+    fixed: 以 s, x, ch, sh 结尾加 -es；以 o 结尾的词分两队——一个封闭小名单加 -es（hero, potato, tomato, echo, veto…），其余大多只加 -s（photo, kangaroo, piano）。删去「有生命的 o」判据：土豆、西红柿不是「有生命」判据所指，这个口诀的通行版本本身就是误标，小名单直接背名单即可。
+    fix_type: 内容订正
+    source: 报告内容层 ROYAL 条（「有生命的 o」为误标判据，该组实为封闭小名单，应以名单＋口诀呈现）。联动：同题在 PITFALLS 天坑 03、GRAMMAR G01 有平行表述，以本条名单口径为准。
+
+  - db: ROYAL_TRUMPS_DB
+    id: T03
+    field: rule + items（「元音换装」讲法）
+    original: rule「不是乱变，而是成群结队按元音规律换装：」；items 如「oo ➔ ee 复数家族：把中间的两个 o 换成两个 e 秒变复数」「i ➔ a / o 过去式旋律：把动词中间的 i 换成 a 或 o 秒变过去式」
+    fixed: 讲法升级为真词源版（「换装」保留为外壳比喻，机制换成真的）：foot/feet、man/men、mouse/mice 是古英语的 i-变音（i-mutation）——一千多年前复数词尾里藏着一个 i，它把前面元音的口型偷偷带偏，后来词尾掉了、变了的元音留下来当复数记号；sing/sang、drink/drank 是更古老的元音交替（ablaut）——换个元音换个时间的老旋律。像/不像须写明：像「换装」在「成群结队」一点上；不像在：变的不是字母，而是发音。
+    fix_type: 讲法升级
+    source: 报告讲法清单 §4.3（i-mutation 与 ablaut 的标准历史语言学记述：Mitchell & Robinson, A Guide to Old English；Hogg, A Grammar of Old English）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T03
+    field: items[1]「man ➔ men 与特殊复数」desc
+    original: a 变 e 或单复数同形（羊鱼鹿永不加 s）
+    fixed: a 变 e 或单复数同形（sheep, deer 通常不加 s；fish 通常同形，但指「好几种鱼类」时可以说 fishes）。删除「永不加 s」全称，与 PITFALLS 天坑 03 修正口径一致。
+    fix_type: 全称降格
+    source: 报告内容层 PITFALLS 条（fishes 指多个种类/品种时存在）；本 App boundedness 模型例外登记口径
+
+  - db: ROYAL_TRUMPS_DB
+    id: T04
+    field: items[2]「vis/spect（用眼看）家族」desc
+    original: 凡是含 vis/vid/spect 的词全都和“看”有关
+    fixed: 含 vis/vid/spect 的词大多和「看」有关——但按透明度分两队：看得见关系的（visit, video, television）可以直接拆给小朋友看；只剩考古线索的（respect, special）只作拓展，不硬拆。全称「凡是…全都」删除。
+    fix_type: 全称降格
+    source: 报告内容层 ROYAL 条（全称断言须改倾向，并给词根例词按透明度分级）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T04
+    field: items[3]「fact/dict/form 三大词根」例词 office、difficult
+    original: fact=做，dict=说/字词，form=形状样式（例词含 factory, office, difficult, dictionary, predict, uniform, information，同一队呈现）
+    fixed: 例词按透明度分级呈现：透明队（factory, dictionary, predict, uniform, information）可当「乐高砖块」拆解；考古队（office, difficult）词源上确实与 facere 有关（officium < opus+facere；difficult < difficilis < facilis），但对小学生完全不透明，只标注「词源考古线索」，不要求拆解、不暗示「词根皆可肉眼拆」。
+    fix_type: 分层标注
+    source: 报告内容层 ROYAL 条（office、difficult 词源属实但不透明，当乐高砖块展示会误导）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T05
+    field: title + rule（整条定性）
+    original: title「王炸 05：WH- 疑问与 TH-/H- 天然对偶矩阵」；rule「把疑问词开头的 wh- 换成 h-（近指）或 th-（远指），立刻变成对应的回答词：」
+    fixed: 降格为押韵口诀（mnemonic）：title 改「口诀 05：疑问词押韵对子（记词形的顺口溜）」；rule 改「顺口溜：where/there/here、when/then、what/that 押着相同的词尾，成对记最省力——注意这只是押韵，不是变身术：疑问词和指示词是两个不同的词干家族（见新增真框架记录），不存在「换个字母就变成回答词」的构词律。」原 items 的对子清单保留作记忆材料。
+    fix_type: 命名降格
+    source: 报告概念层 C-2（古英语疑问词干 hw- 源自印欧 *kʷo-，指示词干 þ- 源自 *to-，两个独立词干从未互相派生；here 属近指词干 *ḱe-，更不是 where 减 w）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T05-accurate（新增）
+    field: 新增真框架记录（与 T05 口诀并置，标 etymology 型）
+    original: （无此记录；原 T05 以伪构词律充当框架）
+    fixed: "新增记录「两大家族真框架」：英语的问词和指示词是两大家族——问词家族姓 *kʷ-（古英语写 hw-：hwā 谁、hwæt 什么、hwǣr 哪里、hwonne 何时），指示词家族姓 *to-（古英语写 þ-：þæt 那个、þǣr 那里、þonne 那时）；近指 here 一家姓 *ḱe-（与 he 同源）。两家在同一批词尾（-ere, -en, -at）上对仗了一千多年，所以看起来像「换个字母」——其实是两个家族穿了同款词尾。彩蛋（真词源）：why 是疑问代词 hwā/hwæt 的古「工具格」hwȳ（凭什么），whose 是 who 的古属格 hwæs（谁的）——它们长得不像问词家人，却是真一家人。"
+    fix_type: 新增记录
+    source: 报告讲法清单 §4.3（Mitchell & Robinson, A Guide to Old English：hwā/hwæt 范式、hwæs 属格、hwȳ 工具格；印欧 *kʷo-／*to- 词干与 Grimm 定律 kʷ→hw 的标准历史语言学记述）。联动：INTERROGATIVE_RADAR_DB 的 Where/When/Whose 各条与本记录共用同一框架，不另写第二套说法。
+
+  - db: ROYAL_TRUMPS_DB
+    id: T06
+    field: rule
+    original: 按在句子里的位置严格换衣服：句首主格、动介后宾格、名物必带 -s 尾：
+    fixed: 按在句子里的位置换衣服：句首主格、动介后宾格、名词性物主代词大多以 -s 收尾（yours, his, hers, ours, theirs）——mine 是例外，它不带 -s（与本条 desc 自列的 I-me-my-mine 一致）。
+    fix_type: 内容订正
+    source: 报告内容层 ROYAL 条（「名物必带 -s 尾」与自家清单冲突：mine 无 -s）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T07
+    field: items[1]「watch & light」desc（框架库侧订正）
+    original: 注视观看(v.)➔手表(n.) ｜ 电灯光线(n.)➔轻的/浅色的(adj.)
+    fixed: 本条拆开：watch 一链改为经「守夜」中转——watch 本义是「守夜、值更（保持清醒看守）」，守夜人随身的计时器就叫 watch（手表），不是从「注视观看」直接引申。light 一链整条移出「一词多义三幕剧」：light「光」与 light「轻」是两个不同词源的同形词（前者源自印欧 *leuk-「照耀」，后者源自 *legʷʰ-「轻」），历史上从无义项引申关系，改作「同形词（长得一样的两家人）」反例教学。订正全文以 vocab_fixes 同条为准，本库只留指针注「详见 vocab_fixes 同条」，避免双写双改。
+    fix_type: 假词源订正
+    source: 报告概念层 C-3（light 双源同形词；watch「手表」义源自「守夜、值更」）；Etymonline/OED 同条（详见 T3 vocab_fixes）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T07
+    field: rule
+    original: 掌握“本义画面 ➔ 动作转化 ➔ 引申新义”，彻底打通小学 8 大多义词：
+    fixed: 掌握「本义画面 ➔ 动作转化 ➔ 引申新义」，看懂 book/park/turn/cold/study/play 这些真多义词的义项链（watch 的「手表」要经「守夜」中转，见本条订正）；但先学会一件事：长得一样不一定是一家人——light「光」和 light「轻」是同形词，没有引申关系，不许硬编链条。
+    fix_type: 内容订正
+    source: 报告概念层 C-3
+
+  - db: ROYAL_TRUMPS_DB
+    id: T09
+    field: items[0..2] 名称中的时长轴定义（>1天 / =1天 / <1天）
+    original: in（>1天 / 容器内部）；on（=1天 / 表面接触）；at（<1天 / 精确点）——以时长定义三词，且与自家例词冲突（in the morning 不足一天却用 in，at night 整夜却用 at）
+    fixed: 时长轴定义整段删除，换 Tyler & Evans 的空间原型图式：in＝把一段时间看成一个「容器/盒子」，待在里面（in the morning＝在上午这段时间里面；in January, in spring 同理）；on＝把一天看成日历上的一个「面」，事情贴在这格面上（on Monday, on May 1st）；at＝把时刻看成一个「点」（at 7:00）。两个原「例外」就此回收：at night 是把夜晚当作一天日程表上的一个点；具体某天的上午贴在那一天的面上，所以 on Monday morning 用 on 不用 in。items 名称改「in（容器）」「on（面）」「at（点）」，空间义（容器内部/表面接触）与时间义同图式并置。
+    fix_type: 内容订正
+    source: 报告内容层 ROYAL 条（时长不是判据，空间图式才是）+ 讲法清单 §4.3（Tyler & Evans 2003, The Semantics of English Prepositions, principled polysemy；Tyler et al. 2011 教学实证；Tyler 2012）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T09
+    field: rule（口诀定性）
+    original: 记住黄金口诀：“in 大 on 中 at 小，具体某天全用 on，this/next/every 零介词”：
+    fixed: 口诀保留但降为倾向级记忆钩子并改挂图式：先懂图式（in 容器 / on 面 / at 点），再用口诀「in 大 on 中 at 小，具体某天全用 on，this/next/every 零介词」帮记——口诀是图式的顺口溜版，遇到 at night 这类词以图式为准。删除「黄金」定性词。
+    fix_type: 全称降格
+    source: 报告内容层 ROYAL 条（口诀本身可作倾向保留，但「三维坐标轴」的时长定义须撤换）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T10
+    field: title + rule + 例外登记
+    original: title「王炸 10：小学四大核心时态全闭环」；rule「时间路标词（Time Markers）与动词盔甲严格锁定对应：」
+    fixed: title 改「时态速查 10：小学四大常用时态与时间路标」；rule 改「时间路标词是侦探线索，不是锁：它和动词形态两边对上，时态才算定」。例外登记（与规则同级呈现）：The train leaves tomorrow.（一般现在时＋将来路标，时刻表用法）；Every day he walked to school.（every day 也可配过去式，讲的是过去的习惯）；Now he understood.（now 也可配过去式）。讲法：给孩子最小对立三连自己发现「线索＋动词形态，两边对上才算数」。
+    fix_type: 全称降格
+    source: 报告概念层 C-1、内容层 ROYAL 条（路标只是线索不是锁，三条合法反例）；讲法清单 §4.3（T10 路标词条）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T11
+    field: items[1]「Where / When / Why」desc
+    original: Where 问地点；When 问时间日期；Why 问原因（必用 Because 答）
+    fixed: Where 问地点；When 问时间（日期、时候都行）；Why 问原因——多用 Because 回答，也可以答目的：To catch the bus. / For fun. 删除「必用」。联动：INTERROGATIVE_RADAR_DB 的 Why 条同步同改，两处以本口径为准（Because 是最稳妥的答法，不是唯一答法）。
+    fix_type: 全称降格
+    source: 报告内容层 ROYAL 条（目的性回答同样合法：「必用」须改「多用」；RADAR 的 Why 条犯同一错误，两处须同步改）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T13
+    field: title
+    original: 王炸 13：同音词 16 组与反义词 24 对速查
+    fixed: 改「速查 13：同音词与反义词对对碰」——删除无法从数据内验证的数字（文件内实际为同音 A、B 两组与反义若干组，原标题的 16 组/24 对与条目数对不上，疑为汇总口径虚标）；确切对数未核实前不写数字（见存疑清单）。
+    fix_type: 内容订正
+    source: 报告内容层 ROYAL 条（标题数字与文件内实际条目数对不上，无法从数据内验证）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T14
+    field: rule（切尾公式边界注）
+    original: 把感叹号前的主谓（it is / they are）划掉，看剩下的最后一个词：
+    fixed: 公式保留，补适用边界注：本公式适用于带完整主谓的标准感叹句；How time flies!（末端是动词）、How clever of you!（无主谓可切）不走切尾公式，整句记。
+    fix_type: 例外登记
+    source: 报告内容层 ROYAL 条（切尾公式对教材句型有效，但有边界，须注适用范围）
+
+  - db: ROYAL_TRUMPS_DB
+    id: T15
+    field: rule
+    original: 任何小学作文题（人物/周末/假期/季节）套用 5 句话稳拿满分：
+    fixed: 汉堡包五步法是打底支架：常见小学作文题（人物/周末/假期/季节）先用这 5 句把结构搭稳，再往里加自己的细节。删除「任何题、稳拿满分」的过度承诺。
+    fix_type: 全称降格
+    source: 报告内容层 ROYAL 条（模板是正当的写作支架，「任何题、稳拿满分」是过度承诺，改「打底」表述）。联动：与 T4 表达包对 WRITING_ALCHEMIST「炼金术」虚假承诺的订正同口径——全 App 不出现保分话术。
+
+  # ================= TENSE_ASPECT_MATRIX_DB =================
+  - db: TENSE_ASPECT_MATRIX_DB
+    id: （库级）
+    field: 库名/矩阵定性
+    original: 「时间轴 × 体透镜」矩阵将 will 将来与一般/进行/完成并列为「体」，3×N 网格暗示时态体系完备；⑤现在完成时被标为「拔高」外挂。
+    fixed: 矩阵更名为「常用时态速查网格（节选）」：英语只有过去/非过去两个形态时态，「将来」是情态/迂回表达（will、be going to），不是「体」；体（一般/进行/完成）可与每个时间交叉，网格只收小学常用格，不暗示「时态全集」。⑤的「拔高」标签改为「进阶」中性表述。
+    fix_type: 命名降格
+    source: 报告概念层 C-4
+
+  - db: TENSE_ASPECT_MATRIX_DB
+    id: （库级）
+    field: 五条目统一讲法（新增 explain 基线）
+    original: 五条目各用零散比喻（档案照/录像机/老照片/望远镜/攥着结果），未成体系，部分 whySecret 以讲法冒充「第一性原理」。
+    fixed: "五条目统一到 Langacker 识解（construal）「镜头-看法」框架，一套镜头语言贯穿：一般时＝把整件事看成一张完整的全景照片（习惯与真理是『整段生活』的看法）；进行时＝镜头钻进事件内部，只看中间一段（所以看不见头尾）；完成时＝镜头对准『事情留给现在的痕迹/结果』（钥匙丢了→现在进不了门）；过去时＝镜头拉远，与现在切断。说话人选哪个时态，就是选哪种看法——同一件事，看法不同，时态不同。最小对立锚例：I lost my key yesterday.（报告旧事）／I have lost my key!（盯着现在的后果）。失效边界：镜头讲法解释『为什么选这个时态』，不替代形式规则（三单 -s、-ing 拼写走拼读口诀包）。"
+    fix_type: 讲法升级
+    source: 报告讲法清单 §4.4（Langacker 认知语法 construal/profile；Drożdż 2011 用认知语法工具教现在完成时；Journal of Researches in Linguistics 16(2), 2024 准实验：认知解释组在一般现在时 vs 进行时判断上显著优于任务组与控制组）
+
+  - db: TENSE_ASPECT_MATRIX_DB
+    id: future_simple
+    field: aspectLens
+    original: 🔭 将来体·未来望远镜镜头 (will + V原 / be going to + V原)
+    fixed: 🔭 将来表达·未来望远镜镜头 (will + V原 / be going to + V原)——注：将来不是一种「体」，will 是情态动词、be going to 是迂回表达，英语靠它们谈未来（与库级更名一致）。
+    fix_type: 命名降格
+    source: 报告概念层 C-4（「将来体」不是体）
+
+  - db: TENSE_ASPECT_MATRIX_DB
+    id: future_simple
+    field: whySecret
+    original: 为什么将来时有两种说法？① will 原义是『意志、决心』……② be going to 的物理画面是『人已经走在去往某事的路上了』……
+    fixed: 内容保留、定性改标为词源型解释（两条均为真实语法化史）：will 源于古英语 willan「想要」（意愿义→将来），be going to 源于「走在去往某事的路上」的运动义语法化（计划/迹象义→将来）。标题词「第一性原理」改「词源故事」。
+    fix_type: 分层标注
+    source: 报告概念层 C-4（两条是真实的语法化史，可保留为词源型解释）；Bybee, Perkins & Pagliuca (1994) 语法化记述
+
+  - db: TENSE_ASPECT_MATRIX_DB
+    id: present_prog
+    field: whySecret
+    original: ……因为『V-ing』本身只是个形容词性的动态画面（正在踢球的...），必须靠『am/is/are』充当句子的谓语发动机，把此刻的时间锚定在『现在』！
+    fixed: 改标为联想式讲法，删除「第一性原理」冠名：可保留「V-ing 像一幅动态画面、be 是把画面钉在『现在』的图钉」帮助记忆，但须注明这是帮记的比方，不是语法理据；准确说法：进行时由 be + V-ing 共同构成，缺一不可。正文统一讲法以库级「镜头-看法」框架为准（镜头钻进事件内部）。
+    fix_type: 分层标注
+    source: 报告概念层 C-4（该 whySecret 是为讲法虚构的理据，须改标为联想式讲法，不得称「第一性原理」）
+
+  - db: TENSE_ASPECT_MATRIX_DB
+    id: present_prog
+    field: trapAlert
+    original: 🚨 考场头号陷阱：像 like(喜欢)、know(知道)、want(想要)、have(拥有) 这类『心理状态词』不能放进录像机拍慢动作，通常不用进行时！
+    fixed: 🚨 考场头号陷阱：like(喜欢)、know(知道)、want(想要) 这类状态词通常不用进行时；have 要分开：have 表『拥有』时不用进行时（I have a bike.），但 have 的动态用法可以（We are having lunch. / They are having a party.）。删除「have 是心理状态词」的归类（have 非心理动词）。
+    fix_type: 内容订正
+    source: 报告内容层 TENSE 条（have 非心理动词；其状态义不用进行体，动态义可以）
+
+  - db: TENSE_ASPECT_MATRIX_DB
+    id: present_perfect
+    field: whySecret
+    original: ……其实看字面就秒懂：have/has 是『现在手里攥着』，done(过去分词) 是『已经完成的成果』——合起来就是：我此刻手里正拥有着之前做某事留下的结果！比如 I lost my key 只说明昨天丢了（现在找没找到不知道）……
+    fixed: 两处收紧：①「攥着结果」画面改标为「帮你想通的画面（来历故事）」——完成体在历时上确源于所有格结果结构（"I have the letter written"式），可放心讲来历，但它不是 have 的词义本身，删除「看字面就秒懂」的定性；②对立注收紧：I lost my key 的关键不在「昨天」（lost 不限于昨天），真正的对立点是——过去时点名/默认一个过去时间、与现在切断，完成时不点名过去时间、只谈结果是否关乎现在（I have lost my key ＝现在进不了门）。与库级识解讲法（完成时＝镜头对准留给现在的痕迹）对齐。
+    fix_type: 内容订正
+    source: 报告内容层 TENSE 条（have 字面解须改标；lost 注过窄，对立点应据「是否点名过去时间／结果是否关乎现在」收紧）；Bybee, Perkins & Pagliuca (1994) 所有格结果体源头
+
+  # ================= FIVE_SENTENCE_PATTERNS_DB =================
+  - db: FIVE_SENTENCE_PATTERNS_DB
+    id: （库级）
+    field: 讲法基线（新增 explain）
+    original: 现讲法只有「动词决定句型」一层。
+    fixed: 叠加 Goldberg 论元结构构式讲法：句型模具本身携带意义——双宾模具自带「让某人收到某物」义，所以 He baked her a cake. 里 bake 本无「给」义、句子却有；反过来 explain 进不了这个模具（*explain me this 不成立，只能 explain this to me）。一个模具同时解释双宾转换与 to 式专属动词两件事。课堂活动可用句子分类游戏（按动词分 vs 按句型分，发现「句型也在说话」）。失效边界：构式讲法管「模具义」，不管 -ly 副词等形式细节。句型②「等号桥」讲法与构式观兼容，保留。
+    fix_type: 讲法升级
+    source: 报告讲法清单 §4.5（Goldberg 1995, Constructions；Bencini & Goldberg 2000, Journal of Memory and Language 43, 640–651）
+
+  - db: FIVE_SENTENCE_PATTERNS_DB
+    id: 句型③ SVO
+    field: essence
+    original: 80% 的英语动词是『及物动词 (Vt)』—— 动作像射出去的箭，必须直接击中后面的『宾语靶心 (Object)』句子才完整！
+    fixed: 删除无出处伪统计「80%」：改「很多英语动词是『及物动词 (Vt)』——动作像射出去的箭，要直接击中后面的『宾语靶心 (Object)』句子才完整（另有不少动词及物、不及物两种用法都行，如 read, sing，不必贴死标签）」。
+    fix_type: 内容订正
+    source: 报告内容层 FIVE 条（80% 无出处伪统计，且大量动词兼具及物/不及物用法，删除数字改「很多动词」）
+
+  - db: FIVE_SENTENCE_PATTERNS_DB
+    id: 句型② SVP
+    field: badge + essence
+    original: badge「⚖️ 状态天平型 · 绝不用副词」；essence「⚠️ 铁律：系动词后面永远接**形容词**说明主语的状态，绝不能接 `-ly` 副词！」（而同条 formula 自列名词/介词短语亦可作表语，自相矛盾）
+    fixed: badge 改「⚖️ 状态天平型 · 表语多用形容词」；essence 的铁律收紧为「形容词作表语时不用 -ly 副词形式（tastes sweet，不说 tastes sweetly）」；并注：表语不止形容词——名词、介词短语可以作表语（formula 原文已列），副词性小品词也可以（The meeting is over. / He is out.）。
+    fix_type: 全称降格
+    source: 报告内容层 FIVE 条（表语位置可由副词性小品词充当；「永远接形容词」与自家 formula 自相矛盾，收紧为 -ly 一条）
+
+  - db: FIVE_SENTENCE_PATTERNS_DB
+    id: 句型② SVP
+    field: goldExamples[1].zh
+    original: 秋天树叶变黄，天气变凉爽。（turn 管颜色变化，get 管天气/长短变化）
+    fixed: 秋天树叶变黄，天气变凉爽。（turn / get / become 都可表『变得』，不分工：天气变冷可以说 It turned cold.，脸变红也可以说 get red。）删除虚构的 turn/get 分工注。
+    fix_type: 内容订正
+    source: 报告内容层 FIVE 条（get/turn 的分工是虚构的微型规则，应删分工注，只留「三者都可表『变得』」）
+
+  - db: FIVE_SENTENCE_PATTERNS_DB
+    id: 句型① SV
+    field: formula + essence（挂件边界注）
+    original: formula「Subject (主语) + Vi (不及物动词) [+ 副词/介词短语挂件]」，通篇把介词短语处理为可有可无的「挂件」
+    fixed: 句型①下补边界注：大多数地点/时间短语是可省的挂件，但有一类动词把地点短语当「必需搭档」——He lives in Beijing. 的 in Beijing 删掉就成残句，arrive 类同理（标准句型分类里这叫 SVA 型，本库删繁未单列，小学阶段并入①并在此注名）。挂件讲法只对可省短语成立。
+    fix_type: 例外登记
+    source: 报告概念层 C-7（Quirk 等标准小句类型为七式含 SVA；in Beijing 对 live 不可省，呈现为可有可无的配件与事实不符，须注明）
+
+  - db: FIVE_SENTENCE_PATTERNS_DB
+    id: 句型① SV
+    field: goldExamples[1].zh
+    original: 🔥 必考铁律：listen(听)、look(看)、wait(等)、arrive(到达) 全是不及物动词，接宾语必须加挂钩：listen TO / look AT / wait FOR / arrive IN(AT)！
+    fixed: 软化全称：listen、look、arrive 在小学常考的用法里是不及物，接对象要加挂钩（listen TO / look AT / arrive IN/AT）；wait 的常考用法也是 wait FOR，但它有个及物用法（wait tables 当服务员），知道即可。删除「全是」与「铁律」冠名，改「必考提醒」。
+    fix_type: 全称降格
+    source: 报告内容层 FIVE 条（wait 有及物用法 wait tables，小学语境结论可用，措辞「全是」可软化）
+
+  - db: FIVE_SENTENCE_PATTERNS_DB
+    id: 句型④ SVOO
+    field: essence（to/for 转换边界注）
+    original: essence 以「箭头 ➔ 用 to／爱心 ❤️ 用 for」的物理画面总括双宾转换，未注边界（原文默认双宾动词都能转换）
+    fixed: 补边界注：不是所有「给」类动词都能进双宾模具——explain、say、donate 只能用 to 式（explain this to me，不能说 *explain me this）。这正好用库级构式讲法解释：双宾模具自带「让某人收到」义，进不去的动词只能走 to 短语。箭头/爱心画面保留作倾向级记忆法。
+    fix_type: 例外登记
+    source: 报告内容层 FIVE 条（to/for 转换公式默认双宾动词都能转换；实际 explain、say、donate 只能用 to 式，注明边界即可）+ Goldberg (1995)
+
+  # ================= INTERROGATIVE_RADAR_DB =================
+  - db: INTERROGATIVE_RADAR_DB
+    id: （库级）
+    field: pair_secret 栏体例
+    original: pair_secret 一栏混装三种不同性质的东西：真范式押韵（where↔there）、纯答语配对（who ↔ he/she/they）、民间拆字（w + here ➔ where）。
+    fixed: 该栏拆为两栏：「词族押韵（真）」只放词形/词干层面的真实关系（押韵对子＋两大家族框架）；「答语搭档（功能配对）」放答语层面的配对。拆字式表述整栏删除。各条具体改法见下。
+    fix_type: 分层标注
+    source: 报告概念层 C-6（同栏三物不同质，孩子会误以为三者是同一种「秘密」）
+
+  - db: INTERROGATIVE_RADAR_DB
+    id: Where
+    field: pair_secret + why_rule
+    original: pair_secret「w + here ➔ where ↔ t + here ➔ there ↔ here!」；why_rule「看字母构成：here(这里) / there(那里) / where(哪里)，全是『-here 空间地点家族』！」
+    fixed: 拆字表述删除（here 不是词缀基底，该拆分不成立）。分层重标：词族押韵（真）——where / there 押同一词尾 -ere，但真实关系是三个词干共用词尾：疑问词干 hw-（源自印欧 *kʷo-）、指示词干 þ-（源自 *to-）、近指词干 h-（*ḱe-，here 与 he 同源）；why_rule 相应改「where 问哪里、there 那里、here 这里：词尾押韵好记，词干却是三家人，框架详见 ROYAL T05 两大家族记录」。答语搭档：— It's over there!（功能配对，保留在 ex_en）。
+    fix_type: 分层标注
+    source: 报告概念层 C-2、C-6（民间拆字构词上不成立；真实关系是 hw-/þ-/h- 三个词干共用词尾）；Mitchell & Robinson。与 ROYAL_TRUMPS T05-accurate 共用同一框架记录，不双写。
+
+  - db: INTERROGATIVE_RADAR_DB
+    id: Who
+    field: pair_secret
+    original: who ↔ he / she / they
+    fixed: 移入「答语搭档（功能配对）」栏并注明性质：这是答语配对（问谁→用人称代词答），与词形毫无系统关系，不与 where↔there 的词族押韵同栏同级。
+    fix_type: 分层标注
+    source: 报告概念层 C-6；内容层 RADAR 条（须移入「答语搭档」栏以免误认）
+
+  - db: INTERROGATIVE_RADAR_DB
+    id: What
+    field: pair_secret
+    original: what ↔ that (wh-提问 ➔ th-回答)
+    fixed: 分层重标：词族押韵（真）——what / that 押 -at 词尾，词干仍是两家（hw- 问词家族 vs þ- 指示家族，框架见 ROYAL T05-accurate）；「wh-提问 ➔ th-回答」的变身式箭头删除，避免读成构词律。答语搭档义（问什么→用 that 指答）归入功能配对理解。
+    fix_type: 分层标注
+    source: 报告概念层 C-2、C-6（与 T05 同一伪构词律问题在 RADAR 侧的投影）
+
+  - db: INTERROGATIVE_RADAR_DB
+    id: When
+    field: pair_secret
+    original: wh + en ➔ when ↔ th + en ➔ then (那时)!
+    fixed: 拆字式表述删除，改标词族押韵（真）：when / then 押 -en 词尾，词干是 hw- 与 þ- 两家（框架见 ROYAL T05-accurate）。
+    fix_type: 分层标注
+    source: 报告概念层 C-2、C-6
+
+  - db: INTERROGATIVE_RADAR_DB
+    id: Why
+    field: pair_secret
+    original: Why 提问 ➔ 必用 Because (因为) 回答！
+    fixed: 改「Why 提问 ➔ 多用 Because 回答，也可以答目的」：答语栏三答并置——Because I was ill.（原因）/ To see a doctor.（目的）/ For my health.（目的）。删除「必用」。与 ROYAL_TRUMPS T11 同步同口径，以 T11 条为准。
+    fix_type: 全称降格
+    source: 报告内容层 RADAR 条（「Why 必用 Because」同 T11 条，须改）；讲法清单 §4.6（三答并置，废除「必用 Because」）
+
+  - db: INTERROGATIVE_RADAR_DB
+    id: Whose / Why
+    field: why_rule（真词源彩蛋，讲法升级）
+    original: Whose 条 why_rule「由 who + 所有格演变而来，注意切勿和 Who's (Who is) 混淆！」（实质正确但未点名）；Why 条 why_rule 仅「追问事件背后的原因。」
+    fixed: 两条升级为「侦探彩蛋」真词源并点名：whose 就是古英语 hwā 的属格 hwæs（「谁的」），所以它和 who's（who is 的缩写）只是同音、不是亲戚；why 是古英语 hwȳ，what 的古「工具格」（「凭什么」），所以 why 长得不像 what 却是一家人。比含混的 pair_secret 更能建立词族直觉，生活版押韵钩子保留在 T05 口诀条。
+    fix_type: 讲法升级
+    source: 报告内容层 RADAR 条（whose 即 hwā 属格 hwæs，可保留并在准确版中点名）；讲法清单 §4.6；Mitchell & Robinson（hwæs 属格、hwȳ 工具格）
+
+  - db: INTERROGATIVE_RADAR_DB
+    id: When
+    field: why_rule（跨库口径统一注）
+    original: when 既可问日期也可问钟点；而 What time 专问几点几分。
+    fixed: 原文保留（符合真实用法，比「问钟点只能用 What time」的坊间过度规则更准确），统一跨库口径为「What time 专问时刻，when 问时间（宽：日期、时候、钟点都可）」；ROYAL_TRUMPS T11 的「What time 问钟点」不得读成排他规则，两库互注。
+    fix_type: 口径对齐
+    source: 报告内容层 RADAR 条（与 ROYAL T11 的排他暗示存在跨库口径张力，宜统一为上述口径）
+
+  # ================= ZH_EN_SYNTAX_CONTRAST_DB =================
+  - db: ZH_EN_SYNTAX_CONTRAST_DB
+    id: 维度5
+    field: dim + en_rule
+    original: dim「5. 可数名词『要加冠词』铁律（冠词/复数）」；en_rule「🇬🇧 英语：单数可数名词绝要加冠词！要么戴冠词帽 (a cat)，要么变复数 (cats)！例：I like cats. / This is a book.」
+    fixed: 改写为与零冠词内容一致的表述：dim 改「5. 可数名词单数要『亮明身份』（冠词/复数）——但当『做的事』时可以光着身子」；en_rule 改「指称具体事物时，单数可数名词要亮明身份：一个 (a cat)、特指那个 (the cat)、或变复数 (cats)。但是当名词读作『在做这件事』（功能/活动读法）时零冠词：go to school（去上学）、in bed（睡下了）、by bus（乘车方式）、play football——这时 school/bed 指的不是一栋建筑、一张床，而是那件事本身。」与 boundedness 模型 cl-zero-func（零冠词功能读法）及 cl-a-first 互相引用，跨库只此一套口径（互引注：cl-zero-func 登记的是机构名词的活动读法，play football 的球类零冠词是与之并列的另一类别，两类并列、不合并）。删除「绝要」「铁律」。
+    fix_type: 口径对齐
+    source: 报告内容层 ZH_EN 条（维度 5 与本 App 自家零冠词内容 go to school / in bed / by bus 直接自相矛盾，须收紧适用范围为「指称具体事物时」并与零冠词条目互相引用）；boundedness.yaml cl-zero-func 及其例外登记 xc-piano、xc-hospital-us
+
+  - db: ZH_EN_SYNTAX_CONTRAST_DB
+    id: 维度2
+    field: en_rule 例词
+    original: 🇬🇧 英语：从小到大（先精准靶心，再往外扩）例：at 8:00 on May 1st in 2026 / Class 2, Grade 5
+    fixed: 日期例保留（at 8:00 on May 1st in 2026 正确）；「Class 2, Grade 5」是汉语校名结构的直译，不是英语国家惯常说法，替换为「Grade 5（美式口语 fifth grade）」作「从小到大」的例证，或注「班级牌写法是中式直译，英语里说 Grade 5」。
+    fix_type: 内容订正
+    source: 报告内容层 ZH_EN 条（Class 2, Grade 5 不地道；同维度日期例正确）
+
+  - db: ZH_EN_SYNTAX_CONTRAST_DB
+    id: 维度1
+    field: en_rule + why_reason（讲法升级）
+    original: en_rule「🇬🇧 英语：焦点先行（主谓宾 SVO 先上车），先地点后时间放句尾！例：I played football.」why_reason 为「拍电影特写」式讲法。
+    fixed: 改「默认＋可移动」表述：英语默认把新消息放句尾（end-focus），状语的常规位置是主干之后（先地点后时间只是常见倾向，不是定律）；状语可以搬家，搬到句首就变成强调/先交代背景：Yesterday, I played football in the park.（先立时间背景）。同一事实、两种摆法，学的是信息结构而不是死顺序。原「焦点先行」四字删除（该自造标签另在 GRAMMAR G28 有同名问题，统一废止以 grammar 包 G28 裁定为准，本条为执行改写）。
+    fix_type: 讲法升级
+    source: 报告内容层 ZH_EN 条（「先地点后时间放句尾」是倾向而非定律，宜改标倾向并给前置例）；讲法清单 §4.7（Quirk et al. 句尾焦点与状语位置；Halliday given/new 信息结构）
+
+  # ================= PITFALLS_DB =================
+  - db: PITFALLS_DB
+    id: 天坑03
+    field: desc（fish）
+    original: 绵羊 sheep、鱼 fish（条数）、鹿 deer 单复数同形绝不加 s！土豆 potato、西红柿 tomato 变复数必须加 -es。kangaroo 和 photo 只加 -s。脚 foot➔feet，老鼠 mouse➔mice。
+    fixed: fish 一项改「通常单复数同形（数条数时不加 s）；但指『好几种鱼类/品种』时可以加 -es 说 fishes」；「绝不加 s」删除。potato/tomato/kangaroo/photo 一段与 ROYAL T02 名单口径对齐（o 结尾加 -es 的是封闭小名单）。与 boundedness 模型口径一致：可数性看「怎么看它」，fish 的种类读法正是换一种看法。
+    fix_type: 全称降格
+    source: 报告内容层 PITFALLS 条（fishes 指多个种类/品种时存在；「鱼（条数）」括注含义含混；改为「通常同形；指种类时可 fishes」）；boundedness.yaml 例外登记口径
+
+  - db: PITFALLS_DB
+    id: 天坑05
+    field: desc（play the piano）
+    original: play + 球类/棋类 绝不加 the（play football / badminton）；play + 西洋乐器 必须加 the（play the piano）；by + 交通工具 中间零冠词（by subway/bus）！
+    fixed: 乐器一项降为倾向：「play + 西洋乐器多加 the（play the piano）——这是英式/考试英语的稳妥写法，美式口语常省 the（play piano 也对）」。与 boundedness 模型例外登记 xc-piano 口径对齐（本 App 已把 play the piano 登记为例外型倾向，此处不得再写「必须」）。球类零冠词与 by+交通工具零冠词两项原文核对无误，保留。
+    fix_type: 全称降格
+    source: 报告内容层 PITFALLS 条（play the piano 是倾向，美式口语常省 the；与自家模型口径不一致须降为倾向并注美式例外）；boundedness.yaml xc-piano
+
+  - db: PITFALLS_DB
+    id: 天坑08
+    field: desc + 讲法
+    original: 只要句中出现 yesterday / last weekend / last night / ago，哪怕中文没写“了”，英语动词也必须强制变成过去式（cleaned / slept / bought）！
+    fixed: 「必须强制」改「默认」：句中出现 yesterday / last weekend / last night / ago，动词默认变过去式。分两层呈现：应试版照此执行；真实版拓展一句——讲故事时英语可以用「历史现在时」故意用现在时演过去（Yesterday, this man walks up and says…），那是讲故事的手法，小学阶段知道有这回事即可，不用于考试。呈现升级为两步判据：「先找时间锚 → 再给动词穿对应盔甲；找不到锚，先想『结果关不关乎现在』（关乎现在→完成时）。」
+    fix_type: 全称降格
+    source: 报告内容层 PITFALLS 条（历史现在时叙事为合法反例，「强制」宜改「默认」）；讲法清单 §4.8（每条天坑改「最小对立＋一句判据」，应试版/真实版两层标注）
+
+  # ================= STRESS_AND_SCHWA_DB =================
+  - db: STRESS_AND_SCHWA_DB
+    id: 法则C
+    field: principle（节奏二分）
+    original: 汉语是『音节计时语言（每个字用力均匀，像机关枪哒哒哒）』；英语是『重音计时语言（实词重读拉长，夹在中间的虚词 to/for/of/and/can 全部压缩成极轻极短的懒元音 /ə/）』！
+    fixed: 改连续统表述：「节奏是一条光谱：汉语的音节用力比较均匀（机关枪听感），英语把重音拉得更开、把夹在中间的虚词（to/for/of/and/can）压得更扁更轻（弱读成懒元音 /ə/)——不是两种计时机器，是『重音突显程度』不同。」生活版比喻（机关枪 vs 橡皮筋）保留作听感钩子，定论式二分删除；本条改标 tendency（倾向）型，与本库自带对冲的体例一致。
+    fix_type: 全称降格
+    source: 报告概念层 C-8（节奏类型学的严格等时性假说已被修正为连续统倾向：Dauer 1983 再分析；Grabe & Low 2002 节律测量研究）；讲法清单 §4.9
+
+  - db: STRESS_AND_SCHWA_DB
+    id: 法则C
+    field: items[0]「can /kən/ vs can't /ˈkɑːnt/」音标口径
+    original: 否定句里 can't 重读且张大嘴读 /ˈkɑːnt/（未注口音）
+    fixed: 并注口音：can't 英式读 /ˈkɑːnt/，美式读 /kænt/；can 的弱读 /kən/ 两式相同。教材取哪一式须与全 App 音标口径统一（联动 vocab 音标口径条）。
+    fix_type: 内容订正
+    source: 报告内容层 STRESS 条（can't 给音 /ˈkɑːnt/ 为英式，美式为 /kænt/，须改或并注）
+
+  - db: STRESS_AND_SCHWA_DB
+    id: 法则A
+    field: principle（数字）
+    original: present、record、desert、export 这样的成对词……（词典里至少有 170 对）
+    fixed: 无出处数字模糊化：「（词典里有一百多对这样的成对词）」。原条的适用范围声明与「比喻不是真正的原因」自注全部保留——该体例（自带例外清单＋明说边界）经审查认定为全库范本，其他库修订照此办理。
+    fix_type: 内容订正
+    source: 报告内容层 STRESS 条（「至少有 170 对」无出处，通行说法为 150 对上下，数字宜模糊化）；讲法清单 §4.9（本库体例立为全库模板）
+
+  # ================= METAPHOR_CODES_DB =================
+  - db: METAPHOR_CODES_DB
+    id: （库级）
+    field: 「密码」体例分层标注
+    original: 四组材料统一命名为「密码」（密码一人体部位／密码二色彩／密码三动物谚语／密码四空间方向），暗示凡习语皆可按同一套解码律推导。
+    fixed: 库名趣味性保留，但每卡标注类型，三类分开：①概念隐喻（身体图式、UP/DOWN、TIME IS MONEY——有映射系统性，须写失效边界）；②文化习语/借喻（black tea、white lie、green hand——文化约定俗成，不可推导，整卡标「约定俗成、背下来」）；③明喻与谚语（as brave as a lion、early bird——修辞格式，不是隐喻映射）。讲法统一三步：「像什么→像在哪（对应点逐条列）→哪里不像（失效边界）」，失效边界示例随卡给出：身体图式有 foot of the mountain 却不能自造 *waist of the mountain（英语用 slope/ridge）；UP 只管数量与情绪方向，不管好坏（prices go up 涨价不是好事）；TIME IS MONEY 可 spend/save/waste time，却不能 *borrow time；颜色类最不可迁移（white 在中国传统语境关联丧葬，在英语主表纯洁）。
+    fix_type: 分层标注
+    source: 报告概念层 C-5（四组实为三类不同对象，统一命名为「密码」会让孩子以为凡习语皆可解码）；讲法清单 §4.2（Boers 2000, Applied Linguistics 21(4) 按概念隐喻分组呈现的保持实证；Beréndi, Csábi & Kövecses 2008；Lakoff & Johnson 1980，库内第四组已自引；Kövecses 2010）
+
+  - db: METAPHOR_CODES_DB
+    id: 密码一 HAND 卡
+    field: metaphors（second-hand 归类）
+    original: hour/minute hand (时针/分针) · give me a hand (搭把手帮忙) · armchair (扶手椅) · second-hand (二手的)
+    fixed: second-hand 移出本组：此 hand 是第四义「经手（所有权传递）」——second-hand ＝过了第二手的，与指针（hour hand）、帮手（give me a hand）、扶手（armchair）三个义项都不同组。改置：从 HAND 卡 metaphors 中删除 second-hand，另起一行单注「hand 的第四义：经手——second-hand（二手的，经别人手转过来的）」，或移入文化习语组并标类型②。
+    fix_type: 内容订正
+    source: 报告内容层 METAPHOR 条（second-hand 中的 hand 指经手、所有权传递，与同组三义不同组，孩子必然映射错位；须移出该组或单独注明「hand 的第四义：经手」）
+
+  - db: METAPHOR_CODES_DB
+    id: 密码二 WHITE & GOLDEN 卡
+    field: metaphors（golden autumn）
+    original: a white lie (善意的谎言，不伤人) · golden opportunity (千载难逢的黄金良机) · golden autumn (金秋)
+    fixed: golden autumn 降为拓展例并注「这是汉语『金秋』的直译式说法」：英语母语语料中它远不如 golden opportunity 典型，核心例词改以 golden age 充实 GOLDEN 一侧（golden autumn 只作拓展，不作核心例词），防地道性风险。
+    fix_type: 内容订正
+    source: 报告内容层 METAPHOR 条（golden autumn 更像「金秋」直译回输，作核心例词有地道性风险，建议换 golden age / golden hour 或降为拓展例）
+
+  - db: METAPHOR_CODES_DB
+    id: 密码三 骏马卡
+    field: metaphors 中文注
+    original: as strong as a horse (健壮如牛/力大无穷)
+    fixed: 中文注改为「健壮如马（汉语习惯说『健壮如牛』，喻体动物不同，翻译时换了动物）」——把中英喻体转换说明白，避免注文与英文喻体（horse 马）不一致让低龄读者困惑。
+    fix_type: 内容订正
+    source: 报告内容层 METAPHOR 条（注文与英文喻体动物不一致，马≠牛，应注「健壮如马（汉语习惯说如牛）」）
+
+  # ================= FRAME_SEMANTICS_DB =================
+  - db: FRAME_SEMANTICS_DB
+    id: FR09
+    field: quizzes[1].explain
+    original: 步行固定用 on foot（因为用双脚踩在地面上接触用 on），千万不能说 by foot！
+    fixed: 删除伪因果注脚：改注「步行固定说 on foot（固定习语，历史上与 on horseback『骑马』成对），不能说 by foot——这类搭配背下来就行，不用编理由」。on foot 的固定搭配结论与测验答案不变，只删「因为…接触用 on」的事后附会因果。
+    fix_type: 伪因果删除
+    source: 报告内容层 FRAME 条（on foot 是固定习语，此「因为」是事后附会的伪因果；例句与搭配本身全对，仅注脚须改标为联想或删去因果措辞）
+
+  - db: FRAME_SEMANTICS_DB
+    id: （库级）
+    field: 讲法补注（新增 explain 工具）
+    original: 现有「小剧场＋换主角换动词」讲法（经审查认定即 Fillmore 本人讲法，FR01 与 FrameNet Commerce_buy 框架逐项吻合，无须换法）
+    fixed: 只加两件工具：①每学一个动词追问「还有谁也在场、只是这句话没点名？」（cost 的句子里买家没出现但一直在场）——FrameNet「每个词只点亮场景的一部分角色」的儿童版，可直接生成测验题；②同一场景四句并置（buy/sell/pay/cost），只变主语不变场景，让孩子自己说出「镜头对准了谁」。失效边界：框架讲法只管同一场景内的词，不负责跨场景引申义（cost 的「代价」义作第二层拓展）。FR01–FR10 其余句型、搭配、测验答案与解析经逐项核对无误，不作修正。
+    fix_type: 讲法升级
+    source: 报告讲法清单 §4.1（Fillmore 1977, 1982 Frame Semantics；Berkeley FrameNet Commerce_buy：Buyer/Seller/Goods/Money 与 perspectivization）
+
+  # ================= MINIMAL_PAIRS_DB =================
+  - db: MINIMAL_PAIRS_DB
+    id: （库级）
+    field: 讲法补注
+    original: 现有「口型提示＋最小对立对」呈现（四组对立 /ɪ/-/iː/、/æ/-/e/、/æ/-/ʌ/、/θ/-/s/ 的音标、例词、中文注经逐项核对全部无误，无内容修正）
+    fixed: 唯一升级：每对补一个语境句对（如 It's a ship. / It's a sheep.），把听辨从单词层推进到句子层，防止「单练会、连句废」。除此之外本库不作任何修正。
+    fix_type: 讲法升级
+    source: 报告逐库裁定总表（MINIMAL_PAIRS 概念、内容双「成立」，无问题条目）；讲法清单 §4.10（Celce-Murcia, Brinton & Goodwin, Teaching Pronunciation 的最小对立训练传统）
+
+pending_doubts:
+  - item: ROYAL_TRUMPS_DB T13 同音/反义的确切对数
+    detail: 原标题「同音词 16 组与反义词 24 对」与条目数对不上；报告称文件内为同音 A、B 两组共 10 对＋反义约 8 对，但对数系嵌在 desc 文本中、无结构化字段可逐对复核。本包处理为删除标题数字，不以未复核数字替换；确切对数待 T9 补丁阶段逐对点数后另行登记。
+  - item: METAPHOR_CODES_DB golden hour 的小学适龄性
+    detail: 报告建议以 golden age / golden hour 替换 golden autumn 作核心例词；golden hour 本义为摄影/医学术语（黄金时段），其作「宝贵时光」的课堂呈现方式报告未给实据。本包只落实「golden autumn 降为拓展例＋golden age 作核心例」，golden hour 是否入核心例存疑待定，不擅自写入核心例词。
+  - item: ROYAL_TRUMPS_DB T04 expect 的归类
+    detail: 报告讲法清单将 expect 与 respect、special 同列「只剩考古线索」队，内容层则仅点名 office、difficult 两词不透明。本包按内容层口径只对 office、difficult 标注考古队；expect（ex- 向外 + spect 看→「向外看→期待」）透明度介于两队之间，报告两处口径不一，存疑待裁，不擅自归队。

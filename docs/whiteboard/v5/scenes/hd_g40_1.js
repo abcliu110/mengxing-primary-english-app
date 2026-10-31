@@ -13,10 +13,10 @@ const ITEMS = [
   ['w', '🔬 G40 · 动词核心搭配黄金句型 (like doing / want to do / It\'s time...) 底层结构拆解与汉英思维对比'],
   ['w', '① 典型语境：I like reading stories and enjoy swimming in summer.'],
   ['w', '我喜欢读故事，享受夏天游泳。她想买明信片，想吃面条。七点了，该去上学了！'],
-  ['w', '② 核心结构规律：① 后接 V-ing：like / love / enjoy / finish + doing、go + doing (swimming/shopping)、所有介词后 (be good at doing / thank you for helping)'],
+  ['w', '② 核心结构规律：① 后接 V-ing：enjoy / finish + doing、go + doing (swimming/shopping)、所有介词后 (be good at doing / thank you for helping)；like / love 是例外：后接 doing 和 to do 都对（doing 多指爱好和习惯，to do 多指某一次的选择）。'],
   ['w', '③ 进阶要点：② 后接 to + 原形：want / would like / plan / try + to do、ask / tell / teach sb to do'],
   ['w', 'G40 第1幕'],
   ['s', 'I like reading stories and enjoy swimming in summer.', '我喜欢读故事，享受夏天游泳。'],
-  ['n', '🎵 口诀：一山不容二虎，一句不站两原形！想要计划去未来，want / would like / plan 后接 to do；享受爱好常态事，like / enjoy / finish 后接 doing；Let 和 make 最豪爽，宾语后面接原形；It\'s time to do 接动作，It\'s time for 后接名词！']
+  ['n', '🎵 口诀：一山不容二虎，一句不站两原形！想要计划去未来，want / would like / plan 后接 to do；enjoy、finish 后接 doing；like、love 两边站，doing、to do 都行（爱好偏 doing，选择偏 to do）；Let 和 make 最豪爽，宾语后面接原形；It\'s time to do 接动作，It\'s time for 后接名词！']
 ];
 export default function build() { return autoBuild(SP, { title: '📘 G40 底层原理', items: ITEMS, acts: ACTS }); }

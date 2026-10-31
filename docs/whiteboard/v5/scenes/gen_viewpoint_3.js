@@ -1,0 +1,63 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：model/viewpoint.yaml；改本幕台词/结构：model/specs/viewpoint_3.yaml；改编排：模板 fp_zoom_focus_3.js（家族共用）。
+// 判据/口诀来源：vp-cl-address-order、vp-cl-time-anchor、vp-xc-date-us。生成器 model/gen_scene.py（items 模式）。
+// 🔍 联想工具箱 ⑥ 站位与顺序 · 3 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/fp_zoom_focus.js 案例 3；对照清单 lab/INVENTORY_FP_ZOOM_FOCUS_3_V5.md
+// 角色关键帧：sprites/fz3.js（人物先行帧库 cast/）
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/fz3.js';
+const ACTS = {};
+const ITEMS = [
+  ['n', '这一幕：写地址，英语为什么从最小的门牌写起？'],
+  ['w', '写地址从小到大'],
+  ['w', '⑥ 站位与顺序的四个小机关'],
+  ['w', '💡 这一幕的机关'],
+  ['w', '写地址从小到大'],
+  ['w', '⑥ 站位与顺序的四个小机关'],
+  ['m', '💡 这一幕的机关'],
+  ['m', '① 中文大到小'],
+  ['m', '② 英语小到大'],
+  ['m', '③ 日子锚点'],
+  ['m', '④ 日期另学'],
+  ['m', '⑤ 口诀'],
+  ['m', '🔮 预测'],
+  ['n', '中文写地址从大到小：先说北京，再一步步说到 201 室。'],
+  ['w', '中文：北京 → 星光学校 → 3 号楼 → 201 室'],
+  ['w', '（从大到小）'],
+  ['n', '英语正好反过来：这条只管写地址这一件事——从最小的门牌开始，往外排。'],
+  ['w', 'Room 201'],
+  ['n', '往外一层：3 号楼……'],
+  ['w', 'Building 3'],
+  ['n', '……星光学校……'],
+  ['w', 'Star School'],
+  ['w', 'Beijing'],
+  ['w', '英语地址：从小到大'],
+  ['w', 'I am in Room 201,'],
+  ['w', 'Building 3, Star School,'],
+  ['w', 'Beijing.'],
+  ['s', 'I am in Room 201, Building 3, Star School, Beijing.', '我在北京星光学校 3 号楼 201 室。'],
+  ['s', '10 Downing Street, London, UK.', '伦敦唐宁街 10 号。', 'Downing Street London'],
+  ['n', '再看一个关于 morning 的小机关：morning 单独出现，用 in。'],
+  ['w', 'in the morning'],
+  ['n', '可是 morning 前面加上具体日子，就改从 day 的 on。'],
+  ['w', 'on Tuesday morning'],
+  ['w', 'on Sunday morning'],
+  ['s', 'See you on Tuesday morning.', '星期二上午见。', 'on Tuesday morning'],
+  ['n', '注意：这条只管 morning 的日子锚点，不是一条「时间都从小到大」的律。'],
+  ['w', '日子锚点：从 day 的 on'],
+  ['n', '日期的写法各国不同，要另学：美式 September 9 是先月后日——别拿地址的顺序去硬套日期。'],
+  ['w', '⚠️ 日期另学：美式 月 → 日 → 年'],
+  ['n', '口诀：写地址从小到大，日期写法另学。'],
+  ['w', '口诀：写地址从小到大'],
+  ['n', '预测：上海 · 花园路 · 5 号。写成英语地址，先写哪个？先想 3 秒！'],
+  ['w', '🔮 上海 · 花园路 · 5 号 → 英语先写？'],
+  ['n', '揭晓：从最小的门牌号开始：5 Garden Road, Shanghai。'],
+  ['w', '5 Garden Road, Shanghai —— 从小到大'],
+  ['s', 'I live at 5 Garden Road, Shanghai.', '我住在上海花园路 5 号。', 'live Garden Road Shanghai'],
+  ['w', '💡 一句话洞见'],
+  ['w', '写地址：英语从小到大，中文从大到小；'],
+  ['w', '日期写法各国不同，另学'],
+  ['w', '🎵 口诀'],
+  ['w', '口诀：写地址从小到大，日期写法另学。'],
+  ['w', '📦 联想工具箱 ⑥ 站位与顺序'],
+];
+export default function build() { return autoBuild(SP, { title: '写地址从小到大', items: ITEMS, acts: ACTS }); }

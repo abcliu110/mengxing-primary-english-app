@@ -1,0 +1,235 @@
+# 知识模型 · ④ 单核谓语（按 THEORY_AUDIT 改法：旧表述的计量单位由句子改为分句）
+# 规范见 REWRITE_TECH_PLAN.md §3：tendency 必带 scope 与例外；mnemonic 必链真内容；
+# 每条主张带 explain（方法 / 载体 / 失效边界）与 mechanism（真机制 / 帮记故事）。
+
+family: sentence
+title: "一个分句一个王，长句是几个小句子拼的"
+
+insight:
+  domain: dom-constructions
+  coManaged: "dom-grammar（g40：一个分句一个限定动词；动词后接形式）"
+  coreView: "一个分句只有一个限定动词核心；第二个动词必须换上非限定形式，换哪件由前面的动词决定；句型骨架是动词与构式共同搭出来的模具。"
+  mechanisms:
+    - "4-1 单核谓语：一个分句一个限定动词，长句按分句分核"
+    - "4-2 动词决定搭配：to do、doing 的选择看前面的动词；done 另管被动与完成"
+    - "4-3 do-support：时态与一致只标记一次，落在首个助动词上"
+    - "4-4 五大句型骨架：动词配价搭出的基本模具"
+  conflicts: "旧表述『一个句子一个王』计量单位错位：裁决——改为分句；反例 I know he likes it. 一句含两个限定动词，分属两个分句。"
+
+concepts:
+  - id: st-c-one-finite
+    name: "单核谓语"
+    gloss: "一个分句只有一个限定动词核心"
+  - id: st-c-complement
+    name: "动词后接形式"
+    gloss: "第二个动词穿 to do 还是 doing，由前面的动词决定；done 另管被动与完成"
+  - id: st-c-do-support
+    name: "do-support"
+    gloss: "时态与一致只标记一次，落在首个助动词上"
+  - id: st-c-patterns
+    name: "五大句型骨架"
+    gloss: "动词配价搭出的五种基本句型模具"
+
+claims:
+  - id: st-cl-one-finite
+    type: rule
+    concept: st-c-one-finite
+    statement: "一个分句（小句子）只留一个限定动词当核心；长句是几个小句子拼的，每个分句各有一位核心。复合句、并列句天然有多个核心，分属不同分句。"
+    say: "先立树干，再挂树枝。一个分句只留一个谓语动词当国王。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "She likes apples.（一个分句一位核心）对照 I know he likes it.（两个分句两位核心）"
+      boundary: "只约束单个分句；并列句、复合句每分句一位核心，不得拿『一句一位』去套长句"
+    mechanism: "真机制"
+
+  - id: st-cl-king-picture
+    type: mnemonic
+    concept: st-c-one-finite
+    linkedClaim: st-cl-one-finite
+    statement: "帮记画面：把分句想成一棵树，限定动词是树干上的国王，其余成分是挂在树干上的树枝。国王的画只是帮记，真正的规则是分句核心条。"
+    explain:
+      method: "类比"
+      carrier: "树干国王与树枝的画面"
+      boundary: "画面只帮记『核心唯一』；长句有几位国王，看分句个数，不看句子个数"
+    mechanism: "帮记故事"
+
+  - id: st-cl-verb-decides
+    type: rule
+    concept: st-c-complement
+    statement: "动词后接 to do 还是 doing，由前面的动词决定，不是『想做』或『在做』说了算：want 一家后接 to（want to go），enjoy 一家后接 -ing（enjoy swimming），like、love 两边都站（like swimming、like to swim 都对）。"
+    say: "跟谁走，看动词：want 一家后接 to，enjoy 一家后接 -ing，like、love 两边都站。"
+    note: "finish doing 的 finish 是『做完』，不是『享受过程』；享受过程用 enjoy doing。like、love 的含义微差：爱好与习惯偏 doing，某一次的选择偏 to do。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "want to go、enjoy swimming、like swimming / like to swim 三组并排"
+      boundary: "本条只管动词后接形式的选择；每个动词的家族名单要逐个积累，不得按语义类推新动词"
+    mechanism: "真机制"
+
+  - id: st-cl-to-arrow
+    type: mnemonic
+    concept: st-c-complement
+    linkedClaim: st-cl-verb-decides
+    statement: "帮记联想：可以把 to 想成一支指向将来的箭头（want to go、look forward to doing 指向将来），但箭头不是 to 的定义：used to 指过去，箭头不向将来；like to 是习惯，也不是单纯的将来。"
+    say: "to 像支箭头，帮你记方向，但不是定义。"
+    exceptions: [st-xc-used-to]
+    explain:
+      method: "类比"
+      carrier: "箭头指向将来的画面"
+      boundary: "箭头联想双向泄漏：used to 指过去、like to 表习惯，遇到这两类时联想失效，以动词决定条为准"
+    mechanism: "帮记故事"
+
+  - id: st-cl-done-separate
+    type: rule
+    concept: st-c-complement
+    statement: "done 是过去分词，另管两件事，不与 to、doing 并列为同一类动词后接形式：被动用 be 加 done（was broken），完成用 have 加 done（have washed）。"
+    say: "to、doing 是一类接法，done 另管被动与完成。"
+    note: "旧公式『to、doing、done 三件马甲』把不同类的形式并列，已拆开：to、doing 为动词后接的非限定形式一类，done 单独立条。"
+    exceptions: []
+    explain:
+      method: "分层递进"
+      carrier: "先分两类（接法类与分词类），再讲分词类的被动与完成两格"
+      boundary: "本条只管 done 的两格；不规则过去分词的形态（如 broken、washed）逐词记"
+    mechanism: "真机制"
+
+  - id: st-cl-ing-two
+    type: rule
+    concept: st-c-complement
+    statement: "-ing 有两件马甲，别认错：跟在 be 后面，是『正在做』（He is running）；单独站出来当名词，是『做这件事』（Swimming is fun；enjoy swimming）。判断窍门：前面有没有 be，能不能换成『做这件事』来讲。"
+    say: "-ing 有两件马甲：be 后面是正在做，单独站出来是做这件事。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "He is running 与 Swimming is fun 并排，问『前面有没有 be』"
+      boundary: "两件马甲共用一个形式是事实本身，不给『一个形式一个意思』的预期；进行体的体意义另管"
+    mechanism: "真机制"
+
+  - id: st-cl-do-support
+    type: rule
+    concept: st-c-do-support
+    statement: "一个分句里，时态与人称一致只标记一次，落在首个助动词上；请 do、does、did 帮忙后，主要动词回原形。情态动词后接原形，同样只标记一次。"
+    say: "时态只标一次，标在第一个帮忙的词上。"
+    exceptions: []
+    explain:
+      method: "功能目的"
+      carrier: "徽章只发一枚的画面：does 拿了徽章，like 就穿回原形"
+      boundary: "只管陈述句变疑问句、否定句时的标记位置；be 动词与情态动词自带助动词身份，不请 do 帮忙"
+    mechanism: "真机制"
+
+  - id: st-cl-five-patterns
+    type: rule
+    concept: st-c-patterns
+    statement: "英语基本句型有五种骨架：主谓（She runs）、主系表（She is happy）、主谓宾（She eats apples）、主谓双宾（She gave me a book）、主谓宾补（We call him Tom）。骨架由动词的配价搭出，动词决定大半，模具本身也带意思。"
+    say: "五种骨架搭句子，动词决定带几个成分。"
+    note: "登记：带必备状语的第六种（如主谓宾状）日后补，不在本条展开；there be 存现句另管。"
+    exceptions: []
+    explain:
+      method: "分层递进"
+      carrier: "五种骨架逐个搭积木，每种配一个最简例句"
+      boundary: "五骨架是教材共识骨架，不是穷尽清单；第六种与 there be 在覆盖提醒里，不在本条的五种内"
+    mechanism: "真机制"
+
+  - id: st-cl-pattern-board
+    type: mnemonic
+    concept: st-c-patterns
+    linkedClaim: st-cl-five-patterns
+    statement: "帮记画面：把句型想成插线板，动词是插头，宾语、补语是插线板上的插孔：插头有几个脚，就占几个孔。这是帮记的画面，真正的骨架是配价条。"
+    explain:
+      method: "类比"
+      carrier: "插头与插线板的画面"
+      boundary: "画面只帮记『成分个数由动词定』；模具本身带意思的一层（构式义）画面讲不出，以骨架条为准"
+    mechanism: "帮记故事"
+
+examples:
+  - id: st-ex-simple-one
+    text: "She likes apples."
+    gloss: "一个分句，一位核心 likes"
+    supports: st-cl-one-finite
+  - id: st-ex-know-likes
+    text: "I know he likes it."
+    gloss: "一句含两个限定动词：know 管主句，likes 管宾语从句"
+    supports: st-cl-one-finite
+  - id: st-ex-two-clauses
+    text: "I like apples and she likes pears."
+    gloss: "并列长句两个分句，各有一位核心"
+    supports: st-cl-one-finite
+  - id: st-ex-want-enjoy
+    text: "want to go；enjoy swimming"
+    gloss: "want 接 to，enjoy 接 -ing，由动词决定"
+    supports: st-cl-verb-decides
+  - id: st-ex-like-both
+    text: "like swimming；like to swim"
+    gloss: "like 两边都站，讲成单选会判错正确句子"
+    supports: st-cl-verb-decides
+  - id: st-ex-finish-doing
+    text: "finish doing（做完）；enjoy doing（享受过程）"
+    gloss: "finish 不是享受过程，两词分工不同"
+    supports: st-cl-verb-decides
+  - id: st-ex-was-broken
+    text: "The window was broken."
+    gloss: "被动：be 加 done"
+    supports: st-cl-done-separate
+  - id: st-ex-have-washed
+    text: "I have washed the dishes."
+    gloss: "完成：have 加 done"
+    supports: st-cl-done-separate
+  - id: st-ex-is-running
+    text: "He is running."
+    gloss: "-ing 跟在 be 后面：正在做"
+    supports: st-cl-ing-two
+  - id: st-ex-swimming-fun
+    text: "Swimming is fun.；enjoy swimming"
+    gloss: "-ing 单独当名词：做这件事"
+    supports: st-cl-ing-two
+  - id: st-ex-does-like
+    text: "She likes apples. → Does she like apples?"
+    gloss: "does 拿了时态与一致标记，like 回原形"
+    supports: st-cl-do-support
+  - id: st-ex-did-work
+    text: "He worked hard. → Did he work hard?；She does not like tea."
+    gloss: "did、does 帮忙后，主要动词回原形"
+    supports: st-cl-do-support
+  - id: st-ex-sv-svp
+    text: "She runs.（主谓）；She is happy.（主系表）"
+    gloss: "两种骨架的最简例"
+    supports: st-cl-five-patterns
+  - id: st-ex-svo-svoo
+    text: "She eats apples.（主谓宾）；She gave me a book.（主谓双宾）"
+    gloss: "两种骨架的最简例"
+    supports: st-cl-five-patterns
+  - id: st-ex-svoc
+    text: "We call him Tom.（主谓宾补）"
+    gloss: "第五种骨架的最简例"
+    supports: st-cl-five-patterns
+
+exceptions:
+  - id: st-xc-used-to
+    exceptionOf: st-cl-to-arrow
+    text: "used to 指过去做过的事，箭头不向将来"
+    note: "used to 是箭头联想的反例位：遇到 used to，先放下箭头，按动词决定条处理"
+
+chants:
+  - id: st-ch-one-finite
+    text: "先立树干，再挂树枝。一个分句只留一个谓语动词当国王；长句子可以有几个分句，每个分句各立一位国王"
+    for: st-cl-one-finite
+    kind: rule
+  - id: st-ch-verb-decides
+    text: "跟谁走，看动词：want 一家后接 to，enjoy 一家后接 -ing，like、love 两边都站"
+    for: st-cl-verb-decides
+    kind: rule
+  - id: st-ch-do-support
+    text: "时态只标一次，标在第一个帮忙的词上"
+    for: st-cl-do-support
+    kind: rule
+
+superseded:
+  - old: "第一性原理 ④ 一山不容二虎单核谓语律的律文『一个句子一个王』"
+    verdict: "错误·高：计量单位错位——真相是『一个分句一个限定动词核心』；I know he likes it. 一句含两个限定动词、无连词，当场推翻（THEORY_AUDIT 4-1、P0；scene_fixes sf-015）"
+    replacedBy: "st-cl-one-finite『一个分句（小句子）一个王，长句是几个小句子拼的』；家族标题同步改用分句版"
+  - old: "『to do / doing / done 三件马甲』公式（三者并列为同一类动词后接形式）"
+    verdict: "分类错误：done（过去分词）与 to、doing 不是同一类处理（THEORY_AUDIT P3 公式小瑕疵）"
+    replacedBy: "两类分立：st-cl-verb-decides（to / doing 由动词决定）+ st-cl-done-separate（done 另管被动与完成）"
+  - old: "『to 是将来箭头』断言式讲法（KNOW 句面无对冲）与『finish doing＝享受过程』"
+    verdict: "机制故事冒充定义：箭头双向泄漏（used to 指过去、like to 表习惯）；finish 是『做完』，享受过程是 enjoy（THEORY_AUDIT 4-2）"
+    replacedBy: "st-cl-to-arrow 降格为 mnemonic（linkedClaim → st-cl-verb-decides，明示失效边界）+ st-cl-verb-decides note 订正 finish / enjoy 分工"

@@ -1,0 +1,217 @@
+# 知识模型 · ⑤ 介词看图猜（按 THEORY_AUDIT 改法：降为大多数时候的窍门，原型图只管第一猜测）
+# 规范见 REWRITE_TECH_PLAN.md §3：tendency 必带 scope 与例外；mnemonic 必链真内容；
+# 每条主张带 explain（方法 / 载体 / 失效边界）与 mechanism（真机制 / 帮记故事）。
+
+family: spacetime
+title: "联想工具箱 ⑤ 介词看图猜——大图式管第一猜测，小例外靠约定"
+
+insight:
+  domain: dom-prepositions
+  coreView: "每个介词有一个原型场景，其余用法多半是从原型推出来的亲戚；时间用法是把同一张图借到时间上，但约定俗成的说法推不出，单记。原型图只管第一猜测，不管全部答案。"
+  mechanisms:
+    - "5-1 空间三图式与时间借用：in 容器、on 表面、at 点；时间用法是借用，不是原封不动的映射"
+    - "5-2 on / off 的贴离主线：on 贴上或接通，off 离开或断开；go off 是正相反的硬例外"
+    - "5-3 交通工具记法窍门：能站起来走动的用 on，坐进小空间的用 in"
+    - "5-4 for 的三站：为了谁、奔着哪儿、持续多久（与 scene_fixes sf-021/sf-022 及 domains.yaml dom-prepositions 三站口径一致；principles_update Q1 已按此裁定对齐）"
+  conflicts: "旧时长定介词的说法（按时长大小分 in、on、at）已被自家例词推翻：裁决——整段删除，换原型图式；旧『原封不动映射』改为『原型图是第一猜测，约定例外单记』。"
+
+concepts:
+  - id: sp-c-space-schema
+    name: "空间三图式"
+    gloss: "in 容器里面，on 贴在面上，at 当作一个点"
+  - id: sp-c-time-borrow
+    name: "时间借用"
+    gloss: "把空间三图借到时间上作第一猜测，约定说法单记"
+  - id: sp-c-on-off
+    name: "on / off 贴离"
+    gloss: "on 贴上或接通，off 离开或断开"
+  - id: sp-c-transport
+    name: "交通工具记法"
+    gloss: "交通工具上 on 与 in 的记法窍门"
+  - id: sp-c-for
+    name: "for 的三站"
+    gloss: "for 在本条讲为了谁、奔着哪儿、持续多久三站"
+
+claims:
+  - id: sp-cl-space-schema
+    type: tendency
+    concept: sp-c-space-schema
+    statement: "空间用法先看三幅原型图猜一猜：装在容器里面用 in（in the box），贴在表面上有接触和支撑用 on（on the table），指着一个点用 at（at the door）。这是第一猜测，不是包打一切的公式。"
+    say: "里面 in，面上 on，点上 at。"
+    scope: "in、on、at 的空间用法"
+    exceptions: [sp-xc-on-foot]
+    explain:
+      method: "镜头—看法框架"
+      carrier: "三幅原型图并排：盒子、桌面、门口"
+      boundary: "图式只管第一猜测；固定习语与约定用法不套图式，见例外"
+    mechanism: "真机制"
+
+  - id: sp-cl-time-borrow
+    type: tendency
+    concept: sp-c-time-borrow
+    statement: "讲时间时，空间三图常常还能接着用：in 泡在一段时光里（in 2020），on 贴在某一天上面（on Monday），at 指一个时刻点（at 7 o'clock）。但不是原封不动：约定俗成的说法图猜不出来，就单独记。"
+    say: "时间借空间图，约定单记不硬套。"
+    scope: "in、on、at 的时间用法"
+    exceptions: [sp-xc-at-night, sp-xc-in-morning, sp-xc-tuesday-morning]
+    explain:
+      method: "镜头—看法框架"
+      carrier: "同一张图从空间借到时间：容器变时段，表面变日子，点变时刻"
+      boundary: "借用是倾向不是映射定理；at night、in the morning 这类约定说法在例外条里单记"
+    mechanism: "真机制"
+
+  - id: sp-cl-on-off
+    type: tendency
+    concept: sp-c-on-off
+    statement: "on、off 的主线是贴与离：on 是贴上或接通（put on 穿上、turn on 打开），off 是离开或断开（take off 脱下、turn off 关掉）。主线合拍很多常用搭配，但不是全部。"
+    say: "on 是贴上，off 是离开，go off 响起来单记。"
+    scope: "on、off 的动词搭配主线"
+    exceptions: [sp-xc-go-off, sp-xc-off-others]
+    explain:
+      method: "对比案例"
+      carrier: "put on、turn on 对照 take off、turn off，两组贴离动作并排"
+      boundary: "主线只管贴离义场；响起来、推迟、着火、取消等义项在例外条里单记"
+    mechanism: "真机制"
+
+  - id: sp-cl-transport
+    type: tendency
+    concept: sp-c-transport
+    statement: "交通工具的记法窍门：能站起来走动的用 on（on the bus、on the train、on the plane），坐进小空间的用 in（in the car、in a taxi）。这是记法窍门，不是按车辆大小硬分的标准。"
+    say: "能站起来走动的车用 on，坐进小空间的车用 in。"
+    scope: "交通工具上的 on、in 选择"
+    exceptions: [sp-xc-transport-edge]
+    explain:
+      method: "动作体验"
+      carrier: "上车后能不能站起来走动的身体画面"
+      boundary: "窍门只覆盖常见交通工具；电梯、小船等低频边缘情形不硬套，见例外"
+    mechanism: "真机制"
+
+  - id: sp-cl-for
+    type: tendency
+    concept: sp-c-for
+    statement: "for 在本条讲三站：为了谁（a gift for you），奔着哪儿去（leave for Beijing），持续多久（for two hours）。三站合起来看，别只记一站。旧口诀只用『心里想着它』一支联想替代三站，已废止。"
+    say: "for 三站：为了谁，奔着哪儿，持续多久。"
+    scope: "for 的受益、方向、时长三站"
+    exceptions: [sp-xc-for-other]
+    note: "三站口径与 scene_fixes sf-021/sf-022（U8 改写）及 domains.yaml dom-prepositions 一致；principles_update 存疑 Q1 已裁定以三站为准，本条据此由两站扩为三站。"
+    explain:
+      method: "功能目的"
+      carrier: "礼物递给谁、出发奔向哪儿、计时持续多久，三站画面并排"
+      boundary: "本条只讲三站；交换、支持等义项在例外条里登记，后续再扩，不得讲成三站即全部"
+    mechanism: "真机制"
+
+examples:
+  - id: sp-ex-box-table-door
+    text: "in the box；on the table；at the door"
+    gloss: "容器、表面、点三幅原型图"
+    supports: sp-cl-space-schema
+  - id: sp-ex-in-room-on-wall
+    text: "in the room；on the wall；at the gate"
+    gloss: "三幅原型图的第二组例证"
+    supports: sp-cl-space-schema
+  - id: sp-ex-in-2020
+    text: "in 2020；in summer"
+    gloss: "in 泡在一段时光里"
+    supports: sp-cl-time-borrow
+  - id: sp-ex-on-monday
+    text: "on Monday；on Sunday morning"
+    gloss: "on 贴在某一天上面；注意带具体日子时 morning 也从 day 的 on"
+    supports: sp-cl-time-borrow
+  - id: sp-ex-at-seven
+    text: "at 7 o'clock；at noon"
+    gloss: "at 指一个时刻点"
+    supports: sp-cl-time-borrow
+  - id: sp-ex-put-turn-on
+    text: "put on your coat；turn on the light"
+    gloss: "on 的贴上与接通两支"
+    supports: sp-cl-on-off
+  - id: sp-ex-take-turn-off
+    text: "take off your shoes；turn off the light"
+    gloss: "off 的离开与断开两支"
+    supports: sp-cl-on-off
+  - id: sp-ex-on-bus-train
+    text: "on the bus；on the train；on the plane"
+    gloss: "能站起来走动的交通工具用 on"
+    supports: sp-cl-transport
+  - id: sp-ex-in-car-taxi
+    text: "in the car；in a taxi"
+    gloss: "坐进小空间的交通工具用 in"
+    supports: sp-cl-transport
+  - id: sp-ex-gift-for-you
+    text: "a gift for you；This is for you."
+    gloss: "for 的为了谁一站"
+    supports: sp-cl-for
+  - id: sp-ex-leave-for-beijing
+    text: "leave for Beijing"
+    gloss: "for 的奔着哪儿一站"
+    supports: sp-cl-for
+  - id: sp-ex-for-two-hours
+    text: "for two hours；wait for me for ten minutes"
+    gloss: "for 的持续多久一站"
+    supports: sp-cl-for
+
+exceptions:
+  - id: sp-xc-on-foot
+    exceptionOf: sp-cl-space-schema
+    text: "on foot（步行）是固定习语，图式推不出"
+    note: "搭配本身背下来，不用编理由；与 on horseback 成对"
+  - id: sp-xc-at-night
+    exceptionOf: sp-cl-time-borrow
+    text: "at night：夜很长却用 at，维度长短推不出，单记"
+    note: "幕末主动给出的例外：维度故事推不出 at night，约定说法单记"
+  - id: sp-xc-in-morning
+    exceptionOf: sp-cl-time-borrow
+    text: "in the morning：早上不长却用 in，维度长短推不出，单记"
+    note: "幕末主动给出的例外：维度故事推不出 in the morning；但 morning 单独出现时用 in 是常规，带具体日子时改从 day 的 on"
+  - id: sp-xc-tuesday-morning
+    exceptionOf: sp-cl-time-borrow
+    text: "on Tuesday morning：morning 前面加了具体日子，不用 in"
+    note: "有日子锚点时从 day 的 on：on Tuesday morning（morning 单独用 in，带具体日子改从 day 的 on）"
+  - id: sp-xc-go-off
+    exceptionOf: sp-cl-on-off
+    text: "go off＝『响起来』（闹钟、火警），与『断开』正相反，须单记"
+    note: "硬反例：go off 的方向与 off 的断开主线相反，不得硬套主线"
+  - id: sp-xc-off-others
+    exceptionOf: sp-cl-on-off
+    text: "put off（推迟）、on fire（着火）、the meeting is off（取消）都不按贴离主线，单记"
+    note: "主线之外的常用搭配，遇到时按习惯说法单记"
+  - id: sp-xc-transport-edge
+    exceptionOf: sp-cl-transport
+    text: "电梯、小船等低频边缘情形不按本条窍门硬推"
+    note: "电梯与小船的说法属低频边缘，遇到时按习惯说法单记，不用本条窍门硬推"
+  - id: sp-xc-for-other
+    exceptionOf: sp-cl-for
+    text: "change for（交换）、vote for（支持）等义项不在本条三站内，后续再扩"
+    note: "for 还有交换、支持等义项；本条不讲成三站即全部"
+
+chants:
+  - id: sp-ch-space
+    text: "里面 in，面上 on，点上 at"
+    for: sp-cl-space-schema
+    kind: rule
+  - id: sp-ch-time
+    text: "时间借空间图，约定单记不硬套"
+    for: sp-cl-time-borrow
+    kind: rule
+  - id: sp-ch-on-off
+    text: "on 是贴上，off 是离开，go off 响起来单记"
+    for: sp-cl-on-off
+    kind: rule
+  - id: sp-ch-transport
+    text: "能站起来走动的车用 on，坐进小空间的车用 in"
+    for: sp-cl-transport
+    kind: rule
+  - id: sp-ch-for
+    text: "for 三站：为了谁，奔着哪儿，持续多久"
+    for: sp-cl-for
+    kind: rule
+
+superseded:
+  - old: "第一性原理 ⑤ 三维几何向量时空律（家族名 + 『时空律』定性）"
+    verdict: "错误定性（启发式被命名为律）：THEORY_AUDIT ⑤ 家族判定，过度简化·中"
+    replacedBy: "本文件全部 tendency 记录：原型图只管第一猜测，约定例外单记；家族改称『联想工具箱 ⑤ 介词看图猜』"
+  - old: "以时长定介词（>1 天 in、=1 天 on、<1 天 at）及『空间图式原封不动映射到时间』表述"
+    verdict: "伪规则：被自家例词 in the morning / at night 当场推翻（frameworks 审查 T09、scene_fixes sf-013）"
+    replacedBy: "sp-cl-space-schema + sp-cl-time-borrow（Tyler & Evans 2003 原型图式 + 时间借用倾向）"
+  - old: "for 只讲『心里想着它』一支（旧口诀 to 到终点、from 离起点、for 心里想着它）"
+    verdict: "过度简化：一支联想替代三大主干义项（scene_fixes sf-021/sf-022）"
+    replacedBy: "sp-cl-for 三站（为了谁 / 奔着哪儿 / 持续多久）；to、from 两支原说法成立，保留于本幕其他行"

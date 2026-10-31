@@ -14,7 +14,7 @@ const ITEMS = [
   ['w', '🔬 G15 · 连词逻辑关系网 (and / but / or / because) 底层结构拆解与汉英思维对比'],
   ['w', '① 典型语境：I like apples and bananas, but I don\'t like pears or peaches.'],
   ['w', '我喜欢苹果和香蕉，但我不喜欢梨和桃子。你更喜欢哪一个，茶还是牛奶？因为外面在下雨，所以我们待在家里。'],
-  ['w', '② 核心结构规律：① and vs or 否定转换铁律：肯定句并列用 and；一旦变成否定句，并列词必须换成 or！'],
+  ['w', '② 核心结构规律：① and vs or 否定转换（默认规则，不是铁律）：肯定句并列用 and；变成否定句，并列词默认换成 or（I don\'t like tea or coffee.）。先记这条默认；以后会遇到 and 留下来的情况（I don\'t like tea and coffee = 不是两个都喜欢），到时再分。'],
   ['w', '③ 进阶要点：② but 转折对比：前后句意相反或转折'],
   ['w', 'G15 第1幕'],
   ['s', 'I like apples and bananas, but I don\'t like pears or peaches.', '我喜欢苹果和香蕉，但我不喜欢梨和桃子。'],

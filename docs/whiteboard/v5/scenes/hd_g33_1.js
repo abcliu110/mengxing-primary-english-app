@@ -8,7 +8,7 @@ const ACTS = {"*": ["l_speak", "l_hand0", "l_think"]};
 const ITEMS = [
   ['w', 'G33 底层原理'],
   ['w', '祈使句：指令、礼貌请求与禁止标语 (Open... / Don\'t... / Let\'s...) —— 面对面跟“你 (You)”说话，省去主语 You，直接用动词原形开头！'],
-  ['w', '【为什么祈使句没有主语，且第一个词永远用动词原形？】'],
+  ['w', '祈使句是说给\'你\'听的命令和请求，主语 you 常被省略，谓语用动词原形（Stand up. / Sit down.）。句首也可以先站礼貌词和提醒词：Please sit down. / Don\'t run. / Let\'s go.——变的只是第一位站谁，谓语用原形不变。'],
   ['w', '因为祈使句直接对眼前的听话人（You）发出指令，省去 You 直接亮出动词原形（Sit down! / Open your book!）！'],
   ['w', '🔬 祈使句四种口气'],
   ['w', '指令：动词原形开头——Stand up! Open the door.'],

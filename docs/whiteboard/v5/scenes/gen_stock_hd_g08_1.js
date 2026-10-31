@@ -1,0 +1,26 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：（spec 自带内容，无家族模型）；改本幕台词/结构：model/specs/stock_hd_g08_1.yaml；改编排：模板 hd_g08_1.js（家族共用）。
+// 判据/口诀来源：—。生成器 model/gen_scene.py（items 模式）。
+// 📘 G08 底层原理 · 第1幕 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/hd_g08.js 案例 1；对照清单 lab/INVENTORY_HD_G08_1_V5.md
+// 角色关键帧：sprites/hdg08_1.js（人物先行帧库 cast/）
+// 决策 36 ①2（fix36_cross）：只放本课的板，口诀进讲解字幕
+// 决策 36 ①3（fix36_trunc）：截断句补全、按语义拆行、剥 ** / 反引号、字幕给译文
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/hdg08_1.js';
+const ACTS = {"*": ["l_books", "l_think", "l_point"]};
+const ITEMS = [
+  ['w', 'G08 底层原理'],
+  ['w', '形容词性物主代词 vs 名词性物主代词 (my vs mine) —— my 是“粘人精”（后面必带名词），mine 是“独行侠”（自带名词光环）！'],
+  ['w', '【为什么有了 my 还要发明 mine？】为了避免啰嗦重复！'],
+  ['w', '当别人问 Whose book is this? 直接把 my book 合体浓缩成一个词 mine（我的书），既简洁又有力！'],
+  ['w', '🔬 粘人精 vs 独行侠'],
+  ['w', '粘人精 my / your / her / our / their：后面必须跟名词'],
+  ['w', '独行侠 mine / yours / hers / ours / theirs：后面不再接名词'],
+  ['w', '对比：This is my bag. ｜ That red one is yours (= your bag).'],
+  ['s', 'This is my bag. That red one is yours.', '这是我的包。那个红色的是你的。'],
+  ['w', '对比：Her dress is blue, and mine (= my dress) is yellow.'],
+  ['s', 'Her dress is blue, and mine is yellow.', '她的连衣裙是蓝色的，我的是黄色的。'],
+  ['w', 'G08 第1幕'],
+  ['n', '🎵 口诀：形物代(my/your/her/our/their)是粘人精，后面必须跟名词；名物代(mine/yours/hers/ours/theirs)是独行侠，句尾单干不带名！牢记公式：形物代 + 名词 = 名物代！'],
+];
+export default function build() { return autoBuild(SP, { title: '📘 G08 底层原理 · 第1幕', items: ITEMS, acts: ACTS }); }

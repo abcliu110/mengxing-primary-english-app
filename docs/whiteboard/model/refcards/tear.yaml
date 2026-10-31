@@ -1,0 +1,59 @@
+# 动作事实卡 · 撕纸（撕 tear）
+# 依据 REWRITE_TECH_PLAN §4 / §8.5。与 refcard-cut 对照：刀切 = 切面平整、由刃决定路径；撕 = 断口毛糙、由裂尖推进。
+
+id: refcard-tear
+action: tear
+title: "撕：双手反向用力，裂口从纸边沿一条线推进直至两片分离"
+version: 1
+updated: 2026-11-01
+primitive: tear
+
+refs:
+  - id: tear-photo-1
+    kind: photo
+    file: refs/tear_paper_hands.jpg
+    source: "creal.jp 博客配图（双手撕白纸，正面机位）"
+    url: "https://creal.jp/blogs/real-estate-investment/2650/"
+    shows: "双手分别捏住纸的上沿两侧、向左右拉开；裂口已从上边推进到纸的中部，两片在裂尖处仍相连并张开成 V 形；已撕开的边缘呈白色毛糙的纤维断口"
+  - id: tear-text-1
+    kind: text
+    source: "EngineerFix: How a Perforated Line Controls Where Material Tears（断裂力学/应力集中）"
+    url: "https://engineerfix.com/how-a-perforated-line-controls-where-material-tears/"
+    shows: "拉力在裂尖/刻痕尖端集中放大，裂口从预先存在的缺口处起始，并沿阻力最小的路径逐段扩展——撕裂是『一个裂尖在推进』，不是整条线同时断开"
+  - id: tear-text-2
+    kind: text
+    source: "Bates & Dean 2024, Physics Education 59: A total rip-off — crack propagation in paper"
+    url: "https://iopscience.iop.org/article/10.1088/1361-6552/ad2ffb/pdf"
+    shows: "纸面微小缺口在受力下迅速扩展为裂纹；缺口/刻痕的位置决定撕裂的起始点与走向"
+
+facts:
+  - id: tear-f1
+    statement: "起点在纸边缺口：撕裂只能从纸张边缘开始（通常先捏出小缺口或沿折痕），应力集中于缺口尖端；完好的纸面中间不会凭空开裂。开撕前双手必须已分别抓住裂口两侧。"
+    assertion: "首个开裂点位于纸张边界上；开裂首帧之前，须有双手分列于预定撕线两侧的握持帧"
+    basis: [tear-photo-1, tear-text-1, tear-text-2]
+  - id: tear-f2
+    statement: "单个裂尖推进：任一时刻只有一个裂尖在向前扩展，已撕开的长度随时间单调增长，两片始终在裂尖处相连；不存在整张纸在一帧内同时断成两片。"
+    assertion: "任意中间帧，两片的连接点恰为 1 处（裂尖）；分离长度逐帧单调不减"
+    basis: [tear-text-1, tear-photo-1]
+  - id: tear-f3
+    statement: "双手反向、裂尖同向：两手向相反方向拉开，裂尖沿远离起始边、朝向对边的方向延伸；裂尖附近纸面被拉紧并张开成 V 形（两片越撕张角越大），撕线大体沿两手拉力的中线走，可有自然的小幅弯曲/偏折。"
+    assertion: "两片在裂尖处的张角随撕开长度单调增大；裂尖位移方向与撕线方向一致，不得逆行或瞬移"
+    basis: [tear-photo-1, tear-text-1]
+  - id: tear-f4
+    statement: "断口毛糙互补：撕开的边缘是纤维断裂面，呈毛糙锯齿状；两条撕边形状互补（此凸彼凹）。这与刀切的平整切面是两种形态，不得混画。"
+    assertion: "两片撕边轮廓互为互补曲线（凸凹对应）；撕边不得渲染为笔直平整的切口"
+    basis: [tear-photo-1, tear-text-1]
+  - id: tear-f5
+    statement: "贯通才分离：裂尖抵达对边的一刻两片才完全分离，此后各为一张残片（面积之和 = 原纸），可独立移动/飘落；贯通之前两片不得有独立位移。"
+    assertion: "两片独立位移起始帧 ≥ 裂口贯通帧；两片面积之和与原纸误差 ≤5%"
+    basis: [tear-photo-1, tear-text-1]
+
+invariants:
+  - "撕裂从纸边缺口起，纸面中间不凭空开裂"
+  - "只有一个裂尖在推进，两片在裂尖处始终相连，贯通后才可独立移动"
+  - "撕边毛糙且两边互补；与刀切的平整切面不混画"
+  - "两片面积之和等于原纸（撕不产生新纸）"
+
+pending_refs:
+  - "沿纸纹（顺纹/逆纹）撕线直弯差异的定量参照——待补（当前只断言『可小幅弯曲』）"
+  - "裂尖推进速度随拉力变化的逐帧参照——待补慢动作视频"

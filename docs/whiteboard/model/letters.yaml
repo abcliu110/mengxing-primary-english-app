@@ -1,0 +1,194 @@
+# 知识模型 · ② 字母看图记词（按 THEORY_AUDIT 改法：整幕降格为联想记忆法，真源只写可查的）
+# 数据卫生：fp_iconicity 的 unifiesList 后三条是 ③ 的内容被复制串入，本文件不抄入，一字不写。
+# 互指：疑问词两大家族真框架（问词干 hw- ← 印欧 *kʷo- vs 指示词干 þ- ← *to-，近指 *ḱe-）不在本文件双写，
+# 以 frameworks_fixes.yaml 的 ROYAL_TRUMPS T05-accurate 记录为唯一事实源；本文件的押韵口诀只作记忆钩子。
+# 规范见 REWRITE_TECH_PLAN.md §3：tendency 必带 scope 与例外；mnemonic 必链真内容并标明帮记不是来历；
+# etymology 必带 source；联想归纳不得写成同源或词源。
+
+family: letters
+title: "联想工具箱 ② 字母看图记词——有的真是它的来历，有的只是长得像"
+
+insight:
+  domain: dom-vocab-etymology
+  coreView: "字母的画有两种身份，必须分开：少数几个的画是查得到的真来历（腓尼基字母名），其余的画只是帮记忆的联想；联想可以帮记，但不能冒充来历。"
+  mechanisms:
+    - "2-1 真源：M、B、C、K、O、S、A 的画对应腓尼基字母名的本义，是可查的历史"
+    - "2-1 联想：自己编的像的画只是记忆钩子，钩子不是历史"
+    - "2-2 音义簇 fl-、gl-、sl-：统计倾向，作猜词线索"
+    - "2-3 音义簇 str-、sp-：联想归纳，不是词源考证；是否同源逐词查词典，本条不作同源断言"
+    - "2-4 tw- 家族：真同源，源于原始印欧语 *dwóh₁『二』"
+  conflicts: "旧招牌把联想说成象形历史：裁决——招牌降格，『手』归 K 不归 C；flu、floor、street 已从成员中删除，见例外条。"
+
+concepts:
+  - id: lt-c-letter-pictures
+    name: "字母的画：真源与联想"
+    gloss: "少数字母的画是真来历，其余的画只是帮记的钩子，两者分开记"
+  - id: lt-c-flglsl
+    name: "fl-、gl-、sl- 音义簇"
+    gloss: "三个字母组合与意义之间的统计倾向，作猜词线索"
+  - id: lt-c-strsp
+    name: "str-、sp- 音义簇"
+    gloss: "str- 与拉紧的线、sp- 与往外冒之间的联想归纳，不是词源"
+  - id: lt-c-tw
+    name: "tw- 真同源家族"
+    gloss: "two、twin、twice、twelve、twenty、between 同源于『二』"
+
+claims:
+  - id: lt-cl-true-origins
+    type: etymology
+    concept: lt-c-letter-pictures
+    statement: "字母最早就是画出来的，几个字母的画查得到真来历：M 来自腓尼基 mem『水』（水波纹），B 来自 bēt『房屋』，C 来自 gīmel『骆驼』，K 来自 kaph『手掌』，O 来自 ʿayin『眼睛』，S 来自 šin『牙齿』，A 来自 ʾaleph『牛头』。其中『手』归 K，不归 C。"
+    source: "腓尼基字母名通行表：ʾaleph 牛头、bēt 房屋、gīmel 骆驼、kaph 手掌、mem 水、ʿayin 眼睛、šin 牙齿（Sayce 字母名表，ISBE『Alphabet』条）"
+    say: "M 是水波纹，B 是小房子，C 是骆驼峰，S 是小牙齿——这四个画的都是真历史！"
+    explain:
+      method: "分层递进"
+      carrier: "先看七个真源的画，再学自己编画的办法"
+      boundary: "只限本条列出的七个字母；其余字母没有可查的图画源，不得顺推"
+    mechanism: "真机制"
+
+  - id: lt-cl-memory-pictures
+    type: mnemonic
+    concept: lt-c-letter-pictures
+    linkedClaim: lt-cl-true-origins
+    statement: "记不住的字母，可以自己编一幅像的画来记：例如把 X 想成剪刀交叉的样子。这只是帮记的钩子，不是字母的来历；自己编的画面更要标明是编的，不能说成历史。"
+    say: "画面只是钩子，来历要查真源。"
+    explain:
+      method: "类比"
+      carrier: "钩子与历史分开的两栏卡：左栏真源，右栏自编联想"
+      boundary: "联想只帮记形状与读音线索；凡是没有来源的『来历故事』，都只当联想用"
+    mechanism: "帮记故事"
+
+  - id: lt-cl-flglsl
+    type: tendency
+    concept: lt-c-flglsl
+    statement: "fl 多半在飞或流动（fly、flow），gl 多半在发光（glow、gleam），sl 多半往下滑（slide、slip）——是多半，不是全部；这是猜词线索，不是词源。"
+    say: "fl 多半在飞，gl 多半在发光，sl 多半往下滑——是多半，不是全部。"
+    scope: "fl-、gl-、sl- 开头的词的意义倾向"
+    exceptions: [lt-xc-flu-floor, lt-xc-cluster-counters]
+    note: "glad 的古义『明亮』也属 gl- 的光义场，今义已转，不作今义例证。"
+    explain:
+      method: "对比案例"
+      carrier: "fly、flow、glow、slide 一队，flame、glove、sleep 一队，并排对照"
+      boundary: "音义簇只作猜词线索，词源以词典为准；猜错不奇怪，线索本来就是用来猜的"
+    mechanism: "真机制"
+
+  - id: lt-cl-strsp
+    type: tendency
+    concept: lt-c-strsp
+    statement: "str 多半与『拉紧的线』有关（string 线、straight 直、strong 拉不断），sp 有时与『往外冒』有关（spray 喷水、spill 洒出、spit 吐、spread 摊开）——这是联想归纳，不是词源考证；是否同源逐词查词典，本条不作同源断言；先按这个猜，再动手查。"
+    say: "str 多是拉紧的线，sp 有时是往外冒——是找亲戚的线索，不是人人都是。"
+    scope: "str-、sp- 开头的词的意义倾向"
+    exceptions: [lt-xc-street, lt-xc-sp-false-members]
+    explain:
+      method: "对比案例"
+      carrier: "string、straight、spray、spill 一队，street、speak、space 一队，并排对照"
+      boundary: "联想归纳只帮猜义；是否同源逐词查词典，本条不作同源断言"
+    mechanism: "帮记故事"
+
+  - id: lt-cl-tw-etym
+    type: etymology
+    concept: lt-c-tw
+    statement: "two、twin、twice、twelve、twenty、between 同源，都来自原始印欧语 *dwóh₁『二』。这是本家族唯一可以称为真同源的词簇。"
+    source: "原始印欧语 *dwóh₁『二』；古英语 twalif（twelve 的来源）"
+    note: "twelve 的构成为 two 加表示『剩余』的成分（古英语 twalif，意为『十之外还剩二』）；『十之外剩二』是简化的说法，讲时勿讲死；伸手指头数到 12 是数数的方法，不是这个词的来历。"
+    exceptions: [lt-xc-twinkle-twirl]
+    explain:
+      method: "分层递进"
+      carrier: "先给真同源名单，再给十二的构成小注"
+      boundary: "同源只限本条名单；tw- 开头不等于同源，见例外"
+    mechanism: "真机制"
+
+  - id: lt-cl-tw-tendency
+    type: tendency
+    concept: lt-c-tw
+    statement: "tw- 常和『二』是一家（two、twin、twice、twelve、twenty、between 都是亲戚）；但不是个个都是，猜之前先想想它是不是名单里的人。"
+    say: "tw- 常和『二』是一家，但不是个个都是。"
+    scope: "tw- 开头的词与『二』的关系"
+    exceptions: [lt-xc-twinkle-twirl]
+    explain:
+      method: "对比案例"
+      carrier: "two、twin 一队，twinkle、twirl 一队，并排对照"
+      boundary: "真词源簇也只讲『常』，不讲『一出现就』；最终裁决以词典为准"
+    mechanism: "真机制"
+
+examples:
+  - id: lt-ex-mem-bet
+    text: "M ← mem『水』；B ← bēt『房屋』"
+    gloss: "水波纹与小房子的真源"
+    supports: lt-cl-true-origins
+  - id: lt-ex-gimel-ayin
+    text: "C ← gīmel『骆驼』；O ← ʿayin『眼睛』；S ← šin『牙齿』；A ← ʾaleph『牛头』；K ← kaph『手掌』"
+    gloss: "骆驼、眼睛、牙齿、牛头、手掌的真源；手归 K"
+    supports: lt-cl-true-origins
+  - id: lt-ex-fly-flow
+    text: "fly、flow"
+    gloss: "fl- 与飞、流动的倾向"
+    supports: lt-cl-flglsl
+  - id: lt-ex-glow-gleam
+    text: "glow、gleam"
+    gloss: "gl- 与发光的倾向"
+    supports: lt-cl-flglsl
+  - id: lt-ex-slide-slip
+    text: "slide、slip"
+    gloss: "sl- 与往下滑的倾向"
+    supports: lt-cl-flglsl
+  - id: lt-ex-string-straight
+    text: "string、straight、strong"
+    gloss: "str- 与拉紧的线的联想归纳"
+    supports: lt-cl-strsp
+  - id: lt-ex-spray-spill
+    text: "spray、spill、spit、spread"
+    gloss: "sp- 与往外冒的联想归纳"
+    supports: lt-cl-strsp
+  - id: lt-ex-two-twelve
+    text: "two、twelve、twenty"
+    gloss: "真同源：都来自 *dwóh₁『二』"
+    supports: lt-cl-tw-etym
+  - id: lt-ex-twin-between
+    text: "twin、twice、between"
+    gloss: "真同源名单的其余成员"
+    supports: lt-cl-tw-etym
+
+exceptions:
+  - id: lt-xc-flu-floor
+    exceptionOf: lt-cl-flglsl
+    text: "flu、floor 不是 fl- 簇成员：flu 是 influenza 的缩略，floor 与『飞』无关"
+    note: "两例已从成员中删除；缩略词与偶然同形的词不进音义簇"
+  - id: lt-xc-cluster-counters
+    exceptionOf: lt-cl-flglsl
+    text: "flame、flag 不飞，glove、glue 不发光，sleep、slow 不滑"
+    note: "倾向的反例与成员并置，口诀本身必须带『多半』与反例"
+  - id: lt-xc-street
+    exceptionOf: lt-cl-strsp
+    text: "street 不是 str-『拉直线』的成员：它来自拉丁语 strata『铺过的路』，与绷直无关"
+    note: "street 已从成员中删除；猜错没关系，线索本来就是用来猜的"
+  - id: lt-xc-sp-false-members
+    exceptionOf: lt-cl-strsp
+    text: "speak、space、sport、spring 不是 sp-『往外冒』的成员"
+    note: "旧选词全非『喷』义场，已换为 spray、spill、spit、spread"
+  - id: lt-xc-twinkle-twirl
+    exceptionOf: lt-cl-tw-tendency
+    text: "twinkle（闪烁）、twirl（旋转）与『二』无关"
+    note: "twinkle 源出古英语 twinclian『眨眼』，拟声起源，与 *dwóh₁ 无关；twig 不在此列——twig 本义分叉，恰属『二』家族"
+
+chants:
+  - id: lt-ch-true
+    text: "M 是水波纹，B 是小房子，C 是骆驼峰，S 是小牙齿——这四个画的都是真历史！"
+    for: lt-cl-true-origins
+    kind: rule
+  - id: lt-ch-memory
+    text: "画面只是钩子，来历要查真源"
+    for: lt-cl-memory-pictures
+    kind: mnemonic
+  - id: lt-ch-flglsl
+    text: "fl 多半在飞，gl 多半在发光，sl 多半往下滑——是多半，不是全部"
+    for: lt-cl-flglsl
+    kind: rule
+  - id: lt-ch-strsp
+    text: "str 多是拉紧的线，sp 有时是往外冒——先猜，再查"
+    for: lt-cl-strsp
+    kind: rule
+  - id: lt-ch-tw
+    text: "tw- 常和『二』是一家，twinkle、twirl 不算它"
+    for: lt-cl-tw-tendency
+    kind: rule

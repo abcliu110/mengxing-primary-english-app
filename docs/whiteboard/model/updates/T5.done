@@ -1,0 +1,9 @@
+T5 白板台词修正集 — 完成
+产出：
+- docs/whiteboard/model/scene_fixes.yaml（46 条记录：问题项 45 = 错误 9 + 过度简化 36，另附 ③-C 顺手订正 1 条）
+- docs/whiteboard/model/updates/scenes_update.md（按播出条次 n 排序的修订优先级表 + 汇总）
+覆盖播出条次 Σn = 83（错误 22 + 过度简化 61；报告口径 82，差异为格林口诀 [8] 源数据 n=4、报告记 3，已在更新文档注明）。
+改写来源：报告 U1–U17 现成改写 19 条 + 按裁定理由自拟 27 条（basis 逐条标注）；概念框架改写均带学术来源；无存疑项。
+必含项全部落实：字母口诀四字母真词源（sf-006/U1）、②家族标题降格（sf-001）、三单 -s 勋章转移删除（sf-002/U4）、hd_g03_1 与 boundedness cl-packaging 识解口径对齐（sf-010/U3，含 aligns_with 字段）、light 同形异源订正（sf-003/004/005）、同位相撞→嘶嘶相撞（sf-007/U2）、闭音节 a「永远 /æ/」降格（sf-008/U10）、teach/-aught 伪因果订正（sf-009/U12）、G04 无生命用 of（sf-030/U11）、现在完成时「过去做完」（sf-037/038/U5）等过度简化项限定化改写。
+自验：python3 yaml.safe_load 解析无误；46 条 original 与 wb_claims.json / wb_know_todo.json 逐字比对 0 不一致；n、scenes 全部一致；裁定计数 错误 9 / 过度简化 36 与报告吻合。
+未做：git commit（按指令留待主会话）；未改动本任务外任何文件。

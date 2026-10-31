@@ -1,0 +1,33 @@
+# T11b · ② 字母家族（letters）四幕生成与验证 —— 完成记录
+
+管线：letters.yaml（唯一内容源）→ specs/letters_N.yaml → gen_scene.py（items 模式，生成器已有的 autoBuild 分支，本次未改生成器）→ gen_letters_N.js → build.mjs → ~/workspace/your_files/gen-letters-N.html。
+模板：原幕 fp_iconicity_N.js（autoBuild/ITEMS 引擎，与 boundedness 的 kit 模板不同；本家族的屏上「角标」即 ITEMS 内的家族标行，不经 fb39_lib）。
+精灵库：克隆里缺失的 sprites/fi1–fi4.js 已按 boundedness 2–4 先例用 build_sprites.py 从 cast 原帧生成（fi2 首次生成时 bird_up 瞬时失败，重跑成功）。
+
+## 降格落实（全家族）
+- 标题与屏上家族标统一为「📦 联想工具箱 ② 字母看图记词」；模板首行注释的「第一性原理 · 象似性 · N」已由 spec replace 降格。屏上不出现「第一性原理 / 律 / 象似性 / 音义同源簇」。
+- 口诀与判据句逐字引模型并已脚本比对原文一致：lt-ch-true（M 水波纹/B 小房子/C 骆驼峰/S 小牙齿）、lt-ch-flglsl、lt-ch-strsp、lt-ch-tw、lt-cl-memory-pictures 的 say、lt-cl-strsp 的 say。
+- 自编联想只以 mnemonic 身份出场：第 1 幕 X=剪刀钩子段当场带失效边界台词「画面只是钩子，来历要查真源。」（模型 claim_say 原文）；预测题专拆「C 像手抓」假来历（手归 K/kaph）。
+- 禁用文案扫描通过：旧口诀「M 是山，S 是蛇，B 是包，C 来抓」、旧标题「tw- 家族都等于 2」「tw 一出现」等在四幕产物中零命中。
+
+## 逐幕结果
+| 幕 | 内容（模型记录） | 时长 | 构建 | 校验 |
+|---|---|---|---|---|
+| gen_letters_1 真来历 vs 钩子 | lt-cl-true-origins（M/B/C/K/O/S/A 七真源）+ lt-cl-memory-pictures | 184.3s（原幕 150.9s） | gen-letters-1.html ✓ | 全过 |
+| gen_letters_2 fl/gl/sl 多半 | lt-cl-flglsl + 例外 flu/floor 与反例组上屏 | 144.4s（原幕 149.6s） | gen-letters-2.html ✓ | 全过 |
+| gen_letters_3 str/sp 联想归纳 | lt-cl-strsp；street/speak/space/sport/spring 只作非成员 | 120.6s（原幕 137.5s） | gen-letters-3.html ✓ | 全过 |
+| gen_letters_4 tw- 真同源 | lt-cl-tw-etym + lt-cl-tw-tendency；twinkle/twirl 例外上屏 | 134.1s（原幕 146.8s） | gen-letters-4.html ✓ | 全过 |
+
+## 验证明细
+- 模型校验：validate.py letters.yaml 通过（R1–R6）。
+- insightcheck：官方检查器对本家族报「强制检查 0 幕 / 不合格 0」——**注意覆盖缺口**：insightcheck 的强制集只收 import concept.js/oral.js 的幕，autoBuild 家族不在其中，此 0 不是实质通过。
+- 等效校验（自建脚本，复用 insightcheck.py 官方 HOOK 采样）：四幕**不合格 0**——页面零报错、板上文字面积峰值 9–12%（门槛 40%）、时长在参考区间内。
+- 截图抽查（每幕 predict / 揭晓 / 收尾金句卡 + 全景拉远 + 中段帧，共 24 帧存 ~/workspace/shots_gen/L*.png）：无文字遮挡、无出框；金句卡四幕齐全（洞见 + 口诀 + 家族标）；例外/反例卡（flame/glove/sleep、street 不是、twinkle/twirl 不是）均正确上屏；演员帧（鸟/坐姿/阅读/行走）与 ACTS 触发一致。
+
+## 未决问题 / 提请主会话注意
+1. **第 1 幕时长 184.3s**，比原幕长约 33s：内容由模型决定（原幕只讲 4 个字母且为伪词源；新幕讲满 7 个真源 + 钩子/边界段）。已做一轮台词瘦身（196→184s），再砍只能删模型内容，未动。若家族要时长上限，建议 P2 在模式层处理（如真源分两幕）。
+2. **屏上转写用 ASCII**（bet/gimel/kaph/ayin/shin/aleph），模型原文带变音符号（bēt/ʿayin/šin/ʾaleph）——为屏显字体安全未直接上屏，模型未改。若字体确认支持，可在 spec 层替换。
+3. **换板瞬间镜头未到位文字先行**：抽查中两帧（L2 揭晓行、L4 揭晓行）捕捉到新板文字在镜头滑行途中已开写，为 autoBuild 引擎固有行为（原幕同样），非本幕引入；如要修属引擎层改动，建议 P2 模式层统一评估。
+4. **insightcheck 覆盖缺口**（见上）：建议主会话在 P2 把 autoBuild 家族纳入某种强制检查清单；本次等效校验脚本在 /tmp/ic_letters.py（临时件，如需长期保留请移入 tools/）。
+5. 共享文件：**未动任何共享 lib**（fb39_lib.js 等零改动）；新增文件仅 specs/letters_1–4.yaml、gen_letters_1–4.js、factsheets/gen_letters_*.md、sprites/fi1–fi4.js 与四份 HTML。
+6. 未做儿童误读探针（§6 第 7 项，旗舰幕门禁）——本家族是否列为旗舰请主会话定；探针题可从模型例外直接生成（如「C 的画是手吗？」「tw- 开头个个都是『二』的一家吗？」）。

@@ -1,0 +1,40 @@
+# T11d · ⑤ 时空家族（spacetime）四幕生成与验证 —— 完成记录
+
+管线：spacetime.yaml（唯一内容源）→ specs/spacetime_N.yaml → gen_scene.py（items 模式，本次未改生成器）→ gen_spacetime_N.js → build.mjs → ~/workspace/your_files/gen-spacetime-N.html。
+模板：原幕 fp_vectors_N.js（autoBuild/ITEMS 引擎；本家族屏上「角标」即 ITEMS 内家族标行，不经 fb39_lib）。
+精灵库：克隆里缺失的 sprites/fv1–fv4.js 已按 ①② 家族先例用 build_sprites.py 从 cast 原帧生成（fv1=l_bed0–2；fv2=l_coat1–3/l_switch/l_bike0–2/l_coff0–2/plane0–2/l_fall；fv3=bus0–2/car_in0–2/car_out0–2；fv4=l_w0–2/l_search/l_point，ACTS 所需帧全部命中 cast 库）。
+
+## 模型口径落实（全家族）
+- 家族整体降格：标题与屏上家族标统一为「📦 联想工具箱 ⑤ 介词看图猜」；模板首行注释的「第一性原理 · 方向向量 · N」已由 spec replace 降格。产物扫描： 「第一性原理 / 三维几何向量时空律 / 律」定性、旧口诀「点钟 at，哪天 on」「贴上 on，分开 off」「for 心里想着它」、「同一个道理 / 原封不动」、「当成平面 / 当成盒子」在四幕产物中**零命中**。
+- 「时长定介词」整段不出现：第 1 幕按 §3.3 附则基线改为**误解出场+驳斥**——「有人编了个分法：时间长用 in、一天用 on、时间短用 at」出场后，当场用 at night（夜长用 at)、in the morning（早上不长用 in）推翻，落点「长短推不出来、约定单记」（sp-xc-at-night / sp-xc-in-morning 的模型注记原意）。
+- 例外全部入词上屏：第 1 幕 at night、in the morning、on Tuesday morning、on Sunday morning、on foot（固定习语）；第 2 幕 go off＝响起来（以「与断开正好相反」硬反例身份出场）、put off 推迟、on fire 着火、the meeting is off 取消；第 3 幕 电梯/小船边缘情形不硬套；第 4 幕 change for 交换、vote for 支持「后续再扩、三站不是全部」。
+- 介词讲解用 Tyler & Evans 原型义：第 1 幕空间三图式（in 容器 / on 表面 / at 点）只管「第一猜测」，时间用法明说「借用……常常还能接着用」，不出现中文对译表式讲法；sf-013 定稿句（先看三幅『原型图』猜一猜…）已入第 1 幕旁白。
+- for 三站口径：第 4 幕讲解句用 sf-022 定稿句（『奔着哪儿去』是它的一站……三站合起来看，别只记一站）；口诀 for 支逐字引模型 sp-ch-for；to / from 两支按 sf-021 注记保留原说法（到终点 / 离起点）。
+- 口诀逐字比对：五条模型口诀（sp-ch-space / sp-ch-time / sp-ch-on-off / sp-ch-transport / sp-ch-for）已脚本 grep 与 spacetime.yaml 原文比对，一致。
+
+## 逐幕结果
+| 幕 | 内容（模型记录） | 时长 | 构建 | 校验 |
+|---|---|---|---|---|
+| gen_spacetime_1 空间三图 + 时间借用 | sp-cl-space-schema + sp-cl-time-borrow；例外 5 条上屏 | 203.4s | gen-spacetime-1.html ✓ | 全过 |
+| gen_spacetime_2 on/off 贴离主线 | sp-cl-on-off；go off 硬反例 + off-others 上屏 | 164.5s | gen-spacetime-2.html ✓ | 全过 |
+| gen_spacetime_3 交通工具窍门 | sp-cl-transport；身体体验讲法，边缘例外上屏 | 147.1s | gen-spacetime-3.html ✓ | 全过 |
+| gen_spacetime_4 to/from + for 三站 | sp-cl-for；sf-022 定稿句，三站外义项登记 | 166.6s | gen-spacetime-4.html ✓ | 全过 |
+
+## 验证明细
+- 模型校验：validate.py spacetime.yaml 通过（R1–R6）。
+- insightcheck（官方）:「强制检查 0 幕 / 不合格 0」——与 ② 家族同一**覆盖缺口**：官方强制集只收 import concept.js/oral.js 的幕，autoBuild 家族不在其中，此 0 不是实质通过。运行脚本 ~/workspace/tools/run_ic_spacetime_official.py。
+- 等效校验（复用 insightcheck.py 官方 HOOK 采样，脚本 /tmp/ic_spacetime.py——由 T11b 的 ic_letters.py 适配）：四幕**不合格 0**——页面零报错、板上文字面积峰值 11–15%（门槛 40%）、时长在 40–240s 参考区间内。
+- 截图抽查（共 36 帧存 ~/workspace/shots_gen/gen-spacetime-*.png，每幕含开场 / 中段 / predict / 揭晓 / 收尾金句卡）：人物与道具帧渲染正确（起床、穿外套、按开关灯亮、飞机起飞、公交/小车上下车），ACTS 触发与朗读词一致；金句卡四幕齐全（洞见 + 口诀 + 家族标）；例外卡（⚠️ 有例外 / 三站不是全部 / 窍门不是标准）均正确上屏；无文字遮挡、无出框。**无需回 spec 修改**（唯一缺陷见未决 1）。
+
+## 与模型的口径决定（以模型为准，已记录）
+1. 第 3 幕删除原模板 bike / horse 骑乘段：sp-cl-transport 的例证只有 bus/train/plane 与 car/taxi，模型未登记骑乘；删除后本幕时长 147.1s 仍在区间。若后续模型扩条，可补拍。
+2. 第 4 幕删除原模板 look 三兄弟段（look at / look for / look after 对比）：look for、wait for 不在 sp-cl-for 三站内，旧幕以 look for 充当 for 的唯一图景，与三站口径冲突；仅保留模型例证 wait for me for ten minutes 中的 wait for（作「持续多久」例证的组成部分，不单独讲解）。留待模型扩条后补拍。
+3. 第 3 幕 get off the bus / get out of the car 两行保留：属原模板 ACTS 演出搭档句（下车动作帧），非主张台词，不与模型冲突；已在 spec 注释中标明身份。
+4. 第 1 幕保留朗读句 "I get up at 7 o'clock on Monday."：get up 为模板 ACTS 既有动作词（fv1 起床帧），时间短语全部取自模型例证（at 7 o'clock、on Monday）。
+
+## 未决问题 / 提请主会话注意
+1. **第 3 幕车辆精灵溢出**：bus 精灵宽度超过 autoBuild 演员槽位，其所在板上车辆右部出框（75s 帧），且车头一角漏进下一块板的左下缘（100s、118s 帧可见，不遮挡任何文字）。系模板/引擎层编排属性——原幕 fp_vectors_3 用同一 cast 帧、同一引擎，staging 行为相同，非本次引入。建议 P2 模式层统一处理车辆类宽精灵的缩放/槽位（与 T11b 未决 3「换板文字先行」同属引擎层清单）。
+2. **第 1 幕时长 203.4s** 为本家族最长（双主张 + 5 条例外）；等效校验在参考区间内。若家族要时长上限，建议 P2 在模式层处理（如例外分流到卡片视图）。
+3. **insightcheck 覆盖缺口**（同 T11b 未决 4）：建议主会话在 P2 把 autoBuild 家族纳入强制检查清单；本次等效脚本在 /tmp/ic_spacetime.py（临时件，如需长期保留请移入 tools/ 并与 ic_letters 合并为通用版）。
+4. 共享文件：**未动任何共享 lib 与引擎**（auto.js、fb39_lib.js 等零改动）；新增文件仅 specs/spacetime_1–4.yaml、gen_spacetime_1–4.js、factsheets/gen_spacetime_*.md、sprites/fv1–fv4.js、tools/run_ic_spacetime_official.py 与四份 HTML。
+5. 未做儿童误读探针（§6 第 7 项，旗舰幕门禁）——本家族是否列为旗舰请主会话定；探针题可从模型例外直接生成（如「夜很长，为什么不用 in night？」「go off 是关掉的意思吗？」「for 只有三个意思吗？」）。

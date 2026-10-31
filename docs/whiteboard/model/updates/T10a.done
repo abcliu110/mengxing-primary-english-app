@@ -1,0 +1,27 @@
+T10a 原理 ①（语音）与 ②（字母词源）建模 — 完成
+产出：
+- docs/whiteboard/model/phonology.yaml（family: phonology；concepts=7、claims=10、examples=17、exceptions=10、chants=6）
+- docs/whiteboard/model/letters.yaml（family: letters；concepts=4、claims=6、examples=9、exceptions=5、chants=5）
+
+① phonology 口径落实（依据 THEORY_AUDIT ① 家族裁定 + P2/P3 修复项 + scene_fixes）：
+- 不设统一「口腔物理定律」：insight 按四机关分拆真实机制（清浊顺行 / 嘶声插音 / 前缀同化 / 双写属拼写层），家族标题降格为「省力小机关合集」（对齐 sf-011）。
+- 1-2 订正：ph-cl-sibilant「嘶嘶相撞」——嘶声后元音插入（非「同位相撞」、非「吞音」，方向为加音），清单含 /dʒ/，例 judges/garages（sf-007 含其 erratum 补 /dʒ/ 口径）；goes/potatoes 拼 -es 读 /z/ 登记为例外。
+- 1-1 例外：aged/learned 形容词读 /ɪd/（ph-xc-aged-learned，注明仅形容词读法，与 /t//d/ 后 /ɪd/ 不混淆）。
+- 1-3 圈范围：ph-cl-neg-prefix 只管「不」义 in- 的 im- 支；新增 ph-cl-in-two 落实 sf-025（fp_economy_3：in- 有两职——incorrect「不」/ import、income、inside「入」，先看干哪份活）；il-/ir- 与方向 in- 同化细则按审计 P3 留待后续，已在 note/例外注中登记（sf-026 口径：两个 in- 都同化，后续展开时按此写）。
+- 1-4 绿框补条件：ph-cl-doubling 为 tendency，例外齐备——重读才双写（visit/open 反例）、w/x/y 不双写（fix/snow）、英式 l 双写（travelling）。
+- 拼读同域补收（dom-phonetics 纲领 unifies 点名）：ph-cl-closed-a（sf-008：闭音节 a「永远 /æ/」降格为默认 + 变脸名单——ll 前 /ɔː/ ball/call/tall、w 后 /ɒ/ was/want/wash）；ph-cl-vowel-teams（sf-039：元音组合「多半第一个开口」，ea 变脸 bread /e/、great /eɪ/ 单记，ou/ie/ei 不套另学）。两条均为 tendency + scope + 例外，explain 带失效边界。
+
+② letters 口径落实（依据 THEORY_AUDIT ② 家族裁定 + P1 修复项 + scene_fixes）：
+- 整幕降格：family 标题与 sf-001 修正标题逐字一致（「联想工具箱 ② 字母看图记词——有的真是它的来历，有的只是长得像」），招牌删「本源/同源」。
+- 真词源：lt-cl-true-origins（etymology 型，source = Sayce 字母名表 / ISBE「Alphabet」条，与 sf-006 同源）——M←mem 水、B←bēt 房屋、C←gīmel 骆驼、K←kaph 手掌（「手」归 K 不归 C）、O←ʿayin 眼睛、S←šin 牙齿、A←ʾaleph 牛头；口诀 lt-ch-true 与 sf-006 修正口诀逐字一致。
+- 联想降格：lt-cl-memory-pictures（mnemonic，linkedClaim → lt-cl-true-origins）承载「自编画面只是钩子，不是来历」。
+- 成员纠错：flu/floor 删除（lt-xc-flu-floor）、street 删除（lt-xc-street，← 拉丁 strata 铺过的路）、sp- 换真成员 spray/spill/spit/spread 且旧选词 speak/space/sport/spring 登记为假成员例外；fl/gl/sl 与 str/sp 均 tendency + 反例并置（sf-016/sf-017 口径）。
+- 2-4 诚实标杆：lt-cl-tw-etym（etymology，*dwóh₁）+ lt-cl-tw-tendency（「常是一家」非「一出现就」）；twelve 构成为 twalif「十之外剩二」简化注（sf-024）；反例 twinkle/twirl（sf-018 erratum 口径：twig 恰属「二」家族，不作反例）。
+- 互指（不双写）：疑问词两大家族真框架以 frameworks_fixes.yaml 的 ROYAL_TRUMPS T05-accurate 为唯一事实源，letters.yaml 文件头已加互指注。
+- 数据卫生：③ 的内容（fp_iconicity unifiesList 串入项）一字未抄入本文件。
+
+自验：python3 validate.py —— phonology 单独 ✓、letters 单独 ✓、与 boundedness/grammar/domains 五文件联合 ✓ 全部通过（R1–R6 零报错）。注：domains.yaml 为纲领 schema（domains: 结构），校验器按 family 型文件读取故其主张计数为 0，联合校验实际覆盖 boundedness/grammar/phonology/letters 四个 family 文件。
+
+存疑：无。本任务新增/修订内容全部有审计裁定或 scene_fixes 修正文及来源支撑（sf-008 U10 改写、sf-039 U17 改写、sf-025 自拟改写均出自 T5 修正集），未引入无据内容。
+口径说明一则：旧假口诀「M 是山、S 是蛇、B 是包、C 来抓」未保留为降格 mnemonic——按审计 P1 与 sf-006，该口诀是被真源口诀整体替换的对象（保留会与同字母真图画正面冲突）；「降格为 mnemonic」的要求由 lt-cl-memory-pictures（自编联想须标明是编的）承载。
+未做：git commit（按指令留待主会话）；未改动本任务外任何文件（本轮仅补全 phonology 三条主张及配套记录、letters 文件头互指注，其余记录为既有建模成果，经逐条比对依据文件后确认合规予以保留）。

@@ -1,0 +1,29 @@
+# spec 存档 · wo_grimm_1（B5 批手改幕，T12 阶段二）
+# 管线：手写 E 型幕逐幕手改（T12_plan B5），修正文案唯一来源 = model/scene_fixes.yaml
+scene: wo_grimm_1
+family: 单词身世 · 格林定律第 1 节（时光机 pes→foot + pedal）
+engine: 手写（wb5 scene + lib/concept.js；sprites/wog1.js 空包，克隆缺失已按原文件头声明补齐）
+fixes_applied:
+  - id: sf-020
+    verdict: 过度简化·低（口诀尾句「小词变了，大词没变」无据且误导：不变的原因是借入时间在音变之后，与词的大小无关）
+    targets:
+      - SEQ 末条口诀（["n", "口诀：…"]，本节步进未播及——本节 step 止于 idx 9——属三幕共用 SEQ 数据同步替换）
+      - C.aha 的 rule 元数据（同条口诀的标点变体「格林定律：辅音挪一格——…；小词变了，大词没变」）：原位同步为「格林定律：」+ 定稿全文。此为本批明示的同步处置（同 B4 ze_same_1 拆行版同步先例的精神）；aha 元数据经 concept.js 证实不上屏（仅入 __WB5_INSIGHT__），改动零画面影响，请独立审查确认此处置口径
+      - 收尾板拆行 L() 两行（'p 变 f，t 变 th，d 变 t，k 变 h；' / '小词变了，大词没变！'）：按定稿全文在原位拆为四行（拆分点为定稿自有标点，拼接与定稿逐字相等，脚本核对通过；行距/字号为版式适配：46/34 号，y 400/490/555/620）
+    replacement: scene_fixes.yaml sf-020 fixed_lines[0]（role 口诀）逐字
+    rendering_notes:
+      - 定稿无 ** 标记、无 ASCII 引号，源码直引；拆行保留定稿全角括号原文
+    duration_effect: 全幕 65.3s → 65.3s（改动不落在已播旁白路径上：SEQ 口诀本节未播，收尾板为视觉行，时长由其余段决定）
+facts:
+  objects: [时光机， pes→foot / pedal 绕行 chip, 家族树南北两列]
+  invariants:
+    - 本幕正文（借词行、pedal 绕机器行）原本即按「借入时间」讲，未动；板面行「小词 = 英语自己的（变了）· 大词 = 借来的（没变）」的定义与定稿口径一致（自己的=家传、借来的=后借），未动
+    - 口诀新版只陈述「家传词变了、借入词没赶上趟」，不再以大小作判据
+stop_check:
+  framework_conflict: 无。本幕框架（时光机=音变、借词绕行）与定稿机制一致，被裁定表述只是口诀尾句及其变体，定点替换+原位同步即可清零，无同幕矛盾。
+validation:
+  build: gen-stock-wo_grimm_1.html（~/workspace/your_files/，1,047,166 字节）
+  ic_gen8: 不合格 0（65.3s，文字峰值 17%）
+  insightcheck_official: 不合格 0（--only=wo_grimm_1；决策 39 提示为讲授型既有提示，非不合格项）
+  shots: 64s 帧收尾板新口诀四行整段上屏、无遮挡无截断
+  zero_hit: sf-020 original 及尾句「小词变了，大词没变」全仓 586 场景文件逐字+归一化双通道零命中

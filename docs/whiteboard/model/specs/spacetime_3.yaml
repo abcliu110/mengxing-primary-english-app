@@ -1,0 +1,70 @@
+# 场景规格 · spacetime 第 3 幕（交通工具记法窍门）——由知识模型生成，禁止手改产物 gen_spacetime_3.js
+# 纲领：dom-prepositions（spacetime.yaml insight.domain）。
+# 内容只从 spacetime.yaml 组装：sp-cl-transport（能站起来走动 on / 坐进小空间 in 的记法窍门）；
+# 旧「平面 / 盒子」几何定性按模型删除：讲法换身体体验（上车后能不能站起来走动），并明说不是按大小硬分的标准；
+# 例外入词：电梯、小船等低频边缘情形不硬套（sp-xc-transport-edge）；
+# 模型未登记的 bike / horse 骑乘段不入本幕（见 T11d.done 说明）；get off / get out of 为原模板 ACTS 演出搭档句，非主张台词。
+scene: gen_spacetime_3
+family: spacetime
+pattern: auto_items_vectors
+template: fp_vectors_3.js
+
+title: "上车：能站着走用 on"
+teaches: [sp-cl-transport]
+
+replace:
+  - ["第一性原理 · 方向向量 · 3", "联想工具箱 ⑤ 介词看图猜 · 3"]
+
+items:
+  - [n, "这一幕：上公交说 get on，上小汽车为什么说 get in？"]
+  - [w, "get on the bus vs get in the car"]
+  - [w, "⑤ 介词看图猜"]
+  - [w, "💡 记法窍门"]
+  - [w, "get on the bus vs get in the car"]
+  - [w, "⑤ 介词看图猜"]
+  - [m, "💡 记法窍门"]
+  - [m, "① 公交 on"]
+  - [m, "② 小车 in"]
+  - [m, "③ 套用"]
+  - [m, "④ 例外 ⚠️"]
+  - [m, "⑤ 口诀"]
+  - [m, "🔮 预测"]
+  - [w, "BUS"]
+  - [n, "公交车里，人上去以后能站起来、走来走去。记住这个身体的感觉。"]
+  - [s, "Let's get on the bus.", "我们上公交车吧。", "get on"]
+  - [n, "能站起来走动的交通工具，用 on。火车、飞机也一样能站起来走动，都用 on。"]
+  - [w, "on the bus · on the train · on the plane"]
+  - [n, "小汽车不一样：人得坐进小小的空间里，站不起来。坐进小空间的，用 in。出租车也一样。"]
+  - [s, "Get in the car, please.", "请上车。", "get in"]
+  - [w, "in the car · in a taxi"]
+  - [s, "Get on the bus. Get in the car.", "上公交车。上小汽车。", "the"]
+  - [n, "下车也成对：从公交上下来 get off the bus；从小车里出来 get out of the car。"]
+  - [w, "get off the bus"]
+  - [w, "get out of the car"]
+  - [s, "Get off the bus. Get out of the car.", "下公交车。从小汽车里出来。", "off out of"]
+  - [w, "⚠️ 窍门不是标准"]
+  - [n, "再说一遍：这是记法窍门，不是按车辆大小硬分的标准。电梯、小船这些不常见的情形，不硬套这个窍门——遇到时按习惯说法单独记。"]
+  - [n, "口诀：能站起来走动的车用 on，坐进小空间的车用 in。"]
+  - [w, "口诀：能站起来走动的车用 on，坐进小空间的车用 in"]
+  - [n, "预测：地铁车厢里，人能站着走来走去。上地铁说 get on 还是 get in？先想 3 秒！"]
+  - [w, "🔮 get ___ the subway　→　on 还是 in"]
+  - [n, "揭晓：能站起来走动，用 on：get on the subway。"]
+  - [w, "get on the subway —— 能站着走 = on"]
+  - [s, "Let's get on the subway.", "我们上地铁吧。", "subway let's"]
+  - [w, "💡 一句话洞见"]
+  - [w, "上车先问身体：能不能站起来走？"]
+  - [w, "能，用 on；坐进小空间，用 in"]
+  - [w, "🎵 口诀"]
+  - [w, "能站起来走动的车用 on，坐进小空间的车用 in"]
+  - [w, "📦 联想工具箱 ⑤ 介词看图猜"]
+
+facts:
+  objects:
+    - { name: "on 组（能站起来走动）", kind: "窍门成员", states: "on the bus、on the train、on the plane（sp-ex-on-bus-train）" }
+    - { name: "in 组（坐进小空间）", kind: "窍门成员", states: "in the car、in a taxi（sp-ex-in-car-taxi）" }
+    - { name: "边缘例外", kind: "例外", states: "电梯、小船等低频情形不按窍门硬推，按习惯说法单记（sp-xc-transport-edge）" }
+  invariants:
+    - "讲法只用身体体验（能不能站起来走动），不出现『当成平面 / 当成盒子』的几何定性"
+    - "必须明说『记法窍门，不是按大小硬分的标准』"
+    - "口诀逐字引模型 sp-ch-transport"
+    - "标题与屏上家族标只称「联想工具箱 ⑤ 介词看图猜」，不出现「第一性原理 / 三维几何向量时空律」"

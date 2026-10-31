@@ -1,0 +1,119 @@
+# 场景规格 · sentence 第 4 幕（五副骨架）——由知识模型生成，禁止手改产物 gen_sentence_4.js
+# items 模式（autoBuild）：台词只从 sentence.yaml 组装；五副例句逐字用模型 examples；
+# 本幕模型无 chant 记录，口诀行采用 st-cl-five-patterns 的 say 字段（同 T11a 第 4 幕先例）。
+# 纲领：sentence.yaml insight.domain = dom-constructions；coManaged = dom-grammar（g40：一个分句一个限定动词；动词后接形式）
+# 机制 4-4 五大句型骨架：动词配价搭出的基本模具
+# Q4 登记：带必备状语的第六种只登记、不展开（屏上仅覆盖提醒行）；there be 存现句另管。
+# 派生应用例：预测题 She gives me an apple. 由模型例证 st-ex-svo-svoo（gave→gives）派生，不引入新主张。
+scene: gen_sentence_4
+family: sentence
+pattern: auto_items_sentence
+template: fp_one_king_4.js
+
+title: "五副骨架搭句子"
+teaches: [st-cl-five-patterns, st-cl-pattern-board]
+
+replace:
+  - ["第一性原理 · 一句一王 · 4", "第一性原理 ④ 单核谓语 · 4"]
+
+items:
+  - [n, "这一幕：再长的句子，拆掉装饰，只剩 5 副骨骼。"]
+  - [p, "apple"]
+  - [w, "五副基本骨骼"]
+  - [w, "④ 单核谓语"]
+  - [w, "💡 记忆联想"]
+  - [w, "五副基本骨骼"]
+  - [w, "④ 单核谓语"]
+  - [m, "💡 记忆联想"]
+  - [m, "① 主谓"]
+  - [m, "② 主系表"]
+  - [m, "③ 主谓宾"]
+  - [m, "④ 双宾 · ⑤ 宾补"]
+  - [m, "⑤ 口诀"]
+  - [m, "🔮 预测"]
+  - [n, "帮记画面：动词像插线板上的插头，有几个脚，就占几个孔——成分个数由动词定。"]
+  - [n, "不过插线板只是帮记的画：模具本身还带着意思，那一层要靠例句体会。"]
+  - [n, "主语 S + 谓语 V：谁 + 做什么。动词后面什么都不用带。"]
+  - [w, "①"]
+  - [m, "S"]
+  - [m, "V"]
+  - [w, "She runs."]
+  - [s, "She runs.", "她跑步。"]
+  - [n, "主系表：系动词后面跟表语，说主语「是什么 / 怎么样」。"]
+  - [w, "②"]
+  - [m, "S"]
+  - [m, "V"]
+  - [m, "P"]
+  - [w, "She is happy."]
+  - [s, "She is happy.", "她很开心。"]
+  - [n, "宾语 O：动作落到的人或东西。"]
+  - [m, "③"]
+  - [m, "S"]
+  - [m, "V"]
+  - [w, "O"]
+  - [w, "She eats apples."]
+  - [s, "She eats apples.", "她吃苹果。"]
+  - [n, "双宾语：动词带两个宾语——给谁（人）+ 给什么（物）。"]
+  - [w, "④"]
+  - [m, "S"]
+  - [m, "V"]
+  - [m, "IO"]
+  - [m, "DO"]
+  - [w, "She gave me a book."]
+  - [s, "She gave me a book.", "她给了我一本书。"]
+  - [n, "宾补：宾语后面再补一句，说宾语被叫作什么、变成什么样。"]
+  - [w, "⑤"]
+  - [m, "S"]
+  - [m, "V"]
+  - [m, "O"]
+  - [m, "C"]
+  - [w, "We call him Tom."]
+  - [s, "We call him Tom.", "我们叫他汤姆。"]
+  - [n, "提醒：这五副是基本骨架，不是全部——带必备状语的第六种、there be 句，以后另学。"]
+  - [w, "⚠️ 五副不是全部：第六种、there be 另学"]
+  - [w, "①②③ 最常用，小学大部分句子都是它们。详细讲解看「五大句型」实验室。"]
+  - [n, "口诀：五种骨架搭句子，动词决定带几个成分。"]
+  - [w, "口诀：五种骨架搭句子"]
+  - [n, "预测：She gives me an apple. 给谁 + 给什么，是第几副骨骼？先想 3 秒！"]
+  - [w, "🔮 She gives me an apple. → 第几副？"]
+  - [n, "揭晓：给谁（me）+ 给什么（an apple）：第 ④ 副，双宾语。"]
+  - [w, "第 ④ 副 —— me 是人，an apple 是物"]
+  - [s, "She gives me an apple.", "她给我一个苹果。", "She gives an apple"]
+  - [m, "💡 一句话洞见"]
+  - [m, "先把主干骨骼搭对，"]
+  - [w, "再往上挂时间、地点、形容词这些装饰"]
+  - [w, "🎵 口诀"]
+  - [w, "口诀：五种骨架搭句子，动词决定带几个成分。"]
+  - [w, "🧠 第一性原理 ④ 单核谓语"]
+
+facts:
+  objects:
+    - { name: "五副骨架例句", kind: "模型例证", states: "主谓 She runs. / 主系表 She is happy. / 主谓宾 She eats apples. / 主谓双宾 She gave me a book. / 主谓宾补 We call him Tom.（st-ex-sv-svp、st-ex-svo-svoo、st-ex-svoc 逐字）" }
+    - { name: "插线板", kind: "帮记画面", states: "插头脚数 = 成分个数，只帮记「成分个数由动词定」（st-cl-pattern-board）" }
+  invariants:
+    - "五副例句逐字用模型例证，不混入旧幕例句（如 Pass me the book、Reading makes me clever 只可作预测/对照且须与模型口径一致——本幕预测沿用原幕 gives 例，与双宾条一致）"
+    - "第六种（带必备状语）与 there be 只作覆盖提醒上屏，不进五副名单"
+    - "插线板画面必带失效边界：模具本身带意思的一层画面讲不出"
+    - "屏上不出现旧口诀「先搭骨架再挂花」"
+
+# 语义标签（构建期断言只引用标签，不认裸坐标；checker：model/check_sentence_assertions.py）
+tags:
+  old-chant: ["先搭骨架再挂花"]
+  ex-sv: ["She runs."]
+  ex-svp: ["She is happy."]
+  ex-svo: ["She eats apples."]
+  ex-svoo: ["She gave me a book."]
+  ex-svoc: ["We call him Tom."]
+  sixth: ["第六种"]
+  therebe: ["there be"]
+  board-boundary: ["模具本身还带着意思"]
+assertions:
+  - { check: absent, tag: old-chant }
+  - { check: present, tag: ex-sv }
+  - { check: present, tag: ex-svp }
+  - { check: present, tag: ex-svo }
+  - { check: present, tag: ex-svoo }
+  - { check: present, tag: ex-svoc }
+  - { check: present, tag: sixth }
+  - { check: present, tag: therebe }
+  - { check: present, tag: board-boundary }

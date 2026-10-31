@@ -1,0 +1,28 @@
+# spec 存档 · hd_g19_1（B2 批手改幕，T12 阶段二）
+# 管线：手写 E 型幕逐幕手改（T12_plan B2 第二选项），修正文案唯一来源 = model/scene_fixes.yaml
+scene: hd_g19_1
+family: grammar G19（三单 -s）
+engine: 手写（wb5 scene + lib/concept.js；sprites/hdg19_1.js 空包）
+fixes_applied:
+  - id: sf-002
+    verdict: 错误（三单 -s「勋章转移」伪机制故事）
+    targets:
+      - KNOW[2]（导出 KNOW 数组第 3 条）
+      - build() 内 narr() 调用（与 KNOW[2] 同文，紧接 C.rule(T) 之前）
+    replacement: scene_fixes.yaml sf-002 fixed_lines[0]（role 台词）逐字
+    rendering_notes:
+      - 定稿中的 **长得像** 为记录层强调标记，引擎（wb5/concept）无 markdown 渲染，上屏文本去掉 4 个 * 号，措辞逐字不变（与模型层 grammar.yaml g19-s-history 的纯文本口径一致）
+      - 定稿含 ASCII 单引号，源码以 \' 转义，运行时字符串与定稿（除 ** 标记外）逐字一致（脚本核对通过）
+    duration_effect: 旁白时长由 readT 自动推导，全幕 68.3s → 78.6s
+facts:
+  objects: [The boys like apples.（复数行）, The boy likes apples.（三单行）, 橙色 s 徽章 chip]
+  invariants:
+    - 徽章只标示「动词跟的是单数第三人称主语」这一今日功能；来历叙述以 sf-002 定稿为准（动词 -es 支 vs 名词 -as 支，两条独立源流）
+    - does 吸走 -s 的边界讲法在 hd_g19_2，本幕不展开（sf-002 boundary）
+residual_for_review:
+  - C.aha 的 reveal 元数据仍写作「勋章从主语那里跳起来，落到动词上」（描述徽章 chip 的飞行动画）；该文案不在 scene_fixes 覆盖范围内，未擅改——请独立逻辑审查/裁定确认：视觉装置语言与订正后来历叙述（「不是从名词那里搬过来的」）并存是否可接受，或需补订正文案后改写 aha 卡。
+validation:
+  build: gen-stock-hd_g19_1.html（~/workspace/your_files/）
+  ic_gen8: 不合格 0（78.6s，文字峰值 9%）
+  insightcheck_official: 不合格 0（--only=hd_g19_1；决策 39 提示为该幕静态讲授型既有提示，非不合格项）
+  shots: 30s/45s/56s 三帧，新旁白整段上屏、无 ** 残留

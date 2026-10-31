@@ -1,0 +1,60 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：model/viewpoint.yaml；改本幕台词/结构：model/specs/viewpoint_1.yaml；改编排：模板 ze_modifier_1.js（家族共用）。
+// 判据/口诀来源：vp-cl-adj-position、vp-cl-hyphen-pack、vp-xc-people-present。生成器 model/gen_scene.py（items 模式）。
+// 🔀 联想工具箱 ⑥ · 1 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/ze_modifier.js 案例 1；对照清单 lab/INVENTORY_ZE_MODIFIER_1_V5.md
+// 角色关键帧：sprites/zmo1.js（人物先行帧库 cast/）
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/zmo1.js';
+const ACTS = {"see": ["l_point"], "tell": ["whisper"]};
+const ITEMS = [
+  ['n', '这一幕：形容词站在名词前面还是后面？看它的「重量」。'],
+  ['p', 'a red apple'],
+  ['w', '形容词站哪边'],
+  ['w', '⑥ 站位与顺序的四个小机关'],
+  ['w', '💡 这一幕的机关'],
+  ['w', '形容词站哪边'],
+  ['w', '⑥ 站位与顺序的四个小机关'],
+  ['m', '💡 这一幕的机关'],
+  ['m', '① 轻的前置'],
+  ['m', '② 重的后置'],
+  ['m', '③ 打包前置'],
+  ['m', '④ 例外'],
+  ['m', '⑤ 口诀'],
+  ['m', '🔮 预测'],
+  ['n', '先破一个误会：不是「一个词放前、两个词以上一律放后」——英语看的是轻还是重，而且只是「一般」规律，不是铁律。'],
+  ['n', '轻的形容词，一般放在名词前面。'],
+  ['w', 'a red apple'],
+  ['w', 'a tall tree'],
+  ['s', 'A red apple. A tall tree.', '一个红苹果。一棵高高的树。', 'red apple tall tree'],
+  ['n', '重的、长的形容词短语，一般挂在名词后面。'],
+  ['w', 'a man afraid of dogs'],
+  ['w', '一个怕狗的人'],
+  ['w', 'students interested in science'],
+  ['s', 'I see a man afraid of dogs.', '我看见一个怕狗的人。', 'see afraid dogs'],
+  ['n', '可是——几个词用连字符打包成一个形容词，就能站到前面去。'],
+  ['w', 'a five-year-old boy'],
+  ['w', 'a two-hour trip'],
+  ['n', '连字符一打包，它就是一个前置形容词：一个五岁的男孩、一次两小时的旅行。'],
+  ['s', 'A five-year-old boy. A two-hour trip.', '一个五岁的男孩。一次两小时的旅行。', 'five-year-old two-hour'],
+  ['n', '还有反着来的例外：people present——present 只有一个词，却站在后面，说「在场的人们」。这类词逐个记。'],
+  ['w', '⚠️ people present（在场的人们）'],
+  ['w', '一个词也可能后置：逐个记'],
+  ['s', 'I see the people present.', '我看见在场的人们。', 'see people present'],
+  ['n', '记住关键词是「一般」：这是倾向，不是包打一切的断言。'],
+  ['n', '口诀：轻的前置，重的后置，打包的也能站前面。'],
+  ['w', '口诀：轻的前置，重的后置'],
+  ['n', '预测：「桌子上的那只猫」，on the table 是个短语——放 cat 前面还是后面？先想 3 秒！'],
+  ['w', '🔮 桌子上的那只猫 = ？'],
+  ['w', '？'],
+  ['n', '揭晓：on the table 是短语，算「重」的，挂在后面——the cat on the table。'],
+  ['w', 'the cat on the table'],
+  ['s', 'Look at the cat on the table.', '看桌子上的那只猫。', 'the cat on the table cat table'],
+  ['w', '💡 一句话洞见'],
+  ['w', '形容词的位置看重量：轻的前置，'],
+  ['w', '重的后置，打包的也能站前面'],
+  ['w', '🎵 口诀'],
+  ['w', '轻的前置，重的后置，'],
+  ['w', '打包的也能站前面'],
+  ['w', '📦 联想工具箱 ⑥ 站位与顺序'],
+];
+export default function build() { return autoBuild(SP, { title: '形容词站哪边', items: ITEMS, acts: ACTS }); }

@@ -1,0 +1,96 @@
+# 场景规格 · sentence 第 3 幕（时态只标一次）——由知识模型生成，禁止手改产物 gen_sentence_3.js
+# items 模式（autoBuild）：台词只从 sentence.yaml 组装；口诀/判据句逐字引模型记录（st-cl-do-support / st-ch-do-support）。
+# 纲领：sentence.yaml insight.domain = dom-constructions；coManaged = dom-grammar（g40：一个分句一个限定动词；动词后接形式）
+# 机制 4-3 do-support：时态与一致只标记一次，落在首个助动词上
+# 派生应用例：预测题 Does Tom play football? 由模型例证 st-ex-does-like 的句式派生（换主语/动词），不引入新主张。
+scene: gen_sentence_3
+family: sentence
+pattern: auto_items_sentence
+template: fp_one_king_3.js
+
+title: "时态只标一次"
+teaches: [st-cl-do-support]
+
+replace:
+  - ["第一性原理 · 一句一王 · 3", "第一性原理 ④ 单核谓语 · 3"]
+
+items:
+  - [n, "这一幕：为什么加了 does / did / can，后面的动词就变回原形？"]
+  - [w, "时态只标一次"]
+  - [w, "④ 单核谓语"]
+  - [w, "💡 记忆联想"]
+  - [w, "时态只标一次"]
+  - [w, "④ 单核谓语"]
+  - [m, "💡 记忆联想"]
+  - [m, "① -s 徽章"]
+  - [m, "② Does 拿走"]
+  - [m, "③ 过去徽章"]
+  - [m, "④ 情态也一样"]
+  - [m, "⑤ 口诀"]
+  - [m, "🔮 预测"]
+  - [n, "三单：主语是 he / she / it 时，一般现在时的动词要加 -s——这个 -s 就是时态与一致的标记。"]
+  - [w, "She like"]
+  - [m, "-s"]
+  - [m, "apples."]
+  - [w, "把 -s 想成一枚徽章：现在戴在 like 身上"]
+  - [n, "一般疑问句：能用 Yes / No 回答的问句。要请 do 一家来帮忙：Does 站到句首。"]
+  - [w, "Does"]
+  - [w, "she like apples?"]
+  - [n, "徽章只发一枚：Does 拿走了它，like 就变回原形。"]
+  - [w, "徽章被 Does 拿走"]
+  - [w, "like 变回原形"]
+  - [s, "Does she like apples?", "她喜欢苹果吗？", "like"]
+  - [s, "I like apples. Do you like apples?", "我喜欢苹果。你喜欢苹果吗？", "apples do"]
+  - [n, "过去的徽章也一样：went 戴着「过去」标记；Did 一出场，went 就变回 go。"]
+  - [w, "She went home."]
+  - [w, "Did she go home?"]
+  - [w, "过去徽章 → Did"]
+  - [s, "Did she go home?", "她回家了吗？", "go"]
+  - [s, "She went home. Did she go home?", "她回家了。她回家了吗？", "She went home Did"]
+  - [n, "否定句也一样：She does not like tea.——does 拿了徽章，like 用原形。"]
+  - [w, "She does not like tea."]
+  - [n, "情态动词 can、must、will 后面也用原形：它们自己就是帮忙的词，标记只标一次。"]
+  - [w, "She can swim."]
+  - [w, "不能说 Does he plays? / She can swims."]
+  - [n, "小提醒：be 动词自带助动词身份，不请 do 帮忙——Is she happy? 就够了。"]
+  - [w, "be 不请 do：Is she happy?"]
+  - [s, "He plays football. They went home.", "他踢足球。他们回家了。", "He plays football They"]
+  - [s, "Does he play? He doesn't play. Did they go?", "他踢吗？他不踢。他们去了吗？", "Does play doesn't"]
+  - [s, "She can swim.", "她会游泳。", "swim"]
+  - [n, "口诀：时态只标一次，标在第一个帮忙的词上。"]
+  - [w, "口诀：时态只标一次"]
+  - [n, "预测：Does 已经站在句首，后面的动词用 play 还是 plays？先想 3 秒！"]
+  - [w, "🔮 Does Tom ___ football? → play / plays"]
+  - [n, "揭晓：徽章在 Does 手里，动词回原形：play。"]
+  - [w, "Does Tom play football? —— 徽章在 Does 手里"]
+  - [s, "Does Tom play football?", "汤姆踢足球吗？", "Tom play football"]
+  - [w, "💡 一句话洞见"]
+  - [w, "时态与一致只标记一次，"]
+  - [w, "落在第一个帮忙的词上，后面回原形"]
+  - [w, "🎵 口诀"]
+  - [w, "口诀：时态只标一次，标在第一个帮忙的词上"]
+  - [w, "🧠 第一性原理 ④ 单核谓语"]
+
+facts:
+  objects:
+    - { name: "徽章（时态 / 一致标记）", kind: "帮记画面", states: "只发一枚：无助动词时戴在主要动词上（likes / went）；助动词出场后转戴助动词，主要动词回原形（st-cl-do-support 的 explain 载体）" }
+    - { name: "主要动词", kind: "词形变化", states: "likes → like、went → go：助动词拿走标记后回原形；情态动词后同样回原形" }
+  invariants:
+    - "同一分句内标记只出现一次：Does ... plays / She can swims 只作错误示范出场并当场否定"
+    - "揭晓（play）必须排在预测停顿之后，判定不早于提问"
+    - "失效边界上屏：be 动词自带助动词身份，不请 do 帮忙"
+    - "屏上不出现旧口诀「侍卫拿令牌，动词回原形」与「令牌守恒定律」标题"
+
+# 语义标签（构建期断言只引用标签，不认裸坐标；checker：model/check_sentence_assertions.py）
+tags:
+  old-token: ["令牌守恒定律"]
+  old-chant: ["侍卫拿令牌"]
+  chant: ["时态只标一次，标在第一个帮忙的词上"]
+  be-line: ["be 不请 do"]
+  negated: ["不能说 Does he plays? / She can swims."]
+assertions:
+  - { check: absent, tag: old-token }
+  - { check: absent, tag: old-chant }
+  - { check: present, tag: chant }
+  - { check: present, tag: be-line }
+  - { check: present, tag: negated }

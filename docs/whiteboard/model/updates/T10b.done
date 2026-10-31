@@ -1,0 +1,29 @@
+# T10b 完成标记 · 原理 ④⑤⑥ 建模（句量/分句、规则类、视角）
+
+## 交付文件（均在 docs/whiteboard/model/）
+1. **sentence.yaml**（④）——family: sentence，标题「一个分句一个王，长句是几个小句子拼的」。概念 4 / 主张 9 / 例证 15 / 例外 1 / 口诀 3 + superseded 3 条。
+2. **spacetime.yaml**（⑤）——即任务所称 rules5.yaml，按内容定名（与 principles_update.md 文件名说明一致，T11 取用以此为准）。概念 5 / 主张 5 / 例证 12 / 例外 8 / 口诀 5 + superseded 3 条。
+3. **viewpoint.yaml**（⑥）——概念 4 / 主张 6 / 例证 12 / 例外 5 / 口诀 4 + superseded 5 条。
+
+> 说明：三文件主体由 T10 先行执行（含独立复核返修，见 principles_update.md）产出；本 T10b 做了全量复核 + 下列三处缺口修复，未推倒重写、未 git commit。
+
+## 审计改法落实核对
+- **④**：律文计量单位由「句子」改为「分句」（st-cl-one-finite，rule；反例 I know he likes it. 入例证）；to 箭头降格 mnemonic（st-cl-to-arrow，linkedClaim → st-cl-verb-decides，used to 反例登记）；「三件马甲」拆两类（st-cl-done-separate 管被动/完成）；do-support 保留为样板（st-cl-do-support）；五大句型保留 + 第六种仅登记不展开（Q4 存疑保留）。与 grammar.yaml g40-one-finite / g40-to-vs-ing 只互指不双写（insight.coManaged + domains.yaml 共管登记）。
+- **⑤**：家族由「三维几何向量时空律」降格为倾向窍门：原型图只管第一猜测（sp-cl-space-schema / sp-cl-time-borrow，Tyler & Evans 2003）；幕末例外齐备——at night、in the morning、on Tuesday morning、go off＝响起来（硬反例）、put off / on fire / meeting is off、on foot；交通计法软化为记法窍门（sp-cl-transport）；旧时长定介词伪规则整段删除并留 superseded。
+- **⑥**：假统一废止——四幕分立四机制（重量倾向 / 移位规则 / 书写惯例 / 时态看法），分挂 dom-grammar、dom-questions-info、dom-tense-aspect，无单一纲领；6-1「一律」→「一般」+ 连字符打包条（vp-cl-hyphen-pack）+ people present 例外；6-2 汉语疑问词改「留在原地」，回声/从句居中入例外；6-3 地址只管地址、日期美式写法入例外旁注；6-4 完成态改「结果留到现在 / 和现在有关系」（vp-cl-perfect，结果支 + 持续支并置，yesterday 例外含 since yesterday 注）。
+- **跨幕统一判据**：spacetime 例外注记与 viewpoint vp-cl-time-anchor 的 note 逐字相同（「有日子锚点时从 day 的 on：on Tuesday morning（morning 单独用 in，带具体日子改从 day 的 on）」），脚本比对确认。
+
+## 本次修复的三处缺口
+1. **Q1 口径冲突已裁定并修复**：spacetime 的 for 原为两站（任务口径），与 scene_fixes sf-021/sf-022（U8 三站）及 domains.yaml dom-prepositions（三站）冲突。按 principles_update 独立复核建议 + 本任务依据优先级（scene_fixes、domains 为准），sp-cl-for 已扩为三站（为了谁 / 奔着哪儿 / 持续多久），同步改概念名、insight 机制行、scope、口诀，并新增例证 sp-ex-for-two-hours；交换/支持义保留在例外待扩。模型、台词修正、纲领三方现已同口径。
+2. **vp-cl-perfect 补来源**：新增 source 字段——Comrie（1976: 52）现时相关性定义，与 sf-037/sf-038 同源。
+3. **三文件各补结构化 superseded 记录**（此前仅 insight 散文提及）：sentence 3 条（旧律文、三件马甲、箭头断言）、spacetime 3 条（旧律名、时长定介词、for 一支联想）、viewpoint 5 条（假统一律名、「焦点先行思维」标签、6-1 一律、6-4 做完了、疑问词「在最后」），各带裁定与 replacedBy 指针。
+
+## 自验结果
+- validate.py 单独跑 sentence / spacetime / viewpoint：全过。
+- validate.py 联合跑全部 11 个模型文件（boundedness、grammar、domains、letters、phonology、sentence、spacetime、viewpoint + 三个 fixes 文件）：**全过**（sentence 4/9/15/1/3；spacetime 5/5/12/8/5；viewpoint 4/6/12/5/4）。
+- 红线词扫描（物理定律/统摄/物理边界/绝对/一律/永远，排除否定式与废止语境）：三文件零命中。
+
+## 存疑（隔离保留，不猜测填充）
+- Q4：④ 带必备状语的第六种句型仅在 st-cl-five-patterns note 登记，未展开（按任务指令）。
+- Q5：⑤ 电梯、小船介词仅登记「低频边缘、按习惯单记」，未断言具体形式。
+- ⑥ 无新增存疑；Q2/Q3 属 ① 家族，不在本任务范围。

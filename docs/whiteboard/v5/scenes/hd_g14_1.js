@@ -11,7 +11,7 @@ const ACTS = {};
 export const KNOW = [
   'G14 底层原理',
   '介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！',
-  '【为什么汉语一个“在”字，英语却要分 in / on / at？】英语是用三维空间几何镜头看世界：包在立体容器内部用 in，贴在平面或轴线上用 on，聚焦成一个精确小圆点用 at！并把这个空间图式原封不动映射到了“时间漏斗”和“抽象状态”上！',
+  '先看三幅『原型图』猜一猜：装在容器里面用 in（in the box），贴在表面上用 on（on the table），指着一个点用 at（at the door）。讲时间、讲抽象事情时，这三幅图常常还能接着用——但不是原封不动：at night、in the morning、on the bus 是大家约好的习惯说法，图猜不出来，就单独记。',
   '🔬 介词三维空间几何图式 ➔ 时间漏斗隐喻映射',
   'in (三维容器内)', 'in the box / in May', 'on (平面接触面)', 'on the desk / on Monday', 'at (精确坐标靶心)', 'at the door / at 7:30',
   '【空间图式】The ball is in the box (容器内), on the desk (表面接触), at the door (精确点).',
@@ -59,7 +59,7 @@ export default function build() {
   K.narr('包在立体容器里 → in；贴在一个面上 → on；聚焦成一个点 → at。', R, R + 3 * D);
   T = R + 3 * D + 0.3;
   C.rule(T);
-  T = narr('【为什么汉语一个“在”字，英语却要分 in / on / at？】英语是用三维空间几何镜头看世界：包在立体容器内部用 in，贴在平面或轴线上用 on，聚焦成一个精确小圆点用 at！并把这个空间图式原封不动映射到了“时间漏斗”和“抽象状态”上！', T, 6);
+  T = narr('先看三幅『原型图』猜一猜：装在容器里面用 in（in the box），贴在表面上用 on（on the table），指着一个点用 at（at the door）。讲时间、讲抽象事情时，这三幅图常常还能接着用——但不是原封不动：at night、in the morning、on the bus 是大家约好的习惯说法，图猜不出来，就单独记。', T, 6);
   // 预告：同一张图还能装时间
   const EX = [['in', 'in the box / in May'], ['on', 'on the desk / on Monday'], ['at', 'at the door / at 7:30']];
   EX.forEach(([w, s], i) => C.chip({ text: s, x: XS[w], y: 885, size: 34, from: T + i * 0.5, col: INK, bd: COL[w] }));

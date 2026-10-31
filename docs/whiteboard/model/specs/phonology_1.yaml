@@ -1,0 +1,92 @@
+# 场景规格 · phonology 第 1 幕（清浊顺行同化）——由知识模型生成，禁止手改产物 gen_phonology_1.js
+# 模板 fp_economy_1_v2.js 是手写概念场景（v2 = 单幕完结版：④ -ed 演示/⑤ 口诀/🔮 dogs 预测收回本幕，
+# stepAt 六步全赋时；v1 两节制模板保留不动）：KNOW 为全幕文字库存（与模板节拍对齐），
+# 代码内硬编码的旁白/标签字符串由 replace 逐条对齐到模型口径；本幕无 kit() 标题，标题文字走 replace。
+scene: gen_phonology_1
+family: phonology
+pattern: concept_demo_throat        # 模式：喉咙剖面可视化 + 对比 + 预测 + 口诀
+template: fp_economy_1_v2.js
+no_kit_title: true
+
+title: "-s 和 -ed 的三种读音：尾巴跟着前音走"
+
+aha:
+  see: "左边一个喉咙剖面，两片声带；读 /k/ 时声带一动不动，读 /ɡ/ 时声带抖起来、冒出波纹；孩子把手放在自己喉咙上试"
+  guess: "book 最后是 /k/，声带没抖——后面的 -s 会抖还是不抖？（读 /s/ 还是 /z/）"
+  reveal: "声带从 /k/ 到 -s 一直静止 → /s/；bag 的 /ɡ/ 抖起来后一路抖到 -s → /z/；-ed 同理过喉咙：stopped /t/、played /d/；收尾自己猜 dogs → /z/"
+  rule: "清跟清，浊跟浊，尾巴跟着前音走"
+
+know:
+  - { text: "这一幕：复数 -s 和过去式 -ed，为什么各有三种读音？", kind: narrative }
+  - { text: "-s 和 -ed 的三种读音", kind: label }
+  - { text: "① 清浊顺行同化", kind: label }
+  - { text: "💡 记忆联想", kind: label }
+  - { text: "① 6 种读音？", kind: label }
+  - { text: "② 声带", kind: label }
+  - { text: "③ 同化", kind: label }
+  - { text: "④ 过去式", kind: label }
+  - { text: "⑤ 口诀", kind: label }
+  - { text: "🔮 预测", kind: label }
+  - { text: "看起来要背 6 种读音……", kind: narrative }
+  - { text: "books /s/   bags /z/    buses /ɪz/", kind: label }
+  - { text: "worked /t/  played /d/  wanted /ɪd/", kind: label }
+  - { text: "6 种？！", kind: label }
+  - { text: "其实只看一件事：前一个音，声带有没有震动。", kind: line, teaches: ph-cl-voicing }
+  - { text: "只看一件事：前一个音，声带震不震？", kind: label }
+  - { text: "声带：喉咙里的两片小肉，发某些音时会快速震动。", kind: narrative }
+  - { text: "声带", kind: label }
+  - { text: "清辅音：发音时声带不震动的辅音，比如 /k/ /p/ /t/ /s/。", kind: line, teaches: ph-cl-voicing }
+  - { text: "/k/", kind: label }
+  - { text: "声带不震", kind: label }
+  - { text: "= 清", kind: label }
+  - { text: "浊辅音：发音时声带震动的辅音，比如 /ɡ/ /b/ /d/ /v/；元音也都震。", kind: line, teaches: ph-cl-voicing }
+  - { text: "/ɡ/", kind: label }
+  - { text: "声带震动", kind: label }
+  - { text: "= 浊", kind: label }
+  - { text: "💡 摸喉咙试试", kind: label }
+  - { text: "不震 → 尾巴不震", kind: label }
+  - { text: "震 → 尾巴也震", kind: label }
+  - { text: "同化：词尾学前一个音的清浊——清跟清，浊跟浊。", kind: line, teaches: ph-cl-voicing }
+  - { text: "book+s", kind: label }
+  - { text: "/s/", kind: label }
+  - { text: "book 最后是 /k/，声带不震，-s 就顺势读不震的 /s/。", kind: line, teaches: ph-cl-voicing }
+  - { text: "bag+s", kind: label }
+  - { text: "/z/", kind: label }
+  - { text: "bag 最后是 /ɡ/，声带在震，-s 就顺势读会震的 /z/。", kind: line, teaches: ph-cl-voicing }
+  - { text: "I have two books and two bags.", kind: dialogue }
+  - { text: "我有两本书和两个包。", kind: dialogue }
+  - { text: "-ed 也一样：尾巴跟着前一个音走，先看前一个音震不震。", kind: line, teaches: ph-cl-voicing }
+  - { text: "stop+ed", kind: label }
+  - { text: "/t/", kind: label }
+  - { text: "stop 最后是 /p/，声带不震，-ed 就顺势读不震的 /t/。", kind: line, teaches: ph-cl-voicing }
+  - { text: "play+ed", kind: label }
+  - { text: "/d/", kind: label }
+  - { text: "play 最后是元音 /eɪ/，声带在震，-ed 就顺势读会震的 /d/。", kind: line, teaches: ph-cl-voicing }
+  - { text: "⚠️ aged / learned 作形容词读 /ɪd/", kind: label }
+  - { text: "小例外：aged、learned 作形容词时读 /ɪd/——年老的 aged、博学的 learned，是习惯保留，不按清浊选。", kind: line }
+  - { text: "dog+s", kind: label }
+  - { text: "揭晓：dogs 的 -s 读 /z/——/ɡ/ 在震，尾巴跟着一起震。", kind: line, teaches: ph-cl-voicing }
+
+# 模板代码里硬编码的旧文字 → 模型口径（口诀 = 模型 ph-ch-voicing 原文，经此绑定）
+replace:
+  - ["⚙️ 第一性原理 · 经济原则 · 1", "⚙️ 第一性原理 · 口腔小机关 · 1"]
+  - ["① 口腔省力同化律", "① 清浊顺行同化"]
+  - ["同化：后一个音学前一个音的样子，嘴巴最省力。", "同化：词尾学前一个音的清浊——清跟清，浊跟浊。"]
+  - ["口诀：前音不震尾不震，前音一震尾也震。", "口诀：清跟清来浊跟浊，尾巴跟着前音走。"]
+
+facts:
+  objects:
+    - { name: 声带（发音器官）, kind: organ, states: "静止（清）/ 震动（浊）两态，画面抖动与所发音同步" }
+    - { name: 词尾 -s / -ed, kind: suffix, states: "读音未定 → 只由前一个音清浊定为 /s//z/ 或 /t//d/" }
+    - { name: books / bags, kind: example, states: "前音清 → 尾读清 /s/；前音浊 → 尾读浊 /z/（③ 同化段喉咙演示）" }
+    - { name: stopped / played（模型例 ph-ex-stopped-played）, kind: example, states: "-ed 与 -s 对等演示：/p/ 不震 → /t/；元音 /eɪ/ 震 → /d/（④ 过去式段）" }
+    - { name: aged / learned（模型例外 ph-xc-aged-learned）, kind: exception, states: "作形容词时读 /ɪd/，习惯保留，不按清浊选（④ 段末上屏）" }
+    - { name: dogs, kind: example, states: "收尾 🔮 预测：/ɡ/ 震 → -s 读 /z/，孩子先猜后揭晓" }
+    - { name: buses / wanted, kind: example, states: "只在开场作钩子出现（/ɪz/、/ɪd/），本幕不展开，插音在第 2 幕" }
+  invariants:
+    - "尾巴读音只由前一个音的清浊决定，不由拼写字母决定"
+    - "声带可视化与发音同步：清音时声带静止、浊音时声带震动冒波纹"
+    - "判定不早于证据：-s 与 -ed 各有一对例子过完喉咙剖面演示，规则卡（C.rule）才出现"
+    - "步骤条六步依次点亮且与进程同步：④ 在 -ed 段起点、⑤ 与口诀旁白同刻、🔮 在收尾 dogs 预测起点"
+    - "答案指示同一时刻不矛盾：音注出现『→ /z/』不早于答案卡 swap 时刻"
+    - "本幕不设『省力』统一律：只讲清浊顺行同化这一台机关"

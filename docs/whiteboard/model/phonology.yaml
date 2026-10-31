@@ -1,0 +1,304 @@
+# 知识模型 · ① 口腔省力小机关合集（按 THEORY_AUDIT 改法：四幕各有各的机制，不设统一机制）
+# 规范见 REWRITE_TECH_PLAN.md §3：tendency 必带 scope 与例外；mnemonic 必链真内容；
+# 每条主张带 explain（方法 / 载体 / 失效边界）与 mechanism（真机制 / 帮记故事）。
+
+family: phonology
+title: "口腔省力小机关合集：同化、插音与双写"
+
+insight:
+  domain: dom-phonetics
+  coreView: "四个小机关机制各不相同：清浊顺行是发音省力，嘶声插音是为听得清，前缀同化是发音顺承，双写是拼写记号；合集不共享一条发音机制。另收拼读同域两条默认读法（闭音节 a、元音组合），都按『默认 + 变脸名单』组织，同样不编统一律——与 dom-phonetics 纲领『字母—读音对应是统计倾向不是定律』同口径。"
+  mechanisms:
+    - "1-1 清浊顺行同化：词尾读音跟着前一个音的清浊走"
+    - "1-2 嘶声后元音插入：两个嘶声相撞时插 /ɪ/ 分开"
+    - "1-3 否定前缀同化：表示『不』的 in- 在唇音前顺成 im-（il-、ir- 两支留待后续）；in- 另有『入』一职，先分职再讲同化"
+    - "1-4 双写：拼写层约定，重读的辅元辅才双写，w、x、y 不双写；不属发音机制"
+    - "拼读附则一（sf-008）：闭音节 a 多半读 /æ/，变脸名单（ll 前、w 后）单记"
+    - "拼读附则二（sf-039）：元音组合多半第一个开口，ea 变脸单记，ou、ie、ei 不套"
+  conflicts: "旧总纲把双写打包进发音机制：裁决——双写属拼写层，不属发音机制；本文件按机关分拆，不设统一机制。"
+
+concepts:
+  - id: ph-c-voicing
+    name: "清浊顺行同化"
+    gloss: "词尾 -s、-ed 的读音跟着前一个音的清浊走"
+  - id: ph-c-sibilant
+    name: "嘶嘶相撞插音"
+    gloss: "词尾是嘶嘶音时加 -s 会挤成一团，中间插一个 /ɪ/ 分开"
+  - id: ph-c-neg-prefix
+    name: "否定前缀同化"
+    gloss: "表示『不』的 in- 在某些辅音前顺成别的样子，本条只展开 im- 一支"
+  - id: ph-c-a-an
+    name: "a / an 看音"
+    gloss: "a/an 的选择看词首第一个音，不看第一个字母"
+  - id: ph-c-doubling
+    name: "双写拼写"
+    gloss: "辅元辅结尾加元音起首后缀时，双写末尾辅音保住短元音"
+  - id: ph-c-closed-a
+    name: "闭音节 a 的默认读法"
+    gloss: "闭音节里的 a 多半读短音 /æ/，少数变脸情形进名单单记"
+  - id: ph-c-vowel-teams
+    name: "元音组合的默认读法"
+    gloss: "两个元音并排，多半第一个开口读长音；ea 是变脸王，ou、ie、ei 不套本条"
+
+claims:
+  - id: ph-cl-voicing
+    type: rule
+    concept: ph-c-voicing
+    statement: "词尾 -s 与 -ed 的读音跟着前一个音走：前一个音清，尾巴读清音（/s/、/t/）；前一个音浊或是元音，尾巴读浊音（/z/、/d/）。词尾是 /t/、/d/ 时，-ed 读 /ɪd/（wanted、needed），与嘶声插音同理。"
+    say: "清跟清，浊跟浊，尾巴跟着前音走。"
+    exceptions: [ph-xc-aged-learned]
+    note: "本句的 /ɪd/ 只限词尾是 /t/、/d/ 时的插音；aged、learned 的 /ɪd/ 只限形容词读法，两者不得混淆"
+    explain:
+      method: "对比案例"
+      carrier: "cats（清跟清）与 dogs（浊跟浊）并排听"
+      boundary: "只管词尾 -s、-ed 的读音选择；词干本身的音变另记"
+    mechanism: "真机制"
+
+  - id: ph-cl-sibilant
+    type: rule
+    concept: ph-c-sibilant
+    statement: "词尾是嘶嘶音（s、z、sh、ch、/dʒ/）时，再加 -s 会挤成一团说不清，中间插一个 /ɪ/ 把它们分开：读作 /ɪz/，拼作 -es。"
+    say: "嘶嘶相撞，插 /ɪ/ 分开站。"
+    exceptions: [ph-xc-goes-potatoes]
+    explain:
+      method: "功能目的"
+      carrier: "两个嘶声挤在一起听不清，插 /ɪ/ 像在中间垫一块隔板"
+      boundary: "只管嘶嘶结尾；其他词尾按前音清浊选 /s/ 或 /z/，不插音"
+    mechanism: "真机制"
+
+  - id: ph-cl-sibilant-chant
+    type: mnemonic
+    concept: ph-c-sibilant
+    linkedClaim: ph-cl-sibilant
+    statement: "帮记口诀：『嘶嘶相撞，插 /ɪ/ 分开站。』旧名『吞音』方向说反了：这里不是把音吞掉，是多加一个音把两个嘶声分开。"
+    say: "嘶嘶相撞，插 /ɪ/ 分开站。"
+    explain:
+      method: "类比"
+      carrier: "两个吵架的孩子中间站一个调解员，把他们分开"
+      boundary: "口诀只帮记『插音』这一步；插哪个音、拼 -es 还是 -s，以规则条为准"
+    mechanism: "帮记故事"
+
+  - id: ph-cl-neg-prefix
+    type: rule
+    concept: ph-c-neg-prefix
+    statement: "表示『不』的 in- 前缀碰到唇音 p、b、m 时，读音与拼写都顺成 im-：impossible、impatient；本条只展开 im- 这一支，il-、ir- 两支留待后续。"
+    say: "不字头碰到唇音，换成 m 更顺口。"
+    exceptions: [ph-xc-inborn-input]
+    note: "il-（illegal）、ir-（irregular）两支留待后续展开，本条不作例证；判断先看前缀在词里干哪份活。"
+    explain:
+      method: "对比案例"
+      carrier: "impossible（不字头变 im-）对照 inborn（不是不字头，不变）"
+      boundary: "只管表示『不』的 in-；不是『不』义的 in- 不套用"
+    mechanism: "真机制"
+
+  - id: ph-cl-in-two
+    type: rule
+    concept: ph-c-neg-prefix
+    statement: "in- 有两个：一个表示『不』（incorrect 不正确的），一个表示『入、向里』（import 进口、income 收入、inside 里面）。先看它在词里干哪份活，再决定套不套同化的讲法。"
+    say: "in- 有两职，先看它干哪份活。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "incorrect（不）与 import（入）并排：同是 in- 开头，干的活不同"
+      boundary: "本条只分两职；两职各自在 p、l、r 前的同化细则见同化条与后续展开（sf-026 口径：两个 in- 都发生同化）"
+    mechanism: "真机制"
+
+  - id: ph-cl-a-an
+    type: rule
+    concept: ph-c-a-an
+    statement: "a/an 的选择看词首第一个音，不看第一个字母：元音音前用 an（an hour、an apple），辅音音前用 a（a house、a useful book）。"
+    say: "看音不看字母，元音音前用 an。"
+    exceptions: []
+    explain:
+      method: "对比案例"
+      carrier: "an hour（h 不发音）与 a house（h 发音）并排"
+      boundary: "只管 a/an 的选择；the 的选择另管"
+    mechanism: "真机制"
+
+  - id: ph-cl-doubling
+    type: tendency
+    concept: ph-c-doubling
+    statement: "辅音—元音—辅音结尾的词，加 -ing、-ed 这类元音起首的后缀时，倾向于双写末尾辅音，好让读者看出前面的元音是短音（hopping 不是 hoping）。"
+    say: "辅元辅加后缀，多半双写保短音。"
+    scope: "辅元辅结尾 + 元音起首后缀"
+    exceptions: [ph-xc-doubling-unstressed, ph-xc-doubling-wxy, ph-xc-doubling-british-l]
+    explain:
+      method: "对比案例"
+      carrier: "hopping 与 hoping 并排：双写 p 保住短音"
+      boundary: "双写是拼写层的记号，不改变读音本身；多音节词还要看重音落在哪一节，w、x、y 结尾不双写"
+    mechanism: "真机制"
+
+  - id: ph-cl-doubling-picture
+    type: mnemonic
+    concept: ph-c-doubling
+    linkedClaim: ph-cl-doubling
+    statement: "帮记画面：把双写的辅音想成给短元音站岗的『双岗哨』——hopping 里两个 p 守住短音，不让它变成 hoping 的长音。这是帮记的画面，双写本身是拼写约定。"
+    explain:
+      method: "类比"
+      carrier: "两个岗哨守住短元音的画面"
+      boundary: "画面只帮记『双写保短音』；重音与 w、x、y 的排除条件以倾向条为准"
+    mechanism: "帮记故事"
+
+  - id: ph-cl-closed-a
+    type: tendency
+    concept: ph-c-closed-a
+    statement: "闭音节里的 a，多半读短音 /æ/（cat、bag、map）；有几个『变脸王』要单记：碰到 ll 变 /ɔː/（ball、call），跟在 w 后面变 /ɒ/（was、want）。先按多半猜，猜错了就查变脸名单。"
+    say: "闭音节 a 多半读 /æ/，变脸王单记。"
+    scope: "闭音节（元音后有辅音收尾）中字母 a 的读法"
+    exceptions: [ph-xc-a-ll, ph-xc-a-w]
+    explain:
+      method: "对比案例"
+      carrier: "cat（多半读 /æ/）与 ball（变脸读 /ɔː/）并排"
+      boundary: "这是默认读法加例外清单，不是全称规则；开音节与元音组合里的 a 另有读法，不套本条"
+    mechanism: "真机制"
+
+  - id: ph-cl-vowel-teams
+    type: tendency
+    concept: ph-c-vowel-teams
+    statement: "两个元音并排走，多半第一个开口读长音（rain、boat），第二个不出声；ea 是变脸王，有时读 /e/（bread）。先按多半猜，变脸的单独记。"
+    say: "两个元音并排走，多半第一个开口；ea 变脸单记。"
+    scope: "元音组合（双字母元音）的入门读法，先管 ai、oa 等最稳的一组"
+    exceptions: [ph-xc-ea-faces, ph-xc-ou-ie-ei]
+    explain:
+      method: "对比案例"
+      carrier: "rain、boat（第一个开口）与 bread（ea 变脸）并排"
+      boundary: "只作第一猜测；ou、ie、ei 不套本条，另学；ea 的变脸读音以名单为准"
+    mechanism: "真机制"
+
+examples:
+  - id: ph-ex-cats-dogs
+    text: "cats /kæts/（清跟清）；dogs /dɒɡz/（浊跟浊）"
+    gloss: "-s 的读音跟着前音清浊走"
+    supports: ph-cl-voicing
+  - id: ph-ex-books-bags
+    text: "books /bʊks/；bags /bæɡz/"
+    gloss: "清音后读 /s/，浊音后读 /z/"
+    supports: ph-cl-voicing
+  - id: ph-ex-stopped-played
+    text: "stopped /stɒpt/；played /pleɪd/"
+    gloss: "-ed 同样跟着前音清浊走"
+    supports: ph-cl-voicing
+  - id: ph-ex-wanted-needed
+    text: "wanted /wɒntɪd/；needed /niːdɪd/"
+    gloss: "词尾是 /t/、/d/ 时，-ed 读 /ɪd/，与嘶声插音同理"
+    supports: ph-cl-voicing
+  - id: ph-ex-kisses-watches
+    text: "kiss→kisses；watch→watches"
+    gloss: "s、ch 结尾插 /ɪ/，读 /ɪz/"
+    supports: ph-cl-sibilant
+  - id: ph-ex-judges-garages
+    text: "judge→judges；garage→garages"
+    gloss: "/dʒ/ 结尾同样插 /ɪ/，嘶嘶清单含 /dʒ/"
+    supports: ph-cl-sibilant
+  - id: ph-ex-buses-boxes
+    text: "bus→buses；box→boxes"
+    gloss: "s、x（内含 s 音）结尾插 /ɪ/"
+    supports: ph-cl-sibilant
+  - id: ph-ex-impossible-impatient
+    text: "impossible；impatient"
+    gloss: "不字头 in- 在 p 前顺成 im-"
+    supports: ph-cl-neg-prefix
+  - id: ph-ex-imbalance-immature
+    text: "imbalance；immature"
+    gloss: "不字头 in- 在唇音 b、m 前同样顺成 im-"
+    supports: ph-cl-neg-prefix
+  - id: ph-ex-an-hour-apple
+    text: "an hour；an apple"
+    gloss: "元音音前用 an，hour 的 h 不发音"
+    supports: ph-cl-a-an
+  - id: ph-ex-a-house-useful
+    text: "a house；a useful book"
+    gloss: "辅音音前用 a，useful 的首音是辅音 /j/"
+    supports: ph-cl-a-an
+  - id: ph-ex-run-hop
+    text: "run→running；hop→hopping"
+    gloss: "单音节辅元辅结尾双写"
+    supports: ph-cl-doubling
+  - id: ph-ex-stop-hopping
+    text: "stop→stopped；hop→hopping"
+    gloss: "双写保住短元音，对照 hoping（希望）"
+    supports: ph-cl-doubling
+  - id: ph-ex-incorrect
+    text: "incorrect（不正确的）"
+    gloss: "in- 表示『不』的那一职"
+    supports: ph-cl-in-two
+  - id: ph-ex-import-inside
+    text: "import（进口）；income（收入）；inside（里面）"
+    gloss: "in- 表示『入、向里』的那一职"
+    supports: ph-cl-in-two
+  - id: ph-ex-cat-bag-map
+    text: "cat、bag、map"
+    gloss: "闭音节 a 的多半读法 /æ/"
+    supports: ph-cl-closed-a
+  - id: ph-ex-rain-boat
+    text: "rain、boat"
+    gloss: "元音组合多半第一个开口读长音，第二个不出声"
+    supports: ph-cl-vowel-teams
+
+exceptions:
+  - id: ph-xc-aged-learned
+    exceptionOf: ph-cl-voicing
+    text: "aged、learned 作形容词时读 /ɪd/（年老的 aged、博学的 learned），不按清浊顺行选 /d/"
+    note: "只限形容词读法，是习惯保留；作动词过去式时不套用本例外"
+  - id: ph-xc-goes-potatoes
+    exceptionOf: ph-cl-sibilant
+    text: "goes、potatoes 拼 -es 却读 /z/，不是 /ɪz/"
+    note: "它们的词尾不是嘶嘶音，-es 只是 o 结尾的拼写习惯；拼 -es 不等于读 /ɪz/，先看词尾是不是嘶嘶音"
+  - id: ph-xc-inborn-input
+    exceptionOf: ph-cl-neg-prefix
+    text: "所列三词（inborn、input、inbox）的 in- 不变，拼写读音都不变"
+    note: "inborn 的 in- 表『生来就在』，input、inbox 的 in- 表『向里』；本条只管所列三词，不作方向义 in- 是否同化的一般断言，import 一支（方向义 in- 同化）另条待补"
+  - id: ph-xc-doubling-unstressed
+    exceptionOf: ph-cl-doubling
+    text: "visit→visiting、open→opening：重音不在末音节，不双写"
+    note: "双写只发生在重读的末音节；visit、open 的重音在第一音节，所以不双写"
+  - id: ph-xc-doubling-wxy
+    exceptionOf: ph-cl-doubling
+    text: "fix→fixing、snow→snowing：x、y 结尾不双写；w 结尾同样不双写"
+    note: "w、x、y 结尾的词不双写，这是拼写层的硬性排除"
+  - id: ph-xc-doubling-british-l
+    exceptionOf: ph-cl-doubling
+    text: "英式拼写 travel→travelling：词尾 l 在英式中双写，不看重音"
+    note: "英式与美式在此不同（美式 traveling），按所学拼写体系单记"
+  - id: ph-xc-a-ll
+    exceptionOf: ph-cl-closed-a
+    text: "ball、call、tall：a 在 -ll 前读 /ɔː/，不读 /æ/"
+    note: "变脸名单第一组：a 碰到 ll 变脸（sf-008）"
+  - id: ph-xc-a-w
+    exceptionOf: ph-cl-closed-a
+    text: "was、want、wash：a 跟在 w 后面读 /ɒ/，不读 /æ/"
+    note: "变脸名单第二组：a 跟在 w 后变脸（sf-008）"
+  - id: ph-xc-ea-faces
+    exceptionOf: ph-cl-vowel-teams
+    text: "ea 变脸：bread 读 /e/，great 读 /eɪ/，都不按『第一个开口读长音』的默认猜"
+    note: "ea 是变脸王，读音进名单单记（sf-039）"
+  - id: ph-xc-ou-ie-ei
+    exceptionOf: ph-cl-vowel-teams
+    text: "ou、ie、ei 不套本条口诀，另学"
+    note: "本条只管最稳的一组元音组合，其余组合各自成组学（sf-039）"
+
+chants:
+  - id: ph-ch-voicing
+    text: "清跟清来浊跟浊，尾巴跟着前音走"
+    for: ph-cl-voicing
+    kind: rule
+  - id: ph-ch-sibilant
+    text: "嘶嘶相撞，插 /ɪ/ 分开站"
+    for: ph-cl-sibilant-chant
+    kind: mnemonic
+  - id: ph-ch-neg-prefix
+    text: "不字头碰到唇音，换成 m 更顺口"
+    for: ph-cl-neg-prefix
+    kind: rule
+  - id: ph-ch-a-an
+    text: "看音不看字母，元音音前用 an"
+    for: ph-cl-a-an
+    kind: rule
+  - id: ph-ch-closed-a
+    text: "闭音节 a 多半读 /æ/，ll、w 后变脸单记"
+    for: ph-cl-closed-a
+    kind: rule
+  - id: ph-ch-vowel-teams
+    text: "两个元音并排走，多半第一个开口（rain、boat）；ea 是变脸王，有时读 /e/（bread）"
+    for: ph-cl-vowel-teams
+    kind: rule

@@ -1,0 +1,34 @@
+# T11a 完成 · ① 语音家族（phonology）4 幕生成与验证
+
+管线：model/phonology.yaml（唯一内容源）→ model/specs/phonology_N.yaml → gen_scene.py → v5/scenes/gen_phonology_N.js → build.mjs → ~/workspace/your_files/gen-phonology-N.html。
+生成器扩展（gen_scene.py）：新增 items 模式（autoBuild 模板：ITEMS 数组 + autoBuild title 替换）；know 模式允许 spec 声明 no_kit_title（标题文字走 replace）。boundedness 既有路径行为不变。
+前置补齐：原模板引用的精灵库 fpeco1/fe2/fe3/fe4 在克隆中缺失，已用 sprites/build_sprites.py 从 cast 帧库最小生成（fpeco1=l_coff0 占位，第 1 幕不用人物帧；fe2=m_tv；fe3=bird_up/bird_down；fe4=l_r0–2/l_stand/l_sit/sw0–2）。
+
+## 逐幕结果
+
+| 幕 | 内容（模型主张） | 时长 | insightcheck | 截图抽查 |
+|---|---|---|---|---|
+| gen_phonology_1 | 清浊顺行同化 ph-cl-voicing（模板 fp_economy_1，know 模式 38 行） | 75.5s | ✅ 强制检查通过（不合格 0） | 5 帧：开场读音表 / 声带震动+摸喉咙 / predict 后 /s/ 揭晓 / /z/ 波纹 / 收尾例句——标题、角标「口腔小机关 · 1」、新口诀均正确，无遮挡新增问题 |
+| gen_phonology_2 | 嘶嘶相撞插音 ph-cl-sibilant（items 68 条） | 161.9s | 不合格 0（autoBuild 幕非强制对象，靠截图验收） | 6 帧：步骤卡 / 插 /ɪ/ 板书 / watch·box·want 词形件+看电视人物帧 / 例外卡（goes/potatoes）/ kiss 预测揭晓 / 洞见卡——全部干净 |
+| gen_phonology_3 | a/an 看音 ph-cl-a-an + 前缀同化 ph-cl-neg-prefix / in- 两职 ph-cl-in-two（items 71 条） | 187.4s | 同上 | 6 帧：a apple / an hour / in+polite / 分职卡+小鸟人物帧 / elephant 预测揭晓 / 洞见卡——全部干净 |
+| gen_phonology_4 | 双写 ph-cl-doubling + 双岗哨 ph-cl-doubling-picture（items 79 条） | 187.7s | 同上 | 7 帧：闭音节 r-u-n / 双岗哨旁白 / 例外卡（visit·open、fix·snow）/ sit 预测+坐椅人物帧 / 洞见卡——全部干净 |
+
+关键帧共 24 张存 ~/workspace/shots_gen/gen-phonology-*.png。
+
+## 模型口径落实点（对照 phonology.yaml 与 §3.3 附则基线）
+- 合集不设统一律：四幕角标/标题按各自机关改名（清浊顺行同化 / 嘶嘶相撞插音 / 看音选冠词·前缀同化 / 双写拼写），旧「口腔省力同化律」「经济原则」字样已全部替换。
+- 第 1 幕口诀换模型 ph-ch-voicing「清跟清来浊跟浊，尾巴跟着前音走」；「嘴巴最省力」机制叙事改为「词尾学前一个音的清浊」。
+- 第 2 幕「吞音」按基线 1/2 改为误解出场+驳斥（「有人管这叫吞音——其实一个音都没吞」）；口诀换模型 ph-ch-sibilant「嘶嘶相撞，插 /ɪ/ 分开站」（旧「同位相撞」作废）；例外 goes/potatoes 入词（失效边界：拼 -es ≠ 读 /ɪz/）。
+- 第 3 幕删除「/n/ 架桥」机制叙事，a/an 只讲选择规则（模型 explain 的对比载体 an hour / a useful 原样保留）；in- 先分两职再讲同化；例外 inborn/input 入词；两条口诀分列（ph-ch-a-an、ph-ch-neg-prefix 原文）。
+- 第 4 幕双写降格为 tendency：「多半」入洞见与口诀（claim say 原文）；守门员画面换模型 mnemonic「双岗哨」并在旁白标明「双写是拼写记号，不改变读音本身」；例外 visit/open（重音）、fix/snow（w/x/y）入词。
+
+## 模型冲突点（以模型为准，已记录）
+- 无台词与模型的实质冲突。第 3 幕原模板的「小桥」桥段与模型冲突（模型无此机制），已按模型删除改写，属模板旧理论替换，非模型问题。
+- 模型 chant 缺位：第 4 幕无 doubling 口诀记录，口诀行采用 ph-cl-doubling 的 say 字段（与 boundedness 的 claim_say 用法一致）。
+
+## 未决问题清单
+1. 第 1 幕旁白横幅出现时遮挡顶部标题/步骤条一行（原幕同字符串同时长，行为完全一致，非本次引入）；建议 P2 模板层统一处理旁白横幅与标题行分区。
+2. 第 1 幕 insightcheck 决策 39 提示与原幕相同：静态字时长 83% > 25%、动态 2% < 60%、C.step 四段不齐——均为提示级（不合格 0），源于该幕「喉咙剖面+板书」型编排，是否改造编排留待家族验收时定。
+3. 2–4 幕 162–188s（autoBuild 引擎按条目推导，原幕同量级）；本次各新增 2 条例外条目，时长略增，已核对无异常停顿帧（第 4 幕 95s 处为空板过渡帧，属词形件组切换的引擎既有行为）。
+4. ph-xc-doubling-british-l（英式 travel→travelling）已在模型登记但本幕未展开（STORYBOARD 原幕亦未含），留作后续补拍或卡片视图承载。
+5. 儿童误读探针（验证层第 7 项）未跑：本家族是否列旗舰幕待主会话定；探针素材现成（goes 例外、inborn 例外、visit 不双写均可直接出题）。

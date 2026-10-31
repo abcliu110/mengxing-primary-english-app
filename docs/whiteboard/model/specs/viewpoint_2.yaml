@@ -1,0 +1,84 @@
+# 场景规格 · viewpoint 第 2 幕（疑问词站第一）——由知识模型生成，禁止手改产物 gen_viewpoint_2.js
+# items 模式（autoBuild）：台词只从 viewpoint.yaml 组装；口诀逐字引模型 vp-ch-wh。
+# 落实：英语主句疑问词移至句首、汉语留在原地（vp-cl-wh-fronting）；回声问句、从句居中两例外上屏。
+# 原幕的感叹句段不在本家族模型内（wh 条边界只管主句特殊疑问句），已删，见 T11c.done 未决问题。
+# 纲领声明（viewpoint.yaml domainNote）：无单一纲领，四幕按内容分挂三域，不硬挂统一纲领。
+# 本幕挂：dom-questions-info（疑问词位置是信息包装/问句结构问题）。
+scene: gen_viewpoint_2
+family: viewpoint
+pattern: auto_items_viewpoint
+template: fp_zoom_focus_2.js
+domain: dom-questions-info
+domainNote: "无统一纲领：本幕按内容挂 dom-questions-info；四幕各讲各的机制，不得互相解释"
+
+title: "疑问词站第一"
+teaches: [vp-cl-wh-fronting, vp-xc-echo, vp-xc-embedded]
+
+replace:
+  - ["第一性原理 · 由大到小 · 2", "联想工具箱 ⑥ 站位与顺序 · 2"]
+
+items:
+  - [n, "这一幕：为什么英语的疑问词总是放在句子第一个？"]
+  - [w, "疑问词站第一"]
+  - [w, "⑥ 站位与顺序的四个小机关"]
+  - [w, "💡 这一幕的机关"]
+  - [w, "疑问词站第一"]
+  - [w, "⑥ 站位与顺序的四个小机关"]
+  - [m, "💡 这一幕的机关"]
+  - [m, "① 中文原地"]
+  - [m, "② Where 移位"]
+  - [m, "③ 问句"]
+  - [m, "④ 两个例外"]
+  - [m, "⑤ 口诀"]
+  - [m, "🔮 预测"]
+  - [w, "你买了什么？"]
+  - [w, "中文：疑问词「什么」留在原地"]
+  - [n, "汉语的疑问词不搬家：问东西的「什么」，就待在东西原来的位置上。"]
+  - [w, "你周末打算去哪里？"]
+  - [n, "英语正相反：主句里提问，疑问词要移到句首去。"]
+  - [m, "you"]
+  - [m, "are"]
+  - [w, "going this weekend"]
+  - [m, "Where"]
+  - [m, "按中文顺序排："]
+  - [n, "Where 移到第一个。"]
+  - [w, "?"]
+  - [m, "疑问词站第一"]
+  - [s, "Where are you going this weekend?", "你这个周末去哪里？", "Where"]
+  - [s, "You are going to the park this weekend.", "你这个周末要去公园。", "you are going weekend"]
+  - [n, "用疑问词开头、不能用 Yes / No 回答的问句，就叫特殊疑问句。"]
+  - [w, "提问：疑问词第一个"]
+  - [w, "Where is my bag?"]
+  - [w, "When do you get up?"]
+  - [w, "How much is this shirt?"]
+  - [s, "When do you get up?", "你几点起床？"]
+  - [s, "Where is my bag?", "我的书包在哪里？", "is my bag"]
+  - [s, "How much is this shirt?", "这件衬衫多少钱？", "How much shirt this"]
+  - [n, "例外一：回声问句——没听清、反问确认时，疑问词可以留在原地：You bought what?"]
+  - [w, "⚠️ 回声问句：You bought what?"]
+  - [n, "例外二：疑问词藏进长句子中间，就不站句首：Tell me what you want。"]
+  - [w, "⚠️ 从句居中：Tell me what you want。"]
+  - [w, "两个例外：见过即可，不硬套"]
+  - [s, "Tell me what you want.", "告诉我你想要什么。", "what you want"]
+  - [n, "口诀：疑问词站第一，回声、从句不硬套。"]
+  - [w, "口诀：疑问词站第一"]
+  - [n, "预测：「你的猫在哪里？」英语里「哪里」应该放在哪？先想 3 秒！"]
+  - [w, "🔮 你的猫在哪里？ → ___ is your cat?"]
+  - [n, "揭晓：这是主句提问，Where 站第一。"]
+  - [w, "Where is your cat? —— 疑问词站第一"]
+  - [s, "Where is your cat?", "你的猫在哪里？", "Where your cat"]
+  - [w, "💡 一句话洞见"]
+  - [w, "英语主句疑问词移至句首；"]
+  - [w, "汉语疑问词留在原地，不移位"]
+  - [w, "🎵 口诀"]
+  - [w, "口诀：疑问词站第一，回声、从句不硬套。"]
+  - [w, "📦 联想工具箱 ⑥ 站位与顺序"]
+
+facts:
+  objects:
+    - { name: "疑问词（Where / What …）", kind: "移位对象", states: "英语主句移到句首；汉语留在原地；回声问句留在原地、从句居中为两个例外位（vp-cl-wh-fronting、vp-xc-echo、vp-xc-embedded）" }
+  invariants:
+    - "汉语疑问词只表述为「留在原地」，不得说「在最后 / 在句尾」"
+    - "回声问句、从句居中两个例外必须上屏，口诀带「不硬套」"
+    - "屏上不出现「焦点先行」统一机制表述与旧口诀「焦点先出场」"
+    - "揭晓（Where 站第一）排在预测停顿之后"

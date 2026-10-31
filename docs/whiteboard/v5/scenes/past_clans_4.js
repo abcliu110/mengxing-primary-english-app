@@ -46,7 +46,7 @@ let T;
   K.text('过去式四大门派', ox + 150, oy + 450, 64, { col: OR });
   K.rect(ox + 150, oy + 520, 380, 84, { w: 4, rough: 1.4 }).text('💡 记忆联想', ox + 180, oy + 578, 44);
   K.rect(ox + 570, oy + 520, 380, 84, { w: 4, rough: 1.4 }).text('✂️ 简化说法', ox + 600, oy + 578, 44);
-  const menu = ['① 门派旗', '② 铁律', '③ 成员', '④ 结论', '🔮 预测'];
+  const menu = ['① 门派旗', '② 小名单', '③ 成员', '④ 结论', '🔮 预测'];
   let x = ox + 150; menu.forEach(s => { const w = K.measure(s, 40) + 40; K.rect(x, oy + 700, w, 70, { w: 3, rough: 1.2, col: GREY, min: 0.08 }).text(s, x + 20, oy + 748, 40, { col: GREY, rate: 30 }); x += w + 24; });
   K.actor({ keys: [[0, 'l_think']], x: ox + 1600, ground: oy + 1150, h: 420, reveal: 1.0 });
   K.pop(2.2, '-ought', ox + 1680, oy + 560, 64, { out: d0 + 1.4 });
@@ -70,29 +70,29 @@ let T;
   T += say(T, en, { word: w, key: ['ought', 'aught'], zh: '-ought、-aught、gh。教、抓、买、带来、想、打架。' }) + 0.3;
 }
 
-// ───────── 3 黄金铁律：原形里找字母 a ─────────
+// ───────── 3 小名单：-aught 只两个 + a 只是钩子（reach 反例） ─────────
 {
   const [ox, oy] = REG(2); go(2, T - 0.3);
-  const d1 = N('黄金铁律：看原形里有没有字母 a：有 a 写 -aught，没有 a 写 -ought。', T);
-  K.at(T + 0.1).text('原形有 a → -aught', ox + 160, oy + 220, 70, { col: OR });
-  K.text('（teach、catch）', ox + 900, oy + 220, 56, { col: GREY });
-  K.text('没有 a → -ought', ox + 160, oy + 360, 70);
-  // 放大镜扫过 teach（有 a）和 buy（没 a）
-  K.at(T + 1.4).text('teach', ox + 300, oy + 640, 96); K.text('buy', ox + 1100, oy + 640, 96);
-  lens(ox + 290, oy + 610, T + 2.0, T + 3.4, true); lens(ox + 1080, oy + 610, T + 3.6, T + 5.0, false);
-  K.pop(T + 3.4, 'a ✓ → taught', ox + 330, oy + 820, 64, { out: T + 30 }); K.pop(T + 5.0, '无 a → bought', ox + 1080, oy + 820, 64, { out: T + 30 });
+  const d1 = N('-aught 组只有 teach/catch 两个常用词，当作小名单背比编规律更划算。', T);
+  K.at(T + 0.1).text('-aught 小名单：teach、catch', ox + 160, oy + 220, 70, { col: OR });
+  K.text('（只有这两个）', ox + 1180, oy + 220, 56, { col: GREY });
+  K.text('没有规律可推', ox + 160, oy + 360, 70);
+  // 放大镜扫过 teach（钩子：藏着一个 a）和 reach（也有 a，却是 reached）
+  K.at(T + 1.4).text('teach', ox + 300, oy + 640, 96); K.text('reach', ox + 1100, oy + 640, 96);
+  lens(ox + 290, oy + 610, T + 2.0, T + 3.4, true); lens(ox + 1080, oy + 610, T + 3.6, T + 5.0, true);
+  K.pop(T + 3.4, '钩子：藏着一个 a', ox + 330, oy + 820, 64, { out: T + 30 }); K.pop(T + 5.0, '也有 a → reached', ox + 1080, oy + 820, 64, { out: T + 30 });
   T += Math.max(d1, 5.6);
-  const d2 = N('秘诀：先找原形里的字母 a，再决定写 -aught 还是 -ought', T);
-  K.at(T + 0.1).text('秘诀：先找原形里的字母 a，再决定写 -aught 还是 -ought', ox + 160, oy + 980, 52, { col: OR, rate: 30 });
+  const d2 = N('凡是\'长得像就同变\'的说法，先拿 reach 试一试。', T);
+  K.at(T + 0.1).text('钩子不是规律：reach 也带 a，却是 reached', ox + 160, oy + 980, 52, { col: OR, rate: 30 });
   T += d2 + 0.2;
 }
 
 // ───────── 4 成员 buy ─────────
 {
   const [ox, oy] = REG(3); go(3, T - 0.3);
-  const d1 = N('成员 buy（买）：原形里没有 a，所以写 -ought：bought。', T);
+  const d1 = N('成员 buy（买）：bought 要单独记，没有规律可推。', T);
   pair(ox + 140, oy + 140, T + 0.1, 'buy', '买', 'bought', '/bɔːt/');
-  K.at(T + 2.0).text('无 a 用 -ought（去商店买礼物）', ox + 140, oy + 470, 54, { col: OR });
+  K.at(T + 2.0).text('当小名单背：bought', ox + 140, oy + 470, 54, { col: OR });
   T += Math.max(d1, 2.8);
   const d2 = N('妈妈给我买了一条新裙子：bought。', T);
   K.at(T + 0.1).text('Mom bought a new dress for me.', ox + 140, oy + 600, 60);
@@ -105,7 +105,7 @@ let T;
 // ───────── 5 成员 bring：br- 别和 bought 混 ─────────
 {
   const [ox, oy] = REG(4); go(4, T - 0.3);
-  const d1 = N('成员 bring（带来）：开头 br- 留着，没有 a，写 brought。', T);
+  const d1 = N('成员 bring（带来）：开头 br- 留着，写 brought。', T);
   pair(ox + 140, oy + 140, T + 0.1, 'bring', '带来', 'brought', '/brɔːt/');
   K.at(T + 2.0).text('br- 开头保留，别和 bought 混！', ox + 140, oy + 470, 54, { col: OR });
   T += Math.max(d1, 2.8);
@@ -121,12 +121,12 @@ let T;
   T = st + say(st, en, { word: w, key: ['brought'], zh: 'br-。他把小狗带到了公园。' }) + 0.3;
 }
 
-// ───────── 6 成员 teach：有 a 必用 -aught ─────────
+// ───────── 6 成员 teach：taught 单独记（sf-009 定稿） ─────────
 {
   const [ox, oy] = REG(5); go(5, T - 0.3);
-  const d1 = N('成员 teach（教）：原形 teach 里有字母 a，所以必须写 -aught！', T);
+  const d1 = N('taught 要单独记，没有规律可推。可以编个钩子帮你记（teach 里藏着一个 a），但记住：钩子不是规律——reach 也带 a，过去式却是老老实实的 reached。凡是\'长得像就同变\'的说法，先拿 reach 试一试。', T);
   pair(ox + 140, oy + 140, T + 0.1, 'teach', '教课', 'taught', '/tɔːt/');
-  K.at(T + 2.0).text('原形 teach 里有字母 a ➔ 必用 -aught！', ox + 140, oy + 470, 54, { col: OR });
+  K.at(T + 2.0).text('taught 要单独记，没有规律可推', ox + 140, oy + 470, 54, { col: OR });
   lens(ox + 150, oy + 220, T + 1.0, T + 2.0, true);
   T += Math.max(d1, 2.8);
   const d2 = N('去年怀特老师教我们英语：taught。', T);
@@ -143,7 +143,7 @@ let T;
 // ───────── 7 其余成员：think / fight / catch ─────────
 {
   const [ox, oy] = REG(6); go(6, T - 0.3);
-  const d1 = N('还有 think→thought、fight→fought；catch 有 a，所以是 caught。', T);
+  const d1 = N('还有 think→thought、fight→fought；catch 也在 -aught 小名单里：caught。', T);
   K.at(T + 0.1).text('其余成员：', ox + 140, oy + 180, 60, { col: OR });
   K.text('think→thought · fight→fought · catch→caught', ox + 140, oy + 290, 66, { rate: 26 });
   T += d1;
@@ -163,24 +163,24 @@ let T;
 // ───────── 8 结论 + 口诀 ─────────
 {
   const [ox, oy] = REG(7); go(7, T - 0.3);
-  const d1 = N('结论：原形有 a 写 -aught，没有 a 写 -ought，都读 /ɔːt/。', T);
-  K.at(T + 0.6).text('结论：有 a → -aught（taught、caught）；没 a → -ought（bought…）', ox + 120, oy + 220, 50, { rate: 30 });
-  K.at(T + 1.6).text('口诀：原形有 a 用 aught，其余全用 ought，gh 不出声！', ox + 120, oy + 340, 54, { col: OR, rate: 30 });
+  const d1 = N('结论：-aught 组只有 teach/catch 两个常用词，当作小名单背；没有规律可推，都读 /ɔːt/。', T);
+  K.at(T + 0.6).text('结论：-aught 小名单只有 teach、catch，当小名单背', ox + 120, oy + 220, 50, { rate: 30 });
+  K.at(T + 1.6).text('口诀：-aught 只两个，teach、catch 背下来，gh 不出声！', ox + 120, oy + 340, 54, { col: OR, rate: 30 });
   tail(ox + 300, oy + 700, 'aught', T + 1.4, T + 3.0); tail(ox + 1000, oy + 700, 'ought', T + 1.8, T + 3.2);
   K.at(T + 1.6).text('teach / catch', ox + 300, oy + 860, 52, { col: GREY }).text('buy / bring / think / fight', ox + 1000, oy + 860, 52, { col: GREY });
   T += Math.max(d1, 3.6);
-  T += N('口诀：原形有 a 用 aught，其余全用 ought，gh 不出声！', T) + 0.2;
+  T += N('口诀：-aught 只两个，teach、catch 背下来，gh 不出声！', T) + 0.2;
 }
 
 // ───────── 9 预测 ─────────
 {
   const [ox, oy] = REG(8); go(8, T - 0.3);
-  const d1 = N('预测：「爸爸昨天给我买了一只风筝」：buy 原形里有没有 a？先想 3 秒！', T);
+  const d1 = N('预测：「爸爸昨天给我买了一只风筝」：buy 的过去式，背下来了吗？先想 3 秒！', T);
   K.at(T + 0.4).text('🔮 爸爸昨天给我买了一只风筝。', ox + 130, oy + 250, 60);
   K.text('→  Dad ___ me a kite yesterday.  ( baught / bought )', ox + 130, oy + 360, 54, { rate: 30 });
   ['3', '2', '1'].forEach((n, i) => K.pop(T + 2.4 + i * 0.8, n, ox + 1700, oy + 330, 110, { out: T + 2.4 + i * 0.8 + 0.7 }));
   T += Math.max(d1, 5.0);
-  const d2 = N('揭晓：buy 里没有字母 a，写 -ought：Dad bought me a kite yesterday.', T);
+  const d2 = N('揭晓：buy 的过去式是 bought：Dad bought me a kite yesterday.', T);
   K.at(T + 0.2).text('Dad bought me a kite yesterday.', ox + 130, oy + 490, 64, { col: OR });
   const en = 'Dad bought me a kite yesterday.', w = 'Dad bought me kite yesterday', st = T + 0.8, bt = wordT(st, en, w, 'bought');
   K.actor({ keys: [[0, 'l_kite']], x: ox + 1400, ground: oy + 1120, h: 460, reveal: T + 0.4 });
@@ -195,7 +195,7 @@ let T;
     const x = ox + 160 + (k % 3) * 560, y = oy + 300 + Math.floor(k / 3) * 380;
     K.at(T + k * 0.4).text(a, x, y, 60, { col: GREY }); K.text(b, x, y + 110, 70, { col: k < 2 ? OR : INK });
   });
-  K.at(T + 2.8).text('有 a', ox + 160, oy + 180, 50, { col: OR });
+  K.at(T + 2.8).text('-aught 小名单', ox + 160, oy + 180, 50, { col: OR });
   T = K.cur + 2.6;
 }
 
@@ -213,10 +213,10 @@ let T;
   K.at(T).rect(ox + 140, oy + 150, 1640, 760, { w: 6, rough: 1.2 });
   K.text('💡 一句话洞见', ox + 220, oy + 260, 54, { col: OR });
   K.text('-ought / -aught 读音一样，都读 /ɔːt/：', ox + 220, oy + 350, 58);
-  K.text('先找原形里的字母 a，就知道怎么写', ox + 220, oy + 440, 58);
+  K.text('-aught 小名单：只有 teach、catch，当小名单背', ox + 220, oy + 440, 58);
   K.text('🎵 口诀', ox + 220, oy + 560, 54, { col: OR });
-  K.text('口诀：原形有 a 用 aught，', ox + 220, oy + 650, 54);
-  K.text('其余全用 ought，gh 不出声！', ox + 220, oy + 740, 54);
+  K.text('口诀：-aught 只两个，teach、catch', ox + 220, oy + 650, 54);
+  K.text('背下来，gh 不出声！', ox + 220, oy + 740, 54);
   K.text('⚔️ 过去式四大门派 · ④ 护法派', ox + 220, oy + 860, 40, { col: GREY, rate: 24 });
   T = K.cur + 1.6;
   K.cam(T, { x: 4150, y: 1790, z: 0.23, d: 1.6 });

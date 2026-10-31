@@ -1,0 +1,83 @@
+# 场景规格 · viewpoint 第 3 幕（写地址从小到大）——由知识模型生成，禁止手改产物 gen_viewpoint_3.js
+# items 模式（autoBuild）：台词只从 viewpoint.yaml 组装；口诀逐字引模型 vp-ch-address。
+# 落实：地址条只管地址（vp-cl-address-order）；morning 日子锚点单独成条（vp-cl-time-anchor）；
+# 原幕「时间也从小到大」的统一推论已删，日期以例外出场（vp-xc-date-us）。
+# 纲领声明（viewpoint.yaml domainNote）：无单一纲领，四幕按内容分挂三域，不硬挂统一纲领。
+# 本幕挂：dom-grammar（地址与日期书写顺序是书写惯例，归语法域；模型只列三域未逐幕映射，此为 spec 层指派，见构建报告）。
+scene: gen_viewpoint_3
+family: viewpoint
+pattern: auto_items_viewpoint
+template: fp_zoom_focus_3.js
+domain: dom-grammar
+domainNote: "无统一纲领：本幕按内容挂 dom-grammar；四幕各讲各的机制，不得互相解释"
+
+title: "写地址从小到大"
+teaches: [vp-cl-address-order, vp-cl-time-anchor, vp-xc-date-us]
+
+replace:
+  - ["第一性原理 · 由大到小 · 3", "联想工具箱 ⑥ 站位与顺序 · 3"]
+
+items:
+  - [n, "这一幕：写地址，英语为什么从最小的门牌写起？"]
+  - [w, "写地址从小到大"]
+  - [w, "⑥ 站位与顺序的四个小机关"]
+  - [w, "💡 这一幕的机关"]
+  - [w, "写地址从小到大"]
+  - [w, "⑥ 站位与顺序的四个小机关"]
+  - [m, "💡 这一幕的机关"]
+  - [m, "① 中文大到小"]
+  - [m, "② 英语小到大"]
+  - [m, "③ 日子锚点"]
+  - [m, "④ 日期另学"]
+  - [m, "⑤ 口诀"]
+  - [m, "🔮 预测"]
+  - [n, "中文写地址从大到小：先说北京，再一步步说到 201 室。"]
+  - [w, "中文：北京 → 星光学校 → 3 号楼 → 201 室"]
+  - [w, "（从大到小）"]
+  - [n, "英语正好反过来：这条只管写地址这一件事——从最小的门牌开始，往外排。"]
+  - [w, "Room 201"]
+  - [n, "往外一层：3 号楼……"]
+  - [w, "Building 3"]
+  - [n, "……星光学校……"]
+  - [w, "Star School"]
+  - [w, "Beijing"]
+  - [w, "英语地址：从小到大"]
+  - [w, "I am in Room 201,"]
+  - [w, "Building 3, Star School,"]
+  - [w, "Beijing."]
+  - [s, "I am in Room 201, Building 3, Star School, Beijing.", "我在北京星光学校 3 号楼 201 室。"]
+  - [s, "10 Downing Street, London, UK.", "伦敦唐宁街 10 号。", "Downing Street London"]
+  - [n, "再看一个关于 morning 的小机关：morning 单独出现，用 in。"]
+  - [w, "in the morning"]
+  - [n, "可是 morning 前面加上具体日子，就改从 day 的 on。"]
+  - [w, "on Tuesday morning"]
+  - [w, "on Sunday morning"]
+  - [s, "See you on Tuesday morning.", "星期二上午见。", "on Tuesday morning"]
+  - [n, "注意：这条只管 morning 的日子锚点，不是一条「时间都从小到大」的律。"]
+  - [w, "日子锚点：从 day 的 on"]
+  - [n, "日期的写法各国不同，要另学：美式 September 9 是先月后日——别拿地址的顺序去硬套日期。"]
+  - [w, "⚠️ 日期另学：美式 月 → 日 → 年"]
+  - [n, "口诀：写地址从小到大，日期写法另学。"]
+  - [w, "口诀：写地址从小到大"]
+  - [n, "预测：上海 · 花园路 · 5 号。写成英语地址，先写哪个？先想 3 秒！"]
+  - [w, "🔮 上海 · 花园路 · 5 号 → 英语先写？"]
+  - [n, "揭晓：从最小的门牌号开始：5 Garden Road, Shanghai。"]
+  - [w, "5 Garden Road, Shanghai —— 从小到大"]
+  - [s, "I live at 5 Garden Road, Shanghai.", "我住在上海花园路 5 号。", "live Garden Road Shanghai"]
+  - [w, "💡 一句话洞见"]
+  - [w, "写地址：英语从小到大，中文从大到小；"]
+  - [w, "日期写法各国不同，另学"]
+  - [w, "🎵 口诀"]
+  - [w, "口诀：写地址从小到大，日期写法另学。"]
+  - [w, "📦 联想工具箱 ⑥ 站位与顺序"]
+
+facts:
+  objects:
+    - { name: "英语地址", kind: "书写惯例", states: "从小到大：门牌 → 街道 → 城市 → 国家（vp-ex-address-small-big、vp-ex-flat-high-street 口径）；中文正好反过来" }
+    - { name: "morning 的介词", kind: "锚点切换", states: "单独出现用 in（in the morning）；带具体日子改从 day 的 on（on Tuesday morning）（vp-cl-time-anchor）" }
+    - { name: "日期写法", kind: "例外域", states: "各国不同、另学：美式 September 9 为月 → 日 → 年（vp-xc-date-us）" }
+  invariants:
+    - "地址顺序只适用于地址：屏上不得推广为「时间、日期也从小到大」的统一律"
+    - "morning 介词切换只由「有无日子锚点」决定：in the morning / on Tuesday morning 对照上屏"
+    - "日期以例外出场（美式月→日→年），不并入地址顺序"
+    - "屏上不出现「焦点先行与镜头缩放律」家族名与旧口诀「英语拉镜头，从小到大走」"

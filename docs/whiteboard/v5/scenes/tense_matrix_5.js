@@ -190,8 +190,8 @@ const HW = 4;
     K.rect(a0 - 10, oy + 370, a1 - a0 + 20, 68, { col: OR, w: 5 }).rect(f0 - 10, oy + 370, f1 - f0 + 20, 68, { col: OR, w: 5 }); }
   const en = 'We have already finished the homework.', st = T + 0.8;
   T = Math.max(T + d1, st + say(st, en, { word: 'have finished', key: ['have', 'finished'], zh: '我们已经写完作业了。' }));
-  K.at(T - 1.2).text('口诀：过去做完，结果留到现在 → have / has + 过去分词！', ox + 160, oy + 520, 46, { col: OR, rate: 14 });
-  T += N('口诀：过去做完，结果留到现在，就用 have / has + 过去分词！', T) + 0.2;
+  K.at(T - 1.2).text('口诀：过去发生，和现在有关系 → have / has + 过去分词！', ox + 160, oy + 520, 46, { col: OR, rate: 14 });
+  T += N('关系有两样最常见：① 做完了，结果还摆在现在——I have lost my key（钥匙现在还没找到）；② 一直持续到现在——I have lived here for ten years（现在还住在这儿，事情没\'做完\'）。所以别把完成时记成\'做完了\'，要记成\'和现在挂着钩\'。', T) + 0.2;
 }
 
 // ───────── 11 预测：I have finished my homework. ─────────
@@ -216,9 +216,9 @@ const HW = 4;
   K.at(T).rect(ox + 140, oy + 150, 1640, 760, { w: 6, rough: 1.2 });
   K.text('💡 一句话洞见', ox + 220, oy + 260, 54, { col: OR });
   K.text('现在完成时是一座桥：', ox + 220, oy + 350, 58);
-  K.text('动作在过去做完，结果一直留到现在', ox + 220, oy + 440, 58);
+  K.text('结果还摆在现在，或一直持续到现在', ox + 220, oy + 440, 58);
   K.text('🎵 口诀', ox + 220, oy + 560, 54, { col: OR });
-  K.text('口诀：过去做完，结果留到现在 →', ox + 220, oy + 650, 54);
+  K.text('口诀：过去发生，和现在有关系 →', ox + 220, oy + 650, 54);
   K.text('have / has + 过去分词！', ox + 220, oy + 740, 54);
   K.text('⏳ 时×体矩阵 · ⑤ 现在完成时', ox + 220, oy + 860, 40, { col: GREY, rate: 24 });
   T = K.cur + 1.6;

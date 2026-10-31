@@ -1,0 +1,32 @@
+T10 原理 ①②④⑤⑥ 建模完成（未提交、未改 runbook、未推送）。
+
+产出：
+- docs/whiteboard/model/phonology.yaml（① 口腔省力同化）：5 概念 / 7 主张 / 13 例证 / 6 例外 / 4 口诀
+- docs/whiteboard/model/letters.yaml（② 字母象形与音义同源簇）：4 / 6 / 9 / 5 / 5
+- docs/whiteboard/model/sentence.yaml（④ 单核谓语）：4 / 9 / 15 / 1 / 3
+- docs/whiteboard/model/spacetime.yaml（⑤ 三维几何向量时空；runbook 原列 rules5.yaml，按任务「文件名以内容定」交付为 spacetime.yaml）：5 / 5 / 11 / 8 / 5
+- docs/whiteboard/model/viewpoint.yaml（⑥ 焦点先行与镜头缩放）：4 / 6 / 12 / 5 / 4
+- 合计：22 概念 / 33 主张 / 60 例证 / 25 例外 / 21 口诀
+- docs/whiteboard/model/updates/principles_update.md：逐原理旧说法 → 新说法 + 裁定依据 + 来源对照 + 存疑清单 + ⑤⑥ 统一判据说明
+
+validate 结果（cd docs/whiteboard/model）：
+- 联合：python3 validate.py phonology.yaml letters.yaml sentence.yaml spacetime.yaml viewpoint.yaml → 退出码 0，「✓ 全部校验通过」
+- 逐个单文件：5 个文件各自退出码均为 0，全部通过
+- 附加核查：每条主张均有 explain（方法在 §3.3 枚举内、载体、失效边界）与 mechanism（真机制 / 帮记故事）；tendency 全有 scope + 例外；mnemonic 全有 linkedClaim；etymology 全有 source；rule 全 ≥2 例证；跨文件 ID 无重名；statement 无红线词；⑤⑥ on Tuesday morning 判据逐字相同（「有日子锚点时从 day 的 on：on Tuesday morning（morning 单独用 in，带具体日子改从 day 的 on）」）；③ 内容未串入 letters。
+
+复核结论：
+- 独立复核（错误级 100%、其余全量任务修复点核查）：初审不通过——E1 错误级（letters str-/sp-「并非同源」blanket 断言失实，string/strong 同源于 PIE *strenk-）+ G1–G8 一般问题。
+- 返修后独立重审：通过，阻塞性残留问题无。返修内容：E1 删除 blanket 断言并改 mechanism 为「帮记故事」；G1 补 -ed /ɪd/ 第三变体；G2 唇音表述；G3 例外收窄；G4 完成体总括改「和现在有关系」；G5 since yesterday 除外；G6 自编例换 X 剪刀；G7 纲领挂靠结构化；G8 标题补前缀。
+- viewpoint 标题「不是一条律」经复核确认合规：逐字采用 sf-014 否定式拆律声明，非立律。
+
+存疑项（详见 principles_update.md 存疑清单 Q1–Q6）：
+- Q1（口径冲突）：⑤ for 的站数——模型两站（为了谁 / 奔着哪儿）+ 时长后续补位 vs T5 sf-021/sf-022 三站（含 for two hours）及 domains.yaml 已收编的三站口径。双方均未擅自改写；复核裁定建议以 T5 三站为准、模型方跟进，替代路径须主会话正式裁定。在裁定前，spacetime 不得作为 for 的唯一口径交付。
+- Q2：① il- / ir- 两支留待后续，未展开。
+- Q3：① 方向义 in- 同化（import 一支）另条待补，与 sf-026 口径对齐；复核注 note 未落 sf-026 编号，实质内容已齐全。
+- Q4：④ 带必备状语的第六种仅登记，未展开。
+- Q5：⑤ 电梯、小船等交通边缘情形仅登记为低频边缘，未断言具体形式。
+- Q6：② twelve「余二」注为简化说法勿讲死，未讲死为严格词源推导。
+
+未做事项：本子代理未执行 git commit，未改 runbook，未改 grammar.yaml / boundedness.yaml / domains.yaml / 主 HTML，未推送。注意：本子代理撰写期间，并行的接班主运行已将 5 个模型文件（提交 2232296）与 principles_update.md（提交 a541019）先行提交入库，工作区与 HEAD 对模型目录的 diff 为 0、内容无损；仅 T10.done 本文件仍为未追踪状态，留待接班运行按步骤 2 收尾提交。
+
+补记（2026-11-01 接班运行核验）：本文件计数为 T10 协调交付时的快照；并行运行后续扩写（T10b 等）后，实测计数以 validate.py 为准——phonology 7 概念 / 10 主张 / 17 例证 / 10 例外 / 6 口诀；letters 4 / 6 / 9 / 5 / 5；sentence 4 / 9 / 15 / 1 / 3；spacetime 5 / 5 / 12 / 8 / 5；viewpoint 4 / 6 / 12 / 5 / 4；五文件联合校验退出码 0。关键修复点抽查在位：④分句律文、⑥完成体「和现在有关系/结果留到现在」、②真源 M/B/C/K/O/S、⑤ go off 例外、⑤⑥「有日子锚点时从 day 的 on」逐字统一。Q1（for 站数口径冲突）仍未决：T11 取用时以 T5 三站为准，spacetime 不得作为 for 的唯一口径。

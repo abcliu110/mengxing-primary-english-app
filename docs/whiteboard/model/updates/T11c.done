@@ -1,0 +1,52 @@
+# T11c · ④ 句量（sentence）+ ⑥ 视角（viewpoint）两家族八幕生成与验证 —— 完成记录
+
+管线：sentence.yaml / viewpoint.yaml（唯一内容源）→ specs/{sentence,viewpoint}_N.yaml → gen_scene.py（items 模式，未改生成器）→ gen_{sentence,viewpoint}_N.js → build.mjs → ~/workspace/your_files/gen-{sentence,viewpoint}-N.html。
+模板：八幕原模板均为 autoBuild/ITEMS 引擎。④-1 与 ⑥-1 的原 fp 案例 1 已迁入中英对照枢纽（INVENTORY 注明），故分别以现行版面 ze_be_1.js、ze_modifier_1.js 为模板；其余用 fp_one_king_2/3/4、fp_zoom_focus_2/3/4。
+精灵库：克隆里缺失的 sprites/fk2、fk3、fk4、fz2、fz3、fz4、zbe1、zmo1 已用 build_sprites.py 从 cast 原帧生成（fz3 的 ACTS 为空，按 fb39_3 先例以 l_coff0 占位）。
+
+## 逐幕结果
+| 幕 | 内容（模型记录） | 时长 | 构建 | 等效校验 |
+|---|---|---|---|---|
+| gen_sentence_1 一个分句一个王 | st-cl-one-finite + st-cl-king-picture | 189.4s | gen-sentence-1.html ✓ | 文字峰值 13%、零报错 |
+| gen_sentence_2 第二个动词跟谁走 | st-cl-verb-decides + st-cl-to-arrow + st-cl-ing-two + st-cl-done-separate | 212.4s | gen-sentence-2.html ✓ | 文字峰值 13%、零报错 |
+| gen_sentence_3 时态只标一次 | st-cl-do-support | 175.5s | gen-sentence-3.html ✓ | 文字峰值 12%、零报错 |
+| gen_sentence_4 五副骨架 | st-cl-five-patterns + st-cl-pattern-board | 160.4s | gen-sentence-4.html ✓ | 文字峰值 14%、零报错 |
+| gen_viewpoint_1 形容词站哪边 | vp-cl-adj-position + vp-cl-hyphen-pack + vp-xc-people-present | 149.2s | gen-viewpoint-1.html ✓ | 文字峰值 12%、零报错 |
+| gen_viewpoint_2 疑问词站第一 | vp-cl-wh-fronting + vp-xc-echo + vp-xc-embedded | 154.7s | gen-viewpoint-2.html ✓ | 文字峰值 15%、零报错 |
+| gen_viewpoint_3 写地址从小到大 | vp-cl-address-order + vp-cl-time-anchor + vp-xc-date-us | 139.7s | gen-viewpoint-3.html ✓ | 文字峰值 11%、零报错 |
+| gen_viewpoint_4 完成时 | vp-cl-perfect + vp-xc-perfect-yesterday | 160.1s | gen-viewpoint-4.html ✓ | 文字峰值 14%、零报错 |
+
+## 验证明细
+- 模型校验：validate.py sentence.yaml + viewpoint.yaml 通过（R1–R6）。
+- insightcheck（官方）：对本批报「强制检查 0 幕 / 不合格 0」——覆盖缺口同 T11b：强制集只收 concept.js/oral.js 幕，autoBuild 家族不在其中，此 0 不是实质通过。
+- 等效校验（~/workspace/tools/ic_gen8.py，复用官方 HOOK 采样）：八幕**不合格 0**——页面零报错、板上文字面积峰值 11–15%（门槛 40%）、时长在 40–240s 参考区间内。
+- 截图抽查：共 43 帧存 ~/workspace/shots_gen/gen-{sentence,viewpoint}-*.png，每幕 predict / 揭晓 / 收尾三段齐全并逐帧看过：无文字遮挡、无出框；揭晓均排在预测停顿之后（揭晓旁白横幅先行、板书随后，为 autoBuild 引擎既有节奏，与原幕一致）；收尾金句卡八幕齐全（洞见 + 口诀 + 家族标）；演员帧与 ACTS 触发一致（s1 m_like、s3 l_goout、v2 l_bed 等均正确渲染；s4 结尾全景拉远为引擎既有收尾，鸟/送礼演员帧在总览中可见）。
+- 口诀/判据逐字比对（脚本）：八幕口诀与模型 chant 原文一致；s4 五副例句逐字用模型 examples（She runs. / She is happy. / She eats apples. / She gave me a book. / We call him Tom.）；v4 两例（lost key / lived ten years）与 yesterday 例外行逐字在位。s1 判据以模型 chant 全文上屏（st-cl-one-finite 的 say 为该 chant 前半，同源记录）。
+- 禁用文案扫描通过：旧口诀「一个句子一个王，be 和 do 不同堂」「想做穿 to，在做穿 -ing」「侍卫拿令牌」「先搭骨架再挂花」、「一山不容二虎…律」、「焦点先行 / 镜头缩放律 / 焦点先出场」、「先选时间，再选镜头」、「结算」在八幕产物中零命中；v4 的「做完了」仅以被驳斥的误会与预测问句出场，不作判据。
+
+## 模型口径落实点
+### ④ sentence
+- 律文全面改「分句」：s1 新增模型反例段（I know he likes it. 两位核心分属两分句 + 并列句同例），预测题即数分句；「国王」只以 mnemonic 出场并当场带边界（数分句不数句子）。
+- s2：to 箭头降格 mnemonic（屏上明标「帮记，不是定义」）并链真规则，当场给失效边界（used to 指过去、like to 表习惯）；done 独立成段（被动 was broken / 完成 have washed），不与 to、doing 并列成「三件马甲」；-ing 两件马甲以「前面有没有 be」区分；finish doing = 做完 ≠ 享受过程入词；like 两边都站入词。
+- s3：口诀换模型「时态只标一次，标在第一个帮忙的词上」；徽章画面即模型 explain 载体；失效边界上屏（be 不请 do：Is she happy?）；错误式 Does he plays? / She can swims. 只作被否定的示范。
+- s4：五副例句全换模型例证；插线板 mnemonic 带失效边界（模具带意思的一层画面讲不出）；第六种与 there be 只作覆盖提醒。
+### ⑥ viewpoint（整族降格为联想工具箱，四幕各讲各的机制，屏上无统一律）
+- v1：判据改「一般 + 重量倾向」，开场先破「一律」误会；打包条（five-year-old / two-hour）与 people present 例外双向反例齐上屏。
+- v2：汉语疑问词表述改「留在原地」（不说在最后）；回声问句、从句居中两例外上屏，口诀带「不硬套」。
+- v3：地址条明标「只管写地址这一件事」；原幕「时间也从小到大」统一推论整段删除；morning 日子锚点单独成条（in the morning ↔ on Tuesday morning）；日期以例外出场（美式月→日→年）。
+- v4：开场误解出场（完成时 = 做完了？）→ 结果支 + 持续支并置驳斥（lived ten years 没做完）；判据/口诀只说「结果留到现在 / 和现在有关系」；yesterday 例外与 since yesterday 时段注记上屏。
+
+## 与原幕的出入（均以模型为准，已记录）
+1. v2 删除原幕感叹句段（What a clever boy! 等）：不在 viewpoint 模型内（vp-cl-wh-fronting 边界只管主句特殊疑问句），其位置由两例外段补足。
+2. v4 按模型收窄：原幕的 3×3「选时间 × 选拍法」总览属时态域（dom-tense-aspect），本家族模型只管完成时一格；一般/进行未在本幕展开（预测题亦换为持续支判别）。
+3. v3 删除原幕同心圆/镜头推拉的统一叙事，地址段只保留逐层往外的版面顺序，旁白不再声称统一律。
+4. s2 朗读行并列 enjoy reading（原幕例词，与模型例 enjoy swimming 同属 enjoy 一家模式，二者并列上屏）以触发模板 ACTS 的 l_read 帧；非新主张。
+5. s4 预测沿用原幕 She gives me an apple.（与模型双宾条口径一致）；模型规范例 She gave me a book. 已在正文上屏。
+6. s4 模型无 chant 记录，口诀行采用 st-cl-five-patterns 的 say 字段（同 T11a 第 4 幕先例）。
+
+## 未决问题 / 提请主会话注意
+1. **时长偏长**：八幕 140–212s（原幕约 90s 量级），因订正内容密度上升（s2 一幕承载四条主张，212.4s 最长）。再砍只能删模型内容或拆幕（如 s2 的 done 段独立成幕），属模式层决策，未动。
+2. **insightcheck 覆盖缺口**（同 T11b 第 4 项）：等效校验脚本已存 ~/workspace/tools/ic_gen8.py（可传任意 gen 幕名复用），建议 P2 把 autoBuild 家族纳入强制检查清单。
+3. **ACTS 触发未全中**：s4 的 fly / pass / reading、v4 的 play / reading 触发词不在模型例词内，未强行塞词；演员以 ACTS 首帧默认形象出场（s4 总览帧可见鸟与送礼帧，系版面既有安排）。如需全触发，须在模型层补例词后再回 spec。
+4. **儿童误读探针未跑**（§6 第 7 项，旗舰幕门禁待主会话定）：探针素材现成——s1「I know she likes apples 有几位国王？」、s2「used to 是指将来吗？」、v1「a five-year-old boy 里 five-year-old 为什么能站前面？」、v4「住了五年还住着，是『做完了』吗？」。
+5. 共享文件：**未动任何共享 lib**（fb39_lib.js、auto.js 等零改动）；新增文件仅 specs/{sentence,viewpoint}_1–4.yaml、gen_{sentence,viewpoint}_1–4.js、factsheets/gen_{sentence,viewpoint}_*.md、sprites/{fk2,fk3,fk4,fz2,fz3,fz4,zbe1,zmo1}.js 与八份 HTML。未做 git commit（按要求留给主会话）。

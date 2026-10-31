@@ -1,0 +1,20 @@
+T3 词汇修正入模 —— 完成（未提交 git，按任务要求留待主会话提交）
+
+产出：
+- docs/whiteboard/model/vocab_fixes.yaml（46 条修正记录，python3 yaml 解析已验）
+- docs/whiteboard/model/updates/vocab_update.md（分类统计 + 汇总表 + 逐条全文原→新 + 存疑清单）
+
+分类统计（46 条记录）：
+- 事实错误 15（含报告 12 条错误中的可确指项：watch/friend/news/light 之外的 scientist、桦树、glasses、tomato、eau 释义、pare/matic/visit、desk 判据、twin 类比、mistake gloss、VOCAB watch 释义联动）
+- 概念错误 2（light 同形异源拆分；shall 义项排序误导）
+- 分型错误 20（含 L-01 字段三分结构修正 1 条 + etymology 归位 8 条、bag 词根误标、orange 伪语素、dictionary 字段错位、func_info 模板 1 条覆盖 21 个条目、sight_type 三档重建、teach 对转、enjoy 借词、英美方言等价类目、season&weather 拆分、book/park 跨库补义 2 条）
+- 全称降格 7（play、fish、water、how、I/me/my/mine、February、strawberry）
+- 音标混标 2（water 拼接体、neighbourhood 英拼美标）
+- 按库：MH 23、VOCAB 11、WORD_FORMATION 8、WORD_RELATIONS 3、HOMOPHONES 1
+
+必查覆盖核对：
+- 12 条错误：watch（VF-001+002 跨库联动）、friend（VF-004）、news（VF-035）三假词源 ✓；light 拆分（VF-003）✓；scientist 机制（VF-005）✓；tomato 伪规则及与 photo 条自相矛盾（VF-025，已与 potato 名单钩子统一）✓；pre+pare（VF-036）、auto-（VF-037）、visit（VF-039）、twin 静音 w（VF-046）✓；报告统计中 VOCAB 第 2 条、WF 第 5 条"错误"正文未逐一点名，疑归类项（V-02、F-04、F-08）已一并修正，口径差异记入存疑 S-4。
+- 全称降格：fish 绝不加 s（VF-011）、play 必须 the（VF-010）等 7 条 ✓
+- 讲法升级 L-01～L-15 涉字段修改者全部落记录 ✓（L-13 拆词三问作编辑判据写入依据；L-14 desk 判据 VF-043；L-15 主表口径 VF-031/032）
+
+存疑未修正：6 项（见 vocab_update.md 第四节）——音标标准待拍板（S-1）、func_info 其余 19 条文案待逐条撰写（S-2）、MH 8 条真词源待补写（S-3）、报告统计口径差（S-4）、straw/beech 已降格对冲处理（S-5）、报告未审范围（S-6）。均未猜测填充。

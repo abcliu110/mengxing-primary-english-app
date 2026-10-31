@@ -1,0 +1,59 @@
+# 动作事实卡 · 切（刀切开 cut）
+# 依据 REWRITE_TECH_PLAN §4 / §8.5。吸收 boundedness_1 既有不变量「切分不产生新的整只：一个苹果只能得到两半」。
+
+id: refcard-cut
+action: cut
+title: "切：刀刃楔入物体、沿切面分成两部分"
+version: 1
+updated: 2026-11-01
+primitive: cut
+
+refs:
+  - id: cut-photo-1
+    kind: photo
+    file: refs/cut_apple_halves.jpg
+    source: "Getty 图库照片（双手持刀竖切苹果，侧面机位；经 Motley Fool 文章页引用）"
+    url: "https://www.fool.com/investing/2020/08/25/3-reasons-why-i-sold-half-of-my-apple-stock/"
+    shows: "刀尚未切到底，两半已被刀身楔开、沿刀面向两侧倾斜分离，露出平整互补的切面（果肉+果核在两切面上对应）；底部未切部分仍把两半连在一起；一只手扶住其中一半"
+  - id: cut-text-1
+    kind: text
+    source: "BBC Science Focus: How does a knife cut?"
+    url: "https://www.sciencefocus.com/science/how-does-a-knife-cut"
+    shows: "刀刃以极小接触面积把压强集中在一条线上，推开材料、留下一条窄槽；钝刀只会压扁一宽条，切不开"
+  - id: cut-text-2
+    kind: text
+    source: "FFJournal: The wedge as a cutting tool（楔形切削原理）"
+    url: "https://www.ffjournal.net/industry-news/99-training-education/11635-the-wedge-as-a-cutting-tool"
+    shows: "力先作用于刃口；楔入加深时刃口两侧隆起、侧向力把切口撑宽并引发裂开——一切切削都是『刻槽 + 劈开』；切口随刀深从刃口处向深处扩展"
+
+facts:
+  - id: cut-f1
+    statement: "接触在先：刀刃以刃线先接触物体顶部表面，切口从接触线开始、由表及里扩展；物体内部或底部不可能先于顶部开裂。"
+    assertion: "首个开裂帧：刃线与物体顶部距离 = 0，且裂口起点 = 刃线正下方；此前任何帧物体轮廓必须完整"
+    basis: [cut-text-2, cut-photo-1]
+  - id: cut-f2
+    statement: "楔开同步发生：刀身是楔形，深入过程中把两侧材料推离刀面——两半在刀刃切通之前就已开始分离、向两侧倾倒（参照图中刀未到底，两半已明显张开）。两半不得在刀未切到的部位先行分开。"
+    assertion: "两半分离角/间距随刀深单调增大；未切区域的截面保持连接，不得提前断开"
+    basis: [cut-photo-1, cut-text-1, cut-text-2]
+  - id: cut-f3
+    statement: "切面互补、体积守恒：切开后两个切面形状互补（内部结构如果核、籽在两切面上对应出现），两半之和 = 原整体；切分不可能产生新的完整整体（一苹果切开是两半，不是两个苹果）。"
+    assertion: "两半体积/面积之和与原整体误差 ≤5%；两切面轮廓互补；内部结构标记在两切面对应位置各出现一次（不得双份完整复制）"
+    basis: [cut-photo-1]
+  - id: cut-f4
+    statement: "切通才独立：刀刃到达支撑面（砧板/桌面）的一刻切断完成；在此之前两半仍由未切部分相连，只能随刀楔开而张开，不能各自独立移动或倒下。"
+    assertion: "两半独立位移的起始帧 ≥ 刀刃接触支撑面的帧"
+    basis: [cut-photo-1, cut-text-2]
+  - id: cut-f5
+    statement: "结束状态：两半停放在支撑面上，切面朝上或朝侧、平整可见；刀停在切口上方或离场，与两半不穿插重叠。"
+    assertion: "末帧刀身包围盒与两半包围盒不相交（刃尖停在切口正上方除外）"
+    basis: [cut-photo-1]
+
+invariants:
+  - "切分不产生新的整只：一个整体只能得到若干部分，部分之和等于原整体"
+  - "刃先接触顶面才开裂，切口由表及里"
+  - "两半随刀深楔开而分离，切通（刃达支撑面）后才可独立移动"
+  - "两个切面互补，内部结构对应出现、不双份复制"
+
+pending_refs:
+  - "软质材料（面包/蛋糕）切下时先被压扁再开裂的压缩量——待补慢动作参照"
+  - "抽刀（锯切）与直压切在切面形态上的差异——待补参照"

@@ -1,0 +1,13 @@
+T2 语法入模完成（2026-11-01，子代理执行，主会话待统一提交）。
+
+产出：
+- docs/whiteboard/model/grammar.yaml：领域纲领草案（coreView/unifies/conflicts）+ 21 个概念 + 61 条主张（rule 44 / tendency 11 / mnemonic 2 / etymology 4）+ 93 条例证 + 24 条例外 + 12 条口诀，覆盖 G01–G40 全部 40 点。
+- docs/whiteboard/model/updates/grammar_update.md：逐点「原说法 → 新说法 + 裁定依据 + 来源」对照表（40 点全覆盖）+ 存疑清单。
+
+修正点：实质修正 21 点——概念改判 6（G03 错误级·识解口径替换形状论，与 boundedness cl-packaging 同义；G04、G15、G19、G22、G28 编造机制全撤并按报告重写）、内容硬伤修正 3（G01 ves 量化、G28 fill 误判、G08 second floor 译文）、全称降格为 tendency 并登记例外 8（G01、G04、G06、G10、G14、G28、G29、G31）、讲法替换/降维 8（G02、G06、G14、G16、G19、G32、G35、G37、G40 中取讲法类，含重复计数口径见更新包表）、其余 19 点原样规范化入模。
+
+存疑未入模：2 项（Q1 G24 测验选项拆分改法，报告未给，属测验设计层；Q2 G31「焦点前置」术语的语言学地位，事实部分已入模、术语隔离）。另测验层遗留 G28 fill 题目本体改法已按报告建议登记在更新包，不属模型主张。
+
+自验：python3 yaml 解析通过；官方 validate.py 对 grammar.yaml + boundedness.yaml 联合校验全部通过（R1–R6 零失败）；独立自查确认 61 条主张 explain 字段（方法+隐喻失效边界）全覆盖，tendency 的 scope+例外、mnemonic 的 linkedClaim、etymology 的 source 全部齐备。
+
+补记（2026-11-01 通宵接班运行）：H1 已修复——grammar_update.md 整份重建补交（696 行；G01–G40 总览+逐点对照 40/40；文末存疑清单 Q1/Q2；计数行 21/61/93/24/12 与本体一致）。接班执行者独立核验：validate.py 通过且计数吻合；文档引用 97 个 id 对 grammar.yaml + boundedness.yaml 零缺失；无 truncated 残留、无单字断句行；G08「二楼」订正、G28 fill 改法、Q1/Q2 均在位。格式说明：重建版采用「总览表 + 每点展开节」而非单表，内容要素齐全，予以接受。

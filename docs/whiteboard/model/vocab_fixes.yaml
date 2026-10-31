@@ -1,0 +1,568 @@
+meta:
+  task: T3 词汇修正入模（OVERNIGHT_RUNBOOK）
+  date: '2026-11-01'
+  source_report: ~/workspace/content-audit/report_vocab.md（审查 354 单元：成立/基本成立 ≈86%，过度简化 39，错误 12）
+  scope: VOCAB_DB / MH_VOCAB_DB / WORD_FORMATION_DB / WORD_RELATIONS_DB / HOMOPHONES_DB
+  type_enum:
+  - 事实错误
+  - 概念错误
+  - 分型错误
+  - 全称降格
+  - 音标混标
+  rules: 修正文以报告所引一级来源（Etymonline/OED/牛津·剑桥词典）为准绳；无法确证者不入本表，见 updates/vocab_update.md 存疑清单。
+  stats:
+    total_records: 46
+    fact_errors: 15
+    concept_errors: 2
+    typing_errors: 20
+    quantifier_downgrades: 7
+    phonetic_mixes: 2
+    entries_touched_note: VF-033 一条覆盖 21 个 func_info 条目；VF-016 为全库字段结构修正；实际受影响条目 > 记录数。
+fixes:
+- id: VF-001
+  report_ref: W-01
+  db: MH_VOCAB_DB
+  entry_id: POLY_WATCH
+  word: watch
+  field: etymology
+  type: 事实错误
+  severity: 高
+  original: ⌚ 戴在手腕上随时低头"注视（watch）"时间的小机器，就叫手表 watch！
+  corrected: ⌚ watch 这个词最早是"守夜、保持清醒"的意思。最早的"手表"其实是能把人叫醒的小闹钟——它替你"守夜"，到点喊你起床，所以继承了 watch 这个名字；后来它越做越小，戴上了手腕。
+  basis: Etymonline：watch（名词"表"义）源自古英语 wæcce"守醒、守夜"，表义（1580年代）由"能唤醒睡者的闹钟"义发展而来；词源学家 Ayto：手表得名"probably not because you look at it, but because originally it woke you up"。报告 ④ L-02 讲法。
+  linked:
+  - VF-002
+  note: 复核注（L-1）：原文字段为规范化转写（引号由抽取 JSON 的全角“”转半角""），逐字原文以 content-audit 抽取 JSON 为准。
+- id: VF-002
+  report_ref: W-01
+  db: VOCAB_DB
+  entry_id: POLY_WATCH
+  word: watch
+  field: meaning
+  type: 事实错误
+  severity: 高
+  original: 观看，注视（电视、比赛等动态画面） / 手表（戴在手腕上随时"看"时间的工具）
+  corrected: 观看，注视（电视、比赛等动态画面） / 手表（戴在手腕上的计时工具；名字来自古英语"守夜、唤醒"——最早的手表是能叫醒人的小闹钟）
+  basis: 同 VF-001：MH 与 VOCAB 同一假词源故事跨库联动修正（报告 W-01 注明 VOCAB meaning 需一并改）。
+  linked:
+  - VF-001
+  note: 复核注（L-1）：原文字段为规范化转写（引号由抽取 JSON 的全角转半角，与 VF-001 同），逐字原文以 content-audit 抽取 JSON 为准。
+- id: VF-003
+  report_ref: W-02
+  db: MH_VOCAB_DB
+  entry_id: G4_157
+  word: light
+  field: etymology
+  type: 概念错误
+  severity: 高
+  original: 💡 追光 -ight 家族领头羊：有光的地方既明亮，又轻盈，颜色又清浅！
+  corrected: 💡 light 其实是两个长得一模一样的"陌生人"：一个 light 是"光"（light a candle），一个 light 是"轻"（light as a feather）。它们祖上不是一家，只是后来拼写撞衫了。判断方法：看搭配——跟 lamp、sun 一组的是"光"，跟 heavy 相反的是"轻"。（类比边界："撞衫"只指外形同、来源异；日常使用仍须按语境选义。）
+  basis: Etymonline/OED：light"光"源自印欧根 *leuk-（发光），light"轻"源自印欧根 *legʷʰ-（轻），古英语中为两个词（lēoht / lēoht），仅拼写趋同。报告 ④ L-03 讲法。
+- id: VF-004
+  report_ref: W-03
+  db: MH_VOCAB_DB
+  entry_id: G3_130
+  word: friend
+  field: etymology
+  type: 事实错误
+  severity: 高
+  original: 👫 一辈子在一起直到最后（end）也不分开的人，就是好朋友 friend！
+  corrected: 👫 真身世：friend 的老祖宗是古英语 frēond，意思是"爱着你的人"（来自 frēon"去爱"）——朋友的本质是"爱你的人"，这才是它真正的来历。（拼写小钩子另见巧记栏：fri+end 只帮记拼写，不是来历。）
+  basis: Etymonline/OED：friend < 古英语 frēond（frēon"爱"的现在分词），与 end 无任何关系。报告 ④ L-04 讲法。注：VOCAB_DB G3_130 spelling_alert 将同一故事明确标作"巧记"，属合法记忆术，不改；错只在 MH 把它写进 etymology 当身世。
+  linked:
+  - VF-016
+  note: 复核注（L-5）：linked 原误指 VF-031（VOCAB book 义项补齐，与本条无关），已改正为 VF-016——本条“身世≠巧记”的定性依据正是 VF-016 确立的三栏方案；VOCAB_DB G3_130 spelling_alert 的同一故事为合法“巧记”、无修正记录，故不设跨库修正联动。
+- id: VF-005
+  report_ref: W-04
+  db: MH_VOCAB_DB
+  entry_id: G6_278
+  word: scientist
+  field: etymology
+  type: 事实错误
+  severity: 中
+  original: 🧑‍🔬 把科学（science）末尾的 ce 换成专家尾巴 -tist，探索宇宙奥秘的人就是科学家 scientist！
+  corrected: 🧑‍🔬 scientist 是个"发明出来的词"，出生还不到两百年：1833 年，英国学者 Whewell 觉得研究科学的人没有统一称呼，就仿照 artist（艺术家）的样子，给 science 安上"做这行的人"的尾巴 -ist，造出了 scientist。它不是从 science 里"换零件"变出来的，是照着 artist 的样子新造的。（提醒：-ist 不是万能尾巴，不能类推造词。）
+  basis: OED：scientist 首证 1834 年 Whewell 书评，1833 年由其仿 artist 类推新造（"by analogy with artist"）；构词为词干 scient- + 后缀 -ist，不存在"ce 换 -tist"一步，"-tist"非后缀。报告 ④ L-08 讲法。同条 affix_root"sci（知晓）"本身正确（拉丁 scīre），不改；WORD_FORMATION_DB
+    后缀表"science ➔ scientist（加 -ist）"口径正确，与本条修正后一致（消除报告 C-06 的跨库矛盾）。
+- id: VF-006
+  report_ref: W-07
+  db: MH_VOCAB_DB
+  entry_id: G1_001
+  word: bag
+  field: affix_root
+  type: 分型错误
+  severity: 中
+  original: 🧩 基础词根 bag ➔ schoolbag (书包) · handbag (手提包)
+  corrected: 🧩 复合词：bag 本身就是一个完整的词（不是词根），schoolbag = school + bag（书包）、handbag = hand + bag（手提包）——两个现成的词拼成新词，叫复合词。
+  basis: 构词学常识：bag 为自由语素（独立单词），schoolbag、handbag 为复合词而非词根派生；原标签"词根"会污染词根/复合的区分（报告 W-07）。
+- id: VF-007
+  report_ref: W-08
+  db: MH_VOCAB_DB
+  entry_id: G1_002
+  word: book
+  field: etymology
+  type: 事实错误
+  severity: 中
+  original: 📖 古人把字写在桦树皮木片（book）上订成册，后来既指书本，又指登记预订！
+  corrected: 📖 一种主流说法：book 和"山毛榉树"（beech）是亲戚——日耳曼人把文字刻在山毛榉木片上订成册（这是学界主流假说，不是百分百定论）。后来"书"又引申出"登记入册"，所以 book 还能当"预订"讲。
+  basis: Etymonline：book 与 beech（山毛榉）的关联为词源学界主流假说；原文"桦树皮"树种错误（桦树 = birch）。报告 W-08。
+- id: VF-008
+  report_ref: W-09
+  db: MH_VOCAB_DB
+  entry_id: G1_009
+  word: eye
+  field: affix_root
+  type: 事实错误
+  severity: 中
+  original: 🧩 eye (眼睛) ➔ eyebrow (眉毛) · eyesight (视力) · glasses (眼镜)
+  corrected: 🧩 eye (眼睛) ➔ eyebrow (眉毛) · eyesight (视力)（glasses"眼镜"是 glass 的复数转指，与 eye 没有构词关系，已移出本条）
+  basis: glasses 源自 glass（玻璃/镜片材料），与 eye 无构词关系（报告 W-09）。
+- id: VF-009
+  report_ref: W-10
+  db: MH_VOCAB_DB
+  entry_id: G1_039
+  word: orange
+  field: affix_root
+  type: 分型错误
+  severity: 中
+  original: 🧩 or-ange（注意元音音素 /ɔː/ 开头，一个橙子必用 an orange）
+  corrected: （本条 affix_root 清空：orange 不可这样拆——它源自梵语 nāraṅga 经波斯语、阿拉伯语、法语辗转而来，"or-ange"是为发音硬切的假块。发音提醒"以元音音开头、用 an orange"移入拼读提示栏。）
+  basis: Etymonline：orange < 梵语 nāraṅga，经波斯语 nārang、阿拉伯语 nāranj、法语 orenge 传入，切分点在历史中不存在（报告 W-10）。本条 etymology"先有水果名、后有颜色名"成立，保留不改。
+- id: VF-010
+  report_ref: W-05 / L-05
+  db: MH_VOCAB_DB
+  entry_id: G2_0489
+  word: play
+  field: syntax_contrast
+  type: 全称降格
+  severity: 中
+  original: 【The 的生死线】play + 球类/棋类 绝不加 the；play + 西洋乐器 必须加 the！
+  corrected: 【play 的冠词习惯】play 后面跟球类、棋类：不加 the（play football）；跟乐器：一般加 the（play the piano）——不分西洋还是民族乐器（play the erhu 也一样）。小口袋再装一条：美国人口语里乐器前的 the 常常省掉，听到 play piano 别奇怪，那不是错。"一般"二字不许删。
+  basis: 报告 W-05 / L-05：主干规则成立，但"绝不/必须"双全称过头——美式口语 play piano 省 the 常见；规则对象应为"乐器类"而非"西洋乐器"。
+- id: VF-011
+  report_ref: W-06 / L-06
+  db: MH_VOCAB_DB
+  entry_id: G1_017
+  word: fish
+  field: syntax_contrast
+  type: 全称降格
+  severity: 中
+  original: 【单复数同形三剑客】sheep（绵羊）、deer（鹿）、fish（鱼条数）复数绝不加 s！
+  corrected: 【单复数同形三剑客】sheep（绵羊）、deer（鹿）复数永远是原形；fish 有个小机关：看一群鱼用 fish 不变（three fish），数"有多少种鱼"时可以加 -es 变 fishes。
+  basis: 牛津/剑桥词典：fishes 为合法复数（指种类或多条个体，如 the fishes of the Pacific）。与 VOCAB_DB G3_127 fish spelling_alert"指种类时才加 es"对齐——消除报告 W-06 指出的 MH 与 VOCAB 自相矛盾。报告 ④ L-06 讲法（镜头框架）。
+- id: VF-012
+  report_ref: W-11
+  db: MH_VOCAB_DB
+  entry_id: G1_055
+  word: water
+  field: syntax_contrast
+  type: 全称降格
+  severity: 低
+  original: 【不可数名词铁律】water 绝不能加 a 或 s，谓语配单数 Water is important。
+  corrected: 【不可数名词主干规则】water 一般不加 a 或 s，谓语配单数（Water is important）；但指"水域、水体"时有 waters 的用法（如 territorial waters 领海）——"一般"指日常喝的水那种情形。
+  basis: 词典例证：waters"水域"为标准用法（报告 W-11）。
+- id: VF-013
+  report_ref: W-12
+  db: MH_VOCAB_DB
+  entry_id: G3_Q08
+  word: how / how many / how much
+  field: syntax_contrast
+  type: 全称降格
+  severity: 中
+  original: 【可数与不可数提问铁律】How many 后必须紧跟可数名词复数；How much 问不可数或金钱价格。
+  corrected: 【可数与不可数提问规则】How many 后面跟被问的那个可数名词、用复数（How many books?）；上文已经很清楚时，名词可以省掉（How many are there?）。How much 问不可数的量或金钱价格。
+  basis: 报告 W-12：名词承前省略（How many are there?）为合法反例，"必须紧跟"不成立。
+- id: VF-014
+  report_ref: C-02
+  db: MH_VOCAB_DB
+  entry_id: G1_P01
+  word: I / me / my / mine
+  field: syntax_contrast
+  type: 全称降格
+  severity: 中
+  original: 【代词变格铁律】英语代词必须随句中位置变格，且名物代 = 形物代 + 名词（mine = my book）。
+  corrected: 【代词变格规则】英语代词随句中位置变格。名物代大多是"形物代的独立版"：my→mine、your→yours、her→hers、our→ours、their→theirs（多在尾巴上加 -s 或换尾）；但 his 主格形物两用同形、its 几乎不当名物代用——这两个要单独记。"mine = my book"只是帮记的钩子，不是拼法公式。
+  basis: 报告 C-02：hers 并非"her + 名词"的简单拼接（需加 -s），its 亦为例外；原式立为"铁律"不成立，降格为倾向 + 例外清单。
+- id: VF-015
+  report_ref: W-12
+  db: MH_VOCAB_DB
+  entry_id: G6_264
+  word: dictionary
+  field: syntax_contrast
+  type: 分型错误
+  severity: 中
+  original: 【将来时计划铁律】含有 tomorrow/tonight/next week 时，用 be going to + 动词原形表计划打算。
+  corrected: （本条 syntax_contrast 清空：原内容是与 dictionary 无关的将来时规则，属字段内容错位，已移出本词条。该规则本身亦需降格——"有计划打算常用 be going to，will 也可以"，归语法库将来时条目处理。）
+  basis: 报告 W-12 后半：dictionary 条的 syntax_contrast 与本词无关；且"含 tomorrow 就用 be going to"过头（will 同样可以）。本条 etymology/affix_root 的 dict 词根内容成立，保留。
+- id: VF-016
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: （全库结构）
+  word: —
+  field: etymology（字段定义）
+  type: 分型错误
+  severity: 高
+  original: etymology 单栏混装：真词源、联想故事、可数性/冠词/义项等用法说明不加区分（22 条中仅少数为真词源）。
+  corrected: 字段拆为三栏并强制标注：①【单词身世】（有 Etymonline/OED 级出处才准用）；②【巧记故事】（编的故事，明说"这是编来帮你记住的，不是真的来历"）；③【用法说明】（可数性、冠词、义项辨析等从 etymology 栏移出）。查不到出处的"身世"一律降格为【巧记故事】。
+  basis: 报告 C-01 / L-01：字段名实不符是假词源的总源头；联想可留但必须贴标签。
+- id: VF-017
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: G1_017
+  word: fish
+  field: etymology
+  type: 分型错误
+  severity: 中
+  original: 📖 游在水里数条数是可数（单复同形），端上餐桌吃鱼肉是不可数！
+  corrected: （移出 etymology 栏 → 【用法说明】栏，原文保留不改动；etymology 栏清空，待按【单词身世】标准补写有出处的真词源——见存疑清单。）原因为：内容为可数性说明，不是词源。
+  basis: 报告 C-01 点名：fish、water、park、play、bag 等条 etymology 装的不是词源；L-01 字段三分方案。
+  linked:
+  - VF-016
+- id: VF-018
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: G1_055
+  word: water
+  field: etymology
+  type: 分型错误
+  severity: 中
+  original: 💧 既是不可数名词"水"，也是动词"浇水"！
+  corrected: （移出 etymology 栏 → 【用法说明】栏，原文保留不改动；etymology 栏清空，待按【单词身世】标准补写有出处的真词源——见存疑清单。）原因为：内容为词性/义项说明，不是词源。
+  basis: 报告 C-01 点名：fish、water、park、play、bag 等条 etymology 装的不是词源；L-01 字段三分方案。
+  linked:
+  - VF-016
+- id: VF-019
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: G2_080
+  word: park
+  field: etymology
+  type: 分型错误
+  severity: 中
+  original: 🏞️ 供人散步停留的绿地是名词"公园"，供车辆停靠的动作是动词"停车"！
+  corrected: （移出 etymology 栏 → 【用法说明】栏，原文保留不改动；etymology 栏清空，待按【单词身世】标准补写有出处的真词源——见存疑清单。）原因为：内容为义项罗列，不是词源。
+  basis: 报告 C-01 点名：fish、water、park、play、bag 等条 etymology 装的不是词源；L-01 字段三分方案。
+  linked:
+  - VF-016
+- id: VF-020
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: G2_0489
+  word: play
+  field: etymology
+  type: 分型错误
+  severity: 中
+  original: 🎮 三合一全能王：玩游戏、打球（零冠词）、弹琴（定冠词 the）、演话剧！
+  corrected: （移出 etymology 栏 → 【用法说明】栏，原文保留不改动；etymology 栏清空，待按【单词身世】标准补写有出处的真词源——见存疑清单。）原因为：内容为用法罗列，不是词源。
+  basis: 报告 C-01 点名：fish、water、park、play、bag 等条 etymology 装的不是词源；L-01 字段三分方案。
+  linked:
+  - VF-016
+- id: VF-021
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: G1_001
+  word: bag
+  field: etymology
+  type: 分型错误
+  severity: 中
+  original: 📖 b-a-g 三个字母拼成随身小包，衍生出 schoolbag（书包）、handbag（手提包）！
+  corrected: （移出 etymology 栏 → 【用法说明】栏，原文保留不改动；etymology 栏清空，待按【单词身世】标准补写有出处的真词源——见存疑清单。）原因为：内容为拼读+复合词说明，不是词源。
+  basis: 报告 C-01 点名：fish、water、park、play、bag 等条 etymology 装的不是词源；L-01 字段三分方案。
+  linked:
+  - VF-016
+- id: VF-022
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: G4_174
+  word: study
+  field: etymology
+  type: 分型错误
+  severity: 中
+  original: 📚 既指"学习"的动作，也指家里专门用来学习的"书房"！
+  corrected: （移出 etymology 栏 → 【用法说明】栏，原文保留不改动；etymology 栏清空，待按【单词身世】标准补写有出处的真词源——见存疑清单。）原因为：内容为义项说明，不是词源。
+  basis: 报告 C-01 点名：fish、water、park、play、bag 等条 etymology 装的不是词源；L-01 字段三分方案。
+  linked:
+  - VF-016
+- id: VF-023
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: G3_Q08
+  word: how / how many / how much
+  field: etymology
+  type: 分型错误
+  severity: 中
+  original: 🔢 单用 how 问方式或身体；加 many 数可数复数；加 much 问不可数或价格！
+  corrected: （移出 etymology 栏 → 【用法说明】栏，原文保留不改动；etymology 栏清空，待按【单词身世】标准补写有出处的真词源——见存疑清单。）原因为：内容为用法说明，不是词源。
+  basis: 报告 C-01 点名：fish、water、park、play、bag 等条 etymology 装的不是词源；L-01 字段三分方案。
+  linked:
+  - VF-016
+- id: VF-024
+  report_ref: C-01 / L-01
+  db: MH_VOCAB_DB
+  entry_id: G1_P01
+  word: I / me / my / mine
+  field: etymology
+  type: 分型错误
+  severity: 中
+  original: 🙋 句首当队长用大写的 I，动介词后用宾格 me，牵着名词用 my，独立结尾用 mine！
+  corrected: （移出 etymology 栏 → 【用法说明】栏，原文保留不改动；etymology 栏清空，待按【单词身世】标准补写有出处的真词源——见存疑清单。）原因为：内容为用法说明，不是词源。
+  basis: 报告 C-01 点名：fish、water、park、play、bag 等条 etymology 装的不是词源；L-01 字段三分方案。
+  linked:
+  - VF-016
+- id: VF-025
+  report_ref: V-01 / L-07
+  db: VOCAB_DB
+  entry_id: G4_195
+  word: tomato
+  field: spelling_alert
+  type: 事实错误
+  severity: 高
+  original: ⚠️ 易错预警：有生命的植物果实以 o 结尾，复数要加 es（tomatoes）！
+  corrected: ⚠️ 易错预警：-o 结尾的词变复数没有总规则，只有一张小名单要死记：hero、potato、tomato、echo 加 -es；其余认识的 -o 词（photo、piano、radio、kilo）都加 -s。名单用钩子背："英雄爱吃土豆和西红柿"（见 potato 条）。
+  basis: 报告 V-01 / L-07：伪规则——判据"有生命的植物果实"不成立，同库 photo 条（G4_0381）"复数直接加 s（photos）"即为反例；-es 组实为需死记的小名单。修正后与 potato 条（G4_193）的名单钩子统一，消除两条互相打架。
+  note: 失效边界（报告 L-07）：名单之外另有 volcano、tornado 等 -o 词，复数 -s / -es 两式并存皆可（volcanos / volcanoes、tornados / tornadoes），属名单外情形，不归本条名单管；拿不准的 -o 词以词典为准。
+- id: VF-026
+  report_ref: V-02
+  db: VOCAB_DB
+  entry_id: G4_0451
+  word: beautiful
+  field: spelling_alert
+  type: 事实错误
+  severity: 低
+  original: ⚠️ 易错预警：元音串 eau 别漏字母！巧记：b + eau（美丽的水）+ ti + ful。
+  corrected: ⚠️ 易错预警：元音串 eau 别漏字母！巧记：b + eau + ti + ful——eau 三个字母连在一起最容易漏，单独圈出来记。（beautiful 的构词是 beauty + -ful；eau 只是借来记字母顺序的串，不要讲成"美丽的水"。）
+  basis: 报告 V-02：eau 是法语"水"，不是"美丽的水"，原释义把 beau（美）的语义错安到 eau 头上；口诀可留，释义须删。构词依据：beauty + -ful。
+- id: VF-027
+  report_ref: V-04
+  db: VOCAB_DB
+  entry_id: G5_0605
+  word: February
+  field: spelling_alert
+  type: 全称降格
+  severity: 低
+  original: ⚠️ 易错预警：首字母大写，第一个 r 不发音但必须写出来（Feb-ru-ary）！
+  corrected: ⚠️ 易错预警：首字母大写，拼写时第一个 r 必须写出来（Feb-ru-ary）！发音上它随口音变：英式常读出来，美式口语常吞掉——写的时候一个都不能少。
+  basis: 报告 V-04：英式常读 /ˈfebrʊəri/，美式口语常吞 r，"不发音"写成无条件事实不准。
+- id: VF-028
+  report_ref: C-05
+  db: VOCAB_DB
+  entry_id: G1_055
+  word: water
+  field: phonetic
+  type: 音标混标
+  severity: 中
+  original: /ˈwɔːtər/（英式元音 + 美式卷舌 r 的拼接体，两式皆非）
+  corrected: 二选一并全库统一：英式 /ˈwɔːtə/；美式 /ˈwɔːt̬ɚ/（简化标法 /ˈwɔːtər/ 仅当全库以美式为准且 r 为卷舌音时成立，但长音符号须与美式体系一致）。最终选哪一式见存疑清单（须与教材配套音频一致），拼接体必须消除。
+  basis: 报告 C-05 / L-12：英式应为 /ˈwɔːtə/，美式应为 /ˈwɔːt̬ɚ/ 或 /ˈwɑːtər/；原标为两式拼接。
+  note: 复核注（L-2）：原文字段构成——数据原文仅音标 /ˈwɔːtər/；紧随的括注（英式元音 + 美式卷舌 r 的拼接体，两式皆非）为修正作者的诊断注，非数据原文。
+- id: VF-029
+  report_ref: V-05 / C-05
+  db: VOCAB_DB
+  entry_id: G6_0778
+  word: neighbourhood
+  field: phonetic
+  type: 音标混标
+  severity: 低
+  original: /ˈneɪbərhʊd/（英式拼写词条配美式音标）
+  corrected: 与英式拼写对齐：/ˈneɪbəhʊd/。（若全库最终定美式：词条改拼 neighborhood、音标保留 /ˈneɪbərhʊd/；二选一，见存疑清单。）
+  basis: 报告 V-05：neighbourhood 以英式拼写立条、音标却给美式，与 C-05 同源。
+  note: 复核注（L-2）：原文字段构成——数据原文仅音标 /ˈneɪbərhʊd/；紧随的括注（英式拼写词条配美式音标）为修正作者注，非数据原文。
+- id: VF-030
+  report_ref: V-05
+  db: VOCAB_DB
+  entry_id: G3_K48
+  word: shall
+  field: meaning
+  type: 概念错误
+  severity: 低
+  original: 将；……好吗（提建议）
+  corrected: ……好吗（用于 I / we 开头的问句提建议：Shall we go?）；将要（正式/书面语，日常口语少用）
+  basis: 报告 V-05：现代英语 shall 主要用于建议/提议，"将"居首位易误导；本条 func_info 的提示反而写对了，仅调换义项顺序并加注。
+- id: VF-031
+  report_ref: C-06 / L-15
+  db: VOCAB_DB
+  entry_id: G1_002
+  word: book
+  field: meaning
+  type: 分型错误
+  severity: 中
+  original: 书，书本（has_polysemy=true 但"预订"义缺失，与 MH 不一致）
+  corrected: 书，书本；预订（动词：book a ticket 预订票）
+  basis: 报告 C-06 / L-15：VOCAB 为主表，义项清单只许一个出处；MH G1_002 已有"预订"义，VOCAB 须补齐以兑现 has_polysemy 标记。
+  note: 复核注（L-2）：原文字段构成——数据原文仅“书，书本”；紧随的括注（has_polysemy=true 但"预订"义缺失，与 MH 不一致）为修正作者注，非数据原文。
+- id: VF-032
+  report_ref: C-06 / L-15
+  db: VOCAB_DB
+  entry_id: G2_080
+  word: park
+  field: meaning
+  type: 分型错误
+  severity: 中
+  original: 公园（has_polysemy=true 但"停车"义缺失，与 MH 不一致）
+  corrected: 公园；停车（动词：park the car 停车）
+  basis: 报告 C-06 / L-15：同 VF-031，MH 已有"停车"义，VOCAB 主表须补齐。
+  note: 复核注（L-2）：原文字段构成——数据原文仅“公园”；紧随的括注（has_polysemy=true 但"停车"义缺失，与 MH 不一致）为修正作者注，非数据原文。
+- id: VF-033
+  report_ref: C-03 / V-03 / L-10
+  db: VOCAB_DB
+  entry_id: G4_0425、G5_0426、G5_0427、G5_0428、G5_0429、G5_0430、G5_0431、G4_0432、G5_0433、G5_0434、G5_0435、G5_0612、G5_0613、G5_0614、G5_0615、G6_0616、G6_0617、G6_0618、G5_0638、G4_0721、G4_0722
+  word: （21 条，见 note）
+  field: func_info.tip
+  type: 分型错误
+  severity: 中
+  original: 高频功能词（代词/介词）：主要承担句子连接、指代或空间时间定位功能，建议结合 Sight Words 与语法模块掌握。（21 条同一套话）
+  corrected: 删除模板套话，逐条按"功能目的式 + 最小对立"人工撰写。已定稿示范两条——everyone："everyone 是'全体集合'词：指所有人，但动词按单数走（Everyone is here）——一个人称代词顶起一整群人。"；someone："someone 是'不知是谁的某个人'：肯定句用它（Someone is at the door），否定和疑问句里换成 anyone。"其余
+    19 条文案待逐条撰写（见存疑清单），禁止再用模板批量生成。
+  basis: 报告 C-03 / L-10：套话对每个具体词零信息，是占位符泄漏冒充语法说明；L-10 给出 everyone/someone 示范全文。
+  note: 条目清单：G4_0425 everyone、G5_0426 everybody、G5_0427 someone、G5_0428 somebody、G5_0429 anyone、G5_0430 anybody、G5_0431 nobody、G4_0432 something、G5_0433 anything、G5_0434 everything、G5_0435 nothing、G5_0612
+    myself、G5_0613 yourself、G5_0614 himself、G5_0615 herself、G6_0616 ourselves、G6_0617 yourselves、G6_0618 themselves、G5_0638 across、G4_0721 outside、G4_0722 inside
+- id: VF-034
+  report_ref: C-04 / L-11
+  db: VOCAB_DB
+  entry_id: （全库结构，822/1567 条为空）
+  word: —
+  field: sight_type
+  type: 分型错误
+  severity: 中
+  original: sight_type 仅 decodable / irregular 两类且 52% 为空；irregular 的 19 条与 irregular_info 完全重合（分型零增量信息）；kitchen（G4_171）有 spelling_alert 却无 sight_type、chicken（G1_049）为 decodable，标注不一致；"I / me / my / mine"词形表条目被标
+    decodable 属类目误用。
+  corrected: 按可操作定义重建三档：①全规则 decodable（能靠拼读规则自己读出，如 bag）；②一半规则一半死记 partly（如 said 的 ai 读 /e/，须在 irregular_info 指出哪部分不合规则）；③全靠记 heart word（如 one）。822 条空缺限期补齐，补不齐则整字段下线——半成品分型比没有更误导。词形表类条目（如 I/me/my/mine）不标
+    sight_type。
+  basis: 报告 C-04 / L-11。
+- id: VF-035
+  report_ref: F-01 / L-09
+  db: WORD_FORMATION_DB
+  entry_id: compounds · newspaper
+  word: newspaper
+  field: tip
+  type: 事实错误
+  severity: 高
+  original: 印满四方新闻的纸（news=North+East+West+South）
+  corrected: 印满新闻的纸。news 的真身世很简单：它就是 new（新的）变成的名词——"一堆新事情"。网上流传的"North+East+West+South 首字母"是假的，那是 1640 年一本笑话书里的段子。防伪法：凡说某老词是"首字母缩略"的多半是假的——缩略词是 20 世纪才流行的造词法（laser、scuba 是真缩略，但都是新词）。
+  basis: Etymonline 直斥 N/E/W/S 说为 "absurd folk etymology"；news 为 new 的复数名词化，仿法语 nouvelles。报告 F-01 / L-09。
+- id: VF-036
+  report_ref: F-02 / L-13
+  db: WORD_FORMATION_DB
+  entry_id: prefixes · pre-
+  word: prepare
+  field: examples
+  type: 事实错误
+  severity: 中
+  original: pare ➔ prepare（提前准备）
+  corrected: （删除本例）prepare 拆不成 pre- + pare：它来自拉丁语 praeparāre（prae"预先" + parāre"准备"），现代英语的 pare（削、剪）是另一个词。pre- 的例词保留 view ➔ preview、school ➔ preschool；prepare 按"不可拆"处理。
+  basis: Etymonline：prepare < 拉丁 praeparāre；pare 为另一词。报告 F-02 / L-13"拆词三问"。
+  note: 复核注（L-1）：原文字段为规范化转写（括号由抽取 JSON 的半角 () 转全角（）），逐字原文以 content-audit 抽取 JSON 为准。
+- id: VF-037
+  report_ref: F-03 / L-13
+  db: WORD_FORMATION_DB
+  entry_id: prefixes · auto-
+  word: automatic
+  field: examples
+  type: 事实错误
+  severity: 中
+  original: matic ➔ automatic（自动的）
+  corrected: auto-（自己、自动）例词改为：mobile ➔ automobile（汽车）、autograph（亲笔签名）。automatic 是希腊语整体借词（automatos"自己动的"），里面的 "matic" 不是一个词、不是语素，不许拆。
+  basis: Etymonline：automatic < 希腊 automatos（auto- + -matos"意愿/行动"）。报告 F-03。
+  note: 复核注（L-1）：原文字段为规范化转写（括号由抽取 JSON 的半角 () 转全角（）），逐字原文以 content-audit 抽取 JSON 为准。
+- id: VF-038
+  report_ref: F-04
+  db: WORD_FORMATION_DB
+  entry_id: prefixes · mis-
+  word: mistake
+  field: examples
+  type: 事实错误
+  severity: 低
+  original: take ➔ mistake（错误）
+  corrected: take ➔ mistake（误拿；误解）
+  basis: 报告 F-04：mistake 的 -take 确为 take 词根（此点保留），但其动词义是"误拿、误解"，原 gloss 只给名词义"错误"，与派生演示对不上。
+  note: 复核注（L-1）：原文字段为规范化转写（括号由抽取 JSON 的半角 () 转全角（）），逐字原文以 content-audit 抽取 JSON 为准。
+- id: VF-039
+  report_ref: F-05 / L-13
+  db: WORD_FORMATION_DB
+  entry_id: roots · vis/vid
+  word: visit
+  field: words
+  type: 事实错误
+  severity: 中
+  original: visit (vis 看 + it 走 ➔ 走过去看望：参观/拜访)
+  corrected: visit (vis 看 ➔ 一再去看 ➔ 参观/拜访)——它来自拉丁语 vīsitāre，是 vīsere"去看"的反复体；中间的 -it- 不是"走"（拉丁语"走"是 īre，exit 里的 -it 才是"走"）。
+  basis: Etymonline：visit < 拉丁 vīsitāre（vīsere 的反复体），vīsere < vidēre"看"。报告 F-05。
+  note: 复核注（L-1）：原文字段为规范化转写（抽取 JSON 原文"vis看+it走"无空格，本字段以空格分隔），逐字原文以 content-audit 抽取 JSON 为准。
+- id: VF-040
+  report_ref: F-06
+  db: WORD_FORMATION_DB
+  entry_id: compounds · strawberry
+  word: strawberry
+  field: tip
+  type: 全称降格
+  severity: 低
+  original: 铺着稻草种植的红浆果
+  corrected: 红浆果；straw 的来历学界还没有定论——一种说法是莓田里铺稻草护果，另有"茎蔓散乱如草""果面籽粒如草屑"等说法。先记住 straw + berry 的拼写，"为什么叫 straw"标"一种说法"。
+  basis: 报告 F-06：straw 由来词源学未有定论，原 tip 把候选说之一写成定论。
+- id: VF-041
+  report_ref: F-07
+  db: WORD_FORMATION_DB
+  entry_id: prefixes · en-
+  word: enjoy
+  field: examples
+  type: 分型错误
+  severity: 低
+  original: joy ➔ enjoy (享有/喜爱)（与 rich ➔ enrich 并列作 en- 派生演示）
+  corrected: （从 en- 派生演示中移出）enjoy 是经古法语 enjoir 整体借进英语的，不是在英语里用 en- 现场加在 joy 上派生的，不能拿它教孩子类推 en-。en- 例词保留 rich ➔ enrich（使丰富）。
+  basis: Etymonline：enjoy < 古法语 enjoir。报告 F-07：作历史词源可通，作构词演示误导。
+- id: VF-042
+  report_ref: F-08
+  db: WORD_FORMATION_DB
+  entry_id: family_matrices · teach
+  word: teach
+  field: opposite
+  type: 分型错误
+  severity: 低
+  original: 'opposite: learn (学习)'
+  corrected: 'opposite: —（teach 没有反义词；learn 是"对转词"——同一件事的施受两面，如 buy/sell，不是反义关系，不要填进 opposite 栏）'
+  basis: 报告 F-08：teach/learn 为 converse（施受对转），与同表 happy↔unhappy 的"反义"标准不一致。
+- id: VF-043
+  report_ref: R-01 / L-14
+  db: WORD_RELATIONS_DB
+  entry_id: synonyms · 桌子组
+  word: desk / table
+  field: words
+  type: 事实错误
+  severity: 中
+  original: desk（带抽屉用于读书办公的书桌/课桌），table（无抽屉用于吃饭聚餐的餐桌/圆桌）
+  corrected: desk（干活的台面：写字、办公、上课用的书桌/课桌），table（摆东西、吃饭的台面：餐桌/桌子）——区别在"干什么活"，不在有没有抽屉：餐桌有抽屉还是 table，课桌没抽屉还是 desk。
+  basis: 报告 R-01 / L-14：原判据"抽屉"错误（餐桌可有抽屉、课桌可无），应以用途区分。
+  note: 复核注（L-1）：原文字段为规范化转写（抽取 JSON 中 desk、table 为 words 数组的两个独立条目，本字段合并为一句且括号转全角），逐字原文以 content-audit 抽取 JSON 为准。
+- id: VF-044
+  report_ref: R-02 / C-07
+  db: WORD_RELATIONS_DB
+  entry_id: synonyms · 英美同义词对
+  word: autumn/fall 等 6 对
+  field: group（类目名与释义）
+  type: 分型错误
+  severity: 低
+  original: 组名"英美同义词对"；其中 shop (英：商店) = store (美)
+  corrected: 组名改为"英美方言等价词"（同一东西在英式/美式里的不同说法，不是同义词）。shop/store 一对改注：shop（商店；英式通用，美式多指小店）= store（商店；美式通用，英式多指大商店）——两边都用，只是重心不同。其余五对（autumn/fall、film/movie、holiday/vacation、football/soccer、sweets/candy）保留。
+  basis: 报告 C-07 / R-02：方言等价词误入同义词类目；shop=store 的英美归属本身不准。
+- id: VF-045
+  report_ref: R-02 / C-07
+  db: WORD_RELATIONS_DB
+  entry_id: category_sets · season & weather
+  word: season & weather
+  field: hypernym / hyponyms
+  type: 分型错误
+  severity: 低
+  original: hypernym "season & weather (四季与天气)"，hyponyms 混装 spring…winter 与 sunny…cold 共 13 词
+  corrected: 拆为两个集合：① season（四季）：spring、summer、autumn、winter；② weather（天气）：sunny、rainy、windy、cloudy、snowy、warm、hot、cool、cold。与其他 9 个集合的"单一上位概念"标准对齐。
+  basis: 报告 C-07：一个集合塞两个上位概念，与全表标准不一致。
+- id: VF-046
+  report_ref: H-01
+  db: HOMOPHONES_DB
+  entry_id: HM02
+  word: two
+  field: words[two].tip
+  type: 事实错误
+  severity: 中
+  original: 中间藏着静音 w（像双胞胎 twin 的 w）
+  corrected: 中间藏着静音 w（像 write、wrong 里的静音 w 一样，写出来但不发音）
+  basis: 报告 H-01：twin 的 w 是发音的（/twɪn/），类比自相矛盾；two 的 w 不发音属实，改以 write/wrong（或 sword）类比。同库 HM06 用 wrist 静音 w 解释 write 的做法正确，可互参。

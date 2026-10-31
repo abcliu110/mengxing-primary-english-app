@@ -1,0 +1,67 @@
+# T12-B6 全量批 · 246 幕干净 autoBuild 存量机械单源化 —— 完成记录
+
+> 执行口径：T12_plan §3 的 B6 定义 + T12b6pilot 的固化门禁四件套。脚本化整批推进、逐幕留痕
+> （状态机 /tmp/b6/state.json，每幕落盘；分段进度 T12b6.progress 于每 60 幕节点刷新）。
+> 原幕场景文件一字未动；未执行 git commit。
+
+---
+
+## 一、总账
+
+| 项 | 数 |
+|---|---:|
+| 干净集（autoBuild ∧ 非 gen_*/fp_* ∧ 非纠错批 17 幕） | **246**（分类对账：全仓 autoBuild 309 = gen_* 29 + fp_* 17 + 纠错 17 + 干净 246，与试点口径闭合） |
+| **通过** | **245**（试点 10 幕计入 + 本批 235 幕） |
+| **停单** | **1**（wo_grimm_voiceless_1，见 §四） |
+| 未处理 | 0 |
+| ITEMS 总量 | 5,819 条（246 幕，逐幕解析值全等核验，见 §三） |
+
+本批 235 幕验收构成：精灵补库/核验 → spec → 再生 → 门禁 A/B → 构建 → 等效校验，
+其中直接合格 **176** 幕；时长带外 **59** 幕经原幕同值对照豁免（§三）；硬失败（页面报错/文字峰值）**0** 幕。
+
+## 二、逐幕流水线与门禁（四件套，全幕无一跳过）
+
+1. **精灵前置**：精灵库缺失 → 核对 ACTS 帧在 cast/src 全命中后 build_sprites.py 生成；
+   库已存在 → 解析 FR 键核对覆盖（缺帧即停，不覆盖既有库）。
+2. **spec**：`model/specs/stock_<幕名>.yaml`（scene=gen_stock_<幕名>，template=原幕，title/ITEMS 机器抽取，无 family/无 facts，走 G2/G3 新路径）×235。
+3. **门禁 A（ITEMS 全等）**：再生幕与原幕的 ITEMS 解析值 JSON 逐条全等 + title 全等。
+4. **门禁 B（非台词零漂移）**：两文件剥生成头（2 行）、ITEMS 块与 title 字面量置换占位符后逐字节相同。
+5. **构建**：build.mjs → `~/workspace/your_files/gen-stock-<幕名>.html` ×235 全在位；
+   再生场景 `v5/scenes/gen_stock_<幕名>.js` ×235；事实表 `model/factsheets/gen_stock_<幕名>.md` ×235（待补形态，见 §五）。
+6. **门禁 C（等效校验）**：ic_gen8（官方 HOOK 采样）逐幕核：页面报错 0、文字峰值全部 ≤40%。
+
+## 三、全量 ITEMS 漂移扫描汇总
+
+- 246 幕 / 5,819 条 ITEMS：门禁 A 逐幕比对解析值，**漂移 0 条**（试点 10 幕 192 条 + 本批 235 幕 5,627 条）。
+- 非台词部分：门禁 B 占位符口径逐幕逐字节比对，**漂移 0 幕**（原始差异仅生成头 2 行 + ITEMS 重序列化尾逗号，同试点结论）。
+- **时长对照豁免 59 幕**（再生时长与原幕构建实测逐位相同，属固有属性非迁移缺陷，按 B2b 裁定先例登记；
+  对照构建留置 `~/workspace/your_files/gen-b6orig-<幕名>.html`）：
+  - 短幕 49（<40s，vv 短幕族为主）：vv_get_down_1/2、vv_get_in_1、vv_get_off_1/2、vv_get_on_1/2、vv_get_out_1、vv_get_up_1、
+    vv_give_down_1、vv_give_in_1、vv_give_off_1、vv_give_on_1、vv_give_out_1/2、vv_give_up_1/2、vv_look_down_1/2、vv_look_in_1、
+    vv_look_off_1/2、vv_look_on_1、vv_look_out_1/2、vv_look_up_1、vv_put_down_1、vv_put_in_1、vv_put_off_1、vv_put_out_1/2、
+    vv_put_up_1/2、vv_take_down_1、vv_take_in_1、vv_take_off_1/2、vv_take_on_1、vv_take_out_1、vv_take_up_1、vv_turn_down_1、
+    vv_turn_in_1、vv_turn_off_1/2、vv_turn_on_1、vv_turn_out_1、vv_turn_up_1/2、wo_rule_latplural_1（18.8–39.9s）
+  - 长幕 10（>240s）：aux_transformer_3（278.7s）、eight_endings_1（248.9s）、metaphor_code_1（312.0s）、metaphor_code_2（241.2s）、
+    metaphor_code_3（310.4s）、wo_bluetooth_1（251.8s）、wo_vowel_b_1（250.7s）、wo_vowel_c_1（253.2s）、
+    writing_alchemist_2（267.8s）、writing_alchemist_3（299.0s）
+
+## 四、停单（1 幕，未手改凑过）
+
+| 幕 | 阶段 | 原因 | 后续处置建议 |
+|---|---|---|---|
+| wo_grimm_voiceless_1 | sprites | 精灵库 `sprites/wogr1.js` 在克隆中已存在，但其 FR 不含本幕 ACTS 所需帧 `l_point`、`l_think`（同库为 wo_grimm 家族共用，覆盖既有库有影响他幕的风险，按纪律停单） | 核对 wogr1 在主仓库的完整帧集后补帧重跑本幕单幕流水线即可（spec 未生成，管线其余段未动） |
+
+## 五、遗留事项（如实标注）
+
+1. **事实表全为「待补」形态**：已生成的 245 份事实表（本批 gen_stock 235 + 试点 gen_b6pilot 10）均未提供 facts，
+   按 G3 生成占位版并带双标记——B6 验收口径（台词集合一致）不受影响，但事实表补齐是后续独立工作，逻辑审查前必须补齐，不得冒充已备（停单幕未生成事实表）。
+2. **精灵帧命中率**：本批 235 幕的 ACTS 帧在精灵生成/核验阶段全部命中或覆盖（唯一例外即停单幕），
+   此项风险已由试点遗留转为实测结论；新生成的精灵库为 gitignore 本地产物，换机需重跑 build_sprites。
+3. **时长带外 59 幕**系存量固有属性（与原幕逐位相同），是否治理（拆幕/压缩）属模式层决策，不在本批范围。
+4. 试点 10 幕产物沿用 gen_b6pilot_* 命名（spec/场景/HTML/事实表），未按 stock_ 名重跑——内容与验收结论与本批同口径，总账中以 source=pilot 标注。
+5. 驱动与中间状态留置 /tmp/b6/（run_b6.py、extract.mjs、scan.json、state.json），如需归档请示下。
+
+## 六、试点来源标注
+
+试点 10 幕（T12b6pilot.done，产物 gen-b6pilot-*）：aux_transformer_1、five_patterns_p2_4、hd_fr08_1、hd_g20_1、
+hd_relations_2、phrasal_key_2、vv_give_off_2、vv_put_on_1、vv_turn_on_2、wo_rule_norse_1——直接计入通过数，未重跑。

@@ -1,0 +1,27 @@
+T4 表达修正 — 完成（未 commit，按手册由主会话/复核后提交）
+
+产出：
+1. docs/whiteboard/model/expressions_fixes.json
+   - daily_fixes 42 条修正版完整记录（每条带 change_note）
+   - oral_fixes 2 条（场景5 拆成五轮+角色标记；场景8 改 weigh 句式+补年龄问答）
+2. docs/whiteboard/model/updates/expressions_update.md
+   - 收尾句生成机制规范（角色/进程/指称三重核对 + 删轮许可）与回归检查定义（收尾句逐条语境复核）
+   - WRITING「炼金术」去虚假承诺：删除清单 + 诚实版框架文案 + W-1/W-4/W-5 范句订正 + C-6 归类修正
+   - 变更汇总表 + 差异与存疑清单
+
+关键处理：
+- DAILY 29 条错误对应条目全部修正（组1–5）：第三轮收尾句逐条按角色与上文重写，禁沿用场景模板填充句；拆轮 3 条（EXP_025/026/089），删轮 3 条（EXP_016/062/066）。
+- 笔记伪规则降格/换讲法：EXP_013（必须→最常用）、EXP_084（永远→最常用，L-3）、EXP_063（冷热分杯伪规则→看杯子，L-4）、EXP_032（L-5 标签讲法）、EXP_093（删 What is he 等式，L-8）、EXP_053（注明标准说法性质）、EXP_026（三句全等加边界）、EXP_066/134（L-2 镜子讲法+失效边界）。
+- 自相矛盾订正：EXP_071（on sale vs half price）、EXP_111（1.6 vs 1.65 统一为 1.65）、EXP_018（笔记-对话矛盾随对话修正消除）。
+- scene_type 按 C-4 对齐 10 条（thanks_sorry ×4、festival ×6）。
+
+自验（脚本复跑通过）：
+- python3 json 解析无误：daily 42 + oral 2 = 44 条。
+- 报告错误条目覆盖 = 全部（唯一例外见下）。
+- 修正集内旧填充句残留 = 0（I'll have a rest / I'll call later / Nice to meet you, too / It tastes good / That's all right 收尾均清零）；The same to you 仅保留 EXP_066/134 中 B 的合法回送 2 处。
+
+差异与存疑（详见 expressions_update.md 第四节，请复核裁量）：
+1. 报告组4「EXP_034」与源数据不符：EXP_034 实为问路场景无此问题，描述吻合者为 EXP_035——判定报告编号笔误，据实修正 EXP_035，EXP_034 未动。
+2. EXP_028 报告未单列，但与 EXP_027 同型错位（医生收尾说病人台词），按 C-2 原则补正，已明示。
+3. EXP_014 同型句经逐条核对判定可成立（同报告观察区 EXP_064/065 标准），未改。
+4. EXP_053 第三轮属观察区模板单调，未动（仅修笔记）。

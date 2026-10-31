@@ -1,0 +1,708 @@
+# 白板台词修正集（通宵任务 T5）
+# 来源：全量审查报告 ~/workspace/content-audit/report_scenes.md（受检 817 条，实际裁定 791 条）
+# 收录：问题项 45 条（错误 9 + 过度简化 36），逐条 1:1 对应 wb_claims.json / wb_know_todo.json 条目；
+# 另附 ③-C 顺手订正 1 条（sf-046，不计入 45）。
+# 字段：original = 源数据原文（逐字）；fixed_lines = 修正后台词；basis = 改写依据
+# （U 编号 = 报告第 ⑤ 节讲法升级清单现成改写，逐字采用；自拟 = 按报告裁定理由与同类 U 条原则改写）。
+# 播出条次 n 以源 JSON 为准；与报告口径差异见 updates/scenes_update.md 的复核注记。
+# 质量纪律：概念框架改写以报告所引学术来源为准（见 source 字段）；本集无存疑项——45 条均有报告裁定与来源支撑。
+
+meta:
+  task: T5
+  source_report: report_scenes.md
+  problem_items: 45
+  error_items: 9
+  oversimplified_items: 36
+  extra_items: 1
+  verdicts: [错误, 过度简化]
+
+fixes:
+
+  # ===== 错误（9 条）=====
+
+  - id: sf-001
+    ref: "报告 ② K1 / ③-A W1（家族标题）"
+    claim: "wb_claims[3]"
+    scenes: [fp_iconicity_1, fp_iconicity_2, fp_iconicity_3, fp_iconicity_4]
+    n: 4
+    verdict: 错误
+    severity: 中
+    problem: "把字母象形立为第一性原理：仅少数民族字母有可考图画起源，家族实际所教多为音义联想与自编画面，以『象形+同源』之名宣称历史真实性。"
+    original: "🧠 第一性原理 ② 字母象形与音义同源簇"
+    fixed_lines:
+      - { role: 标题, text: "🧠 联想工具箱 ② 字母看图记词——有的真是它的来历，有的只是长得像"}
+    basis: "U1 现成改写"
+    method: "类比三步（先给真例立信 → 再引入联想并明确命名 → 划界）"
+    boundary: "仅少数民族字母有可考图画源，联想图不得讲成词源。"
+    source: "腓尼基字母名通行表（Sayce 字母名表，ISBE「Alphabet」条；BiblicalTraining「Alphabet」条）"
+
+  - id: sf-002
+    ref: "报告 ② K2"
+    claim: "wb_know_todo[T51]"
+    scenes: [hd_g19_1]
+    n: 1
+    verdict: 错误
+    severity: 报告未定级
+    problem: "三单 -s『勋章转移』是把今日功能倒推成起源的机制故事：动词三单 -s 源自诺森布里亚古英语 -es（取代 -(e)þ），名词复数 -s 源自古英语 -as，两条独立源流，不存在转移。"
+    original: "【英语为什么非要给三单动词加 -s？】复数主语名词自带了 -s（The boys like...），而单数第三人称主语没带 -s（The boy...），于是英语把 -s 勋章贴到动词上（The boy likes...），用来精密锁定主语是单数第三人称！"
+    fixed_lines:
+      - { role: 台词, text: "它是一枚'单数第三人称'的小徽章。古英语的动词尾巴有很多，后来大多磨掉了，只剩下现在时这一枚：看到 -s，就知道主语是'一个他/她/它'、事情是经常发生的。它和名词复数 -s 只是**长得像**，来历不同：复数的 -s 来自动词之外的另一条线（古英语名词的 -as），动词的 -s 是从北边的方言（古英语 -es）传下来的——不是从名词那里搬过来的。"}
+    basis: "U4 现成改写（删除『勋章转移』叙事，按功能+真来历重讲）"
+    method: "功能目的式（先讲今天的用途）+ 真实来历（拆穿伪机制）"
+    boundary: "只适用于一般现在时肯定陈述句；有 does 时徽章转移到 does 上（本库已有此讲法，保持）。"
+    source: "Wiktionary「-s」词条 Etymology 1/2；鹿儿岛大学《On the Third Person Singular Present Indicative Ending -s》综述"
+
+  - id: sf-003
+    ref: "报告 ② K3"
+    claim: "wb_claims[53]"
+    scenes: [hd_poly_g4_157_1, hd_poly_g4_157_2, hd_poly_g4_157_3]
+    n: 3
+    verdict: 错误
+    severity: 低
+    problem: "light（光）与 light（轻）被讲成同一词的义项引申网络；实为同形异源的两词：光 < 原始印欧语 *leuk-（发光），轻 < *legʷʰ-（轻），古英语里即是两词。"
+    original: "核心意象纽带：明亮发光、没有沉重负担"
+    fixed_lines:
+      - { role: 台词, text: "核心提醒：light 是两个同名同姓的『双胞胎』——light（光）和 light（轻）是两个不同的词，只是长得一模一样。"}
+    basis: "自拟（按报告 K3 裁定：同形异源订正，纽带只许作联想，见 sf-004）"
+    source: "原始印欧语词根 *leuk- / *legʷʰ-（报告 K3 引词源考据）"
+
+  - id: sf-004
+    ref: "报告 ② K3"
+    claim: "wb_claims[54]"
+    scenes: [hd_poly_g4_157_1, hd_poly_g4_157_2, hd_poly_g4_157_3]
+    n: 3
+    verdict: 错误
+    severity: 低
+    problem: "同 sf-003：以『意象桥梁』把两词的同形关系讲成词义派生关系。"
+    original: "② 意象桥梁：明亮发光、没有沉重负担"
+    fixed_lines:
+      - { role: 台词, text: "② 联想桥梁（只是帮记忆，不是亲戚关系）：记 light（轻）时，可以联想『像光一样没有重量』来帮忙——这是记忆钩子，不是这个词的来历。"}
+    basis: "自拟（按报告 K3 裁定：联想必须明示为记忆术）"
+    boundary: "联想钩子不得讲成词义派生或词源。"
+
+  - id: sf-005
+    ref: "报告 ② K3"
+    claim: "wb_claims[55]"
+    scenes: [hd_poly_g4_157_1, hd_poly_g4_157_2, hd_poly_g4_157_3]
+    n: 3
+    verdict: 错误
+    severity: 低
+    problem: "同 sf-003：『引申新义：轻的（像光一样没有重量）』把 light（轻）说成由 light（光）引申而来，伪同一性。"
+    original: "③ 引申新义：adj. 轻的（像光一样没有重量，反义词 heavy）"
+    fixed_lines:
+      - { role: 台词, text: "③ 另一个 light：adj. 轻的（反义词 heavy）。它和 light（光）同形不同源：『光』的老祖先是表示『发光』的词根 *leuk-，『轻』的老祖先是表示『轻』的词根 *legʷʰ-，从古英语起就是两个词。"}
+    basis: "自拟（按报告 K3 裁定与词根事实改写）"
+    source: "原始印欧语词根 *leuk- / *legʷʰ-（报告 K3 引词源考据）"
+
+  - id: sf-006
+    ref: "报告 ③-A W1"
+    claim: "wb_claims[20]"
+    scenes: [fp_iconicity_1]
+    n: 3
+    verdict: 错误
+    severity: 中
+    problem: "口诀四字母来历全错：M←mem『水』（水波纹，非山）、B←bēt『房屋』（非包）、C←gīmel『骆驼』（非抓）、S←šīn『牙齿』（非蛇）。"
+    original: "口诀：M 是山，S 是蛇，B 是包，C 来抓。"
+    fixed_lines:
+      - { role: 口诀, text: "M 是水波纹，B 是小房子，C 是骆驼峰，S 是小牙齿——这四个画的都是真历史！"}
+      - { role: 讲解, text: "字母最早就是画出来的：M 的祖先画的是水波（古埃及'水'），B 画的是房子，C 画的是骆驼，S 画的是牙齿。A 画的是牛头，O 画的是眼睛，K 画的是手掌——这些查得到。其他字母记不住的时候，我们也可以自己编一幅像的画来记，那叫**联想**，是帮记忆的钩子；钩子很好用，但不要把钩子当成历史。"}
+    basis: "U1 现成改写"
+    method: "类比三步（真例立信 → 联想命名 → 划界）"
+    boundary: "仅少数民族字母有可考图画源，联想图不得讲成词源。"
+    source: "腓尼基字母名通行表：ʾaleph 牛、bēt 房屋、gīmel 骆驼、kaph 手掌、mem 水、ʿayin 眼睛、šīn 牙齿（Sayce 字母名表，ISBE「Alphabet」条；BiblicalTraining「Alphabet」条）"
+
+  - id: sf-007
+    ref: "报告 ③-A W2"
+    claim: "wb_claims[17]"
+    scenes: [fp_economy_2]
+    n: 3
+    verdict: 错误
+    severity: 低
+    problem: "术语错：触发 /ɪ/ 插入的不是『同位』（同一发音部位）而是嘶声（sibilant）相撞；反例 wish（/ʃ/ 与 /s/ 不同部位）同样插入 /ɪ/。"
+    original: "口诀：同位相撞，插个 /ɪ/ 来帮忙。"
+    fixed_lines:
+      - { role: 口诀, text: "嘶嘶相撞，插 /ɪ/ 分开站。"}
+      - { role: 讲解, text: "词尾是 s、z、sh、ch、/dʒ/ 这类'嘶嘶'的声音时，再加一个 -s，两个嘶声会挤成一团说不清。所以中间插一个 /ɪ/ 把它们分开：kiss→kisses，watch→watches，bus→buses，judge→judges。"}
+    basis: "U2 现成改写（『同位相撞』订正为嘶声后元音插入）"
+    erratum: "复核 L-1 处理（2026-11-01）：讲解行嘶声列举原仅列 s、z、sh、ch，未含 /dʒ/；已补入 /dʒ/ 并加例 judge→judges。口诀行仍为 U2 原文，未动。"
+    method: "功能目的式（为什么插：为了说得清）"
+    boundary: "只管嘶声结尾；其他词尾按前音清浊选 /s/ 或 /z/，不插音。"
+    source: "复数/三单同位异音 /s ~ z ~ ɪz/ 的标准形态音位分析（Bauer《English Morphology》；LibreTexts《Essentials of Linguistics》Morphophonology 节）"
+
+  - id: sf-008
+    ref: "报告 ③-A W3"
+    claim: "wb_claims[425]"
+    scenes: [hd_phonics_1]
+    n: 1
+    verdict: 错误
+    severity: 报告未定级
+    problem: "『a 永远发 /æ/』的全称不成立：ball/call/tall 在 -ll 前读 /ɔː/，was/want/wash 在 w 后读 /ɒ/。闭音节 a 的默认读法是 /æ/，但须带例外清单。"
+    original: "原理：闭音节里元音被辅音关在中间，a 永远发三指大嘴短音 /æ/！"
+    fixed_lines:
+      - { role: 台词, text: "闭音节里的 a，多半读短音 /æ/（cat、bag、map）；有几个'变脸王'要单记：碰到 ll 变 /ɔː/（ball、call），跟在 w 后面变 /ɒ/（was、want）。先按多半猜，猜错了就查变脸名单。"}
+    basis: "U10 现成改写（『永远』降格为默认规则+例外清单）"
+    method: "对比案例 + 失效边界（默认规则+例外清单的讲法范式）"
+
+  - id: sf-009
+    ref: "报告 ③-A W4"
+    claim: "wb_claims[488]"
+    scenes: [past_clans_4]
+    n: 1
+    verdict: 错误
+    severity: 报告未定级
+    problem: "伪因果：teach→taught 是历史音变的结果，不是『含 a 决定』；反例 reach→reached、preach→preached 同样含 a 却照常加 -ed。a 只能作记忆钩子。"
+    original: "成员 teach（教）：原形 teach 里有字母 a，所以必须写 -aught！"
+    fixed_lines:
+      - { role: 台词, text: "taught 要单独记，没有规律可推。可以编个钩子帮你记（teach 里藏着一个 a），但记住：钩子不是规律——reach 也带 a，过去式却是老老实实的 reached。凡是'长得像就同变'的说法，先拿 reach 试一试。"}
+    basis: "U12 现成改写"
+    method: "类比三步 + 失效边界（用反例给记忆术划界）"
+    boundary: "-aught 组只有 teach/catch 两个常用词，当作小名单背比编规律更划算。"
+
+  # ===== 过度简化（36 条）=====
+
+  - id: sf-010
+    ref: "报告 ② K4"
+    claim: "wb_claims[245]"
+    scenes: [hd_g03_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "以物理属性（没有固定的单个形状）作可数性判据，与 ③ 家族已定案的错误同类：纸有形状、米粒是颗粒，英语照样整摊看。正确框架是识解：取决于说话人如何看待所指。"
+    original: "水（water）、牛奶（milk）、面包（bread，切分后还是面包）、米饭（rice）、纸（paper）没有固定的单个形状，所以不能直接加 a 或 -s，必须装进杯子/切成片（a glass of water / two pieces of bread）来计数！"
+    fixed_lines:
+      - { role: 台词, text: "水、牛奶、面包、米饭、纸——英语习惯把它们看成'一摊、一整片'，不看成'一个个'，所以不直接加 a 或 -s；想数，就借个容器：一杯水、两片面包。注意哦：米粒明明是一颗颗的，英语也整摊看——这是英语的**习惯看法**，不是东西本身的样子。"}
+    basis: "U3 现成改写"
+    method: "镜头-看法框架"
+    boundary: "看法可切换——cake、paper、chicken 两边都站，看这一次怎么看（a cake 一整个 / some cake 一些）。"
+    source: "Langacker（1991: 72）；Taylor（2002: 368）'the count-mass distinction is a matter of how speakers construe a thing'"
+    aligns_with: "boundedness.yaml cl-packaging（say：看成一个个的，就能数；看成一摊的，不能直接数。scope：决定因素是英语的习惯看法（识解），不是物体本身有没有边）——本条与模型识解口径完全对齐"
+
+  - id: sf-011
+    ref: "报告 ② K5"
+    claim: "wb_claims[2]"
+    scenes: [fp_economy_2, fp_economy_3, fp_economy_4, fp_economy_p2_1]
+    n: 4
+    verdict: 过度简化
+    severity: 低
+    problem: "旗下机制（清浊同化、嘶声后插入、前缀同化、双写规则）各自真实，但分属不同机制，打包成一条『口腔省力同化律』是命名夸大。"
+    original: "🧠 第一性原理 ① 口腔省力同化律"
+    fixed_lines:
+      - { role: 标题, text: "🧠 联想工具箱 ① 省力小机关合集——同化、插音、双写，各有各的活"}
+    basis: "自拟（按报告 K5 改写方向：框架降格为『省力的小机关合集』）"
+    boundary: "合集内各机关分别成立，不存在一条统一的『律』统摄。"
+
+  - id: sf-012
+    ref: "报告 ② K6"
+    claim: "wb_claims[4]"
+    scenes: [fp_vectors_1, fp_vectors_2, fp_vectors_3, fp_vectors_4]
+    n: 4
+    verdict: 过度简化
+    severity: 低
+    problem: "in/on/at 的意象图式是原型+倾向（Tyler & Evans 原型场景），不是几何定律；at night、in the morning、on the bus 等大量用法靠约定，讲成『律』会让孩子硬套。"
+    original: "🧠 第一性原理 ⑤ 三维几何向量时空律"
+    fixed_lines:
+      - { role: 标题, text: "🧠 联想工具箱 ⑤ 介词看图猜——大图式管第一猜测，小例外靠约定"}
+    basis: "自拟（按报告 K6 改写方向：图式管『第一猜测』，例外靠约定单记）"
+    source: "Tyler & Evans（2003）Principled Polysemy：原型场景（proto-scene）为核心义，其余义项为受约束的网络延伸"
+
+  - id: sf-013
+    ref: "报告 ② K6"
+    claim: "wb_know_todo[T25]"
+    scenes: [hd_g14_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "『原封不动映射』失实：空间图式向时间与抽象域的延伸是受约束的倾向，且大量介词用法由约定决定（at night、in the morning、on the bus）。"
+    original: "【为什么汉语一个“在”字，英语却要分 in / on / at？】英语是用三维空间几何镜头看世界：包在立体容器内部用 in，贴在平面或轴线上用 on，聚焦成一个精确小圆点用 at！并把这个空间图式原封不动映射到了“时间漏斗”和“抽象状态”上！"
+    fixed_lines:
+      - { role: 台词, text: "先看三幅『原型图』猜一猜：装在容器里面用 in（in the box），贴在表面上用 on（on the table），指着一个点用 at（at the door）。讲时间、讲抽象事情时，这三幅图常常还能接着用——但不是原封不动：at night、in the morning、on the bus 是大家约好的习惯说法，图猜不出来，就单独记。"}
+    basis: "自拟（按报告 K6 裁定：原型场景+约定例外，与 sf-012 同口径）"
+    method: "原型场景（proto-scene）作第一猜测"
+    boundary: "图式只管第一猜测；约定用法（at night 等）单记，不许硬套图式。"
+    source: "Tyler & Evans（2003）Principled Polysemy"
+
+  - id: sf-014
+    ref: "报告 ② K7"
+    claim: "wb_claims[32]"
+    scenes: [fp_zoom_focus_2, fp_zoom_focus_3, fp_zoom_focus_4]
+    n: 3
+    verdict: 过度简化
+    severity: 低
+    problem: "假统一：wh- 前置、感叹前置、地址由小到大、时态选择是四种不同机制，被一条『镜头律』统摄，统摄关系不存在。"
+    original: "🧠 第一性原理 ⑥ 焦点先行与镜头缩放律"
+    fixed_lines:
+      - { role: 标题, text: "🧠 联想工具箱 ⑥ 站位与顺序的四个小机关——各讲各的，不是一条律"}
+    basis: "自拟（按报告 K7 裁定：取消『律』的统摄，旗下各机制内容分别保留、分别讲解）"
+    boundary: "四机关不得再以统一机制互相解释。"
+
+  - id: sf-015
+    ref: "报告 ② K8"
+    claim: "wb_claims[9]"
+    scenes: [bamboo_tree_1]
+    n: 3
+    verdict: 过度简化
+    severity: 低
+    problem: "范围失守：『一山不容二虎』的正确范围是简单句/分句（一个分句一个限定谓语）；复合句、并列句天然多谓语（I know he likes it.）。同库 G40 版 [398] 写的是『一个简单句』，范围正确。"
+    original: "口诀：先立树干，再挂树枝。一句话只留一个谓语动词当国王。"
+    fixed_lines:
+      - { role: 口诀, text: "先立树干，再挂树枝。一个简单句（一个分句）只留一个谓语动词当国王；长句子可以有几个分句，每个分句各立一位国王（I know he likes it 里，know 和 likes 各管一个分句）。"}
+    basis: "自拟（按报告 K8 裁定收窄范围，并与同库 [398] 正确版对齐）"
+    boundary: "只约束单个分句；并列句、复合句每分句一位国王。"
+
+  - id: sf-016
+    ref: "报告 ③-B S1"
+    claim: "wb_claims[21]"
+    scenes: [fp_iconicity_2]
+    n: 3
+    verdict: 过度简化
+    severity: 低
+    problem: "音义簇是倾向不是规律：fl- 也有 flame、flag、flat；gl- 也有 glove、glue；sl- 也有 sleep、slow。口诀本身无对冲（同幕旁白 [188] 已有对冲）。"
+    original: "口诀：fl 飞，gl 亮，sl 滑下来。"
+    fixed_lines:
+      - { role: 口诀, text: "fl 多半在飞（fly、flow），gl 多半在发光（glow、gleam），sl 多半往下滑（slide、slip）——是多半，不是全部：flame、flag 不飞，glove、glue 不发光，sleep、slow 不滑。先按多半猜，再动手查。"}
+    basis: "自拟（按报告 S1 裁定：口诀本身同步加『多半』与反例，与同幕 [188] 对冲句对齐；形式仿 U7）"
+    method: "类比三步 + 失效边界（倾向自带反例）"
+    boundary: "音义簇只作猜词线索，词源以词典为准。"
+
+  - id: sf-017
+    ref: "报告 ③-B S2"
+    claim: "wb_claims[22]"
+    scenes: [fp_iconicity_3]
+    n: 3
+    verdict: 过度简化
+    severity: 低
+    problem: "street 的 str- 来自拉丁语 strata（铺石路），与『拉直线』无关，应剔除；sp- 的 speak/space/spoon 与『喷』无关。"
+    original: "口诀：str 拉直线，sp 往外喷。"
+    fixed_lines:
+      - { role: 口诀, text: "str 多是'拉紧的线'（string 线、straight 直、strong 拉不断）；sp 有时是'往外冒'（spray 喷水、spit 吐）——是找亲戚的线索，不是人人都是。"}
+      - { role: 讲解, text: "先按这个猜，再动手查：street 的 str 就不是'线'，它是从拉丁语'铺好的路'来的——猜错没关系，线索本来就是用来猜的。"}
+    basis: "U7 现成改写"
+    method: "类比三步 + 失效边界（倾向自带反例）"
+    boundary: "音义簇只作猜词线索，词源以词典为准。"
+
+  - id: sf-018
+    ref: "报告 ③-B S3"
+    claim: "wb_claims[23]"
+    scenes: [fp_iconicity_4]
+    n: 3
+    verdict: 过度简化
+    severity: 低
+    problem: "tw- 词簇（two/twin/twice/twelve/twenty/between）确多与『二』同源，是真词源簇；但『一出现』全称化：twig、twirl 等无关。"
+    original: "口诀：tw 一出现，成双又成对。"
+    fixed_lines:
+      - { role: 口诀, text: "tw- 常和'二'是一家（two、twin、twice、twelve、twenty、between 都是亲戚）；但不是个个都是——twinkle（闪烁）、twirl（旋转）和'二'没关系。"}
+    basis: "自拟（按报告 S3 裁定的建议措辞『tw- 常和二是一家』+ 反例限定）"
+    erratum: "复核 M-1 修正（2026-11-01）：原反例 twig 不成立——twig 源出 *dwo-『二』（本义分叉），恰是『二』家族（Etymonline/Wiktionary/Merriam-Webster 一致），系继承报告 S3 之误，报告应出勘误。反例已换为 twinkle（闪烁）：源出古英语 twinclian『眨眼』，拟声起源，与 *dwo- 无关（Etymonline、Wiktionary 联网核证）；twirl 与『二』无关属实，保留。此误源头为审查报告 S3，已出勘误，以本条为准。"
+    boundary: "真词源簇也只讲『常』，不讲『一出现就』。"
+
+  - id: sf-019
+    ref: "报告 ③-B S4"
+    claim: "wb_claims[24]"
+    scenes: [fp_one_king_2]
+    n: 3
+    verdict: 过度简化
+    severity: 低
+    problem: "二分法误导：like/love 既可接 doing 也可接 to do；『想做』不是动词类别。应按动词决定搭配讲。"
+    original: "口诀：想做穿 to，在做穿 -ing。"
+    fixed_lines:
+      - { role: 口诀, text: "跟谁走，看动词：want 一家后接 to（want to go）；enjoy 一家后接 -ing（enjoy swimming）；like、love 两边都站（like swimming / like to swim 都对）。不是'想不想'说了算，是前面的动词说了算。"}
+    basis: "自拟（按报告 S4 裁定：改为动词决定搭配；与 sf-032/sf-033 同口径）"
+    boundary: "like/love 双搭配的含义微差（习惯/爱好偏 doing，具体场合/选择偏 to）见 sf-032。"
+
+  - id: sf-020
+    ref: "报告 ③-B S5"
+    claim: "wb_claims[8]"
+    scenes: [wo_grimm_1, wo_grimm_more_1, wo_grimm_rows_1]
+    n: 4
+    verdict: 过度简化
+    severity: 低
+    problem: "前半格林定律无误；尾句『小词变了，大词没变』无据且误导——格林定律作用于继承词，后借入的拉丁词（多为大词）不变是因为借入时间在音变之后，与大小无关。"
+    original: "口诀：辅音挪一格：p 变 f，t 变 th，d 变 t，k 变 h；小词变了，大词没变！"
+    fixed_lines:
+      - { role: 口诀, text: "辅音挪一格：p 变 f，t 变 th，d 变 t，k 变 h！（变的都是老家传下来的词；后来从拉丁语等外语借进来的词，是音变之后才来的，没赶上这趟变化——和词的大小没关系。）"}
+    basis: "自拟（按报告 S5 裁定：删错误尾句，换借入时间解释）"
+    note: "n 以源 JSON 为 4（报告 ③-B 记场景数 3），差异见 updates/scenes_update.md 复核注记。"
+
+  - id: sf-021
+    ref: "报告 ③-B S6"
+    claim: "wb_claims[31]"
+    scenes: [fp_vectors_4]
+    n: 3
+    verdict: 过度简化
+    severity: 低
+    problem: "for 的核心义项是目的/受益/时长，『心里想着它』只勉强覆盖『奔着目标』一支，三大主干义项被一句联想替代。"
+    original: "口诀：to 到终点，from 离起点，for 心里想着它。"
+    fixed_lines:
+      - { role: 口诀, text: "for 站三站：为了谁（a gift for you）、奔着哪儿去（leave for Beijing）、持续多久（for two hours）。"}
+    basis: "U8 现成改写（原口诀中 to/from 两支保留于本幕其他行，本条只替换 for 支）"
+    method: "功能目的式"
+    boundary: "for 还有『交换、支持』等义（change for、vote for），后续再扩，不要讲成三站即全部。"
+
+  - id: sf-022
+    ref: "报告 ③-B S6"
+    claim: "wb_claims[208]"
+    scenes: [fp_vectors_4]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "同 sf-021：把 for 的讲解句限定在『心里朝着目标』一支。"
+    original: "for：心里朝着目标去，但不一定已经碰到它。"
+    fixed_lines:
+      - { role: 台词, text: "for：『奔着哪儿去』是它的一站（leave for Beijing）；另外两站是『为了谁』（a gift for you）和『持续多久』（for two hours）——三站合起来看，别只记一站。"}
+    basis: "自拟（按 U8 三站框架改写本讲解句，与 sf-021 同口径）"
+    boundary: "同 sf-021。"
+
+  - id: sf-023
+    ref: "报告 ③-B S7"
+    claim: "wb_claims[33]"
+    scenes: [fp_zoom_focus_3]
+    n: 3
+    verdict: 过度简化
+    severity: 低
+    problem: "从小到大只对地址顺序成立；推广到『英语』整体无据，日期英美还互异。"
+    original: "口诀：英语拉镜头，从小到大走。"
+    fixed_lines:
+      - { role: 台词, text: "只管一件事——写地址：英语从小排到大（先门牌、再街道、然后城市、最后国家），和中文正好反过来。"}
+    basis: "U14 现成改写"
+    method: "收窄适用域"
+    boundary: "不推广到时间、日期（日期英美顺序还不同）。"
+
+  - id: sf-024
+    ref: "报告 ③-B S8"
+    claim: "wb_claims[192]"
+    scenes: [fp_iconicity_4]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "真词源是『十之外剩二』（古英语 twalif：two + 剩余，同库 [609] 已讲对）；手指画面是计数联想，不要与词源混讲。"
+    original: "twelve：十个手指再加 2 个，就是 12。"
+    fixed_lines:
+      - { role: 台词, text: "twelve 的真来历：古英语 twalif，就是'十之外还剩二'（two + 剩下的）。伸出手指头数到 12 是数数的方法，不是这个词的来历——两件事分开记。"}
+    basis: "自拟（按报告 S8 裁定：换回真词源，与同库 [609] 对齐；手指画面降格为计数方法）"
+    source: "古英语 twalif（two + -lif『剩余』），同库 [609] 已有正确版"
+
+  - id: sf-025
+    ref: "报告 ③-B S9"
+    claim: "wb_claims[179]"
+    scenes: [fp_economy_3]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "in- 有两个：否定 in-（incorrect）与方向 in-『入』（import、income、inside）；只讲『不』会挡住 import 一类词。"
+    original: "前缀：加在单词前面、改变意思的部分。in- 表示「不」。"
+    fixed_lines:
+      - { role: 台词, text: "前缀：加在单词前面、改变意思的部分。in- 有两个：一个表示「不」（incorrect 不正确的），一个表示「入、向里」（import 进口、income 收入、inside 里面）。先看它在词里干哪份活。"}
+    basis: "自拟（按报告 S9 裁定补方向 in-）"
+    boundary: "两个 in- 都可发生前缀同化，见 sf-026。"
+
+  - id: sf-026
+    ref: "报告 ③-B S9"
+    claim: "wb_claims[558]"
+    scenes: [wo_rule_assim_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "同 sf-025；且方向 in- 同样发生同化（import 的 im-），原台词把同化限定在否定 in- 的语境里讲，易误读。"
+    original: "in 加在词前面表示「不」。可是 in 碰到 p、l、r 的时候，会变成和后面一样的音，读起来更顺口。这叫前缀同化。"
+    fixed_lines:
+      - { role: 台词, text: "in- 有两个：表示「不」的（incorrect）和表示「入」的（import 进口）。两个 in- 碰到 p、l、r 的时候，都会变成和后面一样的音，读起来更顺口：impossible、illegal、irregular，还有 import 的 im-。这叫前缀同化。"}
+    basis: "自拟（按报告 S9 裁定改写，与 sf-025 同口径）"
+
+  - id: sf-027
+    ref: "报告 ③-B S10"
+    claim: "wb_claims[211]"
+    scenes: [fp_zoom_focus_2]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "『总是』失守：疑问词在从句中可居中（Tell me what you want），回声问句可居尾。"
+    original: "这一幕：为什么英语的疑问词总是放在句子第一个？"
+    fixed_lines:
+      - { role: 台词, text: "在特殊疑问句里，疑问词站第一位（What is it?）。但它不是只能站第一位：藏在长句子中间也可以——Tell me what you want.（告诉我你想要什么。）"}
+    basis: "U13 现成改写"
+    method: "限定范围式改写"
+    boundary: "小学主攻主句句首位，中句位置作『见过即可』。"
+
+  - id: sf-028
+    ref: "报告 ③-B S11"
+    claim: "wb_claims[196]"
+    scenes: [fp_one_king_2]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "把动名词与现在分词混为一谈：『正在做』是 be+doing 的事；动名词是把动作当名词（Swimming is fun）。"
+    original: "动名词 doing：动词加 -ing。表示正在做，或者享受做这件事的过程。"
+    fixed_lines:
+      - { role: 台词, text: "-ing 有两件马甲，别认错：跟在 be 后面，是'正在做'（He is running）；单独站出来当名词，是'做这件事'（Swimming is fun；enjoy swimming）。判断窍门：前面有没有 be？能不能换成'做这件事'来讲？"}
+    basis: "U9 现成改写"
+    method: "对比案例"
+    boundary: "两件马甲共用一个形式是事实本身，不给孩子制造『一个形式一个意思』的预期。"
+
+  - id: sf-029
+    ref: "报告 ③-B S12"
+    claim: "wb_claims[246]"
+    scenes: [hd_g03_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "hair / time / paper / chicken 均为双栖词（a hair 一根头发、three times 三次、a paper 一份报纸/论文、a chicken 一只鸡），列入『必背不可数』不注双栖会误伤后续用法。"
+    original: "② 核心结构规律：① 必背不可数名词：液体（water, milk, juice, tea, soup, rain, snow）、食物（bread, rice, meat, beef, chicken鸡肉）、抽象与总称（homework作业, housework家务, news新闻, weather天气, music音乐, hair头发, money钱, paper纸, time时间）"
+    fixed_lines:
+      - { role: 台词, text: "② 核心结构规律：① 先记『整摊看』的不可数名词：液体（water, milk, juice, tea, soup, rain, snow）、食物（bread, rice, meat, beef, chicken 鸡肉）、抽象与总称（homework 作业， housework 家务， news 新闻， weather 天气， music 音乐， money 钱）。注意：hair、time、paper、chicken 是『双栖词』——它们也有可数的一面（一根头发 a hair、三次 three times、一份报纸 a paper、一只鸡 a chicken），这里先记不可数的一面，另一面后面学。"}
+    basis: "自拟（按报告 S12 裁定：将双栖词移出必背名单并注明『先记不可数的一面』）"
+    aligns_with: "boundedness.yaml 例外 xc-dual-life（cake、paper、coffee 等双栖词两种看法都行）"
+
+  - id: sf-030
+    ref: "报告 ③-B S13"
+    claim: "wb_claims[250]"
+    scenes: [hd_g04_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "『无生命用 of』是误导性规则：无生命名词用 's 极常见（today's news、a week's holiday、the car's door）。's/of 之别主要是习惯与正式度，不是生命有无。"
+    original: "🎵 口诀：有生命加 's（Tom's bag）；s 结尾复数只加撇号 '（teachers' office）；共有只在最后加，各自拥有分别加；无生命用 A of B（B 的 A）！"
+    fixed_lines:
+      - { role: 口诀, text: "有生命，常用 's（Tom's bag）；没生命，两种都行——时间和距离爱用 's（today's news、a day's trip），说得长的用 of（the door of the classroom）。"}
+      - { role: 台词, text: "（原口诀其余各支保留：s 结尾复数只加撇号 '（teachers' office）；共有只在最后加，各自拥有分别加。）"}
+    basis: "U11 现成改写（替换口诀末支『无生命用 A of B』，其余各支不在问题清单内、保留）"
+    method: "对比案例"
+    boundary: "这是习惯倾向不是禁令；地名/国家所有格（China's）等按例积累。"
+
+  - id: sf-031
+    ref: "报告 ③-B S14"
+    claim: "wb_claims[257]"
+    scenes: [hd_g06_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "『西洋乐器必加 the』过强（美式口语 play piano 可见）；球类/三餐零冠词也有 a dinner（宴会）等例外。含联动行 wb_claims[255]（零冠词框架）一并按 U6 改写。"
+    original: "🎵 口诀：特指双知用定冠(the)，世上独一太阳蓝天(the sun/sky)；西洋乐器必加 the（play the piano），球类棋类三餐前，冠词统统靠边站（play football / have dinner）！"
+    linked_lines:
+      - { claim: "wb_claims[255]", original: "而球类运动（play football）重在规则竞技本身，三餐（have lunch）重在日常饮食活动，所以零冠词上阵！"}
+    fixed_lines:
+      - { role: 口诀, text: "第一次提，用 a：听的人还不知道是哪一个；两人都知道是哪一个，用 the；说'去做那件事'——上学、睡觉、踢球、吃饭——冠词放假；弹钢琴的 the 是老习惯，跟着说 play the piano。"}
+      - { role: 讲解, text: "go to school 是'去上学'（做学生该做的事），go to the school 是'去那栋楼'（人未必是学生）。同一个词，看你说的是**做事**还是**东西**。"}
+    basis: "U6 现成改写（含 [255] 零冠词框架）"
+    method: "说话人-听话人视角（a/the 之别 = 听话人能否定位）；功能目的式（零冠词 = 按本职用途/活动看）"
+    boundary: "独一无二的事物（the sun）用 the 不是『提过』，是『全场只此一个、两人都认得』；地区差异（美式 in the hospital）单记；a dinner（一次宴会）等活动名词化用法后学。"
+    source: "Gundel, Hedberg & Zacharski（1993）Givenness Hierarchy（the N = uniquely identifiable，a N = type identifiable）；Lyons（1999）《Definiteness》；零冠词机构词见 Quirk et al.（1985）本职用途（primary purpose）读法"
+    aligns_with: "boundedness.yaml cl-a-first / cl-the-known / cl-zero-func 同口径"
+
+  - id: sf-032
+    ref: "报告 ③-B S15"
+    claim: "wb_claims[299]"
+    scenes: [hd_g15_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "主干正确但『铁律/必须』过强：否定辖域不同时 and 可保留（I don't like tea and coffee = 不是两者都喜欢）。小学阶段可立 or 为默认，但不得称铁律。"
+    original: "② 核心结构规律：① and vs or 否定转换铁律：肯定句并列用 and；一旦变成否定句，并列词必须换成 or！"
+    fixed_lines:
+      - { role: 台词, text: "② 核心结构规律：① and vs or 否定转换（默认规则，不是铁律）：肯定句并列用 and；变成否定句，并列词默认换成 or（I don't like tea or coffee.）。先记这条默认；以后会遇到 and 留下来的情况（I don't like tea and coffee = 不是两个都喜欢），到时再分。"}
+    basis: "自拟（按报告 S15 裁定：降格为默认规则并登记例外）"
+    boundary: "否定辖域不同（否定『两者都要』）时 and 可保留。"
+
+  - id: sf-033
+    ref: "报告 ③-B S16"
+    claim: "wb_claims[374]"
+    scenes: [hd_g33_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "『第一个词永远用动词原形』被本幕自己的 Don't / Let's / Please 开头句证伪；准确说法是谓语用原形、主语 you 常省略。"
+    original: "【为什么祈使句没有主语，且第一个词永远用动词原形？】"
+    fixed_lines:
+      - { role: 台词, text: "祈使句是说给'你'听的命令和请求，主语 you 常被省略，谓语用动词原形（Stand up. / Sit down.）。句首也可以先站礼貌词和提醒词：Please sit down. / Don't run. / Let's go.——变的只是第一位站谁，谓语用原形不变。"}
+    basis: "自拟（按报告 S16 裁定改写问句与判据）"
+    boundary: "省略的是主语 you，不是『祈使句没有主语』这一绝对说法。"
+
+  - id: sf-034
+    ref: "报告 ③-B S17"
+    claim: "wb_claims[396]"
+    scenes: [hd_g39_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "主干正确；例外须注：所有格在前不再加 the（my best friend）、最高级作副词时常省（He runs fastest）。"
+    original: "【为什么最高级前面必须加 the？】因为全班最高的人是唯一锁定（特指）的冠军，自然要戴上定冠词王冠 the（the tallest / the biggest）！"
+    fixed_lines:
+      - { role: 台词, text: "因为全班最高的那一个是唯一锁定的冠军，用 the 指明'就是那一个'（the tallest / the biggest）。两个例外先记着：① 前面已经有 my、his 这类'主人'时，不再加 the（my best friend）；② 最高级修饰动作时常常省掉 the（He runs fastest.）。"}
+    basis: "自拟（按报告 S17 裁定：『必须』降格为『常常』并补两条例外）"
+    boundary: "所有格在前、最高级作副词，两处不加 the。"
+
+  - id: sf-035
+    ref: "报告 ③-B S18"
+    claim: "wb_claims[400]"
+    scenes: [hd_g40_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "把 like/love 后接 -ing 讲成单选：like/love 后接 to do 同样正确（习惯/爱好偏 doing，具体场合/选择偏 to），讲成单选会判错正确句子。"
+    original: "② 核心结构规律：① 后接 V-ing：like / love / enjoy / finish + doing、go + doing (swimming/shopping)、所有介词后 (be good at doing / thank you for helping)"
+    fixed_lines:
+      - { role: 台词, text: "② 核心结构规律：① 后接 V-ing：enjoy / finish + doing、go + doing (swimming/shopping)、所有介词后 (be good at doing / thank you for helping)；like / love 是例外：后接 doing 和 to do 都对（doing 多指爱好和习惯，to do 多指某一次的选择）。"}
+    basis: "自拟（按报告 S18 裁定：把 like/love 从 V-ing 单选名单中摘出单列；与 sf-019/sf-036 同口径）"
+    boundary: "enjoy / finish 仍只接 doing，不受本条影响。"
+
+  - id: sf-036
+    ref: "报告 ③-B S18"
+    claim: "wb_claims[401]"
+    scenes: [hd_g40_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "同 sf-035：口诀中『like / enjoy / finish 后接 doing』把 like 讲成单选。"
+    original: "🎵 口诀：一山不容二虎，一句不站两原形！想要计划去未来，want / would like / plan 后接 to do；享受爱好常态事，like / enjoy / finish 后接 doing；Let 和 make 最豪爽，宾语后面接原形；It's time to do 接动作，It's time for 后接名词！"
+    fixed_lines:
+      - { role: 口诀, text: "🎵 口诀：一山不容二虎，一句不站两原形！想要计划去未来，want / would like / plan 后接 to do；enjoy、finish 后接 doing；like、love 两边站，doing、to do 都行（爱好偏 doing，选择偏 to do）；Let 和 make 最豪爽，宾语后面接原形；It's time to do 接动作，It's time for 后接名词！"}
+    basis: "自拟（按报告 S18 裁定替换口诀中的 like 段，其余各段保留）"
+    boundary: "同 sf-035。"
+
+  - id: sf-037
+    ref: "报告 ③-B S19"
+    claim: "wb_claims[515]"
+    scenes: [tense_matrix_5]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "现在完成时 ≠『过去做完』：还包括持续到现在（I have lived here for ten years，事没做完）与经历、刚发生。权威表述为过去情境对现在的持续相关性。"
+    original: "口诀：过去做完，结果留到现在 → have / has + 过去分词！"
+    fixed_lines:
+      - { role: 口诀, text: "过去发生，和现在有关系 → have / has + 过去分词！"}
+      - { role: 讲解, text: "关系有两样最常见：① 做完了，结果还摆在现在——I have lost my key（钥匙现在还没找到）；② 一直持续到现在——I have lived here for ten years（现在还住在这儿，事情没'做完'）。所以别把完成时记成'做完了'，要记成'和现在挂着钩'。"}
+    basis: "U5 现成改写（与 sf-038 合并替换，两行口诀由新口诀+讲解取代）"
+    method: "对比案例（结果支 vs 持续支并置）"
+    boundary: "小学先立结果、持续两支；经历（have been to）、刚发生（just）是同一框架的另外两格，中学补全。"
+    source: "Comrie（1976: 52）完成体定义 'a past situation's continuing present relevance'，四分含 perfect of persistent situation"
+
+  - id: sf-038
+    ref: "报告 ③-B S19"
+    claim: "wb_claims[516]"
+    scenes: [tense_matrix_5]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "同 sf-037（同幕第二行同义口诀）。"
+    original: "口诀：过去做完，结果留到现在，就用 have / has + 过去分词！"
+    fixed_lines:
+      - { role: 口诀, text: "过去发生，和现在有关系 → have / has + 过去分词！"}
+      - { role: 讲解, text: "关系有两样最常见：① 做完了，结果还摆在现在——I have lost my key（钥匙现在还没找到）；② 一直持续到现在——I have lived here for ten years（现在还住在这儿，事情没'做完'）。所以别把完成时记成'做完了'，要记成'和现在挂着钩'。"}
+    basis: "U5 现成改写（与 sf-037 为同一替换，两行合并为一份新口诀+讲解，播出时只用一份）"
+    method: "对比案例"
+    boundary: "同 sf-037。"
+    source: "Comrie（1976: 52）"
+
+  - id: sf-039
+    ref: "报告 ③-B S20"
+    claim: "wb_claims[427]"
+    scenes: [hd_phonics_3]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "元音组合的入门近似，反例成串：ea 在 bread 读 /e/、great 读 /eɪ/；ie、ou 更不守此规。须标『先按这个猜，变脸的单独记』。"
+    original: "👯 元音组合口诀：两个元音并排走，前面说话(读长音)后面静！"
+    fixed_lines:
+      - { role: 口诀, text: "两个元音并排走，多半第一个开口（rain、boat）；ea 是变脸王，有时读 /e/（bread）。"}
+    basis: "U17 现成改写"
+    method: "默认+例外的讲法范式（同 U10）"
+    boundary: "ou / ie / ei 不套此口诀，另学。"
+
+  - id: sf-040
+    ref: "报告 ③-B S21"
+    claim: "wb_claims[617]"
+    scenes: [wo_vowel_a_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "i-变音（umlaut）的触发是次音节中的 -i，且只作用于部分名词的复数等特定形式，不是『表示好几个就加 -i』的通用加法；须去掉意愿化表述。（同库 [623] 已注真因是古尾巴 -i，本条与之对齐。）"
+    original: "古英语：一千多年前的英语。那时想表示「好几个」，要在词尾加一个 -i。"
+    fixed_lines:
+      - { role: 台词, text: "古英语：一千多年前的英语。那时有些词的词尾（后一个音节里）带着一个 -i，前面的元音听到它，会先『变个声』；后来 -i 消失了，变了的声音却留下来——这叫 i-变音，foot 变 feet 就是这样来的。不是所有词都这样变，只有词尾带过 -i 的那些词形才变。"}
+    basis: "自拟（按报告 S21 裁定：去意愿化、补触发条件与范围）"
+    boundary: "只作用于带 -i 词尾的特定词形（如部分名词复数），不是通用加法。"
+
+  - id: sf-041
+    ref: "报告 ③-B S22"
+    claim: "wb_claims[675]"
+    scenes: [ze_same_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "脱离画面无法成立：数字本身不加 s，加 s 的是其后的复数名词；原表述含混，孩子易记成『数字要加 s』。"
+    original: "口诀：谁做什么顺序同，颜色大小放前头，数字在前加个 s！"
+    fixed_lines:
+      - { role: 口诀, text: "谁做什么顺序同，颜色大小放前头，数字站在名词前——加 s 的是后面的名词（three apples），不是数字！"}
+    basis: "自拟（按报告 S22 裁定点明加 s 的对象）"
+
+  - id: sf-042
+    ref: "报告 ③-B S23"
+    claim: "wb_claims[631]"
+    scenes: [writing_alchemist_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "分数承诺式夸张：句式升级只是评分的一维。作动机口号可，作因果断言则误导。"
+    original: "口诀：换掉老词加状语，感叹句和连接词一用，60 分秒变 100 分！"
+    fixed_lines:
+      - { role: 口诀, text: "换掉老词加状语，感叹句和连接词用得好，作文更出彩！（句式只是评分的一面：内容对题、句子写对更重要。这句是加油口号，不是分数保证。）"}
+    basis: "自拟（按报告 S23 裁定：删除分数承诺，口号明示为口号）"
+    boundary: "本条与 T4 写作库去虚假承诺同向（『一键炼成 100 分』类话术一律删除）。"
+
+  - id: sf-043
+    ref: "报告 ③-B S24"
+    claim: "wb_claims[149]"
+    scenes: [five_patterns_p2_2]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "以后缀下定义错误：副词按功能定义（修饰动词/形容词/副词/全句）；fast、hard、often 无 -ly 也是副词，friendly、lonely 带 -ly 却是形容词。"
+    original: "副词：-ly 结尾的词修饰动作，比如 sweetly（甜甜地）。系动词后面不能用它！"
+    fixed_lines:
+      - { role: 台词, text: "副词是'加说明'的词：说明动作怎么做（run fast）、程度多深（very good）、多久一次（often）。很多副词带 -ly（quickly），但 fast、hard、often 不带也是；friendly 带 -ly 却是形容词——看它干什么活，别只看尾巴。"}
+    basis: "U15 现成改写（替换定义句；原台词尾句『系动词后面不能用它』不在报告问题清单内，播出处理时保留与否由 T11 按上下文定）"
+    method: "功能目的式"
+    boundary: "定义按功能，-ly 只作识别提示。"
+
+  - id: sf-044
+    ref: "报告 ③-B S25"
+    claim: "wb_claims[646]"
+    scenes: [ze_be_1]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "本幕只立 like 的动词身份，会误伤介词 like：I am like my mum（我像我妈妈）完全正确。须补 like 的介词身份（原台词本身不改，加澄清行）。"
+    original: "实义动词：表示真正动作或心理的动词，比如 like、play、eat。它自己就能当国王。"
+    fixed_lines:
+      - { role: 补丁（本幕新增澄清行，原行保留）, text: "为什么 I am like apples 不行？因为这里的 like 是动词'喜欢'，它自己当国王，不用 am 来帮忙。但 like 还有一份工作是介词'像'：I am like my mum.（我长得像我妈妈。）——先看它干的是哪份活，再决定要不要 am。"}
+    basis: "U16 现成改写（补丁形式）"
+    method: "说话人视角（一词两职，按句义分工）"
+    boundary: "判断依据是句义，不是形式。"
+
+  - id: sf-045
+    ref: "报告 ③-B S26"
+    claim: "wb_claims[481]"
+    scenes: [metaphor_code_4]
+    n: 1
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "『总是』过强：forward 还有空间义（sit forward、step forward）与『向前推进』义；时间义上『前=将来』也只是主导隐喻（backward glance 看过去）。"
+    original: "要小心：中文的「前」有时指过去，比如「以前」「前天」；英语的 forward 总是朝向将来。"
+    fixed_lines:
+      - { role: 台词, text: "要小心：中文的「前」有时指过去，比如「以前」「前天」；英语的 forward 讲时间时，多半朝向将来（look forward to 是盼望将来的事）。但 forward 也有空间的意思：往前坐（sit forward）、向前走一步（step forward）——先看它讲的是时间，还是位置。"}
+    basis: "自拟（按报告 S26 裁定：『总是』降格为『讲时间时多半』并补空间义）"
+    boundary: "时间义是主导隐喻而非全称；空间义单独存在。"
+
+  # ===== 附：③-C 顺手订正（不计入 45 条）=====
+
+  - id: sf-046
+    ref: "报告 ③-C"
+    claim: "wb_claims[534]"
+    scenes: [wo_europe_1]
+    n: 1
+    verdict: 基本成立（顺手订正）
+    severity: 低
+    problem: "数字差一年：euro 定名于 1995 年 12 月马德里欧洲理事会，1999 年启用；原台词作 1996 年。"
+    original: "欧元：Euro- 就是「欧洲」：欧洲很多国家一起用的钱，叫 euro（欧元），1996 年定的名字。"
+    fixed_lines:
+      - { role: 台词, text: "欧元：Euro- 就是「欧洲」：欧洲很多国家一起用的钱，叫 euro（欧元），1995 年 12 月在马德里定的名字，1999 年正式启用。"}
+    basis: "自拟（按报告 ③-C 裁定订正年份）"

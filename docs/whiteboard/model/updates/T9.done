@@ -1,0 +1,29 @@
+# T9 主 HTML 旧库外科补丁 —— 完成摘要
+
+日期：2026-11-01（通宵运行手册 T9）
+目标：`萌星小学英语_最终合并版.html`（仓库根，工作区已改，未提交——主会话统一提交）
+
+## 结果
+- **已应用 211 项，跳过 45 项**（跳过全部在清单构建期：依据未给逐字新值/属结构性变更；定位期零失败、零模糊匹配）。
+  - 语法 GRAMMAR_DB 28 项：G03 why 全文替换（构念观取代形状理论）等 11 条 why、5 条口诀、4 条 step3_rules、G28 fill explain、G08 译文等。
+  - 词汇 36 项：VOCAB/MH 词源与释义订正（含 watch/friend/light/scientist 假词源）、WORD_FORMATION 假语素清理（pare/matic/joy 例）、WORD_RELATIONS desk/table 定义与英美组改名等。
+  - 框架 47 项：ROYAL T01–T15 点名条目、TENSE/FIVE/INTERROGATIVE/ZH_EN/PITFALLS/STRESS/METAPHOR/FRAME 点名订正（删 T01「85%」、FIVE③「80%」伪统计，T09 时长轴定义换空间原型名等）。
+  - 表达 99 项：DAILY 96 处叶子订正 + EXP_016/062/066 删除机械填充第三轮对话；ORAL 场景 8 三字段订正。
+- 文件大小 16,398,440 → 16,402,938 字符。
+
+## 复验（四层，全过）
+1. 补丁脚本内存复验：20 库可解析、逐项新值在位/旧值消失。
+2. 独立重抽（extract.mjs 同法）：20 库条目数与改前逐库一致（VOCAB 1567 / GRAMMAR 40 / DAILY 144 / ROYAL 15 等）。
+3. 独立回读（verify_T9.py，不同实现）：211 项全过；全库深比较显示补丁覆盖外**零附带改动**。
+4. 剥离 DB 字面量后其余文本（全部代码）改前/改后逐字节一致。
+
+## 产物
+- 改后主文件（工作区）：`萌星小学英语_最终合并版.html`
+- 备份：`~/workspace/content-audit/main_html_backup_pre_T9.html`（md5 64ee8a2d628c4d8d3bb236305346f50a）
+- 逐项报告：`~/workspace/content-audit/T9_patch_report.md`（含 45 项跳过原因与全部判断口径）
+- 清单/脚本/结果：`~/workspace/content-audit/patch_items.json`、`patch_T9.mjs`、`patch_T9_results.json`、`verify_T9.py`
+
+## 遗留（待主会话在模型层处理）
+- 45 项跳过：结构性变更（新增记录/字段、拆分、移栏）与待拍板项（英美音标口径、T13 对数、golden hour 适龄性）。
+- G28 填空题题干/选项/答案待补裁定（依据该行在 T2 生产时截断，本次仅改 explain）。
+- scene_fixes.yaml 未动（白板另行处理）。

@@ -1,0 +1,86 @@
+# 场景规格 · letters 第 1 幕（真来历 vs 自编钩子）——由知识模型生成，禁止手改产物 gen_letters_1.js
+# items 模式（autoBuild）：台词只从 letters.yaml 组装；口诀/判据句逐字引模型记录（生成后脚本比对）。
+scene: gen_letters_1
+family: letters
+pattern: auto_items_letters
+template: fp_iconicity_1.js
+
+title: "字母的画：真来历，还是钩子？"
+teaches: [lt-cl-true-origins, lt-cl-memory-pictures]
+
+replace:
+  - ["第一性原理 · 象似性 · 1", "联想工具箱 ② 字母看图记词 · 1"]
+
+items:
+  - [n, "这一幕：字母最早真是画出来的！可有些画是查得到的真来历，有些只是我们编的钩子。"]
+  - [p, "Aa"]
+  - [w, "字母的画：真来历与钩子"]
+  - [w, "② 字母看图记词"]
+  - [w, "💡 先分清两种画"]
+  - [m, "① 七个真源"]
+  - [m, "② 自编钩子"]
+  - [m, "③ 口诀"]
+  - [m, "🔮 预测"]
+  - [n, "字母最早就是画出来的：腓尼基人照着东西画符号、起名字。这些名字查得到，是真历史。"]
+  - [n, "M 来自 mem，就是「水」——水波纹一弯一弯，就成了 M。"]
+  - [w, "M"]
+  - [m, "mem"]
+  - [m, "水波纹"]
+  - [s, "M comes from mem. Mem means water.", "M 来自 mem，mem 是「水」。", "mem"]
+  - [n, "B 来自 bet，就是「房屋」——小房子的画，变成了 B。"]
+  - [w, "B"]
+  - [m, "bet"]
+  - [m, "小房子"]
+  - [s, "B comes from bet. Bet means a house.", "B 来自 bet，bet 是「房屋」。", "bet"]
+  - [n, "C 来自 gimel，就是「骆驼」——驼峰弯成了 C。注意：「手」不是 C 的来历！"]
+  - [w, "C"]
+  - [m, "gimel"]
+  - [m, "骆驼"]
+  - [s, "Look at the camel!", "看这只骆驼！", "camel"]
+  - [n, "K 来自 kaph，就是「手掌」——「手」的真来历在 K 这一家。"]
+  - [w, "K"]
+  - [m, "kaph"]
+  - [m, "手掌"]
+  - [s, "K comes from kaph. Kaph means a hand.", "K 来自 kaph，kaph 是「手掌」。", "kaph"]
+  - [n, "O 来自 ayin，就是「眼睛」——圆圆的眼睛，就是 O。"]
+  - [w, "O"]
+  - [m, "ayin"]
+  - [m, "眼睛"]
+  - [s, "O comes from ayin. Ayin means an eye.", "O 来自 ayin，ayin 是「眼睛」。", "ayin"]
+  - [n, "S 来自 shin，就是「牙齿」——一排小牙齿的画，变成了 S。"]
+  - [w, "S"]
+  - [m, "shin"]
+  - [m, "小牙齿"]
+  - [s, "S comes from shin. Shin means teeth.", "S 来自 shin，shin 是「牙齿」。", "shin"]
+  - [n, "A 来自 aleph，就是「牛头」——把 A 倒过来，还能找到牛的两只角！"]
+  - [w, "A"]
+  - [m, "aleph"]
+  - [m, "牛头"]
+  - [s, "A comes from aleph. Aleph means an ox.", "A 来自 aleph，aleph 是「牛头」。", "aleph"]
+  - [w, "口诀：M 是水波纹，B 是小房子，C 是骆驼峰，S 是小牙齿——这四个画的都是真历史！"]
+  - [n, "不是每个字母都有查得到的画。记不住的，可以自己编一幅像的画——比如把 X 想成剪刀。"]
+  - [w, "X"]
+  - [m, "剪刀（自编）"]
+  - [n, "但自己编的画只是钩子：帮你记住它，不是它的来历。钩子再像，也不是历史！"]
+  - [w, "画面只是钩子，来历要查真源。"]
+  - [n, "预测：有人说「C 像一只手在抓东西」。这是 C 的真来历，还是编的钩子？先想 3 秒！"]
+  - [w, "🔮 C 的「手」是真来历吗？"]
+  - [n, "揭晓：是钩子！C 的真来历是骆驼；「手」是 K 的真来历（kaph 手掌）。钩子帮记，不冒充来历。"]
+  - [w, "C = 骆驼（真）　手 → K（真）"]
+  - [s, "A camel is a big animal.", "骆驼是很大的动物。", "camel"]
+  - [w, "💡 一句话洞见"]
+  - [w, "字母的画分两种："]
+  - [w, "查得到的真来历，自己编的钩子"]
+  - [w, "🎵 口诀"]
+  - [w, "画面只是钩子，来历要查真源"]
+  - [w, "📦 联想工具箱 ② 字母看图记词"]
+
+facts:
+  objects:
+    - { name: "字母 M/B/C/K/O/S/A", kind: "真源组", states: "腓尼基字母名本义：mem 水 / bet 房屋 / gimel 骆驼 / kaph 手掌 / ayin 眼睛 / shin 牙齿 / aleph 牛头（lt-cl-true-origins）" }
+    - { name: "字母 X", kind: "自编联想", states: "剪刀画面为自编钩子，出场即标明不是来历（lt-cl-memory-pictures）" }
+  invariants:
+    - "「手掌」只归 K（kaph）；C 的来历是骆驼——「C 像手抓」只可作被拆穿的钩子在预测题出场"
+    - "自编画面必带失效边界台词「画面只是钩子，来历要查真源」"
+    - "真源只限七个字母名单，不顺推其他字母也有图画源"
+    - "标题与屏上家族标只称「联想工具箱」，不出现「第一性原理 / 律 / 同源簇」"

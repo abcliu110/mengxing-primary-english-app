@@ -1,0 +1,60 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：model/letters.yaml；改本幕台词/结构：model/specs/letters_2.yaml；改编排：模板 fp_iconicity_2.js（家族共用）。
+// 判据/口诀来源：lt-cl-flglsl。生成器 model/gen_scene.py（items 模式）。
+// 🔤 联想工具箱 ② 字母看图记词 · 2 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 内容来源（R1 零丢失）：src/cases/fp_iconicity.js 案例 2；对照清单 lab/INVENTORY_FP_ICONICITY_2_V5.md
+// 角色关键帧：sprites/fi2.js（人物先行帧库 cast/）
+import { autoBuild } from './auto.js';
+import * as SP from '../sprites/fi2.js';
+const ACTS = {"flies": ["bird_up", "bird_down"], "fly": ["bird_up", "bird_down"], "go": ["l_w0", "l_w1", "l_w2"]};
+const ITEMS = [
+  ['n', '这一幕：fly、flow 开头都是 fl-，是巧合吗？'],
+  ['w', 'fl- 多半飞 · gl- 多半光 · sl- 多半滑'],
+  ['w', '② 字母看图记词'],
+  ['w', '💡 猜词的线索'],
+  ['m', '① fl- 多半飞'],
+  ['m', '② gl- 多半光'],
+  ['m', '③ sl- 多半滑'],
+  ['m', '④ 例外 ⚠️'],
+  ['m', '⑤ 口诀'],
+  ['m', '🔮 预测'],
+  ['n', '辅音丛：两三个辅音字母连在一起读，比如 fl-、gl-、sl-。它们常带着同一种感觉——记住，是「多半」，不是全部。'],
+  ['w', 'fl-'],
+  ['n', 'fl- 开头的词，多半在飞、在流动：fly 飞，flow 流。'],
+  ['m', 'fly 飞'],
+  ['m', 'flow 流'],
+  ['s', 'Birds fly in the sky.', '鸟儿在天上飞。', 'fly'],
+  ['s', 'Water flows in the river.', '水在河里流。', 'flows'],
+  ['w', 'gl-'],
+  ['n', 'gl- 开头的词，多半在发光：glow 发光，gleam 闪光。'],
+  ['m', 'glow 发光'],
+  ['m', 'gleam 闪光'],
+  ['s', 'Stars gleam at night.', '星星在夜里闪光。', 'gleam'],
+  ['w', 'sl-'],
+  ['n', 'sl- 开头的词，多半往下滑：slide 滑梯，slip 滑倒。'],
+  ['m', 'slide 滑'],
+  ['m', 'slip 滑倒'],
+  ['s', 'Slide down, slowly!', '慢慢滑下来！', 'slide'],
+  ['s', 'Be careful! Don\'t slip.', '小心！别滑倒。', 'slip'],
+  ['w', '⚠️ 有例外'],
+  ['n', '但是——只是多半！flame 火焰不飞，flag 旗子不飞；glove 手套、glue 胶水不发光；sleep 睡觉、slow 慢，也不是滑。'],
+  ['m', 'flame 不飞'],
+  ['m', 'glove 不发光'],
+  ['m', 'sleep 不滑'],
+  ['n', '还有两个根本不是这一家的：flu 是 influenza 的缩略；floor 地板和「飞」一点关系都没有。'],
+  ['m', 'flu = 缩略词'],
+  ['m', 'floor 不是飞'],
+  ['n', '口诀自带「多半」两个字，记牢它：'],
+  ['w', '口诀：fl 多半在飞，gl 多半在发光，sl 多半往下滑——是多半，不是全部'],
+  ['n', '预测：新词 glide 是「滑翔」。它像不像 gl- 一家的感觉？先想 3 秒！'],
+  ['w', '🔮 glide → 像 gl- 一家吗？'],
+  ['n', '揭晓：glide 又滑又轻，感觉对上了！但这只是猜词的线索，不是词源——猜完，还要查词典。'],
+  ['w', '感觉对上 ≠ 词源，要查词典'],
+  ['s', 'Birds glide in the sky.', '鸟儿在天上滑翔。', 'glide'],
+  ['w', '💡 一句话洞见'],
+  ['w', '音义簇是猜词的线索：'],
+  ['w', '多半对，不是全部对'],
+  ['w', '🎵 口诀'],
+  ['w', 'fl 多半在飞，gl 多半在发光，sl 多半往下滑——是多半，不是全部'],
+  ['w', '📦 联想工具箱 ② 字母看图记词'],
+];
+export default function build() { return autoBuild(SP, { title: 'fl-、gl-、sl-：多半是这样', items: ITEMS, acts: ACTS }); }
