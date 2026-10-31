@@ -2870,3 +2870,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `lab/audit35/a3/b4.tsv`（ring … together，110 条），445 条齐；按词库核对：例句里词库外实词 10 句改写（aloud / chest / crown / joke / minus / pool / wagging / weighs 等）。
 - `src/patch_a3_examples.py`：写 senses[0].ex_en/ex_zh + example_en/zh；collocations.verbs 去占位；affix_root「课标关联：」清空；词卡构词栏 / 搭配动词为空不显示（WORDCARD_A3_V1）。
 - `src/datacheck.py` 入 runall（当前主 HTML：占位 1745 处，打补丁后应为 0）。
+
+## 2026-10-31 19:00 JST · 决策 38 35-A4 模板搭配：patch_a4_collocations.py + datacheck A4 段 + 单词卡模板不再兜底写本词（WIP，未打进主 HTML）
+- 调查：collocations 里没有一条真搭配——adjs 882 词模板「a/the/my X」、188 词整句；verbs 1245 条整句（1268 词与例句逐字相同）、46 条「Morph form」占位。
+- `src/patch_a4_collocations.py`：删模板 / 占位 / 与例句重复的整句；不重复的整句搬进新字段 more_ex（R1 不丢句，词卡「📝 更多例句」）；搭配为空时词卡、主题页头、交互导图两框都不显示；去掉「use / see / good / nice」假兜底（COLLOC_A4_V1）。
+- `src/datacheck.py` 加 A4 段。`v5/scenes/wordcard_items.js`：搭配为空不写「常用搭配动词：本词」，第 ③ 框改读 more_ex[0]。

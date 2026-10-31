@@ -11,7 +11,7 @@ export function wordParts(w) {
   const ss = w.senses || [];
   const s0 = ss[0] || { pos: w.pos, meaning: w.meaning, ex_en: w.example_en, ex_zh: w.example_zh };
   const co = w.collocations || {};
-  const verbs = (co.verbs && co.verbs.slice(0, 3).join(' / ')) || w.word;
+  const verbs = co.verbs && co.verbs.slice(0, 3).join(' / ');   // 决策 35-A4：没有真实搭配就不写这行（原来兜底写本词，成了「常用搭配动词：bag」）
   const ety = str(str(w.etymology).replace('📖 【秒懂造词小故事】', '').replace('📖 【秒懂巧记小故事】', ''));
   const aff = str(w.affix_root).replace('🧩 ', '');
   const fam = aff.split('｜').slice(1).join('｜').trim();
@@ -23,7 +23,7 @@ export function wordParts(w) {
     sub: str(w.affix_root || w.memory_tip),
     bench: `🔬 『${w.word}』三维深度解剖：词源 × 构词家族 × 汉英句法防坑`,
     box1: [`① 词源与音节拆解：【${w.syllables}】${str(w.memory_tip)}`, ety],
-    box2: [`② 积木构词与搭配：${aff.split('｜')[0]}`, fam ? `🧩 构词家族：${fam}` : '', `常用搭配动词：${verbs}`,
+    box2: [`② 积木构词与搭配：${aff.split('｜')[0]}`, fam ? `🧩 构词家族：${fam}` : '', verbs ? `常用搭配动词：${verbs}` : '',
       co.adjs && co.adjs.length ? `常用搭配：${co.adjs.join(' / ')}` : ''],
     box3: [`③ 地道例句：${s0.ex_en} (${s0.ex_zh})`, str(w.syntax_contrast), str(w.spelling_alert) ? `✏️ 拼写提醒：${str(w.spelling_alert)}` : '', assoc],
     s0, ss,
@@ -39,8 +39,9 @@ export function wordItems(w, a) {
   [a, ...[0, 1, 2].filter(i => i !== a)].forEach((bi, k) => {
     boxes[bi].forEach(W);
     if (k) return;
-    const v0 = str(w.collocations && w.collocations.verbs && w.collocations.verbs[0]);
+    const v0 = str(w.collocations && w.collocations.verbs && w.collocations.verbs[0]), m0 = str(w.more_ex && w.more_ex[0]);   // 35-A4：原搭配栏里的整句搬进 more_ex
     if (bi === 1 && /[A-Za-z]{2}/.test(v0) && v0 !== str(P.s0.ex_en)) items.push(['s', v0, `常用搭配：${v0}`]);
+    if (bi === 2 && m0 && m0 !== str(P.s0.ex_en)) items.push(['s', m0, `更多例句：${m0}`]);
     if (bi === 2) P.ss.slice(1).forEach(s => { if (str(s.ex_en)) items.push(['s', str(s.ex_en), `${s.pos} ${s.meaning}：${str(s.ex_zh)}`]); });
   });
   W(`精讲第${a + 1}幕`);
