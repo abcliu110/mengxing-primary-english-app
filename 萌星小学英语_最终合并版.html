@@ -951,6 +951,16 @@
 }
 
 </style>
+<style id="mobile-o4">
+/* MOBILE_O4_V1 */
+/* 决策 29 O4：触控目标 ≥ 44 px（src/patch_mobile.py 生成，检查 src/mobilecheck.py） */
+html, body { overflow-x: hidden; }
+button, [role="button"], select, input[type="button"], input[type="submit"], a[onclick], [onclick] { min-height: 44px; }
+button, [role="button"], input[type="button"], input[type="submit"], a[onclick] { min-width: 44px; }
+button { touch-action: manipulation; }
+span[onclick], a[onclick] { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; vertical-align: middle; }
+p > a[onclick], li > a[onclick] { display: inline; min-height: 0; min-width: 0; }
+</style>
 </head>
 <body>
 
@@ -2880,9 +2890,9 @@ function renderWordGridHTML(words, contextIds) {
     <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(225px, 1fr)); gap:14px;">
       ${words.map(w => {
         const st = getItemStatus("vocab", w.id);
-        const stBadge = st === "mastered" ? `<span style="background:#d1fae5; color:#065f46; font-size:0.74rem; padding:2px 8px; border-radius:999px; font-weight:800;">🌟已掌握</span>`
-                      : st === "mistake" ? `<span style="background:#fee2e2; color:#991b1b; font-size:0.74rem; padding:2px 8px; border-radius:999px; font-weight:800;">📕错题</span>`
-                      : st === "learning" ? `<span style="background:#fef3c7; color:#92400e; font-size:0.74rem; padding:2px 8px; border-radius:999px; font-weight:800;">📖学习中</span>` : "";
+        const stBadge = st === "mastered" ? `<span style="background:#d1fae5; color:#065f46; font-size:0.75rem; padding:2px 8px; border-radius:999px; font-weight:800;">🌟已掌握</span>`
+                      : st === "mistake" ? `<span style="background:#fee2e2; color:#991b1b; font-size:0.75rem; padding:2px 8px; border-radius:999px; font-weight:800;">📕错题</span>`
+                      : st === "learning" ? `<span style="background:#fef3c7; color:#92400e; font-size:0.75rem; padding:2px 8px; border-radius:999px; font-weight:800;">📖学习中</span>` : "";
         return `
           <div onclick="openWordCardModal('${w.id}', ${ctxStr})"
             style="background:#fff; border-radius:16px; padding:16px; border:2px solid ${w.has_polysemy?'#93c5fd':'#e2e8f0'}; cursor:pointer; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; justify-content:space-between; min-height:132px;">
@@ -2890,8 +2900,8 @@ function renderWordGridHTML(words, contextIds) {
               <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:6px;">
                 <span style="font-size:1.75rem;">${w.emoji}</span>
                 <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                  ${w.is_function_word ? `<span style="background:#ede9fe; color:#5b21b6; font-size:0.72rem; padding:2px 7px; border-radius:999px; font-weight:800;">功能词</span>` : ""}
-                  ${w.has_polysemy ? `<span style="background:#dbeafe; color:#1e40af; font-size:0.72rem; padding:2px 7px; border-radius:999px; font-weight:800;">🎞️多义词</span>` : ""}
+                  ${w.is_function_word ? `<span style="background:#ede9fe; color:#5b21b6; font-size:0.75rem; padding:2px 7px; border-radius:999px; font-weight:800;">功能词</span>` : ""}
+                  ${w.has_polysemy ? `<span style="background:#dbeafe; color:#1e40af; font-size:0.75rem; padding:2px 7px; border-radius:999px; font-weight:800;">🎞️多义词</span>` : ""}
                   ${stBadge}
                 </div>
               </div>
@@ -4552,7 +4562,7 @@ function renderSentenceBlockMount(g) {
           ondrop="onBlockDrop(event, ${idx})"
           onclick="unplaceBlock(${idx})"
           title="点击移回候选区，或拖拽调换位置">
-          <span style="font-size:0.74rem; opacity:0.8;">${roleShapePrefix(b.role)}</span>
+          <span style="font-size:0.75rem; opacity:0.8;">${roleShapePrefix(b.role)}</span>
           <span>${b.text}</span>
         </div>
       `).join("")}
@@ -4562,7 +4572,7 @@ function renderSentenceBlockMount(g) {
     <div style="min-height:58px; background:rgba(255,255,255,0.65); border-radius:12px; padding:8px; margin-bottom:10px;">
       ${st.pool.map((b, idx) => `
         <div class="block-chip role-${b.role}" onclick="placeBlockFromPool(${idx})">
-          <span style="font-size:0.74rem; opacity:0.8;">${roleShapePrefix(b.role)}</span>
+          <span style="font-size:0.75rem; opacity:0.8;">${roleShapePrefix(b.role)}</span>
           <span>${b.text}</span>
         </div>
       `).join("")}
@@ -6425,7 +6435,7 @@ function renderFirstPrinciplesHubView() {
           return `
             <button onclick="switchFirstPrincipleLaw(${idx})"
               style="text-align:left; padding:11px 13px; border-radius:14px; border:2px solid ${active ? '#fbbf24' : 'rgba(255,255,255,0.16)'}; background:${active ? 'linear-gradient(135deg, rgba(245,158,11,0.28), rgba(217,119,6,0.22))' : 'rgba(255,255,255,0.07)'}; color:#fff; transition:all 0.15s;">
-              <div style="font-size:0.74rem; color:${active ? '#fde68a' : '#94a3b8'}; font-weight:800;">${item.num} · ${item.badge}</div>
+              <div style="font-size:0.75rem; color:${active ? '#fde68a' : '#94a3b8'}; font-weight:800;">${item.num} · ${item.badge}</div>
               <div style="font-size:0.95rem; font-weight:900; margin-top:2px; color:${active ? '#ffffff' : '#e2e8f0'};">${item.shortTitle}</div>
             </button>
           `;
@@ -7180,7 +7190,7 @@ function etymRealHtml(w) {
   const kind = e ? ({ native: "英语本族词（从古英语一路传下来）", loan: "外来词（从别的语言来到英语）", other: "" }[e.k] || "") : "";
   const chain = e ? `<div style="font-family:Georgia,serif; line-height:1.7;"><b>${etymEsc(w.word)}</b> ${e.c.map(c => `<span style="white-space:nowrap;">← <span style="color:#64748b; font-family:inherit;">${etymEsc(c[0])}</span> <i>${etymEsc(c[1])}</i>${c[2] ? `<span style="color:#64748b;">（${etymEsc(c[2])}）</span>` : ""}</span>`).join(" ")}</div>` : "";
   const morph = m ? `<div style="margin-top:4px;">🧩 真实构词：${m.p.map(p => `<b>${etymEsc(p[0])}</b>${p[1] ? `<span style="color:#64748b;">（${etymEsc(p[1])}）</span>` : ""}`).join(" + ")} ${m.k === "compound" ? "（合成词）" : "（加词缀）"}</div>` : "";
-  const src = (e || m) ? `<div style="font-size:0.74rem; color:#64748b; margin-top:4px;">出处：<a href="https://en.wiktionary.org/wiki/${encodeURIComponent((e || m).w)}#Etymology" target="_blank" rel="noopener">Wiktionary</a> · <a href="https://www.etymonline.com/word/${encodeURIComponent((e || m).e)}" target="_blank" rel="noopener">Etymonline</a>（两处对得上才收录）</div>` : "";
+  const src = (e || m) ? `<div style="font-size:0.75rem; color:#64748b; margin-top:4px;">出处：<a href="https://en.wiktionary.org/wiki/${encodeURIComponent((e || m).w)}#Etymology" target="_blank" rel="noopener">Wiktionary</a> · <a href="https://www.etymonline.com/word/${encodeURIComponent((e || m).e)}" target="_blank" rel="noopener">Etymonline</a>（两处对得上才收录）</div>` : "";
   return `<div data-etym="${e ? "real" : "none"}" style="background:#fff; padding:12px 14px; border-radius:12px; border-left:4px solid #2563eb;">
     <div style="font-weight:900; color:#1e40af; font-size:0.9rem;">📖 词源 ${typeof wbBadgeHtml === "function" && (e || m) ? wbBadgeHtml(["📜"]) : "<span style=\"color:#64748b; font-weight:700; font-size:0.8rem;\">（真实词源）</span>"}</div>
     <div style="font-size:0.9rem; color:#334155; margin-top:4px;">${e || m ? `${kind ? `<div style="font-weight:800; color:#1e3a8a;">${kind}</div>` : ""}${chain}${morph}${src}` : `<span style="color:#64748b;">暂未收录：两本词源词典还没能互相印证，先不写，免得讲错。</span>`}</div>
@@ -7203,7 +7213,7 @@ function woFindScene(id) { for (const ch of WO_CHAPTERS) for (const sc of (ch.sc
 // 可信度徽章（HTML 版，词卡/章节卡片通用）
 function wbBadgeHtml(keys) {
   const B = (typeof WB !== "undefined" && WB.BADGES) || {};
-  return (keys || []).map(kk => { const b = B[kk]; if (!b) return ""; return `<span title="${b.full}" style="display:inline-block; padding:1px 8px; margin:0 4px 2px 0; border-radius:8px; border:1.5px solid ${b.color}; background:${b.fill}; color:${b.color}; font-size:0.74rem; font-weight:900; white-space:nowrap;">${kk} ${b.label}</span>`; }).join("");
+  return (keys || []).map(kk => { const b = B[kk]; if (!b) return ""; return `<span title="${b.full}" style="display:inline-block; padding:1px 8px; margin:0 4px 2px 0; border-radius:8px; border:1.5px solid ${b.color}; background:${b.fill}; color:${b.color}; font-size:0.75rem; font-weight:900; white-space:nowrap;">${kk} ${b.label}</span>`; }).join("");
 }
 // 🥚 彩蛋词标记（超出课标：知道就好，不用背）
 function wbEggHtml(word) { return `<span title="彩蛋词：知道就好，不用背" style="white-space:nowrap;">${word}<span style="font-size:0.8em;">🥚</span></span>`; }
@@ -7211,7 +7221,7 @@ function wbBadgeLegendHtml() {
   const B = (typeof WB !== "undefined" && WB.BADGES) || {};
   return `<div style="display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center; font-size:0.8rem; color:#334155;">
     ${Object.keys(B).map(kk => `<span>${wbBadgeHtml([kk])}<span style="color:#64748b;">${B[kk].full.split("：")[1] || B[kk].full}</span></span>`).join("")}
-    <span><span style="display:inline-block; padding:1px 8px; border-radius:8px; border:1.5px solid #f59e0b; background:#fef9c3; color:#92400e; font-size:0.74rem; font-weight:900;">🥚 彩蛋词</span><span style="color:#64748b;">超出课标，知道就好，不用背</span></span>
+    <span><span style="display:inline-block; padding:1px 8px; border-radius:8px; border:1.5px solid #f59e0b; background:#fef9c3; color:#92400e; font-size:0.75rem; font-weight:900;">🥚 彩蛋词</span><span style="color:#64748b;">超出课标，知道就好，不用背</span></span>
   </div>`;
 }
 function woMapSvg() {
@@ -7240,7 +7250,7 @@ function woTimelineHtml() {
         <div style="height:3px; background:#f59e0b; position:absolute; top:17px; left:${i ? 0 : "50%"}; right:${i === WO_TIMELINE.length - 1 ? "50%" : 0};"></div>
         <div style="position:relative; display:inline-block; width:36px; height:36px; line-height:36px; border-radius:50%; background:#fff; border:2.5px solid #f59e0b; font-size:1.05rem;">${ic}</div>
         <div style="font-weight:900; font-size:0.85rem; color:#fde68a; margin-top:2px;">${name}</div>
-        <div style="font-size:0.72rem; color:#cbd5e1;">${when}</div>
+        <div style="font-size:0.75rem; color:#cbd5e1;">${when}</div>
       </div>`).join("")}
   </div>`;
 }
@@ -7285,7 +7295,7 @@ function renderWordOriginsHubView() {
         return `<div style="background:${ready ? "#fffbeb" : "#f8fafc"}; border-radius:16px; padding:13px 14px; border:2px solid ${ready ? "#f59e0b" : "#e2e8f0"};">
           <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
             <strong style="font-size:1rem; color:#0f172a;">${ch.icon} ${ch.title}</strong>
-            ${ready ? "" : `<span style="background:#e2e8f0; color:#475569; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:900;">即将上线</span>`}
+            ${ready ? "" : `<span style="background:#e2e8f0; color:#475569; padding:2px 8px; border-radius:999px; font-size:0.75rem; font-weight:900;">即将上线</span>`}
           </div>
           <div style="font-size:0.84rem; color:#475569; margin:6px 0 4px; line-height:1.5;">💡 ${ch.insight}</div>
           ${scs.map(s => {
@@ -7379,7 +7389,7 @@ function renderZhEnHubView() {
         return `<div style="background:${ready ? "#f0fdfa" : "#f8fafc"}; border-radius:16px; padding:13px 14px; border:2px solid ${ready ? "#14b8a6" : "#e2e8f0"};">
           <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
             <strong style="font-size:1rem; color:#0f172a;">${ch.icon} ${ch.title}</strong>
-            ${ready ? "" : `<span style="background:#e2e8f0; color:#475569; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:900;">即将上线</span>`}
+            ${ready ? "" : `<span style="background:#e2e8f0; color:#475569; padding:2px 8px; border-radius:999px; font-size:0.75rem; font-weight:900;">即将上线</span>`}
           </div>
           <div style="font-size:0.84rem; color:#475569; margin:6px 0 4px; line-height:1.5;">💡 ${ch.insight}</div>
           ${scs.map(s => {
@@ -7989,7 +7999,7 @@ function renderSuperLabHubView() {
                 <button onclick="superLabState.vIdx=${idx}; renderSuperLabHubView();"
                   style="padding:10px 8px; border-radius:12px; font-weight:900; font-size:0.95rem; background:${idx === superLabState.vIdx ? item.col : '#ffffff'}; color:${idx === superLabState.vIdx ? '#ffffff' : '#0f172a'}; border:2px solid ${idx === superLabState.vIdx ? item.col : '#cbd5e1'};">
                   <div>${item.v.toUpperCase()}</div>
-                  <div style="font-size:0.74rem; font-weight:700; opacity:0.9;">${item.zh}</div>
+                  <div style="font-size:0.75rem; font-weight:700; opacity:0.9;">${item.zh}</div>
                 </button>
               `).join("")}
             </div>
@@ -8005,7 +8015,7 @@ function renderSuperLabHubView() {
                 <button onclick="superLabState.pIdx=${idx}; renderSuperLabHubView();"
                   style="padding:10px 8px; border-radius:12px; font-weight:900; font-size:0.95rem; background:${idx === superLabState.pIdx ? item.col : '#ffffff'}; color:${idx === superLabState.pIdx ? '#ffffff' : '#0f172a'}; border:2px solid ${idx === superLabState.pIdx ? item.col : '#cbd5e1'};">
                   <div>+ ${item.p.toUpperCase()}</div>
-                  <div style="font-size:0.74rem; font-weight:700; opacity:0.9;">${item.zh.split("/")[0]}</div>
+                  <div style="font-size:0.75rem; font-weight:700; opacity:0.9;">${item.zh.split("/")[0]}</div>
                 </button>
               `).join("")}
             </div>
@@ -8800,7 +8810,7 @@ function renderAppMapView() {
   renderSubNavbar(["首页", "🗺️ 总地图"], "");
   const nodes = appMapNodes(), areas = [...new Set(nodes.map(n => n.area))];
   const gold = nodes.filter(n => appMapState(n.key) === "gold").length, seen = nodes.filter(n => appMapState(n.key) !== "new").length;
-  const chip = n => { const st = appMapState(n.key), quiz = mqWords(n.key).length >= 3; return `<button data-map-node="${n.key}" data-map-state="${st}" onclick="${n.go}" title="${st === "gold" ? "小测过关" : st === "seen" ? "看过了" : "还没看"}" style="text-align:left; border-radius:12px; padding:7px 10px; cursor:pointer; font-weight:800; font-size:0.84rem; border:2px solid ${st === "gold" ? "#f59e0b" : st === "seen" ? "#86efac" : "#e2e8f0"}; background:${st === "gold" ? "#fef3c7" : st === "seen" ? "#f0fdf4" : "#fff"}; color:#0f172a;">${st === "gold" ? "🏅" : st === "seen" ? "✓" : "○"} ${n.title}${quiz && st !== "gold" ? ` <span style="color:#94a3b8; font-size:0.72rem;">🎯</span>` : ""}</button>`; };
+  const chip = n => { const st = appMapState(n.key), quiz = mqWords(n.key).length >= 3; return `<button data-map-node="${n.key}" data-map-state="${st}" onclick="${n.go}" title="${st === "gold" ? "小测过关" : st === "seen" ? "看过了" : "还没看"}" style="text-align:left; border-radius:12px; padding:7px 10px; cursor:pointer; font-weight:800; font-size:0.84rem; border:2px solid ${st === "gold" ? "#f59e0b" : st === "seen" ? "#86efac" : "#e2e8f0"}; background:${st === "gold" ? "#fef3c7" : st === "seen" ? "#f0fdf4" : "#fff"}; color:#0f172a;">${st === "gold" ? "🏅" : st === "seen" ? "✓" : "○"} ${n.title}${quiz && st !== "gold" ? ` <span style="color:#94a3b8; font-size:0.75rem;">🎯</span>` : ""}</button>`; };
   const byKey = k => nodes.find(n => n.key === k);
   document.getElementById("appViewRoot").innerHTML = `
     <div style="background:linear-gradient(135deg,#0f172a,#1e3a8a); color:#fff; border-radius:22px; padding:18px 22px; margin-bottom:16px;">
@@ -8906,7 +8916,7 @@ renderAppMapView = function () {
 function affixData() { return (typeof etymData === "function") ? etymData("AFFIX_WORDS_JSON") : { a: [], z: [] }; }
 function affixWordChip(w) {
   const id = (typeof resolveWordId === "function") ? resolveWordId(w[1]) : w[1];
-  return `<span data-affix-word="${w[0]}" title="${attrEscape(w[2])}" style="display:inline-flex; align-items:center; gap:3px; background:#fff; border:1px solid #cbd5e1; border-radius:999px; padding:2px 9px; margin:2px; font-size:0.85rem;"><a href="javascript:void 0" onclick="openWordCardModal('${id}')" style="font-weight:800; color:#1d4ed8;">${w[0]}</a><span style="color:#94a3b8; font-size:0.74rem;">${w[2].replace(/ \+ /g, "+")}</span><button onclick="speakText(${attrEscape(JSON.stringify(w[0]))}, 'en')" style="background:none; border:0; cursor:pointer; padding:0;">🔊</button></span>`;
+  return `<span data-affix-word="${w[0]}" title="${attrEscape(w[2])}" style="display:inline-flex; align-items:center; gap:3px; background:#fff; border:1px solid #cbd5e1; border-radius:999px; padding:2px 9px; margin:2px; font-size:0.85rem;"><a href="javascript:void 0" onclick="openWordCardModal('${id}')" style="font-weight:800; color:#1d4ed8;">${w[0]}</a><span style="color:#94a3b8; font-size:0.75rem;">${w[2].replace(/ \+ /g, "+")}</span><button onclick="speakText(${attrEscape(JSON.stringify(w[0]))}, 'en')" style="background:none; border:0; cursor:pointer; padding:0;">🔊</button></span>`;
 }
 function affixVocabHtml(tab) {
   const d = affixData();
@@ -8940,7 +8950,7 @@ function grexHtml(gId) {
   const TYPES = ["全部", "肯定", "否定", "疑问", "祈使", "感叹"], cnt = t => t === "全部" ? all.length : all.filter(x => x[1] === t).length;
   const list = grexState.type === "全部" ? all : all.filter(x => x[1] === grexState.type);
   const persons = [...new Set(list.map(x => x[2]))].sort((a, b) => list.filter(x => x[2] === b).length - list.filter(x => x[2] === a).length);
-  const sent = x => `<div data-grex-s onclick="speakText(${attrEscape(JSON.stringify(x[0]))}, 'en')" style="cursor:pointer; padding:5px 10px; border-radius:8px; background:#fff; border:1px solid #e2e8f0; margin:3px 0; font-size:0.92rem;">🔊 ${etymEsc(x[0])} <span style="color:#94a3b8; font-size:0.74rem;">${x[1]}</span></div>`;
+  const sent = x => `<div data-grex-s onclick="speakText(${attrEscape(JSON.stringify(x[0]))}, 'en')" style="cursor:pointer; padding:5px 10px; border-radius:8px; background:#fff; border:1px solid #e2e8f0; margin:3px 0; font-size:0.92rem;">🔊 ${etymEsc(x[0])} <span style="color:#94a3b8; font-size:0.75rem;">${x[1]}</span></div>`;
   return `<div id="grexBox" data-grex="${gId}" style="margin-top:18px; background:#f8fafc; border:2px solid #a5b4fc; border-radius:18px; padding:14px 16px;">
     <h3 style="margin:0 0 4px; color:#3730a3;">📚 例句库 · ${all.length} 句</h3>
     <div style="font-size:0.82rem; color:#64748b; margin-bottom:8px;">从全部单词的例句、日常用语和各模块课文里找出来的本课句子，实词都是词库里的词。点句子听朗读。</div>
@@ -9844,7 +9854,7 @@ function renderSentenceTrains() {
           ${st.zhBlocks.map(b => `
             <div class="carriage-node role-${b.role}" data-cid="${b.id}" onclick="speakText(${attrEscape(JSON.stringify(`${b.enText.replace(/[^a-zA-Z ?!.]/g,'')}`))})">
               <div class="c-main-text">${b.zhText}</div>
-              <div style="font-size:0.72rem; opacity:0.85; margin-top:2px;">${b.sub}</div>
+              <div style="font-size:0.75rem; opacity:0.85; margin-top:2px;">${b.sub}</div>
               <div class="carriage-wheels">
                 <span class="mini-wheel"></span>
                 <span class="mini-wheel"></span>
@@ -10397,8 +10407,8 @@ function renderVocabGrid() {
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span style="font-size:1.85rem;">${w.emoji}</span>
           <div style="display:flex; gap:4px;">
-            ${w.has_polysemy ? '<span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:800;">🎬 三幕剧微电影</span>' : ''}
-            ${w.sight_type === 'irregular' ? '<span style="background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:800;">💎 特殊发音</span>' : '<span style="background:#dbeafe; color:#1e40af; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:800;">🔤 自然拼读</span>'}
+            ${w.has_polysemy ? '<span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:999px; font-size:0.75rem; font-weight:800;">🎬 三幕剧微电影</span>' : ''}
+            ${w.sight_type === 'irregular' ? '<span style="background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:999px; font-size:0.75rem; font-weight:800;">💎 特殊发音</span>' : '<span style="background:#dbeafe; color:#1e40af; padding:2px 8px; border-radius:999px; font-size:0.75rem; font-weight:800;">🔤 自然拼读</span>'}
           </div>
         </div>
         <h3 style="margin:8px 0 2px; font-size:1.3rem; color:#1d4ed8;">${w.word}</h3>
