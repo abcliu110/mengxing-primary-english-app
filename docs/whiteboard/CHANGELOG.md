@@ -2835,3 +2835,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 沙箱重置：补装 brotli / numpy / playwright + chromium。
 - `patch_wb5_parts.py` V1 → V2；`rebuild_all.py --tabs=wo_port,wo_time_week,wo_time_num,five_patterns,aux_transformer` 39 幕重建嵌入；字表 3354 无新字。
 - durcheck --scan 这 39 幕：只剩 aux_transformer_3（279 s，另一线）→ 写进 `lab/audit36/dur_allow.json` 白名单。app_check_parts 7/7 通过、errors none。主 HTML 待 runall 后提交。
+
+## 2026-10-31 18:26 JST · 决策 38 联络表脚本 sheet38.py 入库；runall 进行中（WIP）
+- `/workspace/work/sheet38.py` → `docs/whiteboard/v5/sheet38.py`（沙箱外脚本入库，HANDOFF 做法段改指向）。
+- runall 后台跑中（`/workspace/work/c38/runall4.log`）。
