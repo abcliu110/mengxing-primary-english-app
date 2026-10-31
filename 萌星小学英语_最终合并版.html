@@ -924,7 +924,7 @@
   font-weight:900; padding:10px 16px; cursor:pointer; min-height:44px;
 }
 .method-hub .top-header { position: sticky; top: 0; z-index: 20; }
-.method-hub.mh-single .top-header, .method-hub.mh-single .theater-strip { display: none; }   /* MENU_HUBS_V3：单页签模式 */
+.method-hub.mh-single .top-header, .method-hub.mh-single .theater-strip, .method-hub.mh-single .hero-banner { display: none; }   /* MENU_HUBS_V3：单页签模式 */
 .v6-games-only .v6-tabs { display: none; }
 .method-hub #mhConfettiCanvas, .method-hub canvas#mhConfettiCanvas {
   position: fixed; pointer-events: none; inset: 0; width: 100%; height: 100%; z-index: 9998;
@@ -4239,26 +4239,7 @@ function renderGrammarHall() {
       </div>
       <span style="font-weight:900; color:#047857;">打开第一性原理沙盘 ➔</span>
     </div>
-    <!-- NEW v1.2 Hero Banner: 4 Deep Summary Matrices & Underlying Principles inside Grammar Hall -->
-    <div onclick="navigateTo('grammar_summary_hub', { summaryTab: 'pronouns' })"
-      style="background:linear-gradient(135deg, #1e1b4b, #4338ca); color:#ffffff; border-radius:22px; padding:20px 24px; border:3px solid #f59e0b; margin-bottom:22px; cursor:pointer; box-shadow:0 10px 25px rgba(67,56,202,0.22);">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-        <div style="flex:1; min-width:280px;">
-          <span style="background:#f59e0b; color:#0f172a; padding:4px 12px; border-radius:999px; font-weight:900; font-size:0.82rem;">🔥 核心总结总表 · 解决零散记忆痛点</span>
-          <h3 style="margin:8px 0 6px; font-size:1.42rem; color:#ffffff;">📊 四大核心总结总表与底层原理演绎中心（点击进入）</h3>
-          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
-            <span onclick="event.stopPropagation(); navigateTo('grammar_summary_hub', { summaryTab: 'pronouns' });" style="background:rgba(255,255,255,0.16); padding:6px 12px; border-radius:10px; font-size:0.84rem; font-weight:800; border:1px solid rgba(255,255,255,0.3);">🫵 1. 代词全维5列矩阵表</span>
-            <span onclick="event.stopPropagation(); navigateTo('grammar_summary_hub', { summaryTab: 'interrogatives' });" style="background:rgba(255,255,255,0.16); padding:6px 12px; border-radius:10px; font-size:0.84rem; font-weight:800; border:1px solid rgba(255,255,255,0.3);">❓ 2. 9大疑问词雷达与词源</span>
-            <span onclick="event.stopPropagation(); navigateTo('grammar_summary_hub', { summaryTab: 'how_what' });" style="background:rgba(255,255,255,0.16); padding:6px 12px; border-radius:10px; font-size:0.84rem; font-weight:800; border:1px solid rgba(255,255,255,0.3);">⚖️ 3. How推导公式与How vs What原理</span>
-            <span onclick="event.stopPropagation(); navigateTo('grammar_summary_hub', { summaryTab: 'syntax' });" style="background:rgba(255,255,255,0.16); padding:6px 12px; border-radius:10px; font-size:0.84rem; font-weight:800; border:1px solid rgba(255,255,255,0.3);">🔄 4. 汉英语序异常对比总表</span>
-          </div>
-        </div>
-        <div style="background:#f59e0b; color:#0f172a; padding:12px 20px; border-radius:14px; font-weight:900; font-size:0.98rem;">
-          进入四大总结总表 ➔
-        </div>
-      </div>
-    </div>
-
+    <!-- MENU_GRAMMAR_V4:summary_moved：四大总结表已挂到词法 / 句型两类末尾（决策 33 ④） -->
     <!-- 3 Main Grammar Categories -->
     <div class="home-portal-grid" style="margin-bottom:22px;">
       <div class="portal-card grammar" style="min-height:220px;" onclick="navigateTo('grammar_cat', { cat: '词法' })">
@@ -4289,25 +4270,9 @@ function renderGrammarHall() {
       </div>
     </div>
 
-    <!-- Special Interactive Zones: Error Intervention Playground & Grammar Chants -->
-    <div class="primary-cards-grid">
-      <div class="hero-dim-card" style="border-color:#f87171; background:linear-gradient(180deg,#fff,#fef2f2); min-height:170px;" onclick="navigateTo('grammar_playground', { tab: 'diagrams' })">
-        <div>
-          <span class="dim-badge" style="background:#fee2e2; color:#991b1b;">母语负迁移专项干预</span>
-          <h3 style="margin:4px 0 6px; font-size:1.35rem; color:#991b1b;">🎮 语法纠偏游乐场</h3>
-          <p style="margin:0; font-size:0.9rem; color:#475569;">5 大视觉纠偏神器（三单警报器 / There be 双轨图 / did 能量吸收器 / 系动词搭桥器 / 时空漏斗）+ <strong>「🔨 动词还原大作战」</strong>与<strong>「📮 介词分类投递」</strong>微游戏！</p>
-        </div>
-        <div style="font-weight:800; color:#dc2626; margin-top:10px;">进入纠偏游乐场 ➔</div>
-      </div>
-
-      <div class="hero-dim-card" style="border-color:#a78bfa; background:linear-gradient(180deg,#fff,#f5f3ff); min-height:170px;" onclick="navigateTo('grammar_chants', { chantIdx: 0 })">
-        <div>
-          <span class="dim-badge" style="background:#ede9fe; color:#5b21b6;">节奏韵律记忆</span>
-          <h3 style="margin:4px 0 6px; font-size:1.35rem; color:#5b21b6;">🎵 语法韵律歌谣 (Grammar Chants)</h3>
-          <p style="margin:0; font-size:0.9rem; color:#475569;">8 首原创拍手歌谣（be动词歌、三单歌、in/on/at时空歌、How与What分工歌、过去时能量歌），带节拍高亮与双语点读！</p>
-        </div>
-        <div style="font-weight:800; color:#7c3aed; margin-top:10px;">进入韵律歌谣厅 ➔</div>
-      </div>
+    <!-- MENU_GRAMMAR_V4:chants_moved -->
+    <div data-grammar-moved style="background:#f5f3ff; border:1.5px dashed #a78bfa; border-radius:14px; padding:10px 14px; margin-bottom:18px; font-size:0.88rem; color:#4c1d95; font-weight:700;">
+      📊 总结表在每类末尾（代词矩阵在词法，疑问词 / How vs What / 语序在句型）；🎵 8 首歌谣和 🛡️ 纠偏神器、🔨 微训练放进了对应语法点（如 be 动词拍手歌在 G16、三单警报器在 G19）。
     </div>
 
     <!-- My Grammar Status -->
@@ -4694,11 +4659,13 @@ let pgGameIdx = 0;
 
 function renderGrammarPlaygroundView() {
   const { tab = "diagrams" } = currentView.params;
-  renderSubNavbar(["首页", "🧩 语法魔法屋", "🎮 语法纠偏游乐场"]);
+  if (tab === "diagrams") { currentView = { screen: "grammar_detail", params: { gId: "G19", extra: "diag" }, scrollY: 0 }; renderCurrentView(); return; }   // MENU_GRAMMAR_V4：纠偏神器已放进语法点
+  const pgG = D33_GRAMMAR_EXTRAS.games[tab] || "G23", pgGt = (GRAMMAR_DB.find(x => x.id === pgG) || {}).title || pgG;
+  renderSubNavbar(["首页", "🧩 语法", pgG, tab === "verb_game" ? "🔨 动词还原大作战" : "📮 介词分类投递"], `<button class="nav-btn" data-pg-back onclick="navigateTo('grammar_detail', { gId: '${pgG}', extra: 'game' })">↩ 回到 ${pgG}</button>`);
   const root = document.getElementById("appViewRoot");
 
   root.innerHTML = `
-    <div class="pill-tabs">
+    <div class="pill-tabs" style="display:none;">
       <button class="pill-tab ${tab==='diagrams'?'active':''}" onclick="currentView.params.tab='diagrams'; renderGrammarPlaygroundView();">🛡️ 5大母语负迁移视觉纠偏神器</button>
       <button class="pill-tab ${tab==='verb_game'?'active':''}" onclick="currentView.params.tab='verb_game'; pgGameIdx=0; renderGrammarPlaygroundView();">🔨 微训练1：动词还原大作战</button>
       <button class="pill-tab ${tab==='prep_game'?'active':''}" onclick="currentView.params.tab='prep_game'; pgGameIdx=0; renderGrammarPlaygroundView();">📮 微训练2：in / on / at 介词分类投递</button>
@@ -4782,6 +4749,8 @@ function checkPgMiniGame(mode, chosen, ans, explain) {
 }
 
 function renderGrammarChantsView() {
+  { const ci = +((currentView.params || {}).chantIdx || 0), c = GRAMMAR_CHANTS[ci] || GRAMMAR_CHANTS[0], gId = D33_GRAMMAR_EXTRAS.chants[c.id];   // MENU_GRAMMAR_V4：歌谣已放进语法点
+    if (gId) { currentView = { screen: "grammar_detail", params: { gId, extra: "chant" }, scrollY: 0 }; renderCurrentView(); return; } }
   const { chantIdx = 0 } = currentView.params;
   renderSubNavbar(["首页", "🧩 语法魔法屋", "🎵 语法韵律歌谣 (Grammar Chants)"]);
   const ch = GRAMMAR_CHANTS[chantIdx] || GRAMMAR_CHANTS[0];
@@ -5710,9 +5679,10 @@ function renderEmbeddedGrammarSummaryWidget(gId) {
 function renderGrammarSummaryHubView() {
   const { summaryTab = "pronouns" } = currentView.params;
   hdTheaterState.summaryTab = summaryTab;
+  const sumHome = SUMMARY_TAB_HOME[summaryTab] || SUMMARY_TAB_HOME.pronouns;   // MENU_GRAMMAR_V4：挂在所属类末尾
   renderSubNavbar(
-    ["首页", "🧩 语法魔法屋", "📊 四大核心总结总表与底层原理"],
-    `<button class="nav-btn quiz-launch" onclick="startQuizSession('grammar', ['G07','G08','G09','G10','G14','G28','G31','G32','G34','G36'], '总结矩阵与原理专项闯关')">🎯 总结矩阵专项自测</button>`
+    ["首页", "🧩 语法", sumHome[0], sumHome[1]],
+    `<button class="nav-btn" data-sum-back onclick="navigateTo('grammar_cat', { cat: '${sumHome[0]}' })">↩ 回到 ${sumHome[0]}</button><button class="nav-btn quiz-launch" onclick="startQuizSession('grammar', ['G07','G08','G09','G10','G14','G28','G31','G32','G34','G36'], '总结矩阵与原理专项闯关')">🎯 总结矩阵专项自测</button>`
   );
 
   const root = document.getElementById("appViewRoot");
@@ -5728,7 +5698,7 @@ function renderGrammarSummaryHubView() {
     </div>
 
     <!-- 4 Summary Hub Tabs (Zero empty secondary menus - clicking any tab immediately renders full matrix + HD animation) -->
-    <div class="pill-tabs" style="margin-bottom:16px;">
+    <div class="pill-tabs" data-sum-tabs style="margin-bottom:16px; display:none;">
       <button class="pill-tab ${summaryTab==='pronouns'?'active':''}" onclick="currentView.params.summaryTab='pronouns'; renderGrammarSummaryHubView();">🫵 1. 代词全维5列分类矩阵</button>
       <button class="pill-tab ${summaryTab==='interrogatives'?'active':''}" onclick="currentView.params.summaryTab='interrogatives'; renderGrammarSummaryHubView();">❓ 2. 9大疑问词雷达与词源秘密</button>
       <button class="pill-tab ${summaryTab==='how_what'?'active':''}" onclick="currentView.params.summaryTab='how_what'; renderGrammarSummaryHubView();">⚖️ 3. How推导公式与How vs What原理</button>
@@ -8698,6 +8668,7 @@ function noteLastView() {
   if (typeof kpMount === "function") kpMount();   // DEDUP_C_V1: 同一知识点另见
   if (typeof grexMount === "function") grexMount();   // GRAMMAR_EX_V1: 语法课例句库
   if (typeof d33Mount === "function") d33Mount();   // MENU_HUBS_V3: 闯关厅搬来的内容
+  if (typeof d33GrammarMount === "function") d33GrammarMount();   // MENU_GRAMMAR_V4: 语法点里的歌谣 / 纠偏
 }
 function isVisitedKey(key) { return !!(key && appState.visited && appState.visited[key]); }
 function labDoneMark(id) { return isVisitedKey("lab:" + id) ? '<span class="done-tick">✓</span>' : ""; }
@@ -9018,8 +8989,9 @@ function vocabZonesHtml() {
     ${hubZone("📖 单词身世", "#7c3aed", "#faf5ff", hubChip("📖 单词身世：罗马、维京、诺曼、大航海，单词的故事", "navigateTo('word_origins_hub', { scene: 'wo_port' })", "#7c3aed", "data-vocab-wo"), 'data-vocab-zone="wo"')}`;
 }
 const GRAMMAR_CAT_ZONES = {
+  "词法": { title: "🧱 词法类收尾：总结表", tabs: [], get extra() { return sumChipHtml("pronouns"); } },
   "动词与时态": { title: "⏳ 时态类收尾专项", tabs: ["tense_matrix", "aux_transformer"] },
-  "句型": { title: "🚂 句型类收尾专项", tabs: ["five_patterns", "adj_order", "writing_alchemist"], get extra() { return hubChip("✂️ 感叹句剪刀切尾 & 作文", "navigateTo('method_hub', { tab: 'writing' })", "#7c3aed", "data-mh-chip='writing'"); } }
+  "句型": { title: "🚂 句型类收尾专项", tabs: ["five_patterns", "adj_order", "writing_alchemist"], get extra() { return hubChip("✂️ 感叹句剪刀切尾 & 作文", "navigateTo('method_hub', { tab: 'writing' })", "#7c3aed", "data-mh-chip='writing'") + sumChipHtml("interrogatives") + sumChipHtml("how_what") + sumChipHtml("syntax"); } }
 };
 function grammarCatZoneHtml(cat) {
   const z = GRAMMAR_CAT_ZONES[cat]; if (!z) return "";
@@ -9127,6 +9099,41 @@ function d33ExtendVocabGame() {   // 单词闪电战：原 5 题之后接上从 
     V.GAME_BANKS.vocab.__d33 = true;
   } catch (e) { console.warn("d33ExtendVocabGame", e); }
 }
+// MENU_GRAMMAR_V4 ---------- 决策 33 ④：总结表挂语法各类末尾；歌谣 / 纠偏放进语法点（src/patch_menu_grammar.py） ----------
+const SUMMARY_TAB_HOME = {   // 总结表 → [所属类, 表名]
+  pronouns: ["词法", "🫵 代词全维 5 列分类矩阵"], interrogatives: ["句型", "❓ 9 大疑问词雷达与词源"],
+  how_what: ["句型", "⚖️ How 推导公式与 How vs What 原理"], syntax: ["句型", "🔄 汉英语序与词根词缀总表"]
+};
+function sumChipHtml(k) { return hubChip("📊 " + SUMMARY_TAB_HOME[k][1], `navigateTo('grammar_summary_hub', { summaryTab: '${k}' })`, "#4338ca", `data-sum-chip="${k}"`); }
+const D33_GRAMMAR_EXTRAS = {
+  chants: { CH01: "G16", CH02: "G19", CH03: "G14", CH04: "G32", CH05: "G20", CH06: "G22", CH07: "G07", CH08: "G36" },
+  diagrams: { DG01: "G19", DG02: "G36", DG03: "G23", DG04: "G11", DG05: "G14" },
+  games: { verb_game: "G23", prep_game: "G14" }
+};
+function d33GrammarExtras(gId) {
+  const X = D33_GRAMMAR_EXTRAS, out = [];
+  GRAMMAR_CHANTS.forEach((c, i) => { if (X.chants[c.id] === gId) out.push(["chant", c, i]); });
+  GRAMMAR_PLAYGROUND.diagrams.forEach(d => { if (X.diagrams[d.id] === gId) out.push(["diag", d]); });
+  Object.keys(X.games).forEach(k => { if (X.games[k] === gId) out.push(["game", k]); });
+  return out;
+}
+function d33GrammarMount(force) {
+  try {
+    const old = document.getElementById("d33GBox");
+    if (currentView.screen !== "grammar_detail") { if (old) old.remove(); return; }
+    const p = currentView.params || {}, gId = p.gId || "G01", xs = d33GrammarExtras(gId);
+    if (old) old.remove();
+    if (!xs.length) return;
+    const kinds = [["chant", "🎵 歌谣"], ["diag", "🛡️ 纠偏"], ["game", "🔨 微训练"]].filter(k => xs.some(x => x[0] === k[0]));
+    const cur = kinds.some(k => k[0] === p.extra) ? p.extra : kinds[0][0];
+    const body = xs.filter(x => x[0] === cur).map(x => {
+      if (x[0] === "chant") { const ch = x[1]; return `<div data-d33g-chant="${ch.id}" style="margin-bottom:10px;"><div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;"><b style="color:#5b21b6; font-size:1.05rem;">${ch.title}</b><button onclick="speakText(${attrEscape(JSON.stringify(ch.en_lines.join(" ")))}, 'en')" style="background:#7c3aed; color:#fff; padding:9px 16px; min-height:44px; border-radius:12px; font-weight:800; border:0;">▶️ 整首朗读</button></div>${ch.en_lines.map((line, i) => `<div onclick="speakText(${attrEscape(JSON.stringify(line))}, 'en')" style="background:#f5f3ff; padding:10px 14px; border-radius:12px; border-left:5px solid #7c3aed; cursor:pointer; margin-bottom:6px;"><div style="font-weight:900; color:#1e1b4b;">🥁 ${line} 🔊</div><div style="font-size:0.88rem; color:#475569; font-weight:700;">${ch.zh_lines[i] || ""}</div></div>`).join("")}</div>`; }
+      if (x[0] === "diag") { const d = x[1]; return `<div data-d33g-diag="${d.id}" style="background:#fff; border-radius:14px; padding:12px 14px; border:2px solid #cbd5e1; margin-bottom:10px;"><div style="font-weight:900; color:#1e3a8a; margin-bottom:8px;">${d.icon} ${d.title}</div><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; margin-bottom:8px;"><div style="background:#fef2f2; padding:10px; border-radius:10px; border:1.5px solid #fca5a5; font-weight:800; color:#991b1b;">${d.error_ex}</div><div onclick="speakText(${attrEscape(JSON.stringify(d.correct_ex.replace("✅", "").split("/")[0]))}, 'en')" style="background:#ecfdf5; padding:10px; border-radius:10px; border:1.5px solid #6ee7b7; font-weight:800; color:#065f46; cursor:pointer;">${d.correct_ex} 🔊</div></div><div style="font-size:0.9rem; color:#334155; font-weight:700;">💡 <strong>纠偏原理：</strong>${d.visual_rule}</div></div>`; }
+      return `<button data-d33g-game="${x[1]}" onclick="pgGameIdx=0; navigateTo('grammar_playground', { tab: '${x[1]}' })" style="background:#dc2626; color:#fff; border:0; border-radius:12px; padding:10px 16px; min-height:44px; font-weight:900; margin:0 8px 8px 0; cursor:pointer;">${x[1] === "verb_game" ? "🔨 动词还原大作战" : "📮 in / on / at 介词分类投递"} ➔</button>`;
+    }).join("");
+    document.getElementById("appViewRoot").insertAdjacentHTML("beforeend", `<div id="d33GBox" data-d33g="${gId}" style="background:#fff; border:2px solid #c4b5fd; border-radius:18px; padding:14px 16px; margin-top:18px;"><div class="pill-tabs" style="margin-bottom:10px;">${kinds.map(k => `<button class="pill-tab ${cur === k[0] ? "active" : ""}" data-d33g-tab="${k[0]}" onclick="currentView.params.extra='${k[0]}'; d33GrammarMount(true);">${k[1]}</button>`).join("")}</div>${body}</div>`);
+  } catch (e) { console.warn("d33GrammarMount", e); }
+}
 // ORAL_FUNC_MAP_V1 ---------- 决策 6：交际句型地图（礼貌阶梯 + 五大交际功能；src/patch_oral_func.py） ----------
 const ORAL_FUNC_LADDER = [
   ["① 命令", "Give me the pen.", "把笔给我。"], ["② 加 please", "Please give me the pen.", "请把笔给我。"],
@@ -9201,7 +9208,7 @@ function renderCurrentView() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  ["renderSuperLabHubView", "renderWordOriginsHubView", "renderZhEnHubView", "renderVocabPhonicsView", "renderVocabRelationsView", "renderVocabFormationView"].forEach(n => {   // MENU_HUBS_V3：后三个页签切换不走 renderCurrentView
+  ["renderSuperLabHubView", "renderWordOriginsHubView", "renderZhEnHubView", "renderVocabPhonicsView", "renderVocabRelationsView", "renderVocabFormationView", "renderGrammarDetailView"].forEach(n => {   // MENU_HUBS_V3：后三个页签切换不走 renderCurrentView
     const f = window[n];
     if (typeof f === "function" && !f.__noted) {
       const w = function () { const r = f.apply(this, arguments); noteLastView(); return r; };
@@ -11021,7 +11028,7 @@ V6H.mount = function(root, tab){
       <button class="v6-tab" data-tab="morph">🧩 变形表</button>
     </div>
     <div class="v6-panel active" id="v6panel-game">
-      <p style="font-weight:800;color:#075985;">答对奖励星星（写入萌星同一进度 STORAGE_KEY，不另建存储）。已跳过与方法论教室重复的十五王炸/天坑榜。</p>
+      <p style="font-weight:800;color:#075985;">答对奖励 5 颗星星，和萌星其他地方的星星记在一起。</p>
       <div id="v6GameMount"></div>
     </div>
     <div class="v6-panel" id="v6panel-oral">

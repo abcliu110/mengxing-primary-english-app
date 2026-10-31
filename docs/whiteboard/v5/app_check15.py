@@ -1,5 +1,6 @@
 """app_check15.py —— 决策 33 菜单去重回归（src/patch_menu_home.py 起，后续 ③–⑤ 往这里加）。
 ③ 闯关厅只剩闯关游戏，旧页签重定向到新家且搬来的内容块在；method_hub 不带 tab 重定向底层原理，6 个页签单页显示、入口都在所属分区。
+④ 语法大厅不再有总结 / 歌谣 / 纠偏入口；4 张总结表从词法 / 句型末尾单表打开；8 首歌谣、5 个纠偏神器、2 个微训练在对应语法点页签里；旧入口重定向。
 ② 首页只有 5 个入口卡（data-home-entry），各自进对 screen；首页不再有实验室入口卡 / 闯关厅横幅 / 方法论小卡；
    我的学习 / 综合自测 / 总地图三个按钮在第 5 张卡里且可用；
    13 个实验室页签都能从新位置点进去（单词大厅专项区 / 语法分类页末尾 / 底层原理页），进去后 super_lab_hub 页签对、面包屑是所属分区、
@@ -87,6 +88,40 @@ async def main():
             if await pg.locator(sel).count() != 1: bad.append(f'入口 {where} {sel}'); continue
             await pg.click(sel); await pg.wait_for_timeout(500)
             if await pg.evaluate("currentView.screen") != 'method_hub': bad.append(f'入口跳转 {sel}')
+        # ④ 总结表 / 歌谣 / 纠偏
+        await pg.evaluate("navigateTo('grammar_hall')"); await pg.wait_for_timeout(300)
+        r = await pg.evaluate("({sum:document.querySelectorAll('#appViewRoot [onclick*=\"grammar_summary_hub\"]').length, ch:document.querySelectorAll('#appViewRoot [onclick*=\"grammar_chants\"],#appViewRoot [onclick*=\"grammar_playground\"]').length, note:!!document.querySelector('[data-grammar-moved]')})")
+        if r != {'sum': 0, 'ch': 0, 'note': True}: bad.append(f'语法大厅残留 {r}')
+        for k, cat in (('pronouns', '词法'), ('interrogatives', '句型'), ('how_what', '句型'), ('syntax', '句型')):
+            await go(pg, 'grammar_cat|' + cat)
+            if await pg.locator(f'[data-sum-chip={k}]').count() != 1: bad.append(f'总结表入口 {k}'); continue
+            await pg.click(f'[data-sum-chip={k}]'); await pg.wait_for_timeout(700)
+            r = await pg.evaluate("({s:currentView.screen, t:currentView.params.summaryTab, bc:document.getElementById('uiBreadcrumb').innerText, tabs:getComputedStyle(document.querySelector('[data-sum-tabs]')).display, len:document.getElementById('appViewRoot').innerText.length})")
+            if not (r['s'] == 'grammar_summary_hub' and r['t'] == k and cat in r['bc'] and r['tabs'] == 'none' and r['len'] > 800): bad.append(f'总结表 {k} {r}')
+            await pg.click('[data-sum-back]'); await pg.wait_for_timeout(300)
+            if await pg.evaluate("currentView.screen + currentView.params.cat") != 'grammar_cat' + cat: bad.append(f'总结表 {k} 回到')
+        X = await pg.evaluate("D33_GRAMMAR_EXTRAS")
+        for cid, g in X['chants'].items():
+            ci = await pg.evaluate(f"GRAMMAR_CHANTS.findIndex(c => c.id === '{cid}')")
+            await pg.evaluate(f"navigateTo('grammar_chants', {{ chantIdx: {ci} }})"); await pg.wait_for_timeout(500)
+            r = await pg.evaluate(f"({{s:currentView.screen, g:currentView.params.gId, box:!!document.querySelector('[data-d33g-chant={cid}]')}})")
+            if r != {'s': 'grammar_detail', 'g': g, 'box': True}: bad.append(f'歌谣 {cid} {r}')
+        for did, g in X['diagrams'].items():
+            await pg.evaluate(f"navigateTo('grammar_detail', {{ gId: '{g}' }})"); await pg.wait_for_timeout(400)
+            if await pg.locator('[data-d33g-tab=diag]').count() == 1: await pg.click('[data-d33g-tab=diag]'); await pg.wait_for_timeout(200)
+            if await pg.locator(f'[data-d33g-diag={did}]').count() != 1: bad.append(f'纠偏 {did} 不在 {g}')
+        for gm, g in X['games'].items():
+            await pg.evaluate(f"navigateTo('grammar_detail', {{ gId: '{g}', extra: 'game' }})"); await pg.wait_for_timeout(400)
+            await pg.click(f'[data-d33g-game={gm}]'); await pg.wait_for_timeout(500)
+            r = await pg.evaluate("({s:currentView.screen, t:currentView.params.tab, body:document.getElementById('playgroundBody').innerText.length})")
+            if not (r['s'] == 'grammar_playground' and r['t'] == gm and r['body'] > 30): bad.append(f'微训练 {gm} {r}')
+            await pg.click('[data-pg-back]'); await pg.wait_for_timeout(300)
+            if await pg.evaluate("currentView.params.gId") != g: bad.append(f'微训练 {gm} 回到')
+        await pg.evaluate("navigateTo('grammar_playground', { tab: 'diagrams' })"); await pg.wait_for_timeout(400)
+        if await pg.evaluate("currentView.screen + currentView.params.gId") != 'grammar_detailG19': bad.append('纠偏神器旧入口')
+        await pg.evaluate("navigateTo('grammar_detail', { gId: 'G15' })"); await pg.wait_for_timeout(300)
+        await pg.click('#globalSubNav .nav-btn.quiz-launch'); await pg.wait_for_timeout(400)   # 下一点 G16：歌谣页签要跟着换
+        if await pg.evaluate("(document.getElementById('d33GBox')||{dataset:{}}).dataset.d33g") != 'G16': bad.append('下一点后语法点页签没跟上')
         await b.close()
     print('不合格', len(bad), bad); print('errors', 'none' if not errs else errs)
 asyncio.run(main())
