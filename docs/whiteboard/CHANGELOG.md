@@ -2697,17 +2697,20 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新 `v5/check_r38.py`：手工重做幕验收（场景 `export const KNOW` 每条须在板上 / 讲解 / 朗读字幕出现 + 啊哈卡 / 预测 / 规则顺序 + 确定性 + 0 报错）。hd_g18_1：0 不合格，102 s。
 - 口语 144 幕 `rebuild_all.py --tabs=hd_oral` 仍在后台重建角色包；主 HTML 未提交。
 
-## 2026-10-31 17:01 JST · WIP 决策 38 第 3 / 4 幕：hd_g18 联络表自检 + hd_g19 三单 -s 重做
+## 2026-10-31 17:00 JST · WIP 决策 38 第 3 / 4 幕：hd_g18 联络表自检 + hd_g19 三单 -s 重做
 - hd_g18_1：390 px 联络表自检后下移两块板（避开两行讲解字幕）、Leo 缩小并在第二次预测前退场；仍 check_r38 0 不合格。
 - hd_g19_1 改 concept.js：s 勋章——The boy[s] like vs The boy like → 预测勋章去哪 → 飞到 likes；主语轮换勋章飞走 / 飞回；He go ✗→goes；预测 do 出场 → 勋章被吸走变 does、like 回原形；加法 / 读音 / 语境 / 口诀（why、口诀按 GRAMMAR_DB 补全）。啊哈卡 `lab/audit38/aha/04_hd_g19.md`。check_r38 0 不合格，140 s。
 - `check_r38.py` 的 KNOW 解析改用 node 求值（含 \' 转义的句子曾被误判缺失）。
 - 两幕都还没 embed（等口语 144 幕重建嵌入完成，避免两个进程同时写主 HTML）。
 
-## 2026-10-31 17:04 JST · WIP 决策 38 第 5 幕 hd_g14 ①② 
+## 2026-10-31 17:03 JST · WIP 决策 38 第 5 幕 hd_g14 ①② 
 - 新 `v5/scenes/g14_lib.js`（三张图：盒子 / 桌面 / 靶心，glow 时段闪几何特征）。
 - hd_g14_1 空间：三张图都写「在」→ 预测「英语为什么分三个词」→ 体积 / 接触面 / 点依次闪、in / on / at 落下（76 s）。
 - hd_g14_2 时间：时间卡飞进三格 → 预测 the morning（盒子）→ 预测 Sunday morning（桌面，锁定具体某天）→ noon / night 例外钉靶心 → 规则（116 s）。**纠正**旧板「IN (>1天长时段容器)…in the morning」矛盾；加 weekend 英式 at / 美式（人教）on。
 - 两幕 check_r38 0 不合格、390 px 联络表自检过；未 embed。
 
-## 2026-10-31 17:06 JST · WIP 决策 38 第 5 幕 hd_g14 ③ + 啊哈卡
+## 2026-10-31 17:04 JST · WIP 决策 38 第 5 幕 hd_g14 ③ + 啊哈卡
 - hd_g14_3 状态隐喻：预测「红衣服包住进哪格」→ in red / in English、on duty / on foot / on TV、at work / look at / be good at 归位（110 s，check_r38 0）。啊哈卡 `lab/audit38/aha/05_hd_g14.md`（含纠错说明）。
+
+## 2026-10-31 17:07 JST · WIP 决策 38 第 6 幕 hd_g05 a / an
+- hd_g05_1 改 concept.js：a book 顺 vs a apple 💥 → 预测怎么办 → n 落入、an apple 顺；史实小图 ān → one / an → a（按道 2 B2 改后 GRAMMAR_DB，an 是原形）；带音标词卡分 a / an 两筐 → 预测 hour / useful → 规则。check_r38 0，148 s。啊哈卡 `lab/audit38/aha/06_hd_g05.md`。未 embed。
