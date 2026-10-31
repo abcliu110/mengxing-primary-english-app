@@ -2612,3 +2612,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 现象：390 px 下家长门验证页「✖ 关闭」「验证进入」被挤成一字一行（输入框 flex:1 没有 min-width:0，把按钮压到 30 px 宽）；设置页口音按钮也被压成两行。
 - `src/patch_r37_gate.py`（样式块 R37_13_GATE）：家长门弹窗里按钮 / label nowrap + flex-shrink:0，弹性行可换行，输入框 min-width:0；口音两个按钮并排各占一半，「(en-US)」不拆行。
 - 新检查 `src/gatecheck.py`（顶栏家长门 + 验证页 + 设置页：按钮最多 2 行且每行 ≥ 5 字，即不再竖排）入 runall；mobilecheck 24 页 0 不合格。390 px 截图自检（不入库）。
+
+### 2026-10-31 13:21 JST · 决策 37 R37-04 语法 Markdown 反引号
+- 现象：GRAMMAR_DB 31 / 40 个语法点的文字带 `…` 反引号（结构公式），页面原样显示；部分 ** 加粗符号跨了高亮函数没处理的位置，也露在外面。
+- `src/patch_r37_md.py`（标记 R37_04_MD）：全 App 文本出口统一过滤——MutationObserver 盯 document.body，新渲染的文本节点里成对 `…` → <code class="md-code">（浅紫底等宽），成对 **…** → <b>，落单的反引号 / ** 去掉；跳过 script / style / 输入框 / 白板 iframe。数据不改。
+- 新检查 `src/mdcheck.py`（40 个语法点含底部页签、10 个大厅 / 列表页、5 张词卡，innerText 里 ` 与 ** = 0）入 runall；runall 全过。
