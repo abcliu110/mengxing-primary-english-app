@@ -94,13 +94,13 @@
 0c. **多 agent 并行（用户 2026-10-31 12:18 / 12:25：「不要定时任务，立即开多 agent 一起做」）**：定时任务已全部取消，不再新建。协议 `/workspace/work/par/PROTOCOL.md`（沙箱内，不入库）：每道独立 clone `/workspace/work/par/<道>/repo`，只改自己范围；共享文件（主 HTML、units.json、font_chars.txt、runall.py、anchorcheck.py、本文、CHANGELOG）只在推送锁 `/workspace/work/par/push.lock`（mkdir 互斥）内改；rebase 冲突时取上游主 HTML 再重放本次幂等补丁 / embed；每次推送记 `/workspace/work/par/PUSHLOG.md`，每道进度 `/workspace/work/par/<道>/PROGRESS.md`。一道结束后协调者按 PROGRESS 派下一批。第一批（12:22 派出）：
    - 道 1 数据（l1_data）：35-A2 补词 → A3 → A4 → A8 → A5 → A6 → A7，之后 C2 义项数据。范围 VOCAB_DB / VOCAB_HEAVY_JSON、`src/kebiaocheck.py`、`src/datacheck.py`、`src/patch_vocab_*.py`、单词卡模板数据。
    - 道 2 内容（l2_fix）：35-B1 → 36-①10 → B2 → B3 → B4 → C3 → C4 → C5 → C6 → 36-①9 纯文字项。范围 DAILY_EXPRESSIONS_DB、GRAMMAR_DB / 积木 / 测验 / 例句库、口语幕 `hd_oral_*`、闯关厅、单词身世文案。
-   - 道 3 白板（l3_wb）：36-①1–①8、①9 改幕部分、①11、①12 → ② 长幕拆分。范围：除 `hd_oral_*` 和新原理幕外的现有 `v5/scenes`、`auto.js` / `gen_auto.py` 等生成脚本。道 2 文字纠错波及的 hd_g 幕由道 3 重建。
+   - 道 3 白板（l3_wb）：36-①1–①8、①9 改幕部分、①11、①12 → ② 长幕拆分。范围：除 `hd_oral_*` 和新原理幕外的现有 `v5/scenes`、`auto.js` / `gen_auto.py` 等生成脚本。道 2 文字纠错波及的 hd_g 幕由道 3 重建。**道 3 进度**：①1 ✅（见 0b；wbdupcheck 白名单 `lab/audit36/wbdup_allow.json` 暂列 ①2 待修的 G07–G10 / G31·G32·G34 / G35·G36，①2 完成后清空）；下一步 ①2。
    - 道 4 原理（l4_new）：35-D1–D9 → 36-⑤2 新语法点。范围：新页签场景、`content/*.txt`、`src/patch_principle_*.py`、原理 hub 入口。
    - 道 5 课本 / 词源 / 7-8-9（l5_tb）：35-E 人教 PEP → 外研 → 译林；词源补抓 140 词；决策 7、8（家长指南）、9（欧洲文化 6 章 + 美国篇）+ 决策 10 入口。范围：新 screen `textbook`、`lab/textbook_*.json`、ETYM_DB / MORPH_DB、`word_origins/`、新页签场景。
    - 第二批（待第一批交回后派）：36-③ 总结层、④ 加深最浅 10 页、⑤1 / ⑤3–⑤5、35-C1 / C2 幕。
    - 注：旧 `cases/*.js` 白板已被决策 32 v5.1 全部取代、`cases/` 目录已不在 master；沙箱旧 clone 里未推的 fp_boundedness 第 3 幕 v2（6b9cce6）作废不推，原「旧白板剩余幕 / FR01 / 语法 40 点 / 思维导图」各项在 §1、§5 第 2 项已完成。
 0b. **决策 36 内容与动画审计修复（用户 2026-10-31 11:33 批准，排在决策 35 之后、下面「顺延」各项之前）**：全部条目在 `MASTER_DESIGN.md` 决策 36；审计全文与脚本在 `lab/audit36/`（`CONTENT_AUDIT.md`、`extract.py`、`snap.py`、`scene_items.json.gz`；88 张截图与 508 幕解包 HTML 在仓库外 `/workspace/work/audit2/`，不入库）。与决策 35 重叠的（时间日期价钱 D8、书写 D7、礼貌 D5、a/an 史 B2、口语第 3 轮 B1、模板搭配 A4、短语 A2、可数 A8/D3、介词 D4、语序 D1）合并做，不重复。顺序与进度：
-   - ① 白板事实 / 画面错误：①1 能量吸收器串 12 点 ⬜ ①2 串板 G09/G10/G31/G34 ⬜ ①3 截断句 ~89 幕 + `**` 11 幕 ⬜ ①4 G14 介词 + fp_vectors ⬜ ①5 万能动词伪搭配 ⬜ ①6 vv 画面不符 ⬜ ①7 hd_fr01 ⬜ ①8 格林定律 ⬜ ①9 未标注简化 / 镜头 / 朗读 ⬜ ①10 口语双角色 ⬜ ①11 单词卡模板 ⬜ ①12 中文讲解与动作 ⬜
+   - ① 白板事实 / 画面错误：①1 能量吸收器串 12 点 ✅（`v5/fix36_mid.py`、对照表 `lab/audit36/R1_36_1_MIDBOARD.md`、`src/wbdupcheck.py` 入 runall；「操作词」总论 = 助动词照妖镜 ④ 末尾「⑥ 操作词总论」，原吸收器板一字不差移入；底层原理 hub 挂入口归道 4） ①2 串板 G09/G10/G31/G34 ⬜ ①3 截断句 ~89 幕 + `**` 11 幕 ⬜ ①4 G14 介词 + fp_vectors ⬜ ①5 万能动词伪搭配 ⬜ ①6 vv 画面不符 ⬜ ①7 hd_fr01 ⬜ ①8 格林定律 ⬜ ①9 未标注简化 / 镜头 / 朗读 ⬜ ①10 口语双角色 ⬜ ①11 单词卡模板 ⬜ ①12 中文讲解与动作 ⬜
    - ② 长幕拆分（wo_port、wo_grimm、wo_time_week、aux_transformer、tense_matrix①（删 a/an 插段）…；`durcheck.py`）⬜
    - ③ 总结层 ③1–③11 ⬜
    - ④ 加深最浅 10 页 ⬜
