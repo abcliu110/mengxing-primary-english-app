@@ -2568,3 +2568,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新检查 `src/mobilecheck.py`（入 runall 快速档）：手机 390×844、平板竖 768×1024、平板横 1024×768，24 个主要页面（含单词卡弹窗），查横向滚动、触控目标 < 44 px、文字 < 12 px。改前：横向滚动 0；小目标 / 小字共 3293 处（主要是按钮高 28–43 px、「🔊 点读发音」小标签 72×19、0.72 / 0.74rem 字号）。
 - `src/patch_mobile.py`（幂等）：新样式块 `<style id="mobile-o4">`（MOBILE_O4_V1）——按钮 / 可点元素最小 44×44，可点行内 span / a 改 inline-flex，正文段落里的内联链接不动；html/body overflow-x: hidden 保险；23 处 0.72 / 0.74rem 字号 → 0.75rem（12 px）。改后三视口 0 不合格，runall 全过；390 px 截图自审版面正常。
 
+### 2026-10-31 11:15 JST · 决策 35 写入设计文档
+- 用户 10:25：业务审计发现的问题全部列入开发计划，优先级最高。`MASTER_DESIGN.md` 新增决策 35（A 数据底座 8 项、B 内容错误 4 项、C 补数据 6 项、D 底层原理 9 项、E 课本同步，每项现状数字 → 目标 → 方案 → 验收），阶段表加 12.5；HANDOFF §5 插到最前，原剩余项（O6、词源补抓、决策 7/8/9）顺延。
+- 审计报告与清单拷进 `lab/audit35/`（不含 PDF、截图）。
+
