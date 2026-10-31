@@ -2773,3 +2773,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:47 JST · 决策 38 第 14 幕 wo_grimm 板上文字面积 43% → 17%
 - wo_grimm_1：换板用的 wipe 只是盖白，底下旧板的字仍在画，insightcheck 量到 43%（>40%）。改为被后一块板盖住的标签 / emoji 不再画（`hid()`）；洞见卡拆两拍（洞见三行淡出后再出口诀）。文字面积峰值 17%，check_r38 0 不合格，174 s（仍待 36-② 拆分）。
+
+## 2026-10-31 17:49 JST · 决策 38 36-② 长幕拆分：hd_g05 148 s → 两幕（WIP，未嵌入）
+- `hd_g05_1`：撞车 → an 是老祖宗 → 规则 ①，55.7 s；新 `hd_g05_2`：分筐 → 预测 hour / useful → ②③ + 口诀，约 95 s（分筐间隔 1.2 → 0.9 s）。各自啊哈卡 / 预测 / 规则，check_r38 两幕 0 不合格。`units.json` hd_g05 加第 2 幕。App 里 G05 会自动出「第 1 幕 / 第 2 幕」按钮（wb5HDHtml n>1）。
+- 全量 rebuild_all 17:47 起后台跑（/workspace/work/rb_all2.log），已打包到 vv_*。
