@@ -2627,3 +2627,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 现状：word_list 一次渲染 1436 张卡。
 - `src/patch_r37_wordlist.py`（标记 R37_10_WORDLIST）：每页 40 张，上下翻页条（⏮ ◀ 第 n / N 页 ▶ ⏭）；新增「🔤 首字母」索引（只列当前筛选里有的字母，手机上一行横滑）；换任何筛选 / 搜索回第 1 页；词卡弹窗上一个 / 下一个仍按整个筛选结果走；「共 N 词」仍是总数。
 - 新检查 `src/wordlistcheck.py`（首屏 ≤ 40、翻完 36 页 = 1436 词不丢、末页余数、首字母 B 筛选、搜索）入 runall；`v5/app_check15.py` 的「网格卡数 = 总数」改为「= min(总数, 40)」。runall 全过，mobilecheck 0 不合格。
+
+### 2026-10-31 14:14 JST · 决策 37 R37-14 按钮对比度
+- R37-14 按钮对比度（83dd930）：`src/patch_r37_contrast.py`（标记 R37_14_CONTRAST）——常用绿底白字按钮换深一档（emerald-700 / teal-700 / green-700）+ 运行时对比度守卫（深字浅底压暗字色、浅字深底压暗背景含渐变色标，色相不变）；`contrastcheck.py` 入 runall，runall 全部通过。
