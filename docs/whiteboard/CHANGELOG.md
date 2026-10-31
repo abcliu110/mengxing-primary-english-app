@@ -2798,3 +2798,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:56 JST · 决策 38 36-② fp_economy① 145 s → 76 s + 77 s（WIP，未嵌入）
 - `fp_economy_1` 第 1 节 76 s（同化 + 口诀先出）；新 `fp_economy_p2_1` 第 2 节 77 s：新加预测「played 的 -ed 读 /t/ 还是 /d/」，再口诀、dogs 预测、洞见卡。check_r38 0 不合格；联络表自检。
+
+## 2026-10-31 17:57 JST · 决策 38 36-② hd_g07① 143 s → 63 s + 89 s（WIP，未嵌入）
+- `hd_g07_1` 第 1 节 63 s；新 `hd_g07_p2_1` 第 2 节 89 s：新加预测「门牌换成介词 with，we 过门还换装吗？」→ us / them → ①②③ + 口诀。check_r38 0 不合格。至此 36-② 点名的 5 个长幕 + fp_economy① 全部拆到 ≤ 97 s。
