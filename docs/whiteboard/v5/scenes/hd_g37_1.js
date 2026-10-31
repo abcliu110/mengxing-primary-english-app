@@ -1,7 +1,7 @@
 // 📘 G37 底层原理 · as…as —— 决策 38 ⑧ 啊哈重做（概念原语 lib/concept.js + scenes/cmp_lib.js 身高尺；啊哈卡 lab/audit38/aha/08_hd_g37_39.md）
 // 内容来源：GRAMMAR_DB G37 + 旧版 src/cases/hd_g37.js 案例 1（清单 lab/INVENTORY_HD_G37_1_V5.md；截断句按 GRAMMAR_DB 补全、去 ** 与反引号）。角色：不用人物图，人柱 + emoji。
 // 画面：身高尺上 Tom、Jim 两根人柱一样高，头顶拉一条水平线谁也不冒尖 → 先猜「as ___ as」中间放 tall / taller / tallest → 原级；
-//       再看两支温度计：今天比昨天矮一截 → not as warm as。比较三兄弟第 1 幕（G38 踮脚冒尖 -er、G39 领奖台 the -est）。
+//       再看两支温度计：今天比昨天矮一截 → not as warm as。比较三兄弟第 1 幕（G38 冒尖 -er、G39 领奖台 the -est）。
 import { scene, OR, INK, GREY } from '../wb5.js';
 import { concept, BLUE, GREEN, RED } from '../lib/concept.js';
 import { ruler, person, cmSteps, readT, sayLen } from './cmp_lib.js';

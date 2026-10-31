@@ -62,7 +62,7 @@ export default function build() {
   T = C.predict(T + 0.5, { q: 'interesting 这么长，尾巴再接 -er 会怎样？', sec: 4 });
   const R = T + 0.2;
   C.move(er, R, 1610, IY, 0.4); C.swap(it, R + 0.4, 'interestinger', RED, '#fff', RED);
-  C.pic({ emoji: '😵', x: 1300, y: IY - 110, size: 80, from: R + 0.6, until: R + 2.4 });
+  C.pic({ emoji: '💥', x: 1300, y: IY - 110, size: 80, from: R + 0.6, until: R + 2.4 });
   C.move(er, R + 1.6, 2150, IY + 120, 0.6);
   C.swap(it, R + 2.0, 'interesting', INK, '#fff', GREEN);
   const more = C.chip({ text: 'more', x: 900, y: IY + 160, size: 64, from: R + 2.0, col: OR, bd: OR, bold: true });

@@ -2729,3 +2729,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:15 JST · WIP 决策 38 第 8 幕 比较三兄弟 ② G38 ③ G39
 - hd_g38_1：头顶多出一截涂橙 = -er、than 立中间；big→bigger、heavy→heavier 拆步；预测 interesting + -er → 「interestinger」😵 → more 站前面。check_r38 0，109 s。
 - hd_g39_1：两根柱子比较级 → 四个动物 + 范围框 in the zoo → 预测冠军戴什么 → 👑 the 落下、the tallest；构成 / 范围词。check_r38 0，103 s。啊哈卡 `lab/audit38/aha/08_hd_g37_39.md`。
+
+## 2026-10-31 17:18 JST · WIP 决策 38 第 9 幕 hd_fr01 + 全量重建完成
+- 新 `v5/scenes/fr_lib.js`：同一笔买卖两条流（书 卖家→买家、钱 买家→卖家）循环 → 聚光灯照主语 → 预测 buy / sell / pay / cost 哪张贴纸 → 句子按角色上色。hd_fr01_1–4 改用它（各 ~48 s，check_r38 0）。啊哈卡 `lab/audit38/aha/09_hd_fr01.md`。
+- 全量 rebuild_all（字表 3350 字）完成；hd_g37–39、hd_fr01 后改的版本单独重嵌。曾因 2 个新字（踮 / 😵）多出一份 943 KB 共享引擎 → 场景里换掉这两个字、字表复原、重嵌，回到 1 份引擎。主 HTML 16.22 MB（口语 + 第 3–9 幕全部嵌入），待 check_oral + runall 后提交。
