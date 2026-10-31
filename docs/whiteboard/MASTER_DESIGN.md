@@ -219,7 +219,7 @@
 | O3 | 朗读 TTS | 5 处 `speechSynthesis.speak`、6 个 speak 函数；无缓存、无失败重试；同步只在模拟 TTS 下测过 | 一个统一朗读入口；语音列表缓存；失败 / 无英文语音时字幕照走并提示 | 合并成 `wbSpeak()`；首选英文语音缓存进 `localStorage`；`onend` 超时兜底，时间轴不卡死 | 单测（模拟无语音、慢语音）；`measure_sync.py` |
 | O4 | 移动端 / 平板 | 有 viewport；`@media` 只有 5 处；`touchstart` 0、`pointerdown` 1；384 个 `onclick=` | 手机竖屏、平板横屏无横向滚动；点击区域 ≥ 44 px；canvas 支持触控拖动 / 缩放（导图） | 补断点；canvas 改 Pointer Events；按钮最小尺寸 | Playwright 手机 / 平板视口截图，无溢出 |
 | O5 | 离线可用 | 单文件双击即用（已满足）；无 Service Worker（`file://` 下也用不了） | 保持单文件离线；不引外部资源 | 加检查：主文件不得出现 `http(s)://` 资源加载（链接除外） | `offlinecheck.py` 0 违规 |
-| O6 | 旧 CSS keyframes 与死代码 | 11 个 `@keyframes`（火车、剪刀、火箭等）；HD 剧场系统在白板化后变成死代码 | 白板化完成后删除无引用代码 | 每拆一个 HD 入口，同提交删其专用函数；全局引用扫描脚本 `deadcode.py` 列出零引用函数 | `deadcode.py` 报告；全入口挂载测试 |
+| O6 ✅ 2026-10-31（`src/deadcode.py` + `src/patch_deadcode.py`） | 旧 CSS keyframes 与死代码 | 11 个 `@keyframes`（火车、剪刀、火箭等）；HD 剧场系统在白板化后变成死代码 | 白板化完成后删除无引用代码 | 每拆一个 HD 入口，同提交删其专用函数；全局引用扫描脚本 `deadcode.py` 列出零引用函数 | `deadcode.py` 报告；全入口挂载测试 |
 | O7 | 全局变量 / 事件泄漏 | 227 个顶层函数；`addEventListener` 9 处、`removeEventListener` 0 处；`setTimeout` 24 处 | 切页时清理计时器和监听 | 统一 `pageScope`：登记监听 / 计时器，切页释放 | `leakcheck.py`：进出 20 次后监听数不增长 |
 | O8 | 构建与补丁脚本 | 已加 `anchorcheck.py`（562b6d4）；`docs/home/step*.py` 是一次性补丁 | 所有写主文件的脚本写前校验锚点、写后跑 `jscheck` | `docs/home/step*.py` 标记为历史脚本（只读）；`insert_wb.py` 保持唯一入口 | `jscheck.py` 含 anchorcheck |
 | O9 | 自动化测试与回归 | 沙箱曾缺 Playwright；回归靠 `reg_render.py` / `app*.py` 分散脚本 | 一条命令跑全套：`node --check`、anchorcheck、r2check 全部、渲染回归、入口挂载、fps 抽测 | `src/runall.py` 汇总；环境安装写进 SOP | `runall.py` 全绿才提交 |

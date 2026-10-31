@@ -2572,3 +2572,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 用户 10:25：业务审计发现的问题全部列入开发计划，优先级最高。`MASTER_DESIGN.md` 新增决策 35（A 数据底座 8 项、B 内容错误 4 项、C 补数据 6 项、D 底层原理 9 项、E 课本同步，每项现状数字 → 目标 → 方案 → 验收），阶段表加 12.5；HANDOFF §5 插到最前，原剩余项（O6、词源补抓、决策 7/8/9）顺延。
 - 审计报告与清单拷进 `lab/audit35/`（不含 PDF、截图）。
 
+### 2026-10-31 11:20 JST · 决策 29 O6：删旧 @keyframes 与死代码（决策 29 全部完成）
+- 新报告工具 `src/deadcode.py`：主文件直接执行脚本里的顶层函数，在全文（去掉自身函数体）+ 全部 wb5 共享块解压内容里按整词计数，0 次即零引用，迭代到不动点；另列无引用或不生效的 @keyframes。
+- 发现：11 个 @keyframes（火车 / 剪刀 / 火箭 / 雷达 / 字母掉落等）都写成 `.method-hub @keyframes x {…}`，CSS 把整条当非法选择器丢弃，页面上一个都没生效（styleSheets 实测 0 个）。
+- `src/patch_deadcode.py`：删 8 个零引用函数（currentGradeWords、setStudyGrade、startPgHold、cancelPgHold、drawHDSpeechBubble、wbHasModule、wbLoadAll、wbEggHtml，约 2.2 K 字符）、11 段 @keyframes、23 处引用它们的 animation 声明（本来就不动）。复查 deadcode 0；26 个页面 390 px 整页截图前后对比无变化（只有同版本两次截图也会出现的随机内容 / 抗锯齿差异）；runall 全过。
+
