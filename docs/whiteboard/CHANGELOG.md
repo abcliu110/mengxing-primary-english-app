@@ -2593,3 +2593,4 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ### 2026-10-31 11:45 JST · 并行与断点规则写入 HANDOFF
 - 用户要求加速但额度紧：并行降到 3 道（数据 / 内容纠错 / 白板），单一集成者负责主 HTML 与提交；每道半成品落盘 `/workspace/work/par/<道>/PROGRESS.md`；每项验证通过立即单独提交推送。HANDOFF §5 新增 0a。
+- 11:48 补充：每次 commit + push 后立即向用户汇报一次（提交号 / 完成了什么 / 下一步）。
