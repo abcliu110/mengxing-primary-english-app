@@ -2714,3 +2714,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:07 JST · WIP 决策 38 第 6 幕 hd_g05 a / an
 - hd_g05_1 改 concept.js：a book 顺 vs a apple 💥 → 预测怎么办 → n 落入、an apple 顺；史实小图 ān → one / an → a（按道 2 B2 改后 GRAMMAR_DB，an 是原形）；带音标词卡分 a / an 两筐 → 预测 hour / useful → 规则。check_r38 0，148 s。啊哈卡 `lab/audit38/aha/06_hd_g05.md`。未 embed。
+
+## 2026-10-31 17:09 JST · WIP 决策 38 第 7 幕 hd_g07 主格 / 宾格
+- hd_g07_1 改 concept.js：主语区 / 动词门（likes → with → at）/ 宾语区；预测「I 过门还叫 I 吗」→ me；he/she/we/they 过门换装、you/it 不变。check_r38 0，143 s。啊哈卡 `lab/audit38/aha/07_hd_g07.md`。未 embed。
+- 口语 144 幕：角色包重建完、打包完，正在 embed 进主 HTML（rebuild_all.py --tabs=hd_oral）。
