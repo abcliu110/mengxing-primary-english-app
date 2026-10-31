@@ -3,8 +3,8 @@
 // 用法：scenes/hd_oral_scNN_n.js 里 `oralBuild(SP, { title, items: ITEMS, acts: ACTS })`，ITEMS 原样不动（知识点不丢）。
 // 解析 ITEMS：['w','<场景名>'] / ['w','核心交际句：EN （中文）'] / ['w','💡 <提示名>：<提示>'] / ['w','对话第n轮']
 //            / ['w','<emoji> 角色 A|B：EN'] / ['w','中文'] / ['s', EN, 中文]。
-// 画面：A = Leo（左）、B = Mia（右）面对面；每轮一个气泡，说话的人气泡橙框高亮、另一个人在听；
-//   第 1 轮 A 说完 → B 的气泡盖着「？」→ C.predict「B 会怎么回答？」（≥3 s）→ 揭开、Mia 回答 →
+// 画面：A 在左、B 在右面对面；按角色 emoji 选人物（👧👩👵… = Mia 帧组，其余 = Leo 帧组，Leo 站右边时镜像），标签只写「emoji 角色 A/B」；每轮一个气泡，说话的人气泡橙框高亮、另一个人在听；
+//   第 1 轮 A 说完 → B 的气泡盖着「？」→ C.predict「B 会怎么回答？」（≥3 s）→ 揭开、B 回答 →
 //   两个气泡里和核心句相同的词一起变橙（孩子自己看出「回答在照着问句说」）→ 💡 提示进讲解字幕 = 规则（C.rule）→ 后面几轮 → 收尾核心句卡。
 // 不用讲解员；画面只由 t 决定。节奏沿用放慢后的阅读速度（中文 5 字/秒、英文 2.2 词/秒，HOLD 1.5 s）。
 import { scene, OR, INK, GREY } from '../wb5.js';
@@ -16,8 +16,9 @@ const norm = s => s.toLowerCase().replace(/[^a-z0-9']/g, '');
 const HOLD = 1.5;
 const readT = s => { const str = String(s).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); const cjk = (str.match(/[\u3400-\u9fff]/g) || []).length; const en = (str.replace(/[\u3400-\u9fff]/g, ' ').match(/[A-Za-z]+/g) || []).length; return Math.max(0.8, cjk / 5 + en / 2.2); };
 const sayLen = en => en.split(/\s+/).length * 0.36 + 0.9;
-// 默认帧（场景 ACTS 的 A / B 优先）：A 说 / 听 / 开场，B 说 / 想 / 开场
-const FA = { speak: 'l_speak', listen: 'l_ear', open: 'l_wave' }, FB = { speak: 'm_story', listen: 'm_admire', open: 'm_admire' };
+// 默认帧（场景 ACTS 的 M / F 优先；旧键 A = 男、B = 女）：说 / 听 / 开场
+const FM = { speak: 'l_speak', listen: 'l_ear', open: 'l_wave' }, FF = { speak: 'm_story', listen: 'm_admire', open: 'm_admire' };
+const FEM = /^(👧|👩|👱‍♀️|👵)/u;
 
 export function parseOral(items) {
   const D = { scene: '', coreEn: '', coreZh: '', coreRaw: '', tipName: '', tip: '', tipRaw: '', turns: [] };
@@ -38,14 +39,17 @@ export function parseOral(items) {
 
 export function oralBuild(SP, Dsrc) {
   const K = scene({ sprites: SP }), C = concept(K), D = parseOral(Dsrc.items);
-  const acts = Dsrc.acts || {}, fa = { ...FA }, fb = { ...FB };
-  if (acts.A) [fa.speak, fa.listen, fa.open] = acts.A; if (acts.B) [fb.speak, fb.listen, fb.open] = acts.B;
+  const acts = Dsrc.acts || {}, fm = { ...FM }, ff = { ...FF };
+  const am = acts.M || acts.A, af = acts.F || acts.B;
+  if (am) [fm.speak, fm.listen, fm.open] = am; if (af) [ff.speak, ff.listen, ff.open] = af;
   const has = f => SP.FI && SP.FI[f];
   const turns = D.turns, A1 = turns[0], B1 = turns.find(t => t.who !== (A1 && A1.who)) || turns[1];
   const roleOf = w => (turns.find(t => t.who === w) || {}).emoji || (w === 'A' ? '👦' : '👧');
+  const femA = FEM.test(roleOf('A')), femB = FEM.test(roleOf('B'));
+  const fa = femA ? ff : fm, fb = femB ? ff : fm;   // A 左、B 右；男孩帧在右边时镜像（原帧朝右）
 
   C.aha({
-    see: `Leo（${roleOf('A')} 角色 A）和 Mia（${roleOf('B')} 角色 B）面对面，A 先说：「${A1 ? A1.en : D.coreEn}」，B 的气泡被「？」盖着`,
+    see: `${roleOf('A')} 角色 A 和 ${roleOf('B')} 角色 B 面对面，A 先说：「${A1 ? A1.en : D.coreEn}」，B 的气泡被「？」盖着`,
     guess: 'B 会怎么回答？',
     reveal: `揭开是「${B1 ? B1.en : ''}」；两个气泡里和核心句「${D.coreEn}」一样的词一起变橙——回答在接着问句说`,
     rule: D.tip ? `${D.tipName}：${D.tip}` : `核心交际句 ${D.coreEn}`,
@@ -77,10 +81,10 @@ export function oralBuild(SP, Dsrc) {
   const AX = 250, BXP = 1670, GROUND = 1078, AH = 560;
   const ka = [[0, has(fa.open) ? fa.open : fa.speak]], kb = [[0, has(fb.open) ? fb.open : fb.listen]];
   K.actor({ keys: ka, x: AX, ground: GROUND, h: AH, reveal: 0.3 });
-  K.actor({ keys: kb, x: BXP, ground: GROUND, h: AH, reveal: 0.5 });
+  K.actor({ keys: kb, x: BXP, ground: GROUND, h: AH, reveal: 0.5, flip: !femB });
   const key = (arr, t, f) => { if (has(f)) arr.push([Math.max(t, arr[arr.length - 1][0] + 0.01), f]); };
-  C.label(`${roleOf('A')} 角色 A · Leo`, AX, 470, { size: 40, col: GREY, from: 0.6 });
-  C.label(`${roleOf('B')} 角色 B · Mia`, BXP, 470, { size: 40, col: GREY, from: 0.8 });
+  C.label(`${roleOf('A')} 角色 A`, AX, 470, { size: 40, col: GREY, from: 0.6 });
+  C.label(`${roleOf('B')} 角色 B`, BXP, 470, { size: 40, col: GREY, from: 0.8 });
   C.label(`💬 ${D.scene}`, 60, 70, { size: 40, col: GREY, from: 0.2, align: 'left' });
 
   // 气泡：from 出现；active=[[t0,t1]] 高亮；coreAt 起核心词变橙；dimAt 起变淡
@@ -118,7 +122,7 @@ export function oralBuild(SP, Dsrc) {
 
   // ---- 时间轴 ----
   let T = 1.0;
-  const nIntro = `${D.scene}：${roleOf('A')} A（Leo）和 ${roleOf('B')} B（Mia）面对面说话。`;
+  const nIntro = `${D.scene}：${roleOf('A')} 角色 A 和 ${roleOf('B')} 角色 B 面对面说话。`;
   K.narr(nIntro, 0.3, 0.3 + Math.max(2.6, readT(nIntro) + 0.6));
   T = 0.3 + Math.max(2.6, readT(nIntro) + 0.6) - 0.4;
   const bi = turns.indexOf(B1);
@@ -135,7 +139,7 @@ export function oralBuild(SP, Dsrc) {
   if (bi > 0) {
     const b = lay[bi], t0 = T;
     key(kb, t0, fb.listen); key(ka, t0, fa.listen);
-    T = C.predict(t0 + 0.4, { q: `${roleOf('B')} B（Mia）会怎么回答？先在心里说一说！`, sec: 4 });
+    T = C.predict(t0 + 0.4, { q: `${roleOf('B')} 角色 B 会怎么回答？先在心里说一说！`, sec: 4 });
     C.cover({ x: BX, y: b.y + b.h / 2, w: BWID + 8, h: b.h + 8, from: t0, open: T + 0.1, label: '？' });
     const e = speak(bi, T + 0.5); bubble(bi, t0, [T + 0.5, e]); ends[bi] = e; T = e;
     for (let i = 1; i < bi; i++) { const e2 = speak(i, T); bubble(i, T - 0.3, [T, e2]); T = e2; }

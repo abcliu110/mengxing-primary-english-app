@@ -1,9 +1,9 @@
-// 💬 日常用语 · 爱好与运动 · Practice makes perfect! —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 💬 日常用语 · 爱好与运动 · Practice makes perfect! —— 决策 38 ② 啊哈重做（口语通用版式 scenes/oral.js；啊哈卡 lab/audit38/aha/02_hd_oral_sc01.md）
 // 内容来源（R1 零丢失）：src/cases/hd_oral_sc14.js 案例 6；对照清单 lab/INVENTORY_HD_ORAL_SC14_6_V5.md
 // 角色关键帧：sprites/hdo14_6.js（人物先行帧库 cast/）
-import { autoBuild } from './auto.js';
+import { oralBuild } from './oral.js';
 import * as SP from '../sprites/hdo14_6.js';
-const ACTS = {"*": ["l_bike0", "l_bike1", "l_speak"]};
+const ACTS = {"*": ["l_bike0", "l_bike1", "l_speak"], "M": ["l_speak", "l_ear", "l_wave"], "F": ["m_story", "m_admire", "m_admire"]};
 const ITEMS = [
   ['w', '爱好与运动'],
   ['w', '核心交际句：Practice makes perfect! （熟能生巧！（鼓励坚持练习的黄金谚语））'],
@@ -21,4 +21,4 @@ const ITEMS = [
   ['w', '好，我们试试。'],
   ['s', 'OK! Let\'s try.', '好，我们试试。']
 ];
-export default function build() { return autoBuild(SP, { title: '💬 日常用语 · 爱好与运动 · Practice makes perfect!', items: ITEMS, acts: ACTS }); }
+export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 爱好与运动 · Practice makes perfect!', items: ITEMS, acts: ACTS }); }
