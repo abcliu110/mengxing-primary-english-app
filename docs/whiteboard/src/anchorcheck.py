@@ -121,6 +121,13 @@ MENU_V4 = [   # 决策 33 ④（src/patch_menu_grammar.py）
     ("navigateTo('grammar_chants'", 0, 0), ("navigateTo('grammar_playground', { tab: 'diagrams' })", 0, 0),
 ]
 
+MENU_V5 = [   # 决策 33 ⑤（src/patch_menu_words.py）
+    ('// MENU_WORDS_V5 ----------', 1, 1),
+    ('else if (s === "word_list") renderWordListView();   // MENU_WORDS_V5', 1, 1),
+    ('<!-- MENU_WORDS_V5:hall -->', 1, 1),
+    ("navigateTo('vocab_pos'", 0, 0), ("navigateTo('vocab_theme', { sub: '', viewMode: 'list' })", 0, 0),
+]
+
 
 def registry():
     """页签登记表：原来从 insert_wb.py 读；旧 SVG 白板退役（2026-10-30）后 insert_wb.py 已删，登记表冻结在 wb_registry.json。"""
@@ -135,7 +142,7 @@ def check(s):
     errs = []
     retired = RETIRED in s
     menu2 = '// MENU_HOME_V2 ----------' in s
-    for m, lo, hi in MARKERS + (MY_STUDY if 'function renderMyStudyView()' in s else []) + (MENU_V2 if menu2 else PRE_MENU) + (MENU_V3 if '// MENU_HUBS_V3 ----------' in s else []) + (MENU_V4 if '// MENU_GRAMMAR_V4 ----------' in s else []):
+    for m, lo, hi in MARKERS + (MY_STUDY if 'function renderMyStudyView()' in s else []) + (MENU_V2 if menu2 else PRE_MENU) + (MENU_V3 if '// MENU_HUBS_V3 ----------' in s else []) + (MENU_V4 if '// MENU_GRAMMAR_V4 ----------' in s else []) + (MENU_V5 if '// MENU_WORDS_V5 ----------' in s else []):
         if retired and m in RETIRED_SKIP: continue
         n = s.count(m)
         if n < lo or (hi is not None and n > hi):
