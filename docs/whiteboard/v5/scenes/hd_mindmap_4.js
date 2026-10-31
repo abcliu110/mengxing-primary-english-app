@@ -19,22 +19,20 @@ const GROUPS = [
     ['6️⃣ six', '六，六个', 'six'],
     ['🔟 ten', '十，十个', 'ten']
   ] },
-  { name: '数字 11–18', leaves: [
+  { name: '数字 11–18 和钟表', leaves: [
+    ['🕰️ clock', '时钟，钟表', 'clock'],
     ['1️⃣8️⃣ eighteen', '十八', 'eighteen'],
     ['1️⃣1️⃣ eleven', '十一', 'eleven'],
     ['1️⃣5️⃣ fifteen', '十五', 'fifteen'],
     ['1️⃣6️⃣ sixteen', '十六', 'sixteen'],
     ['🕛 twelve', '十二', 'twelve']
-  ] },
-  { name: '钟表', leaves: [
-    ['🕰️ clock', '时钟，钟表', 'clock']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 数字与计量 · 思维导图讲解', center: '🌍 数字与计量', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['An octopus has eight legs.'],
     aTitle: '✨ 评价形容词', adjs: [],
-    intro: '今天用一张思维导图学「数字与计量」：16 个单词分成 4 组。',
+    intro: '今天用一张思维导图学「数字与计量」：16 个单词分成 3 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

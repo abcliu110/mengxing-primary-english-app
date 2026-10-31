@@ -5,12 +5,13 @@ import { mindmapBuild } from './auto.js';
 import * as SP from '../sprites/mindmap.js';
 const ACTS = {"*": ["l_speak", "l_point", "l_think", "l_idea0"]};
 const GROUPS = [
-  { name: '脸上', leaves: [
+  { name: '头和脸', leaves: [
     ['👂 ear', '耳朵', 'ear'],
     ['👀 eye', '眼睛', 'eye'],
     ['😊 face', '脸，面孔', 'face'],
     ['👄 mouth', '嘴巴', 'mouth'],
-    ['👃 nose', '鼻子', 'nose']
+    ['👃 nose', '鼻子', 'nose'],
+    ['💇 haircut', '理发；发型', 'haircut']
   ] },
   { name: '身体部位', leaves: [
     ['💪 arm', '胳膊，手臂', 'arm'],
@@ -25,16 +26,13 @@ const GROUPS = [
     ['🦷 toothache', '牙痛，牙疼', 'toothache'],
     ['🤒 illness', '疾病，生病', 'illness'],
     ['🛌 ill', '生病的，不舒服的', 'ill']
-  ] },
-  { name: '更多', leaves: [
-    ['💇 haircut', '理发；发型', 'haircut']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 身体与健康 · 思维导图讲解', center: '🌍 身体与健康', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['Touch your ear.'],
     aTitle: '✨ 评价形容词', adjs: ['a ear', 'the ear', 'my ear'],
-    intro: '今天用一张思维导图学「身体与健康」：16 个单词分成 4 组。',
+    intro: '今天用一张思维导图学「身体与健康」：16 个单词分成 3 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

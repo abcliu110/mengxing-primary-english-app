@@ -21,22 +21,20 @@ const GROUPS = [
     ['🎵 song', '歌，歌曲', 'song'],
     ['📹 video', '视频，录像', 'video']
   ] },
-  { name: '活动', leaves: [
+  { name: '出去活动', leaves: [
+    ['🧢 cap', '（有帽檐的）帽子，棒球帽', 'cap'],
+    ['🗺️ map', '地图', 'map'],
     ['🥾 hiking', '远足，徒步旅行', 'hiking'],
     ['📖 studies', '学习，研究（study的第三人称单数）', 'studies'],
     ['🎬 act', '表演；行动；扮演', 'act'],
     ['🏀 sport', '体育运动', 'sport']
-  ] },
-  { name: '更多', leaves: [
-    ['🧢 cap', '（有帽檐的）帽子，棒球帽', 'cap'],
-    ['🗺️ map', '地图', 'map']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 玩具与爱好 · 思维导图讲解', center: '🌍 玩具与爱好', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['Bounce the ball.'],
     aTitle: '✨ 评价形容词', adjs: ['a ball', 'the ball', 'my ball'],
-    intro: '今天用一张思维导图学「玩具与爱好」：16 个单词分成 5 组。',
+    intro: '今天用一张思维导图学「玩具与爱好」：16 个单词分成 4 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

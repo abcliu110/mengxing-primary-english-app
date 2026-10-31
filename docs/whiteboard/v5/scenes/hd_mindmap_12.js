@@ -12,7 +12,7 @@ const GROUPS = [
     ['🏪 bookstore', '书店', 'bookstore'],
     ['🎬 cinema', '电影院', 'cinema']
   ] },
-  { name: '花草树木', leaves: [
+  { name: '公园里的花草树', leaves: [
     ['🌸 flower', '花，花朵', 'flower'],
     ['🌿 grass', '草，草地', 'grass'],
     ['🌳 tree', '树，树木', 'tree']
@@ -22,12 +22,12 @@ const GROUPS = [
     ['⛰️ hill', '小山，山丘', 'hill'],
     ['🏞️ lake', '湖，湖泊', 'lake']
   ] },
-  { name: '随身物品', leaves: [
+  { name: '出门带上', leaves: [
     ['🧤 glove', '（分手指的）手套', 'glove'],
     ['🧣 scarf', '围巾，披巾', 'scarf'],
     ['☂️ umbrella', '雨伞', 'umbrella']
   ] },
-  { name: '价钱', leaves: [
+  { name: '便宜和贵', leaves: [
     ['🏷️ cheap', '花钱少的，便宜的', 'cheap'],
     ['💎 expensive', '昂贵的，花钱多的', 'expensive']
   ] }

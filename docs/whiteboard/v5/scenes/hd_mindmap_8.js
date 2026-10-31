@@ -11,10 +11,11 @@ const GROUPS = [
     ['🧥 raincoat', '雨衣', 'raincoat'],
     ['🧥 overcoat', '长大衣，防寒外套', 'overcoat']
   ] },
-  { name: '上衣', leaves: [
+  { name: '上衣和毛衣', leaves: [
     ['👔 shirt', '衬衫', 'shirt'],
     ['🧶 sweater', '毛衣', 'sweater'],
-    ['🎽 uniform', '校服，制服', 'uniform']
+    ['🎽 uniform', '校服，制服', 'uniform'],
+    ['🧶 woolen', '羊毛制的，毛线的', 'woolen']
   ] },
   { name: '裙裤鞋袜', leaves: [
     ['👟 shoes', '鞋子（常复数）', 'shoes'],
@@ -27,16 +28,13 @@ const GROUPS = [
     ['🕶️ sunglasses', '太阳镜，墨镜（常复数）', 'sunglasses'],
     ['💄 lipstick', '口红，唇膏', 'lipstick'],
     ['👓 eyeglass', '眼镜片（复数 eyeglasses 眼镜）', 'eyeglass']
-  ] },
-  { name: '更多', leaves: [
-    ['🧶 woolen', '羊毛制的，毛线的', 'woolen']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 服装与穿戴 · 思维导图讲解', center: '🌍 服装与穿戴', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['Put on your shirt.'],
     aTitle: '✨ 评价形容词', adjs: ['a shirt', 'the shirt', 'my shirt'],
-    intro: '今天用一张思维导图学「服装与穿戴」：16 个单词分成 5 组。',
+    intro: '今天用一张思维导图学「服装与穿戴」：16 个单词分成 4 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

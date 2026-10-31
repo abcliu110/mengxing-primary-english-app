@@ -17,26 +17,24 @@ const GROUPS = [
     ['🚦 traffic', '交通（traffic lights 交通信号灯）', 'traffic'],
     ['🛤️ railway', '铁路，铁道', 'railway']
   ] },
-  { name: '安全', leaves: [
+  { name: '安全和慢行', leaves: [
     ['⛑️ helmet', '头盔，安全帽', 'helmet'],
+    ['🐢 slow', '慢的；放慢速度（slow down）', 'slow'],
     ['🛡️ safe', '安全的，平安的', 'safe'],
     ['🦺 safety', '安全，平安', 'safety']
   ] },
-  { name: '出行', leaves: [
+  { name: '出行和超市', leaves: [
     ['👋 away', '离开，向远处', 'away'],
+    ['🛒 supermarket', '超级市场，超市', 'supermarket'],
     ['🧳 trip', '旅行，旅程', 'trip'],
     ['🛂 passport', '护照', 'passport']
-  ] },
-  { name: '更多', leaves: [
-    ['🐢 slow', '慢的；放慢速度（slow down）', 'slow'],
-    ['🛒 supermarket', '超级市场，超市', 'supermarket']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 交通与出行 · 思维导图讲解', center: '🌍 交通与出行', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['I go to school by bus.'],
     aTitle: '✨ 评价形容词', adjs: ['a bus', 'the bus', 'my bus'],
-    intro: '今天用一张思维导图学「交通与出行」：16 个单词分成 5 组。',
+    intro: '今天用一张思维导图学「交通与出行」：16 个单词分成 4 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

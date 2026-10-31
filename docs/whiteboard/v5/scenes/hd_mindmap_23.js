@@ -8,10 +8,14 @@ const GROUPS = [
   { name: '心情', leaves: [
     ['😊 glad', '高兴的', 'glad'],
     ['🏅 proud', '自豪的(be proud of)', 'proud'],
-    ['😲 surprised', '惊讶的', 'surprised'],
-    ['😰 nervous', '紧张的', 'nervous'],
     ['🥀 lonely', '孤独的', 'lonely'],
     ['🙏 sorry', '抱歉的/难过的', 'sorry']
+  ] },
+  { name: '感觉怎样', leaves: [
+    ['😲 surprised', '惊讶的', 'surprised'],
+    ['😰 nervous', '紧张的', 'nervous'],
+    ['🥱 boring', '(物)枯燥无聊的', 'boring'],
+    ['💓 felt', 'feel的过去式(感觉)', 'felt']
   ] },
   { name: '性格', leaves: [
     ['🦉 wise', '充满智慧的', 'wise'],
@@ -24,10 +28,6 @@ const GROUPS = [
     ['👍 better', 'good/well的比较级(更好的)', 'better'],
     ['🥇 best', 'good/well的最高级(最好的)', 'best'],
     ['📉 worse', 'bad/ill的比较级(更糟的)', 'worse']
-  ] },
-  { name: '更多', leaves: [
-    ['🥱 boring', '(物)枯燥无聊的', 'boring'],
-    ['💓 felt', 'feel的过去式(感觉)', 'felt']
   ] }
 ];
 export default function build() {

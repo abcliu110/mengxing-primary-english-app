@@ -5,10 +5,11 @@ import { mindmapBuild } from './auto.js';
 import * as SP from '../sprites/mindmap.js';
 const ACTS = {"*": ["l_speak", "l_point", "l_think", "l_idea0"]};
 const GROUPS = [
-  { name: '家和父母', leaves: [
+  { name: '家人和客人', leaves: [
     ['👨 father', '父亲，爸爸', 'father'],
     ['👩 mother', '母亲，妈妈', 'mother'],
-    ['👨‍👩‍👧‍👦 family', '家，家庭；家人', 'family']
+    ['👨‍👩‍👧‍👦 family', '家，家庭；家人', 'family'],
+    ['🎁 guest', '客人，宾客', 'guest']
   ] },
   { name: '爷爷奶奶', leaves: [
     ['👴 grandfather', '（外）祖父，爷爷，外公', 'grandfather'],
@@ -29,16 +30,13 @@ const GROUPS = [
     ['👦 boy', '男孩，男生', 'boy'],
     ['👨‍👦 men', '男人们（man的复数）', 'men'],
     ['👩‍👧 women', '女人们，妇女们（woman的复数）', 'women']
-  ] },
-  { name: '更多', leaves: [
-    ['🎁 guest', '客人，宾客', 'guest']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 家庭与亲友 · 思维导图讲解', center: '🌍 家庭与亲友', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['She is my aunt.'],
     aTitle: '✨ 评价形容词', adjs: ['a aunt', 'the aunt', 'my aunt'],
-    intro: '今天用一张思维导图学「家庭与亲友」：16 个单词分成 6 组。',
+    intro: '今天用一张思维导图学「家庭与亲友」：16 个单词分成 5 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }

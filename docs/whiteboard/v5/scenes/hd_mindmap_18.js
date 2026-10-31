@@ -29,7 +29,7 @@ const GROUPS = [
     ['🧑‍🔬 scientist', '科学家', 'scientist'],
     ['👮 officer', '警官，军官，官员', 'officer']
   ] },
-  { name: '更多', leaves: [
+  { name: '工作的地方', leaves: [
     ['🏭 factory', '工厂', 'factory'],
     ['🗺️ country', '国家；乡村，乡下', 'country']
   ] }

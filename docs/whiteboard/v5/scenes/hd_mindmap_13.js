@@ -14,31 +14,29 @@ const GROUPS = [
     ['🦘 jump', '跳，跳跃', 'jump'],
     ['🚴 ride', '骑（自行车、马等）', 'ride'],
     ['🏃 run', '跑，奔跑', 'run'],
+    ['🔄 turn', '转弯，转动；变成（颜色/天气变化） / （轮到的）顺序，机会（take turns 轮流）', 'turn'],
     ['🏊 swim', '游泳', 'swim']
   ] },
   { name: '读和写', leaves: [
     ['📝 write', '写，写字，写作', 'write'],
     ['📚 read', '读，阅读，看（书/报）', 'read']
   ] },
-  { name: '玩和看', leaves: [
+  { name: '玩、看和帮忙', leaves: [
     ['🔄 watch', '观看，注视（电视、比赛等动态画面） / 手表（戴在手腕上随时“看”时间的工具）', 'watch'],
+    ['🤝 help', '帮助，帮忙', 'help'],
     ['🎮 play', '玩耍；打（球）；弹奏（乐器）；戏剧', 'play']
   ] },
   { name: '作息', leaves: [
     ['🛌 sleep', '睡觉，睡眠', 'sleep'],
     ['🌅 morning', '早晨，上午', 'morning'],
     ['🥐 breakfast', '早餐，早饭', 'breakfast']
-  ] },
-  { name: '更多', leaves: [
-    ['🔄 turn', '转弯，转动；变成（颜色/天气变化） / （轮到的）顺序，机会（take turns 轮流）', 'turn'],
-    ['🤝 help', '帮助，帮忙', 'help']
   ] }
 ];
 export default function build() {
   return mindmapBuild(SP, { title: '🗺️ 日常作息与动作 · 思维导图讲解', center: '🌍 日常作息与动作', hint: '点击周围节点开卡学习', groups: GROUPS,
     vTitle: '🔗 常用搭配动词', verbs: ['Let\'s sing and dance!'],
     aTitle: '✨ 评价形容词', adjs: [],
-    intro: '今天用一张思维导图学「日常作息与动作」：16 个单词分成 6 组。',
+    intro: '今天用一张思维导图学「日常作息与动作」：16 个单词分成 5 组。',
     outro: '点下面导图里的任意单词，打开词卡继续学',
     frames: {"speak": "l_speak", "point": "l_point", "think": "l_think", "idea": "l_idea0"} });
 }
