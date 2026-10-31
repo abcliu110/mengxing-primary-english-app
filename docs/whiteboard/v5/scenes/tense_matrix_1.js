@@ -7,7 +7,7 @@ import * as SP from '../sprites/tm1.js';
 
 // 场景是工厂函数：播放器先装好字体再调用（K.measure 需要真实字宽）
 export default function build() {
-const K = scene({ sprites: SP, stretch: 1.5 });
+const K = scene({ sprites: SP, stretch: 1.5, clip: [0, 45.8] });   // 决策 36-② 时间窗分节：本文件 = 第 1 节，第 2…4 节见 tense_matrix_p2_1.js …
 const REG = i => [(i % 4) * 2100, Math.floor(i / 4) * 1250];
 const go = (i, t, d = 0.9, z = 1) => { const [x, y] = REG(i); K.cam(t, { x: x + 960, y: y + 540, z, d, ease: 'power2.inOut' }); };
 // 朗读时第 n 个词点亮的时刻（与 wb5 底部字幕同一公式）

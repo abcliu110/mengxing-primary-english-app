@@ -4,6 +4,8 @@ import { buildAdj } from './adj_train.js';
 import * as SP from '../sprites/ao1.js';
 
 export default function build() {
+const own = !globalThis.__WB5_CLIP; if (own) globalThis.__WB5_CLIP = [0, 23.2];   // 决策 36-② 时间窗分节：本文件 = 第 1 节，第 2–3 节见 adj_order_p2_1.js / adj_order_p3_1.js
+try {
 return buildAdj(SP, {
   n0: '这节课：好几个形容词一起修饰一个名词时，英语里谁站前面、谁站后面？', tick: '✔', hero: 'mom_gift', hero2: 'mom_gift',
   title: '①  一张漂亮的小圆木桌', sub: '真题专列 · 形容词排座次', badges: ['💡 记忆联想', '✂️ 简化说法'],
@@ -37,4 +39,5 @@ return buildAdj(SP, {
     say: ['I have a nice big red balloon.', '我有一个漂亮的大红气球。', 'balloon nice big red', ['nice', 'big', 'red']], balloon: true },
   gold: ['💡 一句话洞见', '形容词排队，从「我觉得」走到「它本来是」：', '越主观越靠外，越接近本质越贴紧名词', '🎵 口诀', '口诀：限观大形龄色国材 ——', '美小圆旧黄，法国木书房！', '🚂 形容词排座次 · ①  一张漂亮的小圆木桌'],
 });
+} finally { if (own) delete globalThis.__WB5_CLIP; }
 }
