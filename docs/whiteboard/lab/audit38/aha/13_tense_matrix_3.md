@@ -13,3 +13,6 @@
 
 ## 知识点不丢
 旧幕全部字幕、朗读句、公式、信号词、陷阱、口诀、金句共 38 条在 `KNOW`（`v5/check_r38.py tense_matrix_3`）。144 s（旧版也很长；内容未删）。
+
+## 决策 36-② 分两节（2026-10-31 18:00 JST）
+144 s → 第 1 节 `tense_matrix_3`（昨天 / 今天找不同 → -ed 邮戳 → 矩阵格子 → 不看主语 → take→took，61 s）；第 2 节 `tense_matrix_p2_3`（拼写 studied / stopped → was / were → 信号词 → Did you went ✗ → 预测 play / played → 口诀，85 s）。tense_matrix 一时态一幕、幕号跟 TENSE_ASPECT_MATRIX_DB 绑定，所以第 2 节不加新幕，而是同幕的子页签 `tense_matrix_p2`，App 白板下「🎬 第 1 节 / 第 2 节 ▶」切换（`src/patch_wb5_parts.py`）。
