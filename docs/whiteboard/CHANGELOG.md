@@ -2763,3 +2763,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:37 JST · 决策 38 第 15 幕 fp_economy① 喉咙剖面重做（WIP，未嵌入）
 - `v5/scenes/fp_economy_1.js` 改 concept.js：喉咙剖面（声带清音静止 / 浊音抖动冒波纹）+ 顶部 6 步进度条；预测 book+s → /s/、bag+s 一路抖到 /z/；worked /t/ played /d/；口诀；第二次预测 dogs → /z/；洞见卡。66 条旧文字全在 KNOW。check_r38 0 不合格，145 s；390 px 联络表自检（修了 bag+s 残留、口诀与预测叠字、进度条挤字）。啊哈卡 `lab/audit38/aha/15_fp_economy.md`。
 - 角色包 `sprites/fpeco1.js`（空包，不入库，rebuild_all 缺包自动生成）。
+
+## 2026-10-31 17:42 JST · 决策 38 第 15 幕联络表复查修残留（WIP）
+- fp_economy_1：bag+s 的 /z/ 卡片在过去式段残留 → 跟本段一起淡出；联络表复查无叠字。runall 仍在跑（已过 jscheck…app_check15 / vocab_add，到 tense_matrix）。
