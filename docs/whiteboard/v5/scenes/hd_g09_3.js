@@ -1,6 +1,7 @@
 // 📘 G09 底层原理 · 第3幕 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
 // 内容来源（R1 零丢失）：src/cases/hd_g09.js 案例 3；对照清单 lab/INVENTORY_HD_G09_3_V5.md
 // 角色关键帧：sprites/hdg09_3.js（人物先行帧库 cast/）
+// 决策 36 ①2（fix36_cross）：只放本课的板，口诀进讲解字幕
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/hdg09_3.js';
 const ACTS = {"*": ["l_read", "l_hand0", "l_think"]};
@@ -18,6 +19,7 @@ const ITEMS = [
   ['w', '🔭 远处 + 复数(多个)'],
   ['w', 'those are 🐦🐦'],
   ['w', 'G09 第3幕'],
-  ['s', 'This is a red apple here, and that is a pear over there.', '近指单数 this is，远指单数 that is；近指复数 these are，远指复数 those are；问句 This/That 回答用 it，问句 These/Those 回答用 they！']
+  ['s', 'This is a red apple here, and that is a pear over there.', '这儿这个是个红苹果，那儿那个是个梨。'],
+  ['n', '🎵 口诀：近指单数 this is，远指单数 that is；近指复数 these are，远指复数 those are；问句 This/That 回答用 it，问句 These/Those 回答用 they！']
 ];
 export default function build() { return autoBuild(SP, { title: '📘 G09 底层原理 · 第3幕', items: ITEMS, acts: ACTS }); }

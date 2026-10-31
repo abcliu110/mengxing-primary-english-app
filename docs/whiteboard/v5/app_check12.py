@@ -1,5 +1,5 @@
 """app_check12.py —— 重复内容合并第 3 步回归（src/patch_dedup_c.py）：
-① G07 / G08 / G09 / G10 白板固定播相关一幕（0 / 1 / 2 / 0）、不出分幕按钮；代词全局原理照常三幕；
+① G07 白板固定播相关一幕（0）、不出分幕按钮；G08 / G09 / G10 决策 36 ①2 后三幕都是本课板，不固定（照常三幕）；代词全局原理照常三幕；
 ② 知识点组内各页顶部有「🔗 另见」条，当前页高亮，点了能跳；组外页面没有；
 ③ 总地图多出语法课 / 总结页节点，「按知识点」一节节点能跳转，进语法课记「看过」。0 报错。"""
 import asyncio, pathlib
@@ -13,10 +13,10 @@ async def main():
         pg.on('pageerror', lambda e: errs.append(str(e)))
         await pg.goto(APP.as_uri()); await pg.wait_for_timeout(1500)
         await pg.evaluate("localStorage.clear(); appState.visited = {}")
-        for g, act in (('G07', '0'), ('G08', '1'), ('G09', '2'), ('G10', '0')):
+        for g, act, fx in (('G07', '0', '1'), ('G08', '0', None), ('G09', '0', None), ('G10', '0', None)):
             await pg.evaluate(f"navigateTo('grammar_detail', {{ gId: '{g}' }})"); await pg.wait_for_timeout(600)
             r = await pg.evaluate(INFO)
-            if not (r['key'] == 'gr:' + g and r['chips'] >= 5 and r['fixed'] == '1' and r['act'] == act): bad.append(f'{g} {r}')
+            if not (r['key'] == 'gr:' + g and r['chips'] >= 5 and r['fixed'] == fx and r['act'] == act): bad.append(f'{g} {r}')
         for go, key, fixed in (("navigateTo('grammar_summary_hub', { summaryTab: 'pronouns' })", 'sum:pronouns', None), ("navigateTo('super_lab_hub', { labTab: 'aux_transformer' })", 'lab:aux_transformer', None),
                                ("navigateTo('grammar_detail', { gId: 'G02' })", 'gr:G02', None), ("navigateTo('zh_en_hub', { scene: 'ze_pronoun' })", 'ze:ze_pronoun', None), ("navigateTo('grammar_detail', { gId: 'G11' })", None, None)):
             await pg.evaluate(go); await pg.wait_for_timeout(600)

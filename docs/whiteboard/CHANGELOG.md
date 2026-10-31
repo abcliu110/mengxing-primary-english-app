@@ -2652,3 +2652,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 新版式 `v5/scenes/oral.js` `oralBuild`：Leo（A）/ Mia（B）面对面，气泡轮流高亮；第 1 轮后 B 气泡盖「？」，`C.predict` 4 s「B 会怎么回答？」→ 揭晓；两气泡里与核心句相同的词一起变橙；核心交际句、💡 提示整句进讲解字幕（提示 = `C.rule`）；收尾核心句卡 + 中文卡朗读。不用讲解员，节奏沿用阅读速度（中文 5 字/秒、英文 2.2 词/秒，HOLD 1.5 s）。
 - 样板只切 `scenes/hd_oral_sc01_1.js`（ITEMS 不动；ACTS 加 A / B 帧）：45.7 s、预测 4 s、规则 25.3 s、板上文字 18%、确定、0 报错；`check_oral.py` 知识点 21 条缺 0。App 内尚未替换（阶段 ③）。
 - 啊哈卡 `lab/audit38/aha/02_hd_oral_sc01.md`；新检查 `v5/check_oral.py`；`src/insightcheck.py` 识别 `./oral.js` 场景（抽样 1 + 8 幕，`--all-oral` 全查），跳过版式库文件。
+
+### 2026-10-31 15:55 JST · 决策 36 ①2 语法白板模板串课（道 3）
+- `v5/fix36_cross.py`（幂等）：一个点只放本点的板。G08 / G09 / G10 原来三幕都是「代词全局原理」的三块深度机制板 → 只留本课那块（G08 ② 物主代词、G09 ③ 指示代词），G08 ①③（粘人精 vs 独行侠、看空格后有无名词 + 常错）、G09 ①②（问答换 it / they、打电话 This is / Is that + 数的一致）、G10 ①–③（some / any 共同本领、常规分工、邀请请求特例）换成本课板；G31 三幕原是 G32 的 How / What 板 → Who / Whose / Who's、Where / When / What time、Why–Because / Which；G32 ③ 原是感叹句「遮住主谓」板 → What + 名词 / How + 形容词家族；G34 ① 改用「遮住主谓」板开场（原第 3 幕），② 三大公式，③ 常错；G35 原是 G36 的双轨板 → 就近原则。新内容全部取自该语法点 GRAMMAR_DB 的 step1 例句 / step3 规则 / step4 题目，不新编；新英文句配朗读、字幕给译文；动过的幕末句中文原是口诀，口诀改成讲解字幕（🎵 口诀：…）保留。
+- 拿掉的共用板原文仍在 G07、G08 ②、G09 ③、代词总结、G32 ①②、G34 ①、G36 ①（对照表 `lab/audit36/R1_36_2_CROSS.md`，知识点不丢）。`GRAMMAR_FIXED_ACT` 改为只固定 G07（`src/patch_dedup_c.py` + 主文件），G08–G10 照常三幕；`app_check12.py` 同步。
+- wbdupcheck 白名单只剩 G07|G08、G07|G09（G07 ②③ 与 G08 ② / G09 ③ 同板，要改 G07 = 决策 38 第 7 幕，道 r38）。17 幕重打包嵌入：确定性 / 0 报错（普通 + sandbox），66–105 s；app_check12 0 不合格、app_check4 hd_g08 / hd_g34 每幕可播、jscheck OK。
