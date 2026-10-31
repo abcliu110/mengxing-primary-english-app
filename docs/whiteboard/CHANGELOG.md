@@ -2862,3 +2862,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:53 JST · 决策 38 35-A3 占位例句：第 1 批 110 词真例句草稿（WIP，未入 App）
 - 445 个 V6 扩展词占位例句（`Let's learn and use "X" in a sentence!` / `核心考点词【X】`）开写：`lab/audit35/a3/b1.tsv`（词 / 英文 / 中文，110 条：magazine … mushroom）。
 - 全量 rebuild_all（wb5 clip 引擎）后台进行中。
+
+## 2026-10-31 18:54 JST · 决策 38 35-A3 例句第 2–3 批（累计 335/445，WIP）
+- `lab/audit35/a3/b2.tsv`（drink … pupil，110 条）、`b3.tsv`（police officer … pocket，115 条）。
