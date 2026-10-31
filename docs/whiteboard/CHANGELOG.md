@@ -2630,3 +2630,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ### 2026-10-31 14:14 JST · 决策 37 R37-14 按钮对比度
 - R37-14 按钮对比度（83dd930）：`src/patch_r37_contrast.py`（标记 R37_14_CONTRAST）——常用绿底白字按钮换深一档（emerald-700 / teal-700 / green-700）+ 运行时对比度守卫（深字浅底压暗字色、浅字深底压暗背景含渐变色标，色相不变）；`contrastcheck.py` 入 runall，runall 全部通过。
+
+### 2026-10-31 14:22 JST · 决策 37 R37-12 过时文案与重复入口
+- R37-12（fbe5238）：`src/patch_r37_copy.py` 10 处替换——7 处过时文案（高清 Canvas 情景互动动画 / 高清 2D 三幕视频级动画 / 四大全局总结矩阵 / 高清角色拼读小剧场 / 高清卡通角色分幕演绎 / 核心主推双引擎 / 高清动态录像机）改成现在的说法；单词大厅「🧭 单词专项」区与上方大卡重复的 4 个小按钮删掉（大卡保留）。`jargoncheck.py` 新增同页重复入口检查（总地图、首页继续条、🔗 另见条不算），入 runall；原交接里提到的 G07 重复入口复扫为 0，不需要白名单。runall 全部通过。

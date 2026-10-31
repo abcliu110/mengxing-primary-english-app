@@ -17,6 +17,6 @@
 | R37-09 | 手机顶栏一层、吸顶、始终有返回 | 首屏内容 ≥ 75%，返回始终可见 | ✅ （`src/patch_r37_topbar.py`，检查 `topbarcheck.py`：首页 / 子页面顶栏 56 px，首屏内容 93%） |
 | R37-10 | 单词表分页 / 虚拟列表 | 首屏 ≤ 40 张 | ✅ （`src/patch_r37_wordlist.py`，检查 `wordlistcheck.py`：首屏 40 张） |
 | R37-11 | 方法论页换新白板风格和新动画，儿童页不出现开发术语 | 术语扫描 = 0 | ⬜ |
-| R37-12 | 去掉重复入口和过时文案（「高清 Canvas」「四大总结矩阵」等） | 扫描 = 0 | ⬜ |
+| R37-12 | 去掉重复入口和过时文案（「高清 Canvas」「四大总结矩阵」等） | 扫描 = 0 | ✅ （`src/patch_r37_copy.py`，检查 `jargoncheck.py`：80 页术语 + 同页重复入口 0 处） |
 | R37-13 | 家长门按钮横排显示 | 390 px 截图 | ✅ （`src/patch_r37_gate.py`，检查 `gatecheck.py`） |
 | R37-14 | 按钮对比度达标 | ≥ 4.5:1 | ✅ （`src/patch_r37_contrast.py`，检查 `contrastcheck.py`：390 px 18 页按钮 0 不合格） |
