@@ -34,7 +34,8 @@ function flatten(drawable, type = 'path') {
   return out.filter(p => p.length > 1).map(pts => ({ pts, cum: DG.cum(pts) }));
 }
 
-export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK', stretch = 1 } = {}) {   // stretch：整幕放慢倍数（2026-10-30 用户：白板太快；手工幕按绝对时间写，统一放慢）
+export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK', stretch = 1, clip = null } = {}) {   // clip：[t0, t1]（场景时间，放慢前）只播这一段，t0 前已画的板书直接在场（决策 36-② 手工长幕分节；分节文件用 globalThis.__WB5_CLIP 覆盖）
+  if (globalThis.__WB5_CLIP) clip = globalThis.__WB5_CLIP;   // stretch：整幕放慢倍数（2026-10-30 用户：白板太快；手工幕按绝对时间写，统一放慢）
   const FR = sprites.FR, FI = sprites.FI, IMG = {};
   const B = DG.board({ ink: INK, lw: 6.5, speed: 2600, font });
   const tl = gsap.timeline({ paused: true });
@@ -209,6 +210,10 @@ export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK', stretc
       const pp = penPos(t, cam, tip); if (pp) DG.pen(c, pp[0], pp[1], col || B.penColor(t));
       narrBar(c, t); sayBar(c, t);
     };
+    if (clip) {   // 决策 36-② 时间窗分节：[c0, c1] 之外不播，字幕 / 朗读提示平移到 0 起
+      const c0 = clip[0] || 0, c1 = Math.min(clip[1] || dur, dur), sh = (a, k) => a.filter(x => x.t1 > c0 && x[k] < c1).map(x => ({ ...x, [k]: Math.max(0, x[k] - c0), t1: Math.min(c1, x.t1) - c0 }));
+      return { W, H, DUR: (c1 - c0) * stretch, CUES: CUES.filter(([ct]) => ct >= c0 && ct < c1).map(([ct, ...r]) => [(ct - c0) * stretch, ...r]), drawFrame: (c, t) => drawFrame(c, c0 + Math.min(t / stretch, c1 - c0)), loadAssets, NARR: sh(NARR, 't0'), SAYS: sh(SAYS, 't') };
+    }
     if (stretch !== 1) return { W, H, DUR: dur * stretch, CUES: CUES.map(([ct, ...r]) => [ct * stretch, ...r]), drawFrame: (c, t) => drawFrame(c, t / stretch), loadAssets, NARR, SAYS };
     return { W, H, DUR: dur, CUES, drawFrame, loadAssets, NARR, SAYS };
   };
