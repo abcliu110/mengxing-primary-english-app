@@ -2829,3 +2829,9 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:15 JST · 决策 38 接手断点；ci.py 提交脚本移入仓库（WIP）
 - runall3：除 app_check8 V6_MORPH_26（已知）外，app_check_parts 失败（主 HTML 仍是分节补丁 v1，脚本已按多节 V2 写）；先跑 patch_wb5_parts.py 再回归，主 HTML 暂不提交。
 - `/workspace/work/c38/ci.py` → `docs/whiteboard/src/ci.py`（路径改相对仓库）。
+
+## 2026-10-31 18:21 JST · 决策 38 durcheck 接入 runall（仅提示）；wo_port / wo_time / five_patterns / aux 分节重建嵌入（WIP）
+- `runall.py` 加 durcheck（WARN 集合：只报不判，36-② 拆完后删出 WARN 即转必过）。
+- 沙箱重置：补装 brotli / numpy / playwright + chromium。
+- `patch_wb5_parts.py` V1 → V2；`rebuild_all.py --tabs=wo_port,wo_time_week,wo_time_num,five_patterns,aux_transformer` 39 幕重建嵌入；字表 3354 无新字。
+- durcheck --scan 这 39 幕：只剩 aux_transformer_3（279 s，另一线）→ 写进 `lab/audit36/dur_allow.json` 白名单。app_check_parts 7/7 通过、errors none。主 HTML 待 runall 后提交。

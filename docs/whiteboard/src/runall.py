@@ -46,6 +46,8 @@ F = [
     ('第一性原理 app_check7', [sys.executable, 'app_check7.py'], V5),
     ('泄漏 leakcheck', [sys.executable, 'leakcheck.py'], HERE),
 ]
+WARN = {'长幕时长 durcheck（决策 36-②，仅提示）'}   # 只报不判：36-② 长幕还没拆完，拆完后从这里删掉即转为必过
+Q.insert(8, ('长幕时长 durcheck（决策 36-②，仅提示）', [sys.executable, 'durcheck.py'], HERE))
 def bad(out):
     if re.search(r'\bBAD\b|\bFAIL\b', out): return True
     if any(int(n) > 0 for n in re.findall(r'不合格 (\d+)', out)): return True
@@ -55,7 +57,7 @@ fails = 0
 for name, cmd, cwd in todo:
     if not os.path.exists(os.path.join(cwd, cmd[1])): print(f'⏭  {name}（脚本不存在，跳过）'); continue
     t = time.time(); r = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=900)
-    out = r.stdout + r.stderr; ok = r.returncode == 0 and not bad(out); fails += not ok
-    print(f"{'✅' if ok else '❌'} {name}  {time.time() - t:.0f}s  {out.strip().splitlines()[-1][:120] if out.strip() else ''}")
-    if not ok: print(out[-1500:])
+    out = r.stdout + r.stderr; ok = r.returncode == 0 and not bad(out); fails += not ok and name not in WARN
+    print(f"{'✅' if ok else ('⚠️' if name in WARN else '❌')} {name}  {time.time() - t:.0f}s  {out.strip().splitlines()[-1][:120] if out.strip() else ''}")
+    if not ok: print(out[-1500:] if name not in WARN else '\n'.join(l for l in out.splitlines() if l.startswith('❌'))[:1500])
 print('全部通过' if not fails else f'{fails} 项不通过'); sys.exit(1 if fails else 0)
