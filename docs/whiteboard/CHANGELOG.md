@@ -2777,3 +2777,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:49 JST · 决策 38 36-② 长幕拆分：hd_g05 148 s → 两幕（WIP，未嵌入）
 - `hd_g05_1`：撞车 → an 是老祖宗 → 规则 ①，55.7 s；新 `hd_g05_2`：分筐 → 预测 hour / useful → ②③ + 口诀，约 95 s（分筐间隔 1.2 → 0.9 s）。各自啊哈卡 / 预测 / 规则，check_r38 两幕 0 不合格。`units.json` hd_g05 加第 2 幕。App 里 G05 会自动出「第 1 幕 / 第 2 幕」按钮（wb5HDHtml n>1）。
 - 全量 rebuild_all 17:47 起后台跑（/workspace/work/rb_all2.log），已打包到 vv_*。
+
+## 2026-10-31 17:49 JST · 决策 38 units.json 恢复原缩进（上一提交误整体重排）
+- 上一提交 32254d4 用 indent=2 重写了 units.json（12k 行无关差异）；本提交恢复原 1 空格缩进，相对 d83f924 之前只多 hd_g05 第 2 幕 4 行。
