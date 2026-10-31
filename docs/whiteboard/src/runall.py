@@ -21,6 +21,7 @@ Q = [
     ('按钮对比度 contrastcheck（R37-14）', [sys.executable, 'contrastcheck.py'], HERE),
     ('儿童页术语 / 重复入口 jargoncheck（R37-12）', [sys.executable, 'jargoncheck.py'], HERE),
     ('自造象形词源 etymcheck（R37-02）', [sys.executable, 'etymcheck.py'], HERE),
+    ('白板启发性 insightcheck（R38）', [sys.executable, 'insightcheck.py'], HERE),
     ('词卡词源 app_check8', [sys.executable, 'app_check8.py'], V5),
     ('练习闭环 app_check9', [sys.executable, 'app_check9.py'], V5),
     ('我的学习 + 综合自测 app_check10', [sys.executable, 'app_check10.py'], V5),
