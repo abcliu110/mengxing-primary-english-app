@@ -2805,3 +2805,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:01 JST · 决策 38 分节回归脚本 app_check_parts.py（WIP）
 - 新 `v5/app_check_parts.py`：tense_matrix 第 3 幕、fp_economy 第 1 幕、G07 三处点「第 2 节」→ 子页签同号幕可播 → 点回第 1 节；tense_matrix 第 1 幕不出分节按钮。等分节补丁打进主 HTML 后跑并入 runall。
 - 全量重建版主 HTML 的 runall：前 17 项全过；insightcheck 两条失败是我放在 scenes/ 的临时拆分草稿（zzs_g7_*，跑到一半删了），删后重跑 insightcheck 0 不合格；app_check8 V6_MORPH_26 为既有失败。
+
+## 2026-10-31 18:05 JST · 决策 38 主 HTML：poly.js 进共享引擎全量重建 + 第 10–15 幕嵌入 + hd_g05 / hd_g19 / wo_grimm 拆分幕（回归通过）
+- 主 HTML（16.24 MB，共享引擎 1 份）+ `v5/font_chars.txt`（3354 字）：一词多义 51 幕 poly.js、导图 25 幕找不同、vv_take_out②、tense_matrix③（旧整幕版）、wo_grimm 三节、fp_economy①（整幕版）、hd_g05 两幕、hd_g19 两幕；格林定律章新幕卡 wo_grimm_rows / wo_grimm_more（patch_wo_grimm_split）。
+- 回归：runall 全部项过，除 app_check8 V6_MORPH_26（HEAD 既有）；insightcheck 失败是跑到一半删掉的临时草稿 zzs_g7_*，重跑 0 不合格；app_check_vocab_add G3_K21 一次超时，单独重跑 0 不合格。单项：check_poly 51/51、check_r38 10 幕、app_check6 导图 25/25、app_check4 hd_g05 / hd_g19、app_check2 wo / fp、app_check3 vv_take_out 全过 0 报错。
