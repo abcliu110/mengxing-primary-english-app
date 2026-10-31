@@ -2813,3 +2813,8 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 18:06 JST · 决策 38 分节补丁打进主 HTML（WIP）；app_check_parts 0 不合格，入 runall
 - `src/patch_wb5_parts.py` 已打进工作区主 HTML；`rebuild_all.py --tabs=tense_matrix,fp_economy,hd_g07` 嵌入 tense_matrix③ 两节（61 / 85 s）、fp_economy① 两节（76 / 77 s）、G07 两节（63 / 89 s）。
 - `app_check_parts.py` 3 处分节切换 + 1 处不分节 0 不合格、0 报错；已加进 runall。runall 后台跑（/workspace/work/c38/runall3.log），过了再提交主 HTML。
+
+## 2026-10-31 18:07 JST · 决策 38 决策 38 进度块更新；durcheck.py；分节补丁 V2（多节）（WIP）
+- HANDOFF R38P：15 幕全部重做并嵌入（待用户审片）。
+- 新 `src/durcheck.py`（决策 36-②）：`--scan [前缀]` 量 out/ 各幕时长写 `lab/audit36/durations.json`，默认读表判定 > 120 s 不合格（白名单 `lab/audit36/dur_allow.json`）。首扫 4 个前缀：wo_port 361 s、aux_transformer ①–④ 267–355 s、wo_time_week 321 s、wo_time_num 256 s、five_patterns ①–⑤ 217–249 s。
+- `src/patch_wb5_parts.py` 升 V2：支持第 2…N 节（`<页签>_p2`、`_p3`…），V1 已装的原地升级（未打进主 HTML）。
