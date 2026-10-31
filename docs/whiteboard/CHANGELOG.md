@@ -2795,3 +2795,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:55 JST · 决策 38 36-② 分节机制 + tense_matrix③ 144 s → 61 s + 85 s（WIP，未嵌入）
 - 新补丁 `src/patch_wb5_parts.py`（WB5_PARTS_V1，未打进主 HTML，等当前 runall 结束、主 HTML 提交后再打）：幕号跟数据绑死的页签（tense_matrix、第一性原理、G07 固定幕）长幕拆成两节，第 2 节 = 子页签 `<页签>_p2` 的同号幕，白板下「🎬 第 1 节 / 第 2 节 ▶」在同一 iframe 里切换。
 - `tense_matrix_3` 第 1 节 61 s；新 `tense_matrix_p2_3` 第 2 节 85 s（自己的啊哈卡、预测 play / played、规则「见 Did / didn't 变回原形」）。check_r38 0 不合格；联络表自检。
+
+## 2026-10-31 17:56 JST · 决策 38 36-② fp_economy① 145 s → 76 s + 77 s（WIP，未嵌入）
+- `fp_economy_1` 第 1 节 76 s（同化 + 口诀先出）；新 `fp_economy_p2_1` 第 2 节 77 s：新加预测「played 的 -ed 读 /t/ 还是 /d/」，再口诀、dogs 预测、洞见卡。check_r38 0 不合格；联络表自检。
