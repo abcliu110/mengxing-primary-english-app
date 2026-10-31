@@ -2801,3 +2801,7 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 
 ## 2026-10-31 17:57 JST · 决策 38 36-② hd_g07① 143 s → 63 s + 89 s（WIP，未嵌入）
 - `hd_g07_1` 第 1 节 63 s；新 `hd_g07_p2_1` 第 2 节 89 s：新加预测「门牌换成介词 with，we 过门还换装吗？」→ us / them → ①②③ + 口诀。check_r38 0 不合格。至此 36-② 点名的 5 个长幕 + fp_economy① 全部拆到 ≤ 97 s。
+
+## 2026-10-31 18:01 JST · 决策 38 分节回归脚本 app_check_parts.py（WIP）
+- 新 `v5/app_check_parts.py`：tense_matrix 第 3 幕、fp_economy 第 1 幕、G07 三处点「第 2 节」→ 子页签同号幕可播 → 点回第 1 节；tense_matrix 第 1 幕不出分节按钮。等分节补丁打进主 HTML 后跑并入 runall。
+- 全量重建版主 HTML 的 runall：前 17 项全过；insightcheck 两条失败是我放在 scenes/ 的临时拆分草稿（zzs_g7_*，跑到一半删了），删后重跑 insightcheck 0 不合格；app_check8 V6_MORPH_26 为既有失败。
