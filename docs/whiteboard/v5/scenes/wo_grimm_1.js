@@ -108,9 +108,10 @@ export default function build() {
     rule: '格林定律：辅音挪一格——p 变 f，t 变 th，d 变 t，k 变 h；小词变了，大词没变',
   });
   // 自带 z 的标签 / emoji（分段用板色遮罩清场，后面的东西 z 更高）
-  const L = (str, x, y, { size = 40, col = INK, from = 0, out = null, z = 10, align = 'center', bold = false } = {}) => { C.TEXTS.push(str); K.prop((g, t) => { const a = clamp((t - from) / 0.35) * (out != null ? 1 - clamp((t - out) / 0.4) : 1); if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = FONT(size, bold); g.fillStyle = col; g.textAlign = align; g.textBaseline = 'alphabetic'; g.fillText(str, x, y); g.restore(); }, { from, z }); };
-  const E = (em, x, y, size, from, z = 10) => K.prop((g, t) => { const a = clamp((t - from) / 0.4); if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = `${size}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(em, x, y); g.restore(); }, { from, z });
-  const wipe = (t, z) => K.prop((g, tt) => { const a = clamp((tt - t) / 0.5); g.save(); g.globalAlpha = a; g.fillStyle = '#FBFBFB'; g.fillRect(40, 110, 1840, 820); g.restore(); }, { from: t, z });
+  const WIPES = [], hid = (t, z) => WIPES.some(([wt, wz]) => wz > z && t > wt + 0.5);   // 被后一块板盖住的字不再画（板上文字面积按真正画出的字量）
+  const L = (str, x, y, { size = 40, col = INK, from = 0, out = null, z = 10, align = 'center', bold = false } = {}) => { C.TEXTS.push(str); K.prop((g, t) => { if (hid(t, z)) return; const a = clamp((t - from) / 0.35) * (out != null ? 1 - clamp((t - out) / 0.4) : 1); if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = FONT(size, bold); g.fillStyle = col; g.textAlign = align; g.textBaseline = 'alphabetic'; g.fillText(str, x, y); g.restore(); }, { from, z }); };
+  const E = (em, x, y, size, from, z = 10) => K.prop((g, t) => { if (hid(t, z)) return; const a = clamp((t - from) / 0.4); if (a <= 0) return; g.save(); g.globalAlpha = a; g.font = `${size}px sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(em, x, y); g.restore(); }, { from, z });
+  const wipe = (t, z) => (WIPES.push([t, z]), K.prop((g, tt) => { const a = clamp((tt - t) / 0.5); g.save(); g.globalAlpha = a; g.fillStyle = '#FBFBFB'; g.fillRect(40, 110, 1840, 820); g.restore(); }, { from: t, z }));
   let T = 0.3, i = 0;
   const step = () => { const s = SEQ[i++]; if (!s) return T;
     if (s[0] === 'n') { const d = Math.max(2.8, readT(s[1]) + 0.8); K.narr(s[1], T, T + d); T += d; }
@@ -193,7 +194,7 @@ export default function build() {
   // ---- 格林是谁 ----
   const G0 = T; wipe(G0, 50);
   E('📚', 560, 520, 220, G0 + 0.3, 51);
-  ['Jacob Grimm（雅各布·格林）', '《格林童话》的哥哥', '1822 年把这条规律系统写出来', '（1818 年丹麦学者拉斯克先发现）'].forEach((s, k) => L(s, 1180, 380 + k * 90, { size: k ? 36 : 48, col: k ? INK : OR, from: G0 + 0.4 + k * 0.4, z: 51, bold: !k }));
+  ['Jacob Grimm（雅各布·格林）', '《格林童话》的哥哥', '1822 年把这条规律系统写出来', '（1818 年丹麦学者拉斯克先发现）'].forEach((s, k) => L(s, 1180, 380 + k * 90, { size: k ? 32 : 42, col: k ? INK : OR, from: G0 + 0.4 + k * 0.4, z: 51, bold: !k }));
   step(); step();                                   // 26、27
   // ---- 中文对照 ----
   const Z0 = T; wipe(Z0, 60);
@@ -214,8 +215,10 @@ export default function build() {
   step(); step(); step();                           // 30 揭晓、31、32
   // ---- 口诀 + 洞见 ----
   const F0 = T; wipe(F0, 80);
-  ['💡 一句话洞见', '英语的祖先把一排辅音整体「挪了一格」，', '借来的拉丁大词却没挪——', '认识 foot，就能猜出 pedal。', '🎵 口诀', 'p 变 f，t 变 th，d 变 t，k 变 h；', '小词变了，大词没变！'].forEach((s, k) => L(s, 960, 250 + k * 88, { size: k === 0 || k === 4 ? 40 : 46, col: k === 0 || k === 4 ? OR : INK, from: F0 + 0.3 + k * 0.3, z: 81 }));
   step();                                           // 33 口诀
+  const FM = F0 + Math.max(4, (T - F0) * 0.45);     // 洞见三行先出、淡出后再出口诀（板上文字 ≤ 40%）
+  ['💡 一句话洞见', '英语的祖先把一排辅音整体「挪了一格」，', '借来的拉丁大词却没挪——', '认识 foot，就能猜出 pedal。'].forEach((s, k) => L(s, 960, 330 + k * 100, { size: k === 0 ? 40 : 46, col: k === 0 ? OR : INK, from: F0 + 0.3 + k * 0.3, out: FM, z: 81 }));
+  ['🎵 口诀', 'p 变 f，t 变 th，d 变 t，k 变 h；', '小词变了，大词没变！'].forEach((s, k) => L(s, 960, 380 + k * 110, { size: k === 0 ? 40 : 50, col: k === 0 ? OR : INK, from: FM + 0.4 + k * 0.3, z: 81 }));
   K.end(T + 2.0);
   return C.finish();
 }

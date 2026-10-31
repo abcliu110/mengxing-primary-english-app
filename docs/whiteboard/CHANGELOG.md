@@ -2770,3 +2770,6 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 ## 2026-10-31 17:44 JST · 决策 38 主 HTML：口语 144 幕 oral.js + 第 3–9 幕嵌入（17:19 全量重建）回归通过
 - 主 HTML 提交：17:19 全量重建（共享引擎 1 份，含 concept / oral）+ 口语 144 幕 oral.js 版 + hd_g18 / hd_g19 / hd_g14 三幕 / hd_g05 / hd_g07 / hd_g37–39 / hd_fr01 四视角。
 - 回归：app_check4 hd_g18 / hd_g14 / hd_fr01 / hd_oral_sc01 全部挂载、0 报错；runall 快速档 2 项不过，都不是本 HTML 的问题：app_check8 V6_MORPH_26（HEAD 既有）、insightcheck wo_grimm_1 板上文字 44% > 40%（读的是 out/ 里未嵌入的第 14 幕新场景，接下来修）。
+
+## 2026-10-31 17:47 JST · 决策 38 第 14 幕 wo_grimm 板上文字面积 43% → 17%
+- wo_grimm_1：换板用的 wipe 只是盖白，底下旧板的字仍在画，insightcheck 量到 43%（>40%）。改为被后一块板盖住的标签 / emoji 不再画（`hid()`）；洞见卡拆两拍（洞见三行淡出后再出口诀）。文字面积峰值 17%，check_r38 0 不合格，174 s（仍待 36-② 拆分）。
