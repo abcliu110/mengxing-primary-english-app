@@ -924,6 +924,8 @@
   font-weight:900; padding:10px 16px; cursor:pointer; min-height:44px;
 }
 .method-hub .top-header { position: sticky; top: 0; z-index: 20; }
+.method-hub.mh-single .top-header, .method-hub.mh-single .theater-strip { display: none; }   /* MENU_HUBS_V3：单页签模式 */
+.v6-games-only .v6-tabs { display: none; }
 .method-hub #mhConfettiCanvas, .method-hub canvas#mhConfettiCanvas {
   position: fixed; pointer-events: none; inset: 0; width: 100%; height: 100%; z-index: 9998;
 }
@@ -8695,6 +8697,7 @@ function noteLastView() {
   if (typeof mqMount === "function") mqMount();   // PRACTICE_LOOP: 白板下方挂小测
   if (typeof kpMount === "function") kpMount();   // DEDUP_C_V1: 同一知识点另见
   if (typeof grexMount === "function") grexMount();   // GRAMMAR_EX_V1: 语法课例句库
+  if (typeof d33Mount === "function") d33Mount();   // MENU_HUBS_V3: 闯关厅搬来的内容
 }
 function isVisitedKey(key) { return !!(key && appState.visited && appState.visited[key]); }
 function labDoneMark(id) { return isVisitedKey("lab:" + id) ? '<span class="done-tick">✓</span>' : ""; }
@@ -9010,17 +9013,17 @@ function hubZone(title, color, bg, chips, attr) { return `<div class="hub-zone" 
 function vocabZonesHtml() {
   return `<div class="section-banner"><h2>🧭 单词专项（发音与拼读 · 构词与变形 · 词语关系 · 单词身世）</h2></div>
     ${hubZone("👄 发音与拼读", "#e11d48", "#fff1f2", hubChip("🪄 自然拼读 9 步", "navigateTo('vocab_phonics', { tab: 'steps', stepIdx: 0 })", "#e11d48") + labChipHtml("pron_map", "#e11d48") + labChipHtml("intonation_map", "#e11d48"), 'data-vocab-zone="pron"')}
-    ${hubZone("🤖 构词与变形", "#7c3aed", "#f5f3ff", hubChip("🤖 合成词 / 前后缀 / 派生词族", "navigateTo('vocab_formation', { tab: 'compounds' })", "#7c3aed") + labChipHtml("eight_endings", "#7c3aed") + labChipHtml("irregular_plural", "#7c3aed") + labChipHtml("past_clans", "#7c3aed") + hubChip("🧬 元音变异 foot→feet", "navigateTo('word_origins_hub', { scene: 'wo_vowel_a' })", "#7c3aed") + hubChip("🔬 单词卡 X 光", "openWordCardModal('G6_258', ['G6_258','G4_167','G5_208','G1_030','G3_151','G3_152'])", "#7c3aed"), 'data-vocab-zone="form"')}
-    ${hubZone("👨‍👩‍👧 词语关系", "#d97706", "#fffbeb", hubChip("👨‍👩‍👧 易混词 / 反义词 / 同义词", "navigateTo('vocab_relations', { tab: 'confusables', query: '' })", "#d97706") + hubChip("🎬 框架小剧场", "navigateTo('vocab_frames', { frameIdx: 0, pIdx: 0 })", "#d97706") + labChipHtml("phrasal_key", "#d97706"), 'data-vocab-zone="rel"')}
+    ${hubZone("🤖 构词与变形", "#7c3aed", "#f5f3ff", hubChip("🤖 合成词 / 前后缀 / 派生词族", "navigateTo('vocab_formation', { tab: 'compounds' })", "#7c3aed") + labChipHtml("eight_endings", "#7c3aed") + labChipHtml("irregular_plural", "#7c3aed") + labChipHtml("past_clans", "#7c3aed") + hubChip("🧬 元音变异 foot→feet", "navigateTo('word_origins_hub', { scene: 'wo_vowel_a' })", "#7c3aed") + hubChip("🔬 单词卡 X 光", "openWordCardModal('G6_258', ['G6_258','G4_167','G5_208','G1_030','G3_151','G3_152'])", "#7c3aed") + hubChip("🧪 四大变形拼写动画台", "navigateTo('method_hub', { tab: 'matrix' })", "#7c3aed", "data-mh-chip='matrix'"), 'data-vocab-zone="form"')}
+    ${hubZone("👨‍👩‍👧 词语关系", "#d97706", "#fffbeb", hubChip("👨‍👩‍👧 易混词 / 反义词 / 同义词", "navigateTo('vocab_relations', { tab: 'confusables', query: '' })", "#d97706") + hubChip("🎬 框架小剧场", "navigateTo('vocab_frames', { frameIdx: 0, pIdx: 0 })", "#d97706") + labChipHtml("phrasal_key", "#d97706") + hubChip("🎬 一词多义三幕剧微电影", "navigateTo('method_hub', { tab: 'vocab' })", "#d97706", "data-mh-chip='vocab'"), 'data-vocab-zone="rel"')}
     ${hubZone("📖 单词身世", "#7c3aed", "#faf5ff", hubChip("📖 单词身世：罗马、维京、诺曼、大航海，单词的故事", "navigateTo('word_origins_hub', { scene: 'wo_port' })", "#7c3aed", "data-vocab-wo"), 'data-vocab-zone="wo"')}`;
 }
 const GRAMMAR_CAT_ZONES = {
   "动词与时态": { title: "⏳ 时态类收尾专项", tabs: ["tense_matrix", "aux_transformer"] },
-  "句型": { title: "🚂 句型类收尾专项", tabs: ["five_patterns", "adj_order", "writing_alchemist"] }
+  "句型": { title: "🚂 句型类收尾专项", tabs: ["five_patterns", "adj_order", "writing_alchemist"], get extra() { return hubChip("✂️ 感叹句剪刀切尾 & 作文", "navigateTo('method_hub', { tab: 'writing' })", "#7c3aed", "data-mh-chip='writing'"); } }
 };
 function grammarCatZoneHtml(cat) {
   const z = GRAMMAR_CAT_ZONES[cat]; if (!z) return "";
-  return `<div style="margin-top:18px;" data-grammar-cat-zone="${cat}">${hubZone(z.title, "#7c3aed", "#f5f3ff", z.tabs.map(id => labChipHtml(id, "#7c3aed")).join(""))}</div>`;
+  return `<div style="margin-top:18px;" data-grammar-cat-zone="${cat}">${hubZone(z.title, "#7c3aed", "#f5f3ff", z.tabs.map(id => labChipHtml(id, "#7c3aed")).join("") + (z.extra || ""))}</div>`;
 }
 function hubCard(icon, title, desc, go, color, bg, attr) {
   return `<div class="hub-mini" ${attr || ""} onclick="${go}" style="background:${bg}; border-color:${color}40; display:flex; align-items:center; gap:12px; border:2px solid ${color}40; border-radius:16px; padding:12px 14px; cursor:pointer; min-height:44px;"><div style="font-size:1.7rem;">${icon}</div><div style="flex:1;"><div style="font-weight:900; font-size:1rem; color:${color};">${title}</div><div style="font-size:0.84rem; color:#475569; margin-top:2px;">${desc}</div></div><div style="font-weight:900; color:${color};">➔</div></div>`;
@@ -9037,7 +9040,8 @@ function renderPrinciplesHubView() {
       ${hubCard("🔀", "中英对照", "句法与思维差异：中文习惯哪些能搬、哪些不能搬", "navigateTo('zh_en_hub', { scene: 'ze_be' })", "#0f766e", "#f0fdfa", 'data-principles-card="ze"')}
       ${hubCard("🎭", "三大隐喻密码", "身体 / 颜色 / 动物 + 空间隐喻", "navigateTo('super_lab_hub', { labTab: 'metaphor_code' })", "#db2777", "#fdf2f8", 'data-principles-card="metaphor_code"')}
       ${hubCard("🎋", "竹节句 vs 树干句", "汉语竹节句 → 英语树干句手术台", "navigateTo('super_lab_hub', { labTab: 'bamboo_tree' })", "#15803d", "#f0fdf4", 'data-principles-card="bamboo_tree"')}
-      <!-- MENU_HOME_V2:method_card -->${hubCard("👑", "方法论 / 真动画教室", "天坑测验 · 三幕剧 · 句法火车 · 变形拼写台（整理中，内容将并入各分区）", "navigateTo('method_hub')", "#b45309", "#fffbeb", 'data-principles-card="method"')}
+      <!-- MENU_HUBS_V3:principles -->${hubCard("🌌", "三大元公理 + 六原理速查表", "名词边界 / 动词心脏 / 火车语序，一页对照六大第一性原理", "navigateTo('method_hub', { tab: 'matrix' })", "#b45309", "#fffbeb", 'data-principles-card="mh_matrix"')}
+      ${hubCard("🚂", "汉英句法真火车", "车厢换位动画：主干先行、状语倒挂", "navigateTo('method_hub', { tab: 'oral' })", "#1e3a8a", "#eff6ff", 'data-principles-card="mh_oral"')}
     </div>`;
 }
 function renderPracticeHubView() {
@@ -9052,9 +9056,76 @@ function renderPracticeHubView() {
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px;">
       ${hubCard("🎯", "综合自测", "按单词 / 语法 / 口语选类型开测，可只测错题本", "navigateTo('self_test')", "#047857", "#ecfdf5", 'data-practice-card="test"')}
       ${hubCard("📒", "我的学习", "错题本 / 学习中 / 已掌握，三类合在一处", "navigateTo('my_study')", "#be123c", "#fff1f2", 'data-practice-card="my"')}
-      <!-- MENU_HOME_V2:games_card -->${hubCard("🎮", "闯关游戏厅", "4 合 1 闯关 · 单词闪电战 · 考场捉虫 · 金剪刀", "navigateTo('v6_hub')", "#0284c7", "#f0f9ff", 'data-practice-card="games"')}
+      <!-- MENU_HOME_V2:games_card -->${hubCard("🎮", "闯关游戏", "单词闪电战 · 感叹句快刀手 · 考场捉虫大侦探", "navigateTo('v6_hub')", "#0284c7", "#f0f9ff", 'data-practice-card="games"')}
+      <!-- MENU_HUBS_V3:practice -->${hubCard("⚡", "考场秒杀决策树 & 十大天坑", "三棵决策树 + 十大高频天坑 + 防坑闪电战", "navigateTo('method_hub', { tab: 'engine' })", "#b91c1c", "#fef2f2", 'data-practice-card="mh_engine"')}
+      ${hubCard("📜", "十五条规律速查", "拼读、变形、代词、时态、疑问词…一页看完（可打印）", "navigateTo('method_hub', { tab: 'trumps' })", "#7c2d12", "#fff7ed", 'data-practice-card="mh_trumps"')}
       ${hubCard("🗺️", "总地图", "全部模块一张图，学过的点亮", "navigateTo('app_map')", "#1e3a8a", "#eff6ff", 'data-practice-card="map"')}
     </div>`;
+}
+// MENU_HUBS_V3 ---------- 决策 33 ③：方法论教室 / 闯关厅收编，内容搬到所属分区（src/patch_menu_hubs.py；逐段对比 lab/MENU_D33_AUDIT.md） ----------
+const MH_TAB_HOME = {   // 方法论页签 → [所属分区, 分区 screen, 页面标题]
+  matrix: ["🧠 底层原理", "principles_hub", "🌌 三大元公理 + 四大变形拼写动画台 + 六原理速查表"],
+  oral: ["🧠 底层原理", "principles_hub", "🚂 汉英句法真火车"],
+  vocab: ["📚 单词", "vocab_hall", "🎬 一词多义三幕剧微电影"],
+  writing: ["🧩 语法", "grammar_hall", "✂️ 感叹句剪刀切尾 & 作文"],
+  engine: ["🎯 练习与档案", "practice_hub", "⚡ 考场秒杀决策树 & 十大天坑"],
+  trumps: ["🎯 练习与档案", "practice_hub", "📜 十五条规律速查"]
+};
+const V6_MOVED = {   // 闯关厅旧页签 → 新家
+  homo: ["vocab_phonics", { tab: "homophones" }], ant: ["vocab_relations", { tab: "antonyms", query: "" }], oral: ["oral_hall", {}],
+  excl: ["grammar_detail", { gId: "G34" }], essay: ["super_lab_hub", { labTab: "writing_alchemist" }],
+  etym: ["vocab_formation", { tab: "suffixes" }], morph: ["vocab_formation", { tab: "matrices" }]
+};
+const D33_HOMO_NEW = [13, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28], D33_ANT_NEW = [10, 14, 18, 19, 20, 21, 23, 24, 25, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 40, 48, 49];
+function d33Esc(x) { return String(x == null ? "" : x).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]); }
+function d33Box(id, title, sub, inner) {
+  return `<div id="d33Box" data-d33="${id}" style="background:#fff; border:2px dashed #94a3b8; border-radius:18px; padding:14px 16px; margin-top:18px;"><div style="font-weight:900; font-size:1.08rem; color:#0f172a;">${title}</div><div style="font-size:0.82rem; color:#64748b; margin:2px 0 10px;">${sub}</div>${inner}</div>`;
+}
+function d33Speak(t) { return `onclick="speakEnglishText(${d33Esc(JSON.stringify(t))})"`; }
+const D33_GRID = "display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:8px;";
+const D33_CARD = "background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:12px; padding:9px 11px; min-height:44px; cursor:pointer;";
+function d33BoxHtml() {
+  const V = (window.V6H && V6H.data) || null; if (!V) return "";
+  const sc = currentView.screen, p = currentView.params || {};
+  if (sc === "vocab_phonics" && p.tab === "homophones")
+    return d33Box("homo", "➕ 更多同音词（" + D33_HOMO_NEW.length + " 组，原闯关厅「同音词 30 组」里上面没有的）", "点卡片朗读", `<div style="${D33_GRID}">${D33_HOMO_NEW.map(i => { const h = V.HOMOPHONES_30[i]; return `<div style="${D33_CARD}" ${d33Speak(h[0].replace(/\(.*?\)/g, "").replace(/\s*\/\s*/g, ", "))}><div style="font-weight:900;">🔊 ${d33Esc(h[0])}</div><div style="font-size:0.86rem; color:#475569;">${d33Esc(h[1])}</div></div>`; }).join("")}</div>`);
+  if (sc === "vocab_relations" && p.tab === "antonyms")
+    return d33Box("ant", "➕ 更多反义词（" + D33_ANT_NEW.length + " 对，原闯关厅「反义词 50 对」里上面没有的）", "点卡片朗读", `<div style="${D33_GRID}">${D33_ANT_NEW.map(i => { const a = V.ANTONYMS_50[i]; return `<div style="${D33_CARD}" ${d33Speak(a.replace(/\(.*?\)/g, "").replace(/↔/g, ",").replace(/\s*\/\s*/g, ", "))}><div style="font-weight:800;">🔊 ${d33Esc(a)}</div></div>`; }).join("")}</div>`);
+  if (sc === "oral_hall")
+    return d33Box("oral12", "🗣️ 12 个话题快问快答（原闯关厅「12 景口语」）", "一问一答，点卡片朗读整组", `<div style="${D33_GRID}">${V.ORAL_12_SCENES.map(o => `<div style="${D33_CARD}" ${d33Speak(o.q + " " + o.a)}><div style="font-size:0.8rem; font-weight:900; color:#047857;">${d33Esc(o.title)}</div><div style="font-weight:800; margin-top:4px;">Q: ${d33Esc(o.q)}</div><div style="color:#065f46; margin-top:3px;">A: ${d33Esc(o.a)}</div></div>`).join("")}</div>`);
+  if (sc === "grammar_detail" && p.gId === "G34")
+    return d33Box("excl", "✂️ 金剪刀 8 题（原闯关厅）", "先剪掉句末主谓，再看尾词：名词用 What（单数可数加 a/an），形容词 / 副词用 How。动画版见「✂️ 感叹句剪刀切尾」。", `<div style="${D33_GRID}">${V.EXCLAMATION_10_CASES.map((c, i) => `<div style="${D33_CARD}"><b>第 ${i + 1} 题</b><div style="margin:4px 0;">What/How + <b>${d33Esc(c.mid)}</b> + <span style="color:#dc2626;">${d33Esc(c.tail)}</span> !</div><div style="font-size:0.86rem; color:#065f46; font-weight:700;">${d33Esc(c.reason)}</div></div>`).join("")}</div><div style="margin-top:10px;">${hubChip("✂️ 感叹句剪刀切尾动画", "navigateTo('method_hub', { tab: 'writing' })", "#7c3aed")}</div>`);
+  if (sc === "super_lab_hub" && typeof superLabState !== "undefined" && superLabState.labTab === "writing_alchemist")
+    return d33Box("essay", "📄 作文母题范文 6 篇（原闯关厅「作文模板」）", "点范文朗读", V.ESSAY_8_TEMPLATES.map(t => `<div style="${D33_CARD} margin-bottom:8px;" ${d33Speak(t.body)}><div style="font-weight:900; color:#86198f;">🔊 ${d33Esc(t.title)}</div><div style="font-size:0.9rem; line-height:1.55; margin-top:4px;">${d33Esc(t.body)}</div></div>`).join(""));
+  if (sc === "vocab_formation" && p.tab === "suffixes")
+    return d33Box("etym", "🌳 词缀词族树 5 组（原闯关厅「词源树」）", "构词规律口诀版；真实派生以上面「词库里的真派生词」为准", `<div style="${D33_GRID}">${V.ETYMOLOGY_TREES.map(t => `<div style="${D33_CARD} cursor:default;"><div style="font-weight:900;">${d33Esc(t.root)}</div><div style="font-size:0.86rem; color:#475569; margin:3px 0;">${d33Esc(t.desc)}</div><div style="font-size:0.86rem;">${(t.items || []).map(d33Esc).join(" · ")}</div></div>`).join("")}</div>`);
+  if (sc === "vocab_formation" && p.tab === "matrices")
+    return d33Box("morph", "🧩 不规则变形速查表 70 词（原闯关厅「变形表」）", "复数、过去式等变形；点卡片朗读", `<div style="${D33_GRID}">${V.MORPH_DERIVATIONS.map(r => `<div style="${D33_CARD}" ${d33Speak(r[0])}><div style="font-weight:900;">🔊 ${d33Esc(r[0])} <span style="font-weight:600; color:#64748b; font-size:0.82rem;">${d33Esc(r[1])} · ${d33Esc(r[2])}</span></div><div style="font-size:0.86rem;">${d33Esc(r[3])} ${d33Esc(r[4] || "")} <span style="color:#64748b;">${d33Esc(r[5] || "")}</span></div></div>`).join("")}</div>`);
+  return "";
+}
+function d33Mount() {
+  try {
+    const root = document.getElementById("appViewRoot"); if (!root) return;
+    const h = d33BoxHtml(), old = document.getElementById("d33Box");
+    if (old) old.remove();
+    if (h) root.insertAdjacentHTML("beforeend", h);
+  } catch (e) { console.warn("d33Mount", e); }
+}
+function d33ExtendVocabGame() {   // 单词闪电战：原 5 题之后接上从 VOCAB_DB 出的题（中文 → 选英文，干扰项取同一子主题），只扩一次
+  try {
+    const V = window.V6H && V6H.data; if (!V || !V.GAME_BANKS || !V.GAME_BANKS.vocab || V.GAME_BANKS.vocab.__d33) return;
+    const pool = VOCAB_DB.filter(w => /^G[1-6]_/.test(w.id) && /^[a-z]+$/.test(w.word) && w.meaning);
+    const L = ["A. ", "B. ", "C. ", "D. "];
+    for (let k = 0; k < 20; k++) {
+      const w = pool[(k * 37) % pool.length];
+      const same = pool.filter(x => x.theme_sub === w.theme_sub && x.word !== w.word);
+      const ds = [], src = same.length >= 3 ? same : pool.filter(x => x.word !== w.word);
+      for (let j = 0; ds.length < 3 && j < src.length; j++) { const x = src[(k * 13 + j * 7) % src.length]; if (!ds.includes(x.word) && x.word !== w.word) ds.push(x.word); }
+      const ans = k % 4, opts = ds.slice(); opts.splice(ans, 0, w.word);
+      V.GAME_BANKS.vocab.push({ q: `【单词闪电战 · 词库】“${String(w.meaning).split(/[；;，,]/)[0]}”的英文是？`, opts: opts.map((o, i) => L[i] + o), ans, exp: `${w.word} ${w.phonetic || ""} ${w.meaning}` });
+    }
+    V.GAME_BANKS.vocab.__d33 = true;
+  } catch (e) { console.warn("d33ExtendVocabGame", e); }
 }
 // ORAL_FUNC_MAP_V1 ---------- 决策 6：交际句型地图（礼貌阶梯 + 五大交际功能；src/patch_oral_func.py） ----------
 const ORAL_FUNC_LADDER = [
@@ -9130,7 +9201,7 @@ function renderCurrentView() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  ["renderSuperLabHubView", "renderWordOriginsHubView", "renderZhEnHubView"].forEach(n => {
+  ["renderSuperLabHubView", "renderWordOriginsHubView", "renderZhEnHubView", "renderVocabPhonicsView", "renderVocabRelationsView", "renderVocabFormationView"].forEach(n => {   // MENU_HUBS_V3：后三个页签切换不走 renderCurrentView
     const f = window[n];
     if (typeof f === "function" && !f.__noted) {
       const w = function () { const r = f.apply(this, arguments); noteLastView(); return r; };
@@ -9148,15 +9219,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-function renderV6HubView() {
-  renderSubNavbar([
-    { label: "首页", onClick: "goHome()" },
-    { label: "v6 拓展教室 / 闯关游戏厅", onClick: "" }
-  ], `<button class="nav-btn home" onclick="goHome()">🏠 回首页</button>`);
+function renderV6HubView() {   // MENU_HUBS_V3：只剩闯关游戏；其余页签已搬家（见 V6_MOVED）
+  const t = (currentView.params || {}).tab;
+  if (t && t !== "game" && V6_MOVED[t]) { const m = V6_MOVED[t]; currentView = { screen: m[0], params: m[1], scrollY: 0 }; renderCurrentView(); return; }
+  renderSubNavbar(["首页", "🎯 练习与档案", "🎮 闯关游戏"], `<button class="nav-btn" onclick="navigateTo('practice_hub')">↩ 回到练习与档案</button>`);
   const root = document.getElementById("appViewRoot");
-  root.innerHTML = `<div class="v6-hub" id="v6HubRoot"></div>`;
+  root.innerHTML = `<div class="v6-hub v6-games-only" id="v6HubRoot"></div>`;
   if (window.V6H && typeof V6H.mount === "function") {
-    setTimeout(function(){ V6H.mount(document.getElementById("v6HubRoot")); }, 20);
+    setTimeout(function(){ d33ExtendVocabGame(); V6H.mount(document.getElementById("v6HubRoot"), "game"); }, 20);
   }
 }
 
@@ -10421,15 +10491,14 @@ MH.init = function() {
 
 
 function renderMethodHubView() {
-  renderSubNavbar([
-    { label: "首页", onClick: "goHome()" },
-    { label: "十五大王炸方法论 / 真动画教室", onClick: "" }
-  ], `<button class="nav-btn home" onclick="goHome()">🏠 回首页</button>`);
+  const mhTab = (currentView.params || {}).tab, mhHome = MH_TAB_HOME[mhTab];   // MENU_HUBS_V3：不再是菜单，只按页签打开
+  if (!mhHome) { currentView = { screen: "principles_hub", params: {}, scrollY: 0 }; renderCurrentView(); return; }
+  renderSubNavbar(["首页", mhHome[0], mhHome[2]], `<button class="nav-btn" data-mh-back onclick="navigateTo('${mhHome[1]}')">↩ 回到 ${mhHome[0]}</button>`);
   const root = document.getElementById("appViewRoot");
-  root.innerHTML = `<div class="method-hub">
+  root.innerHTML = `<div class="method-hub mh-single" data-mh-tab="${mhTab}">
 <div class="mh-back-bar">
-  <div style="font-weight:900;font-size:1.05rem;">👑 十五大王炸方法论 / 真动画教室</div>
-  <button type="button" onclick="goHome()">🏠 返回萌星首页</button>
+  <div style="font-weight:900;font-size:1.05rem;">${mhHome[2]}</div>
+  <button type="button" onclick="navigateTo('${mhHome[1]}')">↩ 回到 ${mhHome[0]}</button>
 </div>
 
 
@@ -10835,7 +10904,7 @@ function renderMethodHubView() {
 
 </div>`;
   if (window.MH && typeof MH.init === "function") {
-    setTimeout(function(){ MH.init(); }, 30);
+    setTimeout(function(){ MH.init(); if (MH.switchTab) MH.switchTab(mhTab); }, 30);
   }
 }
 
@@ -10844,7 +10913,7 @@ function renderMethodHubView() {
 window.V6H = window.V6H || {};
 (function(V6H){
 "use strict";
-const ORAL_12_SCENES = [{"title":"1. 问路与指路导航","q":"Excuse me, how can I get to the science museum?","a":"Go straight and turn left at the bookstore."},{"title":"2. 医院看病问诊","q":"What's wrong with you? / What's the matter?","a":"I have a bad cold and a headache."},{"title":"3. 商店购物与询价","q":"Can I help you? How much is this skirt?","a":"Yes, please. It's eighty-five yuan. I'll take it!"},{"title":"4. 餐厅点餐与喜好","q":"What would you like to eat and drink?","a":"I'd like some beef noodles and a cup of milk."},{"title":"5. 谈论天气与穿衣","q":"What's the weather like in Beijing today?","a":"It's sunny and warm. Put on your jacket!"},{"title":"6. 询问星期与课程","q":"What day is it today? What do you have on Mondays?","a":"It's Monday. We have English, math and music."},{"title":"7. 询问日期与生日","q":"When is your birthday? What's the date today?","a":"My birthday is on June 1st. Today is May 20th."},{"title":"8. 谈论周末过去活动","q":"What did you do last weekend? Did you anything else?","a":"I cleaned my room and visited my grandparents."},{"title":"9. 谈论假期将来计划","q":"Where are you going this summer holiday?","a":"I'm going to Sanya by plane to take pictures."},{"title":"10. 询问职业与工作地点","q":"What does your father do? Where does he work?","a":"He is a pilot. He works on a plane."},{"title":"11. 打电话专用语（绝不用 I am）","q":"Hello, may I speak to Sarah, please?","a":"This is Sarah speaking. Hold on, please!"},{"title":"12. 道歉、致谢与礼貌回应","q":"Thank you so much! / I'm sorry I'm late.","a":"You're welcome! / That's all right. Come in!"}];
+const ORAL_12_SCENES = [{"title":"1. 问路与指路导航","q":"Excuse me, how can I get to the science museum?","a":"Go straight and turn left at the bookstore."},{"title":"2. 医院看病问诊","q":"What's wrong with you? / What's the matter?","a":"I have a bad cold and a headache."},{"title":"3. 商店购物与询价","q":"Can I help you? How much is this skirt?","a":"Yes, please. It's eighty-five yuan. I'll take it!"},{"title":"4. 餐厅点餐与喜好","q":"What would you like to eat and drink?","a":"I'd like some beef noodles and a cup of milk."},{"title":"5. 谈论天气与穿衣","q":"What's the weather like in Beijing today?","a":"It's sunny and warm. Put on your jacket!"},{"title":"6. 询问星期与课程","q":"What day is it today? What do you have on Mondays?","a":"It's Monday. We have English, math and music."},{"title":"7. 询问日期与生日","q":"When is your birthday? What's the date today?","a":"My birthday is on June 1st. Today is May 20th."},{"title":"8. 谈论周末过去活动","q":"What did you do last weekend? Did you do anything else?","a":"I cleaned my room and visited my grandparents."},{"title":"9. 谈论假期将来计划","q":"Where are you going this summer holiday?","a":"I'm going to Sanya by plane to take pictures."},{"title":"10. 询问职业与工作地点","q":"What does your father do? Where does he work?","a":"He is a pilot. He works on a plane."},{"title":"11. 打电话专用语（绝不用 I am）","q":"Hello, may I speak to Sarah, please?","a":"This is Sarah speaking. Hold on, please!"},{"title":"12. 道歉、致谢与礼貌回应","q":"Thank you so much! / I'm sorry I'm late.","a":"You're welcome! / That's all right. Come in!"}];
 const EXCLAMATION_10_CASES = [{"id":0,"ans":"What a","mid":"cute","tail":"dog","cutPart":"it is","reason":"剪掉 it is ➔ 尾词 dog 是可数单数名词，cute 辅音开头 ➔ 填 What a！"},{"id":1,"ans":"What an","mid":"interesting","tail":"film","cutPart":"we saw","reason":"剪掉 we saw ➔ 尾词 film 是单数名词，interesting 元音音素开头 ➔ 填 What an！"},{"id":2,"ans":"What","mid":"fine","tail":"weather","cutPart":"it is today","reason":"⚠️天坑预警：剪掉 it is today ➔ 尾词 weather(天气) 是不可数名词，绝不能加 a ➔ 填 What！"},{"id":3,"ans":"How","mid":"fast","tail":"the boy runs","cutFocus":"fast","tailWord":"fast (副词)","cutPart":"the boy runs","reason":"剪掉主谓 the boy runs ➔ 剩下的尾词是副词 fast(快地)，没有名词 ➔ 填 How！"},{"id":4,"ans":"What","mid":"beautiful","tail":"flowers","cutPart":"they are","reason":"剪掉 they are ➔ 尾词 flowers 是复数名词，不加 a ➔ 填 What！"},{"id":5,"ans":"How","mid":"clever","tail":"the girl is","cutFocus":"clever","tailWord":"clever (形容词)","cutPart":"the girl is","reason":"剪掉主谓 the girl is ➔ 剩下形容词 clever(聪明的) ➔ 填 How！"},{"id":6,"ans":"What","mid":"good","tail":"news","cutPart":"it is","reason":"⚠️天坑预警：尾词 news(新闻/消息) 是不可数名词，绝不加 a ➔ 填 What！"},{"id":7,"ans":"What a","mid":"useful","tail":"book","cutPart":"this is","reason":"⚠️天坑预警：useful 第一个音素是半元音 /j/（不是元音），单数 book 前必用 What a！"}];
 const HOMOPHONES_30 = [["two / too / to","二 / 也 / 到"],["write / right","写 / 右边·正确的"],["see / sea","看见 / 大海"],["meet / meat","遇见 / 肉"],["sun / son","太阳 / 儿子"],["I / eye","我 / 眼睛"],["four / for","四 / 为了"],["one / won","一 / 赢了(win过去式)"],["eight / ate","八 / 吃了(eat过去式)"],["no / know","不 / 知道"],["where / wear","哪里 / 穿戴"],["there / their / they're","那里 / 他们的 / 他们是"],["hear / here","听见 / 这里"],["week / weak","星期 / 虚弱的"],["by / buy / bye","乘 / 买 / 再见"],["hour / our","小时 / 我们的"],["pear / pair","梨 / 一双"],["flour / flower","面粉 / 花朵"],["hi / high","嗨 / 高的"],["new / knew","新的 / 知道(过去式)"],["red / read(过去式)","红色 / 读了"],["blew / blue","吹了 / 蓝色"],["flew / flu","飞了 / 流感"],["who's / whose","谁是 / 谁的"],["its / it's","它的 / 它是"],["aren't / aunt","不是 / 阿姨"],["be / bee","是 / 蜜蜂"],["deer / dear","鹿 / 亲爱的"],["tail / tale","尾巴 / 故事"],["road / rode","马路 / 骑了"]];
 const ANTONYMS_50 = ["big (大) ↔ small/little (小)","tall (高) ↔ short (矮)","long (长) ↔ short (短)","fat (胖) ↔ thin (瘦)","heavy (重) ↔ light (轻)","fast/quick (快) ↔ slow (慢)","hot (热) ↔ cold (冷)","warm (温暖) ↔ cool (凉爽)","new (新) ↔ old (旧)","young (年轻) ↔ old (年老)","good (好) ↔ bad (坏)","happy (快乐) ↔ sad (难过)","busy (忙碌) ↔ free (空闲)","clean (干净) ↔ dirty (脏)","wet (湿) ↔ dry (干)","safe (安全) ↔ dangerous (危险)","easy (容易) ↔ hard/difficult (困难)","expensive (贵) ↔ cheap (便宜)","rich (富有) ↔ poor (贫穷)","strong (强壮) ↔ weak (虚弱)","clever/smart (聪明) ↔ foolish (愚蠢)","active (活跃) ↔ quiet (安静)","polite (礼貌) ↔ impolite/rude (粗鲁)","careful (细心) ↔ careless (粗心)","same (相同) ↔ different (不同)","full (饱/满) ↔ hungry/empty (饿/空)","early (早) ↔ late (晚)","far (远) ↔ near/close (近)","high (高) ↔ low (低)","deep (深) ↔ shallow (浅)","wide (宽) ↔ narrow (窄)","thick (厚) ↔ thin (薄)","bright (明亮) ↔ dark (黑暗)","left (左) ↔ right (右)","right (对) ↔ wrong (错)","first (第一) ↔ last (最后)","before (之前) ↔ after (之后)","up (上) ↔ down (下)","in (里) ↔ out (外)","front (前) ↔ back/behind (后)","open (开) ↔ close (关)","turn on (打开电器) ↔ turn off (关掉)","put on (穿上) ↔ take off (脱下)","get on (上车) ↔ get off (下车)","come (来) ↔ go (去)","buy (买) ↔ sell (卖)","borrow (借入) ↔ lend (借出)","ask (问) ↔ answer (答)","win (赢) ↔ lose (输)","remember (记得) ↔ forget (忘记)"];
@@ -10933,12 +11002,13 @@ function renderGame(){
 
 function esc(s){ return String(s||"").replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
 
-V6H.mount = function(root){
+V6H.data = { ORAL_12_SCENES, HOMOPHONES_30, ANTONYMS_50, ESSAY_8_TEMPLATES, ETYMOLOGY_TREES, MORPH_DERIVATIONS, EXCLAMATION_10_CASES, GAME_BANKS };   // MENU_HUBS_V3：内容搬到各分区后由 d33Mount 读取
+V6H.mount = function(root, tab){
   if (!root) return;
   root.innerHTML = `
     <div class="v6-back-bar">
-      <div style="font-weight:900;font-size:1.05rem;">🎮 v6 拓展教室 / 闯关游戏厅</div>
-      <button type="button" onclick="goHome()">🏠 返回萌星首页</button>
+      <div style="font-weight:900;font-size:1.05rem;">🎮 闯关游戏</div>
+      <button type="button" onclick="navigateTo('practice_hub')">↩ 回到练习与档案</button>
     </div>
     <div class="v6-tabs">
       <button class="v6-tab active" data-tab="game">🎮 4合1闯关厅</button>
@@ -10978,7 +11048,7 @@ V6H.mount = function(root){
   `;
   root.querySelectorAll(".v6-tab[data-tab]").forEach(btn => btn.addEventListener("click", () => switchTab(btn.getAttribute("data-tab"))));
   root.querySelectorAll("[data-speak]").forEach(btn => btn.addEventListener("click", (ev) => { ev.stopPropagation(); speak(btn.getAttribute("data-speak")); }));
-  switchTab("game");
+  switchTab(tab || "game");
 };
 })(window.V6H);
 
