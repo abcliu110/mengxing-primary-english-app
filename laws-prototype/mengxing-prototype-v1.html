@@ -103,6 +103,7 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <button class="nbtn" data-v="phon">拼读区</button>
 <button class="nbtn" data-v="vocab">词汇解码区</button>
 <button class="nbtn" data-v="grammar">语法区</button>
+<button class="nbtn" data-v="prep">介词</button>
 <button class="nbtn" data-v="system">小系统区</button>
 <button class="nbtn" data-v="expr">表达写作区</button>
 <button class="nbtn" data-v="review">复习区</button>
@@ -115,12 +116,13 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 
 <!-- ============ 首页 ============ -->
 <section class="view on" id="v-home">
-<div class="sec-t">六大区</div>
+<div class="sec-t">七大区</div>
 <div class="grid">
 <div class="card" data-go="phon"><div class="ic">🔤</div><h3>拼读区</h3><p>拼法菜单、变脸榜、定律区、拼读序列主线、中国孩子难点地图。</p><span class="n">S 组 + SR 组 · 本区全功能样板</span></div>
 <div class="card" data-go="vocab"><div class="ic">🧩</div><h3>词汇解码区</h3><p>词源故事、词根家族、变身机、打包错位对照台、假词源侦探。</p><span class="n">V 组 + CO-17 · 本区全功能样板</span></div>
 <div class="card" data-go="grammar"><div class="ic">🏗️</div><h3>语法区</h3><p>总纲三条置顶（象似性 / 标记性 / 分析语总叙事），反意疑问三步法已做深。</p><span class="n">GR / TA / CO / QI · 95 条 · 目录页</span></div>
-<div class="card" data-go="system"><div class="ic">🧭</div><h3>小系统区</h3><p>介词花园（原型图 + 亲戚网）、冠词三出口、汉语刀口对表。</p><span class="n">P / C / PR / PB · 63 条 · 目录页</span></div>
+<div class="card" data-go="prep"><div class="ic">📍</div><h3>介词区</h3><p>介词花园（原型图 + 亲戚网）。</p><span class="n">P 组 · 43 词 · 真模块</span></div>
+<div class="card" data-go="system"><div class="ic">🧭</div><h3>小系统区</h3><p>冠词三出口、汉语刀口对表。</p><span class="n">C / PR / PB · 44 条 · 目录页</span></div>
 <div class="card" data-go="expr"><div class="ic">✍️</div><h3>表达写作区</h3><p>整块取句、范文先行、语义韵选词、对话的规矩。</p><span class="n">E / W / NE · 59 条 · 目录页</span></div>
 <div class="card" data-go="review"><div class="ic">🗂️</div><h3>复习区</h3><p>间隔队列 + 病因错题本：错题不按题号归档，按病因归档。</p><span class="n">样板页 · 数据来自旗舰单元病例</span></div>
 </div>
@@ -377,10 +379,10 @@ body.adult .adult{display:block}
 </section>
 
 <!-- ============ 小系统区（目录页） ============ -->
-<section class="view" id="v-system">
+<!-- ============ 介词区（独立区） ============ -->
+<section class="view" id="v-prep">
 <span class="back" data-go="home">← 回首页</span>
-<h2 class="zt">🧭 小系统区</h2>
-<p class="sub">P / C / PR / PB 共 63 条 · 介词（P 组）已换真模块：43 词面板 + 词页（页内对手同屏）；其余仍为目录页「待入模」灰态。招牌件：介词花园（P 组）、冠词三出口（C 组）、汉语刀口对表（PB-12）。</p>
+<h2 class="zt">📍 介词区</h2>
 <div class="gh">介词（P 组 · 真模块）</div>
 <div class="pp" id="pp-index">
 <h1>介词面板</h1>
@@ -393,6 +395,12 @@ body.adult .adult{display:block}
 <details class="method" id="methodSec"></details>
 <details class="method" id="creditsSec"></details>
 </div>
+</section>
+
+<section class="view" id="v-system">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🧭 小系统区</h2>
+<p class="sub">C / PR / PB 共 44 条 · 均为目录页「待入模」灰态（介词 P 组已独立成区，见顶部「介词」）。招牌件：冠词三出口（C 组）、汉语刀口对表（PB-12）。</p>
 <div class="gh">可数与冠词（C-01 – C-20）</div>
 <div class="urow flat"><span class="id">C-01</span><span class="tt">总纲：可数不可数是「看法」，不是物体的物理属性</span><span class="st wait">待入模</span></div>
 <div class="urow flat"><span class="id">C-02</span><span class="tt">物质名词的判据是「同质」：随便拿一小份，还是它</span><span class="st wait">待入模</span></div>
@@ -1592,7 +1600,7 @@ function renderCredits(){
 /* ---------------- navigation ---------------- */
 function show(id){
   if (id === '#view-detail') { window.show('prep-detail'); }
-  else { window.show('system'); requestAnimationFrame(() => window.scrollTo(0, idxScroll)); }
+  else { window.show('prep'); requestAnimationFrame(() => window.scrollTo(0, idxScroll)); }
 }
 function openWord(w){
   idxScroll = window.scrollY || 0;
