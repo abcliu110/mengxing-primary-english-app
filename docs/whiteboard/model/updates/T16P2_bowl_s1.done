@@ -1,0 +1,42 @@
+# T16 P2 小跟进：boundedness_1 饭碗换 BOWL 元素
+
+日期：2026-11-01
+范围：只动第 1 幕模板/生成链（fp_boundedness_1_v3.js → gen_scene.py → gen_boundedness_1.js → gen-boundedness-1.html）。P0 遗留项销项：第 4 步米饭节拍的 🍚 emoji 字形换为元素库 BOWL。人物路径（位图 Linda）零触碰；props.js / concept.js 零改动；未做 git 操作（提交留主会话）。
+
+## 1. 改动清单（模板与生成文件各恰 2 个 hunk）
+
+| # | 位置 | 改动 |
+|---|---|---|
+| 1 | import 行 | 增 BOWL / assertBowlGeometry（其余符号原样） |
+| 2 | 第 4 步米饭节拍 schemaContainer | content:'🍚' → content:'' + contentDraw 元素回调（见 §2）；同行前置 assertFill(BOWL,'standard',0.9) 与 assertBowlGeometry(BOWL) 两条构建期断言（与杯段 assertFill 先例同位） |
+
+生成文件由 `python3 gen_scene.py specs/boundedness_1.yaml` 复跑生成（22,412 B，know 19 行），非手工对齐；事实表 factsheets/gen_boundedness_1.md 复跑后与 HEAD 逐字节一致（不在 git diff 内）。
+
+## 2. 碗的消费口径
+
+- 绘制：`drawElement(g, BOWL, { profile: 'standard', fill: 0.9, liquid: 'skin.rice' })`——液面即米面，由 cavity + fill 基元实算（与 cup 同一路径；fillSurfaceY(0.9)=6.9，恒在内腔 rimY=4..bottomY=33 内，surface-inside-cavity 由实算保证）。
+- fill 取值按节拍原意恒定 0.9：本节拍无倾倒/装填动作（与第 1 步咖啡「倒满」不同），米饭自始在碗中，节拍的形变是识解（铺开一摊 ↔ 装碗成个），由 schemaContainer 的 fluid 铺开 + states（unbounded→enter→bounded）承担，不给碗编造注水动画。
+- 位姿：回调内 translate(0,-50) + scale(1.8)——碗口上沿对回旧字形上沿高度（舞台 y≈470），蒸汽口（960,455）原位不动、仍自米面上方升起；碗宽 124×1.8≈223，落在 420×300 容器内（实测见 §4）。
+
+## 3. 零漂移证明（KNOW / ITEMS）
+
+- `git diff` 模板与 gen 文件：各恰 2 个 hunk（import 行 + 米饭节拍行组），KNOW 数组 19 行、全部台词/predict/swap/say 调用逐字未动；米粒例外句 KNOW[15]（「米粒再分明，也整摊看」）在 t=86 帧上原文可见。
+- spec（specs/boundedness_1.yaml）与家族模型未动，gen 复跑的 KNOW 替换结果与 HEAD 一致（diff 无 KNOW 行）。
+
+## 4. 验证
+
+- 官方 insightcheck（tools/run_insightcheck_gen.py，WB_FONTS/PATH 口径）：**不合格 0**；gen_boundedness_1 101.8s、文字 14%、动态 84%、分段 11%/40%/25%/24%，与家族基线一致。
+- 元素套件零回归：test_t16p0 38/38、test_t16p1 44/44、test_t16p2 64/64（含 bowl 腔体自洽断言节）；茶壶三数实算不变——轴线仰角 37.996°、出流窗最小净下倾 35.00°、平台期嘴尖世界 x 806.45；杯断言路径未触（props.js 零改动）。
+- 构建：build.mjs 暂存 /tmp 构建验大小（1,457,929 B）后就位 ~/workspace/your_files/gen-boundedness-1.html（旧版 1,415,053 B；增量来自 props 共享块的 P2 批次内容，本幕新增仅 import+回调）。
+
+## 5. 密帧目检（~/workspace/shots_bowl_s1/）
+
+- rice_unbounded_t80.png（unbounded 态）：元素碗（白瓷、口沿蓝纹带、圈足）悬于流体铺开波浪之上，虚线框 +「rices ?」chip + 预测圈齐全；碗体无变形、无遮挡错误。
+- rice_bounded_t86.png（bounded 态）：蓝框 + 计数徽章「2」+ chip 已换「two bowls of rice」；米面（近白）位于碗口之内、两壁之间，不溢腔。定位实测（visual grounding，归一化 0–1000）：碗 bbox x 440–559（中心 499.5）、蓝框 x 388–616（中心 502）——碗在框内水平居中；碗高 ≈101 舞台 px，与 53×1.8≈95 的设计高相符（含量描边）。
+- rice_say_t92.png（say 段）：「I want two bowls of rice.」词卡与字幕正常，碗容器已按 until 退场，无残影。
+
+画风注记（按派单口径只报几何）：碗为扁平矢量、Linda 为位图（左下人物帧未动），同幕并存与壶/杯元素化后的现状一致，本单不评画风。
+
+## 6. 附注
+
+- 工作树另有 docs/whiteboard/v5/sprites/cast/flag.webp 的二进制变更，非本单所为（并行车道产物），未触碰、未回退。

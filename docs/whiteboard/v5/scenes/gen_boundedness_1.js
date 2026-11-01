@@ -14,7 +14,7 @@ import { scene, OR, INK, GREY } from '../wb5.js';
 import { concept, BLUE, GREEN, RED } from '../lib/concept.js';
 import { kit } from './fb39_lib.js';
 import * as SP from '../sprites/fb39v2.js';
-import { TEAPOT, CUP, pourTiltAt, tipAt, drawElement, assertPourWindow, assertFill } from '../props/props.js';
+import { TEAPOT, CUP, BOWL, pourTiltAt, tipAt, drawElement, assertPourWindow, assertFill, assertBowlGeometry } from '../props/props.js';
 
 export const KNOW = [
   '书上说 coffee 不加 -s，咖啡馆里却说 Two coffees！谁错了？',
@@ -250,7 +250,10 @@ export default function build() {
   C.step(4, T);
   const P0 = T;
   LK.push([P0 + 0.2, 'l_think']);
-  C.schemaContainer({ x: 960, y: 520, w: 420, h: 300, content: '🍚', from: P0, until: P0 + 13.4, states: [[P0, 'unbounded'], [P0 + 5.6, 'enter'], [P0 + 6.8, 'bounded']], count: 2, fluid: 'rgba(229,231,235,.9)', spread: 1.0 });
+  // 米饭碗由 drawElement 按 BOWL 定义绘制；液面 = 米面走 fill 基元（standard 剖面；本节拍无倾倒动作，米饭自始在碗中，fill 0.9 恒定；assertFill / assertBowlGeometry 不过停建）。
+  assertFill(BOWL, 'standard', 0.9);
+  assertBowlGeometry(BOWL);
+  C.schemaContainer({ x: 960, y: 520, w: 420, h: 300, content: '', contentDraw: (g, t) => { g.translate(0, -50); g.scale(1.8, 1.8); drawElement(g, BOWL, { profile: 'standard', fill: 0.9, liquid: 'skin.rice' }); }, from: P0, until: P0 + 13.4, states: [[P0, 'unbounded'], [P0 + 5.6, 'enter'], [P0 + 6.8, 'bounded']], count: 2, fluid: 'rgba(229,231,235,.9)', spread: 1.0 });
   const rc = C.chip({ text: 'rices ?', x: 960, y: 262, size: 58, col: RED, bd: RED, from: P0 + 0.4, until: P0 + 13.4 });
   T = C.predict(P0 + 0.6, { q: KNOW[14] });
   C.swap(rc, T + 0.5, 'two bowls of rice', GREEN, '#fff', GREEN);
