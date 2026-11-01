@@ -1,0 +1,100 @@
+# ============================================================================
+# 元素库 · bowl（碗）—— 容器元素（boundedness_1 的 🍚 与后续装盛场景的备件）；
+# 格式样板见 teapot.yaml；腔体口径与 cup.yaml 一致（镜像 fill 基元）：
+# params.cavity[profile] 给内腔几何（rimY/bottomY/halfTop/halfBottom），液面由 fill 实算，
+# 场景不存液面坐标；壁厚 wall 把内腔与外形锚点缝起来——三者必须自洽（断言
+# cavity-consistent），改任一数值其余必须跟改，否则构建期抛错。
+# 本元素口径：侧视图，白瓷饭碗（口沿宽、浅腹、圈足）；元素枢轴 = 碗口中心。
+# 液体口径：liquidFill 与 cup 共用同一实算路径；装饭时场景传 opts.liquid = skin.rice
+# （液面体即内容物表面，fill 即装满程度），装汤传 skin.soup，定义层不写死内容物。
+# ============================================================================
+
+element:
+  id: bowl
+  kind: prop
+  version: 1
+  title: "碗（饭碗）"
+
+frame:
+  origin: "碗口中心（口沿两端点的中点）"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [1000, 500] # boundedness_1 米饭位近似；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（白瓷饭碗侧视：宽口、浅腹、圈足、口沿下蓝纹带）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    wall: "#f0e9db"        # 瓷白（碗身）
+    edge: "#93a0b4"        # 描边（青灰）
+    inner: "#ded4bf"       # 内壁（米灰）
+    stripe: "#3f6fb5"       # 口沿蓝纹带
+    rice: "#fbf7ec"        # 米饭（fill 内容物令牌，场景按需传 opts.liquid）
+    soup: "#e2a13c"        # 汤（同上）
+    highlight: "rgba(255,255,255,.35)"
+
+parts:
+  - id: body
+    role: "碗身（外形 + 内腔面 + 口沿；腔体计量走 params.cavity）"
+    pivot: [0, 0]
+    anchors:
+      rimL: [-62, 0] # 口沿左端
+      rimR: [62, 0] # 口沿右端
+      base: [0, 46] # 圈足底中点（落桌对位）
+    geometry:
+      shapes:
+        - type: path # 外形：口宽 124、深 46（腹壁外凸收至圈足）
+          segments: [["M", -62, 0], ["C", -60, 18, -48, 32, -30, 38],
+                     ["L", -21, 40], ["L", -21, 46], ["L", 21, 46], ["L", 21, 40], ["L", 30, 38],
+                     ["C", 48, 32, 60, 18, 62, 0], ["Z"]]
+          style: { fill: skin.wall, stroke: skin.edge, lineWidth: 3.5 }
+        - type: path # 内腔面（开口内侧）：上沿 (±54, 4)、腔底 (±28, 33)——与 params.cavity.standard 逐点对位（断言实算核对）
+          segments: [["M", -54, 4], ["C", -52, 17, -42, 27, -28, 33],
+                     ["L", 28, 33], ["C", 42, 27, 52, 17, 54, 4], ["Z"]]
+          style: { fill: skin.inner }
+        - type: ellipse # 口沿：开口椭圆
+          at: [0, 0]
+          radii: [62, 7]
+          style: { fill: skin.inner }
+        - type: strokePath # 口沿下蓝纹带（装饰，沿腹壁）
+          segments: [["M", -58, 13], ["C", -30, 28, 30, 28, 58, 13]]
+          style: { stroke: skin.stripe, lineWidth: 5 }
+    z: 1
+  - id: liquid
+    role: "内容物（fill 基元绘制：shape 类型 liquidFill，几何由 cavity + fill 实算，无静态段表）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: liquidFill # 渲染器按 cavity 与 opts.fill/opts.liquid 绘制（与 cup 同一实算路径）
+    z: 2
+
+anchors:
+  rim: { from: "parts.body.anchors.rimL/rimR 中点 (0,0)", use: "碗口中心：fill 落点对位、满溢界" }
+  base: { from: "parts.body.anchors.base", use: "圈足落点（放桌面对位）" }
+  liquidSurface: { from: "fill 基元 liquidSurfaceEnds(def, 'standard', fill) 由 cavity 实算", use: "内容物表面线两端点（随注入量上升）" }
+
+params:
+  wall: 8 # 壁厚（口沿处：rimHalf 62 − cavity.halfTop 54；断言口径）
+  cavity:
+    standard: { rimY: 4, bottomY: 33, halfTop: 54, halfBottom: 28 } # 内腔（局部坐标）：液面 y 在 rimY..bottomY 间随 fill 线性插值，半宽随 y 在 halfBottom..halfTop 间插值（与 cup 同口径）
+  rimInnerWidth:
+    design: 108 # 口内径（= 2 × cavity.standard.halfTop）
+    computed: 108 # 由 cavity.standard.halfTop 实算（模块 cupGeom 加载时核算）
+    formula: "2 * params.cavity[profile].halfTop；fill 液面半宽同路由 cavity 在液面 y 处插值实算，不手填"
+
+profiles:
+  standard: { parts: [body, liquid], note: "饭碗（唯一剖面）" }
+
+assertions:
+  - id: cavity-consistent
+    rule: "腔体自洽：cavity.halfTop + wall = 口沿半宽（rimR.x − rimL.x)/2 = 62；内腔面轮廓 bbox = (−halfTop, rimY)..(halfTop, bottomY)（段表打平实算）；圈足底 base.y = 外形轮廓 bbox 下界"
+    enforcedBy: "v5/props/props.js 的 assertBowlGeometry（构建期执行，不过抛错停建）"
+  - id: fill-no-overflow
+    rule: "fill（注入量）必须 ∈ [0,1]：液面 y = bottomY + fill*(rimY−bottomY) 恒不高于 cavity.rimY；fill>1 即溢出"
+    enforcedBy: "v5/props/props.js 的 assertFill（与 cup 共用，构建期执行）"
+  - id: surface-inside-cavity
+    rule: "液面半宽恒等于 cavity 在液面 y 处的插值半宽（liquidSurfaceEnds 实算），不得宽于内腔壁"
+    enforcedBy: "v5/props/props.js 的 liquidSurfaceEnds / fillSurfaceY（与 cup 同一实算路径，绘制与断言共用）"

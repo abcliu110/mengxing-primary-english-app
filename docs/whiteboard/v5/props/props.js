@@ -1035,3 +1035,519 @@ export const drawHinged = (g, def, opts = {}) => {
     g.restore();
   }
 };
+
+// ================= T16 P2 第二批元素（bowl/cake/door/ball/paper/bottle/tap） =================
+// 纯追加段：既有导出与行为一字未动。新契约：paper 首声明 T1 可撕契约（tear 基元）；
+// bowl/bottle 镜像 cup 的 fill 口径（cavity + fillSurfaceY/liquidSurfaceEnds 同一实算路径）；
+// door 复用 H1 铰接（hingeTipAt/assertHingeRigid/drawHinged）；cake 照 C1 复用 cut 基元；
+// ball 只立几何与锚点（运动基元不在本批）；tap 立出水口锚点 + 水流方向断言。
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/bowl.yaml v1） =================
+export const BOWL = {
+  element: { id: 'bowl', kind: 'prop', version: 1, title: '碗（饭碗）' },
+  placement: { world: [1000, 500] },
+  skin: {
+    tokens: { wall: '#f0e9db', edge: '#93a0b4', inner: '#ded4bf', stripe: '#3f6fb5', rice: '#fbf7ec', soup: '#e2a13c', highlight: 'rgba(255,255,255,.35)' },
+  },
+  parts: [
+    { id: 'body', pivot: [0, 0], z: 1, anchors: { rimL: [-62, 0], rimR: [62, 0], base: [0, 46] },
+      shapes: [
+        { type: 'path', segments: [['M', -62, 0], ['C', -60, 18, -48, 32, -30, 38], ['L', -21, 40], ['L', -21, 46], ['L', 21, 46], ['L', 21, 40], ['L', 30, 38], ['C', 48, 32, 60, 18, 62, 0], ['Z']], style: { fill: 'skin.wall', stroke: 'skin.edge', lineWidth: 3.5 } },
+        { type: 'path', segments: [['M', -54, 4], ['C', -52, 17, -42, 27, -28, 33], ['L', 28, 33], ['C', 42, 27, 52, 17, 54, 4], ['Z']], style: { fill: 'skin.inner' } },
+        { type: 'ellipse', at: [0, 0], radii: [62, 7], style: { fill: 'skin.inner' } },
+        { type: 'strokePath', segments: [['M', -58, 13], ['C', -30, 28, 30, 28, 58, 13]], style: { stroke: 'skin.stripe', lineWidth: 5 } },
+      ] },
+    { id: 'liquid', pivot: [0, 0], z: 2, shapes: [{ type: 'liquidFill' }] },
+  ],
+  params: {
+    wall: 8,
+    cavity: { standard: { rimY: 4, bottomY: 33, halfTop: 54, halfBottom: 28 } },
+    rimInnerWidth: { design: 108 },
+  },
+  profiles: { standard: { parts: ['body', 'liquid'] } },
+};
+// 构建期断言（bowl）：腔体自洽——cavity.halfTop + wall = 口沿半宽（锚点实算）；内腔面轮廓 bbox
+// 与 cavity 逐项对位（段表打平实算）；圈足底 base.y = 外形轮廓下界。返回 { rimHalf, rimInnerWidth }。
+export const assertBowlGeometry = (def) => {
+  const id = def.element.id;
+  const body = partOf(def, 'body');
+  const cav = def.params && def.params.cavity && def.params.cavity.standard;
+  if (!cav) throw new Error(`props/${id} bowl 断言失败：params.cavity.standard 缺失`);
+  const wall = def.params.wall;
+  const rimHalf = (body.anchors.rimR[0] - body.anchors.rimL[0]) / 2;
+  if (Math.abs(cav.halfTop + wall - rimHalf) > 1e-9)
+    throw new Error(`props/${id} bowl 断言失败：cavity.halfTop ${cav.halfTop} + wall ${wall} ≠ 口沿半宽 ${rimHalf}（腔体与碗口不对位）`);
+  const paths = body.shapes.filter(s => s.type === 'path');
+  const ibb = polyBBox(flattenSegs(paths[1].segments));
+  if (Math.abs(ibb.x0 + cav.halfTop) > 1e-6 || Math.abs(ibb.x1 - cav.halfTop) > 1e-6 || Math.abs(ibb.y0 - cav.rimY) > 1e-6 || Math.abs(ibb.y1 - cav.bottomY) > 1e-6)
+    throw new Error(`props/${id} bowl 断言失败：内腔面轮廓 bbox (${ibb.x0},${ibb.y0})..(${ibb.x1},${ibb.y1}) 与 cavity (∓${cav.halfTop}, ${cav.rimY}..${cav.bottomY}) 不对位`);
+  const obb = polyBBox(flattenSegs(paths[0].segments));
+  if (Math.abs(body.anchors.base[1] - obb.y1) > 1e-6)
+    throw new Error(`props/${id} bowl 断言失败：圈足底 base.y ${body.anchors.base[1]} ≠ 外形轮廓下界 ${obb.y1}`);
+  return { rimHalf, rimInnerWidth: 2 * cav.halfTop };
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/cake.yaml v1） =================
+// 可切物第三员：cut 块与断言全走 C1 契约（cutHalves/assertCutConservation/drawCuttable），无新基元。
+export const CAKE = {
+  element: { id: 'cake', kind: 'prop', version: 1, title: '蛋糕（可切物）' },
+  placement: { world: [1000, 490] },
+  skin: {
+    tokens: { sponge: '#f2c14e', edge: '#c68f2a', crumb: '#fbe7b2', crumbEdge: '#dfae54', frosting: '#f6a8bc', frostingEdge: '#dd7f97', cherry: '#c0272d', stem: '#7a4a21', highlight: 'rgba(255,255,255,.28)' },
+  },
+  parts: [
+    { id: 'body', pivot: [0, 0], z: 1, anchors: { top: [0, -37], bottom: [0, 32] },
+      shapes: [
+        { type: 'path', segments: [['M', -72, 32], ['L', -72, -14], ['C', -72, -29, -54, -37, 0, -37], ['C', 54, -37, 72, -29, 72, -14], ['L', 72, 32], ['Z']], style: { fill: 'skin.sponge', stroke: 'skin.edge', lineWidth: 3.5 } },
+        { type: 'ellipse', at: [-30, -12], radii: [16, 8], rot: -0.2, style: { fill: 'skin.highlight' } },
+      ] },
+    { id: 'frosting', pivot: [0, 0], z: 2,
+      shapes: [
+        { type: 'path', segments: [['M', -72, -14], ['C', -72, -29, -54, -37, 0, -37], ['C', 54, -37, 72, -29, 72, -14], ['C', 50, -8, 30, -16, 12, -10], ['C', -4, -5, -20, -14, -36, -9], ['C', -52, -4, -64, -10, -72, -14], ['Z']], style: { fill: 'skin.frosting', stroke: 'skin.frostingEdge', lineWidth: 2.5 } },
+      ] },
+    { id: 'cherry', pivot: [0, 0], z: 3, anchors: { cherryTop: [10, -58] },
+      shapes: [
+        { type: 'strokePath', segments: [['M', 0, -48], ['C', 2, -54, 6, -57, 10, -58]], style: { stroke: 'skin.stem', lineWidth: 3 } },
+        { type: 'circle', at: [0, -42], r: 7, style: { fill: 'skin.cherry', stroke: 'skin.frostingEdge', lineWidth: 2 } },
+      ] },
+  ],
+  cut: {
+    outlinePart: 'body',
+    axis: [[0, -70], [0, 70]],
+    face: { depth: 6, fill: 'skin.crumb', edge: 'skin.crumbEdge' },
+    details: [
+      { kind: 'pore', along: 0.30, off: 4, r: 2.4, style: { fill: 'skin.crumbEdge' } },
+      { kind: 'pore', along: 0.55, off: 4, r: 2.8, style: { fill: 'skin.crumbEdge' } },
+      { kind: 'pore', along: 0.80, off: 4, r: 2.4, style: { fill: 'skin.crumbEdge' } },
+    ],
+  },
+  params: { width: { design: 144 }, height: { design: 69 } },   // computed 不存：由 outlineBBox() 从段表实算
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/door.yaml v1） =================
+export const DOOR = {
+  element: { id: 'door', kind: 'prop', version: 1, title: '门（带框木门）' },
+  placement: { world: [960, 480] },
+  skin: {
+    tokens: { frame: '#8a6a48', frameEdge: '#6e5233', beyond: '#4a4238', panel: '#a5713d', panelIn: '#bd8a52', panelEdge: '#7c4210', knob: '#d9a441' },
+  },
+  parts: [
+    { id: 'frame', pivot: [0, 0], z: 1, anchors: { jambL: [-56, 0], jambR: [56, 0], openingTL: [-56, -112], openingBR: [56, 112], threshold: [0, 112] },
+      shapes: [
+        { type: 'path', segments: [['M', -56, -112], ['L', 56, -112], ['L', 56, 112], ['L', -56, 112], ['Z']], style: { fill: 'skin.beyond' } },
+        { type: 'path', segments: [['M', -70, -118], ['L', -56, -118], ['L', -56, 118], ['L', -70, 118], ['Z']], style: { fill: 'skin.frame', stroke: 'skin.frameEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', 56, -118], ['L', 70, -118], ['L', 70, 118], ['L', 56, 118], ['Z']], style: { fill: 'skin.frame', stroke: 'skin.frameEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', -56, -118], ['L', 56, -118], ['L', 56, -112], ['L', -56, -112], ['Z']], style: { fill: 'skin.frame', stroke: 'skin.frameEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', -70, 112], ['L', 70, 112], ['L', 70, 118], ['L', -70, 118], ['Z']], style: { fill: 'skin.frameEdge' } },
+      ] },
+    { id: 'panel', hinge: true, pivot: [-56, 0], z: 2, anchors: { tip: [56, 0], knob: [42, 6], hingeEnd: [-56, 0] },
+      shapes: [
+        { type: 'path', segments: [['M', -56, -112], ['L', 56, -112], ['L', 56, 112], ['L', -56, 112], ['Z']], style: { fill: 'skin.panel', stroke: 'skin.panelEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', -40, -94], ['L', 40, -94], ['L', 40, -14], ['L', -40, -14], ['Z']], style: { fill: 'skin.panelIn', stroke: 'skin.panelEdge', lineWidth: 2.5 } },
+        { type: 'path', segments: [['M', -40, 10], ['L', 40, 10], ['L', 40, 94], ['L', -40, 94], ['Z']], style: { fill: 'skin.panelIn', stroke: 'skin.panelEdge', lineWidth: 2.5 } },
+        { type: 'circle', at: [42, 6], r: 5.5, style: { fill: 'skin.knob', stroke: 'skin.panelEdge', lineWidth: 2 } },
+      ] },
+  ],
+  params: { panelLen: { design: 112 }, openingW: { computed: 112 }, openingH: { computed: 224 } },
+  profiles: {
+    closed: { hingeDeg: 0 },
+    ajar: { hingeDeg: -55 },
+    open: { hingeDeg: -120 },
+  },
+};
+// 构建期断言（door）：铰链与门洞左缘同点；panelLen 实算 vs design（差 ≤ 0.5）；闭合盖满门洞
+//（panelLen ≥ openingW、门扇轮廓高 ≥ openingH，轮廓实算）；门把锚点在门扇轮廓内。返回 { panelLen, openingW, openingH }。
+export const assertDoorGeometry = (def) => {
+  const id = def.element.id;
+  const frame = partOf(def, 'frame'), panel = partOf(def, 'panel');
+  if (Math.abs(panel.pivot[0] - frame.anchors.jambL[0]) > 1e-9 || Math.abs(panel.pivot[1] - frame.anchors.jambL[1]) > 1e-9)
+    throw new Error(`props/${id} door 断言失败：门扇铰链 (${panel.pivot}) 与门洞左缘 jambL (${frame.anchors.jambL}) 不对位`);
+  const panelLen = assertHingeRigid(def, 'panel', 'tip');
+  const design = def.params && def.params.panelLen && def.params.panelLen.design;
+  if (design != null && Math.abs(panelLen - design) > 0.5)
+    throw new Error(`props/${id} door 断言失败：panelLen 实算 ${panelLen.toFixed(1)} 与 design ${design} 不一致`);
+  const openingW = frame.anchors.jambR[0] - frame.anchors.jambL[0];
+  const openingH = frame.anchors.openingBR[1] - frame.anchors.openingTL[1];
+  if (panelLen < openingW - 1e-9)
+    throw new Error(`props/${id} door 断言失败：门扇长 ${panelLen.toFixed(1)} < 门洞宽 ${openingW}（闭合时盖不满门洞）`);
+  const pbb = polyBBox(flattenSegs(panel.shapes[0].segments));
+  if (pbb.h < openingH - 1e-9)
+    throw new Error(`props/${id} door 断言失败：门扇轮廓高 ${pbb.h.toFixed(1)} < 门洞高 ${openingH}（闭合时盖不满门洞）`);
+  const knob = panel.anchors.knob;
+  if (knob[0] < pbb.x0 - 1e-9 || knob[0] > pbb.x1 + 1e-9 || knob[1] < pbb.y0 - 1e-9 || knob[1] > pbb.y1 + 1e-9)
+    throw new Error(`props/${id} door 断言失败：门把锚点 (${knob}) 落在门扇轮廓 (${pbb.x0},${pbb.y0})..(${pbb.x1},${pbb.y1}) 之外`);
+  return { panelLen, openingW, openingH };
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/ball.yaml v1） =================
+export const BALL = {
+  element: { id: 'ball', kind: 'prop', version: 1, title: '球（足球）' },
+  placement: { world: [960, 700] },
+  skin: {
+    tokens: { ball: '#f5f2ec', edge: '#5a6068', patch: '#3d4450', seam: '#8b9096' },
+  },
+  parts: [
+    { id: 'body', pivot: [0, 0], z: 1, anchors: { center: [0, 0], contact: [0, 46], top: [0, -46] },
+      shapes: [
+        { type: 'circle', at: [0, 0], r: 46, style: { fill: 'skin.ball', stroke: 'skin.edge', lineWidth: 3.5 } },
+      ] },
+    { id: 'pattern', pivot: [0, 0], z: 2,
+      shapes: [
+        { type: 'path', segments: [['M', 0, -13], ['L', 12, -4], ['L', 8, 11], ['L', -8, 11], ['L', -12, -4], ['Z']], style: { fill: 'skin.patch' } },
+        { type: 'strokePath', segments: [['M', -45, -8], ['C', -30, -3, -20, -3, -12, -4]], style: { stroke: 'skin.seam', lineWidth: 2.5 } },
+        { type: 'strokePath', segments: [['M', 45, -8], ['C', 30, -3, 20, -3, 12, -4]], style: { stroke: 'skin.seam', lineWidth: 2.5 } },
+        { type: 'strokePath', segments: [['M', -8, 11], ['C', -14, 25, -25, 35, -38, 41]], style: { stroke: 'skin.seam', lineWidth: 2.5 } },
+        { type: 'strokePath', segments: [['M', 8, 11], ['C', 14, 25, 25, 35, 38, 41]], style: { stroke: 'skin.seam', lineWidth: 2.5 } },
+      ] },
+  ],
+  params: {
+    radius: { design: 46 },
+    kinematics: { status: '占位——本批不实现滚动/弹跳基元，仅立几何与锚点口径', groundContact: 'contact 锚点与地面相切；滚动时球心恒在地面上方 r 处', note: 'kick/throw/catch/bounce 的轨迹与时序参数待运动基元车道定义，届时只许引用 center/contact 锚点，不许另存半径数字' },
+  },
+};
+// 构建期断言（ball）：半径三方一致——circle 形状 r = params.radius.design = |contact − center|，
+// 且 top = center + [0, −r]、circle.at 与 center 锚点同点。返回实算半径。
+export const assertBallGeometry = (def) => {
+  const id = def.element.id;
+  const body = partOf(def, 'body');
+  const circ = body.shapes.find(s => s.type === 'circle');
+  if (!circ) throw new Error(`props/${id} ball 断言失败：body 部件无 circle 形状`);
+  const r = circ.r;
+  const design = def.params && def.params.radius && def.params.radius.design;
+  if (design != null && Math.abs(r - design) > 1e-9)
+    throw new Error(`props/${id} ball 断言失败：circle 形状 r ${r} ≠ params.radius.design ${design}（半径两处口径不一致）`);
+  const c = body.anchors.center, ct = body.anchors.contact, tp = body.anchors.top;
+  if (Math.abs(circ.at[0] - c[0]) > 1e-9 || Math.abs(circ.at[1] - c[1]) > 1e-9)
+    throw new Error(`props/${id} ball 断言失败：circle.at (${circ.at}) 与 center 锚点 (${c}) 不同点`);
+  if (Math.abs(Math.hypot(ct[0] - c[0], ct[1] - c[1]) - r) > 1e-9 || Math.abs(ct[0] - c[0]) > 1e-9 || ct[1] < c[1])
+    throw new Error(`props/${id} ball 断言失败：contact 锚点 (${ct}) 不是球心正下方 r=${r} 处的接触点`);
+  if (Math.abs(tp[0] - c[0]) > 1e-9 || Math.abs(tp[1] - (c[1] - r)) > 1e-9)
+    throw new Error(`props/${id} ball 断言失败：top 锚点 (${tp}) 不是球心正上方 r=${r} 处的顶点`);
+  return r;
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/paper.yaml v1） =================
+export const PAPER = {
+  element: { id: 'paper', kind: 'prop', version: 1, title: '纸（可撕物）' },
+  placement: { world: [960, 540] },
+  skin: {
+    tokens: { paper: '#fdfcf7', edge: '#b9b2a2', line: '#c9d4e2', fiber: '#a89f8c' },
+  },
+  parts: [
+    { id: 'sheet', pivot: [0, 0], z: 1, anchors: { notch: [0, -95], gripL: [-32, -95], gripR: [32, -95], center: [0, 0] },
+      shapes: [
+        { type: 'path', segments: [['M', -75, -95], ['L', 75, -95], ['L', 75, 95], ['L', -75, 95], ['Z']], style: { fill: 'skin.paper', stroke: 'skin.edge', lineWidth: 3 } },
+      ] },
+    { id: 'lines', pivot: [0, 0], z: 2,
+      shapes: [
+        { type: 'strokePath', segments: [['M', -60, -60], ['L', 60, -60], ['M', -60, -30], ['L', 60, -30], ['M', -60, 0], ['L', 60, 0], ['M', -60, 30], ['L', 60, 30], ['M', -60, 60], ['L', 40, 60]], style: { stroke: 'skin.line', lineWidth: 2.5 } },
+      ] },
+  ],
+  tear: {
+    outlinePart: 'sheet',
+    notch: [0, -95],
+    line: [[0, -95], [4, 95]],
+    jag: { amp: 3.5, step: 16 },
+    edge: { stroke: 'skin.fiber', lineWidth: 2 },
+  },
+  params: { width: { design: 150 }, height: { design: 190 } },   // computed 不存：由轮廓 bbox 从段表实算
+};
+// ================= tear 基元（T1 契约：单裂尖自纸边缺口推进，贯通派生两片；事实依据 refcards/tear.yaml） =================
+// 可撕物轮廓多边形（tear.outlinePart 部件的第一个 path 形状，段表打平实算）
+export const tearOutlineOf = (def) => {
+  const part = partOf(def, def.tear && def.tear.outlinePart);
+  const shape = part && part.shapes.find(s => s.type === 'path');
+  if (!shape) throw new Error(`props/${def.element.id} 无可撕轮廓（tear.outlinePart 的 path 形状缺失）`);
+  return flattenSegs(shape.segments);
+};
+// 把边界点插入轮廓点列（已是顶点则原样返回）；点不在任一边上（>1e-6）返回 null。
+const insertBoundaryPoint = (pts, p) => {
+  for (let i = 0; i < pts.length; i++)
+    if (Math.hypot(pts[i][0] - p[0], pts[i][1] - p[1]) < 1e-9) return { list: pts, idx: i };
+  let best = Infinity, bi = -1;
+  for (let i = 0; i < pts.length; i++) {
+    const d = ptSegDist(p, pts[i], pts[(i + 1) % pts.length]);
+    if (d < best) { best = d; bi = i; }
+  }
+  if (bi < 0 || best > 1e-6) return null;
+  return { list: [...pts.slice(0, bi + 1), p, ...pts.slice(bi + 1)], idx: bi + 1 };
+};
+// 点在轮廓边界上的归属边（最近边下标 + 距离，轮廓实算）
+const boundaryEdgeOf = (pts, p) => {
+  let best = Infinity, bi = -1;
+  for (let i = 0; i < pts.length; i++) {
+    const d = ptSegDist(p, pts[i], pts[(i + 1) % pts.length]);
+    if (d < best) { best = d; bi = i; }
+  }
+  return { idx: bi, dist: best };
+};
+// 一撕派生两片：撕边 = 撕线上由 jag 参数实算的锯齿点列（三角波 × sin 包络、两端归零），
+// 同一点列被两片共用（互补由构造保证）。返回 { a, b, u, n, d, path, full, halves:{neg,pos}, areas }。
+export const tearHalves = (def, a, b) => {
+  const T = def.tear;
+  const A = a || T.line[0], B = b || T.line[1];
+  const full = tearOutlineOf(def);
+  const r1 = insertBoundaryPoint(full, A);
+  if (!r1) throw new Error(`props/${def.element.id} tear 断言失败：撕线起点 (${A}) 不在轮廓边界上——撕裂只能从纸边缺口起（tear-f1）`);
+  const r2 = insertBoundaryPoint(r1.list, B);
+  if (!r2) throw new Error(`props/${def.element.id} tear 断言失败：撕线终点 (${B}) 不在轮廓边界上——裂尖必须抵达对边（tear-f5）`);
+  const list = r2.list, m = list.length;
+  const samePt = (p, q) => Math.hypot(p[0] - q[0], p[1] - q[1]) < 1e-9;
+  const ia = list.findIndex(p => samePt(p, A)), ib = list.findIndex(p => samePt(p, B));
+  const chain = (from, to) => {
+    const out = [];
+    let i = from;
+    for (;;) { out.push(list[i]); if (i === to) break; i = (i + 1) % m; }
+    return out;
+  };
+  const chainAB = chain(ia, ib), chainBA = chain(ib, ia);
+  const dx = B[0] - A[0], dy = B[1] - A[1], dist = Math.hypot(dx, dy);
+  if (!(dist > 1e-9)) throw new Error(`props/${def.element.id} tear 断言失败：撕线两点重合，方向未定义`);
+  const u = [dx / dist, dy / dist], n = [-u[1], u[0]];
+  const d = n[0] * A[0] + n[1] * A[1];
+  const cnt = Math.max(2, Math.round(dist / T.jag.step));
+  const interior = [];
+  for (let k = 1; k < cnt; k++) {
+    const s = k / cnt, phase = (s * dist) / T.jag.step, f = phase % 2;
+    const tri = f < 1 ? 2 * f - 1 : 1 - 2 * (f - 1);
+    const off = T.jag.amp * tri * Math.sin(Math.PI * s);
+    interior.push([A[0] + dx * s + n[0] * off, A[1] + dy * s + n[1] * off]);
+  }
+  const path = [A, ...interior, B];
+  const h1 = [...chainAB, ...[...interior].reverse()];
+  const h2 = [...chainBA, ...interior];
+  const centroid = (poly) => { let x = 0, y = 0; for (const p of poly) { x += p[0]; y += p[1]; } return [x / poly.length, y / poly.length]; };
+  const c1 = centroid(h1);
+  const halves = (n[0] * c1[0] + n[1] * c1[1] - d) < 0 ? { neg: h1, pos: h2 } : { neg: h2, pos: h1 };
+  return {
+    a: A, b: B, u, n, d, path, full,
+    halves,
+    areas: { full: polyArea(full), neg: polyArea(halves.neg), pos: polyArea(halves.pos) },
+  };
+};
+// 构建期断言（T1 契约）：两片面积守恒且每片 ∈ (1%, 99%)；起终点在边界且分属不同边
+//（起点另须与 tear.notch 的边界性一致）；撕边投影严格单调（单裂尖）；撕边偏幅 ≥ amp/2
+//（毛糙、不得笔直如切口）；撕边内部点逐点被两片共用（互补）。返回 { ratioNeg, maxOff }。
+export const assertTearConservation = (def, res) => {
+  const id = def.element.id, A = res.areas;
+  if (!(A.full > 0)) throw new Error(`props/${id} tear 断言失败：轮廓面积为 0`);
+  if (Math.abs(A.neg + A.pos - A.full) > Math.max(A.full * 1e-6, 1e-9))
+    throw new Error(`props/${id} tear 断言失败：两片面积和 ${(A.neg + A.pos).toFixed(1)} ≠ 原纸面积 ${A.full.toFixed(1)}（守恒破坏——撕出整纸复制或丢料）`);
+  for (const [side, ar] of [['neg', A.neg], ['pos', A.pos]]) {
+    const r = ar / A.full;
+    if (!(r > 0.01 && r < 0.99))
+      throw new Error(`props/${id} tear 断言失败：${side} 片面积占比 ${(r * 100).toFixed(1)}% 不在 (1%, 99%)——一撕只能派生两片，禁止整纸复制/退化撕`);
+  }
+  const notchEdge = boundaryEdgeOf(res.full, def.tear.notch);
+  if (notchEdge.dist > 1e-6)
+    throw new Error(`props/${id} tear 断言失败：tear.notch (${def.tear.notch}) 距轮廓边界 ${notchEdge.dist.toFixed(3)} > 1e-6——缺口必须在纸边上（tear-f1）`);
+  const eA = boundaryEdgeOf(res.full, res.a), eB = boundaryEdgeOf(res.full, res.b);
+  if (eA.dist > 1e-6) throw new Error(`props/${id} tear 断言失败：撕线起点距轮廓边界 ${eA.dist.toFixed(3)} > 1e-6（撕裂只能从纸边起）`);
+  if (eB.dist > 1e-6) throw new Error(`props/${id} tear 断言失败：撕线终点距轮廓边界 ${eB.dist.toFixed(3)} > 1e-6（裂尖未抵达对边）`);
+  if (eA.idx === eB.idx) throw new Error(`props/${id} tear 断言失败：撕线起终点落在同一条轮廓边上（未贯通对边，两片不成立）`);
+  let prev = -Infinity;
+  for (const p of res.path) {
+    const pr = res.u[0] * p[0] + res.u[1] * p[1];
+    if (!(pr > prev + 1e-9)) throw new Error(`props/${id} tear 断言失败：撕边点列投影非单调递增——单个裂尖只能单向推进，不得逆行/回跳（tear-f2）`);
+    prev = pr;
+  }
+  let maxOff = 0;
+  for (const p of res.path) maxOff = Math.max(maxOff, Math.abs(res.n[0] * p[0] + res.n[1] * p[1] - res.d));
+  if (maxOff < def.tear.jag.amp / 2)
+    throw new Error(`props/${id} tear 断言失败：撕边最大偏幅 ${maxOff.toFixed(2)} < jag.amp/2 ${def.tear.jag.amp / 2}——撕边笔直如刀切，与毛糙断口口径不符（tear-f4）`);
+  const inPoly = (poly, p) => poly.some(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < 1e-9);
+  for (const p of res.path.slice(1, -1))
+    if (!inPoly(res.halves.neg, p) || !inPoly(res.halves.pos, p))
+      throw new Error(`props/${id} tear 断言失败：撕边点 (${p.map(v => v.toFixed(1)).join(',')}) 未被两片共用——撕边互补破坏（tear-f4）`);
+  return { ratioNeg: A.neg / A.full, maxOff };
+};
+// 可撕物绘制：贯通（progress ≥ 1）时两片各自 clip 后回放全部部件 + 描纤维撕边（绘制前先过
+// assertTearConservation）；未贯通时整纸直绘 + 裂口线推进至 progress（两片不得独立位移，tear-f5）。
+// opts: { a, b } 撕线（默认 def.tear.line）、sep 两片沿撕线法向各自分开的距离、progress 0..1。
+export const drawTorn = (g, def, opts = {}) => {
+  const res = tearHalves(def, opts.a, opts.b);
+  const progress = opts.progress == null ? 1 : opts.progress;
+  const fiberStroke = () => { g.strokeStyle = resolve(def, def.tear.edge.stroke); g.lineWidth = def.tear.edge.lineWidth || 2; g.stroke(); };
+  if (progress >= 1) {
+    assertTearConservation(def, res);
+    const sep = opts.sep || 0, n = res.n;
+    g.lineJoin = 'round'; g.lineCap = 'round';
+    for (const side of ['neg', 'pos']) {
+      const sgn = side === 'neg' ? -1 : 1;
+      const dx = n[0] * sgn * sep, dy = n[1] * sgn * sep;
+      const poly = res.halves[side];
+      g.save();
+      g.translate(dx, dy);
+      g.beginPath();
+      poly.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])));
+      g.closePath(); g.clip();
+      for (const part of [...def.parts].sort((x, y) => x.z - y.z)) drawShapes(g, def, part.shapes);
+      g.restore();
+      g.beginPath();
+      res.path.forEach((p, i) => (i ? g.lineTo(p[0] + dx, p[1] + dy) : g.moveTo(p[0] + dx, p[1] + dy)));
+      fiberStroke();
+    }
+    return res;
+  }
+  drawElement(g, def, opts);
+  const path = res.path;
+  const lens = [0];
+  for (let i = 1; i < path.length; i++) lens.push(lens[i - 1] + Math.hypot(path[i][0] - path[i - 1][0], path[i][1] - path[i - 1][1]));
+  const target = progress * lens[lens.length - 1];
+  g.beginPath();
+  g.moveTo(path[0][0], path[0][1]);
+  for (let i = 1; i < path.length; i++) {
+    if (lens[i] <= target) { g.lineTo(path[i][0], path[i][1]); continue; }
+    const t = (target - lens[i - 1]) / (lens[i] - lens[i - 1] || 1);
+    g.lineTo(path[i - 1][0] + (path[i][0] - path[i - 1][0]) * t, path[i - 1][1] + (path[i][1] - path[i - 1][1]) * t);
+    break;
+  }
+  fiberStroke();
+  return res;
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/bottle.yaml v1） =================
+export const BOTTLE = {
+  element: { id: 'bottle', kind: 'prop', version: 1, title: '瓶子（玻璃瓶）' },
+  placement: { world: [1150, 560] },
+  skin: {
+    tokens: { glass: 'rgba(150,200,170,.45)', edge: '#4e7a5e', juice: '#e0952f', water: '#7db8dd', highlight: 'rgba(255,255,255,.30)' },
+  },
+  parts: [
+    { id: 'body', pivot: [0, 0], z: 1, anchors: { mouth: [0, -52], neck: [0, -44], base: [0, 64] },
+      shapes: [
+        { type: 'path', segments: [['M', -15, -52], ['L', 15, -52], ['L', 13, -38], ['C', 12, -26, 40, -22, 40, -2], ['L', 40, 58], ['Q', 40, 64, 34, 64], ['L', -34, 64], ['Q', -40, 64, -40, 58], ['L', -40, -2], ['C', -40, -22, -12, -26, -13, -38], ['Z']], style: { fill: 'skin.glass', stroke: 'skin.edge', lineWidth: 3.5 } },
+        { type: 'path', segments: [['M', -15, -52], ['L', 15, -52], ['L', 15, -45], ['L', -15, -45], ['Z']], style: { fill: 'skin.edge' } },
+        { type: 'ellipse', at: [-20, 10], radii: [7, 26], style: { fill: 'skin.highlight' } },
+      ] },
+    { id: 'liquid', pivot: [0, 0], z: 2, shapes: [{ type: 'liquidFill' }] },
+  ],
+  params: {
+    wall: 4,
+    cavity: { standard: { rimY: -16, bottomY: 56, halfTop: 30, halfBottom: 36 } },
+    mouthW: { design: 30 },
+  },
+  profiles: { standard: { parts: ['body', 'liquid'] } },
+};
+// 构建期断言（bottle）：瓶口锚点在轮廓顶沿正中且口宽与 design 对账（差 ≤ 0.5）；瓶颈高位段
+// 半宽（实算）< 瓶身半宽 × 0.5；腔体两半宽 + wall 不得宽出瓶身。返回 { mouthW, neckHalf, bodyHalf }。
+export const assertBottleGeometry = (def) => {
+  const id = def.element.id;
+  const body = partOf(def, 'body');
+  const outline = flattenSegs(body.shapes[0].segments);
+  const bb = polyBBox(outline);
+  const mouth = body.anchors.mouth;
+  if (Math.abs(mouth[1] - bb.y0) > 1e-6)
+    throw new Error(`props/${id} bottle 断言失败：瓶口锚点 y ${mouth[1]} ≠ 轮廓顶沿 y ${bb.y0}（瓶口必须在轮廓最高处）`);
+  const topPts = outline.filter(p => Math.abs(p[1] - bb.y0) < 1e-6);
+  const tx0 = Math.min(...topPts.map(p => p[0])), tx1 = Math.max(...topPts.map(p => p[0]));
+  const mouthW = tx1 - tx0;
+  if (Math.abs(mouth[0] - (tx0 + tx1) / 2) > 1e-6)
+    throw new Error(`props/${id} bottle 断言失败：瓶口锚点 x ${mouth[0]} 不在顶沿正中 ${(tx0 + tx1) / 2}`);
+  const design = def.params && def.params.mouthW && def.params.mouthW.design;
+  if (design != null && Math.abs(mouthW - design) > 0.5)
+    throw new Error(`props/${id} bottle 断言失败：瓶口宽实算 ${mouthW.toFixed(1)} 与 design ${design} 不一致`);
+  const bodyHalf = bb.w / 2;
+  const neckHalf = Math.max(...outline.filter(p => p[1] <= bb.y0 + 18).map(p => Math.abs(p[0])));
+  if (!(neckHalf < bodyHalf * 0.5))
+    throw new Error(`props/${id} bottle 断言失败：瓶颈半宽实算 ${neckHalf.toFixed(1)} 不小于瓶身半宽 ${bodyHalf.toFixed(1)} 的一半（瓶颈必须显著窄于瓶身）`);
+  const cav = def.params.cavity.standard, wall = def.params.wall;
+  if (cav.halfBottom + wall > bodyHalf + 1e-9 || cav.halfTop + wall > bodyHalf + 1e-9)
+    throw new Error(`props/${id} bottle 断言失败：cavity 半宽（底 ${cav.halfBottom} / 口 ${cav.halfTop}）+ wall ${wall} 宽出瓶身半宽 ${bodyHalf}（液面会画出瓶壁）`);
+  return { mouthW, neckHalf, bodyHalf };
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/tap.yaml v1） =================
+export const TAP = {
+  element: { id: 'tap', kind: 'prop', version: 1, title: '水龙头' },
+  placement: { world: [700, 300] },
+  skin: {
+    tokens: { metal: '#c7ccd4', metalEdge: '#7d838c', metalDark: '#9aa0a8', handle: '#b5651d', handleEdge: '#7c4210', water: 'rgba(110,180,230,.55)' },
+  },
+  parts: [
+    { id: 'body', pivot: [0, 0], z: 1, anchors: { mount: [-88, -40] },
+      shapes: [
+        { type: 'path', segments: [['M', -88, -46], ['L', 12, -46], ['L', 12, -34], ['L', -88, -34], ['Z']], style: { fill: 'skin.metal', stroke: 'skin.metalEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', -12, -46], ['L', 12, -46], ['L', 12, -14], ['L', -12, -14], ['Z']], style: { fill: 'skin.metal', stroke: 'skin.metalEdge', lineWidth: 3 } },
+        { type: 'circle', at: [-88, -40], r: 9, style: { fill: 'skin.metalEdge' } },
+      ] },
+    { id: 'spout', pivot: [0, 0], z: 2, anchors: { outlet: [0, 0] },
+      shapes: [
+        { type: 'path', segments: [['M', -10, -14], ['L', 10, -14], ['L', 8, 0], ['L', -8, 0], ['Z']], style: { fill: 'skin.metalDark', stroke: 'skin.metalEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', -10, -14], ['L', 10, -14], ['L', 10, -9], ['L', -10, -9], ['Z']], style: { fill: 'skin.metalEdge' } },
+      ] },
+    { id: 'handle', pivot: [0, 0], z: 3, anchors: { grip: [0, -61] },
+      shapes: [
+        { type: 'path', segments: [['M', -3, -58], ['L', 3, -58], ['L', 3, -46], ['L', -3, -46], ['Z']], style: { fill: 'skin.metalDark' } },
+        { type: 'path', segments: [['M', -24, -64], ['L', 24, -64], ['L', 24, -58], ['L', -24, -58], ['Z']], style: { fill: 'skin.handle', stroke: 'skin.handleEdge', lineWidth: 2.5 } },
+        { type: 'circle', at: [-24, -61], r: 4.5, style: { fill: 'skin.handleEdge' } },
+        { type: 'circle', at: [24, -61], r: 4.5, style: { fill: 'skin.handleEdge' } },
+      ] },
+    { id: 'stream', pivot: [0, 0], z: 4, profiles: ['on'], anchors: { inlet: [0, 1] },
+      shapes: [
+        { type: 'path', segments: [['M', -6, 1], ['C', -4, 30, -3.5, 60, -3, 90], ['L', 3, 90], ['C', 3.5, 60, 4, 30, 6, 1], ['Z']], style: { fill: 'skin.water' } },
+      ] },
+  ],
+  params: { outletW: { design: 16 }, streamLen: { design: 90 } },
+  profiles: {
+    off: { parts: ['body', 'spout', 'handle'] },
+    on: { parts: ['body', 'spout', 'handle', 'stream'] },
+  },
+};
+// 部件轮廓点集（path 段表打平 + circle 以圆心 ±r 角点并入 bbox 口径）
+const partOutlinePts = (part) => {
+  const pts = [];
+  for (const s of part.shapes || []) {
+    if (s.type === 'path') pts.push(...flattenSegs(s.segments));
+    else if (s.type === 'circle') pts.push([s.at[0] - s.r, s.at[1] - s.r], [s.at[0] + s.r, s.at[1] + s.r]);
+  }
+  return pts;
+};
+// 构建期断言（tap）：出水口锚点在出水嘴下沿正中、口宽与 design 对账（差 ≤ 0.5）；水流自出水口
+// 向下（stream 上界 ≥ outlet.y、顶沿中点对准 outlet、流长与 design 对账）；grip 在把手轮廓内。
+// 返回 { outletW, streamLen }。
+export const assertTapGeometry = (def) => {
+  const id = def.element.id;
+  const spout = partOf(def, 'spout');
+  const sbb = polyBBox(partOutlinePts(spout));
+  const outlet = spout.anchors.outlet;
+  if (Math.abs(outlet[1] - sbb.y1) > 1e-6)
+    throw new Error(`props/${id} tap 断言失败：出水口锚点 y ${outlet[1]} ≠ 出水嘴轮廓下界 ${sbb.y1}（出水口必须在出水嘴正下方）`);
+  if (Math.abs(outlet[0] - (sbb.x0 + sbb.x1) / 2) > 1e-6)
+    throw new Error(`props/${id} tap 断言失败：出水口锚点 x ${outlet[0]} 不在出水嘴横向正中 ${(sbb.x0 + sbb.x1) / 2}`);
+  const botPts = partOutlinePts(spout).filter(p => Math.abs(p[1] - sbb.y1) < 1e-6);
+  const outletW = Math.max(...botPts.map(p => p[0])) - Math.min(...botPts.map(p => p[0]));
+  const wDesign = def.params && def.params.outletW && def.params.outletW.design;
+  if (wDesign != null && Math.abs(outletW - wDesign) > 0.5)
+    throw new Error(`props/${id} tap 断言失败：出水口宽实算 ${outletW.toFixed(1)} 与 design ${wDesign} 不一致`);
+  let streamLen = null;
+  const stream = def.parts.find(p => p.id === 'stream');
+  if (stream) {
+    const stPts = partOutlinePts(stream);
+    const stb = polyBBox(stPts);
+    if (stb.y0 < outlet[1] - 1e-9)
+      throw new Error(`props/${id} tap 断言失败：水流轮廓上界 ${stb.y0} 高于出水口 y ${outlet[1]}——水流只能自出水口向下（stream-down）`);
+    const topPts = stPts.filter(p => Math.abs(p[1] - stb.y0) < 1e-6);
+    const topCx = (Math.min(...topPts.map(p => p[0])) + Math.max(...topPts.map(p => p[0]))) / 2;
+    if (Math.abs(topCx - outlet[0]) > 1)
+      throw new Error(`props/${id} tap 断言失败：水柱顶沿中点 x ${topCx.toFixed(1)} 与出水口 x ${outlet[0]} 横偏 > 1（水柱未对准出水口）`);
+    streamLen = stb.y1 - outlet[1];
+    const lDesign = def.params && def.params.streamLen && def.params.streamLen.design;
+    if (lDesign != null && Math.abs(streamLen - lDesign) > 0.5)
+      throw new Error(`props/${id} tap 断言失败：水流长实算 ${streamLen.toFixed(1)} 与 design ${lDesign} 不一致`);
+  }
+  const handle = partOf(def, 'handle');
+  const hbb = polyBBox(partOutlinePts(handle));
+  const grip = handle.anchors.grip;
+  if (grip[0] < hbb.x0 - 1e-9 || grip[0] > hbb.x1 + 1e-9 || grip[1] < hbb.y0 - 1e-9 || grip[1] > hbb.y1 + 1e-9)
+    throw new Error(`props/${id} tap 断言失败：把手锚点 grip (${grip}) 落在把手轮廓 (${hbb.x0},${hbb.y0})..(${hbb.x1},${hbb.y1}) 之外`);
+  return { outletW, streamLen };
+};
+
+ELEMENTS.bowl = BOWL;
+ELEMENTS.cake = CAKE;
+ELEMENTS.door = DOOR;
+ELEMENTS.ball = BALL;
+ELEMENTS.paper = PAPER;
+ELEMENTS.bottle = BOTTLE;
+ELEMENTS.tap = TAP;

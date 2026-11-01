@@ -1,0 +1,96 @@
+# ============================================================================
+# 元素库 · bottle（瓶子）—— 容器元素（pour 出流的第二容器 / fill 的被注侧）；
+# 格式样板见 teapot.yaml；腔体口径与 cup.yaml / bowl.yaml 一致（镜像 fill 基元）：
+# params.cavity[profile] 给内腔几何，液面由 fill 实算，场景不存液面坐标；
+# 瓶口 mouth 是 pour/fill 的对位锚点——出流自瓶口出、入流对瓶口落，场景不许另存偏移。
+# 本元素口径：侧视图，玻璃瓶（宽身、窄颈、瓶口沿）；元素枢轴 = 瓶身中心。
+# ============================================================================
+
+element:
+  id: bottle
+  kind: prop
+  version: 1
+  title: "瓶子（玻璃瓶）"
+
+frame:
+  origin: "元素枢轴 = 瓶身中心（瓶口在上、瓶底在下）"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [1150, 560] # 默认上台位；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（玻璃瓶侧视：半透绿玻璃、瓶口沿、高光带）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    glass: "rgba(150,200,170,.45)"
+    edge: "#4e7a5e"
+    juice: "#e0952f"         # 内容物（fill 内容物令牌，场景按需传 opts.liquid）
+    water: "#7db8dd"        # 同上（水）
+    highlight: "rgba(255,255,255,.30)"
+
+parts:
+  - id: body
+    role: "瓶身（轮廓 + 瓶口沿带 + 高光；腔体计量走 params.cavity）"
+    pivot: [0, 0]
+    anchors:
+      mouth: [0, -52] # 瓶口中心（轮廓上沿中点）：pour 出流点 / fill 入流落点
+      neck: [0, -44] # 瓶颈中段（持瓶对位预留）
+      base: [0, 64] # 瓶底中点（落桌对位）
+    geometry:
+      shapes:
+        - type: path # 瓶身轮廓：瓶口宽 30、瓶颈半宽 ≈14、瓶身宽 80、高 116
+          segments: [["M", -15, -52], ["L", 15, -52], ["L", 13, -38],
+                     ["C", 12, -26, 40, -22, 40, -2],
+                     ["L", 40, 58], ["Q", 40, 64, 34, 64], ["L", -34, 64],
+                     ["Q", -40, 64, -40, 58], ["L", -40, -2],
+                     ["C", -40, -22, -12, -26, -13, -38], ["Z"]]
+          style: { fill: skin.glass, stroke: skin.edge, lineWidth: 3.5 }
+        - type: path # 瓶口沿带
+          segments: [["M", -15, -52], ["L", 15, -52], ["L", 15, -45], ["L", -15, -45], ["Z"]]
+          style: { fill: skin.edge }
+        - type: ellipse # 左侧高光带
+          at: [-20, 10]
+          radii: [7, 26]
+          style: { fill: skin.highlight }
+    z: 1
+  - id: liquid
+    role: "内容物（fill 基元绘制：shape 类型 liquidFill，几何由 cavity + fill 实算，无静态段表）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: liquidFill # 渲染器按 cavity 与 opts.fill/opts.liquid 绘制（与 cup 同一实算路径）
+    z: 2
+
+anchors:
+  mouth: { from: "parts.body.anchors.mouth", use: "瓶口中心：pour 倾倒时液柱自此点出、fill 时液柱对此点落（与 tap.outlet 同级对位锚点）" }
+  neck: { from: "parts.body.anchors.neck", use: "瓶颈（持瓶对位预留）" }
+  base: { from: "parts.body.anchors.base", use: "瓶底落点（放桌面对位）" }
+  liquidSurface: { from: "fill 基元 liquidSurfaceEnds(def, 'standard', fill) 由 cavity 实算", use: "液面线两端点（随注入量上升）" }
+
+params:
+  wall: 4 # 壁厚（瓶身处：bodyHalf 40 − cavity.halfBottom 36；断言口径）
+  cavity:
+    standard: { rimY: -16, bottomY: 56, halfTop: 30, halfBottom: 36 } # 内腔（局部坐标）：rimY = 液面可达上界（肩部起始）；液面 y 在 rimY..bottomY 间随 fill 插值，半宽在 halfBottom..halfTop 间插值（与 cup 同口径）
+  mouthW:
+    design: 30 # 瓶口宽（轮廓上沿两端点距离）
+    computed: 30 # 轮廓段表打平实算：y = bbox 上界处两端点 x 差（模块 assertBottleGeometry 实算）
+    formula: "轮廓在顶沿 y 处的端点距离，不手填"
+  neckHalf:
+    computed: 15 # 瓶颈半宽实算：轮廓在颈部高位段（y ≤ −34）的最大 |x|（模块实算回填）
+
+profiles:
+  standard: { parts: [body, liquid], note: "玻璃瓶（唯一剖面）" }
+
+assertions:
+  - id: mouth-on-top
+    rule: "瓶口锚点必须落在轮廓顶沿正中：mouth.y = 轮廓 bbox 上界、mouth.x = 顶沿两端点中点；顶沿端点距离 = params.mouthW.design（差 ≤ 0.5）"
+    enforcedBy: "v5/props/props.js 的 assertBottleGeometry（构建期执行，不过抛错停建）"
+  - id: neck-narrower
+    rule: "瓶颈必须显著窄于瓶身：颈部高位段轮廓最大 |x|（实算）< 瓶身半宽（bbox 宽/2 实算）× 0.5"
+    enforcedBy: "v5/props/props.js 的 assertBottleGeometry"
+  - id: cavity-inside
+    rule: "腔体必须在瓶身内：cavity.halfBottom + wall ≤ 瓶身半宽；cavity.halfTop + wall ≤ 瓶身半宽（液面不得画出瓶壁）"
+    enforcedBy: "v5/props/props.js 的 assertBottleGeometry（fill 上界另由 assertFill 守 [0,1]，与 cup 共用）"

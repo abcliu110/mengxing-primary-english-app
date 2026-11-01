@@ -1,0 +1,118 @@
+# ============================================================================
+# 元素库 · cake（蛋糕）—— 可切物元素（cut 基元的被切侧第三员）；格式样板见 teapot.yaml；
+# 可切契约 C1 见 apple.yaml 文件头（cut.outlinePart / axis / face / details 的声明口径与
+# cut 基元契约全文），本文件同构增补、不再复述。
+# 本元素口径：圆蛋糕侧视（海绵体 + 奶油顶层 + 樱桃），默认切线竖直过中心——
+# 一刀派生左右两半（场景切块时经 opts.a/b 传自己的切线，契约断言同一套）。
+# ============================================================================
+
+element:
+  id: cake
+  kind: prop
+  version: 1
+  title: "蛋糕（可切物）"
+
+frame:
+  origin: "元素枢轴 = 蛋糕中心（轮廓包围盒中心附近）"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [1000, 490] # 默认上台位；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（圆蛋糕侧视：金黄海绵体、粉色奶油顶、樱桃）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    sponge: "#f2c14e"
+    edge: "#c68f2a"
+    crumb: "#fbe7b2"
+    crumbEdge: "#dfae54"
+    frosting: "#f6a8bc"
+    frostingEdge: "#dd7f97"
+    cherry: "#c0272d"
+    stem: "#7a4a21"
+    highlight: "rgba(255,255,255,.28)"
+
+parts:
+  - id: body
+    role: "糕体（轮廓部件：cut.outlinePart 指向本部件，切以其轮廓实算）"
+    pivot: [0, 0]
+    anchors:
+      top: [0, -37]
+      bottom: [0, 32]
+    geometry:
+      shapes:
+        - type: path # 糕体轮廓（圆顶矩形：宽 144、高 69）
+          segments: [["M", -72, 32], ["L", -72, -14],
+                     ["C", -72, -29, -54, -37, 0, -37],
+                     ["C", 54, -37, 72, -29, 72, -14],
+                     ["L", 72, 32], ["Z"]]
+          style: { fill: skin.sponge, stroke: skin.edge, lineWidth: 3.5 }
+        - type: ellipse # 左上高光
+          at: [-30, -12]
+          radii: [16, 8]
+          rot: -0.2
+          style: { fill: skin.highlight }
+    z: 1
+  - id: frosting
+    role: "奶油顶层（沿糕顶铺展、下缘波浪垂落；切时随所在半侧走，由 drawCuttable 的 clip 决定归属）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -72, -14], ["C", -72, -29, -54, -37, 0, -37],
+                     ["C", 54, -37, 72, -29, 72, -14],
+                     ["C", 50, -8, 30, -16, 12, -10],
+                     ["C", -4, -5, -20, -14, -36, -9],
+                     ["C", -52, -4, -64, -10, -72, -14], ["Z"]]
+          style: { fill: skin.frosting, stroke: skin.frostingEdge, lineWidth: 2.5 }
+    z: 2
+  - id: cherry
+    role: "樱桃（顶饰；切时随所在半侧走）"
+    pivot: [0, 0]
+    anchors:
+      cherryTop: [10, -58]
+    geometry:
+      shapes:
+        - type: strokePath
+          segments: [["M", 0, -48], ["C", 2, -54, 6, -57, 10, -58]]
+          style: { stroke: skin.stem, lineWidth: 3 }
+        - type: circle
+          at: [0, -42]
+          r: 7
+          style: { fill: skin.cherry, stroke: skin.frostingEdge, lineWidth: 2 }
+    z: 3
+
+anchors:
+  top: { from: "parts.body.anchors.top", use: "糕顶（圆顶最高点）" }
+  bottom: { from: "parts.body.anchors.bottom", use: "糕底落点（放桌面/盘面对位）" }
+  center: { at: [0, 0], use: "糕心：默认切线过此点" }
+
+cut:
+  outlinePart: body
+  axis: [[0, -70], [0, 70]] # 默认切线：竖直过糕心，两端点伸出轮廓之外
+  face: { depth: 6, fill: skin.crumb, edge: skin.crumbEdge }
+  details:
+    - { kind: pore, along: 0.30, 'off': 4, r: 2.4, style: { fill: skin.crumbEdge } }
+    - { kind: pore, along: 0.55, 'off': 4, r: 2.8, style: { fill: skin.crumbEdge } }
+    - { kind: pore, along: 0.80, 'off': 4, r: 2.4, style: { fill: skin.crumbEdge } }
+
+params:
+  width:
+    design: 144 # 轮廓包围盒宽（设计口径取实算整数值）
+    computed: 144 # 轮廓段表打平实算（T16 P2 验证套件输出回填）
+    formula: "轮廓多边形 bbox 宽（曲线打平后实算），不手填"
+  height:
+    design: 69 # 轮廓包围盒高
+    computed: 69 # 同上实算
+    formula: "轮廓多边形 bbox 高（曲线打平后实算），不手填"
+
+assertions:
+  - id: cut-conservation
+    rule: "默认切线一刀：两半面积和 = 整物面积（相对差 ≤ 1e-6）；每半面积 ∈ 整物的 (1%, 99%)；两半法向宽度和 = 整物宽度；切口弦端点在轮廓边界上"
+    enforcedBy: "v5/props/props.js 的 assertCutConservation（drawCuttable 绘制前先行执行，不过抛错停建）"
+  - id: no-whole-copy
+    rule: "任一半的轮廓不得等于整物轮廓（禁止切出整物复制）"
+    enforcedBy: "同上：每半面积 < 整物面积 × 0.99 即等价拦截"

@@ -1,0 +1,123 @@
+# ============================================================================
+# 元素库 · door（门）—— 铰接元素（open/close 基元的载体）；格式样板见 teapot.yaml；
+# 铰接格式扩展 H1 见 book.yaml 文件头（part.hinge + pivot、profiles.hingeDeg、
+# drawHinged 施加旋转、hingeTipAt 实算锚点），本文件同构复用、不再复述。
+# 本元素口径：正视图，门框静止（门洞 + 两侧门框 + 门槛），门扇绕左侧门框枢轴开合：
+# 闭合时门扇自铰链向 +x 盖满门洞；打开 = 门扇向左翻（hingeDeg 0 → -120，与 book 同口径的
+# 正视示意旋转——门扇绕竖直铰链的转开在正视图里以绕枢轴平面旋转示意，场景层不另存坐标）。
+# ============================================================================
+
+element:
+  id: door
+  kind: prop
+  version: 1
+  title: "门（带框木门）"
+
+frame:
+  origin: "元素枢轴 = 门洞中心"
+  x: "+x 向右（闭合时门扇展开方向）"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [960, 480] # 默认上台位；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（木门正视图：深色门框、木门扇双嵌板、黄铜门把）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    frame: "#8a6a48"
+    frameEdge: "#6e5233"
+    beyond: "#4a4238"        # 门洞内（门后空间，暗面）
+    panel: "#a5713d"
+    panelIn: "#bd8a52"
+    panelEdge: "#7c4210"
+    knob: "#d9a441"
+
+parts:
+  - id: frame
+    role: "门框（静止：门洞暗面 + 左右门框 + 上框 + 门槛）"
+    pivot: [0, 0]
+    anchors:
+      jambL: [-56, 0] # 门洞左缘中点（与门扇铰链同点）
+      jambR: [56, 0] # 门洞右缘中点
+      openingTL: [-56, -112] # 门洞左上角
+      openingBR: [56, 112] # 门洞右下角
+      threshold: [0, 112] # 门槛（地面线对位）
+    geometry:
+      shapes:
+        - type: path # 门洞暗面（门后空间）
+          segments: [["M", -56, -112], ["L", 56, -112], ["L", 56, 112], ["L", -56, 112], ["Z"]]
+          style: { fill: skin.beyond }
+        - type: path # 左门框
+          segments: [["M", -70, -118], ["L", -56, -118], ["L", -56, 118], ["L", -70, 118], ["Z"]]
+          style: { fill: skin.frame, stroke: skin.frameEdge, lineWidth: 3 }
+        - type: path # 右门框
+          segments: [["M", 56, -118], ["L", 70, -118], ["L", 70, 118], ["L", 56, 118], ["Z"]]
+          style: { fill: skin.frame, stroke: skin.frameEdge, lineWidth: 3 }
+        - type: path # 上框
+          segments: [["M", -56, -118], ["L", 56, -118], ["L", 56, -112], ["L", -56, -112], ["Z"]]
+          style: { fill: skin.frame, stroke: skin.frameEdge, lineWidth: 3 }
+        - type: path # 门槛
+          segments: [["M", -70, 112], ["L", 70, 112], ["L", 70, 118], ["L", -70, 118], ["Z"]]
+          style: { fill: skin.frameEdge }
+    z: 1
+  - id: panel
+    role: "门扇（铰接部件：绕左侧门框枢轴开合）"
+    hinge: true
+    pivot: [-56, 0] # 铰链中心 = 门洞左缘中点（与 frame 的 jambL 同点）
+    anchors:
+      tip: [56, 0] # 门扇外缘中点（闭合时抵门洞右缘）
+      knob: [42, 6] # 门把（近外缘，随门扇走；任意角位置由 hingeTipAt 实算）
+      hingeEnd: [-56, 0]
+    geometry:
+      shapes:
+        - type: path # 门扇板（112 × 224，与门洞同尺寸：闭合盖满）
+          segments: [["M", -56, -112], ["L", 56, -112], ["L", 56, 112], ["L", -56, 112], ["Z"]]
+          style: { fill: skin.panel, stroke: skin.panelEdge, lineWidth: 3 }
+        - type: path # 上嵌板
+          segments: [["M", -40, -94], ["L", 40, -94], ["L", 40, -14], ["L", -40, -14], ["Z"]]
+          style: { fill: skin.panelIn, stroke: skin.panelEdge, lineWidth: 2.5 }
+        - type: path # 下嵌板
+          segments: [["M", -40, 10], ["L", 40, 10], ["L", 40, 94], ["L", -40, 94], ["Z"]]
+          style: { fill: skin.panelIn, stroke: skin.panelEdge, lineWidth: 2.5 }
+        - type: circle # 门把（随门扇铰接）
+          at: [42, 6]
+          r: 5.5
+          style: { fill: skin.knob, stroke: skin.panelEdge, lineWidth: 2 }
+    z: 2
+
+anchors:
+  hingePivot: { from: "parts.panel.pivot（= parts.frame.anchors.jambL）", use: "门扇铰链中心；open/close 一切角度绕此点" }
+  panelTip: { from: "parts.panel.anchors.tip", use: "门扇外缘：任意开合角位置由 hingeTipAt 实算" }
+  knob: { from: "parts.panel.anchors.knob", use: "门把：人物手对位点（开/关门动作）；任意角位置由 hingeTipAt 实算" }
+  opening: { from: "parts.frame.anchors.openingTL / openingBR", use: "门洞（人物/物体通过的通道口径）" }
+
+params:
+  panelLen:
+    design: 112 # 枢轴→门扇外缘
+    computed: 112 # 锚点实算：|tip − pivot| = |(56,0)−(−56,0)|（模块 hingeTipAt/assertDoorGeometry 实算）
+    formula: "hypot(panelTip − hingePivot)，由锚点坐标算出，不手填"
+  openingW:
+    computed: 112 # 门洞宽实算：jambR.x − jambL.x = 56 − (−56)
+  openingH:
+    computed: 224 # 门洞高实算：openingBR.y − openingTL.y = 112 − (−112)
+
+profiles:
+  closed: { hingeDeg: 0, note: "门扇盖满门洞（断言 panel-covers-opening 的校验位姿）" }
+  ajar: { hingeDeg: -55, note: "半开" }
+  open: { hingeDeg: -120, note: "全开：门扇翻到门框左侧" }
+
+assertions:
+  - id: hinge-on-jamb
+    rule: "门扇铰链必须与门洞左缘同点：panel.pivot 与 frame.anchors.jambL 逐坐标相等"
+    enforcedBy: "v5/props/props.js 的 assertDoorGeometry（构建期执行，不过抛错停建）"
+  - id: panel-covers-opening
+    rule: "闭合位姿下门扇必须盖满门洞：panelLen（实算）≥ openingW，门扇轮廓高（段表打平实算）≥ openingH"
+    enforcedBy: "v5/props/props.js 的 assertDoorGeometry"
+  - id: knob-inside-panel
+    rule: "门把锚点必须落在门扇轮廓包围盒内（门把不得飘出门扇）"
+    enforcedBy: "v5/props/props.js 的 assertDoorGeometry（轮廓 bbox 实算）"
+  - id: hinge-rigid
+    rule: "门扇为刚体：panelTip 在任意开合角下距铰链恒等于 panelLen"
+    enforcedBy: "v5/props/props.js 的 assertHingeRigid（hingeTipAt 多角度实算）"

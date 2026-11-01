@@ -1,0 +1,110 @@
+# ============================================================================
+# 元素库 · paper（纸）—— 可撕元素（tear 基元的载体）；格式样板见 teapot.yaml。
+#
+# 格式扩展 T1（可撕物 tear 块，本文件首声明）：
+# 可撕物在 element 之外加 `tear:` 块声明撕契约——
+#   tear.outlinePart：轮廓所在部件 id（其第一个 path 形状即纸面轮廓，撕与守恒全由此轮廓实算）；
+#   tear.notch：起始缺口点（元素系；必须落在轮廓边界上——撕裂只能从纸边缺口起，
+#     动作事实卡 refcards/tear.yaml 的 tear-f1）；
+#   tear.line：默认撕线两端点 [起点, 终点]（起点 = notch；终点必须落在与起点不同的一条
+#     轮廓边上——裂尖须抵达对边两片才贯通分离，tear-f5）；
+#   tear.jag：撕边锯齿参数 { amp: 锯齿幅值(px), step: 锯齿节距(px) }——撕边由确定性
+#     锯齿函数（沿撕线等距三角波 × sin 包络，两端点处幅值归零）实算生成，定义里不存
+#     撕边上的裸坐标；同一条撕边曲线被两片共用（此凸彼凹、天然互补，tear-f4）；
+#   tear.edge：撕边的绘制样式（纤维断口色，不得用刀切的平整切面口径）。
+# tear 基元契约（props.js 的 tearHalves / assertTearConservation / drawTorn 实现，
+# 事实依据 refcards/tear.yaml）：
+#   撕 = 一个裂尖沿撕线推进：撕边点列沿撕线方向投影单调递增（单裂尖、无逆行，tear-f2）；
+#   贯通后派生两片——两片 = 轮廓被撕边曲线分开的两块（不是两张纸），断言：两片面积之和
+#   = 原纸面积（守恒，tear-f5）、每片面积严格介于原纸的 1% 与 99% 之间、
+#   起终点各在轮廓边界且分属不同边、撕边最大偏幅 ≥ amp/2（撕边必须毛糙、不得笔直如切口）。
+#   未贯通（progress < 1）时两片不得独立位移：drawTorn 只画整纸 + 已推进的裂口线。
+# ============================================================================
+
+element:
+  id: paper
+  kind: prop
+  version: 1
+  title: "纸（可撕物）"
+
+frame:
+  origin: "元素枢轴 = 纸面中心"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [960, 540] # 默认上台位；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（白纸正视图：浅蓝横线、纤维色撕边）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    paper: "#fdfcf7"
+    edge: "#b9b2a2"
+    line: "#c9d4e2"
+    fiber: "#a89f8c"         # 撕边纤维断口色（与刀切切面色口径不同，不得混用）
+
+parts:
+  - id: sheet
+    role: "纸面（轮廓部件：tear.outlinePart 指向本部件，撕以其轮廓实算）"
+    pivot: [0, 0]
+    anchors:
+      notch: [0, -95] # 起始缺口（= tear.notch，上边中点）
+      gripL: [-32, -95] # 左手握持点（撕线左侧，tear-f1：双手分列撕线两侧）
+      gripR: [32, -95] # 右手握持点（撕线右侧）
+      center: [0, 0]
+    geometry:
+      shapes:
+        - type: path # 纸面轮廓（矩形 150 × 190）
+          segments: [["M", -75, -95], ["L", 75, -95], ["L", 75, 95], ["L", -75, 95], ["Z"]]
+          style: { fill: skin.paper, stroke: skin.edge, lineWidth: 3 }
+    z: 1
+  - id: lines
+    role: "纸面横线（装饰；撕开时随所在片走，由 drawTorn 的 clip 决定归属）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: strokePath
+          segments: [["M", -60, -60], ["L", 60, -60], ["M", -60, -30], ["L", 60, -30],
+                     ["M", -60, 0], ["L", 60, 0], ["M", -60, 30], ["L", 60, 30],
+                     ["M", -60, 60], ["L", 40, 60]]
+          style: { stroke: skin.line, lineWidth: 2.5 }
+    z: 2
+
+anchors:
+  notch: { from: "parts.sheet.anchors.notch（= tear.notch）", use: "撕裂起点：开撕帧的裂口位置（必须在纸边）" }
+  gripL: { from: "parts.sheet.anchors.gripL", use: "左手握持对位（撕线左侧）" }
+  gripR: { from: "parts.sheet.anchors.gripR", use: "右手握持对位（撕线右侧）" }
+  center: { from: "parts.sheet.anchors.center", use: "纸面中心" }
+
+tear:
+  outlinePart: sheet
+  notch: [0, -95] # 起始缺口（上边中点，与 parts.sheet.anchors.notch 同点）
+  line: [[0, -95], [4, 95]] # 默认撕线：自上边缺口至下边（近竖直、自然小幅偏折，tear-f3）
+  jag: { amp: 3.5, step: 16 } # 撕边锯齿：幅值 3.5px、节距 16px（实算生成，非手存坐标）
+  edge: { stroke: skin.fiber, lineWidth: 2 }
+
+params:
+  width:
+    design: 150 # 轮廓包围盒宽
+    computed: 150 # 轮廓段表打平实算（T16 P2 验证套件输出回填）
+    formula: "轮廓多边形 bbox 宽（打平后实算），不手填"
+  height:
+    design: 190 # 轮廓包围盒高
+    computed: 190 # 同上实算
+    formula: "轮廓多边形 bbox 高（打平后实算），不手填"
+
+assertions:
+  - id: tear-conservation
+    rule: "默认撕线贯通一撕：两片面积和 = 原纸面积（相对差 ≤ 1e-6）；每片面积 ∈ 原纸的 (1%, 99%)（禁止撕出整纸复制）"
+    enforcedBy: "v5/props/props.js 的 assertTearConservation（drawTorn 贯通绘制前先行执行，不过抛错停建）"
+  - id: tear-from-notch
+    rule: "撕裂起点 = tear.notch 且落在轮廓边界上（距边界 ≤ 1e-6）；终点同在边界上且与起点分属不同轮廓边（裂尖抵达对边才贯通）"
+    enforcedBy: "v5/props/props.js 的 assertTearConservation（边界距离与边归属均由轮廓实算）"
+  - id: tear-single-tip
+    rule: "撕边点列沿撕线方向的投影严格单调递增（单个裂尖单向推进，不得逆行/回跳）"
+    enforcedBy: "v5/props/props.js 的 assertTearConservation（撕边点列实算复核）"
+  - id: tear-edge-rough
+    rule: "撕边最大偏幅 ≥ jag.amp/2（撕边毛糙、与刀切平整切面不混画）；撕边点列被两片共用（互补性由构造保证、断言逐点复核）"
+    enforcedBy: "v5/props/props.js 的 assertTearConservation"

@@ -1,0 +1,56 @@
+# T16 P2 第二批元素完成记录：bowl / cake / door / ball / paper / bottle / tap
+
+日期：2026-11-01
+范围：只做元素定义 + 引擎 + 验证套件，**未改任何场景模板、未动任何 KNOW/ITEMS**，未做 git 操作（提交留主会话）。
+引擎纪律：props.js 为**纯追加**（git diff +516/−0，既有导出与行为一字未动）；ELEMENTS 现共 15 元素。
+新格式声明：**T1 可撕契约**（paper.yaml 文件头首声明）；cake 复用 C1、door 复用 H1、bowl/bottle 镜像 cup 的 fill 口径，均无新格式。
+
+## 1. 交付物
+
+| 文件 | 内容 |
+|---|---|
+| docs/whiteboard/model/props/bowl.yaml | 新元素 bowl v1（容器，fill 口径） |
+| docs/whiteboard/model/props/cake.yaml | 新元素 cake v1（可切物，C1 增补第三员） |
+| docs/whiteboard/model/props/door.yaml | 新元素 door v1（铰接，H1 复用） |
+| docs/whiteboard/model/props/ball.yaml | 新元素 ball v1（球体，仅几何/锚点 + 运动学占位） |
+| docs/whiteboard/model/props/paper.yaml | 新元素 paper v1（可撕物，首声明 T1 撕契约） |
+| docs/whiteboard/model/props/bottle.yaml | 新元素 bottle v1（容器，瓶口锚点 + fill 口径） |
+| docs/whiteboard/model/props/tap.yaml | 新元素 tap v1（出水口锚点 + 水流方向断言） |
+| docs/whiteboard/v5/props/props.js | 末尾纯追加段：7 元素同步副本 + assertBowlGeometry / assertDoorGeometry / assertBallGeometry / tear 基元（tearOutlineOf/tearHalves/assertTearConservation/drawTorn）/ assertBottleGeometry / assertTapGeometry + partOutlinePts；ELEMENTS 追加 7 键（共 15） |
+| ~/workspace/build_t16p0/test_t16p2.mjs | 本批验证套件（64 项，全 PASS，见 §4） |
+| ~/workspace/build_t16p0/mirror_check_p2.py | YAML↔JS 镜像对账脚本（7 元素逐字段，ALL MATCH，见 §4） |
+
+## 2. 各元素锚点清单（语义名 → 出处；原语只认锚点名）
+
+- **bowl**：rim（body.anchors.rimL/rimR 中点 (0,0)）、base（body.anchors.base [0,46]，圈足落点）、liquidSurface（fill 基元 liquidSurfaceEnds(def,'standard',fill) 由 cavity 实算）。
+- **cake**：top [0,-37]、bottom [0,32]、center [0,0]（默认切线过此点）；cut 块同 apple 口径（outlinePart=body、axis 竖直、face 气孔 details ×3）。
+- **door**：hingePivot（panel.pivot [-56,0] = frame.anchors.jambL）、panelTip（panel.anchors.tip [56,0]，任意角 hingeTipAt 实算）、knob（panel.anchors.knob [42,6]，人物手对位）、opening（frame.anchors.openingTL/openingBR）。
+- **ball**：center [0,0]、contact [0,46]（= center + [0,r]，地面相切点）、top [0,-46]。
+- **paper**：notch（sheet.anchors.notch [0,-95] = tear.notch）、gripL [-32,-95] / gripR [32,-95]（双手分列撕线两侧，tear-f1）、center [0,0]。
+- **bottle**：mouth（body.anchors.mouth [0,-52]，pour 出流点 / fill 入流落点）、neck [0,-44]、base [0,64]、liquidSurface（fill 基元实算）。
+- **tap**：outlet（spout.anchors.outlet [0,0]，元素枢轴同点；fill 落点对位与水流起点）、mount（body.anchors.mount [-88,-40]）、handleGrip（handle.anchors.grip [0,-61]）。
+
+## 3. 各元素断言清单（全部构建期执行、不过抛错停建；负例见 §4）
+
+- **bowl**（assertBowlGeometry + 共用 assertFill/liquidSurfaceEnds）：cavity-consistent——halfTop(54)+wall(8) = 口沿半宽 62（锚点实算）、内腔面轮廓 bbox 与 cavity 逐项对位、圈足底 base.y = 外形轮廓下界 46；fill ∈ [0,1] 不溢出；液面半宽恒为 cavity 插值（fill 0.85 → 液面 y 8.35、半宽 50.1）。
+- **cake**（assertCutConservation，drawCuttable 前行）：C1 四条全套——面积守恒、每半 ∈ (1%,99%)、法向宽度守恒、切口弦端点在轮廓上；实算 bbox 144×69、默认切占比 50.0%、弦长 69，assertBladeCovers(knife) 124.33 ≥ 69 通过。
+- **door**（assertDoorGeometry + assertHingeRigid）：hinge-on-jamb（panel.pivot 与 jambL 逐坐标相等）；panelLen 实算 112 vs design（≤0.5）；panel-covers-opening（112 ≥ openingW 112、门扇轮廓高 224 ≥ openingH 224）；knob-inside-panel（门把在门扇轮廓 bbox 内）；门扇刚体（全开 panelTip 实算 (−112.0, −97.0)）。
+- **ball**（assertBallGeometry）：radius-consistent——circle 形状 r = params.radius.design = |contact − center| = 46，top = center + [0,−r]，circle.at 与 center 同点。
+- **paper**（assertTearConservation，drawTorn 贯通前行；事实依据 refcards/tear.yaml）：tear-conservation（两片面积和 = 原纸 28500，实算 13876.4 + 14623.6；每片 ∈ (1%,99%)，neg 占比 48.7%）；tear-from-notch（notch 与起终点均在轮廓边界 ≤1e-6、起终点分属不同边）；tear-single-tip（撕边点列投影严格单调递增）；tear-edge-rough（最大偏幅实算 3.07 ≥ jag.amp/2 = 1.75；撕边内部点逐点被两片共用 = 互补）。未贯通（progress<1）drawTorn 只画整纸 + 裂口线，不分离（tear-f5）。
+- **bottle**（assertBottleGeometry + 共用 assertFill）：mouth-on-top（mouth.y = 轮廓顶沿、mouth.x = 顶沿正中、口宽实算 30 vs design ≤0.5）；neck-narrower（颈部高位段半宽实算 15 < 瓶身半宽 40 × 0.5）；cavity-inside（halfBottom 36 + wall 4 ≤ 40、halfTop 30 + wall 4 ≤ 40；fill 0.5 → 液面 y 20、半宽 33）。
+- **tap**（assertTapGeometry）：outlet-at-spout（outlet.y = 出水嘴轮廓下界、outlet.x = 横向正中、口宽实算 16 vs design ≤0.5）；stream-down（stream 上界 ≥ outlet.y、顶沿中点与 outlet 横偏 ≤1、流长实算 90 vs design ≤0.5）；grip-inside-handle（grip 在把手轮廓 bbox 内）。
+
+## 4. 验证数字（终态复跑）
+
+- **test_t16p2.mjs：64/64 PASS**。其中负例 **29 条全部按设计抛错**——bowl：fill 1.2 溢出、wall 篡改、halfTop 篡改、内腔面内移；cake：切线移出物体、两半皆整物（守恒拦截）；door：铰链移位、门扇变短盖不满、门把移出门扇、design 篡改；ball：contact 上移、radius design 篡改、top 内移；paper：起点在纸面内部、notch 移入内部、撕线同边未贯通、两片皆整纸（守恒拦截）、撕边笔直（毛糙拦截）、撕边点列回跳（单调拦截）；bottle：fill 1.2、瓶口锚点下移、cavity 宽出瓶身、wall 篡改宽出瓶身、瓶颈加宽；tap：出水口锚点下移、水流翻转向上、水柱横偏 20、outletW design 篡改、grip 移出把手。
+- **回归全量复跑**：test_t16p0.mjs **38/38 PASS**、test_t16p1.mjs **44/44 PASS**；茶壶三数零回归（轴线 37.996° / 出流窗最小净下倾 35.00° / 嘴尖世界 x 806.45，套件口径 806.4±0.1）。
+- **镜像对账**：mirror_check_p2.py 对 7 个新元素逐字段比对（element/placement/skin tokens/parts 的 pivot·z·hinge·profiles·anchors·段表·style/params/cut/tear/profiles）**全部 ALL MATCH**；全库 15 个 props YAML 严格解析（yaml.safe_load）全通过。
+- 无头绘制调用数：bowl 47 / cake 整物与 drawCuttable 均 >0 / door closed·open 71 / ball 28 / paper 贯通 112·未贯通 29 / bottle 37 / tap off 55 < on 62（水流部件在场差）。
+
+## 5. 实现期注记与遗留
+
+- **YAML 1.1 布尔陷阱再现**：tap 的剖面名 on/off 作裸键会被 PyYAML 解析为布尔真/假（与 P1 的 details 裸 'off' 同族），tap.yaml 已全部加引号并在文件头留注记；JS 侧为字符串 'on'/'off'，镜像对账已覆盖此点。
+- bowl 是 boundedness_1 的 🍚 备件：本批只立元素与断言，场景消费（boundedness_1 模板改用 BOWL + fill）在模板车道进行；装饭时场景传 opts.liquid = skin.rice（定义层不写死内容物）。
+- ball 只立几何与锚点：params.kinematics 为占位声明（状态 + 相切口径），滚动/弹跳/kick 等运动基元待后续车道，届时只许引用 center/contact。
+- door 的开合为 H1 正视示意旋转（与 book 同口径），非透视开门；场景层若需要透视感另行立剖面，不改铰链口径。
+- paper 的撕边为确定性实算（三角波 × sin 包络、同点列两片共用），构建可复现；撕的时序/手部动作在场景层，基元只给几何、断言与贯通/未贯通两态绘制。

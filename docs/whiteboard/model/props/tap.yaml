@@ -1,0 +1,136 @@
+# ============================================================================
+# 元素库 · tap（水龙头）—— 出水元素（pour 的近亲：固定出流口 + 开关状态）；
+# 格式样板见 teapot.yaml。
+# 本元素口径：侧视图，墙装水龙头——横管自墙面出、前端下弯、出水口朝下；
+# 元素枢轴 = 出水口（outlet 锚点）本身：fill 场景的水落点对位只认 outlet，
+# 水流方向由断言 stream-down 钉死（水流自出水口向下、不得横流/上流）。
+# 开关状态住 profiles：off（无水流部件）/ on（含 stream 部件）；水流长度是几何量
+# （stream 轮廓实算），场景不存。
+# 注记：剖面名 'on'/'off' 在 YAML 里必须加引号——YAML 1.1 解析器会把裸 on/off 当
+# 布尔真/假作键名（与 apple.yaml C1 契约头记的 details 'off' 键同族陷阱）。
+# ============================================================================
+
+element:
+  id: tap
+  kind: prop
+  version: 1
+  title: "水龙头"
+
+frame:
+  origin: "元素枢轴 = 出水口中心（outlet）"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [700, 300] # 默认上台位（出水口的世界位）；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（金属水龙头侧视：横管、下弯出水口、十字把手、水流）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    metal: "#c7ccd4"
+    metalEdge: "#7d838c"
+    metalDark: "#9aa0a8"
+    handle: "#b5651d"
+    handleEdge: "#7c4210"
+    water: "rgba(110,180,230,.55)"
+
+parts:
+  - id: body
+    role: "管体（横管 + 下弯段 + 墙面法兰，静止）"
+    pivot: [0, 0]
+    anchors:
+      mount: [-88, -40] # 墙面安装点（法兰中心）
+    geometry:
+      shapes:
+        - type: path # 横管
+          segments: [["M", -88, -46], ["L", 12, -46], ["L", 12, -34], ["L", -88, -34], ["Z"]]
+          style: { fill: skin.metal, stroke: skin.metalEdge, lineWidth: 3 }
+        - type: path # 下弯段（横管前端向下至出水口座）
+          segments: [["M", -12, -46], ["L", 12, -46], ["L", 12, -14], ["L", -12, -14], ["Z"]]
+          style: { fill: skin.metal, stroke: skin.metalEdge, lineWidth: 3 }
+        - type: circle # 墙面法兰
+          at: [-88, -40]
+          r: 9
+          style: { fill: skin.metalEdge }
+    z: 1
+  - id: spout
+    role: "出水口（下弯末端的出水嘴：底沿即 outlet 所在平面）"
+    pivot: [0, 0]
+    anchors:
+      outlet: [0, 0] # 出水口中心（元素枢轴同点）：fill 落点对位、水流起点
+    geometry:
+      shapes:
+        - type: path # 出水嘴（上宽 20、下沿宽 16）
+          segments: [["M", -10, -14], ["L", 10, -14], ["L", 8, 0], ["L", -8, 0], ["Z"]]
+          style: { fill: skin.metalDark, stroke: skin.metalEdge, lineWidth: 3 }
+        - type: path # 嘴口箍带
+          segments: [["M", -10, -14], ["L", 10, -14], ["L", 10, -9], ["L", -10, -9], ["Z"]]
+          style: { fill: skin.metalEdge }
+    z: 2
+  - id: handle
+    role: "十字把手（开关；状态由 profiles 表达，把手造型静止）"
+    pivot: [0, 0]
+    anchors:
+      grip: [0, -61] # 把手中心（人物手对位点）
+    geometry:
+      shapes:
+        - type: path # 阀杆
+          segments: [["M", -3, -58], ["L", 3, -58], ["L", 3, -46], ["L", -3, -46], ["Z"]]
+          style: { fill: skin.metalDark }
+        - type: path # 横杆
+          segments: [["M", -24, -64], ["L", 24, -64], ["L", 24, -58], ["L", -24, -58], ["Z"]]
+          style: { fill: skin.handle, stroke: skin.handleEdge, lineWidth: 2.5 }
+        - type: circle
+          at: [-24, -61]
+          r: 4.5
+          style: { fill: skin.handleEdge }
+        - type: circle
+          at: [24, -61]
+          r: 4.5
+          style: { fill: skin.handleEdge }
+    z: 3
+  - id: stream
+    role: "水流（仅 on 剖面在场：自出水口向下的收窄水柱；几何即流向断言的对象）"
+    pivot: [0, 0]
+    anchors:
+      inlet: [0, 1] # 水流入端（贴出水口下沿）
+    geometry:
+      shapes:
+        - type: path # 水柱（上宽 12、向下收至 6，长 90）
+          segments: [["M", -6, 1], ["C", -4, 30, -3.5, 60, -3, 90],
+                     ["L", 3, 90], ["C", 3.5, 60, 4, 30, 6, 1], ["Z"]]
+          style: { fill: skin.water }
+    profiles: ['on']
+    z: 4
+
+anchors:
+  outlet: { from: "parts.spout.anchors.outlet（元素枢轴同点）", use: "出水口：fill 场景水落点对位与水流起点——水只能自此点向下出" }
+  mount: { from: "parts.body.anchors.mount", use: "墙面安装点（贴墙对位）" }
+  handleGrip: { from: "parts.handle.anchors.grip", use: "把手中心：人物手对位点（开关动作）" }
+
+params:
+  outletW:
+    design: 16 # 出水口下沿宽（出水嘴轮廓在 outlet 平面处的端点距离）
+    computed: 16 # 段表打平实算（模块 assertTapGeometry 实算回填）
+    formula: "出水嘴轮廓在 y = outlet.y 处的端点距离，不手填"
+  streamLen:
+    design: 90 # 水流长度（stream 轮廓下界 − outlet.y）
+    computed: 90 # 段表打平实算（模块 assertTapGeometry 实算回填）
+    formula: "stream 轮廓 bbox 下界 − outlet.y，不手填"
+
+profiles:
+  'off': { parts: [body, spout, handle], note: "关（无水流部件）" }
+  'on': { parts: [body, spout, handle, stream], note: "开（水流在场；流向由 stream-down 断言钉死）" }
+
+assertions:
+  - id: outlet-at-spout
+    rule: "出水口锚点必须在出水嘴正下方正中：outlet.y = 出水嘴轮廓 bbox 下界、outlet.x = bbox 横向中点；出水口宽（y = outlet.y 处端点距离）= params.outletW.design（差 ≤ 0.5）"
+    enforcedBy: "v5/props/props.js 的 assertTapGeometry（构建期执行，不过抛错停建）"
+  - id: stream-down
+    rule: "水流只能向下：stream 轮廓上界 ≥ outlet.y（自出水口起）；stream 顶沿中点与 outlet 横坐标差 ≤ 1（水柱对准出水口、不得横偏）；水流长 = params.streamLen.design（差 ≤ 0.5）"
+    enforcedBy: "v5/props/props.js 的 assertTapGeometry（on 剖面部件在场时校验）"
+  - id: grip-inside-handle
+    rule: "把手对位锚点 grip 必须落在把手部件轮廓包围盒内"
+    enforcedBy: "v5/props/props.js 的 assertTapGeometry（轮廓 bbox 实算）"
