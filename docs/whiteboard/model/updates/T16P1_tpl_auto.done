@@ -1,0 +1,71 @@
+# T16 P1 模板替换车道 A 完成记录：auto 构建器 + 小构建器族
+
+日期：2026-11-01
+范围：auto.js（autoBuild）+ 小构建器族（fb39_lib 的 kit、fr_lib 的 frBuild、adj_train 的 buildAdj、cmp_lib、g14_lib）中 7 类已建元素道具（teapot/cup/knife/apple/bread/book/box）的渲染路径测绘与替换。纪律执行：只改渲染层，台词/ITEMS/KNOW 逐字零漂移（证据 §4）；未做 git 操作（提交留主会话）；构建全部先暂存（~/workspace/build_t16p1a/）验大小后就位。
+本车道源码改动仅 2 个文件：`v5/scenes/fb39_lib.js`（+9/−2）、`v5/scenes/fr_lib.js`（+4/−1）。props.js、auto.js、任何场景文件均未动。
+
+## 1. 测绘表（哪些路径在用 emoji 字形或私有代码画 7 类道具，涉及多少幕）
+
+| 模板（消费幕数） | 渲染路径 | 7 类道具 | 处置 |
+|---|---|---|---|
+| auto.js · autoBuild（280 幕） | `'p'` 道具通道：`K.at(T).text(a, ox+1600, oy+360, 110)` 把字符串贴板右侧 | 全集普查（全库含 gen 副本 155 处、去重 23 种）：✔/英文词（am/like/apple/coat/the boy…）/数字符号 + 📷2·🖊️2·🎁2·📅2·🌧️2·🧥1——**无一属 7 类**（'apple'/'cup' 是英文词文本，非绘图） | 无可替换（核查阴性，见 §2a） |
+| auto.js · autoBuild 其余路径 | 'n/w/s/m' 文本渲染 + acts 位图帧演出 | 7 类 emoji 在 auto 规范源中出现多处（📖 于 hd_g01–g40 等约 50 幕、🍎 于 hd_g07_3/g09_3 等、🥛 于 ze_yesno_1、🔪 于 hd_fr06_1、📦 于 hd_sum_interrogatives_1），逐处核上下文——**全部位于文本字符串内**（标题图标 '📖 单词身世'、板书句内象形名词 'this is 🍎'、'🔪 水果刀 (with a knife)' 标签句），属内容层 | 不动（改即漂移） |
+| auto.js · mindmapBuild（25 幕） | 叶文本 'emoji+单词' 直写；开场 ODD 闪卡把叶首字以 170px fillText 绘成大图 | 叶数据含 📖2·📚2·📕2·📦1·🥛1·🍎1·🍞1（内容层数据） | **移交导图车道**：mindmapBuild 与本车道同文件（auto.js）但属导图模式，本车道未编辑（防跨车道冲突）；ODD 大图路径是否元素化请导图车道裁量（叶 emoji 是词汇内容数据，口径同 fp 第 4 幕 🥛 先例） |
+| fb39_lib · kit（样板 6 幕 = fp_boundedness 家族） | `knife()`：橙色虚线切线 + 🔪 字形（90px）随前锋下降 | **knife** | **R1 已替换**（§3） |
+| fb39_lib · kit 其余 | narr/say/label；'📦 第一性原理' 仅 label 文本 | — | 不动 |
+| fr_lib · frBuild（4 幕：hd_fr01_1 buy / _2 sell / _3 pay / _4 cost） | 流向弧 K.prop：📘 字形（80px）沿上弧（卖家→买家）循环流动，聚光灯时段非主角流变淡（alpha 0.35） | **book** | **R2 已替换**（§3） |
+| fr_lib · frBuild 其余 | 💴 字形沿下弧（钱款，无对应元素）；👦/🧑‍💼 C.pic（人物，非道具）；label 文本内嵌 📘/💴 图标 | — | 不动（登记，待 money 元素/人物口径） |
+| adj_train · buildAdj（4 幕：adj_order_1–4） | loco 小火车、车厢、pred 气球均为模板私有 canvas 绘制 | 火车/气球——非 7 类，且无对应元素（气球≠球元素） | 无可替换（登记） |
+| cmp_lib（3 幕：hd_g37_1/g38_1/g39_1 调用） | ruler 身高尺 + person 人柱（示意柱 + 🧒 头像）私有绘制 | 非 7 类（人柱是示意图形，头像属人物象形） | 无可替换（登记） |
+| g14_lib · shapes（3 幕：hd_g14_1/2/3 调用） | 盒子等距线框（前面+顶面+侧面）+ 体积 glow 涂色，与桌面/靶心同为图式三联画，私有绘制 | **box（图式示意）** | **停单 S1**（§5） |
+| 各消费幕文件自身 | hd_g14/g37/g38/g39/fr01 场景文件内的 📘/📦 均为注释/文本字符串 | — | 内容层，不动 |
+
+## 2. 阴性核查说明（auto 占存量一半，必须把「没有」证清楚）
+
+- (a) 'p' 通道普查方法：对全部含 `autoBuild(` 的文件以宽松正则（单/双引号、转义）抽全部 `['p', X]`，去重 23 种逐一分类，无 7 类 emoji；其中 'apple'（fp_one_king_4 等）与 'cup'（fp_iconicity_1）是英文单词文本（贴在演员侧作词卡），不是绘图。
+- (b) 7 类 emoji 在 auto 幕的出现全部逐处读上下文定性为文本内容（标题/板书/旁白字符串内），绘图通道只有 'p' 与 acts 位图帧两条，均无 7 类。故 autoBuild 模板本轮零改动是测绘结论，不是漏工。
+- (c) auto 对照证明：gen_stock_hd_g24_1 重建与本车道改动无涉——其 import 图仅 auto.js + sprites（fb39_lib/fr_lib 不在图中）；base↔new 字节差经查实为 poly 车道在构建窗口内修改 poly.js（mtime 02:23:27，引擎 bundle 内嵌 poly.js）所致；同状态下复建与 new 逐字节一致，管线确定性成立。
+
+## 3. 替换路径清单（2 条）
+
+**R1 · fb39_lib kit.knife → KNIFE 元素**（`v5/scenes/fb39_lib.js`）
+- 改动：新增 import（KNIFE/drawElement/assertKnifeGeometry ← ../props/props.js，构建共享块解析已验证）；kit() 初始化执行 `assertKnifeGeometry(KNIFE)`（刃口弦实算 124.33 vs design 124，构建期断言）；🔪 fillText 改 drawElement——变换为平移 (x+4s, yCur−128s) → 旋 +90°（元素 +x 轴朝下）→ 缩放 s=0.55，使刃尖锚点 (128,4) 恰落切线前锋 (x, yCur)，刀柄在上、刃口沿虚线领进；虚线本身、时序、until/z 全部原样。
+- 断言适用性注记（已写入代码注释）：此路径只有切线与刀、无被切物在场，assertBladeCovers（刃口跨满切口弦）不适用；真切幕的守恒/跨弦断言由 fp 模板以 drawCuttable 消费时执行（核心车道记录 §6 的后续项，属 fp 模式后续车道）。
+- 消费面：knife() 实际调用者仅 fp_boundedness_1.js 与 fp_boundedness_1_v2.js 两个旧版模板（见 §5 备注）；现行 gen_boundedness_1–4 与 fp_boundedness_1_v3 只取 kit 的 narr/say（v3 构图 destructuring 含 knife 但不调用），不受影响（对照验证 §4）。
+
+**R2 · fr_lib frBuild 流向弧之书 → BOOK 元素**（`v5/scenes/fr_lib.js`）
+- 改动：新增 import（BOOK/drawHinged/assertBookGeometry）；frBuild 入口执行 `assertBookGeometry(BOOK)`（封面盖满页块、铰接刚体，构建期断言）；弧上 📘 fillText 改 drawHinged(BOOK, {profile:'closed'})——以元素 bbox [0,116]×[−74,74] 的中心 (58,0) 对位弧上点，缩放 0.62（≈72×92px，对原 80px 字形）；alpha 变淡逻辑（聚光灯非主角流 0.35）、弧线、💴、label 文本全部原样。
+
+## 4. 验证（重建幕数 / 零漂移证据 / 校验数字 / 帧）
+
+**重建**（build_stdout，WB_FONTS=~/workspace/wb-fonts，暂存验大小后就位）：
+- 交付就位 5 个：gen-stock-hd_fr01_1..4.html（1,082,552 / 1,082,589 / 1,082,605 / 1,082,638 B，各较本管线 base +199 B = fr_lib 改动量）、fp-boundedness-1-v2.html（1,426,351 B，+116 B）。
+- 验证性重建（未就位，交付件属主线）：gen_boundedness_1（1,432,666 B）、gen_boundedness_2（1,109,542 B）——注：其 base 与现行交付件的字节差来自核心车道 props.js 追加（引擎 bundle 变大），非本车道；本车道口径一律 base↔new 同管线比对。
+- 对照重建：gen_stock_hd_g24_1（见 §2c）。
+
+**零漂移证据**：
+- git diff 仅 fb39_lib.js、fr_lib.js 两文件（+10/−3 行）；全部场景源文件未动，ITEMS/KNOW/台词在源头即零漂移。
+- 产物级复核：7 幕（fr×4、v2、gen1、gen2）base↔new 抽取 CJK 字符串集逐幕比对——**全等**（only_base/only_new 均为空）。
+- v2 新产物中 '🔪' 字符零出现（旧字形确已退出 bundle）；fr 的 📘 仍在（label 文本，内容层，未动）。
+
+**校验数字**（ic_gen8 等效校验：页面报错/文字峰值 ≤40%/时长 40–240s）：
+- gen-stock-hd_fr01_1 ✅ 47.4s 17%；fr01_2 ✅ 47.8s 17%；fr01_3 ✅ 48.9s 17%；fr01_4 ✅ 47.5s 16%（book 道具：4/4 幕全检，超「至少 2 幕」要求）
+- fp-boundedness-1-v2 ✅ 102.7s 12%（knife 道具消费幕）
+- 对照 gen_boundedness_1/2 新重建（同口径独立测量脚本 ic_path.py）：✅ 101.8s 14% / ✅ 102.6s 17%，与各自 base 时长逐一相同（kit 断言新增对现行家族零影响）
+- **等效校验不合格总计 0**；两条断言（assertKnifeGeometry/assertBookGeometry）在全部重建中均通过（无一抛错）。
+
+**密帧目检**（~/workspace/shots_t16p1a/，共 7 帧）：
+- 书（gen-stock-hd_fr01_1）：t=9.2 书元素位于上弧卖家侧、t=30.0 位于买家侧且商品弧高亮、钱流变淡——流动与聚光灯逻辑与旧版一致（同点位基线帧 hd_fr01_1_9.2.png 为旧 📘 字形，供对照）。
+- 刀（fp-boundedness-1-v2）：t=30.4 双刀（苹果/面包上方）柄上刃下、刃尖领进虚线前锋；t=30.5 双刀刃尖恰切入苹果与面包顶部中心、沿虚线对位；t=32.0 切后虚线留存、刀退出（q≥1 不绘，与旧口径一致）。守恒注记：v2 模板自身仍以 emoji 图演「两半」（其 🍎🍞 图与切后双整图属该旧模板的内容时代绘图，非本路径；交付家族 gen_boundedness_1 的切已由 v3 模板 clip 半分，本车道未动）。
+
+## 5. 停单清单
+
+- **S1 · g14_lib.shapes 的盒子（box）不替换**：① 该盒子是「in 图式」的等距示意线框（前面+顶面+侧面+体积 glow 涂色表达「容积」），与桌面、靶心构成同笔触的图式三联画，教学语义就在图式本身；② BOX 元素是带盖纸箱（前视、盖铰链+腔体锚点），其锚点（lidPivot/cavityRim）与等距体积示意无对应关系，硬套将改变图式语义并破坏三联画一致性；③ hd_g14 三幕是手写幕借用共用小工具（非 builder 数据幕），归 P2 手写幕范畴更合适。建议：待「图式类示意」是否立独立口径（或 box 元素增等距剖面）后再议。
+- **备注（非停单，存量事实）**：fp_boundedness_1.js（v1 旧模板）在现行仓库**不可构建**——其精灵包 `sprites/fb39_1.js` 不存在（仅 fb39_2/3/4、fb39v2 在库），与本车道无关（本车道未动该文件与其依赖），kit.knife 在该文件的调用随其一并处于归档状态；R1 的活体验证由 v2 承担。
+
+## 6. 未覆盖道具与遗留（待后续元素批次/车道）
+
+- 尚无元素（ball/paper/bottle/tap/door/lamp/money 等）的路径全部原样未动：fr_lib 的 💴 钱流、adj_train 的气球（注：气球非球元素）、mindmap 叶图、auto 'p' 通道里的 📷/🎁/🧥 等非 7 类字形。
+- **观感提示（给核心车道）**：BOOK 闭合剖面在小尺度下呈一整块棕色封面（frontCover 与 pages/backCover 三层同轮廓完全重合，页块边缘不可见），弧上飞行帧的可读性弱于旧 📘 字形（对照帧 hd_fr01_1_9.2.png vs gen-stock-hd_fr01_1_9.2.png）。本车道按定义忠实消费未做手脚；建议 book 定义后续修订时给闭合态留页边/书脊细节（如页块轮廓内缩或错位 2–3px），全体消费方自动受益。
+- fp 家族真切幕（gen_boundedness_1 的苹果/面包切）改消费 drawCuttable + assertCutConservation/assertBladeCovers 一事，核心车道记录 §6 已列为后续车道事项，属 fp 模式，不在本车道范围。
+- bowl（🍚）与 cake 元素仍未建（核心车道遗留），auto/mindmap 中的相关文本与叶数据维持原样。

@@ -3,6 +3,7 @@
 // 先猜四张动词贴纸里哪张贴上来 → 揭晓 → 句子按角色上色拼出来 → 公式进字幕。
 import { scene, OR, INK, GREY } from '../wb5.js';
 import { concept, BLUE, GREEN, RED, FONT } from '../lib/concept.js';
+import { BOOK, drawHinged, assertBookGeometry } from '../props/props.js';   // T16 元素化：流动的书由元素库定义绘制（model/props/book.yaml），不再用 📘 字形
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const readT = s => { const str = String(s).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); const cjk = (str.match(/[\u3400-\u9fff]/g) || []).length; const en = (str.replace(/[\u3400-\u9fff]/g, ' ').match(/[A-Za-z0-9]+/g) || []).length; return Math.max(0.8, cjk / 5 + en / 2.2); };
 const sayLen = en => en.split(/\s+/).length * 0.36 + 0.9;
@@ -12,6 +13,7 @@ const VERBS = ['buy', 'sell', 'pay', 'cost'];
 
 // V = { verb, zhVerb, idx, subject, flow:'goods'|'money', q, parts:[[词, 角色|null]…], en, zh, formula, flowLine, items:{…原文} }
 export function frBuild(SP, V) {
+  assertBookGeometry(BOOK);   // T16：书元素几何构建期断言（封面盖满页块、铰接刚体），不过抛错停建
   const K = scene({ sprites: SP }), C = concept(K);
   const subj = ROLE[V.subject];
   C.aha({
@@ -42,7 +44,7 @@ export function frBuild(SP, V) {
     g.lineWidth = hiM ? 8 : 4; g.strokeStyle = hiM ? RED : '#c9c7c2';
     g.beginPath(); for (let p = 0; p <= 1.001; p += 0.05) { const [x, y] = arc(460, 1460, 555, -120, p); p ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); g.setLineDash([]);
     const p = ((t - F0) / 3.2) % 1; g.font = '80px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.globalAlpha = t >= spot.t && V.flow !== 'goods' ? 0.35 : 1; { const [x, y] = arc(1460, 460, 345, 120, p); g.fillText('📘', x, y); }
+    g.globalAlpha = t >= spot.t && V.flow !== 'goods' ? 0.35 : 1; { const [x, y] = arc(1460, 460, 345, 120, p); g.save(); g.translate(x, y); g.scale(0.62, 0.62); g.translate(-58, 0); drawHinged(g, BOOK, { profile: 'closed' }); g.restore(); }   // T16：书元素（闭合剖面）居中于弧上点——元素 bbox [0,116]×[−74,74]，中心 (58,0)
     g.globalAlpha = t >= spot.t && V.flow !== 'money' ? 0.35 : 1; { const [x, y] = arc(460, 1460, 555, -120, p); g.fillText('💴', x, y); }
     g.restore();
   }, { from: F0, z: 2 });
