@@ -1,0 +1,97 @@
+# T16 P0 后半段完成记录：Linda 人物绑定试点 + 杯元素 + 核心基元（boundedness 一家四幕落地）
+
+日期：2026-11-01
+范围：渲染层元素化（内容层台词/判据/KNOW/ITEMS 一字未动，证据见 §5）。git 提交留主会话。
+
+## 1. 交付物
+
+| 文件 | 内容 |
+|---|---|
+| docs/whiteboard/model/props/cup.yaml | 杯元素 v1（mug/glass 两剖面；锚点 rim/handleGrip/base/liquidSurface；cavity 参数供 fill 基元实算） |
+| docs/whiteboard/model/props/linda.yaml | 人物元素 v1（本项目第一个人物元素；13 部件、6 姿态 profile；严格 YAML 解析通过） |
+| docs/whiteboard/v5/props/props.js | 共享模块扩展：CUP/LINDA 渲染侧同步副本 + fill/point/hold 基元与断言 + 人物 FK/IK/绘制（drawCharacter/resolvePose/blendPose/walkPose） |
+| docs/whiteboard/v5/lib/concept.js | schemaContainer 增加可选 contentDraw 钩子（默认 null，存量场景行为逐字节不变） |
+| docs/whiteboard/v5/scenes/fp_boundedness_1_v3.js（模板）→ gen_boundedness_1.js | 全元素消费化：茶壶/杯/Linda 零私有绘制代码 |
+| docs/whiteboard/model/specs/boundedness_1.yaml | +2 条事实不变式（cup/fill 断言、Linda point/IK/贴地断言），factsheet 同步 +2 行 |
+
+## 2. 逐幕盘点结论（2/3/4 幕无可转之物，不虚构改造）
+
+- 第 1 幕：Linda（位图 l_* 姿势集）+ 茶壶 + 咖啡杯×2（原 ☕ 字形）+ 牛奶杯（原 🥛 字形）全部在本幕，转换对象全集在此。
+- 第 2/3/4 幕模板：grep 核实无 Linda、无演员、无私有杯绘制代码；杯/人物不出现（第 4 幕的 🥛 是分屏节拍的 emoji 数据，非绘制代码，属内容层数据，不在本单动）。故 2/3/4 幕 gen 文件与 HEAD 逐字节一致即为正确结果。
+- 第 1 幕另有一名「woman」顾客演员（精灵位图，非 Linda）：不在 P0 盘点范围内，保持原样（见遗留）。
+
+## 3. 格式决定：人物装不进扁平道具格式的三处缺口（先声明，后扩展）
+
+teapot.yaml 的扁平部件格式（部件 = 元素系 shapes + pivot）装不下人物关节链。缺口与扩展（已写入 linda.yaml 文件头 E1–E3，渲染器 props.js 实现）：
+
+- E1 部件层级：part.parent 指父部件；子部件 pivot 以父系计、shapes 以本部件局部系（原点 = 本部件 pivot）计。手臂绕肩、头绕颈、前臂绕肘、胫绕膝皆由此表达。道具部件无 parent，drawElement 口径不变。
+- E2 部件变体：part.geometry.variants 由 profile 选用（torso 的 shirt/blazer 两变体，对应位图 l_coff0 穿外套、其余姿态衬衫的 1:1 承袭）；head 的表情走 features 五变体（smile/think/puzzled/surprise/laugh）。
+- E3 门控/附着部件：part.gate 仅当 pose.show 含该门时绘制（book/bubble/drape）；part.attachTo = 元素锚点时，该部件 grip 由 hold 基元对位到该锚点绘制（idea 姿态的书贴 hand_L）。
+- 姿态角约定与 IK：profile.ik = { armL/armR: { target } } 时该臂角度不写死，由 IK 实算；target 为元素锚点名（chin/temple）或 '$target'（场景外给，pointing 用）。
+- 关节盖盘规范：肩/肘/膝各置同色圆盘压接缝（首轮密帧目检发现肢体呈细杆木偶感后立此规范：肢体加粗 + 盖盘，见 §7）。
+
+## 4. 锚点实算值（全部由定义内坐标实算，测试逐项复现）
+
+验证套件：~/workspace/build_t16p0/test_t16p0.mjs（38 项全 PASS；原 /tmp 版 43 项随 tmpfs 重置丢失，本版按同口径重建，要点数值与首轮完全一致）。
+
+### 茶壶回归（不得回归 PROP_lib_teapot.fixed 口径）——三数复核
+- 壶嘴轴线仰角（路径坐标实算）= 37.996°（设计 38°）
+- 壶嘴长（基部中心→嘴尖中心）= 57.99
+- 出流窗（模板同口径 assertPourWindow(TEAPOT, M0, 1.05, 5.0)）最小净下倾 = 35.00°
+- 平台期嘴尖世界 x = 806.45 ≈ 806.4（与像素实测三修口径吻合）
+- 无头绘制调用数 = 39（与茶壶单记录一致，drawElement 重构未改变茶壶行为）
+
+### 杯（cup.yaml / CUP）
+- cavity：mug { rimY -44, bottomY 42, halfTop 44, halfBottom 32 }；glass { rimY -50, bottomY 48, halfTop 40, halfBottom 31 }
+- 杯口内径（rimInnerWidth = 2×halfTop，实算）：mug 88 / glass 80
+- fill 基元：mug fill 0.85 → 液面 y = -31.1、液面半宽 ±42.2（腔壁插值，恒不宽于内腔）；模板实参 assertFill(CUP,'mug',0.85)、assertFill(CUP,'glass',0.92) 均通过
+
+### Linda（linda.yaml / LINDA）
+- 总高：设计 484（位图帧高）/ 元素系实算 460 = -(-184-148-128)（torso 枢轴 + head 枢轴 + head.top 锚点链）；舞台高由场景按 520/460 缩放
+- 臂：上臂 92 / 前臂 90（手锚点模长实算）/ reach 182；腿：大腿 86 / 胫 101（foot 锚点 √(24²+98²)≈100.9）
+- FK（standing）：hand_L (80.0,-136.7)、hand_R (-50.0,-134.6)；双脚贴地 foot_L y=0.39、foot_R y=-0.45（tol ±2 内）
+- IK 到达残差：thinking 手托下巴 = 1.00；idea 手挠头 = 1.00（非误差：手锚点带 1px 横向偏移、不在前臂轴线上，FK 残差下限即 ≈1.00，已在 solveArmIK 注释与 linda.yaml 中登记为几何固有量；验收阈值 1.5、断言 tol 6）
+- point 基元（模板同口径：角色 (380,838)、缩放 520/460）：指咖啡杯 (730,600) 射线误差 0.31°/视线误差 8.4°；指苹果 (700,490) 0.31°/8.3°；指作业 (960,470) 0.31°/5.6°（断言上限：射线 ≤3°、视线 ≤25°）
+- hold 基元：idea 姿态书 grip ↔ hand_L 对位残差 = 0
+- laughing 姿态：双手实算落腹前 (21.6,-155.2)/(-20.1,-156.4)（首测发现 forearmL 镜像符号错、已修正为 +52 并入定义）
+
+### 断言负例（每条基元一条，全部按设计抛错停建）
+- pour：netTargetDeg 降到 20° → assertPourWindow 抛错（最小净下倾 20.0° < 30°）
+- fill：fill=1.15（溢出）与 fill=-0.1 → assertFill 抛错
+- point：目标在身后半平面（dx=-302 < -20）抛错；pointing 缺场景目标抛错；目标与肩点重合抛错
+- hold：道具原点偏移 30 → 残差恰 30.0 > 0.5 抛错
+
+## 5. 零漂移证据
+
+- gen_scene 复跑四幕：KNOW 与 HEAD 逐字一致（四幕全 True，正则抽取比对）；gen_boundedness_2/3/4.js 与 HEAD 逐字节一致（cmp 通过）。
+- gen_boundedness_1.js 对 HEAD 的 diff 恰 5 个 hunk：文件头注释、import 行、咖啡杯段、牛奶杯段、Linda 绑定段——无第六处。
+- 内容层（台词/判据/例句/口诀）在密帧中逐帧可见且与 P1 交付一致（终卡「切开、倒出还是它 → 不可数」等）。
+
+## 6. 四幕校验数字
+
+构建（build_stdout 暂存验大小后就位 ~/workspace/your_files/，符号链接 cp 写入）：
+- gen-boundedness-1.html：1,415,620 B（肢体加粗后重建；加粗前 1,415,445 B）
+- gen-boundedness-2.html：1,091,693 B；gen-boundedness-3.html：1,091,167 B；gen-boundedness-4.html：1,090,733 B
+
+官方 insightcheck（不合格 0，四幕时长与 P1 基线一致）：
+- 第 1 幕 101.8s 动态 84% 文字 14% 分段 11%/40%/25%/24%（重建后复跑同值）
+- 第 2 幕 102.6s 动态 72% 文字 17%；第 3 幕 107.2s 动态 77% 文字 14%；第 4 幕 95.0s 动态 81% 文字 13%
+
+## 7. 密帧目检（~/workspace/shots_t16p0/，共 81 帧）
+
+- new_*：第 1 幕元素版 23 帧（首轮）；old_*：旧位图版 7 帧（同时间点，供用户质量闸新旧对比）；s2_/s3_/s4_*：2/3/4 幕各 9-10 帧（回归抽查，画面与原版一致）。
+- fix_*：肢体加粗 + 关节盖盘后第 1 幕重拍 23 帧（与 new_* 同时间点），本轮逐帧目检结论：
+  - 接触：思考手托下巴落点准；idea 书贴左手、右手挠头落太阳穴；指向三目标（杯/苹果/作业）手臂射线均穿目标，作业指框、苹果指果、杯指杯沿。
+  - 因果：倒水三帧（14.50/16.35/17.75）液柱自壶嘴尖出、壶嘴轴线全程朝下、落点在咖啡摊上。
+  - 守恒：33.00 一只苹果 → 两半（切面+籽），非两只整苹果；面包两片同名 bread。
+  - 液面：21.00 双杯注入中液面在腔内、23.50 双杯满至 0.85 且计数徽 1/2 齐；56.00 牛奶杯（glass 剖面）液面 0.92 在腔内。
+  - 姿态：站立（西装）/放松（外套搭臂 drape 可见）/行走（步态交叉、顾客演员按原时序淡出）/大笑（闭眼、双手捂肚、头微仰）均可读。
+- 首轮 new_* 目检发现的问题与处置：矢量 Linda 初版肢体过细呈木偶杆感 → 定义层加粗（大腿/小腿/上臂/前臂截面加宽、袖筒加长）+ 肩/肘/膝盖盘，props.js 与 linda.yaml 同步修改、测试复跑仍全过、重建重拍即 fix_*。最终观感取舍留用户质量闸（新旧对比帧已备齐）。
+
+## 8. 遗留问题
+
+1. 第 1 幕「woman」顾客演员仍为精灵位图，未元素化——不在 P0 盘点（P2 全cast 阶段处理，Leo/Linda 之外演员同此）。
+2. 米饭碗 🍚（第 1 幕预测节拍）与第 4 幕 🥛 节拍仍为 emoji：碗是独立元素（未建），第 4 幕者为内容层数据；均留待 P1 按元素优先级（碗在道具队列中）处理。
+3. teapot.yaml 为贴左书写、严格 YAML 解析不成立（既有状态，非本单文件；其内容与 props.js 镜像一致）。linda.yaml 本单初稿亦曾被大文件写入通道吞缩进，已改走 stdin 落盘并通过解析校验（398 行缩进完好）。建议 P1 注册表校验前把 teapot.yaml/cup.yaml 一并规范化（cup 已合规）。
+4. 环境事件：本单执行中 /tmp（tmpfs）被整体重置一次，/tmp 内中间物（旧测试套件、旧构建暂存）丢失；交付件与仓库文件无损。此后中间物改存 ~/workspace/build_t16p0/（构建暂存、err 日志、测试套件均在此）。
+5. insightcheck 经 run_insightcheck_gen.py 运行时需带 WB_FONTS 与 PATH=~/workspace/bin（原版 build 调 pyftsubset），无环境变量时打包失败——工具使用注记，非缺陷。

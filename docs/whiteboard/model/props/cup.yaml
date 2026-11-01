@@ -1,0 +1,109 @@
+# ============================================================================
+# 元素库 · cup（杯子）—— 第二个落地元素；格式样板见 teapot.yaml（文件头逐字段注释）
+# 本幕用途：boundedness_1 的两杯咖啡（schemaContainer 内容）与一杯牛奶（glass 剖面）。
+# 与 fill 基元咬合：液面由 params.cavity + fill（注入量 0..1）实算，场景不存液面坐标。
+# ============================================================================
+
+element:
+  id: cup
+  kind: prop
+  version: 1
+  title: "杯子（马克杯 / 玻璃杯）"
+
+frame:
+  origin: "杯体中心（杯高中心）"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [730, 630] # boundedness_1 第一杯内容中心（schemaContainer 内容位）；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（陶土马克杯 / 直壁玻璃杯侧视）；配色与 teapot 同系（陶土红一系）"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    wall: "#cf5a36"        # 与 teapot.body 同值同系
+    edge: "#8a3320"        # 与 teapot.edge 同值
+    inner: "#a83e22"       # 与 teapot.deep 同值（杯口内壁）
+    glassWall: "rgba(196,222,233,.50)"
+    glassEdge: "#7d99a8"
+    coffee: "#6f3a10"
+    milk: "#f8f2e4"
+    highlight: "rgba(255,255,255,.25)"
+
+parts:
+  - id: handle
+    role: "把手（右耳，mug 剖面专用）"
+    pivot: [50, -4]
+    anchors:
+      grip: [76, 2] # 握持对位点（hold 基元：人物手锚点对此点）
+    geometry:
+      shapes:
+        - type: strokePath
+          segments: [["M", 48, -26], ["C", 82, -22, 84, 22, 50, 30]]
+    style: { stroke: skin.edge, lineWidth: 10 }
+    profiles: [mug]
+    z: 1
+  - id: body
+    role: "杯身（外形随剖面变体：mug 微锥 / glass 直壁高杯）"
+    pivot: [0, 0]
+    anchors:
+      rimL: [-54, -54] # mug 口沿左端（glass 变体为 [-46,-58]，见 variants 注释）
+      rimR: [54, -54]
+      base: [0, 56] # 杯底中心
+    geometry:
+      variants:
+        mug:
+          - type: path # 杯身轮廓（微锥：口宽 108、底宽 80、高 110）
+            segments: [["M", -54, -54], ["C", -52, -10, -46, 26, -40, 48], ["Q", -38, 56, -28, 56],
+                       ["L", 28, 56], ["Q", 38, 56, 40, 48], ["C", 46, 26, 52, -10, 54, -54], ["Z"]]
+            style: { fill: skin.wall, stroke: skin.edge, lineWidth: 4 }
+          - type: ellipse # 杯口：开口椭圆（内壁色）
+            at: [0, -54]
+            radii: [54, 10]
+            style: { fill: skin.inner }
+        glass:
+          - type: path # 玻璃杯轮廓（直壁：口宽 92、底宽 76、高 116）
+            segments: [["M", -46, -58], ["L", -38, 50], ["Q", -37, 58, -28, 58],
+                       ["L", 28, 58], ["Q", 37, 58, 38, 50], ["L", 46, -58], ["Z"]]
+            style: { fill: skin.glassWall, stroke: skin.glassEdge, lineWidth: 3.5 }
+          - type: ellipse
+            at: [0, -58]
+            radii: [46, 8]
+            style: { fill: "rgba(255,255,255,.35)" }
+    z: 2
+  - id: liquid
+    role: "液体（fill 基元绘制：shape 类型 liquidFill，几何由 cavity + fill 实算，无静态段表）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: liquidFill # 渲染器按当前剖面 cavity 与 opts.fill/opts.liquid 绘制：液面椭圆 + 向下至内腔底的梯形体
+    z: 3
+
+anchors:
+  rim: { from: "parts.body.anchors.rimL/rimR 中点（mug 实算 (0,-54)）", use: "杯口中心：fill 落点对位、满溢界" }
+  handleGrip: { from: "parts.handle.anchors.grip", use: "hold 基元对位点（人物持杯）" }
+  base: { from: "parts.body.anchors.base", use: "杯底落点（放桌面对位）" }
+  liquidSurface: { from: "fill 基元 liquidSurfaceEnds(def, profile, fill) 由 cavity 实算", use: "液面线两端点（随注入量上升）" }
+
+params:
+  cavity:
+    mug: { rimY: -44, bottomY: 42, halfTop: 44, halfBottom: 32 }   # 内腔（局部坐标）：液面 y 在 rimY..bottomY 间随 fill 线性插值，半宽随 y 在 halfBottom..halfTop 间插值
+    glass: { rimY: -50, bottomY: 48, halfTop: 40, halfBottom: 31 }
+  rimInnerWidth:
+    design: 88 # mug 口内径（= 2 × cavity.mug.halfTop）
+    computed: 88 # 由 cavity.mug.halfTop 实算（模块 cupGeom 加载时核算）
+    formula: "2 * params.cavity[profile].halfTop；fill 液面半宽同路由 cavity 在液面 y 处插值实算，不手填"
+
+profiles:
+  mug: { parts: [handle, body, liquid], bodyVariant: mug, note: "带把马克杯（咖啡）" }
+  glass: { parts: [body, liquid], bodyVariant: glass, note: "无把直壁玻璃杯（牛奶）" }
+
+assertions:
+  - id: fill-no-overflow
+    rule: "fill（注入量）必须 ∈ [0,1]：液面 y = bottomY + fill*(rimY-bottomY) 恒不高于 cavity.rimY；fill>1 即溢出"
+    enforcedBy: "v5/props/props.js 的 assertFill（构建期执行，不过抛错停建）"
+  - id: surface-inside-cavity
+    rule: "液面半宽恒等于 cavity 在液面 y 处的插值半宽（liquidSurfaceEnds 实算），不得宽于内腔壁"
+    enforcedBy: "v5/props/props.js 的 liquidSurfaceEnds / fillSurfaceY（同一实算路径，绘制与断言共用）"

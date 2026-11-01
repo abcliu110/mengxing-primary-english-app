@@ -248,7 +248,7 @@ export function concept(K) {
   };
 
   // ⑧ 边界容器：unbounded（没有边：内容像流体铺开）/ bounded（实线发光边框，右上角弹数字 count）/ enter（内容从左外侧刺入）/ exit（内容顶破右壁出去）/ expand（框里绽放放大）/ deplete（框内能量条耗尽）
-  C.schemaContainer = ({ x = 960, y = 520, w = 420, h = 320, content = '☕', from = 0, until = 1e9, states = [[0, 'bounded']], label = '', count = null, col = BLUE, csize = 150, fluid = 'rgba(146,64,14,.18)', spread = 1.5 }) => {
+  C.schemaContainer = ({ x = 960, y = 520, w = 420, h = 320, content = '☕', contentDraw = null, from = 0, until = 1e9, states = [[0, 'bounded']], label = '', count = null, col = BLUE, csize = 150, fluid = 'rgba(146,64,14,.18)', spread = 1.5 }) => {
     use('schemaContainer'); if (label) C.TEXTS.push(label);
     const ST = [...states].sort((p, q) => p[0] - q[0]);
     for (let i = 0; i < ST.length; i++) { const nx = Math.min(ST[i + 1] ? ST[i + 1][0] : 1e9, until); dyn(ST[i][0], ['unbounded', 'deplete'].includes(ST[i][1]) ? nx : Math.min(ST[i][0] + 1.4, nx)); }   // 流体 / 耗尽一直在动，整段算动态
@@ -271,6 +271,7 @@ export function concept(K) {
       if (st === 'expand') { cs = 1 + e * 0.6; }
       if (st === 'deplete') { cs = 1; }
       if (content) { g.globalAlpha = ca; g.save(); g.translate(cx, cy); g.scale(cs, cs); g.fillText(content, 0, 0); g.restore(); g.globalAlpha = 1; }
+      else if (contentDraw) { g.globalAlpha = ca; g.save(); g.translate(cx, cy); g.scale(cs, cs); contentDraw(g, t); g.restore(); g.globalAlpha = 1; }   // 元素内容（T16）：回调在内容位姿（cx,cy,cs,ca）下绘制元素，缺省不传时行为与旧版一致
       // 边框
       const bulge = st === 'exit' ? Math.sin(Math.PI * clamp(e * 1.3)) * 60 : 0;
       if (bq > 0) {

@@ -1,0 +1,436 @@
+# ============================================================================
+# 元素库 · linda（人物）—— 本项目第一个人物元素；格式样板见 teapot.yaml
+# 造型来源：boundedness 家族现行位图姿势集（fb39v2 精灵 l_coff0/l_coff2/l_think/l_idea0/
+# l_point/l_laugh/l_w0-3）逐帧看图分件重绘——短碎发、橙色领巾、白衬衫、灰短裤、白球鞋，
+# 同一角色可辨认为准。姿势语义与位图帧名一一对应（见 profiles 的 from 字段）。
+#
+# 【人物格式扩展】（teapot 的扁平部件装不下人物关节链，本定义引入三项扩展，渲染器在
+# v5/props/props.js 的 drawCharacter / FK 体系实现；扩展点在此声明，不静默魔改）：
+#  E1 部件层级：part.parent 指父部件；子部件 pivot 以父部件局部系计，部件 shapes 以
+#     本部件局部系（原点 = 本部件 pivot）计——手臂绕肩、头绕颈、前臂绕肘、胫绕膝皆然。
+#     （teapot 等道具部件无 parent，shapes 仍以元素系计，drawElement 口径不变。）
+#  E2 部件变体：part.geometry.variants = { 变体名: shapes }，由 profile 的 variant 选用
+#     （torso 的 shirt/blazer、head 的 features 五种表情同理走 features 字段）。
+#  E3 门控/附着部件：part.gate = 门名，仅当 pose.show 含该门时绘制（book/bubble/drape）；
+#     part.attachTo = 元素锚点名时，该部件原点（grip）由 hold 基元对位到该锚点绘制。
+# 姿态角约定：度；画布旋转方向（顺时针为正，y 向下）。对垂下状态的肢体，正角摆向身后
+# （-x，她面朝 +x），负角摆向身前。profile.ik = { armL/armR: { target } } 时该臂角度不
+# 写死，由 point/到达 IK 在姿态解析时实算（target 为锚点名或 '$target' 场景外给目标）。
+# 关节盖盘：肩/肘/膝各置一枚同色圆盘压住接缝（绑定规范的「重叠盖缝」），见各部件首/末 shape。
+# ============================================================================
+
+element:
+  id: linda
+  kind: character
+  version: 1
+  title: "Linda（boundedness 家族主讲；位图姿势集分件重绘）"
+
+frame:
+  origin: "脚底中心（双脚间地面点）"
+  x: "+x 向右（她面朝 +x）"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080（本地系总高 460，舞台高由场景缩放）"
+
+placement:
+  world: [300, 838] # boundedness_1 上台位（脚底，舞台左）；场景可覆盖
+
+skin:
+  source: "自绘分件造型，临摹现行位图姿势集的角色特征（发色/领巾/衬衫/短裤/球鞋配色取自帧图）"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    skin: "#ffedd8"
+    edge: "#6e5f4d"
+    hair: "#f4ecdc"
+    hairEdge: "#8a7a5f"
+    shirt: "#ffffff"
+    shirtEdge: "#9aa0a6"
+    scarf: "#e07b26"
+    scarfEdge: "#b25a14"
+    blazer: "#dd9a5f"
+    blazerDark: "#c07f3e"
+    blazerEdge: "#9a6224"
+    shorts: "#b7bcc4"
+    shortsEdge: "#7d838c"
+    shoe: "#ffffff"
+    shoeEdge: "#8b8f96"
+    ink: "#3d3428"
+    mouth: "#8a4b3a"
+    tongue: "#d98a76"
+    page: "#fdf6e3"
+    bookCover: "#b5651d"
+    bookEdge: "#7c4210"
+    cloud: "#ffffff"
+    cloudEdge: "#b9c4cc"
+
+parts:
+  - id: legR
+    role: "远侧腿（大腿）"
+    pivot: [-18, -184]
+    anchors: { knee: [0, 86] }
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -16, 2], ["C", -15, 30, -10, 60, -9, 84], ["L", 9, 84], ["C", 10, 58, 14, 30, 16, 2], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+    z: 1
+  - id: shinR
+    role: "远侧胫 + 球鞋"
+    parent: legR
+    pivot: [0, 86]
+    anchors: { ankle: [0, 85], foot: [24, 98] }
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -14, 0], ["C", -13, 30, -10, 60, -9, 85], ["L", 9, 85], ["C", 11, 58, 13, 28, 14, 0], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+        - type: path # 袜口
+          segments: [["M", -9, 63], ["L", 9, 63], ["L", 9, 85], ["L", -9, 85], ["Z"]]
+          style: { fill: skin.shoe }
+        - type: path # 球鞋（鞋头朝 +x）
+          segments: [["M", -14, 80], ["C", -15, 95, -6, 100, 4, 100], ["L", 27, 100], ["C", 35, 100, 36, 91, 29, 87], ["C", 19, 82, 4, 78, -14, 80], ["Z"]]
+          style: { fill: skin.shoe, stroke: skin.shoeEdge, lineWidth: 3 }
+        - type: circle # 膝关节盖盘
+          at: [0, 2]
+          r: 13.5
+          style: { fill: skin.skin }
+    z: 0
+  - id: legL
+    role: "近侧腿（大腿）"
+    pivot: [16, -184]
+    anchors: { knee: [0, 86] }
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -16, 2], ["C", -15, 30, -10, 60, -9, 84], ["L", 9, 84], ["C", 10, 58, 14, 30, 16, 2], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+    z: 2
+  - id: shinL
+    role: "近侧胫 + 球鞋"
+    parent: legL
+    pivot: [0, 86]
+    anchors: { ankle: [0, 85], foot: [24, 98] }
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -14, 0], ["C", -13, 30, -10, 60, -9, 85], ["L", 9, 85], ["C", 11, 58, 13, 28, 14, 0], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+        - type: path # 袜口
+          segments: [["M", -9, 63], ["L", 9, 63], ["L", 9, 85], ["L", -9, 85], ["Z"]]
+          style: { fill: skin.shoe }
+        - type: path # 球鞋（鞋头朝 +x）
+          segments: [["M", -14, 80], ["C", -15, 95, -6, 100, 4, 100], ["L", 27, 100], ["C", 35, 100, 36, 91, 29, 87], ["C", 19, 82, 4, 78, -14, 80], ["Z"]]
+          style: { fill: skin.shoe, stroke: skin.shoeEdge, lineWidth: 3 }
+        - type: circle # 膝关节盖盘
+          at: [0, 2]
+          r: 13.5
+          style: { fill: skin.skin }
+    z: 0
+  - id: torso
+    role: "躯干（髋→肩；衬衫/西装外套两变体 + 短裤 + 领巾）"
+    pivot: [0, -184]
+    anchors: { shoulderL: [54, -132], shoulderR: [-54, -132] }
+    geometry:
+      variants:
+        shirt:
+          - type: path # 短裤（先画，衬衫下摆压其上沿）
+            segments: [["M", -52, -8], ["C", -54, 14, -53, 34, -50, 52], ["L", -18, 52], ["C", -16, 30, -15, 14, -14, -2], ["L", 14, -2], ["C", 15, 14, 16, 30, 18, 52], ["L", 50, 52], ["C", 53, 34, 54, 14, 52, -8], ["Q", 0, 0, -52, -8], ["Z"]]
+            style: { fill: skin.shorts, stroke: skin.shortsEdge, lineWidth: 3 }
+          - type: path # 白衬衫
+            segments: [["M", -56, -138], ["C", -58, -96, -54, -48, -50, -6], ["Q", 0, 4, 50, -6], ["C", 54, -48, 58, -96, 56, -138], ["C", 30, -148, -30, -148, -56, -138], ["Z"]]
+            style: { fill: skin.shirt, stroke: skin.shirtEdge, lineWidth: 3 }
+          - type: path # 领巾双尾
+            segments: [["M", 2, -128], ["L", 16, -126], ["L", 20, -72], ["L", 6, -68], ["Z"]]
+            style: { fill: skin.scarf, stroke: skin.scarfEdge, lineWidth: 2.5 }
+          - type: path
+            segments: [["M", 16, -126], ["L", 28, -120], ["L", 30, -84], ["L", 20, -72], ["Z"]]
+            style: { fill: skin.scarf, stroke: skin.scarfEdge, lineWidth: 2.5 }
+          - type: circle
+            at: [10, -136]
+            r: 11
+            style: { fill: skin.scarf, stroke: skin.scarfEdge, lineWidth: 2.5 }
+        blazer:
+          - type: path # 短裤
+            segments: [["M", -52, -8], ["C", -54, 14, -53, 34, -50, 52], ["L", -18, 52], ["C", -16, 30, -15, 14, -14, -2], ["L", 14, -2], ["C", 15, 14, 16, 30, 18, 52], ["L", 50, 52], ["C", 53, 34, 54, 14, 52, -8], ["Q", 0, 0, -52, -8], ["Z"]]
+            style: { fill: skin.shorts, stroke: skin.shortsEdge, lineWidth: 3 }
+          - type: path # 西装外套身
+            segments: [["M", -58, -140], ["C", -62, -92, -58, -30, -54, 16], ["Q", 0, 26, 54, 16], ["C", 58, -30, 62, -92, 58, -140], ["C", 32, -150, -32, -150, -58, -140], ["Z"]]
+            style: { fill: skin.blazer, stroke: skin.blazerEdge, lineWidth: 3 }
+          - type: path # 内衬白衬衫 V
+            segments: [["M", -14, -142], ["L", 14, -142], ["L", 4, -84], ["L", -4, -84], ["Z"]]
+            style: { fill: skin.shirt }
+          - type: path # 翻领
+            segments: [["M", -14, -142], ["L", -30, -138], ["L", -8, -82], ["L", -2, -96], ["Z"]]
+            style: { fill: skin.blazerDark }
+          - type: path
+            segments: [["M", 14, -142], ["L", 30, -138], ["L", 8, -82], ["L", 2, -96], ["Z"]]
+            style: { fill: skin.blazerDark }
+          - type: circle
+            at: [27, -58]
+            r: 3.5
+            style: { fill: skin.blazerDark }
+          - type: circle
+            at: [28, -28]
+            r: 3.5
+            style: { fill: skin.blazerDark }
+          - type: path # 领巾双尾（压在外套胸前，同位图 l_coff0）
+            segments: [["M", 2, -128], ["L", 16, -126], ["L", 20, -72], ["L", 6, -68], ["Z"]]
+            style: { fill: skin.scarf, stroke: skin.scarfEdge, lineWidth: 2.5 }
+          - type: path
+            segments: [["M", 16, -126], ["L", 28, -120], ["L", 30, -84], ["L", 20, -72], ["Z"]]
+            style: { fill: skin.scarf, stroke: skin.scarfEdge, lineWidth: 2.5 }
+          - type: circle
+            at: [10, -136]
+            r: 11
+            style: { fill: skin.scarf, stroke: skin.scarfEdge, lineWidth: 2.5 }
+    z: 3
+  - id: armR
+    role: "远侧上臂（绕肩枢轴）"
+    parent: torso
+    pivot: [-54, -132]
+    anchors: { elbow: [0, 92] }
+    geometry:
+      shapes:
+        - type: circle # 肩关节盖盘
+          at: [0, 0]
+          r: 16
+          style: { fill: skin.shirt }
+        - type: path # 上臂（肤）
+          segments: [["M", -14, 34], ["C", -15, 56, -12, 74, -10, 90], ["L", 11, 90], ["C", 13, 72, 14, 54, 14, 34], ["Q", 0, 40, -14, 34], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+        - type: path # 短袖筒
+          segments: [["M", -18, -6], ["C", -19, 10, -18, 28, -16, 44], ["L", 16, 44], ["C", 18, 26, 19, 8, 18, -6], ["Q", 0, -12, -18, -6], ["Z"]]
+          style: { fill: skin.shirt, stroke: skin.shirtEdge, lineWidth: 3 }
+    z: -1
+  - id: forearmR
+    role: "远侧前臂 + 手（绕肘枢轴）"
+    parent: armR
+    pivot: [0, 92]
+    anchors: { hand: [1, 90] }
+    geometry:
+      shapes:
+        - type: circle # 肘关节盖盘
+          at: [0, 0]
+          r: 13
+          style: { fill: skin.skin }
+        - type: path
+          segments: [["M", -13, 0], ["C", -14, 26, -12, 56, -10, 80], ["L", 10, 80], ["C", 12, 56, 13, 26, 13, 0], ["Q", 0, 6, -13, 0], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+        - type: circle
+          at: [1, 86]
+          r: 13
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 2.5 }
+    z: 0
+  - id: armL
+    role: "近侧上臂（绕肩枢轴）"
+    parent: torso
+    pivot: [54, -132]
+    anchors: { elbow: [0, 92] }
+    geometry:
+      shapes:
+        - type: circle # 肩关节盖盘
+          at: [0, 0]
+          r: 16
+          style: { fill: skin.shirt }
+        - type: path
+          segments: [["M", -14, 34], ["C", -15, 56, -12, 74, -10, 90], ["L", 11, 90], ["C", 13, 72, 14, 54, 14, 34], ["Q", 0, 40, -14, 34], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+        - type: path
+          segments: [["M", -18, -6], ["C", -19, 10, -18, 28, -16, 44], ["L", 16, 44], ["C", 18, 26, 19, 8, 18, -6], ["Q", 0, -12, -18, -6], ["Z"]]
+          style: { fill: skin.shirt, stroke: skin.shirtEdge, lineWidth: 3 }
+    z: 4
+  - id: forearmL
+    role: "近侧前臂 + 手（绕肘枢轴）"
+    parent: armL
+    pivot: [0, 92]
+    anchors: { hand: [1, 90] }
+    geometry:
+      shapes:
+        - type: circle # 肘关节盖盘
+          at: [0, 0]
+          r: 13
+          style: { fill: skin.skin }
+        - type: path
+          segments: [["M", -13, 0], ["C", -14, 26, -12, 56, -10, 80], ["L", 10, 80], ["C", 12, 56, 13, 26, 13, 0], ["Q", 0, 6, -13, 0], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+        - type: circle
+          at: [1, 86]
+          r: 13
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 2.5 }
+    z: 0
+  - id: drape
+    role: "搭在近侧前臂上的外套（仅 relaxed 姿态，承位图 l_coff2）"
+    parent: forearmL
+    pivot: [0, 8]
+    gate: drape
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -16, 0], ["C", -20, 22, -14, 44, -6, 62], ["C", 2, 68, 12, 66, 16, 54], ["C", 20, 36, 14, 14, 8, 0], ["Q", -4, 6, -16, 0], ["Z"]]
+          style: { fill: skin.blazer, stroke: skin.blazerEdge, lineWidth: 3 }
+    z: 1
+  - id: head
+    role: "头（绕颈枢轴；表情走 features 五变体）"
+    parent: torso
+    pivot: [2, -148]
+    anchors: { eye: [29, -62], mouth: [31, -30], chin: [24, -2], temple: [50, -88], top: [0, -128] }
+    geometry:
+      shapes:
+        - type: path # 颈
+          segments: [["M", -9, -14], ["L", 9, -14], ["L", 10, 8], ["L", -10, 8], ["Z"]]
+          style: { fill: skin.skin }
+        - type: ellipse # 脸
+          at: [6, -56]
+          radii: [52, 58]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3 }
+        - type: circle # 耳
+          at: [-42, -50]
+          r: 12
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 2.5 }
+        - type: path # 碎发（尖角刘海盖头顶）
+          segments: [["M", -48, -64], ["C", -56, -96, -44, -118, -28, -124], ["L", -30, -106], ["L", -16, -126], ["L", -12, -108], ["L", 2, -128], ["L", 8, -110], ["L", 24, -124], ["L", 26, -104], ["L", 42, -112], ["C", 54, -100, 58, -84, 54, -66], ["C", 40, -78, 20, -82, 0, -80], ["C", -20, -78, -36, -74, -48, -64], ["Z"]]
+          style: { fill: skin.hair, stroke: skin.hairEdge, lineWidth: 3 }
+      features:
+        smile:
+          - { type: ellipse, at: [16, -62], radii: [4, 7], style: { fill: skin.ink } }
+          - { type: ellipse, at: [42, -62], radii: [4, 7], style: { fill: skin.ink } }
+          - { type: strokePath, segments: [["M", 8, -76], ["Q", 16, -81, 24, -76]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+          - { type: strokePath, segments: [["M", 34, -77], ["Q", 42, -82, 50, -76]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+          - { type: strokePath, segments: [["M", 22, -32], ["Q", 31, -25, 40, -31]], style: { stroke: skin.ink, lineWidth: 3 } }
+        think:
+          - { type: ellipse, at: [18, -60], radii: [3.5, 6], style: { fill: skin.ink } }
+          - { type: ellipse, at: [44, -60], radii: [3.5, 6], style: { fill: skin.ink } }
+          - { type: strokePath, segments: [["M", 8, -80], ["Q", 16, -86, 24, -80]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+          - { type: strokePath, segments: [["M", 34, -79], ["Q", 42, -84, 50, -79]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+          - { type: strokePath, segments: [["M", 25, -29], ["L", 39, -29]], style: { stroke: skin.ink, lineWidth: 3 } }
+        puzzled:
+          - { type: ellipse, at: [16, -62], radii: [4, 7], style: { fill: skin.ink } }
+          - { type: ellipse, at: [42, -62], radii: [4, 7], style: { fill: skin.ink } }
+          - { type: strokePath, segments: [["M", 8, -74], ["L", 24, -79]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+          - { type: strokePath, segments: [["M", 34, -79], ["L", 50, -74]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+          - { type: strokePath, segments: [["M", 24, -29], ["Q", 28, -33, 32, -29], ["Q", 36, -25, 40, -29]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+        surprise:
+          - { type: ellipse, at: [16, -62], radii: [4.5, 9], style: { fill: skin.ink } }
+          - { type: ellipse, at: [42, -62], radii: [4.5, 9], style: { fill: skin.ink } }
+          - { type: strokePath, segments: [["M", 8, -82], ["Q", 16, -88, 24, -82]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+          - { type: strokePath, segments: [["M", 34, -83], ["Q", 42, -89, 50, -82]], style: { stroke: skin.ink, lineWidth: 2.5 } }
+          - { type: ellipse, at: [31, -27], radii: [5.5, 8.5], style: { fill: skin.mouth } }
+        laugh:
+          - { type: strokePath, segments: [["M", 9, -60], ["Q", 16, -53, 23, -60]], style: { stroke: skin.ink, lineWidth: 3 } }
+          - { type: strokePath, segments: [["M", 35, -60], ["Q", 42, -53, 49, -60]], style: { stroke: skin.ink, lineWidth: 3 } }
+          - { type: path, segments: [["M", 16, -34], ["Q", 31, -12, 46, -34], ["Q", 31, -26, 16, -34], ["Z"]], style: { fill: skin.mouth } }
+          - { type: ellipse, at: [31, -21], radii: [7, 3.5], style: { fill: skin.tongue } }
+    z: 3
+  - id: book
+    role: "摊开的书（仅 idea 姿态；原点 = 握持点 grip，由 hold 基元对位 hand_L）"
+    attachTo: hand_L
+    attachRotDeg: -6
+    gate: book
+    anchors: { grip: [0, 10] }
+    geometry:
+      shapes:
+        - type: path # 封面
+          segments: [["M", -58, -64], ["L", 0, -54], ["L", 58, -64], ["L", 58, 6], ["L", 0, 14], ["L", -58, 6], ["Z"]]
+          style: { fill: skin.bookCover, stroke: skin.bookEdge, lineWidth: 3 }
+        - type: path # 书页
+          segments: [["M", -50, -56], ["L", 0, -47], ["L", 50, -56], ["L", 50, 0], ["L", 0, 7], ["L", -50, 0], ["Z"]]
+          style: { fill: skin.page, stroke: skin.bookEdge, lineWidth: 2 }
+        - type: strokePath
+          segments: [["M", 0, -47], ["L", 0, 7]]
+          style: { stroke: skin.bookEdge, lineWidth: 2 }
+        - type: strokePath
+          segments: [["M", -42, -44], ["L", -10, -38], ["M", -42, -30], ["L", -10, -24], ["M", 10, -38], ["L", 42, -44], ["M", 10, -24], ["L", 42, -30]]
+          style: { stroke: skin.cloudEdge, lineWidth: 2 }
+    z: 8
+  - id: bubble
+    role: "思考云（仅 thinking 姿态，承位图 l_think 的云朵）"
+    gate: bubble
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", 84, -440], ["C", 78, -458, 92, -470, 106, -466], ["C", 110, -482, 130, -488, 142, -478], ["C", 156, -488, 176, -480, 178, -464], ["C", 192, -458, 194, -440, 184, -432], ["C", 180, -418, 162, -414, 150, -420], ["L", 108, -420], ["C", 94, -414, 82, -426, 84, -440], ["Z"]]
+          style: { fill: skin.cloud, stroke: skin.cloudEdge, lineWidth: 3 }
+        - type: circle
+          at: [72, -424]
+          r: 6
+          style: { fill: skin.cloud, stroke: skin.cloudEdge, lineWidth: 2.5 }
+        - type: circle
+          at: [88, -434]
+          r: 9
+          style: { fill: skin.cloud, stroke: skin.cloudEdge, lineWidth: 2.5 }
+    z: 9
+
+anchors:
+  hand_L: { from: "parts.forearmL.anchors.hand（经 FK 链实算）", use: "hold/point 基元对位（近侧手）" }
+  hand_R: { from: "parts.forearmR.anchors.hand（经 FK 链实算）", use: "hold 基元对位（远侧手）" }
+  gaze: { from: "parts.head.anchors.eye + 头部累积角", use: "point 基元视线对位校验（视线方向 = 头角，面朝 +x 为 0°）" }
+  mouth: { from: "parts.head.anchors.mouth", use: "说话/表情参照" }
+  chin: { from: "parts.head.anchors.chin", use: "thinking 姿态手托下巴的 IK 目标" }
+  temple: { from: "parts.head.anchors.temple", use: "idea 姿态挠头手的 IK 目标" }
+  foot_L: { from: "parts.shinL.anchors.foot（经 FK 链实算）", use: "落脚点（站立双脚贴地断言）" }
+  foot_R: { from: "parts.shinR.anchors.foot（经 FK 链实算）", use: "落脚点" }
+
+params:
+  height:
+    design: 484 # 位图帧高（FI l_coff0 h=484）
+    computed: 460 # 元素系实算：-(torso.pivot.y + head.pivot.y + head.anchors.top.y) = -(-184-148-128)；舞台高由场景按 520/460 缩放
+    formula: "发梢（head.top 经 torso+head 枢轴链）到脚底的距离，由定义内坐标实算"
+  armLengths:
+    upper: 92 # = |forearm.pivot|（arm 部件坐标）
+    fore: 90 # = |forearm.anchors.hand| 实算 √(1²+90²)≈90.0
+    reach: 182 # upper + fore（point 断言的 reach 上限）
+  legLengths:
+    thigh: 86 # = |shin.pivot|
+    shin: 101 # = |shin.anchors.foot| 实算 √(24²+98²)≈100.9
+
+profiles:
+  standing: # from 位图 l_coff0（开场站立讲解，西装变体——位图集本身如此，逐姿态 1:1 承袭）
+    from: l_coff0
+    variant: blazer
+    face: smile
+    angles: { armR: 3, forearmR: -8, armL: -3, forearmL: -10, head: 0, legL: 1, shinL: 0, legR: -1, shinR: 0 }
+  relaxed: # from l_coff2（外套搭臂，衬衫变体）
+    from: l_coff2
+    variant: shirt
+    face: smile
+    show: [drape]
+    angles: { armR: 4, forearmR: -12, armL: -2, forearmL: -34, head: 2, legL: 1, shinL: 0, legR: -1, shinR: 0 }
+  thinking: # from l_think（手托下巴 + 思考云）
+    from: l_think
+    variant: shirt
+    face: think
+    show: [bubble]
+    ik: { armL: { target: chin } }
+    angles: { armR: 4, forearmR: -10, head: -5, legL: 1, shinL: 0, legR: -1, shinR: 0 }
+  idea: # from l_idea0（挠头 + 捧书）
+    from: l_idea0
+    variant: shirt
+    face: puzzled
+    show: [book]
+    ik: { armR: { target: temple } }
+    angles: { armL: 14, forearmL: -58, head: -3, legL: 1, shinL: 0, legR: -1, shinR: 0 }
+  pointing: # from l_point（近侧手指向展品；角度由 point 基元按场景目标实算，含视线跟随）
+    from: l_point
+    variant: shirt
+    face: surprise
+    ik: { armL: { target: "$target" } }
+    angles: { armR: 4, forearmR: -10, head: 0, legL: 1, shinL: 0, legR: -1, shinR: 0 }
+  laughing: # from l_laugh（双手捂肚、闭眼大笑、头微仰；armL 前臂角取镜像正值——手自外侧收向腹前）
+    from: l_laugh
+    variant: shirt
+    face: laugh
+    angles: { armR: 14, forearmR: -52, armL: -14, forearmL: 52, head: -9, legL: 1, shinL: 0, legR: -1, shinR: 0 }
+  # walking 不设静态姿态：由 props.js 的 walkPose(phase) 程序化生成（腿摆 ±26°、臂反摆、承位图 l_w0-3 的步态）
+
+assertions:
+  - id: point-direction
+    rule: "point 姿态：目标须在身前半平面（相对肩点 dx ≥ -20）；解析后 hand 射线（肩→手）与目标方向夹角 ≤ 3°；视线（头角）与目标方向夹角 ≤ 25°；手距 ≤ reach"
+    enforcedBy: "v5/props/props.js 的 assertPoint（构建期执行，不过抛错停建）"
+  - id: hold-contact
+    rule: "hold 对位后残差 |手锚点 - (道具原点 + grip)| ≤ 0.5（idea 姿态的书 grip↔hand_L 由此校验）"
+    enforcedBy: "v5/props/props.js 的 assertHold（构建期/测试执行）"
+  - id: anchor-reach
+    rule: "IK 姿态（thinking 手托下巴 / idea 手挠头）：解析后 |hand - 目标锚点| ≤ 6（IK 精确解应 ≈0，留造型裕量）"
+    enforcedBy: "v5/props/props.js 的 assertAnchorReach（构建期执行）"
+  - id: feet-on-ground
+    rule: "站立类姿态（非 walking）：foot_L/foot_R 的 y ∈ [-2, 2]（双脚贴地线）"
+    enforcedBy: "v5/props/props.js 的 assertFeetOnGround（构建期/测试执行）"

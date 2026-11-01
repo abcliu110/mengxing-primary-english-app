@@ -73,3 +73,22 @@ EXP_111 的旧核心句在 ITEMS 外有两处形态（标题为 JS 转义形态 
 
 1. **补拍帧缺口（6 项）**：sc08_3 第 3 轮帧、sc09_1 第 3 轮帧、sc07_6 与 sc10_8 的 usage_note 横幅帧、sc14_4 核心句横幅帧，及 sc04_6/sc06_1/sc06_8/sc12_9/sc15_4 的 note 横幅抽查帧——执行后段主机内存被外部进程耗尽（MemAvailable 一度 <200MB，Chrome 启动即 SIGTRAP，4 轮间隔重试未果），未能补拍。上述文本均已由「结构审计等值 + 源码对扫 + 产物对扫 + 等效校验全长回放」四重覆盖；同型横幅已在 sc06_4、sc10_2、sc09_1、sc04_2 四幕帧面实证在屏。主机资源恢复后可按 `shots_multi.py gen-stock-<幕>.html <时长×0.62（note）/×0.88（第3轮）>` 补拍归档，非阻塞项。
 2. 本批只同步 oral 冻结副本至 DB 现行口径；mindmap 3 处污染叶归 B9，口径不变。
+
+## 补拍归档（2026-11-01 主机恢复后补做，残留 1 关闭）
+
+按残留 1 的公式 `shots_multi.py gen-stock-<幕>.html <时长×0.62（note）/×0.88（第3轮）>` 补拍并逐帧目检，**10/10 帧通过**：新文在屏、旧文在帧面零出现、人物/气泡/高亮编排无回归。帧存 `~/workspace/shots_gen/`。
+
+| 帧文件 | 内容核验 |
+|---|---|
+| gen-stock-hd_oral_sc08_3_45.1.png | 第 3 轮新文「I come by bus! / 我坐公交车来！」在屏（复盘相位，三轮气泡并置可读） |
+| gen-stock-hd_oral_sc09_1_48.0.png | 第 3 轮新文「Thank you! / 谢谢你！」在屏；第 2 轮核心句高亮正常 |
+| gen-stock-hd_oral_sc07_6_34.6.png | 新 usage_note 全文在屏（size 38「标签」条，与 DB 现行逐字一致） |
+| gen-stock-hd_oral_sc10_8_31.0.png | 新 usage_note 全文在屏（祝福回送 The same to you! 条，逐字一致） |
+| gen-stock-hd_oral_sc14_4_30.6.png | 核心句新文「I'm 1.65 metres tall」在 note 横幅与第 2 轮气泡双处在屏，旧「1.6」零出现 |
+| gen-stock-hd_oral_sc04_6_35.8.png | note 抽查：新文（职业两大句型条）全文在屏 |
+| gen-stock-hd_oral_sc06_1_32.6.png | note 抽查：新文（点餐 I'd like some... 条）全文在屏 |
+| gen-stock-hd_oral_sc06_8_35.3.png | note 抽查：新文（认杯子不认水温条）全文在屏 |
+| gen-stock-hd_oral_sc12_9_35.0.png | note 抽查：新文（Why 要给原因条）全文在屏 |
+| gen-stock-hd_oral_sc15_4_33.2.png | note 抽查：新文（电器用 turn 条）全文在屏 |
+
+至此 T12-B7 的帧面证据链补齐：38 幕全部具备帧检或本节补拍证据，残留 1 关闭。

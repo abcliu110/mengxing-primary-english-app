@@ -225,20 +225,23 @@ const drawLiquid = (g, def, opts = {}) => {
 // book 走 attachTo（hold 基元对位）。姿态角为画布旋转度数（顺时针正，y 向下）。
 const LINDA_SKIN = { skin: '#ffedd8', edge: '#6e5f4d', hair: '#f4ecdc', hairEdge: '#8a7a5f', shirt: '#ffffff', shirtEdge: '#9aa0a6', scarf: '#e07b26', scarfEdge: '#b25a14', blazer: '#dd9a5f', blazerDark: '#c07f3e', blazerEdge: '#9a6224', shorts: '#b7bcc4', shortsEdge: '#7d838c', shoe: '#ffffff', shoeEdge: '#8b8f96', ink: '#3d3428', mouth: '#8a4b3a', tongue: '#d98a76', page: '#fdf6e3', bookCover: '#b5651d', bookEdge: '#7c4210', cloud: '#ffffff', cloudEdge: '#b9c4cc' };
 const legShapes = () => ([
-  { type: 'path', segments: [['M', -13, 2], ['C', -12, 30, -8, 60, -6, 84], ['L', 6, 84], ['C', 8, 58, 11, 30, 13, 2], ['Z']], style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3 } },
+  { type: 'path', segments: [['M', -16, 2], ['C', -15, 30, -10, 60, -9, 84], ['L', 9, 84], ['C', 10, 58, 14, 30, 16, 2], ['Z']], style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3 } },
 ]);
 const shinShapes = () => ([
-  { type: 'path', segments: [['M', -11, 0], ['C', -10, 28, -8, 56, -7, 80], ['L', 7, 80], ['C', 9, 54, 10, 26, 11, 0], ['Z']], style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3 } },
-  { type: 'path', segments: [['M', -8, 58], ['L', 8, 58], ['L', 7, 80], ['L', -7, 80], ['Z']], style: { fill: 'skin.shoe' } },
-  { type: 'path', segments: [['M', -13, 76], ['C', -14, 90, -6, 95, 4, 95], ['L', 26, 95], ['C', 34, 95, 35, 86, 28, 82], ['C', 18, 77, 4, 74, -13, 76], ['Z']], style: { fill: 'skin.shoe', stroke: 'skin.shoeEdge', lineWidth: 3 } },
+  { type: 'path', segments: [['M', -14, 0], ['C', -13, 30, -10, 60, -9, 85], ['L', 9, 85], ['C', 11, 58, 13, 28, 14, 0], ['Z']], style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3 } },
+  { type: 'path', segments: [['M', -9, 63], ['L', 9, 63], ['L', 9, 85], ['L', -9, 85], ['Z']], style: { fill: 'skin.shoe' } },
+  { type: 'path', segments: [['M', -14, 80], ['C', -15, 95, -6, 100, 4, 100], ['L', 27, 100], ['C', 35, 100, 36, 91, 29, 87], ['C', 19, 82, 4, 78, -14, 80], ['Z']], style: { fill: 'skin.shoe', stroke: 'skin.shoeEdge', lineWidth: 3 } },
+  { type: 'circle', at: [0, 2], r: 13.5, style: { fill: 'skin.skin' } },
 ]);
 const upperArmShapes = () => ([
-  { type: 'path', segments: [['M', -11, 28], ['C', -12, 52, -10, 72, -8, 90], ['L', 9, 90], ['C', 11, 70, 12, 50, 11, 28], ['Q', 0, 34, -11, 28], ['Z']], style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3 } },
-  { type: 'path', segments: [['M', -15, -4], ['C', -16, 10, -15, 24, -13, 34], ['L', 13, 34], ['C', 15, 22, 16, 8, 15, -4], ['Q', 0, -10, -15, -4], ['Z']], style: { fill: 'skin.shirt', stroke: 'skin.shirtEdge', lineWidth: 3 } },
+  { type: 'circle', at: [0, 0], r: 16, style: { fill: 'skin.shirt' } },
+  { type: 'path', segments: [['M', -14, 34], ['C', -15, 56, -12, 74, -10, 90], ['L', 11, 90], ['C', 13, 72, 14, 54, 14, 34], ['Q', 0, 40, -14, 34], ['Z']], style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3 } },
+  { type: 'path', segments: [['M', -18, -6], ['C', -19, 10, -18, 28, -16, 44], ['L', 16, 44], ['C', 18, 26, 19, 8, 18, -6], ['Q', 0, -12, -18, -6], ['Z']], style: { fill: 'skin.shirt', stroke: 'skin.shirtEdge', lineWidth: 3 } },
 ]);
 const forearmShapes = () => ([
-  { type: 'path', segments: [['M', -10, 0], ['C', -11, 26, -9, 54, -7, 80], ['L', 8, 80], ['C', 10, 54, 11, 26, 10, 0], ['Q', 0, 5, -10, 0], ['Z']], style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3 } },
-  { type: 'circle', at: [1, 86], r: 11.5, style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 2.5 } },
+  { type: 'circle', at: [0, 0], r: 13, style: { fill: 'skin.skin' } },
+  { type: 'path', segments: [['M', -13, 0], ['C', -14, 26, -12, 56, -10, 80], ['L', 10, 80], ['C', 12, 56, 13, 26, 13, 0], ['Q', 0, 6, -13, 0], ['Z']], style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3 } },
+  { type: 'circle', at: [1, 86], r: 13, style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 2.5 } },
 ]);
 const shortsShape = () => ({ type: 'path', segments: [['M', -52, -8], ['C', -54, 14, -53, 34, -50, 52], ['L', -18, 52], ['C', -16, 30, -15, 14, -14, -2], ['L', 14, -2], ['C', 15, 14, 16, 30, 18, 52], ['L', 50, 52], ['C', 53, 34, 54, 14, 52, -8], ['Q', 0, 0, -52, -8], ['Z']], style: { fill: 'skin.shorts', stroke: 'skin.shortsEdge', lineWidth: 3 } });
 const scarfShapes = () => ([
@@ -252,9 +255,9 @@ export const LINDA = {
   skin: { tokens: LINDA_SKIN },
   parts: [
     { id: 'legR', pivot: [-18, -184], z: 1, anchors: { knee: [0, 86] }, shapes: legShapes() },
-    { id: 'shinR', parent: 'legR', pivot: [0, 86], z: 0, anchors: { ankle: [0, 80], foot: [24, 93] }, shapes: shinShapes() },
+    { id: 'shinR', parent: 'legR', pivot: [0, 86], z: 0, anchors: { ankle: [0, 85], foot: [24, 98] }, shapes: shinShapes() },
     { id: 'legL', pivot: [16, -184], z: 2, anchors: { knee: [0, 86] }, shapes: legShapes() },
-    { id: 'shinL', parent: 'legL', pivot: [0, 86], z: 0, anchors: { ankle: [0, 80], foot: [24, 93] }, shapes: shinShapes() },
+    { id: 'shinL', parent: 'legL', pivot: [0, 86], z: 0, anchors: { ankle: [0, 85], foot: [24, 98] }, shapes: shinShapes() },
     { id: 'torso', pivot: [0, -184], z: 3, anchors: { shoulderL: [54, -132], shoulderR: [-54, -132] },
       variants: {
         shirt: [
@@ -339,14 +342,196 @@ export const LINDA = {
       ] },
   ],
   anchorSrc: { hand_L: ['forearmL', 'hand'], hand_R: ['forearmR', 'hand'], gaze: ['head', 'eye'], mouth: ['head', 'mouth'], chin: ['head', 'chin'], temple: ['head', 'temple'], foot_L: ['shinL', 'foot'], foot_R: ['shinR', 'foot'] },
-  params: { height: { design: 484, computed: 460 }, armLengths: { upper: 92, fore: 90, reach: 182 }, legLengths: { thigh: 86, shin: 96 } },
+  params: { height: { design: 484, computed: 460 }, armLengths: { upper: 92, fore: 90, reach: 182 }, legLengths: { thigh: 86, shin: 101 } },
   profiles: {
     standing: { from: 'l_coff0', variant: 'blazer', face: 'smile', angles: { armR: 3, forearmR: -8, armL: -3, forearmL: -10, head: 0, legL: 1, shinL: 0, legR: -1, shinR: 0 } },
     relaxed: { from: 'l_coff2', variant: 'shirt', face: 'smile', show: ['drape'], angles: { armR: 4, forearmR: -12, armL: -2, forearmL: -34, head: 2, legL: 1, shinL: 0, legR: -1, shinR: 0 } },
     thinking: { from: 'l_think', variant: 'shirt', face: 'think', show: ['bubble'], ik: { armL: { target: 'chin' } }, angles: { armR: 4, forearmR: -10, head: -5, legL: 1, shinL: 0, legR: -1, shinR: 0 } },
     idea: { from: 'l_idea0', variant: 'shirt', face: 'puzzled', show: ['book'], ik: { armR: { target: 'temple' } }, angles: { armL: 14, forearmL: -58, head: -3, legL: 1, shinL: 0, legR: -1, shinR: 0 } },
     pointing: { from: 'l_point', variant: 'shirt', face: 'surprise', ik: { armL: { target: '$target' } }, angles: { armR: 4, forearmR: -10, head: 0, legL: 1, shinL: 0, legR: -1, shinR: 0 } },
-    laughing: { from: 'l_laugh', variant: 'shirt', face: 'laugh', angles: { armR: 14, forearmR: -52, armL: -14, forearmL: -52, head: -9, legL: 1, shinL: 0, legR: -1, shinR: 0 } },
+    laughing: { from: 'l_laugh', variant: 'shirt', face: 'laugh', angles: { armR: 14, forearmR: -52, armL: -14, forearmL: 52, head: -9, legL: 1, shinL: 0, legR: -1, shinR: 0 } },
   },
 };
 export const ELEMENTS = { teapot: TEAPOT, cup: CUP, linda: LINDA };
+
+// ================= 人物 FK / IK（几何一律由定义内枢轴/锚点坐标实算） =================
+const D2R = Math.PI / 180;
+const rot2 = (x, y, deg) => { const c = Math.cos(deg * D2R), s = Math.sin(deg * D2R); return [x * c - y * s, x * s + y * c]; };
+const wrapDeg = (a) => { while (a > 180) a -= 360; while (a < -180) a += 360; return a; };
+const chainOf = (def, id) => {
+  const chain = [];
+  let p = partOf(def, id);
+  while (p) { chain.unshift(p); p = p.parent ? partOf(def, p.parent) : null; }
+  return chain;
+};
+// 部件坐标系在元素系中的位姿 {x, y, ang}：沿父链逐级 translate(pivot) ∘ rotate(pose 角)
+export const fkPart = (def, pose, id) => {
+  let x = 0, y = 0, ang = 0;
+  for (const p of chainOf(def, id)) {
+    const [rx, ry] = rot2(p.pivot ? p.pivot[0] : 0, p.pivot ? p.pivot[1] : 0, ang);
+    x += rx; y += ry; ang += (pose.angles && pose.angles[p.id]) || 0;
+  }
+  return { x, y, ang };
+};
+// 元素锚点的元素系坐标（锚点出处 anchorSrc → 部件锚点，经 FK 链实算）
+export const anchorPos = (def, pose, name) => {
+  const src = def.anchorSrc[name];
+  if (!src) throw new Error(`props/${def.element.id} 未知元素锚点 ${name}`);
+  const [pid, an] = src, part = partOf(def, pid), f = fkPart(def, pose, pid);
+  const a = part.anchors[an];
+  const [rx, ry] = rot2(a[0], a[1], f.ang);
+  return [f.x + rx, f.y + ry];
+};
+// 两骨 IK：求 upper/forearm 角使 hand 锚点落到 target（元素系）。双解中取肘更低（更自然）的一解。
+export const solveArmIK = (def, pose, side, target) => {
+  const upId = side === 'L' ? 'armL' : 'armR', foId = side === 'L' ? 'forearmL' : 'forearmR';
+  const S = fkPart(def, pose, upId);                       // 肩点（部件原点，不受本臂角度影响）
+  const fo = partOf(def, foId);
+  const L1 = Math.hypot(fo.pivot[0], fo.pivot[1]);
+  const L2 = Math.hypot(fo.anchors.hand[0], fo.anchors.hand[1]);
+  const dx = target[0] - S.x, dy = target[1] - S.y;
+  const dist = Math.min(Math.hypot(dx, dy), L1 + L2 - 1e-3);
+  if (!(dist > 1e-6)) throw new Error(`props/${def.element.id} IK 目标与肩点重合，方向未定义`);
+  const theta = Math.atan2(-(dx / Math.hypot(dx, dy)), dy / Math.hypot(dx, dy)) / D2R;   // 目标方向角（自 +y 轴、画布旋转口径）
+  const gamma = Math.acos(Math.max(-1, Math.min(1, (L1 * L1 + dist * dist - L2 * L2) / (2 * L1 * dist)))) / D2R;
+  const betaAbs = 180 - Math.acos(Math.max(-1, Math.min(1, (L1 * L1 + L2 * L2 - dist * dist) / (2 * L1 * L2)))) / D2R;
+  let best = null;
+  for (const sgn of [1, -1]) {
+    const up = theta - sgn * gamma, foA = sgn * betaAbs;
+    const trial = { ...pose, angles: { ...(pose.angles || {}), [upId]: up, [foId]: foA } };
+    const H = anchorPos(def, trial, side === 'L' ? 'hand_L' : 'hand_R');
+    const E = fkPart(def, trial, foId);
+    const err = Math.hypot(H[0] - (S.x + dx * dist / Math.hypot(dx, dy)), H[1] - (S.y + dy * dist / Math.hypot(dx, dy)));
+    // 验收阈值 1.5：hand 锚点带 1px 横向偏移（锚点不在前臂轴线上），FK 残差下限 ≈1，属几何固有量
+    if (err < 1.5 && (!best || E.y > best.E.y)) best = { up, fo: foA, E };
+  }
+  if (!best) throw new Error(`props/${def.element.id} IK 无解（target=${target}）`);
+  return { [upId]: best.up, [foId]: best.fo };
+};
+// 姿态解析：profile（静态角 + 表情/变体/门控）→ 应用 IK（锚点目标 / 场景 $target）→ 可绘制 pose
+export const resolvePose = (def, name, opts = {}) => {
+  const prof = def.profiles[name];
+  if (!prof) throw new Error(`props/${def.element.id} 未知姿态 ${name}`);
+  const pose = { name, angles: { ...(prof.angles || {}) }, face: prof.face || 'smile', variant: prof.variant || 'shirt', show: [...(prof.show || [])], target: null };
+  for (const [armKey, spec] of Object.entries(prof.ik || {})) {
+    const side = armKey === 'armL' ? 'L' : 'R';
+    let target;
+    if (spec.target === '$target') {
+      if (!opts.target) throw new Error(`props/${def.element.id} 姿态 ${name} 需要场景给目标（opts.target）`);
+      target = opts.target; pose.target = target;
+    } else {
+      target = anchorPos(def, pose, spec.target);         // 锚点目标：以当前（头角已定）姿态实算
+    }
+    Object.assign(pose.angles, solveArmIK(def, pose, side, target));
+    if (spec.target === '$target') {                      // 视线跟随：头角朝目标转一半（钳制 ±14°）
+      const eye = anchorPos(def, pose, 'gaze');
+      const want = Math.atan2(target[1] - eye[1], target[0] - eye[0]) / D2R;
+      const cur = pose.angles.head || 0;
+      pose.angles.head = cur + Math.max(-14, Math.min(14, wrapDeg(want - cur) * 0.55));
+    }
+  }
+  return pose;
+};
+// 姿态混合（切换交淡的角插值版）：角度逐项 lerp；表情/变体在中点切换；门控部件按 gateAlpha 淡入淡出
+export const blendPose = (def, a, b, u) => {
+  const angles = {};
+  for (const k of new Set([...Object.keys(a.angles || {}), ...Object.keys(b.angles || {})])) {
+    const va = (a.angles || {})[k] || 0, vb = (b.angles || {})[k] || 0;
+    angles[k] = va + (vb - va) * u;
+  }
+  const gateAlpha = {};
+  for (const gname of new Set([...(a.show || []), ...(b.show || [])])) {
+    const inA = (a.show || []).includes(gname), inB = (b.show || []).includes(gname);
+    gateAlpha[gname] = inA && inB ? 1 : inB ? u : 1 - u;
+  }
+  return { name: u < 0.5 ? a.name : b.name, angles, face: u < 0.5 ? a.face : b.face, variant: u < 0.5 ? a.variant : b.variant, show: [...new Set([...(a.show || []), ...(b.show || [])])], gateAlpha, target: b.target || a.target };
+};
+// 行走姿态（程序化步态，承位图 l_w0-3：腿摆 ±26°、膝随后摆、臂反摆）
+export const walkPose = (def, ph) => {
+  const s = Math.sin(ph);
+  return { name: 'walking', variant: 'shirt', face: 'smile', show: [], angles: {
+    legL: -26 * s, shinL: 6 + 20 * Math.max(0, Math.sin(ph + 0.9)), legR: 26 * s, shinR: 6 + 20 * Math.max(0, Math.sin(ph - 0.9 + Math.PI)),
+    armL: 13 * s, forearmL: -14, armR: -13 * s, forearmR: -14, head: 2 } };
+};
+
+// ================= 基元断言：point / hold / 到达 / 贴地（构建期执行，不过抛错停建） =================
+// point 基元校验：目标在身前半平面、肩→手射线与目标方向夹角 ≤ 3°、视线夹角 ≤ 25°、手不超 reach
+export const assertPoint = (def, pose, side, target) => {
+  const upId = side === 'L' ? 'armL' : 'armR';
+  const S = fkPart(def, pose, upId);
+  const H = anchorPos(def, pose, side === 'L' ? 'hand_L' : 'hand_R');
+  const dx = target[0] - S.x, dy = target[1] - S.y, dist = Math.hypot(dx, dy);
+  if (!(dist > 1e-6)) throw new Error(`props/${def.element.id} point 断言失败：目标与肩点重合`);
+  if (dx < -20) throw new Error(`props/${def.element.id} point 断言失败：目标在身后半平面（相对肩点 dx=${dx.toFixed(0)} < -20）`);
+  const hx = H[0] - S.x, hy = H[1] - S.y, hd = Math.hypot(hx, hy);
+  const angErr = Math.acos(Math.max(-1, Math.min(1, (dx * hx + dy * hy) / (dist * hd)))) / D2R;
+  if (angErr > 3) throw new Error(`props/${def.element.id} point 断言失败：手射线偏离目标方向 ${angErr.toFixed(1)}° > 3°`);
+  if (hd > def.params.armLengths.reach + 1) throw new Error(`props/${def.element.id} point 断言失败：手距 ${hd.toFixed(0)} 超 reach ${def.params.armLengths.reach}`);
+  const gazeAng = fkPart(def, pose, 'head').ang;
+  const want = Math.atan2(dy, dx) / D2R;
+  const gazeErr = Math.abs(wrapDeg(gazeAng - want));
+  if (gazeErr > 25) throw new Error(`props/${def.element.id} point 断言失败：视线偏离目标 ${gazeErr.toFixed(1)}° > 25°`);
+  return { angErr, gazeErr };
+};
+// hold 基元：道具原点应对位量（道具以 grip 锚点贴到手锚点，道具不旋转）
+export const holdOffset = (handPos, gripLocal) => [handPos[0] - gripLocal[0], handPos[1] - gripLocal[1]];
+// hold 断言：对位后残差 |手锚点 − (道具原点 + grip)| ≤ 0.5，否则抛错
+export const assertHold = (charDef, pose, handName, propDef, gripLocal, propOrigin) => {
+  const H = anchorPos(charDef, pose, handName);
+  const gx = propOrigin[0] + gripLocal[0], gy = propOrigin[1] + gripLocal[1];
+  const res = Math.hypot(H[0] - gx, H[1] - gy);
+  if (res > 0.5) throw new Error(`props hold 断言失败：${charDef.element.id}.${handName} 与 ${propDef.element.id} grip 对位残差 ${res.toFixed(1)} > 0.5`);
+  return res;
+};
+// 到达断言：IK 姿态解析后手与目标锚点距离 ≤ tol（手托下巴/挠头类）
+export const assertAnchorReach = (def, pose, handName, targetName, tol = 6) => {
+  const H = anchorPos(def, pose, handName), T = anchorPos(def, pose, targetName);
+  const d = Math.hypot(H[0] - T[0], H[1] - T[1]);
+  if (d > tol) throw new Error(`props/${def.element.id} 到达断言失败：${handName} 距 ${targetName} ${d.toFixed(1)} > ${tol}`);
+  return d;
+};
+// 贴地断言：站立类姿态双脚 foot 锚点 y ∈ [-tol, tol]
+export const assertFeetOnGround = (def, pose, tol = 2) => {
+  const fl = anchorPos(def, pose, 'foot_L'), fr = anchorPos(def, pose, 'foot_R');
+  if (Math.abs(fl[1]) > tol || Math.abs(fr[1]) > tol) throw new Error(`props/${def.element.id} 贴地断言失败：foot_L y=${fl[1].toFixed(1)} foot_R y=${fr[1].toFixed(1)}（tol ${tol}）`);
+  return [fl, fr];
+};
+
+// ================= 人物绘制（层级部件：父链变换 ∘ 部件角；变体/表情/门控/附着） =================
+const drawShapes = (g, def, shapes) => {
+  if (!shapes) return;
+  for (const sh of shapes) {
+    const style = sh.style;
+    if (sh.type === 'path') { replay(g, sh.segments); paint(g, def, style); }
+    else if (sh.type === 'strokePath') { replay(g, sh.segments); paint(g, def, { stroke: (style && style.stroke) || 'skin.edge', lineWidth: (style && style.lineWidth) || 3 }); }
+    else if (sh.type === 'circle') { g.beginPath(); g.arc(sh.at[0], sh.at[1], sh.r, 0, 7); paint(g, def, style); }
+    else if (sh.type === 'ellipse') { g.beginPath(); g.ellipse(sh.at[0], sh.at[1], sh.radii[0], sh.radii[1], sh.rot || 0, 0, 7); paint(g, def, style); }
+  }
+};
+export const drawCharacter = (g, def, pose) => {
+  g.lineJoin = 'round'; g.lineCap = 'round';
+  const kids = {};
+  for (const p of def.parts) if (p.parent) (kids[p.parent] ??= []).push(p);
+  const drawPart = (part) => {
+    if (part.gate && !(pose.show || []).includes(part.gate)) return;
+    g.save();
+    if (part.gate && pose.gateAlpha && pose.gateAlpha[part.gate] != null) g.globalAlpha *= pose.gateAlpha[part.gate];
+    if (part.attachTo) {   // 附着部件（hold 基元）：原点（grip）对位到元素锚点
+      const [hx, hy] = anchorPos(def, pose, part.attachTo);
+      g.translate(hx, hy); g.rotate((part.attachRotDeg || 0) * D2R);
+      drawShapes(g, def, part.shapes);
+      g.restore(); return;
+    }
+    g.translate(part.pivot ? part.pivot[0] : 0, part.pivot ? part.pivot[1] : 0);
+    g.rotate(((pose.angles && pose.angles[part.id]) || 0) * D2R);
+    const items = [{ z: 0, self: true }, ...((kids[part.id] || []).map(c => ({ z: c.z || 0, part: c })))].sort((a, b) => a.z - b.z);
+    for (const it of items) {
+      if (it.self) {
+        drawShapes(g, def, part.variants ? part.variants[pose.variant] : part.shapes);
+        if (part.features) drawShapes(g, def, part.features[pose.face]);
+      } else drawPart(it.part);
+    }
+    g.restore();
+  };
+  for (const root of def.parts.filter(p => !p.parent).sort((a, b) => a.z - b.z)) drawPart(root);
+};
