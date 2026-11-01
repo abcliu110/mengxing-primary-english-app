@@ -1,3 +1,10 @@
+## 黑白马克笔 + 2D 骨骼 · 倒咖啡试点（2026-11-01，未嵌 App，等用户看片）
+- 目的：回答用户「实际效果会不会和第一幅风格图（/workspace/style1_marker.png）一样、能不能用骨骼」。13.2 s 四拍：立场景 → 动词重音 pours → 伸手 / 握起提壶 / 倾倒入杯 / 放回 → 总结 She pours the coffee.
+- 新文件（不碰 T16 车道文件）：`docs/whiteboard/v5/lib/rig.js`（自研骨骼：层级 FK、两骨 IK、肘外角叠盖、部件逐笔揭开）、`v5/rig/trace_parts.py` + `v5/rig/barista_marker_sheet.png`（generate_image 部件表）→ 生成 `v5/rig/barista_marker.js`（potrace 矢量 + 骨架中心线，已入库，换线稿后重跑 `python3 rig/trace_parts.py`，依赖 `pip install potracer scipy scikit-image`）、`v5/scenes/pilot_marker_rig_pour.js`；`v5/check_hd.py` 加 `--mono`（彩色只许 #EF7226、橙色不许描线、位图源须为 0）。
+- 打包 / 验收：`node build.mjs scenes/pilot_marker_rig_pour.js out/pilot_marker_rig_pour.html "试点 · 黑白马克笔 + 骨骼 · 倒咖啡"`；`python3 check_hd.py --mono pilot_marker_rig_pour`；构建期断言在场景里（出流窗、断流先于回正、满倾壶嘴低于壶身、壶嘴朝下 ≥20°、落点在杯口、液面单调上升、IK 误差 ≤4 px、壶锁手骨偏差 0、关节断缝 0），数字挂在 `globalThis.__RIGSTATS`。
+- 产出（工作区，不进仓库）：`/workspace/work/marker_rig_review.png`（14 格审片）、`/workspace/work/vid/marker_rig_pour.mp4`（25 fps，1280×720）、`/workspace/work/marker_vs_ref.png`（与参考图并排）。
+- 待用户确认：风格是否够接近；接受后再决定是否把 rig.js 做成通用人物层（要给每个角色出一张部件表）、是否嵌入 App。已知差距见 CHANGELOG 同名条目。
+
 ## 有界无界①「全部手绘」样板（2026-11-01，未嵌 App，等用户看审片图）
 - 新文件（不碰 T16 车道的 props.js / fp_boundedness_1_v3.js / gen_boundedness_1.js）：`docs/whiteboard/v5/scenes/fp_boundedness_1_hd.js`、`v5/lib/hd.js`（rough 逐笔道具层）、`v5/lib/pour.js`（倒液物理 + 断言）、`v5/check_hd.py`、`v5/shots_hd.py`；人物帧 `v5/sprites/cast/bar_*.webp`（店员 4）、`lin_*.webp`（Linda 7），已登记 `model/cast/registry.yaml`。
 - 帧库是 gitignore 生成物，新 clone 先重建：
