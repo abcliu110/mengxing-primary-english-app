@@ -656,22 +656,24 @@ frames:
   libs: 1
   content_check: CAST 登记（CAST_V5.md，未逐帧目测）
 - id: flag
-  character: Leo
-  kind: 人物
+  character: —
+  kind: 道具
   sheet: L6
-  semantics: Leo 坐滑梯下滑、双手上举（与「旗」无关）
-  name_check: mismatch
-  contains: []
+  semantics: 旗杆带旗（白旗面迎风展开，旗杆斜立通长）
+  name_check: ok
+  contains:
+  - 旗帜
+  - 旗杆
   size:
-  - 340
-  - 440
+  - 260
+  - 444
   refs:
     scenes_canonical: 0
     scenes_all_files: 0
-    lib_linked_scenes: 0
-  libs: 0
-  content_check: 目测核验 2026-11-01（网格联系表）
-  name_note: 名「flag 旗」，实为 Leo 坐滑梯下滑（滑梯帧）。真正的旗在 snake 帧内（蛇旁旗杆）。CAST_V5 L6 登记的 slide 帧文件缺失——疑切帧时 slide 图被存为 flag。任何按名取「旗」或取「滑梯」都会错。
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（修复后逐帧看图，FIX_flag_slide）
+  name_note: 2026-11-01 已修复（FIX_flag_slide）：原 flag.webp 实为 Leo 滑梯图（L6 切帧错名存盘），该图已迁为 slide.webp（字节级同源），原文件备份于 ~/workspace/content-audit/cast_backup_pre_flagslide/。现 flag.webp 为自 snake 帧按 alpha 连通域提取的旗+旗杆（源区域 x315–575、y0–444，旗面完整、旗杆通长；snake 帧内旗旁的散点笔触未纳入），按 pack_cast 口径存盘（WebP q78/method6）。已打包入 fi2（fp_iconicity_2 及其生成幕 gen_letters_2 的库）。当前无场景以帧名引用本帧（letters_2 中的 flag 是例句先读词，非帧引用），后续按名取「旗」即得真旗。
 - id: g_ready
   character: 女孩（马尾·通用）
   kind: 人物
@@ -5745,6 +5747,24 @@ frames:
     lib_linked_scenes: 0
   libs: 0
   content_check: 目测核验 2026-11-01（网格联系表）
+- id: slide
+  character: Leo
+  kind: 人物
+  sheet: L6
+  semantics: Leo 坐滑梯下滑、双手上举
+  name_check: ok
+  contains:
+  - 滑梯
+  size:
+  - 340
+  - 440
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（修复后逐帧看图，FIX_flag_slide）
+  name_note: 2026-11-01 新建（FIX_flag_slide）：CAST_V5 L6 登记的 slide 此前无文件——其图即原误存为 flag.webp 的滑梯图，本次按字节原样迁名 slide.webp（与备份的原 flag.webp MD5 一致：2404d417…）。过渡状态：同一滑梯图曾以 flag 之名存盘、现以 slide 为正名，flag.webp 已同时换成真旗图，不再有双名并存；引用迁移建议——需要滑梯帧的场景一律用帧名 slide（已打包入 fi2），勿再假设 flag 与滑梯有关。当前无场景以帧名引用本帧（letters_2 中的 slide 是例句先读词），refs 仍为 0。
 - id: snake
   character: 蛇
   kind: 动物
@@ -6126,5 +6146,5 @@ frames:
   content_check: CAST 登记（CAST_V5.md，未逐帧目测）
 missing_frames:
 - id: slide
-  status: CAST_V5.md L6 登记（go down the slide），但 sprites/cast/ 无 slide.webp、任何精灵库均不含、场景引用 0。
-  diagnosis: 滑梯图现存于名为 flag 的帧文件中（见 flag 条），疑联排切帧时错名存盘；真正的旗图未单独成帧（仅见于 snake 帧内）。
+  status: 已修复 2026-11-01（FIX_flag_slide）：slide.webp 已按原误存图迁名建立，flag.webp 已换成自 snake 帧提取的真旗图，两帧均已打包入 fi2（见 frames 中 flag / slide 两条）。本条保留作历史记录。
+  diagnosis: （原诊断）滑梯图现存于名为 flag 的帧文件中（见 flag 条），疑联排切帧时错名存盘；真正的旗图未单独成帧（仅见于 snake 帧内）——已按此诊断修复。

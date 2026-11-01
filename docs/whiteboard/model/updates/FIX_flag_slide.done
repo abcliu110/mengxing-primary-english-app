@@ -1,0 +1,56 @@
+# FIX_flag_slide —— 卡司帧修复：flag / slide 帧错位（2026-11-01）
+
+状态：✅ 完成。范围：仅 cast 帧图与登记；未改任何场景台词/逻辑；未做 git 操作。
+
+## 一、盘点（修复前）
+
+| 项 | flag | slide |
+|---|---|---|
+| 文件 | sprites/cast/flag.webp 存在（340×440，26,988 B） | sprites/cast/slide.webp **缺失** |
+| 内容实查 | Leo 坐滑梯下滑、双手上举（逐帧目检，与 registry 登记一致） | —— |
+| 场景帧引用 | 0（规范幕口径与全库引号扫描双口径均 0） | 0 |
+| 精灵库收录 | 0 个库 | 0 个库 |
+
+- snake 帧（575×444）逐帧目检与登记一致：蛇在水中游，右侧立旗杆带旗，旗面完整；旗为帧内混入物。snake 被 fp_iconicity_1 / gen_letters_1 经 fi1 引用（本次未动 snake 与 fi1）。
+- CAST_V5.md L6 联排登记同表并列 `flag`（flag flies）与 `slide`（go down the slide）两帧，实物只有一图且错名——与登记的切帧错名诊断一致，未触发停单。
+- 易混点澄清：fp_iconicity_2 与 gen_letters_2 中出现的 'flag' / 'slide' 是 autoBuild「s」行第 4 元**先读词**（例句要先读的单词），不是帧引用；两幕的画面演出走 ACTS 动作帧（flies→bird、go→l_w*）。全库（scenes + lib + wb5.js，双引号/单引号两式）扫描确认：**没有任何场景以帧名引用 flag 或 slide**。
+
+## 二、修复（备份在先）
+
+备份：`~/workspace/content-audit/cast_backup_pre_flagslide/`（flag.webp、snake.webp，逐字节副本，MD5 2404d417… / 8b231465…）。
+
+1. **新建 slide.webp**：内容 = 原 flag 图，字节原样迁名（与备份 MD5 一致）。规格同 cast 库（340×440 RGBA WebP）。
+   路径：`docs/whiteboard/v5/sprites/cast/slide.webp`（26,988 B）。
+2. **修复 flag.webp**：自 snake.webp 按 alpha 连通域提取旗+旗杆——主体连通域 bbox x[315,575) y[0,444)（37,125 px），掩膜外像素 alpha 清零，膨胀 2px 收回抗锯齿 fringe 后按 pack_cast 口径紧裁、WebP q78/method6 存盘。成帧 260×444、10,134 B，逐帧目检：旗面完整双叶展开、旗杆带顶珠通长、无蛇身/水纹混入（旗旁源图上的散点笔触为独立连通域，未纳入）。
+   路径：`docs/whiteboard/v5/sprites/cast/flag.webp`。
+3. **过渡状态注明**：同一滑梯图曾以 flag 之名存盘，现以 slide 为正名，flag.webp 已同时换成真旗图——修复后无双名并存；同源关系与迁名事实已写入 registry 两帧的 name_note。引用迁移建议：需要滑梯帧的场景一律用帧名 `slide`，勿再假设 flag 与滑梯有关；需要旗帧用 `flag`，即得真旗。
+
+## 三、精灵库重生成与场景抽验
+
+- 引用面实情：修复前**没有任何精灵库收录 flag/slide**（无库可「重生成受影响的」）。处置：把两帧补入与之唯一相关的库 **fi2**（fp_iconicity_2 及其生成幕 gen_letters_2 的人物先行帧库，两幕脚本中恰有 flag/slide 两词）：
+  `python3 build_sprites.py fi2 bird_up bird_down l_w0 l_w1 l_w2 flag slide` → fi2.js 201,017 B（sprites/*.js 为 .gitignore 管理的构建产物，不入 git），FR/FI 现含 7 帧：flag 264×448、slide 344×444（库内尺寸含管线 ±2/3px 裁边口径）。
+- 抽 2 幕重建（build.mjs，暂存验大小后就位）：
+  - **gen_letters_2** → `~/workspace/your_files/gen-letters-2.html`（1,194,639 → 1,306,414 B，增量即 fi2 新增两帧）。
+  - **fp_iconicity_2**（模板本体）→ 验证构建 /tmp/fp_iconicity_2.html（1,306,581 B，未另置交付件，其交付形态即 gen-letters-2）。
+- 目检帧（Playwright seek 至 __cues 对应拍，截图存 `~/workspace/shots_flagslide/`）：
+  - fp_iconicity_2 t=34.5「The flag flies in the wind.」拍：fl- 词卡与 bird 演员正常渲染；
+  - fp_iconicity_2 t=81.5「Go down the slide slowly.」拍：Leo 行走演员（l_w*）正常渲染；
+  - gen-letters-2 t=61.0「Slide down, slowly!」拍：词卡与 bird 演员正常渲染。
+  - ⚠️ 口径说明：三拍画面均**未出现**旗/滑梯图——因为两幕从未以帧名引用这两帧（见一节澄清），画面本就由 ACTS 演员承担，此为修复前后的同一行为，**不是回归**。本修复的保证面是：帧名与内容自此一致、两帧已进 fi2 待用，日后任何按名取帧（模板替换车道/新幕）不会再取错图。若需让 letters_2 两幕在对应例句真摆出旗/滑梯图，属场景编排改动，不在本单范围，建议另单裁定。
+
+## 四、登记同步
+
+`docs/whiteboard/model/cast/registry.yaml`（YAML 解析校验通过，frames 总数 331 → 332）：
+- flag 条：语义改为「旗杆带旗（白旗面迎风展开，旗杆斜立通长）」，character —、kind 道具，name_check mismatch → **ok**，size → [260, 444]，libs → 1、lib_linked_scenes → 1，name_note 全面改写为修复记录（同源/备份/提取区域/入 fi2）。
+- 新增 slide 条（置于 show2 与 snake 之间）：Leo 坐滑梯下滑，name_check ok，size [340, 440]，libs 1、lib_linked_scenes 1，name_note 记迁名同源、过渡状态与引用迁移建议。
+- missing_frames 中 slide 条：status 改为「已修复 2026-11-01（FIX_flag_slide）」，原诊断保留作历史。
+- refs（场景帧引用）两帧仍为 0——与实查一致，未虚报。
+
+## 五、变更文件清单
+
+- `docs/whiteboard/v5/sprites/cast/flag.webp`（替换：滑梯图 → 真旗图）
+- `docs/whiteboard/v5/sprites/cast/slide.webp`（新建：原 flag 图迁名）
+- `docs/whiteboard/v5/sprites/fi2.js`（管线重生成，构建产物不入 git）
+- `docs/whiteboard/model/cast/registry.yaml`（flag/slide/missing_frames 三处）
+- `~/workspace/your_files/gen-letters-2.html`（交付件重建，仓库外）
+- 备份：`~/workspace/content-audit/cast_backup_pre_flagslide/{flag,snake}.webp`
