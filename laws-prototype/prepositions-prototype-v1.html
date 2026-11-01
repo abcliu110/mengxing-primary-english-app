@@ -15,9 +15,15 @@ h1 { font-size: 21px; margin: 6px 0 2px;}
 .badge.warn { background: #e8a13a;}
 .badge.gray { background: #8a97a5;}
 /* 选词条：横向滚动，常驻不重建 */
-#stripWrap { position: sticky; top: 0; z-index: 20; background: #f4f6fb; padding: 8px 0 6px;}
-#strip { display: flex; gap: 7px; overflow-x: auto; padding: 4px 2px 8px; scrollbar-width: thin;}
-.wchip { flex: 0 0 auto; border: 1.5px solid #c9d4e4; background: #fff; border-radius: 999px; padding: 6px 12px; font-size: 14px; cursor: pointer;}
+.panel { background: #fff; border: 1px solid #dde4ee; border-radius: 14px; padding: 12px 14px; margin: 0 0 12px;}
+.panel h2 { font-size: 17px; margin: 0 0 2px;}
+.panel .psub { color: #8a97a5; font-size: 12px; margin: 0 0 10px;}
+.pgrid { display: flex; flex-wrap: wrap; gap: 7px;}
+.wchip .cnt { background: #2f6fd0; color: #fff; border-radius: 999px; padding: 1px 8px; font-size: 11.5px; font-weight: 700;}
+.wchip .cnt.wait { background: #c3cedd; color: #5a6b7d;}
+.wchip.on .cnt { background: #fff; color: #2f6fd0;}
+.wchip.cmp .cnt { background: #fff; color: #e8720c;}
+.wchip { border: 1.5px solid #c9d4e4; background: #fff; border-radius: 999px; padding: 6px 12px; font-size: 14.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;}
 .wchip small { color: #93a3b5; font-size: 10px; margin-left: 3px;}
 .wchip.core { border-color: #2f6fd0; border-width: 2px; font-weight: 700;}
 .wchip.on { background: #2f6fd0; border-color: #2f6fd0; color: #fff;}
@@ -76,14 +82,16 @@ h2.sec { font-size: 16px; margin: 18px 0 4px;}
 <div id="app">
 <h1>介词实验台</h1>
 <p class="sub">一块屏学介词：点词条就地换内容；开对比，两个介词同屏比。</p>
-<div id="stripWrap">
-<div id="strip"></div>
+<div id="panels">
+<section class="panel" id="panel-core"><h2>核心四将</h2><p class="psub" id="psub-core"></p><div class="pgrid" id="pg-core"></div></section>
+<section class="panel" id="panel-fam"><h2>有全家福的介词</h2><p class="psub" id="psub-fam"></p><div class="pgrid" id="pg-fam"></div></section>
+<section class="panel" id="panel-rest"><h2>词表其余 · 规律待补</h2><p class="psub" id="psub-rest"></p><div class="pgrid" id="pg-rest"></div></section>
+</div>
 <div>
 <button class="cmptoggle" id="cmpToggle">⚖️ 对比模式：关</button>
 <span class="sub" id="cmpHint" style="margin-left:6px"></span>
 </div>
 <div class="cmpbar" id="cmpBar"></div>
-</div>
 
 <div class="card" id="headCard"></div>
 
@@ -176,13 +184,20 @@ const STRIP = CORE4.concat(DATA.familyOrder.filter(w =>!CORE4.includes(w))).conc
 let cur = 'in', cmpOn = false, cmp = null;
 const lastBall = {}; // panelKey -> [x,y]
 /* 选词条只建一次，之后只切 class */
-$('strip').innerHTML = STRIP.map(w => {
+function chipHTML(w) {
 const p = DATA.pages[w];
-const small = p.family? ('<small>' + p.nlaws + ' 条</small>'): '<small>待补</small>';
-return '<button class="wchip' + (CORE4.includes(w)? ' core': '') + '" data-w="' + esc(w) + '">' + esc(w) + small + '</button>';
-}).join('');
+const cnt = p.family? ('<span class="cnt">' + p.nlaws + ' 条</span>'): '<span class="cnt wait">待补</span>';
+return '<button class="wchip' + (CORE4.includes(w)? ' core': '') + '" data-w="' + esc(w) + '">' + esc(w) + cnt + '</button>';
+}
+const FAMREST = DATA.familyOrder.filter(w =>!CORE4.includes(w));
+$('pg-core').innerHTML = CORE4.map(chipHTML).join('');
+$('pg-fam').innerHTML = FAMREST.map(chipHTML).join('');
+$('pg-rest').innerHTML = DATA.remainderOrder.map(chipHTML).join('');
+$('psub-core').textContent = CORE4.length + ' 个入口 · 共 ' + CORE4.reduce((s, w) => s + DATA.pages[w].nlaws, 0) + ' 条规律';
+$('psub-fam').textContent = FAMREST.length + ' 个入口 · 共 ' + FAMREST.reduce((s, w) => s + DATA.pages[w].nlaws, 0) + ' 条规律';
+$('psub-rest').textContent = DATA.remainderOrder.length + ' 个入口 · 规律待补挂，先学核心义';
 function markStrip() {
-document.querySelectorAll('#strip.wchip').forEach(c => {
+document.querySelectorAll('#panels .wchip').forEach(c => {
 c.classList.toggle('on', c.dataset.w === cur);
 c.classList.toggle('cmp', cmpOn && c.dataset.w === cmp);
 });
@@ -367,7 +382,7 @@ return;
 cur = w;
 renderAll();
 }
-$('strip').addEventListener('click', e => {
+$('panels').addEventListener('click', e => {
 const c = e.target.closest('[data-w]');
 if (c) selectWord(c.dataset.w);
 });
