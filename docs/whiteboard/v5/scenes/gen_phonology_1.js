@@ -79,15 +79,16 @@ export default function build() {
   const narr = (s, t, min = 2.6) => { const d = Math.max(min, readT(s) + 0.8); K.narr(s, t, t + d); return t + d; };
   const say = (t, en, zh, key = []) => { const L = Math.max(sayLen(en), readT(zh) + 0.6); K.say(t, en, { zh, key, len: L }); return t + L + 0.5; };
   C.label('⚙️ 第一性原理 · 口腔小机关 · 1', 60, 1060, { size: 34, col: GREY, from: 0.2, align: 'left' });
-  C.label('-s 和 -ed 的三种读音', 60, 70, { size: 40, col: INK, from: 0.3, align: 'left', bold: true });
-  C.label('① 清浊顺行同化', 520, 70, { size: 34, col: OR, from: 0.5, align: 'left' });
-  // 顶部进度条：6 步，走到哪步亮哪步
+  // P2 版面修正：标题/原理名原与旁白横幅（屏空间 y 22–160，两行时）完全重叠，旁白一响整行被盖——按套件惯例「顶部留给讲解字幕」移到右下角竖排（左下角是系列标）。
+  C.label('① 清浊顺行同化', 1860, 998, { size: 30, col: OR, from: 0.5, align: 'right' });
+  C.label('-s 和 -ed 的三种读音', 1860, 1060, { size: 36, col: INK, from: 0.3, align: 'right', bold: true });
+  // 顶部进度条：6 步，走到哪步亮哪步（P2：基线 70→196，避开横幅两行时的下沿 160）
   const STEPS = ['① 6 种读音？', '② 声带', '③ 同化', '④ 过去式', '⑤ 口诀', '🔮 预测'];
   const stepAt = [];
   const stepBar = () => STEPS.forEach((s, i) => K.prop((g, t) => {
     if (t < 0.6) return; const on = stepAt[i] != null && t >= stepAt[i] && (stepAt[i + 1] == null || t < stepAt[i + 1]);
     const done = stepAt[i] != null && t >= stepAt[i];
-    g.save(); g.globalAlpha = clamp((t - 0.6) / 0.4); g.font = `${on ? '700 ' : ''}26px Kalam, WK`; g.fillStyle = on ? OR : done ? INK : '#c4c4c4'; g.textAlign = 'left'; g.fillText(s, 880 + i * 175, 70); g.restore();
+    g.save(); g.globalAlpha = clamp((t - 0.6) / 0.4); g.font = `${on ? '700 ' : ''}26px Kalam, WK`; g.fillStyle = on ? OR : done ? INK : '#c4c4c4'; g.textAlign = 'left'; g.fillText(s, 880 + i * 175, 196); g.restore();
   }, { from: 0.6, z: 4 }));
   C.TEXTS.push(...STEPS);
 
@@ -135,7 +136,7 @@ export default function build() {
   // ===== ② 声带 =====
   stepAt[1] = T; throatFrom = T;
   T = narr('其实只看一件事：前一个音，声带有没有震动。', T, 3.4);
-  C.label('只看一件事：前一个音，声带震不震？', 1300, 200, { size: 44, col: OR, from: T - 2, out: T + 9 });
+  C.label('只看一件事：前一个音，声带震不震？', 1300, 300, { size: 44, col: OR, from: T - 2, out: T + 9 });   // P2：原 y=200 与下移后的步骤条（基线 196）同带，降到 300（下方 /k/ 行在 420，不冲突）
   C.arrow(TX + 260, TY - 150, TX + 40, TY - 10, { from: T, until: T + 6, col: GREY, w: 5 });
   C.label('声带', TX + 300, TY - 160, { size: 48, col: INK, from: T, out: T + 6, bold: true });
   T = narr('声带：喉咙里的两片小肉，发某些音时会快速震动。', T, 4.2);

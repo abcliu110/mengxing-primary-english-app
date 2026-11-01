@@ -58,4 +58,4 @@ const ITEMS = [
   ['w', '口诀：站着上车用 on，弯腰钻进用 in。'],
   ['w', '🧠 第一性原理 ⑤ 三维几何向量时空律']
 ];
-export default function build() { return autoBuild(SP, { title: '🧭 第一性原理 · 方向向量 · 3', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🧭 第一性原理 · 方向向量 · 3', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

@@ -120,7 +120,7 @@ export default function build() {
   T = say(T, 'The sun is hot today.', '今天太阳很热。', ['sun'], { y: 760 });
   const X1 = Math.max(T, X0 + 11);
   C.pic({ emoji: '🚪', x: 960, y: 450, size: 220, from: X1, until: X1 + 7.8 });
-  frame(X1 + 0.6, X1 + 7.8, [[X1 + 0.6, 'hop'], [X1 + 1.6, 'lock', 960, 450]], [[700, 450], [1220, 450]], { w: 240, h: 260 });
+  frame(X1 + 0.6, X1 + 7.8, [[X1 + 0.6, 'lock', 960, 450]], [], { w: 240, h: 260 });   // P2 跳帧修复：门是唯一物、框天生锁住（同本步太阳/月亮的直锁）——原 hop 先在 700/1220 间滑行 1s 再瞬移回 960，既跳帧又与 KNOW[13]「就这一扇门，大家都知道」自相矛盾。🚪 不换 DOOR 元素：本步视觉语言是 🌞/🌙/🚪 表情图一族，单换矢量门会破族
   T = narr(KNOW[13], X1 + 0.2, 3.4);
   T = say(T, 'Open the door, please!', '请开门！', ['the'], { y: 760 });
   const X2 = Math.max(T, X1 + 7.8);

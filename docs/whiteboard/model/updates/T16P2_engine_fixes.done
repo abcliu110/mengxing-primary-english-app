@@ -1,0 +1,73 @@
+# T16 P2 车道 A · 引擎与分镜积压五项修复 —— 结项记录（2026-11-01）
+
+范围纪律：台词/KNOW/ITEMS 逐字零漂移（所有修复只动引擎判定顺序、演员缩放、分镜坐标/状态，不动任何文案字符串）；构建全部先暂存验大小再就位；未做 git 操作（待主会话提交）。前后帧存 `~/workspace/shots_p2a/`。
+
+改动文件总览：
+- 引擎：`v5/scenes/auto.js`（第 1、2 项）
+- 模板：`v5/scenes/fp_vectors_3.js`（第 2 项 opt-in）、`v5/scenes/fp_economy_1_v2.js`（第 3 项）、`v5/scenes/fp_boundedness_3.js`（第 4 项）、`v5/scenes/fp_boundedness_2.js`（第 5 项）
+- 再生：`gen_spacetime_3.js`、`gen_phonology_1.js`、`gen_boundedness_2.js`、`gen_boundedness_3.js`（均经 gen_scene.py 由 spec 再生 + 同步 factsheet）
+- 交付件更新（~/workspace/your_files/）：第 1 项 15 个 + gen-spacetime-3、gen-phonology-1、gen-boundedness-2、gen-boundedness-3，共 19 个 HTML。
+
+---
+
+## 第 1 项 结尾卡口诀被吞（引擎层正解）
+
+**根因**：auto.js `autoBuild` 的 'w' 处理先做全局 `seen` 整串去重、再判 `isGold`——幕中已出现过的口诀行（及极端情况下 '💡 一句话洞见' 触发行本身）在金句卡上被 `return` 吞掉。全库扫描（ITEMS 含 💡 触发行的 auto 幕）实测 13 幕中招：bamboo_tree_2/3/4、pron_map_2/3、ze_borrow_1、ze_link_1、ze_mark_1、ze_pronoun_1（口诀两行+系列名共 3 行）、ze_subject_1、ze_wear_1（口诀行+系列名）、ze_yesno_1。复现证据：bamboo_tree_2 金句卡上只有「🎵 口诀」标题、口诀正文缺失（板面行重建：口诀行全幕仅 1 处落点）。
+
+**改法**（影响面最小化）：'w' 分支内把 `isGold` 判定前置于去重之前（触发行永不被吞），且 `gold===true` 时整段豁免去重（结尾卡定位即 recap 复述）；幕中去重条件改为 `if (!gold && seen.has(a)) return;`。'm' 分支（议程/菜单防重复，'m' 触发不了金句卡）逐字不动。前置扫描确认全库金句卡内部无同串重复行（豁免不会造成卡内双出）。
+
+**验证**：
+- 合成自测幕（临时文件，验后已删除）：中段 'm' 重复行、短行重复、长行重复仍各只出 1 次（防重复不坏）；金句卡复述的中段口诀行出 2 处（中段+金句卡）。
+- bamboo_tree_2：口诀行落点 1 处 → 2 处（金句卡 [2,1] 板 4400,1878）；时长 206.6s → 211.3s（仅恢复行的阅读时间）；金句卡截图口诀正文回归（item1_bamboo2_goldcard_before/after.png）。
+- 抽查 bamboo_tree_4（口诀 2 板）、ze_pronoun_1（两行口诀各 2 板）、phonology_4（金句「口诀：…」+中段裸口诀各 1 处）全过；phonology_2 中段裸口诀与金句口诀两处俱在，且全幕板面落点图修前修后逐行相同；spacetime_3 落点图亦逐行相同（引擎修复隔离性）。
+- 13 受害幕 + phonology_2/3/4 全部重建就位，ic_gen8 等效校验 15/15 ✅、不合格 0（时长 151.4–224.6s 均在 40–240 区间，文字峰值 11–17%）。
+
+**附带观察（未改，另行登记）**：gen_stock_poly_4rows_1、gen_stock_chain_story_4 的 '💡 一句话洞见' 写成了 'm' 条目，金句卡永不触发、其后 37 行按幕中样式渲染——属数据写法问题，与本项机制不同，未在本车道处理。
+
+## 第 2 项 spacetime_3 巴士出界 + 下一板角落残影
+
+**根因**：autoBuild 演员固定 h=470，bus/car 精灵（fv3：w 699–713）缩放宽 709–776px，超过演员窗 [1380,1880] 的 500px；AX 的左右钳制（`x ≥ 1380 + ax·sc` 与 `x ≤ 1880 − (w−ax)·sc`）无解、后置 max 胜出，右缘被推到 ≈2089（出 1920 画布约 169px，含车门与站立的男孩被切）。演员逐板跟随，故后续每板右下角都拖着半截车头（残影）。复现帧：item2_sp3_bus_before.png（男孩/车门被切）、item2_sp3_residue_before.png。
+
+**改法**（分镜层 opt-in，不动全局）：auto.js 新增 `D.actorFitW` 选项——声明时按幕内 ACTS 全部帧计算统一收高 `AH = min(470, min_帧 actorFitW·bottom/w)`，AX 与两处演员创建（开场 's' 换板）改用 AH；未声明的幕 AH=470、公式逐字不变。fp_vectors_3.js 的 build 调用声明 `actorFitW: 500` → 本幕 AH=302.9（car_in2 定界），巴士缩放宽 458、小车 500，AX 钳制有解、整车入画。全库普查显示 37 幕存在 >520 的宽演员（plane 1207、ducks 1486 等整幅式构图），故拒绝全局收界、只做本幕 opt-in。
+
+**验证**：t=30 巴士整车入画且车门口男孩完整可见（本幕讲点正是「车上能站起来走」）；t=50 小车整车入画；t=90 后板角落为完整下车帧而非半截车头（item2_sp3_*_after.png）。文本落点图修前修后逐行相同、时长 147.1s 不变（文字零漂移、零遮挡变化）。check_spacetime.py 静态断言 A1–A6 全过 + 家族 4/4 ✅；ic_gen8 gen-spacetime-3 ✅（147.1s，文字峰值 11%）。未声明 opt-in 的 spacetime_2 落点图修前修后逐行相同；vv_get_on_1（同族车辆幕）新旧引擎同帧截图 md5 完全一致——opt-in 隔离性双证。
+
+**附带观察（未改）**：spacetime_2 的 plane（缩放宽 937）与 stock 车辆幕（vv_get_on/off/in/out、hd_fr09_1 等）有同类右溢；整幅式宽精灵（plane/ducks/tent/swim）是否为有意裁切构图需逐幕裁定，actorFitW 已备好，待主会话排期。
+
+## 第 3 项 phonology_1 旁白横幅遮标题
+
+**根因**：wb5 narrBar 为屏空间顶置横幅（y 22 起，1 行下沿 106、2 行 160，alpha .94 画在最上层）；fp_economy_1_v2 的标题（60,70)、原理名（520,70)、步骤条（基线 70）整行落在横幅带内，旁白一响整行被盖（复现帧 item3_phon1_banner_before.png，只剩残影）。全幕仅 aged/learned 例外旁白换行成 2 行（下沿 160）。
+
+**改法**（模板版面层，按 fb39 套件「顶部留给讲解字幕」惯例）：标题与原理名移右下角竖排（原理名 (1860,998) 30px 右对齐、标题 (1860,1060) 36px 粗体右对齐；与左下角系列标、居中 sayBar（右界 ≈1346）均不冲突）；步骤条基线 70 → 196（墨迹顶 ≈176 > 横幅最坏下沿 160）；第 2 步标题「只看一件事…」由 (1300,200) 降到 (1300,300) 避开步骤条（下方 /k/ 行在 420、喉咙轮廓在 x≤600，均不冲突）。
+
+**验证**：t=2 横幅/步骤条/右下标题三者分明；t=26 第 2 步标题与步骤条错开；t=100 两行横幅最坏情况仍不压步骤条（item3_phon1_after.png、item3_phon1_twolines_after.png）。官方 insightcheck gen_phonology_1 ✅ 不合格 0（125.7s；决策 39 提示为既有 advisory，非不合格）。
+
+## 第 4 项 boundedness_3 猫在床边 + predict 窗剧透
+
+**根因 a**：第 3 步 pairs[0] 左 beat 是整串 '🛏️🐈'，contrastSplitScreen 以单次居中 fillText 绘制一串字形 → 猫只能并排落在床边，与台词 "The cat is on the bed." 矛盾（复现帧 item4_b3_cat_before.png）。
+**改法 a**：beat 改为 '🛏️' 单床；模板 pairs 循环新增可选 p[8] 叠加层 `[emoji, dx, dy, size]`（以左半屏中心 (530,410) 为原点），pairs[0] 给 ['🐈', 0, −38, 110]——猫脚落床面（首版 dy −60/size 95 截图见猫悬空 32px，按实测字形偏移校准至现值）。KNOW/例句逐字未动。
+
+**根因 b**：第 2 步右容器 states 在 M0+1.0 就转 'bounded'（实线发光框），而 predict 提问「右边这个 school，外面那圈框还在吗？」的整个倒计时窗内答案已上屏（复现帧 item4_b3_spoiler_before.png：预测环倒数 3 时右框已与左框同为实线有界框）。
+**改法 b**：右容器 states 只保留 [[M0+0.4, 'unbounded']]（流体+虚线灰框=未揭晓态，与 'school ?' 标签自洽）；揭晓仍由 R0 的 📚 容器（bounded→unbounded 化开）承担，左容器与医院段未动。
+
+**验证**：t=21 预测窗右容器为虚线+流体+淡影学校（item4_b3_spoiler_after.png）；t=68 猫四脚站床面（item4_b3_cat_after.png）。官方 insightcheck gen_boundedness_3 ✅ 不合格 0（107.2s，与 T11 记录一致，时序未变）。
+
+## 第 5 项 boundedness_2 门框跳帧
+
+**根因**：第 3 步门节拍 frame 先 'hop'（在 700/1220 两点间以 0.625s 周期滑行）1.0s 后切 'lock'——切换时刻框正滑在半途（x≈700 一侧），瞬移 260px 回 (960,450) 锁门（复现帧 item5_b2_doorhop_before.png：t=66.9 框心已滑到门外右侧、与门错位）。且语义反了：门是唯一物、框应「天生锁住」（同一步太阳/月亮都是直锁），乱跳是 a/any 的行为，与 KNOW[13]「就这一扇门，大家都知道是哪扇」自相矛盾。
+
+**改法**：门框改直锁 `[[X1+0.6, 'lock', 960, 450]]`、hops 清空（与太阳/月亮同式），{w:240,h:260} 不变。**DOOR 元素不换**（已评估）：本步视觉语言是 🌞/🌙/🚪 表情图一族，单把 门换成矢量元素会破族，且本项第一目标是修跳帧——理由已写进模板注释。第 2 步小狗 hop、第 4 步猫 hop 是真正的 a→the 预测/揭晓节拍（「咔」锁定的戏剧点），未动。
+
+**验证**：t=66.3/66.9 框自首现即绿框+🔒 锁在门上、无滑行无瞬移（item5_b2_doorlock_after.png）。官方 insightcheck gen_boundedness_2 ✅ 不合格 0（102.6s，时序未变）。
+
+---
+
+## 停单项
+
+无。五项全部完成并通过校验。
+
+## 待主会话裁定/排期（本车道只登记，未动）
+
+1. spacetime_2 plane 与 stock 车辆/整幅宽精灵幕（37 幕 >520px）的收界裁定（逐幕 opt-in actorFitW，或认定为有意裁切构图）。
+2. poly_4rows_1 / chain_story_4 的 '💡 一句话洞见' 误写为 'm' 条目（金句卡不触发）——数据写法修正需走 ITEMS 裁定流程。
+3. 本车道引擎改动（auto.js）随 T15 回灌包统一进 App；本记录所涉 19 个交付 HTML 已按新引擎重建。

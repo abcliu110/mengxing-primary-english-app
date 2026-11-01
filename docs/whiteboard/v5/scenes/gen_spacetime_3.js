@@ -49,4 +49,4 @@ const ITEMS = [
   ['w', '能站起来走动的车用 on，坐进小空间的车用 in'],
   ['w', '📦 联想工具箱 ⑤ 介词看图猜'],
 ];
-export default function build() { return autoBuild(SP, { title: '上车：能站着走用 on', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '上车：能站着走用 on', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

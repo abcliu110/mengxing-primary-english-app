@@ -28,7 +28,12 @@ export function autoBuild(SP, D) {
 
   let T = 0.1, bi = -1, ox = 0, oy = 0, y = Y0, actor = null, gold = false, row = null, lastW = -9, actN = 0;
   const seen = new Set();
-  const AX = fr => { let x = 1600; for (const f of fr) { const I = SP.FI[f]; if (!I) continue; const sc = 470 / I.bottom; x = Math.min(x, 1880 - (I.w - I.ax) * sc); x = Math.max(x, 1380 + I.ax * sc); } return x; };
+  // P2 分镜收界（opt-in，D.actorFitW）：整车/整机类超宽演员精灵在 h=470 时缩放宽度超过演员窗 [1380,1880]（500px），
+  // AX 的左右钳制无解、右缘被推出 1920 画布。声明 actorFitW 的幕按幕内最宽帧统一收高 AH（帧间相对比例不变），AX 钳制随即有解。
+  // 未声明的幕 AH=470，AX 与演员高度与原式逐字一致，零影响。
+  let AH = 470;
+  if (D.actorFitW) for (const ks of Object.values(D.acts || {})) for (const f of ks) { const I = SP.FI[f]; if (I) AH = Math.min(AH, D.actorFitW * I.bottom / I.w); }
+  const AX = fr => { let x = 1600; for (const f of fr) { const I = SP.FI[f]; if (!I) continue; const sc = AH / I.bottom; x = Math.min(x, 1880 - (I.w - I.ax) * sc); x = Math.max(x, 1380 + I.ax * sc); } return x; };
   const board = (t, isGoldCard = false) => {
     bi++; [ox, oy] = REG(bi); y = Y0; actor = null; row = null; gold = isGoldCard;
     if (bi === 0) K.camSet(ox + 960, oy + 540, 1); else K.cam(Math.max(0, t - 0.3), { x: ox + 960, y: oy + 540, z: 1, d: 0.9, ease: 'power2.inOut' });
@@ -42,7 +47,7 @@ export function autoBuild(SP, D) {
   const sayLen = (en, word) => (word ? 0.45 + word.split(/\s+/).length * 0.42 : 0) + en.split(/\s+/).length * 0.36 + 0.9;
 
   board(T);
-  if (hasActs) { const f0 = Object.values(D.acts)[0]; actor = K.actor({ keys: [[0, f0[f0.length - 1]]], x: AX(f0), ground: 1110, h: 470, reveal: 1.0 }); actor.board = 0; actor.last = 0; }   // 第一块板的开场角色就是后面动作的同一个人（不再另起一个叠在原地）
+  if (hasActs) { const f0 = Object.values(D.acts)[0]; actor = K.actor({ keys: [[0, f0[f0.length - 1]]], x: AX(f0), ground: 1110, h: AH, reveal: 1.0 }); actor.board = 0; actor.last = 0; }   // 第一块板的开场角色就是后面动作的同一个人（不再另起一个叠在原地）
   D.items.forEach((it, idx) => {
     const [k, a, b, c] = it;
     if (k === 'n') {
@@ -57,8 +62,10 @@ export function autoBuild(SP, D) {
     }
     if (k === 'p') { K.at(T).text(a, ox + 1600, oy + 360, 110); return; }
     if (k === 'w') {
-      if (seen.has(a)) return; seen.add(a);
+      // P2 引擎正解（T11a 登记）：金句卡是结尾复述段（recap），不参与 seen 去重——触发行先行判定（同串在幕中出现过也不得吞掉整卡），
+      // 卡内各行豁免去重（幕中已出过的口诀行在卡上再写一遍正是复述本意）；幕中（gold=false）去重职责不变，议程/清单防重复照旧。
       if (isGold(a)) { if (bi >= 0) T += HOLD; board(T + 0.4, true); T += 0.6; K.at(T).text(a, ox + 200, oy + y, 56, { col: OR }); y += 96; T += 0.5; return; }
+      if (!gold && seen.has(a)) return; seen.add(a);
       if (gold) {
         const sz = 54, ls = wrapLines(a, sz, 1500);
         if (y + ls.length * 84 > 960) { T += HOLD; board(T + 0.3, true); T += 0.5; }
@@ -90,7 +97,7 @@ export function autoBuild(SP, D) {
         const fr = D.acts[hit[0]], wt = hit[0] === '*' ? st + 1.2 : wordT(st, en, w, norm(hit[0].split(/\s+/)[0]));
         const keys = fr.length === 1 ? [[0, fr[0]]] : fr.length === 2 ? [[0, fr[0]], [wt, fr[1]]] : [[0, fr[0]], [wt - 0.5, fr[1]], [wt + 0.5, fr[2]]];
         if (actor && actor.board === bi) { const base = Math.max(st - 0.3, actor.last + 0.01); keys.forEach(([kt, kk], j) => actor.keys.push([j ? Math.max(kt, base + 0.01 * j) : base, kk])); actor.last = Math.max(...actor.keys.map(q => q[0])); }
-        else { actor = K.actor({ keys: keys.map(([kt, kk], j) => [j ? kt : 0, kk]), x: ox + AX(fr), ground: oy + 1110, h: 470, reveal: Math.max(0, st - 0.6) }); actor.board = bi; actor.last = Math.max(...keys.map(q => q[0])); }
+        else { actor = K.actor({ keys: keys.map(([kt, kk], j) => [j ? kt : 0, kk]), x: ox + AX(fr), ground: oy + 1110, h: AH, reveal: Math.max(0, st - 0.6) }); actor.board = bi; actor.last = Math.max(...keys.map(q => q[0])); }
         hit.filter(h => h !== '*').forEach((hw, hj) => { const t2 = wordT(st, en, w, norm(hw.split(/\s+/)[0])); K.pop(t2, hw, ox + 1600, oy + 470 + hj * 110, 84, { out: t2 + 2.2 }); });
       }
       const L = Math.max(sayLen(en, w), readT(zh) + 0.8);   // 中文字幕要读完

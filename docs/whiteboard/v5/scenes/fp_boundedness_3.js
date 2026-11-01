@@ -71,7 +71,7 @@ export default function build() {
   const ME = T;
   // 左：外壳框一直亮着；右：框在预测之后化开成一片（流体），楼变书本 = 去上课；最后一段换成医院
   C.schemaContainer({ x: 560, y: 480, w: 420, h: 360, content: '🏫', from: M0, until: H0, states: [[M0, 'unbounded'], [M0 + 0.6, 'bounded']], label: 'the school', col: GREEN, spread: 0.9 });
-  C.schemaContainer({ x: 1360, y: 480, w: 420, h: 360, content: '🏫', from: M0 + 0.4, until: R0, states: [[M0 + 0.4, 'unbounded'], [M0 + 1.0, 'bounded']], label: 'school ?', col: GREY, spread: 0.9 });
+  C.schemaContainer({ x: 1360, y: 480, w: 420, h: 360, content: '🏫', from: M0 + 0.4, until: R0, states: [[M0 + 0.4, 'unbounded']], label: 'school ?', col: GREY, spread: 0.9 });   // P2 剧透修复：预测窗内只许未揭晓态（流体+虚线框）——原第二态 M0+1.0 就转 bounded 实线框，等于提前公布答案；揭晓由 R0 的 📚 容器承担
   C.schemaContainer({ x: 1360, y: 480, w: 420, h: 360, content: '📚', from: R0, until: H0, states: [[R0, 'bounded'], [R0 + 0.8, 'unbounded']], label: 'school = 去上课', col: OR, fluid: 'rgba(254,215,170,.6)', spread: 0.9 });
   C.schemaContainer({ x: 560, y: 480, w: 420, h: 360, content: '🏥', from: H0, until: ME, states: [[H0, 'unbounded'], [H0 + 0.6, 'bounded']], label: 'to the hospital', col: GREEN, spread: 0.9 });
   C.schemaContainer({ x: 1360, y: 480, w: 420, h: 360, content: '🤒', from: H0 + 0.6, until: ME, states: [[H0 + 0.6, 'bounded'], [H0 + 1.4, 'unbounded']], label: 'in hospital', col: OR, fluid: 'rgba(254,215,170,.6)', spread: 0.9 });
@@ -81,7 +81,7 @@ export default function build() {
   T = C.step(3, T);
   const X0 = T;
   const pairs = [
-    ['🛏️🐈', 'on the bed', '😴', 'in bed', KNOW[8], 'The cat is on the bed. I am in bed.', '猫在床上。我在睡觉。', ['the', 'in', 'bed']],
+    ['🛏️', 'on the bed', '😴', 'in bed', KNOW[8], 'The cat is on the bed. I am in bed.', '猫在床上。我在睡觉。', ['the', 'in', 'bed'], ['🐈', 0, -38, 110]],   // P2：原 '🛏️🐈' 整串居中只能并排（猫在床边），与台词 on the bed 矛盾——床单独成 beat，猫走 p[8] 叠加层站到床面上
     ['🚌', 'on a bus', '🚌💨', 'by bus', KNOW[10], 'I am on a bus. I go by bus.', '我在一辆公交车上。我坐公交车去。', ['a', 'by']],
     ['⚽', 'buy a football', '⚽🏃', 'play football', KNOW[12], "Buy a football. Let's play football after school.", '买一个足球。放学后我们去踢足球吧。', ['a', 'play']],
   ];
@@ -96,6 +96,7 @@ export default function build() {
     C.schemaContainer({ x: 1400, y: 410, w: 600, h: 380, content: '', from: t0, until: t, states: [[t0, 'bounded'], [t0 + 2.2, 'unbounded']], col: OR, spread: 0.55, fluid: 'rgba(254,215,170,.5)' });    // 右边外壳化开，只剩做的事
     C.chip({ text: p[1], x: 520, y: 760, size: 56, col: GREEN, bd: GREEN, from: t0 + 0.6, until: t, path: [[t0 + 0.6, 520, 690, 2.4, 'out']] });
     C.chip({ text: p[3], x: 1400, y: 760, size: 56, col: OR, bd: OR, from: t0 + 1.4, until: t, path: [[t0 + 1.4, 1400, 690, 2.4, 'out']] });
+    if (p[8]) C.pic({ emoji: p[8][0], x: 530 + p[8][1], y: 410 + p[8][2], size: p[8][3], from: t0 + 0.2, until: t });   // P2 叠加层：[emoji, dx, dy, size]，以左半屏中心 (530,410) 为原点（双屏 beat 整串居中拼不出上下/里外关系时用）
   });
   C.contrastSplitScreen({ left: { label: '看得见的实物', beats: L }, right: { label: '只讲做什么事', beats: Rr }, from: X0, until: t, diff: st.map(x => x + 2.2), y: 190, h: 440, psize: 150 });
   T = t;
