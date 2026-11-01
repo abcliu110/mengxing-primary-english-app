@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '医生，我觉得很冷，而且头很疼。'],
   ['s', 'I feel cold and I have a bad headache, Doctor.', '医生，我觉得很冷，而且头很疼。'],
   ['w', '对话第3轮'],
-  ['w', '👩‍⚕️ 角色 A：Thank you. I\'ll have a rest.'],
-  ['w', '谢谢，我会休息。'],
-  ['s', 'Thank you. I\'ll have a rest.', '谢谢，我会休息。']
+  ['w', '👩‍⚕️ 角色 A：Take some medicine and have a good rest.'],
+  ['w', '吃点药，好好休息一下。'],
+  ['s', 'Take some medicine and have a good rest.', '吃点药，好好休息一下。']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 看病与身体不适 · What\'s wrong with you?', items: ITEMS, acts: ACTS }); }

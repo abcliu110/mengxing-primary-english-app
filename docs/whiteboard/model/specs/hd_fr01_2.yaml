@@ -1,0 +1,28 @@
+# spec 存档 · hd_fr01_2（T12 B10 批处置，T12 阶段二）
+# 管线：builder 家族存量处置（T12_plan §3 B10 / §4 G9）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: hd_fr01_2
+family: 框架语义学 · 买卖交易小剧场 视角 2 sell（卖）
+engine: frBuild 家族版式（scenes/fr_lib.js；sprites/hdfr01_2.js 空包，B10 批补齐）
+structure: { know_block: "有（export const KNOW）", narr_calls: 0, imports: [../sprites/hdfr01_2.js, ./fr_lib.js], data: "build() { return frBuild(SP, V) }，V 为视角数据对象" }
+disposition:
+  route: 数据登记入模 + 保留 builder 实现
+  reason: 计划 G9 定性：builder 两族共 8 幕量小、不另造 spec 模式，逐幕人工迁移。本批将数据对象全文登记入本存档（单源登记），引擎（fr_lib）与场景实现保留；生成器反向驱动待 G9 薄适配器立项时切换。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+stop_check:
+  framework_conflict: 无。本批零台词改动。
+facts:
+  objects: ["买卖交易小剧场", "故事书流向 ⬅️", "Seller / Goods / Buyer 角色标"]
+  invariants:
+    - "V 数据对象全文：verb sell（卖）、idx 2、subject Seller、flow goods；q 镜头对准店员，看书从他手里出去"
+    - "parts：The shopkeeper(Seller) + sells + a storybook(Goods) + to + Taotao.(Buyer)；en The shopkeeper sells a storybook to Taotao.；zh 店员把一本故事书卖给淘淘"
+    - "公式：Seller + sell + Goods + to Buyer；流向：卖家 ➔ 商品 ➔ 买家"
+    - "不变量：与视角 1 同一事件、同一商品，仅主语视角切换"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-hd_fr01_2.html（~/workspace/your_files/，1045242 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 官方强制集外（同 hd_fr01_1 口径）；ic_gen8 等效校验：✅ 不合格 0（47.8s，文字峰值 18%，无页面报错）

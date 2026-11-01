@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '我的生日在五月一日。来参加我的生日派对吧！'],
   ['s', 'My birthday is on May 1st. Come to my birthday party!', '我的生日在五月一日。来参加我的生日派对吧！'],
   ['w', '对话第3轮'],
-  ['w', '👧 角色 A：Thank you! The same to you!'],
-  ['w', '谢谢！你也一样！'],
-  ['s', 'Thank you! The same to you!', '谢谢！你也一样！']
+  ['w', '👧 角色 A：Great! I\'d love to come!'],
+  ['w', '太好了！我很乐意来！'],
+  ['s', 'Great! I\'d love to come!', '太好了！我很乐意来！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 节日与祝福 · When is your birthday? — On May 1st.', items: ITEMS, acts: ACTS }); }

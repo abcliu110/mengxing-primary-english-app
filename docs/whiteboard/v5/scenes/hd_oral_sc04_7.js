@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '当然，我很乐意！乒乓球是我最喜欢的运动！'],
   ['s', 'Sure, I\'d love to! Ping-pong is my favourite sport!', '当然，我很乐意！乒乓球是我最喜欢的运动！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👦 角色 A：Great! See you after school!'],
+  ['w', '太好了！放学后见！'],
+  ['s', 'Great! See you after school!', '太好了！放学后见！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · Can you play ping-pong with me?', items: ITEMS, acts: ACTS }); }

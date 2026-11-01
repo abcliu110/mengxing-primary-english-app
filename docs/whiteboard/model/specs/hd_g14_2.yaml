@@ -1,0 +1,31 @@
+# spec 存档 · hd_g14_2（T12 B10 批处置，T12 阶段二）
+# 管线：手写 E 型存量处置（T12_plan §3 B10）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: hd_g14_2
+family: grammar G14（介词 in / on / at · 第 2 幕）
+engine: 手写 E 型（lib/concept.js + scenes/g14_lib.js；sprites/hdg14_2.js 空包，B10 批补齐）
+structure: { know_block: "有（export const KNOW）", narr_calls: 17, imports: [../lib/concept.js, ../sprites/hdg14_2.js, ../wb5.js, ./g14_lib.js] }
+disposition:
+  route: 保留手写 + spec 存档
+  reason: 内容经 scene_fixes 46 条裁定集逐字+归一化双通道扫描零命中（干净）；台词以 KNOW/SEQ 结构块承载，本存档即单源登记。生成器迁移需 G8 手写幕台词抽取器 + 家族模板变体（T12_plan §4 定性为「大」缺口），B2/B5 先例对手写幕采用「处置 + spec 存档」口径，本批从之；待 G8 立项后按家族整体迁移。
+fixes_applied:
+  items:
+    - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+    - 同病登记（未裁定，未擅改）：KNOW[1]「一通百通」宣传语，与 B5 在 hd_g14_1 的残留登记同型。
+    - 口径张力登记：结尾口诀「时间看漏斗：年月季节早中晚，范围宽大都用in」与本幕 KNOW 内 at night 例外存在字面张力——与 B5 在 hd_g14_1 登记的同一口诀同型问题；本幕旁白已立 at 精确点口径统摄，等级低，无现成定稿，未改。
+  content_note: 漏斗三档与 in/on/at 例词（in May / on Monday / at 7:30、on Sunday morning、at night）逐一对应；五点抽检通过（见 T12b10.done）
+stop_check:
+  framework_conflict: 无。本批零台词改动；同病未裁定项一律登记不改（见 disease_check）。
+facts:
+  objects: ["盒子 / 桌面 / 靶心三格（时间收纳格）", "时间卡 2026、May、spring、Monday、June 1st、7:30", "the morning / Sunday morning / noon / night 卡"]
+  invariants:
+    - "时间漏斗：in = 比一天长的时段或一天里泛指的上午/下午/晚上；on = 具体某一天（含某天的早上）；at = 钟点及 noon / night"
+    - "锁定规则：时间锁定到具体某一天（Sunday）即归 on，无论后面有无 morning/afternoon"
+    - "at night 为 at 精确点口径下的例外，当场给出"
+residual_for_review:
+    - "KNOW[1]「一通百通」为宣传语，不在 scene_fixes 覆盖范围内，未动（与 B5 在 hd_g14_1 的残留登记同型）。"
+    - "KNOW 末口诀「时间看漏斗：年月季节早中晚，范围宽大都用in」中「早中晚」字面与本幕 at night 例外存在口径张力；本幕旁白已立 at 精确点口径统摄，等级低，无现成定稿，未改（与 B5 登记的同一口诀同型问题）。"
+validation:
+  build: gen-stock-hd_g14_2.html（~/workspace/your_files/，1046893 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 不合格 0（--only=hd_g14_2；116.4s，文字峰值 7%，决策 39 提示为讲授型既有提示，非不合格项）

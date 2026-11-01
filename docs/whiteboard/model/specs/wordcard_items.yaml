@@ -1,0 +1,18 @@
+# spec 存档 · wordcard_items（T12 B11 批处置，T12 阶段二）
+# 管线：手写非 E 型存量处置（T12_plan §3 B11）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: wordcard_items
+family: 单词卡模板对 · 数据模块（与 wordcard_tpl 成对）
+engine: 数据/纯函数模块（非独立幕：词条数据 → auto.js ITEMS，App 运行时与离线验收共用同一份代码；见文件头与 DESIGN_MINDMAP_WORDCARD.md §2）
+structure: { know_block: "无", narr_calls: 0, imports: [], exports: [ACT_FRAMES, ACT_NAMES, wordParts, wordItems, wordInventory], title: 词源与构词原理 }
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+facts: 待补  # 随模板对同账
+stop_check:
+  framework_conflict: 无。本批零台词改动；场景源文件与引擎文件均未动。
+residual_for_review:
+  - 事实表正文「待补」，随模板对同账。
+  - R1 口径：旧 wordModalCanvas 非多义分支的全部文字每幕都在，字段缺失就跳过、不补写（文件头自载）。
+validation:
+  build: 不适用（数据模块，无独立构建产物）
+  ic_gen8: 不适用（无独立播出产物；其播出由 wordcard_tpl + 真实词条数据驱动）
+  insightcheck_official: 官方 insightcheck --only 口径：存量手写幕不在官方强制集内（实测 past_clans_1：强制检查 0 幕，不合格 0，属空集结论）；实际校验以 ic_gen8 等效校验为准（B10 先例）

@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '妈妈，我现在感觉好多啦！我们去公园吧！'],
   ['s', 'I feel much better now, Mum! Let\'s go to the park!', '妈妈，我现在感觉好多啦！我们去公园吧！'],
   ['w', '对话第3轮'],
-  ['w', '👩 角色 A：Thank you. I\'ll have a rest.'],
-  ['w', '谢谢，我会休息。'],
-  ['s', 'Thank you. I\'ll have a rest.', '谢谢，我会休息。']
+  ['w', '👩 角色 A：Good! I\'m so glad.'],
+  ['w', '太好了！我真高兴。'],
+  ['s', 'Good! I\'m so glad.', '太好了！我真高兴。']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 看病与身体不适 · How do you feel?', items: ITEMS, acts: ACTS }); }

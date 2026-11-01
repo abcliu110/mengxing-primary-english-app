@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '我喜欢踢足球和唱英文歌！'],
   ['s', 'I like playing football and singing English songs!', '我喜欢踢足球和唱英文歌！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👦 角色 A：That sounds interesting!'],
+  ['w', '听起来真有意思！'],
+  ['s', 'That sounds interesting!', '听起来真有意思！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · What are your hobbies?', items: ITEMS, acts: ACTS }); }

@@ -7,7 +7,7 @@ const ACTS = {"*": ["l_hand1", "l_think", "l_speak"], "M": ["l_speak", "l_ear", 
 const ITEMS = [
   ['w', '节日与祝福'],
   ['w', '核心交际句：Cheers! Happy New Year! （干杯！新年快乐！（节日聚餐祝福））'],
-  ['w', '💡 交际得体度与母语负迁移提示：🌟 共同节日回应王牌：新年、中秋、周末等大家都过的节日，可用 The same to you!（同乐/也同样祝你）回应！'],
+  ['w', '💡 交际得体度与母语负迁移提示：🌟 The same to you! 是一面“镜子”：只对你我都适用的祝福有效（Happy New Year、Have a nice weekend），对方照过来，你原样照回去。⚠️ 镜子照不出没发出的祝福：邀请、感谢、只属于对方的生日，都不能用它回应。'],
   ['w', '对话第1轮'],
   ['w', '👦 角色 A：Cheers! Happy New Year, everyone!'],
   ['w', '干杯！祝大家新年快乐！'],
@@ -15,10 +15,6 @@ const ITEMS = [
   ['w', '对话第2轮'],
   ['w', '👧 角色 B：Cheers! The same to you!'],
   ['w', '干杯！也同样祝福你（同乐）！'],
-  ['s', 'Cheers! The same to you!', '干杯！也同样祝福你（同乐）！'],
-  ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Thank you! The same to you!'],
-  ['w', '谢谢！你也一样！'],
-  ['s', 'Thank you! The same to you!', '谢谢！你也一样！']
+  ['s', 'Cheers! The same to you!', '干杯！也同样祝福你（同乐）！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 节日与祝福 · Cheers! Happy New Year!', items: ITEMS, acts: ACTS }); }

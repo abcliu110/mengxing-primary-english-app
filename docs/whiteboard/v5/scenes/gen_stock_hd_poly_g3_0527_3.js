@@ -1,0 +1,22 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：（spec 自带内容，无家族模型）；改本幕台词/结构：model/specs/stock_hd_poly_g3_0527_3.yaml；改编排：模板 hd_poly_g3_0527_3.js（家族共用）。
+// 判据/口诀来源：—。生成器 model/gen_scene.py（items 模式）。
+// 🎞️ kind · 一词多义第3幕 —— 决策 38 ⑩ 啊哈重做（一词多义通用版式 scenes/poly.js；啊哈卡 lab/audit38/aha/10_hd_poly.md）
+// 内容来源（R1 零丢失）：src/cases/hd_poly_g3_0527.js 案例 3；对照清单 lab/INVENTORY_HD_POLY_G3_0527_3_V5.md
+// 角色关键帧：sprites/hdpg30527_3.js（人物先行帧库 cast/）
+import { polyBuild } from './poly.js';
+import * as SP from '../sprites/hdpg30527_3.js';
+const ACTS = {"*": ["l_idea1", "l_hand0", "l_laugh"]};
+const ITEMS = [
+  ['w', '一词多义演变'],
+  ['w', '👵 kind /kaɪnd/ — 【adj./n.】慈祥的，善良的，友好的；种类'],
+  ['w', '核心意象纽带：同宗同族的类别与亲人般的仁慈'],
+  ['w', '① 本义具象：adj. 体贴的，友好的，仁慈的'],
+  ['w', 'Our English teacher is very kind.'],
+  ['w', '② 意象桥梁：同宗同族的类别与亲人般的仁慈'],
+  ['w', '核心动作/形状迁移'],
+  ['w', '③ 引申新义：n. 种类，类别（a kind of 一种…）'],
+  ['w', 'What kind of fruit do you like?'],
+  ['w', '多义第3幕'],
+  ['s', 'What kind of fruit do you like?', '💖 第三幕【引申新义·友好善良】：由名词“种类（a kind of）”延伸出形容词“善良友好的（be kind to）”！'],
+];
+export default function build() { return polyBuild(SP, { title: '🎞️ kind · 一词多义第3幕', items: ITEMS, acts: ACTS }); }

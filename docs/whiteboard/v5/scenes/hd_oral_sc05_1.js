@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '可以，请进吧！请坐。'],
   ['s', 'Yes, come in, please! Sit down.', '可以，请进吧！请坐。'],
   ['w', '对话第3轮'],
-  ['w', '🧒 角色 A：Thank you for your help!'],
-  ['w', '谢谢你帮忙！'],
-  ['s', 'Thank you for your help!', '谢谢你帮忙！']
+  ['w', '🧒 角色 A：Thank you!'],
+  ['w', '谢谢您！'],
+  ['s', 'Thank you!', '谢谢您！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 询问与求助 · May I come in?', items: ITEMS, acts: ACTS }); }

@@ -7,7 +7,7 @@ const ACTS = {"*": ["l_plaster", "l_breath", "l_think"], "M": ["l_speak", "l_ear
 const ITEMS = [
   ['w', '看病与身体不适'],
   ['w', '核心交际句：Why are you so happy today? （你今天为什么这么开心呀？）'],
-  ['w', '💡 交际得体度与母语负迁移提示：🌟 黄金问答锁死：听到 Why...? 提问，回答第一句永远是 Because...!'],
+  ['w', '💡 交际得体度与母语负迁移提示：🌟 Why 是来要原因的：回答时先把原因递出去，最常用的开头是 Because...。递原因不止一种姿势——记住“要给原因”，不是“永远用某个词开头”（考场造句用 Because 开头最稳）。'],
   ['w', '对话第1轮'],
   ['w', '👦 角色 A：Why are you so happy today, Chen Jie?'],
   ['w', '陈杰，你今天为什么这么开心呀？'],
@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '因为我妈妈给我买了一只可爱的小狗！而且我的生日快到啦！'],
   ['s', 'Because my mum bought me a cute puppy! And my birthday is coming!', '因为我妈妈给我买了一只可爱的小狗！而且我的生日快到啦！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Thank you. I\'ll have a rest.'],
-  ['w', '谢谢，我会休息。'],
-  ['s', 'Thank you. I\'ll have a rest.', '谢谢，我会休息。']
+  ['w', '👦 角色 A：Wow! How lucky you are!'],
+  ['w', '哇！你真幸运！'],
+  ['s', 'Wow! How lucky you are!', '哇！你真幸运！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 看病与身体不适 · Why are you so happy today?', items: ITEMS, acts: ACTS }); }

@@ -7,7 +7,7 @@ const ACTS = {"*": ["m_offer", "l_nothanks", "m_like"], "M": ["l_speak", "l_ear"
 const ITEMS = [
   ['w', '就餐与点菜'],
   ['w', '核心交际句：What would you like to drink? （你想喝点什么？（点饮品必会））'],
-  ['w', '💡 交际得体度与母语负迁移提示：🌟 饮品量词黄金搭档：a cup of tea/coffee (热饮用茶杯 cup) ↔ a glass of juice/milk/water (冷饮透明杯用 glass)！'],
+  ['w', '💡 交际得体度与母语负迁移提示：🌟 认杯子，不认水温：带把手的是 cup（a cup of tea），透明玻璃杯是 glass（a glass of juice）。热水可以装进 glass（a glass of hot water），果汁也可以倒进 cup——名字跟着杯子走，不跟水温走。'],
   ['w', '对话第1轮'],
   ['w', '👩‍🍳 角色 A：What would you like to drink, Sarah?'],
   ['w', '萨拉，你想喝点什么饮品？'],
@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '请给我来一杯橙汁！'],
   ['s', 'I\'d like a glass of orange juice, please!', '请给我来一杯橙汁！'],
   ['w', '对话第3轮'],
-  ['w', '👩‍🍳 角色 A：Thank you. It tastes good.'],
-  ['w', '谢谢，真好吃。'],
-  ['s', 'Thank you. It tastes good.', '谢谢，真好吃。']
+  ['w', '👩‍🍳 角色 A：OK, here you are.'],
+  ['w', '好的，给你。'],
+  ['s', 'OK, here you are.', '好的，给你。']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 就餐与点菜 · What would you like to drink?', items: ITEMS, acts: ACTS }); }

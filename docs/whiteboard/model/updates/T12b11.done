@@ -1,0 +1,70 @@
+# T12 阶段二 · B11 批（手写非 E 型残部）执行记录
+
+日期：2026-11-01（通宵班）。范围（T12_plan.md §3 B11 定义）：手写非 E 型余 **14 幕**（past_clans 残部、tense_matrix 残部、adj_order 分节续篇、wordcard 模板对的数据模块等）。
+结果：**定性处置全部完成**（逐幕处置表、spec 存档 14 份落盘、分节窗链时序核查）；**构建与等效校验已补完落盘**（见「构建与校验」节：13 幕构建完成，ic_gen8 等效校验 10 幕全过、3 幕仅时长超参考区间）。纪律同 B10：不自编；已裁定订正逐字落实（本批无待落实订正）；同病未裁定项只登记。本批未 git commit（按派单要求不尝试提交，提交由父代理处理）。
+
+> 批次映射注记：派单口径曾将 builder 家族（adj/fr）记作 B11——按 T12_plan §3 表格，builder 8 幕属 B10（见 T12b10.done），本批为计划口径的手写非 E 型 14 幕。两批合计覆盖存量手写 + builder 全部余幕（36 幕），无遗漏。
+
+---
+
+## 开工前同病抽查
+
+与 B10 合并执行（36 幕统一扫描，方法与全量结论见 T12b10.done 开工前抽查节）。本批 14 幕：46 条已裁定原句**零命中**；疾病片段命中仅 tense_matrix_p2_3「做完了」2 处，经核为一般过去时语境、非病灶（该幕按 predict+aha 结构归 B10 E 型口径处置，存档在 B10 集内，此处交叉索引）；本节其余 13 幕片段扫描无命中。
+
+## 逐幕处置表（14 幕）
+
+路线口径（计划 B11）：能并入 A/E 模式的并入，独特演法保留手写但补事实表存档。本批零台词改动，事实表按 G3 批量先例在各 spec 存档中标「待补」占位（与 B6 的 245 份同账）。
+
+| 幕 | 家族/性质 | 处置 | 要点 |
+|---|---|---|---|
+| past_clans_1 | 过去式家族 · 第 1 幕 | 保留手写 + spec 存档 | 家族叙事版式（sprites/pc1）；sf-009 病灶在 past_clans_4 已由 B2b 整幕处置，本幕扫描干净 |
+| past_clans_2 | 过去式家族 · 第 2 幕 | 保留手写 + spec 存档 | sprites/pc2；扫描干净 |
+| past_clans_3 | 过去式家族 · 第 3 幕 | 保留手写 + spec 存档 | sprites/pc3；扫描干净 |
+| past_clans_p2_1 | past_clans_1 分节（第 2 部分） | 分节窗口件登记 | __WB5_CLIP [54.7, 102.2]，转调母幕 build；内容源 = past_clans_1 |
+| past_clans_p3_1 | past_clans_1 分节（第 3 部分） | 分节窗口件登记 | __WB5_CLIP [102.2, null]，与 p2 无缝衔接 |
+| tense_matrix_1 | 时态矩阵 · 第 1 幕（总览） | 保留手写 + spec 存档 | 矩阵交互版式（sprites/tm1）；tense_matrix_5 的完成体定义病灶为该幕独有，本幕无定义性散文同病 |
+| tense_matrix_2 | 时态矩阵 · 第 2 幕 | 保留手写 + spec 存档 | sprites/tm2 |
+| tense_matrix_4 | 时态矩阵 · 第 4 幕 | 保留手写 + spec 存档 | sprites/tm4 |
+| tense_matrix_p2_1 | tense_matrix_1 分节 | 分节窗口件登记 | __WB5_CLIP [45.8, 100.5] |
+| tense_matrix_p3_1 | tense_matrix_1 分节 | 分节窗口件登记 | __WB5_CLIP [100.5, 144.0] |
+| tense_matrix_p4_1 | tense_matrix_1 分节 | 分节窗口件登记 | __WB5_CLIP [144.0, null] |
+| adj_order_p2_1 | adj_order_1 分节（第 2 节） | 分节窗口件登记 | __WB5_CLIP [23.2, 84.0]；母幕 adj_order_1 自带第 1 节 [0, 23.2] |
+| adj_order_p3_1 | adj_order_1 分节（第 3 节） | 分节窗口件登记 | __WB5_CLIP [84.0, null] |
+| wordcard_items | 单词卡模板对 · 数据模块 | 数据模块登记（非独立幕） | 词条数据 → auto ITEMS 纯函数（ACT_FRAMES/ACT_NAMES/wordParts），与 App 运行时共用同一份代码；无独立构建产物，其播出由 wordcard_tpl + 真实词条数据驱动 |
+
+分节窗链衔接核查（时序）：adj_order 家族 [0,23.2]→[23.2,84.0]→[84.0,null]、past_clans 家族 [0,54.7]→[54.7,102.2]→[102.2,null]、tense_matrix 家族 [0,45.8]→[45.8,100.5]→[100.5,144.0]→[144.0,null]——三条链均无缝、无重叠 ✓。
+
+## 构建与校验（已补完落盘，2026-11-01 晚）
+
+构建命令（派单口径，13 幕逐幕 rc=0）：`cd docs/whiteboard/v5 && WB_FONTS=$HOME/workspace/wb-fonts PATH=$HOME/workspace/bin:$PATH node build.mjs scenes/<幕>.js ~/workspace/your_files/gen-stock-<幕>.html "<幕>"`。全部产物非空且尾含 `</html>`；分节件产物含 `__WB5_CLIP` 运行时标记（窗口值逐字见各场景源文件头）。
+
+| 幕 | 产物字节 | ic_gen8 等效校验（文字峰值上限 40%） |
+|---|---|---|
+| past_clans_1 | 1,369,173 | ✅ 82.1s，文字峰值 10%，无页面报错 |
+| past_clans_2 | 1,307,891 | 时长 251.8s 超出 40–240s 参考区间（存量属性，B3/B6 先例）；文字峰值 13%，无页面报错 |
+| past_clans_3 | 1,277,859 | ✅ 192.3s，文字峰值 9%，无页面报错 |
+| past_clans_p2_1（窗 [54.7,102.2]） | 1,369,277 | ✅ 71.2s，文字峰值 7%，无页面报错 |
+| past_clans_p3_1（窗 [102.2,null]） | 1,369,277 | ✅ 61.9s，文字峰值 13%，无页面报错 |
+| tense_matrix_1 | 1,584,464 | ✅ 68.7s，文字峰值 11%，无页面报错 |
+| tense_matrix_2 | 1,414,028 | 时长 243.2s 超出 40–240s 参考区间（存量属性）；文字峰值 12%，无页面报错 |
+| tense_matrix_4 | 1,387,560 | 时长 240.7s 超出 40–240s 参考区间 0.7s（存量属性）；文字峰值 13%，无页面报错 |
+| tense_matrix_p2_1（窗 [45.8,100.5]） | 1,584,568 | ✅ 82.1s，文字峰值 8%，无页面报错 |
+| tense_matrix_p3_1（窗 [100.5,144.0]） | 1,584,567 | ✅ 65.2s，文字峰值 7%，无页面报错 |
+| tense_matrix_p4_1（窗 [144.0,null]） | 1,584,566 | ✅ 53.2s，文字峰值 14%，无页面报错 |
+| adj_order_p2_1（窗 [23.2,84.0]） | 1,068,220 | ✅ 91.2s，文字峰值 8%，无页面报错 |
+| adj_order_p3_1（窗 [84.0,null]） | 1,068,220 | ✅ 105.2s，文字峰值 15%，无页面报错 |
+
+汇总：构建 13/13；ic_gen8 等效校验 10 幕全过，3 幕（past_clans_2、tense_matrix_2、tense_matrix_4）仅时长超参考区间、无报错且文字峰值均 ≤13%，按 B3/B6 先例登记为存量属性，不判内容不合格。官方 insightcheck `--only` 口径：存量手写幕不在官方强制集内（实测 past_clans_1：强制检查 0 幕，不合格 0，属空集结论），故实际校验以 ic_gen8 为准。wordcard_items 为数据模块，无独立构建产物。各 spec 存档 validation 栏已同步回填上述数字。
+
+## 残留登记
+
+1. 事实表正文「待补」：本批 13 个可构建幕的 spec 存档 facts 均为占位（G3 先例），待模式层统一补齐（与 B6 的 245 份同账管理）。
+2. tense_matrix_5 第 3/4 板未裁定散文 4 处（B3 登记）仍待主会话补订正包——属 B3 遗留，不在本批范围，此处交叉提示。
+3. 环境（实测，2026-11-01 晚）：B10 记录的 VM 写盘故障（EPERM/静默清零）已恢复——/tmp 与 ~/workspace/your_files 写盘探针均成功，13 个约 1.1–1.6MB 产物一次写成；内存 MemAvailable 约 3.7GB，本地 Chrome（workspace/chrome）可正常启动，ic_gen8 三批全跑通，先前 SIGTRAP 未复现。git 提交按派单要求未尝试（.git 对象写入间歇性 EPERM 由父代理处理）；本批工作成果全部留在工作树。
+
+## 本批变更清单
+
+- 新增 spec 存档：model/specs/{past_clans_1,past_clans_2,past_clans_3,past_clans_p2_1,past_clans_p3_1,tense_matrix_1,tense_matrix_2,tense_matrix_4,tense_matrix_p2_1,tense_matrix_p3_1,tense_matrix_p4_1,adj_order_p2_1,adj_order_p3_1,wordcard_items}.yaml
+- 构建产物：~/workspace/your_files/gen-stock-<幕名>.html ×13 —— 已落盘（字节数与校验数字见「构建与校验」节；wordcard_items 为数据模块，无独立产物）
+- spec 存档补全：上述 14 份 spec 存档已按 hd_g14_1.yaml 格式补全（scene/family/engine/fixes_applied/facts/stop_check/residual_for_review/validation），fixes_applied 均为“46 条已裁定原句零命中、无待落实订正”，facts 按 G3 先例标「待补」，并经 python3 yaml.safe_load 逐个校验可解析
+- 未动：全部场景源文件与引擎文件（本批零台词改动）

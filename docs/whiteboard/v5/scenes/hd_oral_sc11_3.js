@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '在的，她正在打扫房间。请稍等一下，别挂断哦！'],
   ['s', 'Yes, she\'s cleaning her room. Hold on, please!', '在的，她正在打扫房间。请稍等一下，别挂断哦！'],
   ['w', '对话第3轮'],
-  ['w', '👩 角色 A：Thanks. I\'ll call later.'],
-  ['w', '谢谢，我稍后再打。'],
-  ['s', 'Thanks. I\'ll call later.', '谢谢，我稍后再打。']
+  ['w', '👩 角色 A：OK, thank you!'],
+  ['w', '好的，谢谢！'],
+  ['s', 'OK, thank you!', '好的，谢谢！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 打电话 · Hold on, please. — Thank you!', items: ITEMS, acts: ACTS }); }

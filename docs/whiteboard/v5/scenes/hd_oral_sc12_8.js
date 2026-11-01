@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '太感谢你了，迈克！我现在心情好多了！'],
   ['s', 'Thank you so much, Mike! I feel much happier now!', '太感谢你了，迈克！我现在心情好多了！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Thank you. I\'ll have a rest.'],
-  ['w', '谢谢，我会休息。'],
-  ['s', 'Thank you. I\'ll have a rest.', '谢谢，我会休息。']
+  ['w', '👦 角色 A：You\'re welcome! Take care!'],
+  ['w', '不客气！多保重！'],
+  ['s', 'You\'re welcome! Take care!', '不客气！多保重！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 看病与身体不适 · Have a good rest and get well soon!', items: ITEMS, acts: ACTS }); }

@@ -1,0 +1,17 @@
+# spec 存档 · past_clans_3（T12 B11 批处置，T12 阶段二）
+# 管线：手写非 E 型存量处置（T12_plan §3 B11）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: past_clans_3
+family: 过去式家族 · 第 3 幕（③ 长音减肥派 ee / ea → e + t）
+engine: 完全手写（wb5 v5.1 标准画法；sprites/pc3.js；12 块白板 4 列 × 3 行）
+structure: { source: src/cases/past_clans.js 案例 3, narr_calls: 1, imports: [../sprites/pc3.js, ../wb5.js] }
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+facts: 待补  # 按 G3 批量先例登记占位，与 B6 的 245 份占位事实表同账管理
+stop_check:
+  framework_conflict: 无。本批零台词改动；场景源文件与引擎文件均未动。
+residual_for_review:
+  - 事实表正文「待补」，待模式层统一补齐（与 B6 的 245 份同账）。
+validation:
+  build: gen-stock-past_clans_3.html（~/workspace/your_files/，1,277,859 字节，尾含 </html>）
+  ic_gen8: ✅ 不合格 0（192.3s，文字峰值 9%，无页面报错）
+  insightcheck_official: 官方 insightcheck --only 口径：存量手写幕不在官方强制集内（实测 past_clans_1：强制检查 0 幕，不合格 0，属空集结论）；实际校验以 ic_gen8 等效校验为准（B10 先例）

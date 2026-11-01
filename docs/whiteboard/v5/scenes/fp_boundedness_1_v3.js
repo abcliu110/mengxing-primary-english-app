@@ -11,6 +11,7 @@ import { scene, OR, INK, GREY } from '../wb5.js';
 import { concept, BLUE, GREEN, RED } from '../lib/concept.js';
 import { kit } from './fb39_lib.js';
 import * as SP from '../sprites/fb39v2.js';
+import { TEAPOT, pourTiltAt, tipAt, drawElement, assertPourWindow } from '../props/props.js';
 
 export const KNOW = [
   '书上说 coffee 不加 -s，咖啡馆里却说 Two coffees！谁错了？',
@@ -99,15 +100,17 @@ export default function build() {
   // @step2_mechanism —— 机制：流体贴不住数字 → 杯子围出边、数字弹出 → 一刀切测试（同桌左右各一份）
   C.step(2, T);
   const M0 = T;
-  // 茶壶自绘：倒水时必须向壶嘴一侧倾斜、水柱必须从壶嘴出（因果保真）——pic 静态贴图做不到，改 K.prop
-  const potTilt = (t) => 1.15 * spring01((t - (M0 + 0.35)) / 0.9) * (1 - spring01((t - (M0 + 5.2)) / 0.9));
-  const potTip = (t) => { const th = potTilt(t), c = Math.cos(th), si = Math.sin(th); return [700 + 94 * c + 31 * si, 300 + 94 * si - 31 * c]; };
-  let potCv = null;   // 壶预栅格化：位图 emoji 直接旋转 fillText 会被 Chrome 画淡，改走 drawImage
-  const potImg = () => { if (!potCv) { potCv = document.createElement('canvas'); potCv.width = potCv.height = 400; const cx = potCv.getContext('2d'); cx.font = `400px ${EMOJI_FONT}`; cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.fillText('🫖', 200, 216); } return potCv; };
+  // 茶壶 = 元素库道具 teapot（元素库第一个元素）：定义在模型层 model/props/teapot.yaml，
+  // 渲染、锚点几何与构建期断言都在共享模块 props（v5/props/props.js）——本模板不留任何私有壶代码。
+  // 液柱原点只许取 tipAt（锚点 spoutTip 按当前倾角实算）；倾角由道具参数反算（轴线实算角 38.0° + 目标净下倾 35° = 全倾 73°）；
+  // 出流窗断言由 assertPourWindow 按道具定义执行（净下倾 <30° 抛错停建）。倒水时序沿用三修结构：停水 M0+5.0 先于回正 M0+5.2。
+  const potTilt = (t) => pourTiltAt(TEAPOT, t, M0);
+  const potTip = (t) => tipAt(TEAPOT, t, M0);
+  assertPourWindow(TEAPOT, M0, 1.05, 5.0);
   K.prop((g, t) => {
     const aIn = Math.min(1, (t - (M0 + 0.2)) / 0.3), aOut = Math.min(1, (M0 + 7.6 - t) / 0.3);
-    g.save(); g.globalAlpha = Math.max(0, Math.min(aIn, aOut)); g.translate(700, 300); g.rotate(potTilt(t));
-    g.drawImage(potImg(), -82.5, -82.5, 165, 165); g.restore();
+    g.save(); g.globalAlpha = Math.max(0, Math.min(aIn, aOut)); g.translate(TEAPOT.placement.world[0], TEAPOT.placement.world[1]); g.rotate(potTilt(t));
+    drawElement(g, TEAPOT); g.restore();
   }, { from: M0 + 0.2, until: M0 + 7.6, z: 3 });
   C.motion(M0 + 1.05, M0 + 9.2);
   // v3 真液体：倒水柱（收细+摆动+水花）→ 桌面上摊开的咖啡滩（弹簧摊开+表面起伏+落点涟漪），无边就是「没有框」

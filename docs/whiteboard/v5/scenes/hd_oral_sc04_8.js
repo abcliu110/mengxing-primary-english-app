@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '是的，我非常乐意！这是我的电子邮箱地址。'],
   ['s', 'Yes, I\'d love to! Here is my email address.', '是的，我非常乐意！这是我的电子邮箱地址。'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👦 角色 A：Great! Let\'s write soon!'],
+  ['w', '太好了！我们很快就开始通信吧！'],
+  ['s', 'Great! Let\'s write soon!', '太好了！我们很快就开始通信吧！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · Would you like to be my pen pal?', items: ITEMS, acts: ACTS }); }

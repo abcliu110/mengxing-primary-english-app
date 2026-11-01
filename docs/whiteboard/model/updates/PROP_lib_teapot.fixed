@@ -1,0 +1,55 @@
+状态：源码层完成（元素定义 + 共享模块 + 共享块注册 + 模板消费 + 文档同步）；构建与密帧复验待环境恢复（见 §5）
+对象：立「元素库」（道具+人物通用格式），teapot 为第一个落地元素；boundedness 第 1 幕茶壶弃用 emoji 字形 🫖
+承前：ACC_s1_teapot.fixed（三修：字形实测倾角路线）——本单将其整体升级：几何不再来自任何字形/底稿，只来自元素定义的参数与路径坐标。
+中间步备案：本会话先落过一版「模板内私有手绘壶」，随即按用户拍板（立道具库）整体迁入共享模块，模板内私有壶代码已清零（grep SPOUT_A/drawPot/POTC = 0 处）。
+
+## 1. 元素定义格式（样板 = model/props/teapot.yaml，文件头有逐字段语义注释）
+定位：元素库是模式层的元素注册表——一切上台元素（道具、人物）先在模型层立定义，场景与原语只许按 id + 锚点名引用，不许模板私绘、私存几何。道具是第一类落地元素；人物为下一类。迁移顺序：小道具 → 主角 Linda 单人试点 → 全卡司随存量单源化逐步迁。
+字段（道具/人物通用）：
+- element：id / kind（prop | character）/ version / title
+- frame：局部坐标系（原点 = 元素枢轴；人物取脚底或骨盆，定义内写明），+x 右、+y 下，px @1920×1080
+- placement：默认上台位（枢轴世界坐标），场景可覆盖
+- skin：皮肤（可换）——source/license 记造型来源与许可；tokens 配色令牌表，部件样式只许引令牌（skin.body 等），换肤不动几何；人物同理（服装/发色令牌）
+- parts：部件表——每部件自带 pivot（部件枢轴：人物如手臂绕肩、头绕颈）、anchors（部件级锚点）、geometry（形状数据：path/strokePath 段表、spoutTube 锚点公式件、circle、ellipse）、style、z
+- anchors：元素级语义锚点（spoutTip 出口 / pivot 枢轴 / handleGrip 握持对位 / liquidLevel 液面位；人物扩展 hand/gaze/footL/footR 等）——原语只认锚点名，不认裸坐标
+- params：design（设计值）+ computed（由定义内坐标实算 + formula 出处）；几何永远以实算为准，不采信任何外部图形
+- profiles：姿态/状态参数集——道具放动作剖面（pour），人物放姿态集（standing/pointing/…= 部件枢轴角组）
+- assertions：构建期断言表（rule 口径 + enforcedBy 执行方）；只引锚点与参数，不引裸坐标
+渲染契约：渲染侧同步副本在 v5/props/props.js（共享块 props）；改定义先改 YAML 再同步模块，按 element.version 对账。
+
+## 2. teapot 元素（定义 model/props/teapot.yaml v1）
+部件 5：spout（壶嘴：spoutTube 公式件 + 嘴口椭圆）/ handle（把手描边弧）/ body（圆腹轮廓段表）/ highlight / lid（穹顶 + 盖钮）。
+锚点：spoutTip（= 壶嘴四角锚点算出的嘴尖中心）、pivot (0,0)、handleGrip [-78,4]（人物持壶对位预留）、liquidLevel（不透明壶为预留位）。
+皮肤：自拟陶土红系（body #cf5a36 / edge #8a3320 / deep #a83e22 / knob #7c2d1e / mouth #5a2d16 / highlight 白 20%）。
+底稿与许可证：评估过 Noto Emoji（Apache 2.0）/ Fluent Emoji（MIT）的 🫖 SVG 作造型底稿——本次未取用（环境故障下 raw 下载屡败为 0 字节；且其本体壶嘴正是陡仰 ≈66° 的病态几何，与本参数冲突）。按元素库纪律：底稿至多借壶身曲线与配色，壶嘴一律以定义参数为准。本壶为全自绘，无第三方素材、无署名义务；若日后取用底稿曲线，须在该元素定义的 skin.source/license 里登记出处与许可后再入库。
+
+## 3. 参数三数（硬保险：设计值 / 路径实算 / 净下倾 并列）
+- 设计仰角（params.spoutAxisDeg.design）：38°（真实茶壶壶嘴仰角 35–40° 量级）
+- 路径实算轴线角（props.js spoutGeom 由壶嘴四角路径坐标取中点算出，独立双路 Python+JS 复核一致）：37.996°
+  四角锚点（局部坐标）：基上 [44.0,−16.2]、基下 [60.0,4.2]、尖上 [93.7,−46.8]、尖下 [101.7,−36.6] → 基部中心 (52,−6)、嘴尖中心 (97.7,−41.7)、轴长 57.99、atan2(35.7,45.7)=37.996°
+- 全倾净下倾（出流窗采样最小值）：35.00°——全倾角由参数反算 = 实算轴线角 37.996° + 目标净下倾 35° ≈ 73°（73.00° 实测）；净下倾在 M0+0.68 已过 30°，出流窗（M0+1.05…+5.0）全程 35.0°
+- 全倾时嘴尖世界坐标 (806.4, 381.2)；液柱竖直落点 x=806 不变（水洼锚点与三修一致 (820,~776/~780)，pour 卡 f4 不动）
+断言（生成侧）：共享模块 assertPourWindow 按定义采样核算（窗内每点 倾角 − 轴线实算角 ≥ profiles.pour.netMinDeg=30°），不过抛错停建。独立 node 验证：正例通过（最小净下倾 35.00°）；负例对照——netTargetDeg 改 20 → 如期抛错（20.0°<30°）；锚点对照——壶嘴锚点抬高使轴线变 45.70° 时，倾角自动反算为 80.70°、净下倾仍 35.00°（反算成立）；drawElement 无头 mock 绘制 39 次调用无异常。
+
+## 4. 落地清单
+- 新增 model/props/teapot.yaml（元素定义样板，见 §1/§2）
+- 新增 v5/props/props.js（共享模块：TEAPOT 渲染侧副本 + spoutGeom/tipAt/pourTiltAt/netDegAt/assertPourWindow/drawElement；几何由路径坐标实算，皮肤令牌解析，段表回放）
+- 共享块注册：v5/engine.js（import props + __WB5__.props + 注释）、v5/build.mjs 与 v5/build_stdout.mjs（SHARED 表 + onResolve 正则各加 props；build.mjs 恢复后 git diff 仅此两行）
+- 模板 v5/scenes/fp_boundedness_1_v3.js：删全部私有壶代码（SPOUT_A/drawPot/手写断言块/倾角字面量）；改为 import { TEAPOT, pourTiltAt, tipAt, drawElement, assertPourWindow }——potTilt/potTip 转调模块、assertPourWindow(TEAPOT, M0, 1.05, 5.0)、绘制 translate(TEAPOT.placement.world)+drawElement。液柱/水洼代码与倒水时序（倾入 M0+0.35、流 M0+1.05…+5.0、停水先于回正 M0+5.2、壶显隐 M0+0.2…+7.6）一字未动
+- 生成文件 v5/scenes/gen_boundedness_1.js：手工同步同样三处改动（gen_scene.py 因 exec 写盘故障未跑）；模板↔生成 diff 复核 = 仅原有生成器变换集（生成头/KNOW 槽位×8/aha/kit 标题/结尾卡×2，行号因新增 import 行 +1）；两文件 + props.js + engine.js 均过 node --check
+- 文档同步：specs/boundedness_1.yaml 倒水不变量改写为引用 props/teapot.yaml（口径：道具定义 + 模块断言）；refcards/pour.yaml 旧注记同步元素库口径；factsheets/gen_boundedness_1.md 同步；REWRITE_TECH_PLAN.md §4 模式层新增「元素库（道具 + 人物）」条目（定义格式/基元归属/断言生成规则/迁移顺序），your_files 副本同步同节
+
+## 5. 环境事故备案（本会话）
+一次 exec 批量改写三个构建器时触发环境写盘故障，三文件被清零（0 字节）：
+- build.mjs（git 已跟踪）：已从 HEAD 全文恢复 + 叠加 props 注册，git diff 核验仅两行变更，无损
+- build_stdout.mjs（本会话所建）：已按本会话原稿恢复 + props 注册
+- build_pack.mjs（T15 载荷包工人所建、未跟踪）：清零后已由其所有者自行重建（4039 B），且重建版已自带本次 props 注册两行——三构建器注册现已齐整，无遗留。此后本会话一切写盘只走文件工具，不再用 exec 写文件
+
+## 6. 待复验（环境恢复后执行，勿在本单内重试构建/截图）
+
+【2026-11-01 10:30 主会话补验完毕，本节全关】VM 于 08:21 更换后环境恢复。① gen_scene.py 复跑与手工同步版逐字节一致（diff 0）；② build_stdout 重建 gen-boundedness-1.html = 1,395,009 B，已就位 goal files（your_files 为其符号链接）；③ 官方 insightcheck 不合格 0（101.8s，动态 84%，文字 14%）；④ 密帧 t=14.5/16.35/17.75 主会话逐帧目检通过：出流帧壶嘴朝下、液柱自嘴尖竖直入滩，17.75 帧壶已回正、无流、造型可辨（圆腹/盖钮/把手/壶嘴齐全）；⑤ 本批文件已由主会话提交 git。
+1. 生成器复跑对账：`python3 gen_scene.py specs/boundedness_1.yaml`（model/ 下）与手工同步版 gen_boundedness_1.js 逐字节比对
+2. 构建：build.mjs 重打 gen-boundedness-1.html（先打临时文件、验大小后再 mv，勿直冲交付件；交付件 gen-boundedness-1.html 现为 0 字节待重建），引擎侧注意 __WB5__ 已含 props（共享引擎内容变更，全 App 一份）
+3. insightcheck 跑到不合格 0
+4. 密帧复验 t≈14.5/16.35/17.75：新壶造型清楚达意（圆腹/壶嘴/盖/把手可辨）、嘴口出流、倾斜中壶嘴朝下、全倾嘴尖 (806,381) 液柱竖直入滩；顺带目检同帧其余元素无回归
+5. git 提交（本单未做）：props/teapot.yaml、v5/props/props.js、engine.js、build.mjs、build_stdout.mjs、模板、gen 文件、spec、pour 卡、事实表、技术方案两份、本记录

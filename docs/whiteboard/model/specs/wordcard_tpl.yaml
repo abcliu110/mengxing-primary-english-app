@@ -1,0 +1,27 @@
+# spec 存档 · wordcard_tpl（T12 B10 批处置，T12 阶段二）
+# 管线：手写存量处置（T12_plan §3 B10，wordcard 模板对）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: wordcard_tpl
+family: 单词卡通用模板（模板基础设施；与 wordcard_items 数据模块成对，B11 登记）
+engine: 手写模板（lib/concept.js + wb5；无精灵库）
+structure: { know_block: "无", narr_calls: 9, imports: [../lib/concept.js, ../wb5.js], build_export: "有（export default build）" }
+disposition:
+  route: 保留（模板基础设施） + spec 存档
+  reason: 本文件是单词卡白板模板本体（以真实词条数据驱动播出），非单幕内容；内容经 46 条裁定集双通道扫描零命中。模板的产物形态由模板对（wordcard_items 的 ACT_FRAMES/ACT_NAMES/wordParts 纯函数）定义，迁移口径属模板层立项（不在 G8 单幕抽取范围），本批登记保留。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+stop_check:
+  framework_conflict: 无。本批零台词改动。
+facts:
+  objects: ["大图 + 盖住的英文词卡", "音节卡", "词源时间轴 / 构词两块 / 盖字母", "打散的例句词块 + 格子"]
+  invariants:
+    - "三幕模板：①看图猜词（盖住→猜→揭开→音节拆合→再盖住自说）；②词的来历（双词典互证的词源走时间轴换装，或真实构词两块拼合；皆无则盖字母猜拼写并明说来历未核实）；③排句子（词块落格读整句）"
+    - "记忆联想（memory_assoc）只进字幕并标非词源，不上板、不冒充词源"
+    - "默认示例词 apple（DEMO）；App 运行时以注入的真实词条 __WB5_WORD__ 为准，本构建产物仅作管线验证"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-wordcard_tpl.html（~/workspace/your_files/，1049383 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 不合格 0（--only=wordcard_tpl；7 样本词 × 3 幕 = 21 runs 全过，单 run 11.7–28.7s，文字峰值 1–18%，决策 39 提示为讲授型既有提示，非不合格项；独立构建产物以 DEMO apple 为默认词，仅作管线验证）

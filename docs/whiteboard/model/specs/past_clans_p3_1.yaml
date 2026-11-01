@@ -1,0 +1,18 @@
+# spec 存档 · past_clans_p3_1（T12 B11 批处置，T12 阶段二）
+# 管线：手写非 E 型存量处置（T12_plan §3 B11）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: past_clans_p3_1
+family: 过去式家族 · 第 3 部分（past_clans_1 分节）
+engine: 手写分节窗口件（转调 past_clans_1 + __WB5_CLIP [102.2, null]；sprites/pc1.js）
+structure: { content_source: past_clans_1, clip: [102.2, null], narr_calls: 0, imports: [../sprites/pc1.js, ./past_clans_1.js], bytes: 498 }
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+facts: 待补  # 随母幕 past_clans_1 同账
+stop_check:
+  framework_conflict: 无。本批零台词改动；场景源文件与引擎文件均未动。
+residual_for_review:
+  - 事实表正文「待补」，随母幕同账。
+  - 家族窗链 [0,54.7]→[54.7,102.2]→[102.2,null] 无缝无重叠（时序核查通过；窗口值逐字见场景源文件头）。
+validation:
+  build: gen-stock-past_clans_p3_1.html（~/workspace/your_files/，1,369,277 字节，尾含 </html>）
+  ic_gen8: ✅ 不合格 0（61.9s，文字峰值 13%，无页面报错）
+  insightcheck_official: 官方 insightcheck --only 口径：存量手写幕不在官方强制集内（实测 past_clans_1：强制检查 0 幕，不合格 0，属空集结论）；实际校验以 ic_gen8 等效校验为准（B10 先例）

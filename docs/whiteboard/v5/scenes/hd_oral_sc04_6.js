@@ -7,7 +7,7 @@ const ACTS = {"*": ["l_hand1", "l_think", "l_speak"], "M": ["l_speak", "l_ear", 
 const ITEMS = [
   ['w', '自我介绍'],
   ['w', '核心交际句：What does your father do? （你爸爸是做什么工作的？（问职业必会））'],
-  ['w', '💡 交际得体度与母语负迁移提示：🌟 询问职业三大句型：What does he do? ＝ What is his job? ＝ What is he?（回答职业前必加冠词 a/an）！'],
+  ['w', '💡 交际得体度与母语负迁移提示：🌟 询问职业两大句型：What does he do? ＝ What is his job?（回答职业前必加冠词 a/an：He is a pilot.）。⚠️ What is he? 是老式说法，现在容易被听成“他是什么（东西）”，认得即可、自己不用。'],
   ['w', '对话第1轮'],
   ['w', '👧 角色 A：What does your father do, Mike?'],
   ['w', '迈克，你爸爸是做什么工作的呀？'],
@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '他是一名飞行员。他在大飞机上工作！'],
   ['s', 'He is a pilot. He works on a big plane!', '他是一名飞行员。他在大飞机上工作！'],
   ['w', '对话第3轮'],
-  ['w', '👧 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👧 角色 A：Cool!'],
+  ['w', '真酷！'],
+  ['s', 'Cool!', '真酷！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · What does your father do?', items: ITEMS, acts: ACTS }); }

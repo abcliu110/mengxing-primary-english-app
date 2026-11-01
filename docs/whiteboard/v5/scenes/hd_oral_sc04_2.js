@@ -13,12 +13,12 @@ const ITEMS = [
   ['w', '嗨，迈克！你是哪里人（来自哪里）呀？'],
   ['s', 'Hi, Mike! Where are you from?', '嗨，迈克！你是哪里人（来自哪里）呀？'],
   ['w', '对话第2轮'],
-  ['w', '👦 角色 B：I\'m from Canada. What about you? — I\'m from China!'],
-  ['w', '我来自加拿大。你呢？ — 我来自中国！'],
-  ['s', 'I\'m from Canada. What about you? — I\'m from China!', '我来自加拿大。你呢？ — 我来自中国！'],
+  ['w', '👦 角色 B：I\'m from Canada. What about you?'],
+  ['w', '我来自加拿大。你呢？'],
+  ['s', 'I\'m from Canada. What about you?', '我来自加拿大。你呢？'],
   ['w', '对话第3轮'],
-  ['w', '👧 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👧 角色 A：I\'m from China! Nice to meet you!'],
+  ['w', '我来自中国！很高兴认识你！'],
+  ['s', 'I\'m from China! Nice to meet you!', '我来自中国！很高兴认识你！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · Where are you from? — I\'m from China.', items: ITEMS, acts: ACTS }); }

@@ -15,10 +15,6 @@ const ITEMS = [
   ['w', '对话第2轮'],
   ['w', '👦 角色 B：No, thanks! I can use chopsticks very well!'],
   ['w', '不用了，谢谢！我很会用筷子！'],
-  ['s', 'No, thanks! I can use chopsticks very well!', '不用了，谢谢！我很会用筷子！'],
-  ['w', '对话第3轮'],
-  ['w', '👧 角色 A：Thank you. It tastes good.'],
-  ['w', '谢谢，真好吃。'],
-  ['s', 'Thank you. It tastes good.', '谢谢，真好吃。']
+  ['s', 'No, thanks! I can use chopsticks very well!', '不用了，谢谢！我很会用筷子！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 就餐与点菜 · I can use chopsticks!', items: ITEMS, acts: ACTS }); }

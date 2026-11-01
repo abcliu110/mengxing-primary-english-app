@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '嗨，斌斌！我就是萨拉！'],
   ['s', 'Hi, Binbin! This is Sarah speaking!', '嗨，斌斌！我就是萨拉！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Thanks. I\'ll call later.'],
-  ['w', '谢谢，我稍后再打。'],
-  ['s', 'Thanks. I\'ll call later.', '谢谢，我稍后再打。']
+  ['w', '👦 角色 A：Hi, Sarah! Are you free this afternoon?'],
+  ['w', '嗨，萨拉！你今天下午有空吗？'],
+  ['s', 'Hi, Sarah! Are you free this afternoon?', '嗨，萨拉！你今天下午有空吗？']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 打电话 · Hello! This is Wu Binbin speaking.', items: ITEMS, acts: ACTS }); }

@@ -27,7 +27,7 @@ const GROUPS = [
     ['💡 light', '电灯，光线；轻的', 'light']
   ] },
   { name: '书、尺子、橡皮', leaves: [
-    ['📖 book', '书，书本', 'book'],
+    ['📖 book', '书，书本；预订（动词：book a ticket 预订票）', 'book'],
     ['📏 ruler', '尺子', 'ruler'],
     ['🧼 eraser', '橡皮擦', 'eraser']
   ] }

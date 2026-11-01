@@ -1,0 +1,27 @@
+# spec 存档 · adj_order_3（T12 B10 批处置，T12 阶段二）
+# 管线：builder 家族存量处置（T12_plan §3 B10 / §4 G9）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: adj_order_3
+family: 形容词排序 · ③ 一件漂亮的崭新红色中国丝绸连衣裙
+engine: buildAdj 家族版式（scenes/adj_train.js；sprites/ao3.js）
+structure: { know_block: "无（buildAdj 数据对象）", narr_calls: 0, imports: [../sprites/ao3.js, ./adj_train.js], data: "buildAdj(SP, { title/cars/says/chant/pred/gold 等同家族字段 })" }
+disposition:
+  route: 数据登记入模 + 保留 builder 实现
+  reason: 计划 G9 定性：builder 两族共 8 幕量小、不另造 spec 模式，逐幕人工迁移。本批将数据对象全文登记入本存档（单源登记），引擎（adj_train）与场景实现保留；生成器反向驱动待 G9 薄适配器立项时切换。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+stop_check:
+  framework_conflict: 无。本批零台词改动。
+facts:
+  objects: ["火车 7 车厢 + 名词站", "a / beautiful / — / new / red / Chinese / silk + dress", "运动鞋预测卡"]
+  invariants:
+    - "数据对象全文：cn 一件漂亮的崭新红色中国丝绸连衣裙；prob 打散词 silk、red、beautiful、Chinese、new；cars[7]：①限定词 a；②观点 beautiful；③大小 —；④新旧/形状 new；⑤颜色 red；⑥国籍/来源 Chinese；⑦材质/用途 silk（名词作修饰语）；名词站 dress"
+    - "成句：a beautiful new red Chinese silk dress；says 1 句；chant 同第 1 幕；pred a pair of new white sports shoes；gold 洞见句同第 1 幕"
+    - "不变量：5 个形容词按观点→新旧→颜色→国籍→材质顺序，空车厢跳过"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-adj_order_3.html（~/workspace/your_files/，1094948 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 官方强制集外（同 adj_order_1 口径）；ic_gen8 等效校验：✅ 不合格 0（178.3s，文字峰值 14%，无页面报错）

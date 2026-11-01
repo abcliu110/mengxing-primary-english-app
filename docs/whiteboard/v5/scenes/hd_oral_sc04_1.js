@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '我的名字叫陈杰。我们做个好朋友吧！'],
   ['s', 'My name\'s Chen Jie. Let\'s be good friends!', '我的名字叫陈杰。我们做个好朋友吧！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👦 角色 A：Nice to meet you!'],
+  ['w', '很高兴认识你！'],
+  ['s', 'Nice to meet you!', '很高兴认识你！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · What\'s your name? — My name\'s...', items: ITEMS, acts: ACTS }); }

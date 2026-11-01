@@ -7,7 +7,7 @@ const ACTS = {"*": ["l_hand1", "l_think", "l_speak"], "M": ["l_speak", "l_ear", 
 const ITEMS = [
   ['w', '节日与祝福'],
   ['w', '核心交际句：The same to you! （你也一样！（同喜同乐））'],
-  ['w', '💡 交际得体度与母语负迁移提示：回应节日或周末祝福。'],
+  ['w', '💡 交际得体度与母语负迁移提示：回应节日或周末祝福：对方的祝福若是你我都适用的（Have a nice weekend、Happy New Year），可以原样回送 The same to you!。⚠️ 只属于对方一个人的日子（生日、获奖）不能回送，要说真话祝福（Happy birthday!）。'],
   ['w', '对话第1轮'],
   ['w', '👧 角色 A：Have a nice weekend, Mike!'],
   ['w', '祝你周末愉快！'],

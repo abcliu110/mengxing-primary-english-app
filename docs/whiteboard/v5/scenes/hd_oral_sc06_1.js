@@ -7,7 +7,7 @@ const ACTS = {"*": ["m_bread", "m_cake", "l_speak"], "M": ["l_speak", "l_ear", "
 const ITEMS = [
   ['w', '就餐与点菜'],
   ['w', '核心交际句：What would you like? （你想吃/喝点什么？（点餐与待客必会））'],
-  ['w', '💡 交际得体度与母语负迁移提示：🌟 点餐必考铁律：听到 What would you like? 必须用 I\'d like some... 回答！'],
+  ['w', '💡 交际得体度与母语负迁移提示：🌟 点餐常用答法：听到 What would you like?，最常用的回答是 I\'d like some...；直接说 “Some noodles, please.” 也完全正确，不必拘泥一种。'],
   ['w', '对话第1轮'],
   ['w', '👨‍🍳 角色 A：Welcome! What would you like to eat today?'],
   ['w', '欢迎光临！你今天想吃点什么？'],
@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '请给我来一份牛肉面和一杯橙汁！'],
   ['s', 'I\'d like some beef noodles and orange juice, please!', '请给我来一份牛肉面和一杯橙汁！'],
   ['w', '对话第3轮'],
-  ['w', '👨‍🍳 角色 A：Thank you. It tastes good.'],
-  ['w', '谢谢，真好吃。'],
-  ['s', 'Thank you. It tastes good.', '谢谢，真好吃。']
+  ['w', '👨‍🍳 角色 A：OK, just a moment, please.'],
+  ['w', '好的，请稍等。'],
+  ['s', 'OK, just a moment, please.', '好的，请稍等。']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 就餐与点菜 · What would you like?', items: ITEMS, acts: ACTS }); }

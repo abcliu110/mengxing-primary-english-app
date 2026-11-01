@@ -13,12 +13,12 @@ const ITEMS = [
   ['w', '嗨，艾米！你每天是怎么来上学的呀？'],
   ['s', 'Hi, Amy! How do you come to school every day?', '嗨，艾米！你每天是怎么来上学的呀？'],
   ['w', '对话第2轮'],
-  ['w', '👧 角色 B：My home is near, so I usually come on foot. What about you? — I come by bus!'],
-  ['w', '我家很近，所以我通常步行来。你呢？ — 我坐公交车来！'],
-  ['s', 'My home is near, so I usually come on foot. What about you? — I come by bus!', '我家很近，所以我通常步行来。你呢？ — 我坐公交车来！'],
+  ['w', '👧 角色 B：My home is near, so I usually come on foot. What about you?'],
+  ['w', '我家很近，所以我通常步行来。你呢？'],
+  ['s', 'My home is near, so I usually come on foot. What about you?', '我家很近，所以我通常步行来。你呢？'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Thank you for telling me.'],
-  ['w', '谢谢你告诉我。'],
-  ['s', 'Thank you for telling me.', '谢谢你告诉我。']
+  ['w', '👦 角色 A：I come by bus!'],
+  ['w', '我坐公交车来！'],
+  ['s', 'I come by bus!', '我坐公交车来！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 问路与交通 · How do you come to school?', items: ITEMS, acts: ACTS }); }

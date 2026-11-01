@@ -1,0 +1,27 @@
+# spec 存档 · adj_order_4（T12 B10 批处置，T12 阶段二）
+# 管线：builder 家族存量处置（T12_plan §3 B10 / §4 G9）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: adj_order_4
+family: 形容词排序 · ④ 那个高个子年轻的英国篮球教练
+engine: buildAdj 家族版式（scenes/adj_train.js；sprites/ao4.js）
+structure: { know_block: "无（buildAdj 数据对象）", narr_calls: 0, imports: [../sprites/ao4.js, ./adj_train.js], data: "buildAdj(SP, { title/cars/says/chant/pred/gold 等同家族字段 })" }
+disposition:
+  route: 数据登记入模 + 保留 builder 实现
+  reason: 计划 G9 定性：builder 两族共 8 幕量小、不另造 spec 模式，逐幕人工迁移。本批将数据对象全文登记入本存档（单源登记），引擎（adj_train）与场景实现保留；生成器反向驱动待 G9 薄适配器立项时切换。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+stop_check:
+  framework_conflict: 无。本批零台词改动。
+facts:
+  objects: ["火车 7 车厢 + 名词站", "that / — / tall / young / — / British / basketball + coach", "中国老师预测卡"]
+  invariants:
+    - "数据对象全文：cn 那个高个子年轻的英国篮球教练；prob 打散词 British、young、basketball、tall；cars[7]：①限定词 that；②观点 —；③大小 tall；④新旧/形状 young；⑤颜色 —；⑥国籍/来源 British；⑦材质/用途 basketball（身份本质）；名词站 coach"
+    - "成句：that tall young British basketball coach；says 2 句；chant 同第 1 幕；pred a friendly young Chinese teacher；gold 洞见句同第 1 幕"
+    - "不变量：大小在年龄前，国籍在用途前，用途最贴名词；空车厢跳过"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-adj_order_4.html（~/workspace/your_files/，1091254 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 官方强制集外（同 adj_order_1 口径）；ic_gen8 等效校验：✅ 不合格 0（183.2s，文字峰值 14%，无页面报错）

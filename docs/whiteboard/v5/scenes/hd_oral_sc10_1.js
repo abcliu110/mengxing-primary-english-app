@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '太感谢你们啦！我们一起吃生日蛋糕吧！'],
   ['s', 'Thank you so much! Let\'s eat the birthday cake together!', '太感谢你们啦！我们一起吃生日蛋糕吧！'],
   ['w', '对话第3轮'],
-  ['w', '👧 角色 A：Thank you! The same to you!'],
-  ['w', '谢谢！你也一样！'],
-  ['s', 'Thank you! The same to you!', '谢谢！你也一样！']
+  ['w', '👧 角色 A：Great! Let\'s eat!'],
+  ['w', '太好了！我们一起吃吧！'],
+  ['s', 'Great! Let\'s eat!', '太好了！我们一起吃吧！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 节日与祝福 · Happy birthday to you!', items: ITEMS, acts: ACTS }); }

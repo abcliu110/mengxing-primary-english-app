@@ -7,7 +7,7 @@ const ACTS = {"*": ["l_piggy", "l_bag1", "l_speak"], "M": ["l_speak", "l_ear", "
 const ITEMS = [
   ['w', '购物与问价'],
   ['w', '核心交际句：What size are your shoes? （你穿多大尺码的鞋？（买鞋与比较级必会））'],
-  ['w', '💡 交际得体度与母语负迁移提示：🌟 语序防反口诀：中文说“38码”，英文把名词放前面说 Size 38！'],
+  ['w', '💡 交际得体度与母语负迁移提示：🌟 size 38 是一个「标签」：先说类别 size（尺码），再说数字 38，整块读 size thirty-eight。Page 10、Unit 1 也是同款标签（先类别、后编号）。中文标签是“38 码”（数字在前），顺序正好相反——背标签，别套语序。'],
   ['w', '对话第1轮'],
   ['w', '👦 角色 A：Mike, what size are your shoes?'],
   ['w', '迈克，你穿多大尺码的鞋呀？'],

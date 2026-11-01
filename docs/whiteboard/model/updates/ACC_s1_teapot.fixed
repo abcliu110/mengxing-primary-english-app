@@ -1,0 +1,26 @@
+ACC boundedness 第 1 幕 · 茶壶壶嘴朝向三修（用户验收第三次提出「茶壶的壶嘴要向下」）
+日期：2026-11-01
+
+
+- 对旧产物倒咖啡段做 0.25s 密帧（t=11.0–18.5，共 31 帧，存档 ~/workspace/shots_gen/gen-boundedness-1_*.png；壶部裁剪 ~/workspace/shots_gen/teapot_diag/crop_*.png）。
+- 时间锚点实测：M0≈11.45；出流窗 12.5–16.45（=M0+1.05…M0+5.0）；回正自 16.65（M0+5.2）起。
+- 旧版出流全程（12.5–16.5 每一帧）：壶嘴指向右方、嘴尖上翘，轴线目测为水平（0 度）——用户看到的正是出流主段本身，不是倾入/回正的过渡帧。液柱自壶体右缘下方冒出、起点还略低于嘴尖，读作「从壶身漏出来」。
+- 根因（渲染实测）：本机 Chrome/Noto 🫖 字形（400px 栅格 alpha 分析）——壶嘴基部 (335,255) → 嘴尖 (390,132)，嘴轴高出水平 65.9 度（嘴部中心线末端 -55.2 度、PCA -73.8 度）；嘴尖相对壶心的局部偏移为 (78,-28)。
+二修参数倾斜 1.15 rad = 65.9 度，恰好只把嘴轴压到 0 度（水平）——二修依据的「字形嘴轴高出水平约 50 度」系误测，故其「低于水平 16 度」从未成立。另旧嘴尖偏移 (94,-31) 比实测 (78,-28) 多探约 12px，液柱起点偏离嘴尖。
+
+（只改模板/spec/参照卡层；台词与总时长结构未动）
+- 模板 docs/whiteboard/v5/scenes/fp_boundedness_1_v3.js：
+- 全倾角 1.15 → 1.72 rad（98.5 度）：全倾时嘴轴低于水平约 32.6 度；出流窗全程（M0+1.05…M0+5.0）轴线低于水平 ≥30 度（倾入段 M0+0.75 前已越过 -30 度，停流后 M0+5.2 才回正——出流窗与水洼生长窗未改）。
+- 倾斜弹簧换低过冲组（阻尼比 0.9、wn=10.5，过冲约 0.1%）：旧组（0.35/11）在 1.72 rad 下过冲达 31%（约 0.53 rad），会把壶甩过头且峰值冲入出流窗。
+- 壶心 (700,300) → (765,300)（绘制 translate 与 potTip 同步）：全倾嘴尖约 (781,382)，液柱落点仍为咖啡滩 (806,~758)，液柱保持近竖直（pour 参照卡 f4）。
+- potTip 嘴尖局部偏移 (94,-31) → 实测 (78,-28)：液柱原点贴嘴尖。
+- spec model/specs/boundedness_1.yaml：倒水不变量收紧为可测口径（字形轴线 65.9 度、全倾角 1.72 rad、出流全程轴线低于水平 ≥30 度、全倾约 32.6 度、嘴尖偏移 (78,-28)、壶心 (765,300)、停水 M0+5.0 先于回正 M0+5.2）。
+- model/refcards/pour.yaml：在 invariants 前加一行实例注记（同参数，满足 f2 的 ≥25 度口径且有余量）。
+- 生成文件 docs/whiteboard/v5/scenes/gen_boundedness_1.js 已同步新参数；事实表 model/factsheets/gen_boundedness_1.md 的倒水不变量已同步新口径。
+
+未完成——环境写权限故障阻塞（2026-10-31 21:56 UTC 起）：所有 exec 进程（python/node/shell）的写文件一律 EPERM 或被静默清零（文本与二进制、/tmp 与仓库路径均然；新开的子代理会话同样失败，其 gen_scene 尝试还一度把生成文件截成 0 字节，已用文件工具按生成器变换集重建并 diff 校验恢复，26,183 B、语法通过）。文件工具通道（read/write/edit）与 rename 不受影响，故源码层改动全部落盘；但 build.mjs / insightcheck / 截图都依赖 exec 写盘，无法执行。当前产物 ~/workspace/your_files/gen-boundedness-1.html 仍是旧构建（旧 1.15 rad），用户暂时还会看到旧壶。
+写权限恢复后按序执行（命令在 docs/whiteboard/ 下）：
+  1) model: python3 gen_scene.py specs/boundedness_1.yaml（可选确认：生成文件应仅壶参数行变化）
+  2) v5: WB_FONTS=$HOME/workspace/wb-fonts PATH=$HOME/workspace/bin:$PATH node build.mjs scenes/gen_boundedness_1.js <out.html> "可数还是不可数？看成一个个还是一摊"，再 mv 到 readlink -f ~/workspace/your_files/gen-boundedness-1.html 的目标
+  3) insightcheck 至不合格 0（tools/run_insightcheck_gen.py，同上 env）
+  4) 密帧复验出流段：三帧存档点——倾满出流中 t≈14.5、停流前 t≈16.35、回正后 t≈17.75，逐帧核壶嘴朝下、液柱自嘴尖出；帧路径回填本节。

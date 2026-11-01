@@ -1,0 +1,32 @@
+# T12-B9 · mindmap 25 幕按补丁后 DB 重生成 —— 完成记录
+
+管线：主 HTML（补丁后）VOCAB_DB + v5/mindmap_groups.json → v5/gen_mindmap.py → v5/scenes/hd_mindmap_1..25.js → build.mjs → ~/workspace/your_files/gen-stock-hd_mindmap_<n>.html。生成器未改一字；精灵库 sprites/mindmap.js 克隆中缺失，按 B6 先例由 build_sprites.py 从 cast 帧（l_speak/l_point/l_think/l_idea0）生成（gitignore 本地产物）。
+
+## 执行与验收
+
+1. **分组一致性断言（先行，只读）全过**：25 个子主题逐一核对——分组表 nodes == 补丁后 DB 该 theme_sub 前 16 节点 id、各组 ids 展平与 nodes 恰等（无重复/遗漏/表外）、全量 **398 叶**。生成器 gen_mindmap.py 内置的同口径断言在重跑时亦全程未触发。
+2. **重生成**：`python3 v5/gen_mindmap.py` 25 幕全出（24×16 叶 + 第 21 幕 14 叶 = 398）。
+3. **污染 3 叶已订正为 DB 现行文本（逐字核对一致）**：
+   - hd_mindmap_1 · G1_002 book（VF-031）：「书，书本」→「书，书本；预订（动词：book a ticket 预订票）」
+   - hd_mindmap_12 · G2_080 park（VF-032）：「公园」→「公园；停车（动词：park the car 停车）」
+   - hd_mindmap_13 · POLY_WATCH watch（VF-002，假词源）：「…手表（戴在手腕上随时"看"时间的工具）」→「…手表（戴在手腕上的计时工具；名字来自古英语"守夜、唤醒"——最早的手表是能叫醒人的小闹钟）」
+4. **其余 395 叶零 diff**：改前/改后叶级全量比对（398 叶）恰 3 处差异、均为上述 meaning；全文件 diff 亦只有 1/12/13 三幕各变 1 行，其余 22 幕逐字节未变。
+5. **等效校验（ic_gen8）25 幕不合格 0**：时长 70.0–126.7s 均在参考区间，文字峰值 ≤20%（门槛 40%），页面报错 0。
+6. **抽帧确认上屏**：gen-stock-hd_mindmap_13 在 t=97s 的整图帧中，watch 叶板上文字即新释义（含「守夜、唤醒」「能叫醒人的小闹钟」），旧民间词源文本已消失（截图存 ~/workspace/shots_gen/gen-stock-hd_mindmap_13_97.0.png；另抽 65s/85s 两帧备查）。
+
+## G7 门禁固化
+
+新增 **docs/whiteboard/model/validate_mindmap.py**（与 validate.py 同级同风格）：M1 分组表↔DB 节点对齐 / M2 分组闭合 / M3 场景↔源逐叶全等 / M4 叶数总账。双向实测：现行场景 exit 0 全过；指向改前基线目录时 exit 1 且恰报上述 3 叶（逐叶定位到组与叶序）。此后改 DB、改分组表或手改场景任一侧，重跑生成后过此门才算同步完成。
+
+## groups 表登记进模型层的建议落点（待后续小批执行，本批未动生成器路径）
+
+- **登记对象**：v5/mindmap_groups.json 是分组语义的唯一事实源（人工可审的规则产物），目前只躺在 v5 引擎目录，与模型层无登记关系。
+- **建议落点**：在模型层建 `docs/whiteboard/model/mindmap_groups.json` 为登记正本，并在 domains.yaml 的 vocab 相关纲领下加一行指针（groups 表归属词汇域、由 gen_mindmap_groups.py 从 DB 规则生成）；v5/mindmap_groups.json 降为构建期副本。
+- **配套改动（独立小批，勿与内容批混跑）**：gen_mindmap_groups.py 的 OUT 改指模型层正本（或加同步拷贝步）、gen_mindmap.py 读路径改指模型层；改完必须连跑 validate_mindmap.py + 25 幕重生成 diff 为零才算迁移成立。
+- 在落点执行前，现状可运行且已设门：validate_mindmap.py 直接以 v5 现行路径为校验对象，分叉风险已被门禁覆盖，登记属治理完备性问题、不阻塞内容正确性。
+
+## 遗留
+
+- 无内容遗留：B9 污染 3 叶全清，mindmap 一族单源化（DB→场景）就此成立。
+- sprites/mindmap.js 为本地产物，换机需重跑 build_sprites.py（同 B6 遗留口径）。
+- 未做 git commit（按任务要求，留主会话统一提交）。

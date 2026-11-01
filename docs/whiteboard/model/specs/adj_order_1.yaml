@@ -1,0 +1,29 @@
+# spec 存档 · adj_order_1（T12 B10 批处置，T12 阶段二）
+# 管线：builder 家族存量处置（T12_plan §3 B10 / §4 G9）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: adj_order_1
+family: 形容词排序 · ① 一张漂亮的小圆木桌
+engine: buildAdj 家族版式（scenes/adj_train.js；sprites/ao1.js）
+structure: { know_block: "无（buildAdj 数据对象）", narr_calls: 0, imports: [../sprites/ao1.js, ./adj_train.js], data: "own build() → buildAdj(SP, { n0/tick/hero/title/sub/badges/menu/cn/prob/prin/trainN/cars[7]/noun/close/why/join/says[4]/chant/pred/gold }）；本文件自带第 1 节时间窗 [0, 23.2]，第 2/3 节为 adj_order_p2_1/p3_1（B11）" }
+disposition:
+  route: 数据登记入模 + 保留 builder 实现
+  reason: 计划 G9 定性：builder 两族共 8 幕量小、不另造 spec 模式，逐幕人工迁移。本批将数据对象全文登记入本存档（单源登记），引擎（adj_train）与场景实现保留，构建+校验通过后即完成本批口径；生成器反向驱动待 G9 薄适配器立项时切换。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+  content_note: 火车 7 车厢 OSASCOMP 序与口诀「限观大形龄色国材」互证；幕内自带「💡 记忆联想 / ✂️ 简化说法」徽章，定位诚实；成句与车厢非空项逐项对合——五点抽检通过（见 T12b10.done）
+stop_check:
+  framework_conflict: 无。本批零台词改动。
+facts:
+  objects: ["火车 7 车厢 + 名词站", "a / nice / small / round / — / — / wooden + table", "气球预测卡"]
+  invariants:
+    - "数据对象全文：cn 一张漂亮的小圆木桌；prob 打散词 wooden、nice、round、small；prin 主观在外、本质贴名词"
+    - "cars[7]：①限定词 a；②观点 nice；③大小 small；④新旧/形状 round；⑤颜色 —；⑥来源 —；⑦材质/用途 wooden；名词站 table"
+    - "成句：a nice small round wooden table（空车厢跳过）；says 4 句含 OSASCOMP 拼读句；chant 限观大形龄色国材；pred a nice big red balloon；gold 洞见句"
+    - "不变量：空车厢以 — 标记且连读时跳过；成句与车厢非空项逐项对合；第 1 节时间窗 [0, 23.2]，第 2/3 节为 adj_order_p2_1/p3_1"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-adj_order_1.html（~/workspace/your_files/，1068119 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 官方强制集外（场景文件不直接 import lib/concept.js，--only 实测强制检查 0 幕，属空集结论）；ic_gen8 等效校验：34.8s、文字峰值 9%、无页面报错，时长低于 40s 参考下限——系分节文件所致（本文件为第 1 节，时间窗 [0, 23.2]，第 2/3 节见 adj_order_p2_1/p3_1），非内容不合格

@@ -6,7 +6,7 @@ import * as SP from '../sprites/mindmap.js';
 const ACTS = {"*": ["l_speak", "l_point", "l_think", "l_idea0"]};
 const GROUPS = [
   { name: '场所', leaves: [
-    ['🏞️ park', '公园', 'park'],
+    ['🏞️ park', '公园；停车（动词：park the car 停车）', 'park'],
     ['🏫 school', '学校', 'school'],
     ['🦁 zoo', '动物园', 'zoo'],
     ['🏪 bookstore', '书店', 'bookstore'],

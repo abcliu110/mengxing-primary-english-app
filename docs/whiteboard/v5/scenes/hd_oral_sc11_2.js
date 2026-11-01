@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '当然可以！请稍等别挂断，他在卧室里呢。'],
   ['s', 'Sure! Hold on, please. He is in his bedroom.', '当然可以！请稍等别挂断，他在卧室里呢。'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Thanks. I\'ll call later.'],
-  ['w', '谢谢，我稍后再打。'],
-  ['s', 'Thanks. I\'ll call later.', '谢谢，我稍后再打。']
+  ['w', '👦 角色 A：OK, thank you!'],
+  ['w', '好的，谢谢您！'],
+  ['s', 'OK, thank you!', '好的，谢谢您！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 打电话 · May I speak to Tom, please?', items: ITEMS, acts: ACTS }); }

@@ -1,0 +1,22 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：（spec 自带内容，无家族模型）；改本幕台词/结构：model/specs/stock_hd_poly_g3_113_2.yaml；改编排：模板 hd_poly_g3_113_2.js（家族共用）。
+// 判据/口诀来源：—。生成器 model/gen_scene.py（items 模式）。
+// 🎞️ orange · 一词多义第2幕 —— 决策 38 ⑩ 啊哈重做（一词多义通用版式 scenes/poly.js；啊哈卡 lab/audit38/aha/10_hd_poly.md）
+// 内容来源（R1 零丢失）：src/cases/hd_poly_g3_113.js 案例 2；对照清单 lab/INVENTORY_HD_POLY_G3_113_2_V5.md
+// 角色关键帧：sprites/hdpg3113_2.js（人物先行帧库 cast/）
+import { polyBuild } from './poly.js';
+import * as SP from '../sprites/hdpg3113_2.js';
+const ACTS = {"*": ["l_idea0", "l_point", "l_speak"]};
+const ITEMS = [
+  ['w', '一词多义演变'],
+  ['w', '🟠 orange /ˈɔːrɪndʒ/ — 【adj./n.】橙色的；橙子'],
+  ['w', '核心意象纽带：橙子果实及其天然色彩'],
+  ['w', '① 本义具象：n. 橙子，柑橘（可数名词）'],
+  ['w', 'I\'d like an orange.'],
+  ['w', '② 意象桥梁：橙子果实及其天然色彩'],
+  ['w', '核心动作/形状迁移'],
+  ['w', '③ 引申新义：adj./n. 橙色的，橘黄色的；橙汁'],
+  ['w', 'My schoolbag is orange.'],
+  ['w', '多义第2幕'],
+  ['s', 'I\'d like an orange.', '🔄 第二幕【场景变形·提取果皮色彩】：橙子果皮的绚丽色彩蔓延到画板和衣服上。'],
+];
+export default function build() { return polyBuild(SP, { title: '🎞️ orange · 一词多义第2幕', items: ITEMS, acts: ACTS }); }

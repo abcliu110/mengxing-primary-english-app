@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '他又高又壮，而且既和蔼又风趣！'],
   ['s', 'He is tall and strong. And he\'s very kind and funny!', '他又高又壮，而且既和蔼又风趣！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👦 角色 A：He sounds nice!'],
+  ['w', '他听起来人真好！'],
+  ['s', 'He sounds nice!', '他听起来人真好！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · What\'s he like? — He\'s kind and funny.', items: ITEMS, acts: ACTS }); }

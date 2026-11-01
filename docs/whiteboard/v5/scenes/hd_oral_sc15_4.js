@@ -7,7 +7,7 @@ const ACTS = {"*": ["m_tv", "l_put", "l_speak"], "M": ["l_speak", "l_ear", "l_wa
 const ITEMS = [
   ['w', '居家与家务'],
   ['w', '核心交际句：Turn on the light, please. （请把灯打开。（家电开关必会））'],
-  ['w', '💡 交际得体度与母语负迁移提示：🌟 考场头号防坑：开灯、开电视、开风扇（凡是带电开关）必须用 Turn on / Turn off，绝不用 Open / Close！'],
+  ['w', '💡 交际得体度与母语负迁移提示：🌟 标准搭配：带电的开关用 Turn on / Turn off（开灯、开电视、开风扇）；Open / Close 用在门、窗、书本上。这是英语的标准说法，考试也按这个判——记住“电器用 turn”。'],
   ['w', '对话第1轮'],
   ['w', '👨 角色 A：It\'s getting dark. Turn on the light, please.'],
   ['w', '天变黑了。请把电灯打开吧。'],
@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '好的，爸爸！现在书房亮堂堂的了。'],
   ['s', 'OK, Dad! Now the study is bright.', '好的，爸爸！现在书房亮堂堂的了。'],
   ['w', '对话第3轮'],
-  ['w', '👨 角色 A：OK. I will.'],
-  ['w', '好的，我会的。'],
-  ['s', 'OK. I will.', '好的，我会的。']
+  ['w', '👨 角色 A：Good. Now you can do your homework.'],
+  ['w', '好。现在你可以写作业了。'],
+  ['s', 'Good. Now you can do your homework.', '好。现在你可以写作业了。']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 居家与家务 · Turn on the light, please.', items: ITEMS, acts: ACTS }); }

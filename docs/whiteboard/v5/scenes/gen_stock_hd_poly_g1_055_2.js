@@ -1,0 +1,22 @@
+// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：（spec 自带内容，无家族模型）；改本幕台词/结构：model/specs/stock_hd_poly_g1_055_2.yaml；改编排：模板 hd_poly_g1_055_2.js（家族共用）。
+// 判据/口诀来源：—。生成器 model/gen_scene.py（items 模式）。
+// 🎞️ water · 一词多义第2幕 —— 决策 38 ⑩ 啊哈重做（一词多义通用版式 scenes/poly.js；啊哈卡 lab/audit38/aha/10_hd_poly.md）
+// 内容来源（R1 零丢失）：src/cases/hd_poly_g1_055.js 案例 2；对照清单 lab/INVENTORY_HD_POLY_G1_055_2_V5.md
+// 角色关键帧：sprites/hdpg1055_2.js（人物先行帧库 cast/）
+import { polyBuild } from './poly.js';
+import * as SP from '../sprites/hdpg1055_2.js';
+const ACTS = {"*": ["l_idea0", "l_point", "l_speak"]};
+const ITEMS = [
+  ['w', '一词多义演变'],
+  ['w', '💧 water /ˈwɔːtər/ — 【n.】水'],
+  ['w', '核心意象纽带：生命之源清水与用水浇灌'],
+  ['w', '① 本义具象：n. 水（不可数名词）'],
+  ['w', 'Drink more water every day.'],
+  ['w', '② 意象桥梁：生命之源清水与用水浇灌'],
+  ['w', '核心动作/形状迁移'],
+  ['w', '③ 引申新义：v. 给…浇水，灌溉'],
+  ['w', 'I water the flowers every morning.'],
+  ['w', '多义第2幕'],
+  ['s', 'Drink more water every day.', '🔄 第二幕【场景变形·把水洒向植物】：把水装进喷壶，倾斜壶嘴浇在干渴的花苗上。'],
+];
+export default function build() { return polyBuild(SP, { title: '🎞️ water · 一词多义第2幕', items: ITEMS, acts: ACTS }); }

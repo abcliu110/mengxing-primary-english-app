@@ -1,0 +1,27 @@
+# spec 存档 · vv_take_out_2（T12 B10 批处置，T12 阶段二）
+# 管线：手写 E 型存量处置（T12_plan §3 B10）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: vv_take_out_2
+family: 短语动词 take out（第 2 幕）
+engine: 手写 E 型（lib/concept.js + wb5；sprites/vvtakeout2.js 空包，B10 批补齐）
+structure: { know_block: "有（export const KNOW）", narr_calls: 8, imports: [../lib/concept.js, ../sprites/vvtakeout2.js, ../wb5.js] }
+disposition:
+  route: 保留手写 + spec 存档
+  reason: 内容经 scene_fixes 46 条裁定集逐字+归一化双通道扫描零命中（干净）；台词以 KNOW/SEQ 结构块承载，本存档即单源登记。生成器迁移需 G8 手写幕台词抽取器 + 家族模板变体（T12_plan §4 定性为「大」缺口），B2/B5 先例对手写幕采用「处置 + spec 存档」口径，本批从之；待 G8 立项后按家族整体迁移。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+  content_note: 两义（拿出/带…出去）由同一 OUT 图式（从里面到外面）派生——真多义纽带（意象图式型），非 hd_poly_g4_157 的同形异源伪纽带；五点抽检通过（见 T12b10.done）
+stop_check:
+  framework_conflict: 无。本批零台词改动；同病未裁定项一律登记不改。
+facts:
+  objects: ["里面大框 / 橙色门线 / 外面", "书包→书、家→小狗、出租车→人、窗外目光、火苗卡"]
+  invariants:
+    - "统一纽带：OUT = 从里面到外面"
+    - "五例同构：take out（书出书包）、take the dog out（人狗出家门）、get out（人出出租车）、give out（本子分发到外面每人手里）、look out / put out（目光探出窗外、火苗出去即灭）"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-vv_take_out_2.html（~/workspace/your_files/，1044932 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 不合格 0（--only=vv_take_out_2；51.6s，文字峰值 18%，决策 39 提示为讲授型既有提示，非不合格项）

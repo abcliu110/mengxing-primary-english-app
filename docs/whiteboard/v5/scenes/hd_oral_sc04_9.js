@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '一定会的！我会经常给你写信、打电话的！'],
   ['s', 'Sure! I will write to you and call you often!', '一定会的！我会经常给你写信、打电话的！'],
   ['w', '对话第3轮'],
-  ['w', '👧 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👧 角色 A：Best wishes!'],
+  ['w', '祝你一切顺利！'],
+  ['s', 'Best wishes!', '祝你一切顺利！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · Keep in touch! Write to me soon!', items: ITEMS, acts: ACTS }); }

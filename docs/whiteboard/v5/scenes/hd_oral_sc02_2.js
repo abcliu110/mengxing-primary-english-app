@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '没关系！我来帮你把它们捡起来吧。'],
   ['s', 'That\'s OK! Let me help you pick them up.', '没关系！我来帮你把它们捡起来吧。'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：That\'s all right.'],
-  ['w', '没关系。'],
-  ['s', 'That\'s all right.', '没关系。']
+  ['w', '👦 角色 A：Thank you, Miss White.'],
+  ['w', '谢谢您，怀特老师。'],
+  ['s', 'Thank you, Miss White.', '谢谢您，怀特老师。']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 感谢与道歉 · I\'m sorry. — That\'s OK!', items: ITEMS, acts: ACTS }); }

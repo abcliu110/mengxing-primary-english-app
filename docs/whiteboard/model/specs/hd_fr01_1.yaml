@@ -1,0 +1,29 @@
+# spec 存档 · hd_fr01_1（T12 B10 批处置，T12 阶段二）
+# 管线：builder 家族存量处置（T12_plan §3 B10 / §4 G9）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: hd_fr01_1
+family: 框架语义学 · 买卖交易小剧场 视角 1 buy（买）
+engine: frBuild 家族版式（scenes/fr_lib.js；sprites/hdfr01_1.js 空包，B10 批补齐）
+structure: { know_block: "有（export const KNOW）", narr_calls: 0, imports: [../sprites/hdfr01_1.js, ./fr_lib.js], data: "build() { return frBuild(SP, V) }，V 为视角数据对象" }
+disposition:
+  route: 数据登记入模 + 保留 builder 实现
+  reason: 计划 G9 定性：builder 两族共 8 幕量小、不另造 spec 模式，逐幕人工迁移。本批将数据对象全文登记入本存档（单源登记），引擎（fr_lib）与场景实现保留；生成器反向驱动待 G9 薄适配器立项时切换。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+  content_note: 视角流向（买家 ➔ 商品）与句型公式（Buyer + buy + Goods (+ from Seller)）一致——视角切换→动词切换的因果链即框架语义本体；五点抽检通过（见 T12b10.done）
+stop_check:
+  framework_conflict: 无。本批零台词改动。
+facts:
+  objects: ["买卖交易小剧场", "故事书流向 ➡️", "Buyer / Goods / Seller 角色标"]
+  invariants:
+    - "V 数据对象全文：verb buy（买）、idx 1、subject Buyer、flow goods；q 镜头对准淘淘，看书到了他手上"
+    - "parts：Taotao(Buyer) + buys + a storybook(Goods) + from + the shop.(Seller)；en Taotao buys a storybook from the shop.；zh 淘淘从店里买了一本故事书"
+    - "公式：Buyer + buy + Goods (+ from Seller)；流向：买家 ➔ 商品"
+    - "不变量：同一客观事件，切换主语视角即切换动词；本幕为视角 1"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-hd_fr01_1.html（~/workspace/your_files/，1045205 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 官方强制集外（场景文件不直接 import lib/concept.js，--only 实测强制检查 0 幕，属空集结论）；ic_gen8 等效校验：✅ 不合格 0（47.4s，文字峰值 17%，无页面报错）

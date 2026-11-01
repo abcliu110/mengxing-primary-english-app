@@ -1,0 +1,27 @@
+# spec 存档 · adj_order_2（T12 B10 批处置，T12 阶段二）
+# 管线：builder 家族存量处置（T12_plan §3 B10 / §4 G9）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: adj_order_2
+family: 形容词排序 · ② 两只可爱的小白猫
+engine: buildAdj 家族版式（scenes/adj_train.js；sprites/ao2.js）
+structure: { know_block: "无（buildAdj 数据对象）", narr_calls: 0, imports: [../sprites/ao2.js, ./adj_train.js], data: "buildAdj(SP, { title/cars/says/chant/pred/gold 等同家族字段 })" }
+disposition:
+  route: 数据登记入模 + 保留 builder 实现
+  reason: 计划 G9 定性：builder 两族共 8 幕量小、不另造 spec 模式，逐幕人工迁移。本批将数据对象全文登记入本存档（单源登记），引擎（adj_train）与场景实现保留；生成器反向驱动待 G9 薄适配器立项时切换。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+stop_check:
+  framework_conflict: 无。本批零台词改动。
+facts:
+  objects: ["火车 7 车厢 + 名词站", "two / cute / little / — / white / — / — + cats", "小黄鸭预测卡"]
+  invariants:
+    - "数据对象全文：cn 两只可爱的小白猫；prob 打散词 white、cute、little；cars[7]：①限定词 two；②观点 cute；③大小 little；④新旧/形状 —；⑤颜色 white；⑥来源 —；⑦材质/用途 —；名词站 cats（复数加 -s）"
+    - "成句：two cute little white cats；says 2 句；chant 同第 1 幕；pred three cute little yellow ducks；gold 洞见句同第 1 幕"
+    - "不变量：空车厢跳过；离名词最近的非空项 white 紧贴 cats"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-adj_order_2.html（~/workspace/your_files/，1078032 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 官方强制集外（同 adj_order_1 口径）；ic_gen8 等效校验：✅ 不合格 0（173.8s，文字峰值 12%，无页面报错）

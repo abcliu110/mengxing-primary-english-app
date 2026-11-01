@@ -15,10 +15,6 @@ const ITEMS = [
   ['w', '对话第2轮'],
   ['w', '👦 角色 B：No, thank you, Grandma! I\'m full. It tastes delicious!'],
   ['w', '不用了，谢谢奶奶！我吃饱啦。饭菜太美味了！'],
-  ['s', 'No, thank you, Grandma! I\'m full. It tastes delicious!', '不用了，谢谢奶奶！我吃饱啦。饭菜太美味了！'],
-  ['w', '对话第3轮'],
-  ['w', '👵 角色 A：Thank you. It tastes good.'],
-  ['w', '谢谢，真好吃。'],
-  ['s', 'Thank you. It tastes good.', '谢谢，真好吃。']
+  ['s', 'No, thank you, Grandma! I\'m full. It tastes delicious!', '不用了，谢谢奶奶！我吃饱啦。饭菜太美味了！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 就餐与点菜 · Would you like some more?', items: ITEMS, acts: ACTS }); }

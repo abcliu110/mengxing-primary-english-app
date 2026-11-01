@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '我最喜欢的食物是沙拉。它既健康又新鲜！'],
   ['s', 'My favourite food is salad. It\'s healthy and fresh!', '我最喜欢的食物是沙拉。它既健康又新鲜！'],
   ['w', '对话第3轮'],
-  ['w', '👧 角色 A：Thank you. It tastes good.'],
-  ['w', '谢谢，真好吃。'],
-  ['s', 'Thank you. It tastes good.', '谢谢，真好吃。']
+  ['w', '👧 角色 A：Salad is healthy! I like it too.'],
+  ['w', '沙拉很健康！我也喜欢！'],
+  ['s', 'Salad is healthy! I like it too.', '沙拉很健康！我也喜欢！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 就餐与点菜 · What\'s your favourite food?', items: ITEMS, acts: ACTS }); }

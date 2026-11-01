@@ -1,0 +1,19 @@
+# spec 存档 · tense_matrix_p4_1（T12 B11 批处置，T12 阶段二）
+# 管线：手写非 E 型存量处置（T12_plan §3 B11）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: tense_matrix_p4_1
+family: 时态矩阵 · 第 4 部分第 1 幕（tense_matrix_1 分节）
+engine: 手写分节窗口件（转调 tense_matrix_1 + __WB5_CLIP [144.0, null]；sprites/tm1.js）
+structure: { content_source: tense_matrix_1, clip: [144.0, null], narr_calls: 0, imports: [../sprites/tm1.js, ./tense_matrix_1.js], bytes: 477 }
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+facts: 待补  # 随母幕 tense_matrix_1 同账
+stop_check:
+  framework_conflict: 无。本批零台词改动；场景源文件与引擎文件均未动。
+residual_for_review:
+  - 事实表正文「待补」，随母幕同账。
+  - 家族窗链 [0,45.8]→[45.8,100.5]→[100.5,144.0]→[144.0,null] 无缝无重叠（时序核查通过；窗口值逐字见场景源文件头）。
+  - 交叉提示：tense_matrix_5 第 3/4 板未裁定散文 4 处（B3 登记）仍待主会话补订正包，不在本批范围。
+validation:
+  build: gen-stock-tense_matrix_p4_1.html（~/workspace/your_files/，1,584,566 字节，尾含 </html>）
+  ic_gen8: ✅ 不合格 0（53.2s，文字峰值 14%，无页面报错）
+  insightcheck_official: 官方 insightcheck --only 口径：存量手写幕不在官方强制集内（实测 past_clans_1：强制检查 0 幕，不合格 0，属空集结论）；实际校验以 ic_gen8 等效校验为准（B10 先例）

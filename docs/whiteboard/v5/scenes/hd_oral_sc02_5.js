@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '谢谢你！你们的学校又大又漂亮！'],
   ['s', 'Thank you! Your school is so big and beautiful!', '谢谢你！你们的学校又大又漂亮！'],
   ['w', '对话第3轮'],
-  ['w', '👧 角色 A：That\'s all right.'],
-  ['w', '没关系。'],
-  ['s', 'That\'s all right.', '没关系。']
+  ['w', '👧 角色 A：You\'re welcome!'],
+  ['w', '不客气！'],
+  ['s', 'You\'re welcome!', '不客气！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 感谢与道歉 · Welcome to our school!', items: ITEMS, acts: ACTS }); }

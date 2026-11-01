@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '谢谢你！我今天满十岁啦！'],
   ['s', 'Thank you! I\'m ten years old today!', '谢谢你！我今天满十岁啦！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Nice to meet you, too!'],
-  ['w', '我也很高兴认识你！'],
-  ['s', 'Nice to meet you, too!', '我也很高兴认识你！']
+  ['w', '👦 角色 A：Have a great day!'],
+  ['w', '祝你今天过得愉快！'],
+  ['s', 'Have a great day!', '祝你今天过得愉快！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 自我介绍 · How old are you? — I\'m ten years old.', items: ITEMS, acts: ACTS }); }

@@ -1,0 +1,19 @@
+# spec 存档 · tense_matrix_2（T12 B11 批处置，T12 阶段二）
+# 管线：手写非 E 型存量处置（T12_plan §3 B11）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: tense_matrix_2
+family: 时态矩阵 · 第 2 幕（② 现在进行时）
+engine: 完全手写（wb5 v5.1 标准画法；sprites/tm2.js；12 块白板 4 列 × 3 行）
+structure: { source: src/cases/tense_matrix.js 案例 2, narr_calls: 2, imports: [../sprites/tm2.js, ../wb5.js] }
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+facts: 待补  # 按 G3 批量先例登记占位，与 B6 的 245 份占位事实表同账管理
+stop_check:
+  framework_conflict: 无。本批零台词改动；场景源文件与引擎文件均未动。
+residual_for_review:
+  - 事实表正文「待补」，待模式层统一补齐（与 B6 的 245 份同账）。
+  - 交叉提示：tense_matrix_5 第 3/4 板未裁定散文 4 处（B3 登记）仍待主会话补订正包，不在本批范围。
+  - 时长 243.2s 超出 40–240s 参考区间，登记为存量属性（B3/B6 先例），非内容不合格；文字峰值 12%，无页面报错。
+validation:
+  build: gen-stock-tense_matrix_2.html（~/workspace/your_files/，1,414,028 字节，尾含 </html>）
+  ic_gen8: 时长 243.2s 超出 40–240s 参考区间（存量属性）；文字峰值 12%，无页面报错
+  insightcheck_official: 官方 insightcheck --only 口径：存量手写幕不在官方强制集内（实测 past_clans_1：强制检查 0 幕，不合格 0，属空集结论）；实际校验以 ic_gen8 等效校验为准（B10 先例）

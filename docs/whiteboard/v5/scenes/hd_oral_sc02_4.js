@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '噢，谢谢你！真是个有礼貌的男孩！'],
   ['s', 'Oh, thank you! What a polite boy!', '噢，谢谢你！真是个有礼貌的男孩！'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：That\'s all right.'],
-  ['w', '没关系。'],
-  ['s', 'That\'s all right.', '没关系。']
+  ['w', '👦 角色 A：You\'re welcome!'],
+  ['w', '不客气！'],
+  ['s', 'You\'re welcome!', '不客气！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 感谢与道歉 · After you! — Thank you!', items: ITEMS, acts: ACTS }); }

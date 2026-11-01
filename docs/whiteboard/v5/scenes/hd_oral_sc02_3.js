@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '当然可以！需要我帮你做什么？'],
   ['s', 'Sure! What can I do for you?', '当然可以！需要我帮你做什么？'],
   ['w', '对话第3轮'],
-  ['w', '🧒 角色 A：That\'s all right.'],
-  ['w', '没关系。'],
-  ['s', 'That\'s all right.', '没关系。']
+  ['w', '🧒 角色 A：Thank you!'],
+  ['w', '谢谢您！'],
+  ['s', 'Thank you!', '谢谢您！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 感谢与道歉 · Excuse me.', items: ITEMS, acts: ACTS }); }

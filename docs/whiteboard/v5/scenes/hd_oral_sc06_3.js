@@ -17,8 +17,8 @@ const ITEMS = [
   ['w', '当然可以！给你。慢点喝哦。'],
   ['s', 'Of course! Here you are. Drink slowly.', '当然可以！给你。慢点喝哦。'],
   ['w', '对话第3轮'],
-  ['w', '👦 角色 A：Thank you. It tastes good.'],
-  ['w', '谢谢，真好吃。'],
-  ['s', 'Thank you. It tastes good.', '谢谢，真好吃。']
+  ['w', '👦 角色 A：Thank you, Mum!'],
+  ['w', '谢谢妈妈！'],
+  ['s', 'Thank you, Mum!', '谢谢妈妈！']
 ];
 export default function build() { return oralBuild(SP, { title: '💬 日常用语 · 就餐与点菜 · Can I have some water, please?', items: ITEMS, acts: ACTS }); }

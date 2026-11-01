@@ -1,0 +1,28 @@
+# spec 存档 · hd_g37_1（T12 B10 批处置，T12 阶段二）
+# 管线：手写 E 型存量处置（T12_plan §3 B10）；修正文案唯一来源 = model/scene_fixes.yaml（本幕无待落实订正）
+scene: hd_g37_1
+family: grammar G37（同级比较 as...as）
+engine: 手写 E 型（lib/concept.js + scenes/cmp_lib.js；sprites/hdg37_1.js 空包，B10 批补齐）
+structure: { know_block: "有（export const KNOW）", narr_calls: 10, imports: [../lib/concept.js, ../sprites/hdg37_1.js, ../wb5.js, ./cmp_lib.js] }
+disposition:
+  route: 保留手写 + spec 存档
+  reason: 内容经 scene_fixes 46 条裁定集逐字+归一化双通道扫描零命中（干净）；台词以 KNOW/SEQ 结构块承载，本存档即单源登记。生成器迁移需 G8 手写幕台词抽取器 + 家族模板变体（T12_plan §4 定性为「大」缺口），B2/B5 先例对手写幕采用「处置 + spec 存档」口径，本批从之；待 G8 立项后按家族整体迁移。
+fixes_applied:
+  - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+disease_check:
+  originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
+  fragments: 已知疾病关键片段扫描无命中
+  content_note: 两柱同高 150cm 数值同一、as...as 原级定义与正/否例互证；五点抽检通过（见 T12b10.done）
+stop_check:
+  framework_conflict: 无。本批零台词改动；同病未裁定项一律登记不改。
+facts:
+  objects: ["身高尺（Tom、Jim 两柱同高 150 cm、水平线）", "tall / taller / tallest 三卡", "温度计（今天比昨天矮一截）"]
+  invariants:
+    - "同级比较：as + 原级 + as；两人一样高、无人冒尖，故中间用不变形的原级"
+    - "否定同级：not as / so + 原级 + as（Today is not as warm as yesterday.）"
+    - "数值同一：两柱同为 150 cm，与 as tall as 定义互证"
+residual_for_review:
+  - "无（46 条已裁定原句零命中；疾病关键片段扫描无命中；本批零台词改动）。"
+validation:
+  build: gen-stock-hd_g37_1.html（~/workspace/your_files/，1046812 字节，关键台词在场，尾含 </html>）
+  insightcheck_official: 不合格 0（--only=hd_g37_1；95.9s，文字峰值 10%，决策 39 提示为讲授型既有提示，非不合格项）
