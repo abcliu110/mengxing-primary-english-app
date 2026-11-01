@@ -2917,3 +2917,5 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - `git filter-repo --refs master`：历史里只保留当前仍在仓库的路径，主 HTML（`萌星小学英语_最终合并版.html`，254 个历史版本约 207 MB）从旧提交中移除，只在本提交重新加入；已删的 narrator 图、takeout_wb/out 视频等旧大文件一并清出。
 - 所有提交号已变；文档里的旧短哈希已按 commit-map 批量换成新号（262 处）。旧提交检出时没有主 HTML，要旧版主 HTML 只能看备份包。
 - 远端 `feat/vv-anim-all`、`feat/vv-take-anim` 两个旧分支未改写。
+
+- 2026-11-01 检查同步：app_check15 期望值对齐 bccab02（wlPosMatch 词元匹配）与 6df094f（verb_form_of 不单列）；HANDOFF 补 runall 依赖（playwright/brotli/numpy/pillow）与 fb39v2 精灵重建命令。
