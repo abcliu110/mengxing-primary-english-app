@@ -197,10 +197,15 @@ body.adult .adult{display:block}
 <section class="view" id="v-phon">
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">🔤 拼读区</h2>
-<p class="sub">真模块（单屏实验台）：167 个模式按（字素，读音）合并为 160 个入口，10,117 词次全部来自词库、逐词呈现；音标为英式 RP。在下方分组面板点任意模式，本页就地切换：规律讲解 → 词墙 → 练习。</p>
+<p class="sub">真模块：167 个模式按（字素，读音）合并为 160 个入口，10,117 词次全部来自词库、逐词呈现；音标为英式 RP。在下方分组面板点任意模式，进入它的明细页：规律讲解 → 词墙 → 练习。</p>
 <div class="ph-regbar"><button class="ph-regbtn" data-phreg="1">📋 登记说明：待裁定 146 条 · 零命中 3 词（eye / you / of） · 例外与口径登记 10 项 —— 点开看明细</button></div>
 <div class="ph-reg" id="ph-reg" hidden></div>
 <div id="ph-strip"></div>
+</section>
+
+<!-- ============ 拼读明细 ============ -->
+<section class="view" id="v-phon-detail">
+<span class="back" data-go="phon">← 返回拼读面板</span>
 <div id="ph-bench"></div>
 </section>
 
@@ -1087,6 +1092,7 @@ GROUPS[k].ps.push(p); GROUPS[k].n += p.n;
 });
 var CATS = ['辅音', '短元音', '长音菜单', 'Magic e', '词尾定律', '变脸多读'];
 var curKey = null;
+var panelScroll = null;
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 function speak(t){
 try {
@@ -1212,16 +1218,20 @@ PHREG.registrations.map(function(r){ return '<p>' + esc((r.words || []).join('�
 document.getElementById('ph-reg').innerHTML = h;
 }
 document.addEventListener('click', function(ev){
-var root = ev.target.closest? ev.target.closest('#v-phon'): null;
+var root = ev.target.closest? ev.target.closest('#v-phon, #v-phon-detail'): null;
 if (!root) return;
 var rg = ev.target.closest('[data-phreg]');
 if (rg) { var el = document.getElementById('ph-reg'); el.hidden =!el.hidden; return;}
 var say = ev.target.closest('[data-say]');
 if (say) { speak(say.getAttribute('data-say')); return;}
 var pat = ev.target.closest('[data-pat]');
-if (pat) { var p = PATS[pat.getAttribute('data-pat')]; if (p) renderBench(GKEY(p)); return;}
+if (pat) { var p = PATS[pat.getAttribute('data-pat')]; if (p) { renderBench(GKEY(p)); window.scrollTo(0,0);} return;}
 var chip = ev.target.closest('[data-pkey]');
-if (chip) { renderBench(chip.getAttribute('data-pkey')); return;}
+if (chip) { panelScroll = window.scrollY; renderBench(chip.getAttribute('data-pkey')); show('phon-detail'); return;}
+});
+document.addEventListener('click', function(ev){
+var bk = ev.target.closest? ev.target.closest('#v-phon-detail [data-go="phon"]'): null;
+if (bk && panelScroll !== null) { var y = panelScroll; setTimeout(function(){ window.scrollTo(0, y);}, 0); }
 });
 renderReg();
 renderBench(GORDER[0]);
