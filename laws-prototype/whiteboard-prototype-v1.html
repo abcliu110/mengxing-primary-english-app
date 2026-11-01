@@ -47,13 +47,54 @@
   .dot.done { background:#b9bfa8; } .dot.now { background:#f08c1e; border-color:#f08c1e; }
   #prog { color:#8a8f7a; font-size:15px; }
   label.auto { font-size:16px; display:flex; gap:6px; align-items:center; cursor:pointer; }
+
+  /* ===== trio lessons (in / on / at) + picker ===== */
+  #lessonPicker { max-width:1180px; margin:0 auto 12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  #lessonPicker .pkT { font-size:16px; color:#8a8f7a; margin-right:2px; }
+  #lessonPicker button { font:inherit; font-size:16px; padding:7px 15px; border-radius:999px; border:2.5px solid #5b7186; background:#fff; cursor:pointer; }
+  #lessonPicker button.on { background:#39404d; color:#fff; border-color:#39404d; }
+  .wb2 .stageBox { position:relative; }
+  .wb2 svg.board { width:100%; height:auto; display:block; background:#fffdf6; border:3px solid #d8d2c0; border-radius:14px; box-shadow:0 6px 24px rgba(80,70,40,.15); }
+  .wb2 .predict { position:absolute; left:50%; bottom:5%; transform:translateX(-50%); width:min(92%,560px); background:#fffef9; border:3px solid #f08c1e; border-radius:16px; padding:14px 16px 12px; box-shadow:0 10px 30px rgba(90,60,0,.25); text-align:center; z-index:5; }
+  .wb2 .predict .q { font-size:21px; margin-bottom:10px; }
+  .wb2 .predict .opts { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .wb2 .predict button { font:inherit; font-size:17px; padding:8px 16px; border-radius:999px; border:2.5px solid #5b7186; background:#fff; cursor:pointer; }
+  .wb2 .predict button:hover { background:#eef4f8; }
+  .wb2 .predict .hint { margin-top:9px; color:#d23c2a; font-size:16px; min-height:20px; }
+  .wb2 .capBar { margin-top:12px; background:#fffef9; border:2.5px solid #d8d2c0; border-radius:14px; padding:12px 18px; min-height:96px; }
+  .wb2 .cap { font-size:21px; line-height:1.5; }
+  .wb2 .sentBar { margin-top:8px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .wb2 .sentBar .en { font-size:25px; color:#39404d; }
+  .wb2 .sentBar .en b { color:#d23c2a; }
+  .wb2 .speakBtn { font:inherit; font-size:16px; padding:6px 14px; border-radius:999px; border:2.5px solid #f08c1e; background:#fff7ea; cursor:pointer; }
+  .wb2 .controls { margin-top:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .wb2 .controls button { font:inherit; font-size:17px; padding:9px 18px; border-radius:999px; border:2.5px solid #39404d; background:#fff; cursor:pointer; }
+  .wb2 .controls button.primary { background:#39404d; color:#fff; }
+  .wb2 .controls button:disabled { opacity:.4; cursor:default; }
+  .wb2 .dots { display:flex; gap:4px; flex-wrap:wrap; max-width:430px; }
+  .wb2 .prog { color:#8a8f7a; font-size:15px; }
+  .wb2 label.auto { font-size:16px; display:flex; gap:6px; align-items:center; cursor:pointer; }
+  .lf { fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .tp { fill:none; stroke:#999; opacity:0; }
+  .fillInk { fill:#39404d; stroke:none; }
+  .fillGry { fill:#8a8f7a; stroke:none; }
+  .ctx { font-size:11.5px; }
 </style>
 </head>
 <body>
 <header>
-  <h1>🖊️ 白板课 · over 的一家人</h1>
-  <span class="sub">原型 v1 · 一拍一拍往下看：画法 = 想法出现的顺序</span>
+  <h1>🖊️ 白板课 · 介词一家人</h1>
+  <span class="sub">原型 v1 · 画法 = 想法出现的顺序 · in / on / at 直接模仿三家：Tyler &amp; Evans · Woodward · Kevin + BBC</span>
 </header>
+<nav id="lessonPicker">
+  <span class="pkT">选一个词上课 · 维度散步（3 维 → 2 维 → 0 维）：</span>
+  <button data-lesson="in">in · 容器（3 维）</button>
+  <button data-lesson="on">on · 面（2 维）</button>
+  <button data-lesson="at">at · 点（0 维）</button>
+  <button data-lesson="over" class="on">over · 弧线</button>
+</nav>
+
+<div class="lesson" id="lesson-over">
 <div id="wrap">
   <div id="stageBox">
     <svg id="board" viewBox="0 0 1250 920" xmlns="http://www.w3.org/2000/svg" aria-label="whiteboard">
@@ -423,6 +464,1056 @@
   </div>
 </div>
 
+</div>
+<!-- ================= IN ================= -->
+<div class="lesson wb2" id="lesson-in" hidden>
+  <div class="stageBox">
+    <svg class="board" viewBox="0 0 1250 920" xmlns="http://www.w3.org/2000/svg" aria-label="whiteboard in">
+      <defs>
+        <filter id="wobI" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="2" seed="21" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="3"/>
+        </filter>
+        <filter id="wobIS" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="23" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+        </filter>
+      </defs>
+
+      <g class="gTitle" filter="url(#wobI)">
+        <path class="dp ink" stroke-width="9" d="M706 122 C 700 96 698 78 702 58"/>
+        <circle class="fx fillAcc" cx="703" cy="36" r="6.5"/>
+        <path class="dp ink" stroke-width="9" d="M748 122 L750 60"/>
+        <path class="dp ink" stroke-width="9" d="M750 92 C 762 60 796 54 806 78 C 812 92 812 106 812 122"/>
+        <text class="tx fGry" x="72" y="208" font-size="21">白板课 · in 的一家人</text>
+      </g>
+
+      <g class="gGallery" filter="url(#wobIS)">
+        <g class="pc" data-pc="pc1" transform="translate(30,240)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">① 装进里面</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M70 34 L190 34 L190 88 L70 88 Z"/>
+            <path class="dp lm" stroke-width="4" d="M70 34 L88 14 L208 14 L190 34"/>
+            <path class="dp lm" stroke-width="4" d="M190 34 L208 14 L208 68 L190 88"/>
+            <circle class="dp red" stroke-width="3.5" cx="130" cy="54" r="14"/>
+            <path class="dp red" stroke-width="3" d="M118 44 L114 30 L128 40 M136 40 L148 30 L150 44"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The cat is in the box.</text>
+        </g>
+        <g class="pc" data-pc="pc2" transform="translate(30,430)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">② 看功能 · 装好</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M60 40 C 60 74 92 88 130 88 C 168 88 200 74 200 40"/>
+            <path class="dp lm" stroke-width="4" d="M54 40 L206 40"/>
+            <circle class="dp red" stroke-width="3.5" cx="112" cy="32" r="13"/>
+            <path class="dp red" stroke-width="3" d="M112 19 C 114 10 120 6 128 4"/>
+            <path class="dp red" stroke-width="3" d="M152 46 C 170 60 196 62 214 48 M152 46 C 172 52 196 52 214 48"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">The apple is in the bowl.</text>
+          <text class="tx fGry" x="14" y="166" font-size="11.5">The bananas are in the bowl.</text>
+        </g>
+        <g class="pc" data-pc="pc3" transform="translate(30,620)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">③ 汉语切一刀</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M130 88 L130 56"/>
+            <circle class="dp lm" stroke-width="4" cx="104" cy="36" r="20"/>
+            <circle class="dp lm" stroke-width="4" cx="132" cy="26" r="24"/>
+            <circle class="dp lm" stroke-width="4" cx="158" cy="38" r="18"/>
+            <path class="dp red" stroke-width="3" d="M118 34 C 126 24 142 24 150 30"/>
+            <circle class="fx fillRed" cx="90" cy="54" r="4"/>
+            <circle class="fx fillRed" cx="174" cy="58" r="4"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">The bird is in the tree.</text>
+          <text class="tx fGry" x="14" y="166" font-size="11.5">The apples are on the tree.</text>
+        </g>
+        <g class="pc" data-pc="pc4" transform="translate(1270,240)">
+          <text class="tx fInk" x="14" y="25" font-size="13.5" font-weight="bold">④ 先定找谁 · 球和盒子九句</text>
+          <text class="tx fInk" x="14" y="50" font-size="10.5">The ball is behind the box.</text>
+          <text class="tx fInk" x="14" y="63" font-size="10.5">The ball is in front of the box.</text>
+          <text class="tx fInk" x="14" y="76" font-size="10.5">The ball is next to the box.</text>
+          <text class="tx fInk" x="14" y="89" font-size="10.5">The ball is between the boxes.</text>
+          <text class="tx fInk" x="14" y="102" font-size="10.5">The ball is near the box.</text>
+          <text class="tx fInk" x="14" y="115" font-size="10.5">The ball is above the box.</text>
+          <text class="tx fInk" x="14" y="128" font-size="10.5">The ball is below the box.</text>
+          <text class="tx fInk" x="14" y="141" font-size="10.5">The ball is in the box.</text>
+          <text class="tx fInk" x="14" y="154" font-size="10.5">The ball is on the box.</text>
+          <text class="tx fGry" x="14" y="168" font-size="9.5">句组照抄 Woodward English</text>
+        </g>
+        <g class="pc" data-pc="pc5" transform="translate(1270,430)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑤ 泡在时间里</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M20 22 L240 22 L240 66 L20 66 Z"/>
+            <circle class="dp acc" stroke-width="3.5" cx="52" cy="44" r="11"/>
+            <path class="dp red" stroke-width="3" d="M100 58 C 94 44 102 34 114 34 C 126 34 132 46 128 58"/>
+            <path class="dp gry" stroke-width="3" d="M160 44 L224 44"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">We play in the morning.</text>
+          <text class="tx fGry" x="14" y="166" font-size="11.5">We swim in summer.</text>
+        </g>
+        <g class="pc" data-pc="pc6" transform="translate(1270,620)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑥ 泡在状态里</text>
+          <g transform="translate(14,36)">
+            <ellipse class="dw gry" stroke-width="3" stroke-dasharray="5 5" cx="86" cy="46" rx="60" ry="34" fill="none"/>
+            <circle class="dp ink" stroke-width="3.5" cx="86" cy="42" r="15"/>
+            <path class="dp ink" stroke-width="3" d="M78 53 C 84 48 92 48 96 52"/>
+            <path class="dp red" stroke-width="3" d="M206 28 C 188 12 162 24 166 42 C 169 56 190 64 206 76 C 222 64 243 56 246 42 C 250 24 224 12 206 28 Z"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">The boy is in trouble.</text>
+          <text class="tx fGry" x="14" y="166" font-size="11.5">She is in love.</text>
+        </g>
+        <g class="pc" data-pc="pc7" transform="translate(350,815)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑦ 猜一猜 · 照片</text>
+          <g transform="translate(14,36)">
+            <path class="dp ink" stroke-width="4" d="M70 8 L200 8 L200 84 L70 84 Z"/>
+            <circle class="dp red" stroke-width="3.5" cx="130" cy="42" r="16"/>
+            <path class="dp red" stroke-width="3" d="M116 30 C 106 36 104 50 108 58 M144 30 C 154 36 156 50 152 58"/>
+            <path class="dp red" stroke-width="3" d="M152 44 L168 48 L152 52"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The dog is in the photo.</text>
+        </g>
+        <g class="pc" data-pc="pc8" transform="translate(655,815)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑧ 换个主角再演</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M70 34 L190 34 L190 88 L70 88 Z"/>
+            <path class="dp lm" stroke-width="4" d="M70 34 L88 14 L208 14 L190 34"/>
+            <path class="dp lm" stroke-width="4" d="M190 34 L208 14 L208 68 L190 88"/>
+            <circle class="dp red" stroke-width="3.5" cx="130" cy="52" r="13"/>
+            <path class="dp red" stroke-width="3" d="M118 40 C 110 46 108 56 112 62 M142 40 C 150 46 152 56 148 62"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The dog is in the box.</text>
+        </g>
+        <g class="pc" data-pc="pc9" transform="translate(960,815)">
+          <text class="tx fInk" x="14" y="25" font-size="14" font-weight="bold">我们向谁学了什么</text>
+          <text class="tx fGry ctx" x="14" y="50">Kevin 英文不難：空间范围图式 · 故事三句 · 时间重映射</text>
+          <text class="tx fGry ctx" x="14" y="72">Woodward English：球和盒子九句 · 换主角重演 · 章节序</text>
+          <text class="tx fGry ctx" x="14" y="94">Tyler &amp; Evans《英语介词语义学》：容器原型图式</text>
+          <text class="tx fGry ctx" x="14" y="116">BBC Learning English（Sam）：一场景三介词</text>
+          <text class="tx fGry ctx" x="14" y="138">Woodward 原话（成人角）：“The dog is on the table.”</text>
+          <text class="tx fGry ctx" x="14" y="158">“There is a thermometer in the dog's mouth.”</text>
+        </g>
+      </g>
+
+      <g class="gCore" filter="url(#wobI)" opacity="0">
+        <path class="dp ink cardFrame" stroke-width="4.5" d="M1194 40 L1556 40 Q1570 40 1570 54 L1570 201 Q1570 215 1556 215 L1194 215 Q1180 215 1180 201 L1180 54 Q1180 40 1194 40 Z"/>
+        <text class="tx fInk" x="1206" y="82" font-size="24" font-weight="bold">in 的核心图 · 老家</text>
+        <g class="cardSchema">
+          <path class="dp lm" stroke-width="4.5" d="M1240 140 L1335 140 L1335 195 L1240 195 Z"/>
+          <path class="dp lm" stroke-width="4.5" d="M1240 140 L1258 118 L1353 118 L1335 140"/>
+          <path class="dp lm" stroke-width="4.5" d="M1335 140 L1353 118 L1353 173 L1335 195"/>
+          <circle class="fx fillRed" cx="1287" cy="168" r="9"/>
+        </g>
+        <text class="tx fRed" x="1392" y="146" font-size="19" font-weight="bold">in = 一个空间范围</text>
+        <text class="tx fGry" x="1392" y="174" font-size="14">a space range（Kevin）</text>
+        <text class="tx fLm" x="1206" y="200" font-size="13.5">装进里面 · 容器图式（3 维）</text>
+      </g>
+
+      <g class="gSpokes"></g>
+
+      <g class="gStage" filter="url(#wobI)">
+        <g class="scene sc-inStory">
+          <path class="dp gry gnd" stroke-width="4" d="M372 742 L1128 742"/>
+          <path class="dp lm cityB" stroke-width="5" d="M470 742 L470 384 Q470 356 498 356 L1002 356 Q1030 356 1030 384 L1030 742"/>
+          <path class="dp gry bld" stroke-width="3" d="M520 742 L520 560 L580 560 L580 742 M620 742 L620 500 L700 500 L700 742 M880 742 L880 540 L960 540 L960 742"/>
+          <path class="dp lm road" stroke-width="4" d="M470 660 L1030 660 M470 700 L1030 700"/>
+          <path class="dp lm rest" stroke-width="4" d="M905 742 L905 690 L945 690 L945 742 M898 690 L925 664 L952 690"/>
+          <path class="dp acc pinR" stroke-width="4" d="M925 606 C 910 606 903 620 925 646 C 947 620 940 606 925 606"/>
+          <circle class="fx fillAcc" cx="925" cy="618" r="5"/>
+          <g class="catSit catOut" transform="translate(296,557)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <g class="catSit catIn" transform="translate(700,557)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <path class="tp tpIn" d="M462 690 C 560 620 640 620 716 668"/>
+          <path class="dp acc cityHi" stroke-width="4.5" d="M470 742 L470 384 Q470 356 498 356 L1002 356 Q1030 356 1030 384 L1030 742"/>
+          <text class="tx fRed txIn" x="560" y="330" font-size="30" font-weight="bold">in Taipei</text>
+          <text class="tx fGry txOn" x="486" y="648" font-size="19">on Xinyi Road</text>
+          <text class="tx fGry txAt" x="796" y="600" font-size="19">at the restaurant</text>
+        </g>
+
+        <g class="scene sc-inBox">
+          <g class="catSit catOut" transform="translate(392,557)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <g class="schemaG">
+            <path class="dp lm" stroke-width="6" d="M560 560 L940 560 L940 742 L560 742 Z"/>
+            <path class="dp lm" stroke-width="6" d="M560 560 L612 498 L992 498 L940 560"/>
+            <path class="dp lm" stroke-width="6" d="M940 560 L992 498 L992 680 L940 742"/>
+            <g class="catSit catIn" transform="translate(655,552)">
+              <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+            </g>
+          </g>
+          <path class="tp tpIn" d="M520 596 C 580 462 700 462 742 548"/>
+        </g>
+
+        <g class="scene sc-inBowl">
+          <path class="dp lm tbl" stroke-width="6" d="M470 640 L1030 640 M520 640 L520 742 M980 640 L980 742"/>
+          <path class="dp lm bowl" stroke-width="6" d="M600 560 C 600 640 660 672 750 672 C 840 672 900 640 900 560"/>
+          <path class="dp lm bowl" stroke-width="6" d="M592 560 L908 560"/>
+          <g class="fruitA">
+            <circle class="dp red" stroke-width="5" cx="750" cy="512" r="27"/>
+            <path class="dp red" stroke-width="4" d="M750 485 C 752 472 759 464 770 460"/>
+            <path class="dp red" stroke-width="4" d="M770 460 C 783 452 796 456 798 467 C 787 474 774 471 770 460"/>
+          </g>
+          <g class="fruitB">
+            <path class="dp red" stroke-width="4.5" d="M636 528 C 672 560 730 564 768 536"/>
+            <path class="dp red" stroke-width="4.5" d="M636 528 C 674 544 728 546 768 536"/>
+          </g>
+        </g>
+
+        <g class="scene sc-inTree">
+          <path class="dp lm treeP" stroke-width="6" d="M700 742 C 696 690 694 650 690 610 M700 742 C 706 695 712 660 722 622"/>
+          <path class="dp lm treeP" stroke-width="5" d="M694 640 C 660 620 640 600 632 575 M714 648 C 745 628 762 606 770 580"/>
+          <circle class="dp lm treeP" stroke-width="5" cx="640" cy="545" r="58"/>
+          <circle class="dp lm treeP" stroke-width="5" cx="722" cy="500" r="72"/>
+          <circle class="dp lm treeP" stroke-width="5" cx="802" cy="548" r="56"/>
+          <g class="birdIn">
+            <path class="dp red" stroke-width="4.5" d="M664 532 C 682 510 716 508 734 524"/>
+            <path class="dp red" stroke-width="4" d="M694 518 C 704 496 728 492 740 506"/>
+            <circle class="dp red" stroke-width="4" cx="742" cy="520" r="11"/>
+            <path class="dp red" stroke-width="3.5" d="M752 518 L766 522 L752 526"/>
+          </g>
+          <g class="apples">
+            <circle class="dp red" stroke-width="3.5" cx="612" cy="468" r="9"/>
+            <circle class="dp red" stroke-width="3.5" cx="838" cy="462" r="9"/>
+            <circle class="dp red" stroke-width="3.5" cx="872" cy="540" r="9"/>
+          </g>
+          <ellipse class="dp acc circBird" cx="706" cy="522" rx="72" ry="44" fill="none" stroke-width="4.5"/>
+          <ellipse class="dp acc circApple" cx="838" cy="462" rx="20" ry="20" fill="none" stroke-width="4"/>
+        </g>
+
+        <g class="scene sc-inBall">
+          <g class="boxTour" data-rst data-base="">
+            <path class="dp lm" stroke-width="6" d="M520 580 L800 580 L800 742 L520 742 Z"/>
+            <path class="dp lm" stroke-width="6" d="M520 580 L556 536 L836 536 L800 580"/>
+            <path class="dp lm" stroke-width="6" d="M800 580 L836 536 L836 698 L800 742"/>
+          </g>
+          <g class="box2">
+            <path class="dp lm" stroke-width="5" d="M884 640 L1014 640 L1014 742 L884 742 Z"/>
+            <path class="dp lm" stroke-width="5" d="M884 640 L908 612 L1038 612 L1014 640"/>
+            <path class="dp lm" stroke-width="5" d="M1014 640 L1038 612 L1038 714 L1014 742"/>
+          </g>
+          <path class="dw gry zoneAbove" stroke-width="3" stroke-dasharray="6 6" d="M596 522 L724 522"/>
+          <g class="ballG ballTour" transform="translate(655,566)">
+            <circle class="dp red" stroke-width="4" cx="0" cy="0" r="16"/><path class="dp red" stroke-width="3" d="M-9 -9 C -3 -13 3 -13 9 -9"/>
+          </g>
+          <path class="tp tpF" d="M655 566 L655 706"/>
+          <path class="tp tpN" d="M655 706 L842 706"/>
+          <path class="tp tpNear" d="M842 706 C 700 430 560 430 452 706"/>
+          <path class="tp tpA" d="M452 706 C 520 540 580 480 660 462"/>
+          <path class="tp tpB" d="M660 462 C 700 560 700 640 660 712"/>
+          <path class="tp tpIn2" d="M660 712 C 620 670 630 655 660 648"/>
+          <path class="tp tpOn2" d="M660 648 C 690 580 690 545 660 520"/>
+        </g>
+
+        <g class="scene sc-inContrast">
+          <path class="dp gry divider" stroke-width="3" d="M765 268 L765 800"/>
+          <g class="ctL">
+            <path class="dp lm" stroke-width="5" d="M430 560 L670 560 L670 720 L430 720 Z"/>
+            <path class="dp lm" stroke-width="5" d="M430 560 L462 522 L702 522 L670 560"/>
+            <path class="dp lm" stroke-width="5" d="M670 560 L702 522 L702 682 L670 720"/>
+            <circle class="dp red" stroke-width="4" cx="550" cy="650" r="17"/>
+            <path class="dp red" stroke-width="3" d="M540 640 C 547 636 553 636 560 640"/>
+            <ellipse class="dp acc circIn" cx="550" cy="622" rx="128" ry="104" fill="none" stroke-width="4.5"/>
+            <text class="tx fRed" x="452" y="420" font-size="32" font-weight="bold">in the box</text>
+            <text class="tx fLm" x="436" y="452" font-size="19">球被箱子围住 · 在里面</text>
+            <text class="tx fInk" x="420" y="788" font-size="19">The ball is in the box.</text>
+          </g>
+          <g class="ctR">
+            <path class="dp lm" stroke-width="5" d="M850 560 L1090 560 L1090 720 L850 720 Z"/>
+            <path class="dp lm" stroke-width="5" d="M850 560 L882 522 L1122 522 L1090 560"/>
+            <path class="dp lm" stroke-width="5" d="M1090 560 L1122 522 L1122 682 L1090 720"/>
+            <circle class="dp red" stroke-width="4" cx="970" cy="524" r="17"/>
+            <path class="dp red" stroke-width="3" d="M960 514 C 967 510 973 510 980 514"/>
+            <path class="dp acc circOn" stroke-width="5" d="M936 541 L1004 541"/>
+            <text class="tx fRed" x="884" y="420" font-size="32" font-weight="bold">on the box</text>
+            <text class="tx fLm" x="856" y="452" font-size="19">球贴在面上 · 被托住</text>
+            <text class="tx fInk" x="846" y="788" font-size="19">The ball is on the box.</text>
+          </g>
+        </g>
+
+        <g class="scene sc-inTime">
+          <g class="chips">
+            <path class="dp gry" stroke-width="3" d="M420 286 L542 286 Q556 286 556 300 L556 316 Q556 330 542 330 L420 330 Q406 330 406 316 L406 300 Q406 286 420 286 Z"/>
+            <path class="dp gry" stroke-width="3" d="M636 286 L758 286 Q772 286 772 300 L772 316 Q772 330 758 330 L636 330 Q622 330 622 316 L622 300 Q622 286 636 286 Z"/>
+            <path class="dp acc" stroke-width="3.5" d="M852 286 L974 286 Q988 286 988 300 L988 316 Q988 330 974 330 L852 330 Q838 330 838 316 L838 300 Q838 286 852 286 Z"/>
+            <text class="tx fInk" x="428" y="315" font-size="16">at 时刻 · 1</text>
+            <text class="tx fInk" x="644" y="315" font-size="16">on 日子 · 2</text>
+            <text class="tx fRed" x="860" y="315" font-size="16" font-weight="bold">in 月年 · 3</text>
+            <text class="tx fGry" x="406" y="356" font-size="13.5">时间课的顺序（Woodward 章节序）：先时刻、再日子、最后时段</text>
+          </g>
+          <g class="echoBox">
+            <path class="dp gry" stroke-width="4" d="M560 560 L940 560 L940 700 L560 700 Z"/>
+            <path class="dp gry" stroke-width="4" d="M560 560 L612 505 L992 505 L940 560"/>
+            <path class="dp gry" stroke-width="4" d="M940 560 L992 505 L992 645 L940 700"/>
+          </g>
+          <g class="bandG">
+            <path class="dp lm" stroke-width="5" d="M450 600 L1050 600 L1050 706 L450 706 Z"/>
+            <circle class="dp acc" stroke-width="4" cx="540" cy="653" r="21"/>
+            <path class="dp acc" stroke-width="3.5" d="M540 618 L540 606 M540 688 L540 700 M505 653 L493 653 M575 653 L587 653 M515 628 L507 620 M565 628 L573 620"/>
+            <g class="catSit" transform="translate(660,578) scale(0.62)">
+              <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+            </g>
+            <circle class="dp red" stroke-width="3.5" cx="880" cy="678" r="12"/>
+          </g>
+          <text class="tx fRed bandLab" x="600" y="576" font-size="27" font-weight="bold">in the morning · 一段时间</text>
+          <text class="tx fInk txSummer" x="452" y="756" font-size="19">We swim in summer.（夏天——更长的时段）</text>
+          <text class="tx fGry txKevin" x="452" y="790" font-size="15.5">Kevin 的时间例：in winter · in 2025 —— 都是「泡在一段里」</text>
+        </g>
+
+        <g class="scene sc-inState">
+          <ellipse class="dw gry bubble" stroke-width="3.5" stroke-dasharray="6 6" cx="600" cy="590" rx="215" ry="155" fill="none"/>
+          <g class="troubleG">
+            <path class="dp ink" stroke-width="4.5" d="M452 668 L516 646 L528 700 L462 712 Z"/>
+            <path class="dw gry" stroke-width="3" stroke-dasharray="4 5" d="M420 730 C 480 718 570 718 630 730 C 570 744 480 744 420 730 Z"/>
+            <path class="dp ink" stroke-width="4" d="M700 520 C 682 500 712 478 734 494 C 756 482 776 504 764 524 C 780 540 762 564 740 554 C 722 568 694 546 700 520 Z"/>
+          </g>
+          <g class="catSit catTr" transform="translate(520,520) scale(0.9)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <g class="loveG">
+            <path class="dp red" stroke-width="5" d="M985 545 C 945 492 868 522 878 585 C 887 635 950 668 985 696 C 1020 668 1083 635 1092 585 C 1102 522 1025 492 985 545 Z"/>
+            <g class="catSit" transform="translate(935,565) scale(0.55)">
+              <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+            </g>
+          </g>
+        </g>
+
+        <g class="scene sc-inPhoto">
+          <path class="dp ink frameP" stroke-width="5" d="M560 430 L940 430 L940 706 L560 706 Z"/>
+          <path class="dp gry frameP" stroke-width="3" d="M586 456 L914 456 L914 680 L586 680 Z"/>
+          <g class="dogSit dogPhoto" transform="translate(668,492) scale(1.05)">
+            <path class="dp red" stroke-width="5" d="M28 138 C 6 132 -2 110 8 92"/><path class="dp red" stroke-width="5" d="M30 150 C 18 110 26 78 52 66 C 78 54 112 62 122 88 C 130 108 126 150 110 150"/><path class="dp red" stroke-width="4.5" d="M104 108 L108 150"/><circle class="dp red" stroke-width="5" cx="138" cy="38" r="27"/><path class="dp red" stroke-width="4.5" d="M120 18 C 104 26 100 52 108 66 C 120 56 124 34 120 18"/><path class="dp red" stroke-width="4" d="M160 40 L182 47 L160 54"/><circle class="fx fillInk" cx="146" cy="34" r="3.5"/>
+          </g>
+          <text class="tx fGry txPhoto" x="596" y="748" font-size="17">照片 = 一个有边的小世界</text>
+        </g>
+
+        <g class="scene sc-inRecast">
+          <path class="dp lm boxR" stroke-width="5" d="M560 560 L940 560 L940 742 L560 742 Z"/>
+          <path class="dp lm boxR" stroke-width="5" d="M560 560 L612 498 L992 498 L940 560"/>
+          <path class="dp lm boxR" stroke-width="5" d="M940 560 L992 498 L992 680 L940 742"/>
+          <g class="dogSit dogR" transform="translate(672,566) scale(0.95)">
+            <path class="dp red" stroke-width="5" d="M28 138 C 6 132 -2 110 8 92"/><path class="dp red" stroke-width="5" d="M30 150 C 18 110 26 78 52 66 C 78 54 112 62 122 88 C 130 108 126 150 110 150"/><path class="dp red" stroke-width="4.5" d="M104 108 L108 150"/><circle class="dp red" stroke-width="5" cx="138" cy="38" r="27"/><path class="dp red" stroke-width="4.5" d="M120 18 C 104 26 100 52 108 66 C 120 56 124 34 120 18"/><path class="dp red" stroke-width="4" d="M160 40 L182 47 L160 54"/><circle class="fx fillInk" cx="146" cy="34" r="3.5"/>
+          </g>
+        </g>
+      </g>
+
+      <g class="gActors" filter="url(#wobI)">
+        <g class="actorLeap" opacity="0">
+          <path class="red lf" stroke-width="5" d="M-52 2 C -80 -6 -92 -20 -88 -34"/><path class="red lf" stroke-width="5" d="M-52 6 C -30 -14 30 -16 52 2"/><circle class="red lf" stroke-width="5" cx="62" cy="-6" r="20"/><path class="red lf" stroke-width="4" d="M48 -20 L44 -38 L62 -26 M72 -24 L86 -36 L88 -16"/><path class="red lf" stroke-width="3.5" d="M66 -6 L74 -6"/><path class="red lf" stroke-width="4.5" d="M40 8 L66 22 M30 12 L52 28 M-40 10 L-66 24 M-30 14 L-48 30"/>
+        </g>
+      </g>
+      <g class="penG" opacity="0" pointer-events="none">
+        <g transform="rotate(-18)"><path d="M0 0 L-7.5 -26 Q0 -33 7.5 -26 Z" fill="#f08c1e" stroke="#b35f00" stroke-width="1.5"/><path d="M-7.5 -26 L-9 -64 Q0 -70 9 -64 L7.5 -26 Z" fill="#39404d"/><rect x="-9" y="-46" width="18" height="7" fill="#d23c2a"/></g>
+      </g>
+    </svg>
+    <div class="predict" hidden>
+      <div class="q"></div>
+      <div class="opts"></div>
+      <div class="hint"></div>
+    </div>
+  </div>
+  <div class="capBar">
+    <div class="cap">点「下一拍」，我们开始上课。</div>
+    <div class="sentBar" hidden><span class="en sent"></span><button class="speakBtn">🔊 读一读</button></div>
+  </div>
+  <div class="controls">
+    <button class="prevBtn">◀ 上一拍</button>
+    <button class="nextBtn primary">下一拍 ▶</button>
+    <button class="senseBtn">🔁 重播这一站</button>
+    <label class="auto"><input type="checkbox" class="autoChk"> 自动播放</label>
+    <span class="prog"></span>
+    <div class="dots"></div>
+  </div>
+</div>
+<!-- ================= ON ================= -->
+<div class="lesson wb2" id="lesson-on" hidden>
+  <div class="stageBox">
+    <svg class="board" viewBox="0 0 1250 920" xmlns="http://www.w3.org/2000/svg" aria-label="whiteboard on">
+      <defs>
+        <filter id="wobO" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="2" seed="31" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="3"/>
+        </filter>
+        <filter id="wobOS" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="33" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+        </filter>
+      </defs>
+
+      <g class="gTitle" filter="url(#wobO)">
+        <path class="dp ink" stroke-width="9" d="M700 122 C 672 122 658 94 668 70 C 678 48 712 44 728 62 C 744 80 740 110 722 120 C 714 125 708 123 700 122"/>
+        <path class="dp ink" stroke-width="9" d="M800 122 L802 60"/>
+        <path class="dp ink" stroke-width="9" d="M802 92 C 814 60 848 54 858 78 C 864 92 864 106 864 122"/>
+        <text class="tx fGry" x="72" y="208" font-size="21">白板课 · on 的一家人</text>
+      </g>
+
+      <g class="gGallery" filter="url(#wobOS)">
+        <g class="pc" data-pc="pc1" transform="translate(30,240)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">① 贴在面上</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M56 74 L224 74 L224 88 L56 88 Z"/>
+            <path class="dp ink" stroke-width="4" d="M98 28 L158 28 L158 74 L98 74 Z"/>
+            <path class="dp acc" stroke-width="4" d="M98 74 L158 74"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The book is on the desk.</text>
+        </g>
+        <g class="pc" data-pc="pc2" transform="translate(30,430)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">② 看功能 · 托好</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M56 74 L224 74 L224 88 L56 88 Z"/>
+            <path class="dp ink" stroke-width="4" d="M104 24 L164 24 L156 74 L112 74 Z"/>
+            <path class="dp acc" stroke-width="4" d="M112 74 L156 74"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">The cup is on the table.</text>
+          <text class="tx fGry" x="14" y="166" font-size="11.5">The books are on the table.</text>
+        </g>
+        <g class="pc" data-pc="pc3" transform="translate(30,620)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">③ 汉语切一刀 · 墙面</text>
+          <g transform="translate(14,36)">
+            <path class="dp gry" stroke-width="4" d="M66 4 L66 92"/>
+            <path class="dp ink" stroke-width="4" d="M94 20 L214 20 L214 78 L94 78 Z"/>
+            <path class="dp lm" stroke-width="3.5" d="M94 62 C 130 34 168 56 214 40"/>
+            <path class="dp acc" stroke-width="4" d="M94 20 L94 78"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The picture is on the wall.</text>
+        </g>
+        <g class="pc" data-pc="pc4" transform="translate(1270,240)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">④ 先定找谁</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M56 74 L224 74 L224 88 L56 88 Z"/>
+            <path class="dp ink" stroke-width="4" d="M104 24 L164 24 L156 74 L112 74 Z"/>
+            <ellipse class="fx" cx="134" cy="50" rx="58" ry="38" fill="#f08c1e" fill-opacity="0.16" stroke="#f08c1e" stroke-width="2.5"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The cup is on the table.</text>
+        </g>
+        <g class="pc" data-pc="pc5" transform="translate(1270,430)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑤ 被车载着走</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M36 22 L236 22 L236 72 L36 72 Z"/>
+            <path class="dp gry" stroke-width="3" d="M60 34 L118 34 L118 56 L60 56 Z M132 34 L212 34 L212 56 L132 56 Z"/>
+            <path class="dp acc" stroke-width="4" d="M40 62 L232 62"/>
+            <circle class="dp ink" stroke-width="3.5" cx="78" cy="78" r="9"/>
+            <circle class="dp ink" stroke-width="3.5" cx="194" cy="78" r="9"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The students are on the bus.</text>
+        </g>
+        <g class="pc" data-pc="pc6" transform="translate(1270,620)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑥ 贴在日历上</text>
+          <g transform="translate(14,36)">
+            <path class="dp ink" stroke-width="4" d="M76 10 L196 10 L196 90 L76 90 Z"/>
+            <path class="dp gry" stroke-width="3" d="M106 10 L106 90 M136 10 L136 90 M166 10 L166 90 M76 36 L196 36 M76 62 L196 62"/>
+            <path class="dp acc" stroke-width="4" d="M76 36 L106 36 L106 62 L76 62 Z"/>
+            <path class="dp red" stroke-width="3" d="M82 42 L100 42 L100 56 L82 56 Z"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">We have English on Monday.</text>
+        </g>
+        <g class="pc" data-pc="pc7" transform="translate(350,815)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑦ 对照 at：面还是点</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M20 62 L150 62 M20 84 L150 84"/>
+            <path class="dp acc" stroke-width="4" d="M196 22 C 186 22 181 32 196 50 C 211 32 206 22 196 22"/>
+            <path class="dp lm" stroke-width="3.5" d="M176 84 L176 62 L216 62 L216 84"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12">on Xinyi Road</text>
+          <text class="tx fGry" x="14" y="166" font-size="11.5">at the restaurant</text>
+        </g>
+        <g class="pc" data-pc="pc8" data-dash="1" transform="translate(655,815)">
+          <text class="tx fGry" x="14" y="27" font-size="17" font-weight="bold">⑧ 断链 · 继续</text>
+          <g transform="translate(14,36)">
+            <path class="dp ink" stroke-width="3.5" d="M30 48 C 40 30 66 30 76 48 C 66 66 40 66 30 48 Z"/>
+            <path class="dp ink" stroke-width="3.5" d="M84 48 C 94 30 120 30 130 48 C 120 66 94 66 84 48 Z"/>
+            <path class="dp red" stroke-width="3.5" d="M142 32 L156 48 L144 60 L158 74"/>
+            <path class="dp gry" stroke-width="3.5" d="M172 48 C 182 30 208 30 218 48"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">go on = 继续</text>
+          <text class="tx fGry" x="14" y="166" font-size="11.5">断链 · 从贴面长不出来 · 单独记</text>
+        </g>
+        <g class="pc" data-pc="pc9" transform="translate(960,815)">
+          <text class="tx fInk" x="14" y="25" font-size="14" font-weight="bold">我们向谁学了什么</text>
+          <text class="tx fGry ctx" x="14" y="50">Kevin 英文不難：接触的表面 · 信义路故事 · 时间重映射</text>
+          <text class="tx fGry ctx" x="14" y="72">Tyler &amp; Evans：贴面原型（接触 + 承托，P-04）</text>
+          <text class="tx fGry ctx" x="14" y="94">Woodward English：时间章节序 · 换主角重演</text>
+          <text class="tx fGry ctx" x="14" y="116">Lindstromberg：双基本义之争——on2「继续」断链登记</text>
+          <text class="tx fGry ctx" x="14" y="138">换角原句（Woodward）：“The dog is on the table.”</text>
+          <text class="tx fGry ctx" x="14" y="158">例句出处：本项目介词卷宗（P-04 起）</text>
+        </g>
+      </g>
+
+      <g class="gCore" filter="url(#wobO)" opacity="0">
+        <path class="dp ink cardFrame" stroke-width="4.5" d="M1194 40 L1556 40 Q1570 40 1570 54 L1570 201 Q1570 215 1556 215 L1194 215 Q1180 215 1180 201 L1180 54 Q1180 40 1194 40 Z"/>
+        <text class="tx fInk" x="1206" y="82" font-size="24" font-weight="bold">on 的核心图 · 老家</text>
+        <g class="cardSchema">
+          <path class="dp lm" stroke-width="5" d="M1230 168 L1360 168 L1360 184 L1230 184 Z"/>
+          <path class="dp ink" stroke-width="4" d="M1262 124 L1328 124 L1328 168 L1262 168 Z"/>
+          <path class="dp acc" stroke-width="5" d="M1262 168 L1328 168"/>
+        </g>
+        <text class="tx fRed" x="1392" y="146" font-size="19" font-weight="bold">on = 一个接触的表面</text>
+        <text class="tx fGry" x="1392" y="174" font-size="14">a contact surface（Kevin）</text>
+        <text class="tx fLm" x="1206" y="200" font-size="13.5">贴在面上 · 接触 + 承托（2 维）</text>
+      </g>
+
+      <g class="gSpokes"></g>
+
+      <g class="gStage" filter="url(#wobO)">
+        <g class="scene sc-onStory">
+          <path class="dp gry gnd" stroke-width="4" d="M372 742 L1128 742"/>
+          <path class="dp gry cityB" stroke-width="3.5" d="M470 742 L470 384 Q470 356 498 356 L1002 356 Q1030 356 1030 384 L1030 742"/>
+          <path class="dp lm road" stroke-width="5" d="M470 636 L1030 636 M470 700 L1030 700"/>
+          <path class="dw gry roadMid" stroke-width="3" stroke-dasharray="7 7" d="M470 668 L1030 668"/>
+          <path class="dp acc surfHi" stroke-width="6" d="M470 636 L1030 636"/>
+          <g class="catSit catRoad" transform="translate(620,451)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <path class="dp lm rest" stroke-width="4" d="M905 742 L905 690 L945 690 L945 742 M898 690 L925 664 L952 690"/>
+          <path class="dp gry pinR" stroke-width="3.5" d="M925 606 C 910 606 903 620 925 646 C 947 620 940 606 925 606"/>
+          <circle class="fx fillAcc" cx="925" cy="618" r="5"/>
+          <text class="tx fRed txOn" x="520" y="420" font-size="30" font-weight="bold">on Xinyi Road</text>
+          <text class="tx fGry txIn" x="486" y="330" font-size="19">in Taipei</text>
+          <text class="tx fGry txAt" x="796" y="600" font-size="19">at the restaurant</text>
+        </g>
+
+        <g class="scene sc-onDesk">
+          <g class="catSit catOut" transform="translate(316,557)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <g class="schemaG">
+            <path class="dp lm" stroke-width="7" d="M500 584 L500 560 L1000 560 L1000 584"/>
+            <path class="dp lm" stroke-width="6" d="M500 584 L1000 584"/>
+            <path class="dp lm" stroke-width="6" d="M540 584 L540 742 M960 584 L960 742"/>
+            <path class="dp ink book" stroke-width="5" d="M636 468 L804 468 L804 560 L636 560 Z"/>
+            <path class="dp ink book" stroke-width="4" d="M652 468 L652 560"/>
+            <path class="dp acc contact" stroke-width="6" d="M636 560 L804 560"/>
+          </g>
+          <g class="catSit catDesk" transform="translate(822,412) scale(0.8)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <path class="tp tpDesk" d="M470 570 C 560 400 700 380 800 440"/>
+        </g>
+
+        <g class="scene sc-onWall">
+          <path class="dp gry wall" stroke-width="4" d="M452 742 L452 300 L1048 300 L1048 742"/>
+          <path class="dp gry wall" stroke-width="3" d="M452 742 L1048 742"/>
+          <path class="dp ink pic" stroke-width="5" d="M620 372 L880 372 L880 548 L620 548 Z"/>
+          <path class="dp lm pic" stroke-width="4" d="M620 500 C 680 440 740 486 790 448 C 820 426 850 452 880 470"/>
+          <path class="dp ink pic" stroke-width="3.5" d="M636 372 L750 322 L864 372"/>
+          <circle class="fx fillAcc" cx="750" cy="318" r="6"/>
+          <path class="dp acc picContact" stroke-width="5" d="M620 372 L620 548"/>
+          <g class="miniTree" transform="translate(700,430) scale(0.32)">
+            <path class="dp lm" stroke-width="9" d="M700 742 C 696 690 694 650 690 610 M700 742 C 706 695 712 660 722 622"/>
+            <circle class="dp lm" stroke-width="9" cx="640" cy="545" r="58"/>
+            <circle class="dp lm" stroke-width="9" cx="722" cy="500" r="72"/>
+            <circle class="dp lm" stroke-width="9" cx="802" cy="548" r="56"/>
+            <circle class="fx fillRed" cx="612" cy="468" r="22"/>
+            <circle class="fx fillRed" cx="838" cy="462" r="22"/>
+          </g>
+          <text class="tx fInk txApples" x="856" y="796" font-size="17">The apples are on the tree.（苹果连在枝头——也是贴面）</text>
+        </g>
+
+        <g class="scene sc-onFunc">
+          <path class="dp lm slab" stroke-width="7" d="M500 584 L500 560 L1000 560 L1000 584"/>
+          <path class="dp lm slab" stroke-width="6" d="M500 584 L1000 584"/>
+          <path class="dp lm slab" stroke-width="6" d="M540 584 L540 742 M960 584 L960 742"/>
+          <g class="cupG">
+            <path class="dp ink" stroke-width="5" d="M676 466 L804 466 L792 560 L688 560 Z"/>
+            <path class="dp ink" stroke-width="4.5" d="M804 486 C 836 486 836 532 794 534"/>
+            <path class="dp acc" stroke-width="6" d="M688 560 L792 560"/>
+          </g>
+          <g class="booksG">
+            <path class="dp ink" stroke-width="4.5" d="M852 506 L968 506 L968 560 L852 560 Z"/>
+            <path class="dp ink" stroke-width="4.5" d="M860 462 L960 462 L960 506 L860 506 Z"/>
+          </g>
+          <ellipse class="fx haloCup" cx="740" cy="512" rx="104" ry="76" fill="#f08c1e" fill-opacity="0.14" stroke="#f08c1e" stroke-width="2.5"/>
+          <text class="tx fAcc fgLab" x="596" y="420" font-size="20" font-weight="bold">先找谁：杯子（图形）</text>
+          <text class="tx fLm fgLab" x="816" y="700" font-size="20">桌面（背景）</text>
+        </g>
+
+        <g class="scene sc-onBus">
+          <path class="dp gry gnd" stroke-width="4" d="M340 742 L1160 742"/>
+          <g class="busG" data-rst data-base="">
+            <path class="dp lm" stroke-width="6" d="M440 470 L1010 470 Q1040 470 1040 500 L1040 660 Q1040 690 1010 690 L440 690 Q410 690 410 660 L410 500 Q410 470 440 470 Z"/>
+            <path class="dp gry" stroke-width="4" d="M450 500 L620 500 L620 580 L450 580 Z M650 500 L820 500 L820 580 L650 580 Z M850 500 L1000 500 L1000 580 L850 580 Z"/>
+            <path class="dp acc floor" stroke-width="6" d="M420 640 L1030 640"/>
+            <g class="stu1"><circle class="dp red" stroke-width="4" cx="540" cy="576" r="15"/><path class="dp red" stroke-width="4.5" d="M540 591 L540 640 M540 606 L516 624 M540 606 L564 624"/></g>
+            <g class="stu2"><circle class="dp red" stroke-width="4" cx="660" cy="576" r="15"/><path class="dp red" stroke-width="4.5" d="M660 591 L660 640 M660 606 L636 624 M660 606 L684 624"/></g>
+            <g class="catSit catBus" transform="translate(760,542) scale(0.55)">
+              <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+            </g>
+            <circle class="dp ink wheel" stroke-width="5" cx="520" cy="706" r="30"/>
+            <circle class="dp ink wheel" stroke-width="5" cx="930" cy="706" r="30"/>
+          </g>
+          <g class="carG" transform="translate(-470,6)">
+            <path class="dp lm" stroke-width="4.5" d="M856 736 L856 700 Q856 686 872 684 L896 684 C 906 666 924 658 946 658 C 968 658 986 666 996 684 L1024 684 Q1040 684 1040 700 L1040 736"/>
+            <circle class="dp ink" stroke-width="4" cx="892" cy="736" r="13"/>
+            <circle class="dp ink" stroke-width="4" cx="1004" cy="736" r="13"/>
+            <g class="catSit" transform="translate(906,642) scale(0.42)">
+              <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+            </g>
+            <text class="tx fInk txCar" x="838" y="800" font-size="17">in the car —— 小汽车像盒子，装进去</text>
+          </g>
+        </g>
+
+        <g class="scene sc-onTime">
+          <g class="chips">
+            <path class="dp gry" stroke-width="3" d="M420 286 L542 286 Q556 286 556 300 L556 316 Q556 330 542 330 L420 330 Q406 330 406 316 L406 300 Q406 286 420 286 Z"/>
+            <path class="dp acc" stroke-width="3.5" d="M636 286 L758 286 Q772 286 772 300 L772 316 Q772 330 758 330 L636 330 Q622 330 622 316 L622 300 Q622 286 636 286 Z"/>
+            <path class="dp gry" stroke-width="3" d="M852 286 L974 286 Q988 286 988 300 L988 316 Q988 330 974 330 L852 330 Q838 330 838 316 L838 300 Q838 286 852 286 Z"/>
+            <text class="tx fInk" x="428" y="315" font-size="16">at 时刻 · 1</text>
+            <text class="tx fRed" x="644" y="315" font-size="16" font-weight="bold">on 日子 · 2</text>
+            <text class="tx fInk" x="860" y="315" font-size="16">in 月年 · 3</text>
+            <text class="tx fGry" x="406" y="356" font-size="13.5">时间课的顺序（Woodward 章节序）：先时刻、再日子、最后时段</text>
+          </g>
+          <g class="echoSlab">
+            <path class="dp gry" stroke-width="5" d="M500 640 L500 616 L1000 616 L1000 640 M500 640 L1000 640"/>
+          </g>
+          <g class="calG">
+            <path class="dp ink" stroke-width="5" d="M520 360 L980 360 L980 706 L520 706 Z"/>
+            <path class="dp ink" stroke-width="4.5" d="M520 360 L980 360 L980 404 L520 404 Z"/>
+            <path class="dp gry" stroke-width="3" d="M585 404 L585 706 M650 404 L650 706 M715 404 L715 706 M780 404 L780 706 M845 404 L845 706 M915 404 L915 706"/>
+            <path class="dp gry" stroke-width="3" d="M520 470 L980 470 M520 536 L980 536 M520 602 L980 602"/>
+            <path class="dp acc monCell" stroke-width="5" d="M520 404 L585 404 L585 470 L520 470 Z"/>
+            <path class="dp red booklet" stroke-width="4" d="M534 418 L572 418 L572 452 L534 452 Z"/>
+            <text class="tx fInk" x="528" y="494" font-size="15">Mon</text>
+          </g>
+          <text class="tx fGry txKevin" x="452" y="756" font-size="15.5">Kevin 的时间例：on Friday · on May 8th —— 都是日历上的一格</text>
+        </g>
+
+        <g class="scene sc-onBreak">
+          <g class="miniSchema">
+            <path class="dp lm" stroke-width="5" d="M452 596 L452 576 L572 576 L572 596 M452 596 L572 596"/>
+            <path class="dp ink" stroke-width="4" d="M482 528 L542 528 L542 576 L482 576 Z"/>
+            <path class="dp acc" stroke-width="5" d="M482 576 L542 576"/>
+          </g>
+          <path class="dp ink link" stroke-width="5" d="M584 560 C 600 536 636 536 652 560 C 636 584 600 584 584 560 Z"/>
+          <path class="dp ink link" stroke-width="5" d="M664 560 C 680 536 716 536 732 560 C 716 584 680 584 664 560 Z"/>
+          <path class="dp red breakMark" stroke-width="5" d="M756 538 L776 560 L758 576 L780 596"/>
+          <path class="dp ink linkHalf" stroke-width="5" d="M796 560 C 812 536 848 536 864 560"/>
+          <g class="breakCard">
+            <path class="fx gry" stroke-dasharray="8 7" stroke-width="3.5" fill="none" d="M910 470 L1122 470 Q1136 470 1136 484 L1136 636 Q1136 650 1122 650 L910 650 Q896 650 896 636 L896 484 Q896 470 910 470 Z"/>
+            <text class="tx fInk" x="916" y="512" font-size="21" font-weight="bold">go on = 继续</text>
+            <text class="tx fGry" x="916" y="544" font-size="16">从「贴面」长不出来</text>
+            <text class="tx fGry" x="916" y="570" font-size="16">链子在这里断开</text>
+            <text class="tx fGry ctx" x="916" y="602">成人注：登记为第二个基本义</text>
+            <text class="tx fGry ctx" x="916" y="620">（Lindstromberg）；Tyler &amp; Evans</text>
+            <text class="tx fGry ctx" x="916" y="638">放在小品词一侧——两说并存。</text>
+          </g>
+          <text class="tx fRed breakTx" x="452" y="690" font-size="20" font-weight="bold">✂ 断链：不编桥，单独记</text>
+        </g>
+
+        <g class="scene sc-onContrast">
+          <path class="dp gry divider" stroke-width="3" d="M765 268 L765 800"/>
+          <g class="ctL">
+            <path class="dp lm" stroke-width="5" d="M420 620 L720 620 M420 668 L720 668"/>
+            <path class="dw gry" stroke-width="3" stroke-dasharray="7 7" d="M420 644 L720 644"/>
+            <g class="catSit" transform="translate(500,444) scale(0.95)">
+              <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+            </g>
+            <ellipse class="dp acc circContact" cx="578" cy="620" rx="86" ry="16" fill="none" stroke-width="4.5"/>
+            <text class="tx fRed" x="440" y="380" font-size="30" font-weight="bold">on Xinyi Road</text>
+            <text class="tx fLm" x="436" y="412" font-size="19">路是一个面 · 脚贴在面上</text>
+          </g>
+          <g class="ctR">
+            <path class="dp lm" stroke-width="5" d="M905 742 L905 690 L945 690 L945 742 M898 690 L925 664 L952 690"/>
+            <path class="dp acc pinC" stroke-width="4.5" d="M925 590 C 908 590 900 608 925 640 C 950 608 942 590 925 590"/>
+            <circle class="fx fillRed" cx="925" cy="606" r="6"/>
+            <ellipse class="dp acc circPoint" cx="925" cy="700" rx="60" ry="34" fill="none" stroke-width="4.5"/>
+            <text class="tx fRed" x="842" y="380" font-size="30" font-weight="bold">at the restaurant</text>
+            <text class="tx fLm" x="830" y="412" font-size="19">餐厅是一个点 · 在这里碰头</text>
+            <text class="tx fInk" x="820" y="788" font-size="17">同一个地方：看成面 → on；看成点 → at</text>
+          </g>
+        </g>
+
+        <g class="scene sc-onFoot">
+          <path class="dp gry gnd" stroke-width="4" d="M372 742 L1128 742"/>
+          <g class="feet">
+            <ellipse class="dp ink" stroke-width="4" cx="560" cy="706" rx="15" ry="25" transform="rotate(-14 560 706)" fill="none"/>
+            <ellipse class="dp ink" stroke-width="4" cx="640" cy="668" rx="15" ry="25" transform="rotate(-14 640 668)" fill="none"/>
+            <ellipse class="dp ink" stroke-width="4" cx="720" cy="706" rx="15" ry="25" transform="rotate(-14 720 706)" fill="none"/>
+            <ellipse class="dp ink" stroke-width="4" cx="800" cy="668" rx="15" ry="25" transform="rotate(-14 800 668)" fill="none"/>
+          </g>
+          <path class="dp acc tag" stroke-width="4" d="M868 600 L1034 600 Q1046 600 1046 612 L1046 640 Q1046 652 1034 652 L868 652 Q856 652 856 640 L856 612 Q856 600 868 600 Z"/>
+          <text class="tx fAcc tagTx" x="876" y="634" font-size="20" font-weight="bold">整块记！</text>
+        </g>
+
+        <g class="scene sc-onRecast">
+          <path class="dp lm deskR" stroke-width="6" d="M500 584 L500 560 L1000 560 L1000 584"/>
+          <path class="dp lm deskR" stroke-width="6" d="M500 584 L1000 584"/>
+          <path class="dp lm deskR" stroke-width="6" d="M540 584 L540 742 M960 584 L960 742"/>
+          <g class="dogSit dogR" transform="translate(660,402) scale(0.98)">
+            <path class="dp red" stroke-width="5" d="M28 138 C 6 132 -2 110 8 92"/><path class="dp red" stroke-width="5" d="M30 150 C 18 110 26 78 52 66 C 78 54 112 62 122 88 C 130 108 126 150 110 150"/><path class="dp red" stroke-width="4.5" d="M104 108 L108 150"/><circle class="dp red" stroke-width="5" cx="138" cy="38" r="27"/><path class="dp red" stroke-width="4.5" d="M120 18 C 104 26 100 52 108 66 C 120 56 124 34 120 18"/><path class="dp red" stroke-width="4" d="M160 40 L182 47 L160 54"/><circle class="fx fillInk" cx="146" cy="34" r="3.5"/>
+          </g>
+        </g>
+      </g>
+
+      <g class="gActors" filter="url(#wobO)">
+        <g class="actorLeap" opacity="0">
+          <path class="red lf" stroke-width="5" d="M-52 2 C -80 -6 -92 -20 -88 -34"/><path class="red lf" stroke-width="5" d="M-52 6 C -30 -14 30 -16 52 2"/><circle class="red lf" stroke-width="5" cx="62" cy="-6" r="20"/><path class="red lf" stroke-width="4" d="M48 -20 L44 -38 L62 -26 M72 -24 L86 -36 L88 -16"/><path class="red lf" stroke-width="3.5" d="M66 -6 L74 -6"/><path class="red lf" stroke-width="4.5" d="M40 8 L66 22 M30 12 L52 28 M-40 10 L-66 24 M-30 14 L-48 30"/>
+        </g>
+      </g>
+      <g class="penG" opacity="0" pointer-events="none">
+        <g transform="rotate(-18)"><path d="M0 0 L-7.5 -26 Q0 -33 7.5 -26 Z" fill="#f08c1e" stroke="#b35f00" stroke-width="1.5"/><path d="M-7.5 -26 L-9 -64 Q0 -70 9 -64 L7.5 -26 Z" fill="#39404d"/><rect x="-9" y="-46" width="18" height="7" fill="#d23c2a"/></g>
+      </g>
+    </svg>
+    <div class="predict" hidden>
+      <div class="q"></div>
+      <div class="opts"></div>
+      <div class="hint"></div>
+    </div>
+  </div>
+  <div class="capBar">
+    <div class="cap">点「下一拍」，我们开始上课。</div>
+    <div class="sentBar" hidden><span class="en sent"></span><button class="speakBtn">🔊 读一读</button></div>
+  </div>
+  <div class="controls">
+    <button class="prevBtn">◀ 上一拍</button>
+    <button class="nextBtn primary">下一拍 ▶</button>
+    <button class="senseBtn">🔁 重播这一站</button>
+    <label class="auto"><input type="checkbox" class="autoChk"> 自动播放</label>
+    <span class="prog"></span>
+    <div class="dots"></div>
+  </div>
+</div>
+<!-- ================= AT ================= -->
+<div class="lesson wb2" id="lesson-at" hidden>
+  <div class="stageBox">
+    <svg class="board" viewBox="0 0 1250 920" xmlns="http://www.w3.org/2000/svg" aria-label="whiteboard at">
+      <defs>
+        <filter id="wobA" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="2" seed="41" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="3"/>
+        </filter>
+        <filter id="wobAS" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+        </filter>
+      </defs>
+
+      <g class="gTitle" filter="url(#wobA)">
+        <path class="dp ink" stroke-width="9" d="M700 122 C 672 122 660 96 668 74 C 676 54 706 48 722 62 C 736 74 734 104 720 116 C 712 123 708 123 700 122"/>
+        <path class="dp ink" stroke-width="9" d="M740 54 L738 122"/>
+        <path class="dp ink" stroke-width="9" d="M792 42 L790 122"/>
+        <path class="dp ink" stroke-width="9" d="M766 76 L818 74"/>
+        <text class="tx fGry" x="72" y="208" font-size="21">白板课 · at 的一家人</text>
+      </g>
+
+      <g class="gGallery" filter="url(#wobAS)">
+        <g class="pc" data-pc="pc1" transform="translate(30,240)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">① 地点压成点</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M56 84 L56 40 L160 40 L160 84"/>
+            <path class="dp lm" stroke-width="4" d="M46 40 L108 12 L170 40"/>
+            <path class="dp acc" stroke-width="3.5" d="M216 18 C 207 18 202 26 216 44 C 230 26 225 18 216 18"/>
+            <circle class="fx fillRed" cx="216" cy="27" r="4"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The student is at the station.</text>
+        </g>
+        <g class="pc" data-pc="pc2" transform="translate(30,430)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">② 时刻是点</text>
+          <g transform="translate(14,36)">
+            <circle class="dp ink" stroke-width="4" cx="110" cy="48" r="38"/>
+            <path class="dp ink" stroke-width="4" d="M110 48 L110 20 M110 48 L128 62"/>
+            <circle class="dp acc" stroke-width="3.5" cx="136" cy="74" r="9" fill="none"/>
+            <path class="dp lm" stroke-width="3.5" d="M176 84 L176 56 L236 56 L236 84"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The bus comes at five.</text>
+        </g>
+        <g class="pc" data-pc="pc3" transform="translate(30,620)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">③ 价格标在点上</text>
+          <g transform="translate(14,36)">
+            <path class="dp ink" stroke-width="4" d="M96 14 L152 14 L152 52 L96 52 Z"/>
+            <path class="dp ink" stroke-width="4" d="M20 74 L244 74 M20 64 L20 84 M82 64 L82 84 M144 64 L144 84 M206 64 L206 84"/>
+            <path class="fx fillRed" d="M132 52 L156 52 L144 70 Z"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The book is at $5.</text>
+        </g>
+        <g class="pc" data-pc="pc4" transform="translate(1270,240)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">④ 目光瞄准的点</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M120 10 L250 10 L250 84 L120 84 Z"/>
+            <path class="dw acc" stroke-width="3.5" stroke-dasharray="6 5" d="M26 62 L196 40"/>
+            <circle class="dp acc" stroke-width="3.5" cx="204" cy="38" r="9" fill="none"/>
+            <circle class="fx fillRed" cx="204" cy="38" r="3.5"/>
+            <circle class="dp red" stroke-width="3.5" cx="34" cy="66" r="10"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">Look at the map.</text>
+        </g>
+        <g class="pc" data-pc="pc5" transform="translate(1270,430)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑤ 猜一猜 · 夜里</text>
+          <g transform="translate(14,36)">
+            <path class="dp ink" stroke-width="4" d="M150 6 C 112 22 92 52 100 78 C 60 92 24 62 20 30 C 40 44 66 40 84 24 C 104 6 128 0 150 6 Z"/>
+            <circle class="fx fillAcc" cx="216" cy="24" r="4"/>
+            <circle class="fx fillAcc" cx="240" cy="56" r="3"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">We sleep at night.</text>
+          <text class="tx fGry" x="14" y="166" font-size="11.5">at noon · at midnight —— 整组记</text>
+        </g>
+        <g class="pc" data-pc="pc6" transform="translate(1270,620)">
+          <text class="tx fInk" x="14" y="27" font-size="13.5" font-weight="bold">⑥ 一场景三介词（BBC）</text>
+          <text class="tx fInk" x="14" y="56" font-size="11.5">I'm at the front.</text>
+          <text class="tx fInk" x="14" y="76" font-size="11.5">The band is on the stage.</text>
+          <text class="tx fInk" x="14" y="96" font-size="11.5">And my friends are in the crowd.</text>
+          <text class="tx fGry" x="14" y="126" font-size="10.5">照抄 BBC Learning English（Sam）</text>
+          <text class="tx fGry" x="14" y="146" font-size="10.5">一个演唱会场景，三个介词各就各位</text>
+        </g>
+        <g class="pc" data-pc="pc7" transform="translate(350,815)">
+          <text class="tx fInk" x="14" y="25" font-size="14" font-weight="bold">我们向谁学了什么</text>
+          <text class="tx fGry ctx" x="14" y="50">Kevin 英文不難：一个点 · 餐厅故事 · 时间重映射</text>
+          <text class="tx fGry ctx" x="14" y="72">BBC Learning English（Sam）：演唱会一场景三介词</text>
+          <text class="tx fGry ctx" x="14" y="94">Tyler &amp; Evans：点化原型（P-05）</text>
+          <text class="tx fGry ctx" x="14" y="116">Woodward English：时间章节序——at 是第一站</text>
+          <text class="tx fGry ctx" x="14" y="138">例句出处：本项目介词卷宗（P-05 起）</text>
+          <text class="tx fGry ctx" x="14" y="158">at night 是约定残留：不编图式，整组登记</text>
+        </g>
+        <g class="pc" data-pc="pc8" transform="translate(655,815)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑦ 换个主角再演</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M120 88 L120 20 L216 20 L216 88"/>
+            <path class="dp lm" stroke-width="3.5" d="M146 88 L146 44 L190 44 L190 88"/>
+            <circle class="dp red" stroke-width="3.5" cx="66" cy="52" r="13"/>
+            <path class="dp red" stroke-width="3" d="M54 42 C 47 47 45 56 48 61 M78 42 C 85 47 87 56 84 61"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The dog is at the door.</text>
+        </g>
+      </g>
+
+      <g class="gCore" filter="url(#wobA)" opacity="0">
+        <path class="dp ink cardFrame" stroke-width="4.5" d="M1194 40 L1556 40 Q1570 40 1570 54 L1570 201 Q1570 215 1556 215 L1194 215 Q1180 215 1180 201 L1180 54 Q1180 40 1194 40 Z"/>
+        <text class="tx fInk" x="1206" y="82" font-size="24" font-weight="bold">at 的核心图 · 老家</text>
+        <g class="cardSchema">
+          <path class="dp acc" stroke-width="4.5" d="M1290 108 C 1268 108 1258 126 1290 168 C 1322 126 1312 108 1290 108 Z"/>
+          <circle class="fx fillRed" cx="1290" cy="126" r="8"/>
+          <ellipse class="dw gry" stroke-width="3" stroke-dasharray="5 5" cx="1290" cy="182" rx="46" ry="9" fill="none"/>
+        </g>
+        <text class="tx fRed" x="1392" y="146" font-size="19" font-weight="bold">at = 一个点</text>
+        <text class="tx fGry" x="1392" y="174" font-size="14">a point（Kevin）</text>
+        <text class="tx fLm" x="1206" y="200" font-size="13.5">点化 · 只看位置（0 维）</text>
+      </g>
+
+      <g class="gSpokes"></g>
+
+      <g class="gStage" filter="url(#wobA)">
+        <g class="scene sc-atStory">
+          <path class="dp gry gnd" stroke-width="4" d="M372 742 L1128 742"/>
+          <path class="dp gry cityB" stroke-width="3.5" d="M470 742 L470 384 Q470 356 498 356 L1002 356 Q1030 356 1030 384 L1030 742"/>
+          <path class="dp gry road" stroke-width="3.5" d="M470 660 L1030 660 M470 700 L1030 700"/>
+          <g class="houseG" data-rst data-base="">
+            <path class="dp lm" stroke-width="5" d="M838 742 L838 648 L962 648 L962 742"/>
+            <path class="dp lm" stroke-width="5" d="M824 648 L900 596 L976 648"/>
+            <path class="dp lm" stroke-width="4" d="M884 742 L884 690 L916 690 L916 742"/>
+            <path class="dp acc" stroke-width="4" d="M862 622 L938 622"/>
+          </g>
+          <g class="pinG schemaG">
+            <path class="dp acc" stroke-width="5" d="M900 597 C 876 597 864 621 900 669 C 936 621 924 597 900 597"/>
+            <circle class="fx fillRed" cx="900" cy="619" r="8"/>
+          </g>
+          <g class="catSit catOut" transform="translate(520,557)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <path class="tp tpRoad" d="M690 690 C 760 660 800 662 856 644"/>
+          <g class="catSit catPin" transform="translate(706,580) scale(0.85)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <text class="tx fRed txAt" x="764" y="520" font-size="30" font-weight="bold">at the restaurant</text>
+          <text class="tx fGry txIn" x="486" y="330" font-size="19">in Taipei</text>
+          <text class="tx fGry txOn" x="486" y="648" font-size="19">on Xinyi Road</text>
+        </g>
+
+        <g class="scene sc-atStation">
+          <path class="dp gry mapG" stroke-width="3.5" d="M452 300 L1048 300 L1048 760 L452 760 Z"/>
+          <path class="dp gry mapG" stroke-width="2.5" d="M452 460 L1048 460 M452 620 L1048 620 M620 300 L620 760 M880 300 L880 760"/>
+          <g class="bldG" data-rst data-base="">
+            <path class="dp lm" stroke-width="6" d="M540 742 L540 480 L960 480 L960 742"/>
+            <path class="dp lm" stroke-width="6" d="M506 480 L750 386 L994 480"/>
+            <path class="dp lm" stroke-width="5" d="M700 742 L700 624 L800 624 L800 742"/>
+            <path class="dp lm" stroke-width="4.5" d="M600 560 L660 560 M840 560 L900 560"/>
+          </g>
+          <g class="pinG2" transform="translate(0,22)">
+            <path class="dp acc" stroke-width="5" d="M750 470 C 726 470 714 494 750 542 C 786 494 774 470 750 470"/>
+            <circle class="fx fillRed" cx="750" cy="492" r="8"/>
+          </g>
+          <g class="stuG">
+            <circle class="dp red" stroke-width="4.5" cx="750" cy="586" r="16"/>
+            <path class="dp red" stroke-width="5" d="M750 602 L750 664 M750 620 L724 640 M750 620 L776 640"/>
+          </g>
+          <g class="doorG">
+            <path class="dp lm" stroke-width="5" d="M930 742 L930 600 L1010 600 L1010 742"/>
+            <circle class="fx fillAcc" cx="996" cy="676" r="5"/>
+            <path class="dp acc" stroke-width="4" d="M970 540 C 958 540 952 552 970 574 C 988 552 982 540 970 540"/>
+          </g>
+          <text class="tx fInk txDoor" x="862" y="796" font-size="17">The teacher is at the door.</text>
+        </g>
+
+        <g class="scene sc-atClock">
+          <g class="chips">
+            <path class="dp acc" stroke-width="3.5" d="M420 286 L542 286 Q556 286 556 300 L556 316 Q556 330 542 330 L420 330 Q406 330 406 316 L406 300 Q406 286 420 286 Z"/>
+            <path class="dp gry" stroke-width="3" d="M636 286 L758 286 Q772 286 772 300 L772 316 Q772 330 758 330 L636 330 Q622 330 622 316 L622 300 Q622 286 636 286 Z"/>
+            <path class="dp gry" stroke-width="3" d="M852 286 L974 286 Q988 286 988 300 L988 316 Q988 330 974 330 L852 330 Q838 330 838 316 L838 300 Q838 286 852 286 Z"/>
+            <text class="tx fRed" x="428" y="315" font-size="16" font-weight="bold">at 时刻 · 1</text>
+            <text class="tx fInk" x="644" y="315" font-size="16">on 日子 · 2</text>
+            <text class="tx fInk" x="860" y="315" font-size="16">in 月年 · 3</text>
+            <text class="tx fGry" x="406" y="356" font-size="13.5">时间课的顺序（Woodward 章节序）：先时刻、再日子、最后时段</text>
+          </g>
+          <g class="clockG">
+            <circle class="dp ink face" stroke-width="6" cx="750" cy="545" r="150"/>
+            <path class="dp ink ticks" stroke-width="5" d="M750 410 L750 430 M750 660 L750 680 M615 545 L635 545 M865 545 L885 545"/>
+            <circle class="fx fillInk" cx="856" cy="439" r="5"/>
+            <circle class="fx fillInk" cx="856" cy="651" r="5"/>
+            <circle class="fx fillInk" cx="644" cy="439" r="5"/>
+            <circle class="fx fillInk" cx="644" cy="651" r="5"/>
+            <path class="dp ink hourH" stroke-width="7" d="M750 545 L781 599"/>
+            <path class="dp ink minH" stroke-width="5" d="M750 545 L750 428"/>
+            <circle class="fx fillRed" cx="750" cy="545" r="8"/>
+            <circle class="dp acc fivePt" stroke-width="5" cx="825" cy="675" r="17" fill="none"/>
+          </g>
+          <g class="busMini">
+            <path class="dp lm" stroke-width="4.5" d="M420 742 L420 668 Q420 652 436 652 L556 652 Q572 652 572 668 L572 742"/>
+            <path class="dp gry" stroke-width="3.5" d="M436 676 L556 676"/>
+            <circle class="dp ink" stroke-width="4" cx="452" cy="742" r="12"/>
+            <circle class="dp ink" stroke-width="4" cx="540" cy="742" r="12"/>
+          </g>
+          <text class="tx fGry txKevin" x="452" y="796" font-size="15.5">Kevin 的时间例：at 7 p.m. · at noon —— 都是钟上的一个点</text>
+        </g>
+
+        <g class="scene sc-atPrice">
+          <g class="bookP">
+            <path class="dp ink" stroke-width="5" d="M688 500 L812 500 L812 592 L688 592 Z"/>
+            <path class="dp ink" stroke-width="4" d="M704 500 L704 592"/>
+            <text class="tx fRed" x="724" y="558" font-size="27" font-weight="bold">$5</text>
+          </g>
+          <path class="dp ink axis" stroke-width="5" d="M420 640 L1080 640 M1080 640 L1054 628 M1080 640 L1054 652"/>
+          <path class="dp ink ticks" stroke-width="4.5" d="M420 622 L420 658 M552 622 L552 658 M684 622 L684 658 M816 622 L816 658 M948 622 L948 658 M1080 622 L1080 658"/>
+          <g class="markerP" data-rst data-base="translate(420,0)" transform="translate(420,0)">
+            <path class="fx fillRed" d="M-20 596 L20 596 L0 626 Z"/>
+          </g>
+          <circle class="dp acc circ5" stroke-width="4.5" cx="750" cy="640" r="30" fill="none"/>
+          <text class="tx fInk" x="402" y="692" font-size="20">0</text>
+          <text class="tx fInk" x="534" y="692" font-size="20">2</text>
+          <text class="tx fInk" x="666" y="692" font-size="20">4</text>
+          <text class="tx fInk" x="798" y="692" font-size="20">6</text>
+          <text class="tx fInk" x="930" y="692" font-size="20">8</text>
+          <text class="tx fInk" x="1052" y="692" font-size="20">10</text>
+        </g>
+
+        <g class="scene sc-atLook">
+          <path class="dp lm mapW" stroke-width="5" d="M596 356 L1004 356 L1004 646 L596 646 Z"/>
+          <path class="dp gry river" stroke-width="4" d="M596 452 C 690 410 748 540 838 496 C 908 462 950 516 1004 486"/>
+          <circle class="fx fillGry" cx="680" cy="540" r="5"/>
+          <circle class="fx fillGry" cx="760" cy="420" r="5"/>
+          <circle class="fx fillGry" cx="920" cy="580" r="5"/>
+          <g class="catSit catLook" transform="translate(400,540) scale(0.95)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <path class="dw acc sight" stroke-width="4" stroke-dasharray="8 7" d="M522 590 L838 500"/>
+          <circle class="dp acc tgt" stroke-width="4.5" cx="852" cy="496" r="16" fill="none"/>
+          <circle class="fx fillRed tgtDot" cx="852" cy="496" r="5"/>
+        </g>
+
+        <g class="scene sc-atNight">
+          <path class="dp ink moon" stroke-width="5" d="M850 340 C 768 372 726 452 740 530 C 752 600 812 644 884 640 C 806 684 696 630 668 532 C 642 440 724 338 850 340 Z"/>
+          <circle class="fx fillAcc" cx="560" cy="380" r="4"/>
+          <circle class="fx fillAcc" cx="640" cy="300" r="3.5"/>
+          <circle class="fx fillAcc" cx="960" cy="300" r="4"/>
+          <circle class="fx fillAcc" cx="1020" cy="420" r="3.5"/>
+          <circle class="fx fillAcc" cx="520" cy="500" r="3"/>
+          <g class="catSit catSleep" transform="translate(600,560) scale(0.9)">
+            <path class="dp red" stroke-width="5" d="M53 180 C 15 185 0 155 23 135"/><path class="dp red" stroke-width="5" d="M60 182 C 47 128 67 86 103 82 C 137 80 155 120 147 182"/><circle class="dp red" stroke-width="5" cx="115" cy="52" r="31"/><path class="dp red" stroke-width="4.5" d="M91 32 L85 2 L113 20 M135 20 L159 0 L161 32"/><path class="dp red" stroke-width="3.5" d="M121 52 L131 52 M135 64 L160 58 M135 70 L159 72"/><path class="dp red" stroke-width="4.5" d="M131 140 L135 180"/>
+          </g>
+          <text class="tx fInk zzz" x="790" y="580" font-size="26" font-weight="bold">Z z z</text>
+          <g class="nightTag">
+            <path class="dp acc" stroke-width="4" d="M432 760 L968 760 Q980 760 980 772 L980 800 Q980 812 968 812 L432 812 Q420 812 420 800 L420 772 Q420 760 432 760 Z"/>
+            <text class="tx fAcc" x="446" y="794" font-size="19" font-weight="bold">整组记：at night · at noon · at midnight</text>
+          </g>
+        </g>
+
+        <g class="scene sc-atContrast">
+          <g class="crowd">
+            <circle class="dp lm" stroke-width="4" cx="470" cy="600" r="16"/><circle class="dp lm" stroke-width="4" cx="520" cy="600" r="16"/><circle class="dp lm" stroke-width="4" cx="570" cy="600" r="16"/><circle class="dp lm" stroke-width="4" cx="620" cy="600" r="16"/><circle class="dp lm" stroke-width="4" cx="670" cy="600" r="16"/>
+            <circle class="dp lm" stroke-width="4" cx="445" cy="652" r="16"/><circle class="dp lm" stroke-width="4" cx="495" cy="652" r="16"/><circle class="dp lm" stroke-width="4" cx="545" cy="652" r="16"/><circle class="dp lm" stroke-width="4" cx="595" cy="652" r="16"/><circle class="dp lm" stroke-width="4" cx="645" cy="652" r="16"/><circle class="dp lm" stroke-width="4" cx="695" cy="652" r="16"/>
+            <circle class="dp lm" stroke-width="4" cx="470" cy="704" r="16"/><circle class="dp lm" stroke-width="4" cx="520" cy="704" r="16"/><circle class="dp lm" stroke-width="4" cx="570" cy="704" r="16"/><circle class="dp lm" stroke-width="4" cx="620" cy="704" r="16"/><circle class="dp lm" stroke-width="4" cx="670" cy="704" r="16"/>
+            <ellipse class="dp acc circCrowd" cx="570" cy="652" rx="150" ry="86" fill="none" stroke-width="4.5"/>
+          </g>
+          <g class="stageB">
+            <path class="dp lm" stroke-width="5" d="M760 640 L1060 640 L1060 692 L760 692 Z"/>
+            <circle class="dp red" stroke-width="4" cx="880" cy="540" r="14"/>
+            <path class="dp red" stroke-width="4.5" d="M880 554 L880 640 M880 578 L844 596 M880 578 L916 568"/>
+            <path class="dp acc circStage" stroke-width="5" d="M856 640 L904 640"/>
+          </g>
+          <g class="frontP">
+            <path class="dp acc pinF" stroke-width="4.5" d="M480 420 C 464 420 456 436 480 466 C 504 436 496 420 480 420"/>
+            <circle class="fx fillRed" cx="480" cy="436" r="6"/>
+            <circle class="dp acc circFront" stroke-width="4.5" cx="480" cy="470" r="30" fill="none"/>
+          </g>
+          <text class="tx fInk txFront" x="392" y="368" font-size="19">I'm at the front.</text>
+          <text class="tx fInk txStage" x="742" y="540" font-size="19">The band is on the stage.</text>
+          <text class="tx fInk txCrowd" x="392" y="796" font-size="19">And my friends are in the crowd.</text>
+          <text class="tx fGry txBBC" x="392" y="826" font-size="14">一幅画三句话 —— BBC Learning English（Sam）</text>
+        </g>
+
+        <g class="scene sc-atTrio">
+          <g class="trioIn">
+            <path class="dp lm" stroke-width="5" d="M430 560 L610 560 L610 700 L430 700 Z"/>
+            <path class="dp lm" stroke-width="5" d="M430 560 L458 524 L638 524 L610 560"/>
+            <path class="dp lm" stroke-width="5" d="M610 560 L638 524 L638 664 L610 700"/>
+            <circle class="fx fillRed" cx="520" cy="636" r="10"/>
+            <text class="tx fRed" x="478" y="476" font-size="30" font-weight="bold">in</text>
+            <text class="tx fLm" x="446" y="752" font-size="18">容器 · 3 维</text>
+          </g>
+          <g class="trioOn">
+            <path class="dp lm" stroke-width="5" d="M700 700 L700 668 L920 668 L920 700"/>
+            <path class="dp lm" stroke-width="5" d="M700 700 L920 700"/>
+            <path class="dp ink" stroke-width="4.5" d="M762 592 L846 592 L846 668 L762 668 Z"/>
+            <path class="dp acc" stroke-width="5" d="M762 668 L846 668"/>
+            <text class="tx fRed" x="776" y="476" font-size="30" font-weight="bold">on</text>
+            <text class="tx fLm" x="742" y="752" font-size="18">面 · 2 维</text>
+          </g>
+          <g class="trioAt">
+            <path class="dp acc" stroke-width="5" d="M1010 560 C 986 560 974 584 1010 632 C 1046 584 1034 560 1010 560"/>
+            <circle class="fx fillRed" cx="1010" cy="582" r="8"/>
+            <text class="tx fRed" x="984" y="476" font-size="30" font-weight="bold">at</text>
+            <text class="tx fLm" x="962" y="752" font-size="18">点 · 0 维</text>
+          </g>
+          <path class="dp acc shrinkA" stroke-width="5" d="M648 610 L692 610 M692 610 L676 598 M692 610 L676 622"/>
+          <path class="dp acc shrinkA" stroke-width="5" d="M928 610 L966 610 M966 610 L950 598 M966 610 L950 622"/>
+        </g>
+
+        <g class="scene sc-atRecast">
+          <path class="dp lm doorR" stroke-width="6" d="M620 742 L620 470 L900 470 L900 742"/>
+          <path class="dp lm doorR" stroke-width="5" d="M690 742 L690 560 L830 560 L830 742"/>
+          <circle class="fx fillAcc" cx="812" cy="656" r="6"/>
+          <g class="dogSit dogR" transform="translate(420,580) scale(0.95)">
+            <path class="dp red" stroke-width="5" d="M28 138 C 6 132 -2 110 8 92"/><path class="dp red" stroke-width="5" d="M30 150 C 18 110 26 78 52 66 C 78 54 112 62 122 88 C 130 108 126 150 110 150"/><path class="dp red" stroke-width="4.5" d="M104 108 L108 150"/><circle class="dp red" stroke-width="5" cx="138" cy="38" r="27"/><path class="dp red" stroke-width="4.5" d="M120 18 C 104 26 100 52 108 66 C 120 56 124 34 120 18"/><path class="dp red" stroke-width="4" d="M160 40 L182 47 L160 54"/><circle class="fx fillInk" cx="146" cy="34" r="3.5"/>
+          </g>
+        </g>
+      </g>
+
+      <g class="gActors" filter="url(#wobA)">
+        <g class="actorLeap" opacity="0">
+          <path class="red lf" stroke-width="5" d="M-52 2 C -80 -6 -92 -20 -88 -34"/><path class="red lf" stroke-width="5" d="M-52 6 C -30 -14 30 -16 52 2"/><circle class="red lf" stroke-width="5" cx="62" cy="-6" r="20"/><path class="red lf" stroke-width="4" d="M48 -20 L44 -38 L62 -26 M72 -24 L86 -36 L88 -16"/><path class="red lf" stroke-width="3.5" d="M66 -6 L74 -6"/><path class="red lf" stroke-width="4.5" d="M40 8 L66 22 M30 12 L52 28 M-40 10 L-66 24 M-30 14 L-48 30"/>
+        </g>
+      </g>
+      <g class="penG" opacity="0" pointer-events="none">
+        <g transform="rotate(-18)"><path d="M0 0 L-7.5 -26 Q0 -33 7.5 -26 Z" fill="#f08c1e" stroke="#b35f00" stroke-width="1.5"/><path d="M-7.5 -26 L-9 -64 Q0 -70 9 -64 L7.5 -26 Z" fill="#39404d"/><rect x="-9" y="-46" width="18" height="7" fill="#d23c2a"/></g>
+      </g>
+    </svg>
+    <div class="predict" hidden>
+      <div class="q"></div>
+      <div class="opts"></div>
+      <div class="hint"></div>
+    </div>
+  </div>
+  <div class="capBar">
+    <div class="cap">点「下一拍」，我们开始上课。</div>
+    <div class="sentBar" hidden><span class="en sent"></span><button class="speakBtn">🔊 读一读</button></div>
+  </div>
+  <div class="controls">
+    <button class="prevBtn">◀ 上一拍</button>
+    <button class="nextBtn primary">下一拍 ▶</button>
+    <button class="senseBtn">🔁 重播这一站</button>
+    <label class="auto"><input type="checkbox" class="autoChk"> 自动播放</label>
+    <span class="prog"></span>
+    <div class="dots"></div>
+  </div>
+</div>
 <script>
 "use strict";
 const $  = s => document.querySelector(s);
@@ -907,6 +1998,732 @@ beats.forEach((b,i)=>{
 updateUI();
 window.__wb = { gotoBeat, next: ()=>nextBtn.click(), cur: ()=>cur, total: ()=>beats.length,
                 playing: ()=>playing, predOpen: ()=>predOpen };
+</script>
+<script>
+"use strict";
+/* ======== generic whiteboard factory: scoped clone of the over engine ======== */
+const WB_LESSONS = {};
+function WB(root, cfg){
+  const $  = s => root.querySelector(s);
+  const $$ = (s,r) => Array.from((r||root).querySelectorAll(s));
+  const svg = root.querySelector('svg.board');
+  const NS = 'http://www.w3.org/2000/svg';
+  const CAMS = { hook:[0,0,1250,920], full:[0,0,1600,1000] };
+  let camCur = CAMS.hook.slice();
+
+  function roundedRect(x,y,w,h,r){
+    return `M${x+r} ${y} L${x+w-r} ${y} Q${x+w} ${y} ${x+w} ${y+r} L${x+w} ${y+h-r} Q${x+w} ${y+h} ${x+w-r} ${y+h} L${x+r} ${y+h} Q${x} ${y+h} ${x} ${y+h-r} L${x} ${y+r} Q${x} ${y} ${x+r} ${y} Z`;
+  }
+  /* postcard frames + spokes + highlights (generated, like over) */
+  const spokesG = $('.gSpokes');
+  const pcEls = {};
+  $$('.pc').forEach(g=>{
+    const id = g.dataset.pc; pcEls[id] = g;
+    const f = document.createElementNS(NS,'path');
+    f.setAttribute('stroke-width','3');
+    f.setAttribute('d', roundedRect(3,3,294,169,14));
+    if (g.dataset.dash){ f.setAttribute('class','fx gry'); f.setAttribute('stroke-dasharray','7 6'); }
+    else f.setAttribute('class','dp gry');
+    g.insertBefore(f, g.firstChild);
+    const [x,y] = cfg.slots[id];
+    const ln = document.createElementNS(NS,'path');
+    ln.setAttribute('class','dp acc'); ln.setAttribute('stroke-width','2.5'); ln.setAttribute('opacity','.65');
+    ln.setAttribute('d', `M800 512 L${x+150} ${y+86}`);
+    spokesG.appendChild(ln);
+    const hl = document.createElementNS(NS,'path');
+    hl.setAttribute('class','fx hl'); hl.dataset.hl = id;
+    hl.setAttribute('d', roundedRect(x-4,y-4,308,183,16));
+    hl.setAttribute('fill','none'); hl.setAttribute('stroke','#f08c1e'); hl.setAttribute('stroke-width','4');
+    spokesG.appendChild(hl);
+  });
+  const chk = document.createElementNS(NS,'path');
+  chk.setAttribute('class','dp acc bigCheck'); chk.setAttribute('stroke-width','15');
+  chk.setAttribute('d','M716 700 L786 762 L894 636');
+  spokesG.appendChild(chk);
+
+  /* prep: dash-draw + dashed-wipe, clip ids unique per lesson */
+  const penG = $('.penG');
+  function prep(){
+    $$('.dp').forEach(el=>{
+      const L = el.getTotalLength();
+      el.dataset.len = L;
+      el.style.strokeDasharray = L; el.style.strokeDashoffset = L;
+    });
+    $$('.dw').forEach((el,i)=>{
+      const bb = el.getBBox();
+      const cp = document.createElementNS(NS,'clipPath');
+      cp.setAttribute('id','xcp-'+cfg.key+'-'+i); cp.setAttribute('clipPathUnits','userSpaceOnUse');
+      const r = document.createElementNS(NS,'rect');
+      const vert = el.dataset.dir === 'v';
+      r.setAttribute('x', bb.x-6); r.setAttribute('y', bb.y-6);
+      r.setAttribute('width', vert ? bb.width+12 : 0);
+      r.setAttribute('height', vert ? 0 : bb.height+12);
+      cp.appendChild(r); svg.querySelector('defs').appendChild(cp);
+      el.setAttribute('clip-path', `url(#xcp-${cfg.key}-${i})`);
+      el._xclip = { r, bb, vert };
+    });
+  }
+  function penTo(el, p){
+    try{
+      const L = el.getTotalLength();
+      const pt = el.getPointAtLength(L*Math.min(Math.max(p,0),1));
+      const m = el.getCTM();
+      if (!m) return;
+      const x = m.a*pt.x + m.c*pt.y + m.f, y = m.b*pt.x + m.d*pt.y + m.f;
+      penG.setAttribute('transform', `translate(${x} ${y})`);
+    }catch(e){}
+  }
+  function penShow(v){ penG.setAttribute('opacity', v?1:0); }
+
+  const raf = () => new Promise(r=>requestAnimationFrame(r));
+  function tween(dur, fn){
+    if (dur<=0){ fn(1); return Promise.resolve(); }
+    return new Promise(res=>{
+      const t0 = performance.now();
+      (function step(t){
+        const p = Math.min((t-t0)/dur, 1);
+        fn(p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2);
+        if (p<1) requestAnimationFrame(step); else res();
+      })(t0);
+    });
+  }
+  function drawEl(el, dur, inst){
+    if (!el) return Promise.resolve();
+    const L = parseFloat(el.dataset.len);
+    if (inst){ el.style.strokeDashoffset = 0; return Promise.resolve(); }
+    penShow(true);
+    return tween(dur, p=>{ el.style.strokeDashoffset = L*(1-p); penTo(el,p); }).then(()=>penShow(false));
+  }
+  function eraseEl(el, dur, inst){
+    if (!el) return Promise.resolve();
+    const L = parseFloat(el.dataset.len);
+    if (inst){ el.style.strokeDashoffset = L; return Promise.resolve(); }
+    penShow(true);
+    return tween(dur, p=>{ el.style.strokeDashoffset = L*p; penTo(el,1-p); }).then(()=>penShow(false));
+  }
+  function drawAll(els, total, inst){
+    els = els.filter(Boolean);
+    const sum = els.reduce((a,e)=>a+parseFloat(e.dataset.len||1),0) || 1;
+    let chain = Promise.resolve();
+    els.forEach(el=>{ chain = chain.then(()=>drawEl(el, inst?0:Math.max(total*parseFloat(el.dataset.len||1)/sum, 40), inst)); });
+    return chain;
+  }
+  function eraseAll(els, total, inst){
+    els = els.filter(Boolean).slice().reverse();
+    let chain = Promise.resolve();
+    els.forEach(el=>{ chain = chain.then(()=>eraseEl(el, inst?0:Math.max(total/els.length,30), inst)); });
+    return chain;
+  }
+  function wipeEl(el, dur, inst, dirn){
+    if (!el || !el._xclip) return Promise.resolve();
+    const { r, bb, vert } = el._xclip;
+    const full = (vert ? bb.height : bb.width) + 12;
+    const from = dirn<0 ? full : 0, to = dirn<0 ? 0 : full;
+    if (inst){ r.setAttribute(vert?'height':'width', to); return Promise.resolve(); }
+    penShow(true);
+    return tween(dur, p=>{
+      r.setAttribute(vert?'height':'width', from+(to-from)*p); penTo(el,p);
+    }).then(()=>penShow(false));
+  }
+  function showEls(els, inst){ els.filter(Boolean).forEach(e=>{ e.style.transition = inst?'none':''; e.style.opacity = 1; }); }
+  function hideEls(els){ els.filter(Boolean).forEach(e=>{ e.style.opacity = 0; }); }
+  function sceneDrawables(g){
+    return { dp: $$('.dp',g), dw: $$('.dw',g), fx: $$('.fx',g), tx: $$('.tx',g) };
+  }
+  function eraseScene(sel, total, inst){
+    const g = $(sel); if (!g) return Promise.resolve();
+    const d = sceneDrawables(g);
+    hideEls(d.fx.concat(d.tx));
+    let chain = eraseAll(d.dp, total*0.7, inst);
+    d.dw.forEach(el=>{ chain = chain.then(()=>wipeEl(el, inst?0:total*0.3/Math.max(d.dw.length,1), inst, -1)); });
+    return chain;
+  }
+  function travel(arcEl, mover, dur, inst){
+    if (!arcEl || !mover) return Promise.resolve();
+    const L = arcEl.getTotalLength();
+    const setP = p=>{
+      const pt = arcEl.getPointAtLength(L*p);
+      const pt2 = arcEl.getPointAtLength(L*Math.min(p+0.012,1));
+      const ang = Math.atan2(pt2.y-pt.y, pt2.x-pt.x)*180/Math.PI*0.45;
+      mover.setAttribute('transform', `translate(${pt.x} ${pt.y}) rotate(${ang})`);
+    };
+    if (inst){ mover.setAttribute('opacity',0); setP(1); return Promise.resolve(); }
+    mover.setAttribute('opacity',1);
+    return tween(dur, setP).then(()=>{ mover.setAttribute('opacity',0); });
+  }
+  function camTo(name, inst){
+    const tgt = CAMS[name];
+    if (inst){ camCur = tgt.slice(); svg.setAttribute('viewBox', camCur.join(' ')); return Promise.resolve(); }
+    const from = camCur.slice();
+    return tween(750, p=>{
+      camCur = from.map((v,i)=>v+(tgt[i]-v)*p);
+      svg.setAttribute('viewBox', camCur.join(' '));
+    });
+  }
+  function moveTo(sel, x, y, dur, inst){
+    const el = $(sel); if (!el) return Promise.resolve();
+    if (inst){ el.setAttribute('transform', `translate(${x} ${y})`); return Promise.resolve(); }
+    const m = /translate\(([-\d.]+)[ ,]([-\d.]+)\)/.exec(el.getAttribute('transform')||'');
+    const fx = m?+m[1]:0, fy = m?+m[2]:0;
+    return tween(dur, p=>el.setAttribute('transform', `translate(${fx+(x-fx)*p} ${fy+(y-fy)*p})`));
+  }
+  function shrinkTo(sel, cx, cy, s, dur, inst){
+    const el = $(sel); if (!el) return Promise.resolve();
+    const setS = v=>el.setAttribute('transform', `translate(${cx} ${cy}) scale(${v}) translate(${-cx} ${-cy})`);
+    if (inst){ setS(s); return Promise.resolve(); }
+    return tween(dur, p=>setS(1+(s-1)*p));
+  }
+
+  /* narration / sentence / speech */
+  let curSent = '';
+  function setCap(t){ $('.cap').textContent = t; }
+  function setSent(html, plain){
+    curSent = plain;
+    if (!plain){ $('.sentBar').hidden = true; return; }
+    $('.sent').innerHTML = html; $('.sentBar').hidden = false;
+  }
+  $('.speakBtn').addEventListener('click', ()=>{
+    if (!curSent) return;
+    try{
+      const u = new SpeechSynthesisUtterance(curSent);
+      u.lang = 'en-GB'; u.rate = 0.85;
+      const v = speechSynthesis.getVoices().find(v=>v.lang && v.lang.toLowerCase().startsWith('en-gb'));
+      if (v) u.voice = v;
+      speechSynthesis.cancel(); speechSynthesis.speak(u);
+    }catch(e){}
+  });
+
+  /* prediction pauses */
+  const predBox = $('.predict');
+  let predOpen = false;
+  function predict(spec, inst){
+    if (inst) return Promise.resolve();
+    return new Promise(res=>{
+      predOpen = true;
+      predBox.querySelector('.q').textContent = spec.q;
+      predBox.querySelector('.hint').textContent = '';
+      const opts = predBox.querySelector('.opts'); opts.innerHTML = '';
+      spec.opts.forEach(o=>{
+        const b = document.createElement('button');
+        b.textContent = o.t;
+        b.addEventListener('click', ()=>{
+          if (o.ok){
+            predBox.classList.remove('shake'); predBox.hidden = true; predOpen = false; res();
+          } else {
+            b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+            predBox.querySelector('.hint').textContent = spec.hint;
+          }
+        });
+        opts.appendChild(b);
+      });
+      predBox.hidden = false;
+    });
+  }
+
+  /* postcards / schema card / recap */
+  function pcShow(id){
+    return inst=>{
+      const g = pcEls[id]; if (!g) return Promise.resolve();
+      let chain = drawAll($$('.dp',g), inst?0:850, inst);
+      $$('.dw',g).forEach(el=>{ chain = chain.then(()=>wipeEl(el, inst?0:320, inst, 1)); });
+      chain = chain.then(()=>{ showEls($$('.fx',g).concat($$('.tx',g)), inst); });
+      return chain;
+    };
+  }
+  function flyToCard(stageSel, inst){
+    const stageG = $(stageSel), cardG = $('.gCore'), cardSchema = $('.cardSchema', cardG);
+    const finish = ()=>{
+      stageG.style.opacity = 0; stageG.removeAttribute('transform');
+      cardG.setAttribute('opacity',1);
+      if (inst){
+        $$('.dp',cardG).forEach(el=>{ el.style.strokeDashoffset = 0; });
+        $$('.dw',cardG).forEach(el=>wipeEl(el,0,true,1));
+        showEls($$('.fx',cardG).concat($$('.tx',cardG)), true);
+        return Promise.resolve();
+      }
+      return drawAll($$('.dp',cardG), 850, false).then(()=>{
+        let c = Promise.resolve();
+        $$('.dw',cardG).forEach(el=>{ c = c.then(()=>wipeEl(el, 420, false, 1)); });
+        return c.then(()=>{ showEls($$('.fx',cardG).concat($$('.tx',cardG)), false); });
+      });
+    };
+    if (inst) return camTo('full', true).then(finish);
+    return camTo('full', false).then(async ()=>{
+      const b1 = stageG.getBBox(), b2 = cardSchema.getBBox();
+      const sx = b2.width/b1.width, sy = b2.height/b1.height;
+      const tx = b2.x - sx*b1.x, ty = b2.y - sy*b1.y;
+      await tween(950, p=>{
+        stageG.setAttribute('transform', `translate(${tx*p} ${ty*p}) scale(${1+(sx-1)*p} ${1+(sy-1)*p})`);
+      });
+      return finish();
+    });
+  }
+  function moveCardCenter(inst){
+    const core = $('.gCore');
+    core.style.transformBox = 'fill-box'; core.style.transformOrigin = 'center';
+    core.style.transition = inst ? 'none' : 'transform .95s ease';
+    core.style.transform = 'translate(-575px,385px) scale(1.12)';
+    return inst ? Promise.resolve() : new Promise(r=>setTimeout(r,1000));
+  }
+  function recapTour(lastSceneSel){
+    return inst=>
+      eraseScene(lastSceneSel, inst?0:600, inst)
+      .then(()=>moveCardCenter(inst))
+      .then(()=>drawAll($$('.gSpokes .dp:not(.bigCheck)'), inst?0:1100, inst))
+      .then(async ()=>{
+        for (const id of cfg.tour){
+          const hl = $(`.hl[data-hl="${id}"]`);
+          showEls([hl], inst);
+          if (!inst){ const s = cfg.sents[id]; if (s) setSent(s[0], s[1]); await new Promise(r=>setTimeout(r,1050)); }
+          hideEls([hl]);
+        }
+        if (inst) setSent('','');
+      });
+  }
+
+  /* reset (root-scoped; never touches the over lesson) */
+  function resetAll(){
+    $$('.dp').forEach(el=>{ el.style.strokeDashoffset = el.dataset.len; });
+    $$('.dw').forEach(el=>{ if (el._xclip) el._xclip.r.setAttribute(el._xclip.vert?'height':'width', 0); });
+    $$('.fx,.tx').forEach(el=>{ el.style.opacity = 0; });
+    const core = $('.gCore');
+    core.setAttribute('opacity',0); core.style.transform = '';
+    $$('.actorLeap').forEach(e=>e.setAttribute('opacity',0));
+    $$('.ghost').forEach(e=>e.remove());
+    $$('[data-rst]').forEach(e=>{ const b = e.dataset.base; if (b) e.setAttribute('transform', b); else e.removeAttribute('transform'); e.style.opacity=''; });
+    $$('.schemaG').forEach(g=>{ g.removeAttribute('transform'); g.style.opacity=''; });
+    predBox.hidden = true; predOpen = false;
+    camCur = CAMS.hook.slice(); svg.setAttribute('viewBox', camCur.join(' '));
+    setSent('','');
+  }
+
+  /* helpers handed to beat definitions */
+  const H = {
+    $, $$, svg, pcEls,
+    D:  (sel,total)=>inst=>drawAll($$(sel), total, inst),
+    D1: (sel,dur)=>inst=>drawEl($(sel), dur, inst),
+    DS: (sel,from,to,total)=>inst=>drawAll($$(sel).slice(from,to), total, inst),
+    W:  (sel,dur)=>inst=>wipeEl($(sel), dur, inst, 1),
+    WE: (sel,dur)=>inst=>wipeEl($(sel), dur, inst, -1),
+    SH: sel=>inst=>{ showEls($$(sel), inst); return Promise.resolve(); },
+    DL: ms=>inst=>inst?Promise.resolve():new Promise(r=>setTimeout(r,ms)),
+    SQ: (...fns)=>inst=>fns.reduce((p,f)=>p.then(()=>f(inst)), Promise.resolve()),
+    CM: name=>inst=>camTo(name, inst),
+    ES: (sel,total)=>inst=>eraseScene(sel, total, inst),
+    travel: (arcSel,moverSel,dur)=>inst=>travel($(arcSel), $(moverSel), inst?0:dur, inst),
+    catGo: (arcSel,sitSel,dur)=>inst=>travel($(arcSel), $('.actorLeap'), inst?0:dur, inst).then(()=>drawAll($$(sitSel+' .dp'), inst?0:450, inst)),
+    moveTo, shrinkTo, pcShow,
+    buildCard: sel=>inst=>flyToCard(sel, inst),
+    recapTour,
+    drawEls: (els,total)=>inst=>drawAll(els,total,inst),
+    eraseEls: (els,total)=>inst=>eraseAll(els,total,inst),
+    showEls, hideEls, tween
+  };
+  const beats = cfg.beatsFn(H);
+
+  /* engine (same contract as over) */
+  let cur = -1, playing = false, chainToken = 0;
+  const nextBtn = $('.nextBtn'), prevBtn = $('.prevBtn');
+  async function runBeat(i, inst){
+    const b = beats[i];
+    setCap(b.cap);
+    if (b.sent) setSent(b.sentHtml, b.sent);
+    for (const a of b.acts || []) await a(inst);
+    if (b.predict) await predict(b.predict, inst);
+    cur = i; updateUI();
+  }
+  function updateUI(){
+    $('.prog').textContent = cur < 0 ? `共 ${beats.length} 拍` : `第 ${cur+1} / ${beats.length} 拍`;
+    prevBtn.disabled = playing || cur <= 0;
+    nextBtn.disabled = playing || predOpen || cur >= beats.length-1;
+    nextBtn.textContent = cur >= beats.length-1 ? '🎉 学完啦' : '下一拍 ▶';
+    $$('.dot').forEach((d,i)=>{
+      d.classList.toggle('done', i < cur);
+      d.classList.toggle('now', i === cur);
+    });
+  }
+  async function gotoBeat(n){
+    if (playing) return;
+    playing = true; updateUI();
+    resetAll(); cur = -1;
+    for (let i = 0; i <= n && i < beats.length; i++) await runBeat(i, true);
+    playing = false; updateUI();
+  }
+  async function chainPlay(from, to){
+    const tk = ++chainToken;
+    playing = true; updateUI();
+    for (let i = from; i <= to && i < beats.length; i++){
+      if (tk !== chainToken) break;
+      await runBeat(i, false);
+      if (tk !== chainToken) break;
+      if (i < to) await new Promise(r=>setTimeout(r,650));
+    }
+    playing = false; updateUI();
+  }
+  nextBtn.addEventListener('click', ()=>{
+    if (playing || predOpen || cur >= beats.length-1) return;
+    if ($('.autoChk').checked){ chainPlay(cur+1, beats.length-1); return; }
+    playing = true; updateUI();
+    runBeat(cur+1, false).then(()=>{ playing = false; updateUI(); });
+  });
+  prevBtn.addEventListener('click', ()=>{ if (cur > 0) gotoBeat(cur-1); });
+  $('.senseBtn').addEventListener('click', ()=>{
+    if (playing || cur < 0) return;
+    const s = beats[cur].sense;
+    let start = cur; while (start > 0 && beats[start-1].sense === s) start--;
+    let end = cur; while (end < beats.length-1 && beats[end+1].sense === s) end++;
+    (async ()=>{
+      playing = true; resetAll(); cur = -1;
+      for (let i = 0; i < start; i++) await runBeat(i, true);
+      playing = false; updateUI();
+      chainPlay(start, end);
+    })();
+  });
+  $('.autoChk').addEventListener('change', e=>{ if (!e.target.checked) chainToken++; });
+
+  prep();
+  resetAll();
+  const dotsBox = $('.dots');
+  beats.forEach((b,i)=>{
+    const d = document.createElement('button');
+    d.className = 'dot'; d.title = '第 '+(i+1)+' 拍';
+    d.addEventListener('click', ()=>gotoBeat(i));
+    dotsBox.appendChild(d);
+  });
+  updateUI();
+  const api = { gotoBeat, next: ()=>nextBtn.click(), cur: ()=>cur, total: ()=>beats.length,
+                playing: ()=>playing, predOpen: ()=>predOpen,
+                caps: ()=>beats.map(b=>b.cap),
+                rebuild: ()=>{ if (cur < 0){ resetAll(); updateUI(); } else gotoBeat(cur); } };
+  WB_LESSONS[cfg.key] = api;
+  window.__wbLessons = WB_LESSONS;
+  return api;
+}
+
+/* ======== lesson picker + space-key router ======== */
+window.__activeLesson = 'over';
+(function(){
+  const picker = document.getElementById('lessonPicker');
+  if (!picker) return;
+  function showLesson(k){
+    window.__activeLesson = k;
+    document.querySelectorAll('.lesson').forEach(d=>{ d.hidden = d.id !== 'lesson-'+k; });
+    picker.querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.lesson === k));
+    if (WB_LESSONS[k]) WB_LESSONS[k].rebuild();
+  }
+  picker.querySelectorAll('button').forEach(b=>b.addEventListener('click', ()=>{ showLesson(b.dataset.lesson); b.blur(); }));
+  document.addEventListener('keydown', e=>{
+    if (e.code !== 'Space' || window.__activeLesson === 'over') return;
+    const L = WB_LESSONS[window.__activeLesson];
+    e.preventDefault(); e.stopPropagation();
+    if (L && !L.predOpen() && !L.playing()) L.next();
+  }, true);
+})();
+</script>
+<script>
+"use strict";
+/* ================= IN lesson ================= */
+WB(document.getElementById('lesson-in'), {
+  key: 'in',
+  slots: { pc1:[30,240], pc2:[30,430], pc3:[30,620], pc4:[1270,240], pc5:[1270,430],
+           pc6:[1270,620], pc7:[350,815], pc8:[655,815], pc9:[960,815] },
+  tour: ['pc1','pc2','pc3','pc4','pc5','pc6','pc7','pc8'],
+  sents: {
+    pc1:['The cat is <b>in</b> the box.','The cat is in the box.'],
+    pc2:['The apple is <b>in</b> the bowl.','The apple is in the bowl.'],
+    pc3:['The bird is <b>in</b> the tree.','The bird is in the tree.'],
+    pc4:['The ball is <b>in</b> the grass.','The ball is in the grass.'],
+    pc5:['We play <b>in</b> the morning.','We play in the morning.'],
+    pc6:['The boy is <b>in</b> trouble.','The boy is in trouble.'],
+    pc7:['The dog is <b>in</b> the photo.','The dog is in the photo.'],
+    pc8:['The dog is <b>in</b> the box.','The dog is in the box.']
+  },
+  beatsFn(H){
+    const { D, D1, DS, W, WE, SH, DL, SQ, ES, pcShow } = H;
+    const ghost = ()=>inst=>{
+      const b = H.$('.ballTour'); if (!b) return Promise.resolve();
+      const c = b.cloneNode(true);
+      c.removeAttribute('class'); c.setAttribute('class','ghost'); c.style.opacity = .32;
+      H.$('.sc-inBall').appendChild(c);
+      return Promise.resolve();
+    };
+    const ballGo = (tp,dur)=>inst=>
+      H.travel(tp, '.ballTour', dur)(inst).then(()=>{ H.$('.ballTour').setAttribute('opacity',1); });
+    return [
+     { sense:0, cap:'三兄弟里的老大是 in。它看的不是大小，是「里面」。先听 Kevin 老师的一个故事：两个好朋友约好在台北见面——',
+       acts:[ D('.gTitle .dp',1400), SH('.gTitle .fx'), SH('.gTitle .tx'), DL(250) ] },
+     { sense:0, cap:'故事开始：台北是一座大城市。先把城市的「边」画出来，再把高楼画进去——小猫也要进城去。',
+       acts:[ D('.sc-inStory .gnd',400), D('.sc-inStory .cityB',900), D('.sc-inStory .bld',800), D('.sc-inStory .catOut .dp',700) ] },
+     { sense:0, cap:'城里有一条信义路，路边有一家小餐厅——那是他们碰头的地方。',
+       acts:[ D('.sc-inStory .road',600), D('.sc-inStory .rest',600), D('.sc-inStory .pinR',450), SH('.sc-inStory .fx') ] },
+     { sense:0, cap:'小猫走进台北——它进了这座城市的「里面」。冻住！Kevin 老师的话：in 看的是一个空间范围。整座城市，就是一个大大的「里面」。',
+       sent:'in Taipei', sentHtml:'<b>in</b> Taipei',
+       acts:[ SQ(H.catGo('.sc-inStory .tpIn','.sc-inStory .catIn',1300), H.eraseEls(H.$$('.sc-inStory .catOut .dp'),600), D('.sc-inStory .cityHi',800), SH('.sc-inStory .txIn'), SH('.sc-inStory .txOn'), SH('.sc-inStory .txAt')) ] },
+     { sense:1, cap:'故事先收起来。换一个最小的「里面」：一只纸箱。小猫在箱子外面看着它……',
+       acts:[ SQ(ES('.sc-inStory',700), D('.sc-inBox .catOut .dp',600), DS('.sc-inBox .schemaG > path',0,3,900)) ] },
+     { sense:1, cap:'先猜一猜：小猫会怎么进箱子？',
+       acts:[],
+       predict:{ q:'纸箱没有门，只有上面一个开口。小猫要进去，它会……？', hint:'看看箱子——上面是开着的！',
+                 opts:[{t:'从上面的开口跳进去',ok:1},{t:'穿过箱子壁飞进去'},{t:'等箱子自己打开'}] } },
+     { sense:1, cap:'跳——进去了！被箱子围住、包起来，这就是 in 的老家：装进里面。',
+       sent:'The cat is in the box.', sentHtml:'The cat is <b>in</b> the box.',
+       acts:[ SQ(H.catGo('.sc-inBox .tpIn','.sc-inBox .catIn',1300), H.eraseEls(H.$$('.sc-inBox .catOut .dp'),600), pcShow('pc1')) ] },
+     { sense:1, cap:'把这张图收进核心卡：in = 一个空间范围（Kevin 的话）。这张卡钉在角上，整节课不擦。',
+       acts:[ H.buildCard('.sc-inBox .schemaG') ] },
+     { sense:2, cap:'换一只碗。碗的工作就是「装」——东西有没有被装好，比它在哪儿更重要。',
+       acts:[ SQ(ES('.sc-inBox',650), D('.sc-inBowl .tbl',600), D('.sc-inBowl .bowl',800)) ] },
+     { sense:2, cap:'苹果掉进碗里，香蕉也滑进碗里——都被碗装好了，还是 in！',
+       sent:'The apple is in the bowl.', sentHtml:'The apple is <b>in</b> the bowl.',
+       acts:[ SQ(inst=>H.moveTo('.fruitA',0,78,700,inst), inst=>H.moveTo('.fruitB',30,52,700,inst), pcShow('pc2')) ] },
+     { sense:3, cap:'换一棵大树。小鸟钻进树叶里——被叶子包住了。',
+       acts:[ SQ(ES('.sc-inBowl',650), D('.sc-inTree .treeP',1100), D('.sc-inTree .birdIn .dp',700)) ] },
+     { sense:3, cap:'树上还有苹果——苹果是长在枝头上的，是树的一部分，没有被包住。汉语都说「在树上」，英语在这里切一刀：包住的用 in，连着的用 on。',
+       sent:'The bird is in the tree.', sentHtml:'The bird is <b>in</b> the tree.',
+       acts:[ SQ(D('.sc-inTree .apples .dp',600), D1('.sc-inTree .circBird',600), D1('.sc-inTree .circApple',500), pcShow('pc3')) ] },
+     { sense:4, cap:'现在玩「找球」游戏——句组照抄 Woodward 老师的球和盒子。先定找谁：找的东西是小球，背景是大箱子。球先躲在箱子后面，探出半个头。',
+       sent:'The ball is behind the box.', sentHtml:'The ball is <b>behind</b> the box.',
+       acts:[ SQ(ES('.sc-inTree',650), D('.sc-inBall .boxTour .dp',900), D('.sc-inBall .ballTour .dp',400), ghost()) ] },
+     { sense:4, cap:'球滚到箱子前面来了——',
+       sent:'The ball is in front of the box.', sentHtml:'The ball is <b>in front of</b> the box.',
+       acts:[ SQ(ballGo('.sc-inBall .tpF',800), ghost()) ] },
+     { sense:4, cap:'又滚到箱子旁边——',
+       sent:'The ball is next to the box.', sentHtml:'The ball is <b>next to</b> the box.',
+       acts:[ SQ(ballGo('.sc-inBall .tpN',800), ghost()) ] },
+     { sense:4, cap:'第二个箱子来了！球没动，可它现在站在两个箱子中间——',
+       sent:'The ball is between the boxes.', sentHtml:'The ball is <b>between</b> the boxes.',
+       acts:[ SQ(D('.sc-inBall .box2 .dp',800), ghost()) ] },
+     { sense:4, cap:'球又沿着一道弧线，滚到远远的左边——离箱子不远的地方。',
+       sent:'The ball is near the box.', sentHtml:'The ball is <b>near</b> the box.',
+       acts:[ SQ(ballGo('.sc-inBall .tpNear',1100), ghost()) ] },
+     { sense:4, cap:'球飞到箱子上方——中间隔着一段空地方（看虚线），只比高低。',
+       sent:'The ball is above the box.', sentHtml:'The ball is <b>above</b> the box.',
+       acts:[ SQ(ballGo('.sc-inBall .tpA',900), W('.sc-inBall .zoneAbove',400), ghost()) ] },
+     { sense:4, cap:'老师把箱子抬起来——球在箱子的下面。',
+       sent:'The ball is below the box.', sentHtml:'The ball is <b>below</b> the box.',
+       acts:[ SQ(inst=>H.moveTo('.sc-inBall .boxTour',0,-64,700,inst), ballGo('.sc-inBall .tpB',800), ghost()) ] },
+     { sense:4, cap:'最后两句是今天的主角。先猜一猜：球要钻进箱子里面——用 in 还是 on？',
+       acts:[],
+       predict:{ q:'球钻进箱子「里面」——用哪个词？', hint:'想想 in 的老家图：被围住、包起来！',
+                 opts:[{t:'in',ok:1},{t:'on'}] } },
+     { sense:4, cap:'箱子放下来，球钻进去——被围住了：in！',
+       sent:'The ball is in the box.', sentHtml:'The ball is <b>in</b> the box.',
+       acts:[ SQ(inst=>H.moveTo('.sc-inBall .boxTour',0,0,600,inst), ballGo('.sc-inBall .tpIn2',800), ghost()) ] },
+     { sense:4, cap:'球又跳上箱子顶，贴在面上被托住——这回是 on。九个位置，球都是一步一步走过去的，没有瞬移。',
+       sent:'The ball is on the box.', sentHtml:'The ball is <b>on</b> the box.',
+       acts:[ SQ(ballGo('.sc-inBall .tpOn2',800), ghost()) ] },
+     { sense:5, cap:'把最后两句并排放好看：左边，球被箱子围住（圈出来的是四周的壁）；右边，球贴在面上（圈出来的是接触的那条线）。只差这一点！',
+       acts:[ SQ(ES('.sc-inBall',700), D('.sc-inContrast .divider',400), D('.sc-inContrast .ctL .dp',1100), SH('.sc-inContrast .ctL .tx')) ] },
+     { sense:5, cap:'九句话攒成一张小图——这就是 Woodward 老师的总表。找东西的时候，先定找谁，再看它被围住（in）还是贴在面上（on）。',
+       sent:'The ball is in the grass.', sentHtml:'The ball is <b>in</b> the grass.',
+       acts:[ SQ(D('.sc-inContrast .ctR .dp',1100), SH('.sc-inContrast .ctR .tx'), pcShow('pc4')) ] },
+     { sense:6, cap:'现在把同一张图借给时间（Kevin 的重映射：一张图，换个域）。先看时间三兄弟的顺序——这是 Woodward 时间课的章节序：at 时刻、on 日子、in 时段。in 排第三。',
+       acts:[ SQ(ES('.sc-inContrast',650), D('.sc-inTime .chips .dp',700), SH('.sc-inTime .chips .tx'), D('.sc-inTime .echoBox .dp',700)) ] },
+     { sense:6, cap:'看！箱子变成了一个「时间箱子」：上午是一段时间，小猫泡在里面玩——还是 in，只是装的不是东西，是时间。',
+       sent:'We play in the morning.', sentHtml:'We play <b>in</b> the morning.',
+       acts:[ SQ(H.eraseEls(H.$$('.sc-inTime .echoBox .dp'),450), D('.sc-inTime .bandG .dp',1100), SH('.sc-inTime .bandLab'), SH('.sc-inTime .txSummer'), SH('.sc-inTime .txKevin'), pcShow('pc5')) ] },
+     { sense:7, cap:'容器还能装看不见的东西：小猫把牛奶打翻了，闯了祸——它像泡在一个「麻烦泡」里，出不来。',
+       sent:'The boy is in trouble.', sentHtml:'The boy is <b>in</b> trouble.',
+       acts:[ SQ(ES('.sc-inTime',650), W('.sc-inState .bubble',800), D('.sc-inState .troubleG .dp',800), W('.sc-inState .troubleG .dw',400), D('.sc-inState .catTr .dp',600), pcShow('pc6')) ] },
+     { sense:7, cap:'心里装着喜欢的人，也像泡在一颗心里——泡在状态里，还是 in。',
+       sent:'She is in love.', sentHtml:'She is <b>in</b> love.',
+       acts:[ SQ(D('.sc-inState .loveG .dp',900), SH('.sc-inState .loveG .fx')) ] },
+     { sense:8, cap:'最后一站，猜一猜：一张照片是平平的纸，小狗在照片里——先想好你的答案。',
+       acts:[ SQ(ES('.sc-inState',650), D('.sc-inPhoto .frameP',800)) ],
+       predict:{ q:'照片是平的！小狗在照片里——in 还是 on？', hint:'照片里藏着一个有边的小世界，小狗就住在那个世界里面。',
+                 opts:[{t:'in',ok:1},{t:'on'}] } },
+     { sense:8, cap:'揭晓：照片被看成一个有边的小世界，里面的东西就像装在世界里——还是老家的容器图！',
+       sent:'The dog is in the photo.', sentHtml:'The dog is <b>in</b> the photo.',
+       acts:[ SQ(D('.sc-inPhoto .dogPhoto .dp',800), SH('.sc-inPhoto .dogPhoto .fx'), SH('.sc-inPhoto .txPhoto'), pcShow('pc7')) ] },
+     { sense:9, cap:'Woodward 老师的收尾办法：换个主角，同一张图再演一遍——小猫下场，小狗进箱子！',
+       sent:'The dog is in the box.', sentHtml:'The dog is <b>in</b> the box.',
+       acts:[ SQ(ES('.sc-inPhoto',650), D('.sc-inRecast .boxR',900), D('.sc-inRecast .dogR .dp',700), SH('.sc-inRecast .dogR .fx'), pcShow('pc8')) ] },
+     { sense:10, cap:'全家福时间！所有意思都从中间这张核心图长出来——一个一个再看一遍。右下角是我们向谁学了什么。',
+       acts:[ SQ(pcShow('pc9'), H.recapTour('.sc-inRecast')) ] },
+     { sense:10, cap:'下次见到 in，先想「被围住了吗」。点圆点可以跳到任何一拍，点「重播这一站」可以再看一站。',
+       acts:[ SQ(inst=>{ return Promise.resolve(); }, D1('.gSpokes .bigCheck',650), DL(200)) ] },
+    ];
+  }
+});
+</script>
+<script>
+"use strict";
+/* ================= ON lesson ================= */
+WB(document.getElementById('lesson-on'), {
+  key: 'on',
+  slots: { pc1:[30,240], pc2:[30,430], pc3:[30,620], pc4:[1270,240], pc5:[1270,430],
+           pc6:[1270,620], pc7:[350,815], pc8:[655,815], pc9:[960,815] },
+  tour: ['pc1','pc2','pc3','pc4','pc5','pc6','pc7','pc8'],
+  sents: {
+    pc1:['The book is <b>on</b> the desk.','The book is on the desk.'],
+    pc2:['The cup is <b>on</b> the table.','The cup is on the table.'],
+    pc3:['The picture is <b>on</b> the wall.','The picture is on the wall.'],
+    pc4:['The cup is <b>on</b> the table.','The cup is on the table.'],
+    pc5:['The students are <b>on</b> the bus.','The students are on the bus.'],
+    pc6:['We have English <b>on</b> Monday.','We have English on Monday.'],
+    pc7:['<b>on</b> Xinyi Road','on Xinyi Road'],
+    pc8:['go <b>on</b> = 继续（断链）','go on']
+  },
+  beatsFn(H){
+    const { D, D1, DS, W, WE, SH, DL, SQ, ES, pcShow } = H;
+    return [
+     { sense:0, cap:'三兄弟的老二是 on。把 in 的盒子压扁——只剩一个面。它看的是「贴在面上」。还是 Kevin 老师的故事：两个好朋友约在台北见面，正沿着信义路走——',
+       acts:[ D('.gTitle .dp',1400), SH('.gTitle .tx'), DL(250) ] },
+     { sense:0, cap:'台北还是那座城市（in 的地盘）。今天放大看城里的一条路——',
+       acts:[ D('.sc-onStory .gnd',400), D('.sc-onStory .cityB',800), D('.sc-onStory .road',600), W('.sc-onStory .roadMid',500) ] },
+     { sense:0, cap:'冻住！小猫站在路面上——脚贴着路面，路面托着它。Kevin 老师的话：on 看的是一个接触的表面。路，就是一条长长的「面」。',
+       sent:'on Xinyi Road', sentHtml:'<b>on</b> Xinyi Road',
+       acts:[ SQ(D('.sc-onStory .catRoad .dp',700), D('.sc-onStory .rest',500), D('.sc-onStory .pinR',400), SH('.sc-onStory .fx'), D('.sc-onStory .surfHi',600), SH('.sc-onStory .txOn'), SH('.sc-onStory .txIn'), SH('.sc-onStory .txAt')) ] },
+     { sense:1, cap:'故事收起来。换一张最小的「面」：课桌的桌面。',
+       acts:[ SQ(ES('.sc-onStory',700), DS('.sc-onDesk .schemaG > path',0,3,900)) ] },
+     { sense:1, cap:'一本书放上桌面——书底和桌面贴在一起（橙线就是接触的地方），桌面托着书。贴住 + 托住，这就是 on 的老家。',
+       sent:'The book is on the desk.', sentHtml:'The book is <b>on</b> the desk.',
+       acts:[ SQ(DS('.sc-onDesk .schemaG > path',3,6,800), pcShow('pc1')) ] },
+     { sense:1, cap:'小猫也跳上桌面，坐在书旁边——脚贴着桌面，一样是 on。',
+       sent:'The cat is on the table.', sentHtml:'The cat is <b>on</b> the table.',
+       acts:[ H.catGo('.sc-onDesk .tpDesk','.sc-onDesk .catDesk',1300) ] },
+     { sense:1, cap:'把这张图收进核心卡：on = 一个接触的表面（Kevin 的话）。卡钉在角上，不擦。',
+       acts:[ H.buildCard('.sc-onDesk .schemaG') ] },
+     { sense:2, cap:'面不一定是平躺的——墙的面是竖着的。一幅画挂在墙上，画的背面贴着墙面，还是 on！',
+       sent:'The picture is on the wall.', sentHtml:'The picture is <b>on</b> the wall.',
+       acts:[ SQ(ES('.sc-onDesk',650), D('.sc-onWall .wall',700), D('.sc-onWall .pic',900), D1('.sc-onWall .picContact',450), SH('.sc-onWall .fx'), pcShow('pc3')) ] },
+     { sense:2, cap:'汉语说「在墙上、在树上」，用的是同一把尺子；英语要再看一眼：画贴墙面用 on，苹果连在枝头——也是贴着长在一起，用 on（小鸟被叶子包住，才用 in）。',
+       acts:[ SQ(D('.sc-onWall .miniTree .dp',700), SH('.sc-onWall .miniTree .fx'), SH('.sc-onWall .txApples')) ] },
+     { sense:3, cap:'回到桌面。桌子的工作是「托」：一只杯子放上来——先猜一猜，它和桌子是 on 还是 in？',
+       acts:[ SQ(ES('.sc-onWall',650), D('.sc-onFunc .slab',800), D('.sc-onFunc .cupG .dp',700)) ],
+       predict:{ q:'杯子稳稳站在桌面上——用 on 还是 in？', hint:'杯子在桌子「里面」吗？它贴着桌面、被桌面托着呢。',
+                 opts:[{t:'on（贴在面上）',ok:1},{t:'in（装在里面）'}] } },
+     { sense:3, cap:'对，on。再摞上两本书——桌面托着它们，东西有没有被托好，比在哪儿更重要。',
+       sent:'The cup is on the table.', sentHtml:'The cup is <b>on</b> the table.',
+       acts:[ SQ(D('.sc-onFunc .booksG .dp',600), pcShow('pc2')) ] },
+     { sense:3, cap:'同一张图，换个看法：先定找谁——要找的杯子站前面当主角（图形），又大又稳的桌面退到后面当背景。图没变，站位变了。',
+       acts:[ SQ(SH('.sc-onFunc .haloCup'), SH('.sc-onFunc .fgLab'), pcShow('pc4')) ] },
+     { sense:4, cap:'面还能动起来：一辆公交车！地板就是一块会跑的「面」——',
+       acts:[ SQ(ES('.sc-onFunc',650), D('.sc-onBus .gnd',400), D('.sc-onBus .busG .dp',1300)) ] },
+     { sense:4, cap:'车开了！同学们站在地板上，被车托着、载着走——贴面图长出新本事：被承载。所以坐公交车、火车用 on。',
+       sent:'The students are on the bus.', sentHtml:'The students are <b>on</b> the bus.',
+       acts:[ SQ(inst=>H.moveTo('.sc-onBus .busG',110,0,1100,inst), pcShow('pc5')) ] },
+     { sense:4, cap:'先猜一猜：坐小汽车呢？',
+       acts:[],
+       predict:{ q:'小汽车像一个盒子，把人装进去——坐小汽车用 on 还是 in？', hint:'大公交车是「被地板托着走」；小汽车是「被盒子装进去」——那是 in 的地盘。',
+                 opts:[{t:'in',ok:1},{t:'on'}] } },
+     { sense:4, cap:'对——小汽车用 in the car。同样是车，身体的感觉不一样，选的图就不一样。',
+       sent:'in the car', sentHtml:'<b>in</b> the car',
+       acts:[ SQ(D('.sc-onBus .carG .dp',900), SH('.sc-onBus .carG .fx'), SH('.sc-onBus .txCar')) ] },
+     { sense:5, cap:'把贴面图借给时间（Kevin 的重映射）。先看顺序：Woodward 时间课的章节序——at 时刻、on 日子、in 时段，on 排第二。桌面先变回一张「日子桌面」……',
+       acts:[ SQ(ES('.sc-onBus',650), D('.sc-onTime .chips .dp',700), SH('.sc-onTime .chips .tx'), D('.sc-onTime .echoSlab .dp',600)) ] },
+     { sense:5, cap:'日子桌面摊开，就是一本日历！星期一是日历上的一格，英语课贴在这一格上上——一天是一个面，还是 on。',
+       sent:'We have English on Monday.', sentHtml:'We have English <b>on</b> Monday.',
+       acts:[ SQ(H.eraseEls(H.$$('.sc-onTime .echoSlab .dp'),400), D('.sc-onTime .calG .dp',1100), SH('.sc-onTime .calG .tx'), SH('.sc-onTime .txKevin'), pcShow('pc6')) ] },
+     { sense:6, cap:'现在说一件诚实的事。on 还有一个意思：go on，「继续」。它是从「贴面」这张图长出来的吗？我们顺着链子找一找——',
+       acts:[ SQ(ES('.sc-onTime',650), D('.sc-onBreak .miniSchema .dp',800), D('.sc-onBreak .link',700)) ] },
+     { sense:6, cap:'链子断了。「继续」和「贴在面上」之间，没有一座能指认的桥。这一站不画动画、不编桥——它单独登记，是 on 的第二个基本义（也有专家有不同看法，写在卡上了）。',
+       acts:[ SQ(D1('.sc-onBreak .breakMark',500), D1('.sc-onBreak .linkHalf',450), SH('.sc-onBreak .breakCard .fx'), SH('.sc-onBreak .breakCard .tx'), SH('.sc-onBreak .breakTx'), pcShow('pc8')) ] },
+     { sense:7, cap:'最后划一条界，回到 Kevin 的故事地图：左边，小猫站在信义路上——路是面，脚贴在面上，用 on（圈出来的是接触）。',
+       acts:[ SQ(ES('.sc-onBreak',650), D('.sc-onContrast .divider',400), D('.sc-onContrast .ctL .dp',1100), W('.sc-onContrast .ctL .dw',400), SH('.sc-onContrast .ctL .tx')) ] },
+     { sense:7, cap:'右边，餐厅在地图上只是一个碰头点——用 at。同一个地方，看成面还是看成点，词就不一样。',
+       acts:[ SQ(D('.sc-onContrast .ctR .dp',1000), SH('.sc-onContrast .ctR .fx'), SH('.sc-onContrast .ctR .tx'), pcShow('pc7')) ] },
+     { sense:8, cap:'还有一个猜一猜：走路去上学，英语说 on foot。为什么用 on？——这条不许编因果：它是个固定搭配，脚踩地面的说法是假桥。整块记住它。',
+       sent:'We go to school on foot.', sentHtml:'We go to school <b>on</b> foot.',
+       acts:[ SQ(ES('.sc-onContrast',650), D('.sc-onFoot .gnd',400), D('.sc-onFoot .feet .dp',900), D1('.sc-onFoot .tag',450), SH('.sc-onFoot .tagTx')) ] },
+     { sense:9, cap:'Woodward 老师的收尾：换个主角再演一遍——小狗上桌面！这句就是 Woodward 自己的原句。',
+       sent:'The dog is on the table.', sentHtml:'The dog is <b>on</b> the table.',
+       acts:[ SQ(ES('.sc-onFoot',650), D('.sc-onRecast .deskR',800), D('.sc-onRecast .dogR .dp',700), SH('.sc-onRecast .dogR .fx')) ] },
+     { sense:10, cap:'全家福时间！注意有一张灰色的卡——那是「断链」卡：它不是从核心图长出来的，是单独记的。其余的，都从「贴面」这张图长出来。',
+       acts:[ SQ(pcShow('pc9'), H.recapTour('.sc-onRecast')) ] },
+     { sense:10, cap:'下次见到 on，先想「贴在哪个面上」。点圆点可以跳到任何一拍，点「重播这一站」可以再看一站。',
+       acts:[ SQ(D1('.gSpokes .bigCheck',650), DL(200)) ] },
+    ];
+  }
+});
+</script>
+<script>
+"use strict";
+/* ================= AT lesson ================= */
+WB(document.getElementById('lesson-at'), {
+  key: 'at',
+  slots: { pc1:[30,240], pc2:[30,430], pc3:[30,620], pc4:[1270,240], pc5:[1270,430],
+           pc6:[1270,620], pc7:[350,815], pc8:[655,815] },
+  tour: ['pc1','pc2','pc3','pc4','pc5','pc6','pc8'],
+  sents: {
+    pc1:['The student is <b>at</b> the station.','The student is at the station.'],
+    pc2:['The bus comes <b>at</b> five.','The bus comes at five.'],
+    pc3:['The book is <b>at</b> $5.','The book is at $5.'],
+    pc4:['Look <b>at</b> the map.','Look at the map.'],
+    pc5:['We sleep <b>at</b> night.','We sleep at night.'],
+    pc6:["I'm <b>at</b> the front.", "I'm at the front."],
+    pc8:['The dog is <b>at</b> the door.','The dog is at the door.']
+  },
+  beatsFn(H){
+    const { D, D1, DS, W, WE, SH, DL, SQ, ES, pcShow } = H;
+    return [
+     { sense:0, cap:'三兄弟的老三是 at。盒子压成面，面再压——只剩一个点。它看的是「位置」。还是 Kevin 老师的故事：两个好朋友约好——在台北（in）、沿信义路（on）、在一家餐厅碰头——',
+       acts:[ D('.gTitle .dp',1400), SH('.gTitle .tx'), DL(250) ] },
+     { sense:0, cap:'故事的地图再画一遍：城市、马路都先放一边，今天放大看那家餐厅。',
+       acts:[ D('.sc-atStory .gnd',400), D('.sc-atStory .cityB',700), D('.sc-atStory .road',500), D('.sc-atStory .houseG .dp',800), D('.sc-atStory .catOut .dp',600) ] },
+     { sense:0, cap:'小猫沿着路走到餐厅门口——',
+       acts:[ SQ(H.catGo('.sc-atStory .tpRoad','.sc-atStory .catPin',1200), H.eraseEls(H.$$('.sc-atStory .catOut .dp'),600)) ] },
+     { sense:0, cap:'冻住！餐厅那么大，可在「碰头」这件事里，它只是一个点。Kevin 老师的话：at 看的就是一个点——大小、形状统统扔掉，只留位置。',
+       sent:'at the restaurant', sentHtml:'<b>at</b> the restaurant',
+       acts:[ SQ(inst=>H.shrinkTo('.sc-atStory .houseG',900,669,0.22,900,inst), D('.sc-atStory .pinG .dp',600), SH('.sc-atStory .pinG .fx'), SH('.sc-atStory .txAt'), SH('.sc-atStory .txIn'), SH('.sc-atStory .txOn')) ] },
+     { sense:0, cap:'把这个「点」收进核心卡：at = 一个点（Kevin 的话）。这张卡钉在角上，整节课不擦。',
+       acts:[ H.buildCard('.sc-atStory .pinG') ] },
+     { sense:1, cap:'把「压成点」练成本事：先画一张地图——',
+       acts:[ SQ(ES('.sc-atStory',700), D('.sc-atStation .mapG',900)) ] },
+     { sense:1, cap:'地图上有一座大大的火车站：高屋顶、大门口——它可不小。',
+       acts:[ D('.sc-atStation .bldG .dp',1100) ] },
+     { sense:1, cap:'先猜一猜：一个同学站在车站的位置上等车——用 at 还是 in？',
+       acts:[],
+       predict:{ q:'车站那么大！同学在车站——at 还是 in？', hint:'说 at 的时候，心里把大小扔掉，只留「在哪一个位置」。',
+                 opts:[{t:'at（看成一个点）',ok:1},{t:'in（它很大）'}] } },
+     { sense:1, cap:'看——车站在地图上缩成一个点，同学就站在这个点上。地方再大，at 眼里也只是一个点。',
+       sent:'The student is at the station.', sentHtml:'The student is <b>at</b> the station.',
+       acts:[ SQ(inst=>H.shrinkTo('.sc-atStation .bldG',750,564,0.16,1000,inst), D('.sc-atStation .pinG2 .dp',550), SH('.sc-atStation .pinG2 .fx'), D('.sc-atStation .stuG .dp',600), pcShow('pc1')) ] },
+     { sense:1, cap:'门口也是一个点：老师站在门口——还是 at。',
+       sent:'The teacher is at the door.', sentHtml:'The teacher is <b>at</b> the door.',
+       acts:[ SQ(D('.sc-atStation .doorG .dp',700), SH('.sc-atStation .doorG .fx'), SH('.sc-atStation .txDoor')) ] },
+     { sense:2, cap:'把点图借给时间（Kevin 的重映射）。Woodward 时间课的章节序里，at 排第一站：时刻。先画一只钟——',
+       acts:[ SQ(ES('.sc-atStation',650), D('.sc-atClock .chips .dp',700), SH('.sc-atClock .chips .tx'), D1('.sc-atClock .face',900), D('.sc-atClock .ticks',400), SH('.sc-atClock .clockG .fx')) ] },
+     { sense:2, cap:'指针走到 5 点——钟面上的一个点。公交车正好这个点到！时刻没有长短，只有位置，还是 at。',
+       sent:'The bus comes at five.', sentHtml:'The bus comes <b>at</b> five.',
+       acts:[ SQ(D('.sc-atClock .hourH',450), D('.sc-atClock .minH',450), D1('.sc-atClock .fivePt',500), D('.sc-atClock .busMini .dp',700), SH('.sc-atClock .txKevin'), pcShow('pc2')) ] },
+     { sense:3, cap:'点还能标价钱：一把价格尺子，刻度从 0 到 10。这本书停在哪个刻度上？',
+       acts:[ SQ(ES('.sc-atClock',650), D('.sc-atPrice .axis',700), D('.sc-atPrice .ticks',500), D('.sc-atPrice .bookP .dp',600), SH('.sc-atPrice .bookP .tx'), SH('.sc-atPrice .tx')) ] },
+     { sense:3, cap:'小三角滑过去，停在 5 上——这本书 5 美元。价钱也是一个点！',
+       sent:'The book is at $5.', sentHtml:'The book is <b>at</b> $5.',
+       acts:[ SQ(inst=>H.moveTo('.sc-atPrice .markerP',750,0,900,inst), SH('.sc-atPrice .markerP .fx'), D1('.sc-atPrice .circ5',500), pcShow('pc3')) ] },
+     { sense:4, cap:'点还能被「瞄准」：小猫看墙上的地图——它的目光要落到地图上的一个地方。',
+       acts:[ SQ(ES('.sc-atPrice',650), D('.sc-atLook .mapW',700), D('.sc-atLook .river',600), D('.sc-atLook .catLook .dp',700), SH('.sc-atLook .fx')) ] },
+     { sense:4, cap:'先猜一猜：老师说「看这张图！」——目光瞄准，用哪个词？',
+       acts:[],
+       predict:{ q:'「看这张图！」目光瞄准一个地方——at 还是 in？', hint:'目光像一支箭，射向一个点——at 管的就是瞄准。',
+                 opts:[{t:'at',ok:1},{t:'in'}] } },
+     { sense:4, cap:'目光出发——落在地图上的这个点上！看、指、瞄准，只要心里有一个落点，就用 at。',
+       sent:'Look at the map.', sentHtml:'Look <b>at</b> the map.',
+       acts:[ SQ(W('.sc-atLook .sight',800), D1('.sc-atLook .tgt',450), SH('.sc-atLook .tgtDot'), pcShow('pc4')) ] },
+     { sense:5, cap:'最后猜一个难的：night 是一整夜，长长的。我们睡觉的时间——先按图猜一猜，用 at 还是 in？',
+       acts:[ SQ(ES('.sc-atLook',650), D('.sc-atNight .moon',900), SH('.sc-atNight .fx'), D('.sc-atNight .catSleep .dp',700), SH('.sc-atNight .zzz')) ],
+       predict:{ q:'We sleep ___ night. —— at 还是 in？', hint:'按图猜，多半会选 in（一整夜像段时间）——可英语偏说 at！',
+                 opts:[{t:'at',ok:1},{t:'in'}] } },
+     { sense:5, cap:'揭晓：这条推不出来——它和 at noon、at midnight 是一组老约定。推不出的，就整组登记、整组记，不编假道理。',
+       sent:'We sleep at night.', sentHtml:'We sleep <b>at</b> night.',
+       acts:[ SQ(D('.sc-atNight .nightTag .dp',600), SH('.sc-atNight .nightTag .tx'), pcShow('pc5')) ] },
+     { sense:6, cap:'收尾看一幅大画——BBC 老师 Sam 的演唱会：一幅画里，三个介词各就各位。先看人群：好多好多人的头——',
+       acts:[ SQ(ES('.sc-atNight',650), D('.sc-atContrast .crowd .dp',1200)) ] },
+     { sense:6, cap:'乐队站在舞台这个「面」上（on）；我在最前面一个「点」上（at）；我的朋友们在人群这个「容器」里（in）。一幅画，三兄弟全到齐！',
+       sent:"I'm at the front.", sentHtml:"I'm <b>at</b> the front.",
+       acts:[ SQ(D('.sc-atContrast .stageB .dp',800), D('.sc-atContrast .frontP .dp',600), SH('.sc-atContrast .frontP .fx'), SH('.sc-atContrast .txFront'), SH('.sc-atContrast .txStage'), SH('.sc-atContrast .txCrowd'), SH('.sc-atContrast .txBBC'), pcShow('pc6')) ] },
+     { sense:7, cap:'三兄弟合影：从 in 到 on 再到 at，地标一路变小——容器（3 维）压成面（2 维），面再压成点（0 维）。维度，就是这三兄弟的全部秘密。',
+       acts:[ SQ(ES('.sc-atContrast',650), D('.sc-atTrio .trioIn .dp',800), SH('.sc-atTrio .trioIn .fx'), SH('.sc-atTrio .trioIn .tx'), D('.sc-atTrio .shrinkA',400), D('.sc-atTrio .trioOn .dp',800), SH('.sc-atTrio .trioOn .tx'), D('.sc-atTrio .trioAt .dp',600), SH('.sc-atTrio .trioAt .fx'), SH('.sc-atTrio .trioAt .tx')) ] },
+     { sense:8, cap:'Woodward 老师的收尾：换个主角再演一遍——小狗来到门口这个点上。',
+       sent:'The dog is at the door.', sentHtml:'The dog is <b>at</b> the door.',
+       acts:[ SQ(ES('.sc-atTrio',650), D('.sc-atRecast .doorR',800), D('.sc-atRecast .dogR .dp',700), SH('.sc-atRecast .dogR .fx'), pcShow('pc8')) ] },
+     { sense:9, cap:'全家福时间！所有意思都从中间这个「点」长出来——一个一个再看一遍。左下角是我们向谁学了什么。',
+       acts:[ SQ(pcShow('pc7'), H.recapTour('.sc-atRecast')) ] },
+     { sense:9, cap:'下次见到 at，先想「是不是只看一个点」。点圆点可以跳到任何一拍，点「重播这一站」可以再看一站。',
+       acts:[ SQ(D1('.gSpokes .bigCheck',650), DL(200)) ] },
+    ];
+  }
+});
 </script>
 </body>
 </html>
