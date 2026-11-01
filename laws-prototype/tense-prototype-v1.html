@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时态实验室 · 场景机原型</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:#eef3f9;color:#1d2733}
+header.top{background:#20548f;color:#fff;padding:14px 18px}
+header.top h1{margin:0;font-size:21px}
+header.top p{margin:4px 0 0;font-size:13px;opacity:.88}
+main{max-width:1060px;margin:0 auto;padding:16px}
+.view{display:none}
+.view.on{display:block}
+.panels{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:#fff;border-radius:14px;padding:16px;box-shadow:0 1px 4px rgba(20,50,90,.10);cursor:pointer;border:2px solid transparent}
+.card:hover{border-color:#7db3e8}
+.card h3{margin:0 0 6px;font-size:17px}
+.card p{margin:0;font-size:13px;color:#5a6a7a;line-height:1.55}
+.badge{display:inline-block;background:#20548f;color:#fff;border-radius:20px;padding:1px 10px;font-size:12px;margin-left:6px;vertical-align:2px}
+.sec{background:#fff;border-radius:14px;padding:18px;box-shadow:0 1px 4px rgba(20,50,90,.10)}
+.sec h2{margin:2px 0 8px;font-size:20px}
+.sec h3{margin:18px 0 8px;font-size:16px}
+.back{background:#eef3f9;border:1px solid #c9d8ea;border-radius:20px;padding:5px 14px;cursor:pointer;font-size:13px;margin-bottom:10px}
+.lead{font-size:14px;color:#43536a;line-height:1.7}
+.adult{margin-top:16px;background:#f6f8fa;border:1px dashed #b9c6d4;border-radius:10px;padding:10px 12px;font-size:12px;color:#67788c;line-height:1.7}
+.adult b{color:#43536a}
+.btn{background:#20548f;color:#fff;border:none;border-radius:10px;padding:8px 16px;font-size:14px;cursor:pointer}
+.btn.sub{background:#e8eff7;color:#20548f;border:1px solid #b9cfe6}
+.btn:disabled{opacity:.45;cursor:default}
+.chip{display:inline-block;background:#eef3f9;border:2px solid #c9d8ea;border-radius:22px;padding:6px 14px;margin:3px;cursor:pointer;font-size:14px;user-select:none}
+.chip.on{background:#20548f;color:#fff;border-color:#20548f}
+.chip small{display:block;font-size:11px;opacity:.75}
+.stage{position:relative;height:250px;border-radius:14px;overflow:hidden;background:linear-gradient(#fdfdf8,#f4f1e4);border:2px solid #d8d2ba;margin:10px 0}
+.zone{position:absolute;top:0;bottom:0;width:33.34%;padding:6px 8px;font-size:12px;color:#7a7460}
+.zone.past{left:0;background:rgba(120,150,190,.10)}
+.zone.now{left:33.33%;background:rgba(90,180,110,.10)}
+.zone.future{left:66.66%;background:rgba(240,180,90,.12)}
+.tline{position:absolute;left:3%;right:3%;top:150px;height:4px;background:#8a8474;border-radius:2px}
+.nowtok{position:absolute;top:180px;transform:translateX(-50%);text-align:center;font-size:12px;color:#22703c;font-weight:700;z-index:3;line-height:1.35}
+.evbar{position:absolute;top:128px;width:128px;height:46px;transform:translateX(-50%);background:#ffb84d;border:3px solid #d98a12;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#5c3a00;cursor:grab;z-index:4;transition:left .55s ease;box-shadow:0 2px 6px rgba(0,0,0,.15);touch-action:none}
+.evbar.inside{border-style:dashed}
+.cam{position:absolute;top:36px;transform:translateX(-50%);text-align:center;font-size:30px;cursor:grab;z-index:5;transition:left .55s ease;touch-action:none}
+.cam small{display:block;font-size:11px;color:#20548f;font-weight:700;background:#fff;border:1px solid #b9cfe6;border-radius:8px;padding:0 4px}
+.lookarrow{position:absolute;top:86px;height:0;border-top:3px dashed #c0392b;z-index:2;transition:all .55s ease}
+.resultstar{position:absolute;top:102px;transform:translateX(-50%);font-size:15px;color:#a87b00;font-weight:700;z-index:3;transition:left .55s ease;white-space:nowrap}
+.blocks{min-height:64px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:8px 0}
+.block{background:#20548f;color:#fff;border-radius:10px;padding:8px 12px;font-size:17px;font-weight:700;animation:pop .35s ease both}
+.block small{display:block;font-size:10px;font-weight:400;opacity:.85}
+.block.help{background:#5b8fc7}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.sent{font-size:23px;font-weight:700;background:#f4f9ff;border:2px solid #b9cfe6;border-radius:12px;padding:12px 14px;margin:8px 0}
+.cellchip{display:inline-block;background:#ffe9a8;border:2px solid #d9a812;color:#5c4a00;border-radius:10px;padding:6px 12px;font-weight:700;font-size:15px}
+.why{font-size:14px;color:#43536a;line-height:1.7;background:#fbfcfe;border-left:4px solid #7db3e8;padding:8px 12px;border-radius:0 10px 10px 0}
+.gatebox{display:none;background:#fdf0ef;border:2px solid #e0a49e;border-radius:12px;padding:10px 14px;font-size:14px;line-height:1.7;margin:8px 0}
+.gatebox.on{display:block}
+.recipe{background:#fffbe8;border:2px solid #e6d47c;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.8}
+.clock{font-size:22px;font-weight:700;background:#1d2733;color:#ffd94d;border-radius:10px;padding:6px 14px;display:inline-block;font-family:ui-monospace,monospace}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#d5dde6;margin:0 3px}
+.dot.done{background:#20548f}
+.dot.cur{background:#ffb84d;outline:2px solid #d98a12}
+.storysent{font-size:21px;font-weight:700;line-height:1.6}
+.storysent .hl{background:#ffe9a8;border-radius:6px;padding:0 4px}
+.jobtag{display:inline-block;border-radius:16px;padding:3px 12px;font-size:13px;font-weight:700;color:#fff}
+.jobtag.fg{background:#3d9970}.jobtag.bg{background:#5b8fc7}.jobtag.fb{background:#8e5bb5}
+.opt{display:block;width:100%;text-align:left;background:#eef3f9;border:2px solid #c9d8ea;border-radius:10px;padding:9px 14px;margin:5px 0;font-size:15px;cursor:pointer}
+.opt.right{background:#e2f4e5;border-color:#3d9970}
+.opt.wrong{background:#fdeaea;border-color:#c0392b;animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.fb{font-size:14px;line-height:1.7;padding:8px 12px;border-radius:10px;background:#f6f8fa;display:none}
+.fb.on{display:block}
+table.grid{border-collapse:separate;border-spacing:5px;width:100%}
+table.grid td{border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;font-size:14px;line-height:1.5;border:2px solid transparent}
+table.grid td:hover{border-color:#20548f}
+table.grid th{font-size:13px;color:#43536a;padding:4px}
+.fq-core{background:#20548f;color:#fff}
+.fq-mid{background:#8fb6dd;color:#10283f}
+.fq-pale{background:#d7e5f2;color:#43536a}
+.fq-palest{background:#eef3f9;color:#93a5b8}
+.scoba{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:12px 0}
+.snode{flex:1;min-width:150px;background:#f4f9ff;border:2px solid #7db3e8;border-radius:12px;padding:12px;text-align:center;cursor:pointer;font-size:14px;line-height:1.6}
+.snode b{font-size:16px;display:block}
+.sarrow{align-self:center;font-size:22px;color:#7db3e8;padding:0 4px}
+.pulse{animation:pulseA .6s ease 3}
+@keyframes pulseA{50%{box-shadow:0 0 0 8px rgba(255,184,77,.55)}}
+.winbar{position:relative;height:56px;background:#eef3f9;border-radius:10px;margin:10px 0;overflow:hidden}
+.winfill{position:absolute;top:0;bottom:0;background:rgba(61,153,112,.30);border-right:4px solid #22703c;transition:all .5s ease}
+.winfill.closed{background:rgba(192,57,43,.18);border-right:4px solid #c0392b}
+.winlab{position:absolute;top:4px;font-size:12px;color:#43536a}
+.mini{font-size:13px;color:#5a6a7a;line-height:1.6}
+.kbd{background:#1d2733;color:#fff;border-radius:6px;padding:0 7px;font-size:12px}
+.exp{border:2px solid #e3eaf2;border-radius:12px;padding:14px;margin:12px 0}
+.exp h4{margin:0 0 6px;font-size:15px}
+.dragobj{display:inline-block;font-size:26px;background:#fff;border:2px solid #d9a812;border-radius:12px;padding:6px 12px;cursor:pointer;margin:4px}
+.dragobj.sel{outline:3px solid #ffb84d}
+select.verbkind{font-size:14px}
+footer{max-width:1060px;margin:0 auto;padding:0 16px 26px;font-size:12px;color:#8496a8}
+</style>
+</head>
+<body>
+<header class="top">
+<h1>⏱️ 时态实验室 · 场景机原型</h1>
+<p>先摆场景，再拼形式：摄影机站在哪里、怎么看、是什么动词 —— 三个决定做完，时态自己长出来。</p>
+</header>
+<main>
+<!-- ============ HOME ============ -->
+<section class="view on" id="v-home">
+<div class="panels">
+  <div class="card" onclick="show('v-scene')"><h3>🎬 场景机<span class="badge">核心</span></h3><p>拖事件、拖摄影机、换看法，机器把动词一块一块拼出来，并告诉你落在哪一格。</p></div>
+  <div class="card" onclick="show('v-story')"><h3>📖 故事播放器<span class="badge">7 句</span></h3><p>一个上学路上的小故事：有的句子推着时钟走，有的让时钟冻住，还有一句要跳回过去。</p></div>
+  <div class="card" onclick="show('v-perfect')"><h3>🔑 现在完成时实验室<span class="badge">6 个实验</span></h3><p>时间窗口、So now…?、去过几次、been/gone、since/for、just/already/yet——全都可以动手。</p></div>
+  <div class="card" onclick="show('v-trap')"><h3>🪤 状语陷阱 + 无提示模式<span class="badge">2 关</span></h3><p>先靠时间词答题，再把时间词全部拿走——这次只能靠动词自己。还有一个真实病句等你拆。</p></div>
+  <div class="card" onclick="show('v-future')"><h3>🎡 未来转盘<span class="badge">4 种未来</span></h3><p>谈未来不是只有 will：临时决定、早有计划、已经约好、时刻表——看情景选说法。</p></div>
+  <div class="card" onclick="show('v-grid')"><h3>🗺️ 总览地图<span class="badge">12 格</span></h3><p>课本上的 12 格表在这里当「地图」：颜色越深越常用。点任何一格，把它装进场景机。</p></div>
+  <div class="card" onclick="show('v-scoba')"><h3>🧭 概念图<span class="badge">1 张图</span></h3><p>整个时态系统就一条路：摄影机 → 看法 → 动词种类 → 拼积木。点图上的每一步，直接跳过去动手。</p></div>
+  <div class="card" onclick="show('v-gate')"><h3>🚪 动词种类闸门<span class="badge">4 类动词</span></h3><p>为什么 know 不能钻进去说 *is knowing？动词分四类，有的类会把某些看法「闸」住。</p></div>
+</div>
+<div class="adult"><b>给老师/家长：</b>本原型按 2026-11-01 时态教学调研的裁决建造：3×4 网格降为地图，中心改为「场景机」——三个可操纵的决定（参照点 R / 视角 / 动词种类）先行，形式最后拼出。各区末尾都标注了模型出处。</div>
+</section>
+<!-- ============ SCENE MACHINE ============ -->
+<section class="view" id="v-scene">
+<div class="sec">
+<button class="back" onclick="show('v-home')">← 回目录</button>
+<h2>🎬 场景机：先摆场景，形式自己跟上</h2>
+<p class="lead">三步：<b>① 选一个动词</b>（注意它是哪一类）→ <b>② 把故事摄影机拖到你要讲的时间</b>（事件条会跟着摄影机走；选「回头看」时，事件会退到摄影机身后）→ <b>③ 选一个看法</b>。动词积木会按口诀自己拼好。</p>
+
+<div>
+<span class="mini">选动词（按种类分组）：</span><br>
+<span id="smKinds"></span>
+</div>
+<div style="margin-top:6px"><span class="mini">当前动词：</span><span id="smVerbTag"></span></div>
+
+<div class="stage" id="smStage">
+  <div class="zone past">过去</div><div class="zone now">现在</div><div class="zone future">将来</div>
+  <div class="cam" id="smCam" title="拖动摄影机">📷<small>故事摄影机</small></div>
+  <div class="lookarrow" id="smArrow" style="display:none"></div>
+  <div class="resultstar" id="smStar" style="display:none">⭐结果在这儿</div>
+  <div class="tline"></div>
+  <div class="nowtok" id="smNow" style="left:50%">▲<br>🧍 我·现在（说话时刻）</div>
+  <div class="evbar" id="smBar" title="拖动事件">🎨 paint</div>
+</div>
+<div>
+<span class="mini">把摄影机放到：</span>
+<button class="chip" data-cam="past" onclick="setR('past')">⏪ 过去</button>
+<button class="chip" data-cam="now" onclick="setR('now')">🧍 现在（和我站在一起）</button>
+<button class="chip" data-cam="future" onclick="setR('future')">⏩ 将来</button>
+<span class="mini">（也可以直接拖 📷 和事件条）</span>
+</div>
+<div style="margin-top:8px">
+<span class="mini">选看法（摄影机怎么看这件事）：</span><br>
+<button class="chip" data-v="whole" onclick="setV('whole')">📷 全景<small>整件事看完：头、中、尾都在画面里</small></button>
+<button class="chip" data-v="inside" onclick="setV('inside')">🔍 钻进去<small>只看过程：头和尾都在画面外</small></button>
+<button class="chip" data-v="back" onclick="setV('back')">🔙 回头看<small>事情在身后，结果拿在手里</small></button>
+<button class="chip" data-v="backinside" onclick="setV('backinside')">🔙🔍 回头看·还在继续<small>从过去一路做到摄影机跟前</small></button>
+</div>
+
+<div class="blocks" id="smBlocks"></div>
+<div class="sent" id="smSentence">—</div>
+<div><span class="cellchip" id="smCell">—</span> <button class="btn sub" onclick="speakSm()">🔊 读一读</button></div>
+<p class="why" id="smWhy" style="margin-top:10px"></p>
+<div class="gatebox" id="smGate"></div>
+
+<div class="recipe" style="margin-top:12px"><b>🧱 拼积木口诀</b>（Reasoning School 的配方）：<br>
+时间放在<b>第一个帮手</b>身上。进行 = <b>be + 动词-ing</b>。完成 = <b>have + V3</b>（动词的第三形）。<br>
+一个积木决定下一个积木的形状：<span class="kbd">will</span> → <span class="kbd">have</span>（原形）→ <span class="kbd">been</span>（be 的 V3）→ <span class="kbd">painting</span>（-ing）。</div>
+
+<div class="adult"><b>我们向谁学了什么：</b>三个决定来自 Reichenbach 的 E–R–S 模型（事件 / 参照点 / 说话时刻）和 Comrie（1976）「体 = 观看事件内部时间的方式」，摄影机变焦是 Smith 的相机隐喻；拼积木配方来自 Reasoning School 的 Tense Time Machine（2026-11-02 实测）。成人术语：故事摄影机 = 参照点 R；我·现在 = 说话时刻 S；事件条 = 事件 E。</div>
+</div>
+</section>
+
+<!-- ============ STORY PLAYER ============ -->
+<section class="view" id="v-story">
+<div class="sec">
+<button class="back" onclick="show('v-home')">← 回目录</button>
+<h2>📖 故事播放器：Tom 的上学路</h2>
+<p class="lead">一句一句往下讲。注意看时钟：<b>推进故事</b>的句子会让时钟往前走；<b>背景</b>句子会把时钟冻住（我们钻进那一刻里面看）；<b>闪回</b>句子会让摄影机往回跳。每句先别看答案——点「先说理由」，说对理由，形式的名字自然就出来了。</p>
+<div style="margin:10px 0"><span class="clock" id="stClock">🕖 7:00</span> <span id="stDots" style="margin-left:10px"></span></div>
+<div class="stage" id="stStage" style="height:170px">
+  <div class="zone past">早些时候</div><div class="zone now">故事现在</div><div class="zone future">还没讲到</div>
+  <div class="cam" id="stCam" style="left:50%">📷<small>故事摄影机</small></div>
+  <div class="tline" style="top:120px"></div>
+  <div style="position:absolute;left:0;right:0;top:132px;text-align:center;font-size:13px;color:#7a7460">摄影机站在哪一刻，哪一刻就是故事的「现在」</div>
+</div>
+<div class="storysent" id="stSent">点「讲下一句」开始。</div>
+<div style="margin:10px 0">
+<span id="stJob"></span>
+<button class="btn sub" id="stWhyBtn" onclick="storyReason()" style="display:none">💬 先说理由</button>
+<button class="btn" id="stNext" onclick="storyNext()">▶ 讲下一句</button>
+<button class="btn sub" onclick="storyReset()">↺ 重讲</button>
+</div>
+<p class="why" id="stReason" style="display:none"></p>
+<div class="adult"><b>我们向谁学了什么：</b>前景推进时钟、背景冻结时钟来自 Bardovi-Harlig 的语篇假设（Discourse Hypothesis）：故事的主线用一般过去时往前推，背景用过去进行时铺陈，闪回用过去完成时；故事结构参照 Reasoning School F3.5 的 story 模型。</div>
+</div>
+</section>
+<!-- ============ PERFECT LAB ============ -->
+<section class="view" id="v-perfect">
+<div class="sec">
+<button class="back" onclick="show('v-home')">← 回目录</button>
+<h2>🔑 现在完成时实验室</h2>
+<p class="lead">现在完成时最容易被误会成「做完了」。其实它说的是：<b>摄影机站在现在，回头看过去的事，结果还留在现在</b>。下面六个实验，一个一个动手验。</p>
+
+<div class="exp"><h4>实验 1 · 时间窗口：窗口还开着吗？</h4>
+<p class="mini">窗口的右沿永远钉在「现在」。窗口还开着（今天、本周、这一年）→ 可以用完成时；窗口已经关门（去年、2023 年）→ 只能讲故事，用一般过去时。</p>
+<div>
+<button class="chip" data-win="lastyear" onclick="setWin('lastyear')">去年 last year 🔒关门</button>
+<button class="chip" data-win="inlastyear" onclick="setWin('inlastyear')">这一年里 in the last year 🪟开着</button>
+<button class="chip" data-win="today" onclick="setWin('today')">今天 today 🪟开着</button>
+<button class="chip" data-win="thisweek" onclick="setWin('thisweek')">本周 this week 🪟开着</button>
+<button class="chip" data-win="y2023" onclick="setWin('y2023')">2023 年 in 2023 🔒关门</button>
+</div>
+<div class="winbar"><div class="winfill" id="pfWinFill"></div><span class="winlab" id="pfWinLab" style="right:8px">现在 →</span></div>
+<div class="sent" id="pfWinSent" style="font-size:19px">—</div>
+<p class="why" id="pfWinWhy"></p>
+</div>
+
+<div class="exp"><h4>实验 2 · So now…? 先查现在，再说时态</h4>
+<p class="mini">Murphy 的办法：别先想时态，先问一句 <b>So now…?</b>（那么现在呢？）</p>
+<p style="font-size:16px">Tom 的钥匙丢了。—— <b>So now… 他现在有钥匙吗？</b></p>
+<button class="btn sub" onclick="soNow(false)">没有，他还进不了门 😟</button>
+<button class="btn sub" onclick="soNow(true)">有啦，他已经找到了 😀</button>
+<div class="sent" id="rsSent" style="font-size:19px;display:none"></div>
+<p class="why" id="rsWhy" style="display:none"></p>
+</div>
+
+<div class="exp"><h4>实验 3 · 去过几次？经验计数器</h4>
+<p class="mini">在「我的一生」这个大窗口里，去过几次都数得出来；可是一旦说出<b>具体哪一天</b>，这件事就掉出完成时窗口，回到故事线。</p>
+<div class="sent" id="exSent" style="font-size:19px">I have never been to Beijing.</div>
+<button class="btn sub" onclick="expAdd()">➕ 去了一次</button>
+<button class="btn sub" onclick="expReset()">↺ 归零</button>
+<button class="btn sub" onclick="expDate()">📅 加上具体日期：2024 年 5 月 3 日</button>
+<p class="why" id="exWhy">窗口里只数次数，不说哪一天。</p>
+</div>
+
+<div class="exp"><h4>实验 4 · been 还是 gone？看人现在在哪</h4>
+<p class="mini">他去北京了。<b>Where is he now?</b>（他现在在哪？）—— 回来了是 been，还在那儿是 gone。</p>
+<div style="font-size:30px;margin:8px 0">🏠 家 <span id="bgTrip">🚶</span> — — — ✈️ — — — 🏯 北京</div>
+<button class="btn sub" onclick="beenGone('gone')">他还在北京</button>
+<button class="btn sub" onclick="beenGone('been')">他已经回来了 🎁</button>
+<div class="sent" id="bgSent" style="font-size:19px">He has gone to Beijing. / He has been to Beijing. —— 选一个看看。</div>
+<p class="why" id="bgWhy" style="display:none"></p>
+</div>
+
+<div class="exp"><h4>实验 5 · since 是图钉，for 是橡皮筋</h4>
+<p class="mini">先点一个工具，再点一个时间：图钉只能钉在<b>一个点</b>上（since），橡皮筋只能拉成<b>一段时间</b>（for）。</p>
+<div>
+<span class="dragobj" id="sfPin" onclick="sfPick('since')">📌 since</span>
+<span class="dragobj" id="sfBand" onclick="sfPick('for')">🎗️ for</span>
+</div>
+<div style="margin-top:8px">
+<button class="chip" onclick="sfPlace('point','2023')">2023 年（点）</button>
+<button class="chip" onclick="sfPlace('point','Monday')">星期一（点）</button>
+<button class="chip" onclick="sfPlace('point','five')">五岁时（点）</button>
+<button class="chip" onclick="sfPlace('band','two years')">两年（一段）</button>
+<button class="chip" onclick="sfPlace('band','an hour')">一个小时（一段）</button>
+</div>
+<div class="sent" id="sfSent" style="font-size:19px">I have known Lily ____ .</div>
+<p class="fb" id="sfFb"></p>
+</div>
+
+<div class="exp"><h4>实验 6 · just / already / yet：站在预想线上</h4>
+<p class="mini">这三个词不是「标志词」，是位置：just = 紧贴着现在之前；already = 比预想的早；yet = 预想到现在该发生了、却还没发生（多用于问句和否定句）。点一点试试：</p>
+<button class="opt" onclick="jy(this,true,'just = 紧贴现在之前：I have just eaten. 我刚刚吃完。')">🍚 「我刚刚吃完。」→ just</button>
+<button class="opt" onclick="jy(this,true,'already = 比预想早：Have you finished already? 这么快就做完啦？')">⚡ 「这么快！你已经做完了？」→ already</button>
+<button class="opt" onclick="jy(this,true,'yet = 预想该发生了还没发生：Have you eaten yet? 你吃了吗（还没吃吧）？')">⌛ 「你还没吃吗？」→ yet</button>
+</div>
+
+<div class="adult"><b>我们向谁学了什么：</b>实验 2、4 来自 Murphy《Grammar in Use》（结果在现在的照片式检验、been = 回来了 / gone = 还在那儿）；实验 1、3 的时间窗口来自 Seonaid《Perfect English Grammar》的 unfinished / finished 划分与 EnglishPage 的完成时图示；实验 5 是把 since = 点、for = 段做成两种不同形状的工具。</div>
+</div>
+</section>
+
+<!-- ============ TRAP ============ -->
+<section class="view" id="v-trap">
+<div class="sec">
+<button class="back" onclick="show('v-home')">← 回目录</button>
+<h2>🪤 状语陷阱 + 无提示模式</h2>
+<p class="lead">很多同学靠「标志词」答题：看到 yesterday 就选过去时。标志词是拐杖——<b>第一关</b>可以拄着走；<b>第二关</b>把拐杖拿走，只能靠场景和动词自己判断。</p>
+<h3>第一关 · 有时间词帮忙</h3>
+<div id="tq1"></div>
+<h3>第二关 · 无提示模式（时间词被拿走了）</h3>
+<p class="mini">提示换成了场景线索：结果还在现在吗？是在讲故事的顺序吗？是钻进那一刻看吗？</p>
+<div id="tq2"></div>
+
+<h3>🪤 陷阱演示：yesterday 会把摄影机钉走</h3>
+<p class="lead">有个同学写了这句病句。点一下，把 <span class="kbd">yesterday</span> 放进句子——看摄影机发生什么事：</p>
+<div class="sent" id="ytSent" style="font-size:20px">I have seen him <span style="color:#c0392b" id="ytSlot">＿＿＿＿</span>.</div>
+<button class="btn" id="ytBtn" onclick="ytBreak()">把 yesterday 放进句子</button>
+<button class="btn sub" id="ytFixBtn" onclick="ytFix()" style="display:none">🔧 这样改</button>
+<p class="why" id="ytWhy" style="display:none"></p>
+<div class="adult" id="ytHospital"><b>🏥 病句医院 · 真实病例（逐字摘自公开语料研究）：</b><br>
+病句：<b>I have seen him yesterday.</b>　正确：<b>I saw him yesterday.</b><br>
+写病句的同学：初二。来源：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163<br>
+出处定位：表2「误选典型案例」中「时态混淆」行，语料编号 S05；原文分析：现在完成时被简化为「过去事件标记」，忽略其「现在相关性」语义，导致与一般过去时混淆；此类误选约占其时态错误的 40%。</div>
+<div class="adult"><b>为什么有这一关：</b>Bardovi-Harlig 的研究指出，学习者先靠语境、再靠时间词、最后才靠动词形式本身；语料研究（CLEC 等）也显示中国学生高度依赖时间状语。练习必须有计划地撤掉时间词，动词形式才会变成真正的线索。</div>
+</div>
+</section>
+<!-- ============ FUTURE DIAL ============ -->
+<section class="view" id="v-future">
+<div class="sec">
+<button class="back" onclick="show('v-home')">← 回目录</button>
+<h2>🎡 未来转盘：谈未来有四种说法</h2>
+<p class="lead">英语谈未来没有唯一的形式，是<b>看情景选说法</b>。先点一个情景，再选你觉得对的说法：</p>
+<div id="fuScenes"></div>
+<div id="fuOpts" style="margin-top:10px"></div>
+<p class="fb" id="fuFb"></p>
+<h3>⚠️ 小陷阱：when 后面不用 will</h3>
+<p style="font-size:16px">When Tom ____ home, he will do his homework.（当 Tom 到家时，他会做作业。）</p>
+<button class="opt" data-wi onclick="wi(this,true)">gets</button>
+<button class="opt" data-wi onclick="wi(this,false)">will get</button>
+<p class="fb" id="wiFb"></p>
+<div class="adult"><b>我们向谁学了什么：</b>未来四分法来自 Reasoning School F3.6「英语没有单一的将来形式，它是借来的」与 Woodward English 的 will vs going to 意义对比；when/if 时间状语从句不用 will 同为 Reasoning F3.6 的明确提醒。将来的 will 本质上是情态（把握/意愿），不是和过去式平行的「时态」——成人层注记，儿童层只学选情景。</div>
+</div>
+</section>
+
+<!-- ============ GRID MAP ============ -->
+<section class="view" id="v-grid">
+<div class="sec">
+<button class="back" onclick="show('v-home')">← 回目录</button>
+<h2>🗺️ 总览地图：12 格是地图，不是入口</h2>
+<p class="lead">课本的 12 格表还留着——查一查、对一对很有用。但它<b>颜色有深有浅：越深越常用</b>，右下角那格（将来完成进行时）在真实英语里极少出现。读法也有讲究：除了竖着按时间读，还要<b>横着按看法读</b>——同一行，是同一种看法走过三个时间。点任何一格，把它装进场景机里摆一摆。</p>
+<div id="gridWrap"></div>
+<p class="mini">📌 口径提醒：中国教材常数 <b>16 种时态</b>（多算了「过去将来」的一行，主要用于转述别人说过的话）。这张图是 12 格口径，读法一致：先定摄影机（行），再定看法（列）。</p>
+<div class="adult"><b>我们向谁学了什么：</b>把时与体拆开、一次只合一个维度的教法有直接对照证据：Machová et al. (2026, Australian Journal of Applied Linguistics）发现组合式教学（约 5 个核心概念）比传统 12 时态模型更利初学者；横读（按体成行）来自 Lingolia 的交互时间线。</div>
+</div>
+</section>
+
+<!-- ============ SCOBA ============ -->
+<section class="view" id="v-scoba">
+<div class="sec">
+<button class="back" onclick="show('v-home')">← 回目录</button>
+<h2>🧭 概念图：整个系统就一条路</h2>
+<p class="lead">遇到任何一句英语，先走这四步。点任何一步，直接跳到对应的操作台——这张图不是挂在墙上背的，是拿来用的。</p>
+<div class="scoba">
+  <div class="snode" onclick="scobaGo('cam')"><b>① 摄影机在哪？</b>故事讲到哪一刻，摄影机就站到哪一刻（现在 / 过去的某个点 / 将来）</div><div class="sarrow">→</div>
+  <div class="snode" onclick="scobaGo('view')"><b>② 怎么看？</b>全景看完 / 钻进去看过程 / 回头看结果</div><div class="sarrow">→</div>
+  <div class="snode" onclick="show('v-gate')"><b>③ 是什么动词？</b>状态 / 活动 / 终点事件 / 瞬间事件——有的看法会被闸住</div><div class="sarrow">→</div>
+  <div class="snode" onclick="scobaGo('blocks')"><b>④ 拼积木</b>时间放在第一个帮手身上；进行 +be -ing；完成 +have V3</div>
+</div>
+<p class="why">举例：<b>The train had left.</b> —— ① 摄影机站在「我们到达车站」那一刻（过去）；② 回头看：火车开走在这之前；③ leave 是瞬间事件；④ have 用过去式 had + left（V3）。走完四步，形式自己出来。</p>
+<div class="adult"><b>我们向谁学了什么：</b>概念图 +「先说理由」的用法来自概念型教学（Concept-Based Instruction, Gal'perin → Negueruela 的 SCOBA 传统）；Fazilatfar et al. (2017）对 14 岁学习者的对照研究显示，先用概念图分别定向时、动词种类、体，再组合，效果显著优于传统教法。图必须被「用」和「讲」，只贴墙背诵无效——同一研究传统反复指出这一点。</div>
+</div>
+</section>
+
+<!-- ============ VERB GATE ============ -->
+<section class="view" id="v-gate">
+<div class="sec">
+<button class="back" onclick="show('v-home')">← 回目录</button>
+<h2>🚪 动词种类闸门：有的看法会被闸住</h2>
+<p class="lead">动词分四类。学每个形式时，先用它<b>最合拍的那一类</b>练（进行时先配活动动词，过去时先配瞬间/终点动词）——这是二语习得研究里很稳的规律（体假设）。选一个动词、一个看法，试试闸门：</p>
+<div id="gtKindInfo" style="margin:8px 0"></div>
+<div id="gtVerbs"></div>
+<div style="margin-top:8px">
+<button class="chip" data-gv="whole" onclick="gtSetV('whole')">📷 全景</button>
+<button class="chip" data-gv="inside" onclick="gtSetV('inside')">🔍 钻进去</button>
+<button class="chip" data-gv="back" onclick="gtSetV('back')">🔙 回头看</button>
+<button class="chip" data-gv="backinside" onclick="gtSetV('backinside')">🔙🔍 回头看·还在继续</button>
+</div>
+<div class="sent" id="gtOut" style="font-size:19px">先选一个动词。</div>
+<p class="why" id="gtWhy" style="display:none"></p>
+<div class="adult"><b>给老师/家长（诚实注脚）：</b>「状态动词不用进行时」是给初学者的<b>默认规则，不是绝对禁令</b>：母语者偶尔也说 I'm loving it、I'm being silly（表示暂时的、带感情的行为），学习者语料研究（IRAL 2021）显示母语者语料中状态动词进行时约占 8.36%。初中阶段应打开这个口子；小学阶段先立默认。闸门逻辑出自 Aspect Hypothesis（Andersen &amp; Shirai）：形式先长在合拍的动词类上，再向外扩展。</div>
+</div>
+</section>
+</main>
+<footer>时态实验室原型 v1 · 数据口径：动词形式与仓库 model/wordbank.json + model/verb_forms_completion.json 一致（OALD 核实）；病句病例逐字摘自 model/verb_error_cases.json（VEC-007）。</footer>
+<script>
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));window.scrollTo(0,0)}
+function say(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+
+/* ---------- verb data (forms verified vs verb_forms_completion.json / OALD) ---------- */
+const VERBS={
+ know:{base:'know',past:'knew',pp:'known',ing:'knowing',s3:'knows',kind:'state',subj:'Tom',frame:' the answer',emoji:'💡',cn:'知道'},
+ like:{base:'like',past:'liked',pp:'liked',ing:'liking',s3:'likes',kind:'state',subj:'Tom',frame:' apples',emoji:'❤️',cn:'喜欢'},
+ paint:{base:'paint',past:'painted',pp:'painted',ing:'painting',s3:'paints',kind:'activity',subj:'Tom',frame:' a picture',emoji:'🎨',cn:'画画'},
+ play:{base:'play',past:'played',pp:'played',ing:'playing',s3:'plays',kind:'activity',subj:'Tom',frame:' football',emoji:'⚽',cn:'踢球'},
+ eat:{base:'eat',past:'ate',pp:'eaten',ing:'eating',s3:'eats',kind:'accomp',subj:'Tom',frame:' an apple',emoji:'🍎',cn:'吃苹果'},
+ write:{base:'write',past:'wrote',pp:'written',ing:'writing',s3:'writes',kind:'accomp',subj:'Tom',frame:' a letter',emoji:'✉️',cn:'写信'},
+ arrive:{base:'arrive',past:'arrived',pp:'arrived',ing:'arriving',s3:'arrives',kind:'achieve',subj:'The train',frame:'',emoji:'🚂',cn:'到达'},
+ break:{base:'break',past:'broke',pp:'broken',ing:'breaking',s3:'breaks',kind:'achieve',subj:'Tom',frame:' the cup',emoji:'🏺',cn:'打破杯子'}
+};
+const KIND_CN={state:'状态',activity:'活动',accomp:'终点事件',achieve:'瞬间事件'};
+const KIND_DESC={state:'状态：没有过程，也没有终点（知道、喜欢）',activity:'活动：可以一直做下去，没有天然终点（画画、踢球）',accomp:'终点事件：做到一个终点才算完成（吃掉一个苹果、写完一封信）',achieve:'瞬间事件：一瞬间就发生（到达、打破）'};
+const FAM_CN={past:'过去',now:'现在',future:'将来'};
+const ASP_CN={whole:'全景',inside:'钻进去',back:'回头看',backinside:'回头看·还在继续'};
+const CELL_CN={past:{whole:'一般过去时',inside:'过去进行时',back:'过去完成时',backinside:'过去完成进行时'},now:{whole:'一般现在时',inside:'现在进行时',back:'现在完成时',backinside:'现在完成进行时'},future:{whole:'一般将来时',inside:'将来进行时',back:'将来完成时',backinside:'将来完成进行时'}};
+const CELL_EN={past:{whole:'Simple Past',inside:'Past Continuous',back:'Past Perfect',backinside:'Past Perfect Continuous'},now:{whole:'Simple Present',inside:'Present Continuous',back:'Present Perfect',backinside:'Present Perfect Continuous'},future:{whole:'Simple Future',inside:'Future Continuous',back:'Future Perfect',backinside:'Future Perfect Continuous'}};
+
+function gated(v,V){return v.kind==='state'&&(V==='inside'||V==='backinside')}
+function compose(v,R,V){
+  let effV=V, gate=false;
+  if(gated(v,V)){effV='whole';gate=true}
+  const B=[];
+  if(effV==='whole'){
+    if(R==='past')B.push({t:v.past,role:'时间+动作都在它身上'});
+    else if(R==='now')B.push({t:v.s3,role:'现在·主语是他/她/它，加 -s'});
+    else{B.push({t:'will',role:'时间：将来'});B.push({t:v.base,role:'动词原形'})}
+  }else if(effV==='inside'){
+    if(R==='past')B.push({t:'was',role:'be 的过去式（时间在这儿）'});
+    else if(R==='now')B.push({t:'is',role:'be 的现在式（时间在这儿）'});
+    else{B.push({t:'will',role:'时间：将来'});B.push({t:'be',role:'be 原形'})}
+    B.push({t:v.ing,role:'-ing：钻进过程里',help:true});
+  }else if(effV==='back'){
+    if(R==='past')B.push({t:'had',role:'have 的过去式（时间在这儿）'});
+    else if(R==='now')B.push({t:'has',role:'have 的现在式（时间在这儿）'});
+    else{B.push({t:'will',role:'时间：将来'});B.push({t:'have',role:'have 原形'})}
+    B.push({t:v.pp,role:'V3 过去分词',help:true});
+  }else if(effV==='backinside'){
+    if(R==='past')B.push({t:'had',role:'have 的过去式（时间在这儿）'});
+    else if(R==='now')B.push({t:'has',role:'have 的现在式（时间在这儿）'});
+    else{B.push({t:'will',role:'时间：将来'});B.push({t:'have',role:'have 原形'})}
+    B.push({t:'been',role:'be 的 V3',help:true});
+    B.push({t:v.ing,role:'-ing：一路做到摄影机跟前',help:true});
+  }
+  const sentence=v.subj+' '+B.map(b=>b.t).join(' ')+v.frame+'.';
+  const warn=(v.kind==='achieve'&&V==='backinside')?'⚠️ 瞬间事件没有「过程」可以一直看——这个格子拼得出来，但真实英语里几乎不用，别学它。':'';
+  return{sentence,blocks:B,cellCN:CELL_CN[R][effV],cellEN:CELL_EN[R][effV],gate,effV,warn};
+}
+
+/* ---------- scene machine ---------- */
+let SM={verb:'paint',R:'now',V:'whole'};
+function smInit(){
+  const kinds=[['state','状态'],['activity','活动'],['accomp','终点事件'],['achieve','瞬间事件']];
+  let h='';
+  kinds.forEach(([k,cn])=>{h+='<span style="display:inline-block;margin:4px 10px 4px 0"><span class="mini">'+cn+'：</span>';
+    Object.keys(VERBS).filter(id=>VERBS[id].kind===k).forEach(id=>{const v=VERBS[id];h+='<button class="chip" data-verb="'+id+'" onclick="setVerb(\''+id+'\')">'+v.emoji+' '+v.base+'<small>'+v.cn+'</small></button>'});
+    h+='</span>'});
+  document.getElementById('smKinds').innerHTML=h;
+  smRender();
+}
+function setVerb(id){SM.verb=id;smRender()}
+function setR(r){SM.R=r;smRender()}
+function setV(v){SM.V=v;smRender()}
+function smLoad(R,V,verb){if(verb)SM.verb=verb;SM.R=R;SM.V=V;show('v-scene');smRender()}
+function smRender(){
+  const v=VERBS[SM.verb],R=SM.R,V=SM.V;
+  document.querySelectorAll('#smKinds [data-verb]').forEach(c=>c.classList.toggle('on',c.dataset.verb===SM.verb));
+  document.querySelectorAll('[data-cam]').forEach(c=>c.classList.toggle('on',c.dataset.cam===R));
+  document.querySelectorAll('#v-scene [data-v]').forEach(c=>c.classList.toggle('on',c.dataset.v===V));
+  document.getElementById('smVerbTag').innerHTML='<b>'+v.emoji+' '+v.base+'</b>（'+KIND_CN[v.kind]+'动词）<span class="mini"> '+KIND_DESC[v.kind]+' · 过去式 '+v.past+' · V3 '+v.pp+'</span>';
+  const zoneX={past:20,now:50,future:80};
+  let camX=zoneX[R],barX=camX;
+  const backType=(V==='back'||V==='backinside');
+  if(backType){barX=Math.max(8,camX-22);if(R==='past'){camX=27;barX=9}}
+  const bar=document.getElementById('smBar'),cam=document.getElementById('smCam');
+  bar.style.left=barX+'%';cam.style.left=camX+'%';
+  bar.textContent=v.emoji+' '+v.base;
+  bar.classList.toggle('inside',V==='inside'||V==='backinside');
+  const arrow=document.getElementById('smArrow'),star=document.getElementById('smStar');
+  if(backType){arrow.style.display='block';arrow.style.left=barX+'%';arrow.style.width=(camX-barX)+'%';star.style.display='block';star.style.left=camX+'%'}
+  else{arrow.style.display='none';star.style.display='none'}
+  const c=compose(v,R,V);
+  const bl=document.getElementById('smBlocks');
+  bl.innerHTML=c.blocks.map((b,i)=>'<span class="block'+(b.help?' help':'')+'" style="animation-delay:'+(i*0.22)+'s">'+b.t+'<small>'+b.role+'</small></span>').join('<span style="font-size:18px;color:#7db3e8">→</span>');
+  document.getElementById('smSentence').textContent=c.sentence;
+  document.getElementById('smCell').textContent='落在这一格：'+FAM_CN[R]+' + '+ASP_CN[V]+' = '+c.cellCN+'（'+c.cellEN+'）';
+  let why='';
+  if(V==='whole')why='摄影机站在'+FAM_CN[R]+'，把整件事从头到尾看完——头、中、尾都在画面里。';
+  else if(V==='inside')why='摄影机钻进事情中间：只看得见过程，头和尾都在画面外。所以它不保证「做完」。';
+  else if(V==='back')why='事情发生在摄影机之前。摄影机站在'+FAM_CN[R]+'回头看——重点是它留在'+FAM_CN[R]+'的⭐结果。';
+  else why='事情从过去一路做过来，直到摄影机跟前还在继续：先回头，再钻进去看这一路。';
+  if(R==='past'&&backType)why+=' 这就是「过去的过去」：先有更早的事，再有摄影机站的那一刻。';
+  if(c.warn)why+=' '+c.warn;
+  document.getElementById('smWhy').textContent=why;
+  const g=document.getElementById('smGate');
+  if(c.gate){g.classList.add('on');g.innerHTML='🚪 <b>闸门关上了：</b>「'+v.base+'」是状态动词，没有过程可以「钻进去」。机器没有拼出 *'+(R==='now'?'is':R==='past'?'was':'will be')+' '+v.ing+'，而是改用全景形式。想细看原因，去 <a href="#" onclick="show(\'v-gate\');return false">动词种类闸门</a>。'}
+  else{g.classList.remove('on');g.innerHTML=''}
+}
+function speakSm(){say(document.getElementById('smSentence').textContent)}
+/* drag: camera & event bar */
+(function(){
+  function zoneOf(x,stage){const r=stage.getBoundingClientRect(),p=(x-r.left)/r.width;return p<0.365?'past':p<0.665?'now':'future'}
+  function drag(el,fn){el.addEventListener('pointerdown',e=>{e.preventDefault();el.setPointerCapture(e.pointerId);const st=document.getElementById('smStage');const mv=ev=>fn(zoneOf(ev.clientX,st));const up=()=>{el.removeEventListener('pointermove',mv);el.removeEventListener('pointerup',up)};el.addEventListener('pointermove',mv);el.addEventListener('pointerup',up)})}
+  window.addEventListener('DOMContentLoaded',()=>{drag(document.getElementById('smCam'),z=>setR(z));drag(document.getElementById('smBar'),z=>{if(SM.V==='back'||SM.V==='backinside'){/* event must stay before camera */ if(z!==SM.R&&({past:0,now:1,future:2})[z]<({past:0,now:1,future:2})[SM.R]){/* allowed: stays before R, position is illustrative */} }else setR(z)});smInit();storyInit();trapInit();futureInit();gridInit();gtInit()});
+})();
+</script>
+<script>
+/* ---------- story player ---------- */
+const STORY=[
+ {s:'Tom ate two eggs for breakfast.',verb:'ate',form:'一般过去时',job:'fg',jobCn:'推进故事',clock:'7:15',reason:'这句把故事往前推了一步：吃完早饭，时钟走到 7:15。推进故事的句子，用一般过去时。'},
+ {s:'Mum was cooking in the kitchen.',verb:'was cooking',form:'过去进行时',job:'bg',jobCn:'背景',clock:null,reason:'这句不推进时间——我们钻进 7:15 这一刻里面，看妈妈正在做的事。背景用过去进行时，时钟冻住。'},
+ {s:'Then Tom left home.',verb:'left',form:'一般过去时',job:'fg',jobCn:'推进故事',clock:'7:35',reason:'故事继续：出门。时钟又往前走了。'},
+ {s:'He met his friend Lily on the way.',verb:'met',form:'一般过去时',job:'fg',jobCn:'推进故事',clock:'7:50',reason:'路上又发生一件新事，故事继续往前推。'},
+ {s:'Lily was reading a picture book.',verb:'was reading',form:'过去进行时',job:'bg',jobCn:'背景',clock:null,reason:'这是遇见那一刻的背景：她正在看书。摄影机钻进去看过程，时钟不走。'},
+ {s:'Before that, Lily had finished her homework at home.',verb:'had finished',form:'过去完成时',job:'fb',jobCn:'闪回',clock:null,reason:'写作业发生在「遇见」之前——摄影机要往回跳一格，看过去的过去：过去完成时。时钟不进反退到更早。'},
+ {s:'They arrived at school at eight.',verb:'arrived',form:'一般过去时',job:'fg',jobCn:'推进故事',clock:'8:00',reason:'故事回到主线，往前走到 8:00，结束。'}
+];
+let stI=-1,stClock='7:00';
+function storyInit(){storyReset()}
+function storyReset(){stI=-1;stClock='7:00';document.getElementById('stClock').textContent='🕖 '+stClock;document.getElementById('stSent').textContent='点「讲下一句」开始。';document.getElementById('stJob').innerHTML='';document.getElementById('stWhyBtn').style.display='none';document.getElementById('stReason').style.display='none';document.getElementById('stNext').disabled=false;drawDots();document.getElementById('stCam').style.left='50%'}
+function drawDots(){document.getElementById('stDots').innerHTML=STORY.map((c,i)=>'<span class="dot'+(i<stI?' done':i===stI?' cur':'')+'"></span>').join('')}
+function storyNext(){
+  if(stI>=STORY.length-1)return;
+  stI++;const c=STORY[stI];
+  if(c.clock)stClock=c.clock;
+  document.getElementById('stClock').textContent='🕖 '+stClock;
+  const sent=document.getElementById('stSent');
+  sent.innerHTML=c.s.replace(c.verb,'<span class="hl">'+c.verb+'</span>');
+  document.getElementById('stJob').innerHTML='';
+  document.getElementById('stWhyBtn').style.display='inline-block';
+  document.getElementById('stReason').style.display='none';
+  document.getElementById('stCam').style.left=(c.job==='fb'?'24%':'50%');
+  document.getElementById('stStage').style.transform=(c.job==='bg')?'scale(1.0)':'none';
+  if(stI>=STORY.length-1)document.getElementById('stNext').disabled=true;
+  drawDots();
+}
+function storyReason(){
+  const c=STORY[stI];if(!c)return;
+  const r=document.getElementById('stReason');r.style.display='block';
+  r.innerHTML='💬 理由：'+c.reason+'<br>所以这一句用：<b>'+c.form+'</b>';
+  document.getElementById('stJob').innerHTML='<span class="jobtag '+c.job+'">'+c.jobCn+' · '+c.form+'</span>';
+  document.getElementById('stWhyBtn').style.display='none';
+}
+
+/* ---------- perfect lab ---------- */
+const WINS={lastyear:{fill:[62,100],closed:true,sent:'I visited Beijing last year.',why:'窗口已经关门：last year 是过完的一整年，摄影机进不去——只能站在现在讲故事，用一般过去时 visited。'},inlastyear:{fill:[34,100],closed:false,sent:'I have visited Beijing in the last year.',why:'窗口还开着：这一年还没过完，去北京这件事可以站在现在回头看——have visited。'},today:{fill:[88,100],closed:false,sent:'I have visited the museum today.',why:'今天还没过完，窗口开着——可以用完成时。（若今天已过完，就不行了。）'},thisweek:{fill:[72,100],closed:false,sent:'I have read three books this week.',why:'本周还没结束，窗口开着——have read。'},y2023:{fill:[8,30],closed:true,sent:'I visited Beijing in 2023.',why:'2023 年早就关门了。说出这种关门的时间，句子只能用一般过去时。'}};
+function setWin(k){const w=WINS[k];document.querySelectorAll('[data-win]').forEach(c=>c.classList.toggle('on',c.dataset.win===k));const f=document.getElementById('pfWinFill');f.style.left=w.fill[0]+'%';f.style.width=(w.fill[1]-w.fill[0])+'%';f.classList.toggle('closed',w.closed);document.getElementById('pfWinSent').textContent=w.sent;document.getElementById('pfWinWhy').textContent=(w.closed?'🔒 ':'🪟 ')+w.why}
+function soNow(has){
+  const s=document.getElementById('rsSent'),w=document.getElementById('rsWhy');s.style.display='block';w.style.display='block';
+  if(!has){s.textContent='Tom has lost his key.';w.textContent='✅ 因为「现在还没钥匙」这个结果还留在现在——所以站在现在回头看：has lost。这就是完成时要先问 So now…? 的原因。'}
+  else{s.textContent='Tom lost his key, but then he found it.';w.textContent='结果已经变了（现在有钥匙了），就不能再说 has lost。把这件事当故事讲：lost … found。一般过去时。'}
+}
+let exN=0;
+function expAdd(){exN++;document.getElementById('exSent').textContent='I have been to Beijing ×'+exN+'.';document.getElementById('exWhy').textContent='在一生这个大窗口里，只数次数，不说哪一天——完成时。'}
+function expReset(){exN=0;document.getElementById('exSent').textContent='I have never been to Beijing.';document.getElementById('exWhy').textContent='一次都没去过：never。'}
+function expDate(){if(exN===0){document.getElementById('exWhy').textContent='先去一次，再加日期试试。';return}document.getElementById('exSent').textContent='I went to Beijing on 3 May 2024.';document.getElementById('exWhy').textContent='📅 一说出具体哪一天，这件事就掉出完成时窗口，回到故事线：讲细节要用一般过去时 went。（先报喜讯用完成时，接着讲细节换过去时——这是英语新闻里的固定套路。）'}
+function beenGone(k){const s=document.getElementById('bgSent'),w=document.getElementById('bgWhy');w.style.display='block';document.getElementById('bgTrip').textContent=(k==='gone'?'— — — 🚶':'🚶 🎁');
+  if(k==='gone'){s.textContent='He has gone to Beijing.';w.textContent='Where is he now? —— 还在北京。人在那边没回来：gone。'}
+  else{s.textContent='He has been to Beijing.';w.textContent='Where is he now? —— 回家了，还带回了见闻。去过又回来了：been。'}}
+let sfTool=null;
+function sfPick(t){sfTool=t;document.getElementById('sfPin').classList.toggle('sel',t==='since');document.getElementById('sfBand').classList.toggle('sel',t==='for')}
+function sfPlace(kind,val){
+  const fb=document.getElementById('sfFb');fb.classList.add('on');
+  if(!sfTool){fb.textContent='先点一个工具：📌 since 或 🎗️ for。';return}
+  if(sfTool==='since'&&kind==='point'){document.getElementById('sfSent').textContent='I have known Lily since '+val+'.';fb.textContent='✅ 对！图钉钉在一个点上：since + 时间点。'}
+  else if(sfTool==='for'&&kind==='band'){document.getElementById('sfSent').textContent='I have known Lily for '+val+'.';fb.textContent='✅ 对！橡皮筋拉成一段时间：for + 时间段。'}
+  else if(sfTool==='since'){fb.textContent='❌ 图钉钉不住「一段时间」。since 后面要一个点；一段时间要用 for。'}
+  else{fb.textContent='❌ 橡皮筋套不住「一个点」。for 后面要一段时间；一个点要用 since。'}
+}
+function jy(el,ok,msg){el.classList.add('right');alertPos(msg)}
+function alertPos(msg){const e=document.createElement('p');e.className='why';e.textContent='📍 '+msg;const box=event.target.closest('.exp');box.appendChild(e);setTimeout(()=>e.remove(),6000)}
+
+/* ---------- trap ---------- */
+const TQ1=[
+ {s:'Yesterday I ___ him at the park.',opts:['saw','have seen'],ok:0,fb:'有 yesterday 帮忙：昨天的事，讲故事用 saw。'},
+ {s:'I ___ Beijing in 2024.',opts:['have visited','visited'],ok:1,fb:'in 2024 是关门的时间——visited。'},
+ {s:'Look! Tom ___ a picture now.',opts:['is painting','paints'],ok:0,fb:'Look! + now：我们正钻进这一刻看——is painting。'},
+ {s:'Tom ___ his key. He can\'t get in now.',opts:['loses','has lost'],ok:1,fb:'没有时间词，但结果留在现在（进不了门）：has lost。这一题其实已经在用场景判断了。'}];
+const TQ2=[
+ {s:'Tom ___ his key. He can\'t open the door.',cue:'🧍 现在的结果：门打不开，他还站在门外。',opts:['has lost','loses'],ok:0,fb:'靠结果判断：结果还留在现在 → 站在现在回头看，has lost。'},
+ {s:'First Tom ate breakfast. Then he ___ home.',cue:'📖 故事顺序：先吃早饭，接着……',opts:['has left','left'],ok:1,fb:'靠故事顺序判断：这是往前推的故事线 → left。'},
+ {s:'Shh! Tom ___ a picture. Don\'t talk to him.',cue:'🔍 钻进去看：他正在画，别打扰。',opts:['is painting','paints'],ok:0,fb:'靠看法判断：我们钻进这一刻里面 → is painting。'},
+ {s:'The train ___ at the station. Then we got on.',cue:'📖 故事顺序：先到站，接着我们上车。',opts:['has arrived','arrived'],ok:1,fb:'靠故事顺序判断：主线事件一件接一件 → arrived。'}];
+function quizHTML(list,prefix){return list.map((q,i)=>'<div style="margin:10px 0"><p style="font-size:16px;margin:4px 0">'+q.s.replace('___','<b>＿＿＿</b>')+'</p>'+(q.cue?'<p class="mini">'+q.cue+'</p>':'')+q.opts.map((o,j)=>'<button class="opt" onclick="tqPick(this,\''+prefix+'\','+i+','+j+')">'+o+'</button>').join('')+'<p class="fb" id="'+prefix+'fb'+i+'"></p></div>').join('')}
+function tqPick(el,prefix,i,j){const q=(prefix==='tq1'?TQ1:TQ2)[i];const fb=document.getElementById(prefix+'fb'+i);fb.classList.add('on');if(j===q.ok){el.classList.add('right');fb.textContent='✅ '+q.fb}else{el.classList.add('wrong');fb.textContent='❌ 再想想。'+q.fb}}
+function trapInit(){document.getElementById('tq1').innerHTML=quizHTML(TQ1,'tq1');document.getElementById('tq2').innerHTML=quizHTML(TQ2,'tq2')}
+function ytBreak(){document.getElementById('ytSlot').textContent='yesterday';const s=document.getElementById('ytSent');s.style.borderColor='#c0392b';s.style.background='#fdf0ef';const w=document.getElementById('ytWhy');w.style.display='block';w.textContent='💥 坏了！yesterday 把故事摄影机从「现在」一下子钉到了昨天。可是 have seen 要求摄影机站在现在回头看——摄影机被钉走，完成时当场散架。昨天发生的事，老老实实讲故事就行。';document.getElementById('ytFixBtn').style.display='inline-block';document.getElementById('ytBtn').disabled=true}
+function ytFix(){document.getElementById('ytSent').innerHTML='I <b>saw</b> him yesterday.';const s=document.getElementById('ytSent');s.style.borderColor='#3d9970';s.style.background='#eefaf1';document.getElementById('ytWhy').textContent='✅ 改好了：saw him yesterday——摄影机站在昨天那一刻讲故事，一般过去时。下面病句医院里就是这句真实病句。';say('I saw him yesterday.')}
+
+/* ---------- future dial ---------- */
+const FU=[
+ {scene:'📞 电话响了！你现在马上决定：去接！',cn:'临时决定',opts:['I will answer it.','I am going to answer it.','I answer it.','I am answering it tomorrow.'],ok:0,fb:'will：就在这一秒做的决定——I\'ll answer it!（口头禅式的立刻决定/承诺）'},
+ {scene:'🌧️ 看！天边乌云滚滚，风也起了。',cn:'眼前迹象',opts:['It will rain someday.','It is going to rain.','It rains.','It has rained.'],ok:1,fb:'going to：有眼前的证据（乌云）支撑的判断——It\'s going to rain.'},
+ {scene:'🎬 票都买好了：明天和 Lily 在电影院门口见。',cn:'已经约好',opts:['We will meet Lily sometime.','We meet Lily every day.','We are meeting Lily at the cinema tomorrow.','We have met Lily.'],ok:2,fb:'现在进行时谈未来：安排已经定死（票都买好了）——are meeting … tomorrow。'},
+ {scene:'🚂 看时刻表：火车 8:05 开。',cn:'时刻表',opts:['The train will be leaving happily.','The train is going to leave maybe.','The train has left.','The train leaves at 8:05.'],ok:3,fb:'一般现在时谈未来：时刻表上的时间，不由人改——leaves at 8:05。'}];
+let fuCur=null;
+function futureInit(){document.getElementById('fuScenes').innerHTML=FU.map((f,i)=>'<button class="chip" data-fu="'+i+'" onclick="fuPick('+i+')">'+f.scene+'</button>').join('')}
+function fuPick(i){fuCur=i;document.querySelectorAll('[data-fu]').forEach(c=>c.classList.toggle('on',+c.dataset.fu===i));document.getElementById('fuFb').classList.remove('on');document.getElementById('fuOpts').innerHTML=FU[i].opts.map((o,j)=>'<button class="opt" onclick="fuAns(this,'+j+')">'+o+'</button>').join('')}
+function fuAns(el,j){const f=FU[fuCur],fb=document.getElementById('fuFb');fb.classList.add('on');if(j===f.ok){el.classList.add('right');fb.textContent='✅ '+f.fb;say(f.opts[j])}else{el.classList.add('wrong');fb.textContent='❌ 这个情景是「'+f.cn+'」。'+f.fb}}
+function wi(el,ok){document.getElementById('wiFb').classList.add('on');if(ok){el.classList.add('right');document.getElementById('wiFb').textContent='✅ gets。when 后面的小句子说的是将来，也要用一般现在时——will 只留在主句（he will do…）里。'}else{el.classList.add('wrong');document.getElementById('wiFb').textContent='❌ will get 是经典陷阱：when/if 带的小句子不用 will。再试一次。'}}
+
+/* ---------- grid map ---------- */
+const GRID={future:{whole:['will paint','mid'],inside:['will be painting','pale'],back:['will have painted','pale'],backinside:['will have been painting','palest']},now:{whole:['paints','core'],inside:['is painting','core'],back:['has painted','core'],backinside:['has been painting','mid']},past:{whole:['painted','core'],inside:['was painting','core'],back:['had painted','mid'],backinside:['had been painting','pale']}};
+function gridInit(){
+  const cols=['whole','inside','back','backinside'],colCn={whole:'📷 全景（一般）',inside:'🔍 钻进去（进行）',back:'🔙 回头看（完成）',backinside:'🔙🔍 回头+继续（完成进行）'};
+  let h='<table class="grid"><tr><th></th>'+cols.map(c=>'<th>'+colCn[c]+'</th>').join('')+'</tr>';
+  ['future','now','past'].forEach(R=>{h+='<tr><th>'+FAM_CN[R]+' →</th>'+cols.map(c=>{const g=GRID[R][c];return '<td class="fq-'+g[1]+'" onclick="smLoad(\''+R+'\',\''+c+'\',\'paint\')"><b>'+CELL_CN[R][c]+'</b><br>'+ 'Tom '+g[0]+'</td>'}).join('')+'</tr>'});
+  h+='</table>';
+  document.getElementById('gridWrap').innerHTML=h;
+}
+
+/* ---------- scoba ---------- */
+function scobaGo(part){show('v-scene');smRender();const map={cam:'smCam',view:null,blocks:'smBlocks'};setTimeout(()=>{let el=null;if(part==='cam')el=document.getElementById('smCam');if(part==='blocks')el=document.getElementById('smBlocks');if(part==='view')el=document.querySelector('#v-scene [data-v].on');if(el){el.classList.remove('pulse');void el.offsetWidth;el.classList.add('pulse')}},60)}
+
+/* ---------- verb gate ---------- */
+let GT={verb:null,V:'inside'};
+function gtInit(){
+  let h='';
+  [['state','状态'],['activity','活动'],['accomp','终点事件'],['achieve','瞬间事件']].forEach(([k,cn])=>{h+='<span style="display:inline-block;margin:4px 10px 4px 0"><span class="mini">'+cn+'：</span>'+Object.keys(VERBS).filter(id=>VERBS[id].kind===k).map(id=>'<button class="chip" data-gverb="'+id+'" onclick="gtSetVerb(\''+id+'\')">'+VERBS[id].emoji+' '+VERBS[id].base+'</button>').join('')+'</span>'});
+  document.getElementById('gtVerbs').innerHTML=h;
+  document.getElementById('gtKindInfo').innerHTML=Object.keys(KIND_DESC).map(k=>'<div class="mini">· '+KIND_DESC[k]+'</div>').join('');
+}
+function gtSetVerb(id){GT.verb=id;gtRender()}
+function gtSetV(v){GT.V=v;gtRender()}
+function gtRender(){
+  document.querySelectorAll('[data-gverb]').forEach(c=>c.classList.toggle('on',c.dataset.gverb===GT.verb));
+  document.querySelectorAll('[data-gv]').forEach(c=>c.classList.toggle('on',c.dataset.gv===GT.V));
+  const out=document.getElementById('gtOut'),why=document.getElementById('gtWhy');
+  if(!GT.verb){out.textContent='先选一个动词。';why.style.display='none';return}
+  const v=VERBS[GT.verb];why.style.display='block';
+  if(gated(v,GT.V)){
+    const naive=(GT.V==='inside'?'is ':'has been ')+v.ing;
+    out.textContent='🚪 闸门关上：*'+v.subj+' '+naive+v.frame+' 不成立 → '+compose(v,'now','whole').sentence;
+    why.textContent='「'+v.base+'」是状态动词：状态没有「过程」可以钻进去看（你不能正在「知道」到一半）。所以默认用全景形式。给老师/家长的诚实注脚见本页下方：这不是绝对禁令。';
+    return;
+  }
+  const c=compose(v,'now',GT.V);
+  out.textContent='✅ '+c.sentence+'（'+c.cellCN+'）';
+  if(v.kind==='achieve'&&GT.V==='backinside')why.textContent='⚠️ 拼是拼出来了，但瞬间事件没有过程可以「一路做过来」——这个组合真实英语里几乎不用。闸门给你亮黄灯。';
+  else if(GT.V==='inside')why.textContent='✅ 闸门开着：「'+v.base+'」是'+KIND_CN[v.kind]+'，有过程，可以钻进去看。';
+  else why.textContent='✅ 这个组合成立。';
+}
+</script>
+</body>
+</html>
