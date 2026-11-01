@@ -160,6 +160,38 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 .phx .drillbox h4 {margin:2px 0 8px;}
 </style>
 
+<style>
+/* ===== FA flagship whiteboard lessons (scoped) ===== */
+.fa{margin-top:10px;font-family:"Comic Sans MS","Chalkboard SE","Segoe Print","PingFang SC","Microsoft YaHei",sans-serif;color:#39404d}
+.fa [hidden]{display:none!important}
+.fa-stage{position:relative}
+.fa-board{width:100%;height:auto;display:block;background:#fffdf6;border:3px solid #d8d2c0;border-radius:14px;box-shadow:0 4px 16px rgba(80,70,40,.12)}
+.fa-card{position:absolute;top:10px;right:10px;max-width:248px;background:#fff7ea;border:2.5px solid #f08c1e;border-radius:12px;padding:8px 12px;font-size:14px;line-height:1.5;box-shadow:0 4px 14px rgba(90,60,0,.18);z-index:4}
+.fa-predict{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);width:min(94%,560px);background:#fffef9;border:3px solid #f08c1e;border-radius:16px;padding:12px 14px 10px;box-shadow:0 10px 30px rgba(90,60,0,.25);text-align:center;z-index:5}
+.fa-predict .fa-q{font-size:16.5px;margin-bottom:9px;line-height:1.45}
+.fa-predict .fa-opts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.fa-predict .fa-opts button{font:inherit;font-size:14.5px;padding:7px 13px;border-radius:999px;border:2.5px solid #5b7186;background:#fff;cursor:pointer;color:#39404d}
+.fa-predict .fa-opts button:hover{background:#eef4f8}
+.fa-predict .fa-hint{margin-top:8px;color:#d23c2a;font-size:13.5px;min-height:18px;line-height:1.4}
+.fa-shake{animation:faShk .4s}
+@keyframes faShk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fa-capbar{margin-top:10px;background:#fffef9;border:2.5px solid #d8d2c0;border-radius:14px;padding:10px 14px}
+.fa-cap{font-size:16px;line-height:1.55;min-height:48px}
+.fa-sentbar{margin-top:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.fa-sentbar .fa-en{font-size:19px;color:#39404d;line-height:1.4}
+.fa-sentbar .fa-en b{color:#d23c2a}
+.fa-speak{font:inherit;font-size:14px;padding:5px 13px;border-radius:999px;border:2.5px solid #f08c1e;background:#fff7ea;cursor:pointer;color:#39404d}
+.fa-ctrl{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fa-ctrl>button{font:inherit;font-size:15px;padding:7px 16px;border-radius:999px;border:2.5px solid #39404d;background:#fff;cursor:pointer;color:#39404d}
+.fa-ctrl>button.primary{background:#39404d;color:#fff}
+.fa-ctrl>button:disabled{opacity:.4;cursor:default}
+.fa-dots{display:flex;gap:4px;flex-wrap:wrap;max-width:300px}
+.fa-dot{width:11px;height:11px;border-radius:50%;border:2px solid #b9bfa8;background:#fff;cursor:pointer;padding:0}
+.fa-dot.done{background:#b9bfa8}
+.fa-dot.now{background:#f08c1e;border-color:#f08c1e}
+.fa-prog{color:#8a8f7a;font-size:13.5px}
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -215,7 +247,7 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词 + get 的五个构造</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-v33"><span class="id">V-33</span><span class="tt">前缀头部定律：20 个管住 97%</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-gr33"><span class="id">GR-33</span><span class="tt">反意疑问三步法：回声机怎么配尾巴</span><span class="st deep">已做深</span></div>
-<p class="foot">原型说明：本原型做深不做全——7 个旗舰单元走完六步闭环，其余单元在分区页以目录形态呈现并标「待入模」。动画步在原型中以图式屏 + 分镜占位呈现，标注「动画版入模后由 wb5 场景渲染」。全部内容取自《专家规律清单 v6》已核实条目，未自创论断与例句体系。</p>
+<p class="foot">原型说明：本原型做深不做全——7 个旗舰单元走完六步闭环，其余单元在分区页以目录形态呈现并标「待入模」。七个旗舰单元的动画步已建成可播放的白板课（逐拍绘制 + 预测停顿）；其余规律的分镜规格已按条入模，动画生产按规格推进。全部内容取自《专家规律清单 v6》已核实条目，未自创论断与例句体系。</p>
 </section>
 
 <style>
@@ -1090,7 +1122,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <tr><td>小路</td><td>ei（在 c 后面）</td><td>ceiling、receive、receipt；另有 seize 不在 c 后也读 /iː/</td></tr>
 <tr><td>孤例</td><td>eo</td><td>people</td></tr></table>
 <div class="chips">亲戚网：<span class="chip">S-35 /eɪ/ 菜单</span><span class="chip">S-42 变脸榜（ea 的全谱）</span><span class="chip">SR-07 i before e 的成色</span><span class="chip">S-15 元音大推移</span></div>
-<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——中古英语的两个长 e 并排站队（较闭的拼 ee、较开的拼 ea）；镜 2——元音大推移，两条队先后升到 /iː/ 合流；镜 3——声音合成一个，拼写保留双轨，菜单成形。</div>
+<div class="fa" data-fa="s36"></div>
 <div class="adult"><b>成人层 · 机制</b>：ee/ea 双主力的成因是中古英语双长 e（/eː/ 与 /ɛː/）在元音大推移中合并，拼写保留双轨。<b>出处</b>：Letters and Sounds Phase 3（ea、ee）与 Phase 5（/iː/ 替代拼法）表，课程文件级；双长 e 合并见 Baugh &amp; Cable《A History of the English Language》语音章，书目级；例词读音按剑桥词典核对，词典级。<b>边界</b>：ea 另有 /e/（head、bread、read 过去式）与 /eɪ/（great 等三词）两面，见 S-42；ie 也有 /aɪ/（pie）与 /e/（friend）面；ey 有 /eɪ/ 面（见 S-35）。<b>分歧</b>：部分美国拼读体系把 ea 列为「次要」、ee 为唯一主力，与英式双主力排法不同——是教学排序之差，非事实之争。</div>
 </div></div>
 
@@ -1155,7 +1187,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <tr><td>⑦ 凑长度</td><td>给短词凑够长度（实词一般不少于三个字母）</td><td>are、ore、eye</td></tr>
 <tr><td>⑧ 无职之 e</td><td>历史上曾有理由，今天已不可考</td><td>come、some、done、giraffe</td></tr>
 <tr><td>⑨</td><td colspan="2">原表共九项；本轮经三种独立转述核到以上八项，第九项未逐项核到——入模前补核原书，不凭记忆补写。</td></tr></table>
-<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——一个 e 走进 tap，a 立刻读长；镜 2——同一个 e 站到 v 身后当护栏；镜 3——e 坐进 -le 音节凑数。一位演员，轮岗上工。</div>
+<div class="fa" data-fa="sr01"></div>
 <div class="adult"><b>成人层 · 出处</b>：Denise Eide《Uncovering the Logic of English》(2012）对 silent final e 的理由清点；本轮未打开原书，经 Pride Reading Program 7 职版、Literacy Learn 注明取材 Eide 的 9 职版、OG 系教师材料三种独立转述逐项互证——接触等级：多源转述互证级。<b>支撑</b>：Clymer (1963）实测「词尾 e 使首元音读长」一条的命中率只有 63%，故第①职必须配合变脸名单使用；Hickey 规则卡称词尾 v 规则「唯一例外是 spiv（英式俚语）」。<b>边界</b>：第③职的规范表述是 I、U、V、J 四个字母都不收尾（i 不收尾故词尾写 y/ie，见 SR-05;j 不收尾故词尾 /dʒ/ 写 ge/dge，见 SR-03)；且只对本土核心词近乎无例外——menu、flu、improv 等外来词与截短词可破。第④职适用面很小，仅限 bath/bathe 等同源词对。<b>分歧</b>：这组「职责」是教学用的事后归纳，不是历时成因清单（词尾 e 大面积来自中古屈折词尾脱落与印刷定型）；教学界取功能说，正字法研究（如 Venezky）更愿描述为拼写格局——两说并存，本条按教学可用性取功能说。</div>
 </div></div>
 
@@ -1219,7 +1251,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <tr><td><span class="rk">5</span></td><td><b>y</b></td><td>4 读：/j/ yes · /aɪ/ my、apply · /ɪ/ gym · /i/ happy</td></tr>
 <tr><td><span class="rk">6</span></td><td><b>oo</b></td><td>3 读：/uː/ moon · /ʊ/ book · /ʌ/ blood；oo+r 再读 /ɔː/ door</td></tr></table>
 <p style="margin-top:8px">ough 的内部秩序：<b>-ought 一组内部极整齐</b>（bought、thought、fought、sought、ought 全读 /ɔːt/），变脸发生在组与组之间——对策是按词族分组记，不是逐词死记。</p>
-<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——ough 的十条历史路线从同一个中古读音分头演变；镜 2——十组词各就各位排成词族；镜 3——榜单按「不可预测度」重新排队，a 退到第四、ea 上到第二。</div>
+<div class="fa" data-fa="s42"></div>
 <div class="adult"><b>成人层 · 出处</b>：ough 读音表经 Wikipedia「Ough (orthography)」与剑桥词典官方博客双源开页核对；其余各组例词读音按剑桥词典逐词核对（词典级）；计数口径为本条自定并写明。<b>边界</b>：ough 若计专名与苏格兰方言读法数目还可上浮，本榜封顶于「常用词 + 两个有词典登记的罕见项」=10；slough 一词三读是单字层面的变脸，不计入组合读法数；本榜只收元音区，辅音区两三读组合（th、ch 等）不在此排位。<b>分歧</b>：① ough 计数各家不同（美式常引 7–8 读、英式 9 读、含罕见 10 读），差在收录口径而非读音事实；② 教学处理之争——实务口径称 ough 词「只能作整词记」，词族教学口径主张按词族分组后可归队学习，本条取后者为主张、前者为下限提醒（组间选择仍无规则）。</div>
 </div></div>
 
@@ -1285,7 +1317,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <tr><td>take medicine</td><td>吃药（服药）</td></tr>
 <tr><td>take a photo</td><td>拍照</td></tr></table>
 <div class="chips">亲戚网：<span class="chip">P-19 运动事件的打包（同一思想）</span><span class="chip">CO-17 空心动词</span><span class="chip">V-16 对译陷阱</span></div>
-<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——一个「开」字遥控器对着门、灯、车、会议室全按一遍；镜 2——英语侧四个专用按钮依次亮起；镜 3——take 反过来一拖五，分管五件汉语事。</div>
+<div class="fa" data-fa="v40"></div>
 <div class="adult"><b>成人层 · 机制与出处</b>：Talmy 的词汇化模式研究把动词词根熔合哪些成分称为 conflation（熔合）；Talmy 本人也分析过非运动熔合例（shelve、powder）。出处：Talmy (1985) "Lexicalization Patterns"，收入 Shopen 主编《Language Typology and Syntactic Description》第 3 卷 (CUP, pp. 57–149)，系统化于《Toward a Cognitive Semantics》第 II 卷 (2000, MIT Press)——接触等级：二手系统论述级（经 SDSU 课程讲义与 EAGLES 综述带例核实，与 P-19 同源）；汉英对照例为词典级（《现代汉语词典》「开」义项群与学习词典 open/turn on/take 条目可逐项对查）。<b>边界（推广声明）</b>：Talmy 原论是关于一类事件之特征性编码的类型学命题，不是一张「任何动词对都有打包差」的全称定律；把「打包错位」用作日常词汇教学机制，是本条对 Talmy 思想的延伸，不引作 Talmy 原话。汉英也有大面积对齐的对子（关门 = close the door、开窗 = open the window），不许讲成「处处错位」。<b>分歧</b>：无直接对立学派；只有程度之争——类型学差异是「特征性默认」而非绝对分野，打包差是频率与默认值的差，不是「能不能」的差。</div>
 </div></div>
 
@@ -1350,7 +1382,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <tr><td>③ get + to + 地点</td><td>到达</td><td>We got to the station at six.</td></tr>
 <tr><td>④ get + 过去分词</td><td>被动味（事情落在自己身上）</td><td>He got hit by a car. / They got married.</td></tr>
 <tr><td>⑤ get + 人 + to do</td><td>说动 / 使</td><td>I got him to help me.</td></tr></table>
-<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——四个空杯子排开，名词逐个倒进去变味；镜 2——get 插头依次插进五个插座，每个插座亮起一种意思。</div>
+<div class="fa" data-fa="co17"></div>
 <div class="adult"><b>成人层 · 出处与证据等级</b>：Michael Lewis《The Lexical Approach》(1993）词汇法与语块分类——二手系统论述级；Collins COBUILD English Grammar (1990: 147）空心动词描写（核心成员 give、get、keep、have、make、take、do、set）——二手转引级；Francis, Hunston &amp; Manning《Collins COBUILD Grammar Patterns 1: Verbs》(1996）——书目+综述级；get 五构造逐项打开 Collins 词典 get 条核对——<b>词典条目原文级</b>。British Council LearnEnglish 教学页对 have/take/make/give 搭配面的列举与 COBUILD 互证。<b>边界</b>：五构造是 get 的核心构造，不是全集——get to do（有机会做）、get + -ing（启动）、get = 懂（I get it）等边缘构造另有其位，口径是「先立五构造，其余遇见再添」，不说「get 只有五种用法」；「空心」是近似说法，空心动词间仍有搭配分工残迹（shower 配 take/have、noise 配 make、speech 配 give），不可讲成完全可互换。<b>分歧</b>：词汇法的理论地位有争论（批评者指其多为既有概念重命名），但分歧不落在「空心结构按块教」这一具体主张上——它在 COBUILD 描写传统与主流教材中已是共识操作。</div>
 </div></div>
 
@@ -1411,7 +1443,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <tr><td>定版 20 个前缀清单</td><td><b>97%</b></td></tr></table>
 <div class="fix">⚠️ <b>纠正框</b>：流传的说法「<b>14 个前缀占 58%</b>」查无此据——58% 是<b>前 4 个</b>的份额，97% 对应的是<b>20 个</b>的清单。「14 个」疑与后缀侧的小集合统计串位，本清单按原文定版，不收录该说法。</div>
 <div class="chips">定版 20 名单：<span class="chip">un-</span><span class="chip">re-</span><span class="chip">in-（否定）</span><span class="chip">dis-</span><span class="chip">en-/em-</span><span class="chip">non-</span><span class="chip">in-/im-（向内）</span><span class="chip">over-</span><span class="chip">mis-</span><span class="chip">sub-</span><span class="chip">pre-</span><span class="chip">inter-</span><span class="chip">fore-</span><span class="chip">de-</span><span class="chip">trans-</span><span class="chip">super-</span><span class="chip">semi-</span><span class="chip">anti-</span><span class="chip">mid-</span><span class="chip">under-</span></div>
-<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——一百个前缀排长队，出场次数参差；镜 2——前四个班长站出来，身后的人群占了近六成；镜 3——二十人小队合围，97% 的词被认领。</div>
+<div class="fa" data-fa="v33"></div>
 <div class="adult"><b>成人层 · 出处</b>：White, Sowell &amp; Yanagihara, "Teaching Elementary Students to Use Word-Part Clues", <i>The Reading Teacher</i> 42(4), 1989, pp. 302–308；语料基础为 Carroll, Davies &amp; Richmond《The American Heritage Word Frequency Book》(1971)，三至九年级教材词频。关键句经 Marzano (2004) 逐字转引核对——接触等级：原文引文级。<b>边界</b>：① 百分比是带前缀词在学校阅读语料中的<b>出现份额（频次口径）</b>，不是词典词条种类的比例；② 语料是 1970 年代美国教材，中国学生阅读构成不同，名次细节不可直接搬用，可搬的是「头部集中、先教高频小集合」这条结构事实；③ in- 身兼二职（否定/向内）、re- 两义（再/回）、un- 兼表「做反动作」（untie），清单教学必须连义项分工一起教（见 V-39 六课序列）。<b>分歧</b>：频率派（本条立场）主张按语料频率定顺序；语义透明派提醒高频前缀恰恰多义、易假拆——两说不冲突：频率定「先教谁」，透明度定「怎么教、防哪些假朋友」。</div>
 </div></div>
 
@@ -1469,7 +1501,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <tr><td>③</td><td><b>代词对位</b></td><td>尾巴的主语必须换成与主句主语同指的代词</td></tr></table>
 <div class="chips">特例组（整组单记）：<span class="chip">I am → aren't I</span><span class="chip">Let's → shall we</span><span class="chip">祈使句 → will you / won't you</span><span class="chip">everybody / somebody → they</span><span class="chip">nothing / something → it</span></div>
 <p style="margin-top:8px">🎵 <b>语调分工</b>：尾巴<b>升调</b> = 真问（我不确定，在求证）；尾巴<b>降调</b> = 非问（我已经确定，只求你点头）。</p>
-<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——主句的助动词被复制出来搬到句尾；镜 2——正反开关「咔」地翻面；镜 3——主语换成代词对位入座，尾巴成形。</div>
+<div class="fa" data-fa="gr33"></div>
 <div class="adult"><b>成人层 · 出处与证据等级</b>：形式规则与语调分工依 Swan《Practical English Usage》第 3 版 question tags 条（§487–488 及 p. 503「meaning and intonation」），本轮打开影印页核对——接触等级：<b>章节影印页级（本簇最高）</b>。「尾巴的 do/does/did 与 GR-03『do 替补』是同一机制」为清单内互挂。<b>难点定位的等级</b>：中国学习者全程统一用 isn't it、助动词不回指，是多国「不变尾巴」母语者（法语 n'est-ce pas、德语 nicht wahr、汉语「对吧」）的共同难点，教材与教师文献一致报告——但本轮未检索到针对该错误的 CLEC 级语料计数，按纪律标为<b>教学界共识级</b>，不冒充语料定版（此项即本条的待核登记）。<b>边界</b>：主句是 I think / believe + 从句时，尾巴跟从句走（I think he's coming, isn't he?)；美式口语中反意疑问使用频率低于英式，标准教学系统仍以翻转-回指为正；降调尾巴在英式口语里大量作会话润滑，不逐句译成「对吧」。<b>分歧</b>：同极性尾巴（肯定 + 肯定，如 So you're French, are you?）表惊讶 / 讽刺 / 推断，其语用定性各参考语法措辞不一，登记为语用层分歧，不影响形式教学；语调与意义的对应是倾向而非铁律，Swan 本人即以倾向性口径表述。</div>
 </div></div>
 
@@ -5423,6 +5455,868 @@ document.addEventListener('click',function(e){
 });
 window.RV={render:render,buildPool:buildPool,buildQueue:buildQueue,answer:answer,
   store:function(){return store},byKey:function(){return BYKEY}};
+})();
+</script>
+
+<script>
+"use strict";
+/* ===== FA: flagship whiteboard lessons — replaces the 7 动画分镜占位 =====
+   Engine conventions follow whiteboard-prototype-v1.html (wb2): progressive
+   stroke drawing with pen tip, accumulation (nothing wiped), persistent
+   schema card, prediction gates that block progress, child narration,
+   end-frame sentences verbatim from each law record. Scoped under .fa. */
+window.FA = (function(){
+const NS = 'http://www.w3.org/2000/svg';
+const COL = { ink:'#39404d', red:'#d23c2a', acc:'#f08c1e', lm:'#5b7186', gry:'#a7adb5', grn:'#3d9970', paper:'#fffdf6' };
+function faSay(t){
+  try{ if (typeof window.say === 'function'){ window.say(t); return; } }catch(e){}
+  try{ const u = new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=0.85; speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){}
+}
+function el(tag, attrs, parent){
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function rectPath(x,y,w,h,r){
+  r = Math.min(r||0, w/2, h/2);
+  if (!r) return `M${x} ${y} H${x+w} V${y+h} H${x} Z`;
+  return `M${x+r} ${y} H${x+w-r} Q${x+w} ${y} ${x+w} ${y+r} V${y+h-r} Q${x+w} ${y+h} ${x+w-r} ${y+h} H${x+r} Q${x} ${y+h} ${x} ${y+h-r} V${y+r} Q${x} ${y} ${x+r} ${y} Z`;
+}
+
+/* ---------------- Player ---------------- */
+function Player(mount, lesson){
+  this.mount = mount; this.lesson = lesson;
+  this.cur = -1; this.playing = false; this.token = 0; this.gateOpen = false; this.chainActive = false;
+  this.els = {};
+  this.done = lesson.beats.map(()=>false);
+  this.build();
+}
+Player.prototype.build = function(){
+  const L = this.lesson, u = L.unit;
+  this.mount.innerHTML =
+    '<div class="fa-stage">' +
+      '<svg class="fa-board" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" aria-label="白板动画">' +
+        '<defs><filter id="faWob-'+u+'" x="-5%" y="-5%" width="110%" height="110%">' +
+        '<feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="2" seed="7" result="n"/>' +
+        '<feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/></filter></defs>' +
+        '<g class="fa-world" filter="url(#faWob-'+u+')"></g>' +
+        '<g class="fa-pen" opacity="0"><circle r="6.5" fill="'+COL.acc+'" stroke="#fff" stroke-width="2"/>' +
+        '<path d="M4 -4 L20 -20" stroke="'+COL.ink+'" stroke-width="5" stroke-linecap="round"/></g>' +
+      '</svg>' +
+      '<div class="fa-card" hidden></div>' +
+      '<div class="fa-predict" hidden><div class="fa-q"></div><div class="fa-opts"></div><div class="fa-hint"></div></div>' +
+    '</div>' +
+    '<div class="fa-capbar"><div class="fa-cap">🎬 白板课 · ' + L.title + '——点「播放」开始，画画的顺序就是想通的顺序。</div>' +
+      '<div class="fa-sentbar" hidden><span class="fa-en"></span><button type="button" class="fa-speak">🔊 读这一句</button></div></div>' +
+    '<div class="fa-ctrl">' +
+      '<button type="button" class="fa-play primary">▶ 播放</button>' +
+      '<button type="button" class="fa-step">下一拍 ▶</button>' +
+      '<button type="button" class="fa-replay">⏮ 重播</button>' +
+      '<span class="fa-dots"></span><span class="fa-prog"></span>' +
+    '</div>';
+  this.svg   = this.mount.querySelector('.fa-board');
+  this.world = this.mount.querySelector('.fa-world');
+  this.pen   = this.mount.querySelector('.fa-pen');
+  this.cardEl= this.mount.querySelector('.fa-card');
+  this.predEl= this.mount.querySelector('.fa-predict');
+  this.capEl = this.mount.querySelector('.fa-cap');
+  this.sentBar = this.mount.querySelector('.fa-sentbar');
+  this.enEl  = this.mount.querySelector('.fa-en');
+  this.progEl= this.mount.querySelector('.fa-prog');
+  this.playBtn = this.mount.querySelector('.fa-play');
+  this.stepBtn = this.mount.querySelector('.fa-step');
+  this.dotsEl  = this.mount.querySelector('.fa-dots');
+  const dots = [];
+  L.beats.forEach((b,i)=>{
+    const d = document.createElement('button');
+    d.type='button'; d.className='fa-dot'; d.title='第'+(i+1)+'拍';
+    d.addEventListener('click', ()=>this.gotoBeat(i));
+    this.dotsEl.appendChild(d); dots.push(d);
+  });
+  this.dotEls = dots;
+  this.playBtn.addEventListener('click', ()=>this.togglePlay());
+  this.stepBtn.addEventListener('click', ()=>this.stepNext());
+  this.mount.querySelector('.fa-replay').addEventListener('click', ()=>{ this.reset(); this.play(); });
+  this.mount.querySelector('.fa-speak').addEventListener('click', ()=>{ if (this.curSent) faSay(this.curSent); });
+  this.updateChrome();
+};
+Player.prototype.updateChrome = function(){
+  const n = this.lesson.beats.length;
+  this.progEl.textContent = this.cur < 0 ? ('共 ' + n + ' 拍') : ('第 ' + (this.cur+1) + ' / ' + n + ' 拍' + (this.cur === n-1 && this.done[n-1] ? ' · 🎉 学完啦' : ''));
+  this.playBtn.textContent = this.playing ? '⏸ 暂停' : (this.cur >= n-1 && this.done[n-1] ? '🔁 再看一遍' : '▶ 播放');
+  this.stepBtn.disabled = this.gateOpen || (this.cur >= n-1 && this.done[n-1]);
+  this.dotEls.forEach((d,i)=>{ d.className = 'fa-dot' + (this.done[i] ? ' done' : (i === this.cur ? ' now' : '')); });
+};
+Player.prototype.reset = function(){
+  this.token++; this.playing = false; this.gateOpen = false; this.chainActive = false;
+  this.world.innerHTML = ''; this.els = {};
+  this.cur = -1; this.done = this.lesson.beats.map(()=>false);
+  this.predEl.hidden = true; this.cardEl.hidden = true; this.sentBar.hidden = true; this.curSent = '';
+  this.capEl.textContent = '🎬 白板课 · ' + this.lesson.title + '——点「播放」开始，画画的顺序就是想通的顺序。';
+  this.updateChrome();
+};
+Player.prototype.tween = function(dur, fn){
+  if (dur <= 0){ fn(1); return Promise.resolve(true); }
+  const token = this.token, t0 = performance.now();
+  return new Promise(res=>{
+    const step = (t)=>{
+      if (token !== this.token){ res(false); return; }
+      const p = Math.min((t - t0)/dur, 1);
+      fn(p < .5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2);
+      if (p < 1) requestAnimationFrame(step); else res(true);
+    };
+    requestAnimationFrame(step);
+  });
+};
+Player.prototype.penTo = function(path, p){
+  try{
+    const L = path.getTotalLength(), pt = path.getPointAtLength(L*Math.min(Math.max(p,0),1));
+    this.pen.setAttribute('transform', 'translate(' + pt.x + ' ' + pt.y + ')');
+  }catch(e){}
+};
+Player.prototype.drawPath = function(path, dur, inst){
+  const L = path.getTotalLength();
+  path.style.strokeDasharray = L; path.style.strokeDashoffset = L;
+  if (inst){ path.style.strokeDashoffset = 0; return Promise.resolve(true); }
+  this.pen.setAttribute('opacity', 1);
+  return this.tween(dur, p=>{ path.style.strokeDashoffset = L*(1-p); this.penTo(path, p); })
+    .then(ok=>{ this.pen.setAttribute('opacity', 0); return ok; });
+};
+Player.prototype.fadeIn = function(e, inst){
+  e.style.opacity = 0;
+  if (inst){ e.style.opacity = 1; return Promise.resolve(true); }
+  return this.tween(320, p=>{ e.style.opacity = p; });
+};
+/* Execute one drawing op. Op forms:
+   ['p', d, color, w]                       stroke path
+   ['r', x,y,w,h, color, sw, rx]            rect outline (drawn)
+   ['c', cx,cy,r, color, sw]                circle outline (drawn)
+   ['f', d, fill]                           filled path (fade)
+   ['fc', cx,cy,r, fill]                    filled circle (fade)
+   ['t', x,y,size,text,fill,anchor,bold]    text (fade)
+   ['w', x,y,w,h,main,sub,color]            word card: outline + texts
+   ['a', x1,y1,x2,y2,color]                 arrow
+   ['dim', [names], opacity]                set opacity of named elements
+   ['hl', name, color, pad]                 highlight box around named element
+   Any op may end with {i:'name'} to register its element(s).            */
+Player.prototype.execOp = function(op, inst){
+  const tail = op[op.length-1];
+  const named = (tail && typeof tail === 'object' && !Array.isArray(tail) && tail.i) ? tail.i : null;
+  const reg = (e)=>{ if (named){ (this.els[named] = this.els[named] || []).push(e); } return e; };
+  const kind = op[0];
+  if (kind === 'p'){
+    const e = reg(el('path', { d: op[1], fill:'none', stroke: COL[op[2]]||op[2], 'stroke-width': op[3]||5, 'stroke-linecap':'round', 'stroke-linejoin':'round' }, this.world));
+    const L = e.getTotalLength();
+    return this.drawPath(e, inst ? 0 : Math.max(260, Math.min(L*1.1, 880)), inst);
+  }
+  if (kind === 'r'){
+    const e = reg(el('path', { d: rectPath(op[1],op[2],op[3],op[4],op[7]||10), fill:'none', stroke: COL[op[5]]||op[5], 'stroke-width': op[6]||4, 'stroke-linecap':'round', 'stroke-linejoin':'round' }, this.world));
+    const L = e.getTotalLength();
+    return this.drawPath(e, inst ? 0 : Math.max(300, Math.min(L*0.55, 760)), inst);
+  }
+  if (kind === 'c'){
+    const e = reg(el('circle', { cx:op[1], cy:op[2], r:op[3], fill:'none', stroke: COL[op[4]]||op[4], 'stroke-width': op[5]||4 }, this.world));
+    const L = e.getTotalLength();
+    return this.drawPath(e, inst ? 0 : Math.max(280, Math.min(L*1.0, 700)), inst);
+  }
+  if (kind === 'f'){
+    const e = reg(el('path', { d: op[1], fill: COL[op[2]]||op[2], stroke:'none' }, this.world));
+    return this.fadeIn(e, inst);
+  }
+  if (kind === 'fc'){
+    const e = reg(el('circle', { cx:op[1], cy:op[2], r:op[3], fill: COL[op[4]]||op[4], stroke:'none' }, this.world));
+    return this.fadeIn(e, inst);
+  }
+  if (kind === 't'){
+    const e = reg(el('text', { x:op[1], y:op[2], 'font-size':op[3], fill: COL[op[5]]||op[5], 'text-anchor': op[6]||'middle', 'font-weight': op[7] ? '700':'400' }, this.world));
+    e.textContent = op[4];
+    return this.fadeIn(e, inst);
+  }
+  if (kind === 'w'){
+    const x=op[1], y=op[2], w=op[3], h=op[4], main=op[5], sub=op[6], col=COL[op[7]]||COL.ink;
+    const outline = reg(el('path', { d: rectPath(x,y,w,h,14), fill:'#fffef9', stroke: col, 'stroke-width': 4, 'stroke-linejoin':'round' }, this.world));
+    const L = outline.getTotalLength();
+    return this.drawPath(outline, inst ? 0 : Math.max(300, Math.min(L*0.55, 620)), inst).then(ok=>{
+      if (!ok) return ok;
+      const effLen = [...String(main)].reduce((a,c)=> a + (c.charCodeAt(0) > 0x2E7F ? 1.5 : 0.62), 0);
+      const t1 = reg(el('text', { x:x+w/2, y: y + (sub ? h/2 - 2 : h/2 + 11), 'font-size': Math.min(34, Math.max(19, w/(effLen + 1))), fill: col, 'text-anchor':'middle', 'font-weight':'700' }, this.world));
+      t1.textContent = main;
+      let chain = this.fadeIn(t1, inst);
+      if (sub){
+        const t2 = reg(el('text', { x:x+w/2, y: y + h/2 + 26, 'font-size': 17, fill: COL.gry, 'text-anchor':'middle' }, this.world));
+        t2.textContent = sub;
+        chain = chain.then(()=>this.fadeIn(t2, inst));
+      }
+      return chain;
+    });
+  }
+  if (kind === 'a'){
+    const x1=op[1], y1=op[2], x2=op[3], y2=op[4], col=COL[op[5]]||COL.acc;
+    const line = reg(el('path', { d:`M${x1} ${y1} L${x2} ${y2}`, fill:'none', stroke: col, 'stroke-width': 4.5, 'stroke-linecap':'round' }, this.world));
+    const L = line.getTotalLength();
+    return this.drawPath(line, inst ? 0 : Math.max(240, Math.min(L*1.2, 560)), inst).then(ok=>{
+      if (!ok) return ok;
+      const ang = Math.atan2(y2-y1, x2-x1), s = 13;
+      const hx = a=> (x2 + s*Math.cos(a)).toFixed(1), hy = a=> (y2 + s*Math.sin(a)).toFixed(1);
+      const head = reg(el('path', { d:`M${x2} ${y2} L${hx(ang+2.6)} ${hy(ang+2.6)} L${hx(ang-2.6)} ${hy(ang-2.6)} Z`, fill: col, stroke:'none' }, this.world));
+      return this.fadeIn(head, inst);
+    });
+  }
+  if (kind === 'dim'){
+    const names = Array.isArray(op[1]) ? op[1] : [op[1]];
+    names.forEach(n=>{ (this.els[n]||[]).forEach(e=>{ e.style.transition = 'opacity .4s'; e.style.opacity = op[2]; }); });
+    return Promise.resolve(true);
+  }
+  if (kind === 'hl'){
+    const targets = this.els[op[1]] || [];
+    if (!targets.length) return Promise.resolve(true);
+    let bb = null;
+    targets.forEach(e=>{ try{ const b = e.getBBox(); bb = bb ? { x: Math.min(bb.x,b.x), y: Math.min(bb.y,b.y), x2: Math.max(bb.x2,b.x+b.width), y2: Math.max(bb.y2,b.y+b.height) } : { x:b.x, y:b.y, x2:b.x+b.width, y2:b.y+b.height }; }catch(err){} });
+    if (!bb) return Promise.resolve(true);
+    const pad = op[3] || 8;
+    const e = el('path', { d: rectPath(bb.x-pad, bb.y-pad, (bb.x2-bb.x)+2*pad, (bb.y2-bb.y)+2*pad, 14), fill:'none', stroke: COL[op[2]]||COL.acc, 'stroke-width': 4.5, 'stroke-linejoin':'round' }, this.world);
+    const L = e.getTotalLength();
+    return this.drawPath(e, inst ? 0 : 480, inst);
+  }
+  return Promise.resolve(true);
+};
+Player.prototype.execOps = function(ops, inst){
+  let chain = Promise.resolve(true);
+  (ops||[]).forEach(op=>{ chain = chain.then(ok=> ok === false ? false : this.execOp(op, inst)); });
+  return chain;
+};
+/* prediction gate — resolves only on the correct option (skipped in instant mode) */
+Player.prototype.gate = function(spec, inst){
+  if (!spec || inst) return Promise.resolve(true);
+  const token = this.token;
+  return new Promise(res=>{
+    this.gateOpen = true; this.updateChrome();
+    const box = this.predEl;
+    box.querySelector('.fa-q').textContent = '🤔 先猜一猜：' + spec.q;
+    box.querySelector('.fa-hint').textContent = '';
+    const opts = box.querySelector('.fa-opts'); opts.innerHTML = '';
+    spec.opts.forEach(o=>{
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = o[0];
+      b.addEventListener('click', ()=>{
+        if (token !== this.token){ res(false); return; }
+        if (o[1]){ box.hidden = true; this.gateOpen = false; this.updateChrome(); res(true); }
+        else { b.classList.remove('fa-shake'); void b.offsetWidth; b.classList.add('fa-shake'); box.querySelector('.fa-hint').textContent = '💡 ' + spec.hint; }
+      });
+      opts.appendChild(b);
+    });
+    box.hidden = false;
+  });
+};
+Player.prototype.applyBeatSide = function(b){
+  if (b.card){ this.cardEl.innerHTML = b.card; this.cardEl.hidden = false; }
+  if (b.sent){ this.enEl.innerHTML = b.sent.h; this.curSent = b.sent.p; this.sentBar.hidden = false; }
+};
+Player.prototype.runBeat = function(i, inst){
+  const b = this.lesson.beats[i], token = this.token;
+  this.capEl.textContent = b.cap;
+  return this.execOps(b.ops, inst).then(ok=>{
+    if (!ok || token !== this.token) return false;
+    this.applyBeatSide(b);
+    return this.gate(b.predict, inst);
+  }).then(ok=>{
+    if (ok && token === this.token){ this.done[i] = true; this.cur = i; this.updateChrome(); }
+    return ok;
+  });
+};
+Player.prototype.waitPlay = function(){
+  if (this.playing) return Promise.resolve(true);
+  const token = this.token;
+  return new Promise(res=>{
+    const chk = ()=>{ if (token !== this.token) res(false); else if (this.playing) res(true); else setTimeout(chk, 120); };
+    chk();
+  });
+};
+Player.prototype.chain = function(from){
+  const token = this.token;
+  this.chainActive = true;
+  const step = (i)=>{
+    if (token !== this.token){ return; }
+    if (i >= this.lesson.beats.length){ this.playing = false; this.chainActive = false; this.updateChrome(); return; }
+    if (this.done[i]){ step(i+1); return; }
+    this.waitPlay().then(ok=>{
+      if (!ok || token !== this.token) return;
+      return this.runBeat(i, false);
+    }).then(ok=>{
+      if (ok === false || token !== this.token) return;
+      if (i >= this.lesson.beats.length - 1){ this.playing = false; this.chainActive = false; this.updateChrome(); return; }
+      return this.tween(1150, ()=>{}).then(()=>step(i+1));
+    });
+  };
+  step(from);
+};
+Player.prototype.play = function(){
+  if (this.cur >= this.lesson.beats.length - 1 && this.done[this.lesson.beats.length-1]) this.reset();
+  this.playing = true; this.updateChrome();
+  if (!this.chainActive) this.chain(this.cur + 1);
+};
+Player.prototype.togglePlay = function(){
+  if (this.playing){ this.playing = false; this.updateChrome(); return; }
+  this.play();
+};
+Player.prototype.stepNext = function(){
+  if (this.gateOpen) return;
+  this.playing = false;
+  const nxt = this.done[this.cur] || this.cur < 0 ? this.cur + 1 : this.cur;
+  if (nxt >= this.lesson.beats.length){ this.updateChrome(); return; }
+  this.runBeat(nxt, false);
+};
+Player.prototype.gotoBeat = function(i){
+  this.token++; this.playing = false; this.gateOpen = false; this.chainActive = false; this.predEl.hidden = true;
+  this.cardEl.hidden = true; this.sentBar.hidden = true; this.curSent = '';
+  this.world.innerHTML = ''; this.els = {};
+  this.done = this.lesson.beats.map(()=>false); this.cur = -1;
+  let chain = Promise.resolve(true);
+  for (let k = 0; k <= i; k++){
+    const b = this.lesson.beats[k];
+    chain = chain.then(()=>{ this.capEl.textContent = b.cap; return this.execOps(b.ops, true); })
+      .then(()=>{ this.applyBeatSide(b); this.done[k] = true; this.cur = k; });
+  }
+  chain.then(()=>this.updateChrome());
+};
+
+const LESSONS = {};
+
+/* ================= V-33 前缀头部定律 ================= */
+LESSONS.v33 = { unit:'v33', title:'V-33 · 前缀的头部定律', beats:[
+{ cap:"先看这面墙：书里带前缀的词排成条形图——条越长，这个前缀在书里出场越多。你看，最长的那条占了好大一截。",
+  card:"📊 出场条形图<br>条越长 = 在书里出现得越多",
+  ops:[
+    ["t",480,52,25,"书里带前缀的词 · 出场条形图","ink","middle",1],
+    ["p","M150 92 V392","gry",3],["p","M150 392 H890","gry",3],
+    ["r",150,104,470,27,"lm",3.5,6,{i:"top4"}],["t",138,124,20,"un-","ink","end",1],["t",632,124,21,"26%","red","start",1],
+    ["r",150,148,300,27,"lm",3.5,6,{i:"top4"}],["t",138,168,20,"re-","ink","end",1],
+    ["r",150,192,262,27,"lm",3.5,6,{i:"top4"}],["t",138,212,20,"in-（否定）","ink","end",1],
+    ["r",150,236,182,27,"lm",3.5,6,{i:"top4"}],["t",138,256,20,"dis-","ink","end",1],
+    ["r",150,280,124,27,"gry",3,6],["t",138,300,18,"over-…","gry","end",0],
+    ["r",150,324,88,27,"gry",3,6],["t",138,344,18,"mis-…","gry","end",0],
+    ["t",480,428,17,"条越长 = 这个前缀在书里出现的次数越多","gry","middle",0]
+  ]},
+{ cap:"四个班长站出来了：un-、re-、in-、dis-。光 un- 一家就占 26%，四个加起来 58%——书里带前缀的词，一大半先归它们管。",
+  card:"🏆 班长制<br>前 4 个前缀 = <b>58%</b><br>un- 一家 = <b>26%</b> · 20 个 = <b>97%</b>",
+  ops:[
+    ["hl","top4","acc",9],
+    ["t",168,96,17,"👑班长","acc","start",1],["t",168,140,17,"👑班长","acc","start",1],
+    ["t",168,228,17,"👑班长","acc","start",1],["t",352,272,17,"👑班长","acc","start",1],
+    ["t",748,168,46,"58%","acc","middle",1],
+    ["t",748,202,18,"前四个班长合占","ink","middle",0]
+  ]},
+{ cap:"名单还长着呢：再添十六个队员，凑成定版 20 名单。先停一停，猜一猜这支队伍能管多宽。",
+  ops:[
+    ["t",480,368,15.5,"＋ sub- · pre- · inter- · fore- · de- · trans- · super- · semi- · anti- · mid- · under- · non- · over- · mis- · en-/em- · in-/im-（向内）","lm","middle",0]
+  ],
+  predict:{ q:"把名单扩到 20 个前缀，能管住书里多少带前缀的词？",
+    opts:[["六成左右",0],["八成左右",0],["97%，几乎全部",1]],
+    hint:"前四个班长已经占了 58%，再添十六个队员，队伍会拉到多长？" }},
+{ cap:"对，97%！词卡也来站队了：unhappy 站到 un- 身后；incorrect 和 input 都站到 in- 身后——注意，in- 有两份工：incorrect 里是「不」，input 里是「向内」。",
+  ops:[
+    ["w",60,404,260,80,"Unhappy.","un- 班长","lm"],
+    ["w",350,404,330,80,"Incorrect. Input.","in- 班长 · 一个否定，一个向内","lm"]
+  ],
+  sent:{ h:"<b>Unhappy.</b> · <b>Incorrect. Input.</b>", p:"Unhappy. Incorrect. Input." }},
+{ cap:"再看这张卡——uncle。它大摇大摆排到 un- 身后。先停一停，猜一猜：它站对地方了吗？",
+  ops:[
+    ["w",712,404,218,80,"uncle","排到 un- 身后？","red",{i:"uncleQ"}]
+  ],
+  predict:{ q:"uncle 开头的 un- 是前缀吗？",
+    opts:[["是，un- 表示“不”",0],["不是，uncle 是整词，un- 是冒牌的",1]],
+    hint:"想想意思：uncle（叔叔）和“不”有关系吗？病句医院第一例就是它。" }},
+{ cap:"答对了：uncle 是冒牌队员——这类假前缀有个专名叫 tricksters（捣蛋鬼），要拣出来放进整词格；reason 的 re- 也是冒牌的。还有一句要紧的：这面墙数的是出场次数，不是词条个数。",
+  ops:[
+    ["dim",["uncleQ"],0.22],
+    ["r",672,236,258,96,"gry",3,12],
+    ["t",801,262,16.5,"整词格（冒牌的放这里）","gry","middle",1],
+    ["w",684,276,110,44,"uncle","","ink"],
+    ["w",806,276,116,44,"reason","","ink"],
+    ["a",800,404,800,336,"acc"],
+    ["t",480,522,16,"这面墙数的是书里出现的次数，不是词典里的词条个数","gry","middle",0]
+  ]},
+{ cap:"收尾记住三句：先学一小撮班长；看见像前缀的先验真假；数字要连「管几个人、出场次数」一起记。",
+  ops:[
+    ["f","M90 90 H870 V450 H90 Z","paper"],
+    ["r",90,90,780,360,"acc",4,16],
+    ["t",480,168,24,"① 先学一小撮：前 4 个 = 58%，20 个 = 97%","ink","middle",1],
+    ["t",480,238,24,"② 看见像前缀的，先验真假","ink","middle",1],
+    ["t",480,282,19,"uncle、reason 是冒牌前缀（tricksters）","gry","middle",0],
+    ["t",480,352,24,"③ 数字连口径记：数的是出场次数","ink","middle",1],
+    ["t",480,410,18,"先防假拆，再学真拆","red","middle",1]
+  ],
+  sent:{ h:"<b>Unhappy.</b> · <b>Incorrect. Input.</b>", p:"Unhappy. Incorrect. Input." }}
+]};
+
+/* ================= V-40 打包法 ================= */
+LESSONS.v40 = { unit:'v40', title:'V-40 · 打包法：先看事情，再挑按钮', beats:[
+{ cap:"中文有个万能遥控器：一个「开」键，门、灯、车、会议全归它按。先把遥控器和四台设备画出来。",
+  card:"🎛️ 一个「开」键<br>门 · 灯 · 车 · 会，全归它管",
+  ops:[
+    ["r",70,120,180,300,"ink",4.5,24],
+    ["c",160,215,52,"red",5],
+    ["t",160,228,34,"开","red","middle",1],
+    ["t",160,300,16,"一个键","gry","middle",0],
+    ["fc",160,352,10,"gry"],["fc",160,386,10,"gry"],
+    ["t",160,465,20,"万能遥控器","ink","middle",1],
+    ["r",590,80,120,150,"lm",4,4,{i:"door"}],["p","M590 230 A120 120 0 0 1 668 138","acc",3.5],
+    ["t",650,262,19,"门","ink","middle",1],
+    ["c",825,140,40,"lm",4,{i:"lamp"}],["p","M825 84 V62 M778 98 L762 82 M872 98 L888 82","acc",3.5],
+    ["t",825,262,19,"灯 / 电视","ink","middle",1],
+    ["r",600,330,150,52,"lm",4,14],["c",632,390,13,"lm",3.5],["c",718,390,13,"lm",3.5],
+    ["t",675,318,19,"汽车","ink","middle",1],
+    ["c",782,330,13,"lm",3.5],["c",820,320,13,"lm",3.5],["c",858,330,13,"lm",3.5],
+    ["p","M752 362 H888","lm",4],
+    ["t",820,300,19,"开会","ink","middle",1]
+  ]},
+{ cap:"遥控器对每个设备都按同一个键——可英语那边不是这样：英语是一串专用按钮，每件事一个。先猜一个最容易错的。",
+  ops:[
+    ["p","M216 190 L586 150","gry",2.5],["p","M216 210 L780 150","gry",2.5],
+    ["p","M216 240 L596 352","gry",2.5],["p","M216 250 L748 340","gry",2.5],
+    ["t",566,138,24,"?","red","middle",1],["t",758,128,24,"?","red","middle",1]
+  ],
+  predict:{ q:"「开灯」用英语按哪个按钮？",
+    opts:[["Open the light",0],["Turn on the light",1],["Drive the light",0]],
+    hint:"灯不是开合，是通电亮起来——回机制屏对照台看第二行。" }},
+{ cap:"灯的按钮是 turn on——通电。门的按钮才是 open：门是开合的。记住这第一对：开门 open the door，开灯 turn on the light。",
+  ops:[
+    ["fc",825,140,34,"#ffd94d"],
+    ["p","M590 230 L528 176","acc",4.5],
+    ["w",60,452,200,64,"open","门 · 开合","lm"],
+    ["w",280,452,220,64,"turn on","灯 · 通电","lm"]
+  ],
+  sent:{ h:"<b>Open the door.</b>", p:"Open the door." }},
+{ cap:"剩下两个按钮也各就各位：开车是 drive——人坐进去开着走；开会是 have——把人聚起来举行一场活动。四个按钮，四种事情。",
+  ops:[
+    ["p","M596 414 H756","acc",3],
+    ["w",520,452,200,64,"drive","开车 · 驾驶","lm"],
+    ["w",740,452,200,64,"have","开会 · have a meeting","lm"]
+  ]},
+{ cap:"反过来，英语也有自己的万能按钮：take。一根线拉出去，分管五件汉语完全不同的事——拍照、吃药、坐车、带走、拿。",
+  card:"🔁 take 一键五管<br>拍照 · 吃药 · 坐车 · 带走 · 拿",
+  ops:[
+    ["f","M300 64 H930 V408 H300 Z","paper"],
+    ["r",300,64,630,344,"lm",3.5,14],
+    ["c",372,236,44,"red",5],
+    ["t",372,246,26,"take","red","middle",1],
+    ["p","M416 200 L556 122","acc",3],["p","M416 218 L556 184","acc",3],["p","M416 236 L556 246","acc",3],["p","M416 254 L556 308","acc",3],["p","M416 272 L556 370","acc",3],
+    ["w",560,96,330,52,"take a photo","拍照","ink"],
+    ["w",560,158,330,52,"take medicine","吃药","ink",{i:"med"}],
+    ["w",560,220,330,52,"take the bus","坐车","ink"],
+    ["w",560,282,330,52,"take away","带走","ink"],
+    ["w",560,344,330,52,"take","拿","ink"]
+  ]},
+{ cap:"五件差事里有一件最容易说错。先停一停，猜一猜：",
+  ops:[ ["t",725,140,24,"?","red","middle",1] ],
+  predict:{ q:"「吃药」归 take 管——用英语怎么说？",
+    opts:[["eat medicine",0],["take medicine",1],["drink medicine",0]],
+    hint:"回对照台下半张：take 的五件差事里，专门有一件管「药」。" }},
+{ cap:"对，take medicine。最后看一对「对齐」的：关门 close the door、开窗 open the window——这一对汉英正好对上。打包差是常态，不是处处错位。",
+  ops:[
+    ["r",56,12,424,54,"grn",3.5,12],
+    ["t",268,37,16.5,"关门 = close the door · 开窗 = open the window","grn","middle",1],
+    ["t",268,57,14.5,"汉英对齐的一对 · 不是处处错位","gry","middle",0]
+  ]},
+{ cap:"收尾：说英语先看这件事在干什么——开合？通电？驾驶？举行？看清了再挑按钮。take 的五件差事也整块记住，别逐词对译。",
+  ops:[
+    ["f","M90 90 H870 V450 H90 Z","paper"],
+    ["r",90,90,780,360,"acc",4,16],
+    ["t",480,166,23,"「开」的四个按钮","ink","middle",1],
+    ["t",480,208,20,"open（开合）· turn on（通电）· drive（驾驶）· have（举行）","lm","middle",0],
+    ["t",480,282,23,"take 反向一拖五","ink","middle",1],
+    ["t",480,324,20,"拍照 · 吃药 · 坐车 · 带走 · 拿","lm","middle",0],
+    ["t",480,398,21,"先看事情，再挑按钮","red","middle",1]
+  ],
+  sent:{ h:"<b>Take the medicine. Take the bus.</b>", p:"Take the medicine. Take the bus." }}
+]};
+
+/* ================= CO-17 空心动词 + get 五构造 ================= */
+LESSONS.co17 = { unit:'co17', title:'CO-17 · 空心动词与 get 五构造', beats:[
+{ cap:"四个空杯子排开：have、take、make、give。杯子自己没味道，只管端得稳——时态、人称这些语法活儿归它们干。",
+  card:"🥤 空杯子<br>动词管语法，名词装事情",
+  ops:[
+    ["p","M70 130 L200 130 L182 216 L88 216 Z","lm",4],
+    ["p","M280 130 L410 130 L392 216 L298 216 Z","lm",4],
+    ["p","M490 130 L620 130 L602 216 L508 216 Z","lm",4],
+    ["p","M700 130 L830 130 L812 216 L718 216 Z","lm",4],
+    ["t",135,252,24,"have","ink","middle",1],["t",345,252,24,"take","ink","middle",1],
+    ["t",555,252,24,"make","ink","middle",1],["t",765,252,24,"give","ink","middle",1]
+  ]},
+{ cap:"味道全在倒进去的名词里：look 倒进 have，shower 倒进 take，decision 倒进 make，call 倒进 give——短语整块端走，不拆开背。",
+  ops:[
+    ["w",60,52,150,54,"a look","","acc"],["w",270,52,150,54,"a shower","","acc"],
+    ["w",480,52,150,54,"a decision","","acc"],["w",690,52,150,54,"a call","","acc"],
+    ["a",135,106,135,126,"acc"],["a",345,106,345,126,"acc"],["a",555,106,555,126,"acc"],["a",765,106,765,126,"acc"],
+    ["t",135,282,19,"have a look","acc","middle",1],["t",345,282,19,"take a shower","acc","middle",1],
+    ["t",555,282,19,"make a decision","acc","middle",1],["t",765,282,19,"give sb a call","acc","middle",1]
+  ]},
+{ cap:"新来一个名词：a photo（照片）。它该倒进哪个杯子？先猜一猜。",
+  ops:[ ["w",395,330,170,60,"a photo","倒进哪个杯子？","red"] ],
+  predict:{ q:"a photo 该倒进哪个杯子，整块怎么说？",
+    opts:[["make a photo",0],["take a photo",1],["give a photo",0]],
+    hint:"回空杯子表找一找：拍照这件事，登记在哪个杯子名下？" }},
+{ cap:"对，take a photo。现在看万能插头 get：它后面插什么，意思就变成什么样。第一格：get + 名词 = 收到、得到。",
+  card:"🔌 get 五格插座<br>看它后面插什么，定它的意思",
+  ops:[
+    ["t",480,308,18,"take a photo ✓ 归 take 杯","acc","middle",1],
+    ["r",70,320,820,150,"ink",4,14],
+    ["t",480,348,19,"get 万能插头 · 五格插座","ink","middle",1],
+    ["r",100,368,84,84,"acc",4.5,10,{i:"s1"}],
+    ["t",142,424,30,"①","acc","middle",1],
+    ["t",142,462,15,"get + 名词","ink","middle",0]
+  ],
+  sent:{ h:"I <b>got</b> a letter yesterday.", p:"I got a letter yesterday." }},
+{ cap:"第二格：get + 形容词 = 变得——It's getting dark，天变得黑了。第三格：get + to + 地点 = 到达——We got to the station at six。",
+  ops:[
+    ["r",250,368,84,84,"lm",4,10],["t",292,424,30,"②","lm","middle",1],["t",292,462,15,"get + 形容词","ink","middle",0],
+    ["r",400,368,84,84,"lm",4,10],["t",442,424,30,"③","lm","middle",1],["t",442,462,15,"get + to + 地点","ink","middle",0]
+  ],
+  sent:{ h:"It's <b>getting</b> dark. · We <b>got</b> to the station at six.", p:"It's getting dark. We got to the station at six." }},
+{ cap:"先停一停，看这句登记例句——They got married。married 是过去分词。它该插第几格？",
+  ops:[
+    ["t",480,36,27,"They got married.","red","middle",1],
+    ["t",480,68,16.5,"married 是过去分词 ↓ 它插哪一格？","gry","middle",0]
+  ],
+  predict:{ q:"They got married. 里的 get 插的是第几格？",
+    opts:[["① get + 名词 = 得到",0],["④ get + 过去分词 = 事情落在自己身上",1],["⑤ get + 人 + to do = 说动",0]],
+    hint:"结婚不是他们「得到」的东西，是落在他们身上的事——回五构造表第④行。" }},
+{ cap:"对，第④格：被动味——事情落在自己身上，He got hit by a car 也是这一格。第⑤格：get + 人 + to do = 说动——I got him to help me，我说动他来帮我。",
+  ops:[
+    ["r",550,368,84,84,"lm",4,10],["t",592,424,30,"④","lm","middle",1],["t",592,462,15,"get + 过去分词","ink","middle",0],
+    ["r",700,368,84,84,"lm",4,10],["t",742,424,30,"⑤","lm","middle",1],["t",742,462,15,"get + 人 + to do","ink","middle",0]
+  ],
+  sent:{ h:"He <b>got</b> hit by a car. · I <b>got</b> him to help me.", p:"He got hit by a car. I got him to help me." }},
+{ cap:"最后一句提醒：五格是 get 的核心构造，不是全部——get to do 是「有机会做」，I get it 是「懂了」，这些另有其位，遇见再添。先把五格立稳，整块取用。",
+  ops:[
+    ["f","M120 96 H840 V300 H120 Z","paper"],
+    ["r",120,96,720,204,"acc",4,16],
+    ["t",480,150,20,"空心动词整块学","ink","middle",1],
+    ["t",480,184,17.5,"have a look · take a shower · make a decision · give sb a call","lm","middle",0],
+    ["t",480,232,20,"get 五格","ink","middle",1],
+    ["t",480,266,17.5,"①+名词 收到 ②+形容词 变得 ③+to+地点 到达 ④+过去分词 被动味 ⑤+人+to do 说动","lm","middle",0]
+  ],
+  sent:{ h:"<b>Give me a call.</b>", p:"Give me a call." }}
+]};
+
+/* ================= GR-33 反意疑问三步法 ================= */
+LESSONS.gr33 = { unit:'gr33', title:'GR-33 · 反意疑问：回声机三步法', beats:[
+{ cap:"句子后面的小尾巴，是台回声机造的。主句从左边进来：You are a student——先认出句中的小帮手：are。",
+  card:"🔁 回声机三步<br>① 抄帮手 ② 翻正反 ③ 换代词",
+  ops:[
+    ["t",480,52,22,"主句进回声机，尾巴弹出来","ink","middle",1],
+    ["p","M40 216 H580","gry",3],
+    ["w",60,120,105,64,"You","","ink"],
+    ["w",180,120,100,64,"are","小帮手","red",{i:"areC"}],
+    ["w",295,120,58,64,"a","","ink"],
+    ["w",368,120,168,64,"student,","","ink"],
+    ["a",536,152,612,152,"lm"],
+    ["r",620,96,300,220,"lm",4.5,16],
+    ["t",770,132,21,"回声机","lm","middle",1]
+  ]},
+{ cap:"第一步，回指：把小帮手 are 复制一份送进机器。第二步，翻正反：主句是肯定，尾巴就翻成否定——are 加上 n't，变成 aren't。",
+  ops:[
+    ["a",280,152,652,182,"acc"],
+    ["w",656,156,92,56,"are","","ink"],
+    ["p","M788 164 V196 M772 180 H804","red",5],
+    ["t",816,186,17,"肯定","gry","start",0],
+    ["p","M772 240 H804","red",5],
+    ["t",816,246,20,"n't","red","start",1],
+    ["t",770,292,16,"翻正反：肯定 → 否定","gry","middle",0]
+  ]},
+{ cap:"第三步，代词对位：主语 You 换成同指的代词 you，坐到尾巴最后面。尾巴配好了——整句连起来读一遍。",
+  ops:[
+    ["w",640,348,130,62,"aren't","尾巴","acc"],
+    ["w",790,348,90,62,"you","代词","acc"],
+    ["t",480,478,25,"You are a student, aren't you?","ink","middle",1]
+  ],
+  sent:{ h:"You are a student, <b>aren't you?</b>", p:"You are a student, aren't you?" }},
+{ cap:"换一句没有现成帮手的：She went home——went 身边没有助动词。走三步，第一步就卡住了。先猜一猜：召唤谁来替补？",
+  ops:[
+    ["w",60,240,100,60,"She","","ink"],
+    ["w",175,240,110,60,"went","没帮手","red"],
+    ["w",300,240,118,60,"home,","","ink"],
+    ["w",433,240,92,60,"?","","acc"]
+  ],
+  predict:{ q:"She went home, ___? 尾巴第一步该召唤谁？",
+    opts:[["isn't she",0],["didn't she",1]],
+    hint:"第①步先找小帮手：没有现成的，就召唤 do 家族的替补——went 是过去式，召唤哪个？" }},
+{ cap:"对，召唤 did：翻面成 didn't，代词 she 对位，尾巴就是 didn't she。再看一个细则：never 这类半否定词算「否定主句」——He never plays football，主句算否定，尾巴就用肯定 does he。",
+  ops:[
+    ["t",60,352,21,"She went home, didn't she?","ink","start",1],
+    ["t",60,420,21,"He never plays football, does he?","ink","start",0],
+    ["t",60,452,16,"never = 半否定 → 主句算否定 → 尾巴用肯定","acc","start",0]
+  ],
+  sent:{ h:"She went home, <b>didn't she?</b> · He never plays football, <b>does he?</b>", p:"She went home, didn't she? He never plays football, does he?" }},
+{ cap:"特例来一个：Let's go, ___? Let's 的尾巴是整组单记的。先猜一猜是哪个。",
+  ops:[ ["t",770,452,20,"Let's go, ___?","ink","middle",1] ],
+  predict:{ q:"Let's go, ___? 尾巴是哪一个？",
+    opts:[["will you",0],["shall we",1],["aren't we",0]],
+    hint:"Let's 是「咱们一起」——尾巴要把「我们」请回来。" }},
+{ cap:"对，shall we。最后是语调分工：尾巴升调，是心里没底、在真问；尾巴降调，是心里有数，只等你点头。记住：语调是倾向，不是铁律。",
+  ops:[
+    ["p","M620 520 C 700 516, 760 500, 828 464","acc",4],
+    ["t",836,458,19,"↗ 真问","acc","start",1],
+    ["p","M60 500 C 130 504, 190 514, 248 524","lm",4],
+    ["t",150,490,16,"↘ 降调 · 只求点头","lm","middle",0]
+  ],
+  sent:{ h:"Let's go, <b>shall we?</b>", p:"Let's go, shall we?" }},
+{ cap:"收尾，三步背一遍：抄帮手、翻正反、换代词。没有帮手召唤 do；半否定词算否定；特例整组单记。",
+  ops:[
+    ["f","M110 110 H850 V430 H110 Z","paper"],
+    ["r",110,110,740,320,"acc",4,16],
+    ["t",480,172,23,"回声机三步","ink","middle",1],
+    ["t",480,222,20,"① 回指助动词（没有就召唤 do）","lm","middle",0],
+    ["t",480,266,20,"② 极性翻转（半否定词算否定）","lm","middle",0],
+    ["t",480,310,20,"③ 代词对位","lm","middle",0],
+    ["t",480,362,18,"特例：I am → aren't I · Let's → shall we · 祈使句 → will you","ink","middle",0],
+    ["t",480,402,17,"语调：升调真问 · 降调点头（倾向，不是铁律）","gry","middle",0]
+  ]}
+]};
+
+/* ================= S-36 /iː/ 菜单 ================= */
+LESSONS.s36 = { unit:'s36', title:'S-36 · /iː/ 的拼法菜单', beats:[
+{ cap:"很久以前，英语有两个长 e：一个嘴巴闭得紧一点，一个张得开一点。闭的那个队爱拼 ee，开的那个队爱拼 ea——两队先站好。",
+  card:"🗣️ /iː/ 菜单<br>ee、ea 双主力——合并的化石",
+  ops:[
+    ["t",245,76,20,"闭一点的长 e · /eː/","lm","middle",1],
+    ["t",715,76,20,"开一点的长 e · /ɛː/","lm","middle",1],
+    ["w",50,106,180,60,"see","ee","ink"],["w",250,106,180,60,"tree","ee","ink"],
+    ["w",50,182,180,60,"green","ee","ink"],["w",250,182,180,60,"sleep","ee","ink"],
+    ["w",520,106,180,60,"eat","ea","ink"],["w",720,106,180,60,"read","ea · 现在时","ink"],
+    ["w",520,182,380,60,"teacher","ea","ink"],
+    ["p","M40 268 H920","gry",3]
+  ]},
+{ cap:"后来来了元音大推移：两个队的声音先后往上升、往上升——最后升到同一个 /iː/，合成一个音。可是拼写没跟着改，两套拼法都留下来了。",
+  ops:[
+    ["a",245,98,424,56,"acc"],["a",715,98,536,56,"acc"],
+    ["c",480,42,26,"acc",4.5],
+    ["t",480,51,23,"/iː/","acc","middle",1],
+    ["t",480,316,20,"元音大推移：两个声音先后升到 /iː/，合成一个","ink","middle",1,{i:"shiftTxt"}],
+    ["t",480,344,16.5,"拼写没跟着改——两套拼法都留了下来","gry","middle",0,{i:"shiftTxt"}]
+  ]},
+{ cap:"所以 /iː/ 天然有两条大路：ee 和 ea——它们是「合并的化石」，不是例外。再加一条：e 站在词尾或开音节，也读 /iː/。",
+  ops:[
+    ["t",480,382,16,"两条大路 = 合并的化石，不是例外","red","middle",1],
+    ["w",50,396,270,60,"ee","see · tree · green · sleep","lm"],
+    ["w",345,396,270,60,"ea","eat · sea · teacher","lm"],
+    ["w",640,396,270,60,"e · 词尾","me · he · she · we · be","lm"]
+  ]},
+{ cap:"新词 sea（大海）来了，它还没站队。先猜一猜：它的 ea 读哪个音？",
+  ops:[ ["w",692,282,196,60,"sea","ea 读哪个音？","red"] ],
+  predict:{ q:"sea 里的 ea 读哪个音？",
+    opts:[["/iː/——和 eat 一队",1],["/e/——和 head 一队",0],["/eɪ/——和 great 一队",0]],
+    hint:"回菜单看 ea 坐在哪一班——它的「主场」是哪一行？" }},
+{ cap:"对，sea 进 ea 大路。剩下的小路一条条点名：e-e（these）、ie（field）、ey 词尾（key）、i 法语层（machine）、ei 在 c 后面（ceiling）。",
+  ops:[
+    ["t",790,372,16,"sea → ea 大路 ✓","acc","middle",1],
+    ["w",40,462,168,56,"e-e","these","lm"],
+    ["w",216,462,168,56,"ie","field","lm"],
+    ["w",392,462,168,56,"ey","key · 词尾","lm"],
+    ["w",568,462,168,56,"i","machine · 法语层","lm"],
+    ["w",744,462,168,56,"ei","ceiling · c 后","lm"]
+  ]},
+{ cap:"小路里有一条最爱骗人：ei。它读不读 /iː/，要看它站在谁后面。先猜一猜。",
+  ops:[
+    ["t",240,300,46,"ei","red","middle",1],
+    ["t",240,336,16.5,"站在 c 后面时，才读 /iː/","gry","middle",0]
+  ],
+  predict:{ q:"下面哪个词的 ei 读 /iː/？",
+    opts:[["vein（血管）",0],["ceiling（天花板）",1],["eight（八）",0]],
+    hint:"ei 要看它站在谁后面——排在 c 后面的才读 /iː/。" }},
+{ cap:"对，ceiling。最后留一个孤单的：eo 只有 people 这一组，没有队伍，整组单记。还有一句边界：ea 也有别的面孔——head 的 /e/、great 的 /eɪ/，那是变脸榜 S-42 的事。",
+  ops:[
+    ["dim",["shiftTxt"],0.15],
+    ["w",660,272,260,84,"ea 也有别的面孔","head /e/ · great /eɪ/ → S-42","gry"],
+    ["c",480,300,46,"acc",4],
+    ["t",480,308,22,"people","ink","middle",1],
+    ["t",480,362,16,"eo 孤组 · 整组单记","acc","middle",1]
+  ]},
+{ cap:"收尾看菜单：主力 ee、ea、词尾 e；小路 e-e、ie、ey、i、ei（c 后）；孤例 eo。看见一个 /iː/ 的词，先问它走哪条路。",
+  ops:[
+    ["f","M120 110 H840 V430 H120 Z","paper"],
+    ["r",120,110,720,320,"acc",4,16],
+    ["t",480,178,22,"/iː/ 菜单","ink","middle",1],
+    ["t",480,232,20,"主力：ee（see）· ea（eat）· e 词尾（me）","lm","middle",0],
+    ["t",480,286,20,"小路：e-e · ie · ey · i · ei（c 后）","lm","middle",0],
+    ["t",480,340,20,"孤例：eo（people）","lm","middle",0],
+    ["t",480,398,20,"看见 /iː/，先问它走哪条路","red","middle",1]
+  ],
+  sent:{ h:"see · eat · me · field · key · machine · ceiling · people", p:"see, eat, me, field, key, machine, ceiling, people" }}
+]};
+
+/* ================= S-42 变脸榜 ================= */
+LESSONS.s42 = { unit:'s42', title:'S-42 · 变脸榜', beats:[
+{ cap:"这张榜不比谁的读法多，而是称一称「有多难猜」：读法数 × 不可预测度。a 有全榜最多的 8 读，可它每读都有线索；ea 只有 4 读，却一点线索都没有。",
+  card:"🎭 变脸榜<br>排序 = 读法数 × 不可预测度",
+  ops:[
+    ["t",480,64,23,"变脸榜称的是：读法数 × 不可预测度","ink","middle",1],
+    ["p","M240 128 L720 152","ink",4.5],
+    ["p","M480 118 V392","ink",4.5],
+    ["p","M408 392 H552","ink",4.5],
+    ["p","M300 134 L300 166","gry",3],["p","M660 146 L660 222","gry",3],
+    ["w",200,166,200,76,"a","8 读 · 每读都有线索","lm"],
+    ["w",560,222,200,76,"ea","4 读 · 无线索","red"],
+    ["t",300,272,17,"读法最多","gry","middle",0],
+    ["t",660,330,17,"最难猜 ↓","acc","middle",1]
+  ]},
+{ cap:"先猜名次：a 是 8 读、ea 是 4 读——谁该排得更靠前？",
+  ops:[ ["t",480,452,22,"?","red","middle",1] ],
+  predict:{ q:"a（8 读）和 ea（4 读），谁在变脸榜上排得更靠前？",
+    opts:[["a 靠前——读法多就更难",0],["ea 靠前——无线索才最难猜",1]],
+    hint:"回口径：榜单称的是「读法数 × 不可预测度」，不是单数读法个数。" }},
+{ cap:"对，ea 第 2，a 只排第 4。第 1 名是 ough：它从前读一个带 /x/ 的长音，后来 /x/ 有的脱落、有的变成 /f/，元音又分头演变——一个组合，分出好多条路线。",
+  ops:[
+    ["w",56,168,168,84,"ough","第 1 名","red"],
+    ["a",224,180,338,104,"gry"],["a",224,196,338,156,"gry"],["a",224,210,338,208,"gry"],
+    ["a",224,224,338,260,"gry"],["a",224,238,338,312,"gry"],["a",224,252,338,364,"gry"],["a",224,262,338,416,"gry"],
+    ["t",350,110,20,"though、dough → /əʊ/","ink","start",0],
+    ["t",350,162,20,"through → /uː/","ink","start",0],
+    ["t",350,214,20,"rough、tough → /ʌf/","ink","start",0],
+    ["t",350,266,20,"cough → /ɒf/","ink","start",0],
+    ["t",350,318,20,"-ought 组 → /ɔːt/","ink","start",0,{i:"oughtRow"}],
+    ["t",350,370,20,"bough → /aʊ/","ink","start",0],
+    ["t",350,422,20,"thorough → /ə/","ink","start",0]
+  ]},
+{ cap:"但 ough 有内部秩序：-ought 这一组整齐得像一个人——bought、thought、fought、sought、ought 全读 /ɔːt/。变脸发生在组和组之间，不在组里面。",
+  ops:[
+    ["hl","oughtRow","acc",10],
+    ["t",700,354,21,"整组同读 ✓","acc","middle",1]
+  ]},
+{ cap:"先停一停：对付 ough 这样的变脸大王，最靠谱的办法是什么？",
+  ops:[],
+  predict:{ q:"对付 ough 最靠谱的办法是？",
+    opts:[["背一条总规则，见 ough 就套",0],["按词族分组记，先认组内整齐的队",1],["跳过不读",0]],
+    hint:"变脸发生在组内还是组间？回上一拍的 -ought 一家看看。" }},
+{ cap:"还有一句出名的例句——「一句九读」：一句话里 ough 换了九副嗓子。点下面的喇叭，慢慢听一遍。",
+  ops:[
+    ["r",60,150,840,130,"acc",4,16],
+    ["t",480,196,21,"「一句九读」","acc","middle",1],
+    ["t",480,238,18,"ough 在一句话里换了九副嗓子","ink","middle",0],
+    ["fc",200,330,9,"acc"],["fc",270,330,9,"acc"],["fc",340,330,9,"acc"],["fc",410,330,9,"acc"],["fc",480,330,9,"acc"],["fc",550,330,9,"acc"],["fc",620,330,9,"acc"],["fc",690,330,9,"acc"],["fc",760,330,9,"acc"],
+    ["t",480,372,16,"九个 ough，九种读法","gry","middle",0]
+  ],
+  sent:{ h:"The wind was <b>rough</b> along the <b>lough</b> as the ploughman <b>fought</b> through the snow, and <b>though</b> he hicc<b>ough</b>ed and c<b>ough</b>ed, his work was thor<b>ough</b>.",
+         p:"The wind was rough along the lough as the ploughman fought through the snow, and though he hiccoughed and coughed, his work was thorough." }},
+{ cap:"榜单补完：ou 第 3（out、soup、could 各是一读），a 第 4，y 第 5（yes、my、gym、happy 四读）。只剩第 6 名没点名——它只有 3 读，可照样没规则可分。",
+  ops:[
+    ["w",40,434,280,64,"③ ou","out · soup · could","lm"],
+    ["w",340,434,280,64,"④ a","cat · cake · father","lm"],
+    ["w",660,434,280,64,"⑤ y","yes · my · gym · happy","lm"],
+    ["t",480,524,16,"⑥ oo 只剩最后一个名额——先猜它的读法","gry","middle",0]
+  ]},
+{ cap:"最后一猜，拿 oo 的招牌词 book 来问：",
+  ops:[ ["w",395,296,170,64,"book","oo 读哪个音？","red"] ],
+  predict:{ q:"book 里的 oo 读哪个音？",
+    opts:[["/uː/——和 moon 一队",0],["/ʊ/——和 good、foot 一队",1],["/ʌ/——和 blood 一队",0]],
+    hint:"回榜看 oo 那一行：book 排在哪一读下面？同是 -ook 的 spook 又在哪一队？" }},
+{ cap:"对，book 读 /ʊ/——oo 排第 6：moon 的 /uː/、book 的 /ʊ/、blood 的 /ʌ/，三读无规则可分。收尾记住对策：变脸组合没有总规则，就按词族分组，一组一组记。",
+  ops:[
+    ["f","M110 100 H850 V440 H110 Z","paper"],
+    ["r",110,100,740,340,"acc",4,16],
+    ["t",480,164,22,"变脸榜","ink","middle",1],
+    ["t",480,216,20,"① ough（10 读） ② ea（4 读 · 无线索） ③ ou（7 读）","lm","middle",0],
+    ["t",480,262,20,"④ a（8 读 · 有线索） ⑤ y（4 读） ⑥ oo（3 读）","lm","middle",0],
+    ["t",480,322,21,"对策：没有总规则——按词族分组记","ink","middle",1],
+    ["t",480,368,18,"组内整齐（如 -ought），组间变脸","gry","middle",0],
+    ["t",480,412,18,"book /ʊ/ · moon /uː/ · blood /ʌ/","red","middle",0]
+  ]}
+]};
+
+/* ================= SR-01 词尾 e 的五份工 ================= */
+LESSONS.sr01 = { unit:'sr01', title:'SR-01 · 词尾 e 的五份工', beats:[
+{ cap:"今天的主角是一个不出声的演员：词尾的 e。它自己不发音，却一口气干好几份工。看见它，先别急着读，先问它在干哪份工。",
+  card:"🤫 不出声的 e<br>看见它，先问工种",
+  ops:[
+    ["t",480,224,150,"e","red","middle",1],
+    ["t",480,308,22,"词尾的 e：自己不出声","ink","middle",1],
+    ["t",480,344,17,"它是个大忙人，一口气干好几份工","gry","middle",0]
+  ]},
+{ cap:"第一份工，长音化：e 走到 tap 身后站住——a 立刻读成长音 /eɪ/，tap 变 tape。pin 变 pine、rob 变 robe，也是它干的。注意：五份工里，只有这一份会改变元音的读音。",
+  card:"🪄 词尾 e 的五份工<br>只有第①职改变元音读音",
+  ops:[
+    ["w",150,180,200,84,"tap","/tæp/","ink"],
+    ["w",390,180,90,84,"e","","red"],
+    ["a",492,222,556,222,"acc"],
+    ["w",570,180,220,84,"tape","/teɪp/ · a 读长了","acc",{i:"tapeC"}],
+    ["t",480,330,19,"pin → pine · rob → robe · tub → tube 都是第①职","ink","middle",0],
+    ["t",480,366,16.5,"五份工里，只有这一份会改变元音的读音","red","middle",0]
+  ]},
+{ cap:"先停一停，验一验刚才这一拍：",
+  ops:[ ["t",724,158,27,"?","red","middle",1] ],
+  predict:{ q:"tape 里的 e 在干哪份工？",
+    opts:[["第①职：让前面的 a 读长音",1],["第③职：给词尾当护栏",0],["第⑤职：给 -le 凑音节",0]],
+    hint:"先听声音：tap 变 tape，a 的声音变了没有？" }},
+{ cap:"第②份工，软化：e 站在 c 后面，c 就读软音 /s/——ice；站在 g 后面，g 读 /dʒ/——cage。e 是把软音固定下来的标记。",
+  ops:[
+    ["w",120,170,220,84,"ice","c → /s/","ink"],
+    ["w",620,170,220,84,"cage","g → /dʒ/","ink"],
+    ["t",480,222,19,"e 把 c、g 的软音固定下来","ink","middle",0],
+    ["t",280,330,18,"dance 也是 c 变软","gry","middle",0],
+    ["t",680,330,18,"page 也是 g 变软","gry","middle",0]
+  ]},
+{ cap:"第③份工，词尾护栏：英语本土词不让 v 和 u 当最后一个字母，e 就站在它们身后扶住——have、give 的 e，blue、true 的 e，都是护栏。",
+  ops:[
+    ["w",110,170,200,84,"have","v 靠 e 扶住","ink",{i:"haveC"}],
+    ["w",350,170,200,84,"give","v 靠 e 扶住","ink"],
+    ["w",590,170,200,84,"blue","u 靠 e 扶住","ink"],
+    ["t",848,222,19,"true","lm","middle",0],
+    ["p","M300 362 V306 M380 362 V306 M460 362 V306","lm",4.5],
+    ["p","M280 332 H480","lm",4.5],
+    ["t",660,348,17,"e 像护栏，扶住词尾的 v 和 u","gry","middle",0]
+  ]},
+{ cap:"再验一拍：have 就在台上——它的 e 是哪份工？",
+  ops:[ ["t",298,150,27,"?","red","middle",1] ],
+  predict:{ q:"have 里的 e 为什么不能去掉？",
+    opts:[["因为它让 a 读长音 /eɪ/",0],["因为英语本土词不让 v 收尾，e 是护栏",1],["因为 have 是复数",0]],
+    hint:"先把 have 读出来：a 读的是长音吗？再想想 v 站在词尾需要什么。" }},
+{ cap:"第④份工，给 th 定清浊：bath 是名词，th 读清音 /θ/，不带 e；加上 e 变 bathe，是动词，th 读浊音 /ð/。这一职用得少，只管 bath/bathe 这样的小家族。",
+  ops:[
+    ["w",130,180,230,84,"bath","名词 · /θ/ 清","ink"],
+    ["t",480,232,25,"+ e","acc","middle",1],
+    ["a",372,222,586,222,"acc"],
+    ["w",600,180,230,84,"bathe","动词 · /ð/ 浊","acc"],
+    ["t",480,332,18,"breath → breathe · cloth → clothe 也是同一职","gry","middle",0]
+  ]},
+{ cap:"第⑤份工，给 -le 音节凑数：每个音节都要有一个元音字母——little、table 的最后一个音节是「辅音 + le」，全靠这个 e 凑成一个音节。apple、bubble、puzzle 都是这一职。",
+  ops:[
+    ["w",180,170,280,88,"little","lit-tle · e 凑音节","ink"],
+    ["w",500,170,280,88,"table","ta-ble · e 凑音节","ink"],
+    ["t",480,322,17.5,"每个音节都要有一个元音字母——辅音 + le 的音节靠 e 成立","ink","middle",0],
+    ["t",480,358,16.5,"apple · bubble · puzzle 都是这一职","gry","middle",0]
+  ]},
+{ cap:"最后看三个「无职」的 e：come、some、done——它们哪份工都不干，是历史留下的。还有一句交代：原表一共九份工，本课演的是其中最明确的五份。",
+  ops:[
+    ["w",110,190,220,84,"come","无职","gry"],
+    ["w",370,190,220,84,"some","无职","gry"],
+    ["w",630,190,220,84,"done","无职","gry"],
+    ["t",480,332,17.5,"这三个 e 哪份工都不干——是历史留下的「无职之 e」","ink","middle",0],
+    ["t",480,366,16,"原表共九份工，本课演最明确的五份","gry","middle",0]
+  ]},
+{ cap:"收尾：看见词尾的 e，先问它干哪份工——长音化、软化、护栏、定清浊、凑音节，五份工对号入座，别一律当它只管长音。",
+  ops:[
+    ["f","M120 100 H840 V440 H120 Z","paper"],
+    ["r",120,100,720,340,"acc",4,16],
+    ["t",480,164,22,"词尾 e 的五份工","ink","middle",1],
+    ["t",480,220,20,"① 长音化 tape ② 软化 ice、cage","lm","middle",0],
+    ["t",480,268,20,"③ 词尾护栏 have、blue ④ th 定清浊 bathe","lm","middle",0],
+    ["t",480,316,20,"⑤ -le 凑音节 little、table","lm","middle",0],
+    ["t",480,378,21,"看见词尾 e，先问它干哪份工","red","middle",1]
+  ],
+  sent:{ h:"tape · ice · have · bathe · little", p:"tape, ice, have, bathe, little" }}
+]};
+
+/* ---------------- init ---------------- */
+const players = {};
+function init(){
+  document.querySelectorAll('[data-fa]').forEach(m=>{
+    const key = m.getAttribute('data-fa');
+    if (LESSONS[key] && !players[key]) players[key] = new Player(m, LESSONS[key]);
+  });
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+return { players: players, LESSONS: LESSONS };
 })();
 </script>
 
