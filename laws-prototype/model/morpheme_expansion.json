@@ -1,0 +1,8057 @@
+{
+ "meta": {
+  "file": "morpheme_expansion.json",
+  "role": "词根词缀专区扩充侧表：wordbank.json 本体不动，入模/回灌时按 bank_id 合并 morphemes",
+  "generated": "2026-11-01",
+  "base_state": "wordbank 2287 条，既有 morphemes 159 条（见盘点）；本表为新增拆分",
+  "method": "候选由脚本按前缀/后缀/黏着根/复合/屈折五路生成，逐条人工裁定；接受须有 V/GR/S 条出处，驳回进 pending",
+  "schema": "morphemes 结构与 wordbank 本体一致（vocab_MODEL.md §2 词素拆分规范）；families 为专区面板归属标签；source 为依据条目 ID"
+ },
+ "summary": {
+  "new_splits": 388,
+  "pending": 79,
+  "families": {
+   "compound": 120,
+   "suffix:-er": 28,
+   "屈折:-s 复数": 22,
+   "suffix:-y": 20,
+   "suffix:-th": 11,
+   "suffix:-ful": 9,
+   "suffix:-ist": 6,
+   "prefix:re-": 5,
+   "suffix:-ness": 5,
+   "suffix:-ian": 5,
+   "root:graph": 5,
+   "root:form": 5,
+   "屈折:-'s 所有格": 5,
+   "prefix:un-": 4,
+   "prefix:dis-": 4,
+   "suffix:-or": 4,
+   "prefix:over-": 3,
+   "root:port": 3,
+   "suffix:-ous": 3,
+   "suffix:-al": 3,
+   "suffix:-able": 3,
+   "root:fin": 3,
+   "root:vis": 3,
+   "root:vers": 3,
+   "root:mov": 3,
+   "prefix:mid-": 2,
+   "suffix:-ment": 2,
+   "suffix:-less": 2,
+   "suffix:-ity": 2,
+   "suffix:-en": 2,
+   "root:sci": 2,
+   "root:vid": 2,
+   "root:phon": 2,
+   "prefix:uni-": 2,
+   "root:tend": 2,
+   "root:gest": 2,
+   "root:ply": 2,
+   "root:sens": 2,
+   "root:metr": 2,
+   "root:dict": 2,
+   "屈折:-s 三单": 2,
+   "屈折:-en 过去分词": 2,
+   "prefix:mis-": 1,
+   "prefix:non-": 1,
+   "prefix:super-": 1,
+   "prefix:inter-": 1,
+   "prefix:en-": 1,
+   "prefix:ex-": 1,
+   "suffix:-ic": 1,
+   "suffix:-ant": 1,
+   "suffix:-ty": 1,
+   "suffix:-ery": 1,
+   "suffix:-ship": 1,
+   "suffix:-hood": 1,
+   "suffix:-ese": 1,
+   "suffix:-an": 1,
+   "root:dent": 1,
+   "prefix:tele-": 1,
+   "root:spec": 1,
+   "prefix:geo-": 1,
+   "prefix:photo-": 1,
+   "prefix:xylo-": 1,
+   "root:struct": 1,
+   "root:rect": 1,
+   "root:fect": 1,
+   "root:cept": 1,
+   "root:rog": 1,
+   "root:tain": 1,
+   "root:don": 1,
+   "root:duc": 1,
+   "root:grad": 1,
+   "root:naut": 1,
+   "prefix:astro-": 1,
+   "prefix:centi-": 1,
+   "root:nounce": 1,
+   "屈折:-ed": 1,
+   "root:flex": 1,
+   "root:lect": 1,
+   "root:logy": 1,
+   "prefix:psycho-": 1,
+   "root:skept": 1,
+   "root:pend": 1,
+   "root:fer": 1,
+   "屈折:-s": 1,
+   "prefix:bi-": 1,
+   "suffix:-ly": 24,
+   "屈折:比较级": 13,
+   "屈折:最高级": 1
+  }
+ },
+ "entries": [
+  {
+   "bank_id": "G5_0460",
+   "word": "unhealthy",
+   "morphemes": {
+    "prefix": "un-",
+    "prefix_gloss": "不",
+    "root": "healthy",
+    "root_gloss": "健康的",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:un-"
+   ],
+   "source": [
+    "V-33",
+    "V-35"
+   ]
+  },
+  {
+   "bank_id": "G5_0458",
+   "word": "unlucky",
+   "morphemes": {
+    "prefix": "un-",
+    "prefix_gloss": "不",
+    "root": "lucky",
+    "root_gloss": "幸运的",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:un-"
+   ],
+   "source": [
+    "V-33",
+    "V-35"
+   ]
+  },
+  {
+   "bank_id": "G5_0461",
+   "word": "untidy",
+   "morphemes": {
+    "prefix": "un-",
+    "prefix_gloss": "不",
+    "root": "tidy",
+    "root_gloss": "整洁的",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:un-"
+   ],
+   "source": [
+    "V-33",
+    "V-35"
+   ]
+  },
+  {
+   "bank_id": "G6_0459",
+   "word": "unusual",
+   "morphemes": {
+    "prefix": "un-",
+    "prefix_gloss": "不",
+    "root": "usual",
+    "root_gloss": "通常的",
+    "root_bound": false,
+    "note": "usual 本身为 use 的派生亲属",
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:un-"
+   ],
+   "source": [
+    "V-33",
+    "V-35"
+   ]
+  },
+  {
+   "bank_id": "G6_0377",
+   "word": "recycle",
+   "morphemes": {
+    "prefix": "re-",
+    "prefix_gloss": "再",
+    "root": "cycle",
+    "root_gloss": "循环",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:re-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "ADD_0622",
+   "word": "remove",
+   "morphemes": {
+    "prefix": "re-",
+    "prefix_gloss": "回/再",
+    "root": "move",
+    "root_gloss": "移动",
+    "root_bound": false,
+    "note": "re- 在此为「开/离」向：移开、去掉",
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:re-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_0624",
+   "word": "retell",
+   "morphemes": {
+    "prefix": "re-",
+    "prefix_gloss": "再",
+    "root": "tell",
+    "root_gloss": "告诉",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:re-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "ADD_0251",
+   "word": "rewrite",
+   "morphemes": {
+    "prefix": "re-",
+    "prefix_gloss": "再",
+    "root": "write",
+    "root_gloss": "写",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:re-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_0873",
+   "word": "disagree",
+   "morphemes": {
+    "prefix": "dis-",
+    "prefix_gloss": "不/相反",
+    "root": "agree",
+    "root_gloss": "同意",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:dis-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_0471",
+   "word": "disappear",
+   "morphemes": {
+    "prefix": "dis-",
+    "prefix_gloss": "不/相反",
+    "root": "appear",
+    "root_gloss": "出现",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:dis-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G5_0470",
+   "word": "dislike",
+   "morphemes": {
+    "prefix": "dis-",
+    "prefix_gloss": "不/相反",
+    "root": "like",
+    "root_gloss": "喜欢/像…一样",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:dis-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_0473",
+   "word": "discover",
+   "morphemes": {
+    "prefix": "dis-",
+    "prefix_gloss": "揭开（否定朝向）",
+    "root": "cover",
+    "root_gloss": "覆盖",
+    "root_bound": false,
+    "note": "揭开盖子→发现",
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:dis-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "V6_学校_49",
+   "word": "mistake",
+   "morphemes": {
+    "prefix": "mis-",
+    "prefix_gloss": "错",
+    "root": "take",
+    "root_gloss": "带走/乘坐(过去took",
+    "root_bound": false,
+    "note": "拿错→误会；名词义「错误」已固化",
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:mis-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "ADD_0587",
+   "word": "nonsense",
+   "morphemes": {
+    "prefix": "non-",
+    "prefix_gloss": "非/无",
+    "root": "sense",
+    "root_gloss": "感觉",
+    "root_bound": false,
+    "note": "「没有意义（的话）」",
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:non-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G5_0895",
+   "word": "overcoat",
+   "morphemes": {
+    "prefix": "over-",
+    "prefix_gloss": "在外层",
+    "root": "coat",
+    "root_gloss": "外衣",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:over-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_0894",
+   "word": "overnight",
+   "morphemes": {
+    "prefix": "over-",
+    "prefix_gloss": "跨越（整夜）",
+    "root": "night",
+    "root_gloss": "夜",
+    "root_bound": false,
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:over-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_0896",
+   "word": "overweight",
+   "morphemes": {
+    "prefix": "over-",
+    "prefix_gloss": "过度",
+    "root": "weight",
+    "root_gloss": "重量",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:over-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_266",
+   "word": "supermarket",
+   "morphemes": {
+    "prefix": "super-",
+    "prefix_gloss": "超/大",
+    "root": "market",
+    "root_gloss": "市场",
+    "root_bound": false,
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:super-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G5_0892",
+   "word": "midday",
+   "morphemes": {
+    "prefix": "mid-",
+    "prefix_gloss": "中",
+    "root": "day",
+    "root_gloss": "天/白天",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:mid-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G5_0891",
+   "word": "midnight",
+   "morphemes": {
+    "prefix": "mid-",
+    "prefix_gloss": "中",
+    "root": "night",
+    "root_gloss": "夜",
+    "root_bound": false,
+    "transparency": "全透明"
+   },
+   "families": [
+    "prefix:mid-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_0478",
+   "word": "international",
+   "morphemes": {
+    "prefix": "inter-",
+    "prefix_gloss": "之间",
+    "root": "national",
+    "root_gloss": "国家的",
+    "root_bound": false,
+    "note": "national 本身 = nation + -al（见后缀批）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:inter-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G4_0876",
+   "word": "enjoy",
+   "morphemes": {
+    "prefix": "en-",
+    "prefix_gloss": "使…（进入状态）",
+    "root": "joy",
+    "root_gloss": "欢乐",
+    "root_bound": false,
+    "note": "en-/em- 为 V-33 第 5 位前缀（使役/进入）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:en-"
+   ],
+   "source": [
+    "V-33"
+   ]
+  },
+  {
+   "bank_id": "G6_0680",
+   "word": "export",
+   "morphemes": {
+    "prefix": "ex-",
+    "prefix_gloss": "向外",
+    "root": "port",
+    "root_gloss": "港口",
+    "root_bound": false,
+    "note": "port 黏着根家族（V-21 零件例）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:ex-",
+    "root:port"
+   ],
+   "source": [
+    "V-33",
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0335",
+   "word": "report",
+   "morphemes": {
+    "prefix": "re-",
+    "prefix_gloss": "回",
+    "root": "port",
+    "root_gloss": "港口",
+    "root_bound": false,
+    "note": "把消息「搬回来」→报告；port 家族",
+    "transparency": "半透明"
+   },
+   "families": [
+    "prefix:re-",
+    "root:port"
+   ],
+   "source": [
+    "V-33",
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0858",
+   "word": "darkness",
+   "morphemes": {
+    "root": "dark",
+    "root_gloss": "黑暗的",
+    "root_bound": false,
+    "suffix": "-ness",
+    "suffix_gloss": "状态/性质（名词化）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ness"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0528",
+   "word": "illness",
+   "morphemes": {
+    "root": "ill",
+    "root_gloss": "生病的",
+    "root_bound": false,
+    "suffix": "-ness",
+    "suffix_gloss": "状态/性质（名词化）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ness"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0526",
+   "word": "kindness",
+   "morphemes": {
+    "root": "kind",
+    "root_gloss": "慈祥的",
+    "root_bound": false,
+    "suffix": "-ness",
+    "suffix_gloss": "状态/性质（名词化）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ness"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0857",
+   "word": "sadness",
+   "morphemes": {
+    "root": "sad",
+    "root_gloss": "难过的",
+    "root_bound": false,
+    "suffix": "-ness",
+    "suffix_gloss": "状态/性质（名词化）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ness"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0860",
+   "word": "weakness",
+   "morphemes": {
+    "root": "weak",
+    "root_gloss": "弱的",
+    "root_bound": false,
+    "suffix": "-ness",
+    "suffix_gloss": "状态/性质（名词化）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ness"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0871",
+   "word": "agreement",
+   "morphemes": {
+    "root": "agree",
+    "root_gloss": "同意",
+    "root_bound": false,
+    "suffix": "-ment",
+    "suffix_gloss": "行为/结果（名词化）",
+    "note": "-ment 存量大、新造衰退（V-36）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ment"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0217",
+   "word": "payment",
+   "morphemes": {
+    "root": "pay",
+    "root_gloss": "付款",
+    "root_bound": false,
+    "suffix": "-ment",
+    "suffix_gloss": "行为/结果（名词化）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ment"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G4_0440",
+   "word": "careful",
+   "morphemes": {
+    "root": "care",
+    "root_gloss": "关心",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G4_0453",
+   "word": "colourful",
+   "morphemes": {
+    "root": "colour",
+    "root_gloss": "颜色",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0854",
+   "word": "forgetful",
+   "morphemes": {
+    "root": "forget",
+    "root_gloss": "忘记",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的（易…的）",
+    "note": "forget 本身不拆（见 pending）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_206",
+   "word": "helpful",
+   "morphemes": {
+    "root": "help",
+    "root_gloss": "帮助",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0853",
+   "word": "painful",
+   "morphemes": {
+    "root": "pain",
+    "root_gloss": "疼痛",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0849",
+   "word": "peaceful",
+   "morphemes": {
+    "root": "peace",
+    "root_gloss": "和平",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0851",
+   "word": "thankful",
+   "morphemes": {
+    "root": "thank",
+    "root_gloss": "感谢",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0444",
+   "word": "useful",
+   "morphemes": {
+    "root": "use",
+    "root_gloss": "使用",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G4_0449",
+   "word": "wonderful",
+   "morphemes": {
+    "root": "wonder",
+    "root_gloss": "想知道",
+    "root_bound": false,
+    "suffix": "-ful",
+    "suffix_gloss": "充满…的",
+    "note": "充满惊奇→极好的（评价漂移）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ful"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0441",
+   "word": "careless",
+   "morphemes": {
+    "root": "care",
+    "root_gloss": "关心",
+    "root_bound": false,
+    "suffix": "-less",
+    "suffix_gloss": "没有…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-less"
+   ],
+   "source": [
+    "V-36",
+    "S-27"
+   ]
+  },
+  {
+   "bank_id": "G6_0445",
+   "word": "useless",
+   "morphemes": {
+    "root": "use",
+    "root_gloss": "使用",
+    "root_bound": false,
+    "suffix": "-less",
+    "suffix_gloss": "没有…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-less"
+   ],
+   "source": [
+    "V-36",
+    "S-27"
+   ]
+  },
+  {
+   "bank_id": "G5_0456",
+   "word": "dangerous",
+   "morphemes": {
+    "root": "danger",
+    "root_gloss": "危险",
+    "root_bound": false,
+    "suffix": "-ous",
+    "suffix_gloss": "具有…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ous"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0663",
+   "word": "stupidity",
+   "morphemes": {
+    "root": "stupid",
+    "root_gloss": "愚蠢的",
+    "root_bound": false,
+    "suffix": "-ity",
+    "suffix_gloss": "状态/性质（名词化，拉丁底）",
+    "note": "-ity 只接拉丁底词基（V-36 选配限制）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ity"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0324",
+   "word": "activity",
+   "morphemes": {
+    "root": "active",
+    "root_gloss": "活跃的",
+    "root_bound": false,
+    "suffix": "-ity",
+    "suffix_gloss": "状态/性质（名词化，拉丁底）",
+    "note": "active 的 -ive 被 -ity 替换（拉丁 activitas 的构成）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ity"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0658",
+   "word": "national",
+   "morphemes": {
+    "root": "nation",
+    "root_gloss": "国家",
+    "root_bound": false,
+    "suffix": "-al",
+    "suffix_gloss": "…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-al"
+   ],
+   "source": [
+    "V-20",
+    "S-27"
+   ]
+  },
+  {
+   "bank_id": "G6_0657",
+   "word": "natural",
+   "morphemes": {
+    "root": "nature",
+    "root_gloss": "大自然",
+    "root_bound": false,
+    "suffix": "-al",
+    "suffix_gloss": "…的",
+    "note": "接 -al 时去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-al"
+   ],
+   "source": [
+    "V-37",
+    "S-27"
+   ]
+  },
+  {
+   "bank_id": "G6_0685",
+   "word": "signal",
+   "morphemes": {
+    "root": "sign",
+    "root_gloss": "标志",
+    "root_bound": false,
+    "suffix": "-al",
+    "suffix_gloss": "…的（名词化存量）",
+    "note": "sign 家族（词根批 sign 已在词库基底）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-al"
+   ],
+   "source": [
+    "V-20",
+    "S-27"
+   ]
+  },
+  {
+   "bank_id": "ADD_0601",
+   "word": "photographic",
+   "morphemes": {
+    "root": "photograph",
+    "root_gloss": "照片",
+    "root_bound": false,
+    "suffix": "-ic",
+    "suffix_gloss": "…的",
+    "note": "-ic 为重音拽走班后缀（S-27）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ic"
+   ],
+   "source": [
+    "S-27"
+   ]
+  },
+  {
+   "bank_id": "G5_0334",
+   "word": "important",
+   "morphemes": {
+    "root": "import",
+    "root_gloss": "进口",
+    "root_bound": false,
+    "suffix": "-ant",
+    "suffix_gloss": "…的（形容词尾，拉丁存量）",
+    "note": "import 本身 = in- + port（词库基底已有拆分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ant",
+    "root:port"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0516",
+   "word": "health",
+   "morphemes": {
+    "root": "heal",
+    "root_gloss": "治愈",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "状态（名词尾，封存）",
+    "note": "-th 已封存，只在老词里（V-36 出处栏）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0903",
+   "word": "growth",
+   "morphemes": {
+    "root": "grow",
+    "root_gloss": "生长",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "状态/过程（名词尾，封存）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0902",
+   "word": "truth",
+   "morphemes": {
+    "root": "true",
+    "root_gloss": "真的",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "状态（名词尾，封存）",
+    "note": "拼写调整 tru-（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G6_0904",
+   "word": "width",
+   "morphemes": {
+    "root": "wide",
+    "root_gloss": "宽的",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "状态（名词尾，封存）",
+    "note": "拼写调整 wid-（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "ADD_0333",
+   "word": "youth",
+   "morphemes": {
+    "root": "young",
+    "root_gloss": "年轻的",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "状态（名词尾，封存）",
+    "note": "词干古变形 you-，与 young 同源",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0555",
+   "word": "fourth",
+   "morphemes": {
+    "root": "four",
+    "root_gloss": "四",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "序数尾",
+    "note": "序数 -th 与名词 -th 同形（古英语序数后缀）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0557",
+   "word": "sixth",
+   "morphemes": {
+    "root": "six",
+    "root_gloss": "六",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "序数尾",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0558",
+   "word": "seventh",
+   "morphemes": {
+    "root": "seven",
+    "root_gloss": "七",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "序数尾",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0560",
+   "word": "ninth",
+   "morphemes": {
+    "root": "nine",
+    "root_gloss": "九",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "序数尾",
+    "note": "接 -th 时去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-20",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G5_0561",
+   "word": "tenth",
+   "morphemes": {
+    "root": "ten",
+    "root_gloss": "十",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "序数尾",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "V6_节日_2",
+   "word": "month",
+   "morphemes": {
+    "root": "moon",
+    "root_gloss": "月亮",
+    "root_bound": false,
+    "suffix": "-th",
+    "suffix_gloss": "状态（名词尾，封存）",
+    "note": "month 与 moon 同源：古英语 mōnaþ 即 moon + -th",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-th"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G2_090",
+   "word": "cloudy",
+   "morphemes": {
+    "root": "cloud",
+    "root_gloss": "云",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的/像…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0810",
+   "word": "foggy",
+   "morphemes": {
+    "root": "fog",
+    "root_gloss": "雾",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "note": "接 -y 双写 g（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G3_0821",
+   "word": "funny",
+   "morphemes": {
+    "root": "fun",
+    "root_gloss": "乐趣",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "note": "「有趣的」为 fun 的评价义固化",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0826",
+   "word": "grassy",
+   "morphemes": {
+    "root": "grass",
+    "root_gloss": "草",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_219",
+   "word": "healthy",
+   "morphemes": {
+    "root": "health",
+    "root_gloss": "健康",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的/有…的",
+    "note": "health 本身 = heal + -th（见本批）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G4_0819",
+   "word": "juicy",
+   "morphemes": {
+    "root": "juice",
+    "root_gloss": "果汁",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "note": "接 -y 去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G5_0823",
+   "word": "messy",
+   "morphemes": {
+    "root": "mess",
+    "root_gloss": "混乱",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0509",
+   "word": "noisy",
+   "morphemes": {
+    "root": "noise",
+    "root_gloss": "噪音",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "note": "接 -y 去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G2_091",
+   "word": "rainy",
+   "morphemes": {
+    "root": "rain",
+    "root_gloss": "雨",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G6_0825",
+   "word": "rocky",
+   "morphemes": {
+    "root": "rock",
+    "root_gloss": "岩石",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0817",
+   "word": "salty",
+   "morphemes": {
+    "root": "salt",
+    "root_gloss": "盐",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0824",
+   "word": "sandy",
+   "morphemes": {
+    "root": "sand",
+    "root_gloss": "沙",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0511",
+   "word": "sleepy",
+   "morphemes": {
+    "root": "sleep",
+    "root_gloss": "睡觉",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "想…的/多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G2_092",
+   "word": "snowy",
+   "morphemes": {
+    "root": "snow",
+    "root_gloss": "雪",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0812",
+   "word": "stormy",
+   "morphemes": {
+    "root": "storm",
+    "root_gloss": "暴风雨",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G2_093",
+   "word": "sunny",
+   "morphemes": {
+    "root": "sun",
+    "root_gloss": "太阳",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "note": "接 -y 双写 n（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G4_0820",
+   "word": "tasty",
+   "morphemes": {
+    "root": "taste",
+    "root_gloss": "品尝",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "note": "接 -y 去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G2_094",
+   "word": "windy",
+   "morphemes": {
+    "root": "wind",
+    "root_gloss": "风",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G6_0827",
+   "word": "woody",
+   "morphemes": {
+    "root": "wood",
+    "root_gloss": "木头",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "多…的/像…的",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "V6_家庭_4",
+   "word": "daddy",
+   "morphemes": {
+    "root": "dad",
+    "root_gloss": "爸爸",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "亲昵后缀",
+    "note": "-y 在此为昵称/儿语后缀，与形容词 -y 分工",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-y"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G4_0553",
+   "word": "eighty",
+   "morphemes": {
+    "root": "eight",
+    "root_gloss": "八",
+    "root_bound": false,
+    "suffix": "-ty",
+    "suffix_gloss": "十位尾",
+    "note": "-ty 源古英语 -tig（十），与 -teen 分工",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ty"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0829",
+   "word": "golden",
+   "morphemes": {
+    "root": "gold",
+    "root_gloss": "黄金(不可数)",
+    "root_bound": false,
+    "suffix": "-en",
+    "suffix_gloss": "由…制成的",
+    "note": "材料 -en 已近封存；与动词化 -en（V-36）同形分工",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-en"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0828",
+   "word": "wooden",
+   "morphemes": {
+    "root": "wood",
+    "root_gloss": "木头",
+    "root_bound": false,
+    "suffix": "-en",
+    "suffix_gloss": "由…制成的",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-en"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0794",
+   "word": "bakery",
+   "morphemes": {
+    "root": "bake",
+    "root_gloss": "烘烤",
+    "root_bound": false,
+    "suffix": "-ery",
+    "suffix_gloss": "场所（…房/店）",
+    "note": "-ery 与施事 -er 分工：bakery 是地方，baker 是人",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ery"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G6_0777",
+   "word": "friendship",
+   "morphemes": {
+    "root": "friend",
+    "root_gloss": "朋友",
+    "root_bound": false,
+    "suffix": "-ship",
+    "suffix_gloss": "状态/关系",
+    "note": "-ship 与船无关，是状态后缀",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ship"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G6_0778",
+   "word": "neighbourhood",
+   "morphemes": {
+    "root": "neighbour",
+    "root_gloss": "邻居（美式拼作 neig",
+    "root_bound": false,
+    "suffix": "-hood",
+    "suffix_gloss": "状态/区域",
+    "note": "-hood 由「身份/状态」扩到「一带地方」",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-hood"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "V6_学校_28",
+   "word": "Chinese",
+   "morphemes": {
+    "root": "China",
+    "root_gloss": "中国",
+    "root_bound": false,
+    "suffix": "-ese",
+    "suffix_gloss": "…国人/…语",
+    "note": "专名 China 的词干形 Chin- + -ese",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ese"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G5_0874",
+   "word": "comfortable",
+   "morphemes": {
+    "root": "comfort",
+    "root_gloss": "舒适",
+    "root_bound": false,
+    "suffix": "-able",
+    "suffix_gloss": "能被…的/可…的",
+    "note": "词基 comfort 未入词库，待补词流程；-able 为全产出后缀",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-able"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0454",
+   "word": "famous",
+   "morphemes": {
+    "root": "fame",
+    "root_gloss": "名声",
+    "root_bound": false,
+    "suffix": "-ous",
+    "suffix_gloss": "具有…的",
+    "note": "词基 fame 未入词库；接 -ous 去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ous"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "V6_情感_13",
+   "word": "nervous",
+   "morphemes": {
+    "root": "nerve",
+    "root_gloss": "神经",
+    "root_bound": false,
+    "suffix": "-ous",
+    "suffix_gloss": "具有…的",
+    "note": "词基 nerve 未入词库；本义「神经的」今多作「紧张的」",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ous"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0089",
+   "word": "electrician",
+   "morphemes": {
+    "root": "electric",
+    "root_gloss": "电的",
+    "root_bound": false,
+    "suffix": "-ian",
+    "suffix_gloss": "从事…的人",
+    "note": "词基 electric 未入词库；-ian 施事（与 -er/-or 同族分工）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ian"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0377",
+   "word": "politician",
+   "morphemes": {
+    "root": "politic",
+    "root_gloss": "政治的",
+    "root_bound": false,
+    "suffix": "-ian",
+    "suffix_gloss": "从事…的人",
+    "note": "词基 politic(s) 未入词库；拼写 c→ci",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ian"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0792",
+   "word": "baker",
+   "morphemes": {
+    "root": "bake",
+    "root_gloss": "烘烤",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0490",
+   "word": "cleaner",
+   "morphemes": {
+    "root": "clean",
+    "root_gloss": "打扫",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0799",
+   "word": "climber",
+   "morphemes": {
+    "root": "climb",
+    "root_gloss": "爬",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0485",
+   "word": "dancer",
+   "morphemes": {
+    "root": "dance",
+    "root_gloss": "跳舞",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "接 -er 去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G4_181",
+   "word": "driver",
+   "morphemes": {
+    "root": "drive",
+    "root_gloss": "驾驶(过去式drove)",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "接 -er 去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G4_0482",
+   "word": "farmer",
+   "morphemes": {
+    "root": "farm",
+    "root_gloss": "农场",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0791",
+   "word": "gardener",
+   "morphemes": {
+    "root": "garden",
+    "root_gloss": "花园",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0801",
+   "word": "keeper",
+   "morphemes": {
+    "root": "keep",
+    "root_gloss": "保持",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0808",
+   "word": "leader",
+   "morphemes": {
+    "root": "lead",
+    "root_gloss": "带路",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0629",
+   "word": "learner",
+   "morphemes": {
+    "root": "learn",
+    "root_gloss": "学习",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0786",
+   "word": "painter",
+   "morphemes": {
+    "root": "paint",
+    "root_gloss": "用颜料画",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0488",
+   "word": "player",
+   "morphemes": {
+    "root": "play",
+    "root_gloss": "玩耍",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0491",
+   "word": "reader",
+   "morphemes": {
+    "root": "read",
+    "root_gloss": "读",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0336",
+   "word": "reporter",
+   "morphemes": {
+    "root": "report",
+    "root_gloss": "报告",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "report 本身 = re- + port（见前缀批）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G1_005",
+   "word": "ruler",
+   "morphemes": {
+    "root": "rule",
+    "root_gloss": "规则",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "接 -er 去 e；「尺子」义为工具义转用",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0484",
+   "word": "singer",
+   "morphemes": {
+    "root": "sing",
+    "root_gloss": "唱歌",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0620",
+   "word": "speaker",
+   "morphemes": {
+    "root": "speak",
+    "root_gloss": "说（某种语言）",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G1_007",
+   "word": "teacher",
+   "morphemes": {
+    "root": "teach",
+    "root_gloss": "教",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0636",
+   "word": "traveller",
+   "morphemes": {
+    "root": "travel",
+    "root_gloss": "旅行",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "英式双写 l（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G5_0795",
+   "word": "waiter",
+   "morphemes": {
+    "root": "wait",
+    "root_gloss": "等",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0493",
+   "word": "winner",
+   "morphemes": {
+    "root": "win",
+    "root_gloss": "赢",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "接 -er 双写 n（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G5_0798",
+   "word": "runner",
+   "morphemes": {
+    "root": "run",
+    "root_gloss": "跑",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "接 -er 双写 n（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G5_0797",
+   "word": "swimmer",
+   "morphemes": {
+    "root": "swim",
+    "root_gloss": "游泳",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "接 -er 双写 m（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "ADD_0349",
+   "word": "dodger",
+   "morphemes": {
+    "root": "dodge",
+    "root_gloss": "躲闪",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "接 -er 去 e（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G6_0807",
+   "word": "villager",
+   "morphemes": {
+    "root": "village",
+    "root_gloss": "村庄",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "此 -er 为「住民」义；接尾去 e",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0344",
+   "word": "officer",
+   "morphemes": {
+    "root": "office",
+    "root_gloss": "办公室",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "office + -er：办事的人→官员",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0805",
+   "word": "foreigner",
+   "morphemes": {
+    "root": "foreign",
+    "root_gloss": "外国的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "foreign 本身为化石词（不拆），+ -er 表「…的人」",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0803",
+   "word": "stranger",
+   "morphemes": {
+    "root": "strange",
+    "root_gloss": "奇怪的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "做…的人（施事）",
+    "note": "接 -er 去 e；「陌生人」为 strange 的名词化亲属",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-er"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0321",
+   "word": "actor",
+   "morphemes": {
+    "root": "act",
+    "root_gloss": "表演",
+    "root_bound": false,
+    "suffix": "-or",
+    "suffix_gloss": "做…的人（施事，拉丁）",
+    "note": "-or 为拉丁施事尾，与 -er 分工（V-36）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-or"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0492",
+   "word": "editor",
+   "morphemes": {
+    "root": "edit",
+    "root_gloss": "编辑",
+    "root_bound": false,
+    "suffix": "-or",
+    "suffix_gloss": "做…的人（施事，拉丁）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-or"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0785",
+   "word": "inventor",
+   "morphemes": {
+    "root": "invent",
+    "root_gloss": "发明",
+    "root_bound": false,
+    "suffix": "-or",
+    "suffix_gloss": "做…的人（施事，拉丁）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-or"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0326",
+   "word": "visitor",
+   "morphemes": {
+    "root": "visit",
+    "root_gloss": "拜访",
+    "root_bound": false,
+    "suffix": "-or",
+    "suffix_gloss": "做…的人（施事，拉丁）",
+    "note": "visit 本身 = vis + -it（见词根批）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-or"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0782",
+   "word": "magician",
+   "morphemes": {
+    "root": "magic",
+    "root_gloss": "魔法",
+    "root_bound": false,
+    "suffix": "-ian",
+    "suffix_gloss": "从事…的人",
+    "note": "接 -ian 时 c 读 /ʃ/、拼作 ci",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ian"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0780",
+   "word": "musician",
+   "morphemes": {
+    "root": "music",
+    "root_gloss": "音乐",
+    "root_bound": false,
+    "suffix": "-ian",
+    "suffix_gloss": "从事…的人",
+    "note": "同 magician 的 ci 拼读",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ian"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0520",
+   "word": "guardian",
+   "morphemes": {
+    "root": "guard",
+    "root_gloss": "警卫",
+    "root_bound": false,
+    "suffix": "-ian",
+    "suffix_gloss": "从事…的人",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ian"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0784",
+   "word": "librarian",
+   "morphemes": {
+    "root": "library",
+    "root_gloss": "图书馆",
+    "root_bound": false,
+    "suffix": "-an",
+    "suffix_gloss": "管…的人",
+    "note": "library 词干 + -an「管…的人」，拼写去 y",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-an"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0495",
+   "word": "artist",
+   "morphemes": {
+    "root": "art",
+    "root_gloss": "美术",
+    "root_bound": false,
+    "suffix": "-ist",
+    "suffix_gloss": "从事…的人",
+    "note": "-ist「从事/信仰…的人」",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ist"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0634",
+   "word": "tourist",
+   "morphemes": {
+    "root": "tour",
+    "root_gloss": "旅行",
+    "root_bound": false,
+    "suffix": "-ist",
+    "suffix_gloss": "从事…的人",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ist"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0497",
+   "word": "pianist",
+   "morphemes": {
+    "root": "piano",
+    "root_gloss": "钢琴",
+    "root_bound": false,
+    "suffix": "-ist",
+    "suffix_gloss": "从事…的人",
+    "note": "接 -ist 去尾 o",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ist"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0499",
+   "word": "dentist",
+   "morphemes": {
+    "root": "dent",
+    "root_gloss": "牙（拉丁 dens）",
+    "root_bound": true,
+    "suffix": "-ist",
+    "suffix_gloss": "从事…的人",
+    "note": "dent- 为词根课程常备词干（V-21）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ist",
+    "root:dent"
+   ],
+   "source": [
+    "V-21",
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0448",
+   "word": "chemist",
+   "morphemes": {
+    "root": "chem",
+    "root_gloss": "化学（组合形）",
+    "root_bound": true,
+    "suffix": "-ist",
+    "suffix_gloss": "从事…的人",
+    "note": "chem- 为 chemistry 的词干形",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ist"
+   ],
+   "source": [
+    "V-21",
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_278",
+   "word": "scientist",
+   "morphemes": {
+    "root": "scient",
+    "root_gloss": "科学（拉丁 scire「知道」）",
+    "root_bound": true,
+    "suffix": "-ist",
+    "suffix_gloss": "从事…的人",
+    "note": "与 science 同根（见词根批）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "suffix:-ist",
+    "root:sci"
+   ],
+   "source": [
+    "V-21",
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0475",
+   "word": "define",
+   "morphemes": {
+    "prefix": "de-",
+    "prefix_gloss": "向下/使定",
+    "root": "fin",
+    "root_gloss": "界限/终点（拉丁 fīnis）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "把界限划下来→下定义；fin 家族（V-21 词干课常备）"
+   },
+   "families": [
+    "root:fin"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "V6_日常_26",
+   "word": "finish",
+   "morphemes": {
+    "root": "fin",
+    "root_gloss": "界限/终点（拉丁 fīnis）",
+    "root_bound": true,
+    "suffix": "-ish",
+    "suffix_gloss": "动词尾（拉丁 -isc- 存量）",
+    "transparency": "半透明",
+    "note": "做到终点→完成"
+   },
+   "families": [
+    "root:fin"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "V6_天气_33",
+   "word": "fine",
+   "morphemes": {
+    "root": "fin",
+    "root_gloss": "界限/终点（拉丁 fīnis）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "与 define/finish/final 同根；今义「好的/精细的」为评价漂移（V-22）"
+   },
+   "families": [
+    "root:fin"
+   ],
+   "source": [
+    "V-21",
+    "V-22"
+   ]
+  },
+  {
+   "bank_id": "ADD_0315",
+   "word": "vision",
+   "morphemes": {
+    "root": "vis",
+    "root_gloss": "看（黏着根）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾（-ion 存量）",
+    "transparency": "半透明",
+    "note": "vis/vid「看」家族，与 V-26 *spek- 是同义场的不同词根"
+   },
+   "families": [
+    "root:vis"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_270",
+   "word": "visit",
+   "morphemes": {
+    "root": "vis",
+    "root_gloss": "看（黏着根）",
+    "root_bound": true,
+    "suffix": "-it",
+    "suffix_gloss": "反复缀（拉丁存量）",
+    "transparency": "半透明",
+    "note": "一再去看→拜访、参观"
+   },
+   "families": [
+    "root:vis"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G3_0328",
+   "word": "television",
+   "morphemes": {
+    "prefix": "tele-",
+    "prefix_gloss": "远（组合形）",
+    "root": "vis",
+    "root_gloss": "看（黏着根）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "现代拼装词：远 + 看 + 名词尾（新古典拼装件口径，V-32）"
+   },
+   "families": [
+    "root:vis",
+    "prefix:tele-"
+   ],
+   "source": [
+    "V-21",
+    "V-32"
+   ]
+  },
+  {
+   "bank_id": "G4_0327",
+   "word": "video",
+   "morphemes": {
+    "root": "vid",
+    "root_gloss": "看（拉丁 vidēre）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "拉丁语「我看见」整词借入；与 provide、vision 同族"
+   },
+   "families": [
+    "root:vid"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0610",
+   "word": "provide",
+   "morphemes": {
+    "prefix": "pro-",
+    "prefix_gloss": "向前/预先",
+    "root": "vid",
+    "root_gloss": "看（黏着根）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "预先看到→预备、供给"
+   },
+   "families": [
+    "root:vid"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G5_0345",
+   "word": "special",
+   "morphemes": {
+    "root": "spec",
+    "root_gloss": "看/种类（黏着根）",
+    "root_bound": true,
+    "suffix": "-ial",
+    "suffix_gloss": "…的（形容词尾）",
+    "transparency": "半透明",
+    "note": "species 家族：「单独一种的」→特别的（与 *spek- 批同根，词库基底已立 spec）"
+   },
+   "families": [
+    "root:spec"
+   ],
+   "source": [
+    "V-26"
+   ]
+  },
+  {
+   "bank_id": "G6_0678",
+   "word": "geography",
+   "morphemes": {
+    "prefix": "geo-",
+    "prefix_gloss": "地（组合形）",
+    "root": "graph",
+    "root_gloss": "写/画（组合形）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "新古典拼装件（V-32）：写大地→地理"
+   },
+   "families": [
+    "root:graph",
+    "prefix:geo-"
+   ],
+   "source": [
+    "V-21",
+    "V-32"
+   ]
+  },
+  {
+   "bank_id": "ADD_0595",
+   "word": "paragraph",
+   "morphemes": {
+    "prefix": "para-",
+    "prefix_gloss": "在旁（组合形）",
+    "root": "graph",
+    "root_gloss": "写/画（组合形）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "原指写在旁边的记号→段落记号→段落"
+   },
+   "families": [
+    "root:graph"
+   ],
+   "source": [
+    "V-21",
+    "V-32"
+   ]
+  },
+  {
+   "bank_id": "G6_0677",
+   "word": "photograph",
+   "morphemes": {
+    "prefix": "photo-",
+    "prefix_gloss": "光（组合形）",
+    "root": "graph",
+    "root_gloss": "写/画（组合形）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "光画出来的（像）→照片；新古典拼装件"
+   },
+   "families": [
+    "root:graph",
+    "prefix:photo-"
+   ],
+   "source": [
+    "V-21",
+    "V-32"
+   ]
+  },
+  {
+   "bank_id": "ADD_0602",
+   "word": "photography",
+   "morphemes": {
+    "root": "photograph",
+    "root_gloss": "照片",
+    "root_bound": false,
+    "suffix": "-y",
+    "suffix_gloss": "学科/行当尾",
+    "transparency": "半透明",
+    "note": "photograph 的学科亲属"
+   },
+   "families": [
+    "root:graph"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G4_0381",
+   "word": "photo",
+   "morphemes": {
+    "root": "photograph",
+    "root_gloss": "照片",
+    "root_bound": false,
+    "transparency": "半透明",
+    "note": "photograph 的截短形式（V-20 截短机）",
+    "clipping_of": "photograph"
+   },
+   "families": [
+    "root:graph"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "ADD_0331",
+   "word": "xylophone",
+   "morphemes": {
+    "prefix": "xylo-",
+    "prefix_gloss": "木（组合形）",
+    "root": "phone",
+    "root_gloss": "声音（组合形）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "木头发声→木琴；新古典拼装件"
+   },
+   "families": [
+    "root:phon",
+    "prefix:xylo-"
+   ],
+   "source": [
+    "V-21",
+    "V-32"
+   ]
+  },
+  {
+   "bank_id": "G4_0378",
+   "word": "phone",
+   "morphemes": {
+    "root": "phone",
+    "root_gloss": "声音（组合形）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "telephone 的截短通行形（V-20 截短机）",
+    "clipping_of": "telephone"
+   },
+   "families": [
+    "root:phon"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "ADD_0540",
+   "word": "inform",
+   "morphemes": {
+    "prefix": "in-",
+    "prefix_gloss": "向内/赋予",
+    "root": "form",
+    "root_gloss": "形状（黏着根）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "把形状（样子）放进心里→告知"
+   },
+   "families": [
+    "root:form"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0339",
+   "word": "information",
+   "morphemes": {
+    "root": "inform",
+    "root_gloss": "告知",
+    "root_bound": false,
+    "suffix": "-ation",
+    "suffix_gloss": "名词尾（-tion 家族）",
+    "transparency": "半透明",
+    "note": "inform 的名词亲属"
+   },
+   "families": [
+    "root:form"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0340",
+   "word": "perform",
+   "morphemes": {
+    "prefix": "per-",
+    "prefix_gloss": "彻底/穿过",
+    "root": "form",
+    "root_gloss": "形状（黏着根）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "经法语辗转，「做成形」→履行、表演"
+   },
+   "families": [
+    "root:form"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0683",
+   "word": "transform",
+   "morphemes": {
+    "prefix": "trans-",
+    "prefix_gloss": "跨越/改变",
+    "root": "form",
+    "root_gloss": "形状（黏着根）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "改换形状→改变、变形"
+   },
+   "families": [
+    "root:form"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G5_0338",
+   "word": "uniform",
+   "morphemes": {
+    "prefix": "uni-",
+    "prefix_gloss": "一/单一（组合形）",
+    "root": "form",
+    "root_gloss": "形状（黏着根）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "同一种样子→制服；一致的"
+   },
+   "families": [
+    "root:form",
+    "prefix:uni-"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0720",
+   "word": "version",
+   "morphemes": {
+    "root": "vers",
+    "root_gloss": "转（黏着根）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "转出来的一个样子→版本；vers/vert「转」为词干课常备（V-21）"
+   },
+   "families": [
+    "root:vers"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0719",
+   "word": "conversion",
+   "morphemes": {
+    "prefix": "con-",
+    "prefix_gloss": "共同/全然",
+    "root": "vers",
+    "root_gloss": "转（黏着根）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "与 version 同根；其英式音标 /ʃ/ 桥已挂 SR-06"
+   },
+   "families": [
+    "root:vers"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0699",
+   "word": "university",
+   "morphemes": {
+    "prefix": "uni-",
+    "prefix_gloss": "一（组合形）",
+    "root": "vers",
+    "root_gloss": "转（黏着根）",
+    "root_bound": true,
+    "suffix": "-ity",
+    "suffix_gloss": "名词尾（拉丁底）",
+    "transparency": "不透明",
+    "note": "拉丁 universitas「转向一处、全体」→大学；勿按今义硬拆"
+   },
+   "families": [
+    "root:vers",
+    "prefix:uni-"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0684",
+   "word": "instruction",
+   "morphemes": {
+    "prefix": "in-",
+    "prefix_gloss": "向内",
+    "root": "struct",
+    "root_gloss": "建造（黏着根）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "struct「建造」为词干课常备（V-21）：在心里搭起来→教导、说明"
+   },
+   "families": [
+    "root:struct"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0519",
+   "word": "direction",
+   "morphemes": {
+    "prefix": "dis-",
+    "prefix_gloss": "分开（变体 di-）",
+    "root": "rect",
+    "root_gloss": "直（黏着根）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "rect 家族（词库基底 correct 已立）：朝直的方向"
+   },
+   "families": [
+    "root:rect"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "G5_0675",
+   "word": "perfect",
+   "morphemes": {
+    "prefix": "per-",
+    "prefix_gloss": "彻底",
+    "root": "fect",
+    "root_gloss": "做（黏着根）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "fect 家族（词库基底 affect/effect 已立）：彻底做成→完美"
+   },
+   "families": [
+    "root:fect"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "ADD_0099",
+   "word": "except",
+   "morphemes": {
+    "prefix": "ex-",
+    "prefix_gloss": "向外",
+    "root": "cept",
+    "root_gloss": "取（黏着根）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "cept 家族（词库基底 accept 已立）：拿出去→除…之外"
+   },
+   "families": [
+    "root:cept"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "ADD_0682",
+   "word": "tension",
+   "morphemes": {
+    "root": "tens",
+    "root_gloss": "伸展（黏着根，tend 变体）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "tend/tens 家族（词库基底 attend 已立 tend）"
+   },
+   "families": [
+    "root:tend"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0505",
+   "word": "extension",
+   "morphemes": {
+    "prefix": "ex-",
+    "prefix_gloss": "向外",
+    "root": "tens",
+    "root_gloss": "伸展（黏着根，tend 变体）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "向外伸展→延长、扩展"
+   },
+   "families": [
+    "root:tend"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0078",
+   "word": "digest",
+   "morphemes": {
+    "prefix": "dis-",
+    "prefix_gloss": "分开（变体 di-）",
+    "root": "gest",
+    "root_gloss": "携带（黏着根）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "gest 家族（词库基底 suggest 已立）：分开 carrying→消化、整理"
+   },
+   "families": [
+    "root:gest"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "ADD_0481",
+   "word": "digestion",
+   "morphemes": {
+    "root": "digest",
+    "root_gloss": "消化",
+    "root_bound": false,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "digest 的名词亲属"
+   },
+   "families": [
+    "root:gest"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "ADD_0545",
+   "word": "interrogate",
+   "morphemes": {
+    "prefix": "inter-",
+    "prefix_gloss": "之间",
+    "root": "rog",
+    "root_gloss": "问（黏着根）",
+    "root_bound": true,
+    "suffix": "-ate",
+    "suffix_gloss": "动词尾（存量）",
+    "transparency": "不透明",
+    "note": "rog 家族（词库基底 surrogate 已立）"
+   },
+   "families": [
+    "root:rog"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "ADD_0580",
+   "word": "motion",
+   "morphemes": {
+    "root": "mot",
+    "root_gloss": "移动（黏着根，mov 变体）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明"
+   },
+   "families": [
+    "root:mov"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0688",
+   "word": "motor",
+   "morphemes": {
+    "root": "mot",
+    "root_gloss": "移动（黏着根，mov 变体）",
+    "root_bound": true,
+    "suffix": "-or",
+    "suffix_gloss": "做…者/器物（拉丁施事）",
+    "transparency": "半透明",
+    "note": "使东西动起来的（机器）"
+   },
+   "families": [
+    "root:mov"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0411",
+   "word": "apply",
+   "morphemes": {
+    "prefix": "ad-",
+    "prefix_gloss": "向（变体 ap-，p 前）",
+    "root": "ply",
+    "root_gloss": "折叠（黏着根）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "ply 家族（词库基底 supply 已立）；双写 pp 是同化留痕（V-34）"
+   },
+   "families": [
+    "root:ply"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "G6_0469",
+   "word": "reply",
+   "morphemes": {
+    "prefix": "re-",
+    "prefix_gloss": "回",
+    "root": "ply",
+    "root_gloss": "折叠（黏着根）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "折回来→回答"
+   },
+   "families": [
+    "root:ply"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "ADD_0096",
+   "word": "entertain",
+   "morphemes": {
+    "prefix": "inter-",
+    "prefix_gloss": "之间",
+    "root": "tain",
+    "root_gloss": "持有（黏着根）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "tain 家族（词库基底 sustain 已立）：把（客人）留在中间→款待"
+   },
+   "families": [
+    "root:tain"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "ADD_0264",
+   "word": "sense",
+   "morphemes": {
+    "root": "sens",
+    "root_gloss": "感觉（拉丁 sentīre）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "sens/sent「感觉」家族的词根词本身；与 sentence 同根"
+   },
+   "families": [
+    "root:sens"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "V6_学校_43",
+   "word": "sentence",
+   "morphemes": {
+    "root": "sent",
+    "root_gloss": "感觉/判断（黏着根，sens 变体）",
+    "root_bound": true,
+    "suffix": "-ence",
+    "suffix_gloss": "名词尾（拉丁存量）",
+    "transparency": "不透明",
+    "note": "拉丁 sententia「看法、断语」→句子、判决，两义同源"
+   },
+   "families": [
+    "root:sens"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G4_0370",
+   "word": "science",
+   "morphemes": {
+    "root": "sci",
+    "root_gloss": "知道（拉丁 scire）",
+    "root_bound": true,
+    "suffix": "-ence",
+    "suffix_gloss": "名词尾（拉丁存量）",
+    "transparency": "半透明",
+    "note": "「知道（的学问）」→科学；与 scientist 同根"
+   },
+   "families": [
+    "root:sci"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0484",
+   "word": "donate",
+   "morphemes": {
+    "root": "don",
+    "root_gloss": "给（拉丁 dōnāre）",
+    "root_bound": true,
+    "suffix": "-ate",
+    "suffix_gloss": "动词尾（存量）",
+    "transparency": "不透明",
+    "note": "don「给」为词干课常备（V-21）"
+   },
+   "families": [
+    "root:don"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0865",
+   "word": "education",
+   "morphemes": {
+    "prefix": "ex-",
+    "prefix_gloss": "向外（元音前缩为 e-）",
+    "root": "duc",
+    "root_gloss": "引导（黏着根）",
+    "root_bound": true,
+    "suffix": "-ation",
+    "suffix_gloss": "名词尾（-tion 家族）",
+    "transparency": "半透明",
+    "note": "duc「引」为词干课旗舰词根（V-21）：把（潜能）引出来→教育"
+   },
+   "families": [
+    "root:duc"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G5_0366",
+   "word": "mobile",
+   "morphemes": {
+    "root": "mob",
+    "root_gloss": "移动（黏着根，mov 变体）",
+    "root_bound": true,
+    "suffix": "-ile",
+    "suffix_gloss": "…的（形容词尾，拉丁存量）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "root:mov"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0518",
+   "word": "graduate",
+   "morphemes": {
+    "root": "grad",
+    "root_gloss": "步/级（黏着根）",
+    "root_bound": true,
+    "suffix": "-uate",
+    "suffix_gloss": "动词尾（-ate 家族）",
+    "transparency": "半透明",
+    "note": "grad「级」为词干课常备（V-21）：走完一级级→毕业"
+   },
+   "families": [
+    "root:grad"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "V6_职业_30",
+   "word": "astronaut",
+   "morphemes": {
+    "prefix": "astro-",
+    "prefix_gloss": "星（组合形）",
+    "root": "naut",
+    "root_gloss": "水手/航行者（组合形）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "现代拼装词：星 + 航行者（新古典拼装件口径，V-32）"
+   },
+   "families": [
+    "root:naut",
+    "prefix:astro-"
+   ],
+   "source": [
+    "V-21",
+    "V-32"
+   ]
+  },
+  {
+   "bank_id": "V6_数字_43",
+   "word": "centimetre",
+   "morphemes": {
+    "prefix": "centi-",
+    "prefix_gloss": "百分之一（组合形）",
+    "root": "metre",
+    "root_gloss": "量/米",
+    "root_bound": false,
+    "transparency": "半透明",
+    "note": "国际单位制拼装：百分之一 + 米"
+   },
+   "families": [
+    "root:metr",
+    "prefix:centi-"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "V6_数字_42",
+   "word": "metre",
+   "morphemes": {
+    "root": "metr",
+    "root_gloss": "测量（希腊 metron）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "与 centimetre 同根；本身已是单位词"
+   },
+   "families": [
+    "root:metr"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0237",
+   "word": "pronounced",
+   "morphemes": {
+    "prefix": "pro-",
+    "prefix_gloss": "向前",
+    "root": "nounce",
+    "root_gloss": "报告（黏着根）",
+    "root_bound": true,
+    "suffix": "-ed",
+    "suffix_gloss": "过去分词尾（屈折）",
+    "transparency": "半透明",
+    "note": "nounce 家族（词库基底 announce 已立）：pronounce 的分词形独立成条，形容词义「明显的」已漂移（V-22）"
+   },
+   "families": [
+    "root:nounce",
+    "屈折:-ed"
+   ],
+   "source": [
+    "V-34",
+    "V-22"
+   ]
+  },
+  {
+   "bank_id": "ADD_0618",
+   "word": "reflect",
+   "morphemes": {
+    "prefix": "re-",
+    "prefix_gloss": "回",
+    "root": "flect",
+    "root_gloss": "弯（黏着根，flex 变体）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "flex 家族（词库基底 flexible 已立 flex）：弯回来→反射、反映"
+   },
+   "families": [
+    "root:flex"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0520",
+   "word": "collection",
+   "morphemes": {
+    "root": "collect",
+    "root_gloss": "收集",
+    "root_bound": false,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "半透明",
+    "note": "collect（词库基底已拆）的名词亲属"
+   },
+   "families": [
+    "root:lect"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0611",
+   "word": "psychology",
+   "morphemes": {
+    "prefix": "psycho-",
+    "prefix_gloss": "心灵（组合形）",
+    "root": "logy",
+    "root_gloss": "学问（组合形 -ology）",
+    "root_bound": true,
+    "transparency": "半透明",
+    "note": "与 biology（词库基底）同为 -logy 拼装件"
+   },
+   "families": [
+    "root:logy",
+    "prefix:psycho-"
+   ],
+   "source": [
+    "V-21",
+    "V-32"
+   ]
+  },
+  {
+   "bank_id": "ADD_0509",
+   "word": "flammable",
+   "morphemes": {
+    "root": "flamm",
+    "root_gloss": "火焰（拉丁 flamma）",
+    "root_bound": true,
+    "suffix": "-able",
+    "suffix_gloss": "能被…的",
+    "transparency": "半透明",
+    "note": "与 flame 同源；双写 mm 是拉丁词干 flamm- 的形"
+   },
+   "families": [
+    "suffix:-able"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0539",
+   "word": "inflammable",
+   "morphemes": {
+    "prefix": "in-",
+    "prefix_gloss": "向内/使燃（非否定）",
+    "root": "flamm",
+    "root_gloss": "火焰（拉丁 flamma）",
+    "root_bound": true,
+    "suffix": "-able",
+    "suffix_gloss": "能被…的",
+    "transparency": "半透明",
+    "note": "V-35 名案：此 in- 是「使燃」不是「不」，与 flammable 同义；消防标识史正因此改用 flammable"
+   },
+   "families": [
+    "suffix:-able"
+   ],
+   "source": [
+    "V-35"
+   ]
+  },
+  {
+   "bank_id": "ADD_0632",
+   "word": "sceptic",
+   "morphemes": {
+    "root": "skept",
+    "root_gloss": "考察（黏着根）",
+    "root_bound": true,
+    "suffix": "-ic",
+    "suffix_gloss": "…的",
+    "transparency": "不透明",
+    "note": "skeptic 的英式拼写（词库基底 skeptic 已立 skept）"
+   },
+   "families": [
+    "root:skept"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "ADD_0219",
+   "word": "pension",
+   "morphemes": {
+    "root": "pens",
+    "root_gloss": "称量/支付（黏着根，pend 变体）",
+    "root_bound": true,
+    "suffix": "-ion",
+    "suffix_gloss": "名词尾",
+    "transparency": "不透明",
+    "note": "本义「支付（的钱）」→养老金（V-22 义项窄化）"
+   },
+   "families": [
+    "root:pend"
+   ],
+   "source": [
+    "V-21",
+    "V-22"
+   ]
+  },
+  {
+   "bank_id": "ADD_0077",
+   "word": "different",
+   "morphemes": {
+    "prefix": "dis-",
+    "prefix_gloss": "分开（变体 dif-）",
+    "root": "fer",
+    "root_gloss": "携带/产生（黏着根）",
+    "root_bound": true,
+    "transparency": "不透明",
+    "note": "fer 家族（词库基底 differ/offer/refer/suffer 已立）：各带一边→不同；双写 ff 是同化留痕（V-34）"
+   },
+   "families": [
+    "root:fer"
+   ],
+   "source": [
+    "V-34"
+   ]
+  },
+  {
+   "bank_id": "G6_0330",
+   "word": "dictate",
+   "morphemes": {
+    "root": "dict",
+    "root_gloss": "说（黏着根）",
+    "root_bound": true,
+    "suffix": "-ate",
+    "suffix_gloss": "动词尾（存量）",
+    "transparency": "半透明",
+    "note": "dict 家族（词库基底 dictionary/predict 已立）"
+   },
+   "families": [
+    "root:dict"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_19",
+   "word": "dictionaries",
+   "morphemes": {
+    "root": "dict",
+    "root_gloss": "说（黏着根）",
+    "root_bound": true,
+    "suffix": "-ionary",
+    "suffix_gloss": "（拉丁名词尾）",
+    "transparency": "半透明",
+    "note": "dictionary（词库基底已拆）的复数条目：尾 -s 为复数屈折（GR-29），拼写 y→i（V-37）"
+   },
+   "families": [
+    "root:dict",
+    "屈折:-s"
+   ],
+   "source": [
+    "V-21",
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "ADD_0428",
+   "word": "below",
+   "morphemes": {
+    "prefix": "be-",
+    "prefix_gloss": "（古前缀，已不产）",
+    "root": "low",
+    "root_gloss": "低的",
+    "root_bound": false,
+    "transparency": "半透明",
+    "note": "be- 是弱化的老前缀（V-20 机器外的存量件），只登记事实"
+   },
+   "families": [],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G2_0893",
+   "word": "afternoon",
+   "morphemes": {
+    "root": "after",
+    "root_gloss": "在…之后",
+    "root_bound": false,
+    "suffix": "noon",
+    "suffix_gloss": "正午(at noon)（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0732",
+   "word": "airline",
+   "morphemes": {
+    "root": "air",
+    "root_gloss": "空气",
+    "root_bound": false,
+    "suffix": "line",
+    "suffix_gloss": "线条/排队（复合第二成分）",
+    "transparency": "半透明",
+    "note": "line 在此为「（航）线」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G3_0908",
+   "word": "airplane",
+   "morphemes": {
+    "root": "air",
+    "root_gloss": "空气",
+    "root_bound": false,
+    "suffix": "plane",
+    "suffix_gloss": "飞机（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0332",
+   "word": "airport",
+   "morphemes": {
+    "root": "air",
+    "root_gloss": "空气",
+    "root_bound": false,
+    "suffix": "port",
+    "suffix_gloss": "港口（复合第二成分）",
+    "transparency": "半透明",
+    "note": "port 在此为自由词「港」义，与黏着根 port 同形同源"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0430",
+   "word": "anybody",
+   "morphemes": {
+    "root": "any",
+    "root_gloss": "任何/一些(否定疑问句)",
+    "root_bound": false,
+    "suffix": "body",
+    "suffix_gloss": "身体（复合第二成分）",
+    "transparency": "半透明",
+    "note": "body 在此指「人」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0429",
+   "word": "anyone",
+   "morphemes": {
+    "root": "any",
+    "root_gloss": "任何/一些(否定疑问句)",
+    "root_bound": false,
+    "suffix": "one",
+    "suffix_gloss": "一（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0437",
+   "word": "anywhere",
+   "morphemes": {
+    "root": "any",
+    "root_gloss": "任何/一些(否定疑问句)",
+    "root_bound": false,
+    "suffix": "where",
+    "suffix_gloss": "在哪里（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0734",
+   "word": "armchair",
+   "morphemes": {
+    "root": "arm",
+    "root_gloss": "胳膊",
+    "root_bound": false,
+    "suffix": "chair",
+    "suffix_gloss": "椅子（复合第二成分）",
+    "transparency": "半透明",
+    "note": "arm 在此为「扶手」义"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_168",
+   "word": "bathroom",
+   "morphemes": {
+    "root": "bath",
+    "root_gloss": "洗澡",
+    "root_bound": false,
+    "suffix": "room",
+    "suffix_gloss": "房间（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_169",
+   "word": "bedroom",
+   "morphemes": {
+    "root": "bed",
+    "root_gloss": "床",
+    "root_bound": false,
+    "suffix": "room",
+    "suffix_gloss": "房间（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G3_0712",
+   "word": "bedtime",
+   "morphemes": {
+    "root": "bed",
+    "root_gloss": "床",
+    "root_bound": false,
+    "suffix": "time",
+    "suffix_gloss": "时间(不可数)/次数(可（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G2_0413",
+   "word": "birthday",
+   "morphemes": {
+    "root": "birth",
+    "root_gloss": "出生",
+    "root_bound": false,
+    "suffix": "day",
+    "suffix_gloss": "天/白天（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0907",
+   "word": "birthplace",
+   "morphemes": {
+    "root": "birth",
+    "root_gloss": "出生",
+    "root_bound": false,
+    "suffix": "place",
+    "suffix_gloss": "地方/场所（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0695",
+   "word": "bookshop",
+   "morphemes": {
+    "root": "book",
+    "root_gloss": "书",
+    "root_bound": false,
+    "suffix": "shop",
+    "suffix_gloss": "商店（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_252",
+   "word": "bookstore",
+   "morphemes": {
+    "root": "book",
+    "root_gloss": "书",
+    "root_bound": false,
+    "suffix": "store",
+    "suffix_gloss": "商店（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_186",
+   "word": "breakfast",
+   "morphemes": {
+    "root": "break",
+    "root_gloss": "打破",
+    "root_bound": false,
+    "suffix": "fast",
+    "suffix_gloss": "快的（复合第二成分）",
+    "transparency": "半透明",
+    "note": "fast 是古义「禁食、斋戒」：晨起打破夜里的斋→早餐"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0914",
+   "word": "campfire",
+   "morphemes": {
+    "root": "camp",
+    "root_gloss": "野营",
+    "root_bound": false,
+    "suffix": "fire",
+    "suffix_gloss": "火（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0887",
+   "word": "candlelight",
+   "morphemes": {
+    "root": "candle",
+    "root_gloss": "蜡烛",
+    "root_bound": false,
+    "suffix": "light",
+    "suffix_gloss": "电灯（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_154",
+   "word": "classroom",
+   "morphemes": {
+    "root": "class",
+    "root_gloss": "班级/课",
+    "root_bound": false,
+    "suffix": "room",
+    "suffix_gloss": "房间（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0369",
+   "word": "countryside",
+   "morphemes": {
+    "root": "country",
+    "root_gloss": "国家",
+    "root_bound": false,
+    "suffix": "side",
+    "suffix_gloss": "边（复合第二成分）",
+    "transparency": "半透明",
+    "note": "side 在此为「一边、乡野」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0743",
+   "word": "crosswalk",
+   "morphemes": {
+    "root": "cross",
+    "root_gloss": "穿过",
+    "root_bound": false,
+    "suffix": "walk",
+    "suffix_gloss": "步行/散步(on foo（复合第二成分）",
+    "transparency": "半透明",
+    "note": "walk 在此为「走道」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G3_0717",
+   "word": "cupcake",
+   "morphemes": {
+    "root": "cup",
+    "root_gloss": "茶杯",
+    "root_bound": false,
+    "suffix": "cake",
+    "suffix_gloss": "蛋糕（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0926",
+   "word": "daydream",
+   "morphemes": {
+    "root": "day",
+    "root_gloss": "天/白天",
+    "root_bound": false,
+    "suffix": "dream",
+    "suffix_gloss": "梦（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0889",
+   "word": "daylight",
+   "morphemes": {
+    "root": "day",
+    "root_gloss": "天/白天",
+    "root_bound": false,
+    "suffix": "light",
+    "suffix_gloss": "电灯（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0711",
+   "word": "daytime",
+   "morphemes": {
+    "root": "day",
+    "root_gloss": "天/白天",
+    "root_bound": false,
+    "suffix": "time",
+    "suffix_gloss": "时间(不可数)/次数(可（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0723",
+   "word": "downstairs",
+   "morphemes": {
+    "root": "down",
+    "root_gloss": "向下",
+    "root_bound": false,
+    "suffix": "stairs",
+    "suffix_gloss": "楼梯（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0726",
+   "word": "downtown",
+   "morphemes": {
+    "root": "down",
+    "root_gloss": "向下",
+    "root_bound": false,
+    "suffix": "town",
+    "suffix_gloss": "镇（复合第二成分）",
+    "transparency": "半透明",
+    "note": "down 在此为方位词「往市中心」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0380",
+   "word": "earphone",
+   "morphemes": {
+    "root": "ear",
+    "root_gloss": "耳朵",
+    "root_bound": false,
+    "suffix": "phone",
+    "suffix_gloss": "电话（复合第二成分）",
+    "transparency": "半透明",
+    "note": "phone 在此为 telephone 的截短件"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0768",
+   "word": "earthworm",
+   "morphemes": {
+    "root": "earth",
+    "root_gloss": "地球",
+    "root_bound": false,
+    "suffix": "worm",
+    "suffix_gloss": "蠕虫（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0426",
+   "word": "everybody",
+   "morphemes": {
+    "root": "every",
+    "root_gloss": "每一个(谓语用单数)",
+    "root_bound": false,
+    "suffix": "body",
+    "suffix_gloss": "身体（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0425",
+   "word": "everyone",
+   "morphemes": {
+    "root": "every",
+    "root_gloss": "每一个(谓语用单数)",
+    "root_bound": false,
+    "suffix": "one",
+    "suffix_gloss": "一（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0436",
+   "word": "everywhere",
+   "morphemes": {
+    "root": "every",
+    "root_gloss": "每一个(谓语用单数)",
+    "root_bound": false,
+    "suffix": "where",
+    "suffix_gloss": "在哪里（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0922",
+   "word": "eyebrow",
+   "morphemes": {
+    "root": "eye",
+    "root_gloss": "眼睛",
+    "root_bound": false,
+    "suffix": "brow",
+    "suffix_gloss": "眉毛（复合第二成分）",
+    "transparency": "半透明",
+    "note": "brow 古义含「眼睑边缘」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0924",
+   "word": "eyeglass",
+   "morphemes": {
+    "root": "eye",
+    "root_gloss": "眼睛",
+    "root_bound": false,
+    "suffix": "glass",
+    "suffix_gloss": "玻璃杯/玻璃（复合第二成分）",
+    "transparency": "半透明",
+    "note": "glass 在此为「镜片」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0925",
+   "word": "eyesight",
+   "morphemes": {
+    "root": "eye",
+    "root_gloss": "眼睛",
+    "root_bound": false,
+    "suffix": "sight",
+    "suffix_gloss": "视力（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0761",
+   "word": "firefly",
+   "morphemes": {
+    "root": "fire",
+    "root_gloss": "火",
+    "root_bound": false,
+    "suffix": "fly",
+    "suffix_gloss": "飞（复合第二成分）",
+    "transparency": "半透明",
+    "note": "会「发火光」的飞虫"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0727",
+   "word": "fireman",
+   "morphemes": {
+    "root": "fire",
+    "root_gloss": "火",
+    "root_bound": false,
+    "suffix": "man",
+    "suffix_gloss": "成年男子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0916",
+   "word": "fireplace",
+   "morphemes": {
+    "root": "fire",
+    "root_gloss": "火",
+    "root_bound": false,
+    "suffix": "place",
+    "suffix_gloss": "地方/场所（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0915",
+   "word": "firework",
+   "morphemes": {
+    "root": "fire",
+    "root_gloss": "火",
+    "root_bound": false,
+    "suffix": "work",
+    "suffix_gloss": "工作(作名词不可数!)（复合第二成分）",
+    "transparency": "半透明",
+    "note": "work 在此为「制品」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G3_0401",
+   "word": "football",
+   "morphemes": {
+    "root": "foot",
+    "root_gloss": "脚（复数feet）",
+    "root_bound": false,
+    "suffix": "ball",
+    "suffix_gloss": "球（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0705",
+   "word": "footprint",
+   "morphemes": {
+    "root": "foot",
+    "root_gloss": "脚（复数feet）",
+    "root_bound": false,
+    "suffix": "print",
+    "suffix_gloss": "打印（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0774",
+   "word": "gentleman",
+   "morphemes": {
+    "root": "gentle",
+    "root_gloss": "温柔的",
+    "root_bound": false,
+    "suffix": "man",
+    "suffix_gloss": "成年男子（复合第二成分）",
+    "transparency": "半透明",
+    "note": "gentle 古义「出身好、有教养」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0746",
+   "word": "goldfish",
+   "morphemes": {
+    "root": "gold",
+    "root_gloss": "黄金(不可数)",
+    "root_bound": false,
+    "suffix": "fish",
+    "suffix_gloss": "鱼肉（复合第二成分）",
+    "transparency": "半透明",
+    "note": "按颜色命名"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0751",
+   "word": "grapefruit",
+   "morphemes": {
+    "root": "grape",
+    "root_gloss": "葡萄",
+    "root_bound": false,
+    "suffix": "fruit",
+    "suffix_gloss": "水果（复合第二成分）",
+    "transparency": "半透明",
+    "note": "果实成串如葡萄而得名"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "ADD_0129",
+   "word": "greenhouse",
+   "morphemes": {
+    "root": "green",
+    "root_gloss": "绿色的",
+    "root_bound": false,
+    "suffix": "house",
+    "suffix_gloss": "房子/住宅（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0400",
+   "word": "haircut",
+   "morphemes": {
+    "root": "hair",
+    "root_gloss": "头发(不可数)",
+    "root_bound": false,
+    "suffix": "cut",
+    "suffix_gloss": "切/剪(过去式cut)（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0395",
+   "word": "handbag",
+   "morphemes": {
+    "root": "hand",
+    "root_gloss": "手",
+    "root_bound": false,
+    "suffix": "bag",
+    "suffix_gloss": "包（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0702",
+   "word": "handmade",
+   "morphemes": {
+    "root": "hand",
+    "root_gloss": "手",
+    "root_bound": false,
+    "suffix": "made",
+    "suffix_gloss": "make的过去式(制作了（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G2_069",
+   "word": "handsome",
+   "morphemes": {
+    "root": "hand",
+    "root_gloss": "手",
+    "root_bound": false,
+    "suffix": "some",
+    "suffix_gloss": "一些(肯定句/礼貌请求)（复合第二成分）",
+    "transparency": "不透明",
+    "note": "some 是古义成分；本义「顺手的、好使的」→「好看的」（V-38 三型之零件义已变）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0396",
+   "word": "headache",
+   "morphemes": {
+    "root": "head",
+    "root_gloss": "头",
+    "root_bound": false,
+    "suffix": "ache",
+    "suffix_gloss": "疼痛（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0704",
+   "word": "headphone",
+   "morphemes": {
+    "root": "head",
+    "root_gloss": "头",
+    "root_bound": false,
+    "suffix": "phone",
+    "suffix_gloss": "电话（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0615",
+   "word": "herself",
+   "morphemes": {
+    "root": "her",
+    "root_gloss": "她(宾格)/她的(形物)",
+    "root_bound": false,
+    "suffix": "self",
+    "suffix_gloss": "自己（复合第二成分）",
+    "transparency": "全透明",
+    "note": "反身代词由 self 复合（V-20 复合机）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0890",
+   "word": "highlight",
+   "morphemes": {
+    "root": "high",
+    "root_gloss": "高的",
+    "root_bound": false,
+    "suffix": "light",
+    "suffix_gloss": "电灯（复合第二成分）",
+    "transparency": "半透明",
+    "note": "义已扩到「要点、亮点」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0614",
+   "word": "himself",
+   "morphemes": {
+    "root": "him",
+    "root_gloss": "他(宾格)",
+    "root_bound": false,
+    "suffix": "self",
+    "suffix_gloss": "自己（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0725",
+   "word": "hometown",
+   "morphemes": {
+    "root": "home",
+    "root_gloss": "家(go home不加t",
+    "root_bound": false,
+    "suffix": "town",
+    "suffix_gloss": "镇（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_215",
+   "word": "homework",
+   "morphemes": {
+    "root": "home",
+    "root_gloss": "家(go home不加t",
+    "root_bound": false,
+    "suffix": "work",
+    "suffix_gloss": "工作(作名词不可数!)（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G3_0765",
+   "word": "honeybee",
+   "morphemes": {
+    "root": "honey",
+    "root_gloss": "蜂蜜",
+    "root_bound": false,
+    "suffix": "bee",
+    "suffix_gloss": "蜜蜂（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G3_0755",
+   "word": "hotdog",
+   "morphemes": {
+    "root": "hot",
+    "root_gloss": "热的",
+    "root_bound": false,
+    "suffix": "dog",
+    "suffix_gloss": "狗（复合第二成分）",
+    "transparency": "不透明",
+    "note": "热狗得名是俏皮话，不是狗肉（民间命名）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0391",
+   "word": "housework",
+   "morphemes": {
+    "root": "house",
+    "root_gloss": "房子/住宅",
+    "root_bound": false,
+    "suffix": "work",
+    "suffix_gloss": "工作(作名词不可数!)（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0722",
+   "word": "inside",
+   "morphemes": {
+    "root": "in",
+    "root_gloss": "在……里面",
+    "root_bound": false,
+    "suffix": "side",
+    "suffix_gloss": "边（复合第二成分）",
+    "transparency": "全透明",
+    "note": "介词卷宗另有全家福页，此处只登记构词"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0713",
+   "word": "lunchtime",
+   "morphemes": {
+    "root": "lunch",
+    "root_gloss": "午餐",
+    "root_bound": false,
+    "suffix": "time",
+    "suffix_gloss": "时间(不可数)/次数(可（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0715",
+   "word": "mooncake",
+   "morphemes": {
+    "root": "moon",
+    "root_gloss": "月亮",
+    "root_bound": false,
+    "suffix": "cake",
+    "suffix_gloss": "蛋糕（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0885",
+   "word": "moonlight",
+   "morphemes": {
+    "root": "moon",
+    "root_gloss": "月亮",
+    "root_bound": false,
+    "suffix": "light",
+    "suffix_gloss": "电灯（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "ADD_0579",
+   "word": "moreover",
+   "morphemes": {
+    "root": "more",
+    "root_gloss": "更多的/更",
+    "root_bound": false,
+    "suffix": "over",
+    "suffix_gloss": "在…正上方/越过/结束（复合第二成分）",
+    "transparency": "半透明",
+    "note": "已语法化为功能词「此外」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "V6_交通_16",
+   "word": "motorcycle",
+   "morphemes": {
+    "root": "motor",
+    "root_gloss": "马达",
+    "root_bound": false,
+    "suffix": "cycle",
+    "suffix_gloss": "循环（复合第二成分）",
+    "transparency": "半透明",
+    "note": "motor 本身 = mot + -or（见词根批）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "V6_学校_19",
+   "word": "newspaper",
+   "morphemes": {
+    "root": "news",
+    "root_gloss": "新闻",
+    "root_bound": false,
+    "suffix": "paper",
+    "suffix_gloss": "纸(不可数)（复合第二成分）",
+    "transparency": "全透明",
+    "note": "news 本身不拆（见 pending）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0721",
+   "word": "outside",
+   "morphemes": {
+    "root": "out",
+    "root_gloss": "向外",
+    "root_bound": false,
+    "suffix": "side",
+    "suffix_gloss": "边（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0333",
+   "word": "passport",
+   "morphemes": {
+    "root": "pass",
+    "root_gloss": "传递",
+    "root_bound": false,
+    "suffix": "port",
+    "suffix_gloss": "港口（复合第二成分）",
+    "transparency": "半透明",
+    "note": "源法语 passeport：「通过港口（关卡）」的凭证"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0742",
+   "word": "password",
+   "morphemes": {
+    "root": "pass",
+    "root_gloss": "传递",
+    "root_bound": false,
+    "suffix": "word",
+    "suffix_gloss": "单词/话语（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G3_0750",
+   "word": "pineapple",
+   "morphemes": {
+    "root": "pine",
+    "root_gloss": "松树",
+    "root_bound": false,
+    "suffix": "apple",
+    "suffix_gloss": "苹果（复合第二成分）",
+    "transparency": "不透明",
+    "note": "apple 是古义「水果」总称：松树的水果→菠萝（V-38 型）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "ADD_0375",
+   "word": "ploughman",
+   "morphemes": {
+    "root": "plough",
+    "root_gloss": "犁",
+    "root_bound": false,
+    "suffix": "man",
+    "suffix_gloss": "成年男子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0728",
+   "word": "policeman",
+   "morphemes": {
+    "root": "police",
+    "root_gloss": "警察（总称）",
+    "root_bound": false,
+    "suffix": "man",
+    "suffix_gloss": "成年男子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0884",
+   "word": "policewoman",
+   "morphemes": {
+    "root": "police",
+    "root_gloss": "警察（总称）",
+    "root_bound": false,
+    "suffix": "woman",
+    "suffix_gloss": "成年女子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_265",
+   "word": "postcard",
+   "morphemes": {
+    "root": "post",
+    "root_gloss": "邮政",
+    "root_bound": false,
+    "suffix": "card",
+    "suffix_gloss": "卡片（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0423",
+   "word": "postman",
+   "morphemes": {
+    "root": "post",
+    "root_gloss": "邮政",
+    "root_bound": false,
+    "suffix": "man",
+    "suffix_gloss": "成年男子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0410",
+   "word": "raincoat",
+   "morphemes": {
+    "root": "rain",
+    "root_gloss": "雨",
+    "root_bound": false,
+    "suffix": "coat",
+    "suffix_gloss": "外衣（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0736",
+   "word": "rainstorm",
+   "morphemes": {
+    "root": "rain",
+    "root_gloss": "雨",
+    "root_bound": false,
+    "suffix": "storm",
+    "suffix_gloss": "暴风雨（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0697",
+   "word": "restroom",
+   "morphemes": {
+    "root": "rest",
+    "root_gloss": "休息(have a re",
+    "root_bound": false,
+    "suffix": "room",
+    "suffix_gloss": "房间（复合第二成分）",
+    "transparency": "半透明",
+    "note": "委婉语：指洗手间"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0737",
+   "word": "sandstorm",
+   "morphemes": {
+    "root": "sand",
+    "root_gloss": "沙",
+    "root_bound": false,
+    "suffix": "storm",
+    "suffix_gloss": "暴风雨（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G1_006",
+   "word": "schoolbag",
+   "morphemes": {
+    "root": "school",
+    "root_gloss": "学校",
+    "root_bound": false,
+    "suffix": "bag",
+    "suffix_gloss": "包（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0392",
+   "word": "schoolwork",
+   "morphemes": {
+    "root": "school",
+    "root_gloss": "学校",
+    "root_bound": false,
+    "suffix": "work",
+    "suffix_gloss": "工作(作名词不可数!)（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0698",
+   "word": "schoolyard",
+   "morphemes": {
+    "root": "school",
+    "root_gloss": "学校",
+    "root_bound": false,
+    "suffix": "yard",
+    "suffix_gloss": "院子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0719",
+   "word": "seafood",
+   "morphemes": {
+    "root": "sea",
+    "root_gloss": "海",
+    "root_bound": false,
+    "suffix": "food",
+    "suffix_gloss": "食物（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0767",
+   "word": "seahorse",
+   "morphemes": {
+    "root": "sea",
+    "root_gloss": "海",
+    "root_bound": false,
+    "suffix": "horse",
+    "suffix_gloss": "马（复合第二成分）",
+    "transparency": "半透明",
+    "note": "按长相命名（头像马头）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0720",
+   "word": "seaside",
+   "morphemes": {
+    "root": "sea",
+    "root_gloss": "海",
+    "root_bound": false,
+    "suffix": "side",
+    "suffix_gloss": "边（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0882",
+   "word": "shopkeeper",
+   "morphemes": {
+    "root": "shop",
+    "root_gloss": "商店",
+    "root_bound": false,
+    "suffix": "keeper",
+    "suffix_gloss": "饲养员（复合第二成分）",
+    "transparency": "全透明",
+    "note": "keeper 本身 = keep + -er（见后缀批）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0744",
+   "word": "sidewalk",
+   "morphemes": {
+    "root": "side",
+    "root_gloss": "边",
+    "root_bound": false,
+    "suffix": "walk",
+    "suffix_gloss": "步行/散步(on foo（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0405",
+   "word": "snowball",
+   "morphemes": {
+    "root": "snow",
+    "root_gloss": "雪",
+    "root_bound": false,
+    "suffix": "ball",
+    "suffix_gloss": "球（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_237",
+   "word": "snowman",
+   "morphemes": {
+    "root": "snow",
+    "root_gloss": "雪",
+    "root_bound": false,
+    "suffix": "man",
+    "suffix_gloss": "成年男子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0428",
+   "word": "somebody",
+   "morphemes": {
+    "root": "some",
+    "root_gloss": "一些(肯定句/礼貌请求)",
+    "root_bound": false,
+    "suffix": "body",
+    "suffix_gloss": "身体（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0427",
+   "word": "someone",
+   "morphemes": {
+    "root": "some",
+    "root_gloss": "一些(肯定句/礼貌请求)",
+    "root_bound": false,
+    "suffix": "one",
+    "suffix_gloss": "一（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0438",
+   "word": "somewhere",
+   "morphemes": {
+    "root": "some",
+    "root_gloss": "一些(肯定句/礼貌请求)",
+    "root_bound": false,
+    "suffix": "where",
+    "suffix_gloss": "在哪里（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0729",
+   "word": "spaceman",
+   "morphemes": {
+    "root": "space",
+    "root_gloss": "太空/空间",
+    "root_bound": false,
+    "suffix": "man",
+    "suffix_gloss": "成年男子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0730",
+   "word": "spaceship",
+   "morphemes": {
+    "root": "space",
+    "root_gloss": "太空/空间",
+    "root_bound": false,
+    "suffix": "ship",
+    "suffix_gloss": "（大）船（复合第二成分）",
+    "transparency": "半透明",
+    "note": "ship 在此为「飞船」，与 friendship 的 -ship 无关"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0747",
+   "word": "starfish",
+   "morphemes": {
+    "root": "star",
+    "root_gloss": "星星",
+    "root_bound": false,
+    "suffix": "fish",
+    "suffix_gloss": "鱼肉（复合第二成分）",
+    "transparency": "半透明",
+    "note": "按长相命名，并不是鱼"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0886",
+   "word": "starlight",
+   "morphemes": {
+    "root": "star",
+    "root_gloss": "星星",
+    "root_bound": false,
+    "suffix": "light",
+    "suffix_gloss": "电灯（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "V6_身体_32",
+   "word": "stomachache",
+   "morphemes": {
+    "root": "stomach",
+    "root_gloss": "胃/肚子",
+    "root_bound": false,
+    "suffix": "ache",
+    "suffix_gloss": "疼痛（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_163",
+   "word": "storybook",
+   "morphemes": {
+    "root": "story",
+    "root_gloss": "故事",
+    "root_bound": false,
+    "suffix": "book",
+    "suffix_gloss": "书（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0409",
+   "word": "sunflower",
+   "morphemes": {
+    "root": "sun",
+    "root_gloss": "太阳",
+    "root_bound": false,
+    "suffix": "flower",
+    "suffix_gloss": "花（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0408",
+   "word": "sunglasses",
+   "morphemes": {
+    "root": "sun",
+    "root_gloss": "太阳",
+    "root_bound": false,
+    "suffix": "glasses",
+    "suffix_gloss": "眼镜（常复数）（复合第二成分）",
+    "transparency": "半透明",
+    "note": "glasses 本身为复数专名（见 pending 登记），此处只登记复合构成"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0407",
+   "word": "sunlight",
+   "morphemes": {
+    "root": "sun",
+    "root_gloss": "太阳",
+    "root_bound": false,
+    "suffix": "light",
+    "suffix_gloss": "电灯（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0707",
+   "word": "sunrise",
+   "morphemes": {
+    "root": "sun",
+    "root_gloss": "太阳",
+    "root_bound": false,
+    "suffix": "rise",
+    "suffix_gloss": "上升（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0706",
+   "word": "sunset",
+   "morphemes": {
+    "root": "sun",
+    "root_gloss": "太阳",
+    "root_bound": false,
+    "suffix": "set",
+    "suffix_gloss": "放置（复合第二成分）",
+    "transparency": "半透明",
+    "note": "set 在此为「落下」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0406",
+   "word": "sunshine",
+   "morphemes": {
+    "root": "sun",
+    "root_gloss": "太阳",
+    "root_bound": false,
+    "suffix": "shine",
+    "suffix_gloss": "照耀/发光（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "ADD_0678",
+   "word": "sweetmeat",
+   "morphemes": {
+    "root": "sweet",
+    "root_gloss": "甜的",
+    "root_bound": false,
+    "suffix": "meat",
+    "suffix_gloss": "（猪（复合第二成分）",
+    "transparency": "不透明",
+    "note": "meat 是古义「食物」总称：甜食（V-38 型）"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0735",
+   "word": "tablecloth",
+   "morphemes": {
+    "root": "table",
+    "root_gloss": "桌子",
+    "root_bound": false,
+    "suffix": "cloth",
+    "suffix_gloss": "布（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0700",
+   "word": "teamwork",
+   "morphemes": {
+    "root": "team",
+    "root_gloss": "队",
+    "root_bound": false,
+    "suffix": "work",
+    "suffix_gloss": "工作(作名词不可数!)（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0714",
+   "word": "timetable",
+   "morphemes": {
+    "root": "time",
+    "root_gloss": "时间(不可数)/次数(可",
+    "root_bound": false,
+    "suffix": "table",
+    "suffix_gloss": "桌子（复合第二成分）",
+    "transparency": "半透明",
+    "note": "table 在此为「表」义"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0397",
+   "word": "toothache",
+   "morphemes": {
+    "root": "tooth",
+    "root_gloss": "牙齿（单数",
+    "root_bound": false,
+    "suffix": "ache",
+    "suffix_gloss": "疼痛（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0398",
+   "word": "toothbrush",
+   "morphemes": {
+    "root": "tooth",
+    "root_gloss": "牙齿（单数",
+    "root_bound": false,
+    "suffix": "brush",
+    "suffix_gloss": "刷(brush teet（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0917",
+   "word": "toothpick",
+   "morphemes": {
+    "root": "tooth",
+    "root_gloss": "牙齿（单数",
+    "root_bound": false,
+    "suffix": "pick",
+    "suffix_gloss": "采摘/捡起（复合第二成分）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G4_0696",
+   "word": "washroom",
+   "morphemes": {
+    "root": "wash",
+    "root_gloss": "洗(三单washes)",
+    "root_bound": false,
+    "suffix": "room",
+    "suffix_gloss": "房间（复合第二成分）",
+    "transparency": "半透明",
+    "note": "委婉语：指洗手间"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0412",
+   "word": "waterfall",
+   "morphemes": {
+    "root": "water",
+    "root_gloss": "水",
+    "root_bound": false,
+    "suffix": "fall",
+    "suffix_gloss": "秋天(美)/落下（复合第二成分）",
+    "transparency": "半透明",
+    "note": "fall 在此为「落下」"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0417",
+   "word": "weekday",
+   "morphemes": {
+    "root": "week",
+    "root_gloss": "周/星期(同音weak)",
+    "root_bound": false,
+    "suffix": "day",
+    "suffix_gloss": "天/白天（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_216",
+   "word": "weekend",
+   "morphemes": {
+    "root": "week",
+    "root_gloss": "周/星期(同音weak)",
+    "root_bound": false,
+    "suffix": "end",
+    "suffix_gloss": "结尾（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0733",
+   "word": "wheelchair",
+   "morphemes": {
+    "root": "wheel",
+    "root_gloss": "车轮",
+    "root_bound": false,
+    "suffix": "chair",
+    "suffix_gloss": "椅子（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "V6_核心_51",
+   "word": "without",
+   "morphemes": {
+    "root": "with",
+    "root_gloss": "和…一起/用(工具)/带",
+    "root_bound": false,
+    "suffix": "out",
+    "suffix_gloss": "向外（复合第二成分）",
+    "transparency": "半透明",
+    "note": "with 古有「在…外、对着」义：with + out→在外面→没有"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G6_0699",
+   "word": "workplace",
+   "morphemes": {
+    "root": "work",
+    "root_gloss": "工作(作名词不可数!)",
+    "root_bound": false,
+    "suffix": "place",
+    "suffix_gloss": "地方/场所（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0613",
+   "word": "yourself",
+   "morphemes": {
+    "root": "your",
+    "root_gloss": "你的/你们的(形物)",
+    "root_bound": false,
+    "suffix": "self",
+    "suffix_gloss": "自己（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "G5_0881",
+   "word": "zookeeper",
+   "morphemes": {
+    "root": "zoo",
+    "root_gloss": "动物园",
+    "root_bound": false,
+    "suffix": "keeper",
+    "suffix_gloss": "饲养员（复合第二成分）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "compound"
+   ],
+   "source": [
+    "V-20",
+    "V-15"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_16",
+   "word": "babies",
+   "morphemes": {
+    "root": "baby",
+    "root_gloss": "婴儿(复数babies)",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "note": "y→i 再加 -es（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_17",
+   "word": "cities",
+   "morphemes": {
+    "root": "city",
+    "root_gloss": "城市",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "note": "y→i 再加 -es（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_18",
+   "word": "libraries",
+   "morphemes": {
+    "root": "library",
+    "root_gloss": "图书馆",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "note": "y→i 再加 -es（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G6_273",
+   "word": "studies",
+   "morphemes": {
+    "root": "study",
+    "root_gloss": "书房",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "三单 -s（屈折）",
+    "note": "词库义项登记为 study 的第三人称单数；y→i 再加 -es（V-37）。同形复数 studies（研究/学术领域）未在本条登记",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-s 三单"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_12",
+   "word": "heroes",
+   "morphemes": {
+    "root": "hero",
+    "root_gloss": "英雄(复数heroes)",
+    "root_bound": false,
+    "suffix": "-es",
+    "suffix_gloss": "复数（屈折）",
+    "note": "-o 结尾加 -es 一档（V-37）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_11",
+   "word": "potatoes",
+   "morphemes": {
+    "root": "potato",
+    "root_gloss": "马铃薯",
+    "root_bound": false,
+    "suffix": "-es",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_10",
+   "word": "tomatoes",
+   "morphemes": {
+    "root": "tomato",
+    "root_gloss": "西红柿",
+    "root_bound": false,
+    "suffix": "-es",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_13",
+   "word": "photos",
+   "morphemes": {
+    "root": "photo",
+    "root_gloss": "照片",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "note": "-o 结尾加 -s 一档，与 heroes 分工（V-37 登记）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_14",
+   "word": "pianos",
+   "morphemes": {
+    "root": "piano",
+    "root_gloss": "钢琴",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_15",
+   "word": "zoos",
+   "morphemes": {
+    "root": "zoo",
+    "root_gloss": "动物园",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "ADD_0335",
+   "word": "beers",
+   "morphemes": {
+    "root": "beer",
+    "root_gloss": "啤酒",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G4_0971",
+   "word": "boots",
+   "morphemes": {
+    "root": "boot",
+    "root_gloss": "靴子",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G4_175",
+   "word": "chopsticks",
+   "morphemes": {
+    "root": "chopstick",
+    "root_gloss": "筷子（单根",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "note": "成对器物常用复数形",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G4_0770",
+   "word": "grandparents",
+   "morphemes": {
+    "root": "grandparent",
+    "root_gloss": "祖父母/外祖父母",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G4_177",
+   "word": "noodles",
+   "morphemes": {
+    "root": "noodle",
+    "root_gloss": "面条(常用复数noodl",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "note": "面条常用复数形",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G4_0771",
+   "word": "parents",
+   "morphemes": {
+    "root": "parent",
+    "root_gloss": "父或母(双亲parent",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G1_057",
+   "word": "shoes",
+   "morphemes": {
+    "root": "shoe",
+    "root_gloss": "鞋子(常用复数shoes",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G1_059",
+   "word": "socks",
+   "morphemes": {
+    "root": "sock",
+    "root_gloss": "短袜(常用复数socks",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G5_251",
+   "word": "turns",
+   "morphemes": {
+    "root": "turn",
+    "root_gloss": "转弯",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "note": "词库义项为名词复数（take turns 轮流）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G4_179",
+   "word": "vegetables",
+   "morphemes": {
+    "root": "vegetable",
+    "root_gloss": "蔬菜",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "ADD_0321",
+   "word": "wars",
+   "morphemes": {
+    "root": "war",
+    "root_gloss": "战争",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "复数（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_7",
+   "word": "leaves",
+   "morphemes": {
+    "root": "leaf",
+    "root_gloss": "树叶(复数leaves!",
+    "root_bound": false,
+    "suffix": "-es",
+    "suffix_gloss": "复数（屈折）",
+    "note": "f→v 再加 -es（V-37 拼写让路）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-s 复数"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "V6_核心_12",
+   "word": "hers",
+   "morphemes": {
+    "root": "her",
+    "root_gloss": "她(宾格)/她的(形物)",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "所有格 -s（独立物主代词）",
+    "note": "此 -s 非复数：是「属于她的（东西）」的所有格标记，与 GR-13 所有格同源",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-'s 所有格"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "V6_核心_18",
+   "word": "ours",
+   "morphemes": {
+    "root": "our",
+    "root_gloss": "我们的(形物)",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "所有格 -s（独立物主代词）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-'s 所有格"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "V6_核心_22",
+   "word": "theirs",
+   "morphemes": {
+    "root": "their",
+    "root_gloss": "他们的(形物·同音the",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "所有格 -s（独立物主代词）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-'s 所有格"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "V6_核心_6",
+   "word": "yours",
+   "morphemes": {
+    "root": "your",
+    "root_gloss": "你的/你们的(形物)",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "所有格 -s（独立物主代词）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-'s 所有格"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "V6_核心_14",
+   "word": "its",
+   "morphemes": {
+    "root": "it",
+    "root_gloss": "它(主宾同形)",
+    "root_bound": false,
+    "suffix": "-s",
+    "suffix_gloss": "所有格 -s",
+    "note": "its 无撇号，与 it's（it is）分工——词库义项已自带此提醒",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-'s 所有格"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G3_KA04",
+   "word": "does",
+   "morphemes": {
+    "root": "do",
+    "root_gloss": "做(过去式did)",
+    "root_bound": false,
+    "suffix": "-es",
+    "suffix_gloss": "三单 -s（屈折）",
+    "note": "已有 verb_form_of 链（do）；词干 do 本身有元音变化，登记形式关系",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-s 三单"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G3_KA02",
+   "word": "goes",
+   "morphemes": {
+    "root": "go",
+    "root_gloss": "去(过去式went)",
+    "root_bound": false,
+    "suffix": "-es",
+    "suffix_gloss": "三单 -s（屈折）",
+    "note": "已有 verb_form_of 链（go）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:-s 三单"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "G6_0832",
+   "word": "fallen",
+   "morphemes": {
+    "root": "fall",
+    "root_gloss": "秋天(美)/落下",
+    "root_bound": false,
+    "suffix": "-en",
+    "suffix_gloss": "过去分词（屈折）",
+    "note": "-en 是 GR-29 八词尾中过去分词位的代表形",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-en 过去分词"
+   ],
+   "source": [
+    "GR-29"
+   ]
+  },
+  {
+   "bank_id": "ADD_0717",
+   "word": "written",
+   "morphemes": {
+    "root": "write",
+    "root_gloss": "写",
+    "root_bound": false,
+    "suffix": "-en",
+    "suffix_gloss": "过去分词（屈折）",
+    "note": "词干元音变化 i→i（/ɪ/）加 -en，双写 tt（V-37）",
+    "transparency": "半透明"
+   },
+   "families": [
+    "屈折:-en 过去分词"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G3_0376",
+   "word": "bicycle",
+   "morphemes": {
+    "prefix": "bi-",
+    "prefix_gloss": "二/两（组合形）",
+    "root": "cycle",
+    "root_gloss": "循环；骑自行车",
+    "root_bound": false,
+    "transparency": "半透明",
+    "note": "bi- 为词根课程常备组合形（V-21）；与 bishop 的 bi- 假拆对照（见 pending）"
+   },
+   "families": [
+    "prefix:bi-"
+   ],
+   "source": [
+    "V-21"
+   ]
+  },
+  {
+   "bank_id": "G6_0838",
+   "word": "angrily",
+   "morphemes": {
+    "root": "angry",
+    "root_gloss": "生气的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "y→i 再加 -ly（V-37）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0833",
+   "word": "carefully",
+   "morphemes": {
+    "root": "careful",
+    "root_gloss": "小心的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0841",
+   "word": "clearly",
+   "morphemes": {
+    "root": "clear",
+    "root_gloss": "清澈的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0535",
+   "word": "easily",
+   "morphemes": {
+    "root": "easy",
+    "root_gloss": "容易的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "y→i（V-37）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0674",
+   "word": "exactly",
+   "morphemes": {
+    "root": "exact",
+    "root_gloss": "准确的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0534",
+   "word": "happily",
+   "morphemes": {
+    "root": "happy",
+    "root_gloss": "快乐的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "y→i（V-37）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0839",
+   "word": "heavily",
+   "morphemes": {
+    "root": "heavy",
+    "root_gloss": "重的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "y→i（V-37）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0537",
+   "word": "loudly",
+   "morphemes": {
+    "root": "loud",
+    "root_gloss": "大声的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0848",
+   "word": "luckily",
+   "morphemes": {
+    "root": "lucky",
+    "root_gloss": "幸运的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "y→i（V-37）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0834",
+   "word": "politely",
+   "morphemes": {
+    "root": "polite",
+    "root_gloss": "有礼貌的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "接 -ly 去 e（V-37）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0532",
+   "word": "quickly",
+   "morphemes": {
+    "root": "quick",
+    "root_gloss": "快的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0530",
+   "word": "quietly",
+   "morphemes": {
+    "root": "quiet",
+    "root_gloss": "安静的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G4_0539",
+   "word": "really",
+   "morphemes": {
+    "root": "real",
+    "root_gloss": "真实的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0837",
+   "word": "sadly",
+   "morphemes": {
+    "root": "sad",
+    "root_gloss": "难过的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0835",
+   "word": "safely",
+   "morphemes": {
+    "root": "safe",
+    "root_gloss": "安全的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "接 -ly 去 e（V-37）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0639",
+   "word": "shyly",
+   "morphemes": {
+    "root": "shy",
+    "root_gloss": "害羞的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G5_0531",
+   "word": "slowly",
+   "morphemes": {
+    "root": "slow",
+    "root_gloss": "慢的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0847",
+   "word": "truly",
+   "morphemes": {
+    "root": "true",
+    "root_gloss": "真的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "true 去 e 加 -ly，拼写例外点（V-37）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G4_0464",
+   "word": "usually",
+   "morphemes": {
+    "root": "usual",
+    "root_gloss": "通常的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0836",
+   "word": "warmly",
+   "morphemes": {
+    "root": "warm",
+    "root_gloss": "温暖的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0845",
+   "word": "widely",
+   "morphemes": {
+    "root": "wide",
+    "root_gloss": "宽的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "义已扩到「广泛地」"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G6_0843",
+   "word": "deeply",
+   "morphemes": {
+    "root": "deep",
+    "root_gloss": "深的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "半透明",
+    "note": "义已扩到情感深处"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0140",
+   "word": "hardly",
+   "morphemes": {
+    "root": "hard",
+    "root_gloss": "困难的",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "副词尾（形容词→副词）",
+    "transparency": "不透明",
+    "note": "hard + -ly 的义已漂移为「几乎不」，是 V-22 漂移与假朋友名案：不可按「努力地」理解"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "ADD_0555",
+   "word": "kingly",
+   "morphemes": {
+    "root": "king",
+    "root_gloss": "国王",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "形容词尾（有…样子的）",
+    "transparency": "半透明",
+    "note": "-ly 在此为形容词尾「有…样的」（与 friendly 的 -ly 同班）"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G4_0542",
+   "word": "lovely",
+   "morphemes": {
+    "root": "love",
+    "root_gloss": "爱/喜爱",
+    "root_bound": false,
+    "suffix": "-ly",
+    "suffix_gloss": "形容词尾（有…样子的）",
+    "transparency": "半透明",
+    "note": "-ly 形容词尾：「可爱的」，非副词"
+   },
+   "families": [
+    "suffix:-ly"
+   ],
+   "source": [
+    "V-36"
+   ]
+  },
+  {
+   "bank_id": "G4_0365",
+   "word": "movie",
+   "morphemes": {
+    "root": "move",
+    "root_gloss": "移动",
+    "root_bound": false,
+    "suffix": "-ie",
+    "suffix_gloss": "小称尾（截短派生）",
+    "transparency": "半透明",
+    "note": "moving picture 的截短+小称（V-20 截短机）：会动的画→电影"
+   },
+   "families": [
+    "root:mov"
+   ],
+   "source": [
+    "V-20"
+   ]
+  },
+  {
+   "bank_id": "G6_0687",
+   "word": "moving",
+   "morphemes": {
+    "root": "move",
+    "root_gloss": "移动",
+    "root_bound": false,
+    "suffix": "-ing",
+    "suffix_gloss": "现在分词（屈折）",
+    "transparency": "全透明",
+    "note": "接 -ing 去 e（V-37）；已形容词化（感人的）一义为漂移"
+   },
+   "families": [
+    "root:mov",
+    "屈折:-ing"
+   ],
+   "source": [
+    "GR-29",
+    "V-37"
+   ]
+  },
+  {
+   "bank_id": "G6_0576",
+   "word": "bigger",
+   "morphemes": {
+    "root": "big",
+    "root_gloss": "大的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明",
+    "note": "双写 g（V-37）"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "ADD_0086",
+   "word": "easier",
+   "morphemes": {
+    "root": "easy",
+    "root_gloss": "容易的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明",
+    "note": "y→i（V-37）"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_68",
+   "word": "happier",
+   "morphemes": {
+    "root": "happy",
+    "root_gloss": "快乐的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明",
+    "note": "y→i（V-37）"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "G6_285",
+   "word": "heavier",
+   "morphemes": {
+    "root": "heavy",
+    "root_gloss": "重的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明",
+    "note": "y→i（V-37）"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_69",
+   "word": "hotter",
+   "morphemes": {
+    "root": "hot",
+    "root_gloss": "热的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明",
+    "note": "双写 t（V-37）"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "G6_0573",
+   "word": "older",
+   "morphemes": {
+    "root": "old",
+    "root_gloss": "老的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "G6_0578",
+   "word": "faster",
+   "morphemes": {
+    "root": "fast",
+    "root_gloss": "快的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "G6_0572",
+   "word": "shorter",
+   "morphemes": {
+    "root": "short",
+    "root_gloss": "矮的；短的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明",
+    "note": "与 shorten 的 -en 分工：此为比较级"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "G6_0577",
+   "word": "smaller",
+   "morphemes": {
+    "root": "small",
+    "root_gloss": "小的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "G6_286",
+   "word": "stronger",
+   "morphemes": {
+    "root": "strong",
+    "root_gloss": "强壮的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "G6_287",
+   "word": "taller",
+   "morphemes": {
+    "root": "tall",
+    "root_gloss": "高的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_66",
+   "word": "thinner",
+   "morphemes": {
+    "root": "thin",
+    "root_gloss": "瘦的；薄的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明",
+    "note": "双写 n（V-37）"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "G6_288",
+   "word": "younger",
+   "morphemes": {
+    "root": "young",
+    "root_gloss": "年轻的",
+    "root_bound": false,
+    "suffix": "-er",
+    "suffix_gloss": "比较级（屈折）",
+    "transparency": "全透明"
+   },
+   "families": [
+    "屈折:比较级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  },
+  {
+   "bank_id": "V6_MORPH_65",
+   "word": "biggest",
+   "morphemes": {
+    "root": "big",
+    "root_gloss": "大的",
+    "root_bound": false,
+    "suffix": "-est",
+    "suffix_gloss": "最高级（屈折）",
+    "transparency": "全透明",
+    "note": "双写 g（V-37）"
+   },
+   "families": [
+    "屈折:最高级"
+   ],
+   "source": [
+    "GR-29",
+    "GR-31"
+   ]
+  }
+ ],
+ "pending": [
+  {
+   "word": "bishop",
+   "bank_id": "ADD_0430",
+   "candidate": "bi- + shop",
+   "reason": "假拆：bishop 源古英语 biscop（主教），与 bi-/shop 均无关",
+   "ref": "V-38"
+  },
+  {
+   "word": "coach",
+   "bank_id": "G6_274",
+   "candidate": "co- + ach(e)",
+   "reason": "假拆：coach 源匈牙利语地名 Kocs 的马车词，与 co- 无关",
+   "ref": "V-38"
+  },
+  {
+   "word": "email",
+   "bank_id": "G3_K31",
+   "candidate": "e- + mail",
+   "reason": "e-（electronic）为现代首字母缩合件，不在 V-33 二十前缀与目录词干清单内，口径待裁",
+   "ref": "V-20"
+  },
+  {
+   "word": "improv",
+   "bank_id": "ADD_0361",
+   "candidate": "im- + prove",
+   "reason": "实为 improvisation 的截短（V-20 截短机），非 im- 前缀",
+   "ref": "V-20"
+  },
+  {
+   "word": "person",
+   "bank_id": "V6_家庭_28",
+   "candidate": "per- + son",
+   "reason": "假拆：person 源拉丁 persōna（面具），son 为巧合子串",
+   "ref": "V-38"
+  },
+  {
+   "word": "present",
+   "bank_id": "G4_0993",
+   "candidate": "pre- + sent",
+   "reason": "词源为拉丁 prae-esse「在面前」，sent 非「感觉」根的此处形，教学拆易误导，待裁",
+   "ref": "V-38"
+  },
+  {
+   "word": "regal",
+   "bank_id": "ADD_0619",
+   "candidate": "re- + gal",
+   "reason": "假拆子串命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "exact",
+   "bank_id": "G6_0673",
+   "candidate": "ex- + act",
+   "reason": "拉丁根为 ag-（做），act 是另一词的形，拆 ex-+act 会教错词根",
+   "ref": "V-38"
+  },
+  {
+   "word": "detail",
+   "bank_id": "ADD_0477",
+   "candidate": "de- + tail",
+   "reason": "tail 在此同源义为「切分」（与 tailor 同链），按今义 tail 拆必误读，待词源级裁定",
+   "ref": "V-25"
+  },
+  {
+   "word": "sport",
+   "bank_id": "G3_0337",
+   "candidate": "(di)s- + port",
+   "reason": "sport 是 disport 的脱首截短（V-20），port 亲缘真实但形式链断裂，不拆、只登记亲缘",
+   "ref": "V-20"
+  },
+  {
+   "word": "ferry",
+   "bank_id": "V6_交通_12",
+   "candidate": "fer 根",
+   "reason": "与 fer（携带）同形异源：ferry 是日耳曼「渡运」词，词源巧合，防假亲缘",
+   "ref": "V-38"
+  },
+  {
+   "word": "divide",
+   "bank_id": "ADD_0079",
+   "candidate": "di- + vid",
+   "reason": "经典陷阱：divide 的 -vid- 是「分开」根（*weidh-），不是 vid「看」",
+   "ref": "V-38"
+  },
+  {
+   "word": "vacation",
+   "bank_id": "G5_238",
+   "candidate": "vac- + -ation",
+   "reason": "vac-「空」根未在目录/V 条中立目（仅词干课传统），出处不足，待立根后补",
+   "ref": "V-21"
+  },
+  {
+   "word": "logic",
+   "bank_id": "ADD_0563",
+   "candidate": "log- + -ic",
+   "reason": "log-「言辞」根未在目录立目（-logy 组合形已立，log- 本根待裁）",
+   "ref": "V-21"
+  },
+  {
+   "word": "crayon",
+   "bank_id": "G3_107",
+   "candidate": "cray + -on",
+   "reason": "与 crayfish 的 cray 来源不同（crayon 源拉丁 crēta 粉笔），同形防混，待裁",
+   "ref": "V-24"
+  },
+  {
+   "word": "spend",
+   "bank_id": "V6_日常_35",
+   "candidate": "(ex)pend 截短",
+   "reason": "spend 是 expend 的脱首截短通行形，pend 亲缘真实但不拆",
+   "ref": "V-20"
+  },
+  {
+   "word": "autobus",
+   "bank_id": "ADD_0334",
+   "candidate": "auto- + bus",
+   "reason": "整词法语借入，且 bus 本身是 omnibus 截短，链长待裁",
+   "ref": "V-20"
+  },
+  {
+   "word": "metro",
+   "bank_id": "V6_交通_7",
+   "candidate": "metropolitan 截短",
+   "reason": "截短词，词根链在 metropolitan（metr+polis）上，待立 polis 后处理",
+   "ref": "V-20"
+  },
+  {
+   "word": "mnemonic",
+   "bank_id": "ADD_0574",
+   "candidate": "mnē- 记忆根",
+   "reason": "希腊 mnē- 根未入目录清单，出处不足",
+   "ref": "V-21"
+  },
+  {
+   "word": "spice",
+   "bank_id": "ADD_0657",
+   "candidate": "spec 家族",
+   "reason": "与 species 真同源（货物/种类→香料），但语义链远、小学层易误导，待核后裁",
+   "ref": "V-26"
+  },
+  {
+   "word": "warden",
+   "bank_id": "ADD_0708",
+   "candidate": "ward + -en",
+   "reason": "warden 的构成是古法语系 ward + 名词尾，与动词/材料 -en 无关，构成口径待核",
+   "ref": "—"
+  },
+  {
+   "word": "chicken",
+   "bank_id": "G1_049",
+   "candidate": "chick + -en",
+   "reason": "假拆：chicken 是整词（古英语 cicen），-en 非后缀（教学经典假拆）",
+   "ref": "V-38"
+  },
+  {
+   "word": "kitten",
+   "bank_id": "V6_动物_5",
+   "candidate": "kit + ten",
+   "reason": "假拆子串命中：kitten 源古法语 chitoun",
+   "ref": "V-38"
+  },
+  {
+   "word": "listen",
+   "bank_id": "G2_0642",
+   "candidate": "list + -en",
+   "reason": "假拆：listen 源古英语 hlysnan，与 list 同源但非 list + 后缀的今构",
+   "ref": "V-38"
+  },
+  {
+   "word": "butter",
+   "bank_id": "V6_食物_17",
+   "candidate": "butt + -er",
+   "reason": "V-38 点名案：butter 的 -er 不是施事尾",
+   "ref": "V-38"
+  },
+  {
+   "word": "corner",
+   "bank_id": "V6_城市_33",
+   "candidate": "corn + -er",
+   "reason": "V-21 点名假拆例：corner 源拉丁 cornū（角），不是 corn + -er",
+   "ref": "V-21"
+  },
+  {
+   "word": "letter",
+   "bank_id": "V6_P14",
+   "candidate": "let + -er",
+   "reason": "假拆：letter 源拉丁 littera",
+   "ref": "V-38"
+  },
+  {
+   "word": "mother",
+   "bank_id": "G2_065",
+   "candidate": "moth + -er",
+   "reason": "假拆：-ther 是亲属词古尾，与施事 -er 无关",
+   "ref": "V-38"
+  },
+  {
+   "word": "shoulder",
+   "bank_id": "V6_身体_10",
+   "candidate": "should + -er",
+   "reason": "假拆子串命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "shower",
+   "bank_id": "ADD_0638",
+   "candidate": "show + -er",
+   "reason": "假拆：shower 源古英语 scūr（阵雨），与 show 无派生关系",
+   "ref": "V-38"
+  },
+  {
+   "word": "summer",
+   "bank_id": "G2_100",
+   "candidate": "sum + -er",
+   "reason": "假拆子串命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "center",
+   "bank_id": "G5_0689",
+   "candidate": "cent + -er",
+   "reason": "假拆：center 源希腊 kentron，-er 非后缀",
+   "ref": "V-38"
+  },
+  {
+   "word": "forest",
+   "bank_id": "G5_230",
+   "candidate": "for + -est",
+   "reason": "假拆：forest 源拉丁 forestis",
+   "ref": "V-38"
+  },
+  {
+   "word": "earth",
+   "bank_id": "G4_0738",
+   "candidate": "ear + -th",
+   "reason": "假拆子串命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "hearth",
+   "bank_id": "ADD_0356",
+   "candidate": "hear + -th",
+   "reason": "假拆子串命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "tooth",
+   "bank_id": "G3_0660",
+   "candidate": "too + -th",
+   "reason": "假拆子串命中（tooth 是古词根词）",
+   "ref": "V-38"
+  },
+  {
+   "word": "father",
+   "bank_id": "G2_062",
+   "candidate": "fat + her",
+   "reason": "假拆子串命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "manage",
+   "bank_id": "ADD_0186",
+   "candidate": "man + -age",
+   "reason": "源意大利语 maneggiare（驭马），man- 是拉丁 manus「手」的远亲链，小学层拆必误读",
+   "ref": "V-38"
+  },
+  {
+   "word": "mandate",
+   "bank_id": "ADD_0567",
+   "candidate": "man + date",
+   "reason": "同 manage 的 manus 链 + dare，子串 date 为巧合",
+   "ref": "V-38"
+  },
+  {
+   "word": "message",
+   "bank_id": "ADD_0189",
+   "candidate": "mess + -age",
+   "reason": "-age 在此为法语化石尾，mess 非词基",
+   "ref": "V-38"
+  },
+  {
+   "word": "office",
+   "bank_id": "G4_0343",
+   "candidate": "off + ice",
+   "reason": "假拆：office 源拉丁 officium",
+   "ref": "V-38"
+  },
+  {
+   "word": "season",
+   "bank_id": "V6_天气_1",
+   "candidate": "sea + son",
+   "reason": "假拆：season 源拉丁 satiō（播种时节）",
+   "ref": "V-38"
+  },
+  {
+   "word": "mango",
+   "bank_id": "G4_0948",
+   "candidate": "man + go",
+   "reason": "假拆子串命中（借词）",
+   "ref": "V-38"
+  },
+  {
+   "word": "forget",
+   "bank_id": "G4_0855",
+   "candidate": "for- + get",
+   "reason": "for- 是已死亡的古强意前缀，按今词拆会教成「为了得到」，V-38 型，暂不拆",
+   "ref": "V-38"
+  },
+  {
+   "word": "understand",
+   "bank_id": "V6_学校_71",
+   "candidate": "under + stand",
+   "reason": "V-38 点名案：under 是古义，不能按今天的 under + stand 理解",
+   "ref": "V-38"
+  },
+  {
+   "word": "undertake",
+   "bank_id": "ADD_0696",
+   "candidate": "under + take",
+   "reason": "under 同 understand 的古义问题，待与 V-38 三型一并裁",
+   "ref": "V-38"
+  },
+  {
+   "word": "clothes",
+   "bank_id": "V6_服装_0",
+   "candidate": "cloth + -s",
+   "reason": "义项登记为「永远复数」的集合名词，非中性复数拆分，归 GR-28 复数家族另议",
+   "ref": "GR-28"
+  },
+  {
+   "word": "glasses",
+   "bank_id": "G4_165",
+   "candidate": "glass + -s",
+   "reason": "「眼镜」义绑定复数形（复数专名类），归 GR-28 另议",
+   "ref": "GR-28"
+  },
+  {
+   "word": "shorts",
+   "bank_id": "G4_0580",
+   "candidate": "short + -s",
+   "reason": "同 glasses：复数专名类",
+   "ref": "GR-28"
+  },
+  {
+   "word": "news",
+   "bank_id": "ADD_0586",
+   "candidate": "new + -s",
+   "reason": "-s 非复数：news 是不可数名词，-s 为历史残形",
+   "ref": "GR-29"
+  },
+  {
+   "word": "maths",
+   "bank_id": "V6_学校_31",
+   "candidate": "math + -s",
+   "reason": "英式截短 mathematics 的通行形，-s 非复数",
+   "ref": "V-20"
+  },
+  {
+   "word": "his",
+   "bank_id": "V6_核心_9",
+   "candidate": "he + -s",
+   "reason": "属格 -s 历史真实，但代词系统内成词已固化，拆否待裁",
+   "ref": "GR-13"
+  },
+  {
+   "word": "village",
+   "bank_id": "G5_233",
+   "candidate": "vill- + -age",
+   "reason": "vill- 非词库词基，-age 化石尾，待裁",
+   "ref": "—"
+  },
+  {
+   "word": "cabbage",
+   "bank_id": "V6_食物_52",
+   "candidate": "cabb- + -age",
+   "reason": "假拆/化石尾组：源拉丁 caput 链，子串不可教",
+   "ref": "V-38"
+  },
+  {
+   "word": "courage",
+   "bank_id": "ADD_0466",
+   "candidate": "cour- + -age",
+   "reason": "-age 化石尾；cour- 是「心」（拉丁 cor），根未立目，待裁",
+   "ref": "V-21"
+  },
+  {
+   "word": "garage",
+   "bank_id": "ADD_0115",
+   "candidate": "gar- + -age",
+   "reason": "借词整词，-age 化石",
+   "ref": "V-38"
+  },
+  {
+   "word": "luggage",
+   "bank_id": "V6_交通_26",
+   "candidate": "lugg- + -age",
+   "reason": "lug 非词库词基，-age 化石尾",
+   "ref": "—"
+  },
+  {
+   "word": "voyage",
+   "bank_id": "ADD_0317",
+   "candidate": "voy- + -age",
+   "reason": "-age 化石尾，voy- 非词基",
+   "ref": "—"
+  },
+  {
+   "word": "engage",
+   "bank_id": "ADD_0094",
+   "candidate": "en- + gage",
+   "reason": "gage（抵押）非词库词，待裁",
+   "ref": "—"
+  },
+  {
+   "word": "cucumber",
+   "bank_id": "V6_食物_55",
+   "candidate": "cu- + cumb",
+   "reason": "子串假命中（cumb 与 succumb 的 cumb 巧合同形）",
+   "ref": "V-38"
+  },
+  {
+   "word": "sister",
+   "bank_id": "G2_066",
+   "candidate": "si- + ster",
+   "reason": "子串假命中：sister 是亲属词根词",
+   "ref": "V-38"
+  },
+  {
+   "word": "captain",
+   "bank_id": "ADD_0440",
+   "candidate": "cap- + tain",
+   "reason": "tain 假命中：captain 源拉丁 caput（头）链",
+   "ref": "V-38"
+  },
+  {
+   "word": "mountain",
+   "bank_id": "G5_231",
+   "candidate": "moun- + tain",
+   "reason": "tain 假命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "frog",
+   "bank_id": "G3_0958",
+   "candidate": "f- + rog",
+   "reason": "rog 假命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "duck",
+   "bank_id": "G1_016",
+   "candidate": "du- + ck",
+   "reason": "子串假命中（duckling 的 -ling 倒是真后缀，但 duck 本身不拆）",
+   "ref": "—"
+  },
+  {
+   "word": "princess",
+   "bank_id": "V6_职业_36",
+   "candidate": "prince + -ess 前未登记",
+   "reason": "-ess（阴性尾）未在 V-36 菜单立目，且 prince 词干变形（prin-cess），待菜单扩裁",
+   "ref": "V-36"
+  },
+  {
+   "word": "next",
+   "bank_id": "G3_K17",
+   "candidate": "nex- + -t",
+   "reason": "next 是 nigh 的最高级古形，nex- 非词根",
+   "ref": "—"
+  },
+  {
+   "word": "tennis",
+   "bank_id": "V6_运动_9",
+   "candidate": "ten- + -nis",
+   "reason": "子串假命中（源古法语 tenez）",
+   "ref": "—"
+  },
+  {
+   "word": "tent",
+   "bank_id": "ADD_0683",
+   "candidate": "ten- + -t",
+   "reason": "子串假命中",
+   "ref": "—"
+  },
+  {
+   "word": "busy",
+   "bank_id": "G4_K04",
+   "candidate": "bus + -y",
+   "reason": "假拆子串命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "carry",
+   "bank_id": "G3_0387",
+   "candidate": "car + -ry",
+   "reason": "假拆：carry 源拉丁 carrum 链的法语形，非 car 派生",
+   "ref": "V-38"
+  },
+  {
+   "word": "many",
+   "bank_id": "V6_数字_45",
+   "candidate": "man + -y",
+   "reason": "假拆子串命中",
+   "ref": "V-38"
+  },
+  {
+   "word": "party",
+   "bank_id": "G3_0361",
+   "candidate": "part + -y",
+   "reason": "假拆：party 源拉丁 partīta 链，今构非 part + -y",
+   "ref": "V-38"
+  },
+  {
+   "word": "ready",
+   "bank_id": "ADD_0614",
+   "candidate": "read + -y",
+   "reason": "假拆：ready 源古英语 rǣde，与 read 同源但非今构派生",
+   "ref": "V-38"
+  },
+  {
+   "word": "story",
+   "bank_id": "V6_学校_44",
+   "candidate": "store + -y",
+   "reason": "假拆子串命中（story/history 同源链另议）",
+   "ref": "V-38"
+  },
+  {
+   "word": "they",
+   "bank_id": "V6_核心_19",
+   "candidate": "the + -y",
+   "reason": "假拆子串命中",
+   "ref": "—"
+  },
+  {
+   "word": "tonic",
+   "bank_id": "ADD_0687",
+   "candidate": "ton + -ic",
+   "reason": "假拆子串命中",
+   "ref": "—"
+  },
+  {
+   "word": "restive",
+   "bank_id": "ADD_0625",
+   "candidate": "rest + -ive",
+   "reason": "假拆：restive 源拉丁 restāre 链，义为「倔强」非「休息的」",
+   "ref": "V-38"
+  },
+  {
+   "word": "metal",
+   "bank_id": "V6_自然_27",
+   "candidate": "met + -al",
+   "reason": "假拆：metal 源希腊 metallon",
+   "ref": "V-38"
+  }
+ ]
+}
