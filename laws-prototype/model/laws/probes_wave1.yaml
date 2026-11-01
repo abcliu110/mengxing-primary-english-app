@@ -1,0 +1,1547 @@
+# 探针库波次一（模型层）· L6 语法族：TA 18 + CO 17 + QI 15 + GR 45
+# schema 与 laws/probes.yaml v1 完全同构（DESIGN §3.6）：id / for_law / source_ref / title /
+#   predicted_misreading / cognitive_source / misreading_type / task / rubric / remedy / source_of_prediction。
+# 派生纪律：每条探针的正解由该规律 claim + mechanism 推出，干扰项取自该条目的边界 / 例外 /
+#   登记病例（error_cases）所载误读；无机制对比、无边界可依者跳过并登记于 meta.not_included，不自编。
+# error_form_display：探针题中故意呈现的错形，登记为展示资产——不入词库、不算例词。
+# word_ids 绑定状态：同 probes.yaml，待词库收口后统一回填，本文件暂不逐条列。
+meta:
+  count: 91
+  source: L6 波次一：由 grammar.yaml（GR 45）与 grammar_ext.yaml（TA 18 / CO 17 / QI 15）的 claim、mechanism、examples、成人层边界与登记病例逐条派生；格式与 laws/probes.yaml v1 完全同构
+  modeled_at: '2026-11-02'
+  status: 已入模
+  version: '1'
+  coverage:
+    TA: 17/18（TA-18 未入，见 not_included）
+    CO: 16/17（CO-17 已在 probes.yaml 立 5 条 PRB-CO17-*）
+    QI: 15/15
+    GR: 43/45（GR-33 已在 probes.yaml 立 5 条 PRB-GR33-*；GR-21 未入，见 not_included）
+  not_included:
+  - law: CO-17
+    reason: 已覆盖：probes.yaml 已有 PRB-CO17-1..5，本波次不重复立条
+  - law: GR-33
+    reason: 已覆盖：probes.yaml 已有 PRB-GR33-1..5，本波次不重复立条
+  - law: TA-18
+    reason: 跳过：本条是本域「镜头讲法」的证据边界声明（教师层），claim 面向证据分级而非学习者机制，无机制对比、无病例，无法构成判别性探针；按不自编纪律留空
+  - law: GR-21
+    reason: 跳过：教师/设计层条目（Thornbury E/A 因子），条目自注「孩子面只作口号呈现」，无面向学习者的机制对比，无法构成判别性探针
+probes:
+- id: PRB-TA01-1
+  for_law: TA-01
+  source_ref: 波次一 · TA-01
+  title: 十二个格子逐个背：先报格名，不会先想两个开关
+  predicted_misreading: 孩子把时态学成背一张十二格大表——见到句子先想「这是第几格」，格名报不出就卡住，不会先问「这件事在什么时候、我要怎么看它」。
+  cognitive_source: 顺序倒置（先背形式表、后想意义，条目机制明示此顺序反过来表背得再熟也会选错）
+  misreading_type: 字面化
+  task: 给句子 We were playing football in the afternoon. 不许查表，只问两件事：①这件事在什么时候——现在还是过去？②说话的人是看整件、钻进中间、还是看痕迹？两问答完，再让他说这是哪个时态。
+  rubric:
+    hit: 只会背格名，两问答不出（或答「不知道，看表才知道」）
+    partial: 时间答对、看法答错（两个开关只立住一个）
+    pass: 两问全对，并能说出「先定两个开关，样子自己就出来了」
+  remedy: 回第 2 步机制屏「两个开关」卡：时间开关（现在/过去）× 看法开关（全景/进行/完成）现场拨给同一个踢球场景看，再回第 4 步用条目四例逐句报开关位置复测。
+  source_of_prediction: TA-01 claim（两维组合）+ mechanism[两个开关][组合不是背诵] + examples 四句的 scene_note 开关标注
+  status: 已入模
+  version: '1'
+- id: PRB-TA02-1
+  for_law: TA-02
+  source_ref: 波次一 · TA-02
+  title: will 是动词变出来的「将来时衣裳」
+  predicted_misreading: 孩子认为动词有三件衣裳：现在、过去、将来——will 就是动词的「将来样子」，和 plays、played 是一类东西。
+  cognitive_source: 体系误植（按汉语/旧教材的「三时」框架给 will 安位，没认出它是要外借的帮手）
+  misreading_type: 主场·原型误植
+  task: 判断题：「will 是动词变出来的将来时样子，就像 played 是过去的样子。对吗？」接指认：We will visit Grandma tomorrow. 里动词自己的衣裳是哪一件——visit 是现在样、过去样，还是「将来样」？
+  rubric:
+    hit: 答「对」，或把 visit 说成「将来样」
+    partial: 答「不对」但说不出 will 是什么（只知道结论）
+    pass: 答「不对」且能说出「动词只有现在、过去两件衣裳，will 是请来帮忙的小帮手」
+  remedy: 回第 2 步机制屏「两件衣裳」卡：衣架上只有现在/过去两件，will、going to 挂在「借来的工具」一排，再回第 4 步用 We play / We played / We will visit 三句逐句指认衣裳复测。
+  source_of_prediction: TA-02 claim（形态对立只有 present/preterite，will 属情态）+ mechanism[两件衣裳] + claim.scope
+  status: 已入模
+  version: '1'
+- id: PRB-TA03-1
+  for_law: TA-03
+  source_ref: 波次一 · TA-03
+  title: 镜头推近了，就以为整件事已经做完
+  predicted_misreading: 孩子把「钻进去看中间」和「看整件」混为一谈——They were building a house. 被解成「房子已经盖好了」，进行中的画面被读成完成的结果。
+  cognitive_source: 观看方式未分（体的选择被当成纯粹的形式变化，没意识到换看法就换了断言内容）
+  misreading_type: 过度泛化
+  task: 句意判断：They were building a house. 问「说这句话的时候，房子盖好了吗？」备选：盖好了 / 还没盖好，只看见正在盖的中间一段。再接 He was running when I saw him. 问「我看见他时，他跑完了吗？」
+  rubric:
+    hit: 任一题答「已经完成」
+    partial: 对一错一（全景/特写的分工只在一句上立住）
+    pass: 两题全对且能说出「这是把镜头推近了看中间，没说整件事的结局」
+  remedy: 回第 2 步机制屏「全景与特写」卡：同一件盖房子的事，远看整件 vs 推近看中间同框对照，再回第 4 步用 built / were building 对子复测。
+  source_of_prediction: TA-03 claim（完成体看整体、未完成体看内部结构）+ mechanism[全景与特写] + examples 前两句同框对
+  status: 已入模
+  version: '1'
+- id: PRB-TA04-1
+  for_law: TA-04
+  source_ref: 波次一 · TA-04
+  title: 正在吃饭也说 I eat：一般现在时包打天下
+  predicted_misreading: 孩子把一般现在时当「现在专用时态」——指着正在吃的饭说 I eat rice now.（配上 now 就以为能装下正在发生的事）。
+  cognitive_source: 标签误植（「现在时」三字被按字面理解为「说现在的事」，没意识到它要求整件事与说话一刻完全重合）
+  misreading_type: 字面化
+  task: 看图选句：图里小朋友正端着碗吃饭。说「他正在吃饭」用哪句——A. He eats rice now. B. He is eating rice now. 再接一题：说「他天天七点起床」用哪句——A. He is getting up at seven every day. B. He gets up at seven every day.
+  rubric:
+    hit: 任一题选错（第一题选 A 或第二题选 A）
+    partial: 第一题对、第二题错（知道正在发生要钻镜头，但把进行时又推满到习惯上）
+    pass: 两题全对且能说出「一眨眼的现在装不下一整件事；一般现在时管的是习惯和老道理」
+  remedy: 回第 2 步机制屏两卡连看：「一眨眼的现在」（整件事塞不进一眨眼）与「一般现在时的正职」（习惯与老道理），再回第 4 步用条目四例（am eating / get up at seven / sun rises / are playing）逐句归位复测。
+  source_of_prediction: TA-04 claim（full coincidence 要求）+ mechanism[一眨眼的现在][一般现在时的正职] + examples 四句
+  status: 已入模
+  version: '1'
+- id: PRB-TA05-1
+  for_law: TA-05
+  source_ref: 波次一 · TA-05
+  title: 完成时就是「做完了」：只管过去，不管现在的印子
+  predicted_misreading: 孩子把完成时读成「以前做完的一件事」——I have lost my key. 只被当成在讲过去丢钥匙，对「所以现在进不了门」这层牵连毫无感觉；反过来，没「做完」的事（住了三年还在住）不敢用完成时。
+  cognitive_source: 定义误植（被「完成」二字带偏：把 perfect 的语义锚在「完结」而非「现时相关」）
+  misreading_type: 字面化
+  task: 句意判断：I have lost my key. 问「他现在能打开家门吗？为什么这句要用 have lost，不用 lost？」再接：We have lived here for three years. 问「他们现在还住这儿吗？」
+  rubric:
+    hit: 第一题答「能」或答不出与现在的牵连；第二题答「不住」
+    partial: 第一题对、第二题错（结果用法立住、持续用法被「完成=做完」挡住）
+    pass: 两题全对且能说出「完成时看的是现在还留着的印子」
+  remedy: 回第 2 步机制屏「看痕迹不看完没完」卡：钥匙（印子=进不了门）、去过北京（印子=经验）、住了三年（印子一直连到现在）三例同框，再回第 5 步做「找印子」复测。
+  source_of_prediction: TA-05 claim（continuing present relevance，四用法统一于与现在相连）+ mechanism[看痕迹不看完没完] + claim.scope（经历用法的痕迹是经验本身）
+  status: 已入模
+  version: '1'
+- id: PRB-TA06-1
+  for_law: TA-06
+  source_ref: 波次一 · TA-06
+  title: '*I have seen him yesterday：完成时也点名昨天'
+  predicted_misreading: 孩子把完成时和过去时看成可互换的「过去说法」，点名昨天时随手抓一个——I have seen him yesterday. 两套定位在一句话里打架却不自知。
+  cognitive_source: 母语迁移叠加定位盲（「了」的直译冲动 + 没意识到完成时的参照点钉在现在、明确过去时间状语要把事件锚回过去）
+  misreading_type: 母语迁移
+  task: 改错题：I have seen him yesterday. 这句话哪里别扭、怎么改？再接判断：I have seen him.（不带 yesterday）对吗？
+  rubric:
+    hit: 看不出错，或改成 I have saw him yesterday. 一类（只动词形、不动时间状语）
+    partial: 改对（去掉 have 或去掉 yesterday 任一方向）但说不出为什么
+    pass: 改成 I saw him yesterday. 且能说出「完成时盯着现在，yesterday 把话掰回过去，两个命令相反」
+  remedy: 回第 2 步机制屏「两套定位打架」卡，再回第 4 步把条目三例（saw him yesterday / have seen him / lived here since 2021）按「点没点名过去时间」分堆复测。
+  source_of_prediction: TA-06 claim（参照点冲突）+ mechanism[两套定位打架] + error_cases 登记错型 *I have seen him yesterday（教学文献登记错型）
+  error_form_display:
+  - I have seen him yesterday
+  status: 已入模
+  version: '1'
+- id: PRB-TA07-1
+  for_law: TA-07
+  source_ref: 波次一 · TA-07
+  title: '*I am knowing：牌子也套进行时的镜头'
+  predicted_misreading: 孩子把进行时当成无条件的形式——动词不管什么形状都往 -ing 上套，know 这种没有过程的状态也说成 I am knowing the answer.
+  cognitive_source: 形式先行（先选「现在→进行时」的公式，不看动词短语自带的时间形状）
+  misreading_type: 过度泛化
+  task: 选句：说「我知道答案」——A. I am knowing the answer. B. I know the answer. 再接分类：She painted a picture. 里的 paint a picture 是「轮子、一段路、牌子、啪的一下」哪种形状？
+  rubric:
+    hit: 第一题选 A
+    partial: 第一题对、第二题形状认错（选对靠语感，形状系统未立）
+    pass: 两题全对且能说出「know 是静止的牌子，没有中间一段可看，镜头套不上」
+  remedy: 回第 2 步机制屏「四种形状」卡（牌子/轮子/一段路/啪的一下），再回第 4 步用条目四例（know / run / painted a picture / found）逐个认形状复测。
+  source_of_prediction: TA-07 claim（Vendler 四型与进行体兼容性）+ mechanism[四种形状][按短语判断] + error_cases 登记错型 *I am knowing（教学文献登记错型）
+  error_form_display:
+  - I am knowing the answer
+  status: 已入模
+  version: '1'
+- id: PRB-TA08-1
+  for_law: TA-08
+  source_ref: 波次一 · TA-08
+  title: 过去式只管过去：were 在 If I were you 里一定是说从前
+  predicted_misreading: 孩子把过去形式锁死在时间义上——If I were you 里的 were 被解成「如果我是从前的你」，I wondered if you could help me. 被解成「我以前纳闷过」，推远的客气与假设全读不出来。
+  cognitive_source: 单义锁定（形式—意义一对一的默认假设，没意识到「推远」是一个动作在三个维度的投影）
+  misreading_type: 主场·原型误植
+  task: 句意判断：If I were you, I would say sorry. 问「说话的人是在讲从前的事吗？」备选：是，在讲以前 / 不是，这是「假如我是你」的假设。再接：I wondered if you could help me. 问「这句听起来是硬邦邦地命令，还是客客气气地请人帮忙？」
+  rubric:
+    hit: 任一题按时间/命令直读
+    partial: 对一错一（假设的推远认出、礼貌的推远未认，或反之）
+    pass: 两题全对且能说出「过去形式还能把话往远处推：推到假如里、推到客气里」
+  remedy: 回第 2 步机制屏「推远这一个动作」卡：时间远、心里远、关系远三格同框，再回第 4 步用条目两例逐句定位「推到了哪一维」复测。
+  source_of_prediction: TA-08 claim（过去形式通义为「距离」）+ mechanism[推远这一个动作] + examples 两句儿童版登记句型
+  status: 已入模
+  version: '1'
+- id: PRB-TA09-1
+  for_law: TA-09
+  source_ref: 波次一 · TA-09
+  title: 过去完成时是另一种新时态——站在现在看更早的事
+  predicted_misreading: 孩子把过去完成时当成一张要另背的新格子——做 I had finished my homework when Mum came home. 的时间排序时，站在「现在」往回数，说不清「写完作业」和「妈妈回家」谁先谁后，或认为 had finished 离现在最远所以排在昨天之前随便哪儿都行。
+  cognitive_source: 参照点未立（不知道完成时的小旗子可以搬家，参照点搬到哪儿、「之前」就相对哪儿算）
+  misreading_type: 主场·原型误植
+  task: 排顺序：I had finished my homework when Mum came home. 问两个问题：①写完作业和妈妈回家，哪件事在前？②说这句话时，心里的「小旗子」插在现在，还是插在「妈妈回家」那一刻？
+  rubric:
+    hit: 顺序排反，或说小旗子插在现在
+    partial: 顺序对、小旗子答不出（会用顺序、没立住参照点）
+    pass: 两问全对且能说出「小旗子搬到了妈妈回家那一刻，再往前看就是过去完成时」
+  remedy: 回第 2 步机制屏「小旗子搬家」卡：同一支旗子先插现在（现在完成时）再搬到过去某天（过去完成时）对照演示，再回第 4 步用条目三例逐句问「旗子在哪儿」复测。
+  source_of_prediction: TA-09 claim（完成体是相对时态，只要求事件早于参照点）+ mechanism[小旗子搬家] + examples 首例
+  status: 已入模
+  version: '1'
+- id: PRB-TA10-1
+  for_law: TA-10
+  source_ref: 波次一 · TA-10
+  title: will 只是报时间的：听不出「我来！」那口气
+  predicted_misreading: 孩子把 will 读成纯粹中性的时间标签——门铃响了有人说 I'll get the door! 他只听出「这事将要发生」，听不出这是当场答应「我来开」；或反过来把每个 will 都解成「想要」。
+  cognitive_source: 残影未觉（语法化留下的意愿/承诺立场不在孩子的解读清单里；或把残影误当本义全量）
+  misreading_type: 主场·原型误植
+  task: 听口气：门铃响了，哥哥喊 I'll get the door! 问「哥哥是在预报一件事，还是在答应'我来开门'？」再接：It will rain tomorrow. 问「这句里'我乐意'的味道还在吗？」
+  rubric:
+    hit: 第一题答「预报」；或第二题答「还是强烈的想要」
+    partial: 对一错一（残影在承诺句认出、在中性句未收，或反之）
+    pass: 两题全对且能说出「will 说将来带着预言/答应的味道，天气预报里只剩一点点味道」
+  remedy: 回第 2 步机制屏「旧义的残影」卡，再回第 4 步把条目三例（get the door / will rain / will help you）按「我乐意的味道」从浓到淡排序复测。
+  source_of_prediction: TA-10 claim（意愿→意图→预测的语法化与 persistence）+ mechanism[旧义的残影] + claim.scope（天气预报式 will 已高度中性化）
+  status: 已入模
+  version: '1'
+- id: PRB-TA11-1
+  for_law: TA-11
+  source_ref: 波次一 · TA-11
+  title: going to 是「正走在去的路上」
+  predicted_misreading: 孩子按字面把 going to 读成移动本身——We are going to visit Grandma this weekend. 被解成「我们现在正走在去奶奶家的路上」，计划义丢失；或与 will 完全不分，随手乱换。
+  cognitive_source: 字面化（构式的来源义被当成现行义；「已经在路上」的底色——征兆/打算——没被读出来）
+  misreading_type: 字面化
+  task: 句意判断：We are going to visit Grandma this weekend. 问「说话的时候，我们已经出门在路上了吗？」再接：Look at the clouds! It is going to rain. 问「这句话凭什么说要下雨——说话的人看见了什么？」
+  rubric:
+    hit: 第一题答「已经在路上」；第二题答不出「乌云这个苗头」
+    partial: 对一错一
+    pass: 两题全对且能说出「going to 说的是已经有苗头、已经打算好的将来」
+  remedy: 回第 2 步机制屏「上路的人」卡：背包上路的画面只取「方向已定、苗头已在」这层底色，再回第 4 步用条目三例（乌云/探望奶奶/看电影）逐句问「苗头在哪儿」复测。
+  source_of_prediction: TA-11 claim（移动构式的语法化与「当前已有征兆/计划」底色）+ mechanism[上路的人] + examples 三句
+  status: 已入模
+  version: '1'
+- id: PRB-TA12-1
+  for_law: TA-12
+  source_ref: 波次一 · TA-12
+  title: I have written the letter 里的 have 还是「我有一封信」
+  predicted_misreading: 孩子把完成时里的 have 按老本义解——I have written the letter. 被读成「我拥有一封信（外加写过）」，或指着 have 问「信在他手里吗」，把祖先的故事当成今天的定义。
+  cognitive_source: 词源误当定义（条目边界明示：来历是历史解释，不能反推现代 have 的意义）
+  misreading_type: 字面化
+  task: 两句对照：I have the letter written.（老说法）/ I have written the letter.（今天的说法）。问「第二句里的 have，是在说'信在我手里'，还是只是一个帮忙的小词、重心在'我写过了'？」
+  rubric:
+    hit: 答「信在他手里」
+    partial: 答对但说不出两句的重心差在哪儿
+    pass: 答对且能说出「老说法重心在信，今天的说法重心滑到了'写过这件事'」
+  remedy: 回第 2 步机制屏「重心滑动」卡：同一封信，目光从「信」滑到「写过」的过程重演，再回第 4 步对照组复测，并重申边界——这是祖先的故事，不是今天的定义。
+  source_of_prediction: TA-12 claim（所有格结果结构的再分析）+ mechanism[重心滑动] + claim.scope（来历不能反推现代意义）+ examples 对照对
+  status: 已入模
+  version: '1'
+- id: PRB-TA13-1
+  for_law: TA-13
+  source_ref: 波次一 · TA-13
+  title: 说将来只能用 will：The train leaves at six 一定是错句
+  predicted_misreading: 孩子把「将来 = will / going to」学成铁律——见到 The train leaves at six. 判它是错句（「明明是将来的事，怎么能用现在时」），或给时刻表单句也硬塞 will。
+  cognitive_source: 过度泛化（将来表达的原型工具被推满全场，没意识到「写进表里的未来」可以借现在时的事实感）
+  misreading_type: 过度泛化
+  task: 判断题：「The train leaves at six. 火车还没开，怎么能用 leaves？这句是错的。对吗？」再接选句：说「我们的课明天八点开始（课程表上印着的）」——Our lesson starts at eight tomorrow. / Our lesson will starts at eight tomorrow. 选哪个？
+  rubric:
+    hit: 判第一句错，或第二题选 will starts
+    partial: 对一错一
+    pass: 两题全对且能说出「印进时刻表的事像事实一样定死了，可以借现在时来说」
+  remedy: 回第 2 步机制屏「写进表里的未来」卡，再回第 5 步用条目三例（火车/课程表/节目单）与 will 句混排做「这是表上的事吗」分类复测。
+  source_of_prediction: TA-13 claim（futurate present：图式化的已确立事实）+ mechanism[写进表里的未来] + claim.scope（仅限时刻表/日程类，*It rains tomorrow 不成立）
+  error_form_display:
+  - will starts
+  status: 已入模
+  version: '1'
+- id: PRB-TA14-1
+  for_law: TA-14
+  source_ref: 波次一 · TA-14
+  title: 故事里冒出一个现在时，一定是写错了
+  predicted_misreading: 孩子把「讲过去的故事必须通篇过去时」当成铁律——读到 So he opens the door and sees a big dog! 判 opens 是错误，或自己讲故事时把高潮处的现在时「改对」成过去时，临场感被亲手删掉。
+  cognitive_source: 规则过度泛化（时态一致的课堂口径被推成无例外定律，不知道历史现在时是受语体约束的识解切换）
+  misreading_type: 过度泛化
+  task: 判断题：故事书里写着「He walked into the room. Suddenly, he hears a noise!」问「hears 是作者写错了吗？」备选：写错了，该用 heard / 没写错，这是故意把过去拉到眼前来演。
+  rubric:
+    hit: 答「写错了」
+    partial: 答「没写错」但说不出为什么
+    pass: 答「没写错」且能说出「讲到最紧张的地方改成现在时，是'演'给大家看，不是说错」
+  remedy: 回第 2 步机制屏「演与说」卡：同一段故事，过去时「说」一遍、现在时「演」一遍对照感受，再回第 4 步指认条目两例的切换点复测。本条只要求认得出，不要求产出。
+  source_of_prediction: TA-14 claim（历史现在时是识解切换的语篇手段）+ mechanism[演与说] + claim.scope（小学阶段只作被动知识）
+  status: 已入模
+  version: '1'
+- id: PRB-TA15-1
+  for_law: TA-15
+  source_ref: 波次一 · TA-15
+  title: 有 yesterday 就够了，动词不用变：*I play football yesterday
+  predicted_misreading: 孩子按汉语的办法表时间——时间词一放，任务就完成了：I play football yesterday. 动词保持原形，因为「昨天」已经把时间说清楚了。
+  cognitive_source: 母语迁移（汉语是词汇型时间表达，词到位即可；英语是形态型强制表达，每个句子被迫在动词上选时，两套系统的编码位置不同）
+  misreading_type: 母语迁移
+  task: 改错题：I play football yesterday. 问「yesterday 已经说了是昨天，为什么这句还是不对？错在哪儿？」再接：把 yesterday 拿走，句子还能知道是过去吗——靠什么知道？
+  rubric:
+    hit: 看不出错，或只说「读着怪」说不出错处
+    partial: 能改成 played 但说不出「拿走 yesterday 靠什么」
+    pass: 改对且能说出「英语把时间藏在动词的形状里，每句都要选一次，只靠时间词不够」
+  remedy: 回第 2 步机制屏「时间藏在哪里」卡：汉语词里的时间 vs 英语动词形状里的时间对照，再回第 4 步用条目两例（played 的形状自带过去 / 谈将来也要在动词侧做选择）复测。
+  source_of_prediction: TA-15 claim（词汇型 vs 形态型强制表达）+ mechanism[时间藏在哪里] + examples（I played football yesterday 的 scene_note）+ headline_kid（中国孩子总漏 -ed 的原因）
+  error_form_display:
+  - I play football yesterday
+  status: 已入模
+  version: '1'
+- id: PRB-TA16-1
+  for_law: TA-16
+  source_ref: 波次一 · TA-16
+  title: 「了」就是完成时、「过」就是完成时：整队搬运
+  predicted_misreading: 孩子把汉语助词与英语完成时整队对号——见「了」就 have done、见「过」就 have been，连持续义（住了三年还在住）也硬套，还常顺手再点名一个过去时间，把 TA-06 的冲突一起带进来。
+  cognitive_source: 母语迁移（一对一映射的整队搬运；没意识到三者只在结果与经历两处部分重叠，持续义、近况义处系统错位）
+  misreading_type: 母语迁移
+  task: 句意判断：We have lived here for three years. 问「他们现在还住在这儿吗？汉语里这件事有现成的'了/过'格子装吗？」再接一题：I have done my homework yesterday. 对吗？
+  rubric:
+    hit: 第一题答「已经搬走了」；或第二题答「对」
+    partial: 对一错一（重叠区认出、错位区或时间冲突未认）
+    pass: 两题全对且能说出「了、过和完成时只有一部分对得上，要一张一张脸对，不能整队搬」
+  remedy: 回第 2 步机制屏「三张脸对位」卡：做成（了）/ 经历（过）/ 与现在的牵连（完成时）三格逐格对照，持续义一格单独标「汉语没有现成格子」，再回第 4 步复测。
+  source_of_prediction: TA-16 claim（三者部分重叠、系统错位）+ mechanism[三张脸对位] + error_cases 登记错型 *I have done my homework yesterday（教学文献登记错型）
+  error_form_display:
+  - I have done my homework yesterday
+  status: 已入模
+  version: '1'
+- id: PRB-TA17-1
+  for_law: TA-17
+  source_ref: 波次一 · TA-17
+  title: 先把大表背完才能开口：went 是拿规则推出来的
+  predicted_misreading: 孩子（或陪学者）以为学时态要先把系统表背熟才敢说——或者以为 went 是「go 加规则」推出来的，遇到没背过的不规则动词就停工等规则。
+  cognitive_source: 顺序误植（把「系统表」当成起点而非终点；不知道范畴从高频词例中涌现，高频不规则形式靠整存保命）
+  misreading_type: 字面化
+  task: 判断题：「学时态要先把十二个格子的大表全背下来，然后才能开口讲故事。对吗？」再接一问：went 是用哪条规则从 go 变出来的？
+  rubric:
+    hit: 答「对」，或给 went 编出一条规则（如「go 的过去式就是 went 规则」之外的类推规则）
+    partial: 判断对但 went 的来历说不清
+    pass: 答「不对」且能说出「先把 went、saw、had 这些天天用的整块用熟，规矩是后来从词里浮出来的」
+  remedy: 回第 2 步机制屏「从词到表」卡：三个锚点词（went / saw / had）先行、图式随后浮出的顺序重演，再回第 4 步用条目三例做整存复述。
+  source_of_prediction: TA-17 claim（动词范畴从具体词例中涌现，频率固化高频不规则形式）+ mechanism[从词到表] + claim.scope（顺序说是先后关系而非取舍关系）
+  status: 已入模
+  version: '1'
+- id: PRB-CO01-1
+  for_law: CO-01
+  source_ref: 波次一 · CO-01
+  title: 句子的意思就是动词的意思加起来：bake 里没有「给」
+  predicted_misreading: 孩子按「词义相加」读句——He baked her a cake. 只读出「他烤了蛋糕」，那个多出来的「给她」读不出来；They painted the door red. 里「变成红色」也被当成 paint 自带的意思或干脆漏掉。
+  cognitive_source: 组合观未立（不知道整体意义可以大于部分之和，剩余意义由构式模具贡献）
+  misreading_type: 主场·原型误植
+  task: 句意判断两题：① He baked her a cake. 问「蛋糕最后到谁手里？句子的哪个词说了这件事？」② They painted the door red. 问「门最后是什么颜色？paint 这个词自己有没有说颜色？」
+  rubric:
+    hit: 任一题答不出增量义（蛋糕无人接收 / 说不出颜色，或坚持全是动词说的）
+    partial: 对一错一（一个模具的增量认出、另一个未认）
+    pass: 两题全对且能说出「多出来的意思不是动词给的，是句型模具给的」
+  remedy: 回第 2 步机制屏「模具给味」卡：同一团面团（同一个动词）倒进不同模具味道不同的演示重过，再回第 4 步用条目三例逐句问「多出来的意思是谁给的」复测。
+  source_of_prediction: CO-01 claim（构式贡献剩余意义）+ mechanism[模具给味] + examples（baked her a cake / painted the door red）
+  status: 已入模
+  version: '1'
+- id: PRB-CO02-1
+  for_law: CO-02
+  source_ref: 波次一 · CO-02
+  title: make 词典里有「给」：She made a cake 也有人收到蛋糕
+  predicted_misreading: 孩子把双宾句里读到的「给」登记到动词头上——以为 make、bake 本身就有「给」义，于是 She made a cake. 也被读成「她做了一个蛋糕给某人」，或反过来认为离开双宾队形动词就「变回原样」是例外。
+  cognitive_source: 归因错位（构式义被记成词义；不知道转移义由「人 + 人 + 东西」的队形供给，动词只提供方式）
+  misreading_type: 主场·原型误植
+  task: 判断题：「She made me a cup of tea. 里的'给'是 make 这个词的意思，所以 She made a cake. 里也有一个收到蛋糕的人。对吗？」
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出「给」从哪儿来
+    pass: 答「不对」且能说出「'给'是'人+人+东西'这个队形自带的，动词只管用什么办法给」
+  remedy: 回第 2 步机制屏「模具自带'给'」卡：把 bake、make、build 轮流放进同一队形看「给」义是否都在，再把动词放回普通句看「给」义消失，对照后复测。
+  source_of_prediction: CO-02 claim（中心义 X causes Y to receive Z 由构式供给）+ mechanism[模具自带「给」] + examples 三句
+  status: 已入模
+  version: '1'
+- id: PRB-CO03-1
+  for_law: CO-03
+  source_ref: 波次一 · CO-03
+  title: '*Explain me this：什么动词都能进双宾'
+  predicted_misreading: 孩子以为双宾队形对所有「给/说」类动词开放——Explain me this.、Donate our school some books.，不知道模具门口有意思与长相两道门，explain、donate 这类词只能走 to 的小路。
+  cognitive_source: 准入条件未立（只记队形、不记门禁；或把 give 的通行资格推给所有近义动词）
+  misreading_type: 过度泛化
+  task: 改错题：Explain me this. 这句话哪里不对、怎么改？再接判断：They donated books to our school. 为什么 donate 用了 to，不说 donated our school books？
+  rubric:
+    hit: 看不出错，或改成 Explain this me. 一类
+    partial: 改对（Explain this to me.）但 donate 一题答不出
+    pass: 两题全对且能说出「有的词意思不对路、有的词太长重音不在前面，过不了门口两道关，只能走 to」
+  remedy: 回第 2 步机制屏「两道门」卡：意思门卫与长相门卫各拦一例（explain / donate），give 放行对照，再回第 5 步做「谁能进双宾」分类复测。
+  source_of_prediction: CO-03 claim（宽域语义关 + 窄域形态音位关）+ mechanism[两道门] + error_cases 登记事故例 *Explain me this
+  error_form_display:
+  - Explain me this
+  status: 已入模
+  version: '1'
+- id: PRB-CO04-1
+  for_law: CO-04
+  source_ref: 波次一 · CO-04
+  title: '*He knew the ball over the fence：什么动词都能「弄过去」'
+  predicted_misreading: 孩子把致使移动模具当成万能框——喷嚏能喷飞餐巾纸，那 know、like 也能把球「弄过篱笆」：He knew the ball over the fence. 构式与动词的相容性不在他的检查清单里。
+  cognitive_source: 相容性盲（只认模具自带致使义，没意识到入模动词须提供可识解的物理致使链）
+  misreading_type: 过度泛化
+  task: 判断题组：① Sam sneezed the napkin off the table. 里餐巾纸是怎么下桌的？② He knew the ball over the fence. 这句成立吗？
+  rubric:
+    hit: 第二题答「成立」，或第一题答不出「被喷嚏喷下去的」
+    partial: 对一错一（原型成员认出、状态动词的拒绝未认，或反之）
+    pass: 两题全对且能说出「模具能借力，但动词得真能使上劲——know 只是知道，推不动球」
+  remedy: 回第 2 步机制屏「模具补论元」卡：sneeze 入模补出致使链、know 入模被挡的两幅对照图重过，再回第 4 步用 wind blew / kicked 两例复测。
+  source_of_prediction: CO-04 claim（构式补足致使与路径论元）+ claim.scope（须可识解的物理致使链）+ error_cases 登记错型 *He knew the ball over the fence（教学文献登记错型）
+  error_form_display:
+  - He knew the ball over the fence
+  status: 已入模
+  version: '1'
+- id: PRB-CO05-1
+  for_law: CO-05
+  source_ref: 波次一 · CO-05
+  title: red 是 paint 的一部分：结果短语可有可无
+  predicted_misreading: 孩子把结果句读成两个并列动作或把结果当装饰——They painted the door red. 被解成「他们刷了门，（顺便）红色」，或认为 wipe the table clean 里 clean 删掉意思不变。
+  cognitive_source: 分工未立（不知道动词管手法、结果短语管终点，两者缺一构不成结果解读）
+  misreading_type: 主场·原型误植
+  task: 句意判断：They painted the door red. 问「刷之前门是什么颜色、刷之后呢？red 这个词删掉，句子还说得出'变成红色'吗？」再接：She wiped the table clean. 问「clean 在说什么？」
+  rubric:
+    hit: 任一题答「删掉也没关系」或答不出终点状态
+    partial: 对一错一（一个结果句的分工认出、另一个未认）
+    pass: 两题全对且能说出「动词管怎么动手，后面的词管变成什么样，合起来才是这个句子的意思」
+  remedy: 回第 2 步机制屏「手法加终点」卡：wipe（手法）与 clean（终点）拆开演示再合上，再回第 4 步用条目三例（painted red / wiped clean / made tidy）逐句指认两份工复测。
+  source_of_prediction: CO-05 claim（结果构式贡献状态变化+终点状态义）+ mechanism[手法加终点] + examples 三句
+  status: 已入模
+  version: '1'
+- id: PRB-CO06-1
+  for_law: CO-06
+  source_ref: 波次一 · CO-06
+  title: 双宾就是真到手：答应给的也算已经给了
+  predicted_misreading: 孩子把双宾句一律读成成功转移——Dad promised me a new bike. 被解成「新自行车已经在我手里了」，意图转移、阻碍转移这些边缘成员全被压平为中心义。
+  cognitive_source: 原型压平（多义网络的边缘义被中心义吞并；没意识到双宾是一个围着「转移」转的家族）
+  misreading_type: 主场·原型误植
+  task: 句意判断：Dad promised me a new bike. 问「现在，新自行车在谁手里？」备选：已经在我手里 / 还没给，只是答应了。再接：Mum baked us a cake. 问「蛋糕给我们了吗？跟 promise 那句比，哪个是真到手？」
+  rubric:
+    hit: 第一题答「已经在我手里」
+    partial: 第一题对、第二题分不清两种「给」的差别
+    pass: 两题全对且能说出「双宾是一家人：有真给到手的，也有答应给、做给他的，都围着'给'转」
+  remedy: 回第 2 步机制屏「一个家族」卡：大家长（真交到手）与亲戚成员（答应给/做给他）同框对照，再回第 4 步用条目三例逐句问「到手了没有」复测。
+  source_of_prediction: CO-06 claim（双宾义是围绕中心义的多义网络）+ mechanism[一个家族] + examples（gave / promised / baked 对照组）
+  status: 已入模
+  version: '1'
+- id: PRB-CO07-1
+  for_law: CO-07
+  source_ref: 波次一 · CO-07
+  title: '*There has a book：出场介绍也用 have 领'
+  predicted_misreading: 孩子把存现与领有混演——说「桌子上有一本书」时把 have 搬进 there 句：There has a book on the desk. 汉语「有」一词双管（存在与领有）被整套搬进英语。
+  cognitive_source: 母语迁移（汉语「有」的双职合一 vs 英语 there be 管出场、have 管领有的分工）
+  misreading_type: 母语迁移
+  task: 改错题：There has a book on the desk. 哪里不对、怎么改？再接一句判断：There is the bus!（等车时看见车来了）——这句的 the 是不是用错了？
+  rubric:
+    hit: 看不出错，或改成 There have a book.
+    partial: 改对（There is a book...）但第二题判 the 错（定指限制被当成无例外铁律）
+    pass: 两题全对且能说出「There is 是把新面孔领上台，have 是说东西归谁，两出戏不能混；等的东西到了是特许」
+  remedy: 回第 2 步机制屏「领上台与归谁管」卡，再回第 4 步用条目三例（a dog 出场 / have a book 领有 / the bus 特许）逐句认戏复测。
+  source_of_prediction: CO-07 claim（存现构式引入新实体、定指限制）+ mechanism[领上台与归谁管] + claim.scope（清单列举/到达语境特许）+ error_cases 登记错型 *There has a book（教学文献登记错型）
+  error_form_display:
+  - There has a book on the desk
+  status: 已入模
+  version: '1'
+- id: PRB-CO08-1
+  for_law: CO-08
+  source_ref: 波次一 · CO-08
+  title: 被动句就是「没人做事」的句子：换主角读不出来
+  predicted_misreading: 孩子把被动当成主动的残缺版——The window was broken. 只被读成「窗户破了（不知道谁干的）」，或认为被动与主动「意思一模一样、随便换」，镜头换主角这层功能不在他的解读里。
+  cognitive_source: 功能盲（形式差异被当作无意义的变体；不知道主/被动之别是焦点参与者的选择）
+  misreading_type: 字面化
+  task: 选句：同一件事（小男孩打破了窗户）有两种说法——想让大家先看「窗户怎么样了」，用哪句？想让大家先看「小男孩干了什么」，用哪句？A. The boy broke the window. B. The window was broken.
+  rubric:
+    hit: 两格都选同一句，或认为「两句完全一样，随便」
+    partial: 选对但说不出为什么（靠语感）
+    pass: 两格全对且能说出「被动是让被收拾的那位站到舞台中间当主角，事情还是那件事」
+  remedy: 回第 2 步机制屏「谁站中间」卡：同一事件两幅站位图对照（做事者站中间 / 受事站中间），再回第 4 步用条目三例（含 by Mum 版）复测。
+  source_of_prediction: CO-08 claim（被动是焦点参与者的提升）+ mechanism[谁站中间] + examples 主被动同框对
+  status: 已入模
+  version: '1'
+- id: PRB-CO09-1
+  for_law: CO-09
+  source_ref: 波次一 · CO-09
+  title: 主语必须是动手的人：The door opened 是个没头句
+  predicted_misreading: 孩子把「主语 = 动作发出者」当成定义——The door opened. 被判「没说清谁开的门，是错句/半句」，或读 The key opened the door. 时硬给 key 安一个「动手者」身份去理解。
+  cognitive_source: 原型误植（施事只是主语的原型而非定义；主语编码的是镜头主角 trajector）
+  misreading_type: 主场·原型误植
+  task: 判断题：「The door opened. 这句话没说谁开的门，所以是错句。对吗？」再接：The key opened the door. 问「这句里站在主角位置的是人、动作，还是开门的工具？」
+  rubric:
+    hit: 第一题答「对，是错句」
+    partial: 第一题对、第二题把 key 说成「做动作的人」
+    pass: 两题全对且能说出「主语是镜头对准的那位，不保证是动手做事的」
+  remedy: 回第 2 步机制屏「主角不等于动手的人」卡：门自己开（主角是门）、钥匙开门（主角是工具）、小狗跑（主角恰好是动手者）三例同框，再回第 5 步复测。
+  source_of_prediction: CO-09 claim（主语编码 trajector，施事只是原型）+ mechanism[主角不等于动手的人] + examples 三句
+  status: 已入模
+  version: '1'
+- id: PRB-CO10-1
+  for_law: CO-10
+  source_ref: 波次一 · CO-10
+  title: 学句型先背公式：学会规则，什么动词都能套
+  predicted_misreading: 孩子（或陪学者）以为学句型的正路是先掌握抽象公式再往里套动词——见到孩子只会 I want ___、换个动词就卡壳，便判定「没学会句型」，不知道「先整句、再换零件」正是句型长出来的顺序。
+  cognitive_source: 路径误植（把抽象范畴当成习得的起点而非终点；动词岛式的逐词建立被当成缺陷）
+  misreading_type: 字面化
+  task: 判断题：「小朋友先把 I want ___ 整截背熟、只换最后一个词，这样学句型是偷懒，必须先把句型公式学会才算真懂。对吗？」
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出孩子在干什么
+    pass: 答「不对」且能说出「先整句用顺、换零件换得多了，脑子自己会发现前面这截是通用机关」
+  remedy: 回第 2 步机制屏「半成品先行」卡：I want ___ 的三个填充例（apple / water / cake）连排看图式如何浮出，再回第 4 步复测对「换零件」练习的判断。
+  source_of_prediction: CO-10 claim（item-based 动词岛、图式经类比缓慢涌现）+ mechanism[半成品先行] + examples 框架填充三例
+  status: 已入模
+  version: '1'
+- id: PRB-CO11-1
+  for_law: CO-11
+  source_ref: 波次一 · CO-11
+  title: 分句子先看动词：bake 的句子当然跟 bake 是一家
+  predicted_misreading: 孩子给句子分组时按主动词分家——She gave him a book. 和 He baked her a cake. 动词不同就被分到两堆，看不出它们是同一个双宾模具；与 The wind blew the paper… 这类同「移动」话题句反而容易被他凑成堆。
+  cognitive_source: 分类基准未立（大脑认句先认模具这一加工事实未被教学利用，孩子按最显眼的词形线索分组）
+  misreading_type: 主场·原型误植
+  task: 分组题：三句卡片——She gave him a book. / He baked her a cake. / He kicked the ball over the fence. 问「哪两句是'一家人'（同一种句型）？为什么？」
+  rubric:
+    hit: 按动词或话题分组（如把 kick 与 bake 按「动作」凑堆，或说不出家人关系）
+    partial: 分对（gave 与 baked 一组）但理由落在词上（「都有东西」）而非队形
+    pass: 分对且能说出「先看队形：这两句都是'谁给谁什么'的模具，动词不一样没关系」
+  remedy: 回第 2 步机制屏「先认队形」卡：排队队形类比（先认队形再认人），再回第 4 步用条目两例（gave / baked）与一组新材料句重做分组复测。
+  source_of_prediction: CO-11 claim（母语者按构式而非主动词分类、构式义是心理现实的表征单位）+ mechanism[先认队形] + examples 实验材料型两句
+  status: 已入模
+  version: '1'
+- id: PRB-CO12-1
+  for_law: CO-12
+  source_ref: 波次一 · CO-12
+  title: 整句背下的不算学问：语块、框架、模具是三件互不相干的东西
+  predicted_misreading: 孩子（或陪学者）把整存的句子、半成品框架、抽象模具看成三件无关的东西——背下 How are you? 被判「死记硬背不算学会」，或以为模具是老师编出来的、和自己背的句子没关系。
+  cognitive_source: 谱系未立（不知道语言单位是大小不一的图式谱系，习得是沿谱系的双向运动）
+  misreading_type: 字面化
+  task: 判断题：「How are you? 是整块背的，I want ___ 是半截框架，双宾模具是看不见的规矩——这三样是一家三代：背得越多、换得越多，模具越清楚。对吗？」
+  rubric:
+    hit: 答「不对」或坚持「整块背的不算学会」
+    partial: 答「对」但排不出三者的辈分
+    pass: 答「对」且能按「整句（爷爷）→ 半截框架（爸爸）→ 抽象模具（孙子）」说清谱系
+  remedy: 回第 2 步机制屏「一家三代」卡：三个登记对象（How are you? / I want ___ / 双宾模具）同框排辈分，再回第 4 步复测。
+  source_of_prediction: CO-12 claim（公式语→部分图式化→抽象构式的谱系）+ mechanism[一家三代] + examples 谱系三端登记对象
+  status: 已入模
+  version: '1'
+- id: PRB-CO13-1
+  for_law: CO-13
+  source_ref: 波次一 · CO-13
+  title: '*I want go：两个动词都能戴时态帽子'
+  predicted_misreading: 孩子让一个分句里的两个动词平起平坐——I want go.（go 没穿工作服），或反过来给第二个动词也标时态。汉语动词连排无形式变化的习惯被直接搬入。
+  cognitive_source: 母语迁移叠加结构盲（不知道限定性在一个分句里只能实现一次，后随动词须以非限定形式出现）
+  misreading_type: 母语迁移
+  task: 改错题：I want go. 哪里不合格、怎么改？再接判断：I enjoy swimming. 里 swimming 为什么不戴时态帽子，它的时间听谁的？
+  rubric:
+    hit: 看不出错，或改成 I want went. 一类（给第二个动词标时态）
+    partial: 改对（加 to）但第二题答不出「时间听主句的」
+    pass: 两题全对且能说出「一个小句子只有一顶时态帽子，戴在第一个动词头上，后面的要穿 to 或 -ing 工作服」
+  remedy: 回第 2 步机制屏「一顶帽子」卡，再回第 4 步用条目三例（want to go / enjoy swimming / stopped to smoke）逐句指认帽子和工作服复测。
+  source_of_prediction: CO-13 claim（限定性只能实现一次，非限定形式时间依附主分句）+ mechanism[一顶帽子] + error_cases 登记事故例 *I want go
+  error_form_display:
+  - I want go
+  status: 已入模
+  version: '1'
+- id: PRB-CO14-1
+  for_law: CO-14
+  source_ref: 波次一 · CO-14
+  title: to 和 -ing 随便选：意思都一样
+  predicted_misreading: 孩子把补足语形式当自由变体——I enjoy to swim.、want 后面跟 -ing 都敢说；更不知道 stop 后面换一件工作服，意思就翻面（stopped smoking 是戒烟、stopped to smoke 是停下来抽烟）。
+  cognitive_source: 搭配观未立（不知道补足语选择是词条级词汇属性，须逐词连框架登记，无总规则可推）
+  misreading_type: 过度泛化
+  task: 两题：① 给 enjoy 选搭档：I enjoy ___ (to swim / swimming)。② 句意判断：He stopped smoking. 与 He stopped to smoke. 是同一件事吗？
+  rubric:
+    hit: 任一题错（选 to swim，或答「同一件事」）
+    partial: 对一错一（搭配记住一处、框架换义未立）
+    pass: 两题全对且能说出「每个动词点名自己的搭档，学动词要把搭档一起记；stop 两个都点，但意思不一样」
+  remedy: 回第 2 步机制屏「点名搭档」卡：want→to、enjoy→-ing、stop 双搭档的卡片组重过，再回第 5 步用「动词+框架」连记法复测错的那张卡。
+  source_of_prediction: CO-14 claim（补足语选择是词条级词汇属性）+ mechanism[点名搭档] + examples（want to / enjoy -ing / stop 反转对）
+  status: 已入模
+  version: '1'
+- id: PRB-CO15-1
+  for_law: CO-15
+  source_ref: 波次一 · CO-15
+  title: 按汉语的流水盖法拼英语句子：先把背景全铺完
+  predicted_misreading: 孩子用汉语的建筑术拼英语——先长串铺垫、主谓迟迟不出场（如把「我昨天在公园里和同学玩的时候看见……」逐段直译成前重后轻的流水句），或反过来判英语「先立骨架」是把话说颠倒了。
+  cognitive_source: 母语迁移（汉语意合流水式 vs 英语形合骨架先行，是两种句子建筑术的系统差）
+  misreading_type: 母语迁移
+  task: 二选一：「哪一句是英语的盖法？」A. I read a book in my room.（先立「谁做了什么」，细节挂后面）B. 把同一内容按「在我的房间里、昨天晚上、慢慢地」全铺在前面、主谓压到最后的直译句。选完说说两种盖法差在哪儿。
+  rubric:
+    hit: 选 B，或认为两种盖法没区别
+    partial: 选 A 但说不出差在哪儿
+    pass: 选 A 且能说出「英语先立柱子（谁做了什么）再加房间，汉语爱先铺垫后点题——是两种建筑术」
+  remedy: 回第 2 步机制屏「两种盖法」卡，再回第 4 步用条目两例对照（骨架先行例 vs 前置状语的特许变体），注意边界：本条是统计大势、用于诊断预防，不逐句判错。
+  source_of_prediction: CO-15 claim（形合骨架先行 vs 意合线性铺展的建筑术差）+ mechanism[两种盖法] + claim.scope（倾向而非每句必查的定律）
+  status: 已入模
+  version: '1'
+- id: PRB-CO16-1
+  for_law: CO-16
+  source_ref: 波次一 · CO-16
+  title: 模具对了，扣子不用查：*He bake her a cake every Sunday
+  predicted_misreading: 孩子以为构式判读通过就等于句子全对——He bake her a cake every Sunday. 里双宾的「给」义成立，便认为句子没问题，bake 的三单 -s 漏了也不在检查清单里（把构式讲法越界用到形式细节）。
+  cognitive_source: 辖域越界（构式义只管论元结构层的戏，对形态、一致、时态不作预测；分工地图未立）
+  misreading_type: 过度泛化
+  task: 判断题：He bake her a cake every Sunday. 「这句的'给'的意思是对的，所以整句都对。对吗？」错在哪儿、归哪个「车间」管？
+  rubric:
+    hit: 答「对」
+    partial: 指出 -s 漏了，但说不清这是另一层的事
+    pass: 答「不对」且能说出「模具车间管谁给谁，-s 这种扣子归形态车间查，戏演对了扣子还得逐颗查」
+  remedy: 回第 2 步机制屏「分工地图」卡：同一句（条目登记例 He bakes her a cake every Sunday.）在两个车间各过一遍检查单，再回第 5 步复测。
+  source_of_prediction: CO-16 claim（构式义不管辖形态层）+ mechanism[分工地图] + examples 对照对（baked 判读 vs bakes 的 -s 归形态层）
+  status: 已入模
+  version: '1'
+- id: PRB-QI01-1
+  for_law: QI-01
+  source_ref: 波次一 · QI-01
+  title: 疑问词随便派：问地方也用 when
+  predicted_misreading: 孩子派疑问词靠顺手或靠眼熟——想问书在哪儿，张口用 when 或 what 顶上，不会先看「我缺的是哪一块信息」。
+  cognitive_source: 分工未立（不知道问句是「已知框架 + 一个空缺」，疑问词按空缺的语义类型分工）
+  misreading_type: 主场·原型误植
+  task: 派词题：三个问题各缺一块——① 想知道书在哪儿，派谁？② 想知道生日是哪天，派谁？③ 想知道哭的原因，派谁？（who / where / when / why 里选）
+  rubric:
+    hit: 任一题派错
+    partial: 对两题错一题（某一类型的分工未立，按错的类型回补）
+    pass: 三题全对且能说出「先看缺的是人、地方、时间还是原因，再派对词」
+  remedy: 回第 2 步机制屏「缺哪块派谁」卡：拼图缺口与四个疑问词的配对图重过，再回第 4 步用条目四例逐句指认空缺类型复测。
+  source_of_prediction: QI-01 claim（问句是已知框架+一个空缺，疑问词标明空缺类型）+ mechanism[缺哪块派谁] + examples 四句
+  status: 已入模
+  version: '1'
+- id: PRB-QI02-1
+  for_law: QI-02
+  source_ref: 波次一 · QI-02
+  title: there 是 where 换个字母变出来的
+  predicted_misreading: 孩子把押韵口诀当词源——「where 把 w 换成 t 就是 there，what 换一换就是 that」，以为答词都是问词变个字母变出来的，还会自创类推（如 who → tho）。
+  cognitive_source: 口诀字面化（助记的押韵被当成谱系事实；不知道 wh- 与 th- 是两个从未互变的词族）
+  misreading_type: 字面化
+  task: 判断题：「there 是把 where 的第一个字母换成 t 变出来的，that 也是 what 变的。对吗？」再接一问：Where is the cat? 的答句 The cat is there. 里，there 和 where 是一家人吗？
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出两家之分
+    pass: 答「不对」且能说出「where、what 是一家人，there、that 是另一家人，只是长得像，谁也不是谁变的」
+  remedy: 回第 2 步机制屏「两家的家谱」卡：hw- 家与 þ- 家两个院子对照，口诀只许留在「助记」一栏、与真词源分栏呈现，再回第 4 步复测。
+  source_of_prediction: QI-02 claim（*kʷo- 与 *to- 两条谱系独立、从未互变）+ mechanism[两家的家谱] + claim.scope（口诀须显性标注「不是词源」）
+  status: 已入模
+  version: '1'
+- id: PRB-QI03-1
+  for_law: QI-03
+  source_ref: 波次一 · QI-03
+  title: whose 是个新词，跟 who 没关系
+  predicted_misreading: 孩子把 whose 当成与 who 无关的生词，或把 whose 当 who 用——听见 Whose book is this? 答一个人名加动作（如「Tom is reading」），归属这一问完全落空。
+  cognitive_source: 谱系未立（不知道 whose 是 who 的属格化石、why 是其工具格化石，两个词被当成孤立词条死记）
+  misreading_type: 主场·原型误植
+  task: 问答题：Whose book is this? 应该回答什么样的话？备选：A. Tom is reading it. B. It is Tom's book. 再接：whose 和 who 是什么关系？
+  rubric:
+    hit: 选 A
+    partial: 选 B 但关系说不出（当生词背下来的）
+    pass: 选 B 且能说出「whose 就是 who 的'家的'，像 his 是 he 的'家的'一样」
+  remedy: 回第 2 步机制屏「两件化石」卡：who 一家老时候的变形（问谁的→whose、凭什么→why）重演，再回第 4 步用条目两例复测。
+  source_of_prediction: QI-03 claim（hwæs→whose、hwȳ→why 的格化石）+ mechanism[两件化石] + examples 两句
+  status: 已入模
+  version: '1'
+- id: PRB-QI04-1
+  for_law: QI-04
+  source_ref: 波次一 · QI-04
+  title: '*Does she likes：助动词举起来了，后面的动词还带着时态'
+  predicted_misreading: 孩子只学会「把助动词搬到前面」，不知道搬完之后主动词要脱下时态回原形——Does she likes apples? 时态在一句话里标了两次。
+  cognitive_source: 单次标记未立（倒装操作与「时态只标一次」没有咬合，与 GR-02 同源）
+  misreading_type: 过度泛化
+  task: 改错题：Does she likes apples? 哪里多了一样东西、怎么改？再接判断：Who came yesterday? 这句为什么不用把谁举到前面倒装？
+  rubric:
+    hit: 看不出错，或改成 Does she likes apple. 一类（只动名词）
+    partial: 改对（like 回原形）但第二题答不出（主语疑问句无倒装对象）
+    pass: 两题全对且能说出「does 已经扛起时态，后面的动词回原形；问的正好是主语时，没有可倒装的对象」
+  remedy: 回第 2 步机制屏「排头兵出列」卡，再回第 4 步用条目三例（Has she… / Did you… / Who came…）逐句指认排头兵，并回挂 GR-02「帽子只戴一次」复测。
+  source_of_prediction: QI-04 claim（倒装对象是首个助动词）+ claim.scope（主语疑问句无倒装对象）+ error_cases 登记错型 *Does she likes（教学文献登记错型）
+  error_form_display:
+  - Does she likes apples
+  status: 已入模
+  version: '1'
+- id: PRB-QI05-1
+  for_law: QI-05
+  source_ref: 波次一 · QI-05
+  title: 新货放哪儿都行：重音随便落
+  predicted_misreading: 孩子排信息不分新旧——把听话人已经知道的东西放到句尾重读，把真正的新消息埋在句中轻读，如介绍新买的自行车时说成 Dad bought a BIKE for me 的反面：新货 bike 轻读、旧信息 me 重读，听者抓不住重点。
+  cognitive_source: 信息包装未立（不知道英语的常态是已知在前、新信息落句尾并承载重音，end-focus）
+  misreading_type: 主场·原型误植
+  task: 听辨选择：要告诉同桌「爸爸给我买了一辆新自行车」（自行车是新消息、「给我」大家早就知道），哪种读法对？A. Dad bought me a new BIKE.（重读落在句尾 bike）B. Dad bought ME a new bike.（重读落在 me、bike 轻读带过）
+  rubric:
+    hit: 选 B
+    partial: 选 A 但说不出理由（靠语感）
+    pass: 选 A 且能说出「先说已知的，最后压轴端上新货，还要重读敲一下盘子」
+  remedy: 回第 2 步机制屏「压轴上菜」卡：上菜次序与敲盘子的类比重演，再回第 4 步用条目三例（含对比焦点靠重音前移的例外同框）复测。
+  source_of_prediction: QI-05 claim（end-focus：新信息落句尾并承载重音）+ mechanism[压轴上菜] + examples（Dad bought me a new BIKE 常态例）
+  status: 已入模
+  version: '1'
+- id: PRB-QI06-1
+  for_law: QI-06
+  source_ref: 波次一 · QI-06
+  title: 「先地点后时间」是铁律：时间提到句首就是错句
+  predicted_misreading: 孩子把状语的常态顺序学成锁死的定律——见到 In the morning, we play in the park. 判它是错句（「时间应该在最后」），或自己写作时不敢把任何状语提前。
+  cognitive_source: 倾向被硬化（项目已裁定「先地点后时间」类定律化表述一律降格倾向；孩子把常态出场顺序当成句法规则）
+  misreading_type: 字面化
+  task: 判断题：「In the morning, we play in the park. 时间状语跑到最前面去了，所以这句是错句。对吗？」
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出提前干了什么
+    pass: 答「不对」且能说出「排队是习惯不是上锁，把时间搬到前面是先给大家一个场景」
+  remedy: 回第 2 步机制屏「排队不上锁」卡：常态出场（事情→地点→时间）与时间前置两幅图对照，再回第 4 步用条目两例复测。
+  source_of_prediction: QI-06 claim（句尾状语序列是倾向而非句法硬规则）+ mechanism[排队不上锁] + examples 常态/前置同框对
+  status: 已入模
+  version: '1'
+- id: PRB-QI07-1
+  for_law: QI-07
+  source_ref: 波次一 · QI-07
+  title: 把时间提到句首只是「换个位置」，没有为什么
+  predicted_misreading: 孩子以为前置是随意的语序游戏——读 In the morning, I read a book. 只觉得「时间放前面了」，读不出说话人先给时间打光、让大家先站进这个场景的用意；轮到自己理解强调句时全靠猜。
+  cognitive_source: 功能未立（不知道前置给被提成分「出发点」地位、整句信息重心随之改组）
+  misreading_type: 字面化
+  task: 句意判断：In the morning, I read a book. 问「说话的人为什么把 In the morning 提到最前面？」备选：A. 英语规定时间必须放句首 B. 先给时间打一束光，让大家先站到「早上」这个场景里再听正文 C. 随便放的，没什么用意
+  rubric:
+    hit: 选 A 或 C
+    partial: 犹豫后选 B 但说不出「出发点」的意思
+    pass: 选 B 且能用自己的话说出「先给谁打光，谁就是这一眼的主角」
+  remedy: 回第 2 步机制屏「追光给谁」卡：追光打给时间与打给地点的两例（条目登记例）对照，再回第 4 步复测。本条小学阶段只要求认得出、欣赏，不要求产出。
+  source_of_prediction: QI-07 claim（前置承担主题衔接与对比强调、被前置者获得出发点地位）+ mechanism[追光给谁] + claim.scope（小学定位为识别与欣赏）
+  status: 已入模
+  version: '1'
+- id: PRB-QI08-1
+  for_law: QI-08
+  source_ref: 波次一 · QI-08
+  title: 语调也是铁律：wh- 问句尾巴没沉下去就是读错了
+  predicted_misreading: 孩子把语调的常态配对学成判错标准——读 Where are you going? 时尾巴没明显下降就自判「读错了」，或认为升调读一般疑问句是唯一合法读法，读平了就不算提问。
+  cognitive_source: 倾向被硬化（条目边界明示：本条只作倾向呈现，不得据此给学生的语调判「错」）
+  misreading_type: 字面化
+  task: 判断题：「Where are you going? 读的时候句尾没有往下沉，所以读错了。对吗？」再接：Are you ready? 一般读的时候尾巴往上翘还是往下沉？
+  rubric:
+    hit: 第一题答「对」
+    partial: 第一题对、第二题答错（知道不是铁律，但常态配对未立）
+    pass: 两题全对且能说出「语调只是习惯：Yes/No 问题爱翘尾巴、wh- 问题爱沉尾巴，但不是规矩，不能拿它判错」
+  remedy: 回第 2 步机制屏「声音的标点」卡：翘尾巴（等你答）与沉尾巴（我说完了）两幅声调图对照，再回第 4 步用条目两例跟读复测——只练常态，不作判错。
+  source_of_prediction: QI-08 claim（语调与句类的统计配对）+ mechanism[声音的标点] + claim.scope（不得据此判错）
+  status: 已入模
+  version: '1'
+- id: PRB-QI09-1
+  for_law: QI-09
+  source_ref: 波次一 · QI-09
+  title: Why 的回答必须用 Because 开头
+  predicted_misreading: 孩子把应试稳妥口径学成唯一合法答法——见到 — Why did she go to the library? — To get some books. 判它是「半句、错答」，或自己答目的型 why 时硬套 Because I want to… 的别扭说法。
+  cognitive_source: 口径硬化（「必用 Because」是已废止的一刀切口径；没听清 why 问的是原因还是目的就先套模板）
+  misreading_type: 字面化
+  task: 判断题组：① — Why are you wet? — Because it rained. 对吗？② — Why did she go to the library? — To get some books. 这是错答吗？
+  rubric:
+    hit: 第②题判错答
+    partial: 两题判断对，但说不出两问差在哪儿
+    pass: 两题全对且能说出「why 有时问原因、有时问目的：原因用 Because 答，目的用 To 答，都是正宗的」
+  remedy: 回第 2 步机制屏「先听清问的是哪一种」卡，再回第 4 步用条目三例（淋湿/看朋友/借书）逐例先判「问原因还是问目的」再选答法复测。
+  source_of_prediction: QI-09 claim（why 同问原因与目的，答语随维度分工）+ mechanism[先听清问的是哪一种] + claim.scope（纠正「必用」的绝对化）
+  status: 已入模
+  version: '1'
+- id: PRB-QI10-1
+  for_law: QI-10
+  source_ref: 波次一 · QI-10
+  title: '*What do you go to school：问「怎么去」也派 What'
+  predicted_misreading: 孩子按词翻译派疑问词——心里想的是汉语「坐什么车去」，「什么」一露头就派 What，把方式问题塞进事物的辖域，答非所问。
+  cognitive_source: 母语迁移（逐词对译压过辖域判断；how 管方式/程度/状态、what 管事物身份的分工未立）
+  misreading_type: 母语迁移
+  task: 改错题：What do you go to school? 这句问的是「怎么去学校」，错在哪儿、怎么改？再接派词：想知道「那是什么东西」，派 What 还是 How？
+  rubric:
+    hit: 看不出错，或改动名词/动词而非疑问词
+    partial: 改对（How）但第二题派错或说不出分工
+    pass: 两题全对且能说出「问东西派 What，问办法和样子派 How，派错了答案就会答非所问」
+  remedy: 回第 2 步机制屏「派对侦察兵」卡，再回第 4 步用条目三例（go to school / What is this / What is the weather like 的约定用法另表）复测。
+  source_of_prediction: QI-10 claim（how 与 what 的辖域分工）+ mechanism[派对侦察兵] + error_cases 登记错型 *What do you go to school（教学文献登记错型）
+  error_form_display:
+  - What do you go to school
+  status: 已入模
+  version: '1'
+- id: PRB-QI11-1
+  for_law: QI-11
+  source_ref: 波次一 · QI-11
+  title: 选择问句也答 Yes：给了选项不选
+  predicted_misreading: 孩子把所有问句都当极性问句处理——Do you want tea or juice? 答 Yes.，图式认错：人家给的是「二选一」，他答的是「对不对」。
+  cognitive_source: 图式混淆（or-问句的选择图式未立，yes-no 图式被推满所有问句）
+  misreading_type: 过度泛化
+  task: 问答题：— Do you want tea or juice? 下面哪个回答对路？A. Yes. B. Juice, please. 再接一句：— Shall we walk or take a bus? 该怎么答？
+  rubric:
+    hit: 选 A，或第二题仍答 Yes/No
+    partial: 第一题选 B、第二题答得含糊（如只说 Yes, walk）
+    pass: 两题全对且能说出「先认图式：给了选项的题，答案就是选项里的一个」
+  remedy: 回第 2 步机制屏「先认图式再答」卡，再回第 4 步用条目两例（茶/果汁、走路/坐车）做先判图式再作答的复测。
+  source_of_prediction: QI-11 claim（or-问句预设从选项中选取，与极性问句是两种图式）+ mechanism[先认图式再答] + error_cases 登记错型（选择问句误答 Yes，教学文献登记错型）
+  status: 已入模
+  version: '1'
+- id: PRB-QI12-1
+  for_law: QI-12
+  source_ref: 波次一 · QI-12
+  title: 否定问句按汉语点头：不喜欢也答 Yes
+  predicted_misreading: 孩子用汉语的认同系统答英语否定问句——— Don't you like it? 他真不喜欢，却答 Yes.（意思是「对，我不喜欢」），英语听者收到的却是「我喜欢」，鸡同鸭讲。
+  cognitive_source: 母语迁移（汉语回答锚在「与问者命题的一致性」，英语 yes/no 锚在答者断言的事实极性，两系统在否定问句处正面相撞）
+  misreading_type: 母语迁移
+  task: 问答题：— Don't you like it? 你其实不喜欢，该怎么答？备选：A. Yes.（对，我不喜欢）B. No, I don't. 再接：其实你很喜欢，又该怎么答？
+  rubric:
+    hit: 第一题选 A
+    partial: 第一题对、第二题答 No（只记「否定问句答 No」的新模板，事实锚未立）
+    pass: 两题全对且能说出「英语的 Yes/No 跟事实走：喜欢就是 Yes，不喜欢就是 No，还要把整句补完」
+  remedy: 回第 2 步机制屏「两个锚」卡：事实锚 vs 认同锚的对照图重过，再回第 4 步用条目两组问答（真不喜欢 / 其实喜欢）复测，一律要求补全句。
+  source_of_prediction: QI-12 claim（事实极性系统 vs 认同系统的锚点差）+ mechanism[两个锚] + claim.scope（取「按事实+补全句」的最稳妥形式）
+  status: 已入模
+  version: '1'
+- id: PRB-QI13-1
+  for_law: QI-13
+  source_ref: 波次一 · QI-13
+  title: '*What you want：只搬疑问词，忘了倒装'
+  predicted_misreading: 孩子把汉语问句的办法搬了一半——疑问词搬到了句首（或干脆留在原地），助动词倒装没跟上：What you want? / You want what?（非回声语境）。
+  cognitive_source: 母语迁移（汉语原位 + 无倒装系统整套或半套搬入英语；英语提问是「前置 + 倒装」的成套搬家）
+  misreading_type: 母语迁移
+  task: 改错题：What you want? 哪里没搬完、怎么改？再接判断：妈妈听漏了，瞪大眼睛问 You bought WHAT?——这句的 what 没搬家，是错句吗？
+  rubric:
+    hit: 看不出错，或把 what 改回句尾
+    partial: 改对（What do you want?）但第二题判回声问句为错（合法形式被误纠）
+    pass: 两题全对且能说出「英语提问要搬两趟：疑问词到句首、助动词倒过来；回声问句是特许，可以不搬」
+  remedy: 回第 2 步机制屏「搬家与不搬家」卡，再回第 4 步用条目登记问答对对照，并回挂 QI-04 倒装节复测。
+  source_of_prediction: QI-13 claim（wh-移位型 vs 原位型的系统差）+ claim.scope（回声问句合法原位）+ error_cases 登记错型两则（*What you want / *You want what，教学文献登记错型）
+  error_form_display:
+  - What you want
+  status: 已入模
+  version: '1'
+- id: PRB-QI14-1
+  for_law: QI-14
+  source_ref: 波次一 · QI-14
+  title: Where the dog? 是「没学好」：不知道提问有台阶
+  predicted_misreading: 孩子（或陪学者）把发展中的阶段形态当成纯粹的错误——孩子说 Where the dog?（疑问词到了前面、倒装没跟上），便被判「问句完全没学会」，不知道这正是四级台阶的中间一级，倒装是最后长好的本领。
+  cognitive_source: 阶段盲（不知道二语疑问句有可预测的发展序列：整句模仿 → 换疑问词 → 一般疑问倒装 → 特殊疑问全倒装，输入无法跳过阶段）
+  misreading_type: 字面化
+  task: 判断题：「小朋友说 Where the dog?，说明他问句一点没学会，要从头重学。对吗？」
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出这句话处在哪个阶段
+    pass: 答「不对」且能说出「他正在台阶上：疑问词已经会搬家了，倒装还没长好，急不得、顺着台阶供料就行」
+  remedy: 回第 2 步机制屏「四级台阶」卡：条目登记的三个形态（What's this? 整句模仿 / Where the dog? 阶段形态 / Where is the dog? 目标形态）排成台阶重过，再回第 4 步复测判断口径。
+  source_of_prediction: QI-14 claim（疑问句发展的阶段序列）+ mechanism[四级台阶] + examples 阶段形态登记（过渡式为阶段标本，非病例错句）
+  status: 已入模
+  version: '1'
+- id: PRB-QI15-1
+  for_law: QI-15
+  source_ref: 波次一 · QI-15
+  title: 提问只是练句型：真想知道还是假装问，没区别
+  predicted_misreading: 孩子（或陪学者）以为提问练习的价值只在形式——假装问一百遍和真心想知道问一次没区别，于是机械提问时嘴动心不动，形式记不住、答案也不听。
+  cognitive_source: 动机锚缺失（不知道真实信息缺口把输入、注意与输出咬合在一起，是形式记忆的锚）
+  misreading_type: 字面化
+  task: 判断题：「练提问时，问的是自己真不知道的事，还是老师明明知道答案的假问题，记得牢的程度一样。对吗？」
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出差在哪儿
+    pass: 答「不对」且能说出「心里真有个问号时，会竖起耳朵听答案，问句的样子记得最牢」
+  remedy: 回第 2 步机制屏「真问号的力量」卡，再回第 5 步用信息差任务（条目登记型：Where is my key? 的真缺口场景、盒子里有什么的猜物任务）替换一组机械问答复测。
+  source_of_prediction: QI-15 claim（意义协商在真实信息差中咬合输入/注意/输出）+ mechanism[真问号的力量] + examples 信息差任务登记型
+  status: 已入模
+  version: '1'
+- id: PRB-GR01-1
+  for_law: GR-01
+  source_ref: 波次一 · GR-01
+  title: 小尾巴是装饰：拿掉 -s、-ed 意思也不变
+  predicted_misreading: 孩子把词尾变化当成装饰或负担——读 Look, two dogs! 时觉得 -s 可有可无，写句子时随手省掉，问他 -ed 在说什么也答不出，形式与它传递的信息在他那里是脱钩的。
+  cognitive_source: 功能盲（纲领未立：没意识到语法形式本身是装着意义的符号，每个形式都在为听话人编码一条信息）
+  misreading_type: 字面化
+  task: 指认题：Look, two dogs! 问「哪个小尾巴在告诉我们'不止一只'？」再接：She played football yesterday. 问「哪个小尾巴在说'已经过去了'？要是把它拿掉，听的人还知道吗？」
+  rubric:
+    hit: 任一题指不出，或答「拿掉也没关系」
+    partial: 指得出但说不出拿掉的后果
+    pass: 两题全对且能说出「小尾巴不是装饰，是在给听的人传消息」
+  remedy: 回第 2 步机制屏「小尾巴在说话」卡：dogs 与 played 两个发亮尾巴的对子重过，再立「遇到形式先问它干什么活」的顺序，回第 4 步用条目四例逐句指认尾巴的消息复测。
+  source_of_prediction: GR-01 claim（形式—意义配对的象征单位纲领）+ mechanism[小尾巴在说话][遇到形式先问它干什么活] + examples 四句
+  status: 已入模
+  version: '1'
+- id: PRB-GR02-1
+  for_law: GR-02
+  source_ref: 波次一 · GR-02
+  title: '*Did you went：时态标两次才保险'
+  predicted_misreading: 孩子以为时态标得越多越清楚——Did you went to the park?、She doesn't likes apples.，did/does 已经扛起时态，后面的动词还按自己的时态再标一遍。
+  cognitive_source: 单次标记未立（不知道时态由限定动词链的第一个成分承载，后随实义动词回原形；与汉语动词无标记的经验叠加）
+  misreading_type: 过度泛化
+  task: 改错题组：① Did you went to the park? ② She doesn't likes apples. 各错在哪儿、怎么改？
+  rubric:
+    hit: 任一题看不出错
+    partial: 改对一题另一题漏（一顶帽子的账只在一句上算清）
+    pass: 两题全对且能说出「时态像一顶帽子，一个分句只戴一次：did/does 戴上了，后面的动词脱帽用原形」
+  remedy: 回第 2 步机制屏「帽子只戴一次」卡，再接 did 站岗的三种场合（提问/否定/强调）各认一例，回第 4 步用条目四例复测。
+  source_of_prediction: GR-02 claim（时态由限定动词链首成分承载）+ mechanism[帽子只戴一次][did 站岗的三种场合] + examples 四句
+  status: 已入模
+  version: '1'
+- id: PRB-GR03-1
+  for_law: GR-03
+  source_ref: 波次一 · GR-03
+  title: be 和 can 也要请替补：*Do she is happy
+  predicted_misreading: 孩子把 do-support 练成万能开机键——见到提问就先上 do，连 be 动词和情态动词也请替补：Do she is happy?、Do you can swim?，不知道这两家保留着自己倒装的老本事。
+  cognitive_source: 过度泛化（替补机制的适用边界未立：只有实义动词需要替补，be、have（英式）与情态动词不需要）
+  misreading_type: 过度泛化
+  task: 选句题：① 问「她开心吗」——Do she is happy? / Is she happy? ② 问「你会游泳吗」——Do you can swim? / Can you swim? ③ 问「你喜欢牛奶吗」——Do you like milk? / Like you milk?
+  rubric:
+    hit: 任一题选错
+    partial: 对两题错一题（替补的适用面只一部分立住）
+    pass: 三题全对且能说出「实义动词丢了自己提问的本事才请 do；be 和情态动词自己会，用不着替补」
+  remedy: 回第 2 步机制屏两卡连看：「动词曾经自己会提问」（本事怎么丢的）与「do 来当替补」（替补的岗位说明书），边界例 Is she happy? / Can you swim? 同框对照，再回第 5 步复测。
+  source_of_prediction: GR-03 claim（do-support 的历时规整）+ claim.scope（be/have/情态保留自倒装能力）+ examples 边界例两句
+  error_form_display:
+  - Do she is happy
+  - Do you can swim
+  status: 已入模
+  version: '1'
+- id: PRB-GR04-1
+  for_law: GR-04
+  source_ref: 波次一 · GR-04
+  title: 动词尾巴应该人人一样：he 后面多出的 -s 是例外装饰
+  predicted_misreading: 孩子把三单 -s 当成孤立的例外负担——要么漏掉（He play football.），要么反过来人人有份（They plays. / I plays.），不知道它是古时候一整排人称词尾磨损后唯一没被磨掉的幸存者，只守 he/she/it 的现在岗。
+  cognitive_source: 系统位未立（-s 的「岗位」意识缺失：不知道它只在一个格子里值班，其余格子当年的词尾早已磨平）
+  misreading_type: 主场·原型误植
+  task: 选句题：四句里哪句对？A. He plays football. B. They plays football. C. I plays football. D. He play football. 选完说说 -s 只在哪儿值班。
+  rubric:
+    hit: 选 B、C 或 D，或认为「都行」
+    partial: 选 A 但值班范围说不全（如漏 it）
+    pass: 选 A 且能说出「以前词尾有一整排，后来只剩这一个，它只守 he/she/it + 现在时这一格」
+  remedy: 回第 2 步机制屏两卡连看：「尾巴大磨损」（一整排词尾如何磨没）与「北方来的幸存者」（-s 的来历与岗位），再回第 4 步用条目四例（plays / watches / rains / goes）逐句认岗复测。注意边界：这是历史解释，不编「勋章/补偿」式新故事。
+  source_of_prediction: GR-04 claim（词尾系统磨损、三单 -s 为北方方言幸存者）+ mechanism[尾巴大磨损][北方来的幸存者] + adult.boundary（历史解释非功能解释）
+  status: 已入模
+  version: '1'
+- id: PRB-GR05-1
+  for_law: GR-05
+  source_ref: 波次一 · GR-05
+  title: 两个 -s 是一家人：一句里出现两个 -s 是重复了
+  predicted_misreading: 孩子以为全英语只有一个 -s——He reads books. 里两个 -s 被读成「同一个尾巴出现了两次」，解释时只会说一种活儿（如都说成「好几个」），或把 reads 的 -s 也解成复数。
+  cognitive_source: 同形合并（把两条独立源流偶然长成的同形当成同一个标记；不知道一个管名词的「好几个」、一个管动词的「他/她做」）
+  misreading_type: 主场·原型误植
+  task: 指认题：He reads books. 里有两个 -s：第一个在干什么活、第二个在干什么活？再接：I have two books. 里的 -s 和 She eats an apple. 里的 -s，是同一个工种吗？
+  rubric:
+    hit: 答「两个 -s 干一样的活」
+    partial: 对一错一（一个工种认出、另一个未认）
+    pass: 两题全对且能说出「两个 -s 只是长得像：名词后的管'好几个'，动词后的管'他/她在做'，是两条河汇到一起」
+  remedy: 回第 2 步机制屏两卡连看：「两条河汇到一起」（源流）与「长得像，用法各管各」（分工），再回第 4 步用条目四例逐句给 -s 派活复测。
+  source_of_prediction: GR-05 claim（复数 -s 与三单 -s 两条独立源流）+ mechanism[两条河汇到一起][长得像，用法各管各] + examples 同框例 He reads books
+  status: 已入模
+  version: '1'
+- id: PRB-GR06-1
+  for_law: GR-06
+  source_ref: 波次一 · GR-06
+  title: '*I goed：不规则过去式也该按规则现推'
+  predicted_misreading: 孩子把 -ed 当成唯一的过去式通道——go 推成 goed，低频或没记牢的不规则形式一律现推；或反过来认为不规则全是「换元音」，对 went 这类整个换词的也去找元音变化。
+  cognitive_source: 规则过度泛化（不知道不规则过去式是元音交替家族的残余、高频把老形式整块钉牢；家族与杂项的分工未立）
+  misreading_type: 过度泛化
+  task: 改错加分类：① I goed to school yesterday. 怎么改？② sing、swim 变过去式靠换什么？went 靠换元音吗？
+  rubric:
+    hit: 第①题看不出错，或坚持 goed 是「按规则的对形」
+    partial: 改对（went）但第②题答错（以为 went 也是换元音）
+    pass: 两题全对且能说出「换元音的是一家人（sing–sang、swim–swam）；went 是杂项，要整块单记；用得越多的老词越不肯变」
+  remedy: 回第 2 步机制屏两卡连看：「换元音的一家人」与「用得越多，越不变」，再回第 4 步用条目四例（sang / swam / went / saw）按家族与杂项分堆复测。
+  source_of_prediction: GR-06 claim（ablaut 家族残余 + 频率保护）+ mechanism[换元音的一家人][用得越多，越不变] + error_cases 登记错型 *goed（教学文献登记错型）+ adult.boundary（不得宣称不规则全是换元音）
+  error_form_display:
+  - goed
+  status: 已入模
+  version: '1'
+- id: PRB-GR07-1
+  for_law: GR-07
+  source_ref: 波次一 · GR-07
+  title: must 就是「必须」：He must be tired 是在命令他累
+  predicted_misreading: 孩子把情态动词的力只认出义务一种——He must be tired. 被读成「他必须累（有人命令他）」，推断义读不出来；may、can 的许可/能力也全被压回汉语词的第一个对应词。
+  cognitive_source: 单义锁定（力图式未立：不知道 must 是外力压、may 是障碍缺席、can 是内在潜能，推断义是同一套力搬进推理领域）
+  misreading_type: 主场·原型误植
+  task: 句意判断：He must be tired. 问「这句是在命令他去累吗？」备选：是 / 不是，是「证据推着我下结论：他肯定累了」。再接：May I come in? 里的 may 是哪种力——有人推你、路障搬开、还是自己有劲儿？
+  rubric:
+    hit: 任一题错（must 答「命令」，或 may 认不出「路障搬开」）
+    partial: 对一错一（义务/许可的力认出、推断义的力迁移未认，或反之）
+    pass: 两题全对且能说出「must 是有股力在推：推人是必须，推着我下结论就是'肯定'」
+  remedy: 回第 2 步机制屏两卡连看：「三种力」（推力/搬障/有劲儿）与「力搬进脑子里」（推断义），再回第 4 步用条目四例逐句认力复测。注意边界：力图式不覆盖礼貌委婉用法。
+  source_of_prediction: GR-07 claim（Talmy 力动态：must 外力、may 障碍缺席、can 内在潜能；认识情态是同一图式的隐喻迁移）+ mechanism[三种力][力搬进脑子里]
+  status: 已入模
+  version: '1'
+- id: PRB-GR08-1
+  for_law: GR-08
+  source_ref: 波次一 · GR-08
+  title: '*She cans swim：情态动词和普通动词一样能加 -s、能连排'
+  predicted_misreading: 孩子把情态动词当普通动词使——She cans swim.（给帮手加三单 -s）、I will can swim.（两个帮手排排坐）、to will（给帮手加不定式），不知道它们是停在半路的化石，形态上天生残缺。
+  cognitive_source: 范畴误植（语法化留下的残缺档案未立：无三单 -s、无不定式、互斥不能连排，是它们由实义动词变助动词的化石证据）
+  misreading_type: 过度泛化
+  task: 选句题：三句哪句对？A. She cans swim. B. She can swim. C. She can to swim. 再接判断：I will can swim. 问题出在哪儿？
+  rubric:
+    hit: 选 A 或 C，或第二题答不出
+    partial: 选 B 但第二题说不出「帮手不能连排」
+    pass: 两题全对且能说出「will、can 以前是正经动词，变成帮手后就残缺了：不加 -s、不能两个排排坐、也没有 to 形式」
+  remedy: 回第 2 步机制屏两卡连看：「动词慢慢变成帮手」与「化石证据：残缺」，再回第 4 步用条目四例（will help / will play / Will you… / can swim 不加 -s）复测。
+  source_of_prediction: GR-08 claim（情态动词语法化与形态残缺）+ mechanism[动词慢慢变成帮手][化石证据：残缺] + examples（She can swim 的 -s 缺失现场）
+  error_form_display:
+  - cans
+  - will can
+  status: 已入模
+  version: '1'
+- id: PRB-GR09-1
+  for_law: GR-09
+  source_ref: 波次一 · GR-09
+  title: 英语的否定词从古至今一直是 not
+  predicted_misreading: 孩子（或陪学者）把今天的语言当成从来如此——以为否定词一直就是 not，语言是静止的；或把「磨损—加固」的循环误当成孩子今天说错否定的原因。
+  cognitive_source: 历时盲（不知道高频否定词会弱化、说话人引入强调成分补强、补强者随后抢班的耶斯佩森循环；条目边界明示循环不解释今天的个体错误）
+  misreading_type: 字面化
+  task: 判断题：「英语里表示'不'的词，从一千年前到今天一直是 not，从没变过。对吗？」再接一问：not 当年是被请来干什么的？
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出 not 的来历
+    pass: 答「不对」且能说出「最早是 ne，它说弱了，人们请重词 not 来加强，后来 not 抢了班、ne 退场」
+  remedy: 回第 2 步机制屏两卡连看：「说多了会变弱」与「请帮手，帮手抢班」，再申边界——这是语言几百年的故事，不是用来解释今天谁说错否定的。本条只作真历史故事回补。
+  source_of_prediction: GR-09 claim（耶斯佩森循环 ne → ne…not → not）+ mechanism[说多了会变弱][请帮手，帮手抢班] + adult.boundary（只作语言演变故事）
+  status: 已入模
+  version: '1'
+- id: PRB-GR10-1
+  for_law: GR-10
+  source_ref: 波次一 · GR-10
+  title: 肯定句 some、疑问否定 any：铁律判错邀请句
+  predicted_misreading: 孩子把初学默认倾向当成铁律——判 Would you like some tea? 是错句（「问句里怎么能用 some」），或在肯定句里见到 Any child can read it. 的 any 就判错，全然不知 some/any 是说话人举哪面旗的立场选择。
+  cognitive_source: 倾向被硬化（条目已裁定旧铁律废止：分布由立场与语境决定，默认倾向只是「多半」）
+  misreading_type: 字面化
+  task: 判断题组：① Would you like some tea? 这句的 some 用错了吗？② Any child can read it. 是肯定句，any 用错了吗？
+  rubric:
+    hit: 任一题判错
+    partial: 两题都不判错，但说不出 some 在邀请句里的用意
+    pass: 两题全对且能说出「some 是'我心里有数、我盼着答应'的旗，邀请时盼对方答应就举 some；any 是'随便哪个'的旗，肯定句里也能用」
+  remedy: 回第 2 步机制屏两卡连看：「两面小旗子」（立场）与「默认倾向不是铁律」，再回第 4 步用条目四例（some pens / any pens / some tea / Any child）逐句问「举的是哪面旗」复测。
+  source_of_prediction: GR-10 claim（some/any 是立场与语境的选择）+ mechanism[两面小旗子][默认倾向不是铁律] + adult.boundary（旧铁律废止）
+  status: 已入模
+  version: '1'
+- id: PRB-GR11-1
+  for_law: GR-11
+  source_ref: 波次一 · GR-11
+  title: '*Because it rained, so I stayed home：因果要成对才完整'
+  predicted_misreading: 孩子把汉语「因为…所以…」的成对习惯整套搬进英语——一个因果链里 because、so 双双上岗，还觉得这样「更完整、更保险」。
+  cognitive_source: 母语迁移（汉语意合成对关联词 vs 英语形合单连接点的系统差）
+  misreading_type: 母语迁移
+  task: 改错题：Because it rained, so I stayed home. 英语听着别扭在哪儿？给出两种改法。
+  rubric:
+    hit: 看不出错，或只改词序不动连接词
+    partial: 改出一种（删 because 或删 so 其一）
+    pass: 两种改法都给出且能说出「英语说因果只搭一座桥：要么 because 说原因，要么 so 说结果」
+  remedy: 回第 2 步机制屏两卡连看：「只搭一座桥」与「汉语的成对习惯」，再回第 4 步用条目四例（because 版与 so 版同事件对照）复测。
+  source_of_prediction: GR-11 claim（英语从句连接以单从属连词为常态）+ mechanism[只搭一座桥][汉语的成对习惯] + error_cases 登记错型（真实语料错型：because…so 并用）
+  error_form_display:
+  - Because it rained, so I stayed home
+  status: 已入模
+  version: '1'
+- id: PRB-GR12-1
+  for_law: GR-12
+  source_ref: 波次一 · GR-12
+  title: there be 的动词要看「总账」：先出现的是 pen 也要用 are
+  predicted_misreading: 孩子给 there be 选动词时不看就近的名字——要么一律用 is，要么按「东西一共有几件」算总账：There are a pen and two books.（总数是三件就 are），不知道口语口径里动词先听紧挨着的第一个名字。
+  cognitive_source: 就近原则未立（一致的三股力——形式、意义、就近——没分工，there be 这一格的就近解不在清单里）
+  misreading_type: 过度泛化
+  task: 填空题：① There ___ a pen and two books on the desk.（is / are）② There ___ two books and a pen on the desk.（is / are）顺序一换，答案为什么跟着换？
+  rubric:
+    hit: 两格选同一个，或①选 are（按总账算）
+    partial: 选对但说不出「听第一个名字」
+    pass: 两格全对且能说出「there be 的动词先看紧挨着的第一个名字：一个 pen 用 is，先说 books 就用 are」
+  remedy: 回第 2 步机制屏两卡连看：「三股力拔河」与「there be 看第一个名字」，再回第 4 步用条目四例（含顺序对调对）复测。注意边界：正式书面语中就近受约束，小学只教口语口径并如实标注。
+  source_of_prediction: GR-12 claim（形式/意义/就近三解）+ mechanism[三股力拔河][there be 看第一个名字] + examples 顺序对调对
+  status: 已入模
+  version: '1'
+- id: PRB-GR13-1
+  for_law: GR-13
+  source_ref: 波次一 · GR-13
+  title: '''s 是所有权证书：a day''s trip 是「天的旅行」'
+  predicted_misreading: 孩子把 's 锁死在领有义上——It is a day's trip. 被解成「天拥有的一趟旅行」或判它不通；yesterday's news 也读不出「昨天的（时间的）」这一层，凡不是「谁的东西」就卡住。
+  cognitive_source: 单义锁定（'s 标记的是关联关系，领有只是其中最常见的一种；时间、度量、部分—整体都被误挡在门外）
+  misreading_type: 主场·原型误植
+  task: 句意判断：It is a day's trip. 问「这趟路要走多久？'s 在这儿是说'天拥有这趟旅行'吗？」再接：The bird's home is in the tree. 里的 's 拴的是什么关系？
+  rubric:
+    hit: 任一题按「所有权」硬解或判不通
+    partial: 对一错一（领有/部分—整体认出、度量关系未认，或反之）
+    pass: 两题全对且能说出「's 是条小绳子，拴的是'有关系'：可以是东西归谁，也可以是一整天的时间、一部分和整体」
+  remedy: 回第 2 步机制屏两卡连看：「小绳子拴关系」与「关系的种类很多」，再回第 4 步用条目四例（书/鸟窝/一天的路/车门）逐句认关系复测。
+  source_of_prediction: GR-13 claim（'s 是关联标记，领有只是其一）+ mechanism[小绳子拴关系][关系的种类很多] + examples 度量例 a day's trip
+  status: 已入模
+  version: '1'
+- id: PRB-GR14-1
+  for_law: GR-14
+  source_ref: 波次一 · GR-14
+  title: between you and I 才体面：格跟着「讲究」走
+  predicted_misreading: 孩子（及不少母语者）把 I 当成比 me 更体面的说法，塞进宾语位——between you and I、Come with I；或反过来把宾格搬进主语位（Me and him are friends. 当正形），不知道格只跟着位置走。
+  cognitive_source: 过度矫正（把礼貌/正式感误加到宾语位；位置决定格这一机制被「体面感」覆盖）
+  misreading_type: 过度泛化
+  task: 选词题：① The secret is between you and ___.（I / me）② ___ are good friends.（He and I / He and me）③ She gave the book to ___.（him / he）
+  rubric:
+    hit: 任一题选错（尤其①选 I）
+    partial: 对两题错一题（位置口径只在一部分位置立住）
+    pass: 三题全对且能说出「站在哪儿穿哪件：主语位穿主格，动词和介词后面穿宾格，讲究过头也会错」
+  remedy: 回第 2 步机制屏两卡连看：「位置决定穿哪件」与「讲究过头也会错」，再回第 4 步用条目四例逐句认位置复测。
+  source_of_prediction: GR-14 claim（格是位置性标记）+ mechanism[位置决定穿哪件][讲究过头也会错] + error_cases 登记错型 between you and I（真实语料错型，过度矫正）
+  error_form_display:
+  - between you and I
+  status: 已入模
+  version: '1'
+- id: PRB-GR15-1
+  for_law: GR-15
+  source_ref: 波次一 · GR-15
+  title: 按字母选冠词：a hour、an unit
+  predicted_misreading: 孩子看字母选 a/an——hour 首字母是辅音字母 h 就选 a（a hour），unit 首字母是元音字母 u 就选 an（an unit），不知道耳朵才是裁判：hour 的 h 不出声、unit 开头是辅音味儿。
+  cognitive_source: 字面化（拼写压过语音；不知道 an 的 -n 是为隔开两个元音保留的连接音，形式由起始音素决定）
+  misreading_type: 字面化
+  task: 选词题：先把词读出声再选——① I waited ___ hour.（a / an）② This is ___ unit about animals.（a / an）③ He is ___ honest man.（a / an）
+  rubric:
+    hit: 任一题按字母选错（①选 a 或②选 an）
+    partial: 对两题错一题（一个陷阱词立住、另一个未立）
+    pass: 三题全对且能说出「不看字母看声音：第一个音是元音就用 an 隔开，是辅音就用 a」
+  remedy: 回第 2 步机制屏两卡连看：「耳朵说了算」与「两个陷阱词」（hour / unit），再回第 4 步用条目四例逐词先读出声再选冠词复测。
+  source_of_prediction: GR-15 claim（冠词形式由起始音素决定）+ mechanism[耳朵说了算][两个陷阱词] + examples 陷阱对（an hour / a unit）
+  error_form_display:
+  - a hour
+  - an unit
+  status: 已入模
+  version: '1'
+- id: PRB-GR16-1
+  for_law: GR-16
+  source_ref: 波次一 · GR-16
+  title: 说错就是粗心：看不出错误是「临时系统」在试单
+  predicted_misreading: 孩子（或陪学者）把一切错误都归为粗心或没学好——对 I see two sheeps. 这类每次都同型出现的错误也只会说「下次认真点」，不知道它是学习者心里的临时系统在按自己的规则下单试用。
+  cognitive_source: 归因偏差（Corder 的 error/mistake 之分与 Selinker 的中介语观未立：系统性错误被当成偶发失误处理）
+  misreading_type: 字面化
+  task: 判断题：「一个小朋友每次都说 I see two sheeps.，老师说他就是粗心、多提醒几遍就好。这话说对了吗？」再接：同一个人有一次把 went 说秃噜成 go、自己马上改回来——这一种又是什么？
+  rubric:
+    hit: 答「说对了」
+    partial: 第一题对、第二题分不出（两种错混作一团）
+    pass: 两题全对且能说出「每次都同型地错，是他心里的临时系统在试一条新规则，要动的是规则；偶尔说错自己能改，才是失误」
+  remedy: 回第 2 步机制屏两卡连看：「错误是试单的回执」与「错误和失误要分开」，再回第 4 步用登记错型 *sheeps、*goed 的同型性对照复测。注意边界：看出系统不等于放任，试单的错仍要被处理（接 GR-17）。
+  source_of_prediction: GR-16 claim（error vs mistake、中介语系统）+ mechanism[错误是试单的回执][错误和失误要分开] + error_cases 登记错型 *sheeps（教学文献登记错型）
+  status: 已入模
+  version: '1'
+- id: PRB-GR17-1
+  for_law: GR-17
+  source_ref: 波次一 · GR-17
+  title: 听得越多自然就会：形式不用特别去「看见」
+  predicted_misreading: 孩子以为语言是泡会的——天天听、天天读，形式自己会进脑子；读 He plays football. 时眼睛只追意思，plays 上的 -s 看过一百遍也没被「看见」，轮到自己写就漏。
+  cognitive_source: 注意观未立（Schmidt 弱式注意假说：输入被有意识地注意到才转化为摄入；差距的发觉是关键触发）
+  misreading_type: 字面化
+  task: 看见测试：并排读两句——He plays football. / He play football. 问「两句差在哪儿？少的那个小尾巴在说什么？」再接判断：「只要天天听英语，词尾不用特意去看，也会自己学会。对吗？」
+  rubric:
+    hit: 找不出差别，或判断题答「对」
+    partial: 找得出差别但说不出 -s 的消息（看见了形、没看见义）
+    pass: 两题全对且能说出「哪天突然'咦，这里有个 -s'，这个形式才开始进脑子；学习从看见那一刻起步」
+  remedy: 回第 2 步机制屏两卡连看：「看见的那一刻」与「差距是最好的老师」（自己说一遍、再听正形一遍、比差距），再回第 4 步用条目四例做「先找 -s 再读句」的注意复测。
+  source_of_prediction: GR-17 claim（弱式注意假说：注意越深、习得越多）+ mechanism[看见的那一刻][差距是最好的老师] + examples 注意目标四例
+  status: 已入模
+  version: '1'
+- id: PRB-GR18-1
+  for_law: GR-18
+  source_ref: 波次一 · GR-18
+  title: 学语法 = 先把规则清单逐条背完，再开口说话
+  predicted_misreading: 孩子（或陪学者）把形式教学理解成清单教学（formS）——先脱离交际把十条规则背完才许开口；不知道最有效的形式学习常发生在正想说清一件事、被一个小形式卡住的那几秒钟（focus on form）。
+  cognitive_source: 路径误植（Long 的形式聚焦与形式清单教学之分未立；「插播」被误当成「停播讲课」）
+  misreading_type: 字面化
+  task: 判断题：「学语法最好的办法，是先把课本后面的规则清单一条一条背完，然后再开口说话。对吗？」
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出卡住的几秒钟有什么特别
+    pass: 答「不对」且能说出「正想说清楚一件事、刚好被 went 卡住时看一眼形式，记得最牢——是插播，不是把节目停下来摆摊讲规则」
+  remedy: 回第 2 步机制屏两卡连看：「卡住的那几秒」与「插播，不是停播」，再回第 5 步把一组规则清单练习改造成交际任务中顺手看形式的版本复测。注意边界：时态两维图这类初学框架仍需专门的集中呈现，不在本条放开范围。
+  source_of_prediction: GR-18 claim（Long 的 focus on form 区别于 formS）+ mechanism[卡住的那几秒][插播，不是停播] + adult.boundary（系统框架仍需集中呈现）
+  status: 已入模
+  version: '1'
+- id: PRB-GR19-1
+  for_law: GR-19
+  source_ref: 波次一 · GR-19
+  title: 没见过的形式也能放心现推：singed 表「唱过」
+  predicted_misreading: 孩子以为规则是万能打印机——新动词加 -ed 没问题，就以为老词也能放心现推：把 sing 的过去式说成 singed（表「唱」），不知道 went、sang 这类高频形式是靠见面次数整块住进脑子的，不走现推通道。
+  cognitive_source: 频率观未立（词例频率固化具体形式、类型频率催生图式的分工未立；现推的适用面被推满）
+  misreading_type: 过度泛化
+  task: 判断题组：① 没学过的动词 splat，说「昨天他 splat 了一下」用 splatted，可以放心这么造吗？② 「他昨天唱了歌」说成 He singed a song yesterday.，可以吗？
+  rubric:
+    hit: 第②题答「可以」
+    partial: 第②题对、第①题答「不可以」（分不清两种频率的活儿，现推被全盘否定）
+    pass: 两题全对且能说出「同一类变化见得多，就敢套新词（类型频率）；天天见的老词本身记牢（词例频率），went、sang 不走现推」
+  remedy: 回第 2 步机制屏两卡连看：「见得多的先住进来」与「两种频率，两种活儿」，再回第 4 步用条目四例（went / played / watched / saw）逐句认「整存还是现推」复测。
+  source_of_prediction: GR-19 claim（token 频率固化形式、type 频率催生图式）+ mechanism[见得多的先住进来][两种频率，两种活儿] + examples 四例
+  status: 已入模
+  version: '1'
+- id: PRB-GR20-1
+  for_law: GR-20
+  source_ref: 波次一 · GR-20
+  title: 整句背下来不算数：每个句子都该逐词拼出来
+  predicted_misreading: 孩子（或陪学者）把整块存取看成低级或偷懒——认为 Can I have some water, please? 必须逐词分析才算真会；或反过来，整句背熟后不会拆件换词，框架封顶，换一个 drinks 就卡壳。
+  cognitive_source: 谱系观未立（Lewis 的语块先行与 Wray 的公式语整存未立：先整存、后分析，语法图式从语块中被感知出来）
+  misreading_type: 字面化
+  task: 换件题：先整句读 Can I have some water, please?，再请把 water 换成 milk、换成 that book 各说一遍。最后判断：「整句背下来是学英语的正经第一步，还是偷懒？」
+  rubric:
+    hit: 换件卡壳（只能整句复读、换词就散架），或判断答「偷懒」
+    partial: 换件能做但判断说不清（会拆件、谱系观未立）
+    pass: 换件两题流畅且能说出「整句先住进来是对的第一步，说熟了再拆出能换零件的机关」
+  remedy: 回第 2 步机制屏两卡连看：「整句先住进来」与「后来才拆出机关」，再回第 4 步用条目四例（同一框架换 water / milk / book）做拆件复测。注意边界：整存不等于拒绝分析，不拆件语块会封顶。
+  source_of_prediction: GR-20 claim（语块整存先行、图式后析出）+ mechanism[整句先住进来][后来才拆出机关] + examples 框架换件三例
+  status: 已入模
+  version: '1'
+- id: PRB-GR22-1
+  for_law: GR-22
+  source_ref: 波次一 · GR-22
+  title: '*I have dog：漏掉的是小事，意思懂就行'
+  predicted_misreading: 孩子把冠词、复数、三单、-ed 的漏标当成无伤大雅的小错——I have dog.「反正听得懂」，不知道这些位置恰好全是汉语里没有的格子，漏标是系统差而非态度问题，不新开格子就会一直漏。
+  cognitive_source: 母语迁移（汉语无冠词/时态形态/复数/三单标记，英语的强制标记位置正是错误集中区；归因被错放到「粗心」上）
+  misreading_type: 母语迁移
+  task: 改错加归因：I have dog. 错在哪儿、怎么改？再问：为什么中国小朋友最容易漏的，偏偏是 a、-s、-ed 这一伙，而不是词序？
+  rubric:
+    hit: 看不出错，或答「就是粗心」
+    partial: 改对（a dog）但归因仍落在态度上
+    pass: 两问全对且能说出「汉语里没有冠词这个格子，脑子里先新开一个格子，记号才有地方放——漏的不是态度」
+  remedy: 回第 2 步机制屏两卡连看：「记号地图」（a/the、过去式、复数、三单 -s 四个集中区）与「漏的不是态度，是母语没这个格子」，再回第 4 步用条目四例逐句点记号复测。
+  source_of_prediction: GR-22 claim（系统差异点即错误集中区，冠词错误居首）+ mechanism[记号地图][漏的不是态度，是母语没这个格子] + error_cases 登记错型 *I have dog（真实语料错型）
+  error_form_display:
+  - I have dog
+  status: 已入模
+  version: '1'
+- id: PRB-GR23-1
+  for_law: GR-23
+  source_ref: 波次一 · GR-23
+  title: 听懂了就是学会了：不用开口，形式自己会长好
+  predicted_misreading: 孩子把「能听懂」当成「会用了」——听故事、看动画都点头，一到自己开口讲昨天，就发现 went、saw 组装不出来；或以为硬逼开口就能进步，忘了输出要有输入配套。
+  cognitive_source: 加工观未立（Swain 输出假说：听时是语义加工，说时被迫切换到句法加工，差距、假设检验都在产出中被触发）
+  misreading_type: 字面化
+  task: 判断题：「动画片里的英语我都能听懂，所以不用开口说，我的英语也会一样好。对吗？」再接产出小测：用一句话说昨天做的一件事（必须自己组装过去式）。
+  rubric:
+    hit: 答「对」，或产出时过去式组装失败且不自知
+    partial: 答「不对」但产出卡壳后说不出卡在哪一步
+    pass: 答「不对」且能说出「看别人游泳看一百遍，自己下水才会呛——一开口，才知道哪个形式自己其实不会」
+  remedy: 回第 2 步机制屏两卡连看：「下水才知道」与「说，逼着脑子换挡」，再回第 5 步用条目产出任务（讲昨天的一天，短句即可）复测。注意边界：小学只降阶为短句产出与情境表演，硬逼开口无效。
+  source_of_prediction: GR-23 claim（Swain 输出假说：被推动的产出迫使句法加工）+ mechanism[下水才知道][说，逼着脑子换挡] + claim.scope（小学降阶口径）
+  status: 已入模
+  version: '1'
+- id: PRB-GR24-1
+  for_law: GR-24
+  source_ref: 波次一 · GR-24
+  title: 词序随便换，意思反正一样
+  predicted_misreading: 孩子以为句子成分的顺序只是排版——「先吃饭再洗手」和「先洗手再吃饭」听成同一件事，或写出与事实顺序相反的叙述而不自知，不知道语序本身在模仿事情发生的顺序。
+  cognitive_source: 象似性未立（不知道形式常常模仿经验结构：语序象似、距离象似、数量象似；把顺序当成任意约定）
+  misreading_type: 字面化
+  task: 句意判断：First wash your hands, then eat. 问「先做哪件事？」再把句子换成 First eat, then wash your hands.——「这还是同一件事吗？」再接一问：one apple 变 two apples，词哪儿变长了？
+  rubric:
+    hit: 任一题答错（顺序题答反，或答「同一件事」）
+    partial: 对两题错一题（语序象似认出、数量象似未认，或反之）
+    pass: 三题全对且能说出「好多语法是在画画：先发生的先说，东西变多了词也跟着变长」
+  remedy: 回第 2 步机制屏两卡连看：「先发生的先说」与「越亲贴得越近，越多长得越长」，再回第 4 步用条目四例复测。注意边界：象似是倾向、只在结构层显著，不扩大成「每个词形都有道理」。
+  source_of_prediction: GR-24 claim（图式象似三原则）+ mechanism[先发生的先说][越亲贴得越近，越多长得越长] + examples（First wash your hands / two apples）
+  status: 已入模
+  version: '1'
+- id: PRB-GR25-1
+  for_law: GR-25
+  source_ref: 波次一 · GR-25
+  title: 哪儿难，要等全班都错了才知道
+  predicted_misreading: 孩子（或陪学者）以为难点不可预测——只能等错误发生了再补；不知道「母语没有、目标语偏有」的差值可以先画出难点地图：冠词、时态尾巴、三单 -s 正是最容易漏的加装件，难度分布先验可知。
+  cognitive_source: 可预测性未立（Eckman 标记性差异假说：与母语不同且更有标记的区域必难，难度与标记度差成正比）
+  misreading_type: 字面化
+  task: 判断题：「一个语法点难不难，要等大家学了、错了才知道，没办法提前说。对吗？」再接指认：a/the、三单 -s、过去式 -ed、复数 -s——这四样里，哪几样是「汉语里没有、英语偏要装」的加装件？
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但加装件指认漏项
+    pass: 答「不对」且能说出「汉语出厂没有的小零件，到了英语全要加装——这些地方可以提前圈出来多练」
+  remedy: 回第 2 步机制屏两卡连看：「标配和加装」与「难点先画地图」，再回第 4 步用条目四例（冠词/三单/复数高难区现场）复测。注意边界：MDH 只在形态层作强预言，语内错误不在其解释范围。
+  source_of_prediction: GR-25 claim（标记性差异假说 MDH）+ mechanism[标配和加装][难点先画地图] + examples 高难区四例
+  status: 已入模
+  version: '1'
+- id: PRB-GR26-1
+  for_law: GR-26
+  source_ref: 波次一 · GR-26
+  title: The cat sees the dog 和 The dog sees the cat 是一回事
+  predicted_misreading: 孩子以为词尾才是语法、词序只是排版——把 The dog sees the cat. 的词序随手调换还认为意思不变，不知道尾巴磨没以后，英语的语法已经搬家：谁站在前面（语序）成了当家的规矩。
+  cognitive_source: 总叙事未立（不知道屈折综合→语序分析的搬家史：格与时态离开词尾，改由固定语序、助动词、介词承担）
+  misreading_type: 字面化
+  task: 句意判断：The dog sees the cat. 和 The cat sees the dog.——「这两句说的是同一件事吗？谁看谁，各在哪句？」
+  rubric:
+    hit: 答「同一件事」
+    partial: 答「不是」但谁看谁指认反了
+    pass: 答对且能说出「小尾巴磨没以后，位置就是规矩：谁站在前面，谁就是看的那一个，换位置就换故事」
+  remedy: 回第 2 步机制屏两卡连看：「老房子：语法住在词尾里」与「新房子：三样东西当家」，再回第 4 步用条目四例（语序反转对 + do / will 小帮手当家）复测。注意边界：分析化不等于变简单。
+  source_of_prediction: GR-26 claim（综合→分析的搬家总叙事）+ mechanism[老房子：语法住在词尾里][新房子：三样东西当家] + examples 语序反转对
+  status: 已入模
+  version: '1'
+- id: PRB-GR27-1
+  for_law: GR-27
+  source_ref: 波次一 · GR-27
+  title: 两种说法都对？不可能，必有一句是错的
+  predicted_misreading: 孩子把语法当二值开关——I gave him the book. 与 I gave the book to him. 并置时必判一对一错，不知道合法变体之间还有「母语者多半说哪种」的概率滑杆；或反向滑到「怎么说都行，没有对错」。
+  cognitive_source: 梯度观未立（不知道语法规律在多变体共存区是概率倾向而非开关；但硬性范畴区依然存在，两头的分界未立）
+  misreading_type: 过度泛化
+  task: 判断题：「I gave him the book. 和 I gave the book to him. 两句不可能都对，肯定有一句是错的。对吗？」再接一问：utter 只能站在名词前面（the utter end），算「半个」形容词——成员资格也有深浅吗？
+  rubric:
+    hit: 答「对」（判一错）
+    partial: 答「不对」但说不出两句的差别在哪（只说「都行」）
+    pass: 两问全对且能说出「都对，但母语者有偏好，像滑杆不是开关；不过该硬的地方还是硬的，不是没有对错」
+  remedy: 回第 2 步机制屏两卡连看：「滑杆，不是开关」与「两种梯度别混」（选择概率 vs 成员程度），再回第 4 步用条目四例（双宾/介词式变体对、代词宾语与长宾语的概率差）复测。
+  source_of_prediction: GR-27 claim（概率语法：变体选择可由多因素概率高精度预测）+ mechanism[滑杆，不是开关][两种梯度别混] + adult.boundary（梯度不吞没范畴）
+  status: 已入模
+  version: '1'
+- id: PRB-GR28-1
+  for_law: GR-28
+  source_ref: 波次一 · GR-28
+  title: '*three childs：复数一律加 -s，不认家族宿舍'
+  predicted_misreading: 孩子把 -s 当成复数的唯一通道——sheeps、childs、foots 连片产出；或学过几个不规则后反向类推，把新词也往家族里塞。不知道不规则复数住在几个封闭的小家族里：进门先认宿舍，名单有限可穷尽。
+  cognitive_source: 家族观未立（封闭小类的成员资格意识缺失：零复数、变音七词、-en、-f 浊化、外来复数、只有复数，各是一小家）
+  misreading_type: 过度泛化
+  task: 改错加归家：① There are three childs in the park. 怎么改？② sheep 的复数是什么？它和 child 住同一个宿舍吗？③ foot 的复数靠换什么？
+  rubric:
+    hit: 第①题看不出错
+    partial: 改对（children）但第②③题宿舍认错
+    pass: 三题全对且能说出「不规则复数住在几个小宿舍里：不变样的、换元音的、用 -en 的——先认宿舍，再说复数」
+  remedy: 回第 2 步机制屏「六个小宿舍」卡，再回第 4 步用条目四例（sheep / feet / children / mice）逐词送回宿舍复测。新词一律走 -s，这条同框重申。
+  source_of_prediction: GR-28 claim（不规则复数的封闭小类清单）+ mechanism[六个小宿舍][外国宿舍的双门牌] + error_cases 登记错型 *childs（教学文献登记错型）
+  error_form_display:
+  - childs
+  status: 已入模
+  version: '1'
+- id: PRB-GR29-1
+  for_law: GR-29
+  source_ref: 波次一 · GR-29
+  title: 变形尾巴多得记不住：其实只有八个，还漏其中的几个
+  predicted_misreading: 孩子觉得英语变形无穷无尽、漏哪个都不奇怪——He play football. 的三单 -s 漏了毫无感觉；不知道全部屈折只有八个功能位，且中国孩子漏的恰好集中在其中三四个上。
+  cognitive_source: 盘点意识未立（Yule 八个屈折功能位的清单未立；「少而必标」的分量感缺失）
+  misreading_type: 字面化
+  task: 改错加盘点：① He play football. 漏了什么？② 英语词要变身的尾巴全部加起来有几个？请点名：复数、所有格、三单、过去、完了形、进行、比较、最高——数一数。
+  rubric:
+    hit: 第①题看不出错
+    partial: 改对（plays）但八个点不齐（漏两个以上）
+    pass: 两题全对且能说出「全部变形负担就一张小卡片八个尾巴，个个必标，漏一个就露馅」
+  remedy: 回第 2 步机制屏两卡连看：「一张卡片点名」与「少而必标」，再回第 4 步用条目四例（一句点到两个尾巴的句子领头）逐句打卡复测。计数口径（功能位八个）随卡重申。
+  source_of_prediction: GR-29 claim（现代英语屈折只剩八个功能位）+ mechanism[一张卡片点名][少而必标] + error_cases 登记错型 *He play football（屈折遗漏-三单，教学文献登记错型）
+  error_form_display:
+  - He play football
+  status: 已入模
+  version: '1'
+- id: PRB-GR30-1
+  for_law: GR-30
+  source_ref: 波次一 · GR-30
+  title: 补一句的从句也用 that：*My car, that is red
+  predicted_misreading: 孩子不分关系从句的两种活儿——给已经认明的车补一句颜色时也随手用 that（My car, that is red, is new.），或把认人型从句里的主语关系词随手删掉，不知道 that 进不了非限制性从句、主语位关系词删不得。
+  cognitive_source: 功能分工未立（限制性=认人、非限制性=补一句的二分与逗号纪律未立；关系词选型被当作自由变体）
+  misreading_type: 过度泛化
+  task: 选词加判断：① My car, ___ is red, is new.（that / which）② The man ___ called is my uncle.——空格里的 who 能删掉吗？
+  rubric:
+    hit: 任一题错（①选 that，或②答能删）
+    partial: 对一错一（逗号纪律与零关系词条件只立住一条）
+    pass: 两题全对且能说出「先分活儿：认人的紧贴不打逗号，补一句的用逗号隔开；that 只能干认人的活，主语位置的关系词删不得」
+  remedy: 回第 2 步机制屏两卡连看：「先分活儿：认人还是补一句」与「逗号是分界牌」，再回第 4 步用条目四例（认人/补句/零关系词/不可省四现场）复测。
+  source_of_prediction: GR-30 claim（限制性/非限制性功能二分、that 的准入、零关系词条件）+ mechanism[先分活儿：认人还是补一句][逗号是分界牌] + error_cases 登记事故例 *My car, that is red
+  error_form_display:
+  - My car, that is red
+  status: 已入模
+  version: '1'
+- id: PRB-GR31-1
+  for_law: GR-31
+  source_ref: 波次一 · GR-31
+  title: '*more better：比较级两件工具叠着用才保险'
+  predicted_misreading: 孩子把 -er 和 more 当成可以叠加的双保险——more better、more cleverer；或反过来把「双音节用 more」的口诀推满，把 happier、narrower 判成错的。
+  cognitive_source: 档案未立（比较级的选择由音节数与词尾形状共同决定、是倾向法则；两可带与 -y 尾的准入不在清单里，叠用禁令亦未立）
+  misreading_type: 过度泛化
+  task: 改错加判断：① This one is more better. 错在哪儿？② This road is narrower. 和 This road is more narrow.——两句都对吗？
+  rubric:
+    hit: 第①题看不出错
+    partial: 改对（better）但第②题判一错（两可带未立）
+    pass: 两题全对且能说出「先称重量：轻词缝 -er、重词请 more，只能请一件；两拍的词有的站门口两边，两边都可以」
+  remedy: 回第 2 步机制屏两卡连看：「先称重量」与「两可的门口」，再回第 4 步用条目四例（bigger / happier / more careful / narrower 两可对）复测。重申边界：双音节口诀会误伤 -y 尾与两可带。
+  source_of_prediction: GR-31 claim（音节数+词尾形状的倾向性法则与两可带）+ mechanism[先称重量][两可的门口] + error_cases 登记事故例 *more better（条目成人层登记）
+  error_form_display:
+  - more better
+  status: 已入模
+  version: '1'
+- id: PRB-GR32-1
+  for_law: GR-32
+  source_ref: 波次一 · GR-32
+  title: both 站错岗：*She both likes music and dancing
+  predicted_misreading: 孩子只记配对、不管辖域——both 随手放在动词前（She both likes music and dancing.），盖不住后半截；或 both 配 or、either 配 and 的串门式混搭，以及 either…or 领着两个主语时动词乱听。
+  cognitive_source: 同形原则未立（关联词之后紧跟的成分必须同类同形，关联词要贴到两个同形成分之前；配对是封闭的、搭档不能串门）
+  misreading_type: 过度泛化
+  task: 改错题：She both likes music and dancing. both 应该站在哪儿、为什么？再接填空：Neither the students nor the teacher ___ late.（was / were）——动词听谁的？
+  rubric:
+    hit: 第①题看不出错或只挪词序仍盖不住 dancing
+    partial: 改对（She likes both music and dancing.）但填空选错（就近未立）
+    pass: 两题全对且能说出「搭档不能串门、夹着的东西要同形；or/nor 领队时动词听离它最近的那个」
+  remedy: 回第 2 步机制屏三卡连看：「搭档不能串门」「夹着的东西要同形」「动词听最近的那个」，再回第 4 步用条目四例（同形现场 + 就近顺序对调对）复测。重申边界：and 连接的主语永远复数，不适用就近。
+  source_of_prediction: GR-32 claim（配对纪律+同形原则+就近原则及其排位）+ mechanism[搭档不能串门][夹着的东西要同形][动词听最近的那个] + error_cases 登记事故例两则（平行错位 / 就近误用-and）
+  status: 已入模
+  version: '1'
+- id: PRB-GR34-1
+  for_law: GR-34
+  source_ref: 波次一 · GR-34
+  title: '*Here comes it：代词也跟着全倒装'
+  predicted_misreading: 孩子把全倒装推满——Here comes it.（代词主语也把整个动词提前），或把三种倒装混作一招：呼应式里不用对方的助动词、否定词搬到句首却不召唤助动词。
+  cognitive_source: 条件未分（三种倒装的形式条件各不相同：全倒装要求名词主语、代词绝不倒装；呼应式助动词须回指；部分倒装须助动词提前）
+  misreading_type: 过度泛化
+  task: 选句加回指：① 巴士来了——Here comes the bus. / Here comes it. 哪句对？② 同学说 I can swim. 你也会——So can I. 里的 can 是从哪儿来的？
+  rubric:
+    hit: 第①题选 Here comes it.
+    partial: 第①题对、第②题说不出「回指对方的助动词」
+    pass: 两题全对且能说出「全倒装只请得动名词主语，代词太轻、老老实实站在动词前；呼应式的小帮手要复制对方句子的」
+  remedy: 回第 2 步机制屏三卡连看：「三种活法分开存档」「全倒装的硬条件」「否定词搬家，助动词跟」，再回第 4 步用条目四例（So can I / bus / it / Seldom did he speak）复测。
+  source_of_prediction: GR-34 claim（倒装三式及其形式条件）+ mechanism[三种活法分开存档][全倒装的硬条件] + error_cases 登记事故例 *Here comes it
+  error_form_display:
+  - Here comes it
+  status: 已入模
+  version: '1'
+- id: PRB-GR35-1
+  for_law: GR-35
+  source_ref: 波次一 · GR-35
+  title: only 放哪儿都一样，意思反正不变
+  predicted_misreading: 孩子以为 only 是贴在哪儿都行的装饰词——读 I only kissed her. 时分不清「只亲了（没做别的）」还是「只亲了她」，或反过来把口语里中位的 I only have one pen. 一律判成错句。
+  cognitive_source: 辖域观未立（only 是焦点敏感词，辖域由位置与重音共同决定；口语靠重音补位、书面靠站位明说，两套通道未分）
+  misreading_type: 字面化
+  task: 句意判断两题：① I only kissed her. 把重音放在 KISSED 上，是什么意思？放在 HER 上呢？② 判断：I only have one pen. 在说话时这么说，是错句吗？
+  rubric:
+    hit: 第①题答「两种读法一个意思」
+    partial: 第①题分得出、第②题判错（中位 only 的口语合法性未立）
+    pass: 两题全对且能说出「only 是手电筒，照到哪儿就圈哪儿；说话靠声音圈，写下来没声音，就要把 only 摆到要圈的词前面」
+  remedy: 回第 2 步机制屏两卡连看：「手电筒照哪儿」与「口语靠声音，书面靠站位」，按条目口径先练听辨重音、再练贴位，再回第 4 步用条目四例复测。
+  source_of_prediction: GR-35 claim（only 的焦点敏感性与辖域决定方式）+ mechanism[手电筒照哪儿][口语靠声音，书面靠站位] + claim.scope（理解按描写口径、正式写作按贴位口径）
+  status: 已入模
+  version: '1'
+- id: PRB-GR36-1
+  for_law: GR-36
+  source_ref: 波次一 · GR-36
+  title: '*She made me to go：使役后面一律带 to'
+  predicted_misreading: 孩子把 to 不定式当成动词后的默认配件——make、let 后面也加上 to（made me to go），或反过来 get 后面漏掉 to，不知道四个使役词的力气与衣服是一套封闭档案：只有 get 请得动 to，make 一被动 to 还要回来。
+  cognitive_source: 档案未立（致使力梯度与形式档案未成套登记；汉语「让/叫」后动词无形式变化的迁移与 to 泛化双重作用，条目支撑已登记此对应）
+  misreading_type: 母语迁移
+  task: 改错加选形：① She made me to go. 错在哪儿？② I got him ___ help me.（to / 不加）③ He was made ___ wait.（to / 不加）——进了被动，to 回来了吗？
+  rubric:
+    hit: 任一题错（尤其①看不出错）
+    partial: 对两题错一题（档案只一部分成套）
+    pass: 三题全对且能说出「make 是推着走、let 是放行、have 是派活、get 是说服；衣服只有 get 带 to，make 被动时 to 要回来」
+  remedy: 回第 2 步机制屏两卡连看：「四种力气」与「衣服不一样」，再回第 4 步用条目四例（let go / makes me practise / got him to help / was made to wait）逐句对档案复测。
+  source_of_prediction: GR-36 claim（致使力梯度 + 形式封闭档案 + 被动不对称）+ mechanism[四种力气][衣服不一样] + error_cases 登记错型 *made me to go（教学文献登记错型）
+  error_form_display:
+  - made me to go
+  status: 已入模
+  version: '1'
+- id: PRB-GR37-1
+  for_law: GR-37
+  source_ref: 波次一 · GR-37
+  title: '*enough old：enough 站位随便，too 就是「非常」'
+  predicted_misreading: 孩子按汉语「够老」的语序摆 enough（She is enough old…），又把 too 当 very 用（The cake is too delicious. 表「非常好吃」），不知道 enough 修饰形容词要后置、too 自带「过头了所以不行」的否定后果。
+  cognitive_source: 站位与语义档案未立（程度构式群按所修饰的中心分工：so 管形容词、such 管名词串、too 带刹车、enough 换站位）
+  misreading_type: 母语迁移
+  task: 改错加判断：① She is enough old to ride a bike. 怎么改？② 「这块蛋糕非常好吃」说成 The cake is too delicious.——英语听者会听成什么？
+  rubric:
+    hit: 第①题看不出错
+    partial: 改对（old enough）但第②题答不出 too 的坏后果
+    pass: 两题全对且能说出「enough 修饰形容词站在后面、修饰名词站在前面；too 不是'非常'，是'过头了，所以不行'」
+  remedy: 回第 2 步机制屏两卡连看：「so 和 such 分工」与「too 带刹车，enough 换站位」，再回第 4 步用条目四例（so hot / such a hot day / tall enough / enough money）复测。
+  source_of_prediction: GR-37 claim（程度构式群的分工与站位）+ mechanism[so 和 such 分工][too 带刹车，enough 换站位] + error_cases 登记事故例 *enough old（中国学习者高频错误四类之一）
+  error_form_display:
+  - enough old
+  status: 已入模
+  version: '1'
+- id: PRB-GR38-1
+  for_law: GR-38
+  source_ref: 波次一 · GR-38
+  title: 逗号串到底：*It rained, I stayed home
+  predicted_misreading: 孩子把汉语流水句的习惯搬进英语写作——两个各自能站住的句子之间只放一个逗号（一逗到底），或分不清 its 与 it's、给普通复数也加上撇号，不知道英语的逗号扛不起两个完整句子、撇号有两份正经工作。
+  cognitive_source: 母语迁移（汉语意合流水句靠逗号连排合法 vs 英语形合必须明示分句层级；逗号粘连是句界错误而非小毛病）
+  misreading_type: 母语迁移
+  task: 改错加选词：① It rained, I stayed home. 正式写作里这算什么问题？给出两种改法。② This is ___ book. The cat is washing ___ face.（its / it's 各填一处）
+  rubric:
+    hit: 第①题答「没问题」
+    partial: 改对一种连接（句号或 so），第②题选反
+    pass: 两题全对且能说出「逗号钩不住两节车厢：分开、加连词、用分号、降成从句，四种选一种；撇号管'谁的'和'省略'，its 是'谁的'反而不带撇号」
+  remedy: 回第 2 步机制屏两卡连看：「逗号钩不住车厢」与「撇号的两份工作」（分不清时展开读 it is），再回第 4 步用条目四例复测。判据以正式书面语为准，文学连排与非正式写作的容忍另注。
+  source_of_prediction: GR-38 claim（逗号粘连的四种合法连接 + 撇号二职）+ mechanism[逗号钩不住车厢][撇号的两份工作] + error_cases 登记错型（逗号粘连，教学定版登记错型）
+  error_form_display:
+  - It rained, I stayed home
+  status: 已入模
+  version: '1'
+- id: PRB-GR39-1
+  for_law: GR-39
+  source_ref: 波次一 · GR-39
+  title: 另一式就是错的：The team are… 一定是病句
+  predicted_misreading: 孩子把先学到的那一式当成唯一标准——见到英式 The team are arguing… 判它主谓不一致、见到美式 gotten 判它是造错的词，不知道英美是两套并行标准，差异各有归属，认出版本就不会把对方的对当成错。
+  cognitive_source: 单标准误植（变体观未立：集体名词一致、gotten、shall、拼写双轨等差异项是版本分工而非对错之分）
+  misreading_type: 字面化
+  task: 判断题组：① The team are arguing among themselves.（英国课本里的句子）主谓不一致，是错句吗？② I have gotten a new book. 里的 gotten 是不是把 got 写错了？
+  rubric:
+    hit: 任一题判错
+    partial: 两题都不判错，但说不出各属哪一式
+    pass: 两题全对且能说出「英语有两个版本：球队在英国版里可以是'他们'、美国版多半是'它'；gotten 是美国版的获得义——不是谁错了，是版本不同」
+  remedy: 回第 2 步机制屏两卡连看：「两个服务器」与「gotten 的分工」，再回第 4 步用条目四例（team is / team are / have got / Shall we）逐句认版本复测。教学口径：跟教材变体走，另一式只要求认得出。
+  source_of_prediction: GR-39 claim（英美两套并行标准的差异项清单）+ mechanism[两个服务器][gotten 的分工] + claim.scope（跟教材变体走的教学口径）
+  status: 已入模
+  version: '1'
+- id: PRB-GR40-1
+  for_law: GR-40
+  source_ref: 波次一 · GR-40
+  title: If I were you 是语法错误：I 后面怎么能用 were
+  predicted_misreading: 孩子按一致规则判化石——If I were you 被改成 If I was you 才「对」，I suggest that he be on time. 里的 be 被判漏写了 is；不知道这两件是「过去形式标记非现实」的最后遗迹：were 在喊「这是假的」，be 在喊「还没成真」。
+  cognitive_source: 化石未立（虚拟语气不是完整变位系统，而是 were 遗迹与 mandative 两个残存点；公式化石只要求认得出）
+  misreading_type: 过度泛化
+  task: 判断题组：① If I were you, I would go.——were 用错了吗？② I suggest that he be on time.——be 是不是漏了 is？③ 英国人说 I suggest that he should be on time.，合法吗？
+  rubric:
+    hit: 任一题判错（尤其①改成 was 才算对）
+    partial: 对两题错一题（一个化石认出、另一个未认）
+    pass: 三题全对且能说出「were 在喊'这是假的、是假设'，be 在喊'这事还没成真'；should 式是英式平行式，同样合法」
+  remedy: 回第 2 步机制屏两卡连看：「were 在喊'这是假的'」与「be 在喊'还没成真'」，再回第 4 步用条目四例复测。本条小学与初中低段只要求认得出公式化石，不要求产出 mandative 全式。
+  source_of_prediction: GR-40 claim（were 遗迹 + mandative 两残存点）+ mechanism[were 在喊「这是假的」][be 在喊「还没成真」] + claim.scope（只认公式化石的剂量）
+  status: 已入模
+  version: '1'
+- id: PRB-GR41-1
+  for_law: GR-41
+  source_ref: 波次一 · GR-41
+  title: '*I am used to get up early：三兄弟串活'
+  predicted_misreading: 孩子把长得像的三式混作一个——be used to 后面接原形（I am used to get up early.），或拿 would 去接状态（would have a cat 表过去习惯）、自己领起话题，不知道三式按时间指向、动词类型与结构三维分工，机关在 be used to 的 to 是介词。
+  cognitive_source: 结构混淆（字面仅差一个 be；汉语「习惯」一词双覆盖，学习者按字面拼装——条目支撑已登记此可预测陷阱）
+  misreading_type: 母语迁移
+  task: 改错加判断：① I am used to get up early. 错在哪儿？② When I was small, I would have a cat. 这句用 would 表过去习惯，对吗？
+  rubric:
+    hit: 第①题看不出错
+    partial: 改对（getting）但第②题答错（would 接状态未挡住）
+    pass: 两题全对且能说出「三兄弟分工不同：used to 管'以前怎样、现在变了'，would 只回放动作录像，be used to 是'已经习惯了'、它的 to 是介词、后面跟 -ing」
+  remedy: 回第 2 步机制屏两卡连看：「三兄弟分工表」与「would 的三条硬限」，再回第 4 步用条目四例（used to live / would visit / am used to getting / used to play）逐句认人派活复测。
+  source_of_prediction: GR-41 claim（三式三维分工）+ mechanism[三兄弟分工表][would 的三条硬限] + error_cases 登记错型 *I am used to get up early（教学文献登记错型）
+  error_form_display:
+  - I am used to get up early
+  status: 已入模
+  version: '1'
+- id: PRB-GR42-1
+  for_law: GR-42
+  source_ref: 波次一 · GR-42
+  title: '*The flower red：形容词自己能站住，不用 be 扶'
+  predicted_misreading: 孩子把汉语性质词的站法搬进英语——「花红」逐词搬成 The flower red.，形容词裸作谓语；或反过来以为问题出在 red 本身。不知道英语形容词不能自己作谓语，必须请 be 来扶着，这是形容词语法性格的分布事实。
+  cognitive_source: 母语迁移（汉语性质词无须系词即可作谓语 vs 英语形容词作谓语必须有 be，两派共认的分布对比）
+  misreading_type: 母语迁移
+  task: 改错题：The flower red. 少了谁？再接判断：「汉语里'花红'两个字就成一句话，英语为什么不行？」
+  rubric:
+    hit: 看不出错，或改成 The flower is a red. 一类（错不在点上）
+    partial: 补对 is 但说不出站法之差
+    pass: 改对且能说出「汉语的'红'自己能站成一句话，英语的 red 站不住，必须请 be 扶着——是站法不一样」
+  remedy: 回第 2 步机制屏「站法不一样」卡（「8 个词的家庭」卡作背景），再回第 4 步用条目四例（red / tall / new / black 四种核心语义类型）逐句扶 be 复测。教学口径重申：不教「汉语没有形容词」，只教分布事实。
+  source_of_prediction: GR-42 claim（形容词语法性格分型与 be 的强制出现）+ mechanism[站法不一样] + error_cases 登记错型 *The flower red（系词缺失，Liu Yu 2008 实证记录）
+  error_form_display:
+  - The flower red
+  status: 已入模
+  version: '1'
+- id: PRB-GR43-1
+  for_law: GR-43
+  source_ref: 波次一 · GR-43
+  title: 形容词随便排：a red big bag 和 a big red bag 一样好
+  predicted_misreading: 孩子按汉语带「的」的松散顺序排英语形容词——a red big bag、a black new pen，觉得「意思都懂、顺序无所谓」，不知道英语裸叠加时座次是规矩本身：越主观的坐越外，越是东西固有的越贴着名词。
+  cognitive_source: 母语迁移（汉语形容词后挂「的」是间接修饰、顺序自由；英语直接修饰受语义层级约束，两套通道未分）
+  misreading_type: 母语迁移
+  task: 排序题：给「一个又大又红的包」排英语座次——a ___ ___ bag（big / red 谁在外、谁贴名词）？再接：a lovely old bag 里，评价（lovely）为什么坐最外面？
+  rubric:
+    hit: 排出 red big，或认为两种顺序一样好
+    partial: 排对（big red）但第二题说不出「越是'我觉得'的越靠外」
+    pass: 两题全对且能说出「座次一句话：主观的在外、东西自己长着的贴着名词坐；颜色最贴名词、评价坐最外」
+  remedy: 回第 2 步机制屏两卡连看：「座次表：主观在外，固有在内」与「汉语的'的'是逃逸通道」，再回第 4 步用条目四例（big red / new black / small green / lovely old）复测。定性重申：这是强偏好不是判分式语法错，逆序是「别扭」而非「错句」。
+  source_of_prediction: GR-43 claim（语义类型层级：评价最外、颜色贴名词）+ mechanism[座次表：主观在外，固有在内][汉语的「的」是逃逸通道] + adult.boundary（强偏好而非绝对规则）
+  status: 已入模
+  version: '1'
+- id: PRB-GR44-1
+  for_law: GR-44
+  source_ref: 波次一 · GR-44
+  title: '*I have book：可数名词「光着身子」出门'
+  predicted_misreading: 孩子把名词单个递出去——I have book.、She has pen.，封条（a/the/this/three）一律省略，不知道英语说话是整包递出：可数名词单数必须先贴封条打好包，才算一个完整的指称单位。
+  cognitive_source: 母语迁移（汉语名词无封条强制，裸名词可自由指称；英语名词短语的整体指称与封条意识未立——本条小学剂量即打包直觉与封条意识）
+  misreading_type: 母语迁移
+  task: 改错题：I have book. 这包「快递」少贴了什么？再接判断：I have three books in my bag. 里的封条是哪一个词？
+  rubric:
+    hit: 看不出错
+    partial: 补对（a book）但第二题认不出 three 是封条
+    pass: 两题全对且能说出「名词是打包递出去的：封条先贴上（the/this/three/a），可数名词不能光着身子出门」
+  remedy: 回第 2 步机制屏「整包递出去」卡：封条、说明签、本体、长尾巴四层拆包演示，再回第 4 步用条目四例（the red book 整包 / three books 封条）复测。本条小学剂量只到打包直觉，梯度与中心性之争留教师层。
+  source_of_prediction: GR-44 claim（名词短语整体指称）+ mechanism[整包递出去] + claim.scope（小学剂量：打包直觉与封条意识）+ examples（three books 的数量封条）
+  error_form_display:
+  - I have book
+  status: 已入模
+  version: '1'
+- id: PRB-GR45-1
+  for_law: GR-45
+  source_ref: 波次一 · GR-45
+  title: 长说明也全堆在名词前面：汉语式装箱
+  predicted_misreading: 孩子按汉语的装箱法拼名词短语——再长的说明也全堆在名词前面（如把 the book on the desk by the window 拼成「在桌子上的靠窗的那本书」的逐段前置直译），不知道英语装箱是轻的短的在前、重的长的往后挂。
+  cognitive_source: 母语迁移（汉语说明一律前置 vs 英语名词短语语序由结构重量与交际重量多功能妥协决定，长说明后置是其直接后果）
+  misreading_type: 母语迁移
+  task: 装箱题：要说「桌子上靠窗的那本书」，英语的装法是哪一个？A. the book on the desk by the window（本体先出、长说明往后挂）B. 把 on the desk、by the window 全搬到 book 前面的直译式。选完说说两种装法差在哪儿。
+  rubric:
+    hit: 选 B，或认为两种装法没区别
+    partial: 选 A 但说不出「轻前重后」
+    pass: 选 A 且能说出「短的轻的贴前面，长的、一串的说明挂到后面去——汉语正相反」
+  remedy: 回第 2 步机制屏「轻的在前，重的挂后」卡（「谁的：先看在不在眼前」卡属初中与教师层，本轮不下放），再回第 4 步用条目登记例（The book on the desk is new.）复测装箱。
+  source_of_prediction: GR-45 claim（语序的多功能妥协：结构重量越重越往后）+ mechanism[轻的在前，重的挂后] + claim.scope（小学剂量只到装箱直觉与常见 of 后置）
+  status: 已入模
+  version: '1'
