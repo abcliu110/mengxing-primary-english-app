@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>白板课 · over 的一家人（原型 v1）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Comic Sans MS","Chalkboard SE","Segoe Print","PingFang SC","Microsoft YaHei",cursive,sans-serif;
+         background: #f2eee3; color: #39404d; padding: 14px 10px 26px; }
+  header { max-width: 1180px; margin: 0 auto 10px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  header h1 { font-size: 24px; letter-spacing: 1px; }
+  header .sub { color:#8a8f7a; font-size: 14px; }
+  #wrap { max-width: 1180px; margin: 0 auto; }
+  #stageBox { position: relative; }
+  svg#board { width: 100%; height: auto; display: block; background: #fffdf6;
+              border: 3px solid #d8d2c0; border-radius: 14px; box-shadow: 0 6px 24px rgba(80,70,40,.15); }
+  /* marker colour code: red = trajector, grey-blue = landmark, orange = relation/accent, ink = neutral */
+  .lm { stroke:#5b7186; } .red { stroke:#d23c2a; } .ink { stroke:#39404d; } .acc { stroke:#f08c1e; } .gry { stroke:#a7adb5; }
+  .dp,.dw { fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .fillRed { fill:#d23c2a; stroke:none; } .fillAcc { fill:#f08c1e; stroke:none; }
+  .tx { stroke:none; opacity:0; transition:opacity .35s; font-family:"Comic Sans MS","Chalkboard SE","Segoe Print","PingFang SC","Microsoft YaHei",cursive,sans-serif; }
+  .fx { opacity:0; transition:opacity .3s; }
+  .fInk{fill:#39404d}.fRed{fill:#d23c2a}.fAcc{fill:#f08c1e}.fLm{fill:#5b7186}.fGry{fill:#8a8f7a}
+  #predict { position:absolute; left:50%; bottom:5%; transform:translateX(-50%); width:min(92%,560px);
+             background:#fffef9; border:3px solid #f08c1e; border-radius:16px; padding:14px 16px 12px;
+             box-shadow:0 10px 30px rgba(90,60,0,.25); text-align:center; z-index:5; }
+  #predict .q { font-size:21px; margin-bottom:10px; }
+  #predict .opts { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  #predict button { font:inherit; font-size:17px; padding:8px 16px; border-radius:999px; border:2.5px solid #5b7186;
+                    background:#fff; cursor:pointer; }
+  #predict button:hover { background:#eef4f8; }
+  #predict .hint { margin-top:9px; color:#d23c2a; font-size:16px; min-height:20px; }
+  .shake { animation:shk .4s; } @keyframes shk { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)} }
+  #capBar { margin-top:12px; background:#fffef9; border:2.5px solid #d8d2c0; border-radius:14px; padding:12px 18px; min-height:96px; }
+  #cap { font-size:21px; line-height:1.5; }
+  #sentBar { margin-top:8px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  #sentBar .en { font-size:25px; color:#39404d; }
+  #sentBar .en b { color:#d23c2a; }
+  #speakBtn { font:inherit; font-size:16px; padding:6px 14px; border-radius:999px; border:2.5px solid #f08c1e; background:#fff7ea; cursor:pointer; }
+  #controls { margin-top:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  #controls button { font:inherit; font-size:17px; padding:9px 18px; border-radius:999px; border:2.5px solid #39404d; background:#fff; cursor:pointer; }
+  #controls button.primary { background:#39404d; color:#fff; }
+  #controls button:disabled { opacity:.4; cursor:default; }
+  #dots { display:flex; gap:4px; flex-wrap:wrap; max-width:430px; }
+  .dot { width:11px; height:11px; border-radius:50%; border:2px solid #b9bfa8; background:#fff; cursor:pointer; padding:0; }
+  .dot.done { background:#b9bfa8; } .dot.now { background:#f08c1e; border-color:#f08c1e; }
+  #prog { color:#8a8f7a; font-size:15px; }
+  label.auto { font-size:16px; display:flex; gap:6px; align-items:center; cursor:pointer; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🖊️ 白板课 · over 的一家人</h1>
+  <span class="sub">原型 v1 · 一拍一拍往下看：画法 = 想法出现的顺序</span>
+</header>
+<div id="wrap">
+  <div id="stageBox">
+    <svg id="board" viewBox="0 0 1250 920" xmlns="http://www.w3.org/2000/svg" aria-label="whiteboard">
+      <defs>
+        <filter id="wob" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="2" seed="7" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="3"/>
+        </filter>
+        <filter id="wobS" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="11" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+        </filter>
+      </defs>
+
+      <!-- ======= TITLE (hand-path letters) ======= -->
+      <g id="gTitle" filter="url(#wob)">
+        <path class="dp ink" stroke-width="9" d="M118 118 C 96 118 84 96 92 76 C 100 56 128 50 144 64 C 160 78 158 106 140 116 C 132 121 126 120 118 118"/>
+        <path class="dp ink" stroke-width="9" d="M186 62 L208 116 L232 60"/>
+        <path class="dp ink" stroke-width="9" d="M250 84 L294 80 C 296 60 282 50 268 56 C 252 62 248 84 258 96 C 268 108 292 104 296 92"/>
+        <path class="dp ink" stroke-width="9" d="M322 58 L320 118 M322 84 C 330 62 348 54 362 60"/>
+        <path class="dp acc" stroke-width="8" d="M398 82 C 388 60 404 46 420 54 C 436 62 432 82 416 90 C 406 95 402 102 402 112"/>
+        <circle class="fx fillAcc" cx="402" cy="134" r="5"/>
+        <text class="tx fGry" x="72" y="208" font-size="21">白板课 · 一个词的一家人</text>
+      </g>
+
+      <!-- ======= GALLERY POSTCARDS (frames generated by JS) ======= -->
+      <g id="gGallery" filter="url(#wobS)">
+        <!-- pc1 越过 -->
+        <g class="pc" id="pc1" transform="translate(30,240)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">① 越过</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M118 84 L118 44 L172 44 L172 84 L118 84"/>
+            <path class="dw acc" stroke-width="4" stroke-dasharray="7 6" d="M78 80 C 104 22 188 22 214 80"/>
+            <circle class="dp red" stroke-width="3.5" cx="78" cy="82" r="10"/>
+            <path class="dp red" stroke-width="3" d="M70 76 L66 64 L78 72 M86 72 L96 66 L94 78"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">The cat jumped</text>
+          <text class="tx fInk" x="14" y="166" font-size="12.5">over the box.</text>
+        </g>
+        <!-- pc2 在上方 -->
+        <g class="pc" id="pc2" transform="translate(30,430)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">② 在上方</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M136 88 L136 52"/>
+            <circle class="dp lm" stroke-width="4" cx="136" cy="34" r="21"/>
+            <path class="dp red" stroke-width="3.5" d="M92 18 C 104 6 128 6 140 14"/>
+            <path class="dw gry" stroke-width="3" stroke-dasharray="5 5" data-dir="h" d="M102 30 L142 30"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The bird is over the tree.</text>
+        </g>
+        <!-- pc3 盖住 -->
+        <g class="pc" id="pc3" transform="translate(30,620)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">③ 盖住 · 遮挡</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M56 46 L216 46 M74 46 L74 88 M198 46 L198 88"/>
+            <path class="dp red" stroke-width="4" d="M52 46 C 52 28 220 28 220 46"/>
+            <path class="dp red" stroke-width="4" d="M52 46 C 48 58 47 66 46 76 M220 46 C 224 58 225 66 226 76"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">Spread the tablecloth</text>
+          <text class="tx fInk" x="14" y="166" font-size="12.5">over the table.</text>
+        </g>
+        <!-- pc4 结束 -->
+        <g class="pc" id="pc4" transform="translate(1270,240)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">④ 结束</text>
+          <g transform="translate(14,36)">
+            <path class="dp ink" stroke-width="4" d="M16 62 L240 62 M16 52 L16 72 M128 52 L128 72 M240 52 L240 72"/>
+            <path class="dp acc" stroke-width="4" d="M240 62 L240 28 M240 28 L264 36 L240 44"/>
+            <circle class="fx fillRed" cx="16" cy="62" r="5"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The game is over.</text>
+        </g>
+        <!-- pc5 布满 -->
+        <g class="pc" id="pc5" transform="translate(1270,430)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑤ 布满</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M8 88 C 70 18 200 18 264 88"/>
+            <circle class="dp red" stroke-width="3" cx="70" cy="42" r="4"/>
+            <circle class="dp red" stroke-width="3" cx="120" cy="28" r="4"/>
+            <circle class="dp red" stroke-width="3" cx="170" cy="30" r="4"/>
+            <circle class="dp red" stroke-width="3" cx="215" cy="48" r="4"/>
+            <circle class="dp red" stroke-width="3" cx="95" cy="56" r="4"/>
+            <circle class="dp red" stroke-width="3" cx="192" cy="56" r="4"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">Guards were posted</text>
+          <text class="tx fInk" x="14" y="166" font-size="12.5">all over the hill.</text>
+        </g>
+        <!-- pc6 在另一边 -->
+        <g class="pc" id="pc6" transform="translate(1270,620)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑥ 在另一边</text>
+          <g transform="translate(14,36)">
+            <path class="dp lm" stroke-width="4" d="M8 88 C 60 34 120 26 168 44 C 200 56 230 70 244 88"/>
+            <path class="dp lm" stroke-width="4" d="M196 88 L196 60 L228 60 L228 88"/>
+            <path class="dp red" stroke-width="3.5" d="M190 60 L212 42 L234 60"/>
+          </g>
+          <text class="tx fInk" x="14" y="150" font-size="12.5">The village is</text>
+          <text class="tx fInk" x="14" y="166" font-size="12.5">over the hill.</text>
+        </g>
+        <!-- pc7 翻过来 -->
+        <g class="pc" id="pc7" transform="translate(350,815)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑦ 翻过来</text>
+          <g transform="translate(14,36)">
+            <path class="dw acc" stroke-width="3.5" stroke-dasharray="6 5" d="M96 22 C 130 2 176 2 190 22"/>
+            <path class="dp ink" stroke-width="4" d="M84 28 L196 28 L196 86 L84 86 Z"/>
+            <path class="dp acc" stroke-width="3" d="M140 46 L146 58 L160 59 L149 67 L153 81 L140 73 L127 81 L131 67 L120 59 L134 58 Z"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">Turn over the card.</text>
+        </g>
+        <!-- pc8 多于 -->
+        <g class="pc" id="pc8" transform="translate(655,815)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑧ 多于</text>
+          <g transform="translate(14,36)">
+            <path class="dp ink" stroke-width="4" d="M14 56 L258 56 M14 46 L14 66 M95 46 L95 66 M176 46 L176 66 M257 46 L257 66"/>
+            <path class="fx fillRed" d="M196 24 L222 24 L209 44 Z"/>
+            <text class="tx fInk" x="8" y="86" font-size="11">0</text>
+            <text class="tx fInk" x="86" y="86" font-size="11">50</text>
+            <text class="tx fInk" x="164" y="86" font-size="11">100</text>
+            <text class="tx fInk" x="238" y="86" font-size="11">150</text>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">Over 100 people came.</text>
+        </g>
+        <!-- pc9 对照 -->
+        <g class="pc" id="pc9" transform="translate(960,815)">
+          <text class="tx fInk" x="14" y="27" font-size="17" font-weight="bold">⑨ 对照 above</text>
+          <g transform="translate(14,36)">
+            <path class="dp gry" stroke-width="3" d="M136 6 L136 86"/>
+            <path class="dp red" stroke-width="3" d="M24 20 C 36 14 52 14 60 19 C 52 24 36 25 24 20 Z"/>
+            <circle class="dp acc" stroke-width="3" cx="46" cy="38" r="11"/>
+            <path class="dp lm" stroke-width="3.5" d="M18 68 C 8 68 6 54 16 50 C 18 38 34 34 44 42 C 54 32 72 36 74 48 C 86 52 84 68 72 68 Z"/>
+            <path class="dp lm" stroke-width="3.5" d="M150 86 C 180 44 226 44 262 86"/>
+            <path class="dw acc" stroke-width="3" stroke-dasharray="6 5" d="M158 62 C 190 22 232 22 256 58"/>
+            <path class="dp red" stroke-width="3" d="M196 16 C 208 10 224 10 232 15 C 224 20 208 21 196 16 Z"/>
+          </g>
+          <text class="tx fInk" x="14" y="156" font-size="12.5">The plane flew over the hill.</text>
+        </g>
+      </g>
+
+      <!-- ======= CORE CARD (top-right corner, persists) ======= -->
+      <g id="gCore" filter="url(#wob)" opacity="0">
+        <path id="coreFrame" class="dp ink" stroke-width="4.5" d="M1194 40 L1556 40 Q1570 40 1570 54 L1570 201 Q1570 215 1556 215 L1194 215 Q1180 215 1180 201 L1180 54 Q1180 40 1194 40 Z"/>
+        <text class="tx fInk" x="1206" y="82" font-size="24" font-weight="bold">over 的核心图 · 老家</text>
+        <path id="coreArc" class="dw acc" stroke-width="5" stroke-dasharray="9 7" d="M1235 168 C 1290 92 1450 92 1505 168"/>
+        <circle class="fx fillRed" cx="1235" cy="168" r="6"/>
+        <circle class="fx fillRed" cx="1370" cy="102" r="6"/>
+        <circle class="fx fillRed" cx="1505" cy="168" r="6"/>
+        <text class="tx fRed" x="1204" y="197" font-size="14" font-weight="bold">A·起点</text>
+        <text class="tx fRed" x="1332" y="130" font-size="14" font-weight="bold">B·最高点</text>
+        <text class="tx fRed" x="1472" y="197" font-size="14" font-weight="bold">C·落点</text>
+        <text class="tx fLm" x="1283" y="200" font-size="13.5">起点 → 最高点 → 落点</text>
+      </g>
+
+      <!-- ======= SPOKES (generated by JS at recap) ======= -->
+      <g id="gSpokes"></g>
+
+      <!-- ======= STAGE SCENES ======= -->
+      <g id="gStage" filter="url(#wob)">
+
+        <!-- story: cat / butterfly / fence -->
+        <g class="scene" id="sc-story">
+          <path class="dp gry" stroke-width="4" d="M372 742 L1128 742"/>
+          <path class="dp lm" stroke-width="3.5" d="M430 742 C 428 728 424 720 416 712 M436 742 C 436 726 440 716 448 708"/>
+          <path class="dp lm" stroke-width="3.5" d="M1050 742 C 1048 728 1044 720 1036 712 M1056 742 C 1056 726 1060 716 1068 708"/>
+          <path class="dp lm" stroke-width="6" d="M772 742 L772 598 M820 742 L820 598 M868 742 L868 598"/>
+          <path class="dp lm" stroke-width="4" d="M772 598 L760 622 M772 598 L784 622 M820 598 L808 622 M820 598 L832 622 M868 598 L856 622 M868 598 L880 622"/>
+          <path class="dp lm" stroke-width="6" d="M748 652 L892 652 M748 704 L892 704"/>
+          <g id="catA">
+            <path class="dp red" stroke-width="5" d="M478 700 C 440 705 425 675 448 655"/>
+            <path class="dp red" stroke-width="5" d="M485 702 C 472 648 492 606 528 602 C 562 600 580 640 572 702"/>
+            <circle class="dp red" stroke-width="5" cx="540" cy="572" r="31"/>
+            <path class="dp red" stroke-width="4.5" d="M516 552 L510 522 L538 540 M560 540 L584 520 L586 552"/>
+            <path class="dp red" stroke-width="3.5" d="M546 572 L556 572 M560 584 L585 578 M560 590 L584 592"/>
+            <path class="dp red" stroke-width="4.5" d="M556 660 L560 700"/>
+          </g>
+          <g id="catC" transform="translate(470,6)"></g>
+          <g id="bfly">
+            <path class="dp acc" stroke-width="4" d="M985 548 C 958 522 930 528 938 552 C 944 570 972 566 985 552"/>
+            <path class="dp acc" stroke-width="4" d="M985 548 C 1012 522 1040 528 1032 552 C 1026 570 998 566 985 552"/>
+            <path class="dp ink" stroke-width="3.5" d="M985 536 L985 566"/>
+          </g>
+          <path id="arcGhost" class="acc" stroke-width="5" fill="none" stroke-linecap="round" d="M578 648 C 665 462 905 462 1005 650" opacity="0"/>
+          <path id="arcMain" class="dw acc" stroke-width="5" stroke-dasharray="10 8" d="M578 648 C 665 462 905 462 1005 650"/>
+          <path id="dropLine" class="dw gry" stroke-width="3" stroke-dasharray="5 6" data-dir="v" d="M790 536 L790 596"/>
+          <circle id="haloB" class="fx" cx="790" cy="500" r="36" fill="#f08c1e" fill-opacity="0.16" stroke="#f08c1e" stroke-width="2.5"/>
+          <ellipse id="arcCircle" class="dp acc" stroke-width="4" cx="790" cy="560" rx="248" ry="106" transform="rotate(-3 790 560)" fill="none"/>
+          <text class="tx fRed" x="452" y="724" font-size="23" font-weight="bold">A 起点</text>
+          <text class="tx fRed" x="726" y="460" font-size="23" font-weight="bold">B 最高点</text>
+          <text class="tx fRed" x="1068" y="706" font-size="23" font-weight="bold">C 落点</text>
+        </g>
+
+        <!-- above: bird / tree -->
+        <g class="scene" id="sc-tree">
+          <path class="dp lm" stroke-width="6" d="M700 742 C 696 690 694 650 690 610 M700 742 C 706 695 712 660 722 622"/>
+          <path class="dp lm" stroke-width="5" d="M694 640 C 660 620 640 600 632 575 M714 648 C 745 628 762 606 770 580"/>
+          <circle class="dp lm" stroke-width="5" cx="640" cy="545" r="58"/>
+          <circle class="dp lm" stroke-width="5" cx="722" cy="500" r="72"/>
+          <circle class="dp lm" stroke-width="5" cx="802" cy="548" r="56"/>
+          <g id="birdG">
+            <path class="dp red" stroke-width="5" d="M672 372 C 690 348 736 346 756 366"/>
+            <path class="dp red" stroke-width="4.5" d="M700 356 C 712 330 740 326 752 344"/>
+            <circle class="dp red" stroke-width="4.5" cx="758" cy="360" r="13"/>
+            <path class="dp red" stroke-width="4" d="M770 358 L788 364 L770 368 M674 370 L646 384 M754 358 L760 358"/>
+          </g>
+          <g id="catWatch" transform="translate(30,34)"></g>
+          <path id="zoneBird" class="dw gry" stroke-width="3" stroke-dasharray="5 6" data-dir="v" d="M716 396 L716 428"/>
+          <ellipse id="zoneBirdE" class="dw gry" stroke-width="3" stroke-dasharray="5 6" cx="716" cy="436" rx="62" ry="10" fill="none"/>
+        </g>
+
+        <!-- covering: table / cloth -->
+        <g class="scene" id="sc-table">
+          <path class="dp lm" stroke-width="7" d="M492 566 L1012 566"/>
+          <path class="dp lm" stroke-width="6" d="M536 566 L536 742 M968 566 L968 742"/>
+          <path id="clothHover1" class="dp red" stroke-width="5" d="M516 512 C 620 470 884 470 988 512"/>
+          <path id="clothHover2" class="dp red" stroke-width="5" d="M516 512 C 620 540 884 540 988 512"/>
+          <path id="zoneTable" class="dw gry" stroke-width="3" stroke-dasharray="6 6" d="M520 550 L984 550"/>
+          <path id="clothTop" class="dp red" stroke-width="5" d="M508 560 C 640 540 864 540 996 560"/>
+          <path id="clothL" class="dp red" stroke-width="5" d="M508 560 C 496 620 492 668 488 716"/>
+          <path id="clothR" class="dp red" stroke-width="5" d="M996 560 C 1008 620 1012 668 1016 716"/>
+          <path id="clothF1" class="dp red" stroke-width="4" d="M600 556 C 596 600 594 640 596 680"/>
+          <path id="clothF2" class="dp red" stroke-width="4" d="M900 556 C 904 600 906 640 904 680"/>
+        </g>
+
+        <!-- finished: race arc -> timeline -->
+        <g class="scene" id="sc-race">
+          <path class="dp gry" stroke-width="4" d="M400 742 L1100 742"/>
+          <path class="dp lm" stroke-width="6" d="M772 742 L772 598 M820 742 L820 598 M868 742 L868 598"/>
+          <path class="dp lm" stroke-width="4" d="M772 598 L760 622 M772 598 L784 622 M820 598 L808 622 M820 598 L832 622 M868 598 L856 622 M868 598 L880 622"/>
+          <path class="dp lm" stroke-width="6" d="M748 652 L892 652 M748 704 L892 704"/>
+          <path class="dp lm" stroke-width="5" d="M1030 742 L1030 648"/>
+          <path id="flagPost" class="dp acc" stroke-width="5" d="M1030 648 L1066 660 L1030 672"/>
+          <g id="catA2"></g>
+          <g id="catC2" transform="translate(470,6)"></g>
+          <path id="arcRace" class="dw acc" stroke-width="5" stroke-dasharray="10 8" d="M578 648 C 665 462 905 462 1005 650"/>
+          <g id="tlG">
+            <path class="dp ink" stroke-width="4" d="M470 812 L1030 812 M470 800 L470 824 M750 800 L750 824 M1030 800 L1030 824"/>
+            <path class="dp acc" stroke-width="4.5" d="M1030 812 L1030 762 M1030 762 L1064 772 L1030 782"/>
+            <text class="tx fInk" x="458" y="856" font-size="21" font-weight="bold">A 开始</text>
+            <text class="tx fAcc" x="990" y="856" font-size="21" font-weight="bold">C 到头了</text>
+          </g>
+          <g id="whistleG">
+            <circle class="dp ink" stroke-width="4.5" cx="1090" cy="330" r="20"/>
+            <path class="dp ink" stroke-width="4" d="M1074 316 L1046 296 M1090 310 L1090 296 L1110 296"/>
+          </g>
+        </g>
+
+        <!-- all over: hill / guards -->
+        <g class="scene" id="sc-hill">
+          <path class="dp lm" stroke-width="6" d="M392 742 C 520 520 640 452 782 470 C 930 488 1040 600 1112 742"/>
+          <g class="guards" id="guards1">
+            <g><circle class="dp red" stroke-width="3.5" cx="520" cy="560" r="7"/><path class="dp red" stroke-width="3.5" d="M520 568 L520 590"/></g>
+            <g><circle class="dp red" stroke-width="3.5" cx="690" cy="450" r="7"/><path class="dp red" stroke-width="3.5" d="M690 458 L690 480"/></g>
+            <g><circle class="dp red" stroke-width="3.5" cx="945" cy="515" r="7"/><path class="dp red" stroke-width="3.5" d="M945 523 L945 545"/></g>
+          </g>
+          <g class="guards" id="guards2">
+            <g><circle class="dp red" stroke-width="3.5" cx="600" cy="490" r="7"/><path class="dp red" stroke-width="3.5" d="M600 498 L600 520"/></g>
+            <g><circle class="dp red" stroke-width="3.5" cx="782" cy="442" r="7"/><path class="dp red" stroke-width="3.5" d="M782 450 L782 472"/></g>
+            <g><circle class="dp red" stroke-width="3.5" cx="1020" cy="585" r="7"/><path class="dp red" stroke-width="3.5" d="M1020 593 L1020 615"/></g>
+          </g>
+          <g class="guards" id="guards3">
+            <g><circle class="dp red" stroke-width="3.5" cx="470" cy="630" r="7"/><path class="dp red" stroke-width="3.5" d="M470 638 L470 660"/></g>
+            <g><circle class="dp red" stroke-width="3.5" cx="870" cy="465" r="7"/><path class="dp red" stroke-width="3.5" d="M870 473 L870 495"/></g>
+            <g><circle class="dp red" stroke-width="3.5" cx="1080" cy="670" r="7"/><path class="dp red" stroke-width="3.5" d="M1080 678 L1080 700"/></g>
+            <g><circle class="dp red" stroke-width="3.5" cx="640" cy="465" r="7"/><path class="dp red" stroke-width="3.5" d="M640 473 L640 495"/></g>
+          </g>
+        </g>
+
+        <!-- other side: hill / village -->
+        <g class="scene" id="sc-village">
+          <path class="dp lm" stroke-width="6" d="M420 742 C 560 560 680 520 800 545 C 930 570 1020 650 1090 742"/>
+          <path id="arcVil" class="dw acc" stroke-width="4.5" stroke-dasharray="9 7" d="M520 640 C 620 470 880 470 990 620"/>
+          <g id="housesG">
+            <path class="dp lm" stroke-width="5" d="M945 742 L945 690 L985 690 L985 742 M938 690 L965 662 L992 690"/>
+            <path class="dp lm" stroke-width="5" d="M1005 742 L1005 702 L1037 702 L1037 742 M999 702 L1021 680 L1043 702"/>
+            <path class="dp lm" stroke-width="5" d="M1052 742 L1052 706 L1078 706 L1078 742 M1047 706 L1065 688 L1083 706"/>
+          </g>
+          <circle id="haloV" class="fx" cx="1012" cy="700" r="82" fill="#f08c1e" fill-opacity="0.14" stroke="#f08c1e" stroke-width="2.5"/>
+        </g>
+
+        <!-- flip: card -->
+        <g class="scene" id="sc-card">
+          <path class="dp lm" stroke-width="6" d="M470 706 L1030 706"/>
+          <path id="cardRect" class="dp ink" stroke-width="5" d="M636 572 L868 572 L868 706 L636 706 Z"/>
+          <path id="cardStar" class="dp acc" stroke-width="4" d="M752 596 L766 626 L798 630 L774 650 L782 682 L752 664 L722 682 L730 650 L706 630 L738 626 Z"/>
+          <path id="cardMoon" class="dp acc" stroke-width="4" d="M772 600 C 738 610 724 646 736 676 C 712 668 698 648 700 624 C 702 596 738 586 772 600 Z"/>
+          <path id="flipArrow" class="dp acc" stroke-width="5" d="M668 540 C 700 452 806 452 840 540 M840 540 L818 532 M840 540 L834 516"/>
+          <g id="catCard" transform="translate(-60,4)"></g>
+        </g>
+
+        <!-- more-than: arc -> number scale -->
+        <g class="scene" id="sc-scale">
+          <path id="arcEcho" class="dw acc" stroke-width="5" stroke-dasharray="10 8" d="M520 560 C 620 420 880 420 980 560"/>
+          <path class="dp ink" stroke-width="5" d="M420 640 L1080 640 M1080 640 L1052 628 M1080 640 L1052 652"/>
+          <path class="dp ink" stroke-width="4.5" d="M420 622 L420 658 M640 622 L640 658 M860 622 L860 658 M1080 622 L1080 658"/>
+          <text class="tx fInk" x="408" y="692" font-size="23">0</text>
+          <text class="tx fInk" x="622" y="692" font-size="23">50</text>
+          <text class="tx fInk" x="836" y="692" font-size="23">100</text>
+          <text class="tx fInk" x="1050" y="692" font-size="23">150</text>
+          <g id="markerG" transform="translate(640,0)">
+            <path class="fx fillRed" d="M-22 590 L22 590 L0 622 Z"/>
+          </g>
+          <circle id="circ100" class="dp acc" stroke-width="4.5" cx="862" cy="668" r="36" fill="none"/>
+        </g>
+
+        <!-- contrast: above vs over -->
+        <g class="scene" id="sc-contrast">
+          <path id="divider" class="dp gry" stroke-width="3" d="M775 268 L775 800"/>
+          <g id="ctLeft">
+            <path class="dp red" stroke-width="5" d="M470 438 C 520 420 610 420 656 436 C 610 452 520 454 470 438 Z"/>
+            <path class="dp red" stroke-width="4.5" d="M548 434 L520 470 L560 470 L576 440 M470 438 L446 414 L470 410 L492 430"/>
+            <path class="dp lm" stroke-width="5" d="M470 640 C 440 640 428 606 452 592 C 452 560 486 544 510 560 C 528 528 576 528 592 556 C 622 544 652 566 646 596 C 668 610 658 640 630 640 Z"/>
+            <circle id="gapCirc" class="dp acc" stroke-width="5" cx="560" cy="500" r="48" fill="none"/>
+            <text class="tx fAcc" x="420" y="336" font-size="34" font-weight="bold">above</text>
+            <text class="tx fLm" x="424" y="368" font-size="19">只管高低 · 中间有空隙</text>
+            <text class="tx fInk" x="398" y="788" font-size="19">The plane is above the clouds.</text>
+          </g>
+          <g id="ctRight">
+            <path class="dp lm" stroke-width="5" d="M830 742 C 900 620 960 585 1030 610 C 1080 628 1110 680 1128 742"/>
+            <path id="arcR" class="dw acc" stroke-width="4.5" stroke-dasharray="9 7" d="M845 600 C 905 440 1065 440 1115 610"/>
+            <path class="dp red" stroke-width="5" d="M872 476 C 912 460 982 460 1018 474 C 982 488 912 490 872 476 Z"/>
+            <path class="dp red" stroke-width="4.5" d="M936 472 L914 500 L946 500 L958 476 M872 476 L852 456 L872 452 L890 470"/>
+            <circle id="arcCirc" class="dp acc" stroke-width="5" cx="985" cy="462" r="46" fill="none"/>
+            <text class="tx fRed" x="892" y="336" font-size="34" font-weight="bold">over</text>
+            <text class="tx fLm" x="836" y="368" font-size="19">能盖 · 能越 · 有牵连</text>
+            <text class="tx fInk" x="838" y="788" font-size="19">The plane flew over the hill.</text>
+          </g>
+        </g>
+      </g><!-- /gStage -->
+
+      <!-- actors (leaping cat, reused across scenes) -->
+      <g id="gActors" filter="url(#wob)">
+        <g id="catLeap" opacity="0">
+          <path class="red" stroke-width="5" fill="none" stroke-linecap="round" d="M-52 2 C -80 -6 -92 -20 -88 -34"/>
+          <path class="red" stroke-width="5" fill="none" stroke-linecap="round" d="M-52 6 C -30 -14 30 -16 52 2"/>
+          <circle class="red" stroke-width="5" fill="none" cx="62" cy="-6" r="20"/>
+          <path class="red" stroke-width="4" fill="none" stroke-linecap="round" d="M48 -20 L44 -38 L62 -26 M72 -24 L86 -36 L88 -16"/>
+          <path class="red" stroke-width="3.5" fill="none" stroke-linecap="round" d="M66 -6 L74 -6"/>
+          <path class="red" stroke-width="4.5" fill="none" stroke-linecap="round" d="M40 8 L66 22 M30 12 L52 28 M-40 10 L-66 24 M-30 14 L-48 30"/>
+        </g>
+      </g>
+
+      <!-- pen tip (follows the active stroke) -->
+      <g id="penG" opacity="0" pointer-events="none">
+        <g transform="rotate(-18)">
+          <path d="M0 0 L-7.5 -26 Q0 -33 7.5 -26 Z" fill="#f08c1e" stroke="#b35f00" stroke-width="1.5"/>
+          <path d="M-7.5 -26 L-9 -64 Q0 -70 9 -64 L7.5 -26 Z" fill="#39404d"/>
+          <rect x="-9" y="-46" width="18" height="7" fill="#d23c2a"/>
+        </g>
+      </g>
+    </svg>
+    <div id="predict" hidden>
+      <div class="q"></div>
+      <div class="opts"></div>
+      <div class="hint"></div>
+    </div>
+  </div>
+
+  <div id="capBar">
+    <div id="cap">点「下一拍」，我们开始上课。</div>
+    <div id="sentBar" hidden><span class="en" id="sent"></span><button id="speakBtn">🔊 读一读</button></div>
+  </div>
+
+  <div id="controls">
+    <button id="prevBtn">◀ 上一拍</button>
+    <button id="nextBtn" class="primary">下一拍 ▶</button>
+    <button id="senseBtn">🔁 重播这一站</button>
+    <label class="auto"><input type="checkbox" id="autoChk"> 自动播放</label>
+    <span id="prog"></span>
+    <div id="dots"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+const $  = s => document.querySelector(s);
+const $$ = (s,r) => Array.from((r||document).querySelectorAll(s));
+const svg = $('#board');
+const NS = 'http://www.w3.org/2000/svg';
+const CAMS = { hook:[0,0,1250,920], full:[0,0,1600,1000] };
+let camCur = CAMS.hook.slice();
+
+/* ---------- postcard frames + spokes (generated) ---------- */
+const SLOTS = { pc1:[30,240], pc2:[30,430], pc3:[30,620], pc4:[1270,240], pc5:[1270,430],
+                pc6:[1270,620], pc7:[350,815], pc8:[655,815], pc9:[960,815] };
+function roundedRect(x,y,w,h,r){
+  return `M${x+r} ${y} L${x+w-r} ${y} Q${x+w} ${y} ${x+w} ${y+r} L${x+w} ${y+h-r} Q${x+w} ${y+h} ${x+w-r} ${y+h} L${x+r} ${y+h} Q${x} ${y+h} ${x} ${y+h-r} L${x} ${y+r} Q${x} ${y} ${x+r} ${y} Z`;
+}
+for (const id in SLOTS){
+  const g = document.getElementById(id);
+  const f = document.createElementNS(NS,'path');
+  f.setAttribute('class','dp gry'); f.setAttribute('stroke-width','3');
+  f.setAttribute('d', roundedRect(3,3,294,169,14));
+  g.insertBefore(f, g.firstChild);
+}
+const spokesG = $('#gSpokes');
+for (const id in SLOTS){
+  const [x,y] = SLOTS[id];
+  const ln = document.createElementNS(NS,'path');
+  ln.setAttribute('class','dp acc'); ln.setAttribute('stroke-width','2.5'); ln.setAttribute('opacity','.65');
+  ln.setAttribute('d', `M800 512 L${x+150} ${y+86}`);
+  spokesG.appendChild(ln);
+  const hl = document.createElementNS(NS,'path');
+  hl.setAttribute('class','fx'); hl.setAttribute('id','hl-'+id);
+  hl.setAttribute('d', roundedRect(x-4,y-4,308,183,16));
+  hl.setAttribute('fill','none'); hl.setAttribute('stroke','#f08c1e'); hl.setAttribute('stroke-width','4');
+  spokesG.appendChild(hl);
+}
+
+/* ---------- clone the sitting cat into placeholder groups ---------- */
+for (const gid of ['catC','catA2','catC2','catWatch','catCard']){
+  const src = $('#catA'), dst = document.getElementById(gid);
+  for (const ch of Array.from(src.children)) dst.appendChild(ch.cloneNode(true));
+}
+
+/* ---------- prep: dash-draw + dashed-wipe ---------- */
+const penG = $('#penG');
+function prep(){
+  $$('.dp').forEach(el=>{
+    const L = el.getTotalLength();
+    el.dataset.len = L;
+    el.style.strokeDasharray = L; el.style.strokeDashoffset = L;
+  });
+  $$('.dw').forEach((el,i)=>{
+    const bb = el.getBBox();
+    const cp = document.createElementNS(NS,'clipPath');
+    cp.setAttribute('id','cp'+i); cp.setAttribute('clipPathUnits','userSpaceOnUse');
+    const r = document.createElementNS(NS,'rect');
+    const vert = el.dataset.dir === 'v';
+    r.setAttribute('x', bb.x-6); r.setAttribute('y', bb.y-6);
+    r.setAttribute('width', vert ? bb.width+12 : 0);
+    r.setAttribute('height', vert ? 0 : bb.height+12);
+    cp.appendChild(r); svg.querySelector('defs').appendChild(cp);
+    el.setAttribute('clip-path', `url(#cp${i})`);
+    el._clip = { r, bb, vert };
+  });
+}
+function penTo(el, p){
+  try{
+    const L = el.getTotalLength();
+    const pt = el.getPointAtLength(L*Math.min(Math.max(p,0),1));
+    const m = el.getCTM();
+    if (!m) return;
+    const x = m.a*pt.x + m.c*pt.y + m.e, y = m.b*pt.x + m.d*pt.y + m.f;
+    penG.setAttribute('transform', `translate(${x} ${y})`);
+  }catch(e){}
+}
+function penShow(v){ penG.setAttribute('opacity', v?1:0); }
+
+/* ---------- animation primitives (all take instant flag) ---------- */
+const raf = () => new Promise(r=>requestAnimationFrame(r));
+function tween(dur, fn){
+  if (dur<=0){ fn(1); return Promise.resolve(); }
+  return new Promise(res=>{
+    const t0 = performance.now();
+    (function step(t){
+      const p = Math.min((t-t0)/dur, 1);
+      fn(p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2);
+      if (p<1) requestAnimationFrame(step); else res();
+    })(t0);
+  });
+}
+function drawEl(el, dur, inst){
+  if (!el) return Promise.resolve();
+  const L = parseFloat(el.dataset.len);
+  if (inst){ el.style.strokeDashoffset = 0; return Promise.resolve(); }
+  penShow(true);
+  return tween(dur, p=>{ el.style.strokeDashoffset = L*(1-p); penTo(el,p); }).then(()=>penShow(false));
+}
+function eraseEl(el, dur, inst){
+  if (!el) return Promise.resolve();
+  const L = parseFloat(el.dataset.len);
+  if (inst){ el.style.strokeDashoffset = L; return Promise.resolve(); }
+  penShow(true);
+  return tween(dur, p=>{ el.style.strokeDashoffset = L*p; penTo(el,1-p); }).then(()=>penShow(false));
+}
+function drawAll(els, total, inst){
+  els = els.filter(Boolean);
+  const sum = els.reduce((a,e)=>a+parseFloat(e.dataset.len||1),0) || 1;
+  let chain = Promise.resolve();
+  els.forEach(el=>{ chain = chain.then(()=>drawEl(el, inst?0:Math.max(total*parseFloat(el.dataset.len||1)/sum, 40), inst)); });
+  return chain;
+}
+function eraseAll(els, total, inst){
+  els = els.filter(Boolean).slice().reverse();
+  let chain = Promise.resolve();
+  els.forEach(el=>{ chain = chain.then(()=>eraseEl(el, inst?0:Math.max(total/els.length,30), inst)); });
+  return chain;
+}
+function wipeEl(el, dur, inst, dirn){
+  if (!el || !el._clip) return Promise.resolve();
+  const { r, bb, vert } = el._clip;
+  const full = (vert ? bb.height : bb.width) + 12;
+  const from = dirn<0 ? full : 0, to = dirn<0 ? 0 : full;
+  if (inst){ r.setAttribute(vert?'height':'width', to); return Promise.resolve(); }
+  penShow(true);
+  return tween(dur, p=>{
+    r.setAttribute(vert?'height':'width', from+(to-from)*p); penTo(el,p);
+  }).then(()=>penShow(false));
+}
+function showEls(els, inst){ els.filter(Boolean).forEach(e=>{ e.style.transition = inst?'none':''; e.style.opacity = 1; }); }
+function hideEls(els){ els.filter(Boolean).forEach(e=>{ e.style.opacity = 0; }); }
+function sceneDrawables(g){
+  return { dp: $$('.dp',g), dw: $$('.dw',g), fx: $$('.fx',g), tx: $$('.tx',g) };
+}
+function eraseScene(sel, total, inst){
+  const g = $(sel); if (!g) return Promise.resolve();
+  const d = sceneDrawables(g);
+  hideEls(d.fx.concat(d.tx));
+  let chain = eraseAll(d.dp, total*0.7, inst);
+  d.dw.forEach(el=>{ chain = chain.then(()=>wipeEl(el, inst?0:total*0.3/d.dw.length, inst, -1)); });
+  return chain;
+}
+function travel(arcEl, mover, dur, inst){
+  const L = arcEl.getTotalLength();
+  const setP = p=>{
+    const pt = arcEl.getPointAtLength(L*p);
+    const pt2 = arcEl.getPointAtLength(L*Math.min(p+0.012,1));
+    const ang = Math.atan2(pt2.y-pt.y, pt2.x-pt.x)*180/Math.PI*0.45;
+    mover.setAttribute('transform', `translate(${pt.x} ${pt.y}) rotate(${ang})`);
+  };
+  if (inst){ mover.setAttribute('opacity',0); setP(1); return Promise.resolve(); }
+  mover.setAttribute('opacity',1);
+  return tween(dur, setP).then(()=>{ mover.setAttribute('opacity',0); });
+}
+function camTo(name, inst){
+  const tgt = CAMS[name];
+  if (inst){ camCur = tgt.slice(); svg.setAttribute('viewBox', camCur.join(' ')); return Promise.resolve(); }
+  const from = camCur.slice();
+  return tween(750, p=>{
+    camCur = from.map((v,i)=>v+(tgt[i]-v)*p);
+    svg.setAttribute('viewBox', camCur.join(' '));
+  });
+}
+
+/* ---------- narration / sentence / speech ---------- */
+let curSent = '';
+function setCap(t){ $('#cap').textContent = t; }
+function setSent(html, plain){
+  curSent = plain;
+  if (!plain){ $('#sentBar').hidden = true; return; }
+  $('#sent').innerHTML = html; $('#sentBar').hidden = false;
+}
+$('#speakBtn').addEventListener('click', ()=>{
+  if (!curSent) return;
+  try{
+    const u = new SpeechSynthesisUtterance(curSent);
+    u.lang = 'en-GB'; u.rate = 0.85;
+    const v = speechSynthesis.getVoices().find(v=>v.lang && v.lang.toLowerCase().startsWith('en-gb'));
+    if (v) u.voice = v;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+});
+
+/* ---------- prediction pauses ---------- */
+const predBox = $('#predict');
+let predOpen = false;
+function predict(spec, inst){
+  if (inst) return Promise.resolve();
+  return new Promise(res=>{
+    predOpen = true;
+    predBox.querySelector('.q').textContent = spec.q;
+    predBox.querySelector('.hint').textContent = '';
+    const opts = predBox.querySelector('.opts'); opts.innerHTML = '';
+    spec.opts.forEach(o=>{
+      const b = document.createElement('button');
+      b.textContent = o.t;
+      b.addEventListener('click', ()=>{
+        if (o.ok){
+          predBox.classList.remove('shake'); predBox.hidden = true; predOpen = false; res();
+        } else {
+          b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+          predBox.querySelector('.hint').textContent = spec.hint;
+        }
+      });
+      opts.appendChild(b);
+    });
+    predBox.hidden = false;
+  });
+}
+
+/* ---------- reset ---------- */
+function resetAll(){
+  $$('.dp').forEach(el=>{ el.style.strokeDashoffset = el.dataset.len; });
+  $$('.dw').forEach(el=>{ if (el._clip) el._clip.r.setAttribute(el._clip.vert?'height':'width', 0); });
+  $$('.fx,.tx').forEach(el=>{ el.style.opacity = 0; });
+  $('#gCore').setAttribute('opacity',0);
+  $('#gCore').style.transform = '';
+  $('#catLeap').setAttribute('opacity',0);
+  $('#markerG').setAttribute('transform','translate(640,0)');
+  predBox.hidden = true; predOpen = false;
+  camCur = CAMS.hook.slice(); svg.setAttribute('viewBox', camCur.join(' '));
+  setSent('', '');
+}
+</script>
+<script>
+"use strict";
+/* ================= BEATS ================= */
+const D  = (sel,total)=>inst=>drawAll($$(sel), total, inst);
+const D1 = (sel,dur)=>inst=>drawEl($(sel), dur, inst);
+const DS = (sel,from,to,total)=>inst=>drawAll($$(sel).slice(from,to), total, inst);
+const W  = (sel,dur)=>inst=>wipeEl($(sel), dur, inst, 1);
+const WE = (sel,dur)=>inst=>wipeEl($(sel), dur, inst, -1);
+const SH = sel=>inst=>{ showEls($$(sel), inst); return Promise.resolve(); };
+const DL = ms=>inst=>inst?Promise.resolve():new Promise(r=>setTimeout(r,ms));
+const SQ = (...fns)=>inst=>fns.reduce((p,f)=>p.then(()=>f(inst)), Promise.resolve());
+const CM = name=>inst=>camTo(name, inst);
+const ES = (sel,total)=>inst=>eraseScene(sel, total, inst);
+const CATGO = (arcSel, sitSel, dur)=>inst=>
+  travel($(arcSel), $('#catLeap'), inst?0:dur, inst).then(()=>drawAll($$(sitSel+' .dp'), inst?0:450, inst));
+function pcShow(id){
+  return inst=>{
+    const g = $('#'+id);
+    let chain = drawAll($$('.dp',g), inst?0:850, inst);
+    $$('.dw',g).forEach(el=>{ chain = chain.then(()=>wipeEl(el, inst?0:320, inst, 1)); });
+    chain = chain.then(()=>{ showEls($$('.fx',g).concat($$('.tx',g)), inst); });
+    return chain;
+  };
+}
+function buildCard(inst){
+  const core = $('#gCore');
+  const finish = ()=>{
+    $('#arcGhost').setAttribute('opacity',0); $('#arcGhost').removeAttribute('transform');
+    core.setAttribute('opacity',1);
+    $('#coreFrame').style.strokeDashoffset = 0;
+    wipeEl($('#coreArc'), 0, true, 1);
+    showEls($$('#gCore .fx').concat($$('#gCore .tx')), true);
+    return Promise.resolve();
+  };
+  if (inst) return camTo('full', true).then(finish);
+  return camTo('full', false).then(async ()=>{
+    const ghost = $('#arcGhost'), a = $('#arcMain'), c = $('#coreArc');
+    const b1 = a.getBBox(), b2 = c.getBBox();
+    const sx = b2.width/b1.width, sy = b2.height/b1.height;
+    const tx = b2.x - sx*b1.x, ty = b2.y - sy*b1.y;
+    ghost.setAttribute('opacity',1);
+    await tween(950, p=>{
+      ghost.setAttribute('transform', `translate(${tx*p} ${ty*p}) scale(${1+(sx-1)*p} ${1+(sy-1)*p})`);
+    });
+    ghost.setAttribute('opacity',0); ghost.removeAttribute('transform');
+    core.setAttribute('opacity',1);
+    await drawEl($('#coreFrame'), 650, false);
+    await wipeEl($('#coreArc'), 650, false, 1);
+    showEls($$('#gCore .fx').concat($$('#gCore .tx')), false);
+  });
+}
+function moveCardCenter(inst){
+  const core = $('#gCore');
+  core.style.transformBox = 'fill-box'; core.style.transformOrigin = 'center';
+  core.style.transition = inst ? 'none' : 'transform .95s ease';
+  core.style.transform = 'translate(-575px,385px) scale(1.12)';
+  return inst ? Promise.resolve() : DL(1000)(false);
+}
+const PC_SENTS = {
+  pc1:['The cat jumped <b>over</b> the box.','The cat jumped over the box.'],
+  pc2:['The bird is <b>over</b> the tree.','The bird is over the tree.'],
+  pc3:['Spread the tablecloth <b>over</b> the table.','Spread the tablecloth over the table.'],
+  pc4:['The game is <b>over</b>.','The game is over.'],
+  pc5:['Guards were posted all <b>over</b> the hill.','Guards were posted all over the hill.'],
+  pc6:['The village is <b>over</b> the hill.','The village is over the hill.'],
+  pc7:['Turn <b>over</b> the card.','Turn over the card.'],
+  pc8:['<b>Over</b> 100 people came.','Over 100 people came.'],
+  pc9:['The plane flew <b>over</b> the hill.','The plane flew over the hill.']
+};
+function recap(inst){
+  return eraseScene('#sc-contrast', inst?0:600, inst)
+    .then(()=>moveCardCenter(inst))
+    .then(()=>drawAll($$('#gSpokes path.dp:not(#bigCheck)'), inst?0:1100, inst))
+    .then(async ()=>{
+      for (const id of ['pc1','pc2','pc3','pc4','pc5','pc6','pc7','pc8','pc9']){
+        const hl = $('#hl-'+id);
+        showEls([hl], inst);
+        if (!inst){ setSent(PC_SENTS[id][0], PC_SENTS[id][1]); await DL(1050)(false); }
+        hideEls([hl]);
+      }
+      if (inst) setSent('','');
+    });
+}
+function slideMarker(inst){
+  const g = $('#markerG');
+  showEls($$('#markerG .fx'), inst);
+  if (inst){ g.setAttribute('transform','translate(890,0)'); return Promise.resolve(); }
+  return tween(850, p=>g.setAttribute('transform', `translate(${640+250*p},0)`));
+}
+
+const beats = [
+ { sense:0, cap:'今天的主角只有一个词：over。它有一大堆意思，可全是「一家人」。先看一个小故事——',
+   acts:[ D('#gTitle .dp',1500), SH('#gTitle .fx'), SH('#gTitle .tx'), DL(250) ] },
+ { sense:0, cap:'一只小红猫，追着蝴蝶跑呀跑——',
+   acts:[ DS('#sc-story > path',0,3,650) ] },
+ { sense:0, cap:'哎呀！前面有一道篱笆，蝴蝶飞到篱笆那一边去了。',
+   acts:[ DS('#sc-story > path',3,6,900) ] },
+ { sense:0, cap:'小猫追到篱笆跟前，抬头看着蝴蝶……',
+   acts:[ SQ(D('#catA .dp',950), D('#bfly .dp',550)) ] },
+ { sense:0, cap:'先猜一猜：小猫会怎么过去？点一点你选的答案。',
+   acts:[],
+   predict:{ q:'小猫要怎么过去呢？', hint:'看看篱笆——下面没有洞，上面空空的！',
+             opts:[{t:'从上面跳过去',ok:1},{t:'从下面钻过去'},{t:'算了，不过去了'}] } },
+ { sense:0, cap:'它纵身一跳——沿着这条弧线，从篱笆的上方越过去了！',
+   acts:[ SQ(W('#arcMain',2100), CATGO('#arcMain','#catC',1500)) ] },
+ { sense:0, cap:'停！看 B 点——最高点：只有这一瞬间，小猫比篱笆「高」。A 是起点，C 是落点。',
+   acts:[ SQ(SH('#haloB'), W('#dropLine',450), SH('#sc-story .tx'), DL(350)) ] },
+ { sense:0, cap:'把这条弧线圈起来——它就是 over 的「老家图」：A 起点 → B 最高点 → C 落点，从上方越过去。',
+   acts:[ SQ(D1('#arcCircle',1100), DL(250)) ] },
+ { sense:0, cap:'这张「核心卡」钉在角上，整节课都不擦掉。后面每个意思，都从这条弧线长出来。',
+   acts:[ buildCard ] },
+ { sense:1, cap:'刚才这一跳，英语就这么说——这就是 over 的本事之一：「越过」。',
+   sent:'The cat jumped over the box.', sentHtml:'The cat jumped <b>over</b> the box.',
+   acts:[ pcShow('pc1') ] },
+ { sense:2, cap:'故事先收起来（核心卡还在！）。换一棵大树，看看老家图的另一张脸——小猫也跟来了。',
+   acts:[ SQ(ES('#sc-story',750), D('#sc-tree > .dp',1150)) ] },
+ { sense:2, cap:'小鸟停在大树的上方——中间隔着一段空地方，它不碰树。小猫在树下看着它。',
+   acts:[ SQ(D('#birdG .dp',900), W('#zoneBird',320), W('#zoneBirdE',420), D('#catWatch .dp',480)) ] },
+ { sense:2, cap:'停在上方、一动不动——这也是 over！它就是弧线「停在半路」的样子。',
+   sent:'The bird is over the tree.', sentHtml:'The bird is <b>over</b> the tree.',
+   acts:[ pcShow('pc2') ] },
+ { sense:3, cap:'换一张桌子。再来一块桌布——',
+   acts:[ SQ(ES('#sc-tree',650), DS('#sc-table .dp',0,2,650)) ] },
+ { sense:3, cap:'桌布先飘在桌子的上方，和小鸟刚才一模一样：上方，还没碰着。',
+   acts:[ SQ(DS('#sc-table .dp',2,4,600), W('#zoneTable',380)) ] },
+ { sense:3, cap:'猜一猜：桌布落下来，盖满桌面——是 over 还是 under？',
+   acts:[],
+   predict:{ q:'桌布落下来盖住桌面——用哪个词？', hint:'它落在桌子下面吗？再看看图——它正盖住桌面呢！',
+             opts:[{t:'over',ok:1},{t:'under'}] } },
+ { sense:3, cap:'看！它落下来，贴住桌面，把桌子遮住了——还是 over！',
+   acts:[ SQ(D1('#clothTop',550), D1('#clothL',450), D1('#clothR',450), D('#clothF1,#clothF2',450),
+             inst=>eraseAll([$('#clothHover1'),$('#clothHover2')], 380, inst), WE('#zoneTable',300)) ] },
+ { sense:3, cap:'在上面的东西，常常正好把下面的东西挡住。「盖住」就是「在上方」长出的第一个孩子。',
+   sent:'Spread the tablecloth over the table.', sentHtml:'Spread the tablecloth <b>over</b> the table.',
+   acts:[ pcShow('pc3') ] },
+ { sense:4, cap:'还是那道篱笆、还是这条弧线：小猫从 A 起点出发……沿着弧线跑到 C 落点。一条路，走完了。',
+   acts:[ SQ(ES('#sc-table',650), DS('#sc-race .dp',0,5,700), D('#catA2 .dp',420),
+             W('#arcRace',1700), CATGO('#arcRace','#catC2',1300)) ] },
+ { sense:4, cap:'猜一猜：弧线走完了，这件事现在怎么样了？',
+   acts:[],
+   predict:{ q:'小猫已经落地，路走完了——这一跳，现在……？', hint:'路已经走完了，事情也就到头啦——',
+             opts:[{t:'结束了！',ok:1},{t:'才刚开始'}] } },
+ { sense:4, cap:'还是这条弧线——把它拉直，就是一条时间线！走到头，事情就「结束」了。',
+   sent:'The game is over.', sentHtml:'The game is <b>over</b>.',
+   acts:[ SQ(D('#tlG .dp',750), SH('#tlG .tx'), D1('#flagPost',320), D('#whistleG .dp',450), pcShow('pc4')) ] },
+ { sense:5, cap:'换一座小山。这次，山上来了一个守卫……',
+   acts:[ SQ(ES('#sc-race',650), D('#sc-hill > .dp',950)) ] },
+ { sense:5, cap:'两个、三个……越来越多——到处都是！',
+   acts:[ SQ(D('#guards1 .dp',650), D('#guards2 .dp',650), D('#guards3 .dp',750)) ] },
+ { sense:5, cap:'好多好多点，连成一整面——over 还能说「布满」！',
+   sent:'Guards were posted all over the hill.', sentHtml:'Guards were posted all <b>over</b> the hill.',
+   acts:[ pcShow('pc5') ] },
+ { sense:6, cap:'还是越过这座山——这次不看弧线，看它落在哪儿：山的那一边，有个小村子。',
+   acts:[ SQ(ES('#sc-hill',650), D('#sc-village > .dp',900), W('#arcVil',1100), D('#housesG .dp',650), SH('#haloV')) ] },
+ { sense:6, cap:'注意力从「飞过去」挪到「落在哪儿」——就是「在另一边」。',
+   sent:'The village is over the hill.', sentHtml:'The village is <b>over</b> the hill.',
+   acts:[ pcShow('pc6') ] },
+ { sense:7, cap:'一张卡片放在桌上，正面有个小星星。小猫也跑来看热闹。',
+   acts:[ SQ(ES('#sc-village',650), DS('#sc-card .dp',0,3,800), D('#catCard .dp',450)) ] },
+ { sense:7, cap:'沿着一条小弧线——翻！顶面转到下面去了，背面是月亮。',
+   acts:[ SQ(D1('#flipArrow',650), inst=>eraseEl($('#cardStar'), inst?0:280, inst), D1('#cardMoon',550), DL(200)) ] },
+ { sense:7, cap:'弧线缩到卡片自己身上，就是「翻过来」。',
+   sent:'Turn over the card.', sentHtml:'Turn <b>over</b> the card.',
+   acts:[ pcShow('pc7') ] },
+ { sense:8, cap:'弧线还有最后一个变身——拉直！变成一把尺子。',
+   acts:[ SQ(ES('#sc-card',650), W('#arcEcho',850), WE('#arcEcho',450), DS('#sc-scale .dp',0,2,600), SH('#sc-scale .tx')) ] },
+ { sense:8, cap:'小三角走过 100 还往前——数字「越过了」100，就是「一百多」！',
+   sent:'Over 100 people came.', sentHtml:'<b>Over</b> 100 people came.',
+   acts:[ SQ(slideMarker, D1('#circ100',480), pcShow('pc8')) ] },
+ { sense:9, cap:'最后划一条界：左边是 above——飞机在云的上方，中间有一段空隙，只管高低。',
+   acts:[ SQ(ES('#sc-scale',650), D1('#divider',450), D('#ctLeft .dp',1250), SH('#ctLeft .tx')) ] },
+ { sense:9, cap:'右边是 over——飞机沿着弧线越过山头，和山有牵连。纯比高低用 above；有盖、有越、有牵连，用 over！',
+   sent:'The plane flew over the hill.', sentHtml:'The plane flew <b>over</b> the hill.',
+   acts:[ SQ(W('#arcR',850), D('#ctRight .dp',1150), SH('#ctRight .tx'), pcShow('pc9')) ] },
+ { sense:10, cap:'把舞台收干净——全家福时间！所有意思，都从中间这条弧线长出来——一个一个再看一遍。',
+   acts:[ recap ] },
+ { sense:10, cap:'下次见到 over，先想这条弧线，再猜它这次是什么意思。点圆点可以跳到任何一拍，点「重播这一站」可以再看一站。',
+   acts:[ SQ(inst=>{ setSent('',''); return Promise.resolve(); }, D1('#bigCheck',650), DL(200)) ] },
+];
+
+/* ================= ENGINE ================= */
+let cur = -1, playing = false, chainToken = 0;
+const nextBtn = $('#nextBtn'), prevBtn = $('#prevBtn');
+async function runBeat(i, inst){
+  const b = beats[i];
+  setCap(b.cap);
+  if (b.sent) setSent(b.sentHtml, b.sent);
+  for (const a of b.acts || []) await a(inst);
+  if (b.predict) await predict(b.predict, inst);
+  cur = i; updateUI();
+}
+function updateUI(){
+  $('#prog').textContent = cur < 0 ? `共 ${beats.length} 拍` : `第 ${cur+1} / ${beats.length} 拍`;
+  prevBtn.disabled = playing || cur <= 0;
+  nextBtn.disabled = playing || predOpen || cur >= beats.length-1;
+  nextBtn.textContent = cur >= beats.length-1 ? '🎉 学完啦' : '下一拍 ▶';
+  $$('.dot').forEach((d,i)=>{
+    d.classList.toggle('done', i < cur);
+    d.classList.toggle('now', i === cur);
+  });
+}
+async function gotoBeat(n){
+  if (playing) return;
+  playing = true; updateUI();
+  resetAll(); cur = -1;
+  for (let i = 0; i <= n && i < beats.length; i++) await runBeat(i, true);
+  playing = false; updateUI();
+}
+async function chainPlay(from, to){
+  const tk = ++chainToken;
+  playing = true; updateUI();
+  for (let i = from; i <= to && i < beats.length; i++){
+    if (tk !== chainToken) break;
+    await runBeat(i, false);
+    if (tk !== chainToken) break;
+    if (i < to) await DL(650)(false);
+  }
+  playing = false; updateUI();
+}
+nextBtn.addEventListener('click', ()=>{
+  if (playing || predOpen || cur >= beats.length-1) return;
+  if ($('#autoChk').checked){ chainPlay(cur+1, beats.length-1); return; }
+  playing = true; updateUI();
+  runBeat(cur+1, false).then(()=>{ playing = false; updateUI(); });
+});
+prevBtn.addEventListener('click', ()=>{ if (cur > 0) gotoBeat(cur-1); });
+$('#senseBtn').addEventListener('click', ()=>{
+  if (playing || cur < 0) return;
+  const s = beats[cur].sense;
+  let start = cur; while (start > 0 && beats[start-1].sense === s) start--;
+  let end = cur; while (end < beats.length-1 && beats[end+1].sense === s) end++;
+  (async ()=>{
+    playing = true; resetAll(); cur = -1;
+    for (let i = 0; i < start; i++) await runBeat(i, true);
+    playing = false; updateUI();
+    chainPlay(start, end);
+  })();
+});
+$('#autoChk').addEventListener('change', e=>{ if (!e.target.checked) chainToken++; });
+document.addEventListener('keydown', e=>{
+  if (e.code === 'Space' && !predOpen && !playing){ e.preventDefault(); nextBtn.click(); }
+});
+
+/* big recap check-mark (drawn in the final beat) */
+const chk = document.createElementNS(NS,'path');
+chk.setAttribute('id','bigCheck'); chk.setAttribute('class','dp acc');
+chk.setAttribute('stroke-width','15'); chk.setAttribute('d','M716 700 L786 762 L894 636');
+$('#gSpokes').appendChild(chk);
+
+/* init */
+prep();
+resetAll();
+const dotsBox = $('#dots');
+beats.forEach((b,i)=>{
+  const d = document.createElement('button');
+  d.className = 'dot'; d.title = '第 '+(i+1)+' 拍';
+  d.addEventListener('click', ()=>gotoBeat(i));
+  dotsBox.appendChild(d);
+});
+updateUI();
+window.__wb = { gotoBeat, next: ()=>nextBtn.click(), cur: ()=>cur, total: ()=>beats.length,
+                playing: ()=>playing, predOpen: ()=>predOpen };
+</script>
+</body>
+</html>
