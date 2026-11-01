@@ -8,12 +8,21 @@
 #   铰接部件的锚点在任意角下的位置由 hingeTipAt(锚点, θ) 实算，场景不许另存。
 # 本元素口径：正视图，书脊在左（x=0 竖线），闭合时封面叠在页块上向 +x 展开，
 # 打开 = 前封绕书脊枢轴向左翻（hingeDeg 0 → -165）。页块静止：页平面在开合中不变位（断言守护）。
+#
+# v2 修订（closed 剖面可读性，2026-11-01）：v1 三层同轮廓 [0,116]×[-74,74] 完全重合，闭合态
+# 只见一整块棕色封面、页边书脊不可见，小尺度下读作「箱子/色块」（车道 A/B 独立撞到）。
+# v2 在定义层错开三层轮廓：页块轮廓在前缘/下缘较前封多出 peekFore/peekBottom（露页边），
+# 后封再多出 backStep（深色外框），前封靠书脊侧加 spineBand 书脊带。
+# 锚点与铰链口径零变化：spinePivot [0,0]、coverTip [116,0]、pagePlane（spine [6,0]/foreEdge [110,0]，
+# 仍为页平面口径，页块物理轮廓较其多出的部分即页边留白）、hingeDeg 均不动；
+# 相应地 cover-covers-pages 的「盖满」口径改为盖满页平面（见 assertions），
+# 错开量由 closed-peek 断言按轮廓实算守护。
 # ============================================================================
 
 element:
   id: book
   kind: prop
-  version: 1
+  version: 2
   title: "书（硬封面书）"
 
 frame:
@@ -32,34 +41,35 @@ skin:
     cover: "#b5651d"
     coverDark: "#8a4b12"
     coverEdge: "#7c4210"
+    spineBand: "#8a4b12"
     page: "#fdf6e3"
     pageEdge: "#cbb98f"
     ink: "#b9c4cc"
 
 parts:
   - id: backCover
-    role: "后封（静止底层，比页块大一圈）"
+    role: "后封（静止底层，三层中最大：前缘/下缘较页块再多出 backStep，闭合时露深色外框）"
     pivot: [0, 0]
     geometry:
       shapes:
         - type: path
-          segments: [["M", 0, -74], ["L", 116, -74], ["L", 116, 74], ["L", 0, 74], ["Z"]]
+          segments: [["M", 0, -74], ["L", 124, -74], ["L", 124, 82], ["L", 0, 82], ["Z"]]
           style: { fill: skin.coverDark, stroke: skin.coverEdge, lineWidth: 3 }
     z: 1
   - id: pages
-    role: "页块（静止：开合中不随封面动；其上表面即页平面）"
+    role: "页块（静止：开合中不随封面动；其上表面即页平面。轮廓在前缘/下缘较前封多出 peek，闭合时露页边；较页平面外缘 foreEdge 多出的部分为页边留白）"
     pivot: [0, 0]
     anchors:
       pageTL: [6, -68]
-      pageTR: [110, -68]
-      pageBR: [110, 68]
-      pageBL: [6, 68]
+      pageTR: [120, -68]
+      pageBR: [120, 78]
+      pageBL: [6, 78]
       spine: [6, 0] # 页平面内缘（靠书脊侧）
-      foreEdge: [110, 0] # 页平面外缘（书口侧）
+      foreEdge: [110, 0] # 页平面外缘（书口侧；页平面口径锚点，不随轮廓 peek 移动）
     geometry:
       shapes:
         - type: path
-          segments: [["M", 6, -68], ["L", 110, -68], ["L", 110, 68], ["L", 6, 68], ["Z"]]
+          segments: [["M", 6, -68], ["L", 120, -68], ["L", 120, 78], ["L", 6, 78], ["Z"]]
           style: { fill: skin.page, stroke: skin.pageEdge, lineWidth: 2.5 }
         - type: strokePath # 页上文字行（装饰）
           segments: [["M", 22, -42], ["L", 94, -42], ["M", 22, -20], ["L", 94, -20], ["M", 22, 2], ["L", 94, 2], ["M", 22, 24], ["L", 80, 24]]
@@ -78,6 +88,9 @@ parts:
         - type: path
           segments: [["M", 0, -74], ["L", 116, -74], ["L", 116, 74], ["L", 0, 74], ["Z"]]
           style: { fill: skin.cover, stroke: skin.coverEdge, lineWidth: 3 }
+        - type: path # 书脊带：封面靠书脊侧的深色竖带（随封面铰接，闭合态读出书脊）
+          segments: [["M", 0, -74], ["L", 11, -74], ["L", 11, 74], ["L", 0, 74], ["Z"]]
+          style: { fill: skin.spineBand, stroke: skin.coverEdge, lineWidth: 2 }
     z: 3
 
 anchors:
@@ -91,17 +104,26 @@ params:
     computed: 116 # 锚点实算：|tip - pivot| = |(116,0)-(0,0)|（模块 hingeTipAt/assertBookGeometry 实算）
     formula: "hypot(coverTip - spinePivot)，由锚点坐标算出，不手填"
   pageW:
-    computed: 104 # 页块宽实算：foreEdge.x - spine.x = 110 - 6
+    computed: 104 # 页平面宽实算：foreEdge.x - spine.x = 110 - 6（页平面口径，非页块轮廓宽）
+  peekFore:
+    design: 4 # 闭合态页块轮廓右界 − 前封轮廓右界 = 120 − 116（前缘露页边量，closed-peek 断言实算守护）
+  peekBottom:
+    design: 4 # 闭合态页块轮廓下界 − 前封轮廓下界 = 78 − 74（下缘露页边量，同上）
+  backStep:
+    design: 4 # 后封轮廓较页块轮廓再多出（前缘 124 − 120、下缘 82 − 78，两向同值，同上）
 
 profiles:
-  closed: { hingeDeg: 0, note: "封面叠在页块上（断言 cover-covers-pages 的校验位姿）" }
+  closed: { hingeDeg: 0, note: "封面叠在页块上：页块在前缘/下缘露页边（peek）、前封书脊带可见（v2 可读性口径；断言 cover-covers-pages + closed-peek 的校验位姿）" }
   ajar: { hingeDeg: -70, note: "半开" }
   open: { hingeDeg: -165, note: "全开：封面翻到书脊左侧" }
 
 assertions:
   - id: cover-covers-pages
-    rule: "闭合位姿下前封必须盖满页块：coverLen（实算）≥ 页块外缘 x（110），且封面半高（74）≥ 页块半高（68）"
+    rule: "闭合位姿下前封必须盖满页平面：coverLen（实算）≥ 页平面外缘 foreEdge.x（110），且封面顶缘（轮廓实算 −74）≤ 页块顶缘（−68，上缘不露页）。v2 起「盖满」对象是页平面而非页块物理轮廓——页块在前缘/下缘的露出是 peek 口径（见 closed-peek），不属盖不满"
     enforcedBy: "v5/props/props.js 的 assertBookGeometry（构建期执行，不过抛错停建）"
+  - id: closed-peek
+    rule: "闭合态三层轮廓错开量按参数实算守护：页块轮廓右界 − 前封右界 = peekFore（4）、下界差 = peekBottom（4）；后封轮廓右/下界 − 页块右/下界 = backStep（4）。任一轮廓改动未同步参数即抛错——闭合态可读性（露页边+书脊带）由此不回退"
+    enforcedBy: "v5/props/props.js 的 assertBookGeometry（轮廓段表打平 bbox 实算）"
   - id: hinge-rigid
     rule: "封面为刚体：coverTip 在任意开合角下距书脊枢轴恒等于 coverLen（半径不变）"
     enforcedBy: "v5/props/props.js 的 assertHingeRigid（hingeTipAt 多角度实算）"

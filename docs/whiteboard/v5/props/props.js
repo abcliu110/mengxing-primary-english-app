@@ -865,29 +865,32 @@ export const drawCuttable = (g, def, opts = {}) => {
   return res;
 };
 
-// ================= 元素定义（渲染侧同步副本；源 = model/props/book.yaml v1） =================
+// ================= 元素定义（渲染侧同步副本；源 = model/props/book.yaml v2） =================
+// v2：闭合态三层轮廓错开（页块前缘/下缘露 peek、后封再多出 backStep、前封加书脊带）；
+// 锚点/铰链口径与 v1 一致（spinePivot/coverTip/pagePlane/hingeDeg 不动）。
 export const BOOK = {
-  element: { id: 'book', kind: 'prop', version: 1, title: '书（硬封面书）' },
+  element: { id: 'book', kind: 'prop', version: 2, title: '书（硬封面书）' },
   placement: { world: [600, 600] },
   skin: {
-    tokens: { cover: '#b5651d', coverDark: '#8a4b12', coverEdge: '#7c4210', page: '#fdf6e3', pageEdge: '#cbb98f', ink: '#b9c4cc' },
+    tokens: { cover: '#b5651d', coverDark: '#8a4b12', coverEdge: '#7c4210', spineBand: '#8a4b12', page: '#fdf6e3', pageEdge: '#cbb98f', ink: '#b9c4cc' },
   },
   parts: [
     { id: 'backCover', pivot: [0, 0], z: 1,
       shapes: [
-        { type: 'path', segments: [['M', 0, -74], ['L', 116, -74], ['L', 116, 74], ['L', 0, 74], ['Z']], style: { fill: 'skin.coverDark', stroke: 'skin.coverEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', 0, -74], ['L', 124, -74], ['L', 124, 82], ['L', 0, 82], ['Z']], style: { fill: 'skin.coverDark', stroke: 'skin.coverEdge', lineWidth: 3 } },
       ] },
-    { id: 'pages', pivot: [0, 0], z: 2, anchors: { pageTL: [6, -68], pageTR: [110, -68], pageBR: [110, 68], pageBL: [6, 68], spine: [6, 0], foreEdge: [110, 0] },
+    { id: 'pages', pivot: [0, 0], z: 2, anchors: { pageTL: [6, -68], pageTR: [120, -68], pageBR: [120, 78], pageBL: [6, 78], spine: [6, 0], foreEdge: [110, 0] },
       shapes: [
-        { type: 'path', segments: [['M', 6, -68], ['L', 110, -68], ['L', 110, 68], ['L', 6, 68], ['Z']], style: { fill: 'skin.page', stroke: 'skin.pageEdge', lineWidth: 2.5 } },
+        { type: 'path', segments: [['M', 6, -68], ['L', 120, -68], ['L', 120, 78], ['L', 6, 78], ['Z']], style: { fill: 'skin.page', stroke: 'skin.pageEdge', lineWidth: 2.5 } },
         { type: 'strokePath', segments: [['M', 22, -42], ['L', 94, -42], ['M', 22, -20], ['L', 94, -20], ['M', 22, 2], ['L', 94, 2], ['M', 22, 24], ['L', 80, 24]], style: { stroke: 'skin.ink', lineWidth: 2.5 } },
       ] },
     { id: 'frontCover', hinge: true, pivot: [0, 0], z: 3, anchors: { tip: [116, 0], tipTop: [116, -74], tipBottom: [116, 74] },
       shapes: [
         { type: 'path', segments: [['M', 0, -74], ['L', 116, -74], ['L', 116, 74], ['L', 0, 74], ['Z']], style: { fill: 'skin.cover', stroke: 'skin.coverEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', 0, -74], ['L', 11, -74], ['L', 11, 74], ['L', 0, 74], ['Z']], style: { fill: 'skin.spineBand', stroke: 'skin.coverEdge', lineWidth: 2 } },
       ] },
   ],
-  params: { coverLen: { design: 116 }, pageW: { computed: 104 } },
+  params: { coverLen: { design: 116 }, pageW: { computed: 104 }, peekFore: { design: 4 }, peekBottom: { design: 4 }, backStep: { design: 4 } },
   profiles: {
     closed: { hingeDeg: 0 },
     ajar: { hingeDeg: -70 },
@@ -957,23 +960,36 @@ export const assertHingeRigid = (def, partId, anchorName) => {
   }
   return r0;
 };
-// 构建期断言（book）：coverLen 实算 vs design（差 ≤ 0.5）；闭合时前封盖满页块（长与半高两向）；页平面锚点齐备。返回 { coverLen }。
+// 构建期断言（book）：coverLen 实算 vs design（差 ≤ 0.5）；闭合时前封盖满页平面（coverLen ≥ foreEdge.x、
+// 封面顶缘 ≤ 页块顶缘）；v2 闭合可读性口径——三层轮廓错开量（peekFore/peekBottom/backStep）由轮廓
+// bbox 实算与参数对账（页块在前缘/下缘露页边是口径本身，非盖不满）；页平面锚点齐备。返回 { coverLen, peekFore, peekBottom }。
 export const assertBookGeometry = (def) => {
   const id = def.element.id;
   const coverLen = assertHingeRigid(def, 'frontCover', 'tip');
   const design = def.params && def.params.coverLen && def.params.coverLen.design;
   if (design != null && Math.abs(coverLen - design) > 0.5)
     throw new Error(`props/${id} book 断言失败：coverLen 实算 ${coverLen.toFixed(1)} 与 design ${design} 不一致`);
-  const pages = partOf(def, 'pages'), cover = partOf(def, 'frontCover');
+  const pages = partOf(def, 'pages'), cover = partOf(def, 'frontCover'), back = partOf(def, 'backCover');
   if (!(coverLen >= pages.anchors.foreEdge[0] - cover.pivot[0]))
     throw new Error(`props/${id} book 断言失败：封面长 ${coverLen.toFixed(1)} 盖不满页块外缘 ${pages.anchors.foreEdge[0]}（闭合时会露出页块）`);
-  const coverHalfH = Math.abs(cover.anchors.tipTop[1] - cover.anchors.tipBottom[1]) / 2;
-  const pageHalfH = Math.abs(pages.anchors.pageTL[1] - pages.anchors.pageBL[1]) / 2;
-  if (coverHalfH < pageHalfH)
-    throw new Error(`props/${id} book 断言失败：封面半高 ${coverHalfH} < 页块半高 ${pageHalfH}（闭合时上下露页）`);
+  const bbOf = (part) => polyBBox(flattenSegs(part.shapes[0].segments));
+  const cbb = bbOf(cover), pbb = bbOf(pages), bbb = bbOf(back);
+  if (cbb.y0 > pbb.y0)
+    throw new Error(`props/${id} book 断言失败：封面顶缘 ${cbb.y0} 低于页块顶缘 ${pbb.y0}（闭合时上缘露页）`);
+  const peekChk = (key, got) => {
+    const d = def.params && def.params[key] && def.params[key].design;
+    if (d != null && Math.abs(got - d) > 1e-9)
+      throw new Error(`props/${id} book 断言失败：${key} 实算 ${got} ≠ design ${d}（闭合态轮廓错开量与参数不一致）`);
+    return got;
+  };
+  const peekFore = peekChk('peekFore', pbb.x1 - cbb.x1);
+  const peekBottom = peekChk('peekBottom', pbb.y1 - cbb.y1);
+  const stepD = def.params && def.params.backStep && def.params.backStep.design;
+  if (stepD != null && (Math.abs(bbb.x1 - pbb.x1 - stepD) > 1e-9 || Math.abs(bbb.y1 - pbb.y1 - stepD) > 1e-9))
+    throw new Error(`props/${id} book 断言失败：backStep 实算 前缘 ${bbb.x1 - pbb.x1}/下缘 ${bbb.y1 - pbb.y1} ≠ design ${stepD}（后封轮廓错开量与参数不一致）`);
   if (!pages.anchors.spine || !pages.anchors.foreEdge)
     throw new Error(`props/${id} book 断言失败：页平面锚点（spine/foreEdge）缺失`);
-  return { coverLen };
+  return { coverLen, peekFore, peekBottom };
 };
 // 构建期断言（box）：腔体三向自洽（口沿半宽/底半宽/底厚均与 wall 缝合，轮廓实算）、盖铰链与箱口左角对位、
 // 盖长实算 vs design（差 ≤ 0.5）、闭合时盖满箱口。返回 { lidLen }。

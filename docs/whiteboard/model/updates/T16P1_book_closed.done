@@ -1,0 +1,39 @@
+# T16 P1 小跟进 · BOOK 元素 closed 剖面可读性改良（已完成）
+
+起因：模板车道 A（fr_lib 帧 hd_fr01_1_9.2 对照旧 📘）与车道 B（poly 初版 closed 密帧）独立撞到同一问题——book.yaml v1 的 closed 剖面 frontCover/pages/backCover 三层同轮廓 [0,116]×[-74,74] 完全重合，闭合态只见一整块棕色封面，页边、书脊不可见，小尺度下读作「箱子/色块」。本跟进只动元素定义层与其唯一 closed 消费方 fr_lib 的对位常数，未做 git 操作。
+
+## 1. 改了哪些定义字段（book.yaml v1 → v2，props.js BOOK 镜像同步，逐字段 ALL MATCH）
+
+- `element.version` 1 → 2；文件头新增 v2 修订注记（错开口径 + 锚点零变化声明）。
+- `skin.tokens` 新增 `spineBand: "#8a4b12"`（书脊带专用 token，与 coverDark 同值但语义独立，后续换肤可单独调）。
+- `parts.backCover` 轮廓：[0,-74]→[116,74] 改为 [0,-74]→[124,82]——前缘/下缘较页块再多出 backStep，成为三层中最大一层（闭合时露深色外框）；左/上与前封齐平不动。
+- `parts.pages` 轮廓：[6,-68]→[110,68] 改为 [6,-68]→[120,78]——前缘/下缘较前封多出 peek（露米色页边）；随轮廓同步的角锚点 pageTR [120,-68]、pageBR [120,78]、pageBL [6,78]（pageTL 不动）。**页平面锚点 spine [6,0] / foreEdge [110,0] 不动**：foreEdge 仍是页平面口径，轮廓较其多出的部分即页边留白，定义中已注明。
+- `parts.frontCover` 轮廓与锚点（tip [116,0] / tipTop / tipBottom）一字不动；新增第二个 shape：书脊带（x∈[0,11] 竖带，fill skin.spineBand、stroke skin.coverEdge 2）——随前封铰接（open 时位于翻开封面的书脊折边处，形态自洽）。
+- `params` 新增 peekFore {design 4}、peekBottom {design 4}、backStep {design 4}（均为轮廓 bbox 差实算口径）；pageW computed 104 注记改为「页平面宽」（口径澄清，值不变）。
+- `profiles.closed` 注记更新为 v2 可读性口径；hingeDeg 三档（0 / -70 / -165）不动。
+- **锚点与铰链口径零变化**（任务硬约束）：spinePivot [0,0]、coverTip [116,0]、pagePlane（spine/foreEdge）、hingeDeg 全部与 v1 逐值相同；assertHingeRigid 半径仍 116，hingeTipAt(open) 仍 (-112.0, -30.0)。
+
+## 2. 断言口径变化（props.js assertBookGeometry + book.yaml assertions 同步）
+
+- `cover-covers-pages`：「盖满」对象由**页块物理轮廓**改为**页平面**——coverLen（实算）≥ foreEdge.x（110，长向，原检查与原报错文案保留，P1 套件负例照常命中）；纵向原「封面半高 ≥ 页块半高」检查随错开轮廓失去口径（页块下缘本就按 peek 露出），替换为**封面顶缘 ≤ 页块顶缘**（轮廓实算 −74 ≤ −68，上缘不露页）。
+- 新增 `closed-peek`：三层错开量按轮廓段表打平 bbox 实算与参数对账——peekFore = 页块右界 − 前封右界、peekBottom = 下界差、backStep = 后封右/下界 − 页块右/下界，任一 ≠ design 即抛错。闭合态可读性从此有构建期守护，改轮廓不改参数无法蒙混。
+- `hinge-rigid`、`page-plane-static` 不变。assertBookGeometry 返回值扩为 { coverLen, peekFore, peekBottom }（实算 116 / 4 / 4）。
+
+## 3. 消费方连带（仅 fr_lib，closed 唯一消费方）
+
+- 元素 bbox 随三层并集变为 [0,124]×[-74,82]，中心 (62,4)：`v5/scenes/fr_lib.js` 弧上对位 `translate(-58, 0)` → `translate(-62, -4)`，注释同步实算口径；assertBookGeometry 调用注释同步新口径。仅常数与注释，ITEMS/KNOW/台词/逻辑零改动；poly（open 剖面）对位走 hingeTipAt 实算，不受影响、未动。
+
+## 4. 验证数字
+
+- YAML 严格解析通过；YAML↔props.js 镜像逐字段比对（version/tokens/各部件 segments/anchors/hinge/params/profiles）**ALL MATCH**。
+- 验证套件复跑：**P0 38/38 PASS、P1 44/44 PASS**（book 段含两条原负例照常抛错、drawHinged closed/open 正常）。
+- 茶壶三数零回归：轴线仰角 **37.996°**、平台期嘴尖世界 x **806.45**、出流窗最小净下倾 **35.00°**（负例 20° 照常抛错）。
+- 重建 fr01_1–4（build_stdout 暂存验大小/尾标记后就位）：gen-stock-hd_fr01_1..4.html = 1,083,529 / 1,083,566 / 1,083,582 / 1,083,615 B（各较改前 +977 B = props 共享块增长量，四幕一致）；改前件备份在 ~/workspace/build_t16p1_book/prev/。
+- ic_gen8 抽检 gen-stock-hd_fr01_1：✅ **47.4s、文字峰值 17%、不合格 0**（与改前同幕同值，纯渲染层改动）。
+
+## 5. 帧与目检（~/workspace/shots_t16p1_book/）
+
+同时间戳、同构建管线、同裁切框，改良前后各 2 帧（fr01_1 的 t=9.2 / t=30.0，全帧 + 书体区域 6× 最近邻放大对照）：
+- before_t9.2.png / before_t30.0.png：整块棕色矩形，无页边无书脊，读作色块/箱子（复现车道 A/B 的观感问题）。
+- after_t9.2.png / after_t30.0.png：左侧深色书脊带、前缘与下缘米色页边 + 深色后封外框线三层错开清晰可辨，小尺度下即读作闭合的硬封面书。
+- 对照拼图：cmp_t9.2.png、cmp_t30.0.png（上 = 改前，下 = 改后）。

@@ -13,7 +13,7 @@ const VERBS = ['buy', 'sell', 'pay', 'cost'];
 
 // V = { verb, zhVerb, idx, subject, flow:'goods'|'money', q, parts:[[词, 角色|null]…], en, zh, formula, flowLine, items:{…原文} }
 export function frBuild(SP, V) {
-  assertBookGeometry(BOOK);   // T16：书元素几何构建期断言（封面盖满页块、铰接刚体），不过抛错停建
+  assertBookGeometry(BOOK);   // T16：书元素几何构建期断言（前封盖满页平面+闭合轮廓错开量实算、铰接刚体），不过抛错停建
   const K = scene({ sprites: SP }), C = concept(K);
   const subj = ROLE[V.subject];
   C.aha({
@@ -44,7 +44,7 @@ export function frBuild(SP, V) {
     g.lineWidth = hiM ? 8 : 4; g.strokeStyle = hiM ? RED : '#c9c7c2';
     g.beginPath(); for (let p = 0; p <= 1.001; p += 0.05) { const [x, y] = arc(460, 1460, 555, -120, p); p ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); g.setLineDash([]);
     const p = ((t - F0) / 3.2) % 1; g.font = '80px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.globalAlpha = t >= spot.t && V.flow !== 'goods' ? 0.35 : 1; { const [x, y] = arc(1460, 460, 345, 120, p); g.save(); g.translate(x, y); g.scale(0.62, 0.62); g.translate(-58, 0); drawHinged(g, BOOK, { profile: 'closed' }); g.restore(); }   // T16：书元素（闭合剖面）居中于弧上点——元素 bbox [0,116]×[−74,74]，中心 (58,0)
+    g.globalAlpha = t >= spot.t && V.flow !== 'goods' ? 0.35 : 1; { const [x, y] = arc(1460, 460, 345, 120, p); g.save(); g.translate(x, y); g.scale(0.62, 0.62); g.translate(-62, -4); drawHinged(g, BOOK, { profile: 'closed' }); g.restore(); }   // T16：书元素（闭合剖面）居中于弧上点——元素 bbox [0,124]×[−74,82]（v2 三层轮廓并集实算），中心 (62,4)
     g.globalAlpha = t >= spot.t && V.flow !== 'money' ? 0.35 : 1; { const [x, y] = arc(460, 1460, 555, -120, p); g.fillText('💴', x, y); }
     g.restore();
   }, { from: F0, z: 2 });
