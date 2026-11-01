@@ -1,0 +1,115 @@
+# FIX 单词只显示动词原形（2026-11-01，用户裁定）
+
+## 裁定与做法
+用户裁定：单词显示里只留动词原形，动词的其他形式（过去式/过去分词/第三人称单数/现在分词）不显示。
+做法 = 数据打标 + 显示层过滤，数据不删（测验、洞察、词卡别名等模块照常按 id 引用）：
+- 给每个「动词变形独立条目」在 VOCAB_DB 中加字段 `"verb_form_of":"<原形>"`；
+- 单词列表的统一筛选器 `wlFilter` 谓词首加 `!w.verb_form_of`。
+
+备份：`~/workspace/content-audit/main_html_backup_pre_verbforms.html`（改前 md5 a9fe0d9e…，与改前主文件逐字节一致）。
+主文件 17,253,249 → 17,254,508 B（+1,259 = 56 处字段插入 + 2 处代码守卫）。未做 git 操作。
+
+## 清点（两口径交叉核对 + 补充扫描）
+- 口径 (a) 释义模式扫描（meaning 含「的过去式/的过去分词/的第三人称单数」）：55 命中。
+- 口径 (b) 标准不规则动词形式表（past/pp/3sg）比对全库 word：47 命中。
+- 差异逐项查明：
+  - (a) 独有 9 条，全部是「主体即变形」的真变形条目（(b) 的不规则表天然不覆盖规则变形与部分情态）：规律过去式 cleaned/stayed/washed/watched、规律三单 studies、go→goes、sweep→swept、情态 could（can 的过去式）/would（will 的过去式）→ 全部打标。
+  - (b) 独有 1 条：left（条目实为 n./adj.「左/左边」）→ 排除（见下）。
+  - 交集 46 条中 thought 按裁定排除（见下），余 45 条打标。
+- 补充扫描（防漏网）：「现在分词」释义模式、规则变形生成反查、-ed/-ing/-s 词尾全量清扫、V6_MORPH 与 G3_KA 系列逐条过目，另查出 4 条同体例变形条目并打标：going（go 的现在分词，G3_KA03）、climbing/drinking/sleeping（G5_247/248/249，释义作「（正在）…」的 -ing 形式条目，pos 均为 v.）。其余命中均为独立词条（名词 building/camping/drawing/feeling/painting/shopping/crossing、形容词 closed/moving/worried、名词 leaves/turns 等），不打标。
+- **最终打标 56 条**（下表）。已知样本 38 条（went/saw/took/…）全部在内。
+
+### 打标全表（变形 → 原形）
+| 变形 | 条目 id | verb_form_of | 来源口径 |
+|---|---|---|---|
+| ate | V6_MORPH_22 | eat | (a)(b) |
+| been | G3_KA09 | be | (a)(b) |
+| bought | G6_294 | buy | (a)(b) |
+| brought | V6_MORPH_30 | bring | (a)(b) |
+| built | V6_MORPH_53 | build | (a)(b) |
+| came | V6_MORPH_35 | come | (a)(b) |
+| caught | V6_MORPH_32 | catch | (a)(b) |
+| cleaned | G6_289 | clean | (a) 规律 |
+| climbing | G5_247 | climb | 补充 (-ing) |
+| could | G3_KA10 | can | (a) 情态 |
+| did | V6_MORPH_24 | do | (a)(b) |
+| does | G3_KA04 | do | (a)(b) |
+| done | G3_KA05 | do | (a)(b) |
+| drank | G6_0672 | drink | (a)(b) |
+| drew | V6_MORPH_44 | draw | (a)(b) |
+| drinking | G5_248 | drink | 补充 (-ing) |
+| drove | V6_MORPH_42 | drive | (a)(b) |
+| felt | V6_MORPH_48 | feel | (a)(b) |
+| flew | V6_MORPH_43 | fly | (a)(b) |
+| found | V6_MORPH_54 | find | (a)(b) |
+| gave | V6_MORPH_36 | give | (a)(b) |
+| goes | G3_KA02 | go | (a) |
+| going | G3_KA03 | go | 补充 （现在分词） |
+| got | G3_KA08 | get | (a)(b) |
+| had | V6_MORPH_25 | have | (a)(b) |
+| has | G3_KA07 | have | (a)(b) |
+| heard | V6_MORPH_59 | hear | (a)(b) |
+| kept | V6_MORPH_46 | keep | (a)(b) |
+| lost | V6_MORPH_58 | lose | (a)(b) |
+| made | V6_MORPH_34 | make | (a)(b) |
+| met | V6_MORPH_50 | meet | (a)(b) |
+| ran | V6_MORPH_37 | run | (a)(b) |
+| rode | G6_297 | ride | (a)(b) |
+| said | G3_KA01 | say | (a)(b) |
+| sang | G6_0670 | sing | (a)(b) |
+| saw | V6_MORPH_21 | see | (a)(b) |
+| sent | V6_MORPH_51 | send | (a)(b) |
+| slept | G6_290 | sleep | (a)(b) |
+| sleeping | G5_249 | sleep | 补充 (-ing) |
+| sold | V6_MORPH_56 | sell | (a)(b) |
+| spent | V6_MORPH_52 | spend | (a)(b) |
+| stayed | G6_291 | stay | (a) 规律 |
+| studies | G6_273 | study | (a) 规律三单 |
+| swam | G6_0671 | swim | (a)(b) |
+| swept | V6_MORPH_47 | sweep | (a) |
+| taught | V6_MORPH_29 | teach | (a)(b) |
+| told | V6_MORPH_55 | tell | (a)(b) |
+| took | V6_MORPH_33 | take | (a)(b) |
+| was | V6_MORPH_26 | be | (a)(b) |
+| washed | G6_292 | wash | (a) 规律 |
+| watched | G6_293 | watch | (a) 规律 |
+| went | V6_MORPH_20 | go | (a)(b) |
+| were | V6_MORPH_27 | be | (a)(b) |
+| won | V6_MORPH_57 | win | (a)(b) |
+| would | G3_KA11 | will | (a) 情态 |
+| wrote | V6_MORPH_40 | write | (a)(b) |
+
+原形在库情况：除 be 外 37 个原形词全部有独立条目且保留显示。
+**be 的实情（更正事前假设）**：库中没有 word 恰为 "be" 的条目，但原形条目以复合词头 **"be / am / is / are"（G3_K01，pos v.，释义「是（原形 be；现在时 am / is / are）」）** 存在，且正是 was/were/been 在 WORD_ALIAS 中的主条目。故 was/were/been 打标 `verb_form_of:"be"` 指向该条目，该条目未打标、保留显示——**be 并未从单词表消失，无需补建条目**。
+
+### 排除清单（查过、判定不打标）
+- thought（G6_0632，n./v.，主义为名词「想法，念头」）——裁定指定排除，独立词条。
+- left（V6_交通_42，n./adj.「左/左边」）——裁定指定排除，非动词条目。
+- read（原形本身，与过去式同形）——裁定指定排除。
+- broken（G5_0831，adj.「坏掉的，破损的」为主）、fallen（G6_0832，adj.「落下的，倒下的」为主）——形容词条目，过去分词仅在释义中次位提及，与 thought 同理排除（且 break 不在库中）。
+- don't（G3_KA06）——否定缩写，非屈折变形；且已由 WORD_ALIAS 并入 do。
+- 名词复数（V6_MORPH 的 geese/leaves/knives/…）与形容词比较级/最高级（better/best/worse/…）——非动词形式，不在本次裁定范围。
+
+## 运行时实情（WORD_ALIAS_V1 先行机制，与打标互证）
+- 字面 VOCAB_DB 1567 条；运行时 WORD_ALIAS_V1 先并出 71 条（运行时库 1496 条），变形以别名 chip 形式挂在原形词卡上（单词详情，不动）。
+- 56 条打标中 **42 条本就在 WORD_ALIAS 内**（关系：过去式 36、三单 3、过去分词 2、现在分词 1；含 MORPH 全批与 KA01/02/03/04/05/07/08/09/10/11），运行时本已不出现在列表；其主条目词与本次 verb_form_of 映射 **42/42 完全一致**（两套独立清点互证）。
+- 其余 **14 条是此前仍在显示的变形**（多为与 MORPH 孪生的 G6 重复条目 + G5 -ing 三条）：bought(G6_294)、cleaned、drank、rode、sang、slept、stayed、studies、swam、washed、watched、climbing、drinking、sleeping——本次起隐藏。这正是用户在动词页仍能看到过去式的原因（原形经别名并出后，剩下的恰是这批未并出的变形副本）。
+
+## 显示过滤改动（代码 2 处，均在主 HTML）
+1. `wlFilter`（单词表统一筛选器，MENU_WORDS_V5）：谓词首加 `!w.verb_form_of &&`。单点覆盖全部显示路径——主列表、词性分类（renderVocabPosView 首行重定向入单词表 pos 参数）、计数（wlGridHtml「共 X 词」/分页/首字母索引全部由 wlFilter 结果派生）、主题视图（renderVocabThemeView 列表路径重定向入单词表 theme 参数）、搜索（q 参数同走 wlFilter）、年级/闪电词筛选、列表自测按钮 ids。
+2. `renderVocabPosView` 已被重定向屏蔽的旧体一行 `VOCAB_DB.filter(w => wlPosMatch(w, posKey))` 同步加守卫，防埋雷（同 FIX_pos_matcher 先例）。
+
+逐一核对后判定**不动**的路径（不在单词列表显示范围或属数据引用）：
+- 主题思维导图（renderVocabThemeView 中 sub+mindmap 的实时路径，教学模块；其词数统计代码块在重定向守卫之后不可达）；
+- 视觉闪电词（浏览路径已重定向入单词表；flash 训练池仅取 sight_type="irregular"，56 条打标无一为 irregular，不受影响）；
+- renderVocabGrid（MH_VOCAB_DB，白板词卡模块的另一数据库，不在 VOCAB_DB 范围）；
+- 单词详情/词卡别名 chips/测验/自测题库/词卡洞察/多义模块（按 id 或全库引用数据，数据保留故不受影响）；单词表页头「自测这些词」按钮的 ids 本就来自 wlFilter，随筛选一致；
+- 单词大世界首屏 `VOCAB_DB.length` 文案（数据总量口径，数据未删；且运行时该值本就为别名并出后的 1496）。
+
+## 验证（node 抽取补丁后数据 + 真实函数执行，全项 PASS）
+- 字节级反向 diff：补丁文件去除 56 处字段插入 + 还原 2 处代码编辑后，与备份**逐字节一致**（改动面恰为声明范围，零附带漂移）。
+- VOCAB_DB JSON 解析通过，条目数仍 1567；打标恰 56 条且映射与上表逐条一致；其余条目字段零变化。
+- 字面口径（抽取真实 wlPosMatch/wlFilter 执行）：显示总数 1567 → **1511**（= 1567 − 56）；八类计数仅动词变化 **283 → 227**，余不变（n. 953 / adj. 234 / adv. 96 / pron. 54 / prep. 34 / num. 43 / conj. 16）；56 个变形全部不在显示集、全部原形在显示集（含 be → G3_K01 复合条目）；tomorrow/tonight 仍显示且不在动词类；搜 "went" 结果仅 twenty/twentieth/go（原形条目，释义含过去式说明），变形本身不出现。
+- 运行时口径（模拟 WORD_ALIAS 并出后）：显示总数 1496 → **1482**；动词 240 → **226**（字面 227 与运行时 226 之差为 don't：字面口径下仍在显示集，运行时被别名并出）。
+- 排除项 6 条（thought/left/read/broken/fallen/don't）均未打标、该显示的仍显示。
+- 全文件 380 个 script 块编译错误数补丁前后同为 328（历史存量，与本次无关），无新增语法错误。
