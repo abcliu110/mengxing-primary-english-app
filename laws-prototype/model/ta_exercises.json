@@ -1,0 +1,2881 @@
+{
+ "meta": {
+  "title": "TA 时态单元站内练习（L2 补齐）",
+  "created": "2026-11-02",
+  "purpose": "为 grammar_ext.yaml 中 TA-01..TA-18（quiz 字段全空、原型标「练习待补」）补齐站内练习：每单元 4–6 题，混合场景选形 / 积木拼形 / 病例找错 / 无提示四类。",
+  "law_source": "model/laws/grammar_ext.yaml（TA-01..TA-18 的 mechanism 与 examples）",
+  "case_source": "model/verb_error_cases.json（31 例逐字病例；本题库共引用 14 例，每例只引一次）",
+  "research_basis": "research_notes/tense-aspect-teaching-20261101-1501/report.md 三决定模型与陷阱清单；交互类型与 tense-prototype-v1.html 的场景机（摄影机 R / 视角 / 动词种类的闸门）同构",
+  "grounding_rules": [
+   "病例/错误句材料只取 verb_error_cases.json 逐字记录（程序注入并逐字对账 corrected），不自编学习者错误",
+   "law_example 类题目的例句逐字取自对应 TA 单元的 examples（程序校验成员资格）",
+   "其余为机械操练题（drill），按题标注，不冒充病例",
+   "每题标注所训练的决定：anchor_R（锚点/参照点）/ viewpoint（视角）/ verb_kind（动词种类）/ form_assembly（形式拼装）；纯报时态名的题目为 0",
+   "所有动词形式经 wordbank.json 与 verb_forms_completion.json 程序校验；唯一例外见 TA16-E1 的 note（病例动词 increase 不在词库收录范围，以病例来源原文为准）"
+  ],
+  "decision_model": {
+   "anchor_R": "把参照点（故事摄影机）放在哪：现在 / 某过去点 / 将来",
+   "viewpoint": "站在参照点上怎么看：全景 / 钻进中间 / 回头看痕迹",
+   "verb_kind": "动词短语自带的时间形状：状态 / 活动 / 完结 / 达成",
+   "form_assembly": "形式如何拼装与变形：助动词积木、-ed/-s 形态、整存不规则形"
+  },
+  "item_types": {
+   "scene_form_choice": "给出摄影机/视角/场景状态，选对的句子或形式",
+   "form_building": "把积木块排成正确的形式或顺序",
+   "trap_spotting": "逐字病例找错并改对（材料只来自 verb_error_cases.json）",
+   "no_clue": "不给时间状语，意义由场景/结果/故事先后承载，选或拼形式"
+  },
+  "counts": {
+   "units": 18,
+   "items_total": 87,
+   "by_type": {
+    "scene_form_choice": 39,
+    "form_building": 18,
+    "no_clue": 16,
+    "trap_spotting": 14
+   },
+   "by_decision": {
+    "viewpoint": 16,
+    "form_assembly": 25,
+    "anchor_R": 41,
+    "verb_kind": 5
+   },
+   "case_items": 14,
+   "case_ids_used": [
+    "VEC-031",
+    "VEC-002",
+    "VEC-010",
+    "VEC-012",
+    "VEC-007",
+    "VEC-008",
+    "VEC-009",
+    "VEC-028",
+    "VEC-029",
+    "VEC-030",
+    "VEC-005",
+    "VEC-006",
+    "VEC-003",
+    "VEC-011"
+   ]
+  },
+  "short_units_note": "TA-12（4 题）：单元只登记 2 条例句且内容为词源叙事，可落地的操练面只有「老幼排序 / 两句重心判断 / 分词填空」，4 题已用尽其机制，不凑数。TA-14（4 题）：单元 scope 明定小学阶段只作被动识别、不要求产出，故 4 题全为识别/排序型，无产出题。TA-17（4 题）：单元是习得顺序的主张，可操练面为其 3 个登记锚点词（went/saw/had）的整存提取 + 1 条故事链扩展。TA-18（4 题）：单元是证据边界声明，题目为证据校准判断，内容逐项取自其 claim 的 evidence 与内建例外。TA-07、TA-10、TA-11、TA-12、TA-13 无病例题：verb_error_cases.json 中没有与这些机制对应的逐字病例（状态动词进行体、will/going to、词源、时刻表将来均无公开逐字病例入册），按纪律以操练题补足，不自编病例。"
+ },
+ "units": [
+  {
+   "unit_id": "TA-01",
+   "headline": "时态 = 时间 × 看法两个开关，不是十二个要逐个背的格子",
+   "headline_kid": "时态像两个开关：一个管「什么时候」，一个管「怎么看」；开关一组合，样子就出来了，不用背一大张表",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA01-E1",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "昨天下午踢球，讲的是「踢到一半的画面」，不是整场比赛的结果。时间开关在过去、看法开关钻进中间——选对的句子：",
+     "options": [
+      "We played football in the afternoon.",
+      "We were playing football in the afternoon.",
+      "We play football in the afternoon."
+     ],
+     "answer": "We were playing football in the afternoon.",
+     "reason": "两个开关组合：时间=过去、看法=钻进中间（进行），组合出过去进行时；先定开关再选样子。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-01",
+      "sentence": "We were playing football in the afternoon."
+     },
+     "verb_forms_checked": [
+      [
+       "play",
+       "played"
+      ],
+      [
+       "be",
+       "were"
+      ],
+      [
+       "play",
+       "playing"
+      ],
+      [
+       "play",
+       "play"
+      ]
+     ]
+    },
+    {
+     "id": "TA01-E2",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "把积木排成「作业做完了，痕迹是现在可以出去玩」这句话：",
+     "build": {
+      "blocks": [
+       "finished",
+       "I",
+       "my homework",
+       "have"
+      ],
+      "answer_order": [
+       "I",
+       "have",
+       "finished",
+       "my homework"
+      ]
+     },
+     "answer": "I have finished my homework.",
+     "reason": "完成时的积木顺序是 have + 过去分词：先立「和现在有牵连」的帮手 have，再放 finished。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-01",
+      "sentence": "I have finished my homework."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "finish",
+       "finished"
+      ]
+     ]
+    },
+    {
+     "id": "TA01-E3",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "作业刚做完，妈妈问：「现在能出去玩了吗？」回答要盯着「现在的结果」，选：",
+     "options": [
+      "I finished my homework.",
+      "I have finished my homework.",
+      "I finish my homework every day."
+     ],
+     "answer": "I have finished my homework.",
+     "reason": "锚点钉在现在、回头看过去留下的结果——看法开关拨到「完成」，不是单纯讲过去那一刻。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-01",
+      "sentence": "I have finished my homework."
+     },
+     "verb_forms_checked": [
+      [
+       "finish",
+       "finished"
+      ],
+      [
+       "have",
+       "have"
+      ],
+      [
+       "finish",
+       "finish"
+      ]
+     ]
+    },
+    {
+     "id": "TA01-E4",
+     "type": "no_clue",
+     "decision": "viewpoint",
+     "prompt": "你站在窗边往外看：一个小男孩坐在树下读绘本，读到一半还没读完。句子里不许出现时间词，选对的说法：",
+     "options": [
+      "He is reading a picture book.",
+      "He read a picture book.",
+      "He reads a picture book at school."
+     ],
+     "answer": "He is reading a picture book.",
+     "reason": "没有时间词，意思全靠形状扛：眼前正在发生、还没完——时间=现在、看法=钻进中间，形状是 is reading。",
+     "source": {
+      "kind": "drill",
+      "note": "场景为现场目击式无提示设计；句型与 TA-01 登记例 I am reading now. 同构"
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "is"
+      ],
+      [
+       "read",
+       "reading"
+      ],
+      [
+       "read",
+       "read"
+      ],
+      [
+       "read",
+       "reads"
+      ]
+     ]
+    },
+    {
+     "id": "TA01-E5",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「Tomorrow, I visited my uncle.」两个开关里有一个拨错了——错在哪儿，应该怎么改？",
+     "case_error": "Tomorrow, I visited my uncle.",
+     "case_error_type": "tense_drift",
+     "case_learner_stage": "高一至高三",
+     "answer": "Tomorrow, I will visit my uncle.",
+     "reason": "状语 Tomorrow 把锚点放在将来，动词却用了过去形 visited：时间开关和时间词互相打架；谈将来要借 will（见 TA-02）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-031"
+     },
+     "verb_forms_checked": [
+      [
+       "visit",
+       "visited"
+      ],
+      [
+       "visit",
+       "visit"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-02",
+   "headline": "英语形态上只有两个时态：没有「将来时」这个词形，将来是借工具谈的",
+   "headline_kid": "英语动词变来变去，只有「现在」和「过去」两件衣裳；说将来的事，要借 will、going to 这些小帮手的力气",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA02-E1",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "明天去看奶奶。动词自己没有「将来」这件衣裳，必须借小帮手——选对的句子：",
+     "options": [
+      "We visit Grandma tomorrow.",
+      "We visited Grandma tomorrow.",
+      "We will visit Grandma tomorrow."
+     ],
+     "answer": "We will visit Grandma tomorrow.",
+     "reason": "动词的形态衣裳只有现在、过去两件；说明天的事要借情态帮手 will，visit 保持原形跟在后面。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-02",
+      "sentence": "We will visit Grandma tomorrow."
+     },
+     "verb_forms_checked": [
+      [
+       "visit",
+       "visit"
+      ],
+      [
+       "visit",
+       "visited"
+      ],
+      [
+       "will",
+       "will"
+      ]
+     ]
+    },
+    {
+     "id": "TA02-E2",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "把借来的工具装好，排成「看乌云，要下雨了」这句话：",
+     "build": {
+      "blocks": [
+       "rain",
+       "It",
+       "going to",
+       "is"
+      ],
+      "answer_order": [
+       "It",
+       "is",
+       "going to",
+       "rain"
+      ]
+     },
+     "answer": "Look at the clouds! It is going to rain.",
+     "reason": "going to 是整个借来的构式：be（is）不能丢，后面接动词原形 rain。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-02",
+      "sentence": "Look at the clouds! It is going to rain."
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "is"
+      ],
+      [
+       "rain",
+       "rain"
+      ]
+     ]
+    },
+    {
+     "id": "TA02-E3",
+     "type": "scene_form_choice",
+     "decision": "form_assembly",
+     "prompt": "看这句：We will visit Grandma tomorrow. 哪个词是「借来的小帮手」，不是动词自己的衣裳？",
+     "options": [
+      "will",
+      "visit",
+      "tomorrow"
+     ],
+     "answer": "will",
+     "reason": "will 与 may、might 是同一族的情态帮手，本身不随时间换词尾；动词自己的衣裳只有 visit（现在形）和 visited（过去形）。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-02",
+      "sentence": "We will visit Grandma tomorrow."
+     },
+     "verb_forms_checked": [
+      [
+       "will",
+       "will"
+      ],
+      [
+       "visit",
+       "visit"
+      ]
+     ]
+    },
+    {
+     "id": "TA02-E4",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "没有时间词。天上乌云密布，风把树吹得直弯腰——选对接下来会发生的事的说法：",
+     "options": [
+      "It is going to rain.",
+      "It rained a lot.",
+      "It rains in spring."
+     ],
+     "answer": "It is going to rain.",
+     "reason": "眼前的乌云是将来下雨的预兆，英语借 going to 这个工具谈「已经有苗头」的将来，不用动词自己变出将来形。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-02",
+      "sentence": "Look at the clouds! It is going to rain."
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "is"
+      ],
+      [
+       "rain",
+       "rain"
+      ],
+      [
+       "rain",
+       "rained"
+      ],
+      [
+       "rain",
+       "rains"
+      ]
+     ]
+    },
+    {
+     "id": "TA02-E5",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「I go to Hainan last winter holiday.」句中有明确的时间词，动词却穿错了衣裳——应该怎么改？",
+     "case_error": "I go to Hainan last winter holiday.",
+     "case_error_type": "bare_verb_past",
+     "case_learner_stage": "高一、高二",
+     "answer": "I went to Hainan last winter holiday.",
+     "reason": "last winter holiday 把事情钉在过去，动词必须换上过去衣裳；go 的过去衣裳是 went，不是原形 go，也不是借 will。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-002"
+     },
+     "verb_forms_checked": [
+      [
+       "go",
+       "go"
+      ],
+      [
+       "go",
+       "went"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-03",
+   "headline": "体是「看事情的方式」：同一件事，可以看全景，也可以钻进去看中间",
+   "headline_kid": "看一件事像看录像：可以站在远处看完整件，也可以把镜头推进去，只看正在发生的中间一段——选哪种看法，就是选哪种「体」",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA03-E1",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "镜头站在远处，把「盖房子」从无到有整件事一次看完——选：",
+     "options": [
+      "They built a house.",
+      "They were building a house."
+     ],
+     "answer": "They built a house.",
+     "reason": "全景看法把情境当作一个整体呈现（perfective），用一般过去时 built。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-03",
+      "sentence": "They built a house."
+     },
+     "verb_forms_checked": [
+      [
+       "build",
+       "built"
+      ],
+      [
+       "be",
+       "were"
+      ],
+      [
+       "build",
+       "building"
+      ]
+     ]
+    },
+    {
+     "id": "TA03-E2",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "同一件事，镜头推近，只看正在盖的中间一段——选：",
+     "options": [
+      "They built a house.",
+      "They were building a house."
+     ],
+     "answer": "They were building a house.",
+     "reason": "钻进去看内部过程（imperfective）用 were building；事情没变，变的是看法。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-03",
+      "sentence": "They were building a house."
+     },
+     "verb_forms_checked": [
+      [
+       "build",
+       "built"
+      ],
+      [
+       "be",
+       "were"
+      ],
+      [
+       "build",
+       "building"
+      ]
+     ]
+    },
+    {
+     "id": "TA03-E3",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成「我看见他时，他正在跑」这句话（镜头钻在他跑的中间一段）：",
+     "build": {
+      "blocks": [
+       "when I saw him",
+       "running",
+       "He",
+       "was"
+      ],
+      "answer_order": [
+       "He",
+       "was",
+       "running",
+       "when I saw him"
+      ]
+     },
+     "answer": "He was running when I saw him.",
+     "reason": "钻进去看的积木是 was/were + 动词 -ing：was 定位在过去，running 呈现过程内部。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-03",
+      "sentence": "He was running when I saw him."
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "was"
+      ],
+      [
+       "run",
+       "running"
+      ],
+      [
+       "see",
+       "saw"
+      ]
+     ]
+    },
+    {
+     "id": "TA03-E4",
+     "type": "no_clue",
+     "decision": "viewpoint",
+     "prompt": "故事讲到一半停住：我推开门，看见他正跑到操场中间，还没停下来。没有时间词，选对的句子：",
+     "options": [
+      "He was running.",
+      "He ran to the playground and stopped.",
+      "He runs every morning."
+     ],
+     "answer": "He was running.",
+     "reason": "画面冻在过程的中间一段、没有头尾——这是钻进去的看法，形状只能是 was running。",
+     "source": {
+      "kind": "drill",
+      "note": "无提示场景操练：以「画面停在中间」代替时间状语承载体貌意义"
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "was"
+      ],
+      [
+       "run",
+       "running"
+      ],
+      [
+       "run",
+       "ran"
+      ],
+      [
+       "run",
+       "runs"
+      ]
+     ]
+    },
+    {
+     "id": "TA03-E5",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "听句子猜镜头：They built a house. 说话人用的是哪种看法？",
+     "options": [
+      "站在远处看整件事（全景）",
+      "把镜头推近，只看中间一段",
+      "站在现在看过去的痕迹"
+     ],
+     "answer": "站在远处看整件事（全景）",
+     "reason": "built 是全景式呈现：房子从无到有被当作一个不可再分的整体；换成 were building 才是推近镜头。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-03",
+      "sentence": "They built a house."
+     },
+     "verb_forms_checked": [
+      [
+       "build",
+       "built"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-04",
+   "headline": "一般现在时装不下「正在发生」：整件事必须和说话这一刻完全重叠",
+   "headline_kid": "「我现在说」只有一眨眼那么短，一件完整的事塞不进这一眨眼；所以正在做的事要钻进镜头里说（进行时），一般现在时平时管的是习惯和老道理",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA04-E1",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "妈妈正在吃饭，就在你说话这一会儿——选：",
+     "options": [
+      "I am eating now.",
+      "I eat now."
+     ],
+     "answer": "I am eating now.",
+     "reason": "「现在」只有一眨眼那么短，整件吃饭的事塞不进去；正在发生的事必须钻进镜头里说，用进行时。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-04",
+      "sentence": "I am eating now."
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "am"
+      ],
+      [
+       "eat",
+       "eating"
+      ],
+      [
+       "eat",
+       "eat"
+      ]
+     ]
+    },
+    {
+     "id": "TA04-E2",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "说的是天天都做的事：我每天七点起床。选：",
+     "options": [
+      "I am getting up at seven now.",
+      "I get up at seven every day."
+     ],
+     "answer": "I get up at seven every day.",
+     "reason": "一般现在时的正职是习惯：重合的是天天重复的作息图式，不是某一件正在发生的事。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-04",
+      "sentence": "I get up at seven every day."
+     },
+     "verb_forms_checked": [
+      [
+       "get",
+       "getting"
+      ],
+      [
+       "get",
+       "get"
+      ]
+     ]
+    },
+    {
+     "id": "TA04-E3",
+     "type": "no_clue",
+     "decision": "viewpoint",
+     "prompt": "老师喊：Look! 操场上孩子们正在踢球。句子里不给时间词，选对的说法：",
+     "options": [
+      "Look! They are playing football.",
+      "They play football."
+     ],
+     "answer": "Look! They are playing football.",
+     "reason": "Look! 把大家的眼睛引向眼前正在发生的事——整件事装不进一眨眼的现在，必须用 are playing 钻进镜头里说。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-04",
+      "sentence": "Look! They are playing football now.",
+      "note": "登记例去掉 now 制成无提示版，句型与原文一致"
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "are"
+      ],
+      [
+       "play",
+       "playing"
+      ],
+      [
+       "play",
+       "play"
+      ]
+     ]
+    },
+    {
+     "id": "TA04-E4",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成那句永远对的老道理：",
+     "build": {
+      "blocks": [
+       "in the east",
+       "The sun",
+       "rises"
+      ],
+      "answer_order": [
+       "The sun",
+       "rises",
+       "in the east"
+      ]
+     },
+     "answer": "The sun rises in the east.",
+     "reason": "真理类句子讲的是图式本身，与说话时刻在图式层重合，所以用一般现在时 rises（三单加 -s）。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-04",
+      "sentence": "The sun rises in the east."
+     },
+     "verb_forms_checked": [
+      [
+       "rise",
+       "rises"
+      ]
+     ]
+    },
+    {
+     "id": "TA04-E5",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "判断正职：I get up at seven every day. 这句的一般现在时在干哪件正职？",
+     "options": [
+      "讲一件正在发生的事",
+      "讲天天的习惯",
+      "讲昨天发生的事"
+     ],
+     "answer": "讲天天的习惯",
+     "reason": "一般现在时与单次事件无法完全重合，它的本职是习惯与真理；正在发生是进行时的工作。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-04",
+      "sentence": "I get up at seven every day."
+     },
+     "verb_forms_checked": [
+      [
+       "get",
+       "get"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-05",
+   "headline": "完成体看的是「过去的事和现在的牵连」：痕迹在，事已远",
+   "headline_kid": "完成时不是说「以前做完了」，是说「以前那件事，现在还留着印子」：钥匙丢过——所以现在进不了门",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA05-E1",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「He finished his homework.」语境是「老师问作业能不能交」，这句丢了一个关键的小帮手——错在哪儿，应该怎么改？",
+     "case_error": "He finished his homework.",
+     "case_error_type": "perfect_le_guo",
+     "case_learner_stage": "初二",
+     "answer": "He has finished his homework.",
+     "reason": "要盯着现在的结果（能交作业了），必须用完成时；病例把助动词 has 丢了，只剩过去分词，完成时就散了架（病例分类：助动词缺失）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-010"
+     },
+     "verb_forms_checked": [
+      [
+       "finish",
+       "finished"
+      ],
+      [
+       "have",
+       "has"
+      ]
+     ]
+    },
+    {
+     "id": "TA05-E2",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "钥匙丢了，你正站在家门口进不去——要说的重点是「现在这个结果」。选：",
+     "options": [
+      "I have lost my key.",
+      "I lose my key.",
+      "I lost my key at school this morning."
+     ],
+     "answer": "I have lost my key.",
+     "reason": "完成时看的是过去的事留在现在的痕迹：丢钥匙的痕迹就是现在进不了门，锚点在现在。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-05",
+      "sentence": "I have lost my key."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "lose",
+       "lost"
+      ],
+      [
+       "lose",
+       "lose"
+      ]
+     ]
+    },
+    {
+     "id": "TA05-E3",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「I live here since 2020.」从 2020 年一直住到现在——动词的形状却没把这段「连到现在」的时间说出来。应该怎么改？",
+     "case_error": "I live here since 2020.",
+     "case_error_type": "perfect_le_guo",
+     "case_learner_stage": "高中（原文所引研究对象）",
+     "answer": "I have lived here since 2020.",
+     "reason": "since 2020 给的是从过去连到现在的一段，完成时才接得住（持续用法）；只用 live，等于把锚点只钉在现在这一刻，断了和过去的牵连。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-012"
+     },
+     "verb_forms_checked": [
+      [
+       "live",
+       "live"
+      ],
+      [
+       "have",
+       "have"
+      ],
+      [
+       "live",
+       "lived"
+      ]
+     ]
+    },
+    {
+     "id": "TA05-E4",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成「住了三年，而且还住着」这句话：",
+     "build": {
+      "blocks": [
+       "for three years",
+       "have",
+       "We",
+       "lived",
+       "here"
+      ],
+      "answer_order": [
+       "We",
+       "have",
+       "lived",
+       "here",
+       "for three years"
+      ]
+     },
+     "answer": "We have lived here for three years.",
+     "reason": "持续用法的积木：have + lived 把三年的线一直拉到现在，for three years 正是这条线的长度。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-05",
+      "sentence": "We have lived here for three years."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "live",
+       "lived"
+      ]
+     ]
+    },
+    {
+     "id": "TA05-E5",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "不给时间词。北京你去过了，照片还在手机里，这份经验现在就在你身上——选：",
+     "options": [
+      "I have been to Beijing.",
+      "I go to Beijing.",
+      "I am going to Beijing."
+     ],
+     "answer": "I have been to Beijing.",
+     "reason": "经历用法的痕迹就是经验本身：不点名任何过去时间，只说这件事和现在的你有牵连，用完成时。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-05",
+      "sentence": "I have been to Beijing."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "be",
+       "been"
+      ],
+      [
+       "go",
+       "go"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-06",
+   "headline": "现在完成时不能点名过去时间：*I have seen him yesterday 为什么错",
+   "headline_kid": "完成时的眼睛盯着「现在」，你一旦说出「昨天几点」这种明确的过去时间，等于把它的眼睛硬掰回过去，句子就别扭了",
+   "item_count": 6,
+   "items": [
+    {
+     "id": "TA06-E1",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「I have seen him yesterday.」完成时和 yesterday 在同一句里打架了——错在哪儿，应该怎么改？",
+     "case_error": "I have seen him yesterday.",
+     "case_error_type": "perfect_le_guo",
+     "case_learner_stage": "初二",
+     "answer": "I saw him yesterday.",
+     "reason": "完成时的参照点钉在现在，yesterday 却把事件锚回明确的过去，两套定位冲突；点名过去时间是一般过去时的职责。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-007"
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "see",
+       "seen"
+      ],
+      [
+       "see",
+       "saw"
+      ]
+     ]
+    },
+    {
+     "id": "TA06-E2",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「I have visited Beijing last year.」同样的打架又出现了一次：问题出在哪，应该怎么改？",
+     "case_error": "I have visited Beijing last year.",
+     "case_error_type": "perfect_le_guo",
+     "case_learner_stage": "初二",
+     "answer": "I visited Beijing last year.",
+     "reason": "last year 是点名了的过去时间，完成时不能和它同现；要保留 last year，就把 have visited 换成一般过去时 visited。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-008"
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "visit",
+       "visited"
+      ]
+     ]
+    },
+    {
+     "id": "TA06-E3",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「She has played the piano beautifully at the school talent show last month.」这句把演出的时间点名到了「上个月」——完成时还站得住吗？应该怎么改？",
+     "case_error": "She has played the piano beautifully at the school talent show last month.",
+     "case_error_type": "perfect_le_guo",
+     "case_learner_stage": "高一、高二",
+     "answer": "She played the piano beautifully at the school talent show last month.",
+     "reason": "last month 把事件定位在明确的过去，完成时的「盯着现在」与之冲突；汉语「了」可以和时间词共现，英语完成时不行（见 TA-16）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-009"
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "has"
+      ],
+      [
+       "play",
+       "played"
+      ]
+     ]
+    },
+    {
+     "id": "TA06-E4",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "日记里写：「昨天我见到他了。」——点名了昨天，选对的句子：",
+     "options": [
+      "I saw him yesterday.",
+      "I have seen him yesterday.",
+      "I have seen him."
+     ],
+     "answer": "I saw him yesterday.",
+     "reason": "一旦点名 yesterday，定位就归一般过去时管；第三个选项 have seen 本身没错，但它没把「昨天」说出来，与日记的场景不符。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-06",
+      "sentence": "I saw him yesterday."
+     },
+     "verb_forms_checked": [
+      [
+       "see",
+       "saw"
+      ],
+      [
+       "have",
+       "have"
+      ],
+      [
+       "see",
+       "seen"
+      ]
+     ]
+    },
+    {
+     "id": "TA06-E5",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成「从 2021 年住到现在」这句话——注意完成时的合法时间伴侣长什么样：",
+     "build": {
+      "blocks": [
+       "since 2021",
+       "lived",
+       "We",
+       "here",
+       "have"
+      ],
+      "answer_order": [
+       "We",
+       "have",
+       "lived",
+       "here",
+       "since 2021"
+      ]
+     },
+     "answer": "We have lived here since 2021.",
+     "reason": "since + 起点给出的是「连到现在的一段」，不是点名过去的某一点，所以和完成时不打架。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-06",
+      "sentence": "We have lived here since 2021."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "live",
+       "lived"
+      ]
+     ]
+    },
+    {
+     "id": "TA06-E6",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "不给任何时间词。他刚进门就喊：「我见到他了！」——重点是现在这条消息，选：",
+     "options": [
+      "I have seen him.",
+      "I saw him at three o'clock.",
+      "I see him every day."
+     ],
+     "answer": "I have seen him.",
+     "reason": "不点名时间、只报与现在有牵连的消息，正是完成时的地盘；at three o'clock 一点名，就必须换一般过去时。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-06",
+      "sentence": "I have seen him."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "see",
+       "seen"
+      ],
+      [
+       "see",
+       "saw"
+      ],
+      [
+       "see",
+       "see"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-07",
+   "headline": "动词自带「时间形状」：有的事有终点、有的事是瞬间、有的状态没有过程可看",
+   "headline_kid": "动词像不同形状的玩具：run 是可以一直转的轮子，build a house 是有头有尾的一段路，know 是静止的牌子——形状不对，镜头（进行时）就套不上",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA07-E1",
+     "type": "scene_form_choice",
+     "decision": "verb_kind",
+     "prompt": "哪个动词短语是「静止的牌子」——没有过程、不会变化？",
+     "options": [
+      "I know the answer.",
+      "The children run in the park.",
+      "He found his key."
+     ],
+     "answer": "I know the answer.",
+     "reason": "know 是状态型：知道就是知道，没有内部过程可看；run 是能一直转的活动，found 是啪的一下的达成。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-07",
+      "sentence": "I know the answer."
+     },
+     "verb_forms_checked": [
+      [
+       "know",
+       "know"
+      ],
+      [
+       "run",
+       "run"
+      ],
+      [
+       "find",
+       "found"
+      ]
+     ]
+    },
+    {
+     "id": "TA07-E2",
+     "type": "scene_form_choice",
+     "decision": "verb_kind",
+     "prompt": "She painted a picture. 这个短语的时间形状是哪一种？",
+     "options": [
+      "能一直转的轮子（没有终点）",
+      "有头有尾的一段路（画完为止）",
+      "啪的一下（瞬间）"
+     ],
+     "answer": "有头有尾的一段路（画完为止）",
+     "reason": "paint a picture 有固有终点（画完）、又要一步步来，是完结型；光说 paint 活动本身则没有这个终点。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-07",
+      "sentence": "She painted a picture."
+     },
+     "verb_forms_checked": [
+      [
+       "paint",
+       "painted"
+      ]
+     ]
+    },
+    {
+     "id": "TA07-E3",
+     "type": "form_building",
+     "decision": "verb_kind",
+     "prompt": "给两个短语配上各自的形状卡（按顺序配对）：",
+     "build": {
+      "blocks": [
+       "run（光跑步）",
+       "有终点的路",
+       "run a mile（跑一英里）",
+       "轮子（没有终点）"
+      ],
+      "answer_order": [
+       "run（光跑步）",
+       "轮子（没有终点）",
+       "run a mile（跑一英里）",
+       "有终点的路"
+      ]
+     },
+     "answer": "run → 轮子（没有终点）；run a mile → 有终点的路",
+     "reason": "看形状要看整个短语：加上「一英里」这个有界宾语，活动就被装上了终点，变成完结型。",
+     "source": {
+      "kind": "drill",
+      "note": "依据本单元机制 beat 2「按短语判断」与登记例 run / run a mile 对照设计"
+     },
+     "verb_forms_checked": [
+      [
+       "run",
+       "run"
+      ]
+     ]
+    },
+    {
+     "id": "TA07-E4",
+     "type": "scene_form_choice",
+     "decision": "verb_kind",
+     "prompt": "哪件事可以接 for an hour 一直转下去、不用担心它自己会「到头」？",
+     "options": [
+      "The children run in the park.",
+      "He found his key."
+     ],
+     "answer": "The children run in the park.",
+     "reason": "活动型没有固有终点，可以无限延展；达成型的 find 是瞬间事件，撑不了一小时。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-07",
+      "sentence": "The children run in the park."
+     },
+     "verb_forms_checked": [
+      [
+       "run",
+       "run"
+      ],
+      [
+       "find",
+       "found"
+      ]
+     ]
+    },
+    {
+     "id": "TA07-E5",
+     "type": "no_clue",
+     "decision": "verb_kind",
+     "prompt": "不给时间词，只看形状：He found his key. 里的 find，能不能像跑步那样套上「钻进去看中间」的镜头（was + -ing）？",
+     "options": [
+      "能，瞬间的事也有很长的中间一段",
+      "不能（默认），瞬间的事没有中间一段可看"
+     ],
+     "answer": "不能（默认），瞬间的事没有中间一段可看",
+     "reason": "达成型是「啪的一下」的点，没有内部过程；进行体的镜头要先有过程可看——选镜头之前先看动词的形状（与 TA-03 的失效声明同源）。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-07",
+      "sentence": "He found his key."
+     },
+     "verb_forms_checked": [
+      [
+       "find",
+       "found"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-08",
+   "headline": "过去形式还管「距离」：礼貌、假设、转述，都是把事情从眼前推远",
+   "headline_kid": "过去时不只说「以前」：想客气一点（I wondered ...）、想假设一下（If I were you），都把话往远处推一推，听起来就柔和了",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA08-E1",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "想客气地请老师帮忙，哪句把请求「推远」了一点、听起来更柔和？",
+     "options": [
+      "I wonder if you could help me.",
+      "I wondered if you could help me."
+     ],
+     "answer": "I wondered if you could help me.",
+     "reason": "wondered 不是在讲过去，是把请求往远处推——距离感带来礼貌，和时间无关。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-08",
+      "sentence": "I wondered if you could help me."
+     },
+     "verb_forms_checked": [
+      [
+       "wonder",
+       "wondered"
+      ]
+     ]
+    },
+    {
+     "id": "TA08-E2",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "If I were you, I would say sorry. 这里的 were 在干什么？",
+     "options": [
+      "在讲昨天的事",
+      "把事情推到「假如」的世界里",
+      "在说我真的变成了你"
+     ],
+     "answer": "把事情推到「假如」的世界里",
+     "reason": "假设就是把情境推离现实：用过去形 were 标记「这不是真的」，与礼貌、转述是同一个推远动作。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-08",
+      "sentence": "If I were you, I would say sorry."
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "were"
+      ],
+      [
+       "say",
+       "say"
+      ]
+     ]
+    },
+    {
+     "id": "TA08-E3",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "把转述句排好：他说他很忙（说话人已经把 is 推远成过去形）：",
+     "build": {
+      "blocks": [
+       "busy",
+       "was",
+       "He",
+       "he",
+       "said"
+      ],
+      "answer_order": [
+       "He",
+       "said",
+       "he",
+       "was",
+       "busy"
+      ]
+     },
+     "answer": "He said he was busy.",
+     "reason": "转述时主句 said 把整个句子往过去推一格，从句的 is 跟着退成 was——时态后退也是推远。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-08",
+      "sentence": "He said he was busy."
+     },
+     "verb_forms_checked": [
+      [
+       "say",
+       "said"
+      ],
+      [
+       "be",
+       "was"
+      ]
+     ]
+    },
+    {
+     "id": "TA08-E4",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「People discovered that traffic jams are caused by narrow roads.」主句已经是过去时，从句却没有跟着「退后」——错在哪儿，应该怎么改？",
+     "case_error": "People discovered that traffic jams are caused by narrow roads.",
+     "case_error_type": "tense_drift",
+     "case_learner_stage": "高一",
+     "answer": "People discovered that traffic jams were caused by narrow roads.",
+     "reason": "主句 discovered 把叙事锚点放在过去，从句也要保持呼应（were caused）；are 把从句单独留在现在，时态链就断了（病例分类：时态一致性缺失）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-028"
+     },
+     "verb_forms_checked": [
+      [
+       "discover",
+       "discovered"
+      ],
+      [
+       "be",
+       "are"
+      ],
+      [
+       "cause",
+       "caused"
+      ],
+      [
+       "be",
+       "were"
+      ]
+     ]
+    },
+    {
+     "id": "TA08-E5",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "三句都没有时间词，哪一句里的过去形干的不是「讲过去」的活？",
+     "options": [
+      "He said he was busy.",
+      "She has a red bag.",
+      "We play games after school."
+     ],
+     "answer": "He said he was busy.",
+     "reason": "was 在这里是被 said 推远的转述后退，不是在讲「过去某个时候很忙」——没有时间词也能认出推远的用法。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-08",
+      "sentence": "He said he was busy."
+     },
+     "verb_forms_checked": [
+      [
+       "say",
+       "said"
+      ],
+      [
+       "be",
+       "was"
+      ],
+      [
+       "have",
+       "has"
+      ],
+      [
+       "play",
+       "play"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-09",
+   "headline": "过去完成时是「锚点搬家」：站在过去某个点上，再回头看更早的事",
+   "headline_kid": "讲到过去的某一天时，想再说那天之前的事，就把小旗子插在那一天，再往前看——这就是过去完成时",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA09-E1",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「When I arrived, he already left.」他先走、我后到——句子却没把「更早」这一层标出来。错在哪儿，应该怎么改？",
+     "case_error": "When I arrived, he already left.",
+     "case_error_type": "tense_drift",
+     "case_learner_stage": "高一至高三",
+     "answer": "When I arrived, he had already left.",
+     "reason": "小旗插在「我到达」这个过去点上，「他离开」在小旗之前，要用过去完成时 had left 把更早一层标出来（病例分类：过去完成时误用——该用未用）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-029"
+     },
+     "verb_forms_checked": [
+      [
+       "arrive",
+       "arrived"
+      ],
+      [
+       "leave",
+       "left"
+      ],
+      [
+       "have",
+       "had"
+      ]
+     ]
+    },
+    {
+     "id": "TA09-E2",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「Last weekend, my friends and I had climbed to the top of the hill and enjoyed the beautiful view.」这句只有一个过去的时间点，却把 had 请了出来——错在哪儿，应该怎么改？",
+     "case_error": "Last weekend, my friends and I had climbed to the top of the hill and enjoyed the beautiful view.",
+     "case_error_type": "tense_drift",
+     "case_learner_stage": "高一、高二",
+     "answer": "Last weekend, my friends and I climbed to the top of the hill and enjoyed the beautiful view.",
+     "reason": "had 只在「站在过去某点回头看更早」时才出场；这里 last weekend 就是叙事点本身、没有更早一层，小旗没搬家，用一般过去时 climbed 即可（病例分类：过去完成时误用——不该用的用了）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-030"
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "had"
+      ],
+      [
+       "climb",
+       "climbed"
+      ],
+      [
+       "enjoy",
+       "enjoyed"
+      ]
+     ]
+    },
+    {
+     "id": "TA09-E3",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "妈妈回家时（小旗插在这里），我的作业在那之前就已经写完了——选：",
+     "options": [
+      "I had finished my homework when Mum came home.",
+      "I finish my homework when Mum comes home.",
+      "I have finished my homework when Mum came home."
+     ],
+     "answer": "I had finished my homework when Mum came home.",
+     "reason": "小旗搬到过去（妈妈回家时），完成时跟着搬家：have finished 变 had finished，事件仍在小旗之前。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-09",
+      "sentence": "I had finished my homework when Mum came home."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "had"
+      ],
+      [
+       "finish",
+       "finished"
+      ],
+      [
+       "come",
+       "came"
+      ],
+      [
+       "have",
+       "have"
+      ]
+     ]
+    },
+    {
+     "id": "TA09-E4",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成「我们吃完午饭才去玩」这句话：",
+     "build": {
+      "blocks": [
+       "before we played",
+       "lunch",
+       "had",
+       "We",
+       "eaten"
+      ],
+      "answer_order": [
+       "We",
+       "had",
+       "eaten",
+       "lunch",
+       "before we played"
+      ]
+     },
+     "answer": "We had eaten lunch before we played.",
+     "reason": "过去完成时的积木是 had + 过去分词；这里顺序已由 before 标明，had 用了更清楚、省了也不算错（见本条范围说明）。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-09",
+      "sentence": "We had eaten lunch before we played."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "had"
+      ],
+      [
+       "eat",
+       "eaten"
+      ],
+      [
+       "play",
+       "played"
+      ]
+     ]
+    },
+    {
+     "id": "TA09-E5",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "不给时间词，只靠故事的先后：我回到家时，弟弟已经吃完晚饭了（吃完在先、我到家在后）。选：",
+     "options": [
+      "My brother had eaten dinner when I got home.",
+      "My brother eats dinner when I get home.",
+      "My brother will eat dinner when I get home."
+     ],
+     "answer": "My brother had eaten dinner when I got home.",
+     "reason": "叙事点是「我到家」，吃饭在它之前——小旗插在到家这一刻，回头看的那件事用 had eaten。",
+     "source": {
+      "kind": "drill",
+      "note": "无提示操练：以故事先后代替时间状语，句型与 TA-09 登记例同构"
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "had"
+      ],
+      [
+       "eat",
+       "eaten"
+      ],
+      [
+       "get",
+       "got"
+      ],
+      [
+       "eat",
+       "eats"
+      ],
+      [
+       "get",
+       "get"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-10",
+   "headline": "will 说将来带着「我预言 / 我乐意」的口气，因为它本是意愿动词变的",
+   "headline_kid": "will 以前就是「想要」：所以它说将来时，总像在拍胸脯保证，或者当场答应「好，我来！」",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA10-E1",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "门铃响了！你当场起身：「我来开！」——哪句带着 will 当场答应的口气？",
+     "options": [
+      "I'll get the door!",
+      "I am going to get the door after lunch.",
+      "I get the door every morning."
+     ],
+     "answer": "I'll get the door!",
+     "reason": "没有事先计划、没有预兆，是听到门铃当场乐意去做——这正是 will 从「想要」留下的意愿残影。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-10",
+      "sentence": "I'll get the door!"
+     },
+     "verb_forms_checked": [
+      [
+       "will",
+       "will"
+      ],
+      [
+       "get",
+       "get"
+      ]
+     ]
+    },
+    {
+     "id": "TA10-E2",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "天气预报说明天有雨——这时的 will 已经很中性，只剩「预言」的味道。选对的句子：",
+     "options": [
+      "It will rain tomorrow.",
+      "It rains tomorrow.",
+      "It is raining tomorrow morning at six on the timetable."
+     ],
+     "answer": "It will rain tomorrow.",
+     "reason": "天气不受人的意愿控制，will 在这里只作预测；这也是本条范围说明登记的中性化用法。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-10",
+      "sentence": "It will rain tomorrow."
+     },
+     "verb_forms_checked": [
+      [
+       "will",
+       "will"
+      ],
+      [
+       "rain",
+       "rain"
+      ],
+      [
+       "rain",
+       "rains"
+      ],
+      [
+       "be",
+       "is"
+      ],
+      [
+       "rain",
+       "raining"
+      ]
+     ]
+    },
+    {
+     "id": "TA10-E3",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成当场承诺的这句话（will 紧贴主语，动词用原形跟在后面）：",
+     "build": {
+      "blocks": [
+       "you",
+       "will",
+       "I",
+       "with your homework",
+       "help"
+      ],
+      "answer_order": [
+       "I",
+       "will",
+       "help",
+       "you",
+       "with your homework"
+      ]
+     },
+     "answer": "I will help you with your homework.",
+     "reason": "will 是借来的情态帮手，位置在主语之后；它后面的动词永远用原形 help，不加 -s、不加 -ed。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-10",
+      "sentence": "I will help you with your homework."
+     },
+     "verb_forms_checked": [
+      [
+       "will",
+       "will"
+      ],
+      [
+       "help",
+       "help"
+      ]
+     ]
+    },
+    {
+     "id": "TA10-E4",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "不给时间词。朋友抱着一大摞书摇摇晃晃，你脱口而出——选：",
+     "options": [
+      "I will help you!",
+      "I helped you.",
+      "I help you every day."
+     ],
+     "answer": "I will help you!",
+     "reason": "没有计划、没有预兆、没有时间词，凭的就是当场乐意：这是 will 意愿残影最浓的出场方式。",
+     "source": {
+      "kind": "drill",
+      "note": "无提示操练：以「脱口而出」场景代替时间状语，句型与 TA-10 登记例 I'll get the door! 同构"
+     },
+     "verb_forms_checked": [
+      [
+       "will",
+       "will"
+      ],
+      [
+       "help",
+       "help"
+      ],
+      [
+       "help",
+       "helped"
+      ]
+     ]
+    },
+    {
+     "id": "TA10-E5",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "判断口气：I will help you with your homework. 这句里的 will，味道最接近哪一个？",
+     "options": [
+      "人已经在路上了",
+      "我乐意，我答应",
+      "时刻表上定死的"
+     ],
+     "answer": "我乐意，我答应",
+     "reason": "will 的老祖宗是「想要」：承诺式的 will 把说话人的立场带进了句子；「已经在路上」是 going to 的味道（TA-11），「定死」是时刻表的味道（TA-13）。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-10",
+      "sentence": "I will help you with your homework."
+     },
+     "verb_forms_checked": [
+      [
+       "will",
+       "will"
+      ],
+      [
+       "help",
+       "help"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-11",
+   "headline": "be going to 是「已经在路上」：从走向某地去做某事，变成预兆与打算",
+   "headline_kid": "going to 以前真的是「走过去做某事」：人已经上路了，所以它说的将来，是「已经有苗头、已经打算好」的将来",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA11-E1",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "抬头看：乌云压得低低的，风越来越大。选对「要下雨了」的说法：",
+     "options": [
+      "Look at the clouds! It is going to rain.",
+      "It will rain next month.",
+      "It rained yesterday."
+     ],
+     "answer": "Look at the clouds! It is going to rain.",
+     "reason": "预兆已经摆在眼前——going to 说的将来是「苗头已现」的将来，就像人已经上路了。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-11",
+      "sentence": "Look at the clouds! It is going to rain."
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "is"
+      ],
+      [
+       "rain",
+       "rain"
+      ],
+      [
+       "will",
+       "will"
+      ],
+      [
+       "rain",
+       "rained"
+      ]
+     ]
+    },
+    {
+     "id": "TA11-E2",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "周末去奶奶家，车票和礼物都准备好了——计划在说话之前就存在。选：",
+     "options": [
+      "We are going to visit Grandma this weekend.",
+      "We visited Grandma this weekend.",
+      "We visit Grandma on Sundays."
+     ],
+     "answer": "We are going to visit Grandma this weekend.",
+     "reason": "打算先于说话存在，是 going to 的计划义；人还没出发，但方向已经定下，像已经迈上了路。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-11",
+      "sentence": "We are going to visit Grandma this weekend."
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "are"
+      ],
+      [
+       "visit",
+       "visit"
+      ],
+      [
+       "visit",
+       "visited"
+      ]
+     ]
+    },
+    {
+     "id": "TA11-E3",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成「今晚我打算看场电影」这句话——注意 be 一个字都不能少：",
+     "build": {
+      "blocks": [
+       "watch",
+       "going to",
+       "I",
+       "a film tonight",
+       "am"
+      ],
+      "answer_order": [
+       "I",
+       "am",
+       "going to",
+       "watch",
+       "a film tonight"
+      ]
+     },
+     "answer": "I am going to watch a film tonight.",
+     "reason": "「已经在路上」的样子靠整个 be going to 构式：am 标出现在的站位，going to 指向前方的目的，watch 用原形。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-11",
+      "sentence": "I am going to watch a film tonight."
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "am"
+      ],
+      [
+       "watch",
+       "watch"
+      ]
+     ]
+    },
+    {
+     "id": "TA11-E4",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "不给时间词。他背起包、攥着车票，正往车站走——选对的句子：",
+     "options": [
+      "He is going to catch the train.",
+      "He catches the train at six.",
+      "He caught the train."
+     ],
+     "answer": "He is going to catch the train.",
+     "reason": "人已经在路上了：移动构式留下的正是这层意思——目的明明白白，事还没发生。catch 在此为词库动词「赶上（车）」义。",
+     "source": {
+      "kind": "drill",
+      "note": "无提示操练：以「人已上路」场景代替时间状语，构式与 TA-11 登记例同构"
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "is"
+      ],
+      [
+       "catch",
+       "catch"
+      ],
+      [
+       "catch",
+       "catches"
+      ],
+      [
+       "catch",
+       "caught"
+      ]
+     ]
+    },
+    {
+     "id": "TA11-E5",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "哪个场景是 will 的原型活儿、不该派 going to 上场？",
+     "options": [
+      "门铃响了，当场起身去开门",
+      "乌云压顶，眼看要下雨",
+      "暑假计划一个月前就排好了"
+     ],
+     "answer": "门铃响了，当场起身去开门",
+     "reason": "going to 管「有预兆/有计划」的将来；当场决定没有预兆也没有计划，是 will 的地盘。两者有重叠区，这里比的是原型场景（见本条范围说明）。",
+     "source": {
+      "kind": "drill",
+      "note": "原型对比操练，依据本条 claim 的 scope：以预兆/打算 vs 临时决定/预测呈现并明示重叠区"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-12",
+   "headline": "完成体的来历：从「我手里有一封写好的信」到「我已经写了信」",
+   "headline_kid": "很久以前，I have the letter written 是说「写好的信在我手里」；说着说着，重心从「信」滑到「我写过」，完成时就这样长出来的",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "TA12-E1",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "两句话排老幼：哪句是「老祖宗」，哪句是它演变出的现代完成时？按先老后新排：",
+     "build": {
+      "blocks": [
+       "I have written the letter.",
+       "I have the letter written."
+      ],
+      "answer_order": [
+       "I have the letter written.",
+       "I have written the letter."
+      ]
+     },
+     "answer": "I have the letter written. → I have written the letter.",
+     "reason": "老结构是 have + 宾语 + 分词（信在我手里）；经再分析，分词改属动词、have 虚化为助动词，才长出现代完成时。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-12",
+      "sentence": "I have the letter written."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "write",
+       "written"
+      ]
+     ]
+    },
+    {
+     "id": "TA12-E2",
+     "type": "scene_form_choice",
+     "decision": "form_assembly",
+     "prompt": "老句子 I have the letter written. 里，说话人心里想的重心是什么？",
+     "options": [
+      "写好的信（物）在我手里",
+      "我写信这件事做过了",
+      "写信的那个人"
+     ],
+     "answer": "写好的信（物）在我手里",
+     "reason": "所有格结果结构的本义是「持有某物的完成状态」：have 是实义的「有」，written 是在形容那封信。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-12",
+      "sentence": "I have the letter written."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "write",
+       "written"
+      ]
+     ]
+    },
+    {
+     "id": "TA12-E3",
+     "type": "scene_form_choice",
+     "decision": "form_assembly",
+     "prompt": "现代句 I have written the letter. 里，重心滑到了哪里？",
+     "options": [
+      "信还在不在手里",
+      "「我写过了」这件事本身",
+      "信写得好不好"
+     ],
+     "answer": "「我写过了」这件事本身",
+     "reason": "重心从「物」滑到「事」：the letter 变成 write 的宾语，have 只剩助动词的工作——这正是完成时的出生过程。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-12",
+      "sentence": "I have written the letter."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "write",
+       "written"
+      ]
+     ]
+    },
+    {
+     "id": "TA12-E4",
+     "type": "scene_form_choice",
+     "decision": "form_assembly",
+     "prompt": "拼现代完成时：I have ___ the letter. 空里该放哪个形状？",
+     "options": [
+      "written",
+      "wrote",
+      "writing"
+     ],
+     "answer": "written",
+     "reason": "再分析之后，紧跟 have 的必须是过去分词 written；wrote 是过去式的位置，writing 是进行体的位置——来历故事解释形状，不代替现代规则（现代定义见 TA-05）。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-12",
+      "sentence": "I have written the letter."
+     },
+     "verb_forms_checked": [
+      [
+       "write",
+       "written"
+      ],
+      [
+       "write",
+       "wrote"
+      ],
+      [
+       "write",
+       "writing"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-13",
+   "headline": "时刻表上的将来用现在时：因为时刻表把未来写成了「已定的事实」",
+   "headline_kid": "火车时刻表是早就定死的，像事实一样摆在那儿，所以说 The train leaves at six——用现在时，是借它的「铁板钉钉感」",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA13-E1",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "三句里，哪一句用的是「时刻表式现在时」在说将来的事？",
+     "options": [
+      "The train leaves at six.",
+      "It will rain tomorrow.",
+      "We are going to visit Grandma."
+     ],
+     "answer": "The train leaves at six.",
+     "reason": "火车的出发时间早被印进时刻表、写成了已定的事实，所以借现在时 leaves 编码；另两句分别借 will 和 going to。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-13",
+      "sentence": "The train leaves at six."
+     },
+     "verb_forms_checked": [
+      [
+       "leave",
+       "leaves"
+      ],
+      [
+       "will",
+       "will"
+      ],
+      [
+       "rain",
+       "rain"
+      ],
+      [
+       "be",
+       "are"
+      ],
+      [
+       "visit",
+       "visit"
+      ]
+     ]
+    },
+    {
+     "id": "TA13-E2",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "Our lesson starts at eight tomorrow. 明明是明天的课，starts 为什么用现在时？",
+     "options": [
+      "因为课正在上",
+      "因为课程表把明天的课预先写成了已定的事实",
+      "因为 starts 是过去式"
+     ],
+     "answer": "因为课程表把明天的课预先写成了已定的事实",
+     "reason": "一般现在时的核心语义包含「图式化的、已确立的事实」；日程表把未来事件制度化，借的正是这股铁板钉钉感。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-13",
+      "sentence": "Our lesson starts at eight tomorrow."
+     },
+     "verb_forms_checked": [
+      [
+       "start",
+       "starts"
+      ]
+     ]
+    },
+    {
+     "id": "TA13-E3",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "三句里哪一句不成立？",
+     "options": [
+      "The film begins at seven tonight.",
+      "It rains tomorrow.",
+      "Our lesson starts at eight tomorrow."
+     ],
+     "answer": "It rains tomorrow.",
+     "reason": "天气没有被写进任何时刻表，不是已确立的事实，借不到现在时——本条范围说明登记 *It rains tomorrow 不成立；预言天气要用 will 或 going to。",
+     "source": {
+      "kind": "drill",
+      "note": "依据本条 claim 的 scope 登记反例 *It rains tomorrow 设计；另两项为本条登记例"
+     },
+     "verb_forms_checked": [
+      [
+       "begin",
+       "begins"
+      ],
+      [
+       "rain",
+       "rains"
+      ],
+      [
+       "start",
+       "starts"
+      ]
+     ]
+    },
+    {
+     "id": "TA13-E4",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成节目单上的这句话——动词就用现在时，不请 will 来：",
+     "build": {
+      "blocks": [
+       "tonight",
+       "begins",
+       "The film",
+       "at seven"
+      ],
+      "answer_order": [
+       "The film",
+       "begins",
+       "at seven",
+       "tonight"
+      ]
+     },
+     "answer": "The film begins at seven tonight.",
+     "reason": "节目单语境里，未来的开演时间是已排定的事实，动词用一般现在时 begins（三单 -s），这是 futurate present 的固定积木。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-13",
+      "sentence": "The film begins at seven tonight."
+     },
+     "verb_forms_checked": [
+      [
+       "begin",
+       "begins"
+      ]
+     ]
+    },
+    {
+     "id": "TA13-E5",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "墙上贴着今晚的节目单，你指着它说电影几点开演——目标句里不出现 tonight，选：",
+     "options": [
+      "The film begins at seven.",
+      "The film will begin when we are ready.",
+      "The film began at seven."
+     ],
+     "answer": "The film begins at seven.",
+     "reason": "节目单在墙上就是「事实」的来源，场景本身代替了时间词：已排定的节目用现在时 begins。",
+     "source": {
+      "kind": "drill",
+      "note": "无提示操练：以墙上节目单场景代替时间状语，句型与 TA-13 登记例同构"
+     },
+     "verb_forms_checked": [
+      [
+       "begin",
+       "begins"
+      ],
+      [
+       "will",
+       "will"
+      ],
+      [
+       "begin",
+       "begin"
+      ],
+      [
+       "be",
+       "are"
+      ],
+      [
+       "begin",
+       "began"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-14",
+   "headline": "讲故事可以把过去拉到眼前：历史现在时是「演」不是「说错」",
+   "headline_kid": "讲故事讲到紧张处，可以把过去的事当成正在发生来演——So he opens the door ...——听的人像站在现场一样",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "TA14-E1",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "故事讲到最紧张的地方：So he opens the door and sees a big dog! 这里的 opens 是现在时——是说错了，还是故意的？",
+     "options": [
+      "说错了，过去的故事必须全用过去时",
+      "故意的：把过去的事拉到眼前「演」给大家看"
+     ],
+     "answer": "故意的：把过去的事拉到眼前「演」给大家看",
+     "reason": "历史现在时是叙事手法：把事件放进虚拟的说话现在，提高临场感；它出现在故事高潮段，不是时态错误。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-14",
+      "sentence": "So he opens the door and sees a big dog!"
+     },
+     "verb_forms_checked": [
+      [
+       "open",
+       "opens"
+      ],
+      [
+       "see",
+       "sees"
+      ]
+     ]
+    },
+    {
+     "id": "TA14-E2",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "He walked into the room. Suddenly, he hears a noise! 第二句的 hears 混在过去故事里，为什么不算「时态漂移」病例？",
+     "options": [
+      "因为 hears 是过去式",
+      "因为这是高潮处故意的切换：过去时铺垫、现在时直播，切换本身就是分段标记",
+      "因为 noise 是单数"
+     ],
+     "answer": "因为这是高潮处故意的切换：过去时铺垫、现在时直播，切换本身就是分段标记",
+     "reason": "病例里的漂移是无意识地丢了过去基调（见 TA-15 病例）；历史现在时是叙事者在高潮点主动换镜头——一个是失手，一个是手法。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-14",
+      "sentence": "He walked into the room. Suddenly, he hears a noise!"
+     },
+     "verb_forms_checked": [
+      [
+       "walk",
+       "walked"
+      ],
+      [
+       "hear",
+       "hears"
+      ]
+     ]
+    },
+    {
+     "id": "TA14-E3",
+     "type": "no_clue",
+     "decision": "viewpoint",
+     "prompt": "不给时间词。听故事时，哪一句一听就是「演」出来的高潮句？",
+     "options": [
+      "So he opens the door and sees a big dog!",
+      "He opened the door yesterday afternoon.",
+      "He opens the door every day at seven."
+     ],
+     "answer": "So he opens the door and sees a big dog!",
+     "reason": "没有时间词帮忙，靠的是语境位置：故事高潮 + 现在时形态 = 历史现在时；第二句是老实叙述，第三句是日常习惯。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-14",
+      "sentence": "So he opens the door and sees a big dog!"
+     },
+     "verb_forms_checked": [
+      [
+       "open",
+       "opens"
+      ],
+      [
+       "see",
+       "sees"
+      ],
+      [
+       "open",
+       "opened"
+      ]
+     ]
+    },
+    {
+     "id": "TA14-E4",
+     "type": "form_building",
+     "decision": "viewpoint",
+     "prompt": "把三张故事卡排成讲故事的顺序（平静铺垫 → 走进房间 → 高潮直播）：",
+     "build": {
+      "blocks": [
+       "Suddenly, he hears a noise!",
+       "It was a quiet night.",
+       "He walked into the room."
+      ],
+      "answer_order": [
+       "It was a quiet night.",
+       "He walked into the room.",
+       "Suddenly, he hears a noise!"
+      ]
+     },
+     "answer": "It was a quiet night. → He walked into the room. → Suddenly, he hears a noise!",
+     "reason": "叙事的默认是过去时铺垫（was、walked），讲到高潮才切换成现在时 hears——顺序对了，切换的分段作用才看得出来。",
+     "source": {
+      "kind": "drill",
+      "note": "故事卡排序操练；后两卡为本条登记例原句拆分，第一卡为连接性操练句"
+     },
+     "verb_forms_checked": [
+      [
+       "be",
+       "was"
+      ],
+      [
+       "walk",
+       "walked"
+      ],
+      [
+       "hear",
+       "hears"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-15",
+   "headline": "汉语靠词和语境表时间，英语靠动词变形：每个英语句子被迫选时",
+   "headline_kid": "汉语说「昨天、明天」几个词就够了，时间在词里；英语把时间藏在动词的形状里，每说一句都要选一次——这就是中国孩子总漏 -ed 的原因",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA15-E1",
+     "type": "trap_spotting",
+     "decision": "form_assembly",
+     "prompt": "病例原文（初二学生作文）：「Yesterday I watch a movie.」句中有 yesterday，动词却没换形状——错在哪儿，应该怎么改？",
+     "case_error": "Yesterday I watch a movie.",
+     "case_error_type": "ed_omission",
+     "case_learner_stage": "初二",
+     "answer": "Yesterday I watched a movie.",
+     "reason": "汉语靠 yesterday 这个词就够了，英语还必须把时间放进动词形状：watch 要加上 -ed 变成 watched（病例分类：规则动词过去式 -ed 遗漏）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-005"
+     },
+     "verb_forms_checked": [
+      [
+       "watch",
+       "watch"
+      ],
+      [
+       "watch",
+       "watched"
+      ]
+     ]
+    },
+    {
+     "id": "TA15-E2",
+     "type": "trap_spotting",
+     "decision": "form_assembly",
+     "prompt": "病例原文（初二学生作文）：「They visit the museum last week.」同样的问题又出现了一次——应该怎么改？",
+     "case_error": "They visit the museum last week.",
+     "case_error_type": "ed_omission",
+     "case_learner_stage": "初二",
+     "answer": "They visited the museum last week.",
+     "reason": "last week 只说了时间，形状还得动词自己扛：visit → visited。汉语是词汇型表时间，英语是形态型——每个句子被迫选时、变形。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-006"
+     },
+     "verb_forms_checked": [
+      [
+       "visit",
+       "visit"
+      ],
+      [
+       "visit",
+       "visited"
+      ]
+     ]
+    },
+    {
+     "id": "TA15-E3",
+     "type": "trap_spotting",
+     "decision": "form_assembly",
+     "prompt": "病例原文：「Last month, my family go to the beach.」last month 已经把时间说得清清楚楚，句子为什么还是错的？应该怎么改？",
+     "case_error": "Last month, my family go to the beach.",
+     "case_error_type": "bare_verb_past",
+     "case_learner_stage": "高一至高三",
+     "answer": "Last month, my family went to the beach.",
+     "reason": "英语没有「时间词在场就可以免变形」的规矩：go 必须换上过去形 went。这正是中国学习者时态错误以「形式缺失」为主的典型形态（病例分类：裸动词表过去）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-003"
+     },
+     "verb_forms_checked": [
+      [
+       "go",
+       "go"
+      ],
+      [
+       "go",
+       "went"
+      ]
+     ]
+    },
+    {
+     "id": "TA15-E4",
+     "type": "no_clue",
+     "decision": "form_assembly",
+     "prompt": "把 I played football yesterday. 里的 yesterday 拿走——句子还知道自己是「过去」吗？靠什么知道？",
+     "options": [
+      "靠 played 的形状",
+      "靠猜",
+      "不知道了，只能再加时间词"
+     ],
+     "answer": "靠 played 的形状",
+     "reason": "英语把时间藏在动词形状里：去掉时间词，played 的 -ed 还在说话；这正是它和汉语最不一样的地方。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-15",
+      "sentence": "I played football yesterday."
+     },
+     "verb_forms_checked": [
+      [
+       "play",
+       "played"
+      ]
+     ]
+    },
+    {
+     "id": "TA15-E5",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成「明天我要去上学」这句话，并留意：谈将来，动词那一侧也要做选择，不能只扔一个 tomorrow：",
+     "build": {
+      "blocks": [
+       "tomorrow",
+       "go",
+       "I",
+       "to school",
+       "will"
+      ],
+      "answer_order": [
+       "I",
+       "will",
+       "go",
+       "to school",
+       "tomorrow"
+      ]
+     },
+     "answer": "I will go to school tomorrow.",
+     "reason": "形态型语言的规矩：每个限定分句都必须选时。tomorrow 是词，will 是动词侧的选择——两边都做了，句子才完整。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-15",
+      "sentence": "I will go to school tomorrow."
+     },
+     "verb_forms_checked": [
+      [
+       "will",
+       "will"
+      ],
+      [
+       "go",
+       "go"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-16",
+   "headline": "「了 / 过」≠ 现在完成时：对得上的只有一部分",
+   "headline_kid": "汉语的「了」是「做成了」，「过」是「经历过」；英语完成时管的是「和现在有牵连」——三个人长得有点像，但不是同一个人",
+   "item_count": 5,
+   "items": [
+    {
+     "id": "TA16-E1",
+     "type": "trap_spotting",
+     "decision": "anchor_R",
+     "prompt": "病例原文：「The number of cars increase rapidly in recent years.」in recent years 说的是「从过去几年连到现在」，动词却只用了一般现在时——错在哪儿，应该怎么改？",
+     "case_error": "The number of cars increase rapidly in recent years.",
+     "case_error_type": "perfect_le_guo",
+     "case_learner_stage": "高一",
+     "answer": "The number of cars has increased rapidly in recent years.",
+     "reason": "「近年来」的持续义正是完成时的地盘，汉语没有现成对应格，学生就漏掉了 has increased：这是「了/过」与完成时错位的一种典型形态（病例分类：该用完成时处误用一般现在时）。",
+     "source": {
+      "kind": "case",
+      "ref": "VEC-011"
+     },
+     "note": "increase/increased 不在 wordbank 与 verb_forms_completion 收录范围内；本例动词形式以病例来源原文为准（逐字病例，来源可复核），不由词库背书。",
+     "verb_forms_checked": []
+    },
+    {
+     "id": "TA16-E2",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "「我去过北京」——这是汉语「过」的地盘，它和英语完成时对得上吗？选对的对应句：",
+     "options": [
+      "I have been to Beijing.",
+      "I have lost my key."
+     ],
+     "answer": "I have been to Beijing.",
+     "reason": "经历义是重叠区：「过」和经历完成时基本对得上。但完成时不等于「过」——丢钥匙那句靠的是结果痕迹，不是经历。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-16",
+      "sentence": "I have been to Beijing."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "be",
+       "been"
+      ],
+      [
+       "lose",
+       "lost"
+      ]
+     ]
+    },
+    {
+     "id": "TA16-E3",
+     "type": "scene_form_choice",
+     "decision": "anchor_R",
+     "prompt": "「我丢了钥匙」里的「了」，为什么在这里也能对上完成时 I have lost my key？",
+     "options": [
+      "因为「了」就等于完成时",
+      "因为印子还在：钥匙丢了，现在进不了门——理由是现时相关，不是「了」",
+      "因为钥匙是昨天丢的"
+     ],
+     "answer": "因为印子还在：钥匙丢了，现在进不了门——理由是现时相关，不是「了」",
+     "reason": "「了」管的是做成没做成，完成时管的是和现在有没有牵连；这句只是碰巧同向。把「了=完成时」当公式，就会在点名昨天时翻车（TA-06）。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-16",
+      "sentence": "I have lost my key."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "lose",
+       "lost"
+      ]
+     ]
+    },
+    {
+     "id": "TA16-E4",
+     "type": "no_clue",
+     "decision": "anchor_R",
+     "prompt": "不给英语时间词。「我们在这儿住了三年了，到现在还住着」——汉语没有现成对应格，英语选哪个？",
+     "options": [
+      "We have lived here for three years.",
+      "We live here for three years.",
+      "We lived here three years ago."
+     ],
+     "answer": "We have lived here for three years.",
+     "reason": "持续义是错位最深的一格：从三年前连到现在，必须由完成时 have lived 把线拉通；只用 live，线就断在现在。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-16",
+      "sentence": "We have lived here for three years."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "live",
+       "lived"
+      ],
+      [
+       "live",
+       "live"
+      ]
+     ]
+    },
+    {
+     "id": "TA16-E5",
+     "type": "form_building",
+     "decision": "anchor_R",
+     "prompt": "给三张「脸」配上各自管的事（按顺序配对）：",
+     "build": {
+      "blocks": [
+       "过",
+       "做成 / 实现",
+       "perfect（完成时）",
+       "经历",
+       "了",
+       "和现在有牵连"
+      ],
+      "answer_order": [
+       "了",
+       "做成 / 实现",
+       "过",
+       "经历",
+       "perfect（完成时）",
+       "和现在有牵连"
+      ]
+     },
+     "answer": "了 → 做成/实现；过 → 经历；perfect → 和现在有牵连",
+     "reason": "三张脸只是部分重叠：经历一行能对上，持续、近况等行各站各的——要一张一张对，不能整队搬。",
+     "source": {
+      "kind": "drill",
+      "note": "对位配对操练，依据本条机制 beat「三张脸对位」与 claim 的部分重叠口径"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-17",
+   "headline": "学时态的顺序：先把高频动词的过去式用熟，再回头看系统表",
+   "headline_kid": "先学会说 went、saw、had 这些天天用的，讲故事讲顺了，时态的大表自己会慢慢浮出来",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "TA17-E1",
+     "type": "scene_form_choice",
+     "decision": "form_assembly",
+     "prompt": "We went to the park yesterday. 里的 went 是怎么来的？",
+     "options": [
+      "go 加上 -ed 推出来的",
+      "整个儿记住的（整存）",
+      "从 want 变来的"
+     ],
+     "answer": "整个儿记住的（整存）",
+     "reason": "went 没有规则可推；它天天用、频率最高，所以最先被整块存进脑子，成为过去式图式的锚点。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-17",
+      "sentence": "We went to the park yesterday."
+     },
+     "verb_forms_checked": [
+      [
+       "go",
+       "went"
+      ]
+     ]
+    },
+    {
+     "id": "TA17-E2",
+     "type": "scene_form_choice",
+     "decision": "form_assembly",
+     "prompt": "I saw a bird in the tree. 里的 saw 是哪个动词的过去式？",
+     "options": [
+      "see",
+      "look",
+      "watch"
+     ],
+     "answer": "see",
+     "reason": "saw 是 see 的过去式整存形；先把 saw 用熟，日后看系统表时它就是现成的锚点例。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-17",
+      "sentence": "I saw a bird in the tree."
+     },
+     "verb_forms_checked": [
+      [
+       "see",
+       "saw"
+      ]
+     ]
+    },
+    {
+     "id": "TA17-E3",
+     "type": "form_building",
+     "decision": "form_assembly",
+     "prompt": "排成「她在家吃了早饭」这句话——had 是 have 的整存过去式：",
+     "build": {
+      "blocks": [
+       "at home",
+       "had",
+       "She",
+       "breakfast"
+      ],
+      "answer_order": [
+       "She",
+       "had",
+       "breakfast",
+       "at home"
+      ]
+     },
+     "answer": "She had breakfast at home.",
+     "reason": "went、saw、had 三个高频整存形凑齐，过去式的图式就开始成形——先用熟词，再回头看表。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-17",
+      "sentence": "She had breakfast at home."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "had"
+      ]
+     ]
+    },
+    {
+     "id": "TA17-E4",
+     "type": "no_clue",
+     "decision": "form_assembly",
+     "prompt": "小故事链，没有一个时间词：早上妈妈做了早饭，我吃了两个鸡蛋、喝了牛奶——全靠动词形状讲过去。选对的一组：",
+     "options": [
+      "I ate two eggs and drank milk.",
+      "I eat two eggs and drink milk."
+     ],
+     "answer": "I ate two eggs and drank milk.",
+     "reason": "ate、drank 都是整存的不规则过去式；没有时间词时，故事的「过去」全靠这些形状扛（与 TA-15 同理）。",
+     "source": {
+      "kind": "drill",
+      "note": "无提示故事链操练；ate/drank 为词库与形式表收录的高频不规则过去式"
+     },
+     "verb_forms_checked": [
+      [
+       "eat",
+       "ate"
+      ],
+      [
+       "drink",
+       "drank"
+      ],
+      [
+       "eat",
+       "eat"
+      ],
+      [
+       "drink",
+       "drink"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "unit_id": "TA-18",
+   "headline": "「镜头讲法」教时态有实验支持，但证据强度要如实说：方向有据、低龄待验",
+   "headline_kid": "把完成时讲成「看痕迹」而不是背表格，试过的大哥哥姐姐学得更好；轮到小学生行不行，还要继续看",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "TA18-E1",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "关于「用看痕迹的镜头讲法教完成时」，哪种说法是诚实的？",
+     "options": [
+      "已经被证明对小学生最有效",
+      "在哥哥姐姐（青少年和成人）身上试过：有的实验更好、有的差不多；小学生身上还没试过",
+      "背表格一点用都没有"
+     ],
+     "answer": "在哥哥姐姐（青少年和成人）身上试过：有的实验更好、有的差不多；小学生身上还没试过",
+     "reason": "现有证据是两项阳性、一项持平，且被试全是青少年与成人；用于小学是合理外推，必须标「待验」。",
+     "source": {
+      "kind": "drill",
+      "note": "依据本条 claim 与其内建例外（Bielak & Pawlak 2011 持平结果）设计"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "TA18-E2",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "广告词：「用镜头学时态，成绩一定翻倍！」这句哪里吹牛了？",
+     "options": [
+      "它把「待验」说成了「肯定」",
+      "镜头讲法完全是编的",
+      "广告里不能画图"
+     ],
+     "answer": "它把「待验」说成了「肯定」",
+     "reason": "镜头讲法有实验支持的方向，但证据强度撑不起「一定」；诚实标注证据边界，正是本条存在的意义。",
+     "source": {
+      "kind": "drill",
+      "note": "广告语为操练刺激（非学习者病例），依据本条 scope「不得宣称已被证明更优」设计"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "TA18-E3",
+     "type": "form_building",
+     "decision": "viewpoint",
+     "prompt": "把三个实验和它们的结果配对（按顺序）：",
+     "build": {
+      "blocks": [
+       "Bielak & Pawlak (2011)",
+       "阳性（认知讲法更好）",
+       "Drożdż (2011)",
+       "持平（和传统教法差不多）",
+       "Maghsoudi & Khodamoradi (2024)",
+       "阳性（认知讲法更好）"
+      ],
+      "answer_order": [
+       "Drożdż (2011)",
+       "阳性（认知讲法更好）",
+       "Maghsoudi & Khodamoradi (2024)",
+       "阳性（认知讲法更好）",
+       "Bielak & Pawlak (2011)",
+       "持平（和传统教法差不多）"
+      ]
+     },
+     "answer": "Drożdż (2011) → 阳性；Maghsoudi & Khodamoradi (2024) → 阳性；Bielak & Pawlak (2011) → 持平",
+     "reason": "两阳性一持平并存，是「证据内部不一致」的典型形态；只挑阳性讲，就是不诚实。",
+     "source": {
+      "kind": "drill",
+      "note": "配对内容逐项取自本条 claim 的 evidence 登记"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "TA18-E4",
+     "type": "scene_form_choice",
+     "decision": "viewpoint",
+     "prompt": "给 I have lost my key. 这节课选一句诚实的开场白：",
+     "options": [
+      "这个讲法保证你一学就会",
+      "我们用「看痕迹」来讲它——这个讲法在年长的学生身上试过有用；轮到你们，我们认真用、继续看",
+      "这个讲法是错的，别学"
+     ],
+     "answer": "我们用「看痕迹」来讲它——这个讲法在年长的学生身上试过有用；轮到你们，我们认真用、继续看",
+     "reason": "标本句还是这句，讲法照样用；诚实只体现在把证据强度说准：有据可用，但不吹「已被证明更优」。",
+     "source": {
+      "kind": "law_example",
+      "ref": "TA-18",
+      "sentence": "I have lost my key."
+     },
+     "verb_forms_checked": [
+      [
+       "have",
+       "have"
+      ],
+      [
+       "lose",
+       "lost"
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}
