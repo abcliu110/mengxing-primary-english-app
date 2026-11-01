@@ -1,0 +1,61 @@
+# T15 最终回灌包 · 完成记录（2026-11-01）
+
+## 结论
+最终包（149 条）已生成、独立校验全过、副本预演全过，并已**正式回灌仓库主文件**
+（用户改定交付方式：由开发侧直接执行，不等双击）。一键批处理三件套照常产出作备用件。
+未做任何 git 操作；工作区待提交状态见文末。
+
+## 差异集实测数字（549 幕全量重建比对）
+- 字节完全相同（跳过）：191 幕
+- old-pin 重建字节相异：358 幕 → 语义指纹复核后剔除 **209 幕纯噪声**
+  （esbuild 压缩变量名在 app 原构建与现行构建间漂移，内容同、字节异；
+  指纹 = 有序字符串字面量列表 + 数字字面量集 + 属性名集，三项全等判噪声；
+  剔除清单见 T15_final_pack/noise_dropped.json）
+- **最终包 149 条**：场景级差异 134（118 指纹实差 + 16 换代/成员类实差）+ 纯引擎换代 15
+- 前置包 T15_pack 的 93 条逐 elementId 对账：**全部包含，零丢失**
+
+## 关键工艺修正（相对 recipe §3）
+app 现行两台引擎（1602f4a3…/2d47bbdc…）均不含 T16 元素库（无 drawElement/
+assertPourWindow），钉旧引擎会让元素场景运行时缺成员。故本包自带新引擎
+`ceafddcd6cbccc15`（sha1(正文)[:16]，正文 1,107,015 字符，含 props 元素库），
+以 sharedNewBlobs 一次下发，149 条全部钉此引擎；未收录 400 幕原载荷/原引擎不动。
+换代集（内容无字节差也收录）：poly 头图 BOOK 6 幕、auto 金句卡去重豁免受害 12 幕
+（ITEMS 精确模拟 + P2-A 名单交叉核对；另 2 幕 bamboo_tree_1/ze_same_1 因 B4 改源走场景级收录）、
+共享成员缺失幕（boundedness 家族、fr01×4、hd_g14_1、tense_matrix×4 等，由成员测试检出）。
+
+## 验证结果
+- 独立校验（t15_final_verify.py）：FAILS **0**——严格 JSON 解析、149 条 payload sha、
+  新引擎 hash 约定、全部 mc/mnc 对装配文本复核、分层抽样 8 幕重建**全部字节一致**。
+- 副本预演（~/workspace/t15_rehearsal/）：VM 无 PowerShell，按任务书口径以
+  apply_pack.py（与 回灌.ps1 同一校验逻辑的 python 镜像）执行；.ps1 已逐行静态复核
+  与镜像逻辑对齐（此限制在此明示）。预演产物验证：
+  - 549 幕装配（app 挂载口径）零 `@@B:` 残留、零短装配；新引擎 blob 在位（blob 总数 370→378）
+  - 抽查 5 幕：boundedness_1（drawElement/TEAPOT/「一摊·一个个」构式讲解/米粒例外句）、
+    ze_pronoun（口诀两行 + 💡 触发行 + 新引擎 isGold 判定在位）、poly g1_002（drawHinged）、
+    phonology_2（嘶嘶相撞新讲法）、fr01_1（BOOK 闭合档）——均正确
+    （注：bundle 内中文以 \uXXXX 转义存储，抽查已按解码口径执行）
+  - DB 区骨架逐字节一致；verb_form_of 计数 58；wlPosMatch 词元口径（split("/")+trim）在位
+
+## 正式回灌（仓库主文件，2026-11-01 执行）
+- 文件：~/workspace/mengxing-work/萌星小学英语_最终合并版.html
+- 回灌前：sha256 `1b46ca4693d98f5cf0bd8f72ddeb1cb784301384e96abb26a227e70b808a043d`，17,254,508 B
+- 回灌后：sha256 `8138da05285f5d2aa015da8511f6c369811fa89089fe182519a00f58e8f568c1`，18,436,090 B
+- 实际替换 **149 幕**，插入 blob 8 个（新引擎 1 + 新图片 7）；回灌后文件与预演产物**逐字节一致**
+- 全量自检在换入前通过（549 gunzip、逐条 old-sha 前置校验、mc/mnc、DB 骨架、两项 DB 锚点）
+- 回滚备份：~/workspace/t15_rehearsal/萌星小学英语_最终合并版_备份_formal_20261101_034046.html
+  （= 回灌前原件，sha 同上）
+
+## 交付物
+- 仓库：docs/whiteboard/model/updates/T15_final_pack/（payloads.json 2,151,260 B、manifest.md、
+  recipe.md、三件套 回灌.bat/回灌.ps1/README_回灌说明.md、noise_dropped.json）
+- 用户取用：~/workspace/your_files/t15_final/（payloads.json + 回灌.bat + 回灌.ps1 + README_回灌说明.md）
+
+## 遗留与说明
+- docs/whiteboard/v5/font_chars.txt 为未提交改动：构建新引擎前以 gen_font_chars.py 再生
+  （3383 字，补 T16 新字），属本批必要前置，请主会话随本批一并提交。
+- 工作区状态（未提交）：主文件 M、font_chars.txt M、T15_final_pack/ 新增目录、本记录新增。
+- .ps1 未在真实 PowerShell 环境运行过（VM 无 pwsh/powershell）；其逻辑与已实跑的
+  python 镜像逐项对齐并经静态复核，用户侧双击为备用路径（正式回灌已完成，无需再跑；
+  若在已回灌文件上再跑，old-sha 校验会中止并指名场景，属预期保护行为）。
+- 工具链留存于 ~/workspace/t15-tools/（t15_packgen.py / t15_final_gen.py /
+  t15_final_filter.py / t15_final_writepack.py / t15_final_verify.py / apply_pack.py）。
