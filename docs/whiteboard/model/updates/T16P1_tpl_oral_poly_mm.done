@@ -1,0 +1,74 @@
+# T16 P1 模板替换车道 B 完成记录：oral / poly / mindmap 三构建器
+
+日期：2026-11-01
+范围：渲染层元素化（台词/ITEMS/KNOW 逐字零漂移，证据见 §5）。**全车道只改 1 个文件**：`docs/whiteboard/v5/scenes/poly.js`；oral.js、auto.js（含 mindmapBuild）、props.js、全部场景文件一字未动。未做 git 操作（提交留主会话）。构建一律 build_stdout 暂存验大小（产物在 ~/workspace/build_t16p1b/out/，未覆盖任何交付件）。
+
+## 1. 测绘表（三构建器 × 7 类库元素道具）
+
+测绘脚本 ~/workspace/build_t16p1b/survey.mjs（口径与 parsePoly/parseOral 同源正则 + GROUPS 求值）。
+
+### oral（oralBuild，scenes/oral.js；144 幕）
+模板渲染路径全集：人物 = cast 位图帧（K.actor）；气泡 = roundRect+文本（K.prop）；标签/核心句卡 = 文本。**没有任何路径以 emoji 字形或私有代码绘制壶/杯/刀/苹果/面包/书/箱**。场景文件 144/144 为纯数据（oralBuild 调用 + ITEMS/ACTS），私有绘制代码 0 处；台词文本中 7 类道具 emoji 出现 0 次（角色 emoji 👦👧 与 💡 提示符属文本内容，非道具绘制）。→ **无替换对象，oral.js 不动**。
+
+### poly（polyBuild，scenes/poly.js；51 幕 + 变体模板 1 件）
+模板中唯一的道具字形绘制路径 = 头图 emoji 的 K.prop（左卡静置 + 顺桥滑移，font 120px fillText）。51 幕头图 emoji 分布（每词 3 幕）：📖 book→**BOOK 可映射**、📚 study→**BOOK 可映射**；其余 15 词无库元素（💧 water、🎮 play、🏞️ park、🪁 fly、🏃 run、🥶 cold、👵 kind、➡️ right、🖍️ draw、🟠 orange、💡 light、✨ clean、🔄 turn、🔄 watch、✉️ letter）。另：变体模板 hd_poly_g4_157_v2.js（lightTwinsBuild，light 三幕专用，T12-B1b 从 poly 剥离）有自有 emoji 路径，头图 💡——**灯元素未建**（盘点 §2a 状态族未入元素库），不在本轮。
+→ **替换对象 = poly.js 头图路径，命中 6 幕**（hd_poly_g1_002_1/2/3、hd_poly_g4_174_1/2/3）。
+
+### mindmap（mindmapBuild，scenes/auto.js 内；25 幕 / 398 叶）
+叶子渲染 = K.text 写整串「emoji+词」（emoji 内嵌于词条文本串、由写字引擎随词写出）；开场「找不同」卡 = K.prop 以 170px fillText 画叶子 pic。含 7 类道具 emoji 的叶子共 10 个 / 7 幕：mm1 📖 book、mm13 📚 read、mm19 📚 study、mm21 📕 thick、mm5 📦 in / 📕 on、mm6 🍎 apple / 🍞 bread / 🥛 milk、mm7 📖 studies；找不同卡含道具 pic 的 2 幕：mm1（📖 为混入卡）、mm6（🍎 为同伙卡）。
+→ **全部按 §4 口径不换，auto.js 不动**。
+
+## 2. 替换清单（唯一替换：poly 头图路径 → BOOK 元素消费）
+
+`scenes/poly.js` 三处改动：
+1. 新增 import `{ BOOK, drawHinged, assertBookGeometry } from '../props/props.js'` + 映射表 `EMOJI_ELEMENT = { '📖': BOOK, '📚': BOOK }`（仅已建元素；未映射 emoji 走原字形路径，代码逐字保留）。
+2. polyBuild 开头：命中映射时构建期执行 `assertBookGeometry(BOOK)`（内含铰接刚体断言；不过抛错停建）。6 幕实跑通过（coverLen 实算 116 = design）。
+3. 滑移 K.prop 内新增 drawHead 分支：命中时以 drawHinged 画元素本体，未命中时原 fillText 一字不变。时序、位置（emo 静置点、桥弧线、R 起滑、1.6s 时长、✨ 落点标记）全部沿用原参数。
+
+剖面与缩放的定夺（有帧证据，非拍脑袋）：
+- 初版用 closed 剖面：密帧显示封面整块棕色矩形盖满页块，读作「箱子/色块」不读作书（帧 shots_gen/hd_poly_g1_002_1_8.0.png 之 closed 版已废弃）→ 改 **open 剖面**（原字形 📖 本就是摊开的书；封面绕书脊铰链打开、页块带字行朝向观众）。
+- open 剖面 bbox 由定义实算（hingeTipAt 回算）：x∈[-131.2,116]、y∈[-101.5,74]、中心 (-7.6,-13.8)；缩放 **0.65**（≈ 基线字形墨迹 113×83 的占位；且滑移峰点书底 257 不触桥心文字 320+——0.76 版峰点下沿 323 擦线，故降档）。最终帧：书居卡中央、与释义/例句无重叠，落点 ✨ 位置不变。
+
+## 3. 停单 / 不换清单（套不进或口径不符，不硬套）
+
+| 对象 | 处置 | 理由 |
+|---|---|---|
+| mindmap 全部叶子（含 10 个道具叶） | 不换 | 叶 = 词条配图：emoji 内嵌于词条文本串随写字引擎写出，抽换即改文本串（违零漂移）且无任何因果动作（不倒/不切/不开合） |
+| mindmap 找不同卡 pic（mm1 📖、mm6 🍎 等） | 不换 | 同为词卡图示放大；且四卡须风格齐一——单卡换矢量元素会使「找不同」按画风而非语义分类解题（mm1 的混入卡恰是 📖、mm6 的同伙卡恰含 🍎），教具逻辑反受其害 |
+| poly light 变体（hd_poly_g4_157_v2.js）💡 | 不换 | 灯无库元素（状态族未建）；且该变体为 T12-B1b 裁定剥离的专用版式 |
+| poly 其余 15 词头图 | 不换 | 无对应库元素（water/play/park/… 均不在 7 类内或元素未建） |
+| 📚（study 三幕）→ BOOK 单本 | 换（已换） | 📚 为书摞字形，库内只有单本 BOOK；以单本摊开书表「书/研读」与其本幕文案「研读课本」一致，口径在此登记 |
+| oral 全部 | 无对象 | 测绘证明无道具绘制路径（§1） |
+
+三构建器内**不存在切/倒/装的渲染幕**（poly 唯一的道具运动是顺桥滑移），故「涉及切/倒/装的幕密帧目检」无实例；以滑移密帧替代（§5）。
+
+## 4. 重建与零漂移证据
+
+- **重建**：可构建幕全量重建 **114/114 成功**（poly 51 + mindmap 25 + oral 38），exit 全 0、体积 poly 1.09–1.10 MB / mindmap 1.11 MB / oral 1.15–1.23 MB，无异常小件。产物 ~/workspace/build_t16p1b/out/，清单 build_log.txt。
+- **oral 106 幕不可构建 = 仓库既有状态，与本车道无关**：其精灵库 hdo*.js 在 git 中 0 跟踪（盘点语义坑 #8 同源）；改动前基线构建 hd_oral_sc01_1 即以同一缺库错误失败（证据 base/hd_oral_sc01_1.err），本车道对 oral 零改动、零影响。
+- **零漂移**：改动前后对 224 个文件（221 场景 + oral.js/poly.js/auto.js）做 md5 全量比对——**仅 poly.js 一件变化**，全部场景文件逐字节一致，ITEMS/KNOW 零漂移由构造保证（ITEMS 只存于场景文件）。
+- **gen_stock 副本**：gen_stock_hd_poly_* 等副本 import 同一共享 './poly.js'，下次打包构建自动继承本改动；本车道未逐件重建副本（属打包车道口径）。
+- **回归像素比对**：mindmap_1 基线（改动前构建）vs 新版同时间点帧 t=10 / t=40 **逐像素全等**（maxdiff 0）——共享引擎 bundle 内含 poly.js 亦对 mindmap 渲染零影响。oral 未做像素比对：为取基线而做的 poly.js 原文逐字节复原 md5 不符（09a494… ≠ 原 7e1238…），未敢换入、已弃用，在树文件全程未动（新版 md5 af3e43… 前后一致）；oral 侧证据链 = oral.js/auto.js/wb5.js/concept.js/props.js 哈希全等 + oralBuild 导入图不含 poly.js + 下述 ic 双幕通过。
+
+## 5. 校验数字与密帧
+
+**ic_gen8 等效校验**（~/workspace/tools/ic_gen8.py 的同源路径变体 ic_local.py，HOOK 与门槛 40% 原样；每构建器 ≥2 幕）：**7/7 通过，不合格 0**——
+- poly book hd_poly_g1_002_1：47.1s，文字峰值 9%
+- poly study hd_poly_g4_174_1：49.0s，文字峰值 9%
+- poly 未映射 hd_poly_g2_087_1（run）：45.2s，文字峰值 10%
+- oral hd_oral_sc02_2：46.8s，20%；hd_oral_sc02_3：45.6s，16%
+- mindmap hd_mindmap_1：84.3s，12%；hd_mindmap_6：79.0s，12%
+
+**密帧目检**（~/workspace/shots_gen/）：
+- poly_book_new_8.0.png：元素书静置左卡（摊开、页块字行、封面绕脊打开，居中不压字）
+- poly_book_new_21.0.png：滑移峰点（过桥弧顶，不触桥心文字）
+- poly_book_new_23.0.png：落点右卡 + ✨，左卡留本（原版式行为）
+- poly_study_new_8.0.png / poly_study_new_26.0.png：study 幕静置 / 落点
+- 基线对照：hd_poly_g1_002_1_8.0/21.0（字形版，同时间点）——版式、位置、时序一致，仅头图本体由字形换元素
+- mm_base/mm_new_10.0/40.0.png：mindmap 回归比对帧（全等）
+
+## 6. 遗留
+
+1. 灯元素（💡 light 三幕变体 + poly light 词）与 ball/paper/bottle 等长尾元素未建——待元素库扩员后，poly 映射表只需在 EMOJI_ELEMENT 增行即可覆盖（本车道已留好挂点）。
+2. oral 106 幕精灵库 hdo*.js 缺失（git 未跟踪）是存量工程债：任何 oral 全量重建/打包前须先按 build_sprites.py 补库（帧名可由各幕 ACTS + oral 默认帧集推定，wo_grimm 有补库先例）——非本车道范围，登记在此供打包车道（T15 后续）处置。
+3. mindmap 找不同卡与叶子若未来要元素化，须整组四卡同换以保风格齐一，且叶子文本串口径需先裁定——不在本轮。

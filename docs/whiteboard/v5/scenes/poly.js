@@ -6,6 +6,10 @@
 //   右「③ 新义」卡被「？」盖住 → C.predict「顺着桥走过去，这个词还能是什么意思？」→ 揭开新义 + 例句，左卡的 emoji 顺着桥滑到右卡变成 ✨ → 规则 = 核心意象纽带。
 import { scene, OR, INK, GREY } from '../wb5.js';
 import { concept, BLUE, GREEN, FONT } from '../lib/concept.js';
+import { BOOK, drawHinged, assertBookGeometry } from '../props/props.js';
+// T16 P1：头图 emoji → 元素库映射（仅已建元素；未映射的 emoji 仍走原字形路径，一字不动）。
+// 命中时左卡上的图示与顺桥滑移的都是元素本体（drawHinged + 构建期断言），不再是 emoji 字形。
+const EMOJI_ELEMENT = { '📖': BOOK, '📚': BOOK };
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const readT = s => { const str = String(s).replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF]/gu, ''); const cjk = (str.match(/[\u3400-\u9fff]/g) || []).length; const en = (str.replace(/[\u3400-\u9fff]/g, ' ').match(/[A-Za-z]+/g) || []).length; return Math.max(0.8, cjk / 5 + en / 2.2); };
 const sayLen = en => en.split(/\s+/).length * 0.36 + 0.9;
@@ -32,6 +36,8 @@ export function parsePoly(items) {
 
 export function polyBuild(SP, Dsrc) {
   const K = scene({ sprites: SP }), C = concept(K), D = parsePoly(Dsrc.items);
+  const elDef = EMOJI_ELEMENT[D.emoji] || null;
+  if (elDef === BOOK) assertBookGeometry(elDef);   // 构建期断言（盖满页块/铰接刚体）：不过抛错停建
   const fr = ((Dsrc.acts || {})['*'] || []).filter(f => SP.FI && SP.FI[f]);
   C.aha({
     see: `左边「① 本义」卡：${D.emoji} ${D.s1.replace(/^① /, '')}（${D.ex1}）；中间一座桥写着「${D.core}」；右边的卡被「？」盖着`,
@@ -81,13 +87,17 @@ export function polyBuild(SP, Dsrc) {
   T = C.predict(qT, { q: `顺着「${D.core}」这座桥走过去，${D.word} 还能是什么意思？`, sec: 4 });
   C.cover({ x: Rr[0], y: Rr[1], w: CW + 12, h: CH + 12, from: qT - 0.4, open: T + 0.1, label: '？' });
   const R = T + 0.2;
-  // emoji 顺桥滑过去
+  // 头图顺桥滑过去：命中元素映射时画元素本体（BOOK open 剖面——原字形 📖/📚 即摊开的书；open bbox 实算 [-131,116]×[-102,74]、中心 (-7.6,-13.8)，缩放 0.65 ≈ 原字形墨迹占位且滑移峰点不触桥心文字），否则原 emoji 字形
   K.prop((g, t) => {
     const p = clamp((t - R) / 1.6); const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
     const x0 = emo.x, x1 = Rr[0], y = emo.y; const x = x0 + (x1 - x0) * e, yy = y - 200 * Math.sin(Math.PI * e);
+    const drawHead = (cx, cy) => {
+      if (!elDef) { g.fillText(D.emoji || '📌', cx, cy); return; }
+      g.save(); g.translate(cx, cy); g.scale(0.65, 0.65); g.translate(7.6, 13.8); drawHinged(g, elDef, { profile: 'open' }); g.restore();
+    };
     g.save(); g.font = '120px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    if (t >= 0.8) { g.globalAlpha = clamp((t - 0.8) / 0.4); g.fillText(D.emoji || '📌', x0, y); }
-    if (t >= R) { g.globalAlpha = 1; g.fillText(D.emoji || '📌', x, yy); if (p >= 1) { g.font = '60px sans-serif'; g.fillText('✨', x1 + 90, y - 50); } }
+    if (t >= 0.8) { g.globalAlpha = clamp((t - 0.8) / 0.4); drawHead(x0, y); }
+    if (t >= R) { g.globalAlpha = 1; drawHead(x, yy); if (p >= 1) { g.font = '60px sans-serif'; g.fillText('✨', x1 + 90, y - 50); } }
     g.restore();
   }, { from: 0.8, z: 4 });
   T = narr(D.bridge, R + 0.3, 3.2);
