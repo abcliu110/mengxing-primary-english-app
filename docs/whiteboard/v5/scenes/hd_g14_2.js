@@ -10,7 +10,7 @@ import * as SP from '../sprites/hdg14_2.js';
 const ACTS = {};
 export const KNOW = [
   'G14 底层原理',
-  '介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！',
+  '介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！先看三幅『原型图』猜一猜，图猜不出来，就单独记！',
   '🔬 介词三维空间几何图式 ➔ 时间漏斗隐喻映射',
   'in the box / in May', 'on the desk / on Monday', 'at the door / at 7:30',
   '📦 IN（比一天长的时段，或一天里泛指的上午 / 下午 / 晚上）：in 2026 / in May / in spring / in the morning',
@@ -34,7 +34,7 @@ export default function build() {
   const narr = (s, t, min = 2.6) => { const d = Math.max(min, readT(s) + 0.8); K.narr(s, t, t + d); return t + d; };
   C.label('📘 G14 底层原理 · in / on / at ②时间', 60, 1060, { size: 34, col: GREY, from: 0.2, align: 'left' });
   let T = 0.3;
-  T = narr('介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！', T, 4);
+  T = narr('介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！先看三幅『原型图』猜一猜，图猜不出来，就单独记！', T, 4);
   const SY = 380, glow = {};
   shapes(K, { from: 0.8, y: SY, s: 0.8, glow });
   ['in', 'on', 'at'].forEach((w, i) => C.chip({ text: w, x: XS[w], y: 560, size: 60, from: 1.0 + i * 0.2, col: COL[w], bd: COL[w], bold: true }));

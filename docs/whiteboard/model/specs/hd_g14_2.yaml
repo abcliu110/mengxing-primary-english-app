@@ -10,9 +10,10 @@ disposition:
 fixes_applied:
   items:
     - "46 条已裁定原句零命中、无待落实订正（本批零台词改动，未自编任何新断言）"
+    - "sup-002（2026-11-01 SUP 落实批）：KNOW[1] + 开场 narr 镜像共 2 处，开场语尾句『一通百通』替换为 sf-013 片段拼组定稿（scene_fixes sup-002 逐字），余零漂移；重建 + ic_gen8 不合格 0（见 updates/SUP_g14_applied.done）"
 disease_check:
   originals_46: 零命中（逐字 + 归一化双通道，2026-11-01 本批开工前同病抽查）
-    - 同病登记（未裁定，未擅改）：KNOW[1]「一通百通」宣传语，与 B5 在 hd_g14_1 的残留登记同型。
+    - 同病登记（未裁定，未擅改）：KNOW[1]「一通百通」宣传语，与 B5 在 hd_g14_1 的残留登记同型。【已销项 2026-11-01：主会话裁定「改」，SUP 落实批已替换（scene_fixes sup-002）。】
     - 口径张力登记：结尾口诀「时间看漏斗：年月季节早中晚，范围宽大都用in」与本幕 KNOW 内 at night 例外存在字面张力——与 B5 在 hd_g14_1 登记的同一口诀同型问题；本幕旁白已立 at 精确点口径统摄，等级低，无现成定稿，未改。
   content_note: 漏斗三档与 in/on/at 例词（in May / on Monday / at 7:30、on Sunday morning、at night）逐一对应；五点抽检通过（见 T12b10.done）
 stop_check:
@@ -24,8 +25,9 @@ facts:
     - "锁定规则：时间锁定到具体某一天（Sunday）即归 on，无论后面有无 morning/afternoon"
     - "at night 为 at 精确点口径下的例外，当场给出"
 residual_for_review:
-    - "KNOW[1]「一通百通」为宣传语，不在 scene_fixes 覆盖范围内，未动（与 B5 在 hd_g14_1 的残留登记同型）。"
+    - "KNOW[1]「一通百通」为宣传语，不在 scene_fixes 覆盖范围内，未动（与 B5 在 hd_g14_1 的残留登记同型）。【已销项 2026-11-01：主会话裁定「改」，SUP 落实批已替换（scene_fixes sup-002），本条关闭。】"
     - "KNOW 末口诀「时间看漏斗：年月季节早中晚，范围宽大都用in」中「早中晚」字面与本幕 at night 例外存在口径张力；本幕旁白已立 at 精确点口径统摄，等级低，无现成定稿，未改（与 B5 登记的同一口诀同型问题）。"
 validation:
   build: gen-stock-hd_g14_2.html（~/workspace/your_files/，1046893 字节，关键台词在场，尾含 </html>）
   insightcheck_official: 不合格 0（--only=hd_g14_2；116.4s，文字峰值 7%，决策 39 提示为讲授型既有提示，非不合格项）
+  sup_batch_2026-11-01: 重建 gen-stock-hd_g14_2.html（1,066,478 字节，新句在场、旧句零命中）；ic_gen8 等效校验不合格 0（115.4s，文字峰值 7%）

@@ -13,6 +13,13 @@ fixes_applied:
     rendering_notes:
       - 定稿无 ** 标记、无 ASCII 引号，源码直引，无渲染层归一
     duration_effect: 旁白时长由 readT 自动推导，全幕 76.4s → 80.9s（仍在 40–240s 参考区间）
+  - id: sup-002
+    verdict: 过度简化（开场语尾句「一通百通」全称承诺，与 sf-013 统摄口径相抵）
+    targets:
+      - KNOW[1]（导出 KNOW 数组第 2 条）
+      - build() 内开场 narr() 调用（与 KNOW[1] 同文）
+    replacement: scene_fixes.yaml sup-002 fixed_lines[0] 逐字（尾句由 sf-013 定稿片段逐字拼组），两处定点替换
+    batch: SUP 落实批 2026-11-01（见 updates/SUP_g14_applied.done）
 facts:
   objects: [盒子（in）, 桌面（on）, 靶心/门口（at）, ⚽ 球 ×3]
   invariants:
@@ -21,7 +28,7 @@ facts:
 stop_check:
   framework_conflict: 无。被裁定表述仅出现于 why 行（KNOW[2] 与其旁白镜像），非模板槽位/版式隐喻/全幕框架；本幕框架（空间原型图）正是定稿肯定的部分。替换后定稿的「第一猜测+约定例外」口径统摄其后的时间预告与口诀，无同幕自相矛盾（口诀为倾向性顺口溜，口径张力见 residual 第 2 条，属未裁定散文，不在本批处置权内）。
 residual_for_review:
-  - KNOW[1] 标题行「一通百通！」为宣传语，不在 scene_fixes 覆盖范围内，未动。
+  - KNOW[1] 标题行「一通百通！」为宣传语，不在 scene_fixes 覆盖范围内，未动。【已销项 2026-11-01：主会话裁定「改」，SUP 落实批已替换（scene_fixes sup-002），本条关闭。】
   - KNOW[8] 结尾口诀「时间看漏斗：年月季节早中晚，范围宽大都用in」中「早中晚」字面与定稿旁白的 at night 例外存在口径张力；该口诀无现成定稿，按不自编纪律未改，提请后续裁定（可考虑按 sf-013 boundary 为口诀补例外注或修订「晚」字口径）。
 validation:
   build: gen-stock-hd_g14_1.html（~/workspace/your_files/，1,041,453 字节）
@@ -29,3 +36,4 @@ validation:
   insightcheck_official: 不合格 0（--only=hd_g14_1；决策 39 提示为讲授型既有提示，非不合格项）
   shots: 42s 帧定稿旁白整段上屏（原型图+三例外齐全）；58s 帧时间 chips 与朗读句正常
   zero_hit: sf-013 original 全仓 586 场景文件逐字+归一化双通道零命中
+  sup_batch_2026-11-01: 重建 gen-stock-hd_g14_1.html（1,065,937 字节，新句在场、旧句零命中）；ic_gen8 等效校验不合格 0（80.0s，文字峰值 12%）

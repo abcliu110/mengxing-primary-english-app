@@ -706,3 +706,40 @@ fixes:
     fixed_lines:
       - { role: 台词, text: "欧元：Euro- 就是「欧洲」：欧洲很多国家一起用的钱，叫 euro（欧元），1995 年 12 月在马德里定的名字，1999 年正式启用。"}
     basis: "自拟（按报告 ③-C 裁定订正年份）"
+
+  # ===== 附：SUP 补订正（T12-B10/B11 同病抽查登记，经 SUP_g14_patch.md 起草、主会话裁定，2026-11-01 落实）=====
+
+  - id: sup-001
+    ref: "SUP 补包（源出 T12-B10 抽查登记第 1 项）"
+    claim: "sf-013 同型（hd_g14_1 已裁定病灶的未覆盖镜像）"
+    scenes: [hd_g14_3]
+    n: 2
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "『原封不动搬到时间和状态上』失实，与 sf-013 已裁定病灶同型：空间图式向时间与抽象（状态）域的延伸是受约束的倾向，且大量介词用法由约定决定（at night、in the morning、on the bus；本幕 on foot 亦属此类）。"
+    original:
+      - { role: rule 元数据（aha.rule）, loc: "hd_g14_3.js:30", text: "空间图式原封不动搬到状态上：包裹 → in，接触 / 在线上 → on，对准一个点 → at" }
+      - { role: 台词（narr，C.rule 后）, loc: "hd_g14_3.js:64", text: "空间图式原封不动搬到时间和状态上：包裹 → in，接触 / 在线上 → on，对准一个点 → at。" }
+    fixed_lines:
+      - { role: rule 元数据（aha.rule）, text: "空间图式搬到状态上常常还能接着用，但不是原封不动：包裹 → in，接触 / 在线上 → on，对准一个点 → at；图猜不出来的，就单独记" }
+      - { role: 台词（narr，C.rule 后）, text: "空间图式搬到时间和状态上常常还能接着用，但不是原封不动：包裹 → in，接触 / 在线上 → on，对准一个点 → at；图猜不出来的，就单独记。" }
+    basis: "片段级逐字派生自 sf-013 定稿（常常还能接着用／但不是原封不动／图猜不出来，就单独记），与 sf-013 同口径；grammar.yaml g14-time-borrow『借用不是百分百对齐』为同口径旁证"
+    method: "原型场景（proto-scene）作第一猜测"
+    boundary: "图式只管第一猜测；约定用法（at night 等）单记，不许硬套图式。"
+    source: "Tyler & Evans（2003）Principled Polysemy（同 sf-013）"
+
+  - id: sup-002
+    ref: "SUP 补包（源出 T12-B10 抽查登记第 2 项；B5 在 hd_g14_1 先行登记）"
+    claim: "sf-013 统摄口径未覆盖的宣传位镜像（三幕开场语）"
+    scenes: [hd_g14_1, hd_g14_2, hd_g14_3]
+    n: 6
+    verdict: 过度简化
+    severity: 报告未定级
+    problem: "开场语尾句『看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！』作全称承诺，与 sf-013 统摄口径（图式只管第一猜测、约定用法单记）及 grammar.yaml g14-time-borrow（tendency＋三例外）字面相抵；模型层已全线对齐，场景开场语为唯一未对齐处。"
+    original: "介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！"
+    fixed_lines:
+      - { role: "开场语（KNOW[1] + 开场 narr 镜像，三幕各 2 处、六处逐字一致）", text: "介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！先看三幅『原型图』猜一猜，图猜不出来，就单独记！" }
+    basis: "主会话裁定『改』（SUP 包案甲）；替换尾句由 sf-013 定稿现成片段逐字拼组——『先看三幅『原型图』猜一猜』＋『图猜不出来，就单独记』，仅以标点衔接，未引入 sf-013 之外的新断言；句首主题行与『告别死记硬背！』为原句自带文字，未动"
+    method: "原型场景（proto-scene）作第一猜测"
+    boundary: "图式只管第一猜测；约定用法（at night 等）单记，不许硬套图式。"
+    source: "Tyler & Evans（2003）Principled Polysemy（同 sf-013）"

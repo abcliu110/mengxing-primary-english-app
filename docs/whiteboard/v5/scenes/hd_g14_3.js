@@ -9,7 +9,7 @@ import * as SP from '../sprites/hdg14_3.js';
 const ACTS = {};
 export const KNOW = [
   'G14 底层原理',
-  '介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！',
+  '介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！先看三幅『原型图』猜一猜，图猜不出来，就单独记！',
   '🔬 介词三维空间几何图式 ➔ 时间漏斗隐喻映射',
   'in the box / in May', 'on the desk / on Monday', 'at the door / at 7:30',
   '📦 IN（比一天长的时段，或一天里泛指的上午 / 下午 / 晚上）：in 2026 / in May / in spring / in the morning',
@@ -27,12 +27,12 @@ export default function build() {
     see: '还是盒子 / 桌面 / 靶心三格，这次飞来的是「样子和状态」：She is ___ red.——一件红衣服把她整个包起来',
     guess: '红衣服把人整个包住——该进哪一格？',
     reveal: 'in red 进盒子（被包裹）；on duty、on foot、on TV 落在桌面（在一条线 / 一个面上）；at work、look at、be good at 钉在靶心（对准一个点）',
-    rule: '空间图式原封不动搬到状态上：包裹 → in，接触 / 在线上 → on，对准一个点 → at',
+    rule: '空间图式搬到状态上常常还能接着用，但不是原封不动：包裹 → in，接触 / 在线上 → on，对准一个点 → at；图猜不出来的，就单独记',
   });
   const narr = (s, t, min = 2.6) => { const d = Math.max(min, readT(s) + 0.8); K.narr(s, t, t + d); return t + d; };
   C.label('📘 G14 底层原理 · in / on / at ③状态', 60, 1060, { size: 34, col: GREY, from: 0.2, align: 'left' });
   let T = 0.3;
-  T = narr('介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！', T, 4);
+  T = narr('介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！先看三幅『原型图』猜一猜，图猜不出来，就单独记！', T, 4);
   const glow = {};
   shapes(K, { from: 0.8, y: 380, s: 0.8, glow });
   ['in', 'on', 'at'].forEach((w, i) => C.chip({ text: w, x: XS[w], y: 560, size: 60, from: 1.0 + i * 0.2, col: COL[w], bd: COL[w], bold: true }));
@@ -61,7 +61,7 @@ export default function build() {
   glow.at = [T + 0.5, T + 3.6];
   T = narr('靶心：在工作这个点上 → at work；目光对准一个点 → look at；本领对准一件事 → be good at。', T, 4.4);
   C.rule(T);
-  T = narr('空间图式原封不动搬到时间和状态上：包裹 → in，接触 / 在线上 → on，对准一个点 → at。', T, 4);
+  T = narr('空间图式搬到时间和状态上常常还能接着用，但不是原封不动：包裹 → in，接触 / 在线上 → on，对准一个点 → at；图猜不出来的，就单独记。', T, 4);
   T = narr('📦 IN（比一天长的时段，或一天里泛指的上午 / 下午 / 晚上）：in 2026 / in May / in spring / in the morning', T, 4.4);
   T = narr('📄 ON (=具体1天日历面)：on Monday / on June 1st / on Sunday morning', T, 3.4);
   T = narr('🎯 AT (精确钟点时刻)：at 7:30 / at noon / at night', T, 3.0);

@@ -10,7 +10,7 @@ import * as SP from '../sprites/hdg14_1.js';
 const ACTS = {};
 export const KNOW = [
   'G14 底层原理',
-  '介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！',
+  '介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！先看三幅『原型图』猜一猜，图猜不出来，就单独记！',
   '先看三幅『原型图』猜一猜：装在容器里面用 in（in the box），贴在表面上用 on（on the table），指着一个点用 at（at the door）。讲时间、讲抽象事情时，这三幅图常常还能接着用——但不是原封不动：at night、in the morning、on the bus 是大家约好的习惯说法，图猜不出来，就单独记。',
   '🔬 介词三维空间几何图式 ➔ 时间漏斗隐喻映射',
   'in (三维容器内)', 'in the box / in May', 'on (平面接触面)', 'on the desk / on Monday', 'at (精确坐标靶心)', 'at the door / at 7:30',
@@ -30,7 +30,7 @@ export default function build() {
   const narr = (s, t, min = 2.6) => { const d = Math.max(min, readT(s) + 0.8); K.narr(s, t, t + d); return t + d; };
   C.label('📘 G14 底层原理 · in / on / at ①空间', 60, 1060, { size: 34, col: GREY, from: 0.2, align: 'left' });
   let T = 0.3;
-  T = narr('介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！看懂“容器(in)・表面(on)・精确点(at)”空间图式，一通百通！', T, 4);
+  T = narr('介词专项：in / on / at 空间图式 ➔ 时间 ➔ 状态隐喻映射 —— 告别死记硬背！先看三幅『原型图』猜一猜，图猜不出来，就单独记！', T, 4);
   const SY = 510;
   // 先画图、球就位（与开场字幕同时），预测后再闪几何特征
   const G0 = 1.0;
