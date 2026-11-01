@@ -210,7 +210,22 @@ entries:
     text_adult: 表面违反准则时听者不判定「不合作」，而是反推言外之意；答非所问往往是绕弯的回答，不是乱答。
     visual: 问句气泡旁浮现「真正的意思」小标签
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_运动_27
+    - G3_0754
+    sentence: — Is the film good? — The popcorn is very good.
+    scene_note: 问电影好不好，回答爆米花很好吃——绕弯的回答：言外之意是电影不怎么样（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_061
+    - G2_081
+    - V6_家庭_34
+    sentence: — Where is your brother? — He is at school, or at home.
+    scene_note: 问哥哥在哪儿，答「在学校，或者在家」——信息给得不够准，言外之意是：我也不能确定（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: E-08
@@ -242,7 +257,6 @@ entries:
   pending:
   - 探针待补写（PRB-E03-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: E-04
   zone: 表达写作
@@ -358,7 +372,19 @@ entries:
     text_adult: 语用失误不像语法错误那样有明显的报错信号，学习者长期不自知；这是得体必须被显性教（E-12）的直接原因。
     visual: 静默警报图：语法错亮红灯，场合错无灯但对方脸色已变
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_037
+    sentence: She don't like apples.
+    scene_note: 语法小错标本：听的人多半只是一笑——知道说话的人还在学（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: Give me your book. Now!
+    scene_note: 句子没有语法错，可对老师这样说话——场合错：听的人会觉得没礼貌，还不会告诉你错在哪（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: E-06
@@ -394,7 +420,6 @@ entries:
   pending:
   - 探针待补写（PRB-E05-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: E-06
   zone: 表达写作
@@ -424,7 +449,27 @@ entries:
     text_adult: 前者教规约化用法即可纠正；后者要解释场合逻辑与文化价值判断，给公式无效。
     visual: 两条通道末端分别标「给公式」与「讲逻辑」
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_003
+    sentence: Teacher, give me a pen.
+    scene_note: 语用-语言失误标本：把请求方式直译——形式与力图配错，换规约说法即可纠正（教师层标本）（自建例句）
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_003
+    sentence: Could I have a pen, please?
+    scene_note: 同一请求的规约化说法：情态问句加 please——形式修好，失误消除（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_2
+    - G2_0595
+    - G1_007
+    sentence: Come here! Now! (to the head teacher)
+    scene_note: 社交-语用失误标本：句子本身没有语法错，错在对谁说话的场合判断——要讲场合逻辑，不是给公式（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: E-05
@@ -460,7 +505,6 @@ entries:
   pending:
   - 探针待补写（PRB-E06-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: E-07
   zone: 表达写作
@@ -743,7 +787,30 @@ entries:
     - V6_核心_57
     - G4_0597
     - V6_核心_58
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G2_081
+    - G2_068
+    - V6_服装_39
+    sentence: This is my school. It is big and new. I like it very much.
+    scene_note: 连着说好几句、句句清楚——语篇能力的一小步：把话说成篇（自建例句）
+    supports: claim
+  - level: 1
+    word_ids:
+    - G3_0442
+    sentence: Could you help me, please?
+    scene_note: 得体的一面（社会语言能力）：请人帮忙先垫一句客气话（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_学校_42
+    - G3_137
+    - G3_138
+    - V6_日常_15
+    sentence: I don't know this word. It is long and thin, and we eat with it.
+    scene_note: 卡住时自救（策略能力）：说不出那个词，就绕着样子说（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: E-08
@@ -778,7 +845,6 @@ entries:
   pending:
   - 探针待补写（PRB-E10-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: E-11
   zone: 表达写作
@@ -895,7 +961,21 @@ entries:
     text_adult: 显性教学 = 讲明规矩 + 情境练习；其进步速度显著快于只靠浸泡，是课程必须给语用留专门位置的依据。
     visual: 讲台+情景双格图：左讲规矩，右情景演练
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_10
+    - G4_159
+    sentence: Open the window.
+    scene_note: 对老师直下命令：语法全对、场合不对——语法水平不会自动带来得体（教师层标本）（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_10
+    - G4_159
+    sentence: Could you open the window, please?
+    scene_note: 显性教过场合规矩之后：同一个请求换上情态问句——得体是专门教出来的（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: E-05
@@ -930,7 +1010,6 @@ entries:
   pending:
   - 探针待补写（PRB-E12-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: E-13
   zone: 表达写作
@@ -960,7 +1039,25 @@ entries:
     text_adult: 相邻对（adjacency pairs）：第一部分（提问/问候/邀请）对第二部分（回答/回问候/接受或婉拒）形成条件相关；该答不答，缺席本身传递信息。
     visual: 对子卡图：问句卡与答句卡以扣环相连
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_0564
+    sentence: — Good morning! — Good morning! How are you?
+    scene_note: 问候—问候：绑在一起的对子，第一句发出去，第二句跟回来（自建例句）
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0944
+    sentence: — Would you like some tea? — Yes, please.
+    scene_note: 招待—接受：对子的第二部分按约回来（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_节日_0
+    sentence: — What time is it? — Three o'clock.
+    scene_note: 提问—回答：问题一出，就预定了回答的活（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: E-08
@@ -994,7 +1091,6 @@ entries:
   pending:
   - 探针待补写（PRB-E13-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: E-14
   zone: 表达写作
@@ -1059,7 +1155,7 @@ entries:
   pending:
   - 探针待补写（PRB-E14-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。其教学动作（设计对比与提示）须随具体语用点生成标本，不在本条单列。
   - error_cases 待补：清单未登记具体病例
 - id: E-15
   zone: 表达写作
@@ -1089,7 +1185,23 @@ entries:
     text_adult: 课堂处置：延时纠错、保护自我修复；抢先纠正的双重代价是打断交际流 + 拿走练习修复的机会（与 E-11 策略能力互补）。
     visual: 教师手势图：暂停牌压住纠正冲动，等话说完再亮
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_1
+    - G2_080
+    - G4_0415
+    sentence: I go — I went to the park yesterday.
+    scene_note: 自我修复标本：go 说出了口，马上自己改成 went——话没断，修复走完（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_066
+    - G2_061
+    - ADD_0569
+    sentence: This is my sister — I mean, my brother.
+    scene_note: 说错了自己换回来：I mean 是修复时常用的小词（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: E-11
@@ -1123,7 +1235,6 @@ entries:
   pending:
   - 探针待补写（PRB-E15-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-01
   zone: 表达写作
@@ -1153,7 +1264,21 @@ entries:
     text_adult: writer-based prose：新手按自己的思路顺序倒出信息，不为读者重组——读者懵的根源不是词不够，是交接没做。
     visual: 两幅画图：写者脑中的画完整，读者收到的画缺角
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: I went there with him, and we played.
+    scene_note: 以写者为中心的标本：there 是哪儿、him 是谁，读者全不知道——自己懂，读者懵（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_082
+    - G3_130
+    - G3_124
+    sentence: Yesterday I went to the zoo with my friend. We saw the pandas there.
+    scene_note: 交代清楚的写法：何时、去哪儿、和谁、看见什么，一样样亲手交到读者眼前（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-02
@@ -1188,7 +1313,6 @@ entries:
   pending:
   - 探针待补写（PRB-W01-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-02
   zone: 表达写作
@@ -1218,7 +1342,31 @@ entries:
     text_adult: 把写作教成一次性流水线，学生练不到「写着改计划、改着重写段」的调度能力；教学要给每个环节配小策略。
     visual: 直线流水线图被打叉，回环图被圈出
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_015
+    - G4_K07
+    sentence: 'First, I write: I have a dog. It is cute.'
+    scene_note: 落笔（转化）：先把想法变成文字，哪怕只有一句（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0631
+    - V6_节日_5
+    sentence: 'Then I think again: not just ''cute'' — what does it do every day?'
+    scene_note: 回看时冒出新想法（计划在写的中途被改）：不只写 cute，还要写它每天做什么（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_072
+    - G1_015
+    - G2_087
+    - G1_0564
+    - G1_0932
+    sentence: My small dog runs to me every morning and waits at the door.
+    scene_note: 改着重写出的句子：回环一圈，句子长出了细节（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-01
@@ -1252,7 +1400,6 @@ entries:
   pending:
   - 探针待补写（PRB-W02-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-03
   zone: 表达写作
@@ -1282,7 +1429,24 @@ entries:
     text_adult: 知识转化：写作不只是倒出想法，写作本身改变想法——在「想说什么」与「读者需要什么」之间反复协商；引入路径是回看时多问一句「读者懂不懂」。
     visual: 双气泡协商图：内容气泡与读者气泡来回对话
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G4_186
+    - G2_081
+    - G2_0489
+    sentence: I got up. I ate breakfast. I went to school. I played with my friends.
+    scene_note: 知识讲述标本：一件件顺次倒出——这是低龄写作者的正常样子，不是偷懒（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G4_0570
+    - G1_0564
+    - G2_0931
+    - G4_K05
+    sentence: I was tired this morning because I went to bed late.
+    scene_note: 知识转化的一小步：写的时候把「为什么」也想清楚、写出来（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-04
@@ -1314,7 +1478,6 @@ entries:
   pending:
   - 探针待补写（PRB-W03-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-04
   zone: 表达写作
@@ -1346,7 +1509,23 @@ entries:
     text_adult: 段落可能整段删除或移位，先行精修等于给要拆的房子刷漆；顺序由返工成本决定，不是口味问题。
     visual: 刷漆与拆房对照图
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_015
+    - G2_087
+    - G6_282
+    sentence: The dog run to I. It very happy.
+    scene_note: 草稿标本：先别管字词对不对，先看意思——谁跑向谁、它怎么样，还没讲清（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_015
+    - G2_087
+    - G6_282
+    sentence: The dog ran to me. It was very happy.
+    scene_note: 先改意思层（跑向我、它是开心的），再改字词层：run 改 ran、I 改 me、补上 was（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-02
@@ -1384,7 +1563,6 @@ entries:
   pending:
   - 探针待补写（PRB-W04-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-05
   zone: 表达写作
@@ -1414,7 +1592,23 @@ entries:
     text_adult: 孤立背的句型在写作时调不出来；续写让语言粘着语境进入产出，是「学」与「用」不脱节的任务形态。
     visual: 胶水图：句型粘在故事语境上一起被取用
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_013
+    - G2_084
+    - G2_0980
+    sentence: The little bird could not fly. It looked at the sky and cried.
+    scene_note: 读的原文起头：续写从这里接——先读、先理解（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_节日_5
+    - G1_0564
+    - G2_079
+    sentence: Day after day, it tried and tried. One morning, it flew up to a tree.
+    scene_note: 接着写：读过的 fly、looked at 悄悄跑进笔下——理解把产出拉平（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-06
@@ -1448,7 +1642,6 @@ entries:
   pending:
   - 探针待补写（PRB-W05-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-06
   zone: 表达写作
@@ -1478,7 +1671,22 @@ entries:
     text_adult: 反向分工（内容抄现成、句子全自创）的典型产物是「想法平庸、句子奇葩」；句型在本条中的定位是资源而非模具。
     visual: 对照卡：正分工 vs 反分工两篇作文的评语
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G2_K02
+    - V6_节日_5
+    - G3_0401
+    sentence: My favourite day is Sunday, because I can play football with my friends.
+    scene_note: 句子的说法先借现成框架（My favourite ... is ... because ...），内容是自己的（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_0564
+    - G4_186
+    sentence: In the morning, I get up at seven. Then I have breakfast with Mum and Dad.
+    scene_note: 说法借现成（日常句型整块取用），写的是自己的早上（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-05
@@ -1514,7 +1722,6 @@ entries:
   pending:
   - 探针待补写（PRB-W06-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-07
   zone: 表达写作
@@ -1545,7 +1752,23 @@ entries:
     text_adult: 三功能：注意缺口 → 在后续输入中定向捕捉 → 试说试写检验假设；输出因此是习得的触发器，而非习得的展示窗。
     visual: 三步箭头图：卡住 → 捕捉 → 试写检验
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_学校_42
+    - G2_0502
+    sentence: Teacher, I don't know the word. It can keep the rain off me.
+    scene_note: 缺口被点亮的时刻：umbrella 说不出，先绕着样子说——这个卡住的地方就是下一个要学的词（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0492
+    - G4_0451
+    - G1_002
+    - G3_0487
+    sentence: I can read 'beautiful' in a book. When I write it, I stop and think.
+    scene_note: 读时认得、写时卡住——输出把缺口照出来：接下来要学的，就是它（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: E-14
@@ -1583,7 +1806,6 @@ entries:
   pending:
   - 探针待补写（PRB-W07-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-08
   zone: 表达写作
@@ -1650,7 +1872,7 @@ entries:
   pending:
   - 探针待补写（PRB-W08-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: W-09
   zone: 表达写作
@@ -1717,7 +1939,7 @@ entries:
   pending:
   - 探针待补写（PRB-W09-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: W-10
   zone: 表达写作
@@ -1747,7 +1969,24 @@ entries:
     text_adult: 教学—学习循环四步递减支撑：建立话题知识 → 示范文体 → 师生共同建构 → 学生独立写作；验收标准只有一个：撤掉支架还能写。
     visual: 坡道图：支撑量逐级递减至零
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G2_099
+    - G2_075
+    sentence: I like spring because I can see many flowers.
+    scene_note: 扶着句框写（支架在）：I like ... because ... 先托住句子（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_095
+    - V6_自然_11
+    - G1_034
+    - V6_自然_26
+    - G2_097
+    sentence: I like autumn because the leaves turn red and gold, and the days are cool.
+    scene_note: 撤掉句框还能写：说法开始是自己的了——这才算学会（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-06
@@ -1783,7 +2022,6 @@ entries:
   pending:
   - 探针待补写（PRB-W10-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-11
   zone: 表达写作
@@ -1860,7 +2098,7 @@ entries:
   pending:
   - 探针待补写（PRB-W11-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。本条另受 config gate（B）门控，呈现按当前档 B1。
   - error_cases 待补：清单未登记具体病例
 - id: W-12
   zone: 表达写作
@@ -1891,7 +2129,25 @@ entries:
     text_adult: IES 指南据此把流利度单列为一条推荐（中等证据）；训练形态是在作文里练字词句，不是脱离写作的抄写量。
     visual: 练功图：手部动作自动化后，大脑灯泡亮起
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_014
+    - G2_072
+    - G1_052
+    - G2_0931
+    sentence: My cat is small. It likes milk. It sleeps on my bed.
+    scene_note: 基本句先写顺：手不卡，脑子才有空去想故事（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_身体_42
+    - G1_010
+    - G3_126
+    - G1_052
+    sentence: I get up at six. I wash my face and have bread and milk.
+    scene_note: 天天用的句子练到不用想——转录自动化，工作记忆才腾得出来（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-08
@@ -1924,7 +2180,6 @@ entries:
   pending:
   - 探针待补写（PRB-W12-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-13
   zone: 表达写作
@@ -1954,7 +2209,32 @@ entries:
     text_adult: 句子合并绕开元语言讲解，直接用产出操作练句法——这是它对低龄学习者尤其可用的原因。
     visual: 工具图：从句/并列/修饰三件工具不贴名字、只上手用
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_1000
+    - G2_073
+    - G2_061
+    sentence: The boy is tall. The boy is my brother. → The tall boy is my brother.
+    scene_note: 合并工具一（修饰）：两句攒成一句，意思不变（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0502
+    - V6_日常_28
+    - V6_家庭_34
+    sentence: It rained. We stayed at home. → It rained, so we stayed at home.
+    scene_note: 合并工具二（并列）：用 so 把两句扣在一起（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_家庭_24
+    - G6_282
+    - G5_0494
+    - G2_0990
+    sentence: The girl is happy. She won the game. → The girl who won the game is happy.
+    scene_note: 合并工具三（从句）：把一句话嵌进另一句里（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: W-09
@@ -1988,7 +2268,6 @@ entries:
   pending:
   - 探针待补写（PRB-W13-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: W-14
   zone: 表达写作
@@ -2139,7 +2418,7 @@ entries:
   - error_cases 事故型已登记（旧 WRITING 框架「95% 考场作文逃不出三大母题」伪统计话术，report_expressions C-1 裁定），具体错句不适用（话术型），待回填登记
   - 探针待补写（PRB-W15-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-01
   zone: 表达写作
@@ -2255,7 +2534,26 @@ entries:
     text_adult: 句干大部固定、小部可变：槽位让库存既能快速取用，又能适配新场合；教学上整块存入后要析出槽位（与 NE-03 并行路线同）。
     visual: 句干卡图：固定段实线、槽位段虚线
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_055
+    sentence: Can I have some water, please?
+    scene_note: 整存的句干：不用现拼，张口就来——流利的速度来源（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_080
+    sentence: What about going to the park this Sunday?
+    scene_note: 句干留着槽位：What about ...? 后面换什么都行——半固定，不是死背（自建例句）
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_日常_17
+    - G6_267
+    sentence: See you tomorrow!
+    scene_note: 告别句干：整块取用（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-01
@@ -2291,7 +2589,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE02-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-03
   zone: 表达写作
@@ -2322,7 +2619,26 @@ entries:
     text_adult: 拆解分析随后跟上：在反复使用中析出槽位与规律，获得创造性；两条路线并行配比随年龄与识字进程调整。
     visual: 放大镜图：用熟的整句被放大，槽位与规律显形
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_0564
+    - G2_K01
+    sentence: Good morning! What is your name?
+    scene_note: 先整块用熟的见面话：还没拆开分析，先会用（自建例句）
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_天气_33
+    sentence: How are you? — I am fine, thank you. And you?
+    scene_note: 整句对整句囤：问答成对存入，用熟后再析出里面的词（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_004
+    sentence: Can I have a pencil, please? — Sure. Here you are.
+    scene_note: 一整块请求加一整块回应：先囤现成的积木套装（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-01
@@ -2360,7 +2676,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE03-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-04
   zone: 表达写作
@@ -2426,7 +2741,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE04-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-05
   zone: 表达写作
@@ -2456,7 +2771,21 @@ entries:
     text_adult: 语言学家常用的判别法：真规则顺着说自然，假规则守着说别扭；英语不定式两截、介词可悬空，都是日耳曼语的自家结构。
     visual: 别扭度图：硬守假规矩的句子被标上「拧巴」表情
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_16
+    sentence: What are you looking at?
+    scene_note: 句末就是介词 at：自然、地道的英语——「句末不能放介词」是照拉丁语硬定的假规矩（教师层标本）（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G5_0532
+    - V6_日常_26
+    - G5_215
+    sentence: She wants to quickly finish her homework.
+    scene_note: 分裂不定式标本：to 与动词之间插了 quickly——自 13 世纪起作家一直这样用（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-04
@@ -2488,7 +2817,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE05-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-06
   zone: 表达写作
@@ -2551,7 +2879,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE06-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-07
   zone: 表达写作
@@ -2582,7 +2910,22 @@ entries:
     text_adult: 与频率证据互为表里（见 CB-11、CB-14）：核心词既是最高频的交际工具，又是解读新词的工具——先行顺序由此获得双重理由。
     visual: 地基图：核心词作地基，新词大楼建在其上
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G3_124
+    - V6_动物_0
+    - V6_动物_58
+    sentence: panda — a big black and white animal. It eats bamboo.
+    scene_note: 词典释义标本：解释难词只用核心清单里的简单词——big、black、white、animal 都在三千词内（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G6_282
+    - V6_日常_57
+    sentence: happy — feeling good and wanting to smile.
+    scene_note: 用认识的词解释新词：查词时不会在释义里再撞上生词（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-08
@@ -2615,7 +2958,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE07-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-08
   zone: 表达写作
@@ -2723,7 +3065,22 @@ entries:
     text_adult: 情景法的操练环节在其时代偏机械；当代用法保留呈现原则，操练换成有信息差、有真实表达目的的任务（与表达簇、构式簇口径一致）。
     visual: 换代图：机械跟读图标淡出，信息差任务图标亮起
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G2_082
+    - G3_124
+    - V6_动物_58
+    sentence: 'At the zoo: Look at the pandas! They are eating bamboo.'
+    scene_note: 情景先行的呈现标本：先有场合（动物园）与要看的事，句子随后出场（教师层标本）（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0648
+    - G1_004
+    sentence: 'In a shop: Can I have two pencils, please?'
+    scene_note: 先定交际意图（买东西），句型是办这件事的工具，不是孤立陈列的表格（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-08
@@ -2755,7 +3112,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE09-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-10
   zone: 表达写作
@@ -2935,7 +3291,21 @@ entries:
     text_adult: 传统顺序（听—模仿—纠错）跳过了本体感觉这一环：不知道肌肉在做什么，就改不动它；身体路线先接通感觉，再谈目标音。
     visual: 顺序图：感受肌肉 → 试出声音 → 对照目标
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G4_194
+    - G6_260
+    sentence: sheep /ʃiːp/ — ship /ʃɪp/
+    scene_note: 最小对标本：先摸着下巴感受舌位与开合，再听出这一对的区别（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_068
+    - G1_019
+    sentence: big /bɪɡ/ — pig /pɪɡ/
+    scene_note: 嗓子开关标本：手摸喉咙，big 的 b 在震、pig 的 p 不震——清浊是一对身体按钮（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-13
@@ -2969,7 +3339,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE12-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-13
   zone: 表达写作
@@ -3001,7 +3370,19 @@ entries:
     text_adult: 符号只代表师生此时此地约定的音位，不同口音的使用者共用一张图并不矛盾；把音标当绝对音质标准，是把工具用成了新的规定主义。
     visual: 图钉图：同一格子被不同口音的图钉共同指向
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G6_260
+    sentence: Ship — the first sound is /ʃ/. On the map, it lives at the front.
+    scene_note: 点着地图找声音：/ʃ/ 住在辅音区的一格里，位置就是它的发音方法（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_0929
+    sentence: Chair — the first sound is /tʃ/. It lives next door to /ʃ/.
+    scene_note: 邻居格：/tʃ/ 就住在 /ʃ/ 旁边——位置像，声音也像（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-12
@@ -3034,7 +3415,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE13-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-14
   zone: 表达写作
@@ -3180,7 +3560,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE15-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-16
   zone: 表达写作
@@ -3211,7 +3591,30 @@ entries:
     text_adult: 元语言谈话（metatalk）是内化机制：学生在讨论中把隐性语感说成显性决策，语法理解才从『碰巧写对』变成可控的写作决策。
     visual: 对话气泡图：学生指着句子说「我选长句，因为……」
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - ADD_0025
+    - G2_0936
+    sentence: I broke the cup.
+    scene_note: 选择一（主动）：镜头对准做事的人——同一件事的一种选法（教师层标本）（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0936
+    - G5_0831
+    sentence: The cup was broken.
+    scene_note: 选择二（被动）：镜头对准杯子——选法不同，读者的感受不同（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_087
+    - G1_0932
+    - G1_015
+    - G2_085
+    sentence: He ran. The door opened. A dog jumped out!
+    scene_note: 选择三（短句排队）：节奏快、像鼓点——长句与短句之选也是语法选择（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-17
@@ -3245,7 +3648,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE16-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-17
   zone: 表达写作
@@ -3277,7 +3679,25 @@ entries:
     text_adult: 阳性结果带三条限定：学段（母语八年级）、人群（强者受益多）、教师（元语言知识中介）——引用本条时三条限定必须同行（见分歧中的小学复制问题）。
     visual: 条件标签图：效应量数字旁挂三枚限定标签
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G2_0503
+    - G2_0502
+    - G2_0599
+    - G4_0986
+    sentence: The wind blew. The rain came down. Night fell on the little town.
+    scene_note: 叙事单元的嵌入标本：正写故事时学短句——短句排队制造紧张，每个语法点都连着一个当下的写作决定（教师层标本）（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0503
+    - G2_0502
+    - G2_0599
+    - G4_0986
+    sentence: The wind was blowing all night, and the rain kept falling on the little town.
+    scene_note: 同一场景换成长句连绵：选哪种节奏，是写作决定——语法嵌在决定里教（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-16
@@ -3310,7 +3730,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE17-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-18
   zone: 表达写作
@@ -3340,7 +3759,34 @@ entries:
     text_adult: 公平性论证：显性教语类，是为了让没有接触过学校文本文化的孩子也能拿到地图，而不是靠家庭文化资本暗中通关。
     visual: 桌面地图图：全班围着同一张阶段图
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_0564
+    - G1_016
+    - G5_232
+    - G2_089
+    sentence: One morning, a little duck went to the river to swim.
+    scene_note: 语类阶段标本·铺垫（Orientation）：谁、何时、何地先摆好（教师层标本）（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - ADD_0666
+    - V6_日常_19
+    - G2_065
+    sentence: Suddenly, it could not find its mother!
+    scene_note: 语类阶段标本·出事（Complication）：平静被打破，故事动起来（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0527
+    - V6_家庭_24
+    - G3_0442
+    - V6_交通_30
+    - V6_家庭_34
+    sentence: At last, a kind girl helped it find the way home.
+    scene_note: 语类阶段标本·解决（Resolution）：问题收束——三阶段走完，故事成篇（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-19
@@ -3377,7 +3823,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE18-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-19
   zone: 表达写作
@@ -3444,7 +3889,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE19-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-20
   zone: 表达写作
@@ -3513,7 +3958,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE20-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-21
   zone: 表达写作
@@ -3578,7 +4023,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE21-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-22
   zone: 表达写作
@@ -3641,7 +4086,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE22-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。印刷概念的可观察项是行为清单，已登记在机制节，不另设例句。
   - error_cases 待补：清单未登记具体病例
 - id: NE-23
   zone: 表达写作
@@ -3706,7 +4151,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE23-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-24
   zone: 表达写作
@@ -3738,7 +4183,26 @@ entries:
     text_adult: 探索型谈话里做的事（提假设、要理由、权衡方案）正是个人独立思考的内在结构的外化版：先学会跟人一起这样想，才学会自己这样想（Vygotsky 路径）。
     visual: 桌面图：想法从各人脑中移到桌面中央被共同加工
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids: []
+    sentence: You are wrong! — No, you are!
+    scene_note: 争执型标本：断言对断言、比胜负，想法没有被检验（教师层标本）（自建例句）
+    supports: claim
+  - level: 1
+    word_ids: []
+    sentence: Yes. — Me too. — And me.
+    scene_note: 累积型标本：只附和、只堆叠，不追问、不检验（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G5_228
+    - G4_0514
+    - V6_自然_11
+    - G1_036
+    sentence: I think the plant is thirsty because its leaves are yellow. What do you think?
+    scene_note: 探索型标本：想法带着理由摆上桌，还邀请对方检验——思考是公开进行的（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-25
@@ -3772,7 +4236,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE24-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-25
   zone: 表达写作
@@ -3913,7 +4376,7 @@ entries:
   pending:
   - 探针待补写（PRB-NE26-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
+  - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-27
   zone: 表达写作
@@ -3943,7 +4406,32 @@ entries:
     text_adult: 范文先经口头内化：语言在嘴里熟了，落笔时才调得出来——这与 E-04/NE-03 的整块存取是同一机制在写作教学中的形态。
     visual: 嘴到笔图：口头复述的声波凝成纸面文字
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_014
+    - G3_127
+    - G5_232
+    sentence: One day, a small cat saw a fish in the river.
+    scene_note: 模仿段的范文：全班先用故事地图把这篇说熟、背熟（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_015
+    - G1_013
+    - G2_079
+    sentence: One day, a small dog saw a bird in the tree.
+    scene_note: 创新段：在范文骨架上换角色、换地点——骨架不动，内容受控替换（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0962
+    - G1_048
+    - G2_0507
+    - G2_0599
+    sentence: One night, a little fox found a cake under the moon.
+    scene_note: 发明段：自己作曲——同一类故事，全新的内容（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-28
@@ -3978,7 +4466,6 @@ entries:
   pending:
   - 探针待补写（PRB-NE27-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
 - id: NE-28
   zone: 表达写作
@@ -4084,7 +4571,22 @@ entries:
     text_adult: Gibbons 以『设计性 + 指向独立』为支架设防：语式连续体（从日常口语到学科书面语）是进阶标尺，每一步配语言示范与练习，终点是学生独立完成。
     visual: 连续体图：口头边做边说 → 口头报告 → 短句写作，支架逐段变薄
     anchors: []
-  examples: []
+  examples:
+  - level: 1
+    word_ids:
+    - G3_0631
+    - G3_0822
+    sentence: I think ___ is fun because ___.
+    scene_note: 课前设计好的句框标本（planned scaffolding）：先一起说、用熟，再逐步撤掉（教师层标本）（自建例句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_089
+    - G3_0822
+    - G1_055
+    sentence: I think swimming is fun because I can play in the water.
+    scene_note: 踩着句框说出自己的话：支架的终点是撤掉它也能独立说（自建例句）
+    supports: claim
   error_cases: []
   relatives:
   - id: NE-19
@@ -4120,5 +4622,4 @@ entries:
   pending:
   - 探针待补写（PRB-NE29-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
-  - examples 待补：清单未登记例句
   - error_cases 待补：清单未登记具体病例
