@@ -3,6 +3,7 @@
 > 数据文件：`model/phonics_wordsets.json`（本文件为其评审文档）。重推导日期 2026-11-01（数据收官）。
 > 硬要求（用户）：词库中满足某个拼读规律的词，必须**全部**出现在该规律下——本推导即全量判定，不挑例词。
 > 本版按最终词库（2,285 条）全量重跑；复合词头按**成员级**推导（§2 第 6 点）；与旧版（1,959 条）的差异逐项说明见 §8。
+> **终轮修订（2026-11-01 晚）**：词库扩至 2,287 条并合并英式字段 `phonetic_gb` 后，本词集以 phonetic_gb 为音标源、以独立审计期望集为基底重推（§10）；§1–§9 的计数为上一版（GA 口径）数据，终局计数与逐项处置以 §10 为准。
 
 ## 1. 总览
 
@@ -534,4 +535,81 @@
 - **GP-ough-ɔː**（ough→/ɔː/，缺席 3）：although（该字素归 GP-ough-əʊ）；trough（该字素归 GP-ough-ɒf）；cough（该字素归 GP-ough-ɒf）
 - **GP-ough-ə**（ough→/ə/，缺席 1）：ploughman（该字素归 GP-ough-aʊ）
 
-口径差登记：模式音素为 RP 形而成员词卡音标为 GA 形的词次共 339（涉 26 个模式），逐模式计数见 closing_validation.md——按用户裁定冻结现状，不作误收/漏收处理。
+口径差登记：模式音素为 RP 形而成员词卡音标为 GA 形的词次共 339（涉 26 个模式），逐模式计数见 closing_validation.md——按用户裁定冻结现状，不作误收/漏收处理。**（本登记已由 §10 终轮消解：phonetic_gb 合并后词卡与模式同为 RP 口径。）**
+
+## 10. 终轮重推（英式口径 · 2026-11-01）
+
+### 10.1 基底与方法
+
+- 音标源：词库 `phonetic_gb` 字段（由对照表按 id 合并，2,287/2,287 非空；合并校验：条目数不变、除 phonetic_gb 外逐字段零差异）。
+- 成员级展开沿用现行口径：2,287 条 → **2,317 个成员**（14 个复合词头按 GA 字段既有分段位置切分 gb 串，14/14 全部切开，无切分失败登记）。
+- 基底 = 独立审计期望集（`docs/PHONICS_AUDIT_2026-11-01.md`；独立 DP 对齐推导，10,055 词次）∪ 审计无法判定成员在现行词集中的 22 行（维持登记）；其上施加英式口径处置（10.4）。原 184 条待裁定中审计已判可定的（C1 38 + C2 16 词次）随基底入集。
+- 弱元音/多字母块交界处自动对齐不可判的 61 对，按同族词口径逐词人工放置并逐词核定高亮 span（明细类见 10.4）。
+
+### 10.2 终局计数
+
+| 指标 | 终轮（GB 口径） | 上一版（GA 口径） |
+|---|---|---|
+| 词库条目 / 成员 | 2,287 / 2,317 | 2,285 / 2,315 |
+| 总词次 | **10,117** | 9,992 |
+| 成员命中 ≥1 模式 | 2,313 / 2,317 | 2,313 / 2,315 |
+| 条目命中 ≥1 模式 | 2,284 / 2,287 | 2,283 / 2,285 |
+| 零命中 | 成员 4（eye、you×2、of）；条目 3（eye、you、of） | 成员/条目 2（eye、of） |
+| 待裁定 | **146** | 184 |
+| 空模式 | 1（GP-ea-ɑː；GP-ough-ə 已由 thorough/borough 入集消解） | 2 |
+
+分类词次：辅音 6,740 / 短元音 1,412 / 长音菜单 1,400 / 变脸多读 165 / Magic e 182 / 词尾定律 218。
+
+### 10.3 审计差异逐类处置（对审计期望集的残差全部有去向）
+
+| 审计项 | 量 | 处置 |
+|---|---|---|
+| 漏收（期望有、旧词集无） | 177 词次 | **补收 176**（随基底入集：含 GP-ck 词中整类 20、GP-o-ɒ 一般口径 25 中除 GB 分流外者、待裁定可定 54、are∈GP-ar 等）；**剔除 1**：how heavy∈GP-wh-h 系 how+heavy 接缝伪字素（审计报告 §3 定性），不予入集 |
+| 误收 X2（音素不在词中） | 42 词次 | **剔除**（随基底退出：含 GP-u-ʊ 整类 25、GP-t 的 -ed 词 pronounced/washed/watched——拼写无 t） |
+| 误收 X1（音素由其他字母承担） | 50 词次 | **剔除/改归**（按「字素实际承担音素」复判，随基底退出原模式；其中 GP-age 的 age/page/cage/engage/outrage 5 词退出 GP-age——该模式按读音 /ɪdʒ/ 判定，不按拼写家族收，口径在此明示） |
+| 误收中无法判定成员所涉 | 22 行 | **维持登记**（成员本身不可对齐判定，不计误收亦无法证真，随基底保留） |
+| 无法判定成员 | 8 个 / 63 词次 | 维持登记（OK、TV、Mr、Mrs、Ms、PE、T-shirt、Dragon Boat Festival——字母名/缩略读法；Dragon Boat Festival 词库音标只覆盖前两词） |
+| 真零命中成员 | 4 | 维持登记（eye：ey→/aɪ/ 无模式；you×2：整词认读；of：按任务裁定不以 /ɒv/ 硬塞 GP-o-ɒ） |
+| conversion / version（审计后新增条目） | 9 词次 | 按 GB 入集：conversion∈{GP-c-k, GP-v, GP-er, GP-n, GP-sion-ʃ}、version∈{GP-v, GP-er, GP-n, GP-sion-ʃ}（sion 按 GB 读 /ʃən/） |
+
+### 10.4 英式口径处置（终局词集 vs 审计期望集：+154 / −92，逐模式可机对）
+
+| 类 | 处置 | 量（词次） | 说明 |
+|---|---|---|---|
+| BATH 迁移 | 出 GP-a-æ/GP-a-e-æ、入 GP-a-ɑː | −38 / +41 | dance、class、grass、after 等 41 词 GB 中 a 读 /ɑː/；**math 除外**（gb 表值 /mɑːθ/ 系勘误，事实为 /mæθ/，维持 GP-a-æ 并登记，见 10.7）；入集侧含 aunt、tomato（a→/ɑː/）、sparrowgrass、headmaster 等 |
+| or 分流 | 出 GP-or，入 GP-o-ɒ | −7 / +5 | foreign、forest、lorry、orange、correspond 的 or 在 GB 读 /ɒ/；metaphor 的 or 读 /ə/ 无模式可归（10.6 登记） |
+| yod 保留 | 入 GP-u-juː / GP-ew-juː / GP-ue-juː | +19 | student、Tuesday、due、tune、new、news 等 GB 保留 /j/；pneumonia 由审计 X2（u-ʊ 误收）在 GB 下改归 u-juː；supermarket 按表值 /sjuː-/ 入集 |
+| yod 弱化退出 | 出 GP-u-juː | −5 | argument、January、conspicuous、ingenuous、invaluable 的 u 在 GB 为 /jʊ/ 弱读（无专属模式，登记）；museum、musician 按表「ju 在重音前 = /juː/」记法维持 |
+| ou 分流 | 出 GP-ou-ʊ，入 GP-ou-ɔː | −4 / +3 | yourself、yourselves、tour（表值 /tɔː/）；tourist 为 /ʊə/ 无模式可归（登记） |
+| oo 分流 | 出 GP-oo-uː，入 GP-oo-ʊ | −2 / +2 | classroom、bathroom 按表值 room=/rʊm/ 变体 |
+| -ary 弱读 | 出 GP-a-e-any，入 GP-a-ə | −6 / +5 | dictionary、library、January 等 -ary 的 a 在 GB 读 /ə/ |
+| u-ʊ 正读补入 | 入 GP-u-ʊ | +5 | popular、butcher、argument、irregular、awful（-ful 的 u） |
+| i-ɪ 补入 | 入 GP-i-ɪ | +10 | giraffe、family、holiday、dolphin、foreign(er)、animate、audible、oddity、university——GB 中 i 实读 /ɪ/，GA 口径曾漏 |
+| 其余补入（单项类） | 入集 | +25 | been（GB /biːn/：GP-ee、GP-e-iː-open）、either（→GP-i-aɪ-open）、zebra/leisure/enjoyable/employee（→GP-e-e）、hear（→GP-ear-ɪə）、eraser（→GP-s-z）、sunglasses（→GP-ng）、fallen（→GP-all、GP-a-w-ɔː）、awful/crosswalk（→GP-a-w-ɔː）、was/warranty/what（→GP-a-w-ɒ）、hurry/surrogate（→GP-u-ʌ）、courage（→GP-ou-ʌ）、hamburger（→GP-ur）、herself（→GP-er）、paragraph（→GP-ar）、garage/another（→GP-a-æ，按表值）、hough（→GP-ough-ɒx）、gone/in front of/yogurt（→GP-o-ɒ）等 |
+| 其余退出（单项类） | 退出原模式 | −25 | heart/hearth（ear→/ɑː/，已在 GP-ear-ɑː）、hurry/courage/surrogate（出 GP-ur）、butcher/omnibus（出 GP-u-ʌ）、zebra/theatre（出 GP-e-iː-open）、worry/worried（or→/ʌ/ 无模式）、either/leisure（出 GP-ei-iː）、sandwich（ch→/dʒ/ 无模式）、grandparents（GB d 不发音）、animate（表值取形容词 /-mət/，动词 /-meɪt/ 变体登记）、waltz（出 GP-a-w-ɔː 入 GP-a-w-ɒ，按表值 /wɒls/ 变体登记）、heretic、because（au→/ɒ/ 无模式）、warranty（出 GP-ar-w）、what/fallen/restaurant（出 GP-a-ɑː：分别归 a-w-ɒ、all/a-w-ɔː、a-ə+au 登记）、concerto/strawberry（出 GP-e-e）、geyser（出 GP-y-aɪ；ey→/iː/ 词中无模式）、sunglasses（出 GP-n）、eraser（出 GP-s-s）等 |
+| 无法判定维持 | 保留 | +22 | 见 10.3（对期望集呈 +22 残差，属登记类） |
+| GP-r 口径 | 维持 | — | GP-r 按字母承担口径收录（含词尾非重读 r）；其英式弱读归 10.6 模式空白登记 |
+
+逐模式增减（|Δ|≥3）：GP-a-ɑː +41/−3、GP-a-æ +3/−38、GP-u-juː +12/−5、GP-i-ɪ +10、GP-o-ɒ +8、GP-or −7、GP-a-e-any −6、GP-a-ə +5、GP-u-ʊ +5、GP-e-e +4/−2、GP-a-w-ɒ +4、GP-ew-juː +4、GP-a-w-ɔː +3/−1、GP-ou-ɔː +3、GP-ue-juː +3、GP-er +3、GP-n +3/−1、GP-m +3、GP-r +3、GP-t +3、GP-v +3（以上 +3 类含无法判定维持行与 conversion/version 入集）。其余 40 个模式为 ±1–2 单项，全量机对 = 本文件 vs 审计期望集 JSON。
+
+### 10.5 待裁定终局：184 → 146
+
+- 移除 38 条：审计 C1/C2 已判可定所涉 36 条（ice cream、dance、office、beautiful、fireman、quiet、vegetable(s)、beauty、quietly、quickly、February、mountain、January、service、yourselves、musician、librarian、post office、dictionary、libraries、dictionaries、restaurant、prince、ocean、quarter、table tennis、electrician、hinge、pineapple、coexist、fence、nonsense、promise、since、singe）+ thorough、borough（GA/RP 冲突由英式字段消解，按 S-42 定版入 GP-ough-ə）。
+- 保留 146 条：均为真需人工裁定者（VCe 短读面例外型、对齐失败需人工核、变脸组合未成块切分等），逐条理由仍见 §5 原登记（移除者以本节为准）。
+
+### 10.6 模式空白登记（规律层待裁定事项，本轮不新设模式）
+
+承审计 mode_gaps 与本轮英式分流新发现，统一登记（成员数为审计口径约数）：
+
+- 词尾弱读 -er/-or/-ur/-ar → /ə/：约 230 成员无模式可归（er 单类约 178）；
+- o → /ʌ/：约 56 个核心词（come、love、mother、other…）无 GP-o-ʌ；本轮 worry/worried（or→/ʌ/）同族；
+- ou → /ʊə/（tour、tourist）、au → /ɒ/（because、restaurant 的 au）、ch → /dʒ/（sandwich）、ey → /iː/ 词中（geyser）、or → /ə/（metaphor）、ere → /e/（heretic）、u → /jʊ/ 弱读类（argument、January、conspicuous、ingenuous、invaluable）、a 在 l 前（salt、salty，表值 /ɒ/）；
+- 微类：o→/ʊ/、oa→/ɔː/、u/ui→/ɪ/、ei→/aɪ/、-age→/ɑːʒ/、tion→/tʃən/ 等（审计登记）；
+- GP-ea-ɑː 仍空（heart 一家在本库拼作 ear，已归 GP-ear-ɑː）。
+
+### 10.7 gb 表勘误与记法变体登记（模式归属按已核事实维持，值待原线修正）
+
+- **勘误**（建议值）：math /mɑːθ/ → /mæθ/；gas /ɡeəs/ → /ɡæs/；heard /hɔːd/ → /hɜːd/；toy /taɪ/ → /tɔɪ/；thorough /ˈθʌrəʊ/ → /ˈθʌrə/；borough /ˈbʌrəʊ/ → /ˈbʌrə/（后两条与 S-42 定版、剑桥 UK 一致）。归属维持：math/gas∈GP-a-æ、heard∈GP-ear-ɜː、toy∈GP-oy、thorough/borough∈GP-ough-ə。
+- **记法变体**（归属维持）：square /skwɜː/ 的 ɜː 为 are /eə/ 的宽式异写；gasoline 尾 /lin/ 为弱变体（引用式 /liːn/）；noisy /ˈnɔːɪzɪ/ 的 ɔːɪ 为 ɔɪ 的窄式分写；blackbird /bəːd/ 的 əː 为 ɜː 异写；your 取弱读 /jə/（归属按强读 /jɔː/ 维持 GP-ou-ɔː）；表中 ɛ 与 e 混写（end /ɛnd/ 等），渲染无碍，登记备查。
+- **英式例外**：clerk、derby 在 GP-er 登记为例外（GB 中 er 读 /ɑː/，系英式特例；gb 数据正确，不改数据）。
+- **happy 元音 /i/ 记法类**：piano、taxi、happiness、champion、librarian、guardian、twentieth、espionage、easier、heavier、happier、pianos——GB 词典以 /i/ 记 happy 元音，与 /ɪ/ 同族，按 ɪ 口径维持 GP-i-ɪ。
