@@ -204,8 +204,10 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <button class="nbtn on" data-v="home">首页</button>
 <button class="nbtn" data-v="phon">拼读区</button>
 <button class="nbtn" data-v="vocab">词汇解码区</button>
+<button class="nbtn" data-v="morph">词根词缀</button>
 <button class="nbtn" data-v="grammar">语法区</button>
 <button class="nbtn" data-v="prep">介词</button>
+<button class="nbtn" data-v="prep2">介词2</button>
 <button class="nbtn" data-v="system">小系统区</button>
 <button class="nbtn" data-v="expr">表达写作区</button>
 <button class="nbtn" data-v="tech">技巧区</button>
@@ -219,12 +221,14 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 
 <!-- ============ 首页 ============ -->
 <section class="view on" id="v-home">
-<div class="sec-t">八大区</div>
+<div class="sec-t">十大区</div>
 <div class="grid">
 <div class="card" data-go="phon"><div class="ic">🔤</div><h3>拼读区</h3><p>拼法菜单、变脸榜、定律区、拼读序列主线、中国孩子难点地图。</p><span class="n">S 组 + SR 组 · 本区全功能样板</span></div>
 <div class="card" data-go="vocab"><div class="ic">🧩</div><h3>词汇解码区</h3><p>词源故事、词根家族、变身机、打包错位对照台、假词源侦探。</p><span class="n">V 组 + CO-17 · 本区全功能样板</span></div>
+<div class="card" data-go="morph"><div class="ic">🌱</div><h3>词根词缀</h3><p>前缀、词根、后缀：拆开词，看懂词。</p><span class="n">547 条拆分 · 真模块</span></div>
 <div class="card" data-go="grammar"><div class="ic">🏗️</div><h3>语法区</h3><p>总纲三条置顶（象似性 / 标记性 / 分析语总叙事），反意疑问三步法已做深。</p><span class="n">GR / TA / CO / QI · 95 条 · 目录页</span></div>
 <div class="card" data-go="prep"><div class="ic">📍</div><h3>介词区</h3><p>介词花园（原型图 + 亲戚网）。</p><span class="n">P 组 · 43 词 · 真模块</span></div>
+<div class="card" data-go="prep2"><div class="ic">🎈</div><h3>介词2</h3><p>球和盒子演给你看——一个场景演到底，句子一句句累积，还能自己拖着玩。</p><span class="n">易懂版 · 范本式新课</span></div>
 <div class="card" data-go="system"><div class="ic">🧭</div><h3>小系统区</h3><p>冠词三出口、汉语刀口对表。</p><span class="n">C / PR / PB · 44 条 · 目录页</span></div>
 <div class="card" data-go="expr"><div class="ic">✍️</div><h3>表达写作区</h3><p>整块取句、范文先行、语义韵选词、对话的规矩。</p><span class="n">E / W / NE · 59 条 · 目录页</span></div>
 <div class="card" data-go="tech"><div class="ic">🧰</div><h3>技巧区</h3><p>153 条定版学习技巧：按痛点、按技能、按顺序三种找法；每条有做法、自检与用错警告。</p><span class="n">TEC 五路 · 153 条 · 真模块</span></div>
@@ -347,11 +351,639 @@ body.adult .adult{display:block}
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">🧩 词汇解码区</h2>
 <p class="sub">V 组 45 条 · 全部入模：点任意一条进它的规律页（机制、例句、病例、练习都在页里；没有的如实标待补）。主线：词不是逐个背的——靠词源故事、形态拆解和打包对照解码。</p>
-<div class="gh">认识一个词（V-01 – V-09）</div><div class="urow" data-law="V-01"><span class="id">V-01</span><span class="tt">知道一个词 = 形（音、拼写、构成）、义（概念、联想、多义）、用（语法行为、搭配、场合）三面都建立了联结；缺哪一面，就在哪一面出错</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-02"><span class="id">V-02</span><span class="tt">词频是陡峭的幂律分布：先攻最常用的约 2000 个词族，覆盖日常文本约八成词次，回报率最高</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-03"><span class="id">V-03</span><span class="tt">生词密度决定理解是否崩盘：认识约 95% 的词只能吃力猜读，达到约 98% 才能流畅理解并顺带猜出生词</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-04"><span class="id">V-04</span><span class="tt">词汇习得需要四种学习条件大致均衡：意义导向输入、意义导向输出、语言导向学习、流利度发展——只背单词表只占四分之一</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-05"><span class="id">V-05</span><span class="tt">母语者产出的很大一部分是整块取用的现成组合；语言的底盘是『被语法组织起来的词汇』，不是『先有语法再填词』</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-06"><span class="id">V-06</span><span class="tt">心理词库是词素、单词、词块、整句并存的多规格仓库；大脑优先抓现成的大块用，因为省力</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-07"><span class="id">V-07</span><span class="tt">搭配对错没有道理可讲，是用法沉淀的约定：学一个动词必须连它的常用伙伴一起学，否则语法全对也『外国腔』</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-08"><span class="id">V-08</span><span class="tt">给词义接上一个真实的来历场景，记忆多一条图像通道，理解与保持都更好——前提是来历必须是真的</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-09"><span class="id">V-09</span><span class="tt">练习效果差在任务设计上：让学生真需要这个词（need）、自己去查（search）、比较取舍怎么用（evaluation）的任务，保持量最高</span><span class="st part">有练习 · 病例已查无</span></div><div class="gh">把词学进去（V-10 – V-18）</div><div class="urow" data-law="V-10"><span class="id">V-10</span><span class="tt">阅读出事的常不是生词，而是形近词、只记得一个意思的多义词、看着能拆其实拆错的词——它们让人跳过查核直接误读，还不自知</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-11"><span class="id">V-11</span><span class="tt">把词从记忆里努力调出来用一次，比再看三遍记得牢——重复提取才是固化记忆的动作，重复呈现只是原料</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-12"><span class="id">V-12</span><span class="tt">从上下文猜生词是必备策略，但成功率受制于覆盖率、线索质量与词本身——生词密度过高或词属欺骗性透明类时，猜义系统性失败</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-13"><span class="id">V-13</span><span class="tt">理解一个词，就是想起它出场的那幕生活场景和场景里的角色；buy、sell、pay、cost 是同一幕买卖戏换了机位</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-14"><span class="id">V-14</span><span class="tt">按场景成组教词时，词与词互相提供语境与推论支点，记忆负担小于逐词孤立背诵，迁移也更容易</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-15"><span class="id">V-15</span><span class="tt">词的可分析性从全透明到全不透明是一条连续谱：透明的真拆，不透明的整记，半透明的注明『只是帮记』；假分析会给记忆挂上错误的故事</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-16"><span class="id">V-16</span><span class="tt">一个词的多个义项大多有亲缘：中心义（原型）居中，其余义项经隐喻、转喻一步步长出分支；先教中心义再教分支，能迁移到未教义项</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-17"><span class="id">V-17</span><span class="tt">听读时以为懂了的词，一到说、写就卡壳——输出把词知识的缺口照亮，注意到缺口，才会回去补</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-18"><span class="id">V-18</span><span class="tt">中国学习者的词汇错误不是随机的：词形（拼写、构词）、搭配（动名搭配、近义词误选）、缺词与赘词（冠词、限定词、介词的漏与多）是三大聚集区</span><span class="st ok">有病例 · 有练习</span></div><div class="gh">词的家谱与造词机器（V-19 – V-21）</div><div class="urow" data-law="V-19"><span class="id">V-19</span><span class="tt">英语词汇有三个地层：盎格鲁-撒克逊本族层（短、核心、日常）、诺曼法语层（居中、体面）、拉丁希腊学层（长、书面、学术）——同义词的场合差是词的历史层位写在词里</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-20"><span class="id">V-20</span><span class="tt">英语造词有七台机器——派生、复合、转类、混合、截短、逆构、首字母缩合——产出性天差地别：有的天天开工，有的早已封存</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-21"><span class="id">V-21</span><span class="tt">英语学术与书面词汇的主体来自拉丁与希腊语，其构词零件在成百上千的词里重复出现：系统学一批高复用词干，等于给生词装上可分析接口</span><span class="st ok">有病例 · 有练习</span></div><div class="gh">词源（V-22 – V-27）</div><div class="urow" data-law="V-22"><span class="id">V-22</span><span class="tt">词义漂移有四个主方向——范围缩小、范围涨大、评价升格、评价跌格；给老词问『原来指多大范围、原来是好话还是坏话』，就能讲清它今天为什么是这个意思</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-23"><span class="id">V-23</span><span class="tt">同一个祖先词从两条不同的路进入英语，会住下两个同根异形的词（同源对）；本族、法语、拉丁三条路齐聚，就成三连词——语域差是『路线差』留下的化石</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-24"><span class="id">V-24</span><span class="tt">一个词里有一截变得听不懂时，说话人会自发把它替换成音近又说得通的熟悉词——民间词源是真实的造词力，它真的改掉了词形</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-25"><span class="id">V-25</span><span class="tt">知道一个词『最初是什么意思』，管不住它『现在是什么意思』——拿词源给现行词义判对错，叫词源谬误；越是好听得像段子的词源故事，越经不起年代学与文献链的检验</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-26"><span class="id">V-26</span><span class="tt">拉丁希腊层的词再往下挖一层，大批词同出一根——原始印欧语 *spek-『看』：inspect 是看进去，respect 是回头重看，species 是看出来的样子</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-27"><span class="id">V-27</span><span class="tt">英语与汉语互相借词约四百年：海路把闽南的『茶』送成全世界的 tea，港口把英语的 sofa 送成中国的『沙发』；借词的方向画的是贸易路线图</span><span class="st part">有练习 · 病例已查无</span></div><div class="gh">词根实证（V-28 – V-32）</div><div class="urow" data-law="V-28"><span class="id">V-28</span><span class="tt">小学阶段词汇量的暴涨主要不是逐个背出来的：母语儿童认得的派生词从 6 岁的约 2000 个涨到 10 岁的约 16000 个，增量靠当场『拆词解题』</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-29"><span class="id">V-29</span><span class="tt">学校英语里需要当作独立词学的单位约 88533 个；但学会一个词之后，平均还有一到三个亲戚词应当能顺带读懂——前提是会用语境和拆词去推</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-30"><span class="id">V-30</span><span class="tt">拆词法的可推理覆盖有实测的账：对带四个最高频前缀（un-、re-、in-、dis-）的词，只靠零件约懂六成，零件加语境约懂八成</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-31"><span class="id">V-31</span><span class="tt">『要不要教词根词缀』有两轮元分析的裁决：教了有用，总效应 d≈0.32–0.33（中等偏小）；低龄儿童与有识字困难的儿童受益相对最大</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-32"><span class="id">V-32</span><span class="tt">拆词有天花板：学校英语的派生词中完全透明者只占约 56–62%，约 18–24% 基本不可推——必须当作独立词另学。拆词是强工具，不是万能钥匙</span><span class="st ok">有病例 · 有练习</span></div><div class="gh">词缀（V-33 – V-39）</div><div class="urow" data-go="u-v33"><span class="id">V-33</span><span class="tt">词缀的头部定律：20 个前缀管住带前缀词的 97%，前 4 个（un-、re-、in- 否定、dis-）占 58%——先学一小撮，阅读里的大头全归队</span><span class="st deep">已做深</span></div><div class="urow" data-law="V-34"><span class="id">V-34</span><span class="tt">变色龙前缀：in- 碰到 p 变 im-、碰到 l 变 il-、碰到 r 变 ir-——前缀的尾巴会照着后面字母的样子改，同化处几乎都产生双写字母</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-35"><span class="id">V-35</span><span class="tt">『不』有两个供货商：日耳曼底子用 un-，拉丁底子用 in-——大势可依，例外成串；un- 是活零件至今能装新词，in- 已退休只守老词</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-36"><span class="id">V-36</span><span class="tt">词类变身机：给词根装不同的尾，就能把它变成动词、名词、形容词、副词——但每台变身机的『营业状态』不一样：-ness、-able、-ly 还通电，-tion、-ible 已封存</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-37"><span class="id">V-37</span><span class="tt">后缀一来，拼写要让路：丢不丢 e、y 变不变 i、尾巴双不双写，每条让路规则都有原因——正字法为语音与形态让路</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-38"><span class="id">V-38</span><span class="tt">假拆分三型须分别诊断：压根没零件（butter 的 -er 不是『做事的人』）、零件是真而组合义已死（butterfly）、零件是真而零件的义已变（understand 的 under 是古义）</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-39"><span class="id">V-39</span><span class="tt">词缀怎么教才有效：先立概念、防假拆，再按义项分课教『小集合』；而且要和语境一起教，不要单独教——词缀教学的红利在『自己解新词』，不在『学得快课本词』</span><span class="st ok">有病例 · 有练习</span></div><div class="gh">一词多义（V-40 – V-45 + CO-17）</div><div class="urow" data-go="u-v40"><span class="id">V-40</span><span class="tt">一个事件的语义零件可以有不同的『打包法』：汉语爱用一个总管动词统管一串事，英语爱按事情的细节换动词与搭配——把母语的打包图原样套到英语上，逐词对译必失真</span><span class="st deep">已做深</span></div><div class="urow" data-law="V-41"><span class="id">V-41</span><span class="tt">长得一样的两堆意思，可能是一个词长出的分支（多义），也可能是历史上撞脸的两个词（同形异义）——义项是编词典的人按词典的使命切出来的，没有客观刻度</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-42"><span class="id">V-42</span><span class="tt">隐喻引擎不只管介词：把『先教中心义、再沿隐喻路径长分支』推广到一般多义词与习语，对照实验同样显示理解与保持受益</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-43"><span class="id">V-43</span><span class="tt">有些词常年只和坏事一起出现，词本身就染上了坏运气——这种由惯常搭配沉淀出的褒贬氛围叫语义韵：词典不标、语法不管，选错了句子没错也『味儿不对』</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-44"><span class="id">V-44</span><span class="tt">同音异形词读音完全不能消歧，拼写只能靠『这句话在说什么』来选——写错不是粗心，是这类词的任务本质如此；解法是按对子呈现加绘本钉桩</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-45"><span class="id">V-45</span><span class="tt">一个词『最核心的意思』和『在语料里出现最多的意思』是两把不同的尺：核心义由引申网络定，频率由文本构成定——排教学顺序要两把尺都看</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词：动词管语法，名词装事情；get 一个词收成五个构造</span><span class="st deep">已做深</span></div><div class="gh">词根词缀专区（真模块）</div><div class="mz" id="mz-index"></div>
+<div class="gh">认识一个词（V-01 – V-09）</div><div class="urow" data-law="V-01"><span class="id">V-01</span><span class="tt">知道一个词 = 形（音、拼写、构成）、义（概念、联想、多义）、用（语法行为、搭配、场合）三面都建立了联结；缺哪一面，就在哪一面出错</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-02"><span class="id">V-02</span><span class="tt">词频是陡峭的幂律分布：先攻最常用的约 2000 个词族，覆盖日常文本约八成词次，回报率最高</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-03"><span class="id">V-03</span><span class="tt">生词密度决定理解是否崩盘：认识约 95% 的词只能吃力猜读，达到约 98% 才能流畅理解并顺带猜出生词</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-04"><span class="id">V-04</span><span class="tt">词汇习得需要四种学习条件大致均衡：意义导向输入、意义导向输出、语言导向学习、流利度发展——只背单词表只占四分之一</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-05"><span class="id">V-05</span><span class="tt">母语者产出的很大一部分是整块取用的现成组合；语言的底盘是『被语法组织起来的词汇』，不是『先有语法再填词』</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-06"><span class="id">V-06</span><span class="tt">心理词库是词素、单词、词块、整句并存的多规格仓库；大脑优先抓现成的大块用，因为省力</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-07"><span class="id">V-07</span><span class="tt">搭配对错没有道理可讲，是用法沉淀的约定：学一个动词必须连它的常用伙伴一起学，否则语法全对也『外国腔』</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-08"><span class="id">V-08</span><span class="tt">给词义接上一个真实的来历场景，记忆多一条图像通道，理解与保持都更好——前提是来历必须是真的</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-09"><span class="id">V-09</span><span class="tt">练习效果差在任务设计上：让学生真需要这个词（need）、自己去查（search）、比较取舍怎么用（evaluation）的任务，保持量最高</span><span class="st part">有练习 · 病例已查无</span></div><div class="gh">把词学进去（V-10 – V-18）</div><div class="urow" data-law="V-10"><span class="id">V-10</span><span class="tt">阅读出事的常不是生词，而是形近词、只记得一个意思的多义词、看着能拆其实拆错的词——它们让人跳过查核直接误读，还不自知</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-11"><span class="id">V-11</span><span class="tt">把词从记忆里努力调出来用一次，比再看三遍记得牢——重复提取才是固化记忆的动作，重复呈现只是原料</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-12"><span class="id">V-12</span><span class="tt">从上下文猜生词是必备策略，但成功率受制于覆盖率、线索质量与词本身——生词密度过高或词属欺骗性透明类时，猜义系统性失败</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-13"><span class="id">V-13</span><span class="tt">理解一个词，就是想起它出场的那幕生活场景和场景里的角色；buy、sell、pay、cost 是同一幕买卖戏换了机位</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-14"><span class="id">V-14</span><span class="tt">按场景成组教词时，词与词互相提供语境与推论支点，记忆负担小于逐词孤立背诵，迁移也更容易</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-15"><span class="id">V-15</span><span class="tt">词的可分析性从全透明到全不透明是一条连续谱：透明的真拆，不透明的整记，半透明的注明『只是帮记』；假分析会给记忆挂上错误的故事</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-16"><span class="id">V-16</span><span class="tt">一个词的多个义项大多有亲缘：中心义（原型）居中，其余义项经隐喻、转喻一步步长出分支；先教中心义再教分支，能迁移到未教义项</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-17"><span class="id">V-17</span><span class="tt">听读时以为懂了的词，一到说、写就卡壳——输出把词知识的缺口照亮，注意到缺口，才会回去补</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-18"><span class="id">V-18</span><span class="tt">中国学习者的词汇错误不是随机的：词形（拼写、构词）、搭配（动名搭配、近义词误选）、缺词与赘词（冠词、限定词、介词的漏与多）是三大聚集区</span><span class="st ok">有病例 · 有练习</span></div><div class="gh">词的家谱与造词机器（V-19 – V-21）</div><div class="urow" data-law="V-19"><span class="id">V-19</span><span class="tt">英语词汇有三个地层：盎格鲁-撒克逊本族层（短、核心、日常）、诺曼法语层（居中、体面）、拉丁希腊学层（长、书面、学术）——同义词的场合差是词的历史层位写在词里</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-20"><span class="id">V-20</span><span class="tt">英语造词有七台机器——派生、复合、转类、混合、截短、逆构、首字母缩合——产出性天差地别：有的天天开工，有的早已封存</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-21"><span class="id">V-21</span><span class="tt">英语学术与书面词汇的主体来自拉丁与希腊语，其构词零件在成百上千的词里重复出现：系统学一批高复用词干，等于给生词装上可分析接口</span><span class="st ok">有病例 · 有练习</span></div><div class="gh">词源（V-22 – V-27）</div><div class="urow" data-law="V-22"><span class="id">V-22</span><span class="tt">词义漂移有四个主方向——范围缩小、范围涨大、评价升格、评价跌格；给老词问『原来指多大范围、原来是好话还是坏话』，就能讲清它今天为什么是这个意思</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-23"><span class="id">V-23</span><span class="tt">同一个祖先词从两条不同的路进入英语，会住下两个同根异形的词（同源对）；本族、法语、拉丁三条路齐聚，就成三连词——语域差是『路线差』留下的化石</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-24"><span class="id">V-24</span><span class="tt">一个词里有一截变得听不懂时，说话人会自发把它替换成音近又说得通的熟悉词——民间词源是真实的造词力，它真的改掉了词形</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-25"><span class="id">V-25</span><span class="tt">知道一个词『最初是什么意思』，管不住它『现在是什么意思』——拿词源给现行词义判对错，叫词源谬误；越是好听得像段子的词源故事，越经不起年代学与文献链的检验</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-26"><span class="id">V-26</span><span class="tt">拉丁希腊层的词再往下挖一层，大批词同出一根——原始印欧语 *spek-『看』：inspect 是看进去，respect 是回头重看，species 是看出来的样子</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-27"><span class="id">V-27</span><span class="tt">英语与汉语互相借词约四百年：海路把闽南的『茶』送成全世界的 tea，港口把英语的 sofa 送成中国的『沙发』；借词的方向画的是贸易路线图</span><span class="st part">有练习 · 病例已查无</span></div><div class="gh">词根实证（V-28 – V-32）</div><div class="urow" data-law="V-28"><span class="id">V-28</span><span class="tt">小学阶段词汇量的暴涨主要不是逐个背出来的：母语儿童认得的派生词从 6 岁的约 2000 个涨到 10 岁的约 16000 个，增量靠当场『拆词解题』</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-29"><span class="id">V-29</span><span class="tt">学校英语里需要当作独立词学的单位约 88533 个；但学会一个词之后，平均还有一到三个亲戚词应当能顺带读懂——前提是会用语境和拆词去推</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-30"><span class="id">V-30</span><span class="tt">拆词法的可推理覆盖有实测的账：对带四个最高频前缀（un-、re-、in-、dis-）的词，只靠零件约懂六成，零件加语境约懂八成</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-31"><span class="id">V-31</span><span class="tt">『要不要教词根词缀』有两轮元分析的裁决：教了有用，总效应 d≈0.32–0.33（中等偏小）；低龄儿童与有识字困难的儿童受益相对最大</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-32"><span class="id">V-32</span><span class="tt">拆词有天花板：学校英语的派生词中完全透明者只占约 56–62%，约 18–24% 基本不可推——必须当作独立词另学。拆词是强工具，不是万能钥匙</span><span class="st ok">有病例 · 有练习</span></div><div class="gh">词缀（V-33 – V-39）</div><div class="urow" data-go="u-v33"><span class="id">V-33</span><span class="tt">词缀的头部定律：20 个前缀管住带前缀词的 97%，前 4 个（un-、re-、in- 否定、dis-）占 58%——先学一小撮，阅读里的大头全归队</span><span class="st deep">已做深</span></div><div class="urow" data-law="V-34"><span class="id">V-34</span><span class="tt">变色龙前缀：in- 碰到 p 变 im-、碰到 l 变 il-、碰到 r 变 ir-——前缀的尾巴会照着后面字母的样子改，同化处几乎都产生双写字母</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-35"><span class="id">V-35</span><span class="tt">『不』有两个供货商：日耳曼底子用 un-，拉丁底子用 in-——大势可依，例外成串；un- 是活零件至今能装新词，in- 已退休只守老词</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-36"><span class="id">V-36</span><span class="tt">词类变身机：给词根装不同的尾，就能把它变成动词、名词、形容词、副词——但每台变身机的『营业状态』不一样：-ness、-able、-ly 还通电，-tion、-ible 已封存</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-37"><span class="id">V-37</span><span class="tt">后缀一来，拼写要让路：丢不丢 e、y 变不变 i、尾巴双不双写，每条让路规则都有原因——正字法为语音与形态让路</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-38"><span class="id">V-38</span><span class="tt">假拆分三型须分别诊断：压根没零件（butter 的 -er 不是『做事的人』）、零件是真而组合义已死（butterfly）、零件是真而零件的义已变（understand 的 under 是古义）</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-39"><span class="id">V-39</span><span class="tt">词缀怎么教才有效：先立概念、防假拆，再按义项分课教『小集合』；而且要和语境一起教，不要单独教——词缀教学的红利在『自己解新词』，不在『学得快课本词』</span><span class="st ok">有病例 · 有练习</span></div><div class="gh">一词多义（V-40 – V-45 + CO-17）</div><div class="urow" data-go="u-v40"><span class="id">V-40</span><span class="tt">一个事件的语义零件可以有不同的『打包法』：汉语爱用一个总管动词统管一串事，英语爱按事情的细节换动词与搭配——把母语的打包图原样套到英语上，逐词对译必失真</span><span class="st deep">已做深</span></div><div class="urow" data-law="V-41"><span class="id">V-41</span><span class="tt">长得一样的两堆意思，可能是一个词长出的分支（多义），也可能是历史上撞脸的两个词（同形异义）——义项是编词典的人按词典的使命切出来的，没有客观刻度</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-42"><span class="id">V-42</span><span class="tt">隐喻引擎不只管介词：把『先教中心义、再沿隐喻路径长分支』推广到一般多义词与习语，对照实验同样显示理解与保持受益</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-law="V-43"><span class="id">V-43</span><span class="tt">有些词常年只和坏事一起出现，词本身就染上了坏运气——这种由惯常搭配沉淀出的褒贬氛围叫语义韵：词典不标、语法不管，选错了句子没错也『味儿不对』</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-44"><span class="id">V-44</span><span class="tt">同音异形词读音完全不能消歧，拼写只能靠『这句话在说什么』来选——写错不是粗心，是这类词的任务本质如此；解法是按对子呈现加绘本钉桩</span><span class="st ok">有病例 · 有练习</span></div><div class="urow" data-law="V-45"><span class="id">V-45</span><span class="tt">一个词『最核心的意思』和『在语料里出现最多的意思』是两把不同的尺：核心义由引申网络定，频率由文本构成定——排教学顺序要两把尺都看</span><span class="st part">有练习 · 病例已查无</span></div><div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词：动词管语法，名词装事情；get 一个词收成五个构造</span><span class="st deep">已做深</span></div><div class="urow" data-go="morph"><span class="id">🌱</span><span class="tt">词根词缀专区已独立成区 → 点此或顶部菜单「词根词缀」进入</span><span class="st deep">独立成区</span></div>
 </section>
 
 <!-- ============ 词根词缀明细页 ============ -->
 <section class="view mz" id="v-morph-detail"><div id="mz-detail"></div></section>
+
+<style>
+.p2 .p2-stage{background:#fffdf4;border:2px solid #eadfc2;border-radius:14px;padding:8px 6px;margin:10px 0}
+.p2 .p2-stage svg{width:100%;height:auto;display:block}
+.p2 .p2-ctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0}
+.p2 .p2-btn{background:#e63946;color:#fff;border:none;font-size:17px;padding:11px 26px;border-radius:12px;cursor:pointer;font-weight:bold}
+.p2 .p2-btn:disabled{background:#cbd5e0;cursor:default}
+.p2 .p2-ghost{background:#fff;border:2px solid #d8c9a3;color:#6b5b3e;font-size:14.5px;padding:9px 16px;border-radius:12px;cursor:pointer}
+.p2 .p2-bigbtn{background:#2b6cb0;color:#fff;border:none;font-size:18px;padding:13px 30px;border-radius:12px;cursor:pointer;font-weight:bold}
+.p2 .p2-bigbtn.p2-win{background:#2e9e5b}
+.p2 .p2-prog{font-size:15px;color:#5b6b7f;font-weight:bold}
+.p2 .p2-spk{background:none;border:none;font-size:17px;cursor:pointer;vertical-align:middle;padding:0 2px}
+.p2 .p2-off{display:none !important}
+.p2 .p2-tip{background:#eef6ff;border:2px solid #bcd7f5;border-radius:12px;padding:12px 14px;font-size:16.5px;margin:10px 0}
+.p2 .p2-note{font-size:12px;color:#97876a;line-height:1.65;margin-top:18px}
+.p2 .p2-sumt{font-size:16.5px;font-weight:bold;margin:14px 0 8px;color:#37474f}
+.p2 .p2-sent{background:#fff;border-left:6px solid #f0b429;border-radius:10px;padding:9px 12px;margin:7px 0;font-size:19px;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.p2 .p2-sent .p2-kid{display:block;font-size:14.5px;color:#5b6b7f;margin-top:2px}
+.p2 .p2-grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.p2 .p2-cell{background:#fffdf4;border:2px solid #eadfc2;border-radius:10px;padding:4px;cursor:pointer;text-align:center}
+.p2 .p2-cell.p2-static{cursor:default}
+.p2 .p2-cell svg{width:100%;height:auto;display:block}
+.p2 .p2-cell .p2-cap{font-size:14.5px;font-weight:bold;color:#37474f;padding:3px 0}
+.p2 .p2-cell.p2-cur{border-color:#e63946;background:#fff5f5}
+.p2 .p2-line{background:#fff;border:2px solid #e6ddc4;border-radius:12px;padding:9px 13px;margin:7px 0;font-size:17px;max-width:94%}
+.p2 .p2-line.p2-b{margin-left:auto;background:#f2f8ee}
+.p2 .p2-line .p2-who{font-weight:bold;color:#8a6d3b;margin-right:7px}
+.p2 .p2-cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+@media (max-width:680px){.p2 .p2-cards3{grid-template-columns:1fr}}
+.p2 .p2-card3{background:#fff;border:3px solid #d8e4f0;border-radius:14px;padding:10px;text-align:center}
+.p2 .p2-card3 svg{width:100%;max-width:170px;height:auto}
+.p2 .p2-card3.p2-lit{border-color:#f0b429;box-shadow:0 0 0 4px #fdeec9}
+.p2 .p2-cardt{font-size:19px;font-weight:bold;margin-top:4px}
+.p2 .p2-cardk{font-size:14px;color:#5b6b7f;margin:3px 0 6px}
+.p2 .p2-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:5px;min-height:6px}
+.p2 .p2-chip1{background:#eef6ff;border:1.5px solid #bcd7f5;border-radius:999px;padding:4px 11px;font-size:15px}
+.p2 .p2-chip1.p2-time{background:#fff7e0;border-color:#f0d488}
+.p2 .p2-gate{background:#fff8e6;border:2.5px dashed #f0b429;border-radius:14px;padding:14px;margin:12px 0}
+.p2 .p2-gateq{font-size:18px;margin-bottom:4px}
+.p2 .p2-gatehint{font-size:15px;color:#8a6d3b;min-height:22px;margin-top:4px}
+.p2 .p2-concert{width:100%;height:auto;background:#fffdf4;border:2px solid #eadfc2;border-radius:14px}
+.p2 .p2-bbcchips{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
+.p2 .p2-bbcchip{background:#fff;border:2px solid #2b6cb0;color:#2b6cb0;font-size:16.5px;padding:10px 15px;border-radius:999px;cursor:pointer}
+.p2 .p2-bbcchip.p2-lit{background:#2b6cb0;color:#fff}
+.p2 .p2-corecard{background:#fff5f5;border:2.5px solid #f3c1c1;border-radius:12px;padding:11px 14px;font-size:16.5px;margin:10px 0}
+.p2 .p2o-row{background:#fff;border:2px solid #e6ddc4;border-radius:12px;padding:10px 13px;margin:8px 0}
+.p2 .p2o-row.p2-on{border-color:#e63946;background:#fffafa}
+.p2 .p2o-sense{font-size:17px;font-weight:bold;color:#37474f}
+.p2 .p2o-body{display:block;margin-top:5px}
+.p2 .p2o-sent{font-size:18.5px;display:block}
+.p2 .p2o-kid{display:block;font-size:14.5px;color:#5b6b7f;margin-top:2px}
+.p2 .p2o-src{display:inline-block;font-size:11.5px;color:#97876a;background:#f7f1de;border-radius:6px;padding:2px 8px;margin-top:5px}
+.p2 .p2-pulse{fill:#f0b429 !important}
+.p2 .p2-dcard{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:#fff;border:2.5px solid #d8e4f0;border-radius:12px;padding:12px 14px;margin:10px 0}
+.p2 .p2-dcard.p2-good{border-color:#2e9e5b;background:#eefaf2}
+.p2 .p2-dsent{font-size:21px;font-weight:bold}
+</style>
+
+<!-- ============ 词根词缀区（独立区，原词汇区形态模块） ============ -->
+<section class="view" id="v-morph">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🌱 词根词缀</h2>
+<p class="sub">前缀、词根、后缀：拆开词，看懂词。本区内容与原词汇解码区内的词根词缀专区完全一致，只是独立成区，方便直接进入。</p>
+<div class="gh">词根词缀专区（真模块）</div><div class="mz" id="mz-index"></div>
+</section>
+
+<!-- ============ 介词2（易懂版 · 范本式新课） ============ -->
+<section class="view p2" id="v-prep2">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🎈 介词2 · 易懂版</h2>
+<p class="sub">同一个介词，换一种讲法：不背定义，看场景。一个球、一个盒子演到底，句子一句一句累积，还能自己上手拖。每课的做法都学自真实名课（出处在各课课尾小字）。</p>
+<div class="grid">
+<div class="card" data-go="prep2-ball"><div class="ic">⚽</div><h3>第 1 课 · 球和盒子</h3><p>一个舞台演到底：球一动，句子就多一句，九个位置全看完。</p><span class="n">9 句 · 累积不擦除</span></div>
+<div class="card" data-go="prep2-ina"><div class="ic">🧭</div><h3>第 2 课 · in / on / at</h3><p>先听一个约饭的小故事，再看三张图：范围、接触面、一个点——地点和时间用同一张图。</p><span class="n">维度图式 · 先故事后讲解</span></div>
+<div class="card" data-go="prep2-over"><div class="ic">🌈</div><h3>第 3 课 · over 一条弧线</h3><p>over 的五个意思，其实是同一条弧线：每一步只改图上一个地方。</p><span class="n">5 个意思 · 一条弧线</span></div>
+<div class="card" data-go="prep2-drag"><div class="ic">🖐️</div><h3>第 4 课 · 拖一拖</h3><p>读一句，把球拖到对的位置。不计时；放错了不判错，只给你看图式提示。</p><span class="n">9 题 · 动手摆位置</span></div>
+</div>
+</section>
+
+<!-- ============ 介词2 · 第 1 课 球和盒子 ============ -->
+<section class="view p2" id="v-prep2-ball">
+<span class="back" data-go="prep2">← 返回介词2</span>
+<h2 class="zt">⚽ 球和盒子</h2>
+<p class="sub">舞台上只有一个球和一个盒子。点「下一步」，看球跑到新位置，句子就多一句——前面的句子不会消失。</p>
+<div class="p2-stage">
+<svg id="p2b-svg" viewBox="0 0 640 330" role="img" aria-label="球和盒子的舞台">
+<line x1="30" y1="260" x2="610" y2="260" stroke="#c9b894" stroke-width="3"/>
+<g id="p2b-boxes">
+<g id="p2b-box1">
+<rect id="p2b-box1fill" x="270" y="160" width="100" height="84" rx="5" fill="#f6b352" fill-opacity="0.3" stroke="#c97b2d" stroke-width="4"/>
+<line x1="284" y1="244" x2="284" y2="260" stroke="#c97b2d" stroke-width="5"/>
+<line x1="356" y1="244" x2="356" y2="260" stroke="#c97b2d" stroke-width="5"/>
+</g>
+<g id="p2b-box2" style="display:none">
+<rect x="424" y="160" width="100" height="84" rx="5" fill="#f6b352" fill-opacity="0.3" stroke="#c97b2d" stroke-width="4"/>
+<line x1="438" y1="244" x2="438" y2="260" stroke="#c97b2d" stroke-width="5"/>
+<line x1="510" y1="244" x2="510" y2="260" stroke="#c97b2d" stroke-width="5"/>
+</g>
+</g>
+<g id="p2b-ball" transform="translate(92,284)">
+<circle r="20" fill="#e63946" stroke="#b31b34" stroke-width="3"/>
+<circle cx="-6" cy="-7" r="6" fill="#ffffff" fill-opacity="0.55"/>
+</g>
+</svg>
+</div>
+<div class="p2-ctrl">
+<button class="p2-btn" id="p2b-next">下一步 ▶</button>
+<button class="p2-ghost" id="p2b-reset">从头再演</button>
+<span class="p2-prog" id="p2b-prog">还没开始</span>
+<button class="p2-ghost" id="p2b-sayall">🔊 读出所有句子</button>
+</div>
+<div id="p2b-sents"></div>
+<div id="p2b-sum" class="p2-off">
+<div class="p2-sumt">🎉 九个位置全看完了！这张总结图里，每一格都是刚才的一个位置——点任意一格，再看一遍那个位置。</div>
+<div class="p2-grid9" id="p2b-grid"></div>
+</div>
+<p class="p2-note">成人层 · 本课 9 句逐字取自 Woodward English《Basic Prepositions of Place》（经调研 08 §2 归档）。小字注：原课把 above 与 over、below 与 under 当同义词，其实不完全等同——over 还有「越过、盖住」等意思，见第 3 课；本课只练位置。</p>
+</section>
+
+<!-- ============ 介词2 · 第 2 课 in / on / at ============ -->
+<section class="view p2" id="v-prep2-ina">
+<span class="back" data-go="prep2">← 返回介词2</span>
+<h2 class="zt">🧭 in / on / at</h2>
+<p class="sub">先听故事，不解释。听完再回头看：三个词，其实是三张图。</p>
+<div class="p2-ctrl">
+<button class="p2-btn" id="p2i-next">下一步 ▶</button>
+<span class="p2-prog" id="p2i-prog">第 1 步：先听故事</span>
+<button class="p2-ghost" id="p2i-saystory">🔊 读一遍故事</button>
+</div>
+<div id="p2i-story"></div>
+<div id="p2i-freeze" class="p2-tip p2-off">故事讲完啦。刚才的句子里藏着 in、on、at 三个词——别急着背，它们其实是三张图，一张一张看。</div>
+<div class="p2-cards3">
+<div class="p2-card3 p2-off" id="p2i-card-in">
+<svg viewBox="0 0 160 120"><g fill="none" stroke="#2b6cb0" stroke-width="3"><rect x="45" y="38" width="70" height="62"/><polygon points="45,38 65,16 135,16 115,38"/><polygon points="115,38 135,16 135,78 115,100"/></g><circle cx="80" cy="69" r="8" fill="#e63946"/></svg>
+<div class="p2-cardt">in · 一个空间范围</div>
+<div class="p2-cardk">像钻进一个大盒子，被四周包围起来。</div>
+<div class="p2-chips" id="p2i-pl-in"></div>
+<div class="p2-chips" id="p2i-ti-in"></div>
+</div>
+<div class="p2-card3 p2-off" id="p2i-card-on">
+<svg viewBox="0 0 160 120"><rect x="18" y="80" width="124" height="11" rx="3" fill="#718096"/><line x1="18" y1="80" x2="142" y2="80" stroke="#2b6cb0" stroke-width="3"/><circle cx="80" cy="69" r="10" fill="#e63946"/></svg>
+<div class="p2-cardt">on · 一个接触的表面</div>
+<div class="p2-cardk">贴在一个面上，碰得到、托得住。</div>
+<div class="p2-chips" id="p2i-pl-on"></div>
+<div class="p2-chips" id="p2i-ti-on"></div>
+</div>
+<div class="p2-card3 p2-off" id="p2i-card-at">
+<svg viewBox="0 0 160 120"><g fill="none" stroke="#2b6cb0" stroke-width="3"><circle cx="80" cy="60" r="32"/><circle cx="80" cy="60" r="19"/></g><circle cx="80" cy="60" r="6" fill="#e63946"/></svg>
+<div class="p2-cardt">at · 一个点</div>
+<div class="p2-cardk">小小的一个点，就在这里，不占地方。</div>
+<div class="p2-chips" id="p2i-pl-at"></div>
+<div class="p2-chips" id="p2i-ti-at"></div>
+</div>
+</div>
+<div id="p2i-gate" class="p2-gate p2-off">
+<div class="p2-gateq">先猜一猜：晚上 <b>7 点钟</b>，是一个「点」，还是一个「面」？</div>
+<div class="p2-ctrl">
+<button class="p2-bigbtn" id="p2i-g-dot">一个点</button>
+<button class="p2-bigbtn" id="p2i-g-face">一个面</button>
+</div>
+<div class="p2-gatehint" id="p2i-gate-hint"></div>
+</div>
+<div id="p2i-concl" class="p2-tip p2-off">看出来了吗？<b>地点和时间是同一个概念</b>：in 是范围，on 是接触面，at 是一个点。换到时间上，图一张都不用换。</div>
+<div id="p2i-bbc" class="p2-off">
+<div class="p2-sumt">最后看一张图：一场演唱会，三个词全在里面。点一点每句话，看它点亮哪张图。</div>
+<svg viewBox="0 0 640 130" class="p2-concert">
+<rect x="245" y="18" width="230" height="58" rx="6" fill="#ffd166" stroke="#d9a404" stroke-width="3"/>
+<text x="360" y="54" text-anchor="middle" font-size="17" fill="#7a5200">🎤 舞台 stage</text>
+<g fill="#5b7ea6"><circle cx="520" cy="95" r="9"/><circle cx="545" cy="103" r="9"/><circle cx="570" cy="95" r="9"/><circle cx="595" cy="103" r="9"/><circle cx="530" cy="112" r="9"/><circle cx="560" cy="112" r="9"/><circle cx="588" cy="112" r="9"/></g>
+<text x="558" y="128" text-anchor="middle" font-size="13" fill="#41608a">人群 crowd</text>
+<text x="105" y="70" text-anchor="middle" font-size="26">⭐</text>
+<text x="105" y="95" text-anchor="middle" font-size="13" fill="#7a5200">最前面 front</text>
+<line x1="30" y1="118" x2="610" y2="118" stroke="#c9b894" stroke-width="3"/>
+</svg>
+<div class="p2-bbcchips">
+<button class="p2-bbcchip" data-p2bbc="at">I'm at the front. 🔊</button>
+<button class="p2-bbcchip" data-p2bbc="on">The band is on the stage. 🔊</button>
+<button class="p2-bbcchip" data-p2bbc="in">And my friends are in the crowd. 🔊</button>
+</div>
+</div>
+<p class="p2-note">成人层 · 故事与图式讲法出自 Kevin 英文不難《不用死背，一次搞懂 IN, ON, AT》（图式原话：in 是空間範圍、on 是一個接觸的表面、at 就是一個點，此处用简体转写；对话为调研归档所录版本）；对照句出自 BBC Learning English（Sam 的演唱会，I'm at the front. / The band is on the stage. / And my friends are in the crowd.）。出处经调研 05 §1.3、调研 08 §1/§8 归档。</p>
+</section>
+
+<!-- ============ 介词2 · 第 3 课 over 一条弧线 ============ -->
+<section class="view p2" id="v-prep2-over">
+<span class="back" data-go="prep2">← 返回介词2</span>
+<h2 class="zt">🌈 over 一条弧线</h2>
+<p class="sub">over 有五个意思，可是它们共用一张图：一条从上方越过的弧线。一步一步来，每一步只改图上一个地方。</p>
+<div class="p2-corecard">over 的老家图：<b>一条弧线</b> —— A 是起点，B 是最高点，C 是落点。<span class="p2-coresent">The bird flew over the wall. <button class="p2-spk" data-p2say="The bird flew over the wall.">🔊</button></span></div>
+<div class="p2-stage">
+<svg id="p2o-svg" viewBox="0 0 640 330" role="img" aria-label="over 的弧线舞台">
+<line x1="30" y1="260" x2="610" y2="260" stroke="#c9b894" stroke-width="3"/>
+<path d="M180,260 Q320,60 460,260 Z" fill="#b7d99a" stroke="#6aa84f" stroke-width="3"/>
+<g id="p2o-cloth" style="display:none"><path d="M252,152 Q320,118 388,152 L388,182 Q320,150 252,182 Z" fill="#7fb3e8" stroke="#4a7fb5" stroke-width="3"/></g>
+<g id="p2o-house" style="display:none"><rect x="512" y="216" width="44" height="32" fill="#ffe1a8" stroke="#c97b2d" stroke-width="3"/><polygon points="506,216 534,196 562,216" fill="#d96f4e"/></g>
+<path id="p2o-arc" d="M150,246 Q320,40 490,246" fill="none" stroke="#e63946" stroke-width="5" stroke-linecap="round"/>
+<g id="p2o-flag" style="display:none"><line x1="490" y1="246" x2="490" y2="200" stroke="#555" stroke-width="3"/><polygon points="490,200 514,208 490,216" fill="#2e9e5b"/></g>
+<g id="p2o-pts" style="display:none">
+<circle id="p2o-ptA" cx="150" cy="246" r="7" fill="#2b6cb0"/>
+<circle id="p2o-ptB" cx="320" cy="143" r="7" fill="#2b6cb0"/>
+<circle id="p2o-ptC" cx="490" cy="246" r="7" fill="#2b6cb0"/>
+<text x="138" y="272" font-size="17" font-weight="bold" fill="#2b6cb0">A</text>
+<text x="312" y="128" font-size="17" font-weight="bold" fill="#2b6cb0">B</text>
+<text x="482" y="272" font-size="17" font-weight="bold" fill="#2b6cb0">C</text>
+</g>
+<g id="p2o-ball" transform="translate(150,246)">
+<circle r="16" fill="#e63946" stroke="#b31b34" stroke-width="3"/>
+<circle cx="-5" cy="-6" r="5" fill="#ffffff" fill-opacity="0.55"/>
+</g>
+<text id="p2o-num" x="320" y="52" text-anchor="middle" font-size="30" font-weight="bold" fill="#b31b34" style="display:none">0</text>
+</svg>
+</div>
+<div class="p2-ctrl">
+<button class="p2-btn" id="p2o-next">下一步 ▶</button>
+<span class="p2-prog" id="p2o-prog">先把弧线画出来</span>
+</div>
+<div id="p2o-rows">
+<div class="p2o-row" data-row="1"><span class="p2o-sense">意思 1 · 越过</span><span class="p2o-body p2-off"><span class="p2o-sent">The cat jumped over the box. <button class="p2-spk" data-p2say="The cat jumped over the box.">🔊</button></span><span class="p2o-kid">从上面跳过去！走的就是这条弧线，最高的地方是 B 点。</span><span class="p2o-src">例句 · 词族档案</span></span></div>
+<div class="p2o-row" data-row="2"><span class="p2o-sense">意思 2 · 在另一边</span><span class="p2o-body p2-off"><span class="p2o-sent">The village is over the hill. <button class="p2-spk" data-p2say="The village is over the hill.">🔊</button></span><span class="p2o-kid">翻过山头，村子就在那一边——眼睛盯着弧线的终点 C。</span><span class="p2o-src">例句 · 词族档案</span></span></div>
+<div class="p2o-row" data-row="3"><span class="p2o-sense">意思 3 · 结束了</span><span class="p2o-body p2-off"><span class="p2o-sent">The game is over. <button class="p2-spk" data-p2say="The game is over.">🔊</button></span><span class="p2o-kid">比赛结束啦！事情走到了头，就像走完了整条弧线。</span><span class="p2o-src">例句 · 词族档案</span></span></div>
+<div class="p2o-row" data-row="4"><span class="p2o-sense">意思 4 · 盖住</span><span class="p2o-body p2-off"><span class="p2o-sent">Spread the tablecloth over the table. <button class="p2-spk" data-p2say="Spread the tablecloth over the table.">🔊</button></span><span class="p2o-kid">桌布从上面盖住桌子——「盖住」也是 over。</span><span class="p2o-src">例句 · 词族档案</span></span></div>
+<div class="p2o-row" data-row="5"><span class="p2o-sense">意思 5 · 超过</span><span class="p2o-body p2-off"><span class="p2o-sent">over 300,000 <button class="p2-spk" data-p2say="over three hundred thousand">🔊</button></span><span class="p2o-kid">比 300,000 还要多，多到数不清！</span><span class="p2o-src">短语 · 调研 08 §3 意义链</span></span></div>
+</div>
+<p class="p2-note">成人层 · 「一条弧线、每步只改一个地方」的讲法出自 English Preposition Tutor（Wong, Zhao &amp; MacWhinney 2018）的图式反馈与 Tyler &amp; Evans 的 A–B–C 弧线（调研 02/05/08 归档）。例句出处分层：意思 1–4 的句子逐字取自词族档案 prep_family_full.json 中 over 的引申链节点（源 P-06 / PB-05）；意思 5「超过」在档案中无整句例句，只录调研 08 §3 意义链的短语 over 300,000，不自造整句。</p>
+</section>
+
+<!-- ============ 介词2 · 第 4 课 拖一拖 ============ -->
+<section class="view p2" id="v-prep2-drag">
+<span class="back" data-go="prep2">← 返回介词2</span>
+<h2 class="zt">🖐️ 拖一拖</h2>
+<p class="sub">读一读句子，用手把红球拖到对的位置。不计时，放错了也没关系——看看虚线圈的提示，再拖一次。</p>
+<div class="p2-dcard" id="p2d-card">
+<span class="p2-dsent" id="p2d-sent">The ball is behind the box.</span>
+<button class="p2-spk" id="p2d-say">🔊 读这句</button>
+<span class="p2-prog" id="p2d-prog">第 0 / 9 个</span>
+</div>
+<div class="p2-tip" id="p2d-msg">把红球拖到句子说的位置吧。</div>
+<div class="p2-stage">
+<svg id="p2d-svg" viewBox="0 0 640 330" role="img" aria-label="拖球舞台">
+<line x1="30" y1="260" x2="610" y2="260" stroke="#c9b894" stroke-width="3"/>
+<rect x="46" y="258" width="92" height="52" rx="8" fill="none" stroke="#a0aec0" stroke-width="2" stroke-dasharray="6 5"/>
+<g id="p2d-boxes">
+<g id="p2d-box1">
+<rect id="p2d-box1fill" x="270" y="160" width="100" height="84" rx="5" fill="#f6b352" fill-opacity="0.3" stroke="#c97b2d" stroke-width="4"/>
+<line x1="284" y1="244" x2="284" y2="260" stroke="#c97b2d" stroke-width="5"/>
+<line x1="356" y1="244" x2="356" y2="260" stroke="#c97b2d" stroke-width="5"/>
+</g>
+<g id="p2d-box2" style="display:none">
+<rect x="424" y="160" width="100" height="84" rx="5" fill="#f6b352" fill-opacity="0.3" stroke="#c97b2d" stroke-width="4"/>
+<line x1="438" y1="244" x2="438" y2="260" stroke="#c97b2d" stroke-width="5"/>
+<line x1="510" y1="244" x2="510" y2="260" stroke="#c97b2d" stroke-width="5"/>
+</g>
+</g>
+<circle id="p2d-hint" r="27" fill="none" stroke="#2b6cb0" stroke-width="3" stroke-dasharray="7 6" style="display:none"/>
+<g id="p2d-ball" transform="translate(92,284)" style="cursor:grab;touch-action:none">
+<circle r="20" fill="#e63946" stroke="#b31b34" stroke-width="3"/>
+<circle cx="-6" cy="-7" r="6" fill="#ffffff" fill-opacity="0.55"/>
+</g>
+</svg>
+</div>
+<div id="p2d-done" class="p2-off">
+<div class="p2-sumt">🎉 九个位置全部摆对了！这张总结图送给你——和第 1 课的图一模一样，现在每一格你都亲手摆过。</div>
+<div class="p2-grid9" id="p2d-grid"></div>
+</div>
+<p class="p2-note">成人层 · 玩法出自 Games to Learn English《Prepositions Game》（读句子 → 拖物体摆位，调研 02 §1 / 08 §5 归档）；按本课要求去掉计时，放错只亮图式提示（虚线圈）、不判错。题目句子与第 1 课相同（Woodward 序列）。</p>
+</section>
+
+<script>
+(function(){
+'use strict';
+function p2El(id){ return document.getElementById(id); }
+function p2Speak(t){
+  try{ if(typeof window.say==='function'){ window.say(t); return; } }catch(e){}
+  try{ var u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=0.85; speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){}
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('[data-p2say]') : null;
+  if(b){ p2Speak(b.getAttribute('data-p2say')); }
+});
+function p2SetBall(g,x,y){ g.setAttribute('transform','translate('+x+','+y+')'); }
+function p2BallPos(g){
+  var m=/translate\(([-\d.]+)[ ,]+([-\d.]+)\)/.exec(g.getAttribute('transform')||'');
+  return m ? {x:+m[1], y:+m[2]} : {x:0, y:0};
+}
+function p2AnimBall(g,to,dur,done){
+  var from=p2BallPos(g), t0=null;
+  var mx=(from.x+to.x)/2, my=(from.y+to.y)/2 - ((from.y<175||to.y<175) ? 95 : 42);
+  function fr(ts){
+    if(!t0) t0=ts;
+    var t=Math.min(1,(ts-t0)/dur), a=(1-t)*(1-t), b=2*(1-t)*t, c=t*t;
+    p2SetBall(g, a*from.x+b*mx+c*to.x, a*from.y+b*my+c*to.y);
+    if(t<1) requestAnimationFrame(fr); else if(done) done();
+  }
+  requestAnimationFrame(fr);
+}
+
+/* ---------- shared geometry: ball & box ---------- */
+var P2_POS={
+  behind:{x:320,y:202,back:true, box2:false,cap:'behind'},
+  front: {x:320,y:228,back:false,box2:false,cap:'in front of'},
+  nextto:{x:396,y:240,back:false,box2:false,cap:'next to'},
+  between:{x:397,y:240,back:false,box2:true, cap:'between'},
+  near:  {x:474,y:240,back:false,box2:false,cap:'near'},
+  above: {x:320,y:102,back:false,box2:false,cap:'above'},
+  below: {x:320,y:288,back:false,box2:false,cap:'below'},
+  in:    {x:320,y:208,back:false,box2:false,cap:'in'},
+  on:    {x:320,y:140,back:false,box2:false,cap:'on'}
+};
+var P2_ORDER=['behind','front','nextto','between','near','above','below','in','on'];
+var P2_SENTS={
+  behind:'The ball is behind the box.', front:'The ball is in front of the box.',
+  nextto:'The ball is next to the box.', between:'The ball is between the boxes.',
+  near:'The ball is near the box.', above:'The ball is above the box.',
+  below:'The ball is below the box.', in:'The ball is in the box.', on:'The ball is on the box.'
+};
+var P2_KID={
+  behind:'躲在盒子后面啦——球被盒子挡住，看不见了！',
+  front:'跑到盒子前面来了，这回看得清清楚楚。',
+  nextto:'贴在盒子旁边，挨得很近。',
+  between:'站在两个盒子中间，左右都有盒子陪着。',
+  near:'在盒子附近——不远，但没有贴上。',
+  above:'飞到盒子上方去了，中间隔着空气，没有碰到盒子。',
+  below:'钻到盒子下面去了。',
+  in:'跳进盒子里面啦，被盒子四周围起来。',
+  on:'站在盒子上面，稳稳地贴着盒子的面。'
+};
+function p2BoxRect(x){
+  return '<rect x="'+x+'" y="160" width="100" height="84" rx="5" fill="#f6b352" fill-opacity="0.55" stroke="#c97b2d" stroke-width="5"/>'
+       + '<line x1="'+(x+14)+'" y1="244" x2="'+(x+14)+'" y2="260" stroke="#c97b2d" stroke-width="6"/>'
+       + '<line x1="'+(x+86)+'" y1="244" x2="'+(x+86)+'" y2="260" stroke="#c97b2d" stroke-width="6"/>';
+}
+function p2MiniSVG(key){
+  var p=P2_POS[key];
+  var boxes=p2BoxRect(270)+(p.box2 ? p2BoxRect(424) : '');
+  var ball='<circle cx="'+p.x+'" cy="'+p.y+'" r="20" fill="#e63946" stroke="#b31b34" stroke-width="3"/>';
+  var inner = p.back
+    ? ball+boxes+'<circle cx="'+p.x+'" cy="'+p.y+'" r="27" fill="none" stroke="#e63946" stroke-width="3" stroke-dasharray="7 6"/>'
+    : boxes+ball;
+  return '<svg viewBox="0 0 640 330"><line x1="30" y1="260" x2="610" y2="260" stroke="#c9b894" stroke-width="3"/>'+inner+'</svg>';
+}
+function p2GridHTML(clickable){
+  return P2_ORDER.map(function(k,i){
+    return '<div class="p2-cell'+(clickable?'':' p2-static')+'" data-p2cell="'+i+'">'+p2MiniSVG(k)+'<div class="p2-cap">'+P2_POS[k].cap+'</div></div>';
+  }).join('');
+}
+
+/* ---------- Lesson 1: ball & box ---------- */
+var p2b={step:-1,busy:false};
+function p2bSentHTML(k){
+  return P2_SENTS[k]+' <button class="p2-spk" data-p2say="'+P2_SENTS[k]+'">🔊</button><span class="p2-kid">'+P2_KID[k]+'</span>';
+}
+function p2bGo(i){
+  var k=P2_ORDER[i], p=P2_POS[k];
+  p2El('p2b-box2').style.display = p.box2 ? '' : 'none';
+  var svg=p2El('p2b-svg'), ball=p2El('p2b-ball'), boxes=p2El('p2b-boxes');
+  if(p.back){ svg.insertBefore(ball, boxes); } else { svg.appendChild(ball); }
+  p2El('p2b-box1fill').setAttribute('fill-opacity', p.back ? '0.97' : '0.3');
+  p2b.busy=true;
+  p2AnimBall(ball, {x:p.x, y:p.y}, 750, function(){ p2b.busy=false; });
+  var box=p2El('p2b-sents'); box.innerHTML='';
+  for(var j=0;j<=i;j++){
+    var d=document.createElement('div'); d.className='p2-sent'; d.innerHTML=p2bSentHTML(P2_ORDER[j]); box.appendChild(d);
+  }
+  p2b.step=i;
+  p2El('p2b-prog').textContent='第 '+(i+1)+' / 9 句';
+  var nx=p2El('p2b-next');
+  if(i>=8){ nx.disabled=true; nx.textContent='演完啦 🎉'; p2El('p2b-sum').classList.remove('p2-off'); }
+  else { nx.disabled=false; nx.textContent='下一步 ▶'; p2El('p2b-sum').classList.add('p2-off'); }
+  var cells=p2El('p2b-grid').children;
+  for(var c=0;c<cells.length;c++){ cells[c].classList.toggle('p2-cur', c===i); }
+}
+p2El('p2b-next').addEventListener('click', function(){
+  if(p2b.busy || p2b.step>=8) return;
+  p2bGo(p2b.step+1);
+});
+p2El('p2b-reset').addEventListener('click', function(){
+  p2b.step=-1;
+  var svg=p2El('p2b-svg'), ball=p2El('p2b-ball');
+  svg.appendChild(ball);
+  p2El('p2b-box2').style.display='none';
+  p2El('p2b-box1fill').setAttribute('fill-opacity','0.3');
+  p2AnimBall(ball, {x:92,y:284}, 600, null);
+  p2El('p2b-sents').innerHTML='';
+  p2El('p2b-prog').textContent='还没开始';
+  var nx=p2El('p2b-next'); nx.disabled=false; nx.textContent='下一步 ▶';
+  p2El('p2b-sum').classList.add('p2-off');
+  var cells=p2El('p2b-grid').children;
+  for(var c=0;c<cells.length;c++){ cells[c].classList.remove('p2-cur'); }
+});
+p2El('p2b-sayall').addEventListener('click', function(){
+  var n = p2b.step<0 ? 9 : p2b.step+1, arr=[];
+  for(var j=0;j<n;j++) arr.push(P2_SENTS[P2_ORDER[j]]);
+  p2Speak(arr.join(' '));
+});
+p2El('p2b-grid').innerHTML=p2GridHTML(true);
+p2El('p2b-grid').addEventListener('click', function(e){
+  var cell=e.target.closest ? e.target.closest('[data-p2cell]') : null;
+  if(cell && !p2b.busy) p2bGo(+cell.getAttribute('data-p2cell'));
+});
+
+/* ---------- Lesson 2: in / on / at ---------- */
+var P2I_LINES=[
+  {w:'Anna', t:"Brian, are you free on Friday? Let's have dinner.", b:false},
+  {w:'Brian',t:"Sure! Where?", b:true},
+  {w:'Anna', t:"There's a nice restaurant on Xinyi Road, in Taipei.", b:false},
+  {w:'Brian',t:"Great. What time?", b:true},
+  {w:'Anna', t:"At 7 p.m. Let's meet at the restaurant.", b:false}
+];
+var P2I_PROG=['第 1 步：先听故事','故事 2 / 5 句','故事 3 / 5 句','故事 4 / 5 句','故事 5 / 5 句','故事讲完了','图 1 / 3：in','图 2 / 3：on','图 3 / 3：at','地点：一句一张图','先猜一猜（在下面答）','时间 1 / 3：at','时间 2 / 3：on','时间 3 / 3：in','最后：一张图看三个词','学完啦 🎉'];
+var p2i={step:0, gate:false};
+function p2iChip(txt, time){
+  return '<span class="p2-chip1'+(time?' p2-time':'')+'">'+txt+'</span>';
+}
+function p2iStep(){
+  var s=p2i.step;
+  p2El('p2i-prog').textContent=P2I_PROG[s];
+  if(s>=1 && s<=5){
+    var L=P2I_LINES[s-1];
+    var d=document.createElement('div');
+    d.className='p2-line'+(L.b?' p2-b':'');
+    d.innerHTML='<span class="p2-who">'+L.w+':</span>'+L.t+' <button class="p2-spk" data-p2say="'+L.t.replace(/"/g,'&quot;')+'">🔊</button>';
+    p2El('p2i-story').appendChild(d);
+  }
+  else if(s===6){ p2El('p2i-freeze').classList.remove('p2-off'); }
+  else if(s===7){ p2El('p2i-card-in').classList.remove('p2-off'); }
+  else if(s===8){ p2El('p2i-card-on').classList.remove('p2-off'); }
+  else if(s===9){ p2El('p2i-card-at').classList.remove('p2-off'); }
+  else if(s===10){
+    p2El('p2i-pl-in').innerHTML=p2iChip('in Taipei');
+    p2El('p2i-pl-on').innerHTML=p2iChip('on Xinyi Road');
+    p2El('p2i-pl-at').innerHTML=p2iChip('at the restaurant');
+  }
+  else if(s===11){
+    p2El('p2i-gate').classList.remove('p2-off');
+    if(!p2i.gate){ p2El('p2i-next').disabled=true; }
+  }
+  else if(s===12){ p2El('p2i-ti-at').innerHTML=p2iChip('at 7 p.m.', true)+p2iChip('at noon', true); }
+  else if(s===13){ p2El('p2i-ti-on').innerHTML=p2iChip('on Friday', true)+p2iChip('on May 8th', true); }
+  else if(s===14){
+    p2El('p2i-ti-in').innerHTML=p2iChip('in winter', true)+p2iChip('in 2025', true)+p2iChip('in 10 minutes', true);
+    p2El('p2i-concl').classList.remove('p2-off');
+  }
+  else if(s===15){
+    p2El('p2i-bbc').classList.remove('p2-off');
+    var nx=p2El('p2i-next'); nx.disabled=true; nx.textContent='学完啦 🎉';
+  }
+}
+p2El('p2i-next').addEventListener('click', function(){
+  if(p2i.step>=15) return;
+  p2i.step++;
+  p2iStep();
+});
+p2El('p2i-g-dot').addEventListener('click', function(){
+  if(p2i.gate) return;
+  p2i.gate=true;
+  this.classList.add('p2-win');
+  p2El('p2i-gate-hint').textContent='对啦！7 点钟一闪就过，不占地方——它是一个点。点「下一步」，把时间贴到三张图上。';
+  p2El('p2i-next').disabled=false;
+});
+p2El('p2i-g-face').addEventListener('click', function(){
+  if(p2i.gate) return;
+  p2El('p2i-gate-hint').textContent='再想想：「一天」是一个面，那 7 点钟呢？它在钟表上一闪就过去了，占不占地方？';
+});
+p2El('p2i-saystory').addEventListener('click', function(){
+  p2Speak(P2I_LINES.map(function(l){ return l.t; }).join(' '));
+});
+var P2I_BBC={at:"I'm at the front.", on:"The band is on the stage.", in:"And my friends are in the crowd."};
+document.querySelectorAll('[data-p2bbc]').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    var k=chip.getAttribute('data-p2bbc');
+    ['in','on','at'].forEach(function(x){ p2El('p2i-card-'+x).classList.toggle('p2-lit', x===k); });
+    document.querySelectorAll('[data-p2bbc]').forEach(function(c){ c.classList.toggle('p2-lit', c===chip); });
+    p2Speak(P2I_BBC[k]);
+  });
+});
+
+/* ---------- Lesson 3: over, one arc ---------- */
+var p2o={step:0};
+var P2O_PROG=['先把弧线画出来','弧线画好了','意思 1 / 5 · 越过','意思 2 / 5 · 在另一边','意思 3 / 5 · 结束了','意思 4 / 5 · 盖住','意思 5 / 5 · 超过'];
+try{
+  var p2oArc0=p2El('p2o-arc'), p2oL0=p2oArc0.getTotalLength();
+  if(p2oL0>0){ p2oArc0.style.strokeDasharray=p2oL0; p2oArc0.style.strokeDashoffset=p2oL0; }
+}catch(e){}
+function p2oReveal(n){
+  var row=document.querySelector('#p2o-rows .p2o-row[data-row="'+n+'"]');
+  if(row){ row.classList.add('p2-on'); row.querySelector('.p2o-body').classList.remove('p2-off'); }
+}
+p2El('p2o-next').addEventListener('click', function(){
+  if(p2o.step>=6) return;
+  p2o.step++;
+  var s=p2o.step;
+  p2El('p2o-prog').textContent=P2O_PROG[s];
+  var arc=p2El('p2o-arc'), ball=p2El('p2o-ball');
+  if(s===1){
+    var L=arc.getTotalLength();
+    arc.style.strokeDasharray=L; arc.style.strokeDashoffset=L;
+    void arc.getBoundingClientRect();
+    arc.style.transition='stroke-dashoffset 1.4s ease';
+    arc.style.strokeDashoffset='0';
+    setTimeout(function(){ p2El('p2o-pts').style.display=''; }, 900);
+  }
+  else if(s===2){
+    p2El('p2o-ptB').classList.add('p2-pulse');
+    var L2=arc.getTotalLength(), t0=null;
+    function fr(ts){
+      if(!t0) t0=ts;
+      var t=Math.min(1,(ts-t0)/1300);
+      var pt=arc.getPointAtLength(t*L2);
+      p2SetBall(ball, pt.x, pt.y);
+      if(t<1) requestAnimationFrame(fr);
+    }
+    requestAnimationFrame(fr);
+    p2oReveal(1);
+  }
+  else if(s===3){
+    p2El('p2o-ptB').classList.remove('p2-pulse');
+    p2El('p2o-ptC').classList.add('p2-pulse');
+    p2El('p2o-house').style.display='';
+    p2SetBall(ball, 490, 246);
+    p2oReveal(2);
+  }
+  else if(s===4){
+    arc.style.stroke='#9aa5b1';
+    p2El('p2o-flag').style.display='';
+    p2oReveal(3);
+  }
+  else if(s===5){
+    p2El('p2o-cloth').style.display='';
+    p2oReveal(4);
+  }
+  else if(s===6){
+    var num=p2El('p2o-num'); num.style.display='';
+    var t0b=null;
+    function frn(ts){
+      if(!t0b) t0b=ts;
+      var t=Math.min(1,(ts-t0b)/900);
+      num.textContent=Math.round(t*300000).toLocaleString('en-US');
+      if(t<1) requestAnimationFrame(frn); else num.textContent='300,000 +';
+    }
+    requestAnimationFrame(frn);
+    p2oReveal(5);
+    var nx=p2El('p2o-next'); nx.disabled=true; nx.textContent='学完啦 🎉';
+  }
+});
+
+/* ---------- Lesson 4: drag the ball ---------- */
+var p2d={q:0, done:0, dragging:false, locked:false};
+var P2D_HOME={x:92, y:284};
+function p2SvgPoint(svg, evt){
+  var pt=svg.createSVGPoint(); pt.x=evt.clientX; pt.y=evt.clientY;
+  var m=svg.getScreenCTM(); if(!m) return {x:0,y:0};
+  var p=pt.matrixTransform(m.inverse());
+  return {x:p.x, y:p.y};
+}
+function p2dSetQ(){
+  var k=P2_ORDER[p2d.q], p=P2_POS[k];
+  p2El('p2d-sent').textContent=P2_SENTS[k];
+  p2El('p2d-box2').style.display = p.box2 ? '' : 'none';
+  p2El('p2d-box1fill').setAttribute('fill-opacity','0.3');
+  var svg=p2El('p2d-svg'), ball=p2El('p2d-ball');
+  svg.appendChild(ball);
+  svg.appendChild(p2El('p2d-hint'));
+  p2SetBall(ball, P2D_HOME.x, P2D_HOME.y);
+  p2El('p2d-hint').style.display='none';
+  p2El('p2d-card').classList.remove('p2-good');
+  p2El('p2d-msg').textContent='把红球拖到句子说的位置吧。';
+  p2d.locked=false;
+}
+function p2dCorrect(){
+  var k=P2_ORDER[p2d.q], p=P2_POS[k];
+  var svg=p2El('p2d-svg'), ball=p2El('p2d-ball');
+  p2d.locked=true;
+  p2El('p2d-hint').style.display='none';
+  p2AnimBall(ball, {x:p.x, y:p.y}, 200, function(){
+    if(p.back){
+      svg.insertBefore(ball, p2El('p2d-boxes'));
+      p2El('p2d-box1fill').setAttribute('fill-opacity','0.97');
+    }
+  });
+  p2El('p2d-card').classList.add('p2-good');
+  p2d.done++;
+  p2El('p2d-prog').textContent='第 '+p2d.done+' / 9 个';
+  if(p2d.done>=9){
+    p2El('p2d-msg').textContent='全部摆对了，你就是位置小达人！';
+    p2El('p2d-done').classList.remove('p2-off');
+    return;
+  }
+  p2El('p2d-msg').textContent='对啦，就是这里！下一句来了……';
+  setTimeout(function(){ p2d.q++; p2dSetQ(); }, 1200);
+}
+(function(){
+  var svg=p2El('p2d-svg'), ball=p2El('p2d-ball');
+  ball.addEventListener('pointerdown', function(e){
+    if(p2d.locked || p2d.done>=9) return;
+    p2d.dragging=true;
+    try{ ball.setPointerCapture(e.pointerId); }catch(err){}
+    var pt=p2SvgPoint(svg, e);
+    p2SetBall(ball, Math.max(24,Math.min(616,pt.x)), Math.max(24,Math.min(308,pt.y)));
+    e.preventDefault();
+  });
+  ball.addEventListener('pointermove', function(e){
+    if(!p2d.dragging) return;
+    var pt=p2SvgPoint(svg, e);
+    p2SetBall(ball, Math.max(24,Math.min(616,pt.x)), Math.max(24,Math.min(308,pt.y)));
+  });
+  function p2dUp(){
+    if(!p2d.dragging) return;
+    p2d.dragging=false;
+    var pos=p2BallPos(ball), tgt=P2_POS[P2_ORDER[p2d.q]];
+    var dist=Math.sqrt((pos.x-tgt.x)*(pos.x-tgt.x)+(pos.y-tgt.y)*(pos.y-tgt.y));
+    if(dist<=58){ p2dCorrect(); }
+    else {
+      var hint=p2El('p2d-hint');
+      hint.setAttribute('cx', tgt.x); hint.setAttribute('cy', tgt.y);
+      hint.style.display='';
+      p2El('p2d-msg').textContent='差一点！看虚线圈——球应该去那里，再拖一次。';
+    }
+  }
+  ball.addEventListener('pointerup', p2dUp);
+  ball.addEventListener('pointercancel', function(){ p2d.dragging=false; });
+})();
+p2El('p2d-say').addEventListener('click', function(){
+  p2Speak(p2El('p2d-sent').textContent);
+});
+p2El('p2d-grid').innerHTML=p2GridHTML(false);
+p2dSetQ();
+})();
+</script>
 
 <!-- ============ 语法区（目录页） ============ -->
 <section class="view" id="v-grammar">
@@ -5055,7 +5687,7 @@ function openPage(pid){
   document.getElementById('btn-back').addEventListener('click', back);
 }
 function back(){
-  show('vocab');
+  show('morph');
   const y = savedScroll; setTimeout(function(){ window.scrollTo(0, y); }, 0);
 }
 document.addEventListener('click', function(e){
