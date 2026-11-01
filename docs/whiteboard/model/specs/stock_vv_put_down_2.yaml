@@ -48,3 +48,13 @@ items:
 - - s
   - Put down your pencil and look at me.
   - 放下铅笔看着我。
+facts:
+  objects:
+    - { name: "put down", kind: "短语", states: "本幕②上屏释义为写下，记下，注为写到纸上；旁白总释含放下（物品）" }
+    - { name: "例句 Put down your name here.", kind: "例句", states: "在这里写下你的名字；上屏书写过程呈现 Name 与 Tom" }
+    - { name: "例句 Put down your name.", kind: "例句", states: "拆解句：写下名字，名字落到纸面；与 Put down your pencil. 的放下铅笔并列，拆解注为铅笔落到桌面" }
+    - { name: "DOWN", kind: "小词", states: "本幕拆解为向下落定；与 PUT 的放、摆合成落到桌面或纸面" }
+  invariants:
+    - "共同点恒为 DOWN = 落到桌面或纸面（本幕判据，共同点原话）"
+    - "PUT 在本幕拆解中恒释为放、摆，DOWN 恒释为向下落定（本幕拆解卡）"
+    - "实物义与书写义同构：铅笔落到桌面与名字落到纸面，共用落定判据（本幕判据，拆解卡原话）"

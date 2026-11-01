@@ -24,3 +24,14 @@ items:
 - - s
   - Mum makes a big cake for Duoduo.
   - 妈妈为朵朵做了一个大蛋糕。 ｜ Giver + V + Theme + for + Recipient
+facts:
+  objects:
+    - { name: "例句 Mum makes a big cake for Duoduo.", kind: "例句", states: "本幕视角 3 的锚例句：Mum 作 Giver、a big cake 作 Theme、Duoduo 作由 for 引出的受益者" }
+    - { name: "给予传递小剧场（Giving & Transfer）", kind: "框架", states: "本幕所属框架：同一客观事件，切换主语视角即切换动词；本幕为视角 3" }
+    - { name: "动词组 buy / make / cook sth for sb", kind: "词表", states: "本幕上屏的三个动词同走 for 式；例句实际演示 make，其余两个仅在标题与公式行列名" }
+    - { name: "for 式结构", kind: "句型", states: "公式为 Giver + V + Theme + for + Recipient：台词注为了某人制作或购买用 for" }
+    - { name: "Mum 与朵朵（Duoduo）", kind: "人物", states: "台词点名的人物：Mum 是制作方，朵朵是受益者；本幕物品由生日礼物换为大蛋糕" }
+  invariants:
+    - "为某人购买或制作物品时，受益者由 for 引出：buy / make / cook sth for sb（本幕判据原话：为了某人制作/购买用 for）"
+    - "to 与 for 分工不混：to 式管传递方向（视角 2），for 式管受益对象（本幕判据；与 stock_hd_fr02_2 的 items 对照）"
+    - "Giver、Theme、Recipient 三角色在本幕齐备：for 只标记受益关系，不改变谁做、做什么、给谁（本幕判据；dom-frames：每个词只点亮场景的一部分角色）"

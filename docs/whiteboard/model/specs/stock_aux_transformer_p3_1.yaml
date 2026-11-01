@@ -38,3 +38,11 @@ items:
   - Where? What? Beautiful!
   - 哪里？什么？真漂亮！
   - Where What beautiful
+facts:
+  objects:
+    - { name: "特殊疑问句 Where is she taking photos now?", kind: "句型", states: "本幕④式：Where 问地点，三步为换 Where → 提护卫 is → 擦掉被提问的 in the park" }
+    - { name: "感叹句 What beautiful photos she is taking! / How happy she is!", kind: "例句", states: "本幕⑤式：感叹名词 photos 用 What 开头，感叹形容词 happy 用 How 开头" }
+    - { name: "疑问词 Where", kind: "语法对象", states: "本幕定义其分工：问地点；特殊疑问句以疑问词开头、问具体信息，不能只答 Yes / No" }
+  invariants:
+    - "感叹分工恒为：名词用 What、形容词用 How；公式 What + 形容词 + 名词 + 主谓 与 How + 形容词 + 主谓（本幕公式；模型主张 g34-exclamatory）"
+    - "特殊疑问句恒由疑问词按所缺信息站句首：缺地点派 Where（本幕台词；模型主张 g31-wh-words）"

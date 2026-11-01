@@ -36,3 +36,12 @@ items:
 - - s
   - Don't look away from the blackboard.
   - 视线不要离开黑板。
+facts:
+  objects:
+    - { name: "look away / off", kind: "短语", states: "本幕②为 look away：把视线移开，看向别处；上屏注为目光移开" }
+    - { name: "例句 Look away! Don't look at the sun.", kind: "例句", states: "快把目光移开！不要直视太阳" }
+    - { name: "例句 Look away from the sun.", kind: "例句", states: "拆解句：别直视太阳，目光离开太阳；与 Don't look away. 的别把视线移开并列，拆解注为目光离开黑板" }
+    - { name: "AWAY / OFF", kind: "小词", states: "本幕拆解为离开目标；与 LOOK 的看合成目光离开原来的目标" }
+  invariants:
+    - "共同点恒为 AWAY / OFF = 目光离开原来的目标（本幕判据，共同点原话）"
+    - "LOOK 在本幕拆解中恒释为看，AWAY / OFF 恒释为离开目标（本幕拆解卡）"

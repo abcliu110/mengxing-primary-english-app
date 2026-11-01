@@ -17,3 +17,11 @@ items:
   - 抬头看！一颗流星！
 - - w
   - Wow, look!
+facts:
+  objects:
+    - { name: "look up", kind: "短语", states: "本幕①释义为抬头向上看；旁白另提在厚词典里让信息浮现出来的查阅义，本幕①未展开演示" }
+    - { name: "UP", kind: "小词", states: "本幕卡释为抬头往上看" }
+    - { name: "例句 Look up! A shooting star!", kind: "例句", states: "抬头看！一颗流星！上屏感叹 Wow, look!" }
+  invariants:
+    - "UP 在本幕恒表往上：look up ①即抬头往上看（本幕判据：UP 卡与释义卡同义复现）"
+    - "本幕①例句的观看对象恒为上方：一颗流星（本幕例句）"

@@ -35,3 +35,14 @@ items:
 - - n
   - 🎵 口诀：过去否定与疑问，请出帮手 did 大人；did 和 didn't 一现身，过去能量全吸尽，后面动词秒回原形（Did you go? / I didn't
     go）！
+facts:
+  objects:
+    - { name: "例句对 He went to the zoo. → He didn't go to the zoo. → Did he go to the zoo?", kind: "例句", states: "同一件事三式对照：肯定式用 went，否定与疑问在 did 出场后改用原形 go" }
+    - { name: "did / didn't", kind: "语法对象", states: "本幕公式：否定 主语 + didn't + 动词原形；疑问 Did + 主语 + 动词原形" }
+    - { name: "例句 Did he go to the zoo? No, he didn't.", kind: "例句", states: "一般疑问与简短否定回答成对呈现" }
+    - { name: "例句 I went to the park yesterday, but I didn't go to the zoo.", kind: "例句", states: "语境实证句：同句内 went 与 didn't go 对照呈现" }
+  invariants:
+    - "did 一出场，动词回原形：did 或 didn't 后面的实义动词恢复原形（g23-did）"
+    - "过去时标记全句只出现一次，由 did 承担，动词不必再变；答句里没有 did 时，动词恢复过去式（g23-did）"
+    - "『海绵、能量吸收器』是比喻，真事实是『时态只标记一次』，不得延伸成其他助动词也吸别的成分（g23-did 的 boundary）"
+    - "本幕常错恒为 I didn't went，应改为 I didn't go（本幕判据）"

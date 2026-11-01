@@ -19,3 +19,11 @@ items:
   - OUT
 - - m
   - 当心外面的危险
+facts:
+  objects:
+    - { name: "look out", kind: "短语", states: "本幕①上屏释义为当心，留神；旁白为把目光投向窗外警惕危险" }
+    - { name: "例句 Look out! A fast bike is coming!", kind: "例句", states: "当心！一辆快车过来了！上屏先作 Look out! A bike!" }
+    - { name: "OUT", kind: "小词", states: "本幕卡释为当心外面的危险" }
+  invariants:
+    - "OUT 在本幕恒指向外面的危险：当心外面的危险（本幕判据：OUT 卡原话）"
+    - "Look out! 在本幕恒为当心警告：警告对象恒为外面驶来的快车（本幕判据，例句原话）"

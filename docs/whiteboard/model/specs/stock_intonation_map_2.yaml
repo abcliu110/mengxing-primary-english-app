@@ -110,3 +110,15 @@ items:
   - 虚词轻如风！
 - - w
   - 🎵 语调地图 · 句重音
+facts:
+  objects:
+    - { name: "例句 I WANT to GO to the PARK.", kind: "例句", states: "本幕重音标注版：大写为重读的实词，小写为轻轻带过的虚词；原句 I want to go to the park." }
+    - { name: "实词（重读类）", kind: "语法对象", states: "带主要意思的词：名词、动词、形容词、副词，如 want、go、park；读得重，像鼓点" }
+    - { name: "虚词（轻读类）", kind: "语法对象", states: "帮忙连接的小词：a、the、to、and、of；读得轻、读得快，弱读时元音常变 /ə/" }
+    - { name: "对比例句 Cats eat fish. 与 The cats will eat the fish.", kind: "例句", states: "本幕节拍对照：两句都是 3 个鼓点，第二句多出的小词说得快一些" }
+    - { name: "焦点对比例句 I like the RED one. 与 I LIKE the red one.", kind: "例句", states: "换重音换焦点：重读 RED 表不是蓝的，重读 LIKE 表不是讨厌" }
+  invariants:
+    - "实词重如鼓，虚词轻如风（本幕判据口诀原话）"
+    - "想强调哪个词就把哪个词读重，意思的焦点跟着变（本幕判据原话）"
+    - "虚词弱读时元音常变成 /ə/：to 读 /tə/、and 读 /ən/、a 读 /ə/、of 读 /əv/（本幕台词；领域纲领 dom-phonetics 同口径：重音与弱读是真现象，schwa /ə/ 是英语最常见的元音）"
+    - "节拍等长只是简化说法：真实说话不会完全一样长（本幕简化台词明示边界）"

@@ -23,3 +23,11 @@ items:
   - 从车厢里出来
 - - w
   - Thank you!
+facts:
+  objects:
+    - { name: "get out", kind: "短语", states: "本幕为第①幕；旁白定义为从封闭盒子或房间里向外走出来；释义为下（小汽车）" }
+    - { name: "例句 He got out of the taxi at the gate.", kind: "例句", states: "他在大门口下了出租车；本幕台词点名大门与出租车" }
+    - { name: "车厢 = 盒子", kind: "规则", states: "本幕把车厢比作盒子；OUT 落实为从车厢里出来" }
+  invariants:
+    - "get out 在本幕恒指从封闭盒子或房间里向外走出来（本幕判据，旁白定义原话）"
+    - "OUT 在本幕落实为从车厢里出来，且车厢被定义为盒子（本幕标记原话：『车厢 = 盒子』）"

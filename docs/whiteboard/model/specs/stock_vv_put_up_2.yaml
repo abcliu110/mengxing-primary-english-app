@@ -40,3 +40,13 @@ items:
 - - s
   - Put up your hand! Let's put up a tent!
   - 请举手！我们来搭起帐篷吧！
+facts:
+  objects:
+    - { name: "put up", kind: "短语", states: "开场释义列举起（手）、张贴（海报）、搭起（帐篷）三义；本幕编号 ②，重点演示搭起（帐篷），拆解回溯另含举手一义" }
+    - { name: "例句 Let's put up a tent!", kind: "例句", states: "本幕 ② 义锚例句：我们来搭帐篷吧；帐篷在本幕台词中释为往上立起来" }
+    - { name: "例句 Put up your hand.", kind: "例句", states: "拆解区例句：举手；台词拆为手往上举" }
+    - { name: "例句 Put up a tent.", kind: "例句", states: "拆解区例句：搭帐篷；台词拆为帐篷往上立，与举手例共享 UP 的往上义" }
+  invariants:
+    - "共同点：UP = 往上举起来、立起来（本幕判据原话）"
+    - "PUT 本幕释为放、摆，UP 本幕释为向上 / 填满，二者组合的往上义在举手与搭帐篷两例中保持同一（本幕拆解判据）"
+    - "张贴（海报）一义只在开场释义列名，本幕未展开演示（本幕台词范围）"

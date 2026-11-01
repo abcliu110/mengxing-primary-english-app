@@ -17,3 +17,12 @@ items:
 - - s
   - Turn up the music! Let's dance!
   - 把音乐声音调大一点！我们跳舞吧！
+facts:
+  objects:
+    - { name: "turn up", kind: "短语", states: "开场旁白列把音量旋钮往高处拧与人突然冒头出现两路；本幕编号 ①，演示调大（音量）" }
+    - { name: "例句 Turn up the music! Let's dance!", kind: "例句", states: "本幕 ① 义锚例句：把音乐声音调大一点，我们跳舞吧；台词点名音乐" }
+    - { name: "UP（小词）", kind: "规则", states: "本幕具体化为音量往上拧，与调大义对应" }
+  invariants:
+    - "UP 在本幕恒指往上，开场判据具体化为音量旋钮往高处拧（本幕开场判据）"
+    - "turn up ① 的释义恒为调大（音量）：本幕锚例中被调大的是音乐声音（本幕例句判据）"
+    - "人突然冒头出现一路只在开场旁白列名，本幕 ① 未展开演示（本幕台词范围）"

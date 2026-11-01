@@ -84,3 +84,13 @@ items:
 - - s
   - He took up painting last summer.
   - 他去年夏天开始学画画。
+facts:
+  objects:
+    - { name: "take up", kind: "短语", states: "开场释义为开始从事（新爱好）与占据（时间/空间）；本幕编号 ②，演示占据（时间 / 空间）" }
+    - { name: "例句 The big box takes up much space.", kind: "例句", states: "本幕 ② 义锚例句：大箱子占了很大地方；台词点名大箱子与房间空间" }
+    - { name: "例句 He took up painting.", kind: "例句", states: "拆解区回溯 ① 义例句：他开始学画画；台词拆为拿起来开始做" }
+    - { name: "例句 It takes up space.", kind: "例句", states: "拆解区 ② 义例句：它占地方；台词拆为向上填满空间" }
+  invariants:
+    - "共同点：UP = 向上拿起，一直到满（本幕判据原话）"
+    - "TAKE 本幕释为拿、取，UP 本幕释为向上 / 填满，二者组合同时解释开始学画画与占空间两例（本幕拆解判据）"
+    - "占据义在本幕锚例落在空间上：大箱子占了很大地方；时间一路只在释义卡列名（本幕例句判据）"

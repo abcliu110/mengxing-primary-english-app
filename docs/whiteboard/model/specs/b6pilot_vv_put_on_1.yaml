@@ -23,3 +23,12 @@ items:
   - 双手
 - - w
   - So warm!
+facts:
+  objects:
+    - { name: "put on", kind: "短语", states: "本幕为第①幕；释义卡为穿上、戴上；旁白定义为把衣物放到身体表面贴合" }
+    - { name: "例句 Put on your warm hat and gloves!", kind: "例句", states: "戴上你的暖和帽子和手套；本幕台词另点名头顶与双手" }
+    - { name: "ON", kind: "规则", states: "本幕标记原话：贴合在身体表面" }
+  invariants:
+    - "put on 的对象在本幕为衣物：旁白定义为把衣物放到身体表面贴合（本幕判据，旁白定义原话）"
+    - "小品词 ON 在本幕恒指贴合在身体表面（本幕标记原话）"
+    - "本幕释义卡给出穿上、戴上二译，例句以帽子和手套落实（本幕释义卡）"

@@ -19,3 +19,11 @@ items:
   - 钻进车厢
 - - w
   - Beep!
+facts:
+  objects:
+    - { name: "get in", kind: "短语", states: "本幕为第①幕；旁白定义为弯腰钻进小汽车或房间的三维盒子里；释义为上（小汽车）" }
+    - { name: "例句 Get in the car quickly! It's raining.", kind: "例句", states: "快钻进小汽车里，下雨了" }
+    - { name: "车厢 = 盒子", kind: "规则", states: "本幕把车厢比作盒子；IN 落实为钻进车厢" }
+  invariants:
+    - "get in 在本幕恒指钻进三维盒子：旁白定义为弯腰钻进小汽车或房间的盒子里（本幕判据，旁白定义原话）"
+    - "车厢在本幕被定义为盒子，IN 落实为钻进车厢（本幕标记原话：『车厢 = 盒子』）"

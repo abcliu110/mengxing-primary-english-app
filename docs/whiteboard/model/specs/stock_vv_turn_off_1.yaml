@@ -23,3 +23,11 @@ items:
   - 画面断开
 - - w
   - Bedtime~
+facts:
+  objects:
+    - { name: "turn off", kind: "短语", states: "开场旁白释为旋转或拨动开关，让电路触点脱离断开；本幕编号 ①，演示关掉（电视）" }
+    - { name: "例句 Remember to turn off the TV before bed.", kind: "例句", states: "本幕 ① 义锚例句：睡前记得把电视关掉；台词点名电视与睡前时间" }
+    - { name: "OFF（小词）", kind: "规则", states: "本幕释为脱离断开：台词以触点断开与画面断开对应关掉义，前置状态作触点贴合" }
+  invariants:
+    - "OFF 在本幕恒指脱离断开（本幕开场判据：旋转或拨动开关，让电路触点脱离断开）"
+    - "turn off ① 的释义恒为关掉：本幕锚例对象为电视，时间限定为 before bed（本幕例句判据）"

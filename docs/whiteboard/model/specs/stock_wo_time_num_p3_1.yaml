@@ -74,3 +74,12 @@ items:
   - 十几都是几加十！
 - - w
   - 📖 单词身世 · 时间与度量 · 数字
+facts:
+  objects:
+    - { name: "thousand / million", kind: "词表", states: "本幕大数组：英文三位一节，thousand 为千、million 为百万；例句 A thousand is ten hundreds." }
+    - { name: "million", kind: "单词", states: "本幕拆解：million = mille（千）+ -one（大），即一千个一千；例句 A million is a thousand thousands." }
+    - { name: "one hundred million", kind: "词形", states: "本幕换算锚点：一亿 = 100,000,000 = 100 个 million；例句 One hundred million is a very big number." }
+  invariants:
+    - "分节恒二分：中文四位一节（万、亿），英文三位一节（thousand、million）（本幕判据，口诀与一句话洞见）"
+    - "换算恒按本幕锚点：一万 = ten thousand，一百万 = one million，一亿 = one hundred million（本幕判据，换算练习段）"
+    - "十几的构成在本幕口诀中恒为『几 + 十』，与 eleven、twelve 的『十个之外剩一、剩二』并置收束全组（本幕判据，口诀原话）"

@@ -42,3 +42,13 @@ items:
 - - s
   - He got out of the taxi at the gate.
   - 他在大门口下了出租车。
+facts:
+  objects:
+    - { name: "get out", kind: "短语", states: "本幕为第②幕；旁白释义为出来、从小汽车里下来，下车义记作 get out of 加交通工具" }
+    - { name: "例句 The chick gets out of the egg.", kind: "例句", states: "小鸡从蛋壳里钻了出来；本幕注蛋壳 = 盒子" }
+    - { name: "例句 He got out of the taxi at the gate.", kind: "例句", states: "他在大门口下了出租车；拆解例中人离开车厢" }
+    - { name: "OUT", kind: "规则", states: "本幕共同点原话所指：从盒子里出来；拆解中解为从里面出来" }
+  invariants:
+    - "OUT 在本幕恒解为从盒子里出来（本幕判据原话：『共同点：OUT = 从盒子里出来』）"
+    - "GET 在本幕拆解为到达／进入，OUT 解为从里面出来（本幕拆解标记）"
+    - "蛋壳与车厢在本幕同被看作盒子：小鸡离开蛋壳、人离开车厢（本幕标记）"

@@ -17,7 +17,7 @@ items:
 - - w
   - 核心动作/形状迁移
 - - w
-  - ③ 引申新义：v. 弹奏，吹奏（西洋乐器，必须加 the）
+  - ③ 引申新义：v. 弹奏，吹奏（乐器，一般加 the，不分西洋还是民族乐器）
 - - w
   - She can play the piano.
 - - w
@@ -25,3 +25,13 @@ items:
 - - s
   - They play football after school.
   - 🔄 第二幕【场景变形·手指在琴键上做游戏】：运动场变成音乐教室，手指像做游戏一样有节奏地按动琴键。
+facts:
+  objects:
+    - { name: "play", kind: "单词", states: "音标 /pleɪ/；本幕词头卡标注玩耍；打（球）；弹奏（乐器）；戏剧" }
+    - { name: "② 意象桥梁：投入地参与有规则或有节奏的活动", kind: "义项", states: "本幕第2幕所立环节：s 说明定位为场景变形，场景由运动场转到音乐教室、由踢球转到按动琴键" }
+    - { name: "③ 引申新义：v. 弹奏，吹奏（西洋乐器，必须加 the）", kind: "义项", states: "③卡原文表述如左；其『必须』与『西洋』的限定已被模型裁定降格，见本幕 invariants" }
+    - { name: "They play football after school.", kind: "例句", states: "本幕 s 配对句仍为球类例句：其第二元素说明文字承担本幕向琴键迁移的场景，乐器例句未在此幕作 s 配对句" }
+  invariants:
+    - "乐器义的冠词口径以裁定为准：play 跟乐器时一般加 the，不分西洋还是民族乐器，play the erhu 同理（模型裁定：vocab_fixes VF-010）"
+    - "乐器前的 the 不是全称铁律：美国人口语里乐器前的 the 常常省掉，play piano 不是错（模型裁定：vocab_fixes VF-010；scene_fixes sf-031 同旨）"
+    - "桥梁恒为『投入地参与有规则或有节奏的活动』：球类活动与琴键节奏同属此纽带，不得另编（本幕②卡原文）"

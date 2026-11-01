@@ -23,3 +23,11 @@ items:
   - 放进箱子
 - - w
   - All clean!
+facts:
+  objects:
+    - { name: "put in", kind: "短语", states: "本幕①释义为放进；旁白为把东西安放到容器内部" }
+    - { name: "例句 Put your toys in the toy box.", kind: "例句", states: "把你的玩具放进玩具箱里；结尾上屏 All clean!" }
+    - { name: "IN", kind: "小词", states: "本幕卡释为放进箱子；上屏标注落点为箱子里面" }
+  invariants:
+    - "IN 在本幕恒表进入容器内部：东西恒放进箱子里面（本幕判据：IN 卡与旁白同义复现）"
+    - "put in ①的对象与容器在本幕例句中恒为玩具与玩具箱：玩具放进玩具箱（本幕例句）"

@@ -21,3 +21,12 @@ items:
   - 从高处拿下来
 - - w
   - Got it!
+facts:
+  objects:
+    - { name: "take down", kind: "短语", states: "开场旁白列从高处拿下来与拿到纸面上固定两路；本幕编号 ①，演示取下、拿下" }
+    - { name: "例句 He takes down the poster.", kind: "例句", states: "本幕 ① 义锚例句：他把海报取了下来；海报在台词中位于墙上高处" }
+    - { name: "DOWN（小词）", kind: "规则", states: "本幕释为从高处拿下来，与 take down ① 的取下义对应" }
+  invariants:
+    - "DOWN 在本幕恒指从高处拿下来（本幕判据）"
+    - "take down ① 的释义恒为取下、拿下：本幕锚例中被取下的是墙上高处的海报（本幕例句判据）"
+    - "拿到纸面上固定一义只在开场旁白列名，本幕 ① 未展开演示（本幕台词范围）"

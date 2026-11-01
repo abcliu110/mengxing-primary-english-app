@@ -17,3 +17,11 @@ items:
   - 花朵散发出甜美的香气。
 - - w
   - Mmm, sweet!
+facts:
+  objects:
+    - { name: "give off", kind: "短语", states: "本幕为第①幕；旁白定义为气味或光芒脱离花朵表面向外散发；释义卡为散发（香味），本幕例句只演示香味一支" }
+    - { name: "例句 The flowers give off a sweet smell.", kind: "例句", states: "花朵散发出甜美的香气" }
+    - { name: "OFF", kind: "规则", states: "本幕落实为香味离开花朵" }
+  invariants:
+    - "give off 在本幕恒指气味或光芒脱离花朵表面向外散发（本幕判据，旁白定义原话）"
+    - "OFF 在本幕落实为香味离开花朵（本幕标记原话）"

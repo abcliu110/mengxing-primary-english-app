@@ -44,3 +44,13 @@ items:
 - - s
   - Don't put off your homework until tomorrow.
   - 不要把你的作业推迟到明天。
+facts:
+  objects:
+    - { name: "put off", kind: "短语", states: "本幕②释义为推迟，延后（会议 / 计划），上屏注为（活动）推迟；旁白同义复现" }
+    - { name: "例句 Sports Day is put off because of the rain.", kind: "例句", states: "因为下雨，运动会推迟了；日程由 Sat 6/10 推到 Sat 6/17，上屏注为推到下周" }
+    - { name: "例句 Sports Day is put off.", kind: "例句", states: "拆解句：运动会推迟了，活动推离原定日子；与 Don't put it off. 并列，后者拆解注为作业推离今天，译别拖到明天" }
+    - { name: "OFF", kind: "小词", states: "本幕拆解为离开表面；与 PUT 的放、摆合成从原来那天推开" }
+  invariants:
+    - "共同点恒为 OFF = 从原来那天推开（本幕判据，共同点原话）"
+    - "PUT 在本幕拆解中恒释为放、摆，OFF 恒释为离开表面（本幕拆解卡）"
+    - "作业与活动同判据：作业推离今天与活动推离原定日子，共用推开判据（本幕判据，拆解卡原话）"

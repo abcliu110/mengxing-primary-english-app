@@ -21,3 +21,11 @@ items:
   - IN
 - - m
   - 交进老师手里
+facts:
+  objects:
+    - { name: "give in", kind: "短语", states: "本幕为第①幕；旁白并列把考卷交进老师手里与让步两路；本幕释义卡与例句只演示交上（考卷），让步仅在旁白列名" }
+    - { name: "例句 Please give in your test papers now.", kind: "例句", states: "现在请把试卷交上来" }
+    - { name: "IN", kind: "规则", states: "本幕落实为交进老师手里" }
+  invariants:
+    - "IN 在本幕交卷义下恒落实为交进老师手里（本幕标记原话）"
+    - "本幕 give in 的演示义为交上考卷，让步义仅在旁白列名、未展开演示（本幕旁白）"

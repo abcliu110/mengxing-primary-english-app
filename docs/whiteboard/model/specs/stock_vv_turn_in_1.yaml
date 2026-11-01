@@ -21,3 +21,11 @@ items:
   - 交进去
 - - w
   - On time!
+facts:
+  objects:
+    - { name: "turn in", kind: "短语", states: "开场旁白释为把作业本往老师手里交进去；本幕编号 ①，释义卡作上交（作业）" }
+    - { name: "例句 Please turn in your homework on time.", kind: "例句", states: "本幕 ① 义锚例句：请按时上交你们的家庭作业；台词点名作业与按时要求" }
+    - { name: "IN（小词）", kind: "规则", states: "本幕具体化为交进去：对象为作业，方向为往老师手里" }
+  invariants:
+    - "IN 在本幕恒指进到里面，开场判据具体化为作业本往老师手里交进去（本幕开场判据）"
+    - "turn in ① 的释义恒为上交（作业）：本幕锚例带时间限定 on time，中译为按时上交（本幕例句判据）"

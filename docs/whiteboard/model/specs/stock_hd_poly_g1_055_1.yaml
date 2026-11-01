@@ -25,3 +25,13 @@ items:
 - - s
   - Drink more water every day.
   - 💧 第一幕【核心本义·清澈的水】：水杯里装着清凉解渴的清水（some water）。
+facts:
+  objects:
+    - { name: "water", kind: "单词", states: "音标 /ˈwɔːtər/；本幕词头卡标注水，其动词义在③卡给出" }
+    - { name: "① 本义具象：n. 水（不可数名词）", kind: "义项", states: "本幕第1幕所立义项：s 说明定位为核心本义·清澈的水，并举 some water" }
+    - { name: "Drink more water every day.", kind: "例句", states: "本幕 s 配对句：演示 water 的名词义，指每天多喝的水" }
+    - { name: "核心意象纽带：生命之源清水与用水浇灌", kind: "规则", states: "本幕②卡意象桥梁的原文：以清水与用水浇灌连接名词水义与浇水义" }
+  invariants:
+    - "义项链恒按①本义具象➔②意象桥梁➔③引申新义展开，桥梁恒为核心意象纽带『生命之源清水与用水浇灌』（本幕台词卡结构）"
+    - "water 作日常饮水义时一般不加 a 或 s、谓语配单数，『一般』二字不得删：指水域、水体时有 waters 用法（模型裁定：vocab_fixes VF-012）"
+    - "本幕为多义第1幕：当幕演示恒为本义例句 Drink more water every day.，浇水义在本幕仅由③卡列名（本幕 s 说明定位）"

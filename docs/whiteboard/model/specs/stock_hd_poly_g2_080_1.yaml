@@ -25,3 +25,13 @@ items:
 - - s
   - Let's fly a kite in the park.
   - 🌳 第一幕【核心本义·公园绿地】：人们在围起来的绿地公园（park）里散步休息。
+facts:
+  objects:
+    - { name: "park", kind: "单词", states: "音标 /pɑːrk/；本幕词头卡标注公园，其动词义在③卡给出" }
+    - { name: "① 本义具象：n. 公园", kind: "义项", states: "本幕第1幕所立义项：s 说明定位为核心本义·公园绿地，指围起来的绿地公园" }
+    - { name: "Let's fly a kite in the park.", kind: "例句", states: "本幕 s 配对句：演示 park 的名词公园义，in the park 指放风筝的场所" }
+    - { name: "核心意象纽带：圈出来供人停留休憩或停放车辆的场地", kind: "规则", states: "本幕②卡意象桥梁的原文：以圈出的停留场地同时涵盖人休憩与车停放" }
+  invariants:
+    - "义项链恒按①本义具象➔②意象桥梁➔③引申新义展开，桥梁恒为『圈出来供人停留休憩或停放车辆的场地』（本幕台词卡结构）"
+    - "park 的义项清单含名词『公园』与动词『停车』两项，不得只登记名词义（模型裁定：vocab_fixes VF-032 将 park 义项补齐为『公园；停车』）"
+    - "本幕为多义第1幕：当幕演示恒为本义例句 Let's fly a kite in the park.，停车义在本幕仅由③卡列名（本幕 s 说明定位）"

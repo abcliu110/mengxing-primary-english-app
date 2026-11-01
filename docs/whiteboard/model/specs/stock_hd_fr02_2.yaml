@@ -24,3 +24,13 @@ items:
 - - s
   - Mum gives a birthday gift to Duoduo.
   - 妈妈把一份生日礼物递给朵朵。 ｜ Giver + V + Theme + to + Recipient
+facts:
+  objects:
+    - { name: "例句 Mum gives a birthday gift to Duoduo.", kind: "例句", states: "本幕视角 2 的锚例句：物品 a birthday gift 居动词之后，接收者 Duoduo 由 to 引出居句尾" }
+    - { name: "给予传递小剧场（Giving & Transfer）", kind: "框架", states: "本幕所属框架：同一客观事件，切换主语视角即切换动词；本幕为视角 2" }
+    - { name: "to 式结构 give / send / pass / show sth to sb", kind: "句型", states: "公式为 Giver + V + Theme + to + Recipient：物在前，接收者由方向箭头 to 引出" }
+    - { name: "Mum 与朵朵（Duoduo）", kind: "人物", states: "与视角 1 同一对台词点名人物：Mum 仍是给予者，朵朵仍是接收者，本幕改由 to 引出" }
+  invariants:
+    - "物在前时接收者必须由 to 引出：Giver + V + Theme + to + Recipient（本幕判据原话：物在前加方向箭头 to）"
+    - "与视角 1 指称同一：同一 Mum、同一朵朵、同一份生日礼物，变的只是语序与介词，给予事件本身不变（本幕 items 与 stock_hd_fr02_1 的 items 对照；frameworks_fixes FRAME_SEMANTICS_DB 库级记录：FR01–FR10 本体经逐项核对无误，讲法源自 Fillmore 框架语义）"
+    - "动词组 give / send / pass / show 在本幕同走 to 式，与视角 1 的双宾式是同一批动词的两种摆法（本幕判据）"

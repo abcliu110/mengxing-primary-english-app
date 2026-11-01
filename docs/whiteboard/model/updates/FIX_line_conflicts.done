@@ -1,0 +1,88 @@
+# 台词—裁定冲突修复记录（2026-11-01）
+
+来源：FACTSHEETS_fill.done 登记的台词—裁定冲突 11 条 + 源内口径不一致 3 处。
+做法：只改 model/specs/*.yaml 的 items（台词），改法一律取裁定/模型文件逐字可查文本（VF-/sf-/grammar.yaml claims/exceptions、frameworks_fixes、domains.yaml），顺场景原有脚手架（幕题、emoji、卡序）做最小改动；改后以 model/gen_scene.py 逐幕重建 v5/scenes/gen_stock_*.js 并验证。台词之外的 items、结构、facts 一律未动；未做 git 操作；未做主 App 回灌（见文末待办）。
+
+## 账目
+- 已修：**51 处台词改动**（其中 ze 家族标 1 处含 2 行），涉及 **23 个 spec** 与对应的 23 个生成场景 JS。
+- 停单（只登记未改）：3 处（kind 三幕引申方向、turn 三幕锚句错位、若干残留观察，见文末）。
+- 验证：23 个 spec 与备份逐行 diff 仅含下列改动、YAML 全量复解析通过；23 个生成 JS 经 node --check；JS diff 行数与改动一一对应（每改 1 条 items = JS 2 行）；全库 specs 的 items 区冲突短语复扫 = 0 命中；5 幕关键场景（watch_2、g35_1、sum_interrogatives_1、five_patterns_3、g28_1）经 build.mjs 打包 + 无头 Chrome 渲染抽查：0 页面报错、全程 seek 无异常，watch_2 末帧截图确认新桥梁「守夜、保持清醒」与新 ③ 卡 gloss 上屏正常；23 份事实表重渲后与改前逐字节一致（facts 未动）。
+
+## 已修清单（场景 / 原台词 → 新台词 / 依据）
+
+### 1. watch 三幕（gen_stock_hd_poly_poly_watch_1/2/3）— 冲突表第 1 条（最重）
+依据：vocab_fixes.yaml VF-001 corrected、VF-002 corrected；frameworks_fixes.yaml T07 fixed。
+三幕共同（w 卡，各 1 处 ×3 幕）：
+- 总卡：「手表（戴在手腕上随时“看”时间的工具）」→「手表（戴在手腕上的计时工具；名字来自古英语"守夜、唤醒"——最早的手表是能叫醒人的小闹钟）」〔VF-002 corrected 逐字〕
+- 核心意象纽带：「持续专注地盯着看」→「守夜、保持清醒」〔VF-001 corrected 片段〕
+- ② 意象桥梁：「持续专注地盯着看」→「守夜、值更（保持清醒看守）」〔T07 fixed 片段〕
+- 迁移卡：「核心动作/形状迁移」→「经「守夜」中转」〔T07 fixed 片段〕
+- ③ 卡：同总卡 gloss 替换〔VF-002 corrected 逐字〕
+第 2 幕旁白（s 行）：
+- 「🔄 第二幕【场景变形·从动作到随身工具】：眼睛注视的焦点缩小，变成手腕上一块需要经常低头“注视”指针走动的精密小圆盘。」→「⌚ 第二幕【意象桥梁·经守夜中转】：watch 这个词最早是"守夜、保持清醒"的意思。最早的"手表"其实是能把人叫醒的小闹钟——它替你"守夜"，到点喊你起床，所以继承了 watch 这个名字；后来它越做越小，戴上了手腕。」〔正文 = VF-001 corrected 逐字；环节名取本幕自有 ② 卡名「意象桥梁」，「经守夜中转」取 T07〕
+第 3 幕旁白（s 行）：
+- 「⌚ 第三幕【引申新义·手表】：watch 从动词“观看”引申为名词“手表”（a nice watch）！」→「⌚ 第三幕【引申新义·手表】：手表（戴在手腕上的计时工具；名字来自古英语"守夜、唤醒"——最早的手表是能叫醒人的小闹钟）（a nice watch）。」〔VF-002 gloss 逐字 + 原例句保留〕
+
+### 2. play 三幕（gen_stock_hd_poly_g2_0489_1/2/3）— 冲突表第 2 条
+依据：VF-010 corrected。
+- ③ 卡：「v. 弹奏，吹奏（西洋乐器，必须加 the）」→「v. 弹奏，吹奏（乐器，一般加 the，不分西洋还是民族乐器）」（三幕各 1 处；play_2/3 的 facts 里同串为引文，未动，见待办）
+
+### 3. hd_g01_1 — 冲突表第 3 条
+依据：grammar.yaml g01-ves-list（say）。
+- 口诀尾：「f/fe 结尾多数变 ves，giraffe 只加 s！」→「变 ves 的只有一小队名单，其余 f 结尾只加 s！」
+
+### 4. hd_g10_3 — 冲突表第 4 条
+依据：grammar.yaml g10-request-some、xc-g10-any-ok（text 逐字）。
+- 「常错：Can I have any water, Mum? ✗ → Can I have some water, Mum? ✓」→「辨析：Can I have some water, Mum?（盼着对方答应，用 some）；Can I have any water, Mum? 语法成立，只是语气中性、疏远，不显期待」
+
+### 5. 「先地点后时间」铁律化 +「焦点先行」禁用标签 — 冲突表第 5 条
+依据：grammar.yaml g28-svo-order（statement/say）、g28-place-time（say）；frameworks_fixes ZH_EN 条（标签废止）；viewpoint.yaml 家族定名。
+- hd_g28_1（3 处）：①首卡尾句「再按“先地点、后时间”排句尾！」→「再把地点、时间排在句尾：一般先地点、后时间，反过来也对！」；②「英语是“焦点先行思维（SVO）”——先把核心骨架 主语+谓语+宾语 (I play football) 抛出来…」→「英语先把主干说完——主语 + 谓语 + 宾语，把“谁做了什么”先交代清楚 (I play football)，再挂上…」；③口诀尾「记住口诀：先地点（where），后时间（when）！」→「记住口诀：句尾一般先地点后时间，反过来也对！」
+- hd_sum_syntax_1/2/3 系列横幅（3 幕各 1 处，同句同改）：「英语主谓宾(SVO)焦点先行，先地点后时间，从小到大！」→「英语先说谁做了什么，地点时间排后面（句尾一般先地点后时间，反过来也对），从小到大！」（冲突表只点名第 1 幕；2/3 幕横幅为同一句，故一并对齐，依据相同）
+- hd_sum_syntax_1（1 处）：「🔬 语序铁律 1：汉语『先铺垫时空背景』vs 英语『主谓宾焦点先行 + 先地点后时间』」→「🔬 语序对比 1：汉语『先铺垫时空背景』vs 英语『先说谁做了什么，地点时间挂句尾』」
+- ze_modifier_1（1 处 2 行）：家族标「🔀 修饰语位置（原理 ⑥ 焦点先行）」→「🔀 修饰语位置（联想工具箱 ⑥ 站位与顺序）」〔viewpoint 家族定名，同族 spec 屏上标逐字〕。注：App 中 ze_modifier 页签现由 gen_viewpoint_1 供片（T15 包记录 srcFile=gen_viewpoint_1.js），该幕早已按裁定使用新家族名；本处修的是 stock 幕自身产物。
+
+### 6. hd_g22_1 — 冲突表第 6 条
+依据：grammar.yaml g22-irregular-past（say + statement 四组）。
+- 「日常最高频动词（go, see, eat, have, do, take, buy）完整保留了古英语“变换内部元音”来表过去的传统！」→「这些最高频的老词各有老变法，分组记，没有总规律：有的换元音（swim → swam），有的整个换词（go → went），有的带音变（buy → bought、have → had），还有同形不变的（put、cut）！」
+
+### 7. hd_g31_3 — 冲突表第 7 条（+ 同族连带 2 处）
+依据：grammar.yaml g31-why-answer（statement/say）、xc-g31-to-answer；g31-wh-words note（「焦点」一词不采用）。
+- 「🔬 Why 和 Because 锁死配对」→「🔬 Why 多用 Because 回答」
+- 「用 Why 提问，回答必用 Because ...」→「用 Why 提问，回答多用 Because ...（首选而不是唯一，也可以用 to 回答：—Why did you come? —To help you.）」
+- 口诀：「为什么 why 用 because 答」→「为什么 why 多用 because 答，也能用 to 答」
+- 连带：同幕「英语把疑问词放在句首第一位（焦点前置），就像…」仅删除禁用标签「（焦点前置）」四字（零新增措辞）；全库复扫发现 hd_g31_1、hd_g31_2 有同一句，各同样仅删标签（各 1 处，已重建验证）。
+
+### 8. hd_g35_1 — 冲突表第 8 条
+依据：grammar.yaml g35-proximity（statement）、xc-g35-theres-plural（text）。
+- 「而且 be 动词只看紧挨着它的第一个名词是单是复（就近原则）！」→「而且 be 动词只看紧挨着它的第一个名词是单是复（就近原则）——就近是考试与正式写作的约定，不是英语唯一的说法：日常口语里 There's 后跟复数非常常见！」（boundary 随讲落地；场景其余就近表述与 claim statement 本身一致，未动）
+
+### 9. sum_interrogatives 三幕 — 冲突表第 9、10 条
+依据：frameworks_fixes T05-accurate fixed（逐字）、T05（降格口诀）；domains.yaml dom-questions-info；scene_fixes sf-027 fixed_lines。
+三幕共同（各 3 处）：
+- 横幅：「古英语 wh-(提问头) ↔ th-(远指回答头) ↔ h-(近指头) 完美对称：where↔there↔here, when↔then」→「古英语两大家族：wh- 问词一家 ↔ th- 指示词一家，here 是近指一家；两家穿同款词尾（-ere、-en、-at）：where↔there、when↔then」
+- 实验台行：「一眼看懂 9 大疑问词的造词规律与句首倒装语序！」→「…的家族出身与句首倒装语序！」
+- 旁白（s 行）：「where/there/here 共享地点词根 -ere；when/then 共享时间词根 -en；what/that 共享事物词根 -at！」→「where/there/here、when/then、what/that 看着像「换个字母」——其实是两个家族穿了同款词尾（-ere、-en、-at）：问词家族姓 *kʷ-（古英语写 hw-），指示词家族姓 *to-（古英语写 þ-），近指 here 一家姓 *ḱe-。」
+第 1 幕（1 处）：「🔬 词源密码：古英语『wh-提问头 ↔ th-远指头 ↔ h-近指头』对称转盘」→「🔬 词源密码：古英语『wh- 问词家族 ↔ th- 指示词家族』对仗转盘」
+第 3 幕（1 处，冲突表第 10 条）：「🇬🇧 英语疑问词 100% 提拔到句首当火车头 + 一般疑问倒装：」→「🇬🇧 英语疑问词提拔到句首当火车头 + 一般疑问倒装（在特殊疑问句里站第一位；藏在长句子中间也可以——Tell me what you want.）：」
+
+### 10. five_patterns_3 — 冲突表第 11 条
+依据：frameworks_fixes FIVE_SENTENCE_PATTERNS_DB 句型③ fixed；domains.yaml dom-constructions。
+- 「及物动词 Vt：动作要落到对象身上，后面必须接宾语。英语里约 80% 的动词都是它。」→「…后面必须接宾语。很多英语动词都是它（另有不少动词及物、不及物两种用法都行，如 read、sing，不必贴死标签）。」
+
+### 11. vv_turn_in_2 — 源内不一致（同文件自有正确答案对齐）
+依据：同文件 m 卡本幕义项「上床睡觉」+ 同系列 vv_turn_in_1 开场卡体例（开场卡宣布本幕义项）。
+- 开场卡：「turn in：上交，交还（作业/考卷）」（系第 ① 幕义项）→「turn in：上床睡觉」
+
+## 停单清单（只登记，未改台词）
+1. **kind 三幕（gen_stock_hd_poly_g3_0527_1/2/3）**：w 卡作「① 本义=adj. 仁慈 → ③ 引申=n. 种类」，s 行却作「本义·家族类别」「由名词“种类”延伸出形容词“善良友好的”」，两处方向正相反。模型/裁定文件中无 kind 的词源或义项方向记录，无逐字依据可依——停单。补齐路径：先对 kind 做一次一手词源核查并落裁定记录，再据裁定统一两处（与 FACTSHEETS_fill.done 中 16 份 wo 幕同路）。
+2. **turn 三幕（gen_stock_hd_poly_poly_turn_1/2/3）**：锚例句与旁白主题系统性错位——第 1 幕锚句 Leaves turn yellow in autumn.（变成）配旁白【核心本义·旋转转向】（转弯）；第 2 幕同锚句配【圆圈轮盘】旁白；第 3 幕旁白同时收「顺序」与「变成」。属锚句/幕次结构问题、非单句台词可修，且模型中无 turn 的裁定记录——停单，建议按结构问题另行立项。
+3. **残留观察（未达冲突表标准、留档）**：
+   - sum_syntax 系列横幅「三大形态铁律」与第 2/3 幕「语序铁律 2 / 句法铁律 3」卡题仍含「铁律」字样，其所指内容（从小到大、长定语后置、动词变形等）不在本次冲突表内、无对应裁定改写文本，未动。
+   - hd_g31_3 首问钩子「…而且必须放在句首第一个词？」未改：本幕范围为特殊疑问句主句（g31-wh-words 本身即作「疑问词站句首」立规），冲突表未点名此句；sf-027 的限定化改写是针对 fp_zoom_focus_2 的，不直接移植。
+   - spec 的 title 字段（sum_syntax_2 标题含「先地点后时间」、sum_interrogatives 各幕标题含「wh- 提问头 ↔ th- 远指 ↔ h- 近指」）为主题标签而非断言，未动。
+
+## 待办（不在本任务范围，需另行授权/立项）
+- **主 App 回灌**：主 HTML 内嵌的仍是改前载荷（如 hd_g28 载荷内含旧口诀尾句，已解压核对）。本轮产物止于 spec + v5/scenes/gen_stock_*.js；进 App 需按 T15 同路回灌（另行立项）。
+- **模板文件 legacy ITEMS**：v5/scenes/hd_*.js 等模板文件内仍存改前 ITEMS 副本；gen_scene.py 构建时以 spec items 整块覆盖，属惰性副本、不影响生成产物；如需清零副本另行立项，勿手改以免与单一事实源脱钩。
+- **facts 引文陈旧**：被改 spec 的 facts 区段仍按改前台词登记（如 play_2/3 的 ③ 卡引文、watch 各幕 invariants 的「与模型裁定冲突」注记）——本任务按纪律未动 facts；建议后续做一次 facts 刷新（按新台词重登记 objects、冲突注记改销项）。

@@ -1,0 +1,34 @@
+# 事实表补齐记录（2026-11-01）
+
+## 账目
+- 事实表总数 318（factsheets/）：补齐前 待补 294、已完成 24（原理家族六组×4）。报告口径的「245 待补」仅为 B6 批次（gen_stock 235 + b6pilot 10），其后 B7–B11 各批又生成了新的待补表，故以磁盘实数 294 为准。
+- 本轮补齐 **278** 份：做法 = facts 写入各 spec（model/specs/*.yaml，仅末尾追加，经 git diff 核验 278 个 spec 零删除行、items 一字未动），再由 gen_scene.write_factsheet 与生成器同源重渲事实表。全部 360 个 spec 复解析通过。
+- 补齐后：已完成 **302**，仍待补 **16**（下表）。改动面：278 spec + 278 事实表，共 556 文件，无其他文件被动。
+
+## 依据口径（纪律）
+- objects 只登记本幕 items 实际出现的对象（例句整句照抄、词表、名单卡）；states 只写台词实际呈现的变化，不编动画细节。
+- invariants 只许两类来源：(a) 本幕台词自述判据/口诀；(b) 模型/裁定文件逐字可查记录（grammar.yaml claims、sentence.yaml st-cl-*、phonology.yaml、letters.yaml、domains.yaml、vocab_fixes VF-*、scene_fixes sf-*、frameworks_fixes 库级记录、expressions_fixes EXP-*），引用者括注 id。
+- 台词与裁定冲突时：objects 按台词如实登记并标注「台词讲法」，invariants 按裁定口径登记并明示冲突；台词本身不在本任务内改动。
+
+## 仍待补 16 份（全为 wo 词源幕；缺的依据类型统一：裁定/模型文件中无该词/该规则的词源记录）
+gen_b6pilot_wo_rule_norse_1（shirt↔skirt、church↔kirk 双胞胎词无记录）｜gen_stock_wo_grimm_aspirate_1（bh/dh/gh 链无依据，仅 p→f 见 sf-020）｜gen_stock_wo_grimm_voiced_1（g→k、gʷ→kw 链无依据，仅 d→t 见 sf-020）｜gen_stock_wo_port_1（Mediterranean 拆分无依据）｜gen_stock_wo_port_p2_1（opportunity 词源、portus/portare 亲缘无依据）｜gen_stock_wo_port_p3_1（ex-/trans-/re-+port 判据无依据）｜gen_stock_wo_port_p4_1（港口/搬运词族线无依据）｜gen_stock_wo_port_p5_1（portus/portare 同根、support 构成无依据）｜gen_stock_wo_rule_c_ch_1（c 腭化链无依据）｜gen_stock_wo_rule_french_s_1（法语 s 脱落诸对无依据）｜gen_stock_wo_rule_greek_1（希腊借词拼写读法无依据）｜gen_stock_wo_rule_gvs_1（元音大转移叙事无依据）｜gen_stock_wo_rule_hgcs_1（高地德语辅音推移无依据）｜gen_stock_wo_rule_latplural_1（外来复数词源无依据）｜gen_stock_wo_rule_norman_1（w/g 诺曼词源叙事无依据）｜gen_stock_wo_time_week_1（星期命名词源无依据）。
+补齐路径：先对这 16 幕的词源叙事做一次一手核查（Etymonline/OED 级）并落裁定记录，再据裁定补 facts；在此之前保留占位，不得以台词自引出处充当核对依据。
+注：另有若干已补齐幕的个别词源成分同样查无依据（如 wo_time_num_1 的 eleven 构成、verner 幕的维尔纳机制），均未写入 invariants，仅在 objects 中按「台词称」登记。
+
+## 补齐过程中发现的台词—裁定冲突（本轮只登记，未改台词；建议后续按裁定修台词）
+1. hd_poly_poly_watch_1–3：手表义讲成「看时间的工具、由注视直接引申」——伪词源，与 VF-001/VF-002、frameworks T07 正面冲突（裁定链：守夜→叫醒小闹钟→手表）。三幕 invariants 已按裁定登记。
+2. hd_poly_g2_0489_（play 三幕）：③卡「西洋乐器，必须加 the」与 VF-010 冲突（一般加 the、不分西洋民族）。
+3. hd_g01_1：口诀「f/fe 结尾多数变 ves」与 g01-ves-list（仅一小队变 ves）+ xc-g01-ves-rest 相反。
+4. hd_g10_3：把「Can I have any water, Mum?」设为常错句，与 g10-request-some / xc-g10-any-ok 冲突。
+5. hd_g28_1 与 hd_sum_syntax_1：「先地点后时间」铁律化 +「焦点先行思维」标签，与 g28-place-time（tendency）/ xc-g28-time-first 冲突，标签系已定案禁用的自造词；ze_modifier_1 的 spec 抬头亦标有同一废止标签「原理 ⑥ 焦点先行」。
+6. hd_g22_1：「完整保留变换内部元音的传统」与 g22-irregular-past 的 boundary 冲突。
+7. hd_g31_3：「Why 提问必用 Because 答」与 g31-why-answer / xc-g31-to-answer 冲突（to 亦可答）。
+8. hd_g35_1：就近原则讲成绝对规则，与 g35-proximity 的 boundary + xc-g35-theres-plural 冲突。
+9. hd_sum_interrogatives_1：wh-↔th-↔h-「完美对称、共享词根」系伪构词律，dom-questions-info 已裁定降格为押韵口诀。
+10. hd_sum_interrogatives_3：「疑问词 100% 提拔到句首」与 sf-027 冲突（从句中可居中）。
+11. five_patterns_3 台词「约 80% 动词」系 dom-constructions 已登记的伪统计（未写入不变量）。
+源内口径不一致（非裁定冲突，一并登记）：hd_poly_g3_0527（kind 三幕）w 卡义项排序与 s 说明引申方向相反；vv_turn_in_2 开场旁白义项与 ② 卡演示义项不一致；hd_poly_poly_turn_1 锚例句层（变成）与 s 行主题层（转弯）错位。
+正面确认：旧审计中 fr09 的 on foot 伪因果注脚在现行 hd_fr09_1 的 items 中不存在，台词干净。
+
+## 格式观察（只报告）
+事实表格式本身无缺陷：生成器格式（objects 三元组 + invariants + 五项审查清单）对存量幕够用。存量幕事实表粒度天然薄于原理家族（多为语言对象而非物理道具，无守恒类不变量），属场景类型差异，非格式问题。

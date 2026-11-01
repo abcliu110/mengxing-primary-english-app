@@ -21,3 +21,11 @@ items:
   - 从书包里拿出来
 - - w
   - Here it is!
+facts:
+  objects:
+    - { name: "take out", kind: "短语", states: "开场旁白释为从书包/口袋容器里往外拿出来；本幕编号 ①，释义卡作拿出、取出" }
+    - { name: "例句 Please take out your English book.", kind: "例句", states: "本幕 ① 义锚例句：请把英语书从书包里拿出来；台词明示书包 = 容器" }
+    - { name: "OUT（小词）", kind: "规则", states: "本幕具体化为从书包里拿出来，与容器向外的方向对应" }
+  invariants:
+    - "OUT 在本幕恒指从容器里往外（本幕开场判据：从书包/口袋容器里往外拿出来）"
+    - "take out ① 的释义恒为拿出、取出：本幕锚例中被拿出的是书包里的英语书（本幕例句判据）"

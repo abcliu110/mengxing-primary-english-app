@@ -40,3 +40,13 @@ items:
 - - s
   - Remember to turn off the TV before bed.
   - 睡前记得把电视关掉。
+facts:
+  objects:
+    - { name: "turn off", kind: "短语", states: "开场释义为关掉（电灯、电视、电脑、水龙头）；本幕编号 ②，演示关掉（水龙头）" }
+    - { name: "例句 Turn off the tap. Save water!", kind: "例句", states: "本幕 ② 义锚例句：关掉水龙头，节约用水；台词具体化为水流断开" }
+    - { name: "例句 Turn off the TV.", kind: "例句", states: "拆解区回溯例句：关电视；台词拆为触点脱离断开" }
+    - { name: "例句 Remember to turn off the TV before bed.", kind: "例句", states: "本幕收束句：睡前记得把电视关掉，复现 ① 义锚例" }
+  invariants:
+    - "共同点：OFF = 拧到断开的状态（本幕判据原话）"
+    - "TURN 本幕释为转动，OFF 本幕释为离开表面，二者组合同时解释关电视与关水龙头两例（本幕拆解判据）"
+    - "断开的载体随对象而变：电视为触点脱离断开、水龙头为水流断开，OFF 的断开义不变（本幕判据）"

@@ -9,7 +9,7 @@ items:
 - - w
   - 【为什么英语喜欢说 There is a book on the desk？】英语先用引导词 There 打头阵，再引出存在的新事物！
 - - w
-  - 而且 be 动词只看紧挨着它的第一个名词是单是复（就近原则）！
+  - 而且 be 动词只看紧挨着它的第一个名词是单是复（就近原则）——就近是考试与正式写作的约定，不是英语唯一的说法：日常口语里 There's 后跟复数非常常见！
 - - w
   - 🔬 be 是近视眼：只看紧挨着它的第一个名词
 - - w
@@ -36,3 +36,12 @@ items:
   - G35 第1幕
 - - n
   - 🎵 口诀：There be 句型表存在，“某地有某物”记心怀；be 动词是个近视眼，只看身后第一个名：单数不可数用 is，复数紧挨就用 are！
+facts:
+  objects:
+    - { name: "例句 There is a computer and two books on the desk.", kind: "例句", states: "对照组一：紧挨着 be 的第一个名词是 a computer（单数），用 is" }
+    - { name: "例句 There are two books and a computer on the desk.", kind: "例句", states: "对照组二：同一组事物换序，紧挨着 be 的第一个名词是 two books（复数），用 are" }
+    - { name: "例句 There is some milk in the glass.", kind: "例句", states: "不可数名词的例句：milk 用 is" }
+  invariants:
+    - "There be 看身后第一个名词定单复数：There be 表『某处有某物』（There is/are + 事物 + 地点），并列多个事物时 be 的单复数由紧挨着它的第一个名词决定（g35-proximity）"
+    - "『就近』是考试与正式写作的约定，不是英语唯一的说法：日常口语里 There's 后跟复数非常常见（xc-g35-theres-plural）；不可数主语恒用 is，不在就近讨论内（g35-proximity 的 boundary）"
+    - "本幕常错：There are an apple and three pears on the plate，应改为 There is an apple ...（本幕判据）"

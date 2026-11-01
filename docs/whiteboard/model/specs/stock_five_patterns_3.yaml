@@ -41,7 +41,7 @@ items:
 - - m
   - Leo
 - - n
-  - 及物动词 Vt：动作要落到对象身上，后面必须接宾语。英语里约 80% 的动词都是它。
+  - 及物动词 Vt：动作要落到对象身上，后面必须接宾语。很多英语动词都是它（另有不少动词及物、不及物两种用法都行，如 read、sing，不必贴死标签）。
 - - m
   - +
 - - m
@@ -64,3 +64,11 @@ items:
   - Leo loves reading English books. He enjoys stories.
   - 里奥喜欢读英文书。他喜欢故事。
   - Leo loves enjoys reading English books stories
+facts:
+  objects:
+    - { name: "例句 Leo loves reading English books.", kind: "例句", states: "本幕金句：Leo 是主语（射箭的人），loves 是及物谓语，reading English books 是宾语靶心；同组例句 He enjoys stories." }
+    - { name: "及物动词 Vt（loves / enjoys 等）", kind: "语法对象", states: "本幕定义：动作要落到对象身上，后面必须接宾语" }
+    - { name: "宾语 O", kind: "语法对象", states: "本幕定义：箭射中的目标，也就是动作的对象" }
+  invariants:
+    - "及物动词后面恒必须接宾语，动作一定要射中一个目标（本幕判据）"
+    - "主谓宾是五大基本句型骨架之一，宾语个数由动词的配价决定（模型主张 st-cl-five-patterns）"

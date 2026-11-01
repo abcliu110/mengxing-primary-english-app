@@ -25,3 +25,13 @@ items:
 - - s
   - I read an interesting book.
   - 📖 第一幕【核心本义·纸质书册】：桌上一本厚厚的纸质故事书（a story book）。
+facts:
+  objects:
+    - { name: "book", kind: "单词", states: "音标 /bʊk/；本幕词头卡标注书，书本，其动词义在③卡转类给出" }
+    - { name: "① 本义具象：n. 书，书本", kind: "义项", states: "本幕第1幕所立义项：s 说明定位为核心本义·纸质书册，并举 a story book" }
+    - { name: "I read an interesting book.", kind: "例句", states: "本幕 s 配对句：演示 book 的名词本义，指一本有趣的书" }
+    - { name: "核心意象纽带：把信息装订/登记在册子里", kind: "规则", states: "本幕②卡意象桥梁的原文：以装订或登记入册连接书本义与预订义" }
+  invariants:
+    - "义项链恒按①本义具象➔②意象桥梁➔③引申新义展开，桥梁恒为核心意象纽带『把信息装订/登记在册子里』（本幕台词卡结构）"
+    - "book 的义项清单含名词『书，书本』与动词『预订』两项，不得只登记名词义（模型裁定：vocab_fixes VF-031 将 book 义项补齐为『书，书本；预订』）"
+    - "本幕为多义第1幕：当幕演示恒为本义例句 I read an interesting book.，预订义在本幕仅由③卡列名（本幕 s 说明定位）"

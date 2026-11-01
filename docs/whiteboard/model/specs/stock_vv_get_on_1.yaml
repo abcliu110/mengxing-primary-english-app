@@ -21,3 +21,11 @@ items:
   - 站上车厢地板
 - - w
   - Bye-bye!
+facts:
+  objects:
+    - { name: "get on", kind: "短语", states: "本幕为第①幕；旁白定义为双脚踏上大巴、火车、飞机的甲板平面；释义为上（公交车）" }
+    - { name: "例句 Let's get on the bus at the next stop.", kind: "例句", states: "我们在下一站上公交车吧" }
+    - { name: "ON", kind: "规则", states: "本幕落实为站上车厢地板；本幕台词点名车厢地板" }
+  invariants:
+    - "get on 在本幕恒指双脚踏上大巴、火车、飞机的甲板平面（本幕判据，旁白定义原话）"
+    - "ON 在本幕落实为站上车厢地板（本幕标记原话）"

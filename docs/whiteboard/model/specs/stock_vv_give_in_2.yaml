@@ -42,3 +42,13 @@ items:
 - - s
   - Please give in your test papers now.
   - 现在请把试卷交上来。
+facts:
+  objects:
+    - { name: "give in", kind: "短语", states: "本幕为第②幕；旁白释义为交上（考卷）、让步妥协；本幕两义均有演示" }
+    - { name: "例句 He was tired, so he gave in.", kind: "例句", states: "他累了，就认输了；本幕另记让步、服输" }
+    - { name: "例句 Please give in your test papers now.", kind: "例句", states: "现在请把试卷交上来；拆解例另有 Give in your papers（试卷交进老师手里）" }
+    - { name: "IN", kind: "规则", states: "本幕共同点原话所指：交进去、退让进来；拆解中解为进入里面" }
+  invariants:
+    - "IN 在本幕恒解为交进去、退让进来（本幕判据原话：『共同点：IN = 交进去、退让进来』）"
+    - "GIVE 在本幕拆解为给、交出，IN 解为进入里面（本幕拆解标记）"
+    - "让步义在本幕标记为力气收进来不再争，与交卷义共用 IN 的进入义（本幕标记）"

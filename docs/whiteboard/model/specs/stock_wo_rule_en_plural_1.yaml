@@ -32,3 +32,11 @@ items:
   - 出处：Etymonline 的 oxen、child 词条；Wiktionary 同样记载。
 - - w
   - 出处：Etymonline · Wiktionary
+facts:
+  objects:
+    - { name: "ox 与 oxen", kind: "单词", states: "本幕 -en 复数例：ox → oxen；例句 Look at the oxen.；台词引 Etymonline 称 oxen 是古英语这种复数唯一一直传到今天的" }
+    - { name: "child 与 children", kind: "单词", states: "本幕链：child → 台词所称古英语复数 cildru → children，台词称为后来又加了一次复数的『双重复数』；例句 The children are happy." }
+  invariants:
+    - "名词复数的默认恒为词尾加 -s，本幕 -en 只是少数例外（本幕开场判据；grammar.yaml g01-plural-default）"
+    - "child → children 恒属不用 -s 的特殊变形组，与 woman → women 同组（grammar.yaml g02-irregular-groups、ex-g02-children）"
+    - "这批不用 -s 的老词是古英语复数方式的遗留：后来加 -s 成了新规矩、老词保留老样子，名单逐个记而不类推（grammar.yaml g02-etym）"

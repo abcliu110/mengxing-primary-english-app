@@ -17,7 +17,7 @@ items:
 - - w
   - 核心动作/形状迁移
 - - w
-  - ③ 引申新义：v. 弹奏，吹奏（西洋乐器，必须加 the）
+  - ③ 引申新义：v. 弹奏，吹奏（乐器，一般加 the，不分西洋还是民族乐器）
 - - w
   - She can play the piano.
 - - w
@@ -25,3 +25,13 @@ items:
 - - s
   - She can play the piano.
   - 🎹 第三幕【引申新义·演奏乐器与舞台剧】：引申为“演奏乐器”（play the piano）和舞台上的“话剧演出”（a play）！
+facts:
+  objects:
+    - { name: "play", kind: "单词", states: "音标 /pleɪ/；本幕词头卡标注玩耍；打（球）；弹奏（乐器）；戏剧" }
+    - { name: "③ 引申新义：v. 弹奏，吹奏（西洋乐器，必须加 the）", kind: "义项", states: "本幕第3幕所立义项：③卡原文表述如左，其『必须』限定已被模型裁定降格，见本幕 invariants" }
+    - { name: "She can play the piano.", kind: "例句", states: "本幕 s 配对句：演示 play 的乐器演奏义，宾语为 the piano" }
+    - { name: "a play", kind: "义项", states: "本幕 s 说明另立的名词义：舞台上的话剧演出，与词头卡所列『戏剧』义对应" }
+  invariants:
+    - "义项分野恒看宾语类别：play 后跟球类、棋类时不加 the，跟乐器时一般加 the，『一般』二字不许删（模型裁定：vocab_fixes VF-010）"
+    - "乐器前的 the 不是全称铁律：美国人口语里乐器前的 the 常常省掉，play piano 不是错（模型裁定：vocab_fixes VF-010）"
+    - "本幕引申义有两支：动词『演奏乐器』与名词『话剧演出』（a play），两支并列登记，不得只记演奏义（本幕 s 说明原话）"

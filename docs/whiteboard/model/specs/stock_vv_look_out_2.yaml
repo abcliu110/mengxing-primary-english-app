@@ -38,3 +38,13 @@ items:
 - - s
   - Look out! A fast bike is coming!
   - 当心（留神）！一辆快车过来了！
+facts:
+  objects:
+    - { name: "look out of", kind: "短语", states: "本幕②上屏为向窗外看，注为目光投向窗外；旁白总释 look out 含留神，当心，与 Be careful! 同义标注" }
+    - { name: "例句 Look out of the window. A rainbow!", kind: "例句", states: "往窗外看，有彩虹！" }
+    - { name: "例句 Look out! A fast bike is coming!", kind: "例句", states: "结尾复现警告义：当心（留神）！一辆快车过来了！拆解段作 Look out!，译当心" }
+    - { name: "OUT", kind: "小词", states: "本幕拆解为从里面出来；与 LOOK 的看合成目光投向外面" }
+  invariants:
+    - "共同点恒为 OUT = 目光投向外面（本幕判据，共同点原话）"
+    - "LOOK 在本幕拆解中恒释为看，OUT 恒释为从里面出来（本幕拆解卡）"
+    - "字面义与警告义同源：往窗外看与留神外面的危险，共用目光投向外面判据（本幕判据，拆解卡原话）"

@@ -30,9 +30,9 @@ items:
   - I want to read this story.
   - 我想读这个故事。
   - want to read this story
-- - m
+- - w
   - 💡 一句话洞见
-- - m
+- - w
   - 及物动词像一支箭，
 - - w
   - 后面直接射中宾语，中间不加介词
@@ -44,3 +44,11 @@ items:
   - 直接射中宾语，不加介词。
 - - w
   - 🦴 五大基本句型 · 句型 ③ SVO
+facts:
+  objects:
+    - { name: "doing 宾语词表", kind: "词表", states: "本幕点名 enjoy / finish / practice / mind + doing：享受、完成、练习常做的事用 doing；锚问句 Do you mind waiting?" }
+    - { name: "例句 I want to read this story.", kind: "例句", states: "本幕预测揭晓：want 盼着将来去做，后面的动词穿 to do 制服，写作 to read" }
+    - { name: "句型③公式 S + Vt + O", kind: "句型", states: "本幕公式为 S（主语射箭人）+ Vt（及物动词）+ O（宾语靶心）；复述例为我们在植树节种了 20 棵小树苗，动作直接射中宾语" }
+  invariants:
+    - "口诀恒为：及物动词是支箭，直接射中宾语，不加介词（本幕口诀）"
+    - "第二个动词的形式由前面的动词决定：want 接 to do，enjoy / finish / practice / mind 接 doing（本幕台词；模型主张 st-cl-verb-decides、g40-to-vs-ing）"

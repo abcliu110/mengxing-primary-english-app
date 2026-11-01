@@ -15,3 +15,11 @@ items:
 - - s
   - We look on as they play football.
   - 我们在一旁看他们踢足球。
+facts:
+  objects:
+    - { name: "look on", kind: "短语", states: "本幕①释义为旁观，观看；旁白为目光落在舞台表面旁观" }
+    - { name: "ON", kind: "小词", states: "本幕卡释为目光落在场上" }
+    - { name: "例句 We look on as they play football.", kind: "例句", states: "我们在一旁看他们踢足球" }
+  invariants:
+    - "ON 在本幕恒表目光落在表面：目光落在场上（本幕判据：ON 卡原话）"
+    - "look on ①义恒为旁观，观看：旁观对象在本幕例句中恒为他们踢足球（本幕释义卡与例句）"

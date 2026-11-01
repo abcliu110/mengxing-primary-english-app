@@ -146,3 +146,15 @@ items:
   - 男女换 e，鼠变 mice！
 - - w
   - 👣 王炸实验室 · 不规则复数
+facts:
+  objects:
+    - { name: "例句 One cat, two cats.", kind: "例句", states: "本幕对照基线：复数指两个或更多，大多数名词在词尾加 s" }
+    - { name: "foot → feet、tooth → teeth、goose → geese", kind: "词表", states: "oo 换成 ee 组；锚例句 Foot, feet. Tooth, teeth. Goose, geese. 与 I stand on my two feet." }
+    - { name: "man → men、woman → women", kind: "词表", states: "a 换成 e 组；本幕注明 women 第一个音读 /ɪ/，像 wimin；锚例句 One man, two men. One woman, two women." }
+    - { name: "mouse → mice", kind: "单词", states: "ou 换成 i，且 s 变为 ce；锚例句 One mouse, three mice." }
+    - { name: "postman → postmen", kind: "单词", states: "本幕预测揭晓项：以 man 结尾的合成词，复数把 man 换成 men；锚例句 One postman, two postmen." }
+  invariants:
+    - "少数古老词的复数不加 s 而换元音，本幕分 oo→ee、a→e、ou→i 三组呈现（本幕判据；模型同源主张 g02-irregular-groups 将 man→men、foot→feet、tooth→teeth、goose→geese、mouse→mice 列入换元音组）"
+    - "一般复数加 -s 与不规则复数分开管：加 -s 是默认规则，不延伸到不规则复数（模型主张 g01-plural-default 及其 boundary）"
+    - "换元音的成因是古英语词尾带 i 音使前面元音变音、词尾后来消失而变形留下，只作用于带过该词尾的特定词形、不是通用加法（本幕词源讲述；模型同源主张 g02-etym 与 scene_fixes sf-040）"
+    - "以 man 结尾的合成词随 man 一起变：postman 的复数作 postmen（本幕揭晓判据）"

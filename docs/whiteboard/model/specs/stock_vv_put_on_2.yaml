@@ -42,3 +42,13 @@ items:
 - - s
   - Put on your warm hat and gloves!
   - 戴上你的暖和帽子和手套！
+facts:
+  objects:
+    - { name: "put on", kind: "短语", states: "本幕②释义为上演（节目）；旁白总释含穿上，戴上（衣帽眼镜）与上演（节目）" }
+    - { name: "例句 We put on a show for our parents.", kind: "例句", states: "我们为爸爸妈妈上演了一场节目；上屏注为节目放到舞台上，场景为舞台" }
+    - { name: "例句 Put on your hat.", kind: "例句", states: "拆解句：戴上帽子，帽子贴合头顶；与 Put on a show. 的上演节目并列，后者拆解注为节目放上舞台" }
+    - { name: "例句 Put on your warm hat and gloves!", kind: "例句", states: "结尾句：戴上你的暖和帽子和手套！复现穿戴义" }
+  invariants:
+    - "共同点恒为 ON = 放到表面上（身上 / 舞台上）（本幕判据，共同点原话）"
+    - "PUT 在本幕拆解中恒释为放、摆，ON 恒释为贴到表面上（本幕拆解卡）"
+    - "穿戴义与上演义同构：帽子贴合头顶与节目放上舞台，共用放到表面判据（本幕判据，拆解卡原话）"

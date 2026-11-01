@@ -23,3 +23,13 @@ items:
 - - s
   - Miss White tells the students an interesting story.
   - 怀特老师给学生们讲了一个有趣的故事。 ｜ Speaker + tell + Addressee + Message
+facts:
+  objects:
+    - { name: "例句 Miss White tells the students an interesting story.", kind: "例句", states: "本幕视角 1 的锚例句：Miss White 作 Speaker、the students 作 Addressee、an interesting story 作 Message" }
+    - { name: "言语交流小剧场（Communication Frame）", kind: "框架", states: "本幕所属框架：同一客观事件，切换主语视角即切换动词；本幕为视角 1，流向自注为单向传递故事或指令" }
+    - { name: "tell（tell sb sth / tell sb to do）", kind: "语法对象", states: "本幕公式为 Speaker + tell + Addressee + Message：两式 tell sb sth 与 tell sb to do 并列于标题与公式行，例句演示 sb sth 一式，to do 一式仅列名" }
+    - { name: "Miss White（怀特老师）", kind: "人物", states: "台词点名的人物：本幕例句的说话人，给学生们讲故事" }
+  invariants:
+    - "tell 的传递恒为单向：Speaker + tell + Addressee + Message，说话人把故事或指令传给听话人（本幕判据原话：单向传递故事或指令）"
+    - "tell 的两式中 Addressee 恒居 tell 之后、Message 之前：先点人，再点所传之物或所嘱之事（本幕判据公式：tell sb sth / tell sb to do）"
+    - "同一交流事件换视角即换动词：本幕只点亮说话人一侧，提问与回答的闭环在视角 2（本幕判据；frameworks_fixes FRAME_SEMANTICS_DB 库级记录：FR01–FR10 本体经逐项核对无误，讲法源自 Fillmore 框架语义）"

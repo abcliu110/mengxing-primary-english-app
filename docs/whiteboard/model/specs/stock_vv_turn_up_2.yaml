@@ -42,3 +42,13 @@ items:
 - - s
   - Turn up the music! Let's dance!
   - 把音乐声音调大一点！我们跳舞吧！
+facts:
+  objects:
+    - { name: "turn up", kind: "短语", states: "开场释义为调大（音量/热度）与出现，露面；本幕编号 ②，演示出现，露面" }
+    - { name: "例句 Tom turned up at the party at last!", kind: "例句", states: "本幕 ② 义锚例句：汤姆终于在派对上露面了；台词点名人物 Tom 与派对" }
+    - { name: "例句 Turn up the music.", kind: "例句", states: "拆解区回溯 ① 义例句：把音乐调大；台词拆为音量往上拧" }
+    - { name: "例句 Tom turned up.", kind: "例句", states: "拆解区 ② 义例句：汤姆露面了；台词拆为人冒出来" }
+  invariants:
+    - "共同点：UP = 往上冒、变大（本幕判据原话）"
+    - "TURN 本幕释为转动，UP 本幕释为向上 / 填满，二者组合同时解释调大音乐与人物露面两例（本幕拆解判据）"
+    - "出现义在本幕带时间限定 at last：锚例中译为终于在派对上露面（本幕例句判据）"

@@ -7,7 +7,7 @@ import { autoBuild } from './auto.js';
 import * as SP from '../sprites/vvturnin2.js';
 const ACTS = {"*": ["l_pj0", "l_pj1", "l_pj2"]};
 const ITEMS = [
-  ['n', 'turn in：上交，交还（作业/考卷）'],
+  ['n', 'turn in：上床睡觉'],
   ['m', '21:30'],
   ['m', 'turn in ②'],
   ['m', '上床睡觉'],

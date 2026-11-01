@@ -23,3 +23,13 @@ items:
 - - s
   - sunflower, unhappy, careful, carefully, friendly
   - 构词法公式：前缀改变词义方向，后缀决定词性角色！
+facts:
+  objects:
+    - { name: "词根 care（关心）", kind: "单词", states: "本幕词根主例：加 -ful 变 careful 细心的、加 -less 变 careless 粗心的、加 -fully 变 carefully，三件后缀衣服加词根共四形" }
+    - { name: "人称后缀 -er / -or", kind: "规则", states: "动词加 -er 或 -or 表人：teacher、doctor（本幕台词）" }
+    - { name: "形容词后缀 -y", kind: "规则", states: "天气名词加 -y 变形容词：sunny、rainy（本幕台词）" }
+    - { name: "friendly（友好的）", kind: "单词", states: "本幕防坑特例：名词加 -ly 得形容词 friendly，同类 lovely 可爱的；与形容词加 -ly 得副词 slowly 对照" }
+  invariants:
+    - "后缀挂词尾切换词性角色，前缀只改词义方向（本幕判据；收尾原话『前缀改变词义方向，后缀决定词性角色』）"
+    - "名词加 -ly 是形容词不是副词：friendly 与 lovely 不得当副词用（本幕防坑判据；模型同源旁证 g12-adverb-form 的失效边界明示 friendly 等 -ly 词是形容词）"
+    - "形容词加 -ly 才是常例副词造法：slowly（本幕台词；模型同源主张 g12-adverb-form）"

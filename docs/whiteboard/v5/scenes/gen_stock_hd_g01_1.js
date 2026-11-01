@@ -19,6 +19,6 @@ const ITEMS = [
   ['w', '③ 进阶要点：② 以 s, x, ch, sh 结尾加 -es 读 /ɪz/：bus ➔ buses, box ➔ boxes, watch ➔ watches, dish ➔ dishes'],
   ['w', 'G01 第1幕'],
   ['s', 'I have one book and two pens.', '我有一本书和两支钢笔。'],
-  ['n', '🎵 口诀：单数变复数，一般直接加 s；s/x/ch/sh 结尾加 es；辅音加 y 变 i 加 es；f/fe 结尾多数变 ves，giraffe 只加 s！'],
+  ['n', '🎵 口诀：单数变复数，一般直接加 s；s/x/ch/sh 结尾加 es；辅音加 y 变 i 加 es；变 ves 的只有一小队名单，其余 f 结尾只加 s！'],
 ];
 export default function build() { return autoBuild(SP, { title: '📘 G01 底层原理 · 第1幕', items: ITEMS, acts: ACTS }); }

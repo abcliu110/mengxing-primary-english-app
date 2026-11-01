@@ -40,3 +40,13 @@ items:
 - - s
   - Never give up! You can do it!
   - 永远不要放弃！你能行的！
+facts:
+  objects:
+    - { name: "give up", kind: "短语", states: "本幕②释义卡为戒掉，放弃；旁白总释为放弃，投降；上屏注为彻底放手不要了" }
+    - { name: "例句 He gave up sweets for his teeth.", kind: "例句", states: "演示戒掉义：为了牙齿，他戒掉了糖果；拆解段复现为 He gave up sweets.，译他戒掉了糖果" }
+    - { name: "例句 Never give up! You can do it!", kind: "例句", states: "结尾句：永远不要放弃！你能行的！呼应旁白的永不放弃" }
+    - { name: "UP", kind: "小词", states: "本幕拆解为双手往上一摊；与 GIVE 的给、交出合成彻底交出去" }
+  invariants:
+    - "共同点恒为 UP = 两手一摊，彻底交出去（本幕判据，共同点原话）"
+    - "GIVE 在本幕拆解中恒释为给、交出，UP 恒释为双手往上一摊（本幕拆解卡）"
+    - "戒掉糖果与永不放弃在本幕同归彻底放手：上屏『彻底放手不要了』与拆解『彻底 放手』为同一判据（本幕判据）"

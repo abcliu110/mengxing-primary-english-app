@@ -25,3 +25,13 @@ items:
 - - s
   - I'd like an orange.
   - 🍊 第一幕【核心本义·水果橙子】：果盘里放着一个圆溜溜、酸甜多汁的橙子（an orange）。
+facts:
+  objects:
+    - { name: "目标词 orange /ˈɔːrɪndʒ/", kind: "单词", states: "总卡义项清单：【adj./n.】橙色的；橙子；本幕为多义第1幕，立本义『橙子』" }
+    - { name: "义项①：橙子，柑橘", kind: "义项", states: "本义具象：n. 橙子，柑橘（可数名词）；台词以 an orange 点明单数可数用法" }
+    - { name: "例句 I'd like an orange.", kind: "例句", states: "本幕锚例句：orange 取本义『橙子』，对应第一幕【核心本义·水果橙子】" }
+    - { name: "义项③：橙色的，橘黄色的；橙汁", kind: "义项", states: "引申新义：adj./n. 橙色的，橘黄色的；橙汁；本幕仅在总卡与路线图并列列名，例句 My schoolbag is orange. 已亮相但未作本幕讲解锚，展开在第3幕；其中『橙汁』一义全幕无专门例句" }
+  invariants:
+    - "义项先后恒为先果后色：本义是水果『橙子』，颜色义『橙色的』由此引申（本幕台词路线图自述；模型裁定同向，vocab_fixes.yaml VF-009  basis 明言先有水果名、后有颜色名成立、保留不改）"
+    - "两义项由同一核心意象纽带贯连：『橙子果实及其天然色彩』（本幕台词自述纽带）"
+    - "orange 不得拆作 or-ange 假块（模型裁定 vocab_fixes.yaml VF-009：该切分在词源历史中不存在，affix_root 已清空）"

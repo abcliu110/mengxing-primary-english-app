@@ -11,7 +11,7 @@ const ITEMS = [
   ['w', 'G22 底层原理'],
   ['w', '一般过去时不规则动词高频榜 (go→went / see→saw) —— 小学阶段最常考的 24 个“不加 ed、直接换马甲”的超级动词'],
   ['w', '【为什么越常用的动词越不按规则加 -ed？】'],
-  ['w', '日常最高频动词（go, see, eat, have, do, take, buy）完整保留了古英语“变换内部元音”来表过去的传统！'],
+  ['w', '这些最高频的老词各有老变法，分组记，没有总规律：有的换元音（swim → swam），有的整个换词（go → went），有的带音变（buy → bought、have → had），还有同形不变的（put、cut）！'],
   ['w', '🔬 不规则动词：不加 -ed，整个词换样'],
   ['w', '高频榜：go → went, see → saw, eat → ate, have → had, do → did, take → took, make → made, buy → bought'],
   ['w', '分组记：换元音（sit → sat, swim → swam）；整个换（go → went）；变成 -ought（buy → bought, think → thought）'],

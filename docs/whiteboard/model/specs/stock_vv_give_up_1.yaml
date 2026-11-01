@@ -21,3 +21,11 @@ items:
   - Never give up!
 - - w
   - I did it!
+facts:
+  objects:
+    - { name: "give up", kind: "短语", states: "本幕为第①幕；旁白以双手向上一摊不再抓握释义；释义卡为放弃" }
+    - { name: "例句 Never give up! You can do it!", kind: "例句", states: "永远不要放弃，你能行的" }
+    - { name: "UP", kind: "规则", states: "本幕落实为双手往上一摊" }
+  invariants:
+    - "give up 在本幕恒以双手向上一摊不再抓握释放弃义（本幕判据，旁白定义原话）"
+    - "UP 在本幕落实为双手往上一摊（本幕标记原话）"

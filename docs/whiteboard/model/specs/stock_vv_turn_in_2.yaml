@@ -3,7 +3,7 @@ template: vv_turn_in_2.js
 title: 🎬 万能动词 · turn in ②
 items:
 - - n
-  - turn in：上交，交还（作业/考卷）
+  - turn in：上床睡觉
 - - m
   - '21:30'
 - - m
@@ -44,3 +44,13 @@ items:
 - - s
   - Please turn in your homework on time.
   - 请按时上交你们的家庭作业。
+facts:
+  objects:
+    - { name: "turn in", kind: "短语", states: "开场释义作上交，交还（作业/考卷）；本幕编号 ②，演示上床睡觉" }
+    - { name: "例句 It's late. Time to turn in.", kind: "例句", states: "本幕 ② 义锚例句：很晚了，该上床睡觉了；台词具体化为钻进被窝" }
+    - { name: "例句 Turn in your homework.", kind: "例句", states: "拆解区回溯例句：交作业；台词拆为作业交进老师手里" }
+    - { name: "例句 Time to turn in.", kind: "例句", states: "拆解区 ② 义例句：该睡觉了；台词拆为人钻进被窝" }
+  invariants:
+    - "共同点：IN = 转身进到里面（本幕判据原话）"
+    - "TURN 本幕释为转动，IN 本幕释为进入里面，二者组合同时解释交作业与上床睡觉两例（本幕拆解判据）"
+    - "两义的进入对象不同而方向同一：作业交进老师手里、人钻进被窝（本幕判据）"

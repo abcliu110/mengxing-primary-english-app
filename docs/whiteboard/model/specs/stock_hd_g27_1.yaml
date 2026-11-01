@@ -39,3 +39,14 @@ items:
   - 红灯必须停，严禁在马路上玩！
 - - n
   - 🎵 口诀：情态家族规矩同，后面一律接原形；must 必须，mustn't 严禁；should 应该提建议，May I 开口最礼貌！
+facts:
+  objects:
+    - { name: "情态动词口气梯子", kind: "词表", states: "本幕梯子卡从轻到重排列：may 可以 → should 应该 → must 必须 → mustn't 不准" }
+    - { name: "例句 May I come in?", kind: "例句", states: "may 礼貌请求的例句" }
+    - { name: "例句 You should drink more water.", kind: "例句", states: "should 建议的例句" }
+    - { name: "例句 You mustn't swim here.", kind: "例句", states: "mustn't 禁止的例句" }
+    - { name: "例句 You must stop at a red light, and you mustn't play on the road!", kind: "例句", states: "语境实证句：must 与 mustn't 在同一句中对照呈现" }
+  invariants:
+    - "情态动词家族规矩相同：后面接动词原形；must 是『必须』，mustn't 是『严禁、千万不准』（不是『不必』），should 是『应该』用于温和建议，may 用在 May I ...? 里表礼貌请求（g27-modal-family）"
+    - "mustn't 与 don't have to 的区别只作陷阱提醒点到为止；情态动词的否定细节（needn't 等）留待中学（g27-modal-family 的 boundary）"
+    - "本幕判据：mustn't（不准）≠ don't have to（不必）"

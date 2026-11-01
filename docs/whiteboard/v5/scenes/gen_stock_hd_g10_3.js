@@ -17,7 +17,7 @@ const ITEMS = [
   ['w', '邀请：Would you like some juice?'],
   ['w', '请求：Can I have some bread, please?'],
   ['s', 'Would you like some juice? Can I have some bread, please?', '你想喝点果汁吗？请问我能吃点面包吗？'],
-  ['w', '常错：Can I have any water, Mum? ✗ → Can I have some water, Mum? ✓'],
+  ['w', '辨析：Can I have some water, Mum?（盼着对方答应，用 some）；Can I have any water, Mum? 语法成立，只是语气中性、疏远，不显期待'],
   ['w', '对比：There isn\'t any milk in the fridge. Would you like some tea instead?'],
   ['s', 'There isn\'t any milk in the fridge. Would you like some tea instead?', '冰箱里没有牛奶了。你想喝点茶吗？'],
   ['w', 'G10 第3幕'],

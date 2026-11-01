@@ -8,9 +8,9 @@ import * as SP from '../sprites/hdsint1.js';
 const ACTS = {"*": ["l_think", "l_point", "l_search"]};
 const ITEMS = [
   ['w', '疑问词词源雷达'],
-  ['w', '古英语 wh-(提问头) ↔ th-(远指回答头) ↔ h-(近指头) 完美对称：where↔there↔here, when↔then'],
-  ['w', '看中央实验台：旋转词头密码锁，一眼看懂 9 大疑问词的造词规律与句首倒装语序！'],
-  ['w', '🔬 词源密码：古英语『wh-提问头 ↔ th-远指头 ↔ h-近指头』对称转盘'],
+  ['w', '古英语两大家族：wh- 问词一家 ↔ th- 指示词一家，here 是近指一家；两家穿同款词尾（-ere、-en、-at）：where↔there、when↔then'],
+  ['w', '看中央实验台：旋转词头密码锁，一眼看懂 9 大疑问词的家族出身与句首倒装语序！'],
+  ['w', '🔬 词源密码：古英语『wh- 问词家族 ↔ th- 指示词家族』对仗转盘'],
   ['w', '❓ where (哪里)'],
   ['w', '👉 there (那里)'],
   ['w', '📍 here (这里)'],
@@ -21,6 +21,6 @@ const ITEMS = [
   ['w', '👉 that (那个)'],
   ['w', '📦 this (这个)'],
   ['w', '疑问第1幕'],
-  ['s', 'Where is it? Over there! Whose bag is this? It\'s mine.', 'where/there/here 共享地点词根 -ere；when/then 共享时间词根 -en；what/that 共享事物词根 -at！'],
+  ['s', 'Where is it? Over there! Whose bag is this? It\'s mine.', 'where/there/here、when/then、what/that 看着像「换个字母」——其实是两个家族穿了同款词尾（-ere、-en、-at）：问词家族姓 *kʷ-（古英语写 hw-），指示词家族姓 *to-（古英语写 þ-），近指 here 一家姓 *ḱe-。'],
 ];
 export default function build() { return autoBuild(SP, { title: '🦉 疑问词词源雷达 · 第1幕 wh- 提问头 ↔ th- 远指 ↔ h- 近指', items: ITEMS, acts: ACTS }); }

@@ -1,0 +1,35 @@
+# 金句卡永不触发（洞见行误写 'm'）修复 —— 结项记录（2026-11-01）
+
+承接 T16P2_engine_fixes.done 第 72 行登记的 leftover。**先更正登记中的场景名**：`gen_stock_poly_4rows_1`、`gen_stock_chain_story_4` 在仓库源、spec、App 549 个挂载元素、T15 载荷清单与全部 git 历史中均不存在（git log --all 文件名检索为零），应为当时扫描命名的笔误。与登记描述（'💡 一句话洞见' 写成 'm' 条目、金句卡永不触发）吻合的全库唯二实例是 **five_patterns_p3_3** 与 **sentence_4**（App 挂载元素 wb5html-five_patterns_p3-2、wb5html-fp_one_king-3），已按实修。
+
+## 机制与正确样例
+
+- auto.js 第 19 行 `isGold = /^💡 一句话洞见/` 只在 'w' 分支判定（第 67 行）；'m' 分支只渲染灰色菜单片，永不触发金句卡。
+- 正确样例（同族 spec）：sentence_2/sentence_3 的触发行与洞见正文两行均为 [w, …]。
+- 两幕的错误形态一致：触发行 + 洞见正文第一行连续两条误写 'm'，其后复述行均为 'w'。只改触发行会让洞见第一行以菜单片形态落在金句卡上，故两条一并改（仅改类型标记，文案逐字未动）。
+
+## 改动（全部仅类型标记 'm'→'w'，每处 2 条）
+
+- `model/specs/sentence_4.yaml` 第 82–83 行（[m,…]→[w,…]）
+- `model/specs/stock_five_patterns_p3_3.yaml` 第 33–36 行（块式条目类型 m→w）
+- 再生 `v5/scenes/gen_sentence_4.js` 第 72–73 行、`v5/scenes/gen_stock_five_patterns_p3_3.js` 第 23–24 行（gen_scene.py 再生；改前以未改 spec 重生与现文件零差异，管线可复现已证；再生 diff 恰为上述 2 行，事实表零变化）
+- 模板存档副本同步：`v5/scenes/fp_one_king_4.js` 第 71–72 行、`v5/scenes/five_patterns_p3_3.js` 第 21–22 行（模板 ITEMS 不被 gen_scene 读取，属防回归一致性修正）
+- 交付件重建：`~/workspace/your_files/gen-sentence-4.html` 1,212,508 → 1,286,926 B；`gen-stock-five_patterns_p3_3.html` 1,185,966 → 1,260,384 B（增量为现行引擎与字体子集差，与内容无关；先落 staging 验大小再就位）
+
+## 全库扫描（修复前 → 修复后）
+
+- v5/scenes/*.js 的 ITEMS 块：含触发行 120 个文件，'m' 型 4 文件（上述 2 幕的 gen + 模板）→ 修复后 0。
+- model/specs/*.yaml（两种条目格式）：含触发行 59 个，'m' 型恰为上述 2 个 spec → 修复后 0；「触发行 'w' 但紧随条目 'm'」的部分伤：0。
+- App 主文件 549 个 wb5html 元素（载荷解压 + blob 还原 + \u 解码后扫描）：触发行 61 处，'m' 型恰为 wb5html-five_patterns_p3-2 与 wb5html-fp_one_king-3 两挂载 → 其源已修（见下方待办）。
+- oral/poly/mindmap 构建器无 isGold 机制（oral 的 💡 为提示名解析、格式不同），不适用。
+
+## 验证
+
+- check_sentence_assertions.py：gen_sentence_1–4 断言全过。
+- ic_gen8 等效校验：gen-sentence-4 ✅（156.0s，文字峰值 12%）、gen-stock-five_patterns_p3_3 ✅（77.5s，17%），不合格 0。
+- 无头渲染新旧对比（截图存 ~/workspace/shots_insight_fix/）：旧版复述段只是普通板面行、无卡框，'💡' 仅以 44px 灰字菜单片出现；新版两幕均出现带框金句卡——💡 一句话洞见 56px 橙字标题 + 洞见两行 + 口诀行俱在卡内（sentence4_NEW.png @147.0s、fp_p3_3_NEW.png @68.5s）。时长变化（160.4→156.0s、83.6→77.5s）为金句卡计时与旧版尾部标题板消失所致，属机制预期。
+
+## 待办（不在本单范围）
+
+- 主 App 内嵌的两个挂载元素（wb5html-five_patterns_p3-2、wb5html-fp_one_king-3）仍是旧载荷：需走一次回灌包（T15 同款管线）把新场景载荷换入主文件后，App 内才算修好。本单未动主 App 文件。
+- 未做 git 操作（待主会话提交）。工作树另有 556 个先于本单存在的修改文件（含 stock_five_patterns_p3_3.yaml 里一段未提交的 facts 补全），本单未触碰。

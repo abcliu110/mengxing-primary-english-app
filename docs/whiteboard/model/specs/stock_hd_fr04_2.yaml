@@ -23,3 +23,13 @@ items:
 - - s
   - Lily is wearing a red coat and glasses today.
   - 莉莉今天穿着一件红大衣、戴着眼镜。 ｜ Wearer + wear + Clothing
+facts:
+  objects:
+    - { name: "例句 Lily is wearing a red coat and glasses today.", kind: "例句", states: "本幕视角 2 的锚例句：Lily 今天穿着红大衣、戴着眼镜，wear 以 is wearing 形式呈现" }
+    - { name: "穿戴变化小剧场（Wearing & Dressing）", kind: "框架", states: "本幕所属框架：同一客观事件，切换主语视角即切换动词；本幕为视角 2" }
+    - { name: "wear（穿着/戴着的持续状态）", kind: "语法对象", states: "本幕定义为衣物已经穿戴在身上的持续状态，台词自注持续一整天；公式为 Wearer + wear + Clothing" }
+    - { name: "Lily（莉莉）", kind: "人物", states: "台词点名的人物：本幕例句的穿戴者" }
+  invariants:
+    - "wear 只管穿着/戴着的持续状态，不管穿上的动作：动作一侧由 put on 承担（本幕判据；与 stock_hd_fr04_1 对照）"
+    - "例句由 is wearing 构成：be 与动词 -ing 两部分齐备，是现在进行时的构式（grammar.yaml g20-progressive：两部分缺一不可）"
+    - "wear 的公式恒为 Wearer + wear + Clothing：状态陈述必须带出所穿戴的衣物（本幕判据公式）"

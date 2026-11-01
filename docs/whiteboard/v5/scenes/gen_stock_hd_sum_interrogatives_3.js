@@ -8,13 +8,13 @@ import * as SP from '../sprites/hdsint3.js';
 const ACTS = {"*": ["l_speak", "l_idea0", "l_hand0"]};
 const ITEMS = [
   ['w', '疑问词词源雷达'],
-  ['w', '古英语 wh-(提问头) ↔ th-(远指回答头) ↔ h-(近指头) 完美对称：where↔there↔here, when↔then'],
-  ['w', '看中央实验台：旋转词头密码锁，一眼看懂 9 大疑问词的造词规律与句首倒装语序！'],
+  ['w', '古英语两大家族：wh- 问词一家 ↔ th- 指示词一家，here 是近指一家；两家穿同款词尾（-ere、-en、-at）：where↔there、when↔then'],
+  ['w', '看中央实验台：旋转词头密码锁，一眼看懂 9 大疑问词的家族出身与句首倒装语序！'],
   ['w', '🔬 汉英语序反转：汉语疑问词留句尾 vs 英语疑问词冲到句首当火车头'],
   ['w', '🇨🇳 汉语疑问词留在句尾原位：你 住在 【哪里 (where)】？'],
-  ['w', '🇬🇧 英语疑问词 100% 提拔到句首当火车头 + 一般疑问倒装：'],
+  ['w', '🇬🇧 英语疑问词提拔到句首当火车头 + 一般疑问倒装（在特殊疑问句里站第一位；藏在长句子中间也可以——Tell me what you want.）：'],
   ['w', '🚂 [Where (句首车头)] + [do (助动词)] + [you live] ?'],
   ['w', '疑问第3幕'],
-  ['s', 'Where is it? Over there! Whose bag is this? It\'s mine.', 'where/there/here 共享地点词根 -ere；when/then 共享时间词根 -en；what/that 共享事物词根 -at！'],
+  ['s', 'Where is it? Over there! Whose bag is this? It\'s mine.', 'where/there/here、when/then、what/that 看着像「换个字母」——其实是两个家族穿了同款词尾（-ere、-en、-at）：问词家族姓 *kʷ-（古英语写 hw-），指示词家族姓 *to-（古英语写 þ-），近指 here 一家姓 *ḱe-。'],
 ];
 export default function build() { return autoBuild(SP, { title: '🦉 疑问词词源雷达 · 第3幕 疑问词冲到句首', items: ITEMS, acts: ACTS }); }

@@ -26,3 +26,12 @@ items:
 - - n
   - 🎵 口诀：some 和 any 都表“一些”，可数复数不可数都能接；肯定句里用 some，否定疑问换 any；唯有邀请和请求（Would you like
     / Can I have），满怀诚意还用 some！
+facts:
+  objects:
+    - { name: "例句 I have some storybooks and some milk.", kind: "例句", states: "some 后接可数名词复数 storybooks，也接不可数名词 milk，同句呈现两种接法" }
+    - { name: "some 与 any", kind: "语法对象", states: "都表示『一些』；本幕地盘分工：some 住肯定句与热情邀请，any 住否定句与普通疑问句" }
+    - { name: "例句 I don't have any crayons.", kind: "例句", states: "本幕称换成否定也一样用 any：肯定句的 some 在否定句中换为 any" }
+  invariants:
+    - "some 与 any 都可接可数名词复数或不可数名词；默认分工恒为肯定句用 some，否定句与一般疑问句用 any（g10-basic-split）"
+    - "表示诚意邀请或礼貌请求的问句多用 some，因为说话人期待对方答应（g10-request-some；本幕 Would you like some cake? 例）"
+    - "边界：请求问句用 any 并非语法错误，只是语气中性、疏远，不显期待（xc-g10-any-ok）"

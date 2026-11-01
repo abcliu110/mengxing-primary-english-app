@@ -31,3 +31,13 @@ items:
 - - n
   - 🎵 口诀：形物代(my/your/her/our/their)是粘人精，后面必须跟名词；名物代(mine/yours/hers/ours/theirs)是独行侠，句尾单干不带名！牢记公式：形物代
     + 名词 = 名物代！
+facts:
+  objects:
+    - { name: "例句 This is my bag. That red one is yours.", kind: "例句", states: "my 后接名词 bag；yours 单独使用，等于 your bag" }
+    - { name: "例句 Her dress is blue, and mine is yellow.", kind: "例句", states: "her 后接名词 dress；mine 单独使用，等于 my dress" }
+    - { name: "形物代词表", kind: "词表", states: "my / your / her / our / their，本幕称粘人精，后面必须跟名词" }
+    - { name: "名物代词表", kind: "词表", states: "mine / yours / hers / ours / theirs，本幕称独行侠，后面不再接名词" }
+  invariants:
+    - "形物代后面必须跟名词；名物代等于形物代加名词的浓缩，单独使用（g08-possessive-pair）"
+    - "判断恒看空格后面有没有名词：有名词选形物代，没名词选名物代（g08-possessive-pair）"
+    - "公式恒为：形物代加名词等于名物代（本幕口诀）"

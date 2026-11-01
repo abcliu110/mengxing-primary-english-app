@@ -40,3 +40,13 @@ items:
 - - s
   - Get off the bus at the hospital.
   - 在医院那一站下公交车。
+facts:
+  objects:
+    - { name: "get off", kind: "短语", states: "本幕为第②幕；旁白释义为下车（公交、火车、飞机、马）；本幕另演示下自行车" }
+    - { name: "例句 He gets off his bike.", kind: "例句", states: "他从自行车上下来；本幕标记为离开车座" }
+    - { name: "例句 Get off the bus at the hospital.", kind: "例句", states: "在医院那一站下公交车；拆解例另有 Get off the bus（脚离开车厢地板）" }
+    - { name: "OFF", kind: "规则", states: "本幕共同点原话所指：离开车的平面；拆解中解为离开表面" }
+  invariants:
+    - "OFF 在本幕恒解为离开车的平面（本幕判据原话：『共同点：OFF = 离开车的平面』）"
+    - "GET 在本幕拆解为到达／进入，OFF 解为离开表面（本幕拆解标记）"
+    - "本幕两拆解例同构：脚离开车厢地板、人离开车座（本幕标记）"

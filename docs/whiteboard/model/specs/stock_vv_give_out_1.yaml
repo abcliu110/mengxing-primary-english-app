@@ -17,3 +17,11 @@ items:
 - - s
   - Can you help me give out the notebooks?
   - 你能帮我把笔记本分发给大家吗？
+facts:
+  objects:
+    - { name: "give out", kind: "短语", states: "本幕为第①幕；旁白定义为从老师手里往外分发给全班同学；释义为分发" }
+    - { name: "例句 Can you help me give out the notebooks?", kind: "例句", states: "你能帮我把笔记本分发给大家吗；分发物为笔记本" }
+    - { name: "OUT", kind: "规则", states: "本幕落实为从手里往外分发" }
+  invariants:
+    - "give out 在本幕恒指从老师手里往外分发给全班同学（本幕判据，旁白定义原话）"
+    - "OUT 在本幕落实为从手里往外分发（本幕标记原话）"

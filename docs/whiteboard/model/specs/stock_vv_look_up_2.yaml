@@ -46,3 +46,13 @@ items:
 - - s
   - Look up the new word in the dictionary!
   - 在词典里查一查这个新单词！
+facts:
+  objects:
+    - { name: "look up", kind: "短语", states: "本幕②释义为查阅（单词）；旁白总释含抬头向上看与在词典或网上查阅单词" }
+    - { name: "例句 Look up the new word in the dictionary!", kind: "例句", states: "在词典里查一查这个新单词！上屏注为信息浮现出来" }
+    - { name: "giraffe", kind: "词表", states: "本幕查阅演示词：上屏注音 /dʒəˈrɑːf/，释为长颈鹿" }
+    - { name: "例句 Look up the word.", kind: "例句", states: "拆解句：查单词，答案浮现上来；与 Look up at the sky. 的抬头看天空并列，拆解注为目光往上" }
+  invariants:
+    - "共同点恒为 UP = 往上看，让信息浮上来（本幕判据，共同点原话）"
+    - "LOOK 在本幕拆解中恒释为看，UP 恒释为向上 / 填满（本幕拆解卡）"
+    - "字面义与查阅义同源：目光往上与答案浮现上来，共用往上判据（本幕判据，拆解卡原话）"

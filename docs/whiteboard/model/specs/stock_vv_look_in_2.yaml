@@ -44,3 +44,13 @@ items:
 - - s
   - Look in the box! What's inside?
   - 往盒子里看！里面有什么？
+facts:
+  objects:
+    - { name: "look into", kind: "短语", states: "本幕②释义为调查，研究；上屏注为深入调查；旁白总释含 look in 的往里面看" }
+    - { name: "例句 Let's look into it. Who ate the cookies?", kind: "例句", states: "我们来调查一下，是谁吃了饼干？上屏揭晓是猫咪" }
+    - { name: "例句 Look in the box! What's inside?", kind: "例句", states: "结尾复现①义：往盒子里看！里面有什么？拆解段作 Look in the box.，译往盒子里看" }
+    - { name: "IN / INTO", kind: "小词", states: "本幕拆解为进入里面；与 LOOK 的看合成目光钻进里面" }
+  invariants:
+    - "共同点恒为 IN / INTO = 目光钻进里面（本幕判据，共同点原话）"
+    - "LOOK 在本幕拆解中恒释为看，IN / INTO 恒释为进入里面（本幕拆解卡）"
+    - "具体义与抽象义同源：目光进入盒子与目光深入事情里调查，共用进入里面判据（本幕判据，拆解卡原话）"

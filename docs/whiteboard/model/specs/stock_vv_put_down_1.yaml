@@ -21,3 +21,11 @@ items:
   - 放到桌面上
 - - w
   - Good!
+facts:
+  objects:
+    - { name: "put down", kind: "短语", states: "本幕①上屏释义为放下（东西）；旁白为把手里举着的东西往下放到桌面" }
+    - { name: "例句 Put down your pencil and look at me.", kind: "例句", states: "放下铅笔看着我；上屏先呼 Look at me!，结尾应答 Good!" }
+    - { name: "DOWN", kind: "小词", states: "本幕卡释为放到桌面上；上屏标注落点为桌面" }
+  invariants:
+    - "DOWN 在本幕恒表落到桌面：放下的东西恒放到桌面上（本幕判据：DOWN 卡与旁白同义复现）"
+    - "put down ①的对象在本幕例句中恒为手里的铅笔：放下铅笔（本幕释义卡与例句）"

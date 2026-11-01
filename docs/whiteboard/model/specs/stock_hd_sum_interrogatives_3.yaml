@@ -5,19 +5,28 @@ items:
 - - w
   - 疑问词词源雷达
 - - w
-  - 古英语 wh-(提问头) ↔ th-(远指回答头) ↔ h-(近指头) 完美对称：where↔there↔here, when↔then
+  - 古英语两大家族：wh- 问词一家 ↔ th- 指示词一家，here 是近指一家；两家穿同款词尾（-ere、-en、-at）：where↔there、when↔then
 - - w
-  - 看中央实验台：旋转词头密码锁，一眼看懂 9 大疑问词的造词规律与句首倒装语序！
+  - 看中央实验台：旋转词头密码锁，一眼看懂 9 大疑问词的家族出身与句首倒装语序！
 - - w
   - 🔬 汉英语序反转：汉语疑问词留句尾 vs 英语疑问词冲到句首当火车头
 - - w
   - 🇨🇳 汉语疑问词留在句尾原位：你 住在 【哪里 (where)】？
 - - w
-  - 🇬🇧 英语疑问词 100% 提拔到句首当火车头 + 一般疑问倒装：
+  - 🇬🇧 英语疑问词提拔到句首当火车头 + 一般疑问倒装（在特殊疑问句里站第一位；藏在长句子中间也可以——Tell me what you want.）：
 - - w
   - 🚂 [Where (句首车头)] + [do (助动词)] + [you live] ?
 - - w
   - 疑问第3幕
 - - s
   - Where is it? Over there! Whose bag is this? It's mine.
-  - where/there/here 共享地点词根 -ere；when/then 共享时间词根 -en；what/that 共享事物词根 -at！
+  - where/there/here、when/then、what/that 看着像「换个字母」——其实是两个家族穿了同款词尾（-ere、-en、-at）：问词家族姓 *kʷ-（古英语写 hw-），指示词家族姓 *to-（古英语写 þ-），近指 here 一家姓 *ḱe-。
+facts:
+  objects:
+    - { name: "汉语句 你住在哪里？", kind: "例句", states: "本幕分块呈现为你、住在、哪里（where），并标注疑问词留在句尾原位" }
+    - { name: "英语句首结构 Where + do + you live?", kind: "句型", states: "本幕标注 Where 为句首车头，其后接助动词 do 与 you live" }
+    - { name: "例句对 Where is it? Over there!", kind: "例句", states: "本幕结尾例句对；Where 站句首问地点，there 在答语中指远处" }
+  invariants:
+    - "特殊疑问词按所缺信息分工并站句首：本幕 where 问哪里并置于句首（模型同源主张 g31-wh-words）"
+    - "一般疑问句把信号提到句首：没有 be 或情态动词时请 Do、Does、Did 站句首，其后实义动词恢复原形，本幕 do 加 live 即此式（模型同源主张 g30-yesno）"
+    - "疑问词并非只能站第一位：藏在长句子中间也可以，如 Tell me what you want.，本幕台词的百分百句首说法按此限定登记（scene_fixes 裁定 sf-027）"

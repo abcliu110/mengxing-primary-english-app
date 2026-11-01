@@ -40,3 +40,13 @@ items:
 - - s
   - Please turn down the TV. Baby is sleeping.
   - 请把电视声音调小点，宝宝在睡觉。
+facts:
+  objects:
+    - { name: "turn down", kind: "短语", states: "开场释义为调小（音量）与婉言拒绝；本幕编号 ②，演示婉言拒绝" }
+    - { name: "例句 He turned down the cake politely.", kind: "例句", states: "本幕 ② 义锚例句：他礼貌地拒绝了蛋糕；台词具体化为把提议压回去，短语作过去式 turned down" }
+    - { name: "例句 Turn down the TV.", kind: "例句", states: "拆解区回溯 ① 义例句：把电视调小；台词拆为音量往下拧" }
+    - { name: "例句 He turned it down.", kind: "例句", states: "拆解区 ② 义例句：他拒绝了；台词拆为提议压回去" }
+  invariants:
+    - "共同点：DOWN = 往下压、变小（本幕判据原话）"
+    - "TURN 本幕释为转动，DOWN 本幕释为向下落定，二者组合同时解释调小电视与拒绝提议两例（本幕拆解判据）"
+    - "拒绝义在本幕带礼貌限定：锚例明示 politely，中译为礼貌地拒绝（本幕例句判据）"

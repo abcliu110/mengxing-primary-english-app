@@ -50,3 +50,13 @@ items:
 - - s
   - Put your toys in the toy box.
   - 把你的玩具放进玩具箱里。
+facts:
+  objects:
+    - { name: "put in", kind: "短语", states: "本幕②释义为投入（时间、精力）；旁白总释含放进" }
+    - { name: "例句 He puts in 30 minutes of practice every day.", kind: "例句", states: "他每天投入三十分钟练琴；上屏时间由 0 min 经 10 min、20 min 到 30 min" }
+    - { name: "练琴罐", kind: "场景物", states: "台词点名的场景物：拆解注为时间投进练琴罐，上屏注为时间投进去" }
+    - { name: "IN", kind: "小词", states: "本幕拆解为进入里面；与 PUT 的放、摆合成放进容器里" }
+  invariants:
+    - "共同点恒为 IN = 放进容器里（本幕判据，共同点原话）"
+    - "PUT 在本幕拆解中恒释为放、摆，IN 恒释为进入里面（本幕拆解卡）"
+    - "实物义与抽象义同构：玩具进入箱子与时间投进练琴罐，共用放进容器判据（本幕判据，拆解卡原话）"

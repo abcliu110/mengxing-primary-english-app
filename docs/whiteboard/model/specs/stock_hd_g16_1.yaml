@@ -30,3 +30,12 @@ items:
   - 我十岁了。
 - - n
   - 🎵 口诀：我(I)用 am，你(you)用 are，is 连着他(he)她(she)它(it)；单数不可数全用 is，复数主语一律 are！
+facts:
+  objects:
+    - { name: "例句 I am ten years old.", kind: "例句", states: "主语 I 配 am，为本幕典型语境锚例句" }
+    - { name: "be 动词三剑客分工", kind: "词表", states: "I 配 am；he / she / it / 单数名词 / 不可数名词配 is；you / we / they / 复数名词 / A and B 配 are（本幕核心结构规律①）" }
+    - { name: "缩略形式表", kind: "词表", states: "I'm 等于 I am、he's 等于 he is、isn't 等于 is not、aren't 等于 are not；本幕标注 am not 无缩写" }
+  invariants:
+    - "be 动词现在时随主语变身：I 用 am，he、she、it、单数名词、不可数名词用 is，you、we、they、复数名词用 are；此之谓主谓一致（g16-be-present）"
+    - "am not 没有缩略形式（g16-be-present）"
+    - "边界：be 只报三档，is 本身分不清是他、她还是一张桌子，要听后面的词才知道（g16-be-present 的 boundary）"

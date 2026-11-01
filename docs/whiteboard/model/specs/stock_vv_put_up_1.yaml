@@ -21,3 +21,11 @@ items:
   - 手往上举
 - - w
   - Me! 5!
+facts:
+  objects:
+    - { name: "put up", kind: "短语", states: "本幕①释义为举起（手）；旁白总释含把物体往高处举起或贴上墙面，贴墙义本幕未展开演示" }
+    - { name: "例句 Put up your hand!", kind: "例句", states: "请举手！课堂提问 2 + 3 = ?，上屏先问 Who knows?，结尾应答 Me! 5!" }
+    - { name: "UP", kind: "小词", states: "本幕卡释为手往上举" }
+  invariants:
+    - "UP 在本幕恒表往上举：手往上举（本幕判据：UP 卡原话）"
+    - "put up ①义恒为举起手：例句对象恒为手（本幕释义卡与例句）"

@@ -42,3 +42,13 @@ items:
 - - s
   - I usually get up at 6:30 every morning.
   - 我每天早上通常六点半起床。
+facts:
+  objects:
+    - { name: "get up", kind: "短语", states: "本幕为第②幕；旁白释义为起床、起立站起来；本幕两义均有例句演示" }
+    - { name: "例句 He falls down, but he gets up again.", kind: "例句", states: "他摔倒了，但又自己站了起来；本幕标记为从地上站起来" }
+    - { name: "例句 I usually get up at 6:30 every morning.", kind: "例句", states: "我每天早上通常六点半起床；拆解例另有 I get up at 6:30（身体从床上升起）" }
+    - { name: "UP", kind: "规则", states: "本幕共同点原话所指：身体从低处升起来" }
+  invariants:
+    - "UP 在本幕恒解为身体从低处升起来（本幕判据原话：『共同点：UP = 身体从低处升起来』）"
+    - "GET 在本幕拆解为到达／进入（本幕拆解标记）"
+    - "本幕两拆解例同构：身体从床上升起、身体从地上站起来（本幕标记）"

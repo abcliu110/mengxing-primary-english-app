@@ -48,3 +48,12 @@ items:
   - ① 换疑问词 What ➔ ② 提大将军 can ➔ ③ 后面主语 + 动词原形
 - - w
   - ⑤ 感叹句
+facts:
+  objects:
+    - { name: "否定式 cannot / can't（本幕复述）", kind: "语法对象", states: "本幕开场点明：can + not 要连写成 cannot，后面的 speak 还是原形" }
+    - { name: "一般疑问句 Can Leo speak English very well?", kind: "句型", states: "本幕③式：大将军 Can 直接提到主语 Leo 前面，句末换成问号；简短回答 Yes, he can. / No, he can't." }
+    - { name: "特殊疑问句 What can Leo speak very well? / How well can Leo speak English?", kind: "句型", states: "本幕④式：What 问『说什么』，How well 问『说得多好』" }
+  invariants:
+    - "特殊疑问三步恒为：换疑问词 → 提大将军 can → 后面跟主语 + 动词原形（本幕三步）"
+    - "can 提问恒跳到主语前面，简短回答恒用 can（本幕台词；模型主张 g30-yesno、g26-can）"
+    - "can 之后动词恒保持原形，否定 cannot 之后亦然（本幕台词；模型主张 g26-can）"

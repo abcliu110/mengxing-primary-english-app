@@ -14,7 +14,7 @@ const ITEMS = [
   ['w', 'They play football after school.'],
   ['w', '② 意象桥梁：投入地参与有规则或有节奏的活动'],
   ['w', '核心动作/形状迁移'],
-  ['w', '③ 引申新义：v. 弹奏，吹奏（西洋乐器，必须加 the）'],
+  ['w', '③ 引申新义：v. 弹奏，吹奏（乐器，一般加 the，不分西洋还是民族乐器）'],
   ['w', 'She can play the piano.'],
   ['w', '多义第2幕'],
   ['s', 'They play football after school.', '🔄 第二幕【场景变形·手指在琴键上做游戏】：运动场变成音乐教室，手指像做游戏一样有节奏地按动琴键。'],

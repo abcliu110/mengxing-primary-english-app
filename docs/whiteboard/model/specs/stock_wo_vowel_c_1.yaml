@@ -184,3 +184,14 @@ items:
   - breath breathe
 - - n
   - 口诀：清音静悄悄，名词形容词；浊音嗡嗡响，变成动词跑。
+facts:
+  objects:
+    - { name: "safe / save", kind: "单词", states: "本幕对照：safe 安全的，词尾清音 /f/ → save 拯救，词尾浊音 /v/；本幕自标为例外组，见不变量" }
+    - { name: "life / live", kind: "单词", states: "本幕对照：life 生命，/laɪf/ → live 居住，/lɪv/，连元音也跟着变" }
+    - { name: "breath / breathe", kind: "单词", states: "本幕对照：breath 一口气，/breθ/ → breathe 呼吸（动作），/briːð/，词尾多了个 e" }
+    - { name: "use", kind: "单词", states: "本幕同形词：拼写一样，读 /juːs/ 为用途（名词），读 /juːz/ 为使用（动词）" }
+    - { name: "advice / advise", kind: "单词", states: "本幕对照：advice 建议，c 读 /s/ → advise 劝告，s 读 /z/，拼写与读音一起变" }
+  invariants:
+    - "本幕判据（口诀）：词尾清辅音 /f/、/θ/、/s/ 结尾当名词或形容词，换成浊辅音 /v/、/ð/、/z/ 结尾当动词（本幕判据，规律台词与口诀）"
+    - "上条自带例外：safe、save 与 use、advice 都是法语来的词，只是长得像这条规律，来历不一样（本幕判据，⚠️ 例外台词）"
+    - "advice 与 advise 的拼写分工在本幕恒为：名词 advice 用 -ce，动词 advise 用 -se（本幕判据，拼写台词）"

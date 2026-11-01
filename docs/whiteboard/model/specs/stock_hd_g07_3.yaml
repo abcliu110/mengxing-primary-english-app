@@ -31,3 +31,10 @@ items:
 - - s
   - I like Miss White, and she likes me too.
   - 动前主格动后宾，介词后面也用宾！I变me，we变us，he变him，she变her，they变them要记准，只有you和it主宾长相不改变！
+facts:
+  objects:
+    - { name: "指示代词四宫格", kind: "词表", states: "近处加单数 this is、近处加复数 these are、远处加单数 that is、远处加复数 those are（本幕四宫格原样）" }
+    - { name: "例句 I like Miss White, and she likes me too.", kind: "例句", states: "本幕 s 例句；其译文栏载主宾格口诀：I 变 me、we 变 us、he 变 him、she 变 her、they 变 them，you 和 it 主宾不变" }
+  invariants:
+    - "指示词选择恒由距离与单复数两维共同决定：近单 this、近复 these、远单 that、远复 those，be 随单复数用 is 或 are（本幕判据：空间雷达四宫格）"
+    - "人称代词按位置变身：动词前作主语用主格，动词或介词后面作宾语用宾格；you 与 it 主宾同形（g07-case-position）"

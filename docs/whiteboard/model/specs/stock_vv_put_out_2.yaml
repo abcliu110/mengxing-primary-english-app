@@ -40,3 +40,13 @@ items:
 - - s
   - The brave firemen put out the fire!
   - 勇敢的消防员扑灭了大火！
+facts:
+  objects:
+    - { name: "put out", kind: "短语", states: "本幕②释义为扑灭（大火）；旁白总释含扑灭，熄灭（大火 / 蜡烛）与伸出，伸出义本幕未展开演示" }
+    - { name: "例句 The brave firemen put out the fire!", kind: "例句", states: "勇敢的消防员扑灭了大火！上屏注为把大火扑灭，结尾 Safe!" }
+    - { name: "例句 Put out the fire.", kind: "例句", states: "拆解句：扑灭大火，大火被扑灭；与 Put out the candles. 的吹灭蜡烛并列，后者拆解注为火苗熄灭" }
+    - { name: "OUT", kind: "小词", states: "本幕拆解为从里面出来；与 PUT 的放、摆合成让火出局、熄灭" }
+  invariants:
+    - "共同点恒为 OUT = 让火出局、熄灭（本幕判据，共同点原话）"
+    - "PUT 在本幕拆解中恒释为放、摆，OUT 恒释为从里面出来（本幕拆解卡）"
+    - "大小火同判据：吹灭蜡烛的火苗熄灭与扑灭大火，共用熄灭判据（本幕判据，拆解卡原话）"

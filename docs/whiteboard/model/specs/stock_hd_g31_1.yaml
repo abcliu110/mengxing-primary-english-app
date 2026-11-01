@@ -10,7 +10,7 @@ items:
 - - w
   - 【为什么英语疑问词几乎都以 wh- 开头，而且必须放在句首第一个词？】
 - - w
-  - 英语把疑问词放在句首第一位（焦点前置），就像给听话人大脑发送一条检索指令：“请立刻去搜索【地点 Where / 时间 When / 人物 Who / 原因
+  - 英语把疑问词放在句首第一位，就像给听话人大脑发送一条检索指令：“请立刻去搜索【地点 Where / 时间 When / 人物 Who / 原因
     Why】！”
 - - w
   - 🔬 Who / Whose / Who's 三兄弟
@@ -35,3 +35,13 @@ items:
 - - n
   - 🎵 口诀：什么 what 谁是 who，谁的东西用 whose；哪里 where 何时 when，哪一个用 which 选；为什么 why 用 because
     答，怎样程度全归 how！
+facts:
+  objects:
+    - { name: "特殊疑问词全家福", kind: "词表", states: "本幕总名单：what、who、whose、where、when、why、which、how；台词分工为缺什么信息就派谁站句首" }
+    - { name: "Who / Whose / Who's 三兄弟", kind: "词表", states: "本幕分工卡：Who 问人是谁；Whose 问东西归谁，后面常跟名词；Who's = Who is" }
+    - { name: "例句 Who is that girl? She is my cousin.", kind: "例句", states: "Who 的问答例句对" }
+    - { name: "例句 Whose schoolbag is this? It's Mike's.", kind: "例句", states: "Whose 的问答例句对" }
+  invariants:
+    - "缺什么信息，就派哪个疑问词站句首：who（谁）、whose（谁的，问归属，与 Who、Who's 分清）等各词按所缺信息分工并站句首（g31-wh-words）"
+    - "疑问词放在句首第一位（本幕判据：焦点前置）"
+    - "本幕口诀分工：什么 what、谁是 who、谁的东西用 whose、哪里 where、何时 when、哪一个用 which、为什么 why、怎样程度归 how（本幕判据）"

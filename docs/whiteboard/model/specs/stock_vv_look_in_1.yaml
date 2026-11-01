@@ -21,3 +21,11 @@ items:
   - What's inside?
 - - w
   - A puppy!
+facts:
+  objects:
+    - { name: "look in / into", kind: "短语", states: "本幕①为往里面看；旁白为把目光投射进盒子或房间内部" }
+    - { name: "IN", kind: "小词", states: "本幕卡释为目光投进盒子里" }
+    - { name: "例句 Look in the box! What's inside?", kind: "例句", states: "往盒子里看！里面有什么？上屏答案 A puppy!" }
+  invariants:
+    - "IN 在本幕恒表目光投进内部：投进盒子里（本幕判据：IN 卡原话）"
+    - "look in 的观看对象在本幕恒为内部空间：盒子或房间内部（本幕判据，旁白原话）"

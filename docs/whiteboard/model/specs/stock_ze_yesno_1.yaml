@@ -158,3 +158,13 @@ items:
   - 事实是啥答啥！
 - - w
   - 🔀 中英对照 · 否定疑问
+facts:
+  objects:
+    - { name: "例句 Don't you like milk?", kind: "例句", states: "本幕主问句：你不喜欢牛奶吗；事实喜欢时答 Yes, I do.，事实不喜欢时答 No, I don't." }
+    - { name: "例句 Isn't it cold? Yes, it is.", kind: "例句", states: "本幕锚例：事实是冷，故答 Yes, it is." }
+    - { name: "例句 Can't you swim? No, I can't.", kind: "例句", states: "本幕锚例：事实是不会游泳，故答 No, I can't." }
+    - { name: "例句 Aren't you a student? Yes, I am.", kind: "例句", states: "本幕预测题锚例：事实是学生，故答 Yes, I am." }
+  invariants:
+    - "答否定疑问恒看事实不看问句里的『不』：事实是就 Yes，事实不是就 No（本幕判据，口诀『问句有不别管它，事实是啥答啥』）"
+    - "Yes 后面恒跟肯定，No 后面恒跟否定：Yes 配 do，No 配 don't，不得打架（本幕判据，规则台词）"
+    - "简短回答与问句用同一个助动词（grammar.yaml g30-yesno；本幕例 Yes, I do.、No, I can't.、Yes, I am. 同口径）"

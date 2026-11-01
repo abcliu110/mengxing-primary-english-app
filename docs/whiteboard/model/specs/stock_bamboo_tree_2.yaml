@@ -147,3 +147,14 @@ items:
   - 口诀：一句只能一个国王；想要两个国王，先用 and 搭桥。
 - - w
   - 🌳 竹节句 vs 树干句 · 病句手术 ②
+facts:
+  objects:
+    - { name: "中式英语病句 I am very like dogs, they very happy today.", kind: "例句", states: "本幕待修病句：am 与 like 双王相撞，后半句 happy 无桥" }
+    - { name: "例句 I like dogs very much, and they are very happy today.", kind: "例句", states: "本幕修正终句：两棵树用 and 连起；中式病句与终句指称同一内容" }
+    - { name: "like（谓语动词）", kind: "语法对象", states: "主干一 I like dogs 的谓语；程度挂件 very much 修饰 like 并挂句尾" }
+    - { name: "系动词词表 am / is / are", kind: "词表", states: "像桥一样连接主语与形容词；锚例句 They are happy 与 She is happy" }
+    - { name: "happy（形容词）", kind: "单词", states: "描述心情的形容词；本幕中不能自己当谓语，须靠 are 搭桥；very 修饰 happy" }
+  invariants:
+    - "一个分句只能有一个谓语国王：am 与 like 不得同占一位（本幕判据；模型同源主张 g40-one-finite；scene_fixes sf-015 把范围收窄到简单句与分句）"
+    - "形容词作表语不能单独连主语，须由 be 搭桥（本幕判据；模型同源主张 g11-adj-position）"
+    - "两件事各自成树之后才可用 and 连成一句，两谓语分属两分句（本幕判据）"

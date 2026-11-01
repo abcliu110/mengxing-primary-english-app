@@ -48,3 +48,13 @@ items:
 - - s
   - Please take down these key words.
   - 请把这些关键词记下来。
+facts:
+  objects:
+    - { name: "take down", kind: "短语", states: "开场释义为取下、拿下与记下、写下（笔记）；本幕编号 ②，演示记下、写下" }
+    - { name: "例句 Please take down these key words.", kind: "例句", states: "本幕 ② 义锚例句：请把这些关键词记下来；台词中关键词落到纸面上" }
+    - { name: "例句 Take down the poster.", kind: "例句", states: "拆解区回溯 ① 义例句：取下海报；台词拆为从高处下来" }
+    - { name: "例句 Take down the words.", kind: "例句", states: "拆解区 ② 义例句：记下单词；台词拆为落到纸面上" }
+  invariants:
+    - "共同点：DOWN = 从高处落下来，落定在纸上（本幕判据原话）"
+    - "TAKE 本幕释为拿、取，DOWN 本幕释为向下落定，二者组合同时解释取下海报与记下单词两例（本幕拆解判据）"
+    - "同一 DOWN 的落定义一头连高处取下、一头连纸面记下，两义同源于落定（本幕判据）"

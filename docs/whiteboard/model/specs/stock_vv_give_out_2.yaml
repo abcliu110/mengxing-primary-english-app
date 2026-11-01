@@ -38,3 +38,13 @@ items:
 - - s
   - Can you help me give out the notebooks?
   - 你能帮我把笔记本分发给大家吗？
+facts:
+  objects:
+    - { name: "give out", kind: "短语", states: "本幕为第②幕；旁白释义为分发、派发（书本／礼物）与发出；本幕演示分发笔记本与灯塔发光" }
+    - { name: "例句 The lighthouse gives out bright light.", kind: "例句", states: "灯塔发出明亮的光；本幕标记为光往外发出" }
+    - { name: "例句 Can you help me give out the notebooks?", kind: "例句", states: "你能帮我把笔记本分发给大家吗；拆解例另有 Give out the notebooks（本子往外分发）" }
+    - { name: "OUT", kind: "规则", states: "本幕共同点原话所指：从中心往外送出去；拆解中解为从里面出来" }
+  invariants:
+    - "OUT 在本幕恒解为从中心往外送出去（本幕判据原话：『共同点：OUT = 从中心往外送出去』）"
+    - "GIVE 在本幕拆解为给、交出，OUT 解为从里面出来（本幕拆解标记）"
+    - "本幕两拆解例同向：本子往外分发、光往外发出（本幕标记）"

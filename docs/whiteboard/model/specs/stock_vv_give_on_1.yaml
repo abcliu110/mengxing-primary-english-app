@@ -15,3 +15,11 @@ items:
 - - s
   - The window gives on the green park.
   - 这扇窗户朝向绿色的公园。
+facts:
+  objects:
+    - { name: "give on (onto)", kind: "短语", states: "本幕为第①幕；旁白定义为门窗的视线面正对着外面的风景；释义为（门窗）朝向" }
+    - { name: "例句 The window gives on the green park.", kind: "例句", states: "这扇窗户朝向绿色的公园" }
+    - { name: "ON", kind: "规则", states: "本幕落实为窗户正对着公园" }
+  invariants:
+    - "give on (onto) 在本幕恒指门窗的视线面正对着外面的风景（本幕判据，旁白定义原话）"
+    - "ON 在本幕落实为正对：窗户正对着公园（本幕标记原话）"

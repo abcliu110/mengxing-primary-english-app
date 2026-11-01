@@ -21,3 +21,11 @@ items:
   - 身体从床上升起来
 - - w
   - Good morning!
+facts:
+  objects:
+    - { name: "get up", kind: "短语", states: "本幕为第①幕；旁白定义为身体从平躺向高处直立升起；释义为起床" }
+    - { name: "例句 I usually get up at 6:30 every morning.", kind: "例句", states: "我每天早上通常六点半起床" }
+    - { name: "UP", kind: "规则", states: "本幕落实为身体从床上升起来" }
+  invariants:
+    - "get up 在本幕恒指身体从平躺向高处直立升起（本幕判据，旁白定义原话）"
+    - "UP 在本幕落实为身体从床上升起来，例句时间为每天早上六点半（本幕标记与例句）"

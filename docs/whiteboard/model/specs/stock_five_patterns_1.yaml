@@ -70,3 +70,12 @@ items:
   - The sun rises in the east.
   - 太阳从东方升起。
   - The sun rises in the east
+facts:
+  objects:
+    - { name: "句型① SV（主语 + 不及物谓语）", kind: "句型", states: "本幕骨架：S 是主语、V 是不及物谓语，本型自给自足、无需宾语；是五大基本句型之一" }
+    - { name: "例句 The sun rises in the east.", kind: "例句", states: "本幕金句：The sun 是主语，rises 是谓语，in the east 是地点挂件" }
+    - { name: "挂件（in the east 等）", kind: "语法对象", states: "本幕定义：补充『在哪儿、怎么样』的部分，上屏标注为可有可无，不属骨架" }
+  invariants:
+    - "SV 骨架恒只由主语 + 不及物动词构成，无需宾语（本幕标题与定义）"
+    - "五大基本句型是五种骨架模具，成分个数由动词决定（本幕开场台词；模型主张 st-cl-five-patterns）"
+    - "挂件可有可无：增删地点等挂件不改变 SV 骨架（本幕台词）"

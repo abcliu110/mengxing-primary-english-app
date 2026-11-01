@@ -31,3 +31,14 @@ items:
 - - s
   - I like Miss White, and she likes me too.
   - 动前主格动后宾，介词后面也用宾！I变me，we变us，he变him，she变her，they变them要记准，只有you和it主宾长相不改变！
+facts:
+  objects:
+    - { name: "黄金等式组", kind: "句型", states: "my 加 book 等于 mine、your 加 pen 等于 yours、her 加 bag 等于 hers（本幕等式原样）" }
+    - { name: "mine / hers（名物代词）", kind: "语法对象", states: "本幕称其已把 book 吞进肚里，后面绝不再接名词" }
+    - { name: "my / her（形物代）", kind: "语法对象", states: "本幕称其带钩子，必接名词" }
+    - { name: "例句 I like Miss White, and she likes me too.", kind: "例句", states: "本幕 s 例句；其译文栏载主宾格口诀：I 变 me、we 变 us、he 变 him、she 变 her、they 变 them，you 和 it 主宾不变" }
+  invariants:
+    - "人称代词按位置变身：动词前作主语用主格，动词或介词后面作宾语用宾格；you 与 it 主宾同形（g07-case-position）"
+    - "形物代加名词恒等于名物代：my 加 book 等于 mine（本幕判据：黄金等式）"
+    - "做题判据恒看空格后：有名词选 my / your / her，无名词选 mine / yours / hers（本幕判据：做题口诀）"
+    - "名物代已含名词义，后面绝不再接名词（本幕判据）"
