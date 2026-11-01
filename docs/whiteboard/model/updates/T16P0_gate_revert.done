@@ -1,0 +1,55 @@
+# T16 P0 质量闸回退记录：Linda 换回位图（茶壶/杯子元素保留）
+
+日期：2026-11-01
+裁定：用户质量闸否决人物替换（位图造型更丰富，矢量绑定 Linda 不换）。本单只把 boundedness 第 1 幕的 Linda 从矢量元素换回位图版；茶壶、杯子元素与基元（pour/fill/断言）一字不动。git 提交留主会话。
+
+## 1. 回退的 hunk 清单（模板 fp_boundedness_1_v3.js 与生成文件 gen_boundedness_1.js 同步）
+
+对照基线：bccab02 树 = P0 前的位图 Linda 版；HEAD（006eacc）= P0 元素版。P0 在 gen_1 的 5 个 hunk 中，本单回退 3 处、保留 2 处：
+
+| # | hunk | 处置 |
+|---|---|---|
+| 1 | 头注释 v3 行（「姿势交淡」曾被删）+ T16 P0 行（曾写「茶壶/杯子/Linda 全部元素化」） | v3 行恢复「姿势交淡」原文；T16 行改写为回退后口径（茶壶/杯子元素化；Linda 经质量闸裁定保留位图帧，人物元素试点存档、模板不消费） |
+| 2 | import 行 | 移除人物专属符号 LINDA / drawCharacter / resolvePose / blendPose / walkPose / assertPoint / assertAnchorReach / assertFeetOnGround；保留 TEAPOT / CUP / pourTiltAt / tipAt / drawElement / assertPourWindow / assertFill |
+| 3 | Linda 段（元素版 45 行：POSE_OF/POINT_AT/resolvePose+断言/drawCharacter 绘制） | 整段换回 bccab02 的位图平滑层 27 行（K.prop + K.IMG/K.FI、姿势 0.16s 交淡、呼吸/微摆/落定余摆、走路帧 l_w0–l_w3），与 bccab02 逐字节一致 |
+| 4 | 咖啡杯段（cup 元素 mug + assertFill + contentDraw） | **保留不动** |
+| 5 | box 签名 + 牛奶杯段（cup 元素 glass）与蒸汽口沿高度行 | **保留不动** |
+
+连带：specs/boundedness_1.yaml 与 factsheets/gen_boundedness_1.md 的 Linda 不变量行，由「元素人物 point/IK 断言」改为「质量闸裁定位图」口径行（原文：保留 cast l_* 姿势集 + v3 人物平滑层；linda.yaml + drawCharacter 存档、模板不消费）；杯不变量行保留。第 2/3/4 幕本无 Linda/杯绘制代码，未动。
+
+## 2. 对齐方式（生成文件）
+
+模板手术后由生成器复跑对齐（非手工改 gen）：`python3 gen_scene.py specs/boundedness_1.yaml` 重新生成 gen_boundedness_1.js（22,044 B）与事实表。双向 diff 证明目标态「位图 Linda + 元素壶杯」：
+- gen 对 HEAD：恰 3 个 hunk（头注释 / import / Linda 段），杯与壶代码零改动；
+- gen 对 bccab02：恰 4 个 hunk（头注释 / import / 咖啡杯段 / 牛奶杯段），Linda 段与位图版逐字节一致；
+- 模板对 bccab02 同口径（Linda 段不在 diff 中）。
+
+## 3. 保留清单（P0 成果不动）
+
+- 茶壶元素全套（teapot.yaml + props 的 TEAPOT/drawElement/pourTiltAt/tipAt/assertPourWindow）；
+- 杯元素全套（cup.yaml + CUP、mug/glass 两剖面、fill 液面实算、assertFill 两处构建期断言、concept.js 的 schemaContainer contentDraw 钩子）；
+- props.js **全文件零改动**：人物代码（drawCharacter / FK / IK / resolvePose / blendPose / walkPose / LINDA 同步副本）保留在库中作试点存档，仅模板不再 import/消费；
+- model/props/linda.yaml、cup.yaml 原样保留；
+- 产物侧旁证：构建产物中 drawCharacter 仅剩共享模块定义 1 处（P0 版 2 处）、LINDA 仅模块导出名 1 处（P0 版 10 处），场景层零消费。
+
+## 4. 三数复核（props.js 未动，跑既有套件 ~/workspace/build_t16p0/test_t16p0.mjs）
+
+38/38 PASS，其中茶壶回归组：轴线仰角 **37.996°** / 出流窗最小净下倾 **35.00°** / 平台期嘴尖世界 x **806.45**（≈像素实测 806.4）/ 壶嘴长 57.99 / 无头绘制 39 次 / 负例（netTarget 20°）按设计抛错。
+
+## 5. 零漂移与校验
+
+- KNOW：生成后 KNOW 块与 HEAD 逐字一致（正则抽取比对 True）；台词/判据/ITEMS 未动。
+- 构建：build_stdout 暂存 ~/workspace/build_t16p0/gen-boundedness-1-revert.html（1,415,053 B）验大小后就位 ~/workspace/your_files/gen-boundedness-1.html（符号链接至 goals 交付目录）；产物尾部为位图交淡绘制代码，无 drawCharacter 调用。
+- 官方 insightcheck：**不合格 0**（101.8s，动态 84%，文字 14%，分段 11%/40%/25%/24%，与基线一致）。
+
+## 6. 密帧复检（~/workspace/shots_gate_revert/，本单新拍 5 帧）
+
+- t=1.2：Linda 为位图原造型（橙西装/领巾/球鞋、水彩明暗），与 P0 前存档帧 old_t001.20 的 sha256 完全一致（b6a82030…）；
+- t=14.5：位图 Linda + 元素茶壶倾倒，壶嘴朝下、液柱自嘴尖竖直入咖啡滩；与茶壶三修复验帧 sha256 一致（156dd591…）；
+- t=16.35：出流尾段，壶嘴仍朝下、细流自嘴尖出，计数徽章在屏；
+- t=21.0 / 23.5：双杯节拍——23.5 帧两只 mug 元素杯在 bounded 框内、计数徽章 1/2 齐，咖啡液面（fill 0.85）在腔内、低于口沿；同帧 Linda 为位图 relaxed 姿态（白衬衫、外套搭臂）。
+
+## 7. 遗留
+
+- 矢量人物路线就此封存：linda.yaml + props 人物代码为存档件，P1/P2 不再按人物元素推进（道具元素与基元路线不变）；第 1 幕 woman 顾客演员仍为位图（与本次裁定方向一致，无需处理）。
+- 本单一文件未提交 git（模板 / gen / spec / factsheet / 本记录），留主会话与其余批次一并提交推送。

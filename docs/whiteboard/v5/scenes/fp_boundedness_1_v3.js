@@ -1,5 +1,5 @@
-// 📦 第一性原理 · 有界无界 · 1 —— v3 试点（2026-11-01）：动画技术升级方案试点——弹簧运动 + 程序化液体 + 人物平滑层（呼吸/微摆/落定余摆）；布局与时间轴沿用 v2 已验收版本，KNOW 原文一字不改。
-// T16 P0（2026-11-01）：茶壶/杯子/Linda 全部元素化（model/props/{teapot,cup,linda}.yaml + 共享模块 props）——模板只消费元素与基元（pour/fill/point/hold），姿势切换 = 关节角插值，几何与断言在 props 侧。
+// 📦 第一性原理 · 有界无界 · 1 —— v3 试点（2026-11-01）：动画技术升级方案试点——弹簧运动 + 程序化液体 + 人物平滑层（呼吸/微摆/姿势交淡/落定余摆）；布局与时间轴沿用 v2 已验收版本，KNOW 原文一字不改。
+// T16 P0（2026-11-01）：茶壶/杯子元素化（model/props/{teapot,cup}.yaml + 共享模块 props）——模板消费元素与基元（pour/fill），几何与断言在 props 侧；Linda 经用户质量闸裁定保留位图帧（人物元素试点 linda.yaml + drawCharacter 存档于 props，模板不消费）。
 // 与决策 39 样板（fp_boundedness_1.js）的区别（全部用 v5 原有技术：wb5 引擎 + concept 原语 + kit + cast 素材）：
 //   ① 固定舞台：全幕在一间咖啡馆里演完——Linda（cast 帧 l_*）全程站在左侧，靠换帧表演（思考/端咖啡/指点/想通/笑）；
 //      不用 contrastSplitScreen 分屏、不切板，所有道具都在同一张桌子上出现和消失。
@@ -12,7 +12,7 @@ import { scene, OR, INK, GREY } from '../wb5.js';
 import { concept, BLUE, GREEN, RED } from '../lib/concept.js';
 import { kit } from './fb39_lib.js';
 import * as SP from '../sprites/fb39v2.js';
-import { TEAPOT, CUP, LINDA, pourTiltAt, tipAt, drawElement, drawCharacter, resolvePose, blendPose, walkPose, assertPourWindow, assertFill, assertPoint, assertAnchorReach, assertFeetOnGround } from '../props/props.js';
+import { TEAPOT, CUP, pourTiltAt, tipAt, drawElement, assertPourWindow, assertFill } from '../props/props.js';
 
 export const KNOW = [
   '书上说 coffee 不加 -s，咖啡馆里却说 Two coffees！谁错了？',
@@ -279,51 +279,33 @@ export default function build() {
     g.restore();
   }, { from: EC, until: 1e9, z: 9 });
 
-  // 人物 = 元素库人物 linda（定义 model/props/linda.yaml；渲染/FK/IK/断言都在共享模块 props）：
-  // LK 的位图帧名逐名映射为元素姿态（profiles.from 即帧名），姿态切换 = 关节角插值（不再整帧交淡）；
-  // pointing 的手臂角与视线由 point 基元按展品坐标实算、thinking/idea 的手到锚点由 IK 实算，
-  // 全部在构建期断言（assertPoint / assertAnchorReach / assertFeetOnGround，不过停建）。
-  // 呼吸/微摆/落定余摆/走路前倾与重心跳沿用 v3 手感层参数；模板内无任何私有 Linda 绘制代码。
-  const SC_L = 520 / 460;   // 舞台高 520 / 元素本地高 460（LINDA.params.height.computed，定义内坐标实算）
-  const POSE_OF = { l_coff0: 'standing', l_coff2: 'relaxed', l_think: 'thinking', l_idea0: 'idea', l_point: 'pointing', l_laugh: 'laughing' };
-  const POINT_AT = new Map([[M0 + 8.6, [730, 600]], [A0 + 0.2, [700, 490]], [X2 + 1.0, [960, 470]]]);   // 指向节拍 → 展品世界坐标（杯/苹果/作业框）
-  const toLocal = (wx, wy) => [(wx - 380) / SC_L, (wy - 838) / SC_L];   // 指向节拍都在走位后（x=380、ground=838）
-  const RIG_KEYS = [...LK, [W0 + 2.05, 'l_coff0']].sort((a, b) => a[0] - b[0]).map(([kt, fk]) => {
-    const name = POSE_OF[fk], tgt = POINT_AT.get(kt);
-    const pose = resolvePose(LINDA, name, tgt ? { target: toLocal(tgt[0], tgt[1]) } : {});
-    if (name === 'pointing') assertPoint(LINDA, pose, 'L', pose.target);
-    if (name === 'thinking') assertAnchorReach(LINDA, pose, 'hand_L', 'chin');
-    if (name === 'idea') assertAnchorReach(LINDA, pose, 'hand_R', 'temple');
-    if (name === 'standing' || name === 'relaxed' || name === 'laughing') assertFeetOnGround(LINDA, pose);
-    return { t: kt, pose, postWalk: Math.abs(kt - (W0 + 2.05)) < 1e-6 };
-  });
-  for (const rk of RIG_KEYS) if (rk.t > W0 + 2.6) C.motion(rk.t - 0.05, rk.t + 0.55);   // 姿态切换段如实登记动态
+  // v3 人物平滑层：Linda 改用自绘（K.prop + K.IMG/K.FI，rectOf 公式与引擎一致）——
+  // 姿势切换 0.16s 交淡（不再整帧跳变）+ 呼吸（纵向 0.6% 起伏）+ 微摆 + 切换落定余摆 + 走路前倾与平滑重心跳
+  const RIG_KEYS = [...LK, [W0 + 2.05, 'l_coff0']].sort((a, b) => a[0] - b[0]);
   K.prop((g, t) => {
     if (t < 0.3) return;
-    const ground = 838, walking = t >= W0 && t <= W0 + 2.2;
-    let x = t < W0 ? 300 : 380;
-    if (walking) { const u = (t - W0) / 2.2, p = u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2; x = 300 + 80 * p; }
-    let pose, keyT = 0.4;
-    if (walking) pose = walkPose(LINDA, Math.abs(x - 300) * 0.068);
-    else {
-      let cur = RIG_KEYS[0], prev = null;
-      for (const rk of RIG_KEYS) if (t >= rk.t) { if (rk !== cur) prev = cur; cur = rk; }
-      let prevPose = prev ? prev.pose : null;
-      if (cur.postWalk && prev && prev.t < W0) prevPose = walkPose(LINDA, 80 * 0.068);   // 出 walk 的衔接帧 = 步态末相位（承旧版 l_w0 衔接）
-      keyT = cur.t;
-      const u = Math.min(1, Math.max(0, (t - keyT) / 0.28)), e = u * u * (3 - 2 * u);
-      pose = prevPose && u < 1 ? blendPose(LINDA, prevPose, cur.pose, e) : cur.pose;
-    }
-    const fadeIn = Math.min(1, (t - 0.3) / 0.5), uSet = t - keyT;
+    const FI = K.FI, IMG = K.IMG, REF = FI['l_coff0']; if (!REF || !IMG['l_coff0']) return;
+    const ground = 838, H0 = 520, walking = t >= W0 && t <= W0 + 2.2;
+    let x = t < W0 ? 300 : 380, key = RIG_KEYS[0][1], tc = 0.4, prev = null;
+    for (const [kt, kk] of RIG_KEYS) if (t >= kt) { if (kk !== key) { prev = key; tc = kt; } key = kk; }
+    if (walking) { const u = (t - W0) / 2.2, p = u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2; x = 300 + 80 * p;
+      key = ['l_w0', 'l_w1', 'l_w2', 'l_w3'][Math.floor(Math.abs(x - 300) / 46) % 4]; prev = null; }
+    else if (t > W0 && t <= W0 + 2.36) { prev = 'l_w0'; tc = W0 + 2.2; }
+    const drawPose = (k, alpha, dyExtra, lean) => {
+      const f = FI[k], im = IMG[k]; if (!f || !im) return;
+      const sc = H0 / REF.bottom, w = f.w * sc, h = f.h * sc, ax = (f.ax ?? f.w / 2) * sc;
+      g.save(); g.globalAlpha = alpha;
+      g.translate(x, ground); g.rotate(lean); const br = walking ? 0 : Math.sin(t * 1.7) * 0.006; g.scale(1 - br * 0.6, 1 + br); g.translate(-x, -ground);
+      g.drawImage(im, x - ax, ground - f.bottom * sc + dyExtra, w, h); g.restore();
+    };
+    const fadeIn = Math.min(1, (t - 0.3) / 0.5), uSet = t - tc;
     const lean = walking ? 0.028 + Math.sin(Math.abs(x - 300) / 46 * Math.PI) * 0.006 : Math.sin(t * 0.8) * 0.005;
-    const bob = walking ? -Math.abs(Math.sin(Math.abs(x - 300) * 0.068)) * 7 : settle(uSet) * 5;
-    const br = walking ? 0 : Math.sin(t * 1.7) * 0.006;
-    g.save(); g.globalAlpha = fadeIn;
-    g.translate(x, ground + bob); g.rotate(lean); g.scale(SC_L * (1 - br * 0.6), SC_L * (1 + br));
-    drawCharacter(g, LINDA, pose);
-    g.restore();
+    const dySet = walking ? -Math.abs(Math.sin(Math.abs(x - 300) / 46 * Math.PI)) * 7 : settle(uSet) * 5;
+    const blend = (!walking && prev && uSet >= 0 && uSet < 0.16) ? uSet / 0.16 : 1;
+    if (blend < 1) drawPose(prev, fadeIn * (1 - blend), dySet, lean);
+    drawPose(key, fadeIn * blend, dySet, lean);
   }, { from: 0.3, until: 1e9, z: 0 });
-  C.motion(0.3, W0 + 2.6);   // 人物层在钩子+走路段持续运动（如实登记）
+  C.motion(0.3, W0 + 2.6);   // 人物平滑层在钩子+走路段持续运动（如实登记）
   K.end(Math.max(Tn18 + 0.3, EC + 5.0));
   return C.finish();
 }
