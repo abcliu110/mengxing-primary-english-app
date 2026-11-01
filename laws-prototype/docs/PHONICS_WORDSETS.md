@@ -613,3 +613,14 @@
 - **记法变体**（归属维持）：square /skwɜː/ 的 ɜː 为 are /eə/ 的宽式异写；gasoline 尾 /lin/ 为弱变体（引用式 /liːn/）；noisy /ˈnɔːɪzɪ/ 的 ɔːɪ 为 ɔɪ 的窄式分写；blackbird /bəːd/ 的 əː 为 ɜː 异写；your 取弱读 /jə/（归属按强读 /jɔː/ 维持 GP-ou-ɔː）；表中 ɛ 与 e 混写（end /ɛnd/ 等），渲染无碍，登记备查。
 - **英式例外**：clerk、derby 在 GP-er 登记为例外（GB 中 er 读 /ɑː/，系英式特例；gb 数据正确，不改数据）。
 - **happy 元音 /i/ 记法类**：piano、taxi、happiness、champion、librarian、guardian、twentieth、espionage、easier、heavier、happier、pianos——GB 词典以 /i/ 记 happy 元音，与 /ɪ/ 同族，按 ɪ 口径维持 GP-i-ɪ。
+
+### 10.8 +60 词形条目 gpc_patterns 拼读侧复核（2026-11-02 · L1 收官）
+
+- **范围**：动词形式补齐新增 60 条（ADD_0721–0780）的 `gpc_patterns`（动词线按家族类推填入，共 270 个模式著录），按本表推导口径（拼写含字母组合 ∧ 音标含目标音素，GP-r 按字母承担口径）并对照词库既有著录惯例逐条复核。
+- **订正 29 条 / 34 处**（删 30、补 4），订正后著录 244 个：
+  - 字母缺失（拼写中无此字母组合）删 4：became 的 `u_uh`、understood 的 `a_ae`、stood 的 `n_n`、lent 的 `d_d`。
+  - `e_e` 误填删 22：该 e 实为分隔双字母之尾 / 词尾不发音（broke、chose、spoke、woke、rose、showed、shone、wore）、-en 弱读 /ə/（driven、eaten、forgotten、given、ridden、spoken、taken、undertaken、woken、risen）或非重读 /ɪ/（begun、began、became）——原库对三类一律不登记（cf. home、gave、open、listen、written、begin、before）。
+  - ng/nk 内 `n_n` 删 4：drunk、rung、sank、sunk（/n/ 音素不在音标中，cf. sing、think 均不登记 n_n）。
+  - 补入/替换 4：became 补 `a_e_ei`（cf. gave）、began 补 `a_ae`、meant 以 `ea_e` 替 `e_e`（cf. bread、head）、retold 以 `e_ee` 替 `e_e`（cf. rewrite）。
+- **维持 31 条**整条不动；成例维持项：词尾与音节尾 r 的 `r_r`（forgot、forgotten、undertaken、understood，cf. forget、teacher、mother）；oo 双著录并列（undertook、stood、understood 的 `oo_u` + `oo_u_short`，cf. book、look）；knew 的 `ew_oo`（cf. new 同为 /njuː/ 亦著录 ew_oo）；worn/wore 不补 `or_aw`（原库双著录本身不一致：fork 并列 or_aw/or_or、morning 仅 or_aw）。
+- **方法注记**：裁定以双条件 + 既有著录惯例为准。自建分区式 GPC 对齐器与审计 DP 口径不完全等价（分隔双字母与辅音音位存在字母重叠、A/B 两代别名双著录），仅作交叉提示，未作增删依据；本轮无「无法判定」条目。

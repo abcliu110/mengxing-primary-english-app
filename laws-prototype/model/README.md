@@ -9,7 +9,7 @@
 
 | # | 数据集 | 本体文件 | 专属文档 | 规模 | 状态 |
 |---|---|---|---|---|---|
-| 1 | 词库（第〇层，根） | `wordbank.json` | `WORDBANK.md`（规则）、`WORDBANK_MODEL.md`（建模评审稿） | 2,347 条（建库 1,567 + 补入一轮 392 + 二轮 326 + 收官缺口 2 + 动词形式补齐 60）；挂接字段已回填：gpc_patterns 2,343 / law_refs 1,236 / morphemes 159；verb_form_of 122 条（原 62 + 形式补齐 60） | 评审中（结构）；内容持续补 |
+| 1 | 词库（第〇层，根） | `wordbank.json` | `WORDBANK.md`（规则）、`WORDBANK_MODEL.md`（建模评审稿） | 2,347 条（建库 1,567 + 补入一轮 392 + 二轮 326 + 收官缺口 2 + 动词形式补齐 60）；挂接字段已回填：gpc_patterns 2,345 / law_refs 1,556 条有挂接（3,568 处） / morphemes 547（原 159 + 词素扩充合并 388，2026-11-02）；verb_form_of 122 条（原 62 + 形式补齐 60） | 评审中（结构）；内容持续补 |
 | 2 | 规律模型（428 条全量入模） | `laws/*.yaml`（8 个分区文件） | 各 `laws/*_MODEL.md` | 428 条 + 挂接表 9 张（`hitching/`） | 入模完成（字段缺口逐册登记：quiz/探针/病例按册待补，不自编） |
 | 3 | 误解探针库 | `laws/probes.yaml` | `laws/probes_MODEL.md` | 40 个（覆盖 12/428 条规律，其余逐条入模时补，不批量编造） | v1 定版（覆盖缺口已登记） |
 | 4 | 技巧库 | `laws/techniques.yaml` | `laws/techniques_MODEL.md` | 153 条定版 | 定版 |
@@ -22,6 +22,7 @@
 | 11 | 动词错误逐字病例 | `verb_error_cases.json` | 本账变更日志（2026-11-01 病例线收官条） | 31 例 / 6 类（裸动词 4 / -ed 遗漏 2 / 完成体带偏 6 / 三单 -s 6 / 不规则误用 6 / 时态混用 7），逐例带学段与出处；小学段无符合纪律（逐字原句+可复核出处）的公开病例，已登记不收录 | 已回灌动词原型 v3 |
 | 12 | TA 时态单元站内练习 | `ta_exercises.json` | 本账变更日志（2026-11-02 L2 补齐条） | 18 单元 / 87 题（场景选形 39 / 积木拼形 18 / 无提示 16 / 病例找错 14）；病例题 14 道引 `verb_error_cases.json` 逐字病例 14 例（每例只引一次）；58 题以各 TA 单元 examples 登记例为据（例句逐字引用，程序校验成员资格），15 题为标注 drill 的机械操练；每题标注所训练的决定（锚点 R 41 / 形式拼装 25 / 视角 16 / 动词种类 5），纯报时态名题 0；短单元（TA-12/14/17/18 各 4 题）与无病例单元的理由记于文件 meta | 已交付（待回灌原型 TA 站） |
 | 12 | 旗舰多义词预测题（close/draw/keep/shut) | `flagship_prediction_items.json` | 本账变更日志（2026-11-02 预测题补建条） | 4 词 / 12 题 / 24 条词典逐字例句（每题 1 教例 + 1 预测目标，逐条在词典页面正文中子串核对；pred_item 与原型 PRED 对象同构） | 待回灌（替换动词原型四词页『预测题待补』） |
+| 13 | 理解探针库（波次一 · 语法族） | `laws/probes_wave1.yaml` | 本账变更日志（2026-11-02 L6 波次一条）；schema 口径同 `laws/probes_MODEL.md` | 91 条（TA 17 / CO 16 / QI 15 / GR 43），逐条由对应规律 claim / mechanism / 边界 / 登记病例派生；未入 4 条：CO-17、GR-33 已在 probes.yaml 立条，TA-18、GR-21 无学习者机制对比、按不自编纪律跳过（登记于文件 meta.not_included） | 已入模（覆盖缺口已登记） |
 | 13 | GR 语法错误逐字病例 | `gr_error_cases.json` | 本账变更日志（2026-11-02 GR 病例采掘条） | 22 例 / 9 类，覆盖 GR 病例待补 28 条中的 7 条（GR-02/03/04/05/08/12/20）；其余 21 条逐条登记 searched_no_verbatim（查过何处、只得统计/片段/自编例或属原则条不设句级病例）；逐例带学段与出处；与动词病例 31 例逐句比对零重复 | 已交付（待回灌 grammar.yaml 病例字段） |
 
 ## 变更日志
@@ -47,6 +48,12 @@
 - 2026-11-02 GR 病例采掘（L4 线）：为 grammar.yaml 病例待补的 28 条 GR 规律采掘逐字病例，新建 `gr_error_cases.json`：22 例 / 9 类（标记重复 2 / 否定缺 do 支撑 2 / 三单 -s 遗漏 3 / 两个 -s 系统 4 / 情态形式 4 / 一致三力 6 / 语块整取 1），来源 6 项作文语料研究（罗宇 2025、刘沥沥 2025、胡晓 & 冯姗 2026、Zhan 2015、李晓微 & 庄严 2016、向秋彤 2024），逐例带学段、出处与定位（节/表/编号例）；命中 7 条（GR-02/03/04/05/08/12/20），其余 21 条逐条登记 searched_no_verbatim（原则/方法/理论类 12 条不设句级病例口径、专题检索只得自编例/统计/片段 9 条）；罗宇 §5.1 第四种 crowd/sheep 两例因原文无可判定改正未收；学段初一至大学二年级，小学段无符合纪律的公开病例（同动词线缺口）；与 verb_error_cases.json 31 例逐句比对零重复（同源胡晓研究动词线收 S11、本线收 S33）。grammar.yaml 本体未动，病例字段回灌待主线进行。
 
 - 2026-11-02 TA 站内练习补齐（L2）：新建 `ta_exercises.json`（登记表第 12 行）——TA-01..TA-18 共 87 题（每单元 4–6 题），四型混合：场景选形 39 / 积木拼形 18 / 无提示 16 / 病例找错 14。纪律：病例题只引 `verb_error_cases.json` 逐字病例（14 例，每例只引一次，程序注入并逐字对账 corrected 与 error_type）；58 题以各单元 examples 登记例为据；其余 15 题为明确标注 drill 的机械操练，不冒充病例。每题标注所训练的决定（锚点 R / 视角 / 动词种类 / 形式拼装），纯报时态名题为 0。全部动词形式经词库与 `verb_forms_completion.json` 程序校验（207 处形式条目，零不合）；唯一例外：TA16-E1 病例动词 increase 不在词库收录范围，形式以病例来源原文为准，已在该题 note 与文件 meta 中登记。短单元说明：TA-12（登记例仅 2 条、词源叙事）/ TA-14（scope 明定只作被动识别）/ TA-17（习得顺序主张，可操练面为 3 个锚点词）/ TA-18（证据边界声明，题为证据校准判断）各 4 题，不凑数；TA-03/04/07/10/11/12/13/14/17/18 无病例题，因病例库中无对应机制的逐字病例，按纪律以操练题补足。校验方式：独立复核脚本重读成品逐项对账（引用解析、例句成员资格、形式合法性），零错误。本数据尚未回灌原型 TA 站（原型仍标「练习待补」，回灌为后续同步波事项）。
+
+- 2026-11-02 探针波次一（L6 语法族）：新建 `laws/probes_wave1.yaml`（登记表第 13 行）——TA/CO/QI/GR 四族 95 条规律中 91 条各立 1 条理解探针（TA 17、CO 16、QI 15、GR 43），schema 与 probes.yaml v1 完全同构；正解由各条目 claim + mechanism 推出，干扰项取自边界 / 例外 / 登记病例（error_cases），逐条 `source_of_prediction` 注明派生字段。未入 4 条：CO-17、GR-33 已在 probes.yaml 各有 5 条，不重复立条；TA-18（本域证据边界声明，教师层）、GR-21（教师/设计层条目）无面向学习者的机制对比，按不自编纪律跳过并登记于文件 meta.not_included。校验：YAML 解析通过、id 唯一且与 probes.yaml 零碰撞、每条 for_law 均可解析至真实规律 id。探针覆盖（probes.yaml + 波次一）由 12/428 升至 103/428；其余各族（S/SR/V/C/P 等）探针待后续波次。
+- 2026-11-02 词素扩充合并入词库（L1 收官）：`morpheme_expansion.json` 的 388 条已裁定拆分按 bank_id 合并入 `wordbank.json` 的 `morphemes` 字段（159 → **547** 条），每条 source 规律 ID 并入该条 `law_refs`（新增 566 处，去重后全库 1,556 条有挂接 / 3,568 处）；`families` 为专区面板标签，按 vocab_MODEL §3 由 morphemes 槽位推导，不另设字段，侧表保留。79 条 pending 假拆**不并入**（保留侧表作假拆画廊素材）。词条总数不变（2,347）。**口径张力登记**：define（扩充分法 de- + fin，标「不透明」，源 V-21）与 inflammable（in- 作「使燃」非否定，标「半透明」，源 V-35）两条与 `vocab_MODEL.md` §2.3 禁拆名单字面冲突——扩充表为逐条人工裁定且 note 均载明护栏，随合并入账，禁拆名单是否修订待裁定，本线不擅改规范。
+- 2026-11-02 vocab 挂接表 bank_id 回填（L1 收官）：`hitching/vocab_hitching.yaml` words 节 201 个 null 中 **191 个**按词形精确命中回填（均为词库补入轮次后已在库者，含 `"they're"` → ADD_0685）；同文件 polysemy_marks 节另 2 个一并回填（cause → ADD_0442、set → ADD_0635，与 words 节 cause 回填同指）。余 **10 个保持 null**：dyeing / dying / making / married / referred / singeing / stopped / studying / tips / visited——均为词形登记（vocab_MODEL §2.1），原形（dye / die / make / marry / refer / singe / stop / study / tip / visit）均在库，行内 note 已自带「词形登记，归一至…」口径，不以原形 id 冒充词形本体。回填仅改 bank_id 值（193 行），其余字段与文件结构零改动，YAML 复解析校验通过；文末 W2 统计注释为回填前快照，未改。另：`expression_hitching.yaml` 的 pending_words 9 词（fleece / however / kit / mean / moreover / propose / same / shave / suddenly）现均可精确命中词库（ADD_0510 / 0527 / 0556 / 0569 / 0579 / 0608 / 0630 / 0636 / 0666），该节为待补词登记专节，本轮未动，登记备查。
+- 2026-11-02 ate 音标分歧裁定（L1 收官，结案形式线 2026-11-01 登记的待裁定项）：当日复核两源——OALD `eat` 条 Verb Forms 表英式首列 **/et/**、/eɪt/ 亦列（美式仅 /eɪt/）；Cambridge Learner's Dictionary `ate` 条 UK **/eɪt, et/**（/eɪt/ 首列）。两源对英式首选排序不一致，按「来源不一致则保留现值并登记分歧」口径：`ate` 的 `phonetic_gb` **维持 /eɪt/**，GA `phonetic` /eɪt/ 不动；/et/ 为英式传统读法（Cambridge 系双语词典作 /et eit; American eit/）一并备查。
+- 2026-11-02 +60 词形条目 gpc_patterns 拼读侧复核（L1 收官）：ADD_0721–0780 共 270 个类推著录按推导双条件 + 既有著录惯例复核，订正 29 条 / 34 处（删 30、补 4），详见 `docs/PHONICS_WORDSETS.md` §10.8。
 
 ## 评审通道
 
