@@ -1,3 +1,11 @@
+## 有界无界①「全部手绘」样板（2026-11-01，未嵌 App，等用户看审片图）
+- 新文件（不碰 T16 车道的 props.js / fp_boundedness_1_v3.js / gen_boundedness_1.js）：`docs/whiteboard/v5/scenes/fp_boundedness_1_hd.js`、`v5/lib/hd.js`（rough 逐笔道具层）、`v5/lib/pour.js`（倒液物理 + 断言）、`v5/check_hd.py`、`v5/shots_hd.py`；人物帧 `v5/sprites/cast/bar_*.webp`（店员 4）、`lin_*.webp`（Linda 7），已登记 `model/cast/registry.yaml`。
+- 帧库是 gitignore 生成物，新 clone 先重建：
+  `cd docs/whiteboard/v5/sprites && MAXH=640 python3 build_sprites.py bndhd bar_stand bar_reach bar_lift bar_pour && MAXH=2000 MAXW=2000 python3 build_sprites.py lindahd lin_stand lin_think lin_idea lin_point lin_laugh lin_cut0 lin_cut1`
+- 打包 / 验收：`node build.mjs scenes/fp_boundedness_1_hd.js out/fp_boundedness_1_hd.html "有界无界 1 · 手绘样板"`；`python3 ../src/insightcheck.py --only=fp_boundedness_1_hd`；`python3 check_r38.py fp_boundedness_1_hd`；`python3 check_hd.py fp_boundedness_1_hd`。
+- 待用户确认：审片图（倒咖啡段 10 格 + 全幕 8 格）。确认后再决定：嵌入主 App（替换 `wb5html-fp_boundedness-0`）、是否把 hd 画法下沉成家族模板（与 T16 车道协调）。
+- 沙盒没有 openssh：推送用 `git -c core.sshCommand=/workspace/work/bin/ssh push`（paramiko 写的最小 ssh 替身，`pip install paramiko`；不改仓库 config）。
+
 
 ## 远端改为 SSH（2026-11-01）
 - origin：`git@github.com:abcliu110/mengxing-primary-english-app.git`

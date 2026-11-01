@@ -2919,3 +2919,15 @@ python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json
 - 远端 `feat/vv-anim-all`、`feat/vv-take-anim` 两个旧分支未改写。
 
 - 2026-11-01 检查同步：app_check15 期望值对齐 bccab02（wlPosMatch 词元匹配）与 6df094f（verb_form_of 不单列）；HANDOFF 补 runall 依赖（playwright/brotli/numpy/pillow）与 fb39v2 精灵重建命令。
+
+## 2026-11-01 有界无界①「全部手绘」样板（§2.9 v5.1，未嵌 App）
+- 起因（用户原话）：「现在动画实现整体不好，动作不真实，白板动画不是手绘的，我记得以前你可以全部手绘来完成动作」；补充硬性要求：倒咖啡要用咖啡壶，倒的时候壶嘴低于壶身、朝下对杯口，液流从壶嘴尖出、成抛物线落进杯、液面上升，不倒时壶嘴朝上斜。
+- 新文件（避开 T16 车道正在改的 props.js / fp_boundedness_1_v3.js / gen_boundedness_1.js）：
+  - `v5/lib/hd.js`：会动的道具也用 rough 逐笔画出（种子固定、flatten 折线、两遍描边同时推进、hachure 描完淡入），画完按 `xf(t)` 移动 / 旋转；笔尖由 B 时间线带（道具可压在人物之上）；同种子两份 + clip = 切开前严丝合缝的一整只、切开后是这一只的两半（体积不增）。道具几何：手冲鹅颈壶、马克杯、菜刀、苹果、面包、语法书、玻璃杯、纸、作业本、碗 + 米饭。
+  - `v5/lib/pour.js`：姿势表 rest → reach → lift → pour 驱动壶的位姿（壶把握点 = 店员关键帧里的拳头），倾角过 30° 才出流、回到 30° 以下立即断流（断流先于回正），液柱初速沿壶嘴方向 + 重力成抛物线，杯中液面 = 已落进杯的倒出量；`assertPour` 构建期断言：满倾时壶嘴尖低于壶身形心、壶嘴朝下 ≥ 20°、落点在杯口内，不过就停建。
+  - `v5/scenes/fp_boundedness_1_hd.js`：KNOW 19 条、啊哈卡、四段结构、预测停顿、规则最后命名、朗读句与原幕逐字一致，只换画法。倒咖啡（先倒在桌上成一摊 → 数字块贴不住滑走；再倒两杯、推给客人 → 徽章 1 / 2）；Linda 在矮桌上切苹果（蓄势抬刀 → 0.1 s 落刀、刃口朝下 → 两半分开、「1」掉下桌）、切面包（「1」滑走，两块都还是面包）；迁移段牛奶杯 / 两张纸（-s 被弹开后落到 piece 后）/ 作业本与试卷；锚点段 rice 预测 3 s → Linda 真切一刀还是米饭 → two bowls of rice。要点卡手画、逐字手写，不用 emoji。
+  - `v5/check_hd.py`（0 emoji：源码 + 运行时 fillText；位图只来自人物帧；单强调色；确定性）、`v5/shots_hd.py`（带中文标签、可裁切的审片图）。
+- 人物：店员 `bar_stand / bar_reach / bar_lift / bar_pour`、Linda `lin_stand / think / idea / point / laugh / cut0 / cut1` 用 generate_image 生成绿幕关键帧（以现有 cast 的 woman / linda_help 为画风参考，同一角色以首帧为参考逐帧编辑，比例与脚底线一致），`build_sprites.py` 抠图入 `sprites/cast/`，登记 `model/cast/registry.yaml`。帧内没有任何道具（空拳），壶和刀由场景手绘挂在拳头握点上；换帧以脚底 4% 带质心为水平锚点。现有 331 帧里没有语义对得上的（l_coff* 是脱外套、l_w* 提礼物袋、woman 只有站姿、linda 只有弹琴 / 帮忙）。
+- 验收：insightcheck ✅ 103.6 s、文字 9%、动态 77%、静态字 0%、分段 12/39/24/24%；check_r38 ✅（KNOW 全在、确定性、0 报错）；check_hd ✅（160 帧取样 0 emoji、位图源只有人物帧、强调色只有两种橙）。场景脚本 362 KB（不含共用引擎）。
+- 审片图（工作区，不进仓库）：`/workspace/work/pour_coffee_review.png`（倒咖啡 10 格）、`/workspace/work/fp_boundedness_1_hd_review.png`（全幕 8 格）。
+

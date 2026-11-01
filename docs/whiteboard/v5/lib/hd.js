@@ -51,10 +51,10 @@ export function hd(K) {
   // 一件手绘道具：parts 按顺序逐笔画出（每件内两遍描边同时推进），画完后 hachure 淡入；solid：画完后淡入的底色（遮住身后线条，如壶身挡住手臂）
   // part = { d: SVG path | shape: (o, RG) => drawable, col, w, rough, bow, fill, fillW, gap, solid, min }
   // opt = { t0, speed, xf(t) → {x,y,r,s,a}, z, until, fade:[t0,t1], visible(t) }
-  H.sketch = (parts, { t0 = K.cur, speed = 2400, xf = () => ({ x: 0, y: 0 }), z = 2, until = 1e9, fade = null, pen = true, after = null } = {}) => {
+  H.sketch = (parts, { t0 = K.cur, speed = 2400, xf = () => ({ x: 0, y: 0 }), z = 2, until = 1e9, fade = null, pen = true, after = null, clip = null } = {}) => {
     let t = t0;
     const P = parts.map(p => {
-      const opt = { seed: seedN++, roughness: p.rough ?? 1.0, bowing: p.bow ?? 1.1, stroke: p.col || INK, strokeWidth: p.w ?? 5.5, preserveVertices: false };
+      const opt = { seed: p.seed ?? seedN++, roughness: p.rough ?? 1.0, bowing: p.bow ?? 1.1, stroke: p.col || INK, strokeWidth: p.w ?? 5.5, preserveVertices: false };
       if (p.fill) Object.assign(opt, { fill: p.fill, fillStyle: 'hachure', hachureGap: p.gap ?? 12, hachureAngle: -41, fillWeight: p.fillW ?? 2.4 });
       const dr = p.shape ? p.shape(opt, RG) : RG.path(p.d, opt);
       const strokes = flatten(dr, 'path'), hatch = p.fill ? flatten(dr, 'fillSketch') : [];
@@ -68,7 +68,7 @@ export function hd(K) {
     const drawAt = (g, ft) => {
       const a = alphaAt(ft); if (a <= 0 || ft < t0 || ft >= until) return null;
       const x = xf(ft); let tip = null;
-      g.save(); apply(g, x); g.lineCap = 'round'; g.lineJoin = 'round';
+      g.save(); apply(g, x); if (clip) { g.beginPath(); clip(g, ft); g.clip(); } g.lineCap = 'round'; g.lineJoin = 'round';
       for (const p of P) {
         if (ft < p.t0) break;
         const q = clamp((ft - p.t0) / (p.t1 - p.t0)), e = sineInOut(q);
@@ -97,6 +97,7 @@ export function hd(K) {
     return { t0, t1, P };
   };
 
+  H.seed = () => seedN++;   // 取一个种子：两份同种子的 sketch 线条逐点一致（切开前两半严丝合缝 = 一整只）
   // 预先生成一条 rough 折线集（不上时间线），给每帧自己画的东西用（液面边线、液柱抖动等仍用固定种子）
   H.strokesOf = (d, o = {}) => flatten(RG.path(d, { seed: seedN++, roughness: o.rough ?? 0.8, bowing: o.bow ?? 1, strokeWidth: o.w ?? 4, preserveVertices: false }), 'path');
   H.drawStrokes = (g, S, { col = INK, w = 4, a = 1 } = {}) => { g.save(); g.globalAlpha = a; g.strokeStyle = col; g.lineWidth = w; g.lineCap = 'round'; g.lineJoin = 'round'; for (const s of S) partial(g, s, 1e9); g.restore(); };
@@ -134,4 +135,42 @@ export const MUG = {
   handle: 'M58 -96 Q100 -92 96 -60 Q92 -30 54 -32',
   RIM_H: 118, HALF_TOP: 60, HALF_BOT: 52, INNER_BOT: -8,
   inner: f => { const y = -8 - (118 - 20) * f; return y; },
+};
+
+// 菜刀（局部原点 = 刀把握点；刀身朝 -x，刃口在 +y 一侧、向刀尖上收）：倒拿 / 斜切时由 r 转到刃口朝下
+export const KNIFE_HD = {
+  handle: 'M-8 -9 L34 -9 Q42 0 34 9 L-8 9 Z',
+  bolster: 'M-12 -12 L-12 13',
+  spine: 'M-12 -10 L-150 -7',
+  edge: 'M-12 14 Q-118 18 -150 -7',
+  EDGE_MID: [-80, 15], TIP: [-150, -7], EDGE_N: [0, 1],     // 刃口中点、刀尖、刃口外法线（局部）
+};
+// 苹果（局部原点 = 果心，半径 30）：整只 / 左半 / 右半（切面 = x=0 的竖线）
+export const APPLE = {
+  whole: 'M0 -26 Q26 -36 32 -8 Q36 22 12 30 Q0 34 -12 30 Q-36 22 -32 -8 Q-26 -36 0 -26 Z',
+  stem: 'M0 -26 Q2 -36 6 -42', leaf: 'M4 -36 Q16 -48 24 -38 Q14 -32 4 -36',
+  left: 'M0 -26 Q-26 -36 -32 -8 Q-36 22 -12 30 Q-6 32 0 31 Z', right: 'M0 -26 Q26 -36 32 -8 Q36 22 12 30 Q6 32 0 31 Z',
+  R: 30,
+};
+// 面包（局部原点 = 底边中心）：整条 / 左块 / 右块（切面 x=0）
+export const BREAD = {
+  whole: 'M-56 0 L-56 -30 Q-56 -52 -30 -54 Q0 -60 30 -54 Q56 -52 56 -30 L56 0 Z',
+  score: ['M-34 -50 Q-28 -40 -20 -36', 'M-4 -55 Q2 -45 10 -41', 'M24 -52 Q30 -42 38 -38'],
+  left: 'M0 0 L-56 0 L-56 -30 Q-56 -52 -30 -54 Q-14 -57 0 -57 Z', right: 'M0 0 L56 0 L56 -30 Q56 -52 30 -54 Q14 -57 0 -57 Z',
+};
+// 打开的语法书（局部原点 = 书脊底）
+export const BOOK = {
+  left: 'M0 0 Q-50 -14 -110 -4 L-110 -84 Q-50 -94 0 -80 Z', right: 'M0 0 Q50 -14 110 -4 L110 -84 Q50 -94 0 -80 Z',
+  lines: ['M-92 -66 Q-50 -74 -16 -64', 'M-92 -48 Q-50 -56 -16 -46', 'M16 -64 Q50 -74 92 -66', 'M16 -46 Q50 -56 92 -48'],
+};
+// 玻璃杯（局部原点 = 杯底中心，高 120）
+export const GLASS = { body: 'M-34 -120 L-28 -4 Q-27 0 -22 0 L22 0 Q27 0 28 -4 L34 -120', rim: 'M-34 -120 Q0 -128 34 -120', rimBack: 'M-34 -120 Q0 -112 34 -120' };
+// 一张纸（局部原点 = 中心，A4 竖放比例）
+export const SHEET = { body: 'M-46 -64 L46 -64 L46 64 L-46 64 Z', lines: ['M-30 -40 L30 -40', 'M-30 -20 L30 -20', 'M-30 0 L22 0', 'M-30 20 L30 20'] };
+// 作业本（局部原点 = 底边中心）
+export const WORKBOOK = { body: 'M-70 0 L70 0 L70 -22 L-70 -22 Z', spine: 'M-70 -11 L70 -11' };
+// 碗（局部原点 = 碗底中心）+ 米饭堆
+export const BOWL = {
+  body: 'M-70 -56 Q-66 -6 -24 -2 L-20 4 L20 4 L24 -2 Q66 -6 70 -56', rim: 'M-70 -56 Q0 -70 70 -56', rimBack: 'M-70 -56 Q0 -44 70 -56',
+  rice: 'M-62 -58 Q-56 -80 -40 -84 Q-30 -100 -10 -98 Q4 -110 22 -100 Q42 -98 48 -82 Q62 -76 62 -58',
 };
