@@ -27,7 +27,7 @@
 - 总开关 C-01 定型为 tendency 而非 rule：识解是说话人的选择（同一名词可双生活，如 chicken），不是词的固有属性；配 scope（指称域的默认识解）+ exceptions（双生活词、词条级约定）入模。
 - 冠词线口径：a = 引介新指称（C-06），the = 假定听者可定位（C-07），五路定位线索（C-08），选择本质是替听者算账的给定性等级（C-19，Gundel et al. 1993 + 2010 复制验证）；错误按漏用/滥用/替换三型分诊（C-20），只用登记病例。
 - 类指（C-13）：a tiger / the tiger / tigers 三形式非自由变体，以谓词测试立界（*A tiger is endangered → The tiger is endangered 为登记病例）；the 类指只登记、高年级内容，不推翻 C-07 主读法。
-- a/an（C-14）定型为 etymology（本区唯一）：源出古英语 ān「一」，判据是读音不是字母；university 未入词库，其例待补词后回填（§6）。
+- a/an（C-14）定型为 etymology（本区唯一）：源出古英语 ān「一」，判据是读音不是字母；university 已入词库（ADD_0699），其例已回填（§6）。
 
 ### 1.4 PR 组（代词系统，PR-01～PR-11，order 53–63）
 
@@ -86,12 +86,12 @@ tendency 降格理由（逐条已在条目内以 scope + exceptions 落实）：
 
 ## 6. 待补清单（收口波次处理，本波次不臆造）
 
-1. 词库缺词（须先入词库、经核定后回填例句与挂接）：beer、below、along、against、university、ladder、tunnel、crowd、wedding、bride、moment、paragraph、tummy、blanket、meeting、trouble、sand、other、another、same、ready、end、hate、hands、yummy、stripes、knowledge。受影响条目：P-13（below）、P-16（along 原句）、PB-04（against，已用 through 暂代）、C-14（university 例）、C-13（stripes 回填）、C-15（knowledge 例外例）。
+1. ~~词库缺词~~ **已清零（2026-11-02 补词清零波）**：原列 27 词逐词回查——26 词已在词库（beer ADD_0427、below ADD_0428、along ADD_0404、against ADD_0400、university ADD_0699、ladder ADD_0559、tunnel ADD_0691、crowd ADD_0471、wedding ADD_0710、bride ADD_0433、moment ADD_0578、paragraph ADD_0595、tummy ADD_0690、blanket ADD_0432、trouble ADD_0689、sand G4_0977、other ADD_0593、another ADD_0410、same ADD_0630、ready ADD_0614、end ADD_0497、hate ADD_0523、yummy ADD_0718、stripes→stripe ADD_0661、knowledge G6_0627；hands 为 hand（G3_118）复数形归一），仅 meeting 为真缺词，经 Cambridge 核验补入（ADD_0782）。回填已落地：P-13 below 例句补入、P-16 along 回填 word_ids、PB-04 against 例句补入（不再以 through 暂代）、PB-12「at the meeting」例补入、C-14 a university 例补入、C-13 stripes 回填 ADD_0661、C-15 knowledge 例外例回填 G6_0627、C-02 sand 回填 G4_0977，相关 pending 与注记同步改写。
 2. 逐字病例 58 条（见 §5），来源限于 CLEC 等已登记语料与课堂实录补录。
 3. 误解探针 58 条，W7 收口时统一编号并回挂。
 4. scene_spec 58 条（现仅空间核心 5 条有），随场景生产波次补齐。
 5. PB-10 功能层归属未裁定，待总账评审时定。
-6. PB-13 例句的 math 核定（现以 English 同型句暂代，见 §1.2）。
+6. ~~PB-13 例句的 math 核定（现以 English 同型句暂代，见 §1.2）~~ **已核定（2026-11-02）**：math、maths 均有独立条目（V6_学校_30 / V6_学校_31），条目 boundary 注记已同步改写。
 
 ## 7. 文件清单
 

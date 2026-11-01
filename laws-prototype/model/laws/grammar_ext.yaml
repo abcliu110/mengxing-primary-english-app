@@ -289,6 +289,7 @@ entries:
     word_ids:
     - G2_0501
     - V6_交通_38
+    - ADD_0629
   - level: 2
     sentence: Look! They are playing football now.
     scene_note: 眼前正在发生——进行时
@@ -320,7 +321,6 @@ entries:
     - 病例待补
     - 误解探针待补
     - 检索练习待补
-    - 待补词：rise（例词未在词库命中，待补词流程）
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -841,7 +841,6 @@ entries:
     - 病例待补
     - 误解探针待补
     - 检索练习待补
-    - 待补词：cloud（清单例 clouds 的词元未在词库命中，待补词流程）
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -873,6 +872,7 @@ entries:
     word_ids:
     - V6_日常_5
     - V6_P14
+    - ADD_0717
   - level: 1
     sentence: I have written the letter.
     scene_note: 现代完成时：重心在「我写过了」——与上例同框对照
@@ -880,6 +880,7 @@ entries:
     word_ids:
     - G3_0487
     - V6_P14
+    - ADD_0717
   error_cases: []
   relatives:
   - id: TA-05
@@ -901,7 +902,6 @@ entries:
     - 病例待补
     - 误解探针待补
     - 检索练习待补
-    - 待补词：written（write 的过去分词形未在词库独立命中，待补词/归一口径裁定）
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -1497,6 +1497,7 @@ entries:
     word_ids:
     - G1_002
     - G2_081
+    - ADD_0484
   error_cases:
   - wrong: Explain me this.
     right: Explain this to me.
@@ -1524,7 +1525,6 @@ entries:
     pending:
     - 误解探针待补
     - 检索练习待补
-    - 待补词：donate（本条核心例词未在词库命中，须优先走补词流程后回填）
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -1550,19 +1550,23 @@ entries:
   examples:
   - level: 1
     sentence: Sam sneezed the napkin off the table.
-    scene_note: Goldberg (1995) 标志性原例：sneeze、napkin 未在词库命中，已登记待补词；句中可引词仅 table 一词
+    scene_note: Goldberg (1995) 标志性原例：sneeze、napkin 已入词库（ADD_0647/ADD_0584）
     supports: claim
     pending_words:
     - sneeze
     - napkin
     word_ids:
     - G2_0930
+    - ADD_0647
+    - ADD_0584
   - level: 1
     sentence: He kicked the ball over the fence.
     scene_note: kick 自带致使移动义——与模具义重合的原型成员
     supports: claim
     word_ids:
     - G1_041
+    - ADD_0553
+    - ADD_0508
   - level: 2
     sentence: The wind blew the paper to the floor.
     scene_note: 风把纸吹落——致使者可以是非人力量
@@ -1598,8 +1602,7 @@ entries:
     pending:
     - 误解探针待补
     - 检索练习待补
-    - 待补词：sneeze、napkin（本条标志性例词未入词库，须走补词流程后回填 word_ids）
-    - 待补词：kick、fence（例词未命中，待补词流程）；sam 为人名专名，不入词库口径待裁
+    - 待裁：sam 为人名专名，是否入词库由词库专名口径裁定（kick、fence 已入词库回填 ADD_0553/ADD_0508）
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -1633,13 +1636,14 @@ entries:
     - G1_034
   - level: 1
     sentence: She wiped the table clean.
-    scene_note: 条目标题登记例（wipe 未在词库命中，已登记待补词）；句中可引词为 table、clean
+    scene_note: 条目标题登记例（wipe 已入词库 ADD_0715）；句中可引词为 table、clean
     supports: claim
     pending_words:
     - wipe
     word_ids:
     - G2_0930
     - G5_250
+    - ADD_0715
   - level: 2
     sentence: He made his bed tidy.
     scene_note: make 把床铺弄整齐——原型动词的结果用法
@@ -1671,7 +1675,6 @@ entries:
     - 病例待补
     - 误解探针待补
     - 检索练习待补
-    - 待补词：wipe（条目标题例词未入词库，待补词流程）
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -1708,6 +1711,7 @@ entries:
     supports: claim
     word_ids:
     - G2_0973
+    - ADD_0607
   - level: 2
     sentence: Mum baked us a cake.
     scene_note: 使能转移：做给他——成品即转移物（与 CO-02 同例不同读法，教学中并置）
@@ -1729,14 +1733,13 @@ entries:
   adult:
     sources:
     - Goldberg (1995) 双宾多义分析 — https://www.academia.edu/128499803/How_conceptual_structure_impinges_on_constructional_behavior_the_case_of_give_verbs
-    boundary: 见 claim.scope；条目机制登记的 refuse him entry 例中 refuse、entry 未入词库，如后续用作例词须先补词。
+    boundary: 见 claim.scope；条目机制登记的 refuse him entry 例中 refuse、entry 已入词库（ADD_0784/ADD_0785）。
     disputes: []
     evidence_grade: 二手互证级
     pending:
     - 病例待补
     - 误解探针待补
     - 检索练习待补
-    - 待补词：promise（例词未在词库命中，待补词流程）
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -1828,12 +1831,13 @@ entries:
   examples:
   - level: 1
     sentence: The window was broken.
-    scene_note: 条目儿童版登记例——镜头对准窗户（broken 的词形归一见待补说明）
+    scene_note: 条目儿童版登记例——镜头对准窗户（broken 已以过去分词形条目在库 G5_0831）
     supports: claim
     pending_words:
     - broken
     word_ids:
     - G4_159
+    - G5_0831
   - level: 1
     sentence: The boy broke the window.
     scene_note: 同一件事的主动版——主角是做事的人，与上例同框对照
@@ -1875,7 +1879,6 @@ entries:
     - 病例待补
     - 误解探针待补
     - 检索练习待补
-    - 待补词：broken（break 的过去分词形归一口径待裁定，同 written）
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -2554,7 +2557,6 @@ entries:
     pending:
     - 病例待补
     - 检索练习待补
-    - 说明：shower / photo 两词在本条标题例（take a shower、take a photo）中出现，未独立命中词库（shower 未命中、photo 以 photograph 命中口径待裁），标题例暂以机制 anchor 登记，待补词/口径裁定后回填
   config_gates: null
   status: 入模中
   version: '1.0'
@@ -3063,7 +3065,8 @@ entries:
     sentence: Are you ready? ↗
     scene_note: 一般疑问句常升调（箭头为语调标记，非句中词）
     supports: claim
-    word_ids: []
+    word_ids:
+    - ADD_0614
   - level: 1
     sentence: Where are you going? ↘
     scene_note: 特殊疑问句常降调
@@ -3093,7 +3096,6 @@ entries:
     - 误解探针待补
     - 检索练习待补
     - 说明：本条呈现与练习要求受裁定 A（弱读/语调产出档位）门控影响，config_gates 待裁定落档后回填
-    - 待补词：ready（例词未在词库命中，待补词流程）
   config_gates: null
   status: 入模中
   version: '1.0'

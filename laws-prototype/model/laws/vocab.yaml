@@ -382,10 +382,9 @@ entries:
         scene_note: "伙伴名单第一例：make + decision"
         supports: claim
       - level: 2
-        word_ids: [V6_日常_6]
-        pending_words: [shower]
+        word_ids: [V6_日常_6, ADD_0638]
         sentence: "Take a shower."
-        scene_note: "shower 的伙伴是 take（与 CO-17 空心动词互挂）；shower 不在词库，待补词"
+        scene_note: "shower 的伙伴是 take（与 CO-17 空心动词互挂）"
         supports: claim
     error_cases:
       - wrong: "Do a decision."
@@ -414,7 +413,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V07-* 预留）", "scene_spec 待补", "补词待办：shower"]
+    pending: ["探针待补写（PRB-V07-* 预留）", "scene_spec 待补"]
   - id: V-08
     zone: 词汇解码
     group: V
@@ -545,10 +544,9 @@ entries:
         anchors: [G5_0992]
     examples:
       - level: 1
-        word_ids: [G5_0992]
-        pending_words: [price]
+        word_ids: [G5_0992, ADD_0606]
         sentence: "He won a prize."
-        scene_note: "prize（奖品）与 price（价格）形近——price 不在词库，待补词"
+        scene_note: "prize（奖品）与 price（价格）形近——同屏对照"
         supports: claim
       - level: 2
         word_ids: [G4_157]
@@ -582,7 +580,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V10-* 预留）", "scene_spec 待补", "补词待办：price"]
+    pending: ["探针待补写（PRB-V10-* 预留）", "scene_spec 待补"]
   - id: V-11
     zone: 词汇解码
     group: V
@@ -1053,8 +1051,7 @@ entries:
       scope: "三层比例是词典词条（type）计数，不是实际语流（token）频率；真实说话中占压倒多数的仍是本族层"
       exceptions:
         - note: "『三连』是倾向不是铁律：部分三连已发生义项分化（interrogate 已专化为『审讯』），不能教成『三个词随便挑、只是正式程度不同』"
-          word_ids: []
-          pending_words: [interrogate]
+          word_ids: [ADD_0545]
         - note: "层位判断靠词源，部分词的层属（如经法语转手的拉丁词）本身有双重身份"
           word_ids: []
     mechanism:
@@ -1095,7 +1092,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V19-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：interrogate、inquire、kingly、regal"]
+    pending: ["探针待补写（PRB-V19-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-20
     zone: 词汇解码
     group: V
@@ -1110,8 +1107,7 @@ entries:
       scope: "本菜单是清单指定的七种；完整的构词生态另含借词（不算『造』）与凭空生造（极罕见），不在七台之列；产出性随语域变"
       exceptions:
         - note: "-th（warmth、length）只能接一小串固定词、不再接新词基——说某词缀『封存』指不再造新词，不指已有词消失"
-          word_ids: []
-          pending_words: [warmth, length]
+          word_ids: [G6_0901, G6_0899]
     mechanism:
       - beat: 七台机器
         text_kid: "看见生词先猜：它是被哪台机器造出来的？加零件的（un-happy）、拼起来的（black-bird）、剪短的（gym）、拆错拆出来的（edit），认出机器，就知道该怎么对付它。"
@@ -1125,10 +1121,9 @@ entries:
         scene_note: "派生机：un- + happy（与 V-33 互挂）"
         supports: claim
       - level: 2
-        word_ids: []
-        pending_words: [blackbird, smog, gym]
+        word_ids: [G5_0745, ADD_0646, G6_301]
         sentence: "A blackbird is not just a black bird."
-        scene_note: "复合机（blackbird）对短语（black bird）——重音判据在 S-20；三词待补词"
+        scene_note: "复合机（blackbird）对短语（black bird）——重音判据在 S-20"
         supports: claim
     error_cases: []
     relatives:
@@ -1151,7 +1146,7 @@ entries:
       pending: ["本条清单无独立『标题句』行，headline 取条目标题定版（簇源如有标题句，定版时回填）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V20-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：blackbird、smog、gym、warmth、length"]
+    pending: ["探针待补写（PRB-V20-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-21
     zone: 词汇解码
     group: V
@@ -1166,8 +1161,7 @@ entries:
       scope: "词干的『释义』是教学简化（如 spect gloss 作 look，实际语义场更宽），是脚手架，不是词源学结论；词干清单须按课标词表与所读文本裁剪，不必整表照搬"
       exceptions:
         - note: "形似的字母串未必是真词根（corner 不是 corn+er）——拆之前须按 V-15 的纪律确认是真构词"
-          word_ids: []
-          pending_words: [corner]
+          word_ids: [V6_城市_33]
     mechanism:
       - beat: 零件接口
         text_kid: "长词不可怕，它是零件拼的。先把零件认全：看到 spect 就想到『看』，看到 port 就想到『搬』，拼起来猜意思，最后查词典对答案。"
@@ -1176,10 +1170,9 @@ entries:
         anchors: [G6_0331]
     examples:
       - level: 1
-        word_ids: [G6_0347]
-        pending_words: [inspect, respect, suspect]
+        word_ids: [G6_0347, ADD_0544, G6_0346, ADD_0676]
         sentence: "I expect a letter."
-        scene_note: "expect 在词库（ex- + spect『看』：往外看→期待）；inspect/respect/suspect 待补词，家族全量名单见挂接表"
+        scene_note: "expect 在词库（ex- + spect『看』：往外看→期待）；inspect/respect/suspect 家族全量名单见挂接表"
         supports: claim
       - level: 2
         word_ids: [G6_0331]
@@ -1213,7 +1206,7 @@ entries:
       pending: ["课程对照实验级效果证据待核（清单已登记，本条不主张疗效数字）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V21-* 预留）", "scene_spec 待补", "补词待办：inspect、respect、suspect、corner"]
+    pending: ["探针待补写（PRB-V21-* 预留）", "scene_spec 待补"]
   - id: V-22
     zone: 词汇解码
     group: V
@@ -1229,8 +1222,7 @@ entries:
       scope: "四律是结果分类，不是预测定律：方向事先不可知"
       exceptions:
         - note: "同一词常多律叠加：knave『男孩→男仆→无赖』是收窄+跌格同时发生"
-          word_ids: []
-          pending_words: [knave]
+          word_ids: [ADD_0557]
         - note: "更不可反推『原义才是真义』——那正是 V-25 要拆的词源谬误"
           word_ids: []
     mechanism:
@@ -1246,10 +1238,9 @@ entries:
         scene_note: "收窄例 meat（原泛指食物）对涨大例 dog（原只指一种大狗）同屏"
         supports: claim
       - level: 2
-        word_ids: [G5_K01]
-        pending_words: [silly]
+        word_ids: [G5_K01, ADD_0641]
         sentence: "You are nice."
-        scene_note: "nice 今天是夸人的话——八百年前却是骂人『傻』（升格）；silly 待补词"
+        scene_note: "nice 今天是夸人的话——八百年前却是骂人『傻』（升格）"
         supports: claim
     error_cases: []
     relatives:
@@ -1274,7 +1265,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V22-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：silly、knave"]
+    pending: ["探针待补写（PRB-V22-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-23
     zone: 词汇解码
     group: V
@@ -1303,10 +1294,9 @@ entries:
         scene_note: "同源对第一例：上身与下身，一家分两路"
         supports: claim
       - level: 2
-        word_ids: [ADD_0320, ADD_0132]
-        pending_words: [warden, guardian]
+        word_ids: [ADD_0320, ADD_0132, ADD_0708, ADD_0520]
         sentence: "The guard is at the gate."
-        scene_note: "ward/guard 同根扩组（warden/guardian 待补词）；war（ADD_0319）同根旁证"
+        scene_note: "ward/guard 同根扩组（warden/guardian）；war（ADD_0319）同根旁证"
         supports: claim
     error_cases: []
     relatives:
@@ -1331,7 +1321,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V23-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：warden、guardian、kingly、regal、inquire、interrogate"]
+    pending: ["探针待补写（PRB-V23-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-24
     zone: 词汇解码
     group: V
@@ -1355,10 +1345,9 @@ entries:
         anchors: [G3_127, G5_235]
     examples:
       - level: 1
-        word_ids: [G3_127]
-        pending_words: [crayfish, bridegroom]
+        word_ids: [G3_127, ADD_0469, ADD_0434]
         sentence: "A crayfish is not a fish."
-        scene_note: "crayfish：住在水里、看着像鱼，被安了条『鱼』——词却跟 fish 无亲缘（待补词）"
+        scene_note: "crayfish：住在水里、看着像鱼，被安了条『鱼』——词却跟 fish 无亲缘"
         supports: claim
       - level: 2
         word_ids: [G5_235]
@@ -1386,7 +1375,7 @@ entries:
       pending: ["cray- 音变路径与 *krebiz 上溯待核（清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V24-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：crayfish、bridegroom、sparrowgrass"]
+    pending: ["探针待补写（PRB-V24-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-25
     zone: 词汇解码
     group: V
@@ -1416,10 +1405,9 @@ entries:
         scene_note: "词源谬误第一例：nice 的古义管不住今义"
         supports: claim
       - level: 2
-        word_ids: []
-        pending_words: [posh, tips, golf]
+        word_ids: [ADD_0605, ADD_0686, ADD_0516]
         sentence: "Is the posh story true? — Check the dates."
-        scene_note: "侦探练习组：posh/tips/golf 三个缩略故事同场否决（待补词）"
+        scene_note: "侦探练习组：posh/tips/golf 三个缩略故事同场否决"
         supports: claim
     error_cases:
       - wrong: "posh = Port Out, Starboard Home（轮船舱位首字母说）"
@@ -1448,7 +1436,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V25-* 预留）", "scene_spec 待补", "补词待办：posh、tips、golf"]
+    pending: ["探针待补写（PRB-V25-* 预留）", "scene_spec 待补"]
   - id: V-26
     zone: 词汇解码
     group: V
@@ -1463,11 +1451,9 @@ entries:
       scope: "词根是记忆脚手架和历史地图，不是释义公式：同根不等于今义可互推"
       exceptions:
         - note: "species 已专指生物分类；spice 经 speciēs『种类、货物』辗转而来，与『看』的联系只剩化石"
-          word_ids: []
-          pending_words: [species, spice]
+          word_ids: [ADD_0650, ADD_0657]
         - note: "spectator 的直接来源是拉丁 spectāre 而非 specere 本体，拆词应写作 spect-（看），不硬套 spec-"
-          word_ids: []
-          pending_words: [spectator]
+          word_ids: [ADD_0654]
     mechanism:
       - beat: 一个根一族词
         text_kid: "老祖宗 *spek- 是『看』。看进去是检查 inspect，回头看是尊敬 respect，偷偷从下面看是怀疑 suspect，看出来长什么样是 species。记住老祖宗，一串词一次记完。"
@@ -1476,16 +1462,14 @@ entries:
         anchors: [G6_0347]
     examples:
       - level: 1
-        word_ids: [G6_0347]
-        pending_words: [inspect, respect]
+        word_ids: [G6_0347, ADD_0544, G6_0346]
         sentence: "I expect good news."
-        scene_note: "expect（ex- 往外 + spect 看：往外看→期待）在词库；inspect/respect 待补词，家族全量名单见挂接表"
+        scene_note: "expect（ex- 往外 + spect 看：往外看→期待）在词库；inspect/respect 家族全量名单见挂接表"
         supports: claim
       - level: 2
-        word_ids: []
-        pending_words: [suspect, species, spy, bishop]
+        word_ids: [ADD_0676, ADD_0650, ADD_0658, ADD_0430]
         sentence: "We spy a bird."
-        scene_note: "日耳曼一线：*spek- 的后代经辗转成 spy——同根词可以走得很远（全组待补词）"
+        scene_note: "日耳曼一线：*spek- 的后代经辗转成 spy——同根词可以走得很远（全组已入词库）"
         supports: claim
     error_cases: []
     relatives:
@@ -1508,7 +1492,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V26-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：*spek- 家族全量（见挂接表，多数不在词库）"]
+    pending: ["探针待补写（PRB-V26-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-27
     zone: 词汇解码
     group: V
@@ -1567,7 +1551,7 @@ entries:
       pending: ["typhoon 来源主次未定（登记不裁决）；ketchup 本字三说并存"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V27-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：ketchup、kowtow、ginseng、typhoon、logic、humour"]
+    pending: ["探针待补写（PRB-V27-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-28
     zone: 词汇解码
     group: V
@@ -1582,8 +1566,7 @@ entries:
       scope: "样本为英语母语儿童；中国孩子英语词根库存小得多，同一引擎的转速不可直接搬用（先得有根可拆，见 V-30、V-31）"
       exceptions:
         - note: "Anglin 的结论是机制性推论（由派生词暴涨+访谈言语证据推断引擎存在），并未逐词溯源每个已识词的习得方式"
-          word_ids: [G2_079, G1_019]
-          pending_words: [piglet, treelet]
+          word_ids: [G2_079, G1_019, ADD_0604, ADD_0688]
     mechanism:
       - beat: 解题引擎
         text_kid: "认词有两种：背过的，和现场拆出来的。大孩子的词一大半是拆出来的——零件认识得越多，能拆的词就越多，词就越长越快。"
@@ -1592,10 +1575,9 @@ entries:
         anchors: [G2_079, G1_019]
     examples:
       - level: 1
-        word_ids: [G1_019]
-        pending_words: [piglet, treelet]
+        word_ids: [G1_019, ADD_0604, ADD_0688]
         sentence: "A piglet is a small pig."
-        scene_note: "访谈原案：由 piglet 的 -let『小』类推 treelet『小树』（两词待补词）"
+        scene_note: "访谈原案：由 piglet 的 -let『小』类推 treelet『小树』"
         supports: claim
       - level: 2
         word_ids: [G2_079]
@@ -1626,7 +1608,7 @@ entries:
       pending: ["Anglin 专著原文未直开：分项数字以 Nation 转述为锚，可再升一级核对（清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V28-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：piglet、treelet"]
+    pending: ["探针待补写（PRB-V28-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-29
     zone: 词汇解码
     group: V
@@ -1817,16 +1799,14 @@ entries:
         anchors: [G6_0331]
     examples:
       - level: 1
-        word_ids: [G6_0331]
-        pending_words: [invaluable, restive]
+        word_ids: [G6_0331, ADD_0546, ADD_0625]
         sentence: "Predict = pre- (before) + dict (say)."
         scene_note: "根缺失型正例：predict 的 pre- 就是『预先』，组合义成立；难在 dict 不认识（清单纠正，见 corrections）"
         supports: claim
       - level: 2
-        word_ids: []
-        pending_words: [invaluable]
+        word_ids: [ADD_0546]
         sentence: "This book is invaluable."
-        scene_note: "关系不透明型假锁标本：invaluable = 贵重到没法估价，不是『没有价值』——拆对零件、猜反意思，猜后必须验的招牌例（待补词）"
+        scene_note: "关系不透明型假锁标本：invaluable = 贵重到没法估价，不是『没有价值』——拆对零件、猜反意思，猜后必须验的招牌例"
         supports: claim
     error_cases:
       - wrong: "invaluable = 没有价值的（按 in- 否定硬拆）"
@@ -1859,7 +1839,7 @@ entries:
       pending: ["『300 个组合形解码上万科学词』一手统计待核（清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V32-* 预留）", "scene_spec 待补", "补词待办：invaluable、restive、define、detail"]
+    pending: ["探针待补写（PRB-V32-* 预留）", "scene_spec 待补"]
   - id: V-33
     zone: 词汇解码
     group: V
@@ -1873,8 +1853,7 @@ entries:
       scope: "百分比是带前缀词在学校阅读语料中的出现份额（频次口径），不是词典词条种类的比例；语料是 1970 年代美国教材，中国学生阅读语料构成不同，名次细节不可直接搬用——可搬的是『头部集中、先教高频小集合』的结构事实"
       exceptions:
         - note: "高频前缀恰恰多义、易假拆：uncle 不是 un- 前缀、reason 不是 re- 前缀——White et al. 第一课专设 tricksters 辨假环节"
-          word_ids: [G2_067]
-          pending_words: [reason]
+          word_ids: [G2_067, ADD_0615]
     mechanism:
       - beat: 头部小集合
         text_kid: "前缀班里有四个班长，活儿占了一大半。先把班长学透，书里的带前缀词就大半有认识的『门卫』了。"
@@ -1922,7 +1901,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["scene_spec 待补", "补词待办：reason"]
+    pending: ["scene_spec 待补"]
   - id: V-34
     zone: 词汇解码
     group: V
@@ -1947,10 +1926,9 @@ entries:
         anchors: [G6_0476, G5_0521, G6_0682]
     examples:
       - level: 1
-        word_ids: [G6_0476]
-        pending_words: [illegal, irregular]
+        word_ids: [G6_0476, ADD_0530, ADD_0548]
         sentence: "It is impossible."
-        scene_note: "im- 第一例（唇音前）；illegal/irregular 待补词，同屏呈现 il-/ir-"
+        scene_note: "im- 第一例（唇音前）；illegal/irregular 同屏呈现 il-/ir-"
         supports: claim
       - level: 2
         word_ids: [G5_0521, G6_0682]
@@ -1983,7 +1961,7 @@ entries:
       pending: ["未打开拉丁语语法原书逐条核页码（清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V34-* 预留）", "scene_spec 待补", "补词待办：illegal、irregular 及同化家族全量（见挂接表）"]
+    pending: ["探针待补写（PRB-V34-* 预留）", "scene_spec 待补"]
   - id: V-35
     zone: 词汇解码
     group: V
@@ -1998,14 +1976,11 @@ entries:
       scope: "本条只管否定 in-；方向 in-（income、import、include）是另一个前缀，选取不受本条约束"
       exceptions:
         - note: "un- 越界拉丁底成串：uncertain、unstable、unconscious、unpopular 都是 un- + 拉丁/法语底——『地层纯洁』从未实现"
-          word_ids: [G3_130]
-          pending_words: [uncertain, unstable, unconscious, unpopular]
+          word_ids: [G3_130, ADD_0694, ADD_0702, ADD_0695, ADD_0701]
         - note: "inflammable 的 in- 是『向内/使……』义而非否定，故 flammable 与 inflammable 同义（现代安全标识多改用 flammable）"
-          word_ids: []
-          pending_words: [inflammable, flammable]
+          word_ids: [ADD_0539, ADD_0509]
         - note: "invaluable 的 in- 虽是否定形，词义却是『贵重到没法估价』（极言而非否定，见 V-32）"
-          word_ids: []
-          pending_words: [invaluable]
+          word_ids: [ADD_0546]
         - note: "ingenious/ingenuous 等为整词借入，不可拆解套规则"
           word_ids: []
     mechanism:
@@ -2016,10 +1991,9 @@ entries:
         anchors: [G4_0457, ADD_0157]
     examples:
       - level: 1
-        word_ids: [G4_0457]
-        pending_words: [unbelievable, incredible]
+        word_ids: [G4_0457, ADD_0693, ADD_0538]
         sentence: "He is unhappy."
-        scene_note: "un- 本职例；unbelievable/incredible 对子（believe 老家词 vs credible 拉丁词）待补词同屏"
+        scene_note: "un- 本职例；unbelievable/incredible 对子（believe 老家词 vs credible 拉丁词）同屏"
         supports: claim
       - level: 2
         word_ids: [ADD_0157, G3_130]
@@ -2053,7 +2027,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V35-* 预留）", "scene_spec 待补", "补词待办：unbelievable、incredible、uncertain 等例外组全量（见挂接表）"]
+    pending: ["探针待补写（PRB-V35-* 预留）", "scene_spec 待补"]
   - id: V-36
     zone: 词汇解码
     group: V
@@ -2069,8 +2043,7 @@ entries:
       scope: "菜单是『变词类』的地图，不是意义的保证：-able 的被动义、-ful 的双读等语义细则须逐后缀另学"
       exceptions:
         - note: "-ate 说『有限』不等于零：化学与生物语域仍在造（differentiate 一线）；-ize 说『高产』不等于处处得体：公文写作指南常劝改用更朴素的动词"
-          word_ids: [G4_0320]
-          pending_words: [modernize, simplify, differentiate]
+          word_ids: [G4_0320, ADD_0577, ADD_0642, ADD_0480]
     mechanism:
       - beat: 四台变身机
         text_kid: "四台机器各管一变：变出动词的、变出名词的、变出形容词的、变出副词的。每台机器先看牌子：还通电的（-ness、-able、-ly）放心用；锈住的（-tion、-ible）只认老词，不许自己造。"
@@ -2079,10 +2052,9 @@ entries:
         anchors: [G4_0320, G6_0856, G4_164, V6_情感_16]
     examples:
       - level: 1
-        word_ids: [G4_0320]
-        pending_words: [action, active]
+        word_ids: [G4_0320, G5_0325, G5_0323]
         sentence: "Act, action, active."
-        scene_note: "一根三变：act（动词）→ action（名词）→ active（形容词）；action/active 待补词"
+        scene_note: "一根三变：act（动词）→ action（名词）→ active（形容词）；action/active 已入词库"
         supports: claim
       - level: 2
         word_ids: [G6_0856, G4_164]
@@ -2115,7 +2087,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V36-* 预留）", "scene_spec 待补", "补词待办：action、active、modernize 等全量（见挂接表）"]
+    pending: ["探针待补写（PRB-V36-* 预留）", "scene_spec 待补"]
   - id: V-37
     zone: 词汇解码
     group: V
@@ -2130,14 +2102,11 @@ entries:
       scope: "四条都是带例外的倾向，不是算法：教学口径是『默认走规则、例外进名单』；双写规则的前提是重音位置已知，须与 S-27（重音）合教"
       exceptions:
         - note: "接辅音首后缀保 e 的固化例外：truly、awful、argument"
-          word_ids: [G6_0847]
-          pending_words: [awful, argument]
+          word_ids: [G6_0847, ADD_0423, ADD_0413]
         - note: "-able 前有一批两写词：lovable/loveable、movable/moveable（词典多以 lovable 为主形）"
-          word_ids: []
-          pending_words: [lovable, movable]
+          word_ids: [ADD_0565, ADD_0583]
         - note: "-able/-ible 判据有例外带：accessible、flexible、contemptible 剩整词却用 -ible；-ible 一侧全名单不过百余词，最终靠认读存量解决"
-          word_ids: []
-          pending_words: [accessible, flexible]
+          word_ids: [ADD_0395, ADD_0511]
         - note: "y→i 的摇摆带：shyly、dryly/drily 单音节词两写并行"
           word_ids: []
     mechanism:
@@ -2153,10 +2122,9 @@ entries:
         scene_note: "去 e 例（make→making 的词形在例句呈现）与 y→i 例（happiness G6_0856 同族）"
         supports: claim
       - level: 2
-        word_ids: [V6_交通_34, G6_270]
-        pending_words: [referred, changeable, noticeable]
+        word_ids: [V6_交通_34, G6_270, ADD_0616, ADD_0444, ADD_0588]
         sentence: "Stop — stopped. Visit — visited."
-        scene_note: "双写对子：stop 单音节双写，visit 重音在前不双写；referred（重音在尾才双写）待补词"
+        scene_note: "双写对子：stop 单音节双写，visit 重音在前不双写；referred（重音在尾才双写）"
         supports: claim
     error_cases:
       - wrong: "*refered / *visitted"
@@ -2184,7 +2152,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V37-* 预留）", "scene_spec 待补", "补词待办：referred、changeable、noticeable、accessible 等（见挂接表）"]
+    pending: ["探针待补写（PRB-V37-* 预留）", "scene_spec 待补"]
   - id: V-38
     zone: 词汇解码
     group: V
@@ -2276,10 +2244,9 @@ entries:
         scene_note: "第一课辨假：uncle 的 un- 是冒牌货，unhappy 的是真前缀"
         supports: claim
       - level: 2
-        word_ids: [ADD_0157]
-        pending_words: [reread, return, untie]
+        word_ids: [ADD_0157, ADD_0250, G5_0466, ADD_0310]
         sentence: "Incorrect = in- (not) + correct."
-        scene_note: "按义项分课样本：否定 in- 单独一课；re- 两义（reread 再读/return 返回）与 un- 反动作义（untie）待补词同屏预告"
+        scene_note: "按义项分课样本：否定 in- 单独一课；re- 两义（reread 再读/return 返回）与 un- 反动作义（untie）同屏预告"
         supports: claim
     error_cases:
       - wrong: "uncle 里有 un-，所以 uncle 和『不』有关系（未辨假先套义）"
@@ -2311,7 +2278,7 @@ entries:
       pending: ["『Graves 1987 四步』原始文献待核（查无，清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V39-* 预留）", "scene_spec 待补", "补词待办：reread、return、untie、refill、disconnect"]
+    pending: ["探针待补写（PRB-V39-* 预留）", "scene_spec 待补"]
   - id: V-40
     zone: 词汇解码
     group: V
@@ -2393,7 +2360,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["补词待办：turn on 的构成词 turn 已在库（POLY_TURN），短语条目口径在 W4 小系统区定版"]
+    pending: ["短语条目口径在 W4 小系统区定版（turn on 的构成词 turn 已在库 POLY_TURN）"]
   - id: V-41
     zone: 词汇解码
     group: V
@@ -2424,10 +2391,9 @@ entries:
         scene_note: "撞脸组：河岸 bank 与银行 bank 两句分开读都顺，合句即别扭"
         supports: claim
       - level: 2
-        word_ids: [G1_009]
-        pending_words: [needle]
+        word_ids: [G1_009, ADD_0585]
         sentence: "An eye and the eye of a needle."
-        scene_note: "亲戚组：眼睛与针眼同属一棵多义树（needle 待补词）"
+        scene_note: "亲戚组：眼睛与针眼同属一棵多义树（needle 已入词库 ADD_0585）"
         supports: claim
     error_cases: []
     relatives:
@@ -2453,7 +2419,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V41-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：needle"]
+    pending: ["探针待补写（PRB-V41-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-42
     zone: 词汇解码
     group: V
@@ -2482,10 +2448,9 @@ entries:
         scene_note: "中心义先行：hold 的原型是手抓住东西"
         supports: claim
       - level: 2
-        word_ids: [V6_日常_44, G4_0985]
-        pending_words: [hall]
+        word_ids: [V6_日常_44, G4_0985, ADD_0521]
         sentence: "The hall holds 500 people."
-        scene_note: "引申义：hold『装得下』——从『握住』滚到『容纳』（hall 待补词）"
+        scene_note: "引申义：hold『装得下』——从『握住』滚到『容纳』（hall 已入词库 ADD_0521）"
         supports: claim
     error_cases: []
     relatives:
@@ -2507,7 +2472,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V42-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：hall"]
+    pending: ["探针待补写（PRB-V42-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
   - id: V-43
     zone: 词汇解码
     group: V
@@ -2523,26 +2488,23 @@ entries:
       scope: "语义韵是概率倾向，不是搭配禁令；随语域与时代漂移，引用具体结论须带语料来源与年代；儿童面只取 cause/utterly/provide 三个已核案，不扩张到未核词表"
       exceptions:
         - note: "中性/正面用例确实存在（cause a stir 等）；cause 用于物理因果（The earthquake caused the collapse）时宾语仍多为坏事，是倾向的印证而非例外——讲成『cause 后面只能跟坏词』即造假"
-          word_ids: []
-          pending_words: [cause, stir]
+          word_ids: [ADD_0442, ADD_0659]
     mechanism:
       - beat: 染上的天气
         text_kid: "一个词总和坏事做朋友，自己也带上了坏天气。学词的时候顺便看一眼：它平常跟好事玩，还是跟坏事玩？"
         text_adult: "Louw 立此概念的初衷是诊断反讽：故意给 utterly 配正面词即成反讽。本条是 CB-02（搭配）的姊妹篇：彼管词跟谁，本条管跟的人是好是坏。"
         visual: "词卡天气图标：cause 头顶乌云、provide 头顶晴空，伙伴词在身旁排队"
-        anchors: []
+        anchors: [ADD_0705]
     examples:
       - level: 1
-        word_ids: []
-        pending_words: [cause, trouble]
+        word_ids: [ADD_0442, ADD_0689]
         sentence: "Smoking can cause trouble."
-        scene_note: "cause 的宾语是麻烦——负面语义韵的招牌案（cause/trouble 待补词）"
+        scene_note: "cause 的宾语是麻烦——负面语义韵的招牌案"
         supports: claim
       - level: 2
-        word_ids: [G6_0339]
-        pending_words: [provide]
+        word_ids: [G6_0339, ADD_0610]
         sentence: "They provide information and help."
-        scene_note: "provide 与正面供给搭配（information 在库 G6_0339）；provide 待补词"
+        scene_note: "provide 与正面供给搭配（information 在库 G6_0339）"
         supports: claim
     error_cases:
       - wrong: "The new teacher caused progress in our class.（按『引起』字面义选词）"
@@ -2566,10 +2528,10 @@ entries:
       boundary: "概率倾向非禁令；结论须带语料来源与年代；儿童面只取三案"
       disputes: "语义韵『住在词里还是住在说话人立场里』有真分歧：Hunston (2007) 主张它主要是说话人借整个短语单位表达的态度意义，不宜说成词的固有属性；Stubbs 一派坚持它是词的语料行为事实——学术表述须两说并呈，教学处理不受影响"
       evidence_grade: 二手互证级
-      pending: ["cause、utterly、provide 均不在词库，补入后本条 examples 才能落 id（高优先补词）"]
+      pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V43-* 预留）", "scene_spec 待补", "补词待办（高优先）：cause、utterly、provide、trouble"]
+    pending: ["探针待补写（PRB-V43-* 预留）", "scene_spec 待补"]
   - id: V-44
     zone: 词汇解码
     group: V

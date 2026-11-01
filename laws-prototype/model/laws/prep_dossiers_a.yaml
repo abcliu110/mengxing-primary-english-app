@@ -1,0 +1,913 @@
+# 介词全家福补完卷宗 · 甲组（15 词）
+# 词单：about, after, against, among, around, as, before, behind, beside, between, beyond, by, down, except, from
+# 规格：与现有 14 个全家福（in/on/over/…）同构——核心义（孩子话一句 + 可画场景句）、义项链
+#       （按 空间→时间→抽象 排序；每节点 = 义项孩子话名 + 孩子话解说 + 1 句例句 + 来源标注）、
+#       对手速览、成人层一句（机制/边界）、sources 依据清单（逐条可查）。
+# 出处纪律：每词义项清单先查证学习词典条目（Oxford Learner's Dictionaries / Cambridge Dictionary）
+#       与 Swan《Practical English Usage》相关条目后裁定；查无依据的义项不写，冷僻义登记于
+#       卷末 uncollected_senses。against / beside 的认知语言学口径引 Lindstromberg (2010)
+#       （经 small_systems PB-04 登记转引）；behind 的原型口径挂 PB-08 / PB-09（既有登记）。
+# 机读版：model/prep_family_a.json（同内容，结构对齐原型 DATA.pages 字段，键 = 词形）。
+# 生成日期：2026-11-01。本文件为新增卷宗，未改动任何现有文件。
+meta:
+  title: 介词全家福补完卷宗 · 甲组（15 词）
+  group: 甲组
+  date: '2026-11-01'
+  scope: 与现有 14 个全家福同规格：核心义（孩子话一句话 + 可画场景句）+ 义项链（空间→时间→抽象，每节点 1 例句 + 来源标注）+ 对手速览 + 成人层一句
+  word_count: 15
+  words:
+  - about
+  - after
+  - against
+  - among
+  - around
+  - as
+  - before
+  - behind
+  - beside
+  - between
+  - beyond
+  - by
+  - down
+  - except
+  - from
+  basis_note: 每词义项清单于 2026-11-01 在线查证学习词典条目后裁定（见各词 sources）；只收小学+初中真实高频义，冷僻/书面/成人义登记于卷末 uncollected_senses，不立义、不凑数（beside、down 二词据此少于 3 节点，理由已在各自登记中写明）
+  json_twin: model/prep_family_a.json（同内容机读版，结构对齐 prepositions-prototype-v1.html 内嵌 DATA.pages 对应字段，键 = 词形）
+dossiers:
+- word: about
+  bank_id: V6_核心_52
+  meaning: 关于/大约
+  phonetic_gb: /əˈbaʊt/
+  core:
+    headline: about 是「围着一件事转」：一本书围着动物讲，一群人围着一个话题聊。
+    scene:
+      s: This book is about animals.
+      note: 一本书从头到尾围着动物讲——话题就是圆心
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲位置
+    nodes:
+    - sense: 在……附近、到处
+      headline: 东西撒在一个地方的各处，没有摆整齐。
+      examples:
+      - s: Toys are lying about the room.
+        note: 玩具撒得满屋都是（英式说法里常见）
+      source: Cambridge Dictionary《about》介词条（NO ORDER / POSITION 义：positioned around a place, often without a clear purpose or order）
+  - domain: 抽象
+    label: 大概义 · 讲差不多
+    nodes:
+    - sense: 大约
+      headline: 数目、时间说个大概，不说死。
+      examples:
+      - s: There are about forty students in our class.
+        note: 四十来个，不必数清
+      source: 'Cambridge Dictionary《about》副词条（APPROXIMATELY 义）；Swan《Practical English Usage》about/around 条（approximately: about）'
+  - domain: 抽象
+    label: 话题义 · 讲内容
+    nodes:
+    - sense: 关于
+      headline: 一本书、一场谈话围着的那件事，就是 about 后面的东西。
+      examples:
+      - s: We are talking about our school.
+        note: 谈话围着「我们的学校」转
+      source: Cambridge Dictionary《about》介词条（CONNECTED WITH 义，A1；该典语法栏明言：about 作介词最常用的意思就是「on the subject of」）
+  nsenses: 3
+  opponents:
+  - word: around
+    headline: around 也能说「到处」和「大约」；但说「关于」只能用 about。
+  adult: 机制：about 的老家是空间义「在……周围」（古英语 on+būtan「在外面一圈」），话题义是「话头围着一件事转」的引申，Cambridge 语法栏明言话题义是它作介词时最常用的意思；边界：大约义在 Cambridge/Oxford 词典中列于副词条，本页按词库口径（prep.「关于/大约」）同页收录并在节点上标明词典归类，不得据此向孩子宣称该用法中 about「是介词」。
+  sources:
+  - Cambridge Dictionary《about》条：介词 CONNECTED WITH（A1）/ NO ORDER / POSITION 三义 + 副词 APPROXIMATELY 义 + 语法栏 About（2026-11-01 在线查证）
+  - 'Swan, M.《Practical English Usage》about/around 条（p.83：indefinite movement and position；approximately: about）'
+  - Dictionary.com《about》英式介词义序（relating to / near / on every side of）作义项划分旁证
+  refs: []
+- word: after
+  bank_id: V6_核心_56
+  meaning: 在…之后
+  phonetic_gb: /ˈɑːftə/
+  core:
+    headline: after 是「跟在后面」：一个在前、一个在后，排着队往前走。
+    scene:
+      s: We play football after school.
+      note: 放学排在前，踢球跟在后
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲跟随
+    nodes:
+    - sense: 跟在……后面（追、随）
+      headline: 前面的人先走，后面的人跟着、追着。
+      examples:
+      - s: The dog ran after the cat.
+        note: 小狗追着小猫跑
+      source: Oxford Learner's Dictionaries《after》介词条义项 3（behind/following；Shut the door after you / He ran after her）
+  - domain: 时间
+    label: 时间义 · 讲先后
+    nodes:
+    - sense: 在……之后
+      headline: 一件事完了，另一件才开始。
+      examples:
+      - s: We play games after class.
+        note: 下课之后才玩游戏
+      source: Oxford Learner's Dictionaries《after》介词条义项 1（later than something）
+    - sense: 一遍又一遍（day after day）
+      headline: 同一个词前后夹住，天天如此、没完没了。
+      examples:
+      - s: It rained day after day.
+        note: 天天下雨，一天接一天
+      source: Oxford Learner's Dictionaries《after》介词条义项 2（… after …：used to show that something happens many times or continuously）
+  - domain: 抽象
+    label: 顺序义 · 讲排队
+    nodes:
+    - sense: 排在……后面
+      headline: 名单、字母、名次里排在后一位。
+      examples:
+      - s: My name comes after yours on the list.
+        note: 名单上我的名字排在你的后面
+      source: Oxford Learner's Dictionaries《after》介词条义项 4（next to and following in order）；Eastwood《Oxford Guide to English Grammar》亦以 J comes before K / K comes after J 立条
+  - domain: 抽象
+    label: 抽象义 · 讲命名
+    nodes:
+    - sense: 以……命名（named after）
+      headline: 孩子的名字跟着长辈走，是「跟在后面」的纪念版。
+      examples:
+      - s: The baby was named after her grandmother.
+        note: 宝宝的名字跟着奶奶起
+      source: Oxford Learner's Dictionaries《after》介词条义项 10（in the style of / following the example；We named the baby after her grandmother）
+  nsenses: 5
+  opponents:
+  - word: before
+    headline: before 站在前面，after 跟在后面——时间排队正好相反。
+  adult: 机制：after 的图式只有一个「跟在后面」——空间上追随、时间上随后、顺序上殿后、命名上步先人之后，是同一图式在四个域的展开（OALD 义项 1/3/4/10 同条并列）；边界：表「因为、在……之后（尽管）」的 after 多已连词化（接从句），不在本页；ask after（问候）是英式熟语动词搭配，登记未收。
+  sources:
+  - Oxford Learner's Dictionaries《after》介词条全义项（2026-11-01 在线查证）：义项 1 时间在后 / 义项 2 重复 / 义项 3 跟随 / 义项 4 顺序 / 义项 10 效仿与命名
+  - Eastwood, J.《Oxford Guide to English Grammar》§227（before/after 表顺序、after 表追随）
+  refs: []
+- word: against
+  bank_id: ADD_0400
+  meaning: 反对；靠着；违背
+  phonetic_gb: /əˈɡɛnst/
+  core:
+    headline: against 是「顶着」：梯子顶着墙站住，你顶着大风往前走。
+    scene:
+      s: The ladder is against the wall.
+      note: 梯子靠着墙——墙顶着它，它才不倒（PB-04 登记场景）
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲接触
+    nodes:
+    - sense: 靠着、顶着
+      headline: 一样东西贴住另一样东西，还使着劲儿——against 的画面里有「力」。
+      examples:
+      - s: Put the bike against the wall.
+        note: 把自行车靠在墙上
+      source: Lindstromberg (2010) 第 15 章 Against 专章（接触 + 压力/对抗，本项目 small_systems PB-04 登记）；Oxford Learner's Dictionaries《against》义项 3（close to, touching）
+    - sense: 迎着、逆着
+      headline: 顶着来的方向往前走：逆风、逆水。
+      examples:
+      - s: He walked against the wind.
+        note: 他顶着风走
+      source: Oxford Learner's Dictionaries《against》义项 1（We were rowing against the current）
+  - domain: 抽象
+    label: 抽象义 · 讲对立
+    nodes:
+    - sense: 和……比赛（对手）
+      headline: 两队面对面站，就是要分个高下。
+      examples:
+      - s: Our class is playing against Class Three tomorrow.
+        note: 明天我们班和三班比赛
+      source: Oxford Learner's Dictionaries《against》义项 1（We're playing against the league champions）
+    - sense: 反对、违背
+      headline: 心里不赞成，或者做的事情顶撞了规矩。
+      examples:
+      - s: Cheating is against the rules.
+        note: 作弊是违反规则的
+      source: Oxford Learner's Dictionaries《against》义项 1（That's against the law；Are you for or against…?）
+    - sense: 防备、防着
+      headline: 先做好准备，挡住可能来的坏事。
+      examples:
+      - s: Wear your coat against the cold.
+        note: 穿上外套防寒
+      source: Oxford Learner's Dictionaries《against》义项 4（in order to prevent something；a vaccination against the measles）
+  nsenses: 5
+  opponents:
+  - word: for
+    headline: 站队表态：赞成是 for，反对是 against，正好一对。
+  adult: 机制：Lindstromberg 专章（经 PB-04 登记）指出 against 的基本画面含其他位置介词没有的要素——力：接触 + 压力/对抗方向；静态是倚靠承压，动态是逆力行进，抽象化即对立与防备，本页五义同源；边界：衬托义（red against the snow）、折算义（weigh benefits against the cost）属书面/成人域，不在本段。
+  sources:
+  - Oxford Learner's Dictionaries《against》介词条全义项（2026-11-01 在线查证）：义项 1 反对/对抗 / 义项 3 接触 / 义项 4 防备（义项 2 不利、5 衬托、6 比较登记未收）
+  - Lindstromberg, S. (2010)《English Prepositions Explained》第 15 章 Against 专章（pp. 183–188）与第 5 章 beside/along/against 簇（pp. 81–88）——页码与专章口径经本项目 small_systems PB-04 登记转引
+  refs:
+  - PB-04
+- word: among
+  bank_id: V6_核心_45
+  meaning: 在(三者及以上)之间
+  phonetic_gb: /əˈmʌŋ/
+  core:
+    headline: among 是「在一大群中间」：前后左右都是同伴，被围在正中央。
+    scene:
+      s: The house is among the trees.
+      note: 小房子被树围在中间（OALD 例句）
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲位置
+    nodes:
+    - sense: 在（一群）中间
+      headline: 不是夹在两个之间，是埋在一堆里面。
+      examples:
+      - s: We walked among the flowers.
+        note: 我们走在花丛中
+      source: Oxford Learner's Dictionaries《among》介词条义项 1（surrounded by；a house among the trees）
+  - domain: 抽象
+    label: 抽象义 · 讲归属
+    nodes:
+    - sense: 在……当中（是其中一员）
+      headline: 一群里头有我一个，名单里有我的名字。
+      examples:
+      - s: He is among the best students in our class.
+        note: 他是班里最好的学生之一
+      source: Oxford Learner's Dictionaries《among》介词条义项 2（being included or happening in groups）
+    - sense: 分给（大家）
+      headline: 把东西散到一群人手里，每人一份。
+      examples:
+      - s: Share the apples among the four children.
+        note: 把苹果分给四个孩子
+      source: Oxford Learner's Dictionaries《among》介词条义项 3（dividing or choosing, three or more involved；divided the money among the children）
+  nsenses: 3
+  opponents:
+  - word: between
+    headline: 两个分明的用 between，一大群笼统的用 among。
+  adult: 机制：among 的参照物必须是「成群的整体」，图式是没入群体而非夹在两点之间；边界：「两者 between、三者以上 among」只是入门近似——真实分界是逐个分明 vs 成群笼统：between 可用于三者以上逐个对应的关系（OALD《between》义项 1 明言 two or more points, objects, people；Eastwood《Oxford Guide to English Grammar》§227.8 同口径），among 则从不用于两个分明的端点。
+  sources:
+  - Oxford Learner's Dictionaries《among》介词条全 3 义项（2026-11-01 在线查证）
+  - Eastwood, J.《Oxford Guide to English Grammar》§227.8 Between and among（between = small number of separate individual items；among = larger number）
+  refs: []
+- word: around
+  bank_id: G3_K43
+  meaning: 在……周围；到处
+  phonetic_gb: /əˈraʊnd/
+  core:
+    headline: around 是「围成一圈」：围着桌子坐、绕着操场跑，都离不开一个圈。
+    scene:
+      s: We sit around the table.
+      note: 大家围成一圈坐——圈是 around 的老家
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲围与绕
+    nodes:
+    - sense: 围着、在……周围
+      headline: 一圈东西把中间的东西包起来。
+      examples:
+      - s: The children sit around the teacher.
+        note: 孩子们围坐在老师周围
+      source: Collins English Dictionary《around》介词义 1（to be positioned around a place or object means to surround it）
+    - sense: 绕着走、绕过
+      headline: 沿着边走，绕到另一边去。
+      examples:
+      - s: We walk around the lake.
+        note: 我们绕着湖走
+      source: Collins English Dictionary《around》介词义 2/3（move around a corner or obstacle to the other side；follow the perimeter）
+    - sense: 到处、在……各处
+      headline: 一个地方的这儿那儿都有，不只一处。
+      examples:
+      - s: Miss Li showed us around the school.
+        note: 李老师带我们参观了学校各处
+      source: Oxford Learner's Dictionaries《around》副词条义项 5（in or to many places；show you around）；Collins 介词义（in different parts of a place）
+  - domain: 抽象
+    label: 大概义 · 讲差不多
+    nodes:
+    - sense: 大约（时间、数目）
+      headline: 五点左右、四十上下，说个圈儿，不说死。
+      examples:
+      - s: We will meet around five o'clock.
+        note: 我们五点左右见
+      source: Oxford Learner's Dictionaries《around》副词条义项 1（approximately；He arrived around five o'clock）；Swan《Practical English Usage》（There were about/around fifty people there）
+  nsenses: 4
+  opponents:
+  - word: about
+    headline: 说「大约几点、多少个」about 和 around 都行；说「关于」只能用 about。
+  adult: 机制：around 的图式是「圈」——围住、绕行、散布在圈内各处是同一图式的静态、动态与分布三面；边界：大约义各家词典多列于副词条（OALD 副词义项 1），本页按词库口径（prep./adv. 双标）同页收录并在节点标明；英式口语中同义的 round 更常见，只登记。
+  sources:
+  - Oxford Learner's Dictionaries《around》条（副词义项 1 approximately / 义项 2 on every side / 义项 5 in or to many places，2026-11-01 在线查证）
+  - Collins English Dictionary《around》介词义项 1–3（surround / to the other side / through different parts）
+  - Swan, M.《Practical English Usage》about/around 条（p.83：indefinite movement and position；approximately）
+  refs: []
+- word: as
+  bank_id: G3_K42
+  meaning: 像……一样；作为
+  phonetic_gb: /æz/ /əz/
+  core:
+    headline: as 是「派身份」：她当老师、盒子当桌子——as 给人和东西派一个身份。
+    scene:
+      s: She works as a teacher.
+      note: 她的身份牌上写着「老师」
+  groups:
+  - domain: 抽象
+    label: 角色义 · 讲身份
+    nodes:
+    - sense: 作为、当（职业与角色）
+      headline: 一个人现在顶着的身份、干着的活儿。
+      examples:
+      - s: My mother works as a doctor.
+        note: 我妈妈当医生
+      source: Collins English Dictionary《as》介词义（in the role of; being；as his friend, I am probably biased）
+    - sense: 把……当作……用
+      headline: 一件东西临时顶上另一件东西的活儿。
+      examples:
+      - s: We use the box as a chair.
+        note: 我们拿箱子当椅子坐
+      source: Collins English Dictionary《as》介词义（in the role of）之功能展开：use … as …（学习语法参考通例：He used his jacket as a pillow）
+    - sense: 把……看作
+      headline: 心里给一个人贴上的身份牌。
+      examples:
+      - s: I regard him as my best friend.
+        note: 我把他看作最好的朋友
+      source: Collins English Dictionary《as》介词义（in the role of; being——身份认定）；regard … as … 为初中课本固定搭配
+    - sense: 跟……一样（as … as 跟名词）
+      headline: 两个 as 把要比的东西夹在中间：一样高、一样快。
+      examples:
+      - s: She is as tall as her mother.
+        note: 她和妈妈一样高
+      source: Oxford Learner's Dictionaries《as》副词条义项 1（as … as 比较）；注：牛津把 as … as 整体归在副词条下，本节点按国内教材口径只取「后跟名词」的部分，见成人层
+  nsenses: 4
+  opponents:
+  - word: like
+    headline: 「像」后面跟名词用 like（like me）；跟一整句话用 as；说身份、当作，只能用 as。
+  adult: 边界（本页口径）：as 没有可画的空间原型，其介词义核心是「身份等同」——给人或物贴上角色标签（Collins：in the role of; being）；as 的连词用法（当……时、因为、按照……那样 + 从句）一概不在本页，归语法区；as … as 的词性归类学界与词典不一（OALD 归副词条），本页按国内教材的介词口径收录「as + 名词」部分并在此明示，不向孩子讲词性之争。
+  sources:
+  - Collins English Dictionary《as》条：介词义 in the role of; being（2026-11-01 在线查证）
+  - Oxford Learner's Dictionaries《as》副词条义项 1（as … as 比较）及同条 Which Word? as / like 用法栏（like 为介词、后跟名词；as 为连词/副词、后跟从句）
+  refs: []
+- word: before
+  bank_id: V6_核心_55
+  meaning: 在…之前
+  phonetic_gb: /bɪˈfɔː/
+  core:
+    headline: before 是「排在前面」：洗手排在吃饭前面，B 排在 C 前面。
+    scene:
+      s: Wash your hands before dinner.
+      note: 洗手排在吃饭前面——先洗手，再吃饭
+  groups:
+  - domain: 时间
+    label: 时间义 · 讲先后
+    nodes:
+    - sense: 在……之前（时间）
+      headline: 一件事还没开始，另一件先做完。
+      examples:
+      - s: We have English before lunch.
+        note: 午饭前我们上英语课
+      source: Oxford Learner's Dictionaries《before》介词条义项 1（earlier than；before lunch）
+    - sense: 排在……前面（顺序）
+      headline: 名单、字母、队伍里靠前的那一个。
+      examples:
+      - s: Your name is before mine on the list.
+        note: 名单上你的名字排在我的前面
+      source: Oxford Learner's Dictionaries《before》介词条义项 2（ahead of in an order or arrangement）；Eastwood《Oxford Guide to English Grammar》§227（J comes before K）
+  - domain: 空间
+    label: 空间义 · 讲面前（稍正式）
+    nodes:
+    - sense: 在……面前
+      headline: 站在大家面前讲话、表演——这个说法有点正式。
+      examples:
+      - s: He stood before the class and sang a song.
+        note: 他站在全班面前唱了一首歌
+      source: Oxford Learner's Dictionaries《before》介词条义项 3（rather formal；in front of）；Eastwood《Oxford Guide to English Grammar》§7：讲位置时优先用 in front of 而非 before
+  nsenses: 3
+  opponents:
+  - word: after
+    headline: after 跟在后面，before 排在前面，正好相反。
+  adult: 机制：before 的图式是「站在前面」——时间上是先到，顺序上是靠前，空间上是面对；边界：英语讲具体位置时已基本让位给 in front of，before 的空间义只余正式与仪式场景（OALD 义项 3 标 rather formal；Oxford Guide §7 明言讲位置 prefer in front of and behind to before and after），故本页空间义排末位并标注。
+  sources:
+  - Oxford Learner's Dictionaries《before》介词条义项 1/2/3（2026-11-01 在线查证）
+  - Eastwood, J.《Oxford Guide to English Grammar》§7（In front of, before, behind, after：讲位置 prefer in front of/behind）与 §227（before/after 表顺序）
+  refs: []
+- word: behind
+  bank_id: V6_核心_41
+  meaning: 在…后面
+  phonetic_gb: /bɪˈhaɪnd/
+  core:
+    headline: behind 是「在后面」：躲在桌子后面、跟在队伍后面，都在后边。
+    scene:
+      s: The cat is behind the table.
+      note: 猫躲在桌子后面——既有登记例句（PB-08/PB-09）
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲位置
+    nodes:
+    - sense: 在……后面
+      headline: 在背对着我们的那一面，常常还被挡住、看不见。
+      examples:
+      - s: The sun went behind the clouds.
+        note: 太阳躲到云后面去了
+      source: Oxford Learner's Dictionaries《behind》介词条义项 1（at or towards the back of, and often hidden by it）；本项目 small_systems PB-08（几何自画像）、PB-09（语用容差）已登记本词原型
+  - domain: 抽象
+    label: 抽象义 · 讲进度与人心
+    nodes:
+    - sense: 落在……后面（进度慢）
+      headline: 别人跑在前头，自己还没赶上。
+      examples:
+      - s: Tom is behind the class in reading.
+        note: 汤姆的阅读落在全班后面
+      source: Oxford Learner's Dictionaries《behind》介词条义项 2（making less progress than；behind the rest of the class in reading；behind schedule）
+    - sense: 在背后支持
+      headline: 站在你身后撑着你，就是支持你。
+      examples:
+      - s: We are all behind you!
+        note: 我们都支持你！
+      source: Oxford Learner's Dictionaries《behind》介词条义项 3（giving support to；her family was right behind her）
+    - sense: 是……幕后的人
+      headline: 事情是在后面悄悄推动的那个人办的。
+      examples:
+      - s: Who is behind the plan?
+        note: 这个计划是谁在背后推动的？
+      source: Oxford Learner's Dictionaries《behind》介词条义项 4（responsible for starting or developing something；the man behind the plan）
+  nsenses: 4
+  opponents:
+  - word: in front of
+    headline: in front of 在前面，behind 在后面，正好相对。
+  adult: 机制：behind 是投影介词——它的位置要靠观察者的坐标来定（PB-08），且预设离得不远、常带遮挡（PB-09 语用容差；OALD 义项 1 明言 often hidden）；边界：落后、支持、幕后都是「在后面」向进度域与社会域的映射，教学中串成一条链即可，不必逐项死记。
+  sources:
+  - Oxford Learner's Dictionaries《behind》介词条义项 1–4（2026-11-01 在线查证；义项 5「已成过去」登记未收）
+  - 本项目 small_systems PB-08 / PB-09（behind 的理想意义与语用容差，既有登记，本词现有原型页 refs 已挂此二条）
+  refs:
+  - PB-08
+  - PB-09
+- word: beside
+  bank_id: V6_核心_43
+  meaning: 在…旁边(=next to)
+  phonetic_gb: /bɪˈsaɪd/
+  core:
+    headline: beside 是「肩并肩」：紧挨着坐、紧挨着站，中间不留缝。
+    scene:
+      s: Come and sit beside me.
+      note: 坐到我旁边来，紧挨着（OALD 例句 Sit here beside me 同型）
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲相邻
+    nodes:
+    - sense: 在……旁边（紧挨着）
+      headline: 就在边上，伸手就够得着。
+      examples:
+      - s: He sat beside her all evening.
+        note: 他一晚上都坐在她旁边
+      source: Oxford Learner's Dictionaries《beside》介词条义项 1（next to or at the side of；He sat beside her all night）；Lindstromberg (2010) 第 5 章 beside/along/against 簇（经 PB-04 登记）
+  - domain: 抽象
+    label: 抽象义 · 讲比较
+    nodes:
+    - sense: 跟……比起来
+      headline: 两幅画并排一放，高下立刻看出来。
+      examples:
+      - s: My painting looks childish beside yours.
+        note: 我的画跟你的比起来显得很幼稚
+      source: Oxford Learner's Dictionaries《beside》介词条义项 2（compared with）
+  nsenses: 2
+  opponents:
+  - word: besides
+    headline: 多一个 s，意思全变：beside 是「在旁边」，besides 是「除此之外还有」——本页头号防混对手（OALD Which Word? beside/besides）。
+  - word: next to
+    headline: next to 和 beside 是同义搭档，都说「紧挨着」，可以互换着用。
+  adult: 机制：beside 的图式只有「侧旁相邻」一个（古英语 be sīdan「在侧边」；Lindstromberg 第 5 章将 beside 与 along/against 同簇处理）；边界：OALD 介词义项仅此 2 条，本页按出处纪律不凑第三义；与 besides 的混淆是词典专设 Which Word? 栏的经典错点，教学中必须成对出现。
+  sources:
+  - Oxford Learner's Dictionaries《beside》介词条全 2 义项 + Which Word? beside / besides 用法栏（2026-11-01 在线查证）
+  - Lindstromberg, S. (2010) 第 5 章（beside/along/against 簇，pp. 81–88）——经本项目 small_systems PB-04 登记转引
+  refs:
+  - PB-04
+- word: between
+  bank_id: G4_0584
+  meaning: 在（两者）之间
+  phonetic_gb: /bɪˈtwiːn/
+  core:
+    headline: between 是「夹在中间」：左边一个、右边一个，正好被夹在缝里。
+    scene:
+      s: The ball is between the two boxes.
+      note: 球夹在两个箱子中间——两个端点，一段缝
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲位置
+    nodes:
+    - sense: 夹在两个（端点）中间
+      headline: 左右各有一个东西，我正好在它们之间。
+      examples:
+      - s: I sat between Tom and Jim.
+        note: 我坐在汤姆和吉姆中间
+      source: Oxford Learner's Dictionaries《between》介词条义项 1（in the space separating two or more points, objects, people；I sat down between Jo and Diana）
+  - domain: 时间
+    label: 时间义 · 讲时段
+    nodes:
+    - sense: 在……和……之间（时间）
+      headline: 两个时间点夹出的一段时间。
+      examples:
+      - s: Don't eat between meals.
+        note: 两顿饭之间不要吃零食
+      source: Oxford Learner's Dictionaries《between》介词条义项 2（in the period of time that separates two days, years, events）
+  - domain: 抽象
+    label: 抽象义 · 讲尺度与关系
+    nodes:
+    - sense: 在……到……之间（数量）
+      headline: 数目落在两个数之间，不多不少。
+      examples:
+      - s: Choose a number between 1 and 10.
+        note: 选一个 1 到 10 之间的数
+      source: Oxford Learner's Dictionaries《between》介词条义项 3（at some point along a scale）
+    - sense: 两者之间的（关系、选择）
+      headline: 说两样东西的差别，或者在两者里挑一个。
+      examples:
+      - s: You must choose between the red pen and the blue pen.
+        note: 你得在红笔和蓝笔里选一支
+      source: Oxford Learner's Dictionaries《between》介词条义项 6（used to show a connection or relationship；choose between the two jobs）
+    - sense: 两个人分、只在你我之间
+      headline: 一块蛋糕两人分；一句话只在你我之间说。
+      examples:
+      - s: Let's share the cake between the two of us.
+        note: 这块蛋糕我们俩分着吃
+      source: Oxford Learner's Dictionaries《between》介词条义项 7（shared by two or more people；between you and me = it is a secret）
+  nsenses: 5
+  opponents:
+  - word: among
+    headline: among 是混在一大群当中，between 是夹在分明的端点之间。
+  adult: 机制：between 的图式是「两个锚点夹出一段」——空间、时间、数量、关系都靠端点定界；边界：端点可以多于两个，只要逐个分明（OALD 义项 1 明言 two or more；Eastwood《Oxford Guide to English Grammar》§227.8：between 用于 small number of separate individual items），与 among 的分界不在数目，而在「分明 vs 成群」；另注意 between 后接宾格（between you and me，OALD 同条用法注）。
+  sources:
+  - Oxford Learner's Dictionaries《between》介词条义项 1/2/3/6/7（2026-11-01 在线查证；义项 4 分界线、5 来往、8 合力、9 诸事之间登记未收或并注）
+  - Eastwood, J.《Oxford Guide to English Grammar》§227.8 Between and among
+  refs: []
+- word: beyond
+  bank_id: ADD_0022
+  meaning: 在…之外；超过
+  phonetic_gb: /bɪˈjɒnd/
+  core:
+    headline: beyond 是「越过那条线，在更远的那边」：过了河、过了十二点、超过手能够到的地方。
+    scene:
+      s: The village is beyond the river.
+      note: 过了河，才是那个村子
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲远侧
+    nodes:
+    - sense: 在……的那一边
+      headline: 隔着一个东西，在它更远的那一侧。
+      examples:
+      - s: The road goes on beyond the village.
+        note: 路过了村子还往前伸
+      source: Oxford Learner's Dictionaries《beyond》介词条义项 1（on or to the further side of；The road continues beyond the village）
+  - domain: 时间
+    label: 时间义 · 讲更晚
+    nodes:
+    - sense: 晚于、过了（时间点）
+      headline: 过了这个点儿还在继续。
+      examples:
+      - s: Don't stay up beyond nine o'clock.
+        note: 别熬过九点还不睡
+      source: Oxford Learner's Dictionaries《beyond》介词条义项 3（later than a particular time；It won't go on beyond midnight）
+  - domain: 抽象
+    label: 抽象义 · 讲限度
+    nodes:
+    - sense: 够不着、太难（超出限度）
+      headline: 手伸到头够不着，题目难到做不出。
+      examples:
+      - s: The kite is just beyond my reach.
+        note: 风筝就差一点儿，我够不着
+      source: Oxford Learner's Dictionaries《beyond》介词条义项 5（too far or too advanced for；The handle was just beyond my reach；The exercise was beyond the abilities of most of the class）
+    - sense: 没法再……了（beyond repair）
+      headline: 坏过头了，修也修不好、管也管不住。
+      examples:
+      - s: The old bike is beyond repair.
+        note: 这辆旧自行车没法修了
+      source: Oxford Learner's Dictionaries《beyond》介词条义项 4（used to say that something is not possible；The bicycle was beyond repair）
+  nsenses: 4
+  opponents:
+  - word: within
+    headline: within 是在界线里面、够得着；beyond 是越过界线、够不着（OALD 习语对 beyond/within）。
+  adult: 机制：beyond 的图式是「越过界线到更远侧」——空间的那一边、时间的更晚、能力的够不着是同一越界图式的三面；边界：beyond 的参照物常是界线本身（reach / control / repair），它标的是「出界」而非新的目的地，与 past 的「经过」义不要混同。
+  sources:
+  - Oxford Learner's Dictionaries《beyond》介词条全 5 义项（2026-11-01 在线查证）：义项 1 远侧 / 2 超过（并入限度义注）/ 3 时间更晚 / 4 不可能 / 5 超出能力
+  refs: []
+- word: by
+  bank_id: V6_核心_53
+  meaning: 乘(交通工具)/在…旁/被
+  phonetic_gb: /baɪ/
+  core:
+    headline: by 的老家是「在旁边」：先有坐在旁边，后来才管起坐什么车去、谁做的、几点以前。
+    scene:
+      s: Come and sit by me.
+      note: 坐到我旁边来（OALD 例句）
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲位置
+    nodes:
+    - sense: 在……旁边
+      headline: 就在边上，紧挨着——这是 by 最老的画面。
+      examples:
+      - s: There is a house by the river.
+        note: 河边有一座房子
+      source: Oxford Learner's Dictionaries《by》介词条（near somebody/something; at the side of；a house by the river；Come and sit by me）；Eastwood《Oxford Guide to English Grammar》§6（by = at the side of or very near）
+  - domain: 时间
+    label: 时间义 · 讲期限
+    nodes:
+    - sense: 不迟于……（最晚到……）
+      headline: 到这个点儿为止，做完就行——可以提前，不能更晚。
+      examples:
+      - s: Come back by five o'clock.
+        note: 最晚五点回来
+      source: Oxford Learner's Dictionaries《by》介词条（not later than the time mentioned；Can you finish the work by five o'clock?）；Eastwood《Oxford Guide to English Grammar》§227（By means 'not later than'，并与 before 对比）
+  - domain: 抽象
+    label: 方式与施事 · 讲办法和出处
+    nodes:
+    - sense: 乘……（交通工具）
+      headline: 靠什么去：车、船、飞机，前面不加 the。
+      examples:
+      - s: We go to school by bus.
+        note: 我们坐公交车上学
+      source: Oxford Learner's Dictionaries《by》介词条（used for showing how or in what way；travel by boat/bus/car/plane）；本项目 C-11 已登记本例句（零冠词口径）
+    - sense: 靠……（办法、动作）
+      headline: 做一个动作，事情就办成了。
+      examples:
+      - s: You open it by pressing this button.
+        note: 按这个按钮就能打开它
+      source: Oxford Learner's Dictionaries《by》介词条（Switch it on by pressing this button）；Eastwood《Oxford Guide to English Grammar》§228（by + 动名词表方式；by 较抽象，with 指手中工具）
+    - sense: 被……、由……（作者）
+      headline: 被动句里站在最后的那个人，就是做事的人。
+      examples:
+      - s: The cake was made by Mum.
+        note: 蛋糕是妈妈做的
+      source: Oxford Learner's Dictionaries《by》介词条（used after a passive verb to show who or what does, creates, or causes something）
+  nsenses: 5
+  opponents:
+  - word: before
+    headline: by Friday 是「最迟周五」（周五当天也行），before Friday 是「周五之前」（不含周五）——差一天，意思差很多（Oxford Guide §227 对比）。
+  - word: with
+    headline: 手里拿着的工具用 with（with a knife），靠什么办法用 by（by bus、by pressing）。
+  adult: 机制：by 的老家是「在旁边」（OALD 空间义、Oxford Guide §6 同口径），期限、方式、施事诸义都是从「贴近」长出的引申，教学上按一条链串记；边界：by 的期限义是「不迟于」而非「在……之前」，与 before 的分界见对手栏（Oxford Guide §227 明文对比）；by + 交通工具零冠词是硬规则（C-11 登记），不可类推到 by the day（按日计酬）等计价结构。
+  sources:
+  - Oxford Learner's Dictionaries《by》介词条（2026-11-01 在线查证）：方式义 / 旁边义 / 被动施事义 / 不迟于义为本页四组依据（其余义项登记未收）
+  - Eastwood, J.《Oxford Guide to English Grammar》§6（by = at the side of）、§227（by = not later than；与 before 对比；till/until 辨析）、§228（with 与 by 表方式的分工；by + 交通工具不用 the）
+  - 本项目既有登记 C-11（by bus 零冠词例句 We go to school by bus.，见现有原型 DATA）
+  refs:
+  - C-11
+- word: down
+  bank_id: G3_K20
+  meaning: 向下
+  phonetic_gb: /daʊn/
+  core:
+    headline: down 是「从高到低」：球从山上滚下来，泪从脸上流下来。
+    scene:
+      s: The stone rolled down the hill.
+      note: 石头从山上滚到山下（OALD 例句）
+  groups:
+  - domain: 空间
+    label: 空间义 · 讲向下与沿路
+    nodes:
+    - sense: 从高处到低处
+      headline: 沿着斜面、脸面、楼梯，一路往低处去。
+      examples:
+      - s: Tears ran down her face.
+        note: 眼泪顺着脸流下来
+      source: Oxford Learner's Dictionaries《down》介词条义项 1（from a high or higher point to a lower one；Tears ran down her face）
+    - sense: 沿着……往前（顺路）
+      headline: 顺着路、河往前走——这时不一定是下坡。
+      examples:
+      - s: Go down the road and turn left.
+        note: 沿着这条路往前走，然后左转
+      source: Oxford Learner's Dictionaries《down》介词条义项 2（along; towards the direction in which you are facing；Go down the road till you reach the traffic lights）
+  nsenses: 2
+  opponents:
+  - word: up
+    headline: up 往上、down 往下，楼梯口正好相对（OALD《down》条与 up 互参）。
+  adult: 机制：down 的图式是「沿斜面向下」；边界：down the street 的 down 已虚化为「顺着往前」，不要求真有高低差——这是路径义吸收图式的常例（OALD 义项 2）；纵贯时间的 down the ages 属文学义（OALD 义项 3），不在本段，登记未收。本词 OALD 介词义项共 3 条，收高频 2 条。
+  sources:
+  - Oxford Learner's Dictionaries《down》介词条全 3 义项（2026-11-01 在线查证）：义项 1 向下 / 义项 2 沿着 / 义项 3 纵贯时间（未收）
+  refs: []
+- word: except
+  bank_id: ADD_0099
+  meaning: 除了；除…之外
+  phonetic_gb: /ɪkˈsept/
+  core:
+    headline: except 是「把一个留在外面」：全队都算上，只把一个拿出去。
+    scene:
+      s: All the students are here except Tom.
+      note: 全班都到了，只差 Tom 一个
+  groups:
+  - domain: 抽象
+    label: 除外义 · 讲例外
+    nodes:
+    - sense: 除……之外（都不）
+      headline: 一句话把所有人都说遍了，只有一个人不在里面。
+      examples:
+      - s: They all came except Matt.
+        note: 他们都来了，就马特没来
+      source: Oxford Learner's Dictionaries《except》介词条（used before you mention the only thing or person about which a statement is not true；They all came except Matt）；Swan《Practical English Usage》§456
+    - sense: except for：整体里唯一的例外
+      headline: 先说整体都好，只挑出唯一的一处不算。
+      examples:
+      - s: Everything was perfect except for the weather.
+        note: 样样都好，就是天气不作美
+      source: Oxford Learner's Dictionaries《except》条（also except for）；Swan《Practical English Usage》§456.1–456.2（except for before nouns；全称词后 for 常省略）
+    - sense: 搭档 but：全称词后面 but 也能说「除……之外」
+      headline: nobody、everybody、nothing 这类词后面，but 脱下「但是」的外套，当 except 用。
+      examples:
+      - s: Nobody but me knew the answer.
+        note: 除了我，没人知道答案
+      source: Swan《Practical English Usage》§116 but meaning 'except'（We use but to mean 'except' after all, none, every, any, no …；原文例句 Nobody but me knew the answer.）
+  nsenses: 3
+  opponents:
+  - word: besides
+    headline: besides 是「再加上一个」（往里加），except 是「拿掉一个」（往外减），方向正好相反（OALD Which Word? besides / except (for) / apart from）。
+  adult: 机制：except 的动作是「从整队里取出一个」（OALD 词源栏：拉丁 excipere = ex-「出」+ capere「取」）；边界：与 but 的分工按 Swan 口径——but 只在 all / none / every / any / no 及 everything、nobody 等全称词之后顶替 except（§116），except (for) 是通用标记；且 except 后接介词短语或从句时不用 for（§456.3：except in Scotland；except when he smiles）。
+  sources:
+  - Oxford Learner's Dictionaries《except》介词条（唯一义 + except for）及 Which Word? besides / except (for) / apart from 用法栏（2026-11-01 在线查证）
+  - Swan, M.《Practical English Usage》§116（but meaning 'except'）与 §456（except and except for 全条）
+  refs: []
+- word: from
+  bank_id: V6_核心_47
+  meaning: 从…来自(be from)
+  phonetic_gb: /ˈfrɒm/
+  core:
+    headline: from 是「从……出发」：人从老家来、车从站里来，都先有个出发点。
+    scene:
+      s: I am from China.
+      note: 我的老家在中国——课本里的 from 第一句
+  groups:
+  - domain: 空间
+    label: 起点义 · 讲出发
+    nodes:
+    - sense: 从……（地方）出发
+      headline: 路的起点、东西的来路。
+      examples:
+      - s: This train comes from Beijing.
+        note: 这列火车是从北京开来的
+      source: Oxford Learner's Dictionaries《from》介词条义项 1（used to show where somebody/something starts；Has the train from Bristol arrived?）
+    - sense: 来自（老家、出处）
+      headline: 人是打哪儿来的，东西是打哪儿出的。
+      examples:
+      - s: My friend Tom is from Canada.
+        note: 我的朋友汤姆来自加拿大
+      source: Oxford Learner's Dictionaries《from》介词条义项 2（used to show what the origin of somebody/something is；I'm from Italy）
+    - sense: 从……那里（收到、借到）
+      headline: 东西从一个人的手里，到了我手里。
+      examples:
+      - s: I got a letter from my friend.
+        note: 我收到一封朋友的来信
+      source: Oxford Learner's Dictionaries《from》介词条义项 3（used to show who sent or gave something）
+    - sense: 离……（距离）
+      headline: 从这儿量到那儿，有多远。
+      examples:
+      - s: My home is ten minutes from school.
+        note: 我家离学校十分钟路
+      source: Oxford Learner's Dictionaries《from》介词条义项 5（used to show how far apart two places are）
+  - domain: 时间
+    label: 时间义 · 讲开始
+    nodes:
+    - sense: 从……（时间）开始
+      headline: 时间轴上的出发点，常和 to 手拉手。
+      examples:
+      - s: We have lessons from Monday to Friday.
+        note: 我们周一到周五上课
+      source: Oxford Learner's Dictionaries《from》介词条义项 4（used to show when something starts；open from 8 a.m. to 7 p.m.）
+  nsenses: 5
+  opponents:
+  - word: to
+    headline: from 管出发、to 管到达，两个常常一前一后手拉手出现。
+  adult: 机制：from 是纯粹的「起点」标记——空间起点、时间起点、来源与距离都从同一个「从哪儿出发」图式展开，常与 to 组成起止对子（OALD 义项 1/2/3/4/5 同条并列）；边界：材料义（made from）与区分义（different from）由动词/形容词搭配带动，不在本页展开，见未收登记。
+  sources:
+  - Oxford Learner's Dictionaries《from》介词条义项 1/2/3/4/5（2026-11-01 在线查证；义项 6 视角、7 范围、8 变化前态、9 区分、10 材料、11 分离、12 防止、13 原因、14 判断依据登记未收）
+  refs: []
+uncollected_senses:
+- word: about
+  sense: be about to do（即将）
+  reason: 是 be about to 结构而非介词义项，归语法区结构条，不在本页立义
+- word: about
+  sense: 身上带着（money about him）
+  reason: Dictionary.com 列为现行义但属旧式用法，小学+初中课本不出现，不收
+- word: about
+  sense: What about …?（提议句式）
+  reason: 是提议句型而非义项，归句型材料，不在本页立义
+- word: after
+  sense: be after / The police are after him（追捕、想要）
+  reason: 初中后段阅读义，本段先收日常的「追、随」，登记后补
+- word: after
+  sense: ask after（问候近况）
+  reason: 英式熟语搭配，归短语材料，不立义
+- word: after
+  sense: after all（毕竟、终究）
+  reason: 习语，归习语材料，不立义
+- word: against
+  sense: 在……衬托下（red clothes against the snow）
+  reason: 书面描写义，小学+初中低频，不收
+- word: against
+  sense: 拿……和……比/折算（weigh … against …；exchange rate against）
+  reason: 成人书面义，不收
+- word: against
+  sense: 对……不利（The evidence is against him）
+  reason: OALD 义项 2，初中后段再补，登记
+- word: among
+  sense: among other things（除此之外还有）
+  reason: 习语短语，初中后段随阅读补，不立义
+- word: among
+  sense: amongst（英式变体）
+  reason: 与 among 同义的旧变体，教材统一用 among，只登记不教产出
+- word: around
+  sense: turn around（转身）
+  reason: 副词/短语动词侧用法，不立介词义
+- word: around
+  sense: 在场、存在（Is Mum around?）
+  reason: 副词义，不立介词义
+- word: around
+  sense: around the corner（就在附近/即将来临）
+  reason: 习语，归习语材料
+- word: as
+  sense: 连词用法：当……时 / 因为 / 像……那样（带从句）
+  reason: 任务口径明确不在本页，归语法区连词条；此处仅登记
+- word: as
+  sense: as if / as though（好像）
+  reason: 从句结构，归语法区
+- word: as
+  sense: such as（例如）
+  reason: 列举短语，归短语材料
+- word: as
+  sense: as for（至于）
+  reason: 话题转换短语，初中后段，不立义
+- word: before
+  sense: 在法官/法庭面前（before the judge）
+  reason: OALD 义项 5，法律正式场景，不收
+- word: before
+  sense: 面对（将来的任务）（the task before us）
+  reason: OALD 义项 4，书面义，不收
+- word: before
+  sense: 优先于（put work before everything）
+  reason: OALD 义项 2 的抽象端，初中后段再补，登记
+- word: behind
+  sense: 已成过去（The exams are behind us now）
+  reason: OALD 义项 5，初中后段阅读义，登记后补
+- word: behind
+  sense: leave behind（落下、遗留）
+  reason: 短语动词侧，不立介词义
+- word: beside
+  sense: beside the point（离题、不相干）
+  reason: 习语，归习语材料，不立义
+- word: beside
+  sense: beside oneself（情绪失控）
+  reason: 习语，归习语材料，不立义
+- word: beside
+  sense: 义项数说明
+  reason: OALD 本词介词义项共 2 条，本页收全 2 条；任务颗粒度为 3–5 节点，本词按「宁可少写并登记」的出处纪律执行，不虚构第三义
+- word: between
+  sense: 来往于两地之间（trains between A and B）
+  reason: OALD 义项 5，与 from…to 交通句型合学，不在本页单立
+- word: between
+  sense: 合力完成（Between us we made a kite）
+  reason: OALD 义项 8，初中后段，登记后补
+- word: between
+  sense: 分界线（the border between …）
+  reason: OALD 义项 4，与义项 1 同族，阅读中自然习得，不单立
+- word: beyond
+  sense: beyond doubt / beyond question（毫无疑问）
+  reason: 习语，归习语材料
+- word: beyond
+  sense: It's beyond me（我搞不懂）
+  reason: OALD 同条习语 be beyond somebody，口头习语，初中后段，登记
+- word: beyond
+  sense: 纯数量超过（beyond 100 people）
+  reason: OALD 义项 2 的数量端，与 more than 合学，不单立
+- word: by
+  sense: by chance / by mistake（碰巧、错误地）
+  reason: OALD 结果义，属固定搭配组，归短语材料，不立义
+- word: by
+  sense: 差额（missed by two inches；up by 10%）
+  reason: OALD 程度义，初中后段，登记后补
+- word: by
+  sense: 按……计（by the hour / by the day）
+  reason: OALD 计量义，初中后段，登记后补
+- word: by
+  sense: 经过（He walked by me）
+  reason: OALD 经过义多与 walk/pass 等动词成短语，归短语动词侧，不立义
+- word: by
+  sense: by day / by night（在白天/夜里）
+  reason: 与方式义相邻的固定搭配，登记
+- word: down
+  sense: 纵贯（down the ages，纵贯历史）
+  reason: OALD 义项 3，文学义，小学+初中文科阅读低频，不收
+- word: down
+  sense: 向南/下游的地域义（down to Florida；down the river 的流向端）
+  reason: 英美地域用法不一（见 OED 讨论），不立义；down the river 作「沿河往前」时并入义项 2
+- word: except
+  sense: except + 从句（except that …）
+  reason: 连词侧用法，归语法区，不立介词义（Swan §456.3 登记其与 except for 的分工）
+- word: except
+  sense: do nothing except + 动词原形
+  reason: Swan §456.5 结构，初中后段随句型学，不立义
+- word: except
+  sense: excepting / excluding（正式变体）
+  reason: 正式书面词，不收
+- word: from
+  sense: made from（材料来源）
+  reason: OALD 义项 10，与 made of 的对比是另一个辨析点，随 make 词条学，不在本页立义
+- word: from
+  sense: different from（与……不同）
+  reason: OALD 义项 9/14，由 different 带动的搭配，随 different 词条学，登记
+- word: from
+  sense: from … to …（数量范围）
+  reason: OALD 义项 7，与义项 4 的时间起止同型，数量端初中后段补，登记
+- word: from
+  sense: 原因义（sick from tiredness）
+  reason: OALD 义项 13，初中后段，登记
+- word: from
+  sense: 阻止、救免（prevent / save … from）
+  reason: OALD 义项 11/12，动词搭配侧，归短语动词材料

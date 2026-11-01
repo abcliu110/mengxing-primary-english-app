@@ -45,6 +45,8 @@
 
 待补词候选 84 个词形（`hitching` 中 `in_bank: false`；按词库规矩须先核查入词库、再回解析 id，本波次不动词库）：真缺词如 ache、alphabet、animate、apply、author、bachelor、cause、course、culture、motion、society、system、symbol、tension、until、wine、wrap 等；派生/屈折形如 buses、cats、dogs、horses、watches、panicking、picnicking、trafficked、frolicking、mimicking、hoping、wanted、says；专名 Chicago、Christian、Japanese、Kyle；短语（非单词，收官步决定拆解或剔除）apple pie、blue-green、icy cold、easy-going；清单点名的库外词 sceptic、hough、mnemonic 在内。
 
+**2026-11-02 补词清零波处置**：`phonics_hitching.yaml` 中 `in_bank: false` 行实测 95 行（本节原记 84 为早期计数，以文件为准），已全部处置——72 词经回查已在词库（补入轮次 ADD_0396–0716 等），`in_bank` 翻 true；余 23 行非真缺词：屈折/派生词形 15（buses、cats、chips、computers、dogs、frolicking、hoping、horses、mimicking、panicking、picnicking、says、trafficked、wanted、watches，逐行 note 登记归一词元与 bank_id）、专名 4（Chicago、Christian、Japanese、Kyle，待词库专名口径裁定）、短语 4（apple pie、blue-green、icy cold、easy-going，非单词条目）。本节待补词候选就此清零；sceptic、hough、mnemonic 三词为清单点名的库外词，未在 hitching 行内，不属本轮处置范围。
+
 ## 5. 与清单原文的差异点
 
 1. 字段化拆分：清单的「机制/出处/支撑/边界/专家分歧」五段映射为 `mechanism.beats`（按小节切分）、`adult.sources`（出处＋支撑合并、保留接触等级原话）、`adult.boundary`、`adult.disputes`；无信息丢失性改写，claim.statement 为唯一提炼加工（见 §1）。

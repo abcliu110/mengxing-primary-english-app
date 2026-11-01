@@ -124,9 +124,9 @@ V-32 定版数字即按此对齐：小学生语料中 SEM 3–5 约 18–24%（�
 
 | 类别 | 数量 | 说明 |
 |---|---|---|
-| 补词候选 | 挂接表 339 词中 201 词 `bank_id: null` | 含 V-34 同化家族、*spek- 家族、V-36/37 派生例词等整族缺词；须按 WORDBANK 规则 2 先核验后入词库，其中约 10 个为词形登记（归一至原形，不单独入词条）。代表：inspect、respect、cause、set、price、inquire、interrogate、kingly、regal、visible、credible、government、development、readable、uncertain、unbelievable、incredible、illegal、irregular、refill、disconnect、simplify、modernize 等 |
-| 例词 pending_words | 40 个（去重） | 已写在各条目 examples.pending_words，与上行同源，补词后回填 word_ids |
-| exceptions 例词 id 回填 | 38 条 exception 暂无 word_ids | 例外所述词多在补词候选中；补词落地后逐条回填，满足 DESIGN §3.2「每条例外自带例词 id」 |
+| 补词候选 | ~~挂接表 339 词中 201 词 `bank_id: null`~~ **已清零（2026-11-02）** | 含 V-34 同化家族、*spek- 家族、V-36/37 派生例词等整族缺词；须按 WORDBANK 规则 2 先核验后入词库，其中约 10 个为词形登记（归一至原形，不单独入词条）。代表：inspect、respect、cause、set、price、inquire、interrogate、kingly、regal、visible、credible、government、development、readable、uncertain、unbelievable、incredible、illegal、irregular、refill、disconnect、simplify、modernize 等 |
+| 例词 pending_words | ~~40 个（去重）~~ **已清零（2026-11-02）** | vocab.yaml 实际 38 处 pending_words（例词 24 + 例外 14）已全量合并进 word_ids，22 条「补词待办」pending 项删除；tips→tip、referred→refer 两处按词元归一回填，不另立词条 |
+| exceptions 例词 id 回填 | 38 条 exception 暂无 word_ids | 其中带 pending_words 的 14 处已于 2026-11-02 回填 word_ids；其余为例外原则级注记（无具体例词），word_ids 保持空属设计内 |
 | 探针 | 43 条 | PRB-Vxx-* 编号已预留，待探针波次按五字段格式补写 |
 | scene_spec | 44 条 | 待动画波次按事实表先行纪律补写（V-40 已有） |
 | error_cases | 24 条 | 只接受真实语料/文献登记病例，不自编 |

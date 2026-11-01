@@ -33,11 +33,10 @@
 ## 三、待补
 
 1. **probes（70 条全空）**：支撑层探针的形态未定（教师理解度探针 / 设计评审题），待设计评审后另波补入；在此之前任何条目不得声称有探针覆盖。
-2. **补词候选**（例句/短语中出现、经回查不在词库，故未挂接 word_ids；按 WORDBANK 规则须先核查入词库、再回填挂接）：
-   - 普通词候选：carve、wipe、scrub、load、airs、thing、stuff、reflect、crown、mightier、brilliant、empty、boys、kill、mix、remove；end（仅在习语短语 the end of the pier / end of the world 中出现，是否单独立条待评审）；hands（hand 的复数形，是否以别名归一待评审）。
+2. **补词候选**（例句/短语中出现、经回查不在词库，故未挂接 word_ids；按 WORDBANK 规则须先核查入词库、再回填挂接）：**2026-11-02 补词清零波已清零**——逐词回查：carve ADD_0441、wipe ADD_0715、scrub ADD_0634、load ADD_0562、stuff ADD_0662、reflect ADD_0618、crown ADD_0472、brilliant ADD_0435、empty ADD_0496、kill ADD_0554、mix ADD_0573、remove ADD_0622 均已在库；thing（ADD_0781）与 spirit（ADD_0783，见 CG-06 spirits 短语）为真缺词，经 Cambridge 核验补入。词形归一处置：airs → air（G4_0981）复数形、mightier → mighty（ADD_0572）比较级、boys → boy（G1_1000）复数形、spirits → spirit（ADD_0783）复数形、hands → hand（G3_118）复数形，均按词元回填，不另立词条。end 本已立条（ADD_0497），习语短语构成词身份明确，原「是否单独立条」之问随之消解。
    - 已按 verb_form_of 口径在条目内注明归一的：arrived → arrive（VB-05 例）、wanted → want（VB-09 例）；lost 本身在库（V6_MORPH_58，已挂接）。
    - 专名豁免（按词库专名口径不入普通词表）：barcelona（CB-07 例句中的地名）、SpongeBob（YL-09 例，商标/角色名）。
-3. **挂接回填**：上列候选词入词库后，须回填对应条目的 word_ids/anchors 并重跑挂接倒排（涉及条目：VB-02 carve、VB-04 wipe/scrub、VB-11 load/airs、LS-14 thing/stuff、CB-07 barcelona 及 reflect/crown/mightier、CG-05 crown/brilliant、CB-06 end、LS-07 kill/mix 一带）。
+3. **挂接回填**：**已完成（2026-11-02）**——support.yaml 内 CB-08（thing/stuff）、CB-14（end）、CG-04（mightier/crown）、CG-06（spirit）四条的 word_ids 已回填，其余候选词所在条目为成人层文本注记、已同步改写为「已入词库」口径；support_hitching.yaml 新增 crown / end / mighty / spirit / stuff / thing 六行。（注：本节原稿所记条目号与文件实况有个别出入——thing/stuff 实属 CB-08、end 例实属 CB-14、reflect 注记在 CB-10、crown/brilliant 注记分属 CG-04/CB-09——回填以文件实况为准。）barcelona、SpongeBob 仍按专名豁免，不入普通词表。
 4. **各组 pending 汇总**（细节逐条在 support.yaml 的 `adult.pending`）：
    - LS：Kemmis & McTaggart 1988 分订本未核；Norton & Toohey (2011) 页码待核；陆俭明 (2000) 页码与 2005 修订状态、D2000-1-133 目录未核；韩礼德书名早期译名；LS-06「四种版本判定」；Palmer《The English Verb》初版年已由清单纠正为 1974（任务书 1965 为误记，已在 VB-08 著录）。
    - YL：河北师大习得系列与北外专编《英语学习论》是否同书两版未判；刘润清《英语教育研究》转述级；「HYSTERIA」为网络截图（来源等级已在条目标明）；胡壮麟 (1984) 页码式读法；曹文轩 (2017) 签名措辞；桂诗春 CLT 章页码。

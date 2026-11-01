@@ -5,7 +5,7 @@ meta:
   date: '2026-11-01'
   pattern_count: 144
   word_count: 825
-  note: in_bank=false 的词为待补词候选（见 phonics_MODEL.md）；sight_type 回填不在本表（属 S-24/S-25 收官步按 Dolch/不规则口径统一判定）。
+  note: in_bank=false 的词为待补词候选（见 phonics_MODEL.md）；补词清零波 2026-11-02 处置完毕：72 词已入词库翻 true，余 23 行为词形/专名/短语，逐行 note 登记，不再属待补词；sight_type 回填不在本表（属 S-24/S-25 收官步按 Dolch/不规则口径统一判定）。
 patterns:
   a_ae:
     grapheme: a
@@ -1335,7 +1335,7 @@ words:
     gpc_patterns:
     - ch_k
     law_refs: []
-    in_bank: false
+    in_bank: true
   acorn:
     gpc_patterns:
     - a_open_ei
@@ -1375,7 +1375,7 @@ words:
     gpc_patterns:
     - ph_f
     law_refs: []
-    in_bank: false
+    in_bank: true
   although:
     gpc_patterns:
     - ough_oh
@@ -1386,7 +1386,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-26
-    in_bank: false
+    in_bank: true
   an:
     gpc_patterns: []
     law_refs:
@@ -1415,7 +1415,7 @@ words:
     - ate_verb
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   answer:
     gpc_patterns: []
     law_refs:
@@ -1441,13 +1441,14 @@ words:
     law_refs:
     - S-20
     in_bank: false
+    note: 短语：非单词条目，不入词库单词口径
   apply:
     gpc_patterns:
     - y_ai_end
     law_refs:
     - S-42
     - SR-05
-    in_bank: false
+    in_bank: true
   April:
     gpc_patterns:
     - a_open_ei
@@ -1492,7 +1493,7 @@ words:
     - au_aw
     law_refs:
     - S-41
-    in_bank: false
+    in_bank: true
   autumn:
     gpc_patterns:
     - au_aw
@@ -1517,7 +1518,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-33
-    in_bank: false
+    in_bank: true
   back:
     gpc_patterns:
     - ck_k
@@ -1542,7 +1543,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-43
-    in_bank: false
+    in_bank: true
   ball:
     gpc_patterns:
     - a_ll_aw
@@ -1570,7 +1571,7 @@ words:
     - a_ae
     law_refs:
     - S-43
-    in_bank: false
+    in_bank: true
   bath:
     gpc_patterns: []
     law_refs:
@@ -1629,7 +1630,7 @@ words:
     - eer_ia
     law_refs:
     - S-40
-    in_bank: false
+    in_bank: true
   begin:
     gpc_patterns:
     - g_g_hard
@@ -1689,7 +1690,7 @@ words:
     - i_i
     law_refs:
     - S-43
-    in_bank: false
+    in_bank: true
   blackbird:
     gpc_patterns: []
     law_refs:
@@ -1726,6 +1727,7 @@ words:
     law_refs:
     - S-20
     in_bank: false
+    note: 短语：非单词条目，不入词库单词口径
   boat:
     gpc_patterns:
     - oa_oh
@@ -1845,7 +1847,7 @@ words:
     gpc_patterns:
     - ch_sh
     law_refs: []
-    in_bank: false
+    in_bank: true
   brow:
     gpc_patterns:
     - ow_au
@@ -1881,6 +1883,7 @@ words:
     law_refs:
     - S-18
     in_bank: false
+    note: 词形登记：buses 为 bus 的复数形，词元在库（G2_105）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   bush:
     gpc_patterns:
     - sh_sh
@@ -2002,12 +2005,13 @@ words:
     law_refs:
     - S-30
     in_bank: false
+    note: 词形登记：cats 为 cat 的复数形，词元在库（G1_014）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   cause:
     gpc_patterns:
     - au_aw
     law_refs:
     - S-41
-    in_bank: false
+    in_bank: true
   ceiling:
     gpc_patterns:
     - ei_ii
@@ -2043,7 +2047,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-32
-    in_bank: false
+    in_bank: true
   chav:
     gpc_patterns: []
     law_refs:
@@ -2060,12 +2064,12 @@ words:
     gpc_patterns:
     - ch_k
     law_refs: []
-    in_bank: false
+    in_bank: true
   chemistry:
     gpc_patterns: []
     law_refs:
     - S-32
-    in_bank: false
+    in_bank: true
   chew:
     gpc_patterns:
     - ew_uu
@@ -2077,11 +2081,12 @@ words:
     - ch_sh
     law_refs: []
     in_bank: false
+    note: 专名：待词库专名口径裁定，未裁前不入普通词库
   chick:
     gpc_patterns:
     - ch_tch
     law_refs: []
-    in_bank: false
+    in_bank: true
   chief:
     gpc_patterns:
     - ie_ii
@@ -2116,6 +2121,7 @@ words:
     - ch_tch
     law_refs: []
     in_bank: false
+    note: 词形登记：chips 为 chip 的复数形，词元在库（ADD_0452）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   chorus:
     gpc_patterns:
     - ch_k
@@ -2128,6 +2134,7 @@ words:
     law_refs:
     - SR-06
     in_bank: false
+    note: 专名：待词库专名口径裁定，未裁前不入普通词库
   Christmas:
     gpc_patterns:
     - ch_k
@@ -2240,12 +2247,12 @@ words:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   commercial:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   compete:
     gpc_patterns: []
     law_refs:
@@ -2263,7 +2270,7 @@ words:
     - sion_shun
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   computer:
     gpc_patterns: []
     law_refs:
@@ -2274,6 +2281,7 @@ words:
     law_refs:
     - S-17
     in_bank: false
+    note: 词形登记：computers 为 computer 的复数形，词元在库（G4_155）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   conceit:
     gpc_patterns:
     - ei_ii
@@ -2341,18 +2349,18 @@ words:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   courageous:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   course:
     gpc_patterns:
     - ou_or
     law_refs:
     - S-42
-    in_bank: false
+    in_bank: true
   cow:
     gpc_patterns:
     - ow_au
@@ -2377,7 +2385,7 @@ words:
     - ci_sh
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   cry:
     gpc_patterns:
     - y_ai_end
@@ -2400,7 +2408,7 @@ words:
     - ture_cher
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   cup:
     gpc_patterns:
     - c_k_hard
@@ -2531,7 +2539,7 @@ words:
     - stion_chun
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   do:
     gpc_patterns:
     - o_uu_irreg
@@ -2560,6 +2568,7 @@ words:
     law_refs:
     - S-30
     in_bank: false
+    note: 词形登记：dogs 为 dog 的复数形，词元在库（G1_015）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   dolphin:
     gpc_patterns:
     - ph_f
@@ -2633,6 +2642,7 @@ words:
     law_refs:
     - S-20
     in_bank: false
+    note: 短语：非单词条目，不入词库单词口径
   eat:
     gpc_patterns:
     - ea_ii
@@ -2644,17 +2654,17 @@ words:
     gpc_patterns:
     - ch_k
     law_refs: []
-    in_bank: false
+    in_bank: true
   economic:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   economy:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   edge:
     gpc_patterns:
     - dge_j
@@ -2755,19 +2765,19 @@ words:
     gpc_patterns: []
     law_refs:
     - S-30
-    in_bank: false
+    in_bank: true
   explosion:
     gpc_patterns:
     - sion_zhun
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   extension:
     gpc_patterns:
     - sion_shun
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   face:
     gpc_patterns:
     - c_s_soft
@@ -2791,7 +2801,7 @@ words:
     gpc_patterns:
     - c_s_soft
     law_refs: []
-    in_bank: false
+    in_bank: true
   farm:
     gpc_patterns:
     - ar_ar
@@ -2992,6 +3002,7 @@ words:
     law_refs:
     - SR-04
     in_bank: false
+    note: 词形登记：frolicking 为 frolic 的-ing 形，词元在库（ADD_0111）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   fruit:
     gpc_patterns:
     - ui_uu
@@ -3077,7 +3088,7 @@ words:
     gpc_patterns:
     - g_j_soft
     law_refs: []
-    in_bank: false
+    in_bank: true
   get:
     gpc_patterns:
     - g_g_hard
@@ -3117,7 +3128,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-31
-    in_bank: false
+    in_bank: true
   ginkgo:
     gpc_patterns: []
     law_refs:
@@ -3206,7 +3217,7 @@ words:
     - ate_verb
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   grass:
     gpc_patterns:
     - a_ah
@@ -3399,7 +3410,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-21
-    in_bank: false
+    in_bank: true
   health:
     gpc_patterns: []
     law_refs:
@@ -3521,6 +3532,7 @@ words:
     law_refs:
     - S-43
     in_bank: false
+    note: 词形登记：hoping 为 hope 的-ing 形，词元在库（G4_0446）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   hopping:
     gpc_patterns: []
     law_refs:
@@ -3537,6 +3549,7 @@ words:
     law_refs:
     - S-18
     in_bank: false
+    note: 词形登记：horses 为 horse 的复数形，词元在库（G4_192）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   host:
     gpc_patterns:
     - o_st_oh
@@ -3554,7 +3567,7 @@ words:
     - ough_ok
     law_refs:
     - S-42
-    in_bank: false
+    in_bank: true
   hound:
     gpc_patterns: []
     law_refs:
@@ -3609,6 +3622,7 @@ words:
     law_refs:
     - S-20
     in_bank: false
+    note: 短语：非单词条目，不入词库单词口径
   idea:
     gpc_patterns:
     - i_open_ai
@@ -3634,7 +3648,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   information:
     gpc_patterns:
     - tion_shun
@@ -3664,6 +3678,7 @@ words:
     law_refs:
     - S-27
     in_bank: false
+    note: 专名：待词库专名口径裁定，未裁前不入普通词库
   jazz:
     gpc_patterns: []
     law_refs:
@@ -3831,6 +3846,7 @@ words:
     law_refs:
     - SR-04
     in_bank: false
+    note: 专名：待词库专名口径裁定，未裁前不入普通词库
   lamb:
     gpc_patterns:
     - mb_m
@@ -3952,7 +3968,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-17
-    in_bank: false
+    in_bank: true
   love:
     gpc_patterns:
     - o_e_uh
@@ -4017,7 +4033,7 @@ words:
     gpc_patterns: []
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   many:
     gpc_patterns:
     - a_e_any
@@ -4056,7 +4072,7 @@ words:
     - ere_ia
     law_refs:
     - S-40
-    in_bank: false
+    in_bank: true
   message:
     gpc_patterns:
     - age_ij
@@ -4067,7 +4083,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-26
-    in_bank: false
+    in_bank: true
   mice:
     gpc_patterns: []
     law_refs:
@@ -4091,6 +4107,7 @@ words:
     law_refs:
     - SR-04
     in_bank: false
+    note: 词形登记：mimicking 为 mimic 的-ing 形，词元在库（ADD_0191）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   mind:
     gpc_patterns:
     - i_ndld_ai
@@ -4117,18 +4134,18 @@ words:
     gpc_patterns: []
     law_refs:
     - S-33
-    in_bank: false
+    in_bank: true
   model:
     gpc_patterns: []
     law_refs:
     - SR-09
-    in_bank: false
+    in_bank: true
   moderate:
     gpc_patterns:
     - ate_verb
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   money:
     gpc_patterns:
     - ey_ii
@@ -4164,7 +4181,7 @@ words:
     - tion_shun
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   mould:
     gpc_patterns:
     - ou_oh
@@ -4240,7 +4257,7 @@ words:
     gpc_patterns: []
     law_refs:
     - SR-09
-    in_bank: false
+    in_bank: true
   nation:
     gpc_patterns:
     - ti_sh
@@ -4435,6 +4452,7 @@ words:
     law_refs:
     - SR-04
     in_bank: false
+    note: 词形登记：panicking 为 panic 的-ing 形，词元在库（ADD_0213）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   panicky:
     gpc_patterns: []
     law_refs:
@@ -4451,7 +4469,7 @@ words:
     gpc_patterns:
     - ch_sh
     law_refs: []
-    in_bank: false
+    in_bank: true
   park:
     gpc_patterns:
     - ar_ar
@@ -4485,7 +4503,7 @@ words:
     gpc_patterns: []
     law_refs:
     - SR-02
-    in_bank: false
+    in_bank: true
   pencil:
     gpc_patterns:
     - c_s_soft
@@ -4513,7 +4531,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-26
-    in_bank: false
+    in_bank: true
   phone:
     gpc_patterns:
     - ph_f
@@ -4537,12 +4555,12 @@ words:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   photography:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   pickle:
     gpc_patterns:
     - le_syll
@@ -4561,6 +4579,7 @@ words:
     law_refs:
     - SR-04
     in_bank: false
+    note: 词形登记：picnicking 为 picnic 的-ing 形，词元在库（G5_236）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   picture:
     gpc_patterns:
     - ture_cher
@@ -4571,7 +4590,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   pie:
     gpc_patterns:
     - ie_ai
@@ -4734,7 +4753,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-33
-    in_bank: false
+    in_bank: true
   ptarmigan:
     gpc_patterns: []
     law_refs:
@@ -4828,7 +4847,7 @@ words:
     gpc_patterns:
     - qu_kw
     law_refs: []
-    in_bank: false
+    in_bank: true
   quiz:
     gpc_patterns: []
     law_refs:
@@ -4891,13 +4910,13 @@ words:
     gpc_patterns: []
     law_refs:
     - SR-01
-    in_bank: false
+    in_bank: true
   rhythm:
     gpc_patterns:
     - y_i_mid
     law_refs:
     - SR-05
-    in_bank: false
+    in_bank: true
   rich:
     gpc_patterns:
     - ch_tch
@@ -4996,12 +5015,13 @@ words:
     - S-35
     - SR-05
     in_bank: false
+    note: 词形登记：says 为 say 的第三人称单数形，词元在库（G3_0625）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   sceptic:
     gpc_patterns:
     - sc_sk
     law_refs:
     - S-31
-    in_bank: false
+    in_bank: true
   schnitzel:
     gpc_patterns: []
     law_refs:
@@ -5140,7 +5160,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-33
-    in_bank: false
+    in_bank: true
   sin:
     gpc_patterns: []
     law_refs:
@@ -5223,7 +5243,7 @@ words:
     gpc_patterns: []
     law_refs:
     - SR-07
-    in_bank: false
+    in_bank: true
   sold:
     gpc_patterns:
     - o_ld_oh
@@ -5317,7 +5337,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-27
-    in_bank: false
+    in_bank: true
   such:
     gpc_patterns:
     - ch_tch
@@ -5329,7 +5349,7 @@ words:
     gpc_patterns: []
     law_refs:
     - SR-07
-    in_bank: false
+    in_bank: true
   sugar:
     gpc_patterns:
     - u_uu
@@ -5341,7 +5361,7 @@ words:
     - stion_chun
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   suit:
     gpc_patterns:
     - ui_uu
@@ -5364,7 +5384,7 @@ words:
     - y_i_mid
     law_refs:
     - S-34
-    in_bank: false
+    in_bank: true
   system:
     gpc_patterns:
     - y_i_mid
@@ -5372,7 +5392,7 @@ words:
     - S-34
     - S-42
     - SR-05
-    in_bank: false
+    in_bank: true
   table:
     gpc_patterns:
     - le_syll
@@ -5421,7 +5441,7 @@ words:
     - sion_shun
     law_refs:
     - SR-06
-    in_bank: false
+    in_bank: true
   than:
     gpc_patterns: []
     law_refs:
@@ -5615,7 +5635,7 @@ words:
     - c_k_hard
     law_refs:
     - SR-04
-    in_bank: false
+    in_bank: true
   too:
     gpc_patterns: []
     law_refs:
@@ -5658,6 +5678,7 @@ words:
     law_refs:
     - SR-04
     in_bank: false
+    note: 词形登记：trafficked 为 traffic 的过去式形，词元在库（G6_263）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   train:
     gpc_patterns:
     - ai_ei
@@ -5754,7 +5775,7 @@ words:
     gpc_patterns: []
     law_refs:
     - SR-02
-    in_bank: false
+    in_bank: true
   uphold:
     gpc_patterns: []
     law_refs:
@@ -5860,6 +5881,7 @@ words:
     law_refs:
     - S-18
     in_bank: false
+    note: 词形登记：wanted 为 want 的过去式形，词元在库（V6_日常_66）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   war:
     gpc_patterns:
     - w_ar_or
@@ -5904,6 +5926,7 @@ words:
     law_refs:
     - S-18
     in_bank: false
+    note: 词形登记：watches 为 watch 的第三人称单数形，词元在库（POLY_WATCH）；本行按词形记，不单列词条（同 vocab_hitching 词形登记口径）
   water:
     gpc_patterns:
     - w_ar_or
@@ -6013,7 +6036,7 @@ words:
     - wh_h
     law_refs:
     - S-32
-    in_bank: false
+    in_bank: true
   whom:
     gpc_patterns: []
     law_refs:
@@ -6053,7 +6076,7 @@ words:
     gpc_patterns: []
     law_refs:
     - S-43
-    in_bank: false
+    in_bank: true
   wish:
     gpc_patterns: []
     law_refs:
@@ -6130,7 +6153,7 @@ words:
     gpc_patterns:
     - wr_r
     law_refs: []
-    in_bank: false
+    in_bank: true
   wrist:
     gpc_patterns: []
     law_refs:

@@ -75,8 +75,10 @@
 | written、broken | TA-12、CO-08 | 不规则过去分词的归一口径待裁定（作独立词条补入还是归一到 write/break），裁定后统一回填 |
 | beijing、sam | TA-05、TA-16、CO-04 | 专名：是否入词库由词库专名口径裁定，未裁前相关例证 word_ids 缺此词 |
 
+**2026-11-02 补词清零波处置**：上表除 beijing、sam 外全部结案——donate / sneeze / napkin / wipe / kick / fence / promise / ready / rise / cloud 均已在词库且 word_ids 已回填各条目（shower ADD_0638、photo G4_0381 亦已在库，CO-17 说明项已删）；written / broken 按 §6.4 第 1 项口径以 verb_form_of 条目在库（written ADD_0717、broken G5_0831），已回填 TA-12 / CO-08。另：CO-06 成人层 boundary 登记的 refuse、entry 两词经 OALD 核验后补入词库（ADD_0784 / ADD_0785）。beijing、sam 两专名仍待专名口径裁定，保持登记。
+
 ### 6.4 口径待裁两件
-1. **过去分词归一**（written / broken / married 中 married 已按 -ied→y 归一成功）：不规则分词建议作为词条以 verb_form_of 补入（与 was/went 先例一致），待词库波次裁定。
+1. **过去分词归一**（written / broken / married 中 married 已按 -ied→y 归一成功）：不规则分词建议作为词条以 verb_form_of 补入（与 was/went 先例一致），待词库波次裁定。**（2026-11-02 结案：该口径已执行——written 以 ADD_0717、broken 以 G5_0831 的 verb_form_of 条目在库，并已回填 TA-12 / CO-08 的 word_ids。）**
 2. **QI-08 的 config_gates**：语调条的呈现与练习要求受裁定 A（弱读/产出档位）影响，本波次 config_gates 置 null 并在 pending 登记，裁定落档后回填——不预设裁定结论。
 
 ## 7. 校验记录（本波次自检）

@@ -853,7 +853,7 @@ entries:
       scope: "垂直维度的四词对照集；分工是强倾向而非无缝切割"
       exceptions:
         - {note: "over 与 above 在部分语境可互换（如数量读法 over/above 100 people），互换区按频率逐个登记", word_ids: [V6_核心_40, V6_核心_39]}
-        - {note: "below 不在现词库（仅 above/over/under 已入），本条例句以已入三词演示，below 走补词流程后补齐四词全量（WORDBANK 规则 2）", word_ids: []}
+        - {note: "below 已入词库（ADD_0428），四词全量（above/over/under/below）齐备", word_ids: [ADD_0428]}
     mechanism:
       - beat: "牵连轴"
         text_kid: "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。"
@@ -886,6 +886,11 @@ entries:
         sentence: "The stars are above the mountain."
         scene_note: "星星比山高——纯高低"
         supports: claim
+      - level: 2
+        word_ids: [V6_天气_37, ADD_0428, V6_数字_1]
+        sentence: "The temperature is below zero."
+        scene_note: "温度是刻度——标量域归 below 管（below zero）"
+        supports: claim
     error_cases:
       - status: 待补
         error_type: "over/above 与 under/below 边界混用"
@@ -904,10 +909,10 @@ entries:
     pain_points: [错不完]
     adult:
       sources: ["Tyler & Evans (2003) 对照集分析"]
-      boundary: "四词分工是强倾向：互换区按频率逐个登记，不追求理论洁癖；below 的标量域例（below zero）中 zero 已在库，below 本词待补。"
+      boundary: "四词分工是强倾向：互换区按频率逐个登记，不追求理论洁癖；below 的标量域例（below zero）中 below、zero 均已在库。"
       disputes: ["无主流分歧；个别边界案例（如 over vs above 在粉末/液体上方）各家语料结论略有出入（清单原文登记）"]
       evidence_grade: "专著定版级"
-      pending: ["below 待补入词库后回填本条 law_refs 与四词全量菜单", "误解探针待补（W7 收口）", "病句医院病例待补"]
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -1069,9 +1074,9 @@ entries:
         anchors: [G4_0592]
     examples:
       - level: 1
-        word_ids: [G4_0592, G5_232]
+        word_ids: [G4_0592, G5_232, ADD_0404]
         sentence: "The road runs along the river."
-        scene_note: "清单原文例句——路沿河伸展（along 待补词库，本句为条目原文例句先行登记，见 pending）"
+        scene_note: "清单原文例句——路沿河伸展（along 已入词库 ADD_0404）"
         supports: claim
       - level: 1
         word_ids: [G4_0592, G5_235]
@@ -1106,10 +1111,10 @@ entries:
     pain_points: [读不快]
     adult:
       sources: ["Talmy (2000) Vol. I 第 2 章（页码经 2026-11-01 补核销项）"]
-      boundary: "小学阶段只作阅读理解提示，不作产出教学目标；along 不在现词库，例句为清单原文例句，along 须走补词流程（见 pending）。"
+      boundary: "小学阶段只作阅读理解提示，不作产出教学目标；along 已入词库（ADD_0404），例句为清单原文例句。"
       disputes: ["无主流分歧；虚构运动归语义层还是语用推导层属理论记账之争（清单原文登记）"]
       evidence_grade: "专著定版级"
-      pending: ["along 待补入词库后回填 law_refs", "误解探针待补（W7 收口）"]
+      pending: ["误解探针待补（W7 收口）"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -1566,10 +1571,15 @@ entries:
         sentence: "The ball flew over the forest."
         scene_note: "对照：over/across 是越过，不是穿过介质内部"
         supports: claim
+      - level: 1
+        word_ids: [ADD_0559, ADD_0400, G3_0934]
+        sentence: "The ladder is against the wall."
+        scene_note: "梯子靠着墙——墙顶着它（against 力图式：静态倚靠承压，PB-04 登记场景）"
+        supports: claim
     error_cases:
       - status: 待补
         error_type: "against/through 图式缺位（清单原缺口）"
-        note: "against 不在现词库、清单 P 组原无其图式分析（本条补流）；逐字病例与 against 例词待补词后回填，不自编。"
+        note: "against 例词已回填（ADD_0400，例句已补入）；逐字病例待补，不自编（清单 P 组原无其图式分析，本条补流）。"
     relatives:
       - {id: PB-01, rel: 前置}
       - {id: P-12, rel: 同族}
@@ -1584,10 +1594,10 @@ entries:
     pain_points: [说不出, 错不完]
     adult:
       sources: ["Lindstromberg (2010) 目录编排与作者专栏（against 有力要素在场为专栏原文要点）（接触等级：目录+书评+作者自述级）", "学理上游：Talmy 力动态（force dynamics）——Lindstromberg 的处理是力动态在教学词典学中的落地版，源流关系非分歧（清单原文）"]
-      boundary: "against 的力图式讲解只需静态倚靠一个画面起步；through 的时间义（through the night）属引申，小学只教空间穿行。against、tunnel、crowd 均不在现词库：against 例句待补词后补入（本条 examples 先以 through 立条）。"
+      boundary: "against 的力图式讲解只需静态倚靠一个画面起步；through 的时间义（through the night）属引申，小学只教空间穿行。against、tunnel、crowd 均已入词库（ADD_0400/ADD_0691/ADD_0471），against 例已补入。"
       disputes: []
       evidence_grade: "目录 + 书评 + 作者自述级"
-      pending: ["against 待补入词库后补本条例句与 law_refs", "tunnel、crowd 待补入词库", "误解探针待补（W7 收口）", "病句医院病例待补"]
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -2109,6 +2119,11 @@ entries:
         sentence: "The bird is in the tree."
         scene_note: "鸟在枝叶之间 → in（与苹果对照）"
         supports: claim
+      - level: 2
+        word_ids: [V6_家庭_3, ADD_0782]
+        sentence: "Dad is at the meeting."
+        scene_note: "在会上 → at：会议是场合（点），不是容器也不是面（与报纸 in、电视 on 对照）"
+        supports: claim
     error_cases:
       - status: 待补
         error_type: "「上」范畴迁移误用（in/on/at 交叉区）"
@@ -2132,7 +2147,7 @@ entries:
       boundary: "错位图是预测工具不是定罪工具：个体错误还有语音、教学、粗心等来源；本条不写未经核验的错误率数字。与 P-17 的关系：顺序发生在各语言自己的范畴之内，两条合起来才完整（清单原文登记）。"
       disputes: ["无（推论条自担其责，清单原文）"]
       evidence_grade: "推论级（原理 + 语料描写互证）"
-      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（逐字错例）", "「在会上 = at the meeting」中 meeting 不在词库，待补词后补该例"]
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（逐字错例）"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -2196,7 +2211,7 @@ entries:
     pain_points: [记不住, 说不出]
     adult:
       sources: ["Dirven (1993), pp. 73–97（定版页码；三家二手互证：Turewicz 2000、Guarddon Anelo 2005、Rymaszewska 2011）", "Radden & Dirven (2007) 教材收编（接触等级：二手系统论述级）"]
-      boundary: "链条是分析者的事后组织，与 PB-06 的变换链同享心理真实性的质疑；教学中只取域名单作教师备课地图，不对儿童讲授「链」本身。good at math 中 math(s) 未在词库核到独立条目，例句改用同型结构并在此注明。"
+      boundary: "链条是分析者的事后组织，与 PB-06 的变换链同享心理真实性的质疑；教学中只取域名单作教师备课地图，不对儿童讲授「链」本身。good at math 中 math(s) 已有独立条目（math V6_学校_30、maths V6_学校_31）。"
       disputes: ["无新分歧；与 Evans (2004)「时间有独立图式」之争相邻：Dirven 链条是强借用版表述，教学采用按 P-09 现行裁决（清单原文登记）"]
       evidence_grade: "二手系统论述级（三家互证）"
       pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
@@ -2215,7 +2230,7 @@ entries:
       scope: "可数性与冠词全域的主导判据与教学入口；不是充要定义——个别名词的归属最终以英语的习惯识解（用法事实）为准"
       exceptions:
         - {note: "rice 颗粒分明却不可数、furniture 件件有形却不可数：物理属性说当场失效的反例，正是识解说的支撑；同时说明归属由习惯识解裁定，不许学习者自创", word_ids: [G1_054, ADD_0113]}
-        - {note: "湖里的水物理上有岸，water 仍不可数；moment 没有任何物理形状，却可数（moment 待补词库，先以文本登记）", word_ids: [G1_055]}
+        - {note: "湖里的水物理上有岸，water 仍不可数；moment 没有任何物理形状，却可数（moment 已入词库 ADD_0578）", word_ids: [G1_055, ADD_0578]}
     mechanism:
       - beat: "取景决定形式"
         text_kid: "同一样东西，你把它看成「一个一个」就能数，看成「一摊」就不能数——先有看法，后有说法。"
@@ -2271,7 +2286,7 @@ entries:
       boundary: "「有界（bounding）」指呈现方式，与物体有没有物理边框无关；旧「物理边界感」说已证伪，不得以任何形式复活（清单原文红线）。探针映射：PRB-BND-1 = 探针库 v1 Boundedness 组 P1（编号 W7 正式化）。"
       disputes: ["David Nicolas 等人批评：有界既非可数的充分条件也非必要条件——故本模型将「有界识解」定位为主导判据与教学入口，而非充要定义（清单原文登记）"]
       evidence_grade: "奠基专著级"
-      pending: ["moment 待补入词库后回填例外例词", "病句医院病例待补（逐字错例）"]
+      pending: ["病句医院病例待补（逐字错例）"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -2286,7 +2301,7 @@ entries:
       evidence: ["Langacker (2008: 133) 原例：以 wood 立论——「这种物质的任何一份样本都呈现其区别性品质，与形状大小无关」"]
       scope: "物质名词（mass）的判据与教学演示；颗粒集合与抽象名词不在本条主射程（见 exceptions）"
       exceptions:
-        - {note: "颗粒集合（rice、sand）个体可辨却被整摊处理——同质性压过可辨性，判据是习惯识解的整体打包而非逐项验算（旧模型例外 xc-rice-grains）", word_ids: [G1_054]}
+        - {note: "颗粒集合（rice、sand）个体可辨却被整摊处理——同质性压过可辨性，判据是习惯识解的整体打包而非逐项验算（旧模型例外 xc-rice-grains）", word_ids: [G1_054, G4_0977]}
         - {note: "抽象名词没有可切的份，走 C-15 的「一类事」路径", word_ids: [G6_0329]}
     mechanism:
       - beat: "切一切还是它"
@@ -2342,7 +2357,7 @@ entries:
       boundary: "「切一切」演示只对部分物质名词有效，已降格为 mnemonic（cl-cut-test），不得称定律；探针映射：PRB-BND-4 = 探针库 v1 Boundedness 组 P4。"
       disputes: ["无主流分歧（清单原文）；演示法的定级处理见 boundary"]
       evidence_grade: "奠基专著原例级"
-      pending: ["sand 不在已核词表（例外以 rice 代表登记），待补词后补齐", "病句医院病例待补（逐字错例）"]
+      pending: ["病句医院病例待补（逐字错例）"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -2410,10 +2425,10 @@ entries:
     pain_points: [错不完]
     adult:
       sources: ["Langacker (2002/2008) bounding 三点说明（almerja Bounding 条目转述）"]
-      boundary: "模糊有界 ≠ 任意可数（见 claim.exceptions 与 error_cases）；tummy 未入词库（以 stomach 条目对应），moment、paragraph 为 Langacker 抽象正例，待补词后补齐。"
+      boundary: "模糊有界 ≠ 任意可数（见 claim.exceptions 与 error_cases）；tummy、moment、paragraph 均已入词库（ADD_0690/ADD_0578/ADD_0595），为 Langacker 抽象正例。"
       disputes: ["与 C-01 的 Nicolas 批评同源：有界是强倾向而非充要条件（清单原文登记）"]
       evidence_grade: "专著修订表述级（二手转述）"
-      pending: ["tummy、moment、paragraph 待补入词库", "误解探针待补（W7 收口）"]
+      pending: ["误解探针待补（W7 收口）"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -2477,10 +2492,10 @@ entries:
     pain_points: [错不完, 说不出]
     adult:
       sources: ["Langacker (2008) grinding/portioning 系统化（arabpsychology 转述，清单原文链接）"]
-      boundary: "切换受习惯约束：磨碎读法多用于修辞/非常规语境；儿童阶段教「份」的方向（双生活名词，旧模型 cl-whole-material），磨碎只作理解。探针映射：PRB-BND-2 = 探针库 v1 Boundedness 组 P2（原题以 two beers 立题，beer 待补词库）。"
+      boundary: "切换受习惯约束：磨碎读法多用于修辞/非常规语境；儿童阶段教「份」的方向（双生活名词，旧模型 cl-whole-material），磨碎只作理解。探针映射：PRB-BND-2 = 探针库 v1 Boundedness 组 P2（原题以 two beers 立题，beer 已入词库 ADD_0427）。"
       disputes: []
       evidence_grade: "专著系统化级"
-      pending: ["beer 待补入词库（探针原题与 two beers 例）", "病句医院病例待补（逐字错例）"]
+      pending: ["病句医院病例待补（逐字错例）"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -2729,7 +2744,7 @@ entries:
     error_cases:
       - status: 待补
         error_type: "五路皆无而用 the"
-        note: "错型由本条菜单定义；逐字病例待补，不自编。关联路原文例（wedding/bride）两词未入词库，待补词后补该例。"
+        note: "错型由本条菜单定义；逐字病例待补，不自编。关联路原文例（a wedding → the bride，见 claim 陈述）两词已入词库（ADD_0710/ADD_0433）。"
     relatives:
       - {id: C-07, rel: 前置}
       - {id: C-20, rel: 同族}
@@ -2747,7 +2762,7 @@ entries:
       boundary: "五路是充分线索清单，不是每个 the 都要当场验算——母语者是自动化处理；分类细节各家略有出入（Hawkins 原分类更细，教学与习得研究多用简化版）。"
       disputes: []
       evidence_grade: "理论分类 + 习得实证级"
-      pending: ["wedding、bride 待补入词库后补关联路例句", "误解探针待补（W7 收口）", "病句医院病例待补"]
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -3063,9 +3078,9 @@ entries:
         scene_note: "零冠词复数类指——小学主教形式（词形经 tiger 归一）"
         supports: claim
       - level: 1
-        word_ids: [G1_020]
+        word_ids: [G1_020, ADD_0661]
         sentence: "A tiger has stripes."
-        scene_note: "a 类指：任取一只代表全类（清单登记正例；stripes 待补词库，句为登记原句）"
+        scene_note: "a 类指：任取一只代表全类（清单登记正例；stripes 为 stripe 的复数形，stripe 已入词库 ADD_0661）"
         supports: claim
       - level: 2
         word_ids: [G1_020]
@@ -3100,7 +3115,7 @@ entries:
       boundary: "小学阶段主教零冠词复数类指与 a 类指；the 类指只登记、作高年级内容（与模型 xc-generic-the 注记一致），不得因此推翻 C-07 的主读法。"
       disputes: ["类指的形式分工在语义学界有多种记账（Carlson 的 kind 理论等），但「三形式非自由变体」的描写结论一致（清单原文登记）"]
       evidence_grade: "理论定版级"
-      pending: ["stripes 待补入词库后回填例句挂接", "误解探针待补（W7 收口）"]
+      pending: ["误解探针待补（W7 收口）"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -3146,10 +3161,15 @@ entries:
         sentence: "He is an honest boy."
         scene_note: "honest 同型：h 脱落的登记词"
         supports: claim
+      - level: 2
+        word_ids: [ADD_0699]
+        sentence: "A university is a big school."
+        scene_note: "university 读 /j/ 辅音开头——看声音不看字母（与 honest 的 an 对照）"
+        supports: claim
     error_cases:
       - status: 待补
         error_type: "按字母判 a/an（*a hour / *an university 型）"
-        note: "判据错型已由本条机制登记；university 未入词库（见 pending），逐字病例待补，不自编。"
+        note: "判据错型已由本条机制登记；university 已入词库（ADD_0699），逐字病例待补，不自编。"
     relatives:
       - {id: C-06, rel: 前置}
     quiz:
@@ -3166,7 +3186,7 @@ entries:
       boundary: "个别方言/正式文体中 an historic(al) 等边缘用法属历史残余，小学阶段按「读音判据」一刀切，不展开。"
       disputes: []
       evidence_grade: "词源定版级"
-      pending: ["university 待补入词库后补 a university 例", "误解探针待补（W7 收口）", "病句医院病例待补"]
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
@@ -3180,7 +3200,7 @@ entries:
       statement: "homework、information、advice 没有形状可切——它们被英语整类打包成「一类事」来处理，所以不可数；识解不限于物理域：在抽象域中，事体以类别而非个体的形式被概念化，继承物质名词的全部语法待遇（无 a、无 -s、借单位计数、配 much）。"
       evidence: ["Langacker (2008)：名词的「区域」定义适用于抽象域（抽象有界名词 moment、paragraph 为其正例，反之抽象无界名词同理）", "本项目 boundedness 模型例外 xc-homework-uncuttable 已登记本类"]
       exceptions:
-        - {note: "部分抽象名词有可数化的专门读法（a knowledge of…、works 著作义），属词条级约定，逐词登记，不许类推泛滥", word_ids: []}
+        - {note: "部分抽象名词有可数化的专门读法（a knowledge of…、works 著作义），属词条级约定，逐词登记，不许类推泛滥", word_ids: [G6_0627]}
     mechanism:
       - beat: "抽象域的整包"
         text_kid: "作业不是一件一件的「东西」，是「一类事」——整包拿走，不能拆开数。"
@@ -3237,7 +3257,7 @@ entries:
       boundary: "可数化专门读法逐词登记（见 claim.exceptions），不许类推；旧「没有形状所以不可数」讲法已裁定删除，不得复活。"
       disputes: []
       evidence_grade: "专著机制级 + 项目裁定"
-      pending: ["knowledge 待补入词库后补可数化例外例", "误解探针待补（W7 收口）"]
+      pending: ["误解探针待补（W7 收口）"]
     status: 入模中
     version: "1.0"
     changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]

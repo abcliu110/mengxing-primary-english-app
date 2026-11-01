@@ -3,7 +3,7 @@
 # 纪律：claim 只用清单定版口径；例句与病例只用清单登记者，缺的在 pending 标待补，不自编。
 # W-11（POA）按裁定默认档 B1 入模：只收排序思想作 claim，完整流程不作 claim，三档状态登记于 config_gates。
 # NE 母语专家条目的出处与接触等级按原登记保留（adult.evidence_grade / adult.pending 待核清单逐条落位）。
-# 例词只引词库 id；库外词（same/mean/propose/shave/however/moreover/fleece/kit/suddenly）进 pending_words 走补词流程，不自造 id。
+# 例词只引词库 id；库外词进 pending 走补词流程，不自造 id。（补词清零波 2026-11-02：same/mean/propose/shave/however/moreover/fleece/kit/suddenly 九词已全部入词库并回填。）
 # 探针：探针库 v1 未覆盖本区，全部登记待补写（PRB-* 预留）。
 meta:
   file: expression.yaml
@@ -633,8 +633,9 @@ entries:
     word_ids:
     - V6_核心_48
     - G1_P02
+    - ADD_0630
     sentence: The same to you.
-    scene_note: 回指句：上一句有被回指的对象才成立（清单登记例；same 未入词库，见 pending）
+    scene_note: 回指句：上一句有被回指的对象才成立（清单登记例；same 已入词库 ADD_0630）
     supports: claim
   error_cases: []
   relatives:
@@ -671,7 +672,6 @@ entries:
   status: 入模中
   version: '1.0'
   pending:
-  - 例词 same 不在词库（E-08 例句 The same to you 构成词），待补词后回填 word_ids
   - error_cases 事故型已登记（机械按场景填收尾句），具体错句待从审查记录回填
   - 探针待补写（PRB-E08-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
@@ -872,10 +872,11 @@ entries:
     - G3_Q08
   - beat: 求生句库存
     text_kid: 先存几句救命的话：问一句「怎么说」，就能把话接回来。
-    text_adult: 求生句要整块存入（与 E-04 整块存取同理）：How do you say...? 问法、It's like a... 比方、I mean... 换述（mean 未入词库，见 pending）。
+    text_adult: 求生句要整块存入（与 E-04 整块存取同理）：How do you say...? 问法、It's like a... 比方、I mean... 换述（mean 已入词库 ADD_0569）。
     visual: 救生圈图：三句求生句挂在圈上随取随用
     anchors:
     - V6_日常_64
+    - ADD_0569
   examples:
   - level: 1
     word_ids:
@@ -929,7 +930,6 @@ entries:
   status: 入模中
   version: '1.0'
   pending:
-  - 例词 mean 不在词库（求生句 I mean ... 构成词），待补词后回填
   - 探针待补写（PRB-E11-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
@@ -2297,9 +2297,11 @@ entries:
     - G4_0597
     - V6_核心_60
     - ADD_0005
+    - ADD_0527
+    - ADD_0579
   - beat: 贴错更糟
     text_kid: 牌子指错方向，读者就会迷路——还不如没有牌子。
-    text_adult: 为凑「高级感」硬塞 although、moreover 而逻辑不对位，是负分操作；评分量表对衔接准确性与数量分开计分（however、moreover 未入词库，见 pending）。
+    text_adult: 为凑「高级感」硬塞 although、moreover 而逻辑不对位，是负分操作；评分量表对衔接准确性与数量分开计分（however、moreover 已入词库 ADD_0527/ADD_0579）。
     visual: 迷路图：错误路标把读者引进岔路
     anchors: []
   examples:
@@ -2350,7 +2352,6 @@ entries:
   status: 入模中
   version: '1.0'
   pending:
-  - 例词 however、moreover 不在词库（W-14 机制登记词），待补词后回填
   - error_cases 事故型已登记（旧库 C-6 裁定：Although 混入衔接词链），具体错句待回填
   - 探针待补写（PRB-W14-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
@@ -3002,7 +3003,7 @@ entries:
     right: I asked him to come.（propose 不进此句型）
     error_type: 句型假类推
     source_type: 教学文献登记错型
-    diagnosis: 仿 ask 的句型套到 propose 上：词义没错、接法错了（回 mechanism『假类推』）。注：propose 未入词库，走补词流程（见 pending）
+    diagnosis: 仿 ask 的句型套到 propose 上：词义没错、接法错了（回 mechanism『假类推』）。注：propose 已入词库（ADD_0608）
   relatives:
   - id: NE-07
     rel: 同族
@@ -3034,7 +3035,6 @@ entries:
   status: 入模中
   version: '1.0'
   pending:
-  - 例词 propose 不在词库（NE-08 登记错例构成词），待补词后回填 word_ids
   - 探针待补写（PRB-NE08-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
 - id: NE-09
@@ -3223,8 +3223,10 @@ entries:
     - G3_0967
     - ADD_0013
     - G4_0662
+    - ADD_0510
+    - ADD_0556
     sentence: DRESS / BATH / GOOSE
-    scene_note: 词汇集关键词举例：谈口音如何实现每个集即可对照（清单登记关键词；FLEECE、KIT 未入词库，见 pending）
+    scene_note: 词汇集关键词举例：谈口音如何实现每个集即可对照（清单登记关键词；FLEECE、KIT 已入词库 ADD_0510/ADD_0556）
     supports: claim
   error_cases: []
   relatives:
@@ -3257,7 +3259,6 @@ entries:
   status: 入模中
   version: '1.0'
   pending:
-  - 例词 fleece、kit 不在词库（NE-11 词汇集关键词），待补词后回填 word_ids
   - 探针待补写（PRB-NE11-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
@@ -3447,6 +3448,7 @@ entries:
     anchors:
     - V6_城市_34
     - V6_日常_0
+    - ADD_0636
   examples:
   - level: 1
     word_ids:
@@ -3454,14 +3456,14 @@ entries:
     - V6_城市_34
     - V6_日常_0
     sentence: safe / gate / get
-    scene_note: 最小对立：区别在，可懂度就在（清单登记例；shave 未入词库，见 pending）
+    scene_note: 最小对立：区别在，可懂度就在（清单登记例；shave 已入词库 ADD_0636）
     supports: claim
   error_cases:
   - wrong: （把 shave 说成）safe
     right: shave（与 safe 保持区别）
     error_type: 音位区别丢失
     source_type: 条目成人层登记的事故例
-    diagnosis: Hancock 登记口径：这不是「对错」问题，是「不起作用」——听者懂成了另一个词（回 mechanism『保持区别』）。注：shave 未入词库，走补词流程（见 pending）
+    diagnosis: Hancock 登记口径：这不是「对错」问题，是「不起作用」——听者懂成了另一个词（回 mechanism『保持区别』）。注：shave 已入词库（ADD_0636）
   relatives:
   - id: NE-06
     rel: 同族
@@ -3496,7 +3498,6 @@ entries:
   status: 入模中
   version: '1.0'
   pending:
-  - 例词 shave 不在词库（NE-14 登记最小对立与事故例构成词），待补词后回填 word_ids
   - 探针待补写（PRB-NE14-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
 - id: NE-15
@@ -4493,6 +4494,7 @@ entries:
     visual: 三路汇流图：眼/身/口三条线汇入同一段文本
     anchors:
     - G3_141
+    - ADD_0666
   - beat: 地图即结构
     text_kid: 指着地图说故事，练的不只是词句，还有故事走到哪一步了。
     text_adult: 地图画的是阶段与连接词（first / suddenly / finally 各配动作成为可提取的线索）：结构外化之后，创新段的『改结构』才有可下手的物件；写作计划（boxing up 分格提纲）是地图的书面版。
@@ -4506,7 +4508,7 @@ entries:
     - G5_244
     - G5_0541
     sentence: first / finally
-    scene_note: 连接词动作锚点举例：时序连接词各配全身动作，成为可提取的线索（清单登记词；suddenly 未入词库，见 pending）
+    scene_note: 连接词动作锚点举例：时序连接词各配全身动作，成为可提取的线索（清单登记词；suddenly 已入词库 ADD_0666）
     supports: claim
   error_cases: []
   relatives:
@@ -4539,7 +4541,6 @@ entries:
   status: 入模中
   version: '1.0'
   pending:
-  - 例词 suddenly 不在词库（NE-28 登记的连接词动作锚点），待补词后回填 word_ids
   - 探针待补写（PRB-NE28-* 预留，探针库 v1 未覆盖本区）
   - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
