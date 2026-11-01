@@ -1,0 +1,165 @@
+# T16 P2 车道 C —— vv 动词剧场 hold 家族测绘与处置
+
+日期：2026-11-01 ｜ 车道：P2-C（vv hold 家族）｜ 范围：`v5/scenes/vv_*.js` 全部 72 幕（6 动词 get/give/look/put/take/turn × 6 小品词 down/in/off/on/out/up × 2 案例）。
+纪律：台词/ITEMS/KNOW 逐字零漂移（本车道零文件改动，见 §5）；未做 git 操作（工作区 auto.js / fp_vectors_3.js 的改动属并行车道，本车道未碰）；验证性构建先暂存（~/workspace/build_t16p2c/）验大小与 </html> 尾，未落任何交付位。
+盘点口径衔接：T16_element_inventory §3 的「vv 34 个义项组（V01–V34）」是旧 src/cases 设计的义项分组；现行文件语料为决策 32/38 重画后的 72 幕（36 组合 × 2 案例），本车道以现行语料为处置对象。车道 B 已裁定手写 vv 幕（vv_take_out_2）的字形飞行系统保留，本车道不重开（该幕仅作 保G 登记）。
+
+## 一、结论先行
+
+**可换面 = 0，零替换结案。** vv 剧场不存在「人物持物于锚点」的独立道具层：全部持握/接触演出都由 cast 位图帧自身完成（道具画在帧内、随帧序列 0→1→2 推进），场景侧没有任何单独绘制、需要对位到手部的道具。hold 基元（props.js 的 `holdOffset`/`assertHold`/`drawCharacter` 的 attachTo 件）在接口上只服务**人物元素定义**（`anchorPos(charDef, pose, …)`），而人物元素已按 P0 质量闸裁定归档、模板不消费，位图演员不是 charDef——无锚点契合处可换。逐幕证据见 §2–§4。
+
+## 二、测绘证据（五项）
+
+**1. 结构普查（72 幕）**：71 幕为 autoBuild 数据文件（ITEMS + ACTS + 精灵包），ACTS 全部为单一 `'*'` 演员轨（帧序列演出，无多演员分轨）；仅 vv_take_out_2 为手写幕。ACTS 引用帧与各自精灵包 FI 全量对账：**破损引用 0**（盘点 §1 坑 7 的 wo_grimm 型缺帧在 vv 语料不存在）。
+
+**2. 无独立道具层**：autoBuild 唯一的道具通道 `'p'` 在 72 幕中**使用 0 次**（与车道 A 对 auto 全域普查口径一致）；数据文件本身除 ITEMS/ACTS 外无任何绘图代码。舞台上的非文本图形只有演员位图帧一种。
+
+**3. 帧分类（189 个去重帧，全部命中 cast 注册表）**：
+- **H 类 134 帧**——人物/双人帧且道具在帧内（注册表 contains 非空）：吉他、书包、自行车、试卷、作业本、蛋糕托盘等，持握关系已画进位图（如 l_guitar0–2 双手在琴上、m_offer 双手托盘递蛋糕）。
+- **P 类 29 帧**——人物帧无道具：蹲下、起身、眺望、摆手婉拒等姿势/视线/手势演出，道具根本不出场。
+- **S 类 26 帧**——非人物帧：bus/car/box/plane/house/room/fire/tent 等，帧本身即被描绘的对象/环境（get on 的巴士、put out 的火焰），不存在「手—物」二体关系。
+
+**4. 锚点现状（有锚点，但手已在帧内道具上）**：vv 精灵包 FI 条目 198/198 带 `foot` 与 `hand` 字段（帧内像素坐标，`K.anchorOf(a,t,'hand')` 可取）；注册表手部锚点覆盖 vv 用帧 14 帧，其中 12 帧为 H 类——其 hand 点正落在帧内道具上（如 l_guitar 的 hand 点在琴颈处）。即锚点数据齐备，但每处「手」都已经握着帧内的道具，没有空手等待外接道具的节拍。
+
+**5. 画面实证（验证性构建 + 密帧目检，~/workspace/shots_t16p2c/）**：
+- vv_take_up_1（暂存构建 1,196,206 B，时长 21.0s）t=8：Leo 坐凳弹吉他，吉他与双手同在位图帧内，舞台无任何独立道具；t=14 为收尾标题卡（纯文本层）。
+- vv_turn_down_2（暂存构建 1,210,033 B，时长 40.4s）t=15 / t=28：Mia 双手托盘（盘上蛋糕）递向 Leo 的双人帧 m_offer 全程在场——这是全语料最接近「递交 hold」的节拍，其托盘、蛋糕、双手仍是同一张位图，无可分离的道具层。
+
+## 三、为什么各类候选都不构成「锚点契合」
+
+- **H 类帧（55 幕含至少一帧）**：把帧内道具换成元素道具，前提是先擦除位图里的原道具——等于重画帧，与「人物保留位图」裁定及本车道「只换锚点契合处」的口径相悖；在手锚点上再叠一个元素道具则双重出图（琴上加琴），是制造错误而非替换。
+- **P/S 类帧（16 幕仅含此类）**：无持握道具出场。给空手姿势帧外挂元素道具属于**新增编排**（改变场景视觉内容与教学指称），不是替换；且 assertHold 的 charDef 入参对位图演员无定义，位图侧 hold 消费者（anchorOf('hand') + holdOffset 的组装件）目前并不存在于库中——新建它是一个新基元立项，不是本车道的替换动作。
+- **vv_take_out_2（1 幕）**：fly() 字形飞行图式系统，车道 B 已裁定保留（保B），不重开。
+
+## 四、逐组处置表（36 组 × 2 案例）
+
+记号：保H = 含道具在帧内的人物帧，持握演出由位图帧完成、保留｜保PS = 仅姿势/视线/场景帧，无持握道具出场、保留｜保G = 字形飞行系统，车道 B 裁定保留。
+
+| 组 | 案例① | 案例② |
+|---|---|---|
+| get down | 保H | 保PS |
+| get in | 保H | 保PS |
+| get off | 保H | 保H |
+| get on | 保H | 保H |
+| get out | 保H | 保H |
+| get up | 保H | 保PS |
+| give down | 保H | 保H |
+| give in | 保H | 保H |
+| give off | 保H | 保H |
+| give on | 保H | 保H |
+| give out | 保H | 保H |
+| give up | 保H | 保H |
+| look down | 保PS | 保PS |
+| look in | 保H | 保H |
+| look off | 保H | 保H |
+| look on | 保H | 保H |
+| look out | 保H | 保H |
+| look up | 保PS | 保H |
+| put down | 保PS | 保H |
+| put in | 保H | 保H |
+| put off | 保H | 保H |
+| put on | 保H | 保PS |
+| put out | 保H | 保PS |
+| put up | 保H | 保PS |
+| take down | 保H | 保H |
+| take in | 保PS | 保H |
+| take off | 保H | 保PS |
+| take on | 保H | 保PS |
+| take out | 保H | 保G |
+| take up | 保H | 保PS |
+| turn down | 保H | 保H |
+| turn in | 保H | 保H |
+| turn off | 保H | 保H |
+| turn on | 保H | 保H |
+| turn out | 保PS | 保PS |
+| turn up | 保H | 保H |
+
+## 五、汇总数字
+
+- 处置分布（72 幕）：**替换 0**｜保H 55｜保PS 16｜保G 1。重建产物 0（仅 2 个验证性暂存构建，未交付）；校验：无替换故无 ic_gen8 对象，代以 2 幕构建成功 + 4 帧目检（§2-5）。
+- 零漂移：本车道未修改任何场景/引擎/元素文件（git diff 口径：vv_* 与 props 相关路径零改动）；ITEMS/KNOW 未动一字。
+- 测绘工件：~/workspace/build_t16p2c/（vv_survey_raw.json 原始盘点、vv_frame_classes.json 帧分类、vv_group_table.md / vv_scene_table.md 表格源、2 个验证构建与日志）；密帧 ~/workspace/shots_t16p2c/（4 帧）。
+
+## 六、备注（边界与后续条件，非本车道处置项）
+
+1. **hold 基元在位图演员上的适用条件**（将来立项时的判据）：需同时满足 (a) 新建位图侧 hold 组装件（`K.anchorOf(actor,t,'hand')` + `holdOffset` + 对位断言）；(b) 目标帧为空手帧且其 FI hand 点确实游离；(c) 道具在场景中本就独立出场。三条在现行 vv 语料无一成立；原理家族等其他语料若出现 (b)(c) 型节拍，可按此判据另行立项。
+2. 注册表手部锚点对 vv 用帧的覆盖是 14/189（精修口径 Top40 + 补登）；FI 的 hand 字段则是全覆盖（198/198 vv 包条目）——后续车道查 vv 帧手位应以 FI 为准，注册表锚点是抽样精修，两者口径勿混。
+3. 盘点 §3 所记 hold「实际面远大于台词」在 vv 语料成立，但其实现形态是**帧内持握**（V 组帧序列即旧设计的 准备→动作→结果 三帧，现为每幕 ACTS 序列），不是可参数化的独立道具演出——此形态注记供后续盘点引用，避免再按「34 组待映射」预估工作量。
+4. 本车道未做 git 操作；本记录为唯一建议提交文件。
+
+## 附录：逐幕处置表（72 幕，帧后括号为帧类，H=道具在帧内 / P=人物无道具 / S=非人物帧）
+
+| 幕 | 构建器 | ACTS 帧（帧类） | 处置 | 帧内道具 |
+|---|---|---|---|---|
+| vv_get_down_1.js | autoBuild | tree0(H)、tree1(H)、tree2(H) | 保H | 树 |
+| vv_get_down_2.js | autoBuild | l_crouch0(P)、l_crouch1(P)、l_crouch2(P) | 保PS | — |
+| vv_get_in_1.js | autoBuild | car_in0(H)、car_in1(H)、car_in2(H) | 保H | 汽车 |
+| vv_get_in_2.js | autoBuild | train(S)、l_wave(P) | 保PS | — |
+| vv_get_off_1.js | autoBuild | bus0(H)、bus1(H)、bus2(H) | 保H | 公交车 |
+| vv_get_off_2.js | autoBuild | l_boff0(H)、l_boff1(H)、l_boff2(H) | 保H | 自行车 |
+| vv_get_on_1.js | autoBuild | bus2(H)、bus1(H)、bus0(H) | 保H | 公交车 |
+| vv_get_on_2.js | autoBuild | l_bike0(H)、l_bike1(H)、l_bike2(H) | 保H | 自行车 |
+| vv_get_out_1.js | autoBuild | car_out0(H)、car_out1(H)、car_out2(H) | 保H | 汽车 |
+| vv_get_out_2.js | autoBuild | box0(H)、box1(H)、box2(H) | 保H | 箱子 |
+| vv_get_up_1.js | autoBuild | l_bed0(H)、l_bed1(H)、l_bed2(H) | 保H | 床 |
+| vv_get_up_2.js | autoBuild | l_floor0(P)、l_floor1(P)、l_floor2(P) | 保PS | — |
+| vv_give_down_1.js | autoBuild | l_pencil(H)、m_lost(P)、pencil_back(S) | 保H | 铅笔 |
+| vv_give_down_2.js | autoBuild | l_books(H)、l_return(H)、librarian(H) | 保H | 书、柜台 |
+| vv_give_in_1.js | autoBuild | l_exam0(H)、l_exam1(H)、missw_paper(H) | 保H | 试卷 |
+| vv_give_in_2.js | autoBuild | tug0(H)、tug1(H)、tug2(H) | 保H | 绳索 |
+| vv_give_off_1.js | autoBuild | m_bread(H)、m_flower(H) | 保H | 花、面包 |
+| vv_give_off_2.js | autoBuild | l_fire(H) | 保H | 火炉 |
+| vv_give_on_1.js | autoBuild | l_shutter(H) | 保H | 百叶窗 |
+| vv_give_on_2.js | autoBuild | l_gdoor(H) | 保H | 门 |
+| vv_give_out_1.js | autoBuild | missw_hold(H)、missw_give(H) | 保H | 试卷 |
+| vv_give_out_2.js | autoBuild | l_lantern(H) | 保H | 灯笼 |
+| vv_give_up_1.js | autoBuild | l_lift0(H)、l_lift1(H)、l_lift2(H) | 保H | 杠铃 |
+| vv_give_up_2.js | autoBuild | dad_candy(H)、dad_apple(H) | 保H | 糖果、苹果 |
+| vv_look_down_1.js | autoBuild | l_ldown0(P)、l_ldown1(P)、l_ldown2(P) | 保PS | — |
+| vv_look_down_2.js | autoBuild | l_ldown0(P)、l_ldown1(P)、l_ldown2(P) | 保PS | — |
+| vv_look_in_1.js | autoBuild | l_boxwalk(H)、box_lid(S)、l_peek(H) | 保H | 箱子 |
+| vv_look_in_2.js | autoBuild | l_detect0(H)、l_detect1(H)、l_detect2(H) | 保H | 放大镜 |
+| vv_look_off_1.js | autoBuild | l_spider0(H)、l_spider1(H)、l_spider2(H) | 保H | 蜘蛛 |
+| vv_look_off_2.js | autoBuild | l_spider0(H)、l_spider1(H)、l_spider2(H) | 保H | 蜘蛛 |
+| vv_look_on_1.js | autoBuild | l_bench0(H)、l_bench1(H)、l_bench2(H) | 保H | 长椅 |
+| vv_look_on_2.js | autoBuild | m_drop(P)、l_hero1(P)、m_admire(H) | 保H | 星星（装饰） |
+| vv_look_out_1.js | autoBuild | l_banana0(H)、m_shout(P)、l_banana2(H) | 保H | 香蕉皮 |
+| vv_look_out_2.js | autoBuild | l_win0(H)、l_win1(H)、l_win2(H) | 保H | 窗 |
+| vv_look_up_1.js | autoBuild | l_lookup(P) | 保PS | — |
+| vv_look_up_2.js | autoBuild | l_dict0(H)、l_dict1(H)、l_dict2(H) | 保H | 词典 |
+| vv_put_down_1.js | autoBuild | l_heavy0(P)、l_heavy1(P)、l_heavy2(P) | 保PS | — |
+| vv_put_down_2.js | autoBuild | l_write0(H)、l_write1(H)、l_write2(H) | 保H | 笔、纸 |
+| vv_put_in_1.js | autoBuild | l_toy0(H)、l_toy1(H)、l_toy2(H) | 保H | 玩具、盒子 |
+| vv_put_in_2.js | autoBuild | l_paint0(H)、l_paint1(H)、l_trophy(H) | 保H | 奖杯、画笔 |
+| vv_put_off_1.js | autoBuild | l_hw0(H)、l_hw1(H)、l_hw2(H) | 保H | 作业本 |
+| vv_put_off_2.js | autoBuild | rain0(S)、missw_cal(H)、sunny(S) | 保H | 日历 |
+| vv_put_on_1.js | autoBuild | l_cap0(H)、l_cap1(H)、l_cap2(H) | 保H | 帽子 |
+| vv_put_on_2.js | autoBuild | show0(P)、show1(P) | 保PS | — |
+| vv_put_out_1.js | autoBuild | l_cake0(H)、l_cake1(H)、l_cake2(H) | 保H | 蛋糕、蜡烛 |
+| vv_put_out_2.js | autoBuild | fire0(S)、fire1(S)、fire2(S) | 保PS | — |
+| vv_put_up_1.js | autoBuild | l_hand0(H)、l_hand1(H)、l_hand2(H) | 保H | 椅子、课桌 |
+| vv_put_up_2.js | autoBuild | tent0(S)、tent1(S)、tent2(S) | 保PS | 帐篷 |
+| vv_take_down_1.js | autoBuild | l_pic0(H)、l_pic1(H)、l_pic2(H) | 保H | 画框 |
+| vv_take_down_2.js | autoBuild | l_note0(H)、l_note1(H)、l_note2(H) | 保H | 笔记本 |
+| vv_take_in_1.js | autoBuild | l_air0(P)、l_air1(P)、l_air2(P) | 保PS | — |
+| vv_take_in_2.js | autoBuild | l_idea0(H)、l_idea1(H)、l_idea2(H) | 保H | 书 |
+| vv_take_off_1.js | autoBuild | l_coff0(H)、l_coff1(H)、l_coff2(H) | 保H | 外套 |
+| vv_take_off_2.js | autoBuild | plane0(S)、plane1(S)、plane2(S) | 保PS | — |
+| vv_take_on_1.js | autoBuild | l_sack0(H)、l_sack1(H)、l_sack2(H) | 保H | 麻袋 |
+| vv_take_on_2.js | autoBuild | house0(S)、house1(S)、house2(S) | 保PS | — |
+| vv_take_out_1.js | autoBuild | l_bag0(H)、l_bag1(H)、l_bag2(H) | 保H | 书、书包 |
+| vv_take_out_2.js | 手写 fly() | —（字形飞行） | 保G |
+| vv_take_up_1.js | autoBuild | l_guitar0(H)、l_guitar1(H)、l_guitar2(H) | 保H | 吉他 |
+| vv_take_up_2.js | autoBuild | room0(S)、room1(S)、room2(S) | 保PS | 箱子 |
+| vv_turn_down_1.js | autoBuild | mom_loud(P)、l_knob(H)、l_shh(P) | 保H | 旋钮 |
+| vv_turn_down_2.js | autoBuild | m_offer(H)、l_nothanks(P)、offer_ok(P) | 保H | 盘子、蛋糕 |
+| vv_turn_in_1.js | autoBuild | l_hwalk(H)、l_handin(H)、missw_stack(H) | 保H | 作业本 |
+| vv_turn_in_2.js | autoBuild | l_pj0(H)、l_pj1(H)、l_pj2(H) | 保H | 床 |
+| vv_turn_off_1.js | autoBuild | m_tvoff0(H)、m_tvoff1(H)、m_tvoff2(H) | 保H | 电视、遥控器 |
+| vv_turn_off_2.js | autoBuild | l_tapoff0(H)、l_tapoff1(H)、l_tapoff2(H) | 保H | 水龙头 |
+| vv_turn_on_1.js | autoBuild | l_light0(H)、l_light1(H)、l_light2(H) | 保H | 灯 |
+| vv_turn_on_2.js | autoBuild | l_tap0(H)、l_tap1(H)、l_tap2(H) | 保H | 水龙头 |
+| vv_turn_out_1.js | autoBuild | l_seed0(S)、l_seed1(S)、l_seed2(S) | 保PS | 向日葵 |
+| vv_turn_out_2.js | autoBuild | shadow0(S)、shadow1(S)、cat_light(S) | 保PS | 手电光 |
+| vv_turn_up_1.js | autoBuild | l_radio0(H)、l_radio1(H)、l_radio2(H) | 保H | 收音机 |
+| vv_turn_up_2.js | autoBuild | party_wait(P)、party_door(H)、party_cheer(P) | 保H | 门 |
