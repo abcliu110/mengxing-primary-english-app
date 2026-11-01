@@ -1,0 +1,229 @@
+# 挂接表：支撑层（LS/YL/CB/CG/VB）例词 → 规律条目
+meta:
+  file: support_hitching.yaml
+  wave: F2
+  source_model: laws/support.yaml
+  note: 由 support.yaml 的 examples.word_ids 与 mechanism.anchors 倒排生成；仅含支撑层实际引用的词。支撑层为教师/设计层，例词引用密度低于孩子层，属预期。支撑层条目不进孩子端菜单（菜单完备性校验 V7 不适用于本表）。词键一律加引号，避免 on/off 等被 YAML 1.1 解析为布尔。
+words:
+  "May":
+    word_id: G5_0608
+    law_refs: [VB-08]
+  "again":
+    word_id: G3_K24
+    law_refs: [CB-07]
+  "apple":
+    word_id: G1_037
+    law_refs: [LS-12]
+  "arrive":
+    word_id: V6_交通_56
+    law_refs: [VB-04]
+  "ask":
+    word_id: V6_学校_69
+    law_refs: [CG-08, VB-09]
+  "bread":
+    word_id: G3_126
+    law_refs: [VB-02]
+  "break":
+    word_id: ADD_0025
+    law_refs: [VB-01, VB-02, VB-04]
+  "bring":
+    word_id: V6_日常_7
+    law_refs: [CB-14]
+  "cat":
+    word_id: G1_014
+    law_refs: [CG-13]
+  "climb":
+    word_id: G4_0800
+    law_refs: [VB-04]
+  "coffee":
+    word_id: G4_0945
+    law_refs: [VB-06]
+  "come":
+    word_id: V6_日常_2
+    law_refs: [VB-08]
+  "cut":
+    word_id: V6_日常_47
+    law_refs: [VB-01, VB-02]
+  "draw":
+    word_id: G3_0790
+    law_refs: [YL-12]
+  "eat":
+    word_id: V6_日常_15
+    law_refs: [VB-10]
+  "face":
+    word_id: G1_010
+    law_refs: [VB-11]
+  "friend":
+    word_id: G3_130
+    law_refs: [CB-07]
+  "game":
+    word_id: G2_0990
+    law_refs: [YL-01, YL-03, YL-14]
+  "get":
+    word_id: V6_日常_0
+    law_refs: [CB-13]
+  "give":
+    word_id: V6_日常_8
+    law_refs: [CB-01, VB-03]
+  "go":
+    word_id: V6_日常_1
+    law_refs: [CB-05, VB-09]
+  "good":
+    word_id: G3_K08
+    law_refs: [CB-10]
+  "great":
+    word_id: G4_K02
+    law_refs: [CB-07]
+  "happy":
+    word_id: G6_282
+    law_refs: [CG-06]
+  "have":
+    word_id: V6_日常_5
+    law_refs: [VB-13]
+  "help":
+    word_id: G3_0442
+    law_refs: [YL-04]
+  "high":
+    word_id: G4_0601
+    law_refs: [CG-06]
+  "hit":
+    word_id: ADD_0149
+    law_refs: [VB-02]
+  "house":
+    word_id: V6_家庭_35
+    law_refs: [CG-04, VB-05]
+  "jump":
+    word_id: G2_085
+    law_refs: [YL-13]
+  "key":
+    word_id: G4_0740
+    law_refs: [CG-07, VB-05]
+  "learn":
+    word_id: G3_0628
+    law_refs: [YL-08]
+  "listen":
+    word_id: G2_0642
+    law_refs: [CG-12, CG-14]
+  "look":
+    word_id: V6_日常_16
+    law_refs: [CB-10]
+  "lost":
+    word_id: V6_MORPH_58
+    law_refs: [VB-05]
+  "low":
+    word_id: V6_颜色_27
+    law_refs: [CG-06]
+  "make":
+    word_id: V6_日常_4
+    law_refs: [CB-02, CB-11, VB-11]
+  "must":
+    word_id: G3_K03
+    law_refs: [VB-13]
+  "on":
+    word_id: G3_142
+    law_refs: [VB-10]
+  "open":
+    word_id: V6_日常_10
+    law_refs: [VB-04]
+  "out":
+    word_id: G3_K21
+    law_refs: [VB-10]
+  "pen":
+    word_id: G1_003
+    law_refs: [CG-04]
+  "picture":
+    word_id: G4_158
+    law_refs: [LS-13, YL-02]
+  "play":
+    word_id: G2_0489
+    law_refs: [YL-09]
+  "put":
+    word_id: V6_日常_9
+    law_refs: [VB-03, VB-11]
+  "question":
+    word_id: G4_0518
+    law_refs: [LS-11]
+  "read":
+    word_id: G2_0492
+    law_refs: [CB-03, CG-12, LS-02, LS-09, LS-15]
+  "run":
+    word_id: G2_087
+    law_refs: [VB-03, VB-04]
+  "sad":
+    word_id: G6_283
+    law_refs: [CG-06]
+  "say":
+    word_id: G3_0625
+    law_refs: [CG-10]
+  "see":
+    word_id: V6_日常_17
+    law_refs: [CB-07]
+  "sentence":
+    word_id: V6_学校_43
+    law_refs: [CG-01, CG-02, LS-14]
+  "song":
+    word_id: G2_0669
+    law_refs: [YL-10]
+  "space":
+    word_id: V6_自然_3
+    law_refs: [CG-05]
+  "speak":
+    word_id: G3_0619
+    law_refs: [CB-04, CG-12, YL-11]
+  "stand":
+    word_id: G3_K12
+    law_refs: [YL-13]
+  "story":
+    word_id: V6_学校_44
+    law_refs: [CG-14, LS-15, YL-03, YL-06, YL-07]
+  "sweep":
+    word_id: V6_日常_13
+    law_refs: [VB-04]
+  "swim":
+    word_id: G2_089
+    law_refs: [YL-05]
+  "sword":
+    word_id: ADD_0290
+    law_refs: [CG-04]
+  "talk":
+    word_id: G3_0622
+    law_refs: [CB-06, CB-08, CG-09]
+  "taxi":
+    word_id: G3_0972
+    law_refs: [VB-05]
+  "tea":
+    word_id: G2_0944
+    law_refs: [CB-09]
+  "test":
+    word_id: V6_学校_38
+    law_refs: [LS-01, LS-04, LS-05, LS-08, LS-10]
+  "time":
+    word_id: V6_节日_0
+    law_refs: [CG-03, CG-05, CG-11]
+  "up":
+    word_id: G3_K19
+    law_refs: [VB-10]
+  "visit":
+    word_id: G6_270
+    law_refs: [CB-07]
+  "week":
+    word_id: V6_节日_3
+    law_refs: [CG-05, LS-06, LS-07]
+  "well":
+    word_id: G3_K27
+    law_refs: [CB-09]
+  "white":
+    word_id: G1_035
+    law_refs: [CG-04]
+  "will":
+    word_id: G3_K02
+    law_refs: [VB-07, VB-12]
+  "window":
+    word_id: G4_159
+    law_refs: [VB-02]
+  "word":
+    word_id: V6_学校_42
+    law_refs: [LS-03]
+  "write":
+    word_id: G3_0487
+    law_refs: [CB-12, CG-12, VB-10]

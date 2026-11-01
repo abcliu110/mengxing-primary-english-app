@@ -1,0 +1,2687 @@
+# 规律模型 · 词汇解码区（V 组 45 条）
+# 入模波次 W2。源：专家规律清单 v6 之 V 组（V-01–V-45），逐条按 DESIGN §3 schema 转化。
+# 纪律：claim 只用清单定版口径；已纠正的伪说法只进 corrections，不进 claim。
+# 例词只引词库 id；库外词进 pending_words 走补词流程，不自造 id。
+# 探针：仅旗舰 V-40、V-33 有探针库 v1 现成探针（PRB-* 编号按 DESIGN §3.6 格式映射探针库分组序号）；其余登记待补。
+meta:
+  group: V
+  zone: 词汇解码
+  source: expert-summaries-catalog-v6.md（V 组）+ catalog_add_etymology/roots_evidence/affixes/polysemy 簇源
+  modeled_at: 2026-11-01
+  schema: DESIGN.md §3.1
+entries:
+  - id: V-01
+    zone: 词汇解码
+    group: V
+    headline: "知道一个词 = 形（音、拼写、构成）、义（概念、联想、多义）、用（语法行为、搭配、场合）三面都建立了联结；缺哪一面，就在哪一面出错"
+    headline_kid: "一个词有好多面：长什么样、读什么音、是什么意思、和谁是好朋友、什么时候能说——全认识了，才算真会"
+    claim:
+      type: tendency
+      statement: "词知识由形/义/用三维多格构成，各通道分别建链；只背中文意思只建了其中一格，会认不会用、会拼不会搭都是某条通道没建好"
+      evidence:
+        - "Paul Nation《Learning Vocabulary in Another Language》(2001；第2版 2013, CUP)——knowing a word 形/义/用三维表为全书分析框架（二手论述级，经 Elgort & Nation 综述章转述）"
+      scope: "词汇知识的分析框架；是清单，不是习得顺序"
+      exceptions:
+        - note: "低龄阶段以音形与核心义优先，搭配、语域等维度随年龄后长——三面齐备是目标态，不是入门门槛"
+          word_ids: []
+    mechanism:
+      - beat: 三面格子
+        text_kid: "认识一个词像认识一个新同学：要知道他长什么样、叫什么、喜欢和谁玩、什么场合说什么话。只知道名字，不算真认识。"
+        text_adult: "Nation 三维表：形（口语形、书面形、词部件）、义（形义联结、概念与所指、联想）、用（语法功能、搭配、约束）。测验与课程按此拆解，不只测词义配对。"
+        visual: "九宫格图式：一个词卡中央，周围九格逐格点亮"
+        anchors: [G1_002]
+      - beat: 缺面即错面
+        text_kid: "哪一面没学好，就会在哪一面出错：会读不会搭，就会说出外国腔的句子。"
+        text_adult: "记忆是多通道分别建链；诊断词汇错误先定位是哪一维缺失，再补哪一维。"
+        visual: "九宫格中一格灰暗，对应一句搭配错误句浮现"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G1_002]
+        sentence: "This is a book. I read a book."
+        scene_note: "教室里拿起一本书——音、形、义、用四格同屏"
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_4, ADD_0070]
+        sentence: "Make a decision."
+        scene_note: "decision 的『用』：它的伙伴是 make，不是 do（与 V-07 互挂）"
+        supports: claim
+    error_cases:
+      - wrong: "Do a decision."
+        right: "Make a decision."
+        error_type: 搭配迁移
+        source_type: 教学文献登记错型
+        diagnosis: "只建了 decision 的义，没建它的搭配面（回 mechanism『缺面即错面』）"
+    relatives:
+      - {id: V-07, rel: 同族}
+      - {id: V-15, rel: 同族}
+    quiz:
+      - stem: "小明会读、会拼 decision，还知道它是『决定』，可他说了 Do a decision。他缺的是哪一面？"
+        options: ["形", "义", "用（搭配）"]
+        answer: "用（搭配）"
+        hint_ref: "mechanism『缺面即错面』"
+    probes: []
+    prereq: []
+    order: 1
+    pain_points: [记不住, 说不出]
+    adult:
+      sources: ["Nation (2001/2013)《Learning Vocabulary in Another Language》, CUP；框架转述：Elgort & Nation 综述章（ResearchGate 305204504）"]
+      boundary: "框架是清单，不是习得顺序；低龄阶段音形与核心义优先"
+      disputes: "无（框架为学界共识；分歧只在各维度教学权重）"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V01-* 预留）", "scene_spec 待补"]
+  - id: V-02
+    zone: 词汇解码
+    group: V
+    headline: "词频是陡峭的幂律分布：先攻最常用的约 2000 个词族，覆盖日常文本约八成词次，回报率最高"
+    headline_kid: "英语里有一小队『劳模词』，到处都是它们；先把劳模词认全，书里的大部分字一下子就都认识了"
+    claim:
+      type: tendency
+      statement: "学习顺序按频率排，等于按『每学一词能解锁多少文本』排；GSL 前两千词族合计覆盖普通文本约八成词次（随语料类型浮动）"
+      evidence:
+        - "Michael West《A General Service List of English Words》(1953, Longmans)——2000 词族通用词表；覆盖率原始数据见 Coxhead (2000)：GSL 第一千词族覆盖学术语料 71.4% 词次（二手论述级）"
+        - "Nation 后续以 BNC/COCA 语料重制分级表承其框架"
+      scope: "覆盖率按词次（token）计，不等于理解率；数字随语料类型浮动"
+      exceptions:
+        - note: "GSL 是 1953 年的表，computer 一类新高频词缺位，现代应用以其后继表（NGSL 等）为准"
+          word_ids: [G4_155]
+        - note: "儿童读物词频分布与成人语料不同，需按年龄语料校准"
+          word_ids: []
+    mechanism:
+      - beat: 幂律分布
+        text_kid: "书里的词不公平：少数词出现一遍又一遍，多数词只露一次脸。先认露脸最多的，书一下子就好读了。"
+        text_adult: "词次分布极不均匀；词族杠杆的量化锚见 V-29（每基本词平均带 1.57 个透明派生词）。"
+        visual: "柱状图：一小撮高柱（高频词）罩住大部分文本面积"
+        anchors: []
+      - beat: 词族口径
+        text_kid: "学一个词，它的亲戚（长得像的词）常常顺带就认得了——所以数词要按『家』数。"
+        text_adult: "计数单位（词族/词目/词形）会改变同一结论的数字，引用词汇量数字必须连口径一起引（见 V-29 边界）。"
+        visual: "一棵词族树：树干一个词，枝上挂亲戚词"
+        anchors: [G2_087]
+    examples:
+      - level: 1
+        word_ids: [G1_002, G1_015]
+        sentence: "I read a book about a dog."
+        scene_note: "绘本一页：book、dog 都是到处露脸的劳模词"
+        supports: claim
+      - level: 2
+        word_ids: [G4_155]
+        sentence: "I use a computer at school."
+        scene_note: "computer 在 1953 年词表里缺位——老词表要更新（例外同屏）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-29, rel: 同族}
+      - {id: V-03, rel: 同族}
+    quiz:
+      - stem: "先学哪批词最划算？"
+        options: ["按字母表顺序", "按出现频率从高到低", "按笔画多少"]
+        answer: "按出现频率从高到低"
+        hint_ref: "mechanism『幂律分布』"
+    probes: []
+    prereq: []
+    order: 2
+    pain_points: [记不住, 读不快]
+    adult:
+      sources: ["West (1953) GSL；Coxhead (2000) 学术词表与覆盖率原文；eapfoundation 词表综述页"]
+      boundary: "覆盖率按词次算，不等于理解率；GSL 年代局限见 exceptions"
+      disputes: "以词族还是词目/词形为计数单位会改变数字，学界口径未完全统一"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V02-* 预留）", "error_cases 待补（本条为排序原则，无清单登记的病句病例，不自编）", "scene_spec 待补"]
+  - id: V-03
+    zone: 词汇解码
+    group: V
+    headline: "生词密度决定理解是否崩盘：认识约 95% 的词只能吃力猜读，达到约 98% 才能流畅理解并顺带猜出生词"
+    headline_kid: "一页书里不认识的词太多，就像拼图缺了太多块，整幅画拼不出来；只缺一两块，才能猜出那块是什么"
+    claim:
+      type: tendency
+      statement: "覆盖率是阅读理解的阈值变量：低于阈值理解断崖式下降，约 98% 是群体平均的『足够理解』线；猜义靠周围认识的词作锚点，锚点断裂则理解非线性崩塌"
+      evidence:
+        - "Nation (2006) 'How large a vocabulary is needed for reading and listening?', Canadian Modern Language Review 63(1)——98% 覆盖需 8000–9000 词族（二手论述级）"
+        - "Laufer 自 1989 年起的词汇阈值（lexical threshold）系列实验：低于阈值理解分数断崖式下降"
+      scope: "群体平均线，不是每个孩子每本书的铁律；小学阶段的落地形式是分级读物覆盖率控制，不是背 8000 词"
+      exceptions:
+        - note: "背景知识熟悉的话题可部分补偿覆盖率不足（补偿派），代偿有上限"
+          word_ids: []
+    mechanism:
+      - beat: 锚点
+        text_kid: "猜生词要靠旁边的熟词帮忙。熟词太少，帮手都不在，猜也猜不动。"
+        text_adult: "猜义 = 用已知词与背景知识对生词作约束求解；约束不足时解必错（与 V-12 互为表里）。"
+        visual: "拼图动画：缺块少时可补全，缺块过半画面崩解"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G2_087, G1_015]
+        sentence: "I run with my dog."
+        scene_note: "全是熟词的一句——读得顺"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002]
+        sentence: "I read a book."
+        scene_note: "分级读物选书演示：一页只留一两个生词，其余全是锚点"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-12, rel: 同族}
+      - {id: V-02, rel: 前置}
+    quiz:
+      - stem: "一页书里有好多生词，越读越糊涂。最对症的办法是？"
+        options: ["硬猜到底", "换一本生词更少的书", "把每个生词抄十遍"]
+        answer: "换一本生词更少的书"
+        hint_ref: "mechanism『锚点』"
+    probes: []
+    prereq: [V-02]
+    order: 3
+    pain_points: [读不快, 记不住]
+    adult:
+      sources: ["Nation (2006) CMR 63(1)；Laufer 词汇阈值系列 (1989–)"]
+      boundary: "98% 是平均线；背景知识可部分补偿"
+      disputes: "阈值派（Laufer）与补偿派之争：分歧在代偿上限；Laufer 本人亦承认知识补偿存在"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V03-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-04
+    zone: 词汇解码
+    group: V
+    headline: "词汇习得需要四种学习条件大致均衡：意义导向输入、意义导向输出、语言导向学习、流利度发展——只背单词表只占四分之一"
+    headline_kid: "学词像吃饭要营养均衡：多听多读、多说多写、认真研究、反复用熟——四样都要有"
+    claim:
+      type: tendency
+      statement: "四股分别建设词知识的不同侧面（遇见建识别、用出建提取与精确度、专学建形式细节、流利练自动性），不能互相替代"
+      evidence:
+        - "Nation 四股（four strands）框架：Nation (2007) 及《Learning Vocabulary in Another Language》第2版 (2013) 课程设计章（二手论述级，经 Coxhead 2018 综述转述）"
+      scope: "课程层面的配比原则，不要求每节课四等分"
+      exceptions:
+        - note: "低龄段输入与流利股的比重应更高——均衡是按发展阶段调过的均衡"
+          word_ids: []
+    mechanism:
+      - beat: 四股分工
+        text_kid: "听读是『遇见』，说写是『用出来』，研究词是『看仔细』，反复用是『练熟』。四件事做四种活，少一样都不完整。"
+        text_adult: "四股与 V-01 的形/义/用各维对应供血；单词卡属专学还是流利练习之争见分歧栏。"
+        visual: "四条腿的桌子图式，抽掉一条即倾斜"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G2_0642, G2_0492]
+        sentence: "I listen and read every day."
+        scene_note: "输入股：每天听读遇见词"
+        supports: claim
+      - level: 2
+        word_ids: [G3_0619, G3_0487]
+        sentence: "I speak and write with my words."
+        scene_note: "输出股 + 流利股：把词用出来、用熟"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-01, rel: 同族}
+      - {id: V-17, rel: 同族}
+      - {id: V-11, rel: 同族}
+    quiz:
+      - stem: "小明每天只背单词表，从不开口说。他缺了四股里的哪几股？"
+        options: ["只有输入股", "输出、流利等股都缺", "四股都齐了"]
+        answer: "输出、流利等股都缺"
+        hint_ref: "mechanism『四股分工』"
+    probes: []
+    prereq: [V-01]
+    order: 4
+    pain_points: [记不住, 说不出]
+    adult:
+      sources: ["Nation (2007)；Nation (2013) 第2版课程设计章；Coxhead (2018) 综述转述"]
+      boundary: "配比是课程层原则；低龄段输入与流利比重更高"
+      disputes: "无主流分歧；争议在各股的具体活动形式（如单词卡的归属）"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V04-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-05
+    zone: 词汇解码
+    group: V
+    headline: "母语者产出的很大一部分是整块取用的现成组合；语言的底盘是『被语法组织起来的词汇』，不是『先有语法再填词』"
+    headline_kid: "说英语像搭乐高：高手手里有很多拼好的小组件，拿来就用；一个一个零件现拼，又慢又容易拼错"
+    claim:
+      type: tendency
+      statement: "整块储存、整块提取省去逐词拼装的加工成本；流利与地道主要来自块的库存量，块独立于语法库存（语法已好时搭配错误仍是主要错误源）"
+      evidence:
+        - "Michael Lewis《The Lexical Approach》(1993, LTP) 及《Implementing the Lexical Approach》(1997)——块的分类（二手论述级）"
+        - "Bahns (1993, ELT Journal 47(1)) 对比研究：学习者语法已很好时，搭配错误仍是主要错误源"
+      scope: "儿童阶段只收高频交际块"
+      exceptions:
+        - note: "块学得再多也不能取消语法概括，否则生成新句子的能力封顶"
+          word_ids: []
+    mechanism:
+      - beat: 整块取用
+        text_kid: "现成的句子块像拼好的乐高小车，拿来就能跑；现拼的要一个零件一个零件对，慢，还容易装错。"
+        text_adult: "块的心理现实性见 V-06（整存整取通道）；Bahns 的反证说明块库存不随语法水平自动增长。"
+        visual: "乐高组件墙：整块组件与散件两区对比"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_日常_4, ADD_0070]
+        sentence: "Make a decision."
+        scene_note: "整块存取的搭配块（与 V-07 同例互挂）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_6, G4_0381]
+        sentence: "Take a photo."
+        scene_note: "take a photo 是整块，不是 take 的义项临时拼装"
+        supports: claim
+    error_cases:
+      - wrong: "Do a decision."
+        right: "Make a decision."
+        error_type: 搭配迁移
+        source_type: 教学文献登记错型
+        diagnosis: "逐词拼装而非整块取用（回 mechanism『整块取用』）"
+    relatives:
+      - {id: V-06, rel: 同族}
+      - {id: V-07, rel: 同族}
+    quiz:
+      - stem: "『make a decision』应该怎么学？"
+        options: ["拆成三个词分别背", "整块记住、整块用", "先学语法再填词"]
+        answer: "整块记住、整块用"
+        hint_ref: "mechanism『整块取用』"
+    probes: []
+    prereq: [V-01]
+    order: 5
+    pain_points: [说不出, 写不长, 记不住]
+    adult:
+      sources: ["Lewis (1993, 1997)；Bahns (1993) ELT Journal 47(1): 56–63；British Council / ELT Concourse 词汇法介绍"]
+      boundary: "块不能无限背：儿童阶段只收高频交际块；块不能取消语法"
+      disputes: "批评者指词汇法对『块如何被再分析、长成语法』交代不足；Lewis 阵营以归纳式课堂补足。此分歧未决，教学上块与规则并行"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V05-* 预留）", "scene_spec 待补"]
+  - id: V-06
+    zone: 词汇解码
+    group: V
+    headline: "心理词库是词素、单词、词块、整句并存的多规格仓库；大脑优先抓现成的大块用，因为省力"
+    headline_kid: "脑子里的词仓库什么尺寸都有：单个的词、成串的短语、整句话——说话时先伸手拿大件，省事又快"
+    claim:
+      type: tendency
+      statement: "整体加工与分析加工是并行双通道；高频组合走整取通道，这是程式化序列处理速度优势的心理基础"
+      evidence:
+        - "Alison Wray《Formulaic Language and the Lexicon》(2002, CUP) 及续作 (2008)——程式化序列定义与异质词库模型（二手论述级）"
+        - "Conklin & Schmitt (2008) 眼动/反应时实验：程式化序列处理快于同长新造组合"
+      scope: "整取优势随熟练度与频率变化"
+      exceptions:
+        - note: "学习者库存中的块若从未被分析，可能成为化石化错误的外壳"
+          word_ids: []
+    mechanism:
+      - beat: 双通道
+        text_kid: "脑子里有两条路：一条拿现成的大件（整句话、整串词），一条现拼零件。先走省力的那条。"
+        text_adult: "Wray 的异质词库模型是 V-05 词汇法的心理基础；失语症与儿童语言证据亦支持双通道。"
+        visual: "仓库货架图：整句、词块、单词、词素四种规格并存"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_日常_6]
+        sentence: "Take a photo, please."
+        scene_note: "整串取用：take a photo 一口气说出"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002]
+        sentence: "This is a book."
+        scene_note: "整句框架 This is a ___ 也是仓库里的大件"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-05, rel: 同族}
+    quiz:
+      - stem: "说话时大脑为什么爱先拿整块的词？"
+        options: ["因为整块不用现拼，省力又快", "因为单词太难", "因为整块比较好看"]
+        answer: "因为整块不用现拼，省力又快"
+        hint_ref: "mechanism『双通道』"
+    probes: []
+    prereq: [V-05]
+    order: 6
+    pain_points: [记不住, 说不出]
+    adult:
+      sources: ["Wray (2002, 2008), CUP；Conklin & Schmitt (2008)"]
+      boundary: "整取优势随熟练度与频率变化；未分析的块可能成化石化外壳"
+      disputes: "无（模型层面共识较高；分歧在程式化序列的判定标准细节）"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V06-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-07
+    zone: 词汇解码
+    group: V
+    headline: "搭配对错没有道理可讲，是用法沉淀的约定：学一个动词必须连它的常用伙伴一起学，否则语法全对也『外国腔』"
+    headline_kid: "词也有好朋友名单：decision 的好朋友是 make，不是 do；记词的时候要把它的好朋友一起记住"
+    claim:
+      type: tendency
+      statement: "搭配是词项在共现维度上的身份信息，由频率与约定决定，不由语义逻辑决定，无法靠推理生成，只能靠遇见与整记；搭配错误在中高级学习者中占比居前，且不随语法水平提高自动消失"
+      evidence:
+        - "Lewis《The Lexical Approach》(1993) 搭配分类与『词汇即搭配网络』主张（二手论述级）"
+        - "Bahns (1993) 'Lexical collocations: A contrastive view', ELT Journal 47(1): 56–63——学习者一侧实证"
+      scope: "并非一切共现都是搭配（须达一定频率与约定强度）"
+      exceptions:
+        - note: "少数搭配有语义理据（强弱、大小有别），但理据只能事后解释，不能事前推导"
+          word_ids: []
+    mechanism:
+      - beat: 伙伴名单
+        text_kid: "每个词都有自己的好朋友名单。名单不是猜出来的，是大家一直这么用，定下来的。"
+        text_adult: "搭配属 Nation 框架中『用』的核心组成（见 V-01）；语义韵是搭配的评价极性延伸（见 V-43）。"
+        visual: "词卡右侧挂出伙伴名单牌，错误伙伴打叉"
+        anchors: [ADD_0070]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_4, ADD_0070]
+        sentence: "Make a decision."
+        scene_note: "伙伴名单第一例：make + decision"
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_6]
+        pending_words: [shower]
+        sentence: "Take a shower."
+        scene_note: "shower 的伙伴是 take（与 CO-17 空心动词互挂）；shower 不在词库，待补词"
+        supports: claim
+    error_cases:
+      - wrong: "Do a decision."
+        right: "Make a decision."
+        error_type: 搭配迁移
+        source_type: 教学文献登记错型
+        diagnosis: "按语义推理选动词，没按约定选伙伴（回 mechanism『伙伴名单』）"
+    relatives:
+      - {id: V-01, rel: 同族}
+      - {id: V-05, rel: 同族}
+      - {id: V-43, rel: 同族}
+    quiz:
+      - stem: "『做决定』为什么是 make a decision，不是 do a decision？"
+        options: ["因为 make 更高大上", "因为搭配是大家用出来的约定，没道理可猜", "因为 do 太短了"]
+        answer: "因为搭配是大家用出来的约定，没道理可猜"
+        hint_ref: "mechanism『伙伴名单』"
+    probes: []
+    prereq: [V-05]
+    order: 7
+    pain_points: [说不出, 写不长, 错不完]
+    adult:
+      sources: ["Lewis (1993)；Bahns (1993) ELT Journal 47(1)"]
+      boundary: "并非一切共现都是搭配；少数搭配有语义理据但只能事后解释"
+      disputes: "无主流分歧；分歧在搭配的统计判定阈值（MI 值、t 值等技术口径）"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V07-* 预留）", "scene_spec 待补", "补词待办：shower"]
+  - id: V-08
+    zone: 词汇解码
+    group: V
+    headline: "给词义接上一个真实的来历场景，记忆多一条图像通道，理解与保持都更好——前提是来历必须是真的"
+    headline_kid: "每个词都有自己的『出身故事』，知道它从哪儿来，就像给它挂了个小相片，想起来的时候多一条路"
+    claim:
+      type: tendency
+      statement: "词源信息诱发对原始场景的心像，与语词编码构成双重编码，提取路径翻倍；让学习者先猜来历再揭晓，加工更深、效果更强"
+      evidence:
+        - "Boers (2001) Prospect 16(3)；Boers, Demecheleer & Eyckmans (2004) 词源精细加工系列实验，Language Teaching Research 等——实验组在习语理解与延迟保持上显著优于对照组（多组 p<.001）（二手论述级）"
+      scope: "证据全部来自成人/大学生被试，对儿童属方向性借鉴；只适用于词源尚可考的词"
+      exceptions:
+        - note: "编造的假词源（如方位缩写式拆字）既污染事实又误导机制，禁止使用——来历必须是真的"
+          word_ids: []
+    mechanism:
+      - beat: 双重编码
+        text_kid: "给词挂一张『出身照片』，记它的时候就有两条路可走：一条是意思，一条是照片。"
+        text_adult: "词源精细加工（etymological elaboration）的关键在学习者主动假设来历（见分歧栏），不是被动读注释。"
+        visual: "词卡背面翻出一张来历场景小照片"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G2_0944]
+        sentence: "I drink tea."
+        scene_note: "tea 的来历故事见 V-27（福建出海）——故事卡素材互挂"
+        supports: claim
+      - level: 2
+        word_ids: [G3_0759]
+        sentence: "Look, a butterfly!"
+        scene_note: "butterfly 的命名故事只能讲『perhaps』级猜测（见 V-38）——真来历的边界同屏"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-25, rel: 对照}
+      - {id: V-21, rel: 同族}
+      - {id: V-15, rel: 同族}
+    quiz:
+      - stem: "给词讲来历故事，哪种做法是对的？"
+        options: ["故事越好听越好，真假没关系", "来历必须是真的；先自己猜，再揭晓记得更牢", "把注释读一遍就行"]
+        answer: "来历必须是真的；先自己猜，再揭晓记得更牢"
+        hint_ref: "mechanism『双重编码』"
+    probes: []
+    prereq: []
+    order: 8
+    pain_points: [记不住]
+    adult:
+      sources: ["Boers (2001)；Boers et al. (2004)；综述：MDPI Languages 9(5) 词源精细加工综述"]
+      boundary: "成人证据、儿童方向性借鉴；只适用于词源可考的词；假词源禁止"
+      disputes: "Szczepaniak & Lew (2011) 发现被动阅读词源注释无显著效果——分歧点在加工方式：关键在学习者主动假设来历，而非注释本身"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V08-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-09
+    zone: 词汇解码
+    group: V
+    headline: "练习效果差在任务设计上：让学生真需要这个词（need）、自己去查（search）、比较取舍怎么用（evaluation）的任务，保持量最高"
+    headline_kid: "用词造句比抄词记得牢，因为造句的时候脑子要动真格：想一想、比一比、选一选"
+    claim:
+      type: tendency
+      statement: "保持量由加工深度决定，深度可操作化为需要+查找+评估三成分之和，其中 evaluation（把词放进新句子里比较取舍）贡献最大"
+      evidence:
+        - "Laufer & Hulstijn (2001) 'Incidental vocabulary acquisition in a second language: The construct of task-induced involvement', Applied Linguistics 22(1): 1–26；实证篇 Hulstijn & Laufer (2001)（二手论述级）"
+        - "Yanagisawa & Webb (2021) 对 42 项研究的元分析：投入量显著预测学习，evaluation 成分贡献最大"
+      scope: "针对附带学习设计，不否定低龄段必要的直接教学"
+      exceptions:
+        - note: "重复遇见次数独立起作用，投入量不是唯一变量"
+          word_ids: []
+    mechanism:
+      - beat: 三成分
+        text_kid: "背词像干活：光看着不动手，记不住；自己找、自己比、自己选，词就长在脑子里了。"
+        text_adult: "双地实验（荷兰、以色列）保持量排序『写作 > 阅读+填空 > 阅读』与投入量预测一致。"
+        visual: "三格仪表：need/search/evaluation 逐格点亮，保持量条随之升高"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_42]
+        sentence: "I can spell the word."
+        scene_note: "低投入任务对照面：只读、只抄这个词"
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_4]
+        sentence: "Make a sentence with the word."
+        scene_note: "高投入任务：用词造句（需要+评估都点亮）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-11, rel: 同族}
+    quiz:
+      - stem: "哪种练词任务记得最牢？"
+        options: ["把词抄三遍", "读一遍课文", "自己查这个词，再用它造一个新句子"]
+        answer: "自己查这个词，再用它造一个新句子"
+        hint_ref: "mechanism『三成分』"
+    probes: []
+    prereq: []
+    order: 9
+    pain_points: [记不住]
+    adult:
+      sources: ["Laufer & Hulstijn (2001) Applied Linguistics 22(1)；Hulstijn & Laufer (2001)；Yanagisawa & Webb (2021) 元分析"]
+      boundary: "重复次数独立起作用；假说针对附带学习设计"
+      disputes: "Folse (2006) 发现三次填空胜过一次造句，主张提取次数可能比加工深度更关键——两派未定论，操作上把深加工与多次提取叠加最稳妥"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V09-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-10
+    zone: 词汇解码
+    group: V
+    headline: "阅读出事的常不是生词，而是形近词、只记得一个意思的多义词、看着能拆其实拆错的词——它们让人跳过查核直接误读，还不自知"
+    headline_kid: "有些词是『假朋友』：长得特别眼熟，其实根本不是你以为的意思。越眼熟，越要多看一眼"
+    claim:
+      type: tendency
+      statement: "形式相似触发自动误认，误认一旦发生，猜义与查典流程根本不会启动，错误无声无息；误认主要来自五类：欺骗性构词、习语、假朋友、多义词、形近词"
+      evidence:
+        - "Laufer (1997) 'The lexical plight in second language reading'（载 Coady & Huckin《Second Language Vocabulary Acquisition》）——『欺骗性透明（deceptively transparent）』概念出处（二手论述级）"
+        - "Laufer (1988) 'The concept of synforms', Language and Education 2(2)；Laufer (1989) 实验确认五类误认来源"
+      scope: "结论主要来自阅读理解场景；小学阶段最常见的是形近词与多义词『只认熟义』两类，教学清单按此裁剪"
+      exceptions:
+        - note: "各类相对权重随母语不同而变（汉语背景者与字母文字背景者的形近词错误占比不同），属参数差异"
+          word_ids: []
+    mechanism:
+      - beat: 自动误认
+        text_kid: "眼睛一看到眼熟的词，大脑就抢答——抢答错了，自己还不知道。多看一眼，才来得及刹车。"
+        text_adult: "形近词（synforms）如 price/prize；多义词只认熟义；假拆分（define、detail 的 de- 不是前缀）同属此类（与 V-32、V-38 互挂）。"
+        visual: "price 与 prize 两张词卡并排，一只手抢答打叉后刹车复查"
+        anchors: [G5_0992]
+    examples:
+      - level: 1
+        word_ids: [G5_0992]
+        pending_words: [price]
+        sentence: "He won a prize."
+        scene_note: "prize（奖品）与 price（价格）形近——price 不在词库，待补词"
+        supports: claim
+      - level: 2
+        word_ids: [G4_157]
+        sentence: "Turn on the light."
+        scene_note: "light 只记得『光』，遇到『轻的』一义会误认（多义只认熟义）"
+        supports: claim
+    error_cases:
+      - wrong: "（把 prize 读成『价格』，整句理解跑偏而不自知）"
+        right: "prize = 奖品；price = 价格——形近词先停一拍再确认"
+        error_type: 形近误认
+        source_type: 教学文献登记错型
+        diagnosis: "自动误认跳过了查核流程（回 mechanism『自动误认』）"
+    relatives:
+      - {id: V-32, rel: 同族}
+      - {id: V-38, rel: 同族}
+      - {id: V-12, rel: 同族}
+    quiz:
+      - stem: "读到一个『特别眼熟』的词，最安全的做法是？"
+        options: ["直接按熟义理解", "多看一眼，确认它是不是假朋友", "跳过不读"]
+        answer: "多看一眼，确认它是不是假朋友"
+        hint_ref: "mechanism『自动误认』"
+    probes: []
+    prereq: []
+    order: 10
+    pain_points: [错不完, 记不住]
+    adult:
+      sources: ["Laufer (1997)；Laufer (1988) Language and Education 2(2)；假朋友占比数据：Granger 法语学习者语料（转引 James 1998）"]
+      boundary: "主要来自阅读场景；小学取形近词与多义熟义两类"
+      disputes: "无主流分歧；各类权重随母语变化，属参数差异而非理论之争"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V10-* 预留）", "scene_spec 待补", "补词待办：price"]
+  - id: V-11
+    zone: 词汇解码
+    group: V
+    headline: "把词从记忆里努力调出来用一次，比再看三遍记得牢——重复提取才是固化记忆的动作，重复呈现只是原料"
+    headline_kid: "记词像走小路：自己走一遍，路就踩出来了；光看地图看十遍，还是不会走"
+    claim:
+      type: tendency
+      statement: "每次成功提取都重写并加固记忆痕迹，同时暴露『以为会、其实不会』的缺口；提取式练习在延迟保持上优于等时长的重读/重看"
+      evidence:
+        - "Elgort & Nation 综述章 'Vocabulary learning in a second language: Familiar answers to new questions'——汇总重复提取促成词知识多侧面习得的实验线（二手论述级）"
+      scope: "低龄儿童的提取应以游戏化、低惩罚形式出现"
+      exceptions:
+        - note: "提取必须配反馈纠错——调错了还不纠正，错误同样被固化"
+          word_ids: []
+    mechanism:
+      - beat: 提取固化
+        text_kid: "词不是看熟的，是『调出来用』练熟的。每次自己想起它、说出它，记忆就更结实一点。"
+        text_adult: "提取与间隔、投入量互补：V-09 管加工深度，本条管提取次数，两说都支持多提取（见分歧）。"
+        visual: "小路动画：每走一遍，路面深一分；只看地图，路面不变"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G1_002]
+        sentence: "What is it? — It is a book."
+        scene_note: "看图说词：一次提取练习"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0492]
+        sentence: "Read it again — from your head."
+        scene_note: "合上书凭记忆复述（提取）对比赛读（呈现）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-09, rel: 同族}
+      - {id: V-04, rel: 同族}
+    quiz:
+      - stem: "记一个新词，哪种做法更有效？"
+        options: ["再看三遍", "合上书，自己说出来用一次", "把词抄在纸上贴墙上"]
+        answer: "合上书，自己说出来用一次"
+        hint_ref: "mechanism『提取固化』"
+    probes: []
+    prereq: []
+    order: 11
+    pain_points: [记不住]
+    adult:
+      sources: ["Elgort & Nation 综述章（ResearchGate 305204504）"]
+      boundary: "提取须配反馈；低龄用游戏化、低惩罚形式"
+      disputes: "与 V-09 同源之争：提取次数与加工深度孰为第一因仍在争论；两说都支持『多提取』这一操作结论"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V11-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-12
+    zone: 词汇解码
+    group: V
+    headline: "从上下文猜生词是必备策略，但成功率受制于覆盖率、线索质量与词本身——生词密度过高或词属欺骗性透明类时，猜义系统性失败"
+    headline_kid: "读到生词可以先猜一猜，像侦探找线索；但线索太少的时候要老实查字典，乱猜会猜错"
+    claim:
+      type: tendency
+      statement: "猜义 = 用已知词与背景知识对生词作约束求解；约束不足（覆盖率低）或约束误导（形近误认）时，解必错且学习者不自知——猜义不能代替词汇量本身"
+      evidence:
+        - "Bensoussan & Laufer (1984) 'Lexical guessing in context in EFL reading', Journal of Research in Reading 7(1)——猜义研究奠基实验：学习者猜测大量落空，错猜常源于形近误认（二手论述级）"
+        - "Laufer (1997) lexical plight 论述给出猜义失败边界"
+      scope: "小学阶段猜义训练应限定在高覆盖的分级文本内进行"
+      exceptions:
+        - note: "覆盖率升至 98% 上下时，猜义成功率显著改善（与 V-03 互为表里）"
+          word_ids: []
+    mechanism:
+      - beat: 约束求解
+        text_kid: "猜词像破案：线索够，猜得准；线索不够，猜了也是白猜——先数数这页认识几个词。"
+        text_adult: "三堵墙之一（与 V-10 形似误认、V-32 拆词天花板并列）：共同操作结论是猜后必须验。"
+        visual: "侦探板：线索针脚多时连成答案，少时机线断开"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G2_087, G1_015]
+        sentence: "I run fast with my dog."
+        scene_note: "高覆盖短句：生词可猜的练习场"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0492]
+        sentence: "Read, guess, then check."
+        scene_note: "操作口令：猜完必须查字典或回读验证"
+        supports: claim
+    error_cases:
+      - wrong: "（把 prize 猜成『价格』后继续往下读，整段理解跑偏）"
+        right: "猜测只是假设，须查字典或回读验证后才算数"
+        error_type: 猜义不验
+        source_type: 教学文献登记错型
+        diagnosis: "约束被形近误认误导且未验证（回 mechanism『约束求解』；与 V-10 同案）"
+    relatives:
+      - {id: V-03, rel: 同族}
+      - {id: V-10, rel: 同族}
+      - {id: V-32, rel: 同族}
+    quiz:
+      - stem: "读到生词，第一步最该做什么？"
+        options: ["马上乱猜一个意思", "看看周围认识的词多不多，线索够不够", "跳过这一页"]
+        answer: "看看周围认识的词多不多，线索够不够"
+        hint_ref: "mechanism『约束求解』"
+    probes: []
+    prereq: [V-03]
+    order: 12
+    pain_points: [读不快, 记不住]
+    adult:
+      sources: ["Bensoussan & Laufer (1984) JRR 7(1)；Laufer (1997)"]
+      boundary: "猜义训练限高覆盖文本；猜后必须验"
+      disputes: "策略教学派强调猜义可训练、可迁移；Laufer 阵营强调先保词汇量再谈策略——分歧在教学顺序，不在猜义机制"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V12-* 预留）", "scene_spec 待补"]
+  - id: V-13
+    zone: 词汇解码
+    group: V
+    headline: "理解一个词，就是想起它出场的那幕生活场景和场景里的角色；buy、sell、pay、cost 是同一幕买卖戏换了机位"
+    headline_kid: "学词像看戏：先看懂整场戏里有谁、发生了什么，每个词自然就知道站在哪个位置说话了"
+    claim:
+      type: tendency
+      statement: "词义相对于框架（frame）定义：一个词激活整幕场景及其全部角色，听到 buy 就自动知道必曾有人卖、必有价——框架提供免费的推论"
+      evidence:
+        - "Fillmore (1977) 'Scenes-and-frames semantics'（载 Zampolli (ed.)《Linguistic Structures Processing》）——商业事件框架与 buy/sell/cost/charge 机位分析原始出处（二手论述级）"
+        - "伯克利 FrameNet 工程（Fillmore & Baker 2010 等）：Commerce_buy 框架角色结构（Buyer/Seller/Goods/Money）与语料标注高度吻合"
+      scope: "框架解释词义与搭配倾向，不解释词形与读音；不是每组词都构成干净的单框架"
+      exceptions:
+        - note: "抽象词框架边界较松；编不出一幕戏的词明说『约定俗成』，不许硬编"
+          word_ids: []
+    mechanism:
+      - beat: 一幕戏四个机位
+        text_kid: "买东西这场戏里有四个人：买的人、卖的人、东西、钱。对着买的人说是 buy，对着卖的人说是 sell，对着钱说是 pay，对着东西的标价说是 cost。"
+        text_adult: "框架语义：词激活场景并带出全部角色（隐形角色），学每个词都追问『场景里还有谁』。"
+        visual: "小商店舞台图：买家、卖家、货物、钱四角标，镜头轮流推近"
+        anchors: [G3_0650, G5_0651, V6_日常_33, V6_日常_34]
+    examples:
+      - level: 1
+        word_ids: [G3_0650, G5_0651]
+        sentence: "I buy a book. She sells books."
+        scene_note: "同一家书店，买与卖是同一幕戏的两个机位"
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_33, V6_日常_34]
+        sentence: "I pay ten yuan. The book costs ten yuan."
+        scene_note: "机位对着钱是 pay，对着货物标价是 cost"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-14, rel: 同族}
+      - {id: V-07, rel: 同族}
+    quiz:
+      - stem: "听到 buy，你马上能知道这幕戏里一定还有什么？"
+        options: ["卖东西的人和价钱", "一只狗", "什么都不知道"]
+        answer: "卖东西的人和价钱"
+        hint_ref: "mechanism『一幕戏四个机位』"
+    probes: []
+    prereq: []
+    order: 13
+    pain_points: [记不住, 说不出]
+    adult:
+      sources: ["Fillmore (1977)；FrameNet（Fillmore & Baker 2010）"]
+      boundary: "框架不解释词形读音；抽象词框架松，编不出就明说约定俗成"
+      disputes: "无（框架语义为主流工具之一；分歧只在框架颗粒度划分标准）"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V13-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-14
+    zone: 词汇解码
+    group: V
+    headline: "按场景成组教词时，词与词互相提供语境与推论支点，记忆负担小于逐词孤立背诵，迁移也更容易"
+    headline_kid: "词和词是邻居：住在同一条街（同一个场景）上的词，一起认，互相帮着记"
+    claim:
+      type: tendency
+      statement: "框架内的角色分工使每个词的意义可由其在场景中的位置反推，组内任一词被激活都会预热整组（框架激活的扩散效应）"
+      evidence:
+        - "Fillmore 框架语义的直接教学推论（同 V-13 出处）（二手论述级）"
+        - "Beréndi, Csábi & Kövecses (2008) 等按隐喻/场景组织词汇的教学实验：分组组织优于随机词表"
+      scope: "成组学的是『同一场景不同角色』的词"
+      exceptions:
+        - note: "把拼写或发音相近的词扎堆教反而互相干扰（与 V-10 形近误认机制一致），分组维度不可混淆"
+          word_ids: []
+    mechanism:
+      - beat: 邻居互助
+        text_kid: "一条街上的邻居互相都认识：想起一个，就想起一串。词住进同一个场景，也是一样。"
+        text_adult: "分组标准是场景角色，不是词义相似：反义词、同一语义场近义词同教可能产生交叉干扰（见分歧），与框架分组不是同一操作。"
+        visual: "街道地图图式：同一场景的词住在同一条街并连线"
+        anchors: [G3_0650]
+    examples:
+      - level: 1
+        word_ids: [G3_0650, G5_0651, V6_日常_33, V6_日常_34]
+        sentence: "Buy, sell, pay, cost — one shop, four words."
+        scene_note: "买卖戏整组呈现（词表即 V-13 的四机位）"
+        supports: claim
+      - level: 2
+        word_ids: [G4_0381, V6_日常_6]
+        sentence: "Take a photo in the park."
+        scene_note: "公园场景组词：photo 与 park 同场出现，互相预热"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-13, rel: 前置}
+      - {id: V-10, rel: 对照}
+    quiz:
+      - stem: "哪一组词适合放在一起学？"
+        options: ["buy、sell、pay、cost（同一幕买卖戏）", "price、prize（长得像的词）", "按字母顺序挨着的词"]
+        answer: "buy、sell、pay、cost（同一幕买卖戏）"
+        hint_ref: "mechanism『邻居互助』"
+    probes: []
+    prereq: [V-13]
+    order: 14
+    pain_points: [记不住]
+    adult:
+      sources: ["Fillmore 框架语义教学推论；Beréndi et al. (2008)"]
+      boundary: "只按场景角色分组；形近词扎堆教反而干扰"
+      disputes: "语义聚类教学内部有争论：Tinkham、Waring 等发现同类词（反义词、同一语义场近义词）同教可能交叉干扰——与框架分组不是同一操作，分歧实质在分组标准"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V14-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-15
+    zone: 词汇解码
+    group: V
+    headline: "词的可分析性从全透明到全不透明是一条连续谱：透明的真拆，不透明的整记，半透明的注明『只是帮记』；假分析会给记忆挂上错误的故事"
+    headline_kid: "有些词是真积木，能拆开看；有些词看着像积木，其实是一整块石头，硬拆会拆错——拆之前先确认它真的是积木"
+    claim:
+      type: tendency
+      statement: "形态透明度决定『分析』是否有助于记忆：真构词的分析接通词族网络，假分析污染词义与历史两层；教学动作随词在谱上的位置而变"
+      evidence:
+        - "Nation《Learning Vocabulary in Another Language》(2001) 词部件（word parts）章（二手论述级）"
+        - "Bauer & Nation (1993) 'Word families', International Journal of Lexicography 6(4): 253–279——词缀分级表，『哪些词缀值得教、按什么顺序教』的通行依据"
+      scope: "词缀分级基于成人学术词汇语料，儿童高频构词（-er、-ful、un-）只是其子集，清单须按年龄裁剪"
+      exceptions:
+        - note: "watch 不许拆出『注视』式假词源、news 不许拆成四方位首字母——旧库曾因假词源污染全量订正（dom-vocab-etymology 纲领）"
+          word_ids: [POLY_WATCH]
+    mechanism:
+      - beat: 透明度谱
+        text_kid: "拆词前先看它站在谱的哪一头：一看就懂的真积木，放心拆；半懂不懂的，拆开只是帮记，要说清；完全是石头的，整块记住它。"
+        text_adult: "透明度谱的量化分布见 V-32（SEM 0–5）；本条立拆词纪律，与 V-10、V-38 同轴。"
+        visual: "一条渐变谱带：左端积木（un-happy）到右端整石（watch），中间半透明区标注『只是帮记』"
+        anchors: [G4_0457, POLY_WATCH]
+    examples:
+      - level: 1
+        word_ids: [G4_0457]
+        sentence: "He is unhappy."
+        scene_note: "全透明端：un- + happy 真拆"
+        supports: claim
+      - level: 2
+        word_ids: [POLY_WATCH]
+        sentence: "I watch TV."
+        scene_note: "不透明端：watch 整记，不许编拆法"
+        supports: claim
+    error_cases:
+      - wrong: "watch = 注视着的手表（按假词源硬拆 watch 的来历）"
+        right: "watch 整词记；假词源故事不许冒充词的历史"
+        error_type: 假词源
+        source_type: 条目成人层登记的事故例
+        diagnosis: "把不透明词当积木硬拆，给记忆挂错误故事（回 mechanism『透明度谱』；旧库事故，VF 系列裁定）"
+    relatives:
+      - {id: V-32, rel: 同族}
+      - {id: V-38, rel: 同族}
+      - {id: V-08, rel: 对照}
+    quiz:
+      - stem: "碰到一个长词，第一步应该做什么？"
+        options: ["马上拆开猜", "先确认它是不是真积木（真构词）", "整词抄十遍"]
+        answer: "先确认它是不是真积木（真构词）"
+        hint_ref: "mechanism『透明度谱』"
+    probes: []
+    prereq: []
+    order: 15
+    pain_points: [记不住, 错不完]
+    adult:
+      sources: ["Nation (2001) word parts 章；Bauer & Nation (1993) IJL 6(4): 253–279，DOI 10.1093/ijl/6.4.253（书目 2026-11-01 补核）"]
+      boundary: "分级表基于成人学术语料，儿童清单须裁剪"
+      disputes: "无主流分歧；分歧在个别词缀的生产力判定（如 -th、-dom 是否仍算活构词）"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V15-* 预留）", "scene_spec 待补"]
+  - id: V-16
+    zone: 词汇解码
+    group: V
+    headline: "一个词的多个义项大多有亲缘：中心义（原型）居中，其余义项经隐喻、转喻一步步长出分支；先教中心义再教分支，能迁移到未教义项"
+    headline_kid: "多义词像一棵树：树干是它最主要的意思，其他意思都是树枝——先认树干，树枝就好认了"
+    claim:
+      type: tendency
+      statement: "多义网络的引申由可名状的认知操作（相似→隐喻、相邻→转喻、图式化）驱动，义项间有理据而非任意并置；按『原型+引申』组织比按义项清单教学在延迟后测上更优"
+      evidence:
+        - "John R. Taylor《Linguistic Categorization: Prototypes in Linguistic Theory》(1989；第3版 2003, OUP)——原型与多义网络系统论述（二手论述级；版次 2026-11-01 补核）"
+        - "多义网络教学实验（含 Tyler 等人介词实验）：原型+引申组延迟后测更优且能迁移到未教义项"
+      scope: "引申链是事后理据，不保证每个义项都可推导"
+      exceptions:
+        - note: "同形异源词是两棵树：light『光』与 light『轻』不许硬连成一棵（VF-003 已拆分登记）"
+          word_ids: [G4_157]
+        - note: "推不出的义项注明约定俗成，不硬编引申链"
+          word_ids: []
+    mechanism:
+      - beat: 树干与树枝
+        text_kid: "先认树干（最中心的意思），再顺着树枝认其他意思：它们都是从树干长出来的亲戚。"
+        text_adult: "引申操作三件：隐喻（相似）、转喻（相邻）、图式化。中心义的判定（引申关系）与最高频义（语料构成）是两把尺，见 V-45。"
+        visual: "多义树图：树干标中心义，枝上逐个挂引申义"
+        anchors: [G4_157]
+    examples:
+      - level: 1
+        word_ids: [G4_157]
+        sentence: "Turn on the light. This bag is light."
+        scene_note: "同形异源反例同屏：两棵树，不许硬连（例外即教案）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_009]
+        sentence: "I see with my eyes. The needle has an eye."
+        scene_note: "eye：眼睛（树干）→ 针眼（形状功能像眼睛的小孔，树枝）；义项判定细则见 V-41"
+        supports: claim
+    error_cases:
+      - wrong: "（把 light『轻』说成是 light『光』变出来的意思）"
+        right: "两个 light 是同形异源的两棵树，分别记"
+        error_type: 义项硬连
+        source_type: 条目成人层登记的事故例
+        diagnosis: "把同形异义当多义网络硬连（回 mechanism『树干与树枝』；VF-003 裁定）"
+    relatives:
+      - {id: V-41, rel: 同族}
+      - {id: V-42, rel: 同族}
+      - {id: V-45, rel: 同族}
+    quiz:
+      - stem: "学一个多义词，先学哪个意思最划算？"
+        options: ["随便挑一个", "先学最中心的意思，再学它长出的分支", "按字典顺序逐条背"]
+        answer: "先学最中心的意思，再学它长出的分支"
+        hint_ref: "mechanism『树干与树枝』"
+    probes: []
+    prereq: []
+    order: 16
+    pain_points: [记不住]
+    adult:
+      sources: ["Taylor (1989/2003) OUP，ISBN 978-0-19-926664-7（第3版）；多义网络教学实验线"]
+      boundary: "同形异源是两棵树；引申链是事后理据，推不出注明约定俗成"
+      disputes: "多义网络的『词条内存储』vs『在线语用推导』之争：若义项多为在线推得，教学应更重语境策略——但两说都反对义项清单死记"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V16-* 预留）", "scene_spec 待补"]
+  - id: V-17
+    zone: 词汇解码
+    group: V
+    headline: "听读时以为懂了的词，一到说、写就卡壳——输出把词知识的缺口照亮，注意到缺口，才会回去补"
+    headline_kid: "词会不会，嘴巴最诚实：一开口说、一动笔写，哪里不会马上就知道了"
+    claim:
+      type: tendency
+      statement: "产出要求精确提取形式与搭配，失败即产生『注意到缺口（noticing the gap）』信号，触发对输入的定向再注意与假设检验；输入负责遇见，输出负责查漏"
+      evidence:
+        - "Merrill Swain 输出假说（Output Hypothesis, 1985 提出、1995 系统化）——注意/触发功能为三大功能之首（二手论述级）"
+        - "观察基础：加拿大法语沉浸式课堂学生输入量巨大而产出精确度仍落后"
+      scope: "输出促学以有反馈或有自我监控为条件"
+      exceptions:
+        - note: "无反馈的大量自由产出可能固化错误形式"
+          word_ids: []
+    mechanism:
+      - beat: 缺口探照灯
+        text_kid: "听的时候觉得都懂，一开口就卡住——卡住的地方就是没真学会的地方，正好知道回去补哪里。"
+        text_adult: "输出是 Nation 四股中的『意义导向输出』股（见 V-04），其注意功能是 Swain 三大功能之首。"
+        visual: "探照灯图式：开口说话时，词卡上的缺口被照亮"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G3_0619]
+        sentence: "Say it in English."
+        scene_note: "开口即查漏：一说就知道哪个词不会"
+        supports: claim
+      - level: 2
+        word_ids: [G3_0487]
+        sentence: "Write a sentence with the word."
+        scene_note: "落笔查漏：写不出的搭配就是缺口（与 V-09 高投入任务同场）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-04, rel: 同族}
+      - {id: V-11, rel: 同族}
+    quiz:
+      - stem: "听课文觉得全懂，可一开口说就卡住。这说明什么？"
+        options: ["听力太差", "输出照出了词知识的缺口，该回头补缺口", "不用管，多听就行"]
+        answer: "输出照出了词知识的缺口，该回头补缺口"
+        hint_ref: "mechanism『缺口探照灯』"
+    probes: []
+    prereq: [V-04]
+    order: 17
+    pain_points: [说不出, 写不长]
+    adult:
+      sources: ["Swain 输出假说 (1985/1995)；Nation 四股框架『意义导向输出』股"]
+      boundary: "以有反馈或自我监控为条件；无反馈产出可能固化错误"
+      disputes: "Krashen 阵营认为输出只是输入不足时的表象而非习得动因；主流 SLA 已接受输出有独立贡献，分歧在贡献大小"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V17-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-18
+    zone: 词汇解码
+    group: V
+    headline: "中国学习者的词汇错误不是随机的：词形（拼写、构词）、搭配（动名搭配、近义词误选）、缺词与赘词（冠词、限定词、介词的漏与多）是三大聚集区"
+    headline_kid: "中国小朋友学英语，老在几个地方摔跤：词写错、词搭错、该有的小词漏掉——先知道坑在哪，就绕得开"
+    claim:
+      type: tendency
+      statement: "错误聚集区与汉英系统差异一一对应：汉语无冠词系统→限定词漏用；汉语搭配切分不同→动名搭配迁移错误；字母文字经验晚→词形错误持久。教学火力应按这张地图分配"
+      evidence:
+        - "桂诗春、杨惠中领衔《中国学习者英语语料库》(CLEC, 2003, 上海外语教育出版社)——100 余万词、五级子库、61 种言语失误标注；配套分析：杨惠中等 (2005)（二手论述级）"
+      scope: "CLEC 以书面议论文为主、被试为中学生至大学生；小学生错误分布须另行采样，不得直接外推数值，只能借用其分类框架"
+      exceptions:
+        - note: "数值不可外推到小学生口语与低龄写作——借框架，不借数字"
+          word_ids: []
+    mechanism:
+      - beat: 错误地图
+        text_kid: "坑不是到处乱长的，老长在三个地方：词写错、词搭错、小词漏掉。走路先看这三处。"
+        text_adult: "CLEC 11 大类 61 小类标注统计为错误分布的原始证据；本条为复习区病因分类表的词汇侧来源之一。"
+        visual: "地图图式：三片坑区高亮（词形/搭配/缺词赘词）"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_日常_4, ADD_0070]
+        sentence: "Make a decision."
+        scene_note: "搭配聚集区样本：动名搭配是迁移错误高发带"
+        supports: claim
+      - level: 2
+        word_ids: [G1_K01]
+        sentence: "I see a dog and an apple."
+        scene_note: "缺词聚集区样本：冠词 a/an 是汉语背景者漏用高发点（冠词本体教学在 C 组）"
+        supports: claim
+    error_cases:
+      - wrong: "Do a decision."
+        right: "Make a decision."
+        error_type: 搭配迁移
+        source_type: 真实语料错型
+        diagnosis: "CLEC 搭配聚集区的典型形态：动名搭配按母语切分迁移（回 mechanism『错误地图』）"
+    relatives:
+      - {id: V-07, rel: 同族}
+      - {id: V-10, rel: 同族}
+    quiz:
+      - stem: "中国同学学英语，词汇错误最爱聚在哪三个地方？"
+        options: ["读音、语调、连读", "词形、搭配、缺词与赘词", "时态、语态、虚拟"]
+        answer: "词形、搭配、缺词与赘词"
+        hint_ref: "mechanism『错误地图』"
+    probes: []
+    prereq: []
+    order: 18
+    pain_points: [错不完]
+    adult:
+      sources: ["CLEC (2003) 上海外语教育出版社；杨惠中等《基于 CLEC 语料库的中国学习者英语分析》(2005)；北外语料库中心书目登记"]
+      boundary: "CLEC 被试为中学生至大学生、书面语为主；小学生只借分类框架，不外推数值"
+      disputes: "无（描写性资源无争议；分歧只在使用它做何种因果推论时出现）"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V18-* 预留）", "scene_spec 待补"]
+  - id: V-19
+    zone: 词汇解码
+    group: V
+    headline: "英语词汇有三个地层：盎格鲁-撒克逊本族层（短、核心、日常）、诺曼法语层（居中、体面）、拉丁希腊学层（长、书面、学术）——同义词的场合差是词的历史层位写在词里"
+    headline_kid: "每个词都有老家：老家在『本村』的词（ask、cow）随口说；从法国来的词（question、beef）穿正装上班；从拉丁图书馆来的词（interrogate）最一本正经"
+    claim:
+      type: tendency
+      statement: "层位与语域的对应是统计性倾向：越往上层，词越长、越晚近、越正式、越抽象；本族层管日常与情感，法语层管制度与礼仪，拉丁希腊层管科学与抽象"
+      evidence:
+        - "David Crystal《The Stories of English》(2004) 与《The Cambridge Encyclopedia of the English Language》(第2版 2003, CUP)——lexical alternatives 论述，经 Folger Shakespeare Library 专题页逐字引录核实（二手论述级）"
+        - "Finkenstaedt & Wolff《Ordered Profusion》(1973) 对《简编牛津词典》约 8 万词统计：法语/奥依语 28.3%、拉丁 28.24%、日耳曼语 25%、希腊 5.32%（二手论述级）"
+        - "Baugh & Cable《A History of the English Language》(第6版 2013) 牲畜/肉食对为标准例"
+      scope: "三层比例是词典词条（type）计数，不是实际语流（token）频率；真实说话中占压倒多数的仍是本族层"
+      exceptions:
+        - note: "『三连』是倾向不是铁律：部分三连已发生义项分化（interrogate 已专化为『审讯』），不能教成『三个词随便挑、只是正式程度不同』"
+          word_ids: []
+          pending_words: [interrogate]
+        - note: "层位判断靠词源，部分词的层属（如经法语转手的拉丁词）本身有双重身份"
+          word_ids: []
+    mechanism:
+      - beat: 三次沉积
+        text_kid: "英语的词像地层一样一层一层堆出来：最底下是老家的词，中间是法国客人带来的，最上面是图书馆里的学问词。认出老家，就知道该在哪个场合说哪个词。"
+        text_adult: "三层是三次历史事件的沉积（日耳曼定居、1066 诺曼征服、文艺复兴古典借词）；Crystal 称成套近义词为 lexical alternatives：选哪个等于选场合与身份。单个词的入境路线显微镜见 V-23。"
+        visual: "地层剖面图：三层土壤各嵌代表词，餐桌场景中 cow 在田间、beef 上桌"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_69, G4_0518]
+        sentence: "Ask a question."
+        scene_note: "ask（本族层）配 question（法语层）：最常同框的一对"
+        supports: claim
+      - level: 2
+        word_ids: [G4_191, G4_0941]
+        sentence: "The cow is in the field. We eat beef."
+        scene_note: "活物在田间用本族词 cow，肉上了桌用法语词 beef（Baugh & Cable 标准例）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-23, rel: 同族}
+      - {id: V-35, rel: 同族}
+    quiz:
+      - stem: "ask、question、interrogate 意思相近，为什么不能随便换？"
+        options: ["因为它们的老家（地层）不同，场合不同", "因为字母不一样多", "因为老师规定"]
+        answer: "因为它们的老家（地层）不同，场合不同"
+        hint_ref: "mechanism『三次沉积』"
+    probes: []
+    prereq: []
+    order: 19
+    pain_points: [记不住, 写不长]
+    adult:
+      sources: ["Crystal (2004; 2003)；Finkenstaedt & Wolff (1973)；Baugh & Cable (第6版 2013)；Bryson《The Mother Tongue》(1990) 第5章通俗版"]
+      boundary: "比例是词条计数非语流频率；三连是倾向，部分已义项分化；层属有双重身份者"
+      disputes: "计数口径之争：Finkenstaedt & Wolff 的词典统计与 Joseph M. Williams 对 1 万词商务信函的统计给出不同比例，学界公认尚无定论的计数（比例只作量级参考）；三层同义词为何长期共存而不被淘汰，Crystal 称为『词汇学之谜』，功能分化解释是事后归因"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V19-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：interrogate、inquire、kingly、regal"]
+  - id: V-20
+    zone: 词汇解码
+    group: V
+    headline: "英语造词有七台机器——派生、复合、转类、混合、截短、逆构、首字母缩合——产出性天差地别：有的天天开工，有的早已封存"
+    headline_kid: "英语造新词就几招：加零件、两个词拼一起、老词换个工作、两词各砍一半对接、把长词剪短、拆错了拆出新词、首字母拼新词。先认机器，再背单词"
+    claim:
+      type: tendency
+      statement: "构词过程构成通行菜单（Plag 2003 章节编排即按此组织）；产出性是梯度：复合、转类与高产词缀至今随时造新词，混合与截短中度活跃，逆构是零星事件，首字母缩合在科技与机构命名里高产"
+      evidence:
+        - "Ingo Plag《Word-Formation in English》(CUP, 2003) 第3–6章——产出性专论（p.44）与七过程菜单（章节预览级）"
+        - "Laurie Bauer《English Word-formation》(CUP, 1983)——词缀产出性分级；-th 只接一小串固定词、已封存（二手系统论述级）"
+      scope: "本菜单是清单指定的七种；完整的构词生态另含借词（不算『造』）与凭空生造（极罕见），不在七台之列；产出性随语域变"
+      exceptions:
+        - note: "-th（warmth、length）只能接一小串固定词、不再接新词基——说某词缀『封存』指不再造新词，不指已有词消失"
+          word_ids: []
+          pending_words: [warmth, length]
+    mechanism:
+      - beat: 七台机器
+        text_kid: "看见生词先猜：它是被哪台机器造出来的？加零件的（un-happy）、拼起来的（black-bird）、剪短的（gym）、拆错拆出来的（edit），认出机器，就知道该怎么对付它。"
+        text_adult: "七过程：派生/复合/转类/混合/截短/逆构/首字母缩合（acronym 可读成词 vs initialism 逐字母念须分清）。给孩子的用法是『认机器』而非术语考试，拆的纪律见 V-15。"
+        visual: "七台机器图标排：每台机器吐出一个例词"
+        anchors: [G4_0457]
+    examples:
+      - level: 1
+        word_ids: [G4_0457]
+        sentence: "Un-happy: two parts, one word."
+        scene_note: "派生机：un- + happy（与 V-33 互挂）"
+        supports: claim
+      - level: 2
+        word_ids: []
+        pending_words: [blackbird, smog, gym]
+        sentence: "A blackbird is not just a black bird."
+        scene_note: "复合机（blackbird）对短语（black bird）——重音判据在 S-20；三词待补词"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-15, rel: 同族}
+      - {id: V-36, rel: 同族}
+    quiz:
+      - stem: "gym 是哪台机器造出来的？"
+        options: ["派生（加零件）", "截短（把长词剪短）", "逆构（拆错拆出来的）"]
+        answer: "截短（把长词剪短）"
+        hint_ref: "mechanism『七台机器』"
+    probes: []
+    prereq: [V-15]
+    order: 20
+    pain_points: [记不住]
+    adult:
+      sources: ["Plag (2003) CUP 第3–6章；Bauer (1983) CUP"]
+      boundary: "借词与生造不在七台之列；产出性是梯度且随语域变；封存指不再接新词基"
+      disputes: "①转类算不算派生的一支：Lyons、Marchand 归入派生，Koziol、Strang 主张与派生并列（Bauer 1983: 32 引两派）；②混合的归属：Plag 明说『算复合的特例还是无词缀派生并不清楚』。两处分歧不影响菜单的教学可用性，引用时不得把任一归类说成定论"
+      evidence_grade: 章节预览级 / 二手系统论述级
+      pending: ["本条清单无独立『标题句』行，headline 取条目标题定版（簇源如有标题句，定版时回填）"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V20-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：blackbird、smog、gym、warmth、length"]
+  - id: V-21
+    zone: 词汇解码
+    group: V
+    headline: "英语学术与书面词汇的主体来自拉丁与希腊语，其构词零件在成百上千的词里重复出现：系统学一批高复用词干，等于给生词装上可分析接口"
+    headline_kid: "很多长词是小零件拼的：spect 是『看』，port 是『搬』，dict 是『说』，bio 是『生命』。学会零件，碰到没见过的长词就能先猜个八九不离十——猜完再查词典对答案"
+    claim:
+      type: tendency
+      statement: "见词先拆件、按件猜义、用语境与词典验猜；词根法与 V-08 的词源精细加工机制同源（给词义多接一条结构通道），区别在组织形态：词根法成体系成课程（固定词干清单 + 例行练习 + 累积复现）"
+      evidence:
+        - "Lundquist《English from the Roots Up, Vol.1》(1989)——100 个希腊/拉丁词根、卡片系统（目录+书目级）"
+        - "Michael Clay Thompson《The Word Within the Word》(Royal Fireworks Press)——每卷 30 课、第一卷 500 词干（章节预览级，出版社官方样章）"
+      scope: "词干的『释义』是教学简化（如 spect gloss 作 look，实际语义场更宽），是脚手架，不是词源学结论；词干清单须按课标词表与所读文本裁剪，不必整表照搬"
+      exceptions:
+        - note: "形似的字母串未必是真词根（corner 不是 corn+er）——拆之前须按 V-15 的纪律确认是真构词"
+          word_ids: []
+          pending_words: [corner]
+    mechanism:
+      - beat: 零件接口
+        text_kid: "长词不可怕，它是零件拼的。先把零件认全：看到 spect 就想到『看』，看到 port 就想到『搬』，拼起来猜意思，最后查词典对答案。"
+        text_adult: "两套通行课程为锚点（Lundquist 卡片制、Thompson 词干课）；课程本身的对照实验级效果证据本次未检索到——本条主张机制合理性与传统存续，不主张已证疗效数字（疗效证据见 V-31）。"
+        visual: "零件墙：spect/port/dict/bio 四块零件逐个插进长词插槽"
+        anchors: [G6_0331]
+    examples:
+      - level: 1
+        word_ids: [G6_0347]
+        pending_words: [inspect, respect, suspect]
+        sentence: "I expect a letter."
+        scene_note: "expect 在词库（ex- + spect『看』：往外看→期待）；inspect/respect/suspect 待补词，家族全量名单见挂接表"
+        supports: claim
+      - level: 2
+        word_ids: [G6_0331]
+        sentence: "Can you predict the story?"
+        scene_note: "predict = pre-（预先）+ dict（说）：预先说→预言（难点的真身是 dict 不认识，见 V-32）"
+        supports: claim
+    error_cases:
+      - wrong: "corner = corn + er（把形似字母串当真词根硬拆）"
+        right: "corner 不是构词拆分对象——拆前先确认是真构词（V-15 纪律）"
+        error_type: 假拆分
+        source_type: 条目成人层登记的事故例
+        diagnosis: "形似误认成词根（回 mechanism『零件接口』的例外同屏）"
+    relatives:
+      - {id: V-08, rel: 同族}
+      - {id: V-26, rel: 同族}
+      - {id: V-30, rel: 同族}
+    quiz:
+      - stem: "碰到没见过的长词 transport，先做什么？"
+        options: ["整词死背", "先拆零件（trans- 搬过去 + port 搬），猜『搬运』，再查词典对", "跳过"]
+        answer: "先拆零件（trans- 搬过去 + port 搬），猜『搬运』，再查词典对"
+        hint_ref: "mechanism『零件接口』"
+    probes: []
+    prereq: [V-15]
+    order: 21
+    pain_points: [记不住]
+    adult:
+      sources: ["Lundquist (1989)；Thompson《The Word Within the Word》出版社官方样章"]
+      boundary: "词干释义是教学简化；假拆风险须守 V-15；清单按中国课标裁剪；课程疗效证据未检索到，不主张已证数字"
+      disputes: "路线之争：『清单先行』（先背词干再应用，两套课程属此路）vs『探究先行』（在真实词族里边查边归纳，SWI 属此路）——清单不裁决，可按年龄分工；词干释义简化到何种程度算失真，课程界与词源学界尺度不同，按 V-15『半透明须注明只是帮记』处理"
+      evidence_grade: 章节预览级 / 目录+书目级
+      pending: ["课程对照实验级效果证据待核（清单已登记，本条不主张疗效数字）"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V21-* 预留）", "scene_spec 待补", "补词待办：inspect、respect、suspect、corner"]
+  - id: V-22
+    zone: 词汇解码
+    group: V
+    headline: "词义漂移有四个主方向——范围缩小、范围涨大、评价升格、评价跌格；给老词问『原来指多大范围、原来是好话还是坏话』，就能讲清它今天为什么是这个意思"
+    headline_kid: "词会慢慢『搬家』：meat 以前管所有吃的，现在只管肉；nice 以前是骂人『傻』，现在是夸人『好』。记住四种搬法，遇到哪个词都能猜它经历过什么"
+    claim:
+      type: tendency
+      statement: "四律是给词讲『前世今生』的整理架：漂移不是跳变，是用法一点点挪；Traugott 的受邀推理给出引擎——听者反复从字面义推出言外之意，言外之意用久了就固化成词义本身"
+      evidence:
+        - "Bloomfield《Language》(1933) 历史语义分类（九类，含 degeneration/elevation）——经语义变迁综述页核实（二手系统转述级）"
+        - "Ullmann《Semantics》(1962) 对『变迁后果』的四分：widening / narrowing / amelioration / pejoration——整齐四分的成形出处"
+        - "Traugott & Dasher《Regularity in Semantic Change》(CUP, 2001)——受邀推理与主观化（书目级+综述转述）"
+      scope: "四律是结果分类，不是预测定律：方向事先不可知"
+      exceptions:
+        - note: "同一词常多律叠加：knave『男孩→男仆→无赖』是收窄+跌格同时发生"
+          word_ids: []
+          pending_words: [knave]
+        - note: "更不可反推『原义才是真义』——那正是 V-25 要拆的词源谬误"
+          word_ids: []
+    mechanism:
+      - beat: 四种搬家
+        text_kid: "词搬家有四种：地盘变小（meat 只管肉了）、地盘变大（dog 所有狗都算）、坏话变好话（nice）、好话变坏话（silly）。搬家是一小步一小步挪的，每站都说得通。"
+        text_adult: "评价漂移常走『中间站』链条：silly 从『有福』经『天真无害』『可怜、弱小』滑到『愚笨』；nice 从『无知』经『讲究、精细』滑向『宜人』。四例时间线即 V-08 的现成故事卡素材。"
+        visual: "四格漫画式时间线：meat/dog/nice/silly 各走一条搬家路"
+        anchors: [G3_0943, G1_015, G5_K01]
+    examples:
+      - level: 1
+        word_ids: [G3_0943, G1_015]
+        sentence: "Meat is food. A dog is an animal."
+        scene_note: "收窄例 meat（原泛指食物）对涨大例 dog（原只指一种大狗）同屏"
+        supports: claim
+      - level: 2
+        word_ids: [G5_K01]
+        pending_words: [silly]
+        sentence: "You are nice."
+        scene_note: "nice 今天是夸人的话——八百年前却是骂人『傻』（升格）；silly 待补词"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-08, rel: 同族}
+      - {id: V-25, rel: 对照}
+    corrections:
+      - "任务原稿把四律『统见 Bloomfield、Traugott』的归属已纠正：Bloomfield 的原术语是 degeneration/elevation，并未提出整齐四律；四分框架成形主要经 Ullmann 的后果分类；Traugott 的贡献在变迁机制（受邀推理、主观化），不是四律命名。本条按三段著录"
+    quiz:
+      - stem: "meat 以前指所有吃的，现在只指肉。这是哪种搬家？"
+        options: ["地盘涨大", "地盘缩小", "坏话变好话"]
+        answer: "地盘缩小"
+        hint_ref: "mechanism『四种搬家』"
+    probes: []
+    prereq: [V-08]
+    order: 22
+    pain_points: [记不住]
+    adult:
+      sources: ["Bloomfield (1933)；Ullmann (1962)；Traugott & Dasher (2001, CUP)；四例词经 Etymonline、WordOrigins.org 逐词核实"]
+      boundary: "四律是结果分类不是预测定律；多律可叠加；不可反推原义为真义"
+      disputes: "Blank (1999) 明确反对把升格/跌格列为独立类别：评价升降无法客观判定，其全部例子可归入隐喻、转喻等其他机制，属冗余分类（综述页原文著录）"
+      evidence_grade: 二手系统转述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V22-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：silly、knave"]
+  - id: V-23
+    zone: 词汇解码
+    group: V
+    headline: "同一个祖先词从两条不同的路进入英语，会住下两个同根异形的词（同源对）；本族、法语、拉丁三条路齐聚，就成三连词——语域差是『路线差』留下的化石"
+    headline_kid: "shirt 和 skirt 本来是同一个词！一个留在英国老家，一个去北欧亲戚家住了一阵又被带回来。kingly、royal、regal 是三兄弟：越排越正式"
+    claim:
+      type: etymology
+      statement: "同源对的形与义之差由入境路线决定：本土继承 vs 亲族借入（shirt/skirt）、同一外源不同方言两次输入（ward/guard、warranty/guarantee）、三路叠印成三连词（ask/question/interrogate）"
+      source: "Baugh & Cable《A History of the English Language》(第6版 2013, Routledge) 同源对与三连经典著录（二手系统转述级）；逐对核实：Wiktionary 'Appendix: English doublets'（原文打开）——原始日耳曼语 *skurtijǭ → shirt/skirt、*wardō → ward/guard；Jackson & Amvela《Words, Meaning and Vocabulary》(2000) 三连语域梯度"
+      evidence:
+        - "同型对子成批存在（catch/chase、captain/chieftain），证明法语两次输入是系统现象；ward 一根可扩成 ward/guard/warden/guardian 四人组"
+      scope: "地层归属判的是路线而非血统（royal 血统也是拉丁 regalis，只是经法语过境）"
+      exceptions:
+        - note: "同源对不等于同义词：skirt 与 shirt 已完全分工；guarantee 与 warranty 在现代法律英语中分化——同根只解释『为什么长得像、为什么场合不同』，不可推出『可以互换』"
+          word_ids: [G1_056, G1_058]
+    mechanism:
+      - beat: 两条入境路
+        text_kid: "同一个老词，留在老家的变了一个样（shirt），去亲戚家串门又回来的变成另一个样（skirt）。长得像，是因为它们本来就是一家。"
+        text_adult: "三路况：本土继承 vs 亲族借入（古英语 sc- 腭化读 sh-，诺斯语版本保住 sk-）；同源不同方言两次输入（诺曼法语留 w-、中央法语变 g-）；三连词为三路叠印。本条是 V-19 三地层的显微镜。"
+        visual: "路线图：一个祖先词沿两条路入境，落点成对出现"
+        anchors: [G1_056, G1_058, ADD_0320, ADD_0132, ADD_0319]
+    examples:
+      - level: 1
+        word_ids: [G1_056, G1_058]
+        sentence: "He wears a shirt. She wears a skirt."
+        scene_note: "同源对第一例：上身与下身，一家分两路"
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0320, ADD_0132]
+        pending_words: [warden, guardian]
+        sentence: "The guard is at the gate."
+        scene_note: "ward/guard 同根扩组（warden/guardian 待补词）；war（ADD_0319）同根旁证"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-19, rel: 前置}
+      - {id: V-26, rel: 同族}
+    corrections:
+      - "三连正组著录已对齐：教材最常引为 ask/question/interrogate；inquire 与 question 同属中层，可互换组队（任务原稿以 inquire 组队，已按 question 为正组、inquire 为备选登记）"
+    quiz:
+      - stem: "shirt 和 skirt 长得像、意思近，它们是什么关系？"
+        options: ["纯属巧合", "同一个祖先词走了两条路进英语（同源对）", "一个是另一个的复数"]
+        answer: "同一个祖先词走了两条路进英语（同源对）"
+        hint_ref: "mechanism『两条入境路』"
+    probes: []
+    prereq: [V-19]
+    order: 23
+    pain_points: [记不住]
+    adult:
+      sources: ["Baugh & Cable (第6版 2013)；Wiktionary English doublets 附录（原文打开）；Jackson & Amvela (2000)；Ayto《Word Origins》(第2版 2005) 备课查证工具"]
+      boundary: "同源对≠同义词；地层判路线不判血统"
+      disputes: "个别词路线著录词典间不一：regal 多标直接取自拉丁 regalis，亦有词典标经古法语转手；royal 本身血统同为拉丁 regalis——教学表述须讲清『路线非血统』；三地层比例之争见 V-19"
+      evidence_grade: 二手系统转述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V23-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：warden、guardian、kingly、regal、inquire、interrogate"]
+  - id: V-24
+    zone: 词汇解码
+    group: V
+    headline: "一个词里有一截变得听不懂时，说话人会自发把它替换成音近又说得通的熟悉词——民间词源是真实的造词力，它真的改掉了词形"
+    headline_kid: "bridegroom 原来的后半截是 guma（男人），没人懂了，就被换成了 groom。crayfish 本来跟鱼没关系，是法国词 crevice 被听成了 cray-fish——词也会『听错+找补』"
+    claim:
+      type: etymology
+      statement: "再分析（reanalysis）机制：不透明的成分 + 音近的熟悉词 + 说得通的语义，三件套齐备时词形被改定，改定的结果就是今天的标准词；触发器分三类：本族词退出使用、外语词入境落地、学者式误靠"
+      source: "Wikipedia 'Folk etymology' 条（原文打开）逐例著录 bridegroom（古英语 brydguma）、crayfish（中古英语 crevis，同源法语 écrevisse）、sparrowgrass 及 Förstemann 1852 年铸词出处；Crystal《The Story of English in 100 Words》(2011) 第14词 bridegroom（书目+目录级）；Room《Dictionary of True Etymologies》(1986) 工具书"
+      evidence:
+        - "同机制例子成串：chaise lounge ← chaise longue；sparrowgrass 至今存活于方言与老式口语——不是个别人的口误"
+      scope: "被民间词源改定的词形（bridegroom、crayfish）就是现行标准词，不可改回古形；sparrowgrass 只在方言层存活，未进标准语——同机制，结局分两等，须标明"
+      exceptions:
+        - note: "民间词源与假词源（V-25）必须分开：前者词形真的被改了，后者只是编了个假故事、词形没动"
+          word_ids: []
+    mechanism:
+      - beat: 听错加找补
+        text_kid: "词里有一截听不懂，大家就拿一个『听着像、说得通』的熟词顶上。顶成功了，这个词就换了新样子，一直用到今天。"
+        text_adult: "学者式误靠也在此列：island 的 s 是文人按拉丁 insula 硬加的，该词本与 insula 无关。术语 folk etymology 是德语 Volksetymologie 的译借（Förstemann, 1852）。"
+        visual: "词形拼图动画：旧部件（guma）褪色，新部件（groom）咔哒装上"
+        anchors: [G3_127, G5_235]
+    examples:
+      - level: 1
+        word_ids: [G3_127]
+        pending_words: [crayfish, bridegroom]
+        sentence: "A crayfish is not a fish."
+        scene_note: "crayfish：住在水里、看着像鱼，被安了条『鱼』——词却跟 fish 无亲缘（待补词）"
+        supports: claim
+      - level: 2
+        word_ids: [G5_235]
+        sentence: "We go to an island."
+        scene_note: "island 的 s 是学者硬加的（误靠拉丁 insula）——民间词源的『学者版』"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-25, rel: 对照}
+      - {id: V-38, rel: 同族}
+    quiz:
+      - stem: "crayfish 里的 fish 是怎么来的？"
+        options: ["它本来就是一种鱼", "原词的一截听不懂，被换成了音近又说得通的 fish", "渔民给它起的外号"]
+        answer: "原词的一截听不懂，被换成了音近又说得通的 fish"
+        hint_ref: "mechanism『听错加找补』"
+    probes: []
+    prereq: []
+    order: 24
+    pain_points: [记不住]
+    adult:
+      sources: ["Wikipedia 'Folk etymology'（原文打开）；Crystal (2011)；Room (1986)；低龄入口读物（书目级）：Zafarris《Once Upon a Word》、Clements《Frindle》、Bryant & Sweet《The Right Word》"]
+      boundary: "与假词源分开；改定的词形即标准词不许拨乱反正；sparrowgrass 只在方言层"
+      disputes: "crayfish 前半 cray- 的确切音变路径各词典著录详略不一，正文只取各家一致部分；écrevisse 再上溯日耳曼语 *krebiz 为通行说、未逐源核实，标待核；民间词源与『类推』的边界在理论语言学中亦有讨论，本条取宽口径"
+      evidence_grade: 二手系统论述级
+      pending: ["cray- 音变路径与 *krebiz 上溯待核（清单已登记）"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V24-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：crayfish、bridegroom、sparrowgrass"]
+  - id: V-25
+    zone: 词汇解码
+    group: V
+    headline: "知道一个词『最初是什么意思』，管不住它『现在是什么意思』——拿词源给现行词义判对错，叫词源谬误；越是好听得像段子的词源故事，越经不起年代学与文献链的检验"
+    headline_kid: "nice 八百年前是骂人『傻』，今天你说 You are nice，没人会生气——词的意思归现在用它的人管。再当一回侦探：posh 的轮船故事查无此票，故事越完美越要查"
+    claim:
+      type: etymology
+      statement: "假词源辟谣两件武器：年代学否决（首字母缩略造词在 19 世纪中叶以前极为罕见，posh/tips 的词龄早于缩略造词时代）与文献缺席（传说中的 POSH 船票从未被找到）；这类倒编首字母的假说学名 backronym"
+      source: "Liberman《Word Origins... and How We Know Them》(OUP, 2005) 与氏 OUP 官方博客方法连载（原文打开）；辟谣逐项核实：Wikipedia 'List of common false etymologies of English words'（原文打开）posh、tip 两条；Grammarphobia 专栏引 Sheidlower《The F-Word》判语（专栏原文打开，二手论述级）"
+      evidence:
+        - "与 V-22 互为表里：四律证明词义从来在变，所以『回到原义才正确』在逻辑上先输一步"
+        - "课堂三件套：posh、tips、golf（Gentlemen Only, Ladies Forbidden）三个故事结构相同，正好用年代学逐个否决"
+      scope: "辟谣不等于给出新答案：posh 的真实来源学界无定案，tip 的确切来源词典标『不确定』——『不知道』是词源学的合法结论"
+      exceptions:
+        - note: "不可用一个新故事替换旧故事：辟谣的产物是『存疑』，不是新词源"
+          word_ids: []
+    mechanism:
+      - beat: 侦探两件套
+        text_kid: "查词源故事真假有两招：一看年代对不对（那个年代的人用不用这种造词法），二查有没有真东西留下来（船票、书、报纸）。两招都过不去，故事就是编的。"
+        text_adult: "Liberman 治学原则：词源学是概率的游戏，结论须由语音对应规律与文献记录支撑；词以『词巢（nest）』成群存在，孤立的绝妙故事尤其可疑。etymythology（词源神话）为此类假说的统称。"
+        visual: "侦探桌面图：船票（缺席）、年代时间线两件证物，posh 故事卡被盖『查无此据』章"
+        anchors: [G5_K01]
+    examples:
+      - level: 1
+        word_ids: [G5_K01]
+        sentence: "You are nice."
+        scene_note: "词源谬误第一例：nice 的古义管不住今义"
+        supports: claim
+      - level: 2
+        word_ids: []
+        pending_words: [posh, tips, golf]
+        sentence: "Is the posh story true? — Check the dates."
+        scene_note: "侦探练习组：posh/tips/golf 三个缩略故事同场否决（待补词）"
+        supports: claim
+    error_cases:
+      - wrong: "posh = Port Out, Starboard Home（轮船舱位首字母说）"
+        right: "缩略说被年代学否决且无文献（船票从未被找到）；posh 真实来源无定案，登记存疑"
+        error_type: 假词源
+        source_type: 条目成人层登记的事故例
+        diagnosis: "backronym：先有词，再倒编首字母故事（回 mechanism『侦探两件套』）"
+    relatives:
+      - {id: V-22, rel: 同族}
+      - {id: V-24, rel: 对照}
+      - {id: V-08, rel: 同族}
+    quiz:
+      - stem: "有人说 tips 是『To Insure Prompt Service』的首字母。怎么验？"
+        options: ["故事很顺口，一定是真的", "查年代：tip 作『小费』18 世纪已见于文字，那时几乎没人用首字母造词——故事不成立", "问问服务员"]
+        answer: "查年代：tip 作『小费』18 世纪已见于文字，那时几乎没人用首字母造词——故事不成立"
+        hint_ref: "mechanism『侦探两件套』"
+    probes: []
+    prereq: [V-22]
+    order: 25
+    pain_points: [记不住, 错不完]
+    adult:
+      sources: ["Liberman (2005, OUP) 与 OUP 博客；Wikipedia 假词源清单（原文打开）；Grammarphobia 专栏；Saturday Evening Post 词源专栏（Hollandbeck）"]
+      boundary: "辟谣不给新答案；posh 来源无定案、tip 来源标不确定；decimate 之争仅作教师层例子，不进儿童面"
+      disputes: "词源该不该影响今义使用：用法指南传统（Fowler 一系）承认词源可作风格参考；描写语言学主流坚持现行词义只由现行用法决定——本条取描写派为主、风格参考为辅"
+      evidence_grade: 二手论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V25-* 预留）", "scene_spec 待补", "补词待办：posh、tips、golf"]
+  - id: V-26
+    zone: 词汇解码
+    group: V
+    headline: "拉丁希腊层的词再往下挖一层，大批词同出一根——原始印欧语 *spek-『看』：inspect 是看进去，respect 是回头重看，species 是看出来的样子"
+    headline_kid: "inspect、respect、suspect、spectator、species 是亲兄弟姐妹，老祖宗是同一个意思是『看』的老词根。把每个词拆回『看』，一串词一次记完"
+    claim:
+      type: etymology
+      statement: "词根是词汇的深层户口：拉丁 specere『看』加不同前缀派生整族（in- 看进去、re- 回看、sub- 从下看），名词 speciēs『样子』另成一系；希腊一侧经音序倒置成 skop-，日耳曼一侧按格林定律给出 spy 一线"
+      source: "Watkins 主编《The American Heritage Dictionary of Indo-European Roots》(第2版 2000；第3版 2011) *spek- 条（原文打开：词根义 to observe，逐项列明 specere 一族）；交叉核实：Etymonline *spek- 条（原文打开）、UT Austin 语言学研究中心 PIE 词根索引"
+      evidence:
+        - "本族在英语中的成员数以十计且多为中小学高频学术词（aspect、expect、perspective、prospect、retrospect、specimen 等）；连 bishop 都出自本根（经希腊 episkopos『在上面看的人』）"
+      scope: "词根是记忆脚手架和历史地图，不是释义公式：同根不等于今义可互推"
+      exceptions:
+        - note: "species 已专指生物分类；spice 经 speciēs『种类、货物』辗转而来，与『看』的联系只剩化石"
+          word_ids: []
+          pending_words: [species, spice]
+        - note: "spectator 的直接来源是拉丁 spectāre 而非 specere 本体，拆词应写作 spect-（看），不硬套 spec-"
+          word_ids: []
+          pending_words: [spectator]
+    mechanism:
+      - beat: 一个根一族词
+        text_kid: "老祖宗 *spek- 是『看』。看进去是检查 inspect，回头看是尊敬 respect，偷偷从下面看是怀疑 suspect，看出来长什么样是 species。记住老祖宗，一串词一次记完。"
+        text_adult: "重建靠比较法：印欧词根是比较法重建的假说，星号 * 即『未经文献证实』的技术标记，教学表述必须保留『重建』二字。方法祖型：Norman Lewis《Word Power Made Easy》(1949) 的词源 session 法（成人自学对象，儿童面降阶取材）。"
+        visual: "家族树图：树根 *spek-『看』，三条大枝（拉丁/希腊/日耳曼）各挂成员词"
+        anchors: [G6_0347]
+    examples:
+      - level: 1
+        word_ids: [G6_0347]
+        pending_words: [inspect, respect]
+        sentence: "I expect good news."
+        scene_note: "expect（ex- 往外 + spect 看：往外看→期待）在词库；inspect/respect 待补词，家族全量名单见挂接表"
+        supports: claim
+      - level: 2
+        word_ids: []
+        pending_words: [suspect, species, spy, bishop]
+        sentence: "We spy a bird."
+        scene_note: "日耳曼一线：*spek- 的后代经辗转成 spy——同根词可以走得很远（全组待补词）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-21, rel: 同族}
+      - {id: V-23, rel: 同族}
+    quiz:
+      - stem: "inspect、respect、suspect 共同的老祖宗是什么意思？"
+        options: ["说", "看", "搬"]
+        answer: "看"
+        hint_ref: "mechanism『一个根一族词』"
+    probes: []
+    prereq: [V-21]
+    order: 26
+    pain_points: [记不住]
+    adult:
+      sources: ["Watkins AHD Indo-European Roots（第2/3版）*spek- 条原文；Etymonline *spek- 条；UT Austin PIE 词根索引；Lewis (1949)《Word Power Made Easy》"]
+      boundary: "同根≠今义可互推（species、spice 只剩化石联系）；spectator 拆 spect- 不拆 spec-；印欧词根是重建假说，须保留『重建』表述"
+      disputes: "希腊 skop- 一系与 *spek- 的亲缘细节仍有讨论：Watkins 主张经 *spek-yo- 音序倒置而来；Beekes 等指出旧词根名词形式可能已被 skopos 替换，倒置说路径未完全定案（Etymonline 并引两说）"
+      evidence_grade: 原文级（词根条直读）
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V26-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：*spek- 家族全量（见挂接表，多数不在词库）"]
+  - id: V-27
+    zone: 词汇解码
+    group: V
+    headline: "英语与汉语互相借词约四百年：海路把闽南的『茶』送成全世界的 tea，港口把英语的 sofa 送成中国的『沙发』；借词的方向画的是贸易路线图"
+    headline_kid: "你喝的『茶』，英语叫 tea——那是福建人说话的声音坐着商船去的欧洲。你坐的『沙发』，是英语 sofa 的声音坐船来的中国。add oil（加油）已经被牛津大词典正式收下啦"
+    claim:
+      type: etymology
+      statement: "借词走两条通道：语音借入（借形，如 tea ← 闽南语 tê 经荷兰语传遍西欧；粤语路线得 chá——te 系与 cha 系的分界即海陆两条商路）与语义直译（借结构，如 add oil、long time no see 把汉语组装法整体译进英语）"
+      source: "逐项词源词条级核实：tea（Etymonline、Wiktionary 一致：1650 年代入英语，经荷兰语 thee，源头厦门方言 tê）；add oil（2018 年 10 月 OED 在线版正式新增，著录香港英语，用例可追溯至 1964 年）；long time no see（OED 老牌词条：最早用例 1901 年 Drannan，定性为源于美国的『对蹩脚英语的戏谑模仿』）；逻辑定名史经北大新闻网、全国科学技术名词审定委员会术语在线与译名史论文核实（二手系统转述级）"
+      evidence:
+        - "te/cha 世界分界图是借词地理学的明星案例：一张地图同时讲清海运与陆运两条贸易线"
+        - "add oil（2018 新入 OED）与 long time no see（19 世纪末已立条）并置，展示直译借词的两种命运与两种证据等级"
+      scope: "数量上两个方向并不对等：汉语进入英语的借词以饮食、物产、制度文化词为主，总量数百，不可讲成『对等交换』；方向的象征意义大于数量意义"
+      exceptions:
+        - note: "把『茶』的世界传播全记在英语头上是误读——tea 是闽南语经荷兰人转手的，英语只是中转站之一"
+          word_ids: [G2_0944]
+    mechanism:
+      - beat: 两条通道
+        text_kid: "词搬家有两条路：一条搬声音（茶→tea、sofa→沙发），一条搬拼法（加油→add oil，一个词一个词对着译）。"
+        text_adult: "汉语一侧的借入要过『定名竞争』关：logic 的译名打了几十年（名学/论理学/理则学 vs 音译『逻辑』），胜出的逻辑是罕见的音译胜意译案例；幽默是古词复活式音译（林语堂 1924）。"
+        visual: "世界地图图式：te 海路与 cha 陆路两色线，沙发/咖啡入境箭头，add oil 出境箭头"
+        anchors: [G2_0944, G4_0945, G4_173, ADD_0002, ADD_0208]
+    examples:
+      - level: 1
+        word_ids: [G2_0944, G4_0945]
+        sentence: "I drink tea and coffee."
+        scene_note: "tea 是汉语出境词，coffee 是英语入境词（咖啡）——一桌两方向"
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0002, ADD_0208]
+        sentence: "Add oil!"
+        scene_note: "add（ADD_0002）+ oil（ADD_0208）：直译借词，2018 年入 OED"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-19, rel: 同族}
+      - {id: V-25, rel: 同族}
+    corrections:
+      - "long time no see 不是近年新收词：是 OED 老牌词条（最早用例 1901），与 2018 年新收的 add oil 证据等级不同，教学必须分开讲，不许打包成『汉语说法都进牛津了』"
+      - "ginseng 的通行全译『man-root』已降格：Etymonline 明言第二字（参）本义不确定，第一字『人』确定、第二字存疑"
+      - "逻辑定名功劳已修正：日本线贡献的是竞争对手『论理学』（和制汉语意译），胜出的音译『逻辑』是本土造词（严复 1902 首用、章士钊立名推广），并非自日语转来"
+    quiz:
+      - stem: "tea 这个词是怎么旅行的？"
+        options: ["英国人发明的", "福建话的『茶』坐着荷兰商船去的欧洲", "从日本来的"]
+        answer: "福建话的『茶』坐着荷兰商船去的欧洲"
+        hint_ref: "mechanism『两条通道』"
+    probes: []
+    prereq: [V-19]
+    order: 27
+    pain_points: [记不住]
+    adult:
+      sources: ["Etymonline / Wiktionary 词条（tea、kowtow 原文打开）；OED 著录（add oil 2018、long time no see）；译名史：北大新闻网、术语在线、译名史论文"]
+      boundary: "两方向数量不对等，不讲对等交换；tea 的传播不全记英语头上"
+      disputes: "(1) typhoon 多源汇合案（本簇最大未定案）：OED 并列葡萄牙语线（源阿拉伯/波斯 ṭūfān）与汉语 tai fung 线，Onions 主著录汉语源；按『多源汇合、主次未定』登记，不作定论。(2) long time no see 出身：汉语直译说 vs 美洲原住民洋泾浜模仿说，OED 现行著录偏向后者，教学须带『一说』。(3) ketchup 本字：膎汁/鮭汁/茄汁三说并存，不定一尊。(4) 逻辑定名功劳：严复首创音译与章士钊立名推广两段著录"
+      evidence_grade: 词条原文级 / 二手系统转述级
+      pending: ["typhoon 来源主次未定（登记不裁决）；ketchup 本字三说并存"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V27-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：ketchup、kowtow、ginseng、typhoon、logic、humour"]
+  - id: V-28
+    zone: 词汇解码
+    group: V
+    headline: "小学阶段词汇量的暴涨主要不是逐个背出来的：母语儿童认得的派生词从 6 岁的约 2000 个涨到 10 岁的约 16000 个，增量靠当场『拆词解题』"
+    headline_kid: "大孩子认得的词多得吓人，不全是背出来的：他们会拆词——碰到没学过的长词，先拆开，靠认识的部分猜出意思，词就『自己长』出来了"
+    claim:
+      type: tendency
+      statement: "形态解题（morphological problem solving）：掌握词根义+词缀义+构词规则后，对未学过的复杂词在遇到的当场推导意义；派生词知识的暴涨本身就是解题引擎在转的证据（Anglin 五分类计数与释义访谈的言语证据）"
+      evidence:
+        - "Anglin (1993)《Vocabulary Development: A Morphological Analysis》, Monographs of the SRCD 58 (Serial No. 238)——分类计数经 Nation 教科书转述：词根词 6 岁约 3000 / 10 岁约 7500；派生词同期约 2000 / 16000（权威转述级）"
+        - "访谈实证：五年级孩子没学过 treelet，却能借已知的 piglet（-let＝小）当场类推『小树』"
+      scope: "样本为英语母语儿童；中国孩子英语词根库存小得多，同一引擎的转速不可直接搬用（先得有根可拆，见 V-30、V-31）"
+      exceptions:
+        - note: "Anglin 的结论是机制性推论（由派生词暴涨+访谈言语证据推断引擎存在），并未逐词溯源每个已识词的习得方式"
+          word_ids: [G2_079, G1_019]
+          pending_words: [piglet, treelet]
+    mechanism:
+      - beat: 解题引擎
+        text_kid: "认词有两种：背过的，和现场拆出来的。大孩子的词一大半是拆出来的——零件认识得越多，能拆的词就越多，词就越长越快。"
+        text_adult: "Anglin 五分类：词根词、屈折词、派生词、字面复合词、习语；『派生词』与『词根词』的分界是心理基本词判据——不能靠拆解得出、必须单独存一条的，才算词根词。"
+        visual: "增长曲线图：派生词线陡升（2000→16000），词根词线缓升（3000→7500）"
+        anchors: [G2_079, G1_019]
+    examples:
+      - level: 1
+        word_ids: [G1_019]
+        pending_words: [piglet, treelet]
+        sentence: "A piglet is a small pig."
+        scene_note: "访谈原案：由 piglet 的 -let『小』类推 treelet『小树』（两词待补词）"
+        supports: claim
+      - level: 2
+        word_ids: [G2_079]
+        sentence: "A treelet is a small tree."
+        scene_note: "当场解题的产物：没学过的词，拆出来了"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-29, rel: 同族}
+      - {id: V-30, rel: 同族}
+      - {id: V-31, rel: 同族}
+    corrections:
+      - "『小学阶段约三分之二的已识词靠形态推导』在 Anglin 原文及权威转述中均无此表述，不予采用。可核数字：五年级派生词约 16000，占总识别词汇约 40000 的约 40%；派生/(词根+派生）约 68%（疑为误传来源，分母不同）；新遇词 60–80% 为形态复杂词（说的是新词构成，不是已识词来源）。三数口径各异，不可混用"
+    quiz:
+      - stem: "大孩子认得的派生词暴涨，主要是因为什么？"
+        options: ["背得更多", "会当场拆词解题，词自己长出来", "词变简单了"]
+        answer: "会当场拆词解题，词自己长出来"
+        hint_ref: "mechanism『解题引擎』"
+    probes: []
+    prereq: [V-15]
+    order: 28
+    pain_points: [记不住]
+    adult:
+      sources: ["Anglin (1993) SRCD Monographs 58；分类数字经 Nation 教科书转述，多语素词数字经 Schwiebert 等 (2002) ERIC 报告转引"]
+      boundary: "母语样本不可直搬中国孩子；结论是机制性推论；『三分之二』说法已纠正（见 corrections）"
+      disputes: "词汇量估算的方法论之争：计数单位与词典基底不同，总词汇估值可差数倍（Nation 1993；Brysbaert 等 2016）——分歧只动摇总数，不动摇『派生词增速远超词根词、访谈可见当场解题』的结构性结论"
+      evidence_grade: 权威转述级
+      pending: ["Anglin 专著原文未直开：分项数字以 Nation 转述为锚，可再升一级核对（清单已登记）"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V28-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：piglet、treelet"]
+  - id: V-29
+    zone: 词汇解码
+    group: V
+    headline: "学校英语里需要当作独立词学的单位约 88533 个；但学会一个词之后，平均还有一到三个亲戚词应当能顺带读懂——前提是会用语境和拆词去推"
+    headline_kid: "书里的词看着多，其实很多是『一家人』：学会一个词，再碰到它的亲戚，常常不用重新学，猜一猜就懂了"
+    claim:
+      type: tendency
+      statement: "计数单位即机制：派生词若意义能由词根+词缀当场算出（语义透明），就不必另占一个『要学的词』；88533 = 形态基本词 + 语义不透明派生词——把能白拿的剔掉之后剩下的真实学习负担；每学会一个词，平均另有 1.57 个语义透明派生亲戚（精细平均值）"
+      evidence:
+        - "Nagy & Anderson (1984) 'How many words are there in printed school English?', Reading Research Quarterly 19: 304–330；技术报告版 Technical Report No. 253 (1982, ERIC ED218596)——88533 为报告精确推算值，摘要取整 88500（原文级，技术报告全文直读）"
+      scope: "语料为 Carroll, Davies & Richman《Word Frequency Book》（3–9 年级教材与读物，约 508 万词次）；杠杆带条件——会用语境与形态推导才成立，且主要藏在中低频学术词汇层"
+      exceptions:
+        - note: "高频段的词族杠杆小：熟词多为独立词根，亲戚红利主要在中低频段"
+          word_ids: []
+    mechanism:
+      - beat: 透明就不另算
+        text_kid: "数『要学的词』不能光数个头：能拆懂的亲戚是白送的，不用重新学；拆不懂的，才要老老实实一个个学。"
+        text_adult: "本条给 V-02 的『词族』补上量化锚：词族平均规模与透明亲戚数在此有原始测算（表 11：每形态基本词平均带 1.57 个透明派生词；Sasao & Webb 2017 转引同数）。"
+        visual: "词族账本图：总词数大字，划掉透明亲戚，剩下 88533 标『真要学的』"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G4_0457, G6_0856]
+        sentence: "Happy, unhappy, happiness — one family."
+        scene_note: "一族三词：学会 happy，unhappy 与 happiness 是透明亲戚"
+        supports: claim
+      - level: 2
+        word_ids: [G6_0331]
+        sentence: "Predict is a word to learn; its family helps."
+        scene_note: "不透明亲戚（如词根不认识时）要另学——与 V-32 的不可推清单互挂"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-28, rel: 同族}
+      - {id: V-02, rel: 同族}
+      - {id: V-32, rel: 同族}
+    corrections:
+      - "『约 6 万词族』在 N&A 原文中无对应数字：最接近的真实数字是 Goulden, Nation & Read (1990) 的 54000 个基础词（词族口径），『6 万』疑为其取整误传；Nation (2001) 裁断：学校英语词族数在 54000 与 88500 之间是同一问题的两种口径"
+      - "『学一根平均带走 1–3 个派生词』须修正：原文主语是『每学会一个词』（不限词根），且带条件；精细平均值是 1.57 而非 3"
+    quiz:
+      - stem: "学会 happy 以后，unhappy 和 happiness 为什么常常不用重新学？"
+        options: ["因为它们短", "因为它们的意思能由零件当场算出（透明亲戚）", "因为老师不查"]
+        answer: "因为它们的意思能由零件当场算出（透明亲戚）"
+        hint_ref: "mechanism『透明就不另算』"
+    probes: []
+    prereq: [V-28]
+    order: 29
+    pain_points: [记不住]
+    adult:
+      sources: ["Nagy & Anderson (1984) RRQ 19；Technical Report No. 253 (1982) 全文；Goulden, Nation & Read (1990)"]
+      boundary: "88,533 是『基本词+不透明派生词』口径；1–3 是带条件的区间估计，精细值 1.57；引用词汇量数字必须连口径一起引"
+      disputes: "总量之争未息：Goulden 派认为 N&A 口径高估；N&A 派认为窄口径漏掉派生与复合的真实负担；Brysbaert 等 (2016) 词目口径（成人约 42000 词目/11100 词族）与上列数字不可直接比较"
+      evidence_grade: 原文级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V29-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-30
+    zone: 词汇解码
+    group: V
+    headline: "拆词法的可推理覆盖有实测的账：对带四个最高频前缀（un-、re-、in-、dis-）的词，只靠零件约懂六成，零件加语境约懂八成"
+    headline_kid: "长词先拆开看：认识里面的小词和头上的小零件，能猜懂一大半；剩下的再请上下文来帮忙，又能多懂一些"
+    claim:
+      type: tendency
+      statement: "可分析性是拆词成立的前提，三件缺一不可：词基认得出、词缀义稳定、组合义没漂移；White 等对 257 个带前缀目标词的语料分析得出约 80% 的主要带前缀词可分析，四前缀词的透明度分析得出 60%（零件）/80%（零件+语境）两数"
+      evidence:
+        - "White, Power & White (1989) 'Morphological analysis: Implications for teaching and understanding vocabulary growth', Reading Research Quarterly 24(3): 283–304（二手互证级：60/80 两数经 Nation 教科书转述，257 词样本与 p.292 引文经期刊文献转述，两路一致）"
+        - "Sadoski (2005) 综述转述：形态分析加语境的理解量约为单用语境的近两倍"
+      scope: "60%/80% 的对象严格限定为『带四个高频前缀的词』，不可外推为『八成生词可拆懂』；本文是潜力测算（语料分析），不是疗效试验"
+      exceptions:
+        - note: "四前缀的 60% 以『知道词基最常用义』为前提，中国孩子词基库存不足时，实际可达率要按其词基量打折"
+          word_ids: []
+    mechanism:
+      - beat: 三件套
+        text_kid: "拆词能成功，要三样东西都在：里面的小词认识、头上的零件意思稳、拼起来的意思没变味。少一样，就拆不动。"
+        text_adult: "发展窗口：可分析的带缀词在三年级到七年级读物中陡增，White 等建议拆词教学从四年级左右正式开始（与 V-28 派生词 8 岁后暴涨的时间点吻合）——本 App 不按学段切分，此为内容顺序的参考锚，登记于成人层。"
+        visual: "三件套清单图：词基/词缀义/组合义三格全亮，锁才打开"
+        anchors: [G4_0457]
+    examples:
+      - level: 1
+        word_ids: [G4_0457]
+        sentence: "Unhappy = un- (not) + happy."
+        scene_note: "四前缀之首 un- 的透明词：零件即可懂"
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0157]
+        sentence: "Incorrect = in- (not) + correct."
+        scene_note: "in-（否定）的透明词（correct 黏着词基问题见挂接表）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-28, rel: 同族}
+      - {id: V-32, rel: 对照}
+      - {id: V-33, rel: 同族}
+    corrections:
+      - "任务书把 White, Power & White (1989) 定性为『教拉丁词根的教学实验』是定性错误：该文是语料分析研究（257 个带前缀词的可分析性+四前缀透明度），四前缀中 un- 为日耳曼源、其余为拉丁源；『教词根能迁移到未学词』的因果证据在干预研究（Wysocki & Jenkins 1987 等）与 V-31 元分析，不在本文。引用本条不得把『可分析』说成『教了就会』"
+    quiz:
+      - stem: "拆一个带前缀的长词，猜懂它的把握有多大？"
+        options: ["百分之百", "只靠零件约六成，再加上下文约八成——剩下两成要查", "一点把握都没有"]
+        answer: "只靠零件约六成，再加上下文约八成——剩下两成要查"
+        hint_ref: "mechanism『三件套』"
+    probes: []
+    prereq: [V-28]
+    order: 30
+    pain_points: [记不住, 读不快]
+    adult:
+      sources: ["White, Power & White (1989) RRQ 24(3): 283–304；Sadoski (2005) 综述；课程线旁证：Ayers (1965/1986)、Fifer & Flowers (1990)、Cornog (1998/2010)"]
+      boundary: "对象限四高频前缀词；潜力测算非疗效试验；词基不足时按词基量打折"
+      disputes: "乐观派（White 等：多数带缀词传达的正是零件提示的意义）与冷水派（N&A 透明度分布：完全透明者只占派生词一半多）并不矛盾——对象不同（高频前缀词 vs 全部派生词）；教学宣传常把前者的 80% 挪去修饰后者，属口径盗用，明令禁止"
+      evidence_grade: 二手互证级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V30-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-31
+    zone: 词汇解码
+    group: V
+    headline: "『要不要教词根词缀』有两轮元分析的裁决：教了有用，总效应 d≈0.32–0.33（中等偏小）；低龄儿童与有识字困难的儿童受益相对最大"
+    headline_kid: "很多班级都试过『上拆词课』，把成绩合起来看：拆词课确实让孩子更会认词、拼词、猜词；但它不会自动让整篇故事读得更懂——那还要靠多读书本身"
+    claim:
+      type: tendency
+      statement: "干预效应沿『与教学的距离』衰减：离教学最近的结果（形态知识、拼写）效应最稳，越远（阅读理解、阅读流利度）越弱；形态教学改变的是『处理词的工具』，理解还取决于词量、背景知识与阅读量本身"
+      evidence:
+        - "Goodwin & Ahn (2010) Annals of Dyslexia 60(2): 183–208——17 项研究、79 个效应量，总效应 d=0.33（原文摘要级）"
+        - "Goodwin & Ahn (2013) Scientific Studies of Reading 17(4): 257–285——30 项研究、92 个效应量，总效应 d=0.32；分项：解码 0.59、形态知识 0.44、词汇 0.34、拼写 0.30；阅读理解与流利度不显著（原文摘要级）"
+      scope: "两轮样本以英语母语（含部分困难儿童）为主，中国 EFL 课堂效应预期应下调；2013 年『低龄受益最大』仅基于 30 项研究中的 4 项低龄研究，引用必须带此保留"
+      exceptions:
+        - note: "阅读理解与流利度在 2013 年元分析中不显著——拆词课不是阅读理解的直接药"
+          word_ids: []
+    mechanism:
+      - beat: 距离衰减
+        text_kid: "拆词课像给孩子一把好工具：认词、拼词马上变强；可读懂整篇故事，还得靠词够多、书读得多——工具再好，也不能代替盖房子本身。"
+        text_adult: "2010 年亚组：言语语言迟缓儿童效应最大，英语学习者次之；综合型干预大于纯形态干预（2013 年未复制此调节，见分歧）。"
+        visual: "同心圆图：中心『形态知识』效应最亮，向外『词汇、解码、阅读理解』逐圈变淡"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G4_0457, G6_0856]
+        sentence: "Unhappy and happiness: break them apart."
+        scene_note: "离教学最近的产出：形态知识与拼写（效应最稳的一圈）"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0492]
+        sentence: "Read more books, too."
+        scene_note: "远圈提醒：阅读理解靠阅读量本身，拆词课不包办"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-30, rel: 同族}
+      - {id: V-39, rel: 同族}
+    quiz:
+      - stem: "上了拆词课，哪件事最可能变好，哪件别指望太多？"
+        options: ["认词拼词变好；整篇故事自动读懂别指望", "什么都会自动变好", "什么都不会变好"]
+        answer: "认词拼词变好；整篇故事自动读懂别指望"
+        hint_ref: "mechanism『距离衰减』"
+    probes: []
+    prereq: [V-30]
+    order: 31
+    pain_points: [记不住]
+    adult:
+      sources: ["Goodwin & Ahn (2010) Annals of Dyslexia 60(2)；(2013) SSR 17(4)；温度修正：Colenbrander 等 (2024) Educational Psychology Review 预注册元分析"]
+      boundary: "两轮效应量度不同（2010 均值变化差、2013 组间均差），0.33 与 0.32 不可直接比大小；低龄结论仅 4 项研究支撑；EFL 预期下调"
+      disputes: "①嵌入之争：2010 发现综合嵌入优于纯形态教学，2013 未复制——『嵌入不亏、单教不罪』，不许任何一面自称定案。②替代对照冷水：Bowers, Kirby & Deacon (2010) 发现对『换一种好教学』的替代对照效应接近于零——已证的是『胜过不教』，未证的是『胜过其他词汇教学』。③2024 预注册元分析结论更冷：向未学词的迁移只在拼写上成立、阅读上不成立，阅读理解无明确证据。本条以 2010/2013 为主体证据、2024 为温度修正，引用不得只引最热的一轮"
+      evidence_grade: 原文摘要级（元分析）
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V31-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+  - id: V-32
+    zone: 词汇解码
+    group: V
+    headline: "拆词有天花板：学校英语的派生词中完全透明者只占约 56–62%，约 18–24% 基本不可推——必须当作独立词另学。拆词是强工具，不是万能钥匙"
+    headline_kid: "拆词像开锁：很多锁能开，可有些词是『假锁』——invaluable 不是『没有价值』，恰恰是『价值极高』。所以拆完猜完，一定要查一查、对一对"
+    claim:
+      type: tendency
+      statement: "透明度是连续谱，由三件事共同决定：词基认不认识、词缀义稳不稳定、组合义有没有在历史上漂移；按 Nagy & Anderson 五级量表（SEM 0 完全可推 → SEM 5 完全不可推），SEM 0–1 占约 56–62%，SEM 3–5 占约 18–24%（随计数口径）"
+      evidence:
+        - "Nagy & Anderson, Technical Report No. 253 (1982, ERIC ED218596) 表5、表6 透明度分布（原文级，两表直读并按小计回推校验）；Anderson & Nagy (1993) Technical Report No. 570"
+      scope: "透明度没有公认测法：按直接来源词计 SEM 3–5 约 24%，按最相近义项计约 18%——引用任何单一百分比必须连口径一起报"
+      exceptions:
+        - note: "词频越低，派生词的透明比例反而越高（低频词多是晚近按规则现造、漂移时间短）——天花板主要压在中高频的古老派生词上"
+          word_ids: []
+    mechanism:
+      - beat: 两种拆不动
+        text_kid: "拆不动有两种：一种是零件不认识（词根没学过），先去补零件；一种是零件都认识、拼出来的意思却变了味（假锁），只能整个记住。先分清是哪一种，再对症下药。"
+        text_adult: "根缺失型（dict、port 等黏着词根不认识→补根，见 V-21）与关系不透明型（invaluable 的 in- 是加强非否定；restive 实义『焦躁难驭』）分治。与 V-12 语境猜义天花板、V-10 形似误认并称『三堵墙』，共同操作结论：猜后必须验。"
+        visual: "开锁动画：多数锁打开，两把假锁标红——一把缺零件、一把锁芯变了"
+        anchors: [G6_0331]
+    examples:
+      - level: 1
+        word_ids: [G6_0331]
+        pending_words: [invaluable, restive]
+        sentence: "Predict = pre- (before) + dict (say)."
+        scene_note: "根缺失型正例：predict 的 pre- 就是『预先』，组合义成立；难在 dict 不认识（清单纠正，见 corrections）"
+        supports: claim
+      - level: 2
+        word_ids: []
+        pending_words: [invaluable]
+        sentence: "This book is invaluable."
+        scene_note: "关系不透明型假锁标本：invaluable = 贵重到没法估价，不是『没有价值』——拆对零件、猜反意思，猜后必须验的招牌例（待补词）"
+        supports: claim
+    error_cases:
+      - wrong: "invaluable = 没有价值的（按 in- 否定硬拆）"
+        right: "invaluable = 贵重得无法估价；此词的关系不透明，整词记"
+        error_type: 假拆分
+        source_type: 条目成人层登记的事故例
+        diagnosis: "把加强义 in- 当否定 in-（回 mechanism『两种拆不动』之关系不透明型）"
+    relatives:
+      - {id: V-29, rel: 同族}
+      - {id: V-15, rel: 同族}
+      - {id: V-12, rel: 同族}
+      - {id: V-10, rel: 同族}
+    corrections:
+      - "『约半数派生词的意义不能从根+缀可靠推出』无一手出处且偏高：按 N&A 自家量表，基本不可推者（SEM 3–5）约五分之一到四分之一；定版表述为『完全透明者只占一半多，其余或多或少要打折』，『约半数不可推』不予采用"
+      - "predict 例任务书亦误：pre- 的确就是『预先/在前』，predict＝预先说→预言，组合义本身成立；它对孩子的墙是 dict 黏着词根不认识（根缺失型），不是前缀不表『预先』——两类失败解法不同，混为一谈会开错药"
+    quiz:
+      - stem: "拆词猜完意思，下一步必须做什么？"
+        options: ["直接当答案用", "查一查、对一对，验证了才算数", "猜错就再也不拆了"]
+        answer: "查一查、对一对，验证了才算数"
+        hint_ref: "mechanism『两种拆不动』"
+    probes: []
+    prereq: [V-30]
+    order: 32
+    pain_points: [记不住, 错不完]
+    adult:
+      sources: ["Nagy & Anderson TR No. 253 (1982) 表5/表6；Anderson & Nagy (1993) TR No. 570；新古典拼装件传统：Ayers 第2版医学组合形诸课"]
+      boundary: "百分比必须连口径报；新古典拼装件（telephone、biology）不得把拼装件说成『古希腊词』——『古』只在零件不在整词；『记 300 个组合形解码上万科学词』未核到一手统计，只登记为课程宣传口径，待核，不作断言"
+      disputes: "透明度测法未决（口径差 18% vs 24%）；教学顺序之争与 V-12 同源（策略派先教猜 vs 词量派先保词量），共识底线只有一条：任何一堵墙都不支持『光靠猜就能代替学词』"
+      evidence_grade: 原文级
+      pending: ["『300 个组合形解码上万科学词』一手统计待核（清单已登记）"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V32-* 预留）", "scene_spec 待补", "补词待办：invaluable、restive、define、detail"]
+  - id: V-33
+    zone: 词汇解码
+    group: V
+    headline: "词缀的头部定律：20 个前缀管住带前缀词的 97%，前 4 个（un-、re-、in- 否定、dis-）占 58%——先学一小撮，阅读里的大头全归队"
+    headline_kid: "英语前缀有一大群，可真正常出来干活的就一小撮：un-、re-、in-、dis- 这四个『班长』占了书里带前缀词的一大半。先把这一小撮学透，比背一百个前缀的大表有用得多"
+    claim:
+      type: tendency
+      statement: "学校阅读语料中带前缀词的分布是幂律式头部集中：un- 一家占 26%，前三（un-、re-、in- 否定）合计 51%，前四（加 dis-）合计 58%，20 个前缀的清单覆盖 97%"
+      evidence:
+        - "White, Sowell & Yanagihara (1989) 'Teaching Elementary Students to Use Word-Part Clues', The Reading Teacher 42(4): 302–308——语料为 Carroll, Davies & Richman《The American Heritage Word Frequency Book》(1971) 三至九年级教材统计；关键句经 Marzano (2004) 逐字转引核对（原文引文级）"
+      scope: "百分比是带前缀词在学校阅读语料中的出现份额（频次口径），不是词典词条种类的比例；语料是 1970 年代美国教材，中国学生阅读语料构成不同，名次细节不可直接搬用——可搬的是『头部集中、先教高频小集合』的结构事实"
+      exceptions:
+        - note: "高频前缀恰恰多义、易假拆：uncle 不是 un- 前缀、reason 不是 re- 前缀——White et al. 第一课专设 tricksters 辨假环节"
+          word_ids: [G2_067]
+          pending_words: [reason]
+    mechanism:
+      - beat: 头部小集合
+        text_kid: "前缀班里有四个班长，活儿占了一大半。先把班长学透，书里的带前缀词就大半有认识的『门卫』了。"
+        text_adult: "定版 20 名单：un-、re-、in-（否定）、dis-、en-/em-、non-、in-/im-（向内）、over-、mis-、sub-、pre-、inter-、fore-、de-、trans-、super-、semi-、anti-、mid-、under-。计数口径：两个 in- 分列、en-/em- 合并计一；引用以此口径为准。义项分工（in- 两职、re- 两义、un- 兼『做反动作』）见 V-35、V-39。"
+        visual: "条形图：un- 26% 长条领头，前四合计 58%，20 个覆盖 97% 的括线"
+        anchors: [G4_0457, ADD_0157, ADD_0159]
+    examples:
+      - level: 1
+        word_ids: [G4_0457]
+        sentence: "Unhappy."
+        scene_note: "班长第一名 un-（26%）的招牌词"
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0157, ADD_0159]
+        sentence: "Incorrect. Input."
+        scene_note: "in- 两职同屏：incorrect 是否定 in-，input 是向内 in-（与 V-35、探针 PRB-V33-2 互挂）"
+        supports: claim
+    error_cases:
+      - wrong: "uncle = un- + cle（看见 un- 就拆）"
+        right: "uncle 是整词，un- 在此不是前缀（tricksters 辨假）"
+        error_type: 假拆分
+        source_type: 条目成人层登记的事故例
+        diagnosis: "把词首字母串当前缀（回 mechanism『头部小集合』例外同屏；探针 PRB-V33-1 同案）"
+    relatives:
+      - {id: V-30, rel: 同族}
+      - {id: V-34, rel: 同族}
+      - {id: V-35, rel: 同族}
+      - {id: V-39, rel: 同族}
+    corrections:
+      - "任务书『14 个前缀覆盖约 58%』已证伪：原文实为两组数字——20 个前缀覆盖 97%，前 4 个占 58%；『14 前缀』说未在原文检得，疑为转述串位（或与后缀侧小集合统计串位），按查无此据登记。claim 只用定版口径"
+    quiz:
+      - stem: "带前缀的词，先学哪几个前缀最划算？"
+        options: ["按字母顺序全学", "先学 un-、re-、in-、dis- 四个班长", "先学最长的"]
+        answer: "先学 un-、re-、in-、dis- 四个班长"
+        hint_ref: "mechanism『头部小集合』"
+    probes: [PRB-V33-1, PRB-V33-2, PRB-V33-3, PRB-V33-4, PRB-V33-5]
+    prereq: [V-30]
+    order: 33
+    pain_points: [记不住]
+    adult:
+      sources: ["White, Sowell & Yanagihara (1989) The Reading Teacher 42(4): 302–308；Marzano (2004) 逐字转引 pp.302–303；REWARDS 项目、Common Core 附录、Words Their Way 多处独立转述一致"]
+      boundary: "频次口径不是种类口径；1970 年代美国语料，名次细节不可直搬；in- 身兼二职、re- 两义、un- 兼反动作义，连义项分工一起教"
+      disputes: "频率派（先教谁由频率定）vs 语义透明派（怎么教、防哪些假朋友由透明度定）——两说不冲突，是分工；『14 个前缀』说法来历未考得，查无此据登记"
+      evidence_grade: 原文引文级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["scene_spec 待补", "补词待办：reason"]
+  - id: V-34
+    zone: 词汇解码
+    group: V
+    headline: "变色龙前缀：in- 碰到 p 变 im-、碰到 l 变 il-、碰到 r 变 ir-——前缀的尾巴会照着后面字母的样子改，同化处几乎都产生双写字母"
+    headline_kid: "in- 后面跟 p、b、m 就变成 im-（impossible），跟 l 变 il-（illegal），跟 r 变 ir-（irregular）。不是它们想变，是嘴巴偷懒，说起来更顺——看懂这条，双写字母就不用死记了"
+    claim:
+      type: rule
+      statement: "拉丁前缀末尾辅音向后接词根的首辅音同化（顺同化），拼写把发音妥协固定下来：in-→im-（唇音前）/il-（l 前）/ir-（r 前），con-→com-/col-/cor-/co-，ad-→ac-/af-/ag-/al-/an-/ap-/ar-/as-/at-，sub-→suc-/suf-/sug-/sum-/sup-/sur-/sus-，dis-→dif-，ob-→oc-/of-/op-，ex-→ef-/e-；同化处几乎都产生双写字母，是英语双辅音拼写的一大来源"
+      evidence:
+        - "拉丁前缀同化通例著录：Monmouth College 古典学系科学术语课程讲义（同化全表）、Stone《Morphology Masterclass》教师手册与 Prefix Assimilation 词表、澳大利亚形态学教学范围文件（RSIS）——三家名单与例词交叉一致（二手系统论述级）"
+      scope: "只存在于拉丁借词的成品里，是历史化石，不是现行活规则"
+      exceptions:
+        - note: "现代英语新造词不再执行同化：input、inboard 拼写保留 n（尽管口读近 m），不会生出 *ilput——本条教的是读懂旧账，不是造词配方"
+          word_ids: [ADD_0159]
+        - note: "同形须防假：illusion、immerse、irrigate 里的 im-/ir- 是另一个 in-（向内义），不是否定——判断变体前先确认是哪个 in-（见 V-35）"
+          word_ids: []
+    mechanism:
+      - beat: 嘴巴偷懒
+        text_kid: "in- 的尾巴 /n/ 碰到嘴唇音（p、b、m），自己先变成 /m/，写出来就是 im-；碰到 l、r，就变得和后面一模一样，还多写一个——双写字母就是这么来的。"
+        text_adult: "同化只解释前缀末尾一格的变化，词根内部的双写（如 accommodate 中段）另有来源，不可一例推全词。发音事实可验证：in- 的鼻音在唇音前实际读作 /m/（input 口语中即如此）。"
+        visual: "变色龙图式：in- 走到 p/l/r 门前依次换装成 im-/il-/ir-，双写字母高亮"
+        anchors: [G6_0476, G5_0521, G6_0682]
+    examples:
+      - level: 1
+        word_ids: [G6_0476]
+        pending_words: [illegal, irregular]
+        sentence: "It is impossible."
+        scene_note: "im- 第一例（唇音前）；illegal/irregular 待补词，同屏呈现 il-/ir-"
+        supports: claim
+      - level: 2
+        word_ids: [G5_0521, G6_0682]
+        sentence: "Collect the books. Support your team."
+        scene_note: "con-→col-（collect）、sub-→sup-（support）：双写字母的形态学解释"
+        supports: claim
+    error_cases:
+      - wrong: "*inpossible / *inlegal（按原形 in- 硬拼）"
+        right: "impossible / illegal——前缀尾巴已按同化改形，双写是规则不是笔误"
+        error_type: 拼写规则误用
+        source_type: 教学文献登记错型
+        diagnosis: "不知道同化变体，按未变形的 in- 拼写（回 mechanism『嘴巴偷懒』）"
+    relatives:
+      - {id: V-35, rel: 同族}
+      - {id: V-33, rel: 同族}
+    quiz:
+      - stem: "illegal 里为什么有两个 l？"
+        options: ["写错了", "in- 碰到 l 同化成 il-，双写是同化留下的", "为了好看"]
+        answer: "in- 碰到 l 同化成 il-，双写是同化留下的"
+        hint_ref: "mechanism『嘴巴偷懒』"
+    probes: []
+    prereq: [V-33]
+    order: 34
+    pain_points: [记不住, 错不完]
+    adult:
+      sources: ["Monmouth College 古典学课程讲义；Stone《Morphology Masterclass》；RSIS Morphology Scope and Sequence『assimilated prefixes』专节"]
+      boundary: "历史化石非活规则（input 保 n）；同形 in- 两职须先辨；同化只解释前缀末格"
+      disputes: "教学处理路线差：传统拼写教学把双写当逐词记忆项；SWI 把同化词族当『词和』的招牌教材，主张先验结构再记拼写——语言学描写层无分歧，分歧只在课堂顺序，本条只登记现象与机制，不裁决教法"
+      evidence_grade: 二手系统论述级
+      pending: ["未打开拉丁语语法原书逐条核页码（清单已登记）"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V34-* 预留）", "scene_spec 待补", "补词待办：illegal、irregular 及同化家族全量（见挂接表）"]
+  - id: V-35
+    zone: 词汇解码
+    group: V
+    headline: "『不』有两个供货商：日耳曼底子用 un-，拉丁底子用 in-——大势可依，例外成串；un- 是活零件至今能装新词，in- 已退休只守老词"
+    headline_kid: "说『不』有两个零件：老家的词用 un-（unhappy），外来的拉丁词用 in-（incorrect）。believe 是老家词，所以 unbelievable；credible 是拉丁词，所以 incredible。但这只是大势，例外一串串"
+    claim:
+      type: tendency
+      statement: "否定前缀的选取受词基地层制约（地层一致性倾向）：un-（日耳曼源）产出性至今开放，可接形容词与分词且早已越界接大量拉丁底词基；in-（拉丁源）是封闭存量，只见于已成型的拉丁借词，不接日耳曼词基、也不再造新词；non- 是后起的中性第三方，多表『非此类』而非『相反极』"
+      evidence:
+        - "地层分工与产出性差为英语形态学通行论述：Bauer (1983)、Plag (2003) 对 un- 高产出与 in- 非产出的处理一致（二手系统论述级）"
+        - "可证伪点：新造否定词在语料中一律取 un-/non- 而不见新 in- 词（unfriend、unsubscribe、non-event）；*inhappy、*inkind 在词典与语料中皆不存在"
+      scope: "本条只管否定 in-；方向 in-（income、import、include）是另一个前缀，选取不受本条约束"
+      exceptions:
+        - note: "un- 越界拉丁底成串：uncertain、unstable、unconscious、unpopular 都是 un- + 拉丁/法语底——『地层纯洁』从未实现"
+          word_ids: [G3_130]
+          pending_words: [uncertain, unstable, unconscious, unpopular]
+        - note: "inflammable 的 in- 是『向内/使……』义而非否定，故 flammable 与 inflammable 同义（现代安全标识多改用 flammable）"
+          word_ids: []
+          pending_words: [inflammable, flammable]
+        - note: "invaluable 的 in- 虽是否定形，词义却是『贵重到没法估价』（极言而非否定，见 V-32）"
+          word_ids: []
+          pending_words: [invaluable]
+        - note: "ingenious/ingenuous 等为整词借入，不可拆解套规则"
+          word_ids: []
+    mechanism:
+      - beat: 活零件与退休零件
+        text_kid: "un- 像个还在上班的零件，现在的新词（unfriend 取关）还往上装；in- 已经退休了，只在老词里见得到，新词一个都不接。见到日常词先试 un-，见到拉丁长词先试 in- 一家。"
+        text_adult: "本条是倾向条：能帮学生猜，不能帮学生判对错——凡按『un- 必日耳曼底』出题判错者皆错。地层背景见 V-19，变体见 V-34。"
+        visual: "两间供货商铺面：un- 铺『营业中·可装新词』，in- 铺『存量老词·不再进货』"
+        anchors: [G4_0457, ADD_0157]
+    examples:
+      - level: 1
+        word_ids: [G4_0457]
+        pending_words: [unbelievable, incredible]
+        sentence: "He is unhappy."
+        scene_note: "un- 本职例；unbelievable/incredible 对子（believe 老家词 vs credible 拉丁词）待补词同屏"
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0157, G3_130]
+        sentence: "That is incorrect. He is my friend."
+        scene_note: "in- 本职例 incorrect；friend 旁证 un- 的越界地盘（unfriend 新词在成人层）"
+        supports: claim
+    error_cases:
+      - wrong: "*inhappy（按地层规则给日耳曼词基装 in-）"
+        right: "unhappy——in- 不接日耳曼词基，此形式在词典与语料中不存在"
+        error_type: 前缀选配误用
+        source_type: 教学文献登记错型
+        diagnosis: "只记『拉丁用 in-』没记『in- 是封闭存量』（回 mechanism『活零件与退休零件』）"
+    relatives:
+      - {id: V-19, rel: 同族}
+      - {id: V-34, rel: 同族}
+      - {id: V-33, rel: 同族}
+    quiz:
+      - stem: "新词『取关』是 unfriend，不是 infriend。为什么？"
+        options: ["因为 un- 还在上班、能装新词，in- 已退休", "因为 f 开头只能用 un-", "随便哪个都行"]
+        answer: "因为 un- 还在上班、能装新词，in- 已退休"
+        hint_ref: "mechanism『活零件与退休零件』"
+    probes: []
+    prereq: [V-34]
+    order: 35
+    pain_points: [记不住, 错不完]
+    adult:
+      sources: ["Bauer (1983)；Plag (2003)；in- 同化变体同 V-34；inflammable 标识史为消防安全文献通例"]
+      boundary: "倾向条：帮猜不帮判；un- 地盘一直在扩张；方向 in- 不在本条"
+      disputes: "in- 的地层限制有两种解释：历史派谓 in- 词皆为整词借自拉丁/法语、从未在英语内部成活规则；结构派谓 in- 曾可分析但产出性早夭——两说对教学结论一致，分歧只在史述"
+      evidence_grade: 二手系统论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V35-* 预留）", "scene_spec 待补", "补词待办：unbelievable、incredible、uncertain 等例外组全量（见挂接表）"]
+  - id: V-36
+    zone: 词汇解码
+    group: V
+    headline: "词类变身机：给词根装不同的尾，就能把它变成动词、名词、形容词、副词——但每台变身机的『营业状态』不一样：-ness、-able、-ly 还通电，-tion、-ible 已封存"
+    headline_kid: "词尾像变身按钮：act 装 -ion 变名词（action），装 -ive 变形容词（active）。有的按钮天天有人按，有的早就锈住了。认清哪些还通电，猜词和造词就都有谱"
+    claim:
+      type: tendency
+      statement: "派生后缀按变出什么词类成菜单，其产出性与地层成反比倾向：日耳曼与已归化后缀（-ness、-ly、-able、-ful）活，深度拉丁后缀（-tion、-ible、-ance）封；产出性是梯度与语域函数，不是开关；每台机器还有选配限制（-ity 只认拉丁底、-en 只认单音节形容词）"
+      evidence:
+        - "Bauer《English Word-formation》(CUP, 1983) 与 Plag《Word-Formation in English》(CUP, 2003, 第3章产出性专论、第4章词缀派生)——-th 封存、-ness 高产等判断（二手系统论述级）"
+        - "-able 全产出与 -ible 封闭的对比经 The Free Dictionary 语法专文逐点核对（新词 streamable、clickable 皆取 -able）"
+        - "新词著录为最硬证据：近几十年词典新收派生词在 -ize、-ify、-able、-ness、-ly 名下成串出现，新造 -tion/-ible 词举不出"
+      scope: "菜单是『变词类』的地图，不是意义的保证：-able 的被动义、-ful 的双读等语义细则须逐后缀另学"
+      exceptions:
+        - note: "-ate 说『有限』不等于零：化学与生物语域仍在造（differentiate 一线）；-ize 说『高产』不等于处处得体：公文写作指南常劝改用更朴素的动词"
+          word_ids: [G4_0320]
+          pending_words: [modernize, simplify, differentiate]
+    mechanism:
+      - beat: 四台变身机
+        text_kid: "四台机器各管一变：变出动词的、变出名词的、变出形容词的、变出副词的。每台机器先看牌子：还通电的（-ness、-able、-ly）放心用；锈住的（-tion、-ible）只认老词，不许自己造。"
+        text_adult: "动词化：-ize（高产）、-ify（产出）、-ate（存量大、新造有限）、-en（近封存）。名词化：-ness（最高产）、-ity（半产出）、-ment（衰退）、-tion/-sion（非活后缀，随拉丁词干整词进入）、-ance/-ence（停滞）、-er/-or（高产）。形容词化：-able（全产出）、-ful（产出中上）、-ous（低）、-ive（半产出）、-ible（封存）。副词化：-ly（近全产出；friendly、lonely 先占位，fast、hard 零形式）。"
+        visual: "四台变身机并排，每台挂营业状态牌（通电/半通电/封存）"
+        anchors: [G4_0320, G6_0856, G4_164, V6_情感_16]
+    examples:
+      - level: 1
+        word_ids: [G4_0320]
+        pending_words: [action, active]
+        sentence: "Act, action, active."
+        scene_note: "一根三变：act（动词）→ action（名词）→ active（形容词）；action/active 待补词"
+        supports: claim
+      - level: 2
+        word_ids: [G6_0856, G4_164]
+        sentence: "Happy — happiness. He is friendly."
+        scene_note: "-ness 通电例（happiness）；friendly 是 -ly 先占位的形容词例外（不是副词）"
+        supports: claim
+    error_cases:
+      - wrong: "*breaktion（拿封存的 -tion 套新词基造词）"
+        right: "-tion 不是活后缀：它随拉丁词干整词进入，英语内部不拿它造新词"
+        error_type: 词缀选配误用
+        source_type: 条目成人层登记的事故例
+        diagnosis: "把封存机器当通电机器用（回 mechanism『四台变身机』营业状态牌）"
+    relatives:
+      - {id: V-20, rel: 同族}
+      - {id: V-37, rel: 同族}
+    quiz:
+      - stem: "想给一个新词造『能……的』形容词，用哪个尾巴最靠谱？"
+        options: ["-ible", "-able（还通电的活后缀）", "-tion"]
+        answer: "-able（还通电的活后缀）"
+        hint_ref: "mechanism『四台变身机』"
+    probes: []
+    prereq: [V-20]
+    order: 36
+    pain_points: [记不住]
+    adult:
+      sources: ["Bauer (1983)；Plag (2003) 第3、4章；TFD 语法专文『Commonly Confused Suffixes: -able vs. -ible』"]
+      boundary: "产出性是倾向与语域的合成；变身有选配限制，菜单不能跨栏乱点；本条只管通道与营业状态，不管语义细则"
+      disputes: "①-ize/-ise 之争：牛津传统许 -ize，英式出版多 -ise——两式皆合法、出版物从其体例，不作对错判。②『-tion 不是后缀而是词干的一部分』：结构派（Plag）与教学派口径不同；本条按结构派立论、教学上保留『认得出 -tion 名词』的操作目标，两层分开著录"
+      evidence_grade: 二手系统论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V36-* 预留）", "scene_spec 待补", "补词待办：action、active、modernize 等全量（见挂接表）"]
+  - id: V-37
+    zone: 词汇解码
+    group: V
+    headline: "后缀一来，拼写要让路：丢不丢 e、y 变不变 i、尾巴双不双写，每条让路规则都有原因——正字法为语音与形态让路"
+    headline_kid: "加尾巴有四条交通规则：接元音尾先扔不发音的 e（make→making），但 change 的 e 得留着护住软音；辅音+y 变 i（happy→happiness）；短词一个元音一个辅音结尾，尾巴要双写（stop→stopped）"
+    claim:
+      type: tendency
+      statement: "四组拼写让路规则是语料分布的真实概括：①e 的去留（默认去 e；软 c/g 后接 -able/-ous 保 e 守软音；避同形保 e；接辅音首后缀一般保 e）；②y→i（辅音后 y 接后缀变 i，接 -ing 不变，元音后 y 不变）；③双写（重读音节+单元音+单尾辅音且后缀元音开头；x/w/y 结尾永不双写；英美在 l 上分家）；④-able/-ible（能拆出完整词用 -able，拆出半截拉丁词根用 -ible）"
+      evidence:
+        - "规则骨架为正字法教学与用法词典通行著录，经 The Free Dictionary 语法专文『Commonly Confused Suffixes』（含 -mit→-missible 与 limit 反例）与多家拼写规则文献交叉核对（二手系统论述级）"
+        - "可证伪点：*happyness、*stoping（表『停』）、*visitted 在语料中系统性缺席；孩子把 refer 写成 *refered、visit 写成 *visitted，正是重音条件没掌握的两类镜像错误——错误分布反证条件结构真实"
+      scope: "四条都是带例外的倾向，不是算法：教学口径是『默认走规则、例外进名单』；双写规则的前提是重音位置已知，须与 S-27（重音）合教"
+      exceptions:
+        - note: "接辅音首后缀保 e 的固化例外：truly、awful、argument"
+          word_ids: [G6_0847]
+          pending_words: [awful, argument]
+        - note: "-able 前有一批两写词：lovable/loveable、movable/moveable（词典多以 lovable 为主形）"
+          word_ids: []
+          pending_words: [lovable, movable]
+        - note: "-able/-ible 判据有例外带：accessible、flexible、contemptible 剩整词却用 -ible；-ible 一侧全名单不过百余词，最终靠认读存量解决"
+          word_ids: []
+          pending_words: [accessible, flexible]
+        - note: "y→i 的摇摆带：shyly、dryly/drily 单音节词两写并行"
+          word_ids: []
+    mechanism:
+      - beat: 为语音让路
+        text_kid: "拼写改来改去不是捣乱：扔 e 是因为它挡路，留 e 是因为要护住软软的读音，y 变 i、尾巴双写，都是为了让写出来的词还读得出原来的声音。"
+        text_adult: "统一原理：正字法为语音与形态让路——保读音、保词族脸面、地层遗迹三类妥协。四规则的细则与例外带见 claim 与 exceptions；-able/-ible 前的 e 去留与规则①联动。"
+        visual: "十字路口图式：词根开到路口，按四条交通规则牌改道变形"
+        anchors: [V6_日常_4, G6_282, V6_交通_34, G6_270]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_4, G6_282]
+        sentence: "Make — making. Happy — happiness."
+        scene_note: "去 e 例（make→making 的词形在例句呈现）与 y→i 例（happiness G6_0856 同族）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_交通_34, G6_270]
+        pending_words: [referred, changeable, noticeable]
+        sentence: "Stop — stopped. Visit — visited."
+        scene_note: "双写对子：stop 单音节双写，visit 重音在前不双写；referred（重音在尾才双写）待补词"
+        supports: claim
+    error_cases:
+      - wrong: "*refered / *visitted"
+        right: "referred（重音在尾，双写）/ visited（重音在前，不双写）"
+        error_type: 拼写规则误用
+        source_type: 教学文献登记错型
+        diagnosis: "双写规则的重音条件没掌握——两类镜像错误（回 mechanism『为语音让路』）"
+    relatives:
+      - {id: V-36, rel: 同族}
+      - {id: V-34, rel: 同族}
+    quiz:
+      - stem: "stop 加 -ed，为什么 p 要写双？"
+        options: ["因为好看", "短词、一个元音一个辅音结尾、后缀元音开头——双写保住短元音", "因为 p 是最后一个字母"]
+        answer: "短词、一个元音一个辅音结尾、后缀元音开头——双写保住短元音"
+        hint_ref: "mechanism『为语音让路』"
+    probes: []
+    prereq: [V-36]
+    order: 37
+    pain_points: [错不完, 记不住]
+    adult:
+      sources: ["TFD 语法专文（-able vs. -ible）；多家拼写规则文献与用法词典著录"]
+      boundary: "四条都是带例外的倾向不是算法；-ible 靠认读存量；双写须与重音（S-27）合教"
+      disputes: "拼写规则的教学地位：规则派（系统拼读传统）主张规则显性教、例外逐记；SWI 派（S-21）主张先用词和验证结构、规则从结构里长出来——规则群本身是两派都承认的分布事实，分歧只在教学法层，与 S-21 并存登记、不合并裁决"
+      evidence_grade: 二手系统论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V37-* 预留）", "scene_spec 待补", "补词待办：referred、changeable、noticeable、accessible 等（见挂接表）"]
+  - id: V-38
+    zone: 词汇解码
+    group: V
+    headline: "假拆分三型须分别诊断：压根没零件（butter 的 -er 不是『做事的人』）、零件是真而组合义已死（butterfly）、零件是真而零件的义已变（understand 的 under 是古义）"
+    headline_kid: "拆词先问一句：拆出来的零件是真的吗？拆对了，意思对得上吗？butter 的 er 不是『人』；butterfly 能拆也猜不出为什么叫这个名；understand 的 under 是老早以前的意思，不是今天的『在下面』"
+    claim:
+      type: etymology
+      statement: "三型病理：①伪词缀——butter 源于希腊语 boútyron 经拉丁语借入，-er 是借词词干的一部分，与施事 -er 无关；river 经古法语上溯拉丁语 rīpa（河岸），-er 同为词干残段。②可分割而不可组合——butterfly 分割成立（古英语 buttorflēoge = butter + fly），但命名动机晦暗无定论。③古义残留——understandan 确由 under + standan 构成，但前缀取古义『在……之间』，现代义无法由今义拼出"
+      source: "butterfly 词源：Collins、American Heritage、Random House 诸词典一致著录古英语 buttorflēoge = butter + fly，动机作『perhaps』级猜测；Etymonline 同条著录 'evidently butter + fly, but of obscure signification' 并列三说；butter 的希腊—拉丁来源、river 的 rīpa 来源、understandan 的构成为词源词典通说（二手系统论述级；OED 原文未直接打开，其观点经 Language Log 转述核对）"
+      evidence:
+        - "三型各有硬证据：butter/river 的 -er 若真是施事后缀，应有对应动词词基（*butt、*rive 作相关动词不成立）；butterfly 分割有古英语原文形态直接支持；understandan 早期即作『理解』用、不作『站在下面』用"
+      scope: "辟谣的边界是『不许硬拆』，不是『不许联想』：把 butterfly 记成『黄油色的飞虫』作记忆术完全合法，但助记与词源必须分开标（V-08 纪律）"
+      exceptions:
+        - note: "butterfly 不是『拆错了』，是『拆对了也解不出』——把它与 butter/river 并列作假拆分会误导；三型分开，才是可教的辟谣（本条即纠正此含混，见 corrections）"
+          word_ids: [G3_0759]
+    mechanism:
+      - beat: 三型诊室
+        text_kid: "拆不动的词进三间诊室：一号，没零件——别拆；二号，有零件、猜不出为什么——拆开看可以，意思另记；三号，零件的意思变了——故事可讲，拼法不可用。"
+        text_adult: "判断分两步：『可分割』与『可组合解义』是两个独立判断（与 V-10 透明性谱、V-15 拆词纪律同轴）。词源动机无定论处须保持 perhaps 级措辞。"
+        visual: "三间诊室门牌：butter（一号）、butterfly（二号）、understand（三号）各进各屋"
+        anchors: [V6_食物_17, G3_0759, G5_232]
+    examples:
+      - level: 1
+        word_ids: [V6_食物_17, G5_232]
+        sentence: "Butter is yellow. The river is long."
+        scene_note: "一号诊室组：butter 与 river 的 -er 都是词干残段，不是施事后缀"
+        supports: claim
+      - level: 2
+        word_ids: [G3_0759, V6_学校_71]
+        sentence: "A butterfly is in the garden. I understand."
+        scene_note: "二号诊室 butterfly（可拆不可解）对三号诊室 understand（under 取古义『在……之间』，今义不可由今义拼出）"
+        supports: claim
+    error_cases:
+      - wrong: "butter = butt + er，『一个叫 butt 的人』（把借词词干残段当施事后缀）"
+        right: "butter 整词记：-er 是希腊—拉丁借词词干的一部分，与 teacher 的 -er 只是同形"
+        error_type: 假拆分
+        source_type: 条目成人层登记的事故例
+        diagnosis: "伪词缀型假拆（回 mechanism『三型诊室』一号室）"
+    relatives:
+      - {id: V-15, rel: 同族}
+      - {id: V-10, rel: 同族}
+      - {id: V-32, rel: 同族}
+    corrections:
+      - "任务书把 butterfly 与 butter/river 并列作『假拆分』是含混：butterfly 在分割层面确为 butter + fly（古英语 buttorflēoge），『非 butter+fly 组合』只在语义组合层面成立——本条分两层讲清，三型分开著录"
+    quiz:
+      - stem: "butterfly 能拆成 butter + fly，为什么还是猜不出它的意思来源？"
+        options: ["因为拆错了", "拆是真拆，但它为什么叫这个名，没有定论", "因为 fly 不认识"]
+        answer: "拆是真拆，但它为什么叫这个名，没有定论"
+        hint_ref: "mechanism『三型诊室』"
+    probes: []
+    prereq: [V-15]
+    order: 38
+    pain_points: [错不完, 记不住]
+    adult:
+      sources: ["Collins / AHD / Random House 词典著录；Etymonline butterfly 条；OED 观点经 Language Log 转述"]
+      boundary: "不许硬拆≠不许联想（助记与词源分开标）；动机无定论处保持 perhaps 级措辞"
+      disputes: "butterfly 命名动机三说并立（翼色说/偷食民俗说/荷兰语排泄物说），词典间措辞互有出入——登记为未定，不裁决。understandan 中 under 的古义有『之间』说与『在下→深入』说两解，教学只标『古义非今义』"
+      evidence_grade: 二手系统论述级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V38-* 预留）", "scene_spec 待补"]
+  - id: V-39
+    zone: 词汇解码
+    group: V
+    headline: "词缀怎么教才有效：先立概念、防假拆，再按义项分课教『小集合』；而且要和语境一起教，不要单独教——词缀教学的红利在『自己解新词』，不在『学得快课本词』"
+    headline_kid: "学前缀后缀有个好办法：先分清真假前缀（uncle 里的 un- 是冒牌的），一次只学几个最有用的，把每个的几个意思分开学，最后把零件用到句子里去猜生词"
+    claim:
+      type: tendency
+      statement: "三股可核传统与实证合流：①课序传统（White, Sowell & Yanagihara 1989 六课序列：立概念辨真伪→按义项逐课教否定/再回/反动作/向内诸义→扩到 en-/em-/over-/mis-）；②实证对照（Baumann 团队：学形态分析的组别在推断含词缀生词上优于对照；混合教学组的优势在延迟后测才显现）；③词缀教学的收益射程明确：强在解未学新词，不加速课本词学习、不直接抬阅读理解总分"
+      evidence:
+        - "White et al. (1989) 六课序列经 Marzano (2004) 转引原文核对（六课主题与 tricksters 例词逐课一致）（原文引文级）"
+        - "Baumann et al. (2002) Reading Research Quarterly 37: 150–176——88 名五年级、四组设计（二手系统论述级，经 Ebbers 2008 综述转述）"
+        - "Baumann et al. (2003) American Educational Research Journal 40(2): 447–494——157 名五年级准实验，结论四条经 APA PsycNet 摘要核对（摘要原文级）"
+      scope: "两研究的被试是美国母语五年级学生、周期以周计，迁移到中国 EFL 课堂须打折看，剂量更不可直搬"
+      exceptions:
+        - note: "2003 年研究中 TV（教材词汇）组学课本词更强——词缀教学不加速课本词学习，短期测评会系统性低估它（红利在延迟后测兑现）"
+          word_ids: []
+    mechanism:
+      - beat: 六课课序
+        text_kid: "第一课先练眼力：哪个 un- 是真的，哪个是冒牌的。然后一课学一个意思：un- 的『不』、re- 的『再』和『回』分开学。学过的零件马上拿去句子里猜生词。"
+        text_adult: "六课序列的设计逻辑：选取服从 V-33 的频率头部、义项逐个拆开、假拆从第一课防起。课序传统属『研究者处方』等级，与 Baumann 的实验结论分开标级，不许混报为『六课序列已被实验证明』。"
+        visual: "六级台阶图：每级一块义项牌，台阶尽头是『拿去句子里用』的门"
+        anchors: [G2_067, G4_0457, ADD_0157]
+    examples:
+      - level: 1
+        word_ids: [G2_067, G4_0457]
+        sentence: "Uncle — no. Unhappy — yes."
+        scene_note: "第一课辨假：uncle 的 un- 是冒牌货，unhappy 的是真前缀"
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0157]
+        pending_words: [reread, return, untie]
+        sentence: "Incorrect = in- (not) + correct."
+        scene_note: "按义项分课样本：否定 in- 单独一课；re- 两义（reread 再读/return 返回）与 un- 反动作义（untie）待补词同屏预告"
+        supports: claim
+    error_cases:
+      - wrong: "uncle 里有 un-，所以 uncle 和『不』有关系（未辨假先套义）"
+        right: "uncle 是整词，无前缀——辨真伪是拆词的第一课"
+        error_type: 假拆分
+        source_type: 条目成人层登记的事故例
+        diagnosis: "跳过立概念环节直接套前缀义（回 mechanism『六课课序』第一课）"
+    relatives:
+      - {id: V-33, rel: 同族}
+      - {id: V-31, rel: 同族}
+      - {id: V-38, rel: 同族}
+    corrections:
+      - "对照框架纠偏：不存在『纯词缀教学 vs 混合法』的同场胜负数据——2003 年研究里混合组（MC）对的是教材组（TV），不是纯词缀组；把两研究混成『混合法胜出』是常见转述错误，本条分开著录"
+      - "『Graves 1987 词缀教学四步』本次未检索到原始文献，不立为出处：Graves 的可核贡献是四板块框架（《The Vocabulary Book》2006；2nd ed. 2016），词缀属其『策略』板块；正式引用课序用 White et al. 六课序列"
+    quiz:
+      - stem: "学词缀的第一课应该先学什么？"
+        options: ["背 20 个前缀表", "先分清真假前缀，再按意思一课学一组", "先学生僻前缀"]
+        answer: "先分清真假前缀，再按意思一课学一组"
+        hint_ref: "mechanism『六课课序』"
+    probes: []
+    prereq: [V-33, V-38]
+    order: 39
+    pain_points: [记不住]
+    adult:
+      sources: ["White, Sowell & Yanagihara (1989) 六课序列（Marzano 2004 转引）；Baumann et al. (2002) RRQ 37；(2003) AERJ 40(2)；Graves《The Vocabulary Book》(2006/2016) 四板块框架"]
+      boundary: "课序是处方级非实验证明；被试与剂量不可直搬 EFL；Graves『四步』按待核（查无）处理"
+      disputes: "投入产出之争：倡导方（Baumann、Ebbers）以『解新词能力』为效标得出积极结论；节制方（如 Adams 1990 经 Marzano 转引）以阅读流利与认知负荷为效标表示保留——实点是起步年龄与效标选择。清单口径：只教 V-33 头部小集合、永远与语境合教，高龄段再扩到词根系统（V-21）"
+      evidence_grade: 原文引文级 / 摘要原文级 / 二手系统论述级
+      pending: ["『Graves 1987 四步』原始文献待核（查无，清单已登记）"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V39-* 预留）", "scene_spec 待补", "补词待办：reread、return、untie、refill、disconnect"]
+  - id: V-40
+    zone: 词汇解码
+    group: V
+    headline: "一个事件的语义零件可以有不同的『打包法』：汉语爱用一个总管动词统管一串事，英语爱按事情的细节换动词与搭配——把母语的打包图原样套到英语上，逐词对译必失真"
+    headline_kid: "中文像一个万能遥控器：门、灯、电视、开会全按『开』。英语像一串专用按钮：门按 open，灯和电视按 turn on，开车按 drive，开会按 have。先看清这件事在干什么，再挑对按钮"
+    claim:
+      type: tendency
+      statement: "汉语『开』的打包与英语的拆分对照（词典可查）：开门 = open the door、开灯/开电视 = turn on / switch on、开车 = drive、开会 = have / hold a meeting；反向：英语 take 一词分管汉语的拿、带走、坐（车）、吃（药）、拍（照）。打包差是两种语言的特征性默认，不是能不能的问题"
+      evidence:
+        - "Talmy 'Lexicalization Patterns' (1985，载 Shopen (ed.)《Language Typology and Syntactic Description》第3卷, CUP, pp.57–149)，系统化于《Toward a Cognitive Semantics》第II卷 (2000, MIT Press)——词汇化模式（熔合 conflation）原论（二手系统论述级，与 P-19 同源同级）"
+        - "汉英日常动词对照为词典级事实：《现代汉语词典》『开』的义项群与各英语学习词典 open/turn on/take 条目可逐项对查（词典级）"
+      scope: "特征性默认而非绝对分野：打包差是频率与默认值的差；具体动词对仍须逐对查证"
+      exceptions:
+        - note: "汉英也有大面积对齐的对子：关门 = close/shut the door、开窗 = open the window——不许讲成『处处错位』"
+          word_ids: [G3_0384, ADD_0270, G1_0932, G4_159, V6_日常_10]
+    mechanism:
+      - beat: 万能遥控与专用按钮
+        text_kid: "中文的『开』是一个按钮管好多事；英语是每件事一个按钮。说英语前先看：这件事到底在干什么——推开一扇门？让灯亮起来？开着车走？开会是把人聚起来开？看清了，按钮就挑对了。"
+        text_adult: "Talmy 的熔合分析自带非运动例（shelve 把『移动+路径+背景（架子）』熔进一个动词，powder 熔进『图形（粉末）』），说明打包差异不限于运动域；与 P-19 构成『同一思想、两个尺度』的姊妹关系。"
+        visual: "遥控器图式：左侧一个『开』键连四台设备，右侧四个专用按钮各连一台"
+        anchors: [V6_日常_10, G1_0932, G2_105, V6_身体_34]
+      - beat: take 的反向打包
+        text_kid: "反过来，英语的 take 也是个万能按钮：拍照、吃药、坐车、拿走、拿东西都用它。轮到中文，每件事又各有各的说法。"
+        text_adult: "双向对照才完整：打包错位不是『汉语粗、英语细』的单向判断，两个方向都有总管动词与拆分域。"
+        visual: "take 一键五连图：照相机、药、公交车、行李、手各连一条线"
+        anchors: [V6_日常_6, G4_0381, G2_105, V6_身体_34]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_10, G1_0932]
+        sentence: "Open the door."
+        scene_note: "对齐例先行：开门就是 open——不是所有『开』都错位"
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_6, V6_身体_34, G2_105]
+        sentence: "Take the medicine. Take the bus."
+        scene_note: "take 两管：吃药（服药）与坐车，汉语说法全然不同"
+        supports: claim
+    error_cases:
+      - wrong: "Open the light."
+        right: "Turn on the light."
+        error_type: 打包直译
+        source_type: 条目成人层登记的事故例
+        diagnosis: "把汉语『开』的打包图原样套给英语的灯（回 mechanism『万能遥控与专用按钮』；探针 PRB-V40-1 同案）"
+      - wrong: "Eat medicine."
+        right: "Take medicine."
+        error_type: 打包直译
+        source_type: 条目成人层登记的事故例
+        diagnosis: "『吃药』逐词直译；英语把『服药』打包给 take（探针 PRB-V40-2 同案）"
+    relatives:
+      - {id: V-07, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 门, kind: 可开合物件, states: [关, 开]}
+          - {name: 灯, kind: 电器, states: [灭, 亮]}
+          - {name: 汽车, kind: 交通工具, states: [停, 行驶]}
+          - {name: 会议, kind: 事件, states: [未开始, 进行]}
+        invariants: "同一『开』字事件，先判定事件类型再选动词；灯的『亮』不是门的『开』，状态变化对象不同不可互换"
+      beats_ref: claim
+      lines_owner: V-40
+    quiz:
+      - stem: "『开灯』用英语怎么说？"
+        options: ["Open the light", "Turn on the light", "Drive the light"]
+        answer: "Turn on the light"
+        hint_ref: "mechanism『万能遥控与专用按钮』"
+      - stem: "『吃药』用英语怎么说？"
+        options: ["Eat medicine", "Take medicine", "Drink medicine"]
+        answer: "Take medicine"
+        hint_ref: "mechanism『take 的反向打包』"
+    probes: [PRB-V40-1, PRB-V40-2, PRB-V40-3, PRB-V40-4, PRB-V40-5]
+    prereq: [V-07]
+    order: 40
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Talmy (1985; 2000)；《现代汉语词典》『开』义项群与学习词典对照（词典级）"]
+      boundary: "推广声明（铁律留痕）：Talmy 原论的『词汇化模式』是关于一类事件（以运动事件为典型）之特征性编码的跨语言类型学命题，不是一张『任何动词对都有打包差』的全称定律；把『打包错位』用作日常词汇的教学机制，是本项目对 Talmy 思想的延伸（本簇延伸），不得引作 Talmy 原话。具体动词对逐对查证，对齐对子同屏呈现，不许讲成处处错位"
+      disputes: "无直接对立学派；程度之争：类型学差异是『特征性默认』而非绝对分野（参 P-19 汉语归类三派之争）"
+      evidence_grade: 二手系统论述级 / 词典级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["补词待办：turn on 的构成词 turn 已在库（POLY_TURN），短语条目口径在 W4 小系统区定版"]
+  - id: V-41
+    zone: 词汇解码
+    group: V
+    headline: "长得一样的两堆意思，可能是一个词长出的分支（多义），也可能是历史上撞脸的两个词（同形异义）——义项是编词典的人按词典的使命切出来的，没有客观刻度"
+    headline_kid: "river bank（河岸）和 money bank（银行）是两个词穿了同一件衣服，叫『撞脸』；eye 和针眼是一个词的亲戚。有个小游戏能验：把两个意思塞进同一句话，听着别扭得像笑话，多半是撞脸或远亲"
+    claim:
+      type: tendency
+      statement: "判定有工具（zeugma 轭式测试、词源考），但义项切分（sense division）取决于词典使命：历史词典按历史原则求全求细，学习词典按教学可用性合并——同一个 run，OED3（2011 修订）动词切 645 项、OED 官网现行页自报 245 meanings、学习词典（OALD9+COBUILD9）计 46 项，三数都对，口径不同"
+      evidence:
+        - "Gilliver (2013) 'Make, put, run: Writing and Rewriting Three Big Verbs in the OED', Dictionaries 34: 10–23——run 词条 645 个义项、整条约 124000 词、耗时九个月（二手互证级）"
+        - "Fang & Liu (2022) 按 OALD9 与 COBUILD9 计得 run 共 46 个义项（期刊原文级，见 V-45 出处）"
+        - "zeugma 与交叉读法测试的系统讲义：剑桥大学语言学 L113《Word Meaning and Discourse Understanding》课程讲义（讲义原文级）"
+        - "Stamper《Word by Word: The Secret Life of Dictionaries》(2017)——编者关于义项切分与合并派/细分派的一线自述（出版社书目级）"
+      scope: "zeugma 是启发式工具，不是判决机；判定教学只取『撞脸 vs 亲戚』的直觉层，不取测试的技术结论；引用义项数必须携带口径（版本、词性、粒度）"
+      exceptions:
+        - note: "判定测试之间会互相矛盾：同一词常得出不一致结论（Geeraerts 1993）——歧义—多义—含糊是连续统而非三个抽屉"
+          word_ids: []
+    mechanism:
+      - beat: 塞进一句话验亲
+        text_kid: "想知道两个意思是不是一家：把它们塞进同一句话试试。顺顺当当，多半是近亲；别扭得像笑话（河岸和银行一起『塌了』)，多半是撞脸或远亲。"
+        text_adult: "第二把尺是词源：bank 的金融机构义借自意大利语 banca（钱商长凳），河岸义源出日耳曼/古诺尔斯一线——两源汇流即同形异义；eye 经『形状功能像眼睛的小孔』扩至针眼是标准多义链（见 V-16）。"
+        visual: "双词卡塞进同一句框：顺句打勾，别扭句冒出笑话气泡"
+        anchors: [G5_0987, G1_009]
+    examples:
+      - level: 1
+        word_ids: [G5_0987]
+        sentence: "The bank is by the river. I have money in the bank."
+        scene_note: "撞脸组：河岸 bank 与银行 bank 两句分开读都顺，合句即别扭"
+        supports: claim
+      - level: 2
+        word_ids: [G1_009]
+        pending_words: [needle]
+        sentence: "An eye and the eye of a needle."
+        scene_note: "亲戚组：眼睛与针眼同属一棵多义树（needle 待补词）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-16, rel: 同族}
+      - {id: V-45, rel: 同族}
+    corrections:
+      - "『OED 给 run 切 645 项』属实但裸用违规：645 是 2011 年 OED3 修订版对动词 run 按最细粒度的计数，OED 官网现计数为 245；引用 645 必须携带口径（版本、词性、粒度）"
+      - "任务书『学习词典约 30 项』未能核实：可查的公开计数是 Fang & Liu (2022) 的 46 项（OALD9 + COBUILD9 口径），本条以 46 为准，『约 30 项』不予采用"
+    quiz:
+      - stem: "一本书说 run 有 645 个意思，另一本说 46 个。谁错了？"
+        options: ["645 的那本", "46 的那本", "都没错——义项是编词典的人按不同口径切出来的"]
+        answer: "都没错——义项是编词典的人按不同口径切出来的"
+        hint_ref: "mechanism『塞进一句话验亲』"
+    probes: []
+    prereq: [V-16]
+    order: 41
+    pain_points: [记不住, 错不完]
+    adult:
+      sources: ["Gilliver (2013) Dictionaries 34；OED 官网 run 词条页；Fang & Liu (2022)；剑桥 L113 讲义；Stamper (2017)"]
+      boundary: "义项数=编纂口径的产物，不许背『run 有 N 个义项』当知识；zeugma 只作直觉工具"
+      disputes: "判定测试互相矛盾（Geeraerts 1993；Tuggy 等主张连续统）；编纂学内部『细分派 vs 合并派』的长期风格之争（Stamper 书中现场）"
+      evidence_grade: 二手互证级 / 期刊原文级 / 讲义原文级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V41-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：needle"]
+  - id: V-42
+    zone: 词汇解码
+    group: V
+    headline: "隐喻引擎不只管介词：把『先教中心义、再沿隐喻路径长分支』推广到一般多义词与习语，对照实验同样显示理解与保持受益"
+    headline_kid: "词的意思像滚雪球：hold 先是『手抓住东西』，然后滚成『控制住』『装得下』『举行』。知道雪球怎么滚的人，碰到没学过的新意思也能猜出大半"
+    claim:
+      type: tendency
+      statement: "多义引申的主力是概念隐喻与转喻：学习者若显性掌握引申背后的隐喻（如『占有即握住』『控制即手握』），义项之间就从散点变成有地图的网络，记忆由逐项硬背转为按图索骥，并能迁移到未教过的新义项"
+      evidence:
+        - "Beréndi, Csábi & Kövecses 'Using Conceptual Metaphors and Metonymies in Vocabulary Teaching'，载 Boers & Lindstromberg (eds)《Cognitive Linguistic Approaches to Teaching Vocabulary and Phraseology》(2008)——多义词实验源自 Csábi (2004)：52 名匈牙利中学生学 hold 与 keep，隐喻组织组在即时与两天后延迟测验的理解与保持上均胜出（章节全文级）"
+        - "Verspoor & Lowie (2003)：先教核心义的学习者在猜未学引申义与长时保持上均胜过传统组"
+      scope: "既有实验被试为中学生与成人，推广到小学低段的剂量与呈现形态属适配待验，不得直接把中学生实验剂量搬给小学生"
+      exceptions:
+        - note: "隐喻意识教学的优势在短时保持上更稳，长时优势并不总显著，且受义项/习语透明度与学习者水平调节；一次性的隐喻讲解不足以长成可迁移的策略"
+          word_ids: []
+    mechanism:
+      - beat: 滚雪球地图
+        text_kid: "新意思不是天上掉下来的，是从老意思滚出来的。手里抓住（hold）→ 心里控制住 → 肚子里装得下 → 把大家的时间抓在一起开会。顺着滚的路走，新意思猜得到。"
+        text_adult: "本条与 P-10 是『同一机制、两个词类』的姊妹条：P-10 的介词实验在彼，本条的一般词汇实验在此；愤怒习语实验（22 个习语按隐喻主题分组）结论同向。"
+        visual: "雪球滚动图：核心义雪球沿隐喻路径滚过四站（hold 四义），每站标引申操作"
+        anchors: [V6_日常_44]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_44]
+        sentence: "Hold my hand."
+        scene_note: "中心义先行：hold 的原型是手抓住东西"
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_44, G4_0985]
+        pending_words: [hall]
+        sentence: "The hall holds 500 people."
+        scene_note: "引申义：hold『装得下』——从『握住』滚到『容纳』（hall 待补词）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-16, rel: 同族}
+    quiz:
+      - stem: "第一次见到 hold a meeting 里的 hold，应该怎么对付？"
+        options: ["当成全新词死背", "顺着『抓住』的滚雪球路猜：把大家的时间抓在一起→举行", "跳过不管"]
+        answer: "顺着『抓住』的滚雪球路猜：把大家的时间抓在一起→举行"
+        hint_ref: "mechanism『滚雪球地图』"
+    probes: []
+    prereq: [V-16]
+    order: 42
+    pain_points: [记不住]
+    adult:
+      sources: ["Beréndi, Csábi & Kövecses (2008)，载 Boers & Lindstromberg (eds)；Csábi (2004)；Verspoor & Lowie (2003)；Tyler (2012)；Littlemore (2009)"]
+      boundary: "效应有条件（透明度、水平、长时保持）；引申不可推的部分仍须逐个记（与 V-16 边界同）；小学剂量待验"
+      disputes: "应用认知语言学内部对『显性讲隐喻』与『足量使用中自悟』的配比有争论；隐喻分析本身有主观性，教材须以已发表实验所用的分析为准，不许临场自创引申链——与 P-10 分歧栏同调"
+      evidence_grade: 章节全文级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V42-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补", "补词待办：hall"]
+  - id: V-43
+    zone: 词汇解码
+    group: V
+    headline: "有些词常年只和坏事一起出现，词本身就染上了坏运气——这种由惯常搭配沉淀出的褒贬氛围叫语义韵：词典不标、语法不管，选错了句子没错也『味儿不对』"
+    headline_kid: "cause 后面跟的多半是麻烦、伤害、问题，所以『带来进步』不用 cause，要用 bring about。provide 正相反，常跟帮助、服务在一起，听着就顺耳。学一个词，要顺便看看它平常跟谁玩"
+    claim:
+      type: tendency
+      statement: "语义韵是搭配的评价极性迁移：当某词的高频搭配在褒贬上高度一致，极性就沉淀为该词的联想意义；单句不可见、语料可见——cause 的宾语压倒性地是负面结果，utterly 的伙伴几乎全是负面词，provide 具正面语义韵"
+      evidence:
+        - "Louw (1993) 'Irony in the Text or Insincerity in the Writer?'，载 Baker, Francis & Tognini-Bonelli (eds)《Text and Technology》(John Benjamins, pp.157–176)——语义韵命名与定义（二手互证级，经多篇带页码综述转引）"
+        - "Stubbs (1995) 语料分析：'the lemma CAUSE has a strongly unfavourable prosody'（p.50）；provide 的 favourable prosody 据 COBUILD 语料（二手互证级，经 Stewart 2010 汇总转引）"
+        - "Sinclair 对 set in 的观察 (1987/1991) 为先声：其主语几乎总是不愉快状态"
+      scope: "语义韵是概率倾向，不是搭配禁令；随语域与时代漂移，引用具体结论须带语料来源与年代；儿童面只取 cause/utterly/provide 三个已核案，不扩张到未核词表"
+      exceptions:
+        - note: "中性/正面用例确实存在（cause a stir 等）；cause 用于物理因果（The earthquake caused the collapse）时宾语仍多为坏事，是倾向的印证而非例外——讲成『cause 后面只能跟坏词』即造假"
+          word_ids: []
+          pending_words: [cause, stir]
+    mechanism:
+      - beat: 染上的天气
+        text_kid: "一个词总和坏事做朋友，自己也带上了坏天气。学词的时候顺便看一眼：它平常跟好事玩，还是跟坏事玩？"
+        text_adult: "Louw 立此概念的初衷是诊断反讽：故意给 utterly 配正面词即成反讽。本条是 CB-02（搭配）的姊妹篇：彼管词跟谁，本条管跟的人是好是坏。"
+        visual: "词卡天气图标：cause 头顶乌云、provide 头顶晴空，伙伴词在身旁排队"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: []
+        pending_words: [cause, trouble]
+        sentence: "Smoking can cause trouble."
+        scene_note: "cause 的宾语是麻烦——负面语义韵的招牌案（cause/trouble 待补词）"
+        supports: claim
+      - level: 2
+        word_ids: [G6_0339]
+        pending_words: [provide]
+        sentence: "They provide information and help."
+        scene_note: "provide 与正面供给搭配（information 在库 G6_0339）；provide 待补词"
+        supports: claim
+    error_cases:
+      - wrong: "The new teacher caused progress in our class.（按『引起』字面义选词）"
+        right: "The new teacher brought about progress in our class.——cause 的语义韵是负面的，正面结果不用它"
+        error_type: 语义韵误选
+        source_type: 教学文献登记错型
+        diagnosis: "只查词义不看搭配氛围（回 mechanism『染上的天气』；cause progress 是清单登记的对照形）"
+    relatives:
+      - {id: V-07, rel: 同族}
+    quiz:
+      - stem: "『新政策带来了进步』，哪个动词味儿对？"
+        options: ["cause", "bring about", "两个一样"]
+        answer: "bring about"
+        hint_ref: "mechanism『染上的天气』"
+    probes: []
+    prereq: [V-07]
+    order: 43
+    pain_points: [说不出, 写不长]
+    adult:
+      sources: ["Louw (1993) pp.157–176；Stubbs (1995) p.50 与《Words and Phrases》(2001)；Sinclair (1987/1991)"]
+      boundary: "概率倾向非禁令；结论须带语料来源与年代；儿童面只取三案"
+      disputes: "语义韵『住在词里还是住在说话人立场里』有真分歧：Hunston (2007) 主张它主要是说话人借整个短语单位表达的态度意义，不宜说成词的固有属性；Stubbs 一派坚持它是词的语料行为事实——学术表述须两说并呈，教学处理不受影响"
+      evidence_grade: 二手互证级
+      pending: ["cause、utterly、provide 均不在词库，补入后本条 examples 才能落 id（高优先补词）"]
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V43-* 预留）", "scene_spec 待补", "补词待办（高优先）：cause、utterly、provide、trouble"]
+  - id: V-44
+    zone: 词汇解码
+    group: V
+    headline: "同音异形词读音完全不能消歧，拼写只能靠『这句话在说什么』来选——写错不是粗心，是这类词的任务本质如此；解法是按对子呈现加绘本钉桩"
+    headline_kid: "their 是『他们的』，there 是『那里』，they're 是『他们是』——耳朵听起来一模一样，只能靠脑子想这句话是什么意思。有两本好笑的绘本专治这个病，笑一次记一对"
+    claim:
+      type: tendency
+      statement: "同音异形词的拼写选择是『语音通道失效、句法语义通道接管』的任务：their 后必跟名词、there 指处所或作存在句引词、they're 是 they are 的缩合——选字依据是位置与意义，不是声音；教学须成组呈现（同音组同批对比、句子里二选一），绘本用字面图景把错误读法钉成视觉锚点"
+      evidence:
+        - "Peggy Parish《Amelia Bedelia》(1963, Harper & Row)——字面理解型女佣系列首作（书目二手级，多家书目与 HarperCollins 五十周年资料互证；其 draw the drapes 例被美国联邦第四巡回上诉法院 2019 年判决书引作词义辨析材料）"
+        - "Fred Gwynne《The King Who Rained》(1970, Simon & Schuster 少儿线)——同音词与习语的字面图景绘本（书目二手级）；美国教师培训课程以之作同音词单元导入书（Charlotte Teachers Institute 课程文件）"
+        - "同音组清单（their/there/they're、to/too/two、write/right、hear/here、week/weak 等）为学习词典与拼写教材通载（词典级）"
+      scope: "同音关系随口音而变：wine/whine、horse/hoarse 在部分口音并不同音——选对子须以目标教学口径逐对核"
+      exceptions:
+        - note: "读绘本的顺序有讲究：初学阶段宜先立对子、后读绘本，否则笑话可能反过来固化错误读法"
+          word_ids: []
+    mechanism:
+      - beat: 耳朵下班脑子接管
+        text_kid: "这几个词耳朵分不出来，就别问耳朵了：看位置、想意思。『他们的』后面跟东西，『那里』指地方，『他们是』是两句话捏成一句。"
+        text_adult: "两本绘本分工不同：Amelia Bedelia 主攻习语/多义的字面化（draw the drapes 画窗帘、dress the chicken 给鸡穿衣），The King Who Rained 主攻同音字面化（rained/reigned、fork in the road）——引用时勿混称。笑点机制本身就是消歧训练。"
+        visual: "三胞胎词卡并排，耳朵图标打叉，句中空位高亮待选"
+        anchors: [V6_核心_21, G2_0596, V6_核心_19]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_21, G2_0596]
+        sentence: "Their dog is there."
+        scene_note: "一对同场：their（他们的，后跟名词）对 there（那里，指处所）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_48, V6_核心_74, G1_030]
+        sentence: "Two boys go to school, too."
+        scene_note: "三胞胎同场：two（数）、to（去向）、too（也）靠位置与意义选字"
+        supports: claim
+    error_cases:
+      - wrong: "There dog is cute.（their/there 混用）"
+        right: "Their dog is cute.——『他们的』后跟名词用 their，读音帮不上忙，靠位置选字"
+        error_type: 同音选字
+        source_type: 教学文献登记错型
+        diagnosis: "语音通道失效时仍按声音选字（回 mechanism『耳朵下班脑子接管』）"
+    relatives:
+      - {id: V-41, rel: 同族}
+    quiz:
+      - stem: "『___ books are on the desk.』（他们的书）该填哪个？"
+        options: ["there", "their", "they're"]
+        answer: "their"
+        hint_ref: "mechanism『耳朵下班脑子接管』"
+    probes: []
+    prereq: []
+    order: 44
+    pain_points: [错不完, 记不住]
+    adult:
+      sources: ["Parish (1963) Harper & Row；Gwynne (1970) Simon & Schuster；Charlotte Teachers Institute 课程文件；学习词典同音组通载"]
+      boundary: "同音随口音而变，须逐对核；先立对子后读绘本；两书分工勿混称"
+      disputes: "无学界分歧；教学法内部仅有剂量之争——集中成组教 vs 随课文分散遇——本条取『成组立对、分散复现』的混合位"
+      evidence_grade: 书目二手级 / 词典级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V44-* 预留）", "scene_spec 待补"]
+  - id: V-45
+    zone: 词汇解码
+    group: V
+    headline: "一个词『最核心的意思』和『在语料里出现最多的意思』是两把不同的尺：核心义由引申网络定，频率由文本构成定——排教学顺序要两把尺都看"
+    headline_kid: "『跑』是 run 一家的老大，别的意思都从它变出来。可在大人写生意的文章里，『经营一家公司』出现得最多。谁最常出现，和谁地位最核心，是两回事，要看在哪个场子里数票"
+    claim:
+      type: tendency
+      statement: "原型性是网络结构属性（引申方向、习得顺序、典型性判断），频率是语料统计属性，随语料的语域配比大幅摆动；两者在综合语料里可以重合（run 的核心义『跑』也最高频），在商务偏向的文本里可以分家（『经营』反超）——分家与否取决于按哪个语域数"
+      evidence:
+        - "Fang & Liu (2022) 'A Semantic Contrastive Study of Chinese and English Verb 跑/run', Forum for Linguistic Studies 4(1): 100–115, DOI 10.18063/fls.v4i1.1458——语料分析显示跑/run 频率最高的义项同为『快速步行移动』，且该义即原型/中心义（期刊原文级）"
+        - "商务偏向样本：一项课堂语料研究的 83 行 run 索引行中，manage/operate/organize 义占 42 行居首（二手转述级，样本小，仅作语域效应示例）；Crayton Walker 对 BNC 与 Bank of English 的商务搭配研究（run 的高频名词搭配为 business、company 等）"
+      scope: "小学阶段以儿童输入语料与原型结构双尺合排；引用『最常用义』必须标明所据语料，不许无出处宣称"
+      exceptions:
+        - note: "义项频率统计依赖先行的义项切分（切得越细每义票数越少，与 V-41 同根），不同研究的 run 频率表不可直接拼比"
+          word_ids: [G2_087]
+    mechanism:
+      - beat: 两把尺
+        text_kid: "量一个词有两个尺子：一个量它在词族里的地位（谁是老大），一个量它在文章里出现的次数（谁出镜多）。换一个场子数票，出镜王就换人了，老大可不变。"
+        text_adult: "词典编排与教材排序若只按成人综合频率，会把『经营』排到『跑』前教给儿童；而儿童输入（绘本、课堂英语）里 run 以运动义绝对主导，按儿童频率排则两尺完全一致。"
+        visual: "双尺图：左尺『家族地位』run 的『跑』居顶，右尺『出镜次数』随场子（绘本/财经版面）换榜首"
+        anchors: [G2_087, V6_城市_26]
+    examples:
+      - level: 1
+        word_ids: [G2_087]
+        sentence: "I run in the park."
+        scene_note: "儿童场：run 的最高频义与中心义重合，都是『跑』"
+        supports: claim
+      - level: 2
+        word_ids: [G2_087, V6_城市_26, ADD_0186]
+        sentence: "They run a company."
+        scene_note: "商务场：run『经营』与 company 共现——榜首换人是语料构成的函数（manage ADD_0186 旁证）"
+        supports: claim
+    error_cases: []
+    relatives:
+      - {id: V-16, rel: 同族}
+      - {id: V-41, rel: 同族}
+    corrections:
+      - "任务书『run 的原型是跑，语料里最高频却是经营/运转』作为全称判断不成立：它只在商务/成人书面偏向的样本里为真；在综合语料（Fang & Liu 2022 所据数据）里最高频仍是『跑』，与原型重合。定版表述只能是定性的：两把尺可以分家，分家与否取决于按哪个语域数；任何场合引用『经营义最高频』必须携带语料来源，禁止裸引"
+    quiz:
+      - stem: "给小学生排 run 的义项顺序，该看哪把尺？"
+        options: ["只看成人财经文章的频率，把『经营』排第一", "中心义（跑）+ 儿童读物里的频率，两把尺一起看", "按字母顺序"]
+        answer: "中心义（跑）+ 儿童读物里的频率，两把尺一起看"
+        hint_ref: "mechanism『两把尺』"
+    probes: []
+    prereq: [V-16]
+    order: 45
+    pain_points: [记不住]
+    adult:
+      sources: ["Fang & Liu (2022) FLS 4(1): 100–115；课堂语料研究 83 行样本（二手转述级）；Crayton Walker BNC/Bank of English 商务搭配研究"]
+      boundary: "『经营义最高频』禁止裸引，须带语料来源；义项频率依赖先行切分，跨研究不可拼比"
+      disputes: "无学派对立；操作层分歧在教材排序应以哪种语料的频率为准——本清单立场：小学以儿童输入语料与原型结构双尺合排，初中起渐引入成人语料频率作参考，条目中标明所据语料"
+      evidence_grade: 期刊原文级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    pending: ["探针待补写（PRB-V45-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]

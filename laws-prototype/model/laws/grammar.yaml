@@ -1,0 +1,3984 @@
+- id: GR-01
+  order: 1
+  headline: 形式跟着功能走：语法形式是装着意义的符号，不是空壳规矩
+  headline_kid: 每个小尾巴、小变化都在悄悄告诉听的人一件事，学语法就是学它们在干什么活
+  claim:
+    type: rule
+    statement: 语法单位本身是形式—意义配对（象征单位）：一个形式之所以存在，是因为它为听话人编码了一条信息。本组 GR-02 至 GR-15 的形态事实都由这一纲领统一解释。
+    evidence:
+    - Ronald W. Langacker《Foundations of Cognitive Grammar》Vol.1（1987）/ Vol.2（1991），Stanford University Press；综述见 Broccias 2013《牛津构式语法手册》认知语法章
+    scope: 全域纲领；任意性残余（如个别不规则词形）不在本条解释范围，靠历史与记忆（见 GR-06）
+  mechanism:
+  - beat: 小尾巴在说话
+    text_kid: dogs 里的 -s 在说「不止一只」，played 里的 -ed 在说「已经过去了」——小尾巴不是装饰，是在传递消息。
+    text_adult: 认知语法认为语法本质上是有意义的：复数、时态等标记各自编码一条信息，听话人靠它们还原说话人的意思。
+    visual: 两个气泡对话框：一只狗→两只狗（-s 发亮），今天踢球→昨天踢球（-ed 发亮）
+    anchors:
+    - G1_015
+    - G2_0489
+  - beat: 遇到形式先问它干什么活
+    text_kid: 以后每见到一个新变化，先别背，先问：它在告诉听的人什么事？问得出，规则就不用死记。
+    text_adult: 这是本组的总方法：功能解释回答「为什么有这个形式」；解释不了的任意性残余，明确归历史与记忆，不硬编功能故事。
+    visual: 一个大问号牌立在词尾上方，箭头指向听话人的耳朵
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_015
+    sentence: Look, two dogs!
+    scene_note: 教室里看图说话：从一只到两只，-s 把「不止一只」说出来
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: She played football yesterday.
+    scene_note: 放学后的操场：-ed 把「已经过去」标出来
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_1
+    - G2_081
+    - G2_105
+    sentence: He goes to school by bus.
+    scene_note: 上学路上：goes 的 -s 在说「他，天天如此」
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    - G1_029
+    sentence: I have three books.
+    scene_note: 书包里的书：books 的 -s 在说「不止一本」
+    supports: claim
+  error_cases: &id001
+  - status: 待补
+    note: 清单未登记该条真实错例，按不自编纪律留待补病例流程补入
+  quiz:
+  - q: 句子 He plays football 里，plays 的小尾巴 -s 在告诉我们什么？
+    answer: 它在说：做这件事的是 he/she 这样一个人（第三人称单数），而且是现在时。
+    hint: 回到机制第 1 节「小尾巴在说话」：先问这个形式在传递什么消息。
+  relatives:
+  - id: GR-26
+    rel: 同族
+  - id: GR-19
+    rel: 同族
+  adult:
+    sources:
+    - Ronald W. Langacker《Foundations of Cognitive Grammar》Vol.1（1987）/ Vol.2（1991），Stanford University Press——接触等级：二手系统论述级（经 Broccias 2013 综述核实）
+    boundary: 功能解释管「为什么有这个形式」，管不了任意性残余（如个别不规则词形），那部分只能靠历史与记忆（见 GR-06）。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-02
+  order: 2
+  headline: 一个句子的时态只标记一次：标在第一个动词上，后面的动词回原形
+  headline_kid: 时态像一顶帽子，一个句子只戴一次；did 出来站岗，后面的动词就脱帽用原形
+  claim:
+    type: rule
+    statement: 英语的时态（与人称一致标记）由限定动词链的第一个成分承载：did / does / do 一旦扛起时态，后随实义动词不再重复标记、用原形。
+    evidence:
+    - Rodney Huddleston & Geoffrey K. Pullum《The Cambridge Grammar of the English Language》（CGEL，2002）动词短语结构章——限定性只落在首个助动词/动词上的分析
+    scope: 同一分句内的动词链；出现第二个分句（如从句）时，新分句重新标记自己的时态
+  mechanism:
+  - beat: 帽子只戴一次
+    text_kid: 一个分句里，时态这顶帽子只让站在最前面的那个动词戴：is、did、does 戴上了，后面的动词就光着头用原形。
+    text_adult: 限定性（finiteness）落在动词链首个成分上，这是 CGEL 对动词短语结构的分析，与本项目「时态全句只标记一次」的裁定同源同口径。
+    visual: 一排动词排队，第一个戴帽子，后面的把帽子摘下来放回架子
+    anchors:
+    - V6_日常_1
+  - beat: did 站岗的三种场合
+    text_kid: 提问（Did you go?)、否定（She doesn't like it)、强调（I do like it）——三种句子里都是 did/does 先站出来扛时态，主角动词退回原形。
+    text_adult: 三类句子共享同一词形事实，无需逐句背规则：助动词扛时态，实义动词回原形。
+    visual: 三个门框（问号、叉号、感叹号），每个门框前都站着一个 do 家族成员
+    anchors:
+    - V6_日常_64
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_1
+    - G2_080
+    sentence: Did you go to the park?
+    scene_note: 周末问同学：did 扛了过去时，go 用原形
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_日常_64
+    - G1_037
+    sentence: She doesn't like apples.
+    scene_note: 同桌不吃苹果：doesn't 扛时态，like 用原形
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: Does he play football?
+    scene_note: 问同学踢不踢球：does 站岗，play 回原形
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_1
+    sentence: I do go to school by bus.
+    scene_note: 强调句：do 扛时态，go 仍用原形
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: Did you ___ to school yesterday? A. go B. went
+    answer: A. go——did 已经扛了过去时，后面的动词脱帽用原形。
+    hint: 回到机制第 1 节「帽子只戴一次」。
+  relatives:
+  - id: GR-03
+    rel: 同族
+  - id: GR-33
+    rel: 同族
+  - id: GR-34
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Huddleston & Pullum《CGEL》（2002）——接触等级：二手系统论述级（经 Glottopedia 分析总览页核实）
+    boundary: 只适用于同一分句内的动词链；句子里出现第二个分句（如从句）时，新分句重新标记自己的时态。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-03
+  order: 3
+  headline: do 是替补队员：英语实义动词丢了自己提问、否定的能力，do 被拉来扛时态
+  headline_kid: 很久以前动词能自己提问，后来不行了，就请 do 来帮忙举手提问、摇头否定
+  claim:
+    type: etymology
+    statement: 中古英语后期，实义动词逐渐丧失倒装提问与直接加 not 否定的能力；无实义的 do 作为纯语法替补（do-support），在 16–17 世纪被规整进否定句、疑问句与强调句。
+    evidence:
+    - 'Alvar Ellegård《The Auxiliary Do: The Establishment and Regulation of Its Use in English》（1953，Almqvist & Wiksell），基于 1400–1700 年语料统计；Kroch（1989）以其数据证明各类语境中的 do 以相同速率增长（恒定速率效应）'
+    source: 历时叙事：do-support 的建立与规整（Ellegård 1953 语料史）
+    scope: be、have（英式）与情态动词保留了自己倒装、否定的老能力，不需要 do 替补
+  mechanism:
+  - beat: 动词曾经自己会提问
+    text_kid: 很久以前，英语动词能自己跑到句首提问。后来这个本领丢了，句子里提问和否定就没人干活。
+    text_adult: 中古英语后期实义动词失去倒装与直接否定能力，是 do-support 兴起的系统背景（见 GR-26 总叙事）。
+    visual: 老照片风格的动词站在句首，画面渐渐褪色
+    anchors: []
+  - beat: do 来当替补
+    text_kid: do 被请来当替补队员：提问时它举手站到前面，否定时它扛着 not，后面的主动词只管用原形做事。
+    text_adult: do 在此无实义、纯语法功能；它的规整化有 Ellegård 的历时语料计数为据，Kroch 的恒定速率再分析排除了「逐语境独立发明」的解释。
+    visual: 替补队员 do 从板凳上跑上场，站到主语前面
+    anchors:
+    - V6_日常_64
+    - G2_0489
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_64
+    - G1_052
+    sentence: Do you like milk?
+    scene_note: 早餐桌上问同学：do 替补上场提问
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: He doesn't play football today.
+    scene_note: 今天他不踢球：doesn't 扛否定与时态
+    supports: claim
+  - level: 2
+    word_ids:
+    - G6_282
+    sentence: Is she happy?
+    scene_note: 边界例：be 自己会倒装，不请替补（见 claim 范围）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_089
+    sentence: Can you swim?
+    scene_note: 边界例：情态动词自己会倒装，不请替补
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 哪个句子不用请 do 来帮忙？A. Do you swim? B. Is she happy?
+    answer: B——be 保留了自己倒装的老能力，不需要替补。
+    hint: 回到 claim 的范围：哪类动词不需要 do 替补。
+  relatives:
+  - id: GR-02
+    rel: 同族
+  - id: GR-26
+    rel: 前置
+  - id: GR-33
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Alvar Ellegård《The Auxiliary Do》（1953）——接触等级：二手系统论述级（经 Kroch 1989 再分析的引用链核实）
+    boundary: be、have（英式）与情态动词保留了自己倒装、否定的老能力，不需要 do 替补。
+    disputes:
+    - do 的最初来源有争议：Ellegård 主张源于使役构式再分析，另有凯尔特语接触说等；本条只取「功能替补 + 历时规整」这一共识层，不裁来源之争。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-04
+  order: 4
+  headline: 三单 -s 是北方方言留下的幸存者：动词变位大简化后唯一没被磨掉的词尾
+  headline_kid: 以前动词尾巴有很多种，后来大家越说越简单，只剩 he/she 后面这个小小的 -s 还在值班
+  claim:
+    type: etymology
+    statement: 古英语动词有一整套人称词尾，中古英语时期词尾系统大面积磨损、合并；第三人称单数现在时 -s 起源于北方方言（诺森布里亚），16–17 世纪南下取代南方的 -eth，成为唯一幸存的人称标记。
+    evidence:
+    - 历史语法共识（Wrenn、Sweet、Jespersen 一致）：约 970 年北方《林迪斯法恩福音书》行间注已有 -s 之例；见 Miwa & Li 对 -s 起源的学术梳理（鹿儿岛大学纪要）
+    source: 北方方言（诺森布里亚）动词词尾，南下取代南方 -eth
+    scope: 这是「为什么偏偏留了这一个」的历史解释，不是功能解释
+  mechanism:
+  - beat: 尾巴大磨损
+    text_kid: 古英语的动词尾巴是一整排：不同的人配不同的尾巴。几百年里，大家越说越快，尾巴一个个磨没了。
+    text_adult: 中古英语词尾系统的整体磨损与合并，是分析语化（GR-26）的一部分；人称标记几乎全失，仅三单 -s 存留。
+    visual: 一排词尾像粉笔字被慢慢擦掉，只剩最后一个 -s 还亮着
+    anchors: []
+  - beat: 北方来的幸存者
+    text_kid: 留下的这个 -s 是北方方言的词尾：北方文本里它出现得最早，后来一路南下，把南方的 -eth 换了下来。
+    text_adult: 方言文献（北方文本早于标准语数百年出现 -s）与标准语 16–17 世纪 -eth 让位的文本记录互相印证。
+    visual: 地图上一个小 -s 从北方向南旅行，最后坐进标准语
+    anchors:
+    - G2_0489
+    - POLY_WATCH
+  examples:
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: He plays football.
+    scene_note: 操场上：he 后面 plays 戴着幸存的 -s
+    supports: claim
+  - level: 1
+    word_ids:
+    - POLY_WATCH
+    sentence: She watches TV.
+    scene_note: 在家看电视：she 后面 watches 戴 -s
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0502
+    - G2_100
+    sentence: It rains a lot in summer.
+    scene_note: 夏天的雨：it 后面 rains 也戴 -s
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_1
+    sentence: He goes to school by bus.
+    scene_note: 上学路上：goes 的 -s 是特殊拼法，来源相同
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 三单 -s 是从哪个方向的方言来的？A. 北方 B. 南方
+    answer: A. 北方——它起源于诺森布里亚，后来南下取代了南方的 -eth。
+    hint: 回到机制第 2 节「北方来的幸存者」。
+  relatives:
+  - id: GR-05
+    rel: 同族
+  - id: GR-26
+    rel: 前置
+  - id: GR-29
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 历史语法共识（Wrenn / Sweet / Jespersen）；Miwa & Li 梳理（鹿儿岛大学纪要）——接触等级：二手系统论述级
+    boundary: 这是历史解释，不是功能解释；不得改编成「-s 是勋章/补偿」式叙事——该叙事已被裁定为编造，禁止复活。
+    disputes:
+    - -s 的更深来源有一说与古诺斯语中动态后缀 -sk 缩略有关（David Crystal《The Story of English》提出），学界未定论，引用时须标「一说」。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-05
+  order: 5
+  headline: 名词复数 -s 和三单 -s 不是一家人：长得像，是两条独立源流后来的巧合
+  headline_kid: 两个 -s 只是长得像，其实来自不同的老祖宗，一个管「好几个」，一个管「他/她做」
+  claim:
+    type: etymology
+    statement: 名词复数 -s 源自古英语强变化阳性名词复数词尾 -as 的推广；动词三单 -s 源自北方方言词尾；两条独立演化线在中古英语词尾磨损中偶然长成了同一个音。
+    evidence:
+    - 历史语法共识（Jespersen 历史语法传统）；与 GR-04 同源出处
+    source: 复数 -s ← 古英语 -as；三单 -s ← 北方方言动词词尾
+    scope: 现代英语里两者发音规则相同；「源流不同」只用于破除「一个 -s 包打天下」的误解，不影响拼读教学
+  mechanism:
+  - beat: 两条河汇到一起
+    text_kid: 复数的 -s 走的是名词的河，三单的 -s 走的是动词的河；两条河本来不相干，后来水面长成了一个样子。
+    text_adult: 两类 -s 在方言分布、出现年代与语音环境上均保留可区分的历史痕迹（复数有 /s z ɪz/ 三读且源于元音脱落史）。
+    visual: 两条不同颜色的河从不同山头流下，最后汇成一个湖
+    anchors:
+    - G1_002
+  - beat: 长得像，用法各管各
+    text_kid: 今天两个 -s 读音规则一样，但各管各的事：名词后面的管「好几个」，动词后面的管「他/她正在做」。
+    text_adult: 同形不等于同源；教学中分开教、分开记，避免用一条规则打包解释两个现象。
+    visual: 两个长得一样的双胞胎，一个抱着书堆，一个拿着哨子
+    anchors:
+    - G2_0492
+    - G1_002
+  examples:
+  - level: 1
+    word_ids:
+    - G1_002
+    - G1_030
+    sentence: I have two books.
+    scene_note: 书包里两本书：books 的 -s 管「好几个」
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0492
+    - G1_002
+    sentence: He reads books.
+    scene_note: 一句话里两个 -s 都出现：reads 管「他做」，books 管「好几本」
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_037
+    sentence: She eats an apple.
+    scene_note: 动词 eats 的 -s 管「她做」
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_003
+    sentence: I have three pens.
+    scene_note: pens 的 -s 管「好几支」
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 名词复数的 -s 和三单的 -s 是亲戚吗？
+    answer: 不是。它们来自两条独立源流，只是后来长成了同一个音。
+    hint: 回到机制第 1 节「两条河汇到一起」。
+  relatives:
+  - id: GR-04
+    rel: 同族
+  - id: GR-28
+    rel: 同族
+  - id: GR-29
+    rel: 同族
+  adult:
+    sources:
+    - 历史语法共识（Jespersen 历史语法传统）；Miwa & Li 梳理——接触等级：二手系统论述级
+    boundary: 现代英语里两者发音规则相同（同一套咝音后加 /ɪz/ 等规则），源流之分不影响拼读教学。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-06
+  order: 6
+  headline: 不规则过去式按「家族」住：老词靠元音换声留住老样子，高频是它们的保命符
+  headline_kid: sing–sang、ring–rang 是一家人，换中间的元音变过去；用得越多的老词，越舍不得改成 -ed
+  claim:
+    type: tendency
+    statement: 不规则过去式的主体是古英语强动词的元音交替（ablaut）家族残余，按元音变化模式成组存留；高频使用使这些形式被整体记牢、抵抗规则化。
+    evidence:
+    - 历史层：Jespersen《Modern English Grammar on Historical Principles》强动词交替的系统描写；保存层：Joan Bybee 用法基础形态学（频率保护不规则形），综述见 Ellis（2002）《Studies in Second Language Acquisition》24(2)
+    scope: 教学时须按家族分组、杂项单记；不得宣称「不规则全是换元音」
+    exceptions:
+    - text: went 是补足异根（go 的过去式整个换词），不属元音交替家族
+      word_ids:
+      - V6_MORPH_20
+    - text: brought 一类是词尾弱化型，另有来源，不属元音交替家族
+  mechanism:
+  - beat: 换元音的一家人
+    text_kid: sing 变 sang、swim 变 swam：这一家人变过去式不加 -ed，而是换掉中间的元音。认出家人，就成串记住。
+    text_adult: 强动词的元音交替是古英语的系统遗产，按变化模式成组存留；儿童与二语者的过度规则化错误反证了家族组织的心理现实性。
+    visual: 一排词排队换中间字母的颜色：sing→sang、swim→swam
+    anchors:
+    - G6_0670
+    - G6_0671
+  - beat: 用得越多，越不变
+    text_kid: went、sang 这些词天天被说，早就被整块记牢，谁也改不动它们；很少用的老词，才慢慢被 -ed 拉走。
+    text_adult: 用法基础形态学：词例频率固化具体形式（与 GR-19 同一机制）。低频不规则词被过度规则化、高频稳固存留，是该说的经典证据。
+    visual: 一棵大树（went）根扎得很深，风吹不动；小苗被风吹向 -ed
+    anchors:
+    - V6_MORPH_20
+  examples:
+  - level: 1
+    word_ids:
+    - G6_0670
+    - G2_0669
+    - G2_081
+    sentence: We sang a song at school.
+    scene_note: 音乐课上：sing 的一家人 sang
+    supports: claim
+  - level: 1
+    word_ids:
+    - G6_0671
+    sentence: He swam in the river.
+    scene_note: 游泳课：swim 的一家人 swam
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_MORPH_20
+    - G2_082
+    sentence: She went to the zoo.
+    scene_note: 杂项单记：went 整个换词，不属换元音家族（见例外）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_MORPH_21
+    sentence: I saw a big bird.
+    scene_note: 杂项：see 的过去式 saw 单记
+    supports: claim
+  error_cases:
+  - wrong: I goed to school yesterday.
+    right: I went to school yesterday.
+    error_type: 过度规则化
+    source_type: 教学文献登记错型
+    diagnosis: 清单条目登记：儿童与二语者对低频/未固化形式作 *goed 式过度规则化，是频率保护说的经典证据；went 属杂项单记，不按家族类推。回补机制第 2 节。
+  quiz:
+  - q: sing 的过去式跟哪个是一家人？A. singed B. sang
+    answer: B. sang——sing 属换元音家族。
+    hint: 回到机制第 1 节「换元音的一家人」。
+  relatives:
+  - id: GR-28
+    rel: 同族
+  - id: GR-19
+    rel: 同族
+  - id: GR-29
+    rel: 同族
+  - id: GR-16
+    rel: 对照
+  pain_points:
+  - 记不住
+  - 错不完
+  adult:
+    sources:
+    - Jespersen《Modern English Grammar on Historical Principles》；Bybee 用法基础形态学，综述 Ellis（2002）——接触等级：二手系统论述级
+    boundary: 不是每个不规则词都属元音交替家族——went（补足异根）、brought（词尾弱化型）等各有来源，教学时须按家族分组、杂项单记。另：旧说法「不规则一律内部元音变」已被裁定禁止。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-07
+  order: 7
+  headline: 情态动词说的是「力」：must 是一股推力，may 是搬走障碍，can 是自己有劲儿
+  headline_kid: must 像有人在后面推你「必须去」，may 像门卫把路障搬开「可以啦」，can 是你自己有力气「我能行」
+  claim:
+    type: rule
+    statement: 情态动词的核心语义是一套力图式（Talmy 力动态）：must 是外力压向主体（义务），may 是障碍缺席（许可），can 是主体内在潜能（能力）；推断义（认识情态）是同一套力图式经隐喻搬进推理领域——前提「迫使」人得出结论。
+    evidence:
+    - Eve Sweetser《From Etymology to Pragmatics》（1990，Cambridge University Press）第 3 章（must 强迫力 p.52、may 障碍移除 p.51、can 正向潜能 p.53、认识情态扩展 p.64）
+    scope: 力图式是语义骨架，不覆盖礼貌、委婉等语用用法（如 Could you...? 的客气不是「能力」在直译）
+  mechanism:
+  - beat: 三种力
+    text_kid: must：有人在后面推着你走；may：门卫把路障搬开，路通了；can：你自己的肌肉有力气。先认力，再认词。
+    text_adult: Sweetser 以力动态统一根情态语义：义务=外力、许可=障碍移除、能力=内在潜能。儿童习得中根义先于认识义出现，与「具体力图式→抽象推理」的映射方向吻合。
+    visual: 三格漫画：被推着走的孩子、被搬开的路障、举起胳膊秀肌肉的孩子
+    anchors:
+    - G2_089
+  - beat: 力搬进脑子里
+    text_kid: 猜事情的时候也是这股力在推：He must be tired——不是有人推他，是证据推着我下结论。
+    text_adult: 认识情态是根情态图式的隐喻扩展：前提对结论的「迫使」对应物理世界的外力。
+    visual: 同一个推力箭头，从操场搬进一个大脑形状的框里
+    anchors:
+    - G2_0502
+  examples:
+  - level: 1
+    word_ids:
+    - G2_089
+    sentence: I can swim.
+    scene_note: 游泳课：can 是自己有劲儿
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_日常_2
+    sentence: May I come in?
+    scene_note: 进教室前敲门：may 是路障搬开、被允许
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_1
+    - V6_家庭_34
+    sentence: You must go home now.
+    scene_note: 放学时老师说话：must 是规矩在推
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0502
+    sentence: It may rain today.
+    scene_note: 看天色猜天气：力搬进推理里（见机制第 2 节）
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: May I come in? 里的 may 像哪幅画？A. 有人在后面推 B. 路障被搬开
+    answer: B——may 是障碍移除，是许可。
+    hint: 回到机制第 1 节「三种力」。
+  relatives:
+  - id: GR-36
+    rel: 同族
+  - id: GR-08
+    rel: 同族
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Eve Sweetser《From Etymology to Pragmatics》（1990，CUP，ISBN 0-521-32406-8）第 3 章——接触等级：章节页码级（经学术论文转引核实）
+    boundary: 力图式是语义骨架，不覆盖礼貌、委婉等语用用法；教学中类比须同时声明这一失效点。
+    disputes: []
+    evidence_grade: 章节页码级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-08
+  order: 8
+  headline: 情态动词是语法化的化石：它们曾经是普通动词，所以没有三单 -s、不能连排
+  headline_kid: will 以前就是「想要」这个动词，它慢慢变成了小帮手，老动词的习惯就留了下来：不加 -s，也不能两个帮手排排坐
+  claim:
+    type: etymology
+    statement: 情态动词曾是普通实义动词，在语法化途中逐步丢失动词性（形态变化、论元结构）变成助动词；will 由「意愿」义沿「意愿 → 意图 → 将来」路径漂移。形态上的残缺（无三单 -s、无不定式、互斥不能连排）正是它停在半路的化石证据。
+    evidence:
+    - Joan Bybee, Revere Perkins & William Pagliuca《The Evolution of Grammar》（1994，University of Chicago Press）将来标记来源路径；框架见 Hopper & Traugott《Grammaticalization》（2003 第 2 版）语法化斜坡
+    source: 实义动词语法化为助动词的斜坡路径（意愿 → 意图 → 将来）
+    scope: 语法化是强统计倾向而非铁律；讲给孩子时说「大多数时候」
+  mechanism:
+  - beat: 动词慢慢变成帮手
+    text_kid: will 原来是个正经动词，意思是「想要」。几百年里它越用越虚，慢慢只剩下帮手的活儿。
+    text_adult: 语法化斜坡：实义动词沿可预测路径丢失形态与论元结构；跨语言反复出现同一演化路径（意愿/义务/移动动词变将来标记）。
+    visual: 一个动词的影子逐格变淡，最后变成半透明的帮手
+    anchors:
+    - G3_0442
+  - beat: 化石证据：残缺
+    text_kid: 帮手们有个共同点：不加三单 -s、不能两个排排坐（不说 will can）、也没有 to 形式——这些「缺块」就是它们半路停下的证据。
+    text_adult: 情态词的形态残缺与其在语法化斜坡上的位置一一对应。
+    visual: 一排帮手站队，每个人身上都贴着「缺」的小标签：无 -s、无 to、不能连排
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G3_0442
+    sentence: I will help you.
+    scene_note: 答应帮同学：will 已经是帮手，不管「想要」了
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: I will play football tomorrow.
+    scene_note: 明天的打算：will 站在动词前面当帮手
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0442
+    sentence: Will you help me?
+    scene_note: 请人帮忙：will 自己站到句首提问（老动词的本事还在）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_089
+    sentence: She can swim.
+    scene_note: can 不加 -s：化石残缺的一个现场
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 为什么不说 will can swim？
+    answer: 情态动词是停在半路的化石，彼此互斥，不能连排。
+    hint: 回到机制第 2 节「化石证据：残缺」。
+  relatives:
+  - id: GR-07
+    rel: 同族
+  - id: GR-04
+    rel: 同族
+  - id: GR-40
+    rel: 同族
+  adult:
+    sources:
+    - Bybee, Perkins & Pagliuca《The Evolution of Grammar》（1994）；Hopper & Traugott《Grammaticalization》（2003 第 2 版）——接触等级：二手系统论述级
+    boundary: 语法化是强统计倾向而非铁律，已知有罕见的逆语法化争议案例（如不定式 to 的讨论）。
+    disputes:
+    - 单向性假说有争议：Hopper & Traugott 本人亦承认罕见反例，属学界分歧，记录在案。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-09
+  order: 9
+  headline: 否定词会「磨损—加固」打转：not 本来是被喊来帮忙加强否定的，后来自己当了主角
+  headline_kid: 否定词说多了会变弱，人们就再加一个更重的词来加强；新词抢了班，旧词又慢慢不见了，隔几百年再来一轮
+  claim:
+    type: etymology
+    statement: 高频否定词在语音与语义上弱化，说话人引入强调成分补强，补强成分随后常规化为主要否定标记，原标记脱落，循环重演（耶斯佩森循环）：英语 ne → ne…not → not；法语 ne → ne…pas → 口语 pas。
+    evidence:
+    - Otto Jespersen《Negation in English and Other Languages》（1917）p.4 的经典描述（循环之名由 Dahl 1979 命名）
+    source: 耶斯佩森循环：否定标记的弱化—补强—替换三段式
+    scope: 循环解释的是长时段的语言演变，不是孩子今天说错否定的原因；课堂上只作「语言会变」的真历史故事使用
+  mechanism:
+  - beat: 说多了会变弱
+    text_kid: 一个词天天被说，会越说越轻、越说越短。否定词 ne 说到后来几乎听不见了，大家觉得「不够劲」。
+    text_adult: 高频带来的语音与语义弱化是否定循环的起点，多语言独立呈现同一三段式轨迹（英语、法语、威尔士语、柏柏尔语）。
+    visual: 一个大大的 ne 逐格缩小、变淡
+    anchors: []
+  - beat: 请帮手，帮手抢班
+    text_kid: 人们请来一个重词 not 帮忙加强；后来大家只认 not，旧的 ne 就悄悄退场了。
+    text_adult: 补强成分常规化为主要标记、原标记脱落，是循环的后两段；今天的 not 正是当年的补强词。
+    visual: 小个子 ne 退到幕后，大个子 not 站到台前
+    anchors:
+    - V6_日常_64
+    - G6_282
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_64
+    sentence: I do not like it.
+    scene_note: 今天的否定主角 not 站在动词前面
+    supports: claim
+  - level: 1
+    word_ids:
+    - G6_282
+    sentence: She is not happy.
+    scene_note: not 独自当班的现代句
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: He does not play football.
+    scene_note: doesn't 是 not 的缩略后代，仍是同一个主角
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0502
+    sentence: It is not raining.
+    scene_note: 否定今天的天气：not 的位置不变
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: not 一开始就是否定的主角吗？
+    answer: 不是。它原是被喊来给旧否定词帮忙加强的，后来才当上主角。
+    hint: 回到机制第 2 节「请帮手，帮手抢班」。
+  relatives:
+  - id: GR-03
+    rel: 同族
+  - id: GR-26
+    rel: 前置
+  adult:
+    sources:
+    - Otto Jespersen《Negation in English and Other Languages》（1917）p.4——接触等级：二手系统论述级（经词条与学术转述核实）
+    boundary: 循环解释长时段演变，不是孩子今天说错否定的原因；只作「语言会变」的真历史故事使用。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-10
+  order: 10
+  headline: some / any 是说话人的立场选择，不是「肯定句 some、疑问否定 any」的铁律
+  headline_kid: some 是「我心里有数、我乐意」的小旗子，any 是「随便哪个都行、我没预设」的小旗子；举哪面旗，看说话人的心思
+  claim:
+    type: tendency
+    statement: some 携带说话人的肯定预期/积极立场（故请求、邀请句中用 some 是「预期对方答应」），any 是无预设的自由选择/非断言环境标记；两者的分布由立场与语境决定，不由句类机械决定。
+    evidence:
+    - Michael Swan《Practical English Usage》（第 4 版 2016，OUP）some/any 条；与 Quirk et al.（1985）断言/非断言形式的处理一致
+    scope: 初学阶段「陈述肯定多用 some、一般疑问与否定多用 any」仍是可用的默认倾向，必须标明是倾向，例外随学随补，不得再以「铁律」措辞出现
+    exceptions:
+    - text: 邀请/请求句中用 some，是预期对方答应的立场选择（Would you like some tea?)
+      word_ids:
+      - G2_0944
+      - V6_日常_64
+    - text: 肯定句中 any 可表「任意」（Any child can read it)
+      word_ids:
+      - G3_0667
+      - G2_0492
+  mechanism:
+  - beat: 两面小旗子
+    text_kid: some 是「我心里有数」的小旗子，any 是「随便哪个都行」的小旗子。说话人先有心思，再举旗子，不是先看句子是肯定还是否定。
+    text_adult: 分布由立场决定：肯定预期→some；无预设/自由选择→any。句类只是与立场常相关，不是决定者。
+    visual: 两面小旗子立在说话人头顶：一面写着「有数」，一面写着「随便」
+    anchors:
+    - G2_0944
+  - beat: 默认倾向不是铁律
+    text_kid: 刚开始学，可以先记一个大概：肯定句多用 some，提问和否定多用 any。但这只是「多半」，遇到邀请、请求就翻牌。
+    text_adult: 旧铁律已被裁定废止，改判为「立场与连接选择」；默认倾向保留为入门脚手架，随学随补例外。
+    visual: 一块写着「多半如此」的牌子，旁边挂着几个例外小牌（邀请、任意）
+    anchors:
+    - G1_002
+    - G1_003
+  examples:
+  - level: 1
+    word_ids:
+    - G1_003
+    sentence: She has some pens.
+    scene_note: 默认倾向：肯定陈述多用 some
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_003
+    sentence: Do you have any pens?
+    scene_note: 默认倾向：一般疑问多用 any
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0944
+    - V6_日常_64
+    sentence: Would you like some tea?
+    scene_note: 例外现场：邀请时用 some，因为盼着对方答应
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0667
+    - G2_0492
+    sentence: Any child can read it.
+    scene_note: 例外现场：肯定句里 any 表「任意一个」
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 邀请朋友喝茶、盼着他答应：Would you like ___ tea? A. some B. any
+    answer: A. some——邀请时的 some 是「预期对方答应」的立场旗。
+    hint: 回到机制第 1 节「两面小旗子」。
+  relatives:
+  - id: GR-27
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Michael Swan《Practical English Usage》第 4 版（2016，OUP，ISBN 9780194202411）some/any 条；Quirk et al.（1985）——接触等级：二手系统论述级
+    boundary: 初学默认倾向可用，但必须标明是倾向且例外（邀请/请求/任意义）随学随补，不得再以「铁律」措辞出现（本项目已裁定旧铁律废止）。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-11
+  order: 11
+  headline: because 和 so 各管一段路：英语一段因果通常只留一个连接点，两个都上是汉语的习惯迁移
+  headline_kid: 英语说因果像只搭一座桥：要么站在 because 这头说原因，要么站在 so 那头说结果；两座桥一起搭，是把汉语的习惯带过来了
+  claim:
+    type: tendency
+    statement: 英语从句连接以形合为常态：一个主从关系由一个从属连词标明即足。同一因果链里 because…so 并用，是汉语「因为…所以」成对关联词的意合习惯迁移到英语的冗余结构。
+    evidence:
+    - 连淑能《英汉对比研究》（1993，高等教育出版社；2010 增订本）形合/意合对比专题
+    scope: 问题只在同一因果链里并用；because 与 so 各自单独使用均合法。口语中偶见的强调性叠用不属小学教学范围
+    exceptions:
+    - text: 口语中偶见的强调性叠用，不按小学阶段的错误处理
+      word_ids:
+      - G2_0502
+      - V6_家庭_34
+  mechanism:
+  - beat: 只搭一座桥
+    text_kid: 说因果时选一座桥过河：想先说原因，就走 because；想先说结果，就走 so。一座桥就够过河了。
+    text_adult: 形合语言的常态是一个连接点标明一个主从关系；并用两个连接点不增加信息，只添冗余。
+    visual: 一条河上只架一座桥，because 桥和 so 桥二选一
+    anchors:
+    - G2_0502
+    - V6_家庭_34
+  - beat: 汉语的成对习惯
+    text_kid: 汉语喜欢「因为…所以…」成对出现，这是汉语自己的规矩；搬进英语，两座桥叠在一起，英语听着就别扭。
+    text_adult: 连淑能形合/意合对比：中国学习者语料中 because…so 并用是稳定高频的迁移错误类型，与英汉关联词系统的结构差异精确对应。
+    visual: 两座桥硬叠在一起，桥面挤得晃动，标着「汉语习惯」
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_家庭_34
+    - G2_0502
+    sentence: I stayed home because it rained.
+    scene_note: 下雨天：站在 because 这头说原因
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0502
+    - V6_家庭_34
+    sentence: It rained, so I stayed home.
+    scene_note: 同一件事：站在 so 那头说结果
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_081
+    sentence: I was late because the bus was late.
+    scene_note: 上学迟到：只选 because 一座桥
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: It was sunny, so we played outside.
+    scene_note: 放晴出门玩：只选 so 一座桥
+    supports: claim
+  error_cases:
+  - wrong: Because it rained, so I stayed home.
+    right: I stayed home because it rained. / It rained, so I stayed home.
+    error_type: 母语迁移-连接词并用
+    source_type: 真实语料错型
+    diagnosis: 清单条目登记：中国学习者语料中 because…so 并用是稳定高频的迁移错误类型（连淑能形合/意合对比）。回补机制第 1 节：一座桥过河。
+  quiz:
+  - q: 哪句对？A. Because it rained, so I stayed home. B. It rained, so I stayed home.
+    answer: B——一段因果只留一个连接点。
+    hint: 回到机制第 1 节「只搭一座桥」。
+  relatives:
+  - id: GR-26
+    rel: 同族
+  - id: GR-22
+    rel: 同族
+  - id: GR-38
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 连淑能《英汉对比研究》（1993，高教社）——接触等级：二手系统论述级（经高教社官方产品页核实书目）
+    boundary: because 与 so 当然都能用，问题只在同一因果链里并用；口语中偶见的强调性叠用不属小学教学范围。另：旧「语法树会断」伪机制已删除，不得复活。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-12
+  order: 12
+  headline: 主谓一致有三股力在拉：形式、意义、就近——there be 听离它最近的那个名词
+  headline_kid: 动词选单数还是复数，有时看长相、有时看意思、有时看谁站得近；There is/are 就看紧挨着的第一个名字
+  claim:
+    type: tendency
+    statement: 一致关系不总由主语的形态数决定：形式一致、意义一致（集体名词按意义取复数，英式）、就近一致（there 存现句与并列主语中动词与最近名词对齐）三者是同一「对齐」问题下的不同解。
+    evidence:
+    - Huddleston & Pullum《CGEL》（2002）主谓一致章对一致变异的系统处理
+    scope: 小学阶段只教 there be 的就近口径并注明「说话时常这样」；就近原则在正式书面语中受约束（编辑规范多要求与整个主语一致）
+    exceptions:
+    - text: 英式英语中集体名词可按意义用复数：The team are arguing among themselves
+      word_ids:
+      - G4_0989
+    - text: 正式书面语的编辑规范多要求与整个主语一致，就近不适用
+      word_ids:
+      - G1_002
+  mechanism:
+  - beat: 三股力拔河
+    text_kid: 动词的单复数像在拔河：一头是「看长相」，一头是「看意思」，还有一头是「看谁站得近」。不同句子里，赢的那头不一样。
+    text_adult: CGEL 把一致变异处理为三原则的竞争；There is a pen and two books、The family are…等语料常见型无法用单一形式规则解释。
+    visual: 三根绳子拉着一个动词，绳子分别写着：长相、意思、距离
+    anchors: []
+  - beat: there be 看第一个名字
+    text_kid: There is/are 后面的动词，先看紧挨着的第一个名字：一个 pen 就用 is，两个 books 就用 are。
+    text_adult: 存现句的动词与最近名词对齐是就近原则的教学定版口径，与 GR-32 的 or/nor 就近是同一原则的不同适用域。
+    visual: 队伍最前面站着 pen（单数），动词举起 is 的牌子
+    anchors:
+    - G1_003
+    - G1_002
+    - G1_0928
+  examples:
+  - level: 1
+    word_ids:
+    - G1_003
+    - G1_002
+    - G1_0928
+    sentence: There is a pen and two books on the desk.
+    scene_note: 桌子上有笔和书：动词听第一个名字 pen
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_002
+    - G1_003
+    - G1_0928
+    sentence: There are two books and a pen on the desk.
+    scene_note: 把顺序换过来：第一个名字变成 books，动词跟着变 are
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_037
+    - G2_0930
+    sentence: There is an apple on the table.
+    scene_note: 单个名字在前，用 is
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_014
+    sentence: There are three cats under the tree.
+    scene_note: 复数名字在前，用 are
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: There ___ a pen and two books on the desk. A. is B. are
+    answer: A. is——there be 听离它最近的第一个名字 pen。
+    hint: 回到机制第 2 节「there be 看第一个名字」。
+  relatives:
+  - id: GR-32
+    rel: 同族
+  - id: GR-39
+    rel: 对照
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Huddleston & Pullum《CGEL》（2002）主谓一致章——接触等级：二手系统论述级
+    boundary: 就近原则在正式书面语中受约束；小学阶段只教 there be 的就近口径并注明「说话时常这样」。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-13
+  order: 13
+  headline: 所有格 's 是「关联标记」，不是「所有权证书」
+  headline_kid: '''s 像一条小绳子，把两样东西拴在一起说「它们有关系」：不一定是「谁的东西」，也可以是「昨天的新闻」「一天的路」'
+  claim:
+    type: tendency
+    statement: '''s 标记的是两个名词之间的关联关系（领有只是其中最常见的一种），它附着在整个名词短语的末尾，语义上涵盖时间、度量、来源、部分—整体等关系；其适用范围随名词的生命度与熟悉度渐变。'
+    evidence:
+    - Huddleston & Pullum《CGEL》（2002）属格章：'s 为短语级标记、属格表关联而非仅领有
+    scope: 无生命名词的 's 在正式语体中仍常让位于 of 结构；'s 的适用范围随生命度与熟悉度渐变，非一刀切
+    exceptions:
+    - text: 无生命名词在正式语体中常改用 of 结构（the leg of the table 更稳妥）
+      word_ids:
+      - G2_0930
+  mechanism:
+  - beat: 小绳子拴关系
+    text_kid: '''s 是一条小绳子：一头拴着人，一头拴着东西，说的是「它们俩有关系」，不是一张写着「这是我的」的所有权证书。'
+    text_adult: CGEL 的分析：'s 是短语级标记（the King of England's crown 挂在整个短语末尾），语义为关联而非仅领有。
+    visual: 一条绳子把「老师」和「书」拴在一起，绳结上写着「有关系」
+    anchors:
+    - G1_002
+  - beat: 关系的种类很多
+    text_kid: 「昨天的新闻」不是昨天拥有的新闻，「一天的路」也不是路属于谁——时间、度量，都是这条绳子拴的关系。
+    text_adult: yesterday's news、a day's journey、the car's wheel 等高频用例均非「所有权」可释，而「关联」一解全通。
+    visual: 绳子的一头分出几条小线：时间、度量、部分
+    anchors:
+    - V6_节日_5
+    - G1_043
+  examples:
+  - level: 1
+    word_ids:
+    - G1_002
+    sentence: This is Lily's book.
+    scene_note: 最常见的一拴：书和 Lily 的领有关系
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_013
+    - V6_家庭_34
+    - G2_079
+    sentence: The bird's home is in the tree.
+    scene_note: 鸟和它的窝：部分—整体也是一拴
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_节日_5
+    sentence: It is a day's trip.
+    scene_note: 度量关系：一整天的路程，不是「天的东西」
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_043
+    sentence: The car's door is open.
+    scene_note: 车和它的门：部分—整体关系
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: '"yesterday''s news" 里的 ''s 表示「昨天的所有物」吗？'
+    answer: 不表示。它拴的是时间关系——'s 标记的是关联，不只是所有。
+    hint: 回到机制第 2 节「关系的种类很多」。
+  relatives:
+  - id: GR-29
+    rel: 同族
+  - id: GR-45
+    rel: 同族
+  - id: GR-24
+    rel: 对照
+  adult:
+    sources:
+    - Huddleston & Pullum《CGEL》（2002）属格章——接触等级：二手系统论述级
+    boundary: 无生命名词的 's 在正式语体中仍常让位于 of 结构（the leg of the table 更稳妥），适用范围随名词的生命度与熟悉度渐变，非一刀切。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-14
+  order: 14
+  headline: 代词的格跟着位置走：主语位用主格、宾语位用宾格，「讲究过头」也会错
+  headline_kid: I 和 me 是同一个人穿的两件衣裳：站在句子开头当主角穿 I，跟在动词和介词后面穿 me；穿错或「太讲究」穿错，都是错
+  claim:
+    type: rule
+    statement: 英语代词格是位置性标记——格由成分在句中的句法位置决定而非语义角色：主语位用主格，动词与介词后的宾语位用宾格。between you and I 这类错误是把礼貌/正式感误加到宾语位上的过度矫正。
+    evidence:
+    - Huddleston & Pullum《CGEL》（2002）代词格变异章（对 and I 过度矫正有专门讨论）
+    scope: 口语中 It's me 等主格/宾格松动是真实变异，小学阶段教位置口径即可，不把口语变异判为「错误」展示
+  mechanism:
+  - beat: 位置决定穿哪件
+    text_kid: 代词站在哪儿，就穿哪件衣裳：站到句子前面当主角，穿主格；跟在动词、介词后面，穿宾格。跟它「是谁」没关系，跟它「站哪儿」有关系。
+    text_adult: 格由句法位置决定：主语位与宾语位的分工是位置性的，这解释了为何母语者也会在并列宾语里犹豫。
+    visual: 一个小人走到句子开头的舞台中央，换上 I 的衣服；走下台到介词后面，换上 me 的衣服
+    anchors: []
+  - beat: 讲究过头也会错
+    text_kid: 有人觉得 me 不够体面，在 between you and ___ 里也塞一个 I——体面塞错了位置，反而成了错。
+    text_adult: 母语者语料中 between you and I 的稳定出现证明：格的驱动力是位置+语体直觉，过度矫正是把正式感误加到宾语位。
+    visual: 一件过大的礼服套在小小的宾语位上，标着「太讲究」
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G3_130
+    sentence: He and I are friends.
+    scene_note: 主语位并列：两个人都穿主格（另有「you 先人后」的礼貌顺序与之配套）
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_日常_8
+    - G1_002
+    sentence: She gave the book to him.
+    scene_note: 介词 to 后面：him 穿宾格
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_2
+    sentence: Come with me, please.
+    scene_note: 介词 with 后面：me 穿宾格
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: They play with us.
+    scene_note: 动词短语后面：us 穿宾格
+    supports: claim
+  error_cases:
+  - wrong: between you and I
+    right: between you and me
+    error_type: 过度矫正-格
+    source_type: 真实语料错型
+    diagnosis: 清单条目登记：母语者语料中 between you and I 稳定出现，是把礼貌/正式感误加到宾语位的过度矫正。回补机制第 1 节：格跟着位置走。
+  quiz:
+  - q: between you and ___ A. I B. me
+    answer: B. me——介词后面是宾语位，穿宾格。
+    hint: 回到机制第 1 节「位置决定穿哪件」。
+  relatives: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Huddleston & Pullum《CGEL》（2002）代词格变异章——接触等级：二手系统论述级；本项目已裁定口径「格跟着位置走」
+    boundary: 口语中 It's me 等松动是真实变异，小学阶段教位置口径即可，不把口语变异判为「错误」展示。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-15
+  order: 15
+  headline: a / an 按声音不按字母：耳朵决定，字母只是参考
+  headline_kid: a 还是 an，不看第一个字母长什么样，看第一个声音是不是元音：an hour 的 h 不出声，a unit 开头是「优」的辅音味儿
+  claim:
+    type: rule
+    statement: an 的 -n 是为避免两个元音相撞而保留的连接音：冠词形式由后随词的起始音素（语音）决定，不由拼写字母决定。
+    evidence:
+    - Michael Swan《Practical English Usage》a/an 条（以发音为准的通行口径）
+    scope: h 的读法有方言与历史变异（an historic 在英式旧式用法中可见），小学阶段以「听第一个音」为准，不展开方言史
+  mechanism:
+  - beat: 耳朵说了算
+    text_kid: 选 a 还是 an，先把词读出声：第一个音是元音，就用 an 把两个元音隔开；第一个音是辅音，就用 a。字母长什么样，不算数。
+    text_adult: 语音决定形式：an hour（h 不发音）、a one-way street（one 开头是 /w/ 辅音味）、a European（开头是 /j/）成组证明只能以语音解释。
+    visual: 一只大耳朵贴在单词前面听第一个音，眼睛（字母）被划上一道斜线
+    anchors:
+    - V6_节日_16
+    - ADD_0308
+  - beat: 两个陷阱词
+    text_kid: hour 的 h 是哑巴，听到的第一个音是元音，所以 an hour；unit 的第一个字母是元音字母 u，声音却是辅音打头，所以 a unit。
+    text_adult: 拼写与选择不一致的词例是本条的证据现场：按字母选必错，按声音选必对。
+    visual: hour 的 h 被打上静音标记；unit 的 u 旁边冒出一个辅音音符
+    anchors:
+    - V6_节日_16
+    - ADD_0308
+    - ADD_0152
+  examples:
+  - level: 1
+    word_ids:
+    - V6_节日_16
+    - G3_0796
+    sentence: I waited an hour.
+    scene_note: h 不出声：第一个音是元音，用 an
+    supports: claim
+  - level: 1
+    word_ids:
+    - ADD_0308
+    sentence: This is a unit about animals.
+    scene_note: u 开头却是辅音声：用 a
+    supports: claim
+  - level: 2
+    word_ids:
+    - ADD_0152
+    - G3_134
+    sentence: He is an honest man.
+    scene_note: honest 的 h 也不出声，用 an
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_050
+    sentence: I have an egg.
+    scene_note: 第一个音就是元音，用 an
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: ___ hour A. a B. an
+    answer: B. an——h 不出声，第一个音是元音。
+    hint: 回到机制第 1 节「耳朵说了算」：先读出声再选。
+  relatives:
+  - id: GR-22
+    rel: 同族
+  - id: GR-25
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Michael Swan《Practical English Usage》a/an 条——接触等级：二手系统论述级；本项目 g05-sound-rule 已裁定「按音不按字母」，以 an hour 为定版例
+    boundary: h 的读法有方言与历史变异（an historic 可见于英式旧式用法），小学阶段以「听第一个音」为准，不展开方言史。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-16
+  order: 16
+  headline: 错误是学习者心里的「临时系统」在试单，不是粗心也不是坏习惯
+  headline_kid: 说错话常常说明大脑正在自己试一条新规则——试错的样子，就是正在学习的证据
+  claim:
+    type: rule
+    statement: Corder 区分系统性错误（error，反映学习者当前的过渡能力）与偶发失误（mistake）；Selinker 的中介语理论指出，学习者语言是自成体系、不断重组的系统，错误是假设检验留下的可见痕迹。
+    evidence:
+    - S. Pit Corder "The Significance of Learners' Errors"（1967，IRAL）；Larry Selinker "Interlanguage"（1972，IRAL 10）——二语习得研究的两篇奠基文献
+    scope: 中介语视角解释错误来源，不等于放任错误：Selinker 本人提出石化风险，错误需被注意到并处理（见 GR-17）
+  mechanism:
+  - beat: 错误是试单的回执
+    text_kid: 孩子说出一个错句，常常是大脑拿自己试出来的规则在「下单试用」：试对了留下来，试错了换一条。回执上的错，写着他现在学到哪儿了。
+    text_adult: '*goed、*sheeps 等过度泛化错误在不同母语背景儿童身上同型出现，证明其来源是系统内部规则而非个体粗心。'
+    visual: 一张试订单，上面盖着「系统试用中」的印章
+    anchors:
+    - V6_MORPH_20
+    - G4_194
+  - beat: 错误和失误要分开
+    text_kid: 每次都这样错，是系统在试单（error）；偶尔一次说秃噜嘴、自己能改回来，是失误（mistake）。两种的处理方法不一样。
+    text_adult: Corder 的 error/mistake 之分是错误分析的起点；中介语系统会不断重组，也可能停在某处石化。
+    visual: 两条岔路：一块路牌写着「系统试单」，一块写着「偶尔失误」
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_MORPH_20
+    sentence: I went to the park yesterday.
+    scene_note: 试单成功后的定版形式：went 被整块记住
+    supports: claim
+  - level: 1
+    word_ids:
+    - G4_194
+    sentence: The sheep are eating grass.
+    scene_note: sheep 的单复数同形被系统接纳后的正确产出
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_MORPH_21
+    sentence: I saw a film yesterday.
+    scene_note: 不规则形式进入系统后的稳定产出
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: He plays football every day.
+    scene_note: 三单规则进入系统后的产出
+    supports: claim
+  error_cases:
+  - wrong: I see two sheeps.
+    right: I see two sheep.
+    error_type: 过度规则化
+    source_type: 教学文献登记错型
+    diagnosis: 清单条目登记：*sheeps、*goed 等过度泛化错误在不同母语背景儿童身上同型出现，是中介语系统按自有规则试单的痕迹。回补机制第 1 节。
+  quiz:
+  - q: 孩子说 *goed，说明什么？A. 他粗心 B. 他在用自己试出来的规则
+    answer: B——这是他的临时系统在试单，是正在学习的证据，不是粗心。
+    hint: 回到机制第 1 节「错误是试单的回执」。
+  relatives:
+  - id: GR-17
+    rel: 同族
+  - id: GR-22
+    rel: 同族
+  - id: GR-06
+    rel: 对照
+  adult:
+    sources:
+    - Corder（1967，IRAL）；Selinker（1972，IRAL 10）——接触等级：二手系统论述级
+    boundary: 中介语视角解释错误来源，不等于放任错误——Selinker 本人提出石化（fossilization）风险，错误需被注意到并处理（见 GR-17）。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-17
+  order: 17
+  headline: 注意到，才学得会：形式被「看见」的那一刻才开始变成自己的
+  headline_kid: 光是天天听英语还不够；哪天你突然「咦，这里有个 -s！」——这个形式才开始真正进你的脑子
+  claim:
+    type: tendency
+    statement: Schmidt 的注意假说（弱式）：输入须被有意识地注意到才转化为摄入；学习者在输出中发觉自己说法与目标说法之间的「差距」是关键触发事件；注意越深，习得越多。
+    evidence:
+    - Richard Schmidt "The Role of Consciousness in Second Language Learning"（《Applied Linguistics》11(2)，1990，129–158，DOI 10.1093/applin/11.2.129）；「注意差距」源于 Schmidt & Frota（1986）日记研究
+    scope: 低龄儿童的注意多由教师设计（对比、高亮、复现）代为触发，不能等同于成人式自觉分析；本条以弱式（注意越深、习得越多）为准
+    exceptions:
+    - text: 强式主张（注意是唯一通道）不成立：Schmidt 2001 年已将强式修正为弱式；未被有意识注意的形式在大量接触中也可能被部分吸收
+      word_ids:
+      - G2_0489
+  mechanism:
+  - beat: 看见的那一刻
+    text_kid: 同一个 -s，听过一百遍没感觉；哪天突然「咦，这里有个 -s」，它才开始进脑子。学习从「看见」那一刻起步。
+    text_adult: Schmidt 本人学葡萄牙语的日记记录显示：未被注意到的形式在大量输入后仍未习得，被注意的形式随后进入产出。
+    visual: 一排 plays 飞过，只有一只被聚光灯照亮，头上冒出「咦？」
+    anchors:
+    - G2_0489
+  - beat: 差距是最好的老师
+    text_kid: 自己说一遍，再听正确的说法一遍——两边不一样的地方，就是下一次要注意的地方。
+    text_adult: 「注意差距」（noticing the gap）是输出与输入对照时触发的事件，与 GR-23 输出假说互挂。
+    visual: 两句话并排，差别处被红圈圈出
+    anchors:
+    - G2_0502
+    - G2_0489
+  examples:
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: He plays football. She plays football too.
+    scene_note: 注意目标：两句里都有的 -s，先看见再说出
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0502
+    sentence: It rains a lot in summer.
+    scene_note: 注意目标：it 后面的 rains 也戴 -s
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_1
+    sentence: He goes to school by bus.
+    scene_note: 注意目标：goes 的拼法变化也是被「看见」的对象
+    supports: claim
+  - level: 2
+    word_ids:
+    - POLY_WATCH
+    sentence: She watches TV at home.
+    scene_note: 注意目标：watches 的 -es 与前两例对照
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 只是天天听英语，为什么三单 -s 还是学不会？
+    answer: 因为没有注意到它——没被「看见」的形式，不会变成自己的。
+    hint: 回到机制第 1 节「看见的那一刻」。
+  relatives:
+  - id: GR-16
+    rel: 前置
+  - id: GR-18
+    rel: 同族
+  - id: GR-19
+    rel: 同族
+  - id: GR-23
+    rel: 同族
+  adult:
+    sources:
+    - Schmidt（1990，《Applied Linguistics》11(2)，DOI 10.1093/applin/11.2.129）；Schmidt & Frota（1986）——接触等级：期刊原文级（DOI 已核）
+    boundary: 注意是必要条件的强版本仍有争议；本条取 Schmidt 2001 年修正后的弱式。低龄儿童的注意多由教师设计代为触发。
+    disputes:
+    - Krashen 的输入假说主张无意识习得充分，与注意假说相对；登记分歧在案，教学取向以弱式注意假说为准。
+    evidence_grade: 期刊原文级（弱式口径）
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-18
+  order: 18
+  headline: 把形式拉回交际现场：一边说话解决问题，一边顺手看形式
+  headline_kid: 最好的学语法时间，是你正想说清楚一件事、刚好被一个小形式卡住的那几秒钟
+  claim:
+    type: tendency
+    statement: Long 的「形式聚焦」（focus on form）：在意义为中心的活动中，当交际问题出现时短暂地把注意力引向语言形式；它区别于把形式拆成清单逐项教的 focus on formS。后续课堂研究与元分析显示，嵌于交际中的形式聚焦在准确性与流利性上优于孤立形式教学。
+    evidence:
+    - 'Michael Long "Focus on Form: A Design Feature in Language Teaching Methodology"（1991，载 de Bot, Ginsberg & Kramsch 编《Foreign Language Research in Cross-cultural Perspective》，John Benjamins，pp.45–46 给出定义）；其互动假说（1983/1996）为同一体系的另一支柱'
+    scope: 形式聚焦是「随问题出现」的短插播；需要系统建立的初学框架（如时态两维图）仍需专门的集中呈现
+    exceptions:
+    - text: 初学框架的系统建立（如时态的时间×看法两维图）需要专门的集中呈现，不适用随问题插播
+      word_ids:
+      - V6_日常_1
+  mechanism:
+  - beat: 卡住的那几秒
+    text_kid: 你正想告诉同桌昨天去哪儿玩了，卡在 went 上——这几秒钟看一眼形式，比单独坐下来背十条规则记得还牢。
+    text_adult: 交际需求制造了真实的「注意差距」时刻（与 GR-17 互挂），此时插入的形式处理有意义锚点托底。
+    visual: 对话气泡里一个词卡住，旁边弹出一个小小的形式放大镜
+    anchors:
+    - G1_055
+  - beat: 插播，不是停播
+    text_kid: 形式聚焦是插播：看一眼，接着说。把节目停下来逐条讲规则清单，是另一回事（formS），节目就凉了。
+    text_adult: Long 的定义核心是「在交际中、由问题触发、短暂」；后续元分析支持其相对孤立形式教学的优势。
+    visual: 一条对话长河，中间只有一个小小的放大镜气泡，很快又流回对话
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_055
+    sentence: Can I have some water, please?
+    scene_note: 交际现场：要水喝的请求句，形式（some、please）顺手习得
+    supports: claim
+  - level: 1
+    word_ids:
+    - G4_0415
+    sentence: What did you do yesterday?
+    scene_note: 交际现场：问昨天做了什么，did 的用法在问答中出现
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: We played football yesterday.
+    scene_note: 回答里 went/played 的形式在讲述中被用上
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_082
+    sentence: I went to the zoo.
+    scene_note: 讲述昨天的经历，过去式在真实表达需求中出现
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 形式聚焦（focus on form）和把规则列成清单逐项教，哪一个发生在说话解决问题的时候？
+    answer: 形式聚焦——它由交际中出现的问题触发，短暂插入，不是停下交际讲清单。
+    hint: 回到机制第 2 节「插播，不是停播」。
+  relatives:
+  - id: GR-17
+    rel: 前置
+  - id: GR-23
+    rel: 同族
+  - id: GR-21
+    rel: 同族
+  adult:
+    sources:
+    - Michael Long（1991，John Benjamins，pp.45–46 定义原文页）——接触等级：定义原文级（二手转述核实）
+    boundary: 形式聚焦不适用于需要系统建立的初学框架（如时态两维图），框架建立仍需专门的集中呈现。
+    disputes:
+    - 与 Krashen「形式教学无用论」相对；本项目取 Long 口径，与课标立场一致，记录分歧在案。
+    evidence_grade: 定义原文级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-19
+  order: 19
+  headline: 频率在调谐大脑：见得多的先会、不规则的靠见得多才活得下来
+  headline_kid: 一个词、一种说法，你遇见一百次，它就自己住进脑子里了；连 went 这种「不讲理」的词，也是因为天天见才没被改掉
+  claim:
+    type: rule
+    statement: 基于用法的研究显示，语言加工在各层级受输入频率调谐：词例频率（token）固化具体形式，类型频率（type）催生可推广的图式，练习效果服从幂定律。
+    evidence:
+    - Nick C. Ellis "Frequency Effects in Language Processing"（《Studies in Second Language Acquisition》24(2)，2002，143–188，DOI 10.1017.S0272263102002024）
+    scope: 频率不是唯一变量：显著性、母语 congruency、教学干预都会改写顺序；低频但高交际价值的形式仍需人为提高复现
+  mechanism:
+  - beat: 见得多的先住进来
+    text_kid: 大脑像在给每种说法记见面次数：见一百次的，自己就住进来了，不用人背。
+    text_adult: 该综述整合心理语言学、二语习得与语料库证据，是「先高频、后系统」教学排序（见 TA-17）的定量依据。
+    visual: 一本见面登记簿，went 的名字后面画满了勾
+    anchors:
+    - V6_MORPH_20
+    - V6_家庭_34
+  - beat: 两种频率，两种活儿
+    text_kid: 同一个词见得多（词例频率），这个词本身就记牢；同一类变化见得多（类型频率），大脑就总结出一条能套新词的规律。
+    text_adult: token 频率固化形式（went 不被规则化），type 频率催生图式（-ed 规则可推广到新动词）。
+    visual: 左边一棵大树（单个词记牢），右边一排小树苗（规律套新词）
+    anchors:
+    - G2_0489
+    - POLY_WATCH
+  examples:
+  - level: 1
+    word_ids:
+    - V6_MORPH_20
+    - V6_家庭_34
+    sentence: I went home.
+    scene_note: 词例频率现场：went 天天见，整块记牢
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: We played football.
+    scene_note: 类型频率现场：-ed 见得多，能套到新动词上
+    supports: claim
+  - level: 2
+    word_ids:
+    - POLY_WATCH
+    sentence: She watched TV.
+    scene_note: 同一图式再复现：watched 的 -ed 不用现想
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_MORPH_21
+    sentence: I saw a bird.
+    scene_note: 高频不规则 saw 与 went 一样靠常见保命
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: went 为什么没有被大家改成 goed？
+    answer: 因为它出现得太多，被整块记牢了——高频就是不规则形式的保命符。
+    hint: 回到机制第 1 节「见得多的先住进来」。
+  relatives:
+  - id: GR-06
+    rel: 同族
+  - id: GR-27
+    rel: 同族
+  - id: GR-17
+    rel: 同族
+  adult:
+    sources:
+    - Nick C. Ellis（2002，《Studies in Second Language Acquisition》24(2)，143–188，DOI 10.1017.S0272263102002024）——接触等级：期刊原文级（DOI 已核）
+    boundary: 频率不是唯一变量——显著性、母语 congruency、教学干预都会改写顺序；低频但高交际价值的形式仍需人为提高复现。
+    disputes: []
+    evidence_grade: 期刊原文级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-20
+  order: 20
+  headline: 语块先于规则：整句先住进来，语法是后来从里面拆出来的
+  headline_kid: 小朋友先是整句整句地学「Can I have...?」「What's this?」，说得多了，才慢慢发现里面藏着可以换零件的机关
+  claim:
+    type: rule
+    statement: Lewis 主张语言由「语法化的词汇」（语块）而非「词汇化的语法」构成；Wray 的公式语研究证明，公式化序列被整块存取、不经语法分析——学习者先整存、后分析，语法图式从语块中被感知出来。
+    evidence:
+    - Michael Lewis《The Lexical Approach》（1993，Language Teaching Publications）p.iv 名言；Alison Wray《Formulaic Language and the Lexicon》（2002，Cambridge University Press）p.9 公式语定义
+    scope: 语块整存不等于拒绝分析：到了需要产出新句子的阶段，必须引导学习者拆块、换件（见 CO-10 的动词岛路径），否则语块会封顶表达能力
+  mechanism:
+  - beat: 整句先住进来
+    text_kid: 小朋友最早说出的英语，是整句整句搬进来的：What's this? 是一整块，不是一个个词拼的。
+    text_adult: Conklin & Schmitt（2008）等实验显示，母语者与学习者对公式语的加工速度显著快于新造句，证明整存整取的心理现实性。
+    visual: 一整块积木被放进仓库，上面印着一整句问话
+    anchors: []
+  - beat: 后来才拆出机关
+    text_kid: 整句说熟了，大脑才发现：原来中间有个格子可以换零件——Can I have water? 换成 Can I have milk？机关就这样被拆出来。
+    text_adult: 从整存到分析是习得的常态路径：语法图式不是先学后用，而是从已存语块中被感知出来（与 CO-12 构式谱系同向）。
+    visual: 积木块被打开，露出中间一个可换件的空格子
+    anchors:
+    - G1_055
+    - G1_052
+  examples:
+  - level: 1
+    word_ids:
+    - G3_Q01
+    sentence: What's this?
+    scene_note: 整块存取的问句，不经逐词拼装
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_055
+    sentence: Can I have some water, please?
+    scene_note: 整块存取的请求句
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_052
+    sentence: Can I have some milk, please?
+    scene_note: 拆件现场：同一个框架，只换 drinks 格子里的词
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: Can I have that book, please?
+    scene_note: 再换一件：框架不变，表达能力开始长
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 小朋友先会整句 "What's this?"，还是先会造这句的语法规则？
+    answer: 先会整句——语块整存先行，语法是后来从里面拆出来的。
+    hint: 回到机制第 1 节「整句先住进来」。
+  relatives:
+  - id: CO-10
+    rel: 同族
+  - id: CO-12
+    rel: 同族
+  - id: GR-16
+    rel: 同族
+  adult:
+    sources:
+    - Michael Lewis《The Lexical Approach》（1993）p.iv；Alison Wray（2002，CUP）p.9——接触等级：原书页码级（二手转引核实）
+    boundary: 语块整存不等于拒绝分析——到了需要产出新句子的阶段，必须引导学习者拆块、换件，否则语块会封顶表达能力。
+    disputes: []
+    evidence_grade: 原书页码级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-21
+  order: 21
+  headline: 语法讲解的及格线：短、准、够用——先过效率与适切两道检查
+  headline_kid: 讲规则像递工具：挑最顺手的、只讲用得上的，讲完马上拿去干活
+  claim:
+    type: rule
+    statement: Thornbury 把语法教学决策拆为 E 因子（效率：economy 简短、ease 易懂、efficacy 有效——须连过注意力、理解、记忆、动机四关）与 A 因子（适切：年龄、水平、班额、需求、兴趣、材料、语境）。这是教师侧的设计检查框架，不是学习规律本身：它规定「怎么教」，不裁定「教什么对」。
+    evidence:
+    - Scott Thornbury《How to Teach Grammar》（1999，Longman "How to Teach" 系列）开篇评判框架
+    scope: 本条为教师/设计层条目（孩子面只作口号呈现）；内容对错由本清单其余各条的出处负责
+  mechanism:
+  - beat: 递工具，不是摆摊
+    text_kid: 讲规则像给人递工具：只递这一件活儿用得上的那把，讲清怎么使，马上让他拿去干活。把整个工具箱倒出来摆摊，谁也记不住。
+    text_adult: E 因子的 efficacy 要求讲解连过注意力、理解、记忆、动机四关； economy 与 ease 约束讲解的体量与说法。
+    visual: 一只手只递出一把扳手，旁边的工具箱合着
+    anchors:
+    - G2_0489
+  - beat: 先看场合再开口
+    text_kid: 同一条规则，讲给谁、在哪儿讲、为什么讲，讲法都不一样：适切检查先看年龄、水平和需求，再决定讲多少。
+    text_adult: A 因子是讲解的场合适配清单（年龄、水平、班额、需求、兴趣、材料、语境），与 E 因子共同构成备课检查表。
+    visual: 一张检查表，格子依次写着：谁听、多大班、为什么学
+    anchors:
+    - V6_日常_1
+  examples:
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: He plays. —— he 后面，动词戴 -s。
+    scene_note: 示范讲解一：一次只递一个变量，讲完即用
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_日常_1
+    sentence: Did you go? —— did 来了，后面用 go。
+    scene_note: 示范讲解二：一句话讲清，马上回到问答里练
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: books 的 -s 在说「不止一本」。
+    scene_note: 示范讲解三：先讲功能（传递什么信息），后讲形式
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0502
+    sentence: It rains. —— it 的动词也戴 -s。
+    scene_note: 示范讲解四：与前例成组复现，不新增负担
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: （给老师）讲一条新规则之前，先过哪两道检查？
+    answer: E 因子（效率：短、易懂、有效）与 A 因子（适切：年龄、水平、需求、语境）。
+    hint: 回到机制第 1、2 节：先过效率，再看场合。
+  relatives:
+  - id: GR-18
+    rel: 同族
+  - id: GR-17
+    rel: 同族
+  adult:
+    sources:
+    - Scott Thornbury《How to Teach Grammar》（1999，Longman）——接触等级：二手系统论述级（经书评与框架转述核实）
+    boundary: E/A 因子是设计检查框架，不是学习规律本身；它规定「怎么教」，不裁定「教什么对」。本条为教师层条目。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（本条为教师设计标准，无学生病例；如后续登记课堂讲解失误案例再补）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-22
+  order: 22
+  headline: 汉语不标的，英语偏要标：冠词、时态、复数、三单 -s 是中国孩子的错误集中区
+  headline_kid: 汉语靠上下文就懂的事，英语非要在词上做个记号；记号越是汉语里没有的，就越容易漏
+  claim:
+    type: tendency
+    statement: 母语迁移发生在系统差异点上：汉语无冠词系统、无时态形态、无名词复数与三单一致标记，英语这些强制标记位置正是中国学习者错误的统计高发区（冠词错误居首，时态形式、复数、三单 -s、介词次之）。
+    evidence:
+    - 连淑能《英汉对比研究》（1993）形合/意合与形态差异框架；中国学生自由写作语料研究（冠词错误居首；domains.yaml 纲领 basis 引 ERIC EJ1075686）
+    scope: 迁移是错误来源之一，不是全部：过度泛化（如 *goed）等语内错误与迁移并存，教学诊断时两类要分开
+    exceptions:
+    - text: '*goed 式过度泛化错误来自学习者系统内部，与汉语迁移无关（见 GR-16）'
+      word_ids:
+      - V6_MORPH_20
+  mechanism:
+  - beat: 记号地图
+    text_kid: 把英语必须做记号的地方画成一张地图：a/the、过去式、复数、三单 -s——汉语里这些地方是空白，所以最容易漏。
+    text_adult: 错误分布与中英形态系统差异点逐项对应，且随水平提升高发区收窄的顺序与标记的有无标记状态一致，排除「普遍粗心」解释。
+    visual: 一张地图，四个位置亮着红灯：冠词、时态、复数、三单
+    anchors:
+    - G1_015
+    - G2_0489
+  - beat: 漏的不是态度，是母语没这个格子
+    text_kid: 孩子漏掉 a，不是不认真：他的母语里根本没有「冠词」这个格子，要先在脑子里新开一个格子，记号才有地方放。
+    text_adult: 迁移的机制是系统差：目标语强制标记而母语无对应范畴时，学习者默认按母语的无标记方式产出（与 GR-25 标记性预测互证）。
+    visual: 一个空的格子被画出来，标着「新开：冠词」
+    anchors:
+    - G1_002
+    - G1_029
+  examples:
+  - level: 1
+    word_ids:
+    - G1_015
+    sentence: I have a dog.
+    scene_note: 集中区现场一：冠词 a 要标出来
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: He plays football.
+    scene_note: 集中区现场二：三单 -s 要标出来
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    - G1_029
+    sentence: I have three books.
+    scene_note: 集中区现场三：复数 -s 要标出来
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: She played football yesterday.
+    scene_note: 集中区现场四：过去式 -ed 要标出来
+    supports: claim
+  error_cases:
+  - wrong: I have dog.
+    right: I have a dog.
+    error_type: 母语迁移-冠词缺失
+    source_type: 真实语料错型
+    diagnosis: 清单条目登记：中国学生自由写作语料研究中冠词错误居首（domains.yaml 纲领 basis 引 ERIC EJ1075686）；汉语无冠词系统，漏标是系统差而非粗心。回补机制第 1 节记号地图。
+  quiz:
+  - q: 中国孩子英语错误里，哪一类排第一？A. 冠词 B. 语序
+    answer: A. 冠词——汉语没有冠词系统，它是最大的系统差异点。
+    hint: 回到机制第 1 节「记号地图」。
+  relatives:
+  - id: GR-25
+    rel: 同族
+  - id: GR-16
+    rel: 对照
+  - id: GR-15
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 连淑能《英汉对比研究》（1993）；中国学生自由写作语料研究（见 domains.yaml basis，ERIC EJ1075686）——接触等级：二手系统论述级
+    boundary: 迁移是错误来源之一，不是全部——过度泛化等 intralingual 错误与迁移并存（见 GR-16），教学诊断时两类要分开。
+    disputes: []
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-23
+  order: 23
+  headline: 输出把「听懂」逼成「会用」：说不出来，才知道自己哪里没真会
+  headline_kid: 光听懂像看别人游泳；自己开口说，才发现哪个动作还不会——说，就是检查自己最好的办法
+  claim:
+    type: tendency
+    statement: Swain 的输出假说：可理解输入不充分；被推动进行准确产出（pushed output）时，学习者被迫从语义加工切换到句法加工，从而注意差距、检验假设并进行元语言反思。
+    evidence:
+    - Merrill Swain（1985，载 Gass & Madden 编《Input in Second Language Acquisition》，Newbury House，pp.235–253）——证据来自加拿大法语沉浸学生「理解近母语、产出语法长期不准」；中国本土对应理论：文秋芳输出驱动假设（2008）与产出导向法 POA（2015，《外语教学与研究》）
+    scope: POA 原案针对中高级学习者（英语专业/大学英语）：用于小学必须降阶为短句产出与情境表演，不得照搬其评价体系；输出须有输入促成配套，硬逼开口无效
+    exceptions:
+    - text: 无输入配套的硬逼开口无效：输出必须与输入促成配套使用
+      word_ids:
+      - G3_0625
+  mechanism:
+  - beat: 下水才知道
+    text_kid: 看别人游泳看一百遍，自己第一次下水，还是会呛。开口说英语也一样：一说，才知道哪个形式自己其实不会。
+    text_adult: 沉浸项目数十年的追踪数据构成对「输入充分论」最有力的反例群：理解可达近母语，产出语法长期不准。
+    visual: 岸上看游泳的孩子跳进水里，水花里冒出几个问号
+    anchors:
+    - G4_0415
+  - beat: 说，逼着脑子换挡
+    text_kid: 听的时候，脑子猜个大概就能懂；说的时候，每个词尾都要自己做出来——脑子被逼着从「猜意思」换到「拼形式」。
+    text_adult: pushed output 的三功能：注意差距、检验假设、元语言反思；与 GR-17 的注意差距互挂。
+    visual: 一个齿轮从「听」的位置咔哒一声换到「说」的位置
+    anchors:
+    - G2_0489
+    - G3_130
+  examples:
+  - level: 1
+    word_ids:
+    - G4_0415
+    sentence: What did you do yesterday?
+    scene_note: 产出任务一：被问到昨天，必须自己组装过去式
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_MORPH_20
+    - G2_0489
+    - G3_130
+    sentence: I went to the park. I played with my friends.
+    scene_note: 产出样本：讲述里 went、played 都要自己做出来
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_家庭_34
+    sentence: I went home and did my homework.
+    scene_note: 产出任务二：放学后的一天，用短句讲完
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_082
+    sentence: I saw a tiger at the zoo.
+    scene_note: 产出样本：动物园之行，saw 要自己选出来
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 为什么光听懂还不够，非要开口说？
+    answer: 因为产出逼着大脑做句法加工：说不出来的地方，正是没真会的地方。
+    hint: 回到机制第 2 节「说，逼着脑子换挡」。
+  relatives:
+  - id: GR-17
+    rel: 同族
+  - id: GR-18
+    rel: 同族
+  pain_points:
+  - 说不出
+  config_gates:
+    B: 本条涉及 POA：呈现与练习要求受裁定 B 档位门控（现行默认 B1——只收「先试产出暴露缺口、再给输入」的排序思想，完整流程不进本 App）；开关只改呈现，不改数据本体
+  adult:
+    sources:
+    - Merrill Swain（1985，Newbury House，pp.235–253）；文秋芳（2008 输出驱动假设；2015 POA 理论体系，《外语教学与研究》）——接触等级：二手系统论述级
+    boundary: POA 原案针对中高级学习者，用于小学必须降阶为短句产出与情境表演，不得照搬其评价体系；输出须有输入促成配套，硬逼开口无效。
+    disputes:
+    - 与 Krashen 输入假说直接对立（Krashen 主张输出对习得作用有限）；本项目取 Swain/文秋芳口径并记录分歧。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+    - 裁定 B 未拍板：本条呈现口径按默认档 B1 顶行（见 config_gates）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-24
+  order: 24
+  headline: 语法长得像它要说的事：象似性三原则
+  headline_kid: 好多语法是在「画画」：事情先发生的先说出口，心里越亲的人在话里挨得越近，东西变多了词也跟着变长
+  claim:
+    type: tendency
+    statement: 语法形式常常模仿经验结构（图式象似）：语序象似——先发生的事先说；距离象似——概念关系越近，形式贴得越近；数量象似——内容越多，形式越长。象似性是倾向，与经济原则长期竞争；任意性仍是语言的基本盘，象似只在结构层（语序、距离、数量）显著，不扩大到词形层。
+    evidence:
+    - John Haiman（主编）《Iconicity in Syntax》（1985，John Benjamins，ISBN 9789027228727）：含 Haiman 图式象似纲领文、James Tai「Temporal Sequence and Chinese Word Order」（时间顺序原则）、Givón 数量象似与同构性论述
+    scope: 本条按「结构层有据、词形层不适用」的收窄版立条；小学呈现以三原则的直觉为主
+    exceptions:
+    - text: 词形层是任意的：dog 这个词形不「像」狗，象似不解释单个词形
+      word_ids:
+      - G1_015
+    - text: 语言史中大量缩略与不规则化是经济原则压过象似的结果（如 went 的合形）
+      word_ids:
+      - V6_MORPH_20
+  mechanism:
+  - beat: 先发生的先说
+    text_kid: 画画要按事情发生的顺序画：先洗手，再吃饭。说话也一样，「先洗手再吃饭」换个顺序，意思就变了。
+    text_adult: 语序象似源于叙述的默认时序映射；Tai 以时间顺序原则证明汉语语序同样受此约束——这是本条在中国课堂最现成的本地证据。
+    visual: 三格连环画：洗手→坐下→吃饭，箭头按顺序连接
+    anchors:
+    - V6_身体_42
+    - G3_118
+    - V6_日常_15
+  - beat: 越亲贴得越近，越多长得越长
+    text_kid: my friend 比 a friend of mine 贴得更近，读起来也更亲；一个 apple、两个 apples，东西多了，词也跟着多出一个 -s。
+    text_adult: 距离象似：概念距离≈形式距离（kill 直接致使、形式最紧 vs cause to die 间接致使、形式拉开是教科书例）；数量象似：形式量与意义量同向增减。
+    visual: 左边 my friend 两个人挨在一起；右边一个苹果变两个，词尾长出 -s
+    anchors:
+    - G3_130
+    - G1_037
+  examples:
+  - level: 1
+    word_ids:
+    - V6_身体_42
+    - G3_118
+    - V6_日常_15
+    sentence: First wash your hands, then eat.
+    scene_note: 语序象似：动作的顺序就是说话的顺序
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_037
+    sentence: I have two apples.
+    scene_note: 数量象似：东西变多，词变长
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_130
+    sentence: This is my friend.
+    scene_note: 距离象似：贴得近，关系亲
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: I came, I saw, I took the book.
+    scene_note: 语序象似三段：先来、再看、后拿（对照 Haiman 纲领的叙述时序）
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 「一个 apple、两个 apples」多出的 -s 说明哪条象似？A. 语序象似 B. 数量象似
+    answer: B——内容变多，形式变长。
+    hint: 回到机制第 2 节「越亲贴得越近，越多长得越长」。
+  relatives:
+  - id: GR-13
+    rel: 同族
+  - id: GR-26
+    rel: 同族
+  - id: GR-27
+    rel: 同族
+  - id: GR-05
+    rel: 对照
+  adult:
+    sources:
+    - John Haiman（主编）《Iconicity in Syntax》（1985，John Benjamins）——接触等级：目录+书评级（出版社书目与目录已核实，各章正文未打开；个别例子的归属按学界通行的二手系统论述著录）；Givón 章节为二手论述级
+    boundary: 象似性是倾向：与经济原则（省力、缩略）长期竞争；任意性仍是语言的基本盘，象似只在结构层显著，不可扩大为「每个词形都有道理」。
+    disputes:
+    - 形式主义传统（以生成语法为代表）把任意性设为语言的设计特征，对象似解释持保留态度（Newmeyer 在《Fuzzy Grammar》读本中为范畴离散性辩护）；象似阵营内部亦有「事后合理化还是真实心理约束」之争。本条按收窄版立条，分歧登记在案。
+    evidence_grade: 目录+书评级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-25
+  order: 25
+  headline: 难点可以预测：标记性与「母语没有、目标语偏有」的差值
+  headline_kid: 有的语法点是出厂「标配」，有的要「额外加装」。汉语里不用加装的小零件，到了英语全要加装——这些地方最容易漏、最要多练
+  claim:
+    type: tendency
+    statement: Eckman 的标记性差异假说（MDH，1977）：目标语中凡与母语不同、且相对母语更有标记的区域，必难，且难度与标记度差成正比；不同但不更有标记的区域，不难。汉语没有冠词系统、没有时态形态标记，这些位置正是英语对中国学习者的高难区——难点分布先验可画。
+    evidence:
+    - Fred R. Eckman, "Markedness and the Contrastive Analysis Hypothesis"，《Language Learning》27(2)（1977）：315–330，DOI 10.1111/j.1467-1770.1977.tb00124.x——假说三条经多篇学术综述逐字引录核实
+    scope: MDH 的预测在音系与形态层最稳，在句法高层与语篇层变弱；本条只在「各标记标准一致指向」的区域（冠词、形态标记）作强预言
+    exceptions:
+    - text: 过度泛化等语内错误（如 *goed）不在 MDH 解释范围内（见 GR-16）
+      word_ids:
+      - V6_MORPH_20
+    - text: 不同但不更有标记的区域，按假说 (c) 不难（如部分语序细节可正迁移或短期修正）
+      word_ids:
+      - G2_0492
+      - G1_002
+  mechanism:
+  - beat: 标配和加装
+    text_kid: 语法点分两种：出厂就有的「标配」，和要额外装上的「加装件」。汉语的出厂配置里没有冠词、时态尾巴这些零件，英语却每件都要装。
+    text_adult: 标记性的类型学判据是蕴含关系：若有 A 必先有 B，则 A 比 B 更有标记（Eckman 1977 的原始定义）；概念源流为布拉格学派 Trubetzkoy（1939）与 Jakobson（1941），经类型学改造后由 Eckman 引入二语习得。
+    visual: 两辆车并排：一辆标着「汉语配置」，少了几个零件位；一辆标着「英语配置」，零件位全装满
+    anchors:
+    - G1_014
+  - beat: 难点先画地图
+    text_kid: 不用等学生错了才知道哪儿难：把「汉语没有、英语偏有」的零件先圈出来，那就是要多练的地方。
+    text_adult: MDH 把对比分析从「不同即难」修正为「不同×更有标记才难」并给出程度预言；其预测与 GR-22 登记的错误集中区（冠词居首，时态、复数、三单次之）逐项吻合：GR-22 是现象地图，本条是成因总机制。
+    visual: 一张地图，「冠词」「时态」「复数」三处被红圈圈住
+    anchors:
+    - G2_0489
+    - G1_002
+  examples:
+  - level: 1
+    word_ids:
+    - G1_014
+    sentence: I see a cat. The cat is black.
+    scene_note: 高难区现场：冠词 a/the 汉语里没有对应零件
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: He plays football.
+    scene_note: 高难区现场：三单 -s 是汉语没有的加装件
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0492
+    - G1_002
+    sentence: She reads a book.
+    scene_note: 对照：语序细节与汉语相近，可正迁移，不同但不更有标记
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: I have three books.
+    scene_note: 高难区现场：复数标记汉语不强制，加装易漏
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 汉语里没有冠词，所以冠词对中国孩子是___区。A. 高难 B. 不难
+    answer: A. 高难——与母语不同且更有标记，正是 MDH 预测的难点。
+    hint: 回到机制第 1 节「标配和加装」。
+  relatives:
+  - id: GR-22
+    rel: 同族
+  - id: GR-16
+    rel: 对照
+  - id: GR-15
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Fred R. Eckman（1977，《Language Learning》27(2)，DOI 10.1111/j.1467-1770.1977.tb00124.x）——接触等级：二手论述级（原刊页未打开，假说三条经三处独立学术来源互证）；标记性源流 Trubetzkoy（1939）、Jakobson（1941）经 Eckman 1996 综述转述
+    boundary: MDH 在音系与形态层最稳，句法高层与语篇层变弱；标记性度量本身有多套标准，标准冲突时预测随之含糊。难点≠错误全貌：语内错误不在其解释范围。
+    disputes:
+    - 标记性概念被批为「伞概念」（Battistella 对其内部不一致的系统批评为代表）；UG 阵营倾向把难点归因于参数重设而非标记度本身。MDH 与旧对比分析假说的关系是「修正而非替代」，不可简化为「越怪越难」。
+    evidence_grade: 二手论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases；本条为预测机制条，病例集中在 GR-22）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-26
+  order: 26
+  headline: 英语把语法搬了家：从屈折综合到语序分析的总叙事
+  headline_kid: 小尾巴一个个磨没了，语法只好搬家：搬进词排队的顺序里，搬进 do、will 这样的小帮手里，搬进 of、to 这样的小介词里
+  claim:
+    type: etymology
+    statement: 古英语是综合语：格、性、时态都写在词尾的屈折里，词序相对自由；一千年间词尾在非重读音节里磨平、脱落（驱动力含语音弱化、与古诺斯语接触者的相互磨平、诺曼法语的叠加冲击），现代英语成为分析语：语法关系改由固定语序、助动词、介词承担。本条是 GR-02、GR-03、GR-04 的共同出生证。
+    evidence:
+    - Otto Jespersen《Growth and Structure of the English Language》（1905，Teubner）把综合→分析轨迹作为英语史主线叙事提出；现代定版叙事：Albert C. Baugh & Thomas Cable《A History of the English Language》（第 6 版 2013，Routledge）的屈折齐平与脱落章节
+    source: 总叙事：屈折综合 → 语序分析的历史搬家（Jespersen 叙事框架 + Baugh & Cable 定版描写；Jespersen 的「进步」评价不收）
+    scope: 「搬家」是教学隐喻，不是机制本身：分析化不等于变简单；屈折也未归零（残余形态另有专条盘点，见 GR-29）
+  mechanism:
+  - beat: 老房子：语法住在词尾里
+    text_kid: 很久以前，英语的语法藏在词的小尾巴里：尾巴一变，意思就变，词排在哪儿倒没那么要紧。
+    text_adult: 古英语文本的词序自由度与现代英语的刚性 SVO 构成直接对照证据；屈折流失与分析化是中古英语最深刻的结构事件。
+    visual: 一座老房子，墙上挂满词尾零件，词们在屋里随便站
+    anchors: []
+  - beat: 新房子：三样东西当家
+    text_kid: 尾巴磨没了，语法搬了家：谁站在前面（语序）、帮手是谁（do、will 这些小词）、小介词别丢（of、to）——今天学英语，盯紧这三样。
+    text_adult: 语法功能的系统性转手：格关系→语序+介词、时态体貌→助动词系统膨胀、一致关系→几乎消失；介词在本清单中权重异常之高，正因它是屈折搬家后的主要承接者之一。
+    visual: 新房子里三根柱子亮着：语序、助动词、介词
+    anchors:
+    - V6_日常_1
+    - G1_015
+    - G1_014
+  examples:
+  - level: 1
+    word_ids:
+    - G1_015
+    - V6_日常_17
+    - G1_014
+    sentence: The dog sees the cat.
+    scene_note: 新房子现场：语序决定谁看谁，换位置就换意思
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_014
+    - V6_日常_17
+    - G1_015
+    sentence: The cat sees the dog.
+    scene_note: 位置一换，故事反过来——老房子的自由词序已经不在了
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_1
+    sentence: Do you go to school?
+    scene_note: 小帮手当家：do 扛着提问（见 GR-03）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_1
+    sentence: I will go home.
+    scene_note: 小帮手当家：will 扛着将来（见 GR-08）
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 词尾磨没以后，英语的语法主要搬去了哪三处？
+    answer: 固定语序、助动词、介词。
+    hint: 回到机制第 2 节「新房子：三样东西当家」。
+  relatives:
+  - id: GR-02
+    rel: 同族
+  - id: GR-03
+    rel: 同族
+  - id: GR-04
+    rel: 同族
+  - id: GR-29
+    rel: 同族
+  adult:
+    sources:
+    - Otto Jespersen《Growth and Structure of the English Language》（1905）；Baugh & Cable《A History of the English Language》第 6 版（2013）——接触等级：均为二手论述级（原书未打开，经语言学史专题与转述核实）
+    boundary: 分析化不等于「变简单」：语序刚性本身是新的约束，助动词系统造出了新的复杂性；把总叙事教成「英语越来越简单」即越界。
+    disputes:
+    - 'Jespersen 的价值判断（分析化=进步）已被现代语言学整体拒绝：Aitchison《Language Change: Progress or Decay?》（第 3 版 2001）梳理三态度，学界定版取中立论；Bally 早指出综合↔分析方向可逆转（法语将来时由迂回式重新合成）。本条收 Jespersen 的叙事框架，不收他的评价。'
+    evidence_grade: 二手论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-27
+  order: 27
+  headline: 语法是概率，不是开关：梯度观与概率语法
+  headline_kid: 很多英语说法不是「对或错」的开关，是「顺不顺耳」的滑杆：两种说法都对，但母语者平时多半说其中一种
+  claim:
+    type: tendency
+    statement: 语法规律在很大一片区域里是概率倾向而非二值开关：合法变体之间的选择可被多因素概率模型高精度预测（Bresnan 对与格交替的预测达 94%）；范畴成员资格与可接受性判断也是连续梯度（Aarts）。概率层只覆盖「多变体共存」与「边缘成员」区域，硬性范畴区域不在此列。
+    evidence:
+    - 'Joan Bresnan, "Is syntactic knowledge probabilistic?"（2007，pp.77–96）及 Bresnan, Cueni, Nikitina & Baayen, "Predicting the dative alternation"（2007，pp.69–94）——94% 预测率经 Bresnan 本人会议摘要原文核实；Bresnan & Hay, 《Lingua》118(2)（2008）：245–259（全文已打开）；Bas Aarts, 《Studies in Language》28(1)（2004）；Aarts 等编《Fuzzy Grammar: A Reader》（2004，OUP）'
+    scope: 小学段仍先教范畴与默认项，梯度观是教师与高阶学习者的校准器；不可把本条读成「没有对错」
+    exceptions:
+    - text: 语序骨架、一致标记的有无等大片语法是硬性的，没有梯度（如主谓一致标记不可半标）
+      word_ids:
+      - G2_0489
+    - text: 可接受性判断的梯度部分来自加工难度等表现因素，不能全数记到语法表征头上
+      word_ids:
+      - G1_002
+  mechanism:
+  - beat: 滑杆，不是开关
+    text_kid: give him the book 和 give the book to him 都对。母语者选哪个，不靠对错，靠「平时多半这么说」——像调音量，滑杆停在哪儿有规律可循。
+    text_adult: 概率性选择受动词义类、代词性、定指性、生命性、成分长短、话语可及性等多因素联合加权；模型概率与母语者的自然度评分对应，说明概率结构是说话人知识的一部分。
+    visual: 一根滑杆，左边 give him the book，右边 give the book to him，滑块停在常听的那侧
+    anchors:
+    - V6_日常_8
+    - G1_002
+  - beat: 两种梯度别混
+    text_kid: 一种是「选哪个说法」的概率，一种是「算不算这一类」的程度：utter 只能站在名词前面，是「半个」形容词——成员资格也有深浅。
+    text_adult: Aarts 区分子类梯度（类内典型性不一）与交叉梯度（横跨两类边界）；与 GR-19 的关系：GR-19 讲这种概率知识如何被频率习得，本条讲习得完成的语法本身即概率与梯度的（表征主张）。
+    visual: 一排形容词站在深浅不一的水里，水最深的在中间
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_8
+    - G1_002
+    sentence: I gave him the book.
+    scene_note: 合法变体一：给字句的双宾式
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_日常_8
+    - G1_002
+    sentence: I gave the book to him.
+    scene_note: 合法变体二：同一意思的介词式，两种都对、概率不同
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_8
+    sentence: She gave me an apple.
+    scene_note: 高频选择现场：代词宾语时双宾式更常被选中
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: He gave the book to the new student.
+    scene_note: 宾语变长变新时，介词式的概率上升（多因素加权）
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: '"I gave him the book" 和 "I gave the book to him"，哪个是错的？'
+    answer: 都不错——这是合法选项之间的概率选择，不是开关对错。
+    hint: 回到机制第 1 节「滑杆，不是开关」。
+  relatives:
+  - id: GR-19
+    rel: 前置
+  - id: GR-31
+    rel: 同族
+  - id: GR-10
+    rel: 同族
+  adult:
+    sources:
+    - Bresnan（2007，两篇与格交替研究）；Bresnan & Hay《Lingua》118(2)（2008，章节预览级/全文级）；Aarts（2004）与《Fuzzy Grammar》（2004，OUP，目录+书评级）
+    boundary: 梯度不吞没范畴：仍有大片语法是硬性的；可接受性判断的梯度部分来自加工难度等表现因素，不能全数记到语法表征头上。教学上不可把本条读成「没有对错」。
+    disputes:
+    - 判断梯度的来源之争：Schütze《The Empirical Base of Linguistics》（1996）系统质疑梯度判断的证据效力；Newmeyer 在《Fuzzy Grammar》中为范畴离散性辩护；概率是 competence 本身还是 performance，至今未决——本条登记为「表征层未决、教学先用其校准功能」。
+    evidence_grade: 章节预览级与二手论述级混合（逐项见 sources）
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-28
+  order: 28
+  headline: 不规则复数不住单间，住家族宿舍：零复数、变音、-en、外来复数，各是一小家
+  headline_kid: 大部分词变复数加 -s，但有几个小家族不走大路：认出它是哪家人，就知道它的复数怎么变
+  claim:
+    type: rule
+    statement: 不规则复数是古英语与外来借词留下的若干封闭小类：①零复数（sheep、deer、fish 等单复数同形）；②元音变音——全英语只剩七个名词（man、woman、foot、tooth、goose、mouse、louse）及其复合词；③-en 家族（ox/oxen，及双重标记化石 children、brethren）；④-f 浊化小家族（knife/knives 等，成员资格不齐，半规则）；⑤外来复数（拉丁 -us→-i、-um→-a，希腊 -is→-es、-on→-a，双形并立按语域分工）；⑥只有复数（scissors、trousers 等，计数靠 a pair of）。家族全是封闭类，只收老成员，新词一律走 -s。
+    evidence:
+    - 分类骨架为英语参考语法与大学形态学课程的通行处理（零复数、变音七词、-en 三词、外来复数的语域分工、pluralia tantum 五分法），经多份大学课程材料与语法综述交叉印证；变音七词与 -en 三词的口径经 v5 回写三处独立来源（LSGSWE 第 4 章教学单元、形态学讲义、Huddleston & Pullum 学生版讲义）清单一致互证
+    scope: 计数约定：变音七词不计 titmouse/dormouse 等复合词与古体 kine（否则旧式语法书作九词）；-en 实用成员仅 oxen/children（brethren 仅宗教/社团语域）；教学时家族名单以高频成员为限
+  mechanism:
+  - beat: 六个小宿舍
+    text_kid: 不规则复数不住单间，住六个小宿舍：不变样的、换元音的、用 -en 的、-f 变声的、外国来的、只有复数的。进门先认宿舍。
+    text_adult: 与 GR-06（不规则过去式家族）完全同构：封闭小类靠高频保命（GR-19），新词不再入住。儿童与二语者的错误形态（家族外误用 -s 与家族内过度类推并存）证明学习者大脑同样按类组织这些形式。
+    visual: 一栋宿舍楼，六个房间各挂一块牌子
+    anchors:
+    - G4_194
+    - G3_0668
+  - beat: 外国宿舍的双门牌
+    text_kid: cactus 的复数 cacti 和 cactuses 都在词典里：学术场合多用外国式，日常多用 -s 式——不是谁错，是场合分工。
+    text_adult: 词典对外来复数双形的并列著录是语域分工说的一手证据；data 在通用语域日益作不可数单数处理，与学术语域的复数处理并存。
+    visual: 一扇门上挂两块门牌：一块写着 cacti（学术），一块写着 cactuses（日常）
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G4_194
+    sentence: Two sheep are eating grass.
+    scene_note: 零复数宿舍：一只两只一个样
+    supports: claim
+  - level: 1
+    word_ids:
+    - G3_0659
+    sentence: Wash your feet, please.
+    scene_note: 变音宿舍：foot→feet（feet 在词库为变形条目）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0668
+    sentence: The children are playing.
+    scene_note: -en 宿舍：children 是双重标记的化石
+    supports: claim
+  - level: 2
+    word_ids:
+    - G5_0664
+    sentence: I see two mice.
+    scene_note: 变音宿舍：mouse→mice（mice 在词库为变形条目）
+    supports: claim
+  error_cases:
+  - wrong: There are three childs in the park.
+    right: There are three children in the park.
+    error_type: 家族外误用规则
+    source_type: 教学文献登记错型
+    diagnosis: 清单条目登记：儿童与二语者的错误形态正是「家族外误用 -s」（*sheeps、*childs、*foots）与「家族内过度类推」并存。回补机制第 1 节：先认宿舍。
+  quiz:
+  - q: foot 的复数是哪家宿舍的？A. 零复数 B. 变音
+    answer: B——foot→feet 是元音变音家族（七词之一）。
+    hint: 回到机制第 1 节「六个小宿舍」。
+  relatives:
+  - id: GR-06
+    rel: 同族
+  - id: GR-19
+    rel: 同族
+  - id: GR-29
+    rel: 同族
+  pain_points:
+  - 记不住
+  - 错不完
+  adult:
+    sources:
+    - 参考语法与形态学教学传统通行分类；v5 回写销项：LSGSWE 第 4 章教学单元、形态学讲义、Huddleston & Pullum 学生版讲义三处互证——接触等级：二手系统论述级
+    boundary: 家族全是封闭类，名单有限、可穷尽，这正是它可教的原因。变动带如实说：fish 指种类时可 fishes；data 的单复数地位仍在变动；hoof、scarf 等 -f 家族成员两可。
+    disputes:
+    - 外来复数的「归化尺度」是用法指南界的长年争议：严格派主张学术写作必须用外来式，描写派（主流词典立场）登记双形与语域分工即止——清单取描写派口径。连带辟谣：octopus 源自希腊语，通行复数是 octopuses，octopi 是误套拉丁规则的产物。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - Quirk et al.《A Comprehensive Grammar》原书精确页码待核（现有网络扫描为不可用的劣质 PDF）；出处建议改挂 LSGSWE 第 4 章
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-29
+  order: 29
+  headline: 英语的屈折只剩八个词尾：一张小卡片装下全部「变形负担」
+  headline_kid: 英语词要「变身」的地方全部加起来只有八个小尾巴：一张卡片就写完了——英语把力气都花在词的顺序上，不花在词尾上
+  claim:
+    type: rule
+    statement: 现代英语的屈折只剩八个功能位（Yule 2010 通行盘点）：名词——复数 -s、所有格 -'s；动词——三单 -s、过去式 -ed、过去分词 -en、现在分词 -ing；形容词——比较级 -er、最高级 -est；且八个全是后缀。这是分析语化（GR-26）在形态层的点名清单。
+    evidence:
+    - George Yule《The Study of Language》（Cambridge University Press，第 4 版 2010，pp.69–70）明文 "English has only eight inflectional morphemes"；Fromkin et al.《An Introduction to Language》的八项清单逐项一致（经学术期刊引文核对）
+    scope: 「八个」按功能位计数：过去分词位以 -en（eaten）为代表形，绝大多数动词该位用 -ed（finished）——同一功能、两种形状；若按形状合并计算则为七个，引用时须声明口径。八个只数屈折，不含派生词缀（派生词缀见 V-20）
+  mechanism:
+  - beat: 一张卡片点名
+    text_kid: 把英语全部词尾请到一张卡片上点名：复数、所有格、三单、过去、完了形、进行、比较、最高——正好八个，一个不多。
+    text_adult: 跨语言对照即支撑：俄语、德语保留数十个屈折词尾，英语的八个在类型学上属极简端；语法负载随之转移到语序、助动词与介词。
+    visual: 一张小卡片，八个词尾排成两列打勾点名
+    anchors:
+    - G1_014
+    - G2_0489
+  - beat: 少而必标
+    text_kid: 词尾虽少，却个个必标：中国孩子漏的，恰好就是这八个里的几个——三单 -s、过去 -ed、复数 -s，漏一个就露馅。
+    text_adult: 中国学习者的屈折错误集中在这八个中的几个（见 GR-22）——「少而必标」正是迁移难点所在，反证这八个是英语形态教学的完整靶心。
+    visual: 卡片上三个词尾被红圈圈住：三单、过去、复数
+    anchors:
+    - G2_0489
+    - G2_068
+  examples:
+  - level: 1
+    word_ids:
+    - G1_014
+    - G2_0489
+    sentence: Two cats are playing.
+    scene_note: 一张句子里点到两个：复数 -s、进行 -ing
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0489
+    sentence: She played football yesterday.
+    scene_note: 过去式 -ed 在岗
+    supports: claim
+  - level: 2
+    word_ids:
+    - G6_0576
+    - V6_MORPH_65
+    sentence: This box is bigger. That one is the biggest.
+    scene_note: 比较级 -er、最高级 -est 在岗
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: The dog's book is here.
+    scene_note: 所有格 's 在岗（演示用：小狗的图画书）
+    supports: claim
+  error_cases:
+  - wrong: He play football.
+    right: He plays football.
+    error_type: 屈折遗漏-三单
+    source_type: 教学文献登记错型
+    diagnosis: 清单条目登记：中国学习者的屈折错误恰集中在这八个中的几个（三单 -s、过去式 -ed、复数 -s 的遗漏，见 GR-22）。回补机制第 2 节「少而必标」。
+  quiz:
+  - q: 英语的屈折词尾一共有几个功能位？
+    answer: 八个：名词两个、动词四个、形容词两个。
+    hint: 回到机制第 1 节「一张卡片点名」。
+  relatives:
+  - id: GR-26
+    rel: 前置
+  - id: GR-04
+    rel: 同族
+  - id: GR-05
+    rel: 同族
+  - id: GR-13
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - George Yule《The Study of Language》第 4 版（2010，CUP，pp.69–70）；Fromkin et al.《An Introduction to Language》——接触等级：章节预览级（Yule 原书形态学章 pp.67–70 经原文转载核对；Fromkin 为二手引文印证）
+    boundary: 计数口径必须标注（功能位 vs 形状，见 claim 范围）；八个只数屈折，不含派生词缀。
+    disputes:
+    - 所有格 's 的身份有真分歧：传统语法（Yule 清单）作名词屈折词尾；Huddleston & Pullum《CGEL》分析其附着于整个名词短语末端，性质更接近附着成分。分歧不影响「功能位共八个」的盘点结论，影响的是教成「词的变形」还是「短语的挂签」（与 GR-13 接续）。
+    evidence_grade: 章节预览级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-30
+  order: 30
+  headline: 关系从句先分「认人」还是「补一句」：限制性从句负责认出是哪一个，非限制性只是补充情报，逗号就是分界牌
+  headline_kid: 一种是「在一群人里指出是哪一个」，一种是「已经知道是谁，再多说一句他的事」——指人的紧贴着不打逗号，补一句的要用逗号隔开
+  claim:
+    type: rule
+    statement: 关系从句的系统由三组选择构成：(1) 功能——限制性从句把所指缩小到唯一可认（删掉就不知道说的是哪个），非限制性从句只追加信息（删掉所指不变，书写上必须用逗号隔开）；(2) 关系词——that 只能进限制性从句，which 两类都可，指人用 who（正式宾格 whom），whose 表所属且人和物都可用、不能被 that 替代；(3) 零关系词——仅限限制性从句中关系词作宾语时可省，作主语、非限制性、介词前置时均不可省。
+    evidence:
+    - Huddleston & Pullum《CGEL》（2002）第 12 章相对从句的定版区分（限制性/非限制性、关系词系统、零关系化仅限限制性非主语位置），经 "English relative clauses" 词条的系统转述核实
+    scope: 小学呈现以「认人 vs 补一句」的二分与逗号纪律为主干，关系词全表与零关系词细则按顺序后置
+  mechanism:
+  - beat: 先分活儿：认人还是补一句
+    text_kid: 给名词挂小句子前，先问它干哪种活：帮听话人认出「是哪一个」，还是已经认出来了、再补一句他的事。
+    text_adult: 功能选择决定后面的一切：逗号打不打、that 能不能用、关系词能不能省，全跟着功能走。
+    visual: 一台照相机对准人群：一个人的脸被框住（认人），另一个人旁边浮出一个小气泡（补一句）
+    anchors:
+    - G3_134
+    - G1_007
+  - beat: 逗号是分界牌
+    text_kid: 补一句的那种，必须用逗号把小句子隔开；指人的那种紧贴着名词，中间什么都不放。逗号漏了，补的话就会被听成认人的话。
+    text_adult: 非限制性从句的逗号是义务性的：漏逗号是本条最高频的书写错误。that 的禁区、whose 的不可替代、零关系词的三个禁区（主语位、非限制性、介词前置）都是形式档案细则。
+    visual: 两个名词短语并排：一个逗号牌插在补句型中间，认人型的牌子写着「不许插」
+    anchors:
+    - G1_043
+    - G1_034
+    - G1_002
+    - G2_0492
+  examples:
+  - level: 1
+    word_ids:
+    - G3_134
+    - G1_007
+    - G4_0415
+    sentence: The man who came yesterday is my teacher.
+    scene_note: 认人型：没有这句，就不知道是哪个男人
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_043
+    - G1_034
+    sentence: My car, which is red, is new.
+    scene_note: 补句型：车已认明，补一句颜色，逗号隔开、不用 that
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    - G2_0492
+    sentence: The book I read is good.
+    scene_note: 零关系词：read 的宾语位置，that 可以省
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_134
+    sentence: The man who called is my uncle.
+    scene_note: 不可省现场：who 作主语，删不得
+    supports: claim
+  error_cases:
+  - wrong: My car, that is red, is new.
+    right: My car, which is red, is new.
+    error_type: 关系词误用-that 进非限制性
+    source_type: 条目成人层登记的事故例
+    diagnosis: 清单机制栏明示：that 只能进限制性从句，「*My car, that is red… 不成立」。回补机制第 1 节：先看它是补一句的活儿。
+  quiz:
+  - q: 「补一句」的那种从句，能用 that 开头吗？
+    answer: 不能。非限制性从句不用 that，要用 who/which，还要用逗号隔开。
+    hint: 回到机制第 1 节「先分活儿：认人还是补一句」。
+  relatives:
+  - id: GR-45
+    rel: 同族
+  - id: GR-34
+    rel: 同族
+  pain_points:
+  - 错不完
+  - 写不长
+  adult:
+    sources:
+    - Huddleston & Pullum《CGEL》（2002）第 12 章（经词条系统转述）——接触等级：二手系统论述级（词条原文已打开核对，CGEL 原书未打开）；介词后置辟谣出处：Wikipedia "Preposition stranding" 与 "Common English usage misconceptions" 两词条原文（引 Dryden 1672、Lowth 1762 原文引文与 Fowler 语）
+    boundary: ① 方言例外：某些口语变体有主语接触从句（There's a man wants to see you 型），属非标准口语，不进教学正例。② whom 在日常口语中大幅退让，但在介词前置的正式书面语里（to whom）仍是唯一选择。③ whose 指物现代参考语法一致接受。④ 非限制性从句的逗号是义务性的。
+    disputes:
+    - 限制性 which 之争：美式文体手册（Chicago Manual 一线）主张限制性一律 that；CGEL 与英式用法认为限制性 which 是标准英语的历史常态——登记为「编辑处方 vs 描写事实」之争，教学口径：考试写作跟目标考试规范，理解上两者都认。
+    - CGEL 把关系 that 分析为从属标记（subordinator）而非代词，与传统「关系代词」说不同——只影响术语。
+    - 连带辟谣登记：「介词永远不能放句尾」是伪规则——介词后置自古英语以来即为自然用法；Lowth（1762）只说前置「更优雅」，绝对禁令是后世教科书对 Lowth 的硬化转述，Fowler 称其为「关于介词最顽固的迷思之一」。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-31
+  order: 31
+  headline: 比较级先称「重量」：短词把 -er 缝在身上，长词请 more 来帮忙，双音节词站在两可的门口
+  headline_kid: 轻的词（一拍）直接在尾巴上缝 -er；重的词（三拍以上）缝不动，请 more 站到前面帮忙；两拍的词看尾巴，有的两边都可以
+  claim:
+    type: tendency
+    statement: 比较级形态的选择由音节数与词尾形状共同决定，是倾向性法则而非无例外的开关：单音节用 -er/-est（带拼写三配套）；双音节以 -y 结尾者用 -er，以 -ed/-ing/-ful/-less 结尾者只能用 more，其余多数用 more，但存在公认的两可带（common、clever、quiet、narrow、simple、gentle、pleasant、polite、stupid、cruel、handsome、likely 等）；三音节以上用 more/most，唯一开口是 un- 前缀派生词（unhappier / more unhappy 两可）。
+    evidence:
+    - 形态法则与两可带清单综合两源互证：IDP/British Council 系 IELTS 语法页 "Comparative adjectives"（明列两可词）与大学语法讲义《Comparison of adjectives and adverbs》（两可带 13 词表、un- 例外、强制 more 一条）；关联比较的构式定位依 CGEL 通行的 correlative comparative 分析
+    scope: 句型面：as…as 表等值；the more…， the more… 是关联比较构式，不许拆成普通并列；than 后代词格见成人层分歧
+    exceptions:
+    - text: 不规则组单独记：good/well–better，bad–worse，far–farther/further，little–less，much/many–more
+      word_ids:
+      - G3_K08
+      - G3_K09
+      - V6_交通_48
+      - V6_数字_54
+    - text: elder/eldest 只作定语指长幼，不能进 than 结构（my elder brother 可以，*elder than me 不行）
+      word_ids:
+      - G1_0574
+  mechanism:
+  - beat: 先称重量
+    text_kid: 给形容词做比较级，先把它放在秤上：一拍的轻词，尾巴上直接缝 -er；三拍以上的重词缝不动，请 more 到前面来扛。
+    text_adult: 拼写三配套：词尾 -e 只加 -r；辅音+元音+辅音双写；-y 变 -i。形态选择受词频与节奏影响（与 GR-19/GR-27 互证）。
+    visual: 一台秤，轻词落进「-er」盘，重词落进「more」盘
+    anchors:
+    - G6_0576
+  - beat: 两可的门口
+    text_kid: 两拍的词站在门口看尾巴：-y 结尾的进 -er 门（happier）；有一小队两边都可以（quiet、common、narrow…），站哪边都对。
+    text_adult: 两可带的存在本身就是频率调谐与概率语法的实例：常见双音节词保留 -er 能力更强。-ed/-ing/-ful/-less 结尾者被强制分到 more 一侧。
+    visual: 一扇双开门，quiet 和 common 站在门中间，两边都招手
+    anchors:
+    - G6_282
+    - G4_0440
+  examples:
+  - level: 1
+    word_ids:
+    - G6_0576
+    sentence: My bag is bigger than yours.
+    scene_note: 轻词现场：一拍的 big 缝 -er（双写 g）
+    supports: claim
+  - level: 1
+    word_ids:
+    - G6_282
+    sentence: She is happier today.
+    scene_note: -y 结尾双音节：缝 -er，y 变 i
+    supports: claim
+  - level: 2
+    word_ids:
+    - G4_0440
+    sentence: He is more careful than me.
+    scene_note: 三拍重词：请 more 帮忙（口语 than me 合法，见成人层分歧）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_颜色_23
+    sentence: This road is narrower. / This road is more narrow.
+    scene_note: 两可带现场：narrower 与 more narrow 都对
+    supports: claim
+  error_cases:
+  - wrong: This one is more better.
+    right: This one is better.
+    error_type: 比较级叠用
+    source_type: 条目成人层登记的事故例
+    diagnosis: 清单边界明示：more 与 -er 不可叠用（*more better、*more cleverer 均不成立）；good 是不规则组，比较级是 better 本身。回补机制第 1 节。
+  quiz:
+  - q: quiet 的比较级怎么说？
+    answer: quieter 或 more quiet 都对——quiet 在两可带里。
+    hint: 回到机制第 2 节「两可的门口」。
+  relatives:
+  - id: GR-27
+    rel: 同族
+  - id: GR-19
+    rel: 同族
+  - id: GR-37
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - IDP/British Council 系 IELTS 语法页与大学语法讲义（两页原文已打开互证）；CGEL than 格专节 pp.1113–1117（经 Language Log 转述核实）——接触等级：教学定版转述级
+    boundary: ① 「双音节用 more」作为口诀会误伤 -y 尾与两可带，是本条最常见的教学过满。② more 与 -er 不可叠用。③ elder/eldest 不与 than 连用。④ as…as 的否定式英式口语常用 not so…as，美式多用 not as…as，属语体差。⑤ 关联比较里两个 the 都不是定冠词，不可省略。
+    disputes:
+    - than I vs than me：传统处方派只认连词说、判 than me 为错；现代描写派（CGEL）双认——than 兼具介词与从属连词两种身份的证据各存，结论是两种用法都是标准英语。教学口径：书面考试按正式体写 than I (am) 最稳妥，口语 than me 不算错。与 GR-30 的介词后置辟谣同属「处方硬化」家族。
+    evidence_grade: 教学定版转述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-32
+  order: 32
+  headline: 关联词成对出门：both…and、either…or 各就其位，并列成分要同形，动词听离它最近的那个主语
+  headline_kid: both 和 and 是一对搭档，搭档不能串门；两个搭档夹着的东西要长得一样；either…or 领着两个主语时，动词听离它最近的那个
+  claim:
+    type: rule
+    statement: ① 配对纪律：关联并列是封闭配对——both…and…、either…or…、neither…nor…、not only…but also…（also 可省、but 不可省），混搭不成立。② 同形原则：关联词之后紧跟的成分必须同类同形。③ not only 前置句首时后半句主辅倒装。④ 就近原则：either…or / neither…nor 连接数不一致的主语时，谓语与较近的主语一致——就近在一致三原则（语法一致、意义一致、就近一致）中排位最末，只管 or/nor 型并列。
+    evidence:
+    - Purdue OWL 关联并列条；CGEL 一致关系三原则的通行转述；同形原则与 not only 倒装为 Quirk 等参考语法与 Swan《Practical English Usage》的共同定版
+    scope: 就近只管 or/nor 型并列主语；and 连接的主语永远复数，不适用就近
+  mechanism:
+  - beat: 搭档不能串门
+    text_kid: both 的搭档是 and，either 的搭档是 or，neither 的搭档是 nor——每对搭档一起出门，不许跟别人组队。
+    text_adult: 封闭配对是形式档案：混搭（*both…and or、*either…nor）在标准英语中不成立；neither…nor 本身已含否定，谓语不再加否定词。
+    visual: 三对小伙伴手拉手出门，队服颜色各不相同
+    anchors:
+    - G1_014
+    - G1_015
+  - beat: 夹着的东西要同形
+    text_kid: 把关联词分别贴到两边读：I like both swimming and running——两边都是 -ing，长得一样；一头是动作、一头是名词，就别扭了。
+    text_adult: 判断法：关联词分别贴到两个被连接成分前朗读，成分必须同类同形；*She both likes music and dancing 的错位源于 both 的辖域只盖住 likes。
+    visual: 天平两端各放一个 -ing 词，天平平平的
+    anchors: []
+  - beat: 动词听最近的那个
+    text_kid: either…or、neither…nor 领着两个数不一样的主语时，动词听离它最近的那个：students 在近处就 were，teacher 在近处就 was。
+    text_adult: 就近原则有心理语言学实在性（agreement attraction 实验传统）；但它排位最末：真主语被介词短语隔开时，跟着近处名词走正是经典的「就近错误」（The quality of the mangoes is…）。
+    visual: 动词侧着耳朵，听离它最近的那个主语说话
+    anchors:
+    - G1_007
+    - G3_131
+  examples:
+  - level: 1
+    word_ids:
+    - G1_014
+    - G1_015
+    sentence: I like both cats and dogs.
+    scene_note: 配对+同形：both…and 夹着两个名词
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0781
+    sentence: She likes both music and dancing.
+    scene_note: 同形现场：both 移到两个名词短语前面，两边对齐
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_007
+    - G3_131
+    sentence: Neither the teacher nor the students were late.
+    scene_note: 就近现场：动词听近处的 students
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_007
+    - G3_131
+    sentence: Neither the students nor the teacher was late.
+    scene_note: 顺序一换：动词改听近处的 teacher
+    supports: claim
+  error_cases:
+  - wrong: She both likes music and dancing.
+    right: She likes both music and dancing.
+    error_type: 平行结构错位
+    source_type: 条目成人层登记的事故例
+    diagnosis: 清单机制栏登记的错位例：both 的辖域只盖住 likes，后半盖不住；把 both 移到两个同形成分之前即对齐。回补机制第 2 节。
+  - wrong: The teacher and the students was happy.
+    right: The teacher and the students were happy.
+    error_type: 就近误用-and 主语
+    source_type: 条目成人层登记的事故例
+    diagnosis: 清单边界明示：and 连接的主语永远复数，不适用就近（*The teacher and the students was 不成立）。回补机制第 3 节：就近只管 or/nor。
+  quiz:
+  - q: both 的搭档是 and 还是 or？
+    answer: and——both…and 是一对，搭档不能串门。
+    hint: 回到机制第 1 节「搭档不能串门」。
+  relatives:
+  - id: GR-12
+    rel: 同族
+  - id: GR-34
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Purdue OWL 关联并列条；CGEL 一致三原则；Swan《PEU》——接触等级：二手系统论述级
+    boundary: ① 就近原则只管 or/nor 型并列主语；and 连接的主语永远复数。② 就近不是通用许可：The quality of the mangoes is… 中谓语必须跟真正主语 quality，跟着近处走是「就近错误」。③ 混合数主语时把复数放后面更自然，是文体建议非语法强制。④ neither…nor 本身已含否定，谓语不再加否定词。
+    disputes:
+    - 就近原则的地位有温和分歧：严格形式语法倾向把它处理为「意义一致」的副产品或口语宽容，CGEL 明列为独立原则之一。教学口径取 CGEL：规则照教，但明确它排位最末，与语法一致冲突时语法一致优先。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-33
+  order: 33
+  headline: 反意疑问句是一台回声机：它把主句的助动词和极性翻转着弹回来，升调是真问、降调只要你点头
+  headline_kid: 句子后面的小尾巴不是随便拖的：它要把前面的「小帮手」动词复制过来，再把正反翻个面；汉语一个「对吧」包打天下，英语每个句子都要现配零件
+  claim:
+    type: rule
+    statement: 反意疑问句（question tag）的生成是三步机械操作：① 回指助动词——取主句的助动词/情态动词/be 动词复制到尾巴，主句没有助动词时召唤 do/does/did；② 极性翻转——主句肯定→尾巴否定（缩略 n't），主句否定→尾巴肯定，半否定词（never、hardly、seldom、few、little）算否定主句；③ 代词对位——尾巴主语必须是与主句主语同指的代词。语调分工（Swan 定版）：尾巴升调=真问（在求证），降调=非问（只求附和或开启话头）——此为倾向而非铁律。
+    evidence:
+    - Michael Swan《Practical English Usage》第 3 版 question tags 条（§487–488 及第 503 页「meaning and intonation」原文，本轮打开影印页核对：升调/降调分工为原书原文）
+    scope: 特例组单列：I am → aren't I；Let's → shall we；祈使句 → will you / won't you；不定代词主语 → they；nothing/something 主语 → it。主句是 I think/believe + 从句时，尾巴跟从句走
+  mechanism:
+  - beat: 回声机三步
+    text_kid: 小尾巴是一台回声机：第一步，复制主句的小帮手；第二步，把正反翻个面；第三步，主语换成同指的代词。三步做完，尾巴就配好了。
+    text_adult: 无助动词时召唤 do 与 GR-03 是同一替补机制；半否定词算否定主句是翻转判定的关键细则。
+    visual: 一台机器：左边进主句，右边吐出翻好面的尾巴
+    anchors:
+    - G3_131
+  - beat: 升调真问，降调点头
+    text_kid: 尾巴读升调，是心里没底、在问你；读降调，是心里有数，只等你点点头。书面语没有声音，就靠语境猜。
+    text_adult: Swan 定版的语调分工；对应关系是倾向（升调也可表礼貌试探），Swan 本人即以倾向性口径表述。美式口语中反意疑问使用频率低于英式。
+    visual: 一条声调线：上扬的标着问号，下沉的标着对勾
+    anchors:
+    - V6_家庭_34
+  examples:
+  - level: 1
+    word_ids:
+    - G3_131
+    sentence: You are a student, aren't you?
+    scene_note: 回声机样本：be 动词复制 + 肯定翻否定
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_家庭_34
+    sentence: She went home, didn't she?
+    scene_note: 无助动词：召唤 did + 代词对位
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_1
+    sentence: Let's go, shall we?
+    scene_note: 特例：Let's 的尾巴是 shall we
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: He never plays football, does he?
+    scene_note: 半否定 never 算否定主句：尾巴用肯定
+    supports: claim
+  error_cases:
+  - wrong: You went there, isn't it?
+    right: You went there, didn't you?
+    error_type: 尾巴不回指-万能尾巴
+    source_type: 教学界共识级
+    diagnosis: 清单支撑栏登记的典型错误：母语只有一个万能尾巴（如汉语「对吧」）的学习者，面对英语「每句现配」的系统，典型错误是全程统一用 isn't it 与助动词不回指。已如实标注：本轮未检索到针对该错误的 CLEC 级语料计数，不冒充语料定版。回补机制第 1 节。
+  probes:
+  - PRB-GR33-1
+  - PRB-GR33-2
+  - PRB-GR33-3
+  - PRB-GR33-4
+  - PRB-GR33-5
+  quiz:
+  - q: She went home, ___? A. isn't she B. didn't she
+    answer: B——先找小帮手：没有助动词就召唤 did，再翻极性、换代词。
+    hint: 回到机制第 1 节「回声机三步」。
+  relatives:
+  - id: GR-03
+    rel: 同族
+  - id: GR-02
+    rel: 同族
+  - id: GR-34
+    rel: 同族
+  pain_points:
+  - 错不完
+  - 说不出
+  adult:
+    sources:
+    - Michael Swan《Practical English Usage》第 3 版 question tags 条 §487–488、p.503——接触等级：章节影印页级（本组最高）；汉语对照部分为教学界共识级（见 error_cases 标注）
+    boundary: ① I think/believe + 从句时尾巴跟从句走（I think he's coming, isn't he?)；not 的辖域转移同理。② 美式口语使用频率低于英式，且有 isn't it 的松动用法，标准教学系统仍以翻转-回指为正。③ 降调尾巴在英式口语里大量用作会话润滑，不逐句翻译成「对吧」。④ 同极性尾巴（肯定+肯定）表惊讶/讽刺/推断，属进阶语用。
+    disputes:
+    - 同极性尾巴的语用定性（讽刺 vs 中性推断）各参考语法措辞不一，登记为语用层分歧，不影响形式教学。语调与意义的对应是倾向而非铁律。
+    evidence_grade: 章节影印页级（形式与语调部分）；汉语对照部分教学界共识级
+    pending:
+    - 探针 id 按设计文档 §3.6 命名约定（PRB-GR33-*）登记，对应探针库 v1 的 GR-33 组 5 个探针，收官解析时与探针库逐条对齐
+  zone: 语法
+  group: GR
+  prereq: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-34
+  order: 34
+  headline: 倒装有三种活法，形式条件各不相同：呼应式是日常口语，全倒装只请得动名词主语，否定词搬到句首才触发助动词提前
+  headline_kid: 三种「把句子翻个儿」的玩法，规矩各不一样：So do I 每天用；Here comes the bus 只许名词主语这么玩；never 搬到句首，助动词必须跟着提前
+  claim:
+    type: rule
+    statement: (A) 呼应式：so/neither/nor + 助动词 + 主语，表「也一样/也不」，助动词回指对方句（无助动词召唤 do），日常口语高频。(B) 全倒装：here/there 及方位短语前置、动词为 come/go/be/lie/stand 等位置或运动动词时，整个谓语移到主语前；硬条件——主语必须是名词（短语），代词主语绝不倒装，动词不及物不带宾语。(C) 部分倒装：never、rarely、seldom、hardly…when、no sooner…than、not only、only + 状语等否定/限制性成分置于句首时发生主辅倒装（只有助动词提前，无助动词召唤 do）；only 修饰主语本身时不倒装。此式属正式/文学语体。
+    evidence:
+    - Quirk 等参考语法传统《A Grammar of Contemporary English》§7.59「Inversion after adverbs of place」（本轮经该节原文转录页核对：代词主语不倒装为原文）；(A)(C) 为 CGEL 与 Swan《PEU》的共同定版
+    scope: 小学阶段全倒装限于 here/there + come/go/be 的固定式；部分倒装以认读为主
+  mechanism:
+  - beat: 三种活法分开存档
+    text_kid: 倒装不是一招，是三招：打招呼的呼应式、整词搬家的全倒装、只搬助动词的部分倒装。先认出是哪一招，再看它的条件。
+    text_adult: 三类的共同功能是信息结构：把焦点成分前置或把重主语后置（end-weight），与 QI 组已知性/焦点机制互挂。
+    visual: 三个抽屉并排，各贴一张标签：呼应、全倒装、部分倒装
+    anchors:
+    - G2_089
+  - beat: 全倒装的硬条件
+    text_kid: Here comes the bus——整个动词跑到主语前面。但主角必须是名词：换成 it，就得老老实实 Here it comes，代词太轻，坐不住句尾的焦点位。
+    text_adult: (B) 的代词禁令源于信息结构：代词是最轻、最旧的信息，不能占句尾焦点位。be 的指认用法（Here's a cup of tea / There she is）同样适用此规则。
+    visual: 一辆公交车开到句尾的名词站台；小小的 it 被请回动词前面
+    anchors:
+    - G2_105
+    - V6_日常_2
+  - beat: 否定词搬家，助动词跟
+    text_kid: never 这类否定词一搬到句首耍强调，助动词就必须跟着提前：Never have I seen…；没有助动词，就召唤 do（Seldom did he speak）。
+    text_adult: 肯定性状语（always、often）前置不倒装——(C) 的触发词清单是封闭的。not only 前置与 GR-32 互挂。
+    visual: never 大步走到句首，身后的助动词小跑跟上
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G2_089
+    sentence: I can swim. — So can I.
+    scene_note: 呼应式：肯定用 so，助动词回指 can
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_105
+    - V6_日常_2
+    sentence: Here comes the bus.
+    scene_note: 全倒装：名词主语 bus，整个动词提前
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_105
+    sentence: Here it comes.
+    scene_note: 代词主语不倒装：it 老老实实站在动词前
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0619
+    sentence: Seldom did he speak.
+    scene_note: 部分倒装：seldom 前置，无助动词召唤 did（正式语体，认读为主）
+    supports: claim
+  error_cases:
+  - wrong: Here comes it.
+    right: Here it comes.
+    error_type: 全倒装代词误用
+    source_type: 条目成人层登记的事故例
+    diagnosis: 清单机制栏明示：代词主语绝不倒装（*Here comes it 不成立）；Quirk §7.59 原文同旨。回补机制第 2 节。
+  quiz:
+  - q: 主语换成 it：「Here ___ the bus」该怎么接？A. comes it B. it comes
+    answer: B——代词主语绝不倒装。
+    hint: 回到机制第 2 节「全倒装的硬条件」。
+  relatives:
+  - id: GR-32
+    rel: 同族
+  - id: GR-33
+    rel: 同族
+  - id: GR-30
+    rel: 同族
+  - id: QI-07
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Quirk 等《A Grammar of Contemporary English》§7.59（原文转录页核对）；CGEL 与 Swan《PEU》共同定版——接触等级：二手系统论述级（含一处参考语法原文转录）
+    boundary: ① be 的提议/指认用法（Here's a cup of tea / There she is）是高频日常式，代词规则同样适用。② (C) 的触发词清单是封闭的，肯定性状语前置不倒装。③ me too 是口语替代式，与 So do I 语体分工，不可写入正式书面。④ 文学中 (B) 可扩展到更多不及物动词，小学阶段限于固定式。
+    disputes:
+    - 无实质分歧；仅术语分歧——部分语法书把 (B) 称 locative inversion 并入广义倒装，CGEL 分开处理。本条按形式条件分开著录。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-35
+  order: 35
+  headline: only 站哪儿就圈哪儿：它的辖域跟着位置与重音走，口语靠重音补位，书面语必须靠站位明说
+  headline_kid: only 像一个手电筒，照到哪儿，哪儿就是「只有这一个」：同一个句子，only 挪一个格子，意思就换一件事
+  claim:
+    type: tendency
+    statement: only 是焦点敏感词：它断言「被圈中的成分成立，同类替代项全不成立」，辖域由它在句中的位置与所关联的焦点共同决定。书面语的规范策略是把 only 紧贴在所圈成分之前；真实口语里 only 习惯居动词前中位，辖域靠重音标示焦点——书面语没有重音通道，故正式写作要求贴位以防歧义。
+    evidence:
+    - 焦点敏感的形式语义框架依 Horn（1969）对 only 的经典分析与 Rooth（1985）焦点语义学（经 Erlewine & Kotek 的 MIT 语义学研讨班讲义转述核对）；贴位规范与口语习惯位的分工依 Swan《Practical English Usage》only 条的定版处理与用法作家共识
+    scope: 理解按描写口径（中位+重音合法），产出在正式写作按处方口径（贴位）；本条不管辖 not only…but also 的 only（属 GR-32）
+    exceptions:
+    - text: 中位 only 在口语与非正式写作中是常态、不是错误；一律判错是过度处方
+      word_ids:
+      - G4_0585
+    - text: only 圈时间/数量短语时位置在短语前（only yesterday，only three）
+      word_ids:
+      - G4_0585
+  mechanism:
+  - beat: 手电筒照哪儿
+    text_kid: only 是一支手电筒：照着 I，是「只有我」；照着 kissed，是「只亲了，没做别的」；照着 her，是「只亲了她」。挪一个格子，照亮的就换一个。
+    text_adult: 三联对比例是英语教学界沿用百年的 only 经典教例（自 19 世纪修辞学教材起），本轮在多家用法来源中互证一致。汉语「只」的辖域同样随位置变化，机制相通，难点不在概念而在英语书面贴位纪律。
+    visual: 一支手电筒在句子上移动，光圈依次落在 I、kissed、her 上
+    anchors:
+    - ADD_0171
+    - V6_核心_11
+  - beat: 口语靠声音，书面靠站位
+    text_kid: 说话时不用挪位置，重读哪个词，only 就圈哪个；写下来没有声音，就必须把 only 摆到要圈的词前面，不然读者会猜错。
+    text_adult: 「口语靠重音、书面靠站位」的分工是参考语法的定版处理；歧义只在书面无重音时成立，朗读时重音即消歧——教学中应先教听辨重音再教贴位。
+    visual: 左边一个嘴巴（重音波形），右边一支笔把 only 挪到目标词前面
+    anchors:
+    - G1_003
+    - G1_025
+  examples:
+  - level: 1
+    word_ids:
+    - ADD_0171
+    - V6_核心_11
+    sentence: Only I kissed her.
+    scene_note: 圈主语：只有我，别人没有
+    supports: claim
+  - level: 1
+    word_ids:
+    - ADD_0171
+    - V6_核心_11
+    sentence: I kissed only her.
+    scene_note: 圈宾语：只亲了她，没亲别人
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_003
+    - G1_025
+    sentence: I only have one pen.
+    scene_note: 口语中位现场：only 在动词前，靠重音圈住 one pen
+    supports: claim
+  - level: 2
+    word_ids:
+    - ADD_0171
+    - V6_核心_11
+    sentence: I only kissed her.
+    scene_note: 中位+重音现场：重读 KISSED 是「只亲了」，重读 HER 是「只亲了她」
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: '"I only kissed her" 和 "I kissed only her"，only 圈的成分一样吗？'
+    answer: 不一样：前者（书面贴位读法）圈的是 kissed，后者圈的是 her。
+    hint: 回到机制第 1 节「手电筒照哪儿」。
+  relatives:
+  - id: GR-32
+    rel: 对照
+  - id: GR-30
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Horn（1969）；Rooth（1985），经 MIT 语义学研讨班讲义转述；Swan《PEU》only 条——接触等级：二手系统论述级
+    boundary: ① 中位 only 在口语与非正式写作中是常态、不是错误（与 GR-30/GR-31 的「处方硬化」家族互文）。② only 圈时间/数量短语时位置在短语前。③ not only…but also 的 only 不受本条管辖。④ 先教听辨重音，再教贴位。
+    disputes:
+    - 处方派（多数写作手册）主张任何语体都应贴位；描写派（CGEL 与用法专栏）承认中位为口语惯用、仅在可能误读时才需移位。登记为语体规范之争，教学口径：理解按描写派，正式写作产出按处方派。
+    evidence_grade: 二手系统论述级
+    pending:
+    - Swan《PEU》only 条的条目号本轮未核，列入待核
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases；本条登记的是歧义现象，非学习者错句）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-36
+  order: 36
+  headline: 使役动词按力气排队：make 是推着走，let 是放行，have 是派活，get 是说服——形式上只有 get 请得动 to
+  headline_kid: 让别人做事有四种「力气」：make 是推着走，let 是放行，have 是派活，get 是说服；四个词里只有 get 后面的动词要带 to
+  claim:
+    type: rule
+    statement: 四词构成致使力梯度（与 GR-07 力动态对接）：make=强力致使（对象意志被压过）、let=移除障碍（对象意志自发，致使者只撤除阻挡）、have=权威安排（致使力来自角色/职务关系）、get=说服致使（对象意志被改变）。形式档案是封闭对照：make/let/have + 宾语 + 光杆不定式；get + 宾语 + to 不定式；help 两可。被动不对称：make 被动时 to 必须回来（He was made to wait）；have 的使役式无被动；let 作「允许」讲时基本无被动（固定式 The dogs were let out 除外）。
+    evidence:
+    - 形式档案与被动不对称依 ELT Concourse 教师培训语法（causative 条）与 Cambridge 系考试语法（CPE 语法指南）互证；力梯度为 Talmy 力动态框架在参考语法中的通行应用（与 GR-07 同一出处线）
+    scope: have/get + 宾语 + 过去分词（have my car repaired）是另一个结构，与本条「+ 人 + 动词」分开记；force/cause 等正式词走 to 不定式，分开记
+  mechanism:
+  - beat: 四种力气
+    text_kid: 让别人做事，力气分四档：make 是推着你走（不想做也得做）；let 是把门打开（你想做，我准了）；have 是派活（我是安排的人）；get 是说服（把你说动了）。
+    text_adult: 力梯度与 GR-07 的力动态是同一套图式在使役域的实例：意志被压过、障碍被移除、权威安排、意志被改变，四种力的来源各不相同。
+    visual: 四格漫画：推、开门、派任务单、坐下来谈
+    anchors:
+    - V6_日常_1
+    - G3_0442
+  - beat: 衣服不一样
+    text_kid: 四个词后面的动词穿什么衣服也不一样：make、let、have 后面光着脚（不带 to)，只有 get 后面要穿上 to 这双鞋。
+    text_adult: 形式档案封闭：被动时 make 的 to 要回来，have 没有使役被动，let 的被动只存在于 let out 这类词汇化短语。中国学习者三类高频错误（make/let 后误加 to、get 后漏 to、被动漏 to）与档案一一对应。
+    visual: 四个动词排队，前三个后面的动词光脚，get 后面的穿着 to 鞋
+    anchors:
+    - V6_学校_75
+    - G4_0498
+    - G3_0796
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_1
+    sentence: Let me go.
+    scene_note: let 现场：放行，后面的 go 光着脚
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_学校_75
+    - G4_0498
+    sentence: Mum makes me practise the piano.
+    scene_note: make 现场：推着走，practise 不带 to
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0442
+    sentence: I got him to help me.
+    scene_note: get 现场：说服，help 前面穿 to
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_0796
+    sentence: He was made to wait.
+    scene_note: 被动现场：make 一被动，to 必须回来
+    supports: claim
+  error_cases:
+  - wrong: She made me to go.
+    right: She made me go.
+    error_type: 使役形式误加 to
+    source_type: 教学文献登记错型
+    diagnosis: 清单支撑栏登记：中国学习者高频错误与形式档案一一对应——make/let 后误加 to（受汉语「让/叫」后动词无形式变化的迁移与 to 不定式泛化双重作用）、get 后漏 to、被动漏 to，三类均为可预测的档案型错误。回补机制第 2 节。
+  quiz:
+  - q: I got him ___ the door. A. open B. to open
+    answer: B——只有 get 后面的动词要带 to。
+    hint: 回到机制第 2 节「衣服不一样」。
+  relatives:
+  - id: GR-07
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - ELT Concourse 教师培训语法 causative 条；Cambridge 系 CPE 语法指南（两源原文已打开互证）——接触等级：教学定版转述级
+    boundary: ① make 还有「造出结果」义（make him a star / make her happy），不属使役跟动词式，勿混。② let 的被动在 let go 等词汇化短语中存在，属固定式例外。③ have + 人 + 光杆式在英式中较美式少用，属语体/变体差。④ force/cause 等正式词走 to 不定式，与四词档案分开记。
+    disputes:
+    - 无实质分歧。仅分析分歧：CGEL 把 make/let/have 的光杆式归入「裸不定式补足语」的封闭小类，与感知动词（see him go）同组；教学语法多单列使役——不影响形式事实。
+    evidence_grade: 教学定版转述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-37
+  order: 37
+  headline: 程度词各就各位：so 管形容词，such 管名词短语，too 自带「过头」的否定后果，enough 在形容词后、名词前
+  headline_kid: so 后面跟光秃秃的形容词，such 后面跟「形容词+东西」；too 不是「非常」，是「过头了，所以不行」；enough 修饰形容词站在后面，修饰名词站在前面
+  claim:
+    type: rule
+    statement: 程度构式群按所修饰的中心分工：① so + 形容词/副词（结果从句 so…that…）；② such + （a/an) + 形容词 + 名词，such 是前限定词，冠词必须放在 such 之后；③ 冠词互动特殊式：so + 形容词 + a + 单数可数名词（so good a day），仅限单数可数名词，as/how/too 同族同式；④ too + 形容词/副词 + to 不定式，语义自带「超标→负面后果」，与 very 的纯加强有本质区别（only too glad 等固定式除外）；⑤ enough 作副词修饰形容词/副词时后置，作限定词修饰名词时前置。
+    evidence:
+    - 分工框架依 Swan《Practical English Usage》so/such、too、enough 诸条的定版（经 Linguapress 程度副词专章与 Cambridge CAE/CPE 高级语法「as/how/so/too + 形容词 + a/an + 名词」条的原文转述互证）
+    scope: so good a day 偏正式语体，日常口语多用 such a good day，不可反过来说前者错误；so 修饰名词/动词的口语新用法（so yesterday 等）是语体注记，不进小学正例
+  mechanism:
+  - beat: so 和 such 分工
+    text_kid: so 是个只管形容词的：so hot，后面什么都不跟。such 是管一整串的：such a hot day，形容词和东西一起打包，冠词站在 such 后面。
+    text_adult: such/so 的分工是「限定词位置竞争」的实例：such 占前限定词槽，so 迫使冠词后移（so good a day)，与 C 组冠词槽位机制互挂。
+    visual: 两个篮子：so 的篮子里只放形容词，such 的篮子里放「冠词+形容词+名词」一整串
+    anchors:
+    - G2_098
+    - V6_节日_5
+  - beat: too 带刹车，enough 换站位
+    text_kid: too hot 不是「非常热」，是「热过头，喝不了」——too 自带坏后果。enough 是个换站位的：tall enough 站在形容词后，enough money 站在名词前。
+    text_adult: too 的语义档案是「超标→负面后果」，后接 to 不定式把后果说出来；enough 的双站位由其词性（副词后置/限定词前置）决定，*enough old 不成立。
+    visual: 一个温度计冲过红线（too）；enough 在形容词和名词两边各站一次
+    anchors:
+    - G2_073
+    - V6_数字_57
+    - G4_K03
+  examples:
+  - level: 1
+    word_ids:
+    - G2_098
+    sentence: It is so hot today.
+    scene_note: so 现场：只跟形容词
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_098
+    - V6_节日_5
+    sentence: It is such a hot day.
+    scene_note: such 现场：冠词在 such 后面，一整串打包
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_073
+    - V6_数字_57
+    sentence: He is tall enough to reach it.
+    scene_note: enough 后置：站在形容词后面
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_数字_57
+    - G4_K03
+    sentence: I have enough money.
+    scene_note: enough 前置：站在名词前面
+    supports: claim
+  error_cases:
+  - wrong: She is enough old to ride a bike.
+    right: She is old enough to ride a bike.
+    error_type: enough 站位错
+    source_type: 条目成人层登记的事故例
+    diagnosis: 清单支撑栏登记的中国学习者高频错误四类之一：*enough old（另有 *a such、*so a good day、把 too 当 very 用），均属站位与语义档案错误。回补机制第 2 节。
+  quiz:
+  - q: 「tall enough」还是「enough tall」？
+    answer: tall enough——enough 修饰形容词时站在后面。
+    hint: 回到机制第 2 节「too 带刹车，enough 换站位」。
+  relatives:
+  - id: GR-31
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Swan《PEU》so/such、too、enough 诸条；Linguapress 程度副词专章；Cambridge CAE/CPE 高级语法条——接触等级：二手系统论述级
+    boundary: ① so good a day 偏正式语体，不可判错。② too 的「非常」义只限 only too 等一小撮固定搭配，不可推广（*too delicious 表「非常好吃」仍是中式英语高频误用）。③ so 的口语新用法不进小学正例。④ enough + 名词后置式（money enough）是古旧/文学式。
+    disputes:
+    - 无实质分歧。so good a day 的存续状态有语体判断差（部分手册标「罕见」，语料显示在正式书面语中稳定存在），登记为语体评估差。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-38
+  order: 38
+  headline: 标点是语法的一部分：英语的逗号扛不起两个完整句子，撇号也不是装饰
+  headline_kid: 逗号太细，钩不住两节完整的车厢：两个各自能站住的句子之间只放一个逗号，叫「逗号粘连」，是正式错误；汉语能用逗号一路串下去，这个习惯别搬进英语
+  claim:
+    type: rule
+    statement: ① 逗号粘连：两个独立分句之间只用逗号连接，在标准英语书面语中是句子边界错误；合法连接只有四种——句号分开、分号连接、逗号+并列连词、把一分句降级为从属分句。根源是句法类型差：英语是形合语言，分句关系必须明示层级；汉语是意合语言，流水句靠逗号连排合法。② 撇号二职：表所属（Tom's book）与表省略（it's = it is）；its（所属）无撇号、it's（是）有撇号；普通复数绝不加撇号。
+    evidence:
+    - 逗号粘连的定义与四种改法依美国大学写作中心定版材料（Fordham、Utah Valley、Waterloo 三校写作中心讲义，本轮打开互证）；形合/意合对照依连淑能《英汉对比研究》（1993）的通行定版；撇号规则为 Swan《PEU》与各参考语法共同定版
+    scope: 判据以正式书面语为准；口语转写与非正式写作（短信、日记）中逗号粘连的容忍度高
+  mechanism:
+  - beat: 逗号钩不住车厢
+    text_kid: 两个完整的句子像两节车厢：中间只挂一个逗号，钩子太细，跑起来就脱钩。要么分开（句号），要么换粗钩（分号、逗号+连词），要么把一节车厢降成挂车（从句）。
+    text_adult: 错误本质是把汉语的合法句式平移进英语的标点系统：意合语言靠语义连贯连排，形合语言必须由连接词或标点明示层级——与 GR-22「汉语不标的，英语偏要标」同属一个家族，这次不标的是句界。
+    visual: 两节车厢中间一根细逗号钩断开，旁边摆着四种正牌挂钩
+    anchors:
+    - G2_0502
+    - V6_家庭_34
+  - beat: 撇号的两份工作
+    text_kid: 撇号有两份工作：Tom's 是「谁的」，it's 是「it is 的缩写」。分不清时展开一读：能展开成 it is 的，就是带撇号的那个。
+    text_adult: its/'s 之别靠「能否展开成 it is」一测即分；普通复数加撇号（*apple's 表复数）是经典 greengrocer's apostrophe 错误，对母语者同样高频，不渲染为中国学习者独有。
+    visual: 两个牌子并排：its（无撇号，所属）和 it's（有撇号，是）
+    anchors:
+    - G1_014
+  examples:
+  - level: 1
+    word_ids:
+    - G2_0502
+    - V6_家庭_34
+    sentence: It rained. I stayed home.
+    scene_note: 合法连接一：句号分开
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_0502
+    - V6_家庭_34
+    sentence: It rained, so I stayed home.
+    scene_note: 合法连接二：逗号+并列连词（与 GR-11 互挂）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_014
+    sentence: It's a cat.
+    scene_note: 撇号省略职现场：It's = It is
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: This is Tom's book.
+    scene_note: 撇号所属职现场（人名 Tom 为句中专名，锚词取 book）
+    supports: claim
+  error_cases:
+  - wrong: It rained, I stayed home.
+    right: It rained, so I stayed home. / It rained. I stayed home.
+    error_type: 逗号粘连
+    source_type: 教学定版登记错型
+    diagnosis: 美国大学写作中心一致把逗号粘连列为头号句界错误；中国学习者的发生率叠加了意合迁移（连淑能形合/意合对照）。回补机制第 1 节：四种合法连接选一种。
+  quiz:
+  - q: 两个完整句子之间只放一个逗号，行不行？
+    answer: 不行，那是逗号粘连；要用句号、分号、逗号+连词，或把一句降为从句。
+    hint: 回到机制第 1 节「逗号钩不住车厢」。
+  relatives:
+  - id: GR-11
+    rel: 同族
+  - id: GR-26
+    rel: 同族
+  - id: GR-22
+    rel: 同族
+  pain_points:
+  - 写不长
+  - 错不完
+  adult:
+    sources:
+    - Fordham、Utah Valley、Waterloo 三校写作中心讲义（本轮打开互证）；连淑能《英汉对比研究》（1993）；Swan《PEU》——接触等级：教学定版转述级（形合/意合一条为二手论述级）
+    boundary: ① 文学例外：短小平行分句的连排（I came, I saw, I conquered 式）是修辞手法，不判错——学生写作不适用此例外。② 口语转写与非正式写作中容忍度高，本条判据以正式书面语为准。③ 分号连接要求两分句语义密切相关。④ its/it's 对母语者同样高频混淆，不渲染为中国学习者独有。
+    disputes:
+    - 无实质分歧。仅定性差：部分写作手册把逗号粘连称「重罪」，语料取向的用法学家（如 Pinker 一线）指出名家写作中不乏此式——登记为教学严格度之争，学校写作口径从严。
+    evidence_grade: 教学定版转述级
+    pending:
+    - 形合/意合一条本轮未打开连淑能原书，列入待核
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-39
+  order: 39
+  headline: 英美英语是两套并行标准，不是「一个对一个错」：集体名词、gotten、shall、日期，各有归属
+  headline_kid: 英语有两个大「版本」：球队在英国版里可以说成「他们」，在美国版里只能说「它」；认出版本，就不会把对方的对当成错
+  claim:
+    type: tendency
+    statement: 英美英语是两套并行标准，核实过的差异项包括：① 集体名词一致（英式允许意义一致用复数，美式绝大多数情形用形式一致的单数）；② gotten（美式 get 的过去分词，与 got 分工；英式现代标准只用 got）；③ shall 在两变体中都在退缩（美式日常几乎绝迹，英式第一人称正式体存量略高），「shall 必表将来」的旧处方两边都已失效；④ 拼写双轨（-ize 是牛津拼写，在英式中与 -ise 同样合法，但 advise、surprise 等词在任何变体中都只能 -ise）；⑤ 日期序、at/on the weekend、just/already 搭配、-t/-ed 词尾等小项群各有归属。
+    evidence:
+    - 集体名词与 gotten 依 "American and British English grammatical differences" 词条（引 CGEL 系与 Merriam-Webster、Compact OED 定版表述，本轮打开核对）；-ize 的牛津拼写地位依 Editage 学术编辑指南与 Sprachcaffe 对照表；at/on the weekend 与日期序依《经济学人》风格指南美英差异节的转录页
+    scope: 教学口径：跟学生所用教材的变体走，另一式只要求认得出（中国国家课程标准未指定单一变体）
+    exceptions:
+    - text: 美式集体名词单数是「几乎一律」而非绝对：体育队名本身为复数形式、强调个体时可用复数代词回指（the team takes their seats）
+      word_ids:
+      - G4_0989
+    - text: gotten 在英式年轻人口语中有经影视回流的迹象（进行中的变化），考试仍按 got 为英式标准
+      word_ids:
+      - V6_日常_0
+  mechanism:
+  - beat: 两个服务器
+    text_kid: 同一款游戏有两个服务器：英国版和美国版。同一支球队，在英国版里可以是「他们」，在美国版里是「它」——不是谁错了，是版本不同。
+    text_adult: 本条是 NE-06 三圈说的具体面：变体差被误判为对错，是「单一标准」错觉的产物（与 GR-31 than 之争同族）。中国教材多混编两式，学生先有版本意识，才能解释词典两处注法为何不同。
+    visual: 两个服务器图标并排，同一支球队在两边举起不同的动词牌子
+    anchors:
+    - G4_0989
+  - beat: gotten 的分工
+    text_kid: get 的变化形：美国版留着两个——have got 是「拥有」，have gotten 是「获得/变得」；英国版只用一个 got。
+    text_adult: gotten 在美式中与 got 有语义分工，不是随意变体；英式固定短语 ill-gotten gains 是化石例外。
+    visual: 两本护照：一本印着 gotten（美），一本只印 got（英）
+    anchors:
+    - V6_日常_0
+  examples:
+  - level: 1
+    word_ids:
+    - G4_0989
+    sentence: The team is winning.
+    scene_note: 美式口径：集体名词作整体，用单数
+    supports: claim
+  - level: 1
+    word_ids:
+    - G4_0989
+    sentence: The team are arguing among themselves.
+    scene_note: 英式口径：把集体看作个体集合，用复数（意义一致）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_0
+    - G1_002
+    sentence: I have got a new book.
+    scene_note: 英式标准：got 表拥有
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_K48
+    sentence: Shall we go?
+    scene_note: 两式共存的公式：提议用 Shall we…?（美式日常 shall 虽少，此式仍在）
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: '"The team are arguing" 在英国版里错不错？'
+    answer: 不错——英式允许按意义一致用复数，美国版才几乎一律用单数。
+    hint: 回到机制第 1 节「两个服务器」。
+  relatives:
+  - id: GR-12
+    rel: 对照
+  - id: GR-31
+    rel: 同族
+  - id: NE-06
+    rel: 同族
+  adult:
+    sources:
+    - '"American and British English grammatical differences" 词条（引 CGEL 系、Merriam-Webster、Compact OED）；Editage 与 Sprachcaffe 对照表；《经济学人》风格指南——接触等级：二手系统论述级'
+    boundary: ① 美式集体名词单数是「几乎一律」而非绝对。② gotten 在英式年轻人口语有回流迹象，考试仍按 got。③ shall 的法律义（义务）在美式合同文本中是活用法。④ -ize 合法不等于可混用：同一文本内 -ise/-ize 须自始一致，这是编辑规范而非语法。
+    disputes:
+    - 无对错之争；仅「哪一式更值得教」的课程分歧（中国国家课程标准未指定单一变体）。登记教学口径：跟教材变体走，另一式只要求认得出。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（本条处理的是误判问题，非学习者错句）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-40
+  order: 40
+  headline: 虚拟语气只剩几块化石：If I were 的 were 与 suggest that he be，是「过去形式标记非现实」的最后遗迹
+  headline_kid: 英语只剩两件「说假话专用」的纪念品：If I were you 里的 were 在喊「这是假的」，suggest that he be 里的 be 在喊「这事还没成真」
+  claim:
+    type: rule
+    statement: 现代英语的虚拟语气不是完整变位系统，而是两个残存点：① were 遗迹（irrealis were）——be 的过去式在假设条件、wish、as if 从句中对所有人称用 were，用「过去」的形式标记「不是现实」；口语与非正式体中 was 大量替代，正式体以 were 为规范。② 命令式虚拟（mandative）——在 suggest/demand/insist/recommend 等「要求实现某事」的 that 从句中动词用原形、三单不加 -s、否定把 not 放在动词前；美式英语此式是活的标准用法，英式英语 20 世纪中几近消失（代以 should 式或直陈式），近年受美式影响回流中。
+    evidence:
+    - 框架依 CGEL 的 subjunctive 处理（were 定性为 irrealis 残存式、mandative 从句的触发词表与 not 前置否定），经 "English subjunctive" 词条的系统转述核实；英美消长依 Övergaard（1995）对 20 世纪英美语料的 mandative 研究结论（经同词条转引）
+    scope: 小学与初中低段只要求认得出 If I were you 与 God bless you、Long live… 等公式化石，不要求产出 mandative 全式；真实过去条件（指真实往事）必须用 was
+  mechanism:
+  - beat: were 在喊「这是假的」
+    text_kid: If I were you——I 本来配 was，这里偏用 were。这件旧衣服一穿上，大家就知道：下面说的是假的、是假设的。
+    text_adult: were 遗迹与 TA-08（过去=距离）构成形态-机制互证：过去形式系统性地兼职标记「远离现实」（礼貌、假设、转述、虚拟），were 是该系统在变位耗尽后留下的最后一块可见化石——与 GR-08 情态化石、GR-04 三单幸存者同属一个总叙事。
+    visual: 一件博物馆里的旧外套，标签写着「非现实专用」
+    anchors:
+    - V6_日常_1
+  - beat: be 在喊「还没成真」
+    text_kid: I suggest that he be on time——be 不变成 is，因为这事只是提议，还没成真。美国人天天这样用；英国人多半换成 should be，两种都合法。
+    text_adult: insist/suggest 的双义陷阱：insist that he is here（坚持「他确实在」=陈述）vs insist that he be here（要求「他必须在」=命令），形式差即意义差。
+    visual: 一张建议单，be 被圈出来，旁边标着「还没发生」
+    anchors:
+    - V6_节日_0
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_1
+    sentence: If I were you, I would go.
+    scene_note: 公式化石：认得出即可，不要求自己造句
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_节日_0
+    sentence: I suggest that he be on time.
+    scene_note: mandative 现场（美式活用法）：be 不变成 is
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_节日_0
+    sentence: I suggest that he should be on time.
+    scene_note: 英式平行式：should 代替式完全合法，不可判错
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_013
+    sentence: If I were a bird, I would fly.
+    scene_note: 公式化石再认：were 标记非现实（与 God bless you 等公式虚拟同属化石群，独立记，不与 mandative 混教）
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 正式体里选哪个？If I ___ you, I would go. A. was B. were
+    answer: B. were——假设语境中 were 是标记非现实的化石形式。
+    hint: 回到机制第 1 节「were 在喊『这是假的』」。
+  relatives:
+  - id: TA-08
+    rel: 同族
+  - id: GR-08
+    rel: 同族
+  - id: GR-04
+    rel: 同族
+  adult:
+    sources:
+    - CGEL 的 subjunctive 处理（经 "English subjunctive" 词条系统转述）；Övergaard（1995）——接触等级：二手系统论述级
+    boundary: ① 小学与初中低段只要求认得出公式化石，不要求产出 mandative 全式。② mandative 的 should 代替式在英式中完全合法，不可判错。③ 虚拟 were 只限非现实条件；真实过去条件必须用 was。④ 公式虚拟（May you… / Come what may）是独立化石群，不与 mandative 混教。
+    disputes:
+    - 术语分歧：CGEL 主张除 were 一式外不承认独立的「虚拟语气」范畴（mandative 分析为原形从句结构而非语气变位）；传统语法保留 subjunctive 总称。登记为分析框架之争，使用条件无分歧。
+    evidence_grade: 二手系统论述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-41
+  order: 41
+  headline: 过去的习惯有三兄弟，分工不能串：used to 管今昔对照，would 只回放动作碰不得状态，be used to 是另一个词组
+  headline_kid: used to 的眼睛一半看着过去、一半看着现在（重点在「变了」）；would 只能放「动作录像」，放不了「状态照片」；be used to 是另一个词组，说的是「我已经习惯了」
+  claim:
+    type: rule
+    statement: 三式按「时间指向 × 动词类型 × 结构」三维分工：① used to + 原形——过去的习惯或状态，自带「今昔对照、今已不再」的强默认蕴含，动词类型不限，可独立成句，否定疑问借 did（didn't use to）；② would + 原形——过去重复动作的叙事回放，三条硬限：不接状态动词、不能领起话题（须先用 used to 或过去时场景立住时间框架）、不用于否定与疑问表习惯；③ be/get used to + 名词/-ing——与过去无关，表「已习惯/正变习惯」，其中 to 是介词（used to 的 to 是不定式标记，这是混淆的机关）。另：used to 无现在时对应物。
+    evidence:
+    - 三维分工依 Lingolia 英语语法（used to 条：would 只表习惯不表状态、须有时间标记铺垫、否定疑问不用 would、used to 全形式可用——本轮打开核对）与 Swan 系教学定版互证；状态动词清单（be、have、live、know、like、own…）为参考语法通行表
+    scope: used to 的「今已不再」是可被语境取消的强默认蕴含而非逻辑必然，教学口径按「对照已变」教
+  mechanism:
+  - beat: 三兄弟分工表
+    text_kid: 三兄弟长得像，活儿完全不同：used to 管「以前怎样、现在变了」；would 管「讲故事时一段段回放动作」；be used to 管「我已经习惯了」。先认人，再派活。
+    text_adult: 混淆源可定位：used to 与 be used to 字面仅差一个 be，且汉语「习惯」一词同时覆盖「过去常常」与「已经习惯」，学习者按字面拼装是可预测的结构陷阱（与 GR-36 的档案型错误同科）。
+    visual: 三兄弟并排站，每人胸前挂一块分工牌
+    anchors:
+    - G3_0653
+    - G5_0368
+  - beat: would 的三条硬限
+    text_kid: would 放录像有三条规矩：只放动作不放状态（不能说 would live、would have a cat）；不能自己开头（先有时间框架才接得上）；否定和疑问里不用它表习惯。
+    text_adult: have 在 would 后会被读成条件句，正是状态禁令的现场证据；时间框架先行是叙事回放的结构要求。
+    visual: 一台放映机，说明书上三条红线：动作、接续、不否定疑问
+    anchors:
+    - G2_100
+    - G6_270
+    - V6_家庭_12
+  examples:
+  - level: 1
+    word_ids:
+    - G3_0653
+    - G5_0368
+    sentence: I used to live in the country.
+    scene_note: used to 管状态：以前住在乡下（现在不住）
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_100
+    - G6_270
+    - V6_家庭_12
+    sentence: Every summer we would visit grandma.
+    scene_note: would 回放：先有 every summer 立框架，再放动作录像
+    supports: claim
+  - level: 2
+    word_ids:
+    - G5_K02
+    sentence: I am used to getting up early.
+    scene_note: be used to：与过去无关，说的是「已经习惯」，to 后跟 -ing
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_0489
+    sentence: I used to play football every day.
+    scene_note: used to 管习惯动作：今昔对照在句外（现在不踢了）
+    supports: claim
+  error_cases:
+  - wrong: I am used to get up early.
+    right: I am used to getting up early.
+    error_type: used to 结构混淆
+    source_type: 教学文献登记错型
+    diagnosis: 清单支撑栏登记：used to 与 be used to 字面仅差一个 be，汉语「习惯」一词双覆盖，学习者按字面拼装（*I am used to get up early 式 be 与原形的误配）是可预测的正字法-结构双重陷阱。回补机制第 1 节：be used to 的 to 是介词，后跟 -ing。
+  quiz:
+  - q: 「以前住在乡下」（状态）能用 would live 吗？
+    answer: 不能——would 只回放动作，状态只能用 used to。
+    hint: 回到机制第 2 节「would 的三条硬限」。
+  relatives:
+  - id: GR-40
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Lingolia 英语语法 used to 条（本轮打开核对）；Swan 系教学定版——接触等级：教学定版转述级
+    boundary: ① used to 的「今已不再」是强默认蕴含而非逻辑必然，边缘情形存在，教学不必向学生渲染例外。② would 表习惯与条件/意愿用法同形，靠时间框架消歧。③ used to 无现在时对应物（*I use to go 表现在不成立；use to 只出现在 did 之后）。④ *be used to do 在任何时态下都不成立。
+    disputes:
+    - 无实质分歧。didn't use to 与 didn't used to 的拼写在用法界有小争（多数规范以 use to 为 did 后的形式），登记为正字法小争，教学从严取 use to。
+    evidence_grade: 教学定版转述级
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-42
+  order: 42
+  headline: 形容词在很多语言里是「小家庭」：成员可以少到只有 8 个，而且常常像动词或像名词——英语的形容词家庭大规矩也特殊
+  headline_kid: 有的语言只有 8 个形容词；汉语的「红、高」自己就能当谓语，英语的形容词不行，必须请 be 来扶着——说英语漏掉 be，是把汉语的站法搬过来了
+  claim:
+    type: tendency
+    statement: Dixon 的类型学框架：(1) 与形容词类典型关联的语义类型分三圈——核心四类（大小、新旧、好坏、颜色）连最小的形容词类里都有，外围三类（物理性质、人品性情、速度）在中等以上规模的类里加入，大类扩展六类（难度、相似、资格、数量、位置、基数）只见于大类，合计 13 个语义类型。(2) 类的规模天差地别：伊博语的形容词类只有 8 个成员（核心四类各一对反义词）；英语是大型开放类。(3) 语法性格分型：英语形容词属「修饰名词＋作系词补语」型，不能自己作谓语——be 的强制出现是这个分型的直接后果。可教的分布事实（两派共认）：汉语性质词无须系词即可作谓语，英语形容词不可。
+    evidence:
+    - 'R. M. W. Dixon（2004）"Adjective Classes in Typological Perspective"，载 Dixon & Aikhenvald 编《Adjective Classes: A Cross-Linguistic Typology》（OUP），pp.1–49——第一章全文已打开通读（含 §1.1 十三语义类型清单、伊博语 8 词例、§5 汉语讨论、§6 分型标准）；Dixon（1982）《Where Have All the Adjectives Gone?》；汉语谓语事实：Li & Thompson（1981）《Mandarin Chinese》p.142，经 Sproat & Shih（1991）转引核对；be 缺失实证：Liu Yu（2008）《Journal of Chinese Language and Computing》18(2)：75–92 专节记录 "Loss of copula verbs"'
+    scope: 教学口径：不许教孩子「汉语没有形容词」，也不许说「汉语形容词和英语的一样」——可教、可迁移的点只有分布事实：英语形容词作谓语必须有 be
+    exceptions:
+    - text: 「每种语言都有形容词类」是 Dixon 2004 的假说（且是他对自己 1977/1982 相反旧说的公开修订），判别标准有时相当微妙，不能当作已逐一证毕的定论
+      word_ids:
+      - G1_034
+      - G2_075
+    - text: 语义类型是原型关联不是盒子：同一语义类型的成员在同一语言内可分属不同词类（约鲁巴语「好」是形容词、「坏」却是动词）
+      word_ids:
+      - G3_K08
+      - G3_K09
+  mechanism:
+  - beat: 8 个词的家庭
+    text_kid: 伊博语的形容词只有 8 个：大、小、新、旧、好、坏、黑、白，正好四对——正好是最核心的四类。家庭可大可小，核心成员先到。
+    text_adult: Dixon 2004 年卷内 13 项个案研究以同一套判别标准检验形容词类；习得侧旁证（Blackwell 2000）：英语儿童先把大小/新旧/好坏/颜色/速度类用作修饰语，物理性质与人品性情类先用作系词补语——语义类型连儿童的用法顺序都留下了痕迹。
+    visual: 一个小盒子里整整齐齐 8 张词卡，四对反义词
+    anchors:
+    - G2_068
+    - V6_服装_39
+    - G3_K08
+    - G1_031
+  - beat: 站法不一样
+    text_kid: 汉语的「红」自己就能站成一句话：花红。英语的 red 站不住，必须请 be 扶着：The flower is red。漏掉 be，就是把汉语的站法搬了过来。
+    text_adult: 分型判别（Dixon 2004 §6）：形容词或像动词、或像名词、或兼像、或都不像；英语属修饰＋补语型。be 缺失的类型学根源在「分布对比」层成立——该对比是归类之争两派共认的表面事实。
+    visual: 左：花和「红」并排站立；右：red 旁边伸出一只叫 be 的手扶着
+    anchors:
+    - G2_075
+    - G1_034
+    - G2_073
+  examples:
+  - level: 1
+    word_ids:
+    - G2_075
+    - G1_034
+    sentence: The flower is red.
+    scene_note: 分布事实现场：形容词作谓语必须有 be 扶着
+    supports: claim
+  - level: 1
+    word_ids:
+    - G2_073
+    sentence: He is tall.
+    scene_note: 同型再现：tall 前面也要 be
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_001
+    - V6_服装_39
+    sentence: The bag is new.
+    scene_note: 核心四类（新旧）作谓语：仍须 be
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_031
+    sentence: The cat is black.
+    scene_note: 核心四类（颜色）作谓语：仍须 be
+    supports: claim
+  error_cases:
+  - wrong: The flower red.
+    right: The flower is red.
+    error_type: 系词缺失
+    source_type: 教学文献登记错型
+    diagnosis: 清单登记的实证记录：Liu Yu（2008）汉英 code-switching 研究专节记录 "Loss of copula verbs"——英语形容词作表语时 be 被省略，根源是汉语性质词可裸作谓语的站法迁移。回补机制第 2 节。
+  quiz:
+  - q: '"The flower red." 少了什么？'
+    answer: 少了 is（be）——英语形容词作谓语必须有 be 扶着。
+    hint: 回到机制第 2 节「站法不一样」。
+  relatives:
+  - id: GR-43
+    rel: 同族
+  - id: GR-22
+    rel: 同族
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Dixon（2004）第一章（章节原文级，全文已打开通读）；Dixon（1982）（目录＋二手系统论述级）；Li & Thompson（1981）p.142（经 Sproat & Shih 1991 转引）；Liu Yu（2008）——接触等级逐项见 evidence
+    boundary: (1)「每种语言都有形容词类」是 Dixon 2004 的假说，且是对其旧说的公开修订，不能当作已证毕的定论。(2) 语义类型是原型关联不是盒子。(3) 教学口径：不许教「汉语没有形容词」，也不许说「汉语形容词和英语的一样」；可教的只有分布事实。
+    disputes:
+    - 普遍性之争：Dixon 1982 的旧说（有些语言没有形容词类）vs 2004 的修订说；对具体语言仍有学者质疑（如该卷第十章即问「沃洛夫语有形容词类吗？」）。
+    - 汉语形容词的归类之争（登记分歧，不站队改判）：传统说（Hockett 1958；Lyons 1968；Li & Thompson 1981；Schachter 1985）称「汉语所有形容词都是动词」；Dixon（2004，§5）直斥此说 "lacks insight"，并引 Xu（1988）——汉语形容词与动词在修饰名词的句法、作谓语的体貌可能性、派生手段、重叠语义上均有系统差别，应认独立词类。本条按清单登记状态入模：无论标签归谁，「汉语性质词无须系词即可作谓语、英语形容词不可」这一分布对比是两派共认的表面事实，be 缺失错误的类型学根源在这一层成立。
+    evidence_grade: 章节原文级（Dixon 2004 第一章）
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-43
+  order: 43
+  headline: 形容词排队有座次：越靠里的越「长在东西身上」——评价坐最外，颜色、出身、材料贴着名词坐
+  headline_kid: 几个形容词一起修饰一个东西时要按座次排队：越是这个东西自己长着的、换不了的性质，越贴着名词坐；汉语每个形容词后可以挂个「的」，顺序松得多
+  claim:
+    type: tendency
+    statement: 两套独立文献给出同向的语义类型层级：Dixon 的英语无标记顺序为评价 > 大小 > 物理性质 > 速度 > 性情 > 新旧 > 颜色（颜色是「相当固定的性质」故最贴近名词，评价是「主观判断」故坐最外）；Sproat & Shih（1991）的层级为 QUALITY > SIZE > SHAPE > COLOR > PROVENANCE，并提出机制——层级只约束直接修饰名词的形容词；汉语带「的」的形容词是间接修饰（结构上类似关系从句），故顺序自由，不带「的」的裸修饰与英语一样受层级约束。这是中性直接修饰下的强偏好，不是绝对语法规则。
+    evidence:
+    - Dixon（1982：24–25），经 Dixon（2004）第一章 §4 脚注 2 逐字转引（原文已读）；Sproat & Shih（1991）"The Cross-Linguistic Distribution of Adjective Ordering Restrictions"，载 Georgopoulos & Ishihara 编《Interdisciplinary Approaches to Language》（Kluwer），pp.565–593——论文原文 PDF 已打开通读（层级 p.565，直接/间接修饰论证 pp.572–578）
+    scope: 本条限定于中性直接修饰（Sproat & Shih 本人即把 AOR 限定于 "neutral direct modification"）；教学时取各层级的交集核心，不把任何一张表当唯一答案
+    exceptions:
+    - text: 对比重音、逗号并列（转为间接修饰）、固定搭配都可合法越序
+      word_ids:
+      - G1_001
+    - text: 多因素证据给层级降温：Wulff（2003）全模型对未见形容词串的预测正确率约 73.5%，语音重量、与名词的共现频率也在起作用——逆序是「别扭且偶有歧义」，不是错句
+      word_ids:
+      - G2_075
+  mechanism:
+  - beat: 座次表：主观在外，固有在内
+    text_kid: 排队规矩一句话：越是「我觉得」的，坐得越靠外；越是东西自己长着的、换不了的，越贴着名词坐。评价坐最外，颜色贴着名词。
+    text_adult: 主观性解释有实验支持：Scontras、Degen & Goodman（2017）发现形容词越主观越靠外；语料侧 Wulff（2003）对 BNC 的多因素分析显示语义变量是最强预测因子。层级被多套独立文献反复提出（Hetzron 1978；Dixon 1982；Cinque 1994；Scott 2002）。
+    visual: 一排座位：评价坐在最外侧，中间大小新旧，最里颜色紧贴着名词
+    anchors:
+    - G2_068
+    - G1_034
+    - G1_001
+  - beat: 汉语的「的」是逃逸通道
+    text_kid: 汉语说「小的绿的花瓶」「绿的小的花瓶」都行，因为每个形容词后面挂着「的」，是松松的间接修饰；英语没有「的」帮忙，紧紧叠在一起排，座次就是规矩本身。
+    text_adult: Sproat & Shih 的直接/间接修饰之分是本条的机制核心：中国学生的语序错点由此有机制解释——母语的「的」提供了逃逸通道，迁到英语裸叠加时仍按自由顺序排。
+    visual: 左边：「的」像松紧带把形容词松松连着；右边：英语形容词紧紧叠成一摞
+    anchors:
+    - V6_服装_39
+    - G1_003
+  examples:
+  - level: 1
+    word_ids:
+    - G2_068
+    - G1_034
+    - G1_001
+    sentence: She has a big red bag.
+    scene_note: 座次现场：大小在外，颜色贴名词
+    supports: claim
+  - level: 1
+    word_ids:
+    - V6_服装_39
+    - G1_003
+    sentence: He has a new black pen.
+    scene_note: 座次现场：新旧在外，颜色在内（black 锚词见 GR-42 例词）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_075
+    sentence: a small green flower
+    scene_note: 汉语对照的英语版：裸叠加按层级排（小→绿→花）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_001
+    sentence: a lovely old bag
+    scene_note: 评价（lovely）在最外，新旧（old）在其内
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: big 和 red 一起修饰 bag，哪个离 bag 更近？
+    answer: red——颜色是东西固有的性质，贴着名词坐；大小（big）在它外面。
+    hint: 回到机制第 1 节「座次表：主观在外，固有在内」。
+  relatives:
+  - id: GR-42
+    rel: 前置
+  - id: GR-44
+    rel: 同族
+  pain_points:
+  - 错不完
+  - 说不出
+  adult:
+    sources:
+    - Dixon（1982：24–25，经 2004 自引，章节原文级）；Sproat & Shih（1991，pp.565–593，原文级）；Scott（2002）扩展层级经 Artiagoitia（2006）转引（二手转引级）——接触等级逐项见 evidence
+    boundary: (1) 这是中性直接修饰下的强偏好，不是绝对语法规则。(2) 各层级的类目清单并不一致（Dixon 把 AGE 排在颜色之前一位，课堂序列把 age 排在 shape 之前），教学时取交集核心，不把任何一张表当唯一答案。(3) 教成「背错顺序就是语法错」会过头：准确定性是「母语者强烈如此排，逆序听起来别扭且偶有歧义」。
+    disputes:
+    - 解释路线之争：句法决定论（Cinque 1994；Scott 2002——层级是名词短语内部功能层级的镜像，逆序即不合语法）vs 多因素偏好论（Wulff 2003；Scontras 等——语义主观性＋语音＋频率共同作用的偏好梯度）。本条按「强偏好＋机制理据」著录，与句法派并存登记；教学取偏好说（可类推到新词），不取「错序＝错句」的判分口径。
+    evidence_grade: 原文级（Sproat & Shih）与章节原文级（Dixon）
+    pending:
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（清单登记了错点机制，未登记具体错句）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-44
+  order: 44
+  headline: 名词短语是一个打包递出去的「指称单位」：包里谁当头、算哪一类，边界是软的、是梯度（Keizer）
+  headline_kid: 名词短语像一个打包好的包裹：最前面的 the / this / three 是封条，中心名词是包裹里的东西本体；英语说话是整包递出去的，所以可数名词不能「光着身子」出门
+  claim:
+    type: tendency
+    statement: Keizer（2007）对英语名词短语的系统检验给出三点框架性结论：(1) 整体指称——名词短语作为一个单位行使指称（紧密同位结构中是整个结构在指称；sort of/kind of 序列熔合成限定词化单位；pseudo-partitive 是「复合量化词＋中心名词」的整体）；(2) 范畴梯度——「中心性」是由多条标准投票决定的簇概念，标准冲突时按满足条数定中心，补足语与修饰语之分也是渐变的；(3) 结构不能自足——名词短语的内部结构要得到充分解释，必须先看交际、语用与认知因素如何介入（语料取自 ICE）。
+    evidence:
+    - 'Evelien Keizer（2007）《The English Noun Phrase: The Nature of Linguistic Categorization》，剑桥大学出版社（Studies in English Language 丛书），xiii + 379 页，精装 ISBN 9780521849616；章级内容经 Daniel García Velasco 的正式书评（《Lingua》119（2009）：136–139，DOI 10.1016/j.lingua.2008.06.003）逐章带页码转述'
+    scope: 对小学教学的剂量：孩子只需「打包」直觉与封条意识；梯度与中心性之争是教师知识，不下放到儿童规则
+    exceptions:
+    - text: 双名词结构的中心归属在文献中另有异说（binominals 的 N1 中心说传统），Keizer 按其标准簇裁定为第二名词——中心判定本就是梯度的
+      word_ids:
+      - G1_002
+    - text: 该书刻意不依附任何单一理论的形式系统，部分范畴（qualifiers、complex quantifiers 等）为个案设立，难以平移到综合理论
+      word_ids:
+      - G1_055
+  mechanism:
+  - beat: 整包递出去
+    text_kid: 说话时，名词不是单个递出去的，是打好包整包递：封条（the/this/three）先贴上，说明签（形容词）贴在外面，本体（名词）在中间，长说明挂在包外。
+    text_adult: 教学骨架「限定—数量—描写—中心名词—后修饰」的分区顺序是描写语法的通行框架；Keizer 的贡献是给骨架装上解释层：分区与中心都是原型式的，边缘情形是常态而非例外。
+    visual: 一个包裹：封条、说明签、本体、挂在外面的长尾巴，逐个标出
+    anchors:
+    - G1_002
+    - G1_034
+    - G1_0928
+  - beat: 谁是本体，有时说不清
+    text_kid: a bottle of wine 里，到底是 bottle 还是 wine 当头？这种模糊是正常的——「谁是中心」是好几条标准投票投出来的，不是一条线划出来的。
+    text_adult: 中心性簇概念（第 2 章）：标准互相冲突时按满足条数定中心；紧密同位结构至少六型，按特征多少呈梯度成员资格（第 3 章）；补足语提供整个短语的「概念视角」、修饰语不提供（第 10 章，p.251）。
+    visual: 两张选票投给 bottle 和 wine，票数接近，标着「模糊地带」
+    anchors:
+    - G1_002
+    - G1_001
+  examples:
+  - level: 1
+    word_ids:
+    - G1_002
+    - G1_034
+    - G1_0928
+    sentence: The red book on the desk is mine.
+    scene_note: 整包现场：封条 the、说明签 red、本体 book、长尾巴 on the desk
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_002
+    - G1_001
+    sentence: I have three books in my bag.
+    scene_note: 封条是数量 three：可数名词打好包才出门
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_055
+    sentence: a bottle of water
+    scene_note: 模糊现场：bottle 与 water 谁当头，按标准投票（见机制第 2 节）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_002
+    sentence: the books on the desk
+    scene_note: 长说明挂包外：on the desk 不进包心
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 可数名词为什么不能「光着身子」出门？
+    answer: 因为名词短语是整包递出去的：要有封条（限定词），或本身是复数/专名，才递得出去。
+    hint: 回到机制第 1 节「整包递出去」。
+  relatives:
+  - id: GR-45
+    rel: 同族
+  - id: GR-13
+    rel: 同族
+  - id: GR-43
+    rel: 同族
+  adult:
+    sources:
+    - Evelien Keizer（2007，CUP，ISBN 9780521849616）；García Velasco 书评（《Lingua》119（2009）：136–139，DOI 10.1016/j.lingua.2008.06.003，书评全文已打开）——接触等级：目录＋书评全文级（原书未打开，凡涉页码的主张均经书评转述，不冒充原书直引）
+    boundary: (1) 术语交代：框架里说的 "unit status"（单位性）在语言学中原是 Langacker 认知语法的「固化」术语；据核查（目录＋书评全文），Keizer 2007 并未以该术语为名词短语立论——本条按可核内容立论（整体指称＋范畴梯度），不把 unit status 冒充为 Keizer 的术语；儿童版「打包单位」是教学转述，不是她的理论命名。(2) 全书不用频率统计：其「原型/梯度」结论建立在标准计数与个案分析上，教学引用时不得加统计口吻。(3) 小学剂量只到「打包」直觉与封条意识。
+    disputes:
+    - 方法论之争（书评人 García Velasco 明确提出）：语用/认知因素会影响句法范畴的表现，并不逻辑地推出「范畴本身是梯度的」——形式语言学立场完全可以接收同样的数据而保持离散范畴。Keizer 的梯度立场与形式派的离散立场并存登记，本条取其教学可用的部分，不把梯度说当作已判胜负的定论。
+    evidence_grade: 目录＋书评全文级
+    pending:
+    - 原书未打开：涉页码主张均经书评转述，入模后如需页码级引用须补核原书
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（见 error_cases）
+  zone: 语法
+  group: GR
+  prereq: []
+  pain_points: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文
+- id: GR-45
+  order: 45
+  headline: 名词短语的装箱规矩：轻的短的在前，重的长的往后挂；「谁的」先看那人在不在眼前（Keizer 的功能解释）
+  headline_kid: 短的、轻的贴前面，长的、一串的说明挂到后面去；说「谁的」先看那人在不在眼前：在眼前用 's 抱到前面，不在眼前用 of 挂在后面
+  claim:
+    type: tendency
+    statement: Keizer 第 11 章：名词短语的语序是多股功能原则互相妥协的结果（多功能语序理论，源出 Dik 1997）；后置移位的决定同时受结构重量（越长越重越往后）与交际重量（信息地位）制约（「假说 2」，p.273)，且在某些情形下「语用考虑优先于复杂性原则」（p.286）。第 12 章：'s 属格与 of 结构的选择是多因素的，其中关键一项是相关名词短语的激活状态——已提及/可及的指称对象更倾向用 's 前置，新引入的、需要展开说明的更倾向 of 后置（与本清单「已知性」机制同向互证）。
+    evidence:
+    - Keizer（2007）第 11 章（多功能语序理论、假说 2 在 p.273、「语用优先」语在 p.286）与第 12 章（所有格 's/of 选择与激活状态），均经 García Velasco 书评（《Lingua》119（2009）：136–139）逐章带页码转述核对；Hawkins（1994）《A Performance Theory of Order and Constituency》与 Guéron（1980）为书中对立面的一手书目（书评参考文献表核对）
+    scope: 小学剂量：只教「长说明挂后面」的装箱直觉与最常见的 of 后置；'s/of 的激活状态解释属初中与教师层
+    exceptions:
+    - text: 习语化搭配（a day's journey 型）等本条未展开的因素（语域、节奏）同样影响 's/of 选择，激活状态是「关键一项」不是唯一开关
+      word_ids:
+      - V6_节日_5
+    - text: Keizer 没有给出各因素的统计权重，「语用优先」原话自带限定 "in some circumstances"，不得改写成「语用永远第一」
+      word_ids:
+      - G1_002
+  mechanism:
+  - beat: 轻的在前，重的挂后
+    text_kid: 装包裹有规矩：短的、轻的贴前面（a red book)，长的、一串的说明挂到后面（the book on the desk by the window)。汉语正相反，再长的说明也全堆在名词前面。
+    text_adult: 重量后置与英语语序的整体格局一致（从句、介词短语等重成分系统性右移）。汉语修饰语无条件前置＋「的」，英语则按重量后置——长定语的前置迁移是可由本条机制预测的产出困难。
+    visual: 左边：短签贴在包前；右边：长尾巴挂在包后，包稳稳当当
+    anchors:
+    - G1_002
+    - G1_0928
+  - beat: 谁的：先看在不在眼前
+    text_kid: 那个人就在眼前、大家正想着他，就用 's 一把抱到前面（the author's opinion)；不在眼前、要慢慢说清，就用 of 挂在后面（the opinion of the author）。
+    text_adult: '''s/of 选择受生命度与已知性影响的方向，与语料库属格研究的大势同向（本条只登记方向，不引未核的具体频率数字）；激活状态与本清单「已知性」机制（听者可辨识度决定形式选择）同向互证。'
+    visual: 一个人站在眼前，'s 把「谁的」抱到前面；人不在眼前，of 把说明挂到后面
+    anchors:
+    - G1_007
+    - G1_002
+    - V6_节日_5
+    - V6_家庭_34
+  examples:
+  - level: 1
+    word_ids:
+    - G1_002
+    - G1_0928
+    sentence: The book on the desk is new.
+    scene_note: 装箱现场：长说明 on the desk 挂在名词后面
+    supports: claim
+  - level: 1
+    word_ids:
+    - G1_007
+    - G1_002
+    sentence: This is my teacher's book.
+    scene_note: '''s 前置现场：老师是眼前熟悉的人'
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_节日_5
+    - V6_家庭_34
+    sentence: At the end of the day, we go home.
+    scene_note: of 后置现场：end of the day 慢慢说清
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_043
+    sentence: the car's door / the door of the car
+    scene_note: 两式对照：同一关系，'s 抱前、of 挂后（与 GR-13 互挂）
+    supports: claim
+  error_cases: *id001
+  quiz:
+  - q: 长长的说明应该挂在名词前面还是后面？
+    answer: 后面——轻的短的在前，重的长的往后挂，包裹才不头重脚轻。
+    hint: 回到机制第 1 节「轻的在前，重的挂后」。
+  relatives:
+  - id: GR-44
+    rel: 前置
+  - id: GR-13
+    rel: 同族
+  - id: GR-30
+    rel: 同族
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Keizer（2007）第 11、12 章（经 García Velasco 书评逐章带页码转述）；Hawkins（1994）；Guéron（1980）；Dik（1997）功能语法——接触等级：目录＋书评全文级（原书未打开，页码经书评转引）
+    boundary: (1) Keizer 没有给出各因素的统计权重，「语用优先」自带限定。(2) 's/of 还有语域、节奏、习语化搭配等因素，激活状态是「关键一项」不是唯一开关。(3) 汉语前置迁移一段是本簇的教学推论（已在机制栏标明），不得回引为 Keizer 的实证结论。(4) 小学剂量只到装箱直觉与常见 of 后置。
+    disputes:
+    - 三方并存：语用单一说（Guéron 1980）vs 复杂性单一说（Hawkins 1994）vs Keizer 的多功能妥协说。本条取妥协说著录（与书评对其第 11 章的肯定一致），但登记另两说为未被否证的对立面——尤其 Hawkins 的加工复杂性解释在心理语言学中仍有独立生命力。
+    evidence_grade: 目录＋书评全文级
+    pending:
+    - 原书未打开：涉页码主张均经书评转述，入模后如需页码级引用须补核原书
+    - 误解探针待补（入模标准要求 ≥1）
+    - 真实错例待补（本条的汉语迁移段为教学推论，未登记错例）
+  zone: 语法
+  group: GR
+  prereq: []
+  probes: []
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 清单 v6 散文入模（数据补齐总攻·波次 C1）
+    basis: 专家清单 v6 GR 组原文

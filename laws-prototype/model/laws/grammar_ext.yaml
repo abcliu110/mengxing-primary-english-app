@@ -1,0 +1,3575 @@
+# 语法区扩展模型 · TA（时态与体 18）+ CO（构式 17）+ QI（疑问与信息 15）= 50 条
+# 入模波次 C2（2026-11-01）。来源：专家规律清单 v6 三组全文，按 DESIGN §3 schema 入模，不自编。
+# 例词只引词库 id（word_ids / anchors）；解析未命中的词登记在各条目 adult.pending 与 pending_words。
+# quiz 与 probes（CO-17 除外）本波次未产出，统一标待补，status 相应为「入模中」；校验层 V 系列将在集成波次拦截。
+zone: 语法
+wave: C2
+entries:
+- id: TA-01
+  zone: 语法
+  group: TA
+  headline: 时态 = 时间 × 看法两个开关，不是十二个要逐个背的格子
+  headline_kid: 时态像两个开关：一个管「什么时候」，一个管「怎么看」；开关一组合，样子就出来了，不用背一大张表
+  claim:
+    type: rule
+    statement: 英语时态是两个独立维度的组合——时态（tense）把情境定位到时间上，体（aspect）决定如何观看情境内部的时间构成；学时态是学两维的组合，不是背十二个孤立格子。
+    evidence:
+    - Comrie《Aspect》(1976) 与《Tense》(1985, CUP) 确立的 tense/aspect 两分框架
+    - 章振邦《新编英语语法教程》(2017 第6版) 「两时两体」动词体系（国家级规划教材）
+    scope: 两维图是骨架不是全图：语义上谈论未来的手段不止 will / going to（见 TA-13）
+  mechanism:
+  - beat: 两个开关
+    text_kid: 一个开关管「什么时候」（现在还是过去），一个开关管「怎么看」（看整件、看中间、看痕迹）。两个开关一组合，时态的样子就定了。
+    text_adult: tense 把情境定位到时间上，aspect 决定观看情境内部时间构成的方式；两维独立组合是英语动词系统的实际结构，而非教学简化。本域纲领 coreView 同此口径。
+    visual: 两个拨动开关的图式：时间开关（现在/过去）× 看法开关（全景/进行/完成），组合格亮起
+  - beat: 组合不是背诵
+    text_kid: 先想「这件事在什么时候、我要怎么看它」，再去选样子——顺序反过来，表背得再熟也会选错。
+    text_adult: 跨语言类型学（Comrie 调查）表明时/体两维在语言中普遍可分离；两维组合式讲法降低初学负荷（domains.yaml 本域 basis，ERIC EJ1511004）。
+    visual: 同一件事（小男孩踢球）配三副不同镜头框，落在组合格的不同格子里
+  examples:
+  - level: 1
+    sentence: I am reading now.
+    scene_note: 晚饭后读绘本，正在发生——时间=现在，看法=钻进中间（进行）
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G3_K23
+  - level: 1
+    sentence: I read a story yesterday.
+    scene_note: 昨天读完的故事——时间=过去，看法=看整件（一般）
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G4_0415
+  - level: 2
+    sentence: I have finished my homework.
+    scene_note: 作业做完了，痕迹是现在可以出去玩——时间=过去的事，看法=对准现在的牵连（完成）
+    supports: claim
+    word_ids:
+    - V6_日常_26
+    - G5_215
+  - level: 2
+    sentence: We were playing football in the afternoon.
+    scene_note: 回忆昨天下午踢球踢到一半的画面——时间=过去，看法=钻进中间（过去进行）
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    - G2_0893
+  error_cases: []
+  relatives:
+  - id: TA-02
+    rel: 同族
+  - id: TA-03
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 101
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Bernard Comrie《Aspect》(1976) /《Tense》(1985), Cambridge University Press — https://www.academia.edu/25302496/Comrie_Aspect
+    - 章振邦《新编英语语法教程》第6版 (2017), 上海外语教育出版社, ISBN 978-7-5446-4909-4 — http://erp.sflep.cn/public/product/ebooktrial/9787544649094.pdf
+    boundary: 「两时」指形态时态（见 TA-02）；两维图是骨架不是全图。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-01 入模（波次 C2）
+- id: TA-02
+  zone: 语法
+  group: TA
+  headline: 英语形态上只有两个时态：没有「将来时」这个词形，将来是借工具谈的
+  headline_kid: 英语动词变来变去，只有「现在」和「过去」两件衣裳；说将来的事，要借 will、going to 这些小帮手的力气
+  claim:
+    type: rule
+    statement: 英语动词的形态对立只有 present / preterite 两项；will 是情态动词而非时态词尾，因此英语没有形态上的将来时，完成形式是次级时态（secondary tense）。
+    evidence:
+    - Huddleston & Pullum《The Cambridge Grammar of the English Language》(2002) 时态分析：只有两个 primary tenses，perfect 为 secondary tense，will 属情态
+    scope: 指形态层面；功能上英语谈论将来的手段完备，本条纠正的是「将来体」这一命名，不是说英语不能谈未来
+  mechanism:
+  - beat: 两件衣裳
+    text_kid: 动词自己能换的衣裳只有两件：现在样、过去样。说将来的事，动词要请小帮手（will、going to）来搭把手。
+    text_adult: will 的行为（与 may/might 等情态同族的句法、无时态词尾的形态对立）与情态词类完全一致，与 -ed 类时态词尾的行为系统不同，故 CGEL 判定其为情态而非时态。
+    visual: 衣架上两件衣服（现在/过去），旁边一排「借来的工具」：will、going to、时刻表现在时
+  - beat: 分歧登记
+    text_kid: 这件事老师们也有不同看法，详情放在大人看的地方；我们先按「没有将来时这件衣裳」来学。
+    text_adult: Declerck（2006）主张 will + 不定式的一部分用法应分析为将来时，与 CGEL 明确对立——分歧登记于成人层，呈现口径取 CGEL。
+    visual: 无（分歧只入成人层，不上儿童屏）
+  examples:
+  - level: 1
+    sentence: We play games today.
+    scene_note: 动词的「现在」衣裳
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G2_0414
+  - level: 1
+    sentence: We played games yesterday.
+    scene_note: 动词的「过去」衣裳
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G4_0415
+  - level: 2
+    sentence: We will visit Grandma tomorrow.
+    scene_note: 说将来的事要借 will——will 是帮手，不是动词自己的衣裳
+    supports: claim
+    word_ids:
+    - G6_270
+    - V6_家庭_12
+    - G6_267
+  - level: 2
+    sentence: Look at the clouds! It is going to rain.
+    scene_note: 借 going to 谈将来（此例同 TA-11 登记例）
+    supports: claim
+    word_ids:
+    - G2_0502
+  error_cases: []
+  relatives:
+  - id: TA-01
+    rel: 同族
+  - id: TA-10
+    rel: 同族
+  - id: TA-11
+    rel: 同族
+  - id: TA-13
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - TA-01
+  order: 102
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Huddleston & Pullum《The Cambridge Grammar of the English Language》(2002) — 时态分析转述：http://glottopedia.org/index.php/Huddleston_and_Pullum%27s_(2002)_analysis_of_tense
+    boundary: 见 claim.scope。
+    disputes:
+    - 'Declerck《The Grammar of the English Verb Phrase》Vol.1 (2006) pp.102–108 主张 will 的一部分用法应分析为将来时，与 CGEL (2002: 208–210) 对立（爱丁堡大学书评有记录）'
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-02 入模（波次 C2）
+- id: TA-03
+  zone: 语法
+  group: TA
+  headline: 体是「看事情的方式」：同一件事，可以看全景，也可以钻进去看中间
+  headline_kid: 看一件事像看录像：可以站在远处看完整件，也可以把镜头推进去，只看正在发生的中间一段——选哪种看法，就是选哪种「体」
+  claim:
+    type: rule
+    statement: 体（aspect）是观看一个情境内部时间构成的不同方式：完成体（perfective）把情境作为不可分析的整体呈现，未完成体参照其内部结构呈现。
+    evidence:
+    - Comrie《Aspect》(1976, CUP) p.3 定义原文：aspects are different ways of viewing the internal temporal constituency of a situation
+    scope: 镜头类比只映射「观看方式」这一关系结构，不映射物理相机属性；体的选择还受动词词义约束（见 TA-07）
+  mechanism:
+  - beat: 全景与特写
+    text_kid: 同一件事，可以站在远处看它从头到尾（全景），也可以把镜头推近，只看中间正在动的那一段（特写）。看的方法不同，说出来的样子就不同。
+    text_adult: Comrie 的经典定义是体貌类型学的共同出发点；《Aspect》被后续五十年文献标准引用，本域全部「看法」类讲法以此为锚。
+    visual: 同一段踢球录像的两个画框：远景全程 vs 推近到脚触球的一瞬
+  - beat: 类比的失效处
+    text_kid: 镜头是比喻，不是真的照相机：有的动词天生没有「中间一段」可看（比如 know），镜头就推不进去——这是动词的形状决定的（TA-07）。
+    text_adult: 类比单设失效声明：镜头可选，体貌选择受动词词义约束；用类比时须声明此边界（技术方案要求）。
+    visual: know 的牌子图标旁镜头推近被挡住的示意
+  examples:
+  - level: 1
+    sentence: They built a house.
+    scene_note: 站远处看整件事：房子从无到有，一次看完（全景）
+    supports: claim
+    word_ids:
+    - G5_0567
+    - V6_家庭_35
+  - level: 1
+    sentence: They were building a house.
+    scene_note: 把镜头推近：只看正在盖的中间一段（钻进去看）
+    supports: claim
+    word_ids:
+    - G5_0567
+  - level: 2
+    sentence: He ran in the park.
+    scene_note: 全景看跑步这件事
+    supports: claim
+    word_ids:
+    - G2_087
+    - G2_080
+  - level: 2
+    sentence: He was running when I saw him.
+    scene_note: 我看见他时，他正在跑的中间一段
+    supports: claim
+    word_ids:
+    - G2_087
+  error_cases: []
+  relatives:
+  - id: TA-01
+    rel: 前置
+  - id: TA-07
+    rel: 同族
+  - id: TA-18
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - TA-01
+  order: 103
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Bernard Comrie《Aspect》(1976), Cambridge University Press, p.3 — 剑桥版摘录：https://assets.cambridge.org/97811088/29038/excerpt/9781108829038_excerpt.pdf ；全书文本：https://www.academia.edu/25302496/Comrie_Aspect
+    boundary: 见 claim.scope（类比失效处声明）。
+    disputes: []
+    evidence_grade: 原文级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-03 入模（波次 C2）
+- id: TA-04
+  zone: 语法
+  group: TA
+  headline: 一般现在时装不下「正在发生」：整件事必须和说话这一刻完全重叠
+  headline_kid: 「我现在说」只有一眨眼那么短，一件完整的事塞不进这一眨眼；所以正在做的事要钻进镜头里说（进行时），一般现在时平时管的是习惯和老道理
+  claim:
+    type: rule
+    statement: 英语现在时要求被描述的完整事件与说话时刻完全重合（full coincidence）；说话瞬间近乎一个点，有界完整事件无法装入，即时解读被阻断，故正在发生的事件必须用进行体，一般现在时天然表习惯与真理。
+    evidence:
+    - 'Langacker "The English Present Tense" (English Language and Linguistics 5(2), 2001, 251–272)；同论亦见《Cognitive Grammar: A Basic Introduction》(2008) p.29'
+    scope: 解说、演示、历史现在时（TA-14）是受语体约束的合法例外，属识解方式切换而非规则失效
+  mechanism:
+  - beat: 一眨眼的现在
+    text_kid: 「现在」只有一眨眼那么短。踢球、吃饭这种要花时间的事，整件塞不进一眨眼，只好钻进镜头里说：I am eating.
+    text_adult: Langacker 的完全重合分析同时解释三件事：进行体为何表正在发生、一般现在时为何天然表习惯/真理、体育解说与舞台指示为何能用现在时（事件被识解为与解说同步的图式）。
+    visual: 一条时间轴上一个极短的「现在」亮点，一件完整事件的方框塞不进、改用进行中的截面呈现
+  - beat: 一般现在时的正职
+    text_kid: 一般现在时平时管两件事：天天都做的习惯（I get up at seven）和永远对的老道理（The sun rises in the east）。
+    text_adult: 习惯与真理读法是「事件与说话时刻重合」在图式层面的实现：重合的是反复发生的图式而非单次事件。
+    visual: 日历上重复打勾的作息图 + 太阳升起图
+  examples:
+  - level: 1
+    sentence: I am eating now.
+    scene_note: 正在吃饭——必须钻进镜头（进行时）
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    - G3_K23
+  - level: 1
+    sentence: I get up at seven every day.
+    scene_note: 天天的习惯——一般现在时的正职
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - G3_K19
+    - G1_026
+  - level: 2
+    sentence: The sun rises in the east.
+    scene_note: 永远对的老道理——一般现在时
+    supports: claim
+    word_ids:
+    - G2_0501
+    - V6_交通_38
+  - level: 2
+    sentence: Look! They are playing football now.
+    scene_note: 眼前正在发生——进行时
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    - G3_K23
+  error_cases: []
+  relatives:
+  - id: TA-14
+    rel: 同族
+  - id: TA-13
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - TA-03
+  order: 104
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Ronald W. Langacker "The English Present Tense", English Language and Linguistics 5(2), 2001, 251–272, DOI 10.1017/S1360674301000235 — https://resolve.cambridge.org/core/journals/english-language-and-linguistics/issue/04571591569388AB5B9954D6DA671249
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 原文级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：rise（例词未在词库命中，待补词流程）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-04 入模（波次 C2）
+- id: TA-05
+  zone: 语法
+  group: TA
+  headline: 完成体看的是「过去的事和现在的牵连」：痕迹在，事已远
+  headline_kid: 完成时不是说「以前做完了」，是说「以前那件事，现在还留着印子」：钥匙丢过——所以现在进不了门
+  claim:
+    type: rule
+    statement: 完成体（perfect）的语义是「过去情境对现在的持续相关性」（the continuing present relevance of a past situation），分结果、经历、近况、持续四种用法，统一于「与现在相连」而非「已完成」。
+    evidence:
+    - Comrie《Aspect》(1976) pp.52, 56–60：perfect 定义与四用法分类（result / experiential / recent past / persistent situation）
+    scope: 「现时相关」是语义统一式而非每句都能直观指认痕迹——经历用法的「痕迹」是经验本身，教学时须如实说这一层，不硬编具体结果
+  mechanism:
+  - beat: 看痕迹不看完没完
+    text_kid: 完成时盯着的是「现在留下的印子」：钥匙丢了（印子：现在进不了门）、去过北京（印子：有了这份经验）。
+    text_adult: 四用法共享「锚点在现在」的分布特征（如都拒斥明确过去时间状语，见 TA-06），这是「现时相关」优于「完成」旧解的决定性证据。项目 sf-037/sf-038 已按此口径把旧口诀「过去做完」全量更换。
+    visual: 地上脚印（过去的脚步 → 现在的痕迹）图式：脚步在左、痕迹在右并被圈出
+  - beat: 何时必须用、何时不能用
+    text_kid: 讲机制之外还要给清单：想说「印子还在」时用它；一旦点名昨天几点，就不能用它（TA-06）。
+    text_adult: 〔清单 v3 回写·VB-05〕Leech《Meaning and the English Verb》为本条补「选择」操作面：完成体教学须给用法清单与选择框架，以对冲学界对「现时相关」含糊性的批评。
+    visual: 两栏选择框：盯着现在结果 → 用完成体；点名过去时间 → 用过去时
+  examples:
+  - level: 1
+    sentence: I have lost my key.
+    scene_note: 钥匙丢了——印子是现在进不了门（结果用法；清单儿童版登记例）
+    supports: claim
+    word_ids:
+    - V6_日常_72
+    - G4_0740
+  - level: 1
+    sentence: I have been to Beijing.
+    scene_note: 去过北京——印子是经验本身（经历用法；清单边界登记例）
+    supports: claim
+    word_ids:
+    - G3_K01
+  - level: 2
+    sentence: I have finished my homework.
+    scene_note: 作业完成——印子是现在可以玩了（结果用法）
+    supports: claim
+    word_ids:
+    - V6_日常_26
+    - G5_215
+  - level: 2
+    sentence: We have lived here for three years.
+    scene_note: 住了三年而且还住着——持续用法，牵连一直连到现在
+    supports: claim
+    word_ids:
+    - G3_0653
+    - G2_0595
+    - V6_节日_1
+  error_cases: []
+  relatives:
+  - id: TA-06
+    rel: 同族
+  - id: TA-09
+    rel: 同族
+  - id: TA-12
+    rel: 对照
+  - id: TA-16
+    rel: 易混
+  quiz: []
+  probes: []
+  prereq:
+  - TA-03
+  order: 105
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Bernard Comrie《Aspect》(1976), pp.52, 56–60 — 四用法转述：https://socialsci.libretexts.org/Bookshelves/Linguistics/Analyzing_Meaning_-_An_Introduction_to_Semantics_and_Pragmatics_(Kroeger)/22%3A_Varieties_of_the_Perfect/22.02%3A_Uses_of_the_perfect
+    - Leech《Meaning and the English Verb》选择框架（经 VB-05 回写补入）
+    boundary: 见 claim.scope。
+    disputes:
+    - 「现时相关」被批评过于含糊（Dahl & Hedin 2000）；Klein、McCoard（Extended Now）等提出竞争分析。本项目取 Comrie 口径为教学定版并记录分歧
+    evidence_grade: 原文级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：beijing（专名；是否入词库由词库专名口径裁定，未裁前该例 word_ids 缺此词）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-05 入模（波次 C2；含 v3 回写 VB-05 选择操作面）
+- id: TA-06
+  zone: 语法
+  group: TA
+  headline: 现在完成时不能点名过去时间：*I have seen him yesterday 为什么错
+  headline_kid: 完成时的眼睛盯着「现在」，你一旦说出「昨天几点」这种明确的过去时间，等于把它的眼睛硬掰回过去，句子就别扭了
+  claim:
+    type: rule
+    statement: 现在完成时把参照点设在说话现在，明确的过去时间状语要求把事件定位锚回过去，两套定位互相冲突，故完成时不能与 yesterday、last night、in 2019 等明确过去时间状语同现；点名时间讲过去是一般过去时的职责。
+    evidence:
+    - Comrie (1976) 现时相关框架的直接推论；CGEL 次级时态分析（perfect 事件时间不与参照时间等同）
+    scope: 美式口语中偶见完成时与明确过去状语的松动用法（如媒体快讯体），属语体变异，不改变教学定版判据
+  mechanism:
+  - beat: 两套定位打架
+    text_kid: 完成时说「我盯着现在」；yesterday 说「回到昨天去」。一句话里两个命令相反，句子就坏了。想点名时间，就换过去时来讲。
+    text_adult: 该对立能批量预测 since/for 可用、yesterday/last night/in 2019 不可用，是完成时教学中可证伪性最强的一条判据（domains.yaml 本域 unifies 定版对立点）。
+    visual: 一只眼睛望向「现在」旗杆，yesterday 的手把视线往回掰、句子裂开的图式
+  examples:
+  - level: 1
+    sentence: I saw him yesterday.
+    scene_note: 点名了昨天——用一般过去时（正形，与病例错形对照）
+    supports: claim
+    word_ids:
+    - V6_日常_17
+    - G2_P03
+    - G4_0415
+  - level: 1
+    sentence: I have seen him.
+    scene_note: 不点名时间，只说与现在有牵连——完成时可用
+    supports: claim
+    word_ids:
+    - V6_日常_17
+    - G2_P03
+  - level: 2
+    sentence: We have lived here since 2021.
+    scene_note: since/for 给的是「连到现在的一段」——完成时的合法时间伴侣
+    supports: claim
+    word_ids:
+    - G3_0653
+    - G2_0595
+    - V6_节日_1
+  error_cases:
+  - wrong: I have seen him yesterday.
+    right: I saw him yesterday.
+    error_type: 完成时误配过去时间状语
+    source_type: 教学文献登记错型
+    diagnosis: 完成时参照点在现在，yesterday 把定位锚回过去，两套定位冲突（回 TA-06 机制节、TA-05 现时相关）
+  relatives:
+  - id: TA-05
+    rel: 前置
+  - id: TA-16
+    rel: 易混
+  quiz: []
+  probes: []
+  prereq:
+  - TA-05
+  order: 106
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Comrie《Aspect》(1976) 现时相关框架；CGEL 次级时态分析 — http://glottopedia.org/index.php/Huddleston_and_Pullum%27s_(2002)_analysis_of_tense
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-06 入模（波次 C2）；病例为条目标题登记的错例
+- id: TA-07
+  zone: 语法
+  group: TA
+  headline: 动词自带「时间形状」：有的事有终点、有的事是瞬间、有的状态没有过程可看
+  headline_kid: 动词像不同形状的玩具：run 是可以一直转的轮子，build a house 是有头有尾的一段路，know 是静止的牌子——形状不对，镜头（进行时）就套不上
+  claim:
+    type: rule
+    statement: 动词短语自带情状类型（Vendler 四型：状态 / 活动 / 完结 / 达成），由词义决定其与进行体、时间状语的兼容性：状态无内部变化、活动无固有终点、完结有终点且渐进、达成是瞬时。
+    evidence:
+    - Vendler "Verbs and Times" (The Philosophical Review 66(2), 1957, 143–160) — 词汇体（Aktionsart）奠基论文
+    scope: 分类单位是动词短语而非孤立动词（run 与 run a mile 分属活动与完结）；语境可强迫转换（如广告式 I am loving it），教学时按短语整体判断
+  mechanism:
+  - beat: 四种形状
+    text_kid: know 是静止的牌子（没有过程），run 是能一直转的轮子（没有终点），paint a picture 是一段有头有尾的路，find 是啪的一下（瞬间）。形状先看清，再选镜头。
+    text_adult: 四型分类能系统预测 *I am knowing 的不可接受性、in an hour / for an hour 状语的配对差异，是后续体貌研究（包括 Comrie）的共同出发点。
+    visual: 四个形状图标：牌子（状态）、轮子（活动）、有终点的路（完结）、闪光点（达成）
+  - beat: 按短语判断
+    text_kid: 同一个 run，光跑步是轮子，加上「一英里」就变成有终点的路——看形状要看整个短语，不能只看一个动词。
+    text_adult: 情状类型由动词短语整体（动词 + 宾语的量化性质等）决定，这是 Vendler 分类的单位口径。
+    visual: run 与 run a mile 并排，形状从轮子变成有终点的路
+  examples:
+  - level: 1
+    sentence: I know the answer.
+    scene_note: 状态——静止的牌子，没有过程可看
+    supports: claim
+    word_ids:
+    - G3_0626
+  - level: 1
+    sentence: The children run in the park.
+    scene_note: 活动——可以一直转的轮子，没有固有终点
+    supports: claim
+    word_ids:
+    - G2_087
+  - level: 2
+    sentence: She painted a picture.
+    scene_note: 完结——有头有尾的一段路，画完为止
+    supports: claim
+    word_ids:
+    - G4_0787
+    - G4_158
+  - level: 2
+    sentence: He found his key.
+    scene_note: 达成——瞬间发生，啪的一下
+    supports: claim
+    word_ids:
+    - V6_日常_19
+    - G4_0740
+  error_cases:
+  - wrong: I am knowing the answer.
+    right: I know the answer.
+    error_type: 状态动词误套进行体
+    source_type: 教学文献登记错型
+    diagnosis: know 是状态型，没有内部过程可看，进行体的镜头套不上（回 TA-07 机制节；清单支撑登记 *I am knowing 的不可接受性）
+  relatives:
+  - id: TA-03
+    rel: 前置
+  quiz: []
+  probes: []
+  prereq:
+  - TA-03
+  order: 107
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Zeno Vendler "Verbs and Times", The Philosophical Review 66(2), 1957, 143–160, DOI 10.2307/2182371 — https://en.wikipedia.org/wiki/Zeno_Vendler ；分类与判据：http://en.wikipedia.org/wiki/Lexical_aspect
+    boundary: 见 claim.scope；四型的细分方案后续多有修订，机制层结论稳定。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-07 入模（波次 C2）
+- id: TA-08
+  zone: 语法
+  group: TA
+  headline: 过去形式还管「距离」：礼貌、假设、转述，都是把事情从眼前推远
+  headline_kid: 过去时不只说「以前」：想客气一点（I wondered ...）、想假设一下（If I were you），都把话往远处推一推，听起来就柔和了
+  claim:
+    type: tendency
+    statement: 过去形式（第二形式）的通义是「距离」——把情境置于说话人即时视域之外；时间上的过去只是这一通义在时间域的投影，心理上的不确定（假设）与社交上的客气（礼貌）是同一「推远」操作在其他维度的实现。
+    evidence:
+    - Langacker《Foundations of Cognitive Grammar》Vol.2 (1991) §6.1 认识距离说；其 2001 现在时论文明确回指该分析
+    - 〔清单 v3 回写·VB-09/VB-12〕Lewis《The English Verb》通用原则与 Palmer 的类型学观察双证：距离是第二形式的通义而非附加用法
+    scope: 小学阶段只需埋下「推远 = 客气 / 假设」的种子（各一两个固定句型），系统讲解（条件句全套）不在本学段范围
+    exceptions:
+    - note: 过去形式最常见的用法仍是字面的过去时间叙述——「距离」是通义层解释，不否定时间用法的原型地位
+      word_ids:
+      - G4_0415
+  mechanism:
+  - beat: 推远这一个动作
+    text_kid: 把一句话往远处推一推：推到时间远处是「以前」，推到心里远处是「假如」，推到关系远处是「客气」。是同一个动作。
+    text_adult: 认识距离（epistemic distance）统一解释时态后退（间接引语）、虚拟条件句、礼貌请求三类表面无关的「过去形」用法，且与世界语言中「过去形表非现实」的普遍对应吻合。
+    visual: 一句话气泡被手推离说话人，三个落点：日历（过去）/ 云朵（假设）/ 微笑（礼貌）
+  examples:
+  - level: 1
+    sentence: I wondered if you could help me.
+    scene_note: 清单儿童版登记的礼貌句型——用 wondered 把请求推远一点，听起来更柔和
+    supports: claim
+    word_ids:
+    - G5_0448
+  - level: 1
+    sentence: If I were you, I would say sorry.
+    scene_note: 清单儿童版登记的假设句型——were 是把事情推到「假如」里
+    supports: claim
+    word_ids:
+    - V6_核心_62
+    - G1_P02
+  - level: 2
+    sentence: He said he was busy.
+    scene_note: 转述时把 is 推成 was——时态后退也是推远（机制支撑登记用法）
+    supports: claim
+    word_ids:
+    - G3_0625
+    - G4_K04
+  error_cases: []
+  relatives:
+  - id: TA-02
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - TA-02
+  order: 108
+  pain_points:
+  - 错不完
+  - 说不出
+  adult:
+    sources:
+    - Ronald W. Langacker《Foundations of Cognitive Grammar》Vol.2 (1991) §6.1 — 回指见 https://resolve.cambridge.org/core/journals/english-language-and-linguistics/issue/04571591569388AB5B9954D6DA671249
+    - Lewis《The English Verb》通用原则；Palmer 类型学观察（经 VB-09/VB-12 回写）
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-08 入模（波次 C2；含 v3 回写 VB-09/VB-12 重心修正：距离为通义）
+- id: TA-09
+  zone: 语法
+  group: TA
+  headline: 过去完成时是「锚点搬家」：站在过去某个点上，再回头看更早的事
+  headline_kid: 讲到过去的某一天时，想再说那天之前的事，就把小旗子插在那一天，再往前看——这就是过去完成时
+  claim:
+    type: rule
+    statement: 完成体是相对时态：它只要求「事件早于参照点」；参照点在现在是现在完成时，参照点被叙事搬到过去即过去完成时，维度本身没有增加。
+    evidence:
+    - Comrie《Tense》(1985) 相对时态（relative tense）分析；CGEL 次级时态说互证（perfect 是叠加在主时态之上的第二层）
+    scope: 叙事中事件顺序已由 before/after 或语境标明时，过去完成时常可省略，属冗余消除，不构成对机制的反例
+  mechanism:
+  - beat: 小旗子搬家
+    text_kid: 完成时的小旗子（参照点）平时插在「现在」。讲故事讲到过去某一天，把小旗子搬过去插好，再往旗子前面看，就是过去完成时。
+    text_adult: 「锚点」一解同时说明了为何过去完成时必须依附一个过去叙事点（单独出现会显得突兀），以及为何它与现在完成时共享全部四种用法。
+    visual: 时间轴上一面小旗从「现在」搬到「上周二」，旗前的一段被照亮
+  examples:
+  - level: 1
+    sentence: I had finished my homework when Mum came home.
+    scene_note: 小旗插在「妈妈回家时」——写完作业在那之前（模型层形式例，动词均出自词库）
+    supports: claim
+    word_ids:
+    - V6_日常_26
+    - G5_215
+    - V6_家庭_6
+    - V6_日常_2
+    - V6_家庭_34
+  - level: 1
+    sentence: We had eaten lunch before we played.
+    scene_note: 顺序已由 before 标明时过去完成时可用可省（见 scope）
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    - G4_188
+    - V6_核心_55
+    - G2_0489
+  - level: 2
+    sentence: She had never seen snow before that winter.
+    scene_note: 站在那个冬天回头看——经历用法搬到过去，与现在完成时共享用法
+    supports: claim
+    word_ids:
+    - V6_核心_69
+    - V6_日常_17
+    - G2_0504
+    - V6_核心_55
+  error_cases: []
+  relatives:
+  - id: TA-05
+    rel: 前置
+  quiz: []
+  probes: []
+  prereq:
+  - TA-05
+  order: 109
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Bernard Comrie《Tense》(1985) 相对时态分析 — https://www.academia.edu/25302496/Comrie_Aspect ；CGEL 分析：http://glottopedia.org/index.php/Huddleston_and_Pullum%27s_(2002)_analysis_of_tense
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+    - 例证说明：本条例句为模型层形式例（清单条目未登记例句），动词与场景词均取自词库
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-09 入模（波次 C2）
+- id: TA-10
+  zone: 语法
+  group: TA
+  headline: will 说将来带着「我预言 / 我乐意」的口气，因为它本是意愿动词变的
+  headline_kid: will 以前就是「想要」：所以它说将来时，总像在拍胸脯保证，或者当场答应「好，我来！」
+  claim:
+    type: etymology
+    statement: will 沿语法化路径「意愿 → 意图 → 预测」演变，旧义在新用法中留有残影（persistence），故 will 的将来解读天然带说话人的承诺/预测立场，而非中性的时间标记。
+    evidence:
+    - Bybee, Perkins & Pagliuca《The Evolution of Grammar》(1994) 将来标记来源路径 desire/volition → intention → future（pp.244, 263，经 Diewald & Wischer 2013 转引核实）
+    source: 意愿动词 will（古英语 willan「想要」）语法化为将来标记；项目 g25-etym 已登记此词源定性
+    scope: 残影不是全部——天气预报式 will 已高度中性化；教学中说「带着预言的味道」即可，不得宣称 will「仍然表示想要」
+  mechanism:
+  - beat: 旧义的残影
+    text_kid: will 的老祖宗是「想要」。它变成说将来的词以后，老脾气没全改：用它说将来，像拍着胸脯说「我看准了」或者「好，我来干」。
+    text_adult: 跨语言中意愿动词变将来标记反复独立发生（英语 will、希腊语 tha 等）；will 的即时决定义（I'll get the door）无法用纯时间说解释，是残影的活证据。
+    visual: 一条演化路：想要 → 打算 → 预言将来，路上留着淡淡的旧脚印
+  examples:
+  - level: 1
+    sentence: I'll get the door!
+    scene_note: 门铃响了当场答应——will 的意愿残影（清单支撑登记例）
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - G1_0932
+  - level: 1
+    sentence: It will rain tomorrow.
+    scene_note: 天气预报式 will——已高度中性化，只剩预言的味道（见 scope）
+    supports: claim
+    word_ids:
+    - G2_0502
+    - G6_267
+  - level: 2
+    sentence: I will help you with your homework.
+    scene_note: 当场承诺——「我乐意」的口气最浓的一种用法
+    supports: claim
+    word_ids:
+    - G3_0442
+    - G1_P02
+  error_cases: []
+  relatives:
+  - id: TA-02
+    rel: 同族
+  - id: TA-11
+    rel: 对照
+  quiz: []
+  probes: []
+  prereq:
+  - TA-02
+  order: 110
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Bybee, Perkins & Pagliuca《The Evolution of Grammar》(1994) — 转引核实：https://www.gabrielediewald.de/fileadmin/_gd/downloads/Diewald_Wischer_2013_Final_Manuscript_Version.pdf ；书目：https://grammaticon.clld.org/sources
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手转引级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-10 入模（波次 C2）；claim 分型 etymology（沿 g25-etym 登记）
+- id: TA-11
+  zone: 语法
+  group: TA
+  headline: be going to 是「已经在路上」：从走向某地去做某事，变成预兆与打算
+  headline_kid: going to 以前真的是「走过去做某事」：人已经上路了，所以它说的将来，是「已经有苗头、已经打算好」的将来
+  claim:
+    type: etymology
+    statement: be going to 源于移动构式「go（去某地）+ 目的不定式」的语法化：空间移动义脱落、目的义升格为意图与预测，留下「当前已有征兆/计划」的语义底色；它与 will 的分工是倾向而非铁律。
+    evidence:
+    - Bybee, Perkins & Pagliuca (1994)「运动 → 将来」跨语言路径；框架见 Hopper & Traugott《Grammaticalization》(2003 第2版)
+    source: 移动动词 go + 目的不定式构式语法化为将来标记；项目 g24-etym 已登记此定性
+    scope: going to 与 will 大量语境可互换；教学以「预兆/打算 vs 临时决定/预测」的原型对比呈现并明示重叠区
+  mechanism:
+  - beat: 上路的人
+    text_kid: 一个人背上包往车站走——他还没到，但「要去哪儿」已经明明白白。going to 说的将来就是这种：苗头已经在眼前了。
+    text_adult: Look at the clouds — it's going to rain 的「眼前有预兆」解读与 will 的中性预测形成稳定对立，是路径语义残留的活证据。
+    visual: 小人背着包走在路上，前方标着要做的事；旁边一片乌云配雨滴预兆
+  examples:
+  - level: 1
+    sentence: Look at the clouds! It is going to rain.
+    scene_note: 眼前有预兆的将来（清单支撑登记例）
+    supports: claim
+    word_ids:
+    - G3_0505
+    - G2_0502
+  - level: 1
+    sentence: We are going to visit Grandma this weekend.
+    scene_note: 已经打算好的将来——计划先于说话存在
+    supports: claim
+    word_ids:
+    - G6_270
+    - V6_家庭_12
+    - G5_216
+  - level: 2
+    sentence: I am going to watch a film tonight.
+    scene_note: 打算义；与 will 的临时决定用法对照呈现
+    supports: claim
+    word_ids:
+    - POLY_WATCH
+    - V6_运动_27
+    - G6_268
+  error_cases: []
+  relatives:
+  - id: TA-10
+    rel: 对照
+  - id: TA-02
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - TA-02
+  order: 111
+  pain_points:
+  - 说不出
+  - 错不完
+  adult:
+    sources:
+    - Bybee, Perkins & Pagliuca《The Evolution of Grammar》(1994) — 路径：http://www.glottopedia.org/index.php/Grammaticalization_path ；书目：https://grammaticon.clld.org/sources
+    - Hopper & Traugott《Grammaticalization》(2003 第2版)
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：cloud（清单例 clouds 的词元未在词库命中，待补词流程）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-11 入模（波次 C2）；claim 分型 etymology（沿 g24-etym 登记），与 will 的分工倾向记入 scope
+- id: TA-12
+  zone: 语法
+  group: TA
+  headline: 完成体的来历：从「我手里有一封写好的信」到「我已经写了信」
+  headline_kid: 很久以前，I have the letter written 是说「写好的信在我手里」；说着说着，重心从「信」滑到「我写过」，完成时就这样长出来的
+  claim:
+    type: etymology
+    statement: 完成体源于所有格结果结构（have + 宾语 + 过去分词，表持有某物的完成状态），经再分析（宾语改属动词、have 虚化为助动词）走上 resultative → anterior (perfect) → perfective 的演化链。
+    evidence:
+    - Bybee, Perkins & Pagliuca《The Evolution of Grammar》(1994) 完成体演化路径（经 Sakurai 的类型学综述转引核实）
+    source: 所有格结果结构 have + O + 过去分词；纲领裁定同口径——完成体确源于所有格结果结构，但不是 have 的词义本身；旧「攥着结果」字面解已改标「来历故事」
+    scope: 来历是历史解释，不能反推现代 have 的意义；讲述时必须定位为「祖先的故事」，与 TA-05 的现时相关定义分工，不得混作定义
+  mechanism:
+  - beat: 重心滑动
+    text_kid: 老早以前说 I have the letter written，心里想的是「信在我手里，写好的」。后来大家的注意力从「信」滑到「写信这件事做过了」——完成时就出生了。
+    text_adult: 罗曼语、 germanic 诸语言的 have-完成体呈现平行的结构残迹（分词曾与宾语一致等），为再分析路径提供独立佐证。
+    visual: 天平图式：左盘「信（物）」渐沉、右盘「写过（事）」渐升，重心完成滑动
+  examples:
+  - level: 1
+    sentence: I have the letter written.
+    scene_note: 古义再现（清单儿童版登记的历史句式）：重心在「写好的信在我手里」
+    supports: claim
+    word_ids:
+    - V6_日常_5
+    - V6_P14
+  - level: 1
+    sentence: I have written the letter.
+    scene_note: 现代完成时：重心在「我写过了」——与上例同框对照
+    supports: claim
+    word_ids:
+    - G3_0487
+    - V6_P14
+  error_cases: []
+  relatives:
+  - id: TA-05
+    rel: 对照
+  quiz: []
+  probes: []
+  prereq:
+  - TA-05
+  order: 112
+  pain_points:
+  - 记不住
+  adult:
+    sources:
+    - Bybee, Perkins & Pagliuca《The Evolution of Grammar》(1994) — 转引：https://www.lu.lv/fileadmin/user_upload/lu_portal/apgads/PDF/VNF_7/E_Sakurai_VNF_7.pdf ；书目：https://grammaticon.clld.org/sources
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手转引级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：written（write 的过去分词形未在词库独立命中，待补词/归一口径裁定）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-12 入模（波次 C2）
+- id: TA-13
+  zone: 语法
+  group: TA
+  headline: 时刻表上的将来用现在时：因为时刻表把未来写成了「已定的事实」
+  headline_kid: 火车时刻表是早就定死的，像事实一样摆在那儿，所以说 The train leaves at six——用现在时，是借它的「铁板钉钉感」
+  claim:
+    type: rule
+    statement: 一般现在时的核心语义包含「图式化的、已确立的事实」；时刻表、节目单、日历把未来事件预先制度化为事实，故可借现在时编码（futurate present）。
+    evidence:
+    - Huddleston & Pullum (2002)《CGEL》现在时的将来指称（futurate）分析；项目 frameworks ROYAL_TRUMPS T10 已把本例外同级登记
+    scope: 仅限时刻表/日程类预定事件；个人临时计划不用此式（用 going to / will），混用即错；*It rains tomorrow 不成立
+  mechanism:
+  - beat: 写进表里的未来
+    text_kid: 还没发生的事，一旦印进火车时刻表、课程表，就像钉在墙上的事实。用现在时说它，借的就是这股「铁板钉钉」的劲儿。
+    text_adult: 该用法严格限于制度化时间表语境，「事实化」解释能准确预测其分布边界（对比 *It rains tomorrow 的不可接受性）。
+    visual: 一张火车时刻表特写：The train leaves at 6:00 被圈出，旁边日历上的个人计划划归 going to
+  examples:
+  - level: 1
+    sentence: The train leaves at six.
+    scene_note: 清单儿童版登记例——时刻表上的将来用现在时
+    supports: claim
+    word_ids:
+    - G1_047
+    - V6_交通_57
+    - G1_027
+  - level: 1
+    sentence: Our lesson starts at eight tomorrow.
+    scene_note: 课程表同理：已排定的日程
+    supports: claim
+    word_ids:
+    - V6_学校_26
+    - V6_日常_24
+    - G6_267
+  - level: 2
+    sentence: The film begins at seven tonight.
+    scene_note: 节目单语境——制度化时间表
+    supports: claim
+    word_ids:
+    - V6_运动_27
+    - V6_日常_25
+    - G1_026
+  error_cases: []
+  relatives:
+  - id: TA-04
+    rel: 同族
+  - id: TA-11
+    rel: 对照
+  quiz: []
+  probes: []
+  prereq:
+  - TA-04
+  order: 113
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Huddleston & Pullum《The Cambridge Grammar of the English Language》(2002) futurate 分析 — http://glottopedia.org/index.php/Huddleston_and_Pullum%27s_(2002)_analysis_of_tense
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-13 入模（波次 C2）
+- id: TA-14
+  zone: 语法
+  group: TA
+  headline: 讲故事可以把过去拉到眼前：历史现在时是「演」不是「说错」
+  headline_kid: 讲故事讲到紧张处，可以把过去的事当成正在发生来演——So he opens the door ...——听的人像站在现场一样
+  claim:
+    type: tendency
+    statement: 历史现在时是叙事者切换识解方式、把过去事件置于「虚拟的说话现在」中呈现以提高临场感的语篇手段；它本身无独立意义，与过去时的交替切换才是叙事分段标记，集中出现在故事高潮段。
+    evidence:
+    - Wolfson "The Conversational Historical Present Alternation", Language 55(1), 1979, 168–182（项目于 2026-11-01 补核销项）；后续专著 CHP (Foris, 1982)
+    - 项目 domains.yaml PITFALLS_DB 天坑 08 已登记：历史现在时注，「必须强制变过去式」改「默认」
+    scope: 小学阶段只作「认得出、不误判为错误」的被动知识，不要求学生产出
+    exceptions:
+    - note: 正式书面叙述仍以过去时为默认——历史现在时是口头叙事的语体手段，不覆盖书面规范
+      word_ids: []
+  mechanism:
+  - beat: 演与说
+    text_kid: 平时讲故事用过去时是「说」；讲到最紧张的地方，突然改成现在时，就像演员上场「演」给大家看——这不是说错了，是故意拉近。
+    text_adult: 英语口头叙事语料中历史现在时集中出现在故事高潮段，是叙事结构研究的稳定观察（项目内登记口径）。
+    visual: 故事时间轴：平静段用过去时色块，高潮段突然切换成「现场直播」画框
+  examples:
+  - level: 1
+    sentence: So he opens the door and sees a big dog!
+    scene_note: 清单儿童版登记例型——故事高潮处把过去拉到眼前（opens 的现在时形态是演法标记）
+    supports: claim
+    word_ids:
+    - V6_日常_10
+    - G1_0932
+  - level: 1
+    sentence: He walked into the room. Suddenly, he hears a noise!
+    scene_note: 过去时铺垫 → 现在时高潮：交替切换本身就是分段标记
+    supports: claim
+    word_ids:
+    - V6_交通_52
+    - V6_家庭_36
+  error_cases: []
+  relatives:
+  - id: TA-04
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - TA-04
+  order: 114
+  pain_points:
+  - 读不快
+  adult:
+    sources:
+    - Nessa Wolfson, Language 55(1), 1979, pp.168–182 — https://eric.ed.gov/?id=EJ201513 ；DOI 10.2307/412521；专著 CHP (Foris, 1982)
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（本条的功能正是防止误纠，不设错例）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-14 入模（波次 C2）；出处为清单已补核销项
+- id: TA-15
+  zone: 语法
+  group: TA
+  headline: 汉语靠词和语境表时间，英语靠动词变形：每个英语句子被迫选时
+  headline_kid: 汉语说「昨天、明天」几个词就够了，时间在词里；英语把时间藏在动词的形状里，每说一句都要选一次——这就是中国孩子总漏 -ed 的原因
+  claim:
+    type: rule
+    statement: 汉语是「词汇型」时间表达（时间词 + 了/过/着等体貌助词，无强制时态范畴），英语是「形态型」强制表达（每个限定分句必须做时态选择）；系统差异决定了时态形式是中国学习者的结构性难点而非态度问题。
+    evidence:
+    - 连淑能《英汉对比研究》(1993) 英汉时态表达方式对比
+    - 项目 dom-contrast-pitfalls 纲领登记的错误分布（时态形式居中国学生写作错误前列）为实证侧锚
+    scope: 对比的是编码位置（词 vs 动词形态）；汉语并非「没有时间表达」，讲授时须防止学生误读为「汉语落后」式表述
+  mechanism:
+  - beat: 时间藏在哪里
+    text_kid: 汉语把时间明明白白说成词：「昨天」一出口，人人都懂。英语不说时间词也行，但动词必须换形状——形状就是它藏时间的地方。
+    text_adult: 中国学习者时态错误以「形式缺失/误选」为主而非「时间概念错误」：访谈中学生能准确报告事件时间，证明缺的是形态习惯而非时间观念。
+    visual: 左右对照：汉语侧时间词被圈出（昨天/明天），英语侧动词的 -ed 被圈出
+  examples:
+  - level: 1
+    sentence: I played football yesterday.
+    scene_note: 英语：时间既在 yesterday 里、更在 played 的形状里——去掉 yesterday 句子仍知是过去
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    - G4_0415
+  - level: 1
+    sentence: I will go to school tomorrow.
+    scene_note: 谈将来也要在动词侧做选择（借 will），不能只扔一个 tomorrow
+    supports: claim
+    word_ids:
+    - V6_日常_1
+    - G2_081
+    - G6_267
+  error_cases: []
+  relatives:
+  - id: TA-16
+    rel: 同族
+  - id: QI-13
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 115
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 连淑能《英汉对比研究》(1993), 高等教育出版社 — https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=65be754274ce561611bd9be6
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（清单登记的错误分布为类级证据，未登记具体错句，不自编）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-15 入模（波次 C2）
+- id: TA-16
+  zone: 语法
+  group: TA
+  headline: 「了 / 过」≠ 现在完成时：对得上的只有一部分
+  headline_kid: 汉语的「了」是「做成了」，「过」是「经历过」；英语完成时管的是「和现在有牵连」——三个人长得有点像，但不是同一个人
+  claim:
+    type: tendency
+    statement: 汉语「了」（情境的实现/完成）与「过」（经验体）与英语 perfect 的「现时相关」仅在结果持续与经历两处部分重叠，在持续义、近况义等处系统错位，直译对应必然产生偏误。
+    evidence:
+    - 连淑能《英汉对比研究》(1993) 时体对比框架；项目方法研究已登记「了/过 ≠ 现在完成时」为具体错位点（domains.yaml dom-contrast-pitfalls basis）
+    scope: 错位是部分而非全无对应——教学中逐用法对比，不做整体否定
+    exceptions:
+    - note: 经历义对应度较高：「过」与 experiential perfect 基本对得上（I have been to Beijing），是重叠区而非错位区
+      word_ids:
+      - G3_K01
+  mechanism:
+  - beat: 三张脸对位
+    text_kid: 「了」管做成没做成，「过」管经历没经历，完成时管「跟现在还有没有关系」。有的地方三人站成一队，有的地方各站各的——要一张一张脸对，不能整队搬。
+    text_adult: 学习者典型错误（*I have done my homework yesterday、把「我去过北京」与「我丢了钥匙」用同一逻辑套 have done）均是错位映射的直接产物。
+    visual: 三个头像（了/过/perfect）的对照表：结果、经历两行打勾同队，持续、近况两行分开站
+  examples:
+  - level: 1
+    sentence: I have been to Beijing.
+    scene_note: 「过」与经历完成时对得上的重叠区
+    supports: claim
+    word_ids:
+    - G3_K01
+  - level: 1
+    sentence: I have lost my key.
+    scene_note: 「我丢了钥匙」的「了」在此恰与结果完成时同向——但理由是「印子还在」，不是「了=完成时」
+    supports: claim
+    word_ids:
+    - V6_日常_72
+    - G4_0740
+  - level: 2
+    sentence: We have lived here for three years.
+    scene_note: 持续义——汉语没有现成的对应格，是错位最深的一格
+    supports: claim
+    word_ids:
+    - G3_0653
+    - G2_0595
+    - V6_节日_1
+  error_cases:
+  - wrong: I have done my homework yesterday.
+    right: I did my homework yesterday.
+    error_type: 以「了」直译套完成时并误配过去时间状语
+    source_type: 教学文献登记错型
+    diagnosis: 把「了」整体等同于现在完成时，又点名 yesterday，触发 TA-06 的定位冲突；错位映射见本条机制节
+  relatives:
+  - id: TA-05
+    rel: 前置
+  - id: TA-06
+    rel: 易混
+  - id: TA-15
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - TA-05
+  order: 116
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 连淑能《英汉对比研究》(1993) — https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=65be754274ce561611bd9be6
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：beijing（专名口径待裁，同 TA-05）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-16 入模（波次 C2）；病例为清单支撑登记的学习者典型错误
+- id: TA-17
+  zone: 语法
+  group: TA
+  headline: 学时态的顺序：先把高频动词的过去式用熟，再回头看系统表
+  headline_kid: 先学会说 went、saw、had 这些天天用的，讲故事讲顺了，时态的大表自己会慢慢浮出来
+  claim:
+    type: tendency
+    statement: 动词范畴从具体词例中涌现（逐词习得 → 局部图式 → 抽象系统）；频率保证高频不规则形式最先被整存并成为图式扩展的锚点，故教学顺序应是先用熟高频动词的过去式，再回头看系统表。
+    evidence:
+    - 'Tomasello《Constructing a Language: A Usage-Based Theory of Language Acquisition》(2003, Harvard UP) 动词岛与图式涌现说'
+    - Ellis (2002) 频率调谐综述（见 GR-19）
+    scope: 顺序说针对自然习得路径；高年级补系统表有显性学习效率优势，两者是先后关系而非取舍关系（见 GR-21 的适切性检查）
+    exceptions:
+    - note: 显性系统表在高年级/应试补课场景中有独立效率价值，不在本条否定范围——本条只裁定起始顺序
+      word_ids: []
+  mechanism:
+  - beat: 从词到表
+    text_kid: 先把 went、saw、had 一个个用熟，就像先认熟几个好朋友；朋友多了，他们之间的「规矩」自己会显出来，最后再看大表也不迟。
+    text_adult: 儿童语言日记与实验研究（源于 Tomasello 1992 个案研究）显示早期动词框架互不连通、按动词逐个扩展，与「先灌系统表」的预测相反。
+    visual: 三级台阶：单个动词卡（went/saw/had）→ 小圈子图式 → 完整的时态系统表
+  examples:
+  - level: 1
+    sentence: We went to the park yesterday.
+    scene_note: went 整存先行——先会用，再归纳（go 的过去式不靠规则推）
+    supports: claim
+    word_ids:
+    - V6_日常_1
+    - G2_080
+    - G4_0415
+  - level: 1
+    sentence: I saw a bird in the tree.
+    scene_note: saw 同为高频不规则，先用熟
+    supports: claim
+    word_ids:
+    - V6_日常_17
+    - G1_013
+  - level: 2
+    sentence: She had breakfast at home.
+    scene_note: had——三个锚点词凑齐后，过去式图式开始成形
+    supports: claim
+    word_ids:
+    - V6_日常_5
+    - G4_186
+  error_cases: []
+  relatives:
+  - id: CO-10
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 117
+  pain_points:
+  - 记不住
+  adult:
+    sources:
+    - Michael Tomasello《Constructing a Language》(2003), Harvard University Press — 综述：https://www.researchgate.net/publication/351436938_The_Usage-based_Theory_of_Language_Acquisition_A_review_of_Major_Issues
+    - Nick C. Ellis (2002) 频率调谐综述（见 GR-19）
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（本条为习得顺序条，无登记病例）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-17 入模（波次 C2）
+- id: TA-18
+  zone: 语法
+  group: TA
+  headline: 「镜头讲法」教时态有实验支持，但证据强度要如实说：方向有据、低龄待验
+  headline_kid: 把完成时讲成「看痕迹」而不是背表格，试过的大哥哥姐姐学得更好；轮到小学生行不行，还要继续看
+  claim:
+    type: tendency
+    statement: 认知语言学式解释（以识解/镜头重述时态语义）在现在完成时等难点上显示教学优势，但现有证据内部不一致且全部来自青少年与成人学习者；用于小学属合理外推，必须标注待验，不得宣称「已被证明更优」。
+    evidence:
+    - Drożdż (2011), Linguistica Silesiana 32, 213–228：认知语法工具教现在完成时，阳性
+    - Maghsoudi & Khodamoradi (2024), Journal of Researches in Linguistics 16(2), 29–40：准实验，认知解释组胜出
+    - Bielak & Pawlak (2011), SSLLT 1(3), 365–400：结果与传统教法相当（持平）
+    scope: 无 6–12 岁随机对照实验；本条是本域全部「镜头讲法」的证据边界声明
+    exceptions:
+    - note: Bielak & Pawlak (2011) 的持平结果是本断言的内建例外：认知讲法并非在所有实验中都胜出
+      word_ids: []
+  mechanism:
+  - beat: 证据要如实标
+    text_kid: 「看痕迹」的讲法在哥哥姐姐身上试过，有的试出来更好，有的试出来差不多。小学生身上还没试过——我们可以用，但不能吹牛说「肯定更好」。
+    text_adult: 两项阳性结果与一项持平结果并存，是「证据内部不一致」的典型形态；清单如实并列而非只挑阳性（domains.yaml 本域 basis 已审登记，三文书目已于 2026-11-01 逐篇打开核实；Maghsoudi & Khodamoradi 刊名原登记误记已正名）。
+    visual: 三个实验瓶：两瓶亮绿（阳性）、一瓶亮灰（持平），下方标注「被试：青少年与成人」
+  examples:
+  - level: 1
+    sentence: I have lost my key.
+    scene_note: 本域的标本句：用「看痕迹」讲法教这句，正是三项实验共同的教学对象（现在完成时）
+    supports: claim
+    word_ids:
+    - V6_日常_72
+    - G4_0740
+  error_cases: []
+  relatives:
+  - id: TA-03
+    rel: 同族
+  - id: TA-05
+    rel: 同族
+  - id: CO-11
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - TA-05
+  order: 118
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Drożdż (2011), Linguistica Silesiana 32, pp.213–228
+    - Bielak & Pawlak (2011), Studies in Second Language Learning and Teaching 1(3), pp.365–400, DOI 10.14746/ssllt.2011.1.3.4
+    - Maghsoudi & Khodamoradi (2024), Journal of Researches in Linguistics 16(2), pp.29–40, DOI 10.22108/jrl.2024.141342.1845
+    boundary: 见 claim.scope；本条证据边界适用于 TA-03/TA-05 等全部镜头讲法条目。
+    disputes:
+    - 证据层分歧：Bielak & Pawlak (2011) 持平结果与 Drożdż 路线阳性结果并存
+    evidence_grade: 期刊原文级（三文书目已逐篇打开核实）
+    pending:
+    - 病例待补（证据条不设病例）
+    - 误解探针待补
+    - 检索练习待补
+    - 例证说明：本条为例证单薄条（证据评议型），仅登记标本句 1 例，分级例证待补至规格
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 TA-18 入模（波次 C2）
+- id: CO-01
+  zone: 语法
+  group: CO
+  headline: 句型模具本身带意思：整句的意义大于动词意思之和
+  headline_kid: 句型像模具：面团（动词）倒进不同的模具，出来的点心味道就不一样——多出来的味道，是模具给的
+  claim:
+    type: rule
+    statement: 构式是形式—意义的配对体；当整体意义不能由动词与词序规则完全预测时，剩余意义由构式本身贡献——模具本身带意思。
+    evidence:
+    - 'Goldberg《Constructions: A Construction Grammar Approach to Argument Structure》(1995, University of Chicago Press) — 构式语法奠基专著，本域纲领 coreView 的直接来源'
+    scope: 构式义解释的是论元结构层面的意义增量，不接管词形（时态、单复数）与词汇细节（见 CO-16）
+  mechanism:
+  - beat: 模具给味
+    text_kid: 同样的面团（同一个动词），倒进星形模具出来是星星味，倒进方形模具出来是方形味。多出来的那份味道，不是面团的，是模具的。
+    text_adult: 该框架能用同一机制同时解释构式的能产性（新动词入模长新义）与限制性（某些动词被拒），是传统「动词决定论」做不到的双向解释。
+    visual: 一团面团分倒进三个模具，出来的点心形状各异，模具被高亮标注「味道来源」
+  examples:
+  - level: 1
+    sentence: He baked her a cake.
+    scene_note: 纲领 coreView 登记例：bake 本无「给」义，双宾模具给了它「给」味
+    supports: claim
+    word_ids:
+    - G5_0793
+    - G1_048
+  - level: 1
+    sentence: They painted the door red.
+    scene_note: 结果模具给 paint 加上「变成红色」的结果味（详见 CO-05）
+    supports: claim
+    word_ids:
+    - G4_0787
+    - G1_0932
+    - G1_034
+  - level: 2
+    sentence: She gave him a book.
+    scene_note: 双宾模具的原型成员——转移义与模具义在此重合
+    supports: claim
+    word_ids:
+    - V6_日常_8
+    - G1_002
+  error_cases: []
+  relatives:
+  - id: CO-02
+    rel: 同族
+  - id: CO-16
+    rel: 同族
+  - id: CO-12
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 201
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - 'Adele E. Goldberg《Constructions: A Construction Grammar Approach to Argument Structure》(1995), University of Chicago Press — https://www.researchgate.net/publication/320856777_Goldberg''s_construction_grammar'
+    boundary: 见 claim.scope。
+    disputes:
+    - '生成语法传统质疑抽象论元结构构式会过度生成（overgeneration；Goldberg 1995: 38 自行讨论，Croft 2012 亦及），属理论分歧，记录在案'
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-01 入模（波次 C2）
+- id: CO-02
+  zone: 语法
+  group: CO
+  headline: 双宾模具自带「让某人收到某物」：bake 进去，就长出「给」义
+  headline_kid: 「我烤她一块蛋糕」——bake 本来只管烤，可一放进「人 + 人 + 东西」的模具，句子自己就多出「给她」的意思
+  claim:
+    type: rule
+    statement: 双宾构式的中心义是图式化的「X causes Y to receive Z」（施事使接受者收到客体）；动词只需提供完成转移的方式，转移义由构式供给。
+    evidence:
+    - Goldberg (1995) 双宾构式分析（中心义与多义网络）
+    scope: 构式对入模动词有语义门禁——接受者须可识解为有生接收者、施事须带意志性；纯状态/言说类动词被拒（见 CO-03）
+  mechanism:
+  - beat: 模具自带「给」
+    text_kid: 「谁 + 谁 + 东西」这个队形一站好，「给」的意思自己就来了。动词只负责说清楚「用什么办法给」：烤着给、做着给、递着给。
+    text_adult: bake、build、make 等本无「给」义的动词入模后稳定获得转移解读；母语者对新造动词（如 moop）放入双宾句也能即时读出转移义，证明意义来自模具。
+    visual: 「人+人+东西」队形图式，中间浮出一个大大的「给」字，动词卡从上方插入队形
+  examples:
+  - level: 1
+    sentence: He baked her a cake.
+    scene_note: 纲领与条目共同登记的核心例——bake 长出「给」义
+    supports: claim
+    word_ids:
+    - G5_0793
+    - G1_048
+  - level: 1
+    sentence: She made me a cup of tea.
+    scene_note: make 同理：做着给
+    supports: claim
+    word_ids:
+    - V6_日常_4
+    - G2_0936
+    - G2_0944
+  - level: 2
+    sentence: They built us a small house.
+    scene_note: build 入模——「为我们建」即转移解读（条目机制登记动词）
+    supports: claim
+    word_ids:
+    - G5_0567
+    - V6_家庭_35
+  error_cases: []
+  relatives:
+  - id: CO-01
+    rel: 前置
+  - id: CO-03
+    rel: 同族
+  - id: CO-06
+    rel: 同族
+  - id: CO-17
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - CO-01
+  order: 202
+  pain_points:
+  - 说不出
+  - 错不完
+  adult:
+    sources:
+    - Goldberg (1995) 双宾构式分析 — give 类讨论：https://www.academia.edu/128499803/How_conceptual_structure_impinges_on_constructional_behavior_the_case_of_give_verbs
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-02 入模（波次 C2）
+- id: CO-03
+  zone: 语法
+  group: CO
+  headline: 有些动词进不了双宾模具：意思不合是一关，词的「长相」也是一关
+  headline_kid: explain、donate 想进双宾模具会被挡在门外：它们只好走 to 的小路（explain this to me）——一个因为意思不对路，一个还因为词太长、重音不在前面
+  claim:
+    type: rule
+    statement: 动词进入双宾构式须过两关：宽域规则要求动词义含「有意致使拥有转移」；窄域规则再按动词的语义小类与形态音位（本族单音节/首重读可入，拉丁源多音节非首重读抗拒）逐类准入，两关皆过才能进双宾，否则只能走 to 式。
+    evidence:
+    - Pinker《Learnability and Cognition》(1989, MIT Press) 宽/窄域规则（拉丁源限制见 p.46 的自我限定：关键在形态音位而非词源本身）
+    - 'Gropen, Pinker et al. (1989), Language 65: 203–257 配套实证'
+    scope: 窄域小类靠逐类习得，没有一条规则能全自动预测每个动词的去向；新动词须查证/语感积累。项目句型④定版（explain/say/donate 只能 to 式）与此一致
+  mechanism:
+  - beat: 两道门
+    text_kid: 双宾模具门口有两位门卫：一位看意思（是不是「有心把东西给出去」），一位看长相（词短不短、重音在不在前面）。explain 意思不对路，donate 长相不过关，都被请去走 to 的小路。
+    text_adult: 该分析能预测儿童与成人对真词（donate/explain）和新造词的双宾可接受性判断差异，是「语义 + 词形」双因素的经典证据。
+    visual: 模具门口两道门：意思门（爱心+包裹图标）、长相门（音节秤），explain 与 donate 被引导向 to 小路
+  examples:
+  - level: 1
+    sentence: Please explain this to me.
+    scene_note: explain 走 to 小路的正形（与病例错形对照）
+    supports: claim
+    word_ids:
+    - V6_学校_79
+    - G3_P08
+    - G1_P01
+  - level: 1
+    sentence: She gave me the book.
+    scene_note: give 两关皆过——双宾正形
+    supports: claim
+    word_ids:
+    - V6_日常_8
+    - G1_002
+  - level: 2
+    sentence: They donated books to our school.
+    scene_note: donate 拉丁源多音节、重音不在前——走 to 式
+    supports: claim
+    word_ids:
+    - G1_002
+    - G2_081
+  error_cases:
+  - wrong: Explain me this.
+    right: Explain this to me.
+    error_type: 言说类动词误入双宾构式
+    source_type: 条目成人层登记的事故例
+    diagnosis: explain 不含「致使拥有转移」义，过不了宽域关；纲领 coreView 与本条目共同登记此错形（回 CO-03 机制节）
+  relatives:
+  - id: CO-02
+    rel: 前置
+  quiz: []
+  probes: []
+  prereq:
+  - CO-02
+  order: 203
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 'Steven Pinker《Learnability and Cognition: The Acquisition of Argument Structure》(1989), MIT Press — https://en.wikipedia.org/wiki/Dative_shift ；窄域规则讨论：https://www.sid.ir/en/VEWSSID/J_pdf/87620060102.pdf'
+    - 'Gropen, Pinker et al. (1989), Language 65: 203–257'
+    boundary: 见 claim.scope。
+    disputes:
+    - Groefsema (2001) 等指出拉丁源形态音位限制的解释覆盖不足，语义因素的权重应更高；本条保留 Pinker 双层说并注明此分歧
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：donate（本条核心例词未在词库命中，须优先走补词流程后回填）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-03 入模（波次 C2）
+- id: CO-04
+  zone: 语法
+  group: CO
+  headline: 致使移动模具：喷嚏也能「打飞」一张餐巾纸
+  headline_kid: sneeze 本来只是打喷嚏，放进「把某物弄到某处」的模具——Sam sneezed the napkin off the table——喷嚏就有了把餐巾纸喷下桌的本事
+  claim:
+    type: rule
+    statement: 致使移动构式（X causes Y to move Z）自带「致使客体沿路径移动」义；不及物动词入模后由构式补足致使与路径论元，动词只提供致使的方式。
+    evidence:
+    - 'Goldberg (1995) 论元结构构式表中的 caused-motion 构式；sneeze 例为该书标志性例句 (1995: 29)'
+    scope: 入模要求可识解的物理致使链；纯心理/状态动词不可（*He knew the ball over the fence），这是构式义与动词义相容性在起作用
+  mechanism:
+  - beat: 模具补论元
+    text_kid: 打喷嚏本来只是一个人的事。放进「弄得某物跑到某处」的模具，喷嚏就有了推动力：餐巾纸被它喷下了桌。
+    text_adult: 母语者对从未听过的动词—构式组合能即时产出一致的致使移动解读，证明该意义不存储于动词词条。
+    visual: 喷嚏的气流箭头推动餐巾纸沿弧线飞离桌面，路径被虚线标出
+  examples:
+  - level: 1
+    sentence: Sam sneezed the napkin off the table.
+    scene_note: Goldberg (1995) 标志性原例：sneeze、napkin 未在词库命中，已登记待补词；句中可引词仅 table 一词
+    supports: claim
+    pending_words:
+    - sneeze
+    - napkin
+    word_ids:
+    - G2_0930
+  - level: 1
+    sentence: He kicked the ball over the fence.
+    scene_note: kick 自带致使移动义——与模具义重合的原型成员
+    supports: claim
+    word_ids:
+    - G1_041
+  - level: 2
+    sentence: The wind blew the paper to the floor.
+    scene_note: 风把纸吹落——致使者可以是非人力量
+    supports: claim
+    word_ids:
+    - V6_天气_39
+    - V6_学校_20
+    - G3_0933
+  error_cases:
+  - wrong: He knew the ball over the fence.
+    right: （无此说法：know 是状态动词，进不了致使移动模具）
+    error_type: 状态动词误入致使移动构式
+    source_type: 教学文献登记错型
+    diagnosis: know 没有可识解的物理致使链，与构式义不相容（条目边界登记的星号例；回 CO-04 机制节）
+  relatives:
+  - id: CO-01
+    rel: 前置
+  - id: CO-05
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - CO-01
+  order: 204
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Goldberg《Constructions》(1995), p.29 — https://www.researchgate.net/publication/320856777_Goldberg's_construction_grammar
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：sneeze、napkin（本条标志性例词未入词库，须走补词流程后回填 word_ids）
+    - 待补词：kick、fence（例词未命中，待补词流程）；sam 为人名专名，不入词库口径待裁
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-04 入模（波次 C2）
+- id: CO-05
+  zone: 语法
+  group: CO
+  headline: 结果模具：「把某物弄成某个样」——变样的意思来自模具，不在动词里
+  headline_kid: paint the door red（把门刷成红色）、wipe the table clean（把桌子擦干净）——「变成什么样」这出戏，是模具安排的，动词只管用什么手法
+  claim:
+    type: rule
+    statement: 结果构式（X causes Y to become Z）贡献「状态变化 + 终点状态」义；动词提供动作方式，结果短语提供终点，两者缺一构不成结果解读。
+    evidence:
+    - Goldberg (1995) resultative 构式分析（论元结构构式表：X causes Y to become Z）
+    scope: 结果状态须是动作可直接达成的（*He sang the baby asleep 中的 sing 需高度语境支持才勉强成立）；小学阶段只用 paint/wipe/make 等原型动词教学
+  mechanism:
+  - beat: 手法加终点
+    text_kid: wipe 只说「擦」，clean 才说「擦成干净的」。一个管怎么动手，一个管变成什么样——合起来才是结果模具的完整意思。
+    text_adult: 同一动词（wipe/paint）在有无结果短语时解读系统不同，且结果短语的准入受「可致使变化」语义约束，呈现构式层面的规律性。
+    visual: 一扇门从白色渐变红色，paint 刷子标「手法」、red 色块标「终点」
+  examples:
+  - level: 1
+    sentence: They painted the door red.
+    scene_note: 条目标题登记例——paint 是手法，red 是终点
+    supports: claim
+    word_ids:
+    - G4_0787
+    - G1_0932
+    - G1_034
+  - level: 1
+    sentence: She wiped the table clean.
+    scene_note: 条目标题登记例（wipe 未在词库命中，已登记待补词）；句中可引词为 table、clean
+    supports: claim
+    pending_words:
+    - wipe
+    word_ids:
+    - G2_0930
+    - G5_250
+  - level: 2
+    sentence: He made his bed tidy.
+    scene_note: make 把床铺弄整齐——原型动词的结果用法
+    supports: claim
+    word_ids:
+    - V6_日常_4
+    - G2_0931
+    - G4_0462
+  error_cases: []
+  relatives:
+  - id: CO-01
+    rel: 前置
+  - id: CO-04
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - CO-01
+  order: 205
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Goldberg《Constructions》(1995) resultative 分析 — https://www.researchgate.net/publication/320856777_Goldberg's_construction_grammar
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：wipe（条目标题例词未入词库，待补词流程）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-05 入模（波次 C2）
+- id: CO-06
+  zone: 语法
+  group: CO
+  headline: 双宾模具是一个「意思家族」：从真给出去，到打算给、答应给
+  headline_kid: 双宾模具像一家人：大哥是「真把东西给了他」，弟弟妹妹们是「答应给他」「做给他看」「不让他拿到」——长得像，脾气各不同，但都围着「转移」转
+  claim:
+    type: rule
+    statement: 双宾构式义是围绕中心义组织的多义网络：成功转移为中心义，引申出意图转移、使能、阻碍、未来转移等边缘义，各义由隐喻/实例链与中心相连，而非同音巧合。
+    evidence:
+    - Goldberg (1995) 双宾构式的系统多义（systematically related senses）分析
+    scope: 多义网络用于教师备课与释义组织；对小学生只呈现中心义与最常用的意图义（bake/make 给），边缘义随阅读自然遇见再点破
+  mechanism:
+  - beat: 一个家族
+    text_kid: 双宾句有个大家长：「真把东西交到他手里」。其他成员像亲戚：答应给（还没给）、做给他（给的是成品）、不让他拿到（把转移挡回去）——都围着「给」转。
+    text_adult: 边缘义（如 refuse him entry 的「拒绝转移」）仍唤起转移图式并能预测其句法行为，随机罗列说无法解释这种系统性。
+    visual: 家族树图：中心「成功转移」居中，意图/使能/阻碍/未来四条枝向外伸展
+  examples:
+  - level: 1
+    sentence: She gave him a book.
+    scene_note: 中心义：成功转移
+    supports: claim
+    word_ids:
+    - V6_日常_8
+    - G1_002
+  - level: 1
+    sentence: Dad promised me a new bike.
+    scene_note: 意图/未来转移：答应给，还没到手
+    supports: claim
+    word_ids:
+    - G2_0973
+  - level: 2
+    sentence: Mum baked us a cake.
+    scene_note: 使能转移：做给他——成品即转移物（与 CO-02 同例不同读法，教学中并置）
+    supports: claim
+    word_ids:
+    - G5_0793
+    - G1_048
+  error_cases: []
+  relatives:
+  - id: CO-02
+    rel: 前置
+  quiz: []
+  probes: []
+  prereq:
+  - CO-02
+  order: 206
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Goldberg (1995) 双宾多义分析 — https://www.academia.edu/128499803/How_conceptual_structure_impinges_on_constructional_behavior_the_case_of_give_verbs
+    boundary: 见 claim.scope；条目机制登记的 refuse him entry 例中 refuse、entry 未入词库，如后续用作例词须先补词。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：promise（例词未在词库命中，待补词流程）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-06 入模（波次 C2）
+- id: CO-07
+  zone: 语法
+  group: CO
+  headline: There be 是「出场介绍」模具：把新面孔推上舞台，所以主语多半是新客
+  headline_kid: There is a dog 是把小狗第一次领上台介绍给大家；台下都认识的老朋友，就不用这样领了——所以这里很少说 There is the dog
+  claim:
+    type: rule
+    statement: 存现构式的功能是向话语中引入新实体，其主语位置由「新信息/不确定指称」占据是功能使然（定指限制），与 have 的「领有」是两出不同的戏。
+    evidence:
+    - Huddleston & Pullum (2002)《CGEL》存现分句（existential clauses）分析；项目 g36-there-vs-have「There be 与 have 分工」为已入模口径
+    scope: 清单列举语境可放行定指主语（There is the bus! 指等候之物到达），属语境特许，不改变原型口径
+  mechanism:
+  - beat: 领上台与归谁管
+    text_kid: There is 是主持人领新客人上台：「有只小狗！」have 是说清东西归谁：「我有一本书」。一个管出场，一个管归属，别演混了。
+    text_adult: 定指限制（the、专名作存现主语时的系统别扭感）跨语体稳定；初学者 *There has a book 类错误正源于不分「出场」与「领有」两戏。
+    visual: 舞台图：主持人（There is）领新客上台；另一侧 have 的手把书放进「我的」圈里
+  examples:
+  - level: 1
+    sentence: There is a dog under the tree.
+    scene_note: 条目儿童版登记例型——把新面孔（a dog）介绍出场
+    supports: claim
+    word_ids:
+    - G1_015
+  - level: 1
+    sentence: I have a book on my desk.
+    scene_note: have 管领有——与上例同框对照
+    supports: claim
+    word_ids:
+    - G1_002
+    - G1_0928
+  - level: 2
+    sentence: There is the bus!
+    scene_note: 语境特许：等候的公交车到了——定指主语被放行（见 scope）
+    supports: claim
+    word_ids:
+    - G2_105
+  error_cases:
+  - wrong: There has a book on the desk.
+    right: There is a book on the desk.
+    error_type: 存现与领有两戏混演（there be 误用 has）
+    source_type: 教学文献登记错型
+    diagnosis: 把 have 的领有戏码搬进存现模具；There be 管出场介绍，have 管领有（条目支撑登记 *There has a book；回 CO-07 机制节）
+  relatives:
+  - id: QI-05
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 207
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Huddleston & Pullum《The Cambridge Grammar of the English Language》(2002) 存现分句分析 — CGEL 总览：http://glottopedia.org/index.php/Huddleston_and_Pullum%27s_(2002)_analysis_of_tense
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-07 入模（波次 C2）
+- id: CO-08
+  zone: 语法
+  group: CO
+  headline: 被动句是「换主角」，不是「没人做主语时的救急」
+  headline_kid: 同一件事，镜头对准做事的人是主动，对准被收拾的东西就是被动——The window was broken 是想让大家看窗户怎么样了
+  claim:
+    type: rule
+    statement: 主/被动之别是焦点参与者的选择：被动把受事（landmark）提升为首要焦点（trajector）占据主语位，施事降格或隐去；事件内容不变，「戏的站位」改变。
+    evidence:
+    - 'Langacker 认知语法的 trajector/landmark 分析（被动 = landmark 提升为 trajector），见《Cognitive Grammar: A Basic Introduction》(2008) p.364 图式定义；CGEL 被动章的信息结构动机互证'
+    scope: 小学阶段只建立「换主角」的直觉与最常用形式（be + 过去分词），by 短语的取舍、得被动（get-passive，见 CO-17 构造④）等细节后置
+  mechanism:
+  - beat: 谁站中间
+    text_kid: 一件事里有两个人选：做事的和被收拾的。谁站到舞台正中间当主角，句子就围着谁说。被动句，就是让被收拾的那位站中间。
+    text_adult: 被动在语篇中的实际分布（科技写作、新闻标题中受事为话题时高频）与「话题连续性」预测一致，远超「施事不明时才用」的旧解释所能覆盖的范围。
+    visual: 舞台聚光灯在「男孩」与「窗户」之间切换，两句台词随之换主语
+  examples:
+  - level: 1
+    sentence: The window was broken.
+    scene_note: 条目儿童版登记例——镜头对准窗户（broken 的词形归一见待补说明）
+    supports: claim
+    pending_words:
+    - broken
+    word_ids:
+    - G4_159
+  - level: 1
+    sentence: The boy broke the window.
+    scene_note: 同一件事的主动版——主角是做事的人，与上例同框对照
+    supports: claim
+    word_ids:
+    - G1_1000
+    - ADD_0025
+    - G4_159
+  - level: 2
+    sentence: The cake was made by Mum.
+    scene_note: 受事站中间，施事退到 by 后面
+    supports: claim
+    word_ids:
+    - G1_048
+    - V6_日常_4
+    - V6_家庭_6
+  error_cases: []
+  relatives:
+  - id: CO-09
+    rel: 同族
+  - id: QI-05
+    rel: 同族
+  - id: CO-17
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 208
+  pain_points:
+  - 错不完
+  - 写不长
+  adult:
+    sources:
+    - 'Langacker《Cognitive Grammar: A Basic Introduction》(2008), p.364 — 讲义：https://www.usc-vlcg.es/LANGACKER.pdf ；CGEL 被动章互证'
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+    - 待补词：broken（break 的过去分词形归一口径待裁定，同 written）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-08 入模（波次 C2）
+- id: CO-09
+  zone: 语法
+  group: CO
+  headline: 主语是「镜头主角」，不保证是动作的发出者
+  headline_kid: 主语是站在舞台正中间的那位：可以是做事的人，也可以是门自己开了（The door opened）时被看的那扇门
+  claim:
+    type: rule
+    statement: 主语是编码 trajector（关系中的首要焦点参与者）的名词，宾语编码 landmark（次要焦点）；施事只是 trajector 的原型而非定义，故中动、存现等句型的主语无需「发出动作」。
+    evidence:
+    - 'Langacker《Cognitive Grammar: A Basic Introduction》(2008) p.364 图式定义（a nominal that codes the trajector of a profiled relationship）；讲义《The Functional Organization of English Clauses》§8、§21 同一定式'
+    scope: 「主角」是注意力概念，不能反推语义角色；判读 The key opened the door 时仍需结合动词与语境区分施事/工具/主题
+  mechanism:
+  - beat: 主角不等于动手的人
+    text_kid: 主语是镜头对准的那位，不一定是动手做事的那位。门自己开了——镜头对准门，门就是主角，虽然后面可能藏着风。
+    text_adult: 焦点说统一解释主语在一致关系、照应、被动提升中的特权地位——这些特权跟着「焦点」走，不跟着「施事」走。
+    visual: 聚光灯依次打在做事者、门、钥匙上，三句的主语随之更换
+  examples:
+  - level: 1
+    sentence: The door opened.
+    scene_note: 条目儿童版登记例——主语是被看的那扇门，不是动作发出者
+    supports: claim
+    word_ids:
+    - G1_0932
+    - V6_日常_10
+  - level: 1
+    sentence: The key opened the door.
+    scene_note: 条目边界登记例——主语是工具，判读仍需结合语境
+    supports: claim
+    word_ids:
+    - G4_0740
+    - V6_日常_10
+    - G1_0932
+  - level: 2
+    sentence: The dog is running.
+    scene_note: 原型情形：主语恰好也是动作发出者——原型而非定义
+    supports: claim
+    word_ids:
+    - G1_015
+    - G2_087
+  error_cases: []
+  relatives:
+  - id: CO-08
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - CO-08
+  order: 209
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 'Ronald W. Langacker《Cognitive Grammar: A Basic Introduction》(2008), p.364 — https://www.usc-vlcg.es/LANGACKER.pdf'
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-09 入模（波次 C2）
+- id: CO-10
+  zone: 语法
+  group: CO
+  headline: 孩子学句型是「先整句、再换零件」：带空格的句子先行，抽象句型后长
+  headline_kid: 小朋友先背熟「I want ___」这样的半成品句子，只换最后一个词；换得多了，大脑才发现原来前面这截是个通用机关
+  claim:
+    type: tendency
+    statement: 儿童最初的句法组织围绕单个动词/固定框架逐个建立（item-based，动词岛），抽象的跨动词构式范畴约在 3 岁后经类比与图式化缓慢涌现，而非天生内置；学句型是「先整句、再换零件」。
+    evidence:
+    - Tomasello《Constructing a Language》(2003, Harvard UP) 动词岛假说；证据源于 Tomasello (1992) 个案日记研究
+    scope: 二语课堂中的学龄儿童已有母语图式可迁移，路径比幼儿 L1 更跳跃；「先整句」是起点策略，不是拒绝显性讲解的理由（见 GR-18/GR-21 的分工）
+    exceptions:
+    - note: 学龄二语学习者可借母语图式与显性讲解跳步，不必逐台阶苦等自然涌现
+      word_ids: []
+  mechanism:
+  - beat: 半成品先行
+    text_kid: 先把「I want ___」整截背熟用顺，只换最后那个词。换的次数多了，脑子自己会发现：原来前面这截是个万能机关口。
+    text_adult: 儿童早期产出中同一孩子对不同动词使用互不迁移的框架、错误亦呈动词特异性分布，是图式涌现说的标志性证据。
+    visual: 一块带空格的句子模板卡，空格处轮换插入 apple / water / cake 三张词卡
+  examples:
+  - level: 1
+    sentence: I want an apple.
+    scene_note: 条目儿童版登记的框架 I want ___ 的首个填充
+    supports: claim
+    word_ids:
+    - V6_日常_66
+    - G1_037
+  - level: 1
+    sentence: I want some water.
+    scene_note: 同一框架只换零件——动词岛阶段的典型产出
+    supports: claim
+    word_ids:
+    - V6_日常_66
+    - G1_055
+  - level: 2
+    sentence: I want a cake.
+    scene_note: 填充变例积累到一定量，框架被识解为通用机关（图式涌现）
+    supports: claim
+    word_ids:
+    - V6_日常_66
+    - G1_048
+  error_cases: []
+  relatives:
+  - id: TA-17
+    rel: 同族
+  - id: CO-12
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 210
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Michael Tomasello《Constructing a Language》(2003), Harvard University Press — https://www.researchgate.net/publication/351436938_The_Usage-based_Theory_of_Language_Acquisition_A_review_of_Major_Issues
+    boundary: 见 claim.scope 与 exceptions。
+    disputes:
+    - 生成语法传统认为儿童句法范畴具有先天普遍语法基础，动词岛现象可由性能因素解释；本项目取用法基础口径（与 GR-19/GR-20 同源）并记录分歧
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（习得路径条不设病例）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-10 入模（波次 C2）
+- id: CO-11
+  zone: 语法
+  group: CO
+  headline: 理解句子时，大脑先认模具、后认动词
+  headline_kid: 听一句话，大脑先认出「这是个给东西的句型」，再去听是哪个动词——模具比动词先被认出来
+  claim:
+    type: tendency
+    statement: 母语者给句子分组时按构式（而非主动词）分类者占优，构式义是心理现实的表征单位；该倾向在中国、德国学习者样本中同样复现。
+    evidence:
+    - Bencini & Goldberg (2000) 句子分类实验（4 动词 × 4 构式 16 句：17 名被试中 7 人完全按构式分类、0 人完全按动词分类、10 人混合，pp.644–647）
+    - Liang (2002，中国学习者) 与 Gries & Wulff (2005，德国学习者) 的复现同样呈构式分类倾向
+    scope: 被试为成人与青少年，低龄儿童的分类行为未直接验证；教学应用属合理外推，标注待低龄验证（与 TA-18 同规）
+    exceptions:
+    - note: 实验中多数被试（10/17）是混合分类——构式优先是占优倾向，不是全有或全无
+      word_ids: []
+  mechanism:
+  - beat: 先认队形
+    text_kid: 就像先认出「这是排队买票的队形」，再看清排队的是谁——大脑认句子，先认出是哪种句型，再细听动词。
+    text_adult: 跨母语背景学习者的两次复现（含中国学习者样本）使结论不局限于英语母语者，为「先教模具戏、再扩动词」提供了直接的心理证据。
+    visual: 16 张句子卡按模具形状分堆的实验场景图
+  examples:
+  - level: 1
+    sentence: She gave him a book.
+    scene_note: 实验材料型之一：双宾模具句——被试优先按此归类
+    supports: claim
+    word_ids:
+    - V6_日常_8
+    - G1_002
+  - level: 1
+    sentence: He baked her a cake.
+    scene_note: 动词不同、模具相同——与上句在实验中被分进同一堆
+    supports: claim
+    word_ids:
+    - G5_0793
+    - G1_048
+  error_cases: []
+  relatives:
+  - id: CO-01
+    rel: 同族
+  - id: TA-18
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - CO-01
+  order: 211
+  pain_points:
+  - 读不快
+  adult:
+    sources:
+    - Bencini & Goldberg (2000) 句子分类实验，pp.644–647 — https://revistas.ucm.es/index.php/CLAC/es/article/download/88217/4564456563937/4564456671404
+    - Liang (2002)；Gries & Wulff (2005) 复现研究
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（实验条不设病例）
+    - 误解探针待补
+    - 检索练习待补
+    - 例证说明：本条为实验登记型，仅 2 例达下限，分级例证待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-11 入模（波次 C2）
+- id: CO-12
+  zone: 语法
+  group: CO
+  headline: 构式和语块是同一条谱系：从整块背下的句子，到半成品框架，到全抽象模具
+  headline_kid: 背下来的整句话、能换零件的半截话、看不见摸不着的句型模具，是一家三代：背得越多，模具越清楚
+  claim:
+    type: tendency
+    statement: 语言单位构成大小不一的图式谱系：公式语（整存）经反复变例使用被部分图式化，最终析出抽象构式；习得即沿此谱系的双向运动。
+    evidence:
+    - Goldberg (1995) 构式作为习得单位的主张，与 Lewis (1993) 词汇法、Wray (2002) 公式语研究在谱系两端互证（见 GR-20）
+    scope: 谱系是描写框架，不预言每个学习者必经全部阶段；课堂中显性点破模具可加速图式化，不必苦等自然析出
+    exceptions:
+    - note: 显性教学可跳步加速——谱系描述的是自然涌现常态，不是必经之路
+      word_ids: []
+  mechanism:
+  - beat: 一家三代
+    text_kid: 整句话是爷爷（整块背）、半截话是爸爸（能换零件）、句型模具是孙子（看不见的机关）。背得越多、换得越多，孙子越清楚。
+    text_adult: 儿童语言中「先整块、后析出」的个案轨迹（CO-10）与成人加工中公式语的速度优势（GR-20）分别锚定谱系的两端证据。
+    visual: 三代同堂图：整句卡 → 带空格框架卡 → 抽象模具轮廓，箭头双向
+  examples:
+  - level: 1
+    sentence: How are you?
+    scene_note: 公式语端：整块存取，不拆开分析
+    supports: claim
+    word_ids:
+    - G3_Q08
+    - G1_P02
+  - level: 1
+    sentence: I want ___.
+    scene_note: 谱系中段：半成品框架（以框架本身为登记对象，空格为图式槽位）
+    supports: claim
+    word_ids:
+    - V6_日常_66
+  - level: 2
+    sentence: （双宾模具）X gives Y Z.
+    scene_note: 抽象端：全图式模具，只剩角色槽位（登记形式，引 CO-02 实体例填充）
+    supports: claim
+    word_ids:
+    - V6_日常_8
+  error_cases: []
+  relatives:
+  - id: CO-10
+    rel: 同族
+  - id: CO-17
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - CO-10
+  order: 212
+  pain_points:
+  - 记不住
+  adult:
+    sources:
+    - Goldberg (1995)；Lewis (1993)；Wray (2002) — 公式语研究：https://www.researchgate.net/publication/346671439_Formulaic_Language_and_the_Lexicon
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（框架条不设病例）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-12 入模（波次 C2）
+- id: CO-13
+  zone: 语法
+  group: CO
+  headline: 一个分句只有一台「上牌发动机」：限定动词管时态，to do / doing 是不上牌的零件
+  headline_kid: 一个小句子里，只有一个动词能戴时态帽子当发动机；跟在后面的动词要脱帽，穿上 to 或 -ing 的工作服——所以 I want go 少了工作服就出厂不合格
+  claim:
+    type: rule
+    statement: 英语分句的限定性（时态/一致）只能实现一次；非限定形式（不定式、动名/分词）不携带独立时态锚点，其时间解读依附于主分句——这一结构事实决定了动词搭配的形式面。
+    evidence:
+    - Huddleston & Pullum (2002)《CGEL》限定/非限定分句分析；项目 g40-one-finite「一个分句一个限定动词」为已入模口径
+    scope: 本条只管形式面（第二动词穿哪件工作服由 CO-14 管）；并列谓语（come and see）是共享一台发动机的特许结构，不属违规
+  mechanism:
+  - beat: 一顶帽子
+    text_kid: 时态帽子一个小句子只有一顶，戴在第一个动词头上。后面的动词不能抢帽子，要换上工作服：to 或者 -ing。
+    text_adult: 该条统摄 I want to go / I enjoy swimming / He stopped to smoke 等大批用例的形式面；学生漏 to、错用原形的高频错误皆可定位为「第二动词没穿工作服」。
+    visual: 一列动词卡：第一张戴时态帽，后面的分别穿 to 与 -ing 工作服
+  examples:
+  - level: 1
+    sentence: I want to go home.
+    scene_note: 条目支撑登记例——want 戴帽，go 穿 to 工作服
+    supports: claim
+    word_ids:
+    - V6_日常_66
+    - V6_日常_1
+  - level: 1
+    sentence: I enjoy swimming.
+    scene_note: 条目支撑登记例——第二动词穿 -ing 工作服（swimming 的词元 swim 归一）
+    supports: claim
+    word_ids:
+    - G4_0876
+  - level: 2
+    sentence: He stopped to smoke.
+    scene_note: 条目支撑登记例——stop 戴帽，后动词 to 式
+    supports: claim
+    word_ids:
+    - V6_交通_34
+    - V6_自然_25
+  error_cases:
+  - wrong: I want go.
+    right: I want to go.
+    error_type: 第二动词漏穿工作服（漏 to）
+    source_type: 条目成人层登记的事故例
+    diagnosis: want 已占用唯一的限定位置，go 必须以非限定形式（to go）出现（条目儿童版登记此错形；回 CO-13 机制节）
+  relatives:
+  - id: CO-14
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 213
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Huddleston & Pullum《The Cambridge Grammar of the English Language》(2002) 限定/非限定分析 — http://glottopedia.org/index.php/Huddleston_and_Pullum%27s_(2002)_analysis_of_tense
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-13 入模（波次 C2）
+- id: CO-14
+  zone: 语法
+  group: CO
+  headline: to 还是 -ing，由前面的动词点名：这是搭配事实，不是自由二选一
+  headline_kid: want 身后跟 to，enjoy 身后跟 -ing，像每个人点固定的搭档——记动词的时候，把它的搭档一起记下来
+  claim:
+    type: rule
+    statement: 动词的补足语选择（complementation）是词条级的词汇属性：分布只能逐词登记再成组归纳，无总规则可推；记动词须连其框架一并记（动词 + 框架为记忆单位）。
+    evidence:
+    - Huddleston & Pullum (2002)《CGEL》动词补足系统章；项目 sf-019 已裁定把旧「to/-ing 二分口诀」改为「动词决定搭配」，sf-035/sf-036（like/love 双搭配）为配套订正
+    scope: 存在可归纳的语义倾向群（未来指向多 to、已然活动多 -ing）可作助记，但必须标为 mnemonic/倾向，不得冒充规则
+  mechanism:
+  - beat: 点名搭档
+    text_kid: 每个动词都有自己点名的搭档：want 点 to，enjoy 点 -ing，stop 两个都点、但意思不一样。学动词的时候，把搭档写在同一张卡上。
+    text_adult: stop to do（停下来去做）与 stop doing（停下不做）的意义反转等成组事实证明选择与意义挂钩但不可由单一规则生成。
+    visual: 动词卡与搭档卡配对陈列：want→to go、enjoy→-ing、stop→两张（义随框架变）
+  examples:
+  - level: 1
+    sentence: I want to go.
+    scene_note: want 点名 to——与 CO-13 同句不同焦点（彼管形式面，此管选择面）
+    supports: claim
+    word_ids:
+    - V6_日常_66
+    - V6_日常_1
+  - level: 1
+    sentence: I enjoy swimming.
+    scene_note: enjoy 点名 -ing（swimming 归一为 swim）
+    supports: claim
+    word_ids:
+    - G4_0876
+  - level: 2
+    sentence: He stopped smoking. / He stopped to smoke.
+    scene_note: 条目支撑登记的反转对：框架一换，意思翻转——选择即意义
+    supports: claim
+    word_ids:
+    - V6_交通_34
+  error_cases: []
+  relatives:
+  - id: CO-13
+    rel: 前置
+  quiz: []
+  probes: []
+  prereq:
+  - CO-13
+  order: 214
+  pain_points:
+  - 错不完
+  - 记不住
+  adult:
+    sources:
+    - Huddleston & Pullum《The Cambridge Grammar of the English Language》(2002) 动词补足系统章 — http://glottopedia.org/index.php/Huddleston_and_Pullum%27s_(2002)_analysis_of_tense
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（清单未登记具体误搭错句，不自编）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-14 入模（波次 C2）
+- id: CO-15
+  zone: 语法
+  group: CO
+  headline: 英语先立骨架再挂修饰，汉语先铺垫后点题：两种句子建筑术
+  headline_kid: 英语盖房子先立柱子（谁做了什么），再往四周加房间；汉语像讲故事，先把前因后果铺好，最后一句才点出正题
+  claim:
+    type: tendency
+    statement: 英语靠形式标记先确立主谓骨架再扩展（形合，「楼层建筑」式），汉语靠语义衔接线性铺展、重心在后（意合，「流水」式）；语序差异是建筑术差异的表层结果。此为统计大势而非每句必查的定律。
+    evidence:
+    - '连淑能《英汉对比研究》(1993) 英汉句法对比专题；论文锚：《论英汉句法的基本特征》（《厦门大学学报》1992(3): 122–126）'
+    scope: 用于诊断与预防，不用于逐句判错；项目已裁定旧库据此衍生的「先地点后时间」等定律化表述一律降格倾向（见 QI-06）
+    exceptions:
+    - note: 英语亦有流水式口语句、汉语亦有严谨形合句——大势不覆盖每一句
+      word_ids: []
+  mechanism:
+  - beat: 两种盖法
+    text_kid: 英语盖句子：先咣咣立起柱子（谁、做了什么），再慢慢加房间。汉语讲事情：先把来龙去脉铺开，正题常常在最后才亮出来。
+    text_adult: 该框架能预测中国学习者英语写作的成类问题（主语缺失、谓语叠床、状语堆前），是国内英语教学沿用三十年的对比分析基准表述。
+    visual: 两栋在建的楼：左楼先立框架再砌墙，右楼如流水线自左向右铺展
+  examples:
+  - level: 1
+    sentence: I read a book in my room.
+    scene_note: 英语骨架先行：主谓宾立稳，地点状语挂在后面
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    - V6_家庭_36
+  - level: 1
+    sentence: In the morning, I walk my dog in the park.
+    scene_note: 前置状语是英语内的特许变强调（QI-07），不是把汉语建筑术搬过来——与下例的汉语式铺陈区分
+    supports: claim
+    word_ids:
+    - G1_0564
+    - G2_080
+    - G1_015
+  error_cases: []
+  relatives:
+  - id: QI-06
+    rel: 同族
+  - id: TA-15
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 215
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - 连淑能《英汉对比研究》(1993), 高等教育出版社 — https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=65be754274ce561611bd9be6 ；目录：https://opac.uibe.edu.cn/opac/book/5ef75cd8656cff54fdad48241599625e
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（清单登记的成类问题为主语缺失等类型，未登记具体错句，不自编）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-15 入模（波次 C2）；claim 按条目边界降格 tendency
+- id: CO-16
+  zone: 语法
+  group: CO
+  headline: 构式讲法的边界：模具管「整句的戏」，词形细节归形态层管
+  headline_kid: 模具告诉你这出戏谁给谁、谁变样；但戏服上的扣子——时态对不对、-s 加没加——要去隔壁形态车间检查
+  claim:
+    type: rule
+    statement: 构式义是论元结构层的图式意义，对动词形态、一致、时态选择不作预测；把构式讲法越界用到形式细节会产生新的伪规则。任何构式类条目入模时，必须同步写明其不管辖的层面。
+    evidence:
+    - 项目 domains.yaml dom-constructions conflicts 定版裁定（「构式讲法管'模具义'不管形式细节，失效边界已在 fixes 中写明」）
+    - Goldberg (1995) 对构式预测范围的自我限定
+    scope: 本条本身即边界声明，对本组全部 CO 条目生效
+  mechanism:
+  - beat: 分工地图
+    text_kid: 模具车间管「谁给谁、谁变样」这出戏；形态车间管扣子：时态、-s、单复数。戏演对了，扣子还得去隔壁一颗颗查。
+    text_adult: 项目句型库修订中，伪统计（句型③「80% 动词及物」）与虚构分工（句型②「turn 管颜色、get 管天气」）正是讲法越界/无据的实例，已删除——本条是那次清理的成文边界。
+    visual: 两个车间门牌：构式车间（戏）与形态车间（扣子），中间一条分界线
+  examples:
+  - level: 1
+    sentence: He baked her a cake.
+    scene_note: 构式层判读：双宾给义成立——这是模具车间的结论
+    supports: claim
+    word_ids:
+    - G5_0793
+    - G1_048
+  - level: 1
+    sentence: He bakes her a cake every Sunday.
+    scene_note: 同一构式，bakes 的三单 -s 与 every Sunday 的时态选择归形态层——构式不预测也不豁免
+    supports: claim
+    word_ids:
+    - G5_0793
+    - G1_048
+  error_cases: []
+  relatives:
+  - id: CO-01
+    rel: 前置
+  quiz: []
+  probes: []
+  prereq:
+  - CO-01
+  order: 216
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 项目 domains.yaml dom-constructions conflicts 定版裁定
+    - Goldberg《Constructions》(1995) — https://www.researchgate.net/publication/320856777_Goldberg's_construction_grammar
+    boundary: 本条即边界本体。
+    disputes: []
+    evidence_grade: 纲领裁定级
+    pending:
+    - 病例待补（边界条的「病例」即支撑登记的伪统计/虚构分工实例，已在机制节登记）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-16 入模（波次 C2）
+- id: CO-17
+  zone: 语法
+  group: CO
+  headline: 英语把「做事」交给空心动词：动词管语法，名词装事情；get 一个词收成五个构造
+  headline_kid: have、take、make、give 像四个空杯子，自己没味道，倒进什么名词就是什么味：have a look 是「看一看」，take a shower 是「洗个澡」，make a decision 是「做决定」。get 是个万能插头：收到、变得、到达、被动味、说动人，五格插座
+  claim:
+    type: rule
+    statement: 英语表达「做事」的主力模具是「空心动词 + 事件名词」：have、take、make、give、get、do 等动词词汇意义抽空、只管时态人称，语义重心在名词短语里（去词汇化）；这类结构须整块学，不背义项。get 的核心用法收成五个构造：① get + 名词 = 接收/得到；② get + 形容词 = 变得；③ get + to + 地点 = 到达；④ get + 过去分词 = 被动味（事情落在自己身上）；⑤ get + 人 + to do = 说动/使。
+    evidence:
+    - Collins COBUILD English Grammar (1990) p.147 空心动词（delexical verbs）描写：核心成员 give、get、keep、have、make、take、do、set，成员极少而结构极常见
+    - Lewis《The Lexical Approach》(1993) 词汇法：语块为教学基本单位
+    - get 五构造已逐项打开 Collins 词典 get 条核对（receive / become / arrive / get 被动 / persuade 五组释义与例句齐备，词典条目原文级）
+    scope: 五构造是核心构造不是全集（get to do = 有机会做、get + -ing = 启动、get = 懂等边缘构造另有其位）；「空心」是近似说法，空心动词间仍有搭配分工残迹（shower 配 take/have、noise 配 make、speech 配 give），不可讲成完全可互换
+  mechanism:
+  - beat: 空杯子装事情
+    text_kid: have、take、make、give 是空杯子：杯子只管端得稳（时态、人称），味道全在倒进去的名词里。have a look、take a shower、make a decision——整块端走，不拆开背。
+    text_adult: 去词汇化（delexicalization）：动词的词汇意义抽空、只留语法功能，语义重心转移到名词短语。British Council LearnEnglish 的 delexical verbs 教学页与 COBUILD 描写互证。
+    visual: 四个空杯子各倒进一个事件名词，杯身浮出整块短语卡
+    anchors:
+    - V6_日常_16
+    - ADD_0070
+  - beat: get 五格插座
+    text_kid: get 是万能插头，看它后面插什么：插名词是「收到」，插形容词是「变得」，插地点是「到达」，插过去分词是「事情落到自己身上」，插「人 + to do」是「说动他去做」。
+    text_adult: 五构造分类与 Collins 词典 get 条的义项组织逐项对应，例句均按词典原例登记（见 examples）。先立五构造，其余遇见再添。
+    visual: 五格插座板，每格一个构造骨架与一枚例句牌
+    anchors:
+    - V6_日常_0
+    - V6_P14
+    - G4_0859
+    - V6_家庭_34
+    - ADD_0187
+    - G3_0442
+  examples:
+  - level: 1
+    sentence: Have a look!
+    scene_note: 空心结构标本（Collins/COBUILD 与 British Council 教学页共同登记例）：have 管语法，look 装事情
+    supports: claim
+    word_ids:
+    - V6_日常_16
+  - level: 1
+    sentence: Make a decision.
+    scene_note: 同上登记例：make a decision 整块学（decision 为 CO-17 搭配构成词，已由补词波次入词库口径登记）
+    supports: claim
+    word_ids:
+    - ADD_0070
+  - level: 1
+    sentence: Give me a call.
+    scene_note: 规范形是 give sb a call——sb 是占位符（此处由 me 填充），不入词库、不计库外词；清单边界已纠正任务书缺宾语的 *give a call
+    supports: claim
+    placeholder: sb
+    word_ids:
+    - V6_日常_8
+    - G5_K03
+  - level: 2
+    sentence: I got a letter yesterday.
+    scene_note: 构造①（清单机制登记原例）：get + 名词 = 接收
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - V6_P14
+    - G4_0415
+  - level: 2
+    sentence: It's getting dark.
+    scene_note: 构造②（清单机制登记原例）：get + 形容词 = 变得
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - G4_0859
+  - level: 2
+    sentence: We got to the station at six.
+    scene_note: 构造③（清单机制登记原例）：get + to + 地点 = 到达
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - G4_0517
+    - G1_027
+  - level: 2
+    sentence: He got hit by a car.
+    scene_note: 构造④（清单机制登记原例，Collins get 条同例）：get + 过去分词 = 被动味
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - ADD_0149
+    - G1_043
+  - level: 2
+    sentence: They got married.
+    scene_note: 构造④的另一登记原例（Collins）；married 归一为 marry
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - ADD_0187
+  - level: 2
+    sentence: I got him to help me.
+    scene_note: 构造⑤（清单机制登记原例）：get + 人 + to do = 说动/使
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - G3_0442
+  - level: 3
+    sentence: She got angry.
+    scene_note: 构造②的 Collins 登记例（get angry / get sick 组）
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - G6_280
+  - level: 3
+    sentence: We got home late.
+    scene_note: 构造③的 Collins 登记例（get home late / get to London 组）
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - V6_家庭_34
+    - G4_K05
+  error_cases: []
+  relatives:
+  - id: CO-02
+    rel: 同族
+  - id: CO-12
+    rel: 前置
+  - id: CO-08
+    rel: 同族
+  quiz: []
+  probes:
+  - PRB-CO17-1
+  - PRB-CO17-2
+  - PRB-CO17-3
+  - PRB-CO17-4
+  - PRB-CO17-5
+  prereq:
+  - CO-12
+  order: 217
+  pain_points:
+  - 说不出
+  - 记不住
+  adult:
+    sources:
+    - Collins COBUILD English Grammar (1990), p.147（接触等级：二手转引级，经同行评审期刊论文转引核实）
+    - 'Francis, Hunston & Manning《Collins COBUILD Grammar Patterns 1: Verbs》(1996), HarperCollins（接触等级：书目+综述级）'
+    - Michael Lewis《The Lexical Approach》(1993), Language Teaching Publications（接触等级：二手系统论述级，经 ELT 综述与原文引文核实）
+    - Collins 词典 get 条（五构造逐项核对，接触等级：词典条目原文级）；British Council LearnEnglish delexical verbs 教学页互证
+    boundary: 见 claim.scope；give sb a call 的 sb 为占位符，按设计登记为 placeholder，不入词库。
+    disputes:
+    - 词汇法的理论地位有争论：批评者指「语块」「搭配」多为既有概念的重命名，词汇法更像大纲重心之争而非新理论（ELT Concourse 综述）；但分歧不落在「空心结构按块教」这一具体主张上，该主张在 COBUILD 描写传统与主流教材中已是共识操作
+    evidence_grade: 词典条目原文级（get 五构造）/ 二手转引级（COBUILD 描写）
+    pending:
+    - 病例待补
+    - 检索练习待补
+    - 说明：shower / photo 两词在本条标题例（take a shower、take a photo）中出现，未独立命中词库（shower 未命中、photo 以 photograph 命中口径待裁），标题例暂以机制 anchor 登记，待补词/口径裁定后回填
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 CO-17 入模（波次 C2）；五构造与例句按 Collins 核过口径，give sb a call 的 sb 按设计登记为占位符；探针引用探针库 v1 第五组 PRB-CO17-1..5
+- id: QI-01
+  zone: 语法
+  group: QI
+  headline: 疑问词各管一块拼图：问句是按「缺哪块信息」分工合作的
+  headline_kid: who 找人、where 找地方、when 找时间——每个疑问词负责打听一件事，先想清楚你缺哪一块，再派哪个词去问
+  claim:
+    type: rule
+    statement: 特殊疑问句的结构是「已知框架 + 一个空缺」；疑问词标明空缺的语义类型（人/物/时/地/因/法），答语只需填入该类型的信息，问答由此构成最小协作单元。
+    evidence:
+    - Quirk, Greenbaum, Leech & Svartvik《A Comprehensive Grammar of the English Language》(1985, Longman) 疑问系统章；项目 INTERROGATIVE_RADAR_DB 与 grammar.yaml g31-wh-words 的定版组织即按此分工
+    scope: 修辞问句与回声问句（You did WHAT?）不服从此分工，属语用移用；小学阶段只教信息问句原型
+  mechanism:
+  - beat: 缺哪块派谁
+    text_kid: 问句像一幅缺了一块的拼图：缺人派 who，缺地方派 where，缺时间派 when。先看清缺的是哪一块，再派对词。
+    text_adult: 问答配对的类型一致性（问 when 必答时间）是会话分析与语言测试的共同基础；儿童最早的疑问词习得呈「按信息类型逐个扩展」的轨迹。
+    visual: 拼图板缺一块，who/where/when/why 四块拼图在旁待选，缺口形状与答案类型对应
+  examples:
+  - level: 1
+    sentence: Who is your teacher?
+    scene_note: 缺的是「人」——派 who
+    supports: claim
+    word_ids:
+    - G3_Q02
+    - G1_007
+  - level: 1
+    sentence: Where is my book?
+    scene_note: 缺的是「地方」——派 where
+    supports: claim
+    word_ids:
+    - G3_Q03
+    - G1_002
+  - level: 2
+    sentence: When is your birthday?
+    scene_note: 缺的是「时间」——派 when
+    supports: claim
+    word_ids:
+    - G5_Q04
+    - G2_0413
+  - level: 2
+    sentence: Why are you late?
+    scene_note: 缺的是「原因」——派 why（答语分工见 QI-09）
+    supports: claim
+    word_ids:
+    - G5_Q05
+    - G4_K05
+  error_cases: []
+  relatives:
+  - id: QI-04
+    rel: 同族
+  - id: QI-10
+    rel: 同族
+  - id: QI-09
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 301
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Quirk et al.《A Comprehensive Grammar of the English Language》(1985), Longman — 引文侧证：https://zaguan.unizar.es/record/57052/files/TAZ-TFG-2016-1839.pdf?version=1
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-01 入模（波次 C2）
+- id: QI-02
+  zone: 语法
+  group: QI
+  headline: 疑问词与指示词是两个词族：wh- 与 th- 从未互变，「换字母得答词」是假规律
+  headline_kid: where、what 是一家人，there、that 是另一家人——两家只是长得有点像，谁也不是谁变出来的
+  claim:
+    type: etymology
+    statement: 英语疑问词继承印欧词干 *kʷo-（古英语拼作 hw-），指示词继承 *to-（古英语 þ-)，近指 here 一系另属 *ḱe- 词干；三条谱系在词源学上彼此独立，拼写相似是语音演变的表面结果——wh- 与 th- 从未互变。
+    evidence:
+    - 通行印欧词源学 + Mitchell & Robinson《A Guide to Old English》hw- 词族形态（domains.yaml 本域 basis 登记）
+    - 古英语文献中 hw- 疑问词与 þ- 指示词的完整平行词表（hwā/hwæt 对 þā/þæt）可直接查证
+    source: 疑问词 ← 印欧 *kʷo-；指示词 ← *to-；近指 ← *ḱe-。项目已裁定旧「wh- 换 th-/h- 即得回答词」为伪构词律、降格押韵口诀，真框架由 T05-accurate 承载
+    scope: 押韵口诀可保留为纯助记（mnemonic 型），但必须显性标注「口诀不是词源」，与真词源分栏呈现（见 DESIGN §3.2 对 mnemonic 须挂 linkedClaim 的要求；口诀本体入模时另立 mnemonic 条并回连本条）
+  mechanism:
+  - beat: 两家的家谱
+    text_kid: where、what、who 住在一个老院子里（hw- 家）；there、that、the 住在另一个院子（þ- 家）。两家门牌长得有点像，但谁也不是从谁家搬出来的。
+    text_adult: 两套词干在更早的印欧语阶段即已分立；拼写相似源于后世语音演变，不构成派生关系。
+    visual: 两棵家谱树并立：hw- 树挂疑问词，þ- 树挂指示词，中间一道「从未互变」的界线
+  examples:
+  - level: 1
+    sentence: Where is the cat?
+    scene_note: hw- 家成员出场：where 问地方
+    supports: claim
+    word_ids:
+    - G3_Q03
+  - level: 1
+    sentence: The cat is there.
+    scene_note: þ- 家成员作答：there——答词与问词不是一家，更不是换个字母变出来的
+    supports: claim
+    word_ids:
+    - G2_0596
+  - level: 2
+    sentence: — What is that? — That is a bird.
+    scene_note: what（hw- 家）与 that（þ- 家）在同一组问答里同框——像，不等于变
+    supports: claim
+    word_ids:
+    - G3_Q01
+    - G3_P08
+  error_cases: []
+  relatives:
+  - id: QI-03
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 302
+  pain_points:
+  - 记不住
+  adult:
+    sources:
+    - Mitchell & Robinson《A Guide to Old English》hw- 词族（domains.yaml 登记）— 侧证：https://mluvniceanglictiny.cz/system/files/Duskova_Basic%20Distribution%20of%20Communicative%20Dynamism%20vs.%20Nonlinear%20Indication%20of%20FSP.pdf
+    boundary: 见 claim.scope（口诀分栏纪律）。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（本条的病例即纲领已删除的伪构词律本身，属登记在案的旧讲法，非学生错句）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-02 入模（波次 C2）
+- id: QI-03
+  zone: 语法
+  group: QI
+  headline: whose 是 who 的「家的」，why 是「用什么」的变身：两个真词源
+  headline_kid: whose 就是 who 的所有格，像 his 是 he 的所有格一样天经地义；why 的老祖宗是「凭什么工具」——问原因，就是问「靠什么造成的」
+  claim:
+    type: etymology
+    statement: 古英语疑问词有完整的格变化：hwā（主格）的属格是 hwæs（→ whose），工具格是 hwȳ（→ why）；现代英语只剩这两件化石还保留着格词尾的痕迹。
+    evidence:
+    - Mitchell & Robinson《A Guide to Old English》第8版 (2012, Wiley-Blackwell, ISBN 978-0-470-67107-8) §20, p.19 的 hwā 格变表——属格 hwæs、工具格 hwȳ 均在表内（2026-11-01 打开核实）；代词范式总置于 §§15–21 (pp.18–19)
+    source: hwā 属格 hwæs → whose；hwā 工具格 hwȳ → why；与 hu（how，hwū 的弱化）共同构成 hw- 词族格变残存全图
+    scope: 真词源只用于满足好奇心与破除假拆字，不要求小学生记忆格变术语；讲述时只说「老时候的变形」
+  mechanism:
+  - beat: 两件化石
+    text_kid: 很久以前，who 一家是会变形的：问「谁的」时它变成 whose，问「凭什么」时它变成 why。现在别的变形都没了，只剩这两件「化石」还在用。
+    text_adult: hwæs/hwȳ 形式在古英语文本中可直接查证；domains.yaml 本域 basis 与 INTERROGATIVE_RADAR 定版均点名此二例为真词源（与 QI-02 的假规律裁定正反成对）。
+    visual: hwā 的变形表化石陈列：主格 hwā、属格 hwæs → whose、工具格 hwȳ → why
+  examples:
+  - level: 1
+    sentence: Whose book is this?
+    scene_note: whose = who 的「家的」——问归属
+    supports: claim
+    word_ids:
+    - G5_Q07
+    - G1_002
+  - level: 1
+    sentence: Why are you crying?
+    scene_note: why 的老义「凭什么（造成）」在现代问原因里留着影子
+    supports: claim
+    word_ids:
+    - G5_Q05
+    - V6_日常_58
+  error_cases: []
+  relatives:
+  - id: QI-02
+    rel: 前置
+  - id: QI-10
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-02
+  order: 303
+  pain_points:
+  - 记不住
+  adult:
+    sources:
+    - Mitchell & Robinson《A Guide to Old English》第8版 (2012), §20, p.19（2026-11-01 打开原书格变表核实）— 侧证：https://zaguan.unizar.es/record/57052/files/TAZ-TFG-2016-1839.pdf?version=1
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 原文级（原书格变表已打开核实）
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-03 入模（波次 C2）
+- id: QI-04
+  zone: 语法
+  group: QI
+  headline: 提问的动作 = 把助动词举到主语前面：被举到前面的，总是排第一的那个助动词
+  headline_kid: 把陈述句变成问题，像把排头兵喊到队伍最前面：Has she ...? Did you ...?——被喊出来的，永远是第一个助动词
+  claim:
+    type: rule
+    statement: 一般疑问句由助动词—主语倒装构成，倒装对象是限定动词链的首个助动词（无助动词时由 do 补位，见 GR-03）；疑问词问句在此基础上再加疑问词前置。
+    evidence:
+    - Swan《Practical English Usage》§509.4 原文：Questions normally have the order auxiliary verb – subject – main verb；CGEL 的主语—助动词倒装（subject-auxiliary inversion）分析与之同构
+    scope: 间接疑问句不倒装（Do you know where she was?)、主语疑问句（Who came?）无倒装对象，两者是结构特许而非例外失误，须同框教学
+  mechanism:
+  - beat: 排头兵出列
+    text_kid: 队伍里排第一的助动词被喊到最前面，问句就成了。没有助动词的时候，请 do 来当排头兵：Did you ...?
+    text_adult: 该一条统摄 be/have/情态/do 四类提问形式；中国学生高频错误 *You are happy？（口语回声问句除外）与 *Does she likes 均可在此定位（后者还叠加 GR-02 的单次标记）。
+    visual: 一列士兵（助动词—主语—主动词），排头兵迈步到队首，问号升起
+  examples:
+  - level: 1
+    sentence: Has she got a pet?
+    scene_note: 条目儿童版登记例型——has 是排头兵
+    supports: claim
+    word_ids:
+    - G3_KA07
+    - G2_P04
+  - level: 1
+    sentence: Did you see the film?
+    scene_note: 条目儿童版登记例型——无助动词时 do 补位出列
+    supports: claim
+    word_ids:
+    - V6_MORPH_24
+    - G1_P02
+    - V6_日常_17
+  - level: 2
+    sentence: Who came yesterday?
+    scene_note: 结构特许：主语疑问句没有可倒装的对象，不倒装（见 scope）
+    supports: claim
+    word_ids:
+    - G3_Q02
+    - V6_日常_2
+  error_cases:
+  - wrong: Does she likes apples?
+    right: Does she like apples?
+    error_type: 倒装后主动词未恢复原形（时态重复标记）
+    source_type: 教学文献登记错型
+    diagnosis: does 已扛起时态，主动词须回原形（条目支撑登记此错型，叠加 GR-02 单次标记；回 QI-04 机制节）
+  relatives:
+  - id: QI-01
+    rel: 前置
+  - id: QI-13
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-01
+  order: 304
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Michael Swan《Practical English Usage》§509.4 — https://online.flipbuilder.com/jeru/kjhl/files/basic-html/page528.html ；CGEL 倒装分析同构
+    boundary: 见 claim.scope；*You are happy？在口语回声问句中合法，教学纠错须区分语境（条目支撑口径）。
+    disputes: []
+    evidence_grade: 原文级（Swan 条原文）
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-04 入模（波次 C2）
+- id: QI-05
+  zone: 语法
+  group: QI
+  headline: 新信息爱住句尾：先说已知的，再把「新货」放在最后并重读
+  headline_kid: 说话像上菜：先端上大家熟悉的，最后压轴端上新菜，还要敲一下盘子（重读）提醒大家「看这儿！」
+  claim:
+    type: tendency
+    statement: 信息按「由低到高信息值」的线性顺序呈现是英语的常态（end-focus）：新信息（焦点）落在句尾并承载重音，已知信息在前作铺垫。
+    evidence:
+    - Quirk et al. (1985) p.1357 原文：it is common to process the information in a message so as to achieve a linear presentation from low to high information value（经萨拉戈萨大学学术文献转引核实）
+    scope: 项目已裁定以 end-focus 取代自造标签「焦点先行思维」；本条为呈现定版口径
+    exceptions:
+    - note: 重音可人为前移制造对比焦点（I said GREEN, not blue)，是合法的「变强调」手段（见 QI-07），不构成反例
+      word_ids:
+      - G1_033
+      - G1_032
+  mechanism:
+  - beat: 压轴上菜
+    text_kid: 说话像上菜：先上大家都吃过的，最后端上新鲜的，还敲一下盘子——重读就是敲盘子，提醒大家「新货在这儿」。
+    text_adult: 该原则统一解释语序常态、被动选择（CO-08）、分裂句与 there 存现（CO-07）等表面无关的现象，是信息结构研究被引用最广的英语原则。
+    visual: 上菜顺序图：旧菜在前、新菜压轴并带一个重音星标
+  examples:
+  - level: 1
+    sentence: I said GREEN, not blue.
+    scene_note: 例外同框：对比焦点靠重音前移——清单边界登记例
+    supports: claim
+    word_ids:
+    - G1_033
+    - G1_032
+  - level: 1
+    sentence: Dad bought me a new BIKE.
+    scene_note: 常态：新信息（bike）在句尾并重读（重读以大写标示）
+    supports: claim
+    word_ids:
+    - G3_0650
+    - G2_0973
+  - level: 2
+    sentence: There is a DOG under the tree.
+    scene_note: 存现句的信息安排与 end-focus 同源（引 CO-07）
+    supports: claim
+    word_ids:
+    - G1_015
+    - G2_079
+  error_cases: []
+  relatives:
+  - id: CO-07
+    rel: 同族
+  - id: CO-08
+    rel: 同族
+  - id: QI-06
+    rel: 同族
+  - id: QI-07
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 305
+  pain_points:
+  - 说不出
+  - 写不长
+  adult:
+    sources:
+    - Quirk, Greenbaum, Leech & Svartvik《A Comprehensive Grammar of the English Language》(1985), p.1357 — 转引核实：https://zaguan.unizar.es/record/57052/files/TAZ-TFG-2016-1839.pdf?version=1
+    boundary: 见 claim.scope；Halliday 的主位/信息两分与 Quirk 的焦点表述在术语上不同、机制层兼容，清单取 domains.yaml 已定的 Quirk 口径。
+    disputes: []
+    evidence_grade: 二手转引级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-05 入模（波次 C2）
+- id: QI-06
+  zone: 语法
+  group: QI
+  headline: 状语排队是倾向不是定律：「先地点后时间」只是常态出场顺序
+  headline_kid: 状语们排队有个习惯顺序（先说事儿，再补在哪儿、什么时候），但排队不是上锁——为了强调，谁都可以站到最前面去
+  claim:
+    type: tendency
+    statement: 英语句尾状语的常态序列（方式—地点—时间等）源于信息包装与辖域的一般倾向，而非句法硬性规则；前置状语承担场景设定/强调功能，两种语序由功能分工而非对错区分。
+    evidence:
+    - Quirk et al. (1985) §18.20 状语位置与 fronting 的论述（经 Duskova 的 FSP 研究转引核实）
+    - 项目已裁定把旧「先地点后时间」定律与 G28 填空题错误项一并改判为倾向 + end-focus 讲法
+    scope: 倾向内部仍有硬约束残部（如频度副词的中位、方式副词与动词的黏合度），教学中只放开「地点/时间」的排队等级，其余按个案处理
+    exceptions:
+    - note: 语料中前置时间/地点状语频率稳定可观且功能可辨（场景设定、对比）——它们是本倾向自带的合法变体，不是例外失误
+      word_ids:
+      - G1_0564
+  mechanism:
+  - beat: 排队不上锁
+    text_kid: 状语排队有习惯：先说做了什么，再补在哪儿、什么时候。但队形不是锁死的：想先交代时间，就把时间搬到队头去，那叫「先给场景」。
+    text_adult: 定律说无法解释前置状语的合法性，倾向 + 功能说可以——这正是本项目把旧定律降格为倾向的理由。
+    visual: 状语卡排队图：地点卡与时间卡可交换位置，队头位置标「场景设定席」
+  examples:
+  - level: 1
+    sentence: We play in the park in the morning.
+    scene_note: 常态出场：事情 → 地点 → 时间
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G2_080
+    - G1_0564
+  - level: 1
+    sentence: In the morning, we play in the park.
+    scene_note: 时间前置作场景设定——合法变体，不是错误（与上例同框）
+    supports: claim
+    word_ids:
+    - G1_0564
+    - G2_0489
+    - G2_080
+  error_cases: []
+  relatives:
+  - id: QI-05
+    rel: 前置
+  - id: QI-07
+    rel: 同族
+  - id: CO-15
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-05
+  order: 306
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Quirk et al. (1985) §18.20 — 转引：https://mluvniceanglictiny.cz/system/files/Duskova_Basic%20Distribution%20of%20Communicative%20Dynamism%20vs.%20Nonlinear%20Indication%20of%20FSP.pdf
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手转引级
+    pending:
+    - 病例待补（本条的功能是撤销旧定律的误判，不设错例）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-06 入模（波次 C2）
+- id: QI-07
+  zone: 语法
+  group: QI
+  headline: 前置是「变强调」的正当手段：把谁提到句首，就是先给谁打光
+  headline_kid: 平时新货放最后；可你要是特别想强调时间，就把 In the morning 提到最前面——像舞台上先给谁一束追光
+  claim:
+    type: rule
+    statement: 成分前置（fronting/topicalization）在信息结构中承担主题衔接与对比强调功能；被前置者获得「出发点」地位，句尾焦点位置让给其余新信息，整句的信息重心随之改组。
+    evidence:
+    - Quirk et al. (1985) §18.20 对前置功能的表述；纲领 coreView 定版口径：「状语前置是变强调——都是'帮听话人排信息'的选择」
+    - Duskova 对语料中偏离基本语序的实例分析：前置无一不与信息功能（衔接/强调）对应
+    scope: 前置的修辞收益以可理解为限，初学写作中滥用会破坏 end-focus 的默认加工预期；小学阶段定位为识别与欣赏，不作产出要求
+  mechanism:
+  - beat: 追光给谁
+    text_kid: 舞台上的追光打给谁，谁就是这一眼的主角。把时间、地点提到句首，就是先给它一束光：先让大家站到这个场景里，再听正文。
+    text_adult: 前置与 QI-05 的 end-focus 是同一套信息包装的两个方向：默认把焦点留给句尾，前置则改组出发点——二者共同服务「帮听话人排信息」。
+    visual: 舞台追光打在句首的 In the morning 上，句尾的新信息随后亮起
+  examples:
+  - level: 1
+    sentence: In the morning, I read a book.
+    scene_note: 条目儿童版登记例型——时间前置作场景出发点
+    supports: claim
+    word_ids:
+    - G1_0564
+    - G2_0492
+  - level: 1
+    sentence: In the park, children are playing.
+    scene_note: 地点前置：先给地点打光，再呈现场景
+    supports: claim
+    word_ids:
+    - G2_080
+    - G2_0489
+  error_cases: []
+  relatives:
+  - id: QI-05
+    rel: 前置
+  - id: QI-06
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-05
+  order: 307
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Quirk et al. (1985) §18.20 — https://mluvniceanglictiny.cz/system/files/Duskova_Basic%20Distribution%20of%20Communicative%20Dynamism%20vs.%20Nonlinear%20Indication%20of%20FSP.pdf
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手转引级
+    pending:
+    - 病例待补
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-07 入模（波次 C2）
+- id: QI-08
+  zone: 语法
+  group: QI
+  headline: 语调是问句的第二套标记：一般疑问常升调、特殊疑问常降调——是常态，不是铁律
+  headline_kid: 声音也能提问：Yes/No 问题常把尾巴翘上去，wh- 问题常把尾巴沉下来——像说话自带的标点符号
+  claim:
+    type: tendency
+    statement: 英语以升调标示「开放/待答」、以降调标示「陈述完成」的韵律图式与句类形成统计配对：一般疑问句常升调、特殊疑问句常降调；语调与词序标记互为备份，口语中单靠语调也能构成问句（回声问句）。
+    evidence:
+    - Quirk et al. (1985) 语调与句类章的系统描写；Swan《Practical English Usage》问句语调条为学习者版口径（两书均为 domains.yaml 登记的基准来源）
+    scope: 本条只作倾向呈现；不得据此给学生的语调判「错」
+    exceptions:
+    - note: 英式礼貌性升调、美式 uptalk、惊讶语境的降调 Yes/No 问句等变异普遍存在
+      word_ids: []
+  mechanism:
+  - beat: 声音的标点
+    text_kid: 句尾声音往上翘，像在说「我还没说完，等你答」；往下沉，像在说「我说完了」。Yes/No 问题爱翘尾巴，wh- 问题爱沉尾巴——但只是习惯，不是规矩。
+    text_adult: 语调配对在朗读与自然会话语料中呈强统计规律；儿童听辨实验中语调是早于词序被利用的问句线索。
+    visual: 两条声调曲线：升调箭头配「Are you ready?」、降调箭头配「Where are you going?」
+  examples:
+  - level: 1
+    sentence: Are you ready? ↗
+    scene_note: 一般疑问句常升调（箭头为语调标记，非句中词）
+    supports: claim
+    word_ids: []
+  - level: 1
+    sentence: Where are you going? ↘
+    scene_note: 特殊疑问句常降调
+    supports: claim
+    word_ids:
+    - G3_Q03
+    - V6_日常_1
+  error_cases: []
+  relatives:
+  - id: QI-04
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 308
+  pain_points:
+  - 听不懂
+  - 说不出
+  adult:
+    sources:
+    - Quirk et al. (1985) 语调与句类章；Swan《Practical English Usage》问句语调条 — 书目：https://www.thenile.co.nz/books/michael-swan/practical-english-usage-paperback-with-online-access/9780194202411
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（语调倾向不设错例，不得据此判错）
+    - 误解探针待补
+    - 检索练习待补
+    - 说明：本条呈现与练习要求受裁定 A（弱读/语调产出档位）门控影响，config_gates 待裁定落档后回填
+    - 待补词：ready（例词未在词库命中，待补词流程）
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-08 入模（波次 C2）
+- id: QI-09
+  zone: 语法
+  group: QI
+  headline: Why 的回答多用 Because，但不是「必用」：问目的时 To / For 同样正宗
+  headline_kid: Why 像问「为啥呀」：可以答原因（Because ...)，也可以答目的（To get some books. = 为了借书）——看问的人想知道哪一种
+  claim:
+    type: tendency
+    statement: why 同时询问原因（reason）与目的（purpose）；答语形式随所问维度分工——because 从句答原因，不定式/介词短语答目的，二者皆为原生用法而非省略或错误。「必用 Because」是已废止的一刀切口径。
+    evidence:
+    - 项目三处定版裁定（INTERROGATIVE_RADAR T11、grammar.yaml g31-why-answer、expressions 包 L-3 同错三处统一）：「Because 最稳妥」由应试口径承载，「必用 Because」降格废止
+    - Quirk et al. (1985) 原因/目的状语的区分是其学术侧锚
+    scope: 应试场景中 Because 答句最完整稳妥；本条纠正的是「必用」的绝对化，不鼓励以碎片答语替代完整句训练
+    exceptions:
+    - note: 目的答语即本断言的合法另一半：Why did you go? — To see a friend. 母语语料中高频自然，测试若只认 Because 会误判合法答语（与 G28 填空题误判同类事故）
+      word_ids:
+      - V6_日常_17
+      - G3_130
+  mechanism:
+  - beat: 先听清问的是哪一种
+    text_kid: Why 有时问「为什么会这样」（原因），有时问「为了干什么」（目的）。先听清是哪一种，再选答法：原因用 Because，目的用 To。
+    text_adult: 母语语料中目的答语高频自然；本项目已立「测验答案独立复算」之规，防止只认 Because 的评分误判。
+    visual: Why 分岔路：左路牌「原因 → Because ...」、右路牌「目的 → To ...」
+  examples:
+  - level: 1
+    sentence: — Why are you wet? — Because it rained.
+    scene_note: 问原因——because 从句作答
+    supports: claim
+    word_ids:
+    - V6_核心_60
+    - G2_0502
+  - level: 1
+    sentence: — Why did you go there? — To see a friend.
+    scene_note: 清单支撑登记例——问目的，不定式作答，同为正宗
+    supports: claim
+    word_ids:
+    - V6_日常_17
+    - G3_130
+  - level: 2
+    sentence: — Why did she go to the library? — To get some books.
+    scene_note: 条目儿童版登记例（To get some books = 为了借书）
+    supports: claim
+    word_ids:
+    - G4_184
+    - G1_002
+  error_cases: []
+  relatives:
+  - id: QI-01
+    rel: 前置
+  quiz: []
+  probes: []
+  prereq:
+  - QI-01
+  order: 309
+  pain_points:
+  - 错不完
+  - 说不出
+  adult:
+    sources:
+    - Quirk et al. (1985) 原因/目的状语区分 — 侧证：https://zaguan.unizar.es/record/57052/files/TAZ-TFG-2016-1839.pdf?version=1 ；项目裁定 INTERROGATIVE_RADAR T11 / grammar.yaml g31-why-answer
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（本条的病例形态是评分误判而非学生错句，事故已在机制节登记）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-09 入模（波次 C2）
+- id: QI-10
+  zone: 语法
+  group: QI
+  headline: How 与 What 分工：一个问「怎么样/用什么法子」，一个问「是什么东西」
+  headline_kid: 想知道「是什么」派 What，想知道「怎么做、怎么样」派 How——派错了词，答案就会答非所问
+  claim:
+    type: rule
+    statement: how 的语义辖域是方式、程度与状态（手段义源于其工具格出身，见 QI-03)，what 的辖域是事物身份与类别；What ... like?、How ... look? 等固定搭配是两辖域边界上的约定用法，须整组登记。
+    evidence:
+    - 项目 grammar.yaml g32-how-what「How 问方式/程度，What 问事物本身」为已入模口径；Swan《Practical English Usage》how/what 相关条目为学习者侧锚
+    scope: How do you do / How are you 等礼貌套语已公式化，不按辖域分析（按语块处理，见 GR-20)
+  mechanism:
+  - beat: 派对侦察兵
+    text_kid: What 是问「东西」的侦察兵，How 是问「办法和样子」的侦察兵。去学校「坐什么车、怎么去」是办法——派 How；「那是什么」是东西——派 What。
+    text_adult: 中国学生典型偏误（*What do you go to school？ 应为 How）与两词辖域的错位精确对应，是按辖域教学优于按词翻译的直接证据。
+    visual: 两个侦察兵卡：What 头顶一个问号包裹（东西），How 头顶一条路线（办法）
+  examples:
+  - level: 1
+    sentence: How do you go to school?
+    scene_note: 问办法——派 How（与病例错形对照）
+    supports: claim
+    word_ids:
+    - G3_Q08
+    - V6_日常_1
+    - G2_081
+  - level: 1
+    sentence: What is this?
+    scene_note: 问东西——派 What
+    supports: claim
+    word_ids:
+    - G3_Q01
+    - G3_P08
+  - level: 2
+    sentence: What is the weather like today?
+    scene_note: 边界约定用法：What ... like? 问样子，整组登记，不按辖域硬拆
+    supports: claim
+    word_ids:
+    - G3_Q01
+    - G4_189
+    - V6_日常_64
+  error_cases:
+  - wrong: What do you go to school?
+    right: How do you go to school?
+    error_type: 疑问词辖域错位（方式误派 What）
+    source_type: 教学文献登记错型
+    diagnosis: 问的是上学方式，属 how 的辖域；按词翻译（什么→what）导致答非所问（条目支撑登记此典型偏误；回 QI-10 机制节）
+  relatives:
+  - id: QI-01
+    rel: 前置
+  - id: QI-03
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-01
+  order: 310
+  pain_points:
+  - 错不完
+  - 说不出
+  adult:
+    sources:
+    - grammar.yaml g32-how-what（项目已入模口径）；Swan《Practical English Usage》how/what 条 — 书目：https://www.thenile.co.nz/books/michael-swan/practical-english-usage-paperback-with-online-access/9780194202411
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-10 入模（波次 C2）
+- id: QI-11
+  zone: 语法
+  group: QI
+  headline: 选择问句不用 Yes / No 回答：人家给了选项，要选一个
+  headline_kid: Do you want tea or juice? 是让你二选一，答 Yes 就像没听清——要选茶，还是选果汁
+  claim:
+    type: rule
+    statement: or-问句预设答语从给定选项中选取（选择问句），与极性问句（yes-no）是两种不同的问句图式；答语形式由问句图式决定——选择问句选一项，不答 Yes/No。
+    evidence:
+    - Swan《Practical English Usage》问句条（or-questions 与 yes-no questions 的答语分工）；Quirk et al. (1985) 选择疑问句（alternative questions）分析同口径
+    scope: 当 or 只连接修饰成分而非选项（如 Would you like tea or coffee with your meal？的歧读）时需结合语调判断图式，属教师备课注意点
+  mechanism:
+  - beat: 先认图式再答
+    text_kid: 听到 or，先想：这是让我选一个，还是问我对不对？给选项的题，答案就是选项里的一个——说出你要的那个就行。
+    text_adult: 答非所问类偏误在中国学生口语测试中稳定出现，且经「图式—答语配对」一次点破后纠正率显著，是分工说（QI-01）的直接应用证据。
+    visual: 两扇门（tea / juice）图式，Yes 卡被打上「答非所问」的标记
+  examples:
+  - level: 1
+    sentence: — Do you want tea or juice? — Juice, please.
+    scene_note: 条目儿童版登记例型——从选项里选一个作答
+    supports: claim
+    word_ids:
+    - G2_0944
+    - G1_051
+  - level: 1
+    sentence: — Shall we walk or take a bus? — Let's walk.
+    scene_note: 选项是动作时同样选一项（可带完整句）
+    supports: claim
+    word_ids:
+    - V6_交通_52
+    - G2_105
+  error_cases:
+  - wrong: — Do you want tea or juice? — Yes.
+    right: — Do you want tea or juice? — Juice, please.
+    error_type: 选择问句误用极性答语（答非所问）
+    source_type: 教学文献登记错型
+    diagnosis: or-问句是选择图式，答语须从选项中选取；答 Yes 是把选择图式误当极性图式（条目支撑登记此类偏误稳定出现；回 QI-11 机制节）
+  relatives:
+  - id: QI-01
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-01
+  order: 311
+  pain_points:
+  - 说不出
+  - 听不懂
+  adult:
+    sources:
+    - Swan《Practical English Usage》问句条 — https://online.flipbuilder.com/jeru/kjhl/files/basic-html/page528.html ；Quirk et al. (1985) 选择疑问句分析
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-11 入模（波次 C2）
+- id: QI-12
+  zone: 语法
+  group: QI
+  headline: 回答否定问句，英语跟「事实」走，汉语常跟「对方的话」走
+  headline_kid: — Don't you like it? 你要是真不喜欢，英语说 No（我不喜欢），按事实答；汉语常说「嗯」表示「你说得对，我不喜欢」——两边答的不是同一件事，最容易鸡同鸭讲
+  claim:
+    type: rule
+    statement: 英语 yes/no 的锚点是答者所断言命题的极性（事实极性系统），汉语「是/嗯/不」的锚点常是与问者命题的一致性（认同系统）；系统差异在否定问句处正面相撞。
+    evidence:
+    - 连淑能《英汉对比研究》(1993) 英汉语用/答问方式对比；Swan《Practical English Usage》否定问句条（第3版专设 negative questions 处理）
+    scope: 英语口语中对否定问句的简短回答本身也常含混（母语者亦需追问澄清）；教学口径取「按事实 + 补全句」的最稳妥形式（No, I don't. / Yes, I do.)
+  mechanism:
+  - beat: 两个锚
+    text_kid: 英语的 Yes/No 拴在「事情本身」上：喜欢就是 Yes，不喜欢就是 No。汉语的回答常拴在「你说得对不对」上：你说对了就点头。碰上否定问句，两个锚正好相反。
+    text_adult: 该错位是中国学习者跨文化交际中后果最直接的问答偏误之一（答反意思），且只需一次显性对比即可大幅纠正，是对比教学性价比的典型案例。
+    visual: 两个锚图标：事实锚（拴住一个苹果）与认同锚（拴住一句话气泡），否定问句处两锚方向相反
+  examples:
+  - level: 1
+    sentence: — Don't you like it? — No, I don't.
+    scene_note: 条目儿童版登记问答型——真不喜欢，按事实答 No 并补全句
+    supports: claim
+    word_ids:
+    - V6_日常_64
+  - level: 1
+    sentence: — Don't you like it? — Yes, I do.
+    scene_note: 其实喜欢——按事实答 Yes（与汉语认同式点头正相反）
+    supports: claim
+    word_ids:
+    - V6_日常_64
+  error_cases: []
+  relatives:
+  - id: QI-01
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-01
+  order: 312
+  pain_points:
+  - 说不出
+  - 听不懂
+  adult:
+    sources:
+    - 连淑能《英汉对比研究》(1993) — https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=65be754274ce561611bd9be6
+    - Swan《Practical English Usage》否定问句条 — https://online.flipbuilder.com/jeru/kjhl/files/basic-html/page285.html
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（清单登记的是答反意思的偏误类型，未登记具体错答句，不自编）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-12 入模（波次 C2）
+- id: QI-13
+  zone: 语法
+  group: QI
+  headline: 英语把疑问词搬到句首，汉语让疑问词留在原地：问句最大的结构差
+  headline_kid: 英语提问要把疑问词请到最前面站好；汉语的疑问词老老实实待在答案该在的位置——「你买什么？」的「什么」不用搬家
+  claim:
+    type: rule
+    statement: 英语属 wh-移位型（疑问词前置 + 助动词倒装），汉语属原位型（in-situ，疑问词占据与答语成分相同的位置）；中国学生的疑问句错误多为把汉语的「原位 + 无倒装」整套搬进英语。
+    evidence:
+    - 连淑能《英汉对比研究》(1993) 英汉疑问句结构对比
+    - Ellis《The Study of Second Language Acquisition》(1994 初版 / 2008 第2版, OUP, ISBN 978-0-19-442257-4) 迁移与疑问句发展综述章为习得侧锚
+    scope: 英语回声问句合法地保留原位疑问词（You bought WHAT?)，教学中须与迁移错误区分标注，避免把合法形式误纠
+  mechanism:
+  - beat: 搬家与不搬家
+    text_kid: 汉语的疑问词坐在答案的座位上不动；英语的疑问词要搬到队伍最前面，还要把助动词倒过来。学英语提问，就是学这趟搬家。
+    text_adult: 学习者产出中 *You want what？（非回声语境）、*What you want？（漏倒装）两类错误呈阶段性分布，与「先迁移原位、再逐步获得前置与倒装」的路径吻合（见 QI-14）。
+    visual: 左右对照：汉语侧「什么」留在原座，英语侧 what 搬到句首并带倒装箭头
+  examples:
+  - level: 1
+    sentence: What do you want?
+    scene_note: 英语正形：what 前置 + do 倒装
+    supports: claim
+    word_ids:
+    - G3_Q01
+    - V6_日常_66
+  - level: 1
+    sentence: You bought WHAT?
+    scene_note: 结构特许：回声问句的原位疑问词是合法的（重读标示），不可误纠（见 scope）
+    supports: claim
+    word_ids:
+    - G3_0650
+    - G3_Q01
+  error_cases:
+  - wrong: What you want?
+    right: What do you want?
+    error_type: 疑问词已前置但漏倒装（原位系统残留）
+    source_type: 教学文献登记错型
+    diagnosis: 只搬了疑问词、没搬助动词——汉语「原位 + 无倒装」系统搬了一半（条目支撑登记此错型；回 QI-13 机制节与 QI-04 倒装节）
+  - wrong: You want what?
+    right: What do you want?
+    error_type: 疑问词原位未前置（非回声语境）
+    source_type: 教学文献登记错型
+    diagnosis: 在非回声语境把汉语原位结构整套搬入英语；须与合法回声问句区分（条目支撑登记此错型）
+  relatives:
+  - id: QI-04
+    rel: 同族
+  - id: QI-14
+    rel: 同族
+  - id: TA-15
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-04
+  order: 313
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 连淑能《英汉对比研究》(1993) — https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=65be754274ce561611bd9be6
+    - Rod Ellis《The Study of Second Language Acquisition》(2008 第2版), Oxford University Press — https://en.wikipedia.org/wiki/Rod_Ellis
+    boundary: 见 claim.scope。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-13 入模（波次 C2）
+- id: QI-14
+  zone: 语法
+  group: QI
+  headline: 疑问句是分阶段长出来的：整句模仿 → 换疑问词 → 最后才学会倒装
+  headline_kid: 小朋友学提问有固定顺序：先整句背「What's this?」，再学会换前面的词，最后才学会把助动词倒过来——倒装是最后长好的本领，急不得
+  claim:
+    type: tendency
+    statement: 二语疑问句发展呈可预测的阶段序列（不倒装的疑问词句 → 疑问词前置但无倒装 → 一般疑问倒装 → 特殊疑问全倒装）；教学输入无法跳过阶段，只能顺应阶段供料。
+    evidence:
+    - Ellis《The Study of Second Language Acquisition》(2008 第2版) 发展模式章对疑问句阶段研究的综述；源头为 Pienemann 过程性理论（Processability Theory, 1998）对英语疑问句发展阶段的经典分析
+    scope: 阶段说基于自然/交际型学习者纵向数据；中国课堂学习者的显性知识可使书面练习提前达标，但自发口语仍多按阶段走，两者不矛盾
+    exceptions:
+    - note: 课堂显性教学可使书面产出提前达标——例外只及书面练习，不及自发口语的阶段顺序
+      word_ids: []
+  mechanism:
+  - beat: 四级台阶
+    text_kid: 学提问像上台阶：一级整句背，二级换词，三级学会一般问句的倒装，四级特殊问句也倒得过来。台阶要一级一级上，催也没用——但每级都有适合的练习。
+    text_adult: 纵向语料中学习者疑问形式按阶段依次涌现且极少跳阶，是二语习得「发展顺序」证据最扎实的句法领域之一（过程性/可教性研究的核心结论）。
+    visual: 四级台阶图，每级放一个代表问句，倒装台阶被标为最后一级
+  examples:
+  - level: 1
+    sentence: What's this?
+    scene_note: 条目儿童版登记的起点形态：整句模仿，不拆解
+    supports: claim
+    word_ids:
+    - G3_Q01
+    - G3_P08
+  - level: 1
+    sentence: Where the dog?
+    scene_note: 阶段形态登记（学习者发展中的过渡式，非目标式）：疑问词前置但无倒装/无系动词——登记为阶段标本，不是病例错句
+    supports: claim
+    word_ids:
+    - G3_Q03
+    - G1_015
+  - level: 2
+    sentence: Where is the dog?
+    scene_note: 目标形态：前置 + 倒装齐备——与上例构成阶段对照
+    supports: claim
+    word_ids:
+    - G3_Q03
+    - G1_015
+  error_cases: []
+  relatives:
+  - id: QI-13
+    rel: 前置
+  - id: CO-10
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq:
+  - QI-13
+  order: 314
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Rod Ellis《The Study of Second Language Acquisition》(2008 第2版) — https://en.wikipedia.org/wiki/Rod_Ellis ；Pienemann (1998) Processability Theory
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（阶段过渡式已登记在例证层，不另设病例）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-14 入模（波次 C2）；阶段过渡式按发展标本登记，未冒充病例
+- id: QI-15
+  zone: 语法
+  group: QI
+  headline: 提问要先有「真缺口」：为不知道而问，形式才记得住
+  headline_kid: 假装提问练一百遍，不如真心想知道一件事问一次——心里真有个问号的时候，问句的样子记得最牢
+  claim:
+    type: tendency
+    statement: 交际中的意义协商（澄清、确认、追问）把输入、注意与输出在真实信息差中咬合；有真实信息缺口的提问，其形式记忆与产出显著优于无缺口的机械提问。
+    evidence:
+    - Long 互动假说（1983/1996）与形式聚焦（1991，见 GR-18）
+    - 程晓堂《义务教育英语课程标准（2022 年版）解析》(2022) 学习活动观（学习理解 → 应用实践 → 迁移创新）为本土课程框架；作者为课标编制组核心成员
+    scope: 真缺口负责动机与意义锚定，形式准确仍需 GR-17 的注意触发与 GR-18 的形式聚焦补位，三者是流水线关系而非替代关系
+    exceptions:
+    - note: 无真缺口的机械操练并非全无价值（发音自动化、句型熟悉度），本条只裁定提问形式习得的主通道
+      word_ids: []
+  mechanism:
+  - beat: 真问号的力量
+    text_kid: 心里真有个问号时，你会竖起耳朵听答案，问句的样子也记得牢。装样子问一百遍，嘴动了、心没动，形式留不住。
+    text_adult: 信息差任务（information-gap）在课堂实验中稳定提高提问产出的数量与准确性；课标把「在活动中学习语言」立为义务教育英语课程的总路径，与之一致。
+    visual: 两个问号对比：实心问号（真想知道）旁配耳朵与记忆钉，空心问号（假装问）随风飘走
+  examples:
+  - level: 1
+    sentence: Where is my key? I can't find it!
+    scene_note: 真缺口场景：真丢了钥匙才问——动机与意义锚定俱在（场景为课堂信息差任务的登记型设计，非病例）
+    supports: claim
+    word_ids:
+    - G3_Q03
+    - G4_0740
+  - level: 1
+    sentence: What's in the box?
+    scene_note: 信息差任务的标本问句：盒子里的东西只有对方知道，问题不得不真问
+    supports: claim
+    word_ids:
+    - G3_Q01
+    - G3_P08
+    - G1_0994
+  error_cases: []
+  relatives:
+  - id: QI-01
+    rel: 同族
+  quiz: []
+  probes: []
+  prereq: []
+  order: 315
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Michael Long 互动假说 (1983/1996) — https://en.wikipedia.org/wiki/Michael_Long_(academic)
+    - 程晓堂《改什么？如何教？怎样考？——义务教育英语课程标准（2022 年版）解析》(2022), 外语教学与研究出版社 — https://flts.bnu.edu.cn/index.php/node/15082
+    boundary: 见 claim.scope 与 exceptions。
+    disputes: []
+    evidence_grade: 二手互证级
+    pending:
+    - 病例待补（教学机制条不设病例）
+    - 误解探针待补
+    - 检索练习待补
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: 2026-11-01
+    note: 由清单 v6 QI-15 入模（波次 C2）

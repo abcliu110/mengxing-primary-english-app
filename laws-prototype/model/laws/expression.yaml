@@ -1,0 +1,4124 @@
+# 规律模型 · 表达写作区（E 组 15 条 + W 组 15 条 + NE 组 29 条 = 59 条）
+# 入模波次 W5。源：专家规律清单 v6 之 E/W/NE 三组，逐条按 DESIGN §3 schema 转化。
+# 纪律：claim 只用清单定版口径；例句与病例只用清单登记者，缺的在 pending 标待补，不自编。
+# W-11（POA）按裁定默认档 B1 入模：只收排序思想作 claim，完整流程不作 claim，三档状态登记于 config_gates。
+# NE 母语专家条目的出处与接触等级按原登记保留（adult.evidence_grade / adult.pending 待核清单逐条落位）。
+# 例词只引词库 id；库外词（same/mean/propose/shave/however/moreover/fleece/kit/suddenly）进 pending_words 走补词流程，不自造 id。
+# 探针：探针库 v1 未覆盖本区，全部登记待补写（PRB-* 预留）。
+meta:
+  file: expression.yaml
+  wave: W5
+  zone: 表达写作
+  groups:
+  - E
+  - W
+  - NE
+  count: 59
+  source_catalog: expert-summaries-catalog-v6
+  version: '1.0'
+  date: '2026-11-01'
+entries:
+- id: E-01
+  zone: 表达写作
+  group: E
+  subgroup: A 言语行为与会话机制
+  audience: 孩子层
+  headline: 说话就是做事：每句话在传递信息之外，都在执行一个动作——请求、道歉、承诺、感谢、邀请
+  headline_kid: 说话不只是说出声音，还在「做一件事」：说对不起是在道歉，说请是在请求。
+  claim:
+    type: tendency
+    statement: 一句话除了传递信息，还在执行一个动作（请求、道歉、承诺、感谢、邀请）；判断一句话先看它做的事成没成、合不合场合，其次才是语法对错。同一形式可做不同的事，所做之事靠语境判定。
+    evidence:
+    - J. L. Austin (1962)《How to Do Things with Words》（牛津大学出版社；1955 年哈佛 William James 讲座）——言语行为理论奠基作；John Searle (1969)《Speech Acts》（剑桥大学出版社）将其系统化（二手论述级，经 numberanalytics 综述页转述）
+    scope: 表达域总纲：一切对话数据的分类与判断口径（本 App 表达库分类已据此从「场景类型」改为「一句话干什么活」）
+    exceptions:
+    - note: 同一句话的言外之力可以多解，不得给句子贴死标签；教孩子的是「先问这句在干什么活」
+      word_ids: []
+  mechanism:
+  - beat: 言内与言外
+    text_kid: 说话不只是发出声音，还在做一件事：说对不起是在道歉，说请是在请求。
+    text_adult: Austin 区分「说出话语」（言内）与「以言行事」（言外之力）：同一句子形式可做不同的事——It's cold here. 可以是陈述、抱怨，也可以是请人关窗的请求。
+    visual: 一句话气泡配三枚动作标签（陈述/抱怨/请求），随场景切换高亮
+    anchors:
+    - G2_096
+  - beat: 先问做什么
+    text_kid: 听到一句话，先想一想：他这是在请人帮忙，还是在道歉，还是在邀请？
+    text_adult: 判断顺序：先定言语行为类别，再看形式是否配得上场合；语法判断排在所做之事的判断之后。
+    visual: 判断流程条：听句子 → 问「在干什么活」→ 再看说法
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G2_P05
+    - G2_096
+    - G2_0595
+    sentence: It's cold here.
+    scene_note: 教室窗边的一句话：可以是陈述、抱怨，也可以是请人关窗（清单登记例）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_情感_17
+    - G4_K01
+    - G1_0852
+    sentence: Sorry. / Please. / Thank you.
+    scene_note: 道歉、请求、感谢三个动作各有现成说法（儿童版登记的三个动作）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: E-02
+    rel: 同族
+  - id: E-08
+    rel: 同族
+  quiz:
+  - stem: 同学说「It's cold here.」，他可能在做什么？
+    options:
+    - 只是在报告天气
+    - 请人把窗关上
+    - 在背课文
+    answer: 请人把窗关上
+    hint_ref: mechanism『言内与言外』
+  probes: []
+  prereq: []
+  order: 1
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - J. L. Austin (1962)《How to Do Things with Words》, Oxford University Press
+    - John Searle (1969)《Speech Acts》, Cambridge University Press
+    - 来源页：https://www.numberanalytics.com/blog/speech-acts-theory-applications
+    boundary: 言外之力靠语境判定，同一句话的「所做之事」可以多解；教孩子是教他「先问这句在干什么活」，不是给句子贴死标签。
+    disputes: 无（Searle 分类细节有后世修订，不影响本条）
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E01-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: E-02
+  zone: 表达写作
+  group: E
+  subgroup: A 言语行为与会话机制
+  audience: 孩子层
+  headline: 很多话不能按字面听：「你能把盐递给我吗」问的不是能力，是请求——意思要过「他想让我做什么」这一关
+  headline_kid: 有人问「你能开窗吗」，他不是在考你有没有本事，是在请你开窗。听话要听他想让你做什么。
+  claim:
+    type: tendency
+    statement: 请求常以询问能力、陈述状态的外壳间接表达；听话要过「他想让我做什么」这一关，字面对不等于用意对，反之亦然。
+    evidence:
+    - John Searle 间接言语行为理论（1975 年论文，后收入《Expression and Meaning》, 1979，剑桥大学出版社），承 Austin (1962) 框架（二手论述级）
+    - 间接请求是跨文化请求研究（CCSARP 传统）中形式最规约化的一类言语行为，也是中国学生最常「字面理解」的失误点
+    scope: 请求类言语行为的听辨与回应；间接程度随关系与场合滑动（与 E-07 礼貌权重联动）
+    exceptions:
+    - note: 间接不是永远更好：紧急场合、亲密关系、明确指令场合，直接表达才得体
+      word_ids: []
+  mechanism:
+  - beat: 外壳与里子
+    text_kid: 有人问「你能开窗吗」，他不是在考你有没有本事，是在请你开窗。
+    text_adult: 间接言语行为：说话人用一种行为的外壳（询问能力）包装另一种行为（请求），听者靠共享的会话逻辑推断真实意图；英语请求系统高度依赖这种间接性。
+    visual: 洋葱式分层图：外层「问能力」，里层「请你做」
+    anchors:
+    - G4_0818
+  - beat: 听用意
+    text_kid: 听话要听他想让你做什么，别只听字面。
+    text_adult: 教学落点：听到 Can you...? 先判定意图再行动；只按字面回答（Yes, I can.）是登记在案的典型失误型（见 error_cases）。
+    visual: 双气泡对照：字面答 vs 行动答
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G1_K03
+    - G4_0639
+    - G4_0818
+    sentence: Can you pass me the salt?
+    scene_note: 餐桌上请人递盐：问的是「能」，要的是「递」（清单标题登记例）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_10
+    - G4_159
+    sentence: Can you open the window?
+    scene_note: 教室里请人开窗（儿童版登记例）
+    supports: claim
+  error_cases:
+  - wrong: （被问 Can you open the window? 后只答）Yes, I can.
+    right: （起身把窗打开）Yes. / Sure.
+    error_type: 字面理解间接请求
+    source_type: 教学文献登记错型
+    diagnosis: 把询问能力的外壳按字面回答，没过「他想让我做什么」这一关（回 mechanism『听用意』）
+  relatives:
+  - id: E-01
+    rel: 同族
+  - id: E-07
+    rel: 对照
+  quiz:
+  - stem: 老师问「Can you open the window?」，最得体的反应是？
+    options:
+    - 答 Yes, I can 然后坐着不动
+    - 起身把窗打开
+    - 答 No, I can't
+    answer: 起身把窗打开
+    hint_ref: mechanism『听用意』
+  probes: []
+  prereq:
+  - E-01
+  order: 2
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - John Searle (1975) 间接言语行为论文；《Expression and Meaning》(1979), Cambridge University Press
+    - 来源页：https://www.thoughtco.com/locutionary-act-speech-1691257
+    boundary: 间接不是永远更好——紧急场合、亲密关系、明确指令场合直接表达才得体；间接程度要看关系与场合。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E02-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+- id: E-03
+  zone: 表达写作
+  group: E
+  subgroup: A 言语行为与会话机制
+  audience: 孩子层
+  headline: 对话能进行下去，靠双方默认「我还在配合你」：答非所问往往不是乱答，是在用绕弯的方式回答
+  headline_kid: 聊天时大家心里都答应了要好好配合；有人好像没回答你的问题，可能是在用另一种方式回答你。
+  claim:
+    type: tendency
+    statement: 交谈靠双方默认合作运行（量、质、关系、方式四准则）；表面违反某准则时，听者反推言外之意（会话含义），而不是判对方不合作——理解「话里有话」靠这台推理机。
+    evidence:
+    - 'H. P. Grice (1975) “Logic and Conversation”，载 Cole & Morgan 编《Syntax and Semantics 3: Speech Acts》（Academic Press），源自 1967 年哈佛 William James 讲座；后收入 Grice (1989)《Studies in the Way of Words》（二手论述级）'
+    - 合作原则与会话含义为语用学教材标准章节（Levinson 1983《Pragmatics》系统化）
+    scope: 对话理解的推理框架（启蒙口径）；与 E-08「回应合不合看上文」的判断同向
+    exceptions:
+    - note: 四准则的权重与解读方式有文化差异，不能把英美交谈习惯说成普世理性
+      word_ids: []
+  mechanism:
+  - beat: 默认配合
+    text_kid: 聊天时大家心里都答应了要好好配合，话才接得下去。
+    text_adult: 合作原则：双方默认发言满足量（信息够）、质（说真话）、关系（切题）、方式（清楚）四准则，这是对话能进行的底层约定。
+    visual: 两人搭桥图：四块桥板标量/质/关系/方式
+    anchors: []
+  - beat: 违反即信号
+    text_kid: 有人好像没回答你的问题，可能是在用另一种方式回答你。
+    text_adult: 表面违反准则时听者不判定「不合作」，而是反推言外之意；答非所问往往是绕弯的回答，不是乱答。
+    visual: 问句气泡旁浮现「真正的意思」小标签
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-08
+    rel: 同族
+  quiz:
+  - stem: 朋友被问「电影好看吗」，他答「爆米花不错」。按合作原则，他多半是说？
+    options:
+    - 电影非常好看
+    - 电影不怎么样
+    - 他没听见问题
+    answer: 电影不怎么样
+    hint_ref: mechanism『违反即信号』
+  probes: []
+  prereq: []
+  order: 3
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - H. P. Grice (1975) “Logic and Conversation”；Grice (1989)《Studies in the Way of Words》
+    - 来源页：https://faculty.goucher.edu/eng211/H_P_Grice_Maxims.htm
+    boundary: 四准则的权重与解读方式有文化差异（有的文化重含蓄、有的重直率），不能把英美交谈习惯说成普世理性；对儿童只取「听话时想想他为什么这样说」的推理习惯。
+    disputes: 有——后世关联理论（Sperber & Wilson）主张用单一「关联」原则替代四准则，礼貌研究者亦批评合作原则偏理性化；教学取向的差异不影响本条作启蒙框架使用，但勿表述为「语言学界一致定论」。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E03-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: E-04
+  zone: 表达写作
+  group: E
+  subgroup: A 言语行为与会话机制
+  audience: 孩子层
+  headline: 日常句子是整块从记忆里取出来的，不是逐词现拼的：问候、点餐、道别靠的是「现成块」
+  headline_kid: 说「生日快乐」「请给我一杯水」时，我们是把整块句子一下子拿出来用的，不是一个词一个词拼的。
+  claim:
+    type: tendency
+    statement: 母语者的日常表达以程式化序列整存整取（省加工、保地道）；学习者凡事逐词拼装，既慢又容易拼出语法没错但母语者不说的句子。日常表达教学应以整句整块为单位存入、以替换个别槽位为扩展方式。
+    evidence:
+    - Alison Wray (2002)《Formulaic Language and the Lexicon》（Cambridge University Press）——程式化序列通行定义与异质词库模型，该领域引用最广的专著（原文节选级：CUP 官方 frontmatter）
+    - 语料库与心理语言学实验（Conklin & Schmitt 2008 等）证实程式语的加工速度优势；词汇法（Lewis 1993）教学传统与之同向
+    scope: 问候、点餐、道别等日常程式表达的存入与扩展方式
+    exceptions:
+    - note: 整块存取解决流利与地道，不解决创造性表达；块内结构最终仍需分析，只背整块不拆槽位会卡在原句上
+      word_ids: []
+  mechanism:
+  - beat: 整存整取
+    text_kid: 说「生日快乐」时，我们是把整块句子一下子拿出来用的。
+    text_adult: 程式化序列（formulaic sequences）整存整取：母语者语料中极大比例是现成块，省去逐词编码的成本，也保住地道说法。
+    visual: 积木套装图：整块句子从抽屉整取，与逐词拼装对照
+    anchors:
+    - G2_0413
+  - beat: 槽位替换
+    text_kid: 整块学会以后，把里面一个小地方换一换，就能说出新句子。
+    text_adult: 扩展方式是替换个别槽位（如 a glass of water → a cup of water），不是把整块拆碎重拼；块内结构在使用中逐步析出。
+    visual: 句框图：固定部分实线、槽位虚线可换
+    anchors:
+    - G1_055
+  examples:
+  - level: 1
+    word_ids:
+    - G6_282
+    - G2_0413
+    sentence: Happy birthday!
+    scene_note: 生日场景整块取用，不逐词拼（儿童版登记例）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G1_K03
+    - V6_核心_0
+    - V6_日常_5
+    - G1_K01
+    - V6_食物_66
+    - G1_055
+    sentence: Can I have a glass of water?
+    scene_note: 要水/点餐时整句取用，槽位可替换（儿童版登记例）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: NE-03
+    rel: 同族
+  - id: NE-01
+    rel: 同族
+  - id: W-06
+    rel: 同族
+  quiz:
+  - stem: 说「生日快乐」时，母语者是把整块拿出来用，还是一个词一个词现拼？
+    options:
+    - 一个词一个词现拼
+    - 把整块句子一下子拿出来用
+    - 先想语法规则再拼
+    answer: 把整块句子一下子拿出来用
+    hint_ref: mechanism『整存整取』
+  probes: []
+  prereq: []
+  order: 4
+  pain_points:
+  - 说不出
+  - 记不住
+  adult:
+    sources:
+    - Alison Wray (2002)《Formulaic Language and the Lexicon》, Cambridge University Press
+    - 来源页：https://assets.cambridge.org/97805217/73096/frontmatter/9780521773096_frontmatter.pdf
+    boundary: 整块存取解决流利与地道，不解决创造性表达；块内结构最终仍需分析（知道哪部分可换），只背整块不拆槽位会卡在原句上。
+    disputes: 无（程式语的判定标准有学术争论，不影响教学结论）
+    evidence_grade: 原文节选级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E04-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: E-05
+  zone: 表达写作
+  group: E
+  subgroup: B 得体与礼貌
+  audience: 孩子层
+  headline: 语法错了，人家笑你「说得不好」；场合错了，人家觉得你「人不好」——语用失误比语法错误更伤人，而且更难被察觉
+  headline_kid: 词用错了没关系，大家知道你在学；场合说错了，别人会以为你没礼貌，还不会告诉你错在哪。
+  claim:
+    type: tendency
+    statement: 听者对外国人的语法错误天然宽容（归因为「语言没学好」），对语用失误却归因为态度与人品；且语用失误没有明显的报错信号，学习者往往长期不自知——表达教学必须显性处理得体问题，不能等它自然变好。
+    evidence:
+    - 'Jenny Thomas (1983) “Cross-Cultural Pragmatic Failure”, Applied Linguistics 4(2): 91–112——pragmatic failure 概念与两分法的奠基论文；何自然 (1997)《语用学与英语学习》（上海外语教育出版社）将其系统引入中国英语教学（二手论述级）'
+    - 本 App 审查实证：29 条表达错误中 26 条源于脱离语境的机械收尾，正是语用层失误的库内实证
+    scope: 表达教学的优先级论证（得体值得专门学）
+    exceptions:
+    - note: 归因差异是倾向不是铁律：正式场合的语法错误同样可能被严肃看待
+      word_ids: []
+  mechanism:
+  - beat: 两种归因
+    text_kid: 词用错了，大家知道你在学；场合说错了，别人会以为你没礼貌。
+    text_adult: 同一错误、两种归因：语法错误归因于能力（可谅解），语用失误归因于态度与人品（不真诚、没教养）——伤害量级完全不同。
+    visual: 双路标图：语法错 → 「在学」标签；场合错 → 「没礼貌」标签
+    anchors: []
+  - beat: 没有报错信号
+    text_kid: 场合说错了，还不会有人告诉你错在哪。
+    text_adult: 语用失误不像语法错误那样有明显的报错信号，学习者长期不自知；这是得体必须被显性教（E-12）的直接原因。
+    visual: 静默警报图：语法错亮红灯，场合错无灯但对方脸色已变
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-06
+    rel: 同族
+  - id: E-12
+    rel: 同族
+  quiz:
+  - stem: 哪种错更容易被误会成「没礼貌」，还不容易被指出来？
+    options:
+    - 把 apple 拼错
+    - 在不合适的场合说错现成话
+    - 把 is 说成 are
+    answer: 在不合适的场合说错现成话
+    hint_ref: mechanism『两种归因』
+  probes: []
+  prereq: []
+  order: 5
+  pain_points:
+  - 说不出
+  - 错不完
+  adult:
+    sources:
+    - 'Jenny Thomas (1983) “Cross-Cultural Pragmatic Failure”, Applied Linguistics 4(2): 91–112'
+    - 何自然 (1997)《语用学与英语学习》，上海外语教育出版社
+    - 来源页：https://www.thoughtco.com/pragmatic-competence-1691653
+    boundary: 归因差异是倾向不是铁律——正式场合的语法错误同样可能被严肃看待；对儿童表述时落在「得体值得专门学」，不渲染后果吓唬孩子。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E05-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: E-06
+  zone: 表达写作
+  group: E
+  subgroup: B 得体与礼貌
+  audience: 教师/设计层
+  headline: 语用失误分两种，治法完全不同：一种是「现成说法用错了」，一种是「不懂这个场合的规矩」
+  headline_kid: 说错话有两种：一种是句子本身拿错了，一种是句子没错、但这个场合不该这么说。
+  claim:
+    type: tendency
+    statement: 语用失误分两类：语用-语言失误（力图与形式配错，可通过教规约化用法纠正）与社交-语用失误（对场合的权衡判断错了，根子在文化价值判断，纠正靠解释场合逻辑而非给公式）。分类是诊断工具：先分清错类，再选治法。
+    evidence:
+    - Jenny Thomas (1983)（出处同 E-05）；两分术语源自 Geoffrey Leech (1983)《Principles of Pragmatics》（Longman）（二手论述级）
+    - 两分法为语际语用学沿用至今的分析框架，中国学习者语用失误的本土调查研究均以此分类统计
+    scope: 语用失误的诊断分类（教师侧工具）
+    exceptions:
+    - note: 两类在真实失误中常交织（一句话既配错形式又判错场合）；分类不是给孩子的错误贴的判决标签
+      word_ids: []
+  mechanism:
+  - beat: 两分法
+    text_kid: 说错话有两种：句子拿错了，或者句子没错但场合不对。
+    text_adult: 语用-语言失误 = pragmalinguistic（形式与力图配错，如把汉语请求方式直译）；社交-语用失误 = sociopragmatic（场合权衡判断错，如对谁该多客气判断失误）。
+    visual: 分诊台图：一句错话分流到「换说法」与「讲场合」两条通道
+    anchors: []
+  - beat: 对症治法
+    text_kid: 拿错句子，换个对的说法；场合判断错了，要有人把场合的道理讲给你听。
+    text_adult: 前者教规约化用法即可纠正；后者要解释场合逻辑与文化价值判断，给公式无效。
+    visual: 两条通道末端分别标「给公式」与「讲逻辑」
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-05
+    rel: 同族
+  - id: E-09
+    rel: 同族
+  quiz:
+  - stem: 把汉语的客套公式直译成英语去请求别人——这是哪类失误？
+    options:
+    - 语用-语言失误（形式配错）
+    - 社交-语用失误（场合判断错）
+    - 语法失误
+    answer: 语用-语言失误（形式配错）
+    hint_ref: mechanism『两分法』
+  probes: []
+  prereq:
+  - E-05
+  order: 6
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Jenny Thomas (1983)，出处同 E-05
+    - Geoffrey Leech (1983)《Principles of Pragmatics》, Longman
+    - 来源页：http://carrels.distantreader.org/journal-studiesInSecondLanguageLearningAndTeaching-ojsoai/cache/ssllt-5819.pdf
+    boundary: 两类在真实失误中常交织；分类是诊断工具，不是给孩子的错误贴的判决标签。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E06-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: E-07
+  zone: 表达写作
+  group: E
+  subgroup: B 得体与礼貌
+  audience: 孩子层
+  headline: 请求、打扰、拒绝越「压人」，英语越要加缓冲：礼貌是替对方的「面子」留余地，客气程度随关系远近和事的大小滑动
+  headline_kid: 要请别人帮越大的忙，说话就要越客气：先垫一句话、把命令改成商量，给人家留个台阶。
+  claim:
+    type: tendency
+    statement: 请求类行为天然威胁听者的消极面子（不被打扰的自由）；说话人按社交距离 D、权力差 P、事情大小 R 估算威胁权重，权重越大越用间接、商量、致歉开场等补偿策略——英语情态问句成为默认请求式，是这套权衡的规约化结果。
+    evidence:
+    - 'Penelope Brown & Stephen C. Levinson (1987)《Politeness: Some Universals in Language Usage》（Cambridge University Press；初版 1978）——礼貌理论奠基作，面子概念承 Goffman (1967)（二手论述级）'
+    - D+P+R 权重公式给了「客气程度随场合滑动」一个可教的判断模型，支撑请求、道歉、拒绝类表达的分级教学
+    scope: 请求、打扰、拒绝类表达的客气分级
+    exceptions:
+    - note: 亲密关系中过度客气反而疏远（何自然 1997 所举 could/would 对好朋友见外的例子）
+      word_ids: []
+    - note: 三变量的估算方式因文化而异：中国文化中年龄、辈分权重更高；公式是启发模型，不是计算器
+      word_ids: []
+  mechanism:
+  - beat: 面子与威胁
+    text_kid: 请人帮忙，就是去打扰人家；忙越大，打扰越大。
+    text_adult: 面子理论：请求威胁听者的消极面子；说话人先估算威胁，再决定补偿多少——垫话、商量口吻、致歉开场都是补偿策略。
+    visual: 天平图：一端「事情大小」，一端叠加缓冲垫
+    anchors: []
+  - beat: 滑动标尺
+    text_kid: 请同桌递个橡皮，和请陌生人帮大忙，客气程度不一样。
+    text_adult: D（距离）+P（权力差）+R（事情大小）三变量滑动，决定用直接式还是情态问句式；Could you...? / Would you mind...? 是规约化的高缓冲请求式。
+    visual: 滑杆图：三根滑杆推高 → 请求式逐级变客气
+    anchors:
+    - ADD_0192
+  examples:
+  - level: 1
+    word_ids:
+    - G3_KA10
+    - G1_P02
+    sentence: Could you ...?
+    scene_note: 默认请求式：情态问句作缓冲（清单登记式）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G3_KA11
+    - ADD_0192
+    sentence: Would you mind ...?
+    scene_note: 更重的请求再升一级客气（清单登记式）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: E-02
+    rel: 对照
+  - id: E-06
+    rel: 同族
+  quiz:
+  - stem: 请陌生人帮一个大忙，和请同桌递一块橡皮，哪次该说得更客气？
+    options:
+    - 请同桌递橡皮
+    - 请陌生人帮大忙
+    - 一样客气
+    answer: 请陌生人帮大忙
+    hint_ref: mechanism『滑动标尺』
+  probes: []
+  prereq: []
+  order: 7
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - 'Penelope Brown & Stephen C. Levinson (1987)《Politeness: Some Universals in Language Usage》, Cambridge University Press'
+    - 来源页：https://1library.net/article/politeness-theory-an-overview-politeness-theory.zgj1njnz
+    boundary: 三变量的估算方式因文化而异（中国文化中年龄、辈分权重更高），公式是启发模型不是计算器；亲密关系中过度客气反而疏远。
+    disputes: 有——该理论的普适性主张受东亚学者批评（如以「面子」为核心是否放之四海皆准），中国礼貌研究另有以顾曰国「礼貌五准则」为代表的本土框架；教学中两说可并置，儿童层只取「客气随场合滑动」这一共识部分。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E07-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: E-08
+  zone: 表达写作
+  group: E
+  subgroup: B 得体与礼貌
+  audience: 孩子层
+  headline: 一句回应「对不对」，不看句子本身，看三件事：谁在说、对谁说、上一句说了什么
+  headline_kid: 一句话说得对不对，要看是谁说的、对谁说的、前面的人说了什么——脱了这三样，谁也判断不了。
+  claim:
+    type: rule
+    statement: 回应得体与否是关系判断，不是形式判断：每条对话数据须过「角色—状态—所指」三问——谁在说、对谁说、上一句说了什么；三问不过，形式再正确也不成立。
+    evidence:
+    - Dell Hymes (1972) “On Communicative Competence”——提出「得体」为语言能力的独立维度（二手论述级）
+    - Canale & Swain (1980) 将得体操作化为社会语言能力（按场合、话题、功能选形式的知识）
+    - 本 App 审查实证与之互证：机械按场景填收尾句正是违反了本条（不看角色与上文）
+    scope: 本 App 表达域每条对话数据的生产规范（三问）
+    exceptions:
+    - note: 三问管「合不合场合」，不管语法对错
+      word_ids: []
+    - note: 低龄段先练「谁在说、对谁说」，指称回指（too 类）可稍后
+      word_ids: []
+  mechanism:
+  - beat: 关系判断
+    text_kid: 一句话说得对不对，要看是谁说的、对谁说的。
+    text_adult: 得体性（appropriateness）是关系判断：同一句 It tastes good. 由食客说出是夸奖、由服务员说出是角色错位——句子本身不变，判断随关系而变。
+    visual: 同一气泡在两个角色头上，一绿一红对照
+    anchors:
+    - G5_0646
+    - G3_K08
+  - beat: 回指要有着落
+    text_kid: 像 The same to you 这样的话，前面必须有人先说过，它才能成立。
+    text_adult: 回指句（too、The same to you）必须在上文有被回指的对象才成立；脱了上文，谁也判断不了一句回应。
+    visual: 箭头图：回指句的箭头必须落回上一句
+    anchors:
+    - V6_核心_48
+  examples:
+  - level: 1
+    word_ids:
+    - G2_P05
+    - G5_0646
+    - G3_K08
+    sentence: It tastes good.
+    scene_note: 食客说=夸奖，服务员说=角色错位（清单登记例）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_核心_48
+    - G1_P02
+    sentence: The same to you.
+    scene_note: 回指句：上一句有被回指的对象才成立（清单登记例；same 未入词库，见 pending）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: E-03
+    rel: 同族
+  - id: E-10
+    rel: 同族
+  - id: E-13
+    rel: 同族
+  quiz:
+  - stem: 判断一句回应合不合适，先看哪三件事？
+    options:
+    - 句子长不长、生词多不多
+    - 谁在说、对谁说、上一句说了什么
+    - 语法对不对
+    answer: 谁在说、对谁说、上一句说了什么
+    hint_ref: mechanism『关系判断』
+  probes: []
+  prereq: []
+  order: 8
+  pain_points:
+  - 说不出
+  - 错不完
+  adult:
+    sources:
+    - Dell Hymes (1972) “On Communicative Competence”
+    - Canale & Swain (1980)，社会语言能力操作化
+    - 来源页：https://carla.umn.edu/assessment/vac/research/theory.html
+    boundary: 三问管「合不合场合」，不管语法对错；低龄段先练「谁在说、对谁说」，指称回指（too 类）可稍后。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 例词 same 不在词库（E-08 例句 The same to you 构成词），待补词后回填 word_ids
+  - error_cases 事故型已登记（机械按场景填收尾句），具体错句待从审查记录回填
+  - 探针待补写（PRB-E08-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: E-09
+  zone: 表达写作
+  group: E
+  subgroup: B 得体与礼貌
+  audience: 孩子层
+  headline: 汉语的客套会「跟着人一起出国」：谦虚、称呼、拒绝的方式直译成英语，常会变成失误
+  headline_kid: 把中文的客气话一个词一个词翻译成英语，有时候会闹笑话——两边的客气规矩不一样。
+  claim:
+    type: tendency
+    statement: 学习者会把母语的言语行为策略（自谦、迂回拒绝、称呼长辈的方式、对夸奖的回应程式）整套搬进英语：形式上是英语、规矩上是汉语——这是社交-语用失误的主要来源。
+    evidence:
+    - Jenny Thomas (1983) 对社交-语用失误与 L1 策略迁移的分析（出处同 E-05）（二手论述级）
+    - 何自然 (1997)《语用学与英语学习》以中国学习者为对象系统讨论语用迁移与本土失误类型，为国内语用教学的奠基教材
+    - 语际语用学（ILP）三十年的对比研究一致确认迁移是失误主因之一
+    scope: 中国学习者高频错位点（教学落在指出已知错位点，不搞「中文习惯全盘可疑」）
+    exceptions:
+    - note: 迁移不是全错：致谢、道歉的基本结构等不少策略两语通用；且部分英语用法本身随全球交际在变
+      word_ids: []
+  mechanism:
+  - beat: 客套出国
+    text_kid: 把中文的客气话一个词一个词翻译成英语，有时候会闹笑话。
+    text_adult: 社交-语用迁移：策略整套搬运——受夸回「No, no」的自谦式回应、把「您慢走」直译，在英语听者处分别被读作否定对方判断、无所指的客套。
+    visual: 行李箱图：客套话装进箱子出国，落地被贴上「误读」标签
+    anchors:
+    - G1_K04
+  - beat: 高频错位点
+    text_kid: 两边的客气规矩不一样，先认识几个最容易撞上的地方。
+    text_adult: 教学只打高频错位点：回夸、称呼、拒绝三类是本土调查反复复现的条目（见 error_cases 的回夸例）。
+    visual: 错位点地图：回夸/称呼/拒绝三处钉子
+    anchors:
+    - G1_0852
+  examples:
+  - level: 1
+    word_ids:
+    - G1_0852
+    - G1_P02
+    sentence: Thank you.
+    scene_note: 受夸时的英语默认回应：先致谢（与 error_cases 的自谦式回应对照同屏）
+    supports: claim
+  error_cases:
+  - wrong: （受夸时答）No, no.
+    right: Thank you.
+    error_type: 社交-语用迁移
+    source_type: 教学文献登记错型
+    diagnosis: 把汉语自谦程式迁进英语回夸：英语听者会读作否定对方的判断（回 mechanism『客套出国』）
+  relatives:
+  - id: E-06
+    rel: 同族
+  quiz:
+  - stem: 外国老师夸你画得好，按英语习惯先说什么？
+    options:
+    - No, no.
+    - Thank you.
+    - You are welcome.
+    answer: Thank you.
+    hint_ref: mechanism『高频错位点』
+  probes: []
+  prereq:
+  - E-06
+  order: 9
+  pain_points:
+  - 说不出
+  - 错不完
+  adult:
+    sources:
+    - Jenny Thomas (1983)，出处同 E-05
+    - 何自然 (1997)《语用学与英语学习》，来源页：https://www.sinoss.net/uploadfile/2010/1130/5040.pdf
+    boundary: 迁移不是全错——不少策略两语通用（如致谢、道歉的基本结构），且随着全球交际增多，部分英语用法本身在变；教学落在「指出已知的高频错位点」，不搞「中文习惯全盘可疑」。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E09-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+- id: E-10
+  zone: 表达写作
+  group: E
+  subgroup: C 能力构成与教学
+  audience: 孩子层
+  headline: 「会说英语」是四种本事合起来：语法只占四分之一，其余是得体、成篇、和卡壳时的自救
+  headline_kid: 会英语不只是句子没错，还要说得合场合、能连着说好几句、卡住时有办法绕过去。
+  claim:
+    type: tendency
+    statement: 交际能力由四种能力合成：语法能力、社会语言能力（得体）、语篇能力（把句子连缀成连贯整体）、策略能力（补救交际中断）；四者缺一，真实交际都会塌一块——表达类内容的教学目标须按此清单配齐，不只练单句正确。
+    evidence:
+    - 'Michael Canale & Merrill Swain (1980) “Theoretical Bases of Communicative Approaches to Second Language Teaching and Testing”, Applied Linguistics 1(1): 1–47；Canale (1983) 修订为四分模型（二手论述级）'
+    - 该模型是交际教学与语言测试四十年的框架标准（Bachman 1990 在此基础上发展测试模型）
+    scope: 表达类内容的教学目标框架（四分是分析框架，不等于四门课）
+    exceptions:
+    - note: 小学段的「语篇能力」主要落在能连贯说 3–5 句、会用 and/then/but 衔接，不提前引入篇章学术语
+      word_ids:
+      - V6_核心_57
+      - G4_0597
+      - V6_核心_58
+  mechanism:
+  - beat: 四块拼图
+    text_kid: 会英语不只是句子没错，还要说得合场合、能连着说、卡住有办法。
+    text_adult: 四能力：语法（句子对不对）、社会语言（合不合场合）、语篇（连不连得成篇）、策略（卡住能不能自救）；缺哪一块，交际就在哪一块塌陷。
+    visual: 四块拼图：语法/得体/成篇/自救，缺一角图不全
+    anchors: []
+  - beat: 语篇落点
+    text_kid: 能连着说好几句，才算把话说成篇。
+    text_adult: 小学段的语篇能力落点收窄为：连贯说 3–5 句 + and/then/but 三个基础衔接手段；篇章学术语后置。
+    visual: 三枚衔接扣图：and/then/but 把短句扣成串
+    anchors:
+    - V6_核心_57
+    - G4_0597
+    - V6_核心_58
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-08
+    rel: 同族
+  - id: E-11
+    rel: 同族
+  quiz:
+  - stem: 「会说英语」里，语法只占几分之几？
+    options:
+    - 一半
+    - 四分之一
+    - 全部
+    answer: 四分之一
+    hint_ref: mechanism『四块拼图』
+  probes: []
+  prereq: []
+  order: 10
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - 'Michael Canale & Merrill Swain (1980), Applied Linguistics 1(1): 1–47'
+    - Canale (1983) 四分模型修订
+    - 来源页：https://carla.umn.edu/assessment/vac/research/theory.html
+    boundary: 四分是分析框架，不等于四门课；小学段的「语篇能力」主要落在能连贯说 3–5 句、会用 and/then/but 衔接，不提前引入篇章学术语。
+    disputes: 无（后世 Bachman 等对各成分边界有重划，不影响教学使用）
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E10-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: E-11
+  zone: 表达写作
+  group: E
+  subgroup: C 能力构成与教学
+  audience: 孩子层
+  headline: 卡壳不是失败，是交际的一部分：会换个说法、打个比方、问一句「怎么说」，本身就是本事
+  headline_kid: 有个词想不起来，不要停下来：换个简单的说法、比划一下、问一句，话就能接着说。
+  claim:
+    type: tendency
+    statement: 策略能力把「补救」重新定义为能力本身：母语者同样天天用换述、迂回、求助过坎；储备一批求生句（How do you say...? / I mean... / It's like a...）能显著降低开口焦虑与交际中断。
+    evidence:
+    - Canale & Swain (1980) 对策略能力的原始定义（“compensate for breakdowns in communication”），出处同 E-10（二手论述级）
+    - 策略教学在二语口语研究中有稳定的正面结果；与 Swain 输出理论的「假设检验」功能衔接（见 W-07）
+    scope: 口语补救策略（教学配比上是补充项，不是主体）
+    exceptions:
+    - note: 策略是过桥工具，不能代替词汇与句型的积累：全靠比划绕不过考试与精确表达场合
+      word_ids: []
+  mechanism:
+  - beat: 补救即能力
+    text_kid: 有个词想不起来，不要停下来，换个说法话就能接着说。
+    text_adult: 策略能力（strategic competence）：交际中断时用换述、迂回、手势、求助把话接下去——母语者天天如此，这不是丢脸，是本事的一部分。
+    visual: 桥图：话卡在断口处，换说法/比方/求助三块板搭过去
+    anchors:
+    - G3_Q08
+  - beat: 求生句库存
+    text_kid: 先存几句救命的话：问一句「怎么说」，就能把话接回来。
+    text_adult: 求生句要整块存入（与 E-04 整块存取同理）：How do you say...? 问法、It's like a... 比方、I mean... 换述（mean 未入词库，见 pending）。
+    visual: 救生圈图：三句求生句挂在圈上随取随用
+    anchors:
+    - V6_日常_64
+  examples:
+  - level: 1
+    word_ids:
+    - G3_Q08
+    - V6_日常_3
+    - G1_P02
+    - G3_0625
+    sentence: How do you say ...?
+    scene_note: 想不起词时向对方求助的现成句（清单登记求生句）
+    supports: claim
+  - level: 2
+    word_ids:
+    - G2_P05
+    - G3_K01
+    - V6_日常_64
+    - G1_K01
+    sentence: It's like a ...
+    scene_note: 说不出名字时用比方绕过去（清单登记求生句）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: E-10
+    rel: 同族
+  - id: E-15
+    rel: 同族
+  - id: W-07
+    rel: 同族
+  quiz:
+  - stem: 有个词想不起来，最能让谈话继续下去的是？
+    options:
+    - 停下来查词典
+    - 换个说法，或问一句 How do you say
+    - 干脆不说了
+    answer: 换个说法，或问一句 How do you say
+    hint_ref: mechanism『求生句库存』
+  probes: []
+  prereq:
+  - E-10
+  order: 11
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Canale & Swain (1980)，出处同 E-10
+    - 来源页：https://carla.umn.edu/assessment/vac/research/theory.html
+    boundary: 策略是过桥工具，不能代替词汇与句型的积累——全靠比划绕不过考试与精确表达场合；教学配比上它是补充项不是主体。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 例词 mean 不在词库（求生句 I mean ... 构成词），待补词后回填
+  - 探针待补写（PRB-E11-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: E-12
+  zone: 表达写作
+  group: E
+  subgroup: C 能力构成与教学
+  audience: 教师/设计层
+  headline: 得体不会自己长出来：语法学得再好的人也会说错场合的话——语用必须专门教、把规矩讲在明处
+  headline_kid: 光把句子学对，不会自动学会「什么时候说什么」；场合的规矩要专门学。
+  claim:
+    type: tendency
+    statement: 语用发展不随语法水平自动跟进：高水平学习者在无语用教学时，请求、道歉等行为的得体程度仍显著偏离目标语习惯；接受显性语用教学（把场合规矩讲明 + 情境练习）者进步显著快于只靠浸泡者。
+    evidence:
+    - Gabriele Kasper & Kenneth R. Rose (2002)《Pragmatic Development in a Second Language》（Blackwell / Language Learning 专刊）——结论「语用可教且需显性教」；Kathleen Bardovi-Harlig (2001) 专章论证教学必要性（二手论述级）
+    - 后续元分析与综述（Taguchi 2011、2015）确认语用教学效应稳健、显性教学优于隐性接触
+    scope: 语用教学的必要性论证（本 App 表达域坚持「逐句过三问 + 显性讲场合」的证据基础）
+    exceptions:
+    - note: 可教的是规约与判断框架，不是把每个场合都列成规则背；语用规范本身随时代与群体变化，教材口径需定期复核
+      word_ids: []
+  mechanism:
+  - beat: 不自动跟进
+    text_kid: 光把句子学对，不会自动学会「什么时候说什么」。
+    text_adult: 语际语用学证据：语法水平与语用水平脱钩——请求、道歉的得体程度在无教学时长期偏离目标语习惯，浸泡时长补不上这一课。
+    visual: 双线图：语法线一路上升，得体线原地不动
+    anchors: []
+  - beat: 显性教更快
+    text_kid: 场合的规矩要专门学：把规矩讲在明处，再到情景里练。
+    text_adult: 显性教学 = 讲明规矩 + 情境练习；其进步速度显著快于只靠浸泡，是课程必须给语用留专门位置的依据。
+    visual: 讲台+情景双格图：左讲规矩，右情景演练
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-05
+    rel: 同族
+  - id: E-14
+    rel: 同族
+  quiz:
+  - stem: 语法学得很好的人，会不会自动学会「什么时候说什么」？
+    options:
+    - 会，语法好就全都会
+    - 不会，场合规矩要专门学
+    - 看运气
+    answer: 不会，场合规矩要专门学
+    hint_ref: mechanism『不自动跟进』
+  probes: []
+  prereq: []
+  order: 12
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Gabriele Kasper & Kenneth R. Rose (2002)《Pragmatic Development in a Second Language》, Blackwell
+    - Kathleen Bardovi-Harlig (2001)，载 Rose & Kasper 编《Pragmatics in Language Teaching》, Cambridge University Press
+    - 来源页：http://carrels.distantreader.org/journal-studiesInSecondLanguageLearningAndTeaching-ojsoai/cache/ssllt-5819.pdf
+    boundary: 可教的是规约与判断框架，不是把每个场合都列成规则背；且语用规范本身随时代与群体变化，教材口径需定期复核。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E12-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: E-13
+  zone: 表达写作
+  group: E
+  subgroup: C 能力构成与教学
+  audience: 孩子层
+  headline: 对话是两个人轮流搭的：一问一答是绑在一起的「对子」，上一句长什么样，就预定了下一句的活
+  headline_kid: 聊天像打乒乓球，一个人发球，另一个人要接；问题发出去，回答就要跟回来。
+  claim:
+    type: tendency
+    statement: 对话由话轮按可预测的规则交接，话语常成相邻对出现（问候—问候、提问—回答、邀请—接受/婉拒）；第一部分一出现，就对第二部分形成「条件相关」——该答不答本身就成了信息。
+    evidence:
+    - 'Harvey Sacks, Emanuel A. Schegloff & Gail Jefferson (1974) “A Simplest Systematics for the Organization of Turn-Taking for Conversation”, Language 50(4): 696–735——会话分析（CA）奠基论文，该刊历史上被引最多的文章之一（二手论述级）'
+    - 话轮与相邻对是 CA 五十年研究的核心构件；本 App 审查中 ORAL_SCENE「压扁对话」的订正（拆轮次、补答句）即按本条结构直觉执行
+    scope: 教材对话的结构规范（对话数据逐轮复核的学理面）
+    exceptions:
+    - note: 相邻对是「预期」不是死法：拒答、岔开、反问都是带着含义的合法第二部分；须先掌握默认对型，才谈得上偏离的含义
+      word_ids: []
+  mechanism:
+  - beat: 话轮交接
+    text_kid: 聊天像打乒乓球，一个人发球，另一个人要接。
+    text_adult: 话轮（turn）交接有可预测的规则：谁说完、谁接、间隔多长，都有系统——对话不是各说各的，是轮流搭出来的。
+    visual: 乒乓球图：球（话轮）在两人间往返
+    anchors: []
+  - beat: 相邻对
+    text_kid: 问题发出去，回答就要跟回来——它们是绑在一起的对子。
+    text_adult: 相邻对（adjacency pairs）：第一部分（提问/问候/邀请）对第二部分（回答/回问候/接受或婉拒）形成条件相关；该答不答，缺席本身传递信息。
+    visual: 对子卡图：问句卡与答句卡以扣环相连
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-08
+    rel: 同族
+  - id: E-15
+    rel: 同族
+  quiz:
+  - stem: 对话里「邀请」发出去后，下一轮默认要回来的是？
+    options:
+    - 接受或婉拒
+    - 另一个问题
+    - 什么都不用回
+    answer: 接受或婉拒
+    hint_ref: mechanism『相邻对』
+  probes: []
+  prereq: []
+  order: 13
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - 'Sacks, Schegloff & Jefferson (1974), Language 50(4): 696–735'
+    - 来源页：https://www.conversationanalysis.org/schegloff-publication-archive/
+    boundary: 相邻对是「预期」不是死法——拒答、岔开、反问都是带着含义的合法第二部分，但学习者须先掌握默认对型，才谈得上偏离的含义。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E13-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: E-14
+  zone: 表达写作
+  group: E
+  subgroup: C 能力构成与教学
+  audience: 教师/设计层
+  headline: 没注意到的东西学不会：语用规矩藏在语境中，不把孩子的注意力引过去，他听一百遍也可能没看见
+  headline_kid: 耳朵听到了，不等于脑子记下了；要有人指给你看「这里有个规矩」，你才能学会它。
+  claim:
+    type: tendency
+    statement: 输入只有被有意识地「注意到」（noticing），才可能转化为摄入（intake）进而被习得（弱式口径：注意到越多，学得越多）；语用信息比语音语法更隐蔽，语用教学的核心动作是设计「让学生注意到规矩」的对比与提示，而不是增加浸泡时长。
+    evidence:
+    - 'Richard Schmidt (1990) “The Role of Consciousness in Second Language Learning”, Applied Linguistics 11(2): 129–158——注意假说原典；语用方向引介见 Kasper & Schmidt (1996) 及 Kasper & Rose (2002)（二手论述级）'
+    - 注意假说是二语习得认知转向的枢纽假说，与 Swain「注意到缺口」（W-07）互为输入/输出两面
+    scope: 语用与一般二语教学的注意力设计原则
+    exceptions:
+    - note: 对低龄儿童，「注意」靠情境对比与戏剧化呈现引出，不靠讲解术语
+      word_ids: []
+  mechanism:
+  - beat: 听见≠看见
+    text_kid: 耳朵听到了，不等于脑子记下了。
+    text_adult: 注意假说：输入须先过「注意」这一关才可能变摄入；语用规矩（谁对谁该怎么说）藏在语境里，听一百遍也可能没看见。
+    visual: 耳朵与眼睛双图标：声波穿过，聚光灯未打处一片灰
+    anchors: []
+  - beat: 把注意力引过去
+    text_kid: 要有人指给你看「这里有个规矩」，你才能学会它。
+    text_adult: 教学动作 = 设计对比与提示（输入强化、情境对比、戏剧化呈现），把隐蔽的规矩变成可注意的对象，而不是单纯加时长。
+    visual: 聚光灯图：对比呈现把光打在规矩处
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-12
+    rel: 同族
+  - id: W-07
+    rel: 同族
+  quiz:
+  - stem: 一个规矩听了一百遍还没学会，最可能缺了什么？
+    options:
+    - 音量不够大
+    - 注意到它
+    - 背诵遍数
+    answer: 注意到它
+    hint_ref: mechanism『听见≠看见』
+  probes: []
+  prereq: []
+  order: 14
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - 'Richard Schmidt (1990), Applied Linguistics 11(2): 129–158'
+    - Kasper & Schmidt (1996)；Kasper & Rose (2002)
+    - 来源页：https://en.wikipedia.org/wiki/Noticing_hypothesis
+    boundary: 假说的主张强度有版本之分（Schmidt 本人后期亦用弱式表述：注意到越多学得越多）；对低龄儿童，「注意」靠情境对比与戏剧化呈现引出，不靠讲解术语。
+    disputes: 有——Truscott 等批评强式注意假说（无意识学习是否存在之争）；弱式表述已是主流折衷，本条按弱式采用。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E14-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: E-15
+  zone: 表达写作
+  group: E
+  subgroup: C 能力构成与教学
+  audience: 孩子层
+  headline: 说错了能自己改回来，是对话自带的功能：交际教学不该一出错就打断，先让人把「自我修复」走完
+  headline_kid: 说话时自己发现说错了、马上改过来，这是聊天本来就有的本事；不用怕，也不用每次都等老师纠正。
+  claim:
+    type: tendency
+    statement: 会话的修复组织有系统偏好：自我发起、自我完成的修复优先于他人纠正；抢先纠正既破坏交际流，也剥夺修复能力的练习机会——课堂纠错应延时，先让学习者把自我修复走完。
+    evidence:
+    - 'Emanuel A. Schegloff, Gail Jefferson & Harvey Sacks (1977) “The Preference for Self-Correction in the Organization of Repair in Conversation”, Language 53(2): 361–382——CA 修复研究奠基论文（二手论述级）'
+    - 修复偏好是 CA 中跨语言复现最稳的结构发现之一；二语课堂研究大体支持「延时纠错、保护自我修复」的取向
+    scope: 课堂纠错的时机与方式
+    exceptions:
+    - note: 自我修复解决的是「已经会、说错了」的问题；系统性不会的项目仍需教学介入，界限在错误是否可自我察觉
+      word_ids: []
+  mechanism:
+  - beat: 修复偏好
+    text_kid: 说话时自己发现说错了、马上改过来，是聊天本来就有的本事。
+    text_adult: 修复组织（repair organization）：说话人用停顿、重说、换词在不丢话轮的情况下自救——流利交际者满是「小磕巴」却沟通顺畅，靠的正是这套自带功能。
+    visual: 话流图：一处小磕巴被说话人自己绕回正轨
+    anchors: []
+  - beat: 先让他说完
+    text_kid: 不用每次都等老师纠正，也不用怕说错。
+    text_adult: 课堂处置：延时纠错、保护自我修复；抢先纠正的双重代价是打断交际流 + 拿走练习修复的机会（与 E-11 策略能力互补）。
+    visual: 教师手势图：暂停牌压住纠正冲动，等话说完再亮
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-11
+    rel: 同族
+  - id: E-13
+    rel: 同族
+  quiz:
+  - stem: 同学说错一个词、又自己改了回来，老师最该做的是？
+    options:
+    - 立刻打断重讲一遍
+    - 先让他把话说完
+    - 当场扣分
+    answer: 先让他把话说完
+    hint_ref: mechanism『修复偏好』
+  probes: []
+  prereq: []
+  order: 15
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - 'Schegloff, Jefferson & Sacks (1977), Language 53(2): 361–382'
+    - 来源页：https://www.taalhammer.com/conversation-analysis-in-language-learning/
+    boundary: 自我修复解决的是「已经会、说错了」的问题；系统性不会的项目仍需教学介入，不能拿本条当「从不纠错」的借口——界限在错误是否可自我察觉。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-E15-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-01
+  zone: 表达写作
+  group: W
+  subgroup: A 读者与过程
+  audience: 孩子层
+  headline: 写作和说话最大的不同：读者不在你面前，看不见你脑子里的画——每个信息都要用文字亲手交到读者眼前
+  headline_kid: 写作文的时候，读者看不见你心里想的画面；你不写出来，他就不知道。
+  claim:
+    type: tendency
+    statement: 口头交际有表情、手势、现场实物兜底，写作全部撤掉、只剩文字：指代要交代清、顺序要排好、因果要说出声；初学者的典型毛病是「以写者为中心」（writer-based prose）——自己懂、读者懵。纲领「请读者看一幅画」即此机制的儿童化表述。
+    evidence:
+    - 'Linda Flower (1979) “Writer-Based Prose: A Cognitive Basis for Problems in Writing”, College English 41(1)——writer-based / reader-based 之分；Flower & Hayes (1981) 将读者意识纳入写作过程模型（见 W-02）（二手论述级）'
+    - 读者意识是写作研究中区分新手与熟手的最稳定变量之一，也是 Graham 实践指南「扩展学生的读者概念」一条的理论来源
+    scope: 写作教学的第一性区分（纲领「请读者到你脑子里看一幅画」的学理面）
+    exceptions:
+    - note: 日记、私人记录类写作不适用本条；低龄孩子的读者先具体到老师与家长，再抽象到「不在场的读者」
+      word_ids: []
+  mechanism:
+  - beat: 兜底撤掉
+    text_kid: 说话时有手势、有现场的东西帮忙；写下来，就只剩文字了。
+    text_adult: 口头交际的兜底（表情、手势、实物指认）在写作中全部撤除：谁、哪一个、先后、为什么，都必须用文字亲手交到读者眼前。
+    visual: 对照图：左·当面说话有手势实物，右·纸面只剩文字
+    anchors: []
+  - beat: 以写者为中心
+    text_kid: 自己心里清楚，不等于读者清楚；你不写出来，他就不知道。
+    text_adult: writer-based prose：新手按自己的思路顺序倒出信息，不为读者重组——读者懵的根源不是词不够，是交接没做。
+    visual: 两幅画图：写者脑中的画完整，读者收到的画缺角
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-02
+    rel: 同族
+  - id: W-14
+    rel: 同族
+  quiz:
+  - stem: 写作文和当面说话最大的不同是？
+    options:
+    - 要用笔写
+    - 读者不在面前，看不见你脑子里的画
+    - 要写得更长
+    answer: 读者不在面前，看不见你脑子里的画
+    hint_ref: mechanism『兜底撤掉』
+  probes: []
+  prereq: []
+  order: 16
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Linda Flower (1979), College English 41(1)
+    - Flower & Hayes (1981)，出处见 W-02
+    - 来源页：https://writingcommons.org/section/writing-process/problem-solving-strategies/
+    boundary: 低龄孩子的读者起初就是老师与家长，先有「写给具体某个人看」的经验，再抽象到「不在场的读者」；日记、私人记录类写作不适用本条。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W01-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-02
+  zone: 表达写作
+  group: W
+  subgroup: A 读者与过程
+  audience: 孩子层
+  headline: 写好作文不是一口气从头写到尾：想（计划）、写（落笔）、改（回看）三件事是来回切换的，不是一条直线
+  headline_kid: 写作文不是先想完再写、写完再改；是边想边写边改，转来转去。
+  claim:
+    type: tendency
+    statement: 真实写作中计划、转化（把想法变成文字）、回顾三过程在「监控器」调度下任意互相嵌入：写着写着冒出新想法就回去改计划，改着改着重写整段；把写作教成「先列提纲→抄正→交卷」的流水线，恰恰砍掉了熟手最核心的回环。
+    evidence:
+    - 'Linda Flower & John R. Hayes (1981) “A Cognitive Process Theory of Writing”, College Composition and Communication 32(4): 365–387——写作认知过程模型的奠基论文（二手论述级）'
+    - 该模型直接催生了「过程写作法」，并被 Graham & Perin (2007) 元分析列为有效要素之一（见 W-09）
+    scope: 写作过程教学的模型依据
+    exceptions:
+    - note: 回环不等于没计划：高手的回环是带着目标切换，新手的回环常是无目标乱改；要教的是每个环节可用的小策略，而非只宣布「可以来回改」
+      word_ids: []
+  mechanism:
+  - beat: 三过程回环
+    text_kid: 写作文是边想边写边改，转来转去，不是一条直线。
+    text_adult: 出声思维实验显示：计划、转化、回顾在监控器调度下任意互相嵌入——回环是熟手写作的常态结构，不是返工。
+    visual: 三角回环图：计划⇄落笔⇄回看，箭头双向
+    anchors: []
+  - beat: 流水线之害
+    text_kid: 先列提纲、再抄正、然后交卷——这样教，把最重要的本事砍掉了。
+    text_adult: 把写作教成一次性流水线，学生练不到「写着改计划、改着重写段」的调度能力；教学要给每个环节配小策略。
+    visual: 直线流水线图被打叉，回环图被圈出
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-01
+    rel: 同族
+  - id: W-04
+    rel: 同族
+  quiz:
+  - stem: 写着写着冒出一个新想法，熟手会怎么做？
+    options:
+    - 把前面的全划掉重来
+    - 回头改一改计划，再接着写
+    - 装作没看见，写完再说
+    answer: 回头改一改计划，再接着写
+    hint_ref: mechanism『三过程回环』
+  probes: []
+  prereq: []
+  order: 17
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - 'Flower & Hayes (1981), College Composition and Communication 32(4): 365–387'
+    - 来源页：https://writingcommons.org/section/writing-process/problem-solving-strategies/
+    boundary: 回环不等于没计划——高手的回环是带着目标切换，新手的回环常是无目标乱改；教学要给的是「每个环节可用的小策略」，而非只宣布「可以来回改」。
+    disputes: 无（模型后经 Hayes 1996 等人修订细化，骨架未变）
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W02-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-03
+  zone: 表达写作
+  group: W
+  subgroup: A 读者与过程
+  audience: 孩子层
+  headline: 孩子写作文「想到什么写什么」不是偷懒，是发展阶段：从「知识讲述」长到「边写边想清楚」需要很多年
+  headline_kid: 把知道的事情一件件写下来，是小朋友写作文的正常样子；一边写一边想出新主意，是长大以后慢慢学会的本事。
+  claim:
+    type: tendency
+    statement: 儿童与新手的默认写作模式是知识讲述（检索记忆、顺次写下、不回头加工，低负荷）；知识转化要在「内容空间」与「修辞空间」之间反复协商、写作本身改变想法，需多年发展。教学急不得：先让讲述流畅，再逐步引入「回看时问读者懂不懂」的转化动作。
+    evidence:
+    - Carl Bereiter & Marlene Scardamalia (1987)《The Psychology of Written Composition》（Erlbaum）——儿童写作发展研究的总结性专著，双模型出自该书（二手论述级）
+    - 双模型被 Kellogg (2008) 扩展为三阶段（讲述→转化→精工），是写作发展心理学的主流框架；它解释了中国小学生作文「流水账」的认知根源——不是态度问题，是阶段问题
+    scope: 写作发展的阶段口径（评价儿童作文的标尺）
+    exceptions:
+    - note: 讲述模式在简单任务（记录、说明）中对成人也是合适策略，不是「低级」的代名词；本条反对的是拿转化标准去苛责低龄儿童，而非取消高年级的目标
+      word_ids: []
+  mechanism:
+  - beat: 知识讲述
+    text_kid: 把知道的事情一件件写下来，是小朋友写作文的正常样子。
+    text_adult: 知识讲述：想到什么写什么、顺次倒出、不回头加工——负荷低，是儿童与新手的默认模式，「流水账」是它的典型外观。
+    visual: 传送带图：记忆里的事一件件顺次落到纸上
+    anchors: []
+  - beat: 知识转化
+    text_kid: 一边写一边想出新主意，是慢慢学会的本事。
+    text_adult: 知识转化：写作不只是倒出想法，写作本身改变想法——在「想说什么」与「读者需要什么」之间反复协商；引入路径是回看时多问一句「读者懂不懂」。
+    visual: 双气泡协商图：内容气泡与读者气泡来回对话
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-04
+    rel: 同族
+  quiz:
+  - stem: 小学生作文写得像流水账，最合理解释是？
+    options:
+    - 偷懒不认真
+    - 正处在「知识讲述」的发展阶段
+    - 没背够好词好句
+    answer: 正处在「知识讲述」的发展阶段
+    hint_ref: mechanism『知识讲述』
+  probes: []
+  prereq: []
+  order: 18
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Bereiter & Scardamalia (1987)《The Psychology of Written Composition》, Erlbaum
+    - 来源页：https://edutechwiki.unige.ch/mediawiki/index.php?title=Writing-to-learn
+    boundary: 讲述模式在简单任务（记录、说明）中对成人也是合适策略，不是「低级」的代名词；本条反对的是拿转化标准去苛责低龄儿童，而非取消高年级的目标。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W03-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-04
+  zone: 表达写作
+  group: W
+  subgroup: A 读者与过程
+  audience: 孩子层
+  headline: 修改分两层，顺序不能反：先改「意思对不对、读者懂不懂」，最后才改「字词句对不对」
+  headline_kid: 改作文先看故事讲清楚没有，再看有没有错字；先抠错字，故事还是乱的。
+  claim:
+    type: tendency
+    statement: 专家修改以内容与结构为主、新手修改以表面纠错为主；高层修订必须先行：段落可能整段删移，先精修字词等于给要拆的房子刷漆。评价标准首先是目标与读者，其次才是形式。
+    evidence:
+    - Bereiter & Scardamalia (1987) 对新手/专家修订行为的对比研究（出处同 W-03）；Flower & Hayes (1981) 模型「回顾」部分（出处同 W-02）；Graham 等 (2012) 小学写作实践指南将分步教学列为强证据推荐（见 W-08）（二手论述级）
+    - 过程教学干预（教修订策略）是 Writing Next 元分析中效应居前的要素，其教法正是先意义后形式的顺序
+    scope: 学习过程的默认修订顺序
+    exceptions:
+    - note: 考试限时作文中两层要压缩合并，本条是学习过程的默认顺序，不是考场上的死规矩
+      word_ids: []
+    - note: 低年级「修订」只落到加一句、调顺序等微动作，不搞大手术
+      word_ids: []
+  mechanism:
+  - beat: 两层修改
+    text_kid: 改作文有两层：先改故事讲清楚没有，再改有没有错字。
+    text_adult: 高层修订（意思、结构、读者可懂性）与低层修订（字词句对错）是两种不同的活；新手只做低层，专家先做高层。
+    visual: 两层楼图：先修楼体（结构），后刷墙面（字词）
+    anchors: []
+  - beat: 顺序不可反
+    text_kid: 先抠错字，故事还是乱的——白费力气。
+    text_adult: 段落可能整段删除或移位，先行精修等于给要拆的房子刷漆；顺序由返工成本决定，不是口味问题。
+    visual: 刷漆与拆房对照图
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-02
+    rel: 同族
+  - id: W-03
+    rel: 同族
+  - id: W-08
+    rel: 同族
+  quiz:
+  - stem: 改作文第一遍先看什么？
+    options:
+    - 有没有错字
+    - 故事讲清楚没有、读者懂不懂
+    - 字写得工不工整
+    answer: 故事讲清楚没有、读者懂不懂
+    hint_ref: mechanism『两层修改』
+  probes: []
+  prereq:
+  - W-02
+  order: 19
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Bereiter & Scardamalia (1987)，同 W-03
+    - Flower & Hayes (1981)，同 W-02
+    - Graham 等 (2012) IES 小学写作实践指南，同 W-08
+    boundary: 考试限时作文中两层要压缩合并，本条是学习过程的默认顺序，不是考场上的死规矩；低年级「修订」只落到加一句、调顺序等微动作，不搞大手术。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W04-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-05
+  zone: 表达写作
+  group: W
+  subgroup: B 支架、模仿与产出
+  audience: 孩子层
+  headline: 最省力的写作进步法是「接着写」：先读一段好文章，再顺着它的势往下写——理解会把产出「拉平」到更高水平
+  headline_kid: 先读一段写得好的故事，再接着往下编；读过的句子会悄悄跑到你的笔下，文章就变好了。
+  claim:
+    type: tendency
+    statement: 人的理解能力天然高于产出能力；续写任务迫使产出与刚读到的文本在内容与语言上对齐，理解便把产出往上拉（协同/拉平效应）。语言必须伴着恰当语境一起学、用（学伴用随）——孤立背的句型在写作时调不出来，续写让语言粘着语境进入产出。
+    evidence:
+    - '王初明（广东外语外贸大学教授）(2012)《读后续写——提高外语学习效率的一种有效方法》，《外语界》2012(5): 2–7；前件 (2009)《学相伴用相随》与 (2016)《以“续”促学》，《现代外语》；互动协同框架借自 Pickering & Garrod (2004)（二手论述级）'
+    - 续写的协同效应有系列实证（王敏、王初明 2014 等），并已进入高考英语新题型设计；2021 年任伟、吕晓轩对续写协同作用做过元分析
+    scope: 读写结合的写作训练（小学段用简化形态：看图 + 短文起头续写几句；完整读后续写是中学以上形态）
+    exceptions:
+    - note: 效果依赖原文难度与学生水平匹配：原文太难则协同无从发生
+      word_ids: []
+  mechanism:
+  - beat: 拉平效应
+    text_kid: 先读一段写得好的故事，再接着往下编，文章就变好了。
+    text_adult: 协同（alignment）：产出被迫与刚理解的文本对齐，理解的高水位把产出的低水位拉平——读过的句式会悄悄跑到笔下。
+    visual: 水位图：理解水位高，产出水位被拉着上升
+    anchors: []
+  - beat: 学伴用随
+    text_kid: 句子要跟着它的故事一起学，写的时候才叫得出来。
+    text_adult: 孤立背的句型在写作时调不出来；续写让语言粘着语境进入产出，是「学」与「用」不脱节的任务形态。
+    visual: 胶水图：句型粘在故事语境上一起被取用
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-06
+    rel: 同族
+  - id: W-11
+    rel: 同族
+  quiz:
+  - stem: 「接着写」为什么能让作文变好？
+    options:
+    - 抄得多了自然好
+    - 理解会把产出拉平到更高水平
+    - 字数变多了
+    answer: 理解会把产出拉平到更高水平
+    hint_ref: mechanism『拉平效应』
+  probes: []
+  prereq: []
+  order: 20
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - '王初明 (2012)，《外语界》2012(5): 2–7'
+    - 来源页（外研社学者介绍页）：https://heep.fltrp.com/contents/306233777322070016?type=1
+    boundary: 续写的效果依赖原文难度与学生水平匹配（原文太难则协同无从发生）；小学段适用其简化形态（看图+短文起头续写几句），完整读后续写是中学以上形态。
+    disputes: 无（协同强度的测量口径仍在发展中，不影响本条）
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W05-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-06
+  zone: 表达写作
+  group: W
+  subgroup: B 支架、模仿与产出
+  audience: 孩子层
+  headline: 内容要创造，语言要模仿：新意放在想什么上，句子的说法先借现成的——反过来就会写出「想法平庸、句子奇葩」
+  headline_kid: 写作文的时候，主意要自己想，句子可以先学别人的说法；两样都自己发明，太难了。
+  claim:
+    type: tendency
+    statement: 初学者的认知资源有限，内容生成与语言编码同时创新必然互相抢资源；把语言一头「托管」给已内化的范文句式，资源全留给内容（写什么、怎么展开），是有效外语教学的分工原则，与「整块存取」（E-04）在认知机制上同构。
+    evidence:
+    - 王初明 (2014)《内容要创造 语言要模仿——有效外语教学和学习的基本思路》（外研社学者介绍页所列代表性论文）（二手论述级）
+    - 与二语写作研究中「范文支架 + 自由内容」的干预效果一致；也是对旧库「句型公式万能论」的釜底修正——句型是借用的资源，不是套作保分的模具
+    scope: 写作任务的认知资源分工原则
+    exceptions:
+    - note: 模仿是过渡态不是终点：长期只借不化会形成腔调依赖，高年级须逐步要求改写、重组与个人表达；考试中大段套写范文另有评分风险，不在本条讨论内
+      word_ids: []
+  mechanism:
+  - beat: 资源分工
+    text_kid: 主意要自己想，句子可以先学别人的说法。
+    text_adult: 内容与语言两头同时创新会互相抢占有限的认知资源；分工——内容创新、语言托管——是初学者的最优配置。
+    visual: 双手图：一手托内容（自创），一手托句式（借用）
+    anchors: []
+  - beat: 反过来的样子
+    text_kid: 两样都自己发明，太难了；只借主意不借说法，又会想法平庸。
+    text_adult: 反向分工（内容抄现成、句子全自创）的典型产物是「想法平庸、句子奇葩」；句型在本条中的定位是资源而非模具。
+    visual: 对照卡：正分工 vs 反分工两篇作文的评语
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-05
+    rel: 同族
+  - id: E-04
+    rel: 同族
+  - id: W-10
+    rel: 同族
+  quiz:
+  - stem: 写作文时，哪一头该自己发明、哪一头先借现成的？
+    options:
+    - 内容借现成、句子自己发明
+    - 内容自己想、句子先学别人的说法
+    - 两样都自己发明
+    answer: 内容自己想、句子先学别人的说法
+    hint_ref: mechanism『资源分工』
+  probes: []
+  prereq: []
+  order: 21
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - 王初明 (2014)《内容要创造 语言要模仿》
+    - 来源页（外研社学者介绍页）：https://heep.fltrp.com/contents/306233777322070016?type=1
+    boundary: 模仿是过渡态不是终点：长期只借不化会形成腔调依赖，高年级须逐步要求改写、重组与个人表达；考试中大段套写范文另有评分风险，不在本条讨论内。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W06-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-07
+  zone: 表达写作
+  group: W
+  subgroup: B 支架、模仿与产出
+  audience: 孩子层
+  headline: 写不出来恰恰是最有用的时刻：只有动笔输出，才知道自己缺哪一块——「注意到缺口」是进步的扳机
+  headline_kid: 有很多词，听的时候都懂，一到自己写就卡住；卡住的地方，就是你要学的新东西。
+  claim:
+    type: tendency
+    statement: 理解（听读）可以走语义捷径跳过语法细节，产出（说写）则被迫进行句法加工；学习者发现「想说的说不出/说不准」时，会注意到知识中的缺口（noticing the gap），继而在后续输入中定向捕捉、并通过试说试写检验假设——输出不只是练习，是习得的触发器。
+    evidence:
+    - 'Merrill Swain (1985) “Communicative Competence: Some Roles of Comprehensible Input and Comprehensible Output in Its Development”，载 Gass & Madden 编《Input in Second Language Acquisition》；三功能定型表述见 Swain
+      (1995) 与 Swain & Lapkin (1995)（二手论述级）'
+    - 输出三功能有大量课堂实证支持，并直接构成 POA「输出驱动」假设的理论前身（见 W-11）
+    scope: 输出在习得中的功能定位（按主流中间立场表述：输入为必要条件，输出为加速与精确化机制）
+    exceptions:
+    - note: 输出触发注意的前提是学习者已有一定输入储备且任务难度适中；对零基础者先给足输入再谈输出，顺序不可倒置
+      word_ids: []
+  mechanism:
+  - beat: 缺口被点亮
+    text_kid: 一到自己写就卡住；卡住的地方，就是你要学的新东西。
+    text_adult: 产出逼迫句法加工：理解时跳得过去的细节，产出时跳不过去——缺口在输出的那一刻才显形，这就是「注意到缺口」。
+    visual: 拼图图：产出时一块缺口亮起红框
+    anchors: []
+  - beat: 扳机三步
+    text_kid: 发现缺口以后，耳朵会自己去抓那个词、那个说法。
+    text_adult: 三功能：注意缺口 → 在后续输入中定向捕捉 → 试说试写检验假设；输出因此是习得的触发器，而非习得的展示窗。
+    visual: 三步箭头图：卡住 → 捕捉 → 试写检验
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: E-14
+    rel: 同族
+  - id: W-11
+    rel: 同族
+  - id: E-11
+    rel: 同族
+  quiz:
+  - stem: 写作文时卡住、发现有个词不会——这个时刻有什么用？
+    options:
+    - 说明学得太差
+    - 正好指出接下来要学的新东西
+    - 应该把那句跳过去
+    answer: 正好指出接下来要学的新东西
+    hint_ref: mechanism『缺口被点亮』
+  probes: []
+  prereq: []
+  order: 22
+  pain_points:
+  - 写不长
+  - 说不出
+  adult:
+    sources:
+    - Merrill Swain (1985)，载《Input in Second Language Acquisition》
+    - Swain (1995)；Swain & Lapkin (1995)
+    - 来源页：https://www.teljournal.org/article_54568_3999fb15d34f17849a16e9f71874e91c.pdf?lang=fa
+    boundary: 输出触发注意的前提是学习者已有一定输入储备且任务难度适中；对零基础者先给足输入再谈输出，顺序不可倒置（与 Krashen 输入说的分寸见分歧栏）。
+    disputes: 有——Krashen 的输入假说主张可理解输入是习得的充分条件、输出只是习得的结果；Swain 以加拿大沉浸式教学数据（学生理解近母语而产出语法长期不准）反驳「输入足够论」。当前主流取中间立场，本条按中间立场表述。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W07-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-08
+  zone: 表达写作
+  group: W
+  subgroup: C 证据清单与诚实边界
+  audience: 教师/设计层
+  headline: 对小学生怎么写才有效，有官方级的证据清单：天天写、教过程、练基本功、建写作圈——四件事按证据强度排好了队
+  headline_kid: 每天都写一点、学会想—写—改的办法、把字和句子练顺、和小伙伴互相读作文——这四件事是被很多研究证明有用的。
+  claim:
+    type: tendency
+    statement: 美国教育科学研究院（IES）实践指南按证据等级评审小学写作研究，给出四条推荐：写作过程教学（强证据）、基本功流利度（中等证据）居前，天天写与写作共同体（证据较弱但方向一致）为基本面——这是小学段少有的「推荐 + 证据等级」成套口径。
+    evidence:
+    - 'Steve Graham 等 (2012)《Teaching Elementary School Students to Be Effective Writers: A Practice Guide》（NCEE 2012-4058），美国教育部教育科学研究院（IES）——Graham 为专家组组长（官方原文级：IES 官方 PDF）'
+    scope: 小学段写作课程设计（与本 App 学段精确对应的唯一一份此规格循证指南）
+    exceptions:
+    - note: 证据多来自英语母语课堂：外语环境下「每天一小时写作」的时间配比不可照搬，需按中国小学课时压缩适配
+      word_ids: []
+    - note: 证据等级是 2012 年评审口径，后续研究在累积中
+      word_ids: []
+  mechanism:
+  - beat: 四条推荐排队
+    text_kid: 四件事按证据强度排好队：强的排前面。
+    text_adult: 推荐序：①写作过程教学（强证据）②基本功流利度（中等证据）③天天写 ④写作共同体；推荐 2 的细则（显性教各环节策略、逐步放手、教学生选策略）可直接转成 App 的写作教学序列。
+    visual: 领奖台图：四条推荐按证据强度站台阶
+    anchors: []
+  - beat: 证据等级也是信息
+    text_kid: 「被证明有用」还要分有多确定。
+    text_adult: 本条的价值不只在清单，更在每条推荐自带证据等级——课程设计按等级分配课时与期望，不把弱证据当强结论用。
+    visual: 标签图：每条推荐挂证据等级牌（强/中/较弱）
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-04
+    rel: 同族
+  - id: W-09
+    rel: 同族
+  - id: W-12
+    rel: 同族
+  quiz:
+  - stem: 小学写作四条推荐里，证据最强的是哪条？
+    options:
+    - 天天写一小时
+    - 教写作过程（想—写—改的办法）
+    - 建写作共同体
+    answer: 教写作过程（想—写—改的办法）
+    hint_ref: mechanism『四条推荐排队』
+  probes: []
+  prereq: []
+  order: 23
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - 'Steve Graham et al. (2012)《Teaching Elementary School Students to Be Effective Writers: A Practice Guide》(NCEE 2012-4058), IES'
+    - 来源：https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/wwc_writing_pg_graham.pdf
+    boundary: 证据多来自英语母语课堂，外语环境下「每天一小时写作」的时间配比不可照搬，需按中国小学课时压缩适配；证据等级是 2012 年评审口径，后续研究在累积中。
+    disputes: 无
+    evidence_grade: 官方原文级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W08-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-09
+  zone: 表达写作
+  group: W
+  subgroup: C 证据清单与诚实边界
+  audience: 教师/设计层
+  headline: 年龄再大一点，什么写作教学最有效已经有元分析答案：教「写作策略」排第一，范文研读、句子合并、同伴合作都在有效清单上
+  headline_kid: 学会一套「写之前想什么、写的时候怎么办、写完怎么查」的办法，是所有方法里最管用的一种。
+  claim:
+    type: tendency
+    statement: 青少年写作教学元分析筛出 11 个有效素并按效力量级排序：策略教学（教计划、修订、编辑的具体策略，尤以自我调节式的 SRSD 为最）居首，其后为总结训练、合作写作、具体目标、文字处理、句子合并、写前活动、探究活动、过程写作法、范文研读、以写促学——「教方法」比「多布置」更能改变写作质量。
+    evidence:
+    - 'Steve Graham & Dolores Perin (2007)《Writing Next: Effective Strategies to Improve Writing of Adolescents in Middle and High Schools》（Alliance for Excellent Education / Carnegie Corporation）及同年元分析期刊版，Journal
+      of Educational Psychology 99(3): 445–476（二手论述级）'
+    - Writing Next 是二十年来首个此规模的写作教学元分析；其策略教学结论与小学指南（W-08 推荐 2）跨学段互证
+    scope: 中高年级写作教学的外推参考（向小学低段外推要降阶）
+    exceptions:
+    - note: 样本为 4–12 年级（以高年级为主）
+      word_ids: []
+    - note: 元分析的效应依赖实施质量（教师培训、持续周数），不是把策略名字写进教材就会生效
+      word_ids: []
+  mechanism:
+  - beat: 有效素清单
+    text_kid: 十一种方法被证明有用，还按有多管用排了队。
+    text_adult: 11 个有效素按效力量级排列：策略教学居首——教的是计划、修订、编辑的具体策略，SRSD（自我调节策略发展）是其证据最集中的具体教法。
+    visual: 排行榜图：策略教学居首，句子合并、范文研读等在列
+    anchors: []
+  - beat: 教方法胜过加量
+    text_kid: 学会一套办法，比多写十篇更管用。
+    text_adult: 结论指向课程资源分配：与其增加布置量，不如把课时投给可迁移的策略（写前想什么、写时怎么办、写完怎么查）。
+    visual: 天平图：一套策略压过一摞作文本
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-08
+    rel: 同族
+  - id: W-13
+    rel: 同族
+  quiz:
+  - stem: 所有写作方法里最管用的一种是？
+    options:
+    - 多布置作文
+    - 教一套写作策略（想、写、查的办法）
+    - 多背范文
+    answer: 教一套写作策略（想、写、查的办法）
+    hint_ref: mechanism『有效素清单』
+  probes: []
+  prereq: []
+  order: 24
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - 'Graham & Perin (2007)《Writing Next》；期刊版 Journal of Educational Psychology 99(3): 445–476'
+    - 来源页：https://news.vanderbilt.edu/2006/10/19/new-report-identifies-11-strategies-to-help-students-become-better-writers-58853/
+    boundary: 样本为 4–12 年级（以高年级为主），向小学低段外推要降阶；元分析的效应依赖实施质量（教师培训、持续周数），不是把策略名字写进教材就会生效。
+    disputes: 有（轻度）——有评论者指出 Writing Next 的推荐偏「脚本化/临床化」，主张更开放的落实方式；分歧在实施风格，不在要素清单本身。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W09-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-10
+  zone: 表达写作
+  group: W
+  subgroup: B 支架、模仿与产出
+  audience: 孩子层
+  headline: 支架的意义在于「用完要撤」：句子框架、范文、师生共构都是临时拐杖，撤掉还能写，才算学会
+  headline_kid: 学写作文时可以先扶着桌子走（看范文、用句型开头），但最后要松开手，自己走。
+  claim:
+    type: tendency
+    statement: 支架是教师提供的临时性支持，设计目标从第一天就是撤除；其写作教学循环（建立话题知识 → 示范文体 → 师生共同建构 → 学生独立写作）把「模仿范文」（W-06）制度化为一条有起有终的坡道，撤掉还能写，才算学会。
+    evidence:
+    - 'Pauline Gibbons (2002)《Scaffolding Language, Scaffolding Learning: Teaching Second Language Learners in the Mainstream Classroom》（Heinemann；2015 第 2 版）——二语课堂支架教学代表作，教学—学习循环承悉尼学派文体教学法（Martin 等）（二手论述级）'
+    - 支架 + 文体循环在澳大利亚及多国 ESL 课堂有长期实施与评估传统；本 App 纲领把「公式/句型」重新定位为功能支架，与本条同口径
+    scope: 一切支架类教学设计（支架观同时给出退出机制）
+    exceptions:
+    - note: 撤除节奏因人而异：统一进度下「撤早了」与「扶太久」都常见；具体撤除时点靠形成性评价判断，无固定周数
+      word_ids: []
+  mechanism:
+  - beat: 临时拐杖
+    text_kid: 可以先扶着桌子走，但最后要松开手，自己走。
+    text_adult: 支架（句框、范文、共构）的本质是临时性：扶持的目的不是扶持本身，是让学生够得着本来够不着的任务（最近发展区）。
+    visual: 学步图：扶桌 → 松手 → 独走三格
+    anchors: []
+  - beat: 有起有终的坡道
+    text_kid: 看范文、跟着写、一起写——最后一步必须是自己写。
+    text_adult: 教学—学习循环四步递减支撑：建立话题知识 → 示范文体 → 师生共同建构 → 学生独立写作；验收标准只有一个：撤掉支架还能写。
+    visual: 坡道图：支撑量逐级递减至零
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-06
+    rel: 同族
+  - id: NE-29
+    rel: 同族
+  - id: NE-19
+    rel: 同族
+  quiz:
+  - stem: 用了句子框架学写作文，怎么才算真学会？
+    options:
+    - 一直用框架写
+    - 撤掉框架还能写
+    - 把框架背得越熟越好
+    answer: 撤掉框架还能写
+    hint_ref: mechanism『临时拐杖』
+  probes: []
+  prereq: []
+  order: 25
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Pauline Gibbons (2002)《Scaffolding Language, Scaffolding Learning》, Heinemann（2015 第 2 版）
+    - 来源页：https://www.researchgate.net/publication/234668126_Scaffolding_Language_Scaffolding_Learning_Teaching_Second_Language_Learners_in_the_Mainstream_Classroom
+    boundary: 撤除节奏因人而异，统一进度下「撤早了」与「扶太久」都常见；本条是设计原则，具体撤除时点靠形成性评价判断，无固定周数。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W10-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-11
+  zone: 表达写作
+  group: W
+  subgroup: B 支架、模仿与产出
+  audience: 教师/设计层
+  headline: 先把课上成「围着写作转」：先给学生一个写不好的真实任务，让他撞见缺口，再给范文和句型——顺序反过来，学的就用不上
+  headline_kid: 先试着写，写不出来的地方，就是接下来要学的东西；先学后用，常常学完就忘。
+  claim:
+    type: tendency
+    statement: 只收 POA 的排序思想：先给一个真实产出任务让学习者撞见缺口（产生学习饥饿感），再按缺口精选输入与支架——「先试产出、暴露缺口、再给输入」作为关卡排序原则。POA 完整流程不在本 claim 内（见 config_gates 登记）。
+    evidence:
+    - '文秋芳（北京外国语大学教授）(2015)《构建“产出导向法”理论体系》，《外语教学与研究》47(4): 547–558；前身为 (2007) 输出驱动假设与 (2014) 输出驱动—输入促成假设（原文级：期刊 PDF）'
+    - POA 经十余年中国课堂行动研究迭代成型；其「输出驱动」直接承 Swain 输出假说（W-07）
+    scope: 仅为排序原则（B1 档）；针对的是中国课堂「学用分离」（先输入后输出导致学了不会用）
+    exceptions:
+    - note: POA 原文明确对象为中高级学习者（CEFR A2 以上，大学与高中为主）
+      word_ids: []
+    - note: POA 的证据基座是大学与高中学习者，完整流程对本 App 的使用者无直接证据；三阶段流程向小学段迁移的有效性目前无直接实证
+      word_ids: []
+  mechanism:
+  - beat: 先撞缺口
+    text_kid: 先试着写，写不出来的地方，就是接下来要学的东西。
+    text_adult: 输出驱动：以产出任务开场，学习者在尝试中意识到不足、产生学习饥饿感——缺口在先，输入在后，顺序不可反转（机制本体承 W-07 的『注意到缺口』）。
+    visual: 任务墙图：学生先撞墙（缺口亮起），教师再按缺口递工具
+    anchors: []
+  - beat: 按缺口给输入
+    text_kid: 学的东西正好是刚才写不出来的那些，就不会学完就忘。
+    text_adult: 输入促成 + 选择性学习：教师按缺口精选输入材料与支架，只深加工与产出任务直接相关的部分——这是 B1 档收录的排序思想的后半段；完整流程的其余环节不在本条内。
+    visual: 漏斗图：全部输入先过『缺口』筛，只留相关的进入深加工
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-07
+    rel: 同族
+  - id: W-05
+    rel: 同族
+  quiz:
+  - stem: 按「先试产出」的顺序，一节写作课该怎么开始？
+    options:
+    - 先把句型全讲完再动笔
+    - 先试着写，撞见不会的地方再学
+    - 先考试摸底
+    answer: 先试着写，撞见不会的地方再学
+    hint_ref: mechanism『先撞缺口』
+  probes: []
+  prereq: []
+  order: 26
+  pain_points:
+  - 写不长
+  - 说不出
+  adult:
+    sources:
+    - '文秋芳 (2015)，《外语教学与研究》47(4): 547–558'
+    - 来源：https://www.bfsujournals.com/upload/resources/file/2020/06/15/53558.pdf
+    boundary: 适配边界（提请注意）：POA 原文明确其对象为中高级学习者（CEFR A2 以上，大学与高中为主），其三阶段流程向小学段迁移需大幅简化（驱动任务游戏化、评价以口头与展示为主），向下迁移的有效性目前无直接实证——本 App 按裁定 B 默认档 B1 只取「产出先行」的顺序思想，流程本体标适配待验。
+    disputes: 无（顺序思想与 Swain 一致；年龄适配是本条目的自带边界，不是学界分歧）
+    evidence_grade: 原文级
+    pending:
+    - 裁定 B 三档未落档（现行默认 B1 已按 config_gates 登记）
+    - POA 完整流程向小学段迁移的有效性待验
+  config_gates:
+    poa:
+      gate: B（POA 进不进本 App）
+      current: B1
+      options:
+        B1: 只收排序思想（先试产出暴露缺口、再给输入）作为关卡排序原则；完整流程不进本 App
+        B2: 简化版试点：在进阶顺序的后段设简化流程试点，进模型但标『试点、证据待验』
+        B3: 不入模：POA 只留在条目成人层
+      note: 裁定未落档：按用户定版口径的默认档 B1 入模——claim 只收排序思想，完整流程（驱动—促成—评价）不作 claim；三档状态在此登记，开关只改呈现与练习要求，不改数据本体。
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W11-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-12
+  zone: 表达写作
+  group: W
+  subgroup: C 证据清单与诚实边界
+  audience: 孩子层
+  headline: 字写不顺、词拼不对，会把脑子「堵住」：基本功不自动化，就没有余力想内容
+  headline_kid: 如果每个字都要想半天怎么写，就没有力气想故事了；先把手练顺，脑子才有空想。
+  claim:
+    type: tendency
+    statement: 写作时工作记忆同时承担内容生成与转录（书写、拼写、造句）；转录不自动化就持续抢占资源，表现为「想得出、写不出、写着写着忘了要说什么」——手写、拼写、句子构造的流利度是写作的内部条件，不是写作之外的事。
+    evidence:
+    - Graham 等 (2012) IES 小学写作实践指南推荐 3（中等证据），出处同 W-08；理论层与 Hayes 写作模型的工作记忆成分相衔（官方原文级）
+    scope: 基本功训练的定位（本 App 把拼写教学纳入写作域的理由：与拼读互为读写两面）
+    exceptions:
+    - note: 基本功训练要嵌入真实写作（在作文里练句子）；脱离写作的纯抄写/默写量效比低
+      word_ids: []
+    - note: 拼音输入法时代「手写」权重可议，但拼写与造句构造的流利度不可省
+      word_ids: []
+  mechanism:
+  - beat: 脑子被堵住
+    text_kid: 每个字都要想半天怎么写，就没有力气想故事了。
+    text_adult: 工作记忆总容量有限：转录（写字、拼词、造句）与内容生成共用同一池子，转录不自动化就把内容生成的份额挤掉。
+    visual: 水管图：转录占用大半管径，内容只剩细流
+    anchors: []
+  - beat: 先把手练顺
+    text_kid: 先把手练顺，脑子才有空想。
+    text_adult: IES 指南据此把流利度单列为一条推荐（中等证据）；训练形态是在作文里练字词句，不是脱离写作的抄写量。
+    visual: 练功图：手部动作自动化后，大脑灯泡亮起
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-08
+    rel: 同族
+  quiz:
+  - stem: 写作文时每个字都要想半天怎么写，会发生什么？
+    options:
+    - 字写得更工整
+    - 没有力气想故事内容了
+    - 写得反而更快
+    answer: 没有力气想故事内容了
+    hint_ref: mechanism『脑子被堵住』
+  probes: []
+  prereq: []
+  order: 27
+  pain_points:
+  - 写不长
+  - 记不住
+  adult:
+    sources:
+    - Graham 等 (2012) IES 小学写作实践指南，推荐 3（出处同 W-08）
+    - 来源：https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/wwc_writing_pg_graham.pdf
+    boundary: 基本功训练要嵌入真实写作（在作文里练句子），脱离写作的纯抄写/默写量效比低；拼音输入法时代「手写」权重可议，但拼写与造句构造的流利度不可省。
+    disputes: 无
+    evidence_grade: 官方原文级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W12-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-13
+  zone: 表达写作
+  group: W
+  subgroup: C 证据清单与诚实边界
+  audience: 孩子层
+  headline: 句子是攒出来的：把两个短句合成一个长句的练习（句子合并），是实测能提升写作质量的少数单项训练
+  headline_kid: 把两个小句子拼成一个大句子，像搭积木一样练，句子就会越写越长、越写越顺。
+  claim:
+    type: tendency
+    statement: 句子合并迫使学习者在保持意思不变的前提下操练从句、并列、修饰等句法工具，句法成熟度随之上升；它绕开「讲语法术语」的路径，用产出操作直接练句法——在 Writing Next 元分析中与策略教学、范文研读同列有效素，是少数可单独成课的微技能训练。
+    evidence:
+    - Graham & Perin (2007)《Writing Next》11 有效素之「句子合并」（出处同 W-09）；小学段对应训练在 Graham 等 (2012) 指南推荐 3 的「句子构造」细则中（二手论述级）
+    - 句子合并的正效应在多项实验中重复出现（Saddler 等针对困难学生的研究在内），是写作干预里证据最干净的单项之一
+    scope: 句法微技能训练（单独成课）
+    exceptions:
+    - note: 合并练的是句法操作，不自动改善内容与结构；长句不是目的——让读者看得见、跟得上才是，练习须与读者意识（W-01）配套
+      word_ids: []
+  mechanism:
+  - beat: 攒句子
+    text_kid: 把两个小句子拼成一个大句子，像搭积木一样练。
+    text_adult: 保持意思不变、只改组装方式：并列、从句、修饰三种工具在反复合并中被操练成可用技能。
+    visual: 积木图：两块短句积木拼成一块长句积木
+    anchors: []
+  - beat: 不讲术语练句法
+    text_kid: 不用先背「什么是从句」，动手拼，拼着拼着就会了。
+    text_adult: 句子合并绕开元语言讲解，直接用产出操作练句法——这是它对低龄学习者尤其可用的原因。
+    visual: 工具图：从句/并列/修饰三件工具不贴名字、只上手用
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-09
+    rel: 同族
+  - id: W-01
+    rel: 同族
+  quiz:
+  - stem: 把两个短句合成一个长句的练习，主要练什么？
+    options:
+    - 写字速度
+    - 句法工具（从句、并列、修饰）
+    - 背单词
+    answer: 句法工具（从句、并列、修饰）
+    hint_ref: mechanism『攒句子』
+  probes: []
+  prereq: []
+  order: 28
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Graham & Perin (2007)《Writing Next》，出处同 W-09
+    - 来源页：https://srsdonline.org/free-materials/
+    boundary: 合并练的是句法操作，不自动改善内容与结构；且长句不是目的——本 App 纲领明示「句子变长不是目的，让读者看得见、跟得上才是」，练习须与读者意识（W-01）配套。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-W13-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: W-14
+  zone: 表达写作
+  group: W
+  subgroup: C 证据清单与诚实边界
+  audience: 孩子层
+  headline: 衔接词是给读者的路标，不是作文的装饰品：路标必须对准真实的逻辑关系，贴错地方比没有更糟
+  headline_kid: first、then、because 这些词是路上的牌子，告诉读者往哪走；牌子指错方向，读者就会迷路。
+  claim:
+    type: tendency
+    statement: 连贯来自内容逻辑本身，衔接词只是把逻辑显性化：时序用 then、因果用 because、转折用 but/however——词与逻辑对位，读者跟得顺；为凑「高级感」硬塞 although、moreover 而逻辑不对位，等于指错路标，比没有更糟。
+    evidence:
+    - Halliday, M. A. K. & Hasan, Ruqaiya (1976)《Cohesion in English》（Longman）——衔接理论原典，第 2–6 章即五类衔接手段（指称/替代/省略/连接/词汇衔接）；出处已于 2026-11-01 经出版社目录与书目记录补核（书目核对级）
+    - 衔接分析是语篇语言学的标准工具；写作评分量表普遍把「衔接的准确性」与「衔接词数量」分开计分，后者堆砌不加分
+    - 本 App 旧库把 Although 混进「衔接词链」的裁定（C-6）即违反本条
+    scope: 衔接教学口径（儿童写作中路标宁少勿错）
+    exceptions:
+    - note: 隐性连贯（靠内容顺序自然衔接）在叙事文里完全成立，不是每句都要路标
+      word_ids: []
+  mechanism:
+  - beat: 路标对位
+    text_kid: 这些词是路上的牌子：往哪走，牌子就指哪。
+    text_adult: 五类衔接手段中儿童最先用的是连接类：时序（first/then）、因果（because）、转折（but）、让步（although）各有逻辑岗位，词必须与岗位对位。
+    visual: 路口图：四块路标分别指向时序/因果/转折/让步四条路
+    anchors:
+    - G5_244
+    - G4_0597
+    - V6_核心_60
+    - ADD_0005
+  - beat: 贴错更糟
+    text_kid: 牌子指错方向，读者就会迷路——还不如没有牌子。
+    text_adult: 为凑「高级感」硬塞 although、moreover 而逻辑不对位，是负分操作；评分量表对衔接准确性与数量分开计分（however、moreover 未入词库，见 pending）。
+    visual: 迷路图：错误路标把读者引进岔路
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G5_244
+    - G4_0597
+    sentence: first / then
+    scene_note: 时序路标：先做什么、再做什么（清单登记词）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_核心_60
+    - V6_核心_58
+    - ADD_0005
+    sentence: because / but / although
+    scene_note: 因果、转折、让步路标各就各位：although 表让步，不进时序链（清单登记词）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: E-10
+    rel: 同族
+  - id: W-01
+    rel: 同族
+  quiz:
+  - stem: 「我摔倒了，____ 就哭了起来。」该填哪个路标？
+    options:
+    - then
+    - although
+    - moreover
+    answer: then
+    hint_ref: mechanism『路标对位』
+  probes: []
+  prereq: []
+  order: 29
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Halliday & Hasan (1976)《Cohesion in English》, Longman（ISBN 0-582-55041-6）
+    - 出版社目录：https://www.routledge.com/Cohesion-in-English/Halliday-Hasan/p/book/9780582550414
+    - 书目记录：https://openlibrary.org/books/OL4610807M/Cohesion_in_English
+    boundary: 隐性连贯（靠内容顺序自然衔接）在叙事文里完全成立，不是每句都要路标；儿童写作中路标宁少勿错。
+    disputes: 无
+    evidence_grade: 书目核对级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 例词 however、moreover 不在词库（W-14 机制登记词），待补词后回填
+  - error_cases 事故型已登记（旧库 C-6 裁定：Although 混入衔接词链），具体错句待回填
+  - 探针待补写（PRB-W14-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: W-15
+  zone: 表达写作
+  group: W
+  subgroup: C 证据清单与诚实边界
+  audience: 教师/设计层
+  headline: 任何「套这个公式保满分」的承诺都没有研究支持：能涨分的只有策略、练习量与反馈的组合——这是写作域的诚实底线
+  headline_kid: 没有哪个万能公式能保证满分；真正有用的是学会方法、多写、有人告诉你哪里可以更好。
+  claim:
+    type: tendency
+    statement: 写作干预的效应全部来自「显性策略 + 足量练习 + 形成性反馈」的复合投入，且效应量是统计意义上的平均提升；把支架（句型、结构图）宣传为保分工具，是把教学手段冒充效果因果——任何「保 X 分」式断言在正规元分析的表述传统中不存在。
+    evidence:
+    - Graham & Perin (2007) 与 Graham 等 (2012) 的证据体系（出处同 W-08/W-09）——两份文献通篇以效应量与证据等级表述，无一处分数承诺（二手论述级）
+    - 本 App 审查对旧 WRITING 框架「95% 考场作文逃不出三大母题」等伪统计与保分话术的裁定（report_expressions C-1）与此互证
+    scope: 写作域的诚实底线：针对一切「保证性承诺」话术
+    exceptions:
+    - note: 本条针对的是「保证性承诺」，不是说结构支架无用——支架作为功能支持的价值见 W-10
+      word_ids: []
+    - note: 应试技巧（审题、时间分配）有其正当位置，但须如实标注为技巧而非规律
+      word_ids: []
+  mechanism:
+  - beat: 效应从哪来
+    text_kid: 真正有用的是三样东西凑在一起：学会方法、多写、有人反馈。
+    text_adult: 元分析报告的只有效应量与置信区间——平均意义上的提升；从「平均提升」跳到「保证某个孩子满分」，中间没有任何研究设计能搭桥。
+    visual: 配方图：策略+练习+反馈三味，缺一味不成立
+    anchors: []
+  - beat: 话术识别
+    text_kid: 听到「套这个公式保满分」，就要亮红灯。
+    text_adult: 把教学手段（支架、句型）冒充效果因果，是本 App 纲领明令清除的「炼金术话术」；识别标准：凡承诺个体分数保证者，皆无研究支持。
+    visual: 红灯图：保分广告牌被打上「无研究支持」印章
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: W-10
+    rel: 同族
+  quiz:
+  - stem: 有人说「背熟这个公式，作文保满分」，按证据该怎么看？
+    options:
+    - 值得一试
+    - 没有任何研究支持这种保证
+    - 公式越贵越可信
+    answer: 没有任何研究支持这种保证
+    hint_ref: mechanism『话术识别』
+  probes: []
+  prereq: []
+  order: 30
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Graham & Perin (2007)；Graham 等 (2012)，出处同 W-08/W-09
+    - 本 App 审查裁定 report_expressions C-1（旧 WRITING 框架伪统计与保分话术）
+    boundary: 本条针对的是「保证性承诺」，不是说结构支架无用——支架作为功能支持的价值见 W-10；应试技巧（审题、时间分配）有其正当位置，但须如实标注为技巧而非规律。
+    disputes: 无
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - error_cases 事故型已登记（旧 WRITING 框架「95% 考场作文逃不出三大母题」伪统计话术，report_expressions C-1 裁定），具体错句不适用（话术型），待回填登记
+  - 探针待补写（PRB-W15-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-01
+  zone: 表达写作
+  group: NE
+  subgroup: 地道与流利
+  audience: 双层
+  headline: 合语法不等于地道：母语者只说「惯例会说的那一种」
+  headline_kid: 一句话有一百种「没说错」的讲法，可英国人美国人翻来覆去只用那两三种——学英语要学的是「他们真的会说的那种」。
+  claim:
+    type: tendency
+    statement: 语法允许的正确说法几乎无穷多，但母语者能稳定地只选其中少数自然、地道的说法；这种「知道哪个才对味」的知识（地道选择，nativelike selection）不在语法规则里，而在对惯例化表达的掌握里——学习者的典型状态是「每句都对，但每句都不像他们会说的」。
+    evidence:
+    - 'Andrew Pawley & Frances Hodgetts Syder, “Two puzzles for linguistic theory: Nativelike selection and nativelike fluency”，载 Richards & Schmidt 编《Language and Communication》(Longman, 1983), pp. 191–226（二手互证级：综述与引文核对）'
+    - Beatrice Warren 的地道性（idiomaticity）模型直接以此为第一定义：地道性 = 母语式选择
+    scope: 地道性判断（对小学阶段，目标是高频场景的惯例说法，不是成人母语者的全部惯例库）
+    exceptions:
+    - note: 地道选择是社群惯例，有语域与地域差异，不存在脱离场合的唯一地道说法
+      word_ids: []
+  mechanism:
+  - beat: 一百种对的说法
+    text_kid: 一句话有一百种「没说错」的讲法，可他们翻来覆去只用那两三种。
+    text_adult: 地道选择：合语法只是入场券；母语者的大脑里有一张「这个场合钦定哪种说法」的惯例表，稳定地只取其中少数。
+    visual: 漏斗图：一百个合语法句子漏下只剩两三句被高亮
+    anchors:
+    - V6_日常_66
+  - beat: 学对味的那种
+    text_kid: 学英语要学的是「他们真的会说的那种」。
+    text_adult: 教学含义：例句与句型库存优先收惯例化表达，而不是语法上成立的一切说法（与 E-04 整块存取同向）。
+    visual: 双句对照卡：一句打勾「会这样说」，一句打问号
+    anchors:
+    - ADD_0187
+  examples:
+  - level: 1
+    word_ids:
+    - V6_日常_66
+    - ADD_0187
+    - G1_P02
+    sentence: I want to marry you.
+    scene_note: 母语者会选的说法（清单登记对照例）
+    supports: claim
+  - level: 2
+    word_ids:
+    - V6_日常_62
+    - ADD_0018
+    - ADD_0187
+    sentence: It is my wish to become married to you.
+    scene_note: 同样合语法，母语者不这么说（清单登记对照例，与上一级同屏）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: NE-02
+    rel: 同族
+  - id: NE-03
+    rel: 同族
+  - id: E-04
+    rel: 同族
+  quiz:
+  - stem: 两句话都合语法，学英语要学的是哪种？
+    options:
+    - 更长的那种
+    - 母语者真的会说的那种
+    - 生词最多的那种
+    answer: 母语者真的会说的那种
+    hint_ref: mechanism『学对味的那种』
+  probes: []
+  prereq: []
+  order: 31
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Pawley & Syder (1983), in《Language and Communication》(Longman), pp. 191–226
+    - 综述与引文核对：https://www.taalhammer.com/formulaic-sequences-language-consists-of-chunks-2005/
+    boundary: 地道选择是社群惯例，有语域与地域差异，不存在脱离场合的唯一地道说法；对小学阶段，目标是高频场景的惯例说法，不是追求成人母语者的全部惯例库。
+    disputes: 无主流分歧；「地道」的判定最终靠母语者直觉与语料频率互证，二者的权重在语块研究内部有讨论（见 NE-03 的识别问题）。
+    evidence_grade: 二手互证级
+    pending:
+    - Pawley & Syder (1983) 页码（pp. 191–226）与两谜题定义（p. 190/191）系两家独立二手来源交叉一致著录，本轮未打开 1983 年原书扫描页亲见，入模引用页码前可再核原书
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE01-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: NE-02
+  zone: 表达写作
+  group: NE
+  subgroup: 地道与流利
+  audience: 双层
+  headline: 说话快得不像现编的：大脑里整存着一座「句干仓库」
+  headline_kid: 大人说话像流水一样快，不是因为他们拼句子拼得快，是因为脑子里存了好多好多现成的半句、整句，拿出来就能用。
+  claim:
+    type: tendency
+    statement: 母语者实时说出长串连贯话语的速度，超过「边想边按规则拼装新句」的加工上限；解法是整存的大量词汇化句干（长度在一个小句以上、形式与词汇大部固定的现成单位）——流利产出 = 整取句干、稍加改装拼接。句干库存「以数十万计」是二氏的理论估计口径，无法逐条实测清点，引用时须注明是估计。
+    evidence:
+    - Pawley & Syder (1983)，同 NE-01；估计口径见对其学说的综述转述（二手互证级，估计已显性标注）
+    - 加工证据：母语与非母语读者对语块序列的阅读速度显著快于同类新造短语（Conklin & Schmitt, 2008）；受训注意语块的学习者被盲评为口语更流利（Boers et al., 2006）
+    scope: 流利度的库存解释（句干多为半固定、留有可替换槽位）
+    exceptions:
+    - note: 流利还受发音自动化、话语规划等因素影响，句干库存是必要条件而非全部解释
+      word_ids: []
+    - note: 库存规模数字是估计，不得当作实测统计引用
+      word_ids: []
+  mechanism:
+  - beat: 句干仓库
+    text_kid: 脑子里存了好多好多现成的半句、整句，拿出来就能用。
+    text_adult: 词汇化句干（lexicalized sentence stems）：整存整取、像大词一样被调用，省去逐词编码的成本——这是流利的速度来源。
+    visual: 仓库图：货架上整排半句整句，伸手即取
+    anchors: []
+  - beat: 半固定不是死背
+    text_kid: 现成的句子里留着小格子，可以换词。
+    text_adult: 句干大部固定、小部可变：槽位让库存既能快速取用，又能适配新场合；教学上整块存入后要析出槽位（与 NE-03 并行路线同）。
+    visual: 句干卡图：固定段实线、槽位段虚线
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-01
+    rel: 同族
+  - id: NE-03
+    rel: 同族
+  quiz:
+  - stem: 母语者说话像流水一样快，主要靠什么？
+    options:
+    - 拼句子拼得特别快
+    - 脑子里整存着大量现成句干
+    - 认识的单词特别多
+    answer: 脑子里整存着大量现成句干
+    hint_ref: mechanism『句干仓库』
+  probes: []
+  prereq:
+  - NE-01
+  order: 32
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Pawley & Syder (1983)，同 NE-01
+    - 综述转述：https://ukdiss.com/examples/formulaicity-second-language-acquisition.php
+    boundary: 句干多为「半固定」——留有可替换的槽位，并非整句死背；流利还受发音自动化、话语规划等因素影响，句干库存是必要条件而非全部解释。库存规模数字是估计，不得当作实测统计引用。
+    disputes: 无主流分歧；分歧在库存单位的粒度与计数方法（与 NE-03 的识别问题同源）。
+    evidence_grade: 二手互证级
+    pending:
+    - Pawley & Syder (1983) 页码（pp. 191–226）与两谜题定义（p. 190/191）系两家独立二手来源交叉一致著录，本轮未打开 1983 年原书扫描页亲见，入模引用页码前可再核原书
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE02-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-03
+  zone: 表达写作
+  group: NE
+  subgroup: 地道与流利
+  audience: 双层
+  headline: 学英语的起步单位是整块，不是单词加规则
+  headline_kid: 先把整句话、整块话囤进脑子里（像囤现成的积木套装），用熟了，再慢慢看懂里面是怎么搭的。
+  claim:
+    type: tendency
+    statement: 由地道选择与流利两谜题合得的教学结论：学习不该只走「单词 + 规则现拼」一条路，而应整存整取与拆解分析并行——先把高频整句、半固定句干作为单位学会、用熟（获得地道与流利），再在反复使用中析出可变槽位与规律（获得创造性）；心理词库本身即多粒度混存。
+    evidence:
+    - 机制源头 Pawley & Syder (1983)，同 NE-01；Wray 的多粒度词库说见 Alison Wray《Formulaic Language and the Lexicon》(CUP, 2002) 的系统综述转述（二手互证级）
+    - Erman & Warren (2000) 人工分析抽样：预制语串约占口语文本 58.6%、书面语 52.3%（该研究的计数口径，定义不同则比例在约三分之一到八成之间浮动）
+    - Sinclair 的语料研究从另一方向得到同一结论（idiom principle 为默认，见 CB-01）
+    scope: 起步阶段以整块为主、拆解随识字与元语言意识增长逐步加重
+    exceptions:
+    - note: 只囤不拆，遇到没背过的场合就卡壳；只拆不囤，则永远对而不地道、慢而不流利
+      word_ids: []
+  mechanism:
+  - beat: 先囤整块
+    text_kid: 先把整句话、整块话囤进脑子里，用熟了再说。
+    text_adult: 整存整取路线先行：高频整句与句干作为单位学会、用熟，先拿到地道与流利——这是起步单位的选择，不是终点。
+    visual: 积木套装图：整套先入库，搭熟后再拆看结构
+    anchors: []
+  - beat: 再慢慢拆
+    text_kid: 用熟了，再慢慢看懂里面是怎么搭的。
+    text_adult: 拆解分析随后跟上：在反复使用中析出槽位与规律，获得创造性；两条路线并行配比随年龄与识字进程调整。
+    visual: 放大镜图：用熟的整句被放大，槽位与规律显形
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-01
+    rel: 同族
+  - id: NE-02
+    rel: 同族
+  - id: E-04
+    rel: 同族
+  quiz:
+  - stem: 学整句的正确顺序是？
+    options:
+    - 先把每个词拆透再学整句
+    - 先整块用熟，再慢慢拆
+    - 只背整句，永远不拆
+    answer: 先整块用熟，再慢慢拆
+    hint_ref: mechanism『先囤整块』
+  probes: []
+  prereq:
+  - NE-02
+  order: 33
+  pain_points:
+  - 说不出
+  - 记不住
+  adult:
+    sources:
+    - Pawley & Syder (1983)；Wray (2002)
+    - 综述转述：https://www.taalhammer.com/formulaic-sequences-language-consists-of-chunks-2005/
+    boundary: 整块学习不豁免拆解：只囤不拆，遇到没背过的场合就卡壳；只拆不囤，则永远「对而不地道、慢而不流利」。儿童起步阶段以整块为主、拆解随识字与元语言意识增长逐步加重。
+    disputes: 有，且须如实登记——Wray 本人提出识别问题（identification problem）：没有单一可靠测试能判定一段话到底是整取还是现拼，因此语块的占比估计与库存计数永远是近似的；NE-02 的「数十万」与本条的百分比都应在此限定下引用。
+    evidence_grade: 二手互证级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE03-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-04
+  zone: 表达写作
+  group: NE
+  subgroup: 描写立场
+  audience: 教师/设计层
+  headline: 没有哪条规则被所有人永远遵守：「零容忍」是规定主义神话
+  headline_kid: 如果一条「规矩」连写书的大作家都常常不守、守了反而别扭，那它多半不是英语的真规矩，是有人硬定的——我们学的是大家真在用的英语。
+  claim:
+    type: tendency
+    statement: 没有任何一条标点或语法规则被所有人、在所有时候百分之百遵守；语言一直在变，妄图把英语「冻住」的做法每一代都失败。替代标准不是「唯一正确」，而是得体（appropriateness）：对谁说、在什么场合说，决定哪种说法合适。规定主义的危害在于把一部分人的用法偏好冒充成语言本身的法律。
+    evidence:
+    - 'David Crystal《The Fight for English: How Language Pundits Ate, Shot and Left》(Oxford University Press, 2006)——系统反驳以 Truss《Eats, Shoots & Leaves》为代表的「零容忍」规定主义（二手论述级）'
+    - 该书以历时材料追踪几百年来每一代「语言衰败论」的重复出现与落空
+    scope: 教师侧的规则鉴别立场（课堂教学口径：规范照教，但如实说明它是正式场合的约定）
+    exceptions:
+    - note: 反规定主义 ≠ 没有标准：学校、考试与正式出版仍有一套公共书面规范要教给孩子
+      word_ids: []
+  mechanism:
+  - beat: 零容忍神话
+    text_kid: 一条规矩连大作家都常不守，多半不是真规矩。
+    text_adult: Crystal 的核心论证：不存在被百分百遵守的规则；语言的变化不可冻结，「衰败论」每一代重复出现又每一代落空。
+    visual: 冰块图：想把语言冻住的冰块逐年开裂
+    anchors: []
+  - beat: 得体代替唯一正确
+    text_kid: 我们学的是大家真在用的英语：对谁说、在哪儿说，决定怎么说合适。
+    text_adult: 语言学家的替代标准是得体：同一件事的说法随对象与场合而定；规范的教学定位是「正式场合的约定」，不是语言的全部真相。
+    visual: 场合罗盘图：指针随场合转动，说法随之切换
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-05
+    rel: 同族
+  - id: NE-15
+    rel: 同族
+  - id: NE-14
+    rel: 对照
+  quiz:
+  - stem: 一条「规矩」连大作家都常常不守、守了反而别扭，它多半是？
+    options:
+    - 英语的真规矩
+    - 有人硬定的假规矩
+    - 刚发明的新规矩
+    answer: 有人硬定的假规矩
+    hint_ref: mechanism『零容忍神话』
+  probes: []
+  prereq: []
+  order: 34
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - David Crystal (2006)《The Fight for English》, Oxford University Press
+    - 书目与提要：https://www.goodreads.com/book/show/542046.The_Fight_for_English
+    boundary: 反规定主义 ≠ 没有标准：学校、考试与正式出版仍有一套公共书面规范要教给孩子；Crystal 反对的是把规范说成天经地义、不可变通，并用它羞辱方言与变化。课堂教学口径：规范照教，但要如实说明它是「正式场合的约定」，不是语言的全部真相。
+    disputes: 有——Truss 一方及众多用法手册作者认为严格规范恰恰保护清晰与教养；Pullum 的调和立场（见 NE-15）可作参照：反对的应是无证据的规则，不是反对把坏文章改好。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE04-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-05
+  zone: 表达写作
+  group: NE
+  subgroup: 描写立场
+  audience: 教师/设计层
+  headline: 好些「语法铁律」是两三百年前照着拉丁语发明的
+  headline_kid: 有人说「句子最后不能放介词」「to 和动词中间不能插词」——这两条不是英语生来就有的，是以前的人觉得拉丁语高级，硬给英语定的；英语不是拉丁语，不用守拉丁语的规矩。
+  claim:
+    type: etymology
+    statement: 「句末不能放介词」「不能分裂不定式」两条名规矩并非英语固有：英语是日耳曼语，句末介词自古英语以来即为常态，英语不定式本就是 to + 动词两截、自 13 世纪起 Chaucer、Shakespeare 等作家一直在使用分裂不定式；两条禁忌源于 18–19 世纪以拉丁语为模型的规定主义。判别测试：一条「规则」若逼得你把话说得别扭不自然，它多半就是假的。
+    evidence:
+    - 史实梳理见 Smithsonian Magazine 对语法神话的考据（Lowth 1762 与 Alford 1864 的归属）（二手互证级）
+    - Fowler 兄弟早在 1907 年已警告：对分裂不定式的「迷信」本身才是要纠正的毛病（转引同 Smithsonian 文）
+    - Crystal 对这一规定主义传统的系统批判见 NE-04
+    scope: 假规则的鉴别（教师侧）；正式考试作文中避开二者是文体策略问题，可教「正式场合可以绕开」，但不得把策略讲成语言对错，更不得据此判错口语与日常写作
+    exceptions: []
+    source: 规则来源史：Robert Lowth《A Short Introduction to English Grammar》(1762) 以拉丁语为模型贬斥句末介词（preposition stranding）；分裂不定式禁忌主要由 Henry Alford《A Plea for the Queen's English》(1864) 推广——理由都是拉丁语里介词不能悬空、不定式是一个不可分的词
+  mechanism:
+  - beat: 出生记录
+    text_kid: 这两条不是英语生来就有的，是以前的人硬给英语定的。
+    text_adult: 许多规定主义条款有明确的出生记录：谁、哪年、照着什么定的——查得到出生的「铁律」，先怀疑它不是语言本身的法律。
+    visual: 出生证图：两条规矩各挂一张写着年份与出处的牌子
+    anchors: []
+  - beat: 简易测试
+    text_kid: 一条规矩要是逼得你把话说得别扭，它多半是假的。
+    text_adult: 语言学家常用的判别法：真规则顺着说自然，假规则守着说别扭；英语不定式两截、介词可悬空，都是日耳曼语的自家结构。
+    visual: 别扭度图：硬守假规矩的句子被标上「拧巴」表情
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-04
+    rel: 同族
+  quiz:
+  - stem: 「句子最后不能放介词」这条规矩是从哪儿来的？
+    options:
+    - 英语生来就有的
+    - 两三百年前照着拉丁语硬定的
+    - 考试大纲规定的
+    answer: 两三百年前照着拉丁语硬定的
+    hint_ref: mechanism『出生记录』
+  probes: []
+  prereq: []
+  order: 35
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Smithsonian Magazine 语法神话考据：https://www.smithsonianmag.com/arts-culture/most-of-what-you-think-you-know-about-grammar-is-wrong-4047445/
+    - Lowth 的历史位置：http://www.universalteacher.org.uk/lang/languagechange.htm
+    boundary: 正式考试作文中，阅卷惯例可能仍偏好避开句末介词与分裂不定式——这是文体策略问题，可教孩子「正式场合可以绕开」，但不得把策略讲成语言的对错，更不得据此判错口语与日常写作。
+    disputes: 有——历史语言学家对 Lowth 本人的评价有翻案之声：有研究指出分裂不定式禁忌并非出自 Lowth（迟至 1803 年 Comly 才明文提出），Lowth 对句末介词的态度也比传说温和；但「这批规则源于 18–19 世纪规定主义而非英语固有」这一总判断不受影响。
+    evidence_grade: 二手互证级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE05-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-06
+  zone: 表达写作
+  group: NE
+  subgroup: 描写立场
+  audience: 教师/设计层
+  headline: 英语已经不归母语者管了：三圈世界与「说给全世界听」的目标
+  headline_kid: 全世界说英语的人里，老家就说英语的反而是少数——大多数是像我们这样把英语当外语的人。学英语是为了跟全世界说话，不是为了装成英国人或美国人。
+  claim:
+    type: tendency
+    statement: 三圈模型：内圈（以英语为母语，提供规范）、外圈（以英语为官方第二语言，发展自己的规范）、扩展圈（以英语为外语，依赖规范）。非母语使用者总数数倍于母语者，英语交际有很大一部分发生在非母语者与非母语者之间——英语的「重心」正在离开母语国家，学习目标应从「像某个母语者」转为「在国际场合被广泛理解」。
+    evidence:
+    - Braj Kachru 三圈模型（1982/1985 提出，见其编《The Other Tongue》, 1992）；David Crystal《English as a Global Language》(Cambridge University Press, 1997；第 2 版 2003) 第 60 页对三圈的转述与评论（二手论述级）
+    - Graddol 的估计：21 世纪初英语使用的「重心」正转向二语使用者
+    scope: 学习目标定位（模型为 1980 年代的社会语言学快照，国家归类会随时代变化）
+    exceptions:
+    - note: 小学教学仍需选定一两个参照口音作输入样本：三圈说否定的是「唯一正确」，不是「不需要参照」
+      word_ids: []
+  mechanism:
+  - beat: 三圈地图
+    text_kid: 全世界说英语的人里，老家就说英语的反而是少数。
+    text_adult: 三圈按英语在本国的地位划分：提供规范的内圈人数最少，依赖规范的扩展圈人数最多——孩子所在的正是最大的那一圈。
+    visual: 同心圆地图：内圈小、外圈中、扩展圈最大
+    anchors: []
+  - beat: 目标转向
+    text_kid: 学英语是为了跟全世界说话，不是为了装成英国人或美国人。
+    text_adult: 交际对象多数是非母语者时，评量标准随之转向：在国际场合被广泛理解（与 NE-14 可懂度立场互证）。
+    visual: 靶心图：靶心从「像母语者」移到「全世界听懂」
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-14
+    rel: 同族
+  quiz:
+  - stem: 学英语的目标应该是？
+    options:
+    - 装成英国人说话
+    - 在国际场合被广泛听懂
+    - 只跟母语者说话
+    answer: 在国际场合被广泛听懂
+    hint_ref: mechanism『目标转向』
+  probes: []
+  prereq: []
+  order: 36
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Braj Kachru 三圈模型（1982/1985）；《The Other Tongue》(1992)
+    - David Crystal《English as a Global Language》(CUP, 1997/2003), p. 60
+    - 核对来源：http://www.boylan.it/patrick/text/white01.htm
+    boundary: 三圈是 1980 年代的社会语言学快照：国家归类会随时代变化；小学教学仍需选定一两个参照口音作输入样本，三圈说否定的是「唯一正确」，不是「不需要参照」。
+    disputes: 有，且重要——Jenkins 等批评三圈模型把扩展圈永久钉在「依赖规范」的位置上，与 ELF（英语通用语）研究显示的现实不符：非母语者之间的交际自有其行之有效的规范；模型的历史功绩与过时之处须同时呈现，不得把三圈当作现行等级制来教。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE06-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-07
+  zone: 表达写作
+  group: NE
+  subgroup: 学习者词典
+  audience: 双层
+  headline: 只用三千个已知词，就能解释一切新词
+  headline_kid: 好的儿童词典有个秘密：它解释每个难词时，只用你已经认识的那几千个简单词——这样你查哪个词都看得懂，不会查着查着又卡在另一个生词上。
+  claim:
+    type: tendency
+    statement: 学习者词典给全部词条写释义时，遣词被限制在一张约 3000 个高频常用词的清单之内（受控释义词汇，现行各版口径均在 3000 上下）：释义用词必须比被释词更浅易，词典因此成为自足系统——掌握这 3000 词，就等于拿到解读整部词典、进而解读语言的钥匙。这是「核心词汇先行」在工具层面的最早完整实现。
+    evidence:
+    - A. S. Hornby 主编《Idiomatic and Syntactic English Dictionary》(Kaitakusha，东京，1942)，1948 年由牛津大学出版社重印为学习者词典，后发展为《Oxford Advanced Learner's Dictionary》；释义词汇规模见 OALD 第 4 版出版说明（“definitions using a carefully
+      chosen defining vocabulary of 3,000 words”）（二手互证级）
+    - 该传统被后世各大学习者词典沿袭（Longman、Macmillan 等均设自家释义词汇表），牛津另以 Oxford 3000 词表把「最该先学的词」显性化
+    scope: 工具设计与核心词先行口径（3000 是约数且随版次浮动，引用须注明版次口径）
+    exceptions:
+    - note: 受控释义的代价是部分释义需绕行表达、精确度受限，高阶学习者仍需普通词典补充
+      word_ids: []
+  mechanism:
+  - beat: 受控释义
+    text_kid: 词典解释难词时，只用你已经认识的简单词。
+    text_adult: 受控释义词汇：全部释义的遣词被锁在一张高频词清单内，查词不会在释义里再撞上生词——系统自足的关键设计。
+    visual: 钥匙图：3000 个简单词是一把能开全词典的钥匙
+    anchors: []
+  - beat: 核心先行
+    text_kid: 先把那几千个最有用的词学好，别的词都能靠它们弄懂。
+    text_adult: 与频率证据互为表里（见 CB-11、CB-14）：核心词既是最高频的交际工具，又是解读新词的工具——先行顺序由此获得双重理由。
+    visual: 地基图：核心词作地基，新词大楼建在其上
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-08
+    rel: 同族
+  quiz:
+  - stem: 好的学习词典解释难词时，只用什么词？
+    options:
+    - 更难的词
+    - 已经认识的几千个简单词
+    - 拉丁词根
+    answer: 已经认识的几千个简单词
+    hint_ref: mechanism『受控释义』
+  probes: []
+  prereq: []
+  order: 37
+  pain_points:
+  - 读不快
+  - 记不住
+  adult:
+    sources:
+    - A. S. Hornby (1942)《Idiomatic and Syntactic English Dictionary》；OALD 第 4 版出版说明
+    - 来源：https://www.abebooks.com/9780194311366/Oxford-Advanced-Learners-Dictionary-4th-0194311368/plp
+    boundary: 3000 是约数且随版次浮动——不同版次与二手书评中亦见 2800、3500 等数字，引用时应作「约 3000 词」并注明版次口径，不得写死某一精确数；受控释义的代价是部分释义需绕行表达、精确度受限，高阶学习者仍需普通词典补充。
+    disputes: 无重大分歧；学界讨论集中在释义词汇的构成原则（频率 vs 释义能力）与多义词在释义中的处理，属技术层面。
+    evidence_grade: 二手互证级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE07-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-08
+  zone: 表达写作
+  group: NE
+  subgroup: 学习者词典
+  audience: 双层
+  headline: 词典真正的灵魂是例句和句型：动词是句子的枢纽
+  headline_kid: 查一个动词，不能只看它是什么意思，还要看它后面怎么接——是接一个人、接一件事，还是接「某人做某事」。把动词的「接法」学会，句子就不会搭错。
+  claim:
+    type: tendency
+    statement: 学习者造句出错，多半不是词义错，而是句型假类推（如仿 I asked him to come 造出 *I proposed him to come）；词典应逐词条编码每个动词能进的句型（Hornby 归纳 25 个动词句型）、带什么搭配，并附真实例句——词典由此从「查意思的书」变成「教用法的书」。
+    evidence:
+    - 'A. S. Hornby (1942)，同 NE-07；《A Guide to Patterns and Usage in English》(OUP, 1954) 为其句型体系的专书展开；核对来源：Patrick Hanks 的 EURALEX 2008 主旨讲演《Lexical Patterns: From Hornby to Hunston and Beyond》（二手论述级）'
+    - OALD 此后各版（Cowie 编第 4 版起）把句型组织越做越细，成为学习者词典的标准配置
+    scope: 动词条目的呈现口径（小学阶段只需最高频的几个基本句型：S+V、S+V+O、S+V+O+O、S+V+O+to do；25 型全表属教师备查工具）
+    exceptions:
+    - note: 句型表是教学归纳，不是语言的完备描写：同一动词在不同义项下句型不同，必须按义项查
+      word_ids: []
+  mechanism:
+  - beat: 动词是枢纽
+    text_kid: 查动词要看它后面怎么接，接法学会，句子就不会搭错。
+    text_adult: 动词决定句子的骨架：能接什么、不能接什么，是每个动词自带的属性；把它随词条编码，查词即查用法。
+    visual: 枢纽图：动词居中，后接槽位像插座一样标明可插类型
+    anchors:
+    - V6_学校_69
+  - beat: 假类推
+    text_kid: 仿着一个动词的接法去用另一个，就会造出怪句子。
+    text_adult: 句型假类推是造句错误的主型：问法（ask）成立的接法，提议（propose）不成立——错误不在词义，在接法（见 error_cases）。
+    visual: 错位插头图：propose 的插头插不进 ask 的插座
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - V6_学校_69
+    - G2_P03
+    - V6_日常_2
+    sentence: I asked him to come.
+    scene_note: ask 的接法：ask + 人 + to do（清单登记正例）
+    supports: claim
+  error_cases:
+  - wrong: I proposed him to come.
+    right: I asked him to come.（propose 不进此句型）
+    error_type: 句型假类推
+    source_type: 教学文献登记错型
+    diagnosis: 仿 ask 的句型套到 propose 上：词义没错、接法错了（回 mechanism『假类推』）。注：propose 未入词库，走补词流程（见 pending）
+  relatives:
+  - id: NE-07
+    rel: 同族
+  - id: NE-09
+    rel: 同族
+  quiz:
+  - stem: 查一个动词，除了看意思，还要看什么？
+    options:
+    - 它有几个字母
+    - 它后面怎么接（句型）
+    - 它是什么颜色
+    answer: 它后面怎么接（句型）
+    hint_ref: mechanism『动词是枢纽』
+  probes: []
+  prereq: []
+  order: 38
+  pain_points:
+  - 说不出
+  - 错不完
+  adult:
+    sources:
+    - A. S. Hornby (1942)，同 NE-07；(1954)《A Guide to Patterns and Usage in English》, OUP
+    - 核对来源（Hanks, EURALEX 2008 主旨讲演）：http://euralex.org/elx_proceedings/Euralex2008/004_Euralex_2008_Plenary_Patrick%20Hanks_Lexical%20Patterns_from%20Hornby%20to%20Huston%20and%20Beyond.pdf
+    boundary: 句型表是教学归纳，不是语言的完备描写：同一动词在不同义项下句型不同，必须按义项查；小学阶段只需引入最高频的几个基本句型，25 型全表属教师备查工具。
+    disputes: 无主流分歧；句型颗粒度之争（25 型是否分得过细）自 Cowie 起即有，后版已做合并简化，属编纂技术讨论。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 例词 propose 不在词库（NE-08 登记错例构成词），待补词后回填 word_ids
+  - 探针待补写（PRB-NE08-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+- id: NE-09
+  zone: 表达写作
+  group: NE
+  subgroup: 学习者词典
+  audience: 教师/设计层
+  headline: 先有情景，再有句型：Hornby 的情景法遗产
+  headline_kid: 学一句话，先演一出小情景：谁、在哪儿、想干什么——情景对了，句子自然就说对了、用对了地方。
+  claim:
+    type: tendency
+    statement: 新的语言结构必须放进有意义的情景中呈现与操练：先有场合与交际意图，再有句型，操练围绕情景中的真实表达需要展开（情景法）。本条只取其「情景先行」的呈现原则——与本 App「机制先于形式」同构；操练环节须换成有信息差、有真实表达目的的任务。
+    evidence:
+    - A. S. Hornby 情景法的历史定位见《ELT Journal》2012 年 Hornby 专题论文；其著作序列（1954 句型指南、1959–1966 结构词与句型教学四卷）同见该文（二手论述级）
+    - 情景法主导了战后英国 EFL 教材一代人的体例（情景对话 + 结构操练），其「呈现—操练」骨架至今仍存活于各国小学教材的单元结构中
+    scope: 句型呈现顺序（呈现原则引用，不作完整教学法背书）
+    exceptions:
+    - note: 情景法的历史局限同样明确：操练偏机械、真实交际不足，这正是交际法取而代之的原因
+      word_ids: []
+  mechanism:
+  - beat: 情景先行
+    text_kid: 学一句话，先演一出小情景：谁、在哪儿、想干什么。
+    text_adult: 呈现顺序：场合与交际意图先行，句型作为「办这件事的工具」随后出场——句型从来不是孤立陈列的表格。
+    visual: 舞台图：布景与人物先就位，台词随后浮现
+    anchors: []
+  - beat: 操练要换代
+    text_kid: 情景对了，还要真的有话想说，练得才算数。
+    text_adult: 情景法的操练环节在其时代偏机械；当代用法保留呈现原则，操练换成有信息差、有真实表达目的的任务（与表达簇、构式簇口径一致）。
+    visual: 换代图：机械跟读图标淡出，信息差任务图标亮起
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-08
+    rel: 同族
+  quiz:
+  - stem: 学一句话，该先有什么、再有什么？
+    options:
+    - 先句型，后情景
+    - 先情景，后句型
+    - 先考试，后情景
+    answer: 先情景，后句型
+    hint_ref: mechanism『情景先行』
+  probes: []
+  prereq: []
+  order: 39
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - 《ELT Journal》2012 年 Hornby 专题论文（情景法历史定位）
+    - 来源页：https://www.scribd.com/doc/215884452/Copy-of223699887
+    boundary: 情景法的历史局限同样明确：操练偏机械、真实交际不足，这正是交际法取而代之的原因；当代用法应取其「情景先行」的呈现原则，操练环节须换成有信息差、有真实表达目的的任务。
+    disputes: 有——交际法阵营批评情景法是「换了布景的结构主义」；辩护方（如 Howatt 的 ELT 史著述）则认为情景法在其时代是对语法翻译法的实质进步。此条作教学史与呈现原则引用，不作完整教学法背书。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE09-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-10
+  zone: 表达写作
+  group: NE
+  subgroup: 语调与口音
+  audience: 双层
+  headline: 说话时每时每刻在做三个决定：语调的「三 T」
+  headline_kid: 说话的调调不是随便哼的：先把话切成一小块一小块，再决定哪一块里哪个词要喊重一点，最后决定这个词的声音是往下掉还是往上挑——选对了，意思和心情全在里面。
+  claim:
+    type: tendency
+    statement: 英语语调由三个同时运作的子系统构成：调群划分（tonality，切成语调短语）、调核落点（tonicity，标出新信息/焦点，默认落在最后一个实词上、移位即改义）、调型（tone，承载态度与话语功能）；语调与词汇语法平级地表义。语调六大功能：态度、语法切分、聚焦、话语衔接、心理切块、索引身份。
+    evidence:
+    - 'J. C. Wells《English Intonation: An Introduction》(Cambridge University Press, 2006)，第 1 章 §1.4 “The three Ts” 原文（原文节选级：剑桥大学出版社官方节选）'
+    - 三 T 框架（术语源自 Halliday 1967/1970，Wells 系统化并教材化）已成为语调教学的操作框架
+    scope: 语调教学的操作框架（教学倾斜：调群划分相对不难，调核落点与调型是英语特异性所在）
+    exceptions:
+    - note: 三 T 是描写与教学框架，不声称穷尽语调的一切变异
+      word_ids: []
+  mechanism:
+  - beat: 三个决定
+    text_kid: 说话的调调不是随便哼的：切块、点重、选调，三件事同时在做。
+    text_adult: tonality 决定话切成几块（如同书面标点分段），tonicity 决定重音核落哪个词，tone 决定核上音高往哪走——三个决定每句话都要做一遍。
+    visual: 调音台图：三排推子标 tonality/tonicity/tone
+    anchors: []
+  - beat: 调核移位即改义
+    text_kid: 哪个词喊重一点，意思就不一样。
+    text_adult: 同一句 I didn't say she took it，调核落在不同词上，否认的对象完全不同——焦点是语调直接编码的意义，不是语气装饰。
+    visual: 聚光灯图：光斑（调核）在句中移动，被否认的词随之变红
+    anchors:
+    - G3_0625
+    - V6_MORPH_33
+  examples:
+  - level: 1
+    word_ids:
+    - G3_0625
+    - G2_P04
+    - V6_MORPH_33
+    - G2_P05
+    sentence: I didn't say she took it.
+    scene_note: 调核落在不同词上，否认对象完全不同（清单登记例）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: NE-11
+    rel: 同族
+  quiz:
+  - stem: 把一句话里的重音从一个词挪到另一个词，会改变什么？
+    options:
+    - 只有音量
+    - 意思（强调/否认的对象）
+    - 只有速度
+    answer: 意思（强调/否认的对象）
+    hint_ref: mechanism『调核移位即改义』
+  probes: []
+  prereq: []
+  order: 40
+  pain_points:
+  - 听不懂
+  - 说不出
+  adult:
+    sources:
+    - 'J. C. Wells (2006)《English Intonation: An Introduction》, Cambridge University Press，第 1 章 §1.4'
+    - 官方节选：https://assets.cambridge.org/97805216/83807/excerpt/9780521683807_excerpt.pdf
+    boundary: 三 T 是描写与教学框架，不声称穷尽语调的一切变异；其中调群划分被 Wells 本人认为对学习者相对不难，调核落点与调型才是英语特异性所在、教学应予倾斜。
+    disputes: 无主流分歧；语调分析的学派差异（英式调核传统 vs 美国韵律学派 ToBI 等）在记谱体系层面，教学应用层面以三 T 为通行折中。
+    evidence_grade: 原文节选级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE10-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: NE-11
+  zone: 表达写作
+  group: NE
+  subgroup: 语调与口音
+  audience: 双层
+  headline: 口音是地图不是污点：差异有系统，身份在其中
+  headline_kid: 英国各地、美国、澳大利亚的人说话口音都不一样，就像各地的方言——那是他们「从哪儿来」的标记，不是说错了。听懂各种口音，比只会模仿一种口音更厉害。
+  claim:
+    type: tendency
+    statement: 口音差异不是随机错误，而是成系统的变异：同一批词的元音在不同口音中整组地对应；用词汇集（lexical sets，以 FLEECE、KIT、DRESS、BATH、GOOSE 等关键词指称同一历史来源的一组词）即可精确对照任何口音。口音随地域、阶层、正式程度、年龄、性别系统变化，是说话人身份的索引，不是偏离唯一正音的残次品。
+    evidence:
+    - J. C. Wells《Accents of English》（三卷，Cambridge University Press, 1982）——实证调查确立口音的系统变异与词汇集系统（二手论述级）
+    - 词汇集已成为英语语音学与词典注音的公共基础设施（Wells 主编的《Longman Pronunciation Dictionary》即以词汇集组织跨英美对照）
+    scope: 口音教学的目标定位（参照是坐标系，不是审判席）
+    exceptions:
+    - note: 教学仍需选定参照口音作输入与评量基准（如 RP 或通用美音）
+      word_ids: []
+  mechanism:
+  - beat: 成系统的差异
+    text_kid: 各地的口音不一样，但不是乱不一样，是一整组一整组地变。
+    text_adult: 词汇集：把同源的一组词打包命名，谈某个口音只需说它如何实现每个集——差异因此可描述、可对照、可教。
+    visual: 地图图：同一批词在不同口音地图上整组换色
+    anchors:
+    - G3_0967
+    - ADD_0013
+    - G4_0662
+  - beat: 身份标记
+    text_kid: 口音是「从哪儿来」的标记，不是说错了。
+    text_adult: 口音同时索引地域、阶层、年龄与正式程度；教学目标是「听得懂多种、说得出一种清楚的」，不是消除学习者的一切口音特征（与 NE-14 一致）。
+    visual: 徽章图：口音如家乡徽章，佩戴而非污点
+    anchors: []
+  examples:
+  - level: 1
+    word_ids:
+    - G3_0967
+    - ADD_0013
+    - G4_0662
+    sentence: DRESS / BATH / GOOSE
+    scene_note: 词汇集关键词举例：谈口音如何实现每个集即可对照（清单登记关键词；FLEECE、KIT 未入词库，见 pending）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: NE-10
+    rel: 同族
+  - id: NE-14
+    rel: 同族
+  quiz:
+  - stem: 别人口音和你不一样，说明什么？
+    options:
+    - 他说错了
+    - 那是他「从哪儿来」的标记
+    - 他没学好英语
+    answer: 那是他「从哪儿来」的标记
+    hint_ref: mechanism『身份标记』
+  probes: []
+  prereq: []
+  order: 41
+  pain_points:
+  - 听不懂
+  adult:
+    sources:
+    - J. C. Wells (1982)《Accents of English》（三卷）, Cambridge University Press
+    - 书目记录：https://openlibrary.org/books/OL4264254M/Accents_of_English
+    boundary: 教学仍需选定参照口音作输入与评量基准（如 RP 或通用美音）——参照是坐标系，不是审判席；对小学阶段，口音教学的目标是「听得懂多种、说得出一种清楚的」，不是消除学习者的一切口音特征（与 NE-14 一致）。
+    disputes: 无主流分歧；争论集中在参照口音的选取（RP 的社会地位变迁、通用美音与世界英语的权重），属课程决策而非学理之争。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 例词 fleece、kit 不在词库（NE-11 词汇集关键词），待补词后回填 word_ids
+  - 探针待补写（PRB-NE11-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: NE-12
+  zone: 表达写作
+  group: NE
+  subgroup: 发音是身体的事
+  audience: 双层
+  headline: 发音先练肌肉：找到嘴里的四个「按钮」
+  headline_kid: 发音不是用脑子想的，是用嘴练的：舌头前后、嘴唇开合、下巴上下、嗓子开和关——四个开关拨对了，声音自己就对了。先用手摸着下巴感受，再听声音。
+  claim:
+    type: tendency
+    statement: 发音是语言的身体维度：学习者须先经由本体感觉（proprioception）接通自己的发音肌肉，才能改它们——具体化为四个「肌肉按钮」：舌（前后）、唇（展收/圆推）、下颌+舌（上下）、嗓音（开/关，清浊之别）。教学顺序因此倒转：感受肌肉—自己试出声音—再对照目标，而不是听—模仿—纠错。
+    evidence:
+    - Adrian Underhill《Sound Foundations》（初版 Heinemann, 1994；第 2 版 Macmillan, 2005）——发音身体论的代表作；其牛津教师研讨会讲义《Making pronunciation physical》自述四组肌肉练习（二手论述级）
+    - Underhill 主编 Macmillan Books for Teachers 系列并以此法做全球师训；其实证取向已被对照教学研究采用为实验组方法（见 NE-13）
+    scope: 单个音的产出教学（身体路线的主场）
+    exceptions:
+    - note: 身体路线擅长攻克单个音的产出，对语流中的弱读、连读与语调（听辨与话语层面）仍需专门处理（见 NE-14）
+      word_ids: []
+    - note: 肌肉类比是教学脚手架，不声称四个按钮穷尽发音器官的全部协同
+      word_ids: []
+  mechanism:
+  - beat: 四个按钮
+    text_kid: 舌头前后、嘴唇开合、下巴上下、嗓子开关——拨对了，声音自己就对了。
+    text_adult: 四组肌肉按钮把抽象的发音动作变成可感受、可控制的身体开关；手指抵下巴在 /iː/ 与 /ɑː/ 间滑动，触觉直接证明显下颌开合即可产生一串不同元音。
+    visual: 控制面板图：舌/唇/下颌/嗓音四枚按钮
+    anchors: []
+  - beat: 顺序倒转
+    text_kid: 先用手摸着下巴感受，再听声音。
+    text_adult: 传统顺序（听—模仿—纠错）跳过了本体感觉这一环：不知道肌肉在做什么，就改不动它；身体路线先接通感觉，再谈目标音。
+    visual: 顺序图：感受肌肉 → 试出声音 → 对照目标
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-13
+    rel: 同族
+  - id: NE-14
+    rel: 同族
+  quiz:
+  - stem: 练发音应该先练什么？
+    options:
+    - 先背音标表
+    - 先找到嘴里肌肉的感觉
+    - 先背单词
+    answer: 先找到嘴里肌肉的感觉
+    hint_ref: mechanism『四个按钮』
+  probes: []
+  prereq: []
+  order: 42
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Adrian Underhill《Sound Foundations》(Heinemann, 1994；Macmillan, 2005)
+    - 讲义：https://www.scribd.com/doc/243909706/Successful-pronunciation-learning-Adrian-Underhill-pdf
+    boundary: 身体路线擅长攻克单个音的产出，对语流中的弱读、连读与语调（产出之外的听辨与话语层面）仍需专门处理（见 NE-14）；肌肉类比是教学脚手架，不声称四个按钮穷尽发音器官的全部协同。
+    disputes: 无主流分歧；与纯听辨模仿传统的分工之争，实质是教学顺序之争——Hancock 的「四 M」（NE-14）即把身体维度收编为发音教学的一个面，而非全部。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE12-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-13
+  zone: 表达写作
+  group: NE
+  subgroup: 发音是身体的事
+  audience: 双层
+  headline: 音标表不是考卷，是一张可以上手玩的「发音地图」
+  headline_kid: 音标表像一张地图：声音住在哪儿，地图上就标在哪儿——嘴巴前面的音排前面，上面的音排上面。用手指点着地图找声音，慢慢就认路了。
+  claim:
+    type: tendency
+    statement: 音标表不是要背的符号清单，而是一件思考工具与工作台：44 个音位按发音的空间关系排布（元音区位置对应舌位高低前后，辅音按部位与方式成行成列），图的「地理」本身就编码了发音方法；符号不代表某个「好口音」的绝对音质，只代表此时此地师生约定的那个音。发音不是孤立的「发音时段」，应弥漫于一切语言活动。
+    evidence:
+    - 'Adrian Underhill (1994/2005)，同 NE-12；其专文《Pronunciation: the Cinderella of Language Teaching》（Humanising Language Teaching, 2011）对音标表作为 mental map 的自述（二手论述级）'
+    - 该图被 Macmillan 制成课堂挂图与 Sounds 应用（英/美两版音标表）；「先身体感受、再符号定位」的顺序与 NE-12 的肌肉路线互为表里
+    scope: 音标图的课堂用法（本条立场：图可早见、系统读写渐进）
+    exceptions:
+    - note: 音标表以单一参照口音的音位系统为格架（44 个音位为英式 RP 系计数），美音等参照系格数略有出入
+      word_ids: []
+    - note: 小学低段可只用图做「指认与感受」，系统的音标读写宜随识字进程逐步引入，不宜前置为门槛
+      word_ids: []
+  mechanism:
+  - beat: 地图不是考卷
+    text_kid: 音标表像一张地图：声音住在哪儿，地图上就标在哪儿。
+    text_adult: Sound Foundations 音标表把音位按舌位与部位方式排成空间：位置即发音方法，教师点一个格子，全班即可认、比、改、玩这个音。
+    visual: 地图图：元音区按舌位排布、辅音按部位成列
+    anchors: []
+  - beat: 约定之音
+    text_kid: 地图上的符号，是大家说好的那个音，不是谁的口音专利。
+    text_adult: 符号只代表师生此时此地约定的音位，不同口音的使用者共用一张图并不矛盾；把音标当绝对音质标准，是把工具用成了新的规定主义。
+    visual: 图钉图：同一格子被不同口音的图钉共同指向
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-12
+    rel: 同族
+  quiz:
+  - stem: 音标表上一个音的位置，告诉你什么？
+    options:
+    - 它在考试里排第几
+    - 这个声音在嘴里的位置（怎么发）
+    - 它在字母表里的顺序
+    answer: 这个声音在嘴里的位置（怎么发）
+    hint_ref: mechanism『地图不是考卷』
+  probes: []
+  prereq:
+  - NE-12
+  order: 43
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Adrian Underhill (1994/2005)，同 NE-12
+    - 专文：http://old.hltmag.co.uk/oct11/cse02.htm
+    boundary: 音标表以单一参照口音的音位系统（44 个音位为英式 RP 系计数）为格架，美音等参照系格数略有出入；小学低段可只用图做「指认与感受」，系统的音标读写宜随识字进程逐步引入，不宜前置为门槛。
+    disputes: 无主流分歧；音标教学的时机之争（早教 vs 后教）属课程安排讨论，本条立场为「图可早见、系统读写渐进」。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE13-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-14
+  zone: 表达写作
+  group: NE
+  subgroup: 发音是身体的事
+  audience: 双层
+  headline: 目标是被听懂，不是扮成母语者：可懂度优先于口音
+  headline_kid: 说英语不用装成英国人或美国人——你的口音就是你的口音，只要全世界的人都能听懂你，你的发音就是好发音。
+  claim:
+    type: tendency
+    statement: 发音教学的目标是可懂度（intelligibility），不是像母语者——没有证据表明母语口音比非母语口音更易懂。推论：①口音与可懂度分开评，反馈谈「听者懂不懂」不谈「对不对」；②音位教学的实质是保持区别（区别在，可懂度就在）；③真语流的连读、弱读、省音、同化是听力理解的主要门槛，须专门教听辨，产出端不强求全套复制。发音教学由四 M 构成：肌肉、思维、意义、记忆。
+    evidence:
+    - 'Mark Hancock 访谈（JALT《The Language Teacher》访谈专栏：可懂度目标与四 M 的自述）与纲领文《Pronunciation Teaching: The Myths and the Magic》（二手论述级）'
+    - 其目标框架与 Jenkins 的 Lingua Franca Core 在「产出端只保核心特征」上同向——与语音簇 S-09/S-13 的现行分开用法口径一致，可互为印证
+    scope: 发音产出与听辨的目标分工（小学阶段的听辨材料须逐步掺入真实语流的杂乱度，不只有干净录音）
+    exceptions:
+    - note: 有融入母语环境、应试朗读等特殊目标的学习者，母语式目标仍可另行设定（Hancock 本人在访谈中明言的少数情形）
+      word_ids: []
+  mechanism:
+  - beat: 可懂度优先
+    text_kid: 只要全世界的人都能听懂你，你的发音就是好发音。
+    text_adult: 目标重定：把 *shave* 说成 *safe* 不是「错」，是「不起作用，听者会懂成另一个词」——反馈语言从对错切换到效果，是本条的操作核心。
+    visual: 耳朵图：听者点头「懂了」即达标印章
+    anchors:
+    - G4_0358
+  - beat: 保持区别
+    text_kid: 两个词的声音必须不一样，听的人才分得清。
+    text_adult: 音位教学的实质是区别管理：gate 的元音不必与 RP/GA 一模一样，但必须与 get 的元音不同——核心音位区别与重音模式恰恰决定可懂度，不在豁免之列。
+    visual: 双格图：gate/get 两格元音涂不同色，界线清晰
+    anchors:
+    - V6_城市_34
+    - V6_日常_0
+  examples:
+  - level: 1
+    word_ids:
+    - G4_0358
+    - V6_城市_34
+    - V6_日常_0
+    sentence: safe / gate / get
+    scene_note: 最小对立：区别在，可懂度就在（清单登记例；shave 未入词库，见 pending）
+    supports: claim
+  error_cases:
+  - wrong: （把 shave 说成）safe
+    right: shave（与 safe 保持区别）
+    error_type: 音位区别丢失
+    source_type: 条目成人层登记的事故例
+    diagnosis: Hancock 登记口径：这不是「对错」问题，是「不起作用」——听者懂成了另一个词（回 mechanism『保持区别』）。注：shave 未入词库，走补词流程（见 pending）
+  relatives:
+  - id: NE-06
+    rel: 同族
+  - id: NE-12
+    rel: 同族
+  - id: NE-04
+    rel: 对照
+  quiz:
+  - stem: 发音练得好不好，看什么？
+    options:
+    - 像不像英国人
+    - 全世界的人能不能听懂你
+    - 口音纯不纯正
+    answer: 全世界的人能不能听懂你
+    hint_ref: mechanism『可懂度优先』
+  probes: []
+  prereq: []
+  order: 44
+  pain_points:
+  - 说不出
+  - 听不懂
+  adult:
+    sources:
+    - Mark Hancock 访谈，JALT《The Language Teacher》：https://jalt-publications.org/articles/27495-interview-mark-hancock
+    - '纲领文《Pronunciation Teaching: The Myths and the Magic》：https://linguaglobe.com/en/news_articles/english/pronunciation-teaching-myths-and-magic'
+    boundary: 可懂度优先不豁免核心音位区别与重音模式——恰恰是这些区别决定可懂度；对有融入母语环境、应试朗读等特殊目标的学习者，母语式目标可另行设定；小学阶段的听辨材料不应只有演员式「干净录音」，须逐步掺入真实语流的杂乱度（其 Authentic Listening 立场，同访谈）。
+    disputes: 有——与传统「以 RP/GA 为唯一产出目标」的教学观正面冲突，本条站在可懂度阵营（与语音簇现行裁定方向一致）；阵营内部分歧在「核心」的划界（LFC 的具体清单是否完备），属细节之争。
+    evidence_grade: 二手论述级
+    pending:
+    - Hancock《English Pronunciation in Use》的具体册次分工（与 Sylvie Donna 合作、初/中/高级三册）未逐册核对；本条只以访谈与纲领文立论，不依赖该细节
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 例词 shave 不在词库（NE-14 登记最小对立与事故例构成词），待补词后回填 word_ids
+  - 探针待补写（PRB-NE14-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+- id: NE-15
+  zone: 表达写作
+  group: NE
+  subgroup: 语法批评的证据标准
+  audience: 教师/设计层
+  headline: 规则先过证据关：被几代人奉为圭臬的手册也会认错被动语态
+  headline_kid: 连最有名的语法小册子都会写错——它连「被动句」都认不全，还自相矛盾。所以听到一条语法规矩，先问一句：证据呢？大作家们真的都这样写吗？
+  claim:
+    type: tendency
+    statement: 规则的合法性来自可核查的用法证据：《The Elements of Style》的语法论断多出于直觉与偏见（查原书即可见其例句认错被动、规则自相矛盾），几代学生被「无知的专横」训练出无来由的语法焦虑。正面主张：写得不好当然要改，但要改对地方；引进任何「规则」前先核其证据。
+    evidence:
+    - 'Geoffrey K. Pullum, “50 Years of Stupid Grammar Advice”, The Chronicle of Higher Education（2009 年 4 月 17 日）（原文级：全文 PDF）；扩展长文 “The Land of the Free and The Elements of Style”, English Today 26.2 (2010):
+      34–44'
+    - Pullum 为《The Cambridge Grammar of the English Language》(2002) 联合主编，其批评以该书的描写成果为据；文中逐条核查的方法本身即示范了「规则须过证据关」的工作程序
+    scope: 教师侧的鉴别纪律：本条的用途是引进规则前的证据核查，不把焦虑传给孩子
+    exceptions:
+    - note: 《The Elements of Style》的文体建议（如「删繁就简」）Pullum 本人多视为无害；火力集中于其语法论断与语法教学，不据此全盘否定写作指导书
+      word_ids: []
+  mechanism:
+  - beat: 手册也会错
+    text_kid: 连最有名的语法小册子都会写错，还自相矛盾。
+    text_adult: 三项清算：①论断出于直觉而非用法考察（「none 须配单数」查名家原文即破）；②给出的「被动」例句多半根本不是被动句；③刚命令少用形容词副词，下一句立刻自破三戒。
+    visual: 放大镜图：手册页面上的被动例句被逐条打上「不是被动」
+    anchors: []
+  - beat: 先问证据
+    text_kid: 听到一条语法规矩，先问一句：证据呢？
+    text_adult: 核查程序可复制：找真实文本核对用法、数一数作家怎么写、检查规则与例句是否自洽——规则过不了证据关，就不许进课堂当铁律。
+    visual: 法庭图：每条规则上庭先出示证据
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-04
+    rel: 同族
+  quiz:
+  - stem: 听到一条语法规矩，先问什么？
+    options:
+    - 是谁定的
+    - 证据呢？大作家真的都这样写吗
+    - 要罚抄几遍
+    answer: 证据呢？大作家真的都这样写吗
+    hint_ref: mechanism『先问证据』
+  probes: []
+  prereq: []
+  order: 45
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Geoffrey K. Pullum (2009), The Chronicle of Higher Education：http://www.lel.ed.ac.uk/~gpullum/50years.pdf
+    - 'Pullum (2010), English Today 26.2: 34–44（书目核对：https://lib.ecu.edu/catalog/literary-research-guide/ch21s29.html）'
+    boundary: 《The Elements of Style》的文体建议（如「删繁就简」）Pullum 本人多视为无害，其火力集中于语法论断与语法教学，不据此全盘否定写作指导书；对小学阶段，本条的用途是教师侧的鉴别纪律——引进任何「规则」前先核其证据，不把焦虑传给孩子。
+    disputes: '有——Michael Bulley “Defending Strunk and White”（English Today 26.4, 2010: 57–62）等为该书辩护，认为其作为文体启蒙自有价值、《Chronicle》文有断章之嫌；本簇立场：辩护成立的范围限于文体启蒙，不动摇其语法论断无据的判定。'
+    evidence_grade: 原文级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE15-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-16
+  zone: 表达写作
+  group: NE
+  subgroup: Myhill：语法即选择
+  audience: 教师/设计层
+  headline: 语法是「选择的仓库」：学语法是为了写作时多一条可选的路，不是为了少犯一个错
+  headline_kid: 学语法像学调色——多认识一种颜色，画画时就多一种选法；不是为了「涂不错」。
+  claim:
+    type: tendency
+    statement: 语法是可供选择的资源系统：同一种意思总有几种说法（长句/短句、主动/被动、第一人称/第三人称），每种选择产生不同的意义效果与读者感受；语法教学的目标不是贴标签、纠错误，而是让学生看见「有哪些选法、各有什么效果」，并在元语言谈话（metatalk）中把选择说出口。
+    evidence:
+    - 'Debra Myhill 团队：Myhill, Watson & Newman (2020), Bellaterra Journal of Teaching & Learning Language & Literature 13(2)——汇编「Grammar as Choice」的国际表述；理论综述见 Myhill & Watson (2014), Child Language Teaching
+      and Therapy 30(1): 41–62（二手论述级）'
+    - Myhill 团队十余年系列研究的一致发现：脱离写作的语法操练与写作质量无关，而「在写作中谈选择」能发展学生的元语言理解
+    scope: 母语写作课的立场向 EFL 的迁移提示（选择教学须待词汇句型存量积累到一定程度才有东西可选；低年级先在口头与仿写中积累型式）
+    exceptions:
+    - note: 「选择」不等于「没有对错」：EFL 阶段大量形式仍在建立中，准确性目标不能被修辞话语冲掉
+      word_ids: []
+  mechanism:
+  - beat: 选择的仓库
+    text_kid: 学语法像学调色：多认识一种颜色，画画时就多一种选法。
+    text_adult: 语言是选择系统：同义多形是常态，每种形式自带效果差异——语法知识的形态因此应是「选法 + 效果」的配对表，而非对错清单。
+    visual: 调色盘图：每种语法形式是一格颜色，标注涂出的效果
+    anchors: []
+  - beat: 把选择说出口
+    text_kid: 能说出「我为什么这样写」，才算真的会选。
+    text_adult: 元语言谈话（metatalk）是内化机制：学生在讨论中把隐性语感说成显性决策，语法理解才从『碰巧写对』变成可控的写作决策。
+    visual: 对话气泡图：学生指着句子说「我选长句，因为……」
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-17
+    rel: 同族
+  - id: NE-21
+    rel: 同族
+  quiz:
+  - stem: 学语法是为了什么？
+    options:
+    - 少犯一个错
+    - 写作时多一条可选的路
+    - 把规则背下来
+    answer: 写作时多一条可选的路
+    hint_ref: mechanism『选择的仓库』
+  probes: []
+  prereq: []
+  order: 46
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Myhill, Watson & Newman (2020), Bellaterra Journal 13(2)：https://revistes.uab.cat/jtl3/article/download/v13-n2-myhill-watson-newman/870-pdf-en
+    - 'Myhill & Watson (2014), Child Language Teaching and Therapy 30(1): 41–62'
+    boundary: 这是母语写作课的立场迁移提示——中国小学生英语词汇与句型存量远小于母语儿童，「可选的仓库」本身很小，选择教学必须等存量积累到一定程度才有东西可选；低年级更现实的做法是先在口头与仿写中积累型式，再谈选择。另外「选择」不等于「没有对错」：EFL 阶段大量形式仍在建立中，准确性目标不能被修辞话语冲掉。
+    disputes: 英语国家内部对语法教学价值长期分裂——多项元分析（如 Andrews et al. 的系统综述传统）发现传统语法教学对写作无益甚至有害，Myhill 的回应不是「语法有用」，而是「只有换一种语法观（选择/效果）并嵌入写作才有用」；这一区分本身就是分歧的焦点，不得简化为「研究证明教语法有效」。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE16-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-17
+  zone: 表达写作
+  group: NE
+  subgroup: Myhill：语法即选择
+  audience: 教师/设计层
+  headline: 语法要嵌在写作里教才有效：Exeter 随机对照试验给出的是「有条件的有效」
+  headline_kid: 一边写故事一边学怎么把句子写好，才学得进去；把语法单独拎出来做练习，写作文时还是用不上。
+  claim:
+    type: tendency
+    statement: 把与该语类写作真正相关的语法点嵌进写作单元里教（嵌入式），写作进步显著优于孤立操练：机制不在「讲了语法」，而在每个语法点都与一个当下要做的写作决定相连（Exeter 母语八年级整群 RCT：干预组效应量 0.21）。效应有条件——见 exceptions 与分歧。
+    evidence:
+    - 'Jones, Myhill & Bailey (2013) “Grammar for writing?”, Reading and Writing 26: 1241–1263（干预组效应量 e = 0.21, p < .001）；项目总报告 Myhill et al. (2012)（二手论述级；证据强度为 RCT 级）'
+    - 整群随机对照试验：700 余名八年级学生、31 所学校（EEF 汇总口径），干预组写作进步约为对照组的两倍（项目报告口径）——英语语法教学研究中罕见的严格因果证据
+    scope: 方向性结论（嵌入优于孤立）可迁移；效应量不可搬用——被试是母语八年级（约 13 岁）学生，不是小学生、更不是 EFL 学习者
+    exceptions:
+    - note: 效应不均匀：写作能力强的学生受益更多，弱的学生受益较少——嵌入式语法不是自动扶贫的
+      word_ids: []
+    - note: 教师元语言知识是中介变量：教师自己讲不清形式与效果的关系时，干预效应打折
+      word_ids: []
+  mechanism:
+  - beat: 嵌在决定里
+    text_kid: 一边写故事一边学句子：每个语法点都正好是现在要做的决定。
+    text_adult: 三个写作单元（叙事、议论、诗歌）各嵌该语类真正用到的语法点（如叙事单元教人称如何制造叙述声音、长短句如何制造节奏）；对照组同教材同成品、无嵌入课案。
+    visual: 齿轮图：语法齿轮嵌进写作齿轮，咬合转动
+    anchors: []
+  - beat: 有条件的有效
+    text_kid: 这个办法有用，但不是对谁、在哪儿都有用。
+    text_adult: 阳性结果带三条限定：学段（母语八年级）、人群（强者受益多）、教师（元语言知识中介）——引用本条时三条限定必须同行（见分歧中的小学复制问题）。
+    visual: 条件标签图：效应量数字旁挂三枚限定标签
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-16
+    rel: 同族
+  quiz:
+  - stem: 语法在什么时候教，最能帮到写作文？
+    options:
+    - 单独开一节语法练习课
+    - 嵌在正要写的文章里教
+    - 考试前突击背
+    answer: 嵌在正要写的文章里教
+    hint_ref: mechanism『嵌在决定里』
+  probes: []
+  prereq:
+  - NE-16
+  order: 47
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - 'Jones, Myhill & Bailey (2013), Reading and Writing 26: 1241–1263'
+    - Exeter 大学项目页：https://www.exeter.ac.uk/research/projects/socialsciences/index.php?id=109
+    boundary: ①被试是母语八年级学生，外推到小学英语只能取「嵌入优于孤立」的方向性结论，不能搬效应量。②效应不均匀：强的学生受益更多。③教师元语言知识是中介变量，对中国小学英语教师的英语学科知识提出直接要求。④后续 EEF 在小学六年级的复制评估结论弱于中学试验（见分歧）。
+    disputes: EEF 资助的小学版 Grammar for Writing 评估（Torgerson et al. 2014 口径）未复制出中学试验的清晰效应，「嵌入式语法在小学阶段是否同样有效」在英国证据体系内仍是开放问题；本条入模时必须连同这一条保留，不得只引中学 RCT 的阳性结果。
+    evidence_grade: RCT 级证据（二手转述）
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE17-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-18
+  zone: 表达写作
+  group: NE
+  subgroup: 悉尼学派
+  audience: 教师/设计层
+  headline: 语类是「分阶段、奔着社会目的去的做事方式」：故事、报告、说明各有各的台阶
+  headline_kid: 每种文章都有自己的「过关路线」——故事要先铺垫、再出事、再解决；说明书要一步一步来。先看清路线图，再自己上路。
+  claim:
+    type: tendency
+    statement: 语类（genre）是「分阶段的、目标导向的社会过程」（Martin, 1999）：文本的样子由它在文化中承担的社会目的决定，达成目的要走几个可辨认的阶段（如叙事的 Orientation → Complication → Resolution；报告的分类 → 分面描述）；阶段与阶段的语言特征都可分析、可命名——「好文本」由此从玄学变成一张可以摆上桌面的地图，弱势学生不必靠家庭文化资本去猜。
+    evidence:
+    - J. R. Martin 的语类理论，定版于 Rose & Martin (2012)《Learning to Write, Reading to Learn》（Equinox）；「staged, goal-oriented social process」定义（Martin, 1999）（二手论述级；定义出处页完整链接未随检索返回，见 adult.pending）
+    - 该理论出自 1980 年代悉尼学派在小学与移民教育中的实地项目（Language and Social Power、Write it Right）：逐篇分析学校里真正要写的文本，绘出各学科语类的阶段结构与语言特征——是田野描写工作，不是书斋分类
+    scope: 借的是「先给文本地图再让学生写」这一机制，而不是整套语类目录照搬；中国课标语境下文本类型有限（自我介绍、看图写话、简单通知等），阶段图要按本地任务重绘
+    exceptions:
+    - note: 语类图是脚手架不是模具（见分歧）
+      word_ids: []
+  mechanism:
+  - beat: 过关路线
+    text_kid: 每种文章都有自己的过关路线，先看清路线图再上路。
+    text_adult: 阶段是语类的骨架：叙事走铺垫→出事→解决，报告走分类→分面描述，程序走步骤序——阶段可命名，教学才有着力点。
+    visual: 路线图：三种文本三条路线，关卡逐个标名
+    anchors: []
+  - beat: 把地图摆上桌面
+    text_kid: 好文章长什么样，不用猜——地图就摆在桌上。
+    text_adult: 公平性论证：显性教语类，是为了让没有接触过学校文本文化的孩子也能拿到地图，而不是靠家庭文化资本暗中通关。
+    visual: 桌面地图图：全班围着同一张阶段图
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-19
+    rel: 同族
+  - id: NE-20
+    rel: 同族
+  - id: NE-21
+    rel: 同族
+  quiz:
+  - stem: 动笔写故事之前，先看清什么？
+    options:
+    - 字数要求
+    - 故事的过关路线（先铺垫、再出事、再解决）
+    - 别人的分数
+    answer: 故事的过关路线（先铺垫、再出事、再解决）
+    hint_ref: mechanism『过关路线』
+  probes: []
+  prereq: []
+  order: 48
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Rose & Martin (2012)《Learning to Write, Reading to Learn》, Equinox
+    - Martin & Rose (2005) Reading to Learn 模型与 Halliday 系统功能语言学的承继关系：https://www.researchgate.net/figure/Reading-to-Learn-cycle_fig4_255652356
+    boundary: 语类清单是英语文化与澳大利亚课程的产物（如 recount/report/procedure 的分法），迁移到中国小学英语时要选的是「先给文本地图再让学生写」这一机制，而不是整套语类目录照搬；中国课标语境下小学生要写的文本类型有限，阶段图要按本地任务重绘。另外语类图是脚手架不是模具（见分歧）。
+    disputes: 语类教学法自诞生起就有「公式化」批评——担心阶段图把写作变成填空、压制创造性；悉尼学派的回应是：显性图式恰恰是创新的前提（先知道常规才谈得上破规），且教学循环的最后阶段就是独立建构。此争论在澳大利亚与英国文学教育界至今未息，入模须登记。
+    evidence_grade: 二手论述级
+    pending:
+    - Martin (1999) 语类定义与 Language and Social Power 项目源流的史述页完整链接未随检索结果返回，入模引用前补核
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE18-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-19
+  zone: 表达写作
+  group: NE
+  subgroup: 悉尼学派
+  audience: 教师/设计层
+  headline: 教学循环：先全班拆一篇 → 再全班合写一篇 → 最后才轮到你自己写（Teaching-Learning Cycle）
+  headline_kid: 学写一种文章分三步：先跟老师一起把范文拆开看；再全班一起写一篇新的；最后自己独立写。不会游泳的人不是被直接推下水的。
+  claim:
+    type: tendency
+    statement: 教学循环共四环：建立语境/语场（把要写的话题聊透、做足共同经验）→ 解构（带全班分析范文的阶段结构与关键语言特征，用共享元语言指认）→ 共同建构（全班在教师执笔下口头共商写出一篇新文本）→ 独立建构（学生自己写，教师退后）。支撑量沿循环递减：能力先在集体层面出现，再内化为个体能力。
+    evidence:
+    - Teaching-Learning Cycle 由 Rothery 等人在悉尼学派项目中设计、Martin 与 Rose 定型；阶段与功能见 Accurso, Gebhard & Selden 的教师教育章节对 Martin 团队循环的转述（二手论述级）
+    - 该循环是悉尼学派四十年课堂实践的标准操作系统，被 Gibbons 等二语教育者直接引入 ESL 课堂（见 NE-29），其设计理据与认知学徒制、支架理论同源
+    scope: 单元顺序设计（中国小学英语课时少、班额大：『全班共同建构』须用小组共写、句框接龙等方式改造参与结构；『建立语场』一环在中国要额外承担词汇与理解的前置教学）
+    exceptions:
+    - note: 母语学生解构范文时语言本身不是障碍，EFL 学生连范文都可能读不懂——循环的起点条件不同
+      word_ids: []
+  mechanism:
+  - beat: 四环递减
+    text_kid: 先一起拆，再一起写，最后自己写——扶着的手一步步松开。
+    text_adult: 四环的支撑量递减是设计出来的：语场（经验）→解构（地图）→共构（实作）→独立（验收），与支架撤除原则（W-10）是同一逻辑的课程版。
+    visual: 扶手图：四级台阶扶手逐级变矮
+    anchors: []
+  - beat: 共构是枢纽
+    text_kid: 全班一起写的那一篇最要紧：每个决定都被当场说出来。
+    text_adult: 共同建构把写作决定公开化：写什么、为什么这样写，在教师执笔下被全班讨论——这是个体内化前能力在集体层面的预演。
+    visual: 讲台图：大纸居中，全班口头出招、教师执笔
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-18
+    rel: 同族
+  - id: NE-29
+    rel: 同族
+  - id: W-10
+    rel: 同族
+  quiz:
+  - stem: 学写一种新文章，顺序应该是？
+    options:
+    - 直接自己写，写完再讲
+    - 先拆范文 → 全班合写一篇 → 最后自己独立写
+    - 先考试，不会再教
+    answer: 先拆范文 → 全班合写一篇 → 最后自己独立写
+    hint_ref: mechanism『四环递减』
+  probes: []
+  prereq:
+  - NE-18
+  order: 49
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Accurso, Gebhard & Selden 教师教育章节（Martin 团队循环转述）：https://people.umass.edu/~mgebhard/Gebhard%20Publication%20PDFs/2016%20-%20Accurso%20Gebhard%20Selden%20L2%20writing.pdf
+    - 四阶段口径：https://www.researchgate.net/figure/Reading-to-Learn-cycle_fig4_255652356
+    boundary: 循环跑完一个语类在母语课堂通常要数周；中国小学英语课时少（每周 2–4 节）、班额大（40 人以上），「全班共同建构」时真正开口参与的比例会远低于澳洲小班——需要用小组共写、句框接龙等方式改造参与结构。另一个差异：母语学生解构范文时语言本身不是障碍，EFL 学生连范文都可能读不懂，所以「建立语场」一环在中国要额外承担词汇与理解的前置教学。
+    disputes: 与 NE-18 同源的「显性教学 vs 过程写作」之争：过程写作传统批评语类循环过于教师主导；悉尼学派反批评过程写作对弱势学生是「看不见的 pedagogics」（Bernstein 语）——把要求藏起来，看似自由，实则只奖励早就会的孩子。此分歧是两种公平观的冲突，入模时两边都要呈现。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE19-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-20
+  zone: 表达写作
+  group: NE
+  subgroup: 悉尼学派
+  audience: 教师/设计层
+  headline: Reading to Learn：把支架加厚到句子层——让全班读同一篇难文本，而不是给差生降难度
+  headline_kid: 不给「简单版课文」糊弄你——老师陪你把难课文一句一句嚼碎，吃透之后你自己也能写出这样的文章。
+  claim:
+    type: tendency
+    statement: Reading to Learn（R2L）在教学循环上再嵌两层支架（段落层、句子/拼写层）：核心招式「精细阅读」以『先给意义提示 → 让学生指出原文词句 → 确认和展开』的互动循环，带每一个学生读懂超出其独立阅读水平的文本——公平设计与分级读物相反：不降低文本难度，而是加厚互动支架，让全班共读同一篇高水准文本。
+    evidence:
+    - Rose & Martin (2012)《Learning to Write, Reading to Learn》的六阶段口径与三层支架结构，见 R2L 研究综述（二手论述级）
+    - R2L 在澳大利亚原住民与弱势学生项目、瑞典斯德哥尔摩学校系统均有实施评估，报告称其能同时加速弱势学生与全体学生的读写进步；印尼 EFL 初中叙事写作干预提供了离开母语环境后的可行性证据
+    scope: 精读设计（前提：学生能跟着指读；低年级须与系统拼读教学配合，不能替代它）
+    exceptions:
+    - note: R2L 对教师备课的要求极高：精细阅读要逐句预设提示与追问，教师培训不到位时容易退化成教师讲学生听
+      word_ids: []
+    - note: 中国大班额下逐句互动的覆盖面是硬约束
+      word_ids: []
+  mechanism:
+  - beat: 不降难度，加厚支架
+    text_kid: 不给简单版糊弄你：课文不换，老师的帮法加厚。
+    text_adult: 三层嵌套：整篇（读前准备→共建→独立）/段落（精细阅读→共同改写→个人改写）/句子（造句、拼写、改写）——支架厚度随文本难度上调，而非反向削文本。
+    visual: 三层同心图：文本居中，支架一层层加厚
+    anchors: []
+  - beat: 精细阅读三步
+    text_kid: 先给提示，再让你自己找出那句，最后大家一起说透。
+    text_adult: 互动循环的每一步都有分工：提示降门槛、指认保参与、确认与展开把理解钉牢——弱势学生在这套循环里不会掉队成旁观者。
+    visual: 三步循环箭头图：提示 → 指认 → 展开
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-18
+    rel: 同族
+  - id: NE-19
+    rel: 同族
+  quiz:
+  - stem: 遇到一篇难课文，Reading to Learn 的做法是？
+    options:
+    - 换一篇简单版给读得慢的同学
+    - 老师陪着一句一句嚼碎，全班读同一篇难的
+    - 太难就跳过不读
+    answer: 老师陪着一句一句嚼碎，全班读同一篇难的
+    hint_ref: mechanism『不降难度，加厚支架』
+  probes: []
+  prereq:
+  - NE-19
+  order: 50
+  pain_points:
+  - 读不快
+  - 写不长
+  adult:
+    sources:
+    - Rose & Martin (2012)《Learning to Write, Reading to Learn》；R2L 研究综述：https://www.researchgate.net/figure/Reading-to-learn-cycle_fig1_348975034
+    - EFL 应用（Emilia & Martin 团队报告）：https://dosen.ikipsiliwangi.ac.id/wp-content/uploads/sites/6/2021/02/From_storytelling_to_story_writing_2017.pdf
+    boundary: R2L 对教师备课的要求极高——精细阅读要逐句预设提示与追问，教师培训不到位时容易退化成教师讲学生听。中国大班额下逐句互动的覆盖面是硬约束；且 EFL 小学生的解码能力（拼读）尚在建立中，「共读难文本」的前提——学生能跟着指读——在低年级未必成立，需与系统拼读教学配合，不能替代它。
+    disputes: 分级阅读（leveled texts）阵营与 R2L 阵营的分歧是结构性的：前者主张文本匹配学生当前水平，后者主张以支架代替降难度。两边都有证据传统；本条只登记 R2L 的主张与依据，不裁定分级读物无用——小学英语的分级绘本阅读与 R2L 式精读在实践中常是互补关系。
+    evidence_grade: 二手论述级
+    pending:
+    - R2L 在斯德哥尔摩项目中的量化效应：经 ResearchGate 项目报告页核实其定性结论，未打开瑞典语原始评估报告核对具体数字；本条未写任何 R2L 效应量，入模引用数字前须补核
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE20-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-21
+  zone: 表达写作
+  group: NE
+  subgroup: 悉尼学派
+  audience: 教师/设计层
+  headline: Derewianka：给小学教师的语法书按「语言的四种活儿」组织，不按词类清单组织
+  headline_kid: 语法不按「名词、动词、形容词」排队，而是按语言要干的活儿排队：说清楚发生了什么、把意思连起来、跟人打交道、把文章织成一片。
+  claim:
+    type: tendency
+    statement: 整套语法系统可按功能组织为四大块：表达经验（世界里谁在做什么）、连接思想（句与句的逻辑纽带）、与人互动（提问、命令、态度与评价）、织造成文（衔接与信息流）；教学含义是备课先问「这篇文本要干哪种活儿」，再选要教的语法点——学生学到的语法知识天然带着用途标签。此立场定位为教师知识组织的参照（与 NE-16 的 Myhill『语法是可供选择的资源阵列』互证）。
+    evidence:
+    - Beverly Derewianka《A New Grammar Companion for Teachers》（第 3 版，PETAA，2022）——全书按 expressing ideas / connecting ideas / interacting with others / creating cohesive texts 组织（出版社页级）
+    - 该书是澳大利亚教师专业组织 PETAA 的常销教师参考书，与澳大利亚全国英语课程对接、再版至第 3 版；其更早的《Exploring How Texts Work》(1990；第 2 版）把语类教学带进小学课堂（2–6 年级案例）
+    scope: 教师知识组织的参照（可借的是组织思路与教师参考书的存在形态；术语层面只能选择性吸收）
+    exceptions:
+    - note: 功能语法（Halliday 系统功能语法）自有术语（参与者、过程、环境成分等），与国内语法教学通用的传统术语（主谓宾、时态语态）并不重合；整套搬入会造成术语双轨混乱
+      word_ids: []
+  mechanism:
+  - beat: 四种活儿
+    text_kid: 语法按语言要干的活儿排队，不按词类排队。
+    text_adult: 四分组织：表达经验、连接思想、与人互动、织造成文——每一块语法知识都挂在它服务的交际功能下，备课与查考都从功能入口进。
+    visual: 四格抽屉图：每格标一种活儿，格内是相应语法点
+    anchors: []
+  - beat: 先问活儿，再选语法
+    text_kid: 备课先想：这篇文章要干哪种活儿？再挑要教的语法。
+    text_adult: 顺序倒置是关键：传统备课从词类清单挑点，功能组织从文本目的挑点——学生学到的语法天然带用途标签，不必另做『学了干嘛』的补丁。
+    visual: 备课流程图：文本目的 → 活儿 → 语法点
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-16
+    rel: 同族
+  - id: NE-18
+    rel: 同族
+  quiz:
+  - stem: 按「语言的活儿」组织语法，备课时先问什么？
+    options:
+    - 这个词是第几类词
+    - 这篇文本要干哪种活儿
+    - 这个词有几个字母
+    answer: 这篇文本要干哪种活儿
+    hint_ref: mechanism『先问活儿，再选语法』
+  probes: []
+  prereq: []
+  order: 51
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Derewianka《A New Grammar Companion for Teachers》（第 3 版，PETAA，2022)：https://petaa.edu.au/w/w/Store/Item_Detail.aspx?iProductCode=PET130E&Category=DIGITAL
+    - 《Exploring How Texts Work》（第 2 版）合集说明：https://petaa.edu.au/w/w/Store/Item_Detail.aspx?iProductCode=PETSET035&Category=BOOK
+    boundary: 这套功能语法有一套自己的术语，与国内语法教学通用的传统术语并不重合；整套搬进中国小学会造成术语双轨混乱。可借的是两点：①按「语言要干的活」组织教学内容的思路；②教师参考书的存在形态——中国小学英语教师同样缺一本「按用途讲语法」的案头书。术语层面只能选择性吸收，不能全盘移植。
+    disputes: 功能语法与传统语法之争在澳大利亚学界持续多年：批评者认为 SFL 术语对小学生过于抽象繁复；支持者认为传统术语只命名不解释功能。此条入模定位为「教师知识组织的参照」，不主张小学生直接学习 SFL 术语体系本身。
+    evidence_grade: 出版社页级
+    pending:
+    - 《Exploring How Texts Work》第 2 版的确切出版年未单独核（PETAA 合集页只标第 2 版）——本条只以「1990 年初版；现行第 2 版」表述，年份细节入模前补核
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE21-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-22
+  zone: 表达写作
+  group: NE
+  subgroup: Clay：早期读写观察
+  audience: 教师/设计层
+  headline: 印刷概念（Concepts About Print）：开始读之前，孩子先要搞懂「书是怎么运作的」
+  headline_kid: 读书之前先要懂书的规矩：从哪页开始、从左往右读、一个词是一个词、字母和画儿不是一回事。这些「规矩」不懂，认字认得再多也读不成句。
+  claim:
+    type: tendency
+    statement: 印刷概念是一组可观察、可测量的先行组织框架：书有正反面与页序；阅读方向（从左到右、从上到下、回行扫读）；文字（而非图画）承载故事内容；词与词之间有界、词由字母按序构成；首尾字母与标点的作用等。孩子必须先把口头语言与页面符号的对应关系建起来，解码与理解才有地方安放；教学路径是先逐个观察记录、再据此教学。
+    evidence:
+    - Marie Clay《Concepts About Print》（Heinemann, 2000，Observation Survey 配套分册）；其理论表述 “Concepts about print in English and other languages”, The Reading Teacher 42(4), 1989, pp. 268–272；体系化于《Literacy Lessons
+      Designed for Individuals》(2005；第 2 版）的 literacy processing 理论（二手论述级）
+    - CAP 观察任务是英语国家使用最广的早期读写评估工具之一，其预测效度（入学初 CAP 得分预测后续阅读成就）在多项研究中得到支持
+    scope: 早期读写评估与教学（按英语字母文字、左起横排提炼；施测材料与常模不能直接套用新西兰版本）
+    exceptions:
+    - note: CAP 测的是「懂不懂书的规矩」，不是阅读能力本身，高分不保证会读
+      word_ids: []
+  mechanism:
+  - beat: 书的规矩
+    text_kid: 读书之前先要懂：从哪页开始、往哪边读、一个词是一个词。
+    text_adult: 印刷概念清单逐项可观察：方向、页序、图文分工、词界、字母序、标点——每一项都是孩子在页面上实际做出来的行为，不是背出来的定义。
+    visual: 书页图：方向箭头、词界空格、图文分区逐项点亮
+    anchors: []
+  - beat: 先观察，再教学
+    text_kid: 老师先看孩子以为书是怎么读的，再决定教什么。
+    text_adult: Clay 的方法论：不先用成人预设的缺陷清单套孩子，而是用标准化观察任务记录孩子实际在做什么——评估观独立于任何具体教学法。
+    visual: 观察表图：教师逐项记录孩子翻书指读的行为
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-23
+    rel: 同族
+  quiz:
+  - stem: 开始读书之前，孩子先要搞懂什么？
+    options:
+    - 所有单词的意思
+    - 书是怎么运作的（从哪读、往哪读、词和画的区别）
+    - 作者的名字
+    answer: 书是怎么运作的（从哪读、往哪读、词和画的区别）
+    hint_ref: mechanism『书的规矩』
+  probes: []
+  prereq: []
+  order: 52
+  pain_points:
+  - 读不快
+  adult:
+    sources:
+    - Marie Clay《Concepts About Print》(Heinemann, 2000, ISBN 9780325002378)：https://www.abebooks.com/servlet/BookDetailsPL?bi=31033599603
+    - 'Clay (1989), The Reading Teacher 42(4): 268–272'
+    boundary: 印刷概念是按英语（字母文字、左起横排）提炼的；汉语儿童对汉字的方向与分词直觉不同，中国孩子学英语时恰好要新建一整套「英语印刷品规则」，这正是本条对 EFL 的价值所在——但也意味着施测材料与常模不能直接套用新西兰版本。另注意：CAP 测的是「懂不懂书的规矩」，不是阅读能力本身，高分不保证会读（见 NE-23 的分歧语境）。
+    disputes: 无针对 CAP 本身的主流分歧；分歧集中在 Clay 体系的另一部分——Reading Recovery 的教学取向与长期效果（NE-23)，不得把对 RR 的批评转嫁到印刷概念这一观察框架上，也不得反过来用 CAP 的公认地位为 RR 背书。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE22-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-23
+  zone: 表达写作
+  group: NE
+  subgroup: Clay：早期读写观察
+  audience: 教师/设计层
+  headline: Reading Recovery：最早、最贵的一对一干预——短期效应有据，长期效果正被新证据改写
+  headline_kid: 班上读得最吃力的几个孩子，每天单独跟老师上 30 分钟小课，连上几个月。起步确实快，但这条路到底值不值，专家们还在吵。
+  claim:
+    type: tendency
+    statement: Reading Recovery 是为一年级阅读最困难儿童设计的早期干预（专门培训教师、每天一对一 30 分钟、持续 12–20 周），目标是帮孩子建成「自我延伸系统」从而脱离干预。一年级即时效应有强证据（i3 全国推广随机试验）；长期效果未定论——新追踪研究出现负效应（见分歧全文）。本条只立『短期有据、长期未定论』，App 不得引用 RR 作为「一对一辅导有效」的无条件证据。
+    evidence:
+    - 'Marie Clay《Literacy Lessons Designed for Individuals》(2005；第 2 版）与《Reading Recovery: A Guidebook for Teachers in Training》（二手论述级）'
+    - 短期效应：美国 i3 全国推广随机试验（1,222 所学校、6,888 名学生）确认一年级即时效应显著为正（Sirinides, Gray & May 2018)；WWC 曾给予正面评级
+    - '长期新证据：May, Blakeney, Shrestha, Mazal & Kennedy (2024), Journal of Research on Educational Effectiveness 17(3): 433–458（断点回归追踪至三、四年级）'
+    scope: 可迁移的只是设计原则（困难出现的第一年就干预、干预基于逐日观察记录、干预目标是让孩子脱离干预）；RR 服务的是母语儿童中阅读起步困难者，与中国孩子「外语阅读困难」的成因结构（先缺口语与词汇量）完全不同
+    exceptions:
+    - note: RR 的成本结构（一对一 + 教师长训）在中国公立小学几乎不可能复制；中国的对应物更可能是小组化、短周期的课堂内补救，而不是 RR 本身
+      word_ids: []
+  mechanism:
+  - beat: 早、密、个别化
+    text_kid: 读得最吃力的孩子，每天单独上 30 分钟小课，连上几个月。
+    text_adult: 课的结构固定：重读熟悉书 → 跑读记录 → 字母/词的工作 → 写一句自己编的话并剪开重组 → 读一本精心选梯度的新书；设计时机压在一年级，困难刚出现就介入。
+    visual: 日程图：每日 30 分钟五环课结构
+    anchors: []
+  - beat: 自我延伸系统
+    text_kid: 干预的终点是：不用再干预——每读一本新书都能自己学会一点。
+    text_adult: 理论内核是 literacy processing：阅读是调动意义、句法、视觉多路信息自我监控、自我纠正的解题活动；干预成败看孩子能否建成自我延伸系统，而不是当期分数。
+    visual: 脱钩图：孩子从教师扶持中脱钩、自己往前读
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-22
+    rel: 同族
+  quiz:
+  - stem: 关于 Reading Recovery，最准确的说法是？
+    options:
+    - 已被证明长期有效
+    - 短期有效有据，长期效果专家还在争
+    - 完全没有用
+    answer: 短期有效有据，长期效果专家还在争
+    hint_ref: mechanism『早、密、个别化』
+  probes: []
+  prereq:
+  - NE-22
+  order: 53
+  pain_points:
+  - 读不快
+  adult:
+    sources:
+    - Clay《Literacy Lessons Designed for Individuals》(2005；第 2 版）
+    - 'May et al. (2024), Journal of Research on Educational Effectiveness 17(3): 433–458：https://irp.cdn-website.com/bddb3944/files/uploaded/Long-Term+Impacts+of+Reading+Recovery-through-3rd-and-4th-Grade-A-Regression-Discontinuity-Study.pdf'
+    boundary: RR 的成本结构（一对一 + 教师长训）在中国公立小学几乎不可能复制，其可迁移的只是设计原则。中国的对应物更可能是小组化、短周期的课堂内补救。且 RR 服务的是母语儿童中阅读起步困难者，与中国孩子「外语阅读困难」的成因结构完全不同。
+    disputes: 学界未定论（如实登记）：①长期效果反转——May et al. (2024）用断点回归追踪 i3 样本至三、四年级，发现 RR 参与者的州阅读测验分数反而比相似未参与者低 0.19–0.43 个标准差；一项 19 项研究的纵向元分析同样报告一年后平均效应转负（-0.14 至 -0.21）。②批评方（Science of Reading 阵营）归因于 RR 依赖的「三线索猜词」教的是弱读者的策略、系统拼读不足；RR
+      阵营则反驳长期研究的样本流失（追踪丢失逾 75%）与比较组污染，并坚持其一年级效应与「成功退出」数据。③成本效益之争独立存在：即便短期有效，每生逾万美元的成本也被质疑。本条入模须整段保留分歧。
+    evidence_grade: RCT 级短期证据与长期争议并存（二手转述）
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE23-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-24
+  zone: 表达写作
+  group: NE
+  subgroup: Mercer 与 Alexander：课堂谈话
+  audience: 教师/设计层
+  headline: 谈话有三型：吵架型、附和型、探索型——只有探索型谈话里，思考是公开进行的
+  headline_kid: 小组说话有三种样子：抢着吵（谁也不听谁）、跟着点头（你说啥都对）、一起想（我说个想法，你问为什么，咱们把想法越聊越清楚）。第三种才真的在动脑子。
+  claim:
+    type: tendency
+    statement: 学生小组谈话分三型：争执型（断言对断言、个人化胜负）、累积型（靠重复、附和、补充堆叠，但不质疑、不检验）、探索型（批判而建设性地处理彼此想法，质疑必须附理由，替代方案摆上桌，知识对全组公开负责）。谈话不只是思维的出口，谈话的型式本身就是思维的型式；未经教导的小组谈话中探索型占比很低，争执型与累积型是默认状态。
+    evidence:
+    - Neil Mercer 的谈话三分类（源自 Mercer 1995，后由 Wegerif & Mercer 1997 定型）与探索型谈话的定义，见同行评审综述 Liang & Fung (2020), Thinking Skills and Creativity（原文级：PMC 全文系统转述）
+    - 三分类来自对英国小学课堂小组活动的长期录音分析，不是思辨分类
+    scope: 先借「型式可命名、可自评」（让孩子分辨自己组刚才是在吵、附和还是真讨论），比直接要求探索型谈话更可行
+    exceptions:
+    - note: 中国课堂有自身的发言规范（举手、齐答、师道权威），「质疑同伴」在低年级需要先解决面子与安全感问题
+      word_ids: []
+    - note: EFL 条件下还有语言瓶颈：想探索却没词——谈话支架（句框）必须先于谈话规范到位
+      word_ids: []
+  mechanism:
+  - beat: 三型对照
+    text_kid: 小组说话有三种样子：抢着吵、跟着点头、一起想。
+    text_adult: 三型的判别点在『想法如何被对待』：争执型比胜负、累积型只堆叠、探索型要理由并检验——型式可观察、可命名，孩子能自评本组刚才属于哪型。
+    visual: 三联图：吵/附和/探索三种谈话各一幅
+    anchors: []
+  - beat: 谈话即思维
+    text_kid: 一起想的时候，脑子里的想法被摆到桌面上，越聊越清楚。
+    text_adult: 探索型谈话里做的事（提假设、要理由、权衡方案）正是个人独立思考的内在结构的外化版：先学会跟人一起这样想，才学会自己这样想（Vygotsky 路径）。
+    visual: 桌面图：想法从各人脑中移到桌面中央被共同加工
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-25
+    rel: 同族
+  - id: NE-26
+    rel: 同族
+  quiz:
+  - stem: 哪种小组谈话里，思考是公开进行的？
+    options:
+    - 吵架型（谁也不听谁）
+    - 附和型（你说啥都对）
+    - 探索型（说想法带理由、互相追问）
+    answer: 探索型（说想法带理由、互相追问）
+    hint_ref: mechanism『三型对照』
+  probes: []
+  prereq: []
+  order: 54
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Mercer (1995)；Wegerif & Mercer (1997) 谈话三分类
+    - Liang & Fung (2020), Thinking Skills and Creativity（PMC 全文）：https://pmc.ncbi.nlm.nih.gov/articles/PMC7471859/
+    boundary: 三分类是在英语母语课堂的互动文化里提炼的；中国课堂有自身的发言规范，「质疑同伴」在低年级需要先解决面子与安全感问题。迁移时先借「型式可命名、可自评」这一点，比直接要求探索型谈话更可行。EFL 条件下还有语言瓶颈：想探索却没词——谈话支架（句框）必须先于谈话规范到位。
+    disputes: 无针对三分类本身的主流分歧；讨论集中在探索型谈话的可教性与迁移性（NE-25）。
+    evidence_grade: 原文级（PMC 全文转述）
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE24-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-25
+  zone: 表达写作
+  group: NE
+  subgroup: Mercer 与 Alexander：课堂谈话
+  audience: 教师/设计层
+  headline: Thinking Together：先全班约法（ground rules），再放小组讨论——规矩是谈出来的，不是贴出来的
+  headline_kid: 讨论之前，全班先一起定规矩：人人都要开口；说想法要带理由；可以不同意，但要好好说；最后一起做决定。规矩定好了，小组说话才真的有用。
+  claim:
+    type: tendency
+    statement: 小组谈话规范须先由师生共同协商（ground rules：共享相关信息、主张给理由、欢迎质疑与讨论、决定前认真考虑其他方案、人人受邀发言、发言受尊重、力求达成一致并共同负责），再把这套规则用到各学科的小组任务里，并周期性回头反思。机制要点：规则必须是共建的而非教师颁布的纪律；规则把「怎样才算想清楚了」的标准外化成可操作的社会规范。
+    evidence:
+    - Mercer、Lyn Dawes 与 Rupert Wegerif 的 Thinking Together 项目：ground rules 清单与做法见《Dialogic Education》（Phillipson & Wegerif 编）所收章节摘录；使用方式与证据综述见 Liang & Fung (2020)（原文级：PMC 全文）
+    - 原始干预研究（Wegerif, Mercer & Dawes 1999)：60 名 9–10 岁儿童学习谈话规则后，关键推理语言特征出现频率增至约四倍，个人非语言推理测验（Raven）成绩相对对照组提升；Mercer, Dawes, Wegerif & Sams (2004）在小学科学课复制出双收益
+    - 该方法已在香港小学英语课堂完整实施并评估（Liang & Fung 2020，125 名小学生）——离开英国母语环境、进入东亚 EFL 课堂的直接可行性证据
+    scope: 学期初的少量投资（先立规矩），而不是每课都上；对低年级儿童，八条规则要减量并图示化
+    exceptions:
+    - note: EFL 儿童用英语执行「给理由、质疑」需要语言支架（because…/I think…because… 等句框）与任务设计配合，否则规则会空转成中文讨论或沉默
+      word_ids:
+      - V6_核心_60
+      - G3_0631
+  mechanism:
+  - beat: 先约法，后讨论
+    text_kid: 讨论之前，全班先一起把规矩谈出来。
+    text_adult: Talk Lessons（谈话课）专门用于共建规则：规则出自全班之口，孩子执行的是自己的约定——这是它与教师颁布纪律的根本区别。
+    visual: 圆桌图：全班围着一张共同写下的规矩纸
+    anchors: []
+  - beat: 用规则，照镜子
+    text_kid: 规矩定好了，还要时不时回头看看：我们刚才那样说话，合格吗？
+    text_adult: 周期反思把规则从墙上的字变成自评工具；规则的实质作用是把推理标准外化成集体习惯，使推理从个人品质变成集体规范。
+    visual: 镜子图：小组讨论后对着规矩清单逐项打勾
+    anchors:
+    - V6_核心_60
+  examples:
+  - level: 1
+    word_ids:
+    - V6_核心_60
+    - G3_0631
+    sentence: I think ... because ...
+    scene_note: 给理由的谈话句框：主张必须带理由（清单边界登记的 EFL 支架句框）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: NE-24
+    rel: 同族
+  - id: NE-26
+    rel: 同族
+  quiz:
+  - stem: 讨论的规矩怎样来，最能让大家真的照着做？
+    options:
+    - 老师定好贴在墙上
+    - 全班一起谈出来、共同约定
+    - 班长一个人定
+    answer: 全班一起谈出来、共同约定
+    hint_ref: mechanism『先约法，后讨论』
+  probes: []
+  prereq:
+  - NE-24
+  order: 55
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Thinking Together 项目（Mercer、Dawes & Wegerif）章节摘录：https://www.perlego.com/book/1568646/dialogic-education-mastering-core-concepts-through-thinking-together-pdf
+    - Liang & Fung (2020)：https://pmc.ncbi.nlm.nih.gov/articles/PMC7471859/
+    boundary: 香港案例同时提示改造点：EFL 儿童用英语执行「给理由、质疑」需要语言支架与任务设计配合，否则规则会空转成中文讨论或沉默。中国大班额下 Talk Lessons 本身要占课时——其定位应是学期初的少量投资（先立规矩），而不是每课都上。对低年级（一、二年级）儿童，八条规则要减量并图示化。
+    disputes: 探索型谈话训练的增益能否迁移到规则之外的学科成绩，不同学科的复制结果强弱不一（科学、数学较明显，语文较间接）；且有研究者提醒：把谈话「规则化」可能让讨论流于表演式合规。此条入模取其「共建规范 + 周期反思」的机制骨架，不承诺跨学科效应量。
+    evidence_grade: 原文级（PMC 全文转述）
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE25-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: NE-26
+  zone: 表达写作
+  group: NE
+  subgroup: Mercer 与 Alexander：课堂谈话
+  audience: 教师/设计层
+  headline: Alexander 的对话式教学五原则：集体、互惠、支持、累积、目的——缺了「累积」，热闹不是对话
+  headline_kid: 好的课堂说话像接力搭积木：一起搭（集体）、互相听（互惠）、说错了不笑话（支持）、一块压一块往上垒（累积）、心里知道要搭成什么（目的）。
+  claim:
+    type: tendency
+    statement: 对话式教学五原则：集体（师生作为共同体面对任务）、互惠（互听、分享、认真考虑异见）、支持（自由表达不成熟想法而不怕出丑）、累积（在自己与他人的想法上接续搭建成连贯探究链）、目的（谈话由教师按明确教育目标设计与掌舵）。多数课堂问答是「伪开放」的背诵式问答；五原则是一把检验尺，其中累积性最难做到，也最能区分真对话与轮流发言。
+    evidence:
+    - 'Robin Alexander《Towards Dialogic Teaching: Rethinking Classroom Talk》（初版 2004；第 4 版 2016, Dialogos）五原则原文表述（二手论述级）'
+    - 该框架出自 Alexander 对英、法、俄、印、美五国小学课堂话语的比较研究（《Culture and Pedagogy》, 2000)——「累积性缺失」是跨国课堂的普遍现象；其后 EEF 资助了基于该框架的教师发展项目与随机试验（2017 年中期报告）
+    scope: 中国小学英语课在「短回合、高支架」的片段里使用五原则（如 3–5 分钟共读后讨论），并允许汉语承担元谈话；班级规模下小组层面的对话规范（NE-25）是它的必要补充而非替代
+    exceptions:
+    - note: 五原则描述的是母语课堂整节课的话语生态；学生能调动的英语有限时，全英对话链条（累积）很难拉长
+      word_ids: []
+  mechanism:
+  - beat: 五原则检验尺
+    text_kid: 好的课堂说话要过五关：一起搭、互相听、不笑话、往上垒、有目的。
+    text_adult: 五原则是诊断工具：拿它量一节课的问答，能分出哪些是真对话、哪些只是轮流发言——尤其看贡献有没有被接续搭建（累积）。
+    visual: 接力积木图：五块积木标集体/互惠/支持/累积/目的
+    anchors: []
+  - beat: 伪开放
+    text_kid: 问题看着开放，答案早被老师定死了——那不叫对话。
+    text_adult: 背诵式问答（recitation）的特征是教师预设答案、学生猜答；五原则中的目的性恰恰要求开放由教师掌舵，而非取消掌舵。
+    visual: 假门图：门画得开敞，门后是墙
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-24
+    rel: 同族
+  - id: NE-25
+    rel: 同族
+  quiz:
+  - stem: 五原则里最难做到、也最能区分真对话的是哪一条？
+    options:
+    - 集体（一起面对任务）
+    - 累积（在别人想法上接着往上搭）
+    - 目的（有明确目标）
+    answer: 累积（在别人想法上接着往上搭）
+    hint_ref: mechanism『五原则检验尺』
+  probes: []
+  prereq: []
+  order: 56
+  pain_points:
+  - 说不出
+  adult:
+    sources:
+    - Robin Alexander《Towards Dialogic Teaching》（初版 2004；第 4 版 2016), Dialogos
+    - 五原则原文引文页（Durham 大学研究页所引 Alexander 2015, p. 28)：https://durham-repository.worktribe.com/preview/1648421/33215.pdf
+    boundary: 五原则描述的是母语课堂整节课的话语生态；中国小学英语课的现实是：学生能调动的英语有限，全英对话链条（累积）很难拉长——可行的做法是把五原则用在「短回合、高支架」的片段里，并允许汉语承担元谈话。班级规模同样制约集体与互惠的真实覆盖面，小组层面的对话规范（NE-25）是它的必要补充而非替代。
+    disputes: Alexander 本人在 2020 年《A Dialogic Teaching Companion》中已修订扩展该框架（五原则被重新组织），引用时应以「经典五原则」名义使用、不冒充最新版；学界（如 oracy 阵营与部分话语分析者）对「对话式」标签被政策稀释、流于口号亦有批评。此条登记的是其可操作的检验尺价值。
+    evidence_grade: 二手论述级
+    pending:
+    - Alexander (2020)《A Dialogic Teaching Companion》修订后框架的具体条目未逐项打开原书——本条按「经典五原则」口径使用，不得据此声称掌握其最新框架
+    - Alexander 的 EEF 对话教学试验具体效应数字本轮未打开评估报告原文，故未登记效应量
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE26-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-27
+  zone: 表达写作
+  group: NE
+  subgroup: Corbett：Talk for Writing
+  audience: 双层
+  headline: Talk for Writing 三段：模仿 → 创新 → 发明——写作教学的顺序是「先有文本存量，再有个人创作」
+  headline_kid: 学写故事像学唱歌：先把一首好歌唱熟（模仿），再换上自己的歌词（创新），最后自己作曲（发明）。没听过几首歌的人，作不出曲子。
+  claim:
+    type: tendency
+    statement: 儿童不可能凭空写出一个他从未在口头上拥有过的文本类型：单元教学分三段推进——模仿（全班以故事地图与动作把范文背诵内化，并以读者与作者双身份读）→ 创新（在范文骨架上做受控替换，改地图、口头排练、分段共写）→ 发明（独立写同一类型的新文本）；单元前后以 cold task 与 hot task 对照评估。理论赌注：口头语言是书面语言的排练场——能说出来的，才能写出来。
+    evidence:
+    - Pie Corbett 的 Talk for Writing 框架：三阶段与各阶段做法见学校定版说明与框架体系转述（实践框架级：采用广度证据，无 RCT）
+    - 其机制支点（口头排练先行、范文内化、受控创新）分别与 Mercer 的谈话研究、悉尼学派的共同建构、记忆与图式研究相容合，不是孤立发明
+    scope: 本簇与中国小学英语适配度最高的一条（三段顺序直接可用）；中国课时下三段要压缩，范文长度必须大幅缩短（低年级可至百词内）；低年级（1–2 年级）应停留在口头三段（说熟 → 换说 → 编说），不必落到书面发明
+    exceptions:
+    - note: 模仿段在 EFL 课堂极易滑成机械背诵课文：Corbett 的模仿从来是带动作、带地图、带理解讨论的「内化」，不是默写
+      word_ids: []
+  mechanism:
+  - beat: 三段顺序
+    text_kid: 先把一首好歌唱熟，再换歌词，最后自己作曲。
+    text_adult: 顺序性是本框架的骨：存量（模仿）→ 受控变化（创新）→ 独立产出（发明）；跳过模仿直接发明，等于让没听过歌的人作曲。
+    visual: 三级台阶图：模仿 → 创新 → 发明
+    anchors: []
+  - beat: 口头是书面预演
+    text_kid: 能说出来的故事，才能写出来。
+    text_adult: 范文先经口头内化：语言在嘴里熟了，落笔时才调得出来——这与 E-04/NE-03 的整块存取是同一机制在写作教学中的形态。
+    visual: 嘴到笔图：口头复述的声波凝成纸面文字
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-28
+    rel: 同族
+  - id: NE-19
+    rel: 同族
+  quiz:
+  - stem: 学写故事的三段顺序是？
+    options:
+    - 发明 → 创新 → 模仿
+    - 模仿 → 创新 → 发明
+    - 背诵 → 默写 → 考试
+    answer: 模仿 → 创新 → 发明
+    hint_ref: mechanism『三段顺序』
+  probes: []
+  prereq: []
+  order: 57
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - Talk for Writing 学校定版说明（developed by Pie Corbett）：https://www.stphilips.cambs.sch.uk/Talk-for-Writing/
+    - 阶段机制转述：https://www.furnessvale.derbyshire.sch.uk/wp-content/uploads/2021/05/Writing-in-KS2.pdf
+    boundary: 这是本簇与中国小学英语适配度最高、也最容易被误用的一条：适配在于 EFL 儿童同样「没有存量就写不出」，三段顺序直接可用；风险在于模仿段极易滑成机械背诵课文。中国课时下三段要压缩，范文长度必须大幅缩短；低年级应停留在口头三段，不必落到书面发明。
+    disputes: 如实登记：Talk for Writing 的证据基础主要是实践者网络与个案、检查（Ofsted）观察，缺乏 Exeter 试验（NE-17）那一级的随机对照证据；英国国内亦有批评认为其范文模仿偏重、可能挤压儿童自发写作与体裁多样性。入模定位应为「英国主流课堂实践框架」，不得标为「经实验证明最有效」。
+    evidence_grade: 实践框架级（采用广度证据）
+    pending:
+    - Corbett 原著书目：《Talk for Writing in the Early Years》与 Corbett & Strong《Talk for Writing in the Primary School》的确切出版年与版次未打开出版社页核对——三阶段体系本身已以学校定版说明与框架官网转述核实，正式引文入模前补核原著
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE27-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例
+- id: NE-28
+  zone: 表达写作
+  group: NE
+  subgroup: Corbett：Talk for Writing
+  audience: 双层
+  headline: 模仿段的发动机：故事地图 + 全身动作——把文本变成可以指着演的图，记忆才托得住语言
+  headline_kid: 把故事画成一张地图，每个转弯配一个动作。手指着地图、身体做着动作，嘴巴就把整篇故事说出来了——眼睛和身体一起帮嘴巴记。
+  claim:
+    type: tendency
+    statement: 模仿段的技术是多通道编码：范文被压缩成一幅手绘故事地图（图标与箭头标出文本的阶段与关键连接词），全班边指地图边用统一动作复述——听觉、视觉、动觉三路同时编码同一语言材料。地图把范文的结构外化了：指着地图复述练的不只是词句，还有「故事走到哪一步了」的阶段感；到创新段，改地图就是改结构。
+    evidence:
+    - text map 与动作在模仿段中的用法、创新段衔接，见 St Philip's 学校的 Talk for Writing 定版说明（实践框架级）
+    - 该技术与双重编码（言语 + 图像/动作双通道，见 LS 簇 Paivio 条）与具身认知研究相容；其实践证据形态同 NE-27（广泛采用 + 个案），本条不单独主张效应量
+    scope: EFL 低年级最合用的场景（词汇少、需要身体带着嘴走）；地图必须由孩子参与绘制才有图式价值
+    exceptions:
+    - note: 教师要自己先会「演」范文——教师示范意愿与英语口头流利度是前置条件；班额大时全班动作复述的纠错覆盖有限，可用同桌互演 + 抽查替代全班齐演
+      word_ids: []
+    - note: 教师印好发下去的地图只剩装饰功能
+      word_ids: []
+  mechanism:
+  - beat: 三路编码
+    text_kid: 眼睛看着地图、身体做着动作、嘴巴说着故事——三路一起记。
+    text_adult: 同一语言材料被听觉、视觉、动觉三路同时编码，提取线索互相冗余：忘词时看地图、做动作都能把下一句带出来。
+    visual: 三路汇流图：眼/身/口三条线汇入同一段文本
+    anchors:
+    - G3_141
+  - beat: 地图即结构
+    text_kid: 指着地图说故事，练的不只是词句，还有故事走到哪一步了。
+    text_adult: 地图画的是阶段与连接词（first / suddenly / finally 各配动作成为可提取的线索）：结构外化之后，创新段的『改结构』才有可下手的物件；写作计划（boxing up 分格提纲）是地图的书面版。
+    visual: 地图放大图：转弯处标着连接词图标与动作小人
+    anchors:
+    - G5_244
+    - G5_0541
+  examples:
+  - level: 1
+    word_ids:
+    - G5_244
+    - G5_0541
+    sentence: first / finally
+    scene_note: 连接词动作锚点举例：时序连接词各配全身动作，成为可提取的线索（清单登记词；suddenly 未入词库，见 pending）
+    supports: claim
+  error_cases: []
+  relatives:
+  - id: NE-27
+    rel: 同族
+  quiz:
+  - stem: 故事地图有什么用？
+    options:
+    - 画着好看
+    - 把故事的结构画出来，指着它就能把整篇故事说出来
+    - 代替课文不用读了
+    answer: 把故事的结构画出来，指着它就能把整篇故事说出来
+    hint_ref: mechanism『地图即结构』
+  probes: []
+  prereq:
+  - NE-27
+  order: 58
+  pain_points:
+  - 写不长
+  adult:
+    sources:
+    - St Philip's 学校 Talk for Writing 定版说明：https://www.stphilips.cambs.sch.uk/Talk-for-Writing/
+    - 低龄段多感官学范文同口径表述：https://www.st-faiths.lincs.sch.uk/attachments/download.asp?file=48&type=pdf
+    boundary: EFL 低年级恰是这项技术最合用的场景（词汇少、需要身体带着嘴走），但教师要自己先会「演」范文——教师示范意愿与英语口头流利度是前置条件；班额大时全班动作复述的纠错覆盖有限，可用同桌互演 + 抽查替代全班齐演。地图必须由孩子参与绘制才有图式价值，教师印好发下去的地图只剩装饰功能。
+    disputes: 无针对该技术的独立学术分歧；其争议随 NE-27 框架整体登记。
+    evidence_grade: 实践框架级
+    pending:
+    - Corbett 原著书目：《Talk for Writing in the Early Years》与 Corbett & Strong《Talk for Writing in the Primary School》的确切出版年与版次未打开出版社页核对——三阶段体系本身已以学校定版说明与框架官网转述核实，正式引文入模前补核原著
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 例词 suddenly 不在词库（NE-28 登记的连接词动作锚点），待补词后回填 word_ids
+  - 探针待补写（PRB-NE28-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - error_cases 待补：清单未登记具体病例
+- id: NE-29
+  zone: 表达写作
+  group: NE
+  subgroup: Gibbons：支架设计
+  audience: 教师/设计层
+  headline: 支架是设计出来的，不是随口帮一句：语言支架与学习支架要同时搭在内容课里
+  headline_kid: 好老师不是把答案喂给你，而是提前把台阶修好：先一起说、先看例子、先练关键词——你踩着台阶，自己爬到原本够不着的地方。
+  claim:
+    type: tendency
+    statement: 对在主流课堂里用第二语言学学科内容的孩子，帮助不能靠临场善意，必须预先设计：planned scaffolding（课前设计：选什么文本、预教哪些语言、把任务切成什么步骤、给什么句框与示范）与 interactional scaffolding（课中互动：即时放大、重铸、追问）双管齐下；语言不单独设课时补习，而在内容学习中同步教。其检验标准是最终能撤掉、指向独立——不合此标准的不登记为支架。
+    evidence:
+    - 'Pauline Gibbons《Scaffolding Language, Scaffolding Learning: Teaching Second Language Learners in the Mainstream Classroom》（Heinemann, 2002，165 页，ISBN 0-325-00366-1；第 2 版 2015）（二手论述级）'
+    - 该书是二语教育领域被引最广的实践著作之一，读者正是「没有 ESL 培训的主流课堂教师」——与中国小学英语教师的处境结构最接近；它可视作教学循环（NE-19）在二语课堂的操作化伴侣
+    scope: 中国课堂支架须更珍惜：同一句框要在多课复现；「从口头到书面」的语式连续体在小学阶段多数只能走到前半段（口头报告、短句写作），不宜按原书的学科写作终点要求低年级；教师示范文本的质量控制（录音、范文来源）要额外设计
+    exceptions:
+    - note: 原书假设教师是母语者，中国教师自身是英语学习者——条件差异须在设计中显式处理
+      word_ids: []
+  mechanism:
+  - beat: 设计性支架
+    text_kid: 好老师提前把台阶修好：先一起说、先看例子、先练关键词。
+    text_adult: planned scaffolding 在课前完成：文本选择、语言预教、任务切分、句框与示范都预先排定；临场才想起的帮法不稳定、不可复制。
+    visual: 施工图：台阶在上课前已按图纸砌好
+    anchors: []
+  - beat: 撤掉才算数
+    text_kid: 踩着台阶爬上去以后，台阶是要拆掉的。
+    text_adult: Gibbons 以『设计性 + 指向独立』为支架设防：语式连续体（从日常口语到学科书面语）是进阶标尺，每一步配语言示范与练习，终点是学生独立完成。
+    visual: 连续体图：口头边做边说 → 口头报告 → 短句写作，支架逐段变薄
+    anchors: []
+  examples: []
+  error_cases: []
+  relatives:
+  - id: NE-19
+    rel: 同族
+  - id: W-10
+    rel: 同族
+  quiz:
+  - stem: 什么样的帮助才算真支架？
+    options:
+    - 随口帮一句
+    - 提前设计好、最后能撤掉的帮助
+    - 直接把答案给学生
+    answer: 提前设计好、最后能撤掉的帮助
+    hint_ref: mechanism『设计性支架』
+  probes: []
+  prereq: []
+  order: 59
+  pain_points:
+  - 写不长
+  - 说不出
+  adult:
+    sources:
+    - Pauline Gibbons (2002)《Scaffolding Language, Scaffolding Learning》, Heinemann（ISBN 0-325-00366-1）；第 2 版 2015
+    - ERIC 书目记录：https://eric.ed.gov/?id=ED463654
+    - WorldCat 书目：https://search.worldcat.org/title/Scaffolding-language-scaffolding-learning-:-teaching-second-language-learners-in-the-mainstream-classroom/oclc/48517687
+    boundary: Gibbons 笔下的二语孩子身处英语沉浸环境（全天各科都用英语），支架撤除后仍有海量输入托底；中国孩子一周只有几节英语课，支架设计必须更珍惜——同一句框要在多课复现，且「从口头到书面」的连续体在小学阶段多数只能走到前半段，不宜按原书的学科写作终点要求低年级。另一个差异：原书假设教师是母语者、中国教师自身是英语学习者，教师示范文本的质量控制（录音、范文来源）要额外设计。
+    disputes: 支架概念本身在学界有「被滥用成任何帮助」的批评（概念稀释）；Gibbons 的版本以「设计性 + 指向独立」设防——支架的检验标准是最终能撤掉。本条入模时须连同这一检验标准使用，不得把「给了句框」一概登记为支架。
+    evidence_grade: 二手论述级
+    pending: []
+  config_gates: null
+  status: 入模中
+  version: '1.0'
+  pending:
+  - 探针待补写（PRB-NE29-* 预留，探针库 v1 未覆盖本区）
+  - scene_spec 待补
+  - examples 待补：清单未登记例句
+  - error_cases 待补：清单未登记具体病例

@@ -1,0 +1,4324 @@
+# 小系统区规律条目（类型化模型）· 波次 W4 / 数据补齐 D
+# 来源：专家规律清单 v6 的 P（19）+ PB（13）+ C（20）+ PR（11）= 63 条，逐条按 DESIGN.md §3.1 schema 入模。
+# 纪律：不自编——断言、出处、边界、分歧均取自清单原文；病例只用清单登记的真实错例/错型，
+#   缺逐字病例者以 status: 待补 占位登记；例词只引词库 id（wordbank.json）。
+# 约定：error_cases 占位形 = {status: 待补, error_type, note}；probes 为 [] 者表示探针待补（见 adult.pending）。
+# 配套文档：small_systems_MODEL.md；挂接表：../hitching/small_systems_hitching.yaml。
+zone: 小系统
+entries:
+  - id: P-01
+    zone: 小系统
+    group: P
+    headline: "一个介词 = 一张原型图 + 一张亲戚网（有原则的多义）"
+    headline_kid: "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。"
+    claim:
+      type: rule
+      statement: "每个介词的诸多用法不是互不相干的义项清单，而是从一个中心场景（原型）出发、经经验关联（语用强化）一步步长出的一张网；学介词就是学这张网的长法。"
+      evidence: ["Tyler & Evans《The Semantics of English Prepositions》(2003, Cambridge University Press)：有原则的多义与原型场景方法的定版著作"]
+    mechanism:
+      - beat: "原型图"
+        text_kid: "先认每个介词最主要的那张图：in 是装进里面，on 是贴在面上，at 是一个点。"
+        text_adult: "原型场景（proto-scene）是网络的中心节点，由四条证据裁定（见 P-02），不是教师直觉。"
+        visual: "三个介词的原型图式并排（容器/贴面/点），作本区总图"
+        anchors: [G3_140, G3_142, V6_核心_37]
+      - beat: "亲戚网的长法"
+        text_kid: "新用法不是凭空来的：over 先有「在上面」，才长出「盖住」，再长出「越过」。"
+        text_adult: "引申引擎是语用强化：场景中反复出现的附带含义沉淀为独立义项；义项间有理据，但不是每一步都能当场推导。"
+        visual: "over 网络三层图：中心 ABOVE → 覆盖 → 越过"
+        anchors: [V6_核心_40]
+    examples:
+      - level: 1
+        word_ids: [G1_013, V6_核心_40, G3_0934]
+        sentence: "The bird flew over the wall."
+        scene_note: "操场围墙，鸟飞过去——越过义贴近中心"
+        supports: claim
+      - level: 1
+        word_ids: [G1_014, G3_140, G1_0994]
+        sentence: "The cat is in the box."
+        scene_note: "纸箱里的猫——in 的原型场景"
+        supports: claim
+      - level: 2
+        word_ids: [G1_046, V6_核心_40, G2_077]
+        sentence: "The plane flew over the hill."
+        scene_note: "飞机从山的上方越过——上方+路径的引申"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G3_142, G1_0928]
+        sentence: "The book is on the desk."
+        scene_note: "书桌场景——on 的原型场景，与 in 形成对照"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "介词义项清单式误用"
+        note: "清单未登记本条逐字错例，按纪律不自编；待课堂/语料错例补录后回填。"
+    relatives:
+      - {id: P-02, rel: 前置}
+      - {id: P-10, rel: 同族}
+      - {id: PB-01, rel: 对照}
+      - {id: PB-06, rel: 对照}
+    quiz:
+      - q: "第一次学 over，先记哪一个意思最划算？"
+        options: ["在……上方（中心义）", "盖住", "结束"]
+        answer: "在……上方（中心义）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: []
+    order: 1
+    pain_points: [错不完, 记不住]
+    adult:
+      sources: ["Tyler & Evans (2003), Cambridge University Press（接触等级：专著系统论述级；书评与方法转述见清单原文链接）"]
+      boundary: "网络是分析模型，不是要求孩子背下整张网；教学只取原型图 + 一级引申，远端义项按频率逐个补。"
+      disputes: ["Sandra & Rice (1995) 质疑多义网络的心理真实性；Evans 后期 LCCM 主张部分义项靠语境在线生成——分歧影响教学剂量，不影响「禁清单式死记」的共同结论（清单原文登记）"]
+      evidence_grade: "专著定版级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-02
+    zone: 小系统
+    group: P
+    headline: "原型不是凭感觉选的：四条证据定中心"
+    headline_kid: "全家福中间放谁的照片，要讲证据：谁最老、谁亲戚最多、谁最能代表全家——不是随便挑的。"
+    claim:
+      type: tendency
+      statement: "在 Tyler & Evans 的判据下，哪个义项是原型由四条证据裁定：历史上最早出现的义、网络中牵连最多的义、与邻居介词构成对照的义、最能预测其他义项的义；四条指向同一个，才够格当中心。"
+      evidence: ["Tyler & Evans (2003: 47) 明列的四项标准"]
+      scope: "Tyler & Evans 有原则多义框架内的原型判定；不是学界终局定案"
+      exceptions:
+        - {note: "四条证据偶有冲突（如 of 的空间源头在共时网络中已近脱落），此时以教学可用性裁决并注明，不硬凑", word_ids: [V6_核心_54]}
+    mechanism:
+      - beat: "四条证据"
+        text_kid: "选中心要过四关：最老、亲戚最多、最能跟邻居分工、最能猜出别的亲戚。"
+        text_adult: "把「原型」从直觉概念升级为可核查的方法论，避免不同教材各说一个中心义。"
+        visual: "四条证据的清单图 + over 的四关全过标记"
+        anchors: [V6_核心_40]
+      - beat: "over 的裁决示范"
+        text_kid: "over 的老家是「在上方」：它最老、亲戚最多，所以坐在全家福中间。"
+        text_adult: "15 个义项中 8 个直接涉及 ABOVE 满足主导证据；词源最早义为「高于」，两条独立证据同指一心。"
+        visual: "over 网络图上标出 8 个涉 ABOVE 的节点"
+        anchors: [V6_核心_40]
+    examples:
+      - level: 1
+        word_ids: [G1_013, V6_核心_40, G2_079]
+        sentence: "The bird is over the tree."
+        scene_note: "鸟在树上方——中心义 ABOVE"
+        supports: claim
+      - level: 1
+        word_ids: [G1_046, V6_核心_39, G3_0505]
+        sentence: "The plane is above the clouds."
+        scene_note: "与邻居 above 对照——证据三（对照集）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_40, G5_229]
+        sentence: "The car went over the bridge."
+        scene_note: "越过义——由中心义可预测的引申（证据四）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, V6_核心_40, G2_077]
+        sentence: "The ball rolled over the hill."
+        scene_note: "滚过山坡——上方+路径"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "中心义误定"
+        note: "方法论条目，清单未登记逐字错例，不自编。"
+    relatives:
+      - {id: P-01, rel: 前置}
+      - {id: P-06, rel: 同族}
+      - {id: PB-05, rel: 对照}
+      - {id: PB-07, rel: 对照}
+    quiz:
+      - q: "判定一个义项是不是原型，下面哪一条不是 Tyler & Evans 的证据？"
+        options: ["历史上最早出现", "老师觉得最常用", "最能预测其他义项"]
+        answer: "老师觉得最常用"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-01]
+    order: 2
+    pain_points: [记不住]
+    adult:
+      sources: ["Tyler & Evans (2003: 47)（接触等级：专著原文级转述，见清单链接）"]
+      boundary: "四条证据偶有冲突时以教学可用性裁决并注明（见 claim.exceptions）。"
+      disputes: ["这套裁决法是 Tyler & Evans 一家的：Brugman/Lakoff 的动态复合中心说并存登记（PB-05–PB-07）；Vandeloise 有简约性批评，Sandra & Rice (1995) 有心理真实性批评；by 的中心义仍有案可查之争（清单 v3 回写登记）"]
+      evidence_grade: "专著原文级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-03
+    zone: 小系统
+    group: P
+    headline: "in 的原型是「装进容器」：边界之内，且受容器影响"
+    headline_kid: "in 就是「进到里面」：在盒子里、在房间里、在队伍里——被围起来，就是 in。"
+    claim:
+      type: rule
+      statement: "in 的中心场景是「一个东西被包容在有边界的空间里」——不止位置在内，还附带「被围住、受保护、受影响」的功能面；房间、盒子、城市、队伍、一段时间都是不同尺度的容器。"
+      evidence: ["Tyler & Evans (2003) 对 in 的 proto-scene 分析（容纳为中心义）", "Language and Cognition 图式实验：被试对 in 的 CONTAINMENT 图式有稳定的心理意象对应"]
+    mechanism:
+      - beat: "容器图式"
+        text_kid: "东西装进口袋、杯子，人进屋子——装进一个有边的地方，就是 in 的老家。"
+        text_adult: "容纳图式（CONTAINMENT）来自身体经验；原型场景除几何面外还含功能面：容器对内容物施加影响（庇护、限制、浸泡）。"
+        visual: "容器剖面图：物体在边界之内，容器以虚线标出「影响」"
+        anchors: [G3_140, G1_0994]
+      - beat: "容器可以变大变抽象"
+        text_kid: "城市是装人的大容器，队伍是装人的长容器，in trouble 是泡在麻烦里出不来。"
+        text_adult: "尺度与域可变：in the city（区域）、in the team（集合）、in trouble / in love（状态浸泡）都是一级引申。"
+        visual: "同心放大图：盒子→房间→城市→状态"
+        anchors: [G4_0985, G4_0989, V6_日常_63]
+    examples:
+      - level: 1
+        word_ids: [G1_014, G3_140, G1_0994]
+        sentence: "The cat is in the box."
+        scene_note: "纸箱与猫——最典型的容器场景"
+        supports: claim
+      - level: 1
+        word_ids: [G1_015, G3_140, V6_家庭_36]
+        sentence: "The dog is in the room."
+        scene_note: "房间是装人和物的容器"
+        supports: claim
+      - level: 2
+        word_ids: [G3_131, G3_140, G4_0989]
+        sentence: "The students are in the team."
+        scene_note: "队伍作为集合容器（学生为复数泛指，students 词形经词库 student 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_055, G3_140, G2_0936]
+        sentence: "The water is in the cup."
+        scene_note: "液体被杯子装住并受其形状影响"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "in/on 切分误用"
+        note: "错位高发区见 PB-12；逐字病例待语料补录，不自编。"
+    relatives:
+      - {id: P-01, rel: 前置}
+      - {id: P-04, rel: 对照}
+      - {id: P-05, rel: 对照}
+      - {id: PB-12, rel: 同族}
+    scene_spec:
+      facts: "对象：小物（图形）+ 容器（背景）；状态变化：小物由外进入边界之内；守恒：容器边界不破"
+      beats: "入场（外）→ 穿越边界 → 停在内部并受容器影响（停顿标注）"
+    quiz:
+      - q: "「小鸟在鸟笼里」用哪个词最贴？"
+        options: ["in", "on", "at"]
+        answer: "in"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-01]
+    order: 3
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Tyler & Evans (2003) in 的 proto-scene 分析", "Language and Cognition 图式心理意象实验（清单原文链接）"]
+      boundary: "容纳的边界可由功能划定而非物理围合（in the street 英式指在街道区域内）；in the photo 靠「画面即容器」的识解，属一级引申。"
+      disputes: []
+      evidence_grade: "专著定版级 + 实验支持"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-04
+    zone: 小系统
+    group: P
+    headline: "on 的原型是「贴面加承重」：接触面在替它撑着"
+    headline_kid: "on 就是「贴在表面上」：东西挨着一个面，靠这个面托着、挂着、套着。"
+    claim:
+      type: rule
+      statement: "on 的中心场景是「贴在一个面上，并且被这个面撑住」——接触（contact）与支撑（support）是原型双要素；支撑不必自下而上，墙面以附着、手指以环绕方式同样「负责」物体的位置。"
+      evidence: ["Tyler & Evans (2003) 对 on 的 proto-scene 分析", "本项目纲领 dom-prepositions coreView 已采此口径"]
+    mechanism:
+      - beat: "贴面"
+        text_kid: "书贴在桌面上，画贴在墙上，戒指套在手指上——都先要「挨着一个面」。"
+        text_adult: "接触是 on 的第一要素；面的朝向不限：水平面、垂直面、环绕面都是面。"
+        visual: "三种面朝向并排：桌面（托）/墙面（挂）/手指（套），同一图式"
+        anchors: [G3_142, G1_002, G4_158]
+      - beat: "承重"
+        text_kid: "面不只是挨着，还要「负责」：没有桌面，书就掉下去了。"
+        text_adult: "支撑是功能要素：面以承托、附着或环绕的方式维持物体的位置；on the bus 是被交通工具承载的一级引申。"
+        visual: "桌面抽走→书下落的对照帧"
+        anchors: [G2_105]
+    examples:
+      - level: 1
+        word_ids: [G1_002, G3_142, G1_0928]
+        sentence: "The book is on the desk."
+        scene_note: "书桌——水平面承托"
+        supports: claim
+      - level: 1
+        word_ids: [G4_158, G3_142, G3_0934]
+        sentence: "The picture is on the wall."
+        scene_note: "挂画——垂直面附着（中国孩子高发错位点，见 PB-12）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_服装_26, G3_142, V6_身体_13]
+        sentence: "The ring is on her finger."
+        scene_note: "戒指套手指——环绕式承托"
+        supports: claim
+      - level: 2
+        word_ids: [G1_014, G3_142, G2_0930]
+        sentence: "The cat is on the table."
+        scene_note: "猫在桌面上——面承托活物"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "汉语「上」直译误用 in/at"
+        note: "错位图见 PB-12；逐字病例待语料补录，不自编。"
+    relatives:
+      - {id: P-03, rel: 对照}
+      - {id: PB-03, rel: 对照}
+      - {id: PB-12, rel: 同族}
+    scene_spec:
+      facts: "对象：物体（图形）+ 面（背景）；状态变化：物体落到面上并停住；守恒：接触不中断"
+      beats: "悬空 → 落面 → 面承托（停顿标注「面在负责」）"
+    quiz:
+      - q: "画挂在墙上，为什么用 on 不用 in？"
+        options: ["画贴在墙面上，墙面负责挂住它", "画在墙的里面", "墙是一个点"]
+        answer: "画贴在墙面上，墙面负责挂住它"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-01]
+    order: 4
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Tyler & Evans (2003) on 的 proto-scene 分析"]
+      boundary: "on 的「面」可退化为线或点（on the corner 与 at 竞争，英美有别）；on foot 是固定习语——本项目 FR09 已裁定不得编「脚踩地面接触」的伪因果，与本条机制严格区分。"
+      disputes: ["功能几何框架（P-08）强调：单说「贴面」不够，面的功能角色才是 on 与 in 分工的决定项——与本条不冲突，是精度之争（清单原文登记）"]
+      evidence_grade: "专著定版级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-05
+    zone: 小系统
+    group: P
+    headline: "at 的原型是「当成一个点」：把对象压扁成坐标"
+    headline_kid: "at 是把东西看成地图上的一个小点点：地方再大，在 at 眼里也只是一个点。"
+    claim:
+      type: rule
+      statement: "at 的中心操作是「点化」：把一个地方、一个时刻、一个目标在心里压成一个没有大小的点来对待——at the door、at 5 o'clock、aim at 都是同一次维度消减的识解操作。"
+      evidence: ["Tyler & Evans (2003) 对 at 的分析（点位为中心义）", "本项目纲领 coreView 同此口径"]
+    mechanism:
+      - beat: "点化"
+        text_kid: "车站那么大，在地图上也只是一个点——说 at 的时候，心里想的就是那个点。"
+        text_adult: "点化 = 主动忽略对象的内部结构（大小、形状），只保留其在参照系中的坐标位置。"
+        visual: "车站实景渐缩成地图上的一个点"
+        anchors: [V6_核心_37, G4_0517]
+      - beat: "点在各域复现"
+        text_kid: "地方可以是一个点，时间也可以：五点钟就是时间线上的一个点。"
+        text_adult: "at 与 in/on 的对立在地点与时间两域平行出现（at the station / in the city；at 5 / in June），是图式跨域复用的强证据。"
+        visual: "地点轴与时间轴并排，at 同点亮两轴的点位"
+        anchors: [G1_022]
+    examples:
+      - level: 1
+        word_ids: [G3_131, V6_核心_37, G4_0517]
+        sentence: "The student is at the station."
+        scene_note: "车站作为位置点"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_15, V6_核心_37, V6_家庭_34]
+        sentence: "We are at home."
+        scene_note: "家被点化为所在位置"
+        supports: claim
+      - level: 2
+        word_ids: [G1_007, V6_核心_37, G1_0932]
+        sentence: "The teacher is at the door."
+        scene_note: "门口是一个位置点"
+        supports: claim
+      - level: 2
+        word_ids: [G2_105, V6_核心_37, G4_0517]
+        sentence: "The bus is at the station."
+        scene_note: "车辆到站——点位到达"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "at/in 点与容器混用"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: P-03, rel: 对照}
+      - {id: P-14, rel: 同族}
+      - {id: PB-08, rel: 同族}
+    scene_spec:
+      facts: "对象：目标点（背景被压成点）+ 到达物（图形）；状态变化：图形与点重合"
+      beats: "大场景 → 收缩为点 → 图形落在点上"
+    quiz:
+      - q: "at the station 里的 station 被看成什么？"
+        options: ["一个点", "一个容器", "一个面"]
+        answer: "一个点"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-01]
+    order: 5
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Tyler & Evans (2003) at 的点位分析", "Herskovits (1986) at 的理想意义（射体与被当作点的界标重合）为上游同源表述，见 PB-08"]
+      boundary: "点化是「看作」点不是「是」点：同一城市可点化（at）也可容器化（in the city），随说法切换；at night 属约定，见 P-09。"
+      disputes: []
+      evidence_grade: "专著定版级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-06
+    zone: 小系统
+    group: P
+    headline: "over 的中心是「在上方」，不是「盖住」：一个全家福的裁决示范"
+    headline_kid: "over 的老家是「在上面」：毯子盖在上面，是因为它先要在上面；跳过栅栏，是从上面过去。"
+    claim:
+      type: tendency
+      statement: "在 Tyler & Evans 的判据下，over 的中心义是「在……上方（ABOVE）」：「盖住」是从「上方」长出的第一代亲戚（上方之物常遮挡下方之物），「翻过、越过」是带上路径的后代；其余义项按亲缘排队，不与中心并列。"
+      evidence: ["Tyler & Evans (2003) 对 over 的全章个案分析（15 个义项的网络图）", "四条原型证据（P-02）在 over 上全部同指 ABOVE"]
+      scope: "Tyler & Evans (2003) 修订网络内的裁决；Brugman/Lakoff 的动态复合中心说并存（见 PB-05–PB-07），本条呈现口径取 T&E 版"
+      exceptions:
+        - {note: "Brugman/Lakoff 版以动态复合图式（从上方越过）为中心，静态上方义反而是抽掉路径的近亲——网络拓扑不同，非措辞差异", word_ids: [V6_核心_40]}
+    mechanism:
+      - beat: "中心在上方"
+        text_kid: "先认老家：over 是「在上面」——鸟在墙的上方，飞机在山的上方。"
+        text_adult: "ABOVE 中心由四条证据同指（P-02）：词源最早义、网络主导、垂直对照集、可预测性。"
+        visual: "over 全家福：中心 ABOVE 节点高亮"
+        anchors: [V6_核心_40]
+      - beat: "亲戚按代排队"
+        text_kid: "毯子盖住东西，是因为它在上面挡住了；跳过栅栏，是从上面带着路过去。"
+        text_adult: "经验桥梁：在上方 → 遮挡（覆盖义）；在上方 + 移动 → 越过义；越过终点 → 结束、遍等抽象义。"
+        visual: "三代引申链：上方 → 覆盖 → 越过 → 结束"
+        anchors: [V6_核心_40, G5_229]
+    examples:
+      - level: 1
+        word_ids: [G1_013, V6_核心_40, G3_0934]
+        sentence: "The bird flew over the wall."
+        scene_note: "从上方越过——中心与路径的结合"
+        supports: claim
+      - level: 1
+        word_ids: [G1_046, V6_核心_40, G3_0505]
+        sentence: "The plane flew over the clouds."
+        scene_note: "云层上方——纯上方义"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, V6_核心_40, G5_229]
+        sentence: "The ball went over the bridge."
+        scene_note: "球越过桥面"
+        supports: claim
+      - level: 2
+        word_ids: [G1_014, V6_核心_40, G1_0994]
+        sentence: "The cat jumped over the box."
+        scene_note: "跳过纸箱——越过义的儿童场景"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "over/above 混用"
+        note: "分工见 P-13；逐字病例待语料补录，不自编。"
+    relatives:
+      - {id: P-02, rel: 前置}
+      - {id: P-13, rel: 同族}
+      - {id: PB-05, rel: 对照}
+      - {id: PB-07, rel: 对照}
+    scene_spec:
+      facts: "对象：移动物（图形）+ 参照物（背景）；状态变化：图形沿路径经参照物上方到达另一侧；守恒：不接触参照物"
+      beats: "一侧起飞 → 上方通过 → 另一侧落下"
+    quiz:
+      - q: "over 的中心义是哪一个？"
+        options: ["在……上方", "盖住", "翻转"]
+        answer: "在……上方"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-02]
+    order: 6
+    pain_points: [错不完, 记不住]
+    adult:
+      sources: ["Tyler & Evans (2003) over 个案章", "先声：Brugman (1981) 学位论文与 Lakoff (1987) 的 over 案例研究"]
+      boundary: "over 与 above 不是同义词：over 隐含与参照物的关联（可接触、可构成路径），above 只是海拔更高；儿童阶段只教「上方 + 越过」两支，above 作认读词。"
+      disputes: ["Lakoff (1987) 原始网络与 Tyler & Evans (2003) 修订网络在义项数目与切分上分歧明显；中心义动态复合说见 PB-05，判据之争见 PB-07（清单原文登记）"]
+      evidence_grade: "专著定版级（呈现口径）；中心义之争未有学界终局"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-07
+    zone: 小系统
+    group: P
+    headline: "up 是「多」：数量往上涨，所以 prices go up"
+    headline_kid: "水越多，杯子里的水位就越高——所以英语里「变多」也用 up：声音变大、价格变高，都往「上」走。"
+    claim:
+      type: rule
+      statement: "up 的空间义（向上）与数量义（增多）由经验相关绑定：往容器里加量，液面同时升高——「多就是上」是日常经验沉淀的通道，不是比喻修辞。"
+      evidence: ["Tyler & Evans (2003) 对 up 与 MORE 的经验相关分析", "一般理论形态：Lakoff & Johnson《Metaphors We Live By》(1980) 概念隐喻 MORE IS UP"]
+    mechanism:
+      - beat: "同场同现"
+        text_kid: "往杯子里倒水：水变多了，水位也变高了——两件事总是一起发生。"
+        text_adult: "经验相关（experiential correlation）：两个总在同一场景中同现的属性（量↑ 与 高度↑）在概念系统里被绑成一条通道，语言形式随之共享。"
+        visual: "倒水动画：水量条与水位线同步上升"
+        anchors: [G3_K19, G2_0936, G1_055]
+      - beat: "数量借 up"
+        text_kid: "价格涨了、声音大了，英语都说 up——因为它们像水位一样往上走。"
+        text_adult: "汉语「上涨、提高」同样以竖直轴编码数量，儿童可由母语经验直接接通（正迁移）。"
+        visual: "价格标签与音量条沿竖直轴上升"
+        anchors: [G3_K19]
+    examples:
+      - level: 1
+        word_ids: [G1_055, G3_K19, G2_0936]
+        sentence: "The water goes up in the cup."
+        scene_note: "倒水时水位上升——经验相关的原场景"
+        supports: claim
+      - level: 1
+        word_ids: [G3_K19, G2_0503]
+        sentence: "The wind is up."
+        scene_note: "风变大了——量增用 up（登记用法，量级义）"
+        supports: claim
+      - level: 2
+        word_ids: [G4_157, G3_K19]
+        sentence: "Turn the light up."
+        scene_note: "把灯调亮——量增的动作指令（亮度量）"
+        supports: claim
+      - level: 2
+        word_ids: [G3_K19, G2_0501]
+        sentence: "The sun is up."
+        scene_note: "太阳升起来了——空间义本体，与数量义同源对照"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "up 引申义误推"
+        note: "give up 等另一支引申见 claim 边界；逐字病例待补，不自编。"
+    relatives:
+      - {id: P-15, rel: 同族}
+      - {id: P-01, rel: 前置}
+    quiz:
+      - q: "为什么「价格变高」用 up 说？"
+        options: ["量变多时东西会往上升，经验把「多」和「上」绑在了一起", "up 本来就是「贵」的意思", "随便选的，没有道理"]
+        answer: "量变多时东西会往上升，经验把「多」和「上」绑在了一起"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-01]
+    order: 7
+    pain_points: [记不住, 说不出]
+    adult:
+      sources: ["Tyler & Evans (2003) up 与 MORE 分析（LINGUIST List 书评转述液体上升例）", "Lakoff & Johnson (1980) MORE IS UP"]
+      boundary: "经验相关解释「为什么偏偏是 up」，不保证每个 up 短语可推导：give up 的 up 是「到顶/到底」的完结义（另一支引申，须单独点明）；speak up 的 up 兼有音量与公开化两支，教学取音量支。"
+      disputes: ["Tyler & Evans 提醒此类关联应表述为经验沉淀而非在线比喻运算，与 Lakoff 早期表述略有温差，属理论精度之争（清单原文登记）"]
+      evidence_grade: "专著定版级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-08
+    zone: 小系统
+    group: P
+    headline: "几何算一半，功能算另一半：苹果在碗沿之下为什么还能说 in（功能几何框架）"
+    headline_kid: "碗的工作是「装」，桌子的工作是「托」——东西有没有被装好、被托好，比它在哪儿更重要。"
+    claim:
+      type: rule
+      statement: "判断 in/on 不能只量几何位置：介词的适用度由几何约束与功能约束联合决定——容器的控制感、支撑物的承重关系等功能变量，独立地左右母语者的选择（苹果低于碗沿仍说 in，因为碗的功能是盛）。"
+      evidence: ["Coventry & Garrod《Saying, Seeing and Acting》(2004, Psychology Press)：功能几何框架与系列实验"]
+    mechanism:
+      - beat: "先看图式，再看功能"
+        text_kid: "苹果装在碗里，哪怕没冒尖，也是 in——因为碗就是用来装的。"
+        text_adult: "原型场景给几何骨架，功能变量（容器是否在「控制」内容物、面是否在「承托」）做第二决定项。"
+        visual: "同一只碗两帧：苹果低于碗沿 / 高于碗沿，均标 in 并亮起「碗在盛」功能标"
+        anchors: [G1_037, G3_0937, G3_140]
+      - beat: "功能翻转选择"
+        text_kid: "杯子放在桌上是 on，因为桌子在托它；换个东西不起作用了，说法就会变。"
+        text_adult: "Coventry & Garrod 的实验操纵同一几何构型下的功能变量（如容器倾斜致内容物将洒），被试的介词选择与评级随之系统变化——纯几何模型无法解释。"
+        visual: "倾斜容器实验示意：几何不变，功能变，选择变"
+        anchors: [G2_0936, G3_142]
+    examples:
+      - level: 1
+        word_ids: [G1_037, G3_140, G3_0937]
+        sentence: "The apple is in the bowl."
+        scene_note: "苹果在碗中——碗的盛装功能"
+        supports: claim
+      - level: 1
+        word_ids: [G2_0936, G3_142, G2_0930]
+        sentence: "The cup is on the table."
+        scene_note: "桌面托杯——承托功能"
+        supports: claim
+      - level: 2
+        word_ids: [G1_038, G3_140, G3_0937]
+        sentence: "The bananas are in the bowl."
+        scene_note: "香蕉装碗（复数泛指，词形经 banana 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G3_142, G2_0930]
+        sentence: "The books are on the table."
+        scene_note: "多本书在桌面（复数泛指，词形经 book 归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "纯几何判介词"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: P-03, rel: 前置}
+      - {id: P-04, rel: 前置}
+      - {id: PB-10, rel: 同族}
+      - {id: PB-09, rel: 对照}
+    scene_spec:
+      facts: "对象：物体 + 容器/面；状态变化：功能关系成立与否切换（盛得住/将洒）；守恒：几何位置不变"
+      beats: "正放容器（in 成立）→ 倾斜将洒（功能松动，标问号）"
+    quiz:
+      - q: "苹果没有冒出碗沿，却说 in the bowl，最重要的理由是？"
+        options: ["碗的功能就是盛东西，它正在盛", "苹果离碗很近", "苹果是圆的"]
+        answer: "碗的功能就是盛东西，它正在盛"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-03, P-04]
+    order: 8
+    pain_points: [错不完]
+    adult:
+      sources: ["Coventry & Garrod (2004) 功能几何框架（Routledge 书页）", "溯源补正（清单 v3 回写）：功能决定选择的思想源头是 Herskovits (1986) 的功能知识与使用类型架构，见 PB-09/PB-10"]
+      boundary: "功能变量不取消图式：教学表述应为「原型图 + 它起什么作用」，而非另起一套功能清单。"
+      disputes: ["Coventry 一系批评原型场景过于几何化；Tyler & Evans 回应 proto-scene 本含功能要素（Evans 后续承认 2003 版低估功能复杂度）——教学取两家交集：图式必带功能（清单原文登记）"]
+      evidence_grade: "专著 + 实验级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-09
+    zone: 小系统
+    group: P
+    headline: "时间介词是把空间图「借」到时间上：时长定介词是伪规则"
+    headline_kid: "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。"
+    claim:
+      type: rule
+      statement: "时间介词与空间介词是同一套图式在两个域的两次使用：in 把时段看成容器，on 把日子看成可贴附的面，at 把时刻看成点；「大于一天用 in、等于一天用 on、小于一天用 at」的时长规则是把借用结果误抄成的伪规则，被 in the morning / at night 当场推翻。"
+      evidence: ["Lakoff & Johnson (1980) 时间以空间结构化的一般理论", "Tyler & Evans (2003) 各介词时间义的引申分析", "本项目 frameworks 裁定（ROYAL T09 / g14-time-borrow）已按此口径改判并登记约定例外"]
+      exceptions:
+        - {note: "at night：时段却用 at——night 与 midnight/noon 的点化传统成组，属历史约定残留，单记为例外，不许为圆图式而编解释", word_ids: [V6_核心_37, G2_0599]}
+        - {note: "in the evening 与 at night 的不对称同属约定残留", word_ids: [G3_140, G3_0565]}
+    mechanism:
+      - beat: "三图借用"
+        text_kid: "早上是一段时间，像泡在水里用 in；星期一是一天，像贴在日历上用 on；五点钟是一个点，用 at。"
+        text_adult: "时间域缺乏自有知觉，语言系统性地以空间图式结构化时间；映射保留图式内部逻辑（容器有内、面可贴附、点无大小）。"
+        visual: "空间三图（容器/面/点）与时间三例（in the morning / on Monday / at 5）一一连线"
+        anchors: [G3_140, G1_0564, G3_142, G5_210]
+      - beat: "伪规则当场破"
+        text_kid: "有人说「短的时间用 at」——可是 at night 的 night 是一整夜，in the morning 的 morning 也不到一天，规则当场就不对了。"
+        text_adult: "反例即裁定证据：判据是图式（点/面/容器），不是时长数值；伪规则把结果当原因。"
+        visual: "伪规则卡被两个反例划破"
+        anchors: [V6_核心_37, G2_0599, G3_140, G1_0564]
+    examples:
+      - level: 1
+        word_ids: [G3_140, G1_0564]
+        sentence: "We play in the morning."
+        scene_note: "上午时段——容器图"
+        supports: claim
+      - level: 1
+        word_ids: [G3_142, G5_210]
+        sentence: "We have English on Monday."
+        scene_note: "星期一——日历面"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_37, G1_022]
+        sentence: "The bus comes at five."
+        scene_note: "五点——时刻点（数字词 five 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [G3_140, G2_100]
+        sentence: "We swim in summer."
+        scene_note: "季节是更长的容器"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "时长伪规则误用（如 *at the morning 类推）"
+        note: "伪规则及其反例已在 claim 登记；逐字学习者病例待语料补录，不自编。"
+    relatives:
+      - {id: P-03, rel: 前置}
+      - {id: P-04, rel: 前置}
+      - {id: P-05, rel: 前置}
+      - {id: PB-13, rel: 同族}
+    quiz:
+      - q: "in the morning 用 in，是因为把 morning 看成了什么？"
+        options: ["一段时间容器", "一个点", "一天的面"]
+        answer: "一段时间容器"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-03, P-04, P-05]
+    order: 9
+    pain_points: [错不完, 记不住]
+    adult:
+      sources: ["Lakoff & Johnson (1980)", "Tyler & Evans (2003) 时间义引申分析", "本项目裁定记录（清单原文）"]
+      boundary: "借用不是全覆盖：at night 等约定残留单记为例外（见 claim.exceptions）；on Monday morning 的叠加用法按「就近修饰的日为面」处理，属高年级内容。"
+      disputes: ["Evans《The Structure of Time》(2004) 主张时间首先是可知觉的独立经验、并非从空间隐喻派生——分歧影响理论表述，不影响小学阶段「按空间图教时间介词」的有效性（清单原文登记，含书评批评一并登记）"]
+      evidence_grade: "理论定版 + 项目裁定级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-10
+    zone: 小系统
+    group: P
+    headline: "教介词要教「图 + 长法」，不要教义项清单：三组教学实验的共识"
+    headline_kid: "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。"
+    claim:
+      type: rule
+      statement: "把原型图和引申理据讲给学生听，比给义项清单让他们背，效果好且能迁移到没教过的用法——介词是「越讲理据越省力」的领域。"
+      evidence: ["Tyler, Mueller & Ho (2011) 准实验：认知语言学组显著进步（p<.0003），且在未学用法上同样获益", "Wijaya & Ong (2018) 青少年被试复制同向优势", "本项目纲领 basis 另引 Hung et al. (2018) 准实验同向结论"]
+    mechanism:
+      - beat: "按图索引"
+        text_kid: "新用法不用一条条背：把它挂到认识的图或者近亲身上，就记住了。"
+        text_adult: "网络结构为新义项提供预成的挂钩，记忆从「逐条存储」变为「按图索引」；理据感同时提升注意与加工深度。"
+        visual: "新义项节点逐个挂上 over 网络的示意"
+        anchors: [V6_核心_40]
+      - beat: "迁移证据"
+        text_kid: "（教师侧）学生没学过的用法也能猜对，说明他们学到的是图，不是句子。"
+        text_adult: "Tyler 等人 (2011) 中 CL 组在 to/for/at 的未学用法上同样获益；Wijaya & Ong (2018) 在中学年龄段复制优势方向。"
+        visual: "实验结果条形示意（只示方向，不编数值）"
+        anchors: [V6_核心_48, V6_核心_49, V6_核心_37]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_48, G2_081]
+        sentence: "We go to school."
+        scene_note: "to 的终点图——教学实验的核心词之一"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_49, V6_核心_1]
+        sentence: "This gift is for me."
+        scene_note: "for 的受益图"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_37, G1_0932]
+        sentence: "Look at the door."
+        scene_note: "at 的瞄准图"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_37, G3_141]
+        sentence: "Look at the map."
+        scene_note: "目光落点——点的引申"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "义项清单式死记（教学侧风险，非学生错句）"
+        note: "本条为教学法条目，病例形态为教学诊断，逐字病例不适用，登记待补说明。"
+    relatives:
+      - {id: P-01, rel: 前置}
+      - {id: P-14, rel: 同族}
+      - {id: P-18, rel: 同族}
+    quiz:
+      - q: "教介词时，哪种做法有实验支持、还能迁移到没教过的用法？"
+        options: ["讲原型图 + 引申理据", "发义项清单背诵", "只做替换操练"]
+        answer: "讲原型图 + 引申理据"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-01]
+    order: 10
+    pain_points: [记不住]
+    adult:
+      sources: ["Tyler, Mueller & Ho (2011), Vigo International Journal of Applied Linguistics 8: 181–206", "Wijaya & Ong (2018), Indonesian Journal of Applied Linguistics 8(1)", "Hung et al. (2018)（纲领 basis 引）"]
+      boundary: "两组实验的被试分别为成人进阶学习者与中学生；对小学儿童，图式须以动画/实物演示承载，理据讲解的语言负荷降到最低——方法可迁移，剂量须重标定。"
+      disputes: ["无主流分歧；争论点在效应量与保持时长，以及 CL 讲法对低水平学习者的语言门槛（清单原文登记）"]
+      evidence_grade: "准实验复制级（成人/中学生样本）"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-11
+    zone: 小系统
+    group: P
+    headline: "华语学生的介词错误是「切分不同」，不是「记性不好」"
+    headline_kid: "中文和英语像两把不同的尺子，量同一个地方，刻度画的位置不一样。用错介词常常不是忘了，是拿错了尺子。"
+    claim:
+      type: tendency
+      statement: "中国学生错介词，多是把汉语「在 + 方位词」系统的切分线套到英语 in/on/at 的图式系统上——属于概念迁移：错误成系统、可预测，集中在两系统切分不一致的地带。"
+      evidence: ["CLEC（桂诗春、杨惠中 2003）：介词短语是中国学习者 11 大类偏误之一", "基于 CLEC 的 at/on/in 误用与概念迁移专项研究（证据等级：语料个案分析，强度中等）"]
+      scope: "华语母语学习者的介词错误预判；CLEC 被试为中学生以上，小学生分布可能不同"
+      exceptions:
+        - {note: "某些 in/on 混淆在各国学习者中都出现，属普遍发展难点，不全是汉语迁移", word_ids: [G3_140, G3_142]}
+    mechanism:
+      - beat: "两把尺子"
+        text_kid: "中文说「在桌子上、在盒子里」，靠后面的「上、里」分工；英语靠 in、on、at 三张图分工——分工的位置不一样。"
+        text_adult: "母语的空间概念化方式（汉语的后置定位与方位名词系统）作为默认框架被带入英语（概念迁移）；同母语背景学生错误形态高度趋同且与汉语切分线对应，是「系统差异」的判据（Jarvis 迁移可检测性标准）。"
+        visual: "同一场景两把尺子并排量：汉语刀口 vs 英语刀口"
+        anchors: [G3_140, G3_142, V6_核心_37]
+      - beat: "错位高发区"
+        text_kid: "「在墙上」要用 on、「在树上」苹果和鸟还不一样——这些地方最容易拿错尺子，要多练。"
+        text_adult: "错误集中在切分不一致的地带；错位地图见 PB-12（本条给出语料描写，PB-12 给出习得机制解释）。"
+        visual: "墙面与树两个高发点位标红"
+        anchors: [G4_158, G3_0934, G2_079]
+    examples:
+      - level: 1
+        word_ids: [G4_158, G3_142, G3_0934]
+        sentence: "The picture is on the wall."
+        scene_note: "汉语「在墙上」的「上」在此归 on——切分对照点"
+        supports: claim
+      - level: 1
+        word_ids: [G1_037, G3_142, G2_079]
+        sentence: "The apples are on the tree."
+        scene_note: "苹果长在树上（树的一部分）用 on（词形经 apple 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_013, G3_140, G2_079]
+        sentence: "The bird is in the tree."
+        scene_note: "鸟在枝叶之间用 in——与苹果对照，汉语不切这一刀"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G3_140, G3_K32]
+        sentence: "I read it in the newspaper."
+        scene_note: "「在报纸上」归 in——汉语「上」横跨三家的一例（详见 PB-12）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "介词概念迁移误用（pp 类）"
+        note: "错型与高发区已由 CLEC 描写登记；逐字病例待从语料专项研究补录，不自编。"
+    relatives:
+      - {id: PB-12, rel: 同族}
+      - {id: PB-11, rel: 前置}
+      - {id: P-10, rel: 对照}
+    quiz:
+      - q: "中国学生总把某些介词用错，最主要的原因是？"
+        options: ["汉语和英语切分空间的刀口位置不同", "单词没背够", "考试太难"]
+        answer: "汉语和英语切分空间的刀口位置不同"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-03, P-04, P-05]
+    order: 11
+    pain_points: [错不完]
+    adult:
+      sources: ["CLEC（桂诗春、杨惠中 2003）介词短语偏误类", "基于 CLEC 的 at/on/in 概念迁移研究（hanspub 转载，证据等级中等）"]
+      boundary: "本条用于教师侧的错误预判与重点投放，不作为学生个体的诊断结论；小学生口语/图画描述任务的错误分布可能不同。"
+      disputes: ["迁移解释与普遍发展顺序解释之争（见 claim.exceptions）：教学上两说兼容——既按迁移地图设防，也按普遍顺序排课（清单原文登记）"]
+      evidence_grade: "语料描写级（二手个案分析为中等强度）"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（逐字错例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-12
+    zone: 小系统
+    group: P
+    headline: "谁做图形谁做背景：介词句子先定位「要找的东西」"
+    headline_kid: "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。"
+    claim:
+      type: rule
+      statement: "一句空间表达里，小而动（或正被寻找）的东西做「图形（figure）」，大而稳的东西做「背景（landmark/ground）」，介词负责把图形钉在背景上；介词短语的本质是一个定位指令，语言镜像的是「注意如何扫描世界」。"
+      evidence: ["Talmy 图形—背景理论，定版于《Toward a Cognitive Semantics》Vol. I (2000, MIT Press)", "Tyler & Evans (2003) 的 trajector/landmark 术语即源于此传统"]
+    mechanism:
+      - beat: "先定找谁"
+        text_kid: "杯子在桌子上——我们在找杯子，杯子站前面；桌子又大又稳，站在后面当背景。"
+        text_adult: "图形—背景分工是知觉组织原则在语言中的投影：图形 = 待定物，背景 = 参照物；介词编码两者的空间关系。"
+        visual: "杯子高亮（图形）+ 桌子灰化（背景）+ on 钉子图标"
+        anchors: [G2_0936, G3_142, G2_0930]
+      - beat: "分工可反转"
+        text_kid: "要是丢的是桌子，也可以说「桌子在杯子下面」——不算错，只是听起来怪，因为平时没人找桌子。"
+        text_adult: "当背景本身成为话题，分工可反转；反转句是语用怪异而非语法错误，教学中以「怪异 ≠ 错误」点明。"
+        visual: "同一场景两句对照，一句标「常说」，一句标「怪但不算错」"
+        anchors: [G3_143]
+    examples:
+      - level: 1
+        word_ids: [G2_0936, G3_142, G2_0930]
+        sentence: "The cup is on the table."
+        scene_note: "找杯子——杯子做图形"
+        supports: claim
+      - level: 1
+        word_ids: [G1_014, G3_140, G1_0994]
+        sentence: "The cat is in the box."
+        scene_note: "找猫——猫做图形，纸箱做背景"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G3_143, G1_0928]
+        sentence: "The book is under the desk."
+        scene_note: "书在桌下——仍是小的做图形"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, G3_140, G2_076]
+        sentence: "The ball is in the grass."
+        scene_note: "草地做背景，球做图形"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "图形背景倒置（语用怪异型）"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: P-16, rel: 同族}
+      - {id: PB-08, rel: 同族}
+    quiz:
+      - q: "「The cup is on the table」里，做图形（被找的东西）的是？"
+        options: ["cup", "table", "on"]
+        answer: "cup"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-03, P-04]
+    order: 12
+    pain_points: [说不出]
+    adult:
+      sources: ["Talmy (2000) Vol. I 图形—背景理论", "Tyler & Evans (2003) 术语承袭"]
+      boundary: "背景成为话题时分工可反转（The table is under the cup 只是语用怪异，不合语法之说不成立）。"
+      disputes: []
+      evidence_grade: "理论定版级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-13
+    zone: 小系统
+    group: P
+    headline: "垂直方向是四个词合伙切的：above / over / under / below 的分工"
+    headline_kid: "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"
+    claim:
+      type: tendency
+      statement: "英语把垂直轴切给四个词分管：over 管「上方且有牵连（可盖、可越）」，above 只管「海拔更高」，under 管「下方且有牵连（被压、被罩）」，below 只管「海拔更低」——每个词的意义部分地由它与邻居的边界决定。"
+      evidence: ["Tyler & Evans (2003) 对照集分析（above/over/under/below 四词划分垂直维度）"]
+      scope: "垂直维度的四词对照集；分工是强倾向而非无缝切割"
+      exceptions:
+        - {note: "over 与 above 在部分语境可互换（如数量读法 over/above 100 people），互换区按频率逐个登记", word_ids: [V6_核心_40, V6_核心_39]}
+        - {note: "below 不在现词库（仅 above/over/under 已入），本条例句以已入三词演示，below 走补词流程后补齐四词全量（WORDBANK 规则 2）", word_ids: []}
+    mechanism:
+      - beat: "牵连轴"
+        text_kid: "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。"
+        text_adult: "对照集联合切分语义空间：over/under 带与参照物的关联（接触可能、路径构成），above/below 只编码标量高低；below 在温度、海拔等标量域占优（below zero）。"
+        visual: "垂直轴一分为二：左列「有牵连」over/under，右列「只比高低」above/below"
+        anchors: [V6_核心_40, V6_核心_39, G3_143]
+      - beat: "替换测试"
+        text_kid: "把词换一换试试：换了意思就变，说明它们分工不同。"
+        text_adult: "The plane flew over the hill（越过，有路径牵连）vs The plane flew above the clouds（仅更高）——替换测试可验证分工（清单原文）。"
+        visual: "同句两版对照，差异处高亮"
+        anchors: [G1_046]
+    examples:
+      - level: 1
+        word_ids: [G1_046, V6_核心_40, G2_077]
+        sentence: "The plane flew over the hill."
+        scene_note: "越过山丘——over 的牵连义"
+        supports: claim
+      - level: 1
+        word_ids: [G1_046, V6_核心_39, G3_0505]
+        sentence: "The plane is above the clouds."
+        scene_note: "只比云高——above 的标量义"
+        supports: claim
+      - level: 2
+        word_ids: [G1_014, G3_143, G2_0930]
+        sentence: "The cat is under the table."
+        scene_note: "桌子下方且被桌罩着——under 的牵连义"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0506, V6_核心_39, G5_231]
+        sentence: "The stars are above the mountain."
+        scene_note: "星星比山高——纯高低"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "over/above 与 under/below 边界混用"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: P-06, rel: 前置}
+      - {id: P-02, rel: 同族}
+    quiz:
+      - q: "「below zero（零度以下）」用 below 不用 under，是因为这里只比什么？"
+        options: ["高低（标量）", "谁盖住谁", "谁压着谁"]
+        answer: "高低（标量）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-06]
+    order: 13
+    pain_points: [错不完]
+    adult:
+      sources: ["Tyler & Evans (2003) 对照集分析"]
+      boundary: "四词分工是强倾向：互换区按频率逐个登记，不追求理论洁癖；below 的标量域例（below zero）中 zero 已在库，below 本词待补。"
+      disputes: ["无主流分歧；个别边界案例（如 over vs above 在粉末/液体上方）各家语料结论略有出入（清单原文登记）"]
+      evidence_grade: "专著定版级"
+      pending: ["below 待补入词库后回填本条 law_refs 与四词全量菜单", "误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-14
+    zone: 小系统
+    group: P
+    headline: "to / for / at：三个「指向」介词的分工"
+    headline_kid: "to 是「送到门口」，for 是「为了谁」，at 是「瞄准靶心」——都是朝一个方向，但心里装的东西不一样。"
+    claim:
+      type: rule
+      statement: "to 指向终点（移动的落点），for 指向意图与受益（为了谁、奔着什么），at 指向瞄准的点（目标点）——三者共享「指向」图式，靠「落点 / 意图 / 瞄准」分工；中国学生常错在把三者都塞给汉语的「给/对/向」。"
+      evidence: ["Tyler & Evans (2003) 对 to/for/at 的个案网络分析", "Tyler, Mueller & Ho (2011) 实验直接验证三词图式教学的可教性（见 P-10）", "for 的三站口径（为了谁/奔着哪儿/持续多久）已由本项目 spacetime 对齐裁定（sf-021/sf-022）"]
+    mechanism:
+      - beat: "三张指向图"
+        text_kid: "to 看终点：走到学校门口停下；for 看为了谁：礼物是给妹妹的；at 看靶心：目光落在门上。"
+        text_adult: "三词原型场景分别为路径终点（to）、目的/受益（for，由「在前、为先」引申）、点位瞄准（at，点化图式见 P-05）；引申网络各自展开。"
+        visual: "三幅小图并排：箭头落点 / 礼物递向受益人 / 十字准星"
+        anchors: [V6_核心_48, V6_核心_49, V6_核心_37]
+      - beat: "最重要的落地对比"
+        text_kid: "give it to me 是「递给我收着」，give it for me 是「替我拿着/为了我」——收的人和受益的人不是一回事。"
+        text_adult: "接收者（to）与受益者（for）的分工是本条在小学阶段最重要的落地对比；汉语「给」一词兼包两职，是误用的母语根源。"
+        visual: "同一递物动作两帧：收下 vs 代收，高亮差异"
+        anchors: [V6_日常_8]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_48, G2_081]
+        sentence: "We go to school."
+        scene_note: "学校是路的终点"
+        supports: claim
+      - level: 1
+        word_ids: [G3_129, V6_核心_49, G2_066]
+        sentence: "The gift is for my sister."
+        scene_note: "礼物为了妹妹——受益"
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_8, V6_核心_48, V6_核心_1]
+        sentence: "Give it to me."
+        scene_note: "递给我——我是接收者"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_37, G3_141]
+        sentence: "Look at the map."
+        scene_note: "目光瞄准地图上的点"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "to/for 受益与接收混用"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: P-05, rel: 前置}
+      - {id: P-10, rel: 同族}
+    quiz:
+      - q: "「This cake is for my mum.」里的 for 说的是？"
+        options: ["为了谁、给谁受益", "移动的终点", "瞄准的点"]
+        answer: "为了谁、给谁受益"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-05]
+    order: 14
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Tyler & Evans (2003) to/for/at 个案", "Tyler, Mueller & Ho (2011)"]
+      boundary: "for 的时长义（for two hours）与 to 的比较义（ten to six）属远端引申，小学只教空间与受益核心义。"
+      disputes: []
+      evidence_grade: "专著定版 + 实验级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-15
+    zone: 小系统
+    group: P
+    headline: "小品词是介词的「动词版亲戚」：up / out / off 的图式义随身携带"
+    headline_kid: "动词后面的小词 up、out、off 都有自己的画面：up 是「满了、到底了」，out 是「从里面出来」——看着画面记短语动词，容易得多。"
+    claim:
+      type: tendency
+      statement: "短语动词里的 up、out、off 带着各自的图式义上岗：up 有「到顶、到底」的完结义（源于容器装满到顶），out 是「由内到外、脱离原位」；图式义的贡献是系统性引申，但合成度是连续谱——透明的可推，习语化的仍须整记。"
+      evidence: ["Tyler & Evans (2003) 将空间小词处理为统一的多义网络对象（介词与小品词同网）", "Lindner (1981) 对 out/up 的经典分析（UC San Diego 博士论文，导师 Langacker；书目经 CRL 通讯核实）"]
+      scope: "图式透明与半透明的短语动词；完全习语化者不在可推范围内"
+      exceptions:
+        - {note: "半透明者（如 put up with）图式只可助记、不可推导；完全习语化的用法仍须整块记忆", word_ids: [G3_K19]}
+    mechanism:
+      - beat: "小词随身带图"
+        text_kid: "stand up 是真的站起来（往上）；eat up 是吃到底、吃光——up 还是那个 up。"
+        text_adult: "小品词与介词同源同图式，在短语动词中的意义贡献是图式义的系统引申（完结、显现、脱离、持续等体貌义）。"
+        visual: "容器装满到顶的动画对应 eat up 的「光盘」帧"
+        anchors: [G3_K19, G3_K21, G3_K44]
+      - beat: "透明度三档"
+        text_kid: "有的短语动词一看图就懂，有的要猜一猜，有的只能整块记住——分三档对待。"
+        text_adult: "透明（stand up）可推，半透明（put up with）助记，习语化整记；教学不许把助记说成推导。"
+        visual: "三档滑杆：可推 / 助记 / 整记"
+        anchors: [G3_K19]
+    examples:
+      - level: 1
+        word_ids: [G3_K19]
+        sentence: "Stand up, please."
+        scene_note: "教室日常指令——up 的空间义本体"
+        supports: claim
+      - level: 1
+        word_ids: [G3_K21, G2_0489]
+        sentence: "We play out in the garden."
+        scene_note: "到外面玩——out 的由内到外（garden 场景）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_048, G3_K19]
+        sentence: "Eat up the cake."
+        scene_note: "把蛋糕吃光——up 的完结义"
+        supports: claim
+      - level: 2
+        word_ids: [G4_157, G3_K44]
+        sentence: "Turn off the light."
+        scene_note: "关灯——off 的脱离/关闭义"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "短语动词逐个死记（教学侧风险）"
+        note: "本条病例形态为学习策略诊断，逐字病例不适用，登记待补说明。"
+    relatives:
+      - {id: P-07, rel: 同族}
+      - {id: P-19, rel: 同族}
+      - {id: P-01, rel: 前置}
+    quiz:
+      - q: "eat up 里的 up 是什么意思？"
+        options: ["吃到底、吃光（完结）", "往上吃", "站着吃"]
+        answer: "吃到底、吃光（完结）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-01]
+    order: 15
+    pain_points: [记不住, 说不出]
+    adult:
+      sources: ["Tyler & Evans (2003) 统一网络处理", "Lindner (1981) out/up 分析", "Boers & Demecheleer (1998), ELT Journal 52(3) 图式法早期课堂化尝试"]
+      boundary: "合成度连续谱按三档处理；与 V 组的词块观衔接：高频习语块整记保流利，图式透明族成组教保迁移。"
+      disputes: ["短语动词应「按图式成组」还是「按整块高频优先」之争（与 V-05/V-06 块优先观的剂量分歧）：本项目取折中——两路并行（清单原文登记）"]
+      evidence_grade: "专著 + 经典论文级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-16
+    zone: 小系统
+    group: P
+    headline: "静态的东西借动态的词：The road runs along the river（虚构运动）"
+    headline_kid: "路明明没动，却说它「跑」——其实是我们的眼睛在沿着路看过去，像手指划过地图一样。"
+    claim:
+      type: rule
+      statement: "英语常把静止的延展物说成在动（路沿着河伸展、篱笆爬上山坡）——这是观察者的目光沿物体扫描（心理扫描）被直接写成了运动句；读到这类句子不要按字面找「谁在跑」。"
+      evidence: ["Talmy 虚构运动研究，定版于《Toward a Cognitive Semantics》Vol. I (2000) 第 2 章 'Fictive motion in language and ception'（pp. 99–175；1996 年原载 Bloom et al. 编《Language and Space》）"]
+    mechanism:
+      - beat: "目光在动"
+        text_kid: "眼睛从路的这一头看到那一头，就像手指划过地图——句子把这趟「眼睛的旅行」说成了路在跑。"
+        text_adult: "虚构运动（fictive motion）源于注意沿路径的心理扫描；语言在实动与虚动之间共用同一套路径图式。"
+        visual: "地图上一条路，高亮点沿路移动模拟目光扫描，路本身静止并标注"
+        anchors: [G4_0592, G5_232]
+      - beat: "阅读提示"
+        text_kid: "看到 runs、goes 说路和篱笆，先想一想：是真的在动，还是眼睛在旅行？"
+        text_adult: "眼动与阅读实验显示虚构运动句的加工伴随沿路径的注意移动；汉语亦有同类表达（「这条路通到山顶」），可由母语平行现象接通。"
+        visual: "真运动句与虚构运动句对照卡"
+        anchors: [G4_0592]
+    examples:
+      - level: 1
+        word_ids: [G4_0592, G5_232]
+        sentence: "The road runs along the river."
+        scene_note: "清单原文例句——路沿河伸展（along 待补词库，本句为条目原文例句先行登记，见 pending）"
+        supports: claim
+      - level: 1
+        word_ids: [G4_0592, G5_235]
+        sentence: "The road goes to the island."
+        scene_note: "路通向岛——静态延伸用 goes"
+        supports: claim
+      - level: 2
+        word_ids: [G5_229, G5_232]
+        sentence: "The bridge is over the river."
+        scene_note: "对照：静态位置的普通说法，不用运动词"
+        supports: claim
+      - level: 2
+        word_ids: [G4_0592, G5_231]
+        sentence: "The road climbs up the mountain."
+        scene_note: "路「爬上」山坡——虚构运动的爬升版（climb 已在库）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "虚构运动字面误读"
+        note: "本条为阅读理解提示，无登记逐字病例，不自编。"
+    relatives:
+      - {id: P-12, rel: 前置}
+      - {id: P-19, rel: 同族}
+    quiz:
+      - q: "「The road runs along the river」里，真的在跑的是？"
+        options: ["谁都没跑，是目光沿着路在移动", "路在跑", "河在跑"]
+        answer: "谁都没跑，是目光沿着路在移动"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-12]
+    order: 16
+    pain_points: [读不快]
+    adult:
+      sources: ["Talmy (2000) Vol. I 第 2 章（页码经 2026-11-01 补核销项）"]
+      boundary: "小学阶段只作阅读理解提示，不作产出教学目标；along 不在现词库，例句为清单原文例句，along 须走补词流程（见 pending）。"
+      disputes: ["无主流分歧；虚构运动归语义层还是语用推导层属理论记账之争（清单原文登记）"]
+      evidence_grade: "专著定版级"
+      pending: ["along 待补入词库后回填 law_refs", "误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-17
+    zone: 小系统
+    group: P
+    headline: "先空间、后时间、再抽象：介词义的展开顺序就是教学顺序"
+    headline_kid: "每个介词都是从「讲地方」开始长大的：先学会讲地方，再讲时间，最后讲看不见摸不着的意思——我们学它的顺序，就跟它长大的顺序一样。"
+    claim:
+      type: tendency
+      statement: "一个介词的义项在历史与习得中大体按「空间 → 时间 → 抽象」的顺序展开：空间义最早出现、最具体，抽象义最晚、最依赖图式迁移——教学按这个顺序排，是带例外的总体趋势与教学路径，不是无例外铁律。"
+      evidence: ["Tyler & Evans (2003) 原型判定标准一（历史最早义多为空间义）", "习得侧：Johnston & Slobin (1979) 儿童方位表达的稳定产出顺序（in/on/under/beside 先于 between 与前后）", "介词时间义通常晚于空间义习得（Clark 1973/1974，转引自 Kemmerer 2005）"]
+      scope: "各语言在自身范畴内部的展开顺序（语言特异性限定，见 PB-11）；不管「遇见的次序」，只管讲解的展开次序"
+      exceptions:
+        - {note: "个别介词的抽象用法有早于空间用法的反例记录（Rice 1999；Sandra & Rice 1995），顺序说已按清单降格为趋势", word_ids: []}
+        - {note: "高频抽象搭配（如 at once、in fact）可作为整块提前认读，不受顺序约束", word_ids: [V6_核心_37, G3_140]}
+    mechanism:
+      - beat: "成长路线"
+        text_kid: "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。"
+        text_adult: "空间经验在发展与演化上都先行：具身空间图式是最早可用的认知资源，其余域靠映射借用（与 P-09 同一原理的时间轴版本）。"
+        visual: "三级台阶：空间 → 时间 → 抽象，各放一个 in 的例句"
+        anchors: [G3_140]
+      - beat: "顺序即排课"
+        text_kid: "（教师侧）排课按台阶走：先把地方讲透，时间借图跟上，抽象义最后逐个补。"
+        text_adult: "P-02 四条标准中「最早义」一条在 15 个介词上大体指向空间义；教学实验（P-10）按空间原型起步的设计与此一致。注意 Bowerman & Choi 的限定：顺序发生在各语言自己的范畴之内（PB-11）。"
+        visual: "本区 order 字段的排布示意"
+        anchors: [G3_140, G3_142]
+    examples:
+      - level: 1
+        word_ids: [G1_014, G3_140, G1_0994]
+        sentence: "The cat is in the box."
+        scene_note: "第一级：空间义"
+        supports: claim
+      - level: 1
+        word_ids: [G3_140, G1_0564]
+        sentence: "We play in the morning."
+        scene_note: "第二级：时间义（借空间图）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_015, G3_142, G2_0930]
+        sentence: "The dog is on the table."
+        scene_note: "空间义先行习得的另一原型（幼儿产出顺序前列）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G3_143, G1_0928]
+        sentence: "The book is under the desk."
+        scene_note: "under 与 in/on 同属先行组（Johnston & Slobin 1979）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "抽象义抢先教学（教学侧风险）"
+        note: "顺序条目，逐字病例不适用，登记待补说明。"
+    relatives:
+      - {id: P-09, rel: 同族}
+      - {id: PB-11, rel: 对照}
+      - {id: PB-13, rel: 同族}
+    quiz:
+      - q: "教 in 的三个意思，顺序应该是？"
+        options: ["在盒子里 → 在早上 → 在麻烦中", "在麻烦中 → 在盒子里 → 在早上", "哪个都行，没有区别"]
+        answer: "在盒子里 → 在早上 → 在麻烦中"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-09]
+    order: 17
+    pain_points: [记不住]
+    adult:
+      sources: ["Tyler & Evans (2003)", "Johnston & Slobin (1979), Journal of Child Language 6(3): 529–545", "Clark (1973/1974) 转引 Kemmerer (2005)", "反例：Rice (1999)、Sandra & Rice (1995)"]
+      boundary: "顺序是强倾向不是锁步；语言特异性限定（v3 回写）：展开顺序是各语言在自身范畴内部的展开，不预设普适概念清单；对中国孩子还要叠加刀口错位（PB-12）。"
+      disputes: ["习得顺序的儿童证据多来自英语母语儿童；汉语儿童的时间介词相对难度排序可能位移，待本项目自证（清单原文登记）"]
+      evidence_grade: "趋势级（已按反例降格）"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-18
+    zone: 小系统
+    group: P
+    headline: "中国课堂的本土证据：概念教学对华语学生同样有效"
+    headline_kid: "（教师侧条目，不上儿童屏）"
+    claim:
+      type: tendency
+      statement: "在华语大学生样本中，120 分钟的概念导向介词训练（人工讲解、计算机辅助或双轨）后，填空与图片引出两项测验的准确率均有可测提升——概念教学在华语课堂可落地；向小学外推时只取方向（可行且有效），不取效应量数值。"
+      evidence: ["香港树仁大学 Wong Man Ho 主持的教育局 R&D 项目结题报告（2021–22；157 名华语大学生，三组对照）"]
+      scope: "华语成人样本的方向性证据；小学应用须以动画/实物承载重标定剂量"
+      exceptions:
+        - {note: "被试为大学生、训练总量仅 120 分钟、目标介词有限——效应量数值不可外推到小学", word_ids: []}
+    mechanism:
+      - beat: "本土复制"
+        text_kid: "（教师侧条目，无儿童面讲解）"
+        text_adult: "与 P-10 相同机制：网络化表征降低逐项记忆负荷；华语被试的结果同时说明，概念迁移（P-11）造成的问题可以被显性的概念重构教学对冲。"
+        visual: "三组（人导/机辅/双轨）前后测方向示意"
+        anchors: [G3_140, G3_142, V6_核心_37]
+      - beat: "落地含义"
+        text_kid: "（教师侧条目，无儿童面讲解）"
+        text_adult: "理论引用链指向 Tyler (2012)《Cognitive Linguistics and Second Language Learning》；本条与 P-10 构成「国际证据 + 本土证据」的双登记。"
+        visual: "证据链图：T&E 框架 → Tyler 2012 → 本土项目"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G4_158, G3_142, G3_0934]
+        sentence: "The picture is on the wall."
+        scene_note: "训练目标构型之一（贴面）"
+        supports: claim
+      - level: 1
+        word_ids: [G1_014, G3_140, G1_0994]
+        sentence: "The cat is in the box."
+        scene_note: "训练目标构型之一（容纳）"
+        supports: claim
+      - level: 2
+        word_ids: [G3_131, V6_核心_37, G4_0517]
+        sentence: "The student is at the station."
+        scene_note: "训练目标构型之一（点位）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G3_143, G1_0928]
+        sentence: "The book is under the desk."
+        scene_note: "图片引出测验式的空间描述"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "不适用（证据登记条目）"
+        note: "本条登记教学证据，无学生病例，登记待补说明。"
+    relatives:
+      - {id: P-10, rel: 同族}
+      - {id: P-11, rel: 同族}
+    quiz:
+      - q: "华语大学生的本土实验能直接告诉小学老师什么？"
+        options: ["概念教学可行且有效（方向）", "小学照搬 120 分钟剂量", "效应量数值可直接套用"]
+        answer: "概念教学可行且有效（方向）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-10]
+    order: 18
+    pain_points: []
+    adult:
+      sources: ["Wong Man Ho (Ivy) 教育局 R&D 项目结题报告 2021–22（香港树仁大学；项目 PDF，清单原文链接）"]
+      boundary: "结论只取方向不取数值（见 claim.exceptions）；本条为教师侧证据登记，儿童屏不上。"
+      disputes: []
+      evidence_grade: "本土准实验级（成人样本）"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: P-19
+    zone: 小系统
+    group: P
+    headline: "语言怎么「装」运动：英语把路径装进小尾巴，汉语把路径装进动词系统"
+    headline_kid: "说「跑出去」，英语和汉语装东西的格子不一样：英语把「怎么动」装进大词（run），把「往哪去」做成小尾巴挂在后面（out）；汉语把「往哪去」也装进动词里。学 run out 不是背新单词，是学英语的装法。"
+    claim:
+      type: tendency
+      statement: "Talmy 的运动事件类型学：语言描写运动时须决定把路径装在哪里——英语是卫星框架语言（方式装进主动词，路径装进小品词卫星），汉语的路径由趋向补语与连动成分承担、分工不同；这是两种语言的特征性默认模式之差，不是「能不能」的绝对禁令。"
+      evidence: ["Talmy (1985) 'Lexicalization Patterns'（收入 Shopen 编《Language Typology and Syntactic Description》Vol. 3, pp. 57–149），后系统化于《Toward a Cognitive Semantics》Vol. II (2000)（接触等级：二手系统论述级）", "Slobin (1996) 'Thinking for Speaking'（章节预览级）", "Chen & Guo (2009) 汉语小说语料研究，Journal of Pragmatics 41: 1749–1766（章节预览级）"]
+      scope: "类型学特征性（characteristic）默认模式；英语也有路径动词（enter、exit——拉丁层词），汉语也能细说方式"
+      exceptions:
+        - {note: "英语的路径动词 enter/exit/ascend 恰是拉丁层词，不服从卫星默认——默认模式有成批的词源层例外", word_ids: []}
+    mechanism:
+      - beat: "两个格子"
+        text_kid: "英语的句子像有两个格子：大格子装「怎么动」（跑、游、滚），小格子装「往哪去」（out、in、across）。"
+        text_adult: "词汇化模式 = 路径的默认编码位置。卫星框架腾出动词槽位装方式，故方式动词词库异常丰富（trudge、sprint、wade 等），且「方式动词 + 路径卫星」能产性极高——这是短语动词在英语里成系统的根源。"
+        visual: "双格装配图：run/swim/roll × out/in/across 自由组合"
+        anchors: [G2_087, G3_K21, G3_K40, G5_0638]
+      - beat: "为说话而思考"
+        text_kid: "说哪种语言，就会先注意哪种东西：说英语的人先看「怎么动」，汉语先看「往哪走、到了没」。"
+        text_adult: "Slobin 的 thinking for speaking：每种语言的装法训练配套的注意力习惯，从母语带进二语，构成系统性迁移；Slobin 的跨语言「青蛙故事」叙事研究显示学龄前儿童的叙述已呈现母语框架习惯。"
+        visual: "同一运动事件两副眼镜的注视点对照"
+        anchors: [G2_087]
+    examples:
+      - level: 1
+        word_ids: [G1_013, G3_K21]
+        sentence: "The bird flew out."
+        scene_note: "方式（fly）+ 路径卫星（out）的最小装配"
+        supports: claim
+      - level: 1
+        word_ids: [G1_015, G3_K40, G1_0994]
+        sentence: "The dog ran into the box."
+        scene_note: "跑进箱子——路径装进 into"
+        supports: claim
+      - level: 2
+        word_ids: [G1_014, G5_0638, G4_0592]
+        sentence: "The cat ran across the road."
+        scene_note: "穿过马路——across 承担路径"
+        supports: claim
+      - level: 2
+        word_ids: [G2_089, G5_0638, G5_232]
+        sentence: "We swim across the river."
+        scene_note: "游过河——方式动词 + 路径卫星的能产组合"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "汉语趋向结构直译（路径编码错位）"
+        note: "错型机制已登记；逐字病例待语料补录，不自编。"
+    relatives:
+      - {id: P-15, rel: 同族}
+      - {id: P-16, rel: 同族}
+    quiz:
+      - q: "run out 里，out 这个小尾巴装的是什么？"
+        options: ["往哪去（路径）", "怎么动（方式）", "谁在动"]
+        answer: "往哪去（路径）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-15]
+    order: 19
+    pain_points: [说不出, 错不完]
+    adult:
+      sources: ["Talmy (1985/2000)（二手系统论述级）", "Slobin (1996)（章节预览级；APA PsycNet 书目核实）", "Chen & Guo (2009), DOI 10.1016/j.pragma.2008.10.015（章节预览级）"]
+      boundary: "类型学说的是特征性默认模式，不是绝对禁令（见 claim.exceptions）；教学不可把框架说成「英语只有小品词表路径、汉语只有动词表路径」的铁律。"
+      disputes: ["汉语归类三派并立：Talmy 本人归卫星框架；Slobin (2004) 另立等立框架；Chen & Guo (2009) 以小说语料支持等立说——三派共识只在机制层（汉英路径编码分工不同），归类标签之争如实登记，不在正文拍板（清单原文）"]
+      evidence_grade: "类型学定版级（归类未定版）"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-01
+    zone: 小系统
+    group: PB
+    headline: "介词书可以不按词编、按「意义簇」编：先有共同的画面，再比邻居的差别"
+    headline_kid: "（教师侧条目，不上儿童屏——本条登记的是这本书的组织法。）"
+    claim:
+      type: rule
+      statement: "Lindstromberg 不给每个介词写孤立词条，而是把意义相邻的介词编成「功能决定的簇」（有核心有外围）地讲：每章从核心词的基本义出发，越走越远地比它和邻居的差别；全书最后一章倒过来编——从抽象概念出发反查该用哪个介词。他的总目标是解释「在同一语境里换掉一个介词，意义为什么变、怎样变」，替换测试是其基本教学动作。"
+      evidence: ["Lindstromberg《English Prepositions Explained》（初版 1998；修订版 2010, John Benjamins, 273 pp.）出版社目录全文", "Levshina 书评（Language 学会 Book Notices）对全书结构与簇组织的系统描述（接触等级：目录 + 书评级）"]
+    mechanism:
+      - beat: "簇的编法"
+        text_kid: "（教师侧条目，无儿童面讲解）"
+        text_adult: "全书 21 章：19 章按意义簇编排（如第 2 章路径簇 toward/to/into/through/out/from；第 9 章 above/over 簇；第 12 章 under/below 簇），第 21 章是纯概念导向的抽象概念索引；每章离心式展开：核心基本义 → 引申 → 近义词分界。"
+        visual: "全书簇地图（以出版社目录为准）"
+        anchors: [V6_核心_48, G3_K40, ADD_0295]
+      - beat: "与逐词网络的关系"
+        text_kid: "（教师侧条目，无儿童面讲解）"
+        text_adult: "簇编排是教学组织法（横轴对照），与 Tyler & Evans 的逐词网络（纵轴引申）是两种组织轴，可叠加使用，不必二选一；它不声称大脑按簇存储介词。"
+        visual: "横轴（对照）× 纵轴（引申）的十字组织图"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G1_046, V6_核心_40, G2_077]
+        sentence: "The plane flew over the hill."
+        scene_note: "垂直簇（第 9 章 above/over）的替换测试素材"
+        supports: claim
+      - level: 1
+        word_ids: [G1_046, V6_核心_39, G3_0505]
+        sentence: "The plane is above the clouds."
+        scene_note: "同簇邻居替换——换词即换义（本书总目标）"
+        supports: claim
+      - level: 2
+        word_ids: [G2_105, V6_核心_48, G4_0517]
+        sentence: "The bus goes to the station."
+        scene_note: "路径簇（第 2 章）成员 to"
+        supports: claim
+      - level: 2
+        word_ids: [G1_047, G3_K40, G5_231]
+        sentence: "The train goes into the mountain."
+        scene_note: "路径簇成员 into（山口隧道口场景）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "不适用（书目组织法条目）"
+        note: "教师侧组织法登记，无学生病例，登记待补说明。"
+    relatives:
+      - {id: P-01, rel: 对照}
+      - {id: PB-02, rel: 同族}
+    quiz:
+      - q: "Lindstromberg 这本书的基本教学动作是什么？"
+        options: ["替换测试：换一个介词看意义怎么变", "背诵义项清单", "按字母顺序查词"]
+        answer: "替换测试：换一个介词看意义怎么变"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-01]
+    order: 20
+    pain_points: []
+    adult:
+      sources: ["Lindstromberg (1998 初版年份经 2026-11-01 定版销项：John Benjamins 修订版官方页明示 originally published in 1998；1997 说仅见二手著录，不再挂待核)", "Levshina 书评；Andersen 的 Hermes 书评与作者专栏（见 PB-02/PB-04）（接触等级：目录 + 书评级，未读原书正文章节）"]
+      boundary: "簇编排不声称心理表征；与 P-01 总纲形成方法论对照，两者互补（清单原文）。"
+      disputes: ["无直接分歧；方法论对照见 boundary（清单原文登记）"]
+      evidence_grade: "目录 + 书评级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-02
+    zone: 小系统
+    group: PB
+    headline: "基本义要能「画出来」：可描绘性是 Lindstromberg 给核心义定的门槛"
+    headline_kid: "每个介词都有一张「证件照」：on 的照片是一个圆球搁在一条线上。学介词先认照片，再看它在别的地方的样子。"
+    claim:
+      type: rule
+      statement: "一个介词的基本义应当简单到能用一张小图画出来（一团东西搁在一条线上，就是 on 的招牌图）；画不出来的词（如 with）就老实承认它没有单一基本图，只能用一组图加「或」连起来——可描绘性本身就是判断「基本义定得对不对」的检验。"
+      evidence: ["Lindstromberg《English Prepositions Explained》(1998/2010) 的基本义陈述法", "作者专栏 'Against the grain', Humanising Language Teaching 3(4), 2001（接触等级：目录 + 书评 + 作者自述级）"]
+    mechanism:
+      - beat: "图标检验"
+        text_kid: "先给每个介词拍一张最简单的照片：on 是圆球搁在线上，in 是圆球进到框里。"
+        text_adult: "空间介词分「可描绘的」与「不可描绘的」：on 的最常见空间义可用极简图标说清（侧视图中一个圆团被一条线从下方托住）；两个参与者称 Subject（被定位物）与 Landmark（参照物）。"
+        visual: "on/in/at 三张极简图标并排（圆+线/圆+框/圆+点）"
+        anchors: [G3_142, G3_140, V6_核心_37]
+      - beat: "反对纯搭配法"
+        text_kid: "（教师侧）光背「和哪个词搭配」学不会介词：为什么 on what condition 和 under what condition 不一样，搭配表答不出来，意义才答得出。"
+        text_adult: "作者明确反对只靠搭配学介词：意义知识是解开习语差别的钥匙；基本义先用图钉住，抽象义再沿图引申。"
+        visual: "搭配表打叉 → 意义图打勾的对照"
+        anchors: [V6_核心_50]
+    examples:
+      - level: 1
+        word_ids: [G1_041, G3_142, G2_0930]
+        sentence: "The ball is on the table."
+        scene_note: "on 的证件照本景：圆团搁在线（面）上"
+        supports: claim
+      - level: 1
+        word_ids: [G1_041, G3_140, G1_0994]
+        sentence: "The ball is in the box."
+        scene_note: "in 的证件照：圆团进框"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, V6_核心_37, G1_0932]
+        sentence: "The ball is at the door."
+        scene_note: "at 的证件照：圆团落在点上"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, G3_143, G2_0930]
+        sentence: "The ball is under the table."
+        scene_note: "under 图标：圆团在线（面）之下"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "基本义定得画不出来（教学侧风险）"
+        note: "方法论条目，逐字病例不适用，登记待补说明。"
+    relatives:
+      - {id: P-04, rel: 同族}
+      - {id: PB-01, rel: 前置}
+      - {id: PB-03, rel: 同族}
+    quiz:
+      - q: "按 Lindstromberg 的标准，一个「基本义」定得对不对，先看它能不能怎样？"
+        options: ["被画成一张小图", "被翻译成中文", "被编成口诀"]
+        answer: "被画成一张小图"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PB-01]
+    order: 21
+    pain_points: [记不住]
+    adult:
+      sources: ["Lindstromberg (1998/2010)；作者专栏 (2001)（接触等级：目录+书评+作者自述级）"]
+      boundary: "作者自陈这些基本义的「认知真实性仍需实证支持」（Levshina 书评转述）——图标是教学表征，不冒充心理实验结论；不可描绘的词（with、of 等）不许硬画一张图充数，与本项目「不许编伪因果」同向。"
+      disputes: ["与 Tyler & Evans 分工不同：原型场景是分析者归纳的抽象图式（求分析严谨），Lindstromberg 的图标是面向学习者的可画版本（求可教）——清单 P-03/P-04 用前者，本条补后者为教学呈现层（清单原文登记）"]
+      evidence_grade: "目录 + 书评 + 作者自述级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-03
+    zone: 小系统
+    group: PB
+    headline: "on 被他拆成两个基本义：on1「接触承托」与 on2「继续向前」——切分粒度之争的一个标本"
+    headline_kid: "on 有两张证件照：一张是「贴在面上」，一张是「接着往前走」。"
+    claim:
+      type: tendency
+      statement: "在 Lindstromberg 的系统里，on 有两个并列的基本义：on1 表接触（主体与一面相贴、被托住），on2 表「继续、向前」（go on、on and on 的 on）；两个基本义各自带一簇用法，中间不强行修桥——当两组用法的图式差异大到画不出同一张图时，宁可立两个基本义。"
+      evidence: ["Lindstromberg (2010) 目录第 3、4 章标题明载 On1/on2 之分（接触等级：目录 + 书评级；具体论述未读原书正文，转述层级已标注）"]
+      scope: "Lindstromberg 系统内的共时教学表征；不否认两者历史同源"
+      exceptions:
+        - {note: "Tyler & Evans 的处理相反：把「继续」义放在小品词/体貌引申一侧，不立第二个基本义（见 P-15）", word_ids: [G3_142]}
+    mechanism:
+      - beat: "两张图"
+        text_kid: "一张图是球贴在面上（on1），一张图是箭头沿着路继续往前（on2）——画不成一张，就老实分成两张。"
+        text_adult: "判断标准仍是可描绘性（PB-02）：on2 的「沿原路继续」是另一个可画图式，与 on1 的静态接触图不同源；全书目录即按此编排（第 3 章 'On1, off, on2'）。"
+        visual: "on1 静态接触图与 on2 沿线向前图并置，中间标「不修桥」"
+        anchors: [G3_142, G3_K44]
+      - beat: "教学剂量"
+        text_kid: "（教师侧）小学只教 on1；on2 在短语动词单元以整块形式出现即可，不必现在立条教学。"
+        text_adult: "on2 的独立性在语料中显而易见：carry on / go on 的「继续」义无法从「贴面」经语用强化自然推出（没有经验桥梁），拆分派据此立义。"
+        visual: "on1/on2 用法簇的剂量分配图"
+        anchors: [G3_142]
+    examples:
+      - level: 1
+        word_ids: [G1_002, G3_142, G1_0928]
+        sentence: "The book is on the desk."
+        scene_note: "on1：接触承托"
+        supports: claim
+      - level: 1
+        word_ids: [G3_142, G2_0489]
+        sentence: "Go on, play!"
+        scene_note: "on2：继续（操场口语指令）"
+        supports: claim
+      - level: 2
+        word_ids: [G4_158, G3_142, G3_0934]
+        sentence: "The picture is on the wall."
+        scene_note: "on1：附着也是接触"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0492, G3_142]
+        sentence: "Read on."
+        scene_note: "on2：接着读——课堂指令整块"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "不适用（分歧登记条目）"
+        note: "本条即分歧标本，无学生病例，登记待补说明。"
+    relatives:
+      - {id: P-04, rel: 对照}
+      - {id: P-15, rel: 对照}
+      - {id: PB-02, rel: 前置}
+    quiz:
+      - q: "Lindstromberg 为什么把 on 拆成两个基本义？"
+        options: ["两组用法画不出同一张图，宁可立两个也不硬连", "on 拼写太简单", "为了凑章节数"]
+        answer: "两组用法画不出同一张图，宁可立两个也不硬连"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PB-02]
+    order: 22
+    pain_points: []
+    adult:
+      sources: ["Lindstromberg (2010) 目录（出版社页）", "马来亚大学系所论文对 Lindstromberg (1998) on 两义的转述（接触等级：目录+书评级）"]
+      boundary: "拆两个基本义是共时教学表征的粒度选择；小学阶段只需 on1（P-04 已覆盖）。"
+      disputes: ["本条即分歧登记：单核心+网络（Tyler & Evans）vs 多基本义并列（Lindstromberg）是介词词义学的真实断层线；清单保留 T&E 为分析框架，登记 Lindstromberg 拆分处理为教学侧可选表征，不得把「on 只有一个原型场景」写成学界定论（清单原文）"]
+      evidence_grade: "目录 + 书评级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-04
+    zone: 小系统
+    group: PB
+    headline: "against 有专章、through 在路径簇：力在场与穿过介质"
+    headline_kid: "against 是「顶着」：梯子顶着墙站住，你顶着大风往前走。through 是「从里面穿过去」：火车穿过山洞，从这一头进、那一头出。"
+    claim:
+      type: rule
+      statement: "against 的基本画面里有别的位置介词没有的东西——力：接触 + 压力/对抗方向（梯子靠墙、人迎着风、球撞门柱），「反对、对抗」义从这个身体画面直接长出；through 的画面是「从一个有界的介质内部穿过去」（穿过隧道、穿过人群、穿过森林），与 across「越过一个面」分工。"
+      evidence: ["Lindstromberg (2010) 第 5 章（beside/along/against 簇，pp. 81–88）与第 15 章 Against 专章（pp. 183–188）；through 见第 2 章路径簇（pp. 29–50）与第 9 章（接触等级：目录 + 书评 + 作者自述级，图式概括经三方互证）"]
+    mechanism:
+      - beat: "against 的力"
+        text_kid: "梯子靠着墙不会倒，因为墙顶住了它；迎着大风走路，每一步都在顶。"
+        text_adult: "图式三要素：接触 + 压力/对抗方向；静态是倚靠承压，动态是逆着力行进，抽象化后是对立关系（against the rules、fight against）。"
+        visual: "倚靠物的受力箭头图（重力 vs 墙的顶托）"
+        anchors: [G3_0934, G2_0503]
+      - beat: "through 的介质"
+        text_kid: "穿过山洞：先钻进黑黑的里面，再从另一头出来——中间那一段在里面，就是 through。"
+        text_adult: "图式 = 路径 + 介质内通过：路径两端在介质之外、中段在介质之内；介质可为实体（tunnel）、群体（crowd）或时段（through the night，同一图式的时间版）。"
+        visual: "路径线穿过介质块的横截面图，两端在外、中段在内"
+        anchors: [ADD_0295, G1_047]
+    examples:
+      - level: 1
+        word_ids: [G1_047, ADD_0295, G5_231]
+        sentence: "The train goes through the mountain."
+        scene_note: "火车穿山（隧道）——through 的介质通过"
+        supports: claim
+      - level: 1
+        word_ids: [G1_013, ADD_0295, G5_230]
+        sentence: "The bird flew through the forest."
+        scene_note: "穿过森林——介质为林木群"
+        supports: claim
+      - level: 2
+        word_ids: [G1_015, ADD_0295, G4_183]
+        sentence: "The dog ran through the garden."
+        scene_note: "穿过花园——从一头进、另一头出"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, V6_核心_39, G5_230]
+        sentence: "The ball flew over the forest."
+        scene_note: "对照：over/across 是越过，不是穿过介质内部"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "against/through 图式缺位（清单原缺口）"
+        note: "against 不在现词库、清单 P 组原无其图式分析（本条补流）；逐字病例与 against 例词待补词后回填，不自编。"
+    relatives:
+      - {id: PB-01, rel: 前置}
+      - {id: P-12, rel: 同族}
+    quiz:
+      - q: "through 和 over 过森林时，最大的不同是？"
+        options: ["through 从里面穿过去，over 从上方越过去", "through 更快", "没有不同"]
+        answer: "through 从里面穿过去，over 从上方越过去"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [PB-01]
+    order: 23
+    pain_points: [说不出, 错不完]
+    adult:
+      sources: ["Lindstromberg (2010) 目录编排与作者专栏（against 有力要素在场为专栏原文要点）（接触等级：目录+书评+作者自述级）", "学理上游：Talmy 力动态（force dynamics）——Lindstromberg 的处理是力动态在教学词典学中的落地版，源流关系非分歧（清单原文）"]
+      boundary: "against 的力图式讲解只需静态倚靠一个画面起步；through 的时间义（through the night）属引申，小学只教空间穿行。against、tunnel、crowd 均不在现词库：against 例句待补词后补入（本条 examples 先以 through 立条）。"
+      disputes: []
+      evidence_grade: "目录 + 书评 + 作者自述级"
+      pending: ["against 待补入词库后补本条例句与 law_refs", "tunnel、crowd 待补入词库", "误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-05
+    zone: 小系统
+    group: PB
+    headline: "over 网络的原始形态：中心不是静态「在上方」，而是动态的「从上方越过」"
+    headline_kid: "over 的老家不是「停在上面」，是「从上面飞过去、跨过去」——先有这个会动的画面，「停在上面」「盖住」都是它的亲戚。"
+    claim:
+      type: rule
+      statement: "多义网络这张图由 Brugman (1981) 第一个画出；在 Lakoff (1987) 的版本里，over 的中心义项是一个复合的动态图式——「一个东西沿着路径、从参照物的上方越过去」；静态的「在上方」只是去掉路径后留下的近亲，而不是中心本身。全网络至少 24 个义项（定版口径 24+），节点是全规格的具体用法类型。"
+      evidence: ["Brugman《The Story of Over》(1981, UC Berkeley 硕士论文；1989 年 Garland 出版)", "Lakoff《Women, Fire, and Dangerous Things》(1987) over 个案研究", "Tyler & Evans (2001) 原文明载 Lakoff 网络含至少 24 个不同义项（接触等级：二手系统论述级）"]
+    mechanism:
+      - beat: "动态复合中心"
+        text_kid: "飞机飞过院子、小鸟飞过墙——over 最早的样子是「飞过去」，不是「停在上面不动」。"
+        text_adult: "中心图式含路径：射体沿路径从界标上方越过；招牌节点还有覆盖义、分布义、「在另一边」义、翻转义，节点间靠家族相似链式相连。"
+        visual: "动态中心图：轨迹弧线越过界标，静态上方义作旁支"
+        anchors: [V6_核心_40, G1_046]
+      - beat: "与清单现行版的差别"
+        text_kid: "（教师侧）清单 P-06 用的是修订版（静态 ABOVE 为中心）；本条登记源头版，供教师知道那是「修订」而非「原样」。"
+        text_adult: "以静态 ABOVE 为中心时，「越过」义要靠「上方+路径」在线组合补出；以动态复合为中心时，「静态上方」靠抽掉路径得到——哪边更省是 PB-07 的判据之争。"
+        visual: "两版网络拓扑对照（动态中心 vs 静态中心）"
+        anchors: [V6_核心_40]
+    examples:
+      - level: 1
+        word_ids: [G1_046, V6_核心_40, G2_077]
+        sentence: "The plane flew over the hill."
+        scene_note: "源头版的中心场景：从上方越过"
+        supports: claim
+      - level: 1
+        word_ids: [G1_013, V6_核心_40, G3_0934]
+        sentence: "The bird flew over the wall."
+        scene_note: "鸟越墙——路径完整"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, V6_核心_40, G2_077]
+        sentence: "The ball went over the hill."
+        scene_note: "越过后落在另一边——「在另一边」义的入口"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0506, V6_核心_40, G5_231]
+        sentence: "The stars are over the mountain."
+        scene_note: "静态上方——去路径后的近亲（与中心对照）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "不适用（源头形态登记条目）"
+        note: "教师侧登记，无学生病例，登记待补说明。"
+    relatives:
+      - {id: P-06, rel: 对照}
+      - {id: PB-06, rel: 同族}
+      - {id: PB-07, rel: 同族}
+    quiz:
+      - q: "在 Brugman/Lakoff 的原始版本里，over 的中心义是？"
+        options: ["沿路径从上方越过（动态复合图式）", "静态地在上方", "盖住"]
+        answer: "沿路径从上方越过（动态复合图式）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-06]
+    order: 24
+    pain_points: []
+    adult:
+      sources: ["Brugman (1981/1989)", "Lakoff (1987)", "Brugman & Lakoff (1988) 'Cognitive topology and lexical networks'", "义项数定版（清单 v5 回写）：Tyler & Evans 原文称 at least twenty-four distinct senses，压缩对象为 24 个（→15）；原「22」无权威出处已删除；Geeraerts 表作 6 基本义 + 21 子义可作口径注（接触等级：二手系统论述级）"]
+      boundary: "24+ 个义项是分析模型，不是教学内容；小学阶段 over 只教「上方」与「越过」两支（P-06 边界同此）。"
+      disputes: ["中心义之争见 PB-07：两版中心不同（动态复合 vs 静态关系）是网络拓扑差异，不是措辞差异（清单原文登记）"]
+      evidence_grade: "二手系统论述级（源头地位经批评者 Tyler & Evans 亲手确认）"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-06
+    zone: 小系统
+    group: PB
+    headline: "连接节点的不是「引申理据」，是「图式变换」：链的性质决定了网络能长多长"
+    headline_kid: "像传话游戏：每人只改一个字，传到最后，句子已经完全不一样——但每一步都能说清改了哪里。"
+    claim:
+      type: rule
+      statement: "在 Brugman/Lakoff 的网络里，相邻义项之间的连线是一种图式变换（image-schema transformation）：对中心图式做一个小手术（把注意力移到路径终点、把一堆点看成一个面）就得到一个新义项；网络因此是链式结构——相邻节点共享特征即可，链条末端可以与中心不共享任何特征，这是家族相似在词汇中的实现。"
+      evidence: ["Brugman (1981) 与 Lakoff (1987)（同 PB-05）", "Rice (1993) 对两人网络的复刻比较（ESCOL '92 论文集，pp. 206–217；图 4 即 Brugman 原网复刻）（接触等级：二手系统论述级，含网络图复刻件）"]
+    mechanism:
+      - beat: "两种招牌变换"
+        text_kid: "（教师侧）变换一：盯着「越过之后落在哪」——长出「在另一边」；变换二：把许多个点看成一整面——长出「布满、盖住」。"
+        text_adult: "路径终点聚焦与多点聚合为面/团是二手论述通常举的两种变换；Brugman 允许网络中后天长出图式性节点，Lakoff 的节点一律是具体用法类型、不设图式节点（Rice 1993 复刻比较）。"
+        visual: "链式网络示意：每步只改一个特征，末端与中心面目全非"
+        anchors: [V6_核心_40]
+      - beat: "源头比转述乱"
+        text_kid: "（教师侧）课本上那张整齐的星形图是后来整理过的；原始网络更纠缠——这提醒我们：图是教学整理，不是大脑原样。"
+        text_adult: "Rice 的复刻显示 Brugman 原网是多维网络而非简单星形图，后世教材的「中心+辐射」图是 Lakoff 理想化后的样子。"
+        visual: "原网复刻（纠缠）vs 理想化图（星形）对照"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G1_041, V6_核心_40, G2_077]
+        sentence: "The ball went over the hill."
+        scene_note: "终点聚焦的入口：球到了山的另一边"
+        supports: claim
+      - level: 1
+        word_ids: [G1_046, V6_核心_40, G3_0505]
+        sentence: "The plane is over the clouds."
+        scene_note: "多点（云团）聚合成面——聚合变换的场景"
+        supports: claim
+      - level: 2
+        word_ids: [G1_013, V6_核心_40, G3_0934]
+        sentence: "The birds flew over the wall."
+        scene_note: "复数射体（词形经 bird 归一）——多点聚合的另一面"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0506, V6_核心_40, G5_231]
+        sentence: "The stars are over the mountain."
+        scene_note: "链末端：静态分布，与动态中心共享特征最少"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "不适用（连接机制登记条目）"
+        note: "教师侧登记，无学生病例，登记待补说明。"
+    relatives:
+      - {id: P-01, rel: 对照}
+      - {id: PB-05, rel: 前置}
+      - {id: PB-07, rel: 同族}
+    quiz:
+      - q: "Brugman/Lakoff 网络里，义项之间靠什么相连？"
+        options: ["图式变换（每步小改一点）", "语用强化", "字母顺序"]
+        answer: "图式变换（每步小改一点）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PB-05]
+    order: 25
+    pain_points: []
+    adult:
+      sources: ["Brugman (1981)、Lakoff (1987)", "Rice (1993) 网络复刻（ualberta PDF，清单原文链接）（接触等级：二手系统论述级）"]
+      boundary: "图式变换是分析者事后归纳的手术清单；教学中「引申桥梁」只需给一级近亲（上方→覆盖、上方+移动→越过），不得把整条变换链当作学生要背的推导过程。"
+      disputes: ["连接机制三家三说：图式变换（Brugman/Lakoff)、语用强化（Tyler & Evans，P-01 采用）、在线识解整合（Evans 后期 LCCM)；变换链的心理真实性正是 Sandra & Rice (1995) 质疑的焦点（清单原文登记）"]
+      evidence_grade: "二手系统论述级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-07
+    zone: 小系统
+    group: PB
+    headline: "中心义判定之争：Tyler & Evans 用两条判据把 24 个义项压回 15 个，并把中心换成静态图式"
+    headline_kid: "像整理衣柜：一件衣服要单独占一格，得证明它和别的格子里的真不一样、而且不是临时搭配出来的——不然就挂回原来的格子。"
+    claim:
+      type: tendency
+      statement: "Tyler & Evans 判定一个用法算不算「独立义项」须同时过两关：（一）它带的意义成分在原型场景里没有（非空间义或不同的空间构型）；（二）它不依赖具体语境、换个句子还在。过不了关的一律降格为「语境在线生成的解释」，不进网络。按此判据，over 的义项从 24+ 压到 15，中心也从动态复合图式换成静态的「射体高于界标」原型场景——本项目教学取修订版（取其可教性与可核查性），不宣称学理已定案。"
+      evidence: ["Tyler & Evans (2001) 'Reconsidering prepositional polysemy networks: The case of over', Language 77(4): 724–765（开放全文；接触等级：一手批评文献原文级）", "专著版 Tyler & Evans (2003)"]
+      scope: "义项切分的方法论判据之争；本项目呈现口径取修订版"
+      exceptions:
+        - {note: "Evans (2014) 后来自承有原则多义框架「可能过于简单」（二手述评语）——修订方自己的保留", word_ids: []}
+    mechanism:
+      - beat: "全规格谬误"
+        text_kid: "（教师侧）把场景里的一切差别都记成词的新意思，等于把整个场景的账记在一个词头上——账就越记越多。"
+        text_adult: "源头方法的诊断名是「全规格谬误」：把语境、世界知识、参照物物理属性带来的意义差异统统登记为义项。修订的支点是「语言形式只是提示（prompt)，意义在概念层与语境整合在线建成」——直升机对海洋与蜂鸟对花在 Lakoff 网里是两个义项，在修订版里是同一个「上方」义项的两次在线实现。"
+        visual: "两句直升机/蜂鸟例的切分对照（两格 vs 一格）"
+        anchors: [V6_核心_40]
+      - beat: "争论是光谱不是对骂"
+        text_kid: "（教师侧）中间还有 Kreitzer 的「部分规格」版本——大家在一条光谱上挪位置，不是两派对骂。"
+        text_adult: "Tyler & Evans (2001) 承 Kreitzer (1997) 的部分规格为「能在一致而有理据的方式下约束义项数目」的先行修订；Vandeloise (1990) 对 Lakoff 网络有简约性批评。"
+        visual: "全规格—部分规格—有原则多义的光谱线"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G1_046, V6_核心_40, G3_0975]
+        sentence: "The plane is over the sea."
+        scene_note: "面状界标（海）上方的「上方」义一次实现"
+        supports: claim
+      - level: 1
+        word_ids: [G1_013, V6_核心_40, G2_075]
+        sentence: "The bird is over the flowers."
+        scene_note: "点状界标（花）上方——同一义项的另一次在线实现（词形经 flower 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, V6_核心_40, G2_077]
+        sentence: "The ball went over the hill."
+        scene_note: "带路径的实现——在修订版中由「上方 + 路径」在线组合"
+        supports: claim
+      - level: 2
+        word_ids: [G1_014, V6_核心_40, G1_0994]
+        sentence: "The cat jumped over the box."
+        scene_note: "越过义的儿童场景实现"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "不适用（主分歧登记条目）"
+        note: "本条即分歧登记，无学生病例，登记待补说明。"
+    relatives:
+      - {id: P-02, rel: 同族}
+      - {id: P-06, rel: 同族}
+      - {id: PB-05, rel: 对照}
+      - {id: PB-06, rel: 对照}
+    quiz:
+      - q: "Tyler & Evans 判定独立义项的两关是？"
+        options: ["意义成分原型里没有 + 不依赖具体语境", "出现次数多 + 学生爱用", "能翻译 + 能造句"]
+        answer: "意义成分原型里没有 + 不依赖具体语境"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PB-05, PB-06]
+    order: 26
+    pain_points: []
+    adult:
+      sources: ["Tyler & Evans (2001), Language 77(4)（一手原文级）", "Vandeloise (1990) 批评见 Zlatev 空间语义综述章（二手转述）"]
+      boundary: "判据之争未有终局；清单 P-06 的旧表述（「定案示范」口径与 P-02 分歧栏「无」）与本条登记的争论不符，清单层已按对照节修订，本条入模以本登记为准。"
+      disputes: ["本条即主分歧登记：中心义（动态复合 vs 静态 ABOVE）、义项计数（24+ vs 15)、连接机制（图式变换 vs 语用强化）三线并争，外加 Sandra & Rice 的心理真实性质疑与 Vandeloise 的简约性质疑（清单原文）"]
+      evidence_grade: "一手批评文献原文级 + 二手转述"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-08
+    zone: 小系统
+    group: PB
+    headline: "每个介词只有一个「理想意义」：几何自画像，其余全是偏离"
+    headline_kid: "每个介词都有一张「标准照」：in 是「在盒子里面」，on 是「贴在面上被托住」，at 是「就站在那个点上」。照片是标准，但真人不用跟照片一模一样。"
+    claim:
+      type: rule
+      statement: "Herskovits 给每个介词只发一张几何自画像——「理想意义」：in 是「包含于一个有界空间内」，on 是「与一个面接触（并典型地被它承托）」，at 是「射体与被当作一个点的界标重合」；真实用法大多不精确等于自画像，介词的学问一半在画像里、一半在「怎么偏离也算数」的规则里（见 PB-09）。"
+      evidence: ["Herskovits《Language and Spatial Cognition》(1986, Cambridge University Press)——理想意义定义 p. 39、at pp. 128–136、on p. 140、in pp. 149–150 一带（关键页码经多家带页码引文互证，二手互证级销项）", "先行论文 Herskovits (1985), Cognitive Science 9(3): 341–378（接触等级：目录 + 书评级）"]
+    mechanism:
+      - beat: "两层框架"
+        text_kid: "先有一张标准照（几何长相），再有一本「差多少算过关」的账——介词的学问有两半。"
+        text_adult: "第一层是理想意义：纯几何的点、线、面、容器、边界关系，配套「情境类型」知识（什么东西在什么场合算容器、算面）；第二层是偏离的会计制度（PB-09）。框架出身是人工智能：意义须写成机器可算的几何描述，「理想」是计算所需的规范形，不是脑中的照片。"
+        visual: "in/on/at 三张几何自画像 + 情境类型注脚"
+        anchors: [G3_140, G3_142, V6_核心_37]
+      - beat: "个案范围"
+        text_kid: "（教师侧）这本书细做了 in/on/at 三个「基本拓扑介词」，和一批要靠观察者眼睛定位的词（in front of、behind、over、under）。"
+        text_adult: "个案研究部分为「三个基本拓扑介词」与「投影介词」两组；该书被公认为「从语义学与人工智能角度对英语介词意义最彻底的检视」（Tenbrink 2005 综述语）。"
+        visual: "全书个案地图"
+        anchors: [V6_核心_41]
+    examples:
+      - level: 1
+        word_ids: [G1_041, G3_140, G1_0994]
+        sentence: "The ball is in the box."
+        scene_note: "in 的理想意义本景：包含于有界空间"
+        supports: claim
+      - level: 1
+        word_ids: [G1_041, G3_142, G2_0930]
+        sentence: "The ball is on the table."
+        scene_note: "on 的理想意义本景：与面接触并被承托"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, V6_核心_37, G1_0932]
+        sentence: "The ball is at the door."
+        scene_note: "at 的理想意义本景：与被当作点的界标重合"
+        supports: claim
+      - level: 2
+        word_ids: [G1_014, V6_核心_41, G2_0930]
+        sentence: "The cat is behind the table."
+        scene_note: "投影介词 behind：需观察者坐标（behind 已在库）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "不适用（单义架构登记条目）"
+        note: "教师侧登记，无学生病例，登记待补说明。"
+    relatives:
+      - {id: P-05, rel: 同族}
+      - {id: PB-09, rel: 同族}
+      - {id: PB-10, rel: 同族}
+    quiz:
+      - q: "Herskovits 说的「理想意义」是什么？"
+        options: ["每个介词一张纯几何的标准描述，偏离另行记账", "每个介词最常用的那个意思", "词典里的第一个义项"]
+        answer: "每个介词一张纯几何的标准描述，偏离另行记账"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-03, P-04, P-05]
+    order: 27
+    pain_points: []
+    adult:
+      sources: ["Herskovits (1986)（目录全文 + Computational Linguistics 书评；关键页码二手互证级，清单 v5 回写定版）", "Herskovits (1985) 先行论文"]
+      boundary: "理想意义是分析者的规范化重构，不声称脑中有这张几何表；at 的「点」是理想化操作，教学时须说清是「把大地方看作一个点」的看法转换（与 P-05 点识解相通，P-05 未溯此源，本条补上）。"
+      disputes: ["单义架构 vs 多义网络是本簇第二条断层线：Herskovits 一词一义、偏离外包给使用类型与语用；Brugman/Tyler & Evans 一词多义、偏离内化为网络节点——两家对同一批例句给出不同账目（清单原文登记）"]
+      evidence_grade: "目录 + 书评级（关键页码二手互证）"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-09
+    zone: 小系统
+    group: PB
+    headline: "偏离走两条道：挂账的「使用类型」与现场的「语用容差」——外加四条语用原则当交警"
+    headline_kid: "说话像量身高：差一点点也算过关（容差）；但有些「差一点」是大家早就说好可以的（贴墙的画也用 on）。心里有一本说好的账，也有一把现场的尺。"
+    claim:
+      type: rule
+      statement: "一个用法偏离理想意义时，Herskovits 只许两种报销方式：要么这偏离是约定俗成的、登记在案的「使用类型」（如 on 可只表接触不表承托——画挂墙上没有东西托着它），要么是语用现场放行的「容差」（差不多成立就当成立——苹果摞高出碗沿仍说 in the bowl）；放行时听四条语用原则指挥：显著性、相关性、容差、典型性。"
+      evidence: ["Herskovits (1986)（使用类型定义见 p. 87 二手引述；behind 典型性见 pp. 148–155 引述）", "Tenbrink (2005, SFB/TR8 Report 004-03) 对 Herskovits 的系统重构与 Computational Linguistics 书评（接触等级：目录 + 书评 + 学术引述级）"]
+    mechanism:
+      - beat: "挂账道：使用类型"
+        text_kid: "画贴在墙上，没有东西托着，也用 on——这是大家早就说好的，不算错。"
+        text_adult: "使用类型是挂在每个介词理想意义之下的约定俗成的意义转移清单，属词库的一部分；本项目的「已知例外」字段正是 Herskovits 式工具，好用的前提是登记纪律（须给条款编号与出处，设上限）。"
+        visual: "on 的例外账本一页：只接触不承托（挂画）已登记"
+        anchors: [G4_158, G3_142, G3_0934]
+      - beat: "现场道：容差与四原则"
+        text_kid: "苹果堆得冒出碗沿，还说 in the bowl——差不多成立，大家就当成立。"
+        text_adult: "容差原则管辖「不精确但可接受」；相关性招牌例是 the dust in/on the bowl（取内空间读法还是附着表面读法，由当前话题决定）；典型性招牌例是 behind 预设邻近（喷泉不能离市政厅太远，这个「近」不在几何意义里）。"
+        visual: "冒尖的苹果碗（容差）+ 喷泉与市政厅距离标尺（典型性）"
+        anchors: [G1_037, G3_0937, V6_核心_41]
+    examples:
+      - level: 1
+        word_ids: [G4_158, G3_142, G3_0934]
+        sentence: "The picture is on the wall."
+        scene_note: "使用类型：只接触不承托的 on"
+        supports: claim
+      - level: 1
+        word_ids: [G1_037, G3_140, G3_0937]
+        sentence: "The apples are in the bowl."
+        scene_note: "容差：苹果摞满碗仍说 in（词形经 apple 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_014, V6_核心_41, G2_0930]
+        sentence: "The cat is behind the table."
+        scene_note: "典型性：behind 预设离得不远"
+        supports: claim
+      - level: 2
+        word_ids: [G1_041, G3_142, G3_0933]
+        sentence: "The ball is on the floor."
+        scene_note: "承托齐全的 on——与挂画的「只接触」对照"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "不适用（会计制度登记条目）"
+        note: "教师侧登记，无学生病例，登记待补说明。"
+    relatives:
+      - {id: PB-08, rel: 前置}
+      - {id: P-08, rel: 同族}
+      - {id: PB-10, rel: 同族}
+    quiz:
+      - q: "画挂在墙上没有承托却用 on，按 Herskovits 的账，这笔偏离记在哪里？"
+        options: ["使用类型（约定登记在案）", "容差（现场放行）", "算错误用法"]
+        answer: "使用类型（约定登记在案）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PB-08]
+    order: 28
+    pain_points: []
+    adult:
+      sources: ["Herskovits (1986)", "Tenbrink (2005) 系统重构；Computational Linguistics 书评（接触等级：目录+书评+学术引述级）"]
+      boundary: "使用类型清单有滑向「特设清单」的危险：每遇反例就新登记一条，框架的解释力会被自己的清单吃掉——这也是本项目「已知例外」字段要设上限、须给条款编号与出处的理由（清单原文）。"
+      disputes: ["Coventry & Garrod (2004) 直评 Herskovits 的使用类型「以特设方式挂在中心义上」，替代方案是让情境中的功能关系在语义分析内部做这项工作——本项目立场站在两家之间（有原则多义 + 已知例外必填），本条把上游之争登记在案（清单原文）"]
+      evidence_grade: "目录 + 书评 + 学术引述级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-10
+    zone: 小系统
+    group: PB
+    headline: "功能知识：介词不只看形状，还看「这东西是干什么用的」"
+    headline_kid: "眼睛看形状，心里还要想一想「它是干什么的」：碗是装东西的碗，东西装得冒尖了，也还是「在碗里」。"
+    claim:
+      type: rule
+      statement: "判断一个东西能不能算「容器」、一面墙能不能算「承托」，靠的不只是几何，还有关于物体用途的功能知识：碗是用来盛的，所以摞高的苹果还算在碗里；墙是用来挂画的，所以没有托举的画也「在墙上」——功能是介词选择的第二决定项。"
+      evidence: ["Herskovits (1986) 功能与情境类型知识（Meaning and Use、Normal Situation Types 两章，目录可证）（接触等级：目录 + 书评级）", "思想链后两环：Tyler & Evans (2003) 原型场景的功能要素（P-04）、Coventry & Garrod (2004) 功能几何实验化（P-08）"]
+    mechanism:
+      - beat: "功能改写几何"
+        text_kid: "一条路可以看成一条线，一个镇可以看成一个点——是「用它做什么」在帮我们重新划界。"
+        text_adult: "功能知识属情境类型的常规知识：同一几何构型，物体功能不同，介词判断可以不同；功能甚至能改写几何归类（路作线、镇作点）。"
+        visual: "路（面→线）与镇（面→点）的功能重分类图"
+        anchors: [G4_0592, G4_0986]
+      - beat: "一条思想链"
+        text_kid: "（教师侧）这个想法有三站：先有人提出来（Herskovits），再有人做实验（Coventry），最后被写进介词的图式里（Tyler & Evans）。"
+        text_adult: "时序：1986 Herskovits 功能知识 → 1990 年代 Coventry 等实验化 → 2003 年被原型场景吸收为「功能要素」；清单此前只登记了后两环，本条补齐源头。"
+        visual: "三站时间线"
+        anchors: [G1_037, G3_0937]
+    examples:
+      - level: 1
+        word_ids: [G1_037, G3_140, G3_0937]
+        sentence: "The apples are in the bowl."
+        scene_note: "碗的功能（盛）撑住 in 的判断（词形经 apple 归一）"
+        supports: claim
+      - level: 1
+        word_ids: [G4_158, G3_142, G3_0934]
+        sentence: "The picture is on the wall."
+        scene_note: "墙的功能（挂）撑住 on 的判断"
+        supports: claim
+      - level: 2
+        word_ids: [G2_105, V6_核心_37, G4_0517]
+        sentence: "The bus is at the station."
+        scene_note: "车站被功能与尺度点化为一个点"
+        supports: claim
+      - level: 2
+        word_ids: [G1_047, ADD_0295, G5_231]
+        sentence: "The train goes through the mountain."
+        scene_note: "隧道的功能（穿行）使 through 成立"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "纯形状判介词（与 P-08 同型）"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: P-08, rel: 同族}
+      - {id: PB-09, rel: 前置}
+      - {id: P-04, rel: 同族}
+    quiz:
+      - q: "苹果摞得高出碗沿还说 in，最关键的判断依据是？"
+        options: ["碗的功能是盛东西", "苹果是圆的", "碗比较大"]
+        answer: "碗的功能是盛东西"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PB-09]
+    order: 29
+    pain_points: [错不完]
+    adult:
+      sources: ["Herskovits (1986)（目录 + 书评级）", "Tyler & Evans (2003)、Coventry & Garrod (2004)（清单 P-04/P-08）"]
+      boundary: "功能知识不推翻几何，它是第二决定项（P-08 已限定「日常绝大多数情形下几何解释就够」）；小学教学只取两个功能招牌例（摞高的碗、挂墙的画），不引入「功能知识」术语。"
+      disputes: ["功能应放在哪一层，三家三放：语用/世界知识层（Herskovits）、语义的情境计算层（Coventry & Garrod）、词义图式内部（Tyler & Evans）——清单现状三种放法混用而未自觉，本条登记此不一致，供入模时统一裁定，不在此擅定（清单原文）"]
+      evidence_grade: "目录 + 书评级（个案细节经二手综述互证）"
+      pending: ["功能层归属待入模统一裁定（见 disputes）", "误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-11
+    zone: 小系统
+    group: PB
+    headline: "韩语孩子按「紧贴不紧贴」切世界，英语孩子按「包住/托住」切——同一批积木，两种分法，从一岁半就开始分"
+    headline_kid: "小朋友的眼睛会学着「家里的话」去切蛋糕：说英语的按「装进去／放在上面」切，说韩语的按「卡得紧／放得松」切——同一桌玩具，两种切法，都从很小的时候就开始练了。"
+    claim:
+      type: rule
+      statement: "空间范畴不是先有一套全人类相同的、再贴上词：英语把「契合度」排除在介词之外（戒指套手指用 on、磁带进盒用 in，紧不紧与介词无关），韩语却把契合度升为组织空间动词系统的核心维度（kkita 紧贴契合 vs nehta 松放装入）；非语言分类任务显示，约 18–23 个月的幼儿已按自己语言的刀口看世界——范畴切口跟着本语言一起长出来。"
+      evidence: ["Bowerman & Choi (2001) 'Shaping meanings for language'，载 Bowerman & Levinson 编《Language Acquisition and Conceptual Development》(CUP), pp. 475–511（页码经 2026-11-01 定版销项）", "18–23 个月数字出处修正：Choi, McDonough, Bowerman & Mandler (1999), Cognitive Development 14(2): 241–268", "前驱：Choi & Bowerman (1991), Cognition 41；Casasola (2005) 反向作用证据（接触等级：二手系统论述级，多源互证）"]
+    mechanism:
+      - beat: "同一批积木两种分法"
+        text_kid: "把戒指套上手指、把磁带放进盒子：英语只问「装进去还是放在上面」，韩语先问「卡得紧不紧」。"
+        text_adult: "英语把包含 vs 支撑作组织对子、把契合度拆散重组（套/嵌归 on，塞紧/装入归 in）；韩语以契合度为核心维度组织空间动词——同一组事件，两种范畴切法。"
+        visual: "四格事件（套戒指/磁带进盒/拼图嵌入/杯子摞杯）两套分格对照"
+        anchors: [V6_服装_26, V6_身体_13, G1_0994]
+      - beat: "词反过来扶范畴"
+        text_kid: "（教师侧）听到熟悉的 on，18 个月的宝宝更容易把「托住」的事情归成一类——词一边学，一边帮眼睛分类。"
+        text_adult: "Casasola (2005) 显示词对范畴的反向扶持；产出分化约 14–16 个月起，非语言分类的语言特异性敏感性见于 18–23 个月（眼动/偏好注视研究）。"
+        visual: "发展时间线：14–16 月产出分化 → 18–23 月非语言敏感性"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_服装_26, G3_142, V6_身体_13]
+        sentence: "The ring is on her finger."
+        scene_note: "套手指——韩语按「紧贴」另切，英语归 on（契合度不入介词）"
+        supports: claim
+      - level: 1
+        word_ids: [G1_041, G3_140, G1_0994]
+        sentence: "The ball is in the box."
+        scene_note: "装入盒中——英语的「包含」刀口"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0936, G3_142, G2_0936]
+        sentence: "The cup is on the cup."
+        scene_note: "杯子摞杯子——摞叠事件是两套切法的对照素材（同词复现）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G3_140, G1_0994]
+        sentence: "The books are in the box."
+        scene_note: "书装箱——松放也归 in（词形经 book 归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "母语范畴刀口迁移（预测型）"
+        note: "本条为习得研究登记；对中国孩子的具体错位图见 PB-12，逐字病例待补，不自编。"
+    relatives:
+      - {id: PB-12, rel: 同族}
+      - {id: P-11, rel: 同族}
+      - {id: P-17, rel: 对照}
+    quiz:
+      - q: "韩语孩子分空间事件时，最先看的是什么？"
+        options: ["契合得紧不紧", "东西大不大", "颜色像不像"]
+        answer: "契合得紧不紧"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-11]
+    order: 30
+    pain_points: [错不完]
+    adult:
+      sources: ["Bowerman & Choi (2001), pp. 475–511（CUP 官方样章目录定版）", "Choi, McDonough, Bowerman & Mandler (1999)", "跨语言复制：丹麦语、荷兰语、Tzotzil、Tzeltal、印地语及汉语（Sinha et al. 1994 英/丹/汉比较）（接触等级：二手系统论述级）"]
+      boundary: "结论不否认认知基础：包含与支撑仍是婴儿早期就能辨的事件类型（知觉层）；被否定的只是「词的范畴必然等于知觉范畴」的推论。本条不直接推出任何特定教学顺序（顺序主张见 P-17 及其降格注记）。"
+      disputes: ["温和普适派（Mandler 的概念空间假设等）主张婴儿期有前语言概念图式、语言在其上做选择性映射；Bowerman 立场是「选择」发生得更早、语言对注意维度的塑造更强——两造都支持同一条教学底线：不能假定中国孩子头脑里预装了英语的 in/on 刀口（清单原文登记，不裁定）"]
+      evidence_grade: "二手系统论述级（多源互证，稳固结论）"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-12
+    zone: 小系统
+    group: PB
+    headline: "对中国孩子：刀口错位图——汉语的「上/里」与英语的 in/on/at 在哪几处必然打架（本簇推论条）"
+    headline_kid: "中文说「上」，英语要再问一句：是贴在面上（on）、装在里面（in）、还是就在那个场合（at）？中文的「上」是一把大伞，英语把它拆成三把小伞。"
+    claim:
+      type: tendency
+      statement: "中国孩子学英语介词的难处可预先画出地图：汉语「上」横跨英语 on/in/at 三家（在报纸上 = in、在电视上 = on、在会上 = at）；同一个「在树上」，英语按「树的一部分（苹果→on）」与「位于枝叶之间（鸟→in）」再切一刀；汉语把「紧贴」维度放在动词里（塞进、套上），中国孩子对「紧」有现成注意，却要学会选介词时不看它。凡汉语刀口与英语刀口交叉之处，即错误高发区。"
+      evidence: ["原理出处：Bowerman & Choi (2001)（PB-11，二手系统论述级）", "错误描写侧：P-11 已收的 CLEC 语料库与 Jarvis 迁移框架", "三类错位例（报纸/电视/场合、树上苹果与树上鸟、紧贴动词）为本簇逐例核对的对比例，非引自单一文献（清单原文特此标明）"]
+      scope: "本簇推论条：错位图是预测工具，不是给个体错误定罪的工具"
+      exceptions:
+        - {note: "「树上」一例须注意英语内部的语境变通：鸟落在枝头表面时口语可说 on a branch——那是界标换成「枝条」后的正确选择，非本例反例", word_ids: [G1_013, G2_079]}
+        - {note: "汉语「下」与 under、「里」与 in 的大面积重合区可快速通过，不在错位图内", word_ids: [G3_143, G3_140]}
+    mechanism:
+      - beat: "「上」的三把小伞"
+        text_kid: "在报纸上（in）、在电视上（on）、在会上（at）——同一个「上」，英语分给三家。"
+        text_adult: "汉语「在+方位词」系统中「上」是大范畴，英语按图式（容器/面/场合点）再切分；范畴级系统迁移由此产生（P-11 记录「错在哪」，本条给出「为什么成批错在这几处」）。"
+        visual: "「上」大伞分流三把小伞的错位图，三例并置"
+        anchors: [V6_学校_20, G3_K32, G3_140, G3_142, V6_核心_37]
+      - beat: "病句医院选题图"
+        text_kid: "（教师侧）错位图交叉的地方，就是要重点练、要出题检查的地方。"
+        text_adult: "病句医院的选题可由错位图直接生成：凡两刀口交叉之处即错误高发区；重合区快速通过。凡未经语料或课堂数据核验的具体错误率，本条一概不写数字。"
+        visual: "错位图上高发区标红，重合区标绿"
+        anchors: [G2_079, G1_037, G1_013]
+    examples:
+      - level: 1
+        word_ids: [G1_002, G3_140, V6_学校_19]
+        sentence: "I read it in the newspaper."
+        scene_note: "在报纸上 → in（内容在纸面之内）"
+        supports: claim
+      - level: 1
+        word_ids: [G4_174, G3_142, G3_K32]
+        sentence: "We study on TV."
+        scene_note: "在电视上 → on（节目在屏幕面上呈现；登记搭配）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_037, G3_142, G2_079]
+        sentence: "The apples are on the tree."
+        scene_note: "苹果是树的一部分 → on（词形经 apple 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_013, G3_140, G2_079]
+        sentence: "The bird is in the tree."
+        scene_note: "鸟在枝叶之间 → in（与苹果对照）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "「上」范畴迁移误用（in/on/at 交叉区）"
+        note: "错位图已登记高发区与正误对照（examples 即正形）；逐字学习者病例待语料补录，不自编。"
+    relatives:
+      - {id: PB-11, rel: 前置}
+      - {id: P-11, rel: 同族}
+      - {id: P-03, rel: 同族}
+      - {id: P-04, rel: 同族}
+    quiz:
+      - q: "「在报纸上」为什么用 in 不用 on？"
+        options: ["报纸的内容被看成装在纸面之内（容器图）", "报纸比较薄", "on 只能用于桌子"]
+        answer: "报纸的内容被看成装在纸面之内（容器图）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PB-11, P-11]
+    order: 31
+    pain_points: [错不完]
+    adult:
+      sources: ["Bowerman & Choi (2001)（原理）", "CLEC 与 Jarvis 框架（P-11）", "Sinha et al. (1994) 英/丹/汉三语儿童比较含汉语样本，方向一致", "汉语「在+方位词」刀口事实为汉语语法学常识；三类错位例为本簇逐例核对（清单原文标明）"]
+      boundary: "错位图是预测工具不是定罪工具：个体错误还有语音、教学、粗心等来源；本条不写未经核验的错误率数字。与 P-17 的关系：顺序发生在各语言自己的范畴之内，两条合起来才完整（清单原文登记）。"
+      disputes: ["无（推论条自担其责，清单原文）"]
+      evidence_grade: "推论级（原理 + 语料描写互证）"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（逐字错例）", "「在会上 = at the meeting」中 meeting 不在词库，待补词后补该例"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PB-13
+    zone: 小系统
+    group: PB
+    headline: "Dirven 的意义链：物理空间怎么切，心理空间就怎么搭——at/on/in 是三个能走遍所有抽象域的词"
+    headline_kid: "介词先是在操场上学会的词：at 一个点、on 一个面、in 一个里面。后来它们去管时间（at five、on Monday、in May），再后来去管看不见的东西（in love、at work）——用的还是操场上那三把刀。"
+    claim:
+      type: rule
+      statement: "Dirven (1993) 把介词的空间概念排成一串链：先切物理空间，再沿同一串词走进时间，最后走进心理与抽象空间——状态（at work、on holiday、in love）、话题领域（good at math、an expert on history）、方式手段（on foot、at full speed）、情境、原因；总纲是：英语切分物理空间的方式，是它组织心理空间的图纸。at/on/in 是链上走得最远的三个词，在每个抽象域都有席位。"
+      evidence: ["Dirven (1993) 'Dividing up physical and mental space…'，载 Zelinsky-Wibbelt 编《The Semantics of Prepositions》(Mouton de Gruyter), pp. 73–97（页码经 2026-11-01 定版销项；内容经三家二手系统论述互证）", "链条后被 Radden & Dirven (2007)《Cognitive English Grammar》收编为教材框架（接触等级：二手系统论述级）"]
+    mechanism:
+      - beat: "链的排法"
+        text_kid: "先在操场上学 at、on、in，再看它们去时间里上班，最后去管心情和学习——一路都是同一把刀。"
+        text_adult: "分类从空间端起排（基本空间组 at/on/in、邻近组、路径组、垂直组、分离组），随后展示每个空间概念如何沿链延伸；链的抽象端是点名到户的域名单（时间、状态、话题/知识领域、方式/手段、情境、原因/理由），不是含糊的「比喻义」。"
+        visual: "意义链横轴：物理空间 → 时间 → 状态/话题/方式/情境/原因，at/on/in 三线贯穿"
+        anchors: [V6_核心_37, G3_142, G3_140]
+      - beat: "与清单内证据咬合"
+        text_kid: "（教师侧）P-09 的时间借用是这条链中段的独立复现；P-17 的展开次序是同一现象的习得侧表述。"
+        text_adult: "Tyler & Evans 给出形式判据，Dirven 给出域名单；Dirven 链条作为共时组织同样只是组织法，不担保习得次序（P-17 已按 Rice 1999 反例降格为趋势）。"
+        visual: "链与 P-09/P-17 的咬合点标注"
+        anchors: [G3_140, V6_日常_63]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_37, G1_022]
+        sentence: "The bus comes at five."
+        scene_note: "链中段：时间域的 at（点）"
+        supports: claim
+      - level: 1
+        word_ids: [G3_140, G2_102]
+        sentence: "We play in winter."
+        scene_note: "链中段：时间域的 in（容器）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_15, G3_140, V6_日常_63]
+        sentence: "We are in love."
+        scene_note: "链抽象端：状态域的 in（清单原文登记例 in love）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_4, G4_0440, V6_核心_37, V6_学校_29]
+        sentence: "You are careful at English."
+        scene_note: "话题/领域域的 at（good at 的同型结构，careful 已在库；good 口径见成人层注）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "抽象域介词误用"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: P-09, rel: 同族}
+      - {id: P-17, rel: 同族}
+      - {id: PB-04, rel: 同族}
+    quiz:
+      - q: "in love 里的 in，是从哪一站沿链走过来的？"
+        options: ["操场上的「在里面」（空间）", "时间的「在早上」", "它是另一个词"]
+        answer: "操场上的「在里面」（空间）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [P-09, P-17]
+    order: 32
+    pain_points: [记不住, 说不出]
+    adult:
+      sources: ["Dirven (1993), pp. 73–97（定版页码；三家二手互证：Turewicz 2000、Guarddon Anelo 2005、Rymaszewska 2011）", "Radden & Dirven (2007) 教材收编（接触等级：二手系统论述级）"]
+      boundary: "链条是分析者的事后组织，与 PB-06 的变换链同享心理真实性的质疑；教学中只取域名单作教师备课地图，不对儿童讲授「链」本身。good at math 中 math(s) 未在词库核到独立条目，例句改用同型结构并在此注明。"
+      disputes: ["无新分歧；与 Evans (2004)「时间有独立图式」之争相邻：Dirven 链条是强借用版表述，教学采用按 P-09 现行裁决（清单原文登记）"]
+      evidence_grade: "二手系统论述级（三家互证）"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-01
+    zone: 小系统
+    group: C
+    headline: "可数不可数是「看法」，不是物体的物理属性（识解说）"
+    headline_kid: "数不数得清，先看你怎么看：看成一个一个的，就能数；看成一摊、一堆的，就不能直接数，要借杯子、碗来帮忙数。"
+    claim:
+      type: tendency
+      statement: "英语数东西之前，先由说话人决定把东西看成一个个的个体，还是一摊料、一类事；形式跟着看法（识解 construal）走，不跟着物体的物理形状走——可数名词 = 在呈现中被识解为有界的区域，不可数名词不带此识解；「有界」指呈现方式（当前取景范围内是否把限界算进图里），与物体有没有物理边框无关。"
+      evidence: ["Langacker《Foundations of Cognitive Grammar》Vol. I (1987) 奠基，及《Cognitive Grammar: A Basic Introduction》(2008), 第 5 章（pp. 132–133 原文转引）"]
+      scope: "可数性与冠词全域的主导判据与教学入口；不是充要定义——个别名词的归属最终以英语的习惯识解（用法事实）为准"
+      exceptions:
+        - {note: "rice 颗粒分明却不可数、furniture 件件有形却不可数：物理属性说当场失效的反例，正是识解说的支撑；同时说明归属由习惯识解裁定，不许学习者自创", word_ids: [G1_054, ADD_0113]}
+        - {note: "湖里的水物理上有岸，water 仍不可数；moment 没有任何物理形状，却可数（moment 待补词库，先以文本登记）", word_ids: [G1_055]}
+    mechanism:
+      - beat: "取景决定形式"
+        text_kid: "同一样东西，你把它看成「一个一个」就能数，看成「一摊」就不能数——先有看法，后有说法。"
+        text_adult: "说话人可对同一事物施加不同的概念化操作（取景）：把限界与个体性纳入呈现即得可数读法，抹平个体只呈现质料即得不可数读法；语法形式是取景结果的回执。"
+        visual: "同一堆米两帧：逐粒高亮（一个个）vs 整摊轮廓（一摊），下方形式随之切换 many→借碗数"
+        anchors: [G1_054, G3_0937]
+      - beat: "旧说禁区"
+        text_kid: "不是「有边没边」决定的！水装在碗里有边，也不能数；要看你心里把它当成一个个还是一摊。"
+        text_adult: "Langacker 的 bounding 指呈现方式，不是物理边框；本项目旧「物理边界感」说正是把此概念误读为物理形状，已被证伪，不得以任何形式复活（边界原文）。"
+        visual: "旧讲法卡（物理边界）打叉封存，新讲法卡（看法/取景）上场"
+        anchors: [G1_055, G2_0936]
+    examples:
+      - level: 1
+        word_ids: [G1_037, G1_054]
+        sentence: "I can count the apples, but I cannot count the rice."
+        scene_note: "苹果一个个 vs 米一摊——总开关的最小对照"
+        supports: claim
+      - level: 1
+        word_ids: [G1_048, V6_食物_66]
+        sentence: "I want a cake, and a glass of water, please."
+        scene_note: "cake 可数读法与 water 借 glass 计数同句对照（glass of water）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_055, G3_0937]
+        sentence: "There is water in the bowl."
+        scene_note: "水有碗作物理边界，仍不可数——证伪物理说的关键帧"
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0113, G1_0994]
+        sentence: "The furniture is in the box."
+        scene_note: "家具件件有形却整类不可数（furniture 单数处理）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "物理属性判可数（*many rices 型）"
+        note: "该错型已由探针 PRB-BND-1 登记为预判误读形态；逐字课堂病例待补录，不自编。"
+    relatives:
+      - {id: C-02, rel: 同族}
+      - {id: C-04, rel: 同族}
+      - {id: C-17, rel: 同族}
+      - {id: C-18, rel: 同族}
+    quiz:
+      - q: "rice 明明一颗颗看得清，为什么不能说 many rices？"
+        options: ["英语习惯上把米看成一摊料，不是一个个", "米太小了", "rice 是外来词"]
+        answer: "英语习惯上把米看成一摊料，不是一个个"
+        hint_ref: "mechanism[0]"
+    probes: [PRB-BND-1]
+    prereq: []
+    order: 33
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Langacker (1987) Vol. I；Langacker (2008) 第 5 章（diegesis 引文 PDF 转引 pp. 132–133）"]
+      boundary: "「有界（bounding）」指呈现方式，与物体有没有物理边框无关；旧「物理边界感」说已证伪，不得以任何形式复活（清单原文红线）。探针映射：PRB-BND-1 = 探针库 v1 Boundedness 组 P1（编号 W7 正式化）。"
+      disputes: ["David Nicolas 等人批评：有界既非可数的充分条件也非必要条件——故本模型将「有界识解」定位为主导判据与教学入口，而非充要定义（清单原文登记）"]
+      evidence_grade: "奠基专著级"
+      pending: ["moment 待补入词库后回填例外例词", "病句医院病例待补（逐字错例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-02
+    zone: 小系统
+    group: C
+    headline: "物质名词的判据是「同质」：随便拿一小份，还是它"
+    headline_kid: "一滴水也是水，一小块面包也是面包——切多少份都还是它，这样的东西不能一个一个数。"
+    claim:
+      type: tendency
+      statement: "水、木头、面包这类词指的东西，任意取一小份，性质与整体完全相同——这种「同质」使它不需要边界也能被认出是哪种东西，所以不直接计数：物质由「质」定义而非由「形」定义，语言不给它配个体化装置（a / -s），改为借单位切分后才计数。"
+      evidence: ["Langacker (2008: 133) 原例：以 wood 立论——「这种物质的任何一份样本都呈现其区别性品质，与形状大小无关」"]
+      scope: "物质名词（mass）的判据与教学演示；颗粒集合与抽象名词不在本条主射程（见 exceptions）"
+      exceptions:
+        - {note: "颗粒集合（rice、sand）个体可辨却被整摊处理——同质性压过可辨性，判据是习惯识解的整体打包而非逐项验算（旧模型例外 xc-rice-grains）", word_ids: [G1_054]}
+        - {note: "抽象名词没有可切的份，走 C-15 的「一类事」路径", word_ids: [G6_0329]}
+    mechanism:
+      - beat: "切一切还是它"
+        text_kid: "面包切一小块，还是面包；水倒一小杯，还是水——切多少份，名字都不变。"
+        text_adult: "「切一切」是同质性的演示法：样本自带全套识别特征，故无需个体化装置。同质性同时预测三件事：物质名词无复数、切割不变名、量词系统选 much 而非 many。"
+        visual: "面包逐刀切分，每块上方都亮起同一个标签 bread"
+        anchors: [G3_126, G1_055, G4_0983]
+      - beat: "演示不是定律"
+        text_kid: "（教师侧）「切一切」只是帮忙理解的演示，不能当成判可数的定律——米切不开，却一样不可数。"
+        text_adult: "本项目模型已将「切一切」降格为 mnemonic（旧模型 cl-cut-test），与本条 claim 分开登记，不得称定律（清单分歧栏）。"
+        visual: "演示卡标「助记」而非「定律」的分级标"
+        anchors: [G1_054]
+    examples:
+      - level: 1
+        word_ids: [G3_126, G1_055]
+        sentence: "The bread is on the table, and the water is in the cup."
+        scene_note: "面包与水——同质双例"
+        supports: claim
+      - level: 1
+        word_ids: [G4_0983, G2_079]
+        sentence: "The table is made of wood."
+        scene_note: "Langacker 原例 wood：一小块木头也是木头（made of 结构登记）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_052, G2_0936]
+        sentence: "There is milk in the cup."
+        scene_note: "牛奶倒出多少杯都还是牛奶"
+        supports: claim
+      - level: 2
+        word_ids: [V6_食物_16, G3_0938]
+        sentence: "The cheese is on the plate."
+        scene_note: "奶酪切块不变名"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "切块计数误用（*three breads 型）"
+        note: "该错型已由探针 PRB-BND-4 登记为预判误读形态；逐字课堂病例待补录，不自编。"
+    relatives:
+      - {id: C-01, rel: 前置}
+      - {id: C-05, rel: 同族}
+      - {id: C-15, rel: 对照}
+    quiz:
+      - q: "一小块面包切下来，为什么还叫 bread 不用换名字？"
+        options: ["面包是同质的：每一小份都还是面包", "因为它很小", "因为它在盘子里"]
+        answer: "面包是同质的：每一小份都还是面包"
+        hint_ref: "mechanism[0]"
+    probes: [PRB-BND-4]
+    prereq: [C-01]
+    order: 34
+    pain_points: [错不完]
+    adult:
+      sources: ["Langacker (2008: 133)（diegesis 引文 PDF）"]
+      boundary: "「切一切」演示只对部分物质名词有效，已降格为 mnemonic（cl-cut-test），不得称定律；探针映射：PRB-BND-4 = 探针库 v1 Boundedness 组 P4。"
+      disputes: ["无主流分歧（清单原文）；演示法的定级处理见 boundary"]
+      evidence_grade: "奠基专著原例级"
+      pending: ["sand 不在已核词表（例外以 rice 代表登记），待补词后补齐", "病句医院病例待补（逐字错例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-03
+    zone: 小系统
+    group: C
+    headline: "可数名词的「界」可以是模糊的：season、tummy 都可数"
+    headline_kid: "说得出「一个」的，不一定边边角角都很清楚——「一个季节」说得通，因为我们心里把它当成一整段。"
+    claim:
+      type: tendency
+      statement: "「有界」不要求边界锋利：季节、肚子这类边界模糊的东西照样可数，因为说话人把它们当作一个整体单位来指——限界是概念化操作的结果，可以由语境临时设定，其锐利程度不影响单位性成立。"
+      evidence: ["Langacker 关于 bounding 的三点说明（界可模糊、界常由识解强加、区域 = 互连实体的集合），见 Langacker (2002) 修订表述及 (2008) 教材版"]
+      scope: "可数侧的界模糊性；是否成立仍由英语的习惯用法裁定，学习者不可自创"
+      exceptions:
+        - {note: "*an information 不成立：模糊有界 ≠ 任意可数，抽象料走 C-15", word_ids: [G6_0339]}
+    mechanism:
+      - beat: "界是心里设的"
+        text_kid: "一个季节从哪天算起，说不太清；可我们还是说「一个季节」——界是心里把它当成一整段。"
+        text_adult: "限界可以由语境临时设定（一段被命名的时间、一片被指着的区域）；月份、时刻、段落等抽象有界区域在 Langacker (2008) 中即为正例——可数性遍布抽象域，进一步排除物理形状说。"
+        visual: "季节时间轴：边界以虚线晕开，整体仍框为一个单位"
+        anchors: [V6_天气_1, V6_节日_2]
+      - beat: "模糊不是随便"
+        text_kid: "界糊涂一点没关系，但不能自己乱造：information 就不能说 an information。"
+        text_adult: "与 Nicolas 批评同源：有界是强倾向而非充要条件，教学表述须用「英语习惯上把 X 看成……」，不用本质主义句式。"
+        visual: "可数绿区与不可自创红区对照"
+        anchors: [G6_0339]
+    examples:
+      - level: 1
+        word_ids: [V6_天气_1, V6_节日_1]
+        sentence: "A year has four seasons."
+        scene_note: "季节边界模糊而单位成立（seasons 词形经 season 归一）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_身体_19, G1_037]
+        sentence: "I eat an apple, and my stomach is full."
+        scene_note: "肚子（stomach）轮廓模糊仍是可数单位；tummy 为清单原文词，词库以 stomach 条目对应"
+        supports: claim
+      - level: 2
+        word_ids: [V6_节日_2, V6_节日_3]
+        sentence: "A month has four weeks."
+        scene_note: "月份——被命名的抽象有界时段（weeks 词形经 week 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_0564, G2_0414]
+        sentence: "The morning is a part of today."
+        scene_note: "上午是被切出的一段（part 登记用法）"
+        supports: claim
+    error_cases:
+      - wrong: "*an information"
+        right: "some information / a piece of information"
+        error_type: "抽象料误加 a（自创可数）"
+        source_type: "条目成人层登记的事故例（清单 C-03 边界明载的星号形式）"
+        diagnosis: "学习者把「模糊有界」误推成「任意可数」；information 的归属由习惯用法裁定，走 C-15 的一类事路径加借单位。"
+    relatives:
+      - {id: C-01, rel: 前置}
+      - {id: C-15, rel: 对照}
+    quiz:
+      - q: "season 边界那么模糊，为什么还能说 a season？"
+        options: ["我们心里把它当成一整段（一个单位）", "季节其实边很清楚", "season 是例外，背下来就行"]
+        answer: "我们心里把它当成一整段（一个单位）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-01]
+    order: 35
+    pain_points: [错不完]
+    adult:
+      sources: ["Langacker (2002/2008) bounding 三点说明（almerja Bounding 条目转述）"]
+      boundary: "模糊有界 ≠ 任意可数（见 claim.exceptions 与 error_cases）；tummy 未入词库（以 stomach 条目对应），moment、paragraph 为 Langacker 抽象正例，待补词后补齐。"
+      disputes: ["与 C-01 的 Nicolas 批评同源：有界是强倾向而非充要条件（清单原文登记）"]
+      evidence_grade: "专著修订表述级（二手转述）"
+      pending: ["tummy、moment、paragraph 待补入词库", "误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-04
+    zone: 小系统
+    group: C
+    headline: "看法可以当场切换：磨成料、分作份（grinding / portioning）"
+    headline_kid: "同一样东西，换个看法就换个说法：苹果看成一摊果泥就不能数了；啤酒按「一杯一杯」看，又能数了。"
+    claim:
+      type: rule
+      statement: "同一个词换个看法就换语法：把可数名词「磨碎」看成料（grinding），把不可数名词按「份」看即可数（portioning，如 two coffees = 两杯）——可数性是当场的识解选择，不是词的终身标签；-s 落在被省略的单位（杯）上。"
+      evidence: ["Langacker 认知语法对 grinding / portioning 的论述（2008 教材版系统化）；该对操作的经典命名见于质料名词研究传统"]
+    mechanism:
+      - beat: "分作份"
+        text_kid: "咖啡本来不能数，装进杯子里，一杯一杯就能数了：two coffees！"
+        text_adult: "分份操作借容器/惯例份量给质料临时装上边界；餐馆语境 two coffees、two beers 的省略读法中，-s 落在被省略的单位（杯）上（旧模型例外 xc-two-coffees）。"
+        visual: "咖啡壶 → 两只杯子逐个亮起计数 1、2，标签 two coffees"
+        anchors: [G4_0945, G2_0936]
+      - beat: "磨成料"
+        text_kid: "（理解即可）苹果打成果泥，就不再是一个一个的苹果了——看法反过来走也行。"
+        text_adult: "磨碎操作抹去个体边界、突出现质料（清单原文修辞例 There was cat all over the driveway）；儿童阶段教「份」的方向即可，磨碎方向只作理解不作产出要求。"
+        visual: "整个苹果 → 果泥一摊，计数标签随之熄灭"
+        anchors: [G1_037]
+    examples:
+      - level: 1
+        word_ids: [G4_0945, G4_0818]
+        sentence: "Two coffees, please."
+        scene_note: "餐馆点单——分份省略读法的登记场景（two 词形在库）"
+        supports: claim
+      - level: 1
+        word_ids: [G2_0944]
+        sentence: "Two teas, please."
+        scene_note: "茶同型：按杯计数（teas 词形经 tea 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_048, G3_0938]
+        sentence: "There is cake on the plate."
+        scene_note: "蛋糕作料读法（盘子里的蛋糕，不计数）——与 a cake 的整只读法对照"
+        supports: claim
+      - level: 2
+        word_ids: [G1_048]
+        sentence: "I want a cake for my birthday."
+        scene_note: "整只蛋糕——可数读法（生日场景）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "标签固化误判（把 two coffees 判错句）"
+        note: "该形态已由探针 PRB-BND-2 登记为预判误读；逐字课堂病例待补录，不自编。"
+    relatives:
+      - {id: C-01, rel: 前置}
+      - {id: C-05, rel: 同族}
+      - {id: C-18, rel: 同族}
+    quiz:
+      - q: "餐馆里说 Two coffees，被数的是什么？"
+        options: ["杯（一杯一杯的咖啡）", "咖啡豆", "咖啡这种料本身"]
+        answer: "杯（一杯一杯的咖啡）"
+        hint_ref: "mechanism[0]"
+    probes: [PRB-BND-2]
+    prereq: [C-01]
+    order: 36
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Langacker (2008) grinding/portioning 系统化（arabpsychology 转述，清单原文链接）"]
+      boundary: "切换受习惯约束：磨碎读法多用于修辞/非常规语境；儿童阶段教「份」的方向（双生活名词，旧模型 cl-whole-material），磨碎只作理解。探针映射：PRB-BND-2 = 探针库 v1 Boundedness 组 P2（原题以 two beers 立题，beer 待补词库）。"
+      disputes: []
+      evidence_grade: "专著系统化级"
+      pending: ["beer 待补入词库（探针原题与 two beers 例）", "病句医院病例待补（逐字错例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-05
+    zone: 小系统
+    group: C
+    headline: "数一摊东西要借单位，而汉语量词就是现成的老师"
+    headline_kid: "米饭不能一粒一粒数？借个碗！「一碗饭、两碗饭」——碗能数，饭跟着碗走。英语也是这么干的。"
+    claim:
+      type: rule
+      statement: "料不能直接数，就借单位词先把它切成有界的份再数——a bowl of rice、two pieces of paper；复数 -s 加在单位上，不加在料上。汉语「一碗饭、两张纸」用的正是同一套办法，是现成的正迁移资源。"
+      evidence: ["机制层同 Langacker 的 portioning（C-04）", "单位词作为独立语法系统的类型学定版：Aikhenvald《Classifiers: A Typology of Noun Categorization Devices》(2000, OUP；2003 平装 ISBN 978-0-19-926466-7，勿将平装号误作 2000 年条目）", "教学口径（汉语量词正迁移）为本项目纲领 dom-countability-articles coreView 明文"]
+    mechanism:
+      - beat: "单位先行"
+        text_kid: "先找一个能数的帮手：碗、张、条——帮手站在前面数，后面的料跟着走。"
+        text_adult: "单位词执行分份操作：给无界的料装上有界的外壳，使其进入可数轨道；量词/单位词系统是人类语言把连续世界离散化的通用装置（classifier 系统与英语 measure words 结构同构）。"
+        visual: "米饭整摊 → 碗逐个装份 → -s 亮在 bowl 上而非 rice 上"
+        anchors: [G3_0937, G1_054, V6_数字_40]
+      - beat: "搭配要逐个记"
+        text_kid: "建议是 a piece of advice，不是 a bowl of advice——哪个料配哪个单位，要一个一个记好。"
+        text_adult: "单位词本身有搭配习惯，须逐个登记；口语中单位可省略（two coffees，见 C-04），但省略不改变计数落在单位上的本质。"
+        visual: "单位配对卡：bowl of rice / piece of paper / piece of advice"
+        anchors: [G6_0329]
+    examples:
+      - level: 1
+        word_ids: [G3_0937, G1_054]
+        sentence: "I want a bowl of rice."
+        scene_note: "食堂打饭——汉语「一碗饭」的同构场景"
+        supports: claim
+      - level: 1
+        word_ids: [V6_数字_40, V6_学校_20]
+        sentence: "Give me a piece of paper, please."
+        scene_note: "一张纸——piece 与「张」对应"
+        supports: claim
+      - level: 2
+        word_ids: [G3_0937, G1_054]
+        sentence: "Two bowls of rice, please."
+        scene_note: "-s 落在 bowls 上（词形经 bowl/rice 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_数字_40, G6_0329]
+        sentence: "Let me give you a piece of advice."
+        scene_note: "抽象料同样借 piece（与 C-15 衔接）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "-s 误落料上（*two rices 型）"
+        note: "错型由 C-18 机制覆盖登记；逐字课堂病例待补录，不自编。"
+    relatives:
+      - {id: C-04, rel: 前置}
+      - {id: C-15, rel: 同族}
+      - {id: C-18, rel: 同族}
+    quiz:
+      - q: "two bowls of rice 里，真正被数的是什么？"
+        options: ["碗（单位）", "米粒", "饭这种料"]
+        answer: "碗（单位）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-04]
+    order: 37
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Langacker portioning（C-04）", "Aikhenvald (2000/2003) 量词类型学（OUP 书页；页数各书目源不一，不标页数——清单补核销项口径）", "纲领 coreView（汉语量词正迁移）"]
+      boundary: "单位搭配逐个登记（见 mechanism 第二节）；单位省略不改变计数落点。"
+      disputes: []
+      evidence_grade: "类型学权威专著级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（逐字错例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-06
+    zone: 小系统
+    group: C
+    headline: "a 的本职：让听者「认出是哪一类」就够了"
+    headline_kid: "说 a 的时候，是在说「随便哪一个都行，我说的就是这种东西里的一个」。"
+    claim:
+      type: rule
+      statement: "a/an 传递的信息只有一条：「我说的是这一类里的某一个，你认出类别就行，不必知道是哪一个」——在给定性等级中 a N 对应「类型可辨识（type identifiable）」一级，是给听者的最低限度定位指令；首次提及、泛指其一、职业身份（a teacher）都用它。"
+      evidence: ["Gundel, Hedberg & Zacharski (1993) 'Cognitive status and the form of referring expressions in discourse', Language 69(2): 274–307——给定性等级中 a N 对应 type identifiable 一级"]
+    mechanism:
+      - beat: "只认类别"
+        text_kid: "第一次说起一只狗，说 a dog 就够了：听的人知道「哦，是一只狗」，不用知道是哪一只。"
+        text_adult: "指称形式按听者所需的认知状态分级：a 只要求类型可辨识，是整条给定性等级的最底层；等级的蕴涵结构（高状态蕴涵低状态）得到跨语言支持（英语、汉语、日语、俄语、西班牙语五种语言的自然语篇验证）。"
+        visual: "一群狗剪影中任一只亮起，标「哪类清楚，哪只不管」"
+        anchors: [G1_015]
+      - beat: "职业也是类别"
+        text_kid: "My mum is a teacher——说的是「她是当老师的这一类人」。"
+        text_adult: "职业身份用 a 是同一机制：把人归入一个类型，不涉及唯一定位。"
+        visual: "职业卡归类图"
+        anchors: [G1_007]
+    examples:
+      - level: 1
+        word_ids: [G1_015]
+        sentence: "I have a dog."
+        scene_note: "首次提及——只认类别"
+        supports: claim
+      - level: 1
+        word_ids: [G1_002]
+        sentence: "This is a book."
+        scene_note: "介绍一个新东西"
+        supports: claim
+      - level: 2
+        word_ids: [G1_007, G2_065]
+        sentence: "My mother is a teacher."
+        scene_note: "职业身份——类别归属"
+        supports: claim
+      - level: 2
+        word_ids: [G1_037]
+        sentence: "I want an apple."
+        scene_note: "随便哪一个苹果都行（an 的声音判据见 C-14）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "首次提及误用 the（与 C-09 同型）"
+        note: "特征性错型在 C-09 登记；本条逐字病例待补，不自编。"
+    relatives:
+      - {id: C-07, rel: 对照}
+      - {id: C-19, rel: 同族}
+      - {id: C-14, rel: 同族}
+    quiz:
+      - q: "第一次跟朋友说起「我养了一只狗」，用 a dog 还是 the dog？"
+        options: ["a dog（只认类别就行）", "the dog（就是那一只）"]
+        answer: "a dog（只认类别就行）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-01]
+    order: 38
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Gundel, Hedberg & Zacharski (1993), Language 69(2): 274–307（LX518 讲义完整转述，清单原文链接）"]
+      boundary: "a 还有类指用法（A tiger has stripes，见 C-13），属同一「类型」机制的延伸，不是例外；小学阶段以「首次提及/任一个」为主读法。"
+      disputes: []
+      evidence_grade: "经典论文级（跨语言语篇验证）"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-07
+    zone: 小系统
+    group: C
+    headline: "the 的本职：让听者「唯一定位到那一个」"
+    headline_kid: "说 the 的时候，是在说「就是那一个，你知道的」——对方得能一下子找到它。"
+    claim:
+      type: rule
+      statement: "the 传递的信息是：「线索已经够了，你能在心里唯一定位到我指的那一个（或那一整类）」——在给定性等级中 the N 对应「可唯一辨识（uniquely identifiable）」级；说 the 而听者定位不到，就是误用。"
+      evidence: ["Gundel, Hedberg & Zacharski (1993)（the N 对应 uniquely identifiable 级）", "Hawkins《Definiteness and Indefiniteness》(1978) 定位理论（定指 = 在共享语用集中定位）"]
+    mechanism:
+      - beat: "定位完成指令"
+        text_kid: "说 the 之前先想：对方能一下子找到是哪个吗？找不到，就不能用 the。"
+        text_adult: "the 要求指称对象达到可唯一辨识的认知状态：说话人预设听者能凭已给材料把候选收成唯一；加 the 等于向听者发出「你应该找得到」的信号。二语习得界至今以 Hawkins (1978) 的操作性定义为准（经 Lyons 1999 综述转述）。"
+        visual: "一堆书中目标书被光圈唯一锁定，标 the；候选未收拢时 the 卡变灰"
+        anchors: [G1_002, G1_0928]
+      - beat: "线索可以不在上文"
+        text_kid: "太阳不用介绍也能说 the sun——因为全世界就一个，大家都知道。"
+        text_adult: "定位材料可以是情境、常识、关联推论（五条路见 C-08）；类指 the（the tiger = 物种整体）是延伸用法，见 C-13。"
+        visual: "太阳唯一亮起——常识定位"
+        anchors: [G2_0501]
+    examples:
+      - level: 1
+        word_ids: [G1_002, G1_0928]
+        sentence: "The book on the desk is mine."
+        scene_note: "修饰语当场锁定唯一一本（mine 经代词别名归一）"
+        supports: claim
+      - level: 1
+        word_ids: [G2_0501]
+        sentence: "The sun is up."
+        scene_note: "常识唯一——定位无需上文"
+        supports: claim
+      - level: 2
+        word_ids: [G1_015]
+        sentence: "I have a dog. The dog is cute."
+        scene_note: "先 a 后 the：第二次提及已可定位（cute 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [G4_0818]
+        sentence: "Pass me the salt, please."
+        scene_note: "餐桌上就一瓶盐——情境定位（登记场景）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "the 滥用（定位不到而加 the）"
+        note: "滥用型的机制与处方见 C-09/C-20；逐字病例待补，不自编。"
+    relatives:
+      - {id: C-06, rel: 对照}
+      - {id: C-08, rel: 同族}
+      - {id: C-19, rel: 同族}
+    quiz:
+      - q: "什么时候才可以用 the？"
+        options: ["对方能凭线索唯一定位到那一个时", "名词很重要时", "句子开头时"]
+        answer: "对方能凭线索唯一定位到那一个时"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-06]
+    order: 39
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Gundel, Hedberg & Zacharski (1993)", "Hawkins (1978) 定位理论；Lyons (1999)《Definiteness》综述判定"]
+      boundary: "定位材料可以不在上文里（见 C-08 菜单）；类指 the 是把整个物种当作一个整体来定位的延伸用法（C-13），高年级内容。"
+      disputes: ["定指语义核心百年之争：熟悉说（Christophersen 1939）vs 唯一说（Russell 1905；Hawkins 1978）；Lyons (1999) 判定两说各覆盖一部分用法，以「可辨识性」为上位概念综合——教学取综合说（清单原文登记）"]
+      evidence_grade: "经典论文 + 理论定版级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-08
+    zone: 小系统
+    group: C
+    headline: "把东西「找出来」的线索只有五条路（定指的建立菜单）"
+    headline_kid: "说 the 之前先检查：对方能凭什么找到它？说过、挨着、看得见、大家都知道——总得有一条路。"
+    claim:
+      type: rule
+      statement: "听者能定位一个 the 名词，靠的无非五条路：上文刚提过（回指）、关联物带出（a wedding → the bride）、句中修饰语当场锁定（the book on the desk）、眼前情境就在（Pass me the salt）、全世界只有一个的常识（the sun）——五路皆无，就不能用 the；五条路是「充分线索」的清单。"
+      evidence: ["Hawkins (1978) 对 the 非类指用法的分类（回指、关联、情境、常识等）", "Liu & Gleason (2002) 'Acquisition of the article the by nonnative speakers of English', SSLA 24(1)：以该分类的操作定义测查学习者，不同类别难度显著不同（关联类最晚）"]
+    mechanism:
+      - beat: "五条路清单"
+        text_kid: "找东西有五条路：刚才说过、跟着别的东西来、话里说清了、就在眼前、全世界只有一个。"
+        text_adult: "定指不是名词自身的属性，而是「说话人发出的定位任务 + 听者手头的线索」之间的匹配关系；五条路是线索的全部来源，清单的用途是给学习者纠错定位（错在缺哪条路）。"
+        visual: "五条路的菜单卡，各配一个小图标"
+        anchors: [G1_002, G2_0501, G4_0818]
+      - beat: "分路练"
+        text_kid: "（教师侧）五条路难易不同：关联那条路最难学会，要单独多练。"
+        text_adult: "Liu & Gleason (2002) 证明五条路在心理上不是一回事：不同类别的 the 习得难度显著不同，教学应分路练，不许混成一锅。"
+        visual: "五条路难度标记（关联路标「最晚」）"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G1_015]
+        sentence: "I have a dog. The dog is cute."
+        scene_note: "回指路：上文刚提过"
+        supports: claim
+      - level: 1
+        word_ids: [G4_0818]
+        sentence: "Pass me the salt, please."
+        scene_note: "情境路：就在餐桌上"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G1_0928]
+        sentence: "The book on the desk is my book."
+        scene_note: "修饰锁定路：on the desk 当场圈定"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0507]
+        sentence: "The moon is up in the sky."
+        scene_note: "常识路：月亮只有一个（sky 已在库）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "五路皆无而用 the"
+        note: "错型由本条菜单定义；逐字病例待补，不自编。关联路原文例（wedding/bride）两词未入词库，待补词后补该例。"
+    relatives:
+      - {id: C-07, rel: 前置}
+      - {id: C-20, rel: 同族}
+    quiz:
+      - q: "「Pass me the salt」能用 the，走的是哪条路？"
+        options: ["眼前情境就在", "上文刚提过", "全世界只有一个"]
+        answer: "眼前情境就在"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-07]
+    order: 40
+    pain_points: [错不完]
+    adult:
+      sources: ["Hawkins (1978) 分类（经 Abbott 2006 综述转述）", "Liu & Gleason (2002), Studies in Second Language Acquisition 24(1)"]
+      boundary: "五路是充分线索清单，不是每个 the 都要当场验算——母语者是自动化处理；分类细节各家略有出入（Hawkins 原分类更细，教学与习得研究多用简化版）。"
+      disputes: []
+      evidence_grade: "理论分类 + 习得实证级"
+      pending: ["wedding、bride 待补入词库后补关联路例句", "误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-09
+    zone: 小系统
+    group: C
+    headline: "学习者选错冠词有个系统原因：先按「具体」选，后按「定指」选（波动假说）"
+    headline_kid: "刚开始学的时候，小朋友容易把「我心里想着的那一个」都加上 the，其实英语问的是「对方知不知道是哪一个」。"
+    claim:
+      type: tendency
+      statement: "母语没有冠词的学习者，初期不是在乱猜，而是在用另一套切分：把 the 发给「我心里有具体所指」的名词，哪怕是第一次提——随着输入积累，才切换到英语的「说听双方可定位」切分（波动假说：冠词选择在「定指」与「具体性」两种切分间波动，直至参数定版）。"
+      evidence: ["Ionin, Ko & Wexler (2004) 'Article semantics in L2 acquisition: The role of specificity', Language Acquisition 12: 3–69——冠词选择参数与波动假说的原始论文"]
+      scope: "无冠词母语学习者的替换/滥用型错误；证据来自成人被试，儿童的波动形态与时长需本项目自证（方向性依据）"
+      exceptions:
+        - {note: "漏用型错误的主因不在波动，而在母语无冠词范畴（见 C-10），两型须分开诊断", word_ids: []}
+    mechanism:
+      - beat: "两套切分"
+        text_kid: "心里想着一只具体的狗，就想说 the dog——可是对方还没见过这只狗，应该说 a dog。"
+        text_adult: "冠词在跨语言间有两种可行的语义切分——按定指（说听共享）或按具体性（说话人单方有指）；无冠词母语者对两种切分都有心理通道，习得即在两通道间波动。"
+        visual: "同一只狗两帧：说话人心里有（具体）vs 听者能定位（定指），the 的归属随判据翻转"
+        anchors: [G1_015]
+      - beat: "预测吻合"
+        text_kid: "（教师侧）这个说法能提前算出学生会错在哪：第一次提、心里又有具体的那一个，最容易错加 the。"
+        text_adult: "俄语、韩语被试在 [−定指, +具体] 语境系统性过用 the、在 [+定指, −具体] 语境过用 a，与波动预测精确吻合；后续多语言复制大体支持。"
+        visual: "2×2 语境格（定指×具体）与错误方向标注"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G1_015, G2_0414]
+        sentence: "I saw a dog today."
+        scene_note: "正形：初次遇见的一只狗——说话人具体有指、听者不可定位，用 a"
+        supports: claim
+      - level: 1
+        word_ids: [G1_014]
+        sentence: "I want a cat."
+        scene_note: "心里想要一只（还不存在的）猫——具体性弱，更用 a"
+        supports: claim
+      - level: 2
+        word_ids: [G1_015]
+        sentence: "The dog is my dog. The dog is cute."
+        scene_note: "第二次提及：双方可定位，切换到 the——参数定版后的目标形态"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G4_184]
+        sentence: "I read a book in the library."
+        scene_note: "初次提及的书用 a（library 场景）"
+        supports: claim
+      - level: 2
+        word_ids: []
+        sentence: "I saw the dog yesterday."
+        scene_note: "此句为 error_cases 中登记错句的对照帧（初次提及误用 the），非正例"
+        supports: claim
+    error_cases:
+      - wrong: "I saw the dog yesterday."
+        right: "I saw a dog yesterday."
+        error_type: "the 滥用（按具体性选词）"
+        source_type: "条目成人层登记的事故例（清单 C-09 标题句下明载的特征性错误）"
+        diagnosis: "说话人心里有具体所指（昨天见到的那只），误以为够格用 the；英语的判据是听者能否定位——对方没见过、没提过，只能用 a。回补：C-07 定位判据 + 本条两套切分。"
+    relatives:
+      - {id: C-07, rel: 前置}
+      - {id: C-10, rel: 同族}
+      - {id: C-20, rel: 同族}
+    quiz:
+      - q: "第一次跟同桌说「昨天我看见一只狗」，说 the dog 错在哪？"
+        options: ["同桌还不知道是哪一只，不能定位", "dog 不能跟 the", "yesterday 不能跟 the"]
+        answer: "同桌还不知道是哪一只，不能定位"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-07]
+    order: 41
+    pain_points: [错不完]
+    adult:
+      sources: ["Ionin, Ko & Wexler (2004), Language Acquisition 12: 3–69（论文工作稿全文，清单原文链接）"]
+      boundary: "证据来自成人被试；该假说解释替换型错误，漏用型的主因在 C-10（清单原文）。"
+      disputes: ["Deprez、Sleeman 等人的替代解释：早期具体性偏向可能源于冠词词汇条目尚未学全 + 语用原则先行，而非先天参数——两说对教学的共同处方一致（大量带听者信息的语境输入），分歧在理论归因（清单原文登记）"]
+      evidence_grade: "原始论文级（成人样本）"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-10
+    zone: 小系统
+    group: C
+    headline: "中国学生的冠词错误居名词短语错误之前列，且以「漏」和「滥」为主"
+    headline_kid: "中国小朋友写英语，冠词最爱出错：要么忘了加，要么 the 加得到处都是。知道这个规律，就能专门盯住它。"
+    claim:
+      type: tendency
+      statement: "在中国学习者语料中，冠词是名词短语类错误的高频项，形态高度集中：该加不加（漏用）与把 the 泛化到泛指、类指（滥用）——这是「汉语无冠词 + 按具体性选词」两股力量叠加的指纹。"
+      evidence: ["桂诗春、杨惠中《中国学习者英语语料库》(CLEC, 2003) 名词短语错误标注统计", "本项目纲领 dom-contrast-pitfalls basis 另引自由写作错误分布研究（ERIC EJ1075686）：中国 EFL 学习者自由写作中冠词错误居首"]
+      scope: "CLEC 以书面语为主；口语中冠词错误的形态可能不同；具体数值随子库与学段浮动，引用时须注明子库"
+      exceptions:
+        - {note: "小学低段的教学目标排序不同：先立「单数可数名词前必须有个小词」的槽位意识，再谈选哪个（清单边界原文）", word_ids: []}
+    mechanism:
+      - beat: "默认空白"
+        text_kid: "汉语里名词前面不用放小词，所以写英语时，那个位置常常空着——先把「空位要填」变成习惯。"
+        text_adult: "汉语用语序、指示词与语境表达定指，没有独立的冠词范畴 → 迁移结果是冠词位置「默认空白」（漏用）；同时学习者以具体性直觉补位（C-09），造成该 the 不 the 的系统性偏移（滥用）。"
+        visual: "名词前空位标红 → 填入 a/the 的两步图"
+        anchors: [G1_002, G3_131]
+      - beat: "错误指纹"
+        text_kid: "（教师侧）名词短语的错误里，数、主谓一致、冠词是三件大头——检查作文先查这三样。"
+        text_adult: "CLEC 标注体系中名词短语 9 种错误里「数、主谓一致、冠词」3 种合计占该大类的显著份额；多项基于 CLEC 的专项研究复现了冠词漏用 > 误加的总体格局。"
+        visual: "名词短语错误构成示意（只示格局，不编数值）"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G3_131]
+        sentence: "I am a student."
+        scene_note: "正形：单数可数名词前的小词不空位"
+        supports: claim
+      - level: 1
+        word_ids: [G1_007]
+        sentence: "She is a teacher."
+        scene_note: "职业前的 a——漏用高发位"
+        supports: claim
+      - level: 2
+        word_ids: [G1_015, G2_080]
+        sentence: "Dogs are in the park."
+        scene_note: "正形：泛指复数不加 the——滥用高发位的反面"
+        supports: claim
+      - level: 2
+        word_ids: [G1_020]
+        sentence: "Tigers are big."
+        scene_note: "类指敞开说不加 the（与 C-13 衔接）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "冠词漏用 / the 滥用（CLEC 登记错型）"
+        note: "错型与格局已由 CLEC 登记；逐字病例待从 CLEC 专项研究补录并注明子库，不自编。"
+    relatives:
+      - {id: C-09, rel: 前置}
+      - {id: C-20, rel: 同族}
+    quiz:
+      - q: "中国学生冠词错误最常见的两种样子是？"
+        options: ["该加不加（漏）和 the 到处加（滥）", "a 和 an 分不清", "the 读错音"]
+        answer: "该加不加（漏）和 the 到处加（滥）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-09]
+    order: 42
+    pain_points: [错不完, 写不长]
+    adult:
+      sources: ["CLEC (2003) 名词短语错误标注", "自由写作错误分布研究（ERIC EJ1075686，纲领 basis 引）"]
+      boundary: "CLEC 以书面语为主；小学低段先立槽位意识再谈选择（见 claim.exceptions）。"
+      disputes: ["无（错误分布为描写共识；归因权重——迁移 vs 波动——见 C-09 分歧）"]
+      evidence_grade: "语料库描写级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（CLEC 逐字错例并注明子库）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-11
+    zone: 小系统
+    group: C
+    headline: "机构名词有两种读法：「去做那件事」不加冠词，「去那栋楼」才加"
+    headline_kid: "go to school 是「去上学」（做事），go to the school 是「去那所学校」（去一栋楼）——加不加 the，看你说的是事还是楼。"
+    claim:
+      type: tendency
+      statement: "school、bed、hospital 这类词，当它表示「去做那件事」（上学、睡觉、看病）时零冠词；当它表示那栋建筑、那件家具时加 the——冠词在这里标的是「活动读法 vs 实物读法」的识解切换。"
+      evidence: ["本项目 boundedness 模型 cl-zero-func（倾向型主张）", "教学框架：Master (1997) 'The English article system', System 25(2)——将此类列为约定化的功能读法类别"]
+      scope: "机构/活动名词的功能读法类别；是倾向不是铁律（见 exceptions）"
+      exceptions:
+        - {note: "美式英语住院说 in the hospital（旧模型例外 xc-hospital-us）", word_ids: [G6_255]}
+        - {note: "乐器类活动读法反而加 the（play the piano，xc-piano，见 C-12）——凡机制推不出的，一律按约定单记，不许编理由", word_ids: [G4_0498]}
+    mechanism:
+      - beat: "活动读法脱个体"
+        text_kid: "去上学，不是去看那栋楼，是去「上学」这件事——说事的时候，不用 the。"
+        text_adult: "活动读法把名词识解为一种制度/活动（类型层），脱去了个体性，自然不带定指标记；实物读法把它拉回个体层，冠词系统按 C-06/C-07 正常运作——识解切换在冠词上的又一回执。英式成套对立（in prison / in the prison、by bus）证明这是系统性切换而非零星例外。"
+        visual: "同一所学校两帧：上课场景（标「事」，零冠词）vs 建筑外观（标「楼」，加 the）"
+        anchors: [G2_081, G2_0931, G6_255]
+      - beat: "交通同型"
+        text_kid: "by bus 是「坐车（怎么去）」，on a bus 是「在一辆车上」——一个讲办法，一个讲东西。"
+        text_adult: "交通工具同理：方式读法零冠词，具体车辆回到个体层（旧模型 examples ex-bed-bus 已登记 bed/bus 对）。"
+        visual: "by bus（方式）与 a bus（车辆）对照"
+        anchors: [G2_105]
+    examples:
+      - level: 1
+        word_ids: [G2_081]
+        sentence: "We go to school."
+        scene_note: "去上学——活动读法零冠词"
+        supports: claim
+      - level: 1
+        word_ids: [G2_081, G2_062]
+        sentence: "My father goes to the school."
+        scene_note: "家长去那所学校（办事/开会）——实物读法加 the"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0931]
+        sentence: "We go to bed."
+        scene_note: "去睡觉——bed 的活动读法"
+        supports: claim
+      - level: 2
+        word_ids: [G2_105]
+        sentence: "We go to school by bus."
+        scene_note: "by bus 方式读法零冠词（登记对：ex-bed-bus）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "机构名词两种读法混淆"
+        note: "读法对已在 examples 登记；逐字学习者病例待补，不自编。"
+    relatives:
+      - {id: C-01, rel: 前置}
+      - {id: C-12, rel: 对照}
+    quiz:
+      - q: "「Dad goes to the school today.」里的 Dad 是去干什么？"
+        options: ["去那所学校（楼/办事）", "去当小学生上学", "去睡觉"]
+        answer: "去那所学校（楼/办事）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-07]
+    order: 43
+    pain_points: [错不完]
+    adult:
+      sources: ["本项目模型 cl-zero-func 与 examples（ex-school、ex-bed-bus）", "Master (1997), System 25(2)（经 Lopez & Sabir 2017 转述，清单原文链接）"]
+      boundary: "倾向不是铁律（见 claim.exceptions）；美式 in the hospital 与乐器加 the 均为登记例外，机制推不出的按约定单记。"
+      disputes: ["无主流分歧；分歧只在把零冠词归入「冠词系统内的零形式」还是「无冠词结构」的理论记账（清单原文）"]
+      evidence_grade: "项目模型 + 教学框架级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-12
+    zone: 小系统
+    group: C
+    headline: "有些搭配是「约定存货」：play the piano 加 the、play football 不加"
+    headline_kid: "有的说法就是大家习惯这么说，没有道理可讲，像游戏规则一样记住就好：弹钢琴要加 the，踢足球不加。"
+    claim:
+      type: tendency
+      statement: "乐器前加 the、球类运动前不加，是历史沉淀的约定，机制只能解释一部分——这类搭配的正确教法是整块记住并注明「这里没有为什么」，而不是编一套因果故事；约定部分靠频率与整块记忆习得，强行理据化会产生错误迁移。"
+      evidence: ["本项目 boundedness 模型例外登记 xc-piano", "教学处理口径与 Master (1997)「约定用法单列」原则一致；Swan《Practical English Usage》第 4 版 (2016) Section 12 条目 134–143（含 143「特殊规则与例外」）同此处理（2026-11-01 补核；注意第 3 版编号体系不同，不可混用）"]
+      scope: "乐器串与球类串等约定搭配；串内部高度一致，可按串整记"
+      exceptions:
+        - {note: "个别项目正在变化：play the guitar vs play guitar 在现代口语中松动，属正在变化的用法，登记为倾向即可", word_ids: [V6_运动_23]}
+    mechanism:
+      - beat: "语言的两个抽屉"
+        text_kid: "英语有两个抽屉：一个装「有道理的」，一个装「大家说好就这么定的」——钢琴和足球在第二个抽屉里。"
+        text_adult: "语言是「有理据的部分 + 约定沉淀的部分」的混合物；约定部分的习得路径是频率与整块记忆。本项目审查史即反面证据：旧库曾为 on foot 编造「双脚踩地接触」的伪因果并被裁定删除（FR09 案）——编理由的代价是错误机制扩散。"
+        visual: "两个抽屉图：理据抽屉（图式）与约定抽屉（整块卡）"
+        anchors: [G4_0498, G3_0401]
+      - beat: "按串整记"
+        text_kid: "乐器是一串：钢琴、吉他都加 the；球类是一串：足球、篮球都不加——一串一串记，不用一个一个背。"
+        text_adult: "piano 类与 football 类各自成串，串内一致性高；按串整记是约定部分的最省力编码。"
+        visual: "两串卡片：乐器串（+the）/球类串（零冠词）"
+        anchors: [V6_运动_23]
+    examples:
+      - level: 1
+        word_ids: [G4_0498]
+        sentence: "I can play the piano."
+        scene_note: "乐器串——加 the（约定登记）"
+        supports: claim
+      - level: 1
+        word_ids: [G3_0401]
+        sentence: "We play football."
+        scene_note: "球类串——零冠词（约定登记）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_运动_23]
+        sentence: "She can play the guitar."
+        scene_note: "吉他归乐器串（现代口语松动见 exceptions）"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0489, G3_0401]
+        sentence: "They play football in the park."
+        scene_note: "操场场景——球类串整块使用"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "约定搭配强行理据化（教学侧伪因果）"
+        note: "反面教材已登记（on foot 伪因果案，FR09）；学生逐字病例待补，不自编。"
+    relatives:
+      - {id: C-11, rel: 对照}
+      - {id: P-04, rel: 对照}
+    quiz:
+      - q: "play the piano 的 the，为什么不能编一个「因为钢琴是乐器之王」之类的理由？"
+        options: ["它是约定，没有为什么；编理由会害人把 the 乱推广", "理由太长记不住", "钢琴不是乐器"]
+        answer: "它是约定，没有为什么；编理由会害人把 the 乱推广"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-07]
+    order: 44
+    pain_points: [记不住, 错不完]
+    adult:
+      sources: ["本项目模型例外 xc-piano", "Master (1997) 约定用法单列原则；Swan PEU 第 4 版 Section 12 条目 134–143（补核销项）"]
+      boundary: "约定不等于任意：串内一致（见 mechanism 第二节）；正在变化的项目登记为倾向。"
+      disputes: []
+      evidence_grade: "项目裁定 + 用法词典级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-13
+    zone: 小系统
+    group: C
+    headline: "类指有三种说法，分工不同：a tiger / the tiger / tigers"
+    headline_kid: "介绍一种动物有三台摄像机：一只代表大家、把全种当成一个大家伙、或者一群一起上镜——选哪台，句子就不一样。"
+    claim:
+      type: rule
+      statement: "说「老虎（这一物种）」有三种合法形式：a tiger（任取一只代表全类）、the tiger（把物种当作一个整体个体）、tigers（整类敞开说）——三者不是随便换的同义形式，而是三种不同的取景；分工可由谓词选择验证：濒危是物种整体的属性，须用 the tiger；条纹是任一样本的属性，可用 a tiger。"
+      evidence: ["Lyons《Definiteness》(1999, Cambridge University Press) 对类指与定指关系的系统讨论", "本项目 boundedness 模型例外 xc-generic-the 已登记 the 的类指用法"]
+    mechanism:
+      - beat: "三台摄像机"
+        text_kid: "一只老虎代表全班（a）、把老虎这个物种当成一个大家伙（the）、一群老虎一起上镜（零冠词复数）。"
+        text_adult: "类指是识解在「类别层」的运作：a 用个体样本例示类别（须属性对任一样本成立），the 把类别本身个体化（多用于物种存亡等整体谓词），零冠词复数直接以类别为指称。"
+        visual: "三格分镜：单只特写 / 物种徽章 / 群像"
+        anchors: [G1_020]
+      - beat: "谓词验分工"
+        text_kid: "（教师侧）「有条纹」哪台都能拍；「快灭绝了」只能用把物种当整体的那台——谓词会挑摄像机。"
+        text_adult: "*A tiger is endangered 不合（濒危是整体属性）；A tiger has stripes 合（任一样本皆然）——谓词选择是三形式非自由变体的可验证证据。"
+        visual: "两谓词 × 三形式的对勾/叉表"
+        anchors: [G1_020]
+    examples:
+      - level: 1
+        word_ids: [G1_020]
+        sentence: "Tigers are big."
+        scene_note: "零冠词复数类指——小学主教形式（词形经 tiger 归一）"
+        supports: claim
+      - level: 1
+        word_ids: [G1_020]
+        sentence: "A tiger has stripes."
+        scene_note: "a 类指：任取一只代表全类（清单登记正例；stripes 待补词库，句为登记原句）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_020]
+        sentence: "The tiger is a big cat."
+        scene_note: "the 类指的入门形态：把物种当一个整体介绍（高年级完整版见成人层）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_020, G2_080]
+        sentence: "I can see tigers in the zoo."
+        scene_note: "对照：具体的一群老虎（非类指）也用零冠词复数，靠语境分"
+        supports: claim
+    error_cases:
+      - wrong: "*A tiger is endangered."
+        right: "The tiger is endangered."
+        error_type: "类指形式与谓词不匹配"
+        source_type: "条目成人层登记的事故例（清单 C-13 支撑明载的星号形式）"
+        diagnosis: "endangered（濒危）是物种整体的属性，不是任一样本的属性；a 的取景是「任取一只样本」，与整体谓词冲突，须改用把物种个体化的 the 类指。"
+    relatives:
+      - {id: C-06, rel: 同族}
+      - {id: C-07, rel: 同族}
+    quiz:
+      - q: "介绍「老虎有条纹」给全班听，哪种说法不对？"
+        options: ["三种都可以（条纹是任一只都有的属性）", "只有 the tiger 可以", "只有 tigers 可以"]
+        answer: "三种都可以（条纹是任一只都有的属性）"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [C-06, C-07]
+    order: 45
+    pain_points: [错不完]
+    adult:
+      sources: ["Lyons (1999)《Definiteness》", "本项目模型例外 xc-generic-the"]
+      boundary: "小学阶段主教零冠词复数类指与 a 类指；the 类指只登记、作高年级内容（与模型 xc-generic-the 注记一致），不得因此推翻 C-07 的主读法。"
+      disputes: ["类指的形式分工在语义学界有多种记账（Carlson 的 kind 理论等），但「三形式非自由变体」的描写结论一致（清单原文登记）"]
+      evidence_grade: "理论定版级"
+      pending: ["stripes 待补入词库后回填例句挂接", "误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-14
+    zone: 小系统
+    group: C
+    headline: "a/an 看声音不看字母：an 是原形，a 是弱化形"
+    headline_kid: "a 和 an 是同一个小词：后面词的第一个声音是元音，它就多留一个 n 垫着读；看的是声音，不是字母。"
+    claim:
+      type: etymology
+      statement: "a 与 an 是同一个词的两副面孔：它本是古英语 ān「一」，元音开头的词前保留 an（防吞音），辅音前弱化成 a；所以判据永远是读音——an hour（h 不发音）、a university（读 /j/ 辅音音）。"
+      source: "a/an < 古英语 ān「one」；the < 古英语指示词系统（本项目模型 cl-a-etym；词源以 OED / Etymonline 为准）"
+      evidence: ["本项目 boundedness 模型 cl-a-etym（etymology 型主张）", "hour、honest 的 h 历史上脱落而 an 保留，university、one 的首音为辅音性滑音而用 a——两组对位事实同时被词源与音系解释覆盖"]
+    mechanism:
+      - beat: "一个词两副面孔"
+        text_kid: "an 是哥哥，a 是弟弟：后面是元音开头时，哥哥多带一个 n 垫着，读起来不打架。"
+        text_adult: "冠词是弱读功能词，其形态由语音衔接决定（避免元音连撞），这是「形式跟着发音走」的形态音系现象，与拼写无关。"
+        visual: "ān → an / a 的分化图，两例对照（hour / university）"
+        anchors: [V6_节日_16]
+      - beat: "耳朵判据"
+        text_kid: "拿到一个词，先读出声：第一个声音是「啊、诶、咦、哦、呜」这类元音，就用 an。"
+        text_adult: "判据操作化为读音首音：honest 的 h 不发音故 an honest；one 读 /w/ 辅音音故 a one（登记对位例）。"
+        visual: "耳朵图标 + 首音波形示意"
+        anchors: [ADD_0152]
+    examples:
+      - level: 1
+        word_ids: [G1_050]
+        sentence: "I have an egg."
+        scene_note: "元音开头——an 的本景"
+        supports: claim
+      - level: 1
+        word_ids: [G1_037]
+        sentence: "I have an apple."
+        scene_note: "同型巩固"
+        supports: claim
+      - level: 2
+        word_ids: [V6_节日_16]
+        sentence: "An hour is a long time."
+        scene_note: "hour 的 h 不发音——看声音不看字母（time 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0152]
+        sentence: "He is an honest boy."
+        scene_note: "honest 同型：h 脱落的登记词"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "按字母判 a/an（*a hour / *an university 型）"
+        note: "判据错型已由本条机制登记；university 未入词库（见 pending），逐字病例待补，不自编。"
+    relatives:
+      - {id: C-06, rel: 前置}
+    quiz:
+      - q: "hour 前面用 an，是因为？"
+        options: ["hour 的第一个声音是元音（h 不发音）", "hour 是时间词", "h 是元音字母"]
+        answer: "hour 的第一个声音是元音（h 不发音）"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [C-06]
+    order: 46
+    pain_points: [错不完]
+    adult:
+      sources: ["本项目模型 cl-a-etym", "词源溯源标准：OED / Etymonline（纲领 dom-vocab-etymology）"]
+      boundary: "个别方言/正式文体中 an historic(al) 等边缘用法属历史残余，小学阶段按「读音判据」一刀切，不展开。"
+      disputes: []
+      evidence_grade: "词源定版级"
+      pending: ["university 待补入词库后补 a university 例", "误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-15
+    zone: 小系统
+    group: C
+    headline: "抽象名词不可数，因为它们被看成「一类事」"
+    headline_kid: "作业、消息、建议这些东西摸不着、切不开，英语就把它们当成「一类事」整包处理；想数，就借 piece（条）来数。"
+    claim:
+      type: rule
+      statement: "homework、information、advice 没有形状可切——它们被英语整类打包成「一类事」来处理，所以不可数；识解不限于物理域：在抽象域中，事体以类别而非个体的形式被概念化，继承物质名词的全部语法待遇（无 a、无 -s、借单位计数、配 much）。"
+      evidence: ["Langacker (2008)：名词的「区域」定义适用于抽象域（抽象有界名词 moment、paragraph 为其正例，反之抽象无界名词同理）", "本项目 boundedness 模型例外 xc-homework-uncuttable 已登记本类"]
+      exceptions:
+        - {note: "部分抽象名词有可数化的专门读法（a knowledge of…、works 著作义），属词条级约定，逐词登记，不许类推泛滥", word_ids: []}
+    mechanism:
+      - beat: "抽象域的整包"
+        text_kid: "作业不是一件一件的「东西」，是「一类事」——整包拿走，不能拆开数。"
+        text_adult: "抽象不可数名词与物质名词在四项语法测试上行为全同（冠词、复数、量化词、单位借用），识解说以一条机制统摄；本项目审查中已据此替换旧「没有形状所以不可数」的错误讲法（那是物理说的变体）。"
+        visual: "作业/消息/建议三件套装进同一个「一类事」整包，-s 与 a 的图标被挡在包外"
+        anchors: [G5_215, G6_0339, G6_0329]
+      - beat: "借条计数"
+        text_kid: "想说「一条建议」，借 piece 来装：a piece of advice——数的还是单位。"
+        text_adult: "与 C-05 同一分份机制在抽象域的运行；单位搭配逐词登记。"
+        visual: "advice 整包 → piece 切条计数"
+        anchors: [V6_数字_40, G6_0329]
+    examples:
+      - level: 1
+        word_ids: [G5_215]
+        sentence: "I have homework today."
+        scene_note: "作业是「一类事」——不加 a、不加 -s"
+        supports: claim
+      - level: 1
+        word_ids: [G6_0329, V6_数字_40]
+        sentence: "Let me give you a piece of advice."
+        scene_note: "借 piece 数建议（与 C-05 同句呼应）"
+        supports: claim
+      - level: 2
+        word_ids: [G6_0339]
+        sentence: "The information is good."
+        scene_note: "消息整包处理，动词用单数"
+        supports: claim
+      - level: 2
+        word_ids: [G5_215, G3_0796]
+        sentence: "We have much homework today."
+        scene_note: "配 much 不配 many——四项测试之一"
+        supports: claim
+    error_cases:
+      - wrong: "*an information"
+        right: "some information / a piece of information"
+        error_type: "抽象料误加 a"
+        source_type: "条目成人层登记的事故例（清单 C-03 边界明载的星号形式，与 C-03 共案）"
+        diagnosis: "把抽象名词按普通可数名词处理；information 被整类打包成「一类事」，要计数先借 piece。与 C-18 的 *informations 型同源（-s 落点问题）。"
+    relatives:
+      - {id: C-02, rel: 对照}
+      - {id: C-05, rel: 同族}
+      - {id: C-18, rel: 同族}
+    quiz:
+      - q: "「一条建议」用英语怎么说才对？"
+        options: ["a piece of advice", "an advice", "advices"]
+        answer: "a piece of advice"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [C-02, C-05]
+    order: 47
+    pain_points: [错不完]
+    adult:
+      sources: ["Langacker (2008) 抽象域区域定义", "本项目模型例外 xc-homework-uncuttable"]
+      boundary: "可数化专门读法逐词登记（见 claim.exceptions），不许类推；旧「没有形状所以不可数」讲法已裁定删除，不得复活。"
+      disputes: []
+      evidence_grade: "专著机制级 + 项目裁定"
+      pending: ["knowledge 待补入词库后补可数化例外例", "误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-16
+    zone: 小系统
+    group: C
+    headline: "集合名词可单可复，看你把「一家人」看成一个单位还是几口人"
+    headline_kid: "「我们班」可以是一个班（一个整体），也可以是班上的同学们（好多人）——心里想的是哪个，动词就跟着哪个走。"
+    claim:
+      type: tendency
+      statement: "family、team、class 这类词指「一群互连的成员」：看成一个整体单位时动词用单数，看成成员们时可用复数——区域本就是「一组互连的实体」，集合名词的轮廓可在「集合体」与「成员集」之间切换，主谓一致随轮廓切换而变。"
+      evidence: ["Langacker 认知语法对 region 的定义（'a set of interconnected entities'）与 team/group/family 例（Langacker 1987/2008）"]
+      scope: "集合名词的一致切换；英式英语成员读法更自由，美式偏单数（方言参数）"
+      exceptions:
+        - {note: "police、people 等只有复数待遇的词是词条级约定，不服从自由切换，单记", word_ids: [G3_K38, V6_家庭_27]}
+    mechanism:
+      - beat: "轮廓切换"
+        text_kid: "一个班，手拉手站成一个圆圈是一个班；散开来是三十个同学——看成哪个，动词就听哪个的。"
+        text_adult: "集合名词的轮廓（profile）可在集合体与成员集之间切换；英式 The team are… 的合法性与美式偏单数的差异，证明这是识解选择而非错误。本项目 grammar 一致组条目与此口径衔接。"
+        visual: "班级合影两帧：整框（is）vs 逐个头像（are）"
+        anchors: [G3_133, G4_0989, V6_学校_25]
+      - beat: "小学主读法"
+        text_kid: "先把「一家人、一个队」当成一个整体记：动词用单数，不会错。"
+        text_adult: "小学阶段以「整体→单数」为主读法，成员读法只作理解；police/people 的复数待遇单记（见 exceptions）。"
+        visual: "整体读法卡置顶，成员读法卡标「看懂即可」"
+        anchors: [G3_K38]
+    examples:
+      - level: 1
+        word_ids: [G3_133]
+        sentence: "My family is big."
+        scene_note: "整体读法——单数（家庭合影场景）"
+        supports: claim
+      - level: 1
+        word_ids: [G4_0989]
+        sentence: "Our team is great."
+        scene_note: "队作一个单位"
+        supports: claim
+      - level: 2
+        word_ids: [V6_学校_25]
+        sentence: "My class is quiet today."
+        scene_note: "班作整体——quiet 已在库"
+        supports: claim
+      - level: 2
+        word_ids: [G3_K38]
+        sentence: "The police are here."
+        scene_note: "约定例外：police 只有复数待遇（here 经功能词归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "集合名词一致误用"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: C-01, rel: 前置}
+      - {id: C-18, rel: 同族}
+    quiz:
+      - q: "「My family ___ big.」先按主读法填哪个？"
+        options: ["is（看成一个整体）", "are（看成几口人）", "两个都不行"]
+        answer: "is（看成一个整体）"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [C-01]
+    order: 48
+    pain_points: [错不完]
+    adult:
+      sources: ["Langacker (1987/2008) region 定义（almerja Bounding 条目转述）"]
+      boundary: "小学以整体→单数为主读法，成员读法只作理解；police/people 单记（见 exceptions）。"
+      disputes: ["无主流分歧（英美用法差异属方言参数，清单原文）"]
+      evidence_grade: "专著定义级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-17
+    zone: 小系统
+    group: C
+    headline: "量词排队先看识解：many/much、few/little 是同一总开关的下游"
+    headline_kid: "先决定东西是「一个个」还是「一摊」：一个个的用 many/few，一摊的用 much/little——开关只有一个，灯有好几盏。"
+    claim:
+      type: rule
+      statement: "选 many 还是 much、(a) few 还是 (a) little，不取决于词本身，只取决于被量的东西当前被看成「一个个」还是「一摊」——量化词与冠词、复数 -s 是同一个识解总开关（C-01）的三个出口；量化是对已识解完毕的指称域作量级评估。"
+      evidence: ["识解总开关的上游出处同 C-01（Langacker 2008）", "量化词与可数性的系统对应以 Quirk et al.《A Comprehensive Grammar of the English Language》(1985, Longman) 的描写为准（本项目纲领既定基准来源之一）"]
+      exceptions:
+        - {note: "a lot of 两者通吃，是因为它绕过了识解标记——不是开关失效，是走了旁路", word_ids: []}
+        - {note: "less 与 fewer 的规范之争：less people 在口语中常见，属用法变迁，登记为倾向差异（教学守 fewer + 可数，见 disputes）", word_ids: [V6_数字_53]}
+    mechanism:
+      - beat: "一个开关三个出口"
+        text_kid: "先想：是一个个，还是一摊？想好了，冠词、-s、量词会一起跟着对。"
+        text_adult: "可数域按个体计数（many），不可数域按量计测（much）；双生活名词的量化词随读法翻转（much chicken = 鸡肉 / many chickens = 鸡只）是「量化跟识解走」的最干净证据（旧模型 ex-chicken 已登记）。"
+        visual: "总开关图：开关拨向「一个个」→ a/-s/many 同亮；拨向「一摊」→ 零冠词/much 同亮"
+        anchors: [V6_数字_45, V6_数字_46, G1_049]
+      - beat: "鸡的两副面孔"
+        text_kid: "盘子里的鸡肉是 much chicken；院子里跑的鸡是 many chickens——同一只鸡，两种看法。"
+        text_adult: "chicken 的双生活读法使量化词成为识解的探针：选错量词，暴露的是看法没先定，不是量词没背熟。"
+        visual: "餐盘鸡肉 vs 院子活鸡对照帧"
+        anchors: [G1_049]
+    examples:
+      - level: 1
+        word_ids: [V6_数字_45, G1_002]
+        sentence: "I have many books."
+        scene_note: "书是一个个的——many（词形经 book 归一）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_数字_46, G1_055]
+        sentence: "We have much water."
+        scene_note: "水是一摊的——much"
+        supports: claim
+      - level: 2
+        word_ids: [V6_数字_46, G1_049]
+        sentence: "We eat much chicken today."
+        scene_note: "鸡肉读法——much chicken（登记正例）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_数字_45, G1_049]
+        sentence: "We have many chickens."
+        scene_note: "活鸡读法——many chickens（词形经 chicken 归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "三出口打架（量词与识解不照应，*much chickens 型）"
+        note: "错型已由探针 PRB-BND-3 登记为预判误读形态（TEC-P10 治病项）；逐字课堂病例待补录，不自编。"
+    relatives:
+      - {id: C-01, rel: 前置}
+      - {id: C-18, rel: 同族}
+    quiz:
+      - q: "盘子里是鸡肉，该说 much chicken 还是 many chickens？"
+        options: ["much chicken（看成一摊料）", "many chickens（看成一只只）"]
+        answer: "much chicken（看成一摊料）"
+        hint_ref: "mechanism[1]"
+    probes: [PRB-BND-3]
+    prereq: [C-01]
+    order: 49
+    pain_points: [错不完]
+    adult:
+      sources: ["Langacker (2008)（同 C-01）", "Quirk et al. (1985) 量化词描写", "本项目模型 ex-chicken"]
+      boundary: "a lot of 的旁路与 less/fewer 的变迁见 claim.exceptions；探针映射：PRB-BND-3 = 探针库 v1 Boundedness 组 P3。"
+      disputes: ["描写派（Quirk 等：less + 复数可数在非正式语体可接受）与规范派（考试口径：必须 fewer）之争——教学取考试口径，教师知识取描写口径（清单原文登记）"]
+      evidence_grade: "机制 + 基准语法描写级"
+      pending: ["病句医院病例待补（逐字错例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-18
+    zone: 小系统
+    group: C
+    headline: "复数 -s 只落在「有界单位」上：这是它从不落在料上的原因"
+    headline_kid: "-s 是「复制章」：只能盖在能一份一份的东西上；一摊东西没法盖章，先装进瓶子、碗里，章盖在瓶子和碗上。"
+    claim:
+      type: rule
+      statement: "-s 的语义是「同一个有界单位被复制了多份」；料没有单位可复制，所以 *rices、*waters（日常义）不成立，要复数先借单位（two bottles of water）——可数域的参数组（有界、同质/异质、可扩展/可收缩、可复制）中，复数形态正对应「可复制（replicability）」一项。"
+      evidence: ["Langacker (2002: 69 一带；2008 教材版) 对可数/不可数参数组的修订表述（bounding、homogeneity、expansibility/contractibility、replicability）"]
+    mechanism:
+      - beat: "复制章"
+        text_kid: "一个杯子，盖一下章变两个、三个；一摊水没法盖章——先装进瓶子，章盖在瓶子上。"
+        text_adult: "单位可复制成多个同类个体，质料只能延展不能复制；参数组同时解释集合名词（C-16）与双生活名词的 -s 行为，解释面大于单一「有界」标准。"
+        visual: "印章动画：盖在杯子上逐个复制，盖在水摊上被弹开"
+        anchors: [G2_0936, G5_226, G1_055]
+      - beat: "同形分轨"
+        text_kid: "（教师侧）动词后面的 -s（三单）是另一个章，长得像，管的事完全不同，不能混。"
+        text_adult: "-s 也有非复数用法（三单 -s、所有格 's），形态同形而机制不同，教学上必须分轨，不得用本条去解释三单（那是语法区的一致标记线）。"
+        visual: "同形三章分轨图：复数 / 三单 / 所有格"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G5_226, G1_055]
+        sentence: "Two bottles of water, please."
+        scene_note: "-s 落在 bottles 上（词形经 bottle 归一）"
+        supports: claim
+      - level: 1
+        word_ids: [G3_0937, G1_054]
+        sentence: "Two bowls of rice, please."
+        scene_note: "同型：章盖在单位上（词形经 bowl 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_037]
+        sentence: "I have three apples."
+        scene_note: "有界单位直接复制（词形经 apple 归一；three 在库）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002]
+        sentence: "The books are on the desk."
+        scene_note: "书是单位——-s 本景（词形经 book 归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "-s 误落料上（*informations / *homeworks 型）"
+        note: "错型已由探针 PRB-BND-5 登记为预判误读形态；逐字课堂病例待补录，不自编。"
+    relatives:
+      - {id: C-01, rel: 前置}
+      - {id: C-05, rel: 同族}
+      - {id: C-16, rel: 同族}
+    quiz:
+      - q: "为什么不能说 two waters（一摊水）？"
+        options: ["水没有单位可复制，-s 没处落", "water 太长了", "two 只能跟瓶子"]
+        answer: "水没有单位可复制，-s 没处落"
+        hint_ref: "mechanism[0]"
+    probes: [PRB-BND-5]
+    prereq: [C-01, C-05]
+    order: 50
+    pain_points: [错不完]
+    adult:
+      sources: ["Langacker (2002/2008) 参数组（almerja 转述）"]
+      boundary: "-s 的非复数用法分轨处理（见 mechanism 第二节）；探针映射：PRB-BND-5 = 探针库 v1 Boundedness 组 P5。"
+      disputes: []
+      evidence_grade: "专著参数组级"
+      pending: ["病句医院病例待补（逐字错例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-19
+    zone: 小系统
+    group: C
+    headline: "选冠词时，心里要过一遍「对方知道吗」——冠词是给听者的服务"
+    headline_kid: "说英语的时候要多想一步：「我说的这个东西，对方找得到吗？」把答案用小词标出来，听的人才不迷路。"
+    claim:
+      type: rule
+      statement: "a/the/零 的选择本质上是说话人替听者算账：持续估算「对方现在能不能定位」，并用冠词把答案标在句子表面；形式越往给定性等级高端走（a → the → this/that → 代词），预设的听者认知状态越高；汉语把这笔账记在语境里，英语把它写出来。"
+      evidence: ["Gundel, Hedberg & Zacharski (1993) 给定性等级的蕴涵体系（同 C-06）", "理论先声：Prince (1981) 熟悉度量表（经 Abbott 2006 综述转述）", "Gundel et al. (2010), Journal of Pragmatics 42(7) 跨语言复制验证（含汉语对应形式分析）"]
+    mechanism:
+      - beat: "替听者算账"
+        text_kid: "说话之前先替对方想一想：他见过我说的东西吗？没见过，先用 a 介绍；见过了，再用 the。"
+        text_adult: "给定性等级是一套会话合作装置：选错形式等于给听者发了错误的定位预期；等级蕴涵（高状态蕴涵低状态）使形式选择可系统预测。"
+        visual: "说话人头顶算盘图：对方知道吗？→ 选词滑杆 a/the/代词"
+        anchors: [G1_015, V6_核心_23]
+      - beat: "两端的用法"
+        text_kid: "刚提到的用小代词接着说（it、he）；说了很久以前的，要把名字重新说全。"
+        text_adult: "等级高端是 this/that 与代词（与代词区的可及性机制 PR-06 同一台机器的两端）；儿童教学只取等级的两端（a 与 the）加零冠词。"
+        visual: "等级阶梯：a → the → this/that → 代词，儿童段高亮两端"
+        anchors: [V6_核心_13]
+    examples:
+      - level: 1
+        word_ids: [G1_015]
+        sentence: "I have a dog. The dog is cute. It is my friend."
+        scene_note: "一条等级链：a 介绍 → the 定位 → it 承接（friend 已在库）"
+        supports: claim
+      - level: 1
+        word_ids: [G1_002]
+        sentence: "I have a book. The book is new."
+        scene_note: "书的同型链（new 经形容词归一）"
+        supports: claim
+      - level: 2
+        word_ids: [G2_0501, G2_0507]
+        sentence: "The sun and the moon are in the sky."
+        scene_note: "常识定位直接 the 起手（sky 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [G1_014]
+        sentence: "The cat is cute. It is in the box."
+        scene_note: "已定位的猫用 it 承接（box 场景）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "定位预期错发（a/the 升降级错误）"
+        note: "错型由 C-09/C-10 分型覆盖；逐字病例待补，不自编。"
+    relatives:
+      - {id: C-06, rel: 前置}
+      - {id: C-07, rel: 前置}
+      - {id: PR-06, rel: 同族}
+    quiz:
+      - q: "说话时选 a 还是 the，心里要先问什么？"
+        options: ["对方现在能不能定位到它", "这个词难不难", "句子长不长"]
+        answer: "对方现在能不能定位到它"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-06, C-07]
+    order: 51
+    pain_points: [说不出, 错不完]
+    adult:
+      sources: ["Gundel, Hedberg & Zacharski (1993)", "Prince (1981)（Abbott 2006 转述）", "Gundel et al. (2010), Journal of Pragmatics 42(7)"]
+      boundary: "儿童教学只取等级两端（a 与 the）加零冠词；this/that 与代词的等级位置属疑问信息线与代词线（PR-06），不在此展开。"
+      disputes: ["无主流分歧；等级的级数划分（六级 vs 更细/更粗）在文献中有技术性出入，不影响两端教学（清单原文登记）"]
+      evidence_grade: "经典论文 + 复制验证级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: C-20
+    zone: 小系统
+    group: C
+    headline: "冠词错误要分型纠：漏用、误加、替换是三种病、三种药"
+    headline_kid: "冠词出错有三种样子：忘了放、放多了、放错了——先看清是哪一种，再对症下药。"
+    claim:
+      type: rule
+      statement: "冠词错误按形态分三型：漏用（缺槽位意识，药是立规矩）、the 滥用（按具体性选词，药是换判据到「对方能否定位」）、a/the 替换（定位判断本身摇摆，药是五路线索训练）——三型对应三个不同的心理环节（范畴缺位、参数未定版、线索评估不熟），不分型地「多练冠词」效率最低。"
+      evidence: ["分型框架综合 Ionin, Ko & Wexler (2004)（替换/滥用型的机制，C-09）与 CLEC 的错误标注分类（漏用型的语料形态，C-10）", "教学分轨思路与 Master (1997) 按用法类别组织冠词教学的框架一致", "Liu & Gleason (2002)：the 的不同用法类别难度与错误形态显著不同（C-08），是分型施教最直接的实证依据"]
+    mechanism:
+      - beat: "三型三药"
+        text_kid: "忘了放——先练「名词前面要有小词」；放多了 the——练「对方找得到吗」；放错了——练五条找东西的路。"
+        text_adult: "干预必须对准出故障的环节：漏用治范畴缺位（母语无冠词），滥用治参数未定版（波动），替换治线索评估不熟；干预顺序一般为先漏用、再滥用、后替换。"
+        visual: "三型诊断卡并排，各挂一味药签"
+        anchors: [G1_002, G2_0501, G4_0818]
+      - beat: "不是标签"
+        text_kid: "（教师侧）分型是给老师看的地图，不是贴在学生身上的标签；同一个学生可以同时有两型。"
+        text_adult: "分型是教学诊断工具；复习区按 error_type 归档时与本条三型共用同一分类口径（见 DESIGN §3.5）。"
+        visual: "同一作文三处错分属两型的标注示意"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G3_131]
+        sentence: "I am a student."
+        scene_note: "漏用型的正形对照：槽位必备"
+        supports: claim
+      - level: 1
+        word_ids: [G1_015, G2_0414]
+        sentence: "I saw a dog today."
+        scene_note: "滥用型的正形对照：初次提及用 a（与 C-09 错句成对）"
+        supports: claim
+      - level: 2
+        word_ids: [G4_0818]
+        sentence: "Pass me the salt, please."
+        scene_note: "替换型的训练素材：五路之情境路"
+        supports: claim
+      - level: 2
+        word_ids: [G1_002, G1_0928]
+        sentence: "The book on the desk is mine."
+        scene_note: "替换型的训练素材：五路之修饰锁定路"
+        supports: claim
+    error_cases:
+      - wrong: "I saw the dog yesterday."
+        right: "I saw a dog yesterday."
+        error_type: "the 滥用（按具体性选词）"
+        source_type: "条目成人层登记的事故例（清单 C-09 明载，与 C-09 共案；本条为其分型归档）"
+        diagnosis: "在本条分型中属「滥用型」：药不是多背 the 的用法，而是把判据从「我心里有没有」换成「对方能否定位」（C-07/C-19）。漏用与替换两型的逐字病例待补（见 pending）。"
+    relatives:
+      - {id: C-09, rel: 前置}
+      - {id: C-10, rel: 前置}
+      - {id: C-08, rel: 同族}
+    quiz:
+      - q: "学生总把第一次提到的东西加 the，这属于哪一型、药是什么？"
+        options: ["滥用型——把判据换成「对方能否定位」", "漏用型——立槽位规矩", "替换型——练五条线索"]
+        answer: "滥用型——把判据换成「对方能否定位」"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [C-09, C-10]
+    order: 52
+    pain_points: [错不完]
+    adult:
+      sources: ["Ionin, Ko & Wexler (2004)", "CLEC 错误标注分类", "Master (1997) 教学框架", "Liu & Gleason (2002)"]
+      boundary: "分型是教学诊断工具，不是给孩子的标签；同一学习者可同时有两型。"
+      disputes: []
+      evidence_grade: "框架综合级（各型均有原始出处）"
+      pending: ["漏用型、替换型的逐字病例待补（CLEC 子库注明后补录）", "误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-01
+    zone: 小系统
+    group: PR
+    headline: "代词首先是「关系词」，不是「代替名词的词」"
+    headline_kid: "代词不只是替名字省事的词——你选哪个代词，就在告诉大家「我和你是什么关系、谁和谁是一伙的」。"
+    claim:
+      type: rule
+      statement: "传统语法把代词定义为「代替名词的词」（回指功能），顺序应当倒过来：指人表达的首要工作是个人指示、社会指示与身份建构——大多数语言里「指人的表达都包含对特定社会关系的指涉」，性别、等级、亲疏被直接编进代词系统。"
+      evidence: ["Mühlhäusler & Harré《Pronouns and People: The Linguistic Construction of Social and Personal Identity》(1990, Basil Blackwell；开篇断言见 p. 5，二手引文）（接触等级：二手系统论述级——框架经多篇带页码引文的学术二手论述拼合）"]
+    mechanism:
+      - beat: "先关系后代替"
+        text_kid: "说 I、you、we 的时候，你不只是在指人，还在说清「谁跟谁是一伙的、谁在说话、谁在听」。"
+        text_adult: "该书的立书命题被概括为「语法与自我感密切相关」（grammar and the sense of self are intimately related）；后续 Davies & Harré (1990) 的定位论（positioning）即由该书思路长出，其后三十年的代词与身份研究持续以该书为源头引用。"
+        visual: "人物关系网图：代词节点亮起时，关系线同时亮起"
+        anchors: [V6_核心_15, V6_核心_4]
+      - beat: "英语里藏得深"
+        text_kid: "英语的代词个子小，关系藏得深：一个 we，就能把全班说成一伙的。"
+        text_adult: "该书的论证材料以欧洲语言与皮钦语/克里奥尔语为主，其「社会关系编码」在英语里因代词系统瘦小而表现隐蔽（见 PR-04），不能按法语/爪哇语的显性程度向孩子展示。"
+        visual: "老师说 We 时全班被圈成一组的示意"
+        anchors: [V6_核心_15, V6_学校_25]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_15, V6_家庭_27]
+        sentence: "We are friends."
+        scene_note: "we 把说话人和伙伴说成一伙（friends 词形经 friend 归一）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_4, V6_核心_1]
+        sentence: "You are my friend."
+        scene_note: "you 与 my 同时标出关系双方"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_19, G3_130]
+        sentence: "They are my friends."
+        scene_note: "they 把第三方划成另一组（词形经 friend 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_15, G4_0393]
+        sentence: "We are classmates."
+        scene_note: "同班即共同体——学校场景（词形经 classmate 归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "代词关系义忽视（语用层）"
+        note: "框架条目，清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: PR-03, rel: 同族}
+      - {id: PR-04, rel: 同族}
+    quiz:
+      - q: "老师说「We are a team」时，we 除了指人，还在做什么？"
+        options: ["把大家说成一伙（建构共同体）", "代替老师的名字", "表示人数很多"]
+        answer: "把大家说成一伙（建构共同体）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: []
+    order: 53
+    pain_points: [说不出]
+    adult:
+      sources: ["Mühlhäusler & Harré (1990)（书目经 NINJAL 与 NYPL 馆藏记录核实；接触等级：二手系统论述级）", "Davies & Harré (1990) 定位论（后续研究史）"]
+      boundary: "该书材料以欧洲语言与皮钦/克里奥尔语为主；英语中的社会编码表现隐蔽（见 PR-04），展示程度须降格。"
+      disputes: ["无主流分歧（身份建构视角已成社会语言学共识）；分歧在方法论层——定位论认为自我是话语产物，认知取向保留前话语的自我概念，本条教学只取语言观察面，不站队（清单原文登记）"]
+      evidence_grade: "二手系统论述级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-02
+    zone: 小系统
+    group: PR
+    headline: "「我」是把自己钉在此时此地、并为这句话担责的词"
+    headline_kid: "说 I 的人永远是「正在说话的这个人」——话一换人说，I 指的人就跟着换；谁说 I，谁就为这句话负责。"
+    claim:
+      type: rule
+      statement: "第一人称是典型的换位词（shifter）：所指随言语事件本身移动；I 把说话者「系在时空之中，并标明谁是这句话及其后果的负责人」——自我同时被定位为有身体的个体（数量同一性）与社会中的人（性质同一性），代词系统是第二种定位的语法工具。"
+      evidence: ["Mühlhäusler & Harré (1990), pp. 88（自我双重定位）、92（系于时空与担责）（接触等级：二手系统论述级，两处页码引文分别经学术转述核实，未打开原书）"]
+    mechanism:
+      - beat: "换位"
+        text_kid: "老师说 I，是老师；你说 I，就是你——I 永远跟着正在说话的人跑。"
+        text_adult: "换位性是儿童代词习得的经典难点与经典观察：幼儿先把 I/you 当专名用（照搬大人对自己说的话），在对话轮换中才翻转过来——这正是「钉住说话者」机制的习得证据（本条只引机制，不引具体实验数值）。"
+        visual: "对话轮换动画：I 的高亮随说话人切换而移动"
+        anchors: [V6_核心_0]
+      - beat: "担责与正迁移"
+        text_kid: "汉语的「我」也是一样换来换去，这一条不用重新学；要记的是英语的 I 永远大写、每句都要站出来（见 PR-08）。"
+        text_adult: "对中国孩子，本条概念是正迁移区；难点不在概念而在形式：I 必须大写，且不能像汉语那样在话题链中省掉。"
+        visual: "I 大写标记 + 句子首位站位示意"
+        anchors: [V6_核心_0]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_0, G1_007]
+        sentence: "I am a teacher."
+        scene_note: "老师说 I——指说话人自己（I 经别名归一至代词组条目，以独立条目为准）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_0, G3_131]
+        sentence: "I am a student."
+        scene_note: "换学生说 I——指的人立刻换了"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_4, V6_核心_1]
+        sentence: "You are my friend."
+        scene_note: "you 指向听者——换位词的对偶面"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_0, G6_282]
+        sentence: "I am happy."
+        scene_note: "谁说 I，谁为这句「开心」担责（陈述归属）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "I/you 换位混淆（幼儿专名化误用）"
+        note: "习得现象已在机制登记；逐字病例待补，不自编。"
+    relatives:
+      - {id: PR-08, rel: 同族}
+      - {id: PR-01, rel: 前置}
+    quiz:
+      - q: "同一句话「I am happy」，老师说和你说，I 指的人一样吗？"
+        options: ["不一样，I 永远指正在说话的人", "一样，都指老师", "一样，都指你"]
+        answer: "不一样，I 永远指正在说话的人"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PR-01]
+    order: 54
+    pain_points: [说不出]
+    adult:
+      sources: ["Mühlhäusler & Harré (1990), pp. 88、92（二手引文核实）"]
+      boundary: "概念层为正迁移区；形式层（大写、不可省）见 PR-08。"
+      disputes: []
+      evidence_grade: "二手系统论述级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-03
+    zone: 小系统
+    group: PR
+    headline: "we 是最「滑」的代词：包不包你，要靠听者自己猜"
+    headline_kid: "英语的 we 有时候把听的人算在里面，有时候不算——听到 we，要先想一想「这里面有没有我」。"
+    claim:
+      type: rule
+      statement: "许多语言把「包括听者的我们」与「排除听者的我们」做成两个词（包容式/排斥式对立），英语不做这个区分，于是 we 的边界永远要靠语境裁定；we 至少向听者发出一个邀请——「请你想一想，除了我之外还指谁」，同时是一种「同说」行为：把同一命题一次性套到包括自己在内的一群人头上，共同体就此被说出来。"
+      evidence: ["Mühlhäusler & Harré (1990)，经 Goddard (1995: 107) 转述（转述经 Globe 期刊论文原文核实）", "包容/排斥的类型学定版见 Siewierska (2004) 第 3.2.1 节（PR-05）（接触等级：二手系统论述级）"]
+    mechanism:
+      - beat: "边界靠猜"
+        text_kid: "老师说 We have a test today——有你；老师对另一个老师说 We have a meeting——可能没你。听到 we 先找一找自己在不在里面。"
+        text_adult: "英语 we 的指称边界不由形式标记，听者须以语境裁定；政治与机构话语研究反复证实 we 是共同体建构的首选工具（老师的「我们班」、演说者的「我们国家」滑移自如），滑移性正来自这一空白。"
+        visual: "同一个 we 两帧：听者被圈入 / 被圈外，问号标在边界上"
+        anchors: [V6_核心_15]
+      - beat: "汉语的对照"
+        text_kid: "汉语有「咱们」帮忙（咱们 = 一定有你），可普通话里也不常用——多半还是靠听懂场合。"
+        text_adult: "汉语「我们/咱们」的分工与英语不同（咱们为包容式、北方方言词），普通话儿童母语里包容/排斥也多半靠语境——此条对中国孩子是「注意听边界」的语用训练，不是形式难点。"
+        visual: "咱们（必含你）与 we（待裁定）的对照卡"
+        anchors: [V6_核心_15]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_15, G2_0489, G2_080]
+        sentence: "We play in the park."
+        scene_note: "包容式情境：说话人与小伙伴一起玩（含听者）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_15, G3_130]
+        sentence: "We are friends."
+        scene_note: "对听者说——we 把听者包进来"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_15, G4_0393]
+        sentence: "We are classmates."
+        scene_note: "班级共同体——we 的「同说」建构"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_15, G4_174]
+        sentence: "We study English."
+        scene_note: "课堂语境中的包容读法（English 已在库）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "we 边界误判（语用理解型）"
+        note: "清单未登记逐字病例，不自编。"
+    relatives:
+      - {id: PR-01, rel: 前置}
+      - {id: PR-05, rel: 同族}
+    quiz:
+      - q: "老师对全班说「We have English today」，这个 we 包括你吗？"
+        options: ["包括（对全班说的）", "不包括", "英语的 we 从不包括听者"]
+        answer: "包括（对全班说的）"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PR-01]
+    order: 55
+    pain_points: [听不懂, 说不出]
+    adult:
+      sources: ["Mühlhäusler & Harré (1990)，经 Goddard (1995: 107) 转述", "Siewierska (2004) 3.2.1"]
+      boundary: "本条是语用训练而非形式难点（见 mechanism 第二节）。"
+      disputes: []
+      evidence_grade: "二手系统论述级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-04
+    zone: 小系统
+    group: PR
+    headline: "礼貌和亲疏本来住在代词里——英语把这套系统拆了，礼貌搬了家"
+    headline_kid: "以前的英语也有「您」和「你」的分工，后来只剩一个 you——所以英语的礼貌不在代词里，要靠别的说法（称呼、语气、绕个弯）来补。"
+    claim:
+      type: rule
+      statement: "欧洲语言史上，第二人称的 T/V 对立是权力与亲疏的语法化编码；英语在近代丢失 thou/you 对立后，礼貌功能整体迁出代词系统，改由称呼语、情态与间接言语行为承担——对老师说 you 完全正确，礼貌靠 Please / Mr. / Ms. / Could you…? 补足。"
+      evidence: ["Brown & Gilman (1960)「权力与同等」分析（T/V 系统的历史语义）", "Mühlhäusler & Harré (1990: 5) 把性别、等级并列为编进指人表达的社会关系", "Siewierska (2004) 第 6 章「人称形式与社会指示」（6.1 语义范畴的挪用、6.2 专门敬称人称标记）（接触等级：章节预览级）"]
+    mechanism:
+      - beat: "礼貌搬家"
+        text_kid: "英语里对老师也说 you，不是不礼貌——礼貌搬家了，住在 please、Mr.、Could you 这些说法里。"
+        text_adult: "英语 thou 的消亡与 you 的通吃有完整的历史语法记录；人称/数的挪用本身在许多语言里就是礼貌装置（复数表尊称、皇家 we、编辑 we），英语把这套装置拆掉后，功能必须由其他形式补位。"
+        visual: "礼貌行李从代词格搬到称呼/情态格的示意"
+        anchors: [V6_核心_4, G4_K01]
+      - beat: "汉语的对照"
+        text_kid: "汉语的「您」是现成的概念，可惜英语没有对应的词——记住：不是所有概念都有现成的词来装。"
+        text_adult: "汉语的您/你对立是正迁移的概念、无形式的对应；教学只取结论层（见 boundary）。"
+        visual: "您/你 对照 you 单格的映射图"
+        anchors: [V6_核心_4]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_4, G4_K01]
+        sentence: "Can you help me, please?"
+        scene_note: "对老师也用 you，礼貌由 please 与问句形式承担（help 已在库）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_4, G1_007]
+        sentence: "You are my teacher."
+        scene_note: "you 对老师完全正确——结论层的正例"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_4, G4_K03]
+        sentence: "Could you give me the money?"
+        scene_note: "Could you…? 的间接请求——礼貌的现行住所（money 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_4, G2_0492]
+        sentence: "You read English well."
+        scene_note: "日常陈述中的 you——无亲疏标记（well 经副词归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "对师长避用 you（母语敬称迁移型语用失误）"
+        note: "失误形态由本条机制可推，逐字病例待补，不自编。"
+    relatives:
+      - {id: PR-01, rel: 前置}
+      - {id: PR-05, rel: 同族}
+    quiz:
+      - q: "对老师说话，英语的礼貌主要靠什么补？"
+        options: ["称呼、please、Could you 这类说法", "把 you 换成 thou", "不说话"]
+        answer: "称呼、please、Could you 这类说法"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PR-01]
+    order: 56
+    pain_points: [说不出]
+    adult:
+      sources: ["Brown & Gilman (1960)", "Mühlhäusler & Harré (1990)（二手系统论述级）", "Siewierska (2004) 第 6 章（章节预览级，出版社前言 PDF 核实）"]
+      boundary: "教学只取结论层：不教孩子「英语不礼貌」，而教「英语的礼貌换地方住了」。"
+      disputes: ["无（T/V 的历史动力细节各家有出入，不影响本条结论层，清单原文）"]
+      evidence_grade: "经典论文 + 章节预览级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-05
+    zone: 小系统
+    group: PR
+    headline: "「人称」是一个范畴家族，不是一张三行表——英语的系统是「素颜版」"
+    headline_kid: "全世界的语言给「人」分队的方法五花八门；英语是最简单的一版：不分双数、不分包不包你，性别只在第三人称单数露一下面。"
+    claim:
+      type: rule
+      statement: "人称系统的可能维度至少包括：人称（1/2/3，可再分）、数（含双数、三数）、包容/排斥、性别（在许多语言受人称层级制约，常只出现在第三人称）、敬称；英语的实现恰是其中最朴素的一种：无人称内对立的包容区分、无双数、性别只在第三人称单数、格只剩代词内部残留。"
+      evidence: ["Siewierska《Person》(2004, Cambridge University Press；分析基于 700 多种语言)：第 2 章独立人称形式（2.1 性别、2.2 数、2.3 格），第 3 章语义范畴（3.2.1 包容与排斥、3.2.2 双数与三数、3.3 性别与人称层级关系）（接触等级：章节预览级，出版社章节预览 PDF 核实）"]
+    mechanism:
+      - beat: "家族全景"
+        text_kid: "有的语言有「双人的我们」，有的有「皇家我们」；英语没有这些格子，先知道世界上还有别的排法。"
+        text_adult: "该书 Ch. 3.3 专门论证性别的人称层级制约（人称层级越低越可能区分性别）；儿童教学只取类型学坐标：知道英语缺了哪些格，日后学法语、日语时就不会误以为那些格是多余装饰；we 的滑移性（PR-03）也由「无包容对立、无皇家标记」的留白解释。"
+        visual: "类型学全景表：英语行大量空格，空格标「别处有」"
+        anchors: [V6_核心_15, V6_核心_7, V6_核心_10]
+      - beat: "英语的留白清单"
+        text_kid: "英语缺的格子：双数、包不包你、敬称、代词里的性别（只有他/她露面）。"
+        text_adult: "格残留的具体形态（I/me、he/him 等成对形式）是儿童实际要记的全部；其余维度只作背景知识登记。"
+        visual: "英语人称表 + 留白格示意"
+        anchors: [V6_核心_8, V6_核心_11]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_7]
+        sentence: "He is a boy. She is a girl."
+        scene_note: "性别只在第三人称单数露面——系统的唯一性别格（girl 已在库）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_13]
+        sentence: "It is a dog."
+        scene_note: "非人用 it——第三人称的另一格"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_19]
+        sentence: "They are my friends."
+        scene_note: "复数不分性别——they 通吃（词形经 friend 归一）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_15]
+        sentence: "We are students."
+        scene_note: "we 不分包容/排斥——留白格的实例（词形经 student 归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "类型学背景条目，无对应病例型"
+        note: "背景条目，病例不适用，标待补占位。"
+    relatives:
+      - {id: PR-03, rel: 同族}
+      - {id: PR-06, rel: 同族}
+    quiz:
+      - q: "英语的代词里，性别在哪儿露面？"
+        options: ["只在第三人称单数（he/she）", "每个格子都有", "只有第一人称有"]
+        answer: "只在第三人称单数（he/she）"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [PR-01]
+    order: 57
+    pain_points: []
+    adult:
+      sources: ["Siewierska (2004)《Person》（出版社章节预览 PDF；接触等级：章节预览级）"]
+      boundary: "儿童教学只取类型学坐标，不教范畴清单本身。"
+      disputes: ["无主流分歧（类型学描写共识）；术语处理有派别差（Siewierska 自注用 person forms 而非 pronouns 的取舍），不影响教学（清单原文登记）"]
+      evidence_grade: "章节预览级（700+ 语言类型学专著）"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-06
+    zone: 小系统
+    group: PR
+    headline: "全称、代词还是干脆不说——按「心里有多清楚」定价"
+    headline_kid: "提到的人越清楚，用的词越省：刚说过的用小代词，久没提的要把名字说全——说太省，别人就找不到你说的是谁。"
+    claim:
+      type: tendency
+      statement: "在完整名词、代词与零形式之间选择，是按所指对象的可及性定价的：代词只配给当前最可及的所指（刚提过、话题中心），远了、岔了、多人竞争了，就必须升回完整名词；写作文时「代词指不清」不是态度问题，是定价错误。"
+      evidence: ["Siewierska (2004) 第 5 章指称跟踪：5.2 可及性与分布、5.2.2 话题连续性与词汇表达形式、5.3 指称选择的句法约束（含 5.3.3 避代词约束）（接触等级：章节预览级）"]
+      scope: "指称形式选择与可及性的对应（叙述语篇中默认成立）"
+      exceptions:
+        - {note: "避代词约束等句法层约束可以覆盖可及性定价（某些句法位置宁可重复名词也不能用代词）", word_ids: []}
+    mechanism:
+      - beat: "定价表"
+        text_kid: "刚说过的人 → 小代词；换话题了、多人抢镜了 → 把名字说全；再清楚不过 → 可以不说（汉语常这样，英语不行，见 PR-08）。"
+        text_adult: "可及性由语篇距离、话题连续性与竞争者数量共同决定；这与给定性等级（C-06/C-19）是同一台心理机器的不同读数面：冠词管名词内部的标记，代词选择管形式本身的升降级。"
+        visual: "三档形式滑杆：全称 — 代词 — 零，按距离推拉"
+        anchors: [V6_核心_7, G3_130]
+      - beat: "作文应用"
+        text_kid: "作文里两个 he 打架时，把其中一个人的名字写全，读者立刻就清爽了。"
+        text_adult: "清单原文的操作结论：这正是儿童写作文「代词指不清」的对策条款（见 boundary）。"
+        visual: "双 he 歧义句 → 一处升回全称的修改对照"
+        anchors: [V6_核心_7]
+    examples:
+      - level: 1
+        word_ids: [G3_130, V6_核心_7]
+        sentence: "I have a friend. He is tall."
+        scene_note: "刚提过——he 定价正确（tall 已在库）"
+        supports: claim
+      - level: 1
+        word_ids: [G1_015, V6_核心_13]
+        sentence: "I have a dog. It is cute."
+        scene_note: "物的承接同理（cute 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [G3_130, V6_核心_7]
+        sentence: "My friend is happy. He plays football."
+        scene_note: "话题连续——代词维持（football 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [G4_0393, V6_核心_19]
+        sentence: "My classmates are kind. They help me."
+        scene_note: "复数承接（kind/help 已在库；词形经 classmate 归一）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "代词指不清（作文歧义型）"
+        note: "病型已由本条 boundary 登记；逐字作文病例待补，不自编。"
+    relatives:
+      - {id: C-19, rel: 同族}
+      - {id: PR-05, rel: 前置}
+      - {id: PR-08, rel: 同族}
+    quiz:
+      - q: "「Tom and Jack are here. He is happy.」有什么问题？"
+        options: ["he 指不清——该把名字说全", "happy 用错了", "没有问题"]
+        answer: "he 指不清——该把名字说全"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [PR-05, C-19]
+    order: 58
+    pain_points: [说不出]
+    adult:
+      sources: ["Siewierska (2004) 第 5 章（章节预览级）", "给定性等级（Gundel et al. 1993，同 C-06）"]
+      boundary: "作文应用：本条正是儿童写作文「代词指不清」的对策条款；零形式的合法性见 PR-08（英语主语位不可零）。"
+      disputes: ["定价模型的派别（可及性标量 Ariael/Givón 传统 vs 约束满足模型）在文献中共存，教学只取对应直觉，不站队（清单原文登记）"]
+      evidence_grade: "章节预览级 + 经典框架"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（作文逐字例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-07
+    zone: 小系统
+    group: PR
+    headline: "有的语言把「人」长在动词上——英语把这套拆了，所以代词必须出场"
+    headline_kid: "有些语言看动词就知道是谁在做，英语的动词几乎不留记号——所以英语的句子里，I、you、he 一个都不能缺席。"
+    claim:
+      type: rule
+      statement: "人称标记在语言中有两处住所：独立代词与动词上的一致标记（附着/词缀形式）；许多语言（西班牙语、意大利语）靠动词一致即可省代词（pro-drop）；英语在历史上把动词一致磨得只剩三单 -s 一处残迹，于是主语代词成了义务出场——这是系统配置问题，不是英语「啰嗦」。"
+      evidence: ["Siewierska (2004) 第 2 章（独立形式 vs 附着形式：一性两处住所）、第 4.1 节（pro-drop 语言的一致与省代词）、第 6.3 节（虚假主语与论元实现）、第 7.2 节（人称标记的语法化路径）（接触等级：章节预览级）"]
+    mechanism:
+      - beat: "两处住所"
+        text_kid: "「谁在做」这件事，有的语言写在动词身上，有的写在单独的小词上；英语写在小词上，所以小词不能丢。"
+        text_adult: "该书的框架强调「人称」范畴不限于代词词表：束缚形式（bound forms）与独立形式同属一个系统，本条任务书不用 pro-drop 术语，但机制即其内容；英语三单 -s 是旧一致系统的残迹（与 C-18 的复数 -s 分轨）。"
+        visual: "两语言对照：动词尾巴带标记 vs 代词独立站位"
+        anchors: [V6_核心_13]
+      - beat: "虚主语的伏笔"
+        text_kid: "（教师侧）英语连「没有谁在做」的句子都要放个 it 占位——占位规则见 PR-08/PR-10。"
+        text_adult: "虚假主语（第 6.3 节）在英语中义务化，正是「主语位不可空」在无所指时的补位形态，与 PR-08 的 dummy it 同源。"
+        visual: "空椅子 + it 占位标记"
+        anchors: [V6_核心_13]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_7, G2_089]
+        sentence: "He swims."
+        scene_note: "he 义务出场，动词只剩 -s 一点痕迹（swim/s 已在库）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_10, G2_0492]
+        sentence: "She reads."
+        scene_note: "同型：主语不可省"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_13, G2_0502]
+        sentence: "It rains."
+        scene_note: "无「做者」也须占位——虚主语伏笔（机制见 PR-10）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_19, G2_0489]
+        sentence: "They play football."
+        scene_note: "复数主语同样义务出场"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "主语省略（跨条共因，见 PR-08）"
+        note: "漏主语的病例归 PR-08 档案，本条不重复登记。"
+    relatives:
+      - {id: PR-08, rel: 同族}
+      - {id: PR-10, rel: 同族}
+    quiz:
+      - q: "英语句子里主语代词为什么不能像西班牙语那样省掉？"
+        options: ["英语动词上几乎没有「谁在做」的记号，只能靠代词", "英语句子比较短", "老师规定的"]
+        answer: "英语动词上几乎没有「谁在做」的记号，只能靠代词"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PR-05]
+    order: 59
+    pain_points: [错不完]
+    adult:
+      sources: ["Siewierska (2004) 第 2、4.1、6.3、7.2 节（章节预览级）"]
+      boundary: "正式文体与日记体可省主语（省略是语域现象），不得反推为规则松动（争议中登记的历史语法细节为其一）。"
+      disputes: ["pro-drop 的生成语法解释（参数说）与功能解释在文献中共存，本条取功能面（清单原文登记）；另：三单 -s 的历史来源细节有学界出入，不展开"]
+      evidence_grade: "章节预览级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-08
+    zone: 小系统
+    group: PR
+    headline: "中国孩子漏主语的总根源：汉语先说「话题」，英语先摆「主语」"
+    headline_kid: "汉语说话先摆出「说的是什么事」，后面的句子可以接着往下说；英语每句都要先摆一个主语，哪怕是凑数的 it、there，也得摆上。"
+    claim:
+      type: tendency
+      statement: "汉语是话题突出型语言：句子围绕话题组织，话题一旦立住，后续小句可以在话题链中零指称地一路说下去；英语是主语突出型：每个小句必须有语法主语，无话题可立时也要用 it/there 占位。学习者把话题链带进英语，漏主语便成系统性现象，而非粗心。"
+      evidence: ["Li & Thompson (1976) 话题突出/主语突出类型学（收入 Li (ed.)《Subject and Topic》, Academic Press；话题突出诊断标准清单见 pp. 466–471、pp. 457–489 一带）", "Li & Thompson (1981)《Mandarin Chinese: A Functional Reference Grammar》：话题链、哑主语零形式等逐项描写", "一手实证：汉语母语者中介语诱发研究（39 名学习者，五项话题突出特征在中介语中全部可检出，2011）"]
+      scope: "汉英对比与中介语的系统倾向（类型参数，不是个体预言）"
+      exceptions:
+        - {note: "英语内部亦有话题化构式与日记体省主语等边缘现象；汉语亦有严格主谓句——突出性是程度问题（见 disputes）", word_ids: []}
+    mechanism:
+      - beat: "话题链 vs 主语链"
+        text_kid: "汉语像接龙：第一个人把话题摆好，后面的人接着说，不用每句重摆；英语像排队点名：每句都要先报一个主语的名字。"
+        text_adult: "话题链（topic chain）是该语法最有教学价值的描写：一个话题统辖一串小句是汉语的常态组织方式；dummy it/there 的存在本身就是英语「主语位不可空」的语法证据。"
+        visual: "话题链长龙 vs 逐句点名两条流水线对照"
+        anchors: [V6_核心_13]
+      - beat: "纠错的抓手"
+        text_kid: "写完一句英语，先回头点名：这句的主语是谁？找不到，就补一个（天冷了 → It is cold）。"
+        text_adult: "该书的诊断标准清单使「话题突出」成为可操作概念而非印象标签；2011 年诱发研究把「汉语学习者英语的五项话题特征」做成可检清单，是本条最直接的 L2 证据。"
+        visual: "点名检查流程卡：写句 → 找主语 → 补位"
+        anchors: [V6_核心_13, G2_0502]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_13, G2_0502]
+        sentence: "It is raining."
+        scene_note: "天气句必须 it 占位——汉语「下雨了」无对应主语"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_13, G2_093]
+        sentence: "It is sunny today."
+        scene_note: "同型占位（sunny 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_7, G4_174]
+        sentence: "He studies English."
+        scene_note: "话题链第二句位：英语仍须重摆主语 he（study/s 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_13, G2_0489, G3_0401]
+        sentence: "It is fun to play football."
+        scene_note: "it 占位 + 真主语后置的入门形态（fun/play 已在库）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "漏主语（话题链迁移型）"
+        note: "错型与机制已由 Li & Thompson 框架与 2011 诱发研究登记；逐字作文病例待补，不自编。"
+    relatives:
+      - {id: PR-07, rel: 前置}
+      - {id: PR-09, rel: 同族}
+      - {id: PR-02, rel: 同族}
+    quiz:
+      - q: "「下雨了」说成英语要先补什么？"
+        options: ["补占位主语 It（It is raining）", "补 the", "什么都不用补"]
+        answer: "补占位主语 It（It is raining）"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [PR-07]
+    order: 60
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Li & Thompson (1976)，收入《Subject and Topic》", "Li & Thompson (1981) 参考语法", "2011 年中介语诱发研究（39 名学习者）"]
+      boundary: "著名勘误项：突出性是连续统（2024 年 Topics in Linguistics 载有系统论证）——教学用二元机制讲，成人层必须登记连续统勘误。"
+      disputes: ["Li & Thompson 的二分近来受「连续统」批评（2024）——清单原文登记；本条教学取二元机制、成人层登记连续统，与 CG 组的总勘误口径一致"]
+      evidence_grade: "经典专著 + 一手中介语实证级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（作文逐字例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-09
+    zone: 小系统
+    group: PR
+    headline: "迁移搬的是「功能」不只是「形式」：话题优先会变成 there be 滥用与伪被动"
+    headline_kid: "学外语的时候，大脑会先把老家的「做事方法」搬过来——汉语习惯先摆话题，搬到英语里，就会变成爱用 there be 开头、或者造出奇怪的被动句。"
+    claim:
+      type: rule
+      statement: "中国学习者把汉语的话题结构当成功能蓝图带进英语：需要「先摆出话题再展开」时，顺手抓英语现成的 there be 与主语提升构式来顶替（存现句滥用、外置句偏好、伪被动），表面形式是英语的，功能骨架是汉语的——迁移的单位是语篇组织功能，不是词形对应。"
+      evidence: ["Schachter & Rutherford (1979), Working Papers on Bilingualism 19: 1–12（话题与评论结构迁移的奠基实证）", "Rutherford & Sharwood Smith (1985) 语篇—句法接口旁证", "Han (2000) 纵向个案：同一位汉语背景学习者的伪被动长期存在（化石化警讯）"]
+    mechanism:
+      - beat: "功能蓝图"
+        text_kid: "搬家时搬的不只是家具，连房间的摆法一起搬——英语的词，汉语的话题摆法。"
+        text_adult: "Schachter & Rutherford (1979) 的关键发现是话题—评论式组织在写作中的系统性出现，且学习者偏好用 there be 等英语现成构式承载话题功能；这是 CG-02（负迁移四分）中「语篇层迁移」的代词区实例，与 PR-08 的零主语同源而表现不同（一个省、一个多）。"
+        visual: "同一话题功能在两语中的承载构式对照表"
+        anchors: [V6_核心_13]
+      - beat: "化石化警讯"
+        text_kid: "（教师侧）伪被动这类句子若长期不纠，会被大脑当成「就该这么说」固定下来。"
+        text_adult: "Han (2000) 的纵向个案提示：话题驱动的伪被动具有化石化风险，早期干预点在「存现与被动的准入条件」而非逐句改错。"
+        visual: "个案时间轴：伪被动出现频度长期不降的示意"
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_核心_23, G1_002]
+        sentence: "There is a book on the desk."
+        scene_note: "there be 的正位用法：存现句引介新信息（与滥用对照的基线）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_23, G1_015]
+        sentence: "There is a dog in the garden."
+        scene_note: "同型存现（garden 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_13, G2_0492, G1_002]
+        sentence: "It is fun to read this book."
+        scene_note: "外置句的正位用法——与学习者的话题偏好构式同形，须辨「合规外置」与「话题顶替」（fun 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_23, G1_041]
+        sentence: "There is a ball under the desk."
+        scene_note: "方位存现——汉语「桌子下面有一个球」的合规对应"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "存现句滥用 / 伪被动（话题功能顶替型）"
+        note: "现象与奠基出处已登记（Schachter & Rutherford 1979；Han 2000 纵向个案）；逐字作文病例待补，不自编。"
+    relatives:
+      - {id: PR-08, rel: 前置}
+      - {id: CG-02, rel: 同族}
+    quiz:
+      - q: "中国学生爱用 there be 开头写作文，最深层的原因是？"
+        options: ["汉语的话题优先功能在找英语构式顶替", "there be 比较好背", "英语作文必须这样开头"]
+        answer: "汉语的话题优先功能在找英语构式顶替"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PR-08]
+    order: 61
+    pain_points: [错不完, 说不出]
+    adult:
+      sources: ["Schachter & Rutherford (1979), Working Papers on Bilingualism 19: 1–12", "Rutherford & Sharwood Smith (1985)", "Han (2000) 纵向个案"]
+      boundary: "1979 年样本为成人写作语篇，儿童口头迁移的检出形态（短句话题链）不同，教学引用须降格（清单原文的保守用法登记）。"
+      disputes: ["无主流分歧（话题迁移此后被大量复制研究支持）"]
+      evidence_grade: "奠基实证 + 纵向个案级"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（作文逐字例）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-10
+    zone: 小系统
+    group: PR
+    headline: "天气 it 指的是「整个环境」——一条没有共识、但有主读法的边界"
+    headline_kid: "It is raining 里的 it 不是「凑数的假主语」——它指的是整个天气、整个场面：整个世界都在下雨。"
+    claim:
+      type: tendency
+      statement: "天气与环境陈述中的 it「指周围的整体环境」，并非毫无语义的凑数主语——指称沿一条由具体到全域的斜坡渐变，天气 it 处在「全域指称」的端点；但语义学界对它的记账至今分立两派，本条只立教学主读法（Bolinger 线），学术登记保留 Quirk 的虚指说并列。"
+      evidence: ["Bolinger《Meaning and Form》(1977) 第 4 章（ambient it 的系统论证，pp. 67、77–87；渐变带见 p. 82 的 cline 陈述）", "印证：Chafe 对居间状态动词主语的论述（同一传统转述）", "采信：Langacker (1991: 366) 在认知语法中正式采纳环境 it 的读法"]
+      scope: "天气、时间、距离等环境陈述中的 it（环境指称读法为教学主读法）"
+      exceptions:
+        - {note: "外置 it（It is fun to…）与指代 it 是不同机制，不在本条范围，尽管可能同源渐变带", word_ids: []}
+    mechanism:
+      - beat: "全域指称"
+        text_kid: "下雨的时候，不是某一块地方在下，是你周围的整个世界都在下——it 就管这个「整个场面」。"
+        text_adult: "Bolinger 的论证要点：天气 it 的指称虽弥漫但非空无——若纯粹凑数，则无法解释它与 *The sky is raining 等替换的不对称与语感差异；Langacker 把它纳入「设定/场景」指称，赋予认知语法的正式位置。"
+        visual: "全景镜头帧：it 的指称范围圈住整个画面（雨幕全覆盖）"
+        anchors: [V6_核心_13, G2_0502]
+      - beat: "两派并列"
+        text_kid: "（教师侧）大学者们对这个问题有两种说法——本课用「环境说」讲给孩子，对立说法登记在成人层，不打架。"
+        text_adult: "Quirk et al. (1985: 348–349、748) 把天气 it 定为 prop it「语义内容很少或没有」；两派的事实基础相同、分歧在记账方式。本条按清单裁定：教学主读法取 Bolinger，学术登记保留 Quirk 并列，不裁定学术胜负（见 disputes）。"
+        visual: "双栏并列卡：环境说 / 虚指说，各自的页码出处"
+        anchors: [V6_核心_13]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_13, G2_0502]
+        sentence: "It is raining."
+        scene_note: "环境 it 本景：整个场面在下雨"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_13, G2_093]
+        sentence: "It is sunny today."
+        scene_note: "天气陈述同型（sunny 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_13, V6_节日_2]
+        sentence: "It is a new month."
+        scene_note: "时间环境陈述——渐变带向时间域的延伸（month 已在库）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_13, G2_0501]
+        sentence: "It is hot. The sun is big."
+        scene_note: "对照：环境 it 与具体指称 the sun 分工（hot 已在库）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "环境 it 省略（与 PR-08 漏主语共因）"
+        note: "省略病例归 PR-08 档案，本条不重复登记。"
+    relatives:
+      - {id: PR-08, rel: 前置}
+      - {id: PR-07, rel: 同族}
+    quiz:
+      - q: "按本课的讲法，It is raining 里的 it 指的是？"
+        options: ["周围的整个环境、整个场面", "天空", "雨滴"]
+        answer: "周围的整个环境、整个场面"
+        hint_ref: "mechanism[0]"
+    probes: []
+    prereq: [PR-08]
+    order: 62
+    pain_points: [听不懂]
+    adult:
+      sources: ["Bolinger (1977) 第 4 章，pp. 67、77–87；p. 82", "Chafe 环境主语论述", "Langacker (1991: 366)", "Quirk et al. (1985: 348–349、748)（对立说）"]
+      boundary: "教孩子「it 指整个天气/整个处境」在教学法上可辩护且与 Langacker 的采信一致；但学术分歧必须在成人层留档（见 disputes），且这不是小学阶段的决战点。"
+      disputes: ["Bolinger/Chafe/Langacker 环境 it 说（全域指称）vs Quirk prop it 说（语义内容很少或没有）——两派事实基础相同、分歧在记账；教学主读法取 Bolinger，学术胜负不裁（清单原文裁定）"]
+      evidence_grade: "专著章节一手论证 + 对立说并列登记级"
+      pending: ["误解探针待补（W7 收口）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]
+  - id: PR-11
+    zone: 小系统
+    group: PR
+    headline: "he/she 说混不是态度问题，是「开机顺序」问题：口头高发、书面低发"
+    headline_kid: "中国孩子说话时把 he、she 说混，写下来却很少错——不是不用心，是说话时脑子来不及选：汉语的「tā」本来就不分男女。"
+    claim:
+      type: tendency
+      statement: "汉语普通话的第三人称在口语中只有一个音 tā，性别信息不在「开口前想好的意思」里；说英语时，性别选择被迫推迟到措辞的最后一刻，在快速口语产出中系统性地来不及——于是错误呈「口头高发、书面低发」的分布；这是产出加工的时间问题，不是性别概念问题，更不是态度问题。"
+      evidence: ["综述与实验：Frontiers in Psychology (2021) 对中国学习者代词性别错误的系统综述与自产实验证据（PMC8925987）", "Dong & Jia (2011) 二语习得研究：口语 6.47% 与写作 15% 的可检出误用分布（以正式期刊发表数据为准，见 disputes 的转引裁定）"]
+      scope: "汉语普通话母语者的英语第三人称产出（口头/书面分布差异）"
+      exceptions:
+        - {note: "个别学习者的错误可源于词汇混淆等其他环节，不能一概按加工说诊断；书面高发者须另查范畴问题", word_ids: []}
+    mechanism:
+      - beat: "开口前的清单"
+        text_kid: "说话像发快递：汉语打包时不贴「男/女」标签，英语发货前必须贴——说得快，就容易贴错；写的时候慢慢贴，就很少错。"
+        text_adult: "该综述的机制模型：言语产出中性别特征须在概念化阶段编码，汉语母语者的概念化阶段没有这一项，于是选择被推迟到形式编码阶段，时间压力下出错；同音问题不在听辨而在产出规划。"
+        visual: "产出流水线：概念化 → 措辞 → 发音，性别标签在汉语线缺位、英语线补贴的动画"
+        anchors: [V6_核心_7, V6_核心_10]
+      - beat: "练法跟着机制走"
+        text_kid: "这种错要在「说得快」的场合练——限时口头造句，而不是罚抄写十遍。"
+        text_adult: "干预因此是加工侧的：快速口头产出中练性别选择（限时替换、口头叙事），而非书面默写——书面默写练不到出故障的环节；评测与家长沟通引用数据时用已发表的 Dong & Jia (2011)，不用硕论转述数字（见 disputes）。"
+        visual: "限时口头替换练习卡 vs 罚抄卡的对勾/叉"
+        anchors: [V6_核心_7, V6_核心_10]
+    examples:
+      - level: 1
+        word_ids: [V6_核心_10, G2_066]
+        sentence: "She is my sister."
+        scene_note: "she 的目标形：指女性亲属（sister 已在库）"
+        supports: claim
+      - level: 1
+        word_ids: [V6_核心_7, G2_062]
+        sentence: "He is my father."
+        scene_note: "he 的目标形：指男性亲属"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_10, G1_007]
+        sentence: "She is a teacher."
+        scene_note: "口头限时替换练习素材（女教师）"
+        supports: claim
+      - level: 2
+        word_ids: [V6_核心_7, G3_131]
+        sentence: "He is a student."
+        scene_note: "同型替换（男学生）"
+        supports: claim
+    error_cases:
+      - status: 待补
+        error_type: "he/she 口头互换（加工时序型）"
+        note: "现象与分布数据已登记（见 claim.evidence）；逐字语料句待补，不自编具体错句。"
+    relatives:
+      - {id: PR-05, rel: 前置}
+      - {id: PR-06, rel: 同族}
+    quiz:
+      - q: "he/she 总在说话时说混、写时很少错，最该怎么练？"
+        options: ["在限时口头产出中练性别选择", "罚抄 he/she 各十遍", "背性别单词表"]
+        answer: "在限时口头产出中练性别选择"
+        hint_ref: "mechanism[1]"
+    probes: []
+    prereq: [PR-05]
+    order: 63
+    pain_points: [说不出, 错不完]
+    adult:
+      sources: ["Frontiers in Psychology (2021) 综述与实验（PMC8925987）", "Dong & Jia (2011)", "Antón-Méndez (2010) 英语代词性别误用的编码解释（机制对手位）"]
+      boundary: "教学话术底线：对孩子与家长都讲清「这是开机顺序问题，不是态度问题」，禁止用「不认真」解释本条错误。"
+      disputes: ["流传的「Chen (2004) 口头 17.65%」原始出处核定为未出版硕论（华南师范大学），按销项规程升级为「二手互证级」：该数字被 Dong、Wen、Zeng & Ji (2015) 与 Song (2022) 公开转引、方向一致；本条入模引用改用已发表的 Dong & Jia (2011) 6.47%/15% 数据，硕论数字只在成人层登记备查，不进儿童层与对外引用", "机制分歧登记：Antón-Méndez (2010) 的词汇编码解释与「概念化阶段未编码」说的侧重不同，教学干预（口头加工训练）对两者兼容"]
+      evidence_grade: "期刊综述 + 实验复现级（硕论数字已按销项规程降格处理）"
+      pending: ["误解探针待补（W7 收口）", "病句医院病例待补（逐字语料句）"]
+    status: 入模中
+    version: "1.0"
+    changelog: ["2026-11-01 由清单 v6 入模（波次 W4）"]

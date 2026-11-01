@@ -1,0 +1,4146 @@
+# 支撑层规律条目（F2 波次入模）
+# 来源：专家规律清单 v6（LS/YL/CB/CG/VB 五组，70 条）；schema 依 docs/DESIGN.md §3。
+# 受众：教师/设计层——只入成人层/教师层呈现，不进孩子菜单（DESIGN §4.2 W6）。
+# 口径与待补见同目录 support_MODEL.md；例词挂接见 ../hitching/support_hitching.yaml。
+meta:
+  file: support.yaml
+  wave: F2
+  zone: 支撑层
+  groups: [LS, YL, CB, CG, VB]
+  count: 70
+  source_catalog: expert-summaries-catalog-v6
+  version: "1.0"
+  date: 2026-11-01
+
+# 跨域综合八机制（v2 综合层登记）：八机制为全清单的顶层组织框架，本文件只登记
+# 「本波 70 条各自承载哪条机制」的对应关系（依各条目机制原文判定，详见 support_MODEL.md），
+# 八机制本身的定义与孩子层条目的对应不在本波范围。
+synthesis_eight_mechanisms:
+  - name: 识解
+    carried_by: [CG-03, CG-04, CG-05, VB-12, VB-13]
+  - name: 原型+亲戚网
+    carried_by: [CB-02, CB-10, VB-03, CG-06]
+  - name: 已知性
+    carried_by: [CB-07, CB-09, CG-01]
+  - name: 库存与频率
+    carried_by: [CB-01, CB-05, CB-11, CB-13, LS-06]
+  - name: 得体即正确
+    carried_by: [CB-04, CB-07, CB-08, CG-10]
+  - name: 发展与支架
+    carried_by: [YL-01, YL-02, YL-04, YL-07, LS-14]
+  - name: 提取与间隔
+    carried_by: [LS-01, LS-02, LS-03, LS-04, LS-05, LS-06, LS-07, LS-10]
+  - name: 机制先于形式
+    carried_by: [LS-15, CG-11, YL-10, VB-12]
+
+entries:
+  # ================= LS 学习科学（15 条） =================
+  - id: LS-01
+    zone: 支撑层
+    group: LS
+    subgroup: 提取练习家族
+    audience: 教师/设计层
+    headline: 十种常见学法逐个评级：只有「自己考自己」和「分散开学」拿到最高档
+    headline_kid: 最有用的学法是两个——把书合上自己考自己、把复习分开几天；最没用的是划线和一遍遍重读。
+    claim:
+      type: tendency
+      statement: 学生最常用的十种学习技巧经系统评估分三档：高效用只有练习测验与分散练习两种；精细化提问、自我解释、交错练习为中效用；做摘要、划线、关键词记忆术、为课文造意象、反复重读为低效用。流行的学法与有效的学法系统性错位。
+      evidence:
+        - "Dunlosky, Rawson, Marsh, Nathan & Willingham (2013), Psychological Science in the Public Interest 14(1): 4–58（APS 旗舰综述，一手评级）"
+      scope: 评估对象是「学生能自主使用的技巧」；证据主体为中学生以上与大学生，对小学生须翻译为由 App/教师代为安排的练习形态。
+      exceptions:
+        - 低效用不等于完全无效（如重读胜过只读一遍），是同等时间下有明显更好的替代品。
+        - 关键词记忆术对短时外语词配对有局部效果，但受材料与保持期限制，仍评低效用——口诀类记忆术不能当词汇教学主力。
+    mechanism:
+      - beat: 评级总纲
+        text_kid: 最有用的学法是两个——把书合上自己考自己、把复习分开几天；最没用的是划线和一遍遍重读。
+        text_adult: 十技巧按跨年龄、跨材料、跨测验形式是否稳定有效等十个标准评估；本条是 LS 组的总纲，App 的练习形态与排程设计以此评级为据（提取与间隔为高效用主线，见 LS-02/LS-06）。
+        visual: 十技巧三档评级表（设计检查表形态，不作儿童呈现）
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_38]
+        form: "practice testing（练习测验）、distributed practice（分散练习）"
+        scene_note: 清单原文所评的两种高效用技巧名
+        supports: claim
+    error_cases:
+      - wrong: 把划线、反复重读、关键词口诀当作主要学法安排
+        right: 主线用提取练习与分散练习，口诀类记忆术只作辅助
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim——三档评级中上述学法均为低效用。
+    relatives:
+      - {id: LS-02, rel: 同族}
+      - {id: LS-06, rel: 同族}
+      - {id: LS-11, rel: 同族}
+    quiz:
+      - q: 下列哪种学法在 Dunlosky (2013) 评级中属高效用？
+        options: [反复重读, 练习测验, 划线标注, 关键词记忆术]
+        answer: 练习测验
+        hint_on_wrong: 回机制小节「评级总纲」看三档划分
+    probes: []
+    prereq: []
+    order: 1
+    pain_points: []
+    adult:
+      sources:
+        - "Dunlosky et al. (2013), PSPI 14(1): 4–58；APS 新闻稿 https://www.eurekalert.org/news-releases/508403"
+      boundary: 证据主体来自中学生以上与大学生；对小学生结论应翻译成由 App/教师代为安排的练习形态，不能指望孩子自发使用。
+      disputes: 无主流分歧；争议在个别中效用技巧（交错练习）的证据成熟度，原文亦只给中档。
+      evidence_grade: 一手综述核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-01}
+
+  - id: LS-02
+    zone: 支撑层
+    group: LS
+    subgroup: 提取练习家族
+    audience: 教师/设计层
+    headline: 测验效应：合上书想一遍，比把课文再读几遍记得牢得多
+    headline_kid: 学完别急着再看一遍——先合上，自己想：刚才讲了啥？想的动作本身就在帮你记住。
+    claim:
+      type: tendency
+      statement: 提取不是检查记忆的中性动作，而是改造记忆的事件：每次努力把信息取出来，取它的通路就被加固。短时（5 分钟后）重读组占优，延迟到 2 天、1 周后测验组反超且差距拉大；重读组对自己的掌握更自信，自信与实际保持脱钩。
+      evidence:
+        - "Roediger & Karpicke (2006), Psychological Science 17(3): 249–255（一手实验）"
+        - "Adesope, Trevisan & Sundararajan (2017) 元分析，课堂情境效应量 g = 0.67（经 Frontiers in Psychology 2018 转述）"
+      scope: 原实验被试为大学生、材料为科普短文；效应在延迟测验上才成立。
+      exceptions:
+        - 即时测验上重读反占优——复习题若只测刚看完的内容，测不出提取效应，必须隔一段时间再考。
+    mechanism:
+      - beat: 提取加固通路
+        text_kid: 学完别急着再看一遍——先合上，自己想：刚才讲了啥？想的动作本身就在帮你记住。
+        text_adult: 实验 2 中一周后反复测验组回忆出课文的 61%，反复重读组（平均读 14.2 遍）只有 40%。儿童证据见 LS-05、LS-06，方向一致但英语句型的直接证据仍薄。
+        visual: 两组保持曲线对照（即时重读占优、延迟测验反超）
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G2_0492]
+        form: "re-reading（重读） vs testing（测验）的对照条件"
+        scene_note: 清单原文实验条件
+        supports: claim
+    error_cases:
+      - wrong: 学完立刻再测一遍就宣称提取练习有效
+        right: 提取练习的效果在延迟测验上判定，复习题须与初学拉开时间间隔
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的 scope——短时测验上重读反而占优。
+    relatives:
+      - {id: LS-01, rel: 同族}
+      - {id: LS-03, rel: 同族}
+      - {id: LS-09, rel: 对照}
+    quiz:
+      - q: 测验效应在什么时间点的测验上才显现？
+        options: [学完 5 分钟后, 延迟 2 天至 1 周后, 只在即时测验, 与时间无关]
+        answer: 延迟 2 天至 1 周后
+        hint_on_wrong: 回机制小节「提取加固通路」
+    probes: []
+    prereq: [LS-01]
+    order: 2
+    pain_points: []
+    adult:
+      sources:
+        - "Roediger & Karpicke (2006), Psychological Science 17(3): 249–255, DOI 10.1111/j.1467-9280.2006.01693.x；摘要 https://pubmed.ncbi.nlm.nih.gov/16507066/"
+      boundary: 被试为大学生、材料为科普短文；儿童材料多为事实/类别学习，英语句型直接证据仍薄。
+      disputes: 无；细节争议在题型（简答 vs 选择）与是否必须反馈，见 LS-04。
+      evidence_grade: 一手实验核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-02}
+
+  - id: LS-03
+    zone: 支撑层
+    group: LS
+    subgroup: 提取练习家族
+    audience: 教师/设计层
+    headline: 答对一次不等于学会：会了以后「继续考」才留得住，「继续看」几乎白费
+    headline_kid: 一个词你答对了，别急着把它扔出复习堆——过几天再考你两次，它才真正变成你的。
+    claim:
+      type: tendency
+      statement: 材料一旦能答对就移出练习是学习软件与学生的通病：答对之后重复学习（再看）对一周后保持几乎零贡献，重复提取（再考）贡献了几乎全部的保持增益。
+      evidence:
+        - "Karpicke & Roediger (2008), Science 319(5865): 966–968（一手实验，40 对斯瓦希里语—英语词对）"
+      scope: 被试为大学生，材料为词配对、保持期一周；对 App 的含义是方向性的。
+      exceptions:
+        - 学生本人对各条件一周后表现的预测与实际成绩不相关——不能用学习者自评决定是否移出练习。
+    mechanism:
+      - beat: 答对后降频不移除
+        text_kid: 一个词你答对了，别急着把它扔出复习堆——过几天再考你两次，它才真正变成你的。
+        text_adult: 一周后答对后继续被考的条件回忆率约 80%，答对后被移出测验的条件只有约三分之一。设计含义：单词卡「答对即毕业」算法违背证据，应改为答对后降频但保留数次间隔提取。
+        visual: 复习队列状态图（答对→降频保留→数次间隔提取→毕业）
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_42]
+        form: "外语词配对学习（斯瓦希里语—英语）"
+        scene_note: 清单原文实验材料，与英语单词学习同构
+        supports: claim
+    error_cases:
+      - wrong: 单词卡答对一次即移出复习队列（答对即毕业）
+        right: 答对后降频保留，再经数次间隔提取才毕业
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim——答对后继续看几乎白费，继续考才留得住。
+    relatives:
+      - {id: LS-02, rel: 前置}
+      - {id: LS-06, rel: 同族}
+    quiz:
+      - q: 答对之后，哪种处理对一周后保持贡献最大？
+        options: [再看几遍, 继续考几次, 立刻移出练习, 换新材料]
+        answer: 继续考几次
+        hint_on_wrong: 回机制小节「答对后降频不移除」
+    probes: []
+    prereq: [LS-02]
+    order: 3
+    pain_points: []
+    adult:
+      sources:
+        - "Karpicke & Roediger (2008), Science 319(5865): 966–968, DOI 10.1126/science.1152408"
+      boundary: 大学生、词配对、一周期限；小学生保持期与词量规模的外推需谨慎。
+      disputes: 无。
+      evidence_grade: 一手实验核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-03}
+
+  - id: LS-04
+    zone: 支撑层
+    group: LS
+    subgroup: 提取练习家族
+    audience: 教师/设计层
+    headline: 提取要配反馈：答错不可怕，没人告诉你对错才可怕
+    headline_kid: 考完马上告诉我对不对、正确答案是啥——我下次就记得更牢；光考不批，错的可能越记越真。
+    claim:
+      type: tendency
+      statement: 提取练习须配反馈：反馈放大提取的正效应（巩固答对的、尤其没把握却答对的），并拆掉选择题干扰项被误记成真知识的负效应；即时与延迟反馈都有益。
+      evidence:
+        - "Butler & Roediger (2008), Memory & Cognition 36(3): 604–616（一手实验）"
+        - "Butler, Karpicke & Roediger (2008)：反馈尤其能保住低信心答对的内容"
+      scope: 证据来自大学生与历史类短文；对小学生反馈须即时、友好、带正确答案重现。
+      exceptions:
+        - 选择题干扰项对低龄儿童的误导风险比成人更高，更依赖反馈兜底；只有对错标记、不重现正确答案不算合格反馈。
+    mechanism:
+      - beat: 反馈双职
+        text_kid: 考完马上告诉我对不对、正确答案是啥——我下次就记得更牢；光考不批，错的可能越记越真。
+        text_adult: 与无反馈组相比，即时与延迟反馈组在一周后线索回忆测验上答对更多、重复干扰项错误更少。
+        visual: 答题→反馈（对错+正确答案重现）→再提取的闭环图
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_38]
+        form: "multiple-choice testing with feedback（带反馈的选择题提取）"
+        scene_note: 清单原文实验形态
+        supports: claim
+    error_cases:
+      - wrong: 只考不批，或答错后只打叉不给正确答案
+        right: 每次提取后给反馈，答错时让正确形式完整重现一次
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim——无反馈时干扰项会被误记成真知识。
+    relatives:
+      - {id: LS-02, rel: 同族}
+    quiz:
+      - q: 即时反馈与延迟反馈孰优，学界结论是？
+        options: [即时必优, 延迟必优, 无定论，但有反馈大于无反馈, 无反馈更好]
+        answer: 无定论，但有反馈大于无反馈
+        hint_on_wrong: 回成人层 disputes
+    probes: []
+    prereq: [LS-02]
+    order: 4
+    pain_points: []
+    adult:
+      sources:
+        - "Butler & Roediger (2008), Memory & Cognition 36(3): 604–616, DOI 10.3758/MC.36.3.604"
+      boundary: 证据来自大学生与历史类短文；儿童反馈形态须按边界调整。
+      disputes: 即时 vs 延迟反馈孰优无定论（不同实验结果不一），共识是「有反馈 > 无反馈」。
+      evidence_grade: 一手实验核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-04}
+
+  - id: LS-05
+    zone: 支撑层
+    group: LS
+    subgroup: 提取练习家族
+    audience: 教师/设计层
+    headline: 小步常考在真实课堂里同样成立：六年级与八年级的整学期证据
+    headline_kid: 上课时不时来个不算分的小测，不是为了为难你——测过的东西，期末你就是记得更好。
+    claim:
+      type: tendency
+      statement: 把低风险小测嵌进正常教学，被测过的内容在单元考与学期考上都更好，效应保持到学期末累积考试；提取练习不是实验室 artifact，是可在真实课表里运行的安排。
+      evidence:
+        - "Roediger, Agarwal, McDaniel & McDermott (2011), J. Exp. Psychol.: Applied 17(4): 382–395（六年级社会课，三轮实验）"
+        - "McDaniel et al. (2011), J. Educational Psychology 103(2): 399–414（八年级科学课，小测内容单元考提升 13%–25%）"
+      scope: 本簇年龄最接近的证据，仍是 11–14 岁、社会/科学学科；向 6–10 岁与英语学科外推时题型须更游戏化、单次题量更小。
+      exceptions:
+        - 「小测不算分、低风险」是设计前提——变成计分考试会引入焦虑变量，证据不再直接适用。
+    mechanism:
+      - beat: 课堂小测
+        text_kid: 上课时不时来个不算分的小测，不是为了为难你——测过的东西，期末你就是记得更好。
+        text_adult: 实验室测验效应向真实课程的迁移证据：小测提升单元考与学期考成绩，且持续到累积考试。
+        visual: 课表嵌入低风险小测的节奏示意
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_38]
+        form: "low-stakes quizzing（低风险小测）"
+        scene_note: 清单原文课堂形态
+        supports: claim
+    error_cases:
+      - wrong: 把嵌入式小测做成计分考试
+        right: 小测保持低风险、不算分，只作提取与诊断
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的 exceptions——计分引入焦虑变量，证据不再适用。
+    relatives:
+      - {id: LS-02, rel: 同族}
+    quiz:
+      - q: 课堂小测证据的设计前提是什么？
+        options: [计分排名, 低风险不算分, 题量越大越好, 只测新学内容]
+        answer: 低风险不算分
+        hint_on_wrong: 回 claim 的 exceptions
+    probes: []
+    prereq: [LS-02]
+    order: 5
+    pain_points: []
+    adult:
+      sources:
+        - "Roediger et al. (2011), JEPA 17(4): 382–395, DOI 10.1037/a0026252；McDaniel et al. (2011), JEP 103(2): 399–414"
+      boundary: 11–14 岁、社会与科学学科；向低龄与英语外推须调整题型与题量。
+      disputes: 无；课堂实施的争议在频率与教师负担，不在效应本身。
+      evidence_grade: 一手课堂实验核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-05}
+
+  - id: LS-06
+    zone: 支撑层
+    group: LS
+    subgroup: 间隔与练习编排
+    audience: 教师/设计层
+    headline: 分散练习：把同一内容拆开隔几天学，赢过一口气学完——两个统计口径都指同一个结论
+    headline_kid: 今天学一点、过几天再碰一点，比把所有次数挤在今天记得牢。把「学会」拆成几次见面，每次见面都比上一次记得久一点。
+    claim:
+      type: tendency
+      statement: 间隔让第二次学习发生在「已经有点忘了」的状态，提取更费力，记忆被重新激活并改写加固；分散练习胜过集中练习，其强度由学习间隔（ISI）与保持间隔（RI）共同决定，不存在脱离 RI 的「最佳天数」。
+      evidence:
+        - "Cepeda, Pashler, Vul, Wixted & Rohrer (2006), Psychological Bulletin 132(3): 354–380（定量合成：839 次评估、317 个实验、184 篇文章）"
+        - "Dunlosky et al. (2013) 转述口径：254 项研究、14,000+ 被试，分散后回忆率 47% vs 集中 37%（与上一口径不得混搭引用）"
+        - "儿童证据：Vlach, Sandhofer & Kornell (2008) 3 岁幼儿；Gluckman, Vlach & Sandhofer (2014) 小学低年级课堂"
+      scope: 元分析材料以言语回忆为主、被试以成人为主；儿童最优间隔的定量地图不存在，App 排程只可借方向、不可借参数。
+      exceptions:
+        - 间隔越长越好不成立：间隔相对保持期过与不及都变差（见 LS-07 的倒 U）。
+    mechanism:
+      - beat: 间隔效应
+        text_kid: 今天学一点、过几天再碰一点，比把所有次数挤在今天记得牢。
+        text_adult: 幼儿间隔以秒计已有效（Vlach 2008，范例间隔 30 秒）；小学低年级间隔以天计有效（Gluckman 2014，1 周后测验记忆与泛化均胜）——方向一致，儿童定量参数缺位。
+        visual: 集中 vs 分散的排程对照图
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_节日_3]
+        form: "distributed practice（分散练习）：同一内容拆开隔几天学"
+        scene_note: 清单原文的操作定义
+        supports: claim
+    error_cases:
+      - wrong: 把成人元分析的「间隔天数」直接写进儿童复习算法当定量承诺
+        right: 儿童排程只借间隔效应的方向与形状，参数须本地校准
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope——儿童最优间隔定量地图不存在。
+    relatives:
+      - {id: LS-07, rel: 同族}
+      - {id: LS-01, rel: 同族}
+    quiz:
+      - q: 引用分散练习的统计数字时必须注意什么？
+        options: [两个口径可混用, 须注明用的是哪个口径, 只引百分比即可, 数字越大越可信]
+        answer: 须注明用的是哪个口径
+        hint_on_wrong: 回 claim 的 evidence 两条口径说明
+    probes: []
+    prereq: [LS-01]
+    order: 6
+    pain_points: []
+    adult:
+      sources:
+        - "Cepeda et al. (2006), Psychological Bulletin 132(3): 354–380, DOI 10.1037/0033-2909.132.3.354；Vlach et al. (2008), Cognition 109(1): 163–167；Gluckman et al. (2014), Applied Cognitive Psychology 28(2): 266–273"
+      boundary: 成人定量结论不能搬给儿童；可核的儿童证据形态只有秒级（幼儿）与天级（小学低年级）两个点。
+      disputes: 机制解释未定论——编码变异说与提取努力说并存。
+      evidence_grade: 一手元分析+儿童实验核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-06}
+
+  - id: LS-07
+    zone: 支撑层
+    group: LS
+    subgroup: 间隔与练习编排
+    audience: 教师/设计层
+    headline: 想记多久，就按比例隔多久：最优间隔随保持期拉长而变长，但占的比例反而变小
+    headline_kid: 想记住一周的东西，隔一两天复习最好；想记住一年的东西，要隔上几周。间隔不是固定数字，它跟着「你要记多久」一起长大，只是长得没那么快。
+    claim:
+      type: tendency
+      statement: 在任何给定的测验延迟下，把间隔从零拉长，成绩先升后降（倒 U）；最优间隔的绝对值随保持期上升，占保持期的比例却下降（保持期 1 周时约 20–40%，1 年时约 5–10%）。排复习计划的正确单位是比例，不是天数。
+      evidence:
+        - "Cepeda, Vul, Rohrer, Wixted & Pashler (2008), Psychological Science 19(11): 1095–1102（1,354 名被试，26 种间隔×保持期组合）"
+      scope: 被试为成人（网络样本），材料是冷门知识问答，结构为最简的「学—隔—复习—测」；儿童、多次复习、真实课程的最优比例没有测过。
+      exceptions:
+        - 二手综述常把全程概括为「10–20%」——那只是中间段的粗略值，不得当作全程定值引用；本条按原摘要两个端点写。
+        - 把 20–40% 直接写进儿童复习算法当定量承诺是超证据使用；可借的只有形状。
+    mechanism:
+      - beat: 时间脊线
+        text_kid: 想记住一周的东西，隔一两天复习最好；想记住一年的东西，要隔上几周。
+        text_adult: 间隔太短则提取太容易、加固不足；太长则提取直接失败。最优间隔画出一条随保持期移动的时间脊线（temporal ridgeline）。
+        visual: 倒 U 曲线族 + 时间脊线示意
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_节日_3]
+        form: "保持期 1 周 → 最优间隔约其 20–40%；保持期 1 年 → 约 5–10%"
+        scene_note: 清单原文端点数据（原摘要口径）
+        supports: claim
+    error_cases:
+      - wrong: 宣称「最优复习间隔是保持期的 10–20%」作为全程定律
+        right: 按端点表述：比例随保持期变长而下降（1 周约 20–40%，1 年约 5–10%）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions——10–20% 只是中间段粗略值。
+    relatives:
+      - {id: LS-06, rel: 前置}
+    quiz:
+      - q: 保持期从 1 周拉长到 1 年，最优间隔占比如何变？
+        options: [上升, 下降, 不变, 先降后升]
+        answer: 下降
+        hint_on_wrong: 回机制小节「时间脊线」
+    probes: []
+    prereq: [LS-06]
+    order: 7
+    pain_points: []
+    adult:
+      sources:
+        - "Cepeda et al. (2008), Psychological Science 19(11): 1095–1102, DOI 10.1111/j.1467-9280.2008.02209.x；摘要 https://pubmed.ncbi.nlm.nih.gov/19076480/"
+      boundary: 成人、冷门知识、两次学习结构；儿童与多次复习的最优比例未测。
+      disputes: 无主流分歧；相邻争论在多次复习时等间隔 vs 扩展间隔孰优，本实验不直接裁决。
+      evidence_grade: 一手实验核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-07}
+
+  - id: LS-08
+    zone: 支撑层
+    group: LS
+    subgroup: 合意困难与元认知
+    audience: 教师/设计层
+    headline: Bjork 合意困难：练得慢一点、错多一点的条件常常记得更牢——但只有「正中机制」的难才合意
+    headline_kid: 练的时候有点费劲、偶尔想不起来，不一定是坏事——费点劲自己想出来的，才留得住。但难要难在点子上：字印得太小、声音太吵那种难，只会添乱，不会帮你学。
+    claim:
+      type: tendency
+      statement: 记忆有两种独立强度：存储强度（只增不减）与提取强度（随时间涨落）；当下表现只由提取强度决定。再学习时存储强度的增益与当时提取强度成反比——间隔、交错、提取练习、变换情境先压低提取强度、再让学习者挣回来，Bjork (1994) 名之为合意困难。
+      evidence:
+        - "Bjork & Bjork (1992) 新废用理论（框架原始出处）；Bjork (1994)「合意困难」命名出处；Bjork & Bjork (2011) 框架自述章"
+      scope: 框架性理论，无单一效应量；证据来自成人实验室材料。难度必须落在学习者靠努力可跨越的范围内、且作用在目标加工本身。
+      exceptions:
+        - 把字体做难认（disfluency，如 Sans Forgetica）并不带来记忆收益（Taylor et al. 2020 复制失败）——本框架不能给任何「故意制造麻烦」背书。
+        - 儿童工作记忆余量更小，难度剂量须比成人更保守，且必须保留成功提取的体验；难到提不出来就只是失败。
+    mechanism:
+      - beat: 两强度模型
+        text_kid: 练的时候有点费劲、偶尔想不起来，不一定是坏事——费点劲自己想出来的，才留得住。
+        text_adult: 「现在很顺」完全可能只是提取强度虚高；框架统一解释间隔（LS-06）、提取（LS-02）、交错（LS-10）、变换情境四类操作，并给出可证伪预测。本簇按设计启发框架使用它，不当测量工具。
+        visual: 存储强度/提取强度双线示意
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_38]
+        form: "desirable difficulties 的四类操作：间隔、提取、交错、变换情境"
+        scene_note: 清单原文列举的操作家族
+        supports: claim
+    error_cases:
+      - wrong: 用难认字体、嘈杂环境等表面困难冒充合意困难
+        right: 困难必须正中目标加工机制（提取、辨别、间隔），且学习者靠努力可跨越
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions——disfluency 路线已被复制检验否掉。
+    relatives:
+      - {id: LS-06, rel: 同族}
+      - {id: LS-10, rel: 同族}
+      - {id: LS-09, rel: 同族}
+    quiz:
+      - q: 当下练习表现很顺，说明什么？
+        options: [存储强度高, 可能只是提取强度虚高, 已经学会, 可以停学]
+        answer: 可能只是提取强度虚高
+        hint_on_wrong: 回机制小节「两强度模型」
+    probes: []
+    prereq: []
+    order: 8
+    pain_points: []
+    adult:
+      sources:
+        - "Bjork & Bjork (1992); Bjork (1994) in Metcalfe & Shimamura (Eds.) Metacognition, MIT Press, pp. 185–205; Bjork & Bjork (2011) in Psychology and the Real World, pp. 56–64"
+      boundary: 理论证据来自成人实验室材料；儿童剂量须更保守。
+      disputes: 存储强度「只增不减」是理论假设、不可独立直接测量，批评者质疑两强度能否真正分离观测；剂量边界仍在争论。
+      evidence_grade: 框架原文+章节核实（个别转引已标）
+      pending:
+        - "Storm, Bjork & Bjork (2008) 提取诱发遗忘实验细节经 Bjork (2011) 章节转引，本轮未打开原文，作支撑引用时须标「转引」"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-08}
+
+  - id: LS-09
+    zone: 支撑层
+    group: LS
+    subgroup: 合意困难与元认知
+    audience: 教师/设计层
+    headline: 流畅错觉：答案摊在眼前时人人觉得会了——「看着眼熟」是被实验证伪的掌握指标
+    headline_kid: 课文打开看着都懂，一合上就想不起来——「看着眼熟」不算会。能不能在看不见答案的时候自己想起来，那才算数。
+    claim:
+      type: tendency
+      statement: 学习者判断「学会了吗」时答案正摊在眼前，在场答案抬高感知到的联结（后验联想），而测验成绩取决于线索单独出现时能否引出目标（先验联想）——判断依据与成绩依据脱钩，高估由此产生（预见偏差）。重读抬高流畅感，流畅感被误读为掌握，导致过早停学与时间错配。
+      evidence:
+        - "Koriat & Bjork (2005), JEP:LMC 31(2): 187–194（一手词对实验）"
+        - "Koriat & Bjork (2006), Memory & Cognition 34(5): 959–972（补救研究，五个实验）"
+      scope: 证据为成人词对实验；儿童元认知更不成熟，错觉预计只强不弱，但无儿童定量数据，不作数值外推。
+      exceptions:
+        - 经验型去偏差（多经历几次测验）只修好当次判断；理论型去偏差（讲清偏差原理）才迁移到新材料。
+    mechanism:
+      - beat: 预见偏差
+        text_kid: 课文打开看着都懂，一合上就想不起来——「看着眼熟」不算会。
+        text_adult: 掌握判定必须以遮住答案后的提取成败为准；任何「看着卡片自评会不会」「跟读完就算过」的交互都在生产预见偏差。补救：先遮住答案尝试提取，或把自我判断推迟到学习之后。
+        visual: 答案在场 vs 遮住答案两种判定方式对照
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G2_0492]
+        form: "反复重读组对一周后表现的预测高于测验组，实际成绩却更低（见 LS-02）"
+        scene_note: 清单原文的行为后果例
+        supports: claim
+    error_cases:
+      - wrong: 用「看着眼熟/自评会了」作为掌握判定与过关标准
+        right: 掌握判定以遮住答案后的提取成败为准
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim——流畅感是被实验证伪的掌握指标。
+    relatives:
+      - {id: LS-02, rel: 同族}
+      - {id: LS-08, rel: 同族}
+    quiz:
+      - q: 哪种判定方式不受预见偏差污染？
+        options: [看卡片自评, 跟读后自评, 遮住答案提取, 看完立刻判断]
+        answer: 遮住答案提取
+        hint_on_wrong: 回机制小节「预见偏差」
+    probes: []
+    prereq: [LS-08]
+    order: 9
+    pain_points: []
+    adult:
+      sources:
+        - "Koriat & Bjork (2005), JEP:LMC 31(2): 187–194, DOI 10.1037/0278-7393.31.2.187；Koriat & Bjork (2006), Memory & Cognition 34(5): 959–972"
+      boundary: 成人词对实验；不作儿童数值外推。
+      disputes: 无主流分歧；细部争论在去偏差的可迁移性。
+      evidence_grade: 一手实验核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-09}
+
+  - id: LS-10
+    zone: 支撑层
+    group: LS
+    subgroup: 合意困难与元认知
+    audience: 教师/设计层
+    headline: 交错练习：把不同题型打散混着练，当下更慢更错，日后测验却赢一大截——练的其实是「先选对方法」
+    headline_kid: 别把同一类题一口气做完——几类题混着来，每道题先停一下想「这道该用哪一招」。练的时候会慢一点、错多一点，可过些天再考，混着练的记得牢得多。
+    claim:
+      type: tendency
+      statement: 分组练习时排版已替学习者选好方法，只剩执行；交错把选择权还给学习者，每道题先辨别题型、再选方法，「辨别—选择」本身被反复练到，增益主要来自题与方法配对变准。交错在练习期更慢更错，延迟测验却胜出，与 LS-09 流畅错觉互为镜像。
+      evidence:
+        - "Rohrer & Taylor (2007), Instructional Science 35(6): 481–498（大学生立体体积题：延迟测验交错 63% vs 分组 20%，d = 1.34）"
+        - "Taylor & Rohrer (2010), Applied Cognitive Psychology 24(6): 837–848（四年级儿童，固定间隔下交错仍使一天后成绩翻倍）"
+        - "Rohrer, Dedrick & Stershic (2015), JEP（七年级真实课堂 3 个月，d = 0.42/0.79）"
+      scope: 直接证据集中在数学；英语侧（句型、词义类别混练）的直接证据仍少，App 用于英语编排属机制迁移。交错要求学习者对各类别已有最低限度认识。
+      exceptions:
+        - 归属更正（清单已登记）：「七年级真实课堂 d ≈ 1.05」常被误记在 Rohrer & Taylor (2007) 名下——2007 是大学生实验，七年级课堂是 2015 年另一篇，引用不得混搭。
+        - 零基础时先给少量分组示范或范例（见 LS-14）再交错。
+    mechanism:
+      - beat: 辨别—选择
+        text_kid: 别把同一类题一口气做完——几类题混着来，每道题先停一下想「这道该用哪一招」。
+        text_adult: 错误分析显示增益来自题—方法配对而非计算变快；同类题被天然拉开间隔（与 LS-06 叠加）。练习期表现与学习效果反转（交错 60% vs 分组 89%）是「当下表现 ≠ 学习效果」的教科书数据。
+        visual: 分组 vs 交错的题序编排对照
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_38]
+        form: "四种立体体积题的分组/交错编排对照（Rohrer & Taylor 2007）"
+        scene_note: 清单原文实验材料
+        supports: claim
+    error_cases:
+      - wrong: 引用「Rohrer & Taylor (2007) 七年级课堂 d ≈ 1.05」
+        right: 2007 为大学生实验（延迟 d = 1.34；d ≈ 1.06 是练习期表现受损、方向相反）；七年级课堂为 Rohrer et al. (2015)（d = 0.42/0.79）
+        error_type: 出处归属错误
+        source_type: 条目成人层登记（清单更正登记）
+        diagnosis: 回指 exceptions 的归属更正。
+    relatives:
+      - {id: LS-06, rel: 同族}
+      - {id: LS-08, rel: 同族}
+      - {id: LS-14, rel: 对照}
+    quiz:
+      - q: 交错练习的增益主要来自哪一步变准？
+        options: [计算速度, 题与方法配对, 记忆容量, 书写速度]
+        answer: 题与方法配对
+        hint_on_wrong: 回机制小节「辨别—选择」
+    probes: []
+    prereq: [LS-06]
+    order: 10
+    pain_points: []
+    adult:
+      sources:
+        - "Rohrer & Taylor (2007), Instructional Science 35(6): 481–498；Taylor & Rohrer (2010), ACP 24(6): 837–848, DOI 10.1002/acp.1598；Rohrer, Dedrick & Stershic (2015), JEP, DOI 10.1037/edu0000001"
+      boundary: 数学直接证据为主；英语应用属机制迁移；须先有最低限度类别认识。
+      disputes: 交错增益中有多少是附带间隔效应未完全平息；Taylor & Rohrer (2010) 固定间隔设计分离后结论为交错有独立贡献。Dunlosky (2013) 只给中效用评级（见 LS-01）。
+      evidence_grade: 一手实验核实（含归属更正）
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-10}
+
+  - id: LS-11
+    zone: 支撑层
+    group: LS
+    subgroup: 生成性加工
+    audience: 教师/设计层
+    headline: 精细化提问与自我解释：每学一步就追问「为什么、凭什么」，把例子读出道理的人学到的才是会迁移的那一份
+    headline_kid: 看例题别只记住答案——每一步都问问自己：「为什么这一步是对的？换个样子还对吗？」能给自己讲出道理，才算真懂。
+    claim:
+      type: tendency
+      statement: 精细化提问（追问「为什么这是真的」）与自我解释（为范例每一步补出没写明的理由、条件与原理联结）是同源的生成性技巧：补出的推论正是范例省略、而迁移时必需的部分；提示自我解释可教、可诱发，不是学霸的个人习惯。两技巧在 Dunlosky (2013) 评级中为中效用。
+      evidence:
+        - "Chi, Bassok, Lewis, Reimann & Glaser (1989), Cognitive Science 13(2): 145–182（自我解释数量与后测高相关：每例 15.3 条 vs 2.8 条，后测 82% vs 46%）"
+        - "Chi, de Leeuw, Chiu & LaVancher (1994), Cognitive Science 18: 439–477（八年级提示实验）"
+      scope: 共同前提是学习者有可调用的既有知识；低龄、低知识量儿童面对开放式「为什么」会无话可说。
+      exceptions:
+        - 1989 原研究是小样本相关发现（8 名大学生），因果证据来自 1994 提示实验（14 名八年级学生，样本依然小）。
+        - App 侧应把追问做成有支架的形态（给候选理由选一选、补完理由后半句），不把成人开放式发问原样搬给小学生；自我解释在儿童身上自发发生率低，需提示触发。
+    mechanism:
+      - beat: 生成性追问
+        text_kid: 看例题别只记住答案——每一步都问问自己：「为什么这一步是对的？」
+        text_adult: 自我解释同时实时监控哪里没懂——讲不出来的地方正是未懂之处。设计上以支架式追问诱发，而非开放发问。
+        visual: 范例步骤旁的支架式追问气泡示意
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G4_0518]
+        form: "elaborative interrogation（精细化提问）、self-explanation（自我解释）"
+        scene_note: 清单原文的两个技巧名
+        supports: claim
+    error_cases:
+      - wrong: 对低龄儿童原样使用开放式「为什么」追问且无支架
+        right: 追问做成候选理由二选一、补完后半句等支架形态
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions——技巧以既有知识为前提。
+    relatives:
+      - {id: LS-01, rel: 同族}
+    quiz:
+      - q: 自我解释为什么只拿到中效用评级？
+        options: [完全无效, 以可调用的既有知识为前提, 只能用于数学, 需要特殊设备]
+        answer: 以可调用的既有知识为前提
+        hint_on_wrong: 回 claim 与 LS-01 评级
+    probes: []
+    prereq: []
+    order: 11
+    pain_points: []
+    adult:
+      sources:
+        - "Chi et al. (1989), Cognitive Science 13(2): 145–182, DOI 10.1207/s15516709cog1302_1；Chi et al. (1994), Cognitive Science 18: 439–477；评级见 Dunlosky et al. (2013)"
+      boundary: 样本小；年龄下限真实存在，儿童形态须支架化。
+      disputes: 训练后自我解释质量个体差异大，「解释」与「复述」的编码边界各研究操作定义不完全一致；「提示自我解释有效」本身无主流反对。
+      evidence_grade: 一手实验核实（小样本已注）
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-11}
+
+  - id: LS-12
+    zone: 支撑层
+    group: LS
+    subgroup: 双通道、多媒体与认知负荷
+    audience: 教师/设计层
+    headline: 双重编码：词和图各存一份，等于给记忆留两个入口——但那组到处流传的百分比没有出处，禁用
+    headline_kid: 一个词配上一幅对的图，脑子里就存了两份：一份是图的样子，一份是词的声音和拼写。想起图能带出词，想起词也能带出图，比只看词多一条路。
+    claim:
+      type: tendency
+      statement: 认知有两个功能独立又互相联结的系统——言语系统与意象系统；具体物象天然被双重表征，两套码独立且可叠加，回忆时任一入口都可能到达目标。教学含义是「词与它的指称图配对呈现」，不是「页面上有图就行」。
+      evidence:
+        - "Paivio (1971) Imagery and Verbal Processes；Paivio (1986) Mental Representations: A Dual Coding Approach（理论定版）"
+        - "Paivio & Csapo (1973), Cognitive Psychology 5(2): 176–206（N = 519，图片 > 具体词 > 抽象词）"
+      scope: 经典实验被试为成人大学生、材料为名词性物象；对儿童只作方向引用，不挂未核数字。
+      exceptions:
+        - 网络流传的「只听记住 10%……图文结合 65%」学习金字塔百分比查无原始实验出处，Paivio 从未给出此类比例，任何页面与条目不得引用。
+        - 图必须与词同指一物：装饰性、气氛性图片不产生双重编码收益，反而触发 LS-13 一致性原则惩罚。
+    mechanism:
+      - beat: 双码双入口
+        text_kid: 一个词配上一幅对的图，脑子里就存了两份，想起图能带出词，想起词也能带出图。
+        text_adult: 统计分析支持意象码与言语码贡献互相独立、可加，且意象码贡献大于言语码——这是双重编码而非单一通道强弱的证据形态。
+        visual: 词—图配对呈现（同指一物）示意
+        anchors: [G1_037]
+    examples:
+      - level: 1
+        word_ids: [G1_037]
+        form: "apple 配苹果图：图像码 + 言语码双重表征"
+        scene_note: 清单原文的经典例（物象名词）
+        supports: claim
+    error_cases:
+      - wrong: 引用「图文结合记住 65%」等学习金字塔百分比作设计依据
+        right: 该组百分比无原始出处，禁用；双重编码只作方向引用
+        error_type: 伪出处引用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions——Paivio 从未给出此类比例。
+    relatives:
+      - {id: LS-13, rel: 同族}
+    quiz:
+      - q: 哪种配图产生双重编码收益？
+        options: [装饰性气氛图, 与词同指一物的图, 任意图片, 图越多越好]
+        answer: 与词同指一物的图
+        hint_on_wrong: 回 claim 的教学含义
+    probes: []
+    prereq: []
+    order: 12
+    pain_points: []
+    adult:
+      sources:
+        - "Paivio (1971); Paivio (1986), Oxford University Press; Paivio & Csapo (1973), Cognitive Psychology 5(2): 176–206, DOI 10.1016/0010-0285(73)90032-7"
+      boundary: 成人大学生、名词性物象；儿童只作方向引用。
+      disputes: 图片优势成因有实质争论——「独特性」解释近年获强支持（Higdon et al. 2024 宣称双重编码解释「不再成立」）；教学结论「词配对图」在两派下都成立，但机制表述须标为「主流解释之一」，不得写成已定论的唯一机制。
+      evidence_grade: 一手实验+理论原文核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-12}
+
+  - id: LS-13
+    zone: 支撑层
+    group: LS
+    subgroup: 双通道、多媒体与认知负荷
+    audience: 教师/设计层
+    headline: Mayer 多媒体原则：动画课的画面纪律是有实验账本的——删无关、给信号、词图同地同时
+    headline_kid: 屏幕上的每样东西都要为学习干活：跟学习没关系的热闹删掉，重要的地方做上记号，讲到哪儿图就出现在哪儿、就放在旁白说的那个词旁边，别让眼睛满屏找。
+    claim:
+      type: tendency
+      statement: 多媒体学习立在三条假设上（双通道、容量有限、主动挑选—组织—整合）；针对无关加工的五条原则证据最完整：一致性（删无关）、信号（标结构重点）、冗余（有旁白和图时不叠加逐字相同的屏幕文字）、空间临近、时间临近（旁白与对应动画同步）。
+      evidence:
+        - "Mayer, Multimedia Learning (2001；2020 第 3 版，CUP)"
+        - "Mayer & Fiorella (2014) Handbook 章：中位效应量——一致性 d = 0.86（23/23）、冗余 d = 0.86（16/16）、时间临近 d = 1.22（9/9）、信号 d = 0.41（24/28）"
+      scope: 实验主体是大学生，材料是科学说明类短图文/动画，测验多为即时或短延迟迁移；效应量数字不得转写成对儿童的收益承诺，只借设计纪律的方向。
+      exceptions:
+        - 空间临近原则的中位效应量本轮未在该章打开文本中核到确切数字，标待核、不填数。
+        - 冗余原则的证据针对已能流利阅读的学习者；对识字初期儿童，屏幕文字可能是解码脚手架，是否叠加字幕须按年龄段分开处理，不能整条照搬。
+    mechanism:
+      - beat: 五原则画面纪律
+        text_kid: 屏幕上的每样东西都要为学习干活：没关系的删掉，重要的做记号，讲到哪儿图就出现在哪儿。
+        text_adult: 本条是动画画面的设计检查表（与本项目画面纪律直接对应）：删装饰、同步呈现、就近摆放、信号化。「个性化」「具身」等晚出原则证据弱，只锚定证据最硬的五原则，不整包引进全部十二原则。
+        visual: 五原则逐项对照的画面审查示意
+        anchors: [G4_158]
+    examples:
+      - level: 1
+        word_ids: [G4_158]
+        form: "picture 与讲解词空间临近、时间同步呈现"
+        scene_note: 由清单原文五原则推出的画面形态（设计层示例）
+        supports: claim
+    error_cases:
+      - wrong: 给儿童动画叠加与旁白逐字相同的全屏字幕并宣称符合冗余原则
+        right: 冗余原则证据针对流利阅读者；识字初期儿童的字幕处理须单独裁定
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions——原则适用条件被忽略。
+    relatives:
+      - {id: LS-12, rel: 同族}
+      - {id: LS-14, rel: 同族}
+    quiz:
+      - q: 五原则中哪一条的效应量数字本轮未核到、不得填数？
+        options: [一致性, 信号, 空间临近, 时间临近]
+        answer: 空间临近
+        hint_on_wrong: 回 claim 的 exceptions
+    probes: []
+    prereq: [LS-12]
+    order: 13
+    pain_points: []
+    adult:
+      sources:
+        - "Mayer (2001/2020), CUP; Mayer & Fiorella (2014), in Cambridge Handbook of Multimedia Learning (2nd ed.), pp. 279–315"
+      boundary: 大学生、科学说明材料；只借设计纪律方向。
+      disputes: 原则间有张力——信号要「加东西」、一致性要「减东西」，落地以「标记是否服务于结构」裁决。
+      evidence_grade: 章节原文核实（空间临近数字待核）
+      pending:
+        - "LS-13 空间临近原则中位效应量：须打开 Mayer & Fiorella (2014) 章原文对应段落补核，二手汇总表数字不得直接填入"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-13}
+
+  - id: LS-14
+    zone: 支撑层
+    group: LS
+    subgroup: 双通道、多媒体与认知负荷
+    audience: 教师/设计层
+    headline: Sweller 认知负荷：新手先看「做完的范例」，熟手再看就是累赘——指导的量必须随水平反着调
+    headline_kid: 刚学一样新本领，先看一个从头做到尾的例子，把每一步看懂，再自己动手；等你已经会了，例子就该撤掉——还一步步盯着例子看，反而拖住你。
+    claim:
+      type: tendency
+      statement: 工作记忆一次只能处理很少的新元素；新手无图式时直接解题会被手段—目的搜索占满容量，研读已解出的范例把容量让给图式建构（范例效应）。图式一旦形成，逐步指导与脑内图式重复、变成外在负荷（专家反转效应）——指导必须随水平渐撤。
+      evidence:
+        - "Sweller & Cooper (1985), Cognition and Instruction 2(1): 59–89（五个实验，中学生与少量大学生）"
+        - "Sweller, van Merriënboer & Paas (1998), Educational Psychology Review 10(3): 251–296（三类负荷框架定版）"
+        - "Kalyuga (2007), Educational Psychology Review 19(4): 509–539（专家反转综述）"
+      scope: 范例效应强证据集中在数学、物理等结构良好题域与中学以上被试；语言学习里的对应物是机制类推，可借结构（新句型先给完整范例、再渐撤支架）不借效应量。小学生工作记忆更小，约束只会更硬。
+      exceptions:
+        - 三类负荷主要靠主观量表事后测量，相关负荷与内在负荷在测量上难以干净分离；教学口径可用「三类」作设计清单，但不得把三类负荷写成三个可分别测量的实体。
+    mechanism:
+      - beat: 范例先行、指导渐撤
+        text_kid: 刚学一样新本领，先看一个从头做到尾的例子；等你已经会了，例子就该撤掉。
+        text_adult: 内在负荷取决于学习者已有图式，故同一材料对新手与熟手是两种负荷；分段呈现、一次只引入一个新元素是低龄侧的硬约束。
+        visual: 指导量随水平递减的渐撤曲线
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_学校_43]
+        form: "worked example（已解范例）：新句型先给完整范例再渐撤支架"
+        scene_note: 清单原文给出的语言学习对应形态（机制类推，已标）
+        supports: claim
+    error_cases:
+      - wrong: 对已熟练的学习者继续强制逐步范例指导
+        right: 图式形成后撤掉指导（专家反转效应），指导量随水平反着调
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim——同一份设计对新手是帮助、对熟手是干扰。
+    relatives:
+      - {id: LS-10, rel: 对照}
+      - {id: LS-13, rel: 同族}
+    quiz:
+      - q: 专家反转效应说明什么？
+        options: [范例永远有害, 指导量应随水平提高而减少, 新手不需要范例, 负荷无法管理]
+        answer: 指导量应随水平提高而减少
+        hint_on_wrong: 回机制小节「范例先行、指导渐撤」
+    probes: []
+    prereq: []
+    order: 14
+    pain_points: []
+    adult:
+      sources:
+        - "Sweller & Cooper (1985), Cognition and Instruction 2(1): 59–89, DOI 10.1207/s1532690xci0201_3；Sweller et al. (1998), EPR 10(3): 251–296；Kalyuga (2007), EPR 19(4): 509–539"
+      boundary: 结构良好题域、中学以上证据为主；语言侧是机制类推。
+      disputes: 三类负荷可测性争议（如实登记）——Kalyuga (2011) 主张两类负荷已经足够；Sweller 后期把 germane 重新定位为「投入处理内在负荷的资源」而非独立第三类（经二手综述转述，原句待核）。
+      evidence_grade: 一手实验+框架核实（后期修订原句待核）
+      pending:
+        - "Sweller (2019/2023) 对 germane load 地位修订的原句未打开；Kalyuga (2011)「两类足够」论证细节同此，引用原句前须补核"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-14}
+
+  - id: LS-15
+    zone: 支撑层
+    group: LS
+    subgroup: 课程层编排
+    audience: 教师/设计层
+    headline: Nation 四线平衡：一个设计良好的语言课程有四条等时的线——只跑「讲练线」，等于缺了四分之三的课
+    headline_kid: 学英语的时间要分四份：听故事、读绘本把意思弄懂；开口说、动手写把意思送出去；专门停下来抠单词和语法；还有一份时间不学新东西，只把已经会的练到又快又顺。
+    claim:
+      type: tendency
+      statement: 语言课程的一切活动可归入四条贯穿全程的线——意义聚焦输入（材料约 98% 已知词覆盖）、意义聚焦输出、语言聚焦学习、流利度发展（材料全部熟悉、无生词，带适度速度压力且量大）；设计良好的课程四线时间大致均等，只有语言聚焦一线以形式为中心。
+      evidence:
+        - "Nation (2007), Innovation in Language Learning and Teaching 1(1)（原文已打开核对等时原句）"
+        - "Nation & Yamamoto (2012)（98% 覆盖复述，原文核对）"
+      scope: 「各占四分之一」是课程设计的规范框架，不是实验测得的效应量，不得包装成「研究证明 25% 最优」；原始讨论语境以青少年与成人课程为主，小学段形态需本地化，四分之一只作巡检参照、不作排课公式。
+      exceptions:
+        - 市面课程最常见的失衡是语言聚焦学习一线独大、其余三线萎缩；流利度线因四项成立条件（材料熟悉、关注信息、有速度压力、量大）最容易被整条漏掉。
+    mechanism:
+      - beat: 四线巡检
+        text_kid: 学英语的时间要分四份，少哪一份都会瘸腿。
+        text_adult: 输入与流利度两线靠覆盖率互相划界：输入约 98% 覆盖留少量新词，流利度读几乎不含生词的材料并求速度。小学段本地化：输入靠听读故事、输出靠表演与讲述、流利度靠复读复述与限时小游戏。
+        visual: 四线等时配比巡检图
+        anchors: [G2_0492]
+    examples:
+      - level: 1
+        word_ids: [V6_学校_44]
+        form: "意义聚焦输入：听故事、读绘本（约 98% 已知词覆盖）"
+        scene_note: 清单原文给出的四线活动例
+        supports: claim
+    error_cases:
+      - wrong: 宣称「研究证明四线各占 25% 时间最优」
+        right: 四线等时是规范框架而非效应量，只作课程巡检参照
+        error_type: 伪出处引用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope——证据形态是四支研究传统的综合判断。
+    relatives: []
+    quiz:
+      - q: 流利度发展线的材料条件是什么？
+        options: [含大量生词, 全部熟悉、无生词且带速度压力, 只读不说, 越难越好]
+        answer: 全部熟悉、无生词且带速度压力
+        hint_on_wrong: 回 claim 的四线定义
+    probes: []
+    prereq: []
+    order: 15
+    pain_points: []
+    adult:
+      sources:
+        - "Nation (2007), ILLT 1(1), DOI 10.2167/illt039.0；Nation & Yamamoto (2012), IJIELT 1(2)；Nation & Newton (2009), Teaching ESL/EFL Listening and Speaking, Routledge"
+      boundary: 规范框架而非效应量；小学段形态需本地化，比例只作巡检参照。
+      disputes: 框架属主流课程观、无对立学派；实际争论在配比细节（语言聚焦的合理上限、流利度是否挤占新学时间）。
+      evidence_grade: 一手论文原文核实
+      pending:
+        - "坊间「四线各占四分之一出自 Nation (2001)《Learning Vocabulary in Another Language》」未打开原书核对；可核源头以 2007 论文与 2012 复述为准，归因 2001 原书前须补核页码"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 LS-15}
+
+  # ================= YL 少儿英语（14 条） =================
+  - id: YL-01
+    zone: 支撑层
+    group: YL
+    subgroup: 儿童的学习机制
+    audience: 教师/设计层
+    headline: 活动的「难度落差」就是学习发生的地点：任务要求与教师支持之间的差，决定孩子学不学得到东西
+    headline_kid: 题目太容易，没意思；太难，够不着。老师在旁边搭一把手、刚刚够得着的地方，就是学会的地方。
+    claim:
+      type: tendency
+      statement: 儿童外语任务同时对孩子提出多维要求（认知、语言、互动、身体动作等），教师提供相应支持；当要求略高于孩子现有能力、支持恰好补上落差时，差额就是成长与学习机会的空间。配套三段式任务结构（准备→核心→跟进）用于动态调节落差。
+      evidence:
+        - "Cameron (2001) Teaching Languages to Young Learners, CUP, 第 2 章任务框架（demands/supports, pp. 21–25；任务五特征 p. 31；三段式 p. 32——经 Pinter 2015 章节转引核实，书目与目录经书商页核实）"
+      scope: 落差是动态的、因人而异的，支持量须随观察调整，不是备课时一次算死的数值。
+      exceptions:
+        - 支持给得过多（替孩子做完）同样消灭学习空间。
+    mechanism:
+      - beat: 要求—支持落差
+        text_kid: 题目太容易，没意思；太难，够不着。刚刚够得着的地方，就是学会的地方。
+        text_adult: Cameron 给儿童任务定的五条标准（整体连贯、有意义与目的、语言目标清晰、有头有尾、孩子主动参与）已成为少儿任务设计的通行检查表；App 的活动难度与支架量按本框架巡检。
+        visual: 要求线与支持线之间的落差带示意
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G2_0990]
+        form: "三段式任务：准备活动 → 核心活动 → 跟进活动"
+        scene_note: 清单原文的任务结构
+        supports: claim
+    error_cases:
+      - wrong: 备课时把支持量一次算死，或支持过多替孩子做完
+        right: 支持量随观察动态调整，只补落差、不替代产出
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 与 exceptions。
+    relatives:
+      - {id: YL-02, rel: 同族}
+      - {id: LS-14, rel: 对照}
+    quiz:
+      - q: 学习机会出现在哪里？
+        options: [要求最低处, 要求略高于能力且支持补上落差处, 支持最大处, 任务最难处]
+        answer: 要求略高于能力且支持补上落差处
+        hint_on_wrong: 回机制小节「要求—支持落差」
+    probes: []
+    prereq: []
+    order: 1
+    pain_points: []
+    adult:
+      sources:
+        - "Lynne Cameron (2001), Teaching Languages to Young Learners, Cambridge University Press, ISBN 9780521774345；Pinter (2015) 转引（WRAP 开放存档）"
+      boundary: 同一任务对不同孩子的要求不同，支持必须随观察调整。
+      disputes: 无主流分歧；Pinter 指出儿童任务研究多为成人任务研究的延伸，儿童如何受益的直接证据仍在积累（见 YL-04）。
+      evidence_grade: 目录+书评级（页码经转引核实）
+      pending:
+        - "Cameron (2001) 个别页码级引文（如 p. 52）来自二手转引，入模引用具体页码前须开原书复核"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-01}
+
+  - id: YL-02
+    zone: 支撑层
+    group: YL
+    subgroup: 儿童的学习机制
+    audience: 教师/设计层
+    headline: 儿童是在「活动 + 话语」里把意思搭出来的：听不懂整句时，他们靠线索猜、靠做中学
+    headline_kid: 听不懂一整句没关系——看图、看动作、抓认识的词，先猜个大概，做着做着就全懂了。
+    claim:
+      type: tendency
+      statement: 儿童的外语理解是主动「寻求意义」：调动语境、图片、实物、动作、已知词汇与世界知识推测话语意思，理解在参与活动中逐步建成。教师话语身兼输入与脚手架两职（放慢、重复、改述、配动作与实物），课堂话语质量直接决定孩子能搭出多少理解。
+      evidence:
+        - "Cameron (2001), CUP, 第 1 章与第 3 章（书介与 British Council 书评核实其框架定位）"
+      scope: 猜测需要足够的线索密度；输入完全不可理解时「寻求意义」会变成焦虑与放弃。
+      exceptions:
+        - 不能推论为「随便说、孩子自会懂」——机制要求教师话语做可理解性加工。
+    mechanism:
+      - beat: 寻求意义
+        text_kid: 听不懂一整句没关系——看图、看动作、抓认识的词，先猜个大概，做着做着就全懂了。
+        text_adult: 该书是少儿外语领域少数把「课堂话语」当作研究对象的理论专著；App 侧的旁白与讲解话语按脚手架标准设计（放慢、重复、改述、配实物/动作）。
+        visual: 线索（图/动作/实物/已知词）汇聚成理解的示意
+        anchors: [G4_158]
+    examples:
+      - level: 1
+        word_ids: [G4_158]
+        form: "以图片、实物、动作作理解线索的课堂话语"
+        scene_note: 清单原文列举的线索类型
+        supports: claim
+    error_cases:
+      - wrong: 输入无线索、无实物支撑却期待孩子自行猜懂
+        right: 先保证线索密度与话语的可理解性加工，再让孩子寻求意义
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope——线索不足时机制失效。
+    relatives:
+      - {id: YL-01, rel: 同族}
+    quiz:
+      - q: 教师话语在儿童课堂里身兼哪两职？
+        options: [输入与考试, 输入与脚手架, 纠错与管理, 朗读与翻译]
+        answer: 输入与脚手架
+        hint_on_wrong: 回机制小节「寻求意义」
+    probes: []
+    prereq: [YL-01]
+    order: 2
+    pain_points: []
+    adult:
+      sources:
+        - "Lynne Cameron (2001), Teaching Languages to Young Learners, CUP, 第 1、3 章"
+      boundary: 要求教师话语的可理解性加工，不能推论为随便说孩子自会懂。
+      disputes: 无。
+      evidence_grade: 目录+书评级
+      pending:
+        - "同 YL-01：页码级引文入模引用前须开原书复核"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-02}
+
+  - id: YL-03
+    zone: 支撑层
+    group: YL
+    subgroup: 儿童的学习机制
+    audience: 教师/设计层
+    headline: 一个主题滚一周：词汇和句型要在故事、游戏、手工里反复见面，才算学过
+    headline_kid: 一个主题玩一整周——故事里听到、游戏里用到、手工时又说一遍，见面次数多了，自然就记住啦。
+    claim:
+      type: tendency
+      statement: 儿童的词汇与语法靠同一主题下多类活动提供的多次、有变化的接触建立：同一批词在故事语境、操作活动、口头产出中以不同面貌复现，记忆痕迹与用法网络随之增厚；主题充当组织器，让复现不沦为机械重复。
+      evidence:
+        - "Cameron (2001), CUP, 第 4 章（词汇）、第 5 章（语法）、第 8 章（主题式教学），目录核实"
+        - "Shin & Crandall (2014) 以主题单元「情境化教学」为全书第 3 章，独立背书（见 YL-10）"
+      scope: 复现必须是有变化的复现；主题只是容器，语言目标仍须事先选定（与 YL-01 任务标准互锁）。
+      exceptions:
+        - 原样重复同一练习会迅速耗尽儿童注意力；主题大到无焦点同样失效。
+    mechanism:
+      - beat: 主题内变化复现
+        text_kid: 一个主题玩一整周——故事里听到、游戏里用到、手工时又说一遍，见面次数多了，自然就记住啦。
+        text_adult: 与 LS-06 间隔效应在课堂形态上衔接：同一主题内的多次见面同时提供间隔与语境变化。
+        visual: 一周主题内多活动复现同一批词的排布图
+        anchors: [V6_学校_44, G2_0990]
+    examples:
+      - level: 1
+        word_ids: [V6_学校_44, G2_0990]
+        form: "同一主题下：故事（story）里听到、游戏（game）里用到"
+        scene_note: 清单原文的活动类型
+        supports: claim
+    error_cases:
+      - wrong: 同一练习原样重复多遍充当复现
+        right: 换活动、换用法地复现同一批词与句型
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions——无变化的重复耗尽注意力。
+    relatives:
+      - {id: YL-10, rel: 同族}
+      - {id: LS-06, rel: 对照}
+    quiz:
+      - q: 本条要求的复现是哪一种？
+        options: [原样重复, 有变化的复现, 只读不说, 只考不学]
+        answer: 有变化的复现
+        hint_on_wrong: 回机制小节「主题内变化复现」
+    probes: []
+    prereq: []
+    order: 3
+    pain_points: []
+    adult:
+      sources:
+        - "Cameron (2001), CUP, 第 4、5、8 章"
+      boundary: 主题不能大到无焦点；语言目标须事先选定。
+      disputes: 无。
+      evidence_grade: 目录核实级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-03}
+
+  - id: YL-04
+    zone: 支撑层
+    group: YL
+    subgroup: 儿童的学习机制
+    audience: 教师/设计层
+    headline: 孩子之间会互相「搭手」：同伴支架是儿童课堂的真实学习机制，不是纪律问题
+    headline_kid: 和同桌一起做任务时，你帮我说一半、我提醒你一个词，两个人就都往前走了一步。
+    claim:
+      type: tendency
+      statement: 8–13 岁儿童在结对任务中会使用协商意义策略，其形态与成人不同：较少做理解核查，大量使用自我重复与他人重复推进对话；非母语同伴结对时孩子把对方看作共同解题者，产出的修正后输出多于与成人母语者结对；低水平儿童也能在重复版任务中做同伴纠正。
+      evidence:
+        - "Pinter (2015)「Task-based learning with children」, in Bland (Ed.) Teaching English to Young Learners, Bloomsbury, pp. 113–128（WRAP 开放存档全文）"
+        - "所综述一手研究：Oliver (1998, 2002)；Mackey, Oliver & Leeman (2003)；Mackey & Oliver (2002)；Mackey & Silver (2005)；Pinter (2005)；Guk & Kellogg (2007)"
+      scope: 实验证据多来自 ESL（目标语环境）儿童，外推到课时量低的 EFL 课堂须谨慎（Pinter 本人明言）。
+      exceptions:
+        - 同伴支架质量低于教师支架，需要任务设计（信息差、明确分工）托底；「放孩子自己讨论」本身不是支架。
+    mechanism:
+      - beat: 同伴支架
+        text_kid: 和同桌一起做任务时，你帮我说一半、我提醒你一个词，两个人就都往前走了一步。
+        text_adult: 成人给予的互动性反馈（针对孩子具体困难的改述）被实验证明能促进儿童疑问句式的发展；结对任务须配信息差与分工设计。
+        visual: 结对任务中重复与修正输出的对话示意
+        anchors: [G3_0442]
+    examples:
+      - level: 1
+        word_ids: [G3_0442]
+        form: "「找不同」重复版任务中的同伴纠正（help 的课堂形态）"
+        scene_note: 清单原文登记的任务类型
+        supports: claim
+    error_cases:
+      - wrong: 无信息差、无分工地放任孩子自由讨论并称之为同伴支架
+        right: 结对任务须有信息差与明确分工托底
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions。
+    relatives:
+      - {id: YL-01, rel: 同族}
+    quiz:
+      - q: 儿童结对协商的典型形态与成人有何不同？
+        options: [更多理解核查, 较少理解核查、大量使用重复, 完全不说话, 只用母语]
+        answer: 较少理解核查、大量使用重复
+        hint_on_wrong: 回机制小节「同伴支架」
+    probes: []
+    prereq: [YL-01]
+    order: 4
+    pain_points: []
+    adult:
+      sources:
+        - "Annamaria Pinter (2015), Bloomsbury, pp. 113–128, WRAP 全文 https://wrap-test.warwick.ac.uk/id/eprint/71512/"
+      boundary: ESL 证据外推 EFL 须谨慎；同伴支架需任务设计托底。
+      disputes: 心理语言学派（重产出模式的统计趋势）与社会文化派（重个体如何理解同一任务）对「任务决定什么」看法不同，Pinter 并列登记，未作调和。
+      evidence_grade: 章节全文核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-04}
+
+  - id: YL-05
+    zone: 支撑层
+    group: YL
+    subgroup: 儿童的学习机制
+    audience: 教师/设计层
+    headline: 儿童学二语的路径由「语境」决定：在家、在课堂、在沉浸环境，是三种学法
+    headline_kid: 住在英语国家天天听，和一周上两节英语课，是完全不一样的学法——不能拿一种的标准去要求另一种。
+    claim:
+      type: tendency
+      statement: 儿童二语研究必须先分清语境——家庭双语、学校外语课堂、沉浸教育——因为输入量、互动机会与学习过程性质根本不同；同一「年龄效应」问题在不同语境下答案相反。儿童学习受发展阶段制约，成人 SLA 结论不能平移到儿童。
+      evidence:
+        - "Pinter (2011), Children Learning Second Languages, Palgrave Macmillan, DOI 10.1057/9780230302297（出版社页目录核实）"
+      scope: 本条是研究框架级结论，不直接给出课堂操作；对 App 的含义是筛选证据时的过滤器。
+      exceptions:
+        - 凡引「儿童学语言快」类说法，必须先问出自哪种语境，否则不予采信。
+    mechanism:
+      - beat: 语境三分
+        text_kid: 住在英语国家天天听，和一周上两节英语课，是完全不一样的学法。
+        text_adult: 该书被书评称为儿童二语领域「开新局」之作，系统对应研究与课堂实践之间的落差；本条与 YL-08 年龄效应互锁。
+        visual: 三种语境（家庭双语/外语课堂/沉浸）的输入结构对照
+        anchors: [G2_089]
+    examples:
+      - level: 1
+        word_ids: [G2_089]
+        form: "沉浸教育（immersion）与学校外语课堂的输入量对照"
+        scene_note: 清单原文的语境三分
+        supports: claim
+    error_cases:
+      - wrong: 拿沉浸语境的年龄效应结论要求外语课堂儿童
+        right: 先分清语境再引用结论（本条是证据筛选过滤器）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions。
+    relatives:
+      - {id: YL-08, rel: 同族}
+    quiz:
+      - q: 引用儿童二语研究结论前必须先问什么？
+        options: [作者国籍, 出自哪种语境, 出版年份, 页数]
+        answer: 出自哪种语境
+        hint_on_wrong: 回机制小节「语境三分」
+    probes: []
+    prereq: []
+    order: 5
+    pain_points: []
+    adult:
+      sources:
+        - "Annamaria Pinter (2011), Children Learning Second Languages, Palgrave Macmillan, https://link.springer.com/book/10.1057/9780230302297"
+      boundary: 框架级结论，不直接给出课堂操作。
+      disputes: 年龄效应的方向之争在本框架内展开（见 YL-08 的分歧登记）。
+      evidence_grade: 目录核实级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-05}
+
+  - id: YL-06
+    zone: 支撑层
+    group: YL
+    subgroup: 学习载体
+    audience: 教师/设计层
+    headline: 故事是儿童英语课的发动机：一本真实绘本可以组织一整段学习
+    headline_kid: 一个好故事能带着我们学好多天：先听、再演、做手工、玩游戏，最后做出我们自己的小作品。
+    claim:
+      type: tendency
+      statement: 故事教学法把真实故事书（为母语儿童写的绘本）置于课程中心：故事提供完整的语篇语境、可预测的重复结构与情感投入，语言项目在故事的意义网络里被带出来；操作骨架是「计划—做—回顾」（Plan, Do, Review），并可长成故事驱动大纲，与跨学科主题相连。
+      evidence:
+        - "Brewster, Ellis & Girard (2002), The Primary English Teacher's Guide, Penguin/Pearson, ISBN 9780582447769"
+        - "Ellis & Brewster (2002), Tell it Again!（ELT 期刊书评全文：12 本真实故事完整教案与选材标准）"
+      scope: 故事难度须按选材标准筛（重复结构、图文对应、语言可预测性）；教师须备不依赖绘本实物时的讲述方案。
+      exceptions:
+        - 无计划-做-回顾结构、无具体成果的故事活动退化为消遣——故事驱动不等于读个故事就完。
+    mechanism:
+      - beat: Plan-Do-Review
+        text_kid: 一个好故事能带着我们学好多天：先听、再演、做手工、玩游戏，最后做出我们自己的小作品。
+        text_adult: 讲前活动激活背景、预埋关键语言；讲中参与式聆听；讲后以具体成果收口（戏剧表演、棋盘游戏、手指偶剧等）。该法在欧洲小学外语课堂被广泛用作良好实践参照，与 Cameron (2001) 并列为方法论文献支柱。
+        visual: 故事为中心的三段活动骨架图
+        anchors: [V6_学校_44]
+    examples:
+      - level: 1
+        word_ids: [V6_学校_44]
+        form: "story-based approach：一本真实绘本组织一整段学习"
+        scene_note: 清单原文的方法形态
+        supports: claim
+    error_cases:
+      - wrong: 只读一遍故事、无讲前讲后活动与成果收口
+        right: 按 Plan-Do-Review 组织并以具体成果收口
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions。
+    relatives:
+      - {id: YL-07, rel: 同族}
+      - {id: YL-03, rel: 同族}
+    quiz:
+      - q: 故事教学法的操作骨架是？
+        options: [读—译—背, 计划—做—回顾, 讲—练—考, 听—说—读]
+        answer: 计划—做—回顾
+        hint_on_wrong: 回机制小节「Plan-Do-Review」
+    probes: []
+    prereq: []
+    order: 6
+    pain_points: []
+    adult:
+      sources:
+        - "Brewster, Ellis & Girard (2002), Penguin English/Pearson ELT；Ellis & Brewster (2002), Tell it Again!, Penguin English（书评全文核实）"
+      boundary: 选材须按标准筛；绘本成本与可得性是真实约束。
+      disputes: 无主流分歧；书评界的保留集中在 8–11 岁内部跨度过大、个别故事年龄适配标注不足，属执行层批评。
+      evidence_grade: 书目+书评全文核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-06}
+
+  - id: YL-07
+    zone: 支撑层
+    group: YL
+    subgroup: 学习载体
+    audience: 教师/设计层
+    headline: 老师「讲」故事胜过「读」故事：讲述者的眼睛和节奏就是脚手架
+    headline_kid: 老师看着我们讲故事，哪里没懂就慢一点、再讲一遍——故事是讲给我们听的，不是念给书听的。
+    claim:
+      type: tendency
+      statement: 「讲述」与「朗读」不同：讲述时教师脱离文本，以目光、停顿、重复与动作实时调控儿童的理解，故事由此几乎一举解决动机问题。决定所需语言水平的不是故事本身，而是「我们让孩子拿故事做什么」——同一故事配不同任务即可跨水平使用。
+      evidence:
+        - "Wright (1995), Storytelling with Children, OUP Resource Books for Teachers（结构与引文经 Perlinguam 期刊书评全文核实）"
+      scope: 讲述对教师的语言与表演能力有真实要求，不是零门槛技巧。
+      exceptions:
+        - 书评批评其入门部分个别建议（如「气泡技巧」）对新手交代不足。
+    mechanism:
+      - beat: 讲述即脚手架
+        text_kid: 老师看着我们讲故事，哪里没懂就慢一点、再讲一遍。
+        text_adult: 故事同时是语法与词汇的天然载体（该书专设「Grammar and stories」部分）；其活动库按讲前/讲中/讲后组织，与 YL-06 的 Plan-Do-Review 骨架互相印证（两条独立来源同向）。
+        visual: 讲述者目光/停顿/重复实时调控理解的示意
+        anchors: [V6_学校_44]
+    examples:
+      - level: 1
+        word_ids: [V6_学校_44]
+        form: "storytelling（讲述）vs reading aloud（朗读）"
+        scene_note: 清单原文的核心区分
+        supports: claim
+    error_cases:
+      - wrong: 把照本朗读当作故事讲述交付
+        right: 脱离文本讲述，以目光、停顿、重复、动作实时调控理解
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的讲述/朗读之分。
+    relatives:
+      - {id: YL-06, rel: 同族}
+      - {id: YL-02, rel: 同族}
+    quiz:
+      - q: 决定故事所需语言水平的是什么？
+        options: [故事本身难度, 让孩子拿故事做什么（任务）, 故事长度, 插图数量]
+        answer: 让孩子拿故事做什么（任务）
+        hint_on_wrong: 回 claim 的难度观
+    probes: []
+    prereq: [YL-06]
+    order: 7
+    pain_points: []
+    adult:
+      sources:
+        - "Andrew Wright (1995), Storytelling with Children, OUP, 222 pp.（Perlinguam 书评全文 https://perlinguam.journals.ac.za/pub/article/download/220/329）"
+      boundary: 对教师语言与表演能力有真实要求。
+      disputes: 无。
+      evidence_grade: 书评全文核实（初版）
+      pending:
+        - "第 2 版（2009, ISBN 9780194425810）出版社页面本轮未打开核实，本条引文以初版书评为准"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-07}
+
+  - id: YL-08
+    zone: 支撑层
+    group: YL
+    subgroup: 年龄、动机与儿童参与
+    audience: 教师/设计层
+    headline: 「越小开始越好」在课堂外语环境里不成立：决定成败的是接触的总量、质量与连续性
+    headline_kid: 早开始不等于学得好。学得好不好，要看一共听了多少、用了多少、是不是一直没断过——不是看几岁开始。
+    claim:
+      type: tendency
+      statement: 年龄效应必须分语境看：在每周几节课的学校外语环境里，等量教学时数下开始较晚的孩子学得更快（认知成熟与显性学习机制占优）；在自然/沉浸环境里，早开始才与长期最终造诣（尤其语音）相关。早期起步的真实红利在拉长可累积的接触总时长与态度动机的早期建立，前提是供给的质量、数量与学段衔接跟得上。
+      evidence:
+        - "Nikolov (Ed.) (2009), The Age Factor and Early Language Learning, De Gruyter Mouton（第 1 章总览，目录核实）"
+        - "Muñoz (Ed.) (2006) 所载 Barcelona Age Factor 项目：8/11/14/成人四组、200/416/726 教学小时三节点的纵向研究（Atlantis 书评全文核实）"
+      scope: 适用范围是学校外语课堂、低至中等课时量；本条纠正的是「起始年龄决定论」，不是「早期教育无用论」。
+      exceptions:
+        - 不可反向推论为「晚开始更好」——若早期供给充足且连续，早开始组的总接触量优势真实存在。
+        - BAF 中唯语音感知一项早开始亦未显示清晰优势（Fullana 章结论「没有明确证据」）。
+    mechanism:
+      - beat: 语境决定年龄效应
+        text_kid: 早开始不等于学得好，要看一共听了多少、用了多少、是不是一直没断过。
+        text_adult: BAF 是课堂外语年龄效应规模最大的纵向项目之一：多数测验上晚开始组在等量课时下更快、更有效，形态习得顺序各组相似但速度晚组更快。Nikolov (2009) 匈牙利项目同样把早期项目成败归因于供给条件而非起始年龄本身。
+        visual: 等量课时下不同起始年龄组的学习速度对照
+        anchors: [G3_0628]
+    examples:
+      - level: 1
+        word_ids: [G3_0628]
+        form: "learn 的速度比较须先固定教学时数（BAF 设计）"
+        scene_note: 清单原文的研究设计要点
+        supports: claim
+    error_cases:
+      - wrong: 宣称「越小开始越好」作为无条件结论，或反读为「晚开始更好」
+        right: 年龄结论必须带语境与供给条件：课堂外语看接触总量、质量与连续性
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 与 exceptions。
+    relatives:
+      - {id: YL-05, rel: 前置}
+    quiz:
+      - q: 在学校外语课堂、等量课时下，BAF 发现哪组学得更快？
+        options: [最早开始组, 较晚开始组, 无差别, 成人组最慢]
+        answer: 较晚开始组
+        hint_on_wrong: 回机制小节「语境决定年龄效应」
+    probes: []
+    prereq: [YL-05]
+    order: 8
+    pain_points: []
+    adult:
+      sources:
+        - "Nikolov (Ed.) (2009), De Gruyter Mouton, ISBN 9783110218282；Muñoz (Ed.) (2006), Multilingual Matters（BAF 项目）"
+      boundary: 结论限学校外语课堂、低至中等课时量。
+      disputes: 与关键期假说传统（Lenneberg 系）在「最终造诣」层面仍有分歧：沉浸语境支持早开始与近母语语音相关，课堂语境（BAF 等）显示该优势在低输入条件下不兑现；分歧的实质是语境而非年龄本身，两造并列登记。
+      evidence_grade: 目录+书评全文核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-08}
+
+  - id: YL-09
+    zone: 支撑层
+    group: YL
+    subgroup: 年龄、动机与儿童参与
+    audience: 教师/设计层
+    headline: 儿童学外语的动机住在课堂里：好玩的活动、亲近的老师、看得见的进步
+    headline_kid: 小朋友喜不喜欢学英语，先看三样：活动好不好玩、老师亲不亲、自己有没有觉得「我比以前会了」。
+    claim:
+      type: tendency
+      statement: 儿童的外语动机不能用成人研究中的工具型/融合型量表捕捉：孩子说出的学习理由主要落在学习情境层面——课堂活动是否有趣、材料是否好玩、与教师的关系如何；随年龄增长功利性理由逐渐出现，但课堂相关因素始终居于核心；动机的敌人是「感觉不到进步」。
+      evidence:
+        - "Nikolov (1999), Language Teaching Research 3(1): 33–56（匈牙利 6–14 岁儿童三组、各追踪 8 年的长程民族志研究，期刊全文核实）"
+        - "姊妹研究：Mihaljević Djigunović (1993/1995) Zagreb 项目，336 名 7 岁儿童及三年后追踪（Nikolov 文中综述，同向）"
+      scope: 研究语境为匈牙利小学外语课堂，动机结构受当地升学与语言地位影响，外推须注意文化与制度差异。
+      exceptions:
+        - 「活动有趣」指内在有趣的任务与材料，不等同于用游戏包装一切——被教师称为「游戏」的无聊活动恰恰是孩子点名讨厌的（文中登记的反例）。
+    mechanism:
+      - beat: 课堂动机三要素
+        text_kid: 小朋友喜不喜欢学英语，先看三样：活动好不好玩、老师亲不亲、自己有没有觉得「我比以前会了」。
+        text_adult: 该研究以教师兼研究者身份跨 1977–1995 年三轮各 8 年追踪，是儿童外语动机领域罕见的长程数据；设计含义：进步须可见（与 LS-09 的掌握判定衔接——可见的进步须是真进步而非流畅错觉）。
+        visual: 活动趣味/教师关系/可见进步三要素图
+        anchors: [G2_0489]
+    examples:
+      - level: 1
+        word_ids: [G2_0489]
+        form: "play/活动趣味作为儿童动机的课堂层来源"
+        scene_note: 清单原文的动机来源分类
+        supports: claim
+    error_cases:
+      - wrong: 用成人工具型/融合型量表测儿童动机，或用游戏包装无聊活动
+        right: 儿童动机按课堂层三要素设计与诊断；活动须内在有趣
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 与 exceptions。
+    relatives:
+      - {id: YL-14, rel: 同族}
+      - {id: YL-11, rel: 同族}
+    quiz:
+      - q: 儿童动机的敌人是什么？
+        options: [活动太难, 感觉不到进步, 老师太严, 课时太少]
+        answer: 感觉不到进步
+        hint_on_wrong: 回机制小节「课堂动机三要素」
+    probes: []
+    prereq: []
+    order: 9
+    pain_points: []
+    adult:
+      sources:
+        - "Marianne Nikolov (1999), Language Teaching Research 3(1): 33–56, DOI 10.1177/136216889900300103"
+      boundary: 匈牙利语境，外推注意文化与制度差异。
+      disputes: 无主流分歧；与成人动机理论（Gardner 系）的分歧在量表适用性——Nikolov 明确批评成人量表题目超出儿童理解范围，属方法论分歧。
+      evidence_grade: 期刊全文核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-09}
+
+  - id: YL-10
+    zone: 支撑层
+    group: YL
+    subgroup: 学习载体
+    audience: 教师/设计层
+    headline: 少儿英语课要有「单元骨架」：以主题组织整段学习，先听说、后读写
+    headline_kid: 我们不是一课学一课的散点——围绕一个主题学好几节课，故事、歌、游戏、手工都是同一个主题，学过的话能一直用。
+    claim:
+      type: tendency
+      statement: 少儿英语课以主题单元（thematic units）组织长期与课时规划，让语言目标、内容目标与活动在同一主题下互相支撑（情境化教学）；技能顺序上先立听说、再展读写，故事单列为听说读写的枢纽，评估与管理亦按儿童特点改造。
+      evidence:
+        - "Shin & Crandall (2014), Teaching Young Learners English: From Theory to Practice, National Geographic Learning, 403 pp., ISBN 9781111771379（全书目录经大学图书馆目录页核实）"
+      scope: 主题单元解决的是组织问题，不自动保证每个活动的质量（单活动仍受 YL-01 要求-支持框架检验）；具体课时与评估制度须按本地课标再适配。
+      exceptions:
+        - 该书活动排序的页级细则（p. 72 规划六步、p. 77 排序六则）本轮仅见二手转述，未采用。
+    mechanism:
+      - beat: 主题单元骨架
+        text_kid: 围绕一个主题学好几节课，学过的话能一直用。
+        text_adult: 该书是 UMBC TESOL 培训体系的少儿方向教材，含 TEYL 基本原则与教学一览表，是 Cameron (2001) 之后少儿英语教学体系化的代表性综合教材。
+        visual: 主题单元内听说先行、读写随后、故事为枢纽的结构图
+        anchors: [G2_0669]
+    examples:
+      - level: 1
+        word_ids: [G2_0669]
+        form: "song（歌）与故事、游戏、手工同属一个主题单元"
+        scene_note: 清单原文的单元构成
+        supports: claim
+    error_cases:
+      - wrong: 以为用了主题单元就自动保证活动质量
+        right: 单活动仍须过 YL-01 的要求-支持检验
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope。
+    relatives:
+      - {id: YL-03, rel: 同族}
+      - {id: YL-06, rel: 同族}
+    quiz:
+      - q: 本书的技能顺序安排是？
+        options: [先读写后听说, 先听说后读写, 只听说, 只读写]
+        answer: 先听说后读写
+        hint_on_wrong: 回 claim 的技能顺序
+    probes: []
+    prereq: []
+    order: 10
+    pain_points: []
+    adult:
+      sources:
+        - "Joan Kang Shin & JoAnn Crandall (2014), National Geographic Learning/Heinle, ISBN 9781111771379（目录：宾夕法尼亚州立大学图书馆目录页）"
+      boundary: 语境以全球 EFL 小学为主，课时与评估制度须本地适配。
+      disputes: 无。
+      evidence_grade: 目录核实级
+      pending:
+        - "活动排序页级细则（p. 72 规划六步、p. 77 排序六则）仅见二手教学博客转述，未打开原书页，未予采用，待补核后可增补"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-10}
+
+  - id: YL-11
+    zone: 支撑层
+    group: YL
+    subgroup: 年龄、动机与儿童参与
+    audience: 教师/设计层
+    headline: 外语环境里，课堂（和产品）几乎是孩子唯一的英语来源——所以体验质量就是学习质量
+    headline_kid: 在学校外面很少能碰到英语，所以每一节课、每一次打开学习的时间，都要真的好玩、真的能学到——没有别的地方补。
+    claim:
+      type: tendency
+      statement: 外语情境中的孩子几乎完全依赖学校（以及校内产品）获得英语输入，不像二语环境有环境输入兜底；儿童的学习意愿直接由活动体验驱动——享受活动才投入并持续，持续投入又增加输入量。因此在外语语境里，体验设计不是包装，而是输入供给机制本身。
+      evidence:
+        - "Moon (2000), Children Learning English, Macmillan-Heinemann, Teacher Development Series（书目经诺丁汉大学 TEFL 阅读清单核实；机制表述依据二手学术引用，页码级引文未打开一手页——见 pending）"
+        - "Moon 与 Brumfit、Tongue (1991) 的儿童相对成人学习特征经典概括（反复被引）"
+      scope: 本条写于 2000 年，校外输入环境（短视频、AI 对话）已变：「唯一来源」的程度在数字时代有所缓解，但结构化、可理解的输入仍主要来自课堂与产品，结论方向不变、强度待按当代语境再评估。
+      exceptions:
+        - 与 YL-05 语境框架、YL-08 接触总量结论互相印证，但不得把 2000 年的「唯一」程度原样搬到今日。
+    mechanism:
+      - beat: 体验即输入供给
+        text_kid: 在学校外面很少能碰到英语，所以每一次打开学习的时间，都要真的好玩、真的能学到。
+        text_adult: 对 App 的直接含义：产品内的每一次学习体验同时承担输入供给职能，体验质量的下滑即输入量的下滑，没有环境兜底。
+        visual: 外语语境输入来源结构（课堂/产品为主）示意
+        anchors: [G3_0619]
+    examples:
+      - level: 1
+        word_ids: [G3_0619]
+        form: "speak 的机会在外语语境主要由课堂与产品供给"
+        scene_note: 清单原文的输入结构论点
+        supports: claim
+    error_cases:
+      - wrong: 假设孩子会在校外环境中自然补足英语输入
+        right: 外语语境下输入供给须由课堂与产品设计全额承担
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的输入结构。
+    relatives:
+      - {id: YL-05, rel: 同族}
+      - {id: YL-08, rel: 同族}
+    quiz:
+      - q: 在外语语境里，体验设计为什么是输入供给机制本身？
+        options: [因为好玩更重要, 因为孩子几乎只从课堂与产品获得英语输入, 因为考试要求, 因为家长要求]
+        answer: 因为孩子几乎只从课堂与产品获得英语输入
+        hint_on_wrong: 回机制小节「体验即输入供给」
+    probes: []
+    prereq: [YL-05]
+    order: 11
+    pain_points: []
+    adult:
+      sources:
+        - "Jayne Moon (2000), Children Learning English, Macmillan-Heinemann（诺丁汉大学阅读清单书目核实）"
+      boundary: 2000 年语境，当代强度待再评估，方向不变。
+      disputes: 无。
+      evidence_grade: 书目核实+二手转引级（页码级引文待核）
+      pending:
+        - "Moon (2000) 页码级引文（如 p. 7、p. 14 的转引）未打开原书一手页核实，入模前须复核"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-11}
+
+  - id: YL-12
+    zone: 支撑层
+    group: YL
+    subgroup: 年龄、动机与儿童参与
+    audience: 教师/设计层
+    headline: 英语课是孩子整体教育的一部分，不是孤立的「语言系统」训练
+    headline_kid: 在英语课上画画、做手工、演小剧、唱歌，不是在玩别的东西——这些都是学英语的样子。
+    claim:
+      type: tendency
+      statement: 小学英语教师的职责大于「教语言系统本身」——英语课是儿童整体教育的一个组成部分：活动体系横跨听说读写、词汇语法、游戏、歌曲歌谣、戏剧、手工与视频；对低龄段而言，语言发展与认知、社交、动手能力的发展是同一件事的不同侧面。
+      evidence:
+        - "Phillips (1993), Young Learners, OUP Resource Books for Teachers, 182 pp.（立书原则原文与目录经 Google Books 出版社页核实）"
+      scope: 「整体教育」不构成削减语言目标的理由——活动仍须有明确的语言产出与理解目标（与 YL-01 任务五标准中的「语言目标清晰」互锁）。
+      exceptions:
+        - 该书为活动资源书而非理论专著，机制层表述以其立书原则与活动体系结构为据，不作超出文本的理论引申。
+    mechanism:
+      - beat: 整体教育定位
+        text_kid: 在英语课上画画、做手工、演小剧、唱歌，都是学英语的样子。
+        text_adult: 该书是 OUP 教师资源系列面向小学教师的奠基之作；其定位与 Cameron (2001) 理论框架、Shin & Crandall (2014) 的 21 世纪技能章方向一脉相承，三条独立来源跨 20 年同向。
+        visual: 英语课与整体教育（认知/社交/动手）的交叠图
+        anchors: [G3_0790]
+    examples:
+      - level: 1
+        word_ids: [G3_0790]
+        form: "draw（画画）等手工活动作为英语课的正当构成"
+        scene_note: 清单原文的活动体系横跨范围
+        supports: claim
+    error_cases:
+      - wrong: 以「整体教育」为名削减活动的语言目标
+        right: 活动横跨多域，但语言产出与理解目标必须明确（与 YL-01 互锁）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope。
+    relatives:
+      - {id: YL-01, rel: 同族}
+      - {id: YL-10, rel: 同族}
+    quiz:
+      - q: 「整体教育」定位对语言目标的要求是？
+        options: [可以取消, 仍须明确, 越少越好, 只在期末评]
+        answer: 仍须明确
+        hint_on_wrong: 回 claim 的 scope
+    probes: []
+    prereq: []
+    order: 12
+    pain_points: []
+    adult:
+      sources:
+        - "Sarah Phillips (1993), Young Learners, OUP（Google Books 出版社页 https://books.google.com/books/about/Young_Learners.html?id=2BHx2xHj_mAC）"
+      boundary: 活动资源书定位，不作超出文本的理论引申。
+      disputes: 无。
+      evidence_grade: 出版社页核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-12}
+
+  - id: YL-13
+    zone: 支撑层
+    group: YL
+    subgroup: 学习载体
+    audience: 教师/设计层
+    headline: 先听懂、再开口，用身体记住语言（TPR）：有效但证据有边界，只适合打地基
+    headline_kid: 先别急着说！听老师说指令，身体动起来做对了，就是听懂了；听懂了很多很多，才轮到嘴巴开口。
+    claim:
+      type: tendency
+      statement: 全身反应法（TPR）类比婴儿学母语路径：儿童先经历长时间听力理解期，以全身动作回应指令，在「听—做」绑定中建立语音与意义的联结，不施加开口压力；理解基础打牢后口语自然涌现。其可保留的窄结论是「与词义紧密绑定的动作促进词汇编码」。
+      evidence:
+        - "Asher (1977), Learning Another Language Through Actions, Sky Oaks Productions（方法主张经 Xie 2021, JLTR 12(2): 293–303 文内梳理核实）"
+        - "2026 年学前运动类语言干预系统综述（PRISMA 2020，纳入 8 项研究）：语义整合运动在较强对照研究中优于静态教学；专门针对 TPR 的证据参与度与短期学习为正向、方法学异质且不够稳健"
+      scope: 证据强度如实标注为「有限」：学前 TPR 研究多为小样本、描述性或无对照设计，不能作强因果解读；证据几乎只覆盖具体词汇结果。
+      exceptions:
+        - 抽象词汇、复杂语法、读写技能无法靠动作表达——TPR 只适合起步阶段的听说地基，常只能作补充技术。
+        - Asher 的「左右脑」理论包装不被现代证据支持，不得随方法一并呈现。
+    mechanism:
+      - beat: 听—做绑定
+        text_kid: 先别急着说！听老师说指令，身体动起来做对了，就是听懂了。
+        text_adult: 在中国小学课堂实证中，TPR 常受课时、考试导向评估与教师培训不足制约而只能作补充技术（Xie 2021 案例发现）。
+        visual: 指令—动作回应序列示意
+        anchors: [G3_K12, G2_085]
+    examples:
+      - level: 1
+        word_ids: [G3_K12, G2_085]
+        form: "stand（站）、jump（跳）等指令的动作回应"
+        scene_note: 清单原文的指令驱动动作序列
+        supports: claim
+    error_cases:
+      - wrong: 把 TPR 当作整套方法覆盖抽象词汇、语法与读写
+        right: TPR 只作起步阶段听说地基的补充技术，证据强度标注为有限
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions 与 scope。
+    relatives:
+      - {id: YL-10, rel: 同族}
+    quiz:
+      - q: TPR 证据的可保留窄结论是什么？
+        options: [左右脑理论成立, 与词义绑定的动作促进词汇编码, 口语会自动完美, 适合教语法]
+        answer: 与词义绑定的动作促进词汇编码
+        hint_on_wrong: 回 claim 的窄结论
+    probes: []
+    prereq: []
+    order: 13
+    pain_points: []
+    adult:
+      sources:
+        - "James J. Asher (1977), Sky Oaks Productions；Xie (2021), Journal of Language Teaching and Research 12(2): 293–303, DOI 10.17507/jltr.1202.11；Valentini, Simone & Beretta (2026) 系统综述"
+      boundary: 只适合起步听说地基；证据有限，不能作强因果解读。
+      disputes: 支持方（具身认知研究线）认为动作改变记忆编码方式；保留方（方法论批评线）认为其产出延迟、纠错缺位与初级天花板使其只能作技术、不能作整套方法。两方并列登记。
+      evidence_grade: 期刊梳理+系统综述核实（原书版次待核）
+      pending:
+        - "Asher (1977) 原书版次细节（出版社页面本轮未打开）待补核"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-13}
+
+  - id: YL-14
+    zone: 支撑层
+    group: YL
+    subgroup: 年龄、动机与儿童参与
+    audience: 教师/设计层
+    headline: 让孩子参与设计与评议：儿童不只是任务的执行者，也是任务的共同作者
+    headline_kid: 大人们可以问我们：这个游戏哪里太难、哪里好玩？我们自己想出来的活动，我们会更想玩。
+    claim:
+      type: tendency
+      statement: 儿童应从「被试/被教者」推进为参与者：任务型学习应让儿童成为任务的主动创造者、系统探询儿童自己对任务的看法，乃至让儿童与教师担任共同研究者。机制依据：儿童对任务难度与趣味的自我报告是成人观察测不到的信息，且参与设计本身提升投入与自主性。
+      evidence:
+        - "Pinter (2015) 任务章节结论部分（WRAP 全文）；Pinter & Mathew 印度小学英语课堂共同研究者研究（British Council 官方页核实）"
+        - "Pinter (2023), Engaging Children in Applied Linguistics Research, CUP（取向系统化）"
+      scope: 参与不等于放任：任务目标与语言框架仍由教师把持，儿童参与的是难度校准、题材选择与形式设计；低龄儿童的自我报告需与观察数据交叉验证，不能单独作为评估依据。
+      exceptions:
+        - 儿童参与研究亦受《联合国儿童权利公约》(1989) 参与权框架支持（背景登记，不作方法证据）。
+    mechanism:
+      - beat: 儿童共同作者
+        text_kid: 大人们可以问我们：这个游戏哪里太难、哪里好玩？
+        text_adult: 与 YL-09 的课堂动机机制衔接：参与设计提升投入与自主性，自我报告补成人观察的盲区。
+        visual: 儿童参与难度校准/题材选择/形式设计的环节图
+        anchors: [G2_0990]
+    examples:
+      - level: 1
+        word_ids: [G2_0990]
+        form: "game（游戏）的难度与趣味由儿童参与评议"
+        scene_note: 清单原文的参与形态
+        supports: claim
+    error_cases:
+      - wrong: 把儿童自我报告单独作为评估依据，或放任儿童决定任务目标
+        right: 自我报告与观察数据交叉验证；目标与语言框架仍由教师把持
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope。
+    relatives:
+      - {id: YL-09, rel: 同族}
+    quiz:
+      - q: 儿童参与的范围是？
+        options: [决定课程目标, 难度校准、题材选择与形式设计, 替代教师评估, 只玩不学]
+        answer: 难度校准、题材选择与形式设计
+        hint_on_wrong: 回 claim 的 scope
+    probes: []
+    prereq: []
+    order: 14
+    pain_points: []
+    adult:
+      sources:
+        - "Pinter (2015), Bloomsbury（WRAP 全文）；Pinter & Mathew 共同研究者研究；Pinter (2023), CUP"
+      boundary: 自我报告须与观察交叉验证；目标框架由教师把持。
+      disputes: 无主流分歧；方法论上对「儿童报告的可信度」有程度之争，属执行层。
+      evidence_grade: 章节全文核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 YL-14}
+
+  # ================= CB 语料库与真实英语（14 条） =================
+  - id: CB-01
+    zone: 支撑层
+    group: CB
+    subgroup: "Sinclair:语言是整块选出来的"
+    audience: 教师/设计层
+    headline: 英语大部分时候不是逐词拼的，是整块选的（idiom principle）
+    headline_kid: 说英语像拿现成的积木块搭东西，不是一个字一个字现刻——现成的块用得最多。
+    claim:
+      type: tendency
+      statement: 语言产出有两套原理：open-choice principle 把句子看成一串槽位逐词填入，只受语法约束；idiom principle 指说话人手里有大量半预制短语，整块构成一次选择。语料证据显示 idiom principle 远比传统语法假设的普遍，是默认模式，逐词拼装只是退路。
+      evidence:
+        - "Sinclair (1991), Corpus, Concordance, Collocation, OUP, p. 110 idiom principle 定义原文（经 AsiaTEFL 论文与乌格德论文两处转引核实页码）"
+      scope: 两套原理是同一产出过程的两端、随时切换，不是二选一。
+      exceptions:
+        - 新造词、专名、术语性表达更靠 open-choice 一端。
+    mechanism:
+      - beat: 整块选择为默认
+        text_kid: 说英语像拿现成的积木块搭东西——现成的块用得最多。
+        text_adult: "Sinclair 主持的 COBUILD 大型语料实践的系统检索结论：多数词没有独立意义，而是丰富多词型式库的部件（1991: 108，转引登记）。"
+        visual: 整块选取 vs 逐词拼装的产出对照图
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_日常_8]
+        form: "give 一类高频动词的半预制短语整块选取（give sb a call 型）"
+        scene_note: 清单原文的半预制短语论点（搭配实例与 CO-17 互挂）
+        supports: claim
+    error_cases:
+      - wrong: 默认把句子教学设计成逐词拼装、语法槽位填词
+        right: 整块选择是默认模式，词块与型式应整块呈现（见 CB-10）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的默认/退路之分。
+    relatives:
+      - {id: CB-05, rel: 同族}
+      - {id: CB-10, rel: 同族}
+    quiz:
+      - q: 语料证据显示哪套原理是默认模式？
+        options: [open-choice 逐词填, idiom principle 整块选, 两者各半, 取决于考试]
+        answer: idiom principle 整块选
+        hint_on_wrong: 回机制小节「整块选择为默认」
+    probes: []
+    prereq: []
+    order: 1
+    pain_points: []
+    adult:
+      sources:
+        - "John Sinclair (1991), Corpus, Concordance, Collocation, Oxford University Press, pp. 108–110, 170"
+      boundary: 两原理随时切换，不是二选一。
+      disputes: 无（框架本身为学界通行引用；争议在整块的心理存储方式，见 CB-05 分歧）。
+      evidence_grade: 原书页码经转引核实
+      pending:
+        - "Sinclair (1991) 所据 COBUILD 语料规模口径随版本变化，未检索到可定版的一手数字，留待核（清单未采用任何规模数字）"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-01}
+
+  - id: CB-02
+    zone: 支撑层
+    group: CB
+    subgroup: "Sinclair:语言是整块选出来的"
+    audience: 教师/设计层
+    headline: 一个词的意义，一半住在它常跟谁一起出现里（collocation）
+    headline_kid: 认一个词，还要认它的小伙伴——有些词总是一起出现，拆开用就怪怪的。
+    claim:
+      type: tendency
+      statement: "collocation 是两个或多个词在一小段文本距离内共现（Sinclair 1991: 170）；共现不是随机的，显著互相搭配的词是「一次共同选择」（co-selection）的结果，搭配本身携带意义——知道一个词，必须同时知道它通常吸引哪些伙伴、排斥哪些伙伴。"
+      evidence:
+        - "Sinclair (1991), OUP, p. 170 定义、p. 113 co-selection 论述（经 Newcastle 教学综述逐条引页码核实）"
+        - "搭配显著性可用统计检验判定（互信息、t-score；Hunston & Francis 1999: 231 转引）"
+      scope: 搭配是概率倾向不是铁律，强弱因词而异。
+      exceptions:
+        - 统计显著不等于教学上值得教，还要看学习者的需要与母语干扰（见 CG-02、CB-12 的本地化要求）。
+    mechanism:
+      - beat: 共选携带意义
+        text_kid: 认一个词，还要认它的小伙伴——有些词总是一起出现，拆开用就怪怪的。
+        text_adult: 有的词宾语槽几乎全开，有的高度受限；搭配知识是词知识的一半，词库与词汇教学须把伙伴关系作为呈现单位（与 CB-01、CB-10 同链）。
+        visual: 词与其高频伙伴的网络图
+        anchors: [V6_日常_4]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_4]
+        form: "make a decision 型搭配：make 的伙伴选择携带意义"
+        scene_note: 清单 CB-11 分歧栏登记的对照例（make a decision vs make a cake，见 CB-11）
+        supports: claim
+    error_cases:
+      - wrong: 只教词的孤立释义、不教其搭配伙伴
+        right: 词连同高频伙伴整块教（共选关系即词义的一半）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的共选论点。
+    relatives:
+      - {id: CB-01, rel: 同族}
+      - {id: CB-10, rel: 同族}
+    quiz:
+      - q: 搭配显著性可用什么判定？
+        options: [语感, 统计检验（互信息、t-score）, 词典页码, 年级]
+        answer: 统计检验（互信息、t-score）
+        hint_on_wrong: 回 claim 的 evidence
+    probes: []
+    prereq: [CB-01]
+    order: 2
+    pain_points: []
+    adult:
+      sources:
+        - "John Sinclair (1991), OUP, pp. 113, 170；转引核实 http://wjmll.ncl.ac.uk/issue04-05/dodd.htm"
+      boundary: 搭配是概率倾向；教学取舍叠加学习者需求与母语干扰。
+      disputes: 无。
+      evidence_grade: 原书页码经转引核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-02}
+
+  - id: CB-03
+    zone: 支撑层
+    group: CB
+    subgroup: "Sinclair:语言是整块选出来的"
+    audience: 教师/设计层
+    headline: 关于英语的断言，先信文本，不信直觉（Trust the Text）
+    headline_kid: 想知道英语到底怎么说，别光凭感觉——去数一数大家真的怎么说。
+    claim:
+      type: tendency
+      statement: 语感（包括语言学家和母语者的语感）对频率、搭配、语域分布的判断系统性不可靠；只有把大批真实文本放进语料库系统检索，语言事实才会浮现。Sinclair 晚年进一步提出「意义单位」大于单个词——意义的典型实现是一组共选的词，单个词只是这个单位的核。
+      evidence:
+        - "Sinclair (2004), Trust the Text: Language, Corpus and Discourse, Routledge（书名章即 \"Trust the text\"；LINGUIST List 出版公告核实书目）"
+        - "自述引文：「系统地检视大型文本语料的能力，带来了一种此前不存在的证据质量」（1991: 4，转引登记）"
+      scope: 语料只能告诉我们「人们这样说」，不能单独决定「课堂该不该教」——教学取舍还要叠加学习者需求、年龄与交际目标；语料的代表性决定结论的外推范围。
+      exceptions:
+        - 语料代表性（收什么文本）不审查，结论不得外推。
+    mechanism:
+      - beat: 证据观
+        text_kid: 想知道英语到底怎么说，别光凭感觉——去数一数大家真的怎么说。
+        text_adult: 本条是 CB 组的纲领（拟挂载 dom-corpus-register：「规则先问证据」），也是本项目出处纪律在语料侧的根据：一切关于英语分布的断言先问语料。
+        visual: 直觉判断 vs 语料检索的证据对照
+        anchors: [G2_0492]
+    examples:
+      - level: 1
+        word_ids: [G2_0492]
+        form: "read 的搭配与频率事实以语料检索为准，不以语感为准"
+        scene_note: 由纲领推出的工作形态（设计层示例）
+        supports: claim
+    error_cases:
+      - wrong: 以母语者语感或编者直觉断言频率、搭配与语域分布
+        right: 先语料检索、再下断言，并注明语料代表性
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的证据观。
+    relatives:
+      - {id: CB-04, rel: 同族}
+      - {id: CB-13, rel: 同族}
+    quiz:
+      - q: 语料能单独决定什么？
+        options: [课堂该教什么, 人们实际怎么说, 考试标准, 儿童发展次序]
+        answer: 人们实际怎么说
+        hint_on_wrong: 回 claim 的 scope
+    probes: []
+    prereq: []
+    order: 3
+    pain_points: []
+    adult:
+      sources:
+        - "John Sinclair (2004), Trust the Text, Routledge, ISBN 0415317673；https://linguistlist.org/issues/15/2786/"
+      boundary: 教学取舍须叠加学习者需求、年龄与目标；语料代表性决定外推范围。
+      disputes: 语料驱动（corpus-driven）与语料辅助（corpus-based）的方法论分工是该领域长期讨论，但不影响本条证据观本身。
+      evidence_grade: 书目核实级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-03}
+
+  - id: CB-04
+    zone: 支撑层
+    group: CB
+    subgroup: "Biber:只有各语域的英语"
+    audience: 教师/设计层
+    headline: 口语和书面语的差别是系统性的，不是口语「不规范」
+    headline_kid: 说话和写文章本来就是两种样子——说话时「我、你」多，写文章时名词多；不是谁对谁错。
+    claim:
+      type: tendency
+      statement: LGSWE 基于 4000 万词语料（37,000 篇文本，英美两式）按语域统计语法特征，结果呈互补分布：学术散文名词密集、名词化与前置修饰密集；会话则代词、动词、副词与缩略形式密集。差别源于产出条件（实时互动 vs 可反复修改的信息打包），不是水平高下。
+      evidence:
+        - "Biber, Johansson, Leech, Conrad & Finegan (1999), Longman Grammar of Spoken and Written English, Pearson, ISBN 0-582-23725-4（语料规模经书评转述）"
+        - "学术散文名词约占实词 60%（p. 65）、复数名词为会话 3–4 倍（p. 291）——页码级数字来自二手对照表，原书页面未打开（见 pending）"
+      scope: 语域是连续谱不是四个盒子；本条说的是群体频率倾向，不能拿来评判单个句子。
+      exceptions:
+        - 小说里含大量对话、学术讲演介于其间，单文本须落在连续谱上看（与 CB-06 同轴）。
+    mechanism:
+      - beat: 语域互补分布
+        text_kid: 说话和写文章本来就是两种样子——不是谁对谁错。
+        text_adult: 「没有一种英语语法，只有各语域的英语」是本子组的总纲：向孩子呈现任何形式时须标明它属于哪个语域（与 CB-07/08/09 的口语语法一脉）。
+        visual: 会话 vs 学术散文的特征密度对照
+        anchors: [G3_0619]
+    examples:
+      - level: 1
+        word_ids: [G3_0619]
+        form: "speak（会话）语域中代词、缩略形式密集"
+        scene_note: 清单原文的会话端特征
+        supports: claim
+    error_cases:
+      - wrong: 以书面语规范评判口语「不规范」，或拿群体频率倾向评判单个句子
+        right: 先认语域再评价；条内结论只作群体倾向
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 与 scope。
+    relatives:
+      - {id: CB-06, rel: 同族}
+      - {id: CB-07, rel: 同族}
+    quiz:
+      - q: 口语与书面语差别的来源是？
+        options: [水平高下, 产出条件（实时互动 vs 信息打包）, 年龄, 国别]
+        answer: 产出条件（实时互动 vs 信息打包）
+        hint_on_wrong: 回机制小节「语域互补分布」
+    probes: []
+    prereq: [CB-03]
+    order: 4
+    pain_points: []
+    adult:
+      sources:
+        - "Biber et al. (1999), LGSWE, Pearson；书评 https://www.academia.edu/120068795/（语料规模与全书结构）"
+      boundary: 语域连续谱；群体倾向不评判单句。
+      disputes: 无（语域差异的实证图景为语料语言学共识；register 与 genre 的术语分工另有讨论，不影响本条）。
+      evidence_grade: 书评+二手对照表级（页码级数字待核）
+      pending:
+        - "LGSWE 页码级数字（名词占实词约 60% p. 65、复数名词 3–4 倍 p. 291 等）来自逐项标注页码的二手对照表，未打开原书页面核对"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-04}
+
+  - id: CB-05
+    zone: 支撑层
+    group: CB
+    subgroup: "Biber:只有各语域的英语"
+    audience: 教师/设计层
+    headline: 高频词串是搭起语篇的预制砖（lexical bundles）
+    headline_kid: 有些词总是手拉手一串出现，像乐高拼好的一小块——学会整串，说话写字都顺。
+    claim:
+      type: tendency
+      statement: 在语域中最频繁复现的三词以上序列称为 lexical bundles（词汇束），判据纯统计：每百万词至少出现 10 次、且分布于至少 5 篇不同文本。词汇束大多不是完整结构单位、意义也不习语化，却是各语域构建语篇的基本建筑块——每个语域有自己的一套常用砖。
+      evidence:
+        - "Biber & Conrad (1999)「Lexical bundles in conversation and academic prose」, 收入 LGSWE (1999) 第 13 章（定义见 1999: 183，经期刊梳理转引）"
+      scope: 词汇束是语料统计产物，不等于心理上整存整取的单位；教学上应按语域与交际功能挑选，不能把统计表原样变背诵表。
+      exceptions:
+        - 例：会话里的 do you want me to、学术散文里的 in the case of the（清单原文例）。
+    mechanism:
+      - beat: 统计判据定义词串
+        text_kid: 有些词总是手拉手一串出现，像乐高拼好的一小块——学会整串，说话写字都顺。
+        text_adult: LGSWE 第 13 章给出会话与学术散文四至六词词汇束的长表并按结构分类；各语域砖块不同，选材须按目标语域挑（与 CB-04 同链）。
+        visual: 语域常用词串清单示意（统计判据标注）
+        anchors: [V6_日常_1]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_1]
+        form: "go 的会话词串形态（do you want me to 型整串呈现）"
+        scene_note: 清单原文会话词汇束例的构成词
+        supports: claim
+    error_cases:
+      - wrong: 把词汇束统计表原样变成背诵表，或断言词串必为心理整存单位
+        right: 按语域与交际功能挑选教学；心理现实性另有争议（见 disputes）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 与 disputes。
+    relatives:
+      - {id: CB-01, rel: 同族}
+      - {id: CB-04, rel: 同族}
+    quiz:
+      - q: 词汇束的判据是？
+        options: [意义习语化, 每百万词≥10 次且分布于≥5 篇文本, 结构完整, 教师推荐]
+        answer: 每百万词≥10 次且分布于≥5 篇文本
+        hint_on_wrong: 回 claim 的判据
+    probes: []
+    prereq: [CB-04]
+    order: 5
+    pain_points: []
+    adult:
+      sources:
+        - "Biber & Conrad (1999), in LGSWE 第 13 章；概念源流梳理 https://www.sciencedirect.com/science/article/abs/pii/S0889490610000256"
+      boundary: 统计产物不等于心理单位；教学须按语域功能挑选。
+      disputes: 词汇束的心理现实性有争议——加工实验发现学习者阅读词汇束并不比普通词串更快（JTELS 实验，三组伊朗学习者三项实验均无整存优势），「频繁共现」与「整块存储」不能划等号。
+      evidence_grade: 定义经转引核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-05}
+
+  - id: CB-06
+    zone: 支撑层
+    group: CB
+    subgroup: "Biber:只有各语域的英语"
+    audience: 教师/设计层
+    headline: 「投入互动」对「信息密度」：一条轴看懂口语与书面语（Dimension 1）
+    headline_kid: 说话像聊天，越聊越热闹；写文章像打包，越包越紧实——两种样子在一条尺子的两头。
+    claim:
+      type: tendency
+      statement: 多维分析（因子分析）显示语法特征成团共现：第一、第二人称代词、缩略式、现在时动词、问句总是一起多（会话端），名词、介词、定语形容词、长词总是一起多（学术散文端）；两团互补，构成「投入式 vs 信息型产出」维度——语域差异背后是交际功能在驱动形式共选。
+      evidence:
+        - "Biber (1988), Variation across Speech and Writing, CUP（多维分析框架，基于 LOB 与 London-Lund 语料）"
+      scope: 维度是连续量，单个文本落在轴上某一点；不能用二分法套具体作品。
+      exceptions:
+        - 小说对话、演讲稿等文本居中（清单原文例）。
+    mechanism:
+      - beat: Dimension 1
+        text_kid: 说话像聊天，越聊越热闹；写文章像打包，越包越紧实。
+        text_adult: 会话在 Dimension 1 得分各语域最高、正式文件与学术散文最低，两端特征团呈统计互补；本条是 CB-04 互补分布的量化骨架。
+        visual: Dimension 1 轴线与语域落点图
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G3_0622]
+        form: "talk（会话端）：代词、缩略、问句成团"
+        scene_note: 清单原文的特征团
+        supports: claim
+    error_cases:
+      - wrong: 用「口语=互动、书面=信息」二分具体作品
+        right: 文本落在连续维度上定点，二分只描述两端倾向
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 与 exceptions。
+    relatives:
+      - {id: CB-04, rel: 前置}
+    quiz:
+      - q: Dimension 1 两端特征团呈什么关系？
+        options: [随机分布, 统计互补, 完全相同, 只差词长]
+        answer: 统计互补
+        hint_on_wrong: 回机制小节「Dimension 1」
+    probes: []
+    prereq: [CB-04]
+    order: 6
+    pain_points: []
+    adult:
+      sources:
+        - "Douglas Biber (1988), Variation across Speech and Writing, Cambridge University Press；多维分析原文 https://www.mark-davies.org/articles/davies_30.pdf"
+      boundary: 连续量，不二分具体作品。
+      disputes: 无。
+      evidence_grade: 框架原文核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-06}
+
+  - id: CB-07
+    zone: 支撑层
+    group: CB
+    subgroup: "McCarthy & Carter:口语有自己的语法"
+    audience: 教师/设计层
+    headline: 把话题先端出来、或在句尾再补一句，都不是病句（heads & tails）
+    headline_kid: 说话时可以先把要说的东西「端到前面」提醒大家，也可以说完了在后面「补个尾巴」说清楚——这是说话的规矩，不是说错了。
+    claim:
+      type: tendency
+      statement: "会话中说话人常把话题成分前置（head/header）或在句末把代词展开成名词短语（tail）；Carter & McCarthy 在《Cambridge Grammar of English》中定性其为「非正式口语语法的标准特征」（2006: 192），功能是替听者安排信息焦点，服务实时加工。"
+      evidence:
+        - "Carter & McCarthy (2006), Cambridge Grammar of English, CUP, p. 192（经 HLT 教学文章逐页转引；页码未打开原书，见 pending）"
+        - "语料基础：CANCODE 500 万词口语语料（诺丁汉大学官方页核实规模与主持人）"
+      scope: heads/tails 属非正式口语语域；正式写作与考试作文中不用。
+      exceptions:
+        - 例：That friend of yours, did you see her again?（head）；It's a great place to visit, Barcelona.（tail）——清单原文例。
+        - 不能据此推翻书面语的语序规范——是换语域换规则，不是规则不存在。
+    mechanism:
+      - beat: 话题安排装置
+        text_kid: 说话时可以先把要说的东西「端到前面」提醒大家，也可以说完了在后面「补个尾巴」说清楚。
+        text_adult: 先给话题、或事后澄清所指，都是为听者的实时加工服务的信息安排（与「已知性」机制相通：已知信息先行/补明）。
+        visual: head 前置与 tail 后补的句式图
+        anchors: [G3_130, G4_K02]
+    examples:
+      - level: 1
+        word_ids: [G3_130, V6_日常_17, G3_K24]
+        sentence: "That friend of yours, did you see her again?"
+        scene_note: 清单原文 head 例（句中专名类词外，其余实词均在库）
+        supports: claim
+      - level: 2
+        word_ids: [G4_K02, G6_270]
+        sentence: "It's a great place to visit, Barcelona."
+        scene_note: 清单原文 tail 例（Barcelona 为专名，按 DESIGN Q5 豁免口径登记）
+        supports: claim
+    error_cases:
+      - wrong: 把 heads/tails 当病句纠正，或在正式写作中套用
+        right: 认其为非正式口语的标准特征，换语域换规则
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的定性与 scope。
+    relatives:
+      - {id: CB-04, rel: 同族}
+      - {id: CB-09, rel: 同族}
+    quiz:
+      - q: heads/tails 的功能是什么？
+        options: [凑字数, 替听者安排信息焦点, 显示词汇量, 避免沉默]
+        answer: 替听者安排信息焦点
+        hint_on_wrong: 回机制小节「话题安排装置」
+    probes: []
+    prereq: [CB-04]
+    order: 7
+    pain_points: []
+    adult:
+      sources:
+        - "Ronald Carter & Michael McCarthy (2006), Cambridge Grammar of English, CUP, p. 192；CANCODE 诺丁汉大学官方页 https://www.nottingham.ac.uk/research/groups/cral/projects/past-projects.aspx"
+      boundary: 非正式口语语域专用；正式写作与考试作文不用。
+      disputes: 无。
+      evidence_grade: 页码经转引核实（原书未打开）
+      pending:
+        - "CGE 页码引文（ellipsis p. 182、heads/tails p. 192、vague language p. 202）来自 HLT 教学文章逐页转引，未打开原书页面核对（CB-07/08/09 共用）"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-07}
+
+  - id: CB-08
+    zone: 支撑层
+    group: CB
+    subgroup: "McCarthy & Carter:口语有自己的语法"
+    audience: 教师/设计层
+    headline: 话说得「含糊」，常常是熟练和体贴（vague language）
+    headline_kid: 说「蓝蓝的东西」「去散步什么的」不是偷懒——有时候不用说那么准，听的人反而更舒服。
+    claim:
+      type: tendency
+      statement: "口语语料中 thing、stuff、or something、sort of 一类模糊语言极其常见且成系统：说话人用它标记「精确不重要/我拿不准/给你留面子」。Carter & McCarthy 的定性是：模糊语言「更可能是熟练而敏感的说话人的标志，而不是懒人的标志」（2006: 202），应被鼓励而非纠正。"
+      evidence:
+        - "Carter & McCarthy (2006), CGE, p. 202（经 HLT 文章转引；CANCODE 500 万词口语语料分布为据）"
+      scope: 模糊是交际策略，有适用场合；教学目标是让学习者「会选」，不是「都含糊」。
+      exceptions:
+        - 需要精确的信息（时间、数量、指令、安全事项）含糊就是错误。
+    mechanism:
+      - beat: 模糊即策略
+        text_kid: 说「蓝蓝的东西」「去散步什么的」不是偷懒——有时候不用说那么准，听的人反而更舒服。
+        text_adult: 模糊语言成系统地出现在 CANCODE 口语语料中，是口语语法的正式成员（与 CB-07/09 同组）；儿童侧先做听辨与理解，不做术语讲解。
+        visual: 精确—模糊的选择场景对照
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G3_0622]
+        form: "talk 中的 or something / sort of 型模糊标记"
+        scene_note: 清单原文列举的模糊语言形式（构成词 thing/stuff 不在词库，已登记补词候选，见 support_MODEL.md）
+        supports: claim
+    error_cases:
+      - wrong: 把学生的模糊语言一律当懒或错误纠正，或反过来教学生处处含糊
+        right: 模糊是策略：该精确处必须精确，其余场合是熟练标志
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 定性与 exceptions。
+    relatives:
+      - {id: CB-07, rel: 同族}
+      - {id: CB-09, rel: 同族}
+    quiz:
+      - q: 哪些场合含糊就是错误？
+        options: [闲聊, 时间、数量、指令、安全事项, 讲故事, 打招呼]
+        answer: 时间、数量、指令、安全事项
+        hint_on_wrong: 回 claim 的 exceptions
+    probes: []
+    prereq: [CB-07]
+    order: 8
+    pain_points: []
+    adult:
+      sources:
+        - "Carter & McCarthy (2006), Cambridge Grammar of English, CUP, p. 202；特征清单整理 https://www.kenpatersonwriter.com/spoken-grammar/"
+      boundary: 精确信息场合不适用模糊策略。
+      disputes: 无。
+      evidence_grade: 页码经转引核实（原书未打开）
+      pending:
+        - "同 CB-07：CGE 页码引文待打开原书核对"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-08}
+
+  - id: CB-09
+    zone: 支撑层
+    group: CB
+    subgroup: "McCarthy & Carter:口语有自己的语法"
+    audience: 教师/设计层
+    headline: 句子语法之上还有一层「话语语法」：省略、应和与插话都是规则
+    headline_kid: 聊天的时候，话可以省着说（「喝茶吗？」），听的人还要搭腔（「太好了！」）——这些省和搭，都有规矩。
+    claim:
+      type: tendency
+      statement: "口语在实时互动中生成，长出一套句子语法管不到的装置：情境省略（语境清楚时省去主语、助动词，CGE 2006: 182）、插入语（well、oh、right 独立成块组织话轮）、应和词（听者用短应和参与共建对话）、称呼语。当句子进入真实话语，语法就变成 discourse grammar——单位是话轮与语篇，不是孤立的句子。"
+      evidence:
+        - "McCarthy (1998), Spoken Language and Applied Linguistics, CUP, 第 4 章（基于 CANCODE 语料，Google Books 书目与目录核实）"
+        - "省略的页码见 Carter & McCarthy (2006: 182)（转引，见 pending）"
+      scope: 省略以「语境能补回」为条件，补不回就是病句；在写作语域里这套装置大多不适用，低龄教学先做听辨与模仿，不做术语讲解。
+      exceptions:
+        - 例（清单原文）：情境省略「喝茶吗？」型；应和词 Brilliant. / Perfect. 型（构成词 brilliant 不在词库，已登记补词候选）。
+    mechanism:
+      - beat: 话语语法装置
+        text_kid: 聊天的时候，话可以省着说，听的人还要搭腔——这些省和搭，都有规矩。
+        text_adult: McCarthy 以 CANCODE 的成系统研究支撑「口语应置于大纲中心」的主张；本条与 CB-04 的语域观、YL-02 的课堂话语同链。
+        visual: 省略/插入语/应和词/称呼语四类装置清单
+        anchors: [G2_0944, G3_K27]
+    examples:
+      - level: 1
+        word_ids: [G2_0944]
+        form: "tea 的情境省略问句（「喝茶吗？」型：主语与助动词省去）"
+        scene_note: 清单原文的省略例
+        supports: claim
+      - level: 2
+        word_ids: [G3_K27]
+        form: "well/right 型插入语组织话轮"
+        scene_note: 清单原文的插入语例词
+        supports: claim
+    error_cases:
+      - wrong: 把语境可补回的口语省略一律当病句改，或在写作语域套用话语语法装置
+        right: 省略以可补回为界、按语域区分；低龄先听辨模仿不讲术语
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope。
+    relatives:
+      - {id: CB-07, rel: 同族}
+      - {id: CB-04, rel: 同族}
+    quiz:
+      - q: 话语语法的单位是什么？
+        options: [单词, 孤立句子, 话轮与语篇, 音节]
+        answer: 话轮与语篇
+        hint_on_wrong: 回机制小节「话语语法装置」
+    probes: []
+    prereq: [CB-07]
+    order: 9
+    pain_points: []
+    adult:
+      sources:
+        - "Michael McCarthy (1998), Spoken Language and Applied Linguistics, CUP, ISBN 9780521597692, 第 4 章；Carter & McCarthy (2006: 182)"
+      boundary: 省略以语境可补回为条件；写作语域大多不适用。
+      disputes: 无。
+      evidence_grade: 书目目录核实（页码转引）
+      pending:
+        - "同 CB-07：CGE p. 182 页码待打开原书核对"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-09}
+
+  - id: CB-10
+    zone: 支撑层
+    group: CB
+    subgroup: "Hunston & Francis:词义绑在型式上"
+    audience: 教师/设计层
+    headline: 换个型式，就换了个意思（pattern grammar）
+    headline_kid: 同一个词，穿不同的「句子外套」，意思就不一样——看词要连外套一起看。
+    claim:
+      type: tendency
+      statement: "一个词的 pattern 是「与这个词规律性地相伴出现、并对其意义有贡献的全部词与结构」（Hunston & Francis 2000: 37）：组合要算型式，须相对高频、依赖于特定词的选择、且带明确意义关联。推论：同一词的不同义项通常由不同型式区分；同一型式槽位里出现的词往往意义相亲——词选型式，型式定义词义，词汇与语法不是两个盒子。"
+      evidence:
+        - "Hunston & Francis (2000), Pattern Grammar, John Benjamins, 289 pp.（定义 p. 37 经 Römer 2009 综述逐页转引核实）"
+        - "reflect 三义项由 V n / be Ved / V on n 三型式区分（pp. 255–256，转引登记；reflect 不在词库，已登记补词候选）"
+      scope: 型式是概率性的搭配-结构倾向，强型式与自由组合之间是连续谱。
+      exceptions:
+        - 给儿童的落地是「连型式一起记词」（如 good at、look at），不是背型式术语表。
+    mechanism:
+      - beat: 型式定义词义
+        text_kid: 同一个词，穿不同的「句子外套」，意思就不一样——看词要连外套一起看。
+        text_adult: 型式分析基于 COBUILD 的 Bank of English 索引行累积证据，判定辅以统计显著性检验（t-score）；本条与 CB-02 搭配、CO 组构式在「词汇—语法连续」上同向。
+        visual: 一词多型式—多义项的对应图
+        anchors: [G3_K08, V6_日常_16]
+    examples:
+      - level: 1
+        word_ids: [G3_K08]
+        form: "good at（型式连记）"
+        scene_note: 清单原文给出的儿童落地例
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_16]
+        form: "look at（型式连记）"
+        scene_note: 清单原文给出的儿童落地例
+        supports: claim
+    error_cases:
+      - wrong: 词与语法分盒教：只背孤立词义或只背抽象句型
+        right: 连型式一起记词，义项由型式区分
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的推论。
+    relatives:
+      - {id: CB-02, rel: 同族}
+      - {id: CB-01, rel: 同族}
+    quiz:
+      - q: 同一词的不同义项通常由什么区分？
+        options: [字母顺序, 不同型式, 词长, 年级]
+        answer: 不同型式
+        hint_on_wrong: 回机制小节「型式定义词义」
+    probes: []
+    prereq: [CB-02]
+    order: 10
+    pain_points: []
+    adult:
+      sources:
+        - "Susan Hunston & Gill Francis (2000), Pattern Grammar: A Corpus-Driven Approach to the Lexical Grammar of English, John Benjamins；Römer (2009) 综述转引 https://uteroemer.weebly.com/uploads/5/5/7/7/5577406/arcl_2009_ute_roemer_06rom.pdf"
+      boundary: 型式是概率倾向、连续谱；儿童落地是连型式记词，不是背术语表。
+      disputes: 无（型式语法与构式语法在「型式/构式」的本体地位上有理论对话，但对「词义—型式绑定」这一教学结论无实质分歧）。
+      evidence_grade: 定义经逐页转引核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-10}
+
+  - id: CB-11
+    zone: 支撑层
+    group: CB
+    subgroup: "Willis:教学顺序先问频率"
+    audience: 教师/设计层
+    headline: 最有势力的 700 个词，先攻它们（lexical syllabus）
+    headline_kid: 先认识出场最多的那一小队词——它们到处都是，认识它们，一大半的话就都懂了。
+    claim:
+      type: tendency
+      statement: "大纲按词汇而非语法项目分级：以最常用 700 词为一级、1500 词为二级、2500 词为三级组织接触顺序；最高频的词同时携带最常用的型式与用法，抓住常用词就不可避免地抓住了常用型式。数据依据：最常用的 700 个词约占全部文本的 70%（Willis 1990: vi, 46），其后覆盖率陡降（再 800 词约 +6%，再 1000 词约 +4%，p. 47）。"
+      evidence:
+        - "Willis (1990), The Lexical Syllabus, Collins ELT（源于 COBUILD 语料与 COBUILD English Course 编写实践；数字经 HLT 纪念文与 Harwood 文逐字引 p. 47 核实）"
+      scope: 频率是成人通用语料的频率；儿童的交际世界词频分布不同，直接套用会错过儿童高频词、纳入儿童低需词。频率只解决「先学谁」，不解决每个词学到什么深度（见 CB-10、CB-14）。
+      exceptions:
+        - "频率不等于可教性/可学性：高频词的抽象用法（如 make a decision）虽更频，未必比具体用法（make a cake）更适合初学者先学（Widdowson 2004 的 teachability 反诘；Willis 本人亦承认一般频率不是唯一标准，1990: 47）。"
+    mechanism:
+      - beat: 频率定序
+        text_kid: 先认识出场最多的那一小队词——它们到处都是，认识它们，一大半的话就都懂了。
+        text_adult: 词汇大纲实际上涵盖了结构大纲，因为常用词携带常用型式；频率定序时须与儿童认知可达性对冲（scope）。
+        visual: 700/1500/2500 三级与覆盖率陡降曲线
+        anchors: [V6_日常_4]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_4]
+        form: "make a cake（具体用法）vs make a decision（抽象用法）的先学次序问题"
+        scene_note: 清单分歧栏登记的 Widdowson 对照例
+        supports: claim
+    error_cases:
+      - wrong: 把成人语料频率表直接套作儿童学序，或宣称频率是唯一标准
+        right: 频率与儿童认知可达性、儿童交际词频对冲后再定序
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 与 disputes。
+    relatives:
+      - {id: CB-14, rel: 同族}
+      - {id: CB-10, rel: 同族}
+    quiz:
+      - q: 最常用 700 词约占全部文本的多少？
+        options: [约 30%, 约 50%, 约 70%, 约 90%]
+        answer: 约 70%
+        hint_on_wrong: 回 claim 的数据依据
+    probes: []
+    prereq: []
+    order: 11
+    pain_points: []
+    adult:
+      sources:
+        - "Dave Willis (1990), The Lexical Syllabus: A New Approach to Language Teaching, Collins ELT；HLT 纪念文 http://old.hltmag.co.uk/dec13/mart03.htm"
+      boundary: 成人频率须与儿童世界对冲；频率不解决深度问题。
+      disputes: 频率 ≠ 可教性/可学性——Harwood 指出 Willis 本人也承认一般频率不是唯一标准；Widdowson (2004) 以 teachability 反诘。频率定序时须与儿童认知可达性对冲（如实登记）。
+      evidence_grade: 数字经逐字转引核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-11}
+
+  - id: CB-12
+    zone: 支撑层
+    group: CB
+    subgroup: "Granger:把学习者的话存起来"
+    audience: 教师/设计层
+    headline: 对比中介语分析：两面镜子照出母语的指纹（CIA）
+    headline_kid: 把很多小朋友写的英语收集起来，和英语国家的人写的、和其他国家小朋友写的比一比——就能看出每个国家的孩子容易在哪儿摔跤。
+    claim:
+      type: tendency
+      statement: 学习者语料库研究以 ICLE（第二版 2009 年涵盖 16 个母语群体）与口语库 LINDSEI（2010 年首版，14 个母语背景）为基础设施；核心方法 CIA 做两类对比——学习者 vs 母语者照出与目标的距离，不同母语学习者之间分离出「母语迁移造成的特异困难」与「所有学习者共有的发展困难」。配套计算机辅助错误分析（CEA）使用 50 余个错误标签。
+      evidence:
+        - "Granger 与鲁汶大学 CECL 官方页（项目、群体数与 CIA (1996, 2015) 定义核实）"
+      scope: ICLE/LINDSEI 的主体是中高级（多为大学阶段）学习者，其困难清单不能直接当作中国小学生的困难清单——方法可迁移，结论须用本地学习者语料重验（与本项目 CLEC 线索衔接）。
+      exceptions:
+        - LINDSEI 母语背景数：官方现行页作 14 个，早期文献作 11 个（版本演进差异），本条采用官方现行说法（见 pending）。
+    mechanism:
+      - beat: 两类对比
+        text_kid: 把很多小朋友写的英语收集起来比一比——就能看出每个国家的孩子容易在哪儿摔跤。
+        text_adult: CIA 是 CB-13 频率错位三分的取证方法；对本项目的用途是方法论模板：本地学习者语料（CLEC 线）按同一双对比逻辑运行（见 CG-02、CG-07 的 CLEC 引用）。
+        visual: L2 vs L1、L2 vs L2 双对比示意
+        anchors: [G3_0487]
+    examples:
+      - level: 1
+        word_ids: [G3_0487]
+        form: "write 的学习者产出与母语者产出对比（ICLE 论说文）"
+        scene_note: 清单原文的语料构成（统一采集论说文）
+        supports: claim
+    error_cases:
+      - wrong: 把 ICLE 大学生困难清单直接当作中国小学生的困难清单
+        right: 方法可迁移，结论须用本地学习者语料重验
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope。
+    relatives:
+      - {id: CB-13, rel: 同族}
+      - {id: CG-02, rel: 对照}
+    quiz:
+      - q: CIA 的两类对比分别照出什么？
+        options: [难度与速度, 与目标的距离、迁移特异困难 vs 共有发展困难, 词汇与语法, 口语与书面]
+        answer: 与目标的距离、迁移特异困难 vs 共有发展困难
+        hint_on_wrong: 回机制小节「两类对比」
+    probes: []
+    prereq: []
+    order: 12
+    pain_points: []
+    adult:
+      sources:
+        - "Sylviane Granger / 鲁汶大学 CECL 官方页 http://www.uclouvain.be/en/research-institutes/ilc/cecl/learner-corpus-research"
+      boundary: 主体是大学阶段学习者；结论须本地重验。
+      disputes: 无。
+      evidence_grade: 官方页核实
+      pending:
+        - "ICLE 总词量：纪念文集转述作约 330 万词，官方页未给总数，清单未采用，待官方手册核实"
+        - "LINDSEI 母语背景数 14（现行）vs 11（早期文献）的版本沿革待核"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-12}
+
+  - id: CB-13
+    zone: 支撑层
+    group: CB
+    subgroup: "Granger:把学习者的话存起来"
+    audience: 教师/设计层
+    headline: 学习者的毛病大多是「频率错位」，不只是「用错」
+    headline_kid: 学英语的小朋友不只是会说错，还会「安全的词说太多、该用的词不敢用」——这也是没学会。
+    claim:
+      type: tendency
+      statement: 学习者产出与母语者的差距有三型：misuse（用错，真实错误）、overuse（多用：某些词与结构显著多于母语者，多为回避难点的「安全牌」）、underuse（少用：母语者常用的表达在学习者那里系统性缺席）。传统错误分析只看得见第一型；后两型是频率分布问题，只有语料对比能照出来，且直接对应教学干预。
+      evidence:
+        - "鲁汶大学 CECL 官方页明言 CIA 与 CEA 研究揭示 underuse、overuse 与 misuse 三类学习者现象"
+        - "应用证据：基于错误标注版 ICLE 开发的学习者词典提示（Macmillan English Dictionary for Advanced Learners 第二版 get-it-right 提示框）由 CECL 完成"
+      scope: overuse/underuse 是群体统计结论，落到个体需要再诊断成因（回避、迁移、教学输入偏差都可致之）。
+      exceptions:
+        - 「与母语者频率一致」不是唯一目标，学习者有自己的交际需求与身份表达。
+    mechanism:
+      - beat: 频率错位三分
+        text_kid: 学英语的小朋友不只是会说错，还会「安全的词说太多、该用的词不敢用」。
+        text_adult: 干预分工：少用要补输入，多用要推着走出舒适区，用错按错误分析处理；与 CG-02 戴炜栋四类负迁移（生产不足/过剩/错误/误解）在诊断谱上互补对接。
+        visual: misuse/overuse/underuse 三分诊断图
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [V6_日常_0]
+        form: "get 一类母语者高频多用词在学习者产出的 underuse 观察"
+        scene_note: 清单原文应用证据所涉词典提示框即 get-it-right（get）
+        supports: claim
+    error_cases:
+      - wrong: 只用传统错误分析统计用错，宣称学生「没什么大问题」
+        right: 同时查多用与少用两型频率错位（须语料对比）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的三分。
+    relatives:
+      - {id: CB-12, rel: 前置}
+      - {id: CG-02, rel: 对照}
+    quiz:
+      - q: 哪两型问题只有语料对比能照出来？
+        options: [misuse 与 overuse, overuse 与 underuse, 拼写与发音, 语法与词汇]
+        answer: overuse 与 underuse
+        hint_on_wrong: 回机制小节「频率错位三分」
+    probes: []
+    prereq: [CB-12]
+    order: 13
+    pain_points: []
+    adult:
+      sources:
+        - "鲁汶大学 CECL 官方页（同 CB-12 链接）"
+      boundary: 群体结论落个体须再诊断成因；频率一致不是唯一目标。
+      disputes: 无（三分框架为学习者语料库研究共识；与传统错误分析的关系是扩展而非替代）。
+      evidence_grade: 官方页核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-13}
+
+  - id: CB-14
+    zone: 支撑层
+    group: CB
+    subgroup: "English Profile:义项分级"
+    audience: 教师/设计层
+    headline: 一个词不是一级「会」的，是一个义项一级（EVP）
+    headline_kid: 同一个词有好几个意思，先学会最常用的那个意思，其他意思长大一点再学——词是一层一层认识的。
+    claim:
+      type: tendency
+      statement: English Vocabulary Profile 的分级单位不是词条，而是词条的单个义项与短语：同一词的不同义项被实证地标到不同 CEFR 级别（如 bring 的「带来」义为 A2，短语 bring sth to an end 为 C1）。分级依据是 Cambridge Learner Corpus 中全球学习者的实际产出证据——标的是「学习者在这个级别通常已经能产出这个义项」，画出的是词汇习得的真实次序而非编者直觉排序。
+      evidence:
+        - "English Profile Programme（CUP & Cambridge ESOL）；EVP 研究团队由 Annette Capel 领衔（Capel 2010、2012）；规模：截至 B2 约 4,700 词条、A1–C2 共约 6,970 词条（Capel 2012，转引登记）"
+      scope: 级别刻画的是全球通用学习者群体的产出次序，不是中国小学生的专属次序，本地课程须再校准。
+      exceptions:
+        - 它标的是产出证据，儿童的接受性词汇（听读能懂）通常先于产出，不能拿 EVP 级别卡儿童的输入难度。
+        - CEFR 的 A1 本身并非为低龄儿童设计，低龄段引用级别只作参照系。
+    mechanism:
+      - beat: 义项分级
+        text_kid: 同一个词有好几个意思，先学会最常用的那个意思，其他意思长大一点再学。
+        text_adult: 与 CB-11 构成「频率定序 + 义项分级」双证据；对词库的含义：多义词的义项呈现次序按 EVP 型证据排，不按词典义项顺序排（与 W2 多义波次衔接）。
+        visual: 一词多义项分布在不同级别的阶梯图
+        anchors: [V6_日常_7]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_7]
+        form: "bring：「带来」义 A2 vs 短语 bring sth to an end C1"
+        scene_note: 清单原文的义项分级例（end 不在词库，短语整体登记，见 support_MODEL.md）
+        supports: claim
+    error_cases:
+      - wrong: 按词条整体给词定级，或拿 EVP 级别卡儿童的听读输入难度
+        right: 分级单位是义项与短语；级别只标产出次序，输入难度另有接受性口径
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 与 exceptions。
+    relatives:
+      - {id: CB-11, rel: 同族}
+    quiz:
+      - q: EVP 的分级单位是什么？
+        options: [词条, 单个义项与短语, 词族, 主题]
+        answer: 单个义项与短语
+        hint_on_wrong: 回机制小节「义项分级」
+    probes: []
+    prereq: []
+    order: 14
+    pain_points: []
+    adult:
+      sources:
+        - "English Profile Programme / Annette Capel (2010, 2012)；《English Profile in Practice》节选 http://assets.cambridge.org/97811074/93988/excerpt/9781107493988_excerpt.pdf"
+      boundary: 全球学习者产出次序，本地须校准；只标产出、不卡输入；低龄只作参照系。
+      disputes: 无（方法与定位在条内如实标注；分歧主要在 CEFR 向各国本地课程移植时的对齐方式，属应用层）。
+      evidence_grade: 节选+转引核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CB-14}
+
+  # ================= CG 中国学者与全球传统（14 条） =================
+  - id: CG-01
+    zone: 支撑层
+    group: CG
+    subgroup: 中国学者线
+    audience: 教师/设计层
+    headline: 句子手拉手只是表面，「意思接得上」才是真的连成一段（衔接 ≠ 连贯）
+    headline_kid: 写一段话，光用 and、then、it 把句子粘住还不够——读的人心里要能顺着一幅画走下去，那才叫连成一段。
+    claim:
+      type: tendency
+      statement: 衔接（cohesion）是语篇的表层特征——照应、替代、省略、词汇复现等看得见的线索；连贯（coherence）是交际的最终效果——读者结合语境与世界知识在心里建起的统一意义。两者不是一回事：有衔接线索而意思断裂（假连贯）与没有显眼线索却意思顺畅（隐连贯）都存在。胡壮麟把衔接手段推广到音系、词汇、句法、语义、社会符号五层——衔接是全语言系统共同干的活，不是几个连接词的事。
+      evidence:
+        - "胡壮麟（1994）《语篇的衔接与连贯》，上海外语教育出版社（Google Books 书目页+北大学者主页+学术转述三路核实）"
+      scope: 这是写作与阅读层面的框架，不是词句对错的判据；小学阶段只取教学含义——先保「意思顺成一幅画」，连接词是后加的钉子。
+      exceptions:
+        - 不得反过来拿钉子（连接词）冒充画（连贯）。
+    mechanism:
+      - beat: 表层衔接 vs 深层连贯
+        text_kid: 光用连接词把句子粘住还不够——读的人心里要能顺着一幅画走下去。
+        text_adult: 该书以汉语与英语语篇的双向考察立论；「表层衔接 vs 深层连贯」的区分与国际语篇研究（de Beaugrande & Dressler、Widdowson）同向，在国内写作教学中是最常被引用的本土框架。
+        visual: 五层衔接手段与连贯效果的对应图
+        anchors: [V6_学校_43]
+    examples:
+      - level: 1
+        word_ids: [V6_学校_43]
+        form: "sentence 层面的连接词粘合 ≠ 语篇连贯"
+        scene_note: 清单原文的对照（钉子 vs 画）
+        supports: claim
+    error_cases:
+      - wrong: 教写作时以连接词数量充当连贯标准
+        right: 先保意思顺成一幅画，连接词是后加的钉子
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的衔接/连贯之分。
+    relatives:
+      - {id: CB-09, rel: 对照}
+    quiz:
+      - q: 连贯指的是什么？
+        options: [连接词的数量, 读者心里建起的统一意义, 句子长度, 语法正确率]
+        answer: 读者心里建起的统一意义
+        hint_on_wrong: 回机制小节「表层衔接 vs 深层连贯」
+    probes: []
+    prereq: []
+    order: 1
+    pain_points: []
+    adult:
+      sources:
+        - "胡壮麟（1994），上海外语教育出版社；Google Books 书目页 https://books.google.com/books/about/语篇的衔接与连贯.html?id=AcwYAQAAIAAJ；北大学者主页 http://scholar.pku.edu.cn/zlhu/publications"
+      boundary: 写作与阅读框架，不是词句对错判据。
+      disputes: 衔接与连贯的边界在学界并未完全定型：张德禄、刘汝山把衔接扩到「语篇与语境之间」（显性/隐性衔接），覆盖面比胡壮麟更宽；也有研究者认为连贯主要是心理建构、不宜与形式手段并列成对。登记为框架层分歧，不影响本条教学用法（如实保留）。
+      evidence_grade: 书目+学者主页+学术转述核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-01}
+
+  - id: CG-02
+    zone: 支撑层
+    group: CG
+    subgroup: 中国学者线
+    audience: 教师/设计层
+    headline: 母语不是只会「捣乱」：负迁移有四张脸，正迁移一直在帮忙
+    headline_kid: 说错英语不全是中文在捣乱——有时候是「不敢说」、有时候是「说太多」、有时候是说错，还有时候是听岔了。中文帮上忙的时候更多，只是你没注意到。
+    claim:
+      type: tendency
+      statement: 迁移的结果不止正/负二分：跨语言异同产生正迁移、负迁移与习得时间差异三种结果；负迁移的表现细分为四类——生产不足（回避，如中国学生回避定语从句）、生产过剩（对已掌握结构过度使用）、生产错误（替代、借用、结构改变）、误解（受母语词序、文化习惯影响而听/读岔）。四种脸对应四种完全不同的纠正办法，诊断先行。
+      evidence:
+        - "戴炜栋、王栋（2002）《语言迁移研究：问题与思考》，《外国语》2002 年第 6 期，第 1–9 页（书目经引用文献核实，四类划分经转述旁证）"
+      scope: 四类是诊断分类，同一错误可兼有回避与替代，不能干净归类是常态。
+      exceptions:
+        - 不能反推「有负迁移就先把中文戒掉」——正迁移（汉字词序与英语 SVO 同序、量词意识等）是中国学生的真实资产。
+    mechanism:
+      - beat: 负迁移四脸
+        text_kid: 说错英语不全是中文在捣乱——有时候是「不敢说」、有时候是「说太多」、有时候是说错，还有时候是听岔了。
+        text_adult: 该文框架承接 Odlin (1989)《Language Transfer》，又针对汉语背景学习者立论；与 Corder/Selinker 错误分析传统互补（那边讲错误来源，这边讲迁移的表现谱），与 CB-13 频率错位三分在诊断谱上对接（生产不足/过剩与 underuse/overuse 对应）。
+        visual: 四类负迁移与对应纠正办法的对照表
+        anchors: [V6_学校_43]
+    examples:
+      - level: 1
+        word_ids: [V6_学校_43]
+        form: "sentence 层面的回避：只说简单句、回避定语从句（生产不足）"
+        scene_note: 清单原文登记的中国学生典型表现
+        supports: claim
+    error_cases:
+      - wrong: 把所有错误一律归因为「中文捣乱」并用同一种纠正办法
+        right: 先诊断属四脸中的哪一（几）种：回避型给支架鼓励产出，过度型给边界，误解型讲英汉切分差异
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的四分。
+    relatives:
+      - {id: CB-13, rel: 对照}
+      - {id: CB-12, rel: 对照}
+    quiz:
+      - q: 中国学生回避定语从句属负迁移四类中的哪一类？
+        options: [生产过剩, 生产错误, 生产不足, 误解]
+        answer: 生产不足
+        hint_on_wrong: 回机制小节「负迁移四脸」
+    probes: []
+    prereq: []
+    order: 2
+    pain_points: []
+    adult:
+      sources:
+        - "戴炜栋、王栋（2002），《外国语（上海外国语大学学报）》2002(6): 1–9；外研社作者页 https://heep.fltrp.com/book/detail?id=396"
+      boundary: 诊断分类而非干净归类；正迁移是真实资产。
+      disputes: 迁移在二语习得中的权重本身有争议：对比分析假说的强版本（差异=困难，可预测）已被证伪；当代研究（Jarvis & Pavlenko 2008「跨语言影响」框架）把迁移看作多因素之一。戴、王 (2002) 属温和版——迁移真实存在但受标记性、语言距离感知等因素制约，与本条表述一致（如实保留）。
+      evidence_grade: 期刊书目核实（论点经转述旁证）
+      pending:
+        - "任务书提及的戴炜栋《外语教育学》本轮未打开原文核实具体论点，本条只挂可核查的期刊论文，未硬挂该书"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-02}
+
+  - id: CG-03
+    zone: 支撑层
+    group: CG
+    subgroup: 中国学者线
+    audience: 教师/设计层
+    headline: 隐喻靠的是「有点像」：全像就不是隐喻，完全不像也成不了隐喻
+    headline_kid: 把时间说成「小偷」，是因为它们有点像（都悄悄拿走东西），不是一模一样——要是一模一样，那就不是比喻，是同一件事了；要是完全不像，这个比喻也立不住。
+    claim:
+      type: tendency
+      statement: "隐喻的意义转换是部分语义特征的转移：始源域与目标域之间必须有相似性，但相似性有程度、且与文化传统和信仰系统有关（束定芳 2000: 103–104）。由此推出两条边界：两事物完全相同则无所谓隐喻，截然没有相似则隐喻不成立。隐喻的定义层面是认知工具，不只是修辞：「隐喻不但是一种语言现象，而且在本质上是人类理解周围世界的一种感知和形成概念的工具」（2000: 30）。"
+      evidence:
+        - "束定芳（2000）《隐喻学研究》，上海外语教育出版社（原文页码经两篇学术论文转引核实）——国内第一部系统隐喻学专著"
+      scope: 本条讲隐喻的成立条件，不是识别所有隐喻的充分算法；儿童教学取其主干——找「像在哪、没借哪」就是合格的隐喻理解。
+      exceptions:
+        - 有些隐喻的相似性是事后建构的（创造性隐喻先说了、听者再去找像的地方）。
+    mechanism:
+      - beat: 部分转移
+        text_kid: 把时间说成「小偷」，是因为它们有点像，不是一模一样。
+        text_adult: 与 Lakoff & Johnson (1980) 认知隐喻观同向而独立成体系；束著特别强调相似性的文化相对性——同是「时间」隐喻，汉语「光阴似箭」与英语 time flies 像的部分不同。「部分转移」解释了为什么隐喻不能字字当真（argument is war 只借「对抗」不借「流血」）。
+        visual: 始源域→目标域的部分特征转移示意
+        anchors: [V6_节日_0]
+    examples:
+      - level: 1
+        word_ids: [V6_节日_0]
+        form: "time flies：time 借「飞」的速度义，不借翅膀"
+        scene_note: 清单原文的英汉时间隐喻对照例
+        supports: claim
+    error_cases:
+      - wrong: 把隐喻字字当真地全盘搬运（如由 argument is war 推出争论要流血）
+        right: 隐喻只转移部分特征，理解时找「像在哪、没借哪」
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的部分转移。
+    relatives:
+      - {id: CG-04, rel: 同族}
+    quiz:
+      - q: 隐喻成立对相似性的要求是？
+        options: [完全相同, 完全不同, 有程度的部分相似, 与文化无关]
+        answer: 有程度的部分相似
+        hint_on_wrong: 回机制小节「部分转移」
+    probes: []
+    prereq: []
+    order: 3
+    pain_points: []
+    adult:
+      sources:
+        - "束定芳（2000）《隐喻学研究》，上海外语教育出版社；转引核实 https://so01.tci-thaijo.org/index.php/CSJ/article/download/109585/86129/279354（pp. 103–104）、定义句转引（p. 30）"
+      boundary: 成立条件而非识别算法；创造性隐喻的相似性可事后建构。
+      disputes: 相似性究竟是隐喻的前提还是产物，学界有争论：互动论（Black）与概念整合理论（Fauconnier & Turner）认为相似性常在理解过程中被创造出来，而非预先存在。束定芳表述偏重「相似性为基础」，教学使用时应同时告诉学生：有的像，是诗人说完你才发现的（如实保留）。
+      evidence_grade: 学术转引核实（页码可核）
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-03}
+
+  - id: CG-04
+    zone: 支撑层
+    group: CG
+    subgroup: 中国学者线
+    audience: 教师/设计层
+    headline: 隐喻是「跨界借」，转喻是「在本家里指代」：一个靠像，一个靠挨着
+    headline_kid: 「白宫发话了」不是把白宫比作人——白宫和总统本来就挨着（在一个圈子里），拿房子代指里面的人，这叫转喻；把「时间」说成「小偷」，是跨到另一个圈子去借东西，那才是隐喻。
+    claim:
+      type: tendency
+      statement: "隐喻涉及两个不同认知领域，基于相似性，理解过程是源域特点向目标域的映射；转喻涉及同一认知领域内的事物，基于邻近/关联关系，理解过程是据喻体特点确定所指对象（束定芳 2000: 267 一带）。判别口诀：先问「这两个东西是一个圈子的吗」——同圈指代是转喻，跨圈借像是隐喻。"
+      evidence:
+        - "束定芳（2000）《隐喻学研究》，上海外语教育出版社（划界经学术转述引 2000: 267 核实）；束定芳主编（2011）《隐喻与转喻研究》为延伸锚"
+      scope: 小学阶段只要求能判主导机制，不追求分类学洁癖。
+      exceptions:
+        - 隐喻与转喻在真实语料中常交织（metaphtonymy，Goossens 的术语），不是每例都能干净二分。
+    mechanism:
+      - beat: 同圈/跨圈判别
+        text_kid: 先问「这两个东西是一个圈子的吗」——同圈指代是转喻，跨圈借像是隐喻。
+        text_adult: 这一划界与国际认知语言学共识（Lakoff & Johnson 对转喻的界定、Radden & Kövecses 的转喻类型学）基本同构，束著是中国课堂最早的系统中文表述；直接服务阅读理解（pen/sword 按转喻解立刻通）。
+        visual: 同圈指代 vs 跨圈映射的双图
+        anchors: [G1_003, ADD_0290, G1_035, V6_家庭_35]
+    examples:
+      - level: 1
+        word_ids: [G1_003, ADD_0290]
+        sentence: "The pen is mightier than the sword."
+        scene_note: 清单原文例：pen→写作/舆论、sword→武力，均转喻（句中 mightier 不在词库，登记补词候选）
+        supports: claim
+      - level: 2
+        word_ids: [G1_035, V6_家庭_35]
+        form: "the White House said…：白宫（房子）代指里面的人"
+        scene_note: 清单原文转喻例（crown 不在词库，同登记补词候选）
+        supports: claim
+    error_cases:
+      - wrong: 把 The pen is mightier than the sword 按隐喻硬解而卡住
+        right: 按转喻解：笔→写作/舆论，剑→武力，同圈指代
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的判别口诀。
+    relatives:
+      - {id: CG-03, rel: 前置}
+    quiz:
+      - q: all hands on deck 中 hands 的机制是？
+        options: [隐喻, 转喻（手→水手，同圈指代）, 夸张, 拟人]
+        answer: 转喻（手→水手，同圈指代）
+        hint_on_wrong: 回机制小节「同圈/跨圈判别」
+    probes: []
+    prereq: [CG-03]
+    order: 4
+    pain_points: []
+    adult:
+      sources:
+        - "束定芳（2000）《隐喻学研究》，上海外语教育出版社，p. 267 一带（转述核实 https://pdf.hanspub.org/ml20210200000_50008584.pdf）"
+      boundary: 真实语料常交织，只判主导机制。
+      disputes: 转喻是否也应视为一种「映射」而非「指代」，学界有不同处理（Barcelona 等主张转喻也是域内映射）；分类的粗细（是否单列提喻 synecdoche）各家不一。本条取束定芳与 Radden & Kövecses 的主流划界（如实保留）。
+      evidence_grade: 学术转述核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-04}
+
+  - id: CG-05
+    zone: 支撑层
+    group: CG
+    subgroup: 中国学者线
+    audience: 教师/设计层
+    headline: 先懂空间，才懂时间：时间词是借空间词盖的房子
+    headline_kid: 我们说时间的时候，其实一直在借表示地方和方向的词。因为眼睛看得见「远近高低」，看不见「过去未来」，大脑就先拿看得见的去搭看不见的。
+    claim:
+      type: tendency
+      statement: 空间隐喻以空间概念为始源域构建非空间目标域；人有感知空间的器官与神经、却没有感知时间的器官，对空间关系的感知和概念化先于时间，个人成长中也是先习得空间概念、后习得时间概念。教学推论：教时间介词/时间表达时先把空间图式画出来，时间义是搭在空间图式上的第二层。
+      evidence:
+        - "蓝纯（2003）《从认知角度看汉语和英语的空间隐喻》，外语教学与研究出版社（英文本）；先行论文《外语教学与研究》1999(4): 7–15；蓝纯（2005）《认知语言学与隐喻研究》（定义经《心理科学进展》述评转引）"
+      scope: 次序说的是概念依赖，不是每条时间表达都必须先教空间义才许教（如 yesterday 等高频时间词可整体习得）。
+      exceptions:
+        - 空间图式本身有文化差异（汉语有纵向时间：上/下周——英语无对应），迁移时须标出分界。
+    mechanism:
+      - beat: 空间先于时间
+        text_kid: 大脑先拿看得见的「远近高低」去搭看不见的「过去未来」。
+        text_adult: 与清单 P-17（空间→时间→抽象的学习路径）同源互证：那边是 Tyler & Evans 的英语内部证据，这边是英汉双语的本土证据，且给出无时间感知器官的生理—发展理由。汉语本身即是活教材（上周/下周、前天/后天），儿童母语经验可直接正迁移（与 CG-02 对接）。
+        visual: 空间图式为底层、时间义为第二层的搭建图
+        anchors: [V6_自然_3, V6_节日_0, V6_节日_3]
+    examples:
+      - level: 1
+        word_ids: [V6_节日_3]
+        form: "week 的纵向编码：上周/下周（汉语借纵向空间，英语无对应）"
+        scene_note: 清单原文的英汉分界例
+        supports: claim
+    error_cases:
+      - wrong: 把时间表达当作全新词表另起炉灶背诵
+        right: 先画空间图式（前后、长短、远近），时间义搭在第二层
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的教学推论。
+    relatives:
+      - {id: CG-06, rel: 同族}
+      - {id: CG-02, rel: 对照}
+    quiz:
+      - q: 先习得空间概念的理由是？
+        options: [课本安排, 人有空间感知器官而无时间感知器官, 空间词更短, 考试要求]
+        answer: 人有空间感知器官而无时间感知器官
+        hint_on_wrong: 回机制小节「空间先于时间」
+    probes: []
+    prereq: [CG-03]
+    order: 5
+    pain_points: []
+    adult:
+      sources:
+        - "蓝纯（2003），外语教学与研究出版社；蓝纯（1999）《外语教学与研究》1999(4): 7–15；蓝纯（2005）《认知语言学与隐喻研究》；《心理科学进展》时间隐喻述评转引"
+      boundary: 概念依赖而非逐词教学次序；纵向时间是英汉分界。
+      disputes: 时间是否全部借自空间，学界有保留意见（Evans 2004 主张时间有独立结构——清单已登记，与本簇并存）：主流共识是「空间是时间概念化的主要而非唯一来源」。教学取主要来源即可，分歧如实并存（如实保留）。
+      evidence_grade: 学术转述+述评核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-05}
+
+  - id: CG-06
+    zone: 支撑层
+    group: CG
+    subgroup: 中国学者线
+    audience: 教师/设计层
+    headline: 上/下、UP/DOWN 搭出的世界大同小异：状态第一，次序英汉不同
+    headline_kid: 汉语说「情绪高涨、士气低落」，英语说 high spirits、feel down——把「高低」借去说心情，全世界都这么干。但借去说别的东西时，汉语和英语排的队不一样，不能一一对号入座。
+    claim:
+      type: tendency
+      statement: 蓝纯对英汉「上/下」与 UP/DOWN 的语料对比给出映射优先序：四词映射到状态、质量（数量）、时间、社会等级四个目标域时，状态域在英汉中都排第一（样本：750 例「上」、434 例「下」、529 例 UP、431 例 DOWN 的统计转述）；其余三域的次序英汉不同。
+      evidence:
+        - "蓝纯（2003）《从认知角度看汉语和英语的空间隐喻》，第 128–164 页一带（样本量与优先序经英汉方位隐喻对比综述转引核实）"
+      scope: 优先序是语料频率的统计倾向，不是语法规则；且语料年代与文体构成会影响次序，不宜把具体名次当铁律背诵。
+      exceptions:
+        - 个例可违反整齐对应（如 increase in softness 有 up 而无对应 down 式表达）；禁止把「上 = X」的对照表整表平移。
+    mechanism:
+      - beat: 状态域优先
+        text_kid: 把「高低」借去说心情，全世界都这么干；借去说别的东西时，汉语和英语排的队不一样。
+        text_adult: 这是国内方位隐喻研究中最早的量化对比之一，后续 COCA/CCL 语料研究大体复现「状态域优先」格局；教学先攻状态域（最普遍、最同构：UP IS GOOD），再按目标域逐个对比英汉排位。补上了清单介词簇缺失的汉语一侧数据。
+        visual: 四目标域在英汉中的优先序对照表
+        anchors: [G4_0601, V6_颜色_27, G6_282, G6_283]
+    examples:
+      - level: 1
+        word_ids: [G4_0601, G6_282]
+        form: "high spirits：high（高）借去说状态"
+        scene_note: 清单原文例（spirits 不在词库，短语整体登记）
+        supports: claim
+      - level: 2
+        word_ids: [V6_颜色_27, G6_283]
+        form: "feel down：down（低）借去说状态（sad 向）"
+        scene_note: 清单原文例
+        supports: claim
+    error_cases:
+      - wrong: 把「上/下 ↔ UP/DOWN」对照表整表平移教学
+        right: 先攻状态域，再按目标域逐个对比英汉排位，个例登记例外
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions 与 scope。
+    relatives:
+      - {id: CG-05, rel: 前置}
+    quiz:
+      - q: 上/下与 UP/DOWN 映射中英汉共同排第一的目标域是？
+        options: [时间, 社会等级, 状态, 质量]
+        answer: 状态
+        hint_on_wrong: 回机制小节「状态域优先」
+    probes: []
+    prereq: [CG-05]
+    order: 6
+    pain_points: []
+    adult:
+      sources:
+        - "蓝纯（2003），外语教学与研究出版社，pp. 128–164 一带；综述转引 https://www.hanspub.org/journal/paperinformation?paperid=108814"
+      boundary: 统计倾向而非规则；语料构成影响次序。
+      disputes: 对不对称现象的解释有竞争：蓝纯一系归因于文化—认知因素（价值观矛盾时高位价值观胜出等）；也有研究者从构式频率与搭配惯性解释。解释层未定，数据层（状态优先）相对稳固（如实保留）。
+      evidence_grade: 综述转引核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-06}
+
+  - id: CG-07
+    zone: 支撑层
+    group: CG
+    subgroup: 中国学者线
+    audience: 教师/设计层
+    headline: 现在完成时的判据是「与现在有关系」，不是「做完了没有」
+    headline_kid: have done 不是在说「事情做完了」，是在说「以前发生的事，现在还算数」——丢了钥匙（现在没钥匙用）、去过北京（现在有这份经历）。只讲过去那一刻、不管现在，就用过去时。
+    claim:
+      type: tendency
+      statement: 现在完成时表示动作发生在过去、但与现在情况有关系（用一个发生在过去的动作来说明现在的情况）；与一般过去时的分界不在时间远近，而在是否表示和现在的关系（薄冰《英语语法手册》定版讲法）。用法面再分：已完成/刚完成、经验或结果、延续到现在（since/for）。
+      evidence:
+        - "薄冰《英语语法手册》（商务印书馆，第五版修订本）现在完成时章（定义与过去时区别原文经文本核实）；《高级英语语法》为进阶版"
+        - "与 Comrie 的完成体定义（现时相关性）、CGEL 现时相关诸用法在结构上一一对应（清单互证登记；另见 VB-05）"
+      scope: 薄冰框架仍属传统「时态」讲法，没有区分时（tense）与体（aspect）的现代框架，也未处理现在完成时的语篇功能；小学阶段取其判据句足够，体系升级靠 TA 簇补足。
+      exceptions:
+        - CLEC 语料中中国学生完成时误用多为「与过去时间状语连用」，正是判据没立住（只记「做完」）的直接后果——本条的事故型证据。
+    mechanism:
+      - beat: 现时相关判据
+        text_kid: have done 是在说「以前发生的事，现在还算数」。
+        text_adult: 「现时相关」不是新发明，而是国内主流语法书数十年的定版，只是大量课堂口诀把它压扁成了「过去做完」；中外定版在此点上罕见地完全一致。
+        visual: 过去事件→现在后果的牵连图 vs 只讲过去一刻的对照
+        anchors: [G4_0740]
+    examples:
+      - level: 1
+        word_ids: [G4_0740]
+        form: "I have lost my key：重要的不是「丢」，是「现在没钥匙」（与 VB-05 同一招牌例）"
+        scene_note: 清单原文例（lost 不作独立词条引用，仅 key 入挂接）
+        supports: claim
+    error_cases:
+      - wrong: 完成时与过去时间状语连用（只记「做完」判据的典型误用，CLEC 语料登记）
+        right: 判据是与现在有无关系：只讲过去那一刻、不管现在，就用过去时
+        error_type: 学习者真实错型
+        source_type: 教学文献登记错型（CLEC 语料，条内登记）
+        diagnosis: 回指 exceptions——判据没立住的直接后果。
+    relatives:
+      - {id: VB-05, rel: 对照}
+    quiz:
+      - q: 现在完成时与一般过去时的分界是？
+        options: [时间远近, 是否与现在有关系, 动词长短, 有无时间状语词]
+        answer: 是否与现在有关系
+        hint_on_wrong: 回机制小节「现时相关判据」
+    probes: []
+    prereq: []
+    order: 7
+    pain_points: []
+    adult:
+      sources:
+        - "薄冰《英语语法手册（第五版修订）》，商务印书馆（文本核实 https://www.scribd.com/document/713213363/）；《薄冰高级英语语法》书目页 https://www.cp.com.cn/book/60294e5f-d.html"
+      boundary: 传统时态框架，未分时与体，未处理语篇功能；体系升级靠 TA 簇。
+      disputes: 完成时的统一定义在学界未完全收敛（现时相关说 vs 过去事件+现在状态双层说等）；英式/美式在 just/already/yet 与过去时的选择上有真实差异（美式更常用过去时），薄冰讲法偏英式规范，教学时应注明（如实保留）。
+      evidence_grade: 原书文本核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-07}
+
+  - id: CG-08
+    zone: 支撑层
+    group: CG
+    subgroup: 全球传统线
+    audience: 教师/设计层
+    headline: 孩子学说话，是先学会「用话办事」：七种活儿排在语法前头
+    headline_kid: 小宝宝还不会说句子，就已经会用声音办七种事：要东西、指挥大人、交朋友、表达自己、问为什么、编故事、告诉别人事情。学英语也一样——先有想办的事，才有想学的话。
+    claim:
+      type: tendency
+      statement: 儿童在掌握成人语法之前，先后发展出七种微功能：工具型（要东西）、调节型（指挥行为）、互动型（维系关系）、个人型（表达自我）、启发型（探索求知）、想象型（假装与创造）、信息型（传递事实——最后才成熟）。成人眼中语言的「主业」传信息，在孩子那里压轴出场；这支撑小学英语的组织原则：单元按「孩子要用英语办的事」排，而不是按语法点排。
+      evidence:
+        - "Halliday (1975), Learning How to Mean, Edward Arnold（对自己孩子 Nigel 的纵向观察；七功能经 EBSCO 研究入门与儿童语言研究条目核实）"
+      scope: 七功能源于个案纵向观察（以 Nigel 为主），功能清单与次序带个案烙印；它是发展视角的组织框架，不是课时表。
+      exceptions:
+        - 不能推成「一年级只教工具型」这类机械排课。
+    mechanism:
+      - beat: 功能先行
+        text_kid: 先有想办的事，才有想学的话。
+        text_adult: 该框架是后续功能教学法（意念-功能大纲 CG-11、交际教学法）与儿童二语研究的共同源头；发展次序在后来的儿童语用研究（Dore 的言语行为分类等）中被反复印证大方向。Halliday 是把系统功能语言学带入中国的桥梁人物（与 CG-01 胡壮麟首尾呼应）。
+        visual: 七功能按成熟次序的排列图（信息型压轴）
+        anchors: [V6_学校_69]
+    examples:
+      - level: 1
+        word_ids: [V6_学校_69]
+        form: "ask「问为什么」属启发型功能，先于信息型成熟"
+        scene_note: 清单原文的七功能例示
+        supports: claim
+    error_cases:
+      - wrong: 按语法点排单元，或把七功能推成机械课时表
+        right: 单元按「孩子要用英语办的事」组织；七功能只作发展视角框架
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 与 scope。
+    relatives:
+      - {id: CG-11, rel: 同族}
+      - {id: CG-01, rel: 对照}
+    quiz:
+      - q: 七种微功能中最后才成熟的是？
+        options: [工具型, 互动型, 信息型, 想象型]
+        answer: 信息型
+        hint_on_wrong: 回 claim 的七功能次序
+    probes: []
+    prereq: []
+    order: 8
+    pain_points: []
+    adult:
+      sources:
+        - "M. A. K. Halliday (1975), Learning How to Mean: Explorations in the Development of Language, Edward Arnold；EBSCO 研究入门 https://www.ebsco.com/research-starters/education/michael-halliday-linguist"
+      boundary: 个案纵向观察，清单与次序带个案烙印；不是课时表。
+      disputes: 功能分类的切法各家不同（Dore 以言语行为重切、Halliday 后期把七功能收编进三大元功能）；「功能先于形式」的强版本受到用法基础理论（Tomasello：形式-功能同时在构式中习得）的修正。本条取其稳固部分（如实保留）。
+      evidence_grade: 二手研究入门核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-08}
+
+  - id: CG-09
+    zone: 支撑层
+    group: CG
+    subgroup: 全球传统线
+    audience: 教师/设计层
+    headline: 用英语上别的课，要四样一起转：内容、交流、动脑、文化（CLIL 的 4Cs）
+    headline_kid: 用英语上科学课、美术课，不是「多背点单词」那么简单：一节好课要同时管四样——学到的东西、用英语说出来、脑子动起来、还顺便看看别的国家怎么想。缺一样，课就瘸一条腿。
+    claim:
+      type: tendency
+      statement: CLIL（内容与语言融合学习，Marsh 等人 1994 年命名）由 Coyle、Hood & Marsh (2010) 定版为 4Cs 框架：Content（学科知识与技能推进）、Communication（语言既是学的内容也是学的工具：language of/for/through learning 三分）、Cognition（思维台阶须与语言台阶匹配）、Culture（通过另一门语言看世界的多元视角）。四者是共生而非相加；配套 CLIL Matrix 要求任务同时标定语言难度与认知难度。
+      evidence:
+        - "Coyle, Hood & Marsh (2010), CLIL: Content and Language Integrated Learning, CUP（4Cs 定版于 p. 41 一带；四项经 Bell Foundation 逐项转述与 CLIL 综述核实）"
+      scope: CLIL 成效证据高度依赖实施条件（教师双语能力、课时占比、选拔性入学造成的样本偏差）；欧洲证据多来自中学与自愿项目，小学低段的直接证据薄弱。本条按「设计框架」而非「成效定论」收录。
+      exceptions:
+        - 「文化」维度在单语单文化课堂中最易流于表面节庆（food-flags-festivals），框架作者本人亦警告过。
+    mechanism:
+      - beat: 4Cs 共生
+        text_kid: 一节好课要同时管四样，缺一样，课就瘸一条腿。
+        text_adult: 抽掉 Cognition 只剩词汇操练，抽掉 Communication 只剩默读课文，抽掉 Content 就退回普通语言课。对 App 的直接价值：学科英语模块的设计检查表——每个模块过一遍 4Cs，缺哪补哪。
+        visual: 4Cs 四维共生图 + CLIL Matrix 双难度标定
+        anchors: [G3_0622]
+    examples:
+      - level: 1
+        word_ids: [G3_0622]
+        form: "talk 所属的 Communication 维：语言既是内容也是工具"
+        scene_note: 清单原文的 4Cs 分工
+        supports: claim
+    error_cases:
+      - wrong: 把 CLIL 成效当定论宣传，或文化维度只做节庆表面文章
+        right: 4Cs 只作设计检查表；成效须带实施条件与样本偏差说明
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 与 exceptions。
+    relatives:
+      - {id: CG-12, rel: 对照}
+    quiz:
+      - q: 抽掉 Communication 的 CLIL 课会退化成什么？
+        options: [词汇操练, 只剩默读课文, 普通语言课, 体育课]
+        answer: 只剩默读课文
+        hint_on_wrong: 回机制小节「4Cs 共生」
+    probes: []
+    prereq: []
+    order: 9
+    pain_points: []
+    adult:
+      sources:
+        - "Do Coyle, Philip Hood & David Marsh (2010), CLIL, Cambridge University Press；Bell Foundation 转述 https://www.bell-foundation.org.uk/news/blog-integrating-content-and-language-in-multilingual-schools/"
+      boundary: 成效依赖实施条件；小学低段直接证据薄弱；按设计框架收录。
+      disputes: CLIL 研究内部有实质批评：Bruton 等人指出不少成效研究存在选择偏差（参加者本就是高动机、高社经家庭），语言收益可能被高估；也有学者质疑弱化语言教学系统性会损害语法准确性（与沉浸式结论 CG-12 同向）（如实保留）。
+      evidence_grade: 转述核实（p. 41 一带）
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-09}
+
+  - id: CG-10
+    zone: 支撑层
+    group: CG
+    subgroup: 全球传统线
+    audience: 教师/设计层
+    headline: 先说清「能用英语做成什么事」，再倒推教什么（CEFR 的行动导向与 can-do）
+    headline_kid: 学英语的目标不是「学完第三单元」，而是「能自己去问路、能给外国小朋友介绍我的学校」。把目标写成一句「我能……」，学什么、学到哪儿，一下子就清楚了。
+    claim:
+      type: tendency
+      statement: CEFR 的核心机制是行动导向：学习者是「社会行为者」，语言教育按「在真实情境中完成任务」组织；水平不按语法覆盖量定义，而按 can-do 描述语定义（六级 A1–C2，2020 年补 Pre-A1）。方法论后果是逆向设计：课程、教材、考试都从「学习者最终需要能做什么」倒推。2020 版把调解（mediation）提升为与接收、产出、互动并列的第四种活动。
+      evidence:
+        - "Council of Europe (2001), CEFR, CUP；CEFR Companion Volume (2020), Council of Europe Publishing（行动导向原文经欧洲委员会官方研讨会背景读物引 pp. 28–32 核实）"
+      scope: 必须如实标注——CEFR 是欧洲为通用（以成人流动为原始场景）学习者研制的参照框架，其描述语与分级不是为中国小学生的发展次序实证标定的；A1/A2 描述可借作目标措辞与大致标尺，不得把六级阶梯当作小学英语的发展定律或达标线。中国语境的法定参照是义务教育英语课程标准与 CSE 的低级别描述。
+      exceptions:
+        - can-do 自评在低龄儿童中的效度（儿童自评偏差）无定论。
+    mechanism:
+      - beat: 行动导向与逆向设计
+        text_kid: 把目标写成一句「我能……」，学什么、学到哪儿，一下子就清楚了。
+        text_adult: 对 App 的用途是目标语言：每个单元的学习目标改写成儿童版 can-do 句，进度按做成的事计；调解活动（把一段说明讲给同伴听）为同伴互助、图文转述提供现成任务原型（与 YL-04 衔接）。CEFR 是剑桥、歌德等考试体系对标与中国 CSE (2018) 研制的重要参照。
+        visual: 从 can-do 目标倒推课程/教材/测评的逆向设计图
+        anchors: [G3_0625]
+    examples:
+      - level: 1
+        word_ids: [G3_0625]
+        form: "say 的目标句形态：「我能用英语说出……」（儿童版 can-do）"
+        scene_note: 清单原文给出的 App 落地形态
+        supports: claim
+    error_cases:
+      - wrong: 把 CEFR 六级阶梯当作小学英语的发展定律或达标线
+        right: 六级只作参照系与目标措辞；法定参照是课标与 CSE 低级别描述
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 的如实标注。
+    relatives:
+      - {id: CG-11, rel: 同族}
+      - {id: CB-14, rel: 对照}
+    quiz:
+      - q: CEFR 定义水平的依据是？
+        options: [语法覆盖量, can-do 描述语, 词汇量, 课时数]
+        answer: can-do 描述语
+        hint_on_wrong: 回机制小节「行动导向与逆向设计」
+    probes: []
+    prereq: []
+    order: 10
+    pain_points: []
+    adult:
+      sources:
+        - "Council of Europe (2001), CUP; Companion Volume (2020)；官方背景读物 https://rm.coe.int/cefr-webinar-series-2021-3-background-reading/1680a54fc7"
+      boundary: 非为中国小学生发展次序标定；只作参照系，不作测量定论。
+      disputes: 对 CEFR 的批评长期存在：分级描述的实证标定基础（Rasch 标定样本与情境）受质疑（Fulcher 等）；「行动导向」在各国落地时常被窄化成只剩分级与考试对标，恰与其初衷相反（如实保留）。
+      evidence_grade: 官方文本转引核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-10}
+
+  - id: CG-11
+    zone: 支撑层
+    group: CG
+    subgroup: 全球传统线
+    audience: 教师/设计层
+    headline: 先按「要办的事和要说的意思」排课，语法是随后配齐的工具（意念-功能大纲）
+    headline_kid: 以前的课本按语法排队：先学现在时，再学过去时。意念-功能排法反过来：先看你要办什么事——道歉、邀请、问时间、比大小——再把办这些事需要的句子配齐。语法不是主角，是工具箱。
+    claim:
+      type: tendency
+      statement: Wilkins (1976) 提出按两类意义组织大纲：意念（notions：时间、数量、空间、频率等语义范畴）与交际功能（functions：请求、拒绝、邀请、道歉、赞同等用语言做的事）；语法形式退居实现手段，同一功能可由多个形式实现，教学按需求分析选取与排序。van Ek (1975)《The Threshold Level》把它落成第一份完整规格，这条线直通后来的 CEFR（B1 级官方别名仍叫 Threshold）。
+      evidence:
+        - "Wilkins (1976), Notional Syllabuses, OUP（源起 1972 年为欧洲委员会所写工作论文）；van Ek (1975), The Threshold Level, Council of Europe（地位与别名经交际教学法史述与剑桥样章核实）"
+      scope: 本条收作组织原则（单元以功能-话题为纲、语法为目），不主张废弃语法序列。
+      exceptions:
+        - 纯功能大纲有已知缺陷：功能清单本身无内在难度次序（道歉有一百种说法，先教哪个仍要靠语法与频率标准裁决）；「功能」在低龄段须落到具体生活场景才可教。
+    mechanism:
+      - beat: 功能为纲、语法为目
+        text_kid: 先看你要办什么事，再把办这些事需要的句子配齐。语法不是主角，是工具箱。
+        text_adult: 这是 20 世纪语言教学大纲思想的分水岭：此前大纲按结构逐个累积零件（synthetic)，此后「分析式」（按整体交际需求切分）成为主流选项之一，ESP 需求分析、任务型大纲、CEFR 皆出此源；中国现行课标的「语言功能」板块即其直系后裔。
+        visual: 同一功能的多个实现形式对照（Could you…? / Please… / …!）
+        anchors: [V6_节日_0]
+    examples:
+      - level: 1
+        word_ids: [V6_节日_0]
+        form: "time 属意念（语义范畴），问时间属功能——大纲按此二分排课"
+        scene_note: 清单原文的意念/功能例示
+        supports: claim
+    error_cases:
+      - wrong: 以纯功能大纲废弃语法序列
+        right: 功能-话题为纲、语法为目；功能内部次序仍靠语法与频率标准裁决
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 与 disputes（Wilkins 本人即指出互补）。
+    relatives:
+      - {id: CG-08, rel: 同族}
+      - {id: CG-10, rel: 同族}
+    quiz:
+      - q: 意念-功能大纲的两类组织意义是？
+        options: [时态与语态, 意念与交际功能, 词汇与拼写, 输入与输出]
+        answer: 意念与交际功能
+        hint_on_wrong: 回机制小节「功能为纲、语法为目」
+    probes: []
+    prereq: [CG-08]
+    order: 11
+    pain_points: []
+    adult:
+      sources:
+        - "D. A. Wilkins (1976), Notional Syllabuses, Oxford University Press; J. A. van Ek (1975), The Threshold Level, Council of Europe；剑桥《Language Functions Revisited》样章"
+      boundary: 组织原则而非废弃语法序列；低龄功能须落到具体生活场景。
+      disputes: Wilkins 本人即指出意念大纲不能替代语法大纲而是与之互补；后续批评（Widdowson 等）认为按功能切分同样是一种「零件化」，真实交际的整体性仍需任务与语篇层面找回——这正是 CEFR 行动导向（CG-10）与 CLIL（CG-09）后来要补的课（如实保留）。
+      evidence_grade: 史述+样章核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-11}
+
+  - id: CG-12
+    zone: 支撑层
+    group: CG
+    subgroup: 全球传统线
+    audience: 教师/设计层
+    headline: 「泡」在语言里，听读能泡出高水平，说写的准确却会卡住（沉浸式的成熟结论）
+    headline_kid: 整天听英语、用英语上课，耳朵和阅读会越来越厉害；但开口说、动手写的时候，小毛病（时态、词尾、搭配）会悄悄固定下来——光泡不够，还得有人把毛病指出来、逼自己认真说一遍。
+    claim:
+      type: tendency
+      statement: 加拿大法语沉浸式五十年评估的收敛结论：沉浸生母语与学业不受损，二语接收技能（听、读）到小学高段可接近母语者水平；而产出技能（说、写）明显滞后——流利敢说，但语法准确性、社会语言得体性与词汇精确度与母语者有持续差距。Swain 据此提出输出假说：仅靠可理解输入不足以发展完全的语法能力，学习者需要在产出中注意到缺口、被推着修正，沉浸课堂必须有意识地插入形式聚焦。
+      evidence:
+        - "Genesee (1987), Learning Through Two Languages, Newbury House（综述定版）"
+        - "Swain 输出假说（1985/1995）与 Swain (2000), Annual Review of Applied Linguistics 综述；Cummins 三十年回顾（CARLA 档案核实）"
+      scope: 加拿大沉浸是官方双语国的自愿项目（家长主动选择、教师为双语者、法语有社会地位），条件与中国 EFL 课堂差异巨大：可迁移的是机制结论（输入≠产出能力、形式聚焦不可缺），不是课时比例或成效数字。
+      exceptions:
+        - 沉浸生的产出差距是「相对母语者」的差距，其绝对水平远超普通外语课学生，不得反读为「沉浸无效」。
+    mechanism:
+      - beat: 接收—产出缺口
+        text_kid: 光泡不够，还得有人把毛病指出来、逼自己认真说一遍。
+        text_adult: 这是教育史上被评估得最彻底的语言项目之一（数百项研究、跨五十年、含纵向追踪），「产出缺口」已被 CLIL 研究独立观察到（CG-09 分歧栏），两条传统互证。对中国语境的意义是上限预期管理：英语角、双语课程、全英文 App 环境解决输入与流利，准确性需要产出任务+反馈+形式聚焦另外供给。
+        visual: 接收技能近母语 vs 产出技能滞后的双轨图
+        anchors: [G2_0642, G2_0492, G3_0619, G3_0487]
+    examples:
+      - level: 1
+        word_ids: [G2_0642, G2_0492]
+        form: "listen、read（接收技能）在沉浸中可接近母语者水平"
+        scene_note: 清单原文的接收/产出对照
+        supports: claim
+      - level: 2
+        word_ids: [G3_0619, G3_0487]
+        form: "speak、write（产出技能）的准确性持续滞后"
+        scene_note: 清单原文的接收/产出对照
+        supports: claim
+    error_cases:
+      - wrong: 宣称全英文环境/多听多看即可自动带来产出准确性
+        right: 输入解决流利，准确性须靠产出任务、反馈与形式聚焦另行供给
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的输出假说。
+    relatives:
+      - {id: CG-09, rel: 对照}
+      - {id: CG-14, rel: 对照}
+    quiz:
+      - q: 沉浸生与母语者的持续差距主要在哪一侧？
+        options: [听, 读, 说与写的准确性, 词汇量]
+        answer: 说与写的准确性
+        hint_on_wrong: 回机制小节「接收—产出缺口」
+    probes: []
+    prereq: []
+    order: 12
+    pain_points: []
+    adult:
+      sources:
+        - "Fred Genesee (1987), Newbury House；Merrill Swain (1985/1995; 2000 ARAL)；Cummins 沉浸三十年回顾 https://archive.carla.umn.edu/cobaltt/modules/strategies/immersion2000.html；Lazaruk (2007), Canadian Modern Language Review"
+      boundary: 只迁移机制结论，不迁移课时比例与成效数字。
+      disputes: 产出差距的归因有争论：Swain 一系归因于产出机会与反馈不足；也有研究者指出沉浸课堂的输入本身即缺少某些形式（属输入质量问题）；Hammerly 等有更尖锐的批评。归因未定，现象稳固（如实保留）。
+      evidence_grade: 综述+档案核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-12}
+
+  - id: CG-13
+    zone: 支撑层
+    group: CG
+    subgroup: 全球传统线
+    audience: 教师/设计层
+    headline: 初学读字，先把「拼读」这条路修直，但不能只剩拼读（Rose 审查）
+    headline_kid: 刚学读英语，先学会一个本事：看见字母能拼出声音、把声音连成词（cat = c-a-t）。这条路要走得稳、走得早；但读书不只是拼出声——听故事、说话、认意思，要一起长大。
+    claim:
+      type: tendency
+      statement: 英国政府委托的 Rose 独立审查（2006）定版结论：高质量拼读教学应是初学阅读的首要路线（prime approach)，且合成拼读（synthetic phonics）是其中最优形态——按明确递进的次序教字母-音素对应、教拼合（blending，读）与切分（segmenting，拼写），两者是可逆的同一技能。同时以简单阅读观（解码 × 语言理解）取代原「探照灯」模型：解码满分而理解为零，阅读仍是零。
+      evidence:
+        - "Rose (2006), Independent Review of the Teaching of Early Reading: Final Report, DfES（合成拼读四要点经教师培训评估报告引 p. 20 原文核实）"
+        - "跨国对照：美国国家阅读专家组 NRP (2000) 与 Rose 在「系统拼读有效且应显性教」上收敛（清单互证登记）"
+      scope: Rose 审查的对象是英语为母语的英格兰儿童（解码是其瓶颈）；中国儿童的瓶颈结构不同（解码+词汇量+听力理解三者并缺)，「首要路线」迁移时须重新排序权重。
+      exceptions:
+        - 报告的另一限定与「首要」同等重要：拼读须置于「广阔而丰富的多感官语言课程」之中，听说与真实阅读经验不可缺席；只引前半句即是断章取义。
+    mechanism:
+      - beat: 合成拼读为首要路线
+        text_kid: 看见字母能拼出声音、把声音连成词，这条路要走得稳、走得早；但读书不只是拼出声。
+        text_adult: 政策后果：英格兰自 2007 年起以 Letters and Sounds 落地、2012 年设一年级拼读筛查。对本 App：英式合成拼读路线（本 App 拼读体系）由此获得官方审查级的出处补强；与 S/SR 波次（W1）直接衔接。
+        visual: 拼合/切分可逆技能 + 解码×理解的简单阅读观乘式图
+        anchors: [G1_014]
+    examples:
+      - level: 1
+        word_ids: [G1_014]
+        form: "cat = c-a-t：拼合（blending）读出、切分（segmenting）拼出"
+        scene_note: 清单原文的招牌例
+        supports: claim
+    error_cases:
+      - wrong: 只引「拼读首要」而丢掉「置于丰富语言课程中」的限定，把课程做成只剩拼读
+        right: 拼读为首要路线且与听说、真实阅读经验并行（简单阅读观：解码 × 理解）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 exceptions——断章取义即是误用。
+    relatives:
+      - {id: LS-15, rel: 对照}
+    quiz:
+      - q: 简单阅读观的公式是？
+        options: [解码 + 速度, 解码 × 语言理解, 拼读 + 背词, 理解 − 解码]
+        answer: 解码 × 语言理解
+        hint_on_wrong: 回机制小节「合成拼读为首要路线」
+    probes: []
+    prereq: []
+    order: 13
+    pain_points: []
+    adult:
+      sources:
+        - "Jim Rose (2006), Independent Review of the Teaching of Early Reading: Final Report, DfES；评估报告转引 https://dera.ioe.ac.uk/id/eprint/8198/"
+      boundary: 母语儿童证据；中国儿童瓶颈结构不同，迁移须重新排序权重。
+      disputes: Rose 路线在英国学界有持续批评：Wyse & Styles 等质疑合成拼读优于其他拼读形态的证据强度，UKLA 主张理解与解码应更平衡地推进，指其政策化过程超出证据（「magic bullet」之讥）。跨国对照的稳固结论是「系统性」三字（有次序、显性、全覆盖)，「合成优先」为英方立场，如实标注（如实保留）。
+      evidence_grade: 官方报告转引核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-13}
+
+  - id: CG-14
+    zone: 支撑层
+    group: CG
+    subgroup: 全球传统线
+    audience: 教师/设计层
+    headline: 听懂很多，英语就会自己长出来——影响最大的说法，也是吵得最凶的说法（Krashen 输入假说）
+    headline_kid: 多听、多看你基本能懂的英语故事（稍微有一点点新东西），英语会慢慢自己长进脑子里——不用先背语法，也不用怕开口说错。这话很有道理，但「只靠听就够了」是它最容易被说过头的地方。
+    claim:
+      type: tendency
+      statement: Krashen 的监控模型以输入假说为核心：语言是「习得」的，途径是接收可理解输入——略高于当前水平（i+1）的、能听懂意思的语言；配套假说包括习得/学得之分（显性规则只作监控校对）、自然顺序、情感过滤。本条按「有重大影响的教学主张」收录，不按已证定论收录（见 adult.disputes，全簇最重）。
+      evidence:
+        - "Krashen (1982), Principles and Practice in Second Language Acquisition, Pergamon; (1985), The Input Hypothesis, Longman；与 Terrell 合著 (1983), The Natural Approach"
+        - "支持面：广泛阅读实证文献（Day & Bamford 传统）显示足量可懂阅读与词汇、阅读能力增长相关"
+      scope: i+1 中的 i 与 +1 无法独立测量，本条只能作材料选择的方向性原则（大致可懂、略带新料），不能作精确配比公式；对中国小学生，校内输入量远达不到自然习得的量级，显性教学的效率补偿不可省略。
+      exceptions:
+        - App 内凡引用 Krashen，必须连同成人层分歧栏呈现。
+    mechanism:
+      - beat: 可理解输入
+        text_kid: 多听、多看你基本能懂的英语故事，英语会慢慢自己长进脑子里。
+        text_adult: 其对教学的真实贡献在于把重心从「讲解与操练」扭向「足量、有趣、可懂的听读材料」——绘本朗读、分级阅读、窄式听力皆受其推动；Krashen 对一线教师的实际影响居 20 世纪 SLA 理论之首。
+        visual: i+1 输入带（大致可懂、略带新料）示意
+        anchors: [G2_0642, V6_学校_44]
+    examples:
+      - level: 1
+        word_ids: [G2_0642, V6_学校_44]
+        form: "listen + story：窄式听力与绘本朗读作为可理解输入的供给形态"
+        scene_note: 清单原文登记的受其推动的教学形态
+        supports: claim
+    error_cases:
+      - wrong: 宣称「只靠听就够了」并取消显性教学与产出训练
+        right: 输入必要而不充分（共识状态）；输入与显性教学、产出反馈并行（与 CG-12 对读）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 disputes 的充分性批评与 scope。
+    relatives:
+      - {id: CG-12, rel: 对照}
+      - {id: YL-11, rel: 同族}
+    quiz:
+      - q: 学界对输入假说的共识状态是？
+        options: [已被完全证实, 输入必要而不充分, 已被完全推翻, 只适用于成人]
+        answer: 输入必要而不充分
+        hint_on_wrong: 回成人层 disputes
+    probes: []
+    prereq: []
+    order: 14
+    pain_points: []
+    adult:
+      sources:
+        - "Stephen D. Krashen (1982), Pergamon; (1985), Longman; Krashen & Terrell (1983); 四十年再评估 Lichtman & VanPatten (2021), Foreign Language Annals"
+      boundary: i+1 不可独立测量，只作方向性原则；校内输入量约束下显性教学不可省略。
+      disputes: "本条分歧为全簇最重，必须如实读完：① 可证伪性——Gregg (1984) 与 McLaughlin (1987) 指其核心概念无法独立检验（McLaughlin 语：理论「在每个关口都不成立」）；② 充分性——沉浸式证据（CG-12）显示足量可懂输入并不自动带来产出准确性，Swain 输出假说即由此起；③ 现代修正——技能习得研究（DeKeyser）显示显性知识可经练习自动化，「学得不能变习得」的强断言已被普遍放弃；Lichtman & VanPatten (2021) 四十年再评估为部分平反。共识状态：输入必要而不充分（如实保留，全文不裁决）。"
+      evidence_grade: 原书书目+批评文献核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 CG-14}
+
+  # ================= VB 动词专著书房（13 条） =================
+  - id: VB-01
+    zone: 支撑层
+    group: VB
+    subgroup: "Levin:动词意义决定句法行为"
+    audience: 教师/设计层
+    headline: 交替是探针：一个动词能进哪些句型，先由它的意思说了算
+    headline_kid: 动词像不同脾气的玩具：有的能这样摆、那样摆，有的死活摆不出某个姿势——摆法早就写在它的意思里了。
+    claim:
+      type: tendency
+      statement: "Levin 的全书假设（原书 p. 1，经学术转述核实）：动词的行为、特别是其论元的表达与解释方式，在很大程度上由它的意义决定。操作方法是把「交替」（diathesis alternations，同一动词在不同论元实现格局间的系统变换）当作探针：能参与哪些交替，探测出动词意义中哪些成分对语法可见。全书据此交叉分类 3,000 多个动词（第一部分按交替，第二部分按意义组织成 48 个大类、约 192 个小类）。"
+      evidence:
+        - "Levin (1993), English Verb Classes and Alternations, University of Chicago Press, xviii+348 pp.（出版社全目录已打开核对；正式书评 Somers, Computational Linguistics 20(3)；作者 2009 讲座幻灯）"
+      scope: Levin 自我限定此书为 preliminary investigation（p. 17)、by no means a definitive and exhaustive classification（p. 18)；带小句补语的动词被有意排除；交替是诊断工具而非意义本身，探针探不到的意义成分（如细腻的语域差）不在此框架内。
+      exceptions:
+        - 旧捕鲸词 gally 例（清单原文）：只告诉你它的意思，就能预判它的句型行为——意义先行、句法随后。
+    mechanism:
+      - beat: 交替诊断
+        text_kid: 动词能怎么摆，早就写在它的意思里了。
+        text_adult: 该书是 MIT 词库计划（Lexicon Project）的产物，参考文献 700 余条；其分类后来被 VerbNet 直接继承（见 VB-03)，是「意义→句法」假设被大规模数据检验过的最完整一次。本条是 VB 组的方法总纲。
+        visual: 以交替为探针探测动词意义成分的示意
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [ADD_0025, V6_日常_47]
+        form: "break / cut 的交替行为差（详见 VB-02 招牌分析）"
+        scene_note: 清单原文的诊断例
+        supports: claim
+    error_cases:
+      - wrong: 把 Levin 分类当作定版完备的词典结论引用
+        right: 按作者自我限定引用：preliminary investigation，类是调查的立足点
+        error_type: 出处归属错误
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 的作者自限。
+    relatives:
+      - {id: VB-02, rel: 同族}
+      - {id: VB-03, rel: 同族}
+    quiz:
+      - q: Levin 用什么当探测动词意义成分的探针？
+        options: [词频, 交替（diathesis alternations）, 词源, 儿童语料]
+        answer: 交替（diathesis alternations）
+        hint_on_wrong: 回机制小节「交替诊断」
+    probes: []
+    prereq: []
+    order: 1
+    pain_points: []
+    adult:
+      sources:
+        - "Beth Levin (1993), University of Chicago Press；出版社目录 https://press.uchicago.edu/ucp/books/book/chicago/E/bo3684144.html；书评 https://preview.aclanthology.org/master-new-author-system/J94-3013.pdf"
+      boundary: 作者自限为初步调查；带小句补语动词被排除；探针探不到的成分不在框架内。
+      disputes: 与构式语法（清单 CO 组）存在真实的理论张力：Levin 是「动词中心」——句型行为由动词意义决定；Goldberg 是「构式中心」——整句模具自带意义。Levin 自己的数据表明构式义必须尊重词汇约束，两家是约束与被约束的关系，不是二选一（如实保留）。
+      evidence_grade: "目录+书评级（清单接触等级总表）：引言 pp. 1–21 原文未通读，论点经带页码转述交叉核实"
+      pending:
+        - "Levin (1993) 引言 pp. 1–21 原文未通读；Part Two 各类成员名单未逐类核对"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-01}
+
+  - id: VB-02
+    zone: 支撑层
+    group: VB
+    subgroup: "Levin:动词意义决定句法行为"
+    audience: 教师/设计层
+    headline: break 和 cut 不是一回事：一个只说「结果」，一个自带「怎么切」
+    headline_kid: break（碎）只说东西变样了、没说怎么弄的，所以「杯子自己碎了」也成立；cut（切）自带一把看不见的刀，必须有人拿刀动手，所以不能说「面包自己切了」。
+    claim:
+      type: tendency
+      statement: Levin 以三组交替把近义动词切开（原书 pp. 5–9)：只有 cut、hit 能进尝试交替（cut at the bread)，因为它们词汇化了「接触＋运动」；只有 break 能进致使/起始交替（The window broke)，因为它只词汇化纯状态改变、完全不说明改变如何发生（p. 9)；cut 则词汇化了工具（利刃）与施事方式，施事缺席则句子崩坏。分类落实为 §21「Verbs of Cutting」与 §45.1「Break Verbs」分属全书两端。
+      evidence:
+        - "Levin (1993) §1 引言四词对照分析（pp. 5–9）与 §21、§45.1 分类（出版社目录核对；页码与引文经 Goldberg & Jackendoff 一系学术转述逐页核实）"
+        - "跨语言佐证：Guerssel, Hale, Laughren, Levin & White Eagle (1985) 四种语言的 CUT/BREAK 对立"
+      scope: cut 类内部仍有细差（carve 类更强调成形结果）；后续研究把这条界线处理为「词汇化了哪一端」的强倾向而非绝对禁令。
+      exceptions:
+        - 某些语言（如 Tidore）切类词在特定条件下也能出现起始用法。
+    mechanism:
+      - beat: 三组交替切开近义词
+        text_kid: break 只说变样了，cut 自带一把看不见的刀，必须有人拿刀动手。
+        text_adult: "与本项目呼应（清单原文登记）：这正是动画侧 C1「切类」原语的语言学根据——切类动作在语言里就自带「施事＋工具接触＋分离结果」，动画中「无人持刀、苹果自裂成两半」不仅是物理错误，也是把 cut 演成了 break：动词类选错，画面逻辑必然错。"
+        visual: break/cut/hit 在三组交替中的准入对照表
+        anchors: [ADD_0025, V6_日常_47, ADD_0149, G3_126, G4_159]
+    examples:
+      - level: 1
+        word_ids: [ADD_0025, G4_159]
+        sentence: "The window broke."
+        scene_note: 清单原文例：break 可进致使/起始交替
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_47, G3_126]
+        form: "cut at the bread（尝试交替，cut 可进）；*The bread cut（起始交替，cut 不可进）"
+        scene_note: 清单原文例（星号句为不合语法登记，非错例冒充）
+        supports: claim
+    error_cases:
+      - wrong: "*The bread cut（把 cut 当 break 用，施事缺席）"
+        right: cut 词汇化了工具与施事方式，必须有施事拿刀动手；无施事的结果陈述用 break 类
+        error_type: 动词类误选（清单登记的对照）
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的三组交替切分。
+    relatives:
+      - {id: VB-01, rel: 前置}
+      - {id: VB-04, rel: 同族}
+    quiz:
+      - q: 哪组交替只有 break 能进？
+        options: [尝试交替, 致使/起始交替, 与格交替, 喷洒交替]
+        answer: 致使/起始交替
+        hint_on_wrong: 回机制小节「三组交替切开近义词」
+    probes: []
+    prereq: [VB-01]
+    order: 2
+    pain_points: []
+    adult:
+      sources:
+        - "Levin (1993), pp. 5–9, §21, §45.1；转述核实 https://www.researchgate.net/publication/266727725 ；作者 LSA 讲义 http://web.stanford.edu/~bclevin/lsa15intro.pdf"
+      boundary: 强倾向而非绝对禁令；cut 类内部有细差。
+      disputes: 方式/结果互补说后来被部分研究者以双词汇化候选例挑战（如 climb 的再分析之争），属学界进行中的争论；但 break/cut 的基本对立本身无主流异议（如实保留）。
+      evidence_grade: 目录+书评级（招牌分析经逐页转述核实）
+      pending:
+        - "同 VB-01：Part Two 各类成员名单未逐类核对（carve 不在词库，登记补词候选）"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-02}
+
+  - id: VB-03
+    zone: 支撑层
+    group: VB
+    subgroup: "Levin:动词意义决定句法行为"
+    audience: 教师/设计层
+    headline: 动词类是词典的组织方式：先归类，再预判，没见过的词也能猜出七八分
+    headline_kid: 动词像动物分科：先认出它是「切的一家」还是「碎的一家」，它爱怎么造句、讨厌怎么造句，大半就能猜到。
+    claim:
+      type: tendency
+      statement: Levin 第二部分把 3,000 多个动词组织成 48 个语义大类（约 192 个小类），每类成员共享一组交替行为。分类的用途是预测：新词只要语义归类对，它能进的句型、不能进的句型、宾语能不能省略、能不能被动，大半可由类推得——词典从「一词一条互不相干」变成「一类一组共享语法档案」。
+      evidence:
+        - "Levin (1993) Part Two（出版社目录逐章核对）；规模经作者讲座幻灯自述核实"
+        - "后续生命：VerbNet 以 Levin 类为骨架建成计算词典，并用 Levin 类预测短语动词的能产组合（ACL 文献）"
+      scope: 类别边界有模糊带（多义词跨类是常态，Levin 按义项归类而非按词形）；分类以交替行为为据，对不参与多少交替的动词判别力弱；教学中只宜取高频大类，48 类全表是词典学家的工具，不是课表。
+      exceptions:
+        - 例（清单原文）：高频大类如切、碎、给、放、运动可进教学；全表不进课表。
+    mechanism:
+      - beat: 类即语法档案
+        text_kid: 先认出动词是哪一家，它爱怎么造句，大半就能猜到。
+        text_adult: LINGUIST List 1996 年「动词分类」专题问答中多位学者一致推荐此书为该领域的标准参照。本条与 CO-03 直接咬合：双宾准入「哪些动词意思不合」须靠 Levin 类清单才说得出（清单对照节登记的缺口）。
+        visual: 48 大类索引与类内共享交替档案示意
+        anchors: [V6_日常_8, V6_日常_9, G2_087]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_8, V6_日常_9]
+        form: "give（所有权转移类）、put（放置类）：归类即预判句型档案"
+        scene_note: 清单原文列举的高频大类成员
+        supports: claim
+    error_cases:
+      - wrong: 把 48 类全表当课表教，或按词形（而非义项）给多义词归类
+        right: 教学只取高频大类；多义词按义项归类
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope。
+    relatives:
+      - {id: VB-01, rel: 前置}
+    quiz:
+      - q: Levin 分类的首要用途是？
+        options: [背诵类名, 预测没见过的词的句型行为, 统计词频, 划分年级]
+        answer: 预测没见过的词的句型行为
+        hint_on_wrong: 回机制小节「类即语法档案」
+    probes: []
+    prereq: [VB-01]
+    order: 3
+    pain_points: []
+    adult:
+      sources:
+        - "Levin (1993) Part Two；VerbNet 继承关系见 ACL Anthology VPC 文献综述"
+      boundary: 模糊带与跨类是常态；判别力对少交替动词弱。
+      disputes: 分类粒度之争（Gross 一系主张细得多的类别）与「类是真实心理表征还是编纂便利」之争一直存在；Levin 本人立场是把类当作调查的立足点（preliminary)，不宣称心理实在性（如实保留）。
+      evidence_grade: 目录+书评级
+      pending:
+        - "同 VB-01：各类成员名单未逐类核对"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-03}
+
+  - id: VB-04
+    zone: 支撑层
+    group: VB
+    subgroup: "Levin:动词意义决定句法行为"
+    audience: 教师/设计层
+    headline: 方式与结果只能选一端写进词里：这是 break/cut 之别的总原理
+    headline_kid: 一个动词像一支笔，只能涂满一头：要么把「怎么动」说细（擦、抹、扫），要么把「变成什么样」说死（碎、开、满），两头都说细的词，英语里基本没有。
+    claim:
+      type: tendency
+      statement: "方式/结果互补（manner/result complementarity)：动词词根词汇化的是事件的一个侧面——或是方式（动作如何执行，如 wipe、scrub、run)，或是结果（标量变化的终点，如 break、open、arrive)，二者互补。由此推出一串句法后果：方式动词能带非选定宾语、能省略宾语；结果动词宾语必须受影响并测度事件进程，不能随意省略。此为 Levin (1993) 的后续发展，须与原书分开标。"
+      evidence:
+        - "Levin & Rappaport Hovav (1995), Unaccusativity；Rappaport Hovav & Levin (2010)「Reflections on manner/result complementarity」；经 Levin 本人 LSA 2015 讲义核实其陈述"
+      scope: 互补是强倾向而非无例外定律；对小学教学而言，只取「动词自带一头重点」这一直觉层即可。
+      exceptions:
+        - 边缘案例如 climb、cut 本身（兼有方式与分离结果）长期被双方引为战例。
+    mechanism:
+      - beat: 词根只写一端
+        text_kid: 一个动词只能涂满一头：要么把「怎么动」说细，要么把「变成什么样」说死。
+        text_adult: 这条原理是 VB-02 中 break（结果）与 cut（方式＋工具）对立在全词库尺度上的推广；对 TA-07 的推进（清单对照节登记）：Vendler 四型是短语层情状分类，方式/结果互补给出词根层的分类原理，能解释四型之间的转换为何受限。
+        visual: 方式端/结果端二分的词根图式
+        anchors: [V6_日常_13, G2_087, ADD_0025, V6_日常_10, V6_交通_56, G4_0800]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_13, G2_087]
+        form: "sweep、run：方式动词（能省略宾语：Leslie swept）"
+        scene_note: 清单原文例（wipe、scrub 不在词库，登记补词候选）
+        supports: claim
+      - level: 2
+        word_ids: [ADD_0025, V6_日常_10, V6_交通_56]
+        form: "break、open、arrive：结果动词（宾语测度事件进程）"
+        scene_note: 清单原文例
+        supports: claim
+    error_cases:
+      - wrong: 把方式/结果互补当作无例外定律套用
+        right: 按强倾向使用；climb、cut 等边缘案例单独登记
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 scope 与 exceptions。
+    relatives:
+      - {id: VB-02, rel: 前置}
+    quiz:
+      - q: 方式动词与结果动词在宾语省略上的差别是？
+        options: [方式动词能省略宾语，结果动词不能随意省略, 两者都能, 两者都不能, 结果动词能省略]
+        answer: 方式动词能省略宾语，结果动词不能随意省略
+        hint_on_wrong: 回 claim 的句法后果
+    probes: []
+    prereq: [VB-02]
+    order: 4
+    pain_points: []
+    adult:
+      sources:
+        - "Levin & Rappaport Hovav (1995); Rappaport Hovav & Levin (2010)；LSA 2015 讲义 http://web.stanford.edu/~bclevin/lsa15intro.pdf"
+      boundary: 后续发展须与 1993 原书分开标；强倾向而非定律。
+      disputes: Goldberg (2001, 2005）等对「省略宾语」等预测提出过反例与弱化版本（见讲义自注），互补说的精确形式至今仍在修订中（如实保留）。
+      evidence_grade: 作者讲义核实
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-04}
+
+  - id: VB-05
+    zone: 支撑层
+    group: VB
+    subgroup: "Leech:把动词短语拆成意义成分"
+    audience: 教师/设计层
+    headline: 完成体不是「做完」，是「过去牵着现在」：Leech 与 Comrie 在这一点上互相印证
+    headline_kid: 完成时说的是「以前的事，现在还算数」：I have lost my key 重要的不是「丢」这个动作，是「现在没钥匙」这个后果还立着。
+    claim:
+      type: tendency
+      statement: "Leech 把表达过去的两种手段并置：过去时把事件钉在已关闭的过去时段，完成体表达「past involving the present」（2004: 36）——事件发生在过去，但其效力区间延伸到说话时刻。现在完成体用法可清单化为可判读的几型：持续型（That house has been empty for ages, 2004: 36）、不定型/经历—结果型（The taxi has arrived, 2004: 39）等；真正的教学难点是选择：同一件过去的事，选过去时还是完成体，取决于说话人要不要把它和现在挂钩。"
+      evidence:
+        - "Leech (1971; 3rd ed. 2004), Meaning and the English Verb, Pearson/Longman, 第 1–3 章（第 3 版目录经 Routledge 出版社页核对；用法分类与页码经筑波大学论文逐处引用与马来 ESL 研究系统转述核实）"
+        - "Palmer (1976: 50-1) 独立地称现时相关恰当解决了完成体的选择问题（转引登记）——Leech、Comrie (1976)、Palmer 三家汇合（另见 CG-07）"
+      scope: Leech 的分类是教学导向的用法清单，不是单一语义公式。
+      exceptions:
+        - 「现时相关」被 Salkie 等批评为更像由时间意义推出的自然推理而非基本义本身（TA-05 已登记 Dahl & Hedin、McCoard 之争）——清单化讲法回避不了这个理论争议，只是把它推迟。
+    mechanism:
+      - beat: 选择问题+用法清单
+        text_kid: 完成时说的是「以前的事，现在还算数」。
+        text_adult: 与清单 TA-05 的关系是互证而非修正：TA-05 取 Comrie 的统一式定义，本条补上 Leech 的「选择问题＋用法清单」操作面（清单对照节登记 TA-05 目前未采清单化，是已知的对冲缺口）；TA-12 的语法化来历是 Leech 框架不处理的历史层，二者互补。
+        visual: 过去时（已关闭时段）vs 完成体（效力延伸到现在）的时间图
+        anchors: [G4_0740, V6_MORPH_58, G3_0972, V6_家庭_35]
+    examples:
+      - level: 1
+        word_ids: [G4_0740, V6_MORPH_58]
+        sentence: "I have lost my key."
+        scene_note: 清单原文招牌例：重要的不是「丢」，是「现在没钥匙」
+        supports: claim
+      - level: 2
+        word_ids: [G3_0972]
+        form: "The taxi has arrived（不定型/经历—结果型，Leech 2004: 39 例；arrived 经 verb_form_of 归一至 arrive）"
+        scene_note: 清单原文例
+        supports: claim
+    error_cases:
+      - wrong: 把完成体教成「动作做完了」
+        right: 判据是过去牵着现在（现时相关），教学按选择问题+用法清单展开
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim；与 CG-07 薄冰判据同向。
+    relatives:
+      - {id: CG-07, rel: 对照}
+    quiz:
+      - q: 选过去时还是完成体，取决于什么？
+        options: [动作是否做完, 说话人要不要把过去的事和现在挂钩, 动词长短, 时间远近]
+        answer: 说话人要不要把过去的事和现在挂钩
+        hint_on_wrong: 回机制小节「选择问题+用法清单」
+    probes: []
+    prereq: []
+    order: 5
+    pain_points: []
+    adult:
+      sources:
+        - "Geoffrey Leech (1971/1987/2004), Meaning and the English Verb, Pearson/Longman, 152 pp.；Routledge 出版社页 https://www.routledge.com/Meaning-and-the-English-Verb/Leech/p/book/9780582784574；筑波大学论文转引 https://tsukuba.repo.nii.ac.jp/record/2006888/files/TES_39-153.pdf"
+      boundary: 用法清单是描写/教学工具，不声称统一式争议已解。
+      disputes: 与 TA-05 的分歧只在统一式是否成立这一理论层，TA-05 已有登记，两边不冲突（如实保留）。
+      evidence_grade: "目录+书评级（清单接触等级总表）：全书 PDF 在登录墙后，正文未打开，页码经转述核实"
+      pending:
+        - "Leech 全书正文未打开；「时间图」作为其招牌教具系二手教材论述的通行说法，未在原书页面亲见图例，条目中已避免坐实到具体图式"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-05}
+
+  - id: VB-06
+    zone: 支撑层
+    group: VB
+    subgroup: "Leech:把动词短语拆成意义成分"
+    audience: 教师/设计层
+    headline: 进行体三件套：持续、有限期、不必做完——外加「临时性消失时」的特殊读法
+    headline_kid: 进行时像把镜头推近、只看中间一段：事情在进行（持续），只是眼下这一阵（有限期），而且没说做完没做完（不必完成）。
+    claim:
+      type: tendency
+      statement: "Leech 把进行体的意义拆成可核查的成分（1976: 15, 22 清单，经二手系统转述）：① 持续（duration)；② 有限的持续（limited duration，即临时性）；③ 活动不必抵达完成。精细推论：当「临时性」成分缺席（如配 always/forever/continually)，进行体反而读出反复、夸张的习惯化色彩。"
+      evidence:
+        - "Leech《Meaning and the English Verb》第 2 章「Progressive Aspect」（成分清单经伊拉克高校 TAM 综述对 Leech (1976: 15, 22) 的转述核实）"
+        - "咖啡对照例（Leech 1971: 17) 经 Salkie (1989) JL 论文原文转引核实"
+      scope: 成分清单是描写工具，不声称每项都是不可再分的语义原子。
+      exceptions:
+        - 进行体的礼貌试探用法（I was wondering…）、将来安排用法（I'm leaving tomorrow) Leech 另有处理，不能从三件套直接推出，须与 TA-08（距离义）、TA-13（安排义）合看。
+    mechanism:
+      - beat: 成分检查单
+        text_kid: 进行时像把镜头推近、只看中间一段：持续、只是眼下这一阵、没说做完没做完。
+        text_adult: "招牌对照——When we arrived she made some coffee（到达后才做）vs she was making some coffee（到达落在做咖啡中间）——用一个时间关系图钉死简单/进行之别。这套成分拆法解释状态动词为何抗拒进行体（无「过程」可截取，与 TA-07 的 Vendler 情状类型衔接）。与 TA-03 的关系：TA-03 用 Langacker 图象给统一识解，Leech 给可逐项核查的成分表——一幅图 vs 一张检查单，互证而侧重不同（清单原文登记）。"
+        visual: 咖啡对照的时间关系图（到达点落在过程内/外）
+        anchors: [G4_0945]
+    examples:
+      - level: 1
+        word_ids: [G4_0945]
+        form: "she made some coffee vs she was making some coffee（Leech 1971: 17 招牌对照）"
+        scene_note: 清单原文例
+        supports: claim
+    error_cases:
+      - wrong: 把进行时教成一句口诀「正在进行」
+        right: 按三件套逐项核查（持续/有限期/不必完成），边角用法另与 TA-08/TA-13 合看
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 与 exceptions。
+    relatives:
+      - {id: VB-05, rel: 同族}
+    quiz:
+      - q: 进行体三件套不包括哪一项？
+        options: [持续, 有限的持续, 不必抵达完成, 必须与现在有关系]
+        answer: 必须与现在有关系
+        hint_on_wrong: 回 claim 的三成分（现时相关是完成体的判据，见 VB-05）
+    probes: []
+    prereq: [VB-05]
+    order: 6
+    pain_points: []
+    adult:
+      sources:
+        - "Leech《Meaning and the English Verb》第 2 章；TAM 综述转引 https://iasj.mohesr.gov.iq/journals/uploads/2024/12/06/6fb48ce39314846e9a8c984b152dac78.pdf；Salkie (1989) 转引"
+      boundary: 成分是描写工具，非语义原子；礼貌与安排用法须另行处理。
+      disputes: 与 TA-03 的异同：统一图象 vs 成分检查单，二者互证（都反对「进行时＝正在进行」的口诀），但 Leech 的清单能解释「临时性缺席」这类图象说解释不了的边角，这是 TA 组目前没有的（如实保留）。
+      evidence_grade: 目录+书评级（成分清单经转述核实）
+      pending:
+        - "同 VB-05：Leech 全书正文未打开"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-06}
+
+  - id: VB-07
+    zone: 支撑层
+    group: VB
+    subgroup: "Leech:把动词短语拆成意义成分"
+    audience: 教师/设计层
+    headline: Leech 的章名就是立场：没有「将来时」一章，只有「将来时间的表达」
+    headline_kid: 英语动词身上根本没有「将来」这个零件；说将来的事，是拿现在的零件临时拼的：安排表、预言、打算，各拼各的。
+    claim:
+      type: tendency
+      statement: Leech 第 3 版目录八章里，将来对应的不是 "The Future Tense" 而是「The Expression of Future Time」——将来不是动词的一个时（tense)，而是一组表达手段的集合（will 情态义、be going to、现在进行表安排、一般现在表时刻表），每种手段自带情态色彩（预言/意图/安排/既定事实）。同理第 8 章把虚拟、假设处理为语气问题而非「时态倒退」。
+      evidence:
+        - "Leech (2004) 全书目录（Routledge 出版社页核对，同 VB-05）"
+        - "与 Palmer《The English Verb》把 will/shall 单列「The modals WILL and SHALL」一章完全同向（见 VB-08）"
+      scope: 章名证据是间接证据——它证明 Leech 的范畴立场，不等于他否认 will 的时间指向用法；教学上「将来表达拼盘」仍需逐个交代各拼件的默认读法（TA-10/TA-11/TA-13 在做）。
+      exceptions:
+        - 分歧不在结论而在讲法：清单 TA-02 用「没有这个词形」的形态判据，Leech 用「表达手段拼盘」的功能判据，前者干净、后者更贴近使用场景。
+    mechanism:
+      - beat: 章名即立场
+        text_kid: 英语动词身上根本没有「将来」这个零件；说将来的事，是拿现在的零件临时拼的。
+        text_adult: 与清单 TA-02（英语形态上只有两个时）互证且更早：Leech 1971 年即如此组织全书，比清单所据的 CGEL 口径更早把这一立场做成了教材结构（清单对照节登记为四方独立汇合之一）。
+        visual: 将来表达拼盘（will/be going to/进行表安排/现在表时刻表）清单图
+        anchors: [G3_K02]
+    examples:
+      - level: 1
+        word_ids: [G3_K02]
+        form: "will 在拼盘中是情态义拼件，不是「将来时」词形"
+        scene_note: 清单原文的拼盘构成
+        supports: claim
+    error_cases:
+      - wrong: 把 will 教成「将来时」标志
+        right: 将来是一组表达手段的拼盘，各拼件自带情态色彩，逐个交代默认读法
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim；与 TA-02 的形态判据互证。
+    relatives:
+      - {id: VB-05, rel: 同族}
+      - {id: VB-12, rel: 对照}
+    quiz:
+      - q: Leech 目录中与过去专章对应的将来部分叫什么？
+        options: [The Future Tense, The Expression of Future Time, Will and Shall, Future Forms]
+        answer: The Expression of Future Time
+        hint_on_wrong: 回机制小节「章名即立场」
+    probes: []
+    prereq: [VB-05]
+    order: 7
+    pain_points: []
+    adult:
+      sources:
+        - "Leech (2004) 全书目录，Routledge 出版社页（同 VB-05 链接）"
+      boundary: 章名是范畴立场的间接证据；各拼件默认读法仍需逐个交代。
+      disputes: 与 TA-02 互证且更早；分歧只在讲法（形态判据 vs 功能判据），如实登记。
+      evidence_grade: 目录核实级
+      pending: []
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-07}
+
+  - id: VB-08
+    zone: 支撑层
+    group: VB
+    subgroup: "Palmer:情态是动词系统的中心"
+    audience: 教师/设计层
+    headline: 情态先分两大阵营：对「命题真假的表态」和对「事件落地的推动」
+    headline_kid: 情态动词说两种事：一种是猜——「他可能在办公室」（我对这句话是真是假的把握）；一种是推——「你必须去」（我让事情发生的劲）。同一个 must 两边都能站，要看它管的是「话」还是「事」。
+    claim:
+      type: tendency
+      statement: "Palmer 的总框架：情态与时、体并列，是动词系统的一大范畴，关乎命题的地位。先分命题情态（propositional modality：说话人对命题事实地位的判断——认识情态 epistemic + 证据情态 evidential, 2001: 8）与事件情态（event modality：指向尚未实现的潜在事件——义务情态 deontic + 动力情态 dynamic, 2001: 8)；英语的诊断：同一情态动词常横跨两阵营，但有形式手段可分辨（认识义 must/may 不能被否定辖域覆盖、后接 have+分词必为认识义、义务义 may 可替换为 can 而认识义替换后意义翻转）。"
+      evidence:
+        - "Palmer (1986; 2nd ed. 2001), Mood and Modality, CUP, 236 pp., 第 1–4 章（目录经原书书前页影印与 SIL 正式书评双核；定义原文 2001: 8, 10 经 Depraetere & Reed《Handbook of English Linguistics》章节逐字转引核实）"
+        - "Palmer《The English Verb》（初版 1974；第 2 版 1987/88, Longman）第 6、7 章结构与 phase（相）处理（Routledge 出版社页核对）"
+      scope: 四分（认识/证据/义务/动力）是分析框架而非词表：具体到 can 的每个用法归哪类，学界（CGEL 的处理、Coates 的语料研究）有不同切法；Palmer 本人也承认英语两阵营形式同形是常态，诊断手段是倾向性的。
+      exceptions:
+        - 例（清单原文）：He may come tomorrow 两读；同一个 must 两边都能站。
+    mechanism:
+      - beat: 命题/事件二分+形式诊断
+        text_kid: 情态动词说两种事：一种是猜，一种是推——要看它管的是「话」还是「事」。
+        text_adult: 2001 年版以 122 种语言的材料重写初版，把英语情态放回类型学地图：命题/事件之分、realis/irrealis 对立在无关语言中反复出现，证明这不是为英语量身定做的标签。Palmer 另把完成体称作 phase（相）而非 aspect 的一部分，以示其「与现在关联」的独立地位（与 VB-05 互证）。
+        visual: 命题情态/事件情态二分与四子类图 + 形式诊断清单
+        anchors: []
+    examples:
+      - level: 1
+        word_ids: [G5_0608, V6_日常_2]
+        form: "He may come tomorrow（may 两读：认识义/义务义）"
+        scene_note: 清单原文例
+        supports: claim
+    error_cases:
+      - wrong: 只用力图式讲 must，不给学生「先分命题/事件、再看形式诊断」的判断程序
+        right: Sweetser 力图式与 Palmer 范畴地图互补并用（见 disputes）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 disputes 的互补缺口登记。
+    relatives:
+      - {id: VB-09, rel: 同族}
+    quiz:
+      - q: 后接 have + 分词的 must/may 必为哪一阵营？
+        options: [事件情态（义务）, 命题情态（认识）, 两者皆可, 动力情态]
+        answer: 命题情态（认识）
+        hint_on_wrong: 回 claim 的形式诊断
+    probes: []
+    prereq: []
+    order: 8
+    pain_points: []
+    adult:
+      sources:
+        - "F. R. Palmer (1986/2001), Mood and Modality, CUP；SIL 书评 https://www.scribd.com/document/264763295/SILEBR-2004-010；《The English Verb》Routledge 页 https://www.routledge.com/The-English-Verb/Palmer/p/book/9780582297142（注：Palmer《The English Verb》初版为 1974，任务书所记 1965 未见于任何书目记录，应为误记，清单已按 1974 著录）"
+      boundary: 分析框架而非词表；诊断手段是倾向性的。
+      disputes: 与清单 Sweetser 力动态线（GR 组）的关系：同一现象、两套统一式。Sweetser 用力图式把根情态与认识情态连成一个隐喻家族，解释「为什么同一个词管两边」；Palmer 用功能分类加形式诊断回答「这两边怎么分、在语言里怎么组织」。Sweetser 给认知机制，Palmer 给范畴地图与判据；清单目前只有 Sweetser 一线，缺 Palmer 的地图——是互补缺口，不是互斥分歧。此外两处「主观」含义不同（Palmer 的主观性是范畴的定义性特征，Sweetser 的主观化是历时—认知路径），引用时不可混用（如实保留）。
+      evidence_grade: "目录+书评级（清单接触等级总表）：定义经逐字转引核实，正文未通读"
+      pending:
+        - "《Mood and Modality》第 8 章「Past Tense as Modal」的内部论证未打开正文，仅据目录与框架转述；《The English Verb》中 phase 术语的完整论证同此"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-08}
+
+  - id: VB-09
+    zone: 支撑层
+    group: VB
+    subgroup: "Palmer:情态是动词系统的中心"
+    audience: 教师/设计层
+    headline: 「过去时也是情态」：形式上的后退一步，同时是时间、真实与礼貌上的后退
+    headline_kid: 英语把「往后退一格」当成万能的客气与假设开关：事情退到过去（I went）、退出现实（If I went tomorrow…）、退远关系（I wanted to ask…）——用的是同一个形式动作。
+    claim:
+      type: tendency
+      statement: Palmer 专设第 8 章「Past Tense as Modal」：过去时形式在大量语言中兼表非现实（irrealis)，英语 if I were / I wish I knew、礼貌试探 I wondered if…、转述后退都是同一机制——「过去」范畴的核心义含「与当下现实的距离」，时间距离只是其一。他在《The English Verb》中亦把时与相（phase）分章，使「过去形式」从纯时间标签中解放出来。
+      evidence:
+        - "Palmer (2001), Mood and Modality, 第 8 章（目录核对，同 VB-08）"
+        - "Palmer (1986: 16) 语气定义「the grammaticalization of speakers' (subjective) attitudes and opinions」经阿拉伯语/英语语气对比综述逐字转引核实"
+      scope: 「距离」是统一的语义倾向，不是每个过去形式都能自由转用。
+      exceptions:
+        - 历史现在时（TA-14）恰恰是反向操作（拉近），说明方向由语篇功能决定，形式只提供「可调距离」这一个维度。
+    mechanism:
+      - beat: 距离即通义
+        text_kid: 英语把「往后退一格」当成万能的客气与假设开关，用的是同一个形式动作。
+        text_adult: 类型学上「过去＝非现实」的共现极为广泛（第 6、7 章 realis/irrealis 与虚拟式材料），英语只是其中一例；这给「距离」义提供了跨语言而非英语内部的证据等级。
+        visual: 时间远/现实远/关系远三用同源图
+        anchors: [V6_日常_1, V6_学校_69]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_1]
+        form: "If I went tomorrow…：go 的过去形式表非现实，不是表过去"
+        scene_note: 清单原文例
+        supports: claim
+      - level: 2
+        word_ids: [V6_学校_69]
+        form: "I wanted to ask…：ask 前的过去形式退远关系（礼貌试探）"
+        scene_note: 清单原文例（wanted 经 verb_form_of 归一至 want）
+        supports: claim
+    error_cases:
+      - wrong: 把过去形式一律按时间义教，礼貌/假设/转述三用当作互不相干的例外罗列
+        right: 三用同属 irrealis/距离范畴，按统一主线讲（与 VB-13 remote 三方汇合）
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的类型学论证。
+    relatives:
+      - {id: VB-13, rel: 对照}
+      - {id: VB-08, rel: 前置}
+    quiz:
+      - q: 「过去」范畴的核心义含什么？
+        options: [已完成, 与当下现实的距离, 动作重复, 语气强烈]
+        answer: 与当下现实的距离
+        hint_on_wrong: 回机制小节「距离即通义」
+    probes: []
+    prereq: [VB-08]
+    order: 9
+    pain_points: []
+    adult:
+      sources:
+        - "Palmer (2001), Mood and Modality, 第 8 章；(1986: 16) 定义转引（同 VB-08 链接系）"
+      boundary: 统一倾向而非自由转用；方向由语篇功能决定。
+      disputes: 与清单 TA-08（过去管距离）强互证，且提供其缺失的上位原理：TA-08 罗列礼貌、假设、转述三用，Palmer 给出类型学论证；与 Lewis VB-13 的 remote 说三方汇合——同一结论由类型学（Palmer)、教学语法（Lewis)、认知语法（Langacker 一系）各自独立得出，是本领域最稳固的共识之一（如实保留）。
+      evidence_grade: 目录+书评级（第 8 章内部论证待核）
+      pending:
+        - "同 VB-08：第 8 章内部论证未打开正文"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-09}
+
+  - id: VB-10
+    zone: 支撑层
+    group: VB
+    subgroup: "Bolinger:短语动词是可分析的机器"
+    audience: 教师/设计层
+    headline: 小品词自带两件行李：「穿过某地而动」＋「抵达终点/产生结果」
+    headline_kid: up、out、off 这些小词不是装饰：它们走到哪儿都带着「动起来、穿过去」和「到头了、有结果了」两层意思，所以 eat up 是「吃光」，write out 是「写完整」，不是随便搭的。
+    claim:
+      type: tendency
+      statement: "Bolinger 的核心主张（pp. 85–87，经多篇学术文献一致转引）：任一小品词的基本义必含两个特征——motion through location（经由空间的运动）与 terminus or result（终点或结果）。由此推出小品词的体貌功能：给原本无终点的动词装上终点（perfective/resultative, p. 96)，eat 无界、eat up 有界即此。每个小品词都有一张可核查的「语义身份证」（如 on 的基本义是保持在视野内的水平持续，pp. 89, 107)，而不是一串例外的清单。"
+      evidence:
+        - "Bolinger (1971), The Phrasal Verb in English, Harvard University Press（定义 p. 4；特征说 pp. 85–87；体貌说 pp. 96–97；on 说 pp. 89, 107——均经尼什大学《Facta Universitatis》两篇体貌研究与 VPC 及物性研究带页码转引）"
+      scope: 教学中只宜取 up/out/off/away 等高频小品词的核心义网络。
+      exceptions:
+        - Bolinger 自设例外：并非所有小品词用法都保得住两特征（隐喻引申越远越稀薄）；on 一类持续小品词是「结果」特征的系统性例外，他本人以「持续即其基本义」处理而非硬套。
+    mechanism:
+      - beat: 两特征说
+        text_kid: 小词走到哪儿都带着「动起来、穿过去」和「到头了、有结果了」两层意思。
+        text_adult: Brinton (1985）以降的体貌研究普遍以 Bolinger 的「结果/终点」说为讨论起点；ACL 的 VPC 计算研究证实小品词的体貌义可操作化地区分并预测组合。本条是清单 P 组 Lindner（out/up 图式义）的源头论证者——缺了它，「短语动词按图式义＋动词成组教」的建议缺了最初的论证（清单对照节登记）。
+        visual: 小品词语义身份证卡（以 up/out/on 为例）
+        anchors: [G3_K19, G3_K21, G3_142, V6_日常_15, G3_0487]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_15, G3_K19]
+        form: "eat up：up 给无界的 eat 装上终点（吃光）"
+        scene_note: 清单原文例
+        supports: claim
+      - level: 2
+        word_ids: [G3_0487, G3_K21]
+        form: "write out：out 表「写完整」的结果义"
+        scene_note: 清单原文例
+        supports: claim
+    error_cases:
+      - wrong: 把短语动词当作无理可讲的孤立组合逐个死记
+        right: 按小品词两特征与语义身份证成组教，例外单独登记
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的两特征说与 VB-11 的能产性立场。
+    relatives:
+      - {id: VB-11, rel: 同族}
+    quiz:
+      - q: 小品词基本义的两个特征是？
+        options: [方向与速度, 经由空间的运动、终点或结果, 时间与地点, 主动与被动]
+        answer: 经由空间的运动、终点或结果
+        hint_on_wrong: 回机制小节「两特征说」
+    probes: []
+    prereq: []
+    order: 10
+    pain_points: []
+    adult:
+      sources:
+        - "Dwight Bolinger (1971), The Phrasal Verb in English, Harvard University Press；转引 http://facta.junis.ni.ac.rs/lal/lal201302/lal201302-03.pdf"
+      boundary: 只取高频小品词核心义网络；隐喻引申越远特征越稀薄。
+      disputes: 与清单的关系：清单 P 组处理介词的空间图式、V 组与 CO-12 处理语块谱系，但短语动词的小品词体貌义在清单里没有专条——Lindner (1981) 在 P 组只作出处一笔带过，Bolinger 是这条线的源头与承重墙。另注意分工之争：同一现象 Bolinger 从小品词切入（词有义），Goldberg 一系从构式切入（模具带义），VB-01 的张力在此重现（如实保留）。
+      evidence_grade: "二手系统论述级（清单接触等级总表：本簇最低）——原书与出版社目录均未打开，框架经四篇学术文献带页码系统转述重构"
+      pending:
+        - "Bolinger 原书与出版社目录均未打开；两特征说的原文措辞（motion through location / terminus）为转述的英译回引，措辞级精确性待原书复核"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-10}
+
+  - id: VB-11
+    zone: 支撑层
+    group: VB
+    subgroup: "Bolinger:短语动词是可分析的机器"
+    audience: 教师/设计层
+    headline: 习语性有三级：大多数短语动词可拆可解，只有最高一级才是死记的习语
+    headline_kid: 短语动词像三层冰：表层是看得懂的（load up 装满），中层要拐个弯（make up a face 编一张脸→编造），只有最底下薄薄一层是猜不出的老习语（put on airs 摆架子）——别把整座冰山都当成要死背的。
+    claim:
+      type: tendency
+      statement: "Bolinger (1971: 113）提出隐喻/习语性的三级（three levels of metaphor)：一级，小品词基本义的直接延伸（load up)；二级，整个短语动词的比喻性延伸（make up a face)；三级，含特定名词的固定表达（put on airs)，只有这一级接近真习语。配套的能产性立场：短语动词是英语动词系统正在生长的部分，新组合按小品词与动词的语义相容性不断被造出，教学与词典应呈现「系统＋程度」，而非把每个组合当孤立的例外登记。"
+      evidence:
+        - "Bolinger (1971)，三级说 p. 113、逐词字面—引申义讨论 pp. 98–102（经诺维萨德大学硕士论文 (2022) 第 2.1.1 节对原书的专节转述核实）"
+      scope: 三级之间没有锐利界线，归类依赖对小品词基本义的先行分析（见 VB-10)。
+      exceptions:
+        - 三级习语虽少却高频（put up with 类），教学中不能因其「层级低」而略过（清单原文：三级为最高一级、数量最少）。
+    mechanism:
+      - beat: 三级习语性
+        text_kid: 短语动词像三层冰，只有最底下薄薄一层是猜不出的老习语——别把整座冰山都当成要死背的。
+        text_adult: 后续研究（Gorlach 2004 对照、构式语法分析）大体接受「可分析性是连续谱」的图象；语料库里短语动词的高频与高产出率是能产性的经验侧面。与培训界「短语动词全靠死背」的通行做法正面冲突，属清单应显性封堵的伪前提（清单原文登记）。
+        visual: 三层冰图（一级直接延伸/二级比喻延伸/三级固定习语）
+        anchors: [V6_日常_4, G1_010, V6_日常_9]
+    examples:
+      - level: 1
+        word_ids: [V6_日常_4, G1_010]
+        form: "make up a face（二级：编一张脸→编造）"
+        scene_note: 清单原文例（一级 load up 与三级 put on airs 的构成词 load、airs 不在词库，登记补词候选）"
+        supports: claim
+    error_cases:
+      - wrong: 把全部短语动词当作死记习语教学
+        right: 按三级呈现系统与程度：大多数可拆可解，只有最高一级须整记
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的三级说。
+    relatives:
+      - {id: VB-10, rel: 前置}
+    quiz:
+      - q: 三级中哪一级接近真习语、须整记？
+        options: [一级（直接延伸）, 二级（比喻延伸）, 三级（含特定名词的固定表达）, 三级都要死记]
+        answer: 三级（含特定名词的固定表达）
+        hint_on_wrong: 回机制小节「三级习语性」
+    probes: []
+    prereq: [VB-10]
+    order: 11
+    pain_points: []
+    adult:
+      sources:
+        - "Bolinger (1971), p. 113, pp. 98–102；诺维萨德大学硕士论文 (2022) 专节转述 https://remaster.ff.uns.ac.rs/materijal/punirad/Master_rad_20220203_eng_200012_2020.pdf"
+      boundary: 三级界线不锐利，归类依赖 VB-10 的先行分析。
+      disputes: 与清单 CO-12（构式—语块谱系）图象互证、切分不同：CO-12 按抽象程度排谱系，Bolinger 按隐喻距离排层级；两套谱系在「大部分组合可分析、少数须整记」上结论一致，可互相锚定（如实保留）。
+      evidence_grade: 二手系统论述级（同 VB-10）
+      pending:
+        - "同 VB-10：原书未打开，三级说措辞级精确性待原书复核"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-11}
+
+  - id: VB-12
+    zone: 支撑层
+    group: VB
+    subgroup: "Lewis:动词语法是说话人此刻的选择"
+    audience: 教师/设计层
+    headline: 通用原则：一个形式只有一个通义；出现「例外」，错的是规则写窄了
+    headline_kid: 一个词形就像一把钥匙，只开一种锁——要是有的门开不了，不是钥匙有「例外」，是大人把锁的样子说错了。will 不是「将来专用钥匙」，它和 can、must 一样，是说话人表态的钥匙。
+    claim:
+      type: tendency
+      statement: "Lewis 第 4 章立「通用原则」（The Principle of General Use)：任一动词形式的全部用法必须能由一个足够宽的底层意义统一解释；教学语法里「先立规则、再打补丁」的目录式讲法（他点名批评 Thomson & Martinet 一类手册）必然让学习者先学一条、再被告知它不算数——规则有例外即证明规则本身错了。应用样例：一般现在时的通义是「说话人把事件看作一个无时间性的整体事实」（the speaker's view of the event as a timeless fact)；与第二形式（过去式）的对立不在时间而在 immediate vs remote。基石判语（p. 47)：「Time is not the same as tense.」"
+      evidence:
+        - "Lewis (1986), The English Verb, LTP (Hove), 180 pp., ISBN 0-906717-40-X（全书目录经 PUCE 大学图书馆书目完整核对（15 章）；一般现在时章、第二形式章原文经在线全文节选逐段核实；p. 47 引文经书评转引与原文节选双证）"
+      scope: 通用原则是方法论戒律而非已被证明的语言学定律；小学阶段只宜用它筛除假规则（如「will ＝将来时」)，不宜向孩子灌输通义本身。
+      exceptions:
+        - 「一个形式一个通义」在强多义形式（如 get）上会被拉到很抽象的层面，抽象到失去教学价值时 Lewis 本人也会停手。
+    mechanism:
+      - beat: 通用原则
+        text_kid: 一个词形就像一把钥匙，只开一种锁——开不了不是钥匙有例外，是锁的样子说错了。
+        text_adult: 该书出版后即成为 DELTA 等高级教师培训的必读书；其「两时制＋遥远义」处理与 CGEL、Leech 的描写结论一致（见 VB-07)，差别在 Lewis 把它做成了教师可直接使用的意义叙述。本条是本项目「废除假规则、形式从说话人视角讲」纲领在动词域的出处。
+        visual: 一形一通义 vs 规则+补丁目录的对照图
+        anchors: [G3_K02]
+    examples:
+      - level: 1
+        word_ids: [G3_K02]
+        form: "Boys will be boys：will 不管将来，是说话人表态（清单原文例；boys 不在词库，句以 form 登记）"
+        scene_note: 清单原文的假规则筛除例
+        supports: claim
+    error_cases:
+      - wrong: 先立窄规则、再逐条打补丁讲「例外」
+        right: 按通用原则重写规则：有例外即规则写窄了，须找到足够宽的通义
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的通用原则。
+    relatives:
+      - {id: VB-13, rel: 同族}
+      - {id: VB-07, rel: 对照}
+    quiz:
+      - q: 出现「例外」时，通用原则的诊断是？
+        options: [学生没学好, 规则本身写窄了, 例外太多应删, 词形不规则]
+        answer: 规则本身写窄了
+        hint_on_wrong: 回机制小节「通用原则」
+    probes: []
+    prereq: []
+    order: 12
+    pain_points: []
+    adult:
+      sources:
+        - "Michael Lewis (1986), The English Verb: An Exploration of Structure and Meaning, LTP；目录 https://catalogobiblioteca.puce.edu.ec/cgi-bin/koha/opac-detail.pl?biblionumber=210971；书评转引 https://closelyobserved.medium.com/the-wisdom-of-michael-lewis-7e4ebaef93be"
+      boundary: 方法论戒律而非定律；强多义形式上通义会抽象到失去教学价值。
+      disputes: 与清单 TA-01/TA-02 的关系：结论互证、路径不同。TA-02 以形态判据立「只有两个时」，Lewis 以意义判据立同一结论并多走一步：第二形式的通义是 remote，这正是 TA-08（距离义）的通义表述——TA-08 在清单里被处理为过去时的「附加用法」，在 Lewis 这里是主义项。这是本簇对 TA 组最实质的一处重心修正（非事实修正）：距离不是过去时的兼职，是它的本职之一（如实保留）。
+      evidence_grade: "章节预览级（清单接触等级总表：本簇最高之一）——一般现在时章、第二形式章、情态组章、条件句章（pp. 148–150 重印）原文节选核实"
+      pending:
+        - "未打开的章节（be going to 章、被动章等）仅据目录与二手讲义"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-12}
+
+  - id: VB-13
+    zone: 支撑层
+    group: VB
+    subgroup: "Lewis:动词语法是说话人此刻的选择"
+    audience: 教师/设计层
+    headline: 情态词是「说话人此刻的判断」，不是时态的附庸：must 与 have to 的分界在主观/客观
+    headline_kid: must 是「我觉得非这样不可」，have to 是「外面的规矩摆在那儿，非这样不可」——一个出自说话人的脑子，一个出自世界。老师上课老说 I must…，学生就以为请假也要 must，其实那是把自己的判断安到了别人头上。
+    claim:
+      type: tendency
+      statement: Lewis：第 5 章「说话人的重要性」与第 13–14 章——动词形式的选择本质上是说话人在说话时刻行使判断；情态助动词是一个封闭组（can, could, may, might, shall, should, will, would, must——含 will/shall，不含 have to/ought to)，其共义是「说话人在说话时刻对非事实状态的判断」；could/would 不是 can/will 的「过去式」，以 remote 义统一之。招牌分析：must 恒含说话人判断（主观必然），(have) to 表客观必然；正因 must 的判断绑定说话时刻，回忆过去的必然只能用 had to——「过去的 must」不存在，是其主观性义的直接推论。
+      evidence:
+        - "Lewis (1986) 第 5、13、14 章（must/have to 章节原文经在线全文节选核实；情态组清单与遥远义处理经原书条件句章 pp. 148–150（Berry《English Grammar》教材重印）核实；目录同 VB-12）"
+      scope: must 的主观性在制度化语境（规章条文中的 must）里被中和，主观/客观是倾向而非铁律；Lewis 的情态组处理是教学语法级别的简化，与 Palmer VB-08 的类型学框架相比牺牲了证据情态等细类——两者是「课堂版」与「地图版」的关系。
+      exceptions:
+        - 呈现 must 时须换主语、换外部权威例子，否则学生把说话人判断安到别人头上（清单原文的教学推论）。
+    mechanism:
+      - beat: 说话人判断
+        text_kid: must 是「我觉得非这样不可」，have to 是「外面的规矩摆在那儿，非这样不可」。
+        text_adult: Lewis 对 must/have to 的主观/客观分界与 Palmer 的动力/义务区分、以及语料研究（Coates）对 must 的说话人取向描写大体同向；TA-10 处理 will 的预言义时应与本条对读，防学习者把 will 误 filing 为时态。
+        visual: 主观必然（must）vs 客观必然（have to）的来源对照
+        anchors: [G3_K03, V6_日常_5]
+    examples:
+      - level: 1
+        word_ids: [G3_K03]
+        form: "must：说话人此刻的判断（主观必然）"
+        scene_note: 清单原文招牌分析
+        supports: claim
+      - level: 2
+        word_ids: [V6_日常_5]
+        form: "have to：客观必然（have 的构成词入挂接；had to 为其过去形式，归一至 have）"
+        scene_note: 清单原文招牌分析
+        supports: claim
+    error_cases:
+      - wrong: 用 must 替他人陈述外部规矩的必然（如替学生请假场景滥用 must），或把 could/would 教成 can/will 的过去式
+        right: must 绑定说话人判断；回忆过去的必然用 had to；could/would 按 remote 义统一讲
+        error_type: 教学设计误用
+        source_type: 条目成人层登记
+        diagnosis: 回指 claim 的招牌分析。
+    relatives:
+      - {id: VB-12, rel: 前置}
+      - {id: VB-08, rel: 对照}
+      - {id: VB-09, rel: 对照}
+    quiz:
+      - q: 为什么不存在「过去的 must」？
+        options: [must 没有过去式词形且其判断绑定说话时刻, 约定俗成, must 只能用于将来, 语法书漏收]
+        answer: must 没有过去式词形且其判断绑定说话时刻
+        hint_on_wrong: 回 claim 的招牌分析推论
+    probes: []
+    prereq: [VB-12]
+    order: 13
+    pain_points: []
+    adult:
+      sources:
+        - "Lewis (1986) 第 5、13、14 章；条件句章重印 https://philology.science/grammar/grammar_24/120.html；目录同 VB-12"
+      boundary: 主观/客观是倾向；教学语法级简化与 Palmer 地图版互补。
+      disputes: 与清单的关系：GR 组 Sweetser 力动态（must＝强迫力）与本条「说话人判断」是同一枚硬币的两面（力图式回答「为什么是强迫感」，Lewis 回答「判断归谁」）；清单中 Lewis 此前只以「词块教学」身份出现于 V 组，其动词专著框架（VB-12/VB-13）在清单里完全缺席——这是「看不到思想影子」批评在动词域最具体的一处（清单原文登记，如实保留）。
+      evidence_grade: 章节预览级（原文节选核实）
+      pending:
+        - "同 VB-12：未打开章节仅据目录与二手讲义；p. 47 引文经书评转引与原文节选双证（VB-12 已登记）"
+    status: 入模中
+    version: "1.0"
+    changelog:
+      - {date: 2026-11-01, change: 由清单 v6 转化入模（F2 波次）, basis: 清单 v6 VB-13}

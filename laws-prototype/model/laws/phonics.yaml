@@ -1,0 +1,6055 @@
+meta:
+  file: phonics.yaml
+  zone: 拼读
+  groups:
+  - S
+  - SR
+  schema: DESIGN.md §3 规律条目 schema v1
+  source_catalog: expert-summaries-catalog-v6.md（S 组 43 条 + SR 组 9 条）
+  wave: 入模波次 W1·拼读区（数据补齐总攻·波次 A）
+  date: '2026-11-01'
+  entry_count: 52
+  note: 例词 word_ids 按词形字符串暂记于 examples.words/hitching 表，id 由收官步统一解析（WORDBANK.md 口径）；quiz/scene_spec/mechanism.visual/examples.sentence 全区待补，见各条 gaps 与 phonics_MODEL.md 待补清单。
+entries:
+- id: S-01
+  zone: 拼读
+  group: S
+  order: 1
+  headline: 先系统地学字母—声音对应、而且越早开始收益越大，这是全领域证据最硬的一条教学结论
+  headline_kid: 先把字母和声音一对一对学清楚，越早学会拼，后面读得越顺。
+  claim:
+    type: rule
+    statement: 字母—声音对应必须按计划显性、系统地教完；越早开始（幼儿园/一年级），收益越大。
+    evidence:
+    - 美国国家阅读委员会（NRP）2000 年报告《Teaching Children to Read》字母学分报告；期刊版：Ehri, Nunes, Stahl & Willows (2001)《Systematic Phonics Instruction Helps Students Learn to Read》, Review of Educational Research 71(3)，38 项实验、66 组对照的元分析。链接：https://psycnet.apa.org/record/2002-18026-002
+    - 支撑：元分析总效应 d=0.41，幼儿园/一年级开始 d=0.55，效果在教学结束后仍保持，对解码、认词、拼写、理解均有收益。
+    scope: 解码教学层；拼读管「认词」不管「读懂」，不能替代语言理解教学（见 S-07）。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 系统拼读的必要性
+      text_adult: 英语拼写是「深正字法」，对应关系成百上千；只有把对应关系按计划显性教完，孩子解码新词时才有可调用的规则库存，而不是靠猜图猜上下文。
+      anchors: []
+      text_kid: 先把字母和声音一对一对学清楚，越早学会拼，后面读得越顺。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-07
+    rel: 对照
+  - id: S-06
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 读不快
+  - 错不完
+  adult:
+    sources:
+    - 美国国家阅读委员会（National Reading Panel）2000 年报告《Teaching Children to Read》字母学分报告；Ehri, Nunes, Stahl & Willows (2001), Review of Educational Research 71(3)。https://psycnet.apa.org/record/2002-18026-002
+    boundary: 对含认知障碍的低成就读者未见显著收益；拼读管「认词」不管「读懂」，不能替代语言理解教学（见 S-07 的分歧说明）。
+    disputes:
+    - NRP 报告的方法学长期受批评（如取样与编码口径之争），但「系统拼读优于非系统/无拼读」的方向性结论在后续综述（Torgerson et al. 2006；Castles et al. 2018）中被反复确认，争的是效应大小不是方向。
+    evidence_grade: 一手元分析（期刊原文著录）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-02
+  zone: 拼读
+  group: S
+  order: 2
+  headline: 认词不是把词形拍成照片存起来，而是把拼写、读音、词义在脑子里「焊」成一个整体
+  headline_kid: 记住一个词，不是把它当图画背，而是把每个字母和它的声音对上号，对上号的词才记得牢。
+  claim:
+    type: rule
+    statement: 熟词的形成机制是正字法映射：用字母—音素连接把拼写逐段绑定到读音，词以「拼写—读音—意义」三位一体进入长时记忆。
+    evidence:
+    - 'Linnea C. Ehri (2014)《Orthographic Mapping in the Acquisition of Sight Word Reading, Spelling Memory, and Vocabulary Learning》, Scientific Studies of Reading 18(1): 5–21。'
+    - 支撑：映射说解释了为什么「看词卡背整词」效率低、而会拼读的孩子见过几遍生词就能自认——与 S-04 自我教学机制互为表里。
+    scope: 以音素分割能力和字母知识为前提；不规则词中只有个别字母不合规，其余部分照样可映射。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 正字法映射
+      text_adult: Ehri 的正字法映射（orthographic mapping）：当孩子用字母—音素连接把拼写逐段绑定到读音上时，词就以「拼写—读音—意义」三位一体的方式进入长时记忆，成为一眼认出的熟词；只看外形记的词换了字体、大小写就认不出。
+      anchors:
+      - sword
+      text_kid: 记住一个词，不是把它当图画背，而是把每个字母和它的声音对上号，对上号的词才记得牢。
+  examples:
+  - level: 1
+    group: 不规则词的部分映射
+    words:
+    - sword
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-04
+    rel: 同族
+  - id: S-25
+    rel: 同族
+  - id: S-03
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 记不住
+  - 读不快
+  adult:
+    sources:
+    - 'Linnea C. Ehri (2014), Scientific Studies of Reading 18(1): 5–21；UFLI 对 Ehri 阶段论与映射机制的教学转述：https://ufli2.education.ufl.edu/wp-content/uploads/2022/01/EhriPhases.pdf'
+    boundary: 映射以音素分割能力和字母知识为前提，两者未备时强推映射无效；不规则词中只有个别字母不合规，其余部分照样可映射（sword 只有 w 不发音）。
+    disputes: []
+    evidence_grade: 一手论文（总结性论文）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-03
+  zone: 拼读
+  group: S
+  order: 3
+  headline: 孩子认词要走四个台阶：看图猜词 → 只用首尾字母 → 逐字母全拼 → 成块认词
+  headline_kid: 认词像上楼梯：先是看样子猜，再是认头一个字母，然后每个字母都能拼，最后看到词块一下就认出来。
+  claim:
+    type: tendency
+    statement: 认词发展按主导连接类型分四阶段（前字母期 / 部分字母期 / 完全字母期 / 巩固字母期）渐进重叠推进，每阶段补对应的知识。
+    evidence:
+    - Linnea C. Ehri (1995)《Phases of Development in Learning to Read Words by Sight》；Ehri & McCormick (1998) 教学含义阐发。来源：https://ufli2.education.ufl.edu/wp-content/uploads/2022/01/EhriPhases.pdf
+    - 支撑：阶段论给教学排了序：哪个阶段补哪种知识（音素意识、字母、全对应、词块）有明确对应，是 decodable 文本分级设计的理论依据之一。
+    scope: 阶段按「主导连接类型」划分；同一孩子可同时用多种策略；对汉语背景儿童，拼音经验会改变早期阶段的表现形态（具体迁移形态本条未展开）。
+    exceptions:
+    - 阶段是渐进重叠的，不是某天突然跳级；同一孩子可同时用多种策略。
+  mechanism:
+    beats:
+    - beat: 四阶段与连接类型
+      text_adult: 每个台阶由当时掌握的字母知识类型决定——连接是部分的就只能部分解码（首字母+上下文猜），连接完整才能全词映射，连接成块（词族、词缀、音节）才能处理多音节词；台阶是渐进重叠的，不是某天突然跳级。
+      anchors: []
+      text_kid: 认词像上楼梯：先是看样子猜，再是认头一个字母，然后每个字母都能拼，最后看到词块一下就认出来。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-04
+    rel: 对照
+  - id: S-02
+    rel: 同族
+  - id: S-23
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 读不快
+  adult:
+    sources:
+    - Linnea C. Ehri (1995)；Ehri & McCormick (1998)。https://ufli2.education.ufl.edu/wp-content/uploads/2022/01/EhriPhases.pdf
+    boundary: 阶段按「主导连接类型」划分，同一孩子可同时用多种策略；对汉语背景儿童，拼音经验会改变早期阶段的表现形态，具体迁移形态本条未展开。
+    disputes:
+    - （轻度）Share 的自我教学说主张发展是「逐词条」的连续积累而非阶段跳跃（见 S-04），两说在「有没有阶段」上有张力，在教学结论上基本兼容。
+    evidence_grade: 一手论文 + 教学转述
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-04
+  zone: 拼读
+  group: S
+  order: 4
+  headline: 每自己拼对一个生词，孩子就给自己上了一课——解码是阅读的「自我教学」机器
+  headline_kid: 你自己拼出一个新词，就等于自己教会了自己这个词；拼得越多，认识的词越多。
+  claim:
+    type: rule
+    statement: 成功解码一次生词即在记忆里钉下该词的拼写细节；几次成功相遇后词转为熟词——解码能力是词汇自扩的引擎。
+    evidence:
+    - 'David L. Share (1995)《Phonological Recoding and Self-Teaching: Sine Qua Non of Reading Acquisition》, Cognition 55(2): 151–218；源头 Jorm & Share (1983)。https://psycnet.apa.org/record/1996-90411-001'
+    - 支撑：Share 的假词实验显示，读过含假词短文的二年级儿童，三天后对目标拼写的辨认、命名速度与拼写都显著优于只看不读的对照。
+    scope: 解码技能只提供自我教学的「机会」，是否利用取决于阅读量和对拼写细节的注意。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 自我教学机制
+      text_adult: 成功解码一次生词，就在记忆里钉下该词的拼写细节；几次成功相遇后词转为熟词。生词在阅读量面前多到不可能逐个教，只能靠这个自转机制——这就是拼读必须教到「能独立拼」的深层理由。
+      anchors: []
+      text_kid: 你自己拼出一个新词，就等于自己教会了自己这个词；拼得越多，认识的词越多。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-02
+    rel: 同族
+  - id: S-03
+    rel: 对照
+  prereq: []
+  pain_points:
+  - 记不住
+  - 读不快
+  adult:
+    sources:
+    - 'David L. Share (1995), Cognition 55(2): 151–218。https://psycnet.apa.org/record/1996-90411-001'
+    boundary: 解码技能只提供自我教学的「机会」，是否利用取决于阅读量和对拼写细节的注意；不读课外书的孩子机制空转。
+    disputes: []
+    evidence_grade: 一手论文（奠基论文）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-05
+  zone: 拼读
+  group: S
+  order: 5
+  headline: 听觉上先有「块」再有「个」：孩子先听得出押韵和词块（首音—韵脚），然后才听得出单个音素
+  headline_kid: 耳朵学声音是先听出大块（哪个词和哪个词押韵），再听出小块（每个小声音）。
+  claim:
+    type: tendency
+    statement: 语音意识的发展次序是先大单位（押韵、首音—韵脚）后小单位（音素）；学前押韵敏感度预测后来的阅读成绩。
+    evidence:
+    - Usha Goswami & Peter Bryant (1990)《Phonological Skills and Learning to Read》(Erlbaum)；实验根基为 Bradley & Bryant 的押韵怪词研究。https://www.academia.edu/67386986/Phonological_Skills_and_Learning_to_Read
+    - 支撑：纵向研究显示学前押韵敏感度在控制智力与词汇后仍预测后来的阅读成绩；Goswami 的线索词实验证明初学者自发用韵脚类比读生词。
+    scope: 韵脚类比只覆盖拼法一致的词族；同音异形与异读韵脚（如 -ea 家族）类比会出错，须与变脸名单教学配合。
+    exceptions:
+    - 韵脚类比用于拼法不一致的词族（如 -ea 家族）会出错。
+  mechanism:
+    beats:
+    - beat: 首音—韵脚与类比阅读
+      text_adult: 音节天然分成首音（onset）和韵脚（rime）；学前儿童对韵脚的敏感先于音素意识出现，并能凭「同韵脚同拼法」的类比读新词（会 beak 就能试 peak）。所以拼读教学前面要先有押韵、头韵等大单位的听辨游戏打底。
+      anchors:
+      - beak
+      - peak
+      text_kid: 耳朵学声音是先听出大块（哪个词和哪个词押韵），再听出小块（每个小声音）。
+  examples:
+  - level: 1
+    group: 韵脚类比
+    words:
+    - beak
+    - peak
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-06
+    rel: 同族
+  - id: S-42
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 听不懂
+  - 读不快
+  adult:
+    sources:
+    - Usha Goswami & Peter Bryant (1990), Erlbaum。https://www.academia.edu/67386986/Phonological_Skills_and_Learning_to_Read
+    boundary: 韵脚类比只覆盖拼法一致的词族；英语有大量同音异形与异读韵脚（如 -ea 家族），类比到这些词上会出错，须与变脸名单教学配合。
+    disputes:
+    - Goswami 学派强调大单位（韵脚）路径，Ehri/NRP 一线强调音素级映射是熟词形成的必经之路；主流共识已调和（韵脚意识是前奏与辅助，音素意识是解码的必需条件），但两条路径的课时配比仍无定论。
+    evidence_grade: 一手专著
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-06
+  zone: 拼读
+  group: S
+  order: 6
+  headline: 字母和声音的对应是「多半如此」的统计倾向，不是定律：先教最稳的一批，剩下的进变脸名单逐个记
+  headline_kid: 字母的发音大多数时候算数，但有些词会「变脸」；变脸的词我们一个一个单独记住。
+  claim:
+    type: tendency
+    statement: 字母—声音对应是统计倾向而非定律：高一致性对应做系统拼读主线，低一致性项目（如 ea、ough、词尾 -er）做显性「变脸名单」逐个记。
+    evidence:
+    - 'Marilyn Jager Adams (1990)《Beginning to Read: Thinking and Learning about Print》(MIT Press)；Castles, Rastle & Nation (2018)《Ending the Reading Wars》, Psychological Science in the Public Interest 19(1)。https://eric.ed.gov/?id=ED317950'
+    - 支撑：Adams 的综述确立「熟练阅读 = 正字法、语音、语义三系统协同」；Castles 等综合 300 余项研究，确认拼读是核心但非全部。
+    scope: 统计倾向随年级而变：低年级文本对应一致性高，高年级学术词词源层变多；变脸名单须随学段滚动更新（注：产品不分学段，此处指随学习进程滚动更新）。
+    exceptions:
+    - 低一致性项目整类为例外域：ea、ough、词尾 -er 等进变脸名单（全谱与排序见 S-42）。
+  mechanism:
+    beats:
+    - beat: 多层历史造成的统计格局
+      text_adult: 英语拼写保存了多层历史（盎格鲁-撒克逊、诺曼法语、拉丁希腊借词各带一套对应），同一字母组合在不同词源层里读法不同；教学上把高一致性对应做系统拼读主线、低一致性项目做显性「例外名单」，比编造统一口诀更符合语言事实。
+      anchors: []
+      text_kid: 字母的发音大多数时候算数，但有些词会「变脸」；变脸的词我们一个一个单独记住。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-42
+    rel: 同族
+  - id: S-21
+    rel: 对照
+  - id: S-29
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Marilyn Jager Adams (1990), MIT Press；Castles, Rastle & Nation (2018), Psychological Science in the Public Interest 19(1)。https://eric.ed.gov/?id=ED317950
+    boundary: 统计倾向随学习进程而变——低段文本的对应一致性高，高段学术词的词源层变多；「变脸名单」必须滚动更新，不是记一次就完。
+    disputes: []
+    evidence_grade: 一手专著 + 综述
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-07
+  zone: 拼读
+  group: S
+  order: 7
+  headline: 会拼读 ≠ 会阅读：认词和听懂是两套能力，阅读是两者的乘积
+  headline_kid: 把词读出来只是第一步，读懂句子说的是什么，是另外一种本事，两种都要练。
+  claim:
+    type: rule
+    statement: 阅读理解 = 解码 × 语言理解（R = D × LC）；任一项接近零，理解就接近零。
+    evidence:
+    - '公式出处：Gough & Tunmer (1986)《Decoding, Reading, and Reading Disability》, Remedial and Special Education 7(1): 6–10, DOI 10.1177/074193258600700104；「Simple View of Reading」之名由 Hoover & Gough (1990) 定名推广。综述表述：Castles, Rastle & Nation (2018)。'
+    - 支撑：Castles 等指出早期拼读解决的是「从新手到能认词」，其后阅读能力的发展靠持续的语言经验与阅读量，两条线的教学不可互相替代。
+    scope: 对低段学习者解码通常是瓶颈项，优先补拼读是对的；本条反对的是把瓶颈项当全部，不是降低拼读的优先级。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 简单阅读观
+      text_adult: 阅读理解同时受制于解码（词认得准不准、快不快）与语言理解（听得懂不懂同样的内容）；任一项接近零，理解就接近零——所以拼读再好的孩子，口语词汇与背景知识跟不上时照样读不懂。
+      anchors: []
+      text_kid: 把词读出来只是第一步，读懂句子说的是什么，是另外一种本事，两种都要练。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-01
+    rel: 对照
+  prereq: []
+  pain_points:
+  - 读不快
+  adult:
+    sources:
+    - 'Gough & Tunmer (1986), Remedial and Special Education 7(1): 6–10；Hoover & Gough (1990)；Castles, Rastle & Nation (2018)。'
+    boundary: 对小学低段，解码通常是瓶颈项，优先补拼读是对的；本条反对的是把瓶颈项当全部，不是降低拼读的优先级。
+    disputes:
+    - 「简单阅读观」的乘法形式是否完备有学术讨论，不影响教学结论。
+    evidence_grade: 一手论文 + 综述
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-08
+  zone: 拼读
+  group: S
+  order: 8
+  headline: 英语里出现最多的元音是一个「含糊音」/ə/：不重读的音节，元音大多缩水成它
+  headline_kid: 英语里最常见的声音是个懒懒的「呃」——不重要的音节，元音都会变成它。
+  claim:
+    type: rule
+    statement: 非重读音节的元音大多弱化为 schwa /ə/；schwa 是口语英语中频率最高的元音，且只出现在非重读音节。
+    evidence:
+    - 'Peter Roach《English Phonetics and Phonology: A Practical Course》(1983 初版；2009 第 4 版，CUP）弱读与 schwa 章节；Gimson《An Introduction to the Pronunciation of English》(1962；Cruttenden 修订版）的弱化元音体系。'
+    - 支撑：语音学界通行结论——schwa 是口语英语中频率最高的元音，多数多音节词至少含一个。
+    scope: 只出现在非重读音节，重读音节永不读 /ə/；美式词尾 -er 的 /ə/ 带 r 色彩（/ɚ/），英美标注需分开。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 弱读系统的总出口
+      text_adult: 英语重音系统要求非重读音节「省力」，元音向中央位置靠拢并缩短，结果 about 的 a、teacher 的 -er、China 的 a 都读同一个 /ə/（schwa）；它是弱读系统的总出口，不认识它就听不懂连贯语流，也拼不对非重读音节的拼写。
+      anchors:
+      - about
+      - teacher
+      - China
+      text_kid: 英语里最常见的声音是个懒懒的「呃」——不重要的音节，元音都会变成它。
+  examples:
+  - level: 1
+    group: schwa 例词
+    words:
+    - about
+    - teacher
+    - China
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-09
+    rel: 同族
+  - id: S-27
+    rel: 同族
+  - id: S-34
+    rel: 对照
+  prereq: []
+  pain_points:
+  - 听不懂
+  adult:
+    sources:
+    - Peter Roach《English Phonetics and Phonology》(CUP)；A. C. Gimson《An Introduction to the Pronunciation of English》/ Cruttenden 修订版。
+    boundary: schwa 只出现在非重读音节，重读音节永不读 /ə/；美式英语中词尾 -er 的 /ə/ 带 r 色彩（/ɚ/），英美标注需分开（与纲领「音标双式并注」口径一致）。
+    disputes: []
+    evidence_grade: 经典教材口径（两大英式语音学教材一致）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-09
+  zone: 拼读
+  group: S
+  order: 9
+  headline: 小词有两副嗓子：a、the、to、can 这些功能词，单独念读强式，放进句子里多半读弱式
+  headline_kid: 小词单独站着时念得清清楚楚，钻进句子里就变小声、变短了——这不是读错，是英语的规矩。
+  claim:
+    type: tendency
+    statement: 功能词在连贯语流中默认读弱式（元音弱化、时长缩短）；强式只留给强调、对比、句末或单独回答的场合。
+    evidence:
+    - Roach《English Phonetics and Phonology》强弱式章节；王桂珍《英语语音教程》（高等教育出版社，2000；国家级规划教材）弱读与话语流部分。https://onlinenew.enetedu.com/sysu/Course/TeacherDetail?tid=870
+    - 支撑：弱式是英式语音学自 Gimson 以来的标准教学内容。
+    scope: 听辨侧需要；产出侧要求按裁定 A 默认档（听辨全教、产出只练核心）——本条产出要求受 config_gates 门控。慢速朗读、逐词听写、强调对比时用强式完全正确。
+    exceptions:
+    - 强调、对比、句末、单独回答、慢速朗读与逐词听写场合用强式。
+  mechanism:
+    beats:
+    - beat: 功能词的降级处理
+      text_adult: 功能词不承载新信息，句子把它们「降级处理」：元音弱化（常走向 /ə/）、时长缩短；强式只留给强调、对比、句末或单独回答的场合。听力里「听不清小词」多半不是生词问题，是没认出弱式。
+      anchors:
+      - a
+      - the
+      - to
+      - can
+      text_kid: 小词单独站着时念得清清楚楚，钻进句子里就变小声、变短了——这不是读错，是英语的规矩。
+  examples:
+  - level: 1
+    group: 功能词
+    words:
+    - a
+    - the
+    - to
+    - can
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-13
+    rel: 对照
+  - id: S-08
+    rel: 同族
+  - id: S-12
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 听不懂
+  adult:
+    sources:
+    - Roach《English Phonetics and Phonology》强弱式章节；王桂珍《英语语音教程》（高等教育出版社，2000）。https://onlinenew.enetedu.com/sysu/Course/TeacherDetail?tid=870
+    boundary: 弱式是「默认」不是「必须」：慢速朗读、逐词听写、强调对比时用强式完全正确；教小学生先求「听得出弱式」，产出上不强求全弱读。
+    disputes:
+    - Jenkins 的通用语核心（见 S-13）把弱式/schwa 列为非核心（国际交际中弱读反而降低可懂度），与英式语音教学传统取向相反；取舍取决于教学目标，本条按纲领现行口径（听辨需要）保留，产出要求降格。此分歧与裁定 A 挂钩。
+    evidence_grade: 经典教材 + 国内规划教材
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+  config_gates:
+    ruling_A: 产出要求受裁定 A 门控：默认档 A1（听辨全教、产出只练核心）；切换只改呈现与练习要求，不改数据。
+- id: S-10
+  zone: 拼读
+  group: S
+  order: 10
+  headline: 语言的节奏没有「两种」，只有一条连续带：英语偏向「重音说了算」的一端，汉语偏向「音节平均」的一端
+  headline_kid: 英语说话像踩鼓点，重要的词踩重拍；汉语像排队走，每个字差不多一样长。两种节奏之间是一条长长的带子，不是两个格子。
+  claim:
+    type: rule
+    statement: 语言节奏是连续统而非二分：英语偏重音计时一端、汉语偏音节计时一端，位置由元音弱化、音节结构复杂度、重音时长差等性质叠加决定，并可由 PVI 等指标测量。
+    evidence:
+    - Rebecca Dauer (1983)《Stress-timing and Syllable-timing Reanalyzed》, Journal of Phonetics；Esther Grabe & Ee Ling Low (2002) 成对变异指数（PVI）。https://ejournals.lib.auth.gr/thal/article/download/5522/5427
+    - 支撑：Roach 等人的实测早已证伪严格等时性（重音间隔时长并不恒定）。
+    scope: 连续统是描述工具，不直接给练习法；同一个人的语速、文体都会让位置滑动，不能给孩子贴「你就是音节计时」的标签。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 节奏连续统
+      text_adult: 节奏差异来自一串语音性质的叠加（有没有元音弱化、音节结构能多复杂、重音是否拉开时长差），不是某种神秘的「等时性」；实测（相邻元音段时长变异度 PVI）显示语言在这条带上连续分布，英语与汉语分处偏两端的位置——中国孩子「每个音节一样用力」读英语，正是把汉语的位置带进了英语。
+      anchors: []
+      text_kid: 英语说话像踩鼓点，重要的词踩重拍；汉语像排队走，每个字差不多一样长。两种节奏之间是一条长长的带子，不是两个格子。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-14
+    rel: 同族
+  - id: S-43
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 听不懂
+  - 说不出
+  adult:
+    sources:
+    - Rebecca Dauer (1983), Journal of Phonetics；Grabe & Low (2002) PVI。https://ejournals.lib.auth.gr/thal/article/download/5522/5427
+    boundary: 连续统是描述工具，不直接给练习法；同一个人的语速、文体都会让位置滑动，不能给孩子贴「你就是音节计时」的标签。
+    disputes: []
+    evidence_grade: 一手论文（连续统说 + 可测指标）
+    pending: []
+  corrections:
+  - 旧 STRESS 库「音节计时/重音计时二分定论」作废，改为连续统表述（以 Dauer / Grabe & Low 为据）。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-11
+  zone: 拼读
+  group: S
+  order: 11
+  headline: 句子里被重读的，是说话人要你注意的那个词——重音是「划重点」的工具
+  headline_kid: 一句话里声音最大的词，就是说话人画的重点线；重点画在哪，意思就往哪边偏。
+  claim:
+    type: rule
+    statement: 句重音（核重音）的默认落点是最后一个实词的新信息；说话人可前移核重音制造对比，听者靠重音定位新消息。
+    evidence:
+    - Roach《English Phonetics and Phonology》语调与核重音章节；Jenkins (2000) 把核重音列为通用语核心中唯一被保留的重音项目（见 S-13）。https://www.britishcouncil.org/voices-magazine/how-teach-english-lingua-franca-elf
+    - 支撑：核重音错位是实证记录中最常见的「发音导致误解」来源之一；汉语靠语序和虚词标焦点，英语靠重音标焦点。
+    scope: 本条管句子层面的焦点重音；单词内部的词重音（如 PHOtograph vs phoTOgraphy）是词汇属性、逐词记，两者别混教。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 核重音与焦点
+      text_adult: 句重音的默认落点是最后一个实词的新信息（核重音，nuclear stress），说话人可以把它前移来制造对比（I said HER book, not yours）；听者正是靠重音定位「这句的新消息是什么」，重音错位会让听者找错重点、理解错位。
+      anchors: []
+      text_kid: 一句话里声音最大的词，就是说话人画的重点线；重点画在哪，意思就往哪边偏。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-13
+    rel: 同族
+  - id: S-20
+    rel: 对照
+  prereq: []
+  pain_points:
+  - 听不懂
+  - 说不出
+  adult:
+    sources:
+    - Roach《English Phonetics and Phonology》语调与核重音章节；Jenkins (2000) LFC。https://www.britishcouncil.org/voices-magazine/how-teach-english-lingua-franca-elf
+    boundary: 单词内部的重音（词重音，如 PHOtograph vs phoTOgraphy）是词汇属性，要逐词记；本条说的是句子层面的焦点重音，两者别混教。
+    disputes: []
+    evidence_grade: 经典教材口径
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-12
+  zone: 拼读
+  group: S
+  order: 12
+  headline: 连读不是「读得快糊在一起」，是音节在重新组队：前一个词的尾巴辅音会跑去当后一个词的开头
+  headline_kid: 两个词挨在一起时，前一个词最后的辅音会「搬家」，和后面词的第一个元音连成一家人来读。
+  claim:
+    type: tendency
+    statement: 连贯语流中词尾辅音优先归入后一音节作首音（重新音节化），并伴随同化、省音等省力过程；这是自然语流的默认倾向。
+    evidence:
+    - Roach《English Phonetics and Phonology》连贯语流章节；Gimson/Cruttenden 传统同口径；王桂珍《英语语音教程》连读部分。
+    - 支撑：语音学对语流过程（连读、同化、省音、弱化）的描写是 Gimson 以来教材的固定章节。
+    scope: 停顿、强调、慢读时不发生；教孩子先解决「听得出边界」，低段不要求产出时处处连读。
+    exceptions:
+    - 停顿、强调、慢读场合不连读。
+  mechanism:
+    beats:
+    - beat: 重新音节化
+      text_adult: 英语音节倾向「有头无尾」（辅音优先归入后一音节作首音），词尾辅音 + 词首元音在语流中重新切分（an apple 听感近 a-napple）；加上同化、省音等省力过程，连贯语流的音串和单词逐个念必然不同——这是听力断句困难的结构性原因。
+      anchors:
+      - an
+      - apple
+      text_kid: 两个词挨在一起时，前一个词最后的辅音会「搬家」，和后面词的第一个元音连成一家人来读。
+  examples:
+  - level: 1
+    group: 连读例
+    words:
+    - an
+    - apple
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-09
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 听不懂
+  adult:
+    sources:
+    - Roach《English Phonetics and Phonology》连贯语流章节；Gimson/Cruttenden 传统；王桂珍《英语语音教程》连读部分。
+    boundary: 连读是自然语流的默认倾向，不是每处必连——停顿、强调、慢读时不发生；教孩子先解决「听得出边界」，低年级不要求产出时处处连读。
+    disputes: []
+    evidence_grade: 经典教材口径
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-13
+  zone: 拼读
+  group: S
+  order: 13
+  headline: 发音学得好不好，第一标准是「人家听不听得懂」，不是「像不像英国人/美国人」
+  headline_kid: 发音的第一名不是「装得像外国人」，是「说出来别人一下就听懂」。
+  claim:
+    type: tendency
+    statement: 发音练习时间应按「对可懂度的影响」排序：多数辅音、元音长短对比、核重音为核心（LFC）；/θ ð/ 精确舌位、词重音、弱式对可懂度影响小。
+    evidence:
+    - Jennifer Jenkins (2000)《The Phonology of English as an International Language》(Oxford University Press)，提出 Lingua Franca Core。https://www.britishcouncil.org/voices-magazine/how-teach-english-lingua-franca-elf
+    - 支撑：LFC 的数据来源是非母语者之间真实交际的失误记录，使「可懂度优先于母语化」成为可核查的清单。
+    scope: 适用场景是「以国际交际为目标」；目标包含国内考试听力与朗读评分时，标准音特征仍在评分范围内，两条标准分开声明。与裁定 A 挂钩。
+    exceptions:
+    - 考试听力与朗读评分场景下，标准音特征（含弱式等）仍在评分范围内，不按本条降格。
+  mechanism:
+    beats:
+    - beat: 通用语核心（LFC）
+      text_adult: 交际失败的实证记录显示，真正导致听不懂的发音问题集中在一小撮特征上（多数辅音是否到位、元音长短对比、核重音）；而若干传统苦练项（如 /θ ð/ 的精确舌位、词重音、弱式）对可懂度影响小。把练习时间按「对听懂的影响」排序，是发音教学的理性分配。
+      anchors: []
+      text_kid: 发音的第一名不是「装得像外国人」，是「说出来别人一下就听懂」。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-09
+    rel: 对照
+  - id: S-11
+    rel: 同族
+  - id: S-43
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 说不出
+  - 听不懂
+  adult:
+    sources:
+    - Jennifer Jenkins (2000), Oxford University Press。https://www.britishcouncil.org/voices-magazine/how-teach-english-lingua-franca-elf
+    boundary: 本条的适用场景是「以国际交际为目标」；若目标包含国内考试听力与朗读评分，标准音特征仍在评分范围内，两条标准要分开声明，不能拿本条给孩子「发音随便学」的错觉。
+    disputes:
+    - （显著）LFC 自发表起即受批评（核心清单的证据规模、把词重音排除在外是否合理等），且与 S-09 弱读教学传统正面冲突；本条作「目标排序」参照保留，最终取舍属课程层裁定（裁定 A），勿向儿童表述为定论。
+    evidence_grade: 一手专著（实证研究）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+  config_gates:
+    ruling_A: 本条与 S-09 的取舍由裁定 A 门控：默认档 A1（听辨全教、产出只练 LFC 核心）；切换只改呈现与练习要求，不改数据。
+- id: S-14
+  zone: 拼读
+  group: S
+  order: 14
+  headline: 中国孩子发音的难点不在「舌头笨」，在汉语的音系清单和英语不一样：没有的音、没有的弱读、没有的词尾辅音群，要专门补
+  headline_kid: 有些英语声音，汉语里根本没有，所以嘴巴没学过——不是你不聪明，是要单独练这几个新动作。
+  claim:
+    type: tendency
+    statement: 中国学习者的发音难点可由汉英音系对比系统预测：汉语没有 /θ ð v/、没有词尾辅音丛、元音不弱化，学习者以最近邻汉语音顶替并带入平均用力的节奏。
+    evidence:
+    - 王桂珍（广东外语外贸大学教授，国家级教学名师）汉英语音对比研究与教学体系：论文《汉英音幅与基频模式的特点及其对英语语音教学的启示》、教材《英语语音教程》（高等教育出版社，国家级规划教材；《英语语音》课程 2005 年国家精品课程）。https://onlinenew.enetedu.com/sysu/Course/TeacherDetail?tid=870
+    - 支撑：对比分析与语音习得研究一致表明，L1 音系差异点能系统预测发音困难分布。
+    scope: 群体预测口径：预测不等于判决，个体差异（听辨敏感度、模仿意愿、输入量）使同一难点程度悬殊；清单用于排教学优先级，不用于给孩子的发音贴标签。组合层逐项落地见 S-43。
+    exceptions:
+    - 个体差异可使同一预测难点在不同孩子身上程度悬殊。
+  mechanism:
+    beats:
+    - beat: 母语语音系统过滤
+      text_adult: 语音习得受母语语音系统过滤：汉语没有 /θ ð v/、没有词尾辅音丛、音节结构简单且元音不弱化，学习者会不自觉地用最接近的汉语音去顶替（think→sink/fink、word 尾巴吞音），并把「每音节平均用力」的节奏带入英语；难点清单可以按汉英音系对比逐项列出、逐项击破，而不是笼统说「发音不准」。
+      anchors:
+      - think
+      - word
+      text_kid: 有些英语声音，汉语里根本没有，所以嘴巴没学过——不是你不聪明，是要单独练这几个新动作。
+  examples:
+  - level: 1
+    group: 顶替例
+    words:
+    - think
+    - word
+    supports: claim
+  error_cases:
+  - wrong: think 读成 sink/fink
+    right: think /θɪŋk/（齿间擦音）
+    error_type: 母语顶替
+    source_type: 教学文献登记错型
+    diagnosis: 汉语无 /θ/，以最近邻 /s/ 或 /f/ 顶替；组合层处方见 S-43 难点①。
+  - wrong: word 尾巴吞音
+    right: word 词尾辅音完整发出
+    error_type: 词尾削减
+    source_type: 教学文献登记错型
+    diagnosis: 汉语无词尾辅音丛与浊尾，尾音被清化或吞掉；见 S-43 难点⑥。
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-43
+    rel: 同族
+  - id: S-10
+    rel: 同族
+  - id: S-32
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 听不懂
+  - 说不出
+  adult:
+    sources:
+    - 王桂珍汉英语音对比研究与教学体系（论文、教材与国家精品课程）。https://onlinenew.enetedu.com/sysu/Course/TeacherDetail?tid=870
+    boundary: 预测不等于判决——个体差异（听辨敏感度、模仿意愿、输入量）会让同一难点在不同孩子身上程度悬殊；清单用于排教学优先级，不用于给孩子的发音贴标签。
+    disputes: []
+    evidence_grade: 本土实证口径（国家级教学名师体系）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-15
+  zone: 拼读
+  group: S
+  order: 15
+  headline: 字母名和单词读音对不上，是因为拼写先被印刷固定下来、读音随后大搬了家——「元音大推移」
+  headline_kid: 很久以前字母的读法和现在不一样；书印出来以后，读法又慢慢变了，所以现在字母的名字和它在词里的声音对不上。
+  claim:
+    type: etymology
+    statement: 约 1350–1700 年间英语全部长元音发生链式抬升（元音大推移），而拼写已先被印刷标准化固定，造成字母名与词内读音的系统错位。
+    evidence:
+    - Otto Jespersen (1909)《A Modern English Grammar on Historical Principles》Part I——首次系统描述并命名 the great vowel-shift；此后为一切英语史教材（如 Baugh & Cable《英语史》）的标准章节。https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/great-vowel-shift
+    - 支撑：链式推移有中古英语押韵、拼写变体、私人信件误拼等多重文献证据，是历史语言学共识。
+    scope: 推移主要动长元音；短元音与推移后借入的词（如 police）不在内；个别词未跟上链条（father、broad）。
+    exceptions: []
+    source: Jespersen (1909)《A Modern English Grammar on Historical Principles》Part I 命名并系统描述 the great vowel-shift。
+  mechanism:
+    beats:
+    - beat: 元音大推移
+      text_adult: 约 1350–1700 年间，英语全部长元音发生链式抬升（高位元音双元音化），而 15–16 世纪印刷与拼写标准化把旧读音对应的拼写先固定了下来；结果今天字母 a/e/i 的「名字音」其实是推移后的新音，拼写保留的却是推移前的旧格局——字母—音对应的「不规则」有一大块是这场时间差造成的。
+      anchors:
+      - police
+      - father
+      - broad
+      text_kid: 很久以前字母的读法和现在不一样；书印出来以后，读法又慢慢变了，所以现在字母的名字和它在词里的声音对不上。
+  examples:
+  - level: 1
+    group: 推移外/未跟链例
+    words:
+    - police
+    - father
+    - broad
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-36
+    rel: 同族
+  - id: S-19
+    rel: 同族
+  - id: S-37
+    rel: 同族
+  - id: S-38
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Otto Jespersen (1909) Part I；英语史教材标准章节。https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/great-vowel-shift
+    boundary: 推移主要动长元音，短元音与大量借词（推移后进入的 police 等）不在内；个别词未跟上链条（father、broad），讲故事时不能说「所有词都变了」。
+    disputes:
+    - （学术内部）推移是「推链」还是「拉链」（Jespersen 本人持拉链说）至今有争论；这是成人学术层分歧，不影响对儿童的机制表述（链条确实整体移动过）。
+    evidence_grade: 一手专著（历史语言学奠基）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-16
+  zone: 拼读
+  group: S
+  order: 16
+  headline: 英语里 f 对拉丁语 p、th 对 t 这类「对不上的对应」，是一次成系统的辅音大搬家留下的——格林定律
+  headline_kid: 很久以前，英语的祖先把一批辅音整体换了个位置，所以亲戚语言里对得上的词，辅音看起来总是差一格。
+  claim:
+    type: etymology
+    statement: 原始印欧语塞音在日耳曼语族发生链式移位（格林定律），形成拉丁语 p↔英语 f、t↔th 等系统对应；保留旧音的多为移位之后借入的词。
+    evidence:
+    - Jacob Grimm (1822)《Deutsche Grammatik》（第 2 版）系统表述日耳曼语辅音推移；先行观察有 Rask 1818。https://menonimus.org/the-great-consonant-shift/
+    - 支撑：格林定律是比较语言学的范式案例，其例外后来被 Verner 定律（1875）以重音位置解释大半。
+    scope: 只针对原始印欧语→原始日耳曼语这一段，不适用于后来各日耳曼语言内部的变化；小学段只取「辅音差一格认亲戚」的识别功能，不展开三组对应表。
+    exceptions: []
+    source: Jacob Grimm (1822)《Deutsche Grammatik》第 2 版系统表述日耳曼语辅音推移（先行观察有 Rask 1818）。
+  mechanism:
+    beats:
+    - beat: 格林定律
+      text_adult: 原始印欧语的塞音在日耳曼语族里发生链式移位（清塞音变擦音、浊塞音变清塞音等），于是拉丁语 piscis 对英语 fish、tres 对 three、canis 对 hound；掌握对应方向，就能认出大批「长得不像的亲戚词」，也能识别哪些词是移位之后借进来的（保留 p 的多为后借词）。
+      anchors:
+      - fish
+      - three
+      - hound
+      text_kid: 很久以前，英语的祖先把一批辅音整体换了个位置，所以亲戚语言里对得上的词，辅音看起来总是差一格。
+  examples:
+  - level: 1
+    group: 亲戚词对应
+    words:
+    - fish
+    - three
+    - hound
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives: []
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Jacob Grimm (1822)《Deutsche Grammatik》第 2 版；Rask (1818) 先行观察；Verner 定律 (1875)。https://menonimus.org/the-great-consonant-shift/
+    boundary: 定律针对原始印欧语→原始日耳曼语这一段，不适用于后来各日耳曼语言内部的变化；小学段只需取「辅音差一格认亲戚」的识别功能，不展开三组对应表。
+    disputes: []
+    evidence_grade: 一手专著（历史语言学奠基）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-17
+  zone: 拼读
+  group: S
+  order: 17
+  headline: foot 的复数是 feet 不是 foots：一个早就消失的词尾 -i，在消失前把前面的元音「传染」变了样——i-变音
+  headline_kid: 很久以前 feet 的祖先词尾巴上有个小小的 i，这个 i 把前面的 o 拉变了声，然后自己消失了——所以脚变复数要换中间的元音。
+  claim:
+    type: etymology
+    statement: 古英语前史期，后音节 /i/ 或 /j/ 使前音节元音前化/高化（i-变音），触发音随后消失，变了样的元音成为复数标记；现代英语仅存七组变格复数。
+    evidence:
+    - i-mutation（i-变音 / i-umlaut）为英语史标准条目：Quirk & Wrenn《古英语语法》§206–208 的经典表述；Grimm 首创 Umlaut 术语。https://www.thoughtco.com/mutation-language-term-1691332
+    - 支撑：哥特语等亲属语言保留了触发环境，可复原变音全过程；七词均为高频词，高频正是它们抗拒被 -s 规则同化的原因（频率保形效应）。
+    scope: i-变音在现代英语已不是能产规则，不能类推到新词（computer 的复数只能 computers）；定位为「给七个怪词一个真来历」，不是一条要用的规则。
+    exceptions: []
+    source: i-mutation 为英语史标准条目：Quirk & Wrenn《古英语语法》§206–208；Grimm 首创 Umlaut 术语。
+  mechanism:
+    beats:
+    - beat: i-变音
+      text_adult: 古英语前史时期，后一音节的 /i/ 或 /j/ 使前音节元音前化/高化（同化预演），随后触发音消失，只留下变了样的元音充当复数标记；现代英语仅存七组这样的变格复数（man/men、foot/feet、goose/geese、tooth/teeth、mouse/mice、louse/lice、woman/women），另影响 strong/strength 等派生词元音交替。
+      anchors:
+      - man
+      - men
+      - foot
+      - feet
+      - goose
+      - geese
+      - tooth
+      - teeth
+      - mouse
+      - mice
+      - louse
+      - lice
+      - woman
+      - women
+      text_kid: 很久以前 feet 的祖先词尾巴上有个小小的 i，这个 i 把前面的 o 拉变了声，然后自己消失了——所以脚变复数要换中间的元音。
+  examples:
+  - level: 1
+    group: 变格复数七组
+    words:
+    - man
+    - men
+    - foot
+    - feet
+    - goose
+    - geese
+    - tooth
+    - teeth
+    - mouse
+    - mice
+    - louse
+    - lice
+    - woman
+    - women
+    supports: claim
+  - level: 2
+    group: 不能类推的对照
+    words:
+    - computer
+    - computers
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives: []
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Quirk & Wrenn《古英语语法》§206–208；Grimm Umlaut 术语。https://www.thoughtco.com/mutation-language-term-1691332
+    boundary: i-变音在现代英语已不是能产规则，不能类推到新词（computer 的复数只能 computers）；小学段定位为「给七个怪词一个真来历」，不是一条要用的规则。
+    disputes: []
+    evidence_grade: 英语史标准条目
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-18
+  zone: 拼读
+  group: S
+  order: 18
+  headline: buses、watches 里多出来的一个音节不是随便加的：两个「嘶嘶声」不能紧挨着，中间必须垫一个元音
+  headline_kid: s、sh 这类嘶嘶声，两个碰在一起舌头打架，英语就在中间垫一个小声音，把它们隔开。
+  claim:
+    type: rule
+    statement: 词尾是嘶声（/s z ʃ ʒ tʃ dʒ/）时，后缀 /s z/ 前插入 /ɪ/（拼写 -es）；同理 -ed 在 /t d/ 后读 /ɪd/。决定读法的是词尾的音，不是字母。
+    evidence:
+    - Gimson/Cruttenden 语音学传统对 -s 与 -ed 尾缀三读法的标准描写（形态音位学）；纲领 basis 引 Bauer 形态音位为据。https://www.scribd.com/document/527179562/Peter-Roach-English-Phonetics-and-Phol
+    - 支撑：三读法（/s/、/z/、/ɪz/ 与 /t/、/d/、/ɪd/）的分布由词尾音的清浊与类别机械决定，是语音学教材的确定性描写，无经验争议。
+    scope: 决定读法的是词尾的音不是字母（judged 拼 -ed 读 /d/、horses 拼 -s 读 /ɪz/）；个别词有历史读音（如 naked 作定语读两音节），属词汇例外。
+    exceptions:
+    - naked 作定语时读两音节（历史读音，词汇例外）。
+  mechanism:
+    beats:
+    - beat: 嘶声后的元音插入
+      text_adult: 词尾是嘶声（sibilant：/s z ʃ ʒ tʃ dʒ/）时，复数/三单/所有格的 /s z/ 后缀与词尾同为嘶声无法连读，语言插入元音 /ɪ/ 隔开——这是发音器官的省力与可辨需求决定的语音插入（epenthesis），拼写上写作 -es；同理 -ed 在 /t d/ 后读 /ɪd/（want-ed），是同一种「同类相撞要垫音」的逻辑。
+      anchors:
+      - buses
+      - watches
+      - wanted
+      - judged
+      - horses
+      text_kid: s、sh 这类嘶嘶声，两个碰在一起舌头打架，英语就在中间垫一个小声音，把它们隔开。
+  examples:
+  - level: 1
+    group: 垫音例
+    words:
+    - buses
+    - watches
+    - wanted
+    supports: claim
+  - level: 2
+    group: 按音不按字母
+    words:
+    - judged
+    - horses
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-30
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 说不出
+  adult:
+    sources:
+    - Gimson/Cruttenden 语音学传统（形态音位学）；Bauer 形态音位。
+    boundary: 决定读法的是词尾的**音**不是字母（judged 拼 -ed 读 /d/、horses 拼 -s 读 /ɪz/）；个别词有历史读音（如 naked 作定语读两音节），属词汇例外。
+    disputes: []
+    evidence_grade: 经典教材口径（确定性描写）
+    pending: []
+  corrections:
+  - 旧自造术语「同位相撞」订正为「嘶声（sibilant）后的元音插入」（sf-007）。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-19
+  zone: 拼读
+  group: S
+  order: 19
+  headline: knight 里的 k 和 gh 不发音，不是拼写在捣乱：它们曾经真的发音，是声音先消失、字母留了下来
+  headline_kid: 有些词里藏着「不出声的字母」，它们以前是出声的，后来声音退休了，字母还留在岗位上。
+  claim:
+    type: etymology
+    statement: 一批沉默字母源于音变消失：古英语 knight 读 /knixt/，/x/（gh）消失、词首 kn- 的 k 脱落，而拼写在印刷标准化时被固定。
+    evidence:
+    - 英语史标准叙述：元音大推移时期的辅音变化部分（见 S-15 出处）；Jespersen《历史原则现代英语语法》第 I 卷 Sounds and Spellings。https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/great-vowel-shift
+    - 支撑：中古英语文本（乔叟押韵）与早期拼写变体直接记录了 /x/ 的存在与消失过程。
+    scope: 不是所有不发音字母都源于音变消失——有些是文艺复兴时期学者按拉丁语「正字」硬塞回去的（如 debt 的 b），两类成因要分清。
+    exceptions:
+    - debt 的 b 是学者按拉丁语硬塞回的，并非音变消失型沉默字母。
+    source: 英语史标准叙述（元音大推移时期的辅音变化）；Jespersen《历史原则现代英语语法》第 I 卷 Sounds and Spellings。
+  mechanism:
+    beats:
+    - beat: 沉默字母是音变快于字变的化石层
+      text_adult: 古英语 knight 读 /knixt/，k 与 /x/（gh）都发音；中古、近代英语里 /x/ 在多数环境中消失、词首 kn- 的 k 弱化脱落，而拼写在印刷标准化时被固定——沉默字母是「音变快于字变」的化石层，顺着它们反而能读出词的历史年龄。
+      anchors:
+      - knight
+      - debt
+      text_kid: 有些词里藏着「不出声的字母」，它们以前是出声的，后来声音退休了，字母还留在岗位上。
+  examples:
+  - level: 1
+    group: 音变消失型
+    words:
+    - knight
+    supports: claim
+  - level: 2
+    group: 成因对照（非音变型）
+    words:
+    - debt
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-15
+    rel: 同族
+  - id: S-33
+    rel: 同族
+  - id: S-37
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 英语史标准叙述；Jespersen 第 I 卷 Sounds and Spellings。https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/great-vowel-shift
+    boundary: 不是所有不发音字母都源于音变消失——有些是文艺复兴时期学者按拉丁语「正字」硬塞回去的（如 debt 的 b），两类成因要分清，不能一概讲成「以前发音」。
+    disputes: []
+    evidence_grade: 英语史标准叙述
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-20
+  zone: 拼读
+  group: S
+  order: 20
+  headline: 重音会「报身份」：复合词重音在前（BLACKbird），短语重音在后（black BIRD）
+  headline_kid: 同样两个词，读法不一样意思就不一样：重音落在前面（BLACKbird），说的是一种鸟的名字；重音落在后面（black BIRD），说的只是一只「黑色的鸟」。耳朵先听重音，就能猜出这两个词是「一个词」还是「两个词」。
+  claim:
+    type: tendency
+    statement: 复合词的主重音落在左构件（复合词重音规则），短语的主重音落在最后一个实词（核心重音规则）；重音位置是判断「复合词还是短语」的首要听辨线索。
+    evidence:
+    - Ingo Plag《Word-Formation in English》(CUP, 2003) §6.1.3 “Stress in compounds”, pp. 137–139；规则源头为 Chomsky & Halle《The Sound Pattern of English》(1968) 的 Compound Stress Rule。接触等级：二手系统论述级。
+    - 支撑：词典对复合词的注音系统性地标左重，与短语注音分工稳定；blackbird/black bird 是引用最广的最小对立对，母语者判断一致性高。
+    scope: 强倾向、非铁律；对比焦点会临时翻转重音（语用重音），不推翻词汇重音的默认分工。本条只主张「重音是首要听辨线索」，不主张「凭重音一票定案」。
+    exceptions:
+    - 并列复合词右重：geologist-astronomer
+    - 若干食物与材料类复合词右重：apple pie；街道名如 Madison Avenue 亦然
+    - 复合形容词多为双重音或后重：blue-green、easy-going、icy cold
+    - black market：意义已 lexicalized、中间不可插入，却带短语式后重音（判据互相打架的实例，见成人层分歧）
+  mechanism:
+    beats:
+    - beat: 两条重音规则分工
+      text_adult: 英语有两条重音规则在分工（Chomsky & Halle 1968 以来的经典表述）：复合词重音规则——复合词的主重音落在左构件上；核心重音规则——短语的主重音落在最后一个实词上。因此重音位置成了判断「复合词还是短语」的语音线索，与另外两条线索（两成分之间不能插入其他词、整体意义 lexicalized 不可完全由部分推出）合称复合词的身份判据群（Lieber 的判据讨论；Plag 2003 §6.1.3, pp. 137–139）。N+N 组合最典型：BLACKbird（一种鸟）、GREENhouse（温室）对 black BIRD（一只黑鸟）、green HOUSE（一栋绿房子）。
+      anchors:
+      - blackbird
+      - greenhouse
+      text_kid: 同样两个词，读法不一样意思就不一样：重音落在前面（BLACKbird），说的是一种鸟的名字；重音落在后面（black BIRD），说的只是一只「黑色的鸟」。耳朵先听重音，就能猜出这两个词是「一个词」还是「两个词」。
+  examples:
+  - level: 1
+    group: 复合词（左重）
+    words:
+    - blackbird
+    - greenhouse
+    supports: claim
+  - level: 2
+    group: 系统性例外（右重/双重音）
+    words:
+    - apple pie
+    - blue-green
+    - easy-going
+    - icy cold
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-11
+    rel: 对照
+  - id: S-06
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 听不懂
+  adult:
+    sources:
+    - Ingo Plag《Word-Formation in English》(CUP, 2003) §6.1.3, pp. 137–139；Chomsky & Halle《The Sound Pattern of English》(1968)。接触等级：二手系统论述级（Bauer 批评文为原文转载章节预览级）。
+    boundary: 这是强倾向、非铁律，Plag 本人即列系统性例外（见 claim.exceptions）。教学口径：先教默认规则认词，例外随词逐个认（与 S-06 的统计倾向口径一致）。
+    disputes:
+    - Bauer 在《Adjectives, Compounds, and Words》中指出：black market 意义已 lexicalized、中间不可插入，却带短语式后重音，是「线索互相打架」的实例；他的结论是重音对复合词身份既非必要、也非充分，只是强线索之一。清单口径：本条只主张「重音是首要听辨线索」，不主张「凭重音一票定案」。
+    evidence_grade: 二手系统论述级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-21
+  zone: 拼读
+  group: S
+  order: 21
+  headline: 拼写同时在记三件事：声音、意义、来历——「拼写深处有道理」与「变脸名单」之争
+  headline_kid: 英语拼写不只记发音。sign（签名）和 signal（信号）是亲戚，所以 sign 里那个不发音的 g 要留着——它像家族合影，证明这两个词是一家人。拼写还记着词从哪儿来。所以很多「奇怪」的拼写不是捣乱，是在替我们记着词的身世。
+  claim:
+    type: etymology
+    statement: 英语正字法是音位—词素双层系统：拼写同时编码语音、意义（同一词素在亲戚词里保持同一写法）与词源；「例外」中有相当部分是只看声音时才显得无理。
+    evidence:
+    - 'Richard L. Venezky (1967)《English orthography: Its graphical structure and its relation to sound》, Reading Research Quarterly 2: 75–105；(1970)《The Structure of English Orthography》(Mouton)；(1999)《The American Way of Spelling》(Guilford), p. 4。教学化：Bowers & Kirby (2010)；Bowers & Bowers (2017), Educational Psychologist 52(2): 124–141。接触等级：Bowers & Bowers 2017 与 Bowers 2021 公开信为章节预览级；Venezky 三种原书未打开，为二手转引。'
+    - 支撑：Bowers & Kirby (2010) 的课堂干预显示 SWI 组在词汇与形态分析任务上有增益；词素拼写恒常（sign 的 g）在语料中成系统存在，是描写层面的硬事实。
+    scope: 三圈论是描写语言学共识层面的成立（正字法确为双层系统），与「因此课堂应以探究法为主线」是两步推论，第二步证据远弱于第一步；SWI 本身的干预研究迄今稀少且多出自倡导者团队。词和须用真构件。
+    exceptions: []
+    source: 'Venezky (1967) Reading Research Quarterly 2: 75–105；(1970)《The Structure of English Orthography》；(1999)《The American Way of Spelling》。'
+  mechanism:
+    beats:
+    - beat: 音位—词素双层系统
+      text_adult: 英语正字法是音位—词素双层系统——拼写同时编码语音、意义（同一词素在亲戚词里保持同一写法，哪怕读音变了：sign/signal、heal/health、please/pleasant）与词源（不同来源层留下不同拼法习惯）。Venezky 的定版表述（1967）：现行正字法不只是一套满是毛病的字母—声音系统，而是一种更复杂、也更规则的关系，其中音位与词素同居主角之位。
+      anchors:
+      - sign
+      - signal
+      - heal
+      - health
+      - please
+      - pleasant
+      text_kid: 英语拼写不只记发音。sign（签名）和 signal（信号）是亲戚，所以 sign 里那个不发音的 g 要留着——它像家族合影，证明这两个词是一家人。拼写还记着词从哪儿来。所以很多「奇怪」的拼写不是捣乱，是在替我们记着词的身世。
+    - beat: 结构化文字探究（SWI）与词和
+      text_adult: Bowers 的结构化文字探究（SWI）把这一语言学图景做成课堂流程：学生对拼写提出并检验假设，工具是词和（word sum）——把词写成构件的加法式来验证结构（如 do + es → does），与词矩阵（matrix，一族词的构件拼图）。招牌追问如：two 里为什么有 w、too 里为什么没有（答：w 是与 twice、twin、twenty 同族的标记）。
+      anchors:
+      - two
+      - too
+      - twice
+      - twin
+      - twenty
+      - does
+  examples:
+  - level: 1
+    group: 词素恒常词族
+    words:
+    - sign
+    - signal
+    - heal
+    - health
+    - please
+    - pleasant
+    supports: claim
+  - level: 2
+    group: 词和/族标记例
+    words:
+    - two
+    - too
+    - twice
+    - twin
+    - twenty
+    - does
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-06
+    rel: 对照
+  - id: S-33
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 记不住
+  adult:
+    sources:
+    - 'Venezky (1967) RRQ 2: 75–105；(1970) Mouton；(1999) Guilford；Bowers & Kirby (2010)；Bowers & Bowers (2017) 52(2): 124–141。'
+    boundary: ①实证等级必须如实标：针对 SWI 本身的干预研究迄今稀少（倡导方文献综述自承仅三项左右），且多出自倡导者团队，独立复制有限；形态教学（大概念）的证据多于 SWI（具体方案）的证据，两者不得混报。②词和须用真构件：does 的 do + es 分析属 SWI 课堂通例，本次未打开 WordWorks 原始教材逐字核对，措辞级出处列入待核。
+    disputes:
+    - 甲方（S-06 立场）：字母—声音对应是统计倾向，先教最稳的一批做系统拼读主线，其余进「变脸名单」逐个记，后盾是系统合成拼读的大规模试验与综述传统（Castles, Rastle & Nation 2018 等），证据等级：高。乙方（SWI/Bowers）：「变脸」多半是只按声音看才显得无理；把意义与来历算进来，大量「例外」自有结构，逐个死记浪费了系统的逻辑，且 SWI 同样显性教 GPC——其后盾主要是语言学描写共识 + 小规模干预，证据等级：有限。丙方观察：两方争的是课堂主线的配比与「例外」的记账方式，不是拼写有没有结构。清单处理：S-06 与本条并存登记，低段主线从 S-06，高段词族教学可引入本条的词和与追问法，不合并成一条假共识。
+    evidence_grade: 章节预览级（Bowers 系）+ 二手转引（Venezky 原书）
+    pending:
+    - 词和 does 的 do + es 分析：未打开 WordWorks 原始教材逐字核对，措辞级出处待核。
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-22
+  zone: 拼读
+  group: S
+  order: 22
+  headline: 六种音节各管一段元音读法：闭、开、e 结尾、元音搭档、r 当家、-le 收尾
+  headline_kid: 长词不用怕，先把它切成小块。每一小块（音节）长什么样，里面的元音就怎么读：后面被辅音「关门」的读短音（cat），敞着口的读长音（go），末尾有个不出声的 e，前面元音读长音（cake），两个元音手拉手读一个音（boat），元音后面跟着 r，就归 r 管（bird），最后是辅音加 -le 的小块，单独收尾（table 里的 -ble）。先认出是哪一种，再开口读。
+  claim:
+    type: tendency
+    statement: 六种音节类型各给出元音的默认读法（闭=短、开=长、VCe=长、元音组合、r 控、辅音-le）；类型是可操作查表流程，给的是默认而非铁定。
+    evidence:
+    - Orton-Gillingham（OG）多感官结构化语言教学传统（源出 Samuel Orton 与 Anna Gillingham 等人；经 IMSLEC 认证课程体系传承）——六型名单与例词经多份 OG 认证课程文件交叉核对一致。接触等级：传统文献级/二手系统论述级（未打开 Gillingham 原始手册）。
+    - 支撑：六型名单在相互独立的 OG 课程体系中高度一致，是该传统内部的定版分类；其内容层与 S-01/S-06 的拼读证据不冲突。
+    scope: 六型给的是每型的默认读法，VCV 切分（tiger 开、camel 闭）等位置仍需两试——类型是栅栏不是铁轨。命名与排序各家不同（助记序 CLOVER 与 REVLOC 两版）；个别课程称「六型（有时七型）」，第七型多为把双元音单列，口径列入待核。
+    exceptions:
+    - VCV 位置的读法不由类型单独判定：tiger 开（长）、camel 闭（短），须两试（压制序见 SR-09）。
+  mechanism:
+    beats:
+    - beat: 六型与默认读法
+      text_adult: Orton-Gillingham 传统把英语音节归为六型，作为「元音读法预测表」：①闭音节（Closed）——元音被辅音封住，读短元音（cat、rabbit 的两节皆闭）；②开音节（Open）——以元音结尾，读长元音（go、music 的首节）；③VCe 音节——尾 e 不发音、前元音读长（cake、compete）；④元音组合音节（Vowel Team）——两个元音字母合拼一个音（boat、teacher）；⑤r 控音节（R-controlled）——元音+r 合成特殊音（car、corner），判定优先级最高（war 按 r 控读）；⑥辅音-le 音节——词尾辅音+le 自成一节（table、apple），其中的 e 不发音、节内带弱化元音。六型与音节切分规则配套：先切分、按型定元音、再拼合整词。助记序 REVLOC/CLOVER 记六型的「压制顺序」。
+      anchors:
+      - cat
+      - rabbit
+      - go
+      - music
+      - cake
+      - compete
+      - boat
+      - teacher
+      - car
+      - corner
+      - war
+      - table
+      - apple
+      text_kid: 长词不用怕，先把它切成小块。每一小块（音节）长什么样，里面的元音就怎么读：后面被辅音「关门」的读短音（cat），敞着口的读长音（go），末尾有个不出声的 e，前面元音读长音（cake），两个元音手拉手读一个音（boat），元音后面跟着 r，就归 r 管（bird），最后是辅音加 -le 的小块，单独收尾（table 里的 -ble）。先认出是哪一种，再开口读。
+  examples:
+  - level: 1
+    group: 闭音节
+    words:
+    - cat
+    - rabbit
+    supports: claim
+  - level: 2
+    group: 开音节
+    words:
+    - go
+    - music
+    supports: claim
+  - level: 3
+    group: VCe
+    words:
+    - cake
+    - compete
+    supports: claim
+  - level: 4
+    group: 元音组合
+    words:
+    - boat
+    - teacher
+    supports: claim
+  - level: 5
+    group: r 控
+    words:
+    - car
+    - corner
+    - war
+    supports: claim
+  - level: 6
+    group: 辅音-le
+    words:
+    - table
+    - apple
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: SR-09
+    rel: 同族
+  - id: S-06
+    rel: 同族
+  - id: S-33
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 读不快
+  - 错不完
+  adult:
+    sources:
+    - Orton-Gillingham 教学传统（IMSLEC 认证课程体系）；SLD Read 的 OG 课程说明；OER Commons 的 OG 词表。接触等级：传统文献级/二手系统论述级。
+    boundary: 口径差异如实标：六型的名单通行一致，但命名与排序各家不同（VCe 亦名 Silent e / Magic e；辅音-le 亦名 Stable Final Syllable；助记序有 CLOVER 与 REVLOC 两版）；个别课程系统称「六型（有时七型）」，第七型口径列入待核。另：六型给的是每型的默认读法，VCV 切分等位置仍需两试。
+    disputes:
+    - 组织形式之争：OG/结构化语言阵营视音节类型为解码教学的必要骨架；阅读科学中另一部分声音认为给学生教「音节类型」标签本身并非必要——直接按字母—声音对应序列推进、辅以多音节词切分练习即可，类型学是教师用的地图、不必变成学生背的术语。此争未有定版裁决；清单口径：六型至少作为教师侧的组织图与纠错语言保留，学生侧是否显性背诵类型名按进程与课时裁量，不写成铁律。
+    evidence_grade: 传统文献级/二手系统论述级
+    pending:
+    - 「第七型」（双元音单列）口径待核。
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-23
+  zone: 拼读
+  group: S
+  order: 23
+  headline: 学拼写的活动形态是「分堆」：按音、按形、按义把词归类，顺着发展阶段走
+  headline_kid: 给你一堆词卡，不要背，先分堆：哪些词的中间发音一样？哪些词长得像一家人？哪些词是同一个零件拼的？分着分着，拼写的规律自己就浮出来了。每个小朋友分堆的水平不一样——刚开始按声音分，后来按长相分，再后来按意思分；你在哪一层，就玩哪一层的分堆。
+  claim:
+    type: tendency
+    statement: 儿童拼写知识沿可预测的五阶段推进；教学核活动是 word sort（按音、按形、按义分类），先由拼写量表测定位、按「正在用但用错」的层施教。
+    evidence:
+    - 'Donald R. Bear、Marcia Invernizzi、Shane Templeton、Francine Johnston《Words Their Way: Word Study for Phonics, Vocabulary, and Spelling Instruction》(Pearson；2012 年第 5 版及其后多次再版）——五阶段命名、分类活动与定位经 Pearson 官方书介材料与学区采用文件、课程讲义交叉核对一致。接触等级：目录+官方书介级（未打开原书正文）。'
+    - 支撑：该体系源出 Henderson 等人的发展性拼写研究传统（儿童「自创拼写」错误形态可预测地分期），课程存续二十余年；与 S-03 的认词四台阶在发展次序上大致平行（两套独立传统互证阶段观）。
+    scope: 五阶段是美国本土儿童（L1）的发展序列；中国儿童的对应与年龄带不可直接平移，只能借「先测定位、按层施教、用但混即教学区」的程序骨架，阶段细节须以中国学生的拼写样本重新校准——入模前的必要适配，不许整表照搬。年龄带本身也只是常模近似，个体跨度大。
+    exceptions:
+    - 年龄/阶段带为常模近似，个体跨度大；阶段对应不可直接平移到中国儿童。
+  mechanism:
+    beats:
+    - beat: 发展性词研究五阶段
+      text_adult: 《Words Their Way》体系：儿童的拼写知识沿五阶段推进——①萌芽期（Emergent）②字母名—字母期（Letter Name-Alphabetic）③词内模式期（Within Word Pattern）④音节与词缀期（Syllables and Affixes）⑤派生关系期（Derivational Relations）。教学的核活动是 word sort（单词分类）——学生亲手把词按音、按形、按义的特征归类比较，在归类中自己撞见正字法规律；配套件是拼写量表先测定位、按「正在用但用错（use but confuse）」的层施教。正字知识相应分三层：字母层（音）→模式层（形）→意义层（义）。
+      anchors: []
+      text_kid: 给你一堆词卡，不要背，先分堆：哪些词的中间发音一样？哪些词长得像一家人？哪些词是同一个零件拼的？分着分着，拼写的规律自己就浮出来了。每个小朋友分堆的水平不一样——刚开始按声音分，后来按长相分，再后来按意思分；你在哪一层，就玩哪一层的分堆。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-03
+    rel: 同族
+  - id: S-01
+    rel: 对照
+  - id: S-21
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 记不住
+  adult:
+    sources:
+    - Bear、Invernizzi、Templeton、Johnston《Words Their Way》(Pearson)。接触等级：目录+官方书介级。
+    boundary: 五阶段是美国本土儿童（L1）的发展序列；中国儿童的英语拼写发展受汉语（非字母文字）读写经验影响，阶段的对应与年龄带不可直接平移，只能借程序骨架，阶段细节须以中国学生的拼写样本重新校准——此为本条入模前的必要适配，不许整表照搬。年龄带本身在该体系内也只是常模近似，个体跨度大。
+    disputes:
+    - 路线之争：发展性词研究主张按测定位分层、顺序随学生走；系统合成拼读（S-01 的证据主线）主张固定范围与顺序、全体同速推进——两者在「顺序由谁定」上立场相反。实务界多有调和（低段以固定拼读序列为主线、词研究作分层补充），但学理上未合并；清单并存登记，不裁决。
+    evidence_grade: 目录+官方书介级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-24
+  zone: 拼读
+  group: S
+  order: 24
+  headline: 记拼写的标准循环是「看—说—盖—写—查」，而听写有两种、目的不能混
+  headline_kid: 记一个词的拼写，有个老办法：一看（看清哪儿最容易错）、二说（把这个词念出来，难念的地方故意念出声，像 Wed-nes-day）、三盖（把词盖住）、四写（凭记忆默写）、五查（一个字母一个字母对）。写错了就再来一轮。还有，老师听写你的时候，心里要清楚这次考的是「耳朵听没听清」还是「手会不会拼」——这是两场不同的考试。
+  claim:
+    type: rule
+    statement: 拼写自学标准循环为 Look–Say–Cover–Write–Check；听写须按目的分层（听辨型记声音、拼写型记字母），混用必误诊。
+    evidence:
+    - LSCWC 的步骤与命名经多份英国小学官方拼写政策/家长指导文件核对一致（通称 “the method used to practise spellings in most primary schools”）；其普及与英国国家读写战略年代的拼写教学材料同代。接触等级：传统通称级——未定位到单一发明人或原始文献，按「英国小学教学传统标准件」著录。
+    - 支撑：LSCWC 在英国学校文件中的一致表述与长期沿用是其「标准件」地位的证据（传统存续，非实验定版）；其提取成分与学习科学的提取练习证据方向一致。听写分层部分为基于 S-09/S-14 的教学设计推论，无独立经典出处，已标明、不冒充经典条目。
+    scope: LSCWC 是整词记忆 routine：完全合规则的词用它逐词背是浪费（那些词该由拼读规则生成）；最佳用法是攻词的「难记部件」。每轮词数宜少、隔日复现。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 看—说—盖—写—查（LSCWC）
+      text_adult: Look–Say–Cover–Write–Check：其设计逻辑是多感官协同（看＝视觉、说＝听觉、写＝动觉）+「盖住后凭记忆写」把再认改造成提取——写错则在 Check 步得到逐字母的即时反馈纠正。常见六步变体在 Write 后再加一 Say；战略年代教师材料另有 Look–Think–Cover–Write–Check 变体。例：Wednesday 以 Wed-nes-day 式拼读发音攻难记部件。
+      anchors:
+      - Wednesday
+      text_kid: 记一个词的拼写，有个老办法：一看（看清哪儿最容易错）、二说（把这个词念出来，难念的地方故意念出声，像 Wed-nes-day）、三盖（把词盖住）、四写（凭记忆默写）、五查（一个字母一个字母对）。写错了就再来一轮。还有，老师听写你的时候，心里要清楚这次考的是「耳朵听没听清」还是「手会不会拼」——这是两场不同的考试。
+    - beat: 听写分层
+      text_adult: 听写按目的分两型，混用必误诊：①听辨型听写，测把连读语音流切开并听出弱式的能力，记分看「听没听对声音」；②拼写型听写，测已教拼写模式的正字回忆，记分看字母对错。拿未教过的拼写去考听力、或按拼写错误扣听辨的分，都把两种能力搅成一笔糊涂账。
+      anchors: []
+  examples:
+  - level: 1
+    group: 拼读发音例
+    words:
+    - Wednesday
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-25
+    rel: 同族
+  - id: S-01
+    rel: 对照
+  prereq: []
+  pain_points:
+  - 错不完
+  - 记不住
+  adult:
+    sources:
+    - 英国小学官方拼写政策/家长指导文件（多份核对一致）；英国国家读写战略年代教师材料。接触等级：传统通称级。
+    boundary: LSCWC 是整词记忆 routine：对完全合规则的词，用它逐词背是浪费（那些词该由拼读规则生成，见 S-01）；它的最佳用法是攻词的「难记部件」（与 S-25 的 heart part 逻辑合流）。每轮词数宜少、隔日复现。听写分层同理：分层是为了诊断清楚，不是取消综合听写——高段的篇章听写本就同时调用两能，但记分与讲评须分开归因。
+    disputes:
+    - 无具名学术分歧；操作层提醒：多感官「学习风格」话术（视觉型/听觉型儿童之分）并无实证支持，本条只主张「同一学习者多通道编码」而非「按风格分班」——学校文件中常见的风格话术不随条目一并采信。
+    evidence_grade: 传统通称级
+    pending:
+    - LSCWC 未定位到单一发明人或原始文献，来源口径如实登记为待核。
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-25
+  zone: 拼读
+  group: S
+  order: 25
+  headline: 高频小词走「直认快线」：Dolch 220 与 Fry 1000——但直认的是词，不是词形照片
+  headline_kid: 有些词在每一页书里都会出现（the、you、said、was……），它们太常来了，等你一个个拼完，黄花菜都凉了。这些词要练到「眼睛一扫就认得」。但记住：要认的是整个词（它的声音和意思），不是背一张「词的照片」——词里大部分字母其实还是讲规则的，只有一小截不讲规矩，那一小截用心记住就行。
+  claim:
+    type: rule
+    statement: 最高频的一小批词走直认快线；直认的机制是正字法映射（音—形焊接）而非记词形轮廓；只有一小截不规则的词按 heart words 处理——规则部分照常拼读，只背不规则截段。
+    evidence:
+    - Dolch 词表：Edward William Dolch 1936 年发表 220 个「服务词」，《Problems in Reading》定版通行；Fry 词表：Edward B. Fry 的 Instant Words，1957 年先出 100 词，1980 年扩至 1000 词；heart words 的定义与 said 例经结构化读写教学圈通行表述核对；正字法映射机制与 S-02 同源（Ehri）。接触等级：二手系统论述级。
+    - 支撑：高频词的文本覆盖率分布（少数词占文本大头）与词频原理一致，两表长达数十年的课程存续是其可用性的传统证据。
+    scope: 两张表是美国 L1 初学读者（1930s–1980s 语料）的工具，中国 EFL 学习者应按自家课标词表与分级读物重排高频序，不直接进口名单。直认快线只服务最高频的一小批词，是拼读主线的并行件不是替代品。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: 两张高频清单
+      text_adult: Dolch 词表——1936 年发表 220 个「服务词」（代词、动词、介词、连词、形容词、副词等功能词；另附 95 个常用名词单表），选词逻辑是儿童读物高频统计。Fry 词表——1957 年先出 100 词，1980 年扩至 1000 词，按频率排序、每 100 一组。两表高度重叠（Fry 1000 几乎含全部 Dolch 词）。
+      anchors:
+      - the
+      - you
+      - said
+      - was
+      text_kid: 有些词在每一页书里都会出现（the、you、said、was……），它们太常来了，等你一个个拼完，黄花菜都凉了。这些词要练到「眼睛一扫就认得」。但记住：要认的是整个词（它的声音和意思），不是背一张「词的照片」——词里大部分字母其实还是讲规则的，只有一小截不讲规矩，那一小截用心记住就行。
+    - beat: 正字法映射与 heart words
+      text_adult: 所谓 sight word 的正解是「任何已存入长期记忆、能瞬间认出的词」，认储靠的是正字法映射——把词的读音逐音与字母焊接，而非记词形轮廓；盘点两表会发现：相当一部分词其实完全合拼读规则（in、and、red、jump），另一些只有一小截不规则（如 said 只有 ai 读 /e/ 不合常规）——现行折中教法称后者为 heart words（用心词）：规则部分照常拼读，只把不规则的那一小截「用心记住」，要背的量由此缩到最小。
+      anchors:
+      - in
+      - and
+      - red
+      - jump
+      - said
+  examples:
+  - level: 1
+    group: 高频直认词
+    words:
+    - the
+    - you
+    - said
+    - was
+    supports: claim
+  - level: 2
+    group: 其实合规则的词
+    words:
+    - in
+    - and
+    - red
+    - jump
+    supports: claim
+  - level: 3
+    group: heart word 例
+    words:
+    - said
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-02
+    rel: 同族
+  - id: S-24
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 记不住
+  - 读不快
+  adult:
+    sources:
+    - Dolch 清单与书目经多份来源交叉核对（含 Iowa Reading Research Center 的 Dolch/Fry 对照综述转述）；Fry 1000 的 1957/1980 年序经同批来源核对；heart words 经结构化读写教学圈通行表述核对。接触等级：二手系统论述级（heart words 为教学圈通称级）。
+    boundary: ①两张表是美国 L1 初学读者的工具，中国 EFL 学习者应按自家课标词表与分级读物重排高频序，不直接进口名单。②直认快线只服务最高频的一小批词，它是拼读主线的并行件不是替代品：把 220 词全做成闪卡背形状、挤掉拼读教学，正是阅读科学批评的老做法（Dolch 本人是 look-say 主张者，此历史立场与现代机制说明的张力如实并存于本条）。③「覆盖 50–75%」等数字是课程界通行说法，引用时不得当作精确统计结论（见纠正记录）。
+    disputes:
+    - 一条长寿分歧，三段登记：Dolch 时代的整词记形说（look-say）→ 阅读科学的正字法映射说（认词靠音—形焊接，记形说不成立，见 S-02）→ 现行折中（heart words）。清单立场从机制证据：采正字法映射为机制定版，清单本身作为频率工具保留——工具留任、旧机制说明退役，此处理与分歧双方都不完全一致，特此标明。
+    evidence_grade: 二手系统论述级
+    pending:
+    - Dolch 成书年份个别二手来源写作 1936（清单发表年），定版为《Problems in Reading》1948 年成书，列入待核复核。
+    - 「220 词覆盖儿童文本 50%–75%」为课程界通行说法，未溯至 Dolch 原文，不得当作精确统计结论。
+  corrections:
+  - 「Dolch 220 覆盖儿童文本 50%–75%」是课程界通行说法、未溯至原文，只登记不入 claim。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-26
+  zone: 拼读
+  group: S
+  order: 26
+  headline: 拼字比赛的打法：开口先问「这词从哪国来」，因为出身决定拼法——地层拼写法是选手的真功夫
+  headline_kid: 美国拼字大赛的选手有个秘密武器：拼一个词之前，他们可以提问——「这个词是什么意思？」「它从哪种语言来？」知道出身，拼法就有路了：希腊来的词爱用 ph 表示 f 音（phone）、ch 表示 k 音（chorus）；法语来的词尾巴常不出声（ballet）、爱用 -age（garage）；德语来的词有 sch-（schnitzel）。所以高手拼的不是记性，是「按出身查拼法」的方法。萌星玩法照搬：先问出身，再下笔。
+  claim:
+    type: tendency
+    statement: 拼写按来源地层分系统：判定一个词属于哪套来源系统（希腊/法语/德语/拉丁/古英语等），再套用该层的拼写习惯，未见词的可拼性由此而来（地层拼写法）。
+    evidence:
+    - Scripps National Spelling Bee 竞赛规则（2024 年版 Contest Rules）与官方《Suggested Rules for Spelling Bees》(2025)——选手可问定义、词性、例句、语言来源与其他读音；规则原文明确发音员不受理「词根信息」请求。官方学习册《Spell It!》（Scripps 与 Merriam-Webster 合编，2012 年版）约 1150 个学习词按语言来源分章。接触等级：机构传统级（规则与官方学习材料原文核对）。
+    - 支撑：制度存续与规模即传统的存续证据（美国运行近一个世纪的全国性教育赛事）；选手在直播中先问来源再拼对未见词，是可观察的常规行为模式，与地层拼写观互证。
+    scope: 地层拼写是倾向系统：法语层也有不沉默的尾巴、希腊层也有例外，靠的是「来源 + 定义 + 词性」的多线索交叉，不是单线索通杀。赛事词表难度远超中国小学课标，迁移的是问法与分层法，不是词表本身。本条证据性质为机构传统与方法论，无对照实验证明其优于别的拼法教学。
+    exceptions:
+    - 法语层也有不沉默的词尾、希腊层也有例外——地层只是倾向，不是单线索通杀。
+  mechanism:
+    beats:
+    - beat: 地层拼写法
+      text_adult: 官方学习册《Spell It!》把约 1150 个学习词按语言来源分章（拉丁、法语、德语、古英语、阿拉伯、亚洲语言、人名来源等），每章配该语言的拼写脾气提示：如希腊层 /f/ 音几乎总是 ph（amphibious、metaphor、phenomenon）、法语层词尾辅音常沉默（ballet、depot）、-age/-ette 型尾巴、德语层 sch- 与 w 读 /v/（waltz）等。其认知逻辑与地层观（V-19 三地层、S-21 拼写三圈）同构：英语拼写是几套来源系统叠在一起；先判定一个词属于哪套系统，再套那套的拼写习惯。
+      anchors:
+      - phone
+      - chorus
+      - ballet
+      - garage
+      - schnitzel
+      - amphibious
+      - metaphor
+      - phenomenon
+      - depot
+      - waltz
+      text_kid: 美国拼字大赛的选手有个秘密武器：拼一个词之前，他们可以提问——「这个词是什么意思？」「它从哪种语言来？」知道出身，拼法就有路了：希腊来的词爱用 ph 表示 f 音（phone）、ch 表示 k 音（chorus）；法语来的词尾巴常不出声（ballet）、爱用 -age（garage）；德语来的词有 sch-（schnitzel）。所以高手拼的不是记性，是「按出身查拼法」的方法。萌星玩法照搬：先问出身，再下笔。
+  examples:
+  - level: 1
+    group: 希腊层
+    words:
+    - phone
+    - chorus
+    - amphibious
+    - metaphor
+    - phenomenon
+    supports: claim
+  - level: 2
+    group: 法语层
+    words:
+    - ballet
+    - garage
+    - depot
+    supports: claim
+  - level: 3
+    group: 德语层
+    words:
+    - schnitzel
+    - waltz
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-21
+    rel: 同族
+  - id: S-32
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 记不住
+  adult:
+    sources:
+    - Scripps National Spelling Bee 竞赛规则（2024 年版）与《Suggested Rules for Spelling Bees》(2025)；《Spell It!》(2012 年版）。比赛的官方词典为 Merriam-Webster 第三版国际词典。接触等级：机构传统级。
+    boundary: ①规则给的是「语言来源」，不是完整词源链——更不是词根：把比赛打法说成「问词源/问词根」是转述夸大（见纠正记录）。②地层拼写是倾向系统，选手靠多线索交叉。③赛事词表不迁移，只迁移问法与分层法。④证据等级天花板：机构传统与方法论条目，无对照实验证明它比别的拼法教学更有效。
+    disputes:
+    - 拼字比赛在教育界有保留意见：批评方认为赛事激励的是表演性记忆与淘汰赛焦虑，其词表与日常读写需求脱节；主办与参与方以参与规模与词汇意识收益回应。清单口径：赛事形态不搬，选手的「按来源追问」方法搬；方法与赛事的利弊之争互不绑定。
+    evidence_grade: 机构传统级（规则原文核对）
+    pending: []
+  corrections:
+  - 任务书「选手可问词根」不确：按现行竞赛规则选手可问语言来源，但发音员明确不受理「词根信息」请求（“The pronouncer does not entertain root word questions”）；本条已按规则原文纠正。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-27
+  zone: 拼读
+  group: S
+  order: 27
+  headline: 后缀分两班：一班会把重音拽走（-ic/-ion/-ity/-ial），一班站着不动（-ness/-ful/-less/-ly）——认出后缀，就能预言重音
+  headline_kid: 给词加重音像排座位：有些后缀是「大嗓门」，一来就把重音拉到自己家门口：PHOtograph 加上 -y 变 phoTOgraphy，再加 -ic 变 photoGRAphic，重音一路往后跑。有些后缀是「安静邻居」：happy 加 -ness 变 HAppiness，重音纹丝不动。规律是：-ic、-ion、-ity、-ial 这一班爱拽重音（重音总落在它们前一格）；-ness、-ful、-less、-ly 那一班从不拽。重音一跑，原来不重读的元音就会含糊成 schwa——这就是词越变越「读不准」的机关。
+  claim:
+    type: tendency
+    statement: 后缀按对重音的效应分班：前拉班（-ic/-ion/-ity/-ial/-ious/-ian 等）使主重音落在后缀前一音节；自重班（-ee/-eer/-ese/-esque/-ette）自带主重音；中性班（-ness/-ful/-less/-ly/-ment/-er/-ing/-ish 及绝大多数前缀）不改变词干重音。先由后缀预言重音，再由重音预言哪些元音弱化为 schwa。
+    evidence:
+    - Peter Roach《English Phonetics and Phonology》(CUP）复杂词重音章——词缀对重音的三种效应（多家大学语音学讲义以 Roach 1991, p. 96 逐点转述核对一致）；Erik Fudge《English Word-Stress》(Allen & Unwin, 1984)。photograph 例链转写经课程讲义逐词核对。接触等级：二手系统论述级（Roach 原书该章未直接打开）。
+    - 支撑：给从未见过的 -ity/-ic 结尾长词（如 echogenicity），母语者与受训学习者能一致地把重音放在后缀前一格——规则在新词上成立；词典注音对该类词的重音著录高度一致。
+    scope: 分类管的是派生词的默认重音；对比焦点、语调节律等语用因素可临时覆盖默认。对中国学生，本条的前提是能听辨重音落点——听辨未过关时本条只能作教师知识。注：标题句作「两班」，机制实为三班（自重/前拉/中性），claim 以机制三班为准（见组建模文档取舍登记）。
+    exceptions:
+    - -ic 的例外串：Arabic、lunatic、politics、heretic 等不拉（重音在首）
+    - -ity 偶有不移者
+    - -graphy/-logy 型把重音拉到倒数第三音节位（photograph→photography），是前拉班的变体；个别教材单列「混合班」（-ation、-graphy），归类不一
+  mechanism:
+    beats:
+    - beat: 自重班
+      text_adult: 后缀自己扛起主重音：-ee（employEE）、-eer（engineer）、-ese（JapanESE）、-esque（picturesque）、-ette（cigarette）。
+      anchors:
+      - employee
+      - engineer
+      - Japanese
+      - picturesque
+      - cigarette
+      text_kid: 给词加重音像排座位：有些后缀是「大嗓门」，一来就把重音拉到自己家门口：PHOtograph 加上 -y 变 phoTOgraphy，再加 -ic 变 photoGRAphic，重音一路往后跑。有些后缀是「安静邻居」：happy 加 -ness 变 HAppiness，重音纹丝不动。规律是：-ic、-ion、-ity、-ial 这一班爱拽重音（重音总落在它们前一格）；-ness、-ful、-less、-ly 那一班从不拽。重音一跑，原来不重读的元音就会含糊成 schwa——这就是词越变越「读不准」的机关。
+    - beat: 前拉班
+      text_adult: 主重音落在后缀前一音节：-ic（economy→economic）、-ion（inform→information）、-ity（stupid→stupidity）、-ial（commerce→commercial）、-ious/-eous（courage→courageous）、-ian；-graphy/-logy 型则把重音拉到倒数第三音节位（photograph→photography），是前拉班的变体。
+      anchors:
+      - economy
+      - economic
+      - inform
+      - information
+      - stupidity
+      - commerce
+      - commercial
+      - courage
+      - courageous
+      - photograph
+      - photography
+    - beat: 中性班与弱化桥
+      text_adult: 加缀如没加，词干重音原样保留：-ness、-ful、-less、-ly、-ment、-er、-ing、-ish，以及绝大多数前缀（un-、re-、dis- 等皆中性）。招牌例链：PHOtograph /ˈfəʊ.tə.ɡrɑːf/ → phoTOgraphy /fəˈtɒɡ.rə.fi/ → photoGRAphic /ˌfəʊ.təˈɡræf.ɪk/。重音移位必然伴随元音弱化：失去重音的元音多读作 schwa /ə/——先由后缀预言重音，再由重音预言哪些元音会弱化，长词的读音就可推导而非逐词背。
+      anchors:
+      - happiness
+      - photograph
+      - photography
+      - photographic
+  examples:
+  - level: 1
+    group: 自重班
+    words:
+    - employee
+    - engineer
+    - Japanese
+    - picturesque
+    - cigarette
+    supports: claim
+  - level: 2
+    group: 前拉班
+    words:
+    - economy
+    - economic
+    - inform
+    - information
+    - stupidity
+    - commerce
+    - commercial
+    - courage
+    - courageous
+    supports: claim
+  - level: 3
+    group: 中性班
+    words:
+    - happiness
+    supports: claim
+  - level: 4
+    group: 例链
+    words:
+    - photograph
+    - photography
+    - photographic
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-08
+    rel: 同族
+  - id: S-20
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 说不出
+  - 错不完
+  adult:
+    sources:
+    - Peter Roach《English Phonetics and Phonology》(CUP）复杂词重音章（Roach 1991, p. 96 经多家讲义转述）；Erik Fudge《English Word-Stress》(1984)；photograph 例链转写经课程讲义逐词核对。接触等级：二手系统论述级。
+    boundary: ①前拉班有成串例外须进名单（见 claim.exceptions）；口径为「强规则 + 例外名单」，与 S-06/S-20 同。②-graphy 类的位置在不同教材里归类不一，本条按「倒数第三音节」变体著录，引用时注明。③分类管派生词的默认重音，语用因素可临时覆盖。④对中国学生，听辨重音落点未过关时，本条只能作教师知识（与 V-37 双写规则的重音前提同理）。
+    disputes:
+    - 重音规则的理论地位有真分歧：规则派（生成音系学传统）主张后缀的词汇分层（Level 1 拉重音 / Level 2 中性）是音系系统的内在结构；使用派/范例派主张重音多由词族类推与频率决定、规则只是事后概括。教学层两派结论近似，理论层不合并。另：Roach 三分与 Fudge 的类别边界细节（如 -ette、-esque 的归属）偶有出入，本条从 Roach 三分著录。
+    evidence_grade: 二手系统论述级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-28
+  zone: 拼读
+  group: S
+  order: 28
+  headline: 「英语 44 个音」是按英国 RP 口径数出来的：24 个辅音 + 20 个元音（12 单元音 + 8 双元音）；换美国 GA 口径，元音先缩水，总数随分析浮动——44 是教学坐标，不是自然常数
+  headline_kid: 英语一共有 44 个「声音积木」：24 个辅音、20 个元音。美国小朋友的版本会少几个元音，所以听到别的数字不用慌——先问他数的是哪个国家的口音。
+  claim:
+    type: rule
+    statement: 按 RP 口径，英语音位为 44 个：24 个辅音 + 20 个元音（12 单元音：短 7 含 /ə/、长 5；8 双元音）。GA 口径元音约 14–16 个、总数约 40（38–42 随分析浮动）。44 是教学坐标，不是自然常数。
+    evidence:
+    - Peter Roach《English Phonetics and Phonology》(CUP, 4th ed. 2009) 的 RP 音位表（24 + 20）；Alan Cruttenden《Gimson's Pronunciation of English》(8th ed. 2014) 同口径；GA 元音 14–16、总数约 40 见语音学教材通行综述（如 Yavaş《Applied English Phonology》）。接触等级：教材口径·二手互证。
+    - 支撑：44 是 EFL 教材与本清单 S 组的默认坐标：S-01 的系统拼读、S-22 的六音节都以「先有音位清单、再谈对应」为前提，后续 GPC 各条的行数都由它决定。
+    scope: App 选定一种口径后，本表须按该口径单列，英美不许混编；「r 控元音」是美国课堂的教学分类（元音 + r 的读法），不是 RP 的音位类目，不得混入 RP 元音拆分。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: RP 44 的构成
+      text_adult: 音位清单取决于参考口音与分析取舍。RP 的经典描写（Roach）给出 24 辅音 + 20 元音 = 44，其中元音 = 12 个单元音（短 7：/ɪ e æ ʌ ɒ ʊ ə/，含 schwa；长 5：/iː ɑː ɔː ɜː uː/）+ 8 个双元音（/eɪ aɪ ɔɪ aʊ əʊ ɪə eə ʊə/）。GA 是儿化口音：没有独立的 /ɒ/（并入 /ɑ/），没有 /ɪə eə ʊə/ 这组向心双元音，/eɪ oʊ/ 计不计双元音各家不一，再叠加许多地区的 cot–caught 合并再减一个——GA 元音常描写为 14–16 个，总数落在 40 左右。所以英美之差主要不在总数的小差，而在元音系统的切法不同。
+      anchors: []
+      text_kid: 英语一共有 44 个「声音积木」：24 个辅音、20 个元音。美国小朋友的版本会少几个元音，所以听到别的数字不用慌——先问他数的是哪个国家的口音。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-30
+    rel: 同族
+  - id: S-34
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 听不懂
+  adult:
+    sources:
+    - Peter Roach (CUP, 4th ed. 2009)；Alan Cruttenden《Gimson's Pronunciation of English》(8th ed. 2014)；Yavaş《Applied English Phonology》。GA/RP 并列表：https://www.academia.edu/35182463/How_Many_Phonemes_Does_the_English_Language_Have 。接触等级：教材口径·二手互证。
+    boundary: 纠正任务书：任务书把 20 个元音拆成「6 短元音、5 长元音、5 r 控、双元音若干」——RP 描写里没有这个拆法：短元音是 7 个（含 /ə/），且「r 控元音」是美国课堂的教学分类、不是 RP 的音位类目；混编会让孩子以为英音里也有五个「儿化元音」。任务书「英美口径差 1–3 个」亦低估。App 选定一种口径后，本表须按该口径单列，英美不许混编。
+    disputes:
+    - 44 并非定案：有学者主张双元音与三元音组合不应计为单位音位，重算后英语只有 35 个音位（IJSELL 2017 的再分析，属少数派）；当代英音研究者（如 Geoff Lindsey）另指出 SSB 元音已漂移（/ʊə/ 近乎消失、双元音质量改变），44 实为二十世纪 RP 的快照。教学处理：数字照用 44，分歧只进教师层。
+    evidence_grade: 教材口径·二手互证
+    pending: []
+  corrections:
+  - 任务书「20 元音 = 6 短 + 5 长 + 5 r 控 + 双元音若干」的拆法作废：RP 短元音为 7（含 /ə/），r 控不是 RP 音位类目；任务书「英美口径差 1–3 个」低估（元音名目差 4–6 个）。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-29
+  zone: 拼读
+  group: S
+  order: 29
+  headline: 拼写可预测性有实测账本：纯按声音规则只能拼对一半词，放宽到「只错一个音」是 84%，再算上词形与词源只剩约 4% 真不规则——高于这个账本的百分比（如 98%）都是未经独立验证的宣传数
+  headline_kid: 英语单词里，一半光靠「听音拼字」就能拼对；再算上「只拼错一个音」的，十个里有八个多能拼对；真正捣乱的只有一小撮，我们把它们单独记住。
+  claim:
+    type: rule
+    statement: 拼写可预测性实测账本（Hanna et al. 1966，17,310 词）：纯音位—字素规则全对 49.9%、错一处 36.4%（合计约 84% 大体可预测）；再计入词形与词源规则，只剩约 4% 真不规则。
+    evidence:
+    - 'Hanna, Hanna, Hodges & Rudorf (1966)《Phoneme-Grapheme Correspondences as Cues to Spelling Improvement》, U.S. Office of Education（ERIC 摘要：https://eric.ed.gov/?id=ED028169 ，载 17,310 词样本）；复述见 Bowers & Bowers (2017) 52(2): 124–141 与 Joshi, Treiman, Carreker & Moats (2008)《American Educator》。接触等级：二手互证（1966 原报告全文未打开）。'
+    - 支撑：辅音一致性远高于元音：辅音词首 96%、词尾 91% 一致，元音孤立看仅约 52%（Treiman et al. 1995）——「变脸」几乎全发生在元音区，与 S-30 辅音可靠区互证。
+    scope: 一切百分比引用必须带口径（样本、方向、计不计条件规则）；高于本账本的百分比（如 98%）多为未经独立验证的宣传数，不入结论。
+    exceptions: []
+  mechanism:
+    beats:
+    - beat: Hanna 账本三段
+      text_adult: Hanna、Hanna、Hodges & Rudorf（1966）把 17,310 个词交给只懂音位—字素对应规则的计算机程序拼写：全对 49.9%，错一处 36.4%，错两处 11.4%，错三处 2.3%。教育界通行概括是「约 50% 完全可预测 + 34% 只差一个音 ≈ 84% 大体可预测；再计入词形与词源，只剩约 4% 真不规则」（Joshi et al. 2008）。对应规模本身很大：40 余个音位对应 250 多个字素（Moats 综述口径），所以「可预测」靠的是位置、重音、词形等条件规则网，而非一对一。对应教学三段：系统拼读主线（可预测的一半）、近规则词（错一处的一批，错处多在元音）、变脸名单（真不规则的 4%）。
+      anchors: []
+      text_kid: 英语单词里，一半光靠「听音拼字」就能拼对；再算上「只拼错一个音」的，十个里有八个多能拼对；真正捣乱的只有一小撮，我们把它们单独记住。
+  examples: []
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-06
+    rel: 同族
+  - id: S-30
+    rel: 同族
+  - id: S-42
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Hanna et al. (1966), U.S. Office of Education, ERIC ED028169；Bowers & Bowers (2017)；Joshi et al. (2008)；Venezky (1970)《The Structure of English Orthography》、(1999)《The American Way of Spelling》；Treiman et al. (1995)。接触等级：二手互证。
+    boundary: 纠正任务书两处（详见纠正记录）：「166 条 GPC」不得挂 Hanna 名下；归于 Venezky 的「75%」「85–87%」无可核出处，两数一律不入结论。Venezky 的贡献是结构性的，本人从未给出此类百分比。
+    disputes:
+    - Logic of English（Eide 2011/2012）宣称「74/75 个 phonogram + 30/31 条规则可解释 98% 的词」——出版方自述且不同版本数字互不一致，独立评测亦明言该数是「出版者自己的说法，而非独立发现」；本清单只登记为营销级主张。另一侧的学术估计同样有散布：Kreiner (1992) 估约 60% 的词对拼写而言不规则，Crystal (2003) 估纯语音规则可预测 56%——方向与口径不同则数字不同，引用时必须带口径。
+    evidence_grade: 二手互证（同行评审复述 + ERIC 官方摘要）
+    pending:
+    - 「166」在可检索文献中出现的是一张对应表的计数（58 + 108 = 166 个与辅音音位有关的字素），其原始出处疑为 Carney (1994)《A Survey of English Spelling》的辅音清点，本轮未打开原书核实，登记为待核。
+  corrections:
+  - 任务书称 Hanna 等「系统算出 166 条 GPC」——Hanna 研究的各家复述中均无此数字，不得再挂 Hanna 名下（疑为 Carney 1994，待核）。
+  - 任务书归于 Venezky 的「约 75% 可规则预测」「算上形态与重音可到 85–87%」均无可核出处，不入结论；Chomsky & Halle (1968) 对拼写的评价是定性的，从未给出百分比。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-30
+  zone: 拼读
+  group: S
+  order: 30
+  headline: 单字母辅音里有一批「老实人」：b d f h k l m n p r t v w z 基本一个字母一个音，先教最稳；真正的双面角色只有 s 和 x，j 则近乎专职替软 g 站岗
+  headline_kid: 辅音字母里有一队「说什么就是什么」的老实字母，先跟它们做朋友。s 和 x 是小演员：s 有时读清的 /s/、有时读浊的 /z/；x 是两个音捆在一起卖的。
+  claim:
+    type: rule
+    statement: 单字母辅音可靠名单实点 14 个（b d f h k l m n p r t v w z），各只有一个主读音、词首位置近乎无例外；j 近乎专职读 /dʒ/；只有 s（清浊由邻居决定）与 x（打包音）是双面角色。
+    evidence:
+    - 读音与分布以 Roach (2009)、Cruttenden (2014) 的音位—拼写对应表为准；-s 的清浊同化属标准音系描写，与 S-18 互证；x 的 /ɡz/ 环境与希腊词首 /z/ 见 Cambridge/OED 词典注音口径。接触等级：教材口径·二手互证。
+    - 支撑：S-29 的统计说辅音词首一致性 96%——本条就是那 96% 的内容物；主流课程序列（如 Letters and Sounds Phase 2 以 s a t p i n 打头）正是先用这批可靠字母最快拼出真词。
+    scope: 「可靠」限于单字母的词首/词中位置；t 在 -ture、-tion 组合里、n 在词尾 -mn 里、k 在 kn- 里都会变脸，但那是组合层的事，归 S-32/S-33。
+    exceptions:
+    - h 在 hour、honest、heir 里不发音
+    - w 在 two、sword、answer 里缺席
+    - RP 口径下 r 只在元音前发音（car 词尾不响，GA 则响）
+    - this 的 s 是清的、is 的 s 是浊的（高频词逐词认）
+  mechanism:
+    beats:
+    - beat: 可靠名单 14 + j
+      text_adult: 可靠名单实点 14 个——b /b/、d /d/、f /f/、h /h/、k /k/、l /l/、m /m/、n /n/、p /p/、r /r/、t /t/、v /v/、w /w/、z /z/，各只有一个主读音，词首位置近乎无例外。j 紧随其后：词首几乎必读 /dʒ/（jam, job, jump），正好与软 g 分工（见 S-31）——g 在 a/o/u 前守硬音，这些位置的 /dʒ/ 由 j 顶上。
+      anchors:
+      - jam
+      - job
+      - jump
+      text_kid: 辅音字母里有一队「说什么就是什么」的老实字母，先跟它们做朋友。s 和 x 是小演员：s 有时读清的 /s/、有时读浊的 /z/；x 是两个音捆在一起卖的。
+    - beat: s 的清浊
+      text_adult: s 的清浊由邻居决定：词尾的 s 在清辅音后读 /s/（cats）、在浊辅音与元音后读 /z/（dogs, is, was），与嘶音相撞时垫一个 /ɪ/（buses，见 S-18）；少数高频词须逐词认：this 的 s 是清的、is 的 s 是浊的。
+      anchors:
+      - cats
+      - dogs
+      - is
+      - was
+      - buses
+      - this
+    - beat: x 是打包音
+      text_adult: x 默认 /ks/（fox, six），夹在元音之间且重音在后时浊化为 /ɡz/（exam, exact, exist），词首在希腊词里只读 /z/（xylophone）。
+      anchors:
+      - fox
+      - six
+      - exam
+      - exact
+      - exist
+      - xylophone
+  examples:
+  - level: 1
+    group: j 站岗
+    words:
+    - jam
+    - job
+    - jump
+    supports: claim
+  - level: 2
+    group: s 清浊
+    words:
+    - cats
+    - dogs
+    - is
+    - was
+    - this
+    supports: claim
+  - level: 3
+    group: x 打包
+    words:
+    - fox
+    - six
+    - exam
+    - exact
+    - exist
+    - xylophone
+    supports: claim
+  - level: 4
+    group: 边角例外
+    words:
+    - hour
+    - honest
+    - heir
+    - two
+    - sword
+    - answer
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-29
+    rel: 同族
+  - id: S-31
+    rel: 同族
+  - id: S-18
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Roach (2009)、Cruttenden (2014) 音位—拼写对应表；Cambridge/OED 词典注音口径。接触等级：教材口径·二手互证。
+    boundary: 纠正任务书：「16 个近乎一对一」与所附名单对不上——名单实点 14 个，加上近乎专职的 j 是 15 个，本条按实点数定版。另注意「可靠」限于单字母的词首/词中位置，组合层的变脸归 S-32/S-33，不算本名单失守。
+    disputes: []
+    evidence_grade: 教材口径·二手互证
+    pending: []
+  corrections:
+  - 任务书「16 个近乎一对一的辅音」计数有误：所附名单实点 14 个，加 j 为 15 个，按实点数定版。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-31
+  zone: 拼读
+  group: S
+  order: 31
+  headline: c 和 g 碰到 e、i、y 就「变软」：c 变 /s/、g 变 /dʒ/；但一小队老词死活不软——get、girl、give、gear、geese 全读硬 g，这队例外可以整队记住
+  headline_kid: 字母 c 和 g 是看人下菜的：后面站着 e、i、y，它们就换上软声音；后面是 a、o、u，就保持硬声音。有几个老词脾气倔，怎么都不软，我们把它们编成一队一起记。
+  claim:
+    type: rule
+    statement: c、g 紧跟 e、i、y 时软化（c→/s/、g→/dʒ/），后接 a、o、u 时读硬音；不在罗曼语软化波及范围内的词保留硬 g，例外成队可记。
+    evidence:
+    - Wiktionary 附录 “English words where G is pronounced exceptionally”, https://en.wiktionary.org/wiki/Appendix:Glossary_of_English_words_where_G_is_pronounced_exceptionally ；拼读教材例外表互证；历史来源见 Baugh & Cable《A History of the English Language》。接触等级：二手互证。
+    - 支撑：本条与 S-30 的 j 分工互锁：/dʒ/ 在 a/o/u 前只能写 j（jam），在 e/i/y 前多写 g（gem），词尾写 -ge / -dge（age, badge，见 S-33）——一张「/dʒ/ 拼法地图」由此成形。
+    scope: 规则只管「c/g 紧跟 e、i、y」的单字母位置：gg（egg）不软，词尾 -ge 的处理另有规则条承接。例外队的共同点是「不在罗曼语软化波及范围内」，来源不止本族一途，不可把名单讲成「全是老英语词」（见纠正记录）。
+    exceptions:
+    - 硬 g 例外队：get、give、girl、gift、gear、geese、giggle、girdle、gill（鱼鳃）、begin、together；借词：geyser（冰岛语）、gecko（马来语拟声）、ginkgo
+    - gill 一词两读：鱼鳃读 /ɡ/、量器读 /dʒ/
+    - c 的例外：sceptic（英式读 /sk/）、Celtic（学界多读 /k/、足球俱乐部名读 /s/，双读登记）、意大利语层 cello、concerto 里 c + e 读 /tʃ/
+  mechanism:
+    beats:
+    - beat: 软化机制
+      text_adult: 软化是罗曼语层带进来的读法：拉丁语晚期与法语里 /k/、/g/ 在前元音（e/i）前腭化，诺曼法语借词把「c = /s/、g = /dʒ/」的对应搬进英语（cent, city, cycle；gem, giant, gym）。不在这波腭化范围内的词保留硬音。
+      anchors:
+      - cent
+      - city
+      - cycle
+      - gem
+      - giant
+      - gym
+      - egg
+      text_kid: 字母 c 和 g 是看人下菜的：后面站着 e、i、y，它们就换上软声音；后面是 a、o、u，就保持硬声音。有几个老词脾气倔，怎么都不软，我们把它们编成一队一起记。
+  examples:
+  - level: 1
+    group: 软化正例
+    words:
+    - cent
+    - city
+    - cycle
+    - gem
+    - giant
+    - gym
+    supports: claim
+  - level: 2
+    group: 硬 g 例外队
+    words:
+    - get
+    - give
+    - girl
+    - gift
+    - gear
+    - geese
+    - giggle
+    - girdle
+    - gill
+    - begin
+    - together
+    - geyser
+    - gecko
+    - ginkgo
+    supports: claim
+  - level: 3
+    group: c 的例外
+    words:
+    - sceptic
+    - cello
+    - concerto
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-30
+    rel: 同族
+  - id: S-33
+    rel: 同族
+  - id: SR-04
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Wiktionary 附录（专表）；拼读教材例外表；Baugh & Cable《A History of the English Language》。接触等级：二手互证（逐词读音以词典口径为准）。
+    boundary: 规则只管「c/g 紧跟 e、i、y」的单字母位置：gg（egg）不软，词尾 -ge 的处理另有规则条承接。纠正任务书一处归类：任务书把 gecko 列入「本族词保硬 g」不确——gecko 是马来语拟声借词，geyser 是冰岛语借词，只是恰好也没被软化；例外名单教学时不可讲成「全是老英语词」。
+    disputes:
+    - 无实质分歧（规则与例外名单为教材共识）；Celtic 的读法在学界与大众语境间长期双读，属个案争议，如实双登记。
+    evidence_grade: 二手互证
+    pending: []
+  corrections:
+  - 任务书把 gecko 列入「本族（古英语）词保硬 g」归类不确：gecko 为马来语拟声借词、geyser 为冰岛语借词，只是同样不在软化波及范围内。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-32
+  zone: 拼读
+  group: S
+  order: 32
+  headline: 两字母抱团发一个音：辅音二合字母大多守规矩，只有 ch 有三个音、th 分清浊两班——而这两位的分班依据都是「词从哪来、词是干什么的」
+  headline_kid: 两个字母抱团发一个音，叫组合音。大多数组合很乖，只有 ch 是三面派，th 分清嗓和浊嗓两班：小词（the、this）读浊班，大词（think、three）读清班。
+  claim:
+    type: rule
+    statement: 辅音二合字母的读音按地层与词类分工：sh 恒 /ʃ/；ch 三音（本族 /tʃ/、希腊源 /k/、法语源 /ʃ/）；th 清浊按词类（虚词浊 /ð/、实词清 /θ/）；ph 为希腊层 /f/；wh 多并入 /w/；ng /ŋ/、qu /kw/ 各有分工细则。
+    evidence:
+    - 各组合读法与例词以 Roach (2009)、Cruttenden (2014) 的拼写—音位对应章及 Cambridge Dictionary 注音口径为准；词源分工（ch 三音、ph 希腊层）与词汇三地层互证。接触等级：教材口径·二手互证（例词逐组按词典通行注音核过）。
+    - 支撑：本条是系统拼读中段（如 Letters and Sounds Phase 3 纳入 ch sh th ng）的核心教学内容；th 的清浊分工是 S-14/S-43 中国孩子难点地图的头号词首项。
+    scope: ch 的 /ʃ/ 组里 Chicago 是地名特例（源头为原住民词经法语拼写转手），不可当法语层通例讲；ng 的「g 不响」只限词尾与 singer 型派生词，finger、anger、longer 的 g 要响——分界在形态切分；wh 与 w 的合并须限定「主流 RP/GA」，苏格兰、爱尔兰与美国部分地区仍保留 /ʍ/。
+    exceptions:
+    - th 读 /t/：人名、地名与个别希腊词——Thomas、Thames、thyme
+    - qu 的法语层例外读 /k/ 系：queue、quay、quiche、liquor、conquer
+    - Chicago 的 ch 读 /ʃ/ 是地名特例，不作法语层通例
+  mechanism:
+    beats:
+    - beat: sh 与 ch 三音
+      text_adult: sh /ʃ/：ship, wish，全层稳定。ch 三音按地层分工：本族词 /tʃ/（chair, lunch）；希腊源 /k/（school, chorus, chemistry, anchor, stomach, character）；法语源 /ʃ/（chef, machine, champagne, Chicago）。
+      anchors:
+      - ship
+      - wish
+      - chair
+      - lunch
+      - school
+      - chorus
+      - chemistry
+      - anchor
+      - stomach
+      - character
+      - chef
+      - machine
+      - champagne
+      - Chicago
+      text_kid: 两个字母抱团发一个音，叫组合音。大多数组合很乖，只有 ch 是三面派，th 分清嗓和浊嗓两班：小词（the、this）读浊班，大词（think、three）读清班。
+    - beat: th 清浊分班
+      text_adult: 虚词与指示词读浊 /ð/——the, this, that, these, those, they, them, their, then, than, there, thus, though 一队；实词读清 /θ/——think, three, month, tooth；词中 -th- 在本族词里常浊化（father, weather, either）；例外：人名、地名与个别希腊词的 th 读 /t/（Thomas, Thames, thyme）。
+      anchors:
+      - the
+      - this
+      - that
+      - these
+      - those
+      - they
+      - them
+      - their
+      - then
+      - than
+      - there
+      - thus
+      - though
+      - think
+      - three
+      - month
+      - tooth
+      - father
+      - weather
+      - either
+      - Thomas
+      - Thames
+      - thyme
+    - beat: ph / wh / ng / qu
+      text_adult: ph /f/ 是希腊层标记（phone, dolphin）；当 p、h 分属前后两个音节时不成组合（uphold, haphazard, shepherd）。wh：现代 RP/GA 的多数说话人已把 wh 并入 /w/（what, when），唯 who, whom, whose, whole 的 w 不发音、只剩 /h/。ng /ŋ/（sing），后接 /k/ 时拼 nk、读 /ŋk/（bank, think）；词中 singer 的 g 不响、finger 的 g 响，分界在词的结构切分。qu /kw/（queen, quick）近乎无例外，法语层例外读 /k/ 系（queue, quay, quiche, liquor, conquer）。
+      anchors:
+      - phone
+      - dolphin
+      - uphold
+      - haphazard
+      - shepherd
+      - what
+      - when
+      - who
+      - whom
+      - whose
+      - whole
+      - sing
+      - bank
+      - think
+      - singer
+      - finger
+      - queen
+      - quick
+      - queue
+      - quay
+      - quiche
+      - liquor
+      - conquer
+  examples:
+  - level: 1
+    group: sh
+    words:
+    - ship
+    - wish
+    supports: claim
+  - level: 2
+    group: ch 本族 /tʃ/
+    words:
+    - chair
+    - lunch
+    supports: claim
+  - level: 3
+    group: ch 希腊源 /k/
+    words:
+    - school
+    - chorus
+    - chemistry
+    - anchor
+    - stomach
+    - character
+    supports: claim
+  - level: 4
+    group: ch 法语源 /ʃ/
+    words:
+    - chef
+    - machine
+    - champagne
+    supports: claim
+  - level: 5
+    group: th 浊 /ð/（虚词）
+    words:
+    - the
+    - this
+    - that
+    - these
+    - those
+    - they
+    - them
+    - their
+    - then
+    - than
+    - there
+    - thus
+    - though
+    supports: claim
+  - level: 6
+    group: th 清 /θ/（实词）
+    words:
+    - think
+    - three
+    - month
+    - tooth
+    supports: claim
+  - level: 7
+    group: th 词中浊化
+    words:
+    - father
+    - weather
+    - either
+    supports: claim
+  - level: 8
+    group: ph 希腊层
+    words:
+    - phone
+    - dolphin
+    supports: claim
+  - level: 9
+    group: 非组合（跨音节）
+    words:
+    - uphold
+    - haphazard
+    - shepherd
+    supports: claim
+  - level: 10
+    group: wh
+    words:
+    - what
+    - when
+    - who
+    - whom
+    - whose
+    - whole
+    supports: claim
+  - level: 11
+    group: ng/nk
+    words:
+    - sing
+    - bank
+    - think
+    - singer
+    - finger
+    supports: claim
+  - level: 12
+    group: qu
+    words:
+    - queen
+    - quick
+    - queue
+    - quay
+    - quiche
+    - liquor
+    - conquer
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-14
+    rel: 同族
+  - id: S-43
+    rel: 同族
+  - id: S-26
+    rel: 同族
+  - id: S-33
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 听不懂
+  adult:
+    sources:
+    - Roach (2009)、Cruttenden (2014) 拼写—音位对应章；Cambridge Dictionary 注音口径。接触等级：教材口径·二手互证。
+    boundary: ch 的 /ʃ/ 组里 Chicago 是地名特例，不可当法语层通例讲，machine、chef 才是正例。ng 的「g 不响」只限词尾与 singer 型派生词，finger、anger、longer（比较级）的 g 要响——分界在形态切分，不在字母本身。wh 与 w 的合并须限定「主流 RP/GA」：苏格兰、爱尔兰与美国部分地区仍保留 /ʍ/（hw 音）。
+    disputes: []
+    evidence_grade: 教材口径·二手互证
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-33
+  zone: 拼读
+  group: S
+  order: 33
+  headline: 短元音后面站岗的辅音要「加厚」：/k/ 写 ck、/tʃ/ 写 tch、/dʒ/ 写 dge；kn、wr、mb、gn 这批组合里有个字母只站岗不发声——认得出它们，就不会读错、拼错
+  headline_kid: 短元音是个「小个子」，后面的辅音要穿厚一点保护它：back 不写 bak，要写 ck；catch 写 tch；bridge 写 dge。还有些字母是「哨兵」：站在词里但不出声——kn 的 k、wr 的 w、lamb 的 b，都是哨兵。
+  claim:
+    type: rule
+    statement: 紧跟在单个短元音之后：/k/ 写 ck、词尾 /tʃ/ 写 tch、/dʒ/ 写 dge（规则本体入模于 SR-03，本条为清单版）；哑字母组合按位置识别（kn-/wr-/-mb/gn 等）；gu 后接 e/i 时 u 不发音、只保 g 的硬音。
+    evidence:
+    - ck/tch/dge 的分布与四词例外：Reading Universe 的 -tch 规则解说，https://readinguniverse.org/skill-explainer/phonics-patterns/trigraphs-tch-skill-explainer/overview-of-the-tch-spelling-rule ，及多家拼读课程规则表互证；哑字母组合清单以 Roach / Cruttenden 对应表与 S-19 已收史述对齐；「守门员 u」是 Orton-Gillingham / Spalding 传统的通行讲授口径。接触等级：二手互证。
+    - 支撑：本条与 S-22 六音节类型直接咬合：ck/tch/dge 都是闭音节短元音的拼写标记，读到它们应当反推前面的元音读短——阅读与拼写共用同一张表。
+    scope: ck/tch/dge 的适用域是「紧跟在单个短元音之后」：前面是长元音、双元音或辅音时一律回到 ch / ge / k（beach, age, milk），把规则讲成「词尾一律加厚」是常见误教。-mb、gn 的哑与响取决于位置与切分（词尾哑、词中响）。gu 的例外（guano 等）是借词，数量极少。
+    exceptions:
+    - 短元音后仍写 ch 的高频四词：much、such、rich、which（多音节的 attach、detach、bachelor 亦写 ch）
+    - gu 的 u 读 /w/ 的借词例外：guano、guava
+  mechanism:
+    beats:
+    - beat: 短元音后加厚
+      text_adult: 单音节词里短元音后的 /k/ 写 ck（back, duck），前面是长元音或辅音时只写 k（beak, milk）；词尾 /tʃ/ 写 tch（catch, pitch），/dʒ/ 写 dge（badge, bridge, judge）。三者的共同逻辑：用加厚的拼写锁住前面的短元音、防它被误读成长元音（与 S-22 闭音节互为表里）。例外整队记：much, such, rich, which 四个高频词在短元音后仍写 ch；多音节的 attach, detach, bachelor 亦写 ch。
+      anchors:
+      - back
+      - duck
+      - beak
+      - milk
+      - catch
+      - pitch
+      - badge
+      - bridge
+      - judge
+      - much
+      - such
+      - rich
+      - which
+      - attach
+      - detach
+      - bachelor
+      text_kid: 短元音是个「小个子」，后面的辅音要穿厚一点保护它：back 不写 bak，要写 ck；catch 写 tch；bridge 写 dge。还有些字母是「哨兵」：站在词里但不出声——kn 的 k、wr 的 w、lamb 的 b，都是哨兵。
+    - beat: 哑字母组合清单
+      text_adult: kn- 读 /n/（knee, knife, know）；wr- 读 /r/（write, wrong, wrist）；词尾 -mb 读 /m/（lamb, thumb, climb；但词中的 timber, number 的 b 要响）；gn 读 /n/（sign, gnome, gnaw；但词中 signal, signature 的 g 要响——拼写为词形家族守恒，见 S-21）；词尾 -mn 读 /m/（hymn, autumn）；词首 ps- 读 /s/（psychology, psalm）、pn- 读 /n/（pneumonia）、pt- 读 /t/（ptarmigan）、mn- 读 /n/（mnemonic）。本条只做清单与识别，「为什么哑」见 S-19。
+      anchors:
+      - knee
+      - knife
+      - know
+      - write
+      - wrong
+      - wrist
+      - lamb
+      - thumb
+      - climb
+      - timber
+      - number
+      - sign
+      - gnome
+      - gnaw
+      - signal
+      - signature
+      - hymn
+      - autumn
+      - psychology
+      - psalm
+      - pneumonia
+      - ptarmigan
+      - mnemonic
+    - beat: gu 的守门员 u
+      text_adult: gu 后接 e/i 时 u 不发音，只负责保住 g 的硬音（guess, guest, guide, guitar, guard, guilt）——没有这个 u，g 就要按 S-31 变软；例外是 guano, guava 的 u 读 /w/。
+      anchors:
+      - guess
+      - guest
+      - guide
+      - guitar
+      - guard
+      - guilt
+      - guano
+      - guava
+  examples:
+  - level: 1
+    group: 加厚正例
+    words:
+    - back
+    - duck
+    - catch
+    - pitch
+    - badge
+    - bridge
+    - judge
+    supports: claim
+  - level: 2
+    group: 加厚不适用（长元音/辅音后）
+    words:
+    - beak
+    - milk
+    supports: claim
+  - level: 3
+    group: ch 例外队
+    words:
+    - much
+    - such
+    - rich
+    - which
+    - attach
+    - detach
+    - bachelor
+    supports: claim
+  - level: 4
+    group: 哑字母组合
+    words:
+    - knee
+    - knife
+    - know
+    - write
+    - wrong
+    - wrist
+    - lamb
+    - thumb
+    - climb
+    - sign
+    - gnome
+    - gnaw
+    - hymn
+    - autumn
+    - psychology
+    - psalm
+    - pneumonia
+    - ptarmigan
+    - mnemonic
+    supports: claim
+  - level: 5
+    group: 词中复活对照
+    words:
+    - timber
+    - number
+    - signal
+    - signature
+    supports: claim
+  - level: 6
+    group: 守门员 u
+    words:
+    - guess
+    - guest
+    - guide
+    - guitar
+    - guard
+    - guilt
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: SR-03
+    rel: 同族
+  - id: S-22
+    rel: 同族
+  - id: S-19
+    rel: 同族
+  - id: S-21
+    rel: 同族
+  - id: S-31
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Reading Universe -tch 规则解说；多家拼读课程规则表；Roach / Cruttenden 对应表；OG / Spalding 传统（守门员 u）。接触等级：二手互证。
+    boundary: ck/tch/dge 的适用域是「紧跟在单个短元音之后」：前面是长元音、双元音或辅音时一律回到 ch / ge / k（beach, age, milk），把规则讲成「词尾一律加厚」是常见误教。-mb、gn 的哑与响取决于位置与切分（词尾哑、词中响），不可对整个词一刀切。gu 的例外（guano 等）是借词，数量极少，作名单尾巴处理即可。
+    disputes: []
+    evidence_grade: 二手互证
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-34
+  zone: 拼读
+  group: S
+  order: 34
+  headline: 短元音是闭音节的默认读法：a、e、i、o、u 各守一个短音，u 另有一小队读 /ʊ/，字母 y 在多音节词里顶替短 i
+  headline_kid: 元音字母被辅音「关」在音节里时，读短音：a 是小口 /æ/、e 是 /e/、i 是 /ɪ/、o 是 /ɒ/、u 是 /ʌ/；只有一小队 u 字词例外，读短短的 /ʊ/（put 那一队），要成组记。
+  claim:
+    type: tendency
+    statement: 重读闭音节中 a、e、i、o、u 默认读短音 /æ e ɪ ɒ ʌ/；u 有一小队读 /ʊ/（唇音后环境只是倾向，只能整组记）；y 在多音节词中顶替短 i（词中 /ɪ/、词尾 /i/）。
+    evidence:
+    - Gimson/Cruttenden《Gimson's Pronunciation of English》元音系统与 FOOT–STRUT 分裂的标准描写（书目级）；Letters and Sounds Phase 2–3 短元音 GPC 表（课程文件级，开页核对）；剑桥词典音标口径逐词核对（词典级）。
+    - 支撑：五短音是全部拼读课程共同的第一课内容（Letters and Sounds Phase 2 的首批 GPC 即以闭音节短元音为骨架）；/ʊ/ 小队在各家课程中均以「例外组」形式整组呈现。
+    scope: 只管重读闭音节；非重读音节的元音弱化归 S-08（schwa）。o 的短音英 /ɒ/ 美 /ɑː/，是同一词位的不同标音，非变脸。标音取英式（RP/SSBE 词典口径）。
+    exceptions:
+    - /ʊ/ 小队（整组记）：put、pull、full、bull、push、bush、cushion、pudding、wolf、woman、sugar、butcher——唇音后环境只是倾向：pun 与 put 同为唇音开头却读 /ʌ/
+    - happy 词尾的 y 现代英式词典标 /i/（happy-tensing），与 gym 的 /ɪ/ 不是同一个音：教拼写时可合并、教听辨时须分开
+  mechanism:
+    beats:
+    - beat: 五短音默认与 u 的分裂
+      text_adult: 闭音节（元音后有辅音收尾）是英语短元音的默认环境，与 S-22 的「闭音节」型对应：cat /kæt/、bed /bed/、sit /sɪt/、hot /hɒt/（美 /hɑːt/）、cup /kʌp/。u 的分裂有历史原因：中古短 u 在 17 世纪的 FOOT–STRUT 分裂中多数降为 /ʌ/，但在唇音后接 /l、ʃ/ 等环境的一批词里未分裂、保留 /ʊ/——put、pull、full、bull、push、bush、cushion、pudding、wolf、woman、sugar、butcher。该环境只是倾向：pun 与 put 同为唇音开头却读 /ʌ/，故 /ʊ/ 队只能整组记，不能立规则。y 在多音节词里顶替 i 的短音位置：词中读 /ɪ/（gym、system、symbol），词尾读 /i/（happy、baby）。
+      anchors:
+      - cat
+      - bed
+      - sit
+      - hot
+      - cup
+      - put
+      - pull
+      - full
+      - bull
+      - push
+      - bush
+      - cushion
+      - pudding
+      - wolf
+      - woman
+      - sugar
+      - butcher
+      - pun
+      - gym
+      - system
+      - symbol
+      - happy
+      - baby
+      text_kid: 元音字母被辅音「关」在音节里时，读短音：a 是小口 /æ/、e 是 /e/、i 是 /ɪ/、o 是 /ɒ/、u 是 /ʌ/；只有一小队 u 字词例外，读短短的 /ʊ/（put 那一队），要成组记。
+  examples:
+  - level: 1
+    group: 五短音
+    words:
+    - cat
+    - bed
+    - sit
+    - hot
+    - cup
+    supports: claim
+  - level: 2
+    group: /ʊ/ 小队
+    words:
+    - put
+    - pull
+    - full
+    - bull
+    - push
+    - bush
+    - cushion
+    - pudding
+    - wolf
+    - woman
+    - sugar
+    - butcher
+    supports: claim
+  - level: 3
+    group: 倾向反例
+    words:
+    - pun
+    supports: claim
+  - level: 4
+    group: y 顶替短 i
+    words:
+    - gym
+    - system
+    - symbol
+    - happy
+    - baby
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-22
+    rel: 同族
+  - id: S-08
+    rel: 对照
+  - id: S-42
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Gimson/Cruttenden《Gimson's Pronunciation of English》（书目级）；Letters and Sounds Phase 2–3（课程文件级，开页核对）；剑桥词典音标（词典级）。接触等级：菜单与例词为词典级核对；历史机制为教材书目级转述。
+    boundary: ①happy 词尾的 y：传统教材常记作「短 i /ɪ/」，现代英式词典标 /i/（happy-tensing），与 gym 的 /ɪ/ 不是同一个音，教拼写时可合并、教听辨时须分开。②短元音默认只管重读闭音节；非重读音节的元音弱化归 S-08。③o 的短音英 /ɒ/ 美 /ɑː/，是同一词位的不同标音，非变脸。
+    disputes:
+    - 无实质分歧；happy 词尾标 /i/ 还是 /ɪ/ 是词典编纂口径之差（现代英式词典多标 /i/），登记备查。
+    evidence_grade: 词典级（例词）+ 书目级（历史机制）
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-35
+  zone: 拼读
+  group: S
+  order: 35
+  headline: 长音 /eɪ/ 的拼法菜单：a-e、ai、ay 三个主力，ea 只剩三个词，ey、eigh、ei 是小路
+  headline_kid: 这个音有三条大路拼：cake 的 a-e、rain 的 ai、day 的 ay；还有几条小路：great 的 ea（只有三个词）、they 的 ey、eight 的 eigh、vein 的 ei，遇到再记。
+  claim:
+    type: tendency
+    statement: /eɪ/ 的拼法菜单：主力 a-e、ai、ay（ai 居词中、ay 居词尾）；次要 ea（仅三词）、ey、eigh、ei 与开音节 a。菜单为分布格局，非无例外定律。
+    evidence:
+    - Letters and Sounds Phase 5「/eɪ/ 的替代拼法」表（a-e、ay、eigh、ei、ey、ea 及开音节 a，课程文件级，开页核对）；Venezky (1970) 关于 a-e/ai/ay 对应层的系统描写（书目级）；例词读音按剑桥词典音标逐词核对（词典级）。
+    - 支撑：Letters and Sounds 把 /eɪ/ 的替代拼法整体放在 Phase 5 教学，「主力三拼 + 小路后学」是国家课程级的共识排法；ea 三词（great/break/steak）在所有拼读课程中均以固定例外组出现。
+    scope: 标音取英式口径（本菜单英美通用，同为 /eɪ/）；ai/ay 的位置分工细则归 SR-05。
+    exceptions:
+    - ai 变脸：said /sed/、says /sez/ 中 ai 读 /e/（高频功能词，单独记）
+    - ey 两读：词尾 ey 在 key、money 中读 /i/（见 S-36），在 they、obey 中读 /eɪ/——ey 本身进 S-42 变脸榜候选
+  mechanism:
+    beats:
+    - beat: /eɪ/ 菜单
+      text_adult: 主力：a-e（cake、name、game，词中或词尾）、ai（rain、train、wait，多在词中）、ay（day、play、say，多在词尾，位置分工详见 SR-05）。次要：ea 仅 great、break、steak 三个常用词（ea 的主场是 /iː/，见 S-36 与 S-42）；ey（they、grey、obey、prey，多在词尾）；eigh（eight、weight、neighbour）；ei（vein、veil、rein、beige）；a 开音节（paper、April、acorn）。多轨成因：现代 /eɪ/ 由中古 /aː/（a-e 保存）与 /ai/（ai、ay 保存）在元音大推移中合并，又有法语层 ei/ey 加入，拼法层积为多路。ea 三词是中古长 e 另一路线的残留。
+      anchors:
+      - cake
+      - name
+      - game
+      - rain
+      - train
+      - wait
+      - day
+      - play
+      - say
+      - great
+      - break
+      - steak
+      - they
+      - grey
+      - obey
+      - prey
+      - eight
+      - weight
+      - neighbour
+      - vein
+      - veil
+      - rein
+      - beige
+      - paper
+      - April
+      - acorn
+      - said
+      - says
+      text_kid: 这个音有三条大路拼：cake 的 a-e、rain 的 ai、day 的 ay；还有几条小路：great 的 ea（只有三个词）、they 的 ey、eight 的 eigh、vein 的 ei，遇到再记。
+  examples:
+  - level: 1
+    group: 主力 a-e
+    words:
+    - cake
+    - name
+    - game
+    supports: claim
+  - level: 2
+    group: 主力 ai
+    words:
+    - rain
+    - train
+    - wait
+    supports: claim
+  - level: 3
+    group: 主力 ay
+    words:
+    - day
+    - play
+    - say
+    supports: claim
+  - level: 4
+    group: ea 三词
+    words:
+    - great
+    - break
+    - steak
+    supports: claim
+  - level: 5
+    group: ey
+    words:
+    - they
+    - grey
+    - obey
+    - prey
+    supports: claim
+  - level: 6
+    group: eigh
+    words:
+    - eight
+    - weight
+    - neighbour
+    supports: claim
+  - level: 7
+    group: ei
+    words:
+    - vein
+    - veil
+    - rein
+    - beige
+    supports: claim
+  - level: 8
+    group: 开音节 a
+    words:
+    - paper
+    - April
+    - acorn
+    supports: claim
+  - level: 9
+    group: ai 变脸例外
+    words:
+    - said
+    - says
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-36
+    rel: 对照
+  - id: S-42
+    rel: 同族
+  - id: SR-05
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Letters and Sounds Phase 5（课程文件级，开页核对）；Venezky (1970)（书目级）；剑桥词典音标（词典级）。
+    boundary: ①ai 也有变脸：said、says 中 ai 读 /e/，属高频功能词，单独记。②ey 两读：key、money 的 ey 读 /i/（见 S-36），they、obey 读 /eɪ/。③美式标音同为 /eɪ/，本菜单英美通用。
+    disputes:
+    - 无；ea 三词的成因为方言变体竞争说（细节各家表述不一），本条只登记「历史残留、无规则可循」，不裁定成因细节。
+    evidence_grade: 课程文件级 + 词典级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-36
+  zone: 拼读
+  group: S
+  order: 36
+  headline: 长音 /iː/ 的拼法菜单：ee 与 ea 双主力（历史上本是两个音），e 收尾、ie、ey、i 各占一角，ei 在 c 后面读 /iː/
+  headline_kid: /iː/ 有两条最大的路：see 的 ee 和 eat 的 ea；再加 me 的 e、field 的 ie、key 的 ey、machine 的 i（外国来的词）、these 的 e-e；ceiling 的 ei 排在 c 后面时也读 /iː/。
+  claim:
+    type: tendency
+    statement: /iː/ 的拼法菜单：ee 与 ea 双主力（中古两个长 e 在元音大推移中合并的化石）；次要 e（词尾/开音节）、e-e、ie、ey（词尾）、i（法语层）、ei（c 后为主）与 eo 孤组。
+    evidence:
+    - Letters and Sounds Phase 3（ea、ee）与 Phase 5（/iː/ 替代拼法：e-e、ey、ie 等）表（课程文件级，开页核对）；元音大推移中双长 e 合并的描写见英语史教材通说（如 Baugh & Cable，书目级）；例词读音按剑桥词典音标核对（词典级）。
+    - 支撑：「i before e except after c」口诀的事实底座在本条（ei 分布：c 后 /iː/ 为常态、seize 为反例），该口诀的裁决归 SR-07，两条互挂。people 的 eo 读 /iː/ 在各课程中均列孤例。
+    scope: ea 在本条只是「主场 /iː/」，其 /e/、/eɪ/ 面见 S-42；ie 也有 /aɪ/ 面（pie、tie）与 /e/ 面（friend）；ey 的 /eɪ/ 面见 S-35，key/money 的词尾 ey 读 /i/ 与 happy 词尾 y 同值。
+    exceptions:
+    - ei 非 c 后读 /iː/ 的反例：seize /siːz/
+    - eo 孤组：people /ˈpiːpl/
+  mechanism:
+    beats:
+    - beat: /iː/ 菜单与双主力成因
+      text_adult: 主力：ee（see、tree、green、sleep）、ea（eat、read 现在时、sea、teacher 的重读音节）；e 词尾/开音节（me、he、she、we、be）。次要：e-e（these、complete、Chinese 的尾音节）、ie（field、piece、believe、chief）、ey 词尾（key、money）、i 法语层（machine、police、ski）、ei 在 c 后（ceiling、receive、receipt）及 seize 一类非 c 后亦读 /iː/ 的词、eo 孤组（people）。ee/ea 双主力的成因是本条的机制核心：中古英语本有两个长 e——较闭的 /eː/（多拼 ee）与较开的 /ɛː/（多拼 ea）——元音大推移中两者先后升至 /iː/ 并合并，拼写却各自保留，于是同一个 /iː/ 天然有两套主力拼法，不是例外而是合并的化石（与 S-15 互挂）。
+      anchors:
+      - see
+      - tree
+      - green
+      - sleep
+      - eat
+      - read
+      - sea
+      - teacher
+      - me
+      - he
+      - she
+      - we
+      - be
+      - these
+      - complete
+      - Chinese
+      - field
+      - piece
+      - believe
+      - chief
+      - key
+      - money
+      - machine
+      - police
+      - ski
+      - ceiling
+      - receive
+      - receipt
+      - seize
+      - people
+      text_kid: /iː/ 有两条最大的路：see 的 ee 和 eat 的 ea；再加 me 的 e、field 的 ie、key 的 ey、machine 的 i（外国来的词）、these 的 e-e；ceiling 的 ei 排在 c 后面时也读 /iː/。
+  examples:
+  - level: 1
+    group: 主力 ee
+    words:
+    - see
+    - tree
+    - green
+    - sleep
+    supports: claim
+  - level: 2
+    group: 主力 ea
+    words:
+    - eat
+    - read
+    - sea
+    - teacher
+    supports: claim
+  - level: 3
+    group: e 词尾/开音节
+    words:
+    - me
+    - he
+    - she
+    - we
+    - be
+    supports: claim
+  - level: 4
+    group: e-e
+    words:
+    - these
+    - complete
+    - Chinese
+    supports: claim
+  - level: 5
+    group: ie
+    words:
+    - field
+    - piece
+    - believe
+    - chief
+    supports: claim
+  - level: 6
+    group: ey 词尾
+    words:
+    - key
+    - money
+    supports: claim
+  - level: 7
+    group: i 法语层
+    words:
+    - machine
+    - police
+    - ski
+    supports: claim
+  - level: 8
+    group: ei（c 后为主）
+    words:
+    - ceiling
+    - receive
+    - receipt
+    - seize
+    supports: claim
+  - level: 9
+    group: eo 孤组
+    words:
+    - people
+    supports: claim
+  error_cases: []
+  probes:
+  - PRB-S36-1
+  - PRB-S36-2
+  - PRB-S36-3
+  - PRB-S36-4
+  - PRB-S36-5
+  quiz: []
+  relatives:
+  - id: S-15
+    rel: 同族
+  - id: S-42
+    rel: 同族
+  - id: SR-07
+    rel: 同族
+  - id: S-35
+    rel: 对照
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Letters and Sounds Phase 3 与 Phase 5（课程文件级，开页核对）；Baugh & Cable 英语史（书目级）；剑桥词典音标（词典级）。
+    boundary: ①ea 的另一面是 /e/（head、bread、read 过去式）与 /eɪ/ 三词，见 S-42——ea 在本条只是「主场 /iː/」。②ie 也有 /aɪ/ 面（pie、tie，见 S-37）与 /e/ 面（friend），ie 本身是两读组合。③ey 的 /eɪ/ 面见 S-35。④美式标音同为 /iː/。
+    disputes:
+    - 无实质分歧。登记一处口径差：部分美国拼读体系把 ea 标为 /iː/ 的「次要」拼法、ee 为唯一主力，与英式 Letters and Sounds 的双主力排法不同——教学排序之差，非事实之争。
+    evidence_grade: 课程文件级 + 词典级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-37
+  zone: 拼读
+  group: S
+  order: 37
+  headline: 长音 /aɪ/ 的拼法菜单：i-e、igh、y 三个主力，「find 一家」是 i 在 nd、ld 前面的老规矩
+  headline_kid: /aɪ/ 的三条大路：bike 的 i-e、light 的 igh、my 的 y；还有 pie 的 ie 和一户特殊人家——find、kind、mind、wild、child 里的 i 明明是「关着的」，却读长音，因为它们的 i 后面站着 nd、ld，一千年前就被拉长了。
+  claim:
+    type: tendency
+    statement: /aɪ/ 的拼法菜单：主力 i-e、igh、y（词尾）；次要 ie（词尾）、i 开音节；find 族（i 在 nd、ld 前）源于约公元 1000 年的同部位延长，是成组长读区而非例外堆。
+    evidence:
+    - 同部位延长的描写见英语语音史教材与讲义通说（发生时间约公元 1000 年、环境为 /ld、/mb、/nd、/rd/ 且后无第三辅音——多源学术讲义口径一致，本路开页核对）；Letters and Sounds Phase 3（igh）与 Phase 5（/aɪ/ 替代拼法）表（课程文件级）；例词读音按剑桥词典核对（词典级）。接触等级：菜单词典/课程级；历史机制为学术讲义级多源互证，本人未开专著原文。
+    - 支撑：-ind/-ild 是成组的长读区，不是零散例外；wind 名词 /wɪnd/ 与动词 /waɪnd/ 的对立是该区内最著名的分化。
+    scope: 同部位延长有条件：后面再跟第三个辅音时不延长（children 的 i 短、wilderness 的 i 短）；i-e 的长读以单音节重读为限。
+    exceptions:
+    - 反向孤例：pint /paɪnt/——-int 家族（hint、mint、print）几乎全短，独 pint 读长，只能单记
+    - i-e 短读面：live（动词 /lɪv/，与形容词 /laɪv/ 对立）、give /ɡɪv/、river 等多音节词中的 i-e 不读长
+    - 延长条件不成立：children（child 长、children 短）、wilderness 的 i 短
+  mechanism:
+    beats:
+    - beat: /aɪ/ 菜单
+      text_adult: 主力：i-e（bike、time、five、white）、igh（light、night、right、high，gh 原为辅音 /x/，脱落后元音补偿延长，见 S-19）、y 词尾（my、fly、sky、by、cry）。次要：ie 词尾（pie、tie、lie、die）、i 开音节（tiger、idea 首音节）。
+      anchors:
+      - bike
+      - time
+      - five
+      - white
+      - light
+      - night
+      - right
+      - high
+      - my
+      - fly
+      - sky
+      - by
+      - cry
+      - pie
+      - tie
+      - lie
+      - die
+      - tiger
+      - idea
+      text_kid: /aɪ/ 的三条大路：bike 的 i-e、light 的 igh、my 的 y；还有 pie 的 ie 和一户特殊人家——find、kind、mind、wild、child 里的 i 明明是「关着的」，却读长音，因为它们的 i 后面站着 nd、ld，一千年前就被拉长了。
+    - beat: find 族与同部位延长
+      text_adult: find 族：find、kind、mind、blind、grind、behind（i+nd）与 wild、child、mild（i+ld）。其机制独立于开音节：约公元 1000 年前后发生的「同部位延长」（homorganic lengthening）把 /ld、/nd、/mb/ 等同部位辅音丛前的短元音拉长，这批长 i 后经元音大推移成为 /aɪ/；同一变化也解释 S-38 的 old/cold 一家，两条互为兄弟。延长有条件：后面再跟第三个辅音时不延长——children 的 i 是短的（child 长、children 短），wilderness 的 i 亦短（wild 长）。
+      anchors:
+      - find
+      - kind
+      - mind
+      - blind
+      - grind
+      - behind
+      - wild
+      - child
+      - mild
+      - children
+      - wilderness
+      - climb
+  examples:
+  - level: 1
+    group: 主力 i-e
+    words:
+    - bike
+    - time
+    - five
+    - white
+    supports: claim
+  - level: 2
+    group: 主力 igh
+    words:
+    - light
+    - night
+    - right
+    - high
+    supports: claim
+  - level: 3
+    group: 主力 y 词尾
+    words:
+    - my
+    - fly
+    - sky
+    - by
+    - cry
+    supports: claim
+  - level: 4
+    group: ie 词尾
+    words:
+    - pie
+    - tie
+    - lie
+    - die
+    supports: claim
+  - level: 5
+    group: i 开音节
+    words:
+    - tiger
+    - idea
+    supports: claim
+  - level: 6
+    group: find 族
+    words:
+    - find
+    - kind
+    - mind
+    - blind
+    - grind
+    - behind
+    - wild
+    - child
+    - mild
+    supports: claim
+  - level: 7
+    group: 延长条件反例
+    words:
+    - children
+    - wilderness
+    - pint
+    - hint
+    - mint
+    - print
+    supports: claim
+  - level: 8
+    group: i-e 短读面
+    words:
+    - live
+    - give
+    - river
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-38
+    rel: 同族
+  - id: S-19
+    rel: 同族
+  - id: S-15
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - 英语语音史教材与讲义通说（学术讲义级多源互证）；Letters and Sounds Phase 3 与 Phase 5（课程文件级）；剑桥词典（词典级）。
+    boundary: ①反向孤例 pint 只能单记。②i-e 有短读面：live 动词、give、river 等多音节词中的 i-e 不读长——i-e 的长读以单音节重读为限。③y 的其余读法（/ɪ/、/i/、/j/）见 S-34 与 S-42。④igh 中的 gh 在个别词留 /f/ 或他读（见 S-42），本条 igh 主场稳定。
+    disputes:
+    - wind 名词为何未随延长（一说为与动词分化、一说延长时间层不同）学界无定版，本条登记现象不裁成因；其余无分歧。
+    evidence_grade: 课程文件级 + 学术讲义级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-38
+  zone: 拼读
+  group: S
+  order: 38
+  headline: 长音 /əʊ/ 的拼法菜单：o-e、oa、ow 三个主力，「old 一家」与 find 一家是同一场变化的兄弟
+  headline_kid: /əʊ/（英式标音；美式写作 /oʊ/）的三条大路：bone 的 o-e、boat 的 oa、snow 的 ow；还有 go 的 o 自己站、toe 的 oe、though 的 ough；old、cold、folk 里的 o 也是长音，它们和 find 一家是「亲戚」。
+  claim:
+    type: tendency
+    statement: /əʊ/ 的拼法菜单：主力 o-e、oa、ow（词尾）；次要 o 开音节/词尾、oe、ough（though 一系）、ou 小组；o 在 /ld/ 前的长读族（old 一家）与 -st 前长读，同源于同部位延长。
+    evidence:
+    - Letters and Sounds Phase 3（oa、ow）与 Phase 5（/əʊ/ 替代拼法：o-e、oe、ou 等）表（课程文件级，开页核对）；同部位延长出处同 S-37（学术讲义级多源互证）；例词读音按剑桥词典核对（词典级）：both /bəʊθ/、folk /fəʊk/、gone /ɡɒn/ 均经核。
+    - 支撑：各拼读课程对 /əʊ/ 的处理一致呈现「o-e/oa/ow 三主力 + o 开音节」的格局；-old 族在课程中通常整组给出，与本条按机制成组的写法吻合。
+    scope: 本清单取英式 /əʊ/ 立条，美式 /oʊ/ 是同一音位的另一标式，不构成两套菜单；ow 的另一面 /aʊ/ 见 S-41。
+    exceptions:
+    - both /bəʊθ/ 拼写中没有字母 l，不属于 o+l 族，是 o 在 th 前长读的高频孤例（与 moth、cloth 的短读对峙），只能单记
+    - o-e 短读面：gone /ɡɒn/、done /dʌn/ 属功能高频词组，单记（move 不属本条，见 S-39）
+  mechanism:
+    beats:
+    - beat: /əʊ/ 菜单
+      text_adult: 主力：o-e（bone、home、nose、stone）、oa（boat、coat、road、goat，多在词中）、ow 词尾（snow、grow、know、window、yellow）。次要：o 开音节/词尾（go、no、so、hello、photo）、oe（toe、doe、hoe）、ough（though，仅此一系，见 S-42）、ou 小组（shoulder、soul、mould）。位置分工：oa 居词中、ow 居词尾，与 ai/ay 的分工平行（规则化表述归 SR-05）。
+      anchors:
+      - bone
+      - home
+      - nose
+      - stone
+      - boat
+      - coat
+      - road
+      - goat
+      - snow
+      - grow
+      - know
+      - window
+      - yellow
+      - go
+      - 'no'
+      - so
+      - hello
+      - photo
+      - toe
+      - doe
+      - hoe
+      - though
+      - shoulder
+      - soul
+      - mould
+      text_kid: /əʊ/（英式标音；美式写作 /oʊ/）的三条大路：bone 的 o-e、boat 的 oa、snow 的 ow；还有 go 的 o 自己站、toe 的 oe、though 的 ough；old、cold、folk 里的 o 也是长音，它们和 find 一家是「亲戚」。
+    - beat: old 一家（同部位延长）
+      text_adult: o 在 l/d 等辅音前的长读族：old、cold、gold、fold、hold、sold、told（o+ld）与 folk、yolk（l 不发音）——其成因与 S-37 find 族同为约公元 1000 年的同部位延长（o 在 /ld/ 前拉长后经推移成 /əʊ/），故 -old 一家是成组长读，不是例外堆。o 在 -st 前亦多长读：most、post、host、ghost。
+      anchors:
+      - old
+      - cold
+      - gold
+      - fold
+      - hold
+      - sold
+      - told
+      - folk
+      - yolk
+      - most
+      - post
+      - host
+      - ghost
+      - both
+      - moth
+      - cloth
+      - gone
+      - done
+  examples:
+  - level: 1
+    group: 主力 o-e
+    words:
+    - bone
+    - home
+    - nose
+    - stone
+    supports: claim
+  - level: 2
+    group: 主力 oa
+    words:
+    - boat
+    - coat
+    - road
+    - goat
+    supports: claim
+  - level: 3
+    group: 主力 ow 词尾
+    words:
+    - snow
+    - grow
+    - know
+    - window
+    - yellow
+    supports: claim
+  - level: 4
+    group: o 开音节/词尾
+    words:
+    - go
+    - 'no'
+    - so
+    - hello
+    - photo
+    supports: claim
+  - level: 5
+    group: oe
+    words:
+    - toe
+    - doe
+    - hoe
+    supports: claim
+  - level: 6
+    group: ough 一系
+    words:
+    - though
+    supports: claim
+  - level: 7
+    group: ou 小组
+    words:
+    - shoulder
+    - soul
+    - mould
+    supports: claim
+  - level: 8
+    group: old 一家
+    words:
+    - old
+    - cold
+    - gold
+    - fold
+    - hold
+    - sold
+    - told
+    - folk
+    - yolk
+    supports: claim
+  - level: 9
+    group: -st 前长读
+    words:
+    - most
+    - post
+    - host
+    - ghost
+    supports: claim
+  - level: 10
+    group: 孤例与短读面
+    words:
+    - both
+    - moth
+    - cloth
+    - gone
+    - done
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-37
+    rel: 同族
+  - id: S-41
+    rel: 对照
+  - id: S-42
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Letters and Sounds Phase 3 与 Phase 5（课程文件级，开页核对）；同部位延长（学术讲义级）；剑桥词典（词典级）。
+    boundary: ①both 的归类须纠正：both 拼写中没有字母 l，不属于 o+l 族（见纠正记录）。②o-e 有短读面：gone、done 单记；move /muːv/ 不属本条（见 S-39）。③标音口径：英式 /əʊ/ 立条，美式 /oʊ/ 同词单同拼法。④ow 的另一面 /aʊ/ 见 S-41。
+    disputes:
+    - 无实质分歧；英式元音 /əʊ/ 的确切音值（起始点央化程度）在语音学描写中有细节讨论，不影响拼法教学口径。
+    evidence_grade: 课程文件级 + 词典级
+    pending: []
+  corrections:
+  - 任务书（及用户原稿）把 both 与 folk、cold 并列入「ol 组」不确：both 拼写无 l，系 o 在 th 前长读的高频孤例，已分开处理。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-39
+  zone: 拼读
+  group: S
+  order: 39
+  headline: 长音 /uː/ 的拼法菜单：oo、u-e、ew 三个主力，o 有一小组也读 /uː/；同一个 u 还能读 /juː/
+  headline_kid: /uː/ 的三条大路：moon 的 oo、rude 的 u-e、grew 的 ew；小路有 blue 的 ue、soup 的 ou、fruit 的 ui；还有几个「不讲理」的：do、who、move 里的 o 也读 /uː/。另外，cute、music 里的 u 读的是带 /j/ 的 /juː/，是 u 的另一个嗓子。
+  claim:
+    type: tendency
+    statement: /uː/ 的拼法菜单：主力 oo、u-e、ew；次要 ue、ou、ui 与 o 孤组（无规则、成组背）；同一字母 u 另有 /juː/ 一读（英式口径），分布靠词记。
+    evidence:
+    - Letters and Sounds Phase 3（oo 双读意识）与 Phase 5（/uː/ 替代拼法：u-e、ue、ew、ou、ui）表（课程文件级，开页核对）；Roach 关于 yod 与美式 yod 脱落的标准描写（书目级）；例词读音按剑桥词典双式音标核对（词典级）：duty 英 /ˈdjuːti/、美 /ˈduːti/ 经核。
+    - 支撑：oo 的两读（/uː/ 与 /ʊ/）是所有课程共同点名的高频难点，其 /ʊ/ 面归 S-42 系统处理；o 孤组在各家材料中均以不规则词组整组出现。
+    scope: 本清单立条取英式 /juː/；美式 yod 脱落（duty、tune、news 读无 /j/ 音）是英美系统性差异而非变脸，教学时按所选口音统一。ou 的 /uː/ 仅限 soup/group/you 一系法语层词，不可推广。
+    exceptions:
+    - o 孤组（拼 o 读 /uː/，无规则成组背）：do、to（强式）、who、move、prove、lose
+    - ew 在英式中两读：grew /ɡruː/ 无 yod、new /njuː/ 有 yod，取决于前置辅音，无完备规则，成组记
+    - cute/cube 的 u-e 读 /juː/ 而非 /uː/，与 rude 的 /uː/ 对照呈现
+  mechanism:
+    beats:
+    - beat: /uː/ 菜单
+      text_adult: 主力：oo（moon、food、school、zoo）、u-e（rude、June、rule、flute）、ew（grew、flew、chew、new——英式 new 读 /njuː/，带 yod，见支线）。次要：ue（blue、true、glue）、ou（soup、group、you、youth）、ui（fruit、juice、suit）、o 孤组：do、to（强式）、who、move、prove、lose——拼 o 读 /uː/，无规则，成组背。
+      anchors:
+      - moon
+      - food
+      - school
+      - zoo
+      - rude
+      - June
+      - rule
+      - flute
+      - grew
+      - flew
+      - chew
+      - new
+      - blue
+      - 'true'
+      - glue
+      - soup
+      - group
+      - you
+      - youth
+      - fruit
+      - juice
+      - suit
+      - do
+      - to
+      - who
+      - move
+      - prove
+      - lose
+      text_kid: /uː/ 的三条大路：moon 的 oo、rude 的 u-e、grew 的 ew；小路有 blue 的 ue、soup 的 ou、fruit 的 ui；还有几个「不讲理」的：do、who、move 里的 o 也读 /uː/。另外，cute、music 里的 u 读的是带 /j/ 的 /juː/，是 u 的另一个嗓子。
+    - beat: /juː/ 支线
+      text_adult: u 的「名字音」出现在 cute /kjuːt/、music /ˈmjuːzɪk/、unit、huge、pupil 等词，与 /uː/ 菜单同字母不同音，靠词记；其分布提示：/juː/ 多出现在词首或 /k、m、f、h/ 等辅音后且该词属「u-类」拼写（u、u-e、ue），而 ew 的 /juː/ 仅见于少数词（new 英式、few /fjuː/）。
+      anchors:
+      - cute
+      - music
+      - unit
+      - huge
+      - pupil
+      - few
+      - cube
+      - duty
+      - tune
+      - news
+  examples:
+  - level: 1
+    group: 主力 oo
+    words:
+    - moon
+    - food
+    - school
+    - zoo
+    supports: claim
+  - level: 2
+    group: 主力 u-e
+    words:
+    - rude
+    - June
+    - rule
+    - flute
+    supports: claim
+  - level: 3
+    group: 主力 ew
+    words:
+    - grew
+    - flew
+    - chew
+    - new
+    supports: claim
+  - level: 4
+    group: ue
+    words:
+    - blue
+    - 'true'
+    - glue
+    supports: claim
+  - level: 5
+    group: ou
+    words:
+    - soup
+    - group
+    - you
+    - youth
+    supports: claim
+  - level: 6
+    group: ui
+    words:
+    - fruit
+    - juice
+    - suit
+    supports: claim
+  - level: 7
+    group: o 孤组
+    words:
+    - do
+    - to
+    - who
+    - move
+    - prove
+    - lose
+    supports: claim
+  - level: 8
+    group: /juː/ 支线
+    words:
+    - cute
+    - music
+    - unit
+    - huge
+    - pupil
+    - few
+    - cube
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-42
+    rel: 同族
+  - id: S-34
+    rel: 对照
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Letters and Sounds Phase 3 与 Phase 5（课程文件级，开页核对）；Roach（书目级）；剑桥词典双式音标（词典级）。
+    boundary: ①美式 yod 脱落：duty、tune、news 等词美式读 /duːti/、/tuːn/、/nuːz/，英式保留 /j/——英美系统性差异而非变脸。②ew 在英式中两读（grew 无 yod、new 有 yod），无完备规则，成组记。③cute/cube 的 u-e 读 /juː/ 而非 /uː/，与 rude 对照成对呈现最有效。④ou 的 /uː/ 仅限 soup/group/you 一系，不可推广（ou 全谱见 S-42）。
+    disputes:
+    - 无实质分歧；/juː/ 是否单列为独立音位（或视为 /j/+/uː/ 组合）是音系学编纂口径之差，教学上合并呈现为共识做法。
+    evidence_grade: 课程文件级 + 词典级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-40
+  zone: 拼读
+  group: S
+  order: 40
+  headline: r 控元音：ar 读 /ɑː/、er/ir/ur 三拼合流读 /ɜː/、or 读 /ɔː/；w 后面的 ar、or 要改道
+  headline_kid: 元音后面跟 r，声音就被 r「拐弯」：ar 读长长的 /ɑː/（car），er、ir、ur 三个拼法读同一个 /ɜː/（her、bird、nurse）——拼的时候只能靠记；or 读 /ɔː/（fork）；但 word、work 里的 or 站在 w 后面，改读 /ɜː/。
+  claim:
+    type: tendency
+    statement: r 控元音（英式口径）：ar→/ɑː/，er/ir/ur 三拼合流→/ɜː/（NURSE 合并），or→/ɔː/；w 后 ar 改道 /ɔː/、or 改道 /ɜː/（成组规律）；另有 /eə/、/ɪə/ 两套滑音组。
+    evidence:
+    - Letters and Sounds Phase 3 的 ar、er、ur、ir、or、air、ear、ure 等 r 控与滑音 GPC 表（课程文件级，开页核对）；NURSE 合并与 r 前元音合流见英语史与 Gimson 传统描写（书目级）；例词读音按剑桥词典核对（词典级）：word /wɜːd/、clerk 英 /klɑːk/、water /ˈwɔːtə/ 均经核。
+    - 支撑：Phase 3 把 r 控元音整体作为一组 GPC 集中教；w 后 or 读 /ɜː/ 在各家词表（如 word/work/worm/world/worth 五词组）中均整组呈现。
+    scope: 英式口径立条（r 在音节尾不发音、只改变元音）；美式 r 不脱落，元音随之 r 化，拼法部分英美通用、读音按「元音 + /r/」整体替换理解。
+    exceptions:
+    - ear 跨队：hear 型读 /ɪə/、bear 型读 /eə/、learn/earth/heard/early 型读 /ɜː/——同一 ear 三副嗓子，同时进 S-42 变脸榜（以 ea/ear 家族计）
+    - er 小例外：clerk、Derby 英式读 /ɑː/
+    - water 的 wa- 读 /ɔː/ 与 wash 的 /wɒ/ 又不同，属 a 在 w 后的多读（见 S-42）
+  mechanism:
+    beats:
+    - beat: r 控三组
+      text_adult: （英式口径，r 在音节尾不发音、只改变元音）ar /ɑː/：car、farm、park、star、art。er/ir/ur /ɜː/：her、bird、first、nurse、turn、girl——三拼一音的成因是「NURSE 合并」：中古时期 er、ir、ur 本是三个不同的元音，在 r 前先后合流为 /ɜː/，拼写保留三套，所以听音定拼在此区完全失效，只能靠词形记忆，这是 r 控区拼写错误率最高的格。or /ɔː/：fork、north、horse、corn、short。
+      anchors:
+      - car
+      - farm
+      - park
+      - star
+      - art
+      - her
+      - bird
+      - first
+      - nurse
+      - turn
+      - girl
+      - fork
+      - north
+      - horse
+      - corn
+      - short
+      text_kid: 元音后面跟 r，声音就被 r「拐弯」：ar 读长长的 /ɑː/（car），er、ir、ur 三个拼法读同一个 /ɜː/（her、bird、nurse）——拼的时候只能靠记；or 读 /ɔː/（fork）；但 word、work 里的 or 站在 w 后面，改读 /ɜː/。
+    - beat: w 后改道组
+      text_adult: ar 在 w 后读 /ɔː/（war /wɔː/、warm、ward、quarter），or 在 w 后读 /ɜː/（word /wɜːd/、work、worm、world、worth、worse）——w 的圆唇使后随元音整体后移，是成组规律而非孤例。
+      anchors:
+      - war
+      - warm
+      - ward
+      - quarter
+      - word
+      - work
+      - worm
+      - world
+      - worth
+      - worse
+      - water
+      - clerk
+    - beat: 两套滑音组
+      text_adult: /eə/ 队——air（chair、hair）、are（care、share）、ear（bear、wear、pear）、ere（there、where）；/ɪə/ 队——ear（hear、dear、near）、eer（deer、beer）、ere（here、mere）。ear 另有 /ɜː/ 一队：learn、earth、heard、early。
+      anchors:
+      - chair
+      - hair
+      - care
+      - share
+      - bear
+      - wear
+      - pear
+      - there
+      - where
+      - hear
+      - dear
+      - near
+      - deer
+      - beer
+      - here
+      - mere
+      - learn
+      - earth
+      - heard
+      - early
+  examples:
+  - level: 1
+    group: ar /ɑː/
+    words:
+    - car
+    - farm
+    - park
+    - star
+    - art
+    supports: claim
+  - level: 2
+    group: er/ir/ur /ɜː/
+    words:
+    - her
+    - bird
+    - first
+    - nurse
+    - turn
+    - girl
+    supports: claim
+  - level: 3
+    group: or /ɔː/
+    words:
+    - fork
+    - north
+    - horse
+    - corn
+    - short
+    supports: claim
+  - level: 4
+    group: w 后 ar 改道
+    words:
+    - war
+    - warm
+    - ward
+    - quarter
+    supports: claim
+  - level: 5
+    group: w 后 or 改道
+    words:
+    - word
+    - work
+    - worm
+    - world
+    - worth
+    - worse
+    supports: claim
+  - level: 6
+    group: /eə/ 队
+    words:
+    - chair
+    - hair
+    - care
+    - share
+    - bear
+    - wear
+    - pear
+    - there
+    - where
+    supports: claim
+  - level: 7
+    group: /ɪə/ 队
+    words:
+    - hear
+    - dear
+    - near
+    - deer
+    - beer
+    - here
+    - mere
+    supports: claim
+  - level: 8
+    group: ear /ɜː/ 队
+    words:
+    - learn
+    - earth
+    - heard
+    - early
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-42
+    rel: 同族
+  - id: S-22
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Letters and Sounds Phase 3（课程文件级，开页核对）；英语史与 Gimson 传统（书目级）；剑桥词典（词典级）。
+    boundary: ①ear 是跨队组合（见 claim 例外）。②ar 的例外不止 water 一词：w 后整个 ar 组改道（见机制），任务书只举 water，本条扩为成组规律。③er 小例外：clerk、Derby 英式读 /ɑː/。④美式差异（系统性）：美式 r 不脱落——car /kɑːr/、her /hɜːr/、fork /fɔːrk/、chair /tʃer/、here /hɪr/，本条菜单的拼法部分英美通用，读音部分按英式立条。
+    disputes:
+    - 无实质分歧。/eə/、/ɪə/ 在现代英式中进一步向单元音滑动（smoothing）是登记中的进行时变化，词典标音仍维持双元音式，本条从词典口径。
+    evidence_grade: 课程文件级 + 词典级
+    pending: []
+  corrections:
+  - 任务书只举 water 为 ar 例外，范围过窄：w 后 ar 整组改道读 /ɔː/（war、warm、ward、quarter），water 只是其中 wa- 的一员。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-41
+  zone: 拼读
+  group: S
+  order: 41
+  headline: 双元音组：oi/oy 读 /ɔɪ/、ou/ow 读 /aʊ/（ow 兼读 /əʊ/）、au/aw 与 a+ll 读 /ɔː/
+  headline_kid: 四个双元音小组：coin 的 oi 和 boy 的 oy 读 /ɔɪ/（一个站中间、一个站尾巴）；out 的 ou 和 down 的 ow 读 /aʊ/，但 ow 在 snow 里读 /əʊ/，一个人两个嗓子；August 的 au、saw 的 aw 和 ball 里的 a+ll 都读 /ɔː/。
+  claim:
+    type: tendency
+    statement: 双元音组分布：oi（词中）/oy（词尾）→/ɔɪ/；ou（词中）/ow→/aʊ/，ow 兼读 /əʊ/（两读只有倾向、无完备规则）；au（词中）/aw（词尾）与 a+ll→/ɔː/（中尾分工是倾向）。
+    evidence:
+    - Letters and Sounds Phase 3 的 oi、ow、au 等 GPC 与 Phase 5 中 oy、ou、aw 等替代拼法表（课程文件级，开页核对）；例词读音按剑桥词典核对（词典级）：calm /kɑːm/、half /hɑːf/、oyster /ˈɔɪstə/ 经核。
+    - 支撑：「中尾分工」（oi/oy、ai/ay、au/aw）在 Spalding、Logic of English 与 Letters and Sounds 三家体系中口径一致，是拼法菜单里少数接近规则的位置规律；ow 两读在所有课程中均被点名为「见词定读」的典型。
+    scope: ow 两读按词成组记，不编口诀；中尾分工是倾向（oy 偶在词中）。本条与 SR-05「ow 两读分布」条互挂。
+    exceptions:
+    - ow 两读分布只有倾向：词尾多 /əʊ/（snow、window），但 how、now 读 /aʊ/；词中 bowl 读 /əʊ/、down 读 /aʊ/——无完备规则
+    - oy 偶在词中：oyster、royal
+    - al 两分：talk/walk/ball 组 a 读 /ɔː/，calm、palm、half、father 组 a 读 /ɑː/（l 同样不发音）——同是 a+l 静音，读音分家
+    - au 个别词读他音：aunt 英 /ɑːnt/、美 /ænt/，单记
+  mechanism:
+    beats:
+    - beat: /ɔɪ/ 组：中尾分工
+      text_adult: oi 多在词中（coin、noise、point、join）、oy 多在词尾（boy、toy、joy、enjoy 的尾音节）——oi/oy 与 ai/ay、au/aw 是同一条「中尾分工」在不同元音上的复制（规则化表述归 SR-05）。
+      anchors:
+      - coin
+      - noise
+      - point
+      - join
+      - boy
+      - toy
+      - joy
+      - enjoy
+      - oyster
+      - royal
+      text_kid: 四个双元音小组：coin 的 oi 和 boy 的 oy 读 /ɔɪ/（一个站中间、一个站尾巴）；out 的 ou 和 down 的 ow 读 /aʊ/，但 ow 在 snow 里读 /əʊ/，一个人两个嗓子；August 的 au、saw 的 aw 和 ball 里的 a+ll 都读 /ɔː/。
+    - beat: /aʊ/ 组与 ow 两读
+      text_adult: ou 居词中（out、house、cloud、mouth）、ow 两读——/aʊ/（cow、down、brown、how、now）与 /əʊ/（snow、low、grow、window、yellow，与 S-38 的 ow 菜单是同一批词）。
+      anchors:
+      - out
+      - house
+      - cloud
+      - mouth
+      - cow
+      - down
+      - brown
+      - how
+      - now
+      - snow
+      - low
+      - grow
+      - window
+      - yellow
+      - bowl
+    - beat: /ɔː/ 组
+      text_adult: au 居词中（August、author、autumn、laundry、cause）、aw 居词尾或缀前（saw、draw、law、prawn）、a+ll/al（ball、call、wall、small、talk、walk——此组 l 不发音，a 被拉长为 /ɔː/）。al 另有一组读 /ɑː/：calm、palm、half、father。
+      anchors:
+      - August
+      - author
+      - autumn
+      - laundry
+      - cause
+      - saw
+      - draw
+      - law
+      - prawn
+      - ball
+      - call
+      - wall
+      - small
+      - talk
+      - walk
+      - calm
+      - palm
+      - half
+      - father
+      - aunt
+  examples:
+  - level: 1
+    group: oi 词中
+    words:
+    - coin
+    - noise
+    - point
+    - join
+    supports: claim
+  - level: 2
+    group: oy 词尾
+    words:
+    - boy
+    - toy
+    - joy
+    - enjoy
+    supports: claim
+  - level: 3
+    group: ou /aʊ/
+    words:
+    - out
+    - house
+    - cloud
+    - mouth
+    supports: claim
+  - level: 4
+    group: ow /aʊ/
+    words:
+    - cow
+    - down
+    - brown
+    - how
+    - now
+    supports: claim
+  - level: 5
+    group: ow /əʊ/
+    words:
+    - snow
+    - low
+    - grow
+    - window
+    - yellow
+    - bowl
+    supports: claim
+  - level: 6
+    group: au
+    words:
+    - August
+    - author
+    - autumn
+    - laundry
+    - cause
+    supports: claim
+  - level: 7
+    group: aw
+    words:
+    - saw
+    - draw
+    - law
+    - prawn
+    supports: claim
+  - level: 8
+    group: a+ll/al /ɔː/
+    words:
+    - ball
+    - call
+    - wall
+    - small
+    - talk
+    - walk
+    supports: claim
+  - level: 9
+    group: al /ɑː/ 组
+    words:
+    - calm
+    - palm
+    - half
+    - father
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-38
+    rel: 同族
+  - id: SR-05
+    rel: 同族
+  - id: S-42
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Letters and Sounds Phase 3 与 Phase 5（课程文件级，开页核对）；剑桥词典（词典级）。
+    boundary: ①ow 两读的分布只有倾向（见 claim 例外），无完备规则，与 SR-05 互挂，本条立场是按词成组记，不编口诀。②oy 偶在词中：oyster、royal 的 oy 不在词尾，中尾分工是倾向。③al 两分（见 claim 例外），与 S-42 的 a 多读互挂。④au 在个别词读他音：aunt 单记。⑤ou 的全谱（不止 /aʊ/）见 S-42。
+    disputes:
+    - 无实质分歧；ow 两读是否可由词源层部分预测，学界有零星讨论但无可教的定版规则，登记为「倾向 + 成组记」。
+    evidence_grade: 课程文件级 + 词典级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-42
+  zone: 拼读
+  group: S
+  order: 42
+  headline: 变脸榜：ough 以八至十读居首，ea、ou、a、y、oo 依次——读法越多越要整组记，本榜是 S-06 变脸名单的排序与内容依据
+  headline_kid: 有几个字母组合是「变脸大王」：ough 一个组合有八到十种读法，ea 有四种（带上 ear 家族有七种），ou 有六七种——这些组合没有规则可猜，办法是把每个组合的词按读法分组，一组一组记住。本榜就是变脸名单的正式版。
+  claim:
+    type: rule
+    statement: 变脸榜按「读法数 × 不可预测度」加权排序（英式口径）：第 1 名 ough（常用 8 读、全谱 10 读）、第 2 名 ea 及 ear 家族（本体 4 读、家族 7 读）、第 3 名 ou（重读 6 读、全谱 7 读）、第 4 名 a（重读 6 读、全谱 8 读）、第 5 名 y（4 读）、第 6 名 oo（3 读，附 oo+r 一读）。对策是按词族分组记。
+    evidence:
+    - 'Wikipedia「Ough (orthography)」条读音表与计数口径（开页核对）https://en.wikipedia.org/wiki/Ough_(orthography) ；剑桥词典官方博客《Ghosts, coughs and daughters: how to pronounce ''gh'' in English》（开页核对）http://dictionaryblog.cambridge.org/2018/09/19/ghosts-coughs-and-daughters-how-to-pronounce-gh-in-english/ ；Teflpedia ⟨ough⟩ 条九读表（二手核对）；ea、ou、a、y、oo 各组例词读音按剑桥词典音标逐词核对（词典级）。'
+    - 支撑：九读例证句（Wikipedia 引）："The wind was rough along the lough as the ploughman fought through the snow, and though he hiccoughed and coughed, his work was thorough."——rough /ʌf/、lough /ɒx/、plough /aʊ/、fought /ɔː/、through /uː/、though /əʊ/、hiccoughed /ʌp/、coughed /ɒf/、thorough /ə/，一句九读俱全。
+    scope: 计数封顶于「常用词 + 两个有词典登记的罕见项」，不收专名与苏格兰方言读法；本榜只收元音区（辅音区两三读组合归 S-30–S-33）；词例以小学至初中高频词为准绳。
+    exceptions:
+    - slough 一词三读（/slʌf/ 蜕皮、/sluː/ 泥沼（主美）、/slaʊ/），是单字层面的变脸，不重复计入组合读法数
+  mechanism:
+    beats:
+    - beat: 排序口径
+      text_adult: 按「读法数 × 不可预测度」加权（读法多、且位置/重音/词源都给不出线索者居前），不是单纯数读音个数。本榜与 S-06 的关系：S-06 立「统计倾向 + 变脸名单」的原则，本榜给出名单的成员、排序与每组的全谱词例；与 S-35–S-41 各菜单条的关系是「菜单给主场、本榜收全谱」。
+      anchors: []
+      text_kid: 有几个字母组合是「变脸大王」：ough 一个组合有八到十种读法，ea 有四种（带上 ear 家族有七种），ou 有六七种——这些组合没有规则可猜，办法是把每个组合的词按读法分组，一组一组记住。本榜就是变脸名单的正式版。
+    - beat: 第 1 名 ough（常用 8 读、全谱 10 读）
+      text_adult: /əʊ/ though、dough、although；/uː/ through；/ʌf/ rough、tough、enough；/ɒf/ cough、trough；/ɔː/ thought、bought、ought、fought；/aʊ/ bough、plough、drought；/ə/ thorough、borough（英式词尾）；/ʌp/ hiccough（该词今多写作 hiccup）。罕见 2 读：/ɒk/ hough（今多作 hock）、/ɒx/ lough（爱尔兰语「湖」词）。成因：中古时期 ough 本读带 /x/ 的长元音，/x/ 在各方言中或脱落、或变 /f/，元音又经大推移分头演变。内部秩序：-ought 一组内部极整齐（bought、thought、fought、sought、ought 全读 /ɔːt/），变脸发生在组与组之间——对策是按词族分组记，不是逐词死记。
+      anchors:
+      - though
+      - dough
+      - although
+      - through
+      - rough
+      - tough
+      - enough
+      - cough
+      - trough
+      - thought
+      - bought
+      - ought
+      - fought
+      - sought
+      - bough
+      - plough
+      - drought
+      - thorough
+      - borough
+      - hiccough
+      - hiccup
+      - hough
+      - lough
+    - beat: 第 2 名 ea 及 ear 家族（本体 4 读、家族 7 读）
+      text_adult: ea 本体 4 读：/iː/ eat、read、sea；/e/ head、bread、dead；/eɪ/ great、break、steak；/ɑː/ heart、hearth。带上 ear 后同族达 7 读：再加 /ɪə/ hear、/eə/ bear、/ɜː/ learn。四读之间位置、重音全同（head 与 heat 只差一字母），线索最少，故排位高于读法更多的 ou 与 a。
+      anchors:
+      - eat
+      - read
+      - sea
+      - head
+      - heat
+      - bread
+      - dead
+      - great
+      - break
+      - steak
+      - heart
+      - hearth
+      - hear
+      - bear
+      - learn
+    - beat: 第 3 名 ou（重读 6 读、全谱 7 读）
+      text_adult: 重读口径 6 读：/aʊ/ out、house；/uː/ soup、you、group；/ʊ/ could、would、should；/ʌ/ touch、young、country、double；/ɔː/ four、your、course；/əʊ/ shoulder、soul。另非重读时读 /ə/（famous、nervous 的第二音节），全谱 7 读。
+      anchors:
+      - out
+      - house
+      - soup
+      - you
+      - group
+      - could
+      - would
+      - should
+      - touch
+      - young
+      - country
+      - double
+      - four
+      - your
+      - course
+      - shoulder
+      - soul
+      - famous
+      - nervous
+    - beat: 第 4 名 a（重读 6 读、全谱 8 读）
+      text_adult: 重读口径 6 读：/æ/ cat；/eɪ/ cake、paper；/ɑː/ father、calm、grass（英式）；/ɔː/ all、water、war；/ɒ/ wash、want、watch（w 后）；/e/ any、many。弱读另 2 读：/ə/ about、/ɪ/ village。全谱 8 读为全榜最多，但每条读法都有位置或重音线索（弱读必弱化、w 后改道、l 前拉长），不可预测度低于 ea、ou，故列第四。
+      anchors:
+      - cat
+      - cake
+      - paper
+      - father
+      - calm
+      - grass
+      - all
+      - water
+      - war
+      - wash
+      - want
+      - watch
+      - any
+      - many
+      - about
+      - village
+    - beat: 第 5 名 y（4 读）
+      text_adult: /j/ yes、you（词首作辅音）；/aɪ/ my、fly，及多音节动词词尾 apply、reply 与 July；/ɪ/ gym、system（多音节词中）；/i/ happy、baby（多音节词尾，多为名词、形容词）。
+      anchors:
+      - 'yes'
+      - you
+      - my
+      - fly
+      - apply
+      - reply
+      - July
+      - gym
+      - system
+      - happy
+      - baby
+    - beat: 第 6 名 oo（3 读）
+      text_adult: /uː/ moon、food、school；/ʊ/ book、good、foot、look；/ʌ/ blood、flood。附 oo+r 读 /ɔː/（door、floor）。读法最少，但同环境对峙（book 与 spook 同为 -ook 却分读 /ʊ/、/uː/），无规则可分，仍须整组记。
+      anchors:
+      - moon
+      - food
+      - school
+      - book
+      - good
+      - foot
+      - look
+      - blood
+      - flood
+      - door
+      - floor
+      - spook
+  examples:
+  - level: 1
+    group: ough /əʊ/
+    words:
+    - though
+    - dough
+    - although
+    supports: claim
+  - level: 2
+    group: ough /uː/
+    words:
+    - through
+    supports: claim
+  - level: 3
+    group: ough /ʌf/
+    words:
+    - rough
+    - tough
+    - enough
+    supports: claim
+  - level: 4
+    group: ough /ɒf/
+    words:
+    - cough
+    - trough
+    supports: claim
+  - level: 5
+    group: ough /ɔː/（-ought 组）
+    words:
+    - thought
+    - bought
+    - ought
+    - fought
+    - sought
+    supports: claim
+  - level: 6
+    group: ough /aʊ/
+    words:
+    - bough
+    - plough
+    - drought
+    supports: claim
+  - level: 7
+    group: ough /ə/
+    words:
+    - thorough
+    - borough
+    supports: claim
+  - level: 8
+    group: ough /ʌp/
+    words:
+    - hiccough
+    supports: claim
+  - level: 9
+    group: ough 罕见读
+    words:
+    - hough
+    - lough
+    supports: claim
+  - level: 10
+    group: ea 四读
+    words:
+    - eat
+    - read
+    - sea
+    - head
+    - bread
+    - dead
+    - great
+    - break
+    - steak
+    - heart
+    - hearth
+    supports: claim
+  - level: 11
+    group: ear 扩读
+    words:
+    - hear
+    - bear
+    - learn
+    supports: claim
+  - level: 12
+    group: ou 全谱
+    words:
+    - out
+    - house
+    - soup
+    - you
+    - group
+    - could
+    - would
+    - should
+    - touch
+    - young
+    - country
+    - double
+    - four
+    - your
+    - course
+    - shoulder
+    - soul
+    - famous
+    - nervous
+    supports: claim
+  - level: 13
+    group: a 全谱
+    words:
+    - cat
+    - cake
+    - paper
+    - father
+    - calm
+    - grass
+    - all
+    - water
+    - war
+    - wash
+    - want
+    - watch
+    - any
+    - many
+    - about
+    - village
+    supports: claim
+  - level: 14
+    group: y 四读
+    words:
+    - 'yes'
+    - you
+    - my
+    - fly
+    - apply
+    - reply
+    - July
+    - gym
+    - system
+    - happy
+    - baby
+    supports: claim
+  - level: 15
+    group: oo 三读
+    words:
+    - moon
+    - food
+    - school
+    - book
+    - good
+    - foot
+    - look
+    - blood
+    - flood
+    - door
+    - floor
+    - spook
+    supports: claim
+  error_cases: []
+  probes:
+  - PRB-S42-1
+  - PRB-S42-2
+  - PRB-S42-3
+  - PRB-S42-4
+  - PRB-S42-5
+  quiz: []
+  relatives:
+  - id: S-06
+    rel: 同族
+  - id: S-29
+    rel: 同族
+  - id: S-35
+    rel: 同族
+  - id: S-36
+    rel: 同族
+  - id: S-37
+    rel: 同族
+  - id: S-38
+    rel: 同族
+  - id: S-39
+    rel: 同族
+  - id: S-40
+    rel: 同族
+  - id: S-41
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - Wikipedia「Ough (orthography)」条（开页核对）；剑桥词典官方博客（开页核对）；Teflpedia ⟨ough⟩ 条（二手核对）；剑桥词典音标逐词核对（词典级）。接触等级：ough 为双源开页核对；其余各组为词典级核对；计数口径为本条自定并写明。
+    boundary: ①计数口径差：ough 若计专名与苏格兰方言读法数��还可上浮，本榜封顶 10，不收专名。②slough 一词三读是单字层面的变脸，不重复计入组合读法数。③本榜只收元音区；辅音区的两三读组合归 GPC 第一路（S-30–S-33），不在此排位。④各组的「读法数」随词表范围浮动：本榜词例以小学至初中高频词为准绳。
+    disputes:
+    - ough 计数：美式口径常引 7–8 读、英式 9 读、含罕见项 10 读，各家数字差源于收录口径而非读音事实之争，本条以写明口径的方式并呈。教学处理之争：Teflpedia 等实务口径称 ough 词「只能作整词记」，词族教学口径则主张按词族分组后可归队学习——本条取后者为主张、前者为下限提醒，两说并记。
+    evidence_grade: 开页核对（ough）+ 词典级（其余）
+    pending: []
+  corrections:
+  - 任务书 ough 读法数作「6+」，定版为常用 8 读、全谱 10 读；Wikipedia 口径为英式 9 读（不计地名），差异在 hiccough、hough、lough 的取舍，已并呈。
+  - 任务书 ou 读法数作「4–5」，定版为重读 6 读 + 非重弱读 1 读 = 全谱 7 读——原稿漏计 /ʌ/（touch 系）与 /əʊ/（shoulder 系）两面。
+  - 任务书变脸榜 ea 作「4 读」，就 ea 本体无误；但 ear 同族另有三读，故定版以「本体 4、家族 7」双口径并呈。
+  - 任务书在 /eɪ/ 菜单与 /iː/ 菜单各列 ey 一次，均属实，但 ey 本身即两读组合，已在 S-35、S-36 交叉注明。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: S-43
+  zone: 拼读
+  group: S
+  order: 43
+  headline: 中国孩子的卡点不是随机错单，是汉语的音节模具逐项压出来的：没有的音被最近邻顶替、不许的词尾被削掉、每个音节被平均用力——难点能逐项落回 GPC 表
+  headline_kid: 有些英语声音，汉语里压根没有，嘴巴就会拿最像的汉语声音顶上：three 变 sree、very 变 wery、pig 读完尾巴变轻了、blue 中间多塞一个音、banana 三个音节一样响。这些都不是粗心，是嘴巴在拿老地图走新路。把地图上缺的这几处专门补练，地就通了。
+  claim:
+    type: tendency
+    statement: 中国学习者的 GPC 难点是汉语的音节模具逐项压出来的、可预测的九项（th 顶替、v/w、i 长短、æ 开口、schwa 缺席、词尾浊音与尾辅音、-ng/-n、辅音丛插元音、拼写面哑字母与双写），每项能落回 GPC 表并给出处方；地图是带优先级的群体倾向清单。
+    evidence:
+    - 对比分析底座为 S-14（王桂珍汉英语音对比体系）。实证锚：Deterding (2006)《The pronunciation of English by speakers in China》；Yeldham (2023–2024) 华裔学习者难音干预研究；《A Review of Pronunciation Challenges Faced by ESL Learners from Different Varieties of Chinese》(ICILLP 2025)；Huang (2026, Journal of Applied Linguistics and Literacy）重庆 55 名高中生样本（数字仅限该样本口径，不外推）。接触等级：二手系统论述级。
+    - 支撑：汉语清单上缺席的音位与结构与实证研究中错误集中区高度重合——清单先预测、语料后验证，与 S-14 互为表里。Huang 样本中元音错误与可懂度的相关高于辅音错误（r=−.48），提示处方排序应给元音三项（长短、开口、弱读）更高权重。
+    scope: 群体倾向，不是个人判决：方言背景会改写难点谱；实证锚样本多为青少年与成人，向低龄迁移时错误类型可借、错误率不可搬；处方是练习方向，不是临床言语治疗。本条排序不预设裁定 A（弱读产出程度）的结论。
+    exceptions:
+    - 方言谱改写：粤语保留 -p/-t/-k 入声韵尾，其学习者词尾塞音反而不难，难点另在别处；吴语、闽语各有自己的迁移谱
+  mechanism:
+    beats:
+    - beat: 音段顶替四项（th / v-w / i 长短 / æ 开口）
+      text_adult: ① th（/θ ð/）：汉语无齿间擦音，顶替谱以 /s/ 最常见（three→sree），另有 /f/ 顶 /θ/、/t d/ 顶 /ð/ 等路径；/θ/ 属错误最集中、且最伤可懂度的音。处方：咬舌动作可视化（舌尖探出齿缝、镜面对照），手背试气流，先练清 /θ/ 后练浊 /ð/；the、this、that 等功能词的 /ð/ 单列先行。② v/w：汉语有 /w/ 无 /v/，very→wery 为典型顶替，偶见反向矫枉。处方：上齿咬下唇的唇齿摩擦定位，v/w 最小对（vest/west、vine/wine）镜面练习。③ i 的长短（/ɪ iː/）：汉语 /i/ 一类独大，ship/sheep 合流；与 /θ/ 同列错误最集中之组。处方：时长手势与舌位高低双线索并讲，听辨先行。④ a 的开口（/æ e/）：汉语无 /æ/，向 /e/ 漂移使 bad→bed，或向 /a/ 靠拢。处方：开口度阶梯（beat-bit-bait-bet-bat 对照链，下巴逐级下落）。
+      anchors:
+      - three
+      - the
+      - this
+      - that
+      - very
+      - vest
+      - west
+      - vine
+      - wine
+      - ship
+      - sheep
+      - bad
+      - bed
+      - beat
+      - bit
+      - bait
+      - bet
+      - bat
+      text_kid: 有些英语声音，汉语里压根没有，嘴巴就会拿最像的汉语声音顶上：three 变 sree、very 变 wery、pig 读完尾巴变轻了、blue 中间多塞一个音、banana 三个音节一样响。这些都不是粗心，是嘴巴在拿老地图走新路。把地图上缺的这几处专门补练，地就通了。
+    - beat: 弱读、词尾与音节结构四项（schwa / 词尾 / -ng / 辅音丛）
+      text_adult: ⑤ schwa 与弱读：英语弱读音节被「平均用力」读成全元音——banana 三拍全重；Deterding (2006) 的中国英语语料中弱读元音 /ə/ 系统性缺席、以全元音代之。处方：节拍敲击标出重音，弱读音节「小声、快速滑过」，先在词内（ba-NA-na）练，再推到句中功能词的弱读。⑥ 词尾浊音与尾辅音：英语词尾浊塞音、浊擦音被清化或吞掉：bed→bet（词尾 /d/ 清化，难度高于词尾 /t/），cat、map 的尾塞音脱落亦见于综述著录；词尾 /z v ð/ 同属干预研究锁定的目标难音。处方：词尾「咬住不放」，并教反向线索「浊尾前面的元音更长」（bead 的元音长于 beat）。⑦ -ng 读成 -n：不少汉语方言区普通话自身即 -n/-ŋ 不分，迁移到英语 sing→sin。处方：鼻腔共鸣感知（发 /ŋ/ 时捏鼻），-ng 词尾「嗡嗡尾」延长练习，与汉语 in/ing 辨正同步做。⑧ 辅音丛插元音：汉语无辅音丛，词首丛被塞入元音拆散（blue→buh-loo）；词尾单个辅音后加附加 schwa 亦被专项著录（Deterding 2006）。处方：由尾及首的反向「连滑」搭建（ue→lue→blue），慢速无缝连读，丛中不许停顿、不许加塞。
+      anchors:
+      - banana
+      - bed
+      - bet
+      - bead
+      - beat
+      - cat
+      - map
+      - sing
+      - sin
+      - blue
+      - pig
+    - beat: 拼写面一项
+      text_adult: ⑨ 拼写面：哑字母（knight 的 k、gh）、双写（hopping 与 hoping 之别）、词尾 -e 的多职，在 GPC 层表现为「读对了也写错」；这批点的「为什么」由 S-19（哑字母的历史成因）与 SR 规则条供给，处方是把它们当历史＋规则讲，而不是当例外罚抄。
+      anchors:
+      - knight
+      - hopping
+      - hoping
+  examples:
+  - level: 1
+    group: th 顶替
+    words:
+    - three
+    - the
+    - this
+    - that
+    supports: claim
+  - level: 2
+    group: v/w 最小对
+    words:
+    - very
+    - vest
+    - west
+    - vine
+    - wine
+    supports: claim
+  - level: 3
+    group: i 长短
+    words:
+    - ship
+    - sheep
+    supports: claim
+  - level: 4
+    group: æ 开口对照链
+    words:
+    - bad
+    - bed
+    - beat
+    - bit
+    - bait
+    - bet
+    - bat
+    supports: claim
+  - level: 5
+    group: schwa 缺席
+    words:
+    - banana
+    supports: claim
+  - level: 6
+    group: 词尾清化/脱落
+    words:
+    - bed
+    - bet
+    - bead
+    - beat
+    - cat
+    - map
+    - pig
+    supports: claim
+  - level: 7
+    group: -ng/-n
+    words:
+    - sing
+    - sin
+    supports: claim
+  - level: 8
+    group: 辅音丛插元音
+    words:
+    - blue
+    supports: claim
+  - level: 9
+    group: 拼写面
+    words:
+    - knight
+    - hopping
+    - hoping
+    supports: claim
+  error_cases:
+  - wrong: three → sree
+    right: three /θriː/（舌尖探出齿缝）
+    error_type: 母语顶替
+    source_type: 真实语料错型
+    diagnosis: 汉语无齿间擦音 /θ/，以 /s/ 顶替（Deterding 2006 与 ICILLP 2025 综述著录）；回指机制小节「音段顶替四项」①。
+  - wrong: very → wery
+    right: very /ˈveri/（上齿咬下唇）
+    error_type: 母语顶替
+    source_type: 真实语料错型
+    diagnosis: 汉语有 /w/ 无 /v/，以 /w/ 顶替 /v/；回指机制小节「音段顶替四项」②。
+  - wrong: ship / sheep 读成一个音
+    right: ship /ʃɪp/ 短而紧、sheep /ʃiːp/ 长而松
+    error_type: 长短合流
+    source_type: 真实语料错型
+    diagnosis: 汉语 /i/ 一类独大，紧松对立与时长线索双缺；回指机制小节「音段顶替四项」③，处方听辨先行。
+  - wrong: banana 三个音节一样响
+    right: ba-NA-na（弱读音节读 /ə/、小声快速滑过）
+    error_type: 弱读缺席
+    source_type: 真实语料错型
+    diagnosis: 汉语音节元音不弱化，弱读 /ə/ 系统性缺席、以全元音代之（Deterding 2006 著录）；回指机制小节「弱读、词尾与音节结构四项」⑤。
+  - wrong: bed → bet；cat、map 尾音脱落
+    right: bed /bed/（浊尾咬住，前面元音更长）；cat、map 尾塞音收住
+    error_type: 词尾削减
+    source_type: 真实语料错型
+    diagnosis: 汉语韵尾只有 -n、-ng，词尾浊塞音被清化、尾塞音被吞掉；回指机制小节「弱读、词尾与音节结构四项」⑥。
+  - wrong: blue → buh-loo（丛中塞元音）
+    right: blue（由尾及首连滑 ue→lue→blue，丛中不停顿不加塞）
+    error_type: 丛中插元音
+    source_type: 真实语料错型
+    diagnosis: 汉语无辅音丛，词首丛被塞入元音拆散（Deterding 2006 附加元音著录）；回指机制小节「弱读、词尾与音节结构四项」⑧。
+  - wrong: sing → sin
+    right: sing /sɪŋ/（鼻腔共鸣、嗡嗡尾延长）
+    error_type: 母语顶替
+    source_type: 教学文献登记错型
+    diagnosis: 部分汉语方言区普通话自身 -n/-ŋ 不分，迁移至英语 -ng；回指机制小节「弱读、词尾与音节结构四项」⑦。
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-14
+    rel: 同族
+  - id: S-32
+    rel: 同族
+  - id: S-19
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 听不懂
+  - 说不出
+  - 错不完
+  adult:
+    sources:
+    - S-14（王桂珍汉英语音对比体系）；Deterding (2006)；Yeldham (2023–2024)；ICILLP 2025 综述；Huang (2026)。接触等级：二手系统论述级（综述、研究摘要与全文片段交叉核对）。
+    boundary: ①地图是群体倾向，不是个人判决：方言背景会改写难点谱（见 claim 例外），年龄与输入量亦然；地图只用于排教学优先级，不用于给孩子的发音贴标签（与 S-14 边界一致）。②实证锚的样本多为青少年与成人：向小学低龄迁移时，错误类型可借、错误率不可搬（Huang 样本的「逾 40%」只限该样本）。③处方是教学传统与干预研究支持的练习方向，不是临床言语治疗；持续性发音障碍须转介专业评估。
+    disputes:
+    - 难点排序之争：以可懂度为纲的研究（Huang；LFC 传统）主张按「伤不伤理解」排优先级——/θ/ 与元音居前；以准确度为纲的传统语音教学则按音位清单顺序平均推进。本条按可懂度排序著录；清单在语音产出取向（弱读产出教到什么程度）上尚有待裁定项（裁定 A)，本条排序不预设该裁定的结论。
+    - 方言差异的性质之争：有研究（Zhang 2026，以 Flege 语音学习模型 SLM-r 立论）反驳「方言背景学习者系统性更吃亏」的流行偏见，主张方言造成的只是难点分布之差、不是难度层级之差。本条地图按「分布」立论，与该立场相容；特此登记，防止地图被误读为给方言背景排座次。
+    evidence_grade: 二手系统论述级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+  config_gates:
+    ruling_A: 本条难点排序不预设裁定 A 结论；涉及弱读产出的处方按裁定 A 默认档呈现。
+- id: SR-01
+  zone: 拼读
+  group: SR
+  order: 1
+  headline: 词尾那个不出声的 e 不是来混日子的：它一口气干五份工——但「五」只是教学节选，传统原表有九项
+  headline_kid: 单词最后那个不读出声的 e，其实是个大忙人：它能让前面的元音读长（tap→tape）、能让 c 和 g 变软（ice、cage）、能站在词尾「扶住」v 和 u 不让它们当最后一个字母（have、blue）、能给 th 定清浊（bath 洗澡水 → bathe 洗澡）、还能给 -le 音节凑一个元音（little、table）。看见词尾的 e，先问它在干哪份工。
+  claim:
+    type: rule
+    statement: 词尾静音 e 有五项功能最明确的职责：①长音化（VCe 标记前元音读长音）②软化（使紧邻的 c 读 /s/、g 读 /dʒ/）③词尾护栏（本土词不以 I、U、V、J 收尾）④th 清浊标记（名词清 /θ/ 不带 e、动词浊 /ð/ 带 e）⑤-le 凑音节；其中只有①改变元音读音，其余四职都是拼写合法性标记。「五职」是教学节选口径，Eide 原表共 9 项理由。
+    evidence:
+    - Denise Eide《Uncovering the Logic of English》(Logic of English, 2012）对 silent final e 的理由清点——本轮未打开原书，经三种独立转述（Pride Reading Program 的 7 职版、Literacy Learn 明确注明取材 Eide 的 9 职版、多个 OG 系教师材料）逐项互证，五职的例词与表述三方一致；「词尾禁收尾字母」在 Eide 体系的规范表述为 “English words do not end in I, U, V or J”（LoE 课程规则页转述一致）。接触等级：多源转述互证级（原书未直开）。
+    - 支撑：第①职的实测坐标——Clymer (1963）对小学词表的检验中，「词尾有 e 时首元音读长、e 不发音」这条概括的命中率只有 63%，所以第①职是五职里最需要配合变脸名单使用的一职（详见 SR-08）。第③职的近孤例：Hickey 教学法的规则卡片直言词尾 v 规则「英语中唯一的例外是 spiv（英式俚语）」——可见其在本土词层面的覆盖率。
+    scope: 第③职只对本土核心词近乎无例外（外来词与截短词可破，见例外）；第④职适用面很小，仅限 bath/bathe 等少数同源词对与 -the 结尾的动词族；被本条略去的另三职（防像复数、给短词凑长度、无职之 e）登记在成人层边界，不作本条 claim。
+    exceptions:
+    - 第③职的外来/截短破例：u 收尾——menu、emu、guru、haiku、tofu、flu（influenza 的截短）；v 收尾——improv、rev（截短）、chav、maglev；词尾 v 规则在本土词层面的近孤例为 spiv（英式俚语，Hickey 规则卡片著录）
+    - 第④职不可反推：名词侧 wreath、sheath 的动词 sheathe 才带 e；lithe、blithe 本身即读 /ð/ 且无对立名词——「带 e 必浊」不成立于其他 th 词
+  mechanism:
+    beats:
+    - beat: 五职总览
+      text_adult: 词尾静音 e（silent final e）在拼写教学传统中被系统清点过职责。本条收录其中功能最明确的五职：①长音化——VCe 结构中标记前元音读长音/名字音（tap→tape、pin→pine、rob→robe、tub→tube）；②软化——使紧邻的 c 读 /s/、g 读 /dʒ/（ice、dance、cage、page），因为 c/g 在 e 前本来就软，e 是把软音「固定下来」的标记；③词尾护栏——英语本土词不以 v 或 u 收尾（Eide 的完整表述是 I、U、V、J 四个字母都不收尾，见成人层边界），故 /v/ 尾词一律加 e（have、give、love、live），/uː/ 尾词写作 ue（blue、true、clue、glue）；④th 清浊标记——名词/形容词的清 /θ/ 不带 e（bath、breath、cloth），对应动词的浊 /ð/ 带 e（bathe、breathe、clothe），另有 teethe、soothe、loathe 一族；⑤-le 凑音节——每个音节须有一个书写元音，辅音+le 结尾的音节靠这个 e 成立（little、table、apple、bubble、puzzle）。机制要点：这五职里只有第①职改变元音读音，其余四职都是「拼写合法性」标记。
+      anchors:
+      - tap
+      - tape
+      - pin
+      - pine
+      - rob
+      - robe
+      - tub
+      - tube
+      - ice
+      - dance
+      - cage
+      - page
+      - have
+      - give
+      - love
+      - live
+      - blue
+      - 'true'
+      - clue
+      - glue
+      - bath
+      - breath
+      - cloth
+      - bathe
+      - breathe
+      - clothe
+      - teethe
+      - soothe
+      - loathe
+      - little
+      - table
+      - apple
+      - bubble
+      - puzzle
+      - spiv
+      - menu
+      - emu
+      - guru
+      - haiku
+      - tofu
+      - flu
+      - improv
+      - rev
+      - chav
+      - maglev
+      - wreath
+      - sheath
+      - sheathe
+      - lithe
+      - blithe
+      text_kid: 单词最后那个不读出声的 e，其实是个大忙人：它能让前面的元音读长（tap→tape）、能让 c 和 g 变软（ice、cage）、能站在词尾「扶住」v 和 u 不让它们当最后一个字母（have、blue）、能给 th 定清浊（bath 洗澡水 → bathe 洗澡）、还能给 -le 音节凑一个元音（little、table）。看见词尾的 e，先问它在干哪份工。
+  examples:
+  - level: 1
+    group: ①长音化
+    words:
+    - tap
+    - tape
+    - pin
+    - pine
+    - rob
+    - robe
+    - tub
+    - tube
+    supports: claim
+  - level: 2
+    group: ②软化
+    words:
+    - ice
+    - dance
+    - cage
+    - page
+    supports: claim
+  - level: 3
+    group: ③词尾护栏
+    words:
+    - have
+    - give
+    - love
+    - live
+    - blue
+    - 'true'
+    - clue
+    - glue
+    supports: claim
+  - level: 4
+    group: ④th 清浊标记
+    words:
+    - bath
+    - breath
+    - cloth
+    - bathe
+    - breathe
+    - clothe
+    - teethe
+    - soothe
+    - loathe
+    supports: claim
+  - level: 5
+    group: ⑤-le 凑音节
+    words:
+    - little
+    - table
+    - apple
+    - bubble
+    - puzzle
+    supports: claim
+  - level: 6
+    group: ③职破例
+    words:
+    - menu
+    - emu
+    - guru
+    - haiku
+    - tofu
+    - flu
+    - improv
+    - rev
+    - chav
+    - maglev
+    - spiv
+    supports: claim
+  error_cases: []
+  probes:
+  - PRB-SR01-1
+  - PRB-SR01-2
+  - PRB-SR01-3
+  - PRB-SR01-4
+  - PRB-SR01-5
+  quiz: []
+  relatives:
+  - id: SR-08
+    rel: 同族
+  - id: S-24
+    rel: 同族
+  - id: SR-05
+    rel: 同族
+  - id: SR-03
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Denise Eide《Uncovering the Logic of English》(Logic of English, 2012)，经三种独立转述逐项互证（Pride Reading Program 7 职版、Literacy Learn 9 职版、OG 系教师材料）；LoE 课程规则页。接触等级：多源转述互证级（原书未直开）。Clymer (1963) 63% 坐标见 SR-08。
+    boundary: 三条必须讲清的限定。①「五职」是节选口径，不是原始清点：Eide 原表共 9 项理由，各家教材分别节选出 5、7、8、9 职版本；被本条略去的还有三职——防「看起来像复数」（house、moose、please 的 e 表明它不是 -s 复数）、给短词凑长度（are、ore、eye——英语实词一般不少于三个字母）、以及「无职之 e / 佚失之由」（come、some、done、giraffe——历史上曾有理由、今天已不可考，Eide 本人即称其为「被时间冲走的故事」）。②第③职的准确表述：任务书作「英语词不用 v 或 u 结尾」，Eide 原表述涵盖 I、U、V、J 四个字母（i 不收尾故词尾 /aɪ/、/i/ 写 y 或 ie，见 SR-05；j 不收尾故词尾 /dʒ/ 写 ge/dge，见 SR-03）；且该职只对本土核心词近乎无例外。③第④职适用面很小（见 claim 范围）。
+    disputes:
+    - 清点口径之争（5/7/8/9 职）本身说明这组「职责」是教学用的事后归纳，不是语言学家公认的历时成因清单——历时地看，词尾 e 大面积来自中古英语屈折词尾的脱落与印刷定型，各「职」是后人对存留格局的功能解释。教学界（LoE/OG）认为功能解释对儿童最有用；正字法研究（如 Venezky 的结构分析）则更愿意把它描述为「位置与形态条件下的拼写格局」而非一条条目的规则。两说并存登记，本条按教学可用性取功能说，但标题句已标明节选性质。
+    evidence_grade: 多源转述互证级（原书未直开）
+    pending:
+    - Eide《Uncovering the Logic of English》原书未直开（经三源转述互证）——原书直开核对列为下轮升级项。
+  corrections:
+  - 任务书作「英语词不用 v 或 u 结尾」不完整：Eide 原表述为 I、U、V、J 四个字母都不收尾，已按四字母版入 claim。
+  - 节选口径纠正登记：「五职」不是原始清点——Eide 原表 9 项，各家节选 5/7/8/9 职不等；略去的三职（防像复数/凑长度/无职之 e）已登记在成人层边界，不删不隐。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: SR-02
+  zone: 拼读
+  group: SR
+  order: 2
+  headline: 短元音后面站着 f、l、s、z，词尾就站双份：Floss 双写律——外加一份高频例外小名单
+  headline_kid: 一音节的短词里，短元音后面如果是 f、l、s、z 收尾，这个字母要写两遍：hill、mess、buzz、off。就像短元音太「轻」，需要双份字母把它压住。例外只有一小把：if、us、bus、gas、yes、this、plus，还有 s 读成 /z/ 的那几个（is、has、was）——s 一旦读「滋」的音，就从来不双写。
+  claim:
+    type: rule
+    statement: Floss 双写律（FLoSS(Z)，亦称 1-1-1 规则）：单音节（或重读末音节）、只有一个短元音、f/l/s/z 紧贴在短元音之后、位于词尾——四条件同时成立则双写；词尾 -s 若读 /z/ 则结构性不双写（规则内置条款，非例外）。
+    evidence:
+    - All About Spelling（All About Learning Press）第 1 册第 17 课原文（本轮打开其官方课时 PDF，全文核对了条件与例外名单）；Reading Universe（WETA/Barksdale Reading Institute/First Book 合作项目）的「FLoSS(Z) Rule」技能说明页；两源的例外名单逐项一致（if、gas、yes、this、us、bus 等）。接触等级：课程文件级。
+    - 支撑：规则的另一面在阅读方向同样成立：看见词尾双写的 f/l/s/z，即可反推前元音为短元音——解码与拼写共用同一格局。多家课程（蒙台梭利系、OG 系）都把 Floss 列为儿童最早学到的拼写概括之一，因为它的条件可当场逐项核对（数音节、听元音、看词尾），是「规则感」的入门样本。
+    scope: 规则只管 f/l/s/z 四个字母；重读末音节的推广（如 BrE 的 compel 型）属加后缀双写问题，归 V-37 处理，不在本条射程。例外须分三类登记，不得混作一堆（见 claim 例外与机制）。
+    exceptions:
+    - 词源型例外（截短与借词）：bus（omnibus/autobus 的截短）、gas（gasoline 的截短）、chef 与 clef（法语借词）、pal、gal（俚语词）——它们不是「不听话」，是没经历本土词的定型过程；zz 一支的例外 quiz（与 whiz 的单 z 拼法）
+    - 高频小名单（两源名单逐项一致）：if、us、bus、gas、yes、this、plus——儿童面先行直记
+    - 射程外零星双写（不归 Floss 管、也不作反例）：add、egg、odd、ebb、inn、mitt、putt
+  mechanism:
+    beats:
+    - beat: 判据四条件与例外三类
+      text_adult: Floss 规则（亦称 FLoSS(Z) 或 1-1-1 规则：1 个音节、1 个短元音、词尾 1 个 f/l/s/z）的准确适用条件是四个同时成立：①单音节（或重读末音节）；②只有一个元音且是短元音；③f/l/s/z 紧贴在短元音之后（中间隔着其他辅音不算）；④位于词尾。成立则双写：ff（off、stiff、staff、cuff）、ll（hill、sell、spell、will）、ss（miss、class、grass、pass）、zz（buzz、fizz、jazz、fuzz）。其功能与 SR-03 的 ck/tch/dge 同族：用「加厚的词尾」标记前面的元音是短元音。词尾 -s 若读 /z/ 则结构性不双写（as、is、has、was、his）——因为 ss 在词尾恒读 /s/，双写会改音，故这一支不是「例外」而是规则的内置条款。例外三类：①词源型（见 claim 例外）；②条件不成立型（伪例外）：self、wolf、shelf、gulf 里 f/l 前面隔着辅音，不满足「紧贴短元音」；until、peel 分别不满足单音节/单短元音——根本不在规则射程内，教学中要防止把它们误标为例外而稀释规则；③射程外延型（见 claim 例外）。
+      anchors:
+      - 'off'
+      - stiff
+      - staff
+      - cuff
+      - hill
+      - sell
+      - spell
+      - will
+      - miss
+      - class
+      - grass
+      - pass
+      - buzz
+      - fizz
+      - jazz
+      - fuzz
+      - as
+      - is
+      - has
+      - was
+      - his
+      - if
+      - us
+      - bus
+      - gas
+      - 'yes'
+      - this
+      - plus
+      - chef
+      - clef
+      - pal
+      - gal
+      - quiz
+      - whiz
+      - self
+      - wolf
+      - shelf
+      - gulf
+      - until
+      - peel
+      - add
+      - egg
+      - odd
+      - ebb
+      - inn
+      - mitt
+      - putt
+      text_kid: 一音节的短词里，短元音后面如果是 f、l、s、z 收尾，这个字母要写两遍：hill、mess、buzz、off。就像短元音太「轻」，需要双份字母把它压住。例外只有一小把：if、us、bus、gas、yes、this、plus，还有 s 读成 /z/ 的那几个（is、has、was）——s 一旦读「滋」的音，就从来不双写。
+  examples:
+  - level: 1
+    group: ff 双写
+    words:
+    - 'off'
+    - stiff
+    - staff
+    - cuff
+    supports: claim
+  - level: 2
+    group: ll 双写
+    words:
+    - hill
+    - sell
+    - spell
+    - will
+    supports: claim
+  - level: 3
+    group: ss 双写
+    words:
+    - miss
+    - class
+    - grass
+    - pass
+    supports: claim
+  - level: 4
+    group: zz 双写
+    words:
+    - buzz
+    - fizz
+    - jazz
+    - fuzz
+    supports: claim
+  - level: 5
+    group: /z/ 内置条款
+    words:
+    - as
+    - is
+    - has
+    - was
+    - his
+    supports: claim
+  - level: 6
+    group: 高频例外小名单
+    words:
+    - if
+    - us
+    - bus
+    - gas
+    - 'yes'
+    - this
+    - plus
+    supports: claim
+  - level: 7
+    group: 词源型例外
+    words:
+    - chef
+    - clef
+    - pal
+    - gal
+    - quiz
+    - whiz
+    supports: claim
+  - level: 8
+    group: 伪例外（射程外）
+    words:
+    - self
+    - wolf
+    - shelf
+    - gulf
+    - until
+    - peel
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: SR-03
+    rel: 同族
+  - id: S-24
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - All About Spelling 第 1 册第 17 课官方课时 PDF（打开原文核对）；Reading Universe「FLoSS(Z) Rule」技能说明页。接触等级：课程文件级。
+    boundary: 例外须分三类登记，不得混作一堆（见机制）。重读末音节的推广（如 BrE 的 compel 型不在此列——那是加后缀双写的问题，归 V-37 处理）。
+    disputes:
+    - 无实质分歧；仅有命名与射程口径差：有的课程只教 f/l/s 三个字母（老式「Floss」原名），有的扩到 z（FLoSS(Z)）；有的把适用范围从「单音节词」放宽到「紧跟在短元音之后、位于词尾」而不论音节数。本条取四字母版与「紧贴+词尾」的条件表述，与 Reading Universe 口径一致。
+    evidence_grade: 课程文件级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: SR-03
+  zone: 拼读
+  group: SR
+  order: 3
+  headline: /k/、/tʃ/、/dʒ/ 站在短元音身后要穿「加厚装」:ck、tch、dge——判据不是音节数，是「紧跟在短元音之后」
+  headline_kid: 短元音后面的 /k/ 不写 k、写 ck（back、duck）；短元音后面的 /tʃ/ 不写 ch、写 tch（catch、witch）；短元音后面的 /dʒ/ 写 dge（bridge、judge）。这三个「加厚装」只跟在短元音屁股后面；元音一长，立刻换回单件：长音后面是 k、ch、ge（bake 型另有 e 帮忙、beach、age）。
+  claim:
+    type: rule
+    statement: ck/tch/dge 加厚规则：在单音节词（或重读末音节）里，/k/、/tʃ/、/dʒ/ 若紧跟在一个（重读的）短元音之后，拼写必须加厚为 ck、tch、dge；长元音/双元音之后、辅音之后用单件 k、ch、ge；判据是「紧跟短元音之后」，不以单音节为限。
+    evidence:
+    - OG/LETRS 系拼写模式教学的通行表述（LETRS 培训 slide 集《How English Spelling Works》明列 “ck, dge, tch … act as double consonants after short vowels”，并给出 ck 的例外为词源型 flak 等）；小学拼写规则汇编（如多家学区规则表）对 tch 的例外名单（such、much、rich、which）表述一致。接触等级：课程文件级（LETRS slide 集）＋多源转述互证级（例外名单）。
+    - 支撑：这组规则与 SR-02 Floss 在教学序列中通常同段出现（短元音词尾加厚家族），且在解码方向近乎无例外地可靠：儿童读到 ck/tch/dge 即可断定前元音为短音。tch 还有一个两音节的常见落点：非重读的第二音节（kitchen、pitcher、hatchet、butcher）——仍是「tch 紧跟短元音」，不违例。
+    scope: 本条只管词尾位置；词中（如 chicken 的 ck、dodger 的 dg）在 S-33 清单与词族教学中处理。非重读末音节的 /ɪdʒ/ 不用 dge 而用 -age/-ege（village、college、privilege——其中 -age 的读音合同价见 SR-06）。
+    exceptions:
+    - tch 真例外小名单：rich、much、such、which（高频、须直记），外加法语来源的 attach、detach 用 -ach 收尾
+    - ck 的例外是借词：trek（南非荷兰语源）、flak（德语 Flak 的缩略）等，属词源型例外，与 SR-02 的 bus/gas 同类
+  mechanism:
+    beats:
+    - beat: 加厚判据与单件面
+      text_adult: 三个拼法是同一个格局的三张面孔：在单音节词（或重读末音节）里，/k/、/tʃ/、/dʒ/ 若紧跟在一个短元音之后，拼写必须「加厚」——ck（back、neck、sick、lock、duck）、tch（catch、fetch、itch、notch、hutch）、dge（badge、edge、bridge、dodge、judge、fudge）。加厚的理由与 Floss（SR-02）相同：单个 k/ch/ge 紧跟短元音会让读者拿不准元音长短，加厚拼法把「前面是短元音」写死在词形里。反之：长元音/双元音之后用 k（book 是 oo、week）、ch（beach、coach）、ge（age、page、huge）；辅音之后用 k（milk、bank）、ch（branch、mulch）、ge（large、hinge）；多音节词的非重读末音节 /k/ 用 c（music、picnic、garlic，见 SR-04）。
+      anchors:
+      - back
+      - neck
+      - sick
+      - lock
+      - duck
+      - catch
+      - fetch
+      - itch
+      - notch
+      - hutch
+      - badge
+      - edge
+      - bridge
+      - dodge
+      - judge
+      - fudge
+      - book
+      - week
+      - beach
+      - coach
+      - age
+      - page
+      - huge
+      - milk
+      - bank
+      - branch
+      - mulch
+      - large
+      - hinge
+      - music
+      - picnic
+      - garlic
+      - kitchen
+      - pitcher
+      - hatchet
+      - butcher
+      - rich
+      - much
+      - such
+      - which
+      - attach
+      - detach
+      - trek
+      - flak
+      - attack
+      - hammock
+      - tonic
+      text_kid: 短元音后面的 /k/ 不写 k、写 ck（back、duck）；短元音后面的 /tʃ/ 不写 ch、写 tch（catch、witch）；短元音后面的 /dʒ/ 写 dge（bridge、judge）。这三个「加厚装」只跟在短元音屁股后面；元音一长，立刻换回单件：长音后面是 k、ch、ge（bake 型另有 e 帮忙、beach、age）。
+  examples:
+  - level: 1
+    group: ck 加厚
+    words:
+    - back
+    - neck
+    - sick
+    - lock
+    - duck
+    supports: claim
+  - level: 2
+    group: tch 加厚
+    words:
+    - catch
+    - fetch
+    - itch
+    - notch
+    - hutch
+    supports: claim
+  - level: 3
+    group: dge 加厚
+    words:
+    - badge
+    - edge
+    - bridge
+    - dodge
+    - judge
+    - fudge
+    supports: claim
+  - level: 4
+    group: 单件面（长元音/双元音后）
+    words:
+    - week
+    - beach
+    - coach
+    - age
+    - page
+    - huge
+    supports: claim
+  - level: 5
+    group: 单件面（辅音后）
+    words:
+    - milk
+    - bank
+    - branch
+    - mulch
+    - large
+    - hinge
+    supports: claim
+  - level: 6
+    group: tch 两音节落点
+    words:
+    - kitchen
+    - pitcher
+    - hatchet
+    - butcher
+    supports: claim
+  - level: 7
+    group: 例外组
+    words:
+    - rich
+    - much
+    - such
+    - which
+    - attach
+    - detach
+    - trek
+    - flak
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: SR-02
+    rel: 同族
+  - id: SR-04
+    rel: 同族
+  - id: S-33
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - LETRS 培训 slide 集《How English Spelling Works》（课程文件级）；小学拼写规则汇编多家学区规则表（例外名单，多源转述互证级）。
+    boundary: 任务书口径须精化（见纠正记录）：严格说判据是「紧跟在（重读的）短元音之后」，不以「单音节」为限——attack 的 -ck、hammock 的 -ock 都在双音节词的重读/末音节里，仍用 ck；反过来 tonic、music 的末音节 /k/ 非重读，就用 c。所以儿童面可先教单音节版，教师层要存精确版。
+    disputes:
+    - 无实质分歧。仅表述粒度差：部分课程把三者拆成三条孤立规则教，部分（LETRS/OG）明确把它们与 Floss 并作「短元音加厚家族」——本条取家族说，因为机制（标记短元音）确实同一。
+    evidence_grade: 课程文件级 + 多源转述互证级
+    pending: []
+  corrections:
+  - 任务书作「只在短元音之后」：定版判据为「紧跟在（重读的）短元音之后」，不以单音节为限（attack、hammock 仍用 ck；tonic、music 非重读末音节用 c）。儿童面先教单音节版，教师层存精确版。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: SR-04
+  zone: 拼读
+  group: SR
+  order: 4
+  headline: 拼 /k/ 先看下一站是谁：e、i、y 前用 k，a、o、u 前用 c，短元音收尾用 ck，多音节词尾用 c
+  headline_kid: 听到 /k/ 开头的词，先看紧跟它的字母：后面是 a、o、u 就写 c（cat、cot、cup）；后面是 e、i、y 就写 k（kettle、king、sky 里的 k 逻辑相同）——因为 c 碰到 e、i、y 会变软读成 /s/，只好请 k 来顶班。/k/ 在词尾时再看前面：短元音后面写 ck（back），其他情况写 k（milk、book），两个音节以上的词收尾多半写 c（music、picnic）。
+  claim:
+    type: rule
+    statement: /k/ 的拼法是由位置完全分工的系统（Cat/Kite 规则）：词首/音节首后接 a、o、u 或辅音用 c、后接 e、i、y 用 k；词尾紧跟短元音后用 ck、其余用 k、VCe 中用 ke；多音节词的非重读末音节 /ɪk/ 用 c。统一解释：c 是 /k/ 的默认字母，凡 c 会被软化或误读的位置系统才换人。
+    evidence:
+    - LETRS 培训材料（Moats 的 LETRS 拼写教学 slide 集《How English Spelling Works》，本轮打开课程文件，含「Words use c for /k/ before a, o, u… k before e, i, y… ck after an accented short vowel」的原表述与例外栏）；Joshi 等《Science of Reading》课程讲义 slide 同表述互证。接触等级：课程文件级。
+    - 支撑：这套分工在儿童最早的拼读词里覆盖率极高：初级词表中 /k/ 的拼法几乎可由位置百分之百判定，是 Clymer (1963）检验中属于「辅音类概括可靠度 ≥95%」阵营的典型（对比元音类概括的低可靠度，见 SR-08）——这也是教学序列把 Cat/Kite 放在元音规则之前的原因。
+    scope: 儿童面只取词首+词尾两段，教师层存完整版（含多音节 c 与加后缀 k 插入）。c 的反向例外（soccer、sceptic、Celtic）归软 c 条（S-31）处理，此处只登记。
+    exceptions:
+    - 借词例外成串：kangaroo、koala、karate、kayak、karma 等借词把 k 带到了 a/o/u 之前（LETRS 材料直标 “Exceptions due to etymology”）——违反的是词首分工，须按词源整词记
+    - c 的反向例外（镜像登记）：soccer（cc 在 e 前读 /k/）、sceptic（英式，/ˈskeptɪk/）、Celtic（常读 /ˈkeltɪk/）是 c 在软化区仍读 /k/ 的小名单
+    - 边缘变体：arcing（arc 的 -ing 形式，两式并存），登记不展开
+  mechanism:
+    beats:
+    - beat: /k/ 的位置分工系统
+      text_adult: ①词首/音节首：后接 a、o、u 或辅音 → c（cat、cot、cup、class、cream）；后接 e、i、y → k（kept、kettle、king、kiss、Kyle）——动因是软硬 c 规则（c+e/i/y 读 /s/，见 S-31），/k/ 在软化区必须改由 k 承担。②词尾：紧跟短元音后 → ck（SR-03）；紧跟辅音、长元音或元音组合后 → k（milk、pink、book、week、peak）；VCe 结构中 → ke（cake、like、smoke——因为 ce 会读 /s/，/k/ 只能用 k 再加 e 标长音）。③多音节词的非重读末音节 /ɪk/ → c（music、garlic、picnic、tonic、magic）。
+      anchors:
+      - cat
+      - cot
+      - cup
+      - class
+      - cream
+      - kept
+      - kettle
+      - king
+      - kiss
+      - Kyle
+      - milk
+      - pink
+      - book
+      - week
+      - peak
+      - cake
+      - like
+      - smoke
+      - music
+      - garlic
+      - picnic
+      - tonic
+      - magic
+      - kangaroo
+      - koala
+      - karate
+      - kayak
+      - karma
+      - soccer
+      - sceptic
+      - Celtic
+      text_kid: 听到 /k/ 开头的词，先看紧跟它的字母：后面是 a、o、u 就写 c（cat、cot、cup）；后面是 e、i、y 就写 k（kettle、king、sky 里的 k 逻辑相同）——因为 c 碰到 e、i、y 会变软读成 /s/，只好请 k 来顶班。/k/ 在词尾时再看前面：短元音后面写 ck（back），其他情况写 k（milk、book），两个音节以上的词收尾多半写 c（music、picnic）。
+    - beat: 加后缀时的 k 插入（本条最重要的操作面）
+      text_adult: 以 c 结尾的词加 -ing/-ed/-y 等以 e、i 开头的后缀时，要在 c 后插入 k 保住 /k/：panic→panicking/panicky、picnic→picnicking、traffic→trafficked、mimic→mimicking、frolic→frolicking——不插 k，ci 就会被读软。这是本条在写作中最常被用错的一点（中国学生常写 *paniced)。
+      anchors:
+      - panic
+      - panicking
+      - panicky
+      - picnicking
+      - traffic
+      - trafficked
+      - mimic
+      - mimicking
+      - frolic
+      - frolicking
+  examples:
+  - level: 1
+    group: c 家（a/o/u/辅音前）
+    words:
+    - cat
+    - cot
+    - cup
+    - class
+    - cream
+    supports: claim
+  - level: 2
+    group: k 家（e/i/y 前）
+    words:
+    - kept
+    - kettle
+    - king
+    - kiss
+    - Kyle
+    supports: claim
+  - level: 3
+    group: 词尾 k
+    words:
+    - milk
+    - pink
+    - book
+    - week
+    - peak
+    supports: claim
+  - level: 4
+    group: VCe 的 ke
+    words:
+    - cake
+    - like
+    - smoke
+    supports: claim
+  - level: 5
+    group: 多音节词尾 c
+    words:
+    - music
+    - garlic
+    - picnic
+    - tonic
+    - magic
+    supports: claim
+  - level: 6
+    group: 借词例外
+    words:
+    - kangaroo
+    - koala
+    - karate
+    - kayak
+    - karma
+    supports: claim
+  - level: 7
+    group: k 插入
+    words:
+    - panicking
+    - panicky
+    - picnicking
+    - trafficked
+    - mimicking
+    - frolicking
+    supports: claim
+  error_cases:
+  - wrong: paniced / picnicing（c 后直接加后缀）
+    right: panicked / picnicking（c 后插入 k）
+    error_type: 后缀拼写
+    source_type: 教学文献登记错型
+    diagnosis: 清单著录「中国学生常写 *paniced」——c 结尾词加 e/i 开头后缀须插 k 保 /k/，否则 ci 被读软；回指机制小节「加后缀时的 k 插入」。
+  probes: []
+  quiz: []
+  relatives:
+  - id: SR-03
+    rel: 同族
+  - id: S-31
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - LETRS 培训材料（Moats）《How English Spelling Works》slide 集（本轮打开课程文件）；Joshi 等《Science of Reading》课程讲义 slide（互证）。接触等级：课程文件级。
+    boundary: 借词例外与 k 插入见 claim；arcing 两式并存属边缘变体，登记不展开。
+    disputes:
+    - 无实质分歧。教学表述的繁简差：有的课程只教词首一段（cat/kite)，完整系统（含词尾与多音节 c）见于 LETRS/OG 的教师层材料。本条按教师层完整版立条。
+    evidence_grade: 课程文件级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: SR-05
+  zone: 拼读
+  group: SR
+  order: 5
+  headline: y 是个三面手，位置还替双元音投票：ay/oy 守词尾、ai/oi 守词中——ow 的两副面孔只有倾向、没有定律
+  headline_kid: 字母 y 有三份工作：在一个音节的词尾读 /aɪ/（my、fly）；在长词的词尾轻轻读 /ɪ/（happy、baby）；在词中间也读 /ɪ/（gym、system）。还有一条选拼法的窍门：/eɪ/ 和 /ɔɪ/ 这两个音，站在词中间时写 ai、oi（rain、coin），站在词尾时写 ay、oy（day、boy）——y 喜欢站在队尾。ow 有两副面孔（snow 的 /əʊ/ 和 cow 的 /aʊ/)，只能边读边认，没有铁律。
+  claim:
+    type: tendency
+    statement: y 的元音三职按「位置＋重音」判定（词尾重读→/aɪ/、词尾非重读→/i/、词中闭音节→/ɪ/）；/eɪ/ 与 /ɔɪ/ 的拼法按音节位置分工（ai、oi 居音节首中，ay、oy 居音节/词尾）；ow 两读只有分布倾向、不存在可教的位置定律。
+    evidence:
+    - Orton-Gillingham 系材料（“ai … beginning or middle; ay … end of words; oy … usually at the end, with a few exceptions”）与 Reading Universe（WETA 等机构）元音组合技能说明（明确给出 oy 的例外句 “The royal loyal oyster took a voyage”）逐项互证；UFLI Foundations 对齐材料同表述（ai/oa 居中、ay/oy/ow 居尾）。y 三职为各课程音节/字母多音教学的通行表述。接触等级：多源转述互证级（位置规则与 y 三职）；ow 分布倾向为传统通称级（无计量来源）。
+    - 支撑：位置规则是元音组合拼法中罕见的「高产出」概括：它让 /eɪ/、/ɔɪ/ 的拼法选择从背词变成看位置，与 SR-04（/k/ 的位置分工）构成同一教学思想（位置决定拼法）的两个实例。oy 的例外被课程传统编成整句记忆（royal、loyal、oyster、voyage——四词的 oy 都出现在词中，因为其后还有音节），说明例外是成小串、可枚举的。
+    scope: 位置规则的表述单位是音节不只是词（employ、destroy 的 oy 在词尾音节）；ow 两读教学正道是「先试一个音，不对换另一个」（flex 读法），讲成定律是过度承诺；au/aw 一对与本条同构，归 S-41/S-33 清单，此处只挂名。
+    exceptions:
+    - oy 居中例外小串（课程传统整句）：royal、loyal、oyster、voyage——oy 出现在词中，因其后还有音节
+    - ay 的异类：says（读 /sɛz/，拼 ay 却不在词尾）、quay（读 /kiː/)，两个高频怪词单记
+    - oi 几乎不出现在词尾（个别借词 koi 除外）
+  mechanism:
+    beats:
+    - beat: 三层机制
+      text_adult: ①y 的元音三职，准确的判据是「位置＋重音」：词尾且重读 → /aɪ/（my、by、fly、try，以及双音节动词的重读末音节 apply、reply、deny、July）；词尾且非重读 → /i/（happy、baby、city、family）；词中（闭音节）→ /ɪ/（gym、myth、system、rhythm、bicycle 的第一音节）。另有 y 作辅音 /j/（yes、yellow、beyond）是另一职，属字母本行、不在本条三职内。②位置选拼（position rule)：/eɪ/ 与 /ɔɪ/ 各有一对拼法，按所在音节的位置分工——ai、oi 用于音节的开头与中间（ail、rain、train;oil、coin、boil)，ay、oy 用于音节/词的末尾（day、play、tray;boy、toy、employ、destroy）。动因与 SR-01 互挂：英语词不用 i 收尾（Eide 的 I/U/V/J 条），故词尾位置由带 y 的拼法接管。③ow 两读的分布倾向：词尾（及重读末音节）的 ow 以 /əʊ/ 为主（snow、blow、grow、low、show、window)，但有一小族高频 /aʊ/ 词（cow、how、now、brow、vow、plow）；词中的 ow 以 /aʊ/ 常见（down、town、brown、power、flower)，但在 n、l 之前也有 /əʊ/（own、bowl、growth 的 ow 在词尾音节）。本层只能称倾向——本轮未检索到对 ow 两读做全词表计量的可靠研究，任何百分比数字都不许编（见待补）。
+      anchors:
+      - my
+      - by
+      - fly
+      - try
+      - apply
+      - reply
+      - deny
+      - July
+      - happy
+      - baby
+      - city
+      - family
+      - gym
+      - myth
+      - system
+      - rhythm
+      - bicycle
+      - 'yes'
+      - yellow
+      - beyond
+      - ail
+      - rain
+      - train
+      - oil
+      - coin
+      - boil
+      - day
+      - play
+      - tray
+      - boy
+      - toy
+      - employ
+      - destroy
+      - snow
+      - blow
+      - grow
+      - low
+      - show
+      - window
+      - cow
+      - how
+      - now
+      - brow
+      - vow
+      - plow
+      - down
+      - town
+      - brown
+      - power
+      - flower
+      - own
+      - bowl
+      - growth
+      - royal
+      - loyal
+      - oyster
+      - voyage
+      - says
+      - quay
+      - koi
+      - alloy
+      - haystack
+      - away
+      text_kid: 字母 y 有三份工作：在一个音节的词尾读 /aɪ/（my、fly）；在长词的词尾轻轻读 /ɪ/（happy、baby）；在词中间也读 /ɪ/（gym、system）。还有一条选拼法的窍门：/eɪ/ 和 /ɔɪ/ 这两个音，站在词中间时写 ai、oi（rain、coin），站在词尾时写 ay、oy（day、boy）——y 喜欢站在队尾。ow 有两副面孔（snow 的 /əʊ/ 和 cow 的 /aʊ/)，只能边读边认，没有铁律。
+  examples:
+  - level: 1
+    group: y 词尾重读 /aɪ/
+    words:
+    - my
+    - by
+    - fly
+    - try
+    - apply
+    - reply
+    - deny
+    - July
+    supports: claim
+  - level: 2
+    group: y 词尾非重读 /i/
+    words:
+    - happy
+    - baby
+    - city
+    - family
+    supports: claim
+  - level: 3
+    group: y 词中 /ɪ/
+    words:
+    - gym
+    - myth
+    - system
+    - rhythm
+    - bicycle
+    supports: claim
+  - level: 4
+    group: ai/oi 居中
+    words:
+    - ail
+    - rain
+    - train
+    - oil
+    - coin
+    - boil
+    supports: claim
+  - level: 5
+    group: ay/oy 居尾
+    words:
+    - day
+    - play
+    - tray
+    - boy
+    - toy
+    - employ
+    - destroy
+    supports: claim
+  - level: 6
+    group: ow /əʊ/ 倾向
+    words:
+    - snow
+    - blow
+    - grow
+    - low
+    - show
+    - window
+    - own
+    - bowl
+    supports: claim
+  - level: 7
+    group: ow /aʊ/ 词
+    words:
+    - cow
+    - how
+    - now
+    - brow
+    - vow
+    - plow
+    - down
+    - town
+    - brown
+    - power
+    - flower
+    supports: claim
+  - level: 8
+    group: 例外小串
+    words:
+    - royal
+    - loyal
+    - oyster
+    - voyage
+    - says
+    - quay
+    - koi
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: SR-01
+    rel: 同族
+  - id: SR-04
+    rel: 同族
+  - id: S-35
+    rel: 同族
+  - id: S-41
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  - 读不快
+  adult:
+    sources:
+    - OG 系材料与 Reading Universe 元音组合技能说明（逐项互证）；UFLI Foundations 对齐材料。接触等级：多源转述互证级（位置规则与 y 三职）；ow 分布倾向为传统通称级（无计量来源）。
+    boundary: ①y 三职的重音条件不可省：只说「词尾读 /aɪ/」会被 happy 推翻，只说「多音节词尾读 /i/」会被 apply 推翻——两条都要带重音条件才成立。②位置规则的表述单位是音节：employ、destroy 的 oy 在词尾音节，alloy 同理；反之 haystack、away 的 ay 在复合/多音节词的音节尾。③oi/oy 与 ai/ay 的可靠度不对称：oi/oy 比 ai/ay 更「干净」。④ow 两读不存在可教的位置定律（见 claim）。
+    disputes:
+    - 位置规则本身无分歧；分歧在教法：传统 OG 把 ai/ay、oi/oy 拆开隔周教，近年课程（如 UFLI 对齐材料与部分 vowel team 教学研究）主张「一个音、两种拼法、按位置同堂教」——本清单只登记规则本体，教法先后归 TM 层。ow 的两读分布是否值得统计化，属未决问题（见待补）。
+    evidence_grade: 多源转述互证级（位置规则/y 三职）+ 传统通称级（ow 倾向）
+    pending:
+    - ow 两读的全词表计量研究未检索到——分布只能称倾向，任何百分比数字不许编（清单待核表登记）。
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: SR-06
+  zone: 拼读
+  group: SR
+  order: 6
+  headline: 词尾音节有「合同价」：-tion 与 -cian 恒读 /ʃən/，-sion 看前邻居分 /ʒən/ 与 /ʃən/，-ate 看词类分 /eɪt/ 与 /ət/
+  headline_kid: 长词的尾巴有一批「批发价」读音，认准尾巴就能读对一大串：-tion 和 -cian 都读「shun」(/ʃən/)；-sion 有两种价——前面是元音就读「zhun」(/ʒən/，vision)，前面是辅音就读「shun」(tension)；-ture 读「cher」(/tʃər/，picture)；-age 轻轻读 /ɪdʒ/(village)；-ous 轻轻读 /əs/(famous)；最妙的是 -ate：当动词读 /eɪt/(separate 是动词时），当名词、形容词就缩成 /ət/——同一个词，身份变了，尾巴的价就变了。
+  claim:
+    type: rule
+    statement: 词尾音节合同价：-tion 与 -cian 恒读 /ʃən/；-sion 前接元音读 /ʒən/、前接辅音读 /ʃən/（接 r 游移）；-ture（非重读）读 /tʃər/；-age（非重读本土老词）读 /ɪdʒ/；-ous 读 /əs/；多音节拉丁词的 -ate 动词形读 /eɪt/、名词/形容词形弱化为 /ət/。共同成因是非重读尾音节的弱化定型。
+    evidence:
+    - The Reading League《Teaching Reading in Brief》Vol. 3 No. 6「-tion, -sion, -cian」专文（本轮打开课程 PDF，含 “ti before a vowel often says /sh/… -tion /ʃən/; si can say /zh/ (vision) or /sh/ (tension); ci before a vowel says /sh/” 的原表）；-sion 的元音/辅音分工经发音教学来源（Learn English Sounds 词尾专题、Really Learn English 拼写规则课）互证；-ate 双读经语音学课程讲义（英语语音学 stress 讲义附 animate/estimate/graduate/separate 完整对照表）与 Cambridge 词典注音互证。接触等级：课程文件级＋多源转述互证级。
+    - 支撑：这组「合同价」是多音节词解码的最高杠杆之一：小学高年级起 -tion 家族是学术词汇的门牌（information、education），认尾即读对的覆盖面随年级陡增（与 V-30 拉丁词根条互为表里）。-ate 双读还有语法收益：读对尾巴即标出词类，是「重音/弱读承担语法信息」的儿童可感实例（与 GR 组 record/present 型重音对立同族，但那是重音移位，这是尾元音弱化，别混）。
+    scope: -ate 射程仅限多音节词的拉丁后缀 -ate（单音节 gate、plate、fate 是 VCe 格局，归 SR-01 第①职）；-age 合同价只管非重读的本土老词；-sion 前接 r 的词（version 等）英美读音未统一，儿童面按所在教材注音教，不裁决。
+    exceptions:
+    - -stion 小簇破价：question、suggestion、digestion、combustion 的 -tion 读 /tʃən/ 系（suggestion 英式还可读 /dʒ/)——ti 前有 s 时腭化路径不同，单列一小串；Christian 的 ti 读 /tʃ/ 同属 -sti- 小簇
+    - -age 的法语新借词不按合同价：garage（英式 /ˈɡærɑːʒ/)、mirage、camouflage 读 /ɑːʒ/；重读的 -age 读 /eɪdʒ/(engage、outrage)
+    - -ate 名词侧真例外小名单：mandate（名词亦读 /ˈmændeɪt/)、primate（名词 /ˈpraɪmeɪt/)、化学盐类名词（nitrate、sulfate 作名词常读 /eɪt/)
+  mechanism:
+    beats:
+    - beat: 合同价七项
+      text_adult: 这组读音的共同成因是非重读尾音节的弱化定型：拉丁来源的后缀进入英语后，在非重读位置上被压成固定的弱读形，拼写保留、读音打包出售。逐项定版：①-tion → /ʃən/(action、nation、motion、education)，近乎无例外；②-cian → /ʃən/(musician、magician、electrician、politician——专表「做…的人」)，无例外；③-sion 分工：前接元音 → /ʒən/(vision、decision、occasion、explosion、confusion)；前接辅音（多为 n、l）→ /ʃən/(tension、pension、extension、compulsion)；前接 r 时游移（version、conversion 英美与个人变体并存，词典双注）；④-ture → /tʃər/(picture、nature、future、culture、creature)，限非重读；⑤-age → /ɪdʒ/(village、cabbage、manage、message)，限非重读且已本土化的词；⑥-ous → /əs/(famous、nervous、dangerous、jealous)，恒非重读；⑦-ate 词类双读：多音节拉丁词中，动词形的 -ate 带次重音读 /eɪt/(animate、separate、graduate、estimate、moderate 作动词时），名词/形容词形不重读、弱化为 /ət/（或 /ɪt/)(animate、separate、graduate、estimate、moderate 作名/形时）——同一拼写、两种读音、词类是开关。拉丁层 -ti-/-ci-/-si- 定音（与 -tion 同源的词中版）：元音前的 ti、ci 多读 /ʃ/(nation、patient、special、crucial、ancient)，元音后的 si 读 /ʒ/(vision、usual 的 su 同理）——这是「词源层决定读音」的招牌例，与 V-19 三地层（拉丁层）互挂。
+      anchors:
+      - action
+      - nation
+      - motion
+      - education
+      - information
+      - musician
+      - magician
+      - electrician
+      - politician
+      - vision
+      - decision
+      - occasion
+      - explosion
+      - confusion
+      - tension
+      - pension
+      - extension
+      - compulsion
+      - version
+      - conversion
+      - picture
+      - nature
+      - future
+      - culture
+      - creature
+      - village
+      - cabbage
+      - manage
+      - message
+      - famous
+      - nervous
+      - dangerous
+      - jealous
+      - animate
+      - separate
+      - graduate
+      - estimate
+      - moderate
+      - patient
+      - special
+      - crucial
+      - ancient
+      - usual
+      - question
+      - suggestion
+      - digestion
+      - combustion
+      - Christian
+      - garage
+      - mirage
+      - camouflage
+      - engage
+      - outrage
+      - mandate
+      - primate
+      - nitrate
+      - sulfate
+      text_kid: 长词的尾巴有一批「批发价」读音，认准尾巴就能读对一大串：-tion 和 -cian 都读「shun」(/ʃən/)；-sion 有两种价——前面是元音就读「zhun」(/ʒən/，vision)，前面是辅音就读「shun」(tension)；-ture 读「cher」(/tʃər/，picture)；-age 轻轻读 /ɪdʒ/(village)；-ous 轻轻读 /əs/(famous)；最妙的是 -ate：当动词读 /eɪt/(separate 是动词时），当名词、形容词就缩成 /ət/——同一个词，身份变了，尾巴的价就变了。
+  examples:
+  - level: 1
+    group: -tion /ʃən/
+    words:
+    - action
+    - nation
+    - motion
+    - education
+    - information
+    supports: claim
+  - level: 2
+    group: -cian /ʃən/
+    words:
+    - musician
+    - magician
+    - electrician
+    - politician
+    supports: claim
+  - level: 3
+    group: -sion /ʒən/（元音后）
+    words:
+    - vision
+    - decision
+    - occasion
+    - explosion
+    - confusion
+    supports: claim
+  - level: 4
+    group: -sion /ʃən/（辅音后）
+    words:
+    - tension
+    - pension
+    - extension
+    - compulsion
+    supports: claim
+  - level: 5
+    group: -ture /tʃər/
+    words:
+    - picture
+    - nature
+    - future
+    - culture
+    - creature
+    supports: claim
+  - level: 6
+    group: -age /ɪdʒ/
+    words:
+    - village
+    - cabbage
+    - manage
+    - message
+    supports: claim
+  - level: 7
+    group: -ous /əs/
+    words:
+    - famous
+    - nervous
+    - dangerous
+    - jealous
+    supports: claim
+  - level: 8
+    group: -ate 双读
+    words:
+    - animate
+    - separate
+    - graduate
+    - estimate
+    - moderate
+    supports: claim
+  - level: 9
+    group: 词中 -ti-/-ci-/-si- 定音
+    words:
+    - patient
+    - special
+    - crucial
+    - ancient
+    - usual
+    supports: claim
+  - level: 10
+    group: 破价与例外组
+    words:
+    - question
+    - suggestion
+    - digestion
+    - combustion
+    - Christian
+    - garage
+    - mirage
+    - camouflage
+    - engage
+    - outrage
+    - mandate
+    - primate
+    - nitrate
+    - sulfate
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-08
+    rel: 同族
+  - id: SR-03
+    rel: 同族
+  - id: SR-01
+    rel: 对照
+  prereq: []
+  pain_points:
+  - 读不快
+  - 错不完
+  adult:
+    sources:
+    - The Reading League《Teaching Reading in Brief》Vol. 3 No. 6（本轮打开课程 PDF）；Learn English Sounds 词尾专题、Really Learn English 拼写规则课（互证）；英语语音学 stress 讲义（-ate 对照表）与 Cambridge 词典注音。接触等级：课程文件级＋多源转述互证级。
+    boundary: -stion 小簇、-age 法语借词与重读位、-ate 名词例外见 claim 例外；-sion 前接 r 的变体是真实方言变异，词典双注并存，本条不强行定版。
+    disputes:
+    - 无规则本体分歧。-ate 名词弱读作 /ət/ 还是 /ɪt/ 是注音传统差（英式多标 /ət/，部分美式标 /ɪt/)，属转写口径，不影响机制。
+    evidence_grade: 课程文件级 + 多源转述互证级
+    pending: []
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: SR-07
+  zone: 拼读
+  group: SR
+  order: 7
+  headline: 「i before e except after c」的真实成色：管 /iː/ 时大体可用;"except after c" 在词表计数上是反的——官方结论是「别教口诀，把那几个 cei 词当名单背」
+  headline_kid: 有首儿歌说「i 在 e 前面，除非前面是 c」。这首歌只说对了一半：碰到读 /iː/ 的词（believe、field、receive），先猜 ie 通常没错，c 后面那几个 ei 词（receive、ceiling）把它们当一份小名单背下来就行；但碰到不读 /iː/ 的词（their、height、eight、foreign），这首歌完全不管用——先听声音，再谈拼法。
+  claim:
+    type: tendency
+    statement: 裸口诀不值得教（英国教育部官方结论）；带 /iː/ 限定的版本基本正确：读 /iː/ 时默认 ie，c 后读 /iː/ 的 ei 只有一份封闭小名单（receive、conceive、deceive、perceive、ceiling 及 receipt、conceit、deceit）；「except after c」在词条计数上是反的（cie 约为 cei 的 3 倍）。
+    evidence:
+    - '英国教育部（DCSF）《Support for Spelling》(2009）附录原话——"The i before e except after c rule is not worth teaching… it is easier to learn the specific words: receive, conceive, deceive (+ receipt, conceit, deceit), perceive and ceiling"（本轮经 LINGUIST List 存档的原文引文 p.106 逐字核对，并经 Language Log (Pullum 2009）长文分析互证）；Fowler (1926）已给出「when the sound is ee」的限定，Pullum (2009）的裁定是带 /iː/ 限定的版本「基本正确」；Cunningham 对 35 万词的词表分析经 Reader''s Digest 报道与多方转引（cie:cei ≈ 3:1、ie 总占比 ≈75%，Cunningham 原始博客未直开）；COCA 前 5050 高频词加权分析为 Engaging Data 的可视化数据页（81% 按词条 / 约 60% 按词次，本轮打开原页核对）。接触等级：官方文件引文级（经学术转引逐字核实）＋数据分析二手报道级。'
+    - 支撑：历史纵深：该口诀至少见于 Laurie《Manual of English Spelling》(1866)；早在 1932 年，Leonard B. Wheat 的〈Four Spelling Rules〉就建议把口诀缩减为「I usually comes before e」或干脆弃用——「口诀好记≠口诀有用」的批评有九十年历史。QI 节目流传的「923 个 cie 词对约 40 个 cei 词」是电视口径的类型计数（含派生与复数），与 Cunningham 的 3:1 方向一致、倍率更夸张，媒体转述级登记，不作定版数字。
+    scope: 本条裁决的是裸口诀不值得教，不是「ie/ei 没有格局」——/iː/ 限定的版本 + cei 小名单 + ei 的 /eɪ/ 格局，三者合起来才是完整的教学内容，归 S-33 清单细化。either/neither 读音因人而异，按教材注音处理。口诀不管 ie/ei 分属两个音节的词（diet、quiet）——那是音节问题（SR-09）。
+    exceptions:
+    - (a) ei 读 /iː/ 却不在 c 后（真例外名单）：seize、protein、caffeine、codeine（词源与借词各有来历）
+    - (c) ei 不读 /iː/ 的大队（射程外、非例外）：their、eight、neighbour、vein、height、foreign、leisure、forfeit——服从的是别的格局（/eɪ/ 的 ei 拼法等），用口诀去套是射程误用
+    - weird 的元音是 /ɪə/（英）/ɪr/（美），不在 /iː/ 射程内——它只是裸口诀的反例、不是限定版的反例
+  mechanism:
+    beats:
+    - beat: 三层验货
+      text_adult: ①裸口诀层（不加任何声音条件）：命中率取决于计数口径——按词条（type）计，Warwick 大学统计学者 Nathan Cunningham 对 35 万词的词表分析显示，ie/ei 相邻的词中约 75% 是 ie 在前（第一句大体成立）；但第二句「c 后面 ei」在词条计数上是反的：cie 的词约为 cei 的 3 倍（science、sufficient、society、-cies 复数等把 cie 撑得很大）。按词次（token）计（COCA 前 5050 高频词的可视化分析），高频例外 their、being 太常用，加权后裸口诀的符合率降到约 60%。②加限定层：口诀的原始完整版带声音条件——Fowler (1926）已给出「when the sound is ee」的限定，Pullum (2009, Language Log）的裁定是：带 /iː/ 限定的版本「基本正确」——读 /iː/ 时默认 ie（believe、field、chief、piece)，c 后读 /iː/ 的 ei 只有一份封闭小名单：receive、conceive、deceive、perceive、ceiling 及同族的 receipt、conceit、deceit。③例外分层（加限定后仍破的）：(a) ei 读 /iː/ 却不在 c 后：seize、protein、caffeine、codeine；(b) cie 不读 /iː/ 的：science、ancient、sufficient 系的 ci 读 /ʃ/ 或分属两音节，本就不在 /iː/ 规则射程内（Oxford 词典官网同此说明）；(c) ei 不读 /iː/ 的大队（见 claim 例外）。
+      anchors:
+      - believe
+      - field
+      - chief
+      - piece
+      - receive
+      - conceive
+      - deceive
+      - perceive
+      - ceiling
+      - receipt
+      - conceit
+      - deceit
+      - seize
+      - protein
+      - caffeine
+      - codeine
+      - science
+      - ancient
+      - sufficient
+      - society
+      - their
+      - being
+      - eight
+      - neighbour
+      - vein
+      - height
+      - foreign
+      - leisure
+      - forfeit
+      - weird
+      - either
+      - neither
+      - diet
+      - quiet
+      text_kid: 有首儿歌说「i 在 e 前面，除非前面是 c」。这首歌只说对了一半：碰到读 /iː/ 的词（believe、field、receive），先猜 ie 通常没错，c 后面那几个 ei 词（receive、ceiling）把它们当一份小名单背下来就行；但碰到不读 /iː/ 的词（their、height、eight、foreign），这首歌完全不管用——先听声音，再谈拼法。
+  examples:
+  - level: 1
+    group: /iː/ 默认 ie
+    words:
+    - believe
+    - field
+    - chief
+    - piece
+    supports: claim
+  - level: 2
+    group: cei 封闭小名单
+    words:
+    - receive
+    - conceive
+    - deceive
+    - perceive
+    - ceiling
+    - receipt
+    - conceit
+    - deceit
+    supports: claim
+  - level: 3
+    group: 真例外 (a)
+    words:
+    - seize
+    - protein
+    - caffeine
+    - codeine
+    supports: claim
+  - level: 4
+    group: cie 不读 /iː/ (b)
+    words:
+    - science
+    - ancient
+    - sufficient
+    - society
+    supports: claim
+  - level: 5
+    group: ei 他读大队 (c)
+    words:
+    - their
+    - eight
+    - neighbour
+    - vein
+    - height
+    - foreign
+    - leisure
+    - forfeit
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-36
+    rel: 同族
+  - id: S-33
+    rel: 同族
+  - id: SR-09
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - 英国教育部（DCSF）《Support for Spelling》(2009）附录（经 LINGUIST List 存档引文 p.106 逐字核对）；Pullum (2009, Language Log）；Cunningham 35 万词分析（Reader's Digest 报道转引）；Engaging Data COCA 可视化页（本轮打开原页核对）。接触等级：官方文件引文级＋数据分析二手报道级（Cunningham 原始博客未直开）。
+    boundary: either/neither 的读音因人而异（/ˈiːðə/ 或 /ˈaɪðə/)，读 /iː/ 的人那里它们是真例外、读 /aɪ/ 的人那里不是——按教材注音处理。QI 的「923 对 40」是媒体转述级，不作定版数字。
+    disputes:
+    - 明摆着的两派。官方派（DCSF 2009 + Greg Brooks 等识字学者）：口诀不值得教，cei 名单直背即可。辩护派（Pullum 等语言学家）：口诀的完整版（带 /iː/ 限定）从来基本正确，错的是被教材砍掉限定词的缩略版与媒体的误读；DCSF 文件的结论在实践上无妨、但论证粗糙。两派的实操交集其实很大：都不主张教裸口诀，都主张 /iː/ 词按格局＋小名单处理。本条标题句取交集立场，分歧原样登记。
+    evidence_grade: 官方文件引文级 + 数据分析二手报道级
+    pending:
+    - Cunningham 35 万词分析的原始博客未直开（经 Reader's Digest 报道与多方转引）——原始出处直开列为下轮升级项；cie:cei≈3:1 与 ie 占比≈75% 按二手报道级著录。
+  corrections:
+  - 任务书所说「不足六成」不准确：只在词次（token）口径下约略成立（约六成、非显著低于六成），作为全称判断不成立——已按双口径（词条约 75% ie 在前 / 词次约 60%）入 claim 与机制。
+  - 把 weird 列进「限定版例外名单」（任务书原稿）是分层错误：weird 不在 /iː/ 射程内，是裸口诀的反例而非限定版的反例，已纠正分层。
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: SR-08
+  zone: 拼读
+  group: SR
+  order: 8
+  headline: 辟谣位：「两个元音手拉手，第一个开口」——实测只对 45%，而且错在「把一队人当一个人」
+  headline_kid: 有句顺口溜说：两个元音字母手拉手走路时，第一个开口说话、第二个不出声（meat、rain、boat 好像是这样）。可是有人把小学课本里的词一个个查过：这句话只对 45%——比瞎猜强不了多少。bread、head、said、great、friend 全是反例。真相是：每个元音组合（ai、ea、ee、oa、oo、ou……）都有自己的脾气，要一个一个认，不能靠一句顺口溜全搞定。
+  claim:
+    type: rule
+    statement: 实测裁决（Clymer 1963，2,600 词小学词表）：聚合口诀「两个元音相邻时第一个读长音、第二个不发音」的符合率只有 45%，其近亲「词尾 e 规则」只有 63%，均低于 Clymer 设定的 75%「值得教」门槛（45 条概括仅 18 条过线）；错误根源是聚合错误——把格局完全不同的组合打包成一条规则。对照：辅音类概括几乎全部 ≥95%。教学替代是逐个组合教、按组合标可靠度。
+    evidence:
+    - 'Theodore Clymer, “The Utility of Phonic Generalizations in the Primary Grades,” The Reading Teacher 16(4): 252–258 (1963)；1996 年重刊于 The Reading Teacher 50: 182–187。本轮未直开原文，45% 与 63% 两数字经三处学术来源互证一致（Johnston 2001 的再检验长文（The Reading Teacher 55(2): 132–143，本轮打开其大学存档 PDF 的文本）、Krashen (2002）综述、PIRLS phonics 评论章）。后续检验：Bailey (1967）把同一批概括扩检到 1–6 年级词表，结论方向一致。接触等级：学术二手系统论述级（数字三方互证）。'
+    - 支撑：Johnston (2001）的再检验给本条留了必要的另一面：把聚合拆开看，单个组合的可靠度天差地别——ay、ee 近乎无例外地服从「第一字母长音」式读法，aw、oy、oi 则稳定地读它们自己的双元音（只是不符合顺口溜的字面而已）。所以正确的教学替代不是「元音组合不可教」，而是「逐个组合教、按组合标可靠度」——这正是 S-33 拼法菜单的存在理由，本条为它提供证据基座。
+    scope: 45% 的口径：它是「全部相邻元音对」在 1960 年代小学词表（四套小学基础读本＋Gates 初级词表，2,600 词）上的整体符合率（含 oo、ou、oi 等根本不该由该顺口溜管辖的组合）；用它去否定某个具体组合（如 ee）的教学价值，是拿聚合数字打单点。本条只辟「两元音同行」这一句；不适用于评价 VCe（SR-01)、位置规则（SR-05）等有条件限定的格局。
+    exceptions:
+    - 口诀反例组（儿童版著录）：bread、head、said、great、friend——ea/said 等不在「第一元音长读」格局内
+  mechanism:
+    beats:
+    - beat: 聚合错误与实测
+      text_adult: 被辟的概括是 “When two vowels go walking, the first one does the talking”（正规表述：两个元音相邻时，第一个读长音、第二个不发音）。它的错误是聚合错误：把读音格局完全不同的组合（读长音的 ai/ea/oa、读双元音的 oi/ou、两读的 oo/ow/ea、读短音的 ea in bread 等）打包成一条规则，于是命中率被低格局成员拖垮。实测（Clymer 1963）：在由四套小学基础读本＋Gates 初级词表组成的 2,600 词分析表上，这条概括的符合率是 45%；同一研究中，它的近亲「词尾 e 规则」（cake 型表述）也只有 63%——两者都低于 Clymer 设定的「值得教」门槛（概括须在至少 75% 的适用场合成立才算有用）。Clymer 共检验 45 条教学概括，仅 18 条过线；值得注意的对照是：辅音类概括几乎全部 ≥95%（如 kn- 的 k 不发音 100%、ch 只发一音 100%）——英语拼读的可靠区在辅音、不在元音聚合规则（与 S-06 的统计观完全同构）。
+      anchors:
+      - meat
+      - rain
+      - boat
+      - bread
+      - head
+      - said
+      - great
+      - friend
+      text_kid: 有句顺口溜说：两个元音字母手拉手走路时，第一个开口说话、第二个不出声（meat、rain、boat 好像是这样）。可是有人把小学课本里的词一个个查过：这句话只对 45%——比瞎猜强不了多少。bread、head、said、great、friend 全是反例。真相是：每个元音组合（ai、ea、ee、oa、oo、ou……）都有自己的脾气，要一个一个认，不能靠一句顺口溜全搞定。
+  examples:
+  - level: 1
+    group: 顺口溜表象例
+    words:
+    - meat
+    - rain
+    - boat
+    supports: claim
+  - level: 2
+    group: 反例组
+    words:
+    - bread
+    - head
+    - said
+    - great
+    - friend
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-06
+    rel: 同族
+  - id: S-33
+    rel: 同族
+  - id: SR-01
+    rel: 同族
+  - id: SR-07
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 错不完
+  adult:
+    sources:
+    - Clymer (1963)（数字经 Johnston 2001、Krashen 2002、PIRLS phonics 评论章三处学术来源互证；Johnston 2001 大学存档 PDF 本轮打开）；Bailey (1967)。接触等级：学术二手系统论述级（数字三方互证，原文未直开）。
+    boundary: 词表年代与范围：2,600 词是初级读物词表，结论对小学低年级词汇最直接；词表换成成人词典，数字会变（方向不会逆转，聚合规则先天受制于成员异质性）。「final e 规则 63%」与另一表述方向（先长音则 e 静音）计得 60% 的版本差异属概括措辞差，登记不裁。
+    disputes:
+    - Clymer 的结论在阅读战争中被双方武器化：全语言派引它证明「拼读规则大多不可靠」；拼读派（Johnston、Adams 1990 的再分析）指出 Clymer 的样本是已教给低年级儿童的词、且把异质组合聚合计算，拆开看多数具体格局可靠、值得教。本清单立场（与 S-01/S-06 一致）：规则按「有条件＋标可靠度」的方式教，聚合型顺口溜下架——两派的交集（别教这句顺口溜）是确定的，分歧只在对拼读教学整体的推论上，登记原样。
+    evidence_grade: 学术二手系统论述级
+    pending:
+    - Clymer (1963) 原文未直开——45%/63% 经三处学术来源互证著录；原文直开列为下轮升级项。
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）
+- id: SR-09
+  zone: 拼读
+  group: SR
+  order: 9
+  headline: 六种音节是六种「盒子」，切长词先试老虎、再试骆驼：音节类型的内容物与 VCV 切分的压制序
+  headline_kid: 英语的音节一共装六种盒子：关门盒（closed，元音被辅音关在里面，读短音：cat、fish）、开门盒（open，元音在门口，读长音：me、go)、魔术 e 盒（cake)、组队盒（两个字母合读一个音：boat、boy)、r 老板盒（元音被 r 管住：car、bird）和 -le 盒（table、little）。遇到长词先找元音、再分盒子；两个元音只夹着一个辅音时（tiger、river 这种），先按「老虎切法」把辅音划给后一盒（ti-ger，元音读长），读出来不像词，再换「骆驼切法」划给前一盒（riv-er，元音读短）。
+  claim:
+    type: tendency
+    statement: 六种音节类型（Closed/Open/VCe/Vowel Team/R-controlled/Consonant-le）各有判定定义；VCV 切分的压制序是「先试老虎切法（V/CV，长元音）、不成立再试骆驼切法（VC/V，短元音）」的概率排序——教学传统通称 VCV 约 75% 归老虎切法，但该数字未定位到一手语料计量研究（待核），故本条立倾向档。
+    evidence:
+    - Orton-Gillingham 传统的音节教学核心（REVLOC/CLOVER 系谱系，框架层见 S-22）；本轮核实的课程文件：HMH《Into Reading》二年级 Module 9 教师材料（本轮打开课程 PDF:Tiger Rule「divide after the first vowel, first syllable is open, long vowel」与 Camel Rule「if Tiger does not work, divide after the consonant」的操作程序、例词 tiger/camel/lemon/finish/model 表述完整）；ALP Upstate 的音节类型与切分规则表（六型定义表＋「first divide after the vowel… if the word does not make sense, divide after the consonant」的压制序原文）互证。接触等级：课程文件级。
+    - 支撑：切分压制序与儿童的「set for variability」（读错后按词义自我纠正）研究相衔接：老虎→骆驼的回退本质是教儿童把第一次解码当假设、用已知词校验——这也是为什么 VCV 是六型教学里唯一明确教「试错顺序」的格局。六型对中国孩子的直接收益点在 closed/open 对立：汉语无「元音被辅音关住就变短」的对应格局，ship/sheep 式长短误读（S-14 难点地图）的词内版本就是 open/closed 不分。
+    scope: 与 S-22 的分工：S-22 立框架并登记「音节类型标签是否必要」的分歧，本条只给内容物与操作、不重开分歧——但操作层吸收分歧的合理内核：切分服务于读出词义，读出后不强求儿童复述类型名。教学切分≠词典音节，两套并行、各管一段。-le 盒只收词尾的辅音+le。
+    exceptions:
+    - VCV 例外形态：第一元音是 a 且读 /ə/ 弱化的一批词、equal 型（e-qual 开切但元音读 /iː/ 长音却非名字音 e）等零星形态，按词直记；seven 的 sev-en 是骆驼词但 e 不弱化
+  mechanism:
+    beats:
+    - beat: 六型的内容物
+      text_adult: Closed——音节以辅音结尾、元音为单个字母且读短音（cat、fish、rab-bit 的 rab);Open——音节以元音结尾、读长音（me、go、ti-ger 的 ti、ro-bot 的 ro);VCe（魔术 e 型）——元音＋辅音＋不发音 e，元音读长音（cake、com-pete);Vowel Team——两个及以上字母合表一个元音音（boat、rain、boy、town；含双元音在内，这是 OG 传统把 vowel digraph 与 diphthong 合并的教学口径）；R-controlled——元音后紧跟 r，元音被 r 改色（car、her、bird、fork、nurse);Consonant-le——词尾辅音＋le 自成一音节、e 只为凑元音（table、little、apple、uncle)，且该音节恒在词尾、重音永不在它身上。
+      anchors:
+      - cat
+      - fish
+      - rabbit
+      - me
+      - go
+      - tiger
+      - robot
+      - cake
+      - compete
+      - boat
+      - rain
+      - boy
+      - town
+      - car
+      - her
+      - bird
+      - fork
+      - nurse
+      - table
+      - little
+      - apple
+      - uncle
+      - pickle
+      text_kid: 英语的音节一共装六种盒子：关门盒（closed，元音被辅音关在里面，读短音：cat、fish）、开门盒（open，元音在门口，读长音：me、go)、魔术 e 盒（cake)、组队盒（两个字母合读一个音：boat、boy)、r 老板盒（元音被 r 管住：car、bird）和 -le 盒（table、little）。遇到长词先找元音、再分盒子；两个元音只夹着一个辅音时（tiger、river 这种），先按「老虎切法」把辅音划给后一盒（ti-ger，元音读长），读出来不像词，再换「骆驼切法」划给前一盒（riv-er，元音读短）。
+    - beat: 切分操作（压制序）
+      text_adult: 见到长词先标元音、看辅音个数定策略——两元音间夹两个辅音 → 从中间切（VC/CV「兔子切法」:rab-bit、nap-kin,digraph 与 blend 不拆）；夹一个辅音（VCV）→ 先试 V/CV（老虎切法，开音节、长元音），不成立再试 VC/V（骆驼切法，闭音节、短元音）——robot 先 ro-bot 一次成功，river 先 ri-ver 读着不像词、改 riv-er 成功，camel、lemon、finish 同理（骆驼词）；夹零个（两元音相邻又不成组合）→ 两元音间切（V/V:li-on、di-et)。「先开后闭」是概率排序：教学传统通称 VCV 词约 75% 归老虎切法（见待补），所以先试命中率高的切法、失败再换，是一次「带回退的猜测」，不是判定程序。
+      anchors:
+      - napkin
+      - river
+      - camel
+      - lemon
+      - finish
+      - model
+      - lion
+      - diet
+      - seven
+      - equal
+      - about
+  examples:
+  - level: 1
+    group: Closed 例
+    words:
+    - cat
+    - fish
+    - rabbit
+    supports: claim
+  - level: 2
+    group: Open 例
+    words:
+    - me
+    - go
+    - tiger
+    - robot
+    supports: claim
+  - level: 3
+    group: VCe 例
+    words:
+    - cake
+    - compete
+    supports: claim
+  - level: 4
+    group: Vowel Team 例
+    words:
+    - boat
+    - rain
+    - boy
+    - town
+    supports: claim
+  - level: 5
+    group: R-controlled 例
+    words:
+    - car
+    - her
+    - bird
+    - fork
+    - nurse
+    supports: claim
+  - level: 6
+    group: Consonant-le 例
+    words:
+    - table
+    - little
+    - apple
+    - uncle
+    - pickle
+    supports: claim
+  - level: 7
+    group: VC/CV 兔子切法
+    words:
+    - napkin
+    supports: claim
+  - level: 8
+    group: VCV 骆驼词
+    words:
+    - river
+    - camel
+    - lemon
+    - finish
+    - model
+    supports: claim
+  - level: 9
+    group: V/V 切分
+    words:
+    - lion
+    - diet
+    supports: claim
+  error_cases: []
+  probes: []
+  quiz: []
+  relatives:
+  - id: S-22
+    rel: 同族
+  - id: S-23
+    rel: 同族
+  - id: SR-07
+    rel: 同族
+  prereq: []
+  pain_points:
+  - 读不快
+  - 错不完
+  adult:
+    sources:
+    - HMH《Into Reading》二年级 Module 9 教师材料（本轮打开课程 PDF）；ALP Upstate 音节类型与切分规则表（互证）；OG 传统（REVLOC/CLOVER 系谱系）。接触等级：课程文件级。
+    boundary: 75% 数字的成色：VCV 归 V/CV 的「约 75%」是 OG 教学共同体的通称数字（多家课程材料一致使用），本轮未定位到一手语料计量研究，已登记待核；儿童面可讲「多半先试老虎」，不许把 75% 讲成实测结论。例外形态见 claim 例外；-ble/-kle 等变体拼法（pickle 型 ck+le）同属 -le 盒，拼法细节归 S-33。
+    disputes:
+    - 框架层分歧见 S-22（不在此重述）。操作层另有一个小分歧登记：部分课程（如某些州课程文件）把 VCV 的默认切法按词频词表排序（先开后闭），另一部分语音学取向的材料主张直接按发音切（听到短元音即闭切）——前者是给未识词的解码策略、后者是给已识词的标注方法，对象不同，不构成真冲突，本条按解码策略立条。
+    evidence_grade: 课程文件级
+    pending:
+    - VCV 约 75% 归老虎切法：OG 教学共同体通称数字，本轮未定位到一手语料计量研究——登记待核，不作实测结论引用。
+  corrections: []
+  gaps:
+  - quiz
+  - scene_spec
+  - mechanism.visual
+  - examples.sentence
+  - error_cases
+  - probes
+  - prereq
+  status: 入模中
+  version: '1.0'
+  changelog:
+  - date: '2026-11-01'
+    change: 由专家清单 v6 入模（波次 W1·拼读区）

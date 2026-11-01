@@ -1,0 +1,672 @@
+# 探针库（模型层）· 由探针库 v1（~/workspace/content-depth/misunderstanding_probes_v1.md）逐条转入
+# schema 依据：laws-prototype/docs/DESIGN.md §3.6（探针独立成条，规律条目以 for_law / id 互引）
+# 字段映射：v1「依据」→ source_of_prediction；v1「预判误读」拆为 predicted_misreading + cognitive_source；
+#   misreading_type 取 v1 附一矩阵的主类型标签；rubric 为三态对象（hit=中招 / partial=中间态 / pass=过关）。
+# error_form_display：探针题/选项中故意呈现的错形，登记为展示资产——不入词库、不算例词、V3 例词覆盖校验豁免。
+# word_ids 绑定状态：待 W0 词库补全收口后按 V3 口径统一回填（见 probes_MODEL.md），本文件暂不逐条列。
+meta:
+  count: 40
+  source: misunderstanding_probes_v1 (8 组 × 5)
+  modeled_at: '2026-11-01'
+  status: 已入模
+  version: '1'
+
+probes:
+- id: PRB-S36-1
+  for_law: S-36
+  source_ref: 一、S-36 P1
+  title: ea 永远读 /iː/
+  predicted_misreading: 孩子把菜单主场当唯一读法——「ea 就是读 /iː/，在哪个词里都一样」，于是 read 的过去式读 /riːd/、bread 读 /briːd/。
+  cognitive_source: 主场误植（菜单只记了主场，没记 ea 有另一面）
+  misreading_type: 主场·原型误植
+  task: 读句子选音：Yesterday I read a book about bread. 给 read、bread 各备 /riːd、briːd/ 与 /red、bred/ 两读，让孩子点选或读出。
+  rubric:
+    hit: 两词都选 /iː/ 读
+    partial: 对一个错一个（知道 ea 有变脸但没掌握哪词是哪面，按中间态回补后复测）
+    pass: read 选 /red/、bread 选 /bred/
+  remedy: 回闭环第 2 步机制屏，重看 S-36 菜单的边界注「ea 的另一面」与 S-42 变脸榜 ea 组（eat/head/great/heart 四读对照），再做第 4 步分级例中 ea 词的分组例。
+  source_of_prediction: S-36 边界①（ea 另有 /e/ 与 /eɪ/ 两面，本条只是主场）
+  status: 已入模
+  version: '1'
+- id: PRB-S36-2
+  for_law: S-36
+  source_ref: 一、S-36 P2
+  title: ie 永远读 /iː/
+  predicted_misreading: 孩子把 ie 一律读 /iː/，pie、tie 读成「皮、踢」。
+  cognitive_source: 过度泛化（ie 在 field/piece 里读 /iː/，被推成全称）
+  misreading_type: 过度泛化
+  task: 四词分音盒：field、piece、pie、tie——拖进 /iː/ 盒或 /aɪ/ 盒。
+  rubric:
+    hit: pie/tie 进 /iː/ 盒
+    partial: field/piece 对而 pie/tie 错（主场会、变脸面不会）
+    pass: 四词全对
+  remedy: 回第 2 步机制屏 ie 一角，重看 S-36 边界②与 S-37 中 ie 的 /aɪ/ 面（pie/tie 例），再回第 5 步做一组 ie 对比题复测。
+  source_of_prediction: S-36 边界②（ie 另有 /aɪ/ 面与 /e/ 面，本身即两读组合）
+  status: 已入模
+  version: '1'
+- id: PRB-S36-3
+  for_law: S-36
+  source_ref: 一、S-36 P3
+  title: i before e 是铁律，seize 一定是拼错了
+  predicted_misreading: 孩子把口诀当定律——「i 一定在 e 前面，c 后面才反过来；seize 写成 ei 又不在 c 后面，所以是错词」。
+  cognitive_source: 口诀字面化（口诀的适用范围与例外未学）
+  misreading_type: 字面化
+  task: 判断题：「小明说 seize 是拼错的词，因为它违反了 i before e except after c。他说得对吗？」备选：对 / 不对，seize 是正词。
+  rubric:
+    hit: 答「对，seize 拼错了」
+    partial: 答「不对」但说不出理由
+    pass: 答「不对」且能说出 ceiling/receive 是 c 后读 /iː/、seize 是名单例外
+  remedy: 回第 2 步机制屏 ei 一角，重看 S-36 机制中 ei 的分布（c 后 /iː/ 为常态、seize 一类非 c 后亦读），口诀的真实成色留待 SR-07，不在本单元展开。
+  source_of_prediction: S-36 机制与支撑（ei 在 c 后读 /iː/、seize 为非 c 后亦读 /iː/ 的例外）
+  status: 已入模
+  version: '1'
+- id: PRB-S36-4
+  for_law: S-36
+  source_ref: 一、S-36 P4
+  title: ship 和 sheep 是一个音
+  predicted_misreading: 孩子听不出也读不出 /ɪ/ 与 /iː/ 的别——「ship、sheep 听起来一样，读长读短无所谓」。
+  cognitive_source: 母语迁移（汉语 /i/ 一类独大，紧松对立与时长线索双缺）
+  misreading_type: 母语迁移
+  task: 听辨指图：播放 /ʃiːp/ 与 /ʃɪp/，孩子指 sheep 图或 ship 图；再反向读一遍两词录音回放自听。
+  rubric:
+    hit: 两题都指错或全靠猜（对错参半且自述「听不出区别」）
+    partial: 听得出但读不出（感知已过、产出未过，只回补产出）
+    pass: 听辨全对且自己读时时长有别
+  remedy: 回第 4 步分级例的最小对组（ship/sheep、live/leave），按 S-43 处方用时长手势（拉长—缩短）加舌位双线索重练，先听辨后产出。
+  source_of_prediction: S-43 难点③（/ɪ iː/ 合流为中国孩子错误最集中之组，处方为时长+舌位双线索、听辨先行）
+  status: 已入模
+  version: '1'
+- id: PRB-S36-5
+  for_law: S-36
+  source_ref: 一、S-36 P5
+  title: ey 和 they 里的读法一样，都读 /eɪ/
+  predicted_misreading: 孩子把 ey 一律读 /eɪ/，key 读成「尅诶」、money 词尾读 /eɪ/。
+  cognitive_source: 过度泛化（ey 的 /eɪ/ 面来自 they/obey，被推满全场）
+  misreading_type: 过度泛化
+  task: 读词选音：key、money、they 三词，各备 /i/（词尾）与 /eɪ/ 两读点选。
+  rubric:
+    hit: key、money 选 /eɪ/
+    partial: key 对、money 错（单音节会、多音节词尾未会）
+    pass: 三词全对
+  remedy: 回第 2 步机制屏 ey 一角，重看 S-36 边界③（词尾 ey 读 /i/、与 happy 词尾 y 同值；/eɪ/ 面在 S-35）。
+  source_of_prediction: S-36 机制与边界③（ey 词尾读 /i/；ey 本身是两读组合）
+  status: 已入模
+  version: '1'
+- id: PRB-SR01-1
+  for_law: SR-01
+  source_ref: 二、SR-01 P1
+  title: 词尾的 e 不出声，就是没用的
+  predicted_misreading: 孩子认为不发音的字母可有可无——tap 和 tape、pin 和 pine「读起来差不多」，写的时候随手丢掉词尾 e。
+  cognitive_source: 功能盲（只按「发不发音」给字母估值）
+  misreading_type: 过度泛化
+  task: 听辨指图＋读对：cap/cape、pin/pine 两对，听音指图后自己读出两对。
+  rubric:
+    hit: 两对读成同音、或指图靠猜
+    partial: 读得出别但说不出为什么（感知过、机制未立）
+    pass: 读音有别且能说出「e 让前面的元音读长」
+  remedy: 回第 2 步机制屏五职分工图，只重看第①职 VCe 长音化（tap→tape 例链），再做第 4 步分级例的 VCe 对比例。
+  source_of_prediction: SR-01 机制第①职
+  status: 已入模
+  version: '1'
+- id: PRB-SR01-2
+  for_law: SR-01
+  source_ref: 二、SR-01 P2
+  title: e 的活儿就是把元音变长——have 要读 /heɪv/
+  predicted_misreading: 孩子把五职学成一职——凡词尾 e 就让元音读长，于是 have 读 /heɪv/、give 读 /ɡaɪv/、some 读 /səʊm/。
+  cognitive_source: 过度泛化（第①职吞并其余四职）；且第①职本身就是五职里命中率最不可靠的一职
+  misreading_type: 过度泛化
+  task: 读词：have、give、love、some 四词朗读（或四选一读音点选）。
+  rubric:
+    hit: 任一词读成长元音版（读错几个记几处）
+    partial: 读对但解释成「就是这么读的」
+    pass: 四词全对且能说出「这里的 e 是扶住 v、不让它收尾」
+  remedy: 回第 2 步机制屏，重看第③职「词尾护栏」（have/give/love 例组），并对照第①职的适用面——e 在这里不干长音化的活。
+  source_of_prediction: SR-01 机制第③职、支撑（第①职概括命中率有限、须配合变脸名单使用）
+  status: 已入模
+  version: '1'
+- id: PRB-SR01-3
+  for_law: SR-01
+  source_ref: 二、SR-01 P3
+  title: 写 hav、blu 也没错，反正读得出
+  predicted_misreading: 孩子拼写时省略护栏 e 或 ue——have 写 hav、give 写 giv、blue 写 blu。
+  cognitive_source: 规则未立（不知道英语本土词不用 v、u 收尾，拼写按读音直写）
+  misreading_type: 字面化
+  task: 听写三词：have、give、blue，看词尾写法。
+  rubric:
+    hit: 出现 hav/giv/blu 任一
+    partial: have 对、blue 写错（或反之）（v 护栏立住、u 护栏未立，或相反）
+    pass: 三词词尾全对
+  remedy: 回第 2 步机制屏第③职，配合 S-43 拼写面处方把 -e 当「规则」而非「例外」重讲，再回第 5 步做词尾听写复测。
+  source_of_prediction: SR-01 机制第③职（I、U、V、J 不收尾的护栏表述）；S-43 难点⑨（词尾 -e 多职属「读对也写错」区）
+  error_form_display:
+  - hav
+  - giv
+  - blu
+  status: 已入模
+  version: '1'
+- id: PRB-SR01-4
+  for_law: SR-01
+  source_ref: 二、SR-01 P4
+  title: bathe 就是 bath 拼错了／两个词读一个音
+  predicted_misreading: 孩子认为 bath 与 bathe 无别，或把动词 bathe 也读成清 /θ/。
+  cognitive_source: 标记盲（没意识到 e 在这里是清浊标记而非长音化）
+  misreading_type: 过度泛化
+  task: 选词填空＋读音：I take a ___ every morning. / I ___ in the sea. 两空在 bath、bathe 间选，并读出所选词。
+  rubric:
+    hit: 两空选反或读音清浊不分
+    partial: 选对但读音不分
+    pass: 选词、读音全对
+  remedy: 回第 2 步机制屏第④职（bath/bathe、breath/breathe 词对），注意边界提醒：此职适用面很小，只管这一族，不许反推其他 th 词。
+  source_of_prediction: SR-01 机制第④职与边界③
+  status: 已入模
+  version: '1'
+- id: PRB-SR01-5
+  for_law: SR-01
+  source_ref: 二、SR-01 P5
+  title: little 写成 littl 也行，e 又不读
+  predicted_misreading: 孩子把 -le 的 e 当多余——little 写 littl、table 写 tabl，或认为 apple 的 e 删掉不影响。
+  cognitive_source: 功能盲（不知道每个音节须有一个书写元音，-le 音节靠 e 成立）
+  misreading_type: 字面化
+  task: 听写：little、table、apple 三词看 -le 写法。
+  rubric:
+    hit: 任一漏 e
+    partial: 写对但说不出理由
+    pass: 三词全对且能数出每词两个音节各有一个元音字母
+  remedy: 回第 2 步机制屏第⑤职（-le 凑音节：little/table/apple/bubble 例组），用「数音节、找元音」的检查法重过一遍。
+  source_of_prediction: SR-01 机制第⑤职
+  error_form_display:
+  - littl
+  - tabl
+  status: 已入模
+  version: '1'
+- id: PRB-S42-1
+  for_law: S-42
+  source_ref: 三、S-42 P1
+  title: ough 学会一个读法就够了
+  predicted_misreading: 孩子用最先学到的那个读法（如 through 的 /uː/）通吃所有 ough 词——though、tough、cough 全读一个音。
+  cognitive_source: 单读定势（把「一组合一音」当默认契约）
+  misreading_type: 主场·原型误植
+  task: 读三句：Though it was rough, he went through the snow. / He has a cough. 点读或朗读 though、rough、through、cough 四词。
+  rubric:
+    hit: 四词读成同一（或两两相同）音
+    partial: 错 1 个
+    pass: 四读各对（/əʊ/、/ʌf/、/uː/、/ɒf/）
+  remedy: 回第 2 步机制屏变脸榜第 1 名全谱卡，按词族分组重过（-ough /ʌf/ 组、-ough /əʊ/ 组、through 单列），禁止逐词死背。
+  source_of_prediction: S-42 机制第 1 名（ough 常用 8 读，对策是按词族分组记）
+  status: 已入模
+  version: '1'
+- id: PRB-S42-2
+  for_law: S-42
+  source_ref: 三、S-42 P2
+  title: -ought 也是乱的，只能一个一个背
+  predicted_misreading: 孩子被变脸榜吓住，反向误读——「ough 全是乱的、毫无规律」，对没学过的 fought、sought 也不敢读、逐词乱猜。
+  cognitive_source: 分组对策未立（只记住「变脸」没记住「组内整齐」）
+  misreading_type: 过度泛化
+  task: 给两个没在课上出现过的词 bought 的同族 fought、sought（放进短句），让孩子试读。
+  rubric:
+    hit: 读成其他 ough 读法或拒绝试读
+    partial: 读对但说不出「跟 bought 是一家」
+    pass: 读对 /ɔːt/
+  remedy: 回第 2 步机制屏，重看 S-42 机制中「-ought 一组内部极整齐，变脸发生在组与组之间」一句与词族对策，再回第 5 步做同族迁移题。
+  source_of_prediction: S-42 机制第 1 名内部秩序与专家分歧②（取词族分组为主张）
+  status: 已入模
+  version: '1'
+- id: PRB-S42-3
+  for_law: S-42
+  source_ref: 三、S-42 P3
+  title: oo 就读 /uː/
+  predicted_misreading: 孩子把 oo 一律读长 /uː/——book 读 /buːk/、blood 读 /bluːd/、foot 读 /fuːt/。
+  cognitive_source: 主场误植（moon/food 是主场，但 oo 是三读组合且同环境对峙、无规则可分）
+  misreading_type: 主场·原型误植
+  task: 读词选音：book、good、blood、moon 四词，各备 /uː/ 与 /ʊ/ 或 /ʌ/ 两读。
+  rubric:
+    hit: book/good/blood 任一选 /uː/
+    partial: book/good 对、blood 错（/ʊ/ 组立住、/ʌ/ 孤组未记）
+    pass: 四词全对
+  remedy: 回第 2 步机制屏变脸榜第 6 名 oo 组，重看「book 与 spook 同为 -ook 却分读」——本组无规则，整组记，再做第 4 步 oo 分组例。
+  source_of_prediction: S-42 机制第 6 名（oo 三读、同环境对峙、整组记）
+  status: 已入模
+  version: '1'
+- id: PRB-S42-4
+  for_law: S-42
+  source_ref: 三、S-42 P4
+  title: ou 就是 /aʊ/，在哪个词都一样
+  predicted_misreading: 孩子用 out/house 的 /aʊ/ 通吃 ou——soup 读 /saʊp/、could 读 /kaʊd/、touch 读 /taʊtʃ/。
+  cognitive_source: 过度泛化（ou 的最高频面被当成唯一面；ou 实为重读 6 读 + 弱读 1 读）
+  misreading_type: 过度泛化
+  task: 读词选音：out、soup、could、touch、four、shoulder 六词点选读音。
+  rubric:
+    hit: soup/could/touch 任一选 /aʊ/
+    partial: 错 1–2 个（按错词所属读组回补）
+    pass: 六词全对
+  remedy: 回第 2 步机制屏变脸榜第 3 名 ou 全谱，按读组（/uː/ 组 soup/you/group、/ʊ/ 组 could/would/should、/ʌ/ 组 touch/young）分组重记。
+  source_of_prediction: S-42 机制第 3 名（ou 重读 6 读、全谱 7 读）
+  status: 已入模
+  version: '1'
+- id: PRB-S42-5
+  for_law: S-42
+  source_ref: 三、S-42 P5
+  title: 读法最多的 a 最危险，oo 读法少所以最安全
+  predicted_misreading: 孩子（或陪学者）按读法数量排危险度——以为 a 有 8 读最该怕、oo 只有 3 读可以不管。
+  cognitive_source: 排序口径误植（不知道本榜按「读法数 × 不可预测度」加权：a 每读都有位置/重音线索，ea、oo 才是线索最少的）
+  misreading_type: 主场·原型误植
+  task: 判断题：「变脸榜上 oo 排第 6、读法最少，所以 oo 的词看一眼就能读对，不用分组记。对吗？」并接一词实测 spook 与 book 的读法选择。
+  rubric:
+    hit: 答「对」或 spook/book 选错一词
+    partial: 判断对但实测错
+    pass: 答「不对」且能说出「oo 同样子两种读、没线索」
+  remedy: 回第 2 步机制屏变脸榜表头，重看排序口径句与 ea 居第 2 的理由（head 与 heat 只差一字母、线索最少），再回 oo 组卡。
+  source_of_prediction: S-42 机制首段（加权排序口径）与第 4、6 名
+  status: 已入模
+  version: '1'
+- id: PRB-V40-1
+  for_law: V-40
+  source_ref: 四、V-40 P1
+  title: 开灯就是 open the light
+  predicted_misreading: 孩子把汉语的「开」整体搬给 open——「开什么都是 open」。
+  cognitive_source: 母语迁移（汉语总管动词的打包图原样套用）
+  misreading_type: 母语迁移
+  task: 二选一：「开灯」用英语说——A. open the light / B. turn on the light；再接「开电视」一题。
+  rubric:
+    hit: 任一选 A
+    partial: 灯对电视错（或反之）
+    pass: 两题全选 B
+  remedy: 回第 2 步机制屏「开的对照台」，重看开门 open / 开灯开电视 turn on 的分工，回第 4 步分级例重做家电组。
+  source_of_prediction: V-40 机制（汉英对照表与 *open the light 事故例）
+  status: 已入模
+  version: '1'
+- id: PRB-V40-2
+  for_law: V-40
+  source_ref: 四、V-40 P2
+  title: 吃药就是 eat medicine
+  predicted_misreading: 孩子把「吃」直译为 eat，产出 eat medicine。
+  cognitive_source: 母语迁移（逐词对译；不知道服药在英语里归 take 管）
+  misreading_type: 母语迁移
+  task: 改错题：The doctor says, "Eat this medicine every day." 这句话哪里不对，怎么改？
+  rubric:
+    hit: 看不出错或改成别的动词
+    partial: 能改对但说不出「吃药在英语里是 take 的活」
+    pass: 指出 eat → take medicine
+  remedy: 回第 2 步机制屏 take 五管图，重看 take medicine 一格，再回第 5 步做 take 组检索题。
+  source_of_prediction: V-40 机制（eat medicine 为条目登记的直译事故例，正形 take medicine）
+  status: 已入模
+  version: '1'
+- id: PRB-V40-3
+  for_law: V-40
+  source_ref: 四、V-40 P3
+  title: take the bus = 把公交车拿走
+  predicted_misreading: 孩子按 take 的第一义「拿」解全句——听见 take the bus 以为「拿/搬公交车」，take a photo 以为「拿一张（现成的）照片」。
+  cognitive_source: 原型误植（take 的高频义项当成唯一义，汉语分管的五件事没拆开）
+  misreading_type: 主场·原型误植
+  task: 句意判断：Tom takes the bus to school. 问「Tom 怎么去学校？」备选：坐公交去 / 把公交车拿去学校；再接 She took a photo of the cat. 问「她做了什么？」备选：拍了一张 / 拿走一张照片。
+  rubric:
+    hit: 任一选「拿」义
+    partial: 对一错一
+    pass: 两题全对
+  remedy: 回第 2 步机制屏 take 对照台（拿/带走/坐/吃/拍五格），强调先看事情再选义，再回第 4 步分级例重做 take 组。
+  source_of_prediction: V-40 机制（take 反向一词五管的对照表）
+  status: 已入模
+  version: '1'
+- id: PRB-V40-4
+  for_law: V-40
+  source_ref: 四、V-40 P4
+  title: 开会、开车也得避开 open——那用什么？干脆不开口
+  predicted_misreading: 孩子学完错位后过度矫正——知道「开 ≠ open」，却给不出开会、开车的说法，或反向把开门也改掉（说出 turn on the door 一类）。
+  cognitive_source: 过度泛化（把「逐词对译必失真」听成「处处错位」，丢了对齐的对子与正形储备）
+  misreading_type: 过度泛化
+  task: 三格产出：开门、开车、开会各说一句英语（或三选一填空：open / drive / have）。
+  rubric:
+    hit: 开门不用 open、或开车开会空白/用 open
+    partial: 开门对、开车开会错（错位点未补、非矫枉）
+    pass: 三格全对（open the door / drive / have a meeting）
+  remedy: 回第 2 步机制屏对照台全表，重看边界提醒——汉英也有大面积对齐的对子（关门 close、开窗 open the window），错位是默认值之差、不是处处错位；再回第 4 步做混合组例。
+  source_of_prediction: V-40 边界（对齐对子存在、不许讲成处处错位）与机制对照表（开车 drive、开会 have/hold）
+  status: 已入模
+  version: '1'
+- id: PRB-V40-5
+  for_law: V-40
+  source_ref: 四、V-40 P5
+  title: 没教过的「开」：开电脑也掏出 open
+  predicted_misreading: 孩子在学过的词上改了，但遇到没教过的同类事件仍回旧打包——「开电脑、开收音机」继续用 open。
+  cognitive_source: 母语迁移未被新机制替换（记住的是词表、不是「先看事情在干什么」的选词顺序）
+  misreading_type: 母语迁移
+  task: 产出新例：不给提示，让孩子说「请开一下电脑。」（目标 turn on the computer）；再接「关电脑」一题（turn off / shut down 均可，对照 open 的反面不是默认 close）。
+  rubric:
+    hit: 说 open the computer（迁移在新例上复活）
+    partial: 犹豫后在提示下改对
+    pass: 说 turn on the computer 且能说出「电脑和灯、电视是一类事」
+  remedy: 回第 2 步机制屏对照台，按「这件事在干什么」重新给开门/开灯/开电视/开电脑归类（门是开合、电器是通电启动），再回第 5 步用未学过的电器词做迁移复测。
+  source_of_prediction: V-40 机制（儿童版的选词口径：先看清这件事在干什么，再挑按钮）与标题句（逐词对译必失真）
+  status: 已入模
+  version: '1'
+- id: PRB-CO17-1
+  for_law: CO-17
+  source_ref: 五、CO-17 P1
+  title: get 就是「得到」，句句都能这么解
+  predicted_misreading: 孩子抓住 get 的第一义通解全场——get angry 解成「得到生气」，get home 解成「得到家」。
+  cognitive_source: 原型误植（词典第一义当唯一义，没按构造分工）
+  misreading_type: 主场·原型误植
+  task: 句意二选一：It's getting dark.（天正在变黑 / 他得到了黑暗）；We got home at six.（我们六点到家 / 我们得到了家）。
+  rubric:
+    hit: 任一选「得到」义
+    partial: 对一错一
+    pass: 两题全对
+  remedy: 回第 2 步机制屏 get 五构造卡，重看构造②（get + 形容词 = 变得）与构造③（get + to + 地点 = 到达），按「先看 get 后面跟什么」重练。
+  source_of_prediction: CO-17 机制（get 五构造②③，Collins 词典原文级核对）
+  status: 已入模
+  version: '1'
+- id: PRB-CO17-2
+  for_law: CO-17
+  source_ref: 五、CO-17 P2
+  title: He got hit by a car. = 他去打了一辆车
+  predicted_misreading: 孩子把 get + 过去分词读成主动——got hit 是「他主动去撞/打」，got married 是「他去结（别人）婚」，落在自己身上的「被」味完全丢失。
+  cognitive_source: 构造盲（没见过 get 被动这一格，按主动语态默认解读）
+  misreading_type: 过度泛化
+  task: 句意判断：He got hit by a car yesterday. 问「谁受伤了？」备选：他 / 车；再接 They got married last year. 问「结婚的是谁？」
+  rubric:
+    hit: 第一题答「车」或把 hit 解成他主动打
+    partial: married 对、hit 错（熟词组会、生格不会）
+    pass: 两题全对且能指出「事情落在他身上」
+  remedy: 回第 2 步机制屏五构造卡第④格（get + 过去分词 = 被动味，get married / get hit by a car 例），再回第 4 步分级例重做第④格例组。
+  source_of_prediction: CO-17 机制构造④（get 被动，Collins get 条核对）
+  status: 已入模
+  version: '1'
+- id: PRB-CO17-3
+  for_law: CO-17
+  source_ref: 五、CO-17 P3
+  title: I got him to help me. = 我得到了他来帮我（他是被拿到的东西）
+  predicted_misreading: 孩子把构造⑤读成构造①——him 当成「得到的物品」，说动、使役的关系没读出来。
+  cognitive_source: 构造混淆（get + 名词 与 get + 人 + to do 外形相近）
+  misreading_type: 主场·原型误植
+  task: 句意判断：I got him to help me. 问「谁帮谁、谁出的主意？」备选：我想办法说动他，他帮我 / 我得到他这个人。
+  rubric:
+    hit: 选「得到他这个人」
+    partial: 知道不是「得到」但说不清关系
+    pass: 答出「说动」关系
+  remedy: 回第 2 步机制屏五构造卡第⑤格，与第①格并排对照（get a letter vs get him to go），再回第 5 步做构造辨认题。
+  source_of_prediction: CO-17 机制构造⑤（get + 人 + to do = 说动/使）
+  status: 已入模
+  version: '1'
+- id: PRB-CO17-4
+  for_law: CO-17
+  source_ref: 五、CO-17 P4
+  title: 空心动词都一样，make a shower、have a decision 也行
+  predicted_misreading: 孩子把「空心」听成「随便哪个都行」——make a shower、have a decision、do a photo 随手配。
+  cognitive_source: 边界丢失（「空心」是近似说法，动词与名词之间仍有搭配分工残迹）
+  misreading_type: 过度泛化
+  task: 搭配二选一：take / make a shower；make / have a decision；take / give a photo（拍照片义）。
+  rubric:
+    hit: 错 2 个以上
+    partial: 错 1 个
+    pass: 全对
+  remedy: 回第 2 步机制屏空心动词杯组图，重看搭配分工（shower 配 take/have、decision 配 make、photo 配 take），按「整块存取」重记错的那块，再回第 5 步复测。
+  source_of_prediction: CO-17 边界（空心动词间仍有搭配分工残迹，不可讲成完全可互换）
+  status: 已入模
+  version: '1'
+- id: PRB-CO17-5
+  for_law: CO-17
+  source_ref: 五、CO-17 P5
+  title: get 只有五种用法，I get it 一定是用错了
+  predicted_misreading: 孩子把五构造当全集——见到 I get it.（我懂了）、I get to meet lots of people.（有机会见很多人）判为「超纲错误」。
+  cognitive_source: 口诀字面化（把教学用的核心清单当成语言的全集）
+  misreading_type: 字面化
+  task: 判断题：「下面两句的 get 都不在五构造里，所以都是错句。对吗？」I get it! / I get to meet lots of people.
+  rubric:
+    hit: 答「对，都是错句」
+    partial: 答「不对」但归不进任何说法
+    pass: 答「不对，五构造是核心、不是全部，这两句是边缘构造」
+  remedy: 回第 2 步机制屏五构造卡的边界注（get to do = 有机会做、get = 懂等边缘构造另有其位），记住口径「先立五构造，其余遇见再添」。
+  source_of_prediction: CO-17 边界（五构造是核心构造不是全集）
+  status: 已入模
+  version: '1'
+- id: PRB-V33-1
+  for_law: V-33
+  source_ref: 六、V-33 P1
+  title: 看见 un- 就拆：uncle = un + cle，意思里有个「不」
+  predicted_misreading: 孩子把拆件法推满——uncle、unit、uniform 里都「找出」否定 un-。
+  cognitive_source: 过度泛化（拆分规则未配辨假环节；White 等人第一课专设的 tricksters 陷阱）
+  misreading_type: 过度泛化
+  task: 四词辨假：uncle、unhappy、unit、unlock——哪几个的 un- 是「不/相反」的真前缀？（点选）
+  rubric:
+    hit: 把 uncle 或 unit 选进真前缀
+    partial: 多选一个且自述不确定
+    pass: 只选 unhappy、unlock
+  remedy: 回第 2 步机制屏前缀名单卡下的辨假注（uncle 不是 un- 前缀），按「先认件、再验真假件」的顺序重过，再回第 5 步做辨假组题。
+  source_of_prediction: V-33 专家分歧（透明度派提醒：高频前缀易假拆，uncle、reason 即假朋友，White et al. 第一课设 tricksters 辨假）
+  status: 已入模
+  version: '1'
+- id: PRB-V33-2
+  for_law: V-33
+  source_ref: 六、V-33 P2
+  title: in- 永远是「不」：inside 也是「不-side」
+  predicted_misreading: 孩子把 in- 一律解成否定——inside、input、income 全读出「不」味，或反过来把 incorrect 的 in- 当成「向内」。
+  cognitive_source: 同形未分（不知道清单里有两个 in-：否定 in- 与向内 in-/im-）
+  misreading_type: 主场·原型误植
+  task: 配对判断：incorrect 的 in- 与 inside 的 in-「意思一样吗？」再给 input 选 in- 的意思（不 / 向内）。
+  rubric:
+    hit: 答「一样」或 input 选「不」
+    partial: 答「不一样」但 input 选错
+    pass: 答「不一样」且两题全对
+  remedy: 回第 2 步机制屏 20 名单卡，重看两个 in- 分列的那一行（in- 否定 / in-/im- 向内），再回第 4 步做 in- 分工例。
+  source_of_prediction: V-33 机制（定版名单将两个 in- 分列）与边界③（in- 身兼二职，须连义项分工一起教）
+  status: 已入模
+  version: '1'
+- id: PRB-V33-3
+  for_law: V-33
+  source_ref: 六、V-33 P3
+  title: 学了 20 个前缀，带前缀的词我就能猜出 97% 的意思
+  predicted_misreading: 孩子（或陪学者）把覆盖率读成理解率——「97% 的带前缀词都能猜对意思」。
+  cognitive_source: 口径误植（97% 是带前缀词在学校阅读语料中的出现份额，不是「能猜对的词的比例」，更不是词种类的比例）
+  misreading_type: 字面化
+  task: 判断题：「学会这 20 个前缀后，书里 97% 的带前缀词的意思我都能猜出来。对吗？」接实测一词：subway 的 sub- 认识，问全词意思能否只靠前缀定（须靠词根 way 与整词）。
+  rubric:
+    hit: 答「对」
+    partial: 答「不对」但说不出理由
+    pass: 答「不对」且能说出「97% 是『碰到的份额』，意思还要看词根和整词」
+  remedy: 回第 2 步机制屏覆盖图，重看口径注（频次份额 ≠ 词种比例 ≠ 理解率），再回第 4 步做「前缀给方向、词根定意思」的猜词例。
+  source_of_prediction: V-33 边界①（百分比为语料出现份额口径，二手转述常含混）
+  status: 已入模
+  version: '1'
+- id: PRB-V33-4
+  for_law: V-33
+  source_ref: 六、V-33 P4
+  title: untie 的 un- 是「不」：他从来没系过鞋带
+  predicted_misreading: 孩子把 un- 的反动作义漏掉——Tom untied his shoes. 解成「Tom 没系鞋带（否定状态）」，而不是「他把系好的鞋带解开」。
+  cognitive_source: 义项漏项（un- 兼表「做反动作」未学，只记了否定义）
+  misreading_type: 主场·原型误植
+  task: 句意判断：Tom untied his shoes and went to bed. 问「睡前 Tom 对鞋带做了什么？」备选：把鞋带解开 / 他根本没系鞋带。
+  rubric:
+    hit: 选「没系过」
+    partial: 选对但说不出 un- 在这里是「反着做」
+    pass: 选「解开」
+  remedy: 回第 2 步机制屏 un- 卡，重看其三副面孔（不 / 相反 / 做反动作 untie、unlock 例），再回第 5 步做 un- 分义题。
+  source_of_prediction: V-33 边界③（un- 兼表做反动作，清单教学必须连义项分工一起教）
+  status: 已入模
+  version: '1'
+- id: PRB-V33-5
+  for_law: V-33
+  source_ref: 六、V-33 P5
+  title: re- 永远是「再一次」：return 是「再转一次」
+  predicted_misreading: 孩子把 re- 锁死在「再」义——return 解成「再转一圈」，读不懂「归还/回来」；或把 read 误拆成 re- + ad。
+  cognitive_source: 义项漏项（re- 两义：再 / 回，只学了一义）兼假拆
+  misreading_type: 主场·原型误植
+  task: 二选一：He returned the book to the library. 里 re- 是「再」还是「回」？附 Please reread this page. 里 re- 又是哪个？
+  rubric:
+    hit: return 选「再」
+    partial: return 对、reread 混（或反之）
+    pass: 两题全对
+  remedy: 回第 2 步机制屏 re- 卡，重看两义分工（再：reread、rewrite；回：return、bring back 向），再回第 4 步分级例重做 re- 组。
+  source_of_prediction: V-33 边界③（re- 两义「再/回」，六课序列按义项拆教）
+  status: 已入模
+  version: '1'
+- id: PRB-GR33-1
+  for_law: GR-33
+  source_ref: 七、GR-33 P1
+  title: 尾巴永远拖 isn't it
+  predicted_misreading: 孩子把汉语的万能尾巴「对吧」整体搬过来——不管主句是什么，尾巴一律 isn't it：You went there, isn't it?
+  cognitive_source: 母语迁移（汉语/法语/德语式不变形尾巴 vs 英语每句现配）
+  misreading_type: 母语迁移
+  task: 填空：You went to the zoo yesterday, ___? 备选：isn't it / didn't you / weren't you。
+  rubric:
+    hit: 选 isn't it
+    partial: 选 weren't you（知道要回指、但助动词抄错——went 的替补是 did 不是 be）
+    pass: 选 didn't you
+  remedy: 回第 2 步机制屏三步法第 1 步（回指助动词：主句没有助动词时召唤 do/does/did 替补），再回第 4 步做「找小帮手」例组。
+  source_of_prediction: GR-33 机制①与支撑（万能 isn't it 为教学界共识级登记的典型错误）；技巧 TEC-G29 治病项
+  status: 已入模
+  version: '1'
+- id: PRB-GR33-2
+  for_law: GR-33
+  source_ref: 七、GR-33 P2
+  title: 前面肯定，尾巴也肯定
+  predicted_misreading: 孩子不翻极性——She is happy, is she? 当成普通尾巴产出（汉语「对吧」不分正反，迁移过来）。
+  cognitive_source: 母语迁移（极性翻转这一步在母语里不存在）
+  misreading_type: 母语迁移
+  task: 选尾巴：She is happy, ___?（is she / isn't she）；He doesn't like it, ___?（does he / doesn't he）两格连做。
+  rubric:
+    hit: 任一格选同极性
+    partial: 第一格对、第二格错（肯定→否定会，否定→肯定未稳）
+    pass: 两格全对
+  remedy: 回第 2 步机制屏三步法第 2 步（极性翻转：前面「是」尾巴「不是吗」，前面「不是」尾巴「是吧」），用正反两向例各过一轮再复测。
+  source_of_prediction: GR-33 机制②（极性翻转，含半否定词算否定主句）
+  status: 已入模
+  version: '1'
+- id: PRB-GR33-3
+  for_law: GR-33
+  source_ref: 七、GR-33 P3
+  title: likes 的尾巴拖 isn't he 就行
+  predicted_misreading: 孩子见主句没有现成的助动词，就近抓一个 be 动词凑尾巴——He likes football, isn't he?
+  cognitive_source: 替补机制未立（不知道没有助动词时要按时态人称召唤 do/does/did）
+  misreading_type: 过度泛化
+  task: 选尾巴：He likes football, ___?（isn't he / doesn't he / didn't he）。
+  rubric:
+    hit: 选 isn't he
+    partial: 选 didn't he（知道召唤替补、但时态人称配错）
+    pass: 选 doesn't he
+  remedy: 回第 2 步机制屏第 1 步的替补注（与「do 是替补队员」同机制），先判断主句时态人称再召唤，再回第 5 步做替补组题。
+  source_of_prediction: GR-33 机制①（主句无助动词时召唤 do/does/did）
+  status: 已入模
+  version: '1'
+- id: PRB-GR33-4
+  for_law: GR-33
+  source_ref: 七、GR-33 P4
+  title: Let's go, will we? / I am late, amn't I?
+  predicted_misreading: 孩子按三步法硬推特例组——Let's 的尾巴推成 will we，I am 的尾巴造出 *amn't I。
+  cognitive_source: 规则过度泛化（特例组是约定形，不服从机械推导）
+  misreading_type: 过度泛化
+  task: 两格选尾巴：Let's go home, ___?（shall we / will we）；I am late, ___?（aren't I / amn't I）。
+  rubric:
+    hit: 任一选机械推导形
+    partial: 对一错一
+    pass: 两格全对
+  remedy: 回第 2 步机制屏特例组清单卡（I am → aren't I；Let's → shall we；祈使句 → will you；不定代词主语 → they；nothing/something → it），把这组当「约定存货」整组记，不推导。
+  source_of_prediction: GR-33 机制特例组
+  error_form_display:
+  - amn't
+  status: 已入模
+  version: '1'
+- id: PRB-GR33-5
+  for_law: GR-33
+  source_ref: 七、GR-33 P5
+  title: I think he is right, aren't I?——尾巴跟 I think 走
+  predicted_misreading: 孩子把尾巴挂在主句表面主语上——think 的句子一律跟 I 走，答 aren't I 或 isn't it。
+  cognitive_source: 辖域误判（没意识到 I think/believe + 从句时，尾巴跟从句的命题走）
+  misreading_type: 过度泛化
+  task: 选尾巴：I think he is right, ___?（aren't I / isn't he / isn't it）。
+  rubric:
+    hit: 选 aren't I 或 isn't it
+    partial: 犹豫后改对（规则知道、应用不稳）
+    pass: 选 isn't he
+  remedy: 回第 2 步机制屏边界注（尾巴跟从句走；否定转移 I don't think he'll come, will he? 同理），再回第 4 步做 think/believe 组例。
+  source_of_prediction: GR-33 边界①②；技巧 TEC-G29 误用警告（I think/believe 从句尾巴跟从句走）
+  status: 已入模
+  version: '1'
+- id: PRB-C01-1
+  for_law: C-01
+  source_ref: 八、Boundedness P1
+  title: 米一颗颗分得清，所以 rice 能数：many rices
+  predicted_misreading: 孩子用「看得见边、数得清颗」判可数——rice 颗粒分明，于是 many rices；furniture 件件有形，于是 furnitures。
+  cognitive_source: 物理直觉误植（项目旧「物理边界感」说的同型错误：把识解的有界误读为物理形状）
+  misreading_type: 物理直觉误植
+  task: 看图判断：一碗米饭特写（每粒可辨）配句 There are many rices in the bowl. 对不对？再接 furniture 一句二选一（much furniture / many furnitures）。
+  rubric:
+    hit: 认 rices 或选 furnitures
+    partial: 改对但理由仍是「米太小了数不清」式物理理由（答案对、机制仍是物理说，须回补）
+    pass: 两题全对且能说出「英语把米看成一摊、不看成一颗颗」
+  remedy: 回本组第 2 步机制屏（C-01 总纲卡），重看「形式跟着看法走、不跟着物理形状走」与 rice/furniture 反例对，再做第 4 步双读例（a glass / glass）。
+  source_of_prediction: C-01 支撑与边界（物理属性说对 rice、furniture 当场失效；「有界」指呈现方式）；技巧 TEC-P10 误用警告（旧物理边界感说不许复活）
+  error_form_display:
+  - rices
+  - furnitures
+  status: 已入模
+  version: '1'
+- id: PRB-C04-1
+  for_law: C-04
+  source_ref: 八、Boundedness P2
+  title: two beers 是错句：beer 永远不可数
+  predicted_misreading: 孩子把可数性当成词的终身标签——词典里 beer 标不可数，于是餐馆里 Two beers, please. 被判错。
+  cognitive_source: 标签固化（不知道看法可以当场切换、按份看即可数）
+  misreading_type: 字面化
+  task: 情境判断：餐馆里客人说 Two coffees, please. 服务员听懂了。这句话对吗？备选：错，coffee 不可数 / 对，这里是「两杯」的省略说法。
+  rubric:
+    hit: 选「错」
+    partial: 选「对」但解释成「coffee 变成了可数词」（现象对、机制错）
+    pass: 选「对」且能点出省略的单位（杯）
+  remedy: 回第 2 步机制屏 C-04 切换卡（分份 portioning：-s 落在被省略的单位上），再回第 4 步做餐馆点单组例。
+  source_of_prediction: C-04 机制与支撑（two beers/coffees 的单位省略读法）；技巧 TEC-P11 误用警告（two coffees 是单位被省略，不是料变成了可数）
+  status: 已入模
+  version: '1'
+- id: PRB-C17-1
+  for_law: C-17
+  source_ref: 八、Boundedness P3
+  title: much 和 many 跟着词走：鸡肉也是 many chickens
+  predicted_misreading: 孩子把量词焊死在词上——chicken 认成可数，于是盘子里的鸡肉也说 many chickens；反过来 much chickens 式的三出口打架也出自同一误读（冠词、复数、量词分开背、互不照应）。
+  cognitive_source: 识解未先行（先选词形、后补看法，与英语的顺序相反）
+  misreading_type: 过度泛化
+  task: 看图选词：图一三只活鸡（many / much ___）、图二一盘鸡肉（many / much ___），两格连选。
+  rubric:
+    hit: 两格选同一个量词
+    partial: 对一错一
+    pass: 两格随图翻转（many chickens / much chicken）
+  remedy: 回第 2 步机制屏「三出口同源」图（先定看法，冠词、复数、量词一起定），用 much chicken / many chickens 双读对重过，再回第 5 步做看图选量词题。
+  source_of_prediction: C-17（量词选择随识解翻转，much chicken 对 many chickens 为最干净证据）；技巧 TEC-P10 治病项（much chickens 式三出口打架）
+  status: 已入模
+  version: '1'
+- id: PRB-C02-1
+  for_law: C-02
+  source_ref: 八、Boundedness P4
+  title: 面包切成三块，就是 three breads
+  predicted_misreading: 孩子把「切一切」演示当成判据本身——切开就数块数，给 bread 加 -s 数份。
+  cognitive_source: 口诀字面化（助记演示被升格为定律；不知道切多少份 bread 还是 bread）
+  misreading_type: 字面化
+  task: 看图说话：一条面包被切成三块，指着图说英语——备选：three breads / three pieces of bread（或 some bread）。
+  rubric:
+    hit: 说 three breads
+    partial: 选对借词但说不出为什么
+    pass: 说 three pieces of bread 且能说出「切开的还是面包、要数先借 pieces」
+  remedy: 回第 2 步机制屏 C-02 同质卡（一滴水也是水、一小块面包也是面包），再接 C-05 借单位卡（量词排队），用汉语量词作桥重过一遍。
+  source_of_prediction: C-02 机制与分歧（「切一切」已降格为 mnemonic，不得称定律）；技巧 TEC-P11 误用警告（同口径）
+  error_form_display:
+  - breads
+  status: 已入模
+  version: '1'
+- id: PRB-C18-1
+  for_law: C-18
+  source_ref: 八、Boundedness P5
+  title: 表示「很多」就加 -s：informations、advices、homeworks
+  predicted_misreading: 孩子把 -s 当「很多」的通用标记，盖到一切名词上——informations、advices、homeworks 连片出现。
+  cognitive_source: 形态误植（-s 的语义不是「多」，是「同一个单位被复制了多份」；料没有单位可复制）
+  misreading_type: 过度泛化
+  task: 改错：She gave me many advices yesterday. 指出错处并改对（many 改 much、advices 改 advice，或借 a piece of）。
+  rubric:
+    hit: 完全看不出错
+    partial: 只删 -s 但保留 many（many advices 半对）
+    pass: 改成 much advice 或 a piece of advice 且能说出「advice 是一摊、不能盖复制章」
+  remedy: 回第 2 步机制屏 C-18「复制章」卡（-s 只盖在能一份一份的东西上；要数先借瓶、碗、单位），再回第 4 步做 -s 落点例组。
+  source_of_prediction: C-18 机制（replicability：-s 只落在有界单位上）；C-03 边界（*an information 不成立，归属由习惯用法裁定）
+  error_form_display:
+  - informations
+  - advices
+  - homeworks
+  status: 已入模
+  version: '1'

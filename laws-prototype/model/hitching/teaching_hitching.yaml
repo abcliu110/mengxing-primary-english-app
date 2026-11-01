@@ -1,0 +1,49 @@
+# 挂接表 · 教师层（F1 波次）
+# 口径：只收 TM/WA 条目中作为语言材料出示的词（例句、任务材料、清单词形、病例句关键词），
+# 不收论述中顺带提及的词。格式：word → {law_refs:[...]}，供词库 law_refs 回填与覆盖校验使用。
+# 注意：strom 为筛查伪词（TM-34），属展示用伪词，永不入词库；其余未命中词库的词见 teaching_MODEL.md 待补清单。
+meta:
+  file: teaching_hitching.yaml
+  wave: F1
+  date: 2026-11-01
+  scope: "TM-01..TM-35, WA-01..WA-09"
+words:
+  after: {law_refs: [TM-31]}
+  all: {law_refs: [TM-33]}
+  are: {law_refs: [TM-33]}
+  at: {law_refs: [TM-33]}
+  be: {law_refs: [TM-33]}
+  before: {law_refs: [TM-31]}
+  champ: {law_refs: [TM-33]}
+  cow: {law_refs: [TM-15]}
+  domicile: {law_refs: [TM-02]}
+  dwelling: {law_refs: [TM-02]}
+  ensue: {law_refs: [WA-03]}
+  for: {law_refs: [TM-16]}
+  go: {law_refs: [TM-33]}
+  happen: {law_refs: [WA-03]}
+  he: {law_refs: [TM-33]}
+  her: {law_refs: [TM-33]}
+  horse: {law_refs: [TM-15]}
+  house: {law_refs: [TM-02]}
+  hump: {law_refs: [TM-33]}
+  I: {law_refs: [TM-33]}
+  irritated: {law_refs: [WA-04]}
+  mat: {law_refs: [TM-35]}
+  me: {law_refs: [TM-33]}
+  my: {law_refs: [TM-33]}
+  no: {law_refs: [TM-33]}
+  pat: {law_refs: [TM-33]}
+  residence: {law_refs: [TM-02]}
+  sat: {law_refs: [TM-33]}
+  she: {law_refs: [TM-33]}
+  since: {law_refs: [TM-16, TM-31]}
+  storm: {law_refs: [TM-34]}
+  strom: {law_refs: [TM-34]}
+  tent: {law_refs: [TM-33]}
+  the: {law_refs: [TM-33]}
+  they: {law_refs: [TM-33]}
+  to: {law_refs: [TM-33]}
+  was: {law_refs: [TM-33]}
+  we: {law_refs: [TM-33]}
+  you: {law_refs: [TM-33]}

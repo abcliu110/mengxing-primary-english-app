@@ -1,0 +1,2632 @@
+# 挂接表 · 词汇解码区（W2 回填）
+# 结构：word → {bank_id, morphemes|null, law_refs, note?}
+# morphemes 结构见 vocab_MODEL.md §词素拆分规范。bank_id 为 null 者 = 不在词库，走补词流程（WORDBANK 规则 2），本表先行登记。
+# law_refs 只列该词作为例词/家族成员/登记例服务的条目（主要挂接，非全文提及）。
+meta:
+  wave: W2
+  zone: 词汇解码
+  generated: 2026-11-01
+words:
+  accept:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 ac-，c 前）
+      root: cept
+      root_gloss: 取（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 cc 是同化留痕
+    law_refs: [V-34]
+  access:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（ac-）
+      root: cess
+      root_gloss: 行进（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  accessible:
+    bank_id: null
+    morphemes:
+      root: access
+      root_gloss: 进入
+      root_bound: false
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+      note: -able/-ible 判据的例外带：剩整词却用 -ible
+    law_refs: [V-37]
+  act:
+    bank_id: G4_0320
+    morphemes: null
+    law_refs: [V-36]
+  action:
+    bank_id: G5_0325
+    morphemes:
+      root: act
+      root_gloss: 做
+      root_bound: false
+      suffix: -ion
+      suffix_gloss: 名词尾（-tion 存量，非活后缀）
+      transparency: 半透明
+    law_refs: [V-36]
+  active:
+    bank_id: G5_0323
+    morphemes:
+      root: act
+      root_gloss: 做
+      root_bound: false
+      suffix: -ive
+      suffix_gloss: 形容词尾（半产出）
+      transparency: 半透明
+    law_refs: [V-36]
+  add:
+    bank_id: ADD_0002
+    morphemes: null
+    law_refs: [V-27]
+    note: add oil 构成词
+  admissible:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（ac- 系）
+      root: miss
+      root_gloss: 送（黏着根）
+      root_bound: true
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+      note: -mit 词族多作 -missible
+    law_refs: [V-37]
+  affect:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 af-，f 前）
+      root: fect
+      root_gloss: 做（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 ff 是同化留痕
+    law_refs: [V-34]
+  affix:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（af-）
+      root: fix
+      root_gloss: 固定
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  aggravate:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 ag-，g 前）
+      root: grav
+      root_gloss: 重（黏着根）
+      root_bound: true
+      suffix: -ate
+      suffix_gloss: 动词尾
+      transparency: 不透明
+    law_refs: [V-34]
+  allot:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（al-）
+      root: lot
+      root_gloss: 份额
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  allow:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 al-，l 前）
+      root: low
+      root_gloss: （词源有争，此处不立根义）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 ll 是同化留痕；根义著录有争，只登记变体事实
+    law_refs: [V-34]
+  angry:
+    bank_id: G6_280
+    morphemes: null
+    law_refs: [V-40]
+    note: get 五构造②（get angry）构成词（CO-17）
+  annex:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 an-，n 前）
+      root: nex
+      root_gloss: 连接（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  announce:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（an-）
+      root: nounce
+      root_gloss: 报告（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  appear:
+    bank_id: G6_0472
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 ap-，p 前）
+      root: pear
+      root_gloss: 显现（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 pp 是同化留痕
+    law_refs: [V-34]
+  approach:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（ap-）
+      root: proach
+      root_gloss: 接近（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  argument:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+    note: 固化例外（argue 去 e + -ment）
+  arrange:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（ar-）
+      root: range
+      root_gloss: 排列
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  arrive:
+    bank_id: V6_交通_56
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 ar-，r 前）
+      root: rive
+      root_gloss: 岸（拉丁 rīpa）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  ascend:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19]
+  ask:
+    bank_id: V6_学校_69
+    morphemes: null
+    law_refs: [V-19, V-23]
+  aspect:
+    bank_id: null
+    morphemes:
+      prefix: a(d)-
+      prefix_gloss: 向（同化变体 as-，见 V-34）
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      transparency: 半透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根"
+    law_refs: [V-26, V-34]
+  assign:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 as-，s 前）
+      root: sign
+      root_gloss: 标记
+      root_bound: false
+      transparency: 半透明
+      note: 双写 ss 是同化留痕
+    law_refs: [V-34]
+  assist:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（as-）
+      root: sist
+      root_gloss: 站立（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  attend:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（变体 at-，t 前）
+      root: tend
+      root_gloss: 伸展（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 tt 是同化留痕
+    law_refs: [V-34]
+  attract:
+    bank_id: null
+    morphemes:
+      prefix: ad-
+      prefix_gloss: 向（at-）
+      root: tract
+      root_gloss: 拉（黏着根）
+      root_bound: true
+      transparency: 半透明
+    law_refs: [V-34]
+  audible:
+    bank_id: null
+    morphemes:
+      root: aud
+      root_gloss: 听（黏着根）
+      root_bound: true
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+    law_refs: [V-36, V-37]
+  awful:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+    note: 固化例外（awe 去 e + -ful）
+  bank:
+    bank_id: G5_0987
+    morphemes: null
+    law_refs: [V-41]
+    note: 同形异义教科书案：河岸（日耳曼/古诺尔斯）与银行（意大利语 banca）两源汇流
+  beautiful:
+    bank_id: G4_0451
+    morphemes:
+      root: beauty
+      root_gloss: 美
+      root_bound: false
+      suffix: -ful
+      suffix_gloss: 充满……的
+      transparency: 半透明
+      note: y→i
+    law_refs: [V-37]
+  beef:
+    bank_id: G4_0941
+    morphemes: null
+    law_refs: [V-19]
+  biology:
+    bank_id: null
+    morphemes:
+      prefix: bio-
+      prefix_gloss: 生命（组合形）
+      root: logy
+      root_gloss: 学问（组合形 -ology）
+      root_bound: true
+      transparency: 半透明
+      note: 新古典拼装件
+    law_refs: [V-21, V-32]
+  bishop:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-26]
+    note: 经希腊 episkopos『在上面看的人（监督者）』辗转——同根词可走得很远
+  blackbird:
+    bank_id: G5_0745
+    morphemes:
+      root: black
+      root_gloss: 黑的
+      root_bound: false
+      suffix: bird
+      suffix_gloss: 鸟（复合第二成分）
+      transparency: 半透明
+      note: 复合词：整体指一种鸟，与短语 black bird 分工（重音判据 S-20）
+    law_refs: [V-20]
+  bridegroom:
+    bank_id: null
+    morphemes:
+      root: bride
+      root_gloss: 新娘
+      root_bound: false
+      transparency: 半透明
+      note: 后半截原为 guma『男人』，guma 消亡后被 groom 替换——民间词源改形
+    law_refs: [V-24]
+  brunch:
+    bank_id: null
+    morphemes:
+      root: breakfast+lunch
+      root_gloss: 早餐+午餐（混合截取）
+      root_bound: false
+      transparency: 半透明
+      note: 混合（blending）
+    law_refs: [V-20]
+  bus:
+    bank_id: G2_105
+    morphemes: null
+    law_refs: [V-40]
+  busily:
+    bank_id: null
+    morphemes:
+      root: busy
+      root_gloss: 忙的
+      root_bound: false
+      suffix: -ly
+      suffix_gloss: 副词尾
+      transparency: 半透明
+      note: y→i
+    law_refs: [V-37]
+  butter:
+    bank_id: V6_食物_17
+    morphemes: null
+    law_refs: [V-38]
+    note: 一号诊室：源希腊语 boútyron 经拉丁语借入，-er 是词干一部分——禁止拆分登记
+  butterfly:
+    bank_id: G3_0759
+    morphemes:
+      root: butter
+      root_gloss: 黄油
+      root_bound: false
+      suffix: fly
+      suffix_gloss: 飞虫（复合第二成分）
+      transparency: 半透明
+      note: 二号诊室：分割成立（古英语 buttorflēoge），命名动机无定论（三说并立）——可拆不可解
+    law_refs: [V-15, V-38]
+  buy:
+    bank_id: G3_0650
+    morphemes: null
+    law_refs: [V-13, V-14]
+  calf:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19]
+    note: calf/veal 对（veal 不在词库）
+  captain:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-23]
+    note: captain/chieftain 同型方言分化对
+  catch:
+    bank_id: V6_日常_45
+    morphemes: null
+    law_refs: [V-23]
+    note: 诺曼法语线（对 chase 的中央法语线）
+  cause:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-43]
+    note: 负面语义韵（Stubbs 1995）：宾语压倒性地为负面结果
+  chair:
+    bank_id: G1_0929
+    morphemes: null
+    law_refs: [V-20]
+    note: 转类例：名词作动词用
+  changeable:
+    bank_id: null
+    morphemes:
+      root: change
+      root_gloss: 改变
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 半透明
+      note: 软 g 后接 -able 保 e 守软音（去 e 会诱读硬音）
+    law_refs: [V-37]
+  charge:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-13]
+    note: 买卖框架第四机位（清单列 charge，本轮未入例）
+  chase:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-23]
+  chicken:
+    bank_id: G1_049
+    morphemes: null
+    law_refs: [V-44]
+  chieftain:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-23]
+  clickable:
+    bank_id: null
+    morphemes:
+      root: click
+      root_gloss: 点击
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的（全产出）
+      transparency: 全透明
+      note: 新词例——-able 还在造词
+    law_refs: [V-36]
+  close:
+    bank_id: G3_0384
+    morphemes: null
+    law_refs: [V-40]
+    note: V-40 对齐例：关门 = close/shut the door
+  coexist:
+    bank_id: null
+    morphemes:
+      prefix: co-
+      prefix_gloss: 共同（缩形）
+      root: exist
+      root_gloss: 存在
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  coffee:
+    bank_id: G4_0945
+    morphemes: null
+    law_refs: [V-27]
+    note: 英语→汉语『咖啡』（音译入境）
+  collaborate:
+    bank_id: null
+    morphemes:
+      prefix: con-
+      prefix_gloss: 共同（col-）
+      root: labor
+      root_gloss: 劳动
+      root_bound: false
+      suffix: -ate
+      suffix_gloss: 动词尾
+      transparency: 半透明
+    law_refs: [V-34]
+  collect:
+    bank_id: G5_0521
+    morphemes:
+      prefix: con-
+      prefix_gloss: 共同（变体 col-，l 前）
+      root: lect
+      root_gloss: 选取（黏着根）
+      root_bound: true
+      transparency: 半透明
+      note: 双写 ll 是同化留痕
+    law_refs: [V-34]
+  combine:
+    bank_id: null
+    morphemes:
+      prefix: con-
+      prefix_gloss: 共同（变体 com-，唇音前）
+      root: bine
+      root_gloss: 结合（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  compress:
+    bank_id: null
+    morphemes:
+      prefix: con-
+      prefix_gloss: 共同（com-）
+      root: press
+      root_gloss: 压
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  computer:
+    bank_id: G4_155
+    morphemes: null
+    law_refs: [V-02, V-40]
+    note: V-02 例外例（GSL 缺位的新高频词）；V-40 探针 PRB-V40-5 开电脑
+  conspicuous:
+    bank_id: null
+    morphemes:
+      prefix: con-
+      prefix_gloss: 全然
+      root: spic
+      root_gloss: 看（spect 变体）
+      root_bound: true
+      suffix: -uous
+      suffix_gloss: 形容词尾
+      transparency: 不透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根"
+    law_refs: [V-26]
+  contemptible:
+    bank_id: null
+    morphemes:
+      root: contempt
+      root_gloss: 轻蔑
+      root_bound: false
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+      note: 判据例外带
+    law_refs: [V-37]
+  cooperate:
+    bank_id: null
+    morphemes:
+      prefix: co-
+      prefix_gloss: 共同（con- 元音前缩形）
+      root: operate
+      root_gloss: 运作
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  corner:
+    bank_id: V6_城市_33
+    morphemes: null
+    law_refs: [V-21, V-38]
+    note: 假拆标本：不是 corn+er（V-21/V-38）
+  correct:
+    bank_id: null
+    morphemes:
+      prefix: con-
+      prefix_gloss: 全然（变体 cor-，r 前）
+      root: rect
+      root_gloss: 直（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 rr 是同化留痕；correct 本身又作 incorrect 的词基
+    law_refs: [V-34]
+  correspond:
+    bank_id: null
+    morphemes:
+      prefix: con-
+      prefix_gloss: 共同（cor-）
+      root: respond
+      root_gloss: 回应
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  cost:
+    bank_id: V6_日常_34
+    morphemes: null
+    law_refs: [V-13, V-14]
+  courageous:
+    bank_id: null
+    morphemes:
+      root: courage
+      root_gloss: 勇气
+      root_bound: false
+      suffix: -ous
+      suffix_gloss: 形容词尾
+      transparency: 半透明
+      note: 软 g 后接 -ous 保 e
+    law_refs: [V-37]
+  cow:
+    bank_id: G4_191
+    morphemes: null
+    law_refs: [V-19]
+  crayfish:
+    bank_id: null
+    morphemes:
+      root: cray
+      root_gloss: （原词弱化残段，无义）
+      root_bound: true
+      suffix: fish
+      suffix_gloss: 鱼
+      transparency: 不透明
+      note: 源法语 crevice/écrevisse，与 fish 无亲缘——民间词源安上 fish
+    law_refs: [V-24]
+  credible:
+    bank_id: null
+    morphemes:
+      root: cred
+      root_gloss: 相信（黏着根）
+      root_bound: true
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+    law_refs: [V-35, V-36, V-37]
+  dark:
+    bank_id: G4_0859
+    morphemes: null
+    law_refs: [V-40]
+    note: "It's getting dark 构成词（CO-17/探针）"
+  decision:
+    bank_id: ADD_0070
+    morphemes: null
+    law_refs: [V-01, V-05, V-07, V-18]
+    note: "make a decision 的事件名词；*do a decision 为登记错型"
+  define:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-10, V-32]
+    note: de- 在此不是可拆前缀（假拆分/欺骗性透明例）——morphemes 不登记拆分
+  despise:
+    bank_id: null
+    morphemes:
+      prefix: de-
+      prefix_gloss: 向下
+      root: spis
+      root_gloss: 看（spect 变体）
+      root_bound: true
+      transparency: 不透明
+      note: 经法语辗转，今义『鄙视』为『向下看』的漂移
+    law_refs: [V-26]
+  detail:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-10, V-32]
+    note: 同 define：de- 不可拆
+  development:
+    bank_id: null
+    morphemes:
+      root: develop
+      root_gloss: 发展
+      root_bound: false
+      suffix: -ment
+      suffix_gloss: 名词尾（衰退）
+      transparency: 半透明
+    law_refs: [V-36]
+  dictionary:
+    bank_id: G6_264
+    morphemes:
+      root: dict
+      root_gloss: 说
+      root_bound: true
+      suffix: -ionary
+      suffix_gloss: （拉丁名词尾）
+      transparency: 半透明
+      note: dict 词根家族成员
+    law_refs: [V-21]
+  differ:
+    bank_id: null
+    morphemes:
+      prefix: dis-
+      prefix_gloss: 分开（变体 dif-，f 前）
+      root: fer
+      root_gloss: 携带（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 ff 是同化留痕
+    law_refs: [V-34]
+  differentiate:
+    bank_id: null
+    morphemes:
+      root: different
+      root_gloss: 不同的
+      root_bound: false
+      suffix: -ate
+      suffix_gloss: 动词尾（存量大、新造有限）
+      transparency: 半透明
+    law_refs: [V-36]
+  difficult:
+    bank_id: G5_0342
+    morphemes:
+      prefix: dis-
+      prefix_gloss: （dif- 变体；词源结构复杂）
+      root: ficult
+      root_gloss: （整词借入残段）
+      root_bound: true
+      transparency: 不透明
+      note: 只登记 dif- 变体事实，不强拆根义
+    law_refs: [V-34]
+  disconnect:
+    bank_id: null
+    morphemes:
+      prefix: dis-
+      prefix_gloss: 做反动作/断开
+      root: connect
+      root_gloss: 连接
+      root_bound: false
+      transparency: 全透明
+    law_refs: [V-39]
+  do:
+    bank_id: V6_日常_3
+    morphemes: null
+    law_refs: [V-07]
+  dog:
+    bank_id: G1_015
+    morphemes: null
+    law_refs: [V-22]
+    note: 涨大：古英语 docga 只指一种强壮犬种
+  door:
+    bank_id: G1_0932
+    morphemes: null
+    law_refs: [V-40]
+  draw:
+    bank_id: G3_0790
+    morphemes: null
+    law_refs: [V-44]
+    note: draw the drapes（Amelia Bedelia 字面化例）
+  dress:
+    bank_id: G3_0967
+    morphemes: null
+    law_refs: [V-44]
+    note: dress the chicken（Amelia Bedelia 字面化例）
+  drive:
+    bank_id: V6_交通_50
+    morphemes: null
+    law_refs: [V-40]
+  dyeing:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+    note: 避同形保 e：dyeing（染）对 dying（死）
+  dying:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+  edible:
+    bank_id: null
+    morphemes:
+      root: ed
+      root_gloss: 吃（黏着根）
+      root_bound: true
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+    law_refs: [V-36]
+  edit:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-20]
+    note: 逆构：自 editor 误拆反推
+  editor:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-20]
+    note: 逆构的来源词
+  effect:
+    bank_id: null
+    morphemes:
+      prefix: ex-
+      prefix_gloss: 向外（变体 ef-，f 前）
+      root: fect
+      root_gloss: 做（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 ff 是同化留痕
+    law_refs: [V-34]
+  efficient:
+    bank_id: null
+    morphemes:
+      prefix: ex-
+      prefix_gloss: 向外（ef-）
+      root: fic
+      root_gloss: 做（黏着根）
+      root_bound: true
+      suffix: -ent
+      suffix_gloss: 形容词尾
+      transparency: 不透明
+    law_refs: [V-34]
+  eliminate:
+    bank_id: null
+    morphemes:
+      prefix: ex-
+      prefix_gloss: 向外（e-）
+      root: limin
+      root_gloss: 门槛（黏着根）
+      root_bound: true
+      suffix: -ate
+      suffix_gloss: 动词尾
+      transparency: 不透明
+    law_refs: [V-34]
+  enjoyable:
+    bank_id: G6_0875
+    morphemes:
+      root: enjoy
+      root_gloss: 享受
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 全透明
+      note: 元音+y 的 y 不变
+    law_refs: [V-37]
+  especial:
+    bank_id: null
+    morphemes:
+      prefix: e-
+      prefix_gloss: （法语化前缀残段）
+      root: special
+      root_gloss: 特别的
+      root_bound: false
+      transparency: 不透明
+      note: speciēs 一系，与 special 同源
+    law_refs: [V-26]
+  espionage:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-26]
+    note: spy 同线法语形
+  eventful:
+    bank_id: null
+    morphemes:
+      root: event
+      root_gloss: 事件
+      root_bound: false
+      suffix: -ful
+      suffix_gloss: 充满……的
+      transparency: 全透明
+    law_refs: [V-36]
+  evoke:
+    bank_id: null
+    morphemes:
+      prefix: ex-
+      prefix_gloss: 向外（元音前缩为 e-）
+      root: voke
+      root_gloss: 召唤（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  expect:
+    bank_id: G6_0347
+    morphemes:
+      prefix: ex-
+      prefix_gloss: 向外
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      transparency: 半透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根：往外看→期待"
+    law_refs: [V-26]
+  eye:
+    bank_id: G1_009
+    morphemes: null
+    law_refs: [V-16, V-41]
+    note: 多义链：眼睛→针眼/芽眼（形状功能相似）
+  fast:
+    bank_id: G2_0579
+    morphemes: null
+    law_refs: [V-36]
+    note: 副词零形式（fast 作副词不加 -ly）
+  fear:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19]
+    note: 三连 fear/terror/trepidation
+  flammable:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-35]
+    note: 现代安全标识多改用此形
+  flexible:
+    bank_id: null
+    morphemes:
+      root: flex
+      root_gloss: 弯曲
+      root_bound: false
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+      note: 判据例外带
+    law_refs: [V-37]
+  fork:
+    bank_id: G4_176
+    morphemes: null
+    law_refs: [V-44]
+    note: fork in the road（The King Who Rained 字面图景）
+  friendly:
+    bank_id: G4_164
+    morphemes:
+      root: friend
+      root_gloss: 朋友
+      root_bound: false
+      suffix: -ly
+      suffix_gloss: （在此为形容词尾，先占位）
+      transparency: 半透明
+      note: friendly 是形容词不是副词（V-36）
+    law_refs: [V-36]
+  gamify:
+    bank_id: null
+    morphemes:
+      root: game
+      root_gloss: 游戏
+      root_bound: false
+      suffix: -ify
+      suffix_gloss: 动词尾（产出）
+      transparency: 全透明
+      note: 技术与戏谑造词例
+    law_refs: [V-36]
+  get:
+    bank_id: V6_日常_0
+    morphemes: null
+    law_refs: [V-40]
+    note: 五构造在 CO-17 立条，本表登记为 V-40/V-41 亲戚词
+  ginseng:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-27]
+    note: 源『人参』；第二字本义不确定，man-root 全译已降格
+  give:
+    bank_id: V6_日常_8
+    morphemes: null
+    law_refs: [V-40]
+    note: give sb a call 为规范形（清单纠正：不是 give a call）
+  golf:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-25]
+    note: 缩略说（Gentlemen Only Ladies Forbidden）已否决
+  government:
+    bank_id: null
+    morphemes:
+      root: govern
+      root_gloss: 统治
+      root_bound: false
+      suffix: -ment
+      suffix_gloss: 名词尾（存量大、衰退）
+      transparency: 半透明
+    law_refs: [V-36]
+  guarantee:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-23]
+    note: 与 warranty 现代法律英语已分化，不可互换
+  guard:
+    bank_id: ADD_0132
+    morphemes: null
+    law_refs: [V-23]
+    note: 经法语回输的同源对成员
+  guardian:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-23]
+    note: ward/guard 扩组
+  gym:
+    bank_id: G6_301
+    morphemes: null
+    law_refs: [V-20]
+    note: 截短：gymnasium → gym
+  hall:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-42]
+    note: The hall holds 500 people 的构成词
+  happiness:
+    bank_id: G6_0856
+    morphemes:
+      root: happy
+      root_gloss: 高兴的
+      root_bound: false
+      suffix: -ness
+      suffix_gloss: 状态/性质（名词化）
+      transparency: 全透明
+      note: y→i 拼写让路见 V-37
+    law_refs: [V-29, V-31, V-36, V-37]
+  happy:
+    bank_id: G6_282
+    morphemes: null
+    law_refs: [V-29, V-37]
+  hard:
+    bank_id: G3_K37
+    morphemes: null
+    law_refs: [V-36]
+    note: 副词零形式
+  have:
+    bank_id: V6_日常_5
+    morphemes: null
+    law_refs: [V-40]
+    note: have a look / have a meeting 的空心动词
+  hear:
+    bank_id: G3_0641
+    morphemes: null
+    law_refs: [V-44]
+  help:
+    bank_id: G3_0442
+    morphemes: null
+    law_refs: [V-40]
+    note: get 五构造⑤（got him to help me）构成词（CO-17）
+  here:
+    bank_id: G2_0595
+    morphemes: null
+    law_refs: [V-44]
+  hit:
+    bank_id: ADD_0149
+    morphemes: null
+    law_refs: [V-40]
+    note: get 五构造④（got hit by a car）构成词（CO-17/探针）
+  hoarse:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-44]
+  hold:
+    bank_id: V6_日常_44
+    morphemes: null
+    law_refs: [V-42]
+    note: Csábi (2004) 实验词：POSSESSING/CONTROL IS HOLDING 隐喻组织
+  home:
+    bank_id: V6_家庭_34
+    morphemes: null
+    law_refs: [V-40]
+    note: get home 构成词（CO-17）
+  hopeful:
+    bank_id: G6_0447
+    morphemes:
+      root: hope
+      root_gloss: 希望
+      root_bound: false
+      suffix: -ful
+      suffix_gloss: 充满……的（接辅音首后缀保 e）
+      transparency: 全透明
+    law_refs: [V-37]
+  horse:
+    bank_id: G4_192
+    morphemes: null
+    law_refs: [V-44]
+    note: horse/hoarse 在部分口音并不同音——须逐对核口音
+  hound:
+    bank_id: ADD_0154
+    morphemes: null
+    law_refs: [V-22]
+    note: 与 dog 同框一涨一缩：hund 收窄为 hound
+  humour:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-27]
+    note: 汉语『幽默』为古词复活式音译（林语堂 1924）
+  illegal:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（同化变体 il-，l 前）
+      root: legal
+      root_gloss: 合法的
+      root_bound: false
+      transparency: 半透明
+      note: 双写 ll 是同化留痕
+    law_refs: [V-34]
+  illiterate:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（il-）
+      root: literate
+      root_gloss: 识字的
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  illusion:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-34]
+    note: im-/il- 在此是向内 in- 的变体联想区——V-34 边界登记的同形防假例，不拆
+  imbalance:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（im-）
+      root: balance
+      root_gloss: 平衡
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  immature:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（im-）
+      root: mature
+      root_gloss: 成熟的
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  immerse:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-34]
+    note: 同 illusion：in- 向内义
+  import:
+    bank_id: G6_0681
+    morphemes:
+      prefix: in-
+      prefix_gloss: 向内
+      root: port
+      root_gloss: 搬
+      root_bound: true
+      transparency: 半透明
+    law_refs: [V-35]
+  impossible:
+    bank_id: G6_0476
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（同化变体 im-，唇音前）
+      root: possible
+      root_gloss: 可能的
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  inboard:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-34]
+    note: 现代词保 n 不执行同化（V-34 例外）
+  include:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 向内
+      root: clude
+      root_gloss: 关闭（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-35]
+  income:
+    bank_id: ADD_0156
+    morphemes:
+      prefix: in-
+      prefix_gloss: 向内
+      root: come
+      root_gloss: 来
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-35]
+    note: 方向 in-，与否定 in- 分开（V-35 范围）
+  incorrect:
+    bank_id: ADD_0157
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（否定）
+      root: correct
+      root_gloss: 正确的（黏着词基）
+      root_bound: true
+      transparency: 半透明
+    law_refs: [V-30, V-33, V-35, V-39]
+  incredible:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（否定）
+      root: credible
+      root_gloss: 可信的（拉丁底 cred-）
+      root_bound: true
+      transparency: 半透明
+      note: credible 是拉丁词→in-（对 unbelievable）
+    law_refs: [V-35]
+  inflammable:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-35]
+    note: in- 是向内/使……义而非否定，与 flammable 同义——禁止按否定拆
+  ingenious:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-35]
+    note: 整词借入，不可拆解套规则
+  ingenuous:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-35]
+    note: 整词借入
+  input:
+    bank_id: ADD_0159
+    morphemes:
+      prefix: in-
+      prefix_gloss: 向内
+      root: put
+      root_gloss: 放
+      root_bound: false
+      transparency: 半透明
+      note: 现代词不执行同化，拼写保 n（V-34 例外）
+    law_refs: [V-33, V-34]
+  inquire:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19, V-23]
+    note: 与 question 同层备选（经古法语 enquerre）
+  inspect:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 向内/进去
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      transparency: 半透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根：看进去"
+    law_refs: [V-21, V-26]
+  interrogate:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19, V-23]
+    note: 已专化为『审讯』，与 ask 不全等值
+  invaluable:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 极/甚（加强，非否定）
+      root: value
+      root_gloss: 价值
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 不透明
+      note: 关系不透明型标本：贵重到没法估价（V-32/V-35）
+    law_refs: [V-32, V-35]
+  invisible:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（否定）
+      root: visible
+      root_gloss: 看得见的
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34, V-35]
+  irregular:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（同化变体 ir-，r 前）
+      root: regular
+      root_gloss: 规则的
+      root_bound: false
+      transparency: 半透明
+      note: 双写 rr 是同化留痕
+    law_refs: [V-34]
+  irresponsible:
+    bank_id: null
+    morphemes:
+      prefix: in-
+      prefix_gloss: 不（ir-）
+      root: responsible
+      root_gloss: 负责的
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-34]
+  irrigate:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-34]
+    note: 同 illusion：in- 向内义
+  island:
+    bank_id: G5_235
+    morphemes: null
+    law_refs: [V-24]
+    note: s 为文人按拉丁 insula 硬加（学者式误靠），本与 insula 无关
+  keep:
+    bank_id: G4_0802
+    morphemes: null
+    law_refs: [V-42]
+    note: Csábi (2004) 实验词
+  ketchup:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-27]
+    note: 源闽南语 kê-tsiap；本字三说并存（膎汁/鮭汁/茄汁），不定一尊
+  kingly:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19, V-23]
+  knave:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-22]
+    note: 收窄+跌格叠加例
+  kowtow:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-27]
+    note: 汉语『叩头』，1804 年入英语
+  laser:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-20]
+    note: 首字母缩合（acronym，可读成词）
+  length:
+    bank_id: G6_0899
+    morphemes:
+      root: long
+      root_gloss: 长
+      root_bound: false
+      suffix: -th
+      suffix_gloss: 名词尾（已封存）
+      transparency: 半透明
+      note: 词根元音变形 + -th 化石
+    law_refs: [V-20]
+  letter:
+    bank_id: V6_P14
+    morphemes: null
+    law_refs: [V-40]
+    note: get 五构造①例句构成词（CO-17）
+  light:
+    bank_id: G4_157
+    morphemes: null
+    law_refs: [V-10, V-16, V-40]
+    note: 同形异源：『光』与『轻』是两棵树（V-16 例外/VF-003）；has_polysemy 不应以单标处理两源，见 MODEL 文档
+  limitable:
+    bank_id: null
+    morphemes:
+      root: limit
+      root_gloss: 限制
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 全透明
+      note: -mit 词族的反例：limit 取 -able
+    law_refs: [V-37]
+  logic:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-27]
+    note: 汉语『逻辑』定名史：本土音译胜出，非自日语转来
+  lonely:
+    bank_id: V6_情感_16
+    morphemes:
+      root: lone
+      root_gloss: 孤单的
+      root_bound: false
+      suffix: -ly
+      suffix_gloss: （形容词尾）
+      transparency: 半透明
+    law_refs: [V-36]
+  long:
+    bank_id: G3_137
+    morphemes: null
+    law_refs: [V-27]
+    note: long time no see 构成词（OED 老牌词条，非新收）
+  look:
+    bank_id: V6_日常_16
+    morphemes: null
+    law_refs: [V-40]
+    note: have a look 的事件名词
+  lovable:
+    bank_id: null
+    morphemes:
+      root: love
+      root_gloss: 爱
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 半透明
+      note: 两写并行（lovable/loveable），词典多以 lovable 为主形
+    law_refs: [V-37]
+  make:
+    bank_id: V6_日常_4
+    morphemes: null
+    law_refs: [V-01, V-05, V-07, V-18, V-40]
+  making:
+    bank_id: null
+    morphemes:
+      root: make
+      root_gloss: 做
+      root_bound: false
+      suffix: -ing
+      suffix_gloss: （接元音首后缀，先去 e）
+      transparency: 全透明
+      note: 去 e 规则正例；词形登记，归一至 make
+    law_refs: [V-37]
+  manageable:
+    bank_id: null
+    morphemes:
+      root: manage
+      root_gloss: 处理
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 半透明
+      note: 软 g 后保 e
+    law_refs: [V-37]
+  married:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-40]
+    note: get married 构成词；补词时以 marry 原形补入（W0 审计口径）
+  meat:
+    bank_id: G3_0943
+    morphemes: null
+    law_refs: [V-22]
+    note: 收窄：古英语 mete 泛指食物→兽肉
+  medicine:
+    bank_id: V6_身体_34
+    morphemes: null
+    law_refs: [V-40]
+  modernize:
+    bank_id: null
+    morphemes:
+      root: modern
+      root_gloss: 现代的
+      root_bound: false
+      suffix: -ize
+      suffix_gloss: 动词尾（高产）
+      transparency: 全透明
+    law_refs: [V-36]
+  motivate:
+    bank_id: null
+    morphemes:
+      root: motive
+      root_gloss: 动机
+      root_bound: false
+      suffix: -ate
+      suffix_gloss: 动词尾
+      transparency: 半透明
+    law_refs: [V-36]
+  mount:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19]
+  movable:
+    bank_id: null
+    morphemes:
+      root: move
+      root_gloss: 移动
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 半透明
+      note: 两写并行（movable/moveable）
+    law_refs: [V-37]
+  movement:
+    bank_id: G6_0870
+    morphemes:
+      root: move
+      root_gloss: 移动
+      root_bound: false
+      suffix: -ment
+      suffix_gloss: 名词尾（接辅音首后缀，e 一般保留）
+      transparency: 半透明
+    law_refs: [V-37]
+  mutton:
+    bank_id: V6_食物_13
+    morphemes: null
+    law_refs: [V-19]
+  needle:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-41]
+    note: eye of the needle 的构成词
+  news:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-15, V-25]
+    note: 不许拆成四方位首字母（假词源）
+  nice:
+    bank_id: G5_K01
+    morphemes: null
+    law_refs: [V-22, V-25]
+    note: 升格：拉丁 nescius『无知』→今『宜人』；V-25 词源谬误第一例
+  noise:
+    bank_id: G5_0510
+    morphemes: null
+    law_refs: [V-40]
+    note: make noise——空心动词搭配分工残迹
+  nonsense:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-35]
+    note: non- 的固化旧词例外
+  noticeable:
+    bank_id: null
+    morphemes:
+      root: notice
+      root_gloss: 注意
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 半透明
+      note: 软 c 后保 e
+    law_refs: [V-37]
+  occur:
+    bank_id: null
+    morphemes:
+      prefix: ob-
+      prefix_gloss: 向/对（变体 oc-，c 前）
+      root: cur
+      root_gloss: 跑（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 cc 是同化留痕
+    law_refs: [V-34]
+  oddity:
+    bank_id: null
+    morphemes:
+      root: odd
+      root_gloss: 奇怪的
+      root_bound: false
+      suffix: -ity
+      suffix_gloss: 名词尾（只接拉丁底，半产出）
+      transparency: 半透明
+      note: "*goodity 不存在——选配限制"
+    law_refs: [V-36]
+  offer:
+    bank_id: null
+    morphemes:
+      prefix: ob-
+      prefix_gloss: 向（变体 of-，f 前）
+      root: fer
+      root_gloss: 携带（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  oil:
+    bank_id: ADD_0208
+    morphemes: null
+    law_refs: [V-27]
+    note: add oil 构成词（2018 年入 OED）
+  open:
+    bank_id: V6_日常_10
+    morphemes: null
+    law_refs: [V-40]
+  oppose:
+    bank_id: null
+    morphemes:
+      prefix: ob-
+      prefix_gloss: 对（变体 op-，p 前）
+      root: pose
+      root_gloss: 放置
+      root_bound: false
+      transparency: 半透明
+      note: 双写 pp 是同化留痕
+    law_refs: [V-34]
+  pay:
+    bank_id: V6_日常_33
+    morphemes: null
+    law_refs: [V-13, V-14]
+  permissible:
+    bank_id: null
+    morphemes:
+      prefix: per-
+      prefix_gloss: 贯穿
+      root: miss
+      root_gloss: 送（黏着根）
+      root_bound: true
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+      note: -mit 词族
+    law_refs: [V-37]
+  perspective:
+    bank_id: null
+    morphemes:
+      prefix: per-
+      prefix_gloss: 贯穿
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      suffix: -ive
+      suffix_gloss: 形容词尾
+      transparency: 不透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根：组合义已专化"
+    law_refs: [V-26]
+  photo:
+    bank_id: G4_0381
+    morphemes: null
+    law_refs: [V-05, V-07, V-14, V-40]
+  pig:
+    bank_id: G1_019
+    morphemes: null
+    law_refs: [V-19, V-28]
+  piglet:
+    bank_id: null
+    morphemes:
+      root: pig
+      root_gloss: 猪
+      root_bound: false
+      suffix: -let
+      suffix_gloss: 小
+      transparency: 全透明
+    law_refs: [V-28]
+    note: Anglin 访谈原案：由 -let 类推 treelet
+  pork:
+    bank_id: G4_0942
+    morphemes: null
+    law_refs: [V-19]
+  posh:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-25]
+    note: 缩略说（Port Out Starboard Home）已被年代学否决；真实来源无定案
+  possible:
+    bank_id: G6_0477
+    morphemes:
+      root: poss
+      root_gloss: 能够（黏着根）
+      root_bound: true
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+    law_refs: [V-37]
+  predict:
+    bank_id: G6_0331
+    morphemes:
+      prefix: pre-
+      prefix_gloss: 预先/在前
+      root: dict
+      root_gloss: 说
+      root_bound: true
+      transparency: 半透明
+      note: 组合义成立（预先说→预言）；学习难点是黏着根 dict 未知（根缺失型，V-32 纠正）
+    law_refs: [V-21, V-29, V-32]
+  price:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-10, V-12, V-13]
+    note: 与 prize 形近（synforms）
+  prize:
+    bank_id: G5_0992
+    morphemes: null
+    law_refs: [V-10, V-12, V-13]
+    note: 与 price 形近（synforms）
+  prospect:
+    bank_id: null
+    morphemes:
+      prefix: pro-
+      prefix_gloss: 向前
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      transparency: 半透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根"
+    law_refs: [V-26]
+  provide:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-43]
+    note: 正面语义韵（Stubbs 据 COBUILD）
+  question:
+    bank_id: G4_0518
+    morphemes: null
+    law_refs: [V-19, V-23]
+    note: 三连正组中层（经古法语）
+  rain:
+    bank_id: G2_0502
+    morphemes: null
+    law_refs: [V-44]
+    note: rain/reign 同音对
+  readable:
+    bank_id: null
+    morphemes:
+      root: read
+      root_gloss: 读
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能被……的（全产出）
+      transparency: 全透明
+      note: -able 带被动义（能被读）
+    law_refs: [V-36]
+  reason:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-33]
+    note: tricksters：re- 在此不是前缀——禁止拆分登记
+  referred:
+    bank_id: null
+    morphemes:
+      prefix: re-
+      prefix_gloss: 回
+      root: fer
+      root_gloss: 携带（黏着根）
+      root_bound: true
+      suffix: -ed
+      suffix_gloss: 过去式（重音在尾，双写 r）
+      transparency: 不透明
+      note: 双写条件：重读音节在尾（对 visited）
+    law_refs: [V-37]
+  refill:
+    bank_id: null
+    morphemes:
+      prefix: re-
+      prefix_gloss: 再/回
+      root: fill
+      root_gloss: 装满
+      root_bound: false
+      transparency: 全透明
+    law_refs: [V-39]
+    note: White 六课序列正例
+  regal:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19, V-23]
+    note: 层属著录词典间不一（直接自拉丁 / 经古法语转手）
+  reign:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-44]
+  reliable:
+    bank_id: null
+    morphemes:
+      root: rely
+      root_gloss: 依靠
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的
+      transparency: 半透明
+      note: 辅音+y → i（V-37 规则②）
+    law_refs: [V-37]
+  reread:
+    bank_id: ADD_0250
+    morphemes:
+      prefix: re-
+      prefix_gloss: 再（again）
+      root: read
+      root_gloss: 读
+      root_bound: false
+      transparency: 全透明
+    law_refs: [V-39]
+    note: re- 两义之『再』（对 return 的『回』）
+  resentful:
+    bank_id: null
+    morphemes:
+      root: resent
+      root_gloss: 怨恨
+      root_bound: false
+      suffix: -ful
+      suffix_gloss: 充满……的（产出中上）
+      transparency: 半透明
+      note: -ful 有双读（V-36 边界）
+    law_refs: [V-36]
+  respect:
+    bank_id: G6_0346
+    morphemes:
+      prefix: re-
+      prefix_gloss: 回/再
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      transparency: 半透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根：回头重看→看重"
+    law_refs: [V-21, V-26]
+  restive:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-32]
+    note: 看着像『爱休息』，实义『焦躁难驭』——关系不透明
+  retrospect:
+    bank_id: null
+    morphemes:
+      prefix: retro-
+      prefix_gloss: 向后
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      transparency: 半透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根"
+    law_refs: [V-26]
+  return:
+    bank_id: G5_0466
+    morphemes:
+      prefix: re-
+      prefix_gloss: 回（back）
+      root: turn
+      root_gloss: 转
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-39]
+  right:
+    bank_id: G3_0600
+    morphemes: null
+    law_refs: [V-44]
+  rise:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19]
+    note: 三连 rise/mount/ascend（Bryson 名句）
+  river:
+    bank_id: G5_232
+    morphemes: null
+    law_refs: [V-38]
+    note: 一号诊室：经古法语上溯拉丁 rīpa（河岸），-er 为词干残段
+  road:
+    bank_id: G4_0592
+    morphemes: null
+    law_refs: [V-44]
+  royal:
+    bank_id: ADD_0259
+    morphemes: null
+    law_refs: [V-19, V-23]
+    note: 血统同为拉丁 regalis，经法语过境——判路线不判血统
+  run:
+    bank_id: G2_087
+    morphemes: null
+    law_refs: [V-41, V-45]
+    note: 义项计数三口径（645/245/46，V-41）；两把尺（V-45）
+  scope:
+    bank_id: null
+    morphemes:
+      root: skop
+      root_gloss: "看（希腊 *spek- 音序倒置一系）"
+      root_bound: true
+      transparency: 不透明
+      note: 亲缘细节（倒置路径）学界仍有讨论（V-26 分歧）
+    law_refs: [V-26]
+  sell:
+    bank_id: G5_0651
+    morphemes: null
+    law_refs: [V-13, V-14]
+  set:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-43]
+    note: Sinclair 对 set in 的观察（语义韵先声）；亦在 COBUILD 空心动词核心成员清单
+  sheep:
+    bank_id: G4_194
+    morphemes: null
+    law_refs: [V-19]
+    note: 牲畜/肉食对：sheep/mutton
+  shirt:
+    bank_id: G1_056
+    morphemes: null
+    law_refs: [V-23]
+    note: 同源对：古英语 scyrte（sc- 腭化）
+  shorten:
+    bank_id: null
+    morphemes:
+      root: short
+      root_gloss: 短的
+      root_bound: false
+      suffix: -en
+      suffix_gloss: 动词尾（近封存）
+      transparency: 全透明
+    law_refs: [V-36]
+  shower:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-07]
+    note: take a shower 的事件名词
+  shut:
+    bank_id: ADD_0270
+    morphemes: null
+    law_refs: [V-40]
+  shyly:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+    note: y→i 摇摆带：单音节词两写并行
+  silly:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-22]
+    note: 跌格：古英语 gesælig『有福』→今『愚笨』
+  simplify:
+    bank_id: null
+    morphemes:
+      root: simple
+      root_gloss: 简单的
+      root_bound: false
+      suffix: -ify
+      suffix_gloss: 动词尾（产出）
+      transparency: 半透明
+      note: y→i 与 -ification 近亲
+    law_refs: [V-36]
+  singeing:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+    note: 避同形保 e：singeing（烧焦）对 singing（唱）
+  skeptic:
+    bank_id: null
+    morphemes:
+      root: skept
+      root_gloss: 审视（希腊 skeptesthai）
+      root_bound: true
+      suffix: -ic
+      suffix_gloss: 形容词/名词尾
+      transparency: 不透明
+      note: "*spek- 希腊一系"
+    law_refs: [V-26]
+  skirt:
+    bank_id: G1_058
+    morphemes: null
+    law_refs: [V-23]
+    note: 同源对：古诺斯语 skyrta（保住 sk-）
+  smog:
+    bank_id: null
+    morphemes:
+      root: smoke+fog
+      root_gloss: 烟+雾（混合截取）
+      root_bound: false
+      transparency: 半透明
+      note: 混合（blending）：smoke + fog
+    law_refs: [V-20]
+  sofa:
+    bank_id: G4_173
+    morphemes: null
+    law_refs: [V-27]
+    note: 英语→汉语『沙发』（音译入境）
+  sparrowgrass:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-24]
+    note: asparagus 的民间词源形，仅方言/老式口语存活，未进标准语
+  special:
+    bank_id: G5_0345
+    morphemes: null
+    law_refs: [V-26]
+    note: speciēs 一系成员
+  species:
+    bank_id: null
+    morphemes:
+      root: spec
+      root_gloss: 看（speciēs『看、样子』）
+      root_bound: true
+      transparency: 不透明
+      note: 已专指生物分类，与『看』只剩化石联系
+    law_refs: [V-26]
+  specimen:
+    bank_id: null
+    morphemes:
+      root: spec
+      root_gloss: 看
+      root_bound: true
+      transparency: 半透明
+      note: speciēs 一系
+    law_refs: [V-26]
+  specious:
+    bank_id: null
+    morphemes:
+      root: spec
+      root_gloss: 看（speciēs）
+      root_bound: true
+      suffix: -ious
+      suffix_gloss: 形容词尾
+      transparency: 不透明
+      note: 『似是而非』，组合义不可推
+    law_refs: [V-26]
+  spectacle:
+    bank_id: null
+    morphemes:
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      suffix: -acle
+      suffix_gloss: （拉丁名词尾）
+      transparency: 半透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根"
+    law_refs: [V-26]
+  spectator:
+    bank_id: null
+    morphemes:
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      suffix: -or
+      suffix_gloss: 施事者
+      transparency: 半透明
+      note: 直接来源是拉丁 spectāre，拆 spect- 不拆 spec-
+    law_refs: [V-26]
+  spectrum:
+    bank_id: null
+    morphemes:
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      transparency: 不透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根：今义已漂移"
+    law_refs: [V-26]
+  speculate:
+    bank_id: null
+    morphemes:
+      root: spec
+      root_gloss: 看
+      root_bound: true
+      suffix: -ate
+      suffix_gloss: 动词尾
+      transparency: 不透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根：今义『推测/投机』已漂移"
+    law_refs: [V-26]
+  speech:
+    bank_id: G6_0621
+    morphemes: null
+    law_refs: [V-40]
+    note: give a speech——空心动词搭配分工残迹
+  spell:
+    bank_id: V6_学校_64
+    morphemes: null
+    law_refs: [V-09]
+  spice:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-26]
+    note: 经 speciēs『种类、货物』辗转，与『看』只剩化石
+  spy:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-26]
+    note: "*spek- 日耳曼一线（spehōn）经法语、意大利语辗转"
+  station:
+    bank_id: G4_0517
+    morphemes: null
+    law_refs: [V-40]
+    note: get 五构造③例句构成词（CO-17）
+  stir:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-43]
+    note: cause a stir——中性用例（例外同屏）
+  stopped:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+    note: 双写正例（1-1-1 格局）；词形登记，归一至 stop
+  streamable:
+    bank_id: null
+    morphemes:
+      root: stream
+      root_gloss: 流
+      root_bound: false
+      suffix: -able
+      suffix_gloss: 能……的（全产出）
+      transparency: 全透明
+      note: 新词例
+    law_refs: [V-36]
+  studying:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+    note: 接 -ing 时 y 不变（避免双 i）；词形登记，归一至 study
+  subway:
+    bank_id: G6_262
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 在下
+      root: way
+      root_gloss: 路
+      root_bound: false
+      transparency: 半透明
+    law_refs: [V-33]
+    note: 探针 PRB-V33-3：认识 sub- 不等于能定全词义
+  succeed:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（变体 suc-，c 前）
+      root: ceed
+      root_gloss: 行进（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 cc 是同化留痕
+    law_refs: [V-34]
+  succumb:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（suc-）
+      root: cumb
+      root_gloss: 躺卧（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  suffer:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（变体 suf-，f 前）
+      root: fer
+      root_gloss: 承受（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 ff 是同化留痕
+    law_refs: [V-34]
+  suffix:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（suf-）
+      root: fix
+      root_gloss: 固定
+      root_bound: false
+      transparency: 半透明
+      note: 词义『后缀』本身即 sub- 同化产物
+    law_refs: [V-34]
+  suggest:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（变体 sug-，g 前）
+      root: gest
+      root_gloss: 携带（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: 双写 gg 是同化留痕
+    law_refs: [V-34]
+  summon:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（变体 sum-，m 前）
+      root: mon
+      root_gloss: 提醒（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  supply:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（sup-）
+      root: ply
+      root_gloss: 充满（黏着根）
+      root_bound: true
+      transparency: 不透明
+    law_refs: [V-34]
+  support:
+    bank_id: G6_0682
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（变体 sup-，p 前）
+      root: port
+      root_gloss: 搬
+      root_bound: true
+      transparency: 半透明
+      note: 双写 pp 是同化留痕
+    law_refs: [V-34]
+  surrogate:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（变体 sur-，r 前）
+      root: rog
+      root_gloss: 请求（黏着根）
+      root_bound: true
+      suffix: -ate
+      suffix_gloss: 动词尾
+      transparency: 不透明
+    law_refs: [V-34]
+  susceptible:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（sus-）
+      root: cept
+      root_gloss: 取（黏着根）
+      root_bound: true
+      suffix: -ible
+      suffix_gloss: （封存后缀，见 V-36）
+      transparency: 不透明
+    law_refs: [V-34]
+  suspect:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（变体 sus-，见 V-34）
+      root: spect
+      root_gloss: 看
+      root_bound: true
+      transparency: 半透明
+      note: "拉丁词根 spect-/spec-『看』（源 *spek-），黏着词根：从下面偷看"
+    law_refs: [V-26, V-34]
+  sustain:
+    bank_id: null
+    morphemes:
+      prefix: sub-
+      prefix_gloss: 从下（变体 sus-）
+      root: tain
+      root_gloss: 持有（黏着根）
+      root_bound: true
+      transparency: 不透明
+      note: sus- 亦见 suspect（V-26）
+    law_refs: [V-26, V-34]
+  sweetmeat:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-22]
+    note: meat 旧义的化石（糖果）
+  take:
+    bank_id: V6_日常_6
+    morphemes: null
+    law_refs: [V-07, V-40]
+    note: take medicine / take the bus / take a photo / take a shower——V-40 反向打包总管词
+  tea:
+    bank_id: G2_0944
+    morphemes: null
+    law_refs: [V-08, V-27]
+    note: 闽南语 tê 经荷兰语 thee 入英语（海路）
+  telephone:
+    bank_id: G4_0379
+    morphemes:
+      prefix: tele-
+      prefix_gloss: 远（组合形）
+      root: phone
+      root_gloss: 声音（组合形）
+      root_bound: true
+      transparency: 半透明
+      note: 新古典拼装件：不得说成古希腊词（V-32）
+    law_refs: [V-32]
+  telescope:
+    bank_id: null
+    morphemes:
+      prefix: tele-
+      prefix_gloss: 远（组合形，见 V-32 新古典拼装件）
+      root: scope
+      root_gloss: 看
+      root_bound: false
+      transparency: 半透明
+      note: 新古典拼装：零件古、整词近代造
+    law_refs: [V-26, V-32]
+  terror:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19]
+  their:
+    bank_id: V6_核心_21
+    morphemes: null
+    law_refs: [V-44]
+  there:
+    bank_id: G2_0596
+    morphemes: null
+    law_refs: [V-44]
+  "they're":
+    bank_id: null
+    morphemes: null
+    law_refs: [V-44]
+    note: they are 的缩合；词库以 they 别名命中，缩合形本身待补词登记
+  time:
+    bank_id: V6_节日_0
+    morphemes: null
+    law_refs: [V-27]
+  tips:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-25]
+    note: 注：此为 tip『小费』的复数形著录；缩略说（To Insure Prompt Service）已否决，来源标不确定
+  to:
+    bank_id: V6_核心_48
+    morphemes: null
+    law_refs: [V-44]
+  too:
+    bank_id: V6_核心_74
+    morphemes: null
+    law_refs: [V-44]
+  transport:
+    bank_id: G6_0679
+    morphemes:
+      prefix: trans-
+      prefix_gloss: 跨越/搬过去
+      root: port
+      root_gloss: 搬/运
+      root_bound: true
+      transparency: 半透明
+      note: port 黏着根（V-21 零件例）
+    law_refs: [V-21]
+  tree:
+    bank_id: G2_079
+    morphemes: null
+    law_refs: [V-28]
+  treelet:
+    bank_id: null
+    morphemes:
+      root: tree
+      root_gloss: 树
+      root_bound: false
+      suffix: -let
+      suffix_gloss: 小
+      transparency: 全透明
+    law_refs: [V-28]
+    note: 未学过、当场解题的产物（Anglin 访谈）
+  trouble:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-43]
+    note: cause 的典型负面宾语
+  truly:
+    bank_id: G6_0847
+    morphemes: null
+    law_refs: [V-37]
+    note: 保 e 规则的固化例外（true 去 e）
+  turn:
+    bank_id: POLY_TURN
+    morphemes: null
+    law_refs: [V-40]
+    note: turn on/off 的构成词；短语整体口径在 W4 定版
+  two:
+    bank_id: G1_030
+    morphemes: null
+    law_refs: [V-44]
+  typhoon:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-27]
+    note: 多源汇合未定案：阿拉伯/波斯 ṭūfān 线与汉语 tai fung 线并列登记
+  unbelievable:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 不/相反
+      root: believable
+      root_gloss: 可信的
+      root_bound: false
+      transparency: 全透明
+      note: believe 是老家词→un-（对 incredible）
+    law_refs: [V-35]
+  uncertain:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 不/相反
+      root: certain
+      root_gloss: 确定的（拉丁底）
+      root_bound: false
+      transparency: 半透明
+      note: un- 越界拉丁底（V-35 例外）
+    law_refs: [V-35]
+  uncle:
+    bank_id: G2_067
+    morphemes: null
+    law_refs: [V-33, V-39]
+    note: tricksters：un- 在此不是前缀，整词（V-33 例外/V-39 第一课）——禁止拆分登记
+  unconscious:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 不/相反
+      root: conscious
+      root_gloss: 有意识的（拉丁底）
+      root_bound: false
+      transparency: 半透明
+      note: un- 越界例
+    law_refs: [V-35]
+  understand:
+    bank_id: V6_学校_71
+    morphemes: null
+    law_refs: [V-38]
+    note: 三号诊室：understandan 确由 under+standan 构成，但 under 取古义『在……之间』——组合不可用，禁止按今义登记拆分
+  undertake:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-38]
+    note: under- 古义残迹同型
+  unfair:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 不/相反
+      root: fair
+      root_gloss: 公平的
+      root_bound: false
+      transparency: 全透明
+    law_refs: [V-35]
+  unfriend:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 做反动作
+      root: friend
+      root_gloss: 朋友
+      root_bound: false
+      transparency: 全透明
+      note: 新词只取 un-——in- 封闭的硬证据（V-35）
+    law_refs: [V-35]
+  unhappy:
+    bank_id: G4_0457
+    morphemes:
+      prefix: un-
+      prefix_gloss: 不/相反
+      root: happy
+      root_gloss: 高兴的
+      root_bound: false
+      transparency: 全透明
+    law_refs: [V-15, V-29, V-30, V-31, V-33, V-35, V-39]
+  unit:
+    bank_id: ADD_0308
+    morphemes: null
+    law_refs: [V-33]
+    note: 探针 PRB-V33-1 辨假组：uni- 不是 un-
+  unkind:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 不/相反
+      root: kind
+      root_gloss: 和善的
+      root_bound: false
+      transparency: 全透明
+    law_refs: [V-35, V-39]
+    note: V-35/V-39 例词：un- + 日耳曼底的正例
+  unlock:
+    bank_id: ADD_0309
+    morphemes:
+      prefix: un-
+      prefix_gloss: 做反动作（打开）
+      root: lock
+      root_gloss: 锁
+      root_bound: false
+      transparency: 全透明
+    law_refs: [V-33]
+    note: 探针 PRB-V33-1 辨假组
+  unpopular:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 不/相反
+      root: popular
+      root_gloss: 受欢迎的（拉丁底）
+      root_bound: false
+      transparency: 半透明
+      note: un- 越界例
+    law_refs: [V-35]
+  unstable:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 不/相反
+      root: stable
+      root_gloss: 稳定的（拉丁底）
+      root_bound: false
+      transparency: 半透明
+      note: un- 越界例
+    law_refs: [V-35]
+  unsubscribe:
+    bank_id: null
+    morphemes:
+      prefix: un-
+      prefix_gloss: 做反动作
+      root: subscribe
+      root_gloss: 订阅
+      root_bound: false
+      transparency: 半透明
+      note: 新词只取 un-
+    law_refs: [V-35]
+  untie:
+    bank_id: ADD_0310
+    morphemes:
+      prefix: un-
+      prefix_gloss: 做反动作（解开）
+      root: tie
+      root_gloss: 系
+      root_bound: false
+      transparency: 全透明
+    law_refs: [V-33, V-39]
+    note: un- 的反动作义（探针 PRB-V33-4）
+  utterly:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-43]
+    note: "负面语义韵（Louw 1993: 160）"
+  veal:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-19]
+  visible:
+    bank_id: null
+    morphemes:
+      root: vis
+      root_gloss: 看（黏着根）
+      root_bound: true
+      suffix: -ible
+      suffix_gloss: （封存后缀）
+      transparency: 不透明
+      note: -ible 封闭小名单，整词认
+    law_refs: [V-36, V-37]
+  visited:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-37]
+    note: 重音在前不双写（对 referred）；词形登记，归一至 visit
+  war:
+    bank_id: ADD_0319
+    morphemes: null
+    law_refs: [V-23]
+    note: "*wardō 扩组旁证"
+  ward:
+    bank_id: ADD_0320
+    morphemes:
+      root: "*wardō"
+      root_gloss: 守卫（原始日耳曼语）
+      root_bound: true
+      transparency: 不透明
+      note: 同源对词根著录，非今义可拆
+    law_refs: [V-23]
+  warden:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-23]
+    note: ward/guard 扩组
+  warmth:
+    bank_id: G6_0901
+    morphemes:
+      root: warm
+      root_gloss: 暖
+      root_bound: false
+      suffix: -th
+      suffix_gloss: 名词尾（已封存）
+      transparency: 半透明
+      note: -th 只接一小串固定词、不再造新词（V-20/V-36）
+    law_refs: [V-20, V-36]
+  warranty:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-23]
+    note: 诺曼法语留 w-（对 guarantee 的 g-）
+  watch:
+    bank_id: POLY_WATCH
+    morphemes: null
+    law_refs: [V-15, V-38]
+    note: 不透明端整记（V-15）；词库 POLY 条
+  weak:
+    bank_id: G5_0861
+    morphemes: null
+    law_refs: [V-44]
+  week:
+    bank_id: V6_节日_3
+    morphemes: null
+    law_refs: [V-44]
+  whine:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-44]
+  widen:
+    bank_id: null
+    morphemes:
+      root: wide
+      root_gloss: 宽的
+      root_bound: false
+      suffix: -en
+      suffix_gloss: 动词尾（近封存，只接一小串单音节形容词）
+      transparency: 全透明
+    law_refs: [V-36]
+  window:
+    bank_id: G4_159
+    morphemes: null
+    law_refs: [V-40]
+    note: V-40 对齐例：开窗 = open the window
+  wine:
+    bank_id: null
+    morphemes: null
+    law_refs: [V-44]
+    note: wine/whine 口音依变对
+  word:
+    bank_id: V6_学校_42
+    morphemes: null
+    law_refs: [V-01, V-09]
+  write:
+    bank_id: G3_0487
+    morphemes: null
+    law_refs: [V-44]
+
+# ===== has_polysemy 应标清单（W2 盘点） =====
+# 口径：V 组条目实际展开多义网络/同形异义/语义韵/双尺讨论的词。
+# 处置分三类：mark（应标 true）、review（同形异源，不走多义标，须双条或义项分源登记）、keep（词库已标）。
+polysemy_marks:
+  - word: run
+    bank_id: G2_087
+    action: mark
+    reason: V-41/V-45 核心例：义项切分与双尺全条展开；词库现未标
+  - word: get
+    bank_id: V6_日常_0
+    action: mark
+    reason: 五构造即多义枢纽（CO-17 立条，V-40 亲戚）；词库现未标
+  - word: take
+    bank_id: V6_日常_6
+    action: mark
+    reason: V-40 反向打包：一词分管拿/带走/坐车/吃药/拍照
+  - word: hold
+    bank_id: V6_日常_44
+    action: mark
+    reason: V-42 实验词：多义引申网络全条展开
+  - word: keep
+    bank_id: G4_0802
+    action: mark
+    reason: V-42 实验词
+  - word: bank
+    bank_id: G5_0987
+    action: review
+    reason: 同形异义（两源汇流），不是多义——应分源登记，不标 has_polysemy
+  - word: light
+    bank_id: G4_157
+    action: review
+    reason: 同形异源两棵树（VF-003 已拆分）：词库现以 POLY 条处理，两源不得以单条多义标混同
+  - word: eye
+    bank_id: G1_009
+    action: mark
+    reason: V-16/V-41 多义链：眼睛→针眼/芽眼
+  - word: cause
+    bank_id: null
+    action: mark
+    reason: V-43：语义韵附着于其搭配义项分布，补词入后应标
+  - word: set
+    bank_id: null
+    action: mark
+    reason: 多义高频动词；Sinclair set in 观察（V-43）涉及其短语义项
+  - word: watch
+    bank_id: POLY_WATCH
+    action: keep
+    reason: 词库已标（POLY_WATCH）
+  - word: turn
+    bank_id: POLY_TURN
+    action: keep
+    reason: 词库已标（POLY_TURN）
+  - word: play
+    bank_id: G2_0489
+    action: keep
+    reason: 词库已标
+  - word: book
+    bank_id: G1_002
+    action: keep
+    reason: 词库已标
+  - word: fly
+    bank_id: G2_084
+    action: keep
+    reason: 词库已标；另注意 butterfly 命名动机无定论与多义无关
+  - word: draw
+    bank_id: G3_0790
+    action: keep
+    reason: draw the drapes 字面化（V-44）；词库已标 has_polysemy
+
+# 统计：挂接词 339 个；其中不在词库（bank_id=null）201 个：accept, access, accessible, admissible, affect, affix, aggravate, allot, allow, annex, announce, approach, argument, arrange, ascend, aspect, assign, assist, attend, attract, audible, awful, biology, bishop, bridegroom, brunch, busily, calf, captain, cause, changeable, charge, chase, chieftain, clickable, coexist, collaborate, combine, compress, conspicuous, contemptible, cooperate, correct, correspond, courageous, crayfish, credible, define, despise, detail, development, differ, differentiate, disconnect, dyeing, dying, edible, edit, editor, effect, efficient, eliminate, especial, espionage, eventful, evoke, fear, flammable, flexible, gamify, ginseng, golf, government, guarantee, guardian, hall, hoarse, humour, illegal, illiterate, illusion, imbalance, immature, immerse, inboard, include, incredible, inflammable, ingenious, ingenuous, inquire, inspect, interrogate, invaluable, invisible, irregular, irresponsible, irrigate, ketchup, kingly, knave, kowtow, laser, limitable, logic, lovable, making, manageable, married, modernize, motivate, mount, movable, needle, news, nonsense, noticeable, occur, oddity, offer, oppose, permissible, perspective, piglet, posh, price, prospect, provide, readable, reason, referred, refill, regal, reign, reliable, resentful, restive, retrospect, rise, scope, set, shorten, shower, shyly, silly, simplify, singeing, skeptic, smog, sparrowgrass, species, specimen, specious, spectacle, spectator, spectrum, speculate, spice, spy, stir, stopped, streamable, studying, succeed, succumb, suffer, suffix, suggest, summon, supply, surrogate, susceptible, suspect, sustain, sweetmeat, telescope, terror, they're, tips, treelet, trouble, typhoon, unbelievable, uncertain, unconscious, undertake, unfair, unfriend, unkind, unpopular, unstable, unsubscribe, utterly, veal, visible, visited, warden, warranty, whine, widen, wine

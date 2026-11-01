@@ -1,0 +1,966 @@
+# 小系统区挂接表（word → law_refs）· 波次 W4
+# 生成方式：由 small_systems.yaml 全量反演（凡条目 examples / mechanism anchors / claim exceptions
+#   中实际引用的 word_id，逐词回挂到该条目）∪ 系统词精选层（subject_refs：以该词为主题的条目，
+#   含未在例句中直接引用的冠词条目 a / an、the）。
+# 纪律：word 与 bank_id 均逐字取自 wordbank.json；law_refs 按条目 order 排序。
+# 菜单完备性口径见 small_systems_MODEL.md（介词/代词/冠词/限定词按 pos_tags 全量推导）。
+zone: 小系统
+source: model/laws/small_systems.yaml
+words:
+  a / an:
+    bank_id: G1_K01
+    law_refs:
+    - C-06
+    - C-14
+    - C-19
+    - C-20
+    subject_refs:
+    - C-06
+    - C-14
+    - C-19
+    - C-20
+  above:
+    bank_id: V6_核心_39
+    law_refs:
+    - P-02
+    - P-13
+    - PB-01
+    - PB-04
+  across:
+    bank_id: G5_0638
+    law_refs:
+    - P-19
+  advice:
+    bank_id: G6_0329
+    law_refs:
+    - C-02
+    - C-05
+    - C-15
+  apple:
+    bank_id: G1_037
+    law_refs:
+    - P-08
+    - P-11
+    - PB-09
+    - PB-10
+    - PB-12
+    - C-01
+    - C-03
+    - C-06
+    - C-14
+    - C-18
+  at:
+    bank_id: V6_核心_37
+    law_refs:
+    - P-05
+    - P-09
+    - P-10
+    - P-14
+    - P-17
+    - P-18
+    - PB-02
+    - PB-08
+    - PB-10
+    - PB-13
+    subject_refs:
+    - P-05
+  ball:
+    bank_id: G1_041
+    law_refs:
+    - P-02
+    - P-06
+    - P-12
+    - PB-02
+    - PB-04
+    - PB-05
+    - PB-06
+    - PB-07
+    - PB-08
+    - PB-09
+    - PB-11
+    - PR-09
+  banana:
+    bank_id: G1_038
+    law_refs:
+    - P-08
+  bed:
+    bank_id: G2_0931
+    law_refs:
+    - C-11
+  behind:
+    bank_id: V6_核心_41
+    law_refs:
+    - PB-08
+    - PB-09
+  bird:
+    bank_id: G1_013
+    law_refs:
+    - P-01
+    - P-02
+    - P-06
+    - P-11
+    - P-19
+    - PB-04
+    - PB-05
+    - PB-06
+    - PB-07
+    - PB-12
+  book:
+    bank_id: G1_002
+    law_refs:
+    - P-01
+    - P-04
+    - P-08
+    - P-11
+    - P-12
+    - P-17
+    - P-18
+    - PB-03
+    - PB-11
+    - PB-12
+    - C-06
+    - C-07
+    - C-08
+    - C-09
+    - C-17
+    - C-18
+    - C-19
+    - C-20
+    - PR-09
+  bottle:
+    bank_id: G5_226
+    law_refs:
+    - C-18
+  bowl:
+    bank_id: G3_0937
+    law_refs:
+    - P-08
+    - PB-09
+    - PB-10
+    - C-01
+    - C-05
+    - C-18
+  box:
+    bank_id: G1_0994
+    law_refs:
+    - P-01
+    - P-03
+    - P-06
+    - P-12
+    - P-17
+    - P-18
+    - P-19
+    - PB-02
+    - PB-07
+    - PB-08
+    - PB-11
+    - C-01
+  bread:
+    bank_id: G3_126
+    law_refs:
+    - C-02
+  bridge:
+    bank_id: G5_229
+    law_refs:
+    - P-02
+    - P-06
+    - P-16
+  bus:
+    bank_id: G2_105
+    law_refs:
+    - P-05
+    - PB-01
+    - PB-10
+    - C-11
+  cake:
+    bank_id: G1_048
+    law_refs:
+    - P-15
+    - C-01
+    - C-04
+  careful:
+    bank_id: G4_0440
+    law_refs:
+    - PB-13
+  cat:
+    bank_id: G1_014
+    law_refs:
+    - P-01
+    - P-03
+    - P-04
+    - P-06
+    - P-12
+    - P-13
+    - P-17
+    - P-18
+    - P-19
+    - PB-07
+    - PB-08
+    - PB-09
+    - C-09
+    - C-19
+  cheese:
+    bank_id: V6_食物_16
+    law_refs:
+    - C-02
+  chicken:
+    bank_id: G1_049
+    law_refs:
+    - C-17
+    subject_refs:
+    - C-17
+  class:
+    bank_id: V6_学校_25
+    law_refs:
+    - C-16
+  classmate:
+    bank_id: G4_0393
+    law_refs:
+    - PR-01
+    - PR-03
+    - PR-06
+  cloud:
+    bank_id: G3_0505
+    law_refs:
+    - P-02
+    - P-06
+    - P-13
+    - PB-01
+    - PB-06
+  coffee:
+    bank_id: G4_0945
+    law_refs:
+    - C-04
+  cup:
+    bank_id: G2_0936
+    law_refs:
+    - P-03
+    - P-07
+    - P-08
+    - P-12
+    - PB-11
+    - C-02
+  desk:
+    bank_id: G1_0928
+    law_refs:
+    - P-01
+    - P-04
+    - P-12
+    - P-17
+    - P-18
+    - PB-03
+    - C-07
+    - C-08
+    - C-20
+  dog:
+    bank_id: G1_015
+    law_refs:
+    - P-03
+    - P-17
+    - P-19
+    - PB-04
+    - C-06
+    - C-07
+    - C-08
+    - C-09
+    - C-10
+    - C-19
+    - C-20
+    - PR-06
+    - PR-09
+  door:
+    bank_id: G1_0932
+    law_refs:
+    - P-05
+    - P-10
+    - PB-02
+    - PB-08
+  egg:
+    bank_id: G1_050
+    law_refs:
+    - C-14
+  English:
+    bank_id: V6_学校_29
+    law_refs:
+    - PB-13
+  evening:
+    bank_id: G3_0565
+    law_refs:
+    - P-09
+  family:
+    bank_id: G3_133
+    law_refs:
+    - C-16
+  father:
+    bank_id: G2_062
+    law_refs:
+    - C-11
+    - PR-11
+  few:
+    bank_id: V6_数字_53
+    law_refs:
+    - C-17
+    subject_refs:
+    - C-17
+  finger:
+    bank_id: V6_身体_13
+    law_refs:
+    - P-04
+    - PB-11
+  five:
+    bank_id: G1_022
+    law_refs:
+    - P-09
+    - PB-13
+  floor:
+    bank_id: G3_0933
+    law_refs:
+    - PB-09
+  flower:
+    bank_id: G2_075
+    law_refs:
+    - PB-07
+  football:
+    bank_id: G3_0401
+    law_refs:
+    - C-12
+    - PR-08
+  for:
+    bank_id: V6_核心_49
+    law_refs:
+    - P-10
+    - P-14
+  forest:
+    bank_id: G5_230
+    law_refs:
+    - PB-04
+  friend:
+    bank_id: G3_130
+    law_refs:
+    - PR-01
+    - PR-03
+    - PR-06
+  furniture:
+    bank_id: ADD_0113
+    law_refs:
+    - C-01
+  garden:
+    bank_id: G4_183
+    law_refs:
+    - PB-04
+  gift:
+    bank_id: G3_129
+    law_refs:
+    - P-14
+  give:
+    bank_id: V6_日常_8
+    law_refs:
+    - P-14
+  glass:
+    bank_id: V6_食物_66
+    law_refs:
+    - C-01
+  grass:
+    bank_id: G2_076
+    law_refs:
+    - P-12
+  guitar:
+    bank_id: V6_运动_23
+    law_refs:
+    - C-12
+  happy:
+    bank_id: G6_282
+    law_refs:
+    - PR-02
+  he:
+    bank_id: V6_核心_7
+    law_refs:
+    - PR-05
+    - PR-06
+    - PR-07
+    - PR-08
+    - PR-11
+    subject_refs:
+    - PR-11
+  hill:
+    bank_id: G2_077
+    law_refs:
+    - P-01
+    - P-02
+    - P-13
+    - PB-01
+    - PB-05
+    - PB-06
+    - PB-07
+  home:
+    bank_id: V6_家庭_34
+    law_refs:
+    - P-05
+  homework:
+    bank_id: G5_215
+    law_refs:
+    - C-15
+  honest:
+    bank_id: ADD_0152
+    law_refs:
+    - C-14
+  hospital:
+    bank_id: G6_255
+    law_refs:
+    - C-11
+  hour:
+    bank_id: V6_节日_16
+    law_refs:
+    - C-14
+  I:
+    bank_id: V6_核心_0
+    law_refs:
+    - PR-02
+    subject_refs:
+    - PR-02
+  in:
+    bank_id: G3_140
+    law_refs:
+    - P-01
+    - P-03
+    - P-08
+    - P-09
+    - P-11
+    - P-12
+    - P-17
+    - P-18
+    - PB-02
+    - PB-08
+    - PB-09
+    - PB-10
+    - PB-11
+    - PB-12
+    - PB-13
+    subject_refs:
+    - P-03
+  information:
+    bank_id: G6_0339
+    law_refs:
+    - C-03
+    - C-15
+  into:
+    bank_id: G3_K40
+    law_refs:
+    - P-19
+    - PB-01
+  island:
+    bank_id: G5_235
+    law_refs:
+    - P-16
+  it:
+    bank_id: V6_核心_13
+    law_refs:
+    - PR-05
+    - PR-06
+    - PR-07
+    - PR-08
+    - PR-09
+    - PR-10
+    subject_refs:
+    - PR-10
+  library:
+    bank_id: G4_184
+    law_refs:
+    - C-09
+  light:
+    bank_id: G4_157
+    law_refs:
+    - P-07
+    - P-15
+  little:
+    bank_id: V6_数字_54
+    law_refs:
+    - C-17
+    subject_refs:
+    - C-17
+  love:
+    bank_id: V6_日常_63
+    law_refs:
+    - PB-13
+  many:
+    bank_id: V6_数字_45
+    law_refs:
+    - C-17
+    subject_refs:
+    - C-17
+  map:
+    bank_id: G3_141
+    law_refs:
+    - P-10
+    - P-14
+  me:
+    bank_id: V6_核心_1
+    law_refs:
+    - P-10
+    - P-14
+    - PR-01
+    - PR-02
+  milk:
+    bank_id: G1_052
+    law_refs:
+    - C-02
+  Monday:
+    bank_id: G5_210
+    law_refs:
+    - P-09
+  money:
+    bank_id: G4_K03
+    law_refs:
+    - PR-04
+  month:
+    bank_id: V6_节日_2
+    law_refs:
+    - C-03
+    - PR-10
+  moon:
+    bank_id: G2_0507
+    law_refs:
+    - C-08
+    - C-19
+  morning:
+    bank_id: G1_0564
+    law_refs:
+    - P-09
+    - P-17
+    - C-03
+  mother:
+    bank_id: G2_065
+    law_refs:
+    - C-06
+  mountain:
+    bank_id: G5_231
+    law_refs:
+    - P-13
+    - P-16
+    - PB-01
+    - PB-04
+    - PB-05
+    - PB-06
+    - PB-10
+  much:
+    bank_id: V6_数字_46
+    law_refs:
+    - C-17
+    subject_refs:
+    - C-17
+  newspaper:
+    bank_id: V6_学校_19
+    law_refs:
+    - PB-12
+  night:
+    bank_id: G2_0599
+    law_refs:
+    - P-09
+  of:
+    bank_id: V6_核心_54
+    law_refs:
+    - P-02
+  'off':
+    bank_id: G3_K44
+    law_refs:
+    - P-15
+  'on':
+    bank_id: G3_142
+    law_refs:
+    - P-01
+    - P-04
+    - P-08
+    - P-09
+    - P-11
+    - P-12
+    - P-17
+    - P-18
+    - PB-02
+    - PB-03
+    - PB-08
+    - PB-09
+    - PB-10
+    - PB-11
+    - PB-12
+    subject_refs:
+    - P-04
+  out:
+    bank_id: G3_K21
+    law_refs:
+    - P-15
+    - P-19
+  over:
+    bank_id: V6_核心_40
+    law_refs:
+    - P-01
+    - P-02
+    - P-06
+    - P-13
+    - PB-01
+    - PB-05
+    - PB-06
+    - PB-07
+  paper:
+    bank_id: V6_学校_20
+    law_refs:
+    - C-05
+  park:
+    bank_id: G2_080
+    law_refs:
+    - C-10
+    - C-13
+    - PR-03
+  people:
+    bank_id: V6_家庭_27
+    law_refs:
+    - C-16
+    - PR-01
+  piano:
+    bank_id: G4_0498
+    law_refs:
+    - C-11
+    - C-12
+  picture:
+    bank_id: G4_158
+    law_refs:
+    - P-04
+    - P-11
+    - P-18
+    - PB-03
+    - PB-09
+    - PB-10
+  piece:
+    bank_id: V6_数字_40
+    law_refs:
+    - C-05
+    - C-15
+  plane:
+    bank_id: G1_046
+    law_refs:
+    - P-01
+    - P-02
+    - P-06
+    - P-13
+    - PB-01
+    - PB-05
+    - PB-06
+    - PB-07
+  plate:
+    bank_id: G3_0938
+    law_refs:
+    - C-02
+    - C-04
+  play:
+    bank_id: G2_0489
+    law_refs:
+    - P-15
+    - PB-03
+    - C-12
+    - PR-03
+    - PR-07
+    - PR-08
+  please:
+    bank_id: G4_K01
+    law_refs:
+    - PR-04
+  police:
+    bank_id: G3_K38
+    law_refs:
+    - C-16
+  rain:
+    bank_id: G2_0502
+    law_refs:
+    - PR-07
+    - PR-08
+    - PR-10
+  read:
+    bank_id: G2_0492
+    law_refs:
+    - PB-03
+    - PR-04
+    - PR-07
+    - PR-09
+  rice:
+    bank_id: G1_054
+    law_refs:
+    - C-01
+    - C-02
+    - C-05
+    - C-18
+  ring:
+    bank_id: V6_服装_26
+    law_refs:
+    - P-04
+    - PB-11
+  river:
+    bank_id: G5_232
+    law_refs:
+    - P-16
+    - P-19
+  road:
+    bank_id: G4_0592
+    law_refs:
+    - P-16
+    - P-19
+  room:
+    bank_id: V6_家庭_36
+    law_refs:
+    - P-03
+  salt:
+    bank_id: G4_0818
+    law_refs:
+    - C-04
+    - C-07
+    - C-08
+    - C-20
+  school:
+    bank_id: G2_081
+    law_refs:
+    - P-10
+    - P-14
+    - C-11
+  sea:
+    bank_id: G3_0975
+    law_refs:
+    - PB-07
+  season:
+    bank_id: V6_天气_1
+    law_refs:
+    - C-03
+  she:
+    bank_id: V6_核心_10
+    law_refs:
+    - PR-07
+    - PR-11
+    subject_refs:
+    - PR-11
+  sister:
+    bank_id: G2_066
+    law_refs:
+    - P-14
+    - PR-11
+  star:
+    bank_id: G2_0506
+    law_refs:
+    - P-13
+    - PB-05
+    - PB-06
+  station:
+    bank_id: G4_0517
+    law_refs:
+    - P-05
+    - P-18
+    - PB-01
+    - PB-10
+  stomach:
+    bank_id: V6_身体_19
+    law_refs:
+    - C-03
+  student:
+    bank_id: G3_131
+    law_refs:
+    - P-03
+    - P-05
+    - P-18
+    - C-10
+    - C-20
+    - PR-02
+    - PR-11
+  study:
+    bank_id: G4_174
+    law_refs:
+    - PB-12
+    - PR-03
+    - PR-08
+  summer:
+    bank_id: G2_100
+    law_refs:
+    - P-09
+  sun:
+    bank_id: G2_0501
+    law_refs:
+    - P-07
+    - C-07
+    - C-19
+    - PR-10
+  sunny:
+    bank_id: G2_093
+    law_refs:
+    - PR-08
+    - PR-10
+  swim:
+    bank_id: G2_089
+    law_refs:
+    - P-19
+    - PR-07
+  table:
+    bank_id: G2_0930
+    law_refs:
+    - P-04
+    - P-08
+    - P-12
+    - P-13
+    - P-17
+    - PB-02
+    - PB-08
+    - PB-09
+  tea:
+    bank_id: G2_0944
+    law_refs:
+    - C-04
+  teacher:
+    bank_id: G1_007
+    law_refs:
+    - P-05
+    - C-06
+    - C-10
+    - PR-02
+    - PR-04
+    - PR-11
+  team:
+    bank_id: G4_0989
+    law_refs:
+    - P-03
+    - C-16
+  the:
+    bank_id: G1_K02
+    law_refs:
+    - C-07
+    - C-13
+    - C-19
+    - C-20
+    subject_refs:
+    - C-07
+    - C-13
+    - C-19
+    - C-20
+  they:
+    bank_id: V6_核心_19
+    law_refs:
+    - PR-01
+    - PR-05
+    - PR-06
+    - PR-07
+  this:
+    bank_id: V6_核心_23
+    law_refs:
+    - PR-09
+  through:
+    bank_id: ADD_0295
+    law_refs:
+    - PB-04
+    - PB-10
+  tiger:
+    bank_id: G1_020
+    law_refs:
+    - C-10
+    - C-13
+  to:
+    bank_id: V6_核心_48
+    law_refs:
+    - P-10
+    - P-14
+    - PB-01
+  today:
+    bank_id: G2_0414
+    law_refs:
+    - C-03
+    - C-09
+    - C-20
+  train:
+    bank_id: G1_047
+    law_refs:
+    - PB-01
+    - PB-04
+    - PB-10
+  tree:
+    bank_id: G2_079
+    law_refs:
+    - P-02
+    - P-11
+    - PB-12
+    - C-02
+  TV:
+    bank_id: G3_K32
+    law_refs:
+    - P-11
+    - PB-12
+  under:
+    bank_id: G3_143
+    law_refs:
+    - P-12
+    - P-13
+    - P-17
+    - P-18
+    - PB-02
+    - PB-12
+  up:
+    bank_id: G3_K19
+    law_refs:
+    - P-07
+    - P-15
+  wait:
+    bank_id: G3_0796
+    law_refs:
+    - C-15
+  wall:
+    bank_id: G3_0934
+    law_refs:
+    - P-01
+    - P-04
+    - P-06
+    - P-11
+    - P-18
+    - PB-03
+    - PB-05
+    - PB-06
+    - PB-09
+    - PB-10
+  water:
+    bank_id: G1_055
+    law_refs:
+    - P-03
+    - P-07
+    - C-01
+    - C-02
+    - C-17
+    - C-18
+  we:
+    bank_id: V6_核心_15
+    law_refs:
+    - P-05
+    - PB-13
+    - PR-01
+    - PR-03
+    - PR-05
+    subject_refs:
+    - PR-03
+  week:
+    bank_id: V6_节日_3
+    law_refs:
+    - C-03
+  wind:
+    bank_id: G2_0503
+    law_refs:
+    - P-07
+  winter:
+    bank_id: G2_102
+    law_refs:
+    - PB-13
+  wood:
+    bank_id: G4_0983
+    law_refs:
+    - C-02
+  year:
+    bank_id: V6_节日_1
+    law_refs:
+    - C-03
+  you:
+    bank_id: V6_核心_4
+    law_refs:
+    - PB-13
+    - PR-01
+    - PR-02
+    - PR-04
+    subject_refs:
+    - PR-04
