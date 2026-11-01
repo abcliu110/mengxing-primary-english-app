@@ -5,6 +5,7 @@
 //       三张图的几何特征依次闪亮（体积 / 接触面 / 一个点）→ in / on / at 落到各自图下。
 import { scene, OR, INK, GREY } from '../wb5.js';
 import { concept, BLUE, GREEN } from '../lib/concept.js';
+import { BALL, DOOR, drawElement, drawHinged, assertBallGeometry, assertDoorGeometry } from '../props/props.js';   // T16 P2：球/门由元素库定义绘制（model/props/ball.yaml、door.yaml），不再用 ⚽/🚪 字形
 import { shapes, COL, XS, readT, sayLen } from './g14_lib.js';
 import * as SP from '../sprites/hdg14_1.js';
 const ACTS = {};
@@ -20,6 +21,8 @@ export const KNOW = [
 void ACTS;
 
 export default function build() {
+  assertBallGeometry(BALL);   // T16 P2：球元素几何构建期断言（半径三方一致、center/contact/top 锚点同点口径），不过抛错停建
+  assertDoorGeometry(DOOR);   // T16 P2：门元素几何构建期断言（铰接刚体 + 闭合盖满门洞），不过抛错停建
   const K = scene({ sprites: SP }), C = concept(K);
   C.aha({
     see: '三张图：球掉进盒子、球落在桌面、球停在门口靶心那一个点；三张图上都写着汉语同一个字「在」',
@@ -38,11 +41,18 @@ export default function build() {
   const tBall = [G0 + 1.0, G0 + 2.0, G0 + 3.0];
   const glow = {};
   const P = shapes(K, { from: G0, y: SY, glow });
-  // 球：从上方落进盒子 / 落到桌面 / 滚到靶心
-  C.pic({ emoji: '⚽', x: XS.in + 10, y: SY + 10, size: 90, from: tBall[0] });
-  C.pic({ emoji: '⚽', x: XS.on + 20, y: P.on[1] - 30, size: 90, from: tBall[1] });
-  C.pic({ emoji: '⚽', x: XS.at, y: SY, size: 70, from: tBall[2] });
-  C.pic({ emoji: '🚪', x: XS.at + 190, y: SY - 30, size: 150, from: tBall[2] - 0.3 });
+  // 球：从上方落进盒子 / 落到桌面 / 滚到靶心（T16 P2 元素化：球心 = BALL center 锚点，恰对位 shapes() 返回的三图锚点；门 = DOOR 闭合剖面，本地原点即 bbox 中心）
+  // 出场口径与 C.pic 一致：z=2、back 缓动 0.5s 弹入、from 时刻起常驻
+  const clamp01 = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+  const easeBack = q => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(q - 1, 3) + c1 * Math.pow(q - 1, 2); };
+  const elPic = (draw, x, y, s, from) => K.prop((g, t) => {
+    if (t < from) return; const pop = easeBack(clamp01((t - from) / 0.5));
+    g.save(); g.translate(x, y); g.scale(s * pop, s * pop); draw(g); g.restore();
+  }, { from, z: 2 });
+  elPic(g => drawElement(g, BALL), XS.in + 10, SY + 10, 90 / 92, tBall[0]);
+  elPic(g => drawElement(g, BALL), XS.on + 20, P.on[1] - 30, 90 / 92, tBall[1]);
+  elPic(g => drawElement(g, BALL), XS.at, SY, 70 / 92, tBall[2]);
+  elPic(g => drawHinged(g, DOOR, { profile: 'closed' }), XS.at + 190, SY - 30, 0.68, tBall[2] - 0.3);
   ['在', '在', '在'].forEach((z, i) => C.label(z, [XS.in, XS.on, XS.at][i], 300, { size: 70, col: INK, from: G0 + 3.6 + i * 0.25, bold: true }));
   T = Math.max(T, G0 + 4.6);
   T = narr('汉语三张图都说「在」：球在盒子里、在桌面上、在门口。', T, 3.2);

@@ -1,0 +1,94 @@
+# T16 P2 车道 B —— 手写场景处置（38 幕盘点 / 锚点契合替换 / g14 图式盒终局裁定）
+
+日期：2026-11-01 ｜ 车道：P2-B（手写场景）｜ 与车道 A（模板/共享库元素替换）分工：本车道管 B10/B11 分诊的 36 幕 + hd_g14_1（g14 家族收口）+ hd_g39_1（cmp_lib 兄弟幕）= 38 幕。
+纪律：台词/KNOW/ITEMS 逐字零漂移（源码字符串字面量集合比对 + 校验时长逐幕同值双证）；构建先暂存（~/workspace/build_t16p2b/{base,new}）验大小与 </html> 尾后落 your_files；不做 git 操作（工作区 auto.js / zz_p2test_dedup.js 的改动属并行车道，本车道未碰）。
+现有元素基线：15 个 yaml（teapot/cup/knife/apple/bread/book/box/bowl/cake/door/ball/paper/bottle/tap + linda 归档试点），引擎 props.js 提供 drawElement/drawHinged 与 assert{Teapot,Cup,Knife,Apple,Bread,Book,Box,Bowl,Cake,Door,Ball,Paper,Bottle,Tap}Geometry。
+
+## 一、盘点方法
+
+对 38 幕源码 + 4 个手写共享库（g14_lib / cmp_lib / adj_train / fr_lib）全量扫描渲染路径：grep C.pic/emoji 字段/K.prop 私绘函数体逐处读源分类——
+- 字形道具（C.pic 的 emoji 实物）：全 38 幕仅 4 类命中——hd_g14_1 的 ⚽×3+🚪、hd_g18_1 的 ⚽ 贴纸、hd_g14_3 的 👗、hd_g05_1/g38 的 💥（后两者在 cmp/g05 家族语境见处置表）。
+- 私有绘制道具：tense_matrix_1 的 ball()（全家族 8 处调用）、past_clans 的 bell/gear/mouth/slim/ringBell、tense_matrix 的 photo/wave/recDot、adj_train 的火车/气球、g14_lib 的图式三联画（等距盒/桌面/靶心）、cmp_lib 的身高尺+人柱。
+- 数据驱动字形：wordcard 的 RTP/ITEMS emoji 来自词条数据（内容层，非模板道具）。
+结论：真正「实物在空间锚点上被摆/被踢」的路径只有 2 幕——这与 P1 车道 A 的结论一致（手写存量绝大多数是版式/图式而非道具戏）。
+
+## 二、替换清单（本车道实际替换：2 个场景文件、5 条路径、5 个重建产物）
+
+1. **hd_g14_1**（`v5/scenes/hd_g14_1.js`）：原 4 处 C.pic 字形（⚽×3 + 🚪）→ 元素绘制。新增本地 elPic 助手复刻 C.pic 出场口径（z=2、back 缓动 0.5s 弹入、from 起常驻）：
+   - 球×3：`drawElement(g, BALL)`，球心 = BALL 的 center 锚点，恰对位 g14_lib.shapes() 返回的三图锚点——in (410,520) 缩放 90/92、on (980,440) 缩放 90/92、at (1520,510) 缩放 70/92（原字形 size 90/90/70 同口径）。
+   - 门：`drawHinged(g, DOOR, {profile:'closed'})`，本地原点即 bbox 中心，置 (1710,480) 缩放 0.68（高 ≈160，与原 150px 字形同量级），from = tBall[2]−0.3 不变。
+   - 构建期断言：build() 开头 `assertBallGeometry(BALL)` + `assertDoorGeometry(DOOR)`（不过抛错停建）。
+2. **tense_matrix_1**（`v5/scenes/tense_matrix_1.js`）：私有手绘球 ball()（白圆+旋转五边点阵）→ `drawElement(g, BALL)`。轨迹口径逐字保留：起点 = `K.anchorOf(actor, …, 'foot')`（注册表脚锚点）+ 偏移、抛物线 −sin(qπ)·160、飞行时长、stay 语义、prop 的 from/until/z 全不变；自旋角 (t−kickT)*9 与旧五边形同速；元素设计直径 92、缩放 = size/92（全部调用点 size 默认 46 → 0.5）。build() 开头加 `assertBallGeometry(BALL)`。分节件 tense_matrix_p2_1/p3_1/p4_1 转调本幕 build，自动同享（已逐件重建验证）。
+
+## 三、g14 图式盒终局裁定（T16P1_tpl_auto.done 停单 S1 结案）
+
+**裁定：保留手写等距示意（g14_lib.shapes 的等距盒），不再悬置。** 理由：①该盒是「in 图式」的等距线框 + 体积 glow，与桌面、靶心同笔触构成图式三联画，教学语义在图式本身——它画的不是「一个纸箱」而是「容器」这个关系图式；②BOX 元素是正视带盖纸箱（lidPivot 铰链、cavityRim 锚点），与等距体积示意无任何锚点对应，硬套等于换图式且破坏三联画一致性；③球已元素化并锚定在图式点位上（图式坐标系与元素中心锚点在此恰好契合），盒本身无此契合。裁定已写入 model/specs/hd_g14_1.yaml、hd_g14_2.yaml、hd_g14_3.yaml 的 `t16p2.box_verdict`（三幕 yaml 均 safe_load 通过）。后续若立「图式类示意」独立元素口径，另行立项。
+
+## 四、逐幕处置表（38 幕）
+
+记号：换 = 本车道替换｜随母 = 分节件转调母幕、同享母幕处置｜P1换 = P1 车道 A 已替换、本车道复核引用｜保A = 保留手写（图式/示意画法即教学语义）｜保B = 保留（字形/图符层或内容数据层，无元素对应/非道具路径）。已在相应 spec 追加 t16p2 处置注记的幕以 * 标。
+
+| 幕 | 处置 | 依据 |
+|---|---|---|
+| hd_g14_1* | 换 | 球×3+门 → BALL/DOOR（见二）；盒 → 终局裁定保留（见三） |
+| hd_g14_2* | 保A | 无道具绘制路径；三图由 g14_lib 供给（含盒裁定），余为漏斗/卡片文本层 |
+| hd_g14_3* | 保A | 三图 g14_lib（含盒裁定）；👗 单处字形图，无对应元素 |
+| hd_g05_1* | 保B | 无道具路径；💥 为撞击效果字形（无对应元素）+ 文本装置 |
+| hd_g05_2* | 保B | 无道具路径（分筐版式 + 文本装置） |
+| hd_g07_1* | 保A | 主格区/转换门/宾格区为版面图式（门=区界+闪光，非实物门，DOOR 铰链无对应）；区标为文本层字形 |
+| hd_g07_p2_1* | 保A | 同 hd_g07_1（自有 build，同版式） |
+| hd_g18_1* | 保A | 日历/快照双板为版式图式；⚽ 为日历格内 56px 活动贴纸（与 ⏰/📸 同层符号，踢球本体由位图帧 kick0–2 演），不元素化；🌍/☀️ 无对应元素 |
+| hd_g19_2* | 保B | 勋章装置由文本 chip + 人物帧承载，无道具绘制路径（SUP_g14 已裁定保留旁白，渲染无涉） |
+| hd_g37_1* | 保A | cmp_lib：身高尺+人柱为测量图式（柱高即数据，cmAt 驱动）；人头为人物字形；动物字形为比较例图符 |
+| hd_g38_1* | 保A | 同 cmp_lib 口径（💥 为效果字形附记，同 g05） |
+| hd_g39_1* | 保A | cmp_lib：动物本身即被测对象图符（斑马/大象/熊猫/长颈鹿），无对应元素 |
+| tense_matrix_1* | 换 | ball() → BALL 元素（见二） |
+| tense_matrix_p2_1 | 随母 | 转调 tense_matrix_1，已重建验证 |
+| tense_matrix_p3_1 | 随母 | 转调 tense_matrix_1，已重建验证 |
+| tense_matrix_p4_1 | 随母 | 转调 tense_matrix_1，已重建验证 |
+| tense_matrix_2* | 保A | 时间轴波形/录点等抽象装置 + 文本 pop，无道具路径 |
+| tense_matrix_4* | 保A | 同 tense_matrix_2 口径（自有 build） |
+| tense_matrix_3* | 保A | photo 照片卡为版式图式私绘；🏛️ 地标字形无对应元素 |
+| tense_matrix_p2_3 | 随母（保A） | 转调 tense_matrix_3 |
+| past_clans_1* | 保A | bell（金钟罩）门派徽记私绘、¥10 价签图式小品，无对应元素 |
+| past_clans_p2_1 | 随母（保A） | 转调 past_clans_1 |
+| past_clans_p3_1 | 随母（保A） | 转调 past_clans_1 |
+| past_clans_2* | 保A | gear/mouth/ringBell 语音图式私绘（元音换挡隐喻），无对应元素 |
+| past_clans_3* | 保A | slim 图式私绘为核心隐喻画法，无对应元素 |
+| adj_order_1* | 保A | adj_train：火车 = 排序隐喻载体（图式私绘）；pred 气球为手绘椭圆+线（≠ BALL 足球元素，语义不同） |
+| adj_order_2 | 保A | 与 1 共用 adj_train（火车/气球同口径，spec 未单列） |
+| adj_order_3 | 保A | 同上 |
+| adj_order_4 | 保A | 同上 |
+| adj_order_p2_1 | 随母（保A） | 转调 adj_order_1 |
+| adj_order_p3_1 | 随母（保A） | 转调 adj_order_1 |
+| vv_take_out_2* | 保B | fly() 五行是统一字形图符系统，书本为图符例示物（书脊/页平面锚点不参与飞行路径，路径只需中心点；同幕书包字形、门为线），整幕为「里面→外面」图式图解；与 fr_lib 单一商品沿弧流动（P1 换 BOOK）的角色不同 |
+| wordcard_tpl* | 保B | 词条 emoji 来自词条数据 w.emoji（内容层，与 mindmap 叶图同口径），非模板道具路径 |
+| wordcard_items | 保B | 纯数据模块、无渲染 |
+| hd_fr01_1 | P1换 | fr_lib 商品弧已换 BOOK（闭合剖面）；余 💴 货币流无对应元素。详 T16P1_tpl_auto.done 与 7d43296 细化记录 |
+| hd_fr01_2 | P1换 | 同上 |
+| hd_fr01_3 | P1换 | 同上 |
+| hd_fr01_4 | P1换 | 同上 |
+
+## 五、汇总数字
+
+- 处置分布（38 幕）：本车道换 2 幕（hd_g14_1、tense_matrix_1）｜随母同享换 3 幕（tm 分节件）｜P1 已换 4 幕（fr01 家族）｜**保留手写 29 幕**——保A（图式/示意即语义）23 幕、保B（字形/图符/数据层）6 幕。
+- 重建产物 5 个（全部先暂存验大小与 </html> 尾，再落 ~/workspace/your_files/；旧版备份在 ~/workspace/build_t16p2b/prev/）：
+  - gen-stock-hd_g14_1.html：1,108,594 → **1,109,707 B**（同管线基线→新版，+1,113）
+  - gen-stock-tense_matrix_1.html：1,646,712 → **1,646,643 B**（−69）
+  - gen-stock-tense_matrix_p2_1.html：1,646,816 → **1,646,747 B**
+  - gen-stock-tense_matrix_p3_1.html：1,646,815 → **1,646,746 B**
+  - gen-stock-tense_matrix_p4_1.html：1,646,814 → **1,646,745 B**
+- 校验：
+  - hd_g14_1：**官方 insightcheck（--only 口径）不合格 0**，80.0s（与 SUP 基线 80.0s 同值）。
+  - tense_matrix 家族 4 产物：**ic_gen8 等效校验不合格 0**（文字峰值 11%/8%/7%/14%），时长 68.7 / 82.1 / 65.2 / 53.2s 与 B11 基线逐幕同值 → 时间轴零漂移。
+  - 零漂移（源码级）：两改幕与 HEAD 的字符串字面量集合比对——hd_g14_1 仅删 '⚽'/'🚪'（被替换字形本身）、增模块路径与 'closed' 剖面键；tense_matrix_1 仅增模块路径；KNOW/全部台词字符串逐字未动。git diff 仅 2 个场景文件（+19/−10 行，皆代码与注释）。
+- 密帧（~/workspace/shots_t16p2b/）：
+  - g14_new_t4.8.png / g14_new_t12.0.png：三球恰落在箱内/桌面/靶心，DOOR 闭合剖面立于靶心右侧，与图式三联画同框协调；g14_base_t4.8/t12.0、g14_prev_t12.0 为对照。
+  - tm1_new_kick1.png（与 tm1_base_kick1.png 同刻对照）：新球（BALL 元素足球纹）与旧手绘圆球**位置逐点相同**，一球在脚前、一球飞行中；tm1_new_kick4.png：第 4 踢——球贴脚锚点、另一球带旋转纹飞行，时间轴橙点排布不变。
+
+## 六、备注（观察，非本车道处置项）
+
+1. **⚽ 字形在本 VM 的 Chrome 中近乎不可见**：基线与旧交付版（prev，帧 sha 与新基线全等）在 t=4.8/12.0 均只见桌面线被白色球体遮断的缺口与靶心极淡的斑纹环——字形本体（白球面+黑斑）在此环境下对比度极低。终端用户系统（完整彩色 emoji 字体）下应正常显示，此点未经终端验证、仅登记为环境观察；但客观上 BALL 元素在本环境帧中清晰可读，替换同时消除了这条字形渲染依赖。
+2. tense_matrix 家族为 stretch 1.5 场景：播放器 __seek 用的是拉伸后时间（场景时 31.1s ≈ 播放器 46.6s），后续车道取帧时注意换算（g14 无 stretch、直用）。
+3. 22 份 spec 已追加 t16p2 注记（含 g14 三幕盒裁定原文），全部 yaml safe_load 通过；adj_order_2/3/4 与母幕共用 adj_train，未单列注记（处置同 adj_order_1，见四表）。
+4. 本车道未做 git 操作；提交由主管线统一处理。建议提交集：v5/scenes/hd_g14_1.js、v5/scenes/tense_matrix_1.js、model/specs/（22 份 t16p2 注记）、本记录、your_files 5 个重建产物。

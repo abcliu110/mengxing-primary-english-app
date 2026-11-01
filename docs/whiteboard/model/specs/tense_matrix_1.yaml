@@ -16,3 +16,6 @@ validation:
   build: gen-stock-tense_matrix_1.html（~/workspace/your_files/，1,584,464 字节，尾含 </html>）
   ic_gen8: ✅ 不合格 0（68.7s，文字峰值 11%，无页面报错）
   insightcheck_official: 官方 insightcheck --only 口径：存量手写幕不在官方强制集内（实测 past_clans_1：强制检查 0 幕，不合格 0，属空集结论）；实际校验以 ic_gen8 等效校验为准（B10 先例）
+
+t16p2:
+  swapped: 私有手绘球（圆 + 五边点阵）已换 BALL 元素：球心轨迹口径不变（起点 = actor 的 foot 锚点，抛物线与自旋角 (t-kickT)*9 同旧口径），assertBallGeometry 构建期断言；分节件 p2/p3/p4 转调本幕 build，自动同享。重建 4 产物（1,646,643 / 1,646,747 / 1,646,746 / 1,646,745 B），ic_gen8 不合格 0，时长与 B11 基线逐幕同值（68.7 / 82.1 / 65.2 / 53.2s）；密帧 shots_t16p2b/tm1_new_kick1、tm1_new_kick4（球位与旧手绘逐点同位）。详见 updates/T16P2_handwritten.done。

@@ -37,3 +37,7 @@ validation:
   shots: 42s 帧定稿旁白整段上屏（原型图+三例外齐全）；58s 帧时间 chips 与朗读句正常
   zero_hit: sf-013 original 全仓 586 场景文件逐字+归一化双通道零命中
   sup_batch_2026-11-01: 重建 gen-stock-hd_g14_1.html（1,065,937 字节，新句在场、旧句零命中）；ic_gen8 等效校验不合格 0（80.0s，文字峰值 12%）
+
+t16p2:
+  box_verdict: 终局裁定——保留手写等距示意（g14_lib.shapes）。理由：该盒是「in 图式」的等距线框 + 体积 glow，与桌面/靶心同笔触构成图式三联画，教学语义在图式本身；BOX 元素（带盖纸箱，lidPivot/cavity 锚点）与等距体积示意无锚点对应，硬套将改变图式语义并破坏三联画一致性。T16P1_tpl_auto 停单 S1 在此结案、不再悬置；后续若立「图式类示意」独立元素口径，另行立项。
+  swapped: 球×3 与门（原 C.pic 字形）已换 BALL/DOOR 元素（drawElement/drawHinged + assertBallGeometry/assertDoorGeometry 构建期断言）；球心 = BALL center 锚点，对位 shapes() 三图锚点，门为闭合剖面、本地原点即 bbox 中心。重建 gen-stock-hd_g14_1.html（1,109,707 B），官方 insightcheck 不合格 0（80.0s，与基线同值）；密帧 shots_t16p2b/g14_new_t4.8、g14_new_t12.0。详见 updates/T16P2_handwritten.done。

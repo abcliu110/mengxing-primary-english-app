@@ -3,25 +3,24 @@
 // 版面：12 块白板（4 列 × 3 行），镜头逐块推过去，最后拉远看全图。
 // 角色关键帧：sprites/tm1.js（AI 绿幕帧：踢球、妈妈上课 / 开车、小鸟、牛奶 / 茶 / 果汁、女孩走路）
 import { scene, OR, OR2, INK, GREY } from '../wb5.js';
+import { BALL, drawElement, assertBallGeometry } from '../props/props.js';   // T16 P2：踢出的球由元素库定义绘制（model/props/ball.yaml），不再用手绘圆+五边形
 import * as SP from '../sprites/tm1.js';
 
 // 场景是工厂函数：播放器先装好字体再调用（K.measure 需要真实字宽）
 export default function build() {
+assertBallGeometry(BALL);   // T16 P2：球元素几何构建期断言（半径三方一致、center/contact/top 锚点同点口径），不过抛错停建
 const K = scene({ sprites: SP, stretch: 1.5, clip: [0, 45.8] });   // 决策 36-② 时间窗分节：本文件 = 第 1 节，第 2…4 节见 tense_matrix_p2_1.js …
 const REG = i => [(i % 4) * 2100, Math.floor(i / 4) * 1250];
 const go = (i, t, d = 0.9, z = 1) => { const [x, y] = REG(i); K.cam(t, { x: x + 960, y: y + 540, z, d, ease: 'power2.inOut' }); };
 // 朗读时第 n 个词点亮的时刻（与 wb5 底部字幕同一公式）
 const wordT = (t, en, word, w) => t + (word ? 0.45 + word.split(/\s+/).length * 0.42 : 0) + Math.max(0, en.split(/\s+/).findIndex(x => x.toLowerCase().replace(/[^a-z']/g, '') === w)) * 0.36;
 const say = (t, en, o = {}) => { K.say(t, en, o); return o.word ? 0.45 + o.word.split(/\s+/).length * 0.42 + en.split(/\s+/).length * 0.36 + 0.9 : en.split(/\s+/).length * 0.36 + 0.9; };
-// 踢出去的球：kickT 时刻从脚尖出发，沿抛物线飞到 to
+// 踢出去的球：kickT 时刻从脚尖出发，沿抛物线飞到 to（T16 P2：球心轨迹口径不变——起点 = actor 的 foot 锚点 + 偏移；球体改由 BALL 元素绘制，本地原点 = center 锚点，飞行中自旋角与旧手绘五边形同速 (t-kickT)*9；元素设计直径 92，缩放 = size/92）
 const ball = (actor, kickT, to, flight = 0.9, { stay = true, size = 46 } = {}) => K.prop((g, t) => {
   const foot = K.anchorOf(actor, Math.max(t, kickT), 'foot');
   let x = foot[0] + size * 0.4, y = foot[1];
   if (t >= kickT) { const q = Math.min(1, (t - kickT) / flight); x = x + (to[0] - x) * q; y = y + (to[1] - y) * q - Math.sin(q * Math.PI) * 160; if (q >= 1 && !stay) return; }
-  g.save(); g.strokeStyle = INK; g.lineWidth = 4; g.fillStyle = '#fff';
-  g.beginPath(); g.arc(x, y, size / 2, 0, 7); g.fill(); g.stroke();
-  g.fillStyle = INK; const r = size * 0.17; g.beginPath(); for (let i = 0; i < 5; i++) { const a = i * 1.2566 - 1.57 + (t >= kickT ? (t - kickT) * 9 : 0); g.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r); } g.fill();
-  g.restore();
+  g.save(); g.translate(x, y); if (t >= kickT) g.rotate((t - kickT) * 9); const s = size / 92; g.scale(s, s); drawElement(g, BALL); g.restore();
 }, { from: actor.reveal ?? 0, until: actor.until ?? 1e9, z: 2 });
 
 // ───────── 1 标题板 ─────────
