@@ -25,3 +25,8 @@
   `cd docs/whiteboard/v5 && python3 sprites/build_sprites.py fb39v2 l_coff0 l_coff2 l_idea0 l_laugh l_point l_think l_w0 l_w1 l_w2 l_w3 woman`
 - app_check15「年级 + 词性」期望值改用 app 自身的 `wlPosMatch`（随 bccab02 词元匹配修复同步，原 `includes('n.')` 会把 pron. 算进名词）。
 - app_check15 期望值同时排除 `verb_form_of` 条目（对齐 6df094f 动词只显示原形）。
+
+## 介词动画·调研原样复刻（2026-11-02，Hark）
+- 文件：laws-prototype/prep-anim-research-copy-v1.html（单文件离线；源码与构建脚本在沙盒 /workspace/work/prepcopy/，`cat engine.js s12.js s34.js s56.js s78.js main.js > app.js && python3 build.py`）。
+- 用途：按调研 02（介词界面）与 05（白板动画）原样复刻 9 节做法，每节标注出处与"细节为推测"，供用户看效果后再改进。未嵌入 App。
+- 已知不足：05 报告在 §1.4 中途被截断，§2 缺失；造型均为推测；8b 节与 whiteboard-prototype-v1.html 的 over 课可能重复，未核对。
