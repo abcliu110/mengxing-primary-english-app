@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>萌星英语 · 介词小系统</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f6f8ff; color: #1d2547; }
+  header { background: linear-gradient(135deg, #4f7cff, #7a5cff); color: #fff; padding: 18px 16px 14px; }
+  header h1 { margin: 0 0 4px; font-size: 22px; }
+  header p { margin: 0; font-size: 13px; opacity: .92; }
+  main { max-width: 1060px; margin: 0 auto; padding: 14px 12px 40px; }
+  .gsec { background: #fff; border: 1px solid #e2e7f5; border-radius: 14px; padding: 12px 14px; margin-bottom: 14px; }
+  .gsec h2 { margin: 2px 0 4px; font-size: 18px; }
+  .meta { color: #5a6482; font-size: 13px; margin-bottom: 8px; }
+  .units { display: flex; flex-direction: column; gap: 8px; }
+  .uchip { display: block; background: #f4f7ff; border: 1px solid #dbe4ff; border-radius: 11px; padding: 9px 12px; cursor: pointer; font-size: 15px; color: #1d2547; }
+  .uchip b { color: #3730a3; margin-right: 6px; }
+  .uchip .cnt { background: #4f7cff; color: #fff; border-radius: 999px; padding: 0 7px; margin-left: 6px; font-size: 12px; white-space: nowrap; }
+  .tablechip { display: block; background: #e6f9f0; border: 1px solid #b2e6cd; border-radius: 11px; padding: 11px 12px; cursor: pointer; font-size: 16px; color: #14532d; }
+  .back { display: inline-block; margin-bottom: 10px; color: #4f7cff; font-size: 14px; cursor: pointer; }
+  .big { font-size: 24px; margin: 2px 0; line-height: 1.35; }
+  .sub { color: #5a6482; font-size: 14px; }
+  .badge { display: inline-block; background: #0e9f6e; color: #fff; border-radius: 999px; padding: 3px 12px; font-size: 13px; }
+  .lawbox { background: #fffbe8; border: 1px solid #f0df9a; border-radius: 12px; padding: 12px 14px; margin: 12px 0; }
+  .lawbox .kid { font-size: 16px; line-height: 1.65; }
+  .lawbox .src { color: #7a6a20; font-size: 12px; margin-top: 6px; }
+  .beat { background: #fff; border: 1px solid #e2e7f5; border-left: 4px solid #4f7cff; border-radius: 10px; padding: 10px 12px; margin: 8px 0; }
+  .beat .bt { font-weight: 700; color: #3730a3; margin-bottom: 3px; }
+  .beat .bk { line-height: 1.6; }
+  .beat .bv { color: #8492b8; font-size: 12px; margin-top: 4px; }
+  .ex { background: #fff; border: 1px solid #e2e7f5; border-radius: 10px; padding: 10px 12px; margin: 8px 0; }
+  .ex .s { font-size: 17px; font-weight: 600; }
+  .ex .note { color: #5a6482; font-size: 13px; margin-top: 3px; }
+  .ex .ws { margin-top: 7px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .wchip { display: inline-flex; align-items: center; gap: 4px; background: #f4f7ff; border: 1px solid #dbe4ff; border-radius: 999px; padding: 2px 4px 2px 10px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 9px; margin: 12px 0; }
+  .wc { background: #fff; border: 1px solid #e2e7f5; border-radius: 11px; padding: 9px 10px; position: relative; }
+  .wc .w { font-size: 19px; font-weight: 700; }
+  .wc .ph { color: #51608c; font-size: 13px; }
+  .wc .mn { color: #333c58; font-size: 13px; margin-top: 2px; }
+  .wc .em { font-size: 19px; float: right; }
+  .spk { border: none; background: #eef2ff; border-radius: 999px; width: 30px; height: 30px; font-size: 15px; cursor: pointer; line-height: 1; box-shadow: 0 1px 3px rgba(30,27,75,.18); padding: 0; }
+  .wc .spk { position: absolute; right: 6px; bottom: 6px; width: 34px; height: 34px; font-size: 17px; }
+  .spk:active { background: #c7d2fe; transform: scale(.94); }
+  .errbox { background: #fdf2f2; border: 1px dashed #e5a3a3; border-radius: 12px; padding: 10px 14px; color: #7a2020; font-size: 14px; margin: 12px 0; }
+  .quiz { background: #fff; border: 1px solid #e2e7f5; border-radius: 12px; padding: 12px 14px; margin: 12px 0; }
+  .quiz h3 { margin: 4px 0 8px; }
+  .opts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .opt { font-size: 16px; padding: 8px 16px; border-radius: 10px; border: 2px solid #c9d4ff; background: #f4f7ff; cursor: pointer; }
+  .opt.ok { border-color: #0e9f6e; background: #e6f9f0; }
+  .opt.no { border-color: #e03131; background: #fdecec; }
+  .hint { color: #b34700; font-size: 14px; margin-top: 8px; display: none; line-height: 1.6; }
+  .sec { margin: 20px 0 8px; font-size: 17px; color: #3730a3; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🧭 萌星英语 · 介词小系统</h1>
+  <p>每个介词都是一张原型图加一张亲戚网。词表全部来自词库——符合的词，一个不少。</p>
+</header>
+<main id="app"></main>
+<script>
+const DATA = {"units": [{"id": "P-01", "ord": 1, "title": "一个介词 = 一张原型图 + 一张亲戚网（有原则的多义）", "kid": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。", "beats": [{"beat": "原型图", "kid": "先认每个介词最主要的那张图：in 是装进里面，on 是贴在面上，at 是一个点。", "vis": "三个介词的原型图式并排（容器/贴面/点），作本区总图"}, {"beat": "亲戚网的长法", "kid": "新用法不是凭空来的：over 先有「在上面」，才长出「盖住」，再长出「越过」。", "vis": "over 网络三层图：中心 ABOVE → 覆盖 → 越过"}], "exs": [{"s": "The bird flew over the wall.", "note": "操场围墙，鸟飞过去——越过义贴近中心", "lv": 1, "w": ["G1_013", "V6_核心_40", "G3_0934"]}, {"s": "The cat is in the box.", "note": "纸箱里的猫——in 的原型场景", "lv": 1, "w": ["G1_014", "G3_140", "G1_0994"]}, {"s": "The plane flew over the hill.", "note": "飞机从山的上方越过——上方+路径的引申", "lv": 2, "w": ["G1_046", "V6_核心_40", "G2_077"]}, {"s": "The book is on the desk.", "note": "书桌场景——on 的原型场景，与 in 形成对照", "lv": 2, "w": ["G1_002", "G3_142", "G1_0928"]}], "words": ["G1_013", "G1_002", "G1_0994", "G1_014", "G1_0928", "G2_077", "G3_140", "G3_142", "V6_核心_40", "G1_046", "G3_0934"], "errs": [], "pend": ["介词义项清单式误用"], "quiz": [{"q": "第一次学 over，先记哪一个意思最划算？", "opts": ["在……上方（中心义）", "盖住", "结束"], "ans": "在……上方（中心义）", "hint": "mechanism[0]"}]}, {"id": "P-02", "ord": 2, "title": "原型不是凭感觉选的：四条证据定中心", "kid": "全家福中间放谁的照片，要讲证据：谁最老、谁亲戚最多、谁最能代表全家——不是随便挑的。", "beats": [{"beat": "四条证据", "kid": "选中心要过四关：最老、亲戚最多、最能跟邻居分工、最能猜出别的亲戚。", "vis": "四条证据的清单图 + over 的四关全过标记"}, {"beat": "over 的裁决示范", "kid": "over 的老家是「在上方」：它最老、亲戚最多，所以坐在全家福中间。", "vis": "over 网络图上标出 8 个涉 ABOVE 的节点"}], "exs": [{"s": "The bird is over the tree.", "note": "鸟在树上方——中心义 ABOVE", "lv": 1, "w": ["G1_013", "V6_核心_40", "G2_079"]}, {"s": "The plane is above the clouds.", "note": "与邻居 above 对照——证据三（对照集）", "lv": 1, "w": ["G1_046", "V6_核心_39", "G3_0505"]}, {"s": "The car went over the bridge.", "note": "越过义——由中心义可预测的引申（证据四）", "lv": 2, "w": ["V6_核心_40", "G5_229"]}, {"s": "The ball rolled over the hill.", "note": "滚过山坡——上方+路径", "lv": 2, "w": ["G1_041", "V6_核心_40", "G2_077"]}], "words": ["V6_核心_39", "G1_041", "G1_013", "G5_229", "G3_0505", "G2_077", "V6_核心_54", "V6_核心_40", "G1_046", "G2_079"], "errs": [], "pend": ["中心义误定"], "quiz": [{"q": "判定一个义项是不是原型，下面哪一条不是 Tyler & Evans 的证据？", "opts": ["历史上最早出现", "老师觉得最常用", "最能预测其他义项"], "ans": "老师觉得最常用", "hint": "mechanism[0]"}]}, {"id": "P-03", "ord": 3, "title": "in 的原型是「装进容器」：边界之内，且受容器影响", "kid": "in 就是「进到里面」：在盒子里、在房间里、在队伍里——被围起来，就是 in。", "beats": [{"beat": "容器图式", "kid": "东西装进口袋、杯子，人进屋子——装进一个有边的地方，就是 in 的老家。", "vis": "容器剖面图：物体在边界之内，容器以虚线标出「影响」"}, {"beat": "容器可以变大变抽象", "kid": "城市是装人的大容器，队伍是装人的长容器，in trouble 是泡在麻烦里出不来。", "vis": "同心放大图：盒子→房间→城市→状态"}], "exs": [{"s": "The cat is in the box.", "note": "纸箱与猫——最典型的容器场景", "lv": 1, "w": ["G1_014", "G3_140", "G1_0994"]}, {"s": "The dog is in the room.", "note": "房间是装人和物的容器", "lv": 1, "w": ["G1_015", "G3_140", "V6_家庭_36"]}, {"s": "The students are in the team.", "note": "队伍作为集合容器（学生为复数泛指，students 词形经词库 student 归一）", "lv": 2, "w": ["G3_131", "G3_140", "G4_0989"]}, {"s": "The water is in the cup.", "note": "液体被杯子装住并受其形状影响", "lv": 2, "w": ["G1_055", "G3_140", "G2_0936"]}], "words": ["G1_0994", "G1_014", "G2_0936", "G1_015", "G3_140", "V6_家庭_36", "G3_131", "G4_0989", "G1_055"], "errs": [], "pend": ["in/on 切分误用"], "quiz": [{"q": "「小鸟在鸟笼里」用哪个词最贴？", "opts": ["in", "on", "at"], "ans": "in", "hint": "mechanism[0]"}]}, {"id": "P-04", "ord": 4, "title": "on 的原型是「贴面加承重」：接触面在替它撑着", "kid": "on 就是「贴在表面上」：东西挨着一个面，靠这个面托着、挂着、套着。", "beats": [{"beat": "贴面", "kid": "书贴在桌面上，画贴在墙上，戒指套在手指上——都先要「挨着一个面」。", "vis": "三种面朝向并排：桌面（托）/墙面（挂）/手指（套），同一图式"}, {"beat": "承重", "kid": "面不只是挨着，还要「负责」：没有桌面，书就掉下去了。", "vis": "桌面抽走→书下落的对照帧"}], "exs": [{"s": "The book is on the desk.", "note": "书桌——水平面承托", "lv": 1, "w": ["G1_002", "G3_142", "G1_0928"]}, {"s": "The picture is on the wall.", "note": "挂画——垂直面附着（中国孩子高发错位点，见 PB-12）", "lv": 1, "w": ["G4_158", "G3_142", "G3_0934"]}, {"s": "The ring is on her finger.", "note": "戒指套手指——环绕式承托", "lv": 2, "w": ["V6_服装_26", "G3_142", "V6_身体_13"]}, {"s": "The cat is on the table.", "note": "猫在桌面上——面承托活物", "lv": 2, "w": ["G1_014", "G3_142", "G2_0930"]}], "words": ["G1_002", "G1_014", "G1_0928", "V6_身体_13", "G3_142", "G4_158", "V6_服装_26", "G2_0930", "G3_0934"], "errs": [], "pend": ["汉语「上」直译误用 in/at"], "quiz": [{"q": "画挂在墙上，为什么用 on 不用 in？", "opts": ["画贴在墙面上，墙面负责挂住它", "画在墙的里面", "墙是一个点"], "ans": "画贴在墙面上，墙面负责挂住它", "hint": "mechanism[0]"}]}, {"id": "P-05", "ord": 5, "title": "at 的原型是「当成一个点」：把对象压扁成坐标", "kid": "at 是把东西看成地图上的一个小点点：地方再大，在 at 眼里也只是一个点。", "beats": [{"beat": "点化", "kid": "车站那么大，在地图上也只是一个点——说 at 的时候，心里想的就是那个点。", "vis": "车站实景渐缩成地图上的一个点"}, {"beat": "点在各域复现", "kid": "地方可以是一个点，时间也可以：五点钟就是时间线上的一个点。", "vis": "地点轴与时间轴并排，at 同点亮两轴的点位"}], "exs": [{"s": "The student is at the station.", "note": "车站作为位置点", "lv": 1, "w": ["G3_131", "V6_核心_37", "G4_0517"]}, {"s": "We are at home.", "note": "家被点化为所在位置", "lv": 1, "w": ["V6_核心_15", "V6_核心_37", "V6_家庭_34"]}, {"s": "The teacher is at the door.", "note": "门口是一个位置点", "lv": 2, "w": ["G1_007", "V6_核心_37", "G1_0932"]}, {"s": "The bus is at the station.", "note": "车辆到站——点位到达", "lv": 2, "w": ["G2_105", "V6_核心_37", "G4_0517"]}], "words": ["V6_核心_37", "G2_105", "G1_0932", "V6_家庭_34", "G4_0517", "G3_131", "G1_007", "V6_核心_15"], "errs": [], "pend": ["at/in 点与容器混用"], "quiz": [{"q": "at the station 里的 station 被看成什么？", "opts": ["一个点", "一个容器", "一个面"], "ans": "一个点", "hint": "mechanism[0]"}]}, {"id": "P-06", "ord": 6, "title": "over 的中心是「在上方」，不是「盖住」：一个全家福的裁决示范", "kid": "over 的老家是「在上面」：毯子盖在上面，是因为它先要在上面；跳过栅栏，是从上面过去。", "beats": [{"beat": "中心在上方", "kid": "先认老家：over 是「在上面」——鸟在墙的上方，飞机在山的上方。", "vis": "over 全家福：中心 ABOVE 节点高亮"}, {"beat": "亲戚按代排队", "kid": "毯子盖住东西，是因为它在上面挡住了；跳过栅栏，是从上面带着路过去。", "vis": "三代引申链：上方 → 覆盖 → 越过 → 结束"}], "exs": [{"s": "The bird flew over the wall.", "note": "从上方越过——中心与路径的结合", "lv": 1, "w": ["G1_013", "V6_核心_40", "G3_0934"]}, {"s": "The plane flew over the clouds.", "note": "云层上方——纯上方义", "lv": 1, "w": ["G1_046", "V6_核心_40", "G3_0505"]}, {"s": "The ball went over the bridge.", "note": "球越过桥面", "lv": 2, "w": ["G1_041", "V6_核心_40", "G5_229"]}, {"s": "The cat jumped over the box.", "note": "跳过纸箱——越过义的儿童场景", "lv": 2, "w": ["G1_014", "V6_核心_40", "G1_0994"]}], "words": ["G1_041", "G1_013", "G1_0994", "G5_229", "G1_014", "G3_0505", "V6_核心_40", "G1_046", "G3_0934"], "errs": [], "pend": ["over/above 混用"], "quiz": [{"q": "over 的中心义是哪一个？", "opts": ["在……上方", "盖住", "翻转"], "ans": "在……上方", "hint": "mechanism[0]"}]}, {"id": "P-07", "ord": 7, "title": "up 是「多」：数量往上涨，所以 prices go up", "kid": "水越多，杯子里的水位就越高——所以英语里「变多」也用 up：声音变大、价格变高，都往「上」走。", "beats": [{"beat": "同场同现", "kid": "往杯子里倒水：水变多了，水位也变高了——两件事总是一起发生。", "vis": "倒水动画：水量条与水位线同步上升"}, {"beat": "数量借 up", "kid": "价格涨了、声音大了，英语都说 up——因为它们像水位一样往上走。", "vis": "价格标签与音量条沿竖直轴上升"}], "exs": [{"s": "The water goes up in the cup.", "note": "倒水时水位上升——经验相关的原场景", "lv": 1, "w": ["G1_055", "G3_K19", "G2_0936"]}, {"s": "The wind is up.", "note": "风变大了——量增用 up（登记用法，量级义）", "lv": 1, "w": ["G3_K19", "G2_0503"]}, {"s": "Turn the light up.", "note": "把灯调亮——量增的动作指令（亮度量）", "lv": 2, "w": ["G4_157", "G3_K19"]}, {"s": "The sun is up.", "note": "太阳升起来了——空间义本体，与数量义同源对照", "lv": 2, "w": ["G3_K19", "G2_0501"]}], "words": ["G2_0936", "G4_157", "G2_0501", "G3_K19", "G1_055", "G2_0503"], "errs": [], "pend": ["up 引申义误推"], "quiz": [{"q": "为什么「价格变高」用 up 说？", "opts": ["量变多时东西会往上升，经验把「多」和「上」绑在了一起", "up 本来就是「贵」的意思", "随便选的，没有道理"], "ans": "量变多时东西会往上升，经验把「多」和「上」绑在了一起", "hint": "mechanism[0]"}]}, {"id": "P-08", "ord": 8, "title": "几何算一半，功能算另一半：苹果在碗沿之下为什么还能说 in（功能几何框架）", "kid": "碗的工作是「装」，桌子的工作是「托」——东西有没有被装好、被托好，比它在哪儿更重要。", "beats": [{"beat": "先看图式，再看功能", "kid": "苹果装在碗里，哪怕没冒尖，也是 in——因为碗就是用来装的。", "vis": "同一只碗两帧：苹果低于碗沿 / 高于碗沿，均标 in 并亮起「碗在盛」功能标"}, {"beat": "功能翻转选择", "kid": "杯子放在桌上是 on，因为桌子在托它；换个东西不起作用了，说法就会变。", "vis": "倾斜容器实验示意：几何不变，功能变，选择变"}], "exs": [{"s": "The apple is in the bowl.", "note": "苹果在碗中——碗的盛装功能", "lv": 1, "w": ["G1_037", "G3_140", "G3_0937"]}, {"s": "The cup is on the table.", "note": "桌面托杯——承托功能", "lv": 1, "w": ["G2_0936", "G3_142", "G2_0930"]}, {"s": "The bananas are in the bowl.", "note": "香蕉装碗（复数泛指，词形经 banana 归一）", "lv": 2, "w": ["G1_038", "G3_140", "G3_0937"]}, {"s": "The books are on the table.", "note": "多本书在桌面（复数泛指，词形经 book 归一）", "lv": 2, "w": ["G1_002", "G3_142", "G2_0930"]}], "words": ["G1_037", "G1_038", "G1_002", "G3_0937", "G2_0936", "G3_140", "G3_142", "G2_0930"], "errs": [], "pend": ["纯几何判介词"], "quiz": [{"q": "苹果没有冒出碗沿，却说 in the bowl，最重要的理由是？", "opts": ["碗的功能就是盛东西，它正在盛", "苹果离碗很近", "苹果是圆的"], "ans": "碗的功能就是盛东西，它正在盛", "hint": "mechanism[0]"}]}, {"id": "P-09", "ord": 9, "title": "时间介词是把空间图「借」到时间上：时长定介词是伪规则", "kid": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。", "beats": [{"beat": "三图借用", "kid": "早上是一段时间，像泡在水里用 in；星期一是一天，像贴在日历上用 on；五点钟是一个点，用 at。", "vis": "空间三图（容器/面/点）与时间三例（in the morning / on Monday / at 5）一一连线"}, {"beat": "伪规则当场破", "kid": "有人说「短的时间用 at」——可是 at night 的 night 是一整夜，in the morning 的 morning 也不到一天，规则当场就不对了。", "vis": "伪规则卡被两个反例划破"}], "exs": [{"s": "We play in the morning.", "note": "上午时段——容器图", "lv": 1, "w": ["G3_140", "G1_0564"]}, {"s": "We have English on Monday.", "note": "星期一——日历面", "lv": 1, "w": ["G3_142", "G5_210"]}, {"s": "The bus comes at five.", "note": "五点——时刻点（数字词 five 已在库）", "lv": 2, "w": ["V6_核心_37", "G1_022"]}, {"s": "We swim in summer.", "note": "季节是更长的容器", "lv": 2, "w": ["G3_140", "G2_100"]}], "words": ["V6_核心_37", "G3_0565", "G1_022", "G3_140", "G5_210", "G1_0564", "G2_0599", "G3_142", "G2_100"], "errs": [], "pend": ["时长伪规则误用（如 *at the morning 类推）"], "quiz": [{"q": "in the morning 用 in，是因为把 morning 看成了什么？", "opts": ["一段时间容器", "一个点", "一天的面"], "ans": "一段时间容器", "hint": "mechanism[0]"}]}, {"id": "P-10", "ord": 10, "title": "教介词要教「图 + 长法」，不要教义项清单：三组教学实验的共识", "kid": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。", "beats": [{"beat": "按图索引", "kid": "新用法不用一条条背：把它挂到认识的图或者近亲身上，就记住了。", "vis": "新义项节点逐个挂上 over 网络的示意"}, {"beat": "迁移证据", "kid": "（教师侧）学生没学过的用法也能猜对，说明他们学到的是图，不是句子。", "vis": "实验结果条形示意（只示方向，不编数值）"}], "exs": [{"s": "We go to school.", "note": "to 的终点图——教学实验的核心词之一", "lv": 1, "w": ["V6_核心_48", "G2_081"]}, {"s": "This gift is for me.", "note": "for 的受益图", "lv": 1, "w": ["V6_核心_49", "V6_核心_1"]}, {"s": "Look at the door.", "note": "at 的瞄准图", "lv": 2, "w": ["V6_核心_37", "G1_0932"]}, {"s": "Look at the map.", "note": "目光落点——点的引申", "lv": 2, "w": ["V6_核心_37", "G3_141"]}], "words": ["V6_核心_37", "G1_0932", "V6_核心_49", "G3_141", "V6_核心_1", "G2_081", "V6_核心_48"], "errs": [], "pend": ["义项清单式死记（教学侧风险，非学生错句）"], "quiz": [{"q": "教介词时，哪种做法有实验支持、还能迁移到没教过的用法？", "opts": ["讲原型图 + 引申理据", "发义项清单背诵", "只做替换操练"], "ans": "讲原型图 + 引申理据", "hint": "mechanism[0]"}]}, {"id": "P-11", "ord": 11, "title": "华语学生的介词错误是「切分不同」，不是「记性不好」", "kid": "中文和英语像两把不同的尺子，量同一个地方，刻度画的位置不一样。用错介词常常不是忘了，是拿错了尺子。", "beats": [{"beat": "两把尺子", "kid": "中文说「在桌子上、在盒子里」，靠后面的「上、里」分工；英语靠 in、on、at 三张图分工——分工的位置不一样。", "vis": "同一场景两把尺子并排量：汉语刀口 vs 英语刀口"}, {"beat": "错位高发区", "kid": "「在墙上」要用 on、「在树上」苹果和鸟还不一样——这些地方最容易拿错尺子，要多练。", "vis": "墙面与树两个高发点位标红"}], "exs": [{"s": "The picture is on the wall.", "note": "汉语「在墙上」的「上」在此归 on——切分对照点", "lv": 1, "w": ["G4_158", "G3_142", "G3_0934"]}, {"s": "The apples are on the tree.", "note": "苹果长在树上（树的一部分）用 on（词形经 apple 归一）", "lv": 1, "w": ["G1_037", "G3_142", "G2_079"]}, {"s": "The bird is in the tree.", "note": "鸟在枝叶之间用 in——与苹果对照，汉语不切这一刀", "lv": 2, "w": ["G1_013", "G3_140", "G2_079"]}, {"s": "I read it in the newspaper.", "note": "「在报纸上」归 in——汉语「上」横跨三家的一例（详见 PB-12）", "lv": 2, "w": ["G1_002", "G3_140", "G3_K32"]}], "words": ["G1_037", "G1_013", "G1_002", "G3_140", "G3_142", "G4_158", "G2_079", "G3_K32", "G3_0934"], "errs": [], "pend": ["介词概念迁移误用（pp 类）"], "quiz": [{"q": "中国学生总把某些介词用错，最主要的原因是？", "opts": ["汉语和英语切分空间的刀口位置不同", "单词没背够", "考试太难"], "ans": "汉语和英语切分空间的刀口位置不同", "hint": "mechanism[0]"}]}, {"id": "P-12", "ord": 12, "title": "谁做图形谁做背景：介词句子先定位「要找的东西」", "kid": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。", "beats": [{"beat": "先定找谁", "kid": "杯子在桌子上——我们在找杯子，杯子站前面；桌子又大又稳，站在后面当背景。", "vis": "杯子高亮（图形）+ 桌子灰化（背景）+ on 钉子图标"}, {"beat": "分工可反转", "kid": "要是丢的是桌子，也可以说「桌子在杯子下面」——不算错，只是听起来怪，因为平时没人找桌子。", "vis": "同一场景两句对照，一句标「常说」，一句标「怪但不算错」"}], "exs": [{"s": "The cup is on the table.", "note": "找杯子——杯子做图形", "lv": 1, "w": ["G2_0936", "G3_142", "G2_0930"]}, {"s": "The cat is in the box.", "note": "找猫——猫做图形，纸箱做背景", "lv": 1, "w": ["G1_014", "G3_140", "G1_0994"]}, {"s": "The book is under the desk.", "note": "书在桌下——仍是小的做图形", "lv": 2, "w": ["G1_002", "G3_143", "G1_0928"]}, {"s": "The ball is in the grass.", "note": "草地做背景，球做图形", "lv": 2, "w": ["G1_041", "G3_140", "G2_076"]}], "words": ["G1_041", "G1_002", "G1_0994", "G1_014", "G2_0936", "G1_0928", "G2_076", "G3_140", "G3_142", "G2_0930", "G3_143"], "errs": [], "pend": ["图形背景倒置（语用怪异型）"], "quiz": [{"q": "「The cup is on the table」里，做图形（被找的东西）的是？", "opts": ["cup", "table", "on"], "ans": "cup", "hint": "mechanism[0]"}]}, {"id": "P-13", "ord": 13, "title": "垂直方向是四个词合伙切的：above / over / under / below 的分工", "kid": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。", "beats": [{"beat": "牵连轴", "kid": "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。", "vis": "垂直轴一分为二：左列「有牵连」over/under，右列「只比高低」above/below"}, {"beat": "替换测试", "kid": "把词换一换试试：换了意思就变，说明它们分工不同。", "vis": "同句两版对照，差异处高亮"}], "exs": [{"s": "The plane flew over the hill.", "note": "越过山丘——over 的牵连义", "lv": 1, "w": ["G1_046", "V6_核心_40", "G2_077"]}, {"s": "The plane is above the clouds.", "note": "只比云高——above 的标量义", "lv": 1, "w": ["G1_046", "V6_核心_39", "G3_0505"]}, {"s": "The cat is under the table.", "note": "桌子下方且被桌罩着——under 的牵连义", "lv": 2, "w": ["G1_014", "G3_143", "G2_0930"]}, {"s": "The stars are above the mountain.", "note": "星星比山高——纯高低", "lv": 2, "w": ["G2_0506", "V6_核心_39", "G5_231"]}], "words": ["V6_核心_39", "G1_014", "G3_0505", "G2_077", "G5_231", "V6_核心_40", "G1_046", "G2_0506", "G2_0930", "G3_143"], "errs": [], "pend": ["over/above 与 under/below 边界混用"], "quiz": [{"q": "「below zero（零度以下）」用 below 不用 under，是因为这里只比什么？", "opts": ["高低（标量）", "谁盖住谁", "谁压着谁"], "ans": "高低（标量）", "hint": "mechanism[0]"}]}, {"id": "P-14", "ord": 14, "title": "to / for / at：三个「指向」介词的分工", "kid": "to 是「送到门口」，for 是「为了谁」，at 是「瞄准靶心」——都是朝一个方向，但心里装的东西不一样。", "beats": [{"beat": "三张指向图", "kid": "to 看终点：走到学校门口停下；for 看为了谁：礼物是给妹妹的；at 看靶心：目光落在门上。", "vis": "三幅小图并排：箭头落点 / 礼物递向受益人 / 十字准星"}, {"beat": "最重要的落地对比", "kid": "give it to me 是「递给我收着」，give it for me 是「替我拿着/为了我」——收的人和受益的人不是一回事。", "vis": "同一递物动作两帧：收下 vs 代收，高亮差异"}], "exs": [{"s": "We go to school.", "note": "学校是路的终点", "lv": 1, "w": ["V6_核心_48", "G2_081"]}, {"s": "The gift is for my sister.", "note": "礼物为了妹妹——受益", "lv": 1, "w": ["G3_129", "V6_核心_49", "G2_066"]}, {"s": "Give it to me.", "note": "递给我——我是接收者", "lv": 2, "w": ["V6_日常_8", "V6_核心_48", "V6_核心_1"]}, {"s": "Look at the map.", "note": "目光瞄准地图上的点", "lv": 2, "w": ["V6_核心_37", "G3_141"]}], "words": ["V6_核心_37", "V6_核心_49", "G3_129", "V6_日常_8", "G3_141", "V6_核心_1", "G2_081", "G2_066", "V6_核心_48"], "errs": [], "pend": ["to/for 受益与接收混用"], "quiz": [{"q": "「This cake is for my mum.」里的 for 说的是？", "opts": ["为了谁、给谁受益", "移动的终点", "瞄准的点"], "ans": "为了谁、给谁受益", "hint": "mechanism[0]"}]}, {"id": "P-15", "ord": 15, "title": "小品词是介词的「动词版亲戚」：up / out / off 的图式义随身携带", "kid": "动词后面的小词 up、out、off 都有自己的画面：up 是「满了、到底了」，out 是「从里面出来」——看着画面记短语动词，容易得多。", "beats": [{"beat": "小词随身带图", "kid": "stand up 是真的站起来（往上）；eat up 是吃到底、吃光——up 还是那个 up。", "vis": "容器装满到顶的动画对应 eat up 的「光盘」帧"}, {"beat": "透明度三档", "kid": "有的短语动词一看图就懂，有的要猜一猜，有的只能整块记住——分三档对待。", "vis": "三档滑杆：可推 / 助记 / 整记"}], "exs": [{"s": "Stand up, please.", "note": "教室日常指令——up 的空间义本体", "lv": 1, "w": ["G3_K19"]}, {"s": "We play out in the garden.", "note": "到外面玩——out 的由内到外（garden 场景）", "lv": 1, "w": ["G3_K21", "G2_0489"]}, {"s": "Eat up the cake.", "note": "把蛋糕吃光——up 的完结义", "lv": 2, "w": ["G1_048", "G3_K19"]}, {"s": "Turn off the light.", "note": "关灯——off 的脱离/关闭义", "lv": 2, "w": ["G4_157", "G3_K44"]}], "words": ["G1_048", "G4_157", "G3_K44", "G3_K21", "G2_0489", "G3_K19"], "errs": [], "pend": ["短语动词逐个死记（教学侧风险）"], "quiz": [{"q": "eat up 里的 up 是什么意思？", "opts": ["吃到底、吃光（完结）", "往上吃", "站着吃"], "ans": "吃到底、吃光（完结）", "hint": "mechanism[0]"}]}, {"id": "P-16", "ord": 16, "title": "静态的东西借动态的词：The road runs along the river（虚构运动）", "kid": "路明明没动，却说它「跑」——其实是我们的眼睛在沿着路看过去，像手指划过地图一样。", "beats": [{"beat": "目光在动", "kid": "眼睛从路的这一头看到那一头，就像手指划过地图——句子把这趟「眼睛的旅行」说成了路在跑。", "vis": "地图上一条路，高亮点沿路移动模拟目光扫描，路本身静止并标注"}, {"beat": "阅读提示", "kid": "看到 runs、goes 说路和篱笆，先想一想：是真的在动，还是眼睛在旅行？", "vis": "真运动句与虚构运动句对照卡"}], "exs": [{"s": "The road runs along the river.", "note": "清单原文例句——路沿河伸展（along 待补词库，本句为条目原文例句先行登记，见 pending）", "lv": 1, "w": ["G4_0592", "G5_232"]}, {"s": "The road goes to the island.", "note": "路通向岛——静态延伸用 goes", "lv": 1, "w": ["G4_0592", "G5_235"]}, {"s": "The bridge is over the river.", "note": "对照：静态位置的普通说法，不用运动词", "lv": 2, "w": ["G5_229", "G5_232"]}, {"s": "The road climbs up the mountain.", "note": "路「爬上」山坡——虚构运动的爬升版（climb 已在库）", "lv": 2, "w": ["G4_0592", "G5_231"]}], "words": ["G5_229", "G5_235", "G5_231", "G5_232", "G4_0592"], "errs": [], "pend": ["虚构运动字面误读"], "quiz": [{"q": "「The road runs along the river」里，真的在跑的是？", "opts": ["谁都没跑，是目光沿着路在移动", "路在跑", "河在跑"], "ans": "谁都没跑，是目光沿着路在移动", "hint": "mechanism[0]"}]}, {"id": "P-17", "ord": 17, "title": "先空间、后时间、再抽象：介词义的展开顺序就是教学顺序", "kid": "每个介词都是从「讲地方」开始长大的：先学会讲地方，再讲时间，最后讲看不见摸不着的意思——我们学它的顺序，就跟它长大的顺序一样。", "beats": [{"beat": "成长路线", "kid": "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。", "vis": "三级台阶：空间 → 时间 → 抽象，各放一个 in 的例句"}, {"beat": "顺序即排课", "kid": "（教师侧）排课按台阶走：先把地方讲透，时间借图跟上，抽象义最后逐个补。", "vis": "本区 order 字段的排布示意"}], "exs": [{"s": "The cat is in the box.", "note": "第一级：空间义", "lv": 1, "w": ["G1_014", "G3_140", "G1_0994"]}, {"s": "We play in the morning.", "note": "第二级：时间义（借空间图）", "lv": 1, "w": ["G3_140", "G1_0564"]}, {"s": "The dog is on the table.", "note": "空间义先行习得的另一原型（幼儿产出顺序前列）", "lv": 2, "w": ["G1_015", "G3_142", "G2_0930"]}, {"s": "The book is under the desk.", "note": "under 与 in/on 同属先行组（Johnston & Slobin 1979）", "lv": 2, "w": ["G1_002", "G3_143", "G1_0928"]}], "words": ["V6_核心_37", "G1_002", "G1_0994", "G1_014", "G1_0928", "G1_015", "G3_140", "G1_0564", "G3_142", "G2_0930", "G3_143"], "errs": [], "pend": ["抽象义抢先教学（教学侧风险）"], "quiz": [{"q": "教 in 的三个意思，顺序应该是？", "opts": ["在盒子里 → 在早上 → 在麻烦中", "在麻烦中 → 在盒子里 → 在早上", "哪个都行，没有区别"], "ans": "在盒子里 → 在早上 → 在麻烦中", "hint": "mechanism[0]"}]}, {"id": "P-18", "ord": 18, "title": "中国课堂的本土证据：概念教学对华语学生同样有效", "kid": "（教师侧条目，不上儿童屏）", "beats": [{"beat": "本土复制", "kid": "（教师侧条目，无儿童面讲解）", "vis": "三组（人导/机辅/双轨）前后测方向示意"}, {"beat": "落地含义", "kid": "（教师侧条目，无儿童面讲解）", "vis": "证据链图：T&E 框架 → Tyler 2012 → 本土项目"}], "exs": [{"s": "The picture is on the wall.", "note": "训练目标构型之一（贴面）", "lv": 1, "w": ["G4_158", "G3_142", "G3_0934"]}, {"s": "The cat is in the box.", "note": "训练目标构型之一（容纳）", "lv": 1, "w": ["G1_014", "G3_140", "G1_0994"]}, {"s": "The student is at the station.", "note": "训练目标构型之一（点位）", "lv": 2, "w": ["G3_131", "V6_核心_37", "G4_0517"]}, {"s": "The book is under the desk.", "note": "图片引出测验式的空间描述", "lv": 2, "w": ["G1_002", "G3_143", "G1_0928"]}], "words": ["V6_核心_37", "G1_002", "G1_0994", "G1_014", "G1_0928", "G3_140", "G3_142", "G4_158", "G4_0517", "G3_131", "G3_143", "G3_0934"], "errs": [], "pend": ["不适用（证据登记条目）"], "quiz": [{"q": "华语大学生的本土实验能直接告诉小学老师什么？", "opts": ["概念教学可行且有效（方向）", "小学照搬 120 分钟剂量", "效应量数值可直接套用"], "ans": "概念教学可行且有效（方向）", "hint": "mechanism[0]"}]}, {"id": "P-19", "ord": 19, "title": "语言怎么「装」运动：英语把路径装进小尾巴，汉语把路径装进动词系统", "kid": "说「跑出去」，英语和汉语装东西的格子不一样：英语把「怎么动」装进大词（run），把「往哪去」做成小尾巴挂在后面（out）；汉语把「往哪去」也装进动词里。学 run out 不是背新单词，是学英语的装法。", "beats": [{"beat": "两个格子", "kid": "英语的句子像有两个格子：大格子装「怎么动」（跑、游、滚），小格子装「往哪去」（out、in、across）。", "vis": "双格装配图：run/swim/roll × out/in/across 自由组合"}, {"beat": "为说话而思考", "kid": "说哪种语言，就会先注意哪种东西：说英语的人先看「怎么动」，汉语先看「往哪走、到了没」。", "vis": "同一运动事件两副眼镜的注视点对照"}], "exs": [{"s": "The bird flew out.", "note": "方式（fly）+ 路径卫星（out）的最小装配", "lv": 1, "w": ["G1_013", "G3_K21"]}, {"s": "The dog ran into the box.", "note": "跑进箱子——路径装进 into", "lv": 1, "w": ["G1_015", "G3_K40", "G1_0994"]}, {"s": "The cat ran across the road.", "note": "穿过马路——across 承担路径", "lv": 2, "w": ["G1_014", "G5_0638", "G4_0592"]}, {"s": "We swim across the river.", "note": "游过河——方式动词 + 路径卫星的能产组合", "lv": 2, "w": ["G2_089", "G5_0638", "G5_232"]}], "words": ["G5_0638", "G1_013", "G1_0994", "G1_014", "G1_015", "G3_K40", "G3_K21", "G5_232", "G4_0592", "G2_089"], "errs": [], "pend": ["汉语趋向结构直译（路径编码错位）"], "quiz": [{"q": "run out 里，out 这个小尾巴装的是什么？", "opts": ["往哪去（路径）", "怎么动（方式）", "谁在动"], "ans": "往哪去（路径）", "hint": "mechanism[0]"}]}], "bank": {"G1_038": ["banana", "/bəˈnænə/", "香蕉", "🍌"], "G1_015": ["dog", "/dɔːɡ/", "狗", "🐶"], "ADD_0099": ["except", "/ɪkˈsept/", "除了；除…之外", "📝"], "V6_核心_53": ["by", "/baɪ/", "乘(交通工具)/在…旁/被", "🚇"], "G4_0517": ["station", "/ˈsteɪʃən/", "车站，站；局，所", "🚉"], "V6_核心_15": ["we", "/wiː/", "我们(主格)", "👫"], "G5_231": ["mountain", "/ˈmaʊntn/", "高山，山岳", "⛰️"], "V6_核心_54": ["of", "/ʌv/", "…的(所属关系)", "🔗"], "V6_家庭_34": ["home", "/hoʊm/", "家(go home不加to)", "🏡"], "V6_核心_52": ["about", "/əˈbaʊt/", "关于/大约", "💭"], "G1_046": ["plane", "/pleɪn/", "飞机", "✈️"], "G3_0934": ["wall", "/wɔːl/", "墙，墙壁，围墙", "🧱"], "G2_066": ["sister", "/ˈsɪstər/", "姐；妹", "👧"], "G2_0930": ["table", "/ˈteɪbl/", "桌子，餐桌；表格", "🍽️"], "G2_0501": ["sun", "/sʌn/", "太阳，阳光", "☀️"], "G3_142": ["on", "/ɑːn/", "在……上面（有接触）", "📕"], "V6_交通_49": ["near", "/nɪr/", "在…附近/近的", "📍"], "G3_K44": ["off", "/ɔːf/", "离开；（电器）关着", "📴"], "G2_0599": ["night", "/naɪt/", "夜，夜晚", "🌌"], "V6_节日_22": ["past", "/pæst/", "超过/过去", "🕰️"], "G1_0932": ["door", "/dɔːr/", "门", "🚪"], "G3_K20": ["down", "/daʊn/", "向下", "⬇️"], "G1_055": ["water", "/ˈwɔːtər/", "水", "💧"], "G4_0985": ["city", "/ˈsɪti/", "城市，都市（复数变y为i加es：cities）", "🏙️"], "G3_143": ["under", "/ˈʌndər/", "在……下面", "⬇️"], "G3_K40": ["into", "/ˈɪntuː/", "进入，到……里面", "📥"], "V6_核心_42": ["in front of", "/ɪn frʌnt əv/", "在…(外部)前面", "🔜"], "G2_105": ["bus", "/bʌs/", "公共汽车，巴士", "🚌"], "G5_232": ["river", "/ˈrɪvər/", "河，江", "🏞️"], "G5_0638": ["across", "/əˈkrɔːs/", "横过，穿过；在…对面", "🌉"], "G2_087": ["run", "/rʌn/", "跑，奔跑", "🏃"], "V6_核心_41": ["behind", "/bɪˈhaɪnd/", "在…后面", "🔙"], "V6_核心_48": ["to", "/tuː/", "向/到…去", "➡️"], "G3_140": ["in", "/ɪn/", "在……里面", "📦"], "V6_日常_64": ["like", "/laɪk/", "喜欢/像…一样", "👍"], "G2_0489": ["play", "/pleɪ/", "玩耍；打（球）；弹奏（乐器）；戏剧", "🎮"], "ADD_0295": ["through", "/θruː/", "穿过；通过", "📝"], "G4_158": ["picture", "/ˈpɪktʃər/", "图画，照片", "🖼️"], "G1_007": ["teacher", "/ˈtiːtʃər/", "教师，老师", "👩‍🏫"], "G2_0503": ["wind", "/wɪnd/", "风", "🌬️"], "V6_核心_50": ["with", "/wɪð/", "和…一起/用(工具)/带有", "🤝"], "G1_041": ["ball", "/bɔːl/", "球", "⚽"], "G2_077": ["hill", "/hɪl/", "小山，山丘", "⛰️"], "G4_0721": ["outside", "/ˌaʊtˈsaɪd/", "在外面，向外面；外部", "🌳"], "V6_核心_49": ["for", "/fɔːr/", "为了/给/持续…时间", "🎁"], "G2_076": ["grass", "/ɡræs/", "草，草地", "🌿"], "V6_日常_8": ["give", "/ɡɪv/", "给(过去式gave)", "🤲"], "G5_229": ["bridge", "/brɪdʒ/", "桥，桥梁", "🌉"], "G4_0584": ["between", "/bɪˈtwiːn/", "在（两者）之间", "↔️"], "G1_0564": ["morning", "/ˈmɔːrnɪŋ/", "早晨，上午", "🌅"], "G2_081": ["school", "/skuːl/", "学校", "🏫"], "V6_核心_1": ["me", "/miː/", "我(宾格·放动介后)", "👉"], "G1_037": ["apple", "/ˈæpl/", "苹果", "🍎"], "G4_0592": ["road", "/roʊd/", "路，道路，公路", "🛣️"], "G4_0722": ["inside", "/ɪnˈsaɪd/", "在里面，往里面；内部", "🏠"], "G1_0928": ["desk", "/desk/", "书桌，课桌，办公桌", "🪑"], "G4_157": ["light", "/laɪt/", "电灯，光线；轻的", "💡"], "G3_141": ["map", "/mæp/", "地图", "🗺️"], "G2_0936": ["cup", "/kʌp/", "茶杯，杯子；奖杯", "☕"], "V6_服装_26": ["ring", "/rɪŋ/", "戒指/铃声响", "💍"], "G2_089": ["swim", "/swɪm/", "游泳", "🏊"], "ADD_0231": ["plus", "/plʌs/", "加；加上；加号", "➕"], "V6_核心_56": ["after", "/ˈæftər/", "在…之后", "⏩"], "G3_K43": ["around", "/əˈraʊnd/", "在……周围；到处", "🔄"], "G1_022": ["five", "/faɪv/", "五，五个", "🖐️"], "V6_核心_37": ["at", "/æt/", "在(小地点)/加具体几点钟", "🎯"], "G3_K19": ["up", "/ʌp/", "向上", "⬆️"], "G3_0937": ["bowl", "/boʊl/", "碗", "🥣"], "G3_131": ["student", "/ˈstuːdnt/", "学生", "🧑‍🎓"], "G3_129": ["gift", "/ɡɪft/", "礼物", "🎁"], "G3_K21": ["out", "/aʊt/", "向外，出去", "🚪"], "G1_002": ["book", "/bʊk/", "书，书本；预订（动词：book a ticket 预订票）", "📖"], "V6_身体_13": ["finger", "/ˈfɪŋɡər/", "手指", "☝️"], "V6_核心_43": ["beside", "/bɪˈsaɪd/", "在…旁边(=next to)", "↔️"], "G1_048": ["cake", "/keɪk/", "蛋糕", "🎂"], "G1_013": ["bird", "/bɜːrd/", "鸟，小鸟", "🐦"], "G3_0505": ["cloud", "/klaʊd/", "云，云朵", "☁️"], "G2_100": ["summer", "/ˈsʌmər/", "夏天，夏季", "🍉"], "G4_0989": ["team", "/tiːm/", "队，组，团队", "🤝"], "G3_K42": ["as", "/æz/ /əz/", "像……一样；作为", "🟰"], "V6_核心_40": ["over", "/ˈoʊvər/", "在…正上方/越过/结束", "🌈"], "V6_核心_39": ["above", "/əˈbʌv/", "在…斜上方(不接触)", "⬆️"], "G1_0994": ["box", "/bɑːks/", "盒，箱，方框（复数加 es：boxes）", "📦"], "G3_K32": ["TV", "/ˌtiːˈviː/", "电视", "📺"], "G5_210": ["Monday", "/ˈmʌndeɪ/", "星期一", "1️⃣"], "ADD_0022": ["beyond", "/bɪˈjɑːnd/", "在…之外；超过", "📝"], "V6_核心_55": ["before", "/bɪˈfɔːr/", "在…之前", "⏪"], "G2_0506": ["star", "/stɑːr/", "星星，恒星；明星", "⭐"], "G1_014": ["cat", "/kæt/", "猫", "🐱"], "G2_079": ["tree", "/triː/", "树，树木", "🌳"], "V6_核心_47": ["from", "/frɑːm/", "从…来自(be from)", "🚩"], "G3_K46": ["upon", "/əˈpɑːn/", "在……上面（= on，多用于书面）", "📖"], "V6_家庭_36": ["room", "/ruːm/", "房间", "🚪"], "V6_日常_63": ["love", "/lʌv/", "爱/喜爱", "❤️"], "G3_0565": ["evening", "/ˈiːvnɪŋ/", "傍晚，晚上", "🌆"], "V6_核心_51": ["without", "/wɪˈðaʊt/", "没有/不带", "🚫"], "G5_235": ["island", "/ˈaɪlənd/", "岛，岛屿", "🏝️"], "V6_核心_45": ["among", "/əˈmʌŋ/", "在(三者及以上)之间", "👥"]}, "prep": ["V6_核心_52", "V6_核心_39", "G5_0638", "V6_核心_56", "V6_核心_45", "G3_K43", "G3_K42", "V6_核心_37", "V6_核心_55", "V6_核心_41", "V6_核心_43", "G4_0584", "ADD_0022", "V6_核心_53", "G3_K20", "ADD_0099", "V6_核心_49", "V6_核心_47", "G3_140", "V6_核心_42", "G4_0722", "G3_K40", "V6_日常_64", "V6_交通_49", "V6_核心_54", "G3_K44", "G3_142", "G4_0721", "V6_核心_40", "V6_节日_22", "ADD_0231", "ADD_0295", "V6_核心_48", "G3_143", "G3_K19", "G3_K46", "V6_核心_50", "V6_核心_51"]};
+const UNITS = {}; DATA.units.forEach(u => UNITS[u.id] = u);
+const app = document.getElementById('app');
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+function phOf(b) { return b[4] || b[1] || ''; }
+function speakWord(t) {
+  try {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = 'en-GB'; u.rate = 0.85;
+    const vs = speechSynthesis.getVoices().filter(v => /^en[-_]GB/i.test(v.lang));
+    if (vs.length) u.voice = vs[0];
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+document.addEventListener('click', e => {
+  const spk = e.target.closest ? e.target.closest('.spk') : null;
+  if (spk) { e.preventDefault(); e.stopPropagation(); speakWord(spk.getAttribute('data-t') || ''); return; }
+  const nav = e.target.closest ? e.target.closest('[data-unit],[data-home],[data-table]') : null;
+  if (nav) {
+    e.preventDefault();
+    if (nav.hasAttribute('data-unit')) unitPage(nav.getAttribute('data-unit'));
+    else if (nav.hasAttribute('data-table')) tablePage();
+    else home();
+  }
+}, true);
+
+function wordCard(wid) {
+  const b = DATA.bank[wid]; if (!b) return '';
+  return '<div class="wc"><span class="em">' + esc(b[3]) + '</span><div class="w">' + esc(b[0]) + '</div>' +
+         '<div class="ph">' + esc(phOf(b)) + '</div><div class="mn">' + esc(b[2]) + '</div>' +
+         '<button class="spk" type="button" data-t="' + esc(b[0].split(' / ')[0]) + '">🔊</button></div>';
+}
+const cmpW = (a, b) => { const x = DATA.bank[a][0].toLowerCase(), y = DATA.bank[b][0].toLowerCase(); return x < y ? -1 : x > y ? 1 : 0; };
+
+function home() {
+  let h = '<section class="gsec"><h2>介词规律 · 19 个单元</h2><div class="meta">按学习顺序排列；每个单元 = 一张原型图 + 它怎么长出亲戚网</div><div class="units">';
+  DATA.units.forEach(u => {
+    h += '<a class="uchip" data-unit="' + u.id + '"><b>' + u.id + '</b>' + esc(u.title) +
+         '<span class="cnt">词 ' + u.words.length + '</span><span class="cnt">例句 ' + u.exs.length + '</span><span class="cnt">练习 ' + u.quiz.length + '</span></a>';
+  });
+  h += '</div></section>';
+  h += '<section class="gsec"><h2>介词总表</h2><div class="meta">词库里全部介词（按词性字段现算），A–Z 排列</div>' +
+       '<a class="tablechip" data-table="1">📋 打开介词总表<span class="cnt" style="background:#0e9f6e;color:#fff;border-radius:999px;padding:0 7px;margin-left:6px;font-size:12px;">共 ' + DATA.prep.length + ' 词</span></a></section>';
+  app.innerHTML = h;
+  window.scrollTo(0, 0);
+}
+
+function unitPage(id) {
+  const u = UNITS[id]; if (!u) { home(); return; }
+  let h = '<a class="back" data-home="1">← 返回单元菜单</a>';
+  h += '<div class="big">' + esc(u.title) + '</div>';
+  h += '<div class="sub">' + u.id + ' · 小系统区 · 介词</div>';
+  h += '<div class="lawbox"><div class="kid">📖 ' + esc(u.kid) + '</div><div class="src">讲解取自规律模型原文（' + u.id + '）</div></div>';
+  h += '<h3 class="sec">🧩 机制：这张图怎么长</h3>';
+  u.beats.forEach(b => {
+    h += '<div class="beat"><div class="bt">' + esc(b.beat) + '</div><div class="bk">' + esc(b.kid) + '</div>' +
+         (b.vis ? '<div class="bv">示意：' + esc(b.vis) + '</div>' : '') + '</div>';
+  });
+  h += '<h3 class="sec">📝 例句（点词卡上的小喇叭听单词）</h3>';
+  u.exs.forEach(ex => {
+    h += '<div class="ex"><div class="s">' + esc(ex.s) + ' <button class="spk" type="button" data-t="' + esc(ex.s) + '" aria-label="读整句">🔊</button></div>' +
+         (ex.note ? '<div class="note">' + esc(ex.note) + '</div>' : '') + '<div class="ws">' +
+         ex.w.map(wid => { const b = DATA.bank[wid]; return b ? '<span class="wchip">' + esc(b[0].split(' / ')[0]) + '<button class="spk" type="button" data-t="' + esc(b[0].split(' / ')[0]) + '">🔊</button></span>' : ''; }).join('') +
+         '</div></div>';
+  });
+  h += '<p><span class="badge">本单元词表 · 共 ' + u.words.length + ' 词 · 全部来自词库</span></p>';
+  h += '<div class="grid">' + [...u.words].sort(cmpW).map(wordCard).join('') + '</div>';
+  if (u.errs.length) {
+    h += '<h3 class="sec">🏥 病句医院</h3>';
+    u.errs.forEach(c => { h += '<div class="errbox">' + esc(c.t) + (c.wrong ? '：❌ ' + esc(c.wrong) : '') + (c.right ? ' → ✅ ' + esc(c.right) : '') + '</div>'; });
+  } else {
+    h += '<div class="errbox">🏥 病句医院：病例待补' + (u.pend && u.pend.length ? '（易错类型已登记：' + esc(u.pend.join('、')) + '；逐字病例待真实错例补录后上线）' : '') + '</div>';
+  }
+  if (u.quiz.length) {
+    h += '<div class="quiz"><h3>🧪 练一练（题目取自规律模型）</h3><div id="quiz"></div>' +
+         '<div class="hint" id="hint"></div></div>';
+  }
+  app.innerHTML = h;
+  window.scrollTo(0, 0);
+  if (u.quiz.length) runQuiz(u);
+}
+
+function runQuiz(u) {
+  const qz = document.getElementById('quiz');
+  const hint = document.getElementById('hint');
+  let qi = 0, score = 0;
+  function ask() {
+    if (qi >= u.quiz.length) { qz.innerHTML = '<p>🎉 练习完成：对了 ' + score + ' / ' + u.quiz.length + '。不懂的地方回到上面的机制图再看看。</p>'; return; }
+    const q = u.quiz[qi];
+    const opts = q.opts.slice();
+    for (let i = opts.length - 1; i > 0; i--) { const j = (i * 7 + qi + u.ord) % (i + 1); const t = opts[i]; opts[i] = opts[j]; opts[j] = t; }
+    qz.innerHTML = '<p>第 ' + (qi + 1) + ' / ' + u.quiz.length + ' 题：' + esc(q.q) + '</p><div class="opts">' +
+      opts.map(o => '<button class="opt" data-o="' + esc(o) + '">' + esc(o) + '</button>').join('') + '</div>';
+    qz.querySelectorAll('.opt').forEach(btn => btn.addEventListener('click', () => {
+      if (btn.dataset.o === q.ans) { btn.classList.add('ok'); score++; qi++; setTimeout(ask, 450); }
+      else {
+        btn.classList.add('no');
+        let ht = '再想想：回到上面的讲解和机制图看看。👆';
+        const m = /^mechanism\[(\d+)\]$/.exec(q.hint || '');
+        if (m && u.beats[+m[1]]) ht = '提示（' + esc(u.beats[+m[1]].beat) + '）：' + esc(u.beats[+m[1]].kid);
+        hint.textContent = ht; hint.style.display = 'block';
+      }
+    }));
+  }
+  ask();
+}
+
+function tablePage() {
+  let h = '<a class="back" data-home="1">← 返回单元菜单</a>';
+  h += '<div class="big">介词总表</div>';
+  h += '<div class="sub">词库中词性含「介词」的全部词 · 按字段现算 · A–Z</div>';
+  h += '<p><span class="badge">共 ' + DATA.prep.length + ' 词 · 全部来自词库</span></p>';
+  h += '<div class="grid">' + [...DATA.prep].sort(cmpW).map(wordCard).join('') + '</div>';
+  app.innerHTML = h;
+  window.scrollTo(0, 0);
+}
+home();
+</script>
+</body>
+</html>
