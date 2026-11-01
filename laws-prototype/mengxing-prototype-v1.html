@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>萌星英语 · 规律版原型 v1</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#ece7db;color:#2b2620}
+.app{max-width:760px;margin:0 auto;background:#f7f3ea;min-height:100vh;box-shadow:0 0 28px rgba(60,45,20,.16);padding-bottom:40px}
+header{background:linear-gradient(135deg,#8a5a1e,#b8862e);color:#fff;padding:16px 18px 12px;border-radius:0 0 20px 20px}
+header .tag{font-size:11px;background:rgba(255,255,255,.28);display:inline-block;padding:2px 9px;border-radius:20px;margin-bottom:6px}
+header h1{font-size:23px;letter-spacing:1px}
+header p{font-size:12.5px;opacity:.94;margin-top:4px;line-height:1.55}
+.bar{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px 2px;align-items:center}
+.nbtn{border:1.5px solid #d8cba6;background:#fffdf6;color:#6d5a33;border-radius:16px;padding:5px 11px;font-size:13px;cursor:pointer;font-weight:700}
+.nbtn.on{background:#8a5a1e;border-color:#8a5a1e;color:#fff}
+.tgl{margin-left:auto;font-size:12.5px;color:#6d5a33;font-weight:700;cursor:pointer;border:1.5px solid #cbbd97;background:#fbf7ec;border-radius:16px;padding:4px 10px}
+.view{display:none;padding:12px 16px 0}
+.view.on{display:block}
+h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
+.sub{font-size:13px;color:#7a6c52;line-height:1.6;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#fffdf6;border:1.5px solid #e3d9c4;border-radius:16px;padding:13px 14px;cursor:pointer}
+.card:hover{border-color:#c9a86a}
+.card .ic{font-size:22px}
+.card h3{font-size:16.5px;margin:4px 0 3px;color:#5d4517}
+.card p{font-size:12.5px;color:#7a6c52;line-height:1.55}
+.card .n{font-size:11px;color:#a08c5f;font-weight:700}
+.pain{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pain .card{text-align:center;padding:11px 6px}
+.pain .card h3{font-size:15px}
+.sec-t{font-size:14px;font-weight:800;color:#8a5a1e;margin:16px 0 8px}
+.urow{display:flex;gap:9px;align-items:flex-start;background:#fffdf6;border:1px solid #e7ddc6;border-radius:13px;padding:9px 12px;margin-bottom:7px;cursor:pointer}
+.urow:hover{border-color:#c9a86a}
+.urow .id{flex:none;font-size:11px;font-weight:800;color:#fff;background:#b8862e;border-radius:7px;padding:2px 7px;margin-top:1px}
+.urow .tt{font-size:14.5px;line-height:1.5}
+.urow .st{flex:none;font-size:11px;font-weight:700;border-radius:9px;padding:2px 7px;margin-left:auto;white-space:nowrap}
+.st.deep{background:#e5f0dd;color:#4a7028}
+.st.wait{background:#f0ead8;color:#97865f}
+.urow.flat{cursor:default}
+.urow.flat:hover{border-color:#e7ddc6}
+.gh{font-size:13px;font-weight:800;color:#8a5a1e;margin:13px 0 6px}
+.back{font-size:13px;color:#8a5a1e;cursor:pointer;font-weight:700;margin-bottom:8px;display:inline-block}
+.foot{margin:20px 16px 0;font-size:11.5px;color:#a08c5f;line-height:1.7;border-top:1px dashed #d8cba6;padding-top:10px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<span class="tag">独立原型 v1 · 按《App 原型定义 v1》</span>
+<h1>萌星英语 · 规律版</h1>
+<p>给中国孩子的英语「规律机」：不背清单，学解码——每个知识点都讲清机制、给得出边界、治得了一个真实的病。</p>
+</header>
+<div class="bar" id="nav">
+<button class="nbtn on" data-v="home">首页</button>
+<button class="nbtn" data-v="phon">拼读区</button>
+<button class="nbtn" data-v="vocab">词汇解码区</button>
+<button class="nbtn" data-v="grammar">语法区</button>
+<button class="nbtn" data-v="system">小系统区</button>
+<button class="nbtn" data-v="expr">表达写作区</button>
+<button class="nbtn" data-v="review">复习区</button>
+<button class="nbtn" data-v="parents">家长角</button>
+<button class="nbtn" data-v="settings">设置</button>
+</div>
+<div class="bar">
+<span class="tgl" id="atgl">成人层：关</span>
+</div>
+
+<!-- ============ 首页 ============ -->
+<section class="view on" id="v-home">
+<div class="sec-t">六大区</div>
+<div class="grid">
+<div class="card" data-go="phon"><div class="ic">🔤</div><h3>拼读区</h3><p>拼法菜单、变脸榜、定律区、拼读序列主线、中国孩子难点地图。</p><span class="n">S 组 + SR 组 · 本区全功能样板</span></div>
+<div class="card" data-go="vocab"><div class="ic">🧩</div><h3>词汇解码区</h3><p>词源故事、词根家族、变身机、打包错位对照台、假词源侦探。</p><span class="n">V 组 + CO-17 · 本区全功能样板</span></div>
+<div class="card" data-go="grammar"><div class="ic">🏗️</div><h3>语法区</h3><p>总纲三条置顶（象似性 / 标记性 / 分析语总叙事），反意疑问三步法已做深。</p><span class="n">GR / TA / CO / QI · 95 条 · 目录页</span></div>
+<div class="card" data-go="system"><div class="ic">🧭</div><h3>小系统区</h3><p>介词花园（原型图 + 亲戚网）、冠词三出口、汉语刀口对表。</p><span class="n">P / C / PR / PB · 63 条 · 目录页</span></div>
+<div class="card" data-go="expr"><div class="ic">✍️</div><h3>表达写作区</h3><p>整块取句、范文先行、语义韵选词、对话的规矩。</p><span class="n">E / W / NE · 59 条 · 目录页</span></div>
+<div class="card" data-go="review"><div class="ic">🗂️</div><h3>复习区</h3><p>间隔队列 + 病因错题本：错题不按题号归档，按病因归档。</p><span class="n">样板页 · 数据来自旗舰单元病例</span></div>
+</div>
+<div class="sec-t">今天哪儿不舒服？（痛点入口）</div>
+<div class="pain">
+<div class="card" data-go="review"><h3>记不住</h3><p>去复习区看间隔队列</p></div>
+<div class="card" data-go="phon"><h3>听不懂</h3><p>拼读区 · 难点地图 S-43</p></div>
+<div class="card" data-go="u-co17"><h3>说不出</h3><p>先学 CO-17 空心动词</p></div>
+<div class="card" data-go="expr"><h3>写不长</h3><p>表达写作区目录</p></div>
+<div class="card" data-go="phon"><h3>读不快</h3><p>拼读区 · 拼法菜单</p></div>
+<div class="card" data-go="review"><h3>错不完</h3><p>病因错题本在这儿</p></div>
+</div>
+<div class="sec-t">旗舰单元（已按六步闭环做深）</div>
+<div class="urow" data-go="u-s36"><span class="id">S-36</span><span class="tt">长音 /iː/ 的拼法菜单：ee 与 ea 两条大路</span><span class="st deep">已做深</span></div>
+<div class="urow" data-go="u-sr01"><span class="id">SR-01</span><span class="tt">词尾不出声的 e：一个字母干九份工</span><span class="st deep">已做深</span></div>
+<div class="urow" data-go="u-s42"><span class="id">S-42</span><span class="tt">变脸榜：ough 是变脸大王</span><span class="st deep">已做深</span></div>
+<div class="urow" data-go="u-v40"><span class="id">V-40</span><span class="tt">打包错位：中文一个「开」，英语四个按钮</span><span class="st deep">已做深</span></div>
+<div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词 + get 的五个构造</span><span class="st deep">已做深</span></div>
+<div class="urow" data-go="u-v33"><span class="id">V-33</span><span class="tt">前缀头部定律：20 个管住 97%</span><span class="st deep">已做深</span></div>
+<div class="urow" data-go="u-gr33"><span class="id">GR-33</span><span class="tt">反意疑问三步法：回声机怎么配尾巴</span><span class="st deep">已做深</span></div>
+<p class="foot">原型说明：本原型做深不做全——7 个旗舰单元走完六步闭环，其余单元在分区页以目录形态呈现并标「待入模」。动画步在原型中以图式屏 + 分镜占位呈现，标注「动画版入模后由 wb5 场景渲染」。全部内容取自《专家规律清单 v6》已核实条目，未自创论断与例句体系。</p>
+</section>
+
+<style>
+.uhead{background:#fff7e6;border:1.5px dashed #d4880f;border-radius:14px;padding:11px 14px;margin-bottom:10px}
+.uhead .uid{font-size:11px;font-weight:800;color:#b26f00}
+.uhead h2{font-size:20px;line-height:1.45;margin:2px 0}
+.uhead p{font-size:13px;color:#7a6c52;line-height:1.6}
+.flow{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0 12px}
+.flow span{font-size:11px;font-weight:700;background:#efe6cf;color:#7a5c1e;border-radius:10px;padding:3px 8px}
+.flow span b{color:#b26f00}
+.step{margin-bottom:14px}
+.step .sh{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.step .sh .no{flex:none;width:24px;height:24px;border-radius:50%;background:#8a5a1e;color:#fff;font-size:13px;font-weight:800;text-align:center;line-height:24px}
+.step .sh h3{font-size:16.5px}
+.box{background:#fffdf6;border:1px solid #e7ddc6;border-radius:14px;padding:12px 14px}
+.box p{font-size:14.5px;line-height:1.7}
+.box p+p{margin-top:6px}
+.hosp{background:#fdf1ec;border:1.5px solid #dfa08a;border-radius:14px;padding:12px 14px}
+.hosp .case{background:#fff;border:1px solid #eccabb;border-radius:10px;padding:8px 11px;margin-bottom:7px;font-size:14.5px;line-height:1.6}
+.hosp .case .bad{color:#b03a1e;font-weight:700}
+.hosp .case .why{font-size:12.5px;color:#8a5a48}
+.big{font-size:17.5px;font-weight:700;color:#5d4517;line-height:1.55}
+table.menu{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+table.menu th,table.menu td{border:1px solid #e0d3ae;padding:6px 8px;text-align:left;line-height:1.55;vertical-align:top}
+table.menu th{background:#f4ead0;color:#6d5a33;font-size:12.5px}
+.chips{margin-top:8px;line-height:2}
+.chip{display:inline-block;background:#f1e8d2;border:1px solid #d8c48d;border-radius:15px;padding:2px 10px;font-size:13px;color:#5d4517;margin:0 4px 4px 0}
+.lv{margin-bottom:8px}
+.lv .lt{font-size:12px;font-weight:800;color:#fff;background:#7c9a52;border-radius:8px;padding:2px 8px;display:inline-block;margin-bottom:4px}
+.lv p{font-size:14.5px;line-height:1.7}
+.qz{margin-bottom:10px}
+.qz .q{font-size:15px;font-weight:700;line-height:1.6;margin-bottom:6px}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid #ddd0ac;border-radius:11px;padding:8px 12px;font-size:14.5px;margin-bottom:6px;cursor:pointer;line-height:1.55}
+.opt:hover{border-color:#c9a86a}
+.opt.right{border-color:#7c9a52;background:#eef5e4}
+.opt.wrong{border-color:#d98c72;background:#fae9e2;opacity:.75}
+.qhint{display:none;background:#fdf6e0;border:1px dashed #d4880f;border-radius:10px;padding:8px 11px;font-size:13.5px;line-height:1.6;color:#6d5510}
+.qok{display:none;background:#eef5e4;border:1px solid #b9cfa0;border-radius:10px;padding:8px 11px;font-size:13.5px;color:#4a7028;line-height:1.6}
+.adult{display:none;background:#f3efe4;border-left:3.5px solid #b8a888;border-radius:0 10px 10px 0;padding:9px 12px;margin-top:9px;font-size:12px;color:#6f675a;line-height:1.7}
+.adult b{color:#57503f}
+body.adult .adult{display:block}
+.done{background:#eef5e4;border:1.5px solid #b9cfa0;border-radius:14px;padding:12px 14px}
+.done p{font-size:14.5px;line-height:1.7}
+.queue{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.queue span{font-size:12.5px;background:#fff;border:1px solid #b9cfa0;border-radius:11px;padding:4px 10px;color:#4a7028;font-weight:700}
+.anim{background:#f0ead8;border:1.5px dashed #b8a888;border-radius:12px;padding:10px 12px;font-size:13px;color:#6f675a;line-height:1.65;margin-top:8px}
+.fix{background:#fdf6e0;border:1.5px solid #d4880f;border-radius:12px;padding:9px 12px;font-size:13.5px;line-height:1.65;margin-top:8px}
+.fix b{color:#b26f00}
+.rk{font-size:22px;font-weight:800;color:#b03a1e}
+</style>
+
+<!-- ============ 拼读区 ============ -->
+<section class="view" id="v-phon">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🔤 拼读区</h2>
+<p class="sub">S 组 + SR 组共 25 个单元。口径：44 音位按英国 RP 立条，美式差异只进成人层边界栏。</p>
+<div class="gh">总纲与辅音区（S-28 – S-33）</div>
+<div class="urow flat"><span class="id">S-28</span><span class="tt">「英语 44 个音」是按英国 RP 口径数出来的：24 辅音 + 20 元音——44 是教学坐标，不是自然常数</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-29</span><span class="tt">拼写可预测性有实测账本：纯按声音规则拼对一半，放宽一音到 84%，真不规则只剩约 4%</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-30</span><span class="tt">单字母辅音里的「老实人」：b d f h k l m n p r t v w z 基本一个字母一个音</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-31</span><span class="tt">c 和 g 碰到 e、i、y 就变软；get、girl、give 一小队老词死活不软</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-32</span><span class="tt">两字母抱团发一个音：ch 有三个音、th 分清浊两班，分班看词源与词性</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-33</span><span class="tt">短元音后面站岗的辅音要「加厚」：ck、tch、dge；kn、wr 里有个字母只站岗不发声</span><span class="st wait">待入模</span></div>
+<div class="gh">元音拼法菜单（S-34 – S-41）</div>
+<div class="urow flat"><span class="id">S-34</span><span class="tt">短元音是闭音节的默认读法；u 另有一小队读 /ʊ/，y 在多音节词里顶替短 i</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-35</span><span class="tt">长音 /eɪ/ 的菜单：a-e、ai、ay 三个主力，ea 只剩三个词</span><span class="st wait">待入模</span></div>
+<div class="urow" data-go="u-s36"><span class="id">S-36</span><span class="tt">长音 /iː/ 的菜单：ee 与 ea 双主力（历史上本是两个音）</span><span class="st deep">已做深</span></div>
+<div class="urow flat"><span class="id">S-37</span><span class="tt">长音 /aɪ/ 的菜单：i-e、igh、y 三主力，「find 一家」是千年老规矩</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-38</span><span class="tt">长音 /əʊ/ 的菜单：o-e、oa、ow 三主力，「old 一家」与 find 一家是亲戚</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-39</span><span class="tt">长音 /uː/ 的菜单：oo、u-e、ew 三主力；同一个 u 还能读 /juː/</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-40</span><span class="tt">r 控元音：er/ir/ur 三拼合流读 /ɜː/；w 后面的 ar、or 要改道</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">S-41</span><span class="tt">双元音组：oi/oy 读 /ɔɪ/、ou/ow 读 /aʊ/（ow 兼读 /əʊ/）、au/aw 读 /ɔː/</span><span class="st wait">待入模</span></div>
+<div class="gh">变脸榜与难点地图</div>
+<div class="urow" data-go="u-s42"><span class="id">S-42</span><span class="tt">变脸榜：ough 八至十读居首，ea、ou、a、y、oo 依次——本榜是变脸名单的排序依据</span><span class="st deep">已做深</span></div>
+<div class="urow flat"><span class="id">S-43</span><span class="tt">中国孩子的卡点不是随机错单，是汉语的音节模具逐项压出来的——难点能逐项落回 GPC 表</span><span class="st wait">待入模</span></div>
+<div class="gh">定律区（SR-01 – SR-09）</div>
+<div class="urow" data-go="u-sr01"><span class="id">SR-01</span><span class="tt">词尾不出声的 e 一口气干五份工——但「五」只是教学节选，传统原表有九项</span><span class="st deep">已做深</span></div>
+<div class="urow flat"><span class="id">SR-02</span><span class="tt">Floss 双写律：短元音后 f、l、s、z 词尾站双份，外加高频例外小名单</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">SR-03</span><span class="tt">ck、tch、dge 是短元音的「加厚装」：判据是紧跟短元音，不是音节数</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">SR-04</span><span class="tt">拼 /k/ 先看下一站：e、i、y 前用 k，a、o、u 前用 c，短元音收尾用 ck</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">SR-05</span><span class="tt">y 是三面手；ay/oy 守词尾、ai/oi 守词中——ow 的两副面孔只有倾向没有定律</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">SR-06</span><span class="tt">词尾音节有「合同价」：-tion 恒读 /ʃən/，-ate 看词类分 /eɪt/ 与 /ət/</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">SR-07</span><span class="tt">"i before e" 的真实成色：官方结论是别教口诀，把那几个 cei 词当名单背</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">SR-08</span><span class="tt">辟谣位：「两个元音手拉手，第一个开口」实测只对 45%</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">SR-09</span><span class="tt">六种音节是六种「盒子」：切长词先试老虎、再试骆驼（VCV 压制序）</span><span class="st wait">待入模</span></div>
+</section>
+
+<!-- ============ 词汇解码区 ============ -->
+<section class="view" id="v-vocab">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🧩 词汇解码区</h2>
+<p class="sub">V 组 24 个单元 + CO-17。主线：词不是逐个背的——靠词源故事、形态拆解和打包对照解码。</p>
+<div class="gh">词源（V-22 – V-27）</div>
+<div class="urow flat"><span class="id">V-22</span><span class="tt">词义会往四个方向漂：地盘缩小、地盘涨大、从坏话变好话、从好话变坏话</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-23</span><span class="tt">有些词是失散兄弟：同一个祖先，走了两条路进英语（shirt / skirt）</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-24</span><span class="tt">听不懂的那一截会被换成熟悉的词——民间词源是真实的造词力</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-25</span><span class="tt">词源是历史，不是裁判：posh 和 tips 的漂亮故事都是假的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-26</span><span class="tt">往下还有一层：inspect、respect、species 是同一个「看」的子孙</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-27</span><span class="tt">茶从福建出海，沙发从英国进港：汉英借词的双向四百年</span><span class="st wait">待入模</span></div>
+<div class="gh">词根实证（V-28 – V-32）</div>
+<div class="urow flat"><span class="id">V-28</span><span class="tt">形态推理是词汇增长引擎（上）：派生词在 8–10 岁爆炸，增量靠当场拆词解题</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-29</span><span class="tt">形态推理引擎（下）：要当作独立词学的单位约 88,500 个，学会一个顺带读懂一至三个亲戚</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-30</span><span class="tt">拆词能拆懂多少有实测的账：只靠零件约六成，零件加语境约八成</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-31</span><span class="tt">形态意识干预的元分析裁决：教拆词有用，总效应中等偏小，低龄与困难读者受益最大</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-32</span><span class="tt">形态推理的天花板：完全透明的派生词只占一半多——拆词猜义是「三堵墙」之一</span><span class="st wait">待入模</span></div>
+<div class="gh">词缀（V-33 – V-39）</div>
+<div class="urow" data-go="u-v33"><span class="id">V-33</span><span class="tt">词缀的头部定律：20 个前缀管住 97%，前 4 个就占近六成</span><span class="st deep">已做深</span></div>
+<div class="urow flat"><span class="id">V-34</span><span class="tt">变色龙前缀：in- 碰到 p 变 im-、碰到 l 变 il-——尾巴照后面字母的样子改</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-35</span><span class="tt">「不」有两个供货商：日耳曼底子用 un-，拉丁底子用 in-——大势可依，例外成串</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-36</span><span class="tt">词类变身机：给词根装不同的尾，变出动词、名词、形容词、副词</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-37</span><span class="tt">后缀一来拼写要让路：丢不丢 e、y 变不变 i、尾巴双不双写，都有原因</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-38</span><span class="tt">假拆分辟谣：butter 的 -er 不是「做事的人」，understand 不能按今天的 under+stand 懂</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-39</span><span class="tt">词缀怎么教才有效：先立概念防假拆，再按义项分课教小集合，还要和语境一起教</span><span class="st wait">待入模</span></div>
+<div class="gh">一词多义（V-40 – V-45 + CO-17）</div>
+<div class="urow" data-go="u-v40"><span class="id">V-40</span><span class="tt">打包错位：同一个经验，两种语言装箱的方法不同——逐词对译必失真</span><span class="st deep">已做深</span></div>
+<div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词：动词管语法，名词装事情；get 一个词收成五个构造</span><span class="st deep">已做深</span></div>
+<div class="urow flat"><span class="id">V-41</span><span class="tt">撞脸还是亲戚：同形异义与一词多义的判定——义项是编者切出来的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-42</span><span class="tt">隐喻引擎不只管介词：多义词与习语教学的对照实验证据</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-43</span><span class="tt">有些词自带天气：语义韵——搭配伙伴的褒贬会染到词身上</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-44</span><span class="tt">耳朵帮不上忙的字：同音异形词靠意义选字，母语教室用绘本钉住它们</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">V-45</span><span class="tt">两把尺：中心义看引申关系，最高频义看语料构成——不许拿一把冒充另一把</span><span class="st wait">待入模</span></div>
+</section>
+
+<!-- ============ 语法区（目录页） ============ -->
+<section class="view" id="v-grammar">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🏗️ 语法区</h2>
+<p class="sub">GR / TA / CO / QI 共 95 条 · 本页为目录页，除 GR-33 外均为「待入模」灰态。总纲三条（GR-24 象似性、GR-25 标记性、GR-26 分析语总叙事）在正式版中置顶。</p>
+<div class="gh">语法总纲与核心机制（GR-01 – GR-23）</div>
+<div class="urow flat"><span class="id">GR-01</span><span class="tt">形式跟着功能走：语法形式是装着意义的符号，不是空壳规矩</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-02</span><span class="tt">一个句子的时态只标记一次：标在第一个动词上，后面的回原形</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-03</span><span class="tt">do 是替补队员：实义动词丢了提问、否定的能力，do 被拉来扛时态</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-04</span><span class="tt">三单 -s 是北方方言留下的幸存者</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-05</span><span class="tt">名词复数 -s 和三单 -s 不是一家人，是两条源流后来的巧合</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-06</span><span class="tt">不规则过去式按「家族」住：高频是它们的保命符</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-07</span><span class="tt">情态动词说的是「力」：must 是推力，may 是搬走障碍，can 是自己有劲儿</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-08</span><span class="tt">情态动词是语法化的化石：所以没有三单 -s、不能连排</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-09</span><span class="tt">否定词会「磨损—加固」打转：not 本是来帮忙的，后来当了主角</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-10</span><span class="tt">some / any 的分工（详见清单条目）</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-11</span><span class="tt">because 和 so 各管一段路：一段因果通常只留一个连接点</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-12</span><span class="tt">主谓一致有三股力在拉：形式、意义、就近</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-13</span><span class="tt">所有格 's 是「关联标记」，不是「所有权证书」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-14</span><span class="tt">代词的格跟着位置走：「讲究过头」也会错</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-15</span><span class="tt">a / an 看声音不看字母（与 C-14 同题，详见清单条目）</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-16</span><span class="tt">错误是学习者心里「临时系统」在试单，不是粗心也不是坏习惯</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-17</span><span class="tt">注意到，才学得会：形式被「看见」的那一刻才开始变成自己的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-18</span><span class="tt">把形式拉回交际现场：一边解决问题，一边顺手看形式</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-19</span><span class="tt">频率在调谐大脑：见得多的先会，不规则的靠见得多才活得下来</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-20</span><span class="tt">语块先于规则：整句先住进来，语法是后来拆出来的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-21</span><span class="tt">语法讲解的及格线：短、准、够用——先过效率与适切两道检查</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-22</span><span class="tt">汉语不标的，英语偏要标：冠词、时态、复数、三单是中国孩子的错误集中区</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-23</span><span class="tt">输出把「听懂」逼成「会用」：说不出来，才知道哪里没真会</span><span class="st wait">待入模</span></div>
+<div class="gh">总纲三条（正式版置顶）</div>
+<div class="urow flat"><span class="id">GR-24</span><span class="tt">语法长得像它要说的事：象似性三原则</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-25</span><span class="tt">难点可以预测：标记性与「母语没有、目标语偏有」的差值</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-26</span><span class="tt">英语把语法搬了家：从屈折综合到语序分析的总叙事</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-27</span><span class="tt">语法是概率，不是开关：梯度观与概率语法</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-28</span><span class="tt">不规则复数不住单间，住家族宿舍：零复数、变音、-en、外来复数各是一小家</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-29</span><span class="tt">英语的屈折只剩八个词尾：一张小卡片装下全部「变形负担」</span><span class="st wait">待入模</span></div>
+<div class="gh">句法专题（GR-30 – GR-45）</div>
+<div class="urow flat"><span class="id">GR-30</span><span class="tt">关系从句先分「认人」还是「补一句」：逗号就是分界牌</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-31</span><span class="tt">比较级先称「重量」：短词缝 -er，长词请 more，双音节站在两可的门口</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-32</span><span class="tt">关联词成对出门：并列成分要同形，动词听离它最近的主语</span><span class="st wait">待入模</span></div>
+<div class="urow" data-go="u-gr33"><span class="id">GR-33</span><span class="tt">反意疑问句是一台回声机：助动词复制、正反翻面、代词对位</span><span class="st deep">已做深</span></div>
+<div class="urow flat"><span class="id">GR-34</span><span class="tt">倒装有三种活法：呼应式是日常口语，全倒装只请得动名词主语</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-35</span><span class="tt">only 站哪儿就圈哪儿：辖域跟着位置与重音走</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-36</span><span class="tt">使役动词按力气排队：make 推着走，let 放行，have 派活，get 说服</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-37</span><span class="tt">程度词各就各位：so 管形容词，such 管名词短语，too 自带「过头」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-38</span><span class="tt">标点是语法的一部分：逗号扛不起两个完整句子</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-39</span><span class="tt">英美英语是两套并行标准，不是「一个对一个错」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-40</span><span class="tt">虚拟语气只剩几块化石：If I were 的 were 是最后遗迹</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-41</span><span class="tt">过去的习惯有三兄弟，分工不能串：used to / would / be used to</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-42</span><span class="tt">形容词在很多语言里是「小家庭」：成员可以少到只有 8 个</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-43</span><span class="tt">形容词排队有座次：评价坐最外，颜色、出身、材料贴着名词坐</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-44</span><span class="tt">名词短语是打包递出去的「指称单位」：边界是软的、是梯度</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">GR-45</span><span class="tt">名词短语的装箱规矩：轻短在前，重长往后挂</span><span class="st wait">待入模</span></div>
+<div class="urow" data-go="grammar2"><span class="id">续</span><span class="tt">下一页：时态与体 TA / 构式 CO / 疑问 QI 目录 →</span><span class="st wait">目录</span></div>
+</section>
+
+<!-- ============ 语法区目录续：TA / CO / QI ============ -->
+<section class="view" id="v-grammar2">
+<span class="back" data-go="grammar">← 回语法区目录（GR）</span>
+<h2 class="zt">🏗️ 语法区 · 时态体 / 构式 / 疑问</h2>
+<p class="sub">TA 18 条 + CO 17 条 + QI 15 条，均为目录灰态。语法区首页在上一页（GR 组）。</p>
+<div class="gh">时态与体（TA-01 – TA-18）</div>
+<div class="urow flat"><span class="id">TA-01</span><span class="tt">时态 = 时间 × 看法两个开关，不是十二个要逐个背的格子</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-02</span><span class="tt">英语形态上只有两个时态：「将来」是借工具谈的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-03</span><span class="tt">体是「看事情的方式」：看全景，还是钻进去看中间</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-04</span><span class="tt">一般现在时装不下「正在发生」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-05</span><span class="tt">完成体看的是「过去的事和现在的牵连」：痕迹在，事已远</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-06</span><span class="tt">现在完成时不能点名过去时间：*I have seen him yesterday 为什么错</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-07</span><span class="tt">动词自带「时间形状」：有终点、瞬间、状态，各不一样</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-08</span><span class="tt">过去形式还管「距离」：礼貌、假设、转述都是把事情推远</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-09</span><span class="tt">过去完成时是「锚点搬家」：站在过去回头看更早</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-10</span><span class="tt">will 说将来带着「我预言」的口气（详见清单条目）</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-11</span><span class="tt">be going to 是「已经在路上」：从走向某地变成预兆与打算</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-12</span><span class="tt">完成体的来历：从「手里有一封写好的信」长出来的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-13</span><span class="tt">时刻表上的将来用现在时：未来被写成了「已定的事实」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-14</span><span class="tt">讲故事可以把过去拉到眼前：历史现在时是「演」不是说错</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-15</span><span class="tt">汉语靠词和语境表时间，英语靠动词变形：每个句子被迫选时</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-16</span><span class="tt">「了」与英语完成体的对应与错位（详见清单条目）</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-17</span><span class="tt">学时态的顺序：先把高频动词过去式用熟，再回头看系统表</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">TA-18</span><span class="tt">「镜头讲法」教时态有实验支持，但低龄证据待验——如实说</span><span class="st wait">待入模</span></div>
+<div class="gh">构式（CO-01 – CO-16；CO-17 在词汇解码区已做深）</div>
+<div class="urow flat"><span class="id">CO-01</span><span class="tt">句型模具本身带意思：整句的意义大于动词意思之和</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-02</span><span class="tt">双宾模具自带「让某人收到某物」：bake 进去就长出「给」义</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-03</span><span class="tt">有些动词进不了双宾模具：意思合是一关，「长相」也是一关</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-04</span><span class="tt">致使移动模具：喷嚏也能「打飞」一张餐巾纸</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-05</span><span class="tt">结果模具：「把某物弄成某个样」的意思来自模具，不在动词里</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-06</span><span class="tt">双宾模具是一个「意思家族」：真给、打算给、答应给</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-07</span><span class="tt">There be 是「出场介绍」模具：把新面孔推上舞台</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-08</span><span class="tt">被动句是「换主角」，不是没人做主语时的救急</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-09</span><span class="tt">主语是「镜头主角」，不保证是动作的发出者</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-10</span><span class="tt">孩子学句型是「先整句、再换零件」：抽象句型后长</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-11</span><span class="tt">理解句子时，大脑先认模具、后认动词</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-12</span><span class="tt">构式和语块是同一条谱系：整块句 → 半成品框架 → 全抽象模具</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-13</span><span class="tt">一个分句只有一台「上牌发动机」：限定动词管时态</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-14</span><span class="tt">to 还是 -ing 由前面的动词点名：是搭配事实，不是自由二选一</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-15</span><span class="tt">英语先立骨架再挂修饰，汉语先铺垫后点题：两种句子建筑术</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">CO-16</span><span class="tt">构式讲法的边界：模具管「整句的戏」，词形细节归形态层</span><span class="st wait">待入模</span></div>
+<div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词 + get 五构造（在词汇解码区做深）</span><span class="st deep">已做深</span></div>
+<!-- QI 组并入本视图后半 -->
+<div class="gh">疑问与信息（QI-01 – QI-15）</div>
+<div class="urow flat"><span class="id">QI-01</span><span class="tt">疑问词各管一块拼图：问句按「缺哪块信息」分工合作</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-02</span><span class="tt">wh- 与 th- 从未互变：「换字母得答词」是假规律</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-03</span><span class="tt">whose 是 who 的「家的」，why 是「用什么」的变身：两个真词源</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-04</span><span class="tt">提问 = 把助动词举到主语前面：被举的总是排第一的那个</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-05</span><span class="tt">新信息爱住句尾：先说已知，再把「新货」放最后并重读</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-06</span><span class="tt">状语排队是倾向不是定律：「先地点后时间」只是常态顺序</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-07</span><span class="tt">前置是「变强调」的正当手段：把谁提到句首就是给谁打光</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-08</span><span class="tt">语调是问句的第二套标记：是常态，不是铁律</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-09</span><span class="tt">Why 多用 Because 答，但不是「必用」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-10</span><span class="tt">How 与 What 分工：一个问「怎么样」，一个问「什么」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-11</span><span class="tt">选择问句不用 Yes / No 回答</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-12</span><span class="tt">回答否定问句，英语跟「事实」走，汉语常跟「对方的话」走</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-13</span><span class="tt">英语把疑问词搬到句首，汉语让疑问词留在原地</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-14</span><span class="tt">疑问句是分阶段长出来的：模仿 → 换词 → 最后才学会倒装</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">QI-15</span><span class="tt">提问要先有「真缺口」：为不知道而问，形式才记得住</span><span class="st wait">待入模</span></div>
+</section>
+
+<!-- ============ 小系统区（目录页） ============ -->
+<section class="view" id="v-system">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🧭 小系统区</h2>
+<p class="sub">P / C / PR / PB 共 63 条 · 本页为目录页，全部「待入模」灰态。招牌件：介词花园（P 组）、冠词三出口（C 组）、汉语刀口对表（PB-12）。</p>
+<div class="gh">介词（P-01 – P-19）</div>
+<div class="urow flat"><span class="id">P-01</span><span class="tt">总纲：一个介词 = 一张原型图 + 一张亲戚网</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-02</span><span class="tt">原型不是凭感觉选的：四条证据定中心</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-03</span><span class="tt">in 的原型是「装进容器」：边界之内，且受容器影响</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-04</span><span class="tt">on 的原型是「贴面加承重」：接触面在替它撑着</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-05</span><span class="tt">at 的原型是「当成一个点」：把对象压扁成坐标</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-06</span><span class="tt">over 的中心是「在上方」，不是「盖住」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-07</span><span class="tt">up 是「多」：数量往上涨，所以 prices go up</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-08</span><span class="tt">几何算一半，功能算另一半：苹果在碗沿之下为什么还能说 in</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-09</span><span class="tt">时间介词是把空间图「借」到时间上：时长定介词是伪规则</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-10</span><span class="tt">教介词要教「图 + 长法」，不要教义项清单</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-11</span><span class="tt">华语学生的介词错误是「切分不同」，不是「记性不好」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-12</span><span class="tt">谁做图形谁做背景：介词句子先定位「要找的东西」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-13</span><span class="tt">垂直方向是四个词合伙切的：above / over / under / below</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-14</span><span class="tt">to / for / at：三个「指向」介词的分工</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-15</span><span class="tt">小品词是介词的「动词版亲戚」：图式义随身携带</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-16</span><span class="tt">静态的东西借动态的词：The road runs along the river</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-17</span><span class="tt">先空间、后时间、再抽象：介词义的展开顺序就是教学顺序</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-18</span><span class="tt">中国课堂的本土证据：概念教学对华语学生同样有效</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">P-19</span><span class="tt">语言怎么「装」运动：英语把路径装进小尾巴，汉语装进动词系统</span><span class="st wait">待入模</span></div>
+<div class="gh">可数与冠词（C-01 – C-20）</div>
+<div class="urow flat"><span class="id">C-01</span><span class="tt">总纲：可数不可数是「看法」，不是物体的物理属性</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-02</span><span class="tt">物质名词的判据是「同质」：随便拿一小份，还是它</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-03</span><span class="tt">可数名词的「界」可以是模糊的：season、tummy 都可数</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-04</span><span class="tt">看法可以当场切换：磨成料、分作份</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-05</span><span class="tt">数一摊东西要借单位，而汉语量词就是现成的老师</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-06</span><span class="tt">a 的本职：让听者「认出是哪一类」就够了</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-07</span><span class="tt">the 的本职：让听者「唯一定位到那一个」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-08</span><span class="tt">把东西「找出来」的线索只有五条路（定指的建立菜单）</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-09</span><span class="tt">选错冠词有个系统原因：先按「具体」选，后按「定指」选</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-10</span><span class="tt">中国学生的冠词错误居前列，以「漏」和「滥」为主</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-11</span><span class="tt">机构名词有两种读法：「去做那件事」不加冠词，「去那栋楼」才加</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-12</span><span class="tt">有些搭配是「约定存货」：play the piano 加 the、play football 不加</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-13</span><span class="tt">类指有三种说法，分工不同：a tiger / the tiger / tigers</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-14</span><span class="tt">a/an 看声音不看字母：an 是原形，a 是弱化形</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-15</span><span class="tt">抽象名词不可数，因为它们被看成「一类事」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-16</span><span class="tt">集合名词可单可复，看你把「一家人」看成一个单位还是几口人</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-17</span><span class="tt">量词排队先看识解：many/much、few/little 是同一总开关的下游</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-18</span><span class="tt">复数 -s 只落在「有界单位」上：从不落在料上</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-19</span><span class="tt">选冠词时先过一遍「对方知道吗」——冠词是给听者的服务</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">C-20</span><span class="tt">冠词错误要分型纠：漏用、误加、替换是三种病、三种药</span><span class="st wait">待入模</span></div>
+<div class="urow" data-go="system2"><span class="id">续</span><span class="tt">下一页：代词 PR / 介词书房 PB 目录 →</span><span class="st wait">目录</span></div>
+</section>
+
+<!-- ============ 小系统区目录续：PR / PB（新视图，目录互链） ============ -->
+<section class="view" id="v-system2">
+<span class="back" data-go="system">← 回小系统区（P / C）</span>
+<h2 class="zt">🧭 小系统区 · 代词与介词书房</h2>
+<div class="gh">代词与指称（PR-01 – PR-11）</div>
+<div class="urow flat"><span class="id">PR-01</span><span class="tt">代词首先是「关系词」，不是「代替名词的词」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-02</span><span class="tt">「我」是把自己钉在此时此地、并为这句话担责的词</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-03</span><span class="tt">we 是最「滑」的代词：包不包你，要靠听者自己猜</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-04</span><span class="tt">礼貌和亲疏本来住在代词里——英语把这套系统拆了</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-05</span><span class="tt">「人称」不是一张三人称表，而是一个范畴家族</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-06</span><span class="tt">用全名、代词还是零形式，由「可及性」定价</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-07</span><span class="tt">有的语言能省掉主语代词，英语把这套丢了，代词必须站出来</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-08</span><span class="tt">漏主语的总根：汉语是「话题优先」的语言，英语是「主语优先」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-09</span><span class="tt">迁移是「把汉语的功能塞进英语的形式」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-10</span><span class="tt">天气里的 it 不是占位符，它指着「整个环境」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PR-11</span><span class="tt">他/她说混了，错在汉语 tā 同音——是加工问题不是态度问题</span><span class="st wait">待入模</span></div>
+<div class="gh">介词专著书房（PB-01 – PB-13）</div>
+<div class="urow flat"><span class="id">PB-01</span><span class="tt">介词书可以不按词编、按「意义簇」编</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-02</span><span class="tt">基本义要能「画出来」：可描绘性是核心义的门槛</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-03</span><span class="tt">on 被拆成两个基本义：on1「接触承托」与 on2「继续向前」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-04</span><span class="tt">against 有专章、through 在路径簇：力在场与穿过介质</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-05</span><span class="tt">over 网络的原始形态：中心是动态的「从上方越过」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-06</span><span class="tt">连接节点的不是引申理据，是「图式变换」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-07</span><span class="tt">中心义判定之争：Tyler &amp; Evans 把 24 个义项压回 15 个</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-08</span><span class="tt">每个介词只有一个「理想意义」，其余全是偏离</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-09</span><span class="tt">偏离走两条道：「使用类型」挂账与「语用容差」现场放行</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-10</span><span class="tt">功能知识：介词不只看形状，还看「这东西是干什么用的」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-11</span><span class="tt">韩语孩子按「紧贴不紧贴」切世界，英语孩子按「包住/托住」切</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-12</span><span class="tt">刀口错位图：汉语的「上/里」与英语 in/on/at 在哪几处必然打架</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">PB-13</span><span class="tt">Dirven 的意义链：物理空间怎么切，心理空间就怎么搭</span><span class="st wait">待入模</span></div>
+</section>
+
+<!-- ============ 表达写作区（目录页） ============ -->
+<section class="view" id="v-expr">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">✍️ 表达写作区</h2>
+<p class="sub">E / W / NE 共 59 条 · 本页为目录页，全部「待入模」灰态。招牌件：整块取句（E-04）、范文先行（W-05）、语义韵选词（V-43，词汇区）。</p>
+<div class="gh">表达与语用（E-01 – E-15）</div>
+<div class="urow flat"><span class="id">E-01</span><span class="tt">说话就是做事：每句话都在执行一个动作</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-02</span><span class="tt">很多话不能按字面听：「你能把盐递给我吗」问的不是能力</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-03</span><span class="tt">对话靠双方默认「我还在配合你」进行下去</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-04</span><span class="tt">日常句子是整块从记忆里取出来的，不是逐词现拼的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-05</span><span class="tt">语用失误比语法错误更伤人：场合错了，人家觉得你「人不好」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-06</span><span class="tt">语用失误分两种，治法完全不同</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-07</span><span class="tt">请求、拒绝越「压人」，英语越要加缓冲</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-08</span><span class="tt">一句回应「对不对」，看谁在说、对谁说、上一句说了什么</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-09</span><span class="tt">汉语的客套会「跟着人一起出国」：直译常变成失误</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-10</span><span class="tt">「会说英语」是四种本事合起来：语法只占四分之一</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-11</span><span class="tt">卡壳不是失败，是交际的一部分：会自救本身就是本事</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-12</span><span class="tt">得体不会自己长出来：语用必须专门教</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-13</span><span class="tt">对话是两个人轮流搭的：一问一答是绑在一起的「对子」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-14</span><span class="tt">没注意到的东西学不会：语用规矩藏在语境里</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">E-15</span><span class="tt">说错了能自己改回来，是对话自带的功能</span><span class="st wait">待入模</span></div>
+<div class="gh">写作（W-01 – W-15）</div>
+<div class="urow flat"><span class="id">W-01</span><span class="tt">写作和说话最大的不同：读者不在你面前</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-02</span><span class="tt">写作文不是一口气写到尾：想、写、改来回切换</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-03</span><span class="tt">「想到什么写什么」不是偷懒，是发展阶段</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-04</span><span class="tt">修改分两层，顺序不能反：先改意思，最后改字词句</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-05</span><span class="tt">最省力的进步法是「接着写」：理解会把产出「拉平」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-06</span><span class="tt">内容要创造，语言要模仿：新意放在想什么上</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-07</span><span class="tt">写不出来恰恰是最有用的时刻：「注意到缺口」是扳机</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-08</span><span class="tt">小学生怎么写才有效，有官方级的证据清单</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-09</span><span class="tt">再大一点什么写作教学最有效：元分析答案是教「策略」排第一</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-10</span><span class="tt">支架的意义在于「用完要撤」：撤掉还能写才算学会</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-11</span><span class="tt">POA：先给一个写不好的真实任务撞见缺口，再给范文——裁定 B 开关管辖本条（见设置）</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-12</span><span class="tt">字写不顺、词拼不对，会把脑子「堵住」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-13</span><span class="tt">句子是攒出来的：句子合并是实测能提升质量的单项训练</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-14</span><span class="tt">衔接词是给读者的路标，贴错地方比没有更糟</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">W-15</span><span class="tt">任何「套公式保满分」的承诺都没有研究支持</span><span class="st wait">待入模</span></div>
+<div class="urow" data-go="expr2"><span class="id">续</span><span class="tt">下一页：母语国家专家 NE 目录 →</span><span class="st wait">目录</span></div>
+</section>
+
+<!-- ============ 表达写作区目录续：NE ============ -->
+<section class="view" id="v-expr2">
+<span class="back" data-go="expr">← 回表达写作区（E / W）</span>
+<h2 class="zt">✍️ 表达写作区 · 母语国家专家</h2>
+<div class="gh">NE-01 – NE-29</div>
+<div class="urow flat"><span class="id">NE-01</span><span class="tt">合语法不等于地道：母语者只说「惯例会说的那一种」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-02</span><span class="tt">说话快得不像现编的：大脑里整存着一座「句干仓库」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-03</span><span class="tt">学英语的起步单位是整块，不是单词加规则</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-04</span><span class="tt">没有哪条规则被所有人永远遵守</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-05</span><span class="tt">好些「语法铁律」是两三百年前照着拉丁语发明的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-06</span><span class="tt">英语已经不归母语者管了：三圈世界</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-07</span><span class="tt">只用三千个已知词，就能解释一切新词</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-08</span><span class="tt">词典真正的灵魂是例句和句型：动词是句子的枢纽</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-09</span><span class="tt">先有情景，再有句型：Hornby 的情景法遗产</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-10</span><span class="tt">说话时每时每刻在做三个决定：语调的「三 T」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-11</span><span class="tt">口音是地图不是污点：差异有系统</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-12</span><span class="tt">发音先练肌肉：找到嘴里的四个「按钮」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-13</span><span class="tt">音标表不是考卷，是一张可以上手玩的「发音地图」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-14</span><span class="tt">目标是被听懂，不是扮成母语者：可懂度优先</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-15</span><span class="tt">规则先过证据关：被奉为圭臬的手册也会认错被动语态</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-16</span><span class="tt">语法是「选择的仓库」：学语法是为写作多一条可选的路</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-17</span><span class="tt">语法要嵌在写作里教才有效：Exeter 试验给出「有条件的有效」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-18</span><span class="tt">语类是「分阶段、奔着社会目的去的做事方式」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-19</span><span class="tt">教学循环：先全班拆一篇 → 再合写一篇 → 最后自己写</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-20</span><span class="tt">Reading to Learn：把支架加厚到句子层</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-21</span><span class="tt">给小学教师的语法书按「语言的四种活儿」组织</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-22</span><span class="tt">印刷概念：开始读之前，先搞懂「书是怎么运作的」</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-23</span><span class="tt">Reading Recovery：最早、最贵的一对一干预，长期效果正被新证据检验</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-24</span><span class="tt">谈话有三型：只有探索型谈话里思考是公开进行的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-25</span><span class="tt">Thinking Together：先全班约法，再放小组讨论</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-26</span><span class="tt">对话式教学五原则：集体、互惠、支持、累积、目的</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-27</span><span class="tt">Talk for Writing 三段：模仿 → 创新 → 发明</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-28</span><span class="tt">模仿段的发动机：故事地图 + 全身动作</span><span class="st wait">待入模</span></div>
+<div class="urow flat"><span class="id">NE-29</span><span class="tt">支架是设计出来的：语言支架与学习支架要同时搭</span><span class="st wait">待入模</span></div>
+</section>
+
+<!-- ============ 单元 S-36 /iː/ 拼法菜单 ============ -->
+<section class="view" id="v-u-s36">
+<span class="back" data-go="phon">← 回拼读区</span>
+<div class="uhead"><span class="uid">S-36 · 拼读区 · 旗舰单元</span>
+<h2>/iː/ 有两条最大的路：see 的 ee 和 eat 的 ea</h2>
+<p>再加 me 的 e、field 的 ie、key 的 ey、machine 的 i、these 的 e-e；ceiling 的 ei 排在 c 后面时也读 /iː/。</p></div>
+<div class="flow"><span><b>1</b> 病句医院</span><span><b>2</b> 动画讲机制</span><span><b>3</b> 一屏一总结</span><span><b>4</b> 分级例</span><span><b>5</b> 检索练习</span><span><b>6</b> 病因归档 · 复习队列</span></div>
+<div class="step"><div class="sh"><span class="no">1</span><h3>病句医院 · 今天的门诊</h3></div>
+<div class="hosp">
+<div class="case">📖 <span class="bad">I read /riːd/ a book yesterday.</span><br><span class="why">诊断：read 是过去式的时候不读长音——它的过去式读 /red/。ea 不总是 /iː/，这是 ea 的另一副面孔（全谱在变脸榜 S-42）。</span></div>
+<div class="case">📖 <span class="bad">ceiling 读成 /ˈseɪlɪŋ/</span><br><span class="why">诊断：ei 在这里排在 c 后面，该读 /iː/（/ˈsiːlɪŋ/）。ei 的读法要看它站在谁后面。</span></div>
+<div class="case">📖 <span class="bad">machine 读成 /məˈʃɪn/</span><br><span class="why">诊断：machine 是法语层来的词，这里的 i 读 /iː/（/məˈʃiːn/），不是短音 /ɪ/。</span></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">2</span><h3>机制屏 · 一屏一总结</h3></div>
+<div class="box">
+<p class="big">同一个 /iː/，为什么有两条大路？因为中古英语本来就有两个长 e，大推移里先后升到 /iː/ 合成一个音，拼写却各留各的——ee 和 ea 是「合并的化石」，不是例外。</p>
+<table class="menu"><tr><th>班次</th><th>拼法</th><th>例词</th></tr>
+<tr><td>主力</td><td><b>ee</b></td><td>see、tree、green、sleep</td></tr>
+<tr><td>主力</td><td><b>ea</b></td><td>eat、sea、teacher</td></tr>
+<tr><td>主力</td><td><b>e</b>（词尾/开音节）</td><td>me、he、she、we、be</td></tr>
+<tr><td>小路</td><td>e-e</td><td>these、complete</td></tr>
+<tr><td>小路</td><td>ie</td><td>field、piece、believe、chief</td></tr>
+<tr><td>小路</td><td>ey（词尾）</td><td>key</td></tr>
+<tr><td>小路</td><td>i（法语层）</td><td>machine、police、ski</td></tr>
+<tr><td>小路</td><td>ei（在 c 后面）</td><td>ceiling、receive、receipt；另有 seize 不在 c 后也读 /iː/</td></tr>
+<tr><td>孤例</td><td>eo</td><td>people</td></tr></table>
+<div class="chips">亲戚网：<span class="chip">S-35 /eɪ/ 菜单</span><span class="chip">S-42 变脸榜（ea 的全谱）</span><span class="chip">SR-07 i before e 的成色</span><span class="chip">S-15 元音大推移</span></div>
+<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——中古英语的两个长 e 并排站队（较闭的拼 ee、较开的拼 ea）；镜 2——元音大推移，两条队先后升到 /iː/ 合流；镜 3——声音合成一个，拼写保留双轨，菜单成形。</div>
+<div class="adult"><b>成人层 · 机制</b>：ee/ea 双主力的成因是中古英语双长 e（/eː/ 与 /ɛː/）在元音大推移中合并，拼写保留双轨。<b>出处</b>：Letters and Sounds Phase 3（ea、ee）与 Phase 5（/iː/ 替代拼法）表，课程文件级；双长 e 合并见 Baugh &amp; Cable《A History of the English Language》语音章，书目级；例词读音按剑桥词典核对，词典级。<b>边界</b>：ea 另有 /e/（head、bread、read 过去式）与 /eɪ/（great 等三词）两面，见 S-42；ie 也有 /aɪ/（pie）与 /e/（friend）面；ey 有 /eɪ/ 面（见 S-35）。<b>分歧</b>：部分美国拼读体系把 ea 列为「次要」、ee 为唯一主力，与英式双主力排法不同——是教学排序之差，非事实之争。</div>
+</div></div>
+
+<div class="step"><div class="sh"><span class="no">3</span><h3>分级例</h3></div>
+<div class="box">
+<div class="lv"><span class="lt">第一级 · 认主力</span><p>see 看见 · tree 树 · green 绿色 · eat 吃 · sea 大海 · me 我 · he 他</p></div>
+<div class="lv"><span class="lt">第二级 · 认小路</span><p>field 田野（ie）· key 钥匙（ey）· machine 机器（i，法语层）· ceiling 天花板（ei 在 c 后）· people 人们（eo 孤例）</p></div>
+<div class="lv"><span class="lt">对照一对</span><p>read 现在时读 /riːd/，过去式读 /red/——同一个词，ea 换了面孔，看时间再定音。</p></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">4</span><h3>检索练习（答错只给回机制的提示）</h3></div>
+<div class="box">
+<div class="qz"><p class="q">Q1. sea 里的 ea 读哪个音？</p>
+<button class="opt" data-ok="1">/iː/——和 eat 一队</button>
+<button class="opt">/e/——和 head 一队</button>
+<button class="opt">/eɪ/——和 great 一队</button>
+<div class="qhint">提示：回机制屏看菜单——ea 的「主场」是哪一行？head 和 great 是 ea 出门串门的面孔，不是主场。</div>
+<div class="qok">对了。ea 的主场是 /iː/；/e/ 和 /eɪ/ 是它在变脸榜上的其他面孔。</div></div>
+<div class="qz"><p class="q">Q2. 下面哪个词的 ei 读 /iː/？</p>
+<button class="opt">vein（血管）</button>
+<button class="opt" data-ok="1">ceiling（天花板）</button>
+<button class="opt">eight（八）</button>
+<div class="qhint">提示：回菜单最后一行——ei 在什么时候读 /iː/？看它站在谁后面。</div>
+<div class="qok">对了。ei 排在 c 后面读 /iː/；vein、eight 的 ei/ eigh 读 /eɪ/，那是 S-35 的菜单。</div></div>
+<div class="qz"><p class="q">Q3. 判断：people 里的 eo，和 see 里的 ee 一样是 /iː/ 的主力拼法。</p>
+<button class="opt">对</button>
+<button class="opt" data-ok="1">不对，eo 只有 people 这一组孤例</button>
+<div class="qhint">提示：回菜单看 eo 坐在哪一班——「主力」还是单独的一行？</div>
+<div class="qok">对了。eo 是孤组，整组单记；主力只有 ee、ea 和词尾 e。</div></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">5</span><h3>完成 · 病因归档</h3></div>
+<div class="done">
+<p>🏥 本单元错题按病因归档：<b>病因「ea / ei 的面孔没分清」</b>——不是记性问题，是没看清组合站在谁后面、是哪一队。</p>
+<p>📥 已进入复习队列（间隔复习示意）：</p>
+<div class="queue"><span>明天 · ea 主场速认</span><span>3 天后 · ei 在 c 后</span><span>1 周后 · 变脸榜 ea 全谱</span></div>
+<div class="adult"><b>成人层 · 误解探针（入模规格）</b>：预判孩子会把「ei 读 /iː/」记成无条件规则——探针词 seize（不在 c 后也读 /iː/）与 vein（读 /eɪ/）各一，答错即回本屏菜单的 ei 行。</div>
+</div></div>
+</section>
+
+<!-- ============ 单元 SR-01 Magic e ============ -->
+<section class="view" id="v-u-sr01">
+<span class="back" data-go="phon">← 回拼读区</span>
+<div class="uhead"><span class="uid">SR-01 · 拼读区 · 定律区旗舰</span>
+<h2>词尾那个不出声的 e，是个大忙人：看见它，先问它在干哪份工</h2>
+<p>它能让元音读长、能让 c/g 变软、能扶住词尾、能给 th 定清浊、能给 -le 凑音节——传统原表一共清点九项职责。</p></div>
+<div class="flow"><span><b>1</b> 病句医院</span><span><b>2</b> 动画讲机制</span><span><b>3</b> 一屏一总结</span><span><b>4</b> 分级例</span><span><b>5</b> 检索练习</span><span><b>6</b> 病因归档 · 复习队列</span></div>
+<div class="step"><div class="sh"><span class="no">1</span><h3>病句医院 · 今天的门诊</h3></div>
+<div class="hosp">
+<div class="case">✏️ <span class="bad">giv（give 少了 e）</span><br><span class="why">诊断：这个 e 不是装饰——英语本土词不让 v 当最后一个字母，e 是站在词尾的「护栏」。</span></div>
+<div class="case">✏️ <span class="bad">litl（little 少了 e）</span><br><span class="why">诊断：每个音节都要有一个书写元音，-le 音节全靠这个 e 凑齐，少了它音节就不成立。</span></div>
+<div class="case">✏️ <span class="bad">come 读成 /kəʊm/（按 tape 的规则硬套）</span><br><span class="why">诊断：come 的 e 是「无职之 e」——历史上有过理由、今天已不可考。不是每个词尾 e 都管长音（这一职的实测命中率只有 63%，见成人层）。</span></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">2</span><h3>机制屏 · 一屏一总结（九职全表）</h3></div>
+<div class="box">
+<p class="big">五职里只有第①职改变元音读音，其余都是「拼写合法性」标记——e 不发声，但它在替拼写系统交代位置、词类与音节结构。</p>
+<table class="menu"><tr><th>职</th><th>干什么</th><th>例</th></tr>
+<tr><td>① 长音化</td><td>标记前面的元音读长音</td><td>tap→tape、pin→pine、rob→robe、tub→tube</td></tr>
+<tr><td>② 软化</td><td>让紧邻的 c 读 /s/、g 读 /dʒ/</td><td>ice、dance、cage、page</td></tr>
+<tr><td>③ 词尾护栏</td><td>英语本土词不以 v、u 收尾，靠 e 扶住</td><td>have、give、love；blue、true、clue</td></tr>
+<tr><td>④ th 清浊标记</td><td>名词清 /θ/ 不带 e，动词浊 /ð/ 带 e</td><td>bath / bathe、breath / breathe、cloth / clothe</td></tr>
+<tr><td>⑤ -le 凑音节</td><td>给辅音 +le 的音节凑一个书写元音</td><td>little、table、apple、bubble、puzzle</td></tr>
+<tr><td>⑥ 防像复数</td><td>表明词尾不是 -s 复数</td><td>house、moose、please</td></tr>
+<tr><td>⑦ 凑长度</td><td>给短词凑够长度（实词一般不少于三个字母）</td><td>are、ore、eye</td></tr>
+<tr><td>⑧ 无职之 e</td><td>历史上曾有理由，今天已不可考</td><td>come、some、done、giraffe</td></tr>
+<tr><td>⑨</td><td colspan="2">原表共九项；本轮经三种独立转述核到以上八项，第九项未逐项核到——入模前补核原书，不凭记忆补写。</td></tr></table>
+<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——一个 e 走进 tap，a 立刻读长；镜 2——同一个 e 站到 v 身后当护栏；镜 3——e 坐进 -le 音节凑数。一位演员，轮岗上工。</div>
+<div class="adult"><b>成人层 · 出处</b>：Denise Eide《Uncovering the Logic of English》(2012）对 silent final e 的理由清点；本轮未打开原书，经 Pride Reading Program 7 职版、Literacy Learn 注明取材 Eide 的 9 职版、OG 系教师材料三种独立转述逐项互证——接触等级：多源转述互证级。<b>支撑</b>：Clymer (1963）实测「词尾 e 使首元音读长」一条的命中率只有 63%，故第①职必须配合变脸名单使用；Hickey 规则卡称词尾 v 规则「唯一例外是 spiv（英式俚语）」。<b>边界</b>：第③职的规范表述是 I、U、V、J 四个字母都不收尾（i 不收尾故词尾写 y/ie，见 SR-05;j 不收尾故词尾 /dʒ/ 写 ge/dge，见 SR-03)；且只对本土核心词近乎无例外——menu、flu、improv 等外来词与截短词可破。第④职适用面很小，仅限 bath/bathe 等同源词对。<b>分歧</b>：这组「职责」是教学用的事后归纳，不是历时成因清单（词尾 e 大面积来自中古屈折词尾脱落与印刷定型）；教学界取功能说，正字法研究（如 Venezky）更愿描述为拼写格局——两说并存，本条按教学可用性取功能说。</div>
+</div></div>
+
+<div class="step"><div class="sh"><span class="no">3</span><h3>分级例</h3></div>
+<div class="box">
+<div class="lv"><span class="lt">第一级 · 长音化与软化</span><p>tap→tape（录音带）· pin→pine（松树）· ice（冰，c 变软）· cage（笼子，g 变软）</p></div>
+<div class="lv"><span class="lt">第二级 · 护栏、清浊与凑音节</span><p>have / give（护栏）· blue / true（护栏）· bath 洗澡水 → bathe 洗澡（th 定浊）· little / table（-le 凑音节）</p></div>
+<div class="lv"><span class="lt">对照一组</span><p>come、some、done 的 e 哪份工都不干——看见词尾 e 先问工种，别默认它管长音。</p></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">4</span><h3>检索练习（答错只给回机制的提示）</h3></div>
+<div class="box">
+<div class="qz"><p class="q">Q1. tape 里的 e 在干哪份工？</p>
+<button class="opt" data-ok="1">第①职：让前面的 a 读长音</button>
+<button class="opt">第③职：给词尾当护栏</button>
+<button class="opt">第⑤职：给 -le 凑音节</button>
+<div class="qhint">提示：回九职表——tape 里 e 前面站的是谁？先看 tap→tape 声音变了没有。</div>
+<div class="qok">对了。tap→tape，a 由短变长，这是长音化。</div></div>
+<div class="qz"><p class="q">Q2. have 里的 e 为什么不能去掉？</p>
+<button class="opt">因为它让 a 读长音 /eɪ/</button>
+<button class="opt" data-ok="1">因为英语本土词不让 v 收尾，e 是护栏</button>
+<button class="opt">因为 have 是复数</button>
+<div class="qhint">提示：先把 have 读出来——a 读的是长音吗？再回九职表找「扶住词尾」是哪一职。</div>
+<div class="qok">对了。have 的 a 并没读长音；这个 e 干的是第③职护栏。</div></div>
+<div class="qz"><p class="q">Q3. bathe（洗澡，动词）里的 e 在干哪份工？</p>
+<button class="opt">让 a 读长音</button>
+<button class="opt">凑够三个字母</button>
+<button class="opt" data-ok="1">给 th 定浊音：带 e 的是动词，读 /ð/</button>
+<div class="qhint">提示：回九职表第④职——bath 和 bathe 差在哪儿？一个是名词，一个是动词。</div>
+<div class="qok">对了。bath /bɑːθ/ 是名词（清），bathe /beɪð/ 是动词（浊），e 是清浊标记。</div></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">5</span><h3>完成 · 病因归档</h3></div>
+<div class="done">
+<p>🏥 本单元错题按病因归档：<b>病因「词尾 e 的工种认错」</b>——把九份工混成一份（只记长音化），或把 e 当装饰随手丢掉。</p>
+<p>📥 已进入复习队列（间隔复习示意）：</p>
+<div class="queue"><span>明天 · 五职认岗</span><span>3 天后 · bath/bathe 清浊对</span><span>1 周后 · 无职之 e 名单</span></div>
+<div class="adult"><b>成人层 · 误解探针（入模规格）</b>：预判孩子把第①职当成词尾 e 的唯一工作——探针用 have（护栏）与 come（无职）各一，答错即回九职表对应行。</div>
+</div></div>
+</section>
+
+<!-- ============ 单元 S-42 变脸榜 ============ -->
+<section class="view" id="v-u-s42">
+<span class="back" data-go="phon">← 回拼读区</span>
+<div class="uhead"><span class="uid">S-42 · 拼读区 · 旗舰单元</span>
+<h2>变脸榜：ough 是变脸大王——读法越多越不可猜，越要整组记</h2>
+<p>本榜是 S-06「变脸名单」的正式版：成员、排序与每组的全谱词例都在这里。</p></div>
+<div class="flow"><span><b>1</b> 病句医院</span><span><b>2</b> 动画讲机制</span><span><b>3</b> 一屏一总结</span><span><b>4</b> 分级例</span><span><b>5</b> 检索练习</span><span><b>6</b> 病因归档 · 复习队列</span></div>
+<div class="step"><div class="sh"><span class="no">1</span><h3>病句医院 · 今天的门诊</h3></div>
+<div class="hosp">
+<div class="case">📖 <span class="bad">book 读成 /buːk/（照 moon 的读法套）</span><br><span class="why">诊断：oo 有三副嗓子。book 和 spook 同是 -ook 却分读 /ʊ/ 与 /uː/——同环境对峙，无规则可分，只能整组记。</span></div>
+<div class="case">📖 <span class="bad">head 读成 /hiːd/（照 heat 的读法套）</span><br><span class="why">诊断：head 与 heat 只差一个字母，ea 却分读 /e/ 与 /iː/——ea 的四读之间位置、重音全同，线索最少，这正是它排第二的原因。</span></div>
+<div class="case">📖 <span class="bad">though 和 through 用同一个读法</span><br><span class="why">诊断：ough 一个组合八到十读，though 读 /əʊ/、through 读 /uː/，靠一条规则猜不出来——靠分组。</span></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">2</span><h3>机制屏 · 一屏一总结</h3></div>
+<div class="box">
+<p class="big">排序口径：按「读法数 × 不可预测度」加权——读法多、且位置/重音/词源都给不出线索的排前面，不是单纯数读音个数。所以 a 有全榜最多的 8 读却只排第四（每读都有线索），ea 线索最少排第二。</p>
+<table class="menu"><tr><th>名次</th><th>组合</th><th>读法全谱（英式）</th></tr>
+<tr><td><span class="rk">1</span></td><td><b>ough</b></td><td>常用 8 读：/əʊ/ though · /uː/ through · /ʌf/ rough、tough · /ɒf/ cough · /ɔː/ thought、bought · /aʊ/ bough · /ə/ thorough · /ʌp/ hiccough；罕见再加 /ɒk/ hough、/ɒx/ lough，全谱 10 读</td></tr>
+<tr><td><span class="rk">2</span></td><td><b>ea</b>（及 ear）</td><td>本体 4 读：/iː/ eat · /e/ head · /eɪ/ great · /ɑː/ heart；带 ear 家族达 7 读（再加 hear /ɪə/、bear /eə/、learn /ɜː/）</td></tr>
+<tr><td><span class="rk">3</span></td><td><b>ou</b></td><td>重读 6 读：/aʊ/ out · /uː/ soup · /ʊ/ could · /ʌ/ touch · /ɔː/ four · /əʊ/ shoulder；非重读再加 /ə/ famous，全谱 7 读</td></tr>
+<tr><td><span class="rk">4</span></td><td><b>a</b></td><td>全谱 8 读为全榜最多：/æ/ cat · /eɪ/ cake · /ɑː/ father · /ɔː/ all · /ɒ/ wash · /e/ any · 弱读 /ə/ about、/ɪ/ village——但每读都有位置或重音线索</td></tr>
+<tr><td><span class="rk">5</span></td><td><b>y</b></td><td>4 读：/j/ yes · /aɪ/ my、apply · /ɪ/ gym · /i/ happy</td></tr>
+<tr><td><span class="rk">6</span></td><td><b>oo</b></td><td>3 读：/uː/ moon · /ʊ/ book · /ʌ/ blood；oo+r 再读 /ɔː/ door</td></tr></table>
+<p style="margin-top:8px">ough 的内部秩序：<b>-ought 一组内部极整齐</b>（bought、thought、fought、sought、ought 全读 /ɔːt/），变脸发生在组与组之间——对策是按词族分组记，不是逐词死记。</p>
+<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——ough 的十条历史路线从同一个中古读音分头演变；镜 2——十组词各就各位排成词族；镜 3——榜单按「不可预测度」重新排队，a 退到第四、ea 上到第二。</div>
+<div class="adult"><b>成人层 · 出处</b>：ough 读音表经 Wikipedia「Ough (orthography)」与剑桥词典官方博客双源开页核对；其余各组例词读音按剑桥词典逐词核对（词典级）；计数口径为本条自定并写明。<b>边界</b>：ough 若计专名与苏格兰方言读法数目还可上浮，本榜封顶于「常用词 + 两个有词典登记的罕见项」=10；slough 一词三读是单字层面的变脸，不计入组合读法数；本榜只收元音区，辅音区两三读组合（th、ch 等）不在此排位。<b>分歧</b>：① ough 计数各家不同（美式常引 7–8 读、英式 9 读、含罕见 10 读），差在收录口径而非读音事实；② 教学处理之争——实务口径称 ough 词「只能作整词记」，词族教学口径主张按词族分组后可归队学习，本条取后者为主张、前者为下限提醒（组间选择仍无规则）。</div>
+</div></div>
+
+<div class="step"><div class="sh"><span class="no">3</span><h3>分级例</h3></div>
+<div class="box">
+<div class="lv"><span class="lt">第一级 · ea 四读认脸</span><p>eat /iː/ 吃 · head /e/ 头 · great /eɪ/ 伟大的 · heart /ɑː/ 心——同一个 ea，四副嗓子。</p></div>
+<div class="lv"><span class="lt">第二级 · -ought 词族整组记</span><p>bought 买（过去式）· thought 想（过去式）· fought 打（过去式）· sought 寻找（过去式）· ought 应该——全组同读 /ɔːt/，组内零变脸。</p></div>
+<div class="lv"><span class="lt">高段素材 · 一句九读</span><p>"The wind was rough along the lough as the ploughman fought through the snow, and though he hiccoughed and coughed, his work was thorough."——一句之内 ough 九读俱全（条目引 Wikipedia 例证句）。</p></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">4</span><h3>检索练习（答错只给回机制的提示）</h3></div>
+<div class="box">
+<div class="qz"><p class="q">Q1. book 里的 oo 读哪个音？</p>
+<button class="opt">/uː/——和 moon 一队</button>
+<button class="opt" data-ok="1">/ʊ/——和 good、foot 一队</button>
+<button class="opt">/ʌ/——和 blood 一队</button>
+<div class="qhint">提示：回榜看 oo 那一行——book 被排在哪一读下面？同是 -ook 的 spook 又在哪一读？</div>
+<div class="qok">对了。book 读 /ʊ/；oo 三读无规则分家，靠整组记。</div></div>
+<div class="qz"><p class="q">Q2. 对付 ough 最靠谱的办法是？</p>
+<button class="opt">背一条总规则，见 ough 就套</button>
+<button class="opt" data-ok="1">按词族分组记：先认 -ought 这种组内整齐的队</button>
+<button class="opt">跳过不读</button>
+<div class="qhint">提示：回机制屏最后一句——ough 的「内部秩序」是什么？变脸发生在组内还是组间？</div>
+<div class="qok">对了。组内整齐、组间变脸，所以按词族分组是对策。</div></div>
+<div class="qz"><p class="q">Q3. a 的读法全榜最多（8 读），为什么只排第四，ea（4 读）反而排第二？</p>
+<button class="opt">因为 a 的词比较简单</button>
+<button class="opt" data-ok="1">因为排序看「不可预测度」：a 每读都有位置/重音线索，ea 四读之间无线索</button>
+<div class="qhint">提示：回机制屏第一段——排序口径是只数读法个数吗？head 和 heat 的差别说明了什么？</div>
+<div class="qok">对了。读法数 × 不可预测度加权，ea 线索最少所以靠前。</div></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">5</span><h3>完成 · 病因归档</h3></div>
+<div class="done">
+<p>🏥 本单元错题按病因归档：<b>病因「变脸组合按单读硬套」</b>——把多读组合当成一读，用错队伍的读法去套。</p>
+<p>📥 已进入复习队列（间隔复习示意）：</p>
+<div class="queue"><span>明天 · ea 四读认脸</span><span>3 天后 · -ought 词族</span><span>1 周后 · ough 全谱分组</span></div>
+<div class="adult"><b>成人层 · 误解探针（入模规格）</b>：预判孩子把「读法多 = 排前面」当成榜单逻辑——探针用 a（8 读第四）与 ea（4 读第二）的排位判断一题，答错即回本屏排序口径段。</div>
+</div></div>
+</section>
+
+<!-- ============ 单元 V-40 打包错位 ============ -->
+<section class="view" id="v-u-v40">
+<span class="back" data-go="vocab">← 回词汇解码区</span>
+<div class="uhead"><span class="uid">V-40 · 词汇解码区 · 旗舰单元</span>
+<h2>中文像一个万能遥控器，英语像一串专用按钮</h2>
+<p>门、灯、电视、开会，中文全按「开」；英语要先看清「这件事在干什么」，再挑对按钮。逐词对译必失真——这是中式英语的总病根之一。</p></div>
+<div class="flow"><span><b>1</b> 病句医院</span><span><b>2</b> 动画讲机制</span><span><b>3</b> 一屏一总结</span><span><b>4</b> 分级例</span><span><b>5</b> 检索练习</span><span><b>6</b> 病因归档 · 复习队列</span></div>
+<div class="step"><div class="sh"><span class="no">1</span><h3>病句医院 · 今天的门诊</h3></div>
+<div class="hosp">
+<div class="case">📖 <span class="bad">*open the light</span>（想说「开灯」）<br><span class="why">诊断：把汉语「开」的打包图原样套过来了。灯不是门——英语给灯按的按钮是 turn on。</span></div>
+<div class="case">📖 <span class="bad">eat medicine</span>（想说「吃药」）<br><span class="why">诊断：「吃」直译成 eat 就错了。药在英语里归 take 管：take medicine。</span></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">2</span><h3>机制屏 · 一屏一总结</h3></div>
+<div class="box">
+<p class="big">一个事件的零件（动作、对象、方式、结果）可以有不同的「打包法」：汉语爱用一个总管动词熔成一团，英语爱按细节分给几个词。学英语不是换词，是先看打包法。</p>
+<table class="menu"><tr><th>汉语一个「开」</th><th>英语按哪个按钮</th></tr>
+<tr><td>开门</td><td><b>open</b> the door</td></tr>
+<tr><td>开灯 / 开电视</td><td><b>turn on</b> / switch on the light / the TV</td></tr>
+<tr><td>开车</td><td><b>drive</b></td></tr>
+<tr><td>开会</td><td><b>have</b> / hold a meeting</td></tr></table>
+<table class="menu"><tr><th>英语一个 take</th><th>汉语怎么说</th></tr>
+<tr><td>take</td><td>拿</td></tr>
+<tr><td>take away</td><td>带走</td></tr>
+<tr><td>take the bus</td><td>坐公交</td></tr>
+<tr><td>take medicine</td><td>吃药（服药）</td></tr>
+<tr><td>take a photo</td><td>拍照</td></tr></table>
+<div class="chips">亲戚网：<span class="chip">P-19 运动事件的打包（同一思想）</span><span class="chip">CO-17 空心动词</span><span class="chip">V-16 对译陷阱</span></div>
+<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——一个「开」字遥控器对着门、灯、车、会议室全按一遍；镜 2——英语侧四个专用按钮依次亮起；镜 3——take 反过来一拖五，分管五件汉语事。</div>
+<div class="adult"><b>成人层 · 机制与出处</b>：Talmy 的词汇化模式研究把动词词根熔合哪些成分称为 conflation（熔合）；Talmy 本人也分析过非运动熔合例（shelve、powder）。出处：Talmy (1985) "Lexicalization Patterns"，收入 Shopen 主编《Language Typology and Syntactic Description》第 3 卷 (CUP, pp. 57–149)，系统化于《Toward a Cognitive Semantics》第 II 卷 (2000, MIT Press)——接触等级：二手系统论述级（经 SDSU 课程讲义与 EAGLES 综述带例核实，与 P-19 同源）；汉英对照例为词典级（《现代汉语词典》「开」义项群与学习词典 open/turn on/take 条目可逐项对查）。<b>边界（推广声明）</b>：Talmy 原论是关于一类事件之特征性编码的类型学命题，不是一张「任何动词对都有打包差」的全称定律；把「打包错位」用作日常词汇教学机制，是本条对 Talmy 思想的延伸，不引作 Talmy 原话。汉英也有大面积对齐的对子（关门 = close the door、开窗 = open the window），不许讲成「处处错位」。<b>分歧</b>：无直接对立学派；只有程度之争——类型学差异是「特征性默认」而非绝对分野，打包差是频率与默认值的差，不是「能不能」的差。</div>
+</div></div>
+
+<div class="step"><div class="sh"><span class="no">3</span><h3>分级例</h3></div>
+<div class="box">
+<div class="lv"><span class="lt">第一级 · 「开」的两个按钮</span><p>开门 = open the door（门有开合，用 open）· 开灯 = turn on the light（电器通电，用 turn on）</p></div>
+<div class="lv"><span class="lt">第二级 · 「开」全表 + take 五管</span><p>开电视 = turn on the TV · 开车 = drive · 开会 = have a meeting；take a photo 拍照 · take the bus 坐公交 · take medicine 吃药 · take away 带走 · take 拿</p></div>
+<div class="lv"><span class="lt">对照一组（不是处处错位）</span><p>关门 = close / shut the door、开窗 = open the window——这一对汉英正好对齐。先看事情，再定按钮。</p></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">4</span><h3>检索练习（答错只给回机制的提示）</h3></div>
+<div class="box">
+<div class="qz"><p class="q">Q1. 「开灯」用哪个按钮？</p>
+<button class="opt">open the light</button>
+<button class="opt" data-ok="1">turn on the light</button>
+<div class="qhint">提示：回对照台看第一行和第二行——灯和门是同一个按钮吗？灯是「通电」，不是「开合」。</div>
+<div class="qok">对了。电器通电归 turn on，门窗开合才归 open。</div></div>
+<div class="qz"><p class="q">Q2. 「吃药」怎么说？</p>
+<button class="opt">eat medicine</button>
+<button class="opt" data-ok="1">take medicine</button>
+<div class="qhint">提示：回对照台下半张——「药」在英语里归哪个动词管？想想 take 的五件差事。</div>
+<div class="qok">对了。服药是 take medicine，eat 只管吃饭那类事。</div></div>
+<div class="qz"><p class="q">Q3. 「开会」用哪个按钮？</p>
+<button class="opt">open a meeting</button>
+<button class="opt" data-ok="1">have a meeting</button>
+<button class="opt">drive a meeting</button>
+<div class="qhint">提示：回对照台——开会是「开合」「通电」还是「驾驶」？都不是，它是「举行一场活动」，看第四行。</div>
+<div class="qok">对了。开会 = have / hold a meeting。</div></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">5</span><h3>完成 · 病因归档</h3></div>
+<div class="done">
+<p>🏥 本单元错题按病因归档：<b>病因「逐词对译（母语打包图直套）」</b>——先在汉语里想好一个词，再逐词搬过去，没先看英语怎么打包。</p>
+<p>📥 已进入复习队列（间隔复习示意）：</p>
+<div class="queue"><span>明天 · 「开」四按钮</span><span>3 天后 · take 五管</span><span>1 周后 · 对齐对子复检</span></div>
+<div class="adult"><b>成人层 · 误解探针（入模规格）</b>：预判孩子把本条学成「汉语开 = 英语永远不用 open」——探针用「开窗」一题（正解 open the window），答错即回本屏边界段「不是处处错位」。</div>
+</div></div>
+</section>
+
+<!-- ============ 单元 CO-17 空心动词 + get 五构造 ============ -->
+<section class="view" id="v-u-co17">
+<span class="back" data-go="vocab">← 回词汇解码区</span>
+<div class="uhead"><span class="uid">CO-17 · 词汇解码区 · 旗舰单元</span>
+<h2>have、take、make、give 像四个空杯子：倒进什么名词，就是什么味</h2>
+<p>get 是个万能插头：它的用法不背义项，背五个构造。</p></div>
+<div class="flow"><span><b>1</b> 病句医院</span><span><b>2</b> 动画讲机制</span><span><b>3</b> 一屏一总结</span><span><b>4</b> 分级例</span><span><b>5</b> 检索练习</span><span><b>6</b> 病因归档 · 复习队列</span></div>
+<div class="step"><div class="sh"><span class="no">1</span><h3>病句医院 · 今天的门诊</h3></div>
+<div class="hosp">
+<div class="case">📖 <span class="bad">*give a call</span>（想说「给我打个电话」）<br><span class="why">诊断：少了接电话的人。规范形是 give <b>sb</b> a call——空心动词的杯子要先说清倒给谁。</span></div>
+<div class="case">📖 <span class="bad">It's getting dark. 把 get 读成「得到」→「它正在得到黑暗」</span><br><span class="why">诊断（条目机制）：get 在这里不是「得到」，是 get + 形容词 =「变得」。按一个义项通吃 get，五句话里四句读不通。</span></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">2</span><h3>机制屏 · 一屏一总结</h3></div>
+<div class="box">
+<p class="big">英语表达「做事」的主力模具是「空心动词 + 事件名词」：动词本身几乎没实义、只管时态人称，事情住在后面的名词里。这类结构背动词义项没用，要整块学。</p>
+<table class="menu"><tr><th>空杯子</th><th>倒进名词</th><th>整块的意思</th></tr>
+<tr><td>have</td><td>a look</td><td>看一看</td></tr>
+<tr><td>take</td><td>a shower</td><td>洗个澡</td></tr>
+<tr><td>take</td><td>a photo</td><td>拍张照</td></tr>
+<tr><td>make</td><td>a decision</td><td>做决定</td></tr>
+<tr><td>give</td><td>sb a call</td><td>给某人打电话</td></tr></table>
+<table class="menu"><tr><th>get 五构造</th><th>意思</th><th>例句（Collins 词典 get 条）</th></tr>
+<tr><td>① get + 名词</td><td>接收 / 得到</td><td>I got a letter yesterday.</td></tr>
+<tr><td>② get + 形容词</td><td>变得</td><td>It's getting dark.</td></tr>
+<tr><td>③ get + to + 地点</td><td>到达</td><td>We got to the station at six.</td></tr>
+<tr><td>④ get + 过去分词</td><td>被动味（事情落在自己身上）</td><td>He got hit by a car. / They got married.</td></tr>
+<tr><td>⑤ get + 人 + to do</td><td>说动 / 使</td><td>I got him to help me.</td></tr></table>
+<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——四个空杯子排开，名词逐个倒进去变味；镜 2——get 插头依次插进五个插座，每个插座亮起一种意思。</div>
+<div class="adult"><b>成人层 · 出处与证据等级</b>：Michael Lewis《The Lexical Approach》(1993）词汇法与语块分类——二手系统论述级；Collins COBUILD English Grammar (1990: 147）空心动词描写（核心成员 give、get、keep、have、make、take、do、set）——二手转引级；Francis, Hunston &amp; Manning《Collins COBUILD Grammar Patterns 1: Verbs》(1996）——书目+综述级；get 五构造逐项打开 Collins 词典 get 条核对——<b>词典条目原文级</b>。British Council LearnEnglish 教学页对 have/take/make/give 搭配面的列举与 COBUILD 互证。<b>边界</b>：五构造是 get 的核心构造，不是全集——get to do（有机会做）、get + -ing（启动）、get = 懂（I get it）等边缘构造另有其位，口径是「先立五构造，其余遇见再添」，不说「get 只有五种用法」；「空心」是近似说法，空心动词间仍有搭配分工残迹（shower 配 take/have、noise 配 make、speech 配 give），不可讲成完全可互换。<b>分歧</b>：词汇法的理论地位有争论（批评者指其多为既有概念重命名），但分歧不落在「空心结构按块教」这一具体主张上——它在 COBUILD 描写传统与主流教材中已是共识操作。</div>
+</div></div>
+
+<div class="step"><div class="sh"><span class="no">3</span><h3>分级例</h3></div>
+<div class="box">
+<div class="lv"><span class="lt">第一级 · 整块取用</span><p>have a look 看一看 · take a shower 洗个澡——整块端走，不拆开背。</p></div>
+<div class="lv"><span class="lt">第二级 · 换名词、认构造</span><p>make a decision 做决定 · give me a call 给我打个电话；get a letter 收到信（构造①）· get angry 变生气（构造②）</p></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">4</span><h3>检索练习（答错只给回机制的提示）</h3></div>
+<div class="box">
+<div class="qz"><p class="q">Q1. They got married. 里的 get 是哪个构造？</p>
+<button class="opt">① get + 名词 = 得到</button>
+<button class="opt" data-ok="1">④ get + 过去分词 = 被动味（事情落在自己身上）</button>
+<button class="opt">⑤ get + 人 + to do = 说动</button>
+<div class="qhint">提示：回五构造表——married 是什么词形？「结婚」是他们主动「得到」的，还是事情落在他们身上？</div>
+<div class="qok">对了。get married 是构造④，和 got hit by a car 同队。</div></div>
+<div class="qz"><p class="q">Q2. It's getting dark. 里的 get 是什么意思？</p>
+<button class="opt">得到</button>
+<button class="opt" data-ok="1">变得（get + 形容词）</button>
+<button class="opt">到达</button>
+<div class="qhint">提示：回五构造表第②行——get 后面跟的是 dark，这个词是什么词性？</div>
+<div class="qok">对了。get + 形容词 = 变得，天「变得」黑了。</div></div>
+<div class="qz"><p class="q">Q3. I got him to help me. 里 get 的活是？</p>
+<button class="opt">接收</button>
+<button class="opt">变得</button>
+<button class="opt" data-ok="1">说动 / 使（get + 人 + to do）</button>
+<div class="qhint">提示：回五构造表第⑤行——get 后面先站了 him，又跟了 to help，这个形状对哪一行？</div>
+<div class="qok">对了。构造⑤：我说动他来帮我。</div></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">5</span><h3>完成 · 病因归档</h3></div>
+<div class="done">
+<p>🏥 本单元错题按病因归档：<b>病因「按义项背 get / 把语块拆开背」</b>——该整块存取的结构被拆成单词硬背。</p>
+<p>📥 已进入复习队列（间隔复习示意）：</p>
+<div class="queue"><span>明天 · 四个空杯子</span><span>3 天后 · get 构造①②</span><span>1 周后 · get 五构造全表</span></div>
+<div class="adult"><b>成人层 · 误解探针（入模规格）</b>：预判孩子把「五构造」学成封闭清单——探针用 I get it.（懂）一题，答「不在五构造里所以错」即回本屏边界段「五构造非全集」。</div>
+</div></div>
+</section>
+
+<!-- ============ 单元 V-33 前缀头部定律 ============ -->
+<section class="view" id="v-u-v33">
+<span class="back" data-go="vocab">← 回词汇解码区</span>
+<div class="uhead"><span class="uid">V-33 · 词汇解码区 · 旗舰单元</span>
+<h2>前缀有一大群，真正常出来干活的就一小撮：先学一小撮，大头全归队</h2>
+<p>un-、re-、in-、dis- 四个「班长」加起来，占了书里带前缀词的一大半；再多学十几个，97% 都有认识的门卫。</p></div>
+<div class="flow"><span><b>1</b> 病句医院</span><span><b>2</b> 动画讲机制</span><span><b>3</b> 一屏一总结</span><span><b>4</b> 分级例</span><span><b>5</b> 检索练习</span><span><b>6</b> 病因归档 · 复习队列</span></div>
+<div class="step"><div class="sh"><span class="no">1</span><h3>病句医院 · 今天的门诊</h3></div>
+<div class="hosp">
+<div class="case">📖 <span class="bad">uncle 拆成 un- + cle，当成「不 + cle」猜</span><br><span class="why">诊断：假拆。uncle 的 un- 不是前缀——这类「冒牌前缀」在 White 等人的第一课里有个专名：tricksters（捣蛋鬼），先防假拆再学真拆。</span></div>
+<div class="case">📖 <span class="bad">reason 拆成 re- + ason</span><br><span class="why">诊断：同上。reason 不是 re- 前缀词。长得像前缀的，不一定是前缀。</span></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">2</span><h3>机制屏 · 一屏一总结</h3></div>
+<div class="box">
+<p class="big">带前缀的词在书里的分布是一条「头部定律」：少数前缀占绝大多数出场。先学高频小集合，比背一张一百个前缀的大表有用得多。</p>
+<table class="menu"><tr><th>定版数字</th><th>占带前缀词出场份额</th></tr>
+<tr><td>un- 一家</td><td><b>26%</b></td></tr>
+<tr><td>前三名（un-、re-、in-「否定」）</td><td><b>51%</b></td></tr>
+<tr><td>前四名（再加 dis-）</td><td><b>58%</b></td></tr>
+<tr><td>定版 20 个前缀清单</td><td><b>97%</b></td></tr></table>
+<div class="fix">⚠️ <b>纠正框</b>：流传的说法「<b>14 个前缀占 58%</b>」查无此据——58% 是<b>前 4 个</b>的份额，97% 对应的是<b>20 个</b>的清单。「14 个」疑与后缀侧的小集合统计串位，本清单按原文定版，不收录该说法。</div>
+<div class="chips">定版 20 名单：<span class="chip">un-</span><span class="chip">re-</span><span class="chip">in-（否定）</span><span class="chip">dis-</span><span class="chip">en-/em-</span><span class="chip">non-</span><span class="chip">in-/im-（向内）</span><span class="chip">over-</span><span class="chip">mis-</span><span class="chip">sub-</span><span class="chip">pre-</span><span class="chip">inter-</span><span class="chip">fore-</span><span class="chip">de-</span><span class="chip">trans-</span><span class="chip">super-</span><span class="chip">semi-</span><span class="chip">anti-</span><span class="chip">mid-</span><span class="chip">under-</span></div>
+<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——一百个前缀排长队，出场次数参差；镜 2——前四个班长站出来，身后的人群占了近六成；镜 3——二十人小队合围，97% 的词被认领。</div>
+<div class="adult"><b>成人层 · 出处</b>：White, Sowell &amp; Yanagihara, "Teaching Elementary Students to Use Word-Part Clues", <i>The Reading Teacher</i> 42(4), 1989, pp. 302–308；语料基础为 Carroll, Davies &amp; Richmond《The American Heritage Word Frequency Book》(1971)，三至九年级教材词频。关键句经 Marzano (2004) 逐字转引核对——接触等级：原文引文级。<b>边界</b>：① 百分比是带前缀词在学校阅读语料中的<b>出现份额（频次口径）</b>，不是词典词条种类的比例；② 语料是 1970 年代美国教材，中国学生阅读构成不同，名次细节不可直接搬用，可搬的是「头部集中、先教高频小集合」这条结构事实；③ in- 身兼二职（否定/向内）、re- 两义（再/回）、un- 兼表「做反动作」（untie），清单教学必须连义项分工一起教（见 V-39 六课序列）。<b>分歧</b>：频率派（本条立场）主张按语料频率定顺序；语义透明派提醒高频前缀恰恰多义、易假拆——两说不冲突：频率定「先教谁」，透明度定「怎么教、防哪些假朋友」。</div>
+</div></div>
+
+<div class="step"><div class="sh"><span class="no">3</span><h3>分级例</h3></div>
+<div class="box">
+<div class="lv"><span class="lt">第一级 · 四个班长</span><p>un-（不）· re-（再）· in-（不）· dis-（不、相反）——先认这四个，书里带前缀的词先归队近六成。外加一个特别的：untie 的 un- 是「把动作做回去」（解开）。</p></div>
+<div class="lv"><span class="lt">第二级 · 二十人名单 + 防假拆</span><p>把定版 20 名单认全（见机制屏）；同时背下捣蛋鬼名单的头两位：uncle、reason——它们的 un-、re- 都是假的。</p></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">4</span><h3>检索练习（答错只给回机制的提示）</h3></div>
+<div class="box">
+<div class="qz"><p class="q">Q1. 在书里碰到的带前缀词，前四个前缀（un-、re-、in-、dis-）占多大份额？</p>
+<button class="opt">97%</button>
+<button class="opt" data-ok="1">58%</button>
+<button class="opt">26%</button>
+<div class="qhint">提示：回机制屏的定版数字表——四个数字各管几个人？97% 是二十人合围的数，26% 是 un- 一家的数。</div>
+<div class="qok">对了。前四合占 58%；20 个合占 97%；un- 一家 26%。</div></div>
+<div class="qz"><p class="q">Q2. 流传的「14 个前缀占 58%」这句话，对吗？</p>
+<button class="opt">对，14 个占 58%</button>
+<button class="opt" data-ok="1">不对：58% 是前 4 个的份额，这个说法查无此据</button>
+<div class="qhint">提示：回机制屏的纠正框——「14」这个数在原文里出现过吗？</div>
+<div class="qok">对了。纠正框已定版：数字要连「管几个人」一起记。</div></div>
+<div class="qz"><p class="q">Q3. uncle 开头的 un- 是前缀吗？</p>
+<button class="opt">是，un- 表示「不」</button>
+<button class="opt" data-ok="1">不是，它是 trickster（冒牌前缀）</button>
+<div class="qhint">提示：回病句医院第一例——White 等人的第一课专门防的是哪种拆法？</div>
+<div class="qok">对了。先防假拆，再学真拆。</div></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">5</span><h3>完成 · 病因归档</h3></div>
+<div class="done">
+<p>🏥 本单元错题按病因归档：<b>病因「前缀不分真假、名单不分主次」</b>——见前缀就拆（假拆），或对一百个前缀平均用力（不分头部）。</p>
+<p>📥 已进入复习队列（间隔复习示意）：</p>
+<div class="queue"><span>明天 · 四个班长</span><span>3 天后 · 20 名单认读</span><span>1 周后 · tricksters 复检</span></div>
+<div class="adult"><b>成人层 · 误解探针（入模规格）</b>：预判孩子把「97%」记成词条种类的比例——探针问「97% 是『书里碰到的次数』还是『词典里的种类』」，答错即回本屏边界①的频次口径。</div>
+</div></div>
+</section>
+
+<!-- ============ 单元 GR-33 反意疑问三步法 ============ -->
+<section class="view" id="v-u-gr33">
+<span class="back" data-go="grammar">← 回语法区</span>
+<div class="uhead"><span class="uid">GR-33 · 语法区 · 旗舰单元</span>
+<h2>反意疑问句是一台回声机：尾巴不是随便拖的，是现配的零件</h2>
+<p>汉语只用一个「吧 / 对吧」包打天下；英语每个句子都要现配尾巴——配法只有三步。</p></div>
+<div class="flow"><span><b>1</b> 病句医院</span><span><b>2</b> 动画讲机制</span><span><b>3</b> 一屏一总结</span><span><b>4</b> 分级例</span><span><b>5</b> 检索练习</span><span><b>6</b> 病因归档 · 复习队列</span></div>
+<div class="step"><div class="sh"><span class="no">1</span><h3>病句医院 · 今天的门诊</h3></div>
+<div class="hosp">
+<div class="case">📖 <span class="bad">*You went there, isn't it?</span>（正：didn't you?）<br><span class="why">诊断：尾巴没有回指主句。went 身边没有助动词，要召唤替补队员 did，再翻极性、换代词——三步一步没走。</span></div>
+<div class="case">📖 <span class="bad">*I am late, amn't I?</span>（正：aren't I?）<br><span class="why">诊断：amn't 不是标准形。I am 的尾巴是借来的特例：aren't I。</span></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">2</span><h3>机制屏 · 一屏一总结（三步法）</h3></div>
+<div class="box">
+<p class="big">三步机械操作，顺序不能乱：</p>
+<table class="menu"><tr><th>步</th><th>做什么</th><th>规矩</th></tr>
+<tr><td>①</td><td><b>回指助动词</b></td><td>把主句的助动词 / 情态动词 / be 复制到尾巴；主句没有助动词时，召唤 do / does / did（和 GR-03 是同一台替补机制）</td></tr>
+<tr><td>②</td><td><b>极性翻转</b></td><td>主句肯定 → 尾巴否定（缩略 n't)；主句否定 → 尾巴肯定；never、hardly、seldom、few、little 这类半否定词算否定主句</td></tr>
+<tr><td>③</td><td><b>代词对位</b></td><td>尾巴的主语必须换成与主句主语同指的代词</td></tr></table>
+<div class="chips">特例组（整组单记）：<span class="chip">I am → aren't I</span><span class="chip">Let's → shall we</span><span class="chip">祈使句 → will you / won't you</span><span class="chip">everybody / somebody → they</span><span class="chip">nothing / something → it</span></div>
+<p style="margin-top:8px">🎵 <b>语调分工</b>：尾巴<b>升调</b> = 真问（我不确定，在求证）；尾巴<b>降调</b> = 非问（我已经确定，只求你点头）。</p>
+<div class="anim">🎬 <b>动画分镜占位</b>（动画版入模后由 wb5 场景渲染）：镜 1——主句的助动词被复制出来搬到句尾；镜 2——正反开关「咔」地翻面；镜 3——主语换成代词对位入座，尾巴成形。</div>
+<div class="adult"><b>成人层 · 出处与证据等级</b>：形式规则与语调分工依 Swan《Practical English Usage》第 3 版 question tags 条（§487–488 及 p. 503「meaning and intonation」），本轮打开影印页核对——接触等级：<b>章节影印页级（本簇最高）</b>。「尾巴的 do/does/did 与 GR-03『do 替补』是同一机制」为清单内互挂。<b>难点定位的等级</b>：中国学习者全程统一用 isn't it、助动词不回指，是多国「不变尾巴」母语者（法语 n'est-ce pas、德语 nicht wahr、汉语「对吧」）的共同难点，教材与教师文献一致报告——但本轮未检索到针对该错误的 CLEC 级语料计数，按纪律标为<b>教学界共识级</b>，不冒充语料定版（此项即本条的待核登记）。<b>边界</b>：主句是 I think / believe + 从句时，尾巴跟从句走（I think he's coming, isn't he?)；美式口语中反意疑问使用频率低于英式，标准教学系统仍以翻转-回指为正；降调尾巴在英式口语里大量作会话润滑，不逐句译成「对吧」。<b>分歧</b>：同极性尾巴（肯定 + 肯定，如 So you're French, are you?）表惊讶 / 讽刺 / 推断，其语用定性各参考语法措辞不一，登记为语用层分歧，不影响形式教学；语调与意义的对应是倾向而非铁律，Swan 本人即以倾向性口径表述。</div>
+</div></div>
+
+<div class="step"><div class="sh"><span class="no">3</span><h3>分级例</h3></div>
+<div class="box">
+<div class="lv"><span class="lt">第一级 · 三步走一遍</span><p>She is happy, <b>isn't she?</b>（①抄 is → ②肯定翻否定 → ③she 对位）· You went there, <b>didn't you?</b>（①没助动词，召唤 did → ②翻面 → ③you 对位）</p></div>
+<div class="lv"><span class="lt">第二级 · 特例与从句</span><p>I am late, <b>aren't I?</b> · Let's go, <b>shall we?</b> · I think he's coming, <b>isn't he?</b>（尾巴跟从句走，不跟 I think 走）</p></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">4</span><h3>检索练习（答错只给回机制的提示）</h3></div>
+<div class="box">
+<div class="qz"><p class="q">Q1. You went there, ___?</p>
+<button class="opt">isn't it</button>
+<button class="opt" data-ok="1">didn't you</button>
+<div class="qhint">提示：走三步——第①步先找主句的小帮手：went 身边有助动词吗？没有的话，召唤哪个替补队员？</div>
+<div class="qok">对了。召唤 did、翻极性、代词 you 对位：didn't you。</div></div>
+<div class="qz"><p class="q">Q2. She is happy, ___?</p>
+<button class="opt" data-ok="1">isn't she</button>
+<button class="opt">doesn't she</button>
+<div class="qhint">提示：第①步——主句里现成的小帮手是谁？is 就在句中，不用另请替补。</div>
+<div class="qok">对了。回指 is、翻面、代词对位：isn't she。</div></div>
+<div class="qz"><p class="q">Q3. I am late, ___?</p>
+<button class="opt">amn't I</button>
+<button class="opt" data-ok="1">aren't I</button>
+<div class="qhint">提示：回特例组——I am 的尾巴是借来的，amn't 不是标准形。</div>
+<div class="qok">对了。特例整组单记：aren't I。</div></div>
+</div></div>
+<div class="step"><div class="sh"><span class="no">5</span><h3>完成 · 病因归档</h3></div>
+<div class="done">
+<p>🏥 本单元错题按病因归档：<b>病因「尾巴不回指（母语万能尾巴迁移）」</b>——汉语一个「对吧」包打天下，搬到英语就成了全程 isn't it。</p>
+<p>📥 已进入复习队列（间隔复习示意）：</p>
+<div class="queue"><span>明天 · 三步法走查</span><span>3 天后 · 特例组</span><span>1 周后 · 升降调听辨</span></div>
+<div class="adult"><b>成人层 · 误解探针（入模规格）</b>：预判孩子把三步法只用在 be 句上——探针用一题无助动词的过去时句（同 Q1 型），答 isn't it 即回第①步「召唤 do 替补」。</div>
+</div></div>
+</section>
+
+<!-- ============ 复习区（样板页） ============ -->
+<section class="view" id="v-review">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🗂️ 复习区</h2>
+<p class="sub">样板页：错题不按题号归档，按<b>病因</b>归档；复习队列由病因驱动。下方病例全部来自 7 个旗舰单元的病句医院，未另编例句。</p>
+<div class="sec-t">病因错题本（按病因分组）</div>
+<div class="box" style="margin-bottom:10px"><p><b>病因 1 · 逐词对译（母语打包图直套）</b>——出自 V-40</p>
+<div class="chips"><span class="chip">*open the light</span><span class="chip">eat medicine</span><span class="chip">回炉 → V-40 对照台</span></div></div>
+<div class="box" style="margin-bottom:10px"><p><b>病因 2 · 组合面孔没分清</b>——出自 S-36 / S-42</p>
+<div class="chips"><span class="chip">read 过去式读 /riːd/</span><span class="chip">ceiling 的 ei 读 /eɪ/</span><span class="chip">book 读 /buːk/</span><span class="chip">回炉 → S-36 菜单 · S-42 变脸榜</span></div></div>
+<div class="box" style="margin-bottom:10px"><p><b>病因 3 · 词尾 e 的工种认错</b>——出自 SR-01</p>
+<div class="chips"><span class="chip">giv（丢护栏 e）</span><span class="chip">litl（丢凑音节 e）</span><span class="chip">come 硬套长音化</span><span class="chip">回炉 → SR-01 九职表</span></div></div>
+<div class="box" style="margin-bottom:10px"><p><b>病因 4 · 按义项背词 / 语块拆开背</b>——出自 CO-17</p>
+<div class="chips"><span class="chip">*give a call（少 sb）</span><span class="chip">get 一律译「得到」</span><span class="chip">回炉 → CO-17 五构造表</span></div></div>
+<div class="box" style="margin-bottom:10px"><p><b>病因 5 · 前缀不分真假</b>——出自 V-33</p>
+<div class="chips"><span class="chip">uncle 假拆</span><span class="chip">reason 假拆</span><span class="chip">回炉 → V-33 防假拆</span></div></div>
+<div class="box" style="margin-bottom:10px"><p><b>病因 6 · 尾巴不回指（万能尾巴迁移）</b>——出自 GR-33</p>
+<div class="chips"><span class="chip">*You went there, isn't it?</span><span class="chip">*amn't I</span><span class="chip">回炉 → GR-33 三步法</span></div></div>
+<div class="sec-t">间隔队列（示意）</div>
+<div class="box">
+<table class="menu"><tr><th>到期</th><th>复习件</th><th>来自病因</th></tr>
+<tr><td>今天</td><td>ea 主场速认 · 五职认岗 · 「开」四按钮</td><td>病因 2 · 3 · 1</td></tr>
+<tr><td>明天</td><td>四个空杯子 · 四个班长 · 三步法走查</td><td>病因 4 · 5 · 6</td></tr>
+<tr><td>3 天后</td><td>ei 在 c 后 · -ought 词族 · get 构造①② · 特例组</td><td>病因 2 · 4 · 6</td></tr>
+<tr><td>1 周后</td><td>变脸榜全谱 · 无职之 e 名单 · take 五管 · tricksters 复检</td><td>病因 1 · 2 · 3 · 5</td></tr></table>
+<p style="margin-top:8px;font-size:13px;color:#7a6c52">队列规则示意：答错不回本页重抄——错题按病因弹回对应单元的机制屏，修好机制再回队列。</p>
+</div>
+</section>
+
+<!-- ============ 家长角（样板页） ============ -->
+<style>
+.palways{display:block;background:#fff7e6;border:1px dashed #c9a86a;border-radius:10px;padding:12px 14px;font-size:13px;color:#5c5142;line-height:1.7;margin-top:10px}
+.palways b{color:#8a5a1e}
+</style>
+<section class="view" id="v-parents">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">👨‍👩‍👧 家长角</h2>
+<p class="sub">样板页：这里把单元成人层的全貌摊开给家长与教师——机制、出处、证据等级、分歧与待核，逐项可见。下面展示 2 个单元（其余单元的成人层在各自单元页内用「成人层」开关打开）。</p>
+<div class="sec-t">单元 V-40 · 打包错位（成人层全貌）</div>
+<div class="palways"><b>机制</b>：一个事件可切割、可分给不同词。Talmy 的词汇化模式研究把「动词词根熔合哪些成分」称为 conflation——汉语动词倾向大包大揽（「开」熔合启用/展开/通电/驾驶/举行），英语同一组事件分给 open / turn on / drive / hold 多个词；反向地英语 take 又熔合了汉语分给拿、带走、坐、吃、拍的五件事。<br>
+<b>出处</b>：Talmy (1985), "Lexicalization Patterns", in Shopen (ed.), <i>Language Typology and Syntactic Description</i>, Vol. 3, CUP, pp. 57–149；系统化于 Talmy (2000), <i>Toward a Cognitive Semantics</i>, Vol. II, MIT Press。<br>
+<b>证据等级</b>：二手系统论述级（原论文经 SDSU 课程讲义与 EAGLES 语言工程综述带例核实，与 P-19 同源）；汉英对照例为词典级（现汉「开」义项群与学习词典逐项可对查）。<br>
+<b>边界</b>：Talmy 原论是类型学命题，不是「任何动词对都有打包差」的全称定律；用作日常词汇教学机制是本条对 Talmy 思想的延伸（已在条目内声明，不引作原话）；汉英大面积对齐的对子存在，不讲「处处错位」。<br>
+<b>分歧</b>：无对立学派；程度之争——类型学差异是「特征性默认」而非绝对分野。<br>
+<b>待核</b>：无本轮待核登记。</div>
+<div class="sec-t">单元 GR-33 · 反意疑问三步法（成人层全貌）</div>
+<div class="palways"><b>机制</b>：尾巴须回指主句助动词（无助动词时召唤 do 替补，与 GR-03 同机制）、翻转极性（半否定词算否定）、代词对位；语调升 = 求证、降 = 求附和。<br>
+<b>出处</b>：Swan《Practical English Usage》第 3 版 question tags 条 §487–488、p. 503，本轮打开影印页核对。<br>
+<b>证据等级</b>：形式规则与语调分工——章节影印页级（清单内最高级）；「中国学习者统一用 isn't it」——教学界共识级。<br>
+<b>边界</b>：I think 从句尾巴跟从句；美式使用率低于英式；同极性尾巴属语用层，形式教学按翻转-回指为正。<br>
+<b>分歧</b>：同极性尾巴的语用定性各参考语法措辞不一；语调对应是倾向而非铁律（Swan 本人即倾向性表述）。<br>
+<b>待核</b>：针对中国学习者该错误率的 CLEC 级语料计数本轮未检索到，不冒充语料定版——如后续入模展示「高频错误」措辞，须先补此计数或继续标共识级。</div>
+</section>
+
+<!-- ============ 设置（裁定开关示意） ============ -->
+<section class="view" id="v-settings">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">⚙️ 设置 · 课程口径开关</h2>
+<p class="sub">两个开关对应《App 原型定义 v1》第七节的待裁定项。默认档已按推荐口径预置；<b>切换只改呈现与要求，不改数据</b>——条目的机制、边界与分歧登记原样保留。</p>
+<div class="sec-t">裁定 A · 弱读的产出取向（关联 S-09 与 S-13 的分歧）</div>
+<div class="box">
+<button class="opt setopt">A2 · LFC 优先：产出严格按可懂度核心排序，弱读听辨也降为选学</button>
+<button class="opt setopt right">A1 · 听辨全教、产出只练核心（默认 · 推荐口径）</button>
+<button class="opt setopt">A3 · 应试口径：弱读产出也练也考</button>
+<p style="font-size:13px;color:#7a6c52;margin-top:8px">影响面：S 组产出类条目与相关练习的呈现要求。S-09（节奏骨架说）与 S-13（Lingua Franca Core）的分歧原文保留在条目内，切换不删改。</p>
+</div>
+<div class="sec-t">裁定 B · 产出导向法（W-11 · POA）进不进本 App</div>
+<div class="box">
+<button class="opt setopt right">B1 · 只收排序思想（默认 · 推荐口径）：只收「先试产出、暴露缺口、再给输入」的排序思想作为关卡排序原则；完整流程不进本 App</button>
+<button class="opt setopt">B2 · 简化版试点：在进阶顺序的后段设简化流程试点，进模型但标「试点、证据待验」</button>
+<button class="opt setopt">B3 · 不入模：POA 只留在条目成人层</button>
+<p style="font-size:13px;color:#7a6c52;margin-top:8px">背景：POA 的证据基座是大学与高中学习者，完整流程（驱动—促成—评价）对本 App 的使用者无直接证据。切换不改 W-11 条目本身。</p>
+</div>
+</section>
+</div><!-- /.app -->
+
+<script>
+function show(go){
+  var id='v-'+go;
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});
+  var el=document.getElementById(id);
+  if(el){el.classList.add('on')}
+  document.querySelectorAll('.navbtn').forEach(function(b){b.classList.toggle('on',b.dataset.v===go)});
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',function(e){
+  var g=e.target.closest('[data-go]');
+  if(g){show(g.dataset.go);return}
+  var nv=e.target.closest('.navbtn');
+  if(nv){show(nv.dataset.v);return}
+  var so=e.target.closest('.setopt');
+  if(so){
+    var box=so.parentElement;
+    box.querySelectorAll('.setopt').forEach(function(o){o.classList.remove('right')});
+    so.classList.add('right');return;
+  }
+  var op=e.target.closest('.opt');
+  if(op){
+    var qz=op.closest('.qz');if(!qz)return;
+    var hint=qz.querySelector('.qhint'),ok=qz.querySelector('.qok');
+    if(op.dataset.ok){
+      qz.querySelectorAll('.opt').forEach(function(o){o.classList.remove('wrong')});
+      op.classList.add('right');if(ok)ok.style.display='block';if(hint)hint.style.display='none';
+    }else{
+      op.classList.add('wrong');if(hint)hint.style.display='block';
+    }
+    return;
+  }
+});
+document.getElementById('atgl').addEventListener('click',function(){
+  var on=document.body.classList.toggle('adult');
+  this.textContent=on?'成人层：开':'成人层：关';
+});
+show('home');
+</script>
+</body>
+</html>
