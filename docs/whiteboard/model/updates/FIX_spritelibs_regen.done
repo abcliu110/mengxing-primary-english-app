@@ -1,0 +1,166 @@
+# 精灵库补缺批：hdo* 等 108 个缺失库重新生成 —— 完成记录
+
+日期：2026-11-01。范围纪律：只补库文件与登记，未改任何场景台词/逻辑，未做 git 操作（108 个新库文件留在 v5/sprites/ 待主会话提交）。
+
+## 1. 盘点（与 T16P1_cast_registry.done §5 缺失清单逐项对账）
+
+- 复刻登记口径（规范幕 558 = scenes/*.js 剔共享库 auto/oral/poly/adj_train 与 gen_* 副本）：被规范幕 import 的库 489 个，**缺失恰 108 = hdo* 口语库 106 + fb39_1 + fpeco2**，与登记一致。
+- 每个缺失库恰被 1 幕 import（108/108）。帧需求口径：oral 幕 = ACTS 全部值（含 `*` 键）并集，缺 M/A 或 F/B 键时按 oral.js 内置默认补齐（FM=l_speak/l_ear/l_wave，FF=m_story/m_admire）。
+- 帧需求合计 777 帧次（hdo 775 + fp 两库各 1），去重 36 个帧种；**全部在 cast 331 帧内齐备 → 停单 0**。
+- 口径验证（先证口径、再批量）：现存 38 个 hdo 库的帧集与各自消费幕 ACTS 并集 **38/38 逐一相等**；全量 401 对「现存库×ACTS 幕」比对仅 7 对例外且全为「库多帧、零缺帧」——fp 家族 l_coff0 惯例 6 对（fb39_2/3/4、fpeco1×2 幕、fz3）+ wogr1 共用库 1 对（wo_grimm_rows_1 的 ACTS 为空、帧属同库的 voiceless_1，T12 已载）。
+
+## 2. 生成管线与保真试点
+
+- 工具：`v5/sprites/build_sprites.py`（sprites/src/ 不存在，全部帧走 cast/*.webp 原图，与 wo_grimm 先例同路）。
+- 试点逐字节复刻：在 /tmp 沙盒以同管线重生成现存库 hdo02_2（7 帧）与 fb39_2（l_coff0），与仓库原件 **cmp 逐字节相同**——本环境管线对原件完全确定性，批量生成即原件复刻，非仿制。
+- 基线失败亲手复现：生成前构建 hd_oral_sc01_1 报 esbuild `Could not resolve "../sprites/hdo01_1.js"`（与车道 B 基线证据同签名）。
+
+## 3. fb39_1 / fpeco2 帧集裁定
+
+- 两幕（fp_boundedness_1、fp_economy_p2_1）ACTS 均为空对象且全文件无 cast 帧字面量、无 actor 调用——按引用口径所需帧为 ∅。
+- 但 fp 家族兄弟库无一为空：fb39_2、fb39_3、fb39_4、fpeco1、fz3 五库一致为单帧 l_coff0（LAYOUT_QA 定的全剧基准帧）。fb39_1 是 fb39 家族第 1 幕、fpeco2 是 fp_economy_1（fpeco1）的拆分续幕，故两库按家族惯例生成 `build_sprites.py <lib> l_coff0`。生成后其 l_coff0 条目与全部兄弟库逐字节一致（§4 ③：l_coff0 全仓单版本）。
+
+## 4. 生成结果与对账（脚本核对，零容忍项全过）
+
+- **生成成功 108/108**，每库当场校验：文件存在、生成头 argv 与帧集相等、FR/FI 键集与帧集相等。总计 18607850 B。
+- ① import 解析：规范幕 558 幕全部 import 可解析（未解析 0）；附带 gen_* 副本 318 个文件 import 未解析亦为 0。
+- ② 帧命中：规范幕全部 ACTS 引用帧 ⊆ 对应库帧集，**缺帧 0**。
+- ③ 条目保真：全仓 489 库、316 帧种逐条比对——39 个帧存在多版本（仓库既有现象，如单例旧编码），**新库条目孤儿变体 0**：108 个新库的每条帧条目都与至少一个现存库的同帧条目逐字节一致，且在悬殊案中均命中主流变体（l_think 111:1、l_laugh 44:1、l_read 32:1、missw 24:1，少数派均为旧库单例）。
+
+## 5. 抽验（构建 + ic_gen8 等效校验）
+
+此前不可构建的 oral 幕抽 6 幕重建（build.mjs，暂存 /tmp/regen_out/ 验大小）：
+
+| 幕 | 库 | 产物 B | 结果 |
+|---|---|---|---|
+| hd_oral_sc01_1 | hdo01_1 | 1258619 | 成功（基线失败幕） |
+| hd_oral_sc03_1 | hdo03_1 | 1288768 | 成功（missw 老师帧） |
+| hd_oral_sc06_9 | hdo06_9 | 1265201 | 成功（m_bread/m_cake 食物帧） |
+| hd_oral_sc08_1 | hdo08_1 | 1256504 | 成功（bus 交通帧） |
+| hd_oral_sc09_10 | hdo09_10 | 1294834 | 成功（sunny 天气帧） |
+| hd_oral_sc16_1 | hdo16_1 | 1288819 | 成功（末系列） |
+
+- ic_gen8 等效校验（ic_gen8.py 路径变体，HOOK 与 40% 门槛原样）：hd_oral_sc01_1 ✅ 45.6s/文字峰值 18%；hd_oral_sc09_10 ✅ 53.9s/22% —— **不合格 0**。
+- fb39_1 / fpeco2 同法验证：fp_boundedness_1 构建成功 1134201 B + ic ✅ 93.4s/16%；fp_economy_p2_1 构建成功 1132105 B + ic ✅ 77.1s/15% —— 不合格 0。fp_boundedness_1 v1 自此可在裸仓库构建。
+- 截帧目检：hd_oral_sc01_1 中段（t≈20.5s）——Leo（l_ear 聆听姿）与 Mia（m_admire）双人上屏、气泡尾巴指向说话人、核心句词块变橙，版面正常（截图存 /tmp/regen_out/shot_sc01_1_mid.png，会话级证据）。
+
+## 6b. 版本管理口径（提交前必读）
+
+- `v5/sprites/.gitignore` 明文规定：自动生成的角色包 `*.js` **不进仓库**（由 build_sprites.py 从 cast/ 帧库重建），仅源图不在库的手工版 tm*/pc*/ao* 以 `!` 例外保留（现跟踪 13 个）。故 108 个新库与 381 个现存库同为工作区工件，`git status` 不显示、亦无需提交；裸仓库构建 oral 的正解就是本批的再生流程（cast 331 帧在库 + ACTS 帧集口径），可随时复跑。若主会话希望改变这一口径（如强制跟踪 hdo*），属仓库政策变更，另行裁定。
+
+## 6. 停单清单
+
+- **无**。108 库所需帧全部在 cast 内（登记所载缺失帧 slide 无任何场景引用，与本批无关，仍属后续帧修复车道）。
+
+## 7. 逐库清单（库 | 消费幕 | 帧数 | 帧 | 大小 B | 结果）
+
+| 库 | 消费幕 | 帧数 | 帧清单 | 大小 B | 结果 |
+|---|---|---|---|---|---|
+| fb39_1 | fp_boundedness_1.js | 1 | l_coff0 | 23186 | 成功 |
+| fpeco2 | fp_economy_p2_1.js | 1 | l_coff0 | 23186 | 成功 |
+| hdo01_1 | hd_oral_sc01_1.js | 6 | hello, l_ear, l_speak, l_wave, m_admire, m_story | 155679 | 成功 |
+| hdo01_2 | hd_oral_sc01_2.js | 7 | hello, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 175750 | 成功 |
+| hdo01_3 | hd_oral_sc01_3.js | 6 | hello, l_ear, l_speak, l_wave, m_admire, m_story | 155679 | 成功 |
+| hdo01_4 | hd_oral_sc01_4.js | 7 | hello, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 175750 | 成功 |
+| hdo01_5 | hd_oral_sc01_5.js | 6 | hello, l_ear, l_speak, l_wave, m_admire, m_story | 155679 | 成功 |
+| hdo01_6 | hd_oral_sc01_6.js | 7 | hello, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 175750 | 成功 |
+| hdo01_7 | hd_oral_sc01_7.js | 6 | hello, l_ear, l_speak, l_wave, m_admire, m_story | 155679 | 成功 |
+| hdo02_1 | hd_oral_sc02_1.js | 6 | hello, l_ear, l_speak, l_wave, m_admire, m_story | 155679 | 成功 |
+| hdo02_6 | hd_oral_sc02_6.js | 7 | hello, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 175750 | 成功 |
+| hdo02_7 | hd_oral_sc02_7.js | 6 | hello, l_ear, l_speak, l_wave, m_admire, m_story | 155679 | 成功 |
+| hdo02_8 | hd_oral_sc02_8.js | 7 | hello, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 175750 | 成功 |
+| hdo03_1 | hd_oral_sc03_1.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo03_10 | hd_oral_sc03_10.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160052 | 成功 |
+| hdo03_11 | hd_oral_sc03_11.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185800 | 成功 |
+| hdo03_2 | hd_oral_sc03_2.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo03_3 | hd_oral_sc03_3.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo03_4 | hd_oral_sc03_4.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo03_5 | hd_oral_sc03_5.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo03_6 | hd_oral_sc03_6.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo03_7 | hd_oral_sc03_7.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo03_8 | hd_oral_sc03_8.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo03_9 | hd_oral_sc03_9.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo04_10 | hd_oral_sc04_10.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160052 | 成功 |
+| hdo04_11 | hd_oral_sc04_11.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185800 | 成功 |
+| hdo04_12 | hd_oral_sc04_12.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160052 | 成功 |
+| hdo05_2 | hd_oral_sc05_2.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo05_3 | hd_oral_sc05_3.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo05_4 | hd_oral_sc05_4.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo05_5 | hd_oral_sc05_5.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo06_10 | hd_oral_sc06_10.js | 8 | l_ear, l_nothanks, l_speak, l_wave, m_admire, m_like, m_offer, m_story | 207790 | 成功 |
+| hdo06_2 | hd_oral_sc06_2.js | 8 | l_ear, l_nothanks, l_speak, l_wave, m_admire, m_like, m_offer, m_story | 207789 | 成功 |
+| hdo06_6 | hd_oral_sc06_6.js | 8 | l_ear, l_nothanks, l_speak, l_wave, m_admire, m_like, m_offer, m_story | 207789 | 成功 |
+| hdo06_9 | hd_oral_sc06_9.js | 7 | l_ear, l_speak, l_wave, m_admire, m_bread, m_cake, m_story | 162293 | 成功 |
+| hdo07_1 | hd_oral_sc07_1.js | 8 | l_bag0, l_ear, l_point, l_speak, l_wave, m_admire, m_offer, m_story | 202215 | 成功 |
+| hdo07_10 | hd_oral_sc07_10.js | 7 | l_bag1, l_ear, l_piggy, l_speak, l_wave, m_admire, m_story | 172163 | 成功 |
+| hdo07_12 | hd_oral_sc07_12.js | 7 | l_bag1, l_ear, l_piggy, l_speak, l_wave, m_admire, m_story | 172163 | 成功 |
+| hdo07_2 | hd_oral_sc07_2.js | 7 | l_bag1, l_ear, l_piggy, l_speak, l_wave, m_admire, m_story | 172162 | 成功 |
+| hdo07_3 | hd_oral_sc07_3.js | 8 | l_bag0, l_ear, l_point, l_speak, l_wave, m_admire, m_offer, m_story | 202215 | 成功 |
+| hdo07_4 | hd_oral_sc07_4.js | 7 | l_bag1, l_ear, l_piggy, l_speak, l_wave, m_admire, m_story | 172162 | 成功 |
+| hdo07_5 | hd_oral_sc07_5.js | 8 | l_bag0, l_ear, l_point, l_speak, l_wave, m_admire, m_offer, m_story | 202215 | 成功 |
+| hdo07_7 | hd_oral_sc07_7.js | 8 | l_bag0, l_ear, l_point, l_speak, l_wave, m_admire, m_offer, m_story | 202215 | 成功 |
+| hdo07_8 | hd_oral_sc07_8.js | 7 | l_bag1, l_ear, l_piggy, l_speak, l_wave, m_admire, m_story | 172162 | 成功 |
+| hdo07_9 | hd_oral_sc07_9.js | 8 | l_bag0, l_ear, l_point, l_speak, l_wave, m_admire, m_offer, m_story | 202215 | 成功 |
+| hdo08_1 | hd_oral_sc08_1.js | 7 | bus, l_ear, l_point, l_speak, l_wave, m_admire, m_story | 153632 | 成功 |
+| hdo08_10 | hd_oral_sc08_10.js | 8 | bus1, l_ear, l_lookup, l_speak, l_think, l_wave, m_admire, m_story | 202617 | 成功 |
+| hdo08_11 | hd_oral_sc08_11.js | 7 | bus, l_ear, l_point, l_speak, l_wave, m_admire, m_story | 153633 | 成功 |
+| hdo08_2 | hd_oral_sc08_2.js | 8 | bus1, l_ear, l_lookup, l_speak, l_think, l_wave, m_admire, m_story | 202616 | 成功 |
+| hdo08_4 | hd_oral_sc08_4.js | 8 | bus1, l_ear, l_lookup, l_speak, l_think, l_wave, m_admire, m_story | 202616 | 成功 |
+| hdo08_5 | hd_oral_sc08_5.js | 7 | bus, l_ear, l_point, l_speak, l_wave, m_admire, m_story | 153632 | 成功 |
+| hdo08_6 | hd_oral_sc08_6.js | 8 | bus1, l_ear, l_lookup, l_speak, l_think, l_wave, m_admire, m_story | 202616 | 成功 |
+| hdo08_7 | hd_oral_sc08_7.js | 7 | bus, l_ear, l_point, l_speak, l_wave, m_admire, m_story | 153632 | 成功 |
+| hdo08_8 | hd_oral_sc08_8.js | 8 | bus1, l_ear, l_lookup, l_speak, l_think, l_wave, m_admire, m_story | 202616 | 成功 |
+| hdo08_9 | hd_oral_sc08_9.js | 7 | bus, l_ear, l_point, l_speak, l_wave, m_admire, m_story | 153632 | 成功 |
+| hdo09_10 | hd_oral_sc09_10.js | 8 | l_ear, l_laugh, l_lookup, l_speak, l_wave, m_admire, m_story, sunny | 191743 | 成功 |
+| hdo09_11 | hd_oral_sc09_11.js | 7 | l_ear, l_speak, l_wave, m_admire, m_story, rain0, sunny | 172291 | 成功 |
+| hdo09_12 | hd_oral_sc09_12.js | 8 | l_ear, l_laugh, l_lookup, l_speak, l_wave, m_admire, m_story, sunny | 191743 | 成功 |
+| hdo09_13 | hd_oral_sc09_13.js | 7 | l_ear, l_speak, l_wave, m_admire, m_story, rain0, sunny | 172291 | 成功 |
+| hdo09_2 | hd_oral_sc09_2.js | 8 | l_ear, l_laugh, l_lookup, l_speak, l_wave, m_admire, m_story, sunny | 191742 | 成功 |
+| hdo09_3 | hd_oral_sc09_3.js | 7 | l_ear, l_speak, l_wave, m_admire, m_story, rain0, sunny | 172290 | 成功 |
+| hdo09_4 | hd_oral_sc09_4.js | 8 | l_ear, l_laugh, l_lookup, l_speak, l_wave, m_admire, m_story, sunny | 191742 | 成功 |
+| hdo09_5 | hd_oral_sc09_5.js | 7 | l_ear, l_speak, l_wave, m_admire, m_story, rain0, sunny | 172290 | 成功 |
+| hdo09_6 | hd_oral_sc09_6.js | 8 | l_ear, l_laugh, l_lookup, l_speak, l_wave, m_admire, m_story, sunny | 191742 | 成功 |
+| hdo09_7 | hd_oral_sc09_7.js | 7 | l_ear, l_speak, l_wave, m_admire, m_story, rain0, sunny | 172290 | 成功 |
+| hdo09_8 | hd_oral_sc09_8.js | 8 | l_ear, l_laugh, l_lookup, l_speak, l_wave, m_admire, m_story, sunny | 191742 | 成功 |
+| hdo09_9 | hd_oral_sc09_9.js | 7 | l_ear, l_speak, l_wave, m_admire, m_story, rain0, sunny | 172290 | 成功 |
+| hdo10_4 | hd_oral_sc10_4.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo10_5 | hd_oral_sc10_5.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo10_6 | hd_oral_sc10_6.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo10_7 | hd_oral_sc10_7.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo11_4 | hd_oral_sc11_4.js | 6 | l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 134337 | 成功 |
+| hdo11_5 | hd_oral_sc11_5.js | 6 | l_ear, l_speak, l_think, l_wave, m_admire, m_story | 132406 | 成功 |
+| hdo12_4 | hd_oral_sc12_4.js | 7 | l_breath, l_ear, l_plaster, l_speak, l_wave, m_admire, m_story | 155878 | 成功 |
+| hdo12_5 | hd_oral_sc12_5.js | 8 | l_breath, l_ear, l_plaster, l_speak, l_think, l_wave, m_admire, m_story | 174018 | 成功 |
+| hdo12_6 | hd_oral_sc12_6.js | 7 | l_breath, l_ear, l_plaster, l_speak, l_wave, m_admire, m_story | 155878 | 成功 |
+| hdo12_7 | hd_oral_sc12_7.js | 8 | l_breath, l_ear, l_plaster, l_speak, l_think, l_wave, m_admire, m_story | 174018 | 成功 |
+| hdo13_1 | hd_oral_sc13_1.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159594 | 成功 |
+| hdo13_2 | hd_oral_sc13_2.js | 7 | l_ear, l_put, l_speak, l_wave, m_admire, m_story, m_tv | 176271 | 成功 |
+| hdo13_3 | hd_oral_sc13_3.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159594 | 成功 |
+| hdo13_4 | hd_oral_sc13_4.js | 7 | l_ear, l_put, l_speak, l_wave, m_admire, m_story, m_tv | 176271 | 成功 |
+| hdo13_5 | hd_oral_sc13_5.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159594 | 成功 |
+| hdo14_1 | hd_oral_sc14_1.js | 8 | kick0, kick1, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 190826 | 成功 |
+| hdo14_2 | hd_oral_sc14_2.js | 7 | l_bike0, l_bike1, l_ear, l_speak, l_wave, m_admire, m_story | 187758 | 成功 |
+| hdo14_3 | hd_oral_sc14_3.js | 8 | kick0, kick1, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 190826 | 成功 |
+| hdo14_5 | hd_oral_sc14_5.js | 8 | kick0, kick1, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 190826 | 成功 |
+| hdo14_6 | hd_oral_sc14_6.js | 7 | l_bike0, l_bike1, l_ear, l_speak, l_wave, m_admire, m_story | 187758 | 成功 |
+| hdo14_7 | hd_oral_sc14_7.js | 8 | kick0, kick1, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 190826 | 成功 |
+| hdo14_8 | hd_oral_sc14_8.js | 7 | l_bike0, l_bike1, l_ear, l_speak, l_wave, m_admire, m_story | 187758 | 成功 |
+| hdo14_9 | hd_oral_sc14_9.js | 8 | kick0, kick1, l_ear, l_laugh, l_speak, l_wave, m_admire, m_story | 190826 | 成功 |
+| hdo15_1 | hd_oral_sc15_1.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159594 | 成功 |
+| hdo15_10 | hd_oral_sc15_10.js | 7 | l_ear, l_put, l_speak, l_wave, m_admire, m_story, m_tv | 176272 | 成功 |
+| hdo15_11 | hd_oral_sc15_11.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159595 | 成功 |
+| hdo15_2 | hd_oral_sc15_2.js | 7 | l_ear, l_put, l_speak, l_wave, m_admire, m_story, m_tv | 176271 | 成功 |
+| hdo15_3 | hd_oral_sc15_3.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159594 | 成功 |
+| hdo15_5 | hd_oral_sc15_5.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159594 | 成功 |
+| hdo15_6 | hd_oral_sc15_6.js | 7 | l_ear, l_put, l_speak, l_wave, m_admire, m_story, m_tv | 176271 | 成功 |
+| hdo15_7 | hd_oral_sc15_7.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159594 | 成功 |
+| hdo15_8 | hd_oral_sc15_8.js | 7 | l_ear, l_put, l_speak, l_wave, m_admire, m_story, m_tv | 176271 | 成功 |
+| hdo15_9 | hd_oral_sc15_9.js | 7 | l_ear, l_speak, l_think, l_wave, m_admire, m_story, m_sweep | 159594 | 成功 |
+| hdo16_1 | hd_oral_sc16_1.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo16_2 | hd_oral_sc16_2.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo16_3 | hd_oral_sc16_3.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo16_4 | hd_oral_sc16_4.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo16_5 | hd_oral_sc16_5.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo16_6 | hd_oral_sc16_6.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
+| hdo16_7 | hd_oral_sc16_7.js | 8 | l_books, l_ear, l_hand0, l_speak, l_wave, m_admire, m_story, missw | 185799 | 成功 |
+| hdo16_8 | hd_oral_sc16_8.js | 7 | l_ear, l_hand1, l_speak, l_think, l_wave, m_admire, m_story | 160051 | 成功 |
