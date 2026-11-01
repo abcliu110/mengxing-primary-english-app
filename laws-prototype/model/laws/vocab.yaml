@@ -55,6 +55,21 @@ entries:
     relatives:
       - {id: V-07, rel: 同族}
       - {id: V-15, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 词卡 book, kind: 词卡, states: [只亮意思一格, 九格逐格点亮]}
+          - {name: 九宫格, kind: 图式格, states: [大多灰暗, 逐格点亮只剩伙伴格灰着]}
+          - {name: 伙伴名单牌 decision, kind: 标签组, states: [伙伴格空着, 挂上 make]}
+        invariants: "一个词的形、义、用各建各的链，哪一格没建好就在哪一格出错；三面齐是目标态，不是入门门槛"
+      beats:
+        - "设置：教室里孩子拿起一本书，中央词卡 book 亮起，周围九格大多还暗着（旁白：「只知道它叫什么，可不算真认识它。」）"
+        - "变形：九格一格格点亮——读出声、拼出形、说出意思轮流亮起，轮到『和谁搭』一格时还灰着（旁白：「一格一格亮起来，才算把它认全了。」）"
+        - "变形：灰着的伙伴格上方冒出「Do a decision.」被打叉，名单牌翻出「Make a decision.」挂好（旁白：「哪一面没学好，错就出在哪一面。」）"
+        - "预测停顿：九格只剩最后一格没亮，画面先停住（旁白：「先猜一猜：没亮的那格，会让哪句话说错？」）"
+        - "边界对照：画面退回低龄小卡，只亮读音、拼写和核心意思几格，其余格标着『长大再亮』（旁白：「小时候先亮最重要的几格，不用一次全亮。」）"
+      beats_ref: claim
+      lines_owner: V-01
     quiz:
       - stem: "小明会读、会拼 decision，还知道它是『决定』，可他说了 Do a decision。他缺的是哪一面？"
         options: ["形", "义", "用（搭配）"]
@@ -72,7 +87,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V01-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V01-* 预留）"]
   - id: V-02
     zone: 词汇解码
     group: V
@@ -116,6 +131,22 @@ entries:
     relatives:
       - {id: V-29, rel: 同族}
       - {id: V-03, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 绘本一页, kind: 场景道具, states: [整页灰蒙蒙, 劳模词点亮后大半变亮]}
+          - {name: 高矮柱子, kind: 图式, states: [一样高, 露脸多的越长越高罩住大半页]}
+          - {name: 词族树, kind: 图式, states: [只有树干, 枝上挂满亲戚词]}
+          - {name: 老词表, kind: 标签组, states: [停在旧年份, computer 一格空着待补]}
+        invariants: "露脸次数决定先学谁：少数词反复出现，先认它们解锁的页面最多；数的是词次不是懂没懂，老词表缺的新词要补，儿童读物还要按年龄再核"
+      beats:
+        - "设置：一页绘本摊开，「I read a book about a dog.」里的词一个个闪（旁白：「先看看，这一页里谁露脸最多？」）"
+        - "变形：book、dog 每翻一页又出现，身后的柱子越长越高，罩住大半页；只露一次脸的词柱子矮矮的（旁白：「先认露脸最多的，书一下就好读多了。」）"
+        - "变形：词族树长出枝，学一个词，枝上的亲戚词跟着亮起来（旁白：「认了一个，它的亲戚常常顺带就认得了。」）"
+        - "预测停顿：新一页翻开之前先停住（旁白：「先猜一猜：这一页里，哪些词又是老熟人？」）"
+        - "边界对照：孩子在学校用电脑，气泡「I use a computer at school.」亮起，老词表翻到 computer 却是空位，被贴上『待补』签（旁白：「老名单里没有的新词，要补进去，不能当它不存在。」）"
+      beats_ref: claim
+      lines_owner: V-02
     quiz:
       - stem: "先学哪批词最划算？"
         options: ["按字母表顺序", "按出现频率从高到低", "按笔画多少"]
@@ -133,7 +164,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V02-* 预留）", "error_cases 待补（本条为排序原则，无清单登记的病句病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V02-* 预留）", "error_cases 待补（本条为排序原则，无清单登记的病句病例，不自编）"]
   - id: V-03
     zone: 词汇解码
     group: V
@@ -170,6 +201,20 @@ entries:
     relatives:
       - {id: V-12, rel: 同族}
       - {id: V-02, rel: 前置}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 拼图画, kind: 场景道具, states: [缺一两块能看懂, 缺块过半散开拼不成]}
+          - {name: 熟词锚点, kind: 标签组, states: [连成一片, 断成孤岛]}
+          - {name: 分级读物书页, kind: 词卡, states: [生词密密麻麻, 只留一两个生词其余全是锚点]}
+        invariants: "懂不懂先看认识的词占多少：帮手够多，生词才猜得动；这条线是大家的平均数，不是每个孩子的铁律，特别熟的话题能帮一点但有上限"
+      beats:
+        - "设置：书页上「I run with my dog.」一读就顺，拼图只缺一两块，整幅画看得清（旁白：「只缺一两块，猜一猜就补上了。」）"
+        - "变形：换一页，缺块越来越多，熟词锚点断成孤岛，画面散开拼不成（旁白：「缺得太多，帮手都断了，猜也猜不动了。」）"
+        - "预测停顿：翻到只留一两个生词的一页「I read a book.」，先数一数再停住（旁白：「先数一数：这一页你认识几个？生词猜得动吗？」）"
+        - "边界对照：同一页换成熟悉的话题图，孩子靠画面多懂了一点，缺口还剩大半（旁白：「画面再熟，也只能帮一点，缺太多还是读不动。」）"
+      beats_ref: claim
+      lines_owner: V-03
     quiz:
       - stem: "一页书里有好多生词，越读越糊涂。最对症的办法是？"
         options: ["硬猜到底", "换一本生词更少的书", "把每个生词抄十遍"]
@@ -187,7 +232,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V03-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V03-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-04
     zone: 词汇解码
     group: V
@@ -224,6 +269,7 @@ entries:
       - {id: V-01, rel: 同族}
       - {id: V-17, rel: 同族}
       - {id: V-11, rel: 同族}
+    scene_spec: "不设（终态登记：课程设计层条目：内容为四股配比的教学方法论主张（课程层原则、按学段调配比、不要求每节课四等分），画成儿童场景会把课程决策冒充语言机制）"
     quiz:
       - stem: "小明每天只背单词表，从不开口说。他缺了四股里的哪几股？"
         options: ["只有输入股", "输出、流利等股都缺", "四股都齐了"]
@@ -241,7 +287,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V04-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V04-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-05
     zone: 词汇解码
     group: V
@@ -283,6 +329,21 @@ entries:
     relatives:
       - {id: V-06, rel: 同族}
       - {id: V-07, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 乐高组件墙, kind: 场景道具, states: [散件区与整块区并排, 整块被整件取走]}
+          - {name: 句子块 Make a decision., kind: 词卡, states: [整块存放, 整块取用]}
+          - {name: 句子块 Take a photo., kind: 词卡, states: [整块存放, 被整块取下]}
+          - {name: 自己拼新句的空位, kind: 标签组, states: [空着, 一直亮着待用]}
+        invariants: "现成块整存整取，省下逐个拼的时间又少出错；块存得再多，自己拼新句子的本事也不能丢"
+      beats:
+        - "设置：组件墙分两区，一区散件堆着，一区拼好的小车整件摆着（旁白：「说话像搭积木，你想先拿哪一区？」）"
+        - "变形：孩子说「Make a decision.」时整块直接取下就用；另一边逐个零件现拼，拼到一半散了（旁白：「整块拿来就能跑，现拼又慢又容易错。」）"
+        - "预测停顿：新块「Take a photo.」出现，画面先停住（旁白：「先猜一猜：这句是整块拿，还是一个词一个词拼？」）"
+        - "边界对照：墙边一排『自己拼新句』的空位还亮着，整块区的门没有关死（旁白：「现成的要存，自己拼新句的本事也要练。」）"
+      beats_ref: claim
+      lines_owner: V-05
     quiz:
       - stem: "『make a decision』应该怎么学？"
         options: ["拆成三个词分别背", "整块记住、整块用", "先学语法再填词"]
@@ -300,7 +361,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V05-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V05-* 预留）"]
   - id: V-06
     zone: 词汇解码
     group: V
@@ -336,6 +397,21 @@ entries:
     error_cases: []
     relatives:
       - {id: V-05, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 词仓库货架, kind: 图式, states: [四种大小的件并排摆着, 大件先被取走]}
+          - {name: 整句框架卡 This is a book., kind: 词卡, states: [整张存放, 整张取用]}
+          - {name: 短语块 Take a photo please., kind: 词卡, states: [整串存放, 整串取走]}
+          - {name: 没拆开过的大件, kind: 场景道具, states: [整块蒙着, 放大后里面的小错亮起红圈]}
+        invariants: "仓库里整句、词块、单词、小零件什么尺寸都有，手总是先伸向现成的大件，省力又快；从没拆开看过的大件，里面藏着错也很难发现"
+      beats:
+        - "设置：仓库货架上整句话、成串的词、单个词、小零件分层摆好（旁白：「脑子里存词，原来什么大小都有。」）"
+        - "变形：一只手先抓起整句框架卡「This is a book.」一口气说完，又抓起「Take a photo, please.」整串取走（旁白：「先拿大件，省力又快。」）"
+        - "预测停顿：手伸向货架，画面先停住（旁白：「先猜一猜：下一句，他会拿整串的，还是现拼的？」）"
+        - "边界对照：一块从没拆开过的大件被放大，里面的小错亮起红圈（旁白：「整块背下来的也要拆开看看，错藏在里面就麻烦了。」）"
+      beats_ref: claim
+      lines_owner: V-06
     quiz:
       - stem: "说话时大脑为什么爱先拿整块的词？"
         options: ["因为整块不用现拼，省力又快", "因为单词太难", "因为整块比较好看"]
@@ -353,7 +429,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V06-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V06-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-07
     zone: 词汇解码
     group: V
@@ -396,6 +472,20 @@ entries:
       - {id: V-01, rel: 同族}
       - {id: V-05, rel: 同族}
       - {id: V-43, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 词卡 decision, kind: 词卡, states: [伙伴名单空着, 挂上 make]}
+          - {name: 伙伴名单牌, kind: 标签组, states: [do 被打叉, make 与 take 各归其位]}
+          - {name: 词卡 shower, kind: 词卡, states: [未配伙伴, 挂上 take]}
+        invariants: "谁和谁是伙伴，是大家一直这么用定下来的，靠讲道理猜不出来；只能碰见一次记一次，没达到大家常用程度的凑对不算伙伴"
+      beats:
+        - "设置：decision 词卡立起来，右边的伙伴名单还空着（旁白：「这个词的好朋友是谁？光看意思可猜不出来。」）"
+        - "变形：「Do a decision.」冒出来被打叉，名单牌翻出 make 挂到 decision 旁边；shower 的名单牌挂上 take，亮起「Take a shower.」（旁白：「记词的时候，把它的好朋友一起记下来。」）"
+        - "预测停顿：新词卡立起，名单空着，画面先停住（旁白：「先猜一猜：它的好朋友会是谁？猜完要去查一查哦。」）"
+        - "边界对照：两个凑在一起的说法并排，一个大家常说一个几乎没人说，只有常说的那个被点亮（旁白：「不是凑在一起过就算伙伴，要大家常这么用才算。」）"
+      beats_ref: claim
+      lines_owner: V-07
     quiz:
       - stem: "『做决定』为什么是 make a decision，不是 do a decision？"
         options: ["因为 make 更高大上", "因为搭配是大家用出来的约定，没道理可猜", "因为 do 太短了"]
@@ -413,7 +503,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V07-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V07-* 预留）"]
   - id: V-08
     zone: 词汇解码
     group: V
@@ -450,6 +540,20 @@ entries:
       - {id: V-25, rel: 对照}
       - {id: V-21, rel: 同族}
       - {id: V-15, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 词卡 tea, kind: 词卡, states: [只有意思一面, 背面翻出出身小照片]}
+          - {name: 出身小照片, kind: 场景道具, states: [藏在卡背, 翻到正面多一条想起它的路]}
+          - {name: 词卡 butterfly, kind: 词卡, states: [照片位空着, 贴上只是猜猜的签]}
+        invariants: "来历只能讲真的：查得到的才挂照片，查不到的宁可空着；编出来的假来历不许上卡，没定论的只能说『可能』"
+      beats:
+        - "设置：tea 词卡正面只有意思，孩子背了又忘（旁白：「光记意思，忘得快不快？」）"
+        - "变形：词卡翻面，背面的出身小照片亮起来，故事卡上写着它从福建出海的来历，卡上多出一条路（旁白：「多一张小照片，想起它就多一条路。」）"
+        - "预测停顿：butterfly 词卡翻面之前，画面先停住（旁白：「先猜一猜：它名字的来历，你觉得是哪一个？」）"
+        - "边界对照：butterfly 的照片位贴上『只是猜猜，没定论』的签，旁边一张编故事的卡被推走（旁白：「没查清的只能说可能，编的故事不能当真的讲。」）"
+      beats_ref: claim
+      lines_owner: V-08
     quiz:
       - stem: "给词讲来历故事，哪种做法是对的？"
         options: ["故事越好听越好，真假没关系", "来历必须是真的；先自己猜，再揭晓记得更牢", "把注释读一遍就行"]
@@ -467,7 +571,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V08-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V08-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-09
     zone: 词汇解码
     group: V
@@ -503,6 +607,21 @@ entries:
     error_cases: []
     relatives:
       - {id: V-11, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 三格仪表, kind: 图式, states: [三格全暗, 逐格点亮保持量条升高]}
+          - {name: 抄词卡, kind: 词卡, states: [只读只抄, 仪表只亮一小格]}
+          - {name: 造句任务卡, kind: 台词卡, states: [未开始, 需要与比较两格点亮]}
+          - {name: 计数点, kind: 标签组, states: [只有一个, 每多用一次多亮一个]}
+        invariants: "记得牢不牢看脑子动了多少：要用到、自己找、拿来比着选，三样齐了最牢；用的次数也单独算数，光动脑一次不够"
+      beats:
+        - "设置：孩子对着词卡只读只抄，说完「I can spell the word.」，仪表几乎没亮（旁白：「只是看着抄，脑子动了多少？」）"
+        - "变形：换成造句任务「Make a sentence with the word.」，孩子想一想、比一比、选一个词放进新句子，仪表一格格升高（旁白：「自己找、自己比、自己选，词就住进脑子里了。」）"
+        - "预测停顿：新任务卡翻开之前，画面先停住（旁白：「先猜一猜：这个活儿能让仪表亮几格？」）"
+        - "边界对照：同一个词被第二遍、第三遍拿出来用，仪表旁的计数点跟着一个个涨（旁白：「动脑一次不够，多用几次才更稳。」）"
+      beats_ref: claim
+      lines_owner: V-09
     quiz:
       - stem: "哪种练词任务记得最牢？"
         options: ["把词抄三遍", "读一遍课文", "自己查这个词，再用它造一个新句子"]
@@ -520,7 +639,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V09-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V09-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-10
     zone: 词汇解码
     group: V
@@ -563,6 +682,20 @@ entries:
       - {id: V-32, rel: 同族}
       - {id: V-38, rel: 同族}
       - {id: V-12, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 词卡 prize, kind: 词卡, states: [被抢答成 price, 停一拍看清后归位]}
+          - {name: 词卡 price, kind: 词卡, states: [与 prize 并排混着, 各自意思分开]}
+          - {name: 词卡 light, kind: 词卡, states: [只认出一个意思, 第二个意思亮起]}
+        invariants: "越眼熟越要停一拍：长得像不等于是一个词，一个词也不止一个意思；抢答错了自己还不知道，错误是无声的"
+      beats:
+        - "设置：prize 与 price 两张卡并排，孩子的手飞快伸向 price（旁白：「长得太像了，你的手是不是也想抢答？」）"
+        - "变形：手在半空刹住，镜头推近两个词不一样的字母，「He won a prize.」里的 prize 亮出奖品的样子（旁白：「多看一眼，才发现认错人了。」）"
+        - "预测停顿：「Turn on the light.」飘过，light 先只亮一个意思，画面停住（旁白：「先猜一猜：这里的 light，还是你认识的那个意思吗？」）"
+        - "边界对照：light 的第二张意思卡亮起，和第一张并排分开站好（旁白：「只认最熟的那个意思也会认错，多看一眼再往下读。」）"
+      beats_ref: claim
+      lines_owner: V-10
     quiz:
       - stem: "读到一个『特别眼熟』的词，最安全的做法是？"
         options: ["直接按熟义理解", "多看一眼，确认它是不是假朋友", "跳过不读"]
@@ -580,7 +713,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V10-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V10-* 预留）"]
   - id: V-11
     zone: 词汇解码
     group: V
@@ -616,6 +749,21 @@ entries:
     relatives:
       - {id: V-09, rel: 同族}
       - {id: V-04, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 脑中小路, kind: 图式, states: [看地图时路面不变, 每走一遍深一分]}
+          - {name: 看图说词卡, kind: 词卡, states: [书摊开看着读, 合上书自己说出来]}
+          - {name: 复述卡, kind: 台词卡, states: [跟着书念, 合上书凭记忆说]}
+          - {name: 反馈圈, kind: 标签组, states: [未出现, 说错处被圈出改对]}
+        invariants: "词是调出来用熟的，不是看熟的：每次自己想起来说出来，路就深一分；调错了要马上改，不然错的也会被踩结实"
+      beats:
+        - "设置：孩子盯着地图看了十遍，小路的路面还是浅浅的（旁白：「光看不走，路踩得出来吗？」）"
+        - "变形：看图说词「What is it? — It is a book.」，孩子合上书自己说出来，小路深了一分；复述卡「Read it again — from your head.」走完第二遍，又深一分（旁白：「自己想起来说一遍，记得就结实一点。」）"
+        - "预测停顿：书合上，画面先停住（旁白：「先别翻书：这个词，你自己能想起来吗？」）"
+        - "边界对照：孩子说错一处，反馈圈圈住那处，改对后再走一遍小路（旁白：「说错了马上改，改对了再练，才不会把错的练熟。」）"
+      beats_ref: claim
+      lines_owner: V-11
     quiz:
       - stem: "记一个新词，哪种做法更有效？"
         options: ["再看三遍", "合上书，自己说出来用一次", "把词抄在纸上贴墙上"]
@@ -633,7 +781,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V11-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V11-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-12
     zone: 词汇解码
     group: V
@@ -676,6 +824,20 @@ entries:
       - {id: V-03, rel: 同族}
       - {id: V-10, rel: 同族}
       - {id: V-32, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 侦探板, kind: 场景道具, states: [线索针脚稀疏, 线索连成答案]}
+          - {name: 熟词线索卡, kind: 台词卡, states: [熟词散着, 被针脚连向生词空位]}
+          - {name: 字典, kind: 场景道具, states: [合着, 猜完翻开对答案]}
+        invariants: "猜词先看线索够不够：线索够才猜，猜完必须验；线索太少就老实查字典，乱猜的错自己发现不了"
+      beats:
+        - "设置：侦探板上钉着「I run fast with my dog.」，熟词一个个亮起，中间一个生词空着（旁白：「当回小侦探：先看看，线索多不多？」）"
+        - "变形：线索针脚一根根连向空位，答案的轮廓浮出来（旁白：「线索够多，答案自己就冒出来了。」）"
+        - "预测停顿：换一页，线索只剩两三根，画面先停住（旁白：「先猜一猜：这回线索够吗？不够该怎么办？」）"
+        - "边界对照：口令牌「Read, guess, then check.」亮起，猜出的答案被送进字典页对一对（旁白：「猜只是猜，对过答案才算数。」）"
+      beats_ref: claim
+      lines_owner: V-12
     quiz:
       - stem: "读到生词，第一步最该做什么？"
         options: ["马上乱猜一个意思", "看看周围认识的词多不多，线索够不够", "跳过这一页"]
@@ -693,7 +855,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V12-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V12-* 预留）"]
   - id: V-13
     zone: 词汇解码
     group: V
@@ -730,6 +892,21 @@ entries:
     relatives:
       - {id: V-14, rel: 同族}
       - {id: V-07, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 小商店舞台, kind: 场景道具, states: [四角空着, 买家卖家货物钱各就各位]}
+          - {name: 镜头机位牌, kind: 标签组, states: [对着买家, 轮流推向卖家钱与货物]}
+          - {name: 台词卡组, kind: 台词卡, states: [未说, 四句按机位依次亮起]}
+        invariants: "四个词是同一场买卖戏的四个站位：镜头对着谁，就用谁的词；换站位，词就跟着换，框架管意思和搭配，不管词形和读音"
+      beats:
+        - "设置：小商店开门，买家、卖家、货物、钱站在四角（旁白：「买东西这场戏里，一共有几个人和东西？」）"
+        - "变形：镜头推向买家亮起「I buy a book.」，转到卖家亮起「She sells books.」（旁白：「同一场戏，镜头对着谁，说法就换成谁的。」）"
+        - "变形：镜头对准钱亮起「I pay ten yuan.」，再对准货物的标价牌亮起「The book costs ten yuan.」（旁白：「对着钱一个词，对着标价又是另一个词。」）"
+        - "预测停顿：镜头停在卖家和钱之间，画面先停住（旁白：「先猜一猜：镜头转到卖家，该换哪个词？」）"
+        - "边界对照：一张编不出一场戏的词卡被放到舞台边，贴上『说好照着记』的签（旁白：「有的词编不出戏，就老实照着记，不硬编。」）"
+      beats_ref: claim
+      lines_owner: V-13
     quiz:
       - stem: "听到 buy，你马上能知道这幕戏里一定还有什么？"
         options: ["卖东西的人和价钱", "一只狗", "什么都不知道"]
@@ -747,7 +924,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V13-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V13-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-14
     zone: 词汇解码
     group: V
@@ -784,6 +961,20 @@ entries:
     relatives:
       - {id: V-13, rel: 前置}
       - {id: V-10, rel: 对照}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 街道地图, kind: 图式, states: [词各住各家, 同场景的词连成一条街]}
+          - {name: 买卖街词卡组, kind: 词卡, states: [散着, buy sell pay cost 连线亮起]}
+          - {name: 公园场景卡, kind: 场景道具, states: [未点亮, photo 与 park 互相点亮]}
+        invariants: "按场景住一起的词互相帮忙记，想起一个带出一串；长得像的词不能因此扎堆，那是另一回事，会互相捣乱"
+      beats:
+        - "设置：地图上词卡散住各处，互不相认（旁白：「词一个个单独记，累不累？」）"
+        - "变形：买卖戏的四个词搬进同一条街，连线亮起，想起 buy，sell、pay、cost 跟着亮（旁白：「住进同一场戏，想起一个，就带出一串。」）"
+        - "预测停顿：公园场景卡「Take a photo in the park.」出现，photo 先亮，画面停住（旁白：「先猜一猜：和 photo 同一场出现的，还有哪个词要亮？」）"
+        - "边界对照：两张长得像的词卡想搬进同一间屋，被分开贴上『长得像不住一起』的签（旁白：「靠场景做邻居可以，靠长得像扎堆可不行。」）"
+      beats_ref: claim
+      lines_owner: V-14
     quiz:
       - stem: "哪一组词适合放在一起学？"
         options: ["buy、sell、pay、cost（同一幕买卖戏）", "price、prize（长得像的词）", "按字母顺序挨着的词"]
@@ -801,7 +992,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V14-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V14-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-15
     zone: 词汇解码
     group: V
@@ -844,6 +1035,20 @@ entries:
       - {id: V-32, rel: 同族}
       - {id: V-38, rel: 同族}
       - {id: V-08, rel: 对照}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 透明度谱带, kind: 图式, states: [未分段, 左积木右石头中间半透明]}
+          - {name: 积木词 unhappy, kind: 词卡, states: [整块, 拆成两件又拼回]}
+          - {name: 石头词 watch, kind: 词卡, states: [整块, 硬拆被拦住整块放稳]}
+        invariants: "拆之前先确认真是积木：真能拆的放心拆，半懂的拆开只帮记，整块的就整块记；假拆法不许上台"
+      beats:
+        - "设置：一条谱带摊开，左端是积木，右端是整块石头（旁白：「有的词能拆，有的词是整块的，先看它站在哪头。」）"
+        - "变形：「He is unhappy.」里的 unhappy 走到积木端，咔地拆成两件又拼回去；「I watch TV.」里的 watch 走到石头端，整块放稳（旁白：「真积木拆开看更清楚，石头就整块记住它。」）"
+        - "预测停顿：一张新词卡走到谱带中间，画面先停住（旁白：「先猜一猜：它能拆吗？拆开只是帮记，还是真能讲通？」）"
+        - "边界对照：有人拿小锤硬敲 watch，锤子被拦住，卡上贴上『整块记』（旁白：「看着像能拆，不等于真能拆，硬拆会拆错。」）"
+      beats_ref: claim
+      lines_owner: V-15
     quiz:
       - stem: "碰到一个长词，第一步应该做什么？"
         options: ["马上拆开猜", "先确认它是不是真积木（真构词）", "整词抄十遍"]
@@ -861,7 +1066,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V15-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V15-* 预留）"]
   - id: V-16
     zone: 词汇解码
     group: V
@@ -906,6 +1111,20 @@ entries:
       - {id: V-41, rel: 同族}
       - {id: V-42, rel: 同族}
       - {id: V-45, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 多义树 eye, kind: 图式, states: [只有树干, 树枝逐个挂上新意思]}
+          - {name: 针眼树枝卡, kind: 词卡, states: [未挂, 挂到树枝上]}
+          - {name: 两棵小树 light, kind: 图式, states: [被绳子硬连, 绳子剪断分成两棵]}
+        invariants: "一个词的意思像树枝从树干长出来，先认树干再认树枝；可有的同名是两棵树，硬连就错了，推不出的树枝就老实记"
+      beats:
+        - "设置：一棵树立起，树干上挂着 eye 最中心的意思，画面里是「I see with my eyes.」（旁白：「先认树干：这个词最主要的意思是什么？」）"
+        - "变形：树枝一根根长出，「The needle has an eye.」里的小孔挂到枝上（旁白：「其他意思大多是树干的亲戚，顺着枝找得到。」）"
+        - "预测停顿：新树枝冒头，画面先停住（旁白：「先猜一猜：这个新意思，是从树干哪儿长出来的？」）"
+        - "边界对照：light 的两张卡被绳子硬连，绳子被剪断，两棵树分开站，「Turn on the light.」与「This bag is light.」各回各树（旁白：「这两个 light 是两家人，不能硬认成一棵树。」）"
+      beats_ref: claim
+      lines_owner: V-16
     quiz:
       - stem: "学一个多义词，先学哪个意思最划算？"
         options: ["随便挑一个", "先学最中心的意思，再学它长出的分支", "按字典顺序逐条背"]
@@ -923,7 +1142,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V16-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V16-* 预留）"]
   - id: V-17
     zone: 词汇解码
     group: V
@@ -960,6 +1179,20 @@ entries:
     relatives:
       - {id: V-04, rel: 同族}
       - {id: V-11, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 探照灯, kind: 场景道具, states: [灭, 开口时照亮缺口]}
+          - {name: 说话任务卡, kind: 台词卡, states: [听时全懂, 一开口卡住处亮起]}
+          - {name: 写句任务卡, kind: 词卡, states: [未落笔, 写不出的地方留空]}
+        invariants: "听懂不等于会用：开口动笔才照得出缺口，照出来还要回头补；没人提醒地乱说，说错了也会越练越牢"
+      beats:
+        - "设置：孩子听句子时连连点头，词卡看上去全亮（旁白：「听的时候都懂，真会了吗？」）"
+        - "变形：任务卡「Say it in English.」翻开，孩子一开口卡住，探照灯照亮卡住的那一格（旁白：「卡住的地方，就是没真学会的地方。」）"
+        - "预测停顿：写句任务卡「Write a sentence with the word.」摆好，笔还没落，画面先停住（旁白：「先猜一猜：写的时候，你会在哪儿卡住？」）"
+        - "边界对照：孩子对着空墙自说自话没人听，说错处没被照亮还越说越顺，画面摇摇头（旁白：「没人提醒地说错了也会越练越牢，说完要有人帮着看。」）"
+      beats_ref: claim
+      lines_owner: V-17
     quiz:
       - stem: "听课文觉得全懂，可一开口说就卡住。这说明什么？"
         options: ["听力太差", "输出照出了词知识的缺口，该回头补缺口", "不用管，多听就行"]
@@ -977,7 +1210,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V17-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V17-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-18
     zone: 词汇解码
     group: V
@@ -1018,6 +1251,7 @@ entries:
     relatives:
       - {id: V-07, rel: 同族}
       - {id: V-10, rel: 同族}
+    scene_spec: "不设（终态登记：证据综述层条目：内容为 CLEC 语料（被试为中学生至大学生、书面语为主）的错误分布与教学火力分配，数值不可外推到小学生，画成儿童摔跤场景会把借用的分类框架冒充小学生事实）"
     quiz:
       - stem: "中国同学学英语，词汇错误最爱聚在哪三个地方？"
         options: ["读音、语调、连读", "词形、搭配、缺词与赘词", "时态、语态、虚拟"]
@@ -1035,7 +1269,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V18-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V18-* 预留）"]
   - id: V-19
     zone: 词汇解码
     group: V
@@ -1075,6 +1309,22 @@ entries:
     relatives:
       - {id: V-23, rel: 同族}
       - {id: V-35, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 地层剖面, kind: 图式, states: [未分层, 三层各嵌代表词]}
+          - {name: 词卡 ask 与 question, kind: 词卡, states: [分在两层, 组成一句同框出现]}
+          - {name: 田间牛 cow, kind: 场景道具, states: [站在田间挂 cow 牌, 还是 cow 牌]}
+          - {name: 餐桌 beef, kind: 场景道具, states: [未上桌, 上桌后挂 beef 牌]}
+          - {name: 词卡 interrogate, kind: 词卡, states: [想排进随便挑的一队, 被单独挪开]}
+        invariants: "词的老家决定它常出现的场合：越往上层越正式、越长、越学问；这是大方向不是死规矩，有的词已经改行专干一行，不能当成只是更正式"
+      beats:
+        - "设置：剖面图挖开，三层土一层层露出（旁白：「英语的词也有老家，一层一层堆出来的。」）"
+        - "变形：底层冒出 ask，配上中层的 question 组成「Ask a question.」；田间的牛挂 cow 牌，肉端上桌换成 beef 牌，配上「The cow is in the field. We eat beef.」（旁白：「活物在田里一个名，肉上了桌又是另一个名。」）"
+        - "预测停顿：新词卡从土层里冒头，画面先停住（旁白：「先猜一猜：它是从哪层来的？该在什么场合说？」）"
+        - "边界对照：interrogate 的卡想和前两个排成随便挑的一队，被单独挪开贴上『专干一行』的签（旁白：「有的词早就改行了，不能当成只是更正式而已。」）"
+      beats_ref: claim
+      lines_owner: V-19
     quiz:
       - stem: "ask、question、interrogate 意思相近，为什么不能随便换？"
         options: ["因为它们的老家（地层）不同，场合不同", "因为字母不一样多", "因为老师规定"]
@@ -1092,7 +1342,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V19-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V19-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-20
     zone: 词汇解码
     group: V
@@ -1129,6 +1379,21 @@ entries:
     relatives:
       - {id: V-15, rel: 同族}
       - {id: V-36, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 七台造词机器, kind: 图式, states: [排成一排未开动, 逐台吐出例词]}
+          - {name: 派生机, kind: 场景道具, states: [零件分开, 拼出 unhappy]}
+          - {name: 复合机, kind: 场景道具, states: [吐出 blackbird, 与 black bird 分屏对照]}
+          - {name: 封存零件盒, kind: 标签组, states: [warmth 与 length 躺在盒里, 盒口贴上封条]}
+        invariants: "造新词就这几台机器，先认机器再对付生词；有的零件已经封存，只认老词不接新词，封存不等于老词消失"
+      beats:
+        - "设置：七台机器一字排开，灯都灭着（旁白：「长词别怕，先看看它是被哪台机器造出来的。」）"
+        - "变形：派生机把两个零件拼成 unhappy；复合机吐出 blackbird，旁边分屏是一只黑色的鸟 black bird，牌子上写着「A blackbird is not just a black bird.」（旁白：「拼法不一样，意思就不一样。」）"
+        - "预测停顿：新词从传送带过来，画面先停住（旁白：「先猜一猜：它刚从哪台机器里出来？」）"
+        - "边界对照：封存盒打开，warmth、length 躺在里面，盒口贴着封条，新词基想排队被挡住（旁白：「这个零件退休了，老词还在，新词不接了。」）"
+      beats_ref: claim
+      lines_owner: V-20
     quiz:
       - stem: "gym 是哪台机器造出来的？"
         options: ["派生（加零件）", "截短（把长词剪短）", "逆构（拆错拆出来的）"]
@@ -1146,7 +1411,7 @@ entries:
       pending: ["本条清单无独立『标题句』行，headline 取条目标题定版（簇源如有标题句，定版时回填）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V20-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V20-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-21
     zone: 词汇解码
     group: V
@@ -1189,6 +1454,21 @@ entries:
       - {id: V-08, rel: 同族}
       - {id: V-26, rel: 同族}
       - {id: V-30, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 零件墙, kind: 图式, states: [四块零件挂在墙上, 零件逐个插进长词]}
+          - {name: 长词卡 expect, kind: 词卡, states: [整块看不懂, 拆出看的零件后猜出大意]}
+          - {name: 长词卡 predict, kind: 词卡, states: [整块, 预先与说的零件拼合]}
+          - {name: 假零件卡 corner, kind: 词卡, states: [想拆成两件, 被拦住整块放回]}
+        invariants: "长词先拆真零件、按零件猜、再用字典对答案；零件的意思是帮记的说法不是定论，形似的假零件不许拆"
+      beats:
+        - "设置：零件墙亮起，spect 是看、port 是搬、dict 是说、bio 是生命，四块零件挂好（旁白：「先把小零件认全，长词就不可怕了。」）"
+        - "变形：「I expect a letter.」里的 expect 被拆开，看的零件插进去，孩子猜出大意；「Can you predict the story?」里的 predict 亮起说的零件，先猜再翻字典对上（旁白：「拼起来先猜，猜完查字典对答案。」）"
+        - "预测停顿：expect 的亲戚卡排队过来，第一张先停住（旁白：「先猜一猜：带同一个零件的这位，意思里也有它吗？」）"
+        - "边界对照：corner 想被拆成两件，被拦住整块放回墙外（旁白：「长得像零件的不一定是零件，拆之前先确认。」）"
+      beats_ref: claim
+      lines_owner: V-21
     quiz:
       - stem: "碰到没见过的长词 transport，先做什么？"
         options: ["整词死背", "先拆零件（trans- 搬过去 + port 搬），猜『搬运』，再查词典对", "跳过"]
@@ -1206,7 +1486,7 @@ entries:
       pending: ["课程对照实验级效果证据待核（清单已登记，本条不主张疗效数字）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V21-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V21-* 预留）"]
   - id: V-22
     zone: 词汇解码
     group: V
@@ -1248,6 +1528,21 @@ entries:
       - {id: V-25, rel: 对照}
     corrections:
       - "任务原稿把四律『统见 Bloomfield、Traugott』的归属已纠正：Bloomfield 的原术语是 degeneration/elevation，并未提出整齐四律；四分框架成形主要经 Ullmann 的后果分类；Traugott 的贡献在变迁机制（受邀推理、主观化），不是四律命名。本条按三段著录"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 搬家路 meat, kind: 图式, states: [地盘大管所有吃的, 地盘缩到只管肉]}
+          - {name: 搬家路 dog, kind: 图式, states: [只指一种大狗, 所有狗都算]}
+          - {name: 搬家路 nice, kind: 图式, states: [旧义是骂人, 走完路变成夸人]}
+          - {name: 叠影卡 knave, kind: 词卡, states: [只踩一条路, 两条路叠在一起走]}
+        invariants: "词义是一小步一小步挪的，不是跳变的；搬法就那几种，还常常几条路叠着走，老意思也不等于更对的意思"
+      beats:
+        - "设置：四条搬家路并排，meat 站在写着『所有吃的』的大院子里，牌子是「Meat is food. A dog is an animal.」（旁白：「很久以前，这个词管的地盘比现在大得多。」）"
+        - "变形：meat 的院子一小步一小步缩到只剩肉；旁边 dog 的院子反着越扩越大（旁白：「搬家不是跳过去的，是一小步一小步挪的。」）"
+        - "预测停顿：nice 的卡走到路中间，画面先停住（旁白：「先猜一猜：它以前是夸人，还是骂人？」）"
+        - "边界对照：nice 走完路变成夸人的话「You are nice.」；knave 的卡同时踩上两条路，贴上『两条路叠着走』的签（旁白：「一个词能同时走两条路，老意思也不等于更对。」）"
+      beats_ref: claim
+      lines_owner: V-22
     quiz:
       - stem: "meat 以前指所有吃的，现在只指肉。这是哪种搬家？"
         options: ["地盘涨大", "地盘缩小", "坏话变好话"]
@@ -1265,7 +1560,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V22-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V22-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-23
     zone: 词汇解码
     group: V
@@ -1304,6 +1599,22 @@ entries:
       - {id: V-26, rel: 同族}
     corrections:
       - "三连正组著录已对齐：教材最常引为 ask/question/interrogate；inquire 与 question 同属中层，可互换组队（任务原稿以 inquire 组队，已按 question 为正组、inquire 为备选登记）"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 祖先词卡, kind: 词卡, states: [在起点合为一家, 沿两条路分开走]}
+          - {name: 留守路线牌, kind: 路线图道具, states: [未点亮, 落点亮出上衣词卡]}
+          - {name: 串门路线牌, kind: 路线图道具, states: [未点亮, 落点亮出裙子词卡]}
+          - {name: 守门人词卡, kind: 词卡, states: [未出场, 站到大门边]}
+        invariants: "长得像是因为同源，意思和场合早已分工；同根只解释为什么像、为什么场合不同，不能推出两个词可以互换"
+      beats:
+        - "设置：路线图舞台中央放一张祖先词卡，下面分出两条路，一条留在老家，一条去亲戚家串门（旁白：「先看这张老卡片，它要走两条路啦。」）"
+        - "变形：两条路先后点亮，老家一头落出句子卡「He wears a shirt.」，串门回来一头落出「She wears a skirt.」——上身和下身，两张卡并排站好（旁白：「本来是一家，走的路不一样，穿的地方也不一样了。」）"
+        - "变形：第二组路线亮起，守门人词卡站到大门边，句子卡「The guard is at the gate.」出现，又一组长得像的亲戚落座（旁白：「再来一组，也是老亲戚换了条路回来。」）"
+        - "预测停顿：路线图上新亮起一对落点，先只给形状不给意思（旁白：「先猜一猜：长得这么像，是不是就能换着用？」）"
+        - "边界对照：两张卡试着互换位置，画面立刻别扭并亮起分工牌——一家归一家，各干各的活（旁白：「是亲戚，不是双胞胎，不能随便换着穿。」）"
+      beats_ref: claim
+      lines_owner: V-23
     quiz:
       - stem: "shirt 和 skirt 长得像、意思近，它们是什么关系？"
         options: ["纯属巧合", "同一个祖先词走了两条路进英语（同源对）", "一个是另一个的复数"]
@@ -1321,7 +1632,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V23-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V23-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-24
     zone: 词汇解码
     group: V
@@ -1358,6 +1669,21 @@ entries:
     relatives:
       - {id: V-25, rel: 对照}
       - {id: V-38, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 词形拼图, kind: 拼图道具, states: [旧部件褪色松动, 新部件咔哒装上]}
+          - {name: 小龙虾词卡, kind: 词卡, states: [带着鱼尾巴标签, 标签被摘下另放]}
+          - {name: 小岛词卡, kind: 词卡, states: [没有多余字母, 学者硬加的字母被标出]}
+          - {name: 方言小卡, kind: 标签卡, states: [未出场, 停在方言格里没进正格]}
+        invariants: "听不懂的一截被听着像、说得通的熟词顶上，顶成的样子就是今天的标准词，不许改回古样子；这和只编故事、词形没动的假故事不是一回事"
+      beats:
+        - "设置：拼图桌上有一块褪色的旧部件，谁也念不出它是什么意思，旁边摆着几个眼熟的部件等着顶上（旁白：「这一截谁都看不懂，猜猜大家会拿什么顶上？」）"
+        - "变形：旧部件褪色滑出，新部件咔哒装好，拼图变成今天大家都在用的样子；小龙虾词卡出场，句子卡「A crayfish is not a fish.」亮起，它被安上的鱼尾巴标签被单独摘下放在一旁（旁白：「住在水里看着像，就被安了个鱼名，其实它和鱼没亲戚。」）"
+        - "预测停顿：小岛词卡飘进来，中间多出一个不发音的字母，先停住不揭晓（旁白：「先猜一猜：这个字母，是本来就有的，还是后来加上的？」）"
+        - "边界对照：方言小卡试着进正格，被轻轻留在方言格里——同样是顶替，有的进了标准格，有的只留在方言里；另一边一张只讲故事的卡，词形一动没动，被分到另一摞（旁白：「样子真被改了的，才算这一家；只编故事的，不算。」）"
+      beats_ref: claim
+      lines_owner: V-24
     quiz:
       - stem: "crayfish 里的 fish 是怎么来的？"
         options: ["它本来就是一种鱼", "原词的一截听不懂，被换成了音近又说得通的 fish", "渔民给它起的外号"]
@@ -1375,7 +1701,7 @@ entries:
       pending: ["cray- 音变路径与 *krebiz 上溯待核（清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V24-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V24-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-25
     zone: 词汇解码
     group: V
@@ -1419,6 +1745,21 @@ entries:
       - {id: V-22, rel: 同族}
       - {id: V-24, rel: 对照}
       - {id: V-08, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 好人词卡, kind: 词卡, states: [挂着古时候的坏话牌, 坏话牌被摘下换成今天的意思]}
+          - {name: 豪华故事卡, kind: 故事卡, states: [故事讲得圆满, 被盖上查无此据章]}
+          - {name: 船票证物袋, kind: 证物道具, states: [等着装船票, 一直空着]}
+          - {name: 年代时间线, kind: 时间线道具, states: [未展开, 标出造词法出现的年代]}
+        invariants: "查故事只用两招：年代对不对、有没有真东西留下来；两招都过不去就登记存疑，辟谣不许再编一个新故事顶上"
+      beats:
+        - "设置：侦探桌上先放好人词卡，句子卡「You are nice.」亮起，卡上还挂着一块古时候的坏话牌（旁白：「几百年前这个词可不是夸人的，今天谁还会生气呢？」）"
+        - "变形：豪华故事卡讲起轮船上的舱位故事，侦探先拉开年代时间线对年代，再打开船票证物袋——袋子空空的，故事卡被盖上查无此据的章（旁白：「故事讲得再圆，年代对不上、东西找不着，就不能算数。」）"
+        - "预测停顿：练习句卡「Is the posh story true? — Check the dates.」停在桌边，另外两张同类故事卡排队等查（旁白：「先猜一猜：换你来查，你先查哪一样？」）"
+        - "边界对照：一张空白卡想被写上新编的来历，被侦探推开，改贴上存疑标签（旁白：「不知道就是不知道，这也是一个正经答案。」）"
+      beats_ref: claim
+      lines_owner: V-25
     quiz:
       - stem: "有人说 tips 是『To Insure Prompt Service』的首字母。怎么验？"
         options: ["故事很顺口，一定是真的", "查年代：tip 作『小费』18 世纪已见于文字，那时几乎没人用首字母造词——故事不成立", "问问服务员"]
@@ -1436,7 +1777,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V25-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V25-* 预留）"]
   - id: V-26
     zone: 词汇解码
     group: V
@@ -1475,6 +1816,21 @@ entries:
     relatives:
       - {id: V-21, rel: 同族}
       - {id: V-23, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 家族树根, kind: 家族树道具, states: [只露出树根, 三条大枝展开]}
+          - {name: 拉丁枝词卡组, kind: 词卡组, states: [未挂上, 按看的方向逐张挂上]}
+          - {name: 样子词卡, kind: 词卡, states: [挂在拉丁枝上, 旁边亮起化石牌]}
+          - {name: 侦察词卡, kind: 词卡, states: [未出场, 挂到远远的日耳曼枝上]}
+        invariants: "同一个看的老根长出一族词，记住根能一次认一串；但同根不是意思公式，样子词一系只剩化石联系，排队看人的词拆的是另一截看，不能硬套"
+      beats:
+        - "设置：一棵家族树只露出树根，树根上写着看，枝条都还卷着没展开（旁白：「这棵树的老根只有一个意思——看。」）"
+        - "变形：三条大枝依次展开，往里看、回头看、从下面偷偷看的词卡逐张挂上，句子卡「I expect good news.」在往外看的位置亮起（旁白：「方向不一样，长出来的词就不一样，可都带着看。」）"
+        - "预测停顿：侦察词卡飘到很远的一条枝边，句子卡「We spy a bird.」先不挂牌（旁白：「先猜一猜：它离得这么远，还和看是一家吗？」）"
+        - "边界对照：样子词卡旁亮起化石牌，它的亲戚词卡也只剩化石联系；另一张排队看人的词卡被拆开，拆出的那截和树根那截并排比对，不一样就不能硬套（旁白：「有的亲戚只剩个影子了，硬拆就会拆错。」）"
+      beats_ref: claim
+      lines_owner: V-26
     quiz:
       - stem: "inspect、respect、suspect 共同的老祖宗是什么意思？"
         options: ["说", "看", "搬"]
@@ -1492,7 +1848,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V26-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V26-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-27
     zone: 词汇解码
     group: V
@@ -1534,6 +1890,21 @@ entries:
       - "long time no see 不是近年新收词：是 OED 老牌词条（最早用例 1901），与 2018 年新收的 add oil 证据等级不同，教学必须分开讲，不许打包成『汉语说法都进牛津了』"
       - "ginseng 的通行全译『man-root』已降格：Etymonline 明言第二字（参）本义不确定，第一字『人』确定、第二字存疑"
       - "逻辑定名功劳已修正：日本线贡献的是竞争对手『论理学』（和制汉语意译），胜出的音译『逻辑』是本土造词（严复 1902 首用、章士钊立名推广），并非自日语转来"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 世界地图, kind: 地图道具, states: [只有陆地轮廓, 海路与陆路两色线亮起]}
+          - {name: 茶叶包, kind: 场景道具, states: [在本乡港口, 沿海路到达欧洲一侧]}
+          - {name: 沙发词卡, kind: 词卡, states: [在出发一侧, 沿入境箭头落到中文一侧]}
+          - {name: 加油箭头卡, kind: 台词卡, states: [未出场, 沿出境箭头飞出并被词典收下]}
+        invariants: "词搬家有搬声音和搬拼法两条路；两个方向数量并不对等，茶的远行是多方转手，不能全记在一个中转站头上"
+      beats:
+        - "设置：世界地图铺开，海上和陆上各有一条暗线，港口边放着一包茶叶（旁白：「一个词要出远门，它有两条路可以走。」）"
+        - "变形：茶叶包沿海路线出发，落点亮出句子卡「I drink tea and coffee.」——一杯是声音坐船出去的，一杯是声音坐船进来的，同桌相对（旁白：「同一张桌子上，坐着两个方向来的词。」）"
+        - "预测停顿：沙发词卡停在入境箭头口，先不放行（旁白：「先猜一猜：它搬过来的是声音，还是一个一个字对着译的拼法？」）"
+        - "边界对照：台词卡「Add oil!」沿出境箭头飞出，被词典收下；地图旁的数量牌同时亮起，两边箭头粗细明显不同（旁白：「方向是真的，可两边的数量不是一样多，别讲成对等交换。」）"
+      beats_ref: claim
+      lines_owner: V-27
     quiz:
       - stem: "tea 这个词是怎么旅行的？"
         options: ["英国人发明的", "福建话的『茶』坐着荷兰商船去的欧洲", "从日本来的"]
@@ -1551,7 +1922,7 @@ entries:
       pending: ["typhoon 来源主次未定（登记不裁决）；ketchup 本字三说并存"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V27-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V27-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-28
     zone: 词汇解码
     group: V
@@ -1591,6 +1962,21 @@ entries:
       - {id: V-31, rel: 同族}
     corrections:
       - "『小学阶段约三分之二的已识词靠形态推导』在 Anglin 原文及权威转述中均无此表述，不予采用。可核数字：五年级派生词约 16000，占总识别词汇约 40000 的约 40%；派生/(词根+派生）约 68%（疑为误传来源，分母不同）；新遇词 60–80% 为形态复杂词（说的是新词构成，不是已识词来源）。三数口径各异，不可混用"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 小猪词卡, kind: 词卡, states: [整张未拆, 拆出小零件后意思亮起]}
+          - {name: 小零件卡, kind: 零件卡, states: [未被认出, 被认出是小的意思并装到新词上]}
+          - {name: 小树生词卡, kind: 词卡, states: [从没见过, 被当场拆开读懂]}
+          - {name: 增长曲线板, kind: 图表道具, states: [两条线齐平起步, 拆出来的词那条线陡陡升起]}
+        invariants: "认词有背过的和当场拆出的两种，零件认得越多能拆的词越多；这是从母语孩子身上推断出的引擎，中国孩子先得有零件可拆，转速不能直接搬过来"
+      beats:
+        - "设置：一个孩子翻书碰到小猪词卡，整张卡没学过，卡面先不给意思（旁白：「这个词没背过，你看他怎么办。」）"
+        - "变形：词卡被拆开，小零件卡被认出是小的意思，句子卡「A piglet is a small pig.」亮起；孩子顺手把同一个零件装到小树生词卡上，句子卡「A treelet is a small tree.」跟着亮起（旁白：「零件认识，碰到新词也能当场拼出意思。」）"
+        - "预测停顿：增长曲线板上两条线刚起步，先停住（旁白：「先猜一猜：到大一点，哪条线会爬得快得多？」）"
+        - "边界对照：曲线板上拆词那条线陡升，另一条缓升；旁边亮起一把空零件盒——零件盒空着的孩子，引擎先转不起来（旁白：「拆词再厉害，也得先有零件存货才行。」）"
+      beats_ref: claim
+      lines_owner: V-28
     quiz:
       - stem: "大孩子认得的派生词暴涨，主要是因为什么？"
         options: ["背得更多", "会当场拆词解题，词自己长出来", "词变简单了"]
@@ -1608,7 +1994,7 @@ entries:
       pending: ["Anglin 专著原文未直开：分项数字以 Nation 转述为锚，可再升一级核对（清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V28-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V28-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-29
     zone: 词汇解码
     group: V
@@ -1648,6 +2034,21 @@ entries:
     corrections:
       - "『约 6 万词族』在 N&A 原文中无对应数字：最接近的真实数字是 Goulden, Nation & Read (1990) 的 54000 个基础词（词族口径），『6 万』疑为其取整误传；Nation (2001) 裁断：学校英语词族数在 54000 与 88500 之间是同一问题的两种口径"
       - "『学一根平均带走 1–3 个派生词』须修正：原文主语是『每学会一个词』（不限词根），且带条件；精细平均值是 1.57 而非 3"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 词族账本, kind: 账本道具, states: [总数写得很大, 透明亲戚被划掉只剩真要学的数]}
+          - {name: 开心家族卡组, kind: 词卡组, states: [三张分开排队, 归成一家人只占一个名额]}
+          - {name: 透明贴纸, kind: 标签组, states: [未贴, 贴到能当场算出的亲戚上]}
+          - {name: 预言词卡, kind: 词卡, states: [未出场, 被放进真要学的格子]}
+        invariants: "能由认识的零件当场算出的亲戚是白送的，不另占要学的名额，算不出的才要一个个学；账本上的数字必须连数法一起说，高频的老词一家红利本来就小"
+      beats:
+        - "设置：一本大账本翻开，总数写得吓人，孩子抱着头看着排成长队的词卡（旁白：「词看着这么多，真的都要一个个背吗？」）"
+        - "变形：开心家族卡组归到一起，台词卡「Happy, unhappy, happiness — one family.」亮起，能当场算出的亲戚被贴上透明贴纸，从队伍里划掉，账本只剩下真要学的数（旁白：「一家人学会一个，亲戚常常顺手就懂了。」）"
+        - "预测停顿：预言词卡飘到账本边，台词卡「Predict is a word to learn; its family helps.」先停住（旁白：「先猜一猜：这个词的亲戚，是白送的，还是要另外学的？」）"
+        - "边界对照：高频老词那一页翻开，亲戚本来就没几个，贴纸几乎没用上（旁白：「越是天天见的老词，越没多少便宜亲戚可占。」）"
+      beats_ref: claim
+      lines_owner: V-29
     quiz:
       - stem: "学会 happy 以后，unhappy 和 happiness 为什么常常不用重新学？"
         options: ["因为它们短", "因为它们的意思能由零件当场算出（透明亲戚）", "因为老师不查"]
@@ -1665,7 +2066,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V29-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V29-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-30
     zone: 词汇解码
     group: V
@@ -1705,6 +2106,22 @@ entries:
       - {id: V-33, rel: 同族}
     corrections:
       - "任务书把 White, Power & White (1989) 定性为『教拉丁词根的教学实验』是定性错误：该文是语料分析研究（257 个带前缀词的可分析性+四前缀透明度），四前缀中 un- 为日耳曼源、其余为拉丁源；『教词根能迁移到未学词』的因果证据在干预研究（Wysocki & Jenkins 1987 等）与 V-31 元分析，不在本文。引用本条不得把『可分析』说成『教了就会』"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 三格检查清单, kind: 清单道具, states: [三格全暗, 逐格点亮]}
+          - {name: 不开心词卡, kind: 词卡, states: [锁着未拆, 三格全亮后锁打开]}
+          - {name: 不正确词卡, kind: 词卡, states: [未出场, 同样三格亮起后打开]}
+          - {name: 词基小卡, kind: 零件卡, states: [在清单第一格待认, 被认出后第一格亮起]}
+        invariants: "拆词要三样都在：里面的小词认识、头上的零件意思稳、拼起来的意思没变味；说好的成数只算带四个常用前缀的词，词基不够时能拆开的比例要打折"
+      beats:
+        - "设置：一把锁挂在不开心词卡上，旁边立着三格全暗的检查清单（旁白：「拆词之前，先点一点这三格灯。」）"
+        - "变形：词基小卡被认出，第一格亮；零件意思稳，第二格亮；拼起来没变味，第三格亮——锁咔哒打开，台词卡「Unhappy = un- (not) + happy.」出现（旁白：「三格都亮，锁就开了。」）"
+        - "变形：不正确词卡用同一张清单过一遍，台词卡「Incorrect = in- (not) + correct.」亮起，三格再次全亮（旁白：「换一个词，还是先查这三格。」）"
+        - "预测停顿：新词卡只亮起两格，第三格闪烁不定，先停住（旁白：「先猜一猜：少了一格，这把锁还打得开吗？」）"
+        - "边界对照：清单旁的小牌亮起——成数只数带常用前缀的那批词；词基小卡不够时，清单第一格怎么点也点不亮（旁白：「零件没学够的时候，拆不动是正常的，先去补零件。」）"
+      beats_ref: claim
+      lines_owner: V-30
     quiz:
       - stem: "拆一个带前缀的长词，猜懂它的把握有多大？"
         options: ["百分之百", "只靠零件约六成，再加上下文约八成——剩下两成要查", "一点把握都没有"]
@@ -1722,7 +2139,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V30-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V30-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-31
     zone: 词汇解码
     group: V
@@ -1759,6 +2176,7 @@ entries:
     relatives:
       - {id: V-30, rel: 同族}
       - {id: V-39, rel: 同族}
+    scene_spec: "不设（终态登记：证据综述条目：内容为两轮元分析的效应量按与教学距离衰减的口径，画成儿童场景会把研究结论画成课堂事实）"
     quiz:
       - stem: "上了拆词课，哪件事最可能变好，哪件别指望太多？"
         options: ["认词拼词变好；整篇故事自动读懂别指望", "什么都会自动变好", "什么都不会变好"]
@@ -1776,7 +2194,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V31-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V31-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-32
     zone: 词汇解码
     group: V
@@ -1822,6 +2240,22 @@ entries:
     corrections:
       - "『约半数派生词的意义不能从根+缀可靠推出』无一手出处且偏高：按 N&A 自家量表，基本不可推者（SEM 3–5）约五分之一到四分之一；定版表述为『完全透明者只占一半多，其余或多或少要打折』，『约半数不可推』不予采用"
       - "predict 例任务书亦误：pre- 的确就是『预先/在前』，predict＝预先说→预言，组合义本身成立；它对孩子的墙是 dict 黏着词根不认识（根缺失型），不是前缀不表『预先』——两类失败解法不同，混为一谈会开错药"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 透明度标尺, kind: 标尺道具, states: [未标刻度, 从全看得懂到全看不懂逐级标出]}
+          - {name: 预言零件卡组, kind: 零件卡组, states: [两块零件并排, 一块认识一块陌生]}
+          - {name: 无价假锁, kind: 锁道具, states: [零件都对得上, 拼出的意思却亮起反牌]}
+          - {name: 词典核对牌, kind: 标签卡, states: [未出场, 盖到每把拆开的锁上]}
+        invariants: "看不看得透是一条连续的尺，不是一刀切；拆不动分缺零件和变了味两种，拆完猜完必须核对，报成数必须连数法一起报"
+      beats:
+        - "设置：锁匠台上摆着一排锁，旁边立起一把从亮到暗的标尺（旁白：「有的锁一眼看透，有的怎么也看不透，中间还有好多级。」）"
+        - "变形：预言零件卡组上台，台词卡「Predict = pre- (before) + dict (say).」亮起，前一块零件认识、后一块陌生，锁只开了一半（旁白：「这把锁拆不动，是因为少认识一个零件。」）"
+        - "变形：无价假锁上台，零件全对得上，可拼出的意思刚亮起就翻成反牌，句子卡「This book is invaluable.」出现（旁白：「这把更 tricky——零件都对，意思却猜反了。」）"
+        - "预测停顿：新锁被推到标尺前，先不定位（旁白：「先猜一猜：它拆不动的话，是缺零件，还是变了味？」）"
+        - "边界对照：词典核对牌依次盖到每把锁上；标尺旁的小牌提醒，低处的新词反而常常更看得透（旁白：「猜完别急着信，查一查对一对，才算数。」）"
+      beats_ref: claim
+      lines_owner: V-32
     quiz:
       - stem: "拆词猜完意思，下一步必须做什么？"
         options: ["直接当答案用", "查一查、对一对，验证了才算数", "猜错就再也不拆了"]
@@ -1839,7 +2273,7 @@ entries:
       pending: ["『300 个组合形解码上万科学词』一手统计待核（清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V32-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V32-* 预留）"]
   - id: V-33
     zone: 词汇解码
     group: V
@@ -1884,6 +2318,21 @@ entries:
       - {id: V-39, rel: 同族}
     corrections:
       - "任务书『14 个前缀覆盖约 58%』已证伪：原文实为两组数字——20 个前缀覆盖 97%，前 4 个占 58%；『14 前缀』说未在原文检得，疑为转述串位（或与后缀侧小集合统计串位），按查无此据登记。claim 只用定版口径"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 前缀条形图, kind: 图表道具, states: [条子未展开, 最长的条领头且前四条被圈在一起]}
+          - {name: 班长牌, kind: 标签组, states: [未挂, 挂到出场最多的四个前缀上]}
+          - {name: 词卡组, kind: 词卡组, states: [未出场, 逐张站到对应班长身后]}
+          - {name: 冒牌词卡, kind: 词卡, states: [混在队伍里, 被拣出放到整词格]}
+        invariants: "出场份额数的是书里出现的次数，不是词条种类；老语料的名次细节不能照搬，能搬的是活儿集中在少数几个身上、先学透这一小撮，越常用的前缀越要防假拆"
+      beats:
+        - "设置：一面条形图墙展开，条子一条比一条短，最长的一条占了好大一截（旁白：「前缀有一大群，可干活最勤的就那么几个。」）"
+        - "变形：班长牌挂到前四个前缀上，它们身后的份额被圈在一起，词卡依次站队——「Unhappy.」站到第一位班长身后，「Incorrect. Input.」站到另一位身后（旁白：「先把这几个班长学透，书里大半带前缀的词就有人管了。」）"
+        - "预测停顿：冒牌词卡混进队伍排到班长身后，先停住（旁白：「先猜一猜：它排在这里，是真队员还是冒牌的？」）"
+        - "边界对照：冒牌词卡被拣出来放进整词格，条形图旁的小牌亮起——这里数的是出场次数，不是词条个数（旁白：「看见开头的字母像，也不能急着拆，先验一验真假。」）"
+      beats_ref: claim
+      lines_owner: V-33
     quiz:
       - stem: "带前缀的词，先学哪几个前缀最划算？"
         options: ["按字母顺序全学", "先学 un-、re-、in-、dis- 四个班长", "先学最长的"]
@@ -1901,7 +2350,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["scene_spec 待补"]
+    pending: []
   - id: V-34
     zone: 词汇解码
     group: V
@@ -1944,6 +2393,22 @@ entries:
     relatives:
       - {id: V-35, rel: 同族}
       - {id: V-33, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 变色前缀卡, kind: 零件卡, states: [保持原样, 走到不同门前换成不同样子]}
+          - {name: 三扇门牌, kind: 场景道具, states: [未标声音, 逐扇标出门后的首音]}
+          - {name: 双写高亮牌, kind: 标签组, states: [未亮, 贴到变身处多出的字母上]}
+          - {name: 新词卡, kind: 词卡, states: [未出场, 保持原样不换装]}
+        invariants: "前缀尾巴向后面的声音靠拢是拉丁老词留下的旧账，写下来的双写字母就是这么来的；新造的词不再换装，碰到同形还要先分清是哪个前缀"
+      beats:
+        - "设置：变色前缀卡走到三扇门前，每扇门后传出一个不同的起头声音（旁白：「它的尾巴很会随和，听见后面的声音就跟着变。」）"
+        - "变形：前缀卡走到嘴唇音门前换上新装，句子卡「It is impossible.」亮起，另两扇门后的样子依次换好，双写高亮牌贴到多出的字母上（旁白：「变得和后面一样了，还多写一个——双写就是这么来的。」）"
+        - "变形：另外两组词卡过门，句子卡「Collect the books. Support your team.」亮起，双写处同样被高亮（旁白：「换个前缀，偷懒的法子是一样的。」）"
+        - "预测停顿：前缀卡走向一扇新门，门后的声音刚响起就停住（旁白：「先猜一猜：它这回要换成什么样？」）"
+        - "边界对照：新词卡走过同样的门却不换装，原样通过；旁边小牌提醒，同形的前缀有两职，先认清是哪一个再谈换装（旁白：「新来的词不走老规矩了，别拿旧账套它。」）"
+      beats_ref: claim
+      lines_owner: V-34
     quiz:
       - stem: "illegal 里为什么有两个 l？"
         options: ["写错了", "in- 碰到 l 同化成 il-，双写是同化留下的", "为了好看"]
@@ -1961,7 +2426,7 @@ entries:
       pending: ["未打开拉丁语语法原书逐条核页码（清单已登记）"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V34-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V34-* 预留）"]
   - id: V-35
     zone: 词汇解码
     group: V
@@ -2010,6 +2475,21 @@ entries:
       - {id: V-19, rel: 同族}
       - {id: V-34, rel: 同族}
       - {id: V-33, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 营业中铺面, kind: 场景道具, states: [挂着营业牌, 新词卡也往上装]}
+          - {name: 存量老铺面, kind: 场景道具, states: [挂着存量牌, 只摆老词卡不再进货]}
+          - {name: 对子词卡, kind: 词卡组, states: [未出场, 老家词与外来词各站到自家铺面前]}
+          - {name: 红牌词卡组, kind: 词卡组, states: [未出场, 逐张亮起提醒牌]}
+        invariants: "说不的两个零件一家还在营业、一家只剩存量，这是地层倾向只能帮猜不能帮判；营业那家一直在越界，另一个同形零件管方向不在本条，形似否定却同义或极言的词要单独记"
+      beats:
+        - "设置：街边两间铺面并排，一间挂着营业中的牌子，一间只摆着老货（旁白：「说『不』有两个零件，可它俩的营业状态不一样。」）"
+        - "变形：对子词卡出场，句子卡「He is unhappy.」站到营业铺面前，难以置信与难以相信的对子各归各家；句子卡「That is incorrect. He is my friend.」在存量铺面前亮起（旁白：「老家的词找营业那家，外来的长词多半在老铺子里。」）"
+        - "预测停顿：一张新词卡停在两间铺面中间，先不进门（旁白：「先猜一猜：日常词先敲哪家的门，老长词先敲哪家的门？」）"
+        - "边界对照：营业铺面的货架上亮起一串越界的老底词卡，红牌词卡组跟着出场——一个形似否定却和肯定同义，一个形似否定却是在说贵重到没法估价（旁白：「规矩只是大势，例外一串串，碰到红牌词要整个记住。」）"
+      beats_ref: claim
+      lines_owner: V-35
     quiz:
       - stem: "新词『取关』是 unfriend，不是 infriend。为什么？"
         options: ["因为 un- 还在上班、能装新词，in- 已退休", "因为 f 开头只能用 un-", "随便哪个都行"]
@@ -2027,7 +2507,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V35-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V35-* 预留）"]
   - id: V-36
     zone: 词汇解码
     group: V
@@ -2070,6 +2550,22 @@ entries:
     relatives:
       - {id: V-20, rel: 同族}
       - {id: V-37, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 四台变身机, kind: 场景道具, states: [牌子未亮, 逐台亮起通电或封存牌]}
+          - {name: 行动词卡, kind: 词卡, states: [是动词的样子, 依次变成名词和形容词的样子]}
+          - {name: 开心词卡, kind: 词卡, states: [未进机器, 装上通电尾巴变成名词]}
+          - {name: 例外词卡, kind: 词卡, states: [未出场, 亮起先占位提醒牌]}
+        invariants: "尾巴机器只管变成什么词类，不管意思细节；还通不通电是程度和场合的事不是开关，每台机器还有只认哪种底子的选配限制，封存的尾巴只认老词不许自己造"
+      beats:
+        - "设置：四台变身机并排站好，每台头上都有一块还没亮的状态牌（旁白：「词尾像按钮，可有的按钮早就锈住了。」）"
+        - "变形：状态牌逐台亮起，通电的亮绿、封存的挂锁；行动词卡依次过机，台词卡「Act, action, active.」随着变形亮起（旁白：「同一个词根，换个尾巴就换了个身份。」）"
+        - "变形：开心词卡装上通电尾巴变成名词，台词卡「Happy — happiness. He is friendly.」亮起，例外词卡在旁边举牌——它那个尾巴在这里是形容词不是副词（旁白：「这个尾巴被先占住了，别看牌子猜错。」）"
+        - "预测停顿：一张新词卡想走封存机器的通道，先停在入口（旁白：「先猜一猜：这台机器，还接不接新词？」）"
+        - "边界对照：按封存尾巴硬造的错词卡被机器退出来，亮起退货牌（旁白：「封存的尾巴只能认，不能造，硬造就出错。」）"
+      beats_ref: claim
+      lines_owner: V-36
     quiz:
       - stem: "想给一个新词造『能……的』形容词，用哪个尾巴最靠谱？"
         options: ["-ible", "-able（还通电的活后缀）", "-tion"]
@@ -2087,7 +2583,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V36-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V36-* 预留）"]
   - id: V-37
     zone: 词汇解码
     group: V
@@ -2135,6 +2631,22 @@ entries:
     relatives:
       - {id: V-36, rel: 同族}
       - {id: V-34, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 十字路口牌组, kind: 场景道具, states: [四块规则牌未亮, 逐块亮起指路]}
+          - {name: 制作词卡, kind: 词卡, states: [尾字母挡在路口, 让路后接上尾巴]}
+          - {name: 开心词卡, kind: 词卡, states: [尾字母原样, 过路口后换成新字母]}
+          - {name: 停与访对子卡, kind: 词卡组, states: [未变形, 一张尾巴双写一张不双写]}
+        invariants: "四条拼写规则都是带例外的倾向，默认走规则、例外进名单；改法都是为读音让路，双写先要知道重音在哪，剩整词却用另一尾巴的那批词最终靠认读存量"
+      beats:
+        - "设置：词根开到十字路口，四块规则牌立在路口还没亮（旁白：「加尾巴之前，先看路口这几块牌子。」）"
+        - "变形：制作词卡过路口，挡路的尾字母让开，台词卡「Make — making. Happy — happiness.」亮起，开心词卡的尾字母也在路口换好（旁白：「扔掉它、换掉它，都是怕写出来读不出原来的声音。」）"
+        - "变形：停与访对子卡过路口，一张尾巴双写、一张不双写，台词卡「Stop — stopped. Visit — visited.」亮起，差别落在重音牌上（旁白：「双不双写，先听重音落在谁身上。」）"
+        - "预测停顿：一张重音在尾的词卡停在路口，先只给重音牌（旁白：「先猜一猜：重音在尾巴上，它要不要双写？」）"
+        - "边界对照：例外名单卷轴展开，几个不守默认规则的熟词被钉在名单上；另一批剩整词的卡被送进认读格（旁白：「规则管大多数，名单管剩下的那几个。」）"
+      beats_ref: claim
+      lines_owner: V-37
     quiz:
       - stem: "stop 加 -ed，为什么 p 要写双？"
         options: ["因为好看", "短词、一个元音一个辅音结尾、后缀元音开头——双写保住短元音", "因为 p 是最后一个字母"]
@@ -2152,7 +2664,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V37-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V37-* 预留）"]
   - id: V-38
     zone: 词汇解码
     group: V
@@ -2197,6 +2709,22 @@ entries:
       - {id: V-32, rel: 同族}
     corrections:
       - "任务书把 butterfly 与 butter/river 并列作『假拆分』是含混：butterfly 在分割层面确为 butter + fly（古英语 buttorflēoge），『非 butter+fly 组合』只在语义组合层面成立——本条分两层讲清，三型分开著录"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 三间诊室门牌, kind: 场景道具, states: [三扇门关着, 逐扇亮起病名牌]}
+          - {name: 黄油与河词卡, kind: 词卡组, states: [尾截被误当零件, 被标为词干的一部分]}
+          - {name: 蝴蝶词卡, kind: 词卡, states: [未拆, 拆得开却挂上解不出牌]}
+          - {name: 明白词卡, kind: 词卡, states: [未拆, 零件亮起古时候的意思牌]}
+        invariants: "拆不动分三型：没零件的别拆，有零件猜不出动机的意思另记，零件取古义的拼不出今义；不许硬拆不等于不许联想，助记和词源必须分开标，动机无定论处保持存疑"
+      beats:
+        - "设置：三间诊室并排，门牌都还没亮，拆不动的词卡在门口排队（旁白：「拆不动的词，也分三种病，进的诊室不一样。」）"
+        - "变形：一号门亮起，黄油与河词卡进去，句子卡「Butter is yellow. The river is long.」出现，它们的尾截被标成词干的一部分而不是零件（旁白：「一号诊室：根本没零件，别硬拆。」）"
+        - "变形：蝴蝶词卡进二号门，拆是拆得开，却挂上解不出为什么的牌；明白词卡进三号门，零件亮起古时候意思的牌，句子卡「A butterfly is in the garden. I understand.」亮起（旁白：「一个是拆开也猜不出，一个是零件的意思早变了。」）"
+        - "预测停顿：一张新词卡停在三扇门中间，先不进门（旁白：「先猜一猜：它拆不动的话，该进哪间诊室？」）"
+        - "边界对照：一张黄油色小飞虫的联想贴纸被贴到助记格而不是词源格，两格分得清清楚楚（旁白：「拿来帮着记可以，可别把它当成真正的来历。」）"
+      beats_ref: claim
+      lines_owner: V-38
     quiz:
       - stem: "butterfly 能拆成 butter + fly，为什么还是猜不出它的意思来源？"
         options: ["因为拆错了", "拆是真拆，但它为什么叫这个名，没有定论", "因为 fly 不认识"]
@@ -2214,7 +2742,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V38-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V38-* 预留）"]
   - id: V-39
     zone: 词汇解码
     group: V
@@ -2261,6 +2789,7 @@ entries:
     corrections:
       - "对照框架纠偏：不存在『纯词缀教学 vs 混合法』的同场胜负数据——2003 年研究里混合组（MC）对的是教材组（TV），不是纯词缀组；把两研究混成『混合法胜出』是常见转述错误，本条分开著录"
       - "『Graves 1987 词缀教学四步』本次未检索到原始文献，不立为出处：Graves 的可核贡献是四板块框架（《The Vocabulary Book》2006；2nd ed. 2016），词缀属其『策略』板块；正式引用课序用 White et al. 六课序列"
+    scene_spec: "不设（终态登记：教学方法论条目：内容为课序处方与实证对照的收益射程口径，动画化只能画成老师讲授课序，无本条自身的语言机制场景）"
     quiz:
       - stem: "学词缀的第一课应该先学什么？"
         options: ["背 20 个前缀表", "先分清真假前缀，再按意思一课学一组", "先学生僻前缀"]
@@ -2278,7 +2807,7 @@ entries:
       pending: ["（2026-11-02 终局登记）『Graves 1987 词缀教学四步』经复检确认查无：不存在此说法的原始文献——词缀教学文献所引 Graves 为 Graves & Hammond (1980) 的前缀研究；Graves 的框架性贡献是《The Vocabulary Book》(2006；2nd ed. 2016) 四板块。本条不立其为出处、正式课序用 White et al. 六课序列的口径终局化"]
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V39-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V39-* 预留）"]
   - id: V-40
     zone: 词汇解码
     group: V
@@ -2402,6 +2931,22 @@ entries:
     corrections:
       - "『OED 给 run 切 645 项』属实但裸用违规：645 是 2011 年 OED3 修订版对动词 run 按最细粒度的计数，OED 官网现计数为 245；引用 645 必须携带口径（版本、词性、粒度）"
       - "任务书『学习词典约 30 项』未能核实：可查的公开计数是 Fang & Liu (2022) 的 46 项（OALD9 + COBUILD9 口径），本条以 46 为准，『约 30 项』不予采用"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 同一句框, kind: 句框道具, states: [空着, 塞进两个意思后冒出笑话气泡]}
+          - {name: 岸与行双词卡, kind: 词卡组, states: [分开各站一句, 被试着塞进同一句]}
+          - {name: 眼与针眼卡, kind: 词卡组, states: [分开摆放, 归到同一棵亲戚树上]}
+          - {name: 词典口径牌组, kind: 标签组, states: [未亮, 三块牌切出不同数目]}
+        invariants: "塞进同一句只是验亲的直觉工具不是判决机，测试之间还会互相矛盾；一个词切几个意思由词典的数法决定，数字必须连口径一起说，不许背成知识"
+      beats:
+        - "设置：舞台上立着一个空句框，岸与行两张同形词卡各站在自己的句子里，句子卡「The bank is by the river. I have money in the bank.」分开亮着（旁白：「这两个长得一模一样，先分开看看，都挺顺。」）"
+        - "变形：两张卡被一起塞进同一个句框，句框立刻冒出笑话气泡，画面别扭得像在讲笑话（旁白：「一塞进同一句就闹笑话，多半是撞脸，不是亲戚。」）"
+        - "变形：眼与针眼卡上台，台词卡「An eye and the eye of a needle.」亮起，两张卡顺顺当当归到同一棵亲戚树上（旁白：「这一对塞在一起不别扭，是真亲戚。」）"
+        - "预测停顿：新的一对同形卡停在句框前，先不塞（旁白：「先猜一猜：塞进去，是顺顺当当，还是要闹笑话？」）"
+        - "边界对照：三块词典口径牌依次亮起，同一个词被切出的数目各不相同，三块牌都被标上都对、数法不同（旁白：「切几个意思要看人家怎么数，别背一个死数字。」）"
+      beats_ref: claim
+      lines_owner: V-41
     quiz:
       - stem: "一本书说 run 有 645 个意思，另一本说 46 个。谁错了？"
         options: ["645 的那本", "46 的那本", "都没错——义项是编词典的人按不同口径切出来的"]
@@ -2419,7 +2964,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V41-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V41-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-42
     zone: 词汇解码
     group: V
@@ -2455,6 +3000,21 @@ entries:
     error_cases: []
     relatives:
       - {id: V-16, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 意思雪球, kind: 场景道具, states: [停在手抓东西一站, 沿路滚过后面几站越滚越大]}
+          - {name: 手站台词卡, kind: 台词卡, states: [未亮, 在起点站亮起]}
+          - {name: 大厅站牌, kind: 场景道具, states: [未到, 雪球滚到时亮起容纳牌]}
+          - {name: 逐个记小牌, kind: 标签卡, states: [未出场, 挂到猜不出的站点上]}
+        invariants: "新意思是从老意思按比喻的路滚出来的，顺路能猜出大半；滚不到、推不出的部分仍要逐个记，讲给低龄孩子的量还没有验过，效应还看词透不透明和孩子水平"
+      beats:
+        - "设置：一颗小雪球停在第一站，一只手稳稳抓住东西，台词卡「Hold my hand.」亮起（旁白：「最早的意思很简单——手抓住东西。」）"
+        - "变形：雪球沿着路滚起来，经过心里控制住一站，滚到大厅一站时句子卡「The hall holds 500 people.」亮起，雪球明显大了一圈（旁白：「抓住滚着滚着，就滚成了装得下。」）"
+        - "预测停顿：雪球停在下一站的路口，先只给它看得见的来路（旁白：「先猜一猜：顺着这条路滚下去，下一站会是什么意思？」）"
+        - "边界对照：远处一站挂上逐个记小牌，雪球的路到那里断开（旁白：「有的新意思顺路猜得到，有的猜不到，就老老实实记下来。」）"
+      beats_ref: claim
+      lines_owner: V-42
     quiz:
       - stem: "第一次见到 hold a meeting 里的 hold，应该怎么对付？"
         options: ["当成全新词死背", "顺着『抓住』的滚雪球路猜：把大家的时间抓在一起→举行", "跳过不管"]
@@ -2472,7 +3032,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V42-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V42-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]
   - id: V-43
     zone: 词汇解码
     group: V
@@ -2514,6 +3074,21 @@ entries:
         diagnosis: "只查词义不看搭配氛围（回 mechanism『染上的天气』；cause progress 是清单登记的对照形）"
     relatives:
       - {id: V-07, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 惹事词卡, kind: 词卡, states: [头顶无天气, 伙伴排齐后头顶沉下乌云]}
+          - {name: 提供词卡, kind: 词卡, states: [头顶无天气, 伙伴排齐后头顶亮起晴空]}
+          - {name: 伙伴词排, kind: 词卡组, states: [散着未排队, 按常跟谁玩排到两张卡身旁]}
+          - {name: 中性小卡, kind: 词卡, states: [未出场, 站到乌云卡旁提醒不是禁令]}
+        invariants: "总跟坏事做朋友的词会染上坏天气，这是概率倾向不是搭配禁令；结论要带语料来源和年代，小朋友这一面只认已经核过的三个案，不往外扩"
+      beats:
+        - "设置：两张词卡并排站着，头顶都还没有天气，伙伴词散在周围没排队（旁白：「学一个词，还要看看它平常跟谁一起玩。」）"
+        - "变形：伙伴词排起队，句子卡「Smoking can cause trouble.」在惹事词卡旁亮起，它的伙伴几乎全是麻烦事，头顶慢慢沉下乌云；提供词卡那边句子卡「They provide information and help.」亮起，头顶是晴空（旁白：「朋友都是什么天气，它自己就染上什么天气。」）"
+        - "预测停顿：一件高兴的好事被推到两张卡中间，先停住（旁白：「先猜一猜：带来好事，该请哪张卡出场？」）"
+        - "边界对照：中性小卡站到乌云卡旁，乌云变淡一格——偶尔跟中性的事一起出现是有的；把好结果硬套进乌云卡的错句卡被轻轻退回（旁白：「是多半，不是绝对，可别讲成只能跟坏词。」）"
+      beats_ref: claim
+      lines_owner: V-43
     quiz:
       - stem: "『新政策带来了进步』，哪个动词味儿对？"
         options: ["cause", "bring about", "两个一样"]
@@ -2531,7 +3106,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V43-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V43-* 预留）"]
   - id: V-44
     zone: 词汇解码
     group: V
@@ -2573,6 +3148,22 @@ entries:
         diagnosis: "语音通道失效时仍按声音选字（回 mechanism『耳朵下班脑子接管』）"
     relatives:
       - {id: V-41, rel: 同族}
+    scene_spec:
+      facts:
+        objects:
+          - {name: 三胞胎词卡, kind: 词卡组, states: [读出来一模一样, 按位置和意思逐张分开站]}
+          - {name: 耳朵打叉牌, kind: 标签卡, states: [未亮, 亮起后改亮位置提示牌]}
+          - {name: 句中空位, kind: 句框道具, states: [空着待选, 被选对的词卡填上]}
+          - {name: 第二组三胞胎卡, kind: 词卡组, states: [未出场, 同场并排接受位置检查]}
+        invariants: "同音词选字靠位置和意思不靠声音：他们的后面跟东西、那里指地方、他们是是两词捏成一个；同音随口音而变要逐对核，先把对子立稳再读拿它们开玩笑的绘本"
+      beats:
+        - "设置：三胞胎词卡并排站好，朗读声响起，三张卡的声音一模一样，耳朵打叉牌亮起（旁白：「这几个词，耳朵是真分不出来，别问耳朵了。」）"
+        - "变形：位置提示牌依次亮起，句子卡「Their dog is there.」出现——一张卡后面紧跟着东西，另一张卡指着地方，第三张卡被拆回两个词的样子（旁白：「看位置、想意思，一张一张认回自己家。」）"
+        - "变形：第二组三胞胎卡同场出场，句子卡「Two boys go to school, too.」亮起，数、去向和也各就各位（旁白：「换一组，还是同一招：位置说了算。」）"
+        - "预测停顿：句中空位空着，三张卡在下面排队，先停住（旁白：「先猜一猜：这个空，该请哪张卡上去？」）"
+        - "边界对照：错填的句子卡「There dog is cute.」被亮起红圈，换上对的卡后红圈消失；旁边小牌提醒，先立对子再去读绘本里的笑话（旁白：「填错不可笑，笑话要等对子立稳了再看。」）"
+      beats_ref: claim
+      lines_owner: V-44
     quiz:
       - stem: "『___ books are on the desk.』（他们的书）该填哪个？"
         options: ["there", "their", "they're"]
@@ -2590,7 +3181,7 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V44-* 预留）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V44-* 预留）"]
   - id: V-45
     zone: 词汇解码
     group: V
@@ -2629,6 +3220,22 @@ entries:
       - {id: V-41, rel: 同族}
     corrections:
       - "任务书『run 的原型是跑，语料里最高频却是经营/运转』作为全称判断不成立：它只在商务/成人书面偏向的样本里为真；在综合语料（Fang & Liu 2022 所据数据）里最高频仍是『跑』，与原型重合。定版表述只能是定性的：两把尺可以分家，分家与否取决于按哪个语域数；任何场合引用『经营义最高频』必须携带语料来源，禁止裸引"
+    scene_spec:
+      facts:
+        objects:
+          - {name: 家族地位尺, kind: 标尺道具, states: [未标名次, 跑稳居尺顶]}
+          - {name: 出镜次数尺, kind: 标尺道具, states: [未标名次, 随场子更换榜首]}
+          - {name: 公园场景卡, kind: 场景道具, states: [未亮, 亮起时两把尺榜首重合]}
+          - {name: 公司场景卡, kind: 场景道具, states: [未亮, 亮起时出镜尺榜首换人]}
+        invariants: "地位和出镜是两把尺：一把量在家族里谁是老大，一把量在文章里谁出现得多；换个场子数票榜首可以换、老大不变，说谁最常用必须标明按哪个场子数，票数还受意思怎么切的影响"
+      beats:
+        - "设置：两把尺并排立起，跑的词卡站在中间，家族地位尺先把它的跑义放到尺顶（旁白：「量一个词，有两把尺，量的不是一回事。」）"
+        - "变形：公园场景卡亮起，句子卡「I run in the park.」出现，出镜次数尺的榜首也是跑，两把尺难得地对齐（旁白：「在小朋友的场子里，老大也正好最常出镜。」）"
+        - "变形：公司场景卡换上来，句子卡「They run a company.」亮起，出镜次数尺的榜首换了人，家族地位尺的尺顶一动没动（旁白：「换个场子数票，出镜王换人了，老大可没换。」）"
+        - "预测停顿：新场子的场景卡只露出一角，先不翻开（旁白：「先猜一猜：换到这个场子，出镜最多的会是哪个意思？」）"
+        - "边界对照：一张只写着最常用的空牌子想挂上尺，被要求先补上按哪个场子数的来源牌才准挂（旁白：「不说在哪个场子数的『最常用』，不能算数。」）"
+      beats_ref: claim
+      lines_owner: V-45
     quiz:
       - stem: "给小学生排 run 的义项顺序，该看哪把尺？"
         options: ["只看成人财经文章的频率，把『经营』排第一", "中心义（跑）+ 儿童读物里的频率，两把尺一起看", "按字母顺序"]
@@ -2646,4 +3253,4 @@ entries:
       pending: []
     status: 入模中
     version: "1.0"
-    pending: ["探针待补写（PRB-V45-* 预留）", "error_cases 待补（无清单登记病例，不自编）", "scene_spec 待补"]
+    pending: ["探针待补写（PRB-V45-* 预留）", "error_cases 待补（无清单登记病例，不自编）"]

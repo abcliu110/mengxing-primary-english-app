@@ -69,6 +69,20 @@ entries:
     rel: 同族
   - id: E-08
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 句子气泡「It's cold here.」, kind: 台词卡, states: [未定性, 被认出在干什么活]}
+        - {name: 教室窗户, kind: 场景道具, states: [开着（风吹进来）, 被关上]}
+        - {name: 动作标签（道歉/请求/感谢）, kind: 标签组, states: [未贴, 贴到对应句子上]}
+      invariants: "同一句话形式不变，变的是场景与它在干的活；判定靠场景，不靠句子长相"
+    beats:
+      - "设置：教室窗边，窗户开着，风吹进来，一个孩子抱着胳膊说出气泡句「It's cold here.」（旁白：「他只说了一句话——你听，他到底想干什么？」）"
+      - "变形：同一气泡句先后飘到三个场景——报告天气（窗外在下雨）、抱怨（同桌开的窗）、请人关窗（望向同桌），每到一处亮起对应的动作标签（旁白：「句子一个字没改，干的活却变了。」）"
+      - "预测停顿：气泡句飘向第四个场景——奶奶在厨房喊冷，先停住（旁白：「先猜一猜：他这句话，是在干什么活？」）"
+      - "边界对照：Sorry. / Please. / Thank you. 三个现成说法依次出场，各自的活一眼可认——对照出有的句子把活写在脸上，有的要看场景才知道（旁白：「别给句子贴死标签，先看它在哪儿、想干什么。」）"
+    beats_ref: claim
+    lines_owner: E-01
   quiz:
   - stem: 同学说「It's cold here.」，他可能在做什么？
     options:
@@ -96,7 +110,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E01-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-02
   zone: 表达写作
@@ -154,6 +167,22 @@ entries:
     rel: 同族
   - id: E-07
     rel: 对照
+  scene_spec:
+    facts:
+      objects:
+        - {name: "洋葱句卡「Can you open the window?」", kind: 台词卡, states: [只剩外层问句, 剥开露出里层请求]}
+        - {name: 教室窗户, kind: 场景道具, states: [关着, 被打开]}
+        - {name: 餐桌盐瓶, kind: 场景道具, states: [在对面够不着, 被递到手边]}
+        - {name: "回答气泡「Yes, I can.」", kind: 台词卡, states: [只答字面停在原地, 变成起身去做]}
+      invariants: "句子外壳不变，变的是听的人有没有听出里层想让他做的事；字面对上不算听懂，做到了才算"
+    beats:
+      - "设置：教室里有点闷，一个孩子看着同桌说「Can you open the window?」，同桌只回「Yes, I can.」坐着不动（旁白：「他答对了，可窗户怎么还关着？」）"
+      - "变形：句卡像洋葱一样剥开——外层写着问本事，里层亮出请你开窗；同桌起身把窗打开（旁白：「原来他不是在考试，是在请人帮忙。」）"
+      - "变形：同一招换到餐桌，「Can you pass me the salt?」剥开外层，里层还是请你递一递，盐瓶被递到手边（旁白：「问的是能不能，要的是递过来。」）"
+      - "预测停顿：句卡再剥一半就停住，只露出外层的问句（旁白：「先猜一猜：里层藏着请他做什么？」）"
+      - "边界对照：画面切到着急的时刻，火警铃响起，一句直直的命令喊出来，大家立刻行动——着急时不用绕弯，直接说才对（旁白：「越着急，越要直说；绕弯也要看时候。」）"
+    beats_ref: claim
+    lines_owner: E-02
   quiz:
   - stem: 老师问「Can you open the window?」，最得体的反应是？
     options:
@@ -181,7 +210,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E02-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
 - id: E-03
   zone: 表达写作
   group: E
@@ -230,6 +258,22 @@ entries:
   relatives:
   - id: E-08
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 对话桥, kind: 场景道具, states: [四块桥板齐全能接话, 一块桥板错位话接偏]}
+        - {name: "问句气泡「Is the film good?」", kind: 台词卡, states: [等着正面回答, 等着听出话里的话]}
+        - {name: 答句气泡「The popcorn is very good.」, kind: 台词卡, states: [像在答非所问, 浮出真正意思的小标签]}
+        - {name: "答句气泡「He is at school, or at home.」", kind: 台词卡, states: [信息不够准, 露出不确定的意思]}
+      invariants: "两人还想好好聊下去这一点不变；答句偏离问题时，先顺着偏离反推他真正想说的话，不要急着判他没好好说话"
+    beats:
+      - "设置：两个孩子搭起一座对话桥，四块桥板一块不少，问一句答一句，话顺顺当当接过去（旁白：「聊天能聊下去，是因为大家心里都想好好配合。」）"
+      - "变形：有人问「Is the film good?」，答句却是「The popcorn is very good.」，答句旁边慢慢浮出一枚小标签——电影不怎么样（旁白：「他没直说不好，可你听出来了吗？」）"
+      - "变形：换一问「Where is your brother?」，答句「He is at school, or at home.」晃了晃，浮出另一枚小标签——他自己也拿不准（旁白：「话说得不够准，也是在告诉你一件事。」）"
+      - "预测停顿：新的问句刚发出去，答句飘到半空先停住，小标签还藏着（旁白：「先猜一猜：他嘴上说的，和心里想说的，一样吗？」）"
+      - "边界对照：桥板标尺在不同地方轻轻挪动——有的地方说话爱绕弯，有的地方爱直说，挪到哪边都还是想好好聊（旁白：「哪里的人说话习惯都不一样，别把一种习惯当成唯一对的。」）"
+    beats_ref: claim
+    lines_owner: E-03
   quiz:
   - stem: 朋友被问「电影好看吗」，他答「爆米花不错」。按合作原则，他多半是说？
     options:
@@ -256,7 +300,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E03-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-04
   zone: 表达写作
@@ -315,6 +358,22 @@ entries:
     rel: 同族
   - id: W-06
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 整块句卡「Happy birthday!」, kind: 词卡, states: [整块躺在抽屉里, 整块取出直接说出]}
+        - {name: 逐词小卡, kind: 词卡, states: [散着一张张拼, 拼得慢还容易别扭]}
+        - {name: "句框「Can I have a glass of water?」", kind: 台词卡, states: [整句固定不动, 一个槽位被换掉说出新句]}
+        - {name: 槽位空格, kind: 标签组, states: [虚线空着, 填入新内容]}
+      invariants: "整块句子的骨架不变，变的是槽位里换进来的那一小块；只背整块不拆槽位，就会被原句卡住"
+    beats:
+      - "设置：生日会上，蛋糕刚端上来，一个孩子张口就说出整块的「Happy birthday!」，没有一个词一个词往外蹦（旁白：「这句话，他是一整块拿出来说的。」）"
+      - "变形：分屏对照——左边整块句卡从抽屉里一下取出，右边逐词小卡还在慢慢拼，拼得慢还不顺口（旁白：「一个一个拼，又慢又容易拼得怪怪的。」）"
+      - "变形：句框「Can I have a glass of water?」亮起来，固定部分是实线，只有一小格虚线槽位闪动，换一格就能再说一句新的（旁白：「学会整块，再换里面一小格，新句子就出来了。」）"
+      - "预测停顿：句框停在槽位闪动处，新内容还没填进去（旁白：「先猜一猜：这一格换掉，能说出一句什么新话？」）"
+      - "边界对照：一个孩子只会背原句，槽位被锁住，怎么换都说不出新句，卡在原地——对照出光背整块还不够（旁白：「只背不拆，换个场面就卡住了。」）"
+    beats_ref: claim
+    lines_owner: E-04
   quiz:
   - stem: 说「生日快乐」时，母语者是把整块拿出来用，还是一个词一个词现拼？
     options:
@@ -342,7 +401,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E04-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-05
   zone: 表达写作
@@ -391,6 +449,21 @@ entries:
     rel: 同族
   - id: E-12
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 句子气泡「She don't like apples.」, kind: 台词卡, states: [带一个小语法错, 被贴上在学的标签]}
+        - {name: 句子气泡「Give me your book. Now!」, kind: 台词卡, states: [一个语法错都没有, 被贴上没礼貌的标签]}
+        - {name: 听者表情牌, kind: 场景道具, states: [一笑而过, 脸色变了却不吭声]}
+        - {name: 报错小灯, kind: 场景道具, states: [语法错时亮红灯, 场合错时不亮灯]}
+      invariants: "句子对不对和合不合场合是两笔账；语法错容易被看出来，场合错常常没人提醒，所以得体要专门学"
+    beats:
+      - "设置：一个孩子说出「She don't like apples.」，小红灯亮了一下，听的人笑了笑，贴上一枚在学的标签（旁白：「词说错一点，大家一看就知道你在学。」）"
+      - "变形：换一句「Give me your book. Now!」对着老师说出口——一个错字都没有，可听者的脸色慢慢沉下来（旁白：「这句没说错词，可听着就是不对劲。」）"
+      - "预测停顿：报错小灯停在不亮的位置，听者的表情牌还没翻面（旁白：「先猜一猜：没人提醒，他自己能发现错在哪吗？」）"
+      - "边界对照：场合错的小灯一直黑着，没有声音；镜头拉远，在很正式的场合里，语法错的小灯也被人认真盯住（旁白：「场合越正式，两种错都可能被人当真。」）"
+    beats_ref: claim
+    lines_owner: E-05
   quiz:
   - stem: 哪种错更容易被误会成「没礼貌」，还不容易被指出来？
     options:
@@ -419,7 +492,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E05-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-06
   zone: 表达写作
@@ -476,6 +548,7 @@ entries:
     rel: 同族
   - id: E-09
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为语用失误两分法的诊断分类口径，无儿童场景，画成场景会把诊断口径画成孩子的判决标签）"
   quiz:
   - stem: 把汉语的客套公式直译成英语去请求别人——这是哪类失误？
     options:
@@ -504,7 +577,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E06-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-07
   zone: 表达写作
@@ -558,6 +630,23 @@ entries:
     rel: 对照
   - id: E-06
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 帮忙天平, kind: 场景道具, states: [小事一端轻轻压下, 大事一端沉沉压下]}
+        - {name: 缓冲垫, kind: 场景道具, states: [一片还没叠上, 一层层叠到天平上]}
+        - {name: 客气滑杆, kind: 标签组, states: [停在低档, 被推到高档]}
+        - {name: "请求气泡「Could you ...?」", kind: 台词卡, states: [普通客气, 升格为更客气的说法]}
+        - {name: "请求气泡「Would you mind ...?」", kind: 台词卡, states: [还没出场, 在大忙时出场]}
+      invariants: "请人帮忙就是去打扰人这一点不变，变的是忙的大小、远近亲疏，客气程度跟着滑动；对最亲近的人客气过头反而显得生分"
+    beats:
+      - "设置：同桌的橡皮滚到脚边，请他递一下，天平只轻轻晃了晃，一句随口的请求就够了（旁白：「请人帮个小忙，不用太客气。」）"
+      - "变形：忙越请越大，天平越压越沉，缓冲垫一片片叠上去，客气滑杆被一格格推高，请求气泡换成「Could you ...?」（旁白：「忙越大，话就要说得越软和。」）"
+      - "变形：再换成更重的忙，滑杆推到更高处，「Would you mind ...?」亮起来接班（旁白：「再大的忙，还要再客气一级。」）"
+      - "预测停顿：一个新的忙放上天平，天平刚开始下沉就停住（旁白：「先猜一猜：这个忙，要客气到哪一档？」）"
+      - "边界对照：镜头回到最要好的朋友之间，滑杆被推到顶，缓冲垫堆得老高，两人反而隔远了些（旁白：「对好朋友太客气，人家会觉得你把他当外人。」）"
+    beats_ref: claim
+    lines_owner: E-07
   quiz:
   - stem: 请陌生人帮一个大忙，和请同桌递一块橡皮，哪次该说得更客气？
     options:
@@ -584,7 +673,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E07-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-08
   zone: 表达写作
@@ -645,6 +733,22 @@ entries:
     rel: 同族
   - id: E-13
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 句子气泡「It tastes good.」, kind: 台词卡, states: [飘在食客头上亮绿灯, 飘到服务员头上亮红灯]}
+        - {name: 三问牌（谁在说/对谁说/上一句是什么）, kind: 标签组, states: [还没翻开, 一张张翻开核对]}
+        - {name: 回指句卡「The same to you.」, kind: 台词卡, states: [箭头悬空没着落, 箭头落回上一句]}
+        - {name: 上一句气泡, kind: 台词卡, states: [缺席, 出现在回指句前面]}
+      invariants: "句子本身一个字不变，变的是说话的人、听话的人和前面那句话；三样凑不齐，句子再对也不成立，语法对错不在这三问里管"
+    beats:
+      - "设置：餐桌上，食客尝了一口说「It tastes good.」，气泡亮起绿灯，大家都点头（旁白：「这句话从他嘴里说出来，正合适。」）"
+      - "变形：同一气泡飘到服务员头上，绿灯变红灯——话没变，说话的人变了，就不对味了（旁白：「同一句话，换个人说，就不一定对了。」）"
+      - "变形：三问牌一张张翻开核对；「The same to you.」伸出一支箭头，四处找上一句，找到后稳稳落回去（旁白：「这种话，得前面有人先说过，它才站得住。」）"
+      - "预测停顿：新气泡刚冒头，三问牌只翻开第一张就停住（旁白：「先猜一猜：先别看句子，先看是谁在说、对谁说。」）"
+      - "边界对照：三问都过关的气泡旁边，放一句语法工整却角色错位的气泡——三问管的是合不合场合，管不了句子里的语法错（旁白：「合不合场合，和语法对不对，是两回事。」）"
+    beats_ref: claim
+    lines_owner: E-08
   quiz:
   - stem: 判断一句回应合不合适，先看哪三件事？
     options:
@@ -674,7 +778,6 @@ entries:
   pending:
   - error_cases 事故型已登记（机械按场景填收尾句），具体错句待从审查记录回填
   - 探针待补写（PRB-E08-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-09
   zone: 表达写作
@@ -724,6 +827,22 @@ entries:
   relatives:
   - id: E-06
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 客套行李箱, kind: 场景道具, states: [装着中文客气话出发, 落地被贴上误读标签]}
+        - {name: 错位点地图, kind: 标签组, states: [钉子还没落下, 回夸/称呼/拒绝三处被钉住]}
+        - {name: "答句气泡「No, no.」", kind: 台词卡, states: [按中文习惯答出, 被对照牌标出别扭]}
+        - {name: 答句气泡「Thank you.」, kind: 台词卡, states: [还没出场, 在受夸时出场接话]}
+      invariants: "被夸这件事不变，变的是按哪边的规矩接话；不是所有中文习惯搬过去都错，致谢、道歉这些基本接法两边本来就通"
+    beats:
+      - "设置：一只行李箱装满中文里的客气话，跟着小主人出国，刚落地就被贴上一张误读的小标签（旁白：「把家里说惯的客气话照着搬过去，有时会闹笑话。」）"
+      - "变形：有人夸他，他按习惯连连摆手说「No, no.」，对方愣住了；对照牌翻开，换成「Thank you.」稳稳接住这句夸（旁白：「人家夸你，先说声谢谢，就对上了。」）"
+      - "变形：错位点地图展开，三枚钉子依次落下——回夸、称呼、拒绝，都是最容易撞上的地方（旁白：「先认认这几个地方，撞上的机会就少了。」）"
+      - "预测停顿：地图上第四个位置空着，钉子举在半空（旁白：「先猜一猜：还有哪个地方，两边的规矩不一样？」）"
+      - "边界对照：行李箱里另一些客气话飘出来——道谢、道歉的基本说法，两边一对，严丝合缝，没有被贴标签（旁白：「不是所有习惯都不能搬，不少本来就通用。」）"
+    beats_ref: claim
+    lines_owner: E-09
   quiz:
   - stem: 外国老师夸你画得好，按英语习惯先说什么？
     options:
@@ -752,7 +871,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E09-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
 - id: E-10
   zone: 表达写作
   group: E
@@ -817,6 +935,23 @@ entries:
     rel: 同族
   - id: E-11
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 四块拼图（说法对/合场合/连成篇/能自救）, kind: 标签组, states: [缺一块图不全, 四块齐全拼成整图]}
+        - {name: 衔接扣 and/then/but, kind: 标签组, states: [三枚扣子散着, 把短句扣成一串]}
+        - {name: 句子串「This is my school. It is big and new. I like it very much.」, kind: 台词卡, states: [三句各说各的, 连成一篇说出来]}
+        - {name: "求助气泡「Could you help me, please?」", kind: 台词卡, states: [还没垫客气话, 垫上客气话说出]}
+        - {name: "绕说气泡「I don't know this word. It is long and thin, and we eat with it.」", kind: 台词卡, states: [卡在想不起的词上, 绕着样子把话说完]}
+      invariants: "会说英语这张图要四块齐全才完整，缺哪一块都会塌一角；小学里连成篇先落在连着说几句、用小扣子把句子扣起来，不学大词"
+    beats:
+      - "设置：一张四块拼图摆在桌上，只拼上说法对的那一块，其余三角空着，整张图歪歪扭扭立不住（旁白：「句子都说对了，怎么图还是拼不全？」）"
+      - "变形：合场合的一块补上——「Could you help me, please?」垫上客气话说出口；连成篇的一块补上——三枚衔接扣把三句短句扣成一串说出来（旁白：「能连着说好几句，话才成篇。」）"
+      - "变形：最后一块自救补上——一个词想不起来，不停下，绕着样子说「It is long and thin, and we eat with it.」，话接了下去（旁白：「卡住了也能绕过去说，这也是本事。」）"
+      - "预测停顿：拼图翻到新的一张，只拼上两块就停住（旁白：「先猜一猜：还缺哪一块，这张图才完整？」）"
+      - "边界对照：对照一串没有衔接扣的短句，一句是一句，散在桌上扣不起来——连成篇不是把句子摞高，是把它们扣住（旁白：「句子多不等于成篇，得有扣子扣住。」）"
+    beats_ref: claim
+    lines_owner: E-10
   quiz:
   - stem: 「会说英语」里，语法只占几分之几？
     options:
@@ -844,7 +979,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E10-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-11
   zone: 表达写作
@@ -904,6 +1038,22 @@ entries:
     rel: 同族
   - id: W-07
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 话流小桥, kind: 场景道具, states: [中间断了一截话过不去, 三块板搭上话又接通]}
+        - {name: 救生圈, kind: 场景道具, states: [挂着求生句没人取, 求生句被取下用上]}
+        - {name: "求生句卡「How do you say ...?」", kind: 台词卡, states: [挂在圈上, 被说出口问出来]}
+        - {name: 求生句卡「It's like a ...」, kind: 台词卡, states: [挂在圈上, 被说出口比方出来]}
+      invariants: "想说的东西不变，变的是过坎的办法——换个说法、打个比方、问一句都能接上；这些办法是过桥用的，桥那头的词还是要慢慢攒"
+    beats:
+      - "设置：一个孩子正说着话，中间一个词怎么也想不起来，话流小桥断了一截，他张着嘴停在断口前（旁白：「词想不起来了，是不是就只能停下来？」）"
+      - "变形：他从救生圈上取下「How do you say ...?」问出口，对方把词递给他，断口搭上一块板（旁白：「问一句，话就接回来了。」）"
+      - "变形：再卡一次，他换一块板——说不出名字，就用「It's like a ...」绕着样子比方，对方一下就懂了（旁白：「说不出名字，描个样子也能过。」）"
+      - "预测停顿：话流又断在一处，三块板都摆在旁边还没搭上（旁白：「先猜一猜：这一回，他用哪块板过桥？」）"
+      - "边界对照：镜头切到要说得很准的场合，光靠比划绕来绕去，对方还是对不上号——板子搭得再多，也替不了把词真正学会（旁白：「绕是临时的办法，词还是得一个个攒下来。」）"
+    beats_ref: claim
+    lines_owner: E-11
   quiz:
   - stem: 有个词想不起来，最能让谈话继续下去的是？
     options:
@@ -931,7 +1081,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E11-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-12
   zone: 表达写作
@@ -982,6 +1131,7 @@ entries:
     rel: 同族
   - id: E-14
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为语用发展不随语法自动跟进的证据综述与显性教学必要性论证，无儿童场景）"
   quiz:
   - stem: 语法学得很好的人，会不会自动学会「什么时候说什么」？
     options:
@@ -1009,7 +1159,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E12-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-13
   zone: 表达写作
@@ -1064,6 +1213,22 @@ entries:
     rel: 同族
   - id: E-15
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 乒乓球（话头）, kind: 场景道具, states: [在一人手里发出, 在两人之间往返被接住]}
+        - {name: 对子卡（问候卡与回问候卡）, kind: 词卡, states: [两张卡分开, 以扣环扣成一对]}
+        - {name: "问句卡「What time is it?」", kind: 台词卡, states: [刚发出去等回答, 被答句接住]}
+        - {name: "招待卡「Would you like some tea?」", kind: 台词卡, states: [刚发出去等回应, 被接受的答句接住]}
+      invariants: "第一句发出去，就约好了第二句该干的活这一点不变；该接不接本身也是一种回答，先学会默认的接法，才看得懂不接的含义"
+    beats:
+      - "设置：两个孩子面对面，一个先发球——「Good morning!」，球飞到对面（旁白：「聊天像打乒乓球，一个发，另一个要接。」）"
+      - "变形：对面接住，回一句「Good morning! How are you?」，球又飞回来；两张对子卡咔哒扣成一对（旁白：「问候发出去了，回问候就跟回来了。」）"
+      - "变形：换两对新卡——「Would you like some tea?」被「Yes, please.」接住，「What time is it?」被「Three o'clock.」接住，扣环一个个扣上（旁白：「问题一发出去，回答的活就定好了。」）"
+      - "预测停顿：新的问句卡发出去，答句卡飘在半空还没落下（旁白：「先猜一猜：这一球，该怎么接回来？」）"
+      - "边界对照：一颗发出的球悬在空中，对面转身岔开去说别的事——球没接，画面却亮起一枚小标签：这也是在表态（旁白：「不接球，也是在说话；先学会接，才懂不接的意思。」）"
+    beats_ref: claim
+    lines_owner: E-13
   quiz:
   - stem: 对话里「邀请」发出去后，下一轮默认要回来的是？
     options:
@@ -1090,7 +1255,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E13-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: E-14
   zone: 表达写作
@@ -1127,6 +1291,7 @@ entries:
     rel: 同族
   - id: W-07
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为注意假说的注意力设计原则与主张强度之争，属教学方法论主张，无儿童场景）"
   quiz:
   - stem: 一个规矩听了一百遍还没学会，最可能缺了什么？
     options:
@@ -1154,7 +1319,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E14-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。其教学动作（设计对比与提示）须随具体语用点生成标本，不在本条单列。
   - error_cases 待补：清单未登记具体病例
 - id: E-15
@@ -1208,6 +1372,22 @@ entries:
     rel: 同族
   - id: E-13
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 话流小路, kind: 场景道具, states: [一处小磕巴拐了弯, 说话人自己绕回正轨]}
+        - {name: 句子气泡「I go — I went to the park yesterday.」, kind: 台词卡, states: [前半句说错了, 后半句自己改对]}
+        - {name: "句子气泡「This is my sister — I mean, my brother.」", kind: 台词卡, states: [称呼说岔了, 用小词自己换回来]}
+        - {name: 老师的暂停牌, kind: 场景道具, states: [举着压住抢着纠正的手, 等话说完才放下]}
+      invariants: "话的意思不变，变的是说话人自己发现小错、自己绕回来；自己能察觉的错先自己改，根本不会的东西才需要有人来教"
+    beats:
+      - "设置：一个孩子说「I go —」，话流小路拐了个小弯，他自己顿了一下（旁白：「哎，好像说岔了——别慌。」）"
+      - "变形：他自己接上「I went to the park yesterday.」，小路绕回正轨，话一句没断说完了（旁白：「他自己改过来了，话还是顺顺的。」）"
+      - "变形：换一句「This is my sister — I mean, my brother.」，说岔的地方被他用一个小词轻轻换回来（旁白：「说错了，自己换回来就行。」）"
+      - "预测停顿：新的句子说到一半卡了一下，暂停牌还没举，纠正的手停在半空（旁白：「先等一等——猜猜他自己能不能改过来？」）"
+      - "边界对照：一个孩子对着从没学过的说法愣住，怎么绕都绕不回来，老师这才走上前教他——自己察觉不了的错，还是要有人教（旁白：「不会的东西不用硬绕，等老师来教就好。」）"
+    beats_ref: claim
+    lines_owner: E-15
   quiz:
   - stem: 同学说错一个词、又自己改了回来，老师最该做的是？
     options:
@@ -1234,7 +1414,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-E15-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-01
   zone: 表达写作
@@ -1285,6 +1464,21 @@ entries:
     rel: 同族
   - id: W-14
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 写者脑中的画, kind: 场景道具, states: [完整清楚, 只剩文字传出去]}
+        - {name: "句子卡「I went there with him, and we played.」", kind: 台词卡, states: [写者自己懂, 读者不知道 there 是哪儿、him 是谁]}
+        - {name: 交代清楚的句子卡, kind: 台词卡, states: [缺何时、去哪、和谁, 一样样补齐到读者眼前]}
+      invariants: "说话时的手势和现场东西全撤掉，只剩文字；读者看不看得懂，全看写的人有没有把何时、去哪、和谁亲手交代出来"
+    beats:
+      - "设置：左边一个孩子当面说话，手比划着、手指着现场的东西；右边同一句话落到纸上，手势和实物都消失了，只剩句子卡（旁白：「当面说话有人帮，一写到纸上，就只剩字啦。」）"
+      - "变形：句子卡「I went there with him, and we played.」飘到读者眼前，there 和 him 上方亮起大问号，读者脑中的画缺了两角（旁白：「他自己全懂，可我连去哪儿、跟谁都不知道。」）"
+      - "变形：句子卡换成「Yesterday I went to the zoo with my friend. We saw the pandas there.」，何时、去哪、和谁、看见什么一样样点亮，读者脑中的画补完整（旁白：「一样样说清楚，我眼前就有画面啦。」）"
+      - "预测停顿：新句子卡只写了一半先停住（旁白：「先猜一猜：还缺哪一样，读者就又要猜谜了？」）"
+      - "边界对照：画面一角的日记本合上，贴上「写给自己看」的标签，不用按这套交代；另一边低龄孩子的读者头像先是老师和家长，再慢慢变成不在场的人（旁白：「日记是写给自己的，不算；写给别人看，就要说清楚。」）"
+    beats_ref: claim
+    lines_owner: W-01
   quiz:
   - stem: 写作文和当面说话最大的不同是？
     options:
@@ -1312,7 +1506,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W01-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-02
   zone: 表达写作
@@ -1373,6 +1566,22 @@ entries:
     rel: 同族
   - id: W-04
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 计划小纸条, kind: 词卡, states: [只有最初的想法, 写着写着被改动]}
+        - {name: 落笔句子卡「I have a dog. It is cute.」, kind: 台词卡, states: [刚写出一句, 被回看挑出太空]}
+        - {name: 回看放大镜, kind: 场景道具, states: [还没上场, 照出还能补什么]}
+        - {name: 改好的句子卡「My small dog runs to me every morning and waits at the door.」, kind: 台词卡, states: [不存在, 回环一圈后长出细节]}
+      invariants: "想、落笔、回看不是一条直线，可以带着目标来回转；直直走完提纲、抄正、交卷的流水线，恰好把来回转的本事砍掉"
+    beats:
+      - "设置：舞台上三个站点摆成三角——想一想、写下来、回头看，双向箭头连成一圈；旁边一条直流水线被打上叉（旁白：「写作文不是一条直路，是转着圈往前走。」）"
+      - "变形：孩子先落笔写出「I have a dog. It is cute.」，回看放大镜一照，冒出新纸条：不只写 cute，还要写它每天做什么，计划当场被改（旁白：「写着写着，我又想出新东西啦。」）"
+      - "变形：顺着新想法重写，句子卡变成「My small dog runs to me every morning and waits at the door.」，细节长了出来（旁白：「转了一圈，句子就长肉啦。」）"
+      - "预测停顿：新的一句刚写下，放大镜还没举起来先停住（旁白：「先猜一猜：回头看的时候，他会想补什么？」）"
+      - "边界对照：左边孩子带着目标来回转，每转一圈句子变好一点；右边孩子没目标地乱涂乱改，纸越改越乱（旁白：「来回转不是乱改，心里要有想改好的地方。」）"
+    beats_ref: claim
+    lines_owner: W-02
   quiz:
   - stem: 写着写着冒出一个新想法，熟手会怎么做？
     options:
@@ -1399,7 +1608,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W02-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-03
   zone: 表达写作
@@ -1451,6 +1659,21 @@ entries:
   relatives:
   - id: W-04
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 事情传送带, kind: 场景道具, states: [一件件往外送, 顺次落到纸上]}
+        - {name: 作文纸「I got up. I ate breakfast. I went to school. I played with my friends.」, kind: 台词卡, states: [空白, 一件件顺次写满]}
+        - {name: 内容气泡与读者气泡, kind: 标签组, states: [各说各的, 来回对话]}
+        - {name: 补了原因的句子卡「I was tired this morning because I went to bed late.」, kind: 台词卡, states: [只有事情本身, 写时把为什么也想清写出]}
+      invariants: "一件件顺次写下来是低龄孩子的正常讲述样子，不是偷懒；一边写一边想出为什么，是慢慢长出来的本事，简单记录时顺次写也完全够用"
+    beats:
+      - "设置：传送带把起床、吃早饭、上学、和朋友玩一件件送到纸上，排成「I got up. I ate breakfast. I went to school. I played with my friends.」（旁白：「把知道的事一件件写下来，这很正常。」）"
+      - "变形：两个气泡开始来回说话，写着写着冒出「为什么」，句子卡变成「I was tired this morning because I went to bed late.」，原因被补了进去（旁白：「写的时候多想一步，为什么也写出来啦。」）"
+      - "预测停顿：传送带送来下一件事先停住（旁白：「先猜一猜：这一件，是顺次写下就好，还是要多想一步？」）"
+      - "边界对照：一张简单的记录纸顺次写完被盖上「这样就够了」的章；另一边有人拿高要求去苛责低龄孩子的顺次作文，章被拦下（旁白：「简单记录顺着写就行，别拿高要求吓小朋友。」）"
+    beats_ref: claim
+    lines_owner: W-03
   quiz:
   - stem: 小学生作文写得像流水账，最合理解释是？
     options:
@@ -1477,7 +1700,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W03-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-04
   zone: 表达写作
@@ -1534,6 +1756,20 @@ entries:
     rel: 同族
   - id: W-08
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 两层小楼, kind: 场景道具, states: [楼体还没修, 先修楼体再刷墙面]}
+        - {name: 草稿卡「The dog run to I. It very happy.」, kind: 台词卡, states: [意思还没讲清, 先改意思再改字词]}
+        - {name: 改好卡「The dog ran to me. It was very happy.」, kind: 台词卡, states: [不存在, 两层都改好]}
+      invariants: "改作文先修意思和结构、再修字词；整段可能还要挪动时先抠字词等于白费力，考场限时可把两层压在一起，低年级只做加一句、调顺序这样的小动作"
+    beats:
+      - "设置：一栋两层小楼，楼体歪着，墙面却有人急着刷漆；草稿卡「The dog run to I. It very happy.」摆在楼前（旁白：「先别急着抠错字，先看看故事讲清没有。」）"
+      - "变形：先修楼体——谁跑向谁、它怎么样先讲清，变成跑向我、它是开心的；再刷墙面，run 改 ran、I 改 me、补上 was，改好卡亮起（旁白：「先把意思改对，再一个个收拾小错。」）"
+      - "预测停顿：新草稿卡刚摆出、刷子已经伸过来先停住（旁白：「先猜一猜：第一步该动刷子，还是先看意思？」）"
+      - "边界对照：左边一块要拆的墙被刷得锃亮又被推倒，白忙一场；右边考场时钟转得快，两层修改被压成一轮做完，低龄孩子只加一句、调个顺序（旁白：「平时按顺序来，考场上快一点，小朋友只做小改动。」）"
+    beats_ref: claim
+    lines_owner: W-04
   quiz:
   - stem: 改作文第一遍先看什么？
     options:
@@ -1562,7 +1798,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W04-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-05
   zone: 表达写作
@@ -1615,6 +1850,20 @@ entries:
     rel: 同族
   - id: W-11
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 原文起头卡「The little bird could not fly. It looked at the sky and cried.」, kind: 台词卡, states: [刚读完, 等着被接着往下写]}
+        - {name: 理解水位与产出水位, kind: 场景道具, states: [理解高、产出低, 产出被拉着上升]}
+        - {name: "续写纸「Day after day, it tried and tried. One morning, it flew up to a tree.」", kind: 台词卡, states: [空白, 读过的说法跑进笔下]}
+      invariants: "理解本来就比产出高，续写时刚读到的词句粘着故事一起被取用，把产出往上拉；原文太难，拉平就发生不了"
+    beats:
+      - "设置：小鸟的原文起头卡摆在桌上，水位图里理解的水位高高的，产出的水位矮一截（旁白：「读懂的，总比自己能写出来的多。」）"
+      - "变形：孩子接着往下编，续写纸上出现「Day after day, it tried and tried. One morning, it flew up to a tree.」，读过的 fly 和 looked at 的说法悄悄跑进笔下，产出水位被拉高（旁白：「刚读过的句子，悄悄来帮我写啦。」）"
+      - "预测停顿：续写纸写到一半先停住（旁白：「先猜一猜：原文里哪个说法，会跑到下一句里？」）"
+      - "边界对照：换上一段难得多的原文，水位怎么拉都拉不动，协同的绳子松掉（旁白：「原文太难，就拉不动啦，要换合适的来读。」）"
+    beats_ref: claim
+    lines_owner: W-05
   quiz:
   - stem: 「接着写」为什么能让作文变好？
     options:
@@ -1641,7 +1890,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W05-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-06
   zone: 表达写作
@@ -1695,6 +1943,20 @@ entries:
     rel: 同族
   - id: W-10
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 主意篮子, kind: 场景道具, states: [空着, 装满自己想的内容]}
+        - {name: 借来的句框卡「My favourite ... is ... because ...」, kind: 词卡, states: [从范文处借来, 托住自己的句子]}
+        - {name: 自己的句子卡, kind: 台词卡, states: [只有想法, 借框写成完整的句子]}
+      invariants: "力气只有一份：内容自己想、说法先借现成的，两头不打架；两头都自己发明太难，借说法只是过渡，高年级要慢慢改成自己的说法"
+    beats:
+      - "设置：一只手托着主意篮子，一只手托着借来的句框卡，两边都稳稳的（旁白：「主意自己想，说法可以先借别人的。」）"
+      - "变形：句框「My favourite day is Sunday, because I can play football with my friends.」托住自己的内容落成整句；另一张「In the morning, I get up at seven. Then I have breakfast with Mum and Dad.」同样借现成说法写自己的早上（旁白：「框是借的，里面装的全是我的事。」）"
+      - "预测停顿：新句框只露出前半截先停住（旁白：「先猜一猜：借这个框，能装下你的哪件事？」）"
+      - "边界对照：左边孩子两头都自己发明，累得写不下去；右边孩子一直只借不改，到了高年级句框被要求拆开重组（旁白：「借是暂时的，长大了要慢慢写出自己的说法。」）"
+    beats_ref: claim
+    lines_owner: W-06
   quiz:
   - stem: 写作文时，哪一头该自己发明、哪一头先借现成的？
     options:
@@ -1721,7 +1983,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W06-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-07
   zone: 表达写作
@@ -1777,6 +2038,22 @@ entries:
     rel: 同族
   - id: E-11
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 拼图缺口, kind: 场景道具, states: [藏着看不见, 写时亮起红框]}
+        - {name: "绕着说卡「Teacher, I don't know the word. It can keep the rain off me.」", kind: 台词卡, states: [想说的词说不出, 先绕着样子说出来]}
+        - {name: 词卡「beautiful」, kind: 词卡, states: [读时认得, 写时卡住停下来想]}
+        - {name: 三步箭头, kind: 标签组, states: [还没走, 卡住、捕捉、试写依次亮起]}
+      invariants: "听读懂不等于自己写得出，写时卡住亮出的缺口就是下一步要学的；这招要先有输入打底、难度合适，零基础时先给足输入再谈写"
+    beats:
+      - "设置：拼图快拼好了，孩子读词卡「beautiful」时一眼认出，拼图毫无动静（旁白：「看的时候都懂，不代表写的时候不卡。」）"
+      - "变形：一动笔写，拼图上一块缺口亮起红框；另一边孩子说不出那个挡雨的词，只能绕着说「It can keep the rain off me.」，缺口同样被点亮（旁白：「卡住的地方，就是我要学的新东西。」）"
+      - "变形：三步箭头依次亮起——卡住、耳朵去捕捉那个说法、再试着写出来检验（旁白：「发现缺口以后，耳朵会自己去抓它。」）"
+      - "预测停顿：新词卡刚要落笔先停住（旁白：「先猜一猜：这次会卡在哪儿？」）"
+      - "边界对照：一个几乎没读过什么的孩子面前拼图全是缺口，箭头被拦回输入一端先补读（旁白：「还没读够的时候，先多读，先不急着写。」）"
+    beats_ref: claim
+    lines_owner: W-07
   quiz:
   - stem: 写作文时卡住、发现有个词不会——这个时刻有什么用？
     options:
@@ -1805,7 +2082,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W07-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-08
   zone: 表达写作
@@ -1845,6 +2121,7 @@ entries:
     rel: 同族
   - id: W-12
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为 IES 实践指南的四条推荐与证据等级口径，属证据综述，无儿童场景）"
   quiz:
   - stem: 小学写作四条推荐里，证据最强的是哪条？
     options:
@@ -1871,7 +2148,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W08-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: W-09
@@ -1912,6 +2188,7 @@ entries:
     rel: 同族
   - id: W-13
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为写作元分析的十一种有效素排序与实施质量口径，属教学方法论综述，无儿童场景）"
   quiz:
   - stem: 所有写作方法里最管用的一种是？
     options:
@@ -1938,7 +2215,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W09-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: W-10
@@ -1995,6 +2271,21 @@ entries:
     rel: 同族
   - id: NE-19
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 桌子支架, kind: 场景道具, states: [扶着走, 松开手独走]}
+        - {name: 句框卡「I like spring because I can see many flowers.」, kind: 台词卡, states: [扶着句框写出, 支架在场]}
+        - {name: "独立句子卡「I like autumn because the leaves turn red and gold, and the days are cool.」", kind: 台词卡, states: [不存在, 撤掉句框还能写出]}
+        - {name: 坡道支撑块, kind: 场景道具, states: [一层层垫高, 逐级撤到零]}
+      invariants: "支架从第一天就是临时的，支撑一级级撤到零，撤掉还能写才算学会；撤得太早和扶得太久都不对，快慢看每个人自己的样子"
+    beats:
+      - "设置：孩子扶着桌子学步，坡道上垫着一层层支撑块，句框卡托着第一句「I like spring because I can see many flowers.」（旁白：「先扶着走，没关系，扶是为了以后松手。」）"
+      - "变形：支撑块一块块撤走，句框卡收起，孩子自己写出「I like autumn because the leaves turn red and gold, and the days are cool.」（旁白：「松开手还能写出来，这才算学会啦。」）"
+      - "预测停顿：只剩最后一块支撑块先停住（旁白：「先猜一猜：现在撤掉它，他还能自己写吗？」）"
+      - "边界对照：左边支撑块撤得太猛，孩子晃着站不稳又扶回去；右边一直不撤，孩子始终离不开桌子（旁白：「撤早了不行，扶太久也不行，要看他自己的样子。」）"
+    beats_ref: claim
+    lines_owner: W-10
   quiz:
   - stem: 用了句子框架学写作文，怎么才算真学会？
     options:
@@ -2021,7 +2312,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W10-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-11
   zone: 表达写作
@@ -2060,6 +2350,7 @@ entries:
     rel: 同族
   - id: W-05
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为 POA 先产出后输入的排序原则及其对象与证据边界，属关卡设计裁定，向小学段迁移无直接实证，无儿童场景）"
   quiz:
   - stem: 按「先试产出」的顺序，一节写作课该怎么开始？
     options:
@@ -2097,7 +2388,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W11-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。本条另受 config gate（B）门控，呈现按当前档 B1。
   - error_cases 待补：清单未登记具体病例
 - id: W-12
@@ -2152,6 +2442,22 @@ entries:
   relatives:
   - id: W-08
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 脑中水管, kind: 场景道具, states: [写字占去大半, 手练顺后内容流变粗]}
+        - {name: 故事灯泡, kind: 场景道具, states: [想得出却写不出, 手不卡时亮起来]}
+        - {name: 写顺的基本句卡「My cat is small. It likes milk. It sleeps on my bed.」, kind: 台词卡, states: [一字一顿地写, 练到不用想就写出]}
+        - {name: 日常句卡「I get up at six. I wash my face and have bread and milk.」, kind: 台词卡, states: [边想边写, 顺顺当当写完]}
+      invariants: "脑子同时管想故事和写字拼词，手越卡故事越没力气；把手练顺要在真作文里练，脱开作文光抄写默写没多大用"
+    beats:
+      - "设置：水管被写字拼词占去大半，只剩细细一股流给故事，故事灯泡忽明忽暗（旁白：「每个字都想半天，就没力气想故事啦。」）"
+      - "变形：基本句「My cat is small. It likes milk. It sleeps on my bed.」在作文里一遍遍写顺，手不再卡，水管里故事的水流变粗，灯泡亮起（旁白：「手顺了，脑子就有空想故事啦。」）"
+      - "变形：日常句「I get up at six. I wash my face and have bread and milk.」不用停顿就写完（旁白：「天天用的句子，练到不用想。」）"
+      - "预测停顿：水管又被一个生词堵住一半先停住（旁白：「先猜一猜：故事的水流会变成什么样？」）"
+      - "边界对照：一摞脱开作文的抄写纸练了很久，水管却没变宽多少（旁白：「光抄不写作文，练不到点子上。」）"
+    beats_ref: claim
+    lines_owner: W-12
   quiz:
   - stem: 写作文时每个字都要想半天怎么写，会发生什么？
     options:
@@ -2179,7 +2485,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W12-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-13
   zone: 表达写作
@@ -2241,6 +2546,21 @@ entries:
     rel: 同族
   - id: W-01
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 短句积木「The boy is tall.」「The boy is my brother.」, kind: 词卡, states: [两块分开, 拼成一块]}
+        - {name: 长句积木「The tall boy is my brother.」, kind: 台词卡, states: [不存在, 意思不变地拼成]}
+        - {name: 扣件 so 与 who, kind: 场景道具, states: [放在一旁, 把两句扣住或嵌进去]}
+        - {name: 短句组「It rained.」「We stayed at home.」, kind: 词卡, states: [两句分开, 用 so 扣成一句]}
+      invariants: "拼合时意思不变，只换句子的搭法，不用先背术语、动手拼就会；句子长不是目的，读者看得见跟得上才是，内容和结构不会靠拼句自动变好"
+    beats:
+      - "设置：桌上摆着两块短句积木「The boy is tall.」和「The boy is my brother.」，旁边放着 so、who 两件扣件（旁白：「两个小句子，能不能搭成一个大句子？」）"
+      - "变形：两块积木拼成「The tall boy is my brother.」；另一组「It rained. We stayed at home.」被 so 扣成「It rained, so we stayed at home.」，意思一点没变（旁白：「像搭积木一样拼，意思还是原来的意思。」）"
+      - "预测停顿：新一组「The girl is happy. She won the game.」摆上桌、who 扣件还没拿起先停住（旁白：「先猜一猜：用 who 怎么把这两句嵌成一句？」）"
+      - "边界对照：拼好的「The girl who won the game is happy.」清楚好读；另一边有人只顾把句子拼得老长，读者跟到一半迷路（旁白：「拼长不是目的，让读者跟得上才是。」）"
+    beats_ref: claim
+    lines_owner: W-13
   quiz:
   - stem: 把两个短句合成一个长句的练习，主要练什么？
     options:
@@ -2267,7 +2587,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-W13-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-14
   zone: 表达写作
@@ -2326,6 +2645,20 @@ entries:
     rel: 同族
   - id: W-01
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 时序路标牌 first / then, kind: 标签组, states: [还没立, 立在先做再做之间]}
+        - {name: 道理路标牌 because / but / although, kind: 标签组, states: [各在一旁, 各自对上因果、转折、让步]}
+        - {name: 读者小人, kind: 人物, states: [顺着路往前走, 被错牌带进岔路]}
+      invariants: "连贯先在事情本身的道理里，路标只是把道理指出来；牌子对上道理读者就顺，指错方向比没有牌子更糟，有的故事靠顺序自己就顺，不用每句都挂牌"
+    beats:
+      - "设置：一个路口立着空牌杆，读者小人等着往前走，first、then、because、but、although 五块牌子放在一旁（旁白：「这些词是路上的牌子，告诉读者往哪走。」）"
+      - "变形：first 和 then 立进时序路上，because 立进因果路上，but 和 although 各自对上转折与让步，读者小人顺顺当当走过去（旁白：「往哪走，牌子就指哪，读者就不会迷路。」）"
+      - "预测停顿：一块新牌子还没挂上先停住（旁白：「先猜一猜：这块牌子该指哪条路？」）"
+      - "边界对照：一块牌子被故意指错方向，读者小人走进岔路绕不出来，牌子摘掉反而能顺着故事走；另一段故事没挂牌，靠事情顺序自己也走得顺（旁白：「牌子指错还不如没有；有的路不用牌子也走得通。」）"
+    beats_ref: claim
+    lines_owner: W-14
   quiz:
   - stem: 「我摔倒了，____ 就哭了起来。」该填哪个路标？
     options:
@@ -2354,7 +2687,6 @@ entries:
   pending:
   - error_cases 事故型已登记（旧库 C-6 裁定：Although 混入衔接词链），具体错句待回填
   - 探针待补写（PRB-W14-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: W-15
   zone: 表达写作
@@ -2391,6 +2723,7 @@ entries:
   relatives:
   - id: W-10
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为针对保分话术的诚实边界与效应来源口径，属设计层立场而非儿童可演机制，无儿童场景）"
   quiz:
   - stem: 有人说「背熟这个公式，作文保满分」，按证据该怎么看？
     options:
@@ -2418,7 +2751,6 @@ entries:
   pending:
   - error_cases 事故型已登记（旧 WRITING 框架「95% 考场作文逃不出三大母题」伪统计话术，report_expressions C-1 裁定），具体错句不适用（话术型），待回填登记
   - 探针待补写（PRB-W15-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-01
@@ -2476,6 +2808,21 @@ entries:
     rel: 同族
   - id: E-04
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 句子卡组, kind: 台词卡组, states: [一百种没说错的讲法铺满台面, 漏斗筛后只剩两三张被高亮]}
+        - {name: 句子卡「I want to marry you.」, kind: 台词卡, states: [未定性, 打勾会这样说]}
+        - {name: 句子卡「It is my wish to become married to you.」, kind: 台词卡, states: [未定性, 打问号很少有人这样说]}
+        - {name: 漏斗, kind: 场景道具, states: [架在句子卡组上方, 筛完停住]}
+      invariants: "两张卡都合语法，变的是哪一张是大家真的会说的；地道是大家的习惯，没有离开场合的唯一一张对味卡"
+    beats:
+      - "设置：台面上铺满没说错的句子卡，其中两张并排放在最前面，一张写着「I want to marry you.」，一张写着「It is my wish to become married to you.」（旁白：「这两句都没说错，可人们平时只爱说其中一种——是哪一种呢？」）"
+      - "变形：一百张卡一起漏过漏斗，绝大多数落进暗格，只剩两三张留在亮处；镜头回到前面两张卡，一张亮起勾，另一张亮起问号（旁白：「都没错，可他们翻来覆去用的，就那两三种。」）"
+      - "预测停顿：勾和问号先被小手遮住，只留两张卡（旁白：「先猜一猜：哪张是他们真的会说的，哪张只是没说错？」）"
+      - "边界对照：同一张勾选卡被挪到不同场合的牌子下，勾的光一会儿亮一会儿暗（旁白：「换个场合，对味的说法也可能换——没有一张卡到哪儿都最对味。」）"
+    beats_ref: claim
+    lines_owner: NE-01
   quiz:
   - stem: 两句话都合语法，学英语要学的是哪种？
     options:
@@ -2503,7 +2850,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE01-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-02
   zone: 表达写作
@@ -2561,6 +2907,22 @@ entries:
     rel: 同族
   - id: NE-03
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 句干仓库货架, kind: 场景道具, states: [货架上整排存着半句和整句, 伸手即取]}
+        - {name: "句干卡「Can I have some water, please?」", kind: 台词卡, states: [整张存在货架上, 整张被取出来直接说出]}
+        - {name: "句干卡「What about going to the park this Sunday?」", kind: 台词卡, states: [固定段是实线, 槽位段是虚线可换]}
+        - {name: 句干卡「See you tomorrow!」, kind: 台词卡, states: [整块躺在货架上, 整块被取走用掉]}
+      invariants: "说得快靠整张取卡再稍加改装，不靠一个词一个词现拼；卡是半固定的，留着可换的小格子；库存有多少是估计数，不是数出来的账"
+    beats:
+      - "设置：一个大仓库，货架上整排整排存着现成的半句和整句，一个孩子站在货架前（旁白：「说话像流水一样快的人，脑子里有个小仓库。」）"
+      - "变形：孩子伸手整张抽出「Can I have some water, please?」，不用拼，张口就说完整句；接着抽出「See you tomorrow!」，也是整块取走就用（旁白：「整句存好，拿出来就能用，不用现拼。」）"
+      - "变形：镜头推近「What about going to the park this Sunday?」这张卡，前半截是实线、后半截变成虚线小格子，格子轻轻晃动示意能换（旁白：「现成的卡里留着小格子，格子里的词可以换——不是整句背死。」）"
+      - "预测停顿：货架上一张卡被布盖住，只露出取卡的手（旁白：「先猜一猜：他是整张拿出来说，还是一个词一个词拼？」）"
+      - "边界对照：仓库旁边亮起两块小牌，一块画着嘴巴发音，一块画着先想好要说什么，仓库的灯没有独占画面（旁白：「有仓库还不够，嘴巴熟不熟、有没有想好要说什么，也管着说得快不快。」）"
+    beats_ref: claim
+    lines_owner: NE-02
   quiz:
   - stem: 母语者说话像流水一样快，主要靠什么？
     options:
@@ -2589,7 +2951,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE02-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-03
   zone: 表达写作
@@ -2648,6 +3009,22 @@ entries:
     rel: 同族
   - id: E-04
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: "积木套装「Good morning! What is your name?」", kind: 词卡套装, states: [整套入库先会用, 用熟后被放大看清结构]}
+        - {name: "问答套装「How are you? — I am fine, thank you. And you?」", kind: 词卡套装, states: [问答成对整块存入, 用熟后析出里面的词]}
+        - {name: "请求回应套装「Can I have a pencil, please? — Sure. Here you are.」", kind: 词卡套装, states: [一整块请求配一整块回应, 先囤着用]}
+        - {name: 放大镜, kind: 场景道具, states: [挂在套装旁边, 移到用熟的套装上显出槽位]}
+      invariants: "先整块囤、用熟，再慢慢拆看结构，两条路要并行；只囤不拆换个场合就卡住，只拆不囤则对而不快"
+    beats:
+      - "设置：三套积木套装整套整套搬进小仓库，见面套装、问答套装、请求回应套装都还没拆开（旁白：「先把整句话整套搬回家，用起来再说。」）"
+      - "变形：孩子在见面场景里整套用出「Good morning! What is your name?」，又整套对答问答套装，一句不拆也说得顺（旁白：「还没拆开看，先整套会用，就已经能说话了。」）"
+      - "变形：用熟之后放大镜移过来，套装被放大，里面能换的小格子和搭法一点点显出来（旁白：「用熟了，再慢慢看：哦，原来里面是这样搭的。」）"
+      - "预测停顿：一个没背过的新场合牌子升起，套装停在半空（旁白：「先猜一猜：要是只背套装、从来不拆，到了新场合会怎么样？」）"
+      - "边界对照：分屏对照——左边只囤不拆的孩子在新场合前卡住，右边只拆不囤的孩子一个词一个词拼、说得又慢又别扭（旁白：「只囤会卡住，只拼会又慢又不对味——两件事都得做。」）"
+    beats_ref: claim
+    lines_owner: NE-03
   quiz:
   - stem: 学整句的正确顺序是？
     options:
@@ -2676,7 +3053,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE03-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-04
   zone: 表达写作
@@ -2715,6 +3091,7 @@ entries:
     rel: 同族
   - id: NE-14
     rel: 对照
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为规则鉴别立场与得体标准口径，无儿童场景，动画化只能画成老师讲道理）"
   quiz:
   - stem: 一条「规矩」连大作家都常常不守、守了反而别扭，它多半是？
     options:
@@ -2741,7 +3118,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE04-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-05
@@ -2791,6 +3167,7 @@ entries:
   relatives:
   - id: NE-04
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为两条假规则的词源考据与教师侧鉴别测试，属文献/历史口径，无儿童场景）"
   quiz:
   - stem: 「句子最后不能放介词」这条规矩是从哪儿来的？
     options:
@@ -2817,7 +3194,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE05-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-06
   zone: 表达写作
@@ -2852,6 +3228,7 @@ entries:
   relatives:
   - id: NE-14
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为三圈社会语言学模型与学习目标定位，属分类模型与课程口径，动画化会把模型画成事实）"
   quiz:
   - stem: 学英语的目标应该是？
     options:
@@ -2879,7 +3256,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE06-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-07
@@ -2931,6 +3307,21 @@ entries:
   relatives:
   - id: NE-08
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 词典页「panda — a big black and white animal. It eats bamboo.」, kind: 词典页卡, states: [难词在页首待解释, 解释里全是认识的简单词被点亮]}
+        - {name: 词典页「happy — feeling good and wanting to smile.」, kind: 词典页卡, states: [被盖住, 打开后解释词逐个点亮]}
+        - {name: 简单词钥匙, kind: 场景道具, states: [挂着约三千个简单词, 能打开整本词典的每一页]}
+        - {name: 简单词地基, kind: 场景道具, states: [铺在最底层, 新词大楼建在它上面]}
+      invariants: "解释难词只用更简单的认识词，查词不会再撞上生词；三千是约数、随版本浮动，不是写死的精确数"
+    beats:
+      - "设置：一本大词典打开在 panda 这一页，页首的难词大，解释行先暗着（旁白：「这本词典有个秘密，先看它怎么解释难词。」）"
+      - "变形：解释行亮起，「a big black and white animal. It eats bamboo.」里的简单词一个个被点亮，全是已经认识的词，没有一个再生僻（旁白：「解释用的全是你认识的词——查哪个词，都看得懂。」）"
+      - "预测停顿：happy 这一页打开一半，解释行还盖着（旁白：「先猜一猜：它的解释里，会不会又冒出一个你不认识的词？」）"
+      - "边界对照：钥匙上「约三千」的牌子轻轻晃动，数字不钉死；旁边一本普通词典的影子浮现（旁白：「三千左右是个约数，不同版本不一样；等你长大些，还要再用别的词典帮忙。」）"
+    beats_ref: claim
+    lines_owner: NE-07
   quiz:
   - stem: 好的学习词典解释难词时，只用什么词？
     options:
@@ -2958,7 +3349,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE07-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-08
   zone: 表达写作
@@ -3009,6 +3399,21 @@ entries:
     rel: 同族
   - id: NE-09
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 动词枢纽 ask, kind: 标签组, states: [立在台面中央, 后面的接法槽位亮起]}
+        - {name: 接法插座「ask + 人 + to do」, kind: 场景道具, states: [空着待插, 插对后亮绿]}
+        - {name: 正例卡「I asked him to come.」, kind: 台词卡, states: [零件散着, 按接法拼成完整句]}
+        - {name: 错位句卡「I proposed him to come.」, kind: 台词卡, states: [插头伸向 ask 的插座, 插不进被弹回]}
+      invariants: "造句对不对先看动词后面怎么接，不能仿一个动词的接法去套另一个；接法要按动词和它的意思逐个查，接法表是教学整理、不是全部"
+    beats:
+      - "设置：动词 ask 立在中央，后面伸出一个写着「人」和「to do」的插座，零件卡 him 和 to come 在旁边（旁白：「查动词，光看意思不够，还要看它后面怎么接。」）"
+      - "变形：him 先插进「人」的槽，to come 再插进后面的槽，整句「I asked him to come.」拼成并亮绿（旁白：「接对了，句子一下子就站稳了。」）"
+      - "预测停顿：错位句卡「I proposed him to come.」的插头慢慢伸向同一个插座，画面停住（旁白：「先猜一猜：换个动词，照着这个接法套，能插得进吗？」）"
+      - "边界对照：插头被弹回，错位句卡上亮起叉号，旁边的 ask 卡仍亮绿（旁白：「每个动词有自己的接法，仿着套就会造出怪句子——得一个个查。」）"
+    beats_ref: claim
+    lines_owner: NE-08
   quiz:
   - stem: 查一个动词，除了看意思，还要看什么？
     options:
@@ -3036,7 +3441,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE08-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
 - id: NE-09
   zone: 表达写作
   group: NE
@@ -3085,6 +3489,7 @@ entries:
   relatives:
   - id: NE-08
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为情景法教学方法论主张与呈现原则引用，属教学法口径，动画化只能画成老师讲道理）"
   quiz:
   - stem: 学一句话，该先有什么、再有什么？
     options:
@@ -3111,7 +3516,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE09-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-10
   zone: 表达写作
@@ -3157,6 +3561,22 @@ entries:
   relatives:
   - id: NE-11
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 句子卡「I didn't say she took it.」, kind: 台词卡, states: [一整条未切开, 被切成小块并有一处被聚光灯点重]}
+        - {name: 调音台三排推子, kind: 场景道具, states: [三排推子静止, 切块与点重与选调三排依次动起]}
+        - {name: 聚光灯, kind: 场景道具, states: [落在最后一个实词上, 在句中词上逐个移动]}
+        - {name: 否认标签, kind: 标签组, states: [未贴, 随聚光灯移动贴到不同的词旁]}
+      invariants: "调调由切块、点重、选调三件事一起决定，哪个词被点重，否认的就换成谁；这三件事是看调调的架子，不说它包住一切变化"
+    beats:
+      - "设置：句子卡「I didn't say she took it.」一整条躺在台上，旁边是一台有三排推子的调音台（旁白：「说话的调调不是随便哼的，是三件事一起做出来的。」）"
+      - "变形：第一排推子动起，句子被切成一小块一小块；第二排动起，聚光灯落在一个词上；第三排动起，那个词的声音往下掉（旁白：「先切块，再点重，最后选往下掉还是往上挑。」）"
+      - "变形：聚光灯在句中的词上逐个移动，每移一格，旁边的否认标签就跟着换一个词贴住（旁白：「哪个词喊得最重，否认的就是哪个——意思跟着灯走。」）"
+      - "预测停顿：聚光灯停在两个词中间，还没落下（旁白：「先猜一猜：灯要是落在这个词上，他否认的会是谁？」）"
+      - "边界对照：调音台的边框被画成虚线，框外还有几片没被框住的小音波（旁白：「这三排推子是帮我们看懂调调的架子，框外的变化它没全包住。」）"
+    beats_ref: claim
+    lines_owner: NE-10
   quiz:
   - stem: 把一句话里的重音从一个词挪到另一个词，会改变什么？
     options:
@@ -3184,7 +3604,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE10-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-11
   zone: 表达写作
@@ -3234,6 +3653,21 @@ entries:
     rel: 同族
   - id: NE-14
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 口音地图, kind: 场景道具, states: [各地区同色, 同一批词在不同地区整组换色]}
+        - {name: 词汇集关键词卡组 DRESS / BATH / GOOSE / FLEECE / KIT, kind: 词卡组, states: [整组排在地图一侧, 随地图地区整组变色]}
+        - {name: 家乡徽章, kind: 标签组, states: [未佩戴, 别在说话人胸前]}
+        - {name: 参照坐标架, kind: 场景道具, states: [立在地图角上, 只标方向不打分]}
+      invariants: "口音的差别是一整组词一起变，不是乱错；口音是从哪儿来的标记，不是错；参照口音只是坐标，不是打分的尺子"
+    beats:
+      - "设置：一张大地图铺开，不同地方站着说话的人，旁边排着词汇集关键词卡 DRESS / BATH / GOOSE / FLEECE / KIT（旁白：「各地人说话的味儿不一样，可不是乱不一样的。」）"
+      - "变形：地图换一个地区，关键词卡不是一个个乱变，而是整组一起换上新颜色；再换一个地区，又整组换色（旁白：「看——一整组词一起变，这就是口音的规矩。」）"
+      - "预测停顿：地图滑向下一个没点亮的地区，卡组停在换色之前（旁白：「先猜一猜：到了这儿，这组词会单个乱变，还是整组一起变？」）"
+      - "边界对照：一枚家乡徽章别到说话人胸前，角上的参照坐标架只亮方向、不亮分数（旁白：「口音是他的家乡徽章，不是错；旁边的架子只帮我们认路，不给人打分。」）"
+    beats_ref: claim
+    lines_owner: NE-11
   quiz:
   - stem: 别人口音和你不一样，说明什么？
     options:
@@ -3260,7 +3694,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE11-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-12
   zone: 表达写作
@@ -3313,6 +3746,21 @@ entries:
     rel: 同族
   - id: NE-14
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 发音控制面板, kind: 场景道具, states: [舌与唇与下颌与嗓音四枚按钮静止, 四枚按钮依次拨动]}
+        - {name: 词卡对「sheep /ʃiːp/ — ship /ʃɪp/」, kind: 词卡, states: [两张并排无区别标记, 下巴与舌的按钮拨动后区别亮起]}
+        - {name: 词卡对「big /bɪɡ/ — pig /pɪɡ/」, kind: 词卡, states: [两张并排, 嗓音按钮一开一关]}
+        - {name: 摸喉咙的手, kind: 人物, states: [垂着, 贴到喉咙上感受震动]}
+      invariants: "发音先靠身体感受再对照声音，顺序是感受肌肉到试出声音到对照目标；四枚按钮是帮手的比方，不是身体的全部，单个音是它的主场"
+    beats:
+      - "设置：一块控制面板立在台上，四枚按钮分别管舌头、嘴唇、下巴和嗓子，孩子的手先摸着自己的下巴（旁白：「发音不是用脑子想的，是用嘴练的——先摸一摸，感受一下。」）"
+      - "变形：舌头和下巴的按钮被拨动，词卡对「sheep /ʃiːp/ — ship /ʃɪp/」上两张卡的嘴型图跟着一开一合，区别亮起来（旁白：「按钮拨对了，两个音自己就不一样了。」）"
+      - "预测停顿：词卡对「big /bɪɡ/ — pig /pɪɡ/」出现，手正要贴上喉咙，画面停住（旁白：「先猜一猜：哪个词说的时候，喉咙会震一震？」）"
+      - "边界对照：手贴上喉咙，一个震一个不震，嗓音按钮一亮一暗；随后一串连着说的话从面板旁边流过，面板没有去拦它（旁白：「单个音靠按钮练；连成串的话里那些变弱变连的音，还得另外专门练。」）"
+    beats_ref: claim
+    lines_owner: NE-12
   quiz:
   - stem: 练发音应该先练什么？
     options:
@@ -3339,7 +3787,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE12-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-13
   zone: 表达写作
@@ -3388,6 +3835,21 @@ entries:
   relatives:
   - id: NE-12
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 音标地图, kind: 场景道具, states: [整张铺开如地图, 格子按前与后与上与下排布]}
+        - {name: 词卡「Ship — the first sound is /ʃ/.」, kind: 词卡, states: [在地图外, 手指点中地图前部的一格]}
+        - {name: 词卡「Chair — the first sound is /tʃ/.」, kind: 词卡, states: [在地图外, 手指点中紧挨着的一格]}
+        - {name: 图钉组, kind: 标签组, states: [散在一旁, 不同口音的图钉共同指向同一格]}
+      invariants: "符号住的位置就是它的发音方法，地图是找声音的工具不是考卷；符号是大家约好的那个音，不是某个口音的专利；格子数随参照口音略有出入"
+    beats:
+      - "设置：一张像地图一样的大表铺满台面，声音的格子按前前后后、上上下下排好，孩子的手指悬在上方（旁白：「这张表不是要背的考卷，是一张找声音的地图。」）"
+      - "变形：手指点向 Ship 的第一个音 /ʃ/，地图前部的一格亮起，亮起的位置正对着发音的地方（旁白：「声音住在哪儿，手指就点到哪儿——位置就是它怎么发出来的。」）"
+      - "预测停顿：手指移到 Chair 的第一个音 /tʃ/ 上方，还没落下（旁白：「先猜一猜：这个音住在哪儿——离刚才那格远，还是就住在隔壁？」）"
+      - "边界对照：手指落下，/tʃ/ 的格子果然紧挨着 /ʃ/；随后几枚不同颜色的图钉一起钉进同一格（旁白：「住隔壁，声音就像邻居；这一格是大家约好的音，不是谁一个人的专利。」）"
+    beats_ref: claim
+    lines_owner: NE-13
   quiz:
   - stem: 音标表上一个音的位置，告诉你什么？
     options:
@@ -3415,7 +3877,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE13-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-14
   zone: 表达写作
@@ -3471,6 +3932,21 @@ entries:
     rel: 同族
   - id: NE-04
     rel: 对照
+  scene_spec:
+    facts:
+      objects:
+        - {name: 听者耳朵与懂了印章, kind: 标签组, states: [印章举着未盖, 听懂时盖下]}
+        - {name: 词卡组 safe / gate / get, kind: 词卡组, states: [三张并排颜色相近, 两格元音涂上不同色且界线清晰]}
+        - {name: 词卡 shave, kind: 词卡, states: [与 safe 分开站着, 被说混时向 safe 滑拢]}
+        - {name: 目标牌, kind: 标签组, states: [写着全世界听懂, 旁边留一格可另写特殊目标]}
+      invariants: "好发音看听的人懂不懂，不看像不像英国人美国人；两个词的区别守住，听懂就守住；有特殊目标的人可以另定目标，不在这一条里一刀切"
+    beats:
+      - "设置：三张词卡 safe / gate / get 并排立着，一位听者坐在对面，手里举着「懂了」印章（旁白：「说英语不用装成谁——听的人懂了，就是好发音。」）"
+      - "变形：gate 和 get 两格的元音被涂上不同的颜色，中间的界线描粗，听者点头，印章盖下（旁白：「两个词的声音分得清，听的人就分得清——区别在，听懂就在。」）"
+      - "预测停顿：词卡 shave 被盖住一半，旁边的 safe 亮着（旁白：「先猜一猜：要是把 shave 说得和 safe 一模一样，听的人还能分清吗？」）"
+      - "边界对照：shave 向 safe 滑拢，两张卡重叠的一刻印章收起、听者摇头；卡分开站稳，印章才又盖下（旁白：「说混了就听混了——不用像谁，但区别不能丢。」）"
+    beats_ref: claim
+    lines_owner: NE-14
   quiz:
   - stem: 发音练得好不好，看什么？
     options:
@@ -3499,7 +3975,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE14-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
 - id: NE-15
   zone: 表达写作
   group: NE
@@ -3534,6 +4009,7 @@ entries:
   relatives:
   - id: NE-04
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为语法批评的证据核查纪律与文献批评，属证据标准口径，无儿童场景）"
   quiz:
   - stem: 听到一条语法规矩，先问什么？
     options:
@@ -3560,7 +4036,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE15-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-16
@@ -3622,6 +4097,7 @@ entries:
     rel: 同族
   - id: NE-21
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为语法即选择的教学立场与元语言谈话口径，无儿童场景）"
   quiz:
   - stem: 学语法是为了什么？
     options:
@@ -3648,7 +4124,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE16-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-17
   zone: 表达写作
@@ -3703,6 +4178,7 @@ entries:
   relatives:
   - id: NE-16
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为嵌入式语法干预的随机试验效应及其条件，属证据综述）"
   quiz:
   - stem: 语法在什么时候教，最能帮到写作文？
     options:
@@ -3730,7 +4206,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE17-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-18
   zone: 表达写作
@@ -3796,6 +4271,7 @@ entries:
     rel: 同族
   - id: NE-21
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：机制是语类阶段的分类口径与课程迁移设计，属纯分类学/课程设计）"
   quiz:
   - stem: 动笔写故事之前，先看清什么？
     options:
@@ -3823,7 +4299,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE18-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-19
   zone: 表达写作
@@ -3862,6 +4337,7 @@ entries:
     rel: 同族
   - id: W-10
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为教学循环四环的单元顺序设计，属教学方法论主张）"
   quiz:
   - stem: 学写一种新文章，顺序应该是？
     options:
@@ -3889,7 +4365,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE19-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-20
@@ -3929,6 +4404,7 @@ entries:
     rel: 同族
   - id: NE-19
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为精细阅读的备课与互动支架设计，属教学方法论主张）"
   quiz:
   - stem: 遇到一篇难课文，Reading to Learn 的做法是？
     options:
@@ -3958,7 +4434,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE20-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-21
@@ -3996,6 +4471,7 @@ entries:
     rel: 同族
   - id: NE-18
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：机制是按功能给语法分四大块的教师知识组织口径，属纯分类条目）"
   quiz:
   - stem: 按「语言的活儿」组织语法，备课时先问什么？
     options:
@@ -4023,7 +4499,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE21-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-22
@@ -4060,6 +4535,7 @@ entries:
   relatives:
   - id: NE-23
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为印刷概念的观察记录与测量框架，属教师评估口径，无儿童场景）"
   quiz:
   - stem: 开始读书之前，孩子先要搞懂什么？
     options:
@@ -4086,7 +4562,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE22-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。印刷概念的可观察项是行为清单，已登记在机制节，不另设例句。
   - error_cases 待补：清单未登记具体病例
 - id: NE-23
@@ -4123,6 +4598,7 @@ entries:
   relatives:
   - id: NE-22
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为 Reading Recovery 的干预证据与长期效果分歧，属文献/证据综述）"
   quiz:
   - stem: 关于 Reading Recovery，最准确的说法是？
     options:
@@ -4151,7 +4627,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE23-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-24
@@ -4210,6 +4685,7 @@ entries:
     rel: 同族
   - id: NE-26
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：机制是小组谈话三型的切分口径，属纯分类条目，动画化会把口径画成事实）"
   quiz:
   - stem: 哪种小组谈话里，思考是公开进行的？
     options:
@@ -4236,7 +4712,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE24-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-25
   zone: 表达写作
@@ -4284,6 +4759,7 @@ entries:
     rel: 同族
   - id: NE-26
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为谈话规范须师生共建并周期反思的设计主张，属教学方法论）"
   quiz:
   - stem: 讨论的规矩怎样来，最能让大家真的照着做？
     options:
@@ -4311,7 +4787,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE25-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-26
   zone: 表达写作
@@ -4348,6 +4823,7 @@ entries:
     rel: 同族
   - id: NE-25
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：五原则是检验课堂话语的教师尺子，属教学方法论主张）"
   quiz:
   - stem: 五原则里最难做到、也最能区分真对话的是哪一条？
     options:
@@ -4377,7 +4853,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE26-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - examples 不设（终态登记）：本条为教师/设计层条目，内容是方法、证据与立场，记录中没有可登记的儿童面语言材料；页面只在成人层呈现主张、机制与依据，不设例句——此为定稿口径，非待补。
   - error_cases 待补：清单未登记具体病例
 - id: NE-27
@@ -4440,6 +4915,22 @@ entries:
     rel: 同族
   - id: NE-19
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: "范文故事卡「One day, a small cat saw a fish in the river.」", kind: 台词卡, states: [刚拿到还说不顺, 指着地图做着动作说熟]}
+        - {name: 故事骨架卡, kind: 标签组, states: [还是范文原样, 换成小狗小鸟和大树]}
+        - {name: 空白新故事卡, kind: 台词卡, states: [空白, 写出小狐狸的新故事]}
+        - {name: 默写纸, kind: 场景道具, states: [照着范文抄, 范文被盖住就停住]}
+      invariants: "顺序不变：先模仿说熟、再在同一副骨架上换内容、最后才自己编新的；嘴里先能说出来，手里才写得出来；模仿带地图带动作带商量，不是默写"
+    beats:
+      - "设置：教室里亮出一张范文故事卡「One day, a small cat saw a fish in the river.」，孩子们看着它，还说不顺（旁白：「先别急着自己写，咱们先把这个故事说熟。」）"
+      - "变形：全班指着故事地图、做着动作，一遍遍把范文说熟；接着骨架卡一个字不动，只换里面的角色和地方，卡变成「One day, a small dog saw a bird in the tree.」（旁白：「骨架没变，只换了里面的人和地方。」）"
+      - "预测停顿：一张空白新故事卡摆上桌，先停住不揭开（旁白：「先猜一猜：轮到你自己编，第一句你会怎么开头？」）"
+      - "变形：空白卡亮出自己编的故事「One night, a little fox found a cake under the moon.」——还是讲故事的老样子，里面的事全是新的（旁白：「你看，说熟了、换过了，现在能自己编啦。」）"
+      - "边界对照：旁边一组的默写纸只会照着范文抄，范文一被盖住就停住——对照出这边指地图、做动作、一起商量着说，才叫模仿（旁白：「光会抄下来不算会，盖住也能说出来才算。」）"
+    beats_ref: claim
+    lines_owner: NE-27
   quiz:
   - stem: 学写故事的三段顺序是？
     options:
@@ -4467,7 +4958,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE27-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-28
   zone: 表达写作
@@ -4515,6 +5005,21 @@ entries:
   relatives:
   - id: NE-27
     rel: 同族
+  scene_spec:
+    facts:
+      objects:
+        - {name: 故事地图, kind: 场景道具, states: [只有一条空路线, 孩子亲手画上转弯和图标]}
+        - {name: 连接词卡「first / finally」, kind: 词卡, states: [平放在桌上, 每个词配上一个全身动作]}
+        - {name: 转弯词卡「suddenly」, kind: 词卡, states: [藏在地图转弯后面, 被手指点亮并配上动作]}
+        - {name: 复述气泡, kind: 台词卡, states: [说得断断续续, 指着地图顺顺当当说完]}
+      invariants: "眼睛看的、身体做的、嘴里说的必须是同一份故事材料；地图画的是故事走到哪一步，不是装饰；地图要孩子参与画，印好发下来的帮不上说故事"
+    beats:
+      - "设置：一张大纸摊在桌上，上面只有一条空路线，连接词卡「first / finally」平放在旁边，复述气泡说得断断续续（旁白：「光用嘴记不住，咱们给故事画张地图吧。」）"
+      - "变形：孩子们亲手在路线上画出转弯，把「first / finally」贴到头尾、把「suddenly」贴到中间的转弯处，每个词配一个全身动作；手指沿着地图往前走，眼睛看着、身体做着、嘴巴跟着说，气泡越说越顺（旁白：「眼睛看、身体动、嘴巴说，三路一起记。」）"
+      - "预测停顿：手指走到贴着「suddenly」的转弯前先停住（旁白：「先猜一猜：转过这个弯，故事会出什么事？」）"
+      - "边界对照：老师发下一张印得漂漂亮亮的现成地图，孩子没动过手画，指着它却说不下去——对照出自己画过的地图才指到哪儿说到哪儿（旁白：「别人印好的只是好看，自己画过的才帮得上忙。」）"
+    beats_ref: claim
+    lines_owner: NE-28
   quiz:
   - stem: 故事地图有什么用？
     options:
@@ -4543,7 +5048,6 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE28-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例
 - id: NE-29
   zone: 表达写作
@@ -4595,6 +5099,7 @@ entries:
     rel: 同族
   - id: W-10
     rel: 同族
+  scene_spec: "不设（终态登记：教师/设计层条目：内容为支架须预先设计且最终撤除的设计标准，属教学设计方法论）"
   quiz:
   - stem: 什么样的帮助才算真支架？
     options:
@@ -4623,5 +5128,4 @@ entries:
   version: '1.0'
   pending:
   - 探针待补写（PRB-NE29-* 预留，探针库 v1 未覆盖本区）
-  - scene_spec 待补
   - error_cases 待补：清单未登记具体病例

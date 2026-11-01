@@ -42,7 +42,7 @@
 - **例句待补 44 条**：除 E-01/E-02/E-04/E-07/E-08/E-09/E-11、NE-01/NE-08/NE-10/NE-11/NE-14/NE-25/NE-28 等 15 条有清单登记例句外，其余条目例句为空待补。
 - **病例待补 55 条**：仅 E-02（字面直答）、E-09（No, no 应答误用）、NE-08（propose 搭配误用）、NE-14（shave/safe 事故例）4 条有清单登记病例；error_cases 的 `source_type` 均为清单登记形态，无一条虚构「真实学生错误」。
 - **探针全区待补**：59 条 probes 为空，待探针波次按探针库纪律补写后回填编号。
-- **scene_spec 全区待补**：白板场景规格不在本波范围，59 条均为 null + pending 登记。
+- **scene_spec 已终局（2026-11-02 动画规格波）**：59 条全部销项——35 条著录 `scene_spec`（facts 事实表：物件/类别/状态变化 + invariants 守恒；beats 为设置/变形/预测停顿/边界对照四拍，旁白为新写儿童口语，演员与英语词句只取本条登记例句、例外与机制锚点的词库 id），24 条教师/设计层或纯分类/证据综述条目在字段内登记「不设（终态登记：理由）」，不硬编分镜。分族：E 12 录/3 终、W 11 录/4 终、NE 12 录/17 终。各条 pending 中的「scene_spec 待补」已删除；校验：两文件 YAML 解析通过、与入模版深比对除 scene_spec/pending 外零漂移、词 id 逐条验过允许集与词库。
 
 ### 4.2 词库待补（9 词，进 hitching 的 pending_words）
 `same`（E-08)、`mean`（E-11)、`propose`（NE-08)、`shave`（NE-14)、`however`、`moreover`（W-14)、`fleece`、`kit`（NE-11)、`suddenly`（NE-28)。纪律：先核词、入词库、再回填 law_refs 与各条 word_ids；本波未自造任何 id。
