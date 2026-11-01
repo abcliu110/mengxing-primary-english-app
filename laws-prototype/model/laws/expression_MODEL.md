@@ -63,3 +63,17 @@
 - 分型合法：tendency 57 / rule 1(E-08) / etymology 1(NE-05,source 已填）;rule 条目有 ≥2 条登记证据，tendency 条目均有 scope 与 exceptions（或明确「无已知例外」的 scope 限定）。
 - YAML 可解析（safe_load 复核通过）;zone 全为「表达写作」；全部 examples/error_cases 引用的 53 个词库 id 均在 wordbank.json 中真实存在；挂接表 53 词 resolved、9 词 pending、0 个自造 id。
 - 文件大小（落盘复核）:expression.yaml 235,005 B;expression_hitching.yaml 5,056 B；尾行完整。
+
+
+## 6. 2026-11-02 核查销项（待核债务专项，与模型本体同步）
+
+逐条处置已写入各条 `adult.pending`（销项/终局登记原文以模型为准），本节为汇总索引；§4 所列对应项以本节为准：
+
+- **NE-01 / NE-02（Pawley & Syder 页码）销项**：pp. 191–226 维持著录；终页异文登记（Schmitt & Rodgers 书目作 191–225，剑桥《Language Teaching》参考文献表作 191–226）。
+- **NE-14（Hancock《English Pronunciation in Use》册次）销项兼纠正**：三册三作者——初级 Jonathan Marks (2007)、中级 Mark Hancock (2003)、高级 Martin Hewings (2007)；Sylvie Donna 非任何一册作者，原「合作」说系零售商污染元数据。
+- **NE-18（Martin 1999 出处）销项**：Martin (1999) = “Mentoring semogenesis”，载 Christie 编《Pedagogy and the Shaping of Consciousness》, pp. 123–155；Language and Social Power Project 年代 1986–1990 经 Martin & Rose (2008) 前言核实。
+- **NE-20（R2L 斯德哥尔摩效应）终局登记**：原始报告 Acevedo (2010) 只有定性结论、无效应量统计存在，无数字可补核。
+- **NE-21（《Exploring How Texts Work》第 2 版年）销项**：第 2 版 = 2020（PETAA 官网 + ISBN 9781925132557）。
+- **NE-26（EEF 对话教学试验）销项**：Jay et al. (2017)：英语 0.15 / 科学 0.12 / 数学 0.09（FSM 子群 0.12 / 0.11 / 0.16），经 Alexander (2018) 表 3 核读登记。Alexander (2020) 修订框架逐项未核一项保留为使用警戒，不作债务计。
+- **NE-27 / NE-28（Corbett 书目）销项兼纠正**：《Talk for Writing in the Primary School》并非真实书名——实为《Talk for Writing Across the Curriculum》(2011；第 2 版 2020)；《Talk for Writing in the Early Years》= Corbett & Strong (2016)。
+- **NE-29（Gibbons 书目）定版**：初版 Heinemann 2002, ix + 165 页，ISBN 0-325-00366-1（WorldCat/IA 互证）；第 2 版 2015, ISBN 9780325056647。

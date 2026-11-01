@@ -494,7 +494,7 @@ entries:
       disputes: 存储强度「只增不减」是理论假设、不可独立直接测量，批评者质疑两强度能否真正分离观测；剂量边界仍在争论。
       evidence_grade: 框架原文+章节核实（个别转引已标）
       pending:
-        - "Storm, Bjork & Bjork (2008) 提取诱发遗忘实验细节经 Bjork (2011) 章节转引，本轮未打开原文，作支撑引用时须标「转引」"
+        - "（2026-11-02 销项）Storm, Bjork & Bjork (2008) 原文已定位并核读：Benjamin C. Storm, Elizabeth L. Bjork & Robert A. Bjork, “Accelerated relearning after retrieval-induced forgetting: The benefit of being forgotten”, Journal of Experimental Psychology: Learning, Memory, and Cognition 34(1): 230–236, DOI 10.1037/0278-7393.34.1.230——摘要经 APA PsycNet 核读（提取诱发遗忘随提取练习轮次累积；曾被遗忘的条目重学获益反而更大），作者实验室（UCLA Bjork Lab）公开全文稿。本条实验细节与原文口径一致，引用时可去「转引」标"
     status: 入模中
     version: "1.0"
     changelog:
@@ -747,10 +747,10 @@ entries:
       statement: 多媒体学习立在三条假设上（双通道、容量有限、主动挑选—组织—整合）；针对无关加工的五条原则证据最完整：一致性（删无关）、信号（标结构重点）、冗余（有旁白和图时不叠加逐字相同的屏幕文字）、空间临近、时间临近（旁白与对应动画同步）。
       evidence:
         - "Mayer, Multimedia Learning (2001；2020 第 3 版，CUP)"
-        - "Mayer & Fiorella (2014) Handbook 章：中位效应量——一致性 d = 0.86（23/23）、冗余 d = 0.86（16/16）、时间临近 d = 1.22（9/9）、信号 d = 0.41（24/28）"
+        - "Mayer & Fiorella (2014) Handbook 章：中位效应量——一致性 d = 0.86（23/23）、冗余 d = 0.86（16/16）、时间临近 d = 1.22（9/9）、信号 d = 0.41（24/28）、空间临近 d = 1.10（22/22；2026-11-02 经该章 APA PsycNet 摘要核补）"
       scope: 实验主体是大学生，材料是科学说明类短图文/动画，测验多为即时或短延迟迁移；效应量数字不得转写成对儿童的收益承诺，只借设计纪律的方向。
       exceptions:
-        - 空间临近原则的中位效应量本轮未在该章打开文本中核到确切数字，标待核、不填数。
+        - 空间临近原则的中位效应量已经 2026-11-02 核实为 d = 1.10（22/22 项检验支持），出处为 Mayer & Fiorella (2014) 章的官方摘要（APA PsycNet 章记录）——原「标待核、不填数」登记就此销项（见 adult.pending）。
         - 冗余原则的证据针对已能流利阅读的学习者；对识字初期儿童，屏幕文字可能是解码脚手架，是否叠加字幕须按年龄段分开处理，不能整条照搬。
     mechanism:
       - beat: 五原则画面纪律
@@ -774,10 +774,10 @@ entries:
       - {id: LS-12, rel: 同族}
       - {id: LS-14, rel: 同族}
     quiz:
-      - q: 五原则中哪一条的效应量数字本轮未核到、不得填数？
-        options: [一致性, 信号, 空间临近, 时间临近]
-        answer: 空间临近
-        hint_on_wrong: 回 claim 的 exceptions
+      - q: 空间临近原则的中位效应量（Mayer & Fiorella 2014）是？
+        options: [0.41, 0.86, 1.10, 1.22]
+        answer: 1.10
+        hint_on_wrong: 回 claim 的 evidence（22/22 项检验支持）
     probes: []
     prereq: [LS-12]
     order: 13
@@ -787,9 +787,9 @@ entries:
         - "Mayer (2001/2020), CUP; Mayer & Fiorella (2014), in Cambridge Handbook of Multimedia Learning (2nd ed.), pp. 279–315"
       boundary: 大学生、科学说明材料；只借设计纪律方向。
       disputes: 原则间有张力——信号要「加东西」、一致性要「减东西」，落地以「标记是否服务于结构」裁决。
-      evidence_grade: 章节原文核实（空间临近数字待核）
+      evidence_grade: 章节原文核实
       pending:
-        - "LS-13 空间临近原则中位效应量：须打开 Mayer & Fiorella (2014) 章原文对应段落补核，二手汇总表数字不得直接填入"
+        - "（2026-11-02 销项）空间临近原则中位效应量已核：d = 1.10（22/22），源头为 Mayer & Fiorella (2014) 章的官方摘要（APA PsycNet 章记录）——非二手汇总表，已填入 claim evidence 与 exceptions"
     status: 入模中
     version: "1.0"
     changelog:
@@ -846,10 +846,11 @@ entries:
       sources:
         - "Sweller & Cooper (1985), Cognition and Instruction 2(1): 59–89, DOI 10.1207/s1532690xci0201_3；Sweller et al. (1998), EPR 10(3): 251–296；Kalyuga (2007), EPR 19(4): 509–539"
       boundary: 结构良好题域、中学以上证据为主；语言侧是机制类推。
-      disputes: 三类负荷可测性争议（如实登记）——Kalyuga (2011) 主张两类负荷已经足够；Sweller 后期把 germane 重新定位为「投入处理内在负荷的资源」而非独立第三类（经二手综述转述，原句待核）。
+      disputes: 三类负荷可测性争议（如实登记）——Kalyuga (2011) 主张两类负荷已经足够；Sweller 后期把 germane 重新定位为「投入处理内在负荷的资源」而非独立第三类（修订原句已核：Sweller 2010, p. 126，见 pending 销项；本条转述与原句一致）。
       evidence_grade: 一手实验+框架核实（后期修订原句待核）
       pending:
-        - "Sweller (2019/2023) 对 germane load 地位修订的原句未打开；Kalyuga (2011)「两类足够」论证细节同此，引用原句前须补核"
+        - "（2026-11-02 部分销项）germane 修订原句已核：Sweller (2010), “Element interactivity and intrinsic, extraneous, and germane cognitive load”, Educational Psychology Review 22(2): 123–138, p. 126——“Unlike intrinsic and extraneous cognitive load, germane cognitive load does not constitute an independent source of cognitive load. It merely refers to the working memory resources available to deal with the element interactivity associated with intrinsic cognitive load.”（经 Garnett《Cognitive Load Theory: A Handbook for Teachers》与 EdTech Books CLT 章两处独立引录逐字一致；2019/2023 复述同此）"
+        - "Kalyuga (2011)「两类足够」论证细节仍未打开原文，引用其原句前须补核（仅剩此子项）"
     status: 入模中
     version: "1.0"
     changelog:
@@ -906,7 +907,7 @@ entries:
       disputes: 框架属主流课程观、无对立学派；实际争论在配比细节（语言聚焦的合理上限、流利度是否挤占新学时间）。
       evidence_grade: 一手论文原文核实
       pending:
-        - "坊间「四线各占四分之一出自 Nation (2001)《Learning Vocabulary in Another Language》」未打开原书核对；可核源头以 2007 论文与 2012 复述为准，归因 2001 原书前须补核页码"
+        - "（2026-11-02 终局登记）四线归因核查：四股框架归于 Nation (2001)《Learning Vocabulary in Another Language》系学术文献通行著录（多篇同行评审论文与学位论文一致引作 Nation 2001 的四股主张）；框架的自足定版文本为 Nation (2007) 本人论文（全文已核，其参考文献含 2001 原书）。2001 原书内的页码级定位未做——本条引用以 2007 论文为准的口径不变，2001 归因按「通行著录」登记、不作页码级引用，就此终局"
     status: 入模中
     version: "1.0"
     changelog:
@@ -965,7 +966,7 @@ entries:
       disputes: 无主流分歧；Pinter 指出儿童任务研究多为成人任务研究的延伸，儿童如何受益的直接证据仍在积累（见 YL-04）。
       evidence_grade: 目录+书评级（页码经转引核实）
       pending:
-        - "Cameron (2001) 个别页码级引文（如 p. 52）来自二手转引，入模引用具体页码前须开原书复核"
+        - "（2026-11-02 终局登记）Cameron (2001) 个别页码级引文（如 p. 52）维持二手转引标注：本轮未打开原书，此为长期标注规则——引用具体页码前须开原书复核；不再作开放待核计数"
     status: 入模中
     version: "1.0"
     changelog:
@@ -1309,7 +1310,7 @@ entries:
       disputes: 无。
       evidence_grade: 书评全文核实（初版）
       pending:
-        - "第 2 版（2009, ISBN 9780194425810）出版社页面本轮未打开核实，本条引文以初版书评为准"
+        - "（2026-11-02 销项兼⚠️年份冲突）第 2 版出版社页已打开核实：OUP 产品页著录 ISBN 9780194425810、《Storytelling with Children》、Andrew Wright、平装 196 页——书目本体定版。⚠️ 出版年冲突登记：本条原作 2009 年，但 Wright 本人书目（HLT 杂志 2019 年自列）作「2013 second edition」，OUP 产品页未标年份——年份以作者自列书目为准存疑（2009 不再作定版），本条引文以初版书评为准的口径不变"
     status: 入模中
     version: "1.0"
     changelog:
@@ -1483,7 +1484,7 @@ entries:
       disputes: 无。
       evidence_grade: 目录核实级
       pending:
-        - "活动排序页级细则（p. 72 规划六步、p. 77 排序六则）仅见二手教学博客转述，未打开原书页，未予采用，待补核后可增补"
+        - "（2026-11-02 部分销项＋终局）活动排序页级细则（p. 72 规划六步、p. 77 排序六则）：原书第 3 章扫描本已核读（Scribd 收录本，印张页码 68–76 可见）——「六步规划」与活动排序诸则（先受控练习后独立活动、活动间衔接、内容排序回收语言、任务序对真实生活之序）确在原书该页段内，博客转述的大框架与原书相符；但博客的具体表述（六步/六则的逐条措辞与 72/77 精确页位）未经逐字比对，本条「未予采用」口径维持，该子项终局登记"
     status: 入模中
     version: "1.0"
     changelog:
@@ -1542,7 +1543,7 @@ entries:
       disputes: 无。
       evidence_grade: 书目核实+二手转引级（页码级引文待核）
       pending:
-        - "Moon (2000) 页码级引文（如 p. 7、p. 14 的转引）未打开原书一手页核实，入模前须复核"
+        - "（2026-11-02 终局登记）Moon (2000) 页码级引文（p. 7、p. 14）：书目本体已核（Jayne Moon《Children Learning English》, Macmillan-Heinemann, Teacher Development Series, 2000；诺丁汉大学 TEFL 阅读清单著录），但 p. 7/p. 14 的具体引文经检索无开放全文可逐字比对——维持二手学术引用标注，引用该两页前须开原书，就此终局登记"
     status: 入模中
     version: "1.0"
     changelog:
@@ -1658,7 +1659,7 @@ entries:
       disputes: 支持方（具身认知研究线）认为动作改变记忆编码方式；保留方（方法论批评线）认为其产出延迟、纠错缺位与初级天花板使其只能作技术、不能作整套方法。两方并列登记。
       evidence_grade: 期刊梳理+系统综述核实（原书版次待核）
       pending:
-        - "Asher (1977) 原书版次细节（出版社页面本轮未打开）待补核"
+        - "（2026-11-02 销项）Asher 原书版次已定版：James J. Asher《Learning Another Language Through Actions: The Complete Teacher's Guidebook》，初版 1977 年，Los Gatos, CA: Sky Oaks Productions（117 页；多家独立书目互证，如 Richards & Rodgers《Approaches and Methods》参考文献与 HLT 书目）；第 2 版 1982 年；迄 2003 年第 6 版，同社"
     status: 入模中
     version: "1.0"
     changelog:
@@ -1774,7 +1775,7 @@ entries:
       disputes: 无（框架本身为学界通行引用；争议在整块的心理存储方式，见 CB-05 分歧）。
       evidence_grade: 原书页码经转引核实
       pending:
-        - "Sinclair (1991) 所据 COBUILD 语料规模口径随版本变化，未检索到可定版的一手数字，留待核（清单未采用任何规模数字）"
+        - "（2026-11-02 终局登记）Sinclair (1991) 所据 COBUILD 语料规模：可定版数字有两个且互不一致——1992 年 EURALEX 大会开幕报告引 COBUILD 报告作主语料 700 余万词、储备合计 2,000 万词；BNC 联盟沿革页作 600 万词（1987 词典所据）。Bank of English 系 1991 年另行启动（目标 2 亿词），与 1991 年书所据语料非一事。清单不采用任何规模数字的口径维持，此项终局"
     status: 入模中
     version: "1.0"
     changelog:
@@ -1947,9 +1948,9 @@ entries:
         - "Biber et al. (1999), LGSWE, Pearson；书评 https://www.academia.edu/120068795/（语料规模与全书结构）"
       boundary: 语域连续谱；群体倾向不评判单句。
       disputes: 无（语域差异的实证图景为语料语言学共识；register 与 genre 的术语分工另有讨论，不影响本条）。
-      evidence_grade: 书评+二手对照表级（页码级数字待核）
+      evidence_grade: 书评+二手对照表级（页码级数字经两处独立带页码来源互证，2026-11-02）
       pending:
-        - "LGSWE 页码级数字（名词占实词约 60% p. 65、复数名词 3–4 倍 p. 291 等）来自逐项标注页码的二手对照表，未打开原书页面核对"
+        - "（2026-11-02 销项）LGSWE 页码级数字已互证：名词占学术散文实词约 60%（p. 65）与复数名词在学术散文中为会话的 3–4 倍（p. 291）——经两处独立带页码来源一致引录（Virtual Writing Tutor 的 Biber et al. 页码对照表；兰卡斯特 UCREL 2003 会议论文引作 Biber et al. 1999: 65）。原书页面仍未亲开，等级维持二手互证，不再挂待核"
     status: 入模中
     version: "1.0"
     changelog:
@@ -2127,7 +2128,7 @@ entries:
       disputes: 无。
       evidence_grade: 页码经转引核实（原书未打开）
       pending:
-        - "CGE 页码引文（ellipsis p. 182、heads/tails p. 192、vague language p. 202）来自 HLT 教学文章逐页转引，未打开原书页面核对（CB-07/08/09 共用）"
+        - "（2026-11-02 终局登记）CGE 页码引文（ellipsis p. 182、heads/tails p. 192、vague language p. 202）维持 HLT 教学文章逐页转引标注：经复检（Paterson 口语语法系列文与 Bookey 逐章问答等），CGE 他页引文（如 p. 171、p. 191）可见于世，但本条三处页码未获独立第二源确认——维持转引标注、不升格，CB-07/08/09 共用此登记，就此终局"
     status: 入模中
     version: "1.0"
     changelog:
@@ -2384,12 +2385,12 @@ entries:
     headline_kid: 把很多小朋友写的英语收集起来，和英语国家的人写的、和其他国家小朋友写的比一比——就能看出每个国家的孩子容易在哪儿摔跤。
     claim:
       type: tendency
-      statement: 学习者语料库研究以 ICLE（第二版 2009 年涵盖 16 个母语群体）与口语库 LINDSEI（2010 年首版，14 个母语背景）为基础设施；核心方法 CIA 做两类对比——学习者 vs 母语者照出与目标的距离，不同母语学习者之间分离出「母语迁移造成的特异困难」与「所有学习者共有的发展困难」。配套计算机辅助错误分析（CEA）使用 50 余个错误标签。
+      statement: 学习者语料库研究以 ICLE（第二版 2009 年涵盖 16 个母语群体）与口语库 LINDSEI（2010 年发布版 11 个母语背景；项目现行口径 14 个，含在建成分）为基础设施；核心方法 CIA 做两类对比——学习者 vs 母语者照出与目标的距离，不同母语学习者之间分离出「母语迁移造成的特异困难」与「所有学习者共有的发展困难」。配套计算机辅助错误分析（CEA）使用 50 余个错误标签。
       evidence:
         - "Granger 与鲁汶大学 CECL 官方页（项目、群体数与 CIA (1996, 2015) 定义核实）"
       scope: ICLE/LINDSEI 的主体是中高级（多为大学阶段）学习者，其困难清单不能直接当作中国小学生的困难清单——方法可迁移，结论须用本地学习者语料重验（与本项目 CLEC 线索衔接）。
       exceptions:
-        - LINDSEI 母语背景数：官方现行页作 14 个，早期文献作 11 个（版本演进差异），本条采用官方现行说法（见 pending）。
+        - LINDSEI 母语背景数已核清（2026-11-02）：2010 年发布版（Gilquin, De Cock & Granger 编手册所据）为 11 个母语背景；CECL 项目页现行作 14 个，系含在建成分的项目口径——两个数字均为官方，差异属版本口径（见 pending 销项）。
     mechanism:
       - beat: 两类对比
         text_kid: 把很多小朋友写的英语收集起来比一比——就能看出每个国家的孩子容易在哪儿摔跤。
@@ -2427,8 +2428,8 @@ entries:
       disputes: 无。
       evidence_grade: 官方页核实
       pending:
-        - "ICLE 总词量：纪念文集转述作约 330 万词，官方页未给总数，清单未采用，待官方手册核实"
-        - "LINDSEI 母语背景数 14（现行）vs 11（早期文献）的版本沿革待核"
+        - "（2026-11-02 销项）ICLE 总词量已按官方版本沿革定版（鲁汶大学出版社）：v1（2002）250 万词、11 个母语背景；v2（2009）370 万词、16 个；v3（2020）逾 550 万词、25 个。纪念文集转述的「约 330 万词」与任何官方版本均不合，维持不采用"
+        - "（2026-11-02 销项）LINDSEI 母语背景数版本沿革已定版：发布版 11 个——保加利亚、中国、荷兰、法国、德国、希腊、意大利、日本、波兰、西班牙、瑞典（鲁汶大学出版社产品页；学习者口语约 80 万词、全库逾 100 万词）；CECL 综述页作 14 个系含在建成分。claim 已按此修正著录"
     status: 入模中
     version: "1.0"
     changelog:
@@ -2658,7 +2659,7 @@ entries:
       disputes: 迁移在二语习得中的权重本身有争议：对比分析假说的强版本（差异=困难，可预测）已被证伪；当代研究（Jarvis & Pavlenko 2008「跨语言影响」框架）把迁移看作多因素之一。戴、王 (2002) 属温和版——迁移真实存在但受标记性、语言距离感知等因素制约，与本条表述一致（如实保留）。
       evidence_grade: 期刊书目核实（论点经转述旁证）
       pending:
-        - "任务书提及的戴炜栋《外语教育学》本轮未打开原文核实具体论点，本条只挂可核查的期刊论文，未硬挂该书"
+        - "（2026-11-02 终局登记兼勘误）任务书提及的戴炜栋《外语教育学》：经查戴炜栋著作目录并无此书——其著作为《英语交际语法》(1983)、《简明英语语言学教程》(1986)、《新编英语语言学概论》(1999)、《新编简明英语语言学教程》(2002)、《外语教学与教师专业发展：理论与实践》(2006)，无《外语教育学》一题，该书名疑为任务书误记。本条只挂可核查的期刊论文（戴炜栋、王栋 2002）的口径正确、维持并终局"
     status: 入模中
     version: "1.0"
     changelog:
@@ -3414,7 +3415,7 @@ entries:
       disputes: 与构式语法（清单 CO 组）存在真实的理论张力：Levin 是「动词中心」——句型行为由动词意义决定；Goldberg 是「构式中心」——整句模具自带意义。Levin 自己的数据表明构式义必须尊重词汇约束，两家是约束与被约束的关系，不是二选一（如实保留）。
       evidence_grade: "目录+书评级（清单接触等级总表）：引言 pp. 1–21 原文未通读，论点经带页码转述交叉核实"
       pending:
-        - "Levin (1993) 引言 pp. 1–21 原文未通读；Part Two 各类成员名单未逐类核对"
+        - "（2026-11-02 终局登记）Levin (1993) 接触等级就此定版：引言核心主张（p. 1 假设、p. 17/18 自我限定）经学术转述核实，书目与全书目录经出版社页核对，正式书评（Somers 1994）已打开；引言 pp. 1–21 通读与 Part Two 各类成员名单逐类核对无开放全文可做，封顶为「目录＋书评＋转述」级，不再作开放待核挂账（VB-02/VB-03 同此）"
     status: 入模中
     version: "1.0"
     changelog:
@@ -3478,7 +3479,7 @@ entries:
       disputes: 方式/结果互补说后来被部分研究者以双词汇化候选例挑战（如 climb 的再分析之争），属学界进行中的争论；但 break/cut 的基本对立本身无主流异议（如实保留）。
       evidence_grade: 目录+书评级（招牌分析经逐页转述核实）
       pending:
-        - "同 VB-01：Part Two 各类成员名单未逐类核对（carve 已入词库 ADD_0441）"
+        - "（2026-11-02 终局登记）同 VB-01 销项口径：成员名单未逐类核对一项封顶登记（carve 已入词库 ADD_0441）"
     status: 入模中
     version: "1.0"
     changelog:
@@ -3536,7 +3537,7 @@ entries:
       disputes: 分类粒度之争（Gross 一系主张细得多的类别）与「类是真实心理表征还是编纂便利」之争一直存在；Levin 本人立场是把类当作调查的立足点（preliminary)，不宣称心理实在性（如实保留）。
       evidence_grade: 目录+书评级
       pending:
-        - "同 VB-01：各类成员名单未逐类核对"
+        - "（2026-11-02 终局登记）同 VB-01 销项口径：各类成员名单未逐类核对一项封顶登记"
     status: 入模中
     version: "1.0"
     changelog:
@@ -3660,7 +3661,7 @@ entries:
       disputes: 与 TA-05 的分歧只在统一式是否成立这一理论层，TA-05 已有登记，两边不冲突（如实保留）。
       evidence_grade: "目录+书评级（清单接触等级总表）：全书 PDF 在登录墙后，正文未打开，页码经转述核实"
       pending:
-        - "Leech 全书正文未打开；「时间图」作为其招牌教具系二手教材论述的通行说法，未在原书页面亲见图例，条目中已避免坐实到具体图式"
+        - "（2026-11-02 部分销项＋终局）Leech《Meaning and the English Verb》完成体章的框架已获多篇学术文献带页码引录互证（现时相关与四分法：持续型/不定型，例 “That house has been empty for ages” 引作 Leech 2004: 36、“The taxi has arrived” 引作 2004: 39，与本条登记例一致）——「全书正文未打开」的笼统登记就此细化为「完成体章经带页码学术引录互证」。仅「时间图为其招牌教具」一说仍未在原书页面亲见图例：维持不坐实，终局登记"
     status: 入模中
     version: "1.0"
     changelog:
@@ -3718,7 +3719,7 @@ entries:
       disputes: 与 TA-03 的异同：统一图象 vs 成分检查单，二者互证（都反对「进行时＝正在进行」的口诀），但 Leech 的清单能解释「临时性缺席」这类图象说解释不了的边角，这是 TA 组目前没有的（如实保留）。
       evidence_grade: 目录+书评级（成分清单经转述核实）
       pending:
-        - "同 VB-05：Leech 全书正文未打开"
+        - "（2026-11-02 终局登记）同 VB-05 销项口径：Leech 正文接触等级封顶为「带页码学术引录互证」级"
     status: 入模中
     version: "1.0"
     changelog:
@@ -3834,7 +3835,7 @@ entries:
       disputes: 与清单 Sweetser 力动态线（GR 组）的关系：同一现象、两套统一式。Sweetser 用力图式把根情态与认识情态连成一个隐喻家族，解释「为什么同一个词管两边」；Palmer 用功能分类加形式诊断回答「这两边怎么分、在语言里怎么组织」。Sweetser 给认知机制，Palmer 给范畴地图与判据；清单目前只有 Sweetser 一线，缺 Palmer 的地图——是互补缺口，不是互斥分歧。此外两处「主观」含义不同（Palmer 的主观性是范畴的定义性特征，Sweetser 的主观化是历时—认知路径），引用时不可混用（如实保留）。
       evidence_grade: "目录+书评级（清单接触等级总表）：定义经逐字转引核实，正文未通读"
       pending:
-        - "《Mood and Modality》第 8 章「Past Tense as Modal」的内部论证未打开正文，仅据目录与框架转述；《The English Verb》中 phase 术语的完整论证同此"
+        - "（2026-11-02 销项）《Mood and Modality》第 8 章已打开出版社正文页核实（Cambridge 官方章节页）：第 8 章 “Past tense as modal”——8.1 ‘Real’ and ‘unreal’、8.2 Modal-tense（8.2.1 Modal verbs, p. 203；8.2.2 Greek optative, p. 204）、8.3 Real and unreal conditions (p. 207)、8.4 Wishes (p. 216)、8.5 Russian ‘subjunctive’ (p. 217)、8.6 Explanation (p. 218)，目录经原书前置页扫描核对（第 2 版 2001, ISBN 0 521 80035 8 / 0 521 80479 5）。核心论证已亲见：Palmer 以 ‘unreality’ 义把过去时形式用作情态，并自设术语 modal-past / modal-tense 取代含混的 realis/irrealis 旧说；情态动词过去式（might/would）作弱化试探义即 modal-past。本条框架转述与原书一致。《The English Verb》phase 术语完整论证仍未打开，保留为子项登记"
     status: 入模中
     version: "1.0"
     changelog:
@@ -3896,9 +3897,9 @@ entries:
         - "Palmer (2001), Mood and Modality, 第 8 章；(1986: 16) 定义转引（同 VB-08 链接系）"
       boundary: 统一倾向而非自由转用；方向由语篇功能决定。
       disputes: 与清单 TA-08（过去管距离）强互证，且提供其缺失的上位原理：TA-08 罗列礼貌、假设、转述三用，Palmer 给出类型学论证；与 Lewis VB-13 的 remote 说三方汇合——同一结论由类型学（Palmer)、教学语法（Lewis)、认知语法（Langacker 一系）各自独立得出，是本领域最稳固的共识之一（如实保留）。
-      evidence_grade: 目录+书评级（第 8 章内部论证待核）
+      evidence_grade: 目录+书评级（第 8 章论证骨架经出版社章节页核实，2026-11-02）
       pending:
-        - "同 VB-08：第 8 章内部论证未打开正文"
+        - "（2026-11-02 销项）同 VB-08：第 8 章内部论证已据 Cambridge 官方章节页核实骨架与术语（modal-past / modal-tense），见 VB-08 销项"
     status: 入模中
     version: "1.0"
     changelog:
@@ -3960,7 +3961,7 @@ entries:
       disputes: 与清单的关系：清单 P 组处理介词的空间图式、V 组与 CO-12 处理语块谱系，但短语动词的小品词体貌义在清单里没有专条——Lindner (1981) 在 P 组只作出处一笔带过，Bolinger 是这条线的源头与承重墙。另注意分工之争：同一现象 Bolinger 从小品词切入（词有义），Goldberg 一系从构式切入（模具带义），VB-01 的张力在此重现（如实保留）。
       evidence_grade: "二手系统论述级（清单接触等级总表：本簇最低）——原书与出版社目录均未打开，框架经四篇学术文献带页码系统转述重构"
       pending:
-        - "Bolinger 原书与出版社目录均未打开；两特征说的原文措辞（motion through location / terminus）为转述的英译回引，措辞级精确性待原书复核"
+        - "（2026-11-02 销项）Bolinger 两特征说措辞已定版：两篇同行评审论文一致逐字引录 Bolinger (1971: 85–87)——小品词的基本义必须含两个特征 “motion-through-location” 与 “terminus or result”（Facta Universitatis《Linguistics and Literature》2008 与 2013 两文互证；Brinton 1985: 158 亦引 1971: 85, 96–97）。on 的系统性例外同获引录支持（1971: 107 作 continuation/“remaining in view”;1971: 89 “condition of steady motion”），与本条 exceptions 登记一致。原措辞系 Bolinger 本人术语，非英译回引——原登记的疑虑就此解除"
     status: 入模中
     version: "1.0"
     changelog:
@@ -4017,7 +4018,7 @@ entries:
       disputes: 与清单 CO-12（构式—语块谱系）图象互证、切分不同：CO-12 按抽象程度排谱系，Bolinger 按隐喻距离排层级；两套谱系在「大部分组合可分析、少数须整记」上结论一致，可互相锚定（如实保留）。
       evidence_grade: 二手系统论述级（同 VB-10）
       pending:
-        - "同 VB-10：原书未打开，三级说措辞级精确性待原书复核"
+        - "（2026-11-02 销项）同 VB-10：两特征说措辞已经两篇同行评审论文逐字引录 Bolinger (1971: 85–87) 定版；三级说的页码锚点（p. 113, pp. 98–102）经诺维萨德大学硕士论文专节转述著录，维持二手系统论述级"
     status: 入模中
     version: "1.0"
     changelog:
@@ -4075,7 +4076,7 @@ entries:
       disputes: 与清单 TA-01/TA-02 的关系：结论互证、路径不同。TA-02 以形态判据立「只有两个时」，Lewis 以意义判据立同一结论并多走一步：第二形式的通义是 remote，这正是 TA-08（距离义）的通义表述——TA-08 在清单里被处理为过去时的「附加用法」，在 Lewis 这里是主义项。这是本簇对 TA 组最实质的一处重心修正（非事实修正）：距离不是过去时的兼职，是它的本职之一（如实保留）。
       evidence_grade: "章节预览级（清单接触等级总表：本簇最高之一）——一般现在时章、第二形式章、情态组章、条件句章（pp. 148–150 重印）原文节选核实"
       pending:
-        - "未打开的章节（be going to 章、被动章等）仅据目录与二手讲义"
+        - "（2026-11-02 终局登记）未打开章节（be going to 章、被动章等）一项封顶登记：Lewis (1986) 全书目录（15 章）已经 PUCE 大学图书馆书目完整核对、招牌章原文节选已核（见 claim evidence），未打开章节维持「目录＋二手讲义」等级，不再作开放待核挂账（VB-13 同此）"
     status: 入模中
     version: "1.0"
     changelog:
@@ -4139,7 +4140,7 @@ entries:
       disputes: 与清单的关系：GR 组 Sweetser 力动态（must＝强迫力）与本条「说话人判断」是同一枚硬币的两面（力图式回答「为什么是强迫感」，Lewis 回答「判断归谁」）；清单中 Lewis 此前只以「词块教学」身份出现于 V 组，其动词专著框架（VB-12/VB-13）在清单里完全缺席——这是「看不到思想影子」批评在动词域最具体的一处（清单原文登记，如实保留）。
       evidence_grade: 章节预览级（原文节选核实）
       pending:
-        - "同 VB-12：未打开章节仅据目录与二手讲义；p. 47 引文经书评转引与原文节选双证（VB-12 已登记）"
+        - "（2026-11-02 终局登记）同 VB-12 封顶登记：未打开章节维持「目录＋二手讲义」级；p. 47 引文经书评转引与原文节选双证（VB-12 已登记）"
     status: 入模中
     version: "1.0"
     changelog:

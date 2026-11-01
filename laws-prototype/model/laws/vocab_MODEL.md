@@ -131,3 +131,8 @@ V-32 定版数字即按此对齐：小学生语料中 SEM 3–5 约 18–24%（�
 | scene_spec | 44 条 | 待动画波次按事实表先行纪律补写（V-40 已有） |
 | error_cases | 24 条 | 只接受真实语料/文献登记病例，不自编 |
 | 未决核验 | 6 项 | Anglin (1993) 原文未直开；V-16「约 300 个组合形」统计待核；Graves (1987) 查无（已替代处理）；crayfish 的 cray- 路径待核；typhoon 两线主次未定；ketchup 本字三说并存——全部已在对应条目 pending/disputes 登记，呈现层按「有分歧」口径处理 |
+
+
+## 2026-11-02 核查销项（待核债务专项）
+
+- **Graves 1987「词缀教学四步」终局确认**：经复检确认查无原始文献（词缀文献所引 Graves 为 Graves & Hammond 1980；Graves 框架贡献为《The Vocabulary Book》2006/2016 四板块）。V-39 的 pending 已改终局登记、boundary 改「查无终局处理」；§「未决核验」行中该项以此为准。其余 5 项未决核验（Anglin 1993、V-16 统计、crayfish、typhoon、ketchup）不在本轮范围，维持原登记。

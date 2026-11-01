@@ -104,3 +104,15 @@ GR-01、GR-02、GR-03、GR-04、GR-05、GR-07、GR-08、GR-09、GR-10、GR-12、
 - 分型合法：rule 20 / tendency 19 / etymology 6 / mnemonic 0；tendency 的 scope+exceptions、etymology 的 source、rule 的 evidence+例证支持数，逐条过门槛。
 - 例词覆盖：180 例的全部 `word_ids` 与机制 `anchors` 均由词库实有条目解析，无一库外词（含 4 个变形条目自身 id）。
 - 挂接表：89 个词形，`law_refs` 与 grammar.yaml 的例词引用双向一致（同源生成）。
+
+
+## 7. 2026-11-02 核查销项（待核债务专项，与模型本体同步）
+
+§5 表中对应项以本节为准，逐条原文见各条 `adult.pending` / `adult.sources`：
+
+- **GR-11 / GR-38（连淑能）销项**：《英汉对比研究》（高教社，1993-03，ISBN 9787040044508, 221 页）篇目级核实——目录含「形合与意合」专题 (p. 8)，该章正文经公开扫描本核读。
+- **GR-25（Eckman 1977）引文级核实**：标记性定义 (p. 320) 与 MDH 三条 (p. 321) 经多篇学术论文逐字引录互证，sources 著录补全为 27(2): 315–330。
+- **GR-28（Quirk 页码）终局登记**：出处已改挂 LSGSWE 第 4 章等三处互证，引用不再依赖 Quirk 页码，此项关闭。
+- **GR-33（CLEC 反意疑问句计数）终局登记**：中英文双路复检无 CLEC 口径计数存在；相邻证据（Wong ICE-HK、Yi & Christodoulou 实验）非 CLEC 不替代，「不冒充语料定版」终局化。
+- **GR-35（Swan only 条目号）销项**：PEU 第 3 版条目 398（关联条 not only…but also 为 383），经第 3 版全文索引核实。
+- **GR-44 / GR-45（Keizer 原书）终局登记**：接触等级封顶为「目录＋书评全文级」，不再作开放待核挂账。
