@@ -7,7 +7,8 @@
   "law_source": "expert-summaries-catalog-v6.md S-01–S-43 / SR-01–SR-09 定版口径",
   "alignment_note": "模式命名与 model/laws/phonics.yaml 及 model/hitching/phonics_hitching.yaml 以 alias_key 对齐；收官步已完成统一合并：挂接表（阶段 A，例词级）与本表全量推导（阶段 B）并集回填词库 gpc_patterns 字段。",
   "method": "见 docs/PHONICS_WORDSETS.md",
-  "derivation_note": "终轮重推：审计期望集（独立 DP 对齐）为基底 + 未判定成员维持 22 行 + 英式口径处置（BATH 迁移、yod 保留、-ʊə/-ɔː 分流、conversion/version 按 GB 入集、thorough/borough 按 S-42 定版入 GP-ough-ə）；逐项处置见 docs/PHONICS_WORDSETS.md 终轮处置表与本文件 registrations。"
+  "derivation_note": "终轮重推：审计期望集（独立 DP 对齐）为基底 + 未判定成员维持 22 行 + 英式口径处置（BATH 迁移、yod 保留、-ʊə/-ɔː 分流、conversion/version 按 GB 入集、thorough/borough 按 S-42 定版入 GP-ough-ə）；逐项处置见 docs/PHONICS_WORDSETS.md 终轮处置表与本文件 registrations。",
+  "tail_adjudication": "2026-11-02 三条尾巴裁定（PHONICS_WORDSETS.md §11）：待裁 146 → 已裁 132 + 缺口留待 14；心词对位待核 38 全部裁定（heart_adjudication 节）；过关组补配见 phonics_checkpoints.json。"
  },
  "overview": {
   "entries_total": 2287,
@@ -16,8 +17,8 @@
   "entries_hit_ge1": 2284,
   "units_hit_ge1": 2313,
   "entries_zero_hit": 3,
-  "pending_total": 146,
-  "total_appearances": 10117,
+  "pending_total": 14,
+  "total_appearances": 10160,
   "per_category": {
    "辅音": {
     "patterns": 48,
@@ -25,11 +26,11 @@
    },
    "短元音": {
     "patterns": 9,
-    "word_hits": 1412
+    "word_hits": 1450
    },
    "长音菜单": {
     "patterns": 65,
-    "word_hits": 1400
+    "word_hits": 1404
    },
    "变脸多读": {
     "patterns": 25,
@@ -37,7 +38,7 @@
    },
    "Magic e": {
     "patterns": 5,
-    "word_hits": 182
+    "word_hits": 183
    },
    "词尾定律": {
     "patterns": 15,
@@ -49654,7 +49655,7 @@
    "name": "a 在闭音节读短音 /æ/",
    "menu": "",
    "face": "",
-   "count": 224,
+   "count": 225,
    "word_ids": [
     "ADD_0394",
     "G4_0320",
@@ -49879,7 +49880,8 @@
     "V6_学校_71",
     "G4_0457",
     "G6_0878",
-    "ADD_0716"
+    "ADD_0716",
+    "V6_日常_5"
    ],
    "occ": {
     "ADD_0394": [
@@ -51263,7 +51265,7 @@
    "name": "词首不重读的 a 缩成 /ə/（schwa）",
    "menu": "",
    "face": "",
-   "count": 45,
+   "count": 66,
    "word_ids": [
     "G1_K01#0",
     "V6_核心_52",
@@ -51309,7 +51311,28 @@
     "G5_0334",
     "V6_MORPH_18",
     "G4_184",
-    "V6_城市_20"
+    "V6_城市_20",
+    "G3_0951",
+    "G3_135",
+    "G4_0464",
+    "G4_0728",
+    "G5_0463",
+    "G5_0658",
+    "G5_0874",
+    "G5_0884",
+    "G5_235",
+    "G6_0459",
+    "V6_天气_37",
+    "V6_身体_19",
+    "V6_食物_21",
+    "ADD_0097",
+    "ADD_0123",
+    "ADD_0133",
+    "ADD_0167",
+    "ADD_0184",
+    "ADD_0185",
+    "ADD_0259",
+    "ADD_0376"
    ],
    "occ": {
     "G1_K01#0": [
@@ -51599,7 +51622,7 @@
    "name": "e 在闭音节读短音 /e/",
    "menu": "",
    "face": "",
-   "count": 276,
+   "count": 278,
    "word_ids": [
     "ADD_0393",
     "ADD_0394",
@@ -51876,7 +51899,9 @@
     "G4_0415",
     "G5_0613",
     "G6_0617",
-    "G3_0951"
+    "G3_0951",
+    "G3_151",
+    "ADD_0264"
    ],
    "occ": {
     "ADD_0393": [
@@ -53560,7 +53585,7 @@
    "name": "i 在闭音节读短音 /ɪ/",
    "menu": "",
    "face": "",
-   "count": 408,
+   "count": 422,
    "word_ids": [
     "G5_0324",
     "ADD_0397",
@@ -53969,7 +53994,21 @@
     "V6_核心_50",
     "V6_核心_51",
     "ADD_0330",
-    "ADD_0717"
+    "ADD_0717",
+    "G2_K02",
+    "G3_0653",
+    "G4_200",
+    "G5_0323",
+    "V6_交通_26",
+    "V6_学校_75",
+    "V6_日常_8",
+    "V6_运动_23",
+    "V6_食物_52",
+    "ADD_0186",
+    "ADD_0189",
+    "ADD_0317",
+    "ADD_0599",
+    "ADD_0625"
    ],
    "occ": {
     "G5_0324": [
@@ -61279,7 +61318,7 @@
    "name": "a 读 /ɑː/（father、calm 一家）",
    "menu": "双元音",
    "face": "a",
-   "count": 52,
+   "count": 55,
    "word_ids": [
     "V6_核心_56",
     "G2_0893",
@@ -61332,7 +61371,10 @@
     "ADD_0379",
     "G6_0910",
     "ADD_0283",
-    "G4_0408"
+    "G4_0408",
+    "ADD_0115",
+    "ADD_0194",
+    "ADD_0340"
    ],
    "occ": {
     "G6_0909": [
@@ -71666,7 +71708,7 @@
    "name": "y 在（重读）词尾读 /aɪ/（my、fly）",
    "menu": "/aɪ/",
    "face": "",
-   "count": 35,
+   "count": 36,
    "word_ids": [
     "ADD_0411",
     "G3_0759",
@@ -71702,7 +71744,8 @@
     "V6_服装_32",
     "ADD_0692",
     "G5_Q05",
-    "ADD_0331"
+    "ADD_0331",
+    "G3_0650"
    ],
    "occ": {
     "ADD_0411": [
@@ -72590,7 +72633,7 @@
    "name": "辅音+le 收尾自成一音节（little、table）",
    "menu": "",
    "face": "",
-   "count": 66,
+   "count": 67,
    "word_ids": [
     "ADD_0395",
     "ADD_0397",
@@ -72657,7 +72700,8 @@
     "ADD_0702",
     "G6_0878",
     "V6_食物_47",
-    "ADD_0707"
+    "ADD_0707",
+    "G4_177"
    ],
    "occ": {
     "ADD_0395": [
@@ -76829,732 +76873,128 @@
   {
    "word": "one",
    "entry_id": "G1_025",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
+   "reason": "o-e 分体读 /ʌ/：§10.6 已登记缺口 2（o→/ʌ/ 无模式，约 56 词），待规律层裁定，不在本轮解决。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "o-e 分体读 /ʌ/：§10.6 已登记缺口 2（o→/ʌ/ 无模式，约 56 词），待规律层裁定，不在本轮解决。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "flower",
    "entry_id": "G2_075",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "favourite",
-   "entry_id": "G2_K02",
-   "reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "buy",
-   "entry_id": "G3_0650",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "live",
-   "entry_id": "G3_0653",
-   "reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "zebra",
-   "entry_id": "G3_0951",
-   "reason": "元音弱化（schwa）使菜单归属待核"
-  },
-  {
-   "word": "orange",
-   "entry_id": "G3_113",
-   "reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "giraffe",
-   "entry_id": "G3_123",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "woman",
-   "entry_id": "G3_135",
-   "reason": "元音弱化（schwa）使菜单归属待核"
-  },
-  {
-   "word": "twelve",
-   "entry_id": "G3_151",
-   "reason": "VCe 短读面：e-e 读短音 /e/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "shall",
-   "entry_id": "G3_K48",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "ow→/aʊ/ 已登记；唯一未归属处为词尾 -er→/ə/，属 §10.6 缺口 1（非重读 -er/-or/-ur/-ar→/ə/ 无模式，约 230 词），待规律层裁定。",
+   "status": "stays_pending",
+   "gap": "gap1",
+   "basis": "ow→/aʊ/ 已登记；唯一未归属处为词尾 -er→/ə/，属 §10.6 缺口 1（非重读 -er/-or/-ur/-ar→/ə/ 无模式，约 230 词），待规律层裁定。",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
   },
   {
    "word": "done",
    "entry_id": "G3_KA05",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "minute",
-   "entry_id": "G4_0382",
-   "reason": "VCe 短读面：u-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "baseball",
-   "entry_id": "G4_0403",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "sunflower",
-   "entry_id": "G4_0409",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "everyone",
-   "entry_id": "G4_0425",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "usually",
-   "entry_id": "G4_0464",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "station",
-   "entry_id": "G4_0517",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "lovely",
-   "entry_id": "G4_0542",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "ninety",
-   "entry_id": "G4_0554",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "policeman",
-   "entry_id": "G4_0728",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "notebook",
-   "entry_id": "G4_162",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "noodles",
-   "entry_id": "G4_177",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "expensive",
-   "entry_id": "G4_200",
-   "reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
+   "reason": "同 one：o-e→/ʌ/ 属缺口 2，待规律层裁定。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "同 one：o-e→/ʌ/ 属缺口 2，待规律层裁定。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "glove",
    "entry_id": "G4_201",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "active",
-   "entry_id": "G5_0323",
-   "reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "action",
-   "entry_id": "G5_0325",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "important",
-   "entry_id": "G5_0334",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "special",
-   "entry_id": "G5_0345",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "safety",
-   "entry_id": "G5_0359",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "housework",
-   "entry_id": "G5_0391",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "everybody",
-   "entry_id": "G5_0426",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "somebody",
-   "entry_id": "G5_0428",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "o-e→/ʌ/ 属缺口 2，待规律层裁定（ve 已归 GP-ve）。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "o-e→/ʌ/ 属缺口 2，待规律层裁定（ve 已归 GP-ve）。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "anyone",
    "entry_id": "G5_0429",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "everything",
-   "entry_id": "G5_0434",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "everywhere",
-   "entry_id": "G5_0436",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "usual",
-   "entry_id": "G5_0463",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "复合 anyone 的未决处即 one 成员的 o-e→/ʌ/，属缺口 2，待规律层裁定。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "复合 anyone 的未决处即 one 成员的 o-e→/ʌ/，属缺口 2，待规律层裁定。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "once",
    "entry_id": "G5_0587",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "July",
-   "entry_id": "G5_0609",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "national",
-   "entry_id": "G5_0658",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "schoolyard",
-   "entry_id": "G5_0698",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "timetable",
-   "entry_id": "G5_0714",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "hometown",
-   "entry_id": "G5_0725",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "spaceman",
-   "entry_id": "G5_0729",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "spaceship",
-   "entry_id": "G5_0730",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "sidewalk",
-   "entry_id": "G5_0744",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "grapefruit",
-   "entry_id": "G5_0751",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "firefly",
-   "entry_id": "G5_0761",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "housewife",
-   "entry_id": "G5_0769",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "politely",
-   "entry_id": "G5_0834",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "safely",
-   "entry_id": "G5_0835",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "comfortable",
-   "entry_id": "G5_0874",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "policewoman",
-   "entry_id": "G5_0884",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "fireplace",
-   "entry_id": "G5_0916",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "eyebrow",
-   "entry_id": "G5_0922",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "eyelash",
-   "entry_id": "G5_0923",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "eyeglass",
-   "entry_id": "G5_0924",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "eyesight",
-   "entry_id": "G5_0925",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "Wednesday",
-   "entry_id": "G5_214",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "delicious",
-   "entry_id": "G5_217",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "village",
-   "entry_id": "G5_233",
-   "reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "island",
-   "entry_id": "G5_235",
-   "reason": "元音弱化（schwa）使菜单归属待核"
-  },
-  {
-   "word": "vacation",
-   "entry_id": "G5_238",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "information",
-   "entry_id": "G6_0339",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "unusual",
-   "entry_id": "G6_0459",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "international",
-   "entry_id": "G6_0478",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "ourselves",
-   "entry_id": "G6_0616",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "earthquake",
-   "entry_id": "G6_0739",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "magician",
-   "entry_id": "G6_0782",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "widely",
-   "entry_id": "G6_0845",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "peaceful",
-   "entry_id": "G6_0849",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "invitation",
-   "entry_id": "G6_0863",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "education",
-   "entry_id": "G6_0865",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "spacecraft",
-   "entry_id": "G6_0910",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "hospital",
-   "entry_id": "G6_255",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "factory",
-   "entry_id": "G6_275",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "cleaned",
-   "entry_id": "G6_289",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "stayed",
-   "entry_id": "G6_291",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "washed",
-   "entry_id": "G6_292",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "watched",
-   "entry_id": "G6_293",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "leaves",
-   "entry_id": "V6_MORPH_7",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "luggage",
-   "entry_id": "V6_交通_26",
-   "reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "animal",
-   "entry_id": "V6_动物_0",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "police station",
-   "entry_id": "V6_城市_24",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "fire station",
-   "entry_id": "V6_城市_25",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "square",
-   "entry_id": "V6_城市_28",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "o-e→/ʌ/ 属缺口 2，待规律层裁定（ce 已归 GP-ce）。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "o-e→/ʌ/ 属缺口 2，待规律层裁定（ce 已归 GP-ce）。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "tower",
    "entry_id": "V6_城市_7",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "season",
-   "entry_id": "V6_天气_1",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "temperature",
-   "entry_id": "V6_天气_37",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "history",
-   "entry_id": "V6_学校_36",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "practise",
-   "entry_id": "V6_学校_75",
-   "reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "cousin",
-   "entry_id": "V6_家庭_17",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "lonely",
-   "entry_id": "V6_情感_16",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "thousand",
-   "entry_id": "V6_数字_30",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "同 flower：词尾 -er→/ə/ 属缺口 1，待规律层裁定。",
+   "status": "stays_pending",
+   "gap": "gap1",
+   "basis": "同 flower：词尾 -er→/ə/ 属缺口 1，待规律层裁定。",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
   },
   {
    "word": "some",
    "entry_id": "V6_数字_47",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "every",
-   "entry_id": "V6_数字_52",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "o-e→/ʌ/ 属缺口 2，待规律层裁定（some 在心词屋另有 o→/ʌ/ 心字裁定，两轨并行不悖）。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "o-e→/ʌ/ 属缺口 2，待规律层裁定（some 在心词屋另有 o→/ʌ/ 心字裁定，两轨并行不悖）。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "come",
    "entry_id": "V6_日常_2",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "have",
-   "entry_id": "V6_日常_5",
-   "reason": "VCe 短读面：a-e 读短音 /æ/（定版登记的例外型，如 give/live 型）"
+   "reason": "o-e→/ʌ/ 属缺口 2，待规律层裁定。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "o-e→/ʌ/ 属缺口 2，待规律层裁定。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "love",
    "entry_id": "V6_日常_63",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "give",
-   "entry_id": "V6_日常_8",
-   "reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
+   "reason": "o-e→/ʌ/ 属缺口 2，待规律层裁定（ve 已归 GP-ve）。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "o-e→/ʌ/ 属缺口 2，待规律层裁定（ve 已归 GP-ve）。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "above",
    "entry_id": "V6_核心_39",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "businessman",
-   "entry_id": "V6_职业_17",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "metal",
-   "entry_id": "V6_自然_27",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "festival",
-   "entry_id": "V6_节日_42",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "Spring Festival",
-   "entry_id": "V6_节日_47",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "National Day",
-   "entry_id": "V6_节日_51",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "New Year",
-   "entry_id": "V6_节日_53",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "Dragon Boat Festival",
-   "entry_id": "V6_节日_54",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "stomach",
-   "entry_id": "V6_身体_19",
-   "reason": "元音弱化（schwa）使菜单归属待核"
-  },
-  {
-   "word": "guitar",
-   "entry_id": "V6_运动_23",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "chocolate",
-   "entry_id": "V6_食物_21",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "cabbage",
-   "entry_id": "V6_食物_52",
-   "reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "ancient",
-   "entry_id": "ADD_0007",
-   "reason": "元音弱化（schwa）使菜单归属待核"
-  },
-  {
-   "word": "ballet",
-   "entry_id": "ADD_0012",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "o→/ʌ/（非分体，闭音节）同属缺口 2 的 o→/ʌ/ 家族，待规律层裁定（a→/ə/ 已归 GP-a-ə）。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "o→/ʌ/（非分体，闭音节）同属缺口 2 的 o→/ʌ/ 家族，待规律层裁定（a→/ə/ 已归 GP-a-ə）。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "become",
    "entry_id": "ADD_0018",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "college",
-   "entry_id": "ADD_0049",
-   "reason": "VCe 短读面：e-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "equal",
-   "entry_id": "ADD_0097",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "garage",
-   "entry_id": "ADD_0115",
-   "reason": "VCe 短读面：a-e 读短音 /ɑː/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "giant",
-   "entry_id": "ADD_0123",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "gone",
-   "entry_id": "ADD_0128",
-   "reason": "VCe 短读面：o-e 读短音 /ɔː/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "guard",
-   "entry_id": "ADD_0132",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "guava",
-   "entry_id": "ADD_0133",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "come 成员的 o-e→/ʌ/ 属缺口 2，待规律层裁定。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "come 成员的 o-e→/ʌ/ 属缺口 2，待规律层裁定。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "income",
    "entry_id": "ADD_0156",
-   "reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "karate",
-   "entry_id": "ADD_0167",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "league",
-   "entry_id": "ADD_0178",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "loyal",
-   "entry_id": "ADD_0184",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "machine",
-   "entry_id": "ADD_0185",
-   "reason": "元音弱化（schwa）使菜单归属待核"
-  },
-  {
-   "word": "manage",
-   "entry_id": "ADD_0186",
-   "reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "message",
-   "entry_id": "ADD_0189",
-   "reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "mirage",
-   "entry_id": "ADD_0194",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "nation",
-   "entry_id": "ADD_0202",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "occasion",
-   "entry_id": "ADD_0206",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "persuade",
-   "entry_id": "ADD_0221",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
+   "reason": "come 成员的 o-e→/ʌ/ 属缺口 2，待规律层裁定。",
+   "status": "stays_pending",
+   "gap": "gap2",
+   "basis": "come 成员的 o-e→/ʌ/ 属缺口 2，待规律层裁定。",
+   "original_reason": "VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"
   },
   {
    "word": "power",
    "entry_id": "ADD_0233",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "pronounced",
-   "entry_id": "ADD_0237",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "quay",
-   "entry_id": "ADD_0244",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "royal",
-   "entry_id": "ADD_0259",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "sense",
-   "entry_id": "ADD_0264",
-   "reason": "VCe 短读面：e-e 读短音 /e/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "voyage",
-   "entry_id": "ADD_0317",
-   "reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "camouflage",
-   "entry_id": "ADD_0340",
-   "reason": "VCe 短读面：a-e 读短音 /ɑː/（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "guano",
-   "entry_id": "ADD_0354",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "pneumonia",
-   "entry_id": "ADD_0376",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "politician",
-   "entry_id": "ADD_0377",
-   "reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
-  },
-  {
-   "word": "reread",
-   "entry_id": "ADD_0250",
-   "reason": "拼写含变脸组合但未按该组合成块切分（跨音节或被相邻字母块吞并），模式归属待核"
-  },
-  {
-   "word": "perspective",
-   "entry_id": "ADD_0599",
-   "reason": "VCe 短读面：分体词尾未读长音（定版登记的例外型，如 give/live 型）"
-  },
-  {
-   "word": "restive",
-   "entry_id": "ADD_0625",
-   "reason": "VCe 短读面：分体词尾未读长音（定版登记的例外型，如 give/live 型）"
+   "reason": "同 flower：词尾 -er→/ə/ 属缺口 1，待规律层裁定。",
+   "status": "stays_pending",
+   "gap": "gap1",
+   "basis": "同 flower：词尾 -er→/ə/ 属缺口 1，待规律层裁定。",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核"
   }
  ],
  "zero_hit": [
@@ -77675,5 +77115,3475 @@
    ],
    "note": "GP-wh-h 中 how heavy 的 wh 系 how+heavy 两词接缝拼出（how 本身拼作 h-o-w，不含 wh），审计报告 §3 已定性为伪影；其余模式（h/ow-aʊ/ea-e 等）归属不受影响。"
   }
- ]
+ ],
+ "pending_adjudicated": [
+  {
+   "word": "favourite",
+   "entry_id": "G2_K02",
+   "original_reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "分体 i-e 短读 /ɪ/：按已定版处置先例（since/hinge/office/service 的 i 均归 GP-i-ɪ）归 GP-i-ɪ；ou 弱读已归 GP-ou-ə。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "buy",
+   "entry_id": "G3_0650",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "y 读 /aɪ/ 归 GP-y-aɪ；u 静音见 note。本词原仅入 GP-b 池为部分覆盖，现补 y 的归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "u 不发音（buy 为整词形例外登记 §10.4），例外注记保留。",
+   "assign_patterns": [
+    "GP-y-aɪ"
+   ]
+  },
+  {
+   "word": "live",
+   "entry_id": "G3_0653",
+   "original_reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "分体 i-e 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例）；ve 已归 GP-ve。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "zebra",
+   "entry_id": "G3_0951",
+   "original_reason": "元音弱化（schwa）使菜单归属待核",
+   "status": "resolved_assign",
+   "basis": "词尾 a 弱读 /ə/ 归 GP-a-ə（菜单登记覆盖单字母 a 的弱读）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "orange",
+   "entry_id": "G3_113",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_exception",
+   "basis": "a 在 -ange 中弱读 /ɪ/ 无登记模式，裁为该词例外注记；o 已归 GP-o-ɒ、ge 已归 GP-ge，待裁仅此一处。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "giraffe",
+   "entry_id": "G3_123",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：重读 a 已归 GP-a-ɑː（BATH 面），全部归属，待裁为旧快照遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "woman",
+   "entry_id": "G3_135",
+   "original_reason": "元音弱化（schwa）使菜单归属待核",
+   "status": "resolved_assign",
+   "basis": "本项待裁之问为词尾 a 的 schwa 归属：归 GP-a-ə。o→/ʊ/ 另有 §10.6 微类登记，见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "o→/ʊ/ 为 §10.6 微类空白（o→/ʊ/ 无模式），注记保留待模式层处置，不属本菜单之问。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "twelve",
+   "entry_id": "G3_151",
+   "original_reason": "VCe 短读面：e-e 读短音 /e/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "-elve 中 e 读 /e/ 归 GP-e-e（同 fence 先例）；词尾 e 为 ve 组合的静音部分。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-e-e"
+   ]
+  },
+  {
+   "word": "shall",
+   "entry_id": "G3_K48",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "强读式 /ʃæl/ 全部归属：a 已归 GP-a-æ、ll 已归 GP-ll；待裁为双式转写对齐遗留。弱读见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "功能词弱读式 /ʃəl/ 中 a→/ə/ 为弱读变体，随强读式登记，不单独入池。"
+  },
+  {
+   "word": "minute",
+   "entry_id": "G4_0382",
+   "original_reason": "VCe 短读面：u-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_exception",
+   "basis": "u 读 /ɪ/ 无登记模式；心词屋已有先例裁定（minute 的 u→/ɪ/ 为心字部分 tiles），本项与之同口径，裁为例外注记，不另设模式。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "baseball",
+   "entry_id": "G4_0403",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：base（a-e 已登记）、ball（GP-ll）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "sunflower",
+   "entry_id": "G4_0409",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：sun 已覆盖；flower 成员见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "成员 flower 的词尾 -er→/ə/ 属缺口 1（flower 本体在缺口待裁清单），交叉引用；本复合词不计入缺口 14 项。"
+  },
+  {
+   "word": "everyone",
+   "entry_id": "G4_0425",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：every 已覆盖；one 成员见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "成员 one 的 o-e→/ʌ/ 属缺口 2（one 本体在缺口待裁清单），交叉引用；本复合词不计入缺口 14 项（口径：缺口计数以独立待裁条目为准）。"
+  },
+  {
+   "word": "usually",
+   "entry_id": "G4_0464",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 弱读 /ə/ 归 GP-a-ə；词尾 y 已归 GP-y-i；s 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "s 读 /ʒ/ 无登记模式，例外注记（同 usual）。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "station",
+   "entry_id": "G4_0517",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：已在 GP-tion 池；原对齐失败源于 gb 转写作成音节 /ʃn/ 与模式引用形 /ʃən/ 的记法差（§10.7 同类口径），非模式缺位。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "lovely",
+   "entry_id": "G4_0542",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：-ly（y→/i/）已覆盖；love 成员见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "成员 love 的 o-e→/ʌ/ 属缺口 2（love 本体在缺口待裁清单），交叉引用；本复合词不计入缺口 14 项。"
+  },
+  {
+   "word": "ninety",
+   "entry_id": "G4_0554",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "分体 i-e 的 e 为静音伙伴（i 已归 GP-i-aɪ-open 登记，nine+ty 构词），核心已覆盖；待裁为分体对齐遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "policeman",
+   "entry_id": "G4_0728",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "复合词逐成员裁定：man 的 a 弱读 /ə/ 归 GP-a-ə；police 部分 i 已归 GP-i-iː、c 已归 GP-c-s；o 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "成员 police 的 o 弱读 /ə/ 无登记模式（o 无 /ə/ 读法登记），例外注记。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "notebook",
+   "entry_id": "G4_162",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：note（o 已归 GP-o-əʊ-open）、book（GP-oo-ʊ）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "noodles",
+   "entry_id": "G4_177",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "词尾 -le 的成音节 /l/ 归 GP-le：与 little 先例同口径（gb 作 /ˈnuːdlz/ 成音节转写，模式引用形为 /əl/），补入 GP-le 池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-le"
+   ]
+  },
+  {
+   "word": "expensive",
+   "entry_id": "G4_200",
+   "original_reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "分体 i-e 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例）；词中 e 已归 GP-e-e；首 e 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "首 e 读 /ɪ/ 无登记模式（GP-e 家族无 /ɪ/ 读法登记），例外注记。",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "active",
+   "entry_id": "G5_0323",
+   "original_reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "分体 i-e 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "action",
+   "entry_id": "G5_0325",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "同 station：GP-tion 已在池，成音节 n 为转写变体。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "important",
+   "entry_id": "G5_0334",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：a 已在 GP-a-ə 池、or 已归 GP-or，全部归属，待裁为旧快照遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "special",
+   "entry_id": "G5_0345",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "字母组 ci 读 /ʃ/ 无独立登记模式（§2.5 孤儿口径：仅 -cian/-tion 家族块登记），裁为例外注记；其余字母均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "safety",
+   "entry_id": "G5_0359",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "分体 a-e 的 e 为静音伙伴（a 已归 GP-a-eɪ-open 登记），核心已覆盖；待裁为分体对齐遗留（同 safely 口径）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "housework",
+   "entry_id": "G5_0391",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：house（GP-ou-aʊ）、work（GP-or-w）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "everybody",
+   "entry_id": "G5_0426",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：every、body 均已覆盖。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "somebody",
+   "entry_id": "G5_0428",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：body 已覆盖；some 成员见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "成员 some 的 o-e→/ʌ/ 属缺口 2，交叉引用（口径同 everyone）。"
+  },
+  {
+   "word": "everything",
+   "entry_id": "G5_0434",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：every、thing 均已覆盖。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "everywhere",
+   "entry_id": "G5_0436",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：every、where（GP-ere 家族）均已覆盖。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "usual",
+   "entry_id": "G5_0463",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 弱读 /ə/ 归 GP-a-ə；u 已归 GP-u-juː；s 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "s 读 /ʒ/ 无登记模式（字母 s 无 /ʒ/ 读法登记），例外注记。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "July",
+   "entry_id": "G5_0609",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "u 读 /uː/：单字母 u 无 /uː/ 登记模式（GP-u 家族仅 ʌ/ʊ/uː-分体/juː），裁为例外注记；j、l、y 均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "national",
+   "entry_id": "G5_0658",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "-tion 已在 GP-tion 池（成音节 n 口径同 station）；词尾 -al 的 a 弱读 /ə/ 归 GP-a-ə（此处 -al 读 /əl/，非成音节 l）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "schoolyard",
+   "entry_id": "G5_0698",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：school（GP-oo-uː 一族登记）、yard（GP-ar）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "timetable",
+   "entry_id": "G5_0714",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：time（i-e 已登记）、table（GP-le）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "hometown",
+   "entry_id": "G5_0725",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：home、town（GP-ow-aʊ）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "spaceman",
+   "entry_id": "G5_0729",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：space（a-e 已登记）、man 均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "spaceship",
+   "entry_id": "G5_0730",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：space、ship（GP-sh、GP-i-ɪ）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "sidewalk",
+   "entry_id": "G5_0744",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：side（i-e 已登记）、walk（GP-a-ɔː）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "grapefruit",
+   "entry_id": "G5_0751",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：grape（a-e 已登记）、fruit（GP-ui）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "firefly",
+   "entry_id": "G5_0761",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：fire 的 i 已归 GP-i-aɪ-open（-ire 长读同族登记）、fly 已归 GP-y-aɪ，均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "housewife",
+   "entry_id": "G5_0769",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：house、wife（i-e 已登记）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "politely",
+   "entry_id": "G5_0834",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "分体 i-e 的 e 为静音伙伴（i 已归 GP-i-aɪ-open 登记），核心已覆盖；待裁为分体对齐遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "safely",
+   "entry_id": "G5_0835",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "分体 a-e 的 e 为静音伙伴（a 已归 GP-a-eɪ-open 登记），核心已覆盖；待裁为分体对齐遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "comfortable",
+   "entry_id": "G5_0874",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "-table 的 a 弱读 /ə/ 归 GP-a-ə（le 已归 GP-le）；其余未归属处均为缺口家族读音，见 note——本项主体可裁，缺口部分留痕不解决。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "首音节 o 读 /ʌ/ 属缺口 2 家族读音（o→/ʌ/），交叉引用 §10.6，不在本项裁定；-or- 词中弱读 /ə/ 同 temperature 注记口径。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "policewoman",
+   "entry_id": "G5_0884",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "复合词逐成员裁定：woman 部分的 a 弱读 /ə/ 归 GP-a-ə（与 woman 本体同口径；o→/ʊ/ 为 §10.6 微类注记，见 woman 项）；police 的 o 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "成员 police 的 o 弱读 /ə/ 无登记模式，注记保留（同 policeman）。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "fireplace",
+   "entry_id": "G5_0916",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：fire、place（a-e 已登记）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "eyebrow",
+   "entry_id": "G5_0922",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：brow（GP-ow-aʊ）已归属；成员 eye 为登记整词例外（§10.4：eye/y 归 GP-y-aɪ 且 ey 注册），按例外口径成立。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "eyelash",
+   "entry_id": "G5_0923",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：lash 已归属；成员 eye 为登记整词例外（§10.4），按例外口径成立。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "eyeglass",
+   "entry_id": "G5_0924",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：glass（GP-ss）已归属；成员 eye 为登记整词例外（§10.4），按例外口径成立。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "eyesight",
+   "entry_id": "G5_0925",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：sight（GP-igh）已归属；成员 eye 为登记整词例外（§10.4），按例外口径成立。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "Wednesday",
+   "entry_id": "G5_214",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "首个 d 不发音（词源静音），无登记模式，裁为例外注记；s 已归 GP-s-z、ay 已归 GP-ay。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "delicious",
+   "entry_id": "G5_217",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "字母组 ci 读 /ʃ/ 无独立登记模式，裁为例外注记（同 special 口径）；ou/ous 弱读已在池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "village",
+   "entry_id": "G5_233",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：已同在 GP-age 与 GP-i-ɪ 池，-age 的 i 短读与词尾块均已归属，待裁为旧快照遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "island",
+   "entry_id": "G5_235",
+   "original_reason": "元音弱化（schwa）使菜单归属待核",
+   "status": "resolved_assign",
+   "basis": "词中 a 弱读 /ə/ 归 GP-a-ə；s 静音见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "s 不发音（词源静音字母），例外注记。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "vacation",
+   "entry_id": "G5_238",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "同 station：GP-tion 已在池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "information",
+   "entry_id": "G6_0339",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：-tion 已在 GP-tion 池；首 a 已归 GP-a-eɪ-open；or 词中弱读见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词中 -or- 弱读 /ə/：缺口 1 家族相邻读音（词中位），交叉引用 §10.6。"
+  },
+  {
+   "word": "unusual",
+   "entry_id": "G6_0459",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 弱读 /ə/ 归 GP-a-ə；首 u 已归 GP-u-ʌ、次 u 已归 GP-u-juː；s 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "s 读 /ʒ/ 无登记模式，例外注记（同 usual）。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "international",
+   "entry_id": "G6_0478",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：-tion 已在 GP-tion 池（成音节 n 转写口径同 station）；er 词中弱读见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词中 -er- 弱读 /ə/：缺口 1 家族相邻读音（词中位），交叉引用 §10.6。"
+  },
+  {
+   "word": "ourselves",
+   "entry_id": "G6_0616",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：selves 部分（e、ve、s）已归属；our 的复合内弱化见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "成员 our 在复合词中整体读 /ɑː/（弱化形），与单独立词 /ˈaʊə/ 不同，注记保留。"
+  },
+  {
+   "word": "earthquake",
+   "entry_id": "G6_0739",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：earth（GP-ear-ɜː）、quake（GP-qu-kw + a-e）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "magician",
+   "entry_id": "G6_0782",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：已在 GP-cian 池；成音节 n 转写变体同 station 口径。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "widely",
+   "entry_id": "G6_0845",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "分体 i-e 的 e 为静音伙伴（i 已归 GP-i-aɪ-open 登记，wide+ly 构词），核心已覆盖；待裁为分体对齐遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "peaceful",
+   "entry_id": "G6_0849",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "ea 已归 GP-ea-iː、ce 的 c 已归 GP-c-s，核心已覆盖；-ful 弱读见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "-ful 中 u 弱读 /ə/ 为构词尾弱读，注记保留。"
+  },
+  {
+   "word": "invitation",
+   "entry_id": "G6_0863",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "同 station：GP-tion 已在池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "education",
+   "entry_id": "G6_0865",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "同 station：GP-tion 已在池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "spacecraft",
+   "entry_id": "G6_0910",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复合词逐成员裁定：space（a-e 已登记）、craft（a 已归 GP-a-ɑː BATH 面）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "hospital",
+   "entry_id": "G6_255",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -al 读成音节 /l/，a 为载体不发音，裁为例外注记（同 metal 口径）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "factory",
+   "entry_id": "G6_275",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "o 在 /ˈfæktri/ 中脱落不发音（syncope），无登记模式，裁为例外注记；其余字母已归属（a 已归 GP-a-æ、y 已归 GP-y-i）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "cleaned",
+   "entry_id": "G6_289",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -ed 读 /d/：§10.3 X2 定版口径：-ed 变体不单设模式；本项据此裁为例外注记（词干 clean 已全覆盖）；待裁为该定版前的旧登记。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "stayed",
+   "entry_id": "G6_291",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -ed 读 /d/：同 cleaned 口径（§10.3 X2 定版：-ed 不单设模式），裁为例外注记。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "washed",
+   "entry_id": "G6_292",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -ed 读 /t/：同 cleaned 口径（§10.3 X2 定版：-ed 不单设模式），裁为例外注记。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "watched",
+   "entry_id": "G6_293",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -ed 读 /t/：同 cleaned 口径（§10.3 X2 定版：-ed 不单设模式），裁为例外注记。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "leaves",
+   "entry_id": "V6_MORPH_7",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：ea 已归 GP-ea-iː、v 已归 GP-v、s 已归 GP-s-z，词尾 e 静音，全部归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "luggage",
+   "entry_id": "V6_交通_26",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "-age 块已在 GP-age 池；其中 i 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例口径），补入池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "animal",
+   "entry_id": "V6_动物_0",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：首 a 已归 GP-a-æ、词尾 a 已归 GP-a-ə、i 已归 GP-i-ɪ，全部归属，待裁为旧快照遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "police station",
+   "entry_id": "V6_城市_24",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "短语逐词裁定：police（见 policeman note）、station（GP-tion 已归属）成立。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "fire station",
+   "entry_id": "V6_城市_25",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "短语逐词裁定：fire、station（GP-tion）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "square",
+   "entry_id": "V6_城市_28",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：已在 GP-are 池；gb /skwɜː/ 为 /eə/ 的宽式转写，按 §10.7 定版（SQUARE 词集维持登记不改），待裁作废。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "season",
+   "entry_id": "V6_天气_1",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "o 为成音节 /n/ 的载体元音字母，不发音，无登记模式，裁为例外注记；ea 已归 GP-ea-iː、s 已归 GP-s-z。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "temperature",
+   "entry_id": "V6_天气_37",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 弱读 /ə/ 归 GP-a-ə；-ture 已在 GP-ture 池；er 词中弱读见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词中 -er- 弱读 /ə/：缺口 1 登记限于词尾位，此为词中位，不计入缺口 1 的 14 项；作家族相邻注记，交叉引用 §10.6。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "history",
+   "entry_id": "V6_学校_36",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "核心已覆盖（i 已归 GP-i-ɪ、y 已归 GP-y-i）；or 词中弱读见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词中 -or- 弱读 /ə/：缺口 1 家族相邻读音（词中位），交叉引用 §10.6，不计入缺口 1 的 14 项。"
+  },
+  {
+   "word": "practise",
+   "entry_id": "V6_学校_75",
+   "original_reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "分体 i-e 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "cousin",
+   "entry_id": "V6_家庭_17",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "i 为成音节 /n/ 的载体元音字母，不发音，无登记模式，裁为例外注记；ou 已归 GP-ou-ʌ。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "lonely",
+   "entry_id": "V6_情感_16",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "核心拼读已全覆盖（o 已归 GP-o-əʊ-open、y 已归 GP-y-i）；待裁源于构词边界 e 的对齐，见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词中 e 为 lone+ly 构词边界上的静音字母（分体 o-e 的 e），注记保留。"
+  },
+  {
+   "word": "thousand",
+   "entry_id": "V6_数字_30",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "a 为成音节 /n/ 的载体元音字母，不发音，无登记模式，裁为例外注记；ou 已归 GP-ou-aʊ、s 已归 GP-s-z。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "every",
+   "entry_id": "V6_数字_52",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "首 e 已归 GP-e-e、y 已归 GP-y-i；脱落 e 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词中第二个 e 脱落不发音（syncope，/ˈevri/），注记保留。"
+  },
+  {
+   "word": "have",
+   "entry_id": "V6_日常_5",
+   "original_reason": "VCe 短读面：a-e 读短音 /æ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "a 读 /æ/ 与单字母短元音模式 GP-a-æ 的（字母，音素）对一致，归 GP-a-æ；原待裁源于分体 a-e 误切，ve 已归 GP-ve。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-æ"
+   ]
+  },
+  {
+   "word": "give",
+   "entry_id": "V6_日常_8",
+   "original_reason": "VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "分体 i-e 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例）；ve 已归 GP-ve。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "businessman",
+   "entry_id": "V6_职业_17",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "成员 business 本体多处未登记（u→/ɪ/、i 静音、e→/ə/、ss→/s/ 未入池），裁为例外注记；man 成员（a-æ、m、n）已覆盖。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "metal",
+   "entry_id": "V6_自然_27",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -al 读成音节 /l/，a 为载体不发音，无 GP-al 登记模式，裁为例外注记；其余字母已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "festival",
+   "entry_id": "V6_节日_42",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -al 读成音节 /l/，a 为载体不发音，裁为例外注记（同 metal 口径）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "Spring Festival",
+   "entry_id": "V6_节日_47",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "短语逐词裁定：spring 已覆盖；festival 的 -al 成音节注记见 festival 项。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "National Day",
+   "entry_id": "V6_节日_51",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "短语逐词裁定：national（GP-tion 已归属）、day（GP-ay）成立。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "New Year",
+   "entry_id": "V6_节日_53",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "短语逐词裁定：new（GP-ew）、year（GP-ear-ɪə）均已归属。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "Dragon Boat Festival",
+   "entry_id": "V6_节日_54",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "词库 phonetic_gb 仅注 dragon boat 部分、Festival 未注音（数据注音范围说明，见 §10.3 登记）；已注部分（dr/gon/boat）归属成立，本项非模式问题，裁为已说明。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "stomach",
+   "entry_id": "V6_身体_19",
+   "original_reason": "元音弱化（schwa）使菜单归属待核",
+   "status": "resolved_assign",
+   "basis": "词中 a 弱读 /ə/ 归 GP-a-ə；ch→/k/ 已归 GP-ch-k。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "guitar",
+   "entry_id": "V6_运动_23",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "i 读 /ɪ/ 归 GP-i-ɪ，补入池；gu 已归 GP-gu、ar 已归 GP-ar。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "chocolate",
+   "entry_id": "V6_食物_21",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "-late 中的 a 弱读 /ə/ 归 GP-a-ə（词尾 e 静音）；首 o 已归 GP-o-ɒ；第二个 o 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "第二个 o 弱读近脱落（/ə/），单字母 o 无 /ə/ 读法登记，例外注记。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "cabbage",
+   "entry_id": "V6_食物_52",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "-age 块已在 GP-age 池；其中 i 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例口径），补入池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "ancient",
+   "entry_id": "ADD_0007",
+   "original_reason": "元音弱化（schwa）使菜单归属待核",
+   "status": "resolved_exception",
+   "basis": "字母组 ien 读 /ʃə/ 无登记模式，裁为例外注记；与心词屋 ancient 例外 tiles（ie→/ʃ/ 心字部分）同口径，交叉引用 §11.2。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "ballet",
+   "entry_id": "ADD_0012",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -et 读 /eɪ/ 无登记模式；与心词裁定同口径（§11.2 ballet 心字部分），裁为例外注记，交叉引用。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "college",
+   "entry_id": "ADD_0049",
+   "original_reason": "VCe 短读面：e-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_exception",
+   "basis": "e 在 -ege 中读 /ɪ/ 无登记模式，裁为该词例外注记；o 已归 GP-o-ɒ、ge 已归 GP-ge。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "equal",
+   "entry_id": "ADD_0097",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 弱读 /ə/ 归 GP-a-ə；e 已归 GP-e-iː-open、qu 已归 GP-qu-kw。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "garage",
+   "entry_id": "ADD_0115",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɑː/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "第二音节 a 读 /ɑː/ 归 GP-a-ɑː；词尾 ge→/ʒ/ 已在心词裁定中裁为心字部分（见 §11.2），交叉引用。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ɑː"
+   ]
+  },
+  {
+   "word": "giant",
+   "entry_id": "ADD_0123",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 弱读 /ə/ 归 GP-a-ə；i 已在 GP-i-aɪ-open 池（§10.7 i 的 /aɪ/ 开音节口径）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "gone",
+   "entry_id": "ADD_0128",
+   "original_reason": "VCe 短读面：o-e 读短音 /ɔː/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：gone 已在 GP-o-ɒ 池——GB 口径下 o 读 /ɒ/ 有登记归属；原待裁理由为 GA 期（/ɡɔːn/）遗留，作废。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "guard",
+   "entry_id": "ADD_0132",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：ar 已归 GP-ar、g 已归 GP-g-g；u 为 gu 拼写组合的静音伴随（GP-gu 登记同词），无独立音位待裁。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "guava",
+   "entry_id": "ADD_0133",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "词尾 a 弱读 /ə/ 归 GP-a-ə；首 a 已归 GP-a-ɑː；gu 的 u 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "字母组 gu 中 u 读 /w/ 滑音，GP-gu 登记读法为 /ɡ/（u 静音），此 glide 无登记模式，例外注记。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "karate",
+   "entry_id": "ADD_0167",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "首 a 弱读 /ə/ 归 GP-a-ə；重读 a 已归 GP-a-ɑː；词尾 e 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词尾 e 读 /i/（外来词词尾），无登记模式，例外注记。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "league",
+   "entry_id": "ADD_0178",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：ea 已归 GP-ea-iː、gu 已归 GP-gu，全部归属，待裁为旧快照遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "loyal",
+   "entry_id": "ADD_0184",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 弱读 /ə/ 归 GP-a-ə；oy 已归 GP-oy。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "machine",
+   "entry_id": "ADD_0185",
+   "original_reason": "元音弱化（schwa）使菜单归属待核",
+   "status": "resolved_assign",
+   "basis": "词首 a 弱读 /ə/ 归 GP-a-ə；ch→/ʃ/ 已归 GP-ch-ʃ、i→/iː/ 已归 GP-i-iː。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "manage",
+   "entry_id": "ADD_0186",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "-age 块已在 GP-age 池；其中 i 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例口径），补入池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "message",
+   "entry_id": "ADD_0189",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "-age 块已在 GP-age 池；其中 i 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例口径），补入池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "mirage",
+   "entry_id": "ADD_0194",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 读 /ɑː/ 归 GP-a-ɑː；ge 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词尾 ge 读 /ʒ/ 已在心词裁定中裁为心字部分（§11.2），交叉引用。",
+   "assign_patterns": [
+    "GP-a-ɑː"
+   ]
+  },
+  {
+   "word": "nation",
+   "entry_id": "ADD_0202",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "同 station：GP-tion 已在池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "occasion",
+   "entry_id": "ADD_0206",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "复核定版词池：已在 GP-sion-ʒ 池，词尾块已归属；首 o 弱读见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "首音节 o 弱读 /ə/ 无登记模式（o 无 /ə/ 读法登记），例外注记。"
+  },
+  {
+   "word": "persuade",
+   "entry_id": "ADD_0221",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "分体 a-e 已在 GP-a-e 池；但首 e 弱读 /ə/（e 无 /ə/ 读法登记）与 suade 中 u 的 /w/ 滑音均无登记模式，裁为例外注记。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "pronounced",
+   "entry_id": "ADD_0237",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "词尾 -ed 读 /t/：同 cleaned 口径（§10.3 X2 定版），裁为例外注记；ou、ce 已在池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "quay",
+   "entry_id": "ADD_0244",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "ay 读 /iː/ 无登记模式（GP-ay 仅 /eɪ/）；心词屋 quay tiles 有同口径（ay→/iː/ 为心字部分），裁为例外注记，交叉引用 §11.2。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "royal",
+   "entry_id": "ADD_0259",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "a 弱读 /ə/ 归 GP-a-ə；oy 已归 GP-oy。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "sense",
+   "entry_id": "ADD_0264",
+   "original_reason": "VCe 短读面：e-e 读短音 /e/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "e 读 /e/ 归 GP-e-e（同 fence 先例）；ce 已归 GP-ce。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-e-e"
+   ]
+  },
+  {
+   "word": "voyage",
+   "entry_id": "ADD_0317",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "-age 块已在 GP-age 池；其中 i 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例口径），补入池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "camouflage",
+   "entry_id": "ADD_0340",
+   "original_reason": "VCe 短读面：a-e 读短音 /ɑː/（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "第二音节 a 读 /ɑː/ 归 GP-a-ɑː（ou 弱读已归 GP-ou-ə）；ge→/ʒ/ 交叉引用心词裁定（§11.2）。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-a-ɑː"
+   ]
+  },
+  {
+   "word": "guano",
+   "entry_id": "ADD_0354",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_exception",
+   "basis": "字母组 gu 中 u 读 /w/ 滑音无登记模式，裁为例外注记（同 guava note 口径）；a 已归 GP-a-ɑː、o 已归 GP-o-əʊ-open。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "pneumonia",
+   "entry_id": "ADD_0376",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_assign",
+   "basis": "词尾 a 弱读 /ə/ 归 GP-a-ə；i 已在 GP-i-ɪ 池（§10.7 i 的 /i/ 口径）、u 已归 GP-u-juː；e 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "词首 eu 中的 e 不发音（随 eu 组合，心词屋 pneumonia tiles 有同口径处理），例外注记。",
+   "assign_patterns": [
+    "GP-a-ə"
+   ]
+  },
+  {
+   "word": "politician",
+   "entry_id": "ADD_0377",
+   "original_reason": "拼写与音标音节对齐失败（音节数不合），需人工核",
+   "status": "resolved_covered",
+   "basis": "同 magician：GP-cian 已在池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "reread",
+   "entry_id": "ADD_0250",
+   "original_reason": "拼写含变脸组合但未按该组合成块切分（跨音节或被相邻字母块吞并），模式归属待核",
+   "status": "resolved_covered",
+   "basis": "ea 已在 GP-ea-iː 池，读 /iː/ 有登记归属；ere 跨 re- 前缀边界，按 §8 边界样本定版（前缀外字母组不另裁）不构成待裁，待裁为旧登记遗留。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3"
+  },
+  {
+   "word": "perspective",
+   "entry_id": "ADD_0599",
+   "original_reason": "VCe 短读面：分体词尾未读长音（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "词尾 -ive 的 i 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例）；词中 e 已归 GP-e-e；首 e 见 note。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "note": "首 e 弱读 /ə/ 无登记模式（e 无 /ə/ 读法登记），例外注记。",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  },
+  {
+   "word": "restive",
+   "entry_id": "ADD_0625",
+   "original_reason": "VCe 短读面：分体词尾未读长音（定版登记的例外型，如 give/live 型）",
+   "status": "resolved_assign",
+   "basis": "词尾 -ive 的 i 短读 /ɪ/ 归 GP-i-ɪ（同 since 先例）；其余音节已在池。",
+   "adjudicated": "2026-11-02 PHONICS_WORDSETS.md §11.3",
+   "assign_patterns": [
+    "GP-i-ɪ"
+   ]
+  }
+ ],
+ "heart_adjudication": {
+  "meta": {
+   "date": "2026-11-02",
+   "source": "phonics-prototype-v1.html X2.heartPending（38 条对位待核）",
+   "method": "逐词按登记表（模式登记 + 词库 phonetic_gb）做字母-音素对位：每个字母/字母组或由已登记模式覆盖（plain，注明模式），或裁为心字部分（heart，注明无登记模式的理据与先例）。单音节词另以 tiles 音素拼接 == phonetic_gb 程序校验（成音节辅音 ə 脱落记法等价）。",
+   "counts": {
+    "total": 38,
+    "decodable": 14,
+    "heart": 20,
+    "mixed": 4,
+    "stays_pending": 0
+   }
+  },
+  "entries": [
+   {
+    "word": "carry",
+    "entry_id": "G3_0387",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "carry",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "c",
+        "k",
+        "plain",
+        "GP-c-k"
+       ],
+       [
+        "a",
+        "æ",
+        "plain",
+        "GP-a-æ"
+       ],
+       [
+        "rr",
+        "r",
+        "plain",
+        "GP-r"
+       ],
+       [
+        "y",
+        "i",
+        "plain",
+        "GP-y-i"
+       ]
+      ],
+      "note": "rr 双写读单 /r/（§2.5 双写口径）；全词各字母均有登记模式，裁为可拼读。"
+     }
+    ]
+   },
+   {
+    "word": "funny",
+    "entry_id": "G3_0821",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "funny",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "f",
+        "f",
+        "plain",
+        "GP-f"
+       ],
+       [
+        "u",
+        "ʌ",
+        "plain",
+        "GP-u-ʌ"
+       ],
+       [
+        "nn",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "y",
+        "i",
+        "plain",
+        "GP-y-i"
+       ]
+      ],
+      "note": "nn 双写读单 /n/；裁为可拼读。"
+     }
+    ]
+   },
+   {
+    "word": "giggle",
+    "entry_id": "ADD_0124",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "giggle",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "g",
+        "g",
+        "plain",
+        "GP-g-g"
+       ],
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "gg",
+        "g",
+        "plain",
+        "GP-g-g"
+       ],
+       [
+        "le",
+        "əl",
+        "plain",
+        "GP-le"
+       ]
+      ],
+      "note": "gg 双写读单 /g/；-le 已在 GP-le 池；裁为可拼读。"
+     }
+    ]
+   },
+   {
+    "word": "little",
+    "entry_id": "V6_数字_54",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "little",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "l",
+        "l",
+        "plain",
+        "GP-l"
+       ],
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "tt",
+        "t",
+        "plain",
+        "GP-t"
+       ],
+       [
+        "le",
+        "əl",
+        "plain",
+        "GP-le"
+       ]
+      ],
+      "note": "tt 双写读单 /t/；已在 GP-le 池；裁为可拼读。"
+     }
+    ]
+   },
+   {
+    "word": "hiccough",
+    "entry_id": "ADD_0358",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "hiccough",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "cc",
+        "k",
+        "plain",
+        "GP-c-k"
+       ],
+       [
+        "ough",
+        "ʌp",
+        "plain",
+        "GP-ough-ʌp"
+       ]
+      ],
+      "note": "ough 读 /ʌp/ 已登记 GP-ough-ʌp（本词为该模式唯一成员）；cc 双写读 /k/；裁为可拼读。"
+     }
+    ]
+   },
+   {
+    "word": "the",
+    "entry_id": "G1_K02",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "the",
+      "verdict": "heart",
+      "heart_parts": [
+       "e"
+      ],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "e",
+        "ə",
+        "heart",
+        "弱读 /ðə/ 中 e 读 /ə/ 无登记模式（GP-e 无 /ə/ 读法），心字部分；强读式 /ðiː/ 由 GP-e-iː-open 覆盖，非心字"
+       ]
+      ],
+      "note": "按弱读式（词库 gb 首选 /ðə/）裁定：真心词，心字部分 = e。"
+     }
+    ]
+   },
+   {
+    "word": "pretty",
+    "entry_id": "G2_070",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "pretty",
+      "verdict": "heart",
+      "heart_parts": [
+       "e"
+      ],
+      "tiles": [
+       [
+        "p",
+        "p",
+        "plain",
+        "GP-p"
+       ],
+       [
+        "r",
+        "r",
+        "plain",
+        "GP-r"
+       ],
+       [
+        "e",
+        "ɪ",
+        "heart",
+        "e 读 /ɪ/ 无登记模式（GP-e 家族无 /ɪ/ 读法），心字部分"
+       ],
+       [
+        "tt",
+        "t",
+        "plain",
+        "GP-t"
+       ],
+       [
+        "y",
+        "i",
+        "plain",
+        "GP-y-i"
+       ]
+      ],
+      "note": "真心词，心字部分 = e（读 /ɪ/）。"
+     }
+    ]
+   },
+   {
+    "word": "better",
+    "entry_id": "V6_MORPH_60",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "better",
+      "verdict": "heart",
+      "heart_parts": [
+       "er"
+      ],
+      "tiles": [
+       [
+        "b",
+        "b",
+        "plain",
+        "GP-b"
+       ],
+       [
+        "e",
+        "e",
+        "plain",
+        "GP-e-e"
+       ],
+       [
+        "tt",
+        "t",
+        "plain",
+        "GP-t"
+       ],
+       [
+        "er",
+        "ə",
+        "heart",
+        "词尾 -er 弱读 /ə/：§10.6 缺口 1 未登记模式；心词屋现行口径以心字承载，同 mother/brother/other/sister 先例"
+       ]
+      ],
+      "note": "真心词，心字部分 = 词尾 er。"
+     }
+    ]
+   },
+   {
+    "word": "open",
+    "entry_id": "V6_日常_10",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "open",
+      "verdict": "heart",
+      "heart_parts": [
+       "e"
+      ],
+      "tiles": [
+       [
+        "o",
+        "əʊ",
+        "plain",
+        "GP-o-əʊ-open"
+       ],
+       [
+        "p",
+        "p",
+        "plain",
+        "GP-p"
+       ],
+       [
+        "e",
+        "ə",
+        "heart",
+        "e 弱读 /ə/ 无登记模式（GP-e 无 /ə/ 读法），心字部分；同心词屋 chicken 的 e→/ə/ 心字先例"
+       ],
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ]
+      ],
+      "note": "真心词，心字部分 = 弱读 e。"
+     }
+    ]
+   },
+   {
+    "word": "laugh",
+    "entry_id": "V6_日常_56",
+    "pending_reason": "对位代价过高",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "laugh",
+      "verdict": "heart",
+      "heart_parts": [
+       "ugh"
+      ],
+      "tiles": [
+       [
+        "l",
+        "l",
+        "plain",
+        "GP-l"
+       ],
+       [
+        "a",
+        "ɑː",
+        "plain",
+        "GP-a-ɑː"
+       ],
+       [
+        "ugh",
+        "f",
+        "heart",
+        "字母组 ugh 在词中读 /f/ 无登记模式（-augh 未登记），心字部分"
+       ]
+      ],
+      "note": "真心词，心字部分 = ugh；a 已由 GP-a-ɑː（BATH 面）覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "over",
+    "entry_id": "V6_核心_40",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "over",
+      "verdict": "heart",
+      "heart_parts": [
+       "er"
+      ],
+      "tiles": [
+       [
+        "o",
+        "əʊ",
+        "plain",
+        "GP-o-əʊ-open"
+       ],
+       [
+        "v",
+        "v",
+        "plain",
+        "GP-v"
+       ],
+       [
+        "er",
+        "ə",
+        "heart",
+        "词尾 -er 弱读 /ə/：§10.6 缺口 1 未登记模式；心词屋现行口径以心字承载，同 mother/brother/other/sister 先例"
+       ]
+      ],
+      "note": "真心词，心字部分 = 词尾 er。"
+     }
+    ]
+   },
+   {
+    "word": "never",
+    "entry_id": "V6_核心_69",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "never",
+      "verdict": "heart",
+      "heart_parts": [
+       "er"
+      ],
+      "tiles": [
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "e",
+        "e",
+        "plain",
+        "GP-e-e"
+       ],
+       [
+        "v",
+        "v",
+        "plain",
+        "GP-v"
+       ],
+       [
+        "er",
+        "ə",
+        "heart",
+        "词尾 -er 弱读 /ə/：§10.6 缺口 1 未登记模式；心词屋现行口径以心字承载，同 mother/brother/other/sister 先例"
+       ]
+      ],
+      "note": "真心词，心字部分 = 词尾 er。"
+     }
+    ]
+   },
+   {
+    "word": "together",
+    "entry_id": "V6_核心_79",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "together",
+      "verdict": "heart",
+      "heart_parts": [
+       "o",
+       "er"
+      ],
+      "tiles": [
+       [
+        "t",
+        "t",
+        "plain",
+        "GP-t"
+       ],
+       [
+        "o",
+        "ʊ",
+        "heart",
+        "词首 o 读 /ʊ/（词库 gb /tʊˈɡeðə/）无登记模式（o→/ʊ/ 微类空白，§10.6 登记），心字部分"
+       ],
+       [
+        "g",
+        "g",
+        "plain",
+        "GP-g-g"
+       ],
+       [
+        "e",
+        "e",
+        "plain",
+        "GP-e-e"
+       ],
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "er",
+        "ə",
+        "heart",
+        "词尾 -er 弱读 /ə/：§10.6 缺口 1 未登记模式；心词屋现行口径以心字承载，同 mother/brother/other/sister 先例"
+       ]
+      ],
+      "note": "真心词，心字部分 = 词首 o（读 /ʊ/）与词尾 er 两处。"
+     }
+    ]
+   },
+   {
+    "word": "ballet",
+    "entry_id": "ADD_0012",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "ballet",
+      "verdict": "heart",
+      "heart_parts": [
+       "et"
+      ],
+      "tiles": [
+       [
+        "b",
+        "b",
+        "plain",
+        "GP-b"
+       ],
+       [
+        "a",
+        "æ",
+        "plain",
+        "GP-a-æ"
+       ],
+       [
+        "ll",
+        "l",
+        "plain",
+        "GP-ll"
+       ],
+       [
+        "et",
+        "eɪ",
+        "heart",
+        "外来词词尾 -et 读 /eɪ/ 无登记模式（法语借词层），心字部分"
+       ]
+      ],
+      "note": "真心词，心字部分 = 词尾 et。"
+     }
+    ]
+   },
+   {
+    "word": "garage",
+    "entry_id": "ADD_0115",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "garage",
+      "verdict": "heart",
+      "heart_parts": [
+       "ge"
+      ],
+      "tiles": [
+       [
+        "g",
+        "g",
+        "plain",
+        "GP-g-g"
+       ],
+       [
+        "a",
+        "æ",
+        "plain",
+        "GP-a-æ"
+       ],
+       [
+        "r",
+        "r",
+        "plain",
+        "GP-r"
+       ],
+       [
+        "a",
+        "ɑː",
+        "plain",
+        "GP-a-ɑː"
+       ],
+       [
+        "ge",
+        "ʒ",
+        "heart",
+        "ge 读 /ʒ/：GP-ge 登记读法为 /dʒ/，/ʒ/ 无登记模式（法语借词层），心字部分；同心词屋 beige 的 ge→/ʒ/ 心字先例"
+       ]
+      ],
+      "note": "真心词，心字部分 = ge；第二 a 已由 GP-a-ɑː 覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "heir",
+    "entry_id": "ADD_0145",
+    "pending_reason": "对位代价过高",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "heir",
+      "verdict": "heart",
+      "heart_parts": [
+       "h",
+       "eir"
+      ],
+      "tiles": [
+       [
+        "h",
+        "",
+        "heart",
+        "h 不发音（借词静音 h），心字部分"
+       ],
+       [
+        "eir",
+        "eə",
+        "heart",
+        "字母组 eir 读 /eə/ 无登记模式，心字部分"
+       ]
+      ],
+      "note": "真心词，心字部分 = 静音 h 与 eir。"
+     }
+    ]
+   },
+   {
+    "word": "honest",
+    "entry_id": "ADD_0152",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "honest",
+      "verdict": "heart",
+      "heart_parts": [
+       "h",
+       "e"
+      ],
+      "tiles": [
+       [
+        "h",
+        "",
+        "heart",
+        "h 不发音（静音 h），心字部分"
+       ],
+       [
+        "o",
+        "ɒ",
+        "plain",
+        "GP-o-ɒ"
+       ],
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "e",
+        "ɪ",
+        "heart",
+        "e 读 /ɪ/ 无登记模式（GP-e 家族无 /ɪ/ 读法），心字部分"
+       ],
+       [
+        "s",
+        "s",
+        "plain",
+        "GP-s-s"
+       ],
+       [
+        "t",
+        "t",
+        "plain",
+        "GP-t"
+       ]
+      ],
+      "note": "真心词，心字部分 = 静音 h 与 e（读 /ɪ/）。"
+     }
+    ]
+   },
+   {
+    "word": "leisure",
+    "entry_id": "ADD_0179",
+    "pending_reason": "对位代价过高",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "leisure",
+      "verdict": "heart",
+      "heart_parts": [
+       "ei",
+       "s",
+       "ure"
+      ],
+      "tiles": [
+       [
+        "l",
+        "l",
+        "plain",
+        "GP-l"
+       ],
+       [
+        "ei",
+        "e",
+        "heart",
+        "ei 读 /e/ 无登记模式（GP-ei 仅登记 /eɪ/ 与 /iː/），心字部分"
+       ],
+       [
+        "s",
+        "ʒ",
+        "heart",
+        "s 读 /ʒ/ 无登记模式，心字部分"
+       ],
+       [
+        "ure",
+        "ə",
+        "heart",
+        "词尾 -ure 弱读 /ə/ 无独立登记模式（GP-ture 含 t，不合本词），心字部分"
+       ]
+      ],
+      "note": "真心词，心字部分 = ei、s 与词尾 ure 三处。"
+     }
+    ]
+   },
+   {
+    "word": "mirage",
+    "entry_id": "ADD_0194",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "mirage",
+      "verdict": "heart",
+      "heart_parts": [
+       "ge"
+      ],
+      "tiles": [
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ],
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "r",
+        "r",
+        "plain",
+        "GP-r"
+       ],
+       [
+        "a",
+        "ɑː",
+        "plain",
+        "GP-a-ɑː"
+       ],
+       [
+        "ge",
+        "ʒ",
+        "heart",
+        "ge 读 /ʒ/：GP-ge 登记读法为 /dʒ/，/ʒ/ 无登记模式（法语借词层），心字部分；同心词屋 beige 的 ge→/ʒ/ 心字先例"
+       ]
+      ],
+      "note": "真心词，心字部分 = ge。"
+     }
+    ]
+   },
+   {
+    "word": "neither",
+    "entry_id": "ADD_0203",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "neither",
+      "verdict": "heart",
+      "heart_parts": [
+       "ei",
+       "er"
+      ],
+      "tiles": [
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "ei",
+        "aɪ",
+        "heart",
+        "ei 读 /aɪ/ 无登记模式（GP-ei 仅 /eɪ//iː/ 两读），心字部分；Cambridge 另标 /ˈniːðə/ 变体，本项从词库 gb /ˈnaɪðə/"
+       ],
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "er",
+        "ə",
+        "heart",
+        "词尾 -er 弱读 /ə/：§10.6 缺口 1 未登记模式；心词屋现行口径以心字承载，同 mother/brother/other/sister 先例"
+       ]
+      ],
+      "note": "真心词，心字部分 = ei 与词尾 er。"
+     }
+    ]
+   },
+   {
+    "word": "shepherd",
+    "entry_id": "ADD_0268",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "shepherd",
+      "verdict": "heart",
+      "heart_parts": [
+       "ph",
+       "er"
+      ],
+      "tiles": [
+       [
+        "sh",
+        "ʃ",
+        "plain",
+        "GP-sh"
+       ],
+       [
+        "e",
+        "e",
+        "plain",
+        "GP-e-e"
+       ],
+       [
+        "ph",
+        "p",
+        "heart",
+        "ph 读 /p/：GP-ph 登记读法为 /f/；本词为 sheep+herd 的历史复合拼写，心字部分"
+       ],
+       [
+        "er",
+        "ə",
+        "heart",
+        "词尾 -er 弱读 /ə/：§10.6 缺口 1 未登记模式；心词屋现行口径以心字承载，同 mother/brother/other/sister 先例"
+       ],
+       [
+        "d",
+        "d",
+        "plain",
+        "GP-d"
+       ]
+      ],
+      "note": "真心词，心字部分 = ph 与词尾 er。"
+     }
+    ]
+   },
+   {
+    "word": "weird",
+    "entry_id": "ADD_0322",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "weird",
+      "verdict": "heart",
+      "heart_parts": [
+       "eir"
+      ],
+      "tiles": [
+       [
+        "w",
+        "w",
+        "plain",
+        "GP-w"
+       ],
+       [
+        "eir",
+        "ɪə",
+        "heart",
+        "字母组 eir 读 /ɪə/ 无登记模式，心字部分"
+       ],
+       [
+        "d",
+        "d",
+        "plain",
+        "GP-d"
+       ]
+      ],
+      "note": "真心词，心字部分 = eir。"
+     }
+    ]
+   },
+   {
+    "word": "camouflage",
+    "entry_id": "ADD_0340",
+    "pending_reason": "两种对位代价相同、心的位置不同",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "camouflage",
+      "verdict": "heart",
+      "heart_parts": [
+       "ge"
+      ],
+      "tiles": [
+       [
+        "c",
+        "k",
+        "plain",
+        "GP-c-k"
+       ],
+       [
+        "a",
+        "æ",
+        "plain",
+        "GP-a-æ"
+       ],
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ],
+       [
+        "ou",
+        "ə",
+        "plain",
+        "GP-ou-ə"
+       ],
+       [
+        "f",
+        "f",
+        "plain",
+        "GP-f"
+       ],
+       [
+        "l",
+        "l",
+        "plain",
+        "GP-l"
+       ],
+       [
+        "a",
+        "ɑː",
+        "plain",
+        "GP-a-ɑː"
+       ],
+       [
+        "ge",
+        "ʒ",
+        "heart",
+        "ge 读 /ʒ/：GP-ge 登记读法为 /dʒ/，/ʒ/ 无登记模式（法语借词层），心字部分；同心词屋 beige 的 ge→/ʒ/ 心字先例"
+       ]
+      ],
+      "note": "真心词，心字部分 = ge；ou 弱读与第二 a 均已登记覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "schnitzel",
+    "entry_id": "ADD_0382",
+    "pending_reason": "对位代价过高",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "schnitzel",
+      "verdict": "heart",
+      "heart_parts": [
+       "sch",
+       "tz"
+      ],
+      "tiles": [
+       [
+        "sch",
+        "ʃ",
+        "heart",
+        "德语借词字母组 sch 读 /ʃ/（英语 GP-sch 登记读法为 /sk/），心字部分"
+       ],
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "tz",
+        "ts",
+        "heart",
+        "德语借词字母组 tz 读 /ts/ 无登记模式，心字部分"
+       ],
+       [
+        "el",
+        "əl",
+        "plain",
+        "GP-le"
+       ]
+      ],
+      "note": "真心词，心字部分 = sch 与 tz；词尾 -el 按成音节 l 尾口径（GP-le 同族）覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "a / an",
+    "entry_id": "G1_K01",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "a",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "a",
+        "ə",
+        "plain",
+        "GP-a-ə"
+       ]
+      ],
+      "note": "弱读 /ə/ 已登记 GP-a-ə；强读 /eɪ/ 已登记 GP-a-eɪ-open。"
+     },
+     {
+      "form": "an",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "a",
+        "æ",
+        "plain",
+        "GP-a-æ"
+       ],
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ]
+      ],
+      "note": "全覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "I / me / my / mine",
+    "entry_id": "G1_P01",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "I",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "I",
+        "aɪ",
+        "plain",
+        "GP-i-aɪ-open"
+       ]
+      ],
+      "note": "单词 I 即字母 i 的开音节长读（§10.7 口径）。"
+     },
+     {
+      "form": "me",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ],
+       [
+        "e",
+        "iː",
+        "plain",
+        "GP-e-iː-open"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "my",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ],
+       [
+        "y",
+        "aɪ",
+        "plain",
+        "GP-y-aɪ"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "mine",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ],
+       [
+        "i",
+        "aɪ",
+        "plain",
+        "GP-i-e"
+       ],
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "e",
+        "",
+        "plain",
+        "词尾 e 静音（分体/词尾惯例）"
+       ]
+      ],
+      "note": "分体 i-e 已登记。"
+     }
+    ]
+   },
+   {
+    "word": "he / him / his",
+    "entry_id": "G2_P03",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "he",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "e",
+        "iː",
+        "plain",
+        "GP-e-iː-open"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "him",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "his",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "s",
+        "z",
+        "plain",
+        "GP-s-z"
+       ]
+      ],
+      "note": "s 读 /z/ 已登记 GP-s-z。"
+     }
+    ]
+   },
+   {
+    "word": "she / her / hers",
+    "entry_id": "G2_P04",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "she",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "sh",
+        "ʃ",
+        "plain",
+        "GP-sh"
+       ],
+       [
+        "e",
+        "iː",
+        "plain",
+        "GP-e-iː-open"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "her",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "er",
+        "ɜː",
+        "plain",
+        "GP-er"
+       ]
+      ],
+      "note": "er 读 /ɜː/ 已登记 GP-er（重读位，与弱读 /ə/ 缺口位不同）。"
+     },
+     {
+      "form": "hers",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "er",
+        "ɜː",
+        "plain",
+        "GP-er"
+       ],
+       [
+        "s",
+        "z",
+        "plain",
+        "GP-s-z"
+       ]
+      ],
+      "note": "全覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "it / its / itself",
+    "entry_id": "G2_P05",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "it",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "t",
+        "t",
+        "plain",
+        "GP-t"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "its",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "t",
+        "t",
+        "plain",
+        "GP-t"
+       ],
+       [
+        "s",
+        "s",
+        "plain",
+        "GP-s-s"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "itself",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "t",
+        "t",
+        "plain",
+        "GP-t"
+       ],
+       [
+        "s",
+        "s",
+        "plain",
+        "GP-s-s"
+       ],
+       [
+        "e",
+        "e",
+        "plain",
+        "GP-e-e"
+       ],
+       [
+        "l",
+        "l",
+        "plain",
+        "GP-l"
+       ],
+       [
+        "f",
+        "f",
+        "plain",
+        "GP-f"
+       ]
+      ],
+      "note": "it+self 复合，逐段覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "don't",
+    "entry_id": "G3_KA06",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "don't",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "d",
+        "d",
+        "plain",
+        "GP-d"
+       ],
+       [
+        "o",
+        "əʊ",
+        "plain",
+        "GP-o-əʊ-open"
+       ],
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "'",
+        "",
+        "plain",
+        "撇号为缩约标记，非字母音位，不发音"
+       ],
+       [
+        "t",
+        "t",
+        "plain",
+        "GP-t"
+       ]
+      ],
+      "note": "全部发音字母已登记；撇号不占音位；裁为可拼读。"
+     }
+    ]
+   },
+   {
+    "word": "this / that / these / those",
+    "entry_id": "G3_P08",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "this",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "s",
+        "s",
+        "plain",
+        "GP-s-s"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "that",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "a",
+        "æ",
+        "plain",
+        "GP-a-æ"
+       ],
+       [
+        "t",
+        "t",
+        "plain",
+        "GP-t"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "these",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "e",
+        "iː",
+        "plain",
+        "GP-e-iː-open"
+       ],
+       [
+        "s",
+        "z",
+        "plain",
+        "GP-s-z"
+       ],
+       [
+        "e",
+        "",
+        "plain",
+        "词尾 e 静音（分体/词尾惯例）"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "those",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "o",
+        "əʊ",
+        "plain",
+        "GP-o-əʊ-open"
+       ],
+       [
+        "s",
+        "z",
+        "plain",
+        "GP-s-z"
+       ],
+       [
+        "e",
+        "",
+        "plain",
+        "词尾 e 静音（分体/词尾惯例）"
+       ]
+      ],
+      "note": "全覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "who / whom",
+    "entry_id": "G3_Q02",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "who",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "wh",
+        "h",
+        "plain",
+        "GP-wh-h"
+       ],
+       [
+        "o",
+        "uː",
+        "plain",
+        "GP-o-uː"
+       ]
+      ],
+      "note": "wh 读 /h/ 已登记 GP-wh-h；o 已登记 GP-o-uː。"
+     },
+     {
+      "form": "whom",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "wh",
+        "h",
+        "plain",
+        "GP-wh-h"
+       ],
+       [
+        "o",
+        "uː",
+        "plain",
+        "GP-o-uː"
+       ],
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ]
+      ],
+      "note": "全覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "how / how many / how much",
+    "entry_id": "G3_Q08",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "decodable",
+    "members": [
+     {
+      "form": "how",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "ow",
+        "aʊ",
+        "plain",
+        "GP-ow-aʊ"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "how many",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "ow",
+        "aʊ",
+        "plain",
+        "GP-ow-aʊ"
+       ],
+       [
+        " ",
+        "",
+        "plain",
+        "词间空格"
+       ],
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ],
+       [
+        "a",
+        "e",
+        "plain",
+        "GP-a-e-any"
+       ],
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "y",
+        "i",
+        "plain",
+        "GP-y-i"
+       ]
+      ],
+      "note": "many 的 a 读 /e/ 已登记 GP-a-e-any（any/many 家族）。"
+     },
+     {
+      "form": "how much",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "h",
+        "h",
+        "plain",
+        "GP-h"
+       ],
+       [
+        "ow",
+        "aʊ",
+        "plain",
+        "GP-ow-aʊ"
+       ],
+       [
+        " ",
+        "",
+        "plain",
+        "词间空格"
+       ],
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ],
+       [
+        "u",
+        "ʌ",
+        "plain",
+        "GP-u-ʌ"
+       ],
+       [
+        "ch",
+        "tʃ",
+        "plain",
+        "GP-ch-tʃ"
+       ]
+      ],
+      "note": "全覆盖。"
+     }
+    ]
+   },
+   {
+    "word": "you / your / yours",
+    "entry_id": "G1_P02",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "heart",
+    "members": [
+     {
+      "form": "you",
+      "verdict": "heart",
+      "heart_parts": [
+       "y",
+       "ou"
+      ],
+      "tiles": [
+       [
+        "y",
+        "j",
+        "heart",
+        "y 读 /j/ 无登记模式（GP-y 家族无辅音读法），心字部分；同心词屋 yes/yellow/yolk 的 y→/j/ 心字先例"
+       ],
+       [
+        "ou",
+        "uː",
+        "heart",
+        "ou 读 /uː/ 无登记模式（GP-ou 家族无 /uː/ 读法，soup/group 同族），心字部分"
+       ]
+      ],
+      "note": "真心词（成员级）：心字部分 = y 与 ou。"
+     },
+     {
+      "form": "your",
+      "verdict": "heart",
+      "heart_parts": [
+       "y",
+       "r"
+      ],
+      "tiles": [
+       [
+        "y",
+        "j",
+        "heart",
+        "y 读 /j/，心字部分（同 you）"
+       ],
+       [
+        "ou",
+        "ɔː",
+        "plain",
+        "GP-ou-ɔː"
+       ],
+       [
+        "r",
+        "",
+        "heart",
+        "词尾 r 不发音（RP 非儿化），心字部分；同 four 的 r 心字先例"
+       ]
+      ],
+      "note": "真心词（成员级）：心字部分 = y 与词尾 r；ou 已登记。"
+     },
+     {
+      "form": "yours",
+      "verdict": "heart",
+      "heart_parts": [
+       "y",
+       "r"
+      ],
+      "tiles": [
+       [
+        "y",
+        "j",
+        "heart",
+        "y 读 /j/，心字部分（同 you）"
+       ],
+       [
+        "ou",
+        "ɔː",
+        "plain",
+        "GP-ou-ɔː"
+       ],
+       [
+        "r",
+        "",
+        "heart",
+        "词尾 r 不发音（RP 非儿化），心字部分；同 four 的 r 心字先例"
+       ],
+       [
+        "s",
+        "z",
+        "plain",
+        "GP-s-z"
+       ]
+      ],
+      "note": "真心词（成员级）：心字部分 = y 与词尾 r。"
+     }
+    ]
+   },
+   {
+    "word": "be / am / is / are",
+    "entry_id": "G3_K01",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "mixed",
+    "members": [
+     {
+      "form": "be",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "b",
+        "b",
+        "plain",
+        "GP-b"
+       ],
+       [
+        "e",
+        "iː",
+        "plain",
+        "GP-e-iː-open"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "am",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "a",
+        "æ",
+        "plain",
+        "GP-a-æ"
+       ],
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "is",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "i",
+        "ɪ",
+        "plain",
+        "GP-i-ɪ"
+       ],
+       [
+        "s",
+        "z",
+        "plain",
+        "GP-s-z"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "are",
+      "verdict": "heart",
+      "heart_parts": [
+       "r"
+      ],
+      "tiles": [
+       [
+        "a",
+        "ɑː",
+        "plain",
+        "GP-a-ɑː"
+       ],
+       [
+        "r",
+        "",
+        "heart",
+        "词尾 r 不发音（RP 非儿化），心字部分；同 four 的 r 心字先例"
+       ],
+       [
+        "e",
+        "",
+        "plain",
+        "词尾 e 静音（分体/词尾惯例）"
+       ]
+      ],
+      "note": "are 带心字部分（r）；其余成员可拼读——整条裁为混合。"
+     }
+    ]
+   },
+   {
+    "word": "we / us / our / ours",
+    "entry_id": "G3_P06",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "mixed",
+    "members": [
+     {
+      "form": "we",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "w",
+        "w",
+        "plain",
+        "GP-w"
+       ],
+       [
+        "e",
+        "iː",
+        "plain",
+        "GP-e-iː-open"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "us",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "u",
+        "ʌ",
+        "plain",
+        "GP-u-ʌ"
+       ],
+       [
+        "s",
+        "s",
+        "plain",
+        "GP-s-s"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "our",
+      "verdict": "heart",
+      "heart_parts": [
+       "r"
+      ],
+      "tiles": [
+       [
+        "ou",
+        "aʊ",
+        "plain",
+        "GP-ou-aʊ"
+       ],
+       [
+        "r",
+        "ə",
+        "heart",
+        "词尾 r 弱读为 /ə/（RP 非儿化，r 只余 schwa），心字部分；同 four 的 r 处理口径"
+       ]
+      ],
+      "note": "our 带心字部分（r）。"
+     },
+     {
+      "form": "ours",
+      "verdict": "heart",
+      "heart_parts": [
+       "r"
+      ],
+      "tiles": [
+       [
+        "ou",
+        "aʊ",
+        "plain",
+        "GP-ou-aʊ"
+       ],
+       [
+        "r",
+        "ə",
+        "heart",
+        "词尾 r 弱读为 /ə/，心字部分（同 our）"
+       ],
+       [
+        "s",
+        "z",
+        "plain",
+        "GP-s-z"
+       ]
+      ],
+      "note": "ours 带心字部分（r）；整条裁为混合。"
+     }
+    ]
+   },
+   {
+    "word": "they / them / their / theirs",
+    "entry_id": "G3_P07",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "mixed",
+    "members": [
+     {
+      "form": "they",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "ey",
+        "eɪ",
+        "plain",
+        "GP-ey-eɪ"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "them",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "e",
+        "e",
+        "plain",
+        "GP-e-e"
+       ],
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ]
+      ],
+      "note": "全覆盖。"
+     },
+     {
+      "form": "their",
+      "verdict": "heart",
+      "heart_parts": [
+       "eir"
+      ],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "eir",
+        "eə",
+        "heart",
+        "字母组 eir 读 /eə/ 无登记模式，心字部分（同 heir）"
+       ]
+      ],
+      "note": "their 带心字部分（eir）。"
+     },
+     {
+      "form": "theirs",
+      "verdict": "heart",
+      "heart_parts": [
+       "eir"
+      ],
+      "tiles": [
+       [
+        "th",
+        "ð",
+        "plain",
+        "GP-th-ð"
+       ],
+       [
+        "eir",
+        "eə",
+        "heart",
+        "字母组 eir 读 /eə/ 无登记模式，心字部分（同 heir）"
+       ],
+       [
+        "s",
+        "z",
+        "plain",
+        "GP-s-z"
+       ]
+      ],
+      "note": "theirs 带心字部分（eir）；整条裁为混合。"
+     }
+    ]
+   },
+   {
+    "word": "some / any",
+    "entry_id": "G4_P09",
+    "pending_reason": "词形含空格/斜杠等，非单一拼写",
+    "verdict": "mixed",
+    "members": [
+     {
+      "form": "some",
+      "verdict": "heart",
+      "heart_parts": [
+       "o"
+      ],
+      "tiles": [
+       [
+        "s",
+        "s",
+        "plain",
+        "GP-s-s"
+       ],
+       [
+        "o",
+        "ʌ",
+        "heart",
+        "o 读 /ʌ/ 无登记模式（§10.6 缺口 2 家族读音）；心词屋现行口径以心字承载，同 son/month/money/honey 先例"
+       ],
+       [
+        "m",
+        "m",
+        "plain",
+        "GP-m"
+       ],
+       [
+        "e",
+        "",
+        "plain",
+        "词尾 e 静音（分体/词尾惯例）"
+       ]
+      ],
+      "note": "some 带心字部分（o）；模式层缺口 2 的待裁清单中 some 另以独立条目保留（§11.3），两轨并行。"
+     },
+     {
+      "form": "any",
+      "verdict": "decodable",
+      "heart_parts": [],
+      "tiles": [
+       [
+        "a",
+        "e",
+        "plain",
+        "GP-a-e-any"
+       ],
+       [
+        "n",
+        "n",
+        "plain",
+        "GP-n"
+       ],
+       [
+        "y",
+        "i",
+        "plain",
+        "GP-y-i"
+       ]
+      ],
+      "note": "any 全覆盖（a 已登记 GP-a-e-any）；整条裁为混合。"
+     }
+    ]
+   }
+  ]
+ }
 }

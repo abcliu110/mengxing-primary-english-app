@@ -1,0 +1,2616 @@
+{
+ "meta": {
+  "file": "phonics_checkpoints.json",
+  "date": "2026-11-02",
+  "purpose": "拼读主线 160 站中 48 个无过关组站位的补配：过关组 = 在该站累计模式内可拼读的词（小集合，形制同既有 112 站）。纯推导，无生造词；每词附程序证明。",
+  "rule": {
+   "qualification": "词的全部登记模式（phonics_wordsets.json 定版词池）站位 ≤ 本站，且至少一个模式的站位 == 本站（本（站）新达标），且含本站模式",
+   "form": "单条目（非 # 成员）、词形无空格/连字符/撇号、按词形去重",
+   "tier1": "单音节；按 freq_rank 升序（无排名者殿后）、同序按词形 A–Z；上限 8（既有口径：组大小 1–8）",
+   "tier2": "仅当 tier1 为空且本站模式的典型成员本就多为双音节（词尾弱读块/词尾型模式，既有先例：第 93–97、106 站 /əʊ/ 家族与第 135 站 -tion 的过关组均为双音节词）时，放宽至 ≤2 音节，排序先音节数后 freq_rank；既有 509 个过关词音节数实测：单音节 484、双音节 25、三音节 0",
+   "syllables": "按 phonetic_gb 的元音核计数（含成音节 l/m/n；ɛ 与 e 同核；双式转写取首式）"
+  },
+  "legacy_reproduction": {
+   "method": "以 tier1 严格规则对既有 160 站全量重算",
+   "exact_set_matches": 142,
+   "of": 160,
+   "note": "未完全重合的站位差异来自：定版词池较主线生成时已增补成员（ADD 条目）、/əʊ/ 家族站（93–97、106）的选词为教材常用词取向、以及个别成员归属在收官复核中调整；过关资格的池包含关系 509/509 全量成立。"
+  },
+  "counts": {
+   "spine_stations": 160,
+   "previously_filled": 112,
+   "previously_empty": 48,
+   "newly_filled": 16,
+   "still_empty": 32
+  }
+ },
+ "stations": [
+  {
+   "index": 1,
+   "key": "c|/k/",
+   "g": "c",
+   "ph": "/k/",
+   "laws": [
+    "S-31",
+    "SR-04"
+   ],
+   "pids": [
+    "GP-c-k",
+    "GP-c-k-front"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 17,
+    "example_word": "become"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 17 站才有词（如 become）凑齐全部模式。"
+  },
+  {
+   "index": 2,
+   "key": "c|/s/",
+   "g": "c",
+   "ph": "/s/",
+   "laws": [
+    "S-31"
+   ],
+   "pids": [
+    "GP-c-s"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 31,
+    "example_word": "succeed"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 31 站才有词（如 succeed）凑齐全部模式。"
+  },
+  {
+   "index": 3,
+   "key": "ch|/k/",
+   "g": "ch",
+   "ph": "/k/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-ch-k"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 46,
+    "example_word": "anchor"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 anchor）凑齐全部模式。"
+  },
+  {
+   "index": 4,
+   "key": "ch|/tʃ/",
+   "g": "ch",
+   "ph": "/tʃ/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-ch-tʃ"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 34,
+    "example_word": "chieftain"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 34 站才有词（如 chieftain）凑齐全部模式。"
+  },
+  {
+   "index": 5,
+   "key": "ch|/ʃ/",
+   "g": "ch",
+   "ph": "/ʃ/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-ch-ʃ"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 48,
+    "example_word": "chef"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 48 站才有词（如 chef）凑齐全部模式。"
+  },
+  {
+   "index": 7,
+   "key": "f|/f/",
+   "g": "f",
+   "ph": "/f/",
+   "laws": [
+    "S-30"
+   ],
+   "pids": [
+    "GP-f"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 16,
+    "example_word": "flu"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 16 站才有词（如 flu）凑齐全部模式。"
+  },
+  {
+   "index": 8,
+   "key": "g|/dʒ/",
+   "g": "g",
+   "ph": "/dʒ/",
+   "laws": [
+    "S-31"
+   ],
+   "pids": [
+    "GP-g-dʒ"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 46,
+    "example_word": "passenger"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 passenger）凑齐全部模式。"
+  },
+  {
+   "index": 9,
+   "key": "g|/g/",
+   "g": "g",
+   "ph": "/g/",
+   "laws": [
+    "S-31"
+   ],
+   "pids": [
+    "GP-g-g",
+    "GP-g-g-front"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 30,
+    "example_word": "regal"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 30 站才有词（如 regal）凑齐全部模式。"
+  },
+  {
+   "index": 10,
+   "key": "gn|/n/",
+   "g": "gn",
+   "ph": "/n/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-gn"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 50,
+    "example_word": "foreign"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 50 站才有词（如 foreign）凑齐全部模式。"
+  },
+  {
+   "index": 11,
+   "key": "gu|/g/",
+   "g": "gu",
+   "ph": "/g/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-gu"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 34,
+    "example_word": "guilt"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 34 站才有词（如 guilt）凑齐全部模式。"
+  },
+  {
+   "index": 12,
+   "key": "h|/h/",
+   "g": "h",
+   "ph": "/h/",
+   "laws": [
+    "S-30"
+   ],
+   "pids": [
+    "GP-h"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 14,
+    "example_word": "haiku"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 14 站才有词（如 haiku）凑齐全部模式。"
+  },
+  {
+   "index": 13,
+   "key": "j|/dʒ/",
+   "g": "j",
+   "ph": "/dʒ/",
+   "laws": [
+    "S-30"
+   ],
+   "pids": [
+    "GP-j"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 46,
+    "example_word": "jam"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 jam）凑齐全部模式。"
+  },
+  {
+   "index": 14,
+   "key": "k|/k/",
+   "g": "k",
+   "ph": "/k/",
+   "laws": [
+    "S-30"
+   ],
+   "pids": [
+    "GP-k"
+   ],
+   "funnel": {
+    "newly": 2,
+    "with_own": 2,
+    "form_ok": 2,
+    "dedup": 2,
+    "tier1_n": 0,
+    "tier2_n": 2
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G3_K06",
+     "word": "OK",
+     "ph": "/ˌəʊˈkeɪ/",
+     "mn": "好的，可以；不错",
+     "em": "👌",
+     "proof": {
+      "pools": {
+       "GP-k": 14
+      },
+      "max_station": 14,
+      "syllables": 2,
+      "freq_rank": 9011
+     }
+    },
+    {
+     "id": "ADD_0138",
+     "word": "haiku",
+     "ph": "/ˈhaɪkuː/",
+     "mn": "俳句",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-h": 12,
+       "GP-k": 14
+      },
+      "max_station": 14,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 15,
+   "key": "kn|/n/",
+   "g": "kn",
+   "ph": "/n/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-kn"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 73,
+    "example_word": "knee"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 73 站才有词（如 knee）凑齐全部模式。"
+  },
+  {
+   "index": 18,
+   "key": "mb|/m/",
+   "g": "mb",
+   "ph": "/m/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-mb"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 46,
+    "example_word": "lamb"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 lamb）凑齐全部模式。"
+  },
+  {
+   "index": 19,
+   "key": "mn|/m/",
+   "g": "mn",
+   "ph": "/m/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-mn"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 54,
+    "example_word": "hymn"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 54 站才有词（如 hymn）凑齐全部模式。"
+  },
+  {
+   "index": 21,
+   "key": "ng|/ŋ/",
+   "g": "ng",
+   "ph": "/ŋ/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-ng"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 34,
+    "example_word": "tongue"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 34 站才有词（如 tongue）凑齐全部模式。"
+  },
+  {
+   "index": 22,
+   "key": "nk|/ŋk/",
+   "g": "nk",
+   "ph": "/ŋk/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-nk"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 46,
+    "example_word": "bank"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 bank）凑齐全部模式。"
+  },
+  {
+   "index": 24,
+   "key": "ph|/f/",
+   "g": "ph",
+   "ph": "/f/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-ph"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 48,
+    "example_word": "alphabet"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 48 站才有词（如 alphabet）凑齐全部模式。"
+  },
+  {
+   "index": 25,
+   "key": "pn|/n/",
+   "g": "pn",
+   "ph": "/n/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-pn"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 110,
+    "example_word": "pneumonia"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 110 站才有词（如 pneumonia）凑齐全部模式。"
+  },
+  {
+   "index": 26,
+   "key": "ps|/s/",
+   "g": "ps",
+   "ph": "/s/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-ps"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 57,
+    "example_word": "psalm"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 57 站才有词（如 psalm）凑齐全部模式。"
+  },
+  {
+   "index": 27,
+   "key": "pt|/t/",
+   "g": "pt",
+   "ph": "/t/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-pt"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 61,
+    "example_word": "ptarmigan"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 61 站才有词（如 ptarmigan）凑齐全部模式。"
+  },
+  {
+   "index": 29,
+   "key": "qu|/kw/",
+   "g": "qu",
+   "ph": "/kw/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-qu-kw"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 48,
+    "example_word": "question"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 48 站才有词（如 question）凑齐全部模式。"
+  },
+  {
+   "index": 39,
+   "key": "wh|/h/",
+   "g": "wh",
+   "ph": "/h/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-wh-h"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 94,
+    "example_word": "whole"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 94 站才有词（如 whole）凑齐全部模式。"
+  },
+  {
+   "index": 40,
+   "key": "wh|/w/",
+   "g": "wh",
+   "ph": "/w/",
+   "laws": [
+    "S-32"
+   ],
+   "pids": [
+    "GP-wh-w"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 48,
+    "example_word": "when"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 48 站才有词（如 when）凑齐全部模式。"
+  },
+  {
+   "index": 41,
+   "key": "wr|/r/",
+   "g": "wr",
+   "ph": "/r/",
+   "laws": [
+    "S-33"
+   ],
+   "pids": [
+    "GP-wr"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 46,
+    "example_word": "wrap"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 wrap）凑齐全部模式。"
+  },
+  {
+   "index": 42,
+   "key": "x|/ɡz/",
+   "g": "x",
+   "ph": "/ɡz/",
+   "laws": [
+    "S-30"
+   ],
+   "pids": [
+    "GP-x-gz"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 46,
+    "example_word": "exact"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 exact）凑齐全部模式。"
+  },
+  {
+   "index": 43,
+   "key": "x|/ks/",
+   "g": "x",
+   "ph": "/ks/",
+   "laws": [
+    "S-30"
+   ],
+   "pids": [
+    "GP-x-ks"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 48,
+    "example_word": "annex"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 48 站才有词（如 annex）凑齐全部模式。"
+  },
+  {
+   "index": 44,
+   "key": "x|/z/",
+   "g": "x",
+   "ph": "/z/",
+   "laws": [
+    "S-30"
+   ],
+   "pids": [
+    "GP-x-z"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 115,
+    "example_word": "xylophone"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 115 站才有词（如 xylophone）凑齐全部模式。"
+  },
+  {
+   "index": 53,
+   "key": "y|/i/",
+   "g": "y",
+   "ph": "/i/",
+   "laws": [
+    "S-34",
+    "SR-05"
+   ],
+   "pids": [
+    "GP-y-i"
+   ],
+   "funnel": {
+    "newly": 64,
+    "with_own": 64,
+    "form_ok": 64,
+    "dedup": 64,
+    "tier1_n": 0,
+    "tier2_n": 42
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G2_070",
+     "word": "pretty",
+     "ph": "/ˈprɪti/",
+     "mn": "漂亮的，可爱的",
+     "em": "👸",
+     "proof": {
+      "pools": {
+       "GP-p": 23,
+       "GP-r": 30,
+       "GP-t": 34,
+       "GP-y-i": 53
+      },
+      "max_station": 53,
+      "syllables": 2,
+      "freq_rank": 73
+     }
+    },
+    {
+     "id": "G2_093",
+     "word": "sunny",
+     "ph": "/ˈsʌni/",
+     "mn": "晴朗的，阳光充足的",
+     "em": "☀️",
+     "proof": {
+      "pools": {
+       "GP-n": 20,
+       "GP-s-s": 31,
+       "GP-u-ʌ": 52,
+       "GP-y-i": 53
+      },
+      "max_station": 53,
+      "syllables": 2,
+      "freq_rank": 98
+     }
+    },
+    {
+     "id": "G2_094",
+     "word": "windy",
+     "ph": "/ˈwɪndi/",
+     "mn": "刮风的，多风的",
+     "em": "🌬️",
+     "proof": {
+      "pools": {
+       "GP-d": 6,
+       "GP-i-ɪ": 49,
+       "GP-n": 20,
+       "GP-w": 38,
+       "GP-y-i": 53
+      },
+      "max_station": 53,
+      "syllables": 2,
+      "freq_rank": 99
+     }
+    },
+    {
+     "id": "G3_116",
+     "word": "body",
+     "ph": "/ˈbɒdi/",
+     "mn": "身体",
+     "em": "🧍",
+     "proof": {
+      "pools": {
+       "GP-b": 0,
+       "GP-d": 6,
+       "GP-o-ɒ": 50,
+       "GP-y-i": 53
+      },
+      "max_station": 53,
+      "syllables": 2,
+      "freq_rank": 127
+     }
+    },
+    {
+     "id": "G3_152",
+     "word": "twenty",
+     "ph": "/ˈtwenti/",
+     "mn": "二十",
+     "em": "2️⃣0️⃣",
+     "proof": {
+      "pools": {
+       "GP-e-e": 48,
+       "GP-n": 20,
+       "GP-t": 34,
+       "GP-w": 38,
+       "GP-y-i": 53
+      },
+      "max_station": 53,
+      "syllables": 2,
+      "freq_rank": 159
+     }
+    },
+    {
+     "id": "G4_160",
+     "word": "candy",
+     "ph": "/ˈkændi/",
+     "mn": "糖果",
+     "em": "🍬",
+     "proof": {
+      "pools": {
+       "GP-a-æ": 46,
+       "GP-c-k": 1,
+       "GP-d": 6,
+       "GP-n": 20,
+       "GP-y-i": 53
+      },
+      "max_station": 53,
+      "syllables": 2,
+      "freq_rank": 172
+     }
+    },
+    {
+     "id": "G4_174",
+     "word": "study",
+     "ph": "/ˈstʌdi/",
+     "mn": "书房；学习",
+     "em": "📚",
+     "proof": {
+      "pools": {
+       "GP-d": 6,
+       "GP-s-s": 31,
+       "GP-t": 34,
+       "GP-u-ʌ": 52,
+       "GP-y-i": 53
+      },
+      "max_station": 53,
+      "syllables": 2,
+      "freq_rank": 205
+     }
+    },
+    {
+     "id": "G6_275",
+     "word": "factory",
+     "ph": "/ˈfæktri/",
+     "mn": "工厂",
+     "em": "🏭",
+     "proof": {
+      "pools": {
+       "GP-a-æ": 46,
+       "GP-c-k": 1,
+       "GP-f": 7,
+       "GP-r": 30,
+       "GP-t": 34,
+       "GP-y-i": 53
+      },
+      "max_station": 53,
+      "syllables": 2,
+      "freq_rank": 314
+     }
+    }
+   ]
+  },
+  {
+   "index": 56,
+   "key": "a|/eɪ/",
+   "g": "a",
+   "ph": "/eɪ/",
+   "laws": [
+    "S-35"
+   ],
+   "pids": [
+    "GP-a-eɪ-open"
+   ],
+   "funnel": {
+    "newly": 25,
+    "with_own": 25,
+    "form_ok": 23,
+    "dedup": 23,
+    "tier1_n": 0,
+    "tier2_n": 18
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G5_0359",
+     "word": "safety",
+     "ph": "/ˈseɪfti/",
+     "mn": "安全，平安",
+     "em": "🦺",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-f": 7,
+       "GP-s-s": 31,
+       "GP-t": 34,
+       "GP-y-i": 53
+      },
+      "max_station": 56,
+      "syllables": 2,
+      "freq_rank": 383
+     }
+    },
+    {
+     "id": "G5_0455",
+     "word": "danger",
+     "ph": "/ˈdeɪndʒə/",
+     "mn": "危险",
+     "em": "⚠️",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-d": 6,
+       "GP-g-dʒ": 8,
+       "GP-n": 20,
+       "GP-r": 30
+      },
+      "max_station": 56,
+      "syllables": 2,
+      "freq_rank": 480
+     }
+    },
+    {
+     "id": "G5_0607",
+     "word": "April",
+     "ph": "/ˈeɪprəl/",
+     "mn": "四月",
+     "em": "🌸",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-l": 16,
+       "GP-p": 23,
+       "GP-r": 30
+      },
+      "max_station": 56,
+      "syllables": 2,
+      "freq_rank": 615
+     }
+    },
+    {
+     "id": "G5_0729",
+     "word": "spaceman",
+     "ph": "/ˈspeɪsmæn/",
+     "mn": "宇航员，航天员（= astronaut）",
+     "em": "👨‍🚀",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-a-æ": 46,
+       "GP-c-s": 2,
+       "GP-m": 17,
+       "GP-n": 20,
+       "GP-p": 23,
+       "GP-s-s": 31
+      },
+      "max_station": 56,
+      "syllables": 2,
+      "freq_rank": 727
+     }
+    },
+    {
+     "id": "G5_0730",
+     "word": "spaceship",
+     "ph": "/ˈspeɪsʃɪp/",
+     "mn": "宇宙飞船，太空船",
+     "em": "🚀",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-c-s": 2,
+       "GP-i-ɪ": 49,
+       "GP-p": 23,
+       "GP-s-s": 31,
+       "GP-sh": 33
+      },
+      "max_station": 56,
+      "syllables": 2,
+      "freq_rank": 728
+     }
+    },
+    {
+     "id": "G5_0792",
+     "word": "baker",
+     "ph": "/ˈbeɪkə/",
+     "mn": "面包师，糕点师",
+     "em": "🥖",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-b": 0,
+       "GP-k": 14,
+       "GP-r": 30
+      },
+      "max_station": 56,
+      "syllables": 2,
+      "freq_rank": 790
+     }
+    },
+    {
+     "id": "G6_0803",
+     "word": "stranger",
+     "ph": "/ˈstreɪndʒə/",
+     "mn": "陌生人，外地人",
+     "em": "🕵️",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-g-dʒ": 8,
+       "GP-n": 20,
+       "GP-r": 30,
+       "GP-s-s": 31,
+       "GP-t": 34
+      },
+      "max_station": 56,
+      "syllables": 2,
+      "freq_rank": 799
+     }
+    },
+    {
+     "id": "G4_0820",
+     "word": "tasty",
+     "ph": "/ˈteɪsti/",
+     "mn": "美味的，可口的（= delicious）",
+     "em": "😋",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-s-s": 31,
+       "GP-t": 34,
+       "GP-y-i": 53
+      },
+      "max_station": 56,
+      "syllables": 2,
+      "freq_rank": 816
+     }
+    }
+   ]
+  },
+  {
+   "index": 78,
+   "key": "eo|/iː/",
+   "g": "eo",
+   "ph": "/iː/",
+   "laws": [
+    "S-36"
+   ],
+   "pids": [
+    "GP-eo"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 120,
+    "example_word": "people"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 120 站才有词（如 people）凑齐全部模式。"
+  },
+  {
+   "index": 89,
+   "key": "ie|/aɪ/",
+   "g": "ie",
+   "ph": "/aɪ/",
+   "laws": [
+    "S-37"
+   ],
+   "pids": [
+    "GP-ie-aɪ"
+   ],
+   "funnel": {
+    "newly": 5,
+    "with_own": 5,
+    "form_ok": 5,
+    "dedup": 5,
+    "tier1_n": 0,
+    "tier2_n": 2
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G4_166",
+     "word": "quiet",
+     "ph": "/ˈkwaɪət/",
+     "mn": "安静的，文静的",
+     "em": "🤫",
+     "proof": {
+      "pools": {
+       "GP-i-aɪ-open": 86,
+       "GP-ie-aɪ": 89,
+       "GP-qu-kw": 29,
+       "GP-t": 34
+      },
+      "max_station": 89,
+      "syllables": 2,
+      "freq_rank": 177
+     }
+    },
+    {
+     "id": "ADD_0076",
+     "word": "diet",
+     "ph": "/ˈdaɪət/",
+     "mn": "日常饮食；节食",
+     "em": "🥗",
+     "proof": {
+      "pools": {
+       "GP-d": 6,
+       "GP-i-aɪ-open": 86,
+       "GP-ie-aɪ": 89,
+       "GP-t": 34
+      },
+      "max_station": 89,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 104,
+   "key": "ou|/əʊ/",
+   "g": "ou",
+   "ph": "/əʊ/",
+   "laws": [
+    "S-38"
+   ],
+   "pids": [
+    "GP-ou-əʊ"
+   ],
+   "funnel": {
+    "newly": 3,
+    "with_own": 3,
+    "form_ok": 3,
+    "dedup": 3,
+    "tier1_n": 2,
+    "tier2_n": 3
+   },
+   "status": "filled",
+   "tier": 1,
+   "gate": [
+    {
+     "id": "ADD_0198",
+     "word": "mould",
+     "ph": "/məʊld/",
+     "mn": "模具；模子（英式拼写）",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-d": 6,
+       "GP-l": 16,
+       "GP-m": 17,
+       "GP-ou-əʊ": 104
+      },
+      "max_station": 104,
+      "syllables": 1,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0281",
+     "word": "soul",
+     "ph": "/səʊl/",
+     "mn": "灵魂；心灵",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-l": 16,
+       "GP-ou-əʊ": 104,
+       "GP-s-s": 31
+      },
+      "max_station": 104,
+      "syllables": 1,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 120,
+   "key": "le|/əl/",
+   "g": "le",
+   "ph": "/əl/",
+   "laws": [
+    "SR-01"
+   ],
+   "pids": [
+    "GP-le"
+   ],
+   "funnel": {
+    "newly": 63,
+    "with_own": 63,
+    "form_ok": 63,
+    "dedup": 63,
+    "tier1_n": 0,
+    "tier2_n": 23
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G1_037",
+     "word": "apple",
+     "ph": "/ˈæpl/",
+     "mn": "苹果",
+     "em": "🍎",
+     "proof": {
+      "pools": {
+       "GP-a-æ": 46,
+       "GP-l": 16,
+       "GP-le": 120,
+       "GP-p": 23
+      },
+      "max_station": 120,
+      "syllables": 2,
+      "freq_rank": 36
+     }
+    },
+    {
+     "id": "G2_067",
+     "word": "uncle",
+     "ph": "/ˈʌŋkl/",
+     "mn": "叔；伯；舅；姑父；姨父",
+     "em": "👨",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-l": 16,
+       "GP-le": 120,
+       "GP-u-ʌ": 52
+      },
+      "max_station": 120,
+      "syllables": 2,
+      "freq_rank": 70
+     }
+    },
+    {
+     "id": "G3_114",
+     "word": "purple",
+     "ph": "/ˈpɜːpl/",
+     "mn": "紫色的；紫色",
+     "em": "🟣",
+     "proof": {
+      "pools": {
+       "GP-l": 16,
+       "GP-le": 120,
+       "GP-p": 23,
+       "GP-r": 30,
+       "GP-ur": 114
+      },
+      "max_station": 120,
+      "syllables": 2,
+      "freq_rank": 125
+     }
+    },
+    {
+     "id": "G4_177",
+     "word": "noodles",
+     "ph": "/ˈnuːdlz/",
+     "mn": "面条（常复数）",
+     "em": "🍜",
+     "proof": {
+      "pools": {
+       "GP-d": 6,
+       "GP-l": 16,
+       "GP-le": 120,
+       "GP-n": 20,
+       "GP-oo-uː": 99,
+       "GP-s-z": 32
+      },
+      "max_station": 120,
+      "syllables": 2,
+      "freq_rank": 208
+     }
+    },
+    {
+     "id": "G5_226",
+     "word": "bottle",
+     "ph": "/ˈbɒtəl/",
+     "mn": "瓶子（water bottle 水瓶）",
+     "em": "🍼",
+     "proof": {
+      "pools": {
+       "GP-b": 0,
+       "GP-l": 16,
+       "GP-le": 120,
+       "GP-o-ɒ": 50,
+       "GP-t": 34
+      },
+      "max_station": 120,
+      "syllables": 2,
+      "freq_rank": 266
+     }
+    },
+    {
+     "id": "G6_272",
+     "word": "puzzle",
+     "ph": "/ˈpʌzl/",
+     "mn": "谜；智力游戏；拼图",
+     "em": "🧩",
+     "proof": {
+      "pools": {
+       "GP-l": 16,
+       "GP-le": 120,
+       "GP-p": 23,
+       "GP-u-ʌ": 52,
+       "GP-z": 45
+      },
+      "max_station": 120,
+      "syllables": 2,
+      "freq_rank": 311
+     }
+    },
+    {
+     "id": "G2_0930",
+     "word": "table",
+     "ph": "/ˈteɪbl/",
+     "mn": "桌子，餐桌；表格",
+     "em": "🍽️",
+     "proof": {
+      "pools": {
+       "GP-a-e": 55,
+       "GP-b": 0,
+       "GP-l": 16,
+       "GP-le": 120,
+       "GP-t": 34
+      },
+      "max_station": 120,
+      "syllables": 2,
+      "freq_rank": 398
+     }
+    },
+    {
+     "id": "G4_0375",
+     "word": "circle",
+     "ph": "/ˈsɜːkəl/",
+     "mn": "圆，圆圈；圈出",
+     "em": "⭕",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-c-k-front": 1,
+       "GP-c-s": 2,
+       "GP-ir": 92,
+       "GP-l": 16,
+       "GP-le": 120,
+       "GP-r": 30
+      },
+      "max_station": 120,
+      "syllables": 2,
+      "freq_rank": 401
+     }
+    }
+   ]
+  },
+  {
+   "index": 123,
+   "key": "age|/ɪdʒ/",
+   "g": "age",
+   "ph": "/ɪdʒ/",
+   "laws": [
+    "SR-06"
+   ],
+   "pids": [
+    "GP-age"
+   ],
+   "funnel": {
+    "newly": 6,
+    "with_own": 6,
+    "form_ok": 6,
+    "dedup": 6,
+    "tier1_n": 0,
+    "tier2_n": 6
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G5_233",
+     "word": "village",
+     "ph": "/ˈvɪlɪdʒ/",
+     "mn": "村庄，村镇",
+     "em": "🏡",
+     "proof": {
+      "pools": {
+       "GP-age": 123,
+       "GP-g-dʒ": 8,
+       "GP-ge": 119,
+       "GP-i-ɪ": 49,
+       "GP-l": 16,
+       "GP-v": 37
+      },
+      "max_station": 123,
+      "syllables": 2,
+      "freq_rank": 274
+     }
+    },
+    {
+     "id": "V6_食物_52",
+     "word": "cabbage",
+     "ph": "/ˈkæbɪdʒ/",
+     "mn": "卷心菜",
+     "em": "🥬",
+     "proof": {
+      "pools": {
+       "GP-a-æ": 46,
+       "GP-age": 123,
+       "GP-b": 0,
+       "GP-c-k": 1,
+       "GP-g-dʒ": 8,
+       "GP-ge": 119,
+       "GP-i-ɪ": 49
+      },
+      "max_station": 123,
+      "syllables": 2,
+      "freq_rank": 8106
+     }
+    },
+    {
+     "id": "V6_交通_26",
+     "word": "luggage",
+     "ph": "/ˈlʌɡɪdʒ/",
+     "mn": "行李(不可数)",
+     "em": "🧳",
+     "proof": {
+      "pools": {
+       "GP-age": 123,
+       "GP-g-dʒ": 8,
+       "GP-g-g": 9,
+       "GP-g-g-front": 9,
+       "GP-ge": 119,
+       "GP-i-ɪ": 49,
+       "GP-l": 16,
+       "GP-u-ʌ": 52
+      },
+      "max_station": 123,
+      "syllables": 2,
+      "freq_rank": 8185
+     }
+    },
+    {
+     "id": "ADD_0186",
+     "word": "manage",
+     "ph": "/ˈmænɪdʒ/",
+     "mn": "管理；设法做到",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-a-æ": 46,
+       "GP-age": 123,
+       "GP-g-dʒ": 8,
+       "GP-ge": 119,
+       "GP-i-ɪ": 49,
+       "GP-m": 17,
+       "GP-n": 20
+      },
+      "max_station": 123,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0189",
+     "word": "message",
+     "ph": "/ˈmesɪdʒ/",
+     "mn": "消息；信息",
+     "em": "💬",
+     "proof": {
+      "pools": {
+       "GP-age": 123,
+       "GP-e-e": 48,
+       "GP-g-dʒ": 8,
+       "GP-ge": 119,
+       "GP-i-ɪ": 49,
+       "GP-m": 17
+      },
+      "max_station": 123,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0317",
+     "word": "voyage",
+     "ph": "/ˈvɔɪɪdʒ/",
+     "mn": "航行；旅行",
+     "em": "🚢",
+     "proof": {
+      "pools": {
+       "GP-age": 123,
+       "GP-g-dʒ": 8,
+       "GP-ge": 119,
+       "GP-i-ɪ": 49,
+       "GP-oy": 107,
+       "GP-v": 37
+      },
+      "max_station": 123,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 124,
+   "key": "cian|/ʃən/",
+   "g": "cian",
+   "ph": "/ʃən/",
+   "laws": [
+    "SR-06"
+   ],
+   "pids": [
+    "GP-cian"
+   ],
+   "funnel": {
+    "newly": 4,
+    "with_own": 4,
+    "form_ok": 4,
+    "dedup": 4,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "reason": "有 4 个新达标且含本站模式的词，但全部 ≥3 音节，超出既有 509 个过关词的 ≤2 音节口径，不凑数。"
+  },
+  {
+   "index": 128,
+   "key": "ic|/ɪk/",
+   "g": "ic",
+   "ph": "/ɪk/",
+   "laws": [
+    "SR-04"
+   ],
+   "pids": [
+    "GP-ic"
+   ],
+   "funnel": {
+    "newly": 18,
+    "with_own": 18,
+    "form_ok": 18,
+    "dedup": 18,
+    "tier1_n": 0,
+    "tier2_n": 13
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G5_236",
+     "word": "picnic",
+     "ph": "/ˈpɪknɪk/",
+     "mn": "野餐",
+     "em": "🧺",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-i-ɪ": 49,
+       "GP-ic": 128,
+       "GP-n": 20,
+       "GP-p": 23
+      },
+      "max_station": 128,
+      "syllables": 2,
+      "freq_rank": 277
+     }
+    },
+    {
+     "id": "G6_263",
+     "word": "traffic",
+     "ph": "/ˈtræfɪk/",
+     "mn": "交通（traffic lights 交通信号灯）",
+     "em": "🚦",
+     "proof": {
+      "pools": {
+       "GP-a-æ": 46,
+       "GP-c-k": 1,
+       "GP-f": 7,
+       "GP-i-ɪ": 49,
+       "GP-ic": 128,
+       "GP-r": 30,
+       "GP-t": 34
+      },
+      "max_station": 128,
+      "syllables": 2,
+      "freq_rank": 302
+     }
+    },
+    {
+     "id": "G2_0781",
+     "word": "music",
+     "ph": "/ˈmjuːzɪk/",
+     "mn": "音乐，乐曲",
+     "em": "🎵",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-i-ɪ": 49,
+       "GP-ic": 128,
+       "GP-m": 17,
+       "GP-s-z": 32,
+       "GP-u-juː": 110
+      },
+      "max_station": 128,
+      "syllables": 2,
+      "freq_rank": 779
+     }
+    },
+    {
+     "id": "G4_0783",
+     "word": "magic",
+     "ph": "/ˈmædʒɪk/",
+     "mn": "魔法，魔术；有魔力的，神奇的",
+     "em": "🪄",
+     "proof": {
+      "pools": {
+       "GP-a-æ": 46,
+       "GP-c-k": 1,
+       "GP-g-dʒ": 8,
+       "GP-i-ɪ": 49,
+       "GP-ic": 128,
+       "GP-m": 17
+      },
+      "max_station": 128,
+      "syllables": 2,
+      "freq_rank": 781
+     }
+    },
+    {
+     "id": "V6_自然_28",
+     "word": "plastic",
+     "ph": "/ˈplæstɪk/",
+     "mn": "塑料",
+     "em": "♻️",
+     "proof": {
+      "pools": {
+       "GP-a-æ": 46,
+       "GP-c-k": 1,
+       "GP-i-ɪ": 49,
+       "GP-ic": 128,
+       "GP-l": 16,
+       "GP-p": 23,
+       "GP-s-s": 31,
+       "GP-t": 34
+      },
+      "max_station": 128,
+      "syllables": 2,
+      "freq_rank": 8349
+     }
+    },
+    {
+     "id": "ADD_0111",
+     "word": "frolic",
+     "ph": "/ˈfrɒlɪk/",
+     "mn": "嬉戏；玩闹",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-f": 7,
+       "GP-i-ɪ": 49,
+       "GP-ic": 128,
+       "GP-l": 16,
+       "GP-o-ɒ": 50,
+       "GP-r": 30
+      },
+      "max_station": 128,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0116",
+     "word": "garlic",
+     "ph": "/ˈɡɑːlɪk/",
+     "mn": "大蒜",
+     "em": "🧄",
+     "proof": {
+      "pools": {
+       "GP-ar": 61,
+       "GP-c-k": 1,
+       "GP-g-g": 9,
+       "GP-i-ɪ": 49,
+       "GP-ic": 128,
+       "GP-l": 16,
+       "GP-r": 30
+      },
+      "max_station": 128,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0563",
+     "word": "logic",
+     "ph": "/ˈlɒdʒɪk/",
+     "mn": "逻辑；逻辑学",
+     "em": "🧩",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-g-dʒ": 8,
+       "GP-i-ɪ": 49,
+       "GP-ic": 128,
+       "GP-l": 16,
+       "GP-o-ɒ": 50
+      },
+      "max_station": 128,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 130,
+   "key": "ous|/əs/",
+   "g": "ous",
+   "ph": "/əs/",
+   "laws": [
+    "SR-06"
+   ],
+   "pids": [
+    "GP-ous"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 148,
+    "example_word": "amphibious"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 148 站才有词（如 amphibious）凑齐全部模式。"
+  },
+  {
+   "index": 131,
+   "key": "sion|/ʃən/",
+   "g": "sion",
+   "ph": "/ʃən/",
+   "laws": [
+    "SR-06"
+   ],
+   "pids": [
+    "GP-sion-ʃ"
+   ],
+   "funnel": {
+    "newly": 6,
+    "with_own": 6,
+    "form_ok": 6,
+    "dedup": 6,
+    "tier1_n": 0,
+    "tier2_n": 3
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "ADD_0219",
+     "word": "pension",
+     "ph": "/ˈpenʃən/",
+     "mn": "养老金；退休金",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-e-e": 48,
+       "GP-n": 20,
+       "GP-p": 23,
+       "GP-sion-ʃ": 131
+      },
+      "max_station": 131,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0682",
+     "word": "tension",
+     "ph": "/ˈtɛnʃən/",
+     "mn": "紧张；张力；拉力",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-e-e": 48,
+       "GP-n": 20,
+       "GP-sion-ʃ": 131,
+       "GP-t": 34
+      },
+      "max_station": 131,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0720",
+     "word": "version",
+     "ph": "/ˈvɜːʃən/",
+     "mn": "版本；说法；译本",
+     "em": "🔖",
+     "proof": {
+      "pools": {
+       "GP-er": 79,
+       "GP-n": 20,
+       "GP-sion-ʃ": 131,
+       "GP-v": 37
+      },
+      "max_station": 131,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 132,
+   "key": "sion|/ʒən/",
+   "g": "sion",
+   "ph": "/ʒən/",
+   "laws": [
+    "SR-06"
+   ],
+   "pids": [
+    "GP-sion-ʒ"
+   ],
+   "funnel": {
+    "newly": 6,
+    "with_own": 6,
+    "form_ok": 6,
+    "dedup": 6,
+    "tier1_n": 0,
+    "tier2_n": 1
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "ADD_0315",
+     "word": "vision",
+     "ph": "/ˈvɪʒən/",
+     "mn": "视力；视野",
+     "em": "👁️",
+     "proof": {
+      "pools": {
+       "GP-i-ɪ": 49,
+       "GP-n": 20,
+       "GP-sion-ʒ": 132,
+       "GP-v": 37
+      },
+      "max_station": 132,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 136,
+   "key": "ture|/tʃə/",
+   "g": "ture",
+   "ph": "/tʃə/",
+   "laws": [
+    "SR-06"
+   ],
+   "pids": [
+    "GP-ture"
+   ],
+   "funnel": {
+    "newly": 8,
+    "with_own": 8,
+    "form_ok": 8,
+    "dedup": 8,
+    "tier1_n": 0,
+    "tier2_n": 5
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G4_158",
+     "word": "picture",
+     "ph": "/ˈpɪktʃə/",
+     "mn": "图画，照片",
+     "em": "🖼️",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-i-ɪ": 49,
+       "GP-p": 23,
+       "GP-r": 30,
+       "GP-ture": 136
+      },
+      "max_station": 136,
+      "syllables": 2,
+      "freq_rank": 170
+     }
+    },
+    {
+     "id": "G5_0656",
+     "word": "nature",
+     "ph": "/ˈneɪtʃə/",
+     "mn": "大自然，自然界",
+     "em": "🏞️",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-n": 20,
+       "GP-r": 30,
+       "GP-ture": 136
+      },
+      "max_station": 136,
+      "syllables": 2,
+      "freq_rank": 657
+     }
+    },
+    {
+     "id": "V6_节日_59",
+     "word": "future",
+     "ph": "/ˈfjuːtʃə/",
+     "mn": "未来/将来",
+     "em": "🚀",
+     "proof": {
+      "pools": {
+       "GP-f": 7,
+       "GP-r": 30,
+       "GP-ture": 136,
+       "GP-u-juː": 110
+      },
+      "max_station": 136,
+      "syllables": 2,
+      "freq_rank": 8175
+     }
+    },
+    {
+     "id": "ADD_0059",
+     "word": "creature",
+     "ph": "/ˈkriːtʃə/",
+     "mn": "生物；动物",
+     "em": "🐾",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-ea-iː": 70,
+       "GP-r": 30,
+       "GP-ture": 136
+      },
+      "max_station": 136,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0474",
+     "word": "culture",
+     "ph": "/ˈkʌltʃə/",
+     "mn": "文化",
+     "em": "🏮",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-l": 16,
+       "GP-r": 30,
+       "GP-ture": 136,
+       "GP-u-ʌ": 52
+      },
+      "max_station": 136,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 138,
+   "key": "a|/e/",
+   "g": "a",
+   "ph": "/e/",
+   "laws": [
+    "S-42"
+   ],
+   "pids": [
+    "GP-a-e-any"
+   ],
+   "funnel": {
+    "newly": 10,
+    "with_own": 10,
+    "form_ok": 8,
+    "dedup": 8,
+    "tier1_n": 0,
+    "tier2_n": 2
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "V6_数字_45",
+     "word": "many",
+     "ph": "/ˈmeni/",
+     "mn": "许多(修饰可数复数)",
+     "em": "🔢",
+     "proof": {
+      "pools": {
+       "GP-a-e-any": 138,
+       "GP-m": 17,
+       "GP-n": 20,
+       "GP-y-i": 53
+      },
+      "max_station": 138,
+      "syllables": 2,
+      "freq_rank": 8307
+     }
+    },
+    {
+     "id": "V6_数字_48",
+     "word": "any",
+     "ph": "/ˈeni/",
+     "mn": "任何/一些(否定疑问句)",
+     "em": "❓",
+     "proof": {
+      "pools": {
+       "GP-a-e-any": 138,
+       "GP-n": 20,
+       "GP-y-i": 53
+      },
+      "max_station": 138,
+      "syllables": 2,
+      "freq_rank": 8310
+     }
+    }
+   ]
+  },
+  {
+   "index": 140,
+   "key": "a|/ɔː/",
+   "g": "a",
+   "ph": "/ɔː/",
+   "laws": [
+    "S-42"
+   ],
+   "pids": [
+    "GP-a-w-ɔː"
+   ],
+   "funnel": {
+    "newly": 6,
+    "with_own": 6,
+    "form_ok": 6,
+    "dedup": 6,
+    "tier1_n": 0,
+    "tier2_n": 4
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G1_055",
+     "word": "water",
+     "ph": "/ˈwɔːtə/",
+     "mn": "水",
+     "em": "💧",
+     "proof": {
+      "pools": {
+       "GP-a-w-ɔː": 140,
+       "GP-r": 30,
+       "GP-t": 34,
+       "GP-w": 38
+      },
+      "max_station": 140,
+      "syllables": 2,
+      "freq_rank": 51
+     }
+    },
+    {
+     "id": "G5_0743",
+     "word": "crosswalk",
+     "ph": "/ˈkrɒswɔːk/",
+     "mn": "人行横道，斑马线",
+     "em": "🚸",
+     "proof": {
+      "pools": {
+       "GP-a-w-ɒ": 139,
+       "GP-a-w-ɔː": 140,
+       "GP-c-k": 1,
+       "GP-k": 14,
+       "GP-o-ɒ": 50,
+       "GP-r": 30,
+       "GP-w": 38
+      },
+      "max_station": 140,
+      "syllables": 2,
+      "freq_rank": 741
+     }
+    },
+    {
+     "id": "G6_0832",
+     "word": "fallen",
+     "ph": "/ˈfɔːlən/",
+     "mn": "落下的，倒下的（fall的过去分词）",
+     "em": "🍂",
+     "proof": {
+      "pools": {
+       "GP-a-w-ɔː": 140,
+       "GP-all": 60,
+       "GP-f": 7,
+       "GP-l": 16,
+       "GP-n": 20
+      },
+      "max_station": 140,
+      "syllables": 2,
+      "freq_rank": 828
+     }
+    },
+    {
+     "id": "ADD_0423",
+     "word": "awful",
+     "ph": "/ˈɔːfʊl/",
+     "mn": "糟糕的；可怕的",
+     "em": "😖",
+     "proof": {
+      "pools": {
+       "GP-a-w-ɔː": 140,
+       "GP-aw": 65,
+       "GP-f": 7,
+       "GP-l": 16,
+       "GP-u-ʊ": 51
+      },
+      "max_station": 140,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 148,
+   "key": "ou|/ə/",
+   "g": "ou",
+   "ph": "/ə/",
+   "laws": [
+    "S-42"
+   ],
+   "pids": [
+    "GP-ou-ə"
+   ],
+   "funnel": {
+    "newly": 18,
+    "with_own": 18,
+    "form_ok": 18,
+    "dedup": 18,
+    "tier1_n": 0,
+    "tier2_n": 7
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "G2_0452",
+     "word": "colour",
+     "ph": "/ˈkʌlə/",
+     "mn": "颜色；涂色（美式拼作 color）",
+     "em": "🎨",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-l": 16,
+       "GP-ou-ə": 148,
+       "GP-r": 30
+      },
+      "max_station": 148,
+      "syllables": 2,
+      "freq_rank": 477
+     }
+    },
+    {
+     "id": "G5_0454",
+     "word": "famous",
+     "ph": "/ˈfeɪməs/",
+     "mn": "著名的，出名的",
+     "em": "🌟",
+     "proof": {
+      "pools": {
+       "GP-a-eɪ-open": 56,
+       "GP-f": 7,
+       "GP-m": 17,
+       "GP-ou-ə": 148,
+       "GP-ous": 130,
+       "GP-s-s": 31
+      },
+      "max_station": 148,
+      "syllables": 2,
+      "freq_rank": 479
+     }
+    },
+    {
+     "id": "G5_0779",
+     "word": "neighbour",
+     "ph": "/ˈneɪbə/",
+     "mn": "邻居（美式拼作 neighbor）",
+     "em": "👋",
+     "proof": {
+      "pools": {
+       "GP-b": 0,
+       "GP-eigh": 77,
+       "GP-n": 20,
+       "GP-ou-ə": 148,
+       "GP-r": 30
+      },
+      "max_station": 148,
+      "syllables": 2,
+      "freq_rank": 777
+     }
+    },
+    {
+     "id": "V6_情感_13",
+     "word": "nervous",
+     "ph": "/ˈnɜːvəs/",
+     "mn": "紧张的",
+     "em": "😰",
+     "proof": {
+      "pools": {
+       "GP-er": 79,
+       "GP-n": 20,
+       "GP-ou-ə": 148,
+       "GP-ous": 130,
+       "GP-r": 30,
+       "GP-s-s": 31,
+       "GP-v": 37
+      },
+      "max_station": 148,
+      "syllables": 2,
+      "freq_rank": 8353
+     }
+    },
+    {
+     "id": "ADD_0528",
+     "word": "humour",
+     "ph": "/ˈhjuːmə/",
+     "mn": "幽默（英式拼写，美式拼作 humor）",
+     "em": "😄",
+     "proof": {
+      "pools": {
+       "GP-h": 12,
+       "GP-m": 17,
+       "GP-ou-ə": 148,
+       "GP-r": 30,
+       "GP-u-juː": 110
+      },
+      "max_station": 148,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0164",
+     "word": "jealous",
+     "ph": "/ˈdʒeləs/",
+     "mn": "嫉妒的；妒忌的",
+     "em": "😒",
+     "proof": {
+      "pools": {
+       "GP-ea-e": 141,
+       "GP-j": 13,
+       "GP-l": 16,
+       "GP-ou-ə": 148,
+       "GP-ous": 130,
+       "GP-s-s": 31
+      },
+      "max_station": 148,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0652",
+     "word": "specious",
+     "ph": "/ˈspiʃəs/",
+     "mn": "似是而非的；华而不实的",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-ou-ə": 148,
+       "GP-ous": 130,
+       "GP-p": 23,
+       "GP-s-s": 31
+      },
+      "max_station": 148,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 156,
+   "key": "ough|/ə/",
+   "g": "ough",
+   "ph": "/ə/",
+   "laws": [
+    "S-42"
+   ],
+   "pids": [
+    "GP-ough-ə"
+   ],
+   "funnel": {
+    "newly": 0,
+    "with_own": 0,
+    "form_ok": 0,
+    "dedup": 0,
+    "tier1_n": 0,
+    "tier2_n": 0
+   },
+   "status": "unfilled",
+   "tier": null,
+   "gate": [],
+   "earliest_completion": {
+    "station": 157,
+    "example_word": "borough"
+   },
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 157 站才有词（如 borough）凑齐全部模式。"
+  },
+  {
+   "index": 157,
+   "key": "ough|/əʊ/",
+   "g": "ough",
+   "ph": "/əʊ/",
+   "laws": [
+    "S-42"
+   ],
+   "pids": [
+    "GP-ough-əʊ"
+   ],
+   "funnel": {
+    "newly": 5,
+    "with_own": 5,
+    "form_ok": 5,
+    "dedup": 5,
+    "tier1_n": 2,
+    "tier2_n": 5
+   },
+   "status": "filled",
+   "tier": 1,
+   "gate": [
+    {
+     "id": "ADD_0082",
+     "word": "dough",
+     "ph": "/dəʊ/",
+     "mn": "生面团",
+     "em": "🍞",
+     "proof": {
+      "pools": {
+       "GP-d": 6,
+       "GP-ough-əʊ": 157
+      },
+      "max_station": 157,
+      "syllables": 1,
+      "freq_rank": null
+     }
+    },
+    {
+     "id": "ADD_0294",
+     "word": "though",
+     "ph": "/ðəʊ/",
+     "mn": "虽然；尽管如此",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-ough-əʊ": 157,
+       "GP-th-ð": 35
+      },
+      "max_station": 157,
+      "syllables": 1,
+      "freq_rank": null
+     }
+    }
+   ]
+  },
+  {
+   "index": 159,
+   "key": "ough|/ʌp/",
+   "g": "ough",
+   "ph": "/ʌp/",
+   "laws": [
+    "S-42"
+   ],
+   "pids": [
+    "GP-ough-ʌp"
+   ],
+   "funnel": {
+    "newly": 1,
+    "with_own": 1,
+    "form_ok": 1,
+    "dedup": 1,
+    "tier1_n": 0,
+    "tier2_n": 1
+   },
+   "status": "filled",
+   "tier": 2,
+   "gate": [
+    {
+     "id": "ADD_0358",
+     "word": "hiccough",
+     "ph": "/ˈhɪkʌp/",
+     "mn": "打嗝（hiccup 的旧拼写）",
+     "em": "📝",
+     "proof": {
+      "pools": {
+       "GP-c-k": 1,
+       "GP-h": 12,
+       "GP-i-ɪ": 49,
+       "GP-ough-ʌp": 159
+      },
+      "max_station": 159,
+      "syllables": 2,
+      "freq_rank": null
+     }
+    }
+   ]
+  }
+ ]
+}
