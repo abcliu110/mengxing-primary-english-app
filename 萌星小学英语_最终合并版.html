@@ -3684,11 +3684,7 @@ function renderVocabPosView() {
   { currentView = { screen: "word_list", params: { pos: posKey }, scrollY: 0 }; renderCurrentView(); return; }   // MENU_WORDS_V5：词性分类并入单词表（总纲照搬）
   renderSubNavbar(["首页", "📘 单词大世界", "🏠 单词的家 (词性分类)"]);
   const curMeta = POS_CATEGORIES.find(p => p.key === posKey) || POS_CATEGORIES[0];
-  const matched = VOCAB_DB.filter(w => {
-    const p = w.pos.toLowerCase();
-    if (posKey === "conj.") return p.includes("conj") || p.includes("interj") || p.includes("art");
-    return p.includes(posKey);
-  });
+  const matched = VOCAB_DB.filter(w => wlPosMatch(w, posKey));
 
   const root = document.getElementById("appViewRoot");
   root.innerHTML = `
@@ -6622,15 +6618,16 @@ function getWordFirstPrincipleXRayHTML(w) {
   }
 
   // 2. Boundedness / Grammar Law scan
-  if ((w.pos || "").includes("n.")) {
+  const __posT = (w.pos || "").toLowerCase().split("/").map(s => s.trim());
+  if (__posT.includes("n.")) {
     if ((w.syntax_contrast || "").includes("不可数") || ["water","milk","juice","bread","rice","meat","beef","pork","homework","housework","weather","music","news","information","knowledge","money"].includes(clean)) {
       insights.push(`📦 <strong style="color:#6ee7b7;">【原理③ 物理边界感：无固定个体边界（不可数）】</strong>：切分后属性不变或属于抽象总称，不能直接加 a/an 或复数 -s，需借容器赋界（如 a cup/piece of）！`);
     } else {
       insights.push(`📦 <strong style="color:#6ee7b7;">【原理③ 物理边界感：有独立外壳边界（可数）】</strong>：单数出场不可单独出现，必须戴冠词帽（a/an/the/my），多个直接加复数尾巴！`);
     }
-  } else if ((w.pos || "").includes("v.")) {
+  } else if (__posT.includes("v.") || __posT.includes("modal v.")) {
     insights.push(`👑 <strong style="color:#fca5a5;">【原理④ 一山不容二虎：核心谓语动词】</strong>：作谓语国王时随三单(+s)和过去(+ed)穿制服；若句中已有谓语王，它必须穿随从马甲（to ${clean} 或 ${clean}ing）！`);
-  } else if ((w.pos || "").includes("adj.")) {
+  } else if (__posT.includes("adj.")) {
     insights.push(`🌉 <strong style="color:#c4b5fd;">【原理④&⑥ 状态标签形容词】</strong>：无动作王权，作表语时必须请系动词国王（am/is/are/look/feel）搭桥；单个词修饰名词放树干前！`);
   }
 
@@ -9185,7 +9182,7 @@ const WL_GRADES = [["G1", "一年级"], ["G2", "二年级"], ["G3", "三年级"]
 function wlThemeKeyOfSub(sub) { const p = WL_PAIRS.find(x => x.subs.includes(sub)); return p ? p.key : sub; }
 function wlSubsOf(key) { const p = WL_PAIRS.find(x => x.key === key); return p ? p.subs : (key ? [key] : []); }
 function wlPairSeeAlso(sub) { const p = WL_PAIRS.find(x => x.subs.includes(sub)); if (!p) return ""; const o = p.subs.find(x => x !== sub); return `<button class="pill-tab" data-mm-see-also onclick="navigateTo('vocab_theme', { sub: '${o}', viewMode: 'mindmap' })">🔗 另见 → ${o}</button>`; }
-function wlPosMatch(w, k) { const p = (w.pos || "").toLowerCase(); return k === "conj." ? (p.includes("conj") || p.includes("interj") || p.includes("art")) : p.includes(k); }
+function wlPosMatch(w, k) { const ts = (w.pos || "").toLowerCase().split("/").map(s => s.trim()); if (k === "conj.") return ts.some(t => t === "conj." || t === "interj." || t === "art."); if (k === "v.") return ts.includes("v.") || ts.includes("modal v."); return ts.includes(k); }
 function wlFilter(p) {
   const subs = wlSubsOf(p.theme), q = (p.q || "").trim().toLowerCase();
   return VOCAB_DB.filter(w => (!subs.length || subs.includes(w.theme_sub)) && (!p.pos || wlPosMatch(w, p.pos)) && (!p.sight || w.sight_type === "irregular")
