@@ -129,7 +129,7 @@ async def main():
         r = await pg.evaluate("({wl:document.querySelectorAll('[data-wl-entry]').length, fl:document.querySelectorAll('[data-wl-flash]').length, old:document.querySelectorAll('#appViewRoot [onclick*=\"vocab_pos\"],#appViewRoot [onclick*=\"vocab_theme\"],#appViewRoot [onclick*=\"vocab_sight\"]').length})")
         if r != {'wl': 1, 'fl': 1, 'old': 0}: bad.append(f'单词大厅入口 {r}')
         await pg.click('[data-wl-entry]'); await pg.wait_for_timeout(500)
-        total = await pg.evaluate("VOCAB_DB.length"); r = await pg.evaluate(WL)
+        total = await pg.evaluate("VOCAB_DB.filter(w => !w.verb_form_of).length"); r = await pg.evaluate(WL)   # 6df094f：动词变形条目不单列
         if not (r['s'] == 'word_list' and r['n'] == total and r['grid'] == min(total, 40)): bad.append(f'单词表全部 {r} / {total}')   # R37-10：每页 40 张
         for old, want in (("navigateTo('vocab_theme')", {}), ("navigateTo('vocab_theme', { sub: '天气与四季', viewMode: 'list' })", {'theme': '天气与四季', 'q': ''}),
                           ("navigateTo('vocab_sight', { filter: 'all', mode: 'browse' })", {'sight': 'irregular'}), ("navigateTo('vocab_pos', { posKey: 'adj.' })", {'pos': 'adj.'})):
@@ -142,14 +142,14 @@ async def main():
         if await pg.locator('[data-wl-pos-tip]').count() != 1: bad.append('词性总纲')
         for key, a, b2 in (('pair:num', '数字与计量', '数字与数量'), ('pair:color', '色彩与空间方位', '颜色与形状'), ('pair:mood', '个人特征与情绪', '情感与性格'), ('pair:pron', '语法功能与指代', '核心语法功能词')):
             await pg.evaluate(f"navigateTo('word_list', {{ theme: '{key}' }})"); await pg.wait_for_timeout(300); r = await pg.evaluate(WL)
-            want = await pg.evaluate(f"VOCAB_DB.filter(w => w.theme_sub === '{a}' || w.theme_sub === '{b2}').length")
+            want = await pg.evaluate(f"VOCAB_DB.filter(w => !w.verb_form_of && (w.theme_sub === '{a}' || w.theme_sub === '{b2}')).length")
             mm = await pg.evaluate("document.querySelectorAll('[data-wl-mindmap]').length")
             if r['n'] != want or mm != 2: bad.append(f'合并主题 {key} {r["n"]}/{want} mm{mm}')
             if await pg.locator(f'[data-wl-theme="{key}"]').count() != 1: bad.append(f'主题筛选 {key}')
             await pg.evaluate(f"navigateTo('vocab_theme', {{ sub: '{b2}', viewMode: 'mindmap' }})"); await pg.wait_for_timeout(500)
             if await pg.locator('[data-mm-see-also]').count() != 1: bad.append(f'导图另见 {b2}')
         await pg.evaluate("navigateTo('word_list', { grade: 'G1', pos: 'n.' })"); await pg.wait_for_timeout(300); r = await pg.evaluate(WL)
-        want = await pg.evaluate("VOCAB_DB.filter(w => w.id.startsWith('G1_') && w.pos.toLowerCase().includes('n.')).length")
+        want = await pg.evaluate("VOCAB_DB.filter(w => !w.verb_form_of && w.id.startsWith('G1_') && wlPosMatch(w, 'n.')).length")
         if r['n'] != want: bad.append(f'年级 + 词性 {r["n"]}/{want}')
         await pg.fill('[data-wl-q]', 'apple'); await pg.wait_for_timeout(300); r = await pg.evaluate(WL)
         if r['n'] < 1 or r['p'].get('q') != 'apple': bad.append(f'搜索 {r}')
