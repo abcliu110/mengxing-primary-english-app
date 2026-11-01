@@ -22,7 +22,7 @@
 | T9 主 HTML 旧库外科补丁（按 T2–T6 更新包逐项修正旧库原文 + 复验） | 已完成（211 项应用/45 项跳过，四层复验全过，主文件已入库） |
 | T10 原理 ①②④⑤⑥ 建模：按 THEORY_AUDIT 修复清单 + T5 修正集 | 已完成（五文件：phonology/letters/sentence/spacetime/viewpoint，validate 全过，关闭） |
 | T11 五大家族场景生成（spec→gen→build→insightcheck 0 失败）+ 独立逻辑审查 | 已完成关闭：24 幕全部由模型生成并通过独立审查（① 经一轮返修）。接班运行注：T11.done §七留有两项未决——19 幕 autoBuild 的 insightcheck 字面门禁待 V1 模板层决策（接受等效校验，或立项接 insight 数据后重验），旗舰幕误读探针已写题未实测；本行“关闭”指场景建成 + 独立审查通过，不含这两项验收 |
-| T12 存量动画按模式迁移（552 幕分批，先图后迁）| 纠错批全清；B6 245/246、B8 48/48 完成；B7/B9 专项定数（oral 污染 38 幕 87 行、mindmap 3 叶），两批订正进行中；B10/B11 已完成（cron 2026-11-01 08:12 JST 实补，本地 commit 43259be；开局 .git 对象写入 EPERM 故障复发一次、后自行恢复，见待办记账）：B10 22 幕构建全过、官方 insightcheck 覆盖 14 幕不合格 0（builder 8 幕 ic_gen8 等效 7 过 + adj_order_1 分节时长提示 1）；B11 13 幕构建全过、ic_gen8 全过 10 幕 + 3 幕时长超区间登记为存量属性；36 份 spec 存档已填实并通过 yaml 校验；hdg18_1.js 精灵由 0 字节残件按 build_sprites.py 重建（171,043 字节，gitignore 产物） |
+| T12 存量动画按模式迁移（552 幕分批，先图后迁）| 已完成（收尾提交见本行末）：纠错批全清；B6 246/246（唯一停单幕 wo_grimm_voiceless_1 由 T12_wo_grimm.done 结案：wogr1 空包存根按 build_sprites.py 补 l_point/l_think 正版帧、四件套全过、ic_gen8 177.9s/16%/0 失败；接班运行独立复验 ITEMS 45/45 全等 + ic_gen8 同值）；B7 oral 38 幕 87 行订正完成（4a9f325；补拍帧 10/10 归档，残留 1 关闭）；B8 48/48；B9 mindmap 3 叶订正完成（4a9f325）；B10/B11 已完成（cron 2026-11-01 08:12 JST 实补，本地 commit 43259be；开局 .git 对象写入 EPERM 故障复发一次、后自行恢复，见待办记账）：B10 22 幕构建全过、官方 insightcheck 覆盖 14 幕不合格 0（builder 8 幕 ic_gen8 等效 7 过 + adj_order_1 分节时长提示 1）；B11 13 幕构建全过、ic_gen8 全过 10 幕 + 3 幕时长超区间登记为存量属性；36 份 spec 存档已填实并通过 yaml 校验；hdg18_1.js 精灵由 0 字节残件按 build_sprites.py 重建（171,043 字节，gitignore 产物）。收尾提交：006eacc（主会话 sweep，含本轮已独立复验的 B7 补拍归档 + wo_grimm 结案文件） |
 | T13 参照图库首批：倒/切/装杯/撕纸 动作事实卡（model/refcards/）| 已完成（4 卡×5 事实，参照图 5 张落盘目视核验，关闭） |
 | T14 汇总报告 | 晨间版已完成并补录 B6 试点结论 |
 
@@ -47,3 +47,4 @@
 - 推送清单修正（06:29 定时巡查）：232 文件批次已备妥（~/workspace/mengxing-push-batch-20261101-run3.lst），排除主 HTML（超单文件上限）与 5 张参照 JPG（二进制快照失败）；两类文件改列晨间决策。
 - 推送完成（06:42，用户确认）：916 文件批次 push-files ok，远端 master 推进至 735358b。仅余主 HTML（超单文件上限）与 5 张参照 JPG（二进制）未上，待定替代路径。
 - 2026-11-01 08:12 JST 接班运行：B10/B11 实补完成（见 T12 行）；开局 .git 对象写入 EPERM 故障复发一次（与 06:56 JST 同型），后自行恢复，B10/B11 已本地提交 43259be；本轮唯一一次 push-files 攒批推送按“5633bb6..HEAD 全部文件（去重、剔除工作树脏文件即主会话 T16 在改文件）”执行（若推送未成功，同样记一笔、下轮补推）。主会话 T16 工作（engine.js/build.mjs/fp_boundedness_1_v3.js/gen_boundedness_1.js/boundedness_1.yaml/props/、T15_pack、teapot/DIAG 记录）本轮未动、未推，属主会话进行中工作。
+- 2026-11-01 10:5x JST 接班运行：T12 收官核验——B6 停单幕 wo_grimm 结案文件（T12_wo_grimm.done + spec/场景/事实表）与 B7 补拍归档（T12b7.done 增补）均已存在且经独立复验（ITEMS 45/45 全等、ic_gen8 177.9s/16%/0 失败，与记录同值），随后主会话以 006eacc 一并提交（含 T16 P0 与 pos 匹配修复 bccab02 在前）；本运行仅提交 runbook 的 T12 已完成标注，未动主会话任何文件。T0–T14 至此全部完成，T14 收官补录见 ~/workspace/your_files/optimization-final-report.md 末尾；按运行手册第 5 条，本轮删除 cron mengxing-overnight。
