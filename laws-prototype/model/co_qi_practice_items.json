@@ -1,0 +1,2249 @@
+{
+ "meta": {
+  "title": "CO/QI 规律检索练习（练习待补收口）",
+  "created": "2026-11-02",
+  "purpose": "为 grammar_ext.yaml 中 CO-01..CO-17、QI-01..QI-15（quiz 字段全空、登记「检索练习待补」）补齐检索练习：每条 4 题（CO-17 为旗舰页既有 3 题回写），混合场景选形 / 拼形 / 病例找错 / 无提示判断四类；纯命名题为 0。",
+  "law_source": "model/laws/grammar_ext.yaml（各条 claim / mechanism / examples / error_cases / scope / exceptions）与 model/laws/probes_wave1.yaml（探针登记错形）",
+  "grounding_rules": [
+   "题目逐题派生自所属规律的 claim + mechanism + boundary + 登记例句；题源逐题标注（source.kind）。",
+   "病例找错题（trap_spotting）只用登记错形：条目 error_cases 或 probes_wave1 探针登记错形，不自编学习者错误。",
+   "全部英文句子经 wordbank.json（2,352 条）与 verb_forms_completion.json 程序校验；be 的 am/is/are 经复合词头条目 G3_K01「be / am / is / are」归一，was/were/been 为独立词条。",
+   "CO-17 的 3 题为其旗舰页（app v-u-co17 第 5 步）既有检索练习的回写，使模型 quiz 字段成为单一事实源，不新编。",
+   "QI-08 不设题：呈现与练习要求受裁定 A 门控，且条目口径明定语调倾向不得据以判错——转终态登记（见 meta.terminal）。",
+   "TA-01..TA-18 不在本文件：其检索练习已由 model/ta_exercises.json 供给（L2，87 题）并接入原型 TA 站；本轮仅销 grammar_ext.yaml 中的陈旧「检索练习待补」登记。"
+  ],
+  "counts": {
+   "laws_authored": 30,
+   "laws_writeback": 1,
+   "items_total": 123,
+   "by_type": {
+    "scene_form_choice": 58,
+    "no_clue": 37,
+    "form_building": 19,
+    "trap_spotting": 9
+   }
+  },
+  "terminal": [
+   {
+    "law_id": "QI-08",
+    "reason": "练习不设 · 终态登记：呈现与练习要求受裁定 A（弱读/语调产出档位）门控，裁定落档前不预设练习；条目口径明定语调倾向只作呈现、不得据以判错。"
+   },
+   {
+    "law_id": "S-01",
+    "reason": "练习不设 · 终态登记：教学效果的证据结论条（元分析口径），无面向学习者的语言机制可练；其内容经拼读区各站的教学顺序落实，不设检索练习。"
+   },
+   {
+    "law_id": "S-13",
+    "reason": "练习不设 · 终态登记：课程政策条（发音目标排序），与 S-09 的取舍受裁定 A 门控；裁定落档前不预设产出练习，条内只作呈现。"
+   },
+   {
+    "law_id": "S-23",
+    "reason": "练习不设 · 终态登记：发展序列/教学框架条，其练习形态是 word sort 分类活动本身（由拼读活动层承载）；检索题只能退化为阶段名背诵（纯命名题），按本站纪律不设。"
+   }
+  ]
+ },
+ "units": [
+  {
+   "law_id": "CO-01",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO01-P1",
+     "type": "scene_form_choice",
+     "prompt": "He baked her a cake. 里 bake 本来只有「烤」的意思，整句却多出一层意思——是哪一层？",
+     "options": [
+      "「给她」——模具多给的意思",
+      "烤的火候",
+      "蛋糕的味道"
+     ],
+     "answer": "「给她」——模具多给的意思",
+     "hint": "回机制「模具给味」：多出来的味道不是面团（动词）给的，是模具给的。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "bake",
+       "baked"
+      ]
+     ]
+    },
+    {
+     "id": "CO01-P2",
+     "type": "no_clue",
+     "prompt": "判断：They painted the door red. 里「把门变成红色」这层意思，全都装在 paint 一个词里。",
+     "answer": "不对。paint 只管「刷」这个手法，「变成红色」是结果模具给的——red 是终点。构式义就是动词之外多出来的那份意义。",
+     "hint": "回 CO-01 机制：整体意义不能由动词完全预测时，剩余意义由构式贡献。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": [
+      [
+       "paint",
+       "painted"
+      ]
+     ]
+    },
+    {
+     "id": "CO01-P3",
+     "type": "form_building",
+     "prompt": "用双宾模具拼句：她给了他一本书。（give 的过去式是 gave）",
+     "answer": "She gave him a book.",
+     "hint": "回机制「模具给味」：双宾模具是原型成员，转移义与模具义在此重合。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "give",
+       "gave"
+      ]
+     ]
+    },
+    {
+     "id": "CO01-P4",
+     "type": "scene_form_choice",
+     "prompt": "同一个 bake：He baked a cake. 和 He baked her a cake. 哪一句里有人「收到」蛋糕？",
+     "options": [
+      "He baked her a cake.",
+      "He baked a cake.",
+      "两句都有"
+     ],
+     "answer": "He baked her a cake.",
+     "hint": "回机制「模具给味」：多出的「给」义来自双宾模具，不来自 bake。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": [
+      [
+       "bake",
+       "baked"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "CO-02",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO02-P1",
+     "type": "scene_form_choice",
+     "prompt": "She made me a cup of tea. 里 make 本来只是「做」，为什么整句读作「给我做」？",
+     "options": [
+      "因为进了「人 + 人 + 东西」的模具，模具自带「给」",
+      "因为 me 放在动词后面",
+      "因为 tea 是喝的"
+     ],
+     "answer": "因为进了「人 + 人 + 东西」的模具，模具自带「给」",
+     "hint": "回机制「模具自带『给』」：队形一站好，「给」的意思自己就来了。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "make",
+       "made"
+      ]
+     ]
+    },
+    {
+     "id": "CO02-P2",
+     "type": "form_building",
+     "prompt": "把 build 放进双宾模具：他们为我们建了一座小房子。（build 的过去式是 built）",
+     "answer": "They built us a small house.",
+     "hint": "回机制「模具自带『给』」：动词只说清「用什么办法给」——建着给。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "build",
+       "built"
+      ]
+     ]
+    },
+    {
+     "id": "CO02-P3",
+     "type": "no_clue",
+     "prompt": "判断：He baked a cake. 和 He baked her a cake. 意思完全一样。",
+     "answer": "不一样。后一句多了「给她」——双宾构式供给的转移义，前一句没有。",
+     "hint": "回 CO-02 主张：中心义是「X 让 Y 收到 Z」，转移义由构式供给。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": [
+      [
+       "bake",
+       "baked"
+      ]
+     ]
+    },
+    {
+     "id": "CO02-P4",
+     "type": "scene_form_choice",
+     "prompt": "Mum baked us a cake. 这句里的「给我们」，是谁给的？",
+     "options": [
+      "双宾模具",
+      "bake 的词典义",
+      "us 这个词"
+     ],
+     "answer": "双宾模具",
+     "hint": "回机制「模具自带『给』」：bake 只提供「烤着给」的方式。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "bake",
+       "baked"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "CO-03",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO03-P1",
+     "type": "trap_spotting",
+     "prompt": "改错：Explain me this.",
+     "answer": "Explain this to me.（explain 不含「致使拥有转移」义，过不了意思关，只能走 to 小路）",
+     "hint": "回机制「两道门」：一位门卫看意思，一位看长相，两关皆过才能进双宾。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO03-P2",
+     "type": "scene_form_choice",
+     "prompt": "哪个动词能进双宾模具？",
+     "options": [
+      "She gave me the book. 里的 give",
+      "Explain me this. 里的 explain",
+      "They donated us books. 里的 donate"
+     ],
+     "answer": "She gave me the book. 里的 give",
+     "hint": "回机制「两道门」：give 两关皆过；explain 意思不过关，donate 长相不过关。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "donate",
+       "donated"
+      ],
+      [
+       "give",
+       "gave"
+      ]
+     ]
+    },
+    {
+     "id": "CO03-P3",
+     "type": "no_clue",
+     "prompt": "判断：donate 进不了双宾，只是因��意思不对。",
+     "answer": "不全对。donate 卡在「长相」关：拉丁源多音节、重音不在前面；explain 才是卡在意思关。",
+     "hint": "回主张：宽域规则看语义，窄域规则再按语义小类与形态音位逐类准入。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO03-P4",
+     "type": "form_building",
+     "prompt": "donate 要走 to 小路：他们把书捐给了我们学校。",
+     "answer": "They donated books to our school.",
+     "hint": "回机制「两道门」：被请去走 to 小路的动词，就用 to 式完成转移。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "donate",
+       "donated"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "CO-04",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO04-P1",
+     "type": "trap_spotting",
+     "prompt": "下面哪句进不了致使移动模具？",
+     "options": [
+      "He kicked the ball over the fence.",
+      "Sam sneezed the napkin off the table.",
+      "He knew the ball over the fence."
+     ],
+     "answer": "He knew the ball over the fence.",
+     "hint": "回主张的范围：know 是状态动词，没有可识解的物理致使链，与构式义不相容。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": [
+      [
+       "kick",
+       "kicked"
+      ],
+      [
+       "know",
+       "knew"
+      ],
+      [
+       "sneeze",
+       "sneezed"
+      ]
+     ]
+    },
+    {
+     "id": "CO04-P2",
+     "type": "scene_form_choice",
+     "prompt": "The wind blew the paper to the floor. 这句里，是谁靠什么办法把纸弄到地板上的？",
+     "options": [
+      "风，靠「吹」把纸弄到地板上",
+      "纸自己跳下去的",
+      "地板把纸吸过去的"
+     ],
+     "answer": "风，靠「吹」把纸弄到地板上",
+     "hint": "回机制「模具补论元」：动词只提供致使的方式，「弄到某处」由模具补足。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "blow",
+       "blew"
+      ]
+     ]
+    },
+    {
+     "id": "CO04-P3",
+     "type": "form_building",
+     "prompt": "用致使移动模具说：他把球踢过了栅栏。",
+     "answer": "He kicked the ball over the fence.",
+     "hint": "回机制「模具补论元」：kick 自带致使移动义，是与模具义重合的原型成员。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "kick",
+       "kicked"
+      ]
+     ]
+    },
+    {
+     "id": "CO04-P4",
+     "type": "no_clue",
+     "prompt": "判断：sneeze 本来是不及物动词，所以 Sam sneezed the napkin off the table. 一定是错句。",
+     "answer": "不对。致使移动模具能给不及物动词补上致使与路径论元，sneeze 提供「喷嚏」这个致使方式，句子成立。",
+     "hint": "回主张：不及物动词入模后，由构式补足致使与路径，动词只提供方式。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": [
+      [
+       "sneeze",
+       "sneezed"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "CO-05",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO05-P1",
+     "type": "scene_form_choice",
+     "prompt": "She wiped the table clean. 里「干净」这个结果，是谁安排的？",
+     "options": [
+      "结果模具——clean 是终点",
+      "wipe 本身就带「干净」义",
+      "table 安排的"
+     ],
+     "answer": "结果模具——clean 是终点",
+     "hint": "回机制「手法加终点」：wipe 只说「擦」，clean 才说「擦成什么样」。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "wipe",
+       "wiped"
+      ]
+     ]
+    },
+    {
+     "id": "CO05-P2",
+     "type": "form_building",
+     "prompt": "用结果模具说：他们把门刷成了红色。",
+     "answer": "They painted the door red.",
+     "hint": "回机制「手法加终点」：paint 是手法，red 是终点，两者缺一构不成结果解读。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "paint",
+       "painted"
+      ]
+     ]
+    },
+    {
+     "id": "CO05-P3",
+     "type": "no_clue",
+     "prompt": "判断：He made his bed tidy. 里的 tidy 可有可无，去掉意思不变。",
+     "answer": "不对。tidy 是终点状态，去掉就没有「弄成整齐」的结果义了。",
+     "hint": "回机制「手法加终点」：动词提供动作方式，结果短语��供终点。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": [
+      [
+       "make",
+       "made"
+      ]
+     ]
+    },
+    {
+     "id": "CO05-P4",
+     "type": "scene_form_choice",
+     "prompt": "哪一句是结果模具？",
+     "options": [
+      "They painted the door red.",
+      "They painted the door.",
+      "They like the red door."
+     ],
+     "answer": "They painted the door red.",
+     "hint": "回主张：结果构式 = 手法动词 + 终点状态，缺了 red 就没有「变成」义。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "paint",
+       "painted"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "CO-06",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO06-P1",
+     "type": "scene_form_choice",
+     "prompt": "Dad promised me a new bike. 自行车现在到手了吗？",
+     "options": [
+      "还没有——这是「答应给」，意图/未来转移",
+      "已经到手了",
+      "永远不会给了"
+     ],
+     "answer": "还没有——这是「答应给」，意图/未来转移",
+     "hint": "回机制「一个家族」：答应给是围着「给」转的边缘成员，还没真交到手。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "promise",
+       "promised"
+      ]
+     ]
+    },
+    {
+     "id": "CO06-P2",
+     "type": "no_clue",
+     "prompt": "判断：只要是双宾句，就表示东西真的交到对方手里了。",
+     "answer": "不对。双宾是多义家族：中心义是成功转移，还有意图转移、使能、阻碍、未来转移等边缘义。",
+     "hint": "回主张：各边缘义由隐喻/实例链与中心义相连，不是同音巧合。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO06-P3",
+     "type": "scene_form_choice",
+     "prompt": "Mum baked us a cake. 这句在双宾家族里是哪位成员？",
+     "options": [
+      "使能转移——做给他，成品即转移物",
+      "阻碍——不让他拿到",
+      "纯粹状态，没有转移"
+     ],
+     "answer": "使能转移——做给他，成品即转移物",
+     "hint": "回机制「一个家族」：做给他——给的是成品，与中心义「真给」相连。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "bake",
+       "baked"
+      ]
+     ]
+    },
+    {
+     "id": "CO06-P4",
+     "type": "scene_form_choice",
+     "prompt": "哪一句是家族的「大哥」（中心义：成功转移）？",
+     "options": [
+      "She gave him a book.",
+      "Dad promised me a new bike.",
+      "Mum baked us a cake."
+     ],
+     "answer": "She gave him a book.",
+     "hint": "回机制「一个家族」：大家长是「真把东西交到他手里」。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "bake",
+       "baked"
+      ],
+      [
+       "give",
+       "gave"
+      ],
+      [
+       "promise",
+       "promised"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "CO-07",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO07-P1",
+     "type": "trap_spotting",
+     "prompt": "改错：There has a book on the desk.",
+     "answer": "There is a book on the desk.（There be 管出场介绍，have 管领有，两出戏不能混演）",
+     "hint": "回机制「领上台与归谁管」：一个管出场，一个管归属。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO07-P2",
+     "type": "scene_form_choice",
+     "prompt": "第一次把一只小狗介绍给大家，哪句合原型？",
+     "options": [
+      "There is a dog under the tree.",
+      "There has a dog under the tree.",
+      "There is the dog under the tree."
+     ],
+     "answer": "There is a dog under the tree.",
+     "hint": "回主张：出场介绍的主角多半是新客，用不定指；the dog 是定指老朋友，不合原型。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO07-P3",
+     "type": "no_clue",
+     "prompt": "判断：There is the bus! 一定是错句。",
+     "answer": "不对。等候的东西到达时是语境特许——清单列举语境可放行定指主语。",
+     "hint": "回主张的范围：特许不改变原型口径，但这句不算错。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO07-P4",
+     "type": "form_building",
+     "prompt": "用出场介绍模具说：桌子上有一本书。",
+     "answer": "There is a book on the desk.",
+     "hint": "回机制「领上台与归谁管」：新面孔上台用 There is，不用 have。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "CO-08",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO08-P1",
+     "type": "scene_form_choice",
+     "prompt": "The window was broken. 这句把镜头对准了谁？",
+     "options": [
+      "窗户——被收拾的东西",
+      "砸窗户的人",
+      "路过的旁观者"
+     ],
+     "answer": "窗户——被收拾的东西",
+     "hint": "回机制「谁站中间」：被动让被收拾的那位站到舞台正中间。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "break",
+       "broken"
+      ]
+     ]
+    },
+    {
+     "id": "CO08-P2",
+     "type": "form_building",
+     "prompt": "换主角：The boy broke the window. 改成让窗户站中间。",
+     "answer": "The window was broken.",
+     "hint": "回机制「谁站中间」：事件不变，焦点参与者换人——受事升为主语。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "break",
+       "broke"
+      ],
+      [
+       "break",
+       "broken"
+      ]
+     ]
+    },
+    {
+     "id": "CO08-P3",
+     "type": "no_clue",
+     "prompt": "判断：被动句就是「没人做事」的句子——窗户没人打破，是自己破的。",
+     "answer": "不对。事情还是有人做，只是镜头换了主角：受事站中间，施事降格或隐去。",
+     "hint": "回主张：主/被动之别是焦点参与者的选择，事件内容不变。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO08-P4",
+     "type": "scene_form_choice",
+     "prompt": "哪一句里，做事的人退到了 by 的后面？",
+     "options": [
+      "The cake was made by Mum.",
+      "Mum made the cake.",
+      "The cake is on the table."
+     ],
+     "answer": "The cake was made by Mum.",
+     "hint": "回机制「谁站中间」：受事站中间，施事退到 by 后面。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "make",
+       "made"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "CO-09",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO09-P1",
+     "type": "no_clue",
+     "prompt": "判断：The door opened. 是个没头句，因为门不会自己开。",
+     "answer": "不对。主语是镜头主角，不必是动作发出者；门是被看的那扇门，站中间没问题。",
+     "hint": "回机制「主角不等于动手的人」：施事只是主角的原型，不是定义。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "open",
+       "opened"
+      ]
+     ]
+    },
+    {
+     "id": "CO09-P2",
+     "type": "scene_form_choice",
+     "prompt": "The key opened the door. 里主语 the key 扮演什么角色？",
+     "options": [
+      "工具",
+      "做事的人",
+      "被开的东西"
+     ],
+     "answer": "工具",
+     "hint": "回主张的范围：「主角」是注意力概念，判读角色仍需结合动词与语境。",
+     "source": {
+      "kind": "boundary",
+      "note": "条目边界登记派生"
+     },
+     "verb_forms_checked": [
+      [
+       "open",
+       "opened"
+      ]
+     ]
+    },
+    {
+     "id": "CO09-P3",
+     "type": "scene_form_choice",
+     "prompt": "哪一句的主语恰好也是动作发出者（原型情形）？",
+     "options": [
+      "The dog is running.",
+      "The door opened.",
+      "The key opened the door."
+     ],
+     "answer": "The dog is running.",
+     "hint": "回机制「主角不等于动手的人」：主语也是发出者是原型情形，而非定义。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "open",
+       "opened"
+      ]
+     ]
+    },
+    {
+     "id": "CO09-P4",
+     "type": "scene_form_choice",
+     "prompt": "The door opened. 里门当主语，说明门是——",
+     "options": [
+      "镜头主角（被看的那位）",
+      "动作的发出者",
+      "这句出错的地方"
+     ],
+     "answer": "镜头主角（被看的那位）",
+     "hint": "回主张：主语编码 trajector——关系中的首要焦点参与者。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": [
+      [
+       "open",
+       "opened"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "CO-10",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO10-P1",
+     "type": "form_building",
+     "prompt": "小红会用框架 I want ___。她想说「我想要一块蛋糕」，怎么套这个框架？",
+     "answer": "I want a cake.（框架不动，只换最后一个零件）",
+     "hint": "回机制「半成品先行」：先把整截背熟用顺，只换槽位里的词。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO10-P2",
+     "type": "no_clue",
+     "prompt": "判断：学句型应该先把抽象规则背熟，再往里面放动词。",
+     "answer": "不对。孩子是先整句、再换零件：围绕单个动词/框架逐个建立，抽象句型后长。",
+     "hint": "回主张：最初的句法组织是 item-based 的动词岛，抽象范畴缓慢涌现。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO10-P3",
+     "type": "scene_form_choice",
+     "prompt": "I want an apple. 变成 I want some water. 变的是哪一部分？",
+     "options": [
+      "只换了最后一个零件",
+      "框架换了",
+      "整句推倒重背"
+     ],
+     "answer": "只换了最后一个零件",
+     "hint": "回机制「半成品先行」：框架整存，槽位替换是动词岛阶段的典型产出。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO10-P4",
+     "type": "scene_form_choice",
+     "prompt": "零件换得多了，大脑会发现什么？",
+     "options": [
+      "前面这截是个通用机关",
+      "每个词都得重新背",
+      "动词比框架重要"
+     ],
+     "answer": "前面这截是个通用机关",
+     "hint": "回机制「半成品先行」：变例积累到一定量，框架被识解为通用机关——图式涌现。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "CO-11",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO11-P1",
+     "type": "scene_form_choice",
+     "prompt": "She gave him a book. 和 He baked her a cake. 动词不同，为什么实验里会被分进同一堆？",
+     "options": [
+      "模具相同——都是双宾",
+      "动词意思相近",
+      "句子里都有食物"
+     ],
+     "answer": "模具相同——都是双宾",
+     "hint": "回机制「先认队形」：大脑认句子，先认出是哪种句型，再细听动词。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "bake",
+       "baked"
+      ],
+      [
+       "give",
+       "gave"
+      ]
+     ]
+    },
+    {
+     "id": "CO11-P2",
+     "type": "no_clue",
+     "prompt": "判断：听句子时，大脑总是先认出动词，再认句型。",
+     "answer": "不对。母语者按构式分类者占优——构式义是心理现实的表征单位。",
+     "hint": "回主张：构式（而非主动词）是分组的占优依据，中德学习者样本同样复现。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO11-P3",
+     "type": "form_building",
+     "prompt": "分堆：The cat is sleeping. 和上面两句双宾句是一堆吗？为什么？",
+     "answer": "不是一堆。分堆看的是模具：它不是双宾模具，没有「谁给谁」的队形。",
+     "hint": "回机制「先认队形」：先认队形，再看排队的是谁。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO11-P4",
+     "type": "no_clue",
+     "prompt": "判断：构式优先是全有或全无的——要么全按模具分，要么全按动词分。",
+     "answer": "不对。实验中多数被试（10/17）是混合分类——构式优先是占优倾向，不是全有或全无。",
+     "hint": "回主张的例外登记：倾向是统计占优，不是铁律。",
+     "source": {
+      "kind": "exception",
+      "note": "条目例外登记派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "CO-12",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO12-P1",
+     "type": "form_building",
+     "prompt": "把「一家三代」排好序：① 看不见的双宾模具 ② 整块背下的 How are you? ③ 能换零件的 I want ___",
+     "answer": "② → ③ → ①（整存的公式语 → 半成品框架 → 全抽象模具）",
+     "hint": "回机制「一家三代」：背得越多、换得越多，模具越清楚。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO12-P2",
+     "type": "no_clue",
+     "prompt": "判断：整句背下来的不算学问，和句型模具互不相干。",
+     "answer": "不对。它们是同一条谱系：公式语经反复变例被部分图式化，最终析出抽象构式。",
+     "hint": "回主张：习得即沿谱系的运动——整存、框架、模具是一家。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO12-P3",
+     "type": "scene_form_choice",
+     "prompt": "I want ___. 站在谱系的哪一段？",
+     "options": [
+      "中段——半成品框架",
+      "整存端——整块背下",
+      "全抽象端——只剩槽位"
+     ],
+     "answer": "中段——半成品框架",
+     "hint": "回机制「一家三代」：半截话是爸爸——能换零件，还没全抽象。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO12-P4",
+     "type": "scene_form_choice",
+     "prompt": "（双宾模具）X gives Y Z 只剩角色槽位，它在谱系的哪一端？",
+     "options": [
+      "全抽象端",
+      "整存端",
+      "中段"
+     ],
+     "answer": "全抽象端",
+     "hint": "回机制「一家三代」：看不见摸不着的句型模具是谱系的抽象端。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "CO-13",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO13-P1",
+     "type": "trap_spotting",
+     "prompt": "改错：I want go.",
+     "answer": "I want to go.（want 已占用唯一的限定位置，go 必须穿非限定工作服 to go）",
+     "hint": "回机制「一顶帽子」：时态帽子一个分句只有一顶，后面的动词要脱帽穿工作服。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO13-P2",
+     "type": "scene_form_choice",
+     "prompt": "I enjoy swimming. 里，戴时态帽子的是谁？穿工作服的是谁？",
+     "options": [
+      "enjoy 戴帽，swimming 穿 -ing 工作服",
+      "swimming 戴帽，enjoy 穿工作服",
+      "两个都戴帽"
+     ],
+     "answer": "enjoy 戴帽，swimming 穿 -ing 工作服",
+     "hint": "回机制「一顶帽子」：限定性只能实现一次，非限定形式依附于主分句。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO13-P3",
+     "type": "no_clue",
+     "prompt": "判断：He stopped to smoke. 里 stop 和 smoke 都戴着时态帽子。",
+     "answer": "不对。一个分句只有一顶帽子：stop 戴帽，smoke 穿 to 工作服出现。",
+     "hint": "回主张：非限定形式不携带独立时态锚点。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "stop",
+       "stopped"
+      ]
+     ]
+    },
+    {
+     "id": "CO13-P4",
+     "type": "form_building",
+     "prompt": "给 go 穿上工作服，拼好整句：I want ___ home.",
+     "answer": "to go（I want to go home.）",
+     "hint": "回机制「一顶帽子」：want 戴帽在先，go 穿 to 工作服跟随。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "CO-14",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO14-P1",
+     "type": "scene_form_choice",
+     "prompt": "enjoy 点名的搭档是哪个？I enjoy ___.",
+     "options": [
+      "swimming",
+      "to swim",
+      "swim"
+     ],
+     "answer": "swimming",
+     "hint": "回机制「点名搭档」：enjoy 点 -ing，记动词时把搭档一起记。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO14-P2",
+     "type": "no_clue",
+     "prompt": "判断：He stopped smoking. 和 He stopped to smoke. 意思一样，搭档随便选。",
+     "answer": "不一样。stop smoking 是「停下不抽了」，stop to smoke 是「停下来去抽」——框架一换，意思翻转。",
+     "hint": "回机制「点名搭档」：stop 两个都点、但意思不一样——选择即意义。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "stop",
+       "stopped"
+      ]
+     ]
+    },
+    {
+     "id": "CO14-P3",
+     "type": "scene_form_choice",
+     "prompt": "want 点名的搭档是哪个？I want ___.",
+     "options": [
+      "to go",
+      "going",
+      "go"
+     ],
+     "answer": "to go",
+     "hint": "回机制「点名搭档」：want 点 to，这是词条级的搭配事实。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO14-P4",
+     "type": "no_clue",
+     "prompt": "判断：记动词只记动词本身就够了，搭档用到时按总规则现推。",
+     "answer": "不对。补足语选择是词条级的词汇属性，无总规则可推——记动词须连框架一并记。",
+     "hint": "回主张：动词 + 框架才是记忆单位。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "CO-15",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO15-P1",
+     "type": "scene_form_choice",
+     "prompt": "I read a book in my room. 这句先立起来的是什么？",
+     "options": [
+      "主谓宾骨架——谁读了什么",
+      "地点——房间",
+      "前因后果"
+     ],
+     "answer": "主谓宾骨架——谁读了什么",
+     "hint": "回机制「两种盖法」：英语先立柱子（谁做了什么），再往四周挂修饰。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO15-P2",
+     "type": "no_clue",
+     "prompt": "判断：英语句子也必须先铺垫、最后才点题。",
+     "answer": "不对。那是汉语意合「流水式」的常态；英语靠形式标记先立骨架。此为统计大势，不是逐句判错的定律。",
+     "hint": "回主张：两种建筑术是倾向差异，语序差异是其表层结果。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO15-P3",
+     "type": "scene_form_choice",
+     "prompt": "In the morning, I walk my dog in the park. 把时间提到前面，是把汉语建筑术搬进英语了吗？",
+     "options": [
+      "不是——这是英语内的特许变强调",
+      "是——英语不许前置",
+      "是——这句是错句"
+     ],
+     "answer": "不是——这是英语内的特许变强调",
+     "hint": "回条目登记：前置状语是英语内的变强调（见 QI-07），与汉语式铺陈要区分。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO15-P4",
+     "type": "no_clue",
+     "prompt": "判断：「先地点后时间」可以当定律，逐句查错。",
+     "answer": "不对。项目已裁定这类衍生表述一律降格为倾向——用于诊断与预防，不用于逐句判错。",
+     "hint": "回主张的范围：大势不覆盖每一句，英语亦有流水式口语句。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "CO-16",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "CO16-P1",
+     "type": "trap_spotting",
+     "prompt": "He bake her a cake every Sunday. 「给」的戏演对了，这句的毛病该去哪个车间查？",
+     "answer": "形态车间（形态层）：bake 缺三单 -s。构式只管「谁给谁」的戏，-s、时态、单复数归形态层。",
+     "hint": "回机制「分工地图」：戏演对了，扣子还得去隔壁一颗颗查。",
+     "source": {
+      "kind": "probe_form",
+      "note": "探针登记错形（probes_wave1）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO16-P2",
+     "type": "no_clue",
+     "prompt": "判断：模具选对了，时态和 -s 就不用查了。",
+     "answer": "不对。构式义对动词形态、一致、时态不作预测也不豁免——分工查验，缺一不可。",
+     "hint": "回主张：把构式讲法越界用到形式细节，会产生新的伪规则。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO16-P3",
+     "type": "scene_form_choice",
+     "prompt": "He bakes her a cake every Sunday. 里 bakes 的 -s 与 every Sunday 决定的时态，是谁的结论？",
+     "options": [
+      "形态层",
+      "构式层",
+      "词汇层"
+     ],
+     "answer": "形态层",
+     "hint": "回机制「分工地图」：同一构式，词形细节归形态车间。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO16-P4",
+     "type": "scene_form_choice",
+     "prompt": "哪个问题归构式车间管？",
+     "options": [
+      "这句是谁给谁、谁变样",
+      "-s 加没加",
+      "时态选得对不对"
+     ],
+     "answer": "这句是谁给谁、谁变样",
+     "hint": "回机制「分工地图」：模具管整句的戏，形态管戏服上的扣子。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "CO-17",
+   "item_count": 3,
+   "items": [
+    {
+     "id": "CO17-P1",
+     "type": "scene_form_choice",
+     "prompt": "They got married. 里的 get 是哪个构造？",
+     "options": [
+      "① get + 名词 = 得到",
+      "④ get + 过去分词 = 被动味（事情落在自己身上）",
+      "⑤ get + 人 + to do = 说动"
+     ],
+     "answer": "④ get + 过去分词 = 被动味（事情落在自己身上）",
+     "hint": "回五构造表——married 是什么词形？「结婚」是他们主动「得到」的，还是事情落在他们身上？",
+     "source": {
+      "kind": "flagship_page",
+      "note": "旗舰页 v-u-co17 既有题回写"
+     },
+     "verb_forms_checked": [
+      [
+       "get",
+       "got"
+      ],
+      [
+       "marry",
+       "married"
+      ]
+     ]
+    },
+    {
+     "id": "CO17-P2",
+     "type": "scene_form_choice",
+     "prompt": "It's getting dark. 里的 get 是什么意思？",
+     "options": [
+      "得到",
+      "变得（get + 形容词）",
+      "到达"
+     ],
+     "answer": "变得（get + 形容词）",
+     "hint": "回五构造表第②行——get 后面跟的是 dark，这个词是什么词性？",
+     "source": {
+      "kind": "flagship_page",
+      "note": "旗舰页 v-u-co17 既有题回写"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "CO17-P3",
+     "type": "scene_form_choice",
+     "prompt": "I got him to help me. 里 get 的活是？",
+     "options": [
+      "接收",
+      "变得",
+      "说动 / 使（get + 人 + to do）"
+     ],
+     "answer": "说动 / 使（get + 人 + to do）",
+     "hint": "回五构造表第⑤行——get 后面先站了 him，又跟了 to help，这个形状对哪一行？",
+     "source": {
+      "kind": "flagship_page",
+      "note": "旗舰页 v-u-co17 既有题回写"
+     },
+     "verb_forms_checked": [
+      [
+       "get",
+       "got"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "QI-01",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI01-P1",
+     "type": "scene_form_choice",
+     "prompt": "你想问「你的生日是哪天」，缺的是哪块拼图、该派谁？",
+     "options": [
+      "时间——派 when",
+      "地方——派 where",
+      "人——派 who"
+     ],
+     "answer": "时间——派 when",
+     "hint": "回机制「缺哪块派谁」：先看清缺的是哪一块，再派对词。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI01-P2",
+     "type": "form_building",
+     "prompt": "拼问句：缺的是「地方」——「我的书在哪儿？」",
+     "answer": "Where is my book?",
+     "hint": "回机制「缺哪块派谁」：问句是「已知框架 + 一个空缺」，where 标明空缺是地方。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI01-P3",
+     "type": "scene_form_choice",
+     "prompt": "Who is your teacher? 的答语要填哪种信息？",
+     "options": [
+      "人",
+      "地方",
+      "原因"
+     ],
+     "answer": "人",
+     "hint": "回主张：疑问词标明空缺的语义类型，答语只需填入该类型的信息。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI01-P4",
+     "type": "no_clue",
+     "prompt": "判断：疑问词可以随便派，听的人会自己猜。",
+     "answer": "不对。问答是最小协作单元：派错词，答语就填不进空缺。",
+     "hint": "回机制「缺哪块派谁」：who 找人、where 找地方、when 找时间，各管一块。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-02",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI02-P1",
+     "type": "no_clue",
+     "prompt": "判断：there 是把 where 的第一个字母换成 t 变出来的。",
+     "answer": "不对。wh- 与 th- 是两个词族——疑问词出自 hw- 家，指示词出自 þ- 家，从未互变；长得像只是语音演变的表面结果。",
+     "hint": "回机制「两家的家谱」：两家门牌有点像，谁也不是从谁家搬出来的。",
+     "source": {
+      "kind": "probe_form",
+      "note": "探针登记错形（probes_wave1）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI02-P2",
+     "type": "scene_form_choice",
+     "prompt": "— What is that? — That is a bird. 这组问答里，问词和答词是一家人吗？",
+     "options": [
+      "不是——两家只是长得像",
+      "是——that 是 what 换字母变出来的",
+      "是——there 专门由 where 变成答词"
+     ],
+     "answer": "不是——两家只是长得像",
+     "hint": "回机制「两家的家谱」：what 在 hw- 家，that 在 þ- 家，同框出现也不互变。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI02-P3",
+     "type": "scene_form_choice",
+     "prompt": "The cat is there. 里的 there 属于哪一家？",
+     "options": [
+      "指示词 þ- 家",
+      "疑问词 hw- 家"
+     ],
+     "answer": "指示词 þ- 家",
+     "hint": "回主张：指示词继承 *to- 词干（古英语 þ-），与疑问词谱系独立。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI02-P4",
+     "type": "no_clue",
+     "prompt": "判断：有押韵口诀说「where 变 there」，所以这是真词源，可以这样教。",
+     "answer": "不对。口诀只能保留为纯助记，且必须显性标注「口诀不是词源」，与真词源分栏呈现。",
+     "hint": "回主张的范围：mnemonic 须挂回本条，与真词源分栏。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-03",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI03-P1",
+     "type": "scene_form_choice",
+     "prompt": "Whose book is this? 里的 whose 和 who 是什么关系？",
+     "options": [
+      "whose 是 who 的「家的」（所有格）",
+      "whose 是个跟 who 无关的新词",
+      "whose 是 who 的复数"
+     ],
+     "answer": "whose 是 who 的「家的」（所有格）",
+     "hint": "回机制「两件化石」：问「谁的」时，who 变成 whose，就像 his 是 he 的所有格。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI03-P2",
+     "type": "no_clue",
+     "prompt": "判断：why 跟 who 一点关系都没有。",
+     "answer": "不对。why 是 who 一家的工具格化石，老义是「凭什么（造成的）」——问原因，就是问靠什么造成的。",
+     "hint": "回机制「两件化石」：现代英语只剩 whose 与 why 两件还留着格词尾的痕迹。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI03-P3",
+     "type": "scene_form_choice",
+     "prompt": "his 是 he 的所有格。同理，who 的所有格是哪个？",
+     "options": [
+      "whose",
+      "why",
+      "who"
+     ],
+     "answer": "whose",
+     "hint": "回机制「两件化石」：hwā 的属格是 hwæs，变成今天的 whose。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI03-P4",
+     "type": "form_building",
+     "prompt": "用 whose 提问：「这本书是谁的？」",
+     "answer": "Whose book is this?",
+     "hint": "回机制「两件化石」：whose = who 的「家的」——问归属派它。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-04",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI04-P1",
+     "type": "trap_spotting",
+     "prompt": "改错：Does she likes apples?",
+     "answer": "Does she like apples.（does 已扛起时态，主动词须回原形）",
+     "hint": "回机制「排头兵出列」：被举到前面的助动词扛起时态，后面的动词脱帽回原形。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI04-P2",
+     "type": "scene_form_choice",
+     "prompt": "Has she got a pet? 里被喊到队伍最前面的是谁？",
+     "options": [
+      "has——排第一的助动词",
+      "she",
+      "got"
+     ],
+     "answer": "has——排第一的助动词",
+     "hint": "回机制「排头兵出列」：倒装对象总是限定动词链的首个助动词。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "get",
+       "got"
+      ]
+     ]
+    },
+    {
+     "id": "QI04-P3",
+     "type": "form_building",
+     "prompt": "没有助动词时请 do 补位：把「你看过这部电影」变成一般疑问句。（see 的过去式是 saw，问句里用原形 see）",
+     "answer": "Did you see the film?",
+     "hint": "回机制「排头兵出列」：无助动词时 do 补位出列，并扛起过去时态。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "do",
+       "did"
+      ],
+      [
+       "see",
+       "saw"
+      ]
+     ]
+    },
+    {
+     "id": "QI04-P4",
+     "type": "no_clue",
+     "prompt": "判断：Who came yesterday? 没有倒装，所以是错句。",
+     "answer": "不对。主语疑问句没有可倒装的对象，是结构特许，不是失误。",
+     "hint": "回主张的范围：间接疑问句不倒装、主语疑问句无倒装对象，须同框教学。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": [
+      [
+       "come",
+       "came"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "QI-05",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI05-P1",
+     "type": "scene_form_choice",
+     "prompt": "Dad bought me a new BIKE. 新信息落在哪里、靠什么提醒大家「看这儿」？",
+     "options": [
+      "句尾的 BIKE，靠重读",
+      "句首的 Dad，靠大写",
+      "句中的 me，靠停顿"
+     ],
+     "answer": "句尾的 BIKE，靠重读",
+     "hint": "回机制「压轴上菜」：最后端上新菜，还要敲一下盘子——重读就是敲盘子。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "buy",
+       "bought"
+      ]
+     ]
+    },
+    {
+     "id": "QI05-P2",
+     "type": "no_clue",
+     "prompt": "判断：新货放哪儿都行，重音随便落，意思不受影响。",
+     "answer": "不对。常态是已知在前、新信息在后：新信息落在句尾并承载重音。",
+     "hint": "回主张：end-focus 是英语信息呈现的常态（Quirk 口径）。",
+     "source": {
+      "kind": "probe_form",
+      "note": "探针登记错形（probes_wave1）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI05-P3",
+     "type": "scene_form_choice",
+     "prompt": "I said GREEN, not blue. 这里重音跑到前面去了，为什么合法？",
+     "options": [
+      "对比焦点靠重音前移，是正当的变强调",
+      "读错了，应该重读 blue",
+      "因为 GREEN 是颜色词"
+     ],
+     "answer": "对比焦点靠重音前移，是正当的变强调",
+     "hint": "回主张的例外登记：重音前移制造对比焦点，是合法手段，不构成反例。",
+     "source": {
+      "kind": "exception",
+      "note": "条目例外登记派生"
+     },
+     "verb_forms_checked": [
+      [
+       "say",
+       "said"
+      ]
+     ]
+    },
+    {
+     "id": "QI05-P4",
+     "type": "scene_form_choice",
+     "prompt": "There is a DOG under the tree. 新面孔被安排在句子的哪个位置介绍？",
+     "options": [
+      "句尾",
+      "句首",
+      "句中"
+     ],
+     "answer": "句尾",
+     "hint": "回机制「压轴上菜」：存现句的信息安排与 end-focus 同源（引 CO-07）。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-06",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI06-P1",
+     "type": "no_clue",
+     "prompt": "判断：In the morning, we play in the park. 把时间提到句首，就是错句。",
+     "answer": "不对。状语排队是倾向不是定律；前置状语承担场景设定功能，是合法变体。",
+     "hint": "回机制「排队不上锁」：想先交代时间，就把时间搬到队头，那叫先给场景。",
+     "source": {
+      "kind": "probe_form",
+      "note": "探针登记错形（probes_wave1）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI06-P2",
+     "type": "scene_form_choice",
+     "prompt": "We play in the park in the morning. 是常态出场顺序：事情之后，先补什么、再补什么？",
+     "options": [
+      "先地点，再时间",
+      "先时间，再地点",
+      "先人，再方式"
+     ],
+     "answer": "先地点，再时间",
+     "hint": "回机制「排队不上锁」：常态是先说做了什么，再补在哪儿、什么时候。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI06-P3",
+     "type": "scene_form_choice",
+     "prompt": "哪个说法对？",
+     "options": [
+      "状语顺序是功能分工，队形不上锁",
+      "状语顺序是硬性规则，错了就是病句",
+      "时间永远不许前置"
+     ],
+     "answer": "状语顺序是功能分工，队形不上锁",
+     "hint": "回主张：两种语序由功能分工而非对错区分。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI06-P4",
+     "type": "no_clue",
+     "prompt": "判断：既然排队不上锁，频度副词的位置也可以随便放。",
+     "answer": "不对。倾向内部仍有硬约束残部（如频度副词的中位）；教学中只放开地点/时间的排队等级。",
+     "hint": "回主张的范围：硬约束残部按个案处理，不许整表放开。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-07",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI07-P1",
+     "type": "scene_form_choice",
+     "prompt": "In the morning, I read a book. 把时间提到句首，是为了什么？",
+     "options": [
+      "先给时间打光——作场景出发点",
+      "英语规定时间必须在前",
+      "为了把句子拉长"
+     ],
+     "answer": "先给时间打光——作场景出发点",
+     "hint": "回机制「追光给谁」：把谁提到句首，就是先给谁一束追光。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI07-P2",
+     "type": "no_clue",
+     "prompt": "判断：把时间提到句首只是换个位置，意思和重心都不变。",
+     "answer": "不对。被前置者获得「出发点」地位，句尾焦点让给其余新信息，整句信息重心随之改组。",
+     "hint": "回主张：前置承担主题衔接与对比强调功能。",
+     "source": {
+      "kind": "probe_form",
+      "note": "探针登记错形（probes_wave1）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI07-P3",
+     "type": "scene_form_choice",
+     "prompt": "In the park, children are playing. 追光先打给了谁？",
+     "options": [
+      "地点——in the park",
+      "孩子们",
+      "玩耍的动作"
+     ],
+     "answer": "地点——in the park",
+     "hint": "回机制「追光给谁」：先让大家站到这个场景里，再听正文。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI07-P4",
+     "type": "no_clue",
+     "prompt": "判断：小学阶段要把前置当作产出要求，天天练。",
+     "answer": "不对。本条定位为识别与欣赏，不作产出要求；滥用还会破坏 end-focus 的默认加工预期。",
+     "hint": "回主张的范围：前置的修辞收益以可理解为限。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-09",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI09-P1",
+     "type": "scene_form_choice",
+     "prompt": "— Why are you wet? 问的是原因。哪个答语对？",
+     "options": [
+      "Because it rained.",
+      "To get some books.",
+      "Yes, I am."
+     ],
+     "answer": "Because it rained.",
+     "hint": "回机制「先听清问的是哪一种」：原因用 Because 答。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "rain",
+       "rained"
+      ]
+     ]
+    },
+    {
+     "id": "QI09-P2",
+     "type": "scene_form_choice",
+     "prompt": "— Why did she go to the library? 她是去借书的（问目的）。哪个答语正宗？",
+     "options": [
+      "To get some books.",
+      "Because get some books.",
+      "Why books."
+     ],
+     "answer": "To get some books.",
+     "hint": "回机制「先听清问的是哪一种」：目的用 To 答，同为原生用法。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "do",
+       "did"
+      ]
+     ]
+    },
+    {
+     "id": "QI09-P3",
+     "type": "no_clue",
+     "prompt": "判断：Why 的回答必须用 Because 开头，不然就是错的。",
+     "answer": "不对。why 同时问原因与目的：问目的时 To / For 答语同样正宗。「必用 Because」是已废止的一刀切口径。",
+     "hint": "回主张：答语形式随所问维度分工，二者皆为原生用法。",
+     "source": {
+      "kind": "probe_form",
+      "note": "探针登记错形（probes_wave1）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI09-P4",
+     "type": "form_building",
+     "prompt": "听清是哪一种：Why did you go there? 问的是目的。答：为了看一个朋友。",
+     "answer": "To see a friend.",
+     "hint": "回机制「先听清问的是哪一种」：不定式答目的，与 because 从句答原因分工。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": [
+      [
+       "do",
+       "did"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "law_id": "QI-10",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI10-P1",
+     "type": "trap_spotting",
+     "prompt": "改错：What do you go to school?",
+     "answer": "How do you go to school?（问的是上学方式，属 how 的辖域；按词翻译成 what 就答非所问）",
+     "hint": "回机制「派对侦察兵」：想知道「怎么做」派 How，想知道「是什么」派 What。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI10-P2",
+     "type": "scene_form_choice",
+     "prompt": "What is the weather like today? 问的是什么？",
+     "options": [
+      "天气怎么样——What ... like? 是整组登记的约定用法",
+      "东西的名字",
+      "现在几点"
+     ],
+     "answer": "天气怎么样——What ... like? 是整组登记的约定用法",
+     "hint": "回主张：固定搭配是两辖域边界上的约定用法，须整组登记，不按辖域硬拆。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI10-P3",
+     "type": "scene_form_choice",
+     "prompt": "想问「那是什么东西」，派哪个侦察兵？",
+     "options": [
+      "What",
+      "How",
+      "When"
+     ],
+     "answer": "What",
+     "hint": "回机制「派对侦察兵」：what 的辖域是事物身份与类别。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI10-P4",
+     "type": "no_clue",
+     "prompt": "判断：How do you do? 也要按辖域把 how 拆开分析。",
+     "answer": "不对。礼貌套语已公式化，按语块处理，不按辖域分析。",
+     "hint": "回主张的范围：How do you do / How are you 等套语见 GR-20 语块口径。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-11",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI11-P1",
+     "type": "trap_spotting",
+     "prompt": "答非所问，改过来：— Do you want tea or juice? — Yes.",
+     "answer": "— Juice, please.（or-问句是选择图式，答语须从选项中选取）",
+     "hint": "回机制「先认图式再答」：给选项的题，答案就是选项里的一个。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI11-P2",
+     "type": "scene_form_choice",
+     "prompt": "— Shall we walk or take a bus? 哪个回答对图式？",
+     "options": [
+      "Let's walk.",
+      "Yes.",
+      "No."
+     ],
+     "answer": "Let's walk.",
+     "hint": "回机制「先认图式再答」：选项是动作时同样选一项，可带完整句。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI11-P3",
+     "type": "no_clue",
+     "prompt": "判断：只要句子里有 or，就一定是选择问句。",
+     "answer": "不一定。or 只连接修饰成分而非选项时可能有歧读，需结合语调判断图式（教师备课注意点）。",
+     "hint": "回主张的范围：答语形式由问句图式决定，先认图式再答。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI11-P4",
+     "type": "form_building",
+     "prompt": "老师问：Do you want tea or juice? 你要果汁。怎么答？",
+     "answer": "Juice, please.",
+     "hint": "回机制「先认图式再答」：说出你要的那个选项就行。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-12",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI12-P1",
+     "type": "scene_form_choice",
+     "prompt": "— Don't you like it? 你其实不喜欢。怎么答才不鸡同鸭讲？",
+     "options": [
+      "No, I don't.",
+      "Yes.（意思是「对，我不喜欢」）",
+      "Yes, I do."
+     ],
+     "answer": "No, I don't.",
+     "hint": "回机制「两个锚」：英语的 Yes/No 拴在事情本身上——不喜欢就是 No，还要补全句。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI12-P2",
+     "type": "scene_form_choice",
+     "prompt": "— Don't you like it? 其实你很喜欢。怎么答？",
+     "options": [
+      "Yes, I do.",
+      "No, I don't.",
+      "No.（意思是「对，我喜欢」）"
+     ],
+     "answer": "Yes, I do.",
+     "hint": "回机制「两个锚」：喜欢就是 Yes——与汉语认同式点头正相反。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI12-P3",
+     "type": "no_clue",
+     "prompt": "判断：回答否定问句，英语的 Yes/No 拴在「对方说得对不对」上。",
+     "answer": "不对。那是汉语认同系统的锚。英语拴在答者断言的事实极性上：按事实答，并补全句最稳妥。",
+     "hint": "回主张：事实极性系统 vs 认同系统，在否定问句处正面相撞。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI12-P4",
+     "type": "form_building",
+     "prompt": "把答语补全：— Don't you like it? — No, ___ .",
+     "answer": "I don't（整句：No, I don't.）",
+     "hint": "回机制「两个锚」：教学口径取「按事实 + 补全句」的最稳妥形式。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-13",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI13-P1",
+     "type": "trap_spotting",
+     "prompt": "改错：What you want?",
+     "answer": "What do you want?（只搬疑问词不够，还要把助动词倒装过来）",
+     "hint": "回机制「搬家与不搬家」：英语提问要学这趟搬家——前置 + 倒装两件一起做。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI13-P2",
+     "type": "scene_form_choice",
+     "prompt": "在普通提问（不是回声问句）里，哪句是正形？",
+     "options": [
+      "What do you want?",
+      "You want what?",
+      "What you want?"
+     ],
+     "answer": "What do you want?",
+     "hint": "回机制「搬家与不搬家」：汉语原位 + 无倒装整套搬进英语，就是这两类错形。",
+     "source": {
+      "kind": "error_case",
+      "note": "条目登记病例（error_cases）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI13-P3",
+     "type": "no_clue",
+     "prompt": "判断：You bought WHAT? 疑问词没搬家，所以是错句。",
+     "answer": "不对。回声问句合法地保留原位疑问词（重读标示），须与迁移错误区分，不可误纠。",
+     "hint": "回主张的范围：结构特许与迁移错误同框标注。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生"
+     },
+     "verb_forms_checked": [
+      [
+       "buy",
+       "bought"
+      ]
+     ]
+    },
+    {
+     "id": "QI13-P4",
+     "type": "form_building",
+     "prompt": "学这趟搬家：把「你想要什么」按英语队形拼出来。",
+     "answer": "What do you want?",
+     "hint": "回机制「搬家与不搬家」：疑问词到句首站好，助动词 do 跟上倒装。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-14",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI14-P1",
+     "type": "scene_form_choice",
+     "prompt": "Where the dog? 处在提问台阶的哪一级？",
+     "options": [
+      "过渡级——疑问词前置了，但倒装还没长好",
+      "起点级——整句模仿",
+      "目标级——前置加倒装齐备"
+     ],
+     "answer": "过渡级——疑问词前置了，但倒装还没长好",
+     "hint": "回机制「四级台阶」：它登记为阶段标本，不是病例错句。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI14-P2",
+     "type": "form_building",
+     "prompt": "把台阶排好序：① What's this?（整句背）② Where the dog? ③ Where is the dog?",
+     "answer": "① → ② → ③（整句模仿 → 疑问词前置无倒装 → 前置 + 倒装齐备）",
+     "hint": "回机制「四级台阶」：倒装是最后长好的本领，台阶一级一级上。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI14-P3",
+     "type": "no_clue",
+     "prompt": "判断：孩子说 Where the dog? 说明没学好，必须立刻纠正到目标式。",
+     "answer": "不对。它是发展序列中可预测的阶段形态；教学输入无法跳过阶段，只能顺应阶段供料。",
+     "hint": "回主张：阶段序列基于纵向数据，催也没用——但每级都有适合的练习。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI14-P4",
+     "type": "scene_form_choice",
+     "prompt": "提问台阶里，哪种本领最后才长好？",
+     "options": [
+      "特殊疑问句的全倒装",
+      "整句模仿",
+      "换疑问词"
+     ],
+     "answer": "特殊疑问句的全倒装",
+     "hint": "回机制「四级台阶」：顺序是整句 → 换词 → 一般问句倒装 → 特殊问句全倒装。",
+     "source": {
+      "kind": "claim",
+      "note": "条目主张派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  },
+  {
+   "law_id": "QI-15",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI15-P1",
+     "type": "scene_form_choice",
+     "prompt": "哪种提问，形式记得最牢？",
+     "options": [
+      "心里真有个问号、真想知道时问的",
+      "假装提问练一百遍的",
+      "跟着录音读的"
+     ],
+     "answer": "心里真有个问号、真想知道时问的",
+     "hint": "回机制「真问号的力量」：真想知道时耳朵竖起来听答案，问句的样子记得牢。",
+     "source": {
+      "kind": "mechanism",
+      "note": "条目机制派生"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI15-P2",
+     "type": "no_clue",
+     "prompt": "判断：提问只是练句型，真想知道还是假装问，没区别。",
+     "answer": "有区别。有真实信息缺口的提问，其形式记忆与产出显著优于无缺口的机械提问。",
+     "hint": "回主张：意义协商把输入、注意与输出在真实信息差中咬合。",
+     "source": {
+      "kind": "probe_form",
+      "note": "探针登记错形（probes_wave1）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI15-P3",
+     "type": "scene_form_choice",
+     "prompt": "What's in the box? 为什么这句「不得不真问」？",
+     "options": [
+      "盒子里的东西只有对方知道——真信息差",
+      "因为 box 是生词",
+      "因为老师要求问"
+     ],
+     "answer": "盒子里的东西只有对方知道——真信息差",
+     "hint": "回机制「真问号的力量」：信息差任务里，问题是真缺口逼出来的。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI15-P4",
+     "type": "no_clue",
+     "prompt": "判断：没有真缺口的机械操练全无价值。",
+     "answer": "不对。机械操练对发音自动化、句型熟悉度仍有价值；本条裁定的只是提问形式习得的主通道是真缺口。",
+     "hint": "回主张的例外登记：三者是流水线关系，不是替代关系。",
+     "source": {
+      "kind": "exception",
+      "note": "条目例外登记派生"
+     },
+     "verb_forms_checked": []
+    }
+   ]
+  }
+ ]
+}
