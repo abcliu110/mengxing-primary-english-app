@@ -90,6 +90,29 @@ V-32 定版数字即按此对齐：小学生语料中 SEM 3–5 约 18–24%（�
 - 组合失效型：understand、undertake（under 取古义，组合不可用——登记历史事实于 note，不登记今义拆分）。
 - 同形防假：illusion、immerse、irrigate（in- 向内义，非否定同化）。
 
+### 2.4 全库分类口径（2026-11-02 补）
+
+2026-11-02 起，词库每条必带 `morph_class` 分类字段（全库对账：split 810 / whole 1,198 / nosplit 226 / form 118，未分类 0）：
+
+| morph_class | 含义 | 伴随字段 |
+|---|---|---|
+| `split` | 可拆：`morphemes` 非空，拆分按 §2 槽位规则登记 | `morphemes` |
+| `whole` | 整词：不拆，整个记 | `morph_reason`（见下）；有裁定注记者带 `morph_note` |
+| `nosplit` | 禁拆：形似可拆但经逐词裁定不许拆（§2.3 名单的逐词化落实） | `morph_reason` + `morph_note`（必带，为禁拆理由的展示文本） |
+| `form` | 动词词形：原形的屈折形，归原形记 | `morph_reason: inflection`；`verb_form_of` 指针原样 |
+
+`morph_reason` 代码表：
+
+- whole：`mono` 单语素整词 / `func` 功能词整记 / `phrase` 短语词头 / `proper` 专名
+- nosplit：`fake_root` 假词根 / `loan` 整词借入 / `fake_split` 假拆分 / `opposite` 义反（定义保留；当前 0 条——inflammable 按既有逐条裁定带拆分入账，与 §2.3 字面冲突已登记待裁，见总账 2026-11-02 词素扩充合并条） / `dead_combo` 组合失效 / `homograph_guard` 同形防假 / `opaque` 今义不透明
+- form：`inflection` 屈折形
+
+对账规则：
+
+- 词库每词必有 `morph_class`；新词入模时必须同时裁定分类，未分类数必须为 0。
+- 菜单成员一律由 `morph_class` + `morphemes` 谓词推导：家族页（前缀 / 词根 / 后缀 / 复合）按 morphemes 槽位值取词，整词 / 禁拆 / 词形页按 `morph_class` + `morph_reason` 取词；不许手选名单。
+- define、inflammable 两条属已登记的 §2.3 冲突（现带拆分，源 V-21 / V-35 逐条裁定），维持现状待用户裁定，本口径不变更其归类。
+
 ## 3. 菜单谓词（词汇解码区，WORDBANK 规则 6）
 
 菜单词集一律由谓词对词库 + 挂接表推导，禁止手选样本（见 `../WORDBANK.md` 规则 6 与 DESIGN §5）：
