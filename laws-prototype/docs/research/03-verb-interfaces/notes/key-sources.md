@@ -1,0 +1,13 @@
+# Key sources — read 2026-11-01 (JST evening)
+- Reasoning School F3 Verbs and Tenses — VERIFIED LIVE in research window. https://www.reasoning.school/learn/english/foundation-03.html — tense time machine slider (3 time x 4 aspect), verb wardrobe (5 forms), irregular families, story timeline (train had left), present perfect "past that still matters".
+- Lingolia English Tenses Timeline — VERIFIED LIVE. https://english.lingolia.com/en/grammar/tenses/timeline — click tense/aspect, X marks / bars on past-present-future grid.
+- Perfect English Grammar present perfect use — index/open. https://www.perfect-english-grammar.com/present-perfect-use.html — unfinished vs finished, present result, been/gone.
+- Cambridge Phrasal Verbs Machine / Phrasalstein via Common Sense Media — index/open. https://www.commonsensemedia.org/app-reviews/phrasal-verbs-machine — dial verb x particle, animation, multiple meanings listed not networked.
+- Rudzka-Ostyn Word Power (2003) via Al-Otaibi 2019 — index/open. https://jle.hse.ru/article/download/8170/10667 — first cognitive PV textbook, 1100 PVs, 17 particles, chapters by particle, image schemas; mind-map replication did NOT outperform control.
+- Mahpeykar & Tyler 2015 — index. Cambridge Language & Cognition, get/take x up/out polysemy networks interaction. URL in report.
+- Akamatsu 2010 hold/put/run — index. https://jacet-kansai.org/wp-content/uploads/2023/03/2010articlesp.68-79-1.pdf — CL core/peripheral text, NO significant difference.
+- Bielak & Pawlak 2011 — index/open. https://repozytorium.amu.edu.pl/items/8314cb2e-4b49-4059-a158-c36ca4eb17ff/full — CG tense instruction at least moderately effective, comparable to traditional, mostly explicit knowledge. N=50.
+- British Council TPR — index/open. https://www.teachingenglish.org.uk/professional-development/teachers/managing-lesson/total-physical-response-tpr
+- Chinese errors: Hanspub grade-8 verb misuse PDF https://pdf.hanspub.org/ve_1722467.pdf (56.8%, tense 67.7%); high-school past errors https://pdf.hanspub.org/ml_2916243.pdf (omission 40%); CLEC tense-aspect https://www.sciscanpub.com/index/journals/ainfo/alr/6603.html (guo/le -> present perfect overuse); Huang et al 2025 IRAL via EBSCO (bare verbs 12%).
+- Chinese tense pages are overwhelmingly 16-tense tables + formula + le/guo gloss "联系过去和现在的纽带" — no manipulable timeline found in Chinese sources searched.
+- Woodward English: search-index only (one direct open failed, not retried per instruction). GET phrasal lists + summary charts, irregular charts — treat as index evidence.
