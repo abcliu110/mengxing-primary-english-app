@@ -1,0 +1,54 @@
+# T16 P1 第一车道完成记录：核心道具元素扩展（knife/apple/bread/book/box + cut/hinge 基元 + teapot.yaml 规范化）
+
+日期：2026-11-01
+范围：只做元素库与验证套件，**未改任何场景模板、未动任何 KNOW/ITEMS**，未做 git 操作（提交留主会话）。
+前置确认：闸口回退已落定（T16P0_gate_revert.done 在档；回退单明示 props.js 全文件零改动、人物代码存档不删）；本单对 props.js 为**纯追加**（git diff +484/−0，既有导出与行为一字未动）。
+
+## 1. 交付物
+
+| 文件 | 内容 |
+|---|---|
+| docs/whiteboard/model/props/knife.yaml | 新元素 knife v1（cut 基元工具侧） |
+| docs/whiteboard/model/props/apple.yaml | 新元素 apple v1（可切物；首声明格式扩展 C1 可切契约） |
+| docs/whiteboard/model/props/bread.yaml | 新元素 bread v1（可切物，同 C1） |
+| docs/whiteboard/model/props/book.yaml | 新元素 book v1（铰接；首声明格式扩展 H1 铰接部件） |
+| docs/whiteboard/model/props/box.yaml | 新元素 box v1（容器腔体 + 铰接盖，同 H1） |
+| docs/whiteboard/model/props/teapot.yaml | 严格 YAML 规范化（仅缩进重排 + 文件头加 4 行规范化注记；标量/注释/数值零改动，见 §4） |
+| docs/whiteboard/v5/props/props.js | 末尾纯追加段：KNIFE/APPLE/BREAD/BOOK/BOX 同步副本 + 几何底座（flattenSegs/polyArea/polyBBox/clipHalfPlane/outlineOf）+ cut 基元（cutHalves/assertCutConservation/cutFacePoints/assertBladeCovers/drawCuttable）+ hinge 基元（hingeTipAt/hingeAngleAt/assertHingeRigid/drawHinged）+ assertKnifeGeometry/assertBookGeometry/assertBoxGeometry；ELEMENTS 追加 5 键（共 8 元素） |
+| ~/workspace/build_t16p0/test_t16p1.mjs | 本车道验证套件（44 项，全 PASS，见 §5） |
+
+## 2. 各新元素锚点清单（语义名 → 出处；原语只认锚点名）
+
+- **knife**：bladeEdge（parts.blade.anchors.edgeHeel [4,13] / edgeTip [128,4]，cut 刃口对位弦）、grip（parts.handle.anchors.grip [-45,1]，持刀对位预留）、tip（= edgeTip）。
+- **apple**：top [0,-47]、bottom [0,50]、center [0,0]（果心，默认切线过此点）；cut 块：outlinePart=body、axis [[0,-80],[0,80]]、face {depth 6, flesh}、details 籽 ×2（along 0.42/0.58、'off' 4）。
+- **bread**：top [0,-50]、bottom [0,37]（底弧实算最低点；Q 控制点 42 不到边，已按实算立锚）、center [0,0]；cut 块同构，details 气孔 ×3（along 0.25/0.5/0.75）。
+- **book**：spinePivot [0,0]（前封铰链中心）、coverTip（parts.frontCover.anchors.tip [116,0]，任意角由 hingeTipAt 实算）、pagePlane（parts.pages.anchors.spine [6,0] / foreEdge [110,0]，开合中不变位）。
+- **box**：lidPivot（parts.lid.pivot [-80,-58] = body.anchors.rimL）、lidTip（parts.lid.anchors.tip [88,-58]）、cavityRim（body.anchors.rimL/rimR）、cavityFloor [0,30]。
+
+## 3. 各新元素断言清单（全部构建期执行、不过抛错停建；负例见 §5）
+
+- **knife**：edge-chord（刃口弦实算长 vs params.bladeLen.design 差 ≤1，assertKnifeGeometry）；blade-covers-cut（刃口弦 ≥ 被切物切口弦，assertBladeCovers，消费时校验）。
+- **apple / bread**（cut 契约，assertCutConservation，drawCuttable 绘制前先行）：① 两半面积和 = 整物面积（相对差 ≤1e-6，守恒）；② 每半面积占比 ∈ (1%, 99%)——拦截整物复制（「切出两个整苹果」回归口径）与退化薄片；③ 两半法向宽度和 = 整物宽度；④ 切口弦存在、弦长 >0、两端点落在轮廓边界（≤1e-6）。
+- **book**（assertBookGeometry + assertHingeRigid）：coverLen 实算 vs design（≤0.5）；闭合盖满页块（长 ≥ 页块外缘、封面半高 ≥ 页块半高）；coverTip 任意角半径恒定；pagePlane 锚点齐备且 pages 无 hinge（页平面静止）。
+- **box**（assertBoxGeometry + assertHingeRigid）：cavity 三向自洽（halfTop+wall=箱口半宽 80、halfBottom+wall=箱底外半宽 75（轮廓实算）、外底−cavity.bottomY=wall 8）；盖铰链与 rimL 对位；lidLen 实算 vs design（≤0.5）；闭合盖满箱口（lidLen ≥ 160）；lidTip 任意角半径恒定。
+- 方向口径（实现期纠错，已写入 props.js 注释）：半侧方向以法向 n 为准——neg 半（n·p≤d）材料在 −n 侧、pos 半在 +n 侧；两半分离位移与切面内向偏移同用 halfDir()，首版符号曾写反、由切面籽落位测试当场拦截修正。
+
+## 4. teapot.yaml 规范化校验（三重）
+
+- 严格解析：yaml.safe_load 通过（原文在 line 74 报错不成立）；现全库 8 个 props YAML 全部严格解析通过。
+- 语义零改动：逐行（去行首尾空白）diff 显示差异仅两类——新增 4 行规范化注记、流映射 `}` 前空格；其余逐字一致。
+- 镜像比对：解析后结构与 props.js 的 TEAPOT 逐字段比对（element/placement/skin tokens/5 部件的 pivot/z/style/全部 shapes 段表与 corners/params.design/profiles.pour）**ALL MATCH**；5 个新元素同法比对（parts/anchors/段表/cut/profiles/params）亦 **ALL MATCH**。
+- 附带发现（已修 + 已注记）：details 的键名 `off` 是 YAML 1.1 布尔陷阱（裸 off 被 PyYAML 解析为布尔假作键），apple/bread 两处已改引号写法 `'off'`，并在 apple.yaml 的 C1 契约头留注记防后人重踩。
+
+## 5. 验证数字（终态复跑）
+
+- **test_t16p1.mjs：44/44 PASS**。要点实算值：茶壶回归三数 37.996° / 35.00° / 嘴尖 x 806.45（与既有口径一致）；knife 刃口弦 124.33（design 124）；apple 轮廓 bbox 108.3×100.7、整物面积 9020.6、默认切两半各 4510.3（占比恰 50.0%）、切口弦 95.88（弦端点 (0,-46.9)/(0,49)）、宽度 54.17+54.17=108.33；bread bbox 156.0×87.0、面积 11941.3、切口弦 87.00；book coverLen 116、全开 coverTip (−112.0, −30.0)；box lidLen 168、全开 lidTip (−123.5, −220.3)；无头绘制调用数 knife 31 / apple 切 232 / bread 切 164 / book 39 / box 35（均 >0 不报错）。
+- 负例 13 条全部按设计抛错：knife design 篡改、刃尖锚点内移；cut 切线移出物体、**两半都是整物（守恒拦截）**、贴边退化切、短刃切苹果（56.7 < 95.9）、切线两点重合；book 页块伸长盖不满、design 篡改、非铰接部件取 hinge；box wall 篡改、cavity.bottomY 篡改、盖长不足（design 同步篡改后由盖满检查拦截）、盖铰链移位。
+- **test_t16p0.mjs（既有套件）：38/38 PASS**——teapot/cup/linda 零回归。
+- apple/bread 的 params design 已按实算对齐（apple 108/101、bread 156/87），computed 回填入 YAML（108.3/100.7、156.0/87.0）。
+
+## 6. 遗留（给后续车道）
+
+- 模板替换（boundedness 切幕改消费 drawCuttable、open/close 场景改消费 drawHinged 等）不在本车道，后续车道按模式推进；场景消费时 cut 的时序/弹簧参数仍在场景层（基元只给几何与断言）。
+- door（门轴铰接）可直接复用 H1 + drawHinged，无需新格式；bowl（P0 遗留 🍚）与 cake（被切物第三员）仍待建，cake 可照 C1 增补。
+- linda.yaml 中 Linda 附着的 book 部件与 book 元素并存（彼为人物姿态附着件、此为独立道具），口径已在 book.yaml skin 注记中声明，不合并。

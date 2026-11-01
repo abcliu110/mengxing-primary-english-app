@@ -29,130 +29,134 @@
 #
 # 渲染侧同步副本在 v5/props/props.js（共享块 props，与 wb5/auto 同级）；
 # 改定义先改本文件、再同步 props.js，两处由本文件版本号对账。轴线类参数在模块加载时由锚点坐标实算，不手填。
+#
+# 规范化注记（2026-11-01，T16 P1）：本文件原为贴左书写、严格 YAML 解析不成立；
+# 本次仅按 cup.yaml/linda.yaml 的两空格缩进口径重排结构，全部标量、注释与数值零改动
+# （校验：解析通过 + 与 props.js 的 TEAPOT 镜像逐字段比对一致 + 非空白字符流与原文一致）。
 # ============================================================================
 
 element:
-id: teapot
-kind: prop
-version: 1
-title: "茶壶（咖啡壶）"
+  id: teapot
+  kind: prop
+  version: 1
+  title: "茶壶（咖啡壶）"
 
 frame:
-origin: "元素枢轴（倾斜中心）= 壶身中心"
-x: "+x 向右（壶嘴侧）"
-y: "+y 向下（舞台坐标系）"
-unit: "px @1920x1080"
+  origin: "元素枢轴（倾斜中心）= 壶身中心"
+  x: "+x 向右（壶嘴侧）"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
 
 placement:
-world: [738, 300] # 枢轴默认世界坐标（boundedness_1 上台位；场景可覆盖）
+  world: [738, 300] # 枢轴默认世界坐标（boundedness_1 上台位；场景可覆盖）
 
 skin:
-source: "自绘参数化造型（经典圆腹茶壶侧视图形）；配色自拟陶土红一系"
-license: "自有造型，无第三方素材。底稿评估（2026-11-01）：拟取 Noto Emoji（Apache 2.0）/ Fluent Emoji（MIT）的 🫖 SVG 作造型底稿，因环境故障未取到、且其壶嘴几何（陡仰 ≈66°）与本定义参数冲突——按元素库纪律，底稿只可借壶身曲线与配色，壶嘴一律以本定义参数为准；本次未取用任何底稿路径。"
-tokens:
-body: "#cf5a36"
-edge: "#8a3320"
-deep: "#a83e22"
-knob: "#7c2d1e"
-mouth: "#5a2d16"
-highlight: "rgba(255,255,255,.20)"
+  source: "自绘参数化造型（经典圆腹茶壶侧视图形）；配色自拟陶土红一系"
+  license: "自有造型，无第三方素材。底稿评估（2026-11-01）：拟取 Noto Emoji（Apache 2.0）/ Fluent Emoji（MIT）的 🫖 SVG 作造型底稿，因环境故障未取到、且其壶嘴几何（陡仰 ≈66°）与本定义参数冲突——按元素库纪律，底稿只可借壶身曲线与配色，壶嘴一律以本定义参数为准；本次未取用任何底稿路径。"
+  tokens:
+    body: "#cf5a36"
+    edge: "#8a3320"
+    deep: "#a83e22"
+    knob: "#7c2d1e"
+    mouth: "#5a2d16"
+    highlight: "rgba(255,255,255,.20)"
 
 parts:
-- id: spout
-role: "出口部件（pour 原语的出口）"
-pivot: [52, -6] # 部件枢轴 = 壶嘴基部中心
-anchors:
-baseCenter: [52, -6]
-tipCenter: [97.7, -41.7] # 元素锚点 spoutTip 的出处
-geometry:
-shapes:
-- type: spoutTube # 由四角锚点公式生成：上下边二次曲线外鼓 + 嘴口沿微凸；根部由壶身覆盖
-corners: { baseTop: [44.0, -16.2], baseBottom: [60.0, 4.2], tipTop: [93.7, -46.8], tipBottom: [101.7, -36.6]}
-bowTop: 5
-bowBottom: 2.5
-lip: 3
-- type: ellipse # 嘴口：开口椭圆，长轴沿壶嘴轴线
-at: anchor.tipCenter
-radii: [3.4, 7.2]
-align: spoutAxis
-style: { fill: skin.mouth}
-style: { fill: skin.body, stroke: skin.edge, lineWidth: 4}
-z: 1
-- id: handle
-role: "把手（左耳）"
-pivot: [-46, 6]
-anchors:
-grip: [-78, 4] # 握持对位点（人物持壶时手部锚点对位用，预留）
-geometry:
-shapes:
-- type: strokePath
-segments: [["M", -44, -20], ["C", -82, -16, -84, 24, -48, 33]]
-style: { stroke: skin.edge, lineWidth: 10}
-z: 2
-- id: body
-role: "壶身（容器腔）"
-pivot: [0, 0]
-geometry:
-shapes:
-- type: path
-segments: [["M", -30, -40], ["L", -38, -34],
-["C", -58, -26, -64, -6, -62, 16], ["C", -60, 34, -48, 46, -30, 50],
-["Q", 0, 54, 30, 50],
-["C", 48, 46, 60, 34, 62, 16], ["C", 64, -6, 58, -26, 38, -34],
-["L", 30, -40], ["Z"]]
-style: { fill: skin.body, stroke: skin.edge, lineWidth: 4}
-z: 3
-- id: highlight
-role: "高光（左上腹）"
-pivot: [-24, -4]
-geometry:
-shapes:
-- type: ellipse
-at: [-24, -4]
-radii: [13, 21]
-rot: 0.35
-style: { fill: skin.highlight}
-z: 4
-- id: lid
-role: "壶盖（穹顶 + 盖钮）"
-pivot: [0, -48]
-geometry:
-shapes:
-- type: path
-segments: [["M", -31, -39], ["Q", 0, -57, 31, -39], ["Z"]]
-style: { fill: skin.deep, stroke: skin.edge, lineWidth: 3.5}
-- type: circle
-at: [0, -52]
-r: 6.5
-style: { fill: skin.knob}
-style: { fill: skin.deep, stroke: skin.edge, lineWidth: 4}
-z: 5
+  - id: spout
+    role: "出口部件（pour 原语的出口）"
+    pivot: [52, -6] # 部件枢轴 = 壶嘴基部中心
+    anchors:
+      baseCenter: [52, -6]
+      tipCenter: [97.7, -41.7] # 元素锚点 spoutTip 的出处
+    geometry:
+      shapes:
+        - type: spoutTube # 由四角锚点公式生成：上下边二次曲线外鼓 + 嘴口沿微凸；根部由壶身覆盖
+          corners: { baseTop: [44.0, -16.2], baseBottom: [60.0, 4.2], tipTop: [93.7, -46.8], tipBottom: [101.7, -36.6] }
+          bowTop: 5
+          bowBottom: 2.5
+          lip: 3
+        - type: ellipse # 嘴口：开口椭圆，长轴沿壶嘴轴线
+          at: anchor.tipCenter
+          radii: [3.4, 7.2]
+          align: spoutAxis
+          style: { fill: skin.mouth }
+    style: { fill: skin.body, stroke: skin.edge, lineWidth: 4 }
+    z: 1
+  - id: handle
+    role: "把手（左耳）"
+    pivot: [-46, 6]
+    anchors:
+      grip: [-78, 4] # 握持对位点（人物持壶时手部锚点对位用，预留）
+    geometry:
+      shapes:
+        - type: strokePath
+          segments: [["M", -44, -20], ["C", -82, -16, -84, 24, -48, 33]]
+    style: { stroke: skin.edge, lineWidth: 10 }
+    z: 2
+  - id: body
+    role: "壶身（容器腔）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -30, -40], ["L", -38, -34],
+                     ["C", -58, -26, -64, -6, -62, 16], ["C", -60, 34, -48, 46, -30, 50],
+                     ["Q", 0, 54, 30, 50],
+                     ["C", 48, 46, 60, 34, 62, 16], ["C", 64, -6, 58, -26, 38, -34],
+                     ["L", 30, -40], ["Z"]]
+    style: { fill: skin.body, stroke: skin.edge, lineWidth: 4 }
+    z: 3
+  - id: highlight
+    role: "高光（左上腹）"
+    pivot: [-24, -4]
+    geometry:
+      shapes:
+        - type: ellipse
+          at: [-24, -4]
+          radii: [13, 21]
+          rot: 0.35
+          style: { fill: skin.highlight }
+    z: 4
+  - id: lid
+    role: "壶盖（穹顶 + 盖钮）"
+    pivot: [0, -48]
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -31, -39], ["Q", 0, -57, 31, -39], ["Z"]]
+          style: { fill: skin.deep, stroke: skin.edge, lineWidth: 3.5 }
+        - type: circle
+          at: [0, -52]
+          r: 6.5
+          style: { fill: skin.knob }
+    style: { fill: skin.deep, stroke: skin.edge, lineWidth: 4 }
+    z: 5
 
 anchors:
-spoutTip: { from: "parts.spout.anchors.tipCenter", use: "pour 原语液柱原点（出口语义锚点）"}
-pivot: { at: [0, 0], use: "倾斜枢轴；一切姿态计算绕此点"}
-handleGrip: { from: "parts.handle.anchors.grip", use: "人物持壶时手部锚点对位（预留）"}
-liquidLevel: { at: null, use: "液面高度锚点位（预留）：本壶不透明、壶身无可见液面；透明器物在此给液面线两端点"}
+  spoutTip: { from: "parts.spout.anchors.tipCenter", use: "pour 原语液柱原点（出口语义锚点）" }
+  pivot: { at: [0, 0], use: "倾斜枢轴；一切姿态计算绕此点" }
+  handleGrip: { from: "parts.handle.anchors.grip", use: "人物持壶时手部锚点对位（预留）" }
+  liquidLevel: { at: null, use: "液面高度锚点位（预留）：本壶不透明、壶身无可见液面；透明器物在此给液面线两端点" }
 
 params:
-spoutAxisDeg:
-design: 38 # 设计仰角（真实茶壶壶嘴仰角 35–40° 量级）
-computed: 38.0 # 锚点实算：atan2(35.7, 45.7) = 37.996°
-formula: "atan2(-(tipCenter.y - baseCenter.y), tipCenter.x - baseCenter.x)，由 parts.spout 锚点坐标算出（模块加载时实算，不手填）"
-spoutLen:
-computed: 58.0 # 基部中心→嘴尖中心距离（锚点实算 57.99）
+  spoutAxisDeg:
+    design: 38 # 设计仰角（真实茶壶壶嘴仰角 35–40° 量级）
+    computed: 38.0 # 锚点实算：atan2(35.7, 45.7) = 37.996°
+    formula: "atan2(-(tipCenter.y - baseCenter.y), tipCenter.x - baseCenter.x)，由 parts.spout 锚点坐标算出（模块加载时实算，不手填）"
+  spoutLen:
+    computed: 58.0 # 基部中心→嘴尖中心距离（锚点实算 57.99）
 
 profiles:
-pour: # 倒水剖面：倾角由参数反算，不在场景里存角度数值
-netTargetDeg: 35 # 目标净下倾（倾角 − 轴线仰角）
-netMinDeg: 30 # 安全下限（断言口径）
-fullTiltDeg: { derived: "spoutAxisDeg.computed + netTargetDeg", value: 73}
-spring: { zeta: 0.9, wn: 10.5, dur: 0.9, delay: 0.35, returnStart: 5.2} # 相对幕内倒水锚点 M0 的时序（低过冲组）
+  pour: # 倒水剖面：倾角由参数反算，不在场景里存角度数值
+    netTargetDeg: 35 # 目标净下倾（倾角 − 轴线仰角）
+    netMinDeg: 30 # 安全下限（断言口径）
+    fullTiltDeg: { derived: "spoutAxisDeg.computed + netTargetDeg", value: 73 }
+    spring: { zeta: 0.9, wn: 10.5, dur: 0.9, delay: 0.35, returnStart: 5.2 } # 相对幕内倒水锚点 M0 的时序（低过冲组）
 
 assertions:
-- id: pour-net-angle
-rule: "出流窗内每一采样点：倾角 − 壶嘴轴线仰角 ≥ profiles.pour.netMinDeg（30°）；倾角由 spoutAxisDeg + netTargetDeg 反算"
-enforcedBy: "v5/props/props.js 的 assertPourWindow（构建期执行，不过抛错停建）"
-- id: stream-from-tip
-rule: "液柱原点恒为 anchors.spoutTip 经当前倾角旋转后的世界坐标（模块 tipAt 计算），不得另存偏移"
-enforcedBy: "v5/props/props.js 的 tipAt（场景只许调它取液柱原点）"
+  - id: pour-net-angle
+    rule: "出流窗内每一采样点：倾角 − 壶嘴轴线仰角 ≥ profiles.pour.netMinDeg（30°）；倾角由 spoutAxisDeg + netTargetDeg 反算"
+    enforcedBy: "v5/props/props.js 的 assertPourWindow（构建期执行，不过抛错停建）"
+  - id: stream-from-tip
+    rule: "液柱原点恒为 anchors.spoutTip 经当前倾角旋转后的世界坐标（模块 tipAt 计算），不得另存偏移"
+    enforcedBy: "v5/props/props.js 的 tipAt（场景只许调它取液柱原点）"

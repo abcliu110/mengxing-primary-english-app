@@ -1,0 +1,118 @@
+# ============================================================================
+# 元素库 · apple（苹果）—— 可切物元素（cut 基元的被切侧）；格式样板见 teapot.yaml
+#
+# 格式扩展 C1（可切物 cut 块，本文件首声明，bread.yaml 同用）：
+# 被切物在 element 之外加 `cut:` 块声明切契约——
+#   cut.outlinePart：轮廓所在部件 id（其第一个 path 形状即物体轮廓，切与守恒全由此轮廓实算）；
+#   cut.axis：默认切线两端点（元素系，必须伸出轮廓包围盒之外，切线由两点定直线）；
+#   cut.face：切面绘制参数（depth = 切面带宽，style 引用 skin 令牌）；
+#   cut.details：切面细节（籽/气孔），位置以切口弦参数化：along ∈ [0,1] 沿弦、off 为自弦向半体内侧的偏移；
+#     （键名 off 在 YAML 里必须加引号写 'off'——YAML 1.1 解析器会把裸 off 当布尔假作键名，本库两处已加引号；）
+#     细节坐标一律由弦实算（cutFacePoints），定义里不存切面上的裸坐标。
+# cut 基元契约（props.js 的 cutHalves / assertCutConservation / drawCuttable 实现）：
+#   一刀派生两半——两半 = 轮廓多边形被切线半平面裁出的两块（clip），不是两个物体；
+#   断言：两半面积之和 = 整物面积（守恒）、每半面积严格介于整物的 1% 与 99% 之间
+#   （禁止一刀切出整物复制——v3 时代「切出两个整苹果」即此断言的反面教材）、
+#   两半沿切线法向的宽度之和 = 整物宽度、切口弦两端点落在轮廓边界上。
+# ============================================================================
+
+element:
+  id: apple
+  kind: prop
+  version: 1
+  title: "苹果（可切物）"
+
+frame:
+  origin: "元素枢轴 = 果心（轮廓包围盒中心附近）"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [700, 490] # boundedness_1 切测试左位；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（圆苹果侧视：顶部凹窝、果柄、叶）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    skin: "#d8402e"
+    edge: "#a32418"
+    flesh: "#fdf0d0"
+    fleshEdge: "#e3b978"
+    seed: "#5a3a1a"
+    stem: "#7a4a21"
+    leaf: "#4d9b47"
+    highlight: "rgba(255,255,255,.28)"
+
+parts:
+  - id: body
+    role: "果身（轮廓部件：cut.outlinePart 指向本部件，切以其轮廓实算）"
+    pivot: [0, 0]
+    anchors:
+      top: [0, -47]
+      bottom: [0, 50]
+    geometry:
+      shapes:
+        - type: path # 果身轮廓（单闭合路径：顶部凹窝、底部浅窝）
+          segments: [["M", -4, -48],
+                     ["C", -26, -56, -52, -40, -54, -10],
+                     ["C", -56, 18, -40, 44, -16, 50],
+                     ["C", -8, 52, -3, 49, 0, 49],
+                     ["C", 3, 49, 8, 52, 16, 50],
+                     ["C", 40, 44, 56, 18, 54, -10],
+                     ["C", 52, -40, 26, -56, 4, -48],
+                     ["C", 1, -46.5, -1, -46.5, -4, -48], ["Z"]]
+          style: { fill: skin.skin, stroke: skin.edge, lineWidth: 3.5 }
+        - type: ellipse # 左上高光
+          at: [-24, -16]
+          radii: [11, 17]
+          rot: 0.3
+          style: { fill: skin.highlight }
+    z: 1
+  - id: stem
+    role: "果柄 + 叶（切时随所在半侧走，由 drawCuttable 的 clip 决定归属）"
+    pivot: [0, 0]
+    anchors:
+      stemTop: [9, -69]
+    geometry:
+      shapes:
+        - type: strokePath
+          segments: [["M", -1, -48], ["C", 0, -58, 3, -64, 9, -69]]
+          style: { stroke: skin.stem, lineWidth: 5 }
+        - type: ellipse
+          at: [17, -57]
+          radii: [13, 6]
+          rot: -0.5
+          style: { fill: skin.leaf, stroke: skin.edge, lineWidth: 2 }
+    z: 2
+
+anchors:
+  top: { from: "parts.body.anchors.top", use: "果顶（凹窝）" }
+  bottom: { from: "parts.body.anchors.bottom", use: "果底落点（放桌面对位）" }
+  center: { at: [0, 0], use: "果心：默认切线过此点" }
+
+cut:
+  outlinePart: body
+  axis: [[0, -80], [0, 80]] # 默认切线：竖直过果心，两端点伸出轮廓之外
+  face: { depth: 6, fill: skin.flesh, edge: skin.fleshEdge }
+  details:
+    - { kind: seed, along: 0.42, 'off': 4, radii: [3.6, 6], style: { fill: skin.seed } }
+    - { kind: seed, along: 0.58, 'off': 4, radii: [3.6, 6], style: { fill: skin.seed } }
+
+params:
+  width:
+    design: 108 # 轮廓包围盒宽（设计口径取实算整数值）
+    computed: 108.3 # 轮廓段表打平实算：x -54.2..54.2（T16 P1 验证套件输出回填）
+    formula: "轮廓多边形 bbox 宽（曲线打平后实算），不手填"
+  height:
+    design: 101 # 轮廓包围盒高（果身，不含柄叶）
+    computed: 100.7 # 同上实算：y -50.0..50.7
+    formula: "轮廓多边形 bbox 高（曲线打平后实算），不手填"
+
+assertions:
+  - id: cut-conservation
+    rule: "默认切线一刀：两半面积和 = 整物面积（相对差 ≤ 1e-6）；每半面积 ∈ 整物的 (1%, 99%)；两半法向宽度和 = 整物宽度；切口弦端点在轮廓边界上"
+    enforcedBy: "v5/props/props.js 的 assertCutConservation（drawCuttable 绘制前先行执行，不过抛错停建）"
+  - id: no-whole-copy
+    rule: "任一半的轮廓不得等于整物轮廓（禁止切出整物复制，即「两个整苹果」）"
+    enforcedBy: "同上：每半面积 < 整物面积 × 0.99 即等价拦截（面积相等而形状不同于本契约无意义）"

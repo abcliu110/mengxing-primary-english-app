@@ -1,0 +1,101 @@
+# ============================================================================
+# 元素库 · bread（面包）—— 可切物元素；格式样板见 teapot.yaml，可切契约见 apple.yaml（格式扩展 C1）
+# boundedness 语义要点：面包切开两半仍都是 bread（物质名词）——本元素只管几何契约
+# （一刀派生两半、面积/宽度守恒、禁止整物复制），语义判据在内容层，不在本文件。
+# ============================================================================
+
+element:
+  id: bread
+  kind: prop
+  version: 1
+  title: "面包（土司条，可切物）"
+
+frame:
+  origin: "元素枢轴 = 面包中心"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [1250, 490] # boundedness_1 切测试右位；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（圆顶土司条侧视：金黄表皮、顶部划纹、浅色面包芯）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    crust: "#d99a3d"
+    edge: "#a96f22"
+    crumb: "#f6dfae"
+    crumbEdge: "#d9a95c"
+    score: "#b57e2a"
+    highlight: "rgba(255,255,255,.22)"
+
+parts:
+  - id: body
+    role: "包身（轮廓部件：cut.outlinePart 指向本部件）"
+    pivot: [0, 0]
+    anchors:
+      top: [0, -50]
+      bottom: [0, 37] # 底边弧中点（Q 控制点为 42，弧实算最低点 37.0）
+    geometry:
+      shapes:
+        - type: path # 包身轮廓（圆顶条：两侧直壁、顶部隆起、底部微弧）
+          segments: [["M", -78, 32], ["L", -78, -2],
+                     ["C", -78, -34, -46, -50, 0, -50],
+                     ["C", 46, -50, 78, -34, 78, -2],
+                     ["L", 78, 32],
+                     ["Q", 0, 42, -78, 32], ["Z"]]
+          style: { fill: skin.crust, stroke: skin.edge, lineWidth: 3.5 }
+        - type: ellipse # 顶部高光
+          at: [-26, -30]
+          radii: [22, 9]
+          rot: -0.25
+          style: { fill: skin.highlight }
+    z: 1
+  - id: scores
+    role: "表皮划纹（烘烤装饰斜纹；切时随所在半侧走，由 clip 决定归属）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: strokePath
+          segments: [["M", -42, -38], ["L", -30, -24]]
+          style: { stroke: skin.score, lineWidth: 4 }
+        - type: strokePath
+          segments: [["M", -6, -46], ["L", 6, -30]]
+          style: { stroke: skin.score, lineWidth: 4 }
+        - type: strokePath
+          segments: [["M", 26, -38], ["L", 38, -24]]
+          style: { stroke: skin.score, lineWidth: 4 }
+    z: 2
+
+anchors:
+  top: { from: "parts.body.anchors.top", use: "包顶" }
+  bottom: { from: "parts.body.anchors.bottom", use: "包底落点（放桌面对位）" }
+  center: { at: [0, 0], use: "包心：默认切线过此点" }
+
+cut:
+  outlinePart: body
+  axis: [[0, -80], [0, 80]] # 默认切线：竖直过包心，两端点伸出轮廓之外
+  face: { depth: 6, fill: skin.crumb, edge: skin.crumbEdge }
+  details:
+    - { kind: pore, along: 0.25, 'off': 4, r: 2.2, style: { fill: skin.crumbEdge } }
+    - { kind: pore, along: 0.5, 'off': 4, r: 2.6, style: { fill: skin.crumbEdge } }
+    - { kind: pore, along: 0.75, 'off': 4, r: 2.2, style: { fill: skin.crumbEdge } }
+
+params:
+  width:
+    design: 156 # 轮廓包围盒宽（x: -78..78，两侧直壁，实算恰合）
+    computed: 156.0 # 轮廓段表打平实算（T16 P1 验证套件输出回填）
+    formula: "轮廓多边形 bbox 宽（曲线打平后实算），不手填"
+  height:
+    design: 87 # 轮廓包围盒高（y: -50..37；底边为弧，控制点 42 不到边）
+    computed: 87.0 # 同上实算
+    formula: "轮廓多边形 bbox 高（曲线打平后实算），不手填"
+
+assertions:
+  - id: cut-conservation
+    rule: "默认切线一刀：两半面积和 = 整物面积（相对差 ≤ 1e-6）；每半面积 ∈ 整物的 (1%, 99%)；两半法向宽度和 = 整物宽度；切口弦端点在轮廓边界上"
+    enforcedBy: "v5/props/props.js 的 assertCutConservation（drawCuttable 绘制前先行执行，不过抛错停建）"
+  - id: no-whole-copy
+    rule: "任一半的轮廓不得等于整物轮廓（禁止切出整物复制）"
+    enforcedBy: "同上：每半面积 < 整物面积 × 0.99 即等价拦截"

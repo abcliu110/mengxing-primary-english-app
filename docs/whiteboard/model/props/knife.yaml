@@ -1,0 +1,101 @@
+# ============================================================================
+# 元素库 · knife（刀）—— 第三个落地元素；格式样板见 teapot.yaml（文件头逐字段注释）
+# 本元素是 cut 基元的工具侧：cut 只认 anchors.bladeEdge（刃口弦），不认裸坐标；
+# 刃口弦长 vs 被切物切口弦长的覆盖关系由断言 assertBladeCovers 构建期校验（刃必须跨满切口，
+# 否则画面上就是「刀没切到底」）。被切物侧定义见 apple.yaml / bread.yaml（格式扩展 C1）。
+# 本元素无 profiles：切的时序（蓄势/斩落弹簧）属场景与基元参数，不在工具定义里存。
+# ============================================================================
+
+element:
+  id: knife
+  kind: prop
+  version: 1
+  title: "刀（厨房用刀）"
+
+frame:
+  origin: "元素枢轴 = 刃跟（刀身与刀柄交界处）"
+  x: "+x 向右（刃尖侧）"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [700, 400] # 默认上台位（切测试桌面上方）；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（不锈钢厨房刀侧视：宽刃、木柄铆钉）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    blade: "#d7dce2"
+    bladeEdge: "#9aa4ae"
+    bolster: "#8a929c"
+    grip: "#8a5a2b"
+    gripEdge: "#68431d"
+    rivet: "#e8e2d4"
+
+parts:
+  - id: blade
+    role: "刀身（刃口在下缘：edgeHeel→edgeTip 为刃口弦）"
+    pivot: [0, 0]
+    anchors:
+      edgeHeel: [4, 13] # 刃口弦起点（刃跟侧）
+      edgeTip: [128, 4] # 刃口弦终点（刃尖）
+      spineHeel: [0, -13]
+    geometry:
+      shapes:
+        - type: path # 刀身轮廓：上缘为刃背（近直），下缘为刃口（微弧收向刃尖）
+          segments: [["M", 0, -13], ["L", 108, -11],
+                     ["C", 124, -9, 131, -2, 127, 5],
+                     ["C", 122, 12, 96, 15, 60, 15.5],
+                     ["C", 34, 16, 12, 15, 2, 13],
+                     ["Q", -2, 0, 0, -13], ["Z"]]
+          style: { fill: skin.blade, stroke: skin.bladeEdge, lineWidth: 3 }
+    z: 2
+  - id: bolster
+    role: "刀锷（刃跟与柄之间的金属隔段）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -7, -13], ["L", 3, -13], ["L", 3, 15], ["L", -7, 15], ["Z"]]
+          style: { fill: skin.bolster }
+    z: 3
+  - id: handle
+    role: "刀柄（握持部件）"
+    pivot: [0, 0]
+    anchors:
+      grip: [-45, 1] # 握持对位点（人物持刀时手部锚点对位用，预留）
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", -7, -11], ["L", -82, -8],
+                     ["C", -92, -7, -92, 9, -82, 10],
+                     ["L", -7, 13], ["Z"]]
+          style: { fill: skin.grip, stroke: skin.gripEdge, lineWidth: 3 }
+        - type: circle
+          at: [-30, 1]
+          r: 3
+          style: { fill: skin.rivet }
+        - type: circle
+          at: [-58, 1]
+          r: 3
+          style: { fill: skin.rivet }
+    z: 1
+
+anchors:
+  bladeEdge: { from: "parts.blade.anchors.edgeHeel / edgeTip", use: "cut 基元刃口对位弦：切时刃口弦压住被切物切口线" }
+  grip: { from: "parts.handle.anchors.grip", use: "人物持刀时手部锚点对位（预留）" }
+  tip: { from: "parts.blade.anchors.edgeTip", use: "刃尖（指称/安全区计算用）" }
+
+params:
+  bladeLen:
+    design: 124 # 刃口弦设计长
+    computed: 124.3 # 锚点实算：|(128,4)-(4,13)| = √(124²+9²) = 124.33（模块 knifeGeom 加载时实算）
+    formula: "hypot(edgeTip - edgeHeel)，由 parts.blade 锚点坐标算出，不手填"
+
+assertions:
+  - id: edge-chord
+    rule: "刃口弦长（锚点实算）与 params.bladeLen.design 一致（差 ≤ 1）：刃口是 cut 的计量基准，锚点改了设计值必须跟改"
+    enforcedBy: "v5/props/props.js 的 knifeGeom + 验证套件（构建期校验）"
+  - id: blade-covers-cut
+    rule: "任一被切物的切口弦长 ≤ 刃口弦长（刀必须跨满切口）；由 cut 基元在消费时校验"
+    enforcedBy: "v5/props/props.js 的 assertBladeCovers（构建期执行，不过抛错停建）"

@@ -535,3 +535,487 @@ export const drawCharacter = (g, def, pose) => {
   };
   for (const root of def.parts.filter(p => !p.parent).sort((a, b) => a.z - b.z)) drawPart(root);
 };
+
+// ================= T16 P1 核心道具扩展（纯追加段：既有导出/行为一字未动） =================
+// 定义源：model/props/knife.yaml / apple.yaml / bread.yaml / book.yaml / box.yaml（各 v1）。
+// 纪律同文件头：几何一律由定义内锚点/段表坐标实算；断言只引锚点与参数，不引裸坐标。
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/knife.yaml v1） =================
+export const KNIFE = {
+  element: { id: 'knife', kind: 'prop', version: 1, title: '刀（厨房用刀）' },
+  placement: { world: [700, 400] },
+  skin: {
+    tokens: { blade: '#d7dce2', bladeEdge: '#9aa4ae', bolster: '#8a929c', grip: '#8a5a2b', gripEdge: '#68431d', rivet: '#e8e2d4' },
+  },
+  parts: [
+    { id: 'blade', pivot: [0, 0], z: 2, anchors: { edgeHeel: [4, 13], edgeTip: [128, 4], spineHeel: [0, -13] },
+      shapes: [
+        { type: 'path', segments: [['M', 0, -13], ['L', 108, -11],
+          ['C', 124, -9, 131, -2, 127, 5],
+          ['C', 122, 12, 96, 15, 60, 15.5],
+          ['C', 34, 16, 12, 15, 2, 13],
+          ['Q', -2, 0, 0, -13], ['Z']],
+          style: { fill: 'skin.blade', stroke: 'skin.bladeEdge', lineWidth: 3 } },
+      ] },
+    { id: 'bolster', pivot: [0, 0], z: 3,
+      shapes: [
+        { type: 'path', segments: [['M', -7, -13], ['L', 3, -13], ['L', 3, 15], ['L', -7, 15], ['Z']], style: { fill: 'skin.bolster' } },
+      ] },
+    { id: 'handle', pivot: [0, 0], z: 1, anchors: { grip: [-45, 1] },
+      shapes: [
+        { type: 'path', segments: [['M', -7, -11], ['L', -82, -8],
+          ['C', -92, -7, -92, 9, -82, 10],
+          ['L', -7, 13], ['Z']],
+          style: { fill: 'skin.grip', stroke: 'skin.gripEdge', lineWidth: 3 } },
+        { type: 'circle', at: [-30, 1], r: 3, style: { fill: 'skin.rivet' } },
+        { type: 'circle', at: [-58, 1], r: 3, style: { fill: 'skin.rivet' } },
+      ] },
+  ],
+  params: { bladeLen: { design: 124 } },   // computed 不存：由 knifeGeom() 从锚点实算
+};
+// 刃口几何：刃口弦两端由 parts.blade 锚点给出，弦长实算（禁止手填）
+export const knifeGeom = (def) => {
+  const b = partOf(def, 'blade');
+  const heel = b.anchors.edgeHeel, tip = b.anchors.edgeTip;
+  return { heel, tip, len: Math.hypot(tip[0] - heel[0], tip[1] - heel[1]) };
+};
+// 构建期断言：刃口弦实算长与 params.bladeLen.design 一致（差 ≤ 1），否则定义自相矛盾、抛错停建。返回实算弦长。
+export const assertKnifeGeometry = (def) => {
+  const { len } = knifeGeom(def);
+  const design = def.params && def.params.bladeLen && def.params.bladeLen.design;
+  if (design != null && Math.abs(len - design) > 1) throw new Error(`props/${def.element.id} 刃口断言失败：锚点实算弦长 ${len.toFixed(1)} 与 design ${design} 不一致——改刃口锚点必须同步改 design`);
+  return len;
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/apple.yaml v1） =================
+export const APPLE = {
+  element: { id: 'apple', kind: 'prop', version: 1, title: '苹果（可切物）' },
+  placement: { world: [700, 490] },
+  skin: {
+    tokens: { skin: '#d8402e', edge: '#a32418', flesh: '#fdf0d0', fleshEdge: '#e3b978', seed: '#5a3a1a', stem: '#7a4a21', leaf: '#4d9b47', highlight: 'rgba(255,255,255,.28)' },
+  },
+  parts: [
+    { id: 'body', pivot: [0, 0], z: 1, anchors: { top: [0, -47], bottom: [0, 50] },
+      shapes: [
+        { type: 'path', segments: [['M', -4, -48],
+          ['C', -26, -56, -52, -40, -54, -10],
+          ['C', -56, 18, -40, 44, -16, 50],
+          ['C', -8, 52, -3, 49, 0, 49],
+          ['C', 3, 49, 8, 52, 16, 50],
+          ['C', 40, 44, 56, 18, 54, -10],
+          ['C', 52, -40, 26, -56, 4, -48],
+          ['C', 1, -46.5, -1, -46.5, -4, -48], ['Z']],
+          style: { fill: 'skin.skin', stroke: 'skin.edge', lineWidth: 3.5 } },
+        { type: 'ellipse', at: [-24, -16], radii: [11, 17], rot: 0.3, style: { fill: 'skin.highlight' } },
+      ] },
+    { id: 'stem', pivot: [0, 0], z: 2, anchors: { stemTop: [9, -69] },
+      shapes: [
+        { type: 'strokePath', segments: [['M', -1, -48], ['C', 0, -58, 3, -64, 9, -69]], style: { stroke: 'skin.stem', lineWidth: 5 } },
+        { type: 'ellipse', at: [17, -57], radii: [13, 6], rot: -0.5, style: { fill: 'skin.leaf', stroke: 'skin.edge', lineWidth: 2 } },
+      ] },
+  ],
+  cut: {
+    outlinePart: 'body',
+    axis: [[0, -80], [0, 80]],
+    face: { depth: 6, fill: 'skin.flesh', edge: 'skin.fleshEdge' },
+    details: [
+      { kind: 'seed', along: 0.42, off: 4, radii: [3.6, 6], style: { fill: 'skin.seed' } },
+      { kind: 'seed', along: 0.58, off: 4, radii: [3.6, 6], style: { fill: 'skin.seed' } },
+    ],
+  },
+  params: { width: { design: 108 }, height: { design: 101 } },   // computed 不存：由 outlineBBox() 从段表实算（108.3 / 100.7）
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/bread.yaml v1） =================
+export const BREAD = {
+  element: { id: 'bread', kind: 'prop', version: 1, title: '面包（土司条，可切物）' },
+  placement: { world: [1250, 490] },
+  skin: {
+    tokens: { crust: '#d99a3d', edge: '#a96f22', crumb: '#f6dfae', crumbEdge: '#d9a95c', score: '#b57e2a', highlight: 'rgba(255,255,255,.22)' },
+  },
+  parts: [
+    { id: 'body', pivot: [0, 0], z: 1, anchors: { top: [0, -50], bottom: [0, 37] },
+      shapes: [
+        { type: 'path', segments: [['M', -78, 32], ['L', -78, -2],
+          ['C', -78, -34, -46, -50, 0, -50],
+          ['C', 46, -50, 78, -34, 78, -2],
+          ['L', 78, 32],
+          ['Q', 0, 42, -78, 32], ['Z']],
+          style: { fill: 'skin.crust', stroke: 'skin.edge', lineWidth: 3.5 } },
+        { type: 'ellipse', at: [-26, -30], radii: [22, 9], rot: -0.25, style: { fill: 'skin.highlight' } },
+      ] },
+    { id: 'scores', pivot: [0, 0], z: 2,
+      shapes: [
+        { type: 'strokePath', segments: [['M', -42, -38], ['L', -30, -24]], style: { stroke: 'skin.score', lineWidth: 4 } },
+        { type: 'strokePath', segments: [['M', -6, -46], ['L', 6, -30]], style: { stroke: 'skin.score', lineWidth: 4 } },
+        { type: 'strokePath', segments: [['M', 26, -38], ['L', 38, -24]], style: { stroke: 'skin.score', lineWidth: 4 } },
+      ] },
+  ],
+  cut: {
+    outlinePart: 'body',
+    axis: [[0, -80], [0, 80]],
+    face: { depth: 6, fill: 'skin.crumb', edge: 'skin.crumbEdge' },
+    details: [
+      { kind: 'pore', along: 0.25, off: 4, r: 2.2, style: { fill: 'skin.crumbEdge' } },
+      { kind: 'pore', along: 0.5, off: 4, r: 2.6, style: { fill: 'skin.crumbEdge' } },
+      { kind: 'pore', along: 0.75, off: 4, r: 2.2, style: { fill: 'skin.crumbEdge' } },
+    ],
+  },
+  params: { width: { design: 156 }, height: { design: 87 } },   // computed 不存：由 outlineBBox() 从段表实算（156.0 / 87.0）
+};
+
+// ================= 通用多边形几何（段表打平 / 面积 / 半平面裁剪；cut 基元的实算底座） =================
+// 段表打平：C/Q 曲线按 steps 采样成折线，返回闭合多边形点列（末点不重复首点）
+export const flattenSegs = (segs, steps = 20) => {
+  const pts = [];
+  let cur = null, start = null;
+  const push = (p) => { if (!cur || Math.abs(p[0] - cur[0]) > 1e-12 || Math.abs(p[1] - cur[1]) > 1e-12) pts.push(p); cur = p; };
+  for (const s of segs) {
+    const [op, ...a] = s;
+    if (op === 'M') { cur = [a[0], a[1]]; start = cur; pts.push(cur); }
+    else if (op === 'L') push([a[0], a[1]]);
+    else if (op === 'C') {
+      const p0 = cur, p1 = [a[0], a[1]], p2 = [a[2], a[3]], p3 = [a[4], a[5]];
+      for (let k = 1; k <= steps; k++) {
+        const t = k / steps, u = 1 - t;
+        push([u * u * u * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t * t * t * p3[0],
+              u * u * u * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t * t * t * p3[1]]);
+      }
+    }
+    else if (op === 'Q') {
+      const p0 = cur, p1 = [a[0], a[1]], p2 = [a[2], a[3]];
+      for (let k = 1; k <= steps; k++) {
+        const t = k / steps, u = 1 - t;
+        push([u * u * p0[0] + 2 * u * t * p1[0] + t * t * p2[0],
+              u * u * p0[1] + 2 * u * t * p1[1] + t * t * p2[1]]);
+      }
+    }
+    else if (op === 'Z') { cur = start; }
+  }
+  if (pts.length > 1) {
+    const f = pts[0], l = pts[pts.length - 1];
+    if (Math.abs(f[0] - l[0]) < 1e-12 && Math.abs(f[1] - l[1]) < 1e-12) pts.pop();
+  }
+  return pts;
+};
+export const polyArea = (pts) => {
+  let s = 0;
+  for (let i = 0; i < pts.length; i++) {
+    const [x1, y1] = pts[i], [x2, y2] = pts[(i + 1) % pts.length];
+    s += x1 * y2 - x2 * y1;
+  }
+  return Math.abs(s) / 2;
+};
+export const polyBBox = (pts) => {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  for (const [x, y] of pts) { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
+  return { x0, y0, x1, y1, w: x1 - x0, h: y1 - y0 };
+};
+// 可切物轮廓多边形（cut.outlinePart 部件的第一个 path 形状，段表打平实算）
+export const outlineOf = (def) => {
+  const part = partOf(def, def.cut && def.cut.outlinePart);
+  const shape = part && part.shapes.find(s => s.type === 'path');
+  if (!shape) throw new Error(`props/${def.element.id} 无可切轮廓（cut.outlinePart 的 path 形状缺失）`);
+  return flattenSegs(shape.segments);
+};
+export const outlineBBox = (def) => polyBBox(outlineOf(def));
+// 半平面裁剪（Sutherland–Hodgman）：保留 n·p − d 与 keepLe 口径相符的一侧（true → ≤ 0 侧）
+export const clipHalfPlane = (pts, nx, ny, d, keepLe) => {
+  const val = (p) => nx * p[0] + ny * p[1] - d;
+  const inside = (p) => (keepLe ? val(p) <= 1e-12 : val(p) >= -1e-12);
+  const out = [];
+  for (let i = 0; i < pts.length; i++) {
+    const cur = pts[i], nxt = pts[(i + 1) % pts.length];
+    const ci = inside(cur), ni = inside(nxt);
+    if (ci) out.push(cur);
+    if (ci !== ni) {
+      const vc = val(cur), vn = val(nxt), t = vc / (vc - vn);
+      out.push([cur[0] + (nxt[0] - cur[0]) * t, cur[1] + (nxt[1] - cur[1]) * t]);
+    }
+  }
+  return out;
+};
+const ptSegDist = (p, a, b) => {
+  const dx = b[0] - a[0], dy = b[1] - a[1], L2 = dx * dx + dy * dy;
+  const t = L2 ? Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / L2)) : 0;
+  return Math.hypot(p[0] - (a[0] + dx * t), p[1] - (a[1] + dy * t));
+};
+
+// ================= cut 基元（一刀派生两半：轮廓被切线半平面裁成两块，禁止整物复制） =================
+// 切线由两点（a→b，默认取 def.cut.axis）定直线；法向 n = 方向左转 90°。
+// 返回 { a, b, u, n, d, full, halves:{neg,pos}, chord:[c1,c2], areas, widths }，全部由轮廓坐标实算。
+export const cutHalves = (def, a, b) => {
+  const A = a || def.cut.axis[0], B = b || def.cut.axis[1];
+  const ux0 = B[0] - A[0], uy0 = B[1] - A[1], ul = Math.hypot(ux0, uy0);
+  if (!(ul > 1e-9)) throw new Error(`props/${def.element.id} cut 断言失败：切线两点重合，方向未定义`);
+  const u = [ux0 / ul, uy0 / ul], n = [-u[1], u[0]];
+  const d = n[0] * A[0] + n[1] * A[1];
+  const full = outlineOf(def);
+  const neg = clipHalfPlane(full, n[0], n[1], d, true);
+  const pos = clipHalfPlane(full, n[0], n[1], d, false);
+  // 切口弦：切线与轮廓边界的交点（沿轮廓边扫描符号变化，插值实算）
+  const val = (p) => n[0] * p[0] + n[1] * p[1] - d;
+  const cross = [];
+  for (let i = 0; i < full.length; i++) {
+    const p = full[i], q = full[(i + 1) % full.length];
+    const vp = val(p), vq = val(q);
+    if (Math.abs(vp) < 1e-12) cross.push(p);
+    else if ((vp < 0) !== (vq < 0)) {
+      const t = vp / (vp - vq);
+      cross.push([p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t]);
+    }
+  }
+  const uniq = [];
+  for (const p of cross) if (!uniq.some(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < 1e-9)) uniq.push(p);
+  uniq.sort((p, q) => (u[0] * p[0] + u[1] * p[1]) - (u[0] * q[0] + u[1] * q[1]));
+  const extent = (pts) => {
+    let lo = Infinity, hi = -Infinity;
+    for (const p of pts) { const v = n[0] * p[0] + n[1] * p[1]; lo = Math.min(lo, v); hi = Math.max(hi, v); }
+    return hi - lo;
+  };
+  return {
+    a: A, b: B, u, n, d, full,
+    halves: { neg, pos },
+    chord: uniq.length >= 2 ? [uniq[0], uniq[uniq.length - 1]] : null,
+    areas: { full: polyArea(full), neg: polyArea(neg), pos: polyArea(pos) },
+    widths: { full: extent(full), neg: extent(neg), pos: extent(pos) },
+  };
+};
+// 构建期断言（cut 契约）：面积守恒、每半严格介于整物 1%–99%（拦截整物复制与退化切）、
+// 法向宽度守恒、切口弦存在且两端落在轮廓边界上。不过抛错停建。返回 { ratioNeg, chordLen }。
+export const assertCutConservation = (def, res) => {
+  const id = def.element.id, A = res.areas;
+  if (!(A.full > 0)) throw new Error(`props/${id} cut 断言失败：轮廓面积为 0`);
+  if (Math.abs(A.neg + A.pos - A.full) > Math.max(A.full * 1e-6, 1e-9))
+    throw new Error(`props/${id} cut 断言失败：两半面积和 ${ (A.neg + A.pos).toFixed(1) } ≠ 整物面积 ${A.full.toFixed(1)}（守恒破坏——切出整物复制或丢料）`);
+  for (const [side, ar] of [['neg', A.neg], ['pos', A.pos]]) {
+    const r = ar / A.full;
+    if (!(r > 0.01 && r < 0.99))
+      throw new Error(`props/${id} cut 断言失败：${side} 半面积占比 ${(r * 100).toFixed(1)}% 不在 (1%, 99%)——一刀只能派生两半，禁止整物复制/退化切`);
+  }
+  if (Math.abs(res.widths.neg + res.widths.pos - res.widths.full) > Math.max(res.widths.full * 1e-6, 1e-9))
+    throw new Error(`props/${id} cut 断言失败：两半法向宽度和 ${ (res.widths.neg + res.widths.pos).toFixed(2) } ≠ 整物宽度 ${res.widths.full.toFixed(2)}`);
+  if (!res.chord) throw new Error(`props/${id} cut 断言失败：切线未与轮廓相交（无切口弦）`);
+  const [c1, c2] = res.chord;
+  const chordLen = Math.hypot(c2[0] - c1[0], c2[1] - c1[1]);
+  if (!(chordLen > 0)) throw new Error(`props/${id} cut 断言失败：切口弦长为 0（切线与轮廓相切）`);
+  for (const c of res.chord) {
+    let best = Infinity;
+    for (let i = 0; i < res.full.length; i++) best = Math.min(best, ptSegDist(c, res.full[i], res.full[(i + 1) % res.full.length]));
+    if (best > 1e-6) throw new Error(`props/${id} cut 断言失败：切口弦端点距轮廓边界 ${best.toFixed(3)} > 1e-6（弦端点必须在轮廓上）`);
+  }
+  return { ratioNeg: A.neg / A.full, chordLen };
+};
+// 切面细节（籽/气孔）在某半上的实算位置：along 沿弦 + off 自弦向半体内侧偏移（坐标全由弦实算）。
+// 半侧方向口径：neg 半（n·p ≤ d）的材料在 −n 一侧、pos 半在 +n 一侧，故内向/分离方向 neg 取 −n、pos 取 +n。
+export const halfDir = (res, side) => (side === 'neg' ? [-res.n[0], -res.n[1]] : [res.n[0], res.n[1]]);
+export const cutFacePoints = (def, res, side) => {
+  const inw = halfDir(res, side);
+  const [c1, c2] = res.chord;
+  return (def.cut.details || []).map(dt => {
+    const bx = c1[0] + (c2[0] - c1[0]) * dt.along, by = c1[1] + (c2[1] - c1[1]) * dt.along;
+    return { ...dt, side, at: [bx + inw[0] * dt.off, by + inw[1] * dt.off] };
+  });
+};
+// 构建期断言：刃口弦必须跨满切口弦（assertBladeCovers），否则画面上是「刀没切到底」。返回刃口弦长。
+export const assertBladeCovers = (knifeDef, res) => {
+  const { len } = knifeGeom(knifeDef);
+  if (!res.chord) throw new Error(`props cut 断言失败：无切口弦可校验`);
+  const chordLen = Math.hypot(res.chord[1][0] - res.chord[0][0], res.chord[1][1] - res.chord[0][1]);
+  if (len < chordLen - 1e-9)
+    throw new Error(`props cut 断言失败：${knifeDef.element.id} 刃口弦 ${len.toFixed(1)} < 被切物切口弦 ${chordLen.toFixed(1)}——刃必须跨满切口`);
+  return len;
+};
+// 可切物绘制：两半各自 clip 后回放全部部件形状（部件归属由 clip 决定），再补切面带 + 切面细节。
+// opts: { a, b } 切线（默认 def.cut.axis）、sep 两半沿法向各自分开的距离、face=false 关切面。
+// 绘制前先过 assertCutConservation（与 drawLiquid 先过 assertFill 同例：断言不过不绘制）。
+export const drawCuttable = (g, def, opts = {}) => {
+  const res = cutHalves(def, opts.a, opts.b);
+  assertCutConservation(def, res);
+  const sep = opts.sep || 0, n = res.n;
+  g.lineJoin = 'round'; g.lineCap = 'round';
+  for (const side of ['neg', 'pos']) {
+    const inw = halfDir(res, side);
+    const poly = res.halves[side];
+    const dx = inw[0] * sep, dy = inw[1] * sep;
+    g.save();
+    g.translate(dx, dy);
+    g.beginPath();
+    poly.forEach((p, i) => (i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])));
+    g.closePath(); g.clip();
+    for (const part of [...def.parts].sort((x, y) => x.z - y.z)) drawShapes(g, def, part.shapes);
+    g.restore();
+    if (opts.face !== false && res.chord) {
+      const [c1, c2] = res.chord, dep = def.cut.face.depth;
+      const ox = inw[0] * dep, oy = inw[1] * dep;
+      g.beginPath();
+      g.moveTo(c1[0] + dx, c1[1] + dy); g.lineTo(c2[0] + dx, c2[1] + dy);
+      g.lineTo(c2[0] + ox + dx, c2[1] + oy + dy); g.lineTo(c1[0] + ox + dx, c1[1] + oy + dy);
+      g.closePath();
+      g.fillStyle = resolve(def, def.cut.face.fill); g.fill();
+      g.strokeStyle = resolve(def, def.cut.face.edge); g.lineWidth = 2; g.stroke();
+      for (const dt of cutFacePoints(def, res, side)) {
+        g.beginPath();
+        if (dt.radii) g.ellipse(dt.at[0] + dx, dt.at[1] + dy, dt.radii[0], dt.radii[1], 0, 0, 7);
+        else g.arc(dt.at[0] + dx, dt.at[1] + dy, dt.r || 2, 0, 7);
+        paint(g, def, dt.style);
+      }
+    }
+  }
+  return res;
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/book.yaml v1） =================
+export const BOOK = {
+  element: { id: 'book', kind: 'prop', version: 1, title: '书（硬封面书）' },
+  placement: { world: [600, 600] },
+  skin: {
+    tokens: { cover: '#b5651d', coverDark: '#8a4b12', coverEdge: '#7c4210', page: '#fdf6e3', pageEdge: '#cbb98f', ink: '#b9c4cc' },
+  },
+  parts: [
+    { id: 'backCover', pivot: [0, 0], z: 1,
+      shapes: [
+        { type: 'path', segments: [['M', 0, -74], ['L', 116, -74], ['L', 116, 74], ['L', 0, 74], ['Z']], style: { fill: 'skin.coverDark', stroke: 'skin.coverEdge', lineWidth: 3 } },
+      ] },
+    { id: 'pages', pivot: [0, 0], z: 2, anchors: { pageTL: [6, -68], pageTR: [110, -68], pageBR: [110, 68], pageBL: [6, 68], spine: [6, 0], foreEdge: [110, 0] },
+      shapes: [
+        { type: 'path', segments: [['M', 6, -68], ['L', 110, -68], ['L', 110, 68], ['L', 6, 68], ['Z']], style: { fill: 'skin.page', stroke: 'skin.pageEdge', lineWidth: 2.5 } },
+        { type: 'strokePath', segments: [['M', 22, -42], ['L', 94, -42], ['M', 22, -20], ['L', 94, -20], ['M', 22, 2], ['L', 94, 2], ['M', 22, 24], ['L', 80, 24]], style: { stroke: 'skin.ink', lineWidth: 2.5 } },
+      ] },
+    { id: 'frontCover', hinge: true, pivot: [0, 0], z: 3, anchors: { tip: [116, 0], tipTop: [116, -74], tipBottom: [116, 74] },
+      shapes: [
+        { type: 'path', segments: [['M', 0, -74], ['L', 116, -74], ['L', 116, 74], ['L', 0, 74], ['Z']], style: { fill: 'skin.cover', stroke: 'skin.coverEdge', lineWidth: 3 } },
+      ] },
+  ],
+  params: { coverLen: { design: 116 }, pageW: { computed: 104 } },
+  profiles: {
+    closed: { hingeDeg: 0 },
+    ajar: { hingeDeg: -70 },
+    open: { hingeDeg: -165 },
+  },
+};
+
+// ================= 元素定义（渲染侧同步副本；源 = model/props/box.yaml v1） =================
+export const BOX = {
+  element: { id: 'box', kind: 'prop', version: 1, title: '箱子（带盖纸箱）' },
+  placement: { world: [900, 600] },
+  skin: {
+    tokens: { body: '#c98d4b', edge: '#9a6a2e', inner: '#8a5a24', lid: '#d69e58', lidEdge: '#9a6a2e', tape: '#e8dcc2' },
+  },
+  parts: [
+    { id: 'body', pivot: [0, 0], z: 1, anchors: { rimL: [-80, -58], rimR: [80, -58], floorL: [-67, 30], floorR: [67, 30], base: [0, 38] },
+      shapes: [
+        { type: 'path', segments: [['M', -80, -58], ['L', 80, -58], ['L', 75, 38], ['L', -75, 38], ['Z']], style: { fill: 'skin.body', stroke: 'skin.edge', lineWidth: 3.5 } },
+        { type: 'path', segments: [['M', -72, -58], ['L', 72, -58], ['L', 67, 30], ['L', -67, 30], ['Z']], style: { fill: 'skin.inner' } },
+      ] },
+    { id: 'lid', hinge: true, pivot: [-80, -58], z: 2, anchors: { tip: [88, -58], hingeEnd: [-80, -58] },
+      shapes: [
+        { type: 'path', segments: [['M', -80, -65], ['L', 88, -65], ['L', 88, -51], ['L', -80, -51], ['Z']], style: { fill: 'skin.lid', stroke: 'skin.lidEdge', lineWidth: 3 } },
+        { type: 'path', segments: [['M', -4, -65], ['L', 4, -65], ['L', 4, -51], ['L', -4, -51], ['Z']], style: { fill: 'skin.tape' } },
+      ] },
+  ],
+  params: {
+    wall: 8,
+    cavity: { rimY: -58, bottomY: 30, halfTop: 72, halfBottom: 67 },
+    lidLen: { design: 168 },
+  },
+  profiles: {
+    closed: { hingeDeg: 0 },
+    open: { hingeDeg: -105 },
+  },
+};
+ELEMENTS.knife = KNIFE;
+ELEMENTS.apple = APPLE;
+ELEMENTS.bread = BREAD;
+ELEMENTS.book = BOOK;
+ELEMENTS.box = BOX;
+
+// ================= hinge 铰接（open/close 基元：绕部件 pivot 旋转，锚点位置全由实算） =================
+// 铰接部件锚点在开合角 θ 下的元素系坐标 = pivot + R(θ)·(anchor − pivot)
+export const hingeTipAt = (def, partId, anchorName, angleDeg) => {
+  const part = partOf(def, partId);
+  if (!part || !part.hinge) throw new Error(`props/${def.element.id} 部件 ${partId} 非铰接部件（缺 hinge 标记）`);
+  const anchor = part.anchors && part.anchors[anchorName];
+  if (!anchor) throw new Error(`props/${def.element.id} 铰接部件 ${partId} 无锚点 ${anchorName}`);
+  const [rx, ry] = rot2(anchor[0] - part.pivot[0], anchor[1] - part.pivot[1], angleDeg);
+  return [part.pivot[0] + rx, part.pivot[1] + ry];
+};
+// 开合角插值：自闭合（0°）到 profiles.<name>.hingeDeg，u ∈ [0,1]
+export const hingeAngleAt = (def, profileName, u) => {
+  const prof = (def.profiles || {})[profileName];
+  if (!prof) throw new Error(`props/${def.element.id} 未知剖面 ${profileName}`);
+  return (prof.hingeDeg || 0) * Math.max(0, Math.min(1, u));
+};
+// 构建期断言：铰接部件为刚体——锚点在多角度下距 pivot 半径恒定（差 ≤ 1e-9）。返回半径（= 锚点弦长实算）。
+export const assertHingeRigid = (def, partId, anchorName) => {
+  const part = partOf(def, partId);
+  const r0 = Math.hypot(...(() => { const t = hingeTipAt(def, partId, anchorName, 0); return [t[0] - part.pivot[0], t[1] - part.pivot[1]]; })());
+  for (const th of [-45, -90, -135, -180, 37]) {
+    const t = hingeTipAt(def, partId, anchorName, th);
+    const r = Math.hypot(t[0] - part.pivot[0], t[1] - part.pivot[1]);
+    if (Math.abs(r - r0) > 1e-9) throw new Error(`props/${def.element.id} hinge 断言失败：${partId}.${anchorName} 在 ${th}° 时半径 ${r.toFixed(3)} ≠ ${r0.toFixed(3)}（铰接部件必须刚体）`);
+  }
+  return r0;
+};
+// 构建期断言（book）：coverLen 实算 vs design（差 ≤ 0.5）；闭合时前封盖满页块（长与半高两向）；页平面锚点齐备。返回 { coverLen }。
+export const assertBookGeometry = (def) => {
+  const id = def.element.id;
+  const coverLen = assertHingeRigid(def, 'frontCover', 'tip');
+  const design = def.params && def.params.coverLen && def.params.coverLen.design;
+  if (design != null && Math.abs(coverLen - design) > 0.5)
+    throw new Error(`props/${id} book 断言失败：coverLen 实算 ${coverLen.toFixed(1)} 与 design ${design} 不一致`);
+  const pages = partOf(def, 'pages'), cover = partOf(def, 'frontCover');
+  if (!(coverLen >= pages.anchors.foreEdge[0] - cover.pivot[0]))
+    throw new Error(`props/${id} book 断言失败：封面长 ${coverLen.toFixed(1)} 盖不满页块外缘 ${pages.anchors.foreEdge[0]}（闭合时会露出页块）`);
+  const coverHalfH = Math.abs(cover.anchors.tipTop[1] - cover.anchors.tipBottom[1]) / 2;
+  const pageHalfH = Math.abs(pages.anchors.pageTL[1] - pages.anchors.pageBL[1]) / 2;
+  if (coverHalfH < pageHalfH)
+    throw new Error(`props/${id} book 断言失败：封面半高 ${coverHalfH} < 页块半高 ${pageHalfH}（闭合时上下露页）`);
+  if (!pages.anchors.spine || !pages.anchors.foreEdge)
+    throw new Error(`props/${id} book 断言失败：页平面锚点（spine/foreEdge）缺失`);
+  return { coverLen };
+};
+// 构建期断言（box）：腔体三向自洽（口沿半宽/底半宽/底厚均与 wall 缝合，轮廓实算）、盖铰链与箱口左角对位、
+// 盖长实算 vs design（差 ≤ 0.5）、闭合时盖满箱口。返回 { lidLen }。
+export const assertBoxGeometry = (def) => {
+  const id = def.element.id;
+  const body = partOf(def, 'body'), lid = partOf(def, 'lid');
+  const cav = def.params.cavity, wall = def.params.wall;
+  const rimHalf = (body.anchors.rimR[0] - body.anchors.rimL[0]) / 2;
+  if (Math.abs(cav.halfTop + wall - rimHalf) > 1e-9)
+    throw new Error(`props/${id} box 断言失败：cavity.halfTop ${cav.halfTop} + wall ${wall} ≠ 箱口半宽 ${rimHalf}（腔体与箱口不对位）`);
+  const outline = flattenSegs(body.shapes[0].segments);
+  const bb = polyBBox(outline);
+  const bottomHalf = Math.max(...outline.filter(p => Math.abs(p[1] - bb.y1) < 1e-6).map(p => Math.abs(p[0])));
+  if (Math.abs(cav.halfBottom + wall - bottomHalf) > 1e-9)
+    throw new Error(`props/${id} box 断言失败：cavity.halfBottom ${cav.halfBottom} + wall ${wall} ≠ 箱底外半宽 ${bottomHalf}（轮廓实算）`);
+  if (Math.abs(bb.y1 - cav.bottomY - wall) > 1e-9)
+    throw new Error(`props/${id} box 断言失败：箱底厚 ${ (bb.y1 - cav.bottomY).toFixed(1) } ≠ wall ${wall}`);
+  if (Math.abs(lid.pivot[0] - body.anchors.rimL[0]) > 1e-9 || Math.abs(lid.pivot[1] - body.anchors.rimL[1]) > 1e-9)
+    throw new Error(`props/${id} box 断言失败：盖铰链 (${lid.pivot}) 与箱口左角 rimL (${body.anchors.rimL}) 不对位`);
+  const lidLen = assertHingeRigid(def, 'lid', 'tip');
+  const design = def.params && def.params.lidLen && def.params.lidLen.design;
+  if (design != null && Math.abs(lidLen - design) > 0.5)
+    throw new Error(`props/${id} box 断言失败：lidLen 实算 ${lidLen.toFixed(1)} 与 design ${design} 不一致`);
+  if (lidLen < body.anchors.rimR[0] - body.anchors.rimL[0])
+    throw new Error(`props/${id} box 断言失败：盖长 ${lidLen.toFixed(1)} < 箱口全宽 ${body.anchors.rimR[0] - body.anchors.rimL[0]}（闭合时盖不满）`);
+  return { lidLen };
+};
+// 铰接元素绘制：hinge 部件按 opts.angles[partId]（或 opts.profile + opts.u 实算）绕 pivot 旋转，其余部件直绘。
+export const drawHinged = (g, def, opts = {}) => {
+  g.lineJoin = 'round'; g.lineCap = 'round';
+  for (const part of [...def.parts].sort((a, b) => a.z - b.z)) {
+    let ang = null;
+    if (part.hinge) {
+      if (opts.angles && opts.angles[part.id] != null) ang = opts.angles[part.id];
+      else if (opts.profile) ang = hingeAngleAt(def, opts.profile, opts.u != null ? opts.u : 1);
+    }
+    if (ang == null) { drawShapes(g, def, part.shapes); continue; }
+    g.save();
+    g.translate(part.pivot[0], part.pivot[1]);
+    g.rotate(ang * D2R);
+    g.translate(-part.pivot[0], -part.pivot[1]);
+    drawShapes(g, def, part.shapes);
+    g.restore();
+  }
+};

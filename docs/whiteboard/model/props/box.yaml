@@ -1,0 +1,104 @@
+# ============================================================================
+# 元素库 · box（箱子）—— 容器 + 铰接盖元素（open/close 与「装入」类场景的载体）；
+# 格式样板见 teapot.yaml；铰接格式扩展 H1 见 book.yaml 文件头。
+# 腔体口径与 cup 一致：params.cavity 给内腔几何（rimY/bottomY/halfTop/halfBottom），
+# 壁厚 wall 把内腔与外形锚点缝起来——三者必须自洽（断言 cavity-consistent），
+# 改任一数值其余必须跟改，否则构建期抛错。装入类场景以 cavity 为容量口径（后续车道消费）。
+# 本元素口径：正视图，盖铰链在箱口左上角（rimL），闭合时盖自铰链向 +x 盖满箱口，
+# 打开 = 盖绕铰链向上翻（hingeDeg 0 → -105）。
+# ============================================================================
+
+element:
+  id: box
+  kind: prop
+  version: 1
+  title: "箱子（带盖纸箱）"
+
+frame:
+  origin: "元素枢轴 = 箱底中心"
+  x: "+x 向右"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [900, 600] # 默认上台位；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（瓦楞纸箱正视图：箱体微锥、内腔暗面、盖板带折痕）；配色自拟"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    body: "#c98d4b"
+    edge: "#9a6a2e"
+    inner: "#8a5a24"
+    lid: "#d69e58"
+    lidEdge: "#9a6a2e"
+    tape: "#e8dcc2"
+
+parts:
+  - id: body
+    role: "箱体（外形微锥 + 内腔面；腔体计量走 params.cavity）"
+    pivot: [0, 0]
+    anchors:
+      rimL: [-80, -58] # 箱口左上角（与盖铰链同点）
+      rimR: [80, -58] # 箱口右上角
+      floorL: [-67, 30] # 内腔底左（= cavity 半宽在 bottomY 处）
+      floorR: [67, 30]
+      base: [0, 38] # 箱底外缘中点（落桌对位）
+    geometry:
+      shapes:
+        - type: path # 外形：口宽 160、底宽 150、高 96
+          segments: [["M", -80, -58], ["L", 80, -58], ["L", 75, 38], ["L", -75, 38], ["Z"]]
+          style: { fill: skin.body, stroke: skin.edge, lineWidth: 3.5 }
+        - type: path # 内腔面（开口内侧）
+          segments: [["M", -72, -58], ["L", 72, -58], ["L", 67, 30], ["L", -67, 30], ["Z"]]
+          style: { fill: skin.inner }
+    z: 1
+  - id: lid
+    role: "箱盖（铰接部件：绕箱口左上角开合）"
+    hinge: true
+    pivot: [-80, -58] # 铰链中心 = 箱口左上角（与 body 的 rimL 同点）
+    anchors:
+      tip: [88, -58] # 盖外缘中点：闭合时越过箱口右角 8px（搭边）
+      hingeEnd: [-80, -58]
+    geometry:
+      shapes:
+        - type: path # 盖板（元素系坐标书写：自铰链向右 168、厚 14，骑在箱口上）
+          segments: [["M", -80, -65], ["L", 88, -65], ["L", 88, -51], ["L", -80, -51], ["Z"]]
+          style: { fill: skin.lid, stroke: skin.lidEdge, lineWidth: 3 }
+        - type: path # 盖面封箱胶带（装饰）
+          segments: [["M", -4, -65], ["L", 4, -65], ["L", 4, -51], ["L", -4, -51], ["Z"]]
+          style: { fill: skin.tape }
+    z: 2
+
+anchors:
+  lidPivot: { from: "parts.lid.pivot（= parts.body.anchors.rimL）", use: "盖铰链中心；open/close 一切角度绕此点" }
+  lidTip: { from: "parts.lid.anchors.tip", use: "盖外缘：任意开合角位置由 hingeTipAt 实算" }
+  cavityRim: { from: "parts.body.anchors.rimL / rimR", use: "箱口两角（装入落点上界、盖覆盖校验）" }
+  cavityFloor: { at: [0, 30], use: "内腔底中点（装入物落点）" }
+
+params:
+  wall: 8 # 壁厚（口沿与箱底同值，断言口径）
+  cavity:
+    rimY: -58 # 内腔口沿 y（与 body 锚点 rimL/rimR 的 y 同值）
+    bottomY: 30 # 内腔底 y
+    halfTop: 72 # 口沿处内腔半宽：rimHalf(80) - wall(8)
+    halfBottom: 67 # 内腔底半宽：outerBottomHalf(75) - wall(8)
+  lidLen:
+    design: 168 # 铰链→盖外缘
+    computed: 168 # 锚点实算：|tip - pivot| = |(88,-58)-(-80,-58)|（模块实算）
+    formula: "hypot(lidTip - lidPivot)，由锚点坐标算出，不手填"
+
+profiles:
+  closed: { hingeDeg: 0, note: "盖盖满箱口（断言 lid-covers-rim 的校验位姿）" }
+  open: { hingeDeg: -105, note: "盖向上翻开过竖直" }
+
+assertions:
+  - id: cavity-consistent
+    rule: "腔体自洽：cavity.halfTop + wall = 箱口半宽（rimR.x - rimL.x)/2 = 80；cavity.halfBottom + wall = 箱底外半宽 75（轮廓实算）；箱体外底 y - cavity.bottomY = wall（底厚）"
+    enforcedBy: "v5/props/props.js 的 assertBoxGeometry（构建期执行，不过抛错停建）"
+  - id: lid-covers-rim
+    rule: "闭合位姿下盖必须盖满箱口：lidLen（实算）≥ 箱口全宽（rimR.x - rimL.x = 160）"
+    enforcedBy: "v5/props/props.js 的 assertBoxGeometry"
+  - id: hinge-rigid
+    rule: "盖为刚体：lidTip 在任意开合角下距铰链恒等于 lidLen"
+    enforcedBy: "v5/props/props.js 的 assertHingeRigid（hingeTipAt 多角度实算）"

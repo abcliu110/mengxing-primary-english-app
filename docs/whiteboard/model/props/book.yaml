@@ -1,0 +1,110 @@
+# ============================================================================
+# 元素库 · book（书）—— 铰接元素（open/close 基元的载体）；格式样板见 teapot.yaml
+#
+# 格式扩展 H1（铰接部件，本文件首声明，box.yaml 同用）：
+#   part.hinge: true 的部件绕其 part.pivot（铰链中心）旋转，部件 shapes 仍以元素系坐标书写，
+#   旋转由渲染器 drawHinged 施加（translate(pivot) ∘ rotate(θ) ∘ translate(-pivot)），定义里不存旋转后坐标；
+#   开合角住在 profiles 里：profiles.<名>.hingeDeg（闭合 = 0；负角 = 向外翻开，本舞台口径）；
+#   铰接部件的锚点在任意角下的位置由 hingeTipAt(锚点, θ) 实算，场景不许另存。
+# 本元素口径：正视图，书脊在左（x=0 竖线），闭合时封面叠在页块上向 +x 展开，
+# 打开 = 前封绕书脊枢轴向左翻（hingeDeg 0 → -165）。页块静止：页平面在开合中不变位（断言守护）。
+# ============================================================================
+
+element:
+  id: book
+  kind: prop
+  version: 1
+  title: "书（硬封面书）"
+
+frame:
+  origin: "元素枢轴 = 书脊中心"
+  x: "+x 向右（闭合时封面展开方向）"
+  y: "+y 向下（舞台坐标系）"
+  unit: "px @1920x1080"
+
+placement:
+  world: [600, 600] # 默认上台位；场景可覆盖
+
+skin:
+  source: "自绘参数化造型（硬封面书正视图：深色封面、米色页块）；造型与 linda.yaml 的 book 部件同系但独立定义（彼为人物附着部件）"
+  license: "自有造型，无第三方素材。"
+  tokens:
+    cover: "#b5651d"
+    coverDark: "#8a4b12"
+    coverEdge: "#7c4210"
+    page: "#fdf6e3"
+    pageEdge: "#cbb98f"
+    ink: "#b9c4cc"
+
+parts:
+  - id: backCover
+    role: "后封（静止底层，比页块大一圈）"
+    pivot: [0, 0]
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", 0, -74], ["L", 116, -74], ["L", 116, 74], ["L", 0, 74], ["Z"]]
+          style: { fill: skin.coverDark, stroke: skin.coverEdge, lineWidth: 3 }
+    z: 1
+  - id: pages
+    role: "页块（静止：开合中不随封面动；其上表面即页平面）"
+    pivot: [0, 0]
+    anchors:
+      pageTL: [6, -68]
+      pageTR: [110, -68]
+      pageBR: [110, 68]
+      pageBL: [6, 68]
+      spine: [6, 0] # 页平面内缘（靠书脊侧）
+      foreEdge: [110, 0] # 页平面外缘（书口侧）
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", 6, -68], ["L", 110, -68], ["L", 110, 68], ["L", 6, 68], ["Z"]]
+          style: { fill: skin.page, stroke: skin.pageEdge, lineWidth: 2.5 }
+        - type: strokePath # 页上文字行（装饰）
+          segments: [["M", 22, -42], ["L", 94, -42], ["M", 22, -20], ["L", 94, -20], ["M", 22, 2], ["L", 94, 2], ["M", 22, 24], ["L", 80, 24]]
+          style: { stroke: skin.ink, lineWidth: 2.5 }
+    z: 2
+  - id: frontCover
+    role: "前封（铰接部件：绕书脊枢轴开合）"
+    hinge: true
+    pivot: [0, 0] # 铰链中心 = 书脊中心
+    anchors:
+      tip: [116, 0] # 封面外缘中点（coverTip 的出处，开合时绕枢轴画弧）
+      tipTop: [116, -74]
+      tipBottom: [116, 74]
+    geometry:
+      shapes:
+        - type: path
+          segments: [["M", 0, -74], ["L", 116, -74], ["L", 116, 74], ["L", 0, 74], ["Z"]]
+          style: { fill: skin.cover, stroke: skin.coverEdge, lineWidth: 3 }
+    z: 3
+
+anchors:
+  spinePivot: { at: [0, 0], use: "书脊枢轴（前封铰链中心）；open/close 一切角度绕此点" }
+  coverTip: { from: "parts.frontCover.anchors.tip", use: "封面外缘：任意开合角位置由 hingeTipAt 实算" }
+  pagePlane: { from: "parts.pages.anchors.spine / foreEdge", use: "页平面（内外缘两点定面）：放物/指读对位用；开合中不变位" }
+
+params:
+  coverLen:
+    design: 116 # 枢轴→封面外缘
+    computed: 116 # 锚点实算：|tip - pivot| = |(116,0)-(0,0)|（模块 hingeTipAt/assertBookGeometry 实算）
+    formula: "hypot(coverTip - spinePivot)，由锚点坐标算出，不手填"
+  pageW:
+    computed: 104 # 页块宽实算：foreEdge.x - spine.x = 110 - 6
+
+profiles:
+  closed: { hingeDeg: 0, note: "封面叠在页块上（断言 cover-covers-pages 的校验位姿）" }
+  ajar: { hingeDeg: -70, note: "半开" }
+  open: { hingeDeg: -165, note: "全开：封面翻到书脊左侧" }
+
+assertions:
+  - id: cover-covers-pages
+    rule: "闭合位姿下前封必须盖满页块：coverLen（实算）≥ 页块外缘 x（110），且封面半高（74）≥ 页块半高（68）"
+    enforcedBy: "v5/props/props.js 的 assertBookGeometry（构建期执行，不过抛错停建）"
+  - id: hinge-rigid
+    rule: "封面为刚体：coverTip 在任意开合角下距书脊枢轴恒等于 coverLen（半径不变）"
+    enforcedBy: "v5/props/props.js 的 assertHingeRigid（hingeTipAt 多角度实算）"
+  - id: page-plane-static
+    rule: "页平面不随开合动：pages 部件无 hinge 标记，pagePlane 两锚点在 closed/open 下坐标恒同"
+    enforcedBy: "定义结构（pages 无 hinge）+ assertBookGeometry 复核锚点存在"
