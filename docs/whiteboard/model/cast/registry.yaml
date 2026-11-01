@@ -6144,6 +6144,204 @@ frames:
     lib_linked_scenes: 3
   libs: 2
   content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: bar_stand
+  character: 店员（咖啡馆）
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 站姿，双手自然下垂，系奶油色围裙
+  name_check: ok
+  contains: []
+  size:
+  - 211
+  - 640
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: bar_reach
+  character: 店员（咖啡馆）
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 伸手到腰高握住桌上壶把（倒咖啡·准备）
+  name_check: ok
+  contains: []
+  size:
+  - 211
+  - 640
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: bar_lift
+  character: 店员（咖啡馆）
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 拳头在胸前，提起壶（倒咖啡·提起）
+  name_check: ok
+  contains: []
+  size:
+  - 203
+  - 640
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: bar_pour
+  character: 店员（咖啡馆）
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 拳头举到下巴高、身体前倾看杯（倒咖啡·倾倒发力）
+  name_check: ok
+  contains: []
+  size:
+  - 202
+  - 640
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: lin_stand
+  character: Linda
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 长发女孩站姿，橙色领巾
+  name_check: ok
+  contains: []
+  size:
+  - 173
+  - 570
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: lin_think
+  character: Linda
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 食指抵下巴思考（无气泡、无符号）
+  name_check: ok
+  contains: []
+  size:
+  - 170
+  - 570
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: lin_idea
+  character: Linda
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 食指向上「想到了」（无灯泡）
+  name_check: ok
+  contains: []
+  size:
+  - 210
+  - 570
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: lin_point
+  character: Linda
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 手臂平伸指向画面右（场景里翻转朝左指桌）
+  name_check: ok
+  contains: []
+  size:
+  - 271
+  - 570
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: lin_laugh
+  character: Linda
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 双手合在胸前开心笑
+  name_check: ok
+  contains: []
+  size:
+  - 173
+  - 570
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: lin_cut0
+  character: Linda
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 拳头举到头侧（举刀蓄势，刀由场景手绘）
+  name_check: ok
+  contains: []
+  size:
+  - 220
+  - 570
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
+- id: lin_cut1
+  character: Linda
+  kind: 人物
+  sheet: hd-2026-11-01（AI 绿幕单帧，generate_image，同一角色以首帧为参考逐帧编辑生成）
+  semantics: 拳头前伸到胸高（落刀，刀由场景手绘）
+  name_check: ok
+  contains: []
+  size:
+  - 256
+  - 570
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（逐帧看图：帧内无道具，手是空拳，壶 / 刀由场景 rough 手绘挂在拳头握点上）
+  anchors:
+    note: 用在 scenes/fp_boundedness_1_hd.js；水平锚点 = 脚底 4% 带质心（店员见 lib/pour.js FEET，Linda 104.7 px），握点见 lib/pour.js GRIP / 场景 LFIST
 missing_frames:
 - id: slide
   status: 已修复 2026-11-01（FIX_flag_slide）：slide.webp 已按原误存图迁名建立，flag.webp 已换成自 snake 帧提取的真旗图，两帧均已打包入 fi2（见 frames 中 flag / slide 两条）。本条保留作历史记录。
