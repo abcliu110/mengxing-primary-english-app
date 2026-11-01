@@ -1,0 +1,6130 @@
+registry: cast-bitmap-frames
+version: 1
+updated: '2026-11-01'
+about: 位图卡司注册表（T16 P1 人物侧）：用户裁定人物保留位图、不换矢量，本表即人物侧终局登记——语义以帧的真实内容为准（动词+姿态），名实不符者逐条订正，供模板替换车道按语义选角、供动作基元查手/视线/落点锚点。与
+  CAST_V5.md（联排生产登记：帧从哪张联排图切出）互补不替代；与 LAYOUT_QA_PLAN 规划的 v5/sprites/CAST.md 同一用途，本表为其 YAML 落地（勿另建冲突登记）。
+conventions:
+  coords: 锚点为帧内归一化坐标 [x, y]，原点左上，x 向右、y 向下，0–1（帧图已按 alpha 紧裁，底边≈落点）。
+  hands: hand_left / hand_right 指画面左 / 画面右出现的那只手（画面平面，非人物解剖左右）。
+  gaze: angle_deg：0=画面右、90=下、180=左、270=上，顺时针；正面注视观众 angle_deg=null。
+  feet: feet=[支撑中心 x, 鞋底基线 y]；feet_alpha_x 为 alpha 底部 4% 带质心 x（实测复核）；半身/动物帧 feet=null 并在 note 说明。
+  refs口径: scenes_canonical=558 规范幕中引用该帧的幕数（精修口径：带前缀帧名按文本命中计；裸英文词帧名（bus/flag/twins 等）须文本命中且场景导入的精灵库含此帧才计，以剔除台词文本误命中）；scenes_all_files=880
+    文件口径同法；lib_linked_scenes=导入了含此帧精灵库的规范幕数（可用上界）。
+  name_check: ok=名实一致；mismatch=名实不符（name_note 给实际内容）；watch=名可用但有内容/切帧/双轨等注意事项（name_note）。
+  content_check: 目测核验 2026-11-01 = 本次已逐帧看图；CAST 登记 = 语义据 CAST_V5.md 联排登记，未逐帧目测，内容按「未核验」对待。
+frames:
+- id: baby
+  character: 婴儿
+  kind: 人物
+  sheet: L4
+  semantics: 婴儿睡在婴儿床里（床占帧主体）
+  name_check: ok
+  contains:
+  - 婴儿床
+  size:
+  - 431
+  - 387
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: bird_down
+  character: 小鸟
+  kind: 动物
+  sheet: tm1
+  semantics: 小鸟展翅下滑翔（喙向右）
+  name_check: ok
+  contains: &id001 []
+  size:
+  - 680
+  - 511
+  refs:
+    scenes_canonical: 7
+    scenes_all_files: 13
+    lib_linked_scenes: 10
+  libs: 5
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left: null
+    hand_right: null
+    gaze:
+      dir: 右（喙向）
+      angle_deg: 0
+    feet: null
+    note: 动物帧：无手无脚；喙尖约 [0.85, 0.25]
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+- id: bird_up
+  character: 小鸟
+  kind: 动物
+  sheet: tm1
+  semantics: 小鸟展翅上扇飞行（喙向右）
+  name_check: ok
+  contains: *id001
+  size:
+  - 525
+  - 520
+  refs:
+    scenes_canonical: 8
+    scenes_all_files: 15
+    lib_linked_scenes: 11
+  libs: 6
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left: null
+    hand_right: null
+    gaze:
+      dir: 右（喙向）
+      angle_deg: 0
+    feet: null
+    note: 动物帧：无手无脚；喙尖约 [0.97, 0.48]
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+- id: bird_worm
+  character: 小鸟
+  kind: 动物
+  sheet: L15
+  semantics: 叼虫
+  name_check: ok
+  contains:
+  - 虫
+  size:
+  - 279
+  - 175
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: borrow
+  character: Tom+Leo
+  kind: 双人/群像
+  sheet: L11
+  semantics: 眼镜男孩 Tom 把打开的书递给 Leo（借书）
+  name_check: ok
+  contains:
+  - 书
+  size:
+  - 438
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: box0
+  character: Leo
+  kind: 双人/群像
+  sheet: V13
+  semantics: 从箱子里出来（get out）序列
+  name_check: ok
+  contains: &id002
+  - 箱子
+  size:
+  - 323
+  - 259
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: box1
+  character: Leo
+  kind: 双人/群像
+  sheet: V13
+  semantics: 从箱子里出来（get out）序列
+  name_check: ok
+  contains: *id002
+  size:
+  - 380
+  - 344
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: box2
+  character: Leo
+  kind: 双人/群像
+  sheet: V13
+  semantics: 从箱子里出来（get out）序列
+  name_check: ok
+  contains: *id002
+  size:
+  - 421
+  - 381
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: box_lid
+  character: —
+  kind: 道具
+  sheet: V13/V28
+  semantics: 箱盖
+  name_check: ok
+  contains: []
+  size:
+  - 240
+  - 190
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: bus
+  character: —
+  kind: 交通
+  sheet: tm3a
+  semantics: 公交车（侧面整车）
+  name_check: ok
+  contains: []
+  size:
+  - 406
+  - 272
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 4
+    lib_linked_scenes: 4
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: bus0
+  character: Leo
+  kind: 双人/群像
+  sheet: V11b
+  semantics: 上/下公交车（get on/off）序列
+  name_check: ok
+  contains: &id003
+  - 公交车
+  size:
+  - 697
+  - 464
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: bus1
+  character: Leo
+  kind: 双人/群像
+  sheet: V11b
+  semantics: 上/下公交车（get on/off）序列
+  name_check: ok
+  contains: *id003
+  size:
+  - 702
+  - 464
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: bus2
+  character: Leo
+  kind: 双人/群像
+  sheet: V11b
+  semantics: 上/下公交车（get on/off）序列
+  name_check: ok
+  contains: *id003
+  size:
+  - 708
+  - 467
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: cam
+  character: Leo
+  kind: 人物
+  sheet: tm3a
+  semantics: 双手持相机举至面前拍照（闪光星芒）
+  name_check: ok
+  contains:
+  - 相机
+  size:
+  - 264
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 2
+    lib_linked_scenes: 2
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.62
+    - 0.42
+    hand_right:
+    - 0.85
+    - 0.38
+    gaze:
+      dir: 正面（面部被相机遮挡）
+      angle_deg: null
+    feet:
+    - 0.52
+    - 0.98
+    note: 双手持相机；超 Top40 补登（CAST 主力帧）
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.37
+- id: car_in0
+  character: Leo
+  kind: 双人/群像
+  sheet: V12
+  semantics: 上小汽车（get in）序列
+  name_check: ok
+  contains: &id004
+  - 汽车
+  size:
+  - 695
+  - 441
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: car_in1
+  character: Leo
+  kind: 双人/群像
+  sheet: V12
+  semantics: 上小汽车（get in）序列
+  name_check: ok
+  contains: *id004
+  size:
+  - 703
+  - 432
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: car_in2
+  character: Leo
+  kind: 双人/群像
+  sheet: V12
+  semantics: 上小汽车（get in）序列
+  name_check: ok
+  contains: *id004
+  size:
+  - 709
+  - 431
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: car_out0
+  character: Leo
+  kind: 双人/群像
+  sheet: V12b
+  semantics: 下小汽车（get out）序列
+  name_check: ok
+  contains: &id005
+  - 汽车
+  size:
+  - 699
+  - 428
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: car_out1
+  character: Leo
+  kind: 双人/群像
+  sheet: V12b
+  semantics: 下小汽车（get out）序列
+  name_check: ok
+  contains: *id005
+  size:
+  - 697
+  - 428
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: car_out2
+  character: Leo
+  kind: 双人/群像
+  sheet: V12b
+  semantics: 下小汽车（get out）序列
+  name_check: ok
+  contains: *id005
+  size:
+  - 699
+  - 440
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: cat_light
+  character: 猫
+  kind: 动物
+  sheet: V25
+  semantics: 手电光下现形的猫
+  name_check: ok
+  contains:
+  - 手电光
+  size:
+  - 409
+  - 360
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: chick0
+  character: 小鸡
+  kind: 动物
+  sheet: L6
+  semantics: 成年母鸡奔跑（序列首帧）
+  name_check: watch
+  contains: &id006 []
+  size:
+  - 206
+  - 186
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名「chick 小鸡」，实为成年母鸡（有鸡冠红冠）；chick0–3 同组（CAST 登记用途 two chickens running），引用按内容勿按名取「小鸡」。本组 4 帧当前零引用、且未打包入任何精灵库。
+- id: chick1
+  character: 小鸡
+  kind: 动物
+  sheet: L6
+  semantics: 小鸡奔跑序列
+  name_check: ok
+  contains: *id006
+  size:
+  - 184
+  - 200
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: chick2
+  character: 小鸡
+  kind: 动物
+  sheet: L6
+  semantics: 小鸡奔跑序列
+  name_check: ok
+  contains: *id006
+  size:
+  - 189
+  - 183
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: chick3
+  character: 小鸡
+  kind: 动物
+  sheet: L6
+  semantics: 小鸡奔跑序列
+  name_check: ok
+  contains: *id006
+  size:
+  - 194
+  - 198
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: child
+  character: 通用小孩
+  kind: 人物
+  sheet: L13
+  semantics: 站姿（名词教学单帧）
+  name_check: ok
+  contains: []
+  size:
+  - 157
+  - 312
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: coach
+  character: 篮球教练
+  kind: 人物
+  sheet: L13
+  semantics: 站姿（职业单帧）
+  name_check: ok
+  contains: []
+  size:
+  - 258
+  - 477
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: dad_apple
+  character: 爸爸
+  kind: 人物
+  sheet: V31
+  semantics: 与苹果（戒甜食）
+  name_check: ok
+  contains:
+  - 苹果
+  size:
+  - 188
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: dad_candy
+  character: 爸爸
+  kind: 人物
+  sheet: V31
+  semantics: 戒糖果（推开糖果）
+  name_check: ok
+  contains:
+  - 糖果
+  size:
+  - 351
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: dad_strong
+  character: 爸爸
+  kind: 人物
+  sheet: L15
+  semantics: 秀肌肉强壮
+  name_check: ok
+  contains: []
+  size:
+  - 352
+  - 480
+  refs:
+    scenes_canonical: 6
+    scenes_all_files: 12
+    lib_linked_scenes: 6
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: dog_bite
+  character: 通用男人+狗
+  kind: 双人/群像
+  sheet: L15
+  semantics: 小狗咬住一名成年男子裤腿（ze 语序「dog bites man」）
+  name_check: ok
+  contains:
+  - 狗
+  size:
+  - 410
+  - 480
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: ducks
+  character: 鸭子
+  kind: 动物
+  sheet: L3
+  semantics: 两只鸭子在水面相对游
+  name_check: ok
+  contains:
+  - 水面
+  size:
+  - 464
+  - 147
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 3
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: europa0
+  character: 欧罗巴
+  kind: 人物
+  sheet: L9
+  semantics: 欧罗巴骑在白牛背上渡水
+  name_check: ok
+  contains: &id007
+  - 牛
+  - 水面
+  size:
+  - 426
+  - 442
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: europa1
+  character: 欧罗巴
+  kind: 人物
+  sheet: L9
+  semantics: 骑牛（渡水）
+  name_check: ok
+  contains: *id007
+  size:
+  - 358
+  - 443
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: fire0
+  character: —
+  kind: 场景
+  sheet: V19
+  semantics: 火焰/灭火（put out）序列
+  name_check: ok
+  contains: &id008 []
+  size:
+  - 506
+  - 474
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: fire1
+  character: —
+  kind: 场景
+  sheet: V19
+  semantics: 火焰/灭火（put out）序列
+  name_check: ok
+  contains: *id008
+  size:
+  - 544
+  - 451
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: fire2
+  character: —
+  kind: 场景
+  sheet: V19
+  semantics: 火焰/灭火（put out）序列
+  name_check: ok
+  contains: *id008
+  size:
+  - 238
+  - 451
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: flag
+  character: Leo
+  kind: 人物
+  sheet: L6
+  semantics: Leo 坐滑梯下滑、双手上举（与「旗」无关）
+  name_check: mismatch
+  contains: []
+  size:
+  - 340
+  - 440
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名「flag 旗」，实为 Leo 坐滑梯下滑（滑梯帧）。真正的旗在 snake 帧内（蛇旁旗杆）。CAST_V5 L6 登记的 slide 帧文件缺失——疑切帧时 slide 图被存为 flag。任何按名取「旗」或取「滑梯」都会错。
+- id: g_ready
+  character: 女孩（马尾·通用）
+  kind: 人物
+  sheet: tm1
+  semantics: 马尾女孩侧身前伸双手（准备/接物姿势）
+  name_check: ok
+  contains: []
+  size:
+  - 285
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: g_w0
+  character: 女孩（马尾·通用）
+  kind: 人物
+  sheet: tm1
+  semantics: 马尾女孩背书包行走（侧面）
+  name_check: ok
+  contains: &id009
+  - 书包
+  size:
+  - 271
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: g_w1
+  character: 女孩（马尾·通用）
+  kind: 人物
+  sheet: tm1
+  semantics: 背书包行走序列
+  name_check: ok
+  contains: *id009
+  size:
+  - 271
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: g_w2
+  character: 女孩（马尾·通用）
+  kind: 人物
+  sheet: tm1
+  semantics: 背书包行走序列
+  name_check: ok
+  contains: *id009
+  size:
+  - 272
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: g_w3
+  character: 女孩（马尾·通用）
+  kind: 人物
+  sheet: tm1
+  semantics: 背书包行走序列
+  name_check: ok
+  contains: *id009
+  size:
+  - 272
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: grand
+  character: 爷爷奶奶
+  kind: 双人/群像
+  sheet: tm4a
+  semantics: 奶奶与爷爷并立挥手
+  name_check: ok
+  contains: []
+  size:
+  - 378
+  - 471
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: heights
+  character: 三名男子
+  kind: 双人/群像
+  sheet: L12
+  semantics: 三名男子身高递增并立（矮→高）
+  name_check: ok
+  contains: []
+  size:
+  - 392
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: hello
+  character: Leo+Mia
+  kind: 双人/群像
+  sheet: L11
+  semantics: Leo 与 Mia 面对面挥手打招呼
+  name_check: ok
+  contains: []
+  size:
+  - 406
+  - 480
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 6
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: house0
+  character: —
+  kind: 场景
+  sheet: V01
+  semantics: 房子呈现新面貌（take on）序列
+  name_check: ok
+  contains: &id010 []
+  size:
+  - 360
+  - 453
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: house1
+  character: —
+  kind: 场景
+  sheet: V01
+  semantics: 房子呈现新面貌（take on）序列
+  name_check: ok
+  contains: *id010
+  size:
+  - 353
+  - 456
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: house2
+  character: —
+  kind: 场景
+  sheet: V01
+  semantics: 房子呈现新面貌（take on）序列
+  name_check: ok
+  contains: *id010
+  size:
+  - 382
+  - 457
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: juice_q
+  character: —
+  kind: 道具
+  sheet: tm1
+  semantics: 果汁（饮品静物）
+  name_check: ok
+  contains: []
+  size:
+  - 275
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: kick0
+  character: Leo
+  kind: 人物
+  sheet: tm1
+  semantics: 踢球序列：侧身立姿预备（面对右）
+  name_check: ok
+  contains: &id011 []
+  size:
+  - 253
+  - 520
+  refs:
+    scenes_canonical: 18
+    scenes_all_files: 28
+    lib_linked_scenes: 23
+  libs: 13
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.18
+    - 0.68
+    hand_right:
+    - 0.42
+    - 0.68
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.55
+    - 0.95
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.37
+- id: kick1
+  character: Leo
+  kind: 人物
+  sheet: tm1
+  semantics: 踢球序列：右腿水平踢出
+  name_check: ok
+  contains: *id011
+  size:
+  - 383
+  - 520
+  refs:
+    scenes_canonical: 17
+    scenes_all_files: 27
+    lib_linked_scenes: 23
+  libs: 13
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.05
+    - 0.62
+    hand_right:
+    - 0.52
+    - 0.42
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.25
+    - 0.98
+    note: 支撑脚落点；踢球脚尖约 [0.92, 0.52]
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.32
+- id: kick2
+  character: Leo
+  kind: 人物
+  sheet: tm1
+  semantics: 踢球序列：踢后随挥、双臂张开
+  name_check: ok
+  contains: *id011
+  size:
+  - 383
+  - 520
+  refs:
+    scenes_canonical: 16
+    scenes_all_files: 25
+    lib_linked_scenes: 22
+  libs: 12
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.03
+    - 0.28
+    hand_right:
+    - 0.62
+    - 0.28
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.28
+    - 0.95
+    note: 支撑脚落点；踢球脚尖约 [0.90, 0.45]
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.32
+- id: king
+  character: 国王+王子+老者
+  kind: 双人/群像
+  sheet: L9
+  semantics: 国王居中搂着王子与老者（三人合像）
+  name_check: ok
+  contains: []
+  size:
+  - 401
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_air0
+  character: Leo
+  kind: 人物
+  sheet: V04
+  semantics: 深呼吸吸气（take in）序列
+  name_check: ok
+  contains: &id012 []
+  size:
+  - 213
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_air1
+  character: Leo
+  kind: 人物
+  sheet: V04
+  semantics: 深呼吸吸气（take in）序列
+  name_check: ok
+  contains: *id012
+  size:
+  - 371
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_air2
+  character: Leo
+  kind: 人物
+  sheet: V04
+  semantics: 深呼吸吸气（take in）序列
+  name_check: ok
+  contains: *id012
+  size:
+  - 216
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_back
+  character: Leo
+  kind: 人物
+  sheet: L2
+  semantics: 回来（转身/归位）
+  name_check: ok
+  contains: []
+  size:
+  - 366
+  - 478
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 5
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_bag0
+  character: Leo
+  kind: 人物
+  sheet: V05
+  semantics: 站立、画面右手握住立在地面的书包提手
+  name_check: ok
+  contains: &id013
+  - 书包
+  - 书
+  size:
+  - 336
+  - 478
+  refs:
+    scenes_canonical: 9
+    scenes_all_files: 12
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.08
+    - 0.65
+    hand_right:
+    - 0.62
+    - 0.62
+    gaze:
+      dir: 右下
+      angle_deg: 60
+    feet:
+    - 0.35
+    - 0.94
+    note: 画面右手握书包提手
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.56
+- id: l_bag1
+  character: Leo
+  kind: 人物
+  sheet: V05
+  semantics: 双手把书放进敞开的书包
+  name_check: ok
+  contains: *id013
+  size:
+  - 278
+  - 479
+  refs:
+    scenes_canonical: 9
+    scenes_all_files: 12
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.68
+    - 0.45
+    hand_right:
+    - 0.88
+    - 0.47
+    gaze:
+      dir: 下
+      angle_deg: 80
+    feet:
+    - 0.3
+    - 0.93
+    note: 双手持书放入书包
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.54
+- id: l_bag2
+  character: Leo
+  kind: 人物
+  sheet: V05
+  semantics: 从书包拿出书（take out）序列
+  name_check: ok
+  contains: *id013
+  size:
+  - 305
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_banana0
+  character: Leo
+  kind: 人物
+  sheet: V29
+  semantics: 踩到香蕉皮预警（look out 当心）
+  name_check: ok
+  contains:
+  - 香蕉皮
+  size:
+  - 490
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_banana2
+  character: Leo
+  kind: 人物
+  sheet: V29
+  semantics: 香蕉皮滑倒/避开
+  name_check: ok
+  contains:
+  - 香蕉皮
+  size:
+  - 396
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_bed0
+  character: Leo
+  kind: 人物
+  sheet: V08
+  semantics: 起床（get up）序列
+  name_check: ok
+  contains: &id014
+  - 床
+  size:
+  - 339
+  - 448
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 9
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_bed1
+  character: Leo
+  kind: 人物
+  sheet: V08
+  semantics: 起床（get up）序列
+  name_check: ok
+  contains: *id014
+  size:
+  - 346
+  - 447
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 9
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_bed2
+  character: Leo
+  kind: 人物
+  sheet: V08
+  semantics: 起床（get up）序列
+  name_check: ok
+  contains: *id014
+  size:
+  - 337
+  - 467
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 9
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_bench0
+  character: Leo
+  kind: 人物
+  sheet: V25
+  semantics: 坐长椅托腮等待/旁观（序列首帧）
+  name_check: ok
+  contains: &id015
+  - 长椅
+  size:
+  - 329
+  - 354
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_bench1
+  character: Leo
+  kind: 人物
+  sheet: V25
+  semantics: 长椅旁观（look on）序列
+  name_check: ok
+  contains: *id015
+  size:
+  - 324
+  - 353
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_bench2
+  character: Leo
+  kind: 人物
+  sheet: V25
+  semantics: 长椅旁观（look on）序列
+  name_check: ok
+  contains: *id015
+  size:
+  - 278
+  - 340
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_bench3
+  character: Leo
+  kind: 人物
+  sheet: V25
+  semantics: 站在长椅上鼓掌欢呼（序列末帧）
+  name_check: ok
+  contains: *id015
+  size:
+  - 249
+  - 376
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_bike0
+  character: Leo
+  kind: 人物
+  sheet: V06
+  semantics: 站立扶自行车把（车在身前）
+  name_check: ok
+  contains: &id016
+  - 自行车
+  size:
+  - 308
+  - 480
+  refs:
+    scenes_canonical: 7
+    scenes_all_files: 10
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.18
+    - 0.75
+    hand_right:
+    - 0.85
+    - 0.62
+    gaze:
+      dir: 正面
+      angle_deg: null
+    feet:
+    - 0.45
+    - 0.98
+    note: 画面右手扶车把
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.51
+- id: l_bike1
+  character: Leo
+  kind: 人物
+  sheet: V06
+  semantics: 骑上自行车（一脚踏蹬、一脚后蹬）
+  name_check: ok
+  contains: *id016
+  size:
+  - 347
+  - 478
+  refs:
+    scenes_canonical: 8
+    scenes_all_files: 12
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.72
+    - 0.5
+    hand_right:
+    - 0.88
+    - 0.48
+    gaze:
+      dir: 右前方
+      angle_deg: 0
+    feet:
+    - 0.55
+    - 0.93
+    note: 双手扶车把；支撑=自行车轮；踏板脚约 [0.78, 0.80]，后蹬脚约 [0.08, 0.55]
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.83
+- id: l_bike2
+  character: Leo
+  kind: 人物
+  sheet: V06
+  semantics: 上/骑自行车（get on）序列
+  name_check: ok
+  contains: *id016
+  size:
+  - 293
+  - 478
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_boff0
+  character: Leo
+  kind: 人物
+  sheet: V07
+  semantics: 下自行车（get off）序列
+  name_check: ok
+  contains: &id017
+  - 自行车
+  size:
+  - 338
+  - 435
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_boff1
+  character: Leo
+  kind: 人物
+  sheet: V07
+  semantics: 下自行车（get off）序列
+  name_check: ok
+  contains: *id017
+  size:
+  - 330
+  - 431
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_boff2
+  character: Leo
+  kind: 人物
+  sheet: V07
+  semantics: 下自行车（get off）序列
+  name_check: ok
+  contains: *id017
+  size:
+  - 350
+  - 418
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_books
+  character: Leo
+  kind: 人物
+  sheet: V32
+  semantics: 行走中双手抱一摞书
+  name_check: ok
+  contains:
+  - 书
+  size:
+  - 238
+  - 480
+  refs:
+    scenes_canonical: 56
+    scenes_all_files: 83
+    lib_linked_scenes: 40
+  libs: 40
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.45
+    - 0.63
+    hand_right:
+    - 0.8
+    - 0.58
+    gaze:
+      dir: 右下
+      angle_deg: 30
+    feet:
+    - 0.45
+    - 0.97
+    note: 双手托书摞；行进姿势
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.41
+- id: l_box
+  character: Leo
+  kind: 人物
+  sheet: L11
+  semantics: 抱/持箱子
+  name_check: ok
+  contains:
+  - 箱子
+  size:
+  - 298
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_boxwalk
+  character: Leo
+  kind: 人物
+  sheet: V28
+  semantics: 抱箱子行走
+  name_check: ok
+  contains:
+  - 箱子
+  size:
+  - 172
+  - 376
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_breath
+  character: Leo
+  kind: 人物
+  sheet: L9
+  semantics: 闭目张口呼气/深呼吸（双臂垂）
+  name_check: ok
+  contains: []
+  size:
+  - 202
+  - 480
+  refs:
+    scenes_canonical: 10
+    scenes_all_files: 11
+    lib_linked_scenes: 6
+  libs: 6
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.12
+    - 0.68
+    hand_right:
+    - 0.88
+    - 0.68
+    gaze:
+      dir: 正面（闭眼）
+      angle_deg: null
+    feet:
+    - 0.48
+    - 0.97
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.57
+- id: l_cake0
+  character: Leo
+  kind: 人物
+  sheet: V18
+  semantics: 吹生日蜡烛（put out）序列
+  name_check: ok
+  contains: &id018
+  - 蛋糕
+  - 蜡烛
+  size:
+  - 335
+  - 476
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 3
+    lib_linked_scenes: 4
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_cake1
+  character: Leo
+  kind: 人物
+  sheet: V18
+  semantics: 吹生日蜡烛（put out）序列
+  name_check: ok
+  contains: *id018
+  size:
+  - 332
+  - 473
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_cake2
+  character: Leo
+  kind: 人物
+  sheet: V18
+  semantics: 吹生日蜡烛（put out）序列
+  name_check: ok
+  contains: *id018
+  size:
+  - 318
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_cap0
+  character: Leo
+  kind: 人物
+  sheet: V13
+  semantics: 戴帽子（put on）序列
+  name_check: ok
+  contains: &id019
+  - 帽子
+  size:
+  - 234
+  - 378
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 3
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_cap1
+  character: Leo
+  kind: 人物
+  sheet: V13
+  semantics: 戴帽子（put on）序列
+  name_check: ok
+  contains: *id019
+  size:
+  - 167
+  - 377
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_cap2
+  character: Leo
+  kind: 人物
+  sheet: V13
+  semantics: 戴帽子（put on）序列
+  name_check: ok
+  contains: *id019
+  size:
+  - 171
+  - 387
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_catch
+  character: Leo
+  kind: 人物
+  sheet: L2
+  semantics: 接/抓（伸手）
+  name_check: ok
+  contains: []
+  size:
+  - 279
+  - 459
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 3
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_close
+  character: Leo
+  kind: 人物
+  sheet: L12
+  semantics: 关门
+  name_check: ok
+  contains:
+  - 门
+  size:
+  - 385
+  - 474
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_coat1
+  character: Leo
+  kind: 人物
+  sheet: L8
+  semantics: 穿/脱外套序列（着装动作）
+  name_check: ok
+  contains: &id020
+  - 外套
+  size:
+  - 296
+  - 480
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 8
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_coat2
+  character: Leo
+  kind: 人物
+  sheet: L8
+  semantics: 穿/脱外套序列（着装动作）
+  name_check: ok
+  contains: *id020
+  size:
+  - 222
+  - 479
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_coat3
+  character: Leo
+  kind: 人物
+  sheet: L8
+  semantics: 穿/脱外套序列（着装动作）
+  name_check: ok
+  contains: *id020
+  size:
+  - 291
+  - 480
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_coff0
+  character: Leo
+  kind: 人物
+  sheet: V06
+  semantics: 站姿·穿橙色外套微笑（脱外套序列首帧，着装完成态）
+  name_check: mismatch
+  contains: &id021
+  - 外套
+  size:
+  - 231
+  - 480
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 9
+    lib_linked_scenes: 11
+  libs: 9
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名似「coffee 咖啡」，实为 coat-off：穿橙色外套的站姿（脱外套序列首帧）。LAYOUT_QA_PLAN 定其为全剧中性站立基准帧 ref（穿外套、微笑）——可作 ref，但不是日常白衬衫造型，选角勿按名取「咖啡」。
+- id: l_coff1
+  character: Leo
+  kind: 人物
+  sheet: V06
+  semantics: 双臂外张、外套半脱至肩臂（脱外套序列中帧）
+  name_check: mismatch
+  contains: *id021
+  size:
+  - 358
+  - 480
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 5
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名似「coffee」，实为脱外套中帧（外套半脱至肩臂）。
+- id: l_coff2
+  character: Leo
+  kind: 人物
+  sheet: V06
+  semantics: 单手提着已脱下的外套、恢复白衬衫（脱外套序列末帧）
+  name_check: mismatch
+  contains: *id021
+  size:
+  - 211
+  - 480
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 9
+    lib_linked_scenes: 5
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名似「coffee」，实为脱外套末帧（手提外套、白衬衫）。
+- id: l_connect
+  character: Leo
+  kind: 人物
+  sheet: L14
+  semantics: 连接（接线/插接）
+  name_check: ok
+  contains: []
+  size:
+  - 326
+  - 454
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_crouch0
+  character: Leo
+  kind: 人物
+  sheet: V10
+  semantics: 蹲下（get down）序列
+  name_check: ok
+  contains: &id022 []
+  size:
+  - 163
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_crouch1
+  character: Leo
+  kind: 人物
+  sheet: V10
+  semantics: 蹲下（get down）序列
+  name_check: ok
+  contains: *id022
+  size:
+  - 200
+  - 449
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_crouch2
+  character: Leo
+  kind: 人物
+  sheet: V10
+  semantics: 蹲下（get down）序列
+  name_check: ok
+  contains: *id022
+  size:
+  - 330
+  - 352
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_detect0
+  character: Leo
+  kind: 人物
+  sheet: V28
+  semantics: 戴侦探帽蹲身持放大镜查地面（序列首帧）
+  name_check: ok
+  contains: &id023
+  - 放大镜
+  size:
+  - 304
+  - 347
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_detect1
+  character: Leo
+  kind: 人物
+  sheet: V28
+  semantics: 侦探调查（look in）序列
+  name_check: ok
+  contains: *id023
+  size:
+  - 172
+  - 351
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_detect2
+  character: Leo
+  kind: 人物
+  sheet: V28
+  semantics: 侦探调查（look in）序列
+  name_check: ok
+  contains: *id023
+  size:
+  - 179
+  - 341
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_detect3
+  character: Leo
+  kind: 人物
+  sheet: V28
+  semantics: 站立竖指、头顶灯泡（想通了，序列末帧）
+  name_check: ok
+  contains: *id023
+  size:
+  - 184
+  - 374
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_dict0
+  character: Leo
+  kind: 人物
+  sheet: V27
+  semantics: 查词典（look up）序列
+  name_check: ok
+  contains: &id024
+  - 词典
+  size:
+  - 247
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_dict1
+  character: Leo
+  kind: 人物
+  sheet: V27
+  semantics: 查词典（look up）序列
+  name_check: ok
+  contains: *id024
+  size:
+  - 239
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_dict2
+  character: Leo
+  kind: 人物
+  sheet: V27
+  semantics: 查词典（look up）序列
+  name_check: ok
+  contains: *id024
+  size:
+  - 245
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_dive
+  character: Leo
+  kind: 人物
+  sheet: L6
+  semantics: 身体横飞扑出、双手接住杯子
+  name_check: ok
+  contains:
+  - 杯子
+  size:
+  - 384
+  - 296
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_drink
+  character: Leo
+  kind: 人物
+  sheet: L1
+  semantics: 喝水/喝饮料
+  name_check: ok
+  contains:
+  - 杯子
+  size:
+  - 237
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 3
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_ear
+  character: Leo
+  kind: 人物
+  sheet: L5
+  semantics: 站立侧耳倾听（画面左手贴耳）
+  name_check: ok
+  contains: []
+  size:
+  - 236
+  - 480
+  refs:
+    scenes_canonical: 146
+    scenes_all_files: 147
+    lib_linked_scenes: 40
+  libs: 40
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.13
+    - 0.3
+    hand_right:
+    - 0.9
+    - 0.62
+    gaze:
+      dir: 右前方
+      angle_deg: 0
+    feet:
+    - 0.45
+    - 0.97
+    note: 画面左手贴耳
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.5
+- id: l_ex0
+  character: Leo
+  kind: 人物
+  sheet: L5
+  semantics: 早操：双臂水平展开
+  name_check: watch
+  contains: &id025 []
+  size:
+  - 361
+  - 473
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 手工切帧：右上缘有邻帧残留嫌疑（小段黑色线条），双臂指尖抵帧缘。基线口径与他帧未统一（盘点陷阱 6）。
+- id: l_ex1
+  character: Leo
+  kind: 人物
+  sheet: L5
+  semantics: 早操：双臂竖直上举
+  name_check: watch
+  contains: *id025
+  size:
+  - 193
+  - 475
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 手工切帧：左缘中段有一小残点。基线口径未统一（盘点陷阱 6）。
+- id: l_ex2
+  character: Leo
+  kind: 人物
+  sheet: L5
+  semantics: 早操：双臂上举（变体）
+  name_check: ok
+  contains: *id025
+  size:
+  - 239
+  - 478
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_exam0
+  character: Leo
+  kind: 人物
+  sheet: V33
+  semantics: 交考卷（give in）
+  name_check: ok
+  contains: &id026
+  - 试卷
+  size:
+  - 357
+  - 462
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_exam1
+  character: Leo
+  kind: 人物
+  sheet: V33
+  semantics: 交考卷（give in）
+  name_check: ok
+  contains: *id026
+  size:
+  - 274
+  - 472
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_fall
+  character: Leo
+  kind: 人物
+  sheet: L8
+  semantics: 从自行车摔落
+  name_check: ok
+  contains:
+  - 自行车
+  size:
+  - 403
+  - 455
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 3
+    lib_linked_scenes: 4
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_fill
+  character: Leo
+  kind: 人物
+  sheet: L10
+  semantics: 往杯里倒水装杯
+  name_check: ok
+  contains:
+  - 杯子
+  size:
+  - 318
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_fire
+  character: Leo
+  kind: 人物
+  sheet: V30
+  semantics: 火炉旁（散发热量）
+  name_check: ok
+  contains:
+  - 火炉
+  size:
+  - 281
+  - 378
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_floor0
+  character: Leo
+  kind: 人物
+  sheet: V09
+  semantics: 从地板站起来（get up）序列
+  name_check: ok
+  contains: &id027 []
+  size:
+  - 214
+  - 373
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_floor1
+  character: Leo
+  kind: 人物
+  sheet: V09
+  semantics: 从地板站起来（get up）序列
+  name_check: ok
+  contains: *id027
+  size:
+  - 345
+  - 377
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_floor2
+  character: Leo
+  kind: 人物
+  sheet: V09
+  semantics: 从地板站起来（get up）序列
+  name_check: ok
+  contains: *id027
+  size:
+  - 175
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_gdoor
+  character: Leo
+  kind: 人物
+  sheet: V30
+  semantics: 开门通向花园（give on）
+  name_check: ok
+  contains:
+  - 门
+  size:
+  - 366
+  - 380
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_goout
+  character: Leo
+  kind: 人物
+  sheet: L7
+  semantics: 出门（向外走）
+  name_check: ok
+  contains: []
+  size:
+  - 308
+  - 477
+  refs:
+    scenes_canonical: 7
+    scenes_all_files: 14
+    lib_linked_scenes: 7
+  libs: 4
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_guitar0
+  character: Leo
+  kind: 人物
+  sheet: V02
+  semantics: 开始弹吉他（take up）序列
+  name_check: ok
+  contains: &id028
+  - 吉他
+  size:
+  - 385
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_guitar1
+  character: Leo
+  kind: 人物
+  sheet: V02
+  semantics: 开始弹吉他（take up）序列
+  name_check: ok
+  contains: *id028
+  size:
+  - 286
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_guitar2
+  character: Leo
+  kind: 人物
+  sheet: V02
+  semantics: 开始弹吉他（take up）序列
+  name_check: ok
+  contains: *id028
+  size:
+  - 285
+  - 479
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_hand0
+  character: Leo
+  kind: 人物
+  sheet: V15
+  semantics: 坐课桌前双手放桌面（举手序列准备帧）
+  name_check: watch
+  contains: &id029
+  - 课桌
+  - 椅子
+  size:
+  - 286
+  - 452
+  refs:
+    scenes_canonical: 59
+    scenes_all_files: 91
+    lib_linked_scenes: 43
+  libs: 43
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名「hand」中性，但帧为坐课桌前（含课桌椅）：举手序列 l_hand0–2 全组带家具，勿作纯站姿举手用。
+  anchors:
+    hand_left:
+    - 0.66
+    - 0.57
+    hand_right:
+    - 0.78
+    - 0.57
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.62
+    - 0.9
+    note: 坐姿：双手放桌面；支撑=椅子，脚底y为鞋底
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.55
+- id: l_hand1
+  character: Leo
+  kind: 人物
+  sheet: V15
+  semantics: 坐课桌前单手高举（举手序列动作帧）
+  name_check: watch
+  contains: *id029
+  size:
+  - 291
+  - 451
+  refs:
+    scenes_canonical: 28
+    scenes_all_files: 35
+    lib_linked_scenes: 13
+  libs: 13
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 坐课桌前举手（含课桌椅），同 l_hand0 注。
+  anchors:
+    hand_left:
+    - 0.68
+    - 0.55
+    hand_right:
+    - 0.8
+    - 0.22
+    gaze:
+      dir: 右前方
+      angle_deg: 0
+    feet:
+    - 0.7
+    - 0.88
+    note: 坐姿：画面右手高举，左手在桌面
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.55
+- id: l_hand2
+  character: Leo
+  kind: 人物
+  sheet: V15
+  semantics: 坐课桌前举手（put up）序列
+  name_check: watch
+  contains: *id029
+  size:
+  - 289
+  - 467
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+  name_note: 举手序列末帧，与 l_hand0/1 同组（含课桌椅，CAST 登记口径，未逐帧目测）。
+- id: l_handin
+  character: Leo
+  kind: 人物
+  sheet: V23
+  semantics: 交作业（turn in）
+  name_check: ok
+  contains:
+  - 作业本
+  size:
+  - 348
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_heavy0
+  character: Leo
+  kind: 人物
+  sheet: V16
+  semantics: 搬/放下重物（put down）序列
+  name_check: ok
+  contains: &id030 []
+  size:
+  - 221
+  - 312
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_heavy1
+  character: Leo
+  kind: 人物
+  sheet: V16
+  semantics: 搬/放下重物（put down）序列
+  name_check: ok
+  contains: *id030
+  size:
+  - 171
+  - 266
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_heavy2
+  character: Leo
+  kind: 人物
+  sheet: V16
+  semantics: 搬/放下重物（put down）序列
+  name_check: ok
+  contains: *id030
+  size:
+  - 182
+  - 317
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_hero1
+  character: Leo
+  kind: 人物
+  sheet: V26
+  semantics: 英雄姿势（被看作英雄）
+  name_check: ok
+  contains: []
+  size:
+  - 218
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_hw0
+  character: Leo
+  kind: 人物
+  sheet: V14
+  semantics: 面对作业拖延（put off）序列
+  name_check: ok
+  contains: &id031
+  - 作业本
+  size:
+  - 341
+  - 443
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_hw1
+  character: Leo
+  kind: 人物
+  sheet: V14
+  semantics: 面对作业拖延（put off）序列
+  name_check: ok
+  contains: *id031
+  size:
+  - 226
+  - 447
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_hw2
+  character: Leo
+  kind: 人物
+  sheet: V14
+  semantics: 面对作业拖延（put off）序列
+  name_check: ok
+  contains: *id031
+  size:
+  - 334
+  - 455
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_hwalk
+  character: Leo
+  kind: 人物
+  sheet: V23
+  semantics: 拿作业行走（turn in）
+  name_check: ok
+  contains:
+  - 作业本
+  size:
+  - 181
+  - 408
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_idea0
+  character: Leo
+  kind: 人物
+  sheet: V04
+  semantics: 一手挠头一手持打开的书、面露困惑（领会序列首帧）
+  name_check: ok
+  contains: &id032
+  - 书
+  size:
+  - 296
+  - 470
+  refs:
+    scenes_canonical: 52
+    scenes_all_files: 76
+    lib_linked_scenes: 51
+  libs: 26
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.22
+    - 0.18
+    hand_right:
+    - 0.82
+    - 0.58
+    gaze:
+      dir: 正面偏下
+      angle_deg: 60
+    feet:
+    - 0.48
+    - 0.97
+    note: 画面左手挠头，右手持书
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.48
+- id: l_idea1
+  character: Leo
+  kind: 人物
+  sheet: V04
+  semantics: 双手捧打开的书皱眉看（领会序列中帧）
+  name_check: ok
+  contains: *id032
+  size:
+  - 225
+  - 469
+  refs:
+    scenes_canonical: 21
+    scenes_all_files: 41
+    lib_linked_scenes: 21
+  libs: 21
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.28
+    - 0.48
+    hand_right:
+    - 0.82
+    - 0.48
+    gaze:
+      dir: 下
+      angle_deg: 90
+    feet:
+    - 0.48
+    - 0.97
+    note: 双手捧书于胸前
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.41
+- id: l_idea2
+  character: Leo
+  kind: 人物
+  sheet: V04
+  semantics: 读书领会（take in）序列
+  name_check: ok
+  contains: *id032
+  size:
+  - 251
+  - 469
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 10
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_ja
+  character: Leo
+  kind: 人物
+  sheet: tm2a
+  semantics: 跳跃空中
+  name_check: ok
+  contains: []
+  size:
+  - 250
+  - 427
+  refs:
+    scenes_canonical: 7
+    scenes_all_files: 12
+    lib_linked_scenes: 7
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_jc
+  character: Leo
+  kind: 人物
+  sheet: tm2a
+  semantics: 下蹲蓄力
+  name_check: ok
+  contains: []
+  size:
+  - 282
+  - 417
+  refs:
+    scenes_canonical: 7
+    scenes_all_files: 12
+    lib_linked_scenes: 7
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_key
+  character: Leo
+  kind: 人物
+  sheet: tm3b
+  semantics: 摸口袋找钥匙
+  name_check: ok
+  contains: []
+  size:
+  - 192
+  - 474
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_kite
+  character: Leo
+  kind: 人物
+  sheet: tm3b
+  semantics: 奔跑放风筝（右手拉线，风筝在帧右上角）
+  name_check: watch
+  contains:
+  - 风筝
+  size:
+  - 368
+  - 478
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 3
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 手工分割帧（CAST_V5 注）：脚步基线靠模板硬调，跨帧跳位风险。
+- id: l_knob
+  character: Leo
+  kind: 人物
+  sheet: V22
+  semantics: 拧音量旋钮（turn down）
+  name_check: ok
+  contains:
+  - 旋钮
+  size:
+  - 360
+  - 475
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_lantern
+  character: Leo
+  kind: 人物
+  sheet: V30
+  semantics: 提灯笼发光（give out）
+  name_check: ok
+  contains:
+  - 灯笼
+  size:
+  - 221
+  - 379
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_laugh
+  character: Leo
+  kind: 人物
+  sheet: L5
+  semantics: 双手按腹大笑（闭目）
+  name_check: ok
+  contains: []
+  size:
+  - 186
+  - 480
+  refs:
+    scenes_canonical: 49
+    scenes_all_files: 74
+    lib_linked_scenes: 31
+  libs: 28
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.28
+    - 0.52
+    hand_right:
+    - 0.62
+    - 0.52
+    gaze:
+      dir: 正面（闭眼）
+      angle_deg: null
+    feet:
+    - 0.45
+    - 0.96
+    note: 双手按腹
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.56
+- id: l_ldown0
+  character: Leo
+  kind: 人物
+  sheet: V27
+  semantics: 低头看（look down）序列
+  name_check: ok
+  contains: &id033 []
+  size:
+  - 126
+  - 520
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 5
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_ldown1
+  character: Leo
+  kind: 人物
+  sheet: V27
+  semantics: 低头看（look down）序列
+  name_check: ok
+  contains: *id033
+  size:
+  - 180
+  - 520
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 5
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_ldown2
+  character: Leo
+  kind: 人物
+  sheet: V27
+  semantics: 低头看（look down）序列
+  name_check: ok
+  contains: *id033
+  size:
+  - 199
+  - 501
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 5
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_lift0
+  character: Leo
+  kind: 人物
+  sheet: V31
+  semantics: 举杠铃→放弃（give up）序列
+  name_check: ok
+  contains: &id034
+  - 杠铃
+  size:
+  - 262
+  - 423
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_lift1
+  character: Leo
+  kind: 人物
+  sheet: V31
+  semantics: 双手提杠铃至腿侧、咬牙用力（序列中帧）
+  name_check: watch
+  contains: *id034
+  size:
+  - 203
+  - 520
+  refs:
+    scenes_canonical: 6
+    scenes_all_files: 12
+    lib_linked_scenes: 6
+  libs: 2
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 2026-10-31 返工删除左下角邻帧杠铃片后目测干净；发色偏深棕，与主线 Leo 略异。
+- id: l_lift2
+  character: Leo
+  kind: 人物
+  sheet: V31
+  semantics: 力竭瘫坐特写（闭目张口，杠铃杆横于身前）
+  name_check: watch
+  contains: *id034
+  size:
+  - 159
+  - 354
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 内容为力竭瘫坐特写，画面右侧人物略有裁切（切帧残缺嫌疑），且发色与主线 Leo 不一致（深棕发）。2026-10-31 返工已删 l_lift1/2 的邻帧残影，本帧目测已无残影，但裁切/发色问题仍在。
+- id: l_light0
+  character: Leo
+  kind: 人物
+  sheet: V19
+  semantics: 开灯（turn on）序列
+  name_check: ok
+  contains: &id035
+  - 灯
+  size:
+  - 256
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_light1
+  character: Leo
+  kind: 人物
+  sheet: V19
+  semantics: 开灯（turn on）序列
+  name_check: ok
+  contains: *id035
+  size:
+  - 256
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_light2
+  character: Leo
+  kind: 人物
+  sheet: V19
+  semantics: 开灯（turn on）序列
+  name_check: ok
+  contains: *id035
+  size:
+  - 254
+  - 479
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_lookup
+  character: Leo
+  kind: 人物
+  sheet: L7
+  semantics: 仰头、画面右手食指指天
+  name_check: ok
+  contains: []
+  size:
+  - 254
+  - 478
+  refs:
+    scenes_canonical: 17
+    scenes_all_files: 22
+    lib_linked_scenes: 6
+  libs: 6
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.18
+    - 0.75
+    hand_right:
+    - 0.9
+    - 0.08
+    gaze:
+      dir: 右上
+      angle_deg: 300
+    feet:
+    - 0.48
+    - 0.97
+    note: 画面右手食指尖为指向端点
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.52
+- id: l_no
+  character: Leo
+  kind: 人物
+  sheet: tm3b
+  semantics: 摇头摆手（没去/拒绝）
+  name_check: ok
+  contains: []
+  size:
+  - 232
+  - 477
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 2
+    lib_linked_scenes: 2
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_note0
+  character: Leo
+  kind: 人物
+  sheet: V03
+  semantics: 站立在小笔记本上记录（序列首帧）
+  name_check: ok
+  contains: &id036
+  - 笔记本
+  size:
+  - 216
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_note1
+  character: Leo
+  kind: 人物
+  sheet: V03
+  semantics: 记笔记（take down）序列
+  name_check: ok
+  contains: *id036
+  size:
+  - 239
+  - 469
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_note2
+  character: Leo
+  kind: 人物
+  sheet: V03
+  semantics: 记笔记（take down）序列
+  name_check: ok
+  contains: *id036
+  size:
+  - 207
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_note3
+  character: Leo
+  kind: 人物
+  sheet: V03
+  semantics: 双手展开记满的笔记本展示（序列末帧）
+  name_check: ok
+  contains: *id036
+  size:
+  - 224
+  - 480
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_nothanks
+  character: Leo
+  kind: 人物
+  sheet: V23
+  semantics: 摆手婉拒（turn down）
+  name_check: ok
+  contains: []
+  size:
+  - 333
+  - 474
+  refs:
+    scenes_canonical: 6
+    scenes_all_files: 7
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_paint0
+  character: Leo
+  kind: 人物
+  sheet: V18
+  semantics: 画画投入（put in）
+  name_check: ok
+  contains: &id037
+  - 画笔
+  size:
+  - 407
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_paint1
+  character: Leo
+  kind: 人物
+  sheet: V18
+  semantics: 画画投入（put in）
+  name_check: ok
+  contains: *id037
+  size:
+  - 339
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_passport
+  character: Leo
+  kind: 人物
+  sheet: L10
+  semantics: 持护照
+  name_check: ok
+  contains:
+  - 护照
+  size:
+  - 354
+  - 480
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 10
+    lib_linked_scenes: 5
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_peek
+  character: Leo
+  kind: 人物
+  sheet: V28
+  semantics: 探头看箱内（look in）
+  name_check: ok
+  contains:
+  - 箱子
+  size:
+  - 368
+  - 343
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_pen
+  character: Leo
+  kind: 人物
+  sheet: L5
+  semantics: 站立、画面左手向前递出一支铅笔
+  name_check: ok
+  contains:
+  - 铅笔
+  size:
+  - 279
+  - 473
+  refs:
+    scenes_canonical: 9
+    scenes_all_files: 18
+    lib_linked_scenes: 9
+  libs: 7
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.05
+    - 0.42
+    hand_right:
+    - 0.88
+    - 0.65
+    gaze:
+      dir: 正面
+      angle_deg: null
+    feet:
+    - 0.5
+    - 0.95
+    note: 画面左手持铅笔递出
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.63
+- id: l_pencil
+  character: Leo
+  kind: 人物
+  sheet: V32
+  semantics: 持铅笔
+  name_check: ok
+  contains:
+  - 铅笔
+  size:
+  - 247
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_pic0
+  character: Leo
+  kind: 人物
+  sheet: V03
+  semantics: 取下墙上画框（take down）序列
+  name_check: ok
+  contains: &id038
+  - 画框
+  size:
+  - 345
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_pic1
+  character: Leo
+  kind: 人物
+  sheet: V03
+  semantics: 取下墙上画框（take down）序列
+  name_check: ok
+  contains: *id038
+  size:
+  - 294
+  - 452
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_pic2
+  character: Leo
+  kind: 人物
+  sheet: V03
+  semantics: 取下墙上画框（take down）序列
+  name_check: ok
+  contains: *id038
+  size:
+  - 202
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_piggy
+  character: Leo
+  kind: 人物
+  sheet: L12
+  semantics: 站在小桌前向猪形存钱罐投硬币
+  name_check: ok
+  contains:
+  - 小桌
+  - 存钱罐
+  size:
+  - 328
+  - 480
+  refs:
+    scenes_canonical: 8
+    scenes_all_files: 9
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.38
+    - 0.52
+    hand_right:
+    - 0.6
+    - 0.48
+    gaze:
+      dir: 下
+      angle_deg: 80
+    feet:
+    - 0.3
+    - 0.9
+    note: 画面右手投币；存钱罐口约 [0.55, 0.58]
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.42
+- id: l_pj0
+  character: Leo
+  kind: 人物
+  sheet: V24
+  semantics: 穿睡衣上床（turn in）序列
+  name_check: ok
+  contains: &id039
+  - 床
+  size:
+  - 250
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_pj1
+  character: Leo
+  kind: 人物
+  sheet: V24
+  semantics: 穿睡衣上床（turn in）序列
+  name_check: ok
+  contains: *id039
+  size:
+  - 379
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_pj2
+  character: Leo
+  kind: 人物
+  sheet: V24
+  semantics: 穿睡衣上床（turn in）序列
+  name_check: ok
+  contains: *id039
+  size:
+  - 373
+  - 335
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_plaster
+  character: Leo
+  kind: 人物
+  sheet: L12
+  semantics: 上半身特写：双手捏着一片创可贴（半身帧，无脚无腿）
+  name_check: ok
+  contains:
+  - 创可贴
+  size:
+  - 277
+  - 441
+  refs:
+    scenes_canonical: 10
+    scenes_all_files: 10
+    lib_linked_scenes: 6
+  libs: 6
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.55
+    - 0.62
+    hand_right:
+    - 0.85
+    - 0.55
+    gaze:
+      dir: 正面偏下
+      angle_deg: 70
+    feet: null
+    note: 半身特写：无脚，feet 不适用
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+- id: l_point
+  character: Leo
+  kind: 人物
+  sheet: L4
+  semantics: 背书包、画面右手食指向上指
+  name_check: watch
+  contains:
+  - 书包
+  size:
+  - 247
+  - 480
+  refs:
+    scenes_canonical: 98
+    scenes_all_files: 151
+    lib_linked_scenes: 88
+  libs: 60
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 曾因共享库 wogr1.js 缺此帧致 wo_grimm_voiceless_1 停单（盘点陷阱 7）；2026-11-01 复核 wogr1.js 已含 l_point 与 l_think，缺口已闭。
+  anchors:
+    hand_left:
+    - 0.1
+    - 0.72
+    hand_right:
+    - 0.9
+    - 0.28
+    gaze:
+      dir: 右上
+      angle_deg: 315
+    feet:
+    - 0.48
+    - 0.97
+    note: 画面右手食指尖为指向端点
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.45
+- id: l_puppy
+  character: Leo
+  kind: 人物
+  sheet: L2
+  semantics: 抱小狗
+  name_check: ok
+  contains:
+  - 狗
+  size:
+  - 252
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_put
+  character: Leo
+  kind: 人物
+  sheet: L1
+  semantics: 站在桌边双手把书按放到桌面
+  name_check: ok
+  contains:
+  - 桌子
+  - 书
+  size:
+  - 428
+  - 480
+  refs:
+    scenes_canonical: 10
+    scenes_all_files: 12
+    lib_linked_scenes: 6
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.35
+    - 0.52
+    hand_right:
+    - 0.48
+    - 0.5
+    gaze:
+      dir: 下
+      angle_deg: 80
+    feet:
+    - 0.22
+    - 0.92
+    note: 双手按书于桌面；人物在帧左
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.48
+- id: l_r0
+  character: Leo
+  kind: 人物
+  sheet: tm2a
+  semantics: 跑步序列：侧面大步奔跑（首帧）
+  name_check: ok
+  contains: &id040 []
+  size:
+  - 296
+  - 455
+  refs:
+    scenes_canonical: 8
+    scenes_all_files: 13
+    lib_linked_scenes: 8
+  libs: 6
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.18
+    - 0.65
+    hand_right:
+    - 0.82
+    - 0.45
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.5
+    - 0.88
+    note: 跑步姿势：双脚交替，最低脚底y≈0.88
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.81
+- id: l_r1
+  character: Leo
+  kind: 人物
+  sheet: tm2a
+  semantics: 跑步序列（侧面）
+  name_check: ok
+  contains: *id040
+  size:
+  - 239
+  - 442
+  refs:
+    scenes_canonical: 7
+    scenes_all_files: 12
+    lib_linked_scenes: 7
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_r2
+  character: Leo
+  kind: 人物
+  sheet: tm2a
+  semantics: 跑步序列（侧面）
+  name_check: ok
+  contains: *id040
+  size:
+  - 172
+  - 480
+  refs:
+    scenes_canonical: 7
+    scenes_all_files: 12
+    lib_linked_scenes: 7
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_r3
+  character: Leo
+  kind: 人物
+  sheet: tm2a
+  semantics: 跑步序列（侧面）
+  name_check: ok
+  contains: *id040
+  size:
+  - 375
+  - 405
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 2
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_radio0
+  character: Leo
+  kind: 人物
+  sheet: V21
+  semantics: 调收音机音量（turn up）序列
+  name_check: ok
+  contains: &id041
+  - 收音机
+  size:
+  - 311
+  - 470
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_radio1
+  character: Leo
+  kind: 人物
+  sheet: V21
+  semantics: 调收音机音量（turn up）序列
+  name_check: ok
+  contains: *id041
+  size:
+  - 299
+  - 475
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_radio2
+  character: Leo
+  kind: 人物
+  sheet: V21
+  semantics: 调收音机音量（turn up）序列
+  name_check: ok
+  contains: *id041
+  size:
+  - 386
+  - 460
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_read
+  character: Leo
+  kind: 人物
+  sheet: L3
+  semantics: 坐课桌后读书（人物坐在桌后，桌占帧下半）
+  name_check: mismatch
+  contains:
+  - 课桌
+  - 椅子
+  - 书
+  size:
+  - 331
+  - 479
+  refs:
+    scenes_canonical: 40
+    scenes_all_files: 76
+    lib_linked_scenes: 43
+  libs: 33
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名「read」不假，但帧内自带整套课桌+椅子：人物与家具一体，移动人物时桌子跟人走；且实为坐姿读。仅适用于「教室桌前读书」，勿作纯人物帧。
+  anchors:
+    hand_left:
+    - 0.45
+    - 0.52
+    hand_right:
+    - 0.62
+    - 0.5
+    gaze:
+      dir: 下
+      angle_deg: 90
+    feet:
+    - 0.68
+    - 0.9
+    note: 坐姿扶书；支撑=椅子+课桌
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.38
+- id: l_report
+  character: Leo
+  kind: 人物
+  sheet: L10
+  semantics: 汇报/报告姿势
+  name_check: ok
+  contains: []
+  size:
+  - 216
+  - 480
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 10
+    lib_linked_scenes: 5
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_return
+  character: Leo
+  kind: 人物
+  sheet: V32
+  semantics: 还书（give back）
+  name_check: ok
+  contains:
+  - 书
+  size:
+  - 359
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_sack0
+  character: Leo
+  kind: 人物
+  sheet: V01
+  semantics: 扛起麻袋上肩（take on）序列
+  name_check: ok
+  contains: &id042
+  - 麻袋
+  size:
+  - 409
+  - 427
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_sack1
+  character: Leo
+  kind: 人物
+  sheet: V01
+  semantics: 扛起麻袋上肩（take on）序列
+  name_check: ok
+  contains: *id042
+  size:
+  - 300
+  - 458
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_sack2
+  character: Leo
+  kind: 人物
+  sheet: V01
+  semantics: 扛起麻袋上肩（take on）序列
+  name_check: ok
+  contains: *id042
+  size:
+  - 264
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_search
+  character: Leo
+  kind: 人物
+  sheet: L8
+  semantics: 寻找（张望）
+  name_check: ok
+  contains: []
+  size:
+  - 240
+  - 339
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_seed0
+  character: —
+  kind: 场景
+  sheet: V24
+  semantics: 种子发芽长成向日葵（turn out）序列
+  name_check: ok
+  contains: &id043
+  - 向日葵
+  size:
+  - 308
+  - 403
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_seed1
+  character: —
+  kind: 场景
+  sheet: V24
+  semantics: 种子发芽长成向日葵（turn out）序列
+  name_check: ok
+  contains: *id043
+  size:
+  - 274
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_seed2
+  character: —
+  kind: 场景
+  sheet: V24
+  semantics: 种子发芽长成向日葵（turn out）序列
+  name_check: ok
+  contains: *id043
+  size:
+  - 347
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_sheep
+  character: Leo
+  kind: 人物
+  sheet: L14
+  semantics: 弯腰喂羊吃草（手持青草）
+  name_check: ok
+  contains:
+  - 羊
+  size:
+  - 349
+  - 436
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 6
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: l_shh
+  character: Leo
+  kind: 人物
+  sheet: L15
+  semantics: 竖指嘘声（安静）
+  name_check: ok
+  contains: []
+  size:
+  - 190
+  - 477
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_shutter
+  character: Leo
+  kind: 人物
+  sheet: V30
+  semantics: 开百叶窗面朝大海（give on）
+  name_check: ok
+  contains:
+  - 百叶窗
+  size:
+  - 392
+  - 381
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_sit
+  character: Leo
+  kind: 人物
+  sheet: L7
+  semantics: 坐姿
+  name_check: ok
+  contains: []
+  size:
+  - 308
+  - 472
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 8
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_sleep
+  character: Leo
+  kind: 人物
+  sheet: L1
+  semantics: 睡觉（卧姿）
+  name_check: ok
+  contains: []
+  size:
+  - 372
+  - 336
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_speak
+  character: Leo
+  kind: 人物
+  sheet: L3
+  semantics: 站姿侧身开口讲解（画面右手抬起摊掌）
+  name_check: ok
+  contains: []
+  size:
+  - 260
+  - 480
+  refs:
+    scenes_canonical: 223
+    scenes_all_files: 272
+    lib_linked_scenes: 116
+  libs: 90
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.06
+    - 0.68
+    hand_right:
+    - 0.88
+    - 0.36
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.42
+    - 0.97
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.37
+- id: l_spider0
+  character: Leo
+  kind: 人物
+  sheet: V26
+  semantics: 看到蜘蛛移开视线（look away）序列
+  name_check: ok
+  contains: &id044
+  - 蜘蛛
+  size:
+  - 288
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_spider1
+  character: Leo
+  kind: 人物
+  sheet: V26
+  semantics: 看到蜘蛛移开视线（look away）序列
+  name_check: ok
+  contains: *id044
+  size:
+  - 314
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_spider2
+  character: Leo
+  kind: 人物
+  sheet: V26
+  semantics: 看到蜘蛛移开视线（look away）序列
+  name_check: ok
+  contains: *id044
+  size:
+  - 294
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_stand
+  character: Leo
+  kind: 人物
+  sheet: L7
+  semantics: 扶椅背半起身（坐→站过渡，臀部离椅、身体前倾）
+  name_check: mismatch
+  contains:
+  - 椅子
+  size:
+  - 306
+  - 480
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 10
+    lib_linked_scenes: 7
+  libs: 6
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名「stand 站立」，实为扶椅背的坐→站过渡帧，且帧内含椅子。phrasal_key_1 的 ACTS 把它用作「stand up」的终点帧、fp_economy_4 用作 stop 帧——按名取帧必错。LAYOUT_QA_PLAN
+    定：禁止用作站立/基准帧。
+- id: l_switch
+  character: Leo
+  kind: 人物
+  sheet: L8
+  semantics: 按开关（开灯）
+  name_check: ok
+  contains:
+  - 开关
+  size:
+  - 284
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_tap0
+  character: Leo
+  kind: 人物
+  sheet: V20
+  semantics: 开水龙头（turn on）序列
+  name_check: ok
+  contains: &id045
+  - 水龙头
+  size:
+  - 352
+  - 478
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_tap1
+  character: Leo
+  kind: 人物
+  sheet: V20
+  semantics: 开水龙头（turn on）序列
+  name_check: ok
+  contains: *id045
+  size:
+  - 338
+  - 478
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_tap2
+  character: Leo
+  kind: 人物
+  sheet: V20
+  semantics: 开水龙头（turn on）序列
+  name_check: ok
+  contains: *id045
+  size:
+  - 294
+  - 478
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_tapoff0
+  character: Leo
+  kind: 人物
+  sheet: V21
+  semantics: 关水龙头（turn off）序列
+  name_check: ok
+  contains: &id046
+  - 水龙头
+  size:
+  - 359
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_tapoff1
+  character: Leo
+  kind: 人物
+  sheet: V21
+  semantics: 关水龙头（turn off）序列
+  name_check: ok
+  contains: *id046
+  size:
+  - 352
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_tapoff2
+  character: Leo
+  kind: 人物
+  sheet: V21
+  semantics: 关水龙头（turn off）序列
+  name_check: ok
+  contains: *id046
+  size:
+  - 311
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_think
+  character: Leo
+  kind: 人物
+  sheet: L2
+  semantics: 低头手托下巴思考（右上方思考泡泡）
+  name_check: watch
+  contains:
+  - 思考泡泡（装饰）
+  size:
+  - 302
+  - 477
+  refs:
+    scenes_canonical: 138
+    scenes_all_files: 197
+    lib_linked_scenes: 106
+  libs: 80
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 曾缺于 wogr1.js（同 l_point 注）；已复核补齐。另注意 ACTS 中有把「Nod」映射到本帧的作者数据（T16 盘点旁注），引用方按语义选帧。
+  anchors:
+    hand_left:
+    - 0.52
+    - 0.47
+    hand_right:
+    - 0.72
+    - 0.68
+    gaze:
+      dir: 下
+      angle_deg: 90
+    feet:
+    - 0.42
+    - 0.96
+    note: 画面左手托下巴；思考泡泡在右上
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.36
+- id: l_toy0
+  character: Leo
+  kind: 人物
+  sheet: V17
+  semantics: 把玩具放进盒子（put in）序列
+  name_check: ok
+  contains: &id047
+  - 玩具
+  - 盒子
+  size:
+  - 320
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_toy1
+  character: Leo
+  kind: 人物
+  sheet: V17
+  semantics: 把玩具放进盒子（put in）序列
+  name_check: ok
+  contains: *id047
+  size:
+  - 340
+  - 475
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_toy2
+  character: Leo
+  kind: 人物
+  sheet: V17
+  semantics: 把玩具放进盒子（put in）序列
+  name_check: ok
+  contains: *id047
+  size:
+  - 293
+  - 475
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_trophy
+  character: Leo
+  kind: 人物
+  sheet: V18
+  semantics: 捧奖杯
+  name_check: ok
+  contains:
+  - 奖杯
+  size:
+  - 290
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_w0
+  character: Leo
+  kind: 人物
+  sheet: tm4a
+  semantics: 行走序列：双手各提一个礼物袋
+  name_check: ok
+  contains: &id048
+  - 礼物袋
+  size:
+  - 318
+  - 478
+  refs:
+    scenes_canonical: 31
+    scenes_all_files: 56
+    lib_linked_scenes: 35
+  libs: 21
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.18
+    - 0.63
+    hand_right:
+    - 0.72
+    - 0.58
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.42
+    - 0.95
+    note: 双手各提礼物袋
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.39
+- id: l_w1
+  character: Leo
+  kind: 人物
+  sheet: tm4a
+  semantics: 行走序列：一手提袋一手垂
+  name_check: ok
+  contains: *id048
+  size:
+  - 250
+  - 474
+  refs:
+    scenes_canonical: 31
+    scenes_all_files: 56
+    lib_linked_scenes: 35
+  libs: 21
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.22
+    - 0.68
+    hand_right:
+    - 0.9
+    - 0.62
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.45
+    - 0.94
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.65
+- id: l_w2
+  character: Leo
+  kind: 人物
+  sheet: tm4a
+  semantics: 行走序列：双手提袋（步态变体）
+  name_check: ok
+  contains: *id048
+  size:
+  - 301
+  - 476
+  refs:
+    scenes_canonical: 31
+    scenes_all_files: 56
+    lib_linked_scenes: 35
+  libs: 21
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.18
+    - 0.65
+    hand_right:
+    - 0.75
+    - 0.62
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.45
+    - 0.95
+    note: 双手提袋
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.31
+- id: l_w3
+  character: Leo
+  kind: 人物
+  sheet: tm4a
+  semantics: 双手提礼物袋行走序列
+  name_check: ok
+  contains: *id048
+  size:
+  - 295
+  - 479
+  refs:
+    scenes_canonical: 6
+    scenes_all_files: 7
+    lib_linked_scenes: 10
+  libs: 6
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_wave
+  character: Leo
+  kind: 人物
+  sheet: L7
+  semantics: 行进姿势挥手（侧身）
+  name_check: ok
+  contains: []
+  size:
+  - 287
+  - 478
+  refs:
+    scenes_canonical: 149
+    scenes_all_files: 154
+    lib_linked_scenes: 43
+  libs: 43
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.05
+    - 0.63
+    hand_right:
+    - 0.9
+    - 0.33
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.45
+    - 0.95
+    note: 行进姿势，两脚前后交错
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.46
+- id: l_win0
+  character: Leo
+  kind: 人物
+  sheet: V29
+  semantics: 向窗外看（look out）序列
+  name_check: ok
+  contains: &id049
+  - 窗
+  size:
+  - 363
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_win1
+  character: Leo
+  kind: 人物
+  sheet: V29
+  semantics: 向窗外看（look out）序列
+  name_check: ok
+  contains: *id049
+  size:
+  - 441
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_win2
+  character: Leo
+  kind: 人物
+  sheet: V29
+  semantics: 向窗外看（look out）序列
+  name_check: ok
+  contains: *id049
+  size:
+  - 403
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_write0
+  character: Leo
+  kind: 人物
+  sheet: V17
+  semantics: 侧身站立、一手持纸一手持笔抵嘴思考（写下序列首帧）
+  name_check: ok
+  contains: &id050
+  - 纸
+  - 笔
+  size:
+  - 269
+  - 480
+  refs:
+    scenes_canonical: 13
+    scenes_all_files: 26
+    lib_linked_scenes: 13
+  libs: 13
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.62
+    - 0.38
+    hand_right:
+    - 0.88
+    - 0.45
+    gaze:
+      dir: 右下
+      angle_deg: 45
+    feet:
+    - 0.55
+    - 0.97
+    note: 画面左手持笔抵嘴，右手持纸
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.28
+- id: l_write1
+  character: Leo
+  kind: 人物
+  sheet: V17
+  semantics: 写下记录（put down）序列
+  name_check: ok
+  contains: *id050
+  size:
+  - 234
+  - 478
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: l_write2
+  character: Leo
+  kind: 人物
+  sheet: V17
+  semantics: 写下记录（put down）序列
+  name_check: ok
+  contains: *id050
+  size:
+  - 244
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: librarian
+  character: 图书管理员+Leo
+  kind: 双人/群像
+  sheet: V32
+  semantics: 图书管理员在柜台后为 Leo 的书盖章（双人）
+  name_check: ok
+  contains:
+  - 柜台
+  - 书
+  size:
+  - 414
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: linda_help
+  character: Linda
+  kind: 人物
+  sheet: L14
+  semantics: 帮忙（协助姿势）
+  name_check: watch
+  contains: []
+  size:
+  - 369
+  - 476
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 7
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+  name_note: Linda 双轨：同 linda_piano 注。
+- id: linda_piano
+  character: Linda
+  kind: 人物
+  sheet: L14
+  semantics: 弹钢琴
+  name_check: watch
+  contains:
+  - 钢琴
+  size:
+  - 427
+  - 479
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 5
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+  name_note: Linda 双轨之一：cast 库仅有 linda_piano/linda_help 两帧；fp 原理家族另有一套模板内嵌 Linda 位图姿势（未入本表、未注册）——同一人物两套事实源（盘点陷阱
+    9）。
+- id: m_admire
+  character: Mia
+  kind: 人物
+  sheet: V26
+  semantics: 双手捧脸、眼冒星光崇拜看
+  name_check: ok
+  contains:
+  - 星星（装饰）
+  size:
+  - 151
+  - 454
+  refs:
+    scenes_canonical: 146
+    scenes_all_files: 148
+    lib_linked_scenes: 40
+  libs: 40
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.38
+    - 0.33
+    hand_right:
+    - 0.55
+    - 0.33
+    gaze:
+      dir: 正面
+      angle_deg: null
+    feet:
+    - 0.48
+    - 0.93
+    note: 双手捧脸颊
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.5
+- id: m_aloud
+  character: Mia
+  kind: 人物
+  sheet: L5
+  semantics: 朗读（持书）
+  name_check: ok
+  contains:
+  - 书
+  size:
+  - 222
+  - 480
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_berry
+  character: Mia
+  kind: 人物
+  sheet: L14
+  semantics: 摘/持草莓
+  name_check: ok
+  contains:
+  - 草莓
+  size:
+  - 284
+  - 413
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 7
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_bread
+  character: Mia
+  kind: 人物
+  sheet: V30
+  semantics: 持面包散发香味（give off）
+  name_check: ok
+  contains:
+  - 面包
+  size:
+  - 268
+  - 383
+  refs:
+    scenes_canonical: 6
+    scenes_all_files: 7
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_bring
+  character: Mia
+  kind: 人物
+  sheet: L11
+  semantics: 带来（持物递来）
+  name_check: ok
+  contains: []
+  size:
+  - 334
+  - 479
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_cake
+  character: Mia
+  kind: 人物
+  sheet: tm2b
+  semantics: 搅面糊做蛋糕
+  name_check: ok
+  contains:
+  - 碗
+  size:
+  - 224
+  - 480
+  refs:
+    scenes_canonical: 7
+    scenes_all_files: 8
+    lib_linked_scenes: 6
+  libs: 6
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_cry
+  character: Mia
+  kind: 人物
+  sheet: tm3a
+  semantics: 坐课桌前双手掩面哭（桌上有纸笔与笔袋）
+  name_check: ok
+  contains:
+  - 课桌
+  - 椅子
+  size:
+  - 321
+  - 459
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 2
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: m_d1
+  character: Mia
+  kind: 人物
+  sheet: tm2b
+  semantics: 跳舞（两帧）
+  name_check: ok
+  contains: &id051 []
+  size:
+  - 375
+  - 475
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_d2
+  character: Mia
+  kind: 人物
+  sheet: tm2b
+  semantics: 跳舞（两帧）
+  name_check: ok
+  contains: *id051
+  size:
+  - 349
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_dog
+  character: Mia
+  kind: 人物
+  sheet: tm2b
+  semantics: 牵小狗
+  name_check: ok
+  contains:
+  - 狗
+  size:
+  - 372
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_door
+  character: Mia
+  kind: 人物
+  sheet: L6
+  semantics: 开门
+  name_check: ok
+  contains:
+  - 门
+  size:
+  - 299
+  - 478
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_drop
+  character: Mia
+  kind: 人物
+  sheet: V26
+  semantics: 掉落物品
+  name_check: ok
+  contains: []
+  size:
+  - 797
+  - 476
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_eggs
+  character: Mia
+  kind: 人物
+  sheet: L9
+  semantics: 端/抱鸡蛋
+  name_check: ok
+  contains:
+  - 鸡蛋
+  size:
+  - 272
+  - 480
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_flower
+  character: Mia
+  kind: 人物
+  sheet: V30
+  semantics: 持花（散发香味）
+  name_check: ok
+  contains:
+  - 花
+  size:
+  - 263
+  - 384
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_geese
+  character: Mia
+  kind: 人物
+  sheet: L10
+  semantics: 喂鹅
+  name_check: ok
+  contains:
+  - 鹅
+  size:
+  - 398
+  - 478
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_hw
+  character: Mia
+  kind: 人物
+  sheet: tm3b
+  semantics: 举起写完的作业
+  name_check: ok
+  contains:
+  - 作业本
+  size:
+  - 272
+  - 467
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_like
+  character: Mia
+  kind: 人物
+  sheet: tm2b
+  semantics: 双手抱一颗大爱心于胸前
+  name_check: ok
+  contains:
+  - 爱心
+  size:
+  - 217
+  - 480
+  refs:
+    scenes_canonical: 10
+    scenes_all_files: 12
+    lib_linked_scenes: 7
+  libs: 7
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.42
+    - 0.55
+    hand_right:
+    - 0.95
+    - 0.52
+    gaze:
+      dir: 正面
+      angle_deg: null
+    feet:
+    - 0.55
+    - 0.95
+    note: 双手抱爱心两侧
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.46
+- id: m_lost
+  character: Mia
+  kind: 人物
+  sheet: V32
+  semantics: 丢失物品难过
+  name_check: ok
+  contains: []
+  size:
+  - 208
+  - 470
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_offer
+  character: Mia+Leo
+  kind: 双人/群像
+  sheet: V23
+  semantics: Mia 双手托盘递蛋糕给 Leo（Leo 面露犹豫，双人）
+  name_check: ok
+  contains:
+  - 蛋糕
+  - 盘子
+  size:
+  - 376
+  - 465
+  refs:
+    scenes_canonical: 12
+    scenes_all_files: 13
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.5
+    - 0.4
+    hand_right:
+    - 0.62
+    - 0.4
+    gaze:
+      dir: 右（看向 Leo）
+      angle_deg: 0
+    feet:
+    - 0.45
+    - 0.93
+    note: 双人帧：锚点为 Mia 托盘双手；Leo 在帧右
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.52
+- id: m_pass
+  character: Mia+女孩
+  kind: 双人/群像
+  sheet: L5
+  semantics: 两个女孩面对面递接一本书（双人）
+  name_check: ok
+  contains:
+  - 书
+  size:
+  - 460
+  - 478
+  refs:
+    scenes_canonical: 9
+    scenes_all_files: 18
+    lib_linked_scenes: 9
+  libs: 7
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.52
+    - 0.45
+    hand_right:
+    - 0.66
+    - 0.45
+    gaze:
+      dir: 双人相对
+      angle_deg: null
+    feet:
+    - 0.45
+    - 0.93
+    note: 双人帧：锚点为书两侧的递接手
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.5
+- id: m_photo
+  character: Mia
+  kind: 人物
+  sheet: L3
+  semantics: 拍照
+  name_check: ok
+  contains:
+  - 相机
+  size:
+  - 224
+  - 480
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 8
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_pick
+  character: Mia
+  kind: 人物
+  sheet: L9
+  semantics: 采摘
+  name_check: ok
+  contains: []
+  size:
+  - 301
+  - 473
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_read
+  character: Mia
+  kind: 人物
+  sheet: tm2b
+  semantics: 盘腿坐地读书（双手捧大开本）
+  name_check: mismatch
+  contains:
+  - 书
+  size:
+  - 255
+  - 383
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名「read」未标姿态，实为盘腿坐地读书（非站姿、非坐椅）。场景需「站着读」时无帧可用，勿静默代用。
+- id: m_shout
+  character: Mia
+  kind: 人物
+  sheet: V29
+  semantics: 大喊提醒
+  name_check: ok
+  contains: []
+  size:
+  - 290
+  - 471
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_sister
+  character: Mia+妹妹
+  kind: 双人/群像
+  sheet: L12
+  semantics: Mia 牵着妹妹的手并行
+  name_check: ok
+  contains: []
+  size:
+  - 306
+  - 454
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: m_sit
+  character: Mia
+  kind: 人物
+  sheet: L1
+  semantics: 坐姿
+  name_check: ok
+  contains: []
+  size:
+  - 251
+  - 478
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_smell
+  character: Mia
+  kind: 人物
+  sheet: L4
+  semantics: 闻（凑近嗅）
+  name_check: ok
+  contains: []
+  size:
+  - 239
+  - 480
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 5
+    lib_linked_scenes: 3
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_story
+  character: Mia
+  kind: 人物
+  sheet: L7
+  semantics: 双手向两侧摊开讲述（头侧有灯泡/感叹号装饰）
+  name_check: ok
+  contains:
+  - 灯泡/感叹号/星星（装饰）
+  size:
+  - 318
+  - 445
+  refs:
+    scenes_canonical: 145
+    scenes_all_files: 146
+    lib_linked_scenes: 39
+  libs: 39
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.05
+    - 0.47
+    hand_right:
+    - 0.95
+    - 0.47
+    gaze:
+      dir: 正面
+      angle_deg: null
+    feet:
+    - 0.5
+    - 0.95
+    note: 双臂向两侧摊开
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.51
+- id: m_study
+  character: Mia
+  kind: 人物
+  sheet: tm3a
+  semantics: 坐课桌前伏案书写（桌上有笔筒）
+  name_check: ok
+  contains:
+  - 课桌
+  - 椅子
+  size:
+  - 333
+  - 467
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 2
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: m_sweep
+  character: Mia
+  kind: 人物
+  sheet: L14
+  semantics: 双手握扫帚扫地（帚头在帧右下）
+  name_check: ok
+  contains:
+  - 扫帚
+  size:
+  - 264
+  - 474
+  refs:
+    scenes_canonical: 13
+    scenes_all_files: 15
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.48
+    - 0.42
+    hand_right:
+    - 0.52
+    - 0.55
+    gaze:
+      dir: 下
+      angle_deg: 100
+    feet:
+    - 0.35
+    - 0.93
+    note: 双手握扫帚杆；帚头约 [0.72, 0.90]
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.61
+- id: m_tv
+  character: Mia
+  kind: 人物
+  sheet: L3
+  semantics: 坐沙发持遥控器看电视（电视在帧右）
+  name_check: watch
+  contains:
+  - 沙发
+  - 电视
+  - 电视柜
+  - 遥控器
+  size:
+  - 501
+  - 425
+  refs:
+    scenes_canonical: 10
+    scenes_all_files: 13
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 帧内家具量最大：沙发+电视+电视柜一体，人物仅占左半。作「看电视」整景可用，勿裁作纯人物。
+  anchors:
+    hand_left:
+    - 0.28
+    - 0.68
+    hand_right:
+    - 0.42
+    - 0.62
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.38
+    - 0.95
+    note: 坐姿：支撑=沙发；画面右手持遥控器
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.73
+- id: m_tvoff0
+  character: Mia
+  kind: 人物
+  sheet: V20
+  semantics: 关电视（turn off）序列
+  name_check: ok
+  contains: &id052
+  - 电视
+  - 遥控器
+  size:
+  - 356
+  - 471
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_tvoff1
+  character: Mia
+  kind: 人物
+  sheet: V20
+  semantics: 关电视（turn off）序列
+  name_check: ok
+  contains: *id052
+  size:
+  - 340
+  - 477
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_tvoff2
+  character: Mia
+  kind: 人物
+  sheet: V20
+  semantics: 关电视（turn off）序列
+  name_check: ok
+  contains: *id052
+  size:
+  - 378
+  - 477
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: m_wipe
+  character: Mia
+  kind: 人物
+  sheet: L15
+  semantics: 站立用抹布擦桌子
+  name_check: ok
+  contains:
+  - 桌子
+  - 抹布
+  size:
+  - 320
+  - 471
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: man
+  character: 通用男人
+  kind: 人物
+  sheet: L13
+  semantics: 站姿（名词教学单帧）
+  name_check: ok
+  contains: []
+  size:
+  - 185
+  - 476
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: meet
+  character: Leo+Mia
+  kind: 双人/群像
+  sheet: L1
+  semantics: Leo 与 Mia 握手见面
+  name_check: ok
+  contains: []
+  size:
+  - 343
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: milk
+  character: —
+  kind: 道具
+  sheet: tm1
+  semantics: 牛奶（饮品静物）
+  name_check: ok
+  contains: []
+  size:
+  - 217
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: missw
+  character: White老师
+  kind: 人物
+  sheet: L2
+  semantics: White 老师站姿、画面右手向前指点
+  name_check: ok
+  contains: []
+  size:
+  - 268
+  - 480
+  refs:
+    scenes_canonical: 10
+    scenes_all_files: 11
+    lib_linked_scenes: 10
+  libs: 10
+  content_check: 目测核验 2026-11-01（网格联系表）
+  anchors:
+    hand_left:
+    - 0.22
+    - 0.72
+    hand_right:
+    - 0.98
+    - 0.38
+    gaze:
+      dir: 右
+      angle_deg: 0
+    feet:
+    - 0.45
+    - 0.98
+    note: 画面右手食指尖为指向端点
+    basis: 帧图目测（0.1 网格联系表，2026-11-01）
+    feet_alpha_x: 0.44
+- id: missw_cal
+  character: White老师
+  kind: 人物
+  sheet: V15
+  semantics: 看日历
+  name_check: ok
+  contains:
+  - 日历
+  size:
+  - 341
+  - 470
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: missw_give
+  character: White老师+Leo
+  kind: 双人/群像
+  sheet: V34
+  semantics: White 老师持一摞试卷、单手递卷给 Leo（双人；老师全身）
+  name_check: watch
+  contains:
+  - 试卷
+  size:
+  - 362
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 2026-10-31 返工补画老师下半身、删除底部灯塔残留后目测完整；右侧 Leo 为半幅裁切构图（身体出右缘），作双人帧使用时注意。
+- id: missw_hold
+  character: White老师
+  kind: 人物
+  sheet: V34
+  semantics: 抱试卷
+  name_check: ok
+  contains:
+  - 试卷
+  size:
+  - 141
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: missw_paper
+  character: White老师
+  kind: 人物
+  sheet: V33
+  semantics: 持试卷
+  name_check: ok
+  contains:
+  - 试卷
+  size:
+  - 185
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: missw_stack
+  character: White老师
+  kind: 人物
+  sheet: V23
+  semantics: 抱一摞作业
+  name_check: ok
+  contains:
+  - 作业本
+  size:
+  - 426
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: mom_busy
+  character: 妈妈
+  kind: 人物
+  sheet: L15
+  semantics: 忙碌
+  name_check: ok
+  contains: []
+  size:
+  - 407
+  - 473
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: mom_car
+  character: 妈妈
+  kind: 人物
+  sheet: tm1
+  semantics: 开车（驾驶位）
+  name_check: ok
+  contains:
+  - 汽车
+  size:
+  - 960
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: mom_dress
+  character: 妈妈
+  kind: 人物
+  sheet: L2
+  semantics: 试穿/买裙子
+  name_check: ok
+  contains: []
+  size:
+  - 339
+  - 480
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 6
+    lib_linked_scenes: 4
+  libs: 4
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: mom_gift
+  character: 妈妈
+  kind: 人物
+  sheet: L4
+  semantics: 递礼物
+  name_check: ok
+  contains:
+  - 礼物
+  size:
+  - 276
+  - 480
+  refs:
+    scenes_canonical: 6
+    scenes_all_files: 11
+    lib_linked_scenes: 8
+  libs: 4
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: mom_loud
+  character: 妈妈
+  kind: 人物
+  sheet: V22
+  semantics: 大声说话
+  name_check: ok
+  contains: []
+  size:
+  - 313
+  - 478
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: mom_teach1
+  character: 妈妈
+  kind: 人物
+  sheet: tm1
+  semantics: 讲课讲解（指点示意，两帧）
+  name_check: ok
+  contains: &id053 []
+  size:
+  - 230
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: mom_teach2
+  character: 妈妈
+  kind: 人物
+  sheet: tm1
+  semantics: 讲课讲解（指点示意，两帧）
+  name_check: ok
+  contains: *id053
+  size:
+  - 256
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: offer_ok
+  character: 孩子
+  kind: 人物
+  sheet: V23
+  semantics: 接受递来的物品
+  name_check: ok
+  contains: []
+  size:
+  - 318
+  - 469
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: party
+  character: Leo+Mia+男孩
+  kind: 双人/群像
+  sheet: tm3b
+  semantics: 三个孩子跳跃欢呼（中者戴派对帽，彩带飞舞）
+  name_check: ok
+  contains:
+  - 彩带（装饰）
+  size:
+  - 513
+  - 445
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 4
+    lib_linked_scenes: 4
+  libs: 3
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: party_cheer
+  character: 聚会众人
+  kind: 双人/群像
+  sheet: V22
+  semantics: 聚会欢呼
+  name_check: ok
+  contains: []
+  size:
+  - 401
+  - 400
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: party_door
+  character: 聚会众人
+  kind: 双人/群像
+  sheet: V22
+  semantics: 聚会开门迎接
+  name_check: ok
+  contains:
+  - 门
+  size:
+  - 310
+  - 471
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: party_wait
+  character: 聚会众人
+  kind: 双人/群像
+  sheet: V22
+  semantics: 聚会等候（turn up 露面）
+  name_check: ok
+  contains: []
+  size:
+  - 415
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: pencil_back
+  character: —
+  kind: 道具
+  sheet: V32
+  semantics: 铅笔归还（道具）
+  name_check: ok
+  contains: []
+  size:
+  - 473
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: picnic
+  character: 一家三口
+  kind: 双人/群像
+  sheet: tm3b
+  semantics: 一家三口席地野餐（爸爸、Leo、妈妈围坐野餐毯）
+  name_check: watch
+  contains:
+  - 野餐篮
+  - 野餐毯
+  size:
+  - 508
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 手工分割帧（CAST_V5 注）：联排手工切分，边缘与基线口径未统一。
+- id: plane
+  character: —
+  kind: 交通
+  sheet: L3
+  semantics: 飞机
+  name_check: ok
+  contains: []
+  size:
+  - 461
+  - 180
+  refs:
+    scenes_canonical: 4
+    scenes_all_files: 8
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: plane0
+  character: —
+  kind: 交通
+  sheet: V05
+  semantics: 飞机起飞（take off）序列
+  name_check: ok
+  contains: &id054 []
+  size:
+  - 345
+  - 174
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: plane1
+  character: —
+  kind: 交通
+  sheet: V05
+  semantics: 飞机起飞（take off）序列
+  name_check: ok
+  contains: *id054
+  size:
+  - 362
+  - 313
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: plane2
+  character: —
+  kind: 交通
+  sheet: V05
+  semantics: 飞机起飞（take off）序列
+  name_check: ok
+  contains: *id054
+  size:
+  - 347
+  - 234
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: plant
+  character: Leo+Mia
+  kind: 双人/群像
+  sheet: L4
+  semantics: Leo 与 Mia 合种小树（Leo 持锹、Mia 提壶浇水）
+  name_check: watch
+  contains:
+  - 树苗
+  - 铁锹
+  - 浇水壶
+  size:
+  - 404
+  - 412
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 6
+    lib_linked_scenes: 3
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名「plant」易被当作植物静物帧，实为 Leo 与 Mia 合种小树的双人动作帧（CAST 登记用途 planted）。
+- id: porter
+  character: Leo
+  kind: 人物
+  sheet: L10
+  semantics: Leo 扛木箱行走（搬运工扮相，非成年搬运工）
+  name_check: ok
+  contains:
+  - 木箱
+  size:
+  - 292
+  - 474
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 10
+    lib_linked_scenes: 5
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: postman
+  character: 邮递员
+  kind: 人物
+  sheet: L13
+  semantics: 站姿（职业单帧）
+  name_check: ok
+  contains: []
+  size:
+  - 284
+  - 476
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: puppy_pop
+  character: Leo+小狗
+  kind: 双人/群像
+  sheet: V28
+  semantics: 小狗从纸箱探头、Leo 在旁跳跃欢呼
+  name_check: ok
+  contains:
+  - 箱子
+  - 狗
+  size:
+  - 468
+  - 375
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: rain0
+  character: —
+  kind: 场景
+  sheet: V15
+  semantics: 雨景（运动会推迟示意）
+  name_check: ok
+  contains: []
+  size:
+  - 254
+  - 477
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 5
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: room0
+  character: —
+  kind: 场景
+  sheet: V02
+  semantics: 房间被箱子占地方（take up）序列
+  name_check: ok
+  contains: &id055
+  - 箱子
+  size:
+  - 317
+  - 476
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: room1
+  character: —
+  kind: 场景
+  sheet: V02
+  semantics: 房间被箱子占地方（take up）序列
+  name_check: ok
+  contains: *id055
+  size:
+  - 376
+  - 390
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: room2
+  character: —
+  kind: 场景
+  sheet: V02
+  semantics: 房间被箱子占地方（take up）序列
+  name_check: ok
+  contains: *id055
+  size:
+  - 339
+  - 477
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: shadow0
+  character: —
+  kind: 场景
+  sheet: V25
+  semantics: 影子（turn out 原来是…）
+  name_check: ok
+  contains: &id056 []
+  size:
+  - 445
+  - 378
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: shadow1
+  character: —
+  kind: 场景
+  sheet: V25
+  semantics: 影子（turn out 原来是…）
+  name_check: ok
+  contains: *id056
+  size:
+  - 475
+  - 355
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: ship
+  character: —
+  kind: 交通
+  sheet: L10
+  semantics: 轮船
+  name_check: ok
+  contains: []
+  size:
+  - 445
+  - 454
+  refs:
+    scenes_canonical: 6
+    scenes_all_files: 11
+    lib_linked_scenes: 6
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: show0
+  character: Leo+Mia 等
+  kind: 双人/群像
+  sheet: V14
+  semantics: 舞台剧开场：Leo 戴纸皇冠怯场、Mia 持星杖担忧（双人）
+  name_check: ok
+  contains: &id057 []
+  size:
+  - 343
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: show1
+  character: Leo+Mia 等
+  kind: 双人/群像
+  sheet: V14
+  semantics: 上演节目（put on）序列
+  name_check: ok
+  contains: *id057
+  size:
+  - 453
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: show2
+  character: Leo+Mia 等
+  kind: 双人/群像
+  sheet: V14
+  semantics: 两女孩牵手谢幕（put on 序列末帧）
+  name_check: ok
+  contains: *id057
+  size:
+  - 330
+  - 428
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: snake
+  character: 蛇
+  kind: 动物
+  sheet: L6
+  semantics: 蛇在水中游，右侧立一根旗杆带旗（旗为帧内混入物）
+  name_check: ok
+  contains:
+  - 水面
+  - 旗帜
+  size:
+  - 575
+  - 444
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: sunny
+  character: —
+  kind: 场景
+  sheet: V15
+  semantics: 晴天景
+  name_check: ok
+  contains: []
+  size:
+  - 355
+  - 454
+  refs:
+    scenes_canonical: 6
+    scenes_all_files: 11
+    lib_linked_scenes: 6
+  libs: 4
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: sw0
+  character: Leo
+  kind: 人物
+  sheet: tm3a
+  semantics: 游泳（头部与一臂出水面，水面线在帧下部）
+  name_check: ok
+  contains: &id058
+  - 水面
+  size:
+  - 334
+  - 189
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 7
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: sw1
+  character: Leo
+  kind: 人物
+  sheet: tm3a
+  semantics: 游泳序列（水面）
+  name_check: ok
+  contains: *id058
+  size:
+  - 352
+  - 179
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 7
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: sw2
+  character: Leo
+  kind: 人物
+  sheet: tm3a
+  semantics: 游泳序列（水面）
+  name_check: ok
+  contains: *id058
+  size:
+  - 385
+  - 201
+  refs:
+    scenes_canonical: 5
+    scenes_all_files: 7
+    lib_linked_scenes: 5
+  libs: 5
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: sw3
+  character: Leo
+  kind: 人物
+  sheet: tm3a
+  semantics: 游泳序列（水面）
+  name_check: ok
+  contains: *id058
+  size:
+  - 354
+  - 181
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 3
+    lib_linked_scenes: 3
+  libs: 3
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tea_no
+  character: —
+  kind: 道具
+  sheet: tm1
+  semantics: 茶（饮品静物）
+  name_check: watch
+  contains: []
+  size:
+  - 338
+  - 520
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 4
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+  name_note: 帧名后缀 _no 含义不明（CAST_V5 仅记为茶）；内容为饮品静物，引用按内容勿按名猜。
+- id: teacher_cn
+  character: 中文老师
+  kind: 人物
+  sheet: L13
+  semantics: 站姿（职业单帧）
+  name_check: ok
+  contains: []
+  size:
+  - 195
+  - 466
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tent0
+  character: —
+  kind: 场景
+  sheet: V16
+  semantics: 搭帐篷（put up）序列
+  name_check: ok
+  contains: &id059
+  - 帐篷
+  size:
+  - 369
+  - 245
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tent1
+  character: —
+  kind: 场景
+  sheet: V16
+  semantics: 搭帐篷（put up）序列
+  name_check: ok
+  contains: *id059
+  size:
+  - 430
+  - 309
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tent2
+  character: —
+  kind: 场景
+  sheet: V16
+  semantics: 搭帐篷（put up）序列
+  name_check: ok
+  contains: *id059
+  size:
+  - 418
+  - 292
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tom_book
+  character: Tom（眼镜男孩·通用）
+  kind: 人物
+  sheet: L11
+  semantics: 眼镜男孩 Tom 双手持书站立
+  name_check: ok
+  contains:
+  - 书
+  size:
+  - 221
+  - 480
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 4
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: train
+  character: —
+  kind: 交通
+  sheet: L1
+  semantics: 火车
+  name_check: ok
+  contains: []
+  size:
+  - 381
+  - 181
+  refs:
+    scenes_canonical: 2
+    scenes_all_files: 3
+    lib_linked_scenes: 2
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tree0
+  character: Leo
+  kind: 人物
+  sheet: V09
+  semantics: 从树上下来（get down）序列
+  name_check: ok
+  contains: &id060
+  - 树
+  size:
+  - 333
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tree1
+  character: Leo
+  kind: 人物
+  sheet: V09
+  semantics: 从树上下来（get down）序列
+  name_check: ok
+  contains: *id060
+  size:
+  - 219
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tree2
+  character: Leo
+  kind: 人物
+  sheet: V09
+  semantics: 从树上下来（get down）序列
+  name_check: ok
+  contains: *id060
+  size:
+  - 364
+  - 480
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tug0
+  character: 两队孩子
+  kind: 双人/群像
+  sheet: V33
+  semantics: 拔河（give in 让步）序列
+  name_check: ok
+  contains: &id061
+  - 绳索
+  size:
+  - 410
+  - 456
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tug1
+  character: 两队孩子
+  kind: 双人/群像
+  sheet: V33
+  semantics: 拔河（give in 让步）序列
+  name_check: ok
+  contains: *id061
+  size:
+  - 379
+  - 465
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: tug2
+  character: 两队孩子
+  kind: 双人/群像
+  sheet: V33
+  semantics: 拔河（give in 让步）序列
+  name_check: ok
+  contains: *id061
+  size:
+  - 318
+  - 470
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 2
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+- id: twins
+  character: Leo+双胞胎男孩
+  kind: 双人/群像
+  sheet: L12
+  semantics: 三个男孩并坐长椅（中为 Leo，两侧同貌戴帽男孩）
+  name_check: mismatch
+  contains:
+  - 长椅
+  size:
+  - 410
+  - 353
+  refs:
+    scenes_canonical: 0
+    scenes_all_files: 0
+    lib_linked_scenes: 0
+  libs: 0
+  content_check: 目测核验 2026-11-01（网格联系表）
+  name_note: 名「twins 双胞胎」，帧内实为三个男孩并坐长椅（中为 Leo）。用于 twins 教学时指认对象是两侧同貌男孩，引用方须知帧内共三人。
+- id: wang
+  character: 王老师
+  kind: 人物
+  sheet: tm4a
+  semantics: 王老师一手拖行李箱一手挥手（眼镜西装男）
+  name_check: ok
+  contains:
+  - 行李箱
+  size:
+  - 321
+  - 472
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 1
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: whisper
+  character: Mia+Leo
+  kind: 双人/群像
+  sheet: L11
+  semantics: Mia 凑近 Leo 耳边耳语（手拢嘴）
+  name_check: ok
+  contains: []
+  size:
+  - 350
+  - 473
+  refs:
+    scenes_canonical: 1
+    scenes_all_files: 3
+    lib_linked_scenes: 1
+  libs: 1
+  content_check: 目测核验 2026-11-01（网格联系表）
+- id: woman
+  character: 通用女人
+  kind: 人物
+  sheet: L13
+  semantics: 站姿（名词教学单帧）
+  name_check: ok
+  contains: []
+  size:
+  - 154
+  - 469
+  refs:
+    scenes_canonical: 3
+    scenes_all_files: 5
+    lib_linked_scenes: 3
+  libs: 2
+  content_check: CAST 登记（CAST_V5.md，未逐帧目测）
+missing_frames:
+- id: slide
+  status: CAST_V5.md L6 登记（go down the slide），但 sprites/cast/ 无 slide.webp、任何精灵库均不含、场景引用 0。
+  diagnosis: 滑梯图现存于名为 flag 的帧文件中（见 flag 条），疑联排切帧时错名存盘；真正的旗图未单独成帧（仅见于 snake 帧内）。

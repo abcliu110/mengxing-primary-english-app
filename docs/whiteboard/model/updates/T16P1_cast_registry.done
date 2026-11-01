@@ -1,0 +1,75 @@
+# T16 P1 人物侧车道：位图卡司登记 —— 完成记录
+
+日期：2026-11-01。范围纪律：只做登记数据，未改任何场景/模板/引擎，未做 git 操作。
+交付物：`docs/whiteboard/model/cast/registry.yaml`（126 KB，YAML 可解析；新建目录 model/cast/，与 CAST_V5.md 互补不替代，文件头已注明与 LAYOUT_QA_PLAN 规划的 CAST.md 为同一用途的 YAML 落地，勿另建冲突登记）。
+
+## 1. 覆盖与字段
+
+- **登记帧数：331**，与 `v5/sprites/cast/*.webp` 文件逐一对应（脚本断言：id 集合 == 文件集合、无重复、无虚构）。
+- 每帧字段：id、character（角色）、kind（人物/双人·群像/动物/交通/场景/道具）、sheet（CAST_V5 联排出处）、semantics（真实姿态语义：动词+姿态，据帧内容而非帧名）、name_check（ok/mismatch/watch）+ name_note、contains（混入物：课桌/椅子/书包等）、size [w,h]、refs（三口径引用计数，见 §4）、libs（被打包进几个精灵库）、content_check（目测核验 2026-11-01 / CAST 登记未逐帧目测）。
+- **逐帧目测核验：93 帧**（引用 Top41 + 全部已知陷阱帧 + 全部存疑/双人/未引用帧，用 0.1 归一化网格联系表逐帧看图）；其余 238 帧语义据 CAST_V5.md 联排登记，content_check 标「未逐帧目测」，按盘点口径作未核验对待。
+
+## 2. 锚点（高频帧）
+
+- **完成 41 帧** = 精修口径引用数 Top40 + cam 补登（CAST 主力帧，文本口径 15 幕，因「cam」为裸词被精修口径低估）。
+- 每帧登记：hand_left / hand_right（画面平面左右手，归一化坐标）、gaze（方向标签 + angle_deg：0=右/90=下/180=左/270=上，正面为 null）、feet（[支撑中心 x, 鞋底基线 y]，另附 feet_alpha_x = alpha 底部 4% 带质心实测复核）。
+- 依据：帧图目测（网格联系表）+ alpha 落点复核，已在每帧 anchors.basis 注明。
+- 特殊：l_plaster 为半身特写，feet=null（note 说明）；bird_up/bird_down 无手无脚，hand/feet=null 并给喙尖坐标；kick1/kick2 另注踢球脚尖；l_bike1 另注踏板脚与支撑=车轮；坐姿帧（l_read/l_hand0/l_hand1/m_tv）feet 为鞋底位置、note 标支撑物（椅子/沙发）。
+
+## 3. 陷阱订正清单（盘点 9 条逐条落实 + 本次新发现）
+
+### 盘点已知 9 条
+1. **l_stand 名站实坐 → mismatch 已订正**：语义改为「扶椅背半起身（坐→站过渡）」，name_note 注明含椅子、phrasal_key_1 的 ACTS 拿它当「stand up」终点帧、LAYOUT_QA 定禁用作站立/基准帧。
+2. **l_read 自带课桌 → mismatch 已订正**：语义「坐课桌后读书」，contains=[课桌，椅子，书]，note 标明仅限教室桌前场景。
+3. **l_coff0/1/2 名 coffee 实 coat-off → mismatch ×3 已订正**：逐帧语义为脱外套序列首/中/末帧；l_coff0 另注 LAYOUT_QA 定其为全剧基准帧 ref（穿橙外套站姿）。
+4. **m_read 坐着读 → mismatch 已订正**：目测实为「盘腿坐地读书」，note 标明需站读时无帧可用。
+5. **残影/缺件前科 → watch ×3 并目测复核**：l_lift1 返工后干净（发色偏深棕已注）；l_lift2 无残影但**右侧裁切嫌疑 + 发色不一致**仍在（见新发现）；missw_give 老师全身已补全（右侧 Leo 半幅裁切构图已注）。其余帧按 content_check 分级：93 目测 / 238 未目测。
+6. **手工切帧（l_ex0–2、kite、picnic）→ watch 已注**，且目测新证：l_ex0 右上缘有邻帧残留嫌疑、l_ex1 左缘有一小残点。
+7. **引用与库不一致（wogr1 缺 l_point/l_think）→ 已复核闭合**：wogr1.js 现含两帧（点名引用计数 l_point 98 幕、l_think 138 幕）；两帧 watch 注记留档。同类现存问题见 §5。
+8. **精灵库完整性 → 本次全量核对数字见 §5**（27 空库、108 个被 import 的库文件缺失、15 帧从未打包）。
+9. **Linda 双轨 → watch 已注**（linda_piano/linda_help）：fp 家族模板内嵌 Linda 姿势不在 cast 库内，未入本表（范围外，明示）。
+
+### 本次目测新发现（盘点未载）
+10. **flag 名实严重不符（新陷阱之首）**：名为「旗」的帧实为 **Leo 坐滑梯下滑**；CAST 登记的 slide 帧文件**缺失**（见 §5）；真正的旗只出现在 snake 帧内（蛇旁旗杆，snake 条已注 contains=旗帜）。疑 L6 联排切帧时 slide 图被错存为 flag。按名取「旗」或「滑梯」必错。
+11. **twins 帧内三人**：中为 Leo、两侧同貌男孩并坐长椅 → mismatch（教学指认对象为两侧男孩）。
+12. **chick0–3 名「小鸡」实为成年母鸡**（有红鸡冠）→ chick0 watch（同组通注）；该组零引用且未打包入任何库。
+13. **plant 名「植物」实为双人种树动作帧**（Leo 持锹 + Mia 浇水）→ watch，character 已订正为 Leo+Mia。
+14. **porter 名「搬运工」实为 Leo 扛箱扮相**；**king 名「国王」实为国王居中三人合像**；heights 为三名成年男子——三帧语义均已按实况写明。
+15. **l_plaster 半身特写无脚**（锚点 feet=null）；**l_hand0–2 举手组全组含课桌椅**（watch ×3）；**m_tv 家具一体帧**（沙发+电视+柜台，watch）；**dog_bite 主体为成年男子**而非 Leo。
+16. **l_lift2 切帧残缺嫌疑**：人物右侧被帧缘裁切、发色与主线 Leo 不一致（watch）。
+
+**统计：name_check = mismatch 8 帧**（flag、l_coff0、l_coff1、l_coff2、l_read、l_stand、m_read、twins）、**watch 18 帧**。
+
+## 4. 引用计数与盘点对账
+
+口径（registry 文件头 conventions 有全文）：规范幕 558 = scenes/*.js 剔除共享库（auto/oral/poly/adj_train）与 gen_* 副本；带前缀帧名按文本命中计；裸英文词帧名（bus/flag/ship 等，与台词词重合）须「文本命中 ∩ 场景导入的精灵库含此帧」才计——否则台词里的英文词会被误计为精灵引用（实测 flag/twins 的文本命中全部来自台词与局部变量名，精修后为 0）。
+
+| 项目 | 盘点（T16_element_inventory） | 本表实测 | 判定 |
+|---|---|---|---|
+| cast 帧文件 | 331 | 331 | ✓ 一致 |
+| 精灵库文件 | 381 | 381 | ✓ 一致 |
+| 规范幕 | 558 | 558 | ✓ 一致 |
+| 引用 ≥1 cast 帧的幕 | 513 | 精修 509 / 纯文本 520 | 口径差 ±7：文本口径含台词误命中；精修口径剔除误命中但漏计仅经库迭代调用的帧；盘点值居中 |
+| Leo 出场幕 | 457 | 458 | +1（口径差） |
+| Mia | 196 | 196 | ✓ |
+| White 老师 | 29 | 裸名 missw 文本 25 幕 + 家族帧合并 ≈29 | ✓ |
+| 妈妈 / 爸爸 / Linda | 13 / 7 / 4 | 13 / 7 / 4 | ✓ |
+| **l_stand 引用文件** | **76** | **10**（规范幕 5） | **盘点两数字互换**：见下 |
+| **l_read 引用文件** | **10** | **76**（规范幕精修 40） | 同上 |
+
+对账要点：以 grep 对 scenes/*.js 点名实测，l_stand 出现在 10 个文件、l_read 出现在 76 个文件——与盘点陷阱 1/2 所载恰好互换，疑盘点转录时两行对调。本表以实测为准，陷阱的定性结论（名实不符）不受影响，但「l_stand 危害面 76 文件」应修正为 10 文件、l_read 为 76 文件（危害面实际更大的是 l_read）。
+
+## 5. 缺失与完整性清单（脚本核对）
+
+- **registry id 存在性**：331/331 均在精灵库帧文件（cast/*.webp）真实存在；反向核对：381 个精灵库中出现的帧名 316 个，全部能在 cast 找到（库→库外缺失 0）。
+- **缺失帧（单列）**：
+  - `slide`：CAST_V5.md 登记但文件不存在、任何精灵库不含、场景引用 0（已入 registry.yaml 的 missing_frames；图疑错存为 flag）。
+- **从未打包入任何精灵库的帧（15）**：chick0、chick1、chick2、chick3、dog_bite、flag、l_bench3、l_detect3、l_dive、l_note3、m_sister、m_wipe、puppy_pop、show2、twins（cast 有文件，场景侧无从加载）。
+- **全部 880 场景文件零引用的帧（原始口径 15）**：chick0、chick1、chick2、chick3、dog_bite、l_bench3、l_detect3、l_dive、l_note3、m_cry、m_sister、m_study、m_wipe、puppy_pop、show2；**精修口径再加 flag、twins 共 17**（两帧的文本命中全为台词/变量名误命中）。其中 m_cry/m_study 已打包在 tm3a 库中但现行场景无点名引用。两份 15 帧名单（未打包 / 零引用）交集为 13，差集即 flag、twins（未打包且零真实引用）与 m_cry、m_study（已打包但零引用）。
+- **空精灵库（27 个 FI 为空）**：bt2、hdfr01_1、hdfr01_2、hdfr01_3、hdfr01_4、hdg05_1、hdg05_2、hdg07_1、hdg07p2_1、hdg14_1、hdg14_2、hdg14_3、hdg19_1、hdg19_2、hdg37_1、hdg38_1、hdg39_1、sr1、sr2、sr3、vvtakeout2、wog1、wogm1、wovb1、zli1、zpr1、zyn1——各被 1 个规范幕 import（空壳或构建丢失）。
+- **被规范幕 import 但仓库缺失的库文件（108）**：hdo* 口语幕库 106 个（hdo01–hdo16 系列，每库被 1 幕 import）+ fb39_1（fp_boundedness_1 import）+ fpeco2（fp_economy_p2_1 import）。属盘点陷阱 8 的现存规模，本车道只登记不修复。
+
+## 6. 备注
+
+- 复跑口径：计数脚本与联系表为本次会话工具（口径已写入 registry 头 conventions 与本记录），可按同口径复跑核对。
+- 未做：未改 CAST_V5.md（生产登记保持原样，本表以 sheet 字段引用它）；未给 238 未目测帧下内容结论；fp 家族 Linda 内嵌姿势的登记需另立车道（不在 cast 库范围）。
