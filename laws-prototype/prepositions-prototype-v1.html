@@ -1,309 +1,265 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>介词 · 场景原型</title>
+<title>介词全家福 · 一个介词一页</title>
 <style>
   * { box-sizing: border-box; }
-  body { margin:0; font-family: "PingFang SC","Microsoft YaHei",system-ui,sans-serif; background:#f4f6fb; color:#1c2333; }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 18px 16px 60px; }
-  h1 { font-size: 26px; margin: 10px 0 4px; }
-  .sub { color:#5a6480; font-size:14px; margin-bottom:16px; }
-  .card { background:#fff; border:1px solid #e2e7f2; border-radius:14px; padding:16px 18px; margin:12px 0; }
-  .unit-link { display:block; width:100%; text-align:left; background:#fff; border:1px solid #e2e7f2; border-radius:14px;
-    padding:14px 18px; margin:10px 0; cursor:pointer; font:inherit; }
-  .unit-link:hover { border-color:#7aa2ff; }
-  .unit-link .t { font-size:17px; font-weight:600; }
-  .unit-link .m { color:#5a6480; font-size:13px; margin-top:4px; }
-  .back { background:none; border:none; color:#2f5cff; font-size:15px; cursor:pointer; padding:4px 0; }
-  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 10px; }
-  .chip { border:2px solid #c9d6f5; background:#eef3ff; color:#1c3fae; border-radius:999px;
-    padding:7px 18px; font-size:18px; font-weight:700; cursor:pointer; }
-  .chip.on { background:#2f5cff; color:#fff; border-color:#2f5cff; }
-  .kid { font-size:17px; line-height:1.65; }
-  .stage { background:#fbfcff; border:1px solid #e2e7f2; border-radius:14px; padding:12px; }
-  .stage svg { width:100%; height:auto; display:block; }
-  .stage .sent { font-size:19px; margin:10px 2px 2px; line-height:1.5; }
-  .stage .note { color:#5a6480; font-size:14px; margin:2px; }
-  .stage .gloss { color:#1c3fae; font-size:15px; font-weight:600; margin:4px 2px 0; }
-  b.prep { color:#d35400; }
-  .sentbtn { border:1px solid #c9d6f5; background:#eef3ff; border-radius:999px; padding:3px 12px;
-    font-size:13px; cursor:pointer; margin-left:8px; vertical-align:middle; }
-  .ex { padding:10px 0; border-top:1px dashed #e2e7f2; }
-  .ex:first-of-type { border-top:none; }
-  .ex .s { font-size:17px; line-height:1.55; }
-  .ex .n { color:#5a6480; font-size:13.5px; margin-top:2px; }
-  .beat { padding:8px 0; border-top:1px dashed #e2e7f2; }
-  .beat:first-of-type { border-top:none; }
-  .beat .b { font-weight:700; }
-  .beat .v { color:#5a6480; font-size:13.5px; margin-top:2px; }
-  table.prep { width:100%; border-collapse:collapse; font-size:15px; }
-  table.prep td { border-top:1px solid #e8ecf6; padding:7px 8px; }
-  table.prep td.w { font-weight:700; width:34%; }
-  .opt { display:block; width:100%; text-align:left; margin:6px 0; padding:10px 14px; border-radius:10px;
-    border:1px solid #c9d6f5; background:#fff; cursor:pointer; font-size:15.5px; font:inherit; }
-  .opt.right { background:#e3f6e5; border-color:#4caf50; }
-  .opt.wrong { background:#fde7e7; border-color:#e57373; }
-  .hint { background:#fff8e1; border:1px solid #ffe082; border-radius:10px; padding:10px 14px; margin-top:8px; font-size:14.5px; line-height:1.6; }
-  .pending { background:#f7f7f7; border:1px dashed #bbb; border-radius:10px; padding:12px 14px; color:#555; line-height:1.6; }
-  h2 { font-size:20px; margin:22px 0 6px; }
-  h3.sec { font-size:16px; color:#5a6480; margin:0 0 6px; }
-  .ground { stroke:#9aa5bd; stroke-width:2; }
-  .surf { fill:#b08968; } .leg { fill:#8a6a4f; }
-  .boxw { fill:rgba(122,162,255,.10); stroke:#5b7fa6; stroke-width:3; }
-  .band { fill:#a8c686; }
-  .wall { fill:#c96f4a; } .canopy { fill:#7fb069; } .trunk { fill:#8a6a4f; }
-  .bldg { fill:#dbe4f5; stroke:#5b7fa6; stroke-width:2.5; }
-  .win { fill:#fff; stroke:#5b7fa6; }
-  .ring { fill:none; stroke:#d35400; stroke-width:2.5; }
-  .dotpt { fill:#d35400; }
-  .ball { fill:#f39c12; stroke:#b9770e; stroke-width:2; }
-  .arc { fill:none; stroke:#d35400; stroke-width:2.5; stroke-dasharray:6 5; }
-  .water { fill:#7aa2ff; }
-  .arrow { fill:none; stroke:#2f5cff; stroke-width:3.5; }
-  .tband { fill:#e8eefc; stroke:#c9d6f5; stroke-width:2; }
-  .tcell { fill:#e8eefc; stroke:#c9d6f5; stroke-width:2; }
-  .tgrid { stroke:#c9d6f5; stroke-width:1.5; }
-  .tline { stroke:#9aa5bd; stroke-width:2.5; }
-  .tpoint { fill:#d35400; }
-  g[data-hl].on .tband, g[data-hl].on .tcell { stroke:#d35400; stroke-width:3.5; }
-  g[data-hl].on .tpoint { stroke:#d35400; stroke-width:3; }
-  .panelbox { fill:#eef3ff; stroke:#c9d6f5; stroke-width:2; }
-  g[data-hl].on .panelbox { stroke:#d35400; stroke-width:3.5; }
-  .lamp { fill:#ffd93b; stroke:#b9770e; stroke-width:2; }
-  .lamp.off { fill:#c9cedb; stroke:#8a90a6; }
-  .river { fill:none; stroke:#7aa2ff; stroke-width:30; opacity:.45; }
+  body { margin: 0; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f4f6fb; color: #1c2733; }
+  #app { max-width: 560px; margin: 0 auto; padding: 14px 14px 40px; }
+  h1 { font-size: 21px; margin: 8px 0 2px; }
+  h2 { font-size: 17px; margin: 20px 0 8px; }
+  h3 { font-size: 15px; margin: 14px 0 6px; }
+  .sub { color: #5a6b7d; font-size: 13px; margin: 2px 0 10px; }
+  .card { background: #fff; border: 1px solid #dde4ee; border-radius: 14px; padding: 14px; margin: 10px 0; }
+  .badge { display: inline-block; background: #1f9d61; color: #fff; border-radius: 999px; padding: 2px 10px; font-size: 12px; }
+  .badge.warn { background: #e8a13a; }
+  .badge.gray { background: #8a97a5; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { border: 2px solid #c9d4e4; background: #fff; border-radius: 999px; padding: 7px 14px; font-size: 15px; cursor: pointer; }
+  .chip.on { background: #2f6fd0; border-color: #2f6fd0; color: #fff; }
+  .chip small { color: #7a8899; font-size: 11px; margin-left: 4px; }
+  .chip.on small { color: #d7e6fa; }
+  .wchip { border: 1.5px solid #c9d4e4; background: #fff; border-radius: 10px; padding: 6px 11px; font-size: 14px; cursor: pointer; }
+  .word { font-size: 34px; font-weight: 700; }
+  .meaning { color: #41586e; font-size: 15px; margin-top: 2px; }
+  .stagebox { background: #fdfdff; border: 1px solid #e2e8f2; border-radius: 12px; padding: 8px; }
+  .sent { font-size: 17px; margin: 8px 2px 2px; }
+  .note { color: #68798c; font-size: 13px; margin: 2px; }
+  .hl { color: #e8720c; font-weight: 700; }
+  .spk { border: none; background: #eef3fa; border-radius: 999px; width: 34px; height: 34px; font-size: 16px; cursor: pointer; vertical-align: middle; margin-left: 6px; }
+  .node { border-left: 4px solid #2f6fd0; background: #f7faff; border-radius: 0 10px 10px 0; padding: 10px 12px; margin: 10px 0; }
+  .node .law { color: #2f6fd0; font-weight: 700; font-size: 12px; }
+  .node .head { font-size: 15px; margin: 3px 0; }
+  .beat { font-size: 14px; color: #33475c; margin: 5px 0; }
+  .beat b { color: #1c2733; }
+  .exrow { background: #fff; border: 1px solid #e2e8f2; border-radius: 10px; padding: 8px 10px; margin: 6px 0; }
+  .opp { border: 1.5px dashed #b9c8dd; border-radius: 10px; padding: 9px 12px; margin: 7px 0; cursor: pointer; background: #fff; }
+  .opp .ow { font-weight: 700; font-size: 16px; color: #2f6fd0; }
+  .quiz { background: #fffbeF; background: #fffbeb; border: 1px solid #ecd9a0; border-radius: 12px; padding: 12px; margin: 10px 0; }
+  .opt { display: block; width: 100%; text-align: left; border: 1.5px solid #c9d4e4; background: #fff; border-radius: 10px; padding: 9px 12px; margin: 6px 0; font-size: 15px; cursor: pointer; }
+  .opt.ok { border-color: #1f9d61; background: #e9f9f0; }
+  .opt.no { border-color: #d9534f; background: #fdeeee; }
+  .hint { display: none; color: #8a6d1a; background: #fff3cd; border-radius: 8px; padding: 8px 10px; font-size: 13px; margin-top: 6px; }
+  .back { background: none; border: none; color: #2f6fd0; font-size: 15px; cursor: pointer; padding: 4px 0; }
+  details.adult { background: #f2f0fa; border: 1px solid #d9d2ee; border-radius: 12px; padding: 10px 14px; margin: 16px 0; font-size: 13px; color: #4a4260; }
+  details.adult summary { cursor: pointer; font-weight: 700; }
+  .domlabel { display: inline-block; background: #eef3fa; color: #2f6fd0; border-radius: 6px; padding: 2px 9px; font-size: 12px; font-weight: 700; margin-top: 12px; }
+  .enter { background: #2f6fd0; color: #fff; border: none; border-radius: 10px; padding: 9px 16px; font-size: 15px; cursor: pointer; margin-top: 8px; }
+  .src { color: #93a3b5; font-size: 12px; }
 </style>
 </head>
 <body>
-<div class="wrap" id="app"></div>
+<div id="app"></div>
 <script>
-const DATA = {"units": [{"id": "P-01", "order": 1, "headline": "一个介词 = 一张原型图 + 一张亲戚网（有原则的多义）", "kid": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。", "mode": "box", "chips": [{"w": "in", "meaning": "在……里面", "sent": "The cat is in the box.", "note": "纸箱里的猫——in 的原型场景"}, {"w": "on", "meaning": "在……上面（有接触）", "sent": "The book is on the desk.", "note": "书桌场景——on 的原型场景，与 in 形成对照"}, {"w": "over", "meaning": "在…正上方/越过/结束", "sent": "The bird flew over the wall.", "note": "操场围墙，鸟飞过去——越过义贴近中心"}], "beats": [{"beat": "原型图", "text": "先认每个介词最主要的那张图：in 是装进里面，on 是贴在面上，at 是一个点。", "visual": "三个介词的原型图式并排（容器/贴面/点），作本区总图"}, {"beat": "亲戚网的长法", "text": "新用法不是凭空来的：over 先有「在上面」，才长出「盖住」，再长出「越过」。", "visual": "over 网络三层图：中心 ABOVE → 覆盖 → 越过"}], "examples": [{"sentence": "The bird flew over the wall.", "note": "操场围墙，鸟飞过去——越过义贴近中心"}, {"sentence": "The cat is in the box.", "note": "纸箱里的猫——in 的原型场景"}, {"sentence": "The plane flew over the hill.", "note": "飞机从山的上方越过——上方+路径的引申"}, {"sentence": "The book is on the desk.", "note": "书桌场景——on 的原型场景，与 in 形成对照"}], "quiz": [{"q": "第一次学 over，先记哪一个意思最划算？", "options": ["在……上方（中心义）", "盖住", "结束"], "answer": "在……上方（中心义）", "hint_idx": 0}], "errors": [{"type": "介词义项清单式误用", "note": "清单未登记本条逐字错例，按纪律不自编；待课堂/语料错例补录后回填。", "status": "待补"}]}, {"id": "P-02", "order": 2, "headline": "原型不是凭感觉选的：四条证据定中心", "kid": "全家福中间放谁的照片，要讲证据：谁最老、谁亲戚最多、谁最能代表全家——不是随便挑的。", "mode": "vertical", "chips": [{"w": "above", "meaning": "在…斜上方(不接触)", "sent": "The plane is above the clouds.", "note": "与邻居 above 对照——证据三（对照集）"}, {"w": "of", "meaning": "…的(所属关系)", "sent": null, "note": null}, {"w": "over", "meaning": "在…正上方/越过/结束", "sent": "The bird is over the tree.", "note": "鸟在树上方——中心义 ABOVE"}], "beats": [{"beat": "四条证据", "text": "选中心要过四关：最老、亲戚最多、最能跟邻居分工、最能猜出别的亲戚。", "visual": "四条证据的清单图 + over 的四关全过标记"}, {"beat": "over 的裁决示范", "text": "over 的老家是「在上方」：它最老、亲戚最多，所以坐在全家福中间。", "visual": "over 网络图上标出 8 个涉 ABOVE 的节点"}], "examples": [{"sentence": "The bird is over the tree.", "note": "鸟在树上方——中心义 ABOVE"}, {"sentence": "The plane is above the clouds.", "note": "与邻居 above 对照——证据三（对照集）"}, {"sentence": "The car went over the bridge.", "note": "越过义——由中心义可预测的引申（证据四）"}, {"sentence": "The ball rolled over the hill.", "note": "滚过山坡——上方+路径"}], "quiz": [{"q": "判定一个义项是不是原型，下面哪一条不是 Tyler & Evans 的证据？", "options": ["历史上最早出现", "老师觉得最常用", "最能预测其他义项"], "answer": "老师觉得最常用", "hint_idx": 0}], "errors": [{"type": "中心义误定", "note": "方法论条目，清单未登记逐字错例，不自编。", "status": "待补"}]}, {"id": "P-03", "order": 3, "headline": "in 的原型是「装进容器」：边界之内，且受容器影响", "kid": "in 就是「进到里面」：在盒子里、在房间里、在队伍里——被围起来，就是 in。", "mode": "box", "chips": [{"w": "in", "meaning": "在……里面", "sent": "The cat is in the box.", "note": "纸箱与猫——最典型的容器场景"}], "beats": [{"beat": "容器图式", "text": "东西装进口袋、杯子，人进屋子——装进一个有边的地方，就是 in 的老家。", "visual": "容器剖面图：物体在边界之内，容器以虚线标出「影响」"}, {"beat": "容器可以变大变抽象", "text": "城市是装人的大容器，队伍是装人的长容器，in trouble 是泡在麻烦里出不来。", "visual": "同心放大图：盒子→房间→城市→状态"}], "examples": [{"sentence": "The cat is in the box.", "note": "纸箱与猫——最典型的容器场景"}, {"sentence": "The dog is in the room.", "note": "房间是装人和物的容器"}, {"sentence": "The students are in the team.", "note": "队伍作为集合容器（学生为复数泛指，students 词形经词库 student 归一）"}, {"sentence": "The water is in the cup.", "note": "液体被杯子装住并受其形状影响"}], "quiz": [{"q": "「小鸟在鸟笼里」用哪个词最贴？", "options": ["in", "on", "at"], "answer": "in", "hint_idx": 0}], "errors": [{"type": "in/on 切分误用", "note": "错位高发区见 PB-12；逐字病例待语料补录，不自编。", "status": "待补"}]}, {"id": "P-04", "order": 4, "headline": "on 的原型是「贴面加承重」：接触面在替它撑着", "kid": "on 就是「贴在表面上」：东西挨着一个面，靠这个面托着、挂着、套着。", "mode": "wall", "chips": [{"w": "on", "meaning": "在……上面（有接触）", "sent": "The book is on the desk.", "note": "书桌——水平面承托"}], "beats": [{"beat": "贴面", "text": "书贴在桌面上，画贴在墙上，戒指套在手指上——都先要「挨着一个面」。", "visual": "三种面朝向并排：桌面（托）/墙面（挂）/手指（套），同一图式"}, {"beat": "承重", "text": "面不只是挨着，还要「负责」：没有桌面，书就掉下去了。", "visual": "桌面抽走→书下落的对照帧"}], "examples": [{"sentence": "The book is on the desk.", "note": "书桌——水平面承托"}, {"sentence": "The picture is on the wall.", "note": "挂画——垂直面附着（中国孩子高发错位点，见 PB-12）"}, {"sentence": "The ring is on her finger.", "note": "戒指套手指——环绕式承托"}, {"sentence": "The cat is on the table.", "note": "猫在桌面上——面承托活物"}], "quiz": [{"q": "画挂在墙上，为什么用 on 不用 in？", "options": ["画贴在墙面上，墙面负责挂住它", "画在墙的里面", "墙是一个点"], "answer": "画贴在墙面上，墙面负责挂住它", "hint_idx": 0}], "errors": [{"type": "汉语「上」直译误用 in/at", "note": "错位图见 PB-12；逐字病例待语料补录，不自编。", "status": "待补"}]}, {"id": "P-05", "order": 5, "headline": "at 的原型是「当成一个点」：把对象压扁成坐标", "kid": "at 是把东西看成地图上的一个小点点：地方再大，在 at 眼里也只是一个点。", "mode": "point", "chips": [{"w": "at", "meaning": "在(小地点)/加具体几点钟", "sent": "The student is at the station.", "note": "车站作为位置点"}], "beats": [{"beat": "点化", "text": "车站那么大，在地图上也只是一个点——说 at 的时候，心里想的就是那个点。", "visual": "车站实景渐缩成地图上的一个点"}, {"beat": "点在各域复现", "text": "地方可以是一个点，时间也可以：五点钟就是时间线上的一个点。", "visual": "地点轴与时间轴并排，at 同点亮两轴的点位"}], "examples": [{"sentence": "The student is at the station.", "note": "车站作为位置点"}, {"sentence": "We are at home.", "note": "家被点化为所在位置"}, {"sentence": "The teacher is at the door.", "note": "门口是一个位置点"}, {"sentence": "The bus is at the station.", "note": "车辆到站——点位到达"}], "quiz": [{"q": "at the station 里的 station 被看成什么？", "options": ["一个点", "一个容器", "一个面"], "answer": "一个点", "hint_idx": 0}], "errors": [{"type": "at/in 点与容器混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}]}, {"id": "P-06", "order": 6, "headline": "over 的中心是「在上方」，不是「盖住」：一个全家福的裁决示范", "kid": "over 的老家是「在上面」：毯子盖在上面，是因为它先要在上面；跳过栅栏，是从上面过去。", "mode": "box", "chips": [{"w": "over", "meaning": "在…正上方/越过/结束", "sent": "The bird flew over the wall.", "note": "从上方越过——中心与路径的结合"}], "beats": [{"beat": "中心在上方", "text": "先认老家：over 是「在上面」——鸟在墙的上方，飞机在山的上方。", "visual": "over 全家福：中心 ABOVE 节点高亮"}, {"beat": "亲戚按代排队", "text": "毯子盖住东西，是因为它在上面挡住了；跳过栅栏，是从上面带着路过去。", "visual": "三代引申链：上方 → 覆盖 → 越过 → 结束"}], "examples": [{"sentence": "The bird flew over the wall.", "note": "从上方越过——中心与路径的结合"}, {"sentence": "The plane flew over the clouds.", "note": "云层上方——纯上方义"}, {"sentence": "The ball went over the bridge.", "note": "球越过桥面"}, {"sentence": "The cat jumped over the box.", "note": "跳过纸箱——越过义的儿童场景"}], "quiz": [{"q": "over 的中心义是哪一个？", "options": ["在……上方", "盖住", "翻转"], "answer": "在……上方", "hint_idx": 0}], "errors": [{"type": "over/above 混用", "note": "分工见 P-13；逐字病例待语料补录，不自编。", "status": "待补"}]}, {"id": "P-07", "order": 7, "headline": "up 是「多」：数量往上涨，所以 prices go up", "kid": "水越多，杯子里的水位就越高——所以英语里「变多」也用 up：声音变大、价格变高，都往「上」走。", "mode": "rise", "chips": [{"w": "up", "meaning": "向上", "sent": "The water goes up in the cup.", "note": "倒水时水位上升——经验相关的原场景"}], "beats": [{"beat": "同场同现", "text": "往杯子里倒水：水变多了，水位也变高了——两件事总是一起发生。", "visual": "倒水动画：水量条与水位线同步上升"}, {"beat": "数量借 up", "text": "价格涨了、声音大了，英语都说 up——因为它们像水位一样往上走。", "visual": "价格标签与音量条沿竖直轴上升"}], "examples": [{"sentence": "The water goes up in the cup.", "note": "倒水时水位上升——经验相关的原场景"}, {"sentence": "The wind is up.", "note": "风变大了——量增用 up（登记用法，量级义）"}, {"sentence": "Turn the light up.", "note": "把灯调亮——量增的动作指令（亮度量）"}, {"sentence": "The sun is up.", "note": "太阳升起来了——空间义本体，与数量义同源对照"}], "quiz": [{"q": "为什么「价格变高」用 up 说？", "options": ["量变多时东西会往上升，经验把「多」和「上」绑在了一起", "up 本来就是「贵」的意思", "随便选的，没有道理"], "answer": "量变多时东西会往上升，经验把「多」和「上」绑在了一起", "hint_idx": 0}], "errors": [{"type": "up 引申义误推", "note": "give up 等另一支引申见 claim 边界；逐字病例待补，不自编。", "status": "待补"}]}, {"id": "P-08", "order": 8, "headline": "几何算一半，功能算另一半：苹果在碗沿之下为什么还能说 in（功能几何框架）", "kid": "碗的工作是「装」，桌子的工作是「托」——东西有没有被装好、被托好，比它在哪儿更重要。", "mode": "box", "chips": [{"w": "in", "meaning": "在……里面", "sent": "The apple is in the bowl.", "note": "苹果在碗中——碗的盛装功能"}, {"w": "on", "meaning": "在……上面（有接触）", "sent": "The cup is on the table.", "note": "桌面托杯——承托功能"}], "beats": [{"beat": "先看图式，再看功能", "text": "苹果装在碗里，哪怕没冒尖，也是 in——因为碗就是用来装的。", "visual": "同一只碗两帧：苹果低于碗沿 / 高于碗沿，均标 in 并亮起「碗在盛」功能标"}, {"beat": "功能翻转选择", "text": "杯子放在桌上是 on，因为桌子在托它；换个东西不起作用了，说法就会变。", "visual": "倾斜容器实验示意：几何不变，功能变，选择变"}], "examples": [{"sentence": "The apple is in the bowl.", "note": "苹果在碗中——碗的盛装功能"}, {"sentence": "The cup is on the table.", "note": "桌面托杯——承托功能"}, {"sentence": "The bananas are in the bowl.", "note": "香蕉装碗（复数泛指，词形经 banana 归一）"}, {"sentence": "The books are on the table.", "note": "多本书在桌面（复数泛指，词形经 book 归一）"}], "quiz": [{"q": "苹果没有冒出碗沿，却说 in the bowl，最重要的理由是？", "options": ["碗的功能就是盛东西，它正在盛", "苹果离碗很近", "苹果是圆的"], "answer": "碗的功能就是盛东西，它正在盛", "hint_idx": 0}], "errors": [{"type": "纯几何判介词", "note": "清单未登记逐字病例，不自编。", "status": "待补"}]}, {"id": "P-09", "order": 9, "headline": "时间介词是把空间图「借」到时间上：时长定介词是伪规则", "kid": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。", "mode": "time", "chips": [{"w": "at", "meaning": "在(小地点)/加具体几点钟", "sent": "The bus comes at five.", "note": "五点——时刻点（数字词 five 已在库）"}, {"w": "in", "meaning": "在……里面", "sent": "We play in the morning.", "note": "上午时段——容器图"}, {"w": "on", "meaning": "在……上面（有接触）", "sent": "We have English on Monday.", "note": "星期一——日历面"}], "beats": [{"beat": "三图借用", "text": "早上是一段时间，像泡在水里用 in；星期一是一天，像贴在日历上用 on；五点钟是一个点，用 at。", "visual": "空间三图（容器/面/点）与时间三例（in the morning / on Monday / at 5）一一连线"}, {"beat": "伪规则当场破", "text": "有人说「短的时间用 at」——可是 at night 的 night 是一整夜，in the morning 的 morning 也不到一天，规则当场就不对了。", "visual": "伪规则卡被两个反例划破"}], "examples": [{"sentence": "We play in the morning.", "note": "上午时段——容器图"}, {"sentence": "We have English on Monday.", "note": "星期一——日历面"}, {"sentence": "The bus comes at five.", "note": "五点——时刻点（数字词 five 已在库）"}, {"sentence": "We swim in summer.", "note": "季节是更长的容器"}], "quiz": [{"q": "in the morning 用 in，是因为把 morning 看成了什么？", "options": ["一段时间容器", "一个点", "一天的面"], "answer": "一段时间容器", "hint_idx": 0}], "errors": [{"type": "时长伪规则误用（如 *at the morning 类推）", "note": "伪规则及其反例已在 claim 登记；逐字学习者病例待语料补录，不自编。", "status": "待补"}]}, {"id": "P-10", "order": 10, "headline": "教介词要教「图 + 长法」，不要教义项清单：三组教学实验的共识", "kid": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。", "mode": "contrast", "chips": [{"w": "at", "meaning": "在(小地点)/加具体几点钟", "sent": "Look at the door.", "note": "at 的瞄准图"}, {"w": "for", "meaning": "为了/给/持续…时间", "sent": "This gift is for me.", "note": "for 的受益图"}, {"w": "to", "meaning": "向/到…去", "sent": "We go to school.", "note": "to 的终点图——教学实验的核心词之一"}], "beats": [{"beat": "按图索引", "text": "新用法不用一条条背：把它挂到认识的图或者近亲身上，就记住了。", "visual": "新义项节点逐个挂上 over 网络的示意"}, {"beat": "迁移证据", "text": "（教师侧）学生没学过的用法也能猜对，说明他们学到的是图，不是句子。", "visual": "实验结果条形示意（只示方向，不编数值）"}], "examples": [{"sentence": "We go to school.", "note": "to 的终点图——教学实验的核心词之一"}, {"sentence": "This gift is for me.", "note": "for 的受益图"}, {"sentence": "Look at the door.", "note": "at 的瞄准图"}, {"sentence": "Look at the map.", "note": "目光落点——点的引申"}], "quiz": [{"q": "教介词时，哪种做法有实验支持、还能迁移到没教过的用法？", "options": ["讲原型图 + 引申理据", "发义项清单背诵", "只做替换操练"], "answer": "讲原型图 + 引申理据", "hint_idx": 0}], "errors": [{"type": "义项清单式死记（教学侧风险，非学生错句）", "note": "本条为教学法条目，病例形态为教学诊断，逐字病例不适用，登记待补说明。", "status": "待补"}]}, {"id": "P-11", "order": 11, "headline": "华语学生的介词错误是「切分不同」，不是「记性不好」", "kid": "中文和英语像两把不同的尺子，量同一个地方，刻度画的位置不一样。用错介词常常不是忘了，是拿错了尺子。", "mode": "wall", "chips": [{"w": "in", "meaning": "在……里面", "sent": "The bird is in the tree.", "note": "鸟在枝叶之间用 in——与苹果对照，汉语不切这一刀"}, {"w": "on", "meaning": "在……上面（有接触）", "sent": "The picture is on the wall.", "note": "汉语「在墙上」的「上」在此归 on——切分对照点"}], "beats": [{"beat": "两把尺子", "text": "中文说「在桌子上、在盒子里」，靠后面的「上、里」分工；英语靠 in、on、at 三张图分工——分工的位置不一样。", "visual": "同一场景两把尺子并排量：汉语刀口 vs 英语刀口"}, {"beat": "错位高发区", "text": "「在墙上」要用 on、「在树上」苹果和鸟还不一样——这些地方最容易拿错尺子，要多练。", "visual": "墙面与树两个高发点位标红"}], "examples": [{"sentence": "The picture is on the wall.", "note": "汉语「在墙上」的「上」在此归 on——切分对照点"}, {"sentence": "The apples are on the tree.", "note": "苹果长在树上（树的一部分）用 on（词形经 apple 归一）"}, {"sentence": "The bird is in the tree.", "note": "鸟在枝叶之间用 in——与苹果对照，汉语不切这一刀"}, {"sentence": "I read it in the newspaper.", "note": "「在报纸上」归 in——汉语「上」横跨三家的一例（详见 PB-12）"}], "quiz": [{"q": "中国学生总把某些介词用错，最主要的原因是？", "options": ["汉语和英语切分空间的刀口位置不同", "单词没背够", "考试太难"], "answer": "汉语和英语切分空间的刀口位置不同", "hint_idx": 0}], "errors": [{"type": "介词概念迁移误用（pp 类）", "note": "错型与高发区已由 CLEC 描写登记；逐字病例待从语料专项研究补录，不自编。", "status": "待补"}]}, {"id": "P-12", "order": 12, "headline": "谁做图形谁做背景：介词句子先定位「要找的东西」", "kid": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。", "mode": "box", "chips": [{"w": "in", "meaning": "在……里面", "sent": "The cat is in the box.", "note": "找猫——猫做图形，纸箱做背景"}, {"w": "on", "meaning": "在……上面（有接触）", "sent": "The cup is on the table.", "note": "找杯子——杯子做图形"}, {"w": "under", "meaning": "在……下面", "sent": "The book is under the desk.", "note": "书在桌下——仍是小的做图形"}], "beats": [{"beat": "先定找谁", "text": "杯子在桌子上——我们在找杯子，杯子站前面；桌子又大又稳，站在后面当背景。", "visual": "杯子高亮（图形）+ 桌子灰化（背景）+ on 钉子图标"}, {"beat": "分工可反转", "text": "要是丢的是桌子，也可以说「桌子在杯子下面」——不算错，只是听起来怪，因为平时没人找桌子。", "visual": "同一场景两句对照，一句标「常说」，一句标「怪但不算错」"}], "examples": [{"sentence": "The cup is on the table.", "note": "找杯子——杯子做图形"}, {"sentence": "The cat is in the box.", "note": "找猫——猫做图形，纸箱做背景"}, {"sentence": "The book is under the desk.", "note": "书在桌下——仍是小的做图形"}, {"sentence": "The ball is in the grass.", "note": "草地做背景，球做图形"}], "quiz": [{"q": "「The cup is on the table」里，做图形（被找的东西）的是？", "options": ["cup", "table", "on"], "answer": "cup", "hint_idx": 0}], "errors": [{"type": "图形背景倒置（语用怪异型）", "note": "清单未登记逐字病例，不自编。", "status": "待补"}]}, {"id": "P-13", "order": 13, "headline": "垂直方向是四个词合伙切的：above / over / under / below 的分工", "kid": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。", "mode": "vertical", "chips": [{"w": "above", "meaning": "在…斜上方(不接触)", "sent": "The plane is above the clouds.", "note": "只比云高——above 的标量义"}, {"w": "below", "meaning": "在……下面；低于", "sent": null, "note": null}, {"w": "over", "meaning": "在…正上方/越过/结束", "sent": "The plane flew over the hill.", "note": "越过山丘——over 的牵连义"}, {"w": "under", "meaning": "在……下面", "sent": "The cat is under the table.", "note": "桌子下方且被桌罩着——under 的牵连义"}], "beats": [{"beat": "牵连轴", "text": "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。", "visual": "垂直轴一分为二：左列「有牵连」over/under，右列「只比高低」above/below"}, {"beat": "替换测试", "text": "把词换一换试试：换了意思就变，说明它们分工不同。", "visual": "同句两版对照，差异处高亮"}], "examples": [{"sentence": "The plane flew over the hill.", "note": "越过山丘——over 的牵连义"}, {"sentence": "The plane is above the clouds.", "note": "只比云高——above 的标量义"}, {"sentence": "The cat is under the table.", "note": "桌子下方且被桌罩着——under 的牵连义"}, {"sentence": "The stars are above the mountain.", "note": "星星比山高——纯高低"}], "quiz": [{"q": "「below zero（零度以下）」用 below 不用 under，是因为这里只比什么？", "options": ["高低（标量）", "谁盖住谁", "谁压着谁"], "answer": "高低（标量）", "hint_idx": 0}], "errors": [{"type": "over/above 与 under/below 边界混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}]}, {"id": "P-14", "order": 14, "headline": "to / for / at：三个「指向」介词的分工", "kid": "to 是「送到门口」，for 是「为了谁」，at 是「瞄准靶心」——都是朝一个方向，但心里装的东西不一样。", "mode": "point3", "chips": [{"w": "at", "meaning": "在(小地点)/加具体几点钟", "sent": "Look at the map.", "note": "目光瞄准地图上的点"}, {"w": "for", "meaning": "为了/给/持续…时间", "sent": "The gift is for my sister.", "note": "礼物为了妹妹——受益"}, {"w": "to", "meaning": "向/到…去", "sent": "We go to school.", "note": "学校是路的终点"}], "beats": [{"beat": "三张指向图", "text": "to 看终点：走到学校门口停下；for 看为了谁：礼物是给妹妹的；at 看靶心：目光落在门上。", "visual": "三幅小图并排：箭头落点 / 礼物递向受益人 / 十字准星"}, {"beat": "最重要的落地对比", "text": "give it to me 是「递给我收着」，give it for me 是「替我拿着/为了我」——收的人和受益的人不是一回事。", "visual": "同一递物动作两帧：收下 vs 代收，高亮差异"}], "examples": [{"sentence": "We go to school.", "note": "学校是路的终点"}, {"sentence": "The gift is for my sister.", "note": "礼物为了妹妹——受益"}, {"sentence": "Give it to me.", "note": "递给我——我是接收者"}, {"sentence": "Look at the map.", "note": "目光瞄准地图上的点"}], "quiz": [{"q": "「This cake is for my mum.」里的 for 说的是？", "options": ["为了谁、给谁受益", "移动的终点", "瞄准的点"], "answer": "为了谁、给谁受益", "hint_idx": 0}], "errors": [{"type": "to/for 受益与接收混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}]}, {"id": "P-15", "order": 15, "headline": "小品词是介词的「动词版亲戚」：up / out / off 的图式义随身携带", "kid": "动词后面的小词 up、out、off 都有自己的画面：up 是「满了、到底了」，out 是「从里面出来」——看着画面记短语动词，容易得多。", "mode": "particle", "chips": [{"w": "off", "meaning": "离开；（电器）关着", "sent": "Turn off the light.", "note": "关灯——off 的脱离/关闭义"}, {"w": "up", "meaning": "向上", "sent": "Stand up, please.", "note": "教室日常指令——up 的空间义本体"}], "beats": [{"beat": "小词随身带图", "text": "stand up 是真的站起来（往上）；eat up 是吃到底、吃光——up 还是那个 up。", "visual": "容器装满到顶的动画对应 eat up 的「光盘」帧"}, {"beat": "透明度三档", "text": "有的短语动词一看图就懂，有的要猜一猜，有的只能整块记住——分三档对待。", "visual": "三档滑杆：可推 / 助记 / 整记"}], "examples": [{"sentence": "Stand up, please.", "note": "教室日常指令——up 的空间义本体"}, {"sentence": "We play out in the garden.", "note": "到外面玩——out 的由内到外（garden 场景）"}, {"sentence": "Eat up the cake.", "note": "把蛋糕吃光——up 的完结义"}, {"sentence": "Turn off the light.", "note": "关灯——off 的脱离/关闭义"}], "quiz": [{"q": "eat up 里的 up 是什么意思？", "options": ["吃到底、吃光（完结）", "往上吃", "站着吃"], "answer": "吃到底、吃光（完结）", "hint_idx": 0}], "errors": [{"type": "短语动词逐个死记（教学侧风险）", "note": "本条病例形态为学习策略诊断，逐字病例不适用，登记待补说明。", "status": "待补"}]}, {"id": "P-16", "order": 16, "headline": "静态的东西借动态的词：The road runs along the river（虚构运动）", "kid": "路明明没动，却说它「跑」——其实是我们的眼睛在沿着路看过去，像手指划过地图一样。", "mode": "contrast", "chips": [{"w": "along", "meaning": "沿着；向前", "sent": "The road runs along the river.", "note": "清单原文例句——路沿河伸展（along 待补词库，本句为条目原文例句先行登记，见 pending）"}], "beats": [{"beat": "目光在动", "text": "眼睛从路的这一头看到那一头，就像手指划过地图——句子把这趟「眼睛的旅行」说成了路在跑。", "visual": "地图上一条路，高亮点沿路移动模拟目光扫描，路本身静止并标注"}, {"beat": "阅读提示", "text": "看到 runs、goes 说路和篱笆，先想一想：是真的在动，还是眼睛在旅行？", "visual": "真运动句与虚构运动句对照卡"}], "examples": [{"sentence": "The road runs along the river.", "note": "清单原文例句——路沿河伸展（along 待补词库，本句为条目原文例句先行登记，见 pending）"}, {"sentence": "The road goes to the island.", "note": "路通向岛——静态延伸用 goes"}, {"sentence": "The bridge is over the river.", "note": "对照：静态位置的普通说法，不用运动词"}, {"sentence": "The road climbs up the mountain.", "note": "路「爬上」山坡——虚构运动的爬升版（climb 已在库）"}], "quiz": [{"q": "「The road runs along the river」里，真的在跑的是？", "options": ["谁都没跑，是目光沿着路在移动", "路在跑", "河在跑"], "answer": "谁都没跑，是目光沿着路在移动", "hint_idx": 0}], "errors": [{"type": "虚构运动字面误读", "note": "本条为阅读理解提示，无登记逐字病例，不自编。", "status": "待补"}]}, {"id": "P-17", "order": 17, "headline": "先空间、后时间、再抽象：介词义的展开顺序就是教学顺序", "kid": "每个介词都是从「讲地方」开始长大的：先学会讲地方，再讲时间，最后讲看不见摸不着的意思——我们学它的顺序，就跟它长大的顺序一样。", "mode": "box", "chips": [{"w": "at", "meaning": "在(小地点)/加具体几点钟", "sent": null, "note": null}, {"w": "in", "meaning": "在……里面", "sent": "The cat is in the box.", "note": "第一级：空间义"}, {"w": "on", "meaning": "在……上面（有接触）", "sent": "The dog is on the table.", "note": "空间义先行习得的另一原型（幼儿产出顺序前列）"}, {"w": "under", "meaning": "在……下面", "sent": "The book is under the desk.", "note": "under 与 in/on 同属先行组（Johnston & Slobin 1979）"}], "beats": [{"beat": "成长路线", "text": "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。", "visual": "三级台阶：空间 → 时间 → 抽象，各放一个 in 的例句"}, {"beat": "顺序即排课", "text": "（教师侧）排课按台阶走：先把地方讲透，时间借图跟上，抽象义最后逐个补。", "visual": "本区 order 字段的排布示意"}], "examples": [{"sentence": "The cat is in the box.", "note": "第一级：空间义"}, {"sentence": "We play in the morning.", "note": "第二级：时间义（借空间图）"}, {"sentence": "The dog is on the table.", "note": "空间义先行习得的另一原型（幼儿产出顺序前列）"}, {"sentence": "The book is under the desk.", "note": "under 与 in/on 同属先行组（Johnston & Slobin 1979）"}], "quiz": [{"q": "教 in 的三个意思，顺序应该是？", "options": ["在盒子里 → 在早上 → 在麻烦中", "在麻烦中 → 在盒子里 → 在早上", "哪个都行，没有区别"], "answer": "在盒子里 → 在早上 → 在麻烦中", "hint_idx": 0}], "errors": [{"type": "抽象义抢先教学（教学侧风险）", "note": "顺序条目，逐字病例不适用，登记待补说明。", "status": "待补"}]}, {"id": "P-19", "order": 19, "headline": "语言怎么「装」运动：英语把路径装进小尾巴，汉语把路径装进动词系统", "kid": "说「跑出去」，英语和汉语装东西的格子不一样：英语把「怎么动」装进大词（run），把「往哪去」做成小尾巴挂在后面（out）；汉语把「往哪去」也装进动词里。学 run out 不是背新单词，是学英语的装法。", "mode": "path", "chips": [{"w": "across", "meaning": "横过，穿过；在…对面", "sent": "The cat ran across the road.", "note": "穿过马路——across 承担路径"}, {"w": "into", "meaning": "进入，到……里面", "sent": "The dog ran into the box.", "note": "跑进箱子——路径装进 into"}], "beats": [{"beat": "两个格子", "text": "英语的句子像有两个格子：大格子装「怎么动」（跑、游、滚），小格子装「往哪去」（out、in、across）。", "visual": "双格装配图：run/swim/roll × out/in/across 自由组合"}, {"beat": "为说话而思考", "text": "说哪种语言，就会先注意哪种东西：说英语的人先看「怎么动」，汉语先看「往哪走、到了没」。", "visual": "同一运动事件两副眼镜的注视点对照"}], "examples": [{"sentence": "The bird flew out.", "note": "方式（fly）+ 路径卫星（out）的最小装配"}, {"sentence": "The dog ran into the box.", "note": "跑进箱子——路径装进 into"}, {"sentence": "The cat ran across the road.", "note": "穿过马路——across 承担路径"}, {"sentence": "We swim across the river.", "note": "游过河——方式动词 + 路径卫星的能产组合"}], "quiz": [{"q": "run out 里，out 这个小尾巴装的是什么？", "options": ["往哪去（路径）", "怎么动（方式）", "谁在动"], "answer": "往哪去（路径）", "hint_idx": 0}], "errors": [{"type": "汉语趋向结构直译（路径编码错位）", "note": "错型机制已登记；逐字病例待语料补录，不自编。", "status": "待补"}]}], "table": [{"w": "about", "meaning": "关于/大约"}, {"w": "above", "meaning": "在…斜上方(不接触)"}, {"w": "across", "meaning": "横过，穿过；在…对面"}, {"w": "after", "meaning": "在…之后"}, {"w": "against", "meaning": "反对；靠着；违背"}, {"w": "along", "meaning": "沿着；向前"}, {"w": "among", "meaning": "在(三者及以上)之间"}, {"w": "around", "meaning": "在……周围；到处"}, {"w": "as", "meaning": "像……一样；作为"}, {"w": "at", "meaning": "在(小地点)/加具体几点钟"}, {"w": "before", "meaning": "在…之前"}, {"w": "behind", "meaning": "在…后面"}, {"w": "below", "meaning": "在……下面；低于"}, {"w": "beside", "meaning": "在…旁边(=next to)"}, {"w": "between", "meaning": "在（两者）之间"}, {"w": "beyond", "meaning": "在…之外；超过"}, {"w": "by", "meaning": "乘(交通工具)/在…旁/被"}, {"w": "down", "meaning": "向下"}, {"w": "except", "meaning": "除了；除…之外"}, {"w": "for", "meaning": "为了/给/持续…时间"}, {"w": "from", "meaning": "从…来自(be from)"}, {"w": "in", "meaning": "在……里面"}, {"w": "in front of", "meaning": "在…(外部)前面"}, {"w": "inside", "meaning": "在里面，往里面；内部"}, {"w": "into", "meaning": "进入，到……里面"}, {"w": "like", "meaning": "喜欢/像…一样"}, {"w": "near", "meaning": "在…附近/近的"}, {"w": "of", "meaning": "…的(所属关系)"}, {"w": "off", "meaning": "离开；（电器）关着"}, {"w": "on", "meaning": "在……上面（有接触）"}, {"w": "outside", "meaning": "在外面，向外面；外部"}, {"w": "over", "meaning": "在…正上方/越过/结束"}, {"w": "past", "meaning": "超过/过去"}, {"w": "plus", "meaning": "加；加上；加号"}, {"w": "since", "meaning": "自从；自……以来；因为"}, {"w": "through", "meaning": "穿过；通过"}, {"w": "to", "meaning": "向/到…去"}, {"w": "under", "meaning": "在……下面"}, {"w": "until", "meaning": "到……时；直到……为止"}, {"w": "up", "meaning": "向上"}, {"w": "upon", "meaning": "在……上面（= on，多用于书面）"}, {"w": "with", "meaning": "和…一起/用(工具)/带有"}, {"w": "without", "meaning": "没有/不带"}], "prepset": ["about", "above", "across", "after", "against", "along", "among", "around", "as", "at", "before", "behind", "below", "beside", "between", "beyond", "by", "down", "except", "for", "from", "in", "in front of", "inside", "into", "like", "near", "of", "off", "on", "outside", "over", "past", "plus", "since", "through", "to", "under", "until", "up", "upon", "with", "without"]};
+const DATA = {"familyOrder": ["in", "on", "over", "above", "at", "up", "for", "to", "under", "below", "off", "along", "across", "into"], "remainderOrder": ["about", "after", "against", "among", "around", "as", "before", "behind", "beside", "between", "beyond", "by", "down", "except", "from", "in front of", "inside", "like", "near", "of", "outside", "past", "plus", "since", "through", "until", "upon", "with", "without"], "pages": {"in": {"word": "in", "meaning": "在……里面", "family": true, "nlaws": 7, "laws": ["P-01", "P-03", "P-08", "P-09", "P-11", "P-12", "P-17"], "proto": "P-03", "scene": "deskbox", "pos": "in", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-03", "headline": "in 就是「进到里面」：在盒子里、在房间里、在队伍里——被围起来，就是 in。", "beats": [{"beat": "容器图式", "text": "东西装进口袋、杯子，人进屋子——装进一个有边的地方，就是 in 的老家。"}], "examples": [{"s": "The cat is in the box.", "note": "纸箱与猫——最典型的容器场景"}, {"s": "The dog is in the room.", "note": "房间是装人和物的容器"}, {"s": "The students are in the team.", "note": "队伍作为集合容器（学生为复数泛指，students 词形经词库 student 归一）"}, {"s": "The water is in the cup.", "note": "液体被杯子装住并受其形状影响"}], "claim": ""}, {"law": "P-08", "headline": "碗的工作是「装」，桌子的工作是「托」——东西有没有被装好、被托好，比它在哪儿更重要。", "beats": [{"beat": "先看图式，再看功能", "text": "苹果装在碗里，哪怕没冒尖，也是 in——因为碗就是用来装的。"}], "examples": [{"s": "The apple is in the bowl.", "note": "苹果在碗中——碗的盛装功能"}, {"s": "The bananas are in the bowl.", "note": "香蕉装碗（复数泛指，词形经 banana 归一）"}], "claim": ""}, {"law": "P-11", "headline": "中文和英语像两把不同的尺子，量同一个地方，刻度画的位置不一样。用错介词常常不是忘了，是拿错了尺子。", "beats": [{"beat": "两把尺子", "text": "中文说「在桌子上、在盒子里」，靠后面的「上、里」分工；英语靠 in、on、at 三张图分工——分工的位置不一样。"}], "examples": [{"s": "The bird is in the tree.", "note": "鸟在枝叶之间用 in——与苹果对照，汉语不切这一刀"}, {"s": "I read it in the newspaper.", "note": "「在报纸上」归 in——汉语「上」横跨三家的一例（详见 PB-12）"}], "claim": ""}, {"law": "P-12", "headline": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。", "beats": [{"beat": "先定找谁", "text": "杯子在桌子上——我们在找杯子，杯子站前面；桌子又大又稳，站在后面当背景。"}], "examples": [{"s": "The cat is in the box.", "note": "找猫——猫做图形，纸箱做背景"}, {"s": "The ball is in the grass.", "note": "草地做背景，球做图形"}], "claim": ""}]}, {"domain": "时间", "label": "时间义 · 讲时间", "nodes": [{"law": "P-09", "headline": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。", "beats": [{"beat": "三图借用", "text": "早上是一段时间，像泡在水里用 in；星期一是一天，像贴在日历上用 on；五点钟是一个点，用 at。"}, {"beat": "伪规则当场破", "text": "有人说「短的时间用 at」——可是 at night 的 night 是一整夜，in the morning 的 morning 也不到一天，规则当场就不对了。"}], "examples": [{"s": "We play in the morning.", "note": "上午时段——容器图"}, {"s": "We swim in summer.", "note": "季节是更长的容器"}], "claim": ""}]}, {"domain": "方法", "label": "全家福总纲 · 怎么学", "nodes": [{"law": "P-01", "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。", "beats": [{"beat": "原型图", "text": "先认每个介词最主要的那张图：in 是装进里面，on 是贴在面上，at 是一个点。"}], "examples": [{"s": "The cat is in the box.", "note": "纸箱里的猫——in 的原型场景"}], "claim": ""}, {"law": "P-17", "headline": "每个介词都是从「讲地方」开始长大的：先学会讲地方，再讲时间，最后讲看不见摸不着的意思——我们学它的顺序，就跟它长大的顺序一样。", "beats": [{"beat": "成长路线", "text": "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。"}], "examples": [{"s": "The cat is in the box.", "note": "第一级：空间义"}, {"s": "We play in the morning.", "note": "第二级：时间义（借空间图）"}], "claim": ""}]}], "opponents": [{"word": "on", "laws": ["P-01", "P-08", "P-09", "P-11", "P-12", "P-17"], "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。"}, {"word": "under", "laws": ["P-12", "P-17"], "headline": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。"}, {"word": "over", "laws": ["P-01"], "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。"}, {"word": "at", "laws": ["P-09"], "headline": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。"}], "quizzes": [{"law": "P-03", "q": "「小鸟在鸟笼里」用哪个词最贴？", "options": ["in", "on", "at"], "answer": "in", "hint": "东西装进口袋、杯子，人进屋子——装进一个有边的地方，就是 in 的老家。"}, {"law": "P-08", "q": "苹果没有冒出碗沿，却说 in the bowl，最重要的理由是？", "options": ["碗的功能就是盛东西，它正在盛", "苹果离碗很近", "苹果是圆的"], "answer": "碗的功能就是盛东西，它正在盛", "hint": "苹果装在碗里，哪怕没冒尖，也是 in——因为碗就是用来装的。"}, {"law": "P-09", "q": "in the morning 用 in，是因为把 morning 看成了什么？", "options": ["一段时间容器", "一个点", "一天的面"], "answer": "一段时间容器", "hint": "早上是一段时间，像泡在水里用 in；星期一是一天，像贴在日历上用 on；五点钟是一个点，用 at。"}, {"law": "P-17", "q": "教 in 的三个意思，顺序应该是？", "options": ["在盒子里 → 在早上 → 在麻烦中", "在麻烦中 → 在盒子里 → 在早上", "哪个都行，没有区别"], "answer": "在盒子里 → 在早上 → 在麻烦中", "hint": "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。"}], "errors": [{"law": "P-01", "type": "介词义项清单式误用", "note": "清单未登记本条逐字错例，按纪律不自编；待课堂/语料错例补录后回填。", "status": "待补"}, {"law": "P-03", "type": "in/on 切分误用", "note": "错位高发区见 PB-12；逐字病例待语料补录，不自编。", "status": "待补"}, {"law": "P-08", "type": "纯几何判介词", "note": "清单未登记逐字病例，不自编。", "status": "待补"}, {"law": "P-09", "type": "时长伪规则误用（如 *at the morning 类推）", "note": "伪规则及其反例已在 claim 登记；逐字学习者病例待语料补录，不自编。", "status": "待补"}, {"law": "P-11", "type": "介词概念迁移误用（pp 类）", "note": "错型与高发区已由 CLEC 描写登记；逐字病例待从语料专项研究补录，不自编。", "status": "待补"}, {"law": "P-12", "type": "图形背景倒置（语用怪异型）", "note": "清单未登记逐字病例，不自编。", "status": "待补"}, {"law": "P-17", "type": "抽象义抢先教学（教学侧风险）", "note": "顺序条目，逐字病例不适用，登记待补说明。", "status": "待补"}], "adult": [{"law": "P-01", "teacher": false, "boundary": "网络是分析模型，不是要求孩子背下整张网；教学只取原型图 + 一级引申，远端义项按频率逐个补。", "sources": ["Tyler & Evans (2003), Cambridge University Press（接触等级：专著系统论述级；书评与方法转述见清单原文链接）"], "grade": "专著定版级", "beats": ["原型场景（proto-scene）是网络的中心节点，由四条证据裁定（见 P-02），不是教师直觉。", "引申引擎是语用强化：场景中反复出现的附带含义沉淀为独立义项；义项间有理据，但不是每一步都能当场推导。"]}, {"law": "P-03", "teacher": false, "boundary": "容纳的边界可由功能划定而非物理围合（in the street 英式指在街道区域内）；in the photo 靠「画面即容器」的识解，属一级引申。", "sources": ["Tyler & Evans (2003) in 的 proto-scene 分析", "Language and Cognition 图式心理意象实验（清单原文链接）"], "grade": "专著定版级 + 实验支持", "beats": ["容纳图式（CONTAINMENT）来自身体经验；原型场景除几何面外还含功能面：容器对内容物施加影响（庇护、限制、浸泡）。", "尺度与域可变：in the city（区域）、in the team（集合）、in trouble / in love（状态浸泡）都是一级引申。"]}, {"law": "P-08", "teacher": false, "boundary": "功能变量不取消图式：教学表述应为「原型图 + 它起什么作用」，而非另起一套功能清单。", "sources": ["Coventry & Garrod (2004) 功能几何框架（Routledge 书页）", "溯源补正（清单 v3 回写）：功能决定选择的思想源头是 Herskovits (1986) 的功能知识与使用类型架构，见 PB-09/PB-10"], "grade": "专著 + 实验级", "beats": ["原型场景给几何骨架，功能变量（容器是否在「控制」内容物、面是否在「承托」）做第二决定项。", "Coventry & Garrod 的实验操纵同一几何构型下的功能变量（如容器倾斜致内容物将洒），被试的介词选择与评级随之系统变化——纯几何模型无法解释。"]}, {"law": "P-09", "teacher": false, "boundary": "借用不是全覆盖：at night 等约定残留单记为例外（见 claim.exceptions）；on Monday morning 的叠加用法按「就近修饰的日为面」处理，属高年级内容。", "sources": ["Lakoff & Johnson (1980)", "Tyler & Evans (2003) 时间义引申分析", "本项目裁定记录（清单原文）"], "grade": "理论定版 + 项目裁定级", "beats": ["时间域缺乏自有知觉，语言系统性地以空间图式结构化时间；映射保留图式内部逻辑（容器有内、面可贴附、点无大小）。", "反例即裁定证据：判据是图式（点/面/容器），不是时长数值；伪规则把结果当原因。"]}, {"law": "P-11", "teacher": false, "boundary": "本条用于教师侧的错误预判与重点投放，不作为学生个体的诊断结论；小学生口语/图画描述任务的错误分布可能不同。", "sources": ["CLEC（桂诗春、杨惠中 2003）介词短语偏误类", "基于 CLEC 的 at/on/in 概念迁移研究（hanspub 转载，证据等级中等）"], "grade": "语料描写级（二手个案分析为中等强度）", "beats": ["母语的空间概念化方式（汉语的后置定位与方位名词系统）作为默认框架被带入英语（概念迁移）；同母语背景学生错误形态高度趋同且与汉语切分线对应，是「系统差异」的判据（Jarvis 迁移可检测性标准）。", "错误集中在切分不一致的地带；错位地图见 PB-12（本条给出语料描写，PB-12 给出习得机制解释）。"]}, {"law": "P-12", "teacher": false, "boundary": "背景成为话题时分工可反转（The table is under the cup 只是语用怪异，不合语法之说不成立）。", "sources": ["Talmy (2000) Vol. I 图形—背景理论", "Tyler & Evans (2003) 术语承袭"], "grade": "理论定版级", "beats": ["图形—背景分工是知觉组织原则在语言中的投影：图形 = 待定物，背景 = 参照物；介词编码两者的空间关系。", "当背景本身成为话题，分工可反转；反转句是语用怪异而非语法错误，教学中以「怪异 ≠ 错误」点明。"]}, {"law": "P-17", "teacher": false, "boundary": "顺序是强倾向不是锁步；语言特异性限定（v3 回写）：展开顺序是各语言在自身范畴内部的展开，不预设普适概念清单；对中国孩子还要叠加刀口错位（PB-12）。", "sources": ["Tyler & Evans (2003)", "Johnston & Slobin (1979), Journal of Child Language 6(3): 529–545", "Clark (1973/1974) 转引 Kemmerer (2005)", "反例：Rice (1999)、Sandra & Rice (1995)"], "grade": "趋势级（已按反例降格）", "beats": ["空间经验在发展与演化上都先行：具身空间图式是最早可用的认知资源，其余域靠映射借用（与 P-09 同一原理的时间轴版本）。", "P-02 四条标准中「最早义」一条在 15 个介词上大体指向空间义；教学实验（P-10）按空间原型起步的设计与此一致。注意 Bowerman & Choi 的限定：顺序发生在各语言自己的范畴之内（PB-11）。"]}, {"law": "P-18", "teacher": true, "boundary": "结论只取方向不取数值（见 claim.exceptions）；本条为教师侧证据登记，儿童屏不上。", "sources": ["Wong Man Ho (Ivy) 教育局 R&D 项目结题报告 2021–22（香港树仁大学；项目 PDF，清单原文链接）"], "grade": "本土准实验级（成人样本）", "beats": ["与 P-10 相同机制：网络化表征降低逐项记忆负荷；华语被试的结果同时说明，概念迁移（P-11）造成的问题可以被显性的概念重构教学对冲。", "理论引用链指向 Tyler (2012)《Cognitive Linguistics and Second Language Learning》；本条与 P-10 构成「国际证据 + 本土证据」的双登记。"]}]}, "on": {"word": "on", "meaning": "在……上面（有接触）", "family": true, "nlaws": 7, "laws": ["P-01", "P-04", "P-08", "P-09", "P-11", "P-12", "P-17"], "proto": "P-04", "scene": "deskbox", "pos": "on", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-04", "headline": "on 就是「贴在表面上」：东西挨着一个面，靠这个面托着、挂着、套着。", "beats": [{"beat": "贴面", "text": "书贴在桌面上，画贴在墙上，戒指套在手指上——都先要「挨着一个面」。"}], "examples": [{"s": "The book is on the desk.", "note": "书桌——水平面承托"}, {"s": "The picture is on the wall.", "note": "挂画——垂直面附着（中国孩子高发错位点，见 PB-12）"}, {"s": "The ring is on her finger.", "note": "戒指套手指——环绕式承托"}, {"s": "The cat is on the table.", "note": "猫在桌面上——面承托活物"}], "claim": ""}, {"law": "P-08", "headline": "碗的工作是「装」，桌子的工作是「托」——东西有没有被装好、被托好，比它在哪儿更重要。", "beats": [{"beat": "功能翻转选择", "text": "杯子放在桌上是 on，因为桌子在托它；换个东西不起作用了，说法就会变。"}], "examples": [{"s": "The cup is on the table.", "note": "桌面托杯——承托功能"}, {"s": "The books are on the table.", "note": "多本书在桌面（复数泛指，词形经 book 归一）"}], "claim": ""}, {"law": "P-11", "headline": "中文和英语像两把不同的尺子，量同一个地方，刻度画的位置不一样。用错介词常常不是忘了，是拿错了尺子。", "beats": [{"beat": "两把尺子", "text": "中文说「在桌子上、在盒子里」，靠后面的「上、里」分工；英语靠 in、on、at 三张图分工——分工的位置不一样。"}], "examples": [{"s": "The picture is on the wall.", "note": "汉语「在墙上」的「上」在此归 on——切分对照点"}, {"s": "The apples are on the tree.", "note": "苹果长在树上（树的一部分）用 on（词形经 apple 归一）"}], "claim": ""}, {"law": "P-12", "headline": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。", "beats": [{"beat": "先定找谁", "text": "杯子在桌子上——我们在找杯子，杯子站前面；桌子又大又稳，站在后面当背景。"}], "examples": [{"s": "The cup is on the table.", "note": "找杯子——杯子做图形"}], "claim": ""}]}, {"domain": "时间", "label": "时间义 · 讲时间", "nodes": [{"law": "P-09", "headline": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。", "beats": [{"beat": "三图借用", "text": "早上是一段时间，像泡在水里用 in；星期一是一天，像贴在日历上用 on；五点钟是一个点，用 at。"}], "examples": [{"s": "We have English on Monday.", "note": "星期一——日历面"}], "claim": ""}]}, {"domain": "方法", "label": "全家福总纲 · 怎么学", "nodes": [{"law": "P-01", "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。", "beats": [{"beat": "原型图", "text": "先认每个介词最主要的那张图：in 是装进里面，on 是贴在面上，at 是一个点。"}], "examples": [{"s": "The book is on the desk.", "note": "书桌场景——on 的原型场景，与 in 形成对照"}], "claim": ""}, {"law": "P-17", "headline": "每个介词都是从「讲地方」开始长大的：先学会讲地方，再讲时间，最后讲看不见摸不着的意思——我们学它的顺序，就跟它长大的顺序一样。", "beats": [{"beat": "成长路线", "text": "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。"}], "examples": [{"s": "The dog is on the table.", "note": "空间义先行习得的另一原型（幼儿产出顺序前列）"}], "claim": ""}]}], "opponents": [{"word": "in", "laws": ["P-01", "P-08", "P-09", "P-11", "P-12", "P-17"], "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。"}, {"word": "under", "laws": ["P-12", "P-17"], "headline": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。"}, {"word": "over", "laws": ["P-01"], "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。"}, {"word": "at", "laws": ["P-09"], "headline": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。"}], "quizzes": [{"law": "P-04", "q": "画挂在墙上，为什么用 on 不用 in？", "options": ["画贴在墙面上，墙面负责挂住它", "画在墙的里面", "墙是一个点"], "answer": "画贴在墙面上，墙面负责挂住它", "hint": "书贴在桌面上，画贴在墙上，戒指套在手指上——都先要「挨着一个面」。"}, {"law": "P-12", "q": "「The cup is on the table」里，做图形（被找的东西）的是？", "options": ["cup", "table", "on"], "answer": "cup", "hint": "杯子在桌子上——我们在找杯子，杯子站前面；桌子又大又稳，站在后面当背景。"}], "errors": [{"law": "P-01", "type": "介词义项清单式误用", "note": "清单未登记本条逐字错例，按纪律不自编；待课堂/语料错例补录后回填。", "status": "待补"}, {"law": "P-04", "type": "汉语「上」直译误用 in/at", "note": "错位图见 PB-12；逐字病例待语料补录，不自编。", "status": "待补"}, {"law": "P-08", "type": "纯几何判介词", "note": "清单未登记逐字病例，不自编。", "status": "待补"}, {"law": "P-09", "type": "时长伪规则误用（如 *at the morning 类推）", "note": "伪规则及其反例已在 claim 登记；逐字学习者病例待语料补录，不自编。", "status": "待补"}, {"law": "P-11", "type": "介词概念迁移误用（pp 类）", "note": "错型与高发区已由 CLEC 描写登记；逐字病例待从语料专项研究补录，不自编。", "status": "待补"}, {"law": "P-12", "type": "图形背景倒置（语用怪异型）", "note": "清单未登记逐字病例，不自编。", "status": "待补"}, {"law": "P-17", "type": "抽象义抢先教学（教学侧风险）", "note": "顺序条目，逐字病例不适用，登记待补说明。", "status": "待补"}], "adult": [{"law": "P-01", "teacher": false, "boundary": "网络是分析模型，不是要求孩子背下整张网；教学只取原型图 + 一级引申，远端义项按频率逐个补。", "sources": ["Tyler & Evans (2003), Cambridge University Press（接触等级：专著系统论述级；书评与方法转述见清单原文链接）"], "grade": "专著定版级", "beats": ["原型场景（proto-scene）是网络的中心节点，由四条证据裁定（见 P-02），不是教师直觉。", "引申引擎是语用强化：场景中反复出现的附带含义沉淀为独立义项；义项间有理据，但不是每一步都能当场推导。"]}, {"law": "P-04", "teacher": false, "boundary": "on 的「面」可退化为线或点（on the corner 与 at 竞争，英美有别）；on foot 是固定习语——本项目 FR09 已裁定不得编「脚踩地面接触」的伪因果，与本条机制严格区分。", "sources": ["Tyler & Evans (2003) on 的 proto-scene 分析"], "grade": "专著定版级", "beats": ["接触是 on 的第一要素；面的朝向不限：水平面、垂直面、环绕面都是面。", "支撑是功能要素：面以承托、附着或环绕的方式维持物体的位置；on the bus 是被交通工具承载的一级引申。"]}, {"law": "P-08", "teacher": false, "boundary": "功能变量不取消图式：教学表述应为「原型图 + 它起什么作用」，而非另起一套功能清单。", "sources": ["Coventry & Garrod (2004) 功能几何框架（Routledge 书页）", "溯源补正（清单 v3 回写）：功能决定选择的思想源头是 Herskovits (1986) 的功能知识与使用类型架构，见 PB-09/PB-10"], "grade": "专著 + 实验级", "beats": ["原型场景给几何骨架，功能变量（容器是否在「控制」内容物、面是否在「承托」）做第二决定项。", "Coventry & Garrod 的实验操纵同一几何构型下的功能变量（如容器倾斜致内容物将洒），被试的介词选择与评级随之系统变化——纯几何模型无法解释。"]}, {"law": "P-09", "teacher": false, "boundary": "借用不是全覆盖：at night 等约定残留单记为例外（见 claim.exceptions）；on Monday morning 的叠加用法按「就近修饰的日为面」处理，属高年级内容。", "sources": ["Lakoff & Johnson (1980)", "Tyler & Evans (2003) 时间义引申分析", "本项目裁定记录（清单原文）"], "grade": "理论定版 + 项目裁定级", "beats": ["时间域缺乏自有知觉，语言系统性地以空间图式结构化时间；映射保留图式内部逻辑（容器有内、面可贴附、点无大小）。", "反例即裁定证据：判据是图式（点/面/容器），不是时长数值；伪规则把结果当原因。"]}, {"law": "P-11", "teacher": false, "boundary": "本条用于教师侧的错误预判与重点投放，不作为学生个体的诊断结论；小学生口语/图画描述任务的错误分布可能不同。", "sources": ["CLEC（桂诗春、杨惠中 2003）介词短语偏误类", "基于 CLEC 的 at/on/in 概念迁移研究（hanspub 转载，证据等级中等）"], "grade": "语料描写级（二手个案分析为中等强度）", "beats": ["母语的空间概念化方式（汉语的后置定位与方位名词系统）作为默认框架被带入英语（概念迁移）；同母语背景学生错误形态高度趋同且与汉语切分线对应，是「系统差异」的判据（Jarvis 迁移可检测性标准）。", "错误集中在切分不一致的地带；错位地图见 PB-12（本条给出语料描写，PB-12 给出习得机制解释）。"]}, {"law": "P-12", "teacher": false, "boundary": "背景成为话题时分工可反转（The table is under the cup 只是语用怪异，不合语法之说不成立）。", "sources": ["Talmy (2000) Vol. I 图形—背景理论", "Tyler & Evans (2003) 术语承袭"], "grade": "理论定版级", "beats": ["图形—背景分工是知觉组织原则在语言中的投影：图形 = 待定物，背景 = 参照物；介词编码两者的空间关系。", "当背景本身成为话题，分工可反转；反转句是语用怪异而非语法错误，教学中以「怪异 ≠ 错误」点明。"]}, {"law": "P-17", "teacher": false, "boundary": "顺序是强倾向不是锁步；语言特异性限定（v3 回写）：展开顺序是各语言在自身范畴内部的展开，不预设普适概念清单；对中国孩子还要叠加刀口错位（PB-12）。", "sources": ["Tyler & Evans (2003)", "Johnston & Slobin (1979), Journal of Child Language 6(3): 529–545", "Clark (1973/1974) 转引 Kemmerer (2005)", "反例：Rice (1999)、Sandra & Rice (1995)"], "grade": "趋势级（已按反例降格）", "beats": ["空间经验在发展与演化上都先行：具身空间图式是最早可用的认知资源，其余域靠映射借用（与 P-09 同一原理的时间轴版本）。", "P-02 四条标准中「最早义」一条在 15 个介词上大体指向空间义；教学实验（P-10）按空间原型起步的设计与此一致。注意 Bowerman & Choi 的限定：顺序发生在各语言自己的范畴之内（PB-11）。"]}, {"law": "P-18", "teacher": true, "boundary": "结论只取方向不取数值（见 claim.exceptions）；本条为教师侧证据登记，儿童屏不上。", "sources": ["Wong Man Ho (Ivy) 教育局 R&D 项目结题报告 2021–22（香港树仁大学；项目 PDF，清单原文链接）"], "grade": "本土准实验级（成人样本）", "beats": ["与 P-10 相同机制：网络化表征降低逐项记忆负荷；华语被试的结果同时说明，概念迁移（P-11）造成的问题可以被显性的概念重构教学对冲。", "理论引用链指向 Tyler (2012)《Cognitive Linguistics and Second Language Learning》；本条与 P-10 构成「国际证据 + 本土证据」的双登记。"]}]}, "over": {"word": "over", "meaning": "在…正上方/越过/结束", "family": true, "nlaws": 4, "laws": ["P-01", "P-02", "P-06", "P-13"], "proto": "P-06", "scene": "deskbox", "pos": "over", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-06", "headline": "over 的老家是「在上面」：毯子盖在上面，是因为它先要在上面；跳过栅栏，是从上面过去。", "beats": [{"beat": "中心在上方", "text": "先认老家：over 是「在上面」——鸟在墙的上方，飞机在山的上方。"}, {"beat": "亲戚按代排队", "text": "毯子盖住东西，是因为它在上面挡住了；跳过栅栏，是从上面带着路过去。"}], "examples": [{"s": "The bird flew over the wall.", "note": "从上方越过——中心与路径的结合"}, {"s": "The plane flew over the clouds.", "note": "云层上方——纯上方义"}, {"s": "The ball went over the bridge.", "note": "球越过桥面"}, {"s": "The cat jumped over the box.", "note": "跳过纸箱——越过义的儿童场景"}], "claim": ""}, {"law": "P-13", "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。", "beats": [{"beat": "牵连轴", "text": "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。"}], "examples": [{"s": "The plane flew over the hill.", "note": "越过山丘——over 的牵连义"}], "claim": ""}]}, {"domain": "方法", "label": "全家福总纲 · 怎么学", "nodes": [{"law": "P-01", "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。", "beats": [{"beat": "亲戚网的长法", "text": "新用法不是凭空来的：over 先有「在上面」，才长出「盖住」，再长出「越过」。"}], "examples": [{"s": "The bird flew over the wall.", "note": "操场围墙，鸟飞过去——越过义贴近中心"}, {"s": "The plane flew over the hill.", "note": "飞机从山的上方越过——上方+路径的引申"}], "claim": ""}, {"law": "P-02", "headline": "全家福中间放谁的照片，要讲证据：谁最老、谁亲戚最多、谁最能代表全家——不是随便挑的。", "beats": [{"beat": "四条证据", "text": "选中心要过四关：最老、亲戚最多、最能跟邻居分工、最能猜出别的亲戚。"}, {"beat": "over 的裁决示范", "text": "over 的老家是「在上方」：它最老、亲戚最多，所以坐在全家福中间。"}], "examples": [{"s": "The bird is over the tree.", "note": "鸟在树上方——中心义 ABOVE"}, {"s": "The car went over the bridge.", "note": "越过义——由中心义可预测的引申（证据四）"}, {"s": "The ball rolled over the hill.", "note": "滚过山坡——上方+路径"}], "claim": ""}]}], "opponents": [{"word": "above", "laws": ["P-02", "P-13"], "headline": "全家福中间放谁的照片，要讲证据：谁最老、谁亲戚最多、谁最能代表全家——不是随便挑的。"}, {"word": "in", "laws": ["P-01"], "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。"}, {"word": "on", "laws": ["P-01"], "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。"}, {"word": "under", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}, {"word": "below", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}], "quizzes": [{"law": "P-01", "q": "第一次学 over，先记哪一个意思最划算？", "options": ["在……上方（中心义）", "盖住", "结束"], "answer": "在……上方（中心义）", "hint": "先认每个介词最主要的那张图：in 是装进里面，on 是贴在面上，at 是一个点。"}, {"law": "P-06", "q": "over 的中心义是哪一个？", "options": ["在……上方", "盖住", "翻转"], "answer": "在……上方", "hint": "先认老家：over 是「在上面」——鸟在墙的上方，飞机在山的上方。"}], "errors": [{"law": "P-01", "type": "介词义项清单式误用", "note": "清单未登记本条逐字错例，按纪律不自编；待课堂/语料错例补录后回填。", "status": "待补"}, {"law": "P-02", "type": "中心义误定", "note": "方法论条目，清单未登记逐字错例，不自编。", "status": "待补"}, {"law": "P-06", "type": "over/above 混用", "note": "分工见 P-13；逐字病例待语料补录，不自编。", "status": "待补"}, {"law": "P-13", "type": "over/above 与 under/below 边界混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}], "adult": [{"law": "P-01", "teacher": false, "boundary": "网络是分析模型，不是要求孩子背下整张网；教学只取原型图 + 一级引申，远端义项按频率逐个补。", "sources": ["Tyler & Evans (2003), Cambridge University Press（接触等级：专著系统论述级；书评与方法转述见清单原文链接）"], "grade": "专著定版级", "beats": ["原型场景（proto-scene）是网络的中心节点，由四条证据裁定（见 P-02），不是教师直觉。", "引申引擎是语用强化：场景中反复出现的附带含义沉淀为独立义项；义项间有理据，但不是每一步都能当场推导。"]}, {"law": "P-02", "teacher": false, "boundary": "四条证据偶有冲突时以教学可用性裁决并注明（见 claim.exceptions）。", "sources": ["Tyler & Evans (2003: 47)（接触等级：专著原文级转述，见清单链接）"], "grade": "专著原文级", "beats": ["把「原型」从直觉概念升级为可核查的方法论，避免不同教材各说一个中心义。", "15 个义项中 8 个直接涉及 ABOVE 满足主导证据；词源最早义为「高于」，两条独立证据同指一心。"]}, {"law": "P-06", "teacher": false, "boundary": "over 与 above 不是同义词：over 隐含与参照物的关联（可接触、可构成路径），above 只是海拔更高；儿童阶段只教「上方 + 越过」两支，above 作认读词。", "sources": ["Tyler & Evans (2003) over 个案章", "先声：Brugman (1981) 学位论文与 Lakoff (1987) 的 over 案例研究"], "grade": "专著定版级（呈现口径）；中心义之争未有学界终局", "beats": ["ABOVE 中心由四条证据同指（P-02）：词源最早义、网络主导、垂直对照集、可预测性。", "经验桥梁：在上方 → 遮挡（覆盖义）；在上方 + 移动 → 越过义；越过终点 → 结束、遍等抽象义。"]}, {"law": "P-13", "teacher": false, "boundary": "四词分工是强倾向：互换区按频率逐个登记，不追求理论洁癖；below 的标量域例（below zero）中 zero 已在库，below 本词待补。", "sources": ["Tyler & Evans (2003) 对照集分析"], "grade": "专著定版级", "beats": ["对照集联合切分语义空间：over/under 带与参照物的关联（接触可能、路径构成），above/below 只编码标量高低；below 在温度、海拔等标量域占优（below zero）。", "The plane flew over the hill（越过，有路径牵连）vs The plane flew above the clouds（仅更高）——替换测试可验证分工（清单原文）。"]}]}, "above": {"word": "above", "meaning": "在…斜上方(不接触)", "family": true, "nlaws": 2, "laws": ["P-02", "P-13"], "proto": "P-13", "scene": "vert", "pos": "above", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-13", "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。", "beats": [{"beat": "牵连轴", "text": "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。"}], "examples": [{"s": "The plane is above the clouds.", "note": "只比云高——above 的标量义"}, {"s": "The stars are above the mountain.", "note": "星星比山高——纯高低"}], "claim": ""}]}, {"domain": "方法", "label": "全家福总纲 · 怎么学", "nodes": [{"law": "P-02", "headline": "全家福中间放谁的照片，要讲证据：谁最老、谁亲戚最多、谁最能代表全家——不是随便挑的。", "beats": [{"beat": "over 的裁决示范", "text": "over 的老家是「在上方」：它最老、亲戚最多，所以坐在全家福中间。"}], "examples": [{"s": "The plane is above the clouds.", "note": "与邻居 above 对照——证据三（对照集）"}], "claim": ""}]}], "opponents": [{"word": "over", "laws": ["P-02", "P-13"], "headline": "全家福中间放谁的照片，要讲证据：谁最老、谁亲戚最多、谁最能代表全家——不是随便挑的。"}, {"word": "under", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}, {"word": "below", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}], "quizzes": [], "errors": [{"law": "P-02", "type": "中心义误定", "note": "方法论条目，清单未登记逐字错例，不自编。", "status": "待补"}, {"law": "P-13", "type": "over/above 与 under/below 边界混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}], "adult": [{"law": "P-02", "teacher": false, "boundary": "四条证据偶有冲突时以教学可用性裁决并注明（见 claim.exceptions）。", "sources": ["Tyler & Evans (2003: 47)（接触等级：专著原文级转述，见清单链接）"], "grade": "专著原文级", "beats": ["把「原型」从直觉概念升级为可核查的方法论，避免不同教材各说一个中心义。", "15 个义项中 8 个直接涉及 ABOVE 满足主导证据；词源最早义为「高于」，两条独立证据同指一心。"]}, {"law": "P-13", "teacher": false, "boundary": "四词分工是强倾向：互换区按频率逐个登记，不追求理论洁癖；below 的标量域例（below zero）中 zero 已在库，below 本词待补。", "sources": ["Tyler & Evans (2003) 对照集分析"], "grade": "专著定版级", "beats": ["对照集联合切分语义空间：over/under 带与参照物的关联（接触可能、路径构成），above/below 只编码标量高低；below 在温度、海拔等标量域占优（below zero）。", "The plane flew over the hill（越过，有路径牵连）vs The plane flew above the clouds（仅更高）——替换测试可验证分工（清单原文）。"]}]}, "at": {"word": "at", "meaning": "在(小地点)/加具体几点钟", "family": true, "nlaws": 4, "laws": ["P-05", "P-09", "P-10", "P-14"], "proto": "P-05", "scene": "point", "pos": "at", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-05", "headline": "at 是把东西看成地图上的一个小点点：地方再大，在 at 眼里也只是一个点。", "beats": [{"beat": "点化", "text": "车站那么大，在地图上也只是一个点——说 at 的时候，心里想的就是那个点。"}], "examples": [{"s": "The student is at the station.", "note": "车站作为位置点"}, {"s": "We are at home.", "note": "家被点化为所在位置"}, {"s": "The teacher is at the door.", "note": "门口是一个位置点"}, {"s": "The bus is at the station.", "note": "车辆到站——点位到达"}], "claim": ""}]}, {"domain": "时间", "label": "时间义 · 讲时间", "nodes": [{"law": "P-09", "headline": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。", "beats": [{"beat": "伪规则当场破", "text": "有人说「短的时间用 at」——可是 at night 的 night 是一整夜，in the morning 的 morning 也不到一天，规则当场就不对了。"}], "examples": [{"s": "The bus comes at five.", "note": "五点——时刻点（数字词 five 已在库）"}], "claim": ""}]}, {"domain": "抽象", "label": "引申义 · 看不见的意思", "nodes": [{"law": "P-14", "headline": "to 是「送到门口」，for 是「为了谁」，at 是「瞄准靶心」——都是朝一个方向，但心里装的东西不一样。", "beats": [{"beat": "三张指向图", "text": "to 看终点：走到学校门口停下；for 看为了谁：礼物是给妹妹的；at 看靶心：目光落在门上。"}], "examples": [{"s": "Look at the map.", "note": "目光瞄准地图上的点"}], "claim": ""}]}, {"domain": "方法", "label": "全家福总纲 · 怎么学", "nodes": [{"law": "P-10", "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。", "beats": [{"beat": "按图索引", "text": "新用法不用一条条背：把它挂到认识的图或者近亲身上，就记住了。"}], "examples": [{"s": "Look at the door.", "note": "at 的瞄准图"}, {"s": "Look at the map.", "note": "目光落点——点的引申"}], "claim": ""}]}], "opponents": [{"word": "to", "laws": ["P-10", "P-14"], "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。"}, {"word": "for", "laws": ["P-10", "P-14"], "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。"}, {"word": "in", "laws": ["P-09"], "headline": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。"}, {"word": "on", "laws": ["P-09"], "headline": "讲时间的时候借用讲地方的图：一阵子是「泡在里面」（in），一天是「贴在日历上」（on），一个时刻是「一个点」（at）。"}], "quizzes": [{"law": "P-05", "q": "at the station 里的 station 被看成什么？", "options": ["一个点", "一个容器", "一个面"], "answer": "一个点", "hint": "车站那么大，在地图上也只是一个点——说 at 的时候，心里想的就是那个点。"}], "errors": [{"law": "P-05", "type": "at/in 点与容器混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}, {"law": "P-09", "type": "时长伪规则误用（如 *at the morning 类推）", "note": "伪规则及其反例已在 claim 登记；逐字学习者病例待语料补录，不自编。", "status": "待补"}, {"law": "P-10", "type": "义项清单式死记（教学侧风险，非学生错句）", "note": "本条为教学法条目，病例形态为教学诊断，逐字病例不适用，登记待补说明。", "status": "待补"}, {"law": "P-14", "type": "to/for 受益与接收混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}], "adult": [{"law": "P-05", "teacher": false, "boundary": "点化是「看作」点不是「是」点：同一城市可点化（at）也可容器化（in the city），随说法切换；at night 属约定，见 P-09。", "sources": ["Tyler & Evans (2003) at 的点位分析", "Herskovits (1986) at 的理想意义（射体与被当作点的界标重合）为上游同源表述，见 PB-08"], "grade": "专著定版级", "beats": ["点化 = 主动忽略对象的内部结构（大小、形状），只保留其在参照系中的坐标位置。", "at 与 in/on 的对立在地点与时间两域平行出现（at the station / in the city；at 5 / in June），是图式跨域复用的强证据。"]}, {"law": "P-09", "teacher": false, "boundary": "借用不是全覆盖：at night 等约定残留单记为例外（见 claim.exceptions）；on Monday morning 的叠加用法按「就近修饰的日为面」处理，属高年级内容。", "sources": ["Lakoff & Johnson (1980)", "Tyler & Evans (2003) 时间义引申分析", "本项目裁定记录（清单原文）"], "grade": "理论定版 + 项目裁定级", "beats": ["时间域缺乏自有知觉，语言系统性地以空间图式结构化时间；映射保留图式内部逻辑（容器有内、面可贴附、点无大小）。", "反例即裁定证据：判据是图式（点/面/容器），不是时长数值；伪规则把结果当原因。"]}, {"law": "P-10", "teacher": false, "boundary": "两组实验的被试分别为成人进阶学习者与中学生；对小学儿童，图式须以动画/实物演示承载，理据讲解的语言负荷降到最低——方法可迁移，剂量须重标定。", "sources": ["Tyler, Mueller & Ho (2011), Vigo International Journal of Applied Linguistics 8: 181–206", "Wijaya & Ong (2018), Indonesian Journal of Applied Linguistics 8(1)", "Hung et al. (2018)（纲领 basis 引）"], "grade": "准实验复制级（成人/中学生样本）", "beats": ["网络结构为新义项提供预成的挂钩，记忆从「逐条存储」变为「按图索引」；理据感同时提升注意与加工深度。", "Tyler 等人 (2011) 中 CL 组在 to/for/at 的未学用法上同样获益；Wijaya & Ong (2018) 在中学年龄段复制优势方向。"]}, {"law": "P-14", "teacher": false, "boundary": "for 的时长义（for two hours）与 to 的比较义（ten to six）属远端引申，小学只教空间与受益核心义。", "sources": ["Tyler & Evans (2003) to/for/at 个案", "Tyler, Mueller & Ho (2011)"], "grade": "专著定版 + 实验级", "beats": ["三词原型场景分别为路径终点（to）、目的/受益（for，由「在前、为先」引申）、点位瞄准（at，点化图式见 P-05）；引申网络各自展开。", "接收者（to）与受益者（for）的分工是本条在小学阶段最重要的落地对比；汉语「给」一词兼包两职，是误用的母语根源。"]}, {"law": "P-18", "teacher": true, "boundary": "结论只取方向不取数值（见 claim.exceptions）；本条为教师侧证据登记，儿童屏不上。", "sources": ["Wong Man Ho (Ivy) 教育局 R&D 项目结题报告 2021–22（香港树仁大学；项目 PDF，清单原文链接）"], "grade": "本土准实验级（成人样本）", "beats": ["与 P-10 相同机制：网络化表征降低逐项记忆负荷；华语被试的结果同时说明，概念迁移（P-11）造成的问题可以被显性的概念重构教学对冲。", "理论引用链指向 Tyler (2012)《Cognitive Linguistics and Second Language Learning》；本条与 P-10 构成「国际证据 + 本土证据」的双登记。"]}]}, "up": {"word": "up", "meaning": "向上", "family": true, "nlaws": 2, "laws": ["P-07", "P-15"], "proto": "P-07", "scene": "rise", "pos": "up", "groups": [{"domain": "抽象", "label": "引申义 · 看不见的意思", "nodes": [{"law": "P-07", "headline": "水越多，杯子里的水位就越高——所以英语里「变多」也用 up：声音变大、价格变高，都往「上」走。", "beats": [{"beat": "同场同现", "text": "往杯子里倒水：水变多了，水位也变高了——两件事总是一起发生。"}, {"beat": "数量借 up", "text": "价格涨了、声音大了，英语都说 up——因为它们像水位一样往上走。"}], "examples": [{"s": "The water goes up in the cup.", "note": "倒水时水位上升——经验相关的原场景"}, {"s": "The wind is up.", "note": "风变大了——量增用 up（登记用法，量级义）"}, {"s": "Turn the light up.", "note": "把灯调亮——量增的动作指令（亮度量）"}, {"s": "The sun is up.", "note": "太阳升起来了——空间义本体，与数量义同源对照"}], "claim": ""}, {"law": "P-15", "headline": "动词后面的小词 up、out、off 都有自己的画面：up 是「满了、到底了」，out 是「从里面出来」——看着画面记短语动词，容易得多。", "beats": [{"beat": "小词随身带图", "text": "stand up 是真的站起来（往上）；eat up 是吃到底、吃光——up 还是那个 up。"}, {"beat": "透明度三档", "text": "有的短语动词一看图就懂，有的要猜一猜，有的只能整块记住——分三档对待。"}], "examples": [{"s": "Stand up, please.", "note": "教室日常指令——up 的空间义本体"}, {"s": "Eat up the cake.", "note": "把蛋糕吃光——up 的完结义"}], "claim": ""}]}], "opponents": [{"word": "off", "laws": ["P-15"], "headline": "动词后面的小词 up、out、off 都有自己的画面：up 是「满了、到底了」，out 是「从里面出来」——看着画面记短语动词，容易得多。"}], "quizzes": [{"law": "P-07", "q": "为什么「价格变高」用 up 说？", "options": ["量变多时东西会往上升，经验把「多」和「上」绑在了一起", "up 本来就是「贵」的意思", "随便选的，没有道理"], "answer": "量变多时东西会往上升，经验把「多」和「上」绑在了一起", "hint": "往杯子里倒水：水变多了，水位也变高了——两件事总是一起发生。"}, {"law": "P-15", "q": "eat up 里的 up 是什么意思？", "options": ["吃到底、吃光（完结）", "往上吃", "站着吃"], "answer": "吃到底、吃光（完结）", "hint": "stand up 是真的站起来（往上）；eat up 是吃到底、吃光——up 还是那个 up。"}], "errors": [{"law": "P-07", "type": "up 引申义误推", "note": "give up 等另一支引申见 claim 边界；逐字病例待补，不自编。", "status": "待补"}, {"law": "P-15", "type": "短语动词逐个死记（教学侧风险）", "note": "本条病例形态为学习策略诊断，逐字病例不适用，登记待补说明。", "status": "待补"}], "adult": [{"law": "P-07", "teacher": false, "boundary": "经验相关解释「为什么偏偏是 up」，不保证每个 up 短语可推导：give up 的 up 是「到顶/到底」的完结义（另一支引申，须单独点明）；speak up 的 up 兼有音量与公开化两支，教学取音量支。", "sources": ["Tyler & Evans (2003) up 与 MORE 分析（LINGUIST List 书评转述液体上升例）", "Lakoff & Johnson (1980) MORE IS UP"], "grade": "专著定版级", "beats": ["经验相关（experiential correlation）：两个总在同一场景中同现的属性（量↑ 与 高度↑）在概念系统里被绑成一条通道，语言形式随之共享。", "汉语「上涨、提高」同样以竖直轴编码数量，儿童可由母语经验直接接通（正迁移）。"]}, {"law": "P-15", "teacher": false, "boundary": "合成度连续谱按三档处理；与 V 组的词块观衔接：高频习语块整记保流利，图式透明族成组教保迁移。", "sources": ["Tyler & Evans (2003) 统一网络处理", "Lindner (1981) out/up 分析", "Boers & Demecheleer (1998), ELT Journal 52(3) 图式法早期课堂化尝试"], "grade": "专著 + 经典论文级", "beats": ["小品词与介词同源同图式，在短语动词中的意义贡献是图式义的系统引申（完结、显现、脱离、持续等体貌义）。", "透明（stand up）可推，半透明（put up with）助记，习语化整记；教学不许把助记说成推导。"]}]}, "for": {"word": "for", "meaning": "为了/给/持续…时间", "family": true, "nlaws": 2, "laws": ["P-10", "P-14"], "proto": "P-14", "scene": "door", "pos": "for", "groups": [{"domain": "抽象", "label": "引申义 · 看不见的意思", "nodes": [{"law": "P-14", "headline": "to 是「送到门口」，for 是「为了谁」，at 是「瞄准靶心」——都是朝一个方向，但心里装的东西不一样。", "beats": [{"beat": "三张指向图", "text": "to 看终点：走到学校门口停下；for 看为了谁：礼物是给妹妹的；at 看靶心：目光落在门上。"}], "examples": [{"s": "The gift is for my sister.", "note": "礼物为了妹妹——受益"}], "claim": ""}]}, {"domain": "方法", "label": "全家福总纲 · 怎么学", "nodes": [{"law": "P-10", "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。", "beats": [{"beat": "按图索引", "text": "新用法不用一条条背：把它挂到认识的图或者近亲身上，就记住了。"}], "examples": [{"s": "This gift is for me.", "note": "for 的受益图"}], "claim": ""}]}], "opponents": [{"word": "at", "laws": ["P-10", "P-14"], "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。"}, {"word": "to", "laws": ["P-10", "P-14"], "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。"}], "quizzes": [{"law": "P-14", "q": "「This cake is for my mum.」里的 for 说的是？", "options": ["为了谁、给谁受益", "移动的终点", "瞄准的点"], "answer": "为了谁、给谁受益", "hint": "to 看终点：走到学校门口停下；for 看为了谁：礼物是给妹妹的；at 看靶心：目光落在门上。"}], "errors": [{"law": "P-10", "type": "义项清单式死记（教学侧风险，非学生错句）", "note": "本条为教学法条目，病例形态为教学诊断，逐字病例不适用，登记待补说明。", "status": "待补"}, {"law": "P-14", "type": "to/for 受益与接收混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}], "adult": [{"law": "P-10", "teacher": false, "boundary": "两组实验的被试分别为成人进阶学习者与中学生；对小学儿童，图式须以动画/实物演示承载，理据讲解的语言负荷降到最低——方法可迁移，剂量须重标定。", "sources": ["Tyler, Mueller & Ho (2011), Vigo International Journal of Applied Linguistics 8: 181–206", "Wijaya & Ong (2018), Indonesian Journal of Applied Linguistics 8(1)", "Hung et al. (2018)（纲领 basis 引）"], "grade": "准实验复制级（成人/中学生样本）", "beats": ["网络结构为新义项提供预成的挂钩，记忆从「逐条存储」变为「按图索引」；理据感同时提升注意与加工深度。", "Tyler 等人 (2011) 中 CL 组在 to/for/at 的未学用法上同样获益；Wijaya & Ong (2018) 在中学年龄段复制优势方向。"]}, {"law": "P-14", "teacher": false, "boundary": "for 的时长义（for two hours）与 to 的比较义（ten to six）属远端引申，小学只教空间与受益核心义。", "sources": ["Tyler & Evans (2003) to/for/at 个案", "Tyler, Mueller & Ho (2011)"], "grade": "专著定版 + 实验级", "beats": ["三词原型场景分别为路径终点（to）、目的/受益（for，由「在前、为先」引申）、点位瞄准（at，点化图式见 P-05）；引申网络各自展开。", "接收者（to）与受益者（for）的分工是本条在小学阶段最重要的落地对比；汉语「给」一词兼包两职，是误用的母语根源。"]}]}, "to": {"word": "to", "meaning": "向/到…去", "family": true, "nlaws": 2, "laws": ["P-10", "P-14"], "proto": "P-14", "scene": "door", "pos": "to", "groups": [{"domain": "抽象", "label": "引申义 · 看不见的意思", "nodes": [{"law": "P-14", "headline": "to 是「送到门口」，for 是「为了谁」，at 是「瞄准靶心」——都是朝一个方向，但心里装的东西不一样。", "beats": [{"beat": "三张指向图", "text": "to 看终点：走到学校门口停下；for 看为了谁：礼物是给妹妹的；at 看靶心：目光落在门上。"}], "examples": [{"s": "We go to school.", "note": "学校是路的终点"}, {"s": "Give it to me.", "note": "递给我——我是接收者"}], "claim": ""}]}, {"domain": "方法", "label": "全家福总纲 · 怎么学", "nodes": [{"law": "P-10", "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。", "beats": [{"beat": "按图索引", "text": "新用法不用一条条背：把它挂到认识的图或者近亲身上，就记住了。"}], "examples": [{"s": "We go to school.", "note": "to 的终点图——教学实验的核心词之一"}], "claim": ""}]}], "opponents": [{"word": "at", "laws": ["P-10", "P-14"], "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。"}, {"word": "for", "laws": ["P-10", "P-14"], "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。"}], "quizzes": [], "errors": [{"law": "P-10", "type": "义项清单式死记（教学侧风险，非学生错句）", "note": "本条为教学法条目，病例形态为教学诊断，逐字病例不适用，登记待补说明。", "status": "待补"}, {"law": "P-14", "type": "to/for 受益与接收混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}], "adult": [{"law": "P-10", "teacher": false, "boundary": "两组实验的被试分别为成人进阶学习者与中学生；对小学儿童，图式须以动画/实物演示承载，理据讲解的语言负荷降到最低——方法可迁移，剂量须重标定。", "sources": ["Tyler, Mueller & Ho (2011), Vigo International Journal of Applied Linguistics 8: 181–206", "Wijaya & Ong (2018), Indonesian Journal of Applied Linguistics 8(1)", "Hung et al. (2018)（纲领 basis 引）"], "grade": "准实验复制级（成人/中学生样本）", "beats": ["网络结构为新义项提供预成的挂钩，记忆从「逐条存储」变为「按图索引」；理据感同时提升注意与加工深度。", "Tyler 等人 (2011) 中 CL 组在 to/for/at 的未学用法上同样获益；Wijaya & Ong (2018) 在中学年龄段复制优势方向。"]}, {"law": "P-14", "teacher": false, "boundary": "for 的时长义（for two hours）与 to 的比较义（ten to six）属远端引申，小学只教空间与受益核心义。", "sources": ["Tyler & Evans (2003) to/for/at 个案", "Tyler, Mueller & Ho (2011)"], "grade": "专著定版 + 实验级", "beats": ["三词原型场景分别为路径终点（to）、目的/受益（for，由「在前、为先」引申）、点位瞄准（at，点化图式见 P-05）；引申网络各自展开。", "接收者（to）与受益者（for）的分工是本条在小学阶段最重要的落地对比；汉语「给」一词兼包两职，是误用的母语根源。"]}]}, "under": {"word": "under", "meaning": "在……下面", "family": true, "nlaws": 3, "laws": ["P-12", "P-13", "P-17"], "proto": "P-13", "scene": "desk", "pos": "under", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-12", "headline": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。", "beats": [{"beat": "分工可反转", "text": "要是丢的是桌子，也可以说「桌子在杯子下面」——不算错，只是听起来怪，因为平时没人找桌子。"}], "examples": [{"s": "The book is under the desk.", "note": "书在桌下——仍是小的做图形"}], "claim": ""}, {"law": "P-13", "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。", "beats": [{"beat": "牵连轴", "text": "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。"}], "examples": [{"s": "The cat is under the table.", "note": "桌子下方且被桌罩着——under 的牵连义"}], "claim": ""}]}, {"domain": "方法", "label": "全家福总纲 · 怎么学", "nodes": [{"law": "P-17", "headline": "每个介词都是从「讲地方」开始长大的：先学会讲地方，再讲时间，最后讲看不见摸不着的意思——我们学它的顺序，就跟它长大的顺序一样。", "beats": [{"beat": "成长路线", "text": "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。"}], "examples": [{"s": "The book is under the desk.", "note": "under 与 in/on 同属先行组（Johnston & Slobin 1979）"}], "claim": ""}]}], "opponents": [{"word": "in", "laws": ["P-12", "P-17"], "headline": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。"}, {"word": "on", "laws": ["P-12", "P-17"], "headline": "说东西在哪儿，先想好「在找谁」：找的东西站前面，大背景站后面，介词是把它们连起来的钉子。"}, {"word": "above", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}, {"word": "over", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}, {"word": "below", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}], "quizzes": [{"law": "P-13", "q": "「below zero（零度以下）」用 below 不用 under，是因为这里只比什么？", "options": ["高低（标量）", "谁盖住谁", "谁压着谁"], "answer": "高低（标量）", "hint": "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。"}], "errors": [{"law": "P-12", "type": "图形背景倒置（语用怪异型）", "note": "清单未登记逐字病例，不自编。", "status": "待补"}, {"law": "P-13", "type": "over/above 与 under/below 边界混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}, {"law": "P-17", "type": "抽象义抢先教学（教学侧风险）", "note": "顺序条目，逐字病例不适用，登记待补说明。", "status": "待补"}], "adult": [{"law": "P-12", "teacher": false, "boundary": "背景成为话题时分工可反转（The table is under the cup 只是语用怪异，不合语法之说不成立）。", "sources": ["Talmy (2000) Vol. I 图形—背景理论", "Tyler & Evans (2003) 术语承袭"], "grade": "理论定版级", "beats": ["图形—背景分工是知觉组织原则在语言中的投影：图形 = 待定物，背景 = 参照物；介词编码两者的空间关系。", "当背景本身成为话题，分工可反转；反转句是语用怪异而非语法错误，教学中以「怪异 ≠ 错误」点明。"]}, {"law": "P-13", "teacher": false, "boundary": "四词分工是强倾向：互换区按频率逐个登记，不追求理论洁癖；below 的标量域例（below zero）中 zero 已在库，below 本词待补。", "sources": ["Tyler & Evans (2003) 对照集分析"], "grade": "专著定版级", "beats": ["对照集联合切分语义空间：over/under 带与参照物的关联（接触可能、路径构成），above/below 只编码标量高低；below 在温度、海拔等标量域占优（below zero）。", "The plane flew over the hill（越过，有路径牵连）vs The plane flew above the clouds（仅更高）——替换测试可验证分工（清单原文）。"]}, {"law": "P-17", "teacher": false, "boundary": "顺序是强倾向不是锁步；语言特异性限定（v3 回写）：展开顺序是各语言在自身范畴内部的展开，不预设普适概念清单；对中国孩子还要叠加刀口错位（PB-12）。", "sources": ["Tyler & Evans (2003)", "Johnston & Slobin (1979), Journal of Child Language 6(3): 529–545", "Clark (1973/1974) 转引 Kemmerer (2005)", "反例：Rice (1999)、Sandra & Rice (1995)"], "grade": "趋势级（已按反例降格）", "beats": ["空间经验在发展与演化上都先行：具身空间图式是最早可用的认知资源，其余域靠映射借用（与 P-09 同一原理的时间轴版本）。", "P-02 四条标准中「最早义」一条在 15 个介词上大体指向空间义；教学实验（P-10）按空间原型起步的设计与此一致。注意 Bowerman & Choi 的限定：顺序发生在各语言自己的范畴之内（PB-11）。"]}, {"law": "P-18", "teacher": true, "boundary": "结论只取方向不取数值（见 claim.exceptions）；本条为教师侧证据登记，儿童屏不上。", "sources": ["Wong Man Ho (Ivy) 教育局 R&D 项目结题报告 2021–22（香港树仁大学；项目 PDF，清单原文链接）"], "grade": "本土准实验级（成人样本）", "beats": ["与 P-10 相同机制：网络化表征降低逐项记忆负荷；华语被试的结果同时说明，概念迁移（P-11）造成的问题可以被显性的概念重构教学对冲。", "理论引用链指向 Tyler (2012)《Cognitive Linguistics and Second Language Learning》；本条与 P-10 构成「国际证据 + 本土证据」的双登记。"]}]}, "below": {"word": "below", "meaning": "在……下面；低于", "family": true, "nlaws": 1, "laws": ["P-13"], "proto": "P-13", "scene": "vert", "pos": "below", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-13", "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。", "beats": [{"beat": "牵连轴", "text": "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。"}], "examples": [], "claim": "英语把垂直轴切给四个词分管：over 管「上方且有牵连（可盖、可越）」，above 只管「海拔更高」，under 管「下方且有牵连（被压、被罩）」，below 只管「海拔更低」——每个词的意义部分地由它与邻居的边界决定。"}]}], "opponents": [{"word": "under", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}, {"word": "above", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}, {"word": "over", "laws": ["P-13"], "headline": "上下这条线上有四个小伙伴分工：有的管「高」，有的还管「盖住、越过」——分清谁管什么，才不会用错。"}], "quizzes": [{"law": "P-13", "q": "「below zero（零度以下）」用 below 不用 under，是因为这里只比什么？", "options": ["高低（标量）", "谁盖住谁", "谁压着谁"], "answer": "高低（标量）", "hint": "飞机从山头飞过去，是 over（跟山有关系：越过它）；飞机只是在云的上面，是 above（只是更高）。"}], "errors": [{"law": "P-13", "type": "over/above 与 under/below 边界混用", "note": "清单未登记逐字病例，不自编。", "status": "待补"}], "adult": [{"law": "P-13", "teacher": false, "boundary": "四词分工是强倾向：互换区按频率逐个登记，不追求理论洁癖；below 的标量域例（below zero）中 zero 已在库，below 本词待补。", "sources": ["Tyler & Evans (2003) 对照集分析"], "grade": "专著定版级", "beats": ["对照集联合切分语义空间：over/under 带与参照物的关联（接触可能、路径构成），above/below 只编码标量高低；below 在温度、海拔等标量域占优（below zero）。", "The plane flew over the hill（越过，有路径牵连）vs The plane flew above the clouds（仅更高）——替换测试可验证分工（清单原文）。"]}]}, "off": {"word": "off", "meaning": "离开；（电器）关着", "family": true, "nlaws": 1, "laws": ["P-15"], "proto": "P-15", "scene": "detach", "pos": "off", "groups": [{"domain": "抽象", "label": "引申义 · 看不见的意思", "nodes": [{"law": "P-15", "headline": "动词后面的小词 up、out、off 都有自己的画面：up 是「满了、到底了」，out 是「从里面出来」——看着画面记短语动词，容易得多。", "beats": [{"beat": "小词随身带图", "text": "stand up 是真的站起来（往上）；eat up 是吃到底、吃光——up 还是那个 up。"}], "examples": [{"s": "Turn off the light.", "note": "关灯——off 的脱离/关闭义"}], "claim": ""}]}], "opponents": [{"word": "up", "laws": ["P-15"], "headline": "动词后面的小词 up、out、off 都有自己的画面：up 是「满了、到底了」，out 是「从里面出来」——看着画面记短语动词，容易得多。"}], "quizzes": [], "errors": [{"law": "P-15", "type": "短语动词逐个死记（教学侧风险）", "note": "本条病例形态为学习策略诊断，逐字病例不适用，登记待补说明。", "status": "待补"}], "adult": [{"law": "P-15", "teacher": false, "boundary": "合成度连续谱按三档处理；与 V 组的词块观衔接：高频习语块整记保流利，图式透明族成组教保迁移。", "sources": ["Tyler & Evans (2003) 统一网络处理", "Lindner (1981) out/up 分析", "Boers & Demecheleer (1998), ELT Journal 52(3) 图式法早期课堂化尝试"], "grade": "专著 + 经典论文级", "beats": ["小品词与介词同源同图式，在短语动词中的意义贡献是图式义的系统引申（完结、显现、脱离、持续等体貌义）。", "透明（stand up）可推，半透明（put up with）助记，习语化整记；教学不许把助记说成推导。"]}]}, "along": {"word": "along", "meaning": "沿着；向前", "family": true, "nlaws": 1, "laws": ["P-16"], "proto": "P-16", "scene": "road", "pos": "along", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-16", "headline": "路明明没动，却说它「跑」——其实是我们的眼睛在沿着路看过去，像手指划过地图一样。", "beats": [{"beat": "目光在动", "text": "眼睛从路的这一头看到那一头，就像手指划过地图——句子把这趟「眼睛的旅行」说成了路在跑。"}], "examples": [{"s": "The road runs along the river.", "note": "清单原文例句——路沿河伸展（along 待补词库，本句为条目原文例句先行登记，见 pending）"}], "claim": ""}]}], "opponents": [], "quizzes": [{"law": "P-16", "q": "「The road runs along the river」里，真的在跑的是？", "options": ["谁都没跑，是目光沿着路在移动", "路在跑", "河在跑"], "answer": "谁都没跑，是目光沿着路在移动", "hint": "眼睛从路的这一头看到那一头，就像手指划过地图——句子把这趟「眼睛的旅行」说成了路在跑。"}], "errors": [{"law": "P-16", "type": "虚构运动字面误读", "note": "本条为阅读理解提示，无登记逐字病例，不自编。", "status": "待补"}], "adult": [{"law": "P-16", "teacher": false, "boundary": "小学阶段只作阅读理解提示，不作产出教学目标；along 不在现词库，例句为清单原文例句，along 须走补词流程（见 pending）。", "sources": ["Talmy (2000) Vol. I 第 2 章（页码经 2026-11-01 补核销项）"], "grade": "专著定版级", "beats": ["虚构运动（fictive motion）源于注意沿路径的心理扫描；语言在实动与虚动之间共用同一套路径图式。", "眼动与阅读实验显示虚构运动句的加工伴随沿路径的注意移动；汉语亦有同类表达（「这条路通到山顶」），可由母语平行现象接通。"]}]}, "across": {"word": "across", "meaning": "横过，穿过；在…对面", "family": true, "nlaws": 1, "laws": ["P-19"], "proto": "P-19", "scene": "river", "pos": "across", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-19", "headline": "说「跑出去」，英语和汉语装东西的格子不一样：英语把「怎么动」装进大词（run），把「往哪去」做成小尾巴挂在后面（out）；汉语把「往哪去」也装进动词里。学 run out 不是背新单词，是学英语的装法。", "beats": [{"beat": "两个格子", "text": "英语的句子像有两个格子：大格子装「怎么动」（跑、游、滚），小格子装「往哪去」（out、in、across）。"}], "examples": [{"s": "The cat ran across the road.", "note": "穿过马路——across 承担路径"}, {"s": "We swim across the river.", "note": "游过河——方式动词 + 路径卫星的能产组合"}], "claim": ""}]}], "opponents": [{"word": "into", "laws": ["P-19"], "headline": "说「跑出去」，英语和汉语装东西的格子不一样：英语把「怎么动」装进大词（run），把「往哪去」做成小尾巴挂在后面（out）；汉语把「往哪去」也装进动词里。学 run out 不是背新单词，是学英语的装法。"}], "quizzes": [], "errors": [{"law": "P-19", "type": "汉语趋向结构直译（路径编码错位）", "note": "错型机制已登记；逐字病例待语料补录，不自编。", "status": "待补"}], "adult": [{"law": "P-19", "teacher": false, "boundary": "类型学说的是特征性默认模式，不是绝对禁令（见 claim.exceptions）；教学不可把框架说成「英语只有小品词表路径、汉语只有动词表路径」的铁律。", "sources": ["Talmy (1985/2000)（二手系统论述级）", "Slobin (1996)（章节预览级；APA PsycNet 书目核实）", "Chen & Guo (2009), DOI 10.1016/j.pragma.2008.10.015（章节预览级）"], "grade": "类型学定版级（归类未定版）", "beats": ["词汇化模式 = 路径的默认编码位置。卫星框架腾出动词槽位装方式，故方式动词词库异常丰富（trudge、sprint、wade 等），且「方式动词 + 路径卫星」能产性极高——这是短语动词在英语里成系统的根源。", "Slobin 的 thinking for speaking：每种语言的装法训练配套的注意力习惯，从母语带进二语，构成系统性迁移；Slobin 的跨语言「青蛙故事」叙事研究显示学龄前儿童的叙述已呈现母语框架习惯。"]}]}, "into": {"word": "into", "meaning": "进入，到……里面", "family": true, "nlaws": 1, "laws": ["P-19"], "proto": "P-19", "scene": "deskbox", "pos": "into", "groups": [{"domain": "空间", "label": "空间义 · 讲地方", "nodes": [{"law": "P-19", "headline": "说「跑出去」，英语和汉语装东西的格子不一样：英语把「怎么动」装进大词（run），把「往哪去」做成小尾巴挂在后面（out）；汉语把「往哪去」也装进动词里。学 run out 不是背新单词，是学英语的装法。", "beats": [{"beat": "两个格子", "text": "英语的句子像有两个格子：大格子装「怎么动」（跑、游、滚），小格子装「往哪去」（out、in、across）。"}], "examples": [{"s": "The dog ran into the box.", "note": "跑进箱子——路径装进 into"}], "claim": ""}]}], "opponents": [{"word": "across", "laws": ["P-19"], "headline": "说「跑出去」，英语和汉语装东西的格子不一样：英语把「怎么动」装进大词（run），把「往哪去」做成小尾巴挂在后面（out）；汉语把「往哪去」也装进动词里。学 run out 不是背新单词，是学英语的装法。"}], "quizzes": [], "errors": [{"law": "P-19", "type": "汉语趋向结构直译（路径编码错位）", "note": "错型机制已登记；逐字病例待语料补录，不自编。", "status": "待补"}], "adult": [{"law": "P-19", "teacher": false, "boundary": "类型学说的是特征性默认模式，不是绝对禁令（见 claim.exceptions）；教学不可把框架说成「英语只有小品词表路径、汉语只有动词表路径」的铁律。", "sources": ["Talmy (1985/2000)（二手系统论述级）", "Slobin (1996)（章节预览级；APA PsycNet 书目核实）", "Chen & Guo (2009), DOI 10.1016/j.pragma.2008.10.015（章节预览级）"], "grade": "类型学定版级（归类未定版）", "beats": ["词汇化模式 = 路径的默认编码位置。卫星框架腾出动词槽位装方式，故方式动词词库异常丰富（trudge、sprint、wade 等），且「方式动词 + 路径卫星」能产性极高——这是短语动词在英语里成系统的根源。", "Slobin 的 thinking for speaking：每种语言的装法训练配套的注意力习惯，从母语带进二语，构成系统性迁移；Slobin 的跨语言「青蛙故事」叙事研究显示学龄前儿童的叙述已呈现母语框架习惯。"]}]}, "about": {"word": "about", "meaning": "关于/大约", "family": false, "refs": [], "examples": []}, "after": {"word": "after", "meaning": "在…之后", "family": false, "refs": [], "examples": []}, "against": {"word": "against", "meaning": "反对；靠着；违背", "family": false, "refs": [], "examples": []}, "among": {"word": "among", "meaning": "在(三者及以上)之间", "family": false, "refs": [], "examples": []}, "around": {"word": "around", "meaning": "在……周围；到处", "family": false, "refs": [], "examples": []}, "as": {"word": "as", "meaning": "像……一样；作为", "family": false, "refs": [], "examples": []}, "before": {"word": "before", "meaning": "在…之前", "family": false, "refs": [], "examples": []}, "behind": {"word": "behind", "meaning": "在…后面", "family": false, "refs": ["PB-08", "PB-09"], "examples": [{"law": "PB-08", "s": "The cat is behind the table.", "note": "投影介词 behind：需观察者坐标（behind 已在库）"}, {"law": "PB-09", "s": "The cat is behind the table.", "note": "典型性：behind 预设离得不远"}]}, "beside": {"word": "beside", "meaning": "在…旁边(=next to)", "family": false, "refs": [], "examples": []}, "between": {"word": "between", "meaning": "在（两者）之间", "family": false, "refs": [], "examples": []}, "beyond": {"word": "beyond", "meaning": "在…之外；超过", "family": false, "refs": [], "examples": []}, "by": {"word": "by", "meaning": "乘(交通工具)/在…旁/被", "family": false, "refs": [], "examples": [{"law": "C-11", "s": "We go to school by bus.", "note": "by bus 方式读法零冠词（登记对：ex-bed-bus）"}]}, "down": {"word": "down", "meaning": "向下", "family": false, "refs": [], "examples": []}, "except": {"word": "except", "meaning": "除了；除…之外", "family": false, "refs": [], "examples": []}, "from": {"word": "from", "meaning": "从…来自(be from)", "family": false, "refs": [], "examples": []}, "in front of": {"word": "in front of", "meaning": "在…(外部)前面", "family": false, "refs": [], "examples": []}, "inside": {"word": "inside", "meaning": "在里面，往里面；内部", "family": false, "refs": [], "examples": []}, "like": {"word": "like", "meaning": "喜欢/像…一样", "family": false, "refs": [], "examples": []}, "near": {"word": "near", "meaning": "在…附近/近的", "family": false, "refs": [], "examples": []}, "of": {"word": "of", "meaning": "…的(所属关系)", "family": false, "refs": ["P-02"], "examples": [{"law": "C-01", "s": "I want a cake, and a glass of water, please.", "note": "cake 可数读法与 water 借 glass 计数同句对照（glass of water）"}, {"law": "C-02", "s": "The table is made of wood.", "note": "Langacker 原例 wood：一小块木头也是木头（made of 结构登记）"}, {"law": "C-03", "s": "The morning is a part of today.", "note": "上午是被切出的一段（part 登记用法）"}, {"law": "C-05", "s": "I want a bowl of rice.", "note": "食堂打饭——汉语「一碗饭」的同构场景"}, {"law": "C-05", "s": "Give me a piece of paper, please.", "note": "一张纸——piece 与「张」对应"}, {"law": "C-05", "s": "Two bowls of rice, please.", "note": "-s 落在 bowls 上（词形经 bowl/rice 归一）"}, {"law": "C-05", "s": "Let me give you a piece of advice.", "note": "抽象料同样借 piece（与 C-15 衔接）"}, {"law": "C-15", "s": "Let me give you a piece of advice.", "note": "借 piece 数建议（与 C-05 同句呼应）"}, {"law": "C-18", "s": "Two bottles of water, please.", "note": "-s 落在 bottles 上（词形经 bottle 归一）"}, {"law": "C-18", "s": "Two bowls of rice, please.", "note": "同型：章盖在单位上（词形经 bowl 归一）"}]}, "outside": {"word": "outside", "meaning": "在外面，向外面；外部", "family": false, "refs": [], "examples": []}, "past": {"word": "past", "meaning": "超过/过去", "family": false, "refs": [], "examples": []}, "plus": {"word": "plus", "meaning": "加；加上；加号", "family": false, "refs": [], "examples": []}, "since": {"word": "since", "meaning": "自从；自……以来；因为", "family": false, "refs": [], "examples": []}, "through": {"word": "through", "meaning": "穿过；通过", "family": false, "refs": ["PB-04", "PB-10"], "examples": [{"law": "PB-04", "s": "The train goes through the mountain.", "note": "火车穿山（隧道）——through 的介质通过"}, {"law": "PB-04", "s": "The bird flew through the forest.", "note": "穿过森林——介质为林木群"}, {"law": "PB-04", "s": "The dog ran through the garden.", "note": "穿过花园——从一头进、另一头出"}, {"law": "PB-10", "s": "The train goes through the mountain.", "note": "隧道的功能（穿行）使 through 成立"}]}, "until": {"word": "until", "meaning": "到……时；直到……为止", "family": false, "refs": [], "examples": []}, "upon": {"word": "upon", "meaning": "在……上面（= on，多用于书面）", "family": false, "refs": [], "examples": []}, "with": {"word": "with", "meaning": "和…一起/用(工具)/带有", "family": false, "refs": [], "examples": []}, "without": {"word": "without", "meaning": "没有/不带", "family": false, "refs": [], "examples": []}}, "method": [{"law": "P-01", "headline": "每个介词都有一张全家福：中间是它最主要的那张图，周围都是它的亲戚——长得像它、从它变出来的。", "beats": [{"beat": "原型图", "text": "先认每个介词最主要的那张图：in 是装进里面，on 是贴在面上，at 是一个点。"}, {"beat": "亲戚网的长法", "text": "新用法不是凭空来的：over 先有「在上面」，才长出「盖住」，再长出「越过」。"}], "quiz": [{"q": "第一次学 over，先记哪一个意思最划算？", "options": ["在……上方（中心义）", "盖住", "结束"], "answer": "在……上方（中心义）", "hint": "先认每个介词最主要的那张图：in 是装进里面，on 是贴在面上，at 是一个点。"}]}, {"law": "P-02", "headline": "全家福中间放谁的照片，要讲证据：谁最老、谁亲戚最多、谁最能代表全家——不是随便挑的。", "beats": [{"beat": "四条证据", "text": "选中心要过四关：最老、亲戚最多、最能跟邻居分工、最能猜出别的亲戚。"}, {"beat": "over 的裁决示范", "text": "over 的老家是「在上方」：它最老、亲戚最多，所以坐在全家福中间。"}], "quiz": [{"q": "判定一个义项是不是原型，下面哪一条不是 Tyler & Evans 的证据？", "options": ["历史上最早出现", "老师觉得最常用", "最能预测其他义项"], "answer": "老师觉得最常用", "hint": "选中心要过四关：最老、亲戚最多、最能跟邻居分工、最能猜出别的亲戚。"}]}, {"law": "P-10", "headline": "记住一张图和它变形的道理，胜过背一张长长的对照表：遇到没学过的用法，自己也能猜个八九不离十。", "beats": [{"beat": "按图索引", "text": "新用法不用一条条背：把它挂到认识的图或者近亲身上，就记住了。"}], "quiz": [{"q": "教介词时，哪种做法有实验支持、还能迁移到没教过的用法？", "options": ["讲原型图 + 引申理据", "发义项清单背诵", "只做替换操练"], "answer": "讲原型图 + 引申理据", "hint": "新用法不用一条条背：把它挂到认识的图或者近亲身上，就记住了。"}]}, {"law": "P-17", "headline": "每个介词都是从「讲地方」开始长大的：先学会讲地方，再讲时间，最后讲看不见摸不着的意思——我们学它的顺序，就跟它长大的顺序一样。", "beats": [{"beat": "成长路线", "text": "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。"}], "quiz": [{"q": "教 in 的三个意思，顺序应该是？", "options": ["在盒子里 → 在早上 → 在麻烦中", "在麻烦中 → 在盒子里 → 在早上", "哪个都行，没有区别"], "answer": "在盒子里 → 在早上 → 在麻烦中", "hint": "介词先学会说地方（在盒子里），再学会说时间（在早上），最后才说看不见的意思（在麻烦中）。"}]}], "core": {"in": {"sentence": "The cat is in the box.", "note": "纸箱与猫——最典型的容器场景", "headline": "in 就是「进到里面」：在盒子里、在房间里、在队伍里——被围起来，就是 in。"}, "on": {"sentence": "The book is on the desk.", "note": "书桌——水平面承托", "headline": "on 就是「贴在表面上」：东西挨着一个面，靠这个面托着、挂着、套着。"}, "at": {"sentence": "The student is at the station.", "note": "车站作为位置点", "headline": "at 是把东西看成地图上的一个小点点：地方再大，在 at 眼里也只是一个点。"}, "over": {"sentence": "The bird flew over the wall.", "note": "从上方越过——中心与路径的结合", "headline": "over 的老家是「在上面」：毯子盖在上面，是因为它先要在上面；跳过栅栏，是从上面过去。"}}};
 const app = document.getElementById('app');
-function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function speak(text){
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function speak(t) {
   try {
     if (!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'en-GB'; u.rate = 0.85;
+    const u = new SpeechSynthesisUtterance(t); u.lang = 'en-GB'; u.rate = 0.85;
     speechSynthesis.speak(u);
-  } catch(e) {}
+  } catch (e) {}
 }
-function boldPreps(sentence){
-  let out = esc(sentence);
-  const words = DATA.prepset.slice().sort((a,b)=>b.length-a.length);
-  for (const w of words) {
-    const re = new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\b', 'gi');
-    out = out.replace(re, m => '<b class="prep">' + m + '</b>');
+function hl(sent, word) {
+  const e = esc(sent);
+  const w = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return e.replace(new RegExp('(?<![A-Za-z])(' + w + ')(?![A-Za-z])', 'gi'), '<span class="hl">$1</span>');
+}
+function sentRow(ex, word) {
+  return '<div class="exrow"><span class="sent">' + hl(ex.s, word) + '</span>' +
+    '<button class="spk" data-say="' + esc(ex.s) + '" aria-label="朗读整句">🔊</button>' +
+    (ex.note ? '<div class="note">' + esc(ex.note) + '</div>' : '') + '</div>';
+}
+/* ---------- 场景舞台（抽象图元，重在关系位置） ---------- */
+const BALL = (x, y) => '<circle cx="' + x + '" cy="' + y + '" r="11" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>';
+const DESK = '<rect x="30" y="104" width="110" height="8" fill="#b08968"/><rect x="40" y="112" width="8" height="44" fill="#b08968"/><rect x="122" y="112" width="8" height="44" fill="#b08968"/>';
+const BOX = '<path d="M212 84 v72 h84 v-72" fill="none" stroke="#5b7fa6" stroke-width="5"/>';
+const GROUND = '<line x1="10" y1="156" x2="330" y2="156" stroke="#c3cedd" stroke-width="3"/>';
+function stageSVG(scene, pos) {
+  let inner = '';
+  if (scene === 'deskbox') {
+    let ball = '', extra = '';
+    if (pos === 'in') ball = BALL(254, 138);
+    if (pos === 'into') { ball = BALL(254, 138); extra = '<path d="M196 60 L238 108" stroke="#2f6fd0" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#ar)"/>'; }
+    if (pos === 'on') ball = BALL(85, 93);
+    if (pos === 'over') { ball = BALL(254, 48); extra = '<path d="M196 66 Q254 30 312 66" fill="none" stroke="#94a9c4" stroke-width="2.5" stroke-dasharray="5 4"/>'; }
+    inner = GROUND + DESK + BOX + extra + ball;
+  } else if (scene === 'desk') {
+    inner = GROUND + DESK + BALL(85, 140);
+  } else if (scene === 'point') {
+    inner = GROUND + '<rect x="216" y="96" width="58" height="60" fill="#dbe5f1" stroke="#5b7fa6" stroke-width="3"/>' +
+      '<path d="M96 156 v-34" stroke="#d9534f" stroke-width="4"/><circle cx="96" cy="112" r="10" fill="#d9534f"/>' + BALL(96, 145);
+  } else if (scene === 'vert') {
+    const band = '<path d="M20 108 L110 72 L200 100 L320 84" fill="none" stroke="#5b7fa6" stroke-width="4"/>';
+    const ball = pos === 'above' ? BALL(150, 34) : BALL(150, 138);
+    inner = GROUND + band + ball + '<line x1="150" y1="20" x2="150" y2="150" stroke="#e3e9f2" stroke-width="2" stroke-dasharray="4 4"/>';
+  } else if (scene === 'rise') {
+    inner = GROUND + '<path d="M130 70 v86 h80 v-86" fill="none" stroke="#5b7fa6" stroke-width="5"/>' +
+      '<rect x="135" y="98" width="70" height="55" fill="#7cc4ea" opacity="0.65"/>' +
+      '<path d="M252 150 V66 M238 86 L252 58 L266 86" fill="none" stroke="#1f9d61" stroke-width="5"/>';
+  } else if (scene === 'detach') {
+    inner = GROUND + DESK + '<circle cx="85" cy="93" r="11" fill="none" stroke="#b6c2d2" stroke-width="2" stroke-dasharray="4 3"/>' + BALL(196, 145) +
+      '<path d="M104 96 Q150 118 182 136" fill="none" stroke="#94a9c4" stroke-width="2.5" stroke-dasharray="5 4"/>';
+  } else if (scene === 'road') {
+    inner = GROUND + '<path d="M16 138 Q120 92 200 116 T330 96" fill="none" stroke="#8a97a5" stroke-width="10" opacity="0.5"/>' + BALL(168, 104);
+  } else if (scene === 'river') {
+    inner = GROUND + '<rect x="128" y="30" width="84" height="126" fill="#7cc4ea" opacity="0.55"/>' +
+      '<path d="M40 130 Q170 60 300 130" fill="none" stroke="#94a9c4" stroke-width="2.5" stroke-dasharray="5 4"/>' + BALL(286, 138);
+  } else if (scene === 'door') {
+    const door = '<rect x="222" y="52" width="56" height="104" fill="#dbe5f1" stroke="#5b7fa6" stroke-width="4"/><circle cx="268" cy="106" r="4" fill="#5b7fa6"/>';
+    if (pos === 'to') inner = GROUND + door + BALL(70, 145) + '<path d="M92 140 L206 128" stroke="#2f6fd0" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#ar)"/>';
+    else inner = GROUND + '<circle cx="88" cy="88" r="17" fill="#f6d8a8" stroke="#b08968" stroke-width="3"/><rect x="70" y="106" width="36" height="50" fill="#dbe5f1" stroke="#5b7fa6" stroke-width="3"/>' +
+      '<rect x="196" y="104" width="44" height="34" fill="#f9c6d0" stroke="#c96f82" stroke-width="3"/><path d="M112 128 L188 124" stroke="#c96f82" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#ar)"/>';
   }
-  return out;
+  return '<svg viewBox="0 0 340 176" width="100%" role="img"><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6" fill="none" stroke="#2f6fd0" stroke-width="1.6"/></marker></defs>' + inner + '</svg>';
 }
-function boldOne(sentence, prep){
-  const out = esc(sentence);
-  const re = new RegExp('\\b' + prep.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\b', 'i');
-  return out.replace(re, m => '<b class="prep">' + m + '</b>');
+/* ---------- 首页 ---------- */
+let coreSel = 'in';
+function home() {
+  const fam = DATA.familyOrder.map(w => {
+    const p = DATA.pages[w];
+    return '<button class="wchip" data-prep="' + esc(w) + '">' + esc(w) + ' <small>' + p.nlaws + ' 条规律</small></button>';
+  }).join('');
+  const rem = DATA.remainderOrder.map(w =>
+    '<button class="wchip" data-prep="' + esc(w) + '">' + esc(w) + ' <small>待补</small></button>').join('');
+  app.innerHTML =
+    '<h1>介词全家福</h1><p class="sub">一个介词一页：先看它的核心图，再看它一家人的用法怎么长出来。</p>' +
+    '<div class="card"><h3 style="margin-top:0">四个核心：点一点，看小球去哪儿</h3>' +
+    '<div class="chips" id="coreChips">' + ['in','on','at','over'].map(w =>
+      '<button class="chip' + (w === coreSel ? ' on' : '') + '" data-core="' + w + '">' + w + '</button>').join('') + '</div>' +
+    '<div class="stagebox" id="coreStage" style="margin-top:10px"></div>' +
+    '<div id="coreCap"></div>' +
+    '<button class="enter" data-prep="' + coreSel + '" id="coreEnter">进入 ' + coreSel + ' 的全家福 →</button></div>' +
+    '<h2>有全家福的介词（' + DATA.familyOrder.length + ' 个）</h2><div class="chips">' + fam + '</div>' +
+    '<h2>词表其余（' + DATA.remainderOrder.length + ' 个）</h2>' +
+    '<p class="sub">这些词规律待补挂，先学核心义。</p><div class="chips">' + rem + '</div>' +
+    '<div class="card"><h3 style="margin-top:0">📖 介词是这样学的</h3>' +
+    '<p class="sub">全家福的看法、原型的选法、记图的方法、长大的顺序——四条方法规律汇成一页。</p>' +
+    '<button class="enter" id="goMethod">打开方法页 →</button></div>';
+  drawCore();
+  document.getElementById('goMethod').addEventListener('click', methodPage);
 }
-
-/* ---------- 场景舞台：抽象图元，位置随介词切换 ---------- */
-const POS = {
-  box:      { 'in':[240,143], 'on':[90,113], 'at':[192,166,5], 'over':[240,56],
-              'above':[240,30], 'under':[90,152], 'into':[240,143], 'up':[90,66] },
-  vertical: { 'above':[82,40], 'over':[208,70], 'under':[208,152], 'below':[82,166] },
-  wall:     { 'on':[191,80], 'in':[85,63], 'at':[219,166,5] },
-  point:    { 'at':[268,148,6] },
-  rise:     { 'up':[162,86] },
-  time:     { 'in':[160,45], 'on':[68,108], 'at':[222,148] },
-  point3:   { 'to':[56,138], 'for':[172,104], 'at':[266,98] },
-  particle: { 'up':[80,74], 'off':[258,156] },
-  path:     { 'across':[208,138], 'into':[267,140] }
-};
-function sceneSVG(mode){
-  const M = '<g id="mover"><circle class="ball" r="11" cx="0" cy="0"/></g>';
-  const ARC = '<path id="arc" class="arc" d="M120 84 Q240 6 336 84" style="display:none"/>';
-  if (mode === 'box') return '<svg viewBox="0 0 320 200">'
-    + '<line class="ground" x1="8" y1="170" x2="312" y2="170"/>'
-    + '<rect class="surf" x="30" y="126" width="120" height="8"/><rect class="leg" x="42" y="134" width="8" height="36"/><rect class="leg" x="130" y="134" width="8" height="36"/>'
-    + '<path class="boxw" d="M190 88 V170 H290 V88 H278 V158 H202 V88 Z"/>'
-    + ARC + M + '</svg>';
-  if (mode === 'vertical') return '<svg viewBox="0 0 320 200">'
-    + '<rect class="band" x="18" y="106" width="284" height="15" rx="7"/>'
-    + '<line class="ground" x1="8" y1="186" x2="312" y2="186"/>'
-    + '<path id="arc" class="arc" d="M120 92 Q208 26 296 92" style="display:none"/>' + M + '</svg>';
-  if (mode === 'wall') return '<svg viewBox="0 0 320 200">'
-    + '<line class="ground" x1="8" y1="170" x2="312" y2="170"/>'
-    + '<circle class="canopy" cx="85" cy="63" r="34"/><rect class="trunk" x="81" y="95" width="8" height="75"/>'
-    + '<rect class="wall" x="205" y="24" width="14" height="146"/>' + M + '</svg>';
-  if (mode === 'point') return '<svg viewBox="0 0 320 200">'
-    + '<line class="ground" x1="8" y1="170" x2="312" y2="170"/>'
-    + '<rect class="bldg" x="88" y="52" width="122" height="118"/>'
-    + '<rect class="win" x="104" y="70" width="24" height="24"/><rect class="win" x="142" y="70" width="24" height="24"/><rect class="win" x="120" y="118" width="26" height="52"/>'
-    + '<circle class="ring" cx="268" cy="148" r="15"/><circle class="dotpt" cx="268" cy="148" r="4"/>' + M + '</svg>';
-  if (mode === 'rise') return '<svg viewBox="0 0 320 200">'
-    + '<line class="ground" x1="8" y1="170" x2="312" y2="170"/>'
-    + '<rect id="water" class="water" x="136" y="138" width="52" height="26"/>'
-    + '<path class="boxw" d="M130 52 V170 H194 V52 H184 V158 H140 V52 Z"/>'
-    + '<path id="upArrow" class="arrow" d="M238 152 V66 M224 86 L238 60 L252 86" style="display:none"/>' + M + '</svg>';
-  if (mode === 'time') return '<svg viewBox="0 0 320 200">'
-    + '<g data-hl="in"><rect class="tband" x="25" y="28" width="270" height="32" rx="16"/></g>'
-    + '<g data-hl="on"><rect class="tcell" x="25" y="80" width="86" height="56"/>'
-    + '<line class="tgrid" x1="54" y1="80" x2="54" y2="136"/><line class="tgrid" x1="83" y1="80" x2="83" y2="136"/><line class="tgrid" x1="25" y1="108" x2="111" y2="108"/></g>'
-    + '<g data-hl="at"><line class="tline" x1="150" y1="148" x2="296" y2="148"/><circle class="tpoint" cx="222" cy="148" r="6"/></g>'
-    + M + '</svg>';
-  if (mode === 'point3') return '<svg viewBox="0 0 320 200">'
-    + '<line class="ground" x1="8" y1="170" x2="312" y2="170"/>'
-    + '<g data-hl="to"><rect class="panelbox" x="18" y="34" width="76" height="122" rx="8"/>'
-    + '<rect class="bldg" x="40" y="52" width="34" height="88"/><path class="arrow" d="M8 148 H40"/></g>'
-    + '<g data-hl="for"><rect class="panelbox" x="122" y="34" width="100" height="122" rx="8"/>'
-    + '<rect class="surf" x="146" y="88" width="52" height="34"/><line class="tgrid" x1="172" y1="88" x2="172" y2="122"/><line class="tgrid" x1="146" y1="105" x2="198" y2="105"/></g>'
-    + '<g data-hl="at"><rect class="panelbox" x="238" y="34" width="72" height="122" rx="8"/>'
-    + '<circle class="ring" cx="266" cy="98" r="24"/><circle class="ring" cx="266" cy="98" r="13"/><circle class="dotpt" cx="266" cy="98" r="4"/></g>'
-    + M + '</svg>';
-  if (mode === 'particle') return '<svg viewBox="0 0 320 200">'
-    + '<line class="ground" x1="8" y1="170" x2="312" y2="170"/>'
-    + '<rect id="fill" class="water" x="36" y="150" width="88" height="14" style="display:none"/>'
-    + '<path class="boxw" d="M30 72 V170 H130 V72 H119 V158 H41 V72 Z"/>'
-    + '<line class="tline" x1="246" y1="86" x2="246" y2="170"/><circle id="lampBall" class="lamp" cx="246" cy="62" r="17"/>' + M + '</svg>';
-  if (mode === 'path') return '<svg viewBox="0 0 320 200">'
-    + '<line class="ground" x1="8" y1="170" x2="312" y2="170"/>'
-    + '<path class="river" d="M158 0 q16 50 0 100 q-16 50 0 100"/>'
-    + '<path class="boxw" d="M235 102 V170 H300 V102 H290 V158 H245 V102 Z"/>'
-    + '<circle class="dotpt" cx="52" cy="140" r="4"/>'
-    + '<path id="arc" class="arc" d="M52 132 Q140 60 208 128" style="display:none"/>' + M + '</svg>';
+function drawCore() {
+  const posMap = { in: 'in', on: 'on', over: 'over', at: 'at' };
+  const scene = coreSel === 'at' ? 'point' : 'deskbox';
+  document.getElementById('coreStage').innerHTML = stageSVG(scene, posMap[coreSel]);
+  const c = DATA.core[coreSel];
+  document.getElementById('coreCap').innerHTML =
+    '<div class="sent">' + hl(c.sentence, coreSel) + '<button class="spk" data-say="' + esc(c.sentence) + '">🔊</button></div>' +
+    '<div class="note">' + esc(c.note) + '（出处：' + esc(DATA.pages[coreSel].proto) + '）</div>';
+  const en = document.getElementById('coreEnter');
+  en.textContent = '进入 ' + coreSel + ' 的全家福 →'; en.setAttribute('data-prep', coreSel);
+  document.querySelectorAll('[data-core]').forEach(b => b.classList.toggle('on', b.getAttribute('data-core') === coreSel));
+}
+/* ---------- 介词页 ---------- */
+function quizHTML(q, word, idx) {
+  const opts = q.options.map(o =>
+    '<button class="opt" data-q="' + idx + '" data-o="' + esc(o) + '" data-a="' + esc(q.answer) + '">' + esc(o) + '</button>').join('');
+  return '<div class="quiz"><div><b>练习（' + esc(q.law) + '）</b></div><p style="margin:6px 0">' + esc(q.q) + '</p>' +
+    opts + '<div class="hint" id="hint-' + idx + '">提示（' + esc(q.law) + '）：' + esc(q.hint) + '</div></div>';
+}
+function prepPage(word) {
+  const p = DATA.pages[word];
+  let h = '<button class="back" data-home>← 返回名录</button>';
+  if (!p.family) {
+    h += '<div class="card"><span class="word">' + esc(word) + '</span> <span class="badge warn">规律待补挂 · 先学核心义</span>' +
+      '<div class="meaning">核心义：' + esc(p.meaning) + '</div>' +
+      (p.refs.length ? '<div class="note" style="margin-top:6px">词库挂接到的规律：' + p.refs.map(esc).join('、') + '（非介词专题规律，讲解待补）</div>' : '') +
+      '</div><h2>模型例句</h2>';
+    h += p.examples.length ? p.examples.map(ex =>
+      '<div><div class="src">出处 ' + esc(ex.law) + '</div>' + sentRow(ex, word) + '</div>').join('')
+      : '<p class="sub">模型里暂时还没有用到这个词的例句。</p>';
+    h += '<div class="card"><b>本词的规律讲解待补</b><p class="sub" style="margin-bottom:0">等它被挂进介词规律后，这里会长出它的核心图和全家福。</p></div>';
+    app.innerHTML = h; bindNav(); return;
+  }
+  h += '<div class="card"><span class="word">' + esc(word) + '</span>' +
+    '<div class="meaning">' + esc(p.meaning) + '</div>' +
+    '<div style="margin-top:6px"><span class="badge">参与 ' + p.nlaws + ' 条规律</span> ' +
+    '<span class="src">核心图出处：' + esc(p.proto) + '</span></div></div>';
+  h += '<h2>核心图</h2><div class="card"><div class="stagebox">' + stageSVG(p.scene, p.pos) + '</div>' +
+    '<p class="sub" style="margin:8px 0 0">' + esc(DATA.pages[word] && protoHeadline(word)) + '</p>';
+  if (p.opponents.length) {
+    h += '<div class="chips" style="margin-top:10px">' + p.opponents.slice(0, 4).map(o =>
+      '<button class="wchip" data-prep="' + esc(o.word) + '">对比 ' + esc(o.word) + ' →</button>').join('') + '</div>';
+  }
+  h += '</div><h2>全家福：用法怎么长出来</h2>';
+  p.groups.forEach(g => {
+    h += '<span class="domlabel">' + esc(g.label) + '</span>';
+    g.nodes.forEach(n => {
+      h += '<div class="node"><span class="law">' + esc(n.law) + '</span>' +
+        '<div class="head">' + esc(n.headline) + '</div>' +
+        n.beats.map(b => '<div class="beat"><b>' + esc(b.beat) + '</b>｜' + esc(b.text) + '</div>').join('') +
+        (n.claim ? '<div class="beat"><b>规律原话</b>｜' + esc(n.claim) + '</div>' : '') +
+        n.examples.map(ex => sentRow(ex, word)).join('') + '</div>';
+    });
+  });
+  if (p.opponents.length) {
+    h += '<h2>易混对比</h2>' + p.opponents.map(o =>
+      '<div class="opp" data-prep="' + esc(o.word) + '"><span class="ow">' + esc(word) + ' ↔ ' + esc(o.word) + '</span>' +
+      '<div class="note">同台规律：' + o.laws.map(esc).join('、') + '</div>' +
+      '<div style="font-size:14px;margin-top:3px">' + esc(o.headline) + '</div>' +
+      '<div class="note">点开看 ' + esc(o.word) + ' 的全家福 →</div></div>').join('');
+  }
+  const etypes = [...new Set(p.errors.map(e => e.type))];
+  h += '<h2>病句医院</h2><div class="card">病例待补（易错类型已登记：' + etypes.map(esc).join('；') +
+    '；逐字病例待真实错例补录后上线）</div>';
+  if (p.quizzes.length) {
+    h += '<h2>练习</h2>' + p.quizzes.map((q, i) => quizHTML(q, word, i)).join('');
+  }
+  h += '<details class="adult"><summary>成人层 · 来源与边界（教师 / 家长）</summary>' +
+    p.adult.map(a => '<div style="margin:9px 0"><b>' + esc(a.law) + (a.teacher ? '（教师侧条目）' : '') + '</b>' +
+      (a.grade ? '<div>证据等级：' + esc(a.grade) + '</div>' : '') +
+      (a.boundary ? '<div>边界：' + esc(a.boundary) + '</div>' : '') +
+      a.beats.map(t => '<div>' + esc(t) + '</div>').join('') +
+      (a.sources.length ? '<div class="src">出处：' + a.sources.map(esc).join('；') + '</div>' : '') + '</div>').join('') +
+    '</details>';
+  app.innerHTML = h; bindNav(); bindQuiz();
+}
+function protoHeadline(word) {
+  const p = DATA.pages[word];
+  for (const g of p.groups) for (const n of g.nodes) if (n.law === p.proto) return n.headline;
   return '';
 }
-function setStage(u, prep){
-  const c = u.chips.find(x => x.w === prep);
-  document.querySelectorAll('.chip').forEach(el => el.classList.toggle('on', el.dataset.prep === prep));
-  const pos = (POS[u.mode] || {})[prep];
-  const mover = document.getElementById('mover');
-  if (mover) {
-    if (pos) {
-      mover.style.display = '';
-      mover.setAttribute('transform', 'translate(' + pos[0] + ',' + pos[1] + ')');
-      const ball = mover.querySelector('circle');
-      if (ball) ball.setAttribute('r', pos[2] || 11);
-    } else mover.style.display = 'none';
-  }
-  const arc = document.getElementById('arc');
-  if (arc) arc.style.display = (prep === 'over' || prep === 'across') ? '' : 'none';
-  const water = document.getElementById('water');
-  if (water && u.mode === 'rise') { water.setAttribute('y', prep === 'up' ? 82 : 138); water.setAttribute('height', prep === 'up' ? 82 : 26); }
-  const upArrow = document.getElementById('upArrow');
-  if (upArrow) upArrow.style.display = prep === 'up' ? '' : 'none';
-  const fill = document.getElementById('fill');
-  if (fill && u.mode === 'particle') fill.style.display = prep === 'up' ? '' : 'none';
-  const lamp = document.getElementById('lampBall');
-  if (lamp && u.mode === 'particle') lamp.setAttribute('class', prep === 'off' ? 'lamp off' : 'lamp');
-  document.querySelectorAll('g[data-hl]').forEach(g => g.classList.toggle('on', g.dataset.hl === prep));
-  const sent = document.getElementById('stageSent'), note = document.getElementById('stageNote'),
-        gloss = document.getElementById('stageGloss');
-  if (c && sent) {
-    gloss.textContent = prep + ' · ' + c.meaning;
-    if (c.sent) { sent.innerHTML = boldOne(c.sent, prep); note.textContent = c.note || ''; }
-    else { sent.textContent = '（本单元的例句里还没有用到 ' + prep + ' 的句子）'; note.textContent = ''; }
-  }
-}
-
-/* ---------- 视图 ---------- */
-function home(){
-  let h = '<h1>介词：先看图，再记词</h1>'
-    + '<div class="sub">介词讲的是<b>空间关系</b>：换一个介词，图里的位置和整句话的意思就一起变。共 19 个单元，内容取自小系统模型 P 组。</div>';
-  for (const u of DATA.units) {
-    h += '<button class="unit-link" data-unit="' + u.id + '"><div class="t">' + u.id + ' · ' + esc(u.headline) + '</div>'
-      + '<div class="m">' + u.chips.length + ' 个介词主角 · ' + u.examples.length + ' 句例句 · ' + u.quiz.length + ' 道练习</div></button>';
-  }
-  h += '<button class="unit-link" data-table="1"><div class="t">介词总表</div>'
-    + '<div class="m">词库里全部 ' + DATA.table.length + ' 个介词（词形 + 中文义）</div></button>';
-  app.innerHTML = h;
-  window.scrollTo(0, 0);
-}
-function tableView(){
-  let h = '<button class="back" data-home="1">← 返回</button><h1>介词总表</h1>'
-    + '<div class="sub">由词库字段现算：词性含「介词」的共 ' + DATA.table.length + ' 个，按字母排序。</div>'
-    + '<div class="card"><table class="prep">';
-  for (const r of DATA.table) h += '<tr><td class="w">' + esc(r.w) + '</td><td>' + esc(r.meaning) + '</td></tr>';
-  h += '</table></div>';
-  app.innerHTML = h;
-  window.scrollTo(0, 0);
-}
-function unitView(id){
-  const u = DATA.units.find(x => x.id === id);
-  if (!u) return home();
-  let h = '<button class="back" data-home="1">← 返回</button>'
-    + '<h1>' + u.id + ' · ' + esc(u.headline) + '</h1>';
-  h += '<div class="card"><h3 class="sec">本单元主角（介词）</h3><div class="chips">'
-    + (u.chips.length ? u.chips.map(c => '<button class="chip" data-prep="' + esc(c.w) + '">' + esc(c.w) + '</button>').join('')
-                      : '（本单元没有单独的主角介词，看下面的讲解和例句）')
-    + '</div><div class="kid">' + esc(u.kid) + '</div></div>';
-  h += '<div class="card"><h3 class="sec">场景舞台：点一个介词，看位置和句子怎么变</h3><div class="stage">';
-  if (u.mode === 'contrast') {
-    for (const b of u.beats) h += '<div class="beat"><span class="b">' + esc(b.beat) + '</span>｜' + esc(b.text)
-      + (b.visual ? '<div class="v">图式注：' + esc(b.visual) + '</div>' : '') + '</div>';
-    if (u.chips.length) h += '<div class="sent" id="stageSent"></div><div class="note" id="stageNote"></div><div class="gloss" id="stageGloss"></div>';
-  } else {
-    h += sceneSVG(u.mode);
-    h += '<div class="sent" id="stageSent"></div><div class="note" id="stageNote"></div><div class="gloss" id="stageGloss"></div>';
-  }
-  h += '</div></div>';
-  if (u.mode !== 'contrast') {
-    h += '<div class="card"><h3 class="sec">为什么是这个图（机制）</h3>';
-    for (const b of u.beats) h += '<div class="beat"><span class="b">' + esc(b.beat) + '</span>｜' + esc(b.text)
-      + (b.visual ? '<div class="v">图式注：' + esc(b.visual) + '</div>' : '') + '</div>';
-    h += '</div>';
-  }
-  h += '<div class="card"><h3 class="sec">例句（点小喇叭听整句）</h3>';
-  u.examples.forEach((x, i) => {
-    h += '<div class="ex"><span class="s">' + boldPreps(x.sentence) + '</span>'
-      + '<button class="sentbtn" data-sent="' + i + '">🔊 整句</button>'
-      + (x.note ? '<div class="n">' + esc(x.note) + '</div>' : '') + '</div>';
+/* ---------- 方法页 ---------- */
+function methodPage() {
+  let h = '<button class="back" data-home>← 返回名录</button><h1>介词是这样学的</h1>' +
+    '<p class="sub">四条方法规律（P-01 / P-02 / P-10 / P-17）汇成一页。</p>';
+  DATA.method.forEach(m => {
+    h += '<div class="node"><span class="law">' + esc(m.law) + '</span><div class="head">' + esc(m.headline) + '</div>' +
+      m.beats.map(b => '<div class="beat"><b>' + esc(b.beat) + '</b>｜' + esc(b.text) + '</div>').join('') + '</div>' +
+      m.quiz.map((q, i) => quizHTML(q, '', m.law + '-' + i)).join('');
   });
-  h += '</div>';
-  h += '<div class="card"><h3 class="sec">病句医院</h3>';
-  for (const er of u.errors) {
-    h += '<div class="pending"><b>病例待补</b>（易错类型已登记：' + esc(er.type) + '）<br>' + esc(er.note) + '</div>';
-  }
-  h += '</div>';
-  u.quiz.forEach((q, qi) => {
-    h += '<div class="card"><h3 class="sec">练习</h3><div style="font-size:16.5px">' + esc(q.q) + '</div><div id="quiz-' + qi + '">'
-      + q.options.map(o => '<button class="opt" data-quiz="' + qi + '" data-opt="' + esc(o) + '">' + esc(o) + '</button>').join('')
-      + '</div><div id="hint-' + qi + '"></div></div>';
-  });
-  app.innerHTML = h;
-  window.scrollTo(0, 0);
-  app.dataset.unit = u.id;
-  if (u.chips.length) setStage(u, u.chips[0].w);
+  app.innerHTML = h; bindNav(); bindQuiz();
 }
-function answer(qi, optEl){
-  const u = DATA.units.find(x => x.id === app.dataset.unit);
-  const q = u.quiz[qi];
-  const box = document.getElementById('quiz-' + qi), hint = document.getElementById('hint-' + qi);
-  if (optEl.dataset.opt === q.answer) {
-    box.querySelectorAll('.opt').forEach(o => { o.disabled = true; if (o.dataset.opt === q.answer) o.classList.add('right'); });
-    hint.innerHTML = '<div class="hint">✅ 答对了。</div>';
-  } else {
-    optEl.classList.add('wrong'); optEl.disabled = true;
-    const b = u.beats[q.hint_idx] || u.beats[0];
-    hint.innerHTML = '<div class="hint">再想想——回到机制看这一句：<b>' + esc(b.beat) + '</b>｜' + esc(b.text) + '</div>';
-  }
+/* ---------- 交互绑定 ---------- */
+function bindNav() {
+  document.querySelectorAll('[data-home]').forEach(b => b.addEventListener('click', home));
+  document.querySelectorAll('[data-prep]').forEach(b => b.addEventListener('click', () => prepPage(b.getAttribute('data-prep'))));
 }
-document.addEventListener('click', e => {
-  const t = e.target.closest('[data-unit],[data-table],[data-home],[data-prep],[data-sent],[data-quiz]');
-  if (!t) return;
-  if (t.dataset.unit) unitView(t.dataset.unit);
-  else if (t.dataset.table) tableView();
-  else if (t.hasAttribute('data-home')) home();
-  else if (t.dataset.prep) {
-    const u = DATA.units.find(x => x.id === app.dataset.unit);
-    if (u) setStage(u, t.dataset.prep);
-  }
-  else if (t.hasAttribute('data-sent')) {
-    const u = DATA.units.find(x => x.id === app.dataset.unit);
-    if (u) speak(u.examples[Number(t.dataset.sent)].sentence);
-  }
-  else if (t.hasAttribute('data-quiz')) answer(Number(t.dataset.quiz), t);
-}, true);
+function bindQuiz() {
+  document.querySelectorAll('.opt').forEach(btn => btn.addEventListener('click', () => {
+    const q = btn.closest('.quiz');
+    if (btn.getAttribute('data-o') === btn.getAttribute('data-a')) {
+      btn.classList.add('ok');
+      q.querySelectorAll('.opt').forEach(o => o.disabled = true);
+    } else {
+      btn.classList.add('no'); btn.disabled = true;
+      const hint = q.querySelector('.hint'); if (hint) hint.style.display = 'block';
+    }
+  }));
+}
+document.addEventListener('click', ev => {
+  const say = ev.target.closest ? ev.target.closest('[data-say]') : null;
+  if (say) { ev.stopPropagation(); speak(say.getAttribute('data-say')); return; }
+  const core = ev.target.closest ? ev.target.closest('[data-core]') : null;
+  if (core) { coreSel = core.getAttribute('data-core'); drawCore(); return; }
+  const prep = ev.target.closest ? ev.target.closest('[data-prep]') : null;
+  if (prep && prep.id === 'coreEnter') { prepPage(prep.getAttribute('data-prep')); }
+});
 home();
 </script>
 </body>
