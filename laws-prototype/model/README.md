@@ -9,12 +9,13 @@
 
 | # | 数据集 | 本体文件 | 专属文档 | 规模 | 状态 |
 |---|---|---|---|---|---|
-| 1 | 词库（第〇层，根） | `wordbank.json` | `WORDBANK.md`（规则）、`WORDBANK_MODEL.md`（建模评审稿） | 2,285 条（建库 1,567 + 补入一轮 392 + 二轮 326）；挂接字段已回填：gpc_patterns 2,283 / law_refs 1,236 / morphemes 159 | 评审中（结构）；内容持续补 |
+| 1 | 词库（第〇层，根） | `wordbank.json` | `WORDBANK.md`（规则）、`WORDBANK_MODEL.md`（建模评审稿） | 2,347 条（建库 1,567 + 补入一轮 392 + 二轮 326 + 收官缺口 2 + 动词形式补齐 60）；挂接字段已回填：gpc_patterns 2,343 / law_refs 1,236 / morphemes 159；verb_form_of 122 条（原 62 + 形式补齐 60） | 评审中（结构）；内容持续补 |
 | 2 | 规律模型（428 条全量入模） | `laws/*.yaml`（8 个分区文件） | 各 `laws/*_MODEL.md` | 428 条 + 挂接表 9 张（`hitching/`） | 入模完成（字段缺口逐册登记：quiz/探针/病例按册待补，不自编） |
 | 3 | 误解探针库 | `laws/probes.yaml` | `laws/probes_MODEL.md` | 40 个（覆盖 12/428 条规律，其余逐条入模时补，不批量编造） | v1 定版（覆盖缺口已登记） |
 | 4 | 技巧库 | `laws/techniques.yaml` | `laws/techniques_MODEL.md` | 153 条定版 | 定版 |
 | 6 | 拼读词集（全量推导） | `phonics_wordsets.json` | `docs/PHONICS_WORDSETS.md` | 167 模式 / 9,992 词次 / 成员级 2,315 单元；待裁定 184；零命中词 2（eye、of） | v2（收官重推导）；独立严格核对进行中 |
 | 7 | 英式音标对照表 | `phonetic_gb.json`（生产中） | `~/workspace/content-depth/phonetic_gb_log.md` | 目标 2,285 条（用户 2026-11-01 裁定统一英式 RP；原 GA `phonetic` 保留） | 生产中；落盘后按收官报告四步合并入词库并切换原型显示 |
+| 8 | 动词形式补齐侧表 | `verb_forms_completion.json` | 本账变更日志（2026-11-01 形式线收官条） | 461 行（455 词元 + be/can/will 特殊行 3 + 非词元登记行 6，其中复合词头行与 be 行同指一条）；逐基形 past / past_participle / 同形标记 / 变体 / 出处（OALD 词形表为主，show 用 Cambridge 对照；规则形按英式规则生成并抽查 study/stop/panic/visit/dye/echo/refer/occur/hiccup/travel/model/drop 等） | 定版（合并后自检：过去/分词两格零未解析、verb_form_of 链闭合 122 条断裂 0） |
 | 5 | 专家规律清单（入模原料，非模型本体） | `~/workspace/your_files/expert-summaries-catalog-v6.md` | 各簇源文件在 `~/workspace/content-depth/catalog_*.md` | 428 条 / 22 组 | 定版 v6（原料层，入模时逐条转化，不直接进 App） |
 
 ## 变更日志
@@ -33,6 +34,7 @@
 - 2026-11-01 缺口补入（用户裁定）：conversion（ADD_0719）、version（ADD_0720）按普通词补入词库（SR-06 锚词），全库 2,287 条；两词英式读法为 /ʃən/（conversion /kənˈvɜːʃən/、version /ˈvɜːʃən/，剑桥 UK），与美式 /ʒən/ 不同，phonetic_gb 合并时按此填入。
 - 2026-11-01 拼读集成 **已完成**（前置四项全过）：App 拼读区 = 单屏实验台 + 分组面板（6 组白卡、160 入口、10,117 词次、GB 音标、页内练习）；登记说明常驻（待裁定 146 条逐条原因、零命中 3 词 eye/you/of、口径登记 10 项）；他区与基线回归 0 差异；顺带修复 App 既有顶部导航选择器 bug（nbtn/navbtn 不一致）。App 现 723,393 B。
 - 2026-11-01 介词场景版交付 + 数据修复：介词原型按场景优先版重建（117 项自检全过）；顺带查出并修复词库 `pos_tags` 双轨写法（补入轮次的无点标签 n/v/adj/prep… 共 328 条归一为带点口径）——归一后谓词计数与收官校验一致：介词 **43**（非此前按未归一口径报的 38；against/along/below/since/until 5 词此前被标签写法挡在总表外）/ 代词 60 / 限定词 32 / 连词 15；along（P-16 主角）、below（P-13）补挂接与 law_refs，P-16 主角 chip 归位（全单元主角 42 → 44）。
+- 2026-11-01 动词形式线全量补齐（用户裁定「数据的都补齐」）：先产侧表 `verb_forms_completion.json`（461 行），再按协议合并入词库，全库 2,287 → **2,347 条**。① 新建形式条目 **60 条**（ADD_0721–ADD_0780）：异形过去式 19（began/became/blew/broke/chose/fell/forgot/knew/lay/rang/rewrote/rose/sank/showed/spoke/threw/undertook/woke/wore）、异形分词 29（begun/beaten/blown/chosen/drawn/drunk/driven/eaten/forgotten/given/grown/known/lain/ridden/risen/rung/seen/shown/spoken/sung/sunk/swum/taken/thrown/undertaken/woken/worn/flown/rewritten）、同形对一次立条 12（fed/lent/meant/paid/stood/understood/retold/upheld/ground/held/led/slid）；字段按库内同类条目惯例（verb_form_of 回链、phonetic_gb 词典核实、gpc_patterns 按同族条目类推、meaning＝「X 的过去式/过去分词（义）」）。② 既有条目补角色 **26 条**（仅改 meaning，其余字段零改动，自检对账）：同形对的既有「过去式」条目补「/过去分词」24 条（said/got/slept/bought/brought/caught/taught/had/built/found/told/sold/won/lost/heard/made/met/sent/spent/swept/kept/felt/fought/sat）+ 同形词条目义项补注 2 条（thought G6_0632、left V6_交通_42；broken/fallen 义项内原本已注明分词角色，不动）。③ 恒等形不立条、侧表登记解析：beat 过去式、come/run/become 的分词、read/reread/input 两格、bet 与 AAA 组（cost/cut/hit/hurt/let/put/set/shut）；get 英式分词 = got（gotten 美式，不立条）；can/will 缺陷动词无分词，侧表登记。④ **盘点纠错**：v2 衣橱盘点误标——bet 实为恒等形（误标规则）、grind/hold/lead/rise/slide 实为不规则（误标规则：ground/held/led/rose+risen/slid，本次按 OALD 词形表改判并立条）；see 的分词为 seen（sawed/sawn 系 saw 锯之别词，不取）。learn/dream/spell/prove 主形取 OALD 首列规则形，变体（learnt/dreamt/spelt/proven）登记于侧表不另立条。非词元登记行 6：be 复合词头、don't、thought、hopping（基形 hop 不在库）、sought（基形 seek 不在库，不回链）、judge（judged 已有条目、基形不在库）。合并后自检全过：461 行过去/分词两格零未解析、verb_form_of 122 条回链闭合断裂 0、既有条目变更恰 26 条且仅 meaning。登记一处既有差异（非本线引入、不擅改收官成果）：ate 条目 phonetic_gb 记 /eɪt/，OALD 英式首列为 /et/（/eɪt/ 亦列），留待音标线裁定。复核修正一笔：新条目 chosen 音标按 OALD 词形表直读改 /ˈtʃəʊzn/（音节辅音写法）、became 改 /bɪˈkeɪm/（初稿误用原形音标）。第二轮复核（子批次词形表直读）再正三笔：forgotten → /fəˈɡɒtn/、given → /ˈɡɪvn/、ridden → /ˈrɪdn/（均为 OALD 音节辅音写法）；spoken/written/broken 经核 OALD 用 /ə/ 写法，与已填一致，不动。
 
 ## 评审通道
 
