@@ -265,11 +265,21 @@ body.adult .adult{display:block}
 .rk{font-size:22px;font-weight:800;color:#b03a1e}
 </style>
 
+<style>
+.ph-regbar{margin:10px 0}
+.ph-regbtn{border:1.5px solid #d8cba6;background:#fffdf6;color:#6d5a33;border-radius:12px;padding:7px 12px;font-size:13px;cursor:pointer;font-weight:700}
+.ph-reg{background:#fffdf6;border:1px solid #e7ddc6;border-radius:12px;padding:10px 14px;font-size:12.5px;color:#5d4c2c;line-height:1.65;margin-bottom:10px}
+.ph-reg h4{font-size:13px;color:#8a5a1e;margin:8px 0 4px}
+.ph-reg ol{margin-left:18px}
+</style>
+
 <!-- ============ 拼读区 ============ -->
 <section class="view" id="v-phon">
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">🔤 拼读区</h2>
 <p class="sub">每个规律下面的词，全部来自词库——词库里符合这个规律的词，一个不少。</p>
+<div class="ph-regbar"><button class="ph-regbtn" data-phreg="1">📋 登记说明：待裁定 146 条 · 零命中 3 词（eye / you / of） · 例外与口径登记 10 项 —— 点开看明细</button></div>
+<div class="ph-reg" id="ph-reg" hidden></div>
 <div class="phx" id="phx-home"></div>
 </section>
 
@@ -2096,9 +2106,63 @@ document.addEventListener('click', function (ev) {
 })();
 </script>
 
+<script>
+(function(){
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+var PHREG = {"pending":[{"word":"one","entry_id":"G1_025","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"flower","entry_id":"G2_075","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"favourite","entry_id":"G2_K02","reason":"VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"buy","entry_id":"G3_0650","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"live","entry_id":"G3_0653","reason":"VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"zebra","entry_id":"G3_0951","reason":"元音弱化（schwa）使菜单归属待核"},{"word":"orange","entry_id":"G3_113","reason":"VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"giraffe","entry_id":"G3_123","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"woman","entry_id":"G3_135","reason":"元音弱化（schwa）使菜单归属待核"},{"word":"twelve","entry_id":"G3_151","reason":"VCe 短读面：e-e 读短音 /e/（定版登记的例外型，如 give/live 型）"},{"word":"shall","entry_id":"G3_K48","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"done","entry_id":"G3_KA05","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"minute","entry_id":"G4_0382","reason":"VCe 短读面：u-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"baseball","entry_id":"G4_0403","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"sunflower","entry_id":"G4_0409","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"everyone","entry_id":"G4_0425","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"usually","entry_id":"G4_0464","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"station","entry_id":"G4_0517","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"lovely","entry_id":"G4_0542","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"ninety","entry_id":"G4_0554","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"policeman","entry_id":"G4_0728","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"notebook","entry_id":"G4_162","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"noodles","entry_id":"G4_177","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"expensive","entry_id":"G4_200","reason":"VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"glove","entry_id":"G4_201","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"active","entry_id":"G5_0323","reason":"VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"action","entry_id":"G5_0325","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"important","entry_id":"G5_0334","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"special","entry_id":"G5_0345","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"safety","entry_id":"G5_0359","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"housework","entry_id":"G5_0391","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"everybody","entry_id":"G5_0426","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"somebody","entry_id":"G5_0428","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"anyone","entry_id":"G5_0429","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"everything","entry_id":"G5_0434","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"everywhere","entry_id":"G5_0436","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"usual","entry_id":"G5_0463","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"once","entry_id":"G5_0587","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"July","entry_id":"G5_0609","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"national","entry_id":"G5_0658","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"schoolyard","entry_id":"G5_0698","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"timetable","entry_id":"G5_0714","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"hometown","entry_id":"G5_0725","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"spaceman","entry_id":"G5_0729","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"spaceship","entry_id":"G5_0730","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"sidewalk","entry_id":"G5_0744","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"grapefruit","entry_id":"G5_0751","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"firefly","entry_id":"G5_0761","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"housewife","entry_id":"G5_0769","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"politely","entry_id":"G5_0834","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"safely","entry_id":"G5_0835","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"comfortable","entry_id":"G5_0874","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"policewoman","entry_id":"G5_0884","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"fireplace","entry_id":"G5_0916","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"eyebrow","entry_id":"G5_0922","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"eyelash","entry_id":"G5_0923","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"eyeglass","entry_id":"G5_0924","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"eyesight","entry_id":"G5_0925","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"Wednesday","entry_id":"G5_214","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"delicious","entry_id":"G5_217","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"village","entry_id":"G5_233","reason":"VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"island","entry_id":"G5_235","reason":"元音弱化（schwa）使菜单归属待核"},{"word":"vacation","entry_id":"G5_238","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"information","entry_id":"G6_0339","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"unusual","entry_id":"G6_0459","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"international","entry_id":"G6_0478","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"ourselves","entry_id":"G6_0616","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"earthquake","entry_id":"G6_0739","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"magician","entry_id":"G6_0782","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"widely","entry_id":"G6_0845","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"peaceful","entry_id":"G6_0849","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"invitation","entry_id":"G6_0863","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"education","entry_id":"G6_0865","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"spacecraft","entry_id":"G6_0910","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"hospital","entry_id":"G6_255","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"factory","entry_id":"G6_275","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"cleaned","entry_id":"G6_289","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"stayed","entry_id":"G6_291","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"washed","entry_id":"G6_292","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"watched","entry_id":"G6_293","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"leaves","entry_id":"V6_MORPH_7","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"luggage","entry_id":"V6_交通_26","reason":"VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"animal","entry_id":"V6_动物_0","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"police station","entry_id":"V6_城市_24","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"fire station","entry_id":"V6_城市_25","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"square","entry_id":"V6_城市_28","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"tower","entry_id":"V6_城市_7","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"season","entry_id":"V6_天气_1","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"temperature","entry_id":"V6_天气_37","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"history","entry_id":"V6_学校_36","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"practise","entry_id":"V6_学校_75","reason":"VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"cousin","entry_id":"V6_家庭_17","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"lonely","entry_id":"V6_情感_16","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"thousand","entry_id":"V6_数字_30","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"some","entry_id":"V6_数字_47","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"every","entry_id":"V6_数字_52","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"come","entry_id":"V6_日常_2","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"have","entry_id":"V6_日常_5","reason":"VCe 短读面：a-e 读短音 /æ/（定版登记的例外型，如 give/live 型）"},{"word":"love","entry_id":"V6_日常_63","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"give","entry_id":"V6_日常_8","reason":"VCe 短读面：i-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"above","entry_id":"V6_核心_39","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"businessman","entry_id":"V6_职业_17","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"metal","entry_id":"V6_自然_27","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"festival","entry_id":"V6_节日_42","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"Spring Festival","entry_id":"V6_节日_47","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"National Day","entry_id":"V6_节日_51","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"New Year","entry_id":"V6_节日_53","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"Dragon Boat Festival","entry_id":"V6_节日_54","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"stomach","entry_id":"V6_身体_19","reason":"元音弱化（schwa）使菜单归属待核"},{"word":"guitar","entry_id":"V6_运动_23","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"chocolate","entry_id":"V6_食物_21","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"cabbage","entry_id":"V6_食物_52","reason":"VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"ancient","entry_id":"ADD_0007","reason":"元音弱化（schwa）使菜单归属待核"},{"word":"ballet","entry_id":"ADD_0012","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"become","entry_id":"ADD_0018","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"college","entry_id":"ADD_0049","reason":"VCe 短读面：e-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"equal","entry_id":"ADD_0097","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"garage","entry_id":"ADD_0115","reason":"VCe 短读面：a-e 读短音 /ɑː/（定版登记的例外型，如 give/live 型）"},{"word":"giant","entry_id":"ADD_0123","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"gone","entry_id":"ADD_0128","reason":"VCe 短读面：o-e 读短音 /ɔː/（定版登记的例外型，如 give/live 型）"},{"word":"guard","entry_id":"ADD_0132","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"guava","entry_id":"ADD_0133","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"income","entry_id":"ADD_0156","reason":"VCe 短读面：o-e 读短音 /ʌ/（定版登记的例外型，如 give/live 型）"},{"word":"karate","entry_id":"ADD_0167","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"league","entry_id":"ADD_0178","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"loyal","entry_id":"ADD_0184","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"machine","entry_id":"ADD_0185","reason":"元音弱化（schwa）使菜单归属待核"},{"word":"manage","entry_id":"ADD_0186","reason":"VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"message","entry_id":"ADD_0189","reason":"VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"mirage","entry_id":"ADD_0194","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"nation","entry_id":"ADD_0202","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"occasion","entry_id":"ADD_0206","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"persuade","entry_id":"ADD_0221","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"power","entry_id":"ADD_0233","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"pronounced","entry_id":"ADD_0237","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"quay","entry_id":"ADD_0244","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"royal","entry_id":"ADD_0259","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"sense","entry_id":"ADD_0264","reason":"VCe 短读面：e-e 读短音 /e/（定版登记的例外型，如 give/live 型）"},{"word":"voyage","entry_id":"ADD_0317","reason":"VCe 短读面：a-e 读短音 /ɪ/（定版登记的例外型，如 give/live 型）"},{"word":"camouflage","entry_id":"ADD_0340","reason":"VCe 短读面：a-e 读短音 /ɑː/（定版登记的例外型，如 give/live 型）"},{"word":"guano","entry_id":"ADD_0354","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"pneumonia","entry_id":"ADD_0376","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"politician","entry_id":"ADD_0377","reason":"拼写与音标音节对齐失败（音节数不合），需人工核"},{"word":"reread","entry_id":"ADD_0250","reason":"拼写含变脸组合但未按该组合成块切分（跨音节或被相邻字母块吞并），模式归属待核"},{"word":"perspective","entry_id":"ADD_0599","reason":"VCe 短读面：分体词尾未读长音（定版登记的例外型，如 give/live 型）"},{"word":"restive","entry_id":"ADD_0625","reason":"VCe 短读面：分体词尾未读长音（定版登记的例外型，如 give/live 型）"}],"zero":[{"id":"G1_009","word":"eye","gb":"/aɪ/"},{"id":"V6_核心_4","word":"you","gb":"/juː/"},{"id":"V6_核心_54","word":"of","gb":"/ɒv/"}],"registrations":[{"item":"GP-er 英式例外","words":["clerk","derby"],"note":"GB 中 er 读 /ɑː/（/klɑːk/、/ˈdɑːbi/），系英式特例；按任务裁定保留在 GP-er 并登记为例外，gb 数据正确不改。"},{"item":"yogurt 归位","words":["yogurt"],"note":"GA /ˈjoʊɡərt/ 曾入 GP-o-əʊ-open；GB /ˈjɒɡət/ o 读 /ɒ/，移入 GP-o-ɒ。"},{"item":"gb 表勘误（值待原线修正，模式归属按已核事实维持）","words":["math","gas","heard","toy","thorough","borough"],"note":"math 表值 /mɑːθ/ 应为 /mæθ/；gas 表值 /ɡeəs/ 应为 /ɡæs/；heard 表值 /hɔːd/ 应为 /hɜːd/；toy 表值 /taɪ/ 应为 /tɔɪ/；thorough/borough 表值 /ˈθʌrəʊ/、/ˈbʌrəʊ/ 应为 /ˈθʌrə/、/ˈbʌrə/（S-42 定版与剑桥 UK 一致）。归属维持：math/gas∈GP-a-æ、heard∈GP-ear-ɜː、toy∈GP-oy、thorough/borough∈GP-ough-ə。"},{"item":"gb 表记法变体（归属维持，登记）","words":["square","gasoline","noisy","blackbird","your"],"note":"square 表值 /skwɜː/ 的 ɜː 实为 are 的 /eə/ 宽式异写；gasoline 尾 /lin/ 为弱变体（引用式 /liːn/）；noisy 表值 /ˈnɔːɪzɪ/ 的 ɔːɪ 为 ɔɪ 的窄式分写；blackbird 表值 /bəːd/ 的 əː 为 ɜː 异写；your 表值取弱读 /jə/，模式归属按强读 /jɔː/ 维持 GP-ou-ɔː。"},{"item":"happy 元音 /i/ 记法类","words":["piano","taxi","happiness","champion","librarian","guardian","twentieth","espionage","easier","heavier","happier","pianos"],"note":"GB 词典以 /i/ 记 happy 元音，与 /ɪ/ 同族；按 ɪ 口径维持 GP-i-ɪ 归属。"},{"item":"GP-r 口径","words":[],"note":"GP-r 按字母承担口径收录（含词尾非重读 r）；其英式弱读 /ə/ 归模式空白登记（词尾 -er/-or/-ur/-ar→/ə/ 约 230 成员），本轮不新设模式。"},{"item":"零命中与无法判定维持登记","words":["eye","you","of","OK","TV","Mr","Mrs","Ms","PE","T-shirt","Dragon Boat Festival"],"note":"真零命中成员 eye/you/of 与 8 个无法判定成员（字母名/缩略读法等）维持登记，不硬塞；无法判定成员在现行词集中的 22 行维持（见审计 §7）。"},{"item":"无模式可归的英式分流（登记）","words":["metaphor","theatre","worry","worried","because","sandwich","geyser","tour","tourist","heretic","concerto","January","conspicuous","ingenuous","invaluable","argument(ʊ)"],"note":"GB 口径下其目标字母组合读音无对应模式（如 or=/ə/、ere=/e/、ou=/ʊə/、au=/ɒ/、ch=/dʒ/、ey=/iː/ 词中、u=/jʊ/），已退出原 GA 口径模式，归模式空白候选登记，待规律层裁定。"},{"item":"终轮人工放置（61 对）","words":[],"note":"弱元音/多字母块交界处自动对齐不可判者（BATH 词尾 -er 类、-sion 词、ough 词尾、conversion 等），按同族词口径逐词人工放置并逐词核定高亮 span；明细见 docs/PHONICS_WORDSETS.md 终轮处置表。"},{"item":"审计接缝伪影剔除","words":["how heavy"],"note":"GP-wh-h 中 how heavy 的 wh 系 how+heavy 两词接缝拼出（how 本身拼作 h-o-w，不含 wh），审计报告 §3 已定性为伪影；其余模式（h/ow-aʊ/ea-e 等）归属不受影响。"}],"overview":{"entries_total":2287,"units_total":2317,"patterns_total":167,"entries_hit_ge1":2284,"units_hit_ge1":2313,"entries_zero_hit":3,"pending_total":146,"total_appearances":10117,"per_category":{"辅音":{"patterns":48,"word_hits":6740},"短元音":{"patterns":9,"word_hits":1412},"长音菜单":{"patterns":65,"word_hits":1400},"变脸多读":{"patterns":25,"word_hits":165},"Magic e":{"patterns":5,"word_hits":182},"词尾定律":{"patterns":15,"word_hits":218}}}};
+function renderReg(){
+var ov = PHREG.overview;
+var h = '<h4>总览（与词集 phonics_wordsets.json 对账）</h4>' +
+'模式 ' + ov.patterns_total + ' 个（合并后入口 160，0 词模式 1 个不进菜单）· 总词次 ' + ov.total_appearances + ' · 覆盖词条 ' + ov.entries_hit_ge1 + '/' + ov.entries_total + '。' +
+'<h4>零命中 3 词（不属于任何模式，整词认读，登记在此不静默丢弃）</h4>' +
+PHREG.zero.map(function(z){ return esc(z.word) + ' ' + esc(z.gb || '');}).join(' · ') +
+'<h4>待裁定 ' + PHREG.pending.length + ' 条（推导未能定论，逐条登记原因，不硬塞进任何模式）</h4><ol>' +
+PHREG.pending.map(function(x){ return '<li>' + esc(x.word) + ' —— ' + esc(x.reason) + '</li>';}).join('') + '</ol>' +
+'<h4>例外与口径登记 ' + PHREG.registrations.length + ' 项</h4>' +
+PHREG.registrations.map(function(r){ return '<p>' + esc((r.words || []).join('、')) + ' —— ' + esc(r.note) + '</p>';}).join('');
+document.getElementById('ph-reg').innerHTML = h;
+}
+renderReg();
+document.addEventListener('click', function(ev){
+var root = ev.target.closest? ev.target.closest('#v-phon, #v-phon-detail'): null;
+if (!root) return;
+var rg = ev.target.closest('[data-phreg]');
+if (rg) { var el = document.getElementById('ph-reg'); el.hidden =!el.hidden; return;}
+});
+})();
+</script>
+
 
 <style>
 /* ===== 介词模块（pp 作用域，源自介词原型 v7） ===== */
+.pp .wbcard { background: #fffef9; border: 2px solid #33475c; border-radius: 14px; padding: 12px 14px; margin: 10px 0; }
+.pp .wbhead { font-weight: 700; font-size: 15.5px; color: #22303e; margin-bottom: 8px; }
+.pp .wbhead .wbflag { background: #e8720c; color: #fff; border-radius: 999px; padding: 1px 9px; font-size: 11.5px; margin-left: 6px; vertical-align: 2px; white-space: nowrap; display: inline-block; }
+.pp .wbtabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.pp .wbtab { border: 1.5px solid #c9d4e4; background: #fff; border-radius: 999px; padding: 4px 11px; font-size: 12.5px; cursor: pointer; }
+.pp .wbtab.on { background: #33475c; border-color: #33475c; color: #fff; font-weight: 700; }
+.pp .wbtab.none { border-style: dashed; color: #8a97a5; }
+.pp .wbtrans { min-height: 24px; font-size: 14.5px; font-weight: 700; color: #b35c00; opacity: 0; transform: translateY(4px); transition: opacity .35s, transform .35s; }
+.pp .wbtrans.show { opacity: 1; transform: none; }
+.pp .wbboard svg { width: 100%; max-width: 520px; display: block; margin: 0 auto; background: #fffef9; border: 1.5px solid #d8dee9; border-radius: 10px; }
+.pp .wbmark { border: 2px dashed #b9c8dd; border-radius: 10px; padding: 18px 14px; text-align: center; color: #5a6b7d; background: #f7faff; }
+.pp .wbmark b { color: #33475c; font-size: 15px; }
+.pp .wbcap { min-height: 42px; font-size: 14.5px; color: #33475c; margin: 8px 2px 2px; line-height: 1.55; }
+.pp .wbcap .capin { animation: wbcapin .4s ease; }
+@keyframes wbcapin { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+.pp .wbfinal { background: #eef7ee; border: 1.5px solid #9ccc8f; border-radius: 10px; padding: 9px 12px; margin-top: 6px; font-size: 15.5px; }
+.pp .wbfinal .fnote { display: block; color: #68798c; font-size: 12.5px; margin-top: 2px; }
+.pp .wbctl { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.pp .wbbtn { border: 1.5px solid #33475c; background: #33475c; color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 13.5px; font-weight: 700; cursor: pointer; }
+.pp .wbbtn.ghost { background: #fff; color: #33475c; }
+.pp .wbbtn:disabled { opacity: .45; cursor: default; }
+.pp .wbsub { color: #93a3b5; font-size: 12px; margin-top: 7px; }
+.pp .wbnone { border: 1.5px dashed #b9c8dd; border-radius: 8px; padding: 7px 10px; margin-top: 8px; color: #68798c; font-size: 13px; background: #f7faff; }
+.pp .wbplay { border: 1.5px solid #33475c; background: #fff; color: #33475c; border-radius: 999px; padding: 5px 13px; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+@media print {
+  .pp .wbctl, .pp .wbtabs, .pp .wbplay { display: none !important; }
+}
+
 .pp *{ box-sizing: border-box;}
 .pp h1{ font-size: 21px; margin: 6px 0 2px;}
 .pp .sub{ color: #5a6b7d; font-size: 13px; margin: 2px 0 8px;}
@@ -2973,6 +3037,543 @@ function renderAdult(w, d){
 /* ---------------- init ---------------- */
 renderPanels(); renderMethod(); renderCredits();
 window.__V7 = {DATA: DATA, BUILD: BUILD, mastery: mastery};
+/* ===== v7.1 whiteboard derivation animation =====
+   Data: WBMETA tags verbatim from model/prep_family_full.json (mechanism / ref head);
+   captions = node ext verbatim; final frame = node ex[0] verbatim. Scenes = presentation drawings. */
+const WBMETA = {"in": [{"tag": "原型场景（中心节点）", "cat": "flag-origin"}, {"tag": "功能知识介入（功能面）", "cat": "flag-func"}, {"tag": "切分对照（非引申站：同一图式的母语切法差异）", "cat": "none-contrast"}, {"tag": "视角选择（图形—背景分工）", "cat": "flag-view"}, {"tag": "时间借用（空间图式映射到时间域）", "cat": "flag-time"}, {"tag": "功能面抽象化（容器 → 状态）", "cat": "flag-abstract"}], "on": [{"tag": "原型场景（中心节点）", "cat": "flag-origin"}, {"tag": "功能知识介入（功能面）", "cat": "flag-func"}, {"tag": "切分对照（非引申站）", "cat": "none-contrast"}, {"tag": "视角选择（图形—背景分工）", "cat": "flag-view"}, {"tag": "语用强化（贴面 → 承载）", "cat": "flag-func"}, {"tag": "时间借用（面 → 日历格）", "cat": "flag-time"}], "at": [{"tag": "原型场景（点化操作）", "cat": "flag-origin"}, {"tag": "时间借用（点 → 时刻）", "cat": "flag-time"}, {"tag": "点化迁移（点 → 价格刻度）", "cat": "flag-abstract"}, {"tag": "视角迁移（位置点 → 目标点）", "cat": "flag-view"}], "over": [{"tag": "原型场景（甲版中心）/ 去路径近亲（乙版）", "cat": "flag-origin"}, {"tag": "语用强化（上方 → 遮挡，第一代引申）", "cat": "flag-func"}, {"tag": "图式加路径（甲版：在线组合；乙版：中心本尊）", "cat": "flag-path"}, {"tag": "图式变换（多点聚合为面/团）", "cat": "flag-spread"}, {"tag": "图式变换（路径终点聚焦）", "cat": "flag-path"}, {"tag": "图式变换（路径内化为自转）", "cat": "flag-flip"}, {"tag": "对照分工（非引申站）", "cat": "none-contrast"}, {"tag": "语用强化（越过终点 → 结束）", "cat": "flag-abstract"}], "above": [{"tag": "对照定位（非引申站：意义由对照集切分）", "cat": "origin"}], "under": [{"tag": "视角选择（图形—背景分工）", "cat": "origin"}, {"tag": "语用强化（下方 → 下方 + 牵连）", "cat": "func"}], "up": [{"tag": "经验相关绑定（MORE IS UP）", "cat": "origin"}, {"tag": "图式迁移（升到顶 → 完结）+ 透明度三档分流", "cat": "rise"}], "for": [{"tag": "语用强化（在前 → 意图/受益）", "cat": "origin"}, {"tag": "时间借用（方向 → 时长）", "cat": "time"}], "to": [{"tag": "视角迁移（地点终点 → 接收者终点）", "cat": "origin"}], "below": [{"tag": "对照定位 + 标量域占位（非引申站）", "cat": "origin"}], "along": [{"tag": "虚构运动（注意沿路径的心理扫描）", "cat": "origin"}], "across": [{"tag": "原型场景（分工判据给出）", "cat": "origin"}, {"tag": "编码定位（非引申站：路径的词汇化位置）", "cat": "none-contrast"}], "into": [{"tag": "编码定位（非引申站）", "cat": "origin"}, {"tag": "图式组装（容器图式 + 路径方向）", "cat": "path"}], "off": [{"tag": "图式族定位（脱离）+ 教学骨架组装", "cat": "origin"}, {"tag": "图式迁移（脱离 → 断开连接）", "cat": "abstract"}], "about": [{"tag": "M-5 图式变换（静态环绕→分布）组装", "cat": "origin"}, {"tag": "M-1 语用强化式组装", "cat": "abstract"}, {"tag": "核心图直接读法（组装）", "cat": "origin"}], "after": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "M-3 时间借用（P-09 + CG-05 点名适用 before/after）", "cat": "time"}, {"tag": "M-5 式组装（队列延长→重复）", "cat": "time"}, {"tag": "M-5 式组装（空间队列→抽象次序）", "cat": "abstract"}, {"tag": "跟随义的人际版（组装）", "cat": "shift"}], "against": [{"tag": "PB-04（Lindstromberg 第 15 章专章：接触 + 压力；三级衍生第一级）", "cat": "origin"}, {"tag": "PB-04（三级衍生第二级：动态逆力行进）", "cat": "move"}, {"tag": "PB-04（三级衍生第三级：抽象对立，含 fight against）", "cat": "abstract"}, {"tag": "PB-04（三级衍生第三级：抽象对立）", "cat": "abstract"}, {"tag": "力图式的预防版（组装）", "cat": "shift"}], "among": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "M-1 式组装（整体→成员）", "cat": "abstract"}, {"tag": "M-5 式组装（没入群体→散入群体）", "cat": "spread"}], "around": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "M-5 式组装（静态环绕→沿边运动）", "cat": "shift"}, {"tag": "M-5 图式变换（多点聚合/分布）式组装", "cat": "spread"}, {"tag": "M-1 式组装（环绕→近似）", "cat": "abstract"}], "as": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "身份等同的功能版（组装）", "cat": "func"}, {"tag": "身份等同的认定版（组装）", "cat": "shift"}, {"tag": "等同→同等程度（组装）", "cat": "shift"}], "before": [{"tag": "M-3 时间借用（P-09 + CG-05 点名适用 before/after）", "cat": "origin"}, {"tag": "M-5 式组装（空间队列→抽象次序）", "cat": "abstract"}, {"tag": "空间原义的正式残留（组装）", "cat": "shift"}], "behind": [{"tag": "PB-08（投影介词归类）+ PB-09（邻近性分账裁决）", "cat": "origin"}, {"tag": "空间队形→进度标尺（组装，来源无桥梁）", "cat": "none-nobridge"}, {"tag": "位置→人际支持（组装，来源无桥梁）", "cat": "none-nobridge"}, {"tag": "遮挡→幕后（组装，来源无桥梁）", "cat": "none-nobridge"}], "beside": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "并置→对照（组装）", "cat": "abstract"}], "between": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "M-3 时间借用（通用机制组装）", "cat": "time"}, {"tag": "端点图式→尺度（组装）", "cat": "abstract"}, {"tag": "位置→关系/选择（组装）", "cat": "shift"}, {"tag": "空间段→两人圈（组装）", "cat": "shift"}], "beyond": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "M-3 时间借用（通用机制组装）", "cat": "time"}, {"tag": "界线→限度（组装）", "cat": "abstract"}, {"tag": "越界→不可逆（组装）", "cat": "shift"}], "by": [{"tag": "词典口径起点（OALD / Oxford Guide §6）", "cat": "origin"}, {"tag": "贴近→期限（组装）", "cat": "time"}, {"tag": "方式义组装", "cat": "abstract"}, {"tag": "方式义组装（车辆→动作）", "cat": "shift"}, {"tag": "无桥梁登记（主题级真空）", "cat": "none-nobridge"}], "down": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "高低差虚化（组装）", "cat": "shift"}], "except": [{"tag": "核心动作原位（链首节点）", "cat": "origin"}, {"tag": "取出动作的整体版（组装）", "cat": "shift"}, {"tag": "搭档换班登记（Swan §116），非图式引申", "cat": "none-nobridge"}], "from": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "出发点回望（组装）", "cat": "shift"}, {"tag": "出发点人格化（组装）", "cat": "shift"}, {"tag": "起点→零刻度（组装）", "cat": "shift"}, {"tag": "M-3 时间借用（通用机制组装）", "cat": "time"}], "in front of": [{"tag": "PB-08（投影介词归类裁定）", "cat": "origin"}, {"tag": "投影坐标的对面版（组装）", "cat": "shift"}, {"tag": "M-3 时间借用（通用机制组装）", "cat": "time"}, {"tag": "面对面→在场见证（组装）", "cat": "abstract"}], "inside": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "静态→动态（组装）", "cat": "move"}, {"tag": "M-3 时间借用（容器版组装）", "cat": "time"}, {"tag": "容器→身体（组装）", "cat": "abstract"}], "like": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "外观→方式（组装）", "cat": "shift"}, {"tag": "比较→问法（组装）", "cat": "shift"}, {"tag": "比较→举例（组装）", "cat": "shift"}], "near": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "M-3 时间借用（通用机制组装）", "cat": "time"}, {"tag": "距离→数轴（组装）", "cat": "shift"}, {"tag": "距离→品质（组装）", "cat": "abstract"}, {"tag": "距离→状态（组装）", "cat": "shift"}], "of": [{"tag": "否定性裁决下的分组站", "cat": "origin"}, {"tag": "否定性裁决下的分组站", "cat": "none-group"}, {"tag": "否定性裁决下的分组站", "cat": "none-group"}, {"tag": "否定性裁决下的分组站", "cat": "none-group"}, {"tag": "否定性裁决下的分组站", "cat": "none-group"}], "outside": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "边界放大（组装）", "cat": "shift"}, {"tag": "边界→范围（组装）", "cat": "abstract"}], "past": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "M-3 时间借用（通用机制组装）", "cat": "time"}, {"tag": "越过点→越过阶段（组装）", "cat": "abstract"}], "plus": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "加法→外加（组装）", "cat": "shift"}, {"tag": "破例同卷登记（OALD 形容词条义项 2），非图式引申", "cat": "none-nobridge"}], "since": [{"tag": "M-3 通用机制组装", "cat": "origin"}, {"tag": "起点事件化（组装）", "cat": "time"}, {"tag": "先后→因果（组装）", "cat": "abstract"}], "through": [{"tag": "PB-04（Lindstromberg 路径簇：路径 + 介质内通过；介质三型）", "cat": "origin"}, {"tag": "介质图式的感知版（组装）", "cat": "shift"}, {"tag": "PB-04（时间版为同图式扩展；编排证据见源图 CLU 项 5）", "cat": "time"}, {"tag": "PB-04 图式扩展（事件即介质；卷宗成人层口径）", "cat": "abstract"}, {"tag": "介质→办法通道（组装）", "cat": "shift"}], "until": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "M-3 时间借用（通用机制组装）", "cat": "time"}, {"tag": "终点→放行条件（组装）", "cat": "time"}], "upon": [{"tag": "语域变体登记（OALD 裁定），非图式引申", "cat": "origin"}, {"tag": "习语整记登记，非图式引申", "cat": "none-nobridge"}, {"tag": "格式重复→数量强调（组装）", "cat": "spread"}], "with": [{"tag": "否定性裁决下的组图站", "cat": "origin"}, {"tag": "组图并列站（组装）", "cat": "none-group"}, {"tag": "组图并列站（组装）", "cat": "none-group"}, {"tag": "组图并列站（组装）", "cat": "none-group"}, {"tag": "组图并列站（组装）", "cat": "none-group"}], "without": [{"tag": "核心图原位（链首节点）", "cat": "origin"}, {"tag": "缺席者人格化（组装）", "cat": "shift"}, {"tag": "工具缺席（组装）", "cat": "shift"}, {"tag": "缺席者动作化（组装）", "cat": "shift"}]};
+const WB = { word: null, idx: 0, playing: false, paused: false, phase: 'idle', token: 0, chainMode: false, dwell: null };
+window.__WB = WB;
+const WBFLAG_WORDS = ['in', 'on', 'at', 'over'];
+const WBNONE_TXT = {
+  'none-contrast': '非引申站（对照 / 切分）',
+  'none-nobridge': '无桥梁登记 / 非图式引申',
+  'none-group': '组图并列（否定性裁决 · 无单一核心图）'
+};
+function wbSplitSentences(t){
+  const out = []; let cur = '';
+  for (const ch of String(t || '')) { cur += ch; if ('。！？'.indexOf(ch) >= 0) { out.push(cur); cur = ''; } }
+  if (cur.trim()) out.push(cur);
+  return out.map(s => s.trim()).filter(Boolean);
+}
+function wbEsc(s){ return esc(s); }
+/* ---- cue engine: every cue fn is a pure function of k in [0,1] (pause-safe) ---- */
+let wbAnim = null;
+function wbStop(){
+  if (wbAnim) wbAnim = null;
+  if (WB.dwell) { clearTimeout(WB.dwell); WB.dwell = null; }
+  WB.playing = false; WB.paused = false;
+}
+function wbRun(cues, total, onDone){
+  wbStop();
+  const token = ++WB.token;
+  const st = { token: token, elapsed: 0, cues: cues, total: total, onDone: onDone, fired: new Set(), lastTs: performance.now() };
+  wbAnim = st; WB.playing = true; WB.paused = false; WB.phase = 'playing';
+  const frame = ts => {
+    if (!wbAnim || wbAnim.token !== token) return;
+    const dt = ts - st.lastTs; st.lastTs = ts;
+    if (!WB.paused) {
+      st.elapsed += dt;
+      st.cues.forEach((c, ci) => {
+        if (c.dur > 0) { const k = (st.elapsed - c.at) / c.dur; if (k >= 0) c.fn(Math.min(1, k)); }
+        else if (st.elapsed >= c.at && !st.fired.has(ci)) { st.fired.add(ci); c.fn(1); }
+      });
+      if (st.elapsed >= st.total) {
+        wbAnim = null; WB.playing = false; WB.phase = 'done';
+        if (st.onDone) st.onDone();
+        return;
+      }
+    }
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+const C = (at, dur, fn) => ({ at: at, dur: dur, fn: fn });
+function fadeCue(el, at, dur, a, b){ return C(at, dur, k => { el.style.opacity = String(a + (b - a) * k); }); }
+function drawCue(el, at, dur){
+  let L = 0; try { L = el.getTotalLength(); } catch (e) { return fadeCue(el, at, dur, 0, 1); }
+  if (!L || !isFinite(L)) return fadeCue(el, at, dur, 0, 1);
+  el.setAttribute('stroke-dasharray', String(L));
+  el.setAttribute('stroke-dashoffset', String(L));
+  return C(at, dur, k => { el.setAttribute('stroke-dashoffset', String(L * (1 - k))); });
+}
+function drawOnGroup(group, at, totalDur, cues){
+  if (!group) return;
+  const els = [];
+  group.querySelectorAll('*').forEach(el => { els.push(el); });
+  const drawables = els.filter(el => !el.hasAttribute('stroke-dasharray') && typeof el.getTotalLength === 'function');
+  const others = els.filter(el => drawables.indexOf(el) < 0);
+  const step = drawables.length ? totalDur / Math.max(1, drawables.length) : 0;
+  drawables.forEach((el, j) => {
+    const fo = el.getAttribute('fill-opacity');
+    el.setAttribute('fill-opacity', '0');
+    cues.push(drawCue(el, at + j * step * 0.55, Math.max(120, totalDur * 0.55)));
+    cues.push(C(at, totalDur, k => { el.setAttribute('fill-opacity', String(k * (fo == null ? 1 : +fo))); }));
+  });
+  others.forEach(el => { el.style.opacity = '0'; cues.push(fadeCue(el, at + totalDur * 0.5, totalDur * 0.5, 0, 1)); });
+}
+function ballMoveCue(g, at, dur, pts){
+  const segs = []; let tot = 0;
+  for (let i = 1; i < pts.length; i++) { const L = Math.hypot(pts[i][0] - pts[i-1][0], pts[i][1] - pts[i-1][1]); segs.push(L); tot += L; }
+  return C(at, dur, k => {
+    let dist = k * tot, i = 0;
+    while (i < segs.length && dist > segs[i]) { dist -= segs[i]; i++; }
+    if (i >= segs.length) i = segs.length - 1;
+    const f = segs[i] ? dist / segs[i] : 0;
+    const x = pts[i][0] + (pts[i+1][0] - pts[i][0]) * f, y = pts[i][1] + (pts[i+1][1] - pts[i][1]) * f;
+    g.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')');
+  });
+}
+function wbBallG(x, y, r){
+  return '<g class="wbBallG" transform="translate(' + x + ' ' + y + ')"><circle r="' + (r || 13) + '" fill="#e0653a" stroke="#fff" stroke-width="2.5"/><circle cy="' + (-(r || 13) + 6) + '" r="3.2" fill="#fff"/></g>';
+}
+
+/* ===== parameterized whiteboard scenes (word's own stage scene + domain decor) ===== */
+const WBBALLDEF = { likepair: [170, 58], role: [82, 168], minus: [170, 58], plusvis: [170, 182], ghost: [88, 88], give: [170, 168], generic: [170, 122] };
+const WBTUNNEL = '<path d="M0,220 L0,84 Q62,30 124,84 L124,220 Z" fill="#9ccc8f"/><path d="M340,220 L340,84 Q278,30 216,84 L216,220 Z" fill="#9ccc8f"/><path d="M124,220 L124,108 Q170,74 216,108 L216,220 Z" fill="#44506b"/><polyline points="16,150 84,150 122,128 170,124 218,128 256,150 324,150" fill="none" stroke="#ffd94d" stroke-width="3" stroke-dasharray="6 5"/><rect x="0" y="192" width="340" height="5" fill="#c9d4e2"/>';
+function wbDecorTimeSVG(){
+  let ticks = '';
+  for (let i = 0; i <= 6; i++) { const x = 40 + i * 43; ticks += '<line x1="' + x + '" y1="192" x2="' + x + '" y2="202" stroke="#e0a100" stroke-width="2"/>'; }
+  return '<line x1="24" y1="197" x2="316" y2="197" stroke="#e0a100" stroke-width="3"/>' + ticks +
+    '<rect x="96" y="182" width="86" height="15" rx="7" fill="#ffe9a8" stroke="#e0a100" stroke-width="1.5"/>' +
+    '<circle cx="52" cy="168" r="11" fill="#ffd94d" stroke="#e0a100" stroke-width="2"/><path d="M52,152 V146 M52,190 V184 M36,168 H30 M74,168 H68 M41,157 L37,153 M63,157 L67,153 M41,179 L37,183 M63,179 L67,183" stroke="#e0a100" stroke-width="2"/>';
+}
+function wbDecorAbsSVG(){
+  return '<g fill="#f3eafd" stroke="#8e44ad" stroke-width="2"><circle cx="238" cy="46" r="15"/><circle cx="258" cy="38" r="19"/><circle cx="280" cy="48" r="14"/><circle cx="258" cy="56" r="16"/></g>' +
+    '<circle cx="222" cy="74" r="5" fill="#f3eafd" stroke="#8e44ad" stroke-width="1.6"/><circle cx="210" cy="88" r="3.4" fill="#f3eafd" stroke="#8e44ad" stroke-width="1.4"/>';
+}
+function wbBase(w){
+  const cfg = (BUILD.stage && BUILD.stage[w]) || { kind: 'generic', presets: [] };
+  const kind = cfg.kind;
+  if (kind === 'path') return { inner: WBTUNNEL, ball: [16, 150], kind: kind };
+  if (kind === 'project') {
+    const vp = (BUILD.viewpoint || {})[w] || { objLabel: '' };
+    return { inner: '<rect x="128" y="86" width="84" height="58" fill="#f2c879" stroke="#b08968" stroke-width="2"/><text x="170" y="119" font-size="12" fill="#7a5a20" text-anchor="middle">' + wbEsc(vp.objLabel) + '</text><rect x="0" y="196" width="340" height="5" fill="#c9d4e2"/>', ball: [170, 58], kind: kind };
+  }
+  if (kind === 'group') {
+    return { inner: (cfg.panels || []).map((p, i) => '<rect x="' + (14 + i * 64) + '" y="66" width="58" height="84" rx="8" fill="#f4f7fb" stroke="#9db8d9" stroke-width="2"/><circle cx="' + (43 + i * 64) + '" cy="96" r="11" fill="#e0653a"/><text x="' + (43 + i * 64) + '" y="136" font-size="12" fill="#223" text-anchor="middle">' + wbEsc(p) + '</text>').join(''), ball: [170, 185], kind: kind };
+  }
+  const inner = SCENES[kind] || SCENES.generic;
+  const p = (cfg.presets || []).filter(x => x.prep === w)[0];
+  return { inner: inner, ball: p ? [p.x, p.y] : (WBBALLDEF[kind] || [170, 110]), kind: kind };
+}
+/* board html for station i of word w; state 'before' shows prev station's resting decor */
+function wbParamBoard(w, i){
+  const d = DATA[w], node = d.chain[i], prev = i > 0 ? d.chain[i - 1] : node;
+  const base = wbBase(w);
+  const tOn = prev.seg === '时间' ? 1 : 0, aOn = prev.seg === '抽象' ? 1 : 0;
+  return '<svg viewBox="0 0 340 220" class="wbsvg">' +
+    '<g id="wbBaseG">' + base.inner + '</g>' +
+    '<g id="wbFxT" style="opacity:' + tOn + '">' + wbDecorTimeSVG() + '</g>' +
+    '<g id="wbFxA" style="opacity:' + aOn + '">' + wbDecorAbsSVG() + '</g>' +
+    '<g id="wbFx"></g>' + wbBallG(base.ball[0], base.ball[1]) + '</svg>';
+}
+function wbParamSetup(w, i, root){
+  const d = DATA[w], node = d.chain[i], meta = WBMETA[w][i], cat = meta.cat;
+  const base = wbBase(w), bx = base.ball[0], by = base.ball[1];
+  const cues = [];
+  const baseG = root.querySelector('#wbBaseG'), fx = root.querySelector('#wbFx');
+  const fxT = root.querySelector('#wbFxT'), fxA = root.querySelector('#wbFxA');
+  const ball = root.querySelector('.wbBallG');
+  drawOnGroup(baseG, 60, 1150, cues);
+  const M0 = 1500, M1 = 3450; // morph window
+  const seg = node.seg, prevSeg = i > 0 ? d.chain[i - 1].seg : seg;
+  // domain decor transitions ride along with every morph
+  if (seg === '时间' && prevSeg !== '时间') cues.push(fadeCue(fxT, M0, 700, 0, 1));
+  if (seg !== '时间' && prevSeg === '时间') cues.push(fadeCue(fxT, M0, 700, 1, 0));
+  if (seg === '抽象' && prevSeg !== '抽象') cues.push(fadeCue(fxA, M0, 700, 0, 1));
+  if (seg !== '抽象' && prevSeg === '抽象') cues.push(fadeCue(fxA, M0, 700, 1, 0));
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs) => { const e = document.createElementNS(svgNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); fx.appendChild(e); return e; };
+  if (cat === 'origin') {
+    // draw-on only; ball settles with a small bounce at the end of the draw phase
+    cues.push(C(M0, 500, k => { const dy = Math.sin(k * Math.PI) * -7; ball.setAttribute('transform', 'translate(' + bx + ' ' + (by + dy * (1 - k)) + ')'); }));
+  } else if (cat === 'time') {
+    cues.push(ballMoveCue(ball, M0 + 500, 1300, [[bx, by], [(bx + 150) / 2, Math.max(60, by - 46)], [150, 189]]));
+    cues.push(C(M0 + 500, 1300, k => { const r = 13 - 4 * k; ball.querySelector('circle').setAttribute('r', String(r)); }));
+  } else if (cat === 'abstract') {
+    cues.push(ballMoveCue(ball, M0 + 400, 1400, [[bx, by], [(bx + 256) / 2, Math.max(48, by - 60)], [256, 62]]));
+    cues.push(fadeCue(baseG, M0 + 400, 1400, 1, 0.5));
+  } else if (cat === 'func') {
+    const ring = mk('ellipse', { cx: bx, cy: by, rx: 27, ry: 19, fill: 'none', stroke: '#e8720c', 'stroke-width': 3, opacity: 0 });
+    cues.push(C(M0, 1500, k => { const s = Math.sin(Math.min(1, k) * Math.PI * 2); ring.setAttribute('opacity', String(0.25 + 0.75 * Math.abs(s))); ring.setAttribute('rx', String(27 + 5 * Math.abs(s))); }));
+    const tick = mk('path', { d: 'M' + (bx - 16) + ',' + (by + 24) + ' l8,8 M' + bx + ',' + (by + 27) + ' l0,10 M' + (bx + 16) + ',' + (by + 24) + ' l-8,8', stroke: '#e8720c', 'stroke-width': 3, fill: 'none', opacity: 0 });
+    cues.push(fadeCue(tick, M0 + 300, 600, 0, 1));
+  } else if (cat === 'path' || cat === 'rise') {
+    const ex = Math.min(308, bx + 150), ey = cat === 'rise' ? Math.max(38, by - 84) : Math.max(44, by - 52);
+    const arc = mk('path', { d: 'M' + bx + ',' + by + ' Q' + ((bx + ex) / 2) + ',' + (Math.min(by, ey) - 62) + ' ' + ex + ',' + ey, fill: 'none', stroke: '#2f7fd0', 'stroke-width': 3, 'stroke-dasharray': '7 6' });
+    cues.push(fadeCue(arc, M0, 400, 0, 1));
+    const pts = []; for (let j = 0; j <= 10; j++) { const t = j / 10, mx = (1 - t) * (1 - t) * bx + 2 * (1 - t) * t * ((bx + ex) / 2) + t * t * ex, my = (1 - t) * (1 - t) * by + 2 * (1 - t) * t * (Math.min(by, ey) - 62) + t * t * ey; pts.push([mx, my]); }
+    cues.push(ballMoveCue(ball, M0 + 350, 1500, pts));
+    if (cat === 'rise') { const flag = mk('path', { d: 'M' + ex + ',' + ey + ' v-26 M' + ex + ',' + (ey - 26) + ' l17,6 l-17,6', stroke: '#c0392b', 'stroke-width': 3, fill: 'none', opacity: 0 }); cues.push(fadeCue(flag, M1 - 500, 450, 0, 1)); }
+  } else if (cat === 'view') {
+    const eye = mk('g', { opacity: 0 });
+    eye.innerHTML = '<path d="M-17,0 Q0,-13 17,0 Q0,13 -17,0 Z" fill="#fff" stroke="#33475c" stroke-width="2.2"/><circle r="5.5" fill="#33475c"/>';
+    eye.setAttribute('transform', 'translate(40 40)');
+    cues.push(fadeCue(eye, M0, 450, 0, 1));
+    const line = mk('line', { x1: 57, y1: 44, x2: bx, y2: by, stroke: '#33475c', 'stroke-width': 2, 'stroke-dasharray': '5 5', opacity: 0 });
+    cues.push(fadeCue(line, M0 + 350, 450, 0, 1));
+    cues.push(C(M0 + 900, 800, k => { const x = 40 + (300 - 40) * k; eye.setAttribute('transform', 'translate(' + x.toFixed(1) + ' 40)'); line.setAttribute('x1', String(57 + (283 - 57) * k)); }));
+    const ring2 = mk('ellipse', { cx: bx, cy: by, rx: 24, ry: 17, fill: 'none', stroke: '#e8720c', 'stroke-width': 3, opacity: 0 });
+    cues.push(fadeCue(ring2, M1 - 450, 400, 0, 1));
+  } else if (cat === 'spread') {
+    const offs = [[-72, -20], [-38, 14], [38, -26], [74, 8], [2, 30]];
+    offs.forEach((o, j) => {
+      const g = document.createElementNS(svgNS, 'g');
+      g.innerHTML = '<circle r="10" fill="#e0653a" stroke="#fff" stroke-width="2" opacity="0.92"/>';
+      g.setAttribute('transform', 'translate(' + bx + ' ' + by + ')');
+      fx.appendChild(g);
+      cues.push(ballMoveCue(g, M0 + j * 110, 1050, [[bx, by], [bx + o[0], by + o[1]]]));
+    });
+  } else if (cat === 'flip') {
+    const ex = Math.max(32, Math.min(308, 340 - bx)), ey = by;
+    const arc = mk('path', { d: 'M' + bx + ',' + by + ' Q170,' + (Math.min(by, ey) - 74) + ' ' + ex + ',' + ey, fill: 'none', stroke: '#2f7fd0', 'stroke-width': 3, 'stroke-dasharray': '7 6' });
+    cues.push(fadeCue(arc, M0, 400, 0, 1));
+    const pts = []; for (let j = 0; j <= 10; j++) { const t = j / 10, mx = (1 - t) * (1 - t) * bx + 2 * (1 - t) * t * 170 + t * t * ex, my = (1 - t) * (1 - t) * by + 2 * (1 - t) * t * (Math.min(by, ey) - 74) + t * t * ey; pts.push([mx, my]); }
+    cues.push(ballMoveCue(ball, M0 + 350, 1500, pts));
+    cues.push(C(M0 + 350, 1500, k => { const dot = ball.querySelectorAll('circle')[1]; const a = Math.PI * k; dot.setAttribute('cx', String(7 * Math.sin(a))); dot.setAttribute('cy', String(-7 * Math.cos(a))); }));
+  } else if (cat === 'move') {
+    const trk = mk('line', { x1: Math.max(24, bx - 46), y1: by + 20, x2: Math.min(316, bx + 46), y2: by + 20, stroke: '#9db8d9', 'stroke-width': 3, 'stroke-dasharray': '6 5', opacity: 0 });
+    cues.push(fadeCue(trk, M0, 400, 0, 1));
+    cues.push(C(M0 + 300, 1600, k => { const dx = Math.sin(k * Math.PI * 4) * 34 * (1 - k * 0.35); ball.setAttribute('transform', 'translate(' + (bx + dx).toFixed(1) + ' ' + by + ')'); }));
+  } else { /* shift */
+    const far = /脱离|断开|离开/.test(meta.tag) ? [64, -30] : [32, -16];
+    let tx = Math.max(24, Math.min(316, bx + far[0]));
+    const ty = Math.max(28, Math.min(200, by + far[1]));
+    let tyF = ty;
+    if (base.kind === 'project') { tx = 170; tyF = 176; }
+    const ghost = mk('circle', { cx: bx, cy: by, r: 13, fill: 'none', stroke: '#93a3b5', 'stroke-width': 2, 'stroke-dasharray': '4 4', opacity: 0 });
+    cues.push(fadeCue(ghost, M0, 500, 0, 1));
+    cues.push(ballMoveCue(ball, M0 + 350, 1250, [[bx, by], [tx, tyF]]));
+  }
+  return cues;
+}
+
+/* ===== flagship hand-tuned whiteboard scenes: in / on / at / over ===== */
+const FM0 = 1500, FM1 = 3450;
+const FDESK = '<path d="M30,105 H140 M40,105 V182 M130,105 V182" stroke="#b08968" stroke-width="6" fill="none"/>';
+const FDESKW = '<path d="M30,105 H250 M42,105 V182 M238,105 V182" stroke="#b08968" stroke-width="6" fill="none"/>';
+const FBOX = '<path d="M205,108 L205,178 Q205,190 217,190 L293,190 Q305,190 305,178 L305,108 L288,108 L288,172 Q288,176 284,176 L226,176 Q222,176 222,172 L222,108 Z" fill="#f2c879" stroke="#b08968" stroke-width="2.5"/>';
+const FGROUND = '<rect x="0" y="190" width="340" height="5" fill="#c9d4e2"/>';
+function fEye(x, y){
+  return '<g transform="translate(' + x + ' ' + y + ')"><path d="M-19,0 Q0,-14 19,0 Q0,14 -19,0 Z" fill="#fff" stroke="#33475c" stroke-width="2.2"/><circle r="6" fill="#33475c"/></g>';
+}
+function fViewMorph(root, cues, lmSel){
+  const lm = root.querySelector(lmSel), ring = root.querySelector('#wbRing'), eye = root.querySelector('#wbEye');
+  const ball = root.querySelector('.wbBallG');
+  if (lm) cues.push(fadeCue(lm, FM0, 900, 1, 0.42));
+  if (eye) cues.push(fadeCue(eye, FM0 + 200, 600, 0, 1));
+  if (ring) cues.push(C(FM0 + 500, 1300, k => { ring.setAttribute('opacity', String(0.3 + 0.7 * Math.abs(Math.sin(k * Math.PI * 2)))); }));
+  if (ball) cues.push(C(FM0 + 400, 1200, k => { ball.querySelector('circle').setAttribute('r', String(13 + 5 * Math.sin(Math.min(1, k) * Math.PI * 0.5))); }));
+}
+const WBFLAG = {
+  'in': {
+    0: { svg: '<g id="wbA">' + FDESK + FBOX + wbBallG(254, 138) + '</g>', setup: null },
+    1: { svg: '<g id="wbA">' + FDESK + FBOX + '</g>' + wbBallG(254, 138) +
+        '<g id="wbB" style="opacity:0"><path d="M30,100 H185 M42,100 V182 M173,100 V182" stroke="#b08968" stroke-width="6" fill="none"/><path d="M62,92 Q107,148 152,92" fill="#bcd9f7" stroke="#5a86b8" stroke-width="3"/><line x1="56" y1="92" x2="158" y2="92" stroke="#5a86b8" stroke-width="3"/><ellipse id="wbRing" cx="107" cy="102" rx="60" ry="34" fill="none" stroke="#e8720c" stroke-width="3" opacity="0"/></g>',
+      setup(root, cues){
+        const A = root.querySelector('#wbA'), B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG'), ring = root.querySelector('#wbRing');
+        cues.push(fadeCue(A, FM0, 700, 1, 0.1));
+        cues.push(fadeCue(B, FM0 + 100, 300, 0, 1));
+        drawOnGroup(B, FM0 + 250, 1050, cues);
+        cues.push(ballMoveCue(ball, FM0 + 500, 1250, [[254, 138], [180, 66], [107, 80]]));
+        cues.push(C(FM1 - 700, 650, k => { ring.setAttribute('opacity', String(Math.abs(Math.sin(k * Math.PI * 2)))); }));
+      } },
+    3: { svg: '<g id="wbA"><g id="wbLm">' + FDESK + FBOX + '</g>' + wbBallG(254, 138) +
+        '<ellipse id="wbRing" cx="254" cy="138" rx="26" ry="22" fill="none" stroke="#e8720c" stroke-width="3" opacity="0"/><g id="wbEye" style="opacity:0">' + fEye(44, 42) + '</g></g>',
+      setup(root, cues){ fViewMorph(root, cues, '#wbLm'); } },
+    4: { svg: '<g id="wbA">' + FDESK + FBOX + '</g>' + wbBallG(254, 138) +
+        '<g id="wbB" style="opacity:0"><line x1="20" y1="168" x2="320" y2="168" stroke="#e0a100" stroke-width="3"/><rect x="56" y="154" width="124" height="28" rx="9" fill="#ffe9a8" stroke="#e0a100" stroke-width="2"/><circle cx="94" cy="56" r="14" fill="#ffd94d" stroke="#e0a100" stroke-width="2"/><path d="M94,34 V27 M94,85 V78 M72,56 H65 M116,56 H109 M78,40 L73,35 M110,40 L115,35 M78,72 L73,77 M110,72 L115,77" stroke="#e0a100" stroke-width="2"/></g>',
+      setup(root, cues){
+        const A = root.querySelector('#wbA'), B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        cues.push(C(FM0, 1100, k => { A.setAttribute('transform', 'translate(' + (-34 * k).toFixed(1) + ' ' + (-20 * k).toFixed(1) + ') scale(' + (1 - 0.3 * k).toFixed(3) + ')'); A.style.opacity = String(1 - 0.88 * k); }));
+        cues.push(fadeCue(B, FM0 + 250, 300, 0, 1));
+        drawOnGroup(B, FM0 + 400, 1000, cues);
+        cues.push(ballMoveCue(ball, FM0 + 550, 1250, [[254, 138], [190, 178], [118, 168]]));
+        cues.push(C(FM0 + 550, 1250, k => { ball.querySelector('circle').setAttribute('r', String(13 - 3 * k)); }));
+      } },
+    5: { svg: '<g id="wbA">' + FDESK + FBOX + '</g>' + wbBallG(254, 138) +
+        '<g id="wbB" style="opacity:0"><ellipse cx="170" cy="112" rx="98" ry="60" fill="#f3eafd" stroke="#8e44ad" stroke-width="2.5" stroke-dasharray="7 6"/><path d="M96,24 L78,50 L90,50 L74,78" fill="none" stroke="#e0a100" stroke-width="3.5"/><path d="M252,60 C238,42 220,54 252,80 C284,54 266,42 252,60 Z" fill="#f6c6d8" stroke="#c2185b" stroke-width="2.2"/></g>',
+      setup(root, cues){
+        const A = root.querySelector('#wbA'), B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        cues.push(fadeCue(A, FM0, 800, 1, 0.08));
+        cues.push(fadeCue(B, FM0 + 200, 300, 0, 1));
+        drawOnGroup(B, FM0 + 350, 1050, cues);
+        cues.push(ballMoveCue(ball, FM0 + 600, 1200, [[254, 138], [214, 96], [170, 118]]));
+      } }
+  },
+  'on': {
+    0: { svg: '<g id="wbA">' + FDESKW + wbBallG(85, 92) + '<path d="M66,105 v7 M85,105 v7 M104,105 v7" stroke="#e8720c" stroke-width="3"/></g>', setup: null },
+    1: { svg: '<g id="wbA"><g id="wbLm">' + FDESKW + '</g></g>' + wbBallG(85, 92) +
+        '<g id="wbB" style="opacity:0"><rect x="58" y="82" width="54" height="20" rx="2" fill="#d9534f" stroke="#a33" stroke-width="2"/><path d="M66,130 v-13 M59,124 l7,-9 l7,9 M102,130 v-13 M95,124 l7,-9 l7,9" stroke="#2f7fd0" stroke-width="3" fill="none"/><line x1="50" y1="105" x2="122" y2="105" stroke="#e8720c" stroke-width="5"/></g>',
+      setup(root, cues){
+        const B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        cues.push(C(FM0, 700, k => { ball.querySelector('circle').setAttribute('r', String(13 * (1 - k))); ball.style.opacity = String(1 - k); }));
+        cues.push(fadeCue(B, FM0 + 250, 300, 0, 1));
+        drawOnGroup(B, FM0 + 400, 1050, cues);
+      } },
+    3: { svg: '<g id="wbA"><g id="wbLm">' + FDESKW + '</g>' + wbBallG(85, 92) +
+        '<ellipse id="wbRing" cx="85" cy="92" rx="26" ry="20" fill="none" stroke="#e8720c" stroke-width="3" opacity="0"/><g id="wbEye" style="opacity:0">' + fEye(292, 42) + '</g></g>',
+      setup(root, cues){ fViewMorph(root, cues, '#wbLm'); } },
+    4: { svg: '<g id="wbA"><line x1="20" y1="150" x2="320" y2="150" stroke="#68798c" stroke-width="3"/></g>' + wbBallG(80, 137) +
+        '<g id="wbB" style="opacity:0"><rect x="118" y="56" width="184" height="86" rx="10" fill="#ffe9a8" stroke="#e0a100" stroke-width="2.5"/><rect x="196" y="66" width="44" height="34" fill="#bcd9f7" stroke="#e0a100" stroke-width="2"/><rect x="130" y="66" width="44" height="34" fill="#bcd9f7" stroke="#e0a100" stroke-width="2"/><rect x="254" y="66" width="36" height="34" fill="#bcd9f7" stroke="#e0a100" stroke-width="2"/><circle cx="152" cy="146" r="11" fill="#44506b"/><circle cx="268" cy="146" r="11" fill="#44506b"/><path d="M28,76 H92 M40,96 H104 M28,116 H92" stroke="#2f7fd0" stroke-width="3.5"/></g>',
+      setup(root, cues){
+        const B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        B.setAttribute('transform', 'translate(30 0)');
+        cues.push(fadeCue(B, FM0, 500, 0, 1));
+        cues.push(C(FM0, 1000, k => { B.setAttribute('transform', 'translate(' + (30 * (1 - k)).toFixed(1) + ' 0)'); }));
+        drawOnGroup(B, FM0 + 150, 950, cues);
+        cues.push(ballMoveCue(ball, FM0 + 500, 1300, [[80, 137], [140, 120], [218, 88]]));
+        cues.push(C(FM0 + 500, 1300, k => { ball.querySelector('circle').setAttribute('r', String(13 - 1.5 * k)); }));
+      } },
+    5: { svg: '<g id="wbA">' + FDESKW + '</g>' + wbBallG(85, 92) +
+        '<g id="wbB" style="opacity:0"><rect x="76" y="36" width="188" height="148" fill="#fff" stroke="#68798c" stroke-width="2.5"/><line x1="76" y1="64" x2="264" y2="64" stroke="#68798c" stroke-width="2"/><line x1="139" y1="64" x2="139" y2="184" stroke="#c9d4e2" stroke-width="2"/><line x1="201" y1="64" x2="201" y2="184" stroke="#c9d4e2" stroke-width="2"/><line x1="76" y1="104" x2="264" y2="104" stroke="#c9d4e2" stroke-width="2"/><line x1="76" y1="144" x2="264" y2="144" stroke="#c9d4e2" stroke-width="2"/><rect x="140" y="65" width="60" height="38" fill="#ffe9a8"/></g>',
+      setup(root, cues){
+        const A = root.querySelector('#wbA'), B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        cues.push(fadeCue(A, FM0, 700, 1, 0.1));
+        cues.push(fadeCue(B, FM0 + 200, 300, 0, 1));
+        drawOnGroup(B, FM0 + 350, 1050, cues);
+        cues.push(ballMoveCue(ball, FM0 + 550, 1250, [[85, 92], [128, 66], [170, 84]]));
+        cues.push(C(FM0 + 550, 1250, k => { ball.querySelector('circle').setAttribute('r', String(13 - 4 * k)); }));
+      } }
+  },
+  'at': {
+    0: { svg: '<g id="wbA">' + FGROUND + '<rect x="206" y="112" width="72" height="70" fill="#f2c879" stroke="#b08968" stroke-width="2"/><line x1="148" y1="84" x2="148" y2="182" stroke="#68798c" stroke-width="5"/><circle cx="148" cy="68" r="16" fill="#2f7fd0"/><text x="148" y="74" font-size="13" fill="#fff" text-anchor="middle">站</text>' + wbBallG(150, 150) + '</g>', setup: null },
+    1: { svg: '<g id="wbA">' + FGROUND + '<rect x="206" y="112" width="72" height="70" fill="#f2c879" stroke="#b08968" stroke-width="2"/><line x1="148" y1="84" x2="148" y2="182" stroke="#68798c" stroke-width="5"/><circle cx="148" cy="68" r="16" fill="#2f7fd0"/><text x="148" y="74" font-size="13" fill="#fff" text-anchor="middle">站</text></g>' + wbBallG(150, 150) +
+        '<g id="wbB" style="opacity:0"><circle cx="170" cy="98" r="50" fill="#fff" stroke="#33475c" stroke-width="3"/><path d="M170,56 V66 M170,130 V140 M128,98 H138 M202,98 H212" stroke="#33475c" stroke-width="3"/><line x1="170" y1="98" x2="170" y2="70" stroke="#33475c" stroke-width="4"/><line x1="170" y1="98" x2="189" y2="122" stroke="#33475c" stroke-width="4"/><circle cx="170" cy="98" r="5" fill="#33475c"/><line x1="40" y1="196" x2="300" y2="196" stroke="#e0a100" stroke-width="3"/></g>',
+      setup(root, cues){
+        const A = root.querySelector('#wbA'), B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        cues.push(fadeCue(A, FM0, 700, 1, 0.12));
+        cues.push(fadeCue(B, FM0 + 200, 300, 0, 1));
+        drawOnGroup(B, FM0 + 350, 1050, cues);
+        cues.push(ballMoveCue(ball, FM0 + 550, 1250, [[150, 150], [196, 178], [232, 196]]));
+        cues.push(C(FM0 + 550, 1250, k => { ball.querySelector('circle').setAttribute('r', String(13 - 6 * k)); }));
+      } },
+    2: { svg: '<g id="wbA">' + FGROUND + '<rect x="206" y="112" width="72" height="70" fill="#f2c879" stroke="#b08968" stroke-width="2"/><line x1="148" y1="84" x2="148" y2="182" stroke="#68798c" stroke-width="5"/><circle cx="148" cy="68" r="16" fill="#2f7fd0"/><text x="148" y="74" font-size="13" fill="#fff" text-anchor="middle">站</text></g>' + wbBallG(150, 150) +
+        '<g id="wbB" style="opacity:0"><rect x="44" y="62" width="34" height="46" fill="#d9534f" stroke="#a33" stroke-width="2"/><line x1="36" y1="128" x2="304" y2="128" stroke="#33475c" stroke-width="3"/><path d="M36,128 v9 M63,128 v7 M90,128 v9 M117,128 v7 M143,128 v9 M170,128 v7 M197,128 v9 M224,128 v7 M250,128 v9 M277,128 v7 M304,128 v9" stroke="#33475c" stroke-width="2"/><text x="36" y="152" font-size="11" fill="#93a3b5" text-anchor="middle">0</text><text x="304" y="152" font-size="11" fill="#93a3b5" text-anchor="middle">10</text><path d="M170,104 L161,118 L179,118 Z" fill="#b35c00"/><text x="170" y="98" font-size="15" font-weight="700" fill="#b35c00" text-anchor="middle">$5</text></g>',
+      setup(root, cues){
+        const A = root.querySelector('#wbA'), B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        cues.push(fadeCue(A, FM0, 700, 1, 0.15));
+        cues.push(fadeCue(B, FM0 + 200, 300, 0, 1));
+        drawOnGroup(B, FM0 + 350, 1050, cues);
+        cues.push(ballMoveCue(ball, FM0 + 550, 1250, [[150, 150], [80, 128], [170, 128]]));
+        cues.push(C(FM0 + 550, 1250, k => { ball.querySelector('circle').setAttribute('r', String(13 - 5 * k)); }));
+      } },
+    3: { svg: '<g id="wbA">' + FGROUND + '<rect x="206" y="112" width="72" height="70" fill="#f2c879" stroke="#b08968" stroke-width="2"/><line x1="148" y1="84" x2="148" y2="182" stroke="#68798c" stroke-width="5"/><circle cx="148" cy="68" r="16" fill="#2f7fd0"/><text x="148" y="74" font-size="13" fill="#fff" text-anchor="middle">站</text></g>' + wbBallG(150, 150) +
+        '<g id="wbB" style="opacity:0">' + fEye(48, 100) + '<line x1="68" y1="100" x2="250" y2="100" stroke="#33475c" stroke-width="2" stroke-dasharray="5 5"/><circle cx="268" cy="100" r="16" fill="none" stroke="#c0392b" stroke-width="2.5"/><circle cx="268" cy="100" r="9" fill="none" stroke="#c0392b" stroke-width="2"/><circle cx="268" cy="100" r="3.5" fill="#c0392b"/></g>',
+      setup(root, cues){
+        const A = root.querySelector('#wbA'), B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        cues.push(fadeCue(A, FM0, 700, 1, 0.12));
+        cues.push(fadeCue(B, FM0 + 200, 300, 0, 1));
+        drawOnGroup(B, FM0 + 350, 1050, cues);
+        cues.push(ballMoveCue(ball, FM0 + 550, 1250, [[150, 150], [210, 118], [268, 100]]));
+        cues.push(C(FM0 + 550, 1250, k => { ball.querySelector('circle').setAttribute('r', String(13 - 7 * k)); }));
+      } }
+  },
+  'over': {
+    0: { svg: '<g id="wbA">' + FGROUND + '<rect x="242" y="122" width="10" height="60" fill="#b08968"/><circle cx="247" cy="94" r="30" fill="#9ccc8f"/><line x1="292" y1="44" x2="292" y2="92" stroke="#93a3b5" stroke-width="2" stroke-dasharray="4 4"/><path d="M286,44 h12 M286,92 h12" stroke="#93a3b5" stroke-width="2"/>' + wbBallG(247, 42) + '</g>', setup: null },
+    1: { svg: '<g id="wbA"><g id="wbLm">' + FDESKW + '</g></g>' + wbBallG(170, 56) +
+        '<g id="wbB" style="opacity:0"><path d="M64,74 Q170,52 276,74 L266,130 Q170,110 74,130 Z" fill="#9db8d9" stroke="#5a86b8" stroke-width="2.5"/></g>',
+      setup(root, cues){
+        const B = root.querySelector('#wbB'), ball = root.querySelector('.wbBallG');
+        cues.push(C(FM0, 800, k => { ball.querySelector('circle').setAttribute('r', String(13 + 26 * k)); ball.style.opacity = String(1 - k); }));
+        cues.push(fadeCue(B, FM0 + 200, 300, 0, 1));
+        drawOnGroup(B, FM0 + 350, 1050, cues);
+      } },
+    2: { svg: '<g id="wbA">' + FGROUND + '<rect x="152" y="88" width="36" height="94" fill="#d5a08a" stroke="#b08968" stroke-width="2"/><path id="wbArc" d="M64,150 Q170,8 276,150" fill="none" stroke="#2f7fd0" stroke-width="3" stroke-dasharray="7 6" opacity="0"/></g>' + wbBallG(64, 150),
+      setup(root, cues){
+        const arc = root.querySelector('#wbArc'), ball = root.querySelector('.wbBallG');
+        cues.push(fadeCue(arc, FM0, 450, 0, 1));
+        const pts = []; for (let j = 0; j <= 12; j++) { const t = j / 12, mx = (1 - t) * (1 - t) * 64 + 2 * (1 - t) * t * 170 + t * t * 276, my = (1 - t) * (1 - t) * 150 + 2 * (1 - t) * t * 8 + t * t * 150; pts.push([mx, my]); }
+        cues.push(ballMoveCue(ball, FM0 + 400, 1500, pts));
+      } },
+    3: { svg: '<g id="wbA"><path d="M16,192 Q170,58 324,192 Z" fill="#dfe9f5" stroke="#9db8d9" stroke-width="2"/></g>' + wbBallG(170, 76) + '<g id="wbFx2"></g>',
+      setup(root, cues){
+        const fx = root.querySelector('#wbFx2'), ball = root.querySelector('.wbBallG');
+        const spots = [[60, 138], [104, 106], [140, 90], [204, 90], [240, 108], [284, 140], [88, 162], [254, 164]];
+        const svgNS = 'http://www.w3.org/2000/svg';
+        spots.forEach((s, j) => {
+          const c = document.createElementNS(svgNS, 'circle');
+          c.setAttribute('r', '9'); c.setAttribute('fill', '#e0653a'); c.setAttribute('stroke', '#fff'); c.setAttribute('stroke-width', '2');
+          c.setAttribute('cx', '170'); c.setAttribute('cy', '76');
+          fx.appendChild(c);
+          cues.push(C(FM0 + j * 130, 1000, k => { c.setAttribute('cx', String(170 + (s[0] - 170) * k)); c.setAttribute('cy', String(76 + (s[1] - 76) * k)); }));
+        });
+        cues.push(fadeCue(ball, FM0 + 300, 900, 1, 0.35));
+      } },
+    4: { svg: '<g id="wbA"><path d="M16,192 Q170,58 324,192 Z" fill="#dfe9f5" stroke="#9db8d9" stroke-width="2"/><path id="wbArc" d="M64,150 Q170,8 276,150" fill="none" stroke="#2f7fd0" stroke-width="3" stroke-dasharray="7 6"/></g>' + wbBallG(276, 150) +
+        '<g id="wbB" style="opacity:0"><rect x="252" y="116" width="46" height="33" fill="#f2c879" stroke="#b08968" stroke-width="2"/><path d="M246,116 L275,96 L304,116 Z" fill="#d9534f"/><rect x="268" y="128" width="13" height="21" fill="#b08968"/><ellipse id="wbRing" cx="276" cy="150" rx="24" ry="16" fill="none" stroke="#e8720c" stroke-width="3" opacity="0"/></g>',
+      setup(root, cues){
+        const arc = root.querySelector('#wbArc'), B = root.querySelector('#wbB'), ring = root.querySelector('#wbRing');
+        cues.push(fadeCue(arc, FM0, 800, 1, 0.3));
+        cues.push(fadeCue(B, FM0 + 300, 300, 0, 1));
+        drawOnGroup(B, FM0 + 450, 950, cues);
+        cues.push(C(FM1 - 700, 650, k => { ring.setAttribute('opacity', String(Math.abs(Math.sin(k * Math.PI * 2)))); }));
+      } },
+    5: { svg: '<g id="wbA"><g id="wbCard"><rect x="132" y="58" width="76" height="112" rx="7" fill="#fff" stroke="#33475c" stroke-width="2.5"/><rect x="144" y="72" width="52" height="30" fill="none" stroke="#c9d4e2" stroke-width="2"/><circle cx="196" cy="158" r="4.5" fill="#e0653a"/></g></g>',
+      setup(root, cues){
+        const card = root.querySelector('#wbCard');
+        cues.push(C(FM0 + 200, 1500, k => { const e = k * k * (3 - 2 * k); card.setAttribute('transform', 'rotate(' + (180 * e).toFixed(1) + ' 170 114)'); }));
+      } },
+    7: { svg: '<g id="wbA"><line x1="28" y1="152" x2="312" y2="152" stroke="#9db8d9" stroke-width="4"/></g>' + wbBallG(56, 139) +
+        '<g id="wbFx2"><line x1="278" y1="100" x2="278" y2="152" stroke="#33475c" stroke-width="3"/><path d="M278,100 L304,107 L278,114 Z" fill="#c0392b"/><path id="wbCheck" d="M138,58 L162,86 L206,34" fill="none" stroke="#1f9d61" stroke-width="7" opacity="0"/></g>',
+      setup(root, cues){
+        const A = root.querySelector('#wbA'), ball = root.querySelector('.wbBallG'), chk = root.querySelector('#wbCheck');
+        cues.push(ballMoveCue(ball, FM0 + 200, 1400, [[56, 139], [180, 139], [300, 139]]));
+        cues.push(fadeCue(A, FM0 + 1100, 800, 1, 0.55));
+        cues.push(fadeCue(chk, FM1 - 620, 200, 0, 1));
+        cues.push(drawCue(chk, FM1 - 620, 550));
+      } }
+  }
+};
+
+/* ===== whiteboard player ===== */
+const WBTOTAL = 4200;
+function wbEls(){
+  return { card: document.getElementById('wbCard'), tabs: document.getElementById('wbTabs'), trans: document.getElementById('wbTrans'),
+    board: document.getElementById('wbBoard'), cap: document.getElementById('wbCap'), fin: document.getElementById('wbFinal'),
+    sub: document.getElementById('wbSub'), play: document.getElementById('wbPlay'), chain: document.getElementById('wbChain'),
+    pause: document.getElementById('wbPause'), restart: document.getElementById('wbRestart') };
+}
+function wbIsNone(i){ return WBMETA[WB.word][i].cat.indexOf('none') === 0; }
+function wbRenderTabs(){
+  const w = WB.word, d = DATA[w], els = wbEls();
+  els.tabs.innerHTML = d.chain.map((n, i) => {
+    const meta = WBMETA[w][i];
+    return '<button class="wbtab' + (i === WB.idx ? ' on' : '') + (meta.cat.indexOf('none') === 0 ? ' none' : '') + '" data-wbtab="' + i + '">第' + (i + 1) + '站 · ' + wbEsc((n.sense || '').slice(0, 5)) + (meta.cat.indexOf('none') === 0 ? '（无动画）' : '') + '</button>';
+  }).join('');
+  els.tabs.querySelectorAll('[data-wbtab]').forEach(b => b.addEventListener('click', () => { WB.chainMode = false; wbSelect(+b.getAttribute('data-wbtab'), false); }));
+}
+function wbSubText(){
+  const w = WB.word, d = DATA[w], i = WB.idx, n = d.chain[i], meta = WBMETA[w][i];
+  return '第 ' + (i + 1) + ' / ' + d.chain.length + ' 站「' + wbEsc(n.sense) + '」 · 引申理据口径：' + wbEsc(n.basis || '') + ' · 白板讲解词出自卷宗引申理据原文，末帧例句出自卷宗例句。';
+}
+function wbMarkerHTML(i){
+  const meta = WBMETA[WB.word][i];
+  return '<div class="wbmark"><b>🎬 此站无动画推导</b><br>（' + wbEsc(WBNONE_TXT[meta.cat] || '无动画') + '）<br><span class="src">' + wbEsc(meta.tag) + '</span></div>';
+}
+function wbRestingBoard(i){
+  const w = WB.word;
+  if (WBFLAG[w] && WBFLAG[w][i]) return '<svg viewBox="0 0 340 220" class="wbsvg">' + WBFLAG[w][i].svg + '</svg>';
+  return wbParamBoard(w, i);
+}
+function wbSelect(i, autoplay){
+  wbStop(); WB.idx = i;
+  const els = wbEls(); if (!els.card) return;
+  wbRenderTabs();
+  els.sub.textContent = wbSubText();
+  els.fin.style.display = 'none'; els.trans.classList.remove('show'); els.trans.textContent = '';
+  if (wbIsNone(i)) {
+    WB.phase = 'marker';
+    els.board.innerHTML = wbMarkerHTML(i);
+    els.cap.textContent = '';
+    els.play.disabled = true; els.pause.disabled = true; els.restart.disabled = true;
+    if (autoplay && WB.chainMode) wbAdvanceDwell(1700);
+    return;
+  }
+  WB.phase = 'idle';
+  els.board.innerHTML = wbRestingBoard(i);
+  els.cap.textContent = i === 0 ? '点「▶ 看它怎么变」，看老家图一张张画出来。' : '点「▶ 看它怎么变」，看这一站是怎么从上一站变过来的。';
+  els.play.disabled = false; els.pause.disabled = true; els.restart.disabled = true;
+  if (autoplay) wbPlay();
+}
+function wbAdvanceDwell(ms){
+  const token = WB.token;
+  WB.dwell = setTimeout(() => {
+    if (!WB.chainMode || WB.token !== token) return;
+    if (WB.idx < DATA[WB.word].chain.length - 1) wbSelect(WB.idx + 1, true);
+    else WB.chainMode = false;
+  }, ms);
+}
+function wbPlay(){
+  const w = WB.word, d = DATA[w], i = WB.idx, node = d.chain[i], meta = WBMETA[w][i];
+  if (wbIsNone(i)) return;
+  const els = wbEls();
+  wbStop();
+  els.fin.style.display = 'none'; els.cap.textContent = '';
+  els.trans.classList.remove('show'); els.trans.textContent = '';
+  const isFlag = !!(WBFLAG[w] && WBFLAG[w][i]);
+  els.board.innerHTML = isFlag ? '<svg viewBox="0 0 340 220" class="wbsvg">' + WBFLAG[w][i].svg + '</svg>' : wbParamBoard(w, i);
+  const root = els.board.querySelector('svg');
+  const bgEl = root.querySelector('.wbBallG');
+  if (bgEl) root.appendChild(bgEl); /* ball paints on top of the morphed scene */
+  const cues = [];
+  if (isFlag) {
+    const A = root.querySelector('#wbA');
+    if (A) drawOnGroup(A, 60, 1150, cues);
+    if (WBFLAG[w][i].setup) WBFLAG[w][i].setup(root, cues);
+  } else {
+    cues.push.apply(cues, wbParamSetup(w, i, root));
+  }
+  cues.push(C(1300, 0, () => { els.trans.textContent = (i === 0 ? '老家图 · ' : '变化 · ') + meta.tag; els.trans.classList.add('show'); }));
+  const sents = wbSplitSentences(node.ext);
+  sents.forEach((s, j) => {
+    const at = sents.length > 1 ? 420 + j * (3080 / (sents.length - 1)) : 900;
+    cues.push(C(Math.round(at), 0, () => { els.cap.innerHTML = '<span class="capin">' + wbEsc(s) + '</span>'; }));
+  });
+  els.pause.disabled = false; els.restart.disabled = false; els.pause.textContent = '⏸ 暂停';
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) {
+    cues.forEach(c => { try { c.fn(1); } catch (e) {} });
+    WB.phase = 'done'; wbOnDone(); return;
+  }
+  wbRun(cues, WBTOTAL, wbOnDone);
+}
+function wbOnDone(){
+  const w = WB.word, d = DATA[w], i = WB.idx, node = d.chain[i], els = wbEls();
+  const ex0 = node.ex && node.ex[0];
+  if (ex0) {
+    els.fin.innerHTML = '<span class="wbfinalsent">' + hl(ex0.s, w) + '</span> <button class="spk" data-say="' + wbEsc(ex0.s) + '">🔊</button>' + (ex0.note ? '<span class="fnote">' + wbEsc(ex0.note) + '</span>' : '');
+    els.fin.setAttribute('data-sent', ex0.s);
+    els.fin.style.display = '';
+  }
+  els.pause.disabled = true;
+  WB.phase = 'done';
+  if (WB.chainMode) wbAdvanceDwell(1500);
+}
+function buildWB(w, d){
+  const sec = document.getElementById('chainSec');
+  if (!sec || !WBMETA[w]) return;
+  wbStop(); WB.word = w; WB.idx = 0; WB.chainMode = false; WB.phase = 'idle';
+  const card = document.createElement('div');
+  card.className = 'wbcard'; card.id = 'wbCard';
+  card.innerHTML = '<div class="wbhead">🎬 白板推导 · 词义怎么从老家一步步变出来' + (WBFLAG_WORDS.indexOf(w) >= 0 ? '<span class="wbflag">旗舰精调</span>' : '') + '</div>' +
+    '<div class="wbtabs noprint" id="wbTabs"></div><div class="wbtrans" id="wbTrans"></div>' +
+    '<div class="wbboard" id="wbBoard"></div><div class="wbcap" id="wbCap"></div>' +
+    '<div class="wbfinal" id="wbFinal" style="display:none"></div>' +
+    '<div class="wbctl noprint"><button class="wbbtn" id="wbPlay">▶ 看它怎么变</button>' +
+    '<button class="wbbtn ghost" id="wbChain">▶▶ 连放全链</button>' +
+    '<button class="wbbtn ghost" id="wbPause" disabled>⏸ 暂停</button>' +
+    '<button class="wbbtn ghost" id="wbRestart" disabled>↺ 重来</button></div>' +
+    '<div class="wbsub" id="wbSub"></div>';
+  sec.insertBefore(card, sec.firstChild);
+  const els = wbEls();
+  els.play.addEventListener('click', () => { WB.chainMode = false; wbPlay(); });
+  els.chain.addEventListener('click', () => { WB.chainMode = true; wbSelect(0, true); });
+  els.pause.addEventListener('click', () => {
+    if (!WB.playing) return;
+    WB.paused = !WB.paused;
+    els.pause.textContent = WB.paused ? '▶ 继续' : '⏸ 暂停';
+  });
+  els.restart.addEventListener('click', () => { wbPlay(); });
+  sec.querySelectorAll('.station').forEach((st, i) => {
+    const meta = WBMETA[w][i]; if (!meta) return;
+    if (meta.cat.indexOf('none') === 0) {
+      st.insertAdjacentHTML('beforeend', '<div class="wbnone">🎬 此站无动画推导（' + wbEsc(WBNONE_TXT[meta.cat] || '') + '）<br><span class="src">' + wbEsc(meta.tag) + '</span></div>');
+    } else {
+      const b = document.createElement('button');
+      b.className = 'wbplay noprint'; b.textContent = '▶ 看它怎么变（白板推导）';
+      b.setAttribute('data-wbstation', String(i));
+      b.addEventListener('click', () => { WB.chainMode = false; wbSelect(i, true); card.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+      st.appendChild(b);
+    }
+  });
+  const br = sec.querySelector('.brokenstation');
+  if (br) br.insertAdjacentHTML('beforeend', '<div class="wbnone">🎬 此站无动画推导（断链）——卷宗登记为断链，不编桥。</div>');
+  wbSelect(0, false);
+}
+const _wbRenderChainOrig = renderChain;
+renderChain = function(w, d){ _wbRenderChainOrig(w, d); try { buildWB(w, d); } catch (e) { if (window.console) console.error('WB build failed', e); } };
+
 
 })();
 </script>
