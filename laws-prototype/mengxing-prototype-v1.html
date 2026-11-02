@@ -191,6 +191,144 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 .fa-dot.now{background:#f08c1e;border-color:#f08c1e}
 .fa-prog{color:#8a8f7a;font-size:13.5px}
 </style>
+<style>
+/* 平板（768–1199）与桌面（1200+）。手机仍走文末 max-width:680px，这里不改。 */
+@media (min-width:768px){
+  .app{
+    max-width:none;
+    margin:0;
+    min-height:100vh;
+    padding-bottom:36px;
+  }
+  .app>header{
+    padding:22px 28px 18px;
+    border-radius:0 0 22px 22px;
+  }
+  .app>header .tag{font-size:12.5px;padding:4px 12px;margin-bottom:8px}
+  .app>header h1{font-size:30px;letter-spacing:.5px;line-height:1.25}
+  .app>header p{font-size:16px;line-height:1.65;margin-top:8px;max-width:42em}
+  .topbar{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:14px 22px 12px;
+    border-bottom:1px solid #eadfca;
+  }
+  #nav{flex:1;min-width:0;padding:0;gap:8px}
+  #nav+.bar{flex:none;padding:0;border:0;justify-content:flex-end}
+  .nbtn,.tgl{
+    font-family:inherit;
+    min-height:44px;
+    padding:8px 14px;
+    font-size:15px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    touch-action:manipulation;
+  }
+  .tgl{padding:8px 16px}
+  .nbtn:focus-visible,.tgl:focus-visible{
+    outline:3px solid #8a5a1e;
+    outline-offset:2px;
+  }
+  #v-home{padding:6px 22px 8px}
+  #v-home .sec-t{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:16px;
+    letter-spacing:.03em;
+    margin:22px 0 12px;
+  }
+  #v-home .sec-t::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#e4d7b8;
+  }
+  #v-home .grid{
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:14px;
+  }
+  #v-home .card{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:16px 16px 14px;
+    min-height:148px;
+    touch-action:manipulation;
+    transition:border-color .15s ease,box-shadow .15s ease;
+  }
+  #v-home .card:hover{box-shadow:0 6px 16px rgba(90,60,20,.08)}
+  #v-home .card:focus-visible,#v-home .urow:focus-visible{
+    outline:3px solid #8a5a1e;
+    outline-offset:2px;
+  }
+  #v-home .card .ic{font-size:26px;line-height:1.2}
+  #v-home .card h3{font-size:18px;margin:6px 0 4px}
+  #v-home .card p{font-size:15px;line-height:1.6;color:#5c4e38}
+  #v-home .card .n{font-size:13px;color:#6d5a33;margin-top:auto;padding-top:10px}
+  #v-home .pain{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;
+  }
+  #v-home .pain .card{
+    align-items:center;
+    text-align:center;
+    min-height:104px;
+    padding:16px 12px;
+    justify-content:center;
+  }
+  #v-home .pain .card h3{font-size:17px;margin:0 0 4px}
+  #v-home .pain .card p{font-size:14px}
+  #v-home .home-units{display:grid;gap:10px}
+  #v-home .urow{
+    margin:0;
+    min-height:52px;
+    padding:12px 14px;
+    align-items:center;
+    gap:10px;
+    touch-action:manipulation;
+  }
+  #v-home .urow .tt{flex:1;min-width:0;font-size:16px;line-height:1.5}
+  #v-home .urow .id,#v-home .urow .st{font-size:12.5px}
+  #v-home .foot{
+    margin:22px 0 0;
+    font-size:14px;
+    line-height:1.75;
+    color:#6d5a33;
+    max-width:72em;
+  }
+}
+@media (min-width:1024px){
+  .app>header{padding:26px 32px 20px}
+  .app>header h1{font-size:34px}
+  .topbar{padding:16px 28px 14px}
+  #v-home{padding:8px 28px 12px}
+  #v-home .home-units{grid-template-columns:1fr 1fr;gap:10px 14px}
+}
+@media (min-width:1200px){
+  body{background:#e6e0d1}
+  .app{
+    max-width:1160px;
+    margin:24px auto 40px;
+    min-height:calc(100vh - 64px);
+    border-radius:24px;
+    overflow:clip;
+    box-shadow:0 16px 48px rgba(60,45,20,.16);
+  }
+  .app>header{border-radius:24px 24px 22px 22px}
+  #v-home .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  #v-home .pain{grid-template-columns:repeat(6,minmax(0,1fr))}
+}
+@media (min-width:1600px){
+  .app{max-width:1240px}
+}
+@media (prefers-reduced-motion:reduce){
+  #v-home .card{transition:none}
+}
+</style>
 
 </head>
 <body>
@@ -200,6 +338,7 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <h1>萌星英语 · 规律版</h1>
 <p>给中国孩子的英语「规律机」：不背清单，学解码——每个知识点都讲清机制、给得出边界、治得了一个真实的病。</p>
 </header>
+<div class="topbar">
 <div class="bar" id="nav">
 <button class="nbtn on" data-v="home">首页</button>
 <button class="nbtn" data-v="phon">拼读区</button>
@@ -219,7 +358,8 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <button class="nbtn" data-v="settings">设置</button>
 </div>
 <div class="bar">
-<span class="tgl" id="atgl">成人层：关</span>
+<span class="tgl" id="atgl" role="switch" aria-checked="false" tabindex="0">成人层：关</span>
+</div>
 </div>
 
 <!-- ============ 首页 ============ -->
@@ -250,6 +390,7 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <div class="card" data-go="review"><h3>错不完</h3><p>病因错题本在这儿</p></div>
 </div>
 <div class="sec-t">旗舰单元（已按六步闭环做深）</div>
+<div class="home-units">
 <div class="urow" data-go="u-s36"><span class="id">S-36</span><span class="tt">长音 /iː/ 的拼法菜单：ee 与 ea 两条大路</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-sr01"><span class="id">SR-01</span><span class="tt">词尾不出声的 e：一个字母干九份工</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-s42"><span class="id">S-42</span><span class="tt">变脸榜：ough 是变脸大王</span><span class="st deep">已做深</span></div>
@@ -257,6 +398,7 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词 + get 的五个构造</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-v33"><span class="id">V-33</span><span class="tt">前缀头部定律：20 个管住 97%</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-gr33"><span class="id">GR-33</span><span class="tt">反意疑问三步法：回声机怎么配尾巴</span><span class="st deep">已做深</span></div>
+</div>
 <p class="foot">原型说明：本原型做深不做全——7 个旗舰单元走完六步闭环，其余单元在分区页以目录形态呈现并标「待入模」。七个旗舰单元的动画步已建成可播放的白板课（逐拍绘制 + 预测停顿）；其余规律的分镜规格已按条入模，动画生产按规格推进。全部内容取自《专家规律清单 v6》已核实条目，未自创论断与例句体系。</p>
 </section>
 
@@ -2369,9 +2511,25 @@ document.addEventListener('click',function(e){
     return;
   }
 });
-document.getElementById('atgl').addEventListener('click',function(){
+document.querySelectorAll('#v-home [data-go]').forEach(function(el){
+  el.setAttribute('tabindex','0');
+  el.setAttribute('role','button');
+});
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  var g=e.target.closest&&e.target.closest('#v-home [data-go]');
+  if(!g)return;
+  e.preventDefault();
+  show(g.dataset.go);
+});
+var atgl=document.getElementById('atgl');
+atgl.addEventListener('click',function(){
   var on=document.body.classList.toggle('adult');
   this.textContent=on?'成人层：开':'成人层：关';
+  this.setAttribute('aria-checked',on?'true':'false');
+});
+atgl.addEventListener('keydown',function(e){
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();this.click();}
 });
 show('home');
 </script>
