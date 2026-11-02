@@ -61,6 +61,7 @@ video{width:100%;border-radius:12px;background:#000}
 .kbtn{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 14px;cursor:pointer;font-size:14px;margin:3px}
 input[type=range]{width:220px}
 </style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#e63946"/></marker></defs></svg>
 <header class="top"><span class="ttl">介词知识地图</span>
 <button onclick="show('home')">知识地图</button><button onclick="show('overview')">总论 · 这套抽象</button>
 <button onclick="show('lesson-ball')">课1 球和盒子</button><button onclick="show('lesson-dim')">课2 in/on/at</button>
@@ -94,7 +95,7 @@ input[type=range]{width:220px}
 </div>
 
 <div class="view" id="v-overview">
- <button class="kbtn" onclick="show('home')">← 回知识地图</button>
+ <button class="kbtn" onclick="goBack()">← 返回</button>
  <h1>总论：这套抽象本身</h1>
  <div class="card"><h2>压缩是怎样发生的</h2>
   <p style="line-height:1.8">第一步：43 个词按<b>原型场景的形状</b>归队——纵轴（上/下）、路径（怎么走）、位置（在哪儿）、时间（空间图式搬家）、抽象（图式只剩骨架），外加居中的 in/on/at 维度三角（范围/表面/点）与 over 的弧线。</p>
@@ -113,7 +114,7 @@ input[type=range]{width:220px}
 </div>
 
 <div class="view" id="v-lesson-ball">
- <button class="kbtn" onclick="show('home')">← 回知识地图</button>
+ <button class="kbtn" onclick="goBack()">← 返回</button>
  <h1>课 1 · 球和盒子</h1>
  <p class="smallprint">照抄对象：Charlene / Woodward English 的球盒课形态（一角一台、句子逐句累积、收尾总结格）；9 句英文与研究 02/07 逐字一致——那套课把 in/on/under/above/below/behind/in front of/next to/between/near 教给全世界孩子。旁白新编。</p>
  <div class="player"><div class="stagebox" id="bl-stage" style="min-height:300px"></div>
@@ -122,7 +123,7 @@ input[type=range]{width:220px}
 </div>
 
 <div class="view" id="v-lesson-dim">
- <button class="kbtn" onclick="show('home')">← 回知识地图</button>
+ <button class="kbtn" onclick="goBack()">← 返回</button>
  <h1>课 2 · in / on / at：维度就是解释</h1>
  <p class="smallprint">照抄对象：Kevin 老师（英文不难）维度课结构（故事先行 → 图式 → 时间重映射）+ BBC Learning English 的 Sam 音乐会三句。例句与研究 07 深挖逐字一致；旁白新编。</p>
  <div class="player"><div class="stagebox" id="dm-stage" style="min-height:300px"></div>
@@ -135,7 +136,7 @@ input[type=range]{width:220px}
 </div>
 
 <div class="view" id="v-lesson-over">
- <button class="kbtn" onclick="show('home')">← 回知识地图</button>
+ <button class="kbtn" onclick="goBack()">← 返回</button>
  <h1>课 3 · over：一条弧线走完一生</h1>
  <p class="smallprint">照抄对象：Tyler &amp; Evans《自然多义系统》的原型场景法 + 研究 05 白板范式（原型弧 + 五正例）；例句逐字出自 over 厚档案（prep_family_full.json）。旁白新编。</p>
  <div class="player"><div class="stagebox" id="ov-stage" style="min-height:300px"></div>
@@ -144,7 +145,7 @@ input[type=range]{width:220px}
 </div>
 
 <div class="view" id="v-drag">
- <button class="kbtn" onclick="show('home')">← 回知识地图</button>
+ <button class="kbtn" onclick="goBack()">← 返回</button>
  <h1>拖一拖场景机</h1>
  <p id="drag-prompt" style="font-size:16.5px"></p>
  <svg id="drag-svg" viewBox="0 0 640 420" style="width:100%;max-width:760px;background:#fffef8;border:2px solid #1d3557;border-radius:14px;touch-action:none">
@@ -163,7 +164,7 @@ input[type=range]{width:220px}
 </div>
 
 <div class="view" id="v-time">
- <button class="kbtn" onclick="show('home')">← 回知识地图</button>
+ <button class="kbtn" onclick="goBack()">← 返回</button>
  <h1>时间标尺机：钉子、绳子与截止线</h1>
  <p>拖动标尺平移，用滑杆缩放——把 since 的"点"放大看，把 for 的"段"拉长看。（借鉴：07 研究的时间图式——since=钉子、for=绳子、until=持续到旗、by=截止线。）</p>
  <input type="range" id="time-zoom" min="1" max="2.4" step="0.05" value="1">
@@ -189,7 +190,7 @@ input[type=range]{width:220px}
  <p class="smallprint">until vs by 的对照出自研究 07（同一 5 点：一持续到点、一在此前完成）。</p></div>
 </div>
 
-<div class="view" id="v-board-vertical"><button class="kbtn" onclick="show('home')">← 回知识地图</button><h1>分镜板 · 上下纵轴</h1><p class="smallprint">一条虚线分近区/远区：够得着与够不着。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube 7jIqZjfx_uM · engVid Adam — PREPOSITIONS in English: under, be</h3>
+<div class="view" id="v-board-vertical"><button class="kbtn" onclick="goBack()">← 返回</button><h1>分镜板 · 上下纵轴</h1><p class="smallprint">一条虚线分近区/远区：够得着与够不着。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube 7jIqZjfx_uM · engVid Adam — PREPOSITIONS in English: under, be</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_7jIqZjfx_uM_f1.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_7jIqZjfx_uM_f4.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_7jIqZjfx_uM_f6.jpg" alt=""></div>
         <div class="quote">“The ball rolled under the car.” <span class="ts">00:53</span></div><div class="quote">“So, the word &#x27;below&#x27; is written below the word &#x27;under&#x27;, because why? … We&#x27;re on the same plane; we&#x27;re looking at the whiteboard.” <span class="ts">03:36–03:43</span></div><p class="smallprint">对比词：under vs below vs beneath vs underneath（四词全组对比；另顺带 under 与 over 的前缀义 underweight/overweight 在板上成对出现，但本片主体是四个「下」词）</p></div><div class="card"><h3>YouTube duMo2VoFAQY · engVid Adam — Prepositions in English: ABOVE, OV</h3>
@@ -201,7 +202,7 @@ input[type=range]{width:220px}
         <div class="quote">“He went under a brick arch.” <span class="ts">01:17–01:21</span></div><p class="smallprint">对比词：below vs under vs beneath vs underneath（四词全组对比；讲 under 的移动义时顺带对比 through——隧道/水管意象，见转写 [01:38–02:13]，机器转写）</p></div><div class="card"><h3>B站 BV1V34y1s7H1 · On、Up、Over 和 Upon 有什么区别</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/bili_BV1V34y1s7H1_f1.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/bili_BV1V34y1s7H1_f2.jpg" alt=""></div>
-        <p class="smallprint">对比词：up vs on vs over vs upon（以气泡题面为准；实际取样画面里展开讲到的是 up 的运动义、on 的接触义与 upon 的正式/可互换，over 在候选帧与联系图里未见单独展开的画面）</p></div></div><div class="view" id="v-board-path"><button class="kbtn" onclick="show('home')">← 回知识地图</button><h1>分镜板 · 路径</h1><p class="smallprint">地标不变、只换路径（同一条小溪三种过法）。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube Rai_E2EjOBw · Oxford Online English — Prepositions of Movement</h3>
+        <p class="smallprint">对比词：up vs on vs over vs upon（以气泡题面为准；实际取样画面里展开讲到的是 up 的运动义、on 的接触义与 upon 的正式/可互换，over 在候选帧与联系图里未见单独展开的画面）</p></div></div><div class="view" id="v-board-path"><button class="kbtn" onclick="goBack()">← 返回</button><h1>分镜板 · 路径</h1><p class="smallprint">地标不变、只换路径（同一条小溪三种过法）。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube Rai_E2EjOBw · Oxford Online English — Prepositions of Movement</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_Rai_E2EjOBw_f2.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_Rai_E2EjOBw_f5.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_Rai_E2EjOBw_f3.jpg" alt=""></div>
         <div class="quote">“&#x27;Along&#x27; means &#x27;in a straight line&#x27; plus &#x27;parallel to&#x27; something.” <span class="ts">01:45</span></div><div class="quote">“&#x27;Below&#x27; means that you stay underneath something. &#x27;Under&#x27; – as a preposition of movement – means that you pass from one side of something to another” <span class="ts">03:15</span></div><p class="smallprint">对比词：under vs below（穿过 vs 一直待在下方）、over vs above（同上逻辑的反义对）、across vs through（终点在哪边明确 vs 进—出过程；沼泽例两可）、towards vs up to（方向 vs 到达终点）、along ≈ up / down（口语可互换，up 可兼「朝向说话人」、down 可兼「远离」）、into（进入／撞上）vs out of。</p></div><div class="card"><h3>YouTube tip_TNSk6_k · Arnel&#x27;s Everyday English — PREPOSITIONS OF MOVEM</h3>
@@ -213,7 +214,7 @@ input[type=range]{width:220px}
         <div class="quote">“up up the stairs / down down the stairs” <span class="ts">00:06</span></div><div class="quote">“into into the box / out of out of the box” <span class="ts">00:19</span></div><p class="smallprint">对比词：无讲解式对比；靠闪卡成对排列形成隐性对比：up vs down（同一组楼梯）、into vs out of（同一个箱子）、over vs under（同一个箱子）、toward vs away from（同一个箱子）、onto vs off of（同一个箱子）。</p></div><div class="card"><h3>Bilibili BV1Hg4y1K7rC · 英语 介词 along, across, around, through</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/bili_BV1Hg4y1K7rC_f2.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/bili_BV1Hg4y1K7rC_f4.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/bili_BV1Hg4y1K7rC_f6.jpg" alt=""></div>
-        <p class="smallprint">对比词：无显式对比段；四词平行并列（along 沿长物 / across 横过面 / around 绕 / through 穿内部）靠图式与例句分工区分，未见同框辨析页（采样帧范围内）。</p></div></div><div class="view" id="v-board-place"><button class="kbtn" onclick="show('home')">← 回知识地图</button><h1>分镜板 · 位置</h1><p class="smallprint">一个场景、多种说法——看说话人关注什么。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube ylyQTl7__IQ · Prepositions Practice with Animals!（Scratch Gard</h3>
+        <p class="smallprint">对比词：无显式对比段；四词平行并列（along 沿长物 / across 横过面 / around 绕 / through 穿内部）靠图式与例句分工区分，未见同框辨析页（采样帧范围内）。</p></div></div><div class="view" id="v-board-place"><button class="kbtn" onclick="goBack()">← 返回</button><h1>分镜板 · 位置</h1><p class="smallprint">一个场景、多种说法——看说话人关注什么。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube ylyQTl7__IQ · Prepositions Practice with Animals!（Scratch Gard</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_ylyQTl7__IQ_f1.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_ylyQTl7__IQ_f2.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_ylyQTl7__IQ_f4.jpg" alt=""></div>
         <div class="quote">“now the bat is above the cat just like the cat is below the bat” <span class="ts">00:28</span></div><div class="quote">“and the rat is now in front of the cat just like the cat is behind the rat” <span class="ts">00:33</span></div><p class="smallprint">对比词：成对反义教学——above / below、in front of / behind、inside / outside、beside / between、over / under / against / on、far from / near / next to / among、into / out of / through / around、toward / past / up / down；本家族相关的有 behind、beside、between、among、near、inside、outside、against。</p></div><div class="card"><h3>YouTube RnJJqfu6i8U · Between or Among?（engVid Emma）</h3>
@@ -225,7 +226,7 @@ input[type=range]{width:220px}
         <div class="quote">“The only difference in spelling and sound is that little s, but really, these two words mean completely different things.” <span class="ts">00:00</span></div><div class="quote">“The paper clips are beside the pens. The paper clips are next to the pens, same thing.” <span class="ts">00:29</span></div><p class="smallprint">对比词：主对比 beside / besides（只差一个 s）；副对比 beside vs next to（正式程度）、beside 的位置义 vs「与……相比」义、besides 的「除……之外（还）」vs「除……之外（别无）」vs 副词「此外/再说」。</p></div><div class="card"><h3>YouTube pCoefMybtYc · Prepositions of place（BBC Georgie）</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_pCoefMybtYc_f3.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_pCoefMybtYc_f5.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_pCoefMybtYc_f2.jpg" alt=""></div>
-        <div class="quote">“I&#x27;m sitting next to the box.” <span class="ts">00:27</span></div><div class="quote">“And I&#x27;m behind the box.” <span class="ts">00:36</span></div><p class="smallprint">对比词：清晰义一组——next to / in front of / behind / under / above / between / on（用身体与纸箱、椅子实演）；易混组 in / at 对比（含 in the office vs at work、in the house vs at home 的无理据搭配，明说靠记）。</p></div></div><div class="view" id="v-board-time"><button class="kbtn" onclick="show('home')">← 回知识地图</button><h1>分镜板 · 时间</h1><p class="smallprint">钉子 vs 绳子：点上钉钉、段上量绳。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube sSZcAh42qtI · BBC 6 Minute Grammar · for &amp; since</h3>
+        <div class="quote">“I&#x27;m sitting next to the box.” <span class="ts">00:27</span></div><div class="quote">“And I&#x27;m behind the box.” <span class="ts">00:36</span></div><p class="smallprint">对比词：清晰义一组——next to / in front of / behind / under / above / between / on（用身体与纸箱、椅子实演）；易混组 in / at 对比（含 in the office vs at work、in the house vs at home 的无理据搭配，明说靠记）。</p></div></div><div class="view" id="v-board-time"><button class="kbtn" onclick="goBack()">← 返回</button><h1>分镜板 · 时间</h1><p class="smallprint">钉子 vs 绳子：点上钉钉、段上量绳。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube sSZcAh42qtI · BBC 6 Minute Grammar · for &amp; since</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_sSZcAh42qtI_f3.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_sSZcAh42qtI_f4.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_sSZcAh42qtI_f6.jpg" alt=""></div>
         <div class="quote">“I&#x27;ve worked at the BBC for eight years.” <span class="ts">00:39</span></div><div class="quote">“The word since gives the exact point in the past when the situation started.” <span class="ts">02:22</span></div><p class="smallprint">对比词：for（+时长）vs since（+起点）；同一句 for 短语在现在完成时（仍在职）vs 一般过去时（已离职）的含义对照。</p></div><div class="card"><h3>YouTube n3JaBrsistk · engVid Adam · BY, UNTIL, BY THE TIME</h3>
@@ -237,7 +238,7 @@ input[type=range]{width:220px}
         <div class="quote">“Prepositions of time show when something happens.” <span class="ts">00:32</span></div><div class="quote">“We use the preposition at with clock times.” <span class="ts">01:06</span></div><p class="smallprint">对比词：at（钟点）vs on（星期/日期）vs in（月份/年份/季节/时段）——按时间粒度三分，无其他时间介词。</p></div><div class="card"><h3>YouTube UYjd9AU9jU8 · BBC Georgie · Prepositions of time</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_UYjd9AU9jU8_f2.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_UYjd9AU9jU8_f3.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_UYjd9AU9jU8_f5.jpg" alt=""></div>
-        <div class="quote">“Think of this one as the preposition of exact times (with exceptions).” <span class="ts">00:15</span></div><div class="quote">“&#x27;In&#x27; is for longer periods of time, like months, years, centuries, seasons.” <span class="ts">00:50</span></div><p class="smallprint">对比词：at（精确时刻）vs in（长时段）vs on（较短时段：天/日期）；night 例外（at night 而非 in）；音节口诀：多音节时段词用 in the，单音节用 at。</p></div></div><div class="view" id="v-board-abstract"><button class="kbtn" onclick="show('home')">← 回知识地图</button><h1>分镜板 · 抽象</h1><p class="smallprint">图画最少的一组：靠最小对比对翻转意思。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube 7RYB8x5jKZw · Kevin 英文不難 · 不用死背，一次搞懂 TO 跟 FOR</h3>
+        <div class="quote">“Think of this one as the preposition of exact times (with exceptions).” <span class="ts">00:15</span></div><div class="quote">“&#x27;In&#x27; is for longer periods of time, like months, years, centuries, seasons.” <span class="ts">00:50</span></div><p class="smallprint">对比词：at（精确时刻）vs in（长时段）vs on（较短时段：天/日期）；night 例外（at night 而非 in）；音节口诀：多音节时段词用 in the，单音节用 at。</p></div></div><div class="view" id="v-board-abstract"><button class="kbtn" onclick="goBack()">← 返回</button><h1>分镜板 · 抽象</h1><p class="smallprint">图画最少的一组：靠最小对比对翻转意思。帧图为真实课堂视频关键帧（相对引用研究 07 shots 库），原话引自 videos_deep 并带时间戳。</p><div class="card"><h3>YouTube 7RYB8x5jKZw · Kevin 英文不難 · 不用死背，一次搞懂 TO 跟 FOR</h3>
         <div class="smallprint">来源：上方标题即平台 · 视频 ID · 讲者（研究 07 视频深挖笔记）</div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0"><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_7RYB8x5jKZw_f1.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_7RYB8x5jKZw_f6.jpg" alt=""><img class="frame" src="docs/research/07-other-prepositions/notes/shots/yt_7RYB8x5jKZw_f2.jpg" alt=""></div>
         <div class="quote">“to 的重點是從 A 到 B，它是一個方向性，有一個目標” <span class="ts">00:27</span></div><div class="quote">“for 的重點，它是做 X 得到 Y，它是一個目的，然後會有一個人受益” <span class="ts">00:42</span></div><p class="smallprint">对比词：to vs for（方向到达 vs 目的受益；helpful / important / useful 后两者可互换）。</p></div><div class="card"><h3>YouTube 6nDEvB5eWDU · engVid Adam · Comparing with LIKE &amp; AS</h3>
@@ -262,13 +263,19 @@ const FAM={"name": {"core": "核心维度组", "vertical": "上下纵轴", "path
 const $=s=>document.querySelector(s);
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 let lastScroll={};
-function show(id){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+function show(id,back){
   const t=document.getElementById('v-'+id); if(!t) return;
+  const prev=curView;
+  if(!back&&prev&&prev!==id) navStack.push(prev);
+  if(id==='home') navStack.length=0;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   if(id.startsWith('w-')&&!t.dataset.built){buildWord(t.dataset.slug);t.dataset.built=1;}
-  t.classList.add('on');
-  if(id==='home'){window.scrollTo(0,lastScroll.home||0);} else {lastScroll.home=window.scrollY;window.scrollTo(0,0);}
+  t.classList.add('on'); curView=id;
+  if(id==='home'){window.scrollTo(0,lastScroll.home||0);}
+  else { if(prev==='home') lastScroll.home=window.scrollY; window.scrollTo(0,0); }
 }
+let curView='home'; const navStack=[];
+function goBack(){ const p=navStack.pop(); show(p||'home',1); }
 const BC={'cite':'b-cite','mixed':'b-mixed','asm':'b-asm','partial':'b-part','blank':'b-blank'};
 function badge(w){return `<span class="badge ${BC[w.badge]}">${esc(w.badgeLabel)}</span>`}
 
@@ -281,7 +288,7 @@ const DASH=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" str
 const ARR=(d)=>`<path d="${d}" fill="none" stroke="${RED}" stroke-width="2.4" marker-end="url(#ah)"/>`;
 const DEFS=`<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="${RED}"/></marker></defs>`;
 function sceneSVG(t){
-  const S=(inner)=>`<svg viewBox="0 0 300 210" style="width:100%;max-width:330px">${DEFS}${inner}</svg>`;
+  const S=(inner)=>`<svg viewBox="0 0 300 210" style="width:100%;max-width:330px">${inner}</svg>`;
   switch(t){
    case 'container': return S(`${BOX(95,65,110,95)}${BALL(150,132)}${GND(178)}`);
    case 'containerDeep': return S(`${BOX(90,55,120,110)}<rect x="115" y="85" width="70" height="55" fill="none" stroke="${GRAY}" stroke-dasharray="4 3"/>${BALL(150,118)}${GND(183)}`);
@@ -383,7 +390,7 @@ function buildWord(slug){
   const guess=(w.guess&&w.guess.length)?`<div class="card"><h3>猜一猜：没学过的用法</h3>${w.guess.map(g=>`<details><summary><b>${esc(g.usage)}</b>（距离：${esc(g.type)}）</summary><p>${esc(g.reveal)}</p><p class="smallprint">${esc(g.source)}</p></details>`).join('')}</div>`:'';
   const cnc=(w.cn_cut&&w.cn_cut.text&&!/未登记|不编造/.test(w.cn_cut.text))?`<p>${esc(w.cn_cut.text)}</p>${w.cn_cut.basis?`<p class="smallprint">依据：${esc(w.cn_cut.basis)}</p>`:''}`:'';
   v.innerHTML=`
-   <button class="kbtn" onclick="show('home')">← 回知识地图</button>
+   <button class="kbtn" onclick="goBack()">← 返回</button>
    <h1>${esc(w.word)} <span style="font-size:17px;color:#5a6a7a">${esc(w.meaning)}</span> ${badge(w)}</h1>
    <div class="smallprint">家族：${FAM.name[w.family]} · 核心义裁决：${esc(w.verdict.type)} · 引申链 ${w.chain.length} 站（引证 ${w.citeN} / 组装 ${w.asmN}）· 文字深挖：${esc(w.textStatus)} · 视频讲解：${esc(w.videoStatus)}</div>
    ${special}
@@ -517,6 +524,10 @@ const ballBeats=[
   acc:'The ball is in the box.', say:'球整个钻进了盒子里面——in。装进一个空间里，就是 in。'},
  {svg:GSTAGE(`${GBOX_A}${GGND}${GBALL(295,292)}`), move:{sel:'#bl-ball',pts:[[295,292],[230,150],[295,226]],dur:1300},
   acc:'The ball is on the box.', say:'球爬上盒子顶，贴在表面上——on。贴着一个面，就是 on。'},
+ {svg:GSTAGE(`${GBOX_A}${GGND}${GBALL(295,168)}`),
+  gate:{q:'球又飞起来了，停在盒子上方——<b>还差一点，没碰到</b>盒子。这还是 on 吗？该用哪个词？',opts:['还是 on（在上面）','above（在上方，没碰到）','under（在下面）'],right:1,
+        hint:'记住 on 的规矩：贴着面、碰到了，才算 on。',why:'对啦！悬空没碰到，就是 above。'},
+  say:'先猜一猜，再看球停稳。'},
  {svg:GSTAGE(`${GBOX_A}${GGND}<line x1="180" y1="178" x2="410" y2="178" stroke="#8a97a5" stroke-width="1.8" stroke-dasharray="6 5"/>${GBALL(295,226)}`), move:{sel:'#bl-ball',pts:[[295,226],[295,128]],dur:900},
   acc:'The ball is above the box.', say:'球飞到盒子上方，中间隔着一条虚线——够不着！在上方但不接触，是 above。'},
  {svg:GSTAGE(`${GBOX_A}${GGND}<line x1="180" y1="330" x2="560" y2="330" stroke="#8a97a5" stroke-width="1.8" stroke-dasharray="6 5"/>${GBALL(295,128)}`), move:{sel:'#bl-ball',pts:[[295,128],[430,240],[470,366]],dur:1400},
@@ -600,7 +611,7 @@ const dimBeats=[
 /* ===== 课 3：over 一条弧线（05b 拍表 · 例句出自厚档案） ===== */
 const FENCE=`<line x1="30" y1="340" x2="610" y2="340" stroke="#1d3557" stroke-width="2.4"/>
  <path class="penpath" data-dur="1200" d="M292,340 L292,180 L348,180 L348,340 M292,225 L348,225 M292,280 L348,280 M320,180 L320,340" fill="none" stroke="#1d3557" stroke-width="2.8"/>`;
-const BIRD=(id)=>`<g id="${id}"><ellipse cx="0" cy="0" rx="13" ry="8" fill="#37506e"/><path d="M-2,-4 Q-14,-16 -22,-6 Q-10,0 -2,-4" fill="#37506e"/><circle cx="10" cy="-3" r="4.5" fill="#37506e"/><path d="M14,-3 l7,2 l-7,2 Z" fill="#e9a13b"/></g>`;
+const BIRD=(id)=>`<g><ellipse cx="0" cy="0" rx="13" ry="8" fill="#37506e"/><path d="M-2,-4 Q-14,-16 -22,-6 Q-10,0 -2,-4" fill="#37506e"/><circle cx="10" cy="-3" r="4.5" fill="#37506e"/><path d="M14,-3 l7,2 l-7,2 Z" fill="#e9a13b"/></g>`;
 const ARCPATH='M140,300 Q320,40 500,300';
 const overBeats=[
  {svg:GSTAGE(`<text x="320" y="170" text-anchor="middle" font-size="28" font-weight="800" fill="#1d3557">over：一条弧线走完一生</text><text x="320" y="215" text-anchor="middle" font-size="16" fill="#5a6a7a">一个词，只画一条弧线</text>`),
@@ -621,6 +632,10 @@ const overBeats=[
   acc:'Spread the tablecloth over the table.', say:'第二个义项：弧线落下来盖住表面——桌布盖住桌子。还是这条弧，只是落了地。（机制：原型弧在言语中被强化为"盖住"义。）'},
  {svg:GSTAGE(`<path d="M60,330 Q240,120 420,330" fill="#eaf1f8" stroke="#1d3557" stroke-width="2.4"/><path d="M470,330 L470,275 L520,275 L520,330" fill="#fff" stroke="#1d3557" stroke-width="2.2"/><path d="M462,275 L495,252 L528,275" fill="none" stroke="#1d3557" stroke-width="2.2"/><path d="M110,300 Q250,90 430,285" fill="none" stroke="#e63946" stroke-width="2.2" stroke-dasharray="6 4"/><line x1="30" y1="335" x2="610" y2="335" stroke="#1d3557" stroke-width="2.2"/>`),
   acc:'The village is over the hill.', say:'第三个义项：弧线走完，只看终点——村庄在山的那一边。（引申机制：路径终点凸显。）'},
+ {svg:GSTAGE(`<text x="320" y="180" text-anchor="middle" font-size="30" font-weight="800" fill="#1d3557">The game is over.</text><text x="320" y="228" text-anchor="middle" font-size="16" fill="#5a6a7a">球没有了，墙也没有了——只剩这句话</text>`),
+  gate:{q:'最后一站，弧线要搬到<b>时间</b>上去了：The game is over.——这里的 over 是什么意思？',opts:['在……上面','结束了','翻过……去'],right:1,
+        hint:'想一想那条弧线：走完整条弧线、到了终点，事情就……',why:'对啦！弧线走完，就是结束——over 的时间义就是这么来的。'},
+  say:'先猜一猜，再看弧线搬家。'},
  {svg:GSTAGE(`<line x1="80" y1="240" x2="520" y2="240" stroke="#1d3557" stroke-width="2.6"/><path d="M80,240 L80,190" stroke="#8a97a5" stroke-width="2.2"/><path d="M520,240 L520,180" stroke="#1d3557" stroke-width="2.4"/><path d="M520,180 l30,7 l-30,7 Z" fill="#e63946"/><path d="M110,240 Q320,90 505,225" fill="none" stroke="#e63946" stroke-width="2.2" stroke-dasharray="6 4"/><text x="300" y="290" text-anchor="middle" font-size="16">时间轴</text>`),
   acc:'The game is over.', say:'第四个义项：弧线搬到时间上——走完弧线就是"结束"。比赛结束了：The game is over.'},
  {svg:GSTAGE(`<g><rect x="70" y="200" width="200" height="12" fill="#cfe0f0" stroke="#1d3557" stroke-width="2"/><path d="M85,180 L255,180 L262,196 L78,196 Z" fill="rgba(233,161,59,.35)" stroke="#e9a13b" stroke-width="2.2"/><text x="170" y="160" text-anchor="middle" font-size="16" font-weight="700">above（悬空，有缝）</text><line x1="85" y1="196" x2="255" y2="196" stroke="#e63946" stroke-width="2" stroke-dasharray="4 3"/></g><g><rect x="370" y="200" width="200" height="12" fill="#cfe0f0" stroke="#1d3557" stroke-width="2"/><path d="M355,198 L585,198 L600,268 Q470,290 340,268 Z" fill="rgba(230,57,70,.16)" stroke="#e63946" stroke-width="2.4"/><text x="470" y="160" text-anchor="middle" font-size="16" font-weight="700">over（盖住，接触）</text></g><line x1="30" y1="330" x2="610" y2="330" stroke="#1d3557" stroke-width="2.2"/>`),
