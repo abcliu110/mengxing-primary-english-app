@@ -1,0 +1,5752 @@
+{
+ "meta": {
+  "date": "2026-11-02",
+  "task": "词汇分类归一化（待归类→规范主题）",
+  "method": "按 wordbank meaning 主义项判定；basis 为 meaning 原文摘录",
+  "total_targets": 1148,
+  "classified": 997,
+  "residual_count": 151,
+  "residuals": [
+   {
+    "id": "ADD_0395",
+    "word": "accessible",
+    "reason": "高度抽象的性质形容词，无具体所指领域"
+   },
+   {
+    "id": "ADD_0397",
+    "word": "admissible",
+    "reason": "表示可容许的抽象许可性质，无具体所指，不属任何小类"
+   },
+   {
+    "id": "ADD_0398",
+    "word": "affect",
+    "reason": "影响为高度抽象动词，无具体领域所指"
+   },
+   {
+    "id": "ADD_0401",
+    "word": "aggravate",
+    "reason": "抽象使役动词，使情况恶化，无具体所指小类"
+   },
+   {
+    "id": "ADD_0403",
+    "word": "allow",
+    "reason": "许可类抽象动词，跨场景使用，无具体主题所指"
+   },
+   {
+    "id": "ADD_0004",
+    "word": "alloy",
+    "reason": "金属材料名词，24个小类中无材料类对应"
+   },
+   {
+    "id": "ADD_0407",
+    "word": "animate",
+    "reason": "第一义项为使活泼的抽象使役义，无具体动作小类可归"
+   },
+   {
+    "id": "ADD_0414",
+    "word": "arrange",
+    "reason": "安排规划属跨域抽象动词，无具体主题所指"
+   },
+   {
+    "id": "ADD_0416",
+    "word": "aspect",
+    "reason": "抽象名词，仅指方面，无具体领域所指"
+   },
+   {
+    "id": "ADD_0417",
+    "word": "assign",
+    "reason": "抽象分配指派动词，无贴合小类"
+   },
+   {
+    "id": "ADD_0420",
+    "word": "attract",
+    "reason": "抽象动词，吸引无具体领域所指"
+   },
+   {
+    "id": "ADD_0018",
+    "word": "become",
+    "reason": "高度抽象的变化系动词，无具体动作或所指"
+   },
+   {
+    "id": "ADD_0034",
+    "word": "buzz",
+    "reason": "嗡嗡声属声音现象，无对应主题小类。"
+   },
+   {
+    "id": "ADD_0340",
+    "word": "camouflage",
+    "reason": "伪装横跨动物、军事与服饰多域，无单一主题归属。"
+   },
+   {
+    "id": "ADD_0442",
+    "word": "cause",
+    "reason": "原因属高度抽象概念，无具体所指"
+   },
+   {
+    "id": "V6_日常_77",
+    "word": "change",
+    "reason": "改变为通用抽象变化，无具体领域所指"
+   },
+   {
+    "id": "ADD_0444",
+    "word": "changeable",
+    "reason": "多变的泛化性质，无具体领域所指"
+   },
+   {
+    "id": "ADD_0452",
+    "word": "chip",
+    "reason": "第一义项碎片为泛指物，无具体类别所指"
+   },
+   {
+    "id": "V6_日常_70",
+    "word": "choose",
+    "reason": "泛指选择行为，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0344",
+    "word": "cigarette",
+    "reason": "香烟不属食物饮品等任何规范小类"
+   },
+   {
+    "id": "ADD_0453",
+    "word": "clickable",
+    "reason": "电子界面操作属性，无对应主题小类"
+   },
+   {
+    "id": "ADD_0047",
+    "word": "clue",
+    "reason": "抽象线索提示，无对应具体小类"
+   },
+   {
+    "id": "ADD_0454",
+    "word": "coexist",
+    "reason": "共存为抽象关系概念，无具体所指小类"
+   },
+   {
+    "id": "ADD_0051",
+    "word": "complete",
+    "reason": "抽象完整、完成状态，无具体领域所指"
+   },
+   {
+    "id": "ADD_0053",
+    "word": "conceive",
+    "reason": "构想属认知类抽象动词，无具体主题所指"
+   },
+   {
+    "id": "ADD_0719",
+    "word": "conversion",
+    "reason": "转变为通用抽象概念，无具体领域所指"
+   },
+   {
+    "id": "ADD_0473",
+    "word": "crucial",
+    "reason": "重要性程度评价，高度抽象，无具体所指"
+   },
+   {
+    "id": "ADD_0062",
+    "word": "cues",
+    "reason": "抽象提示信号，无对应具体小类"
+   },
+   {
+    "id": "ADD_0065",
+    "word": "cycle",
+    "reason": "循环为抽象概念，无具体主题所指"
+   },
+   {
+    "id": "ADD_0068",
+    "word": "deceit",
+    "reason": "欺骗为抽象行为概念，无对应规范小类"
+   },
+   {
+    "id": "V6_日常_69",
+    "word": "decide",
+    "reason": "认知决策动词，无贴合小类"
+   },
+   {
+    "id": "ADD_0070",
+    "word": "decision",
+    "reason": "抽象抉择概念，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0477",
+    "word": "detail",
+    "reason": "抽象名词细节，无具体领域所指"
+   },
+   {
+    "id": "ADD_0479",
+    "word": "differ",
+    "reason": "表示相异的抽象关系动词，无具体所指"
+   },
+   {
+    "id": "ADD_0077",
+    "word": "different",
+    "reason": "抽象差异属性，跨域无具体所指"
+   },
+   {
+    "id": "ADD_0480",
+    "word": "differentiate",
+    "reason": "区分为抽象认知动词，无具体领域所指"
+   },
+   {
+    "id": "ADD_0482",
+    "word": "disconnect",
+    "reason": "断开联系为通用连接动作，无对应具体小类"
+   },
+   {
+    "id": "ADD_0349",
+    "word": "dodger",
+    "reason": "行为者称谓，非职业身份，无贴合小类"
+   },
+   {
+    "id": "ADD_0824",
+    "word": "dynamite",
+    "reason": "炸药无对应规范小类"
+   },
+   {
+    "id": "ADD_0086",
+    "word": "easier",
+    "reason": "仅表示难度比较，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0487",
+    "word": "echo",
+    "reason": "回声为声学现象，无对应主题小类"
+   },
+   {
+    "id": "ADD_0493",
+    "word": "effect",
+    "reason": "效果、影响为高度抽象名词，无具体所指"
+   },
+   {
+    "id": "ADD_0495",
+    "word": "eliminate",
+    "reason": "抽象消除动词，无具体领域所指"
+   },
+   {
+    "id": "ADD_0890",
+    "word": "enable",
+    "reason": "使能够为抽象使役动词，无具体动作所指"
+   },
+   {
+    "id": "ADD_0497",
+    "word": "end",
+    "reason": "结尾为抽象边界概念，跨域无具体所指"
+   },
+   {
+    "id": "ADD_0093",
+    "word": "ending",
+    "reason": "结尾为通用结构概念，无具体领域所指"
+   },
+   {
+    "id": "ADD_0094",
+    "word": "engage",
+    "reason": "参与、从事过于泛化，无具体领域所指"
+   },
+   {
+    "id": "ADD_0891",
+    "word": "enrich",
+    "reason": "使丰富为通用抽象致使义，无具体所指小类"
+   },
+   {
+    "id": "ADD_0498",
+    "word": "ensue",
+    "reason": "表示随之发生的抽象动词，无具体主题所指"
+   },
+   {
+    "id": "ADD_0501",
+    "word": "eventful",
+    "reason": "多事的泛化形容词，无具体领域所指"
+   },
+   {
+    "id": "ADD_0502",
+    "word": "evoke",
+    "reason": "抽象唤起动词，无具体所指小类"
+   },
+   {
+    "id": "ADD_0503",
+    "word": "exist",
+    "reason": "存在属高度抽象动词，无具体主题所指"
+   },
+   {
+    "id": "ADD_0504",
+    "word": "explosion",
+    "reason": "爆炸为泛化事件，无对应规范小类"
+   },
+   {
+    "id": "ADD_0505",
+    "word": "extension",
+    "reason": "抽象延伸概念，无贴合小类"
+   },
+   {
+    "id": "ADD_0100",
+    "word": "fate",
+    "reason": "命运为高度抽象概念，无具体所指"
+   },
+   {
+    "id": "V6_日常_26",
+    "word": "finish",
+    "reason": "完成属跨域抽象动词，无具体主题所指"
+   },
+   {
+    "id": "ADD_0102",
+    "word": "fizz",
+    "reason": "发声起泡现象无对应规范小类"
+   },
+   {
+    "id": "ADD_0350",
+    "word": "flak",
+    "reason": "第一义项高射炮火无对应规范小类"
+   },
+   {
+    "id": "ADD_0509",
+    "word": "flammable",
+    "reason": "材料物理性质，无对应小类"
+   },
+   {
+    "id": "ADD_0881",
+    "word": "foresee",
+    "reason": "预见为抽象认知动词，无更贴切的小类"
+   },
+   {
+    "id": "ADD_0109",
+    "word": "forfeit",
+    "reason": "丧失权利属抽象法律概念，无对应小类"
+   },
+   {
+    "id": "ADD_0114",
+    "word": "fuzz",
+    "reason": "绒毛细毛无对应规范小类"
+   },
+   {
+    "id": "ADD_0118",
+    "word": "gear",
+    "reason": "齿轮为机械部件，无对应规范小类"
+   },
+   {
+    "id": "V6_日常_0",
+    "word": "get",
+    "reason": "高度抽象通用动词，无具体主题所指"
+   },
+   {
+    "id": "ADD_0122",
+    "word": "ghost",
+    "reason": "鬼、幽灵为超自然虚构，无对应规范小类"
+   },
+   {
+    "id": "ADD_0123",
+    "word": "giant",
+    "reason": "神话巨人称谓，无贴合小类"
+   },
+   {
+    "id": "ADD_0127",
+    "word": "gnome",
+    "reason": "神话虚构形象，无对应现实主题小类"
+   },
+   {
+    "id": "ADD_0355",
+    "word": "haphazard",
+    "reason": "随意、无计划为泛化状貌，无具体领域所指"
+   },
+   {
+    "id": "ADD_0522",
+    "word": "happen",
+    "reason": "抽象发生动词，无具体所指小类"
+   },
+   {
+    "id": "ADD_0140",
+    "word": "hardly",
+    "reason": "程度副词，无具体主题所指。"
+   },
+   {
+    "id": "V6_学校_51",
+    "word": "idea",
+    "reason": "想法为抽象认知内容，无具体所指小类"
+   },
+   {
+    "id": "ADD_0838",
+    "word": "illuminate",
+    "reason": "照明与阐明跨域，无对应主题小类"
+   },
+   {
+    "id": "ADD_0532",
+    "word": "illusion",
+    "reason": "幻觉为抽象感知概念，无对应规范小类"
+   },
+   {
+    "id": "ADD_0533",
+    "word": "imbalance",
+    "reason": "不平衡、失调为抽象状态，无具体领域所指"
+   },
+   {
+    "id": "ADD_0537",
+    "word": "include",
+    "reason": "包括为抽象逻辑动词，无具体所指"
+   },
+   {
+    "id": "ADD_0157",
+    "word": "incorrect",
+    "reason": "抽象正误评价，无贴合小类"
+   },
+   {
+    "id": "ADD_0538",
+    "word": "incredible",
+    "reason": "泛化评价形容词，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0159",
+    "word": "input",
+    "reason": "输入为通用信息技术操作，无对应小类"
+   },
+   {
+    "id": "ADD_0168",
+    "word": "karma",
+    "reason": "因果报应为抽象宗教哲学概念，无对应小类"
+   },
+   {
+    "id": "ADD_0560",
+    "word": "laser",
+    "reason": "科技器件，无对应小类"
+   },
+   {
+    "id": "ADD_0561",
+    "word": "limitable",
+    "reason": "可限制的为通用抽象性质，无具体所指"
+   },
+   {
+    "id": "ADD_0182",
+    "word": "list",
+    "reason": "清单为跨域通用信息形式，无单一主题归属。"
+   },
+   {
+    "id": "ADD_0185",
+    "word": "machine",
+    "reason": "机器为跨领域通用概念，无单一主题小类"
+   },
+   {
+    "id": "ADD_0566",
+    "word": "manageable",
+    "reason": "可办到的为通用可行性评价，无具体所指小类"
+   },
+   {
+    "id": "ADD_0570",
+    "word": "mere",
+    "reason": "程度限定词，高度抽象，无具体所指"
+   },
+   {
+    "id": "ADD_0188",
+    "word": "mess",
+    "reason": "第一义项为抽象的混乱状态，无具体场所或事物所指"
+   },
+   {
+    "id": "ADD_0796",
+    "word": "mortal",
+    "reason": "生死属性抽象，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0198",
+    "word": "mould",
+    "reason": "模具为制造工具，无对应规范小类"
+   },
+   {
+    "id": "V6_日常_67",
+    "word": "need",
+    "reason": "需要为抽象情态动词，无具体领域所指"
+   },
+   {
+    "id": "ADD_0870",
+    "word": "negative",
+    "reason": "抽象否定评价，无贴合小类"
+   },
+   {
+    "id": "V6_服装_39",
+    "word": "new",
+    "reason": "泛指新旧属性，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0852",
+    "word": "object",
+    "reason": "泛指物体，无具体类别所指。"
+   },
+   {
+    "id": "ADD_0206",
+    "word": "occasion",
+    "reason": "场合与时机为抽象情境概念，无具体所指小类"
+   },
+   {
+    "id": "ADD_0589",
+    "word": "occur",
+    "reason": "发生属抽象动词，无具体主题所指"
+   },
+   {
+    "id": "ADD_0590",
+    "word": "oddity",
+    "reason": "怪事为通用异常概念，无对应规范小类"
+   },
+   {
+    "id": "ADD_0592",
+    "word": "oppose",
+    "reason": "反对为抽象立场动词，无具体所指小类"
+   },
+   {
+    "id": "ADD_0212",
+    "word": "panel",
+    "reason": "面板为通用部件名称，无对应规范小类"
+   },
+   {
+    "id": "ADD_0220",
+    "word": "perceive",
+    "reason": "察觉、理解为抽象认知动词，无具体小类"
+   },
+   {
+    "id": "ADD_0598",
+    "word": "permissible",
+    "reason": "抽象许可评价，无贴合小类"
+   },
+   {
+    "id": "ADD_0599",
+    "word": "perspective",
+    "reason": "视角观点为抽象认知概念，无具体所指小类"
+   },
+   {
+    "id": "ADD_0600",
+    "word": "phenomenon",
+    "reason": "现象为高度抽象概念，无具体所指"
+   },
+   {
+    "id": "V6_日常_68",
+    "word": "plan",
+    "reason": "计划为抽象认知活动，无具体领域所指"
+   },
+   {
+    "id": "V6_自然_28",
+    "word": "plastic",
+    "reason": "人工材料名词，无对应小类"
+   },
+   {
+    "id": "ADD_0233",
+    "word": "power",
+    "reason": "第一义项力量抽象泛化，无具体领域所指"
+   },
+   {
+    "id": "ADD_0237",
+    "word": "pronounced",
+    "reason": "明显的为通用程度形容词，无具体所指"
+   },
+   {
+    "id": "ADD_0609",
+    "word": "prospect",
+    "reason": "抽象前景期望，无具体所指小类"
+   },
+   {
+    "id": "ADD_0610",
+    "word": "provide",
+    "reason": "提供属跨域抽象动词，无具体主题所指"
+   },
+   {
+    "id": "ADD_0379",
+    "word": "psalm",
+    "reason": "宗教圣诗诗篇，24个小类中无对应类别"
+   },
+   {
+    "id": "ADD_0614",
+    "word": "ready",
+    "reason": "准备好的为泛化状态，无具体领域所指"
+   },
+   {
+    "id": "ADD_0615",
+    "word": "reason",
+    "reason": "抽象原因理由，无贴合小类"
+   },
+   {
+    "id": "ADD_0618",
+    "word": "reflect",
+    "reason": "反映为抽象动词，无具体领域所指"
+   },
+   {
+    "id": "ADD_0626",
+    "word": "retrospect",
+    "reason": "回顾为抽象认知概念，无具体主题所指"
+   },
+   {
+    "id": "ADD_0258",
+    "word": "rough",
+    "reason": "粗糙的为通用质地描述，无对应规范小类"
+   },
+   {
+    "id": "ADD_0789",
+    "word": "rupture",
+    "reason": "破裂为跨域通用事件，无特定领域所指"
+   },
+   {
+    "id": "ADD_0633",
+    "word": "scope",
+    "reason": "范围为高度抽象概念，无具体所指"
+   },
+   {
+    "id": "ADD_0867",
+    "word": "section",
+    "reason": "部分为抽象概念且跨域，无具体主题所指"
+   },
+   {
+    "id": "ADD_0869",
+    "word": "segment",
+    "reason": "第一义项泛指部分，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0266",
+    "word": "sheath",
+    "reason": "刀剑护套器物，无对应小类"
+   },
+   {
+    "id": "ADD_0272",
+    "word": "simple",
+    "reason": "泛指难易属性，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0645",
+    "word": "skeptic",
+    "reason": "思想立场者称谓，非职业身份，无贴合小类"
+   },
+   {
+    "id": "ADD_0813",
+    "word": "solo",
+    "reason": "第一义项泛指独自状态，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0279",
+    "word": "sort",
+    "reason": "种类、分类为抽象类别概念，无具体所指"
+   },
+   {
+    "id": "ADD_0281",
+    "word": "soul",
+    "reason": "灵魂为抽象概念，无具体所指"
+   },
+   {
+    "id": "ADD_0652",
+    "word": "specious",
+    "reason": "似是而非为抽象评价性质，无具体所指小类"
+   },
+   {
+    "id": "ADD_0653",
+    "word": "spectacle",
+    "reason": "场面景象跨域宽泛，无对应主题小类"
+   },
+   {
+    "id": "ADD_0656",
+    "word": "speculate",
+    "reason": "认知推测动词，无贴合小类"
+   },
+   {
+    "id": "ADD_0282",
+    "word": "spook",
+    "reason": "第一义项幽灵为超自然虚构，无对应规范小类"
+   },
+   {
+    "id": "ADD_0660",
+    "word": "streamable",
+    "reason": "媒体技术性质，无对应小类"
+   },
+   {
+    "id": "ADD_0662",
+    "word": "stuff",
+    "reason": "泛指东西物品，无具体主题所指"
+   },
+   {
+    "id": "ADD_0850",
+    "word": "subscribe",
+    "reason": "服务订阅行为，无贴合小类"
+   },
+   {
+    "id": "ADD_0664",
+    "word": "succeed",
+    "reason": "泛指成功结果，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0665",
+    "word": "succumb",
+    "reason": "屈服为抽象心理行为，无对应具体小类"
+   },
+   {
+    "id": "ADD_0666",
+    "word": "suddenly",
+    "reason": "方式副词，表示突发，无具体主题所指"
+   },
+   {
+    "id": "ADD_0667",
+    "word": "suffer",
+    "reason": "泛指遭受痛苦，跨身体与心理，无单一小类可归"
+   },
+   {
+    "id": "ADD_0677",
+    "word": "sustain",
+    "reason": "维持为通用抽象动词，无具体所指"
+   },
+   {
+    "id": "ADD_0679",
+    "word": "symbol",
+    "reason": "象征符号概念跨域使用，无单一主题归属"
+   },
+   {
+    "id": "ADD_0680",
+    "word": "system",
+    "reason": "系统为高度抽象概念，无具体所指"
+   },
+   {
+    "id": "ADD_0781",
+    "word": "thing",
+    "reason": "东西事物为泛指词，无具体所指小类"
+   },
+   {
+    "id": "ADD_0293",
+    "word": "thorough",
+    "reason": "彻底、全面的抽象程度性质，无具体所指"
+   },
+   {
+    "id": "ADD_0301",
+    "word": "tough",
+    "reason": "艰难的为通用评价形容词，无具体所指"
+   },
+   {
+    "id": "ADD_0689",
+    "word": "trouble",
+    "reason": "泛指麻烦困难，属跨域抽象概念"
+   },
+   {
+    "id": "ADD_0306",
+    "word": "tube",
+    "reason": "管道器物，无对应小类"
+   },
+   {
+    "id": "ADD_0693",
+    "word": "unbelievable",
+    "reason": "难以置信的为通用评价形容词，无具体所指"
+   },
+   {
+    "id": "ADD_0694",
+    "word": "uncertain",
+    "reason": "不确定的泛化形容词，无具体领域所指"
+   },
+   {
+    "id": "ADD_0703",
+    "word": "unsubscribe",
+    "reason": "取消订阅为网络服务操作，无对应主题小类"
+   },
+   {
+    "id": "ADD_0311",
+    "word": "uphold",
+    "reason": "维护、支持为抽象动词，无具体领域所指"
+   },
+   {
+    "id": "ADD_0705",
+    "word": "utterly",
+    "reason": "程度副词，无具体所指"
+   },
+   {
+    "id": "ADD_0707",
+    "word": "visible",
+    "reason": "泛指可看见状态，无具体主题所指。"
+   },
+   {
+    "id": "ADD_0801",
+    "word": "vital",
+    "reason": "重要性程度评价，高度抽象，无具体所指"
+   },
+   {
+    "id": "ADD_0322",
+    "word": "weird",
+    "reason": "奇怪的为通用评价形容词，无具体所指"
+   },
+   {
+    "id": "ADD_0456",
+    "word": "combine",
+    "reason": "抽象联合动词，无具体场景归属；主会话验收按「拿不准宁留残差」口径改判（2026-11-02）"
+   }
+  ]
+ },
+ "ADD_0393": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "接受；同意"
+ },
+ "ADD_0830": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "副词"
+ },
+ "ADD_0405": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "字母表"
+ },
+ "ADD_0408": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "兼并；附加"
+ },
+ "ADD_0822": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "漠不关心"
+ },
+ "ADD_0415": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "上升；攀登"
+ },
+ "ADD_0010": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "攻击；袭击"
+ },
+ "V6_家庭_20": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "婴儿(复数babies)"
+ },
+ "ADD_0426": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "球棒；蝙蝠"
+ },
+ "ADD_0427": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "啤酒"
+ },
+ "ADD_0902": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "传记"
+ },
+ "V6_服装_5": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "女衬衫"
+ },
+ "ADD_0024": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "树枝；分支"
+ },
+ "ADD_0028": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "宽阔的；广阔的"
+ },
+ "ADD_0438": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "忙碌地"
+ },
+ "V6_节日_58": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "日历"
+ },
+ "V6_日常_45": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "抓住/赶上"
+ },
+ "ADD_0342": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "香槟酒"
+ },
+ "V6_食物_16": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "奶酪"
+ },
+ "V6_节日_49": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "儿童节"
+ },
+ "ADD_0794": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "年表；按年代排列的顺序"
+ },
+ "ADD_0045": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "给…穿衣；覆盖"
+ },
+ "ADD_0455": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "合作；协作"
+ },
+ "V6_城市_26": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "公司"
+ },
+ "ADD_0835": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "自信，信心"
+ },
+ "ADD_0057": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "比赛；竞赛"
+ },
+ "ADD_0816": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "宇宙的"
+ },
+ "V6_家庭_17": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "堂(表)兄弟姐妹"
+ },
+ "ADD_0060": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "水晶"
+ },
+ "ADD_0067": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "债务；欠款"
+ },
+ "ADD_0818": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "民主；民主政体"
+ },
+ "ADD_0476": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "鄙视；看不起"
+ },
+ "ADD_0079": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "分开；除"
+ },
+ "V6_节日_54": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "端午节"
+ },
+ "ADD_0486": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "染料；染色，染"
+ },
+ "ADD_0494": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "高效的；效率高的"
+ },
+ "V6_城市_35": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "入口"
+ },
+ "ADD_0878": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "尊敬，敬重"
+ },
+ "ADD_0792": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "探险，考察"
+ },
+ "V6_交通_48": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "远的"
+ },
+ "V6_身体_29": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "发烧"
+ },
+ "V6_身体_59": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "健康的/合身的"
+ },
+ "ADD_0105": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "（牙）线"
+ },
+ "ADD_0882": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "（书籍的）前言，序言"
+ },
+ "V6_节日_59": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "未来/将来"
+ },
+ "V6_城市_34": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "大门"
+ },
+ "ADD_0125": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "腰带；束带"
+ },
+ "V6_自然_26": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "黄金(不可数)"
+ },
+ "ADD_0129": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "温室；暖房"
+ },
+ "ADD_0134": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "猜；猜测"
+ },
+ "ADD_0521": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "大厅；会堂；门厅"
+ },
+ "ADD_0142": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "鹰；隼"
+ },
+ "V6_职业_37": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "英雄(复数heroes)"
+ },
+ "ADD_0525": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "（嗓音）嘶哑的"
+ },
+ "ADD_0153": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "单脚跳"
+ },
+ "ADD_0529": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "驼峰；隆起，圆丘"
+ },
+ "ADD_0536": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "（船、飞机）内部的"
+ },
+ "ADD_0541": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "精妙的；心灵手巧的"
+ },
+ "ADD_0544": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "检查；视察"
+ },
+ "ADD_0548": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "不规则的"
+ },
+ "V6_服装_11": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "牛仔裤(复数)"
+ },
+ "ADD_0170": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "水壶；烧水壶"
+ },
+ "ADD_0557": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "无赖，恶棍"
+ },
+ "ADD_0825": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "语言"
+ },
+ "V6_自然_11": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "树叶(复数leaves!)"
+ },
+ "V6_P14": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "字母；信件"
+ },
+ "V6_日常_64": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "喜欢/像…一样"
+ },
+ "V6_家庭_56": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "锁"
+ },
+ "ADD_0564": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "虱子"
+ },
+ "V6_城市_19": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "市场"
+ },
+ "ADD_0871": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "医学的，医疗的"
+ },
+ "ADD_0189": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "消息；信息"
+ },
+ "ADD_0572": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "强大的；有力的"
+ },
+ "V6_学校_49": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "错误"
+ },
+ "V6_家庭_7": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "妈妈(美)"
+ },
+ "V6_交通_16": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "摩托车"
+ },
+ "ADD_0200": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "神话；虚构的故事"
+ },
+ "V6_身体_9": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "脖子"
+ },
+ "ADD_0370": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "硝酸盐"
+ },
+ "ADD_0588": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "显眼的；显著的"
+ },
+ "ADD_0207": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "奇怪的；奇数的"
+ },
+ "V6_食物_74": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "点餐/顺序"
+ },
+ "ADD_0211": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "手掌；棕榈树"
+ },
+ "V6_家庭_1": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "父或母(双亲parents)"
+ },
+ "ADD_0217": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "付款；支付的款项"
+ },
+ "ADD_0219": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "养老金；退休金"
+ },
+ "ADD_0603": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "风景如画的"
+ },
+ "V6_食物_7": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "披萨饼"
+ },
+ "ADD_0231": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "加；加上；加号"
+ },
+ "ADD_0232": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "邮政；张贴"
+ },
+ "ADD_0606": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "价格；定价"
+ },
+ "ADD_0607": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "承诺；许诺；诺言"
+ },
+ "ADD_0879": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "心理的；心理学的"
+ },
+ "V6_日常_9": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "放(过去式put)"
+ },
+ "ADD_0246": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "小测验；问答比赛"
+ },
+ "ADD_0617": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "再装满；续加；续杯"
+ },
+ "ADD_0872": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "疗法；补救办法"
+ },
+ "V6_服装_26": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "戒指/铃声响"
+ },
+ "V6_自然_12": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "根"
+ },
+ "V6_学校_55": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "剪刀(复数)"
+ },
+ "ADD_0884": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "半圆"
+ },
+ "V6_日常_39": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "分享"
+ },
+ "ADD_0637": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "缩短；使变短"
+ },
+ "V6_身体_28": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "生病的/不适的"
+ },
+ "ADD_0644": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "烧焦；燎，微微烧坏"
+ },
+ "ADD_0385": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "（蛇等）蜕皮"
+ },
+ "ADD_0648": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "社会；社团，协会"
+ },
+ "ADD_0280": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "寻找；寻求"
+ },
+ "ADD_0783": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "精神；情绪"
+ },
+ "V6_日常_24": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "开始/出发"
+ },
+ "V6_交通_34": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "站点/停下(stopped)"
+ },
+ "ADD_0663": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "愚蠢；愚蠢的行为"
+ },
+ "ADD_0668": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "足够的；充足的"
+ },
+ "ADD_0672": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "召唤；传唤"
+ },
+ "ADD_0676": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "怀疑；嫌疑犯"
+ },
+ "ADD_0795": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "（使）同时发生"
+ },
+ "V6_节日_50": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "教师节"
+ },
+ "V6_学校_38": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "测试/考试"
+ },
+ "V6_日常_46": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "扔/投"
+ },
+ "V6_节日_0": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "时间(不可数)"
+ },
+ "ADD_0300": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "触摸；接触"
+ },
+ "V6_日常_23": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "尝试(三单tries)"
+ },
+ "ADD_0692": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "台风"
+ },
+ "ADD_0697": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "不公平的；不公正的"
+ },
+ "ADD_0828": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "动词"
+ },
+ "V6_身体_24": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "嗓音"
+ },
+ "ADD_0320": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "病房；被监护人"
+ },
+ "V6_节日_3": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "周/星期(同音weak)"
+ },
+ "ADD_0392": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "嗖地飞过"
+ },
+ "ADD_0715": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "擦；擦去；抹掉"
+ },
+ "ADD_0328": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "值得；价值"
+ },
+ "ADD_0332": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "蛋黄"
+ },
+ "ADD_0394": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "通道"
+ },
+ "V6_交通_19": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "救护车"
+ },
+ "ADD_0846": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "周年纪念日"
+ },
+ "ADD_0411": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "申请"
+ },
+ "V6_学校_69": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "询问/请求"
+ },
+ "ADD_0419": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "出席"
+ },
+ "ADD_0424": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "学士"
+ },
+ "ADD_0013": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "洗澡"
+ },
+ "ADD_0335": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "啤酒（复数）"
+ },
+ "ADD_0429": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "生物学"
+ },
+ "V6_天气_39": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "刮风"
+ },
+ "ADD_0025": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "打破"
+ },
+ "ADD_0436": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "小册子"
+ },
+ "V6_职业_17": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "商人"
+ },
+ "ADD_0439": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "小牛"
+ },
+ "ADD_0039": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "厨师长"
+ },
+ "V6_学校_28": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "语文/中文"
+ },
+ "V6_服装_0": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "衣服"
+ },
+ "ADD_0049": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "学院；大学"
+ },
+ "ADD_0050": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "竞争"
+ },
+ "ADD_0836": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "自信的，有信心的"
+ },
+ "ADD_0815": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "宇宙（视作有序体系）"
+ },
+ "ADD_0469": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "小龙虾"
+ },
+ "ADD_0061": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "立方体"
+ },
+ "V6_家庭_3": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "爸爸"
+ },
+ "ADD_0819": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "民主的"
+ },
+ "ADD_0074": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "分离"
+ },
+ "V6_日常_3": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "做(过去式did)"
+ },
+ "V6_食物_57": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "喝(过去式drank)/饮料"
+ },
+ "ADD_0823": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "充满活力的"
+ },
+ "ADD_0488": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "经济的"
+ },
+ "ADD_0089": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "电工"
+ },
+ "ADD_0785": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "进入"
+ },
+ "ADD_0098": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "估计；估算"
+ },
+ "V6_学校_79": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "解释"
+ },
+ "ADD_0875": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "忠诚，忠实"
+ },
+ "ADD_0106": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "流感"
+ },
+ "ADD_0121": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "间歇泉"
+ },
+ "V6_家庭_24": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "女孩"
+ },
+ "ADD_0516": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "高尔夫球运动"
+ },
+ "ADD_0131": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "磨碎"
+ },
+ "V6_职业_31": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "导游"
+ },
+ "ADD_0139": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "吊床"
+ },
+ "ADD_0143": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "干草堆"
+ },
+ "V6_MORPH_12": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "英雄们"
+ },
+ "ADD_0359": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "（动物的）肘关节"
+ },
+ "V6_动物_54": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "角"
+ },
+ "V6_身体_38": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "疼痛/受伤"
+ },
+ "ADD_0542": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "天真的"
+ },
+ "ADD_0160": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "立即的"
+ },
+ "ADD_0549": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "不负责任的"
+ },
+ "V6_职业_0": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "工作(可数)"
+ },
+ "ADD_0553": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "踢"
+ },
+ "V6_身体_15": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "膝盖"
+ },
+ "V6_节日_55": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "灯笼"
+ },
+ "ADD_0178": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "联盟"
+ },
+ "ADD_0833": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "思想开明的"
+ },
+ "ADD_0183": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "原木"
+ },
+ "ADD_0565": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "可爱的"
+ },
+ "V6_学校_18": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "杂志"
+ },
+ "ADD_0187": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "结婚"
+ },
+ "V6_身体_34": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "药"
+ },
+ "V6_自然_27": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "金属"
+ },
+ "ADD_0190": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "温和的"
+ },
+ "ADD_0894": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "误解"
+ },
+ "ADD_0578": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "片刻"
+ },
+ "ADD_0201": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "裸体的"
+ },
+ "ADD_0893": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "纪实文学，非虚构作品"
+ },
+ "ADD_0843": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "（长篇）小说"
+ },
+ "ADD_0372": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "矿石"
+ },
+ "V6_动物_49": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "鹦鹉"
+ },
+ "V6_学校_35": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "体育课"
+ },
+ "V6_家庭_27": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "人们"
+ },
+ "ADD_0820": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "哲学"
+ },
+ "V6_食物_25": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "果馅派"
+ },
+ "V6_城市_5": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "地方/场所"
+ },
+ "ADD_0376": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "肺炎"
+ },
+ "V6_MORPH_11": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "土豆"
+ },
+ "ADD_0378": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "灵长类动物"
+ },
+ "ADD_0611": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "心理学"
+ },
+ "V6_服装_30": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "穿上/戴上(动作)"
+ },
+ "ADD_0613": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "可读的"
+ },
+ "ADD_0622": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "移动"
+ },
+ "ADD_0627": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "（使）发动机加速"
+ },
+ "ADD_0629": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "上升"
+ },
+ "ADD_0868": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "部门"
+ },
+ "ADD_0886": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "分号"
+ },
+ "ADD_0636": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "刮胡子"
+ },
+ "V6_身体_10": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "肩膀"
+ },
+ "ADD_0271": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "边；侧面"
+ },
+ "ADD_0274": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "水槽"
+ },
+ "V6_服装_38": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "聪明的"
+ },
+ "V6_服装_13": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "短袜"
+ },
+ "ADD_0654": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "观众"
+ },
+ "ADD_0386": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "黑市投机小贩"
+ },
+ "V6_日常_28": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "停留/待在"
+ },
+ "V6_城市_18": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "商店"
+ },
+ "V6_学校_27": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "学科"
+ },
+ "ADD_0669": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "后缀（加在词尾的字母组合）"
+ },
+ "ADD_0898": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "超人"
+ },
+ "ADD_0389": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "长牙"
+ },
+ "V6_城市_13": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "剧院"
+ },
+ "ADD_0296": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "拇指"
+ },
+ "ADD_0686": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "尖端，末梢"
+ },
+ "V6_服装_32": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "试穿"
+ },
+ "ADD_0698": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "（在社交网络上）删除好友"
+ },
+ "ADD_0310": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "解开"
+ },
+ "ADD_0829": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "口头的"
+ },
+ "ADD_0316": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "誓言"
+ },
+ "ADD_0708": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "看守人"
+ },
+ "ADD_0712": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "全部的"
+ },
+ "V6_日常_62": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "祝愿"
+ },
+ "ADD_0716": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "包"
+ },
+ "ADD_0333": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "青年"
+ },
+ "ADD_0399": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "词缀（前缀、后缀"
+ },
+ "ADD_0406": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "两栖的；水陆两用的"
+ },
+ "ADD_0409": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "宣布；通知"
+ },
+ "ADD_0412": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "接近；方法，途径"
+ },
+ "V6_身体_18": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "背部/后面"
+ },
+ "ADD_0014": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "洗澡；沐浴"
+ },
+ "V6_日常_25": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "开始(过去式began)"
+ },
+ "ADD_0430": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "主教"
+ },
+ "ADD_0023": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "煮沸；沸腾"
+ },
+ "ADD_0026": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "呼吸"
+ },
+ "ADD_0029": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "眉毛；额头"
+ },
+ "ADD_0033": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "屠夫；肉商"
+ },
+ "ADD_0035": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "平静的；使平静"
+ },
+ "ADD_0037": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "天花板"
+ },
+ "ADD_0448": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "化学家；药剂师"
+ },
+ "V6_MORPH_17": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "城市"
+ },
+ "ADD_0046": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "三叶草；苜蓿"
+ },
+ "V6_身体_44": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "梳子/梳头"
+ },
+ "ADD_0054": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "使困惑；混淆"
+ },
+ "ADD_0463": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "合作；配合"
+ },
+ "V6_日常_34": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "花费(金钱)"
+ },
+ "ADD_0059": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "生物；动物"
+ },
+ "V6_食物_55": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "黄瓜"
+ },
+ "V6_家庭_4": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "爹地"
+ },
+ "ADD_0069": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "欺骗"
+ },
+ "ADD_0071": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "否认；拒绝"
+ },
+ "ADD_0078": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "消化；领会"
+ },
+ "ADD_0080": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "躲闪；避开"
+ },
+ "V6_交通_50": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "驾驶(过去式drove)"
+ },
+ "ADD_0489": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "经济；节约"
+ },
+ "ADD_0097": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "相等的；平等的"
+ },
+ "ADD_0507": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "害怕，恐惧；担忧"
+ },
+ "V6_自然_19": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "田野/运动场"
+ },
+ "ADD_0107": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "折叠；对折"
+ },
+ "ADD_0111": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "嬉戏；玩闹"
+ },
+ "ADD_0351": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "（非正式）女孩；姑娘"
+ },
+ "ADD_0119": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "壁虎"
+ },
+ "V6_日常_8": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "给(过去式gave)"
+ },
+ "ADD_0517": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "政府"
+ },
+ "V6_学校_47": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "小组"
+ },
+ "ADD_0135": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "内疚；罪过"
+ },
+ "ADD_0524": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "治愈；愈合"
+ },
+ "ADD_0358": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "打嗝"
+ },
+ "ADD_0150": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "锄头；锄地"
+ },
+ "V6_MORPH_69": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "hot的比较级"
+ },
+ "ADD_0360": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "（兔等小动物的）笼子"
+ },
+ "ADD_0156": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "收入；收益"
+ },
+ "ADD_0855": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "注射；注入，投入"
+ },
+ "ADD_0161": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "兴趣；利息"
+ },
+ "ADD_0550": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "灌溉；冲洗"
+ },
+ "V6_日常_79": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "参加/加入"
+ },
+ "V6_家庭_22": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "小孩"
+ },
+ "ADD_0172": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "骑士"
+ },
+ "ADD_0174": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "大的；大号的"
+ },
+ "V6_交通_57": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "离开/留下"
+ },
+ "ADD_0832": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "自由"
+ },
+ "ADD_0827": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "语言学家；通晓数国"
+ },
+ "ADD_0563": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "逻辑；逻辑学"
+ },
+ "V6_日常_63": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "爱/喜爱"
+ },
+ "ADD_0369": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "磁悬浮列车"
+ },
+ "ADD_0568": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "垫子；席子"
+ },
+ "ADD_0840": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "中等的，适中的"
+ },
+ "ADD_0873": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "变态，蜕变；彻底的变化"
+ },
+ "ADD_0191": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "模仿；学样"
+ },
+ "ADD_0195": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "连指手套；棒球手套"
+ },
+ "V6_节日_2": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "月份"
+ },
+ "ADD_0582": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "登上；爬上"
+ },
+ "ADD_0584": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "餐巾；纸巾"
+ },
+ "ADD_0585": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "针；缝衣针；指针"
+ },
+ "ADD_0587": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "胡话；废话；无稽之谈"
+ },
+ "V6_节日_21": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "…点钟"
+ },
+ "ADD_0591": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "提供；提议；给予"
+ },
+ "ADD_0373": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "暴行；愤怒"
+ },
+ "ADD_0213": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "恐慌；惊慌"
+ },
+ "V6_节日_22": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "超过/过去"
+ },
+ "ADD_0218": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "山顶；顶峰"
+ },
+ "ADD_0904": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "复印件，影印件；复印"
+ },
+ "ADD_0604": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "小猪；猪仔"
+ },
+ "V6_服装_24": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "衣袋/口袋"
+ },
+ "V6_职业_35": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "王子"
+ },
+ "ADD_0608": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "提议；提出；求婚"
+ },
+ "ADD_0380": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "雷鸟"
+ },
+ "ADD_0243": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "（高尔夫）轻击入洞"
+ },
+ "ADD_0784": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "拒绝；回绝"
+ },
+ "ADD_0250": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "重读；再读"
+ },
+ "ADD_0800": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "（使）复苏，复兴"
+ },
+ "ADD_0255": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "蟑螂"
+ },
+ "ADD_0259": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "王室的；皇家的"
+ },
+ "ADD_0849": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "剧本；脚本；文字"
+ },
+ "V6_日常_17": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "看见(过去式saw)"
+ },
+ "ADD_0885": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "半决赛"
+ },
+ "ADD_0383": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "一捆；一束"
+ },
+ "V6_日常_59": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "大喊"
+ },
+ "ADD_0640": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "签名；签字"
+ },
+ "V6_服装_28": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "尺码/大小"
+ },
+ "V6_日常_57": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "微笑"
+ },
+ "ADD_0812": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "太阳的；太阳能的"
+ },
+ "V6_交通_40": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "南/南方"
+ },
+ "ADD_0655": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "光谱；范围，幅度"
+ },
+ "ADD_0284": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "牛排；肉排"
+ },
+ "V6_学校_44": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "故事"
+ },
+ "ADD_0811": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "潜艇；海底的"
+ },
+ "V6_食物_18": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "糖(不可数)"
+ },
+ "ADD_0899": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "超级巨星，明星"
+ },
+ "V6_动物_47": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "天鹅"
+ },
+ "V6_服装_4": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "T恤衫"
+ },
+ "ADD_0681": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "望远镜"
+ },
+ "ADD_0803": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "热的，热量的；保暖的"
+ },
+ "V6_天气_19": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "雷声"
+ },
+ "V6_身体_17": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "脚趾"
+ },
+ "V6_城市_7": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "塔"
+ },
+ "ADD_0305": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "浴缸；盆"
+ },
+ "ADD_0308": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "单元；单位"
+ },
+ "ADD_0720": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "版本；说法；译本"
+ },
+ "ADD_0317": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "航行；旅行"
+ },
+ "ADD_0709": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "保修单；保证，担保"
+ },
+ "V6_交通_39": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "西/西方"
+ },
+ "ADD_0713": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "加宽；变宽，扩大"
+ },
+ "ADD_0326": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "女巫；巫婆"
+ },
+ "ADD_0329": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "花环；花圈"
+ },
+ "ADD_0718": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "美味的；好吃的"
+ },
+ "ADD_0396": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "疼痛"
+ },
+ "ADD_0006": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "锚"
+ },
+ "ADD_0845": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "每年的"
+ },
+ "ADD_0807": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "水族馆"
+ },
+ "ADD_0421": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "听得见的"
+ },
+ "ADD_0011": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "徽章"
+ },
+ "ADD_0015": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "珠子"
+ },
+ "ADD_0019": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "米色"
+ },
+ "ADD_0431": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "一点，小块"
+ },
+ "V6_身体_22": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "骨头"
+ },
+ "ADD_0433": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "新娘"
+ },
+ "ADD_0437": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "早午餐"
+ },
+ "V6_食物_17": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "黄油"
+ },
+ "V6_动物_38": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "骆驼"
+ },
+ "ADD_0341": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "大提琴"
+ },
+ "ADD_0445": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "性格"
+ },
+ "ADD_0449": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "化学"
+ },
+ "V6_食物_21": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "巧克力"
+ },
+ "V6_学校_25": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "班级"
+ },
+ "ADD_0459": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "压缩"
+ },
+ "ADD_0055": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "困惑"
+ },
+ "V6_食物_54": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "玉米"
+ },
+ "ADD_0058": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "小床"
+ },
+ "ADD_0470": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "可信的"
+ },
+ "V6_节日_6": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "日期"
+ },
+ "ADD_0072": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "车站"
+ },
+ "ADD_0478": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "发展"
+ },
+ "ADD_0481": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "消化"
+ },
+ "ADD_0083": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "干旱"
+ },
+ "V6_动物_48": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "老鹰"
+ },
+ "ADD_0088": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "边缘"
+ },
+ "ADD_0090": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "雇用"
+ },
+ "ADD_0095": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "工程师"
+ },
+ "ADD_0860": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "方程式"
+ },
+ "V6_动物_52": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "羽毛"
+ },
+ "V6_日常_19": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "找到"
+ },
+ "ADD_0108": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "人们"
+ },
+ "V6_食物_34": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "水果"
+ },
+ "ADD_0512": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "把……游戏化"
+ },
+ "V6_MORPH_6": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "鹅"
+ },
+ "V6_食物_66": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "玻璃杯"
+ },
+ "V6_学校_46": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "年级"
+ },
+ "ADD_0354": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "海鸟粪（肥料）"
+ },
+ "ADD_0136": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "海湾"
+ },
+ "V6_身体_20": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "心脏"
+ },
+ "ADD_0146": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "打嗝"
+ },
+ "V6_日常_44": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "握住"
+ },
+ "ADD_0526": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "（动物的）后腿肉"
+ },
+ "ADD_0806": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "氢，氢气"
+ },
+ "ADD_0534": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "不成熟的"
+ },
+ "ADD_0158": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "小旅馆"
+ },
+ "ADD_0545": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "审问"
+ },
+ "ADD_0551": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "使恼怒"
+ },
+ "ADD_0165": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "法官"
+ },
+ "ADD_0554": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "杀死"
+ },
+ "V6_MORPH_8": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "小刀"
+ },
+ "V6_MORPH_7": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "树叶"
+ },
+ "V6_MORPH_18": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "图书馆"
+ },
+ "ADD_0364": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "酒"
+ },
+ "V6_日常_16": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "看"
+ },
+ "ADD_0184": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "忠诚的"
+ },
+ "V6_日常_4": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "制作"
+ },
+ "V6_学校_30": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "数学"
+ },
+ "V6_日常_30": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "遇见"
+ },
+ "ADD_0571": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "隐喻"
+ },
+ "ADD_0192": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "头脑"
+ },
+ "ADD_0573": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "混合"
+ },
+ "ADD_0196": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "驼鹿"
+ },
+ "ADD_0583": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "可移动的"
+ },
+ "ADD_0202": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "国家"
+ },
+ "ADD_0892": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "（交通）直达的"
+ },
+ "ADD_0205": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "服从"
+ },
+ "ADD_0208": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "石油"
+ },
+ "ADD_0210": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "牡蛎"
+ },
+ "ADD_0214": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "惊慌的"
+ },
+ "ADD_0596": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "轻拍"
+ },
+ "ADD_0790": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "踏板，脚蹬子"
+ },
+ "ADD_0903": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "摄影师"
+ },
+ "ADD_0223": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "别针"
+ },
+ "V6_职业_11": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "警察"
+ },
+ "V6_学校_75": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "练习"
+ },
+ "V6_职业_36": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "公主"
+ },
+ "ADD_0240": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "布丁"
+ },
+ "V6_节日_20": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "一刻钟(15分钟)"
+ },
+ "ADD_0619": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "王室的"
+ },
+ "ADD_0623": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "怨恨的"
+ },
+ "ADD_0251": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "重写"
+ },
+ "ADD_0256": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "抢劫"
+ },
+ "ADD_0260": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "粗鲁的"
+ },
+ "ADD_0634": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "擦洗"
+ },
+ "V6_自然_13": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "种子"
+ },
+ "V6_日常_37": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "寄/发送"
+ },
+ "V6_日常_38": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "展示"
+ },
+ "ADD_0641": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "愚蠢的"
+ },
+ "ADD_0646": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "烟雾"
+ },
+ "ADD_0814": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "独自的"
+ },
+ "V6_自然_3": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "太空"
+ },
+ "V6_节日_47": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "春节"
+ },
+ "ADD_0877": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "恒星的"
+ },
+ "ADD_0670": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "建议"
+ },
+ "V6_食物_33": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "晚餐"
+ },
+ "V6_日常_13": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "扫地"
+ },
+ "V6_动物_50": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "尾巴"
+ },
+ "V6_天气_37": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "温度"
+ },
+ "ADD_0802": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "温度计"
+ },
+ "ADD_0297": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "因此"
+ },
+ "ADD_0299": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "豆腐"
+ },
+ "ADD_0302": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "托盘"
+ },
+ "ADD_0695": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "无意识的"
+ },
+ "ADD_0699": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "大学"
+ },
+ "ADD_0314": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "藤本植物"
+ },
+ "V6_身体_41": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "醒来"
+ },
+ "ADD_0321": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "战争"
+ },
+ "V6_天气_31": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "湿的"
+ },
+ "V6_动物_57": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "野生的"
+ },
+ "V6_MORPH_9": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "狼"
+ },
+ "ADD_0330": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "手腕"
+ },
+ "V6_MORPH_15": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "动物园"
+ },
+ "ADD_0001": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "橡子"
+ },
+ "ADD_0003": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "使疼痛"
+ },
+ "ADD_0007": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "古代的"
+ },
+ "V6_学校_41": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "回答"
+ },
+ "ADD_0808": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "水生的"
+ },
+ "ADD_0418": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "帮助"
+ },
+ "ADD_0422": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "作者"
+ },
+ "ADD_0425": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "鱼饵"
+ },
+ "ADD_0016": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "（鸟的）喙"
+ },
+ "ADD_0020": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "相信"
+ },
+ "ADD_0432": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "毯子，毛毯"
+ },
+ "V6_服装_15": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "靴子"
+ },
+ "ADD_0434": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "新郎"
+ },
+ "V6_身体_43": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "刷(brush teeth)"
+ },
+ "ADD_0038": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "分（货币单位）"
+ },
+ "ADD_0446": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "收费"
+ },
+ "ADD_0040": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "咀嚼"
+ },
+ "ADD_0345": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "谱号"
+ },
+ "ADD_0346": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "可待因"
+ },
+ "ADD_0347": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "燃烧"
+ },
+ "ADD_0460": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "冲动"
+ },
+ "ADD_0056": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "征服"
+ },
+ "V6_城市_33": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "角落"
+ },
+ "V6_身体_33": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "咳嗽"
+ },
+ "ADD_0471": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "人群"
+ },
+ "ADD_0063": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "袖口"
+ },
+ "V6_家庭_19": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "女儿"
+ },
+ "ADD_0073": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "德比赛马"
+ },
+ "V6_MORPH_19": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "词典"
+ },
+ "V6_动物_39": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "恐龙"
+ },
+ "ADD_0081": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "母鹿"
+ },
+ "V6_天气_32": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "干燥的"
+ },
+ "ADD_0490": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "可食用的"
+ },
+ "ADD_0091": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "雇员"
+ },
+ "V6_学校_29": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "英语"
+ },
+ "ADD_0861": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "赤道"
+ },
+ "V6_学校_39": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "考试"
+ },
+ "V6_学校_77": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "不及格"
+ },
+ "ADD_0508": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "栅栏"
+ },
+ "V6_天气_33": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "晴朗的"
+ },
+ "ADD_0510": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "羊毛"
+ },
+ "V6_日常_78": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "跟随"
+ },
+ "ADD_0112": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "乳脂软糖"
+ },
+ "ADD_0115": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "车库"
+ },
+ "ADD_0120": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "宝石"
+ },
+ "ADD_0124": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "咯咯地笑"
+ },
+ "V6_学校_54": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "胶水"
+ },
+ "ADD_0518": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "毕业生"
+ },
+ "ADD_0519": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "保证"
+ },
+ "ADD_0137": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "（宗教）导师"
+ },
+ "ADD_0356": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "壁炉的炉床"
+ },
+ "ADD_0147": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "铰链"
+ },
+ "ADD_0151": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "洞；孔"
+ },
+ "ADD_0154": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "猎犬"
+ },
+ "ADD_0155": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "赞美诗"
+ },
+ "ADD_0842": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "立即的，即刻的"
+ },
+ "ADD_0844": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "创新"
+ },
+ "ADD_0786": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "打断（说话）"
+ },
+ "ADD_0162": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "发痒"
+ },
+ "ADD_0167": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "空手道"
+ },
+ "ADD_0555": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "国王的"
+ },
+ "ADD_0363": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "锦鲤"
+ },
+ "V6_日常_56": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "大笑"
+ },
+ "V6_交通_42": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "左/左边"
+ },
+ "ADD_0180": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "虱子"
+ },
+ "V6_日常_20": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "寻找"
+ },
+ "V6_交通_26": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "行李"
+ },
+ "ADD_0186": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "管理"
+ },
+ "V6_学校_31": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "数学"
+ },
+ "ADD_0782": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "会议"
+ },
+ "V6_交通_7": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "地铁"
+ },
+ "ADD_0193": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "薄荷"
+ },
+ "ADD_0574": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "记忆法，助记口诀"
+ },
+ "ADD_0199": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "覆盖物；护根覆盖"
+ },
+ "V6_节日_51": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "国庆节"
+ },
+ "V6_食物_3": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "面条"
+ },
+ "ADD_0371": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "公共汽车"
+ },
+ "V6_学校_45": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "页码"
+ },
+ "V6_学校_20": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "纸"
+ },
+ "ADD_0874": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "病理学"
+ },
+ "ADD_0791": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "行人，步行者"
+ },
+ "V6_家庭_28": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "个人"
+ },
+ "ADD_0601": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "摄影的"
+ },
+ "ADD_0224": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "松树"
+ },
+ "ADD_0228": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "令人愉快的"
+ },
+ "V6_城市_24": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "警察局"
+ },
+ "ADD_0234": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "对虾"
+ },
+ "ADD_0236": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "打印"
+ },
+ "ADD_0238": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "蛋白质"
+ },
+ "ADD_0241": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "双关语"
+ },
+ "ADD_0244": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "码头"
+ },
+ "ADD_0247": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "收据"
+ },
+ "ADD_0620": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "统治"
+ },
+ "ADD_0624": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "住所；住宅"
+ },
+ "ADD_0252": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "押韵"
+ },
+ "ADD_0257": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "长袍"
+ },
+ "V6_学校_48": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "规则"
+ },
+ "V6_天气_1": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "季节"
+ },
+ "ADD_0264": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "感觉"
+ },
+ "ADD_0267": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "架子；搁板"
+ },
+ "ADD_0638": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "淋浴"
+ },
+ "ADD_0275": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "滑雪"
+ },
+ "V6_自然_25": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "烟"
+ },
+ "ADD_0649": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "芦笋"
+ },
+ "V6_学校_64": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "拼写"
+ },
+ "ADD_0658": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "间谍"
+ },
+ "ADD_0285": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "僵硬的"
+ },
+ "ADD_0661": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "条纹"
+ },
+ "ADD_0671": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "建议"
+ },
+ "ADD_0673": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "供应"
+ },
+ "ADD_0678": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "糖果"
+ },
+ "V6_日常_6": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "带走"
+ },
+ "ADD_0682": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "紧张"
+ },
+ "ADD_0685": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "他们是"
+ },
+ "ADD_0298": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "百里香"
+ },
+ "V6_城市_38": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "洗手间"
+ },
+ "ADD_0688": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "小树"
+ },
+ "ADD_0690": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "肚子"
+ },
+ "V6_学校_71": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "理解"
+ },
+ "ADD_0700": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "不友善的"
+ },
+ "ADD_0706": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "小牛肉"
+ },
+ "V6_交通_52": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "步行"
+ },
+ "V6_身体_42": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "洗"
+ },
+ "ADD_0391": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "巨型昆虫"
+ },
+ "ADD_0324": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "荒野"
+ },
+ "V6_学校_42": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "单词"
+ },
+ "ADD_0331": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "木琴"
+ },
+ "ADD_0002": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "增加；添加"
+ },
+ "ADD_0402": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "分配；分派"
+ },
+ "ADD_0008": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "愤怒；怒气"
+ },
+ "ADD_0887": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "抗生素"
+ },
+ "ADD_0413": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "争论"
+ },
+ "V6_职业_30": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "宇航员"
+ },
+ "ADD_0334": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "公共汽车"
+ },
+ "ADD_0012": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "芭蕾舞"
+ },
+ "V6_食物_53": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "豆子"
+ },
+ "V6_服装_22": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "皮带/腰带"
+ },
+ "V6_身体_53": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "失明的"
+ },
+ "ADD_0337": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "自治市镇"
+ },
+ "ADD_0027": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "简短的；短暂的"
+ },
+ "ADD_0030": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "泡泡；气泡"
+ },
+ "V6_食物_52": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "卷心菜"
+ },
+ "ADD_0440": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "船长；队长；机长"
+ },
+ "ADD_0905": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "摄氏的；摄氏度"
+ },
+ "ADD_0447": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "追赶；追逐"
+ },
+ "ADD_0450": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "小鸡；雏鸟"
+ },
+ "ADD_0042": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "合唱；合唱团"
+ },
+ "ADD_0043": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "职员；店员"
+ },
+ "V6_日常_2": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "来(过去式came)"
+ },
+ "ADD_0052": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "自负；自大"
+ },
+ "ADD_0461": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "显眼的；引人注目的"
+ },
+ "ADD_0464": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "正确的；改正，纠正"
+ },
+ "ADD_0466": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "勇气；胆量"
+ },
+ "ADD_0472": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "王冠"
+ },
+ "ADD_0474": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "文化"
+ },
+ "V6_节日_5": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "天/白天"
+ },
+ "ADD_0475": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "给……下定义"
+ },
+ "ADD_0847": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "描述，描写"
+ },
+ "ADD_0075": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "死；死亡"
+ },
+ "ADD_0483": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "住所（正式用语）"
+ },
+ "ADD_0084": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "到期的；预定的"
+ },
+ "V6_交通_38": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "东/东方"
+ },
+ "ADD_0491": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "编辑；剪辑"
+ },
+ "ADD_0496": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "空的；倒空，腾空"
+ },
+ "ADD_0787": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "（火山）喷发"
+ },
+ "V6_学校_50": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "例子"
+ },
+ "ADD_0837": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "信任，信心"
+ },
+ "V6_交通_12": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "渡轮(by ferry)"
+ },
+ "V6_身体_13": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "手指"
+ },
+ "ADD_0103": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "弯曲；屈伸"
+ },
+ "ADD_0880": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "（对天气或形势的）预报"
+ },
+ "V6_身体_58": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "饱的/满的"
+ },
+ "ADD_0116": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "大蒜"
+ },
+ "ADD_0513": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "温柔的；轻柔的"
+ },
+ "ADD_0514": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "（鱼的）鳃"
+ },
+ "ADD_0126": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "啃；咬"
+ },
+ "V6_家庭_12": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "奶奶/外婆"
+ },
+ "ADD_0132": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "警卫；守卫"
+ },
+ "ADD_0138": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "俳句"
+ },
+ "ADD_0141": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "小斧头"
+ },
+ "ADD_0144": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "热；加热"
+ },
+ "ADD_0148": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "提示；暗示"
+ },
+ "V6_家庭_34": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "家(go home不加to)"
+ },
+ "V6_节日_16": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "小时(an hour, h不发音)"
+ },
+ "ADD_0535": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "使沉浸；浸泡"
+ },
+ "ADD_0539": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "易燃的"
+ },
+ "ADD_0856": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "介绍；引进，采用"
+ },
+ "V6_食物_26": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "果酱"
+ },
+ "ADD_0171": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "亲吻；吻"
+ },
+ "ADD_0558": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "磕头；卑躬屈膝"
+ },
+ "ADD_0175": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "洗衣店"
+ },
+ "ADD_0179": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "闲暇；空闲时间"
+ },
+ "ADD_0181": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "躺；说谎"
+ },
+ "ADD_0365": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "柔软灵活的；轻盈的"
+ },
+ "V6_交通_14": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "卡车(英)"
+ },
+ "ADD_0839": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "发亮的，放光的"
+ },
+ "V6_食物_29": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "一餐/一顿饭"
+ },
+ "V6_食物_73": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "菜单"
+ },
+ "ADD_0805": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "麦克风，话筒"
+ },
+ "ADD_0194": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "海市蜃楼；幻景"
+ },
+ "ADD_0575": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "模型；榜样；模特儿"
+ },
+ "ADD_0197": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "蛾；飞蛾"
+ },
+ "V6_家庭_6": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "妈妈(英)"
+ },
+ "ADD_0866": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "导航，确定方向"
+ },
+ "V6_节日_53": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "新年"
+ },
+ "V6_节日_12": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "正午(at noon)"
+ },
+ "V6_食物_51": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "洋葱"
+ },
+ "V6_身体_37": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "疼痛"
+ },
+ "ADD_0594": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "降落伞"
+ },
+ "ADD_0215": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "有耐心的"
+ },
+ "ADD_0597": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "剥皮，削皮"
+ },
+ "ADD_0602": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "摄影；摄影术"
+ },
+ "ADD_0225": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "品脱（容量单位）"
+ },
+ "ADD_0229": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "犁；耕地"
+ },
+ "ADD_0377": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "政治家；政客"
+ },
+ "ADD_0897": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "预热（烤箱、炉灶）"
+ },
+ "ADD_0857": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "生产，制造"
+ },
+ "ADD_0239": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "证明；证实"
+ },
+ "V6_职业_4": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "小学生"
+ },
+ "ADD_0245": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "队伍；排队"
+ },
+ "ADD_0248": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "收到；接收"
+ },
+ "ADD_0249": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "缰绳"
+ },
+ "V6_身体_39": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "休息(have a rest)"
+ },
+ "ADD_0628": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "节奏；韵律"
+ },
+ "V6_职业_38": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "机器人"
+ },
+ "V6_交通_22": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "座位"
+ },
+ "ADD_0261": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "抓住；夺取"
+ },
+ "V6_学校_43": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "句子"
+ },
+ "ADD_0268": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "牧羊人"
+ },
+ "ADD_0269": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "避开；回避"
+ },
+ "ADD_0642": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "简化；使简单"
+ },
+ "V6_身体_23": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "皮肤"
+ },
+ "V6_食物_28": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "零食/小吃"
+ },
+ "V6_家庭_18": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "儿子(同音sun)"
+ },
+ "ADD_0650": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "物种；种类"
+ },
+ "V6_日常_35": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "度过/花费"
+ },
+ "V6_城市_28": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "广场/正方形"
+ },
+ "ADD_0659": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "搅拌；搅动；激起"
+ },
+ "ADD_0387": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "昂首阔步；支柱"
+ },
+ "ADD_0288": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "套装；适合"
+ },
+ "ADD_0674": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "代理人；替代者"
+ },
+ "ADD_0290": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "剑；刀"
+ },
+ "V6_服装_31": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "脱下/起飞"
+ },
+ "ADD_0683": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "帐篷"
+ },
+ "V6_交通_24": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "车票/门票"
+ },
+ "V6_MORPH_10": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "西红柿(有生命o结尾加es)"
+ },
+ "ADD_0303": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "长途跋涉；远行"
+ },
+ "ADD_0307": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "曲调；调音"
+ },
+ "ADD_0696": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "承担；着手做，承办"
+ },
+ "ADD_0309": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "开锁；开启"
+ },
+ "V6_食物_47": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "蔬菜"
+ },
+ "ADD_0315": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "视力；视野"
+ },
+ "ADD_0318": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "华尔兹；圆舞曲"
+ },
+ "V6_交通_30": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "路/方式"
+ },
+ "ADD_0323": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "小麦"
+ },
+ "ADD_0325": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "柳树"
+ },
+ "V6_职业_1": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "工作(作名词不可数!)"
+ },
+ "V6_家庭_42": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "院子"
+ },
+ "ADD_0854": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "形容词"
+ },
+ "V6_动物_0": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "动物"
+ },
+ "ADD_0889": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "消毒剂，杀菌剂"
+ },
+ "ADD_0864": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "天文学"
+ },
+ "ADD_0423": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "糟糕的"
+ },
+ "V6_动物_58": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "竹子"
+ },
+ "ADD_0017": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "击打"
+ },
+ "ADD_0021": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "打赌"
+ },
+ "ADD_0336": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "无忧无虑的"
+ },
+ "V6_日常_41": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "借入"
+ },
+ "ADD_0435": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "才华横溢的"
+ },
+ "ADD_0031": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "公牛"
+ },
+ "ADD_0339": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "咖啡因"
+ },
+ "ADD_0441": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "雕刻"
+ },
+ "V6_学校_53": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "粉笔"
+ },
+ "ADD_0343": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "粗野的年轻人"
+ },
+ "ADD_0041": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "首领"
+ },
+ "V6_节日_52": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "圣诞节"
+ },
+ "ADD_0048": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "硬币"
+ },
+ "ADD_0457": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "商业"
+ },
+ "ADD_0831": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "星座"
+ },
+ "ADD_0465": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "通信"
+ },
+ "ADD_0467": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "勇敢的"
+ },
+ "ADD_0064": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "垫子"
+ },
+ "ADD_0066": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "死的"
+ },
+ "V6_天气_36": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "度数"
+ },
+ "ADD_0848": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "描述，描写"
+ },
+ "ADD_0076": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "日常饮食"
+ },
+ "V6_学校_78": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "讨论"
+ },
+ "ADD_0484": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "捐赠"
+ },
+ "ADD_0085": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "责任"
+ },
+ "V6_日常_15": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "吃"
+ },
+ "ADD_0492": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "编辑"
+ },
+ "ADD_0092": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "鸸鹋"
+ },
+ "ADD_0499": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "特别的"
+ },
+ "V6_天气_4": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "秋天"
+ },
+ "V6_节日_42": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "节日"
+ },
+ "ADD_0511": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "灵活的"
+ },
+ "ADD_0883": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "额头，前额"
+ },
+ "V6_动物_53": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "毛皮"
+ },
+ "ADD_0117": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "气体"
+ },
+ "ADD_0876": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "地质学"
+ },
+ "ADD_0353": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "银杏（树）"
+ },
+ "V6_家庭_10": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "爷爷/外公"
+ },
+ "ADD_0520": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "监护人"
+ },
+ "V6_身体_2": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "头发"
+ },
+ "ADD_0523": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "讨厌"
+ },
+ "ADD_0145": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "继承人"
+ },
+ "V6_学校_36": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "历史"
+ },
+ "ADD_0152": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "诚实的"
+ },
+ "V6_家庭_35": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "房子/住宅"
+ },
+ "ADD_0530": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "违法的"
+ },
+ "ADD_0797": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "永生的"
+ },
+ "ADD_0362": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "流行性感冒"
+ },
+ "ADD_0543": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "询问"
+ },
+ "ADD_0546": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "无价的"
+ },
+ "ADD_0163": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "爵士乐"
+ },
+ "ADD_0169": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "皮划艇"
+ },
+ "ADD_0556": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "成套工具"
+ },
+ "ADD_0559": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "梯子"
+ },
+ "ADD_0176": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "法律"
+ },
+ "V6_日常_42": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "借出"
+ },
+ "V6_城市_37": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "电梯"
+ },
+ "ADD_0562": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "负荷，负担"
+ },
+ "V6_日常_72": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "输"
+ },
+ "ADD_0863": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "月亮的"
+ },
+ "ADD_0567": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "授权"
+ },
+ "ADD_0569": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "意思是"
+ },
+ "ADD_0804": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "显微镜"
+ },
+ "V6_家庭_54": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "镜子"
+ },
+ "ADD_0576": {
+  "theme_macro": "人与社会",
+  "theme_sub": "数字与计量",
+  "basis": "适度的"
+ },
+ "ADD_0580": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "运动"
+ },
+ "V6_食物_56": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "蘑菇"
+ },
+ "ADD_0865": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "海军"
+ },
+ "ADD_0586": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "新闻"
+ },
+ "V6_交通_41": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "北/北方"
+ },
+ "V6_日常_10": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "打开"
+ },
+ "ADD_0374": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "朋友"
+ },
+ "ADD_0595": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "段落"
+ },
+ "ADD_0216": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "图案"
+ },
+ "V6_学校_58": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "铅笔盒"
+ },
+ "ADD_0221": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "说服"
+ },
+ "V6_日常_75": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "采摘"
+ },
+ "ADD_0226": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "投球"
+ },
+ "ADD_0375": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "农夫"
+ },
+ "V6_交通_36": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "港口"
+ },
+ "ADD_0896": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "预告，预展"
+ },
+ "ADD_0859": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "产品"
+ },
+ "V6_动物_3": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "小狗"
+ },
+ "ADD_0381": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "法式咸派"
+ },
+ "ADD_0858": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "减少"
+ },
+ "ADD_0853": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "拒绝接受"
+ },
+ "V6_城市_20": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "餐馆/餐厅"
+ },
+ "ADD_0253": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "富有的"
+ },
+ "V6_家庭_36": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "房间"
+ },
+ "ADD_0632": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "怀疑论者"
+ },
+ "V6_交通_23": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "安全带"
+ },
+ "ADD_0262": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "很少"
+ },
+ "ADD_0265": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "分开"
+ },
+ "V6_天气_38": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "照耀"
+ },
+ "ADD_0270": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "关闭"
+ },
+ "ADD_0273": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "罪；罪过"
+ },
+ "V6_交通_17": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "雪橇"
+ },
+ "ADD_0647": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "打喷嚏"
+ },
+ "ADD_0278": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "安慰"
+ },
+ "ADD_0651": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "样品"
+ },
+ "ADD_0657": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "香料"
+ },
+ "ADD_0283": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "全体员工"
+ },
+ "V6_身体_19": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "胃/肚子"
+ },
+ "ADD_0388": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "硫酸盐"
+ },
+ "ADD_0799": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "幸存，存活"
+ },
+ "ADD_0291": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "轻拍"
+ },
+ "ADD_0809": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "领土"
+ },
+ "V6_MORPH_66": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "thin的比较级"
+ },
+ "V6_服装_23": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "领带"
+ },
+ "V6_身体_8": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "舌头"
+ },
+ "ADD_0691": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "隧道"
+ },
+ "ADD_0901": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "（在）水下的"
+ },
+ "ADD_0701": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "不受欢迎的"
+ },
+ "ADD_0312": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "面纱"
+ },
+ "V6_日常_66": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "想要"
+ },
+ "V6_服装_29": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "穿/戴"
+ },
+ "V6_交通_27": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "车轮"
+ },
+ "ADD_0714": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "葡萄酒"
+ },
+ "ADD_0327": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "蠕虫"
+ },
+ "V6_节日_1": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "年"
+ },
+ "ADD_0888": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "反义词"
+ },
+ "V6_交通_56": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "到达"
+ },
+ "ADD_0009": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "附上"
+ },
+ "V6_MORPH_16": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "婴儿们"
+ },
+ "ADD_0788": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "破产的"
+ },
+ "ADD_0826": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "能用两种语言的"
+ },
+ "V6_身体_21": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "血液"
+ },
+ "ADD_0338": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "大树枝"
+ },
+ "V6_日常_7": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "带来"
+ },
+ "ADD_0032": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "灌木"
+ },
+ "V6_动物_55": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "笼子"
+ },
+ "ADD_0036": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "城堡"
+ },
+ "ADD_0443": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "冠军"
+ },
+ "V6_学校_74": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "检查"
+ },
+ "ADD_0451": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "首领"
+ },
+ "ADD_0793": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "（疾病或坏事）慢性的"
+ },
+ "ADD_0044": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "布；布料"
+ },
+ "V6_食物_62": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "可乐"
+ },
+ "ADD_0458": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "商业的"
+ },
+ "ADD_0348": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "协奏曲"
+ },
+ "ADD_0462": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "可鄙的"
+ },
+ "ADD_0817": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "化妆品"
+ },
+ "ADD_0468": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "课程"
+ },
+ "V6_日常_58": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "哭/喊叫"
+ },
+ "V6_日常_47": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "切/剪"
+ },
+ "V6_身体_54": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "耳聋的"
+ },
+ "ADD_0834": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "递送，投递"
+ },
+ "V6_自然_20": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "沙漠"
+ },
+ "V6_食物_69": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "碟子"
+ },
+ "ADD_0082": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "生面团"
+ },
+ "ADD_0485": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "住所"
+ },
+ "ADD_0087": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "退潮"
+ },
+ "ADD_0096": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "使娱乐"
+ },
+ "ADD_0500": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "间谍活动"
+ },
+ "V6_城市_36": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "安全出口"
+ },
+ "ADD_0506": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "精美的"
+ },
+ "ADD_0101": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "去取来"
+ },
+ "V6_城市_25": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "消防站"
+ },
+ "ADD_0104": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "洪水"
+ },
+ "ADD_0113": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "家具"
+ },
+ "ADD_0352": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "汽油"
+ },
+ "ADD_0862": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "几何学"
+ },
+ "ADD_0515": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "人参"
+ },
+ "V6_日常_1": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交通与出行",
+  "basis": "去(过去式went)"
+ },
+ "V6_家庭_8": {
+  "theme_macro": "人与自我",
+  "theme_sub": "家庭与亲友",
+  "basis": "祖父母/外祖父母"
+ },
+ "ADD_0133": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "番石榴"
+ },
+ "V6_节日_19": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "一半(half past)"
+ },
+ "V6_日常_5": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "有/吃"
+ },
+ "ADD_0357": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "异端者"
+ },
+ "ADD_0149": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "打；击中"
+ },
+ "V6_食物_27": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "蜂蜜"
+ },
+ "ADD_0528": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "幽默"
+ },
+ "ADD_0531": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "不识字的"
+ },
+ "ADD_0361": {
+  "theme_macro": "人与自我",
+  "theme_sub": "玩具与爱好",
+  "basis": "即兴表演"
+ },
+ "ADD_0540": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "通知"
+ },
+ "V6_动物_40": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "昆虫"
+ },
+ "ADD_0547": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "看不见的"
+ },
+ "ADD_0164": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "嫉妒的"
+ },
+ "ADD_0552": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "番茄酱"
+ },
+ "V6_动物_5": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "小猫"
+ },
+ "ADD_0173": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "羔羊"
+ },
+ "ADD_0177": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "草坪"
+ },
+ "V6_学校_26": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "课程"
+ },
+ "V6_天气_20": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "闪电"
+ },
+ "ADD_0366": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "厌恶"
+ },
+ "ADD_0367": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "（爱尔兰的）湖泊"
+ },
+ "ADD_0368": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "疯子"
+ },
+ "ADD_0810": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "海洋的"
+ },
+ "ADD_0841": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "中间的"
+ },
+ "V6_节日_48": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "中秋节"
+ },
+ "ADD_0895": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "读错，看错"
+ },
+ "ADD_0577": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "使现代化"
+ },
+ "ADD_0581": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "激励"
+ },
+ "V6_食物_13": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "羊肉(不可数)"
+ },
+ "V6_交通_49": {
+  "theme_macro": "人与自然",
+  "theme_sub": "色彩与空间方位",
+  "basis": "在…附近"
+ },
+ "V6_学校_19": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "报纸"
+ },
+ "ADD_0204": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "凹口"
+ },
+ "V6_自然_17": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "海洋"
+ },
+ "V6_城市_8": {
+  "theme_macro": "人与社会",
+  "theme_sub": "城市与场所",
+  "basis": "宫殿"
+ },
+ "ADD_0906": {
+  "theme_macro": "人与自我",
+  "theme_sub": "颜色与形状",
+  "basis": "平行的"
+ },
+ "V6_日常_33": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "付款"
+ },
+ "V6_动物_35": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "企鹅"
+ },
+ "V6_动物_1": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "宠物"
+ },
+ "ADD_0222": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "泡菜"
+ },
+ "ADD_0227": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "投手"
+ },
+ "ADD_0230": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "犁；耕地"
+ },
+ "ADD_0605": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "时髦的"
+ },
+ "ADD_0235": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "猎物"
+ },
+ "ADD_0851": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "项目，工程"
+ },
+ "ADD_0242": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "推；按"
+ },
+ "ADD_0612": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "被子"
+ },
+ "ADD_0616": {
+  "theme_macro": "人与社会",
+  "theme_sub": "交际与礼仪",
+  "basis": "提及"
+ },
+ "ADD_0621": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "可靠的"
+ },
+ "ADD_0625": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "焦躁不安的"
+ },
+ "ADD_0254": {
+  "theme_macro": "人与自然",
+  "theme_sub": "天气与四季",
+  "basis": "雾凇"
+ },
+ "V6_动物_11": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "公鸡"
+ },
+ "ADD_0382": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "炸肉排"
+ },
+ "V6_职业_29": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "秘书"
+ },
+ "ADD_0263": {
+  "theme_macro": "人与自我",
+  "theme_sub": "语法功能与指代",
+  "basis": "自己"
+ },
+ "ADD_0635": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "放置"
+ },
+ "V6_服装_14": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "鞋子"
+ },
+ "ADD_0639": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "害羞地"
+ },
+ "ADD_0384": {
+  "theme_macro": "人与自我",
+  "theme_sub": "学校与学习",
+  "basis": "正弦"
+ },
+ "ADD_0276": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "滑动"
+ },
+ "ADD_0277": {
+  "theme_macro": "人与自我",
+  "theme_sub": "运动与爱好",
+  "basis": "足球（运动）"
+ },
+ "V6_动物_44": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "蜘蛛"
+ },
+ "V6_家庭_47": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "楼梯"
+ },
+ "V6_身体_32": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "胃痛/肚子痛"
+ },
+ "ADD_0286": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "愚蠢的"
+ },
+ "ADD_0289": {
+  "theme_macro": "人与自我",
+  "theme_sub": "数字与数量",
+  "basis": "总和"
+ },
+ "ADD_0675": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "易受影响的"
+ },
+ "ADD_0821": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "同情（心）"
+ },
+ "ADD_0292": {
+  "theme_macro": "人与自我",
+  "theme_sub": "居家与生活",
+  "basis": "胶带"
+ },
+ "ADD_0684": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "恐惧"
+ },
+ "ADD_0390": {
+  "theme_macro": "人与自然",
+  "theme_sub": "自然与地理",
+  "basis": "木材"
+ },
+ "ADD_0687": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "补药"
+ },
+ "ADD_0304": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "饲槽"
+ },
+ "V6_动物_31": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "乌龟"
+ },
+ "ADD_0900": {
+  "theme_macro": "人与自我",
+  "theme_sub": "服装与穿戴",
+  "basis": "内衣"
+ },
+ "ADD_0702": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "不稳定的"
+ },
+ "ADD_0313": {
+  "theme_macro": "人与自我",
+  "theme_sub": "身体与健康",
+  "basis": "静脉"
+ },
+ "ADD_0798": {
+  "theme_macro": "人与自我",
+  "theme_sub": "个人特征与情绪",
+  "basis": "生动的"
+ },
+ "ADD_0319": {
+  "theme_macro": "人与社会",
+  "theme_sub": "职业与社会",
+  "basis": "战争"
+ },
+ "ADD_0710": {
+  "theme_macro": "人与社会",
+  "theme_sub": "节日与时间",
+  "basis": "婚礼"
+ },
+ "ADD_0711": {
+  "theme_macro": "人与自我",
+  "theme_sub": "日常作息与动作",
+  "basis": "哀鸣"
+ },
+ "V6_动物_51": {
+  "theme_macro": "人与自然",
+  "theme_sub": "动物大世界",
+  "basis": "翅膀"
+ },
+ "V6_日常_60": {
+  "theme_macro": "人与自我",
+  "theme_sub": "情感与性格",
+  "basis": "担心"
+ },
+ "V6_食物_63": {
+  "theme_macro": "人与自我",
+  "theme_sub": "食物与饮品",
+  "basis": "酸奶"
+ }
+}
