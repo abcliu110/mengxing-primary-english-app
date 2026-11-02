@@ -2188,13 +2188,12 @@ renderIndex();
 .gkmod .slot{flex:1;min-width:180px;border-radius:16px;padding:10px 12px 12px;min-height:104px;position:relative}
 .gkmod .slot .q{font-weight:700;font-size:15px}
 .gkmod .slot .hint{font-size:12px;opacity:.75}
-.gkmod .slot-who{background:#fdeeda;border:2px solid var(--amber);border-radius:60px 60px 18px 18px}
-.gkmod .slot-verb{background:#e6f4ec;border:2px solid var(--green)}
-.gkmod .slot-what{background:#e8f0fa;border:2px solid var(--blue);border-radius:18px 18px 60px 60px}
+.gkmod .slot-who{background:#fdeeda;border:2px solid #f08c1e;border-radius:60px 60px 18px 18px}
+.gkmod .slot-verb{background:#fdf3c0;border:2px solid #e6b800}
+.gkmod .slot-what{background:#e6f4ec;border:2px solid var(--green);border-radius:18px 18px 60px 60px}
 .gkmod .slot .placed{font-size:24px;font-weight:700;margin-top:8px;min-height:34px;cursor:pointer}
 .gkmod .slot .placed:empty::before{content:"（点下面的词卡）";font-size:13px;font-weight:400;color:var(--grey)}
-.gkmod .hat{display:inline-block;background:var(--red);color:#fff;border-radius:8px;padding:0 6px;font-size:18px;vertical-align:middle;margin-left:2px}
-.gkmod .hatnote{font-size:12.5px;color:var(--red);margin-top:4px;display:none}
+.gkmod .hatnote{font-size:12.5px;color:#31517d;margin-top:4px;display:none;line-height:1.6}
 .gkmod .pile{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
 .gkmod .pile .cap{width:100%;font-size:13px;color:var(--grey)}
 .gkmod .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:16px;cursor:pointer}
@@ -2204,7 +2203,7 @@ renderIndex();
 .gkmod .readout{background:#2b2118;color:#fdf6e9;border-radius:12px;padding:12px 16px;font-size:22px;min-height:56px;margin-top:8px}
 .gkmod .readout .ph{color:#cbbfa5}
 .gkmod .hooks{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.gkmod .hook{border:1.5px dashed var(--purple);color:var(--purple);border-radius:12px;padding:8px 12px;font-size:14px;background:#faf6ff}
+.gkmod .hook{border:1.5px dashed var(--blue);color:var(--blue);border-radius:12px;padding:8px 12px;font-size:14px;background:#e8f0fa}
 .gkmod .hook.off{border-color:#cfc4ae;color:var(--grey);background:#f4eee0}
 .gkmod .seatline{display:none;margin-top:10px;font-size:14px;background:#faf6ff;border:1px solid #e2d5f5;border-radius:10px;padding:8px 12px}
 .gkmod /* 站点面板 */
@@ -2243,6 +2242,17 @@ renderIndex();
 .gkmod details.adult{margin-top:12px;font-size:13px;color:#5c5344;line-height:1.8;background:#f7f2e7;border-radius:10px;padding:8px 12px}
 .gkmod .u1{border-bottom:2px solid var(--ink);padding-bottom:1px}
 .gkmod .u2{border-bottom:4px double var(--ink);padding-bottom:1px}
+.gkmod .u1n{border-bottom:2px solid var(--red);padding-bottom:1px}
+.gkmod .u2n{border-bottom:4px double var(--red);padding-bottom:1px}
+.gkmod .u1v{border-bottom:2px solid var(--blue);padding-bottom:1px}
+.gkmod .u2v{border-bottom:4px double var(--blue);padding-bottom:1px}
+.gkmod .tarr{position:relative;display:inline-block;padding-bottom:12px}
+.gkmod .tarr::after{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:9px solid var(--blue)}
+.gkmod .readout .u1v{border-bottom-color:#8fb4e5}
+.gkmod .readout .tarr::after{border-top-color:#8fb4e5}
+.gkmod .dia{display:inline-block;position:relative;z-index:0;padding:3px 10px}
+.gkmod .dia::before{content:'';position:absolute;left:50%;top:50%;width:30px;height:30px;border:2px solid var(--blue);transform:translate(-50%,-50%) rotate(45deg);z-index:-1;background:#fff}
+.gkmod .oval{display:inline-block;border:2px solid var(--red);border-radius:50%;padding:0 9px 3px}
 .gkmod .quizopt{margin:4px 6px 4px 0}
 .gkmod /* GR-43 */
 .seats{display:flex;gap:8px;align-items:flex-end;margin:14px 0}
@@ -2326,7 +2336,7 @@ renderIndex();
       <div class="ubanner" style="background:#e8873a"><span class="uname">站一 · 搭骨架</span><span class="ugoal">先把一句话站起来</span><span class="uprog">已做实 1 / 1</span><button class="gbtn" data-guide="gk-g1">📖 指南</button></div>
       <div class="uguide" id="gk-g1"><b>成人层 · 本站一句话</b>：骨架纲：一切语法操作都发生在一句话里。先回答「谁 / 做什么 / 什么」，句子站起来之后再谈标记与扩展（借 Colourful Semantics 的问题槽画法）。</div>
       <div class="lrows">
-        <div class="lrow" data-nav="bench"><span class="ric">🧱</span><div><div class="rn">工坊台 · 拼一句话</div><div class="rp">句子站不起来——先把「谁 / 做什么 / 什么」摆对位置，还能顺手发现动词的 -s 帽子。</div></div><span class="chipst done">本批做实 →</span></div>
+        <div class="lrow" data-nav="bench"><span class="ric">🧱</span><div><div class="rn">工坊台 · 拼一句话</div><div class="rp">句子站不起来——先把「谁 / 做什么 / 什么」摆对位置，还能顺手发现动词的 -s 标记。</div></div><span class="chipst done">本批做实 →</span></div>
       </div>
     </div>
     <div class="unit">
@@ -2400,8 +2410,8 @@ renderIndex();
       <div class="note">点下面的词卡，词就会跳进句子里；点槽里的大词可以把它拿下来。槽的名字是问题，不是术语：先回答「谁？做什么？什么？」，句子就站起来了。</div>
       <div class="slots">
         <div class="slot slot-who"><div class="q">🟠 谁？</div><div class="hint">句子里的主角</div><div class="placed" id="gk-slot-who" title="点一下拿下来"></div></div>
-        <div class="slot slot-verb"><div class="q">🟢 做什么？</div><div class="hint">主角的动作</div><div class="placed" id="gk-slot-verb" title="点一下拿下来"></div><div class="hatnote" id="gk-hatnote">🎩 主角是 he / she / 一个（只）东西时，动词要戴一顶 <b>-s</b> 帽子——而且只戴一次。为什么？去病句医院看 GR-02 →</div></div>
-        <div class="slot slot-what"><div class="q">🔵 什么？</div><div class="hint">动作落到什么上</div><div class="placed" id="gk-slot-what" title="点一下拿下来"></div></div>
+        <div class="slot slot-verb"><div class="q">🟡 做什么？</div><div class="hint">主角的动作</div><div class="placed" id="gk-slot-verb" title="点一下拿下来"></div><div class="hatnote" id="gk-hatnote">主角是 he / she / 一个（只）东西时，动词下面画一条<b>蓝线</b>、线中间落一支<b>向下箭头</b>（现在时）——带箭头的动词，就要加 <b>-s</b>（SHAPE CODING 官方规则）。箭头只落一次，为什么？去病句医院看 GR-02 →</div></div>
+        <div class="slot slot-what"><div class="q">🟢 什么？</div><div class="hint">动作落到什么上</div><div class="placed" id="gk-slot-what" title="点一下拿下来"></div></div>
       </div>
       <div id="gk-piles"></div>
       <div class="readout" id="gk-readout"><span class="ph">你拼的句子会出现在这里……</span></div>
@@ -2411,7 +2421,7 @@ renderIndex();
       </div>
       <div class="pile" id="gk-placepile" style="margin-top:8px"></div>
       <div class="seatline" id="gk-adjline"></div>
-      <div class="src">词卡来源：全部为词库登记词目（构建时逐词断言）；地点短语出自 GR-12 / GR-02 登记例句（on the desk、on the table、under the tree、to the park）；-s 帽子是 GR-02/GR-12 的标记机制演示，不是新词。槽位画法借 Colourful Semantics 的「问题词当槽名」，配色为本原型临时色（形状+问句词区分，不用术语）。</div>
+      <div class="src">词卡来源：全部为词库登记词目（构建时逐词断言）；地点短语出自 GR-12 / GR-02 登记例句（on the desk、on the table、under the tree、to the park）；-s 的呈现照 SHAPE CODING 官方装置：动词下蓝单线 + 中点向下箭头（Ebbels 2007 定稿 §III.3、§III.4；官方没有 -s 独立符号）。槽位画法与配色照 Colourful Semantics 定版：谁=橙、做什么=黄、什么=绿、在哪里=蓝（Alison Bryan / ITS 官方讲义）。</div>
     </div>
   </div>
 <div class="gkview" id="gkv-expand">
@@ -2655,11 +2665,11 @@ function renderBench(){
   document.getElementById('gk-slot-who').textContent = state.who||'';
   document.getElementById('gk-slot-verb').textContent = state.verb||'';
   document.getElementById('gk-slot-what').textContent = state.what||'';
-  const needHat = state.verb && SINGULAR_WHO.includes(state.who);
-  document.getElementById('gk-hatnote').style.display = needHat ? 'block':'none';
+  const needS = state.verb && SINGULAR_WHO.includes(state.who);
+  document.getElementById('gk-hatnote').style.display = needS ? 'block':'none';
   let parts = [];
   if(state.who) parts.push(state.who==='I'?'I':state.who);
-  if(state.verb) parts.push(state.verb + (needHat ? '<span class="hat">s</span>' : ''));
+  if(state.verb) parts.push(needS ? `<span class="u1v tarr">${state.verb}s</span>` : state.verb);
   if(state.what){
     let w = state.what;
     if(state.adjs.length && ADJ_NOUNS.includes(w)){
@@ -2818,13 +2828,13 @@ function renderCase(){
     return;
   }
   const c = L.cases[HOSP.idx];
-  const prompt = HOSP.dept==='gr02' ? '哪个词多戴了一顶帽子？点它。' : '哪个词和主语对不上号？点它。';
+  const prompt = HOSP.dept==='gr02' ? '时态只许标一次：哪个词多标了？点它。' : '哪个词和主语对不上号？点它。';
   const toks = c.wrong.replace(/[.？?]$/,'').split(' ');
   let teach = '';
   if(HOSP.dept==='gr12' && HOSP.idx===3){
     teach = `<div class="kid" style="background:#f2f7ff;border-color:#cfdff5">先看医生演示（登记例句）：<br>
-    There <span class="u1">is</span> a <span class="u1">pen</span> and two <span class="u2">books</span> on the desk.
-    —— 单数的词画一条线，复数的词画两条线；is 跟着一条线的 pen，are 跟着两条线的 books。there be 的动词，先看紧挨着的第一个名字。</div>`;
+    There <span class="dia"><span class="u1v">is</span></span> a <span class="oval"><span class="u1n">pen</span></span> and two <span class="u2n">books</span> on the desk.
+    —— 这是 SHAPE CODING 的官方画法：名词（和代词）画红线、动词画蓝线，单数一条、复数两条；助动词装进菱形。一致怎么查：先数主语椭圆里的红线，再数助动词菱形里的蓝线——两边线数必须一样。pen 是一条红线，所以菱形里用一条蓝线的 is；books 是两条红线，就要用两条蓝线的 are。there be 的动词，先看紧挨着的第一个名字。</div>`;
   }
   body.innerHTML = `${teach}
   <div class="casebox"><div class="note">病例 ${HOSP.idx+1} / ${total}${c.gec?` · ${c.gec}`:''} · 错型：${c.etype}</div>
@@ -2846,7 +2856,18 @@ function renderCase(){
         fb.className='fb ok'; fb.textContent=`找到了：${c.diff.wrong_tok} 就是出错的词。`;
         const fix=document.getElementById('gk-case-fix');
         const rt = c.right.replace(/[.。]$/,'').split(' ');
-        fix.innerHTML = '<div class="stage">' + rt.map((w,j)=> j===c.diff.idx?`<span class="tok fixed" style="cursor:default">${w}</span>`:`<span class="tok" style="cursor:default">${w}</span>`).join(' ') + '.</div>';
+        const wrapTok = {};
+        if(HOSP.dept==='gr02'){
+          const AUX02=["doesn't","does","did","didn't","is","are","was","were"];
+          rt.forEach((w,j)=>{ if(AUX02.includes(w)) wrapTok[j]='u1v tarr'; });
+        } else if(HOSP.dept==='gr12'){
+          const ANN12={0:[[0,'u2n'],[1,'u2v']],1:[[0,'u1n'],[1,'u1v']],2:[[1,'u1n'],[5,'u1v']],3:[[3,'u2n'],[1,'u2v']],4:[[1,'u1n'],[2,'u1v']],5:[[3,'u1n'],[4,'u1v']]};
+          (ANN12[HOSP.idx]||[]).forEach(pair=>{ wrapTok[pair[0]]=pair[1]; });
+        }
+        fix.innerHTML = '<div class="stage">' + rt.map((w,j)=>{
+          const inner = wrapTok[j] ? `<span class="${wrapTok[j]}">${w}</span>` : w;
+          return j===c.diff.idx?`<span class="tok fixed" style="cursor:default">${inner}</span>`:`<span class="tok" style="cursor:default">${inner}</span>`;
+        }).join(' ') + '.</div>';
         hospCounts();
       } else { fb.className='fb no'; fb.textContent='不是这个词。再看看：句子里哪个标记出现了两次 / 哪个词和主语对不上？'; }
     };
