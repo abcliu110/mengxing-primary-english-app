@@ -15567,20 +15567,22 @@ if(window.MutationObserver && cjSecI && cjSecD){
 .lz-kid,.lz-beat,.lz-ex,.lz-q,.lz-chip,.lz-opt,.lz-reveal,.lz-todo,
 .pn-scope .card,.pn-scope .law,.pn-scope .beat,.pn-scope .grp,.pn-scope .quiz,.pn-scope .pic,.pn-scope .navrow button,.pn-scope .abtn,
 .ar-scope .card,.ar-scope .law,.ar-scope .beat,.ar-scope .grp,.ar-scope .quiz,.ar-scope .animbox,.ar-scope .svgbox,.ar-scope .navrow button,.ar-scope .swcol,.ar-scope .rline,.ar-scope .stage .cap,
+.cj-scope .card,.cj-scope .law,.cj-scope .beat,.cj-scope .grp,.cj-scope .quiz,.cj-scope .kidbox,.cj-scope .errc,.cj-scope .cjfilm,.cj-scope .cjf-stage,.cj-scope .cjwb-board,.cj-scope .cjwb-capbar,.cj-scope .cjillus,.cj-scope .navrow button,
 .vb .panel,.vb .card,.vb .opt,.vb .sent,.vb .fcell,.vb .back,.vb .chip,.vb input,.vb select,.vb .seg button,
 .mz .card,.tn .card,.tn .sec,
 .fa-board,.fa-capbar,.fa-predict,.pkmod details.conc,.pkmod .station{
   background:#FBF8EF;
   color:#2F3A2C;
 }
-.phx,.pn-scope,.ar-scope,.vb,.mz,.tn,.pkmod,.lz-beat,.lz-q{color:#2F3A2C}
+.phx,.pn-scope,.ar-scope,.cj-scope,.vb,.mz,.tn,.pkmod,.lz-beat,.lz-q{color:#2F3A2C}
 .phx h2,.phx h3,.mz h1,.mz .card h2,.mz .subhead,.tn h2,.tn .card h3,.tn .tntitle,
 .pn-scope header.top h1,.pn-scope .card h3,.pn-scope .gname,.pn-scope h2.big,.pn-scope .tt,
 .ar-scope header.top h1,.ar-scope .card h3,.ar-scope .gname,.ar-scope h2.big,
+.cj-scope header.top h1,.cj-scope .card h3,.cj-scope .gname,.cj-scope h2.big,.cj-scope .tt,.cj-scope .cjfilm-t,
 .vb header h1,.vb .panel h3,.vb .card h2,.vb .card h4,.vb summary,.pkmod h1,.pkmod .ttl{
   color:#5E6E3A;
 }
-.phx .btab,.phx .bbtn,.ph-regbtn,.vb .back,.vb .chip,.vb .seg button,.pkmod header.top button,.pkmod .chip,.pn-scope .navrow button,.pn-scope .abtn,.ar-scope .navrow button,.lz-chip,.lz-opt,.lz-reveal{
+.phx .btab,.phx .bbtn,.ph-regbtn,.vb .back,.vb .chip,.vb .seg button,.pkmod header.top button,.pkmod .chip,.pn-scope .navrow button,.pn-scope .abtn,.ar-scope .navrow button,.cj-scope .navrow button,.cj-scope .adultbtn,.cj-scope .cjwb-btn,.cj-scope .cjf-btn,.lz-chip,.lz-opt,.lz-reveal{
   background:#EEF3E2;
   border-color:#C9D3B4;
   color:#4A5A36;
@@ -15602,16 +15604,16 @@ if(window.MutationObserver && cjSecI && cjSecD){
 .pkmod header.top{background:#F5F1E6;border-bottom-color:#5E6E3A;color:#2F3A2C}
 .pkmod #mapwrap{background:#FBF8EF;border-color:#C9D3B4}
 .pkmod h2{border-left-color:#5E7D4A;color:#5E6E3A}
-.pn-scope,.ar-scope{background:transparent}
+.pn-scope,.ar-scope,.cj-scope{background:transparent}
 .fa-board,.pkmod .pv-stgsvg{background:#FBF8EF;border-color:#C9D3B4}
 #drag-svg{max-width:100%!important;background:#FBF8EF!important;border-color:#5E6E3A!important}
 @media (min-width:768px){
-  .pn-scope,.ar-scope,.vb .wrap,.pkmod .pkview,.mz{max-width:none}
+  .pn-scope,.ar-scope,.cj-scope,.vb .wrap,.pkmod .pkview,.mz{max-width:none}
   .pkmod .pv-stgsvg{max-width:100%}
   .phx .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .vb .panelGrid,.tn .panels{grid-template-columns:repeat(2,minmax(0,1fr))}
-  #pn-index,#ar-index,#mz-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px;align-items:start}
-  #pn-index>:not(.law),#ar-index>:not(.law),#mz-index>:not(.card){grid-column:1 / -1}
+  #pn-index,#ar-index,#cj-index,#mz-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px;align-items:start}
+  #pn-index>:not(.law),#ar-index>:not(.law),#cj-index>:not(.law),#mz-index>:not(.card){grid-column:1 / -1}
   #v-phon-laws.on,#v-vocab.on,#v-grammar.on,#v-grammar2.on,#v-expr.on,#v-expr2.on,#v-tech.on,#v-parents.on{
     display:grid;grid-template-columns:1fr 1fr;column-gap:14px;align-items:start;
   }
@@ -15620,7 +15622,7 @@ if(window.MutationObserver && cjSecI && cjSecD){
   img,canvas,#drag-svg,.pkmod svg,.pv-stgsvg{max-width:100%}
 }
 @media (min-width:1024px){
-  .phx .grid,.vb .panelGrid,.tn .panels,#pn-index,#ar-index,#mz-index,
+  .phx .grid,.vb .panelGrid,.tn .panels,#pn-index,#ar-index,#cj-index,#mz-index,
   #v-phon-laws.on,#v-vocab.on,#v-grammar.on,#v-grammar2.on,#v-expr.on,#v-expr2.on,#v-parents.on,
   #tec-face-pain,#tec-face-skill,#tec-face-seq{
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -15671,8 +15673,9 @@ if(window.MutationObserver && cjSecI && cjSecD){
   .vb .chip,.vb .back,.vb .seg button,
   .vcmod .toolchip,.vc-tnav button,.vcmod .btn,.vcmod .wrow,.vcmod .searchbox,
   .et-scope .letters button,.et-scope .navrow button,.et-scope .wchip,.et-scope .flag,
+  .cj-scope .navrow button,.cj-scope .cjwb-btn,.cj-scope .cjf-btn,
   .nbtn,.tgl{min-height:44px;box-sizing:border-box}
-  .chip,.tec-fbtn,.phx .chip,.vcmod .toolchip,.vc-tnav button,.pkmod header.top button,.pkmod .chip,.vb .chip,.gkmod .btn,.et-scope .letters button,.et-scope .navrow button{display:inline-flex;align-items:center;justify-content:center}
+  .chip,.tec-fbtn,.phx .chip,.vcmod .toolchip,.vc-tnav button,.pkmod header.top button,.pkmod .chip,.vb .chip,.gkmod .btn,.et-scope .letters button,.et-scope .navrow button,.cj-scope .navrow button{display:inline-flex;align-items:center;justify-content:center}
   #tec-face-pain,#tec-face-skill,#tec-face-seq{grid-template-columns:1fr 1fr}
 }
 @media (min-width:1024px){
@@ -15687,6 +15690,10 @@ if(window.MutationObserver && cjSecI && cjSecD){
 @media (min-width:768px){
   .gkmod .chip,.gkmod .tok{min-height:44px;display:inline-flex;align-items:center}
 }
+.cj-scope .ans.right{background:#E5F2E4;border-color:#7FA388;color:#2F3A2C}
+.cj-scope .ans.wrong{background:#F8E8E4;border-color:#D9A090;color:#2F3A2C}
+.cj-scope .cjwb-dot.on,.cj-scope .cjf-dots .on{background:#5E7D4A;border-color:#5E7D4A;color:#fff}
+.cj-scope .desc,.cj-scope .gsub,.cj-scope .hint,.cj-scope .note,.cj-scope .cjilluscap{color:#55604A}
 </style>
 </body>
 </html>
