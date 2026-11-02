@@ -9,24 +9,24 @@
    "病例找错题（trap_spotting）只用登记错形：条目 error_cases 或 probes_wave1 探针登记错形，不自编学习者错误。",
    "全部英文句子经 wordbank.json（2,352 条）与 verb_forms_completion.json 程序校验；be 的 am/is/are 经复合词头条目 G3_K01「be / am / is / are」归一，was/were/been 为独立词条。",
    "CO-17 的 3 题为其旗舰页（app v-u-co17 第 5 步）既有检索练习的回写，使模型 quiz 字段成为单一事实源，不新编。",
-   "QI-08 不设题：呈现与练习要求受裁定 A 门控，且条目口径明定语调倾向不得据以判错——转终态登记（见 meta.terminal）。",
+   "QI-08 原不设题（等裁定 A 门控）；裁定 A 已定版（2026-11-02），练习随之落地：自建 4 题（场景选形 2 / 拼形 1 / 无提示判断 1），只测对语调倾向与边界的理解，不给学生的语调判错（见 units 的 QI-08 节；meta.terminal 中 QI-08 条已改为关闭记录）。",
    "TA-01..TA-18 不在本文件：其检索练习已由 model/ta_exercises.json 供给（L2，87 题）并接入原型 TA 站；本轮仅销 grammar_ext.yaml 中的陈旧「检索练习待补」登记。"
   ],
   "counts": {
-   "laws_authored": 30,
+   "laws_authored": 31,
    "laws_writeback": 1,
-   "items_total": 123,
+   "items_total": 127,
    "by_type": {
-    "scene_form_choice": 58,
-    "no_clue": 37,
-    "form_building": 19,
+    "scene_form_choice": 60,
+    "no_clue": 38,
+    "form_building": 20,
     "trap_spotting": 9
    }
   },
   "terminal": [
    {
     "law_id": "QI-08",
-    "reason": "练习不设 · 终态登记：呈现与练习要求受裁定 A（弱读/语调产出档位）门控，裁定落档前不预设练习；条目口径明定语调倾向只作呈现、不得据以判错。"
+    "reason": "已关闭（2026-11-02）：原为「练习不设 · 终态登记」（等裁定 A 门控）；裁定 A 定版后练习落地——自建练习 4 题已写入 grammar_ext.yaml QI-08 的 quiz 字段，并同步至本文件 units 的 QI-08 节。本条保留作关闭记录。"
    },
    {
     "law_id": "S-01",
@@ -1786,6 +1786,71 @@
      "verb_forms_checked": []
     }
    ]
+  },
+  {
+   "law_id": "QI-08",
+   "item_count": 4,
+   "items": [
+    {
+     "id": "QI08-P1",
+     "type": "scene_form_choice",
+     "prompt": "听读 Are you ready?——这是一般疑问句（等对方答 yes 或 no）。它的句尾最常怎么走？",
+     "options": [
+      "往上翘（升调 ↗）",
+      "往下沉（降调 ↘）",
+      "每个词读得一样重、一样平"
+     ],
+     "answer": "往上翘（升调 ↗）",
+     "hint": "回机制「声音的标点」：句尾往上翘，像在说「我还没说完，等你答」；一般疑问句常升调。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句「Are you ready? ↗」"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI08-P2",
+     "type": "form_building",
+     "prompt": "把两句问话和它们最常见的句尾配成对：① Are you ready? ② Where are you going?（句尾只有两种：升调 ↗、降调 ↘）",
+     "answer": "① Are you ready? 配升调 ↗（一般疑问句常升调）；② Where are you going? 配降调 ↘（特殊疑问句常降调）。",
+     "hint": "回主张：语调与句类形成统计配对——一般疑问常升调、特殊疑问常降调；这是常态配对，不是逐句硬性规定。",
+     "source": {
+      "kind": "law_example",
+      "note": "条目登记例句两句（Are you ready? / Where are you going?)"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI08-P3",
+     "type": "no_clue",
+     "prompt": "判断：同学把 Are you ready? 的句尾读得往下沉，所以这句一定读错了。",
+     "answer": "不对。本条口径明定：升降调与句类的配对是常态、不是铁律（礼貌性升调、惊讶语境的降调 Yes/No 问句等变异普遍存在），不得据语调倾向给学生的语调判「错」。",
+     "hint": "回主张的范围：本条只作倾向呈现；不得据此给学生的语调判「错」。",
+     "source": {
+      "kind": "scope",
+      "note": "条目范围/边界派生（claim.scope 与 exceptions）"
+     },
+     "verb_forms_checked": []
+    },
+    {
+     "id": "QI08-P4",
+     "type": "scene_form_choice",
+     "prompt": "你说 I am going home. 同伴没听清，把你的话换了个人称重复一遍确认：You are going home?——句子的词序一点没变，这句话靠什么变成问句的？",
+     "options": [
+      "句尾往上翘的语调",
+      "多加了一个问词",
+      "把声音喊得特别大"
+     ],
+     "answer": "句尾往上翘的语调",
+     "hint": "回主张：语调与词序标记互为备份，口语中单靠语调也能构成问句（回声问句）。",
+     "source": {
+      "kind": "claim",
+      "note": "条目 claim「单靠语调也能构成问句（回声问句）」派生"
+     },
+     "verb_forms_checked": []
+    }
+   ],
+   "note": "自建练习，2026-11-02 按裁定 A 落地：裁定 A 定版（弱读/连读听辨全教、产出只要求 LFC 核心、弱读产出认识即可）后解除原终态登记新编；四题只测对语调倾向与边界的理解，不给学生的语调判错。英文词形经 wordbank.json 校验（are 经复合词头条目 G3_K01「be / am / is / are」归一，going 为词库条目）。"
   },
   {
    "law_id": "QI-09",

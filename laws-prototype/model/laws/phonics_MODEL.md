@@ -63,3 +63,11 @@
 - **纠正**：SR-01——Eide 9 职清点原误作「略去三职」，漏列第 8 职「澄清意义」（for/fore、by/bye 等），实为四职；claim、成人层边界与 corrections 已同步修正。
 - **终局登记**：S-24（LSCWC 无单一发明人/原始文献，系传统策略家族）；S-29（「166」归属 Carney 未能坐实，维持「疑似」）；SR-05（ow 两读全词表计量研究经两轮检索不存在）；SR-09（VCV 75% 为 OG 教学共同体通称、非实测，出处链止于教学文献）。
 - **仍开放**：SR-07（Cunningham 原始博客未直开）、SR-08（Clymer 原文未直开）两项未在本轮处置范围，维持原登记。
+
+## 裁定落地记录（2026-11-02 · 裁定 A）
+
+- 裁定 A 已定版（2026-11-02，用户裁定）：弱读/连读听辨全教、产出只要求 LFC 核心、弱读产出「认识即可」（不练不测）。S-09、S-13、S-43 三条的 `config_gates.ruling_A` 已由门控改写为裁定记录（原门控与默认档 A1 沿革保留在字段内，不删史）；三条的 claim.scope 与 adult.disputes 待裁表述同步落定；S-13 的 adult.pending「练习不设 · 终态登记」转为定版口径（政策条只作呈现、非待裁状态），三条各加一条 2026-11-02 changelog。
+
+## sight_type 空值销项（2026-11-02）
+
+- 词库 sight_type 空值 856 条已逐词判定销项：侧表 `~/workspace/sight_fix/verdicts.json`（decodable 735 / irregular 60 / na 61），判定口径定版于 `model/WORDBANK.md`「sight_type 判定口径（2026-11-02 定版）」节；两面性条目列 `~/workspace/sight_fix/uncertain.json`。合并后全库未判定 = 0，PHONICS_SOP 步 2 验收口径达成（合并落盘由词库车道执行）。登记缺口（uy / ui→/ɪ/ / eye / aigh / augh / gh→/ɡ/ 未立项）随 uncertain 清单保留，补立后相关条目可翻判。

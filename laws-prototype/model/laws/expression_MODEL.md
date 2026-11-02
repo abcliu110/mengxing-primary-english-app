@@ -77,3 +77,7 @@
 - **NE-26（EEF 对话教学试验）销项**：Jay et al. (2017)：英语 0.15 / 科学 0.12 / 数学 0.09（FSM 子群 0.12 / 0.11 / 0.16），经 Alexander (2018) 表 3 核读登记。Alexander (2020) 修订框架逐项未核一项保留为使用警戒，不作债务计。
 - **NE-27 / NE-28（Corbett 书目）销项兼纠正**：《Talk for Writing in the Primary School》并非真实书名——实为《Talk for Writing Across the Curriculum》(2011；第 2 版 2020)；《Talk for Writing in the Early Years》= Corbett & Strong (2016)。
 - **NE-29（Gibbons 书目）定版**：初版 Heinemann 2002, ix + 165 页，ISBN 0-325-00366-1（WorldCat/IA 互证）；第 2 版 2015, ISBN 9780325056647。
+
+## 裁定落地记录（2026-11-02 · 裁定 B）
+
+- **W-11 按裁定 B 定版**：裁定 B 已定版（2026-11-02，用户裁定，B1）：只收 POA「先试产出、再给输入」的排序思想作关卡排序原则，完整 POA 流程不进小学。`config_gates.poa` 已由门控改写为已裁定记录（B1/B2/B3 三档与原门控沿革保留，不删史）；条目正文的试点/待验表述按 B1 改为定版表述（adult.boundary、adult.pending、条目级 pending 同步落定）；本文件头注同步改定版表述。
