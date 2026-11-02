@@ -1063,7 +1063,7 @@ after、anger、another、answer、baker、better、bigger、brother、butcher�
 - **eigh 口径统一（5）**：eight、weight、overweight、neighbour、neighbourhood 由 irregular 翻 decodable（eighty、eighth、eighteen 本已 decodable，不动）。
 - **随新模式翻定（7）**：build、building（ui）；eyebrow、eyelash、eyeglass、eyesight（eye）；granddaughter（augh）。
 - **-or 名单内唯一阻断点为词尾弱读者（1）**：liquor 翻 decodable。anchor 不翻——其另有 n→/ŋ/（ch 前鼻音同化）未归属，阻断点不止弱读一处。
-- **不翻并注记**：biscuit（ui 实读 /ə/，非本轮新模式成员，见 §13.2）；eye 本词（已入 GP-eye-aɪ 成员，但本轮 sight 翻定清单未含本词，维持 irregular，留待后续口径）；buy、straight、ghost、equation 维持 irregular（例外登记）。
+- **不翻并注记**：biscuit（ui 实读 /ə/，非本轮新模式成员，见 §13.2）；buy、straight、ghost、equation 维持 irregular（例外登记）。eye 本词：已入 GP-eye-aɪ 成员，本轮清单未含、当时维持 irregular；App 同步轮（2026-11-02）按 eigh 口径（已立模式成员按可平铺计）补翻 decodable，wordbank irregular 173 → 172。
 
 ### 13.5 联动变更清单
 
