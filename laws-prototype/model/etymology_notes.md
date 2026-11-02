@@ -3,10 +3,11 @@
 ## 一、收词总账
 
 - 词库总词数：2,473 条。
-- **收录进 etymology.json：2281 条**（verified 804 + 待核 1477）。
-- **未收（无词源可考/不单独立档）：192 条**，只在本说明里列清单，不进 JSON（用户口径：有则有、无则无，不强行建立）。
-- verified 的来源等级构成：二级双源互证 411 条；一级＋二级双源互证 385 条；一级＋三级互证 8 条。
-- verified 里复用 ETYM_DB 既有已核链作事实底稿的：489 条；本次新核的：315 条。
+- **收录进 etymology.json：2278 条**（verified 801 + 待核 1477）。
+- **未收（无词源可考/不单独立档）：195 条**，只在本说明里列清单，不进 JSON（用户口径：有则有、无则无，不强行建立）。
+- verified 的来源等级构成：二级双源互证 407 条；一级＋二级双源互证 386 条；一级＋三级互证 8 条。
+- verified 里复用 ETYM_DB 既有已核链作事实底稿的：487 条；本次新核的：314 条。
+- （以上数字为 2026-11-02 同形异词普查订正后的口径：verified 804→801、未收 192→195，订正全程见第九节。）
 
 ## 二、待核分账（有词源线索、但未达双源互证或关键字段无源可依）
 
@@ -1501,7 +1502,7 @@
 
 ## 三、未收清单（不进 JSON）
 
-- `词形变化词`：139 条
+- `词形变化词`：142 条
 - `多词条目`：39 条
 - `无词源可考`：14 条
 
@@ -1699,6 +1700,9 @@
 - risen｜词形变化词：词形条目，Wiktionary 只标原形「rise」，无独立词源小节；词源随原形词条目（若原形已收录）
 - slid｜词形变化词：复数/动词变形/同义变体等词形条目，Wiktionary 只标原形「slide」，无独立词源小节；词源随原形词条目（若原形已收录）
 - cosmos｜词形变化词：词形条目，Wiktionary 只标原形「cosmo」，无独立词源小节；词源随原形词条目（若原形已收录）
+- felt｜词形变化词（2026-11-02 普查订正移出）：feel 的过去式/过去分词；原 verified 记录所系古英语 felt「毛毡」链是另一个同形词，词源随原形 feel（verified 已收录）；订正详见第九节
+- saw｜词形变化词（2026-11-02 普查订正移出）：see 的过去式；原 verified 记录所系「锯子」链（古英语 saga）是另一个同形词，词源随原形 see（verified 已收录）；订正详见第九节
+- ground｜词形变化词（2026-11-02 普查订正移出）：grind 的过去式/过去分词；原 verified 记录所系名词 ground「地面」链（古英语 grund）是另一个词，词源随原形 grind（verified 已收录）；订正详见第九节
 
 ## 四、争议词清单（两说并记，不擅自裁定；以下为 verified 中来源自注未定论者）
 
@@ -1818,7 +1822,7 @@
 - **lamp**：来源还没有完全定论（Etymonline 原文措辞：“1200, laumpe , "vessel containing flammable liquid and a wick to lift it by capillary action when lit," from Old French lampe "lamp, lights" (12c.), from Latin lampas "a light, torch, flambeau," from Greek lampas "a torch, oil-lamp, beacon-…”）
 - **large**：来源还没有完全定论（Etymonline 原文措辞：“1200 (perhaps late Old English), of persons, "inclined to give or spend freely," also of gifts, "generous, lavish," of areas, "great in expanse." It is from Old French large "broad, wide; generous, bounteous" (12c.), from Latin largus "abun…”）
 - **lawn**：来源还没有完全定论（Etymonline 原文措辞：“also from 1540s lawn (n.2) "thin linen or cotton cloth," early 15c., probably from Laon , city in northern France, a center of linen manufacture”）
-- **lead**：来源还没有完全定论（Etymonline 原文措辞：“Germanic cognates include Old Saxon lithan , Old Norse liða "to go," Old High German ga-lidan "to travel," Gothic ga-leiþan "to go." lead (n.1) metal noted for softness, heaviness, and durability, Old English lead "lead, leaden vessel," fro…”）
+- **lead**：本条「带领」链（Etymonline (v.1) × Wiktionary）双源对齐、无争议；仅同形词金属「铅」（古英语 lēad）更早来历未有定论，已登记于 JSON 争议栏。2026-11-02 订正，详见第九节。
 - **leaf**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of leaf leaf (n.) Old English leaf "leaf of a plant, foliage; page of a book, sheet of paper," from Proto-Germanic *lauba- (source also of Old Saxon lof , Old Norse lauf , Old Frisian laf , Dutch loof , Old High German lo…”）
 - **leg**：来源还没有完全定论（Etymonline 原文措辞：“Perhaps from a PIE root meaning "to bend" [Buck]”）
 - **letter**：来源还没有完全定论（Etymonline 原文措辞：“1200, "graphic symbol, alphabetic sign, written character conveying information about sound in speech," from Old French letre "character, letter; missive, note," in plural, "literature, writing, learning" (10c., Modern French lettre ), from…”）
@@ -1833,7 +1837,7 @@
 - **mandate**：来源还没有完全定论（Etymonline 原文措辞：“1500, "a command, a judicial or legal order," from French mandat (15c.) and directly from Latin mandatum "commission, command, order," noun use of neuter past participle of mandare "to order, commit to one's charge," literally "to give into…”）
 - **many**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of many many (adj.) "being or consisting of a large number of units or individuals," Middle English mani, manige "indefinitely numerous, many a, much," from Old English monig, manig , from Proto-Germanic *managaz (source …”）
 - **march**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of march march (v.) "to walk with measured steps or a regular tread," either individually or as a body, early 15c., from Old French marcher "to stride, march, walk," originally "to trample, tread underfoot," a word of unc…”）
-- **match**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of match match (n.1) "stick for striking fire." Late 14c., macche , "wick of a candle or lamp," a sense now obsolete, from Old French meiche "wick of a candle," from Vulgar Latin *micca/*miccia (source also of Catalan met…”）
+- **match**：本条已按「比赛」链（Etymonline (n.2) × 牛津义项 2 × Wiktionary）重建立档，无未定论；原引文所述「火柴」match (n.1) 是同形异词，其链（古法语 meiche「灯芯」一脉）已登记于 JSON 争议栏。2026-11-02 订正，详见第九节。
 - **may**：来源还没有完全定论（Etymonline 原文措辞：“Also used in Old English as a "auxiliary of prediction." May fifth month of the modern calendar, early 12c., Mai , from Old French mai and directly from Latin Majus , Maius mensis "month of May," possibly from Maja , Maia , a Roman earth go…”）
 - **mean**：来源还没有完全定论（Wiktionary 原文措辞：“From {{inh|en|enm|menen||to intend; remember; lament; comfort}}, from {{inh|en|ang|mǣnan||to mean, complain}}, {{inh|en|gmw-pro|*mainijan}}, from {{inh|en|gem-pro|*mainijaną||to mean, think; complain}}, from {{der|en|ine-pro|*meyn-||to thin…”）
 - **metal**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of metal metal (n.) an undecomposable elementary substance having certain recognizable qualities (opacity, conductivity, plasticity, high specific gravity, etc.), mid-13c., from Old French metal "metal; material, substanc…”）
@@ -1855,7 +1859,7 @@
 - **nurse**：来源还没有完全定论（Etymonline 原文措辞：“1500, of unknown origin”）
 - **ore**：来源还没有完全定论（Wiktionary 原文措辞：“From {{inh|en|enm|or}}, {{m|enm|oor}}, blend of {{inh|en|ang|ōra|t=ore, unwrought metal}}, of uncertain origin, and {{m|ang|ār|t=brass, copper, bronze}}, from {{inh|en|gmw-pro|*aiʀ}}, from {{inh|en|gem-pro|*aiz}}, from {{inh|en|ine-pro|*h₂é…”）
 - **peel**：来源还没有完全定论（Etymonline 原文措辞：“Peel out "speed away from a place in a car, on a motorcycle, etc.," is hot-rodders' slang, attested by 1952, perhaps from the notion of leaving behind a "peel" of rubber from the tire as it skids”）
-- **pen**：来源还没有完全定论（Etymonline 原文措辞：“pen (n.2) "small enclosure for domestic animals," Old English penn , penne , a word of uncertain origin, perhaps related to Old English pinn "pin, peg" (see pin (n.)) on the notion of a bolted gate or else "structure made of pointed stakes.…”）
+- **pen**：本条已按 (n.1) 羽毛笔链重建（牛津义项 1 × Etymonline (n.1) × Wiktionary Etymology 3），无未定论；原引文所述「羊圈」pen (n.2)（古英语 penn）本身来源未定论，但那是另一个同形词。2026-11-02 订正，详见第九节。
 - **pine**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of pine pine (n.) "coniferous tree, tree of the genus Pinus ," Old English pin (in compounds), from Old French pin and directly from Latin pinus "pine, pine-tree, fir-tree," which is perhaps from a PIE *pi-nu- , from root…”）
 - **pint**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of pint pint (n.) mid-14c., "liquid measure equal to half a quart;" also "a vessel holding a pint," from Old French pinte "liquid measure, pint" (13c.), probably from Vulgar Latin *pincta (source of Old Provençal, Spanish…”）
 - **plant**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of plant plant (n.) Old English plante "young tree or shrub, herb newly planted, a shoot or strip recently sprouted from seed," from Latin planta "sprout, shoot, cutting" (source of Spanish planta , French plante ), which…”）
@@ -1884,7 +1888,7 @@
 - **sick**：来源还没有完全定论（Etymonline 原文措辞：“also from 1845 sick (adj.) Middle English sik , from Old English seoc "ill, unwell, diseased, feeble, weak; corrupt; sad, troubled, deeply affected by strong feeling," from Proto-Germanic *seuka- , which is of uncertain origin”）
 - **side**：来源还没有完全定论（Wiktionary 原文措辞：“From {{inh|en|enm|side}}, from {{inh|en|ang|sīde|t=side, flank}}, from {{inh|en|gem-pro|*sīdǭ|t=side, flank, edge, shore}}, derived from {{m|gem-pro|*sīdaz}}, probably from {{der|en|ine-pro|*seh₁-|t=long, lasting}}”）
 - **sign**：来源还没有完全定论（Wiktionary 原文措辞：“From {{inh|en|enm|signe}}, {{m|enm|sygne}}, {{m|enm|syng}}, {{m|enm|seine}}, {{m|enm|sine}}, {{m|enm|syne}}, from {{inh|en|ang|seġn|t=sign; mark; token}} and {{der|en|fro|signe}}, {{m|fro|seing||sign; mark; signature}}; both from {{der|en|l…”）
-- **slough**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of slough slough (n.1) "muddy place in a road or way, mudhole, swamp, deep quagmire," Middle English slough , from Old English sloh "soft, muddy ground," a word of uncertain origin”）
+- **slough**：本条「蜕皮」链的远祖原始日耳曼语 *sluk- 出处未有定论（Etymonline 称 of uncertain origin），已记入 JSON 争议栏；同形词「泥沼」slough（古英语 slōh，Etymonline (n.1)）来历同样未定。2026-11-02 订正，详见第九节。
 - **slow**：来源还没有完全定论（Wiktionary 原文措辞：“From {{inh|en|enm|slaw}}, {{m|enm|slow}}, from {{inh|en|ang|slāw|t=lazy; inert, slow}}, from {{inh|en|gmw-pro|*slaiw}}, from {{inh|en|gem-pro|*slaiwaz|t=blunt; dull; exhausted, faint, sluggish, weak, weary; listless, torpid; dim-witted, slo…”）
 - **small**：来源还没有完全定论（Etymonline 原文措辞：“Origin and history of small small (adj.) Middle English smal , smale , from Old English smæl "thin, slender, narrow; fine," from Proto-Germanic *smal- "small animal; small" (source also of Old Saxon, Danish, Swedish, Middle Dutch, Dutch, Ol…”）
 - **smart**：来源还没有完全定论（Etymonline 原文措辞：“In reference to persons, "quick, active, intelligent, clever," 1620s, perhaps from the notion of "cutting" wit, words, etc., or else "keen in bargaining." From 1718 in cant as "fashionably elegant;" by 1798 as "trim in attire," "ascending f…”）
@@ -1967,3 +1971,114 @@
 - 来源链底稿：Wiktionary 词条 Etymology 小节（模板链解析，沿用白板线 parse_etym 口径）× Etymonline 词条原文（经 Wayback Machine 存档读取）逐站对齐互证；牛津词源栏作第三源与等级提升；根目录主应用 ETYM_DB 的 625 条既有已核链全量对表复用（方向翻转为旧→新）。
 - 英文 gloss 的中文翻译全部为忠实直译，不加演变细节；语义路径、机制句、现代义关联等表述只由已核链数据与词库今义拼接生成，不引入来源之外的说法。
 - 抓取缓存（Wiktionary raw / Etymonline 存档页 / 牛津页）在仓库外 ~/workspace/etym-work/，未提交进仓库。
+
+## 九、订正与普查记录（2026-11-02，同形异词串档修复）
+
+### 9.1 缘起与口径
+
+- 缘起：复查发现 verified 记录 **pen** 串档——词库 pen 是「钢笔」，记录却挂了 pen (n.2)「羊圈」（古英语 penn）的链，还在 modern_meanings_link 里硬说与钢笔「同一个词一路变下来」。钢笔 pen 实源自拉丁语 penna「羽毛」，与羊圈 penn 是同形异词、毫无关系。遂对全部 verified 做同形异词普查。
+- 口径（与建库一致）：所有订正只许依据仓库外缓存原文（~/workspace/etym-work/ 的 etymo / wikt / ox 三套抓取文本）逐条对齐；原文对不齐就不硬立链——或降待核、或按「词形变化词不单独立档」口径移出归未收；不许凭记忆补链。不许把同形异词的两条链揉成一条；主义项立链，异源同形词登记进 disputes。
+
+### 9.2 普查范围与方法
+
+- 观察名单（已知同形异词）30 词逐词核：pen、match、bank、bat、can、well、fine、fair、kind、bark、mole、rock、seal、yard、pound、mint、date、chest、club、present、patient、spring、watch、wave、sign、nail、leaves/leaf、coach、light。
+- 机检标记集：verified 中凡 modern_meanings_link 出现「看不出关系 / 脱钩 / 翻来源链才知道是同一个词 / 差得挺远」类措辞者 236 条（这类措辞是串档高危信号，pen 正是如此），与语义路径用「意思又慢慢变了」无内容模板桥者取并集；连同观察名单中属 verified 者，合计逐条人工复核 **477 条**：每条比对词库义项 × original_meaning × 来源链 × 缓存原文分词条（n.1/n.2、Etymology 分节）。
+- 结论分布：已重建 7 条、字段订正 4 条、登记/路径补全 5 条、移出归未收 3 条、无误 458 条。
+
+### 9.3 pen 订正（任务实证条）
+
+- 订正前：链 = 古英语 penn「围地，羊圈，畜栏」→ 中古英语 pen；原义「围地，羊圈，畜栏」；今义关联硬说钢笔与羊圈同源。
+- 证据：Etymonline pen (n.1)（late 13c. penne，羽毛做的书写工具 ← 古法语 pene ← 拉丁语 penna「羽毛」← 印欧词根 *pet-「冲；飞」）× Wiktionary pen Etymology 3 同链 × 牛津 pen 词条义项 1。三源对齐，保持 verified（等级：一级＋二级）。
+- 订正后：链 = *pet-「冲；飞」→ penna「羽毛（晚期拉丁语转指书写笔）」→ pene「羽毛；羽毛笔」→ penne「羽毛做的书写笔」；原义「羽毛（做的书写笔）」；语义路径 羽毛 → 羽毛笔（借代）→ 一切用墨水写的笔（泛化）；争议栏登记同形异词提醒（羊圈 pen 另是一词）。
+
+### 9.4 match 裁断（重建立链）
+
+- 问题：旧记录链形虽是 mæcca 一脉，但原义取了印欧词根 gloss「揉捏，加工」，机制句写成「揉捏，加工 → 比赛/火柴」两头不靠，争议栏还引了火柴（n.1）的原文。
+- 裁断：Etymonline match (n.2)（古英语 ġemæcca「伴侣、般配的人」；对手义约 1300 年、体育比赛义 1540 年代）× Wiktionary Etymology 1 × 牛津义项 2–6，三源对齐——**按「比赛」链重建为 verified**（等级由二级升为一级＋二级），不降待核。
+- 订正后：链 = *mag-「揉捏；做得合用」→ *gamakon「合得来」→ ġemæcca「伴侣，配偶」→ mæcca → macche「旗鼓相当的对手」；原义「伴侣，配偶；般配的人」；语义路径 合用 → 伙伴 → 般配的对手 → 比赛。火柴链（古法语 meiche「灯芯」← 拉丁语 myxa ← 希腊语 myxa）只登记进争议栏，不并链。
+
+### 9.5 普查新发现的串档（名单外，逐条已按缓存原文处置）
+
+| 词 | 问题 | 处置 |
+|---|---|---|
+| mint | 词库只有「薄荷」，记录却挂铸币链（拉丁语 monēta → 古英语 mynet） | 已重建：按薄荷链（希腊语 μίνθη → 拉丁语 mentha → 原始西日耳曼语 *mintā → 古英语 minte，8 世纪）立档；铸币 mint 登记争议栏 |
+| lead | 词库「带路，引领」，记录只有一站古英语 lēad 并把「铅；引导」混 gloss | 已重建：按动词链（*leit-「出发」→ *laidjanan → lǣdan → leden）立档；金属「铅」lead（lēad）登记争议栏 |
+| sound | 词库「声音」，记录挂的是形容词「健康的」链（古英语 ġesund） | 已重建：按声音链（*swen- → 拉丁语 sonus → 古法语 son → 中古英语 soun）立档；「健康的」「海峡」两同形词登记争议栏 |
+| plane | 词库「飞机」，记录只有拉丁语 plānum「平面」一站（几何词的链） | 已重建：按 aeroplane（1907）→ plane（1908，缩略）立档；构词层面待核登记争议栏（Etymonline airplane 词条把 aeroplane 分析为 air + plane (n.1)，仅一处来源，不裁决）。注：普查初稿曾拟登记的「希腊语 πλάνος『漫游』说」经复核在三套缓存原文中均无出处，已按「原文不支持不登记」口径撤下 |
+| prize | 词库「奖品」，记录原义与机制取的是「缴获物」链（古法语 prise「抓取」） | 已重建：按奖品链（拉丁语 pretium「价格；报酬」→ 古法语 pris → 中古英语 prise，牛津明言名词是 price 的变体）立档；缴获链登记争议栏；等级升一级＋二级 |
+| lie | 链本是「躺」线（liċġan），但原义误取另一同形词的「欺骗，背叛」 | 字段订正：原义改「躺，卧」，路径/机制/今义关联按躺线重写；「说谎」lie（古英语 leōgan）登记争议栏 |
+| march | 链形本是三月线，但原义被「边境」march 污染成「边境地带」 | 字段订正：链首补拉丁语 Mārtius 站，原义改「战神马尔斯之月」，初现改约 1200 年；「行军」march 登记争议栏 |
+| slough | 链（*sluk-）本是蜕皮线，但原义/今义关联按「泥沼」词写 | 字段订正：原义改「（蛇等）蜕下的皮」，路径改 名词→动词转用；「泥沼」slough（古英语 slōh）登记争议栏 |
+| drove | 词库是 drive 的过去式，记录链首缺 drīfan、gloss 偏向派生名词「畜群」 | 字段订正（重建字段）：链补古英语 drīfan「驱赶」站，明示 drove 即 drive 过去式；「畜群」drāf 系同源派生名词，登记说明 |
+| felt | 词库是 feel 的过去式/过去分词，记录挂的是「毛毡」（古英语 felt）链——不同词位 | 移出 JSON 归未收（词形变化词，词源随 feel，见第三节）；verified −1 |
+| saw | 词库是 see 的过去式，记录挂的是「锯子」链（*sek- → 古英语 saga）——不同词位 | 移出 JSON 归未收（词源随 see）；verified −1 |
+| ground | 词库只有 grind 的过去式/过去分词，记录挂的是名词「地面」（古英语 grund）链 | 移出 JSON 归未收（词源随 grind）；verified −1 |
+
+### 9.6 登记/路径补全（链无误，防混淆登记原不完备）
+
+| 词 | 补全内容 |
+|---|---|
+| light | 词库含「轻的」义而原争议栏称「无已知争议」——补登记：「轻的」light（古英语 lēoht ← 印欧词根 *legwh-「不重」）与本条「光」链是同形异词 |
+| ring | 补登记：「（铃）响」ring（古英语 hringan，拟声）与名词「戒指」链是两个词（词库含铃声义） |
+| may | 补登记：「可以、可能」may（古英语 magan）与月份 May（拉丁语 Maius）是两个词（词库条目两义并装） |
+| mean | 补登记：「刻薄的」mean（Etymonline (adj.2)，上溯拉丁语 mediānus「中间的」）与「意思是」（古英语 mǣnan）不是一条链 |
+| spring | 链无误；语义路径原为两级跳，补全中间环节：springing time（14 世纪初）→ spring of the year（16 世纪 20 年代）→ 季节义定型（1540 年代），均出 Etymonline 原文 |
+
+### 9.7 观察名单逐词结论
+
+- 已重建：pen、match、mint（见 9.3–9.5）。
+- 无误（链与词库主义项同源）：well（副词 wel 线；词库无「井」义）、fine（古法语 fin 线覆盖「晴朗/身体好」）、yard（古英语 ġeard「院子」）、watch（古英语 wæċċe「守望」→ 观看/手表同线）、sign（拉丁语 signum）、leaf（古英语 lēaf；复数 leaves 是其词形）、spring（另见路径补全）、light（另见登记补全）。
+- 待核、不在本轮范围：bank、bat、can、kind、rock、date、club、present、patient；coach（任务明示不在范围）。
+- 未收、不在本轮范围：fair、bark、mole、seal、pound、chest、wave、nail、leaves。
+
+### 9.8 机检标记集其余条目结论
+
+- 处置 19 条之外，其余 **458 条无误**：均为同一词的词义引申（原义与今义字面距离大、但来源链连续、有原文可查），如 cloud「岩石→云」、deer「动物→鹿」、magazine「仓库→杂志」、muscle 一类「小老鼠→肌肉」型路径、test「陶罐→考试」、thing「集会→东西」等，不是同形异词串档。
+- 无误名单（458 条）：about, access, action, afraid, after, age, ago, agree, all, amphibious, ancient, annex
+anything, apathy, april, arm, art, ask, aspect, assist, astronaut, at, away, back
+bait, beach, beak, become, behind, belt, between, black, blind, blithe, blood, blouse
+blow, body, boot, borough, borrow, branch, brave, breath, bridegroom, bring, broad, brochure
+but, calendar, call, camera, camp, campus, cap, captain, card, care, cartoon, carve
+chair, champion, charge, cheap, cheer, child, choose, chore, chorus, circle, circus, class
+clerk, clock, clothe, cloud, coin, come, compete, compress, confuse, conspicuous, contest, cook
+cool, cosmetic, could, courage, course, crayon, cream, credible, cross, crowd, cucumber, cycle
+dead, dear, debt, december, deep, deer, degree, desert, detail, dictate, diet, dinner
+dinosaur, disagree, discover, dish, doctor, drive, dry, duck, dye, dynamic, each, earth
+east, edge, eleven, employ, emu, end, esteem, example, exit, face, fall, famous
+farmer, fast, fate, fear, february, ferry, fetch, few, fight, film, fine, flight
+folk, follow, foresee, fork, free, friend, friendly, front, fruit, furniture, garage, gentle
+geometry, get, glass, glue, go, gold, grade, gray, great, grind, group, guano
+guide, hair, handcraft, hard, hardly, headache, heart, hearth, her, here, high, hint
+his, hoarse, holiday, home, how, huge, hump, hymn, idea, ill, immediate, influenza
+information, ingenious, ingenuous, inject, inn, instant, instrument, january, jealous, join, juice, july
+june, just, kid, kitchen, knave, lamp, large, last, late, laundry, lawn, leaf
+lend, lesson, liberal, library, lift, like, line, liquor, list, lithe, little, live
+load, loathe, look, lose, lot, love, lunatic, machine, magazine, make, man, mandate
+many, map, meal, medicine, medium, meet, meeting, mere, message, metamorphosis, minute, mistake
+most, motor, mount, mouth, mulch, museum, must, nature, near, neither, never, new
+next, nice, ninth, noise, noon, north, nose, nothing, novel, november, nurse, october
+offer, office, officer, omnibus, only, open, ought, our, over, pain, pair, panel
+panic, paragraph, park, party, pass, pattern, pay, peach, pedal, pension, perfect, perspective
+phenomenon, pint, place, plan, plastic, play, point, police, polite, pollution, press, pretty
+primate, prince, prospect, protection, proud, pudding, pupil, put, question, quick, race, real
+ride, rise, road, robe, rope, rule, sandy, school, science, scope, season, second
+see, segment, seize, send, september, set, share, sheaf, shirt, show, shut, side
+sight, sign, sine, singe, sink, ski, skin, skirt, slowly, smart, so, society
+some, something, soon, soothe, sorry, space, species, specious, spectacle, spectrum, speech, spell
+spook, spoon, square, staff, steak, still, stir, storm, strange, strut, stupid, subject
+succeed, such, sulfate, sure, susceptible, sweet, synchronize, take, tell, test, thank, thankful
+that, the, thin, thing, think, this, throw, thus, tie, time, tough, tray
+try, tunnel, turn, uncle, understand, up, vegetable, very, video, visible, vital, vivid
+voyage, wake, walk, want, ward, warm, was, watch, way, weather, wedding, week
+weird, well, whine, who, whole, wild, will, win, wing, wise, wish, with
+without, wonder, wood, woolen, word, worm, worry, worse, worth, wrist, write, wrong
+yard, you
+- 附带发现（非串档、不在本次口径内）：少数条目 original_meaning 取了同一个词的其他义项 gloss（如 access「进攻」、get「生育」、guide「责备」、headache「棘手的问题」、cucumber「地苹果」、branch「足迹」），属释义偏移，链本身无误，留待释义质量轮次处理。
+
+### 9.9 分账变化
+
+- verified 804 → **801**（重建 7、字段订正 4、补全 5 均不增减；移出 3）。
+- etymology.json 总记录 2281 → **2278**；待核 1477 不变；未收 192 → **195**（词形变化词 139 → 142：felt / saw / ground）。
+- verified 等级构成：二级 411 → **407**，一级＋二级 385 → **386**，一级＋三级 8 不变（移出 felt、ground 为二级、saw 为一级＋二级；match、prize 重建后牛津栏明确对齐，各由二级升一级＋二级）。
+- ETYM_DB 复用/新核：489 / 315 → **487 / 314**（felt、saw 原属复用，ground 属新核）。
+- 同步修订：第一节总账、第三节未收清单、第四节 pen / match / lead / slough 四条（原引文系串档词条，已改写并指向本节）。
