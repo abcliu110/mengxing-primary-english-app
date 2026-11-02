@@ -21,12 +21,37 @@
 | `pos` / `meaning` | 词性、中文义（经裁定文本） |
 | `theme_macro` / `theme_sub` | 课标主题 / 子主题 |
 | `freq_rank` | 词频排名 |
-| `sight_type` | 可解码性（decodable / irregular） |
+| `sight_type` | 可解码性（decodable / irregular / na），口径见下节 |
 | `is_function_word` / `has_polysemy` | 功能词、多义标记 |
 | `dolch` / `kebiao_level` | Dolch 分级、课标级别（有则填） |
 | `verb_form_of` | 变形条目指回原形词（原形条目为空） |
 | `aliases` | 复合词头（如 `be / am / is / are`、`I / me / my / mine`、代词与疑问词组）的可查别名；归一匹配按 `word` 或 `aliases` 任一命中即算在库（2026-11-01 整理时补齐 14 条复合词头） |
 | `gpc_patterns` / `morphemes` / `law_refs` | **挂接字段**：入模时由规律层回填——该词命中的 GPC 拼法、词根词缀拆分、所属规律条目编号。建库时留空 |
+
+### `sight_type` 判定口径（2026-11-02 定版）
+
+取值三类，不许留空（空 = 未判定，PHONICS_SOP 步 2 验收口径为「未判定 = 0」）：
+
+- **decodable**：全词字母（组）均可由已立模式 + 位置/弱读规则对位 `phonetic_gb` 平铺拼出。
+- **irregular**：至少一段只能靠未立模式或例外对应成立（心词）。
+- **na**：不适用单字拼读判定，子类记在判定依据（basis）前缀：`na:verb_form`（动词变形条目）、`na:phrase`（短语/多词条目）、`na:proper`（专名/缩略，含月份、星期、称谓）。
+
+判定顺序与优先级：
+
+1. `phonics_wordsets.json` 的 `heart_adjudication` 有裁定者从其裁定（decodable→decodable；heart / mixed→irregular）——多源冲突以心词裁定为准，优先级最高。
+2. `verb_form_of` 条目一律 `na:verb_form`：判定归原形，本条不单独判定（含 said / could / would / does / done 等高频变形，其教学处理由心词屋数据承担，不走本字段）。
+3. 短语条目 `na:phrase`、专名/缩略条目 `na:proper`。
+4. 其余单字词按平铺检验：以模式登记表（wordsets 169 + hitching 144）为界逐段对位；全段有据 = decodable，任一段无据 = irregular。检验器对已判 GK+ADD 逐词层（984 条）校准一致率 95.4%，残余不一致为已登记的存量异常（见下）。
+
+计入「已立」的范围（由已判集反推，非新立规则）：face 家族常读（ea 两读、oo 两读、ou 四读及多音节 ou→/ʌ/、ear 四读等）；弱读与位置规则（非重读元音弱化、成音节辅音等价与元音脱落、词尾 -er/-or/-ar 弱读 /ə/、w 后 or→/ɜː/、元音前 r 分读、yod 合音与滑音、-ed 三读、双写单读、复合词尾 one 读 /wʌn/ 等）；已裁模式 o→/ʌ/、词尾 -er→/ə/ 正常计入，但 o→/ʌ/ 处于重读 VCe 框架时为例外（done / once / glove，从 one / become 先例）。
+
+不计入（靠其成立即 irregular）：静音字母组合 kn / gn / wr / -mb / -mn / ps- / pn- / pt-（先例 knight / lamb / hymn 等无一判 decodable）；例外读法 ei→/iː/、ie→/e/、ch→/ʃ/、ea→/eɪ/、oo→/ʌ/、单音节 ou→/ʌ/、o→/uː/（do / to / move 家族，hitching 自名 o_uu_irreg）、基词口径的 eigh→/eɪ/（eight / weight 判 irregular；数词派生 eigh 居词中从 eighteen 先例，eighty / eighth 判 decodable——存量张力，登记于销项 uncertain 清单）；未立项字素（uy、ui→/ɪ/、eye、aigh、augh、gh→/ɡ/ 等登记缺口——以登记表为界判定，补立后可翻判）。
+
+复合词按部分判定：部分属元音位置类例外者从 watermelon 先例宽免（waterfall、crosswalk 等判 decodable）；部分含静音字母组合者不宽免（handwriting、climber 判 irregular）。
+
+存量分层注记：口径基准为 GK + ADD 逐词判定层；V6 500 条为整批默认 decodable（未经逐词裁定，含 of / who / people 等已知不合者），不在本口径追认范围。已判集内部个别不一致（如 giggle 词库 irregular 与心词裁定 decodable 并存、ancient 与 efficient 的 ci→/ʃ/ 取舍相反）按心词优先与登记保留原则维持原值，不在本口径处理范围。
+
+856 条空值销项（2026-11-02）：侧表 `~/workspace/sight_fix/verdicts.json` 逐条给值与 basis——decodable 735 / irregular 60 / na 61（verb_form 28 + phrase 8 + proper 25）；两面性条目另列 `~/workspace/sight_fix/uncertain.json`（含倾向与翻判条件）。合并后全库预期分布 decodable 2,113 / irregular 178 / na 61，未判定 = 0。`wordbank.json` 本体由合并车道落盘，本节与侧表为判定依据。
 
 ## 依赖规则（硬规则）
 
