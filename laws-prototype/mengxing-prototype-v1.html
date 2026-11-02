@@ -624,6 +624,11 @@ body.adult .adult{display:block}
    <div class="sub">学过的词形、病例、站内题按遗忘曲线回来找你：4 小时 → 12 小时 → 24 小时 → 6 天 → 12 天 → 48 天 → 96 天 → 半年（Memrise 间隔阶梯）；答错回炉重练。</div>
    <div id="srsPanelBody"></div>
   </div>
+  <div class="panel">
+   <h3>🧭 先诊后学（诊断入口）</h3>
+   <div class="sub">先做 14 道小题摸底：时态看法、词形、句型、情态、多义五面各测一点，再按弱项推荐先去哪儿学。题目全部从本区已有数据里抽，不另编题库（Murphy Study Guide / Swan 诊断测的做法）。</div>
+   <div id="diagPanelBody"></div>
+  </div>
 
   <div class="panel hero">
    <h3>⏱️ 时态实验室（场景机）</h3>
@@ -1260,6 +1265,8 @@ body.adult .adult{display:block}
   <div id="dialOut"></div>
   <h4>全盘一览（点格子直达）</h4>
   <div style="overflow:auto"><table id="dialGrid"></table></div>
+  <h4>🗂 小词原型图总览（一词一张核心图）</h4>
+  <div id="partOvBody"></div>
  </div>
 </section>
 
@@ -1305,6 +1312,10 @@ body.adult .adult{display:block}
   <div class="bigsent" id="nSent"></div>
   <div class="adult" id="nSrc"></div>
  </div>
+ <div class="card">
+  <h2>📈 我的生命线</h2>
+  <div id="lifeBody"></div>
+ </div>
 </section>
 
 <section class="view vb" id="v-verb-hosp">
@@ -1320,6 +1331,7 @@ body.adult .adult{display:block}
 <section class="view vb" id="v-verb-patterns"> <button class="back" onclick="VB.goHome()">← 返回动词专区</button> <div class="card" id="patBody"></div> </section>
 <section class="view vb" id="v-verb-review"> <button class="back" onclick="VB.goHome()">← 返回动词专区</button> <div class="card" id="reviewBody"></div> </section>
 <section class="view vb" id="v-verb-report"> <button class="back" onclick="VB.goHome()">← 返回动词专区</button> <div class="card" id="reportBody"></div> </section>
+<section class="view vb" id="v-verb-diag"> <button class="back" onclick="VB.goHome()">← 返回动词专区</button> <div class="card" id="diagBody"></div> </section>
 
 <!-- ============ 时态实验室（tn 模块） ============ -->
 
@@ -3431,7 +3443,17 @@ if (rg) { var el = document.getElementById('ph-reg'); el.hidden =!el.hidden; ret
 @media(max-width:640px){
 .vb .tl .ev{font-size:19px}.vb .bigsent{font-size:18px}
 }
-
+.vb .tip{display:none;background:#e8f0fe;border-left:4px solid #31449c;border-radius:8px;padding:8px 12px;font-size:14px;line-height:1.6;margin-top:8px}
+.vb .taCols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:8px}
+.vb .taCol{min-width:0}
+.vb .taCol>h4:first-child{margin-top:2px}
+@media(max-width:860px){.vb .taCols{grid-template-columns:1fr}}
+.vb .tlSym{display:inline-block;min-width:26px;text-align:center;font-weight:700;color:#31449c;background:#eef2ff;border-radius:6px;padding:0 4px}
+.vb .partGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:10px;margin-top:8px}
+.vb .partCell{background:#f8f9ff;border-radius:12px;padding:10px 8px;text-align:center}
+.vb .diagbar{height:14px;background:#eef2f7;border-radius:7px;overflow:hidden;margin:4px 0 2px}
+.vb .diagbar>i{display:block;height:100%;background:linear-gradient(90deg,#f6c453,#57a773)}
+.vb .lifelineWrap{overflow-x:auto}
 </style>
 <script>
 /* ===== 介词模块（pk 作用域）脚本：原型全部逻辑包进 IIFE，仅 window.PK 暴露内联处理器 ===== */
@@ -4792,7 +4814,7 @@ const $=id=>document.getElementById(id);
 const TA_BY={}; DATA.TA.forEach(u=>TA_BY[u.id]=u);
 const POLY_BY={}; DATA.POLY.forEach(p=>POLY_BY[p.w]=p);
 let homeScroll=0;
-const VBMAP={'v-hats':'verb-hats','v-tense':'tense','v-ta':'verb-ta','v-wardrobe':'verb-ward','v-az':'verb-az','v-family':'verb-family','v-poly':'verb-poly','v-fan':'verb-fan','v-dial':'verb-dial','v-body':'verb-body','v-hospital':'verb-hosp','v-credits':'verb-credits','v-modal':'verb-modal','v-patterns':'verb-patterns','v-review':'verb-review','v-report':'verb-report'};let vbCur='v-home';
+const VBMAP={'v-hats':'verb-hats','v-tense':'tense','v-ta':'verb-ta','v-wardrobe':'verb-ward','v-az':'verb-az','v-family':'verb-family','v-poly':'verb-poly','v-fan':'verb-fan','v-dial':'verb-dial','v-body':'verb-body','v-hospital':'verb-hosp','v-credits':'verb-credits','v-modal':'verb-modal','v-patterns':'verb-patterns','v-review':'verb-review','v-report':'verb-report','v-diag':'verb-diag'};let vbCur='v-home';
 function show(id){
   if(id==='v-home'){ vbCur='v-home'; window.show('verb'); requestAnimationFrame(function(){window.scrollTo(0,homeScroll);}); return; }
   if(vbCur==='v-home') homeScroll=window.scrollY||0;
@@ -4857,13 +4879,13 @@ function renderMachine(){
   // timeline
   const POS={'past':17,'now':50,'fut':83};
   const bar=$('tlBar'),arr=$('tlArrow'),evx=$('tlEv'),rf=$('tlR');
-  bar.style.display='none'; arr.style.display='none'; rf.style.display='none'; evx.style.display='none';
-  if(M.aspect==='simple'){ evx.style.display='block'; evx.style.left=POS[M.time]+'%'; evx.textContent='✕'; }
-  else if(M.aspect==='cont'){ bar.style.display='block'; bar.style.left=POS[M.time]+'%'; bar.style.width='21%'; }
+  bar.style.display='none'; arr.style.display='none'; rf.style.display='none'; evx.style.display='none'; bar.textContent='';
+  if(M.aspect==='simple'){ evx.style.display='block'; evx.style.left=POS[M.time]+'%'; evx.textContent='×'; }
+  else if(M.aspect==='cont'){ bar.style.display='block'; bar.style.left=POS[M.time]+'%'; bar.style.width='21%'; bar.textContent='〰〰〰〰〰〰'; bar.title='正在进行（波浪段）'; }
   else {
     const spans={'now':[30,50],'past':[12,33],'fut':[70,92]}; const sp=spans[M.time];
-    if(M.aspect==='perf'){ evx.style.display='block'; evx.style.left=sp[0]+'%'; evx.textContent='✕'; }
-    else { bar.style.display='block'; bar.style.left=((sp[0]+sp[1])/2)+'%'; bar.style.width=(sp[1]-sp[0])+'%'; }
+    if(M.aspect==='perf'){ evx.style.display='block'; evx.style.left=sp[0]+'%'; evx.textContent='×'; }
+    else { bar.style.display='block'; bar.style.left=((sp[0]+sp[1])/2)+'%'; bar.style.width=(sp[1]-sp[0])+'%'; bar.textContent='▭'; bar.title='持续一段时间（长条）'; }
     arr.style.display='block'; arr.style.left=sp[0]+'%'; arr.style.width=(sp[1]-sp[0])+'%';
     rf.style.display='block'; rf.style.left=sp[1]+'%'; rf.textContent='⚑ 参考点'+(M.time==='now'?'＝现在':'');
   }
@@ -4897,16 +4919,21 @@ function vbLoopTouchPreset(tid){ loopMark(tid,'machine'); }
 function openTA(id){
   const u=TA_BY[id]; const pr=DATA.PRESETS[id];
   let h='<h2>'+u.id+' · '+esc(u.kid)+'</h2><div class="adult">'+esc(u.head)+'</div>';
-  try{ if(u.id===loopLoad().cur) h+='<div class="sent" id="loopReadTip" style="background:#e6f2e4">🎤 今日一课「读」环在本站：点下面任意例句旁的 🎤，大声读出声，读完这一环就打勾。</div>'; }catch(e){}
   if(pr){ h+='<div class="tagrow"><button class="chip gold" onclick="VB.openMachinePreset(\''+pr[0]+'\',\''+pr[1]+'\',\''+pr[2]+'\')">⏰ 在时间机器上打开本条预设 →</button></div>'; if(DATA.PRESET_NOTES[id]) h+='<div class="adult">'+esc(DATA.PRESET_NOTES[id])+'</div>'; }
-  h+='<h4>讲解（机制）</h4>'+u.beats.map(b=>'<p class="kid">'+esc(b.t)+'</p>'+(b.a?'<p class="adult">'+esc(b.a)+'</p>':'')).join('');
-  h+='<h4>例句（模型原例）</h4>'+u.ex.map((x,xi)=>'<div class="sent">'+esc(x.s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(x.s)+'">🔊</button> <button class="say" onclick="VB.readAloud(this)" data-t="'+q(x.s)+'" data-ta="'+u.id+'" data-fb="readFb-ta-'+u.id+'-'+xi+'">🎤 跟读</button><span id="readFb-ta-'+u.id+'-'+xi+'"></span>'+(x.n?'<div class="adult">'+esc(x.n)+'</div>':'')+'</div>').join('');
-  if(u.err.length){ h+='<h4>病例（逐字登记）</h4>'+u.err.map(c=>'<div class="sent"><span class="err">✗ '+esc(c.wrong)+'</span><br><span class="ok">✓ '+esc(c.right)+'</span><div class="adult">错型：'+esc(c.type)+' · 出处：模型病例登记</div></div>').join(''); }
-  else h+='<div class="tagrow"><span class="badge b-type">病例待补（模型未登记逐字病例，本站不编）</span></div>';
-  if(!u.quiz||!u.quiz.length) h+='<div class="tagrow"><span class="badge b-type">练习待补（TA 条 quiz 字段为空，本站不编题）</span></div>'; else h+=taQuizHTML(u);
-  if(u.prb&&u.prb.length) h+='<h4>理解探针（照出「以为懂了、其实没懂」）</h4>'+u.prb.map(function(p){return '<div class="sent"><b>🔍 '+esc(p.title)+'</b><p style="margin:6px 0;line-height:1.7">'+esc(p.task)+'</p><div class="adult">预判误读：'+esc(p.mis)+'<br>判读（教师）：命中——'+esc(p.rubric.hit)+'；部分——'+esc(p.rubric.partial)+'；通过——'+esc(p.rubric.pass)+'<br>回补：'+esc(p.remedy)+'</div></div>'}).join('');
+  let teach='';
+  try{ if(u.id===loopLoad().cur) teach+='<div class="sent" id="loopReadTip" style="background:#e6f2e4">🎤 今日一课「读」环在本站：点下面任意例句旁的 🎤，大声读出声，读完这一环就打勾。</div>'; }catch(e){}
+  teach+=tlLegendHTML();
+  teach+='<h4>讲解（机制）</h4>'+u.beats.map(b=>'<p class="kid">'+esc(b.t)+'</p>'+(b.a?'<p class="adult">'+esc(b.a)+'</p>':'')).join('');
+  teach+='<h4>例句（模型原例）</h4>'+u.ex.map((x,xi)=>'<div class="sent">'+esc(x.s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(x.s)+'">🔊</button> <button class="say" onclick="VB.readAloud(this)" data-t="'+q(x.s)+'" data-ta="'+u.id+'" data-fb="readFb-ta-'+u.id+'-'+xi+'">🎤 跟读</button><span id="readFb-ta-'+u.id+'-'+xi+'"></span>'+(x.n?'<div class="adult">'+esc(x.n)+'</div>':'')+'</div>').join('');
+  let prac='';
+  if(u.err.length){ prac+='<h4>病例（逐字登记）</h4>'+u.err.map(c=>'<div class="sent"><span class="err">✗ '+esc(c.wrong)+'</span><br><span class="ok">✓ '+esc(c.right)+'</span><div class="adult">错型：'+esc(c.type)+' · 出处：模型病例登记</div></div>').join(''); }
+  else prac+='<div class="tagrow"><span class="badge b-type">病例待补（模型未登记逐字病例，本站不编）</span></div>';
+  if(!u.quiz||!u.quiz.length) prac+='<div class="tagrow"><span class="badge b-type">练习待补（TA 条 quiz 字段为空，本站不编题）</span></div>'; else prac+=taQuizHTML(u);
+  if(u.prb&&u.prb.length) prac+='<h4>理解探针（照出「以为懂了、其实没懂」）</h4>'+u.prb.map(function(p){return '<div class="sent"><b>🔍 '+esc(p.title)+'</b><p style="margin:6px 0;line-height:1.7">'+esc(p.task)+'</p><div class="adult">预判误读：'+esc(p.mis)+'<br>判读（教师）：命中——'+esc(p.rubric.hit)+'；部分——'+esc(p.rubric.partial)+'；通过——'+esc(p.rubric.pass)+'<br>回补：'+esc(p.remedy)+'</div></div>'}).join('');
+  h+='<div class="taCols"><div class="taCol taTeach">'+teach+'</div><div class="taCol taPrac">'+prac+'</div></div>';
   if(u.pending&&u.pending.length) h+='<details><summary>成人层 · 待补与评审注记（模型原文）</summary><div class="adult">'+u.pending.map(esc).join('<br>')+'</div></details>';
   if(u.rel&&u.rel.length) h+='<h4>亲戚条</h4><div class="chips">'+u.rel.map(r=>{ const rid=(typeof r==='string')?r:r.id; const lab=rid+((typeof r==='object'&&r.rel)?' · '+r.rel:''); return TA_BY[rid]?'<button class="chip" onclick="VB.openTA(\''+rid+'\')">'+esc(lab)+'</button>':'<span class="chip" style="cursor:default">'+esc(lab)+'</span>'; }).join('')+'</div>';
+  h+='<div class="adult" style="margin-top:10px">版式借鉴 Murphy《English Grammar in Use》的对页结构：左讲右练——左栏讲机制与例句，右栏立刻练（病例 + 站内练习 + 理解探针），不跳页。</div>';
   $('taBody').innerHTML=h; show('v-ta'); vbLoopTouch(id);
 }
 
@@ -4952,6 +4979,7 @@ function openFam(fid){
   h+='<div class="adult">划分口径：'+esc(f.how)+'</div>';
   h+='<table><tr><th>原形</th><th>过去式</th><th>过去分词</th></tr>'+f.members.map(m=>{const F=DATA.FORMS[m]; if(!F) return '<tr><td>'+esc(m)+'</td><td colspan="2" class="adult">情态/特殊词条，见词库附注</td></tr>'; return '<tr><td><button class="chip" onclick="VB.openWard(\''+m+'\')">'+esc(m)+'</button></td><td>'+(F.past.f?esc(F.past.f)+' '+srcBadge(F.past.src):'未单列')+'</td><td>'+(F.part.f?esc(F.part.f)+' '+srcBadge(F.part.src):'<span class="badge b-none">词库未单列</span>')+'</td></tr>';}).join('')+'</table>';
   h+='<div class="adult" style="margin-top:10px">形式已全量补齐：每个成员的过去式/过去分词都已在衣橱登记（词库条目或 OALD 词形表核实），本表与衣橱同源。</div>';
+  h+=famOverviewHTML();
   $('famBody').innerHTML=h; show('v-family');
 }
 
@@ -4961,15 +4989,17 @@ function predHTML(word){
   return '<h4>🎯 先猜：新句里的 '+esc(word)+' 是什么意思？</h4><div class="adult">只展示网络记不住（Akamatsu 2010 实证警告）——先猜，再揭晓它挂在链子的哪一环。</div><div id="pred-'+word+'">'+items.map((it,i)=>{
     return (it.teach?'<div class="sent">📖 先学一例：<b>'+esc(it.teach.s)+'</b> <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(it.teach.s)+'">🔊</button><div class="adult">出处：'+esc(it.teach.src)+'</div></div>':'')+'<div class="sent"><b>'+esc(it.s)+'</b> <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(it.s)+'">🔊</button>'
     + it.opts.map((o,j)=>'<button class="opt" onclick="VB.predPick(this,\''+word+'\','+i+','+j+')">'+esc(o)+'</button>').join('')
-    + '<div class="rev" id="rev-'+word+'-'+i+'">'+esc(it.reveal)+' <span class="src">出处：'+esc(it.src)+'</span></div></div>';
+    + '<div class="rev" id="rev-'+word+'-'+i+'">'+esc(it.reveal)+' <span class="src">出处：'+esc(it.src)+'</span></div><div class="tip" id="ptip-'+word+'-'+i+'"></div></div>';
   }).join('')+'</div><div class="score" id="score-'+word+'">已答对 0 / '+items.length+'</div>';
 }
 const predScore={};
 function predPick(btn,word,i,j){
   const it=DATA.PRED[word][i];
   if(j===it.gold){ btn.classList.add('right'); $('rev-'+word+'-'+i).style.display='block'; predScore[word]=(predScore[word]||new Set()); predScore[word].add(i); $('score-'+word).textContent='已答对 '+predScore[word].size+' / '+DATA.PRED[word].length; }
-  else { btn.classList.add('wrong'); setTimeout(()=>btn.classList.remove('wrong'),700); }
+  else { btn.classList.add('wrong'); setTimeout(()=>btn.classList.remove('wrong'),700); vbShowTip('ptip-'+word+'-'+i, predTip(word,i,j)); }
 }
+
+
 function netHTML(p){
   const net=p.net; if(!net) return '';
   let h='';
@@ -5014,6 +5044,7 @@ function openPoly(w){
   if(p.mined&&p.mined.length){ h+='<h4>模型例句（先自己判断是哪条义项，再对照上表）</h4>'+p.mined.map(m=>'<div class="sent">'+esc(m.s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(m.s)+'">🔊</button> <span class="src">出自 '+esc(m.src)+'</span></div>').join(''); }
   else if(!flag&&!p.net) h+='<div class="tagrow"><span class="badge b-type">例句待补：模型中暂无该词的已登记例句，本页不编句</span></div>';
   const F=DATA.FORMS[w]; if(F) h+='<div class="tagrow"><button class="chip" onclick="VB.openWard(\''+w+'\')">👕 看它的五形式衣橱 →</button></div>';
+  h+=polyOverviewHTML();
   $('polyBody').innerHTML=h; show('v-poly');
 }
 
@@ -5027,15 +5058,17 @@ function openFan(part){
   if(part==='out'){
     h='<h2>🌀 小词扇 · out</h2>';
     h+='<div class="sent" style="background:#eef7ee"><b>已升格为引证：</b>out 的义项链出自 Oxford Advanced Learner\'s Dictionary 副词词条 out_1——30 条义项逐字登记，每条带例句与出处（数据文件 phrasal_combos.json）。核心图式一句话仍出自 VB-10（Bolinger 小品词口径）；页尾「先猜」是调研登记模式，与义项链分开标注。</div>';
+    h+=partSceneHTML('out');
     h+='<div class="mini"><h5>核心（一句话）</h5><p class="kid">'+esc(DATA.VB10.kid)+'</p></div>';
-    h+='<h4>扇面（OALD 义项链 · 逐条引证）</h4>'+DATA.OUTSENSES.map(s=>'<div class="mini" style="margin-bottom:9px"><h5>'+s.no+'. '+esc(s.meaning_cn)+'</h5><div class="adult">'+esc(s.gloss_en)+'</div>'+(s.example?'<div class="sent">'+esc(s.example)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(s.example)+'">🔊</button></div>':'')+'<div class="adult">出处：'+esc(s.source)+'</div></div>').join('');
+    h+='<h4>扇面（OALD 义项链 · 逐条引证）</h4>'+DATA.OUTSENSES.map(s=>'<div class="mini" style="margin-bottom:9px"><h5>'+s.no+'. '+esc(s.meaning_cn)+'</h5><div class="adult">'+esc(s.gloss_en)+'</div>'+(s.example?'<div class="sent">'+esc(s.example)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(s.example)+'">🔊</button></div>':'')+(OUT_WHY[s.no]?'<div class="adult">← 引申：'+esc(OUT_WHY[s.no])+'</div>':'')+'<div class="adult">出处：'+esc(s.source)+'</div></div>').join('');
     h+='<h4>🎯 先猜（调研登记模式）</h4>'+OUT_PRED.map((it,i)=>'<div class="sent"><b>'+esc(it.u)+'</b>'+it.opts.map((o,j)=>'<button class="opt" onclick="VB.outPick(this,'+i+','+j+')">'+esc(o)+'</button>').join('')+'<div class="rev" id="outrev-'+i+'">'+esc(it.reveal)+' <span class="src">出处：动词调研 · Rudzka-Ostyn / ELW 模式表</span></div></div>').join('');
   } else {
     const f=DATA.FANS[part];
     h='<h2>🌀 小词扇 · '+esc(part)+'</h2>';
+    h+=partSceneHTML(part);
     h+='<div class="mini"><h5>核心图</h5><p class="kid">'+esc(f.core)+'</p>'+(f.core_ex?'<div class="sent">'+esc(f.core_ex)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(f.core_ex)+'">🔊</button></div>':'')+(f.core_scene&&f.core_scene!==f.core_ex?'<div class="sent">'+esc(f.core_scene)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(f.core_scene)+'">🔊</button> <span class="src">'+esc(f.core_scene_note||'')+'</span></div>':'')+'</div>';
     if(f.verdict) h+='<details><summary>成人层 · 卷宗裁决</summary><div class="adult">'+esc(typeof f.verdict==='string'?f.verdict:JSON.stringify(f.verdict))+'</div></details>';
-    h+='<h4>扇面（一条核心图，长出几支）</h4>'+f.chain.map(n=>'<div class="mini" style="margin-bottom:9px"><h5>'+esc(n.sense)+(n.law?' <span class="src">'+esc(n.law)+'</span>':'')+'</h5>'+(extText(n.ext)?'<p class="kid" style="font-size:14.5px">'+esc(extText(n.ext))+'</p>':'')+(n.examples&&n.examples.length?n.examples.map(s=>'<div class="sent">'+esc(s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(s)+'">🔊</button></div>').join(''):'<span class="badge b-type">例句待补（卷宗此支未登记例句）</span>')+'</div>').join('');
+    h+='<h4>扇面（一条核心图，长出几支）</h4>'+f.chain.map((n,ni)=>'<div class="mini" style="margin-bottom:9px"><h5>'+esc(n.sense)+(n.law?' <span class="src">'+esc(n.law)+'</span>':'')+'</h5>'+(extText(n.ext)?'<p class="kid" style="font-size:14.5px">'+esc(extText(n.ext))+'</p>':'')+(n.examples&&n.examples.length?n.examples.map(s=>'<div class="sent">'+esc(s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(s)+'">🔊</button></div>').join(''):'<span class="badge b-type">例句待补（卷宗此支未登记例句）</span>')+(FAN_WHY[part]&&FAN_WHY[part][ni]?'<div class="adult">← 引申：'+esc(FAN_WHY[part][ni])+'</div>':'')+'</div>').join('');
     if(f.guess&&f.guess.length){
       h+='<h4>🎯 猜一猜（先猜，再揭晓推导路径）</h4>'+f.guess.map((g,i)=>'<div class="sent"><b>'+esc(g.u)+'</b> <button class="chip" onclick="document.getElementById(\'grev-'+part+'-'+i+'\').style.display=\'block\'">揭晓</button><div class="rev" id="grev-'+part+'-'+i+'">'+(g.path?esc(g.path):'推导路径卷宗未展开（待补）；义项以用法标注为准。')+'</div></div>').join('');
     }
@@ -5085,6 +5118,7 @@ function openHosp(id){
   h+='<div class="sent" style="background:#e8f0fe">'+esc(x.def)+'</div>';
   h+=x.cases.map(c=>'<div class="sent"><span class="err">✗ '+esc(c.wrong)+'</span> <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(c.right)+'">🔊 对句</button><br><span class="ok">✓ '+esc(c.right)+'</span><div class="adult">学段：'+esc(c.stage)+(c.locator?'<br>定位：'+esc(c.locator):'')+'<br>出处：'+esc(c.src)+(c.note?'<br>'+esc(c.note):'')+'</div></div>').join('');
   h+='<div class="tagrow"><button class="chip gold" onclick="VB.openMachinePreset(\''+x.preset[0]+'\',\''+x.preset[1]+'\',\''+x.preset[2]+'\')">⏰ 去时间机器上看正形 →</button> <button class="chip" onclick="VB.openTA(\''+x.mech+'\')">📖 '+x.mech+' 原讲解 →</button></div>';
+  h+=hospOverviewHTML();
   $('hospBody').innerHTML=h; show('v-hospital');
 }
 
@@ -5105,6 +5139,8 @@ function init(){
   $('sceneChips').innerHTML=DATA.SCENES.map(s=>'<button class="chip" onclick="VB.setScene(\''+s[0]+'\')">'+esc(s[1])+'</button>').join('');
   $('credBody').innerHTML=DATA.CREDITS.map(c=>'<div class="mini" style="margin-bottom:9px"><h5>'+esc(c[0])+'</h5><div class="adult">师从：'+esc(c[1])+'<br>'+esc(c[2])+'</div></div>').join('');
   renderDial(); renderNarr();
+  try{ renderPartOv(); }catch(e){}
+  try{ renderLife(); }catch(e){}
 }
 
 /* ================= TA 站内练习（L2 回灌 ta_exercises.json） ================= */
@@ -5134,7 +5170,7 @@ function taQuizHTML(u){
     } else {
       b+='<button class="chip" onclick="VB.taReveal(\''+u.id+'\','+i+')">想好了？看改正与讲解</button>';
     }
-    b+='<div class="rev" id="tqr-'+u.id+'-'+i+'">'+taRevHTML(it)+'</div></div>';
+    b+='<div class="rev" id="tqr-'+u.id+'-'+i+'">'+taRevHTML(it)+'</div><div class="tip" id="tqt-'+u.id+'-'+i+'"></div></div>';
     return b;
   }).join('');
   h+='<div class="score" id="tqscore-'+u.id+'">已答对 0 / '+items.length+'</div>';
@@ -5151,7 +5187,7 @@ function taDone(uid,i){
 function taPick(btn,uid,i,j){
   const it=TA_BY[uid].quiz[i]; if(!it||!it.options) return;
   if(it.options[j]===it.answer){ btn.classList.add('right'); const r=$('tqr-'+uid+'-'+i); if(r) r.style.display='block'; taDone(uid,i); }
-  else { btn.classList.add('wrong'); setTimeout(()=>btn.classList.remove('wrong'),700); vbLogQuiz(uid,false); vbSrsTaMiss(uid,i); }
+  else { btn.classList.add('wrong'); setTimeout(()=>btn.classList.remove('wrong'),700); vbLogQuiz(uid,false); vbSrsTaMiss(uid,i); vbShowTip('tqt-'+uid+'-'+i, taTip(uid,i,j)); }
 }
 function taReveal(uid,i){ const r=$('tqr-'+uid+'-'+i); if(r) r.style.display='block'; vbLoopQuiz(uid,i); }
 function taBuildTap(uid,i,j){
@@ -5528,7 +5564,7 @@ function renderModal(){
   }
   h += '<h4>🧩 分组看看（按工作分工）</h4>' + MODAL.groups.map(g => '<div class="sent"><b>' + esc(g.name) + '</b>' + g.items.map(it => '<div style="margin-top:5px"><b>' + esc(it[0]) + '</b> —— ' + esc(it[1]) + '</div>').join('') + '</div>').join('');
   h += '<h4>🎯 光谱定位练（按提示把词放回尺子上）</h4>' + MODAL.zone.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div class="adult">提示：' + esc(it.hint) + '</div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalZonePick(this,' + i + ',\'' + q(o) + '\')">' + esc(o) + '</button>').join('') + '<div class="rev" id="mzone-' + i + '">' + esc(it.why) + '</div></div>').join('');
-  h += '<h4>站内小测 · ' + MODAL.quiz.length + ' 题</h4>' + MODAL.quiz.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalQuizPick(this,' + i + ',\'' + q(o) + '\')">' + esc(o) + '</button>').join('') + '</div><div class="rev" id="mquiz-' + i + '">' + esc(it.why) + '</div></div>').join('')
+  h += '<h4>站内小测 · ' + MODAL.quiz.length + ' 题</h4>' + MODAL.quiz.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalQuizPick(this,' + i + ',\'' + q(o) + '\')">' + esc(o) + '</button>').join('') + '</div><div class="rev" id="mquiz-' + i + '">' + esc(it.why) + '</div><div class="tip" id="mqtip-' + i + '"></div></div>').join('')
     + '<div class="score" id="mquiz-score">已答对 ' + MODS.quizDone.size + ' / ' + MODAL.quiz.length + '</div>';
   h += '<div class="adult" style="margin-top:10px">形式借鉴：确定性光谱与总表结构借鉴 GrammarBank 情态总表；词卡「核心义 + 例句 + 易错点」沿用本区病例页口径。例句为本区新编教学例。</div>';
   body.innerHTML = h;
@@ -5541,8 +5577,9 @@ function modalZonePick(btn, i, o){
 function modalQuizPick(btn, i, o){
   const it = MODAL.quiz[i]; if(!it) return;
   if(o === it.ans){ btn.classList.add('right'); const r = $('mquiz-' + i); if(r) r.style.display = 'block'; if(!MODS.quizDone.has(i)){ MODS.quizDone.add(i); const sc = $('mquiz-score'); if(sc) sc.textContent = '已答对 ' + MODS.quizDone.size + ' / ' + MODAL.quiz.length; } }
-  else { btn.classList.add('wrong'); setTimeout(() => btn.classList.remove('wrong'), 700); }
+  else { btn.classList.add('wrong'); setTimeout(() => btn.classList.remove('wrong'), 700); vbShowTip('mqtip-' + i, modalTip(i, o)); }
 }
+
 
 /* ================= 本波新增 2：动词句型四分表 ================= */
 const PATTERNS = {
@@ -5836,7 +5873,7 @@ function renderSrsPanel(){
   el.innerHTML = '<div class="sent">现在到期 <b>' + due + '</b> 题 · 还可新学 <b>' + nw + '</b> 题（词形 / 家族 / 病例 / 站内题自动出题）</div>'
     + '<div class="chips"><button class="chip gold" onclick="VB.openReview()">⏰ 开始今日复习 →</button>' + (due === 0 ? '<button class="chip" onclick="VB.srsEarly()">提前练新题</button>' : '') + '</div>';
 }
-function renderVBHome(){ try{ renderLoopPanel(); }catch(e){} try{ renderSrsPanel(); }catch(e){} }
+function renderVBHome(){ try{ renderLoopPanel(); }catch(e){} try{ renderSrsPanel(); }catch(e){} try{ renderDiagPanel(); }catch(e){} }
 
 /* ================= 本波新增 4b：跟读 ================= */
 function vbNormSent(s){ return String(s || '').toLowerCase().replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim(); }
@@ -5949,9 +5986,503 @@ function renderReport(){
     return '<div style="margin-top:4px">' + ta + '：课环 ' + n + ' / 5' + (n === 5 ? ' 🎉' : '') + '（' + LOOP_STEPS.map(st => (d[st[0]] ? '✓' : '·') + st[1].split(' ')[1]).join(' ') + '）</div>';
   }).join('');
   h += '<div class="sent"><b>🎓 今日一课进度</b>' + (loopRows || '<br>还没开始任何一站的课环。') + '</div>';
+    const lastDiag = (function(){ for(let i = log.length - 1; i >= 0; i--){ if(log[i].kind === 'diag') return log[i]; } return null; })();
+  if(lastDiag && lastDiag.faces){
+    const dt2 = new Date(lastDiag.ts);
+    const parts2 = DIAG_FACES.map(f => { const v = lastDiag.faces[f.id]; return f.name + ' ' + (v ? v[0] + '/' + v[1] : '—'); });
+    let weak = null, weakR = 2;
+    DIAG_FACES.forEach(f => { const v = lastDiag.faces[f.id]; if(v && v[1]){ const r = v[0] / v[1]; if(r < weakR){ weakR = r; weak = f; } } });
+    h += '<div class="sent"><b>🧭 最近一次诊断</b>（' + (dt2.getMonth() + 1) + '月' + dt2.getDate() + '日）<br>' + parts2.join(' · ') + (weak && weakR < 1 ? '<br>最弱一面：' + esc(weak.name) + '——诊断结果页里已给了补学入口。' : '<br>五面都不错 🎉') + '</div>';
+  }
   h += '<div class="sent"><b>⏰ 复习池状态</b><br>已入池 ' + Object.keys(srs.items).length + ' 条 · 现在到期 ' + dueN + ' 条 · 下次到期：' + (dues.length ? vbFmtDue(dues[0]) : '暂无') + '</div>';
   h += '<div class="chips"><button class="chip" onclick="VB.goHome()">← 回动词专区</button></div>';
   body.innerHTML = h;
+}
+
+
+/* ================= 本波（第二波）新增：时间轴符号 / 原型图 / 引申链 / 逐错项 tip / 总览 / 诊断 / 生命线 ================= */
+/* ---- 时间轴符号图例（TEFL 约定符号：一套符号走遍全区） ---- */
+function tlLegendHTML(){
+  return '<div class="sent tlLegend"><b>🗺 时间轴符号（和老师们画的是同一套）</b><div style="margin-top:5px;line-height:2"><span class="tlSym">×</span> 点事件（一瞬间发生）　<span class="tlSym">〰</span> 正在进行（钻进中间看）　<span class="tlSym">▭</span> 持续一段时间（有头有尾的一段）　<span class="tlSym">→</span> 先后顺序（箭头指向后发生的那件）　<span class="tlSym"><span style="color:#c0392b">▬</span><span style="color:#23733a">▬</span></span> 两件事同时（双色并行）</div><div class="adult">符号约定与 TEFL 教师圈的时间轴画法对齐：点事件用 ×、进行用波浪段、持续用长条、先后用箭头、同时用双色。</div></div>';
+}
+
+/* ---- 小词原型场景图（proto-scene）：一词一张字面图式图 ---- */
+const PARTCAP = {
+  out: '从里面出来，离开容器', up: '往上走，到高处', down: '从高处到低处', off: '脱开表面，接触断了',
+  on: '贴在面上，被面托着', in: '在容器里面', over: '从上方越过去', through: '穿过通道 / 介质',
+  into: '进到容器里面去', back: '回到原来的地方', away: '离开原地，越走越远'
+};
+function partSVG(p){
+  const defs = '<defs><marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0 0 L6 2.5 L0 5 z" fill="#23733a"/></marker></defs>';
+  const B = '<circle cx="X" cy="Y" r="7" fill="#e2703a"/>';
+  const ball = (x, y) => B.replace('X', x).replace('Y', y);
+  const ghost = (x, y) => '<circle cx="' + x + '" cy="' + y + '" r="6" fill="#e2703a" opacity=".3"/>';
+  const box = '<rect x="38" y="20" width="46" height="46" fill="#eef2ff" stroke="#31449c" stroke-width="2"/>';
+  const inner = {
+    'in': box + ball(61, 43),
+    'out': '<path d="M84 20 H38 V66 H84" fill="#eef2ff" stroke="#31449c" stroke-width="2"/>' + ghost(55, 43) + '<path d="M58 43 H90" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(99, 43),
+    'into': '<path d="M84 20 H38 M84 66 H38 M84 20 V66" stroke="#31449c" stroke-width="2" fill="none"/>' + ghost(15, 43) + '<path d="M24 43 H52" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(63, 43),
+    'up': '<line x1="12" y1="70" x2="108" y2="70" stroke="#99a" stroke-width="2"/><path d="M60 62 V36" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(60, 25),
+    'down': '<line x1="10" y1="22" x2="66" y2="22" stroke="#99a" stroke-width="2"/><path d="M64 26 Q84 34 88 50" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah)"/>' + ball(90, 59),
+    'off': '<rect x="18" y="54" width="84" height="7" fill="#dfe6ff" stroke="#31449c" stroke-width="2"/>' + ghost(46, 47) + '<path d="M58 42 L82 26" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(89, 22),
+    'on': '<rect x="18" y="54" width="84" height="7" fill="#dfe6ff" stroke="#31449c" stroke-width="2"/>' + ball(60, 47),
+    'over': '<rect x="54" y="36" width="12" height="34" fill="#dfe6ff" stroke="#31449c" stroke-width="2"/><path d="M16 62 Q60 2 104 62" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah)"/>' + ball(60, 16),
+    'through': '<rect x="42" y="14" width="10" height="56" fill="#dfe6ff" stroke="#31449c" stroke-width="2"/><rect x="68" y="14" width="10" height="56" fill="#dfe6ff" stroke="#31449c" stroke-width="2"/><path d="M12 42 H100" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(60, 42),
+    'back': '<circle cx="28" cy="58" r="4" fill="#31449c"/><line x1="28" y1="58" x2="86" y2="28" stroke="#99a" stroke-width="2" stroke-dasharray="4 4"/><path d="M88 26 Q62 58 40 55" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah)"/>' + ball(88, 26),
+    'away': '<circle cx="22" cy="60" r="4" fill="#31449c"/><line x1="22" y1="60" x2="84" y2="32" stroke="#99a" stroke-width="2" stroke-dasharray="4 4"/><path d="M50 46 L82 33" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(93, 29)
+  };
+  return '<svg viewBox="0 0 120 84" width="150" height="105" role="img" aria-label="' + esc(p) + ' 核心图">' + defs + (inner[p] || '') + '</svg>';
+}
+function partSceneHTML(p){
+  return '<div class="mini" style="margin:9px 0"><h5>🎯 核心图（原型场景）</h5><div style="text-align:center">' + partSVG(p) + '</div><div class="kid" style="font-size:14.5px;text-align:center">核心图：' + esc(PARTCAP[p] || '') + '——这个小词的每个意思，都是从这张图长出来的。</div><div class="adult" style="text-align:center">画法借鉴 Tyler &amp; Evans 的原型场景（proto-scene）与 Rudzka-Ostyn 的小词图式句；图为教学示意。</div></div>';
+}
+function renderPartOv(){
+  const el = $('partOvBody'); if(!el) return;
+  const order = ['out', 'up', 'down', 'off', 'on', 'in', 'over', 'through', 'into', 'back', 'away'];
+  el.innerHTML = '<div class="partGrid">' + order.map(p => '<div class="partCell">' + partSVG(p) + '<div><b>' + esc(p) + '</b></div><div class="adult">' + esc(PARTCAP[p] || '') + '</div>' + (['out', 'up', 'off', 'down'].indexOf(p) >= 0 ? '<button class="chip" onclick="VB.openFan(\'' + p + '\')">看它的扇页 →</button>' : '') + '</div>').join('') + '</div><div class="adult" style="margin-top:6px">一词一张核心图：先记住图，再看扇页里每个意思是怎么从图上长出来的（Tyler &amp; Evans 原型场景 / Rudzka-Ostyn 图式句）。</div>';
+}
+
+/* ---- 引申链标注（本波新拟讲解：从每个义项自身释义出发，一句话说清「怎么从核心图长出来」） ---- */
+const FAN_WHY = {
+  up: [
+    '倒水时水量变多、水位同时升高——「多」在经验里总是和「高」一起出现，于是「变多」借「向上」说。',
+    '向上走到头，就是「到底、满了」：站起来是身体升到顶，eat up 是吃到一点不剩。'
+  ],
+  off: [
+    '核心图原位：东西贴在表面上、然后脱开了——接触断掉的那一步。',
+    '灯与电源的「接触」断了，就是关：从「脱开表面」挪一步，管到电器的断开。'
+  ],
+  down: [
+    '核心图原位：沿斜面从高到低，全词的出发图。',
+    '路在脚下向前铺：沿着路往前走，方向感顺着「往前/往下」延出去——down the road。'
+  ]
+};
+const OUT_WHY = {
+  1: '核心图原位：人从屋子这个「容器」里出来——全词的出发图。',
+  2: '人离开了「家」这个容器 → 不在家，从核心图挪了一步。',
+  3: '已经在容器外面了：不在建筑里，就是「在外面」。',
+  4: '把污渍从布里弄出来、把人赶出去——还是「从里到外」。',
+  5: '冲出到边缘之外：离开原来的地盘，到了边外。',
+  6: '东西从来源「里面」出来：酒从瓶里出、话从嘴里出——来源被看成容器。',
+  7: '成品是从材料里「出来」的：铜是容器，雕像从里面成形。',
+  8: '牛奶从「有」的状态里出完了：容器空了，就是没有了。',
+  9: '车开出视线这个「范围」：离开一种状态，和离开一个地方同图。',
+  10: '离开比赛这个「圈子」：圈子是容器，出去就是不再参与。',
+  11: '从十个里说六个：集合是容器，数目从里面取。',
+  12: '声音从嘴里出来、传到外面人人听得见：read out loud。',
+  13: '船离开陆地这个「边」，到了远远的外面。',
+  14: '书从作者手里「出来」到大家面前：公开，就是从里到外给大家看。',
+  15: '问题是从好奇心这个「里面」生出来的：动机被看成源头。',
+  16: '书离开了图书馆这个容器，在别人手里——不在馆。',
+  17: '海水从岸上退到外面去：退潮，就是水离开了岸。',
+  18: '太阳从云层里出来：云是遮挡的「壳」，出来就看得见。',
+  19: '花苞打开、花从苞里出来：盛开，就是花瓣离开了包裹。',
+  20: '队员离开了比赛这个「圈子」，和 10 号同图。',
+  21: '没牌了就离开游戏这个圈子：出局，还是「出去」。',
+  22: '球落到场地这个「框」的外面：出界，就是出了边线。',
+  23: '猜测偏离了正确答案这个「点」：偏出去，就是错了。',
+  24: '这件事被排除在「可以做」的圈子之外：免谈。',
+  25: '黑色退出了「流行」的圈子：不在圈内，就是过时。',
+  26: '火苗离开了「燃烧」的状态：灯灭了，就像火从屋里出去了。',
+  27: '学期到了头、学校散场：school is out——「局」散了，就是结束。',
+  28: '意识「离线」了：人还在，知觉出去了——out for an hour。',
+  29: '工人们离开工位、走出工厂：罢工的第一张图就是人走出来。',
+  30: '把话听到底：hear me out——一直跟到尽头，就是彻底。'
+};
+
+/* ---- 逐错项 tip（本波新拟：按错误选项逐个写，文案从每题背后的规律机制出发） ---- */
+function vbShowTip(id, tip){ const el = $(id); if(!el || !tip) return; el.textContent = '💡 ' + tip; el.style.display = 'block'; }
+function taTip(uid, i, j){ const u = TA_BY[uid]; if(!u || !u.quiz || !u.quiz[i]) return null; const m = TA_TIPS[u.quiz[i].id]; return m ? (m[j] || null) : null; }
+function modalTip(i, o){ const m = MODAL_TIPS[i]; return m ? (m[o] || null) : null; }
+function predTip(w, i, j){ const m = PRED_TIPS[w]; if(!m || !m[i]) return null; return m[i][j] || null; }
+const TA_TIPS = {
+'TA01-E1': {0: 'played 是「全景」看法：整件事看完再报结果。这道题要钻进中间看踢到一半的画面，看法开关拨错了。', 2: 'play 的时间开关在现在；题里讲的是昨天下午，时间先就拨错了。'},
+'TA01-E3': {0: 'finished 只报「过去做过」，不管现在；妈妈问的是现在能不能出去玩，锚点在现在，要用 have finished 把结果拎到现在。', 2: 'every day 是习惯句，讲的是天天如此；这里只问今天这一次作业。'},
+'TA01-E4': {1: 'read 是把书读完的整件事（全景）；眼前是读到一半还没读完，钻进中间要用 is reading。', 2: 'reads 是习惯句（平时在学校读）；题里不许出现时间词、只看眼前这一幕，不是讲习惯。'},
+'TA02-E1': {0: 'visit 是现在形，说的是平时的习惯；明天的事没有「将来衣裳」，得借 will 来带。', 1: 'visited 是过去的衣裳，穿去讲明天的事，时间正好反了。'},
+'TA02-E3': {1: 'visit 是动词自己的现在形，不是借来的帮手；帮手是站在它前面的 will。', 2: 'tomorrow 只是时间词，站在句尾报时间；它既不是衣裳，也不是帮手。'},
+'TA02-E4': {1: 'rained 讲的是已经下过的雨；题里雨还没下，只是乌云先到了。', 2: 'rains in spring 是讲春天常下雨的习惯；这里说的是眼下这一场马上要来的雨。'},
+'TA03-E1': {1: 'were building 是推近镜头，只看盖到一半的中间段；题里要从无到有一次看完，得用全景的 built。'},
+'TA03-E2': {0: 'built 是站在远处报整件事的结果；题里镜头推近了、只看中间一段，要用 were building。'},
+'TA03-E4': {1: '这句把跑的头和尾都讲完了（跑到、停下）；题里的画面冻在中间、还没停，要用 was running。', 2: 'runs every morning 是天天如此的习惯；题里是故事中冻住的一幕，不是习惯。'},
+'TA03-E5': {1: 'built 是把整件事一次看完的形状；推近看中间段会是 were building，题里用的不是它。', 2: '「站在现在看痕迹」是完成时的看法（have built）；built 是一般过去，只报整件事。'},
+'TA04-E1': {1: 'eat 想把整件事塞进「说话这一眨眼」，塞不下；正在吃，要用 am eating 钻进镜头里说。'},
+'TA04-E2': {0: 'am getting up 是说此刻正在起床；题里有 every day，是天天的作息，要用一般现在时 get up。'},
+'TA04-E3': {1: 'play 是平时踢球的习惯说法；Look! 指着眼前正在发生的事，要用 are playing。'},
+'TA04-E5': {0: '正在发生是进行时的活（am getting up）；这句有 every day，一般现在时干的是习惯这份正职。', 2: '讲昨天要用过去形 got up；get up 是现在形，干不了过去的活。'},
+'TA05-E2': {1: 'lose 是现在形，说不出「已经丢了」；这题的重点是丢钥匙留在现在的后果——进不了门。', 2: '这句本身没错，但它把时间点名到「今天早上、在学校」，讲的是过去那一刻；题里要盯的是现在进不了门这个结果。'},
+'TA05-E5': {1: 'go 是现在形，说的是平时去；「去过了、经验在身上」要用完成时 have been。', 2: 'am going to 是要去、还没去；题里已经去过，经验正装在身上。'},
+'TA06-E4': {1: 'have seen 和 yesterday 是天敌：一点名钉死的时间，完成时就退场，必须换成 saw。', 2: 'have seen 本身没错，但它没把「昨天」说出来；日记里明明写着昨天，要用 saw him yesterday 才对得上。'},
+'TA06-E6': {1: '这句把时间钉死在三点，讲的是过去那一刻；他刚进门喊的这句不点名时间、只报与现在有牵连的消息。', 2: 'see every day 是天天的习惯；他喊的是刚刚这一件事的消息，不是习惯。'},
+'TA07-E1': {1: 'run 是活动型：能一直转、没有终点，不是静止的牌子。静止的牌子是 know 那种状态。', 2: 'found 是达成型：啪的一下就结束，更不是静止的牌子。'},
+'TA07-E2': {0: 'paint 光说活动本身才像没终点的轮子；paint a picture 有「画完」这个终点，是一段有头有尾的路。', 2: '啪的一下是 find、arrive 那种瞬间达成；画一张画要一步步来，不是瞬间。'},
+'TA07-E4': {1: 'found 是啪的一下的瞬间事件，撑不了 for an hour；能一直转的是没有终点的 run。'},
+'TA07-E5': {0: '瞬间的事没有「中间一段」可以钻进去看：was finding 默认不成立——先看动词形状，再选镜头。'},
+'TA08-E1': {0: 'wonder 也能用，但没有推远：wondered 把请求往后推了一步，距离感就是礼貌——这题比的是谁更柔和。'},
+'TA08-E2': {0: 'were 不是在讲昨天：If I were you 是把「我是你」推到假如的世界，过去形在这里只负责「推远」。', 2: '没有真的变：were 是假设的标记，说的是「假如我是你」这个不存在的场景。'},
+'TA08-E5': {1: 'has 是现在形，句里根本没有过去形；这题要在带过去形的句子里，找「不干过去活」的那一个。', 2: 'play 是现在形、讲平时的习惯，也没有过去形；目标句是被 said 推远的 was。'},
+'TA09-E3': {1: '这句把小旗插回了现在（comes home）；题里的小旗在过去（妈妈回家时），完成时要跟着搬家成 had finished。', 2: '小旗已经搬到过去了，完成时却没跟上：have finished 是对着现在的小旗用的，过去的小旗要用 had finished。'},
+'TA09-E5': {1: 'eats 是平时的习惯，讲不出故事里「吃完在先」这层先后。', 2: 'will eat 是将来的事；故事里吃饭已经在到家之前完成了。'},
+'TA10-E1': {1: 'going to 是事先有计划的口气；门铃刚响、当场起身，没有计划，是 will 的活。', 2: 'every morning 是天天的习惯；这里是听到门铃这一次的当场答应。'},
+'TA10-E2': {1: '天气没被写进任何时刻表，借不到现在时（那是 TA-13 的地盘）；天气预报的预言要用 will。', 2: '下雨不受时刻表管：时刻表式现在时只给火车、课程这种人排定的事，天气不行。'},
+'TA10-E4': {1: 'helped 是已经帮过了；朋友正摇摇晃晃，你说的是现在当场要帮。', 2: 'every day 是习惯；脱口而出的是这一次、当场的乐意。'},
+'TA10-E5': {0: '「在路上」是 going to 的味道（计划、预兆先行）；这句没有计划，是当场答应，will 带着「我乐意」。', 2: '时刻表式是 leaves、starts 那种借现在时说的将来；will 的老味道是「想要、乐意」。'},
+'TA11-E1': {1: 'will rain next month 太远太空：预兆已经摆在眼前（乌云压顶），这种「苗头已现」的将来归 going to。', 2: 'rained 是昨天下过的雨；题里讲的是眼下马上要来的这一场。'},
+'TA11-E2': {1: 'visited 是已经去过了；周末还没到、计划已经排好，是 going to。', 2: 'visit on Sundays 是每周日的习惯；题里是这个周末一次性的计划。'},
+'TA11-E4': {1: 'catches at six 是时刻表上的常规说法；题里是他这一次背着包往车站走、人已经在路上。', 2: 'caught 是已经赶上了；他还在往车站走，事情还没发生。'},
+'TA11-E5': {1: '乌云就是预兆，眼看要下雨正是 going to 的原型场景，不该派 will 来抢。', 2: '计划一个月前就排好——打算先于说话，是 going to 的地盘；will 的原型是当场决定。'},
+'TA12-E2': {1: '那是现代完成时的重心（事）；老句子里 have 还是实义的「有」，重心在手里那封写好的信。', 2: '老句子里根本没提写信的人，重心是「写好的信（物）在我手里」。'},
+'TA12-E3': {0: '那是老结构操心的事（物）；现代句的重心已经滑到「写过了」这件事本身。', 2: '句子里没评价质量：重心从物滑到事，只说「写过」这件事成立。'},
+'TA12-E4': {1: 'wrote 是过去式，站在 yesterday 那种句子里；紧跟 have 的位置只收过去分词 written。', 2: 'writing 是 -ing 形，跟在 be 后面管进行；have 后面要的是过去分词。'},
+'TA13-E1': {1: 'will 是借帮手说将来，不是「时刻表式现在时」；时刻表式是 leaves 那种用现在形写的已定事实。', 2: 'going to 是借工具说计划中的将来；时刻表式现在时要用现在形 leaves 那种样子。'},
+'TA13-E2': {0: 'starts at eight tomorrow 说的明明是明天的课，还没在上；用现在时，是因为课程表先把它写成了事实。', 2: 'starts 是现在形（还带 -s）；过去式会是 started。'},
+'TA13-E3': {0: '这句成立：电影开演时间印在节目单上，是已定的事实，借得到现在时。不成立的是没被任何表定下来的天气。', 2: '这句也成立：课程表把明天的课写成了事实。要找的「不成立」是 It rains tomorrow——天气没进任何表。'},
+'TA13-E5': {1: 'will begin 把开演推给了将来，还加了「等我们准备好」这个没定的条件；节目单上印着的开演时间是已定事实，用 begins。', 2: 'began 是已经开演过了；你指着节目单说的，是今晚还没到的那一场。'},
+'TA14-E1': {0: '不是说错：故事高潮处故意换上现在时，把过去的事拉到眼前演——这是历史现在时的手法。'},
+'TA14-E2': {0: 'hears 是现在形（带 -s），不是过去式；它混在过去故事里，是故意的直播切换。', 2: '时态对不对和 noise 的单复数没关系；关键是高潮处主动把镜头换成现在时。'},
+'TA14-E3': {1: 'opened 加 yesterday 是老老实实讲过去；「演」出来的高潮句要用现在时 opens、sees。', 2: 'opens every day 是天天的习惯，故事味全无；高潮句的现在时是把这一幕拉到眼前演，不是习惯。'},
+'TA15-E4': {1: '不用猜：played 的 -ed 就写在动词身上，时间藏在形状里——这正是英语和汉语最不一样的地方。', 2: '时间没丢：yesterday 走了，played 还在——动词形状自己会说话。'},
+'TA16-E2': {1: '这句对应的是「我丢了钥匙」（结果痕迹）；「我去过北京」是经历，对应 have been to Beijing。'},
+'TA16-E3': {0: '把「了」当公式，会在点名昨天时翻车（TA-06）：「了」管做成没做成，完成时管和现在有没有牵连，这句只是碰巧同向。', 2: '句子里没说昨天：对上完成时的理由是印子还在（现在进不了门），不是时间。'},
+'TA16-E4': {1: 'live 把线断在现在：住到现在还住着，这条从三年前拉到现在的线，要靠 have lived 才拉得通。', 2: 'lived ... three years ago 是三年前住过、已经断了；题里是到现在还住着。'},
+'TA17-E1': {0: 'goed 不存在：went 是整个儿记住的整存形，没有规则可推。', 2: 'want 的过去式是 wanted；went 是 go 的整存过去式，和 want 没关系。'},
+'TA17-E2': {1: 'look 的过去式是规则的 looked；saw 是 see 的整存过去式。', 2: 'watch 的过去式是 watched；saw 只属于 see。'},
+'TA17-E4': {1: 'eat、drink 是现在形，讲的是平时的习惯；小故事里没有时间词，过去全靠 ate、drank 这些形状扛。'},
+'TA18-E1': {0: '证据在小学生身上还没试过：试过的是哥哥姐姐（青少年和成人），对小学生是合理外推，必须标「待验」。', 2: '这话也过了：实验里镜头讲法有的更好、有的和传统讲法差不多，不能反过来说背表格全无用。'},
+'TA18-E2': {1: '不是编的：它有实验支持的方向，只是撑不起「一定翻倍」——吹牛吹在把「待验」说成了「肯定」。', 2: '能不能画图和吹不吹牛没关系；问题出在「一定」这个词，把证据强度说过头了。'},
+'TA18-E4': {0: '「保证」就是吹牛：这个讲法有据可用，但没在小学生身上证明过更优，诚实的说法要把这点讲明。', 2: '讲法本身有实验支持、可以用；错的不是讲法，是把效果说过头。诚实，不等于否定它。'}
+};
+const MODAL_TIPS = {
+0: {'It may rain.': 'may 只有五五开，把握中等；要找「最有把握」，得挑站在尺子最高处的 must。', 'It might rain.': 'might 是「也许吧」，把握比 may 还小，离「最有把握」最远。', 'It could rain.': 'could 表推测是「有可能」，把握不大，不是最高档。'},
+1: {'might': 'might 是「也许」，管的是可能性，不管规矩；红灯必须停是硬义务。', 'may': 'may 多管「可能」和「许可」，扛不起交通规则这种硬义务。', 'could': 'could 是「能 / 委婉」，不是「必须」；义务尺的最高档是 must。'},
+2: {"mustn't": 'mustn\'t 是「绝对不许带」，意思正好反了；题目说的是「不用带」。', "can't": 'can\'t 是「不能 / 肯定不是」，不是「不用」；「不用做」要用 don\'t have to。', 'should': 'should 是「应该（带）」，还是让你带；题里明说食物够了、不用带。'},
+3: {'Must you help me?': 'Must you ...? 是「你非得……吗」，带着质问味，不是客气求人。', 'May you help me?': 'may 不能用来请人做事：May I ... 是我问许可；请人帮忙要用 Could you ...?', 'Might you helped me?': 'might 不请人做事，而且 helped 的形状也错了；客气请求是 Could you + 原形。'},
+4: {'Can I go to the toilet?': 'can 也能问许可，但更随口；对老师、最得体的一档是 May I ...?', 'Must I go to the toilet?': 'Must I ...? 是问「我必须去吗」，把许可问成了义务。', 'Will I go to the toilet?': 'Will I ...? 是问将来的安排，不是问许可。'},
+5: {"mustn't": 'mustn\'t 只管「不许做」（义务），不管「肯定不是」（推测）；她刚吃两大碗，要下的结论是推测。', "shouldn't": 'shouldn\'t 是「不应该」，是劝告口吻；这里要下的是「肯定不饿」的推测结论。', 'may not': 'may not 是「可能不」，还留着也许饿的余地；证据这么强（两大碗），把握要拉满，用 can\'t。'},
+6: {'might': 'might 是「也许」，只是猜测；看人累了劝他早睡，是给建议，要用 should。', "can't": 'can\'t 是「不能」，语气完全不对：这里是关心式的建议，不是禁止。', 'shall': 'shall 多活在 Shall we ...? 的提议里，不用来给对方提建议。'}
+};
+const PRED_TIPS = {
+get: {
+0: {1: 'dark、angry 这种形容词跟在后面才是「变得」；这里跟的是 a letter（一封信，名词），是接收到。', 2: '到达要跟 to + 地点（got to the station）；这里没有 to，跟的是一封信。', 3: '事情落到自己身上要跟过去分词（got hit）；这里跟的是名词 letter。', 4: '说动人要跟「人 + to do」（got him to help）；这里后面没有人，只有一封信。'},
+1: {0: '接收要跟名词（got a letter）；这里跟的是 dark——形容词，状态变了，是「变得」。', 2: '到达跟 to + 地点；dark 不是地点，是天色变暗了。', 3: '那要跟过去分词（got hit by a car）；dark 是形容词，不是分词。', 4: '说动要跟「人 + to do」；这句后面既没有人，也没有 to do。'},
+2: {0: '接收是直接跟名词；这里有 to + the station（地点），走的是「到达」这一格。', 1: '变得跟形容词；station 是地点，不是状态。', 3: '那要跟过去分词；这里跟的是 to + 地点。', 4: '说动跟「人 + to do」（got him to help）；这里 to 后面是地点，不是人。'},
+3: {0: 'hit 不是拿在手里的东西：got hit by a car 是「被车撞了」，事情落到了他身上。', 1: '变得跟形容词（get angry）；hit 是过去分词，不是形容词。', 2: '到达跟 to + 地点；这里没有 to，是被动味的构造。', 4: '说动跟「人 + to do」；这里是他自己挨了撞，没说动谁。'},
+4: {0: 'married 不是收到的东西：got married 是「结婚了」，事情发生在自己身上。', 1: '变得跟形容词；married 是过去分词——和 got hit 一格。', 2: '到达要 to + 地点；married 不是地点。', 4: '说动要跟人 + to do；这句没有让谁去做什么。'},
+5: {0: '接收只跟名词就完事；这里 him 后面还跟着 to help me——是说动他去做。', 1: '变得跟形容词；him 是人，不是状态。', 2: 'to 后面跟地点才是到达；这里 to 前面站着 him，是「人 + to do」。', 3: '那是 got hit 那种被动味；这里是主动说动别人帮忙。'},
+6: {0: 'angry 不是能接收的东西，它是形容词——状态变了。', 2: '到达跟 to + 地点；angry 不是地点。', 3: '那要跟过去分词；angry 是形容词。', 4: '说动跟人 + to do；这句后面没有人。'},
+7: {0: 'home 在这里是地点（到家了），不是收到的东西；get home 是到达这一格的登记例。', 1: '变得跟形容词；home 是地点。', 3: '那要跟过去分词；这句是走到家了。', 4: '说动跟人 + to do；这里没让谁做什么。'}
+},
+hold: {0: {0: '大厅没有手：holds 500 people 说的是「装得下多少人」——从「握住」滚到了「容纳」。', 2: '举行活动会说 hold a meeting，后面跟活动；这里跟的是 500 people，是容量。'}},
+run: {0: {0: 'company 不是跑道：run a company 是把公司「运转起来」，就是经营、管理。'}},
+take: {
+0: {1: '坐车是 take the bus；medicine 是药，跟在 take 后面是「吃、服」。', 2: '带走是拿着离开；吃药是把药吃下去，不存在带走。'},
+1: {0: '吃是吃药那一管（take the medicine）；bus 是车，这里是乘坐。', 2: '带走是把东西拿走；坐公交是人坐上去走，不是把车带走。'}
+},
+turn: {0: {1: '变成，说的是颜色、天气那种状态变化（turn cold）；翻卡片是实实在在的转动动作。', 2: '「轮到的顺序」是名词用法（my turn）；这里 Turn over 是动词，在让卡片转身。'}},
+hit: {0: {0: '这里没人抡胳膊：是车撞上了他。hit 的核心是「击中」，车撞也是击中。'}},
+close: {
+0: {1: 'gate 是大门，要的是动词「关上」；「靠近」是形容词 close，管距离，不管门。'},
+1: {0: '海滩关不上：was so close 说的是海滩离得近。这里 close 是形容词，读 /kləʊs/。'},
+2: {0: '朋友不是门：close friend 是「亲密的」朋友；说关系亲，英语用 close，不用 near。'}
+},
+draw: {
+0: {1: '这里有 circle（圆）和 stick（棍）：他是拿棍子在沙地上画画，不是拉什么。'},
+1: {0: '没人画画：drew my chair 是把椅子拉到离火更近的地方——draw 的「拉」这一支。'},
+2: {0: '这是绘本 Amelia Bedelia 闹过的笑话：draw the curtains 是把窗帘拉上，不是画窗帘。'},
+3: {0: '电影不画画：drawing audiences 是像磁铁一样把观众吸引过来，还是「拉」的一支。'}
+},
+keep: {
+0: {1: 'quiet 不是能收起来的东西：keep quiet 是把安静「留住」，就是保持。', 2: '饲养要养活物（keep chickens）；安静养不了，是保持状态。'},
+1: {0: '保持管状态（keep quiet）；photograph 是实物，问的是能不能留下来——保存、留着。', 2: '照片不用喂：饲养是养鸡、养猪那种活物。'},
+2: {0: '这里 keep 后面是 chickens（活物）：把动物留下来养，就是饲养，不只是状态保持。', 1: '保存多指留住东西（照片）；养鸡是天天喂养的饲养。'}
+},
+shut: {
+0: {1: '门是挡口子的，用「关闭」；「合上」留给书、眼睛、嘴这类能合拢的。'},
+1: {0: '眼睛是能合拢的，用「合上」；「关闭」多给门、窗这类挡口子的。牛津里 shut 本是一个大义项，词库按东西的样子分说法。'}
+}
+};
+
+/* ---- 一页总览（数据全部程序化生成，不手写第二份） ---- */
+function famOverviewHTML(){
+  return '<div class="sent" style="margin-top:14px"><b>🗂 一页总览 · 形式家族全图</b><div class="adult">九个家族一张表：名字、人数、三个代表词。点家族名进家族页（总览图学 Woodward 每课 Summary Chart 的收尾法）。</div>'
+    + DATA.FAMS.map(f => '<div style="margin-top:6px"><button class="chip" onclick="VB.openFam(\'' + f.id + '\')">' + esc(f.name) + '</button> <span class="adult">' + f.members.length + ' 词 · 例：' + f.members.slice(0, 3).map(m => { const F = DATA.FORMS[m]; return esc(m) + (F && F.past.f ? '–' + esc(F.past.f) : ''); }).join('、') + '</span></div>').join('') + '</div>';
+}
+function polyOverviewHTML(){
+  const words = Object.keys(DATA.PRED || {});
+  if(!words.length) return '';
+  return '<div class="sent" style="margin-top:14px"><b>🗂 一页总览 · 旗舰 ' + words.length + ' 词核心义</b><div class="adult">每个旗舰词先记一句核心义，其余义项都从这句长出来。点词进它的多义页。</div>'
+    + words.map(w => {
+      const p = POLY_BY[w]; let core = '';
+      if(p && p.net && p.net.core_candidate) core = p.net.core_candidate;
+      else if(typeof VCORE !== 'undefined' && VCORE[w]) core = VCORE[w].first;
+      else if(p && p.senses && p.senses.length) core = p.senses[0];
+      if(core && core.length > 80) core = core.slice(0, 80) + '…';
+      return '<div style="margin-top:6px"><button class="chip" onclick="VB.openPoly(\'' + w + '\')">' + esc(w) + '</button> <span class="adult">' + esc(core) + '</span></div>';
+    }).join('') + '</div>';
+}
+function hospOverviewHTML(){
+  return '<div class="sent" style="margin-top:14px"><b>🗂 一页总览 · 六类动词错误</b><div class="adult">先认类，再看病例：每一类给一句判别和一个代表病例。点类名进病例页。</div>'
+    + DATA.HOSPITAL.map(g => {
+      const c = g.cases[0];
+      return '<div style="margin-top:9px"><button class="chip" onclick="VB.openHosp(\'' + g.id + '\')">' + esc(g.title) + '</button> <span class="badge b-case">' + g.cases.length + ' 例</span><div class="adult" style="margin-top:3px">判别：' + esc(g.def) + '</div>' + (c ? '<div class="adult">代表病例：<span class="err">✗ ' + esc(c.wrong) + '</span> → <span class="ok">✓ ' + esc(c.right) + '</span></div>' : '') + '</div>';
+    }).join('') + '</div>';
+}
+
+/* ---- 诊断入口（先诊后学）：14 题五面，题目全部从现有数据程序化抽/生成 ---- */
+const DIAG_FACES = [
+  {id: 'tense', name: '⏱ 时态看法', lines: ['时间 × 看法两个开关拨得准，讲解站可以往后挑着学。', '开关大方向对，个别看法（进行 / 完成）还会拨错，去对应的讲解站补一课。', '两个开关还没分开：先去 TA-01 把「时间 × 看法」这张总图看懂，再逐站学。']},
+  {id: 'form', name: '👕 词形', lines: ['词形记得牢，衣橱可以放心往后翻。', '规则形稳、不规则形有漏，去形式家族按家一组组补。', '词形是地基：先去衣橱挑高频词看五形式，再进家族成组记。']},
+  {id: 'pat', name: '🧩 句型', lines: ['动词后面跟什么，分得清，造句时不容易卡壳。', '大路货分得清，明星组（remember / stop 那几个）还要去四分表里对一遍。', '先去句型组件把四分表过一遍：只跟 -ing / 只跟 to / 两可，先分开再说。']},
+  {id: 'modal', name: '🎚 情态', lines: ['情态词的强弱感很准，光谱上不用多停。', '大方向准，mustn\'t 和 don\'t have to 这类对子还会混，去光谱上对位一遍。', '先去情态光谱站一站：把 must / should / may / might 在尺子上排好序，再回来。']},
+  {id: 'poly', name: '🌳 多义', lines: ['多义会看后面的词来判断——网络脑子已经转起来了。', '旗舰词的大路义稳，冷门一支会猜错，去多义页「先猜再揭晓」多练几个词。', '先去多义页挑 get、take 两个旗舰词：先猜再揭晓，把「看后面跟什么」练成习惯。']}
+];
+function diagFace(id){ for(const f of DIAG_FACES){ if(f.id === id) return f; } return DIAG_FACES[0]; }
+function diagBuild(){
+  const day = Math.floor(Date.now() / 86400000); const seed = day * 97 + 13;
+  const qs = [];
+  const pool = [];
+  DATA.TA.forEach(u => (u.quiz || []).forEach((it, i) => { if(it.options) pool.push({uid: u.id, i: i, it: it}); }));
+  const sh = vbShuffle(pool, seed); const seenU = {};
+  for(const p of sh){
+    if(qs.filter(x => x.face === 'tense').length >= 3) break;
+    if(seenU[p.uid]) continue; seenU[p.uid] = 1;
+    qs.push({face: 'tense', ref: p.uid, promptHTML: (p.it.case_error ? '<span class="err">✗ ' + esc(p.it.case_error) + '</span><br>' : '') + esc(p.it.prompt), opts: p.it.options.slice(), ans: p.it.answer, why: p.it.reason || ''});
+  }
+  const verbs = vbShuffle(DATA.VERBS.filter(v => { const F = DATA.FORMS[v]; return F && F.past && F.past.f; }), seed + 1);
+  let fn = 0;
+  for(const v of verbs){
+    if(fn >= 3) break;
+    const g = srsGen('form|' + v + ':past'); if(!g) continue; fn++;
+    qs.push({face: 'form', ref: v, promptHTML: g.prompt, opts: g.opts, ans: g.ans, why: g.why});
+  }
+  const plabels = {ing: '只跟 -ing', to: '只跟 to do', same: '两可 · 意思差不多', diff: '两可 · 意思不一样'};
+  const pwords = vbShuffle(PATTERNS.act.concat(PATTERNS.pairs.map(p => p.w)), seed + 2);
+  let pn = 0;
+  for(const w of pwords){
+    if(pn >= 3) break;
+    const g = patGroupOf(w); if(!g) continue; pn++;
+    let ex = '';
+    const grp = PATTERNS.groups.find(x => x.id === g);
+    if(grp){ const we = grp.words.find(x => x.w === w); if(we) ex = we.ex; }
+    if(g === 'diff'){ const pr = PATTERNS.pairs.find(x => x.w === w); if(pr) ex = pr.ing.ex + ' / ' + pr.to.ex; }
+    qs.push({face: 'pat', ref: w, promptHTML: '动词 <b>' + esc(w) + '</b> 后面再跟一个动词时，跟法是哪一种？', opts: ['只跟 -ing', '只跟 to do', '两可 · 意思差不多', '两可 · 意思不一样'], ans: plabels[g], why: (ex ? esc(ex) + ' —— ' : '') + w + ' 属于「' + plabels[g] + '」。'});
+  }
+  vbShuffle(MODAL.quiz.map((it, i) => i), seed + 3).slice(0, 3).forEach(i => {
+    const it = MODAL.quiz[i];
+    qs.push({face: 'modal', ref: 'q' + i, promptHTML: esc(it.s), opts: it.opts.slice(), ans: it.ans, why: it.why});
+  });
+  const pitems = [];
+  Object.keys(DATA.PRED || {}).forEach(w => DATA.PRED[w].forEach((it, i) => pitems.push({w: w, i: i, it: it})));
+  const psh = vbShuffle(pitems, seed + 4); const seenW = {}; let yn = 0;
+  for(const p of psh){
+    if(yn >= 2) break;
+    if(seenW[p.w]) continue; seenW[p.w] = 1; yn++;
+    qs.push({face: 'poly', ref: p.w, promptHTML: '🌳 <b>' + esc(p.w) + '</b>：' + esc(p.it.s), opts: p.it.opts.slice(), ans: p.it.opts[p.it.gold], why: p.it.reveal || ''});
+  }
+  return qs;
+}
+let DIAG = null;
+function openDiag(){
+  show('v-diag');
+  DIAG = {qs: diagBuild(), i: 0, score: {}, missed: {}, locked: false};
+  diagRender();
+}
+function diagRender(){
+  const body = $('diagBody'); if(!body || !DIAG) return;
+  if(DIAG.i >= DIAG.qs.length){ diagResult(); return; }
+  const q = DIAG.qs[DIAG.i]; const f = diagFace(q.face);
+  body.innerHTML = '<h2>🧭 先诊后学 · 诊断</h2>'
+    + '<div class="adult">第 ' + (DIAG.i + 1) + ' / ' + DIAG.qs.length + ' 题 · 这一题测：' + esc(f.name) + '。题目都从本区已有的数据里抽（讲解站题、衣橱词形、句型表、情态小测、多义旗舰题），不另编题库。诊断法借鉴 Murphy《English Grammar in Use》的 Study Guide 与 Swan 的 Diagnostic Tests：先诊后学。</div>'
+    + '<div class="sent" style="font-size:16px;line-height:1.8">' + q.promptHTML + '</div>'
+    + '<div>' + q.opts.map((o, j) => '<button class="opt" onclick="VB.diagPick(this,' + j + ')">' + esc(o) + '</button>').join('') + '</div>'
+    + '<div class="rev" id="diagRev"></div>'
+    + '<div class="chips" id="diagNext" style="margin-top:8px"></div>';
+}
+function diagPick(btn, j){
+  if(!DIAG || DIAG.locked) return;
+  const q = DIAG.qs[DIAG.i]; if(!q) return;
+  DIAG.locked = true;
+  const ok = q.opts[j] === q.ans;
+  DIAG.score[q.face] = DIAG.score[q.face] || {ok: 0, tot: 0};
+  DIAG.score[q.face].tot++;
+  if(ok){ DIAG.score[q.face].ok++; btn.classList.add('right'); }
+  else {
+    btn.classList.add('wrong');
+    (DIAG.missed[q.face] = DIAG.missed[q.face] || []).push(q.ref);
+    const body = $('diagBody');
+    if(body){ const opts = body.querySelectorAll('.opt'); opts.forEach(b => { if(b.textContent === q.ans) b.classList.add('right'); }); }
+  }
+  const r = $('diagRev');
+  if(r){ r.innerHTML = (ok ? '✅ 答对了。' : '❌ 正确答案：<b>' + esc(q.ans) + '</b>。') + (q.why ? '<br>' + esc(q.why) : ''); r.style.display = 'block'; }
+  const n = $('diagNext');
+  if(n) n.innerHTML = '<button class="chip gold" onclick="VB.diagNext()">' + (DIAG.i + 1 >= DIAG.qs.length ? '看诊断结果 →' : '下一题 →') + '</button>';
+}
+function diagNext(){ if(!DIAG) return; DIAG.i++; DIAG.locked = false; diagRender(); }
+function diagLevel(f){
+  const s = DIAG.score[f.id] || {ok: 0, tot: 0};
+  if(s.tot && s.ok >= s.tot) return 0;
+  if(s.tot && s.ok >= Math.ceil(s.tot / 2)) return 1;
+  return 2;
+}
+function diagRecHTML(f){
+  const missed = (DIAG.missed[f.id] || []);
+  let b = '';
+  if(f.id === 'tense'){
+    const uid = missed[0] || 'TA-01';
+    b = '<button class="chip" onclick="VB.openTA(\'' + uid + '\')">📖 去 ' + uid + ' 讲解站补这一课</button> <button class="chip" onclick="VB.openMachine()">⏱ 去时间机器（场景机）摆一摆</button>';
+  } else if(f.id === 'form'){
+    b = (missed[0] ? '<button class="chip" onclick="VB.openWard(\'' + missed[0] + '\')">👕 看 ' + esc(missed[0]) + ' 的五形式衣橱</button> ' : '') + '<button class="chip" onclick="VB.openFam(\'fa\')">🪜 去形式家族</button> <button class="chip" onclick="VB.openReview()">⏰ 去今日复习</button>';
+  } else if(f.id === 'pat'){
+    b = '<button class="chip" onclick="VB.openPatterns()">🧩 去句型四分表（先归类、再亮表）</button>';
+  } else if(f.id === 'modal'){
+    b = '<button class="chip" onclick="VB.openModal()">🎚 去情态光谱</button>';
+  } else if(f.id === 'poly'){
+    const w = missed[0] || 'get';
+    b = '<button class="chip" onclick="VB.openPoly(\'' + w + '\')">🌳 去 ' + esc(w) + ' 的多义页</button> <button class="chip" onclick="VB.openFan(\'out\')">🌀 看小词扇 out</button>';
+  }
+  return '<div class="chips" style="margin-top:5px">' + b + '</div>';
+}
+function diagResult(){
+  const body = $('diagBody'); if(!body || !DIAG) return;
+  const facesLog = {};
+  DIAG_FACES.forEach(f => { const s = DIAG.score[f.id] || {ok: 0, tot: 0}; facesLog[f.id] = [s.ok, s.tot]; });
+  try{ vbLogEvt('diag', {faces: facesLog}); }catch(e){}
+  const order = DIAG_FACES.slice().sort((a, b) => {
+    const la = diagLevel(a), lb = diagLevel(b);
+    if(la !== lb) return lb - la;
+    const sa = DIAG.score[a.id] || {ok: 0, tot: 1}, sb = DIAG.score[b.id] || {ok: 0, tot: 1};
+    return (sa.ok / Math.max(1, sa.tot)) - (sb.ok / Math.max(1, sb.tot));
+  });
+  let h = '<h2>🧭 诊断结果 · 先诊后学</h2>';
+  h += '<div class="adult">五面得分（满分 = 全对）。下面的推荐按弱项排：最弱的排最前，点按钮直接去补。结果已记进本机日志，家长小报告里能看到最近一次诊断。</div>';
+  h += DIAG_FACES.map(f => {
+    const s = DIAG.score[f.id] || {ok: 0, tot: 0};
+    const pct = s.tot ? Math.round(s.ok / s.tot * 100) : 0;
+    return '<div class="sent"><b>' + esc(f.name) + '</b>　' + s.ok + ' / ' + s.tot + '<div class="diagbar"><i style="width:' + pct + '%"></i></div><div class="adult">' + esc(f.lines[diagLevel(f)]) + '</div></div>';
+  }).join('');
+  h += '<h4>🎯 按弱项推荐（先补最前面的）</h4>' + order.map(f => '<div class="sent"><b>' + esc(f.name) + '</b>（' + ((DIAG.score[f.id] || {}).ok || 0) + ' / ' + ((DIAG.score[f.id] || {}).tot || 0) + '）' + diagRecHTML(f) + '</div>').join('');
+  h += '<div class="chips" style="margin-top:10px"><button class="chip" onclick="VB.openDiag()">↺ 再诊一次（题目按日期换一批）</button><button class="chip" onclick="VB.goHome()">← 回动词专区</button></div>';
+  h += '<div class="adult" style="margin-top:8px">做法借鉴：Murphy《English Grammar in Use》Study Guide（先做诊断、按结果跳读）与 Swan《Practical English Usage》Diagnostic Tests。</div>';
+  body.innerHTML = h;
+}
+function renderDiagPanel(){
+  const el = $('diagPanelBody'); if(!el) return;
+  const log = lsGet('mx_vb_log_v1') || [];
+  let last = null;
+  for(let i = log.length - 1; i >= 0; i--){ if(log[i].kind === 'diag'){ last = log[i]; break; } }
+  let extra = '';
+  if(last && last.faces){
+    const dt = new Date(last.ts);
+    let weak = null, weakR = 2;
+    DIAG_FACES.forEach(f => { const v = last.faces[f.id]; if(v && v[1]){ const r = v[0] / v[1]; if(r < weakR){ weakR = r; weak = f; } } });
+    extra = '<div class="adult" style="margin-top:4px">最近一次：' + (dt.getMonth() + 1) + '月' + dt.getDate() + '日' + (weak && weakR < 1 ? ' · 最弱：' + esc(weak.name) : ' · 五面全对 🎉') + '</div>';
+  }
+  el.innerHTML = '<button class="chip gold" onclick="VB.openDiag()">🧭 开始诊断（14 题）→</button>' + extra;
+}
+
+/* ---- 我的生命线（BC lifeline 课型）：贴自己的事件，用过去时讲出来 ---- */
+const LIFE_KEY = 'mx_vb_lifeline_v1';
+const LIFE_PRESETS = [
+  {k: 'kindy', label: '上幼儿园', en: 'started kindergarten', q: 'When did you start kindergarten?'},
+  {k: 'primary', label: '上小学', en: 'started primary school', q: 'When did you start primary school?'},
+  {k: 'bike', label: '学会骑自行车', en: 'learned to ride a bike', q: 'When did you learn to ride a bike?'},
+  {k: 'swim', label: '学会游泳', en: 'learned to swim', q: 'When did you learn to swim?'},
+  {k: 'trip', label: '第一次旅行', en: 'went on my first trip', q: 'When did you go on your first trip?'},
+  {k: 'cook', label: '学会做饭', en: 'learned to cook', q: 'When did you learn to cook?'},
+  {k: 'pet', label: '养了小宠物', en: 'got a pet', q: 'When did you get your pet?'},
+  {k: 'piano', label: '学弹钢琴', en: 'learned to play the piano', q: 'When did you learn to play the piano?'}
+];
+function lifeLoad(){
+  const s = lsGet(LIFE_KEY);
+  if(s && s.evs && s.evs.length) return s;
+  return {evs: [{label: '出生', en: '', age: 0, born: true}], sel: 0};
+}
+function lifeSave(s){ lsSet(LIFE_KEY, s); }
+function lifePresetOf(e){ for(const p of LIFE_PRESETS){ if(p.label === e.label) return p; } return null; }
+function lifeSent(e){
+  if(e.born) return 'I was born — my story starts here.';
+  if(e.age == null) return '';
+  if(e.en) return 'When I was ' + e.age + ', I ' + e.en + '.';
+  return 'When I was ' + e.age + ': ' + e.label + '.';
+}
+function lifePreset(k){
+  const p = LIFE_PRESETS.find(x => x.k === k); if(!p) return;
+  const s = lifeLoad();
+  if(s.evs.some(e => e.label === p.label)) return;
+  s.evs.push({label: p.label, en: p.en, age: null});
+  s.sel = s.evs.length - 1;
+  lifeSave(s); renderLife();
+}
+function lifeAge(idx, v){
+  const s = lifeLoad(); if(!s.evs[idx]) return;
+  s.evs[idx].age = (v === '' || v == null) ? null : +v;
+  lifeSave(s); renderLife();
+}
+function lifeDel(idx){
+  const s = lifeLoad(); if(!s.evs[idx] || s.evs[idx].born) return;
+  s.evs.splice(idx, 1);
+  if(s.sel >= s.evs.length) s.sel = s.evs.length - 1;
+  lifeSave(s); renderLife();
+}
+function lifeSel(idx){ const s = lifeLoad(); s.sel = idx; lifeSave(s); renderLife(); }
+function lifeAdd(){
+  const inp = $('lifeCustom'), ageEl = $('lifeCustomAge');
+  const label = inp ? inp.value.trim() : '';
+  if(!label) return;
+  const s = lifeLoad();
+  s.evs.push({label: label, en: '', age: ageEl && ageEl.value !== '' ? +ageEl.value : null});
+  s.sel = s.evs.length - 1;
+  lifeSave(s); renderLife();
+}
+function lifeSVG(s){
+  const drawn = s.evs.map((e, idx) => ({e: e, idx: idx})).filter(x => x.e.age != null).sort((a, b) => a.e.age - b.e.age);
+  const maxAge = Math.max(12, (drawn.length ? drawn[drawn.length - 1].e.age : 0) + 2);
+  const X = a => 36 + (a / maxAge) * 548;
+  let g = '<line x1="30" y1="64" x2="596" y2="64" stroke="#31449c" stroke-width="2"/><path d="M596 64 l-9 -4 v8 z" fill="#31449c"/>';
+  g += '<text x="30" y="86" font-size="10" fill="#889">0 岁</text><text x="596" y="86" font-size="10" fill="#889" text-anchor="end">' + maxAge + ' 岁</text>';
+  drawn.forEach((x, n) => {
+    const cx = X(x.e.age); const above = n % 2 === 0;
+    const ly = above ? 30 : 104; const ay = above ? 104 : 30;
+    g += '<g onclick="VB.lifeSel(' + x.idx + ')" style="cursor:pointer"><text x="' + cx + '" y="71" font-size="21" fill="' + (s.sel === x.idx ? '#c0392b' : '#7a7460') + '" text-anchor="middle" font-weight="700">×</text>'
+      + '<text x="' + cx + '" y="' + ly + '" font-size="11.5" fill="#2b2b3a" text-anchor="middle">' + (x.e.born ? '🎂 ' : '') + esc(x.e.label) + '</text>'
+      + '<text x="' + cx + '" y="' + ay + '" font-size="10.5" fill="#889" text-anchor="middle">' + x.e.age + ' 岁</text></g>';
+  });
+  return '<svg viewBox="0 0 620 118" style="width:100%;min-width:520px" role="img" aria-label="我的生命线">' + g + '</svg>';
+}
+function renderLife(){
+  const el = $('lifeBody'); if(!el) return;
+  const s = lifeLoad();
+  if(s.sel >= s.evs.length) s.sel = 0;
+  const unused = LIFE_PRESETS.filter(p => !s.evs.some(e => e.label === p.label));
+  let h = '<p class="adult">做法照 British Council 的生命线（lifeline）课型：先在轴上贴自己的事，再用过去时讲出来、互相问。事件和年龄只存本机，可改可重画。轴上的 × 就是时间轴符号里的「点事件」。</p>';
+  h += tlLegendHTML();
+  h += '<div style="margin:10px 0"><span class="lb">点一张事件卡贴上轴：</span><span class="chips">' + (unused.length ? unused.map(p => '<button class="chip" onclick="VB.lifePreset(\'' + p.k + '\')">' + esc(p.label) + '</button>').join('') : '<span class="adult">预置事件都贴上啦，还可以自己加。</span>') + '</span></div>';
+  h += s.evs.map((e, idx) => {
+    let ageCtl;
+    if(e.born) ageCtl = '<span class="adult">0 岁（起点）</span>';
+    else {
+      let opts = '<option value=""' + (e.age == null ? ' selected' : '') + '>几岁？</option>';
+      for(let a = 1; a <= 15; a++) opts += '<option value="' + a + '"' + (e.age === a ? ' selected' : '') + '>' + a + ' 岁</option>';
+      ageCtl = '<select onclick="event.stopPropagation()" onchange="VB.lifeAge(' + idx + ',this.value)">' + opts + '</select>';
+    }
+    return '<div class="sent" style="font-size:15px;cursor:pointer;' + (s.sel === idx ? 'outline:2px solid #f6c453' : '') + '" onclick="VB.lifeSel(' + idx + ')">' + (e.born ? '🎂 ' : '') + '<b>' + esc(e.label) + '</b>　' + ageCtl + (e.born ? '' : ' <button class="chip" onclick="event.stopPropagation();VB.lifeDel(' + idx + ')">删掉</button>') + '</div>';
+  }).join('');
+  h += '<div style="margin:8px 0"><input type="text" id="lifeCustom" placeholder="自己加一件事，如：第一次坐飞机" style="padding:7px 10px;border:2px solid #d5dcff;border-radius:10px;font-size:14px;width:220px;max-width:60%"> <select id="lifeCustomAge"><option value="">几岁？</option>' + Array.from({length: 15}, (_, i) => '<option value="' + (i + 1) + '">' + (i + 1) + ' 岁</option>').join('') + '</select> <button class="chip gold" onclick="VB.lifeAdd()">➕ 加上</button></div>';
+  h += '<div class="lifelineWrap"><div class="stage" style="height:132px;background:linear-gradient(180deg,#fdf6e3,#eef7ee)">' + lifeSVG(s) + '</div></div>';
+  const cur = s.evs[s.sel];
+  if(cur){
+    const sent = lifeSent(cur);
+    h += '<div class="sent" style="background:#fdf6e3"><b>🎙 旁白（点事件切换）</b><div style="font-size:17px;margin:6px 0">' + (sent ? esc(sent) + ' <button class="say" onclick="VB.say(this.dataset.t)" data-t="' + q(sent) + '">🔊</button>' : '先给这件事选一个年龄，旁白句就会出现。') + '</div>';
+    if(!cur.born && cur.age != null){
+      const p = lifePresetOf(cur);
+      const qq = p ? p.q : ('What happened when you were ' + cur.age + '?');
+      const aa = 'When I was ' + cur.age + '.';
+      h += '<div class="adult" style="font-size:14px">🗣 互问模板：<b>' + esc(qq) + '</b> <button class="say" onclick="VB.say(this.dataset.t)" data-t="' + q(qq) + '">🔊</button><br>答：<b>' + esc(sent || aa) + '</b>（短答也可以只说：' + esc(aa) + '）</div>';
+    }
+    if(cur.born) h += '<div class="adult" style="font-size:14px">🗣 互问模板：<b>When were you born?</b> —— 出生年份问问家里人，再回来把这句补完整：I was born in ... .</div>';
+    h += '</div>';
+  }
+  el.innerHTML = h;
 }
 
 /* 主页小部件首刷 + 回到主页时刷新到期数/课环进度 */
@@ -5964,7 +6495,7 @@ try{
 }catch(e){}
 
 init();
-window.VB={show:show,goHome:goHome,say:say,openMachine:openMachine,openMachinePreset:openMachinePreset,openTA:openTA,renderWardChips:renderWardChips,openWard:openWard,openFam:openFam,openPoly:openPoly,predPick:predPick,openFan:openFan,outPick:outPick,setScene:setScene,openHosp:openHosp,mEvChange:mEvChange,mResult:mResult,mGone:mGone,renderMachine:renderMachine,dv:function(x){DV=x;renderDial();},dp:function(x){DP=x;renderDial();},dvdp:function(a,b){DV=a;DP=b;renderDial();window.scrollTo(0,0);},setCMode:setCMode,openHats:openHats,renderHats:renderHats,renderCompose:renderCompose,cPick1:cPick1,cPick2:cPick2,cReset:cReset,v4Pick:v4Pick,netPick:netPick,netOpenAll:netOpenAll,C:C,PF:PF,PT:PT,RS:RS,taPick:taPick,taBuildTap:taBuildTap,taBuildCheck:taBuildCheck,taBuildReset:taBuildReset,taReveal:taReveal,openModal,modalSetLens,modalSetWord,modalZonePick,modalQuizPick,openPatterns,patTap,patCol,patReset,patShowTable,openReview,srsEarly,srsPick,openReport,readAloud,readSelf,loopSetTA,loopStep};
+window.VB={show:show,goHome:goHome,say:say,openMachine:openMachine,openMachinePreset:openMachinePreset,openTA:openTA,renderWardChips:renderWardChips,openWard:openWard,openFam:openFam,openPoly:openPoly,predPick:predPick,openFan:openFan,outPick:outPick,setScene:setScene,openHosp:openHosp,mEvChange:mEvChange,mResult:mResult,mGone:mGone,renderMachine:renderMachine,dv:function(x){DV=x;renderDial();},dp:function(x){DP=x;renderDial();},dvdp:function(a,b){DV=a;DP=b;renderDial();window.scrollTo(0,0);},setCMode:setCMode,openHats:openHats,renderHats:renderHats,renderCompose:renderCompose,cPick1:cPick1,cPick2:cPick2,cReset:cReset,v4Pick:v4Pick,netPick:netPick,netOpenAll:netOpenAll,C:C,PF:PF,PT:PT,RS:RS,taPick:taPick,taBuildTap:taBuildTap,taBuildCheck:taBuildCheck,taBuildReset:taBuildReset,taReveal:taReveal,openModal,modalSetLens,modalSetWord,modalZonePick,modalQuizPick,openPatterns,patTap,patCol,patReset,patShowTable,openReview,srsEarly,srsPick,openReport,readAloud,readSelf,loopSetTA,loopStep,openDiag,diagPick,diagNext,diagState:function(){return DIAG;},lifePreset,lifeAge,lifeDel,lifeSel,lifeAdd};
 })();
 </script>
 <script>
