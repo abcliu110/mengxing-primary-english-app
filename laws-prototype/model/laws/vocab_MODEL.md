@@ -125,6 +125,12 @@ V-32 定版数字即按此对齐：小学生语料中 SEM 3–5 约 18–24%（�
 
 菜单后果：封存词不进能拆队（§3 谓词为 `transparency = 全透明`，两词本不在内）；两词在前缀 / 词根 / 后缀家族页的在册呈现只作词源登记，不作该词缀的推广例——家族页呈现方式由 App 同步线按此口径实现（本裁定的模型层落地不含 App 改动）。
 
+### 词根库存（2026-11-02 入模）
+
+学校级黏着根库存定版于 `model/root_inventory.json`（69 户，逐根经词典词源核实；41 户有成员，成员以词源属实且根形可辨为准）。库存的归一方案（`normalization_schemes`）与假根审计（`fake_root_audit`）已于 2026-11-02 并入词库：根值归一 44 条（原表面变体逐条记入 `morphemes.note`）、假根改判禁拆 3 条（allow / appear / ward，`morph_reason: fake_root`）。
+
+**库存成员资格 ≠ 词库拆分状态**：insect（sect）、instant（stant）、picture（pict）、deny（neg）等 nosplit 词与所属根的词源亲属关系只登记于库存，不改其拆分状态；家族页成员仍按 §2.4 对账规则由 `morphemes` 谓词推导，词源登记-only 的成员不计入拆分家族。
+
 ## 3. 菜单谓词（词汇解码区，WORDBANK 规则 6）
 
 菜单词集一律由谓词对词库 + 挂接表推导，禁止手选样本（见 `../WORDBANK.md` 规则 6 与 DESIGN §5）：

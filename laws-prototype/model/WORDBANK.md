@@ -34,7 +34,7 @@
 
 - **decodable**：全词字母（组）均可由已立模式 + 位置/弱读规则对位 `phonetic_gb` 平铺拼出。
 - **irregular**：至少一段只能靠未立模式或例外对应成立（心词）。
-- **na**：不适用单字拼读判定，子类记在判定依据（basis）前缀：`na:verb_form`（动词变形条目）、`na:phrase`（短语/多词条目）、`na:proper`（专名/缩略，含月份、星期、称谓）。
+- **na**：不适用单字拼读判定，子类直接记于 `sight_type` 值内（全值写法，自描述）：`na:verb_form`（动词变形条目）、`na:phrase`（短语/多词条目）、`na:proper`（专名/缩略，含月份、星期、称谓）。（判定依据 basis 中同以该子类前缀记，供侧表对账。）
 
 判定顺序与优先级：
 
@@ -51,7 +51,7 @@
 
 存量分层注记：口径基准为 GK + ADD 逐词判定层；V6 500 条为整批默认 decodable（未经逐词裁定，含 of / who / people 等已知不合者），不在本口径追认范围。已判集内部个别不一致（如 giggle 词库 irregular 与心词裁定 decodable 并存、ancient 与 efficient 的 ci→/ʃ/ 取舍相反）按心词优先与登记保留原则维持原值，不在本口径处理范围。
 
-856 条空值销项（2026-11-02）：侧表 `~/workspace/sight_fix/verdicts.json` 逐条给值与 basis——decodable 735 / irregular 60 / na 61（verb_form 28 + phrase 8 + proper 25）；两面性条目另列 `~/workspace/sight_fix/uncertain.json`（含倾向与翻判条件）。合并后全库预期分布 decodable 2,113 / irregular 178 / na 61，未判定 = 0。`wordbank.json` 本体由合并车道落盘，本节与侧表为判定依据。
+856 条空值销项（2026-11-02）：侧表 `~/workspace/sight_fix/verdicts.json` 逐条给值与 basis——decodable 735 / irregular 60 / na 61（verb_form 28 + phrase 8 + proper 25）；两面性条目另列 `~/workspace/sight_fix/uncertain.json`（含倾向与翻判条件）。合并已于 2026-11-02 由收尾合并车道落盘（连同同日用户裁定全收的 uncertain 7 词建条 ADD_0873–0879，全库 2,446 条）：实测分布 decodable 2,203 / irregular 182 / na 61，未判定 = 0。本节与侧表为判定依据。
 
 ## 依赖规则（硬规则）
 
