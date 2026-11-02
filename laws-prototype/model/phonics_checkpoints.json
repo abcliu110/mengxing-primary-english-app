@@ -1,8 +1,8 @@
 {
  "meta": {
   "file": "phonics_checkpoints.json",
-  "date": "2026-11-02",
-  "purpose": "拼读主线 160 站中 48 个无过关组站位的补配：过关组 = 在该站累计模式内可拼读的词（小集合，形制同既有 112 站）。纯推导，无生造词；每词附程序证明。",
+  "date": "2026-11-03",
+  "purpose": "拼读主线 48 个无过关组站位的补配（站位集为 160 站时代筛定的 48 站，2026-11-03 已按现行 167 站主线与现行定版词池全量重算对齐）：过关组 = 在该站累计模式内可拼读的词（小集合，形制同既有站）。纯推导，无生造词；每词附程序证明。",
   "rule": {
    "qualification": "词的全部登记模式（phonics_wordsets.json 定版词池）站位 ≤ 本站，且至少一个模式的站位 == 本站（本（站）新达标），且含本站模式",
    "form": "单条目（非 # 成员）、词形无空格/连字符/撇号、按词形去重",
@@ -22,6 +22,52 @@
    "previously_empty": 48,
    "newly_filled": 16,
    "still_empty": 32
+  },
+  "recalc_2026_11_03": {
+   "base": "App 落盘 X2.spine 167 站（基底 commit 58aa636）+ phonics_wordsets.json 现行 occ 对齐词池 + wordbank 现行 freq_rank/phonetic_gb",
+   "index_convention": "本文件 index、earliest_completion 与 proof.pools 站号均为 0 基，与原口径及 App nogate 文案一致；主线沿革 160（原筛定）→162（o-ʌ、er-ə 入线）→167（augh 67、or-ə 84、ar-ə 85、eye 92、ui-ɪ 121 入线，1 基站位见 PHONICS_WORDSETS §13.6）",
+   "stations_updated": 48,
+   "status_changes": 0,
+   "funnel_changed_stations": [
+    "y|/i/",
+    "a|/eɪ/",
+    "le|/əl/",
+    "age|/ɪdʒ/",
+    "ture|/tʃə/",
+    "a|/ɔː/",
+    "ou|/ə/"
+   ],
+   "earliest_completion_changed": [
+    "c|/k/: 17→30",
+    "ch|/k/: 46→49",
+    "g|/dʒ/: 46→48",
+    "kn|/n/: 73→75",
+    "mn|/m/: 54→55",
+    "ng|/ŋ/: 34→46",
+    "pn|/n/: 110→116",
+    "ps|/s/: 57→58",
+    "pt|/t/: 61→62",
+    "wh|/h/: 94→100",
+    "x|/z/: 115→122",
+    "eo|/iː/: 120→127",
+    "ous|/əs/: 148→155",
+    "ough|/ə/: 157→164"
+   ],
+   "example_word_changed": [
+    "c|/k/: become→crucial",
+    "ch|/k/: anchor→chemist",
+    "g|/dʒ/: passenger→gem",
+    "ng|/ŋ/: tongue→sang"
+   ],
+   "gate_sets": "16 个已补站的过关组词集与顺序与 App 落盘逐字对齐；按现行词池严格口径重算的选词与 App 词集完全一致者 12/16 站，差异 4 站（a|/eɪ/、le|/əl/、age|/ɪdʒ/、ture|/tʃə/）逐条见 discrepancies",
+   "checkpoints_conclusion": "CP1–CP3 为阶段末锚点（P3/P5/P6 末），非站号对象（见 PHONICS_DESIGN §8 对账行 7），不随站号变；新入线五站的规律（S-37/S-40/S-41/S-42 及 S-08）均不在 P0–P3 规律集合内，CP1 已教集不变；CP2 累计已教集新增 augh、or-ə、ar-ə（P5）与 eye（P4）四站，CP3 再增 ui-ɪ（P6）；探针随题按已教集生成（无冻结探针库），已教集只增不减，达标线 CP1 16/20、CP2/CP3 32/40 与可拼阈值（P1–P3 ≥90%、P4+ ≥80%）不变——三条检查点均不需移动，与 PHONICS_WORDSETS §13.6 的复核结论一致",
+   "discrepancies": [
+    "【卡位早于完成站·本文件 3 词】a|/eɪ/ 站（0 基 57）的 danger、baker、stranger：现行词池下三词均含 GP-er-ə，完成站为 er|/ə/ 站（0 基 82），proof.max_station 已按实测记 82。此三卡为 GP-er-ə 入册（160→162）回填成员之前按旧词池选定，入册时未迁移；本文件按 App 落盘保留卡位并如实登记，不改 App。",
+    "【卡位晚于完成站·本文件 1 词】le|/əl/ 站（0 基 127）的 noodles：现行词池中 noodles 仅列于 GP-le 的 word_ids、不在 occ 对齐集内，按 occ 口径其完成站为 oo|/uː/ 站（0 基 105），proof.pools 已按实测记（无 GP-le）。卡按 App 落盘保留；严格口径下本站第 8 张顺位词为 turtle。",
+    "【同类·本文件范围外 11 词】全 App 过关卡 604 张逐张对账，另有 11 张同属「选卡后词又获更晚模式、卡未迁移」：come、one、done、son、some、tongue、ton、front、month、won（均因 GP-o-ʌ 入册，完成站 0 基 51）与 somewhere（后获 GP-ere-eə，完成站 0 基 85）。连同上两条，全 App 共 15 张卡的所在站 ≠ 现行口径完成站，成因均为模式入册/成员回填后未迁移既有卡，非本次重算所致。",
+    "【可入组未入组·组未满 33 词】按现行口径严格重算，全 App 有 33 个词在其完成站合 tier 资格且组未满 8 张却无卡：本文件 48 站内 2 词——language（age|/ɪdʒ/ 站，组 6/8）、rupture（ture|/tʃə/ 站，组 5/8），均为补词波次后新入池词；其余 31 词在既有站（oa|/əʊ/ 组 1/8 的 boat/coat/road/goat/load/roach、oe|/əʊ/ 的 toe/goes/hoe/doe、o-e|/əʊ/ 的 nose/phone/rode/hope/close、tion|/ʃən/ 的 action/station/nation/section、ew 的 blew/threw/knew 等，含 Ms、PE 两条字母名条目）。既有过关组为小集合选例而非上限填满（与 legacy_reproduction 的 142/160 同源），本文件只登记不处置。",
+    "【cian 注记】cian|/ʃən/ 站人工裁定注记原样保留，其中「既有 509 个过关词」为原裁定当时（160 站时代）的过关词总数；现行 App 过关卡总数为 604。"
+   ]
   }
  },
  "stations": [
@@ -50,10 +96,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 17,
-    "example_word": "become"
+    "station": 30,
+    "example_word": "crucial"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 17 站才有词（如 become）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 30 站才有词（如 crucial）凑齐全部模式。"
   },
   {
    "index": 2,
@@ -106,10 +152,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 46,
-    "example_word": "anchor"
+    "station": 49,
+    "example_word": "chemist"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 anchor）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 49 站才有词（如 chemist）凑齐全部模式。"
   },
   {
    "index": 4,
@@ -218,10 +264,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 46,
-    "example_word": "passenger"
+    "station": 48,
+    "example_word": "gem"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 passenger）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 48 站才有词（如 gem）凑齐全部模式。"
   },
   {
    "index": 9,
@@ -442,10 +488,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 73,
+    "station": 75,
     "example_word": "knee"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 73 站才有词（如 knee）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 75 站才有词（如 knee）凑齐全部模式。"
   },
   {
    "index": 18,
@@ -498,10 +544,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 54,
+    "station": 55,
     "example_word": "hymn"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 54 站才有词（如 hymn）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 55 站才有词（如 hymn）凑齐全部模式。"
   },
   {
    "index": 21,
@@ -526,10 +572,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 34,
-    "example_word": "tongue"
+    "station": 46,
+    "example_word": "sang"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 34 站才有词（如 tongue）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 46 站才有词（如 sang）凑齐全部模式。"
   },
   {
    "index": 22,
@@ -610,10 +656,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 110,
+    "station": 116,
     "example_word": "pneumonia"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 110 站才有词（如 pneumonia）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 116 站才有词（如 pneumonia）凑齐全部模式。"
   },
   {
    "index": 26,
@@ -638,10 +684,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 57,
+    "station": 58,
     "example_word": "psalm"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 57 站才有词（如 psalm）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 58 站才有词（如 psalm）凑齐全部模式。"
   },
   {
    "index": 27,
@@ -666,10 +712,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 61,
+    "station": 62,
     "example_word": "ptarmigan"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 61 站才有词（如 ptarmigan）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 62 站才有词（如 ptarmigan）凑齐全部模式。"
   },
   {
    "index": 29,
@@ -722,10 +768,10 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 94,
+    "station": 100,
     "example_word": "whole"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 94 站才有词（如 whole）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 100 站才有词（如 whole）凑齐全部模式。"
   },
   {
    "index": 40,
@@ -862,13 +908,13 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 115,
+    "station": 122,
     "example_word": "xylophone"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 115 站才有词（如 xylophone）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 122 站才有词（如 xylophone）凑齐全部模式。"
   },
   {
-   "index": 53,
+   "index": 54,
    "key": "y|/i/",
    "g": "y",
    "ph": "/i/",
@@ -880,12 +926,12 @@
     "GP-y-i"
    ],
    "funnel": {
-    "newly": 64,
-    "with_own": 64,
-    "form_ok": 64,
-    "dedup": 64,
+    "newly": 76,
+    "with_own": 76,
+    "form_ok": 76,
+    "dedup": 76,
     "tier1_n": 0,
-    "tier2_n": 42
+    "tier2_n": 43
    },
    "status": "filled",
    "tier": 2,
@@ -901,9 +947,9 @@
        "GP-p": 23,
        "GP-r": 30,
        "GP-t": 34,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 53,
+      "max_station": 54,
       "syllables": 2,
       "freq_rank": 73
      }
@@ -918,10 +964,10 @@
       "pools": {
        "GP-n": 20,
        "GP-s-s": 31,
-       "GP-u-ʌ": 52,
-       "GP-y-i": 53
+       "GP-u-ʌ": 53,
+       "GP-y-i": 54
       },
-      "max_station": 53,
+      "max_station": 54,
       "syllables": 2,
       "freq_rank": 98
      }
@@ -938,9 +984,9 @@
        "GP-i-ɪ": 49,
        "GP-n": 20,
        "GP-w": 38,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 53,
+      "max_station": 54,
       "syllables": 2,
       "freq_rank": 99
      }
@@ -956,9 +1002,9 @@
        "GP-b": 0,
        "GP-d": 6,
        "GP-o-ɒ": 50,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 53,
+      "max_station": 54,
       "syllables": 2,
       "freq_rank": 127
      }
@@ -975,9 +1021,9 @@
        "GP-n": 20,
        "GP-t": 34,
        "GP-w": 38,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 53,
+      "max_station": 54,
       "syllables": 2,
       "freq_rank": 159
      }
@@ -994,9 +1040,9 @@
        "GP-c-k": 1,
        "GP-d": 6,
        "GP-n": 20,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 53,
+      "max_station": 54,
       "syllables": 2,
       "freq_rank": 172
      }
@@ -1012,10 +1058,10 @@
        "GP-d": 6,
        "GP-s-s": 31,
        "GP-t": 34,
-       "GP-u-ʌ": 52,
-       "GP-y-i": 53
+       "GP-u-ʌ": 53,
+       "GP-y-i": 54
       },
-      "max_station": 53,
+      "max_station": 54,
       "syllables": 2,
       "freq_rank": 205
      }
@@ -1033,9 +1079,9 @@
        "GP-f": 7,
        "GP-r": 30,
        "GP-t": 34,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 53,
+      "max_station": 54,
       "syllables": 2,
       "freq_rank": 314
      }
@@ -1043,7 +1089,7 @@
    ]
   },
   {
-   "index": 56,
+   "index": 57,
    "key": "a|/eɪ/",
    "g": "a",
    "ph": "/eɪ/",
@@ -1054,12 +1100,12 @@
     "GP-a-eɪ-open"
    ],
    "funnel": {
-    "newly": 25,
-    "with_own": 25,
-    "form_ok": 23,
-    "dedup": 23,
+    "newly": 22,
+    "with_own": 22,
+    "form_ok": 20,
+    "dedup": 20,
     "tier1_n": 0,
-    "tier2_n": 18
+    "tier2_n": 15
    },
    "status": "filled",
    "tier": 2,
@@ -1072,13 +1118,13 @@
      "em": "🦺",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-f": 7,
        "GP-s-s": 31,
        "GP-t": 34,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 56,
+      "max_station": 57,
       "syllables": 2,
       "freq_rank": 383
      }
@@ -1091,13 +1137,14 @@
      "em": "⚠️",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-d": 6,
+       "GP-er-ə": 82,
        "GP-g-dʒ": 8,
        "GP-n": 20,
        "GP-r": 30
       },
-      "max_station": 56,
+      "max_station": 82,
       "syllables": 2,
       "freq_rank": 480
      }
@@ -1110,12 +1157,12 @@
      "em": "🌸",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-l": 16,
        "GP-p": 23,
        "GP-r": 30
       },
-      "max_station": 56,
+      "max_station": 57,
       "syllables": 2,
       "freq_rank": 615
      }
@@ -1128,7 +1175,7 @@
      "em": "👨‍🚀",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-a-æ": 46,
        "GP-c-s": 2,
        "GP-m": 17,
@@ -1136,7 +1183,7 @@
        "GP-p": 23,
        "GP-s-s": 31
       },
-      "max_station": 56,
+      "max_station": 57,
       "syllables": 2,
       "freq_rank": 727
      }
@@ -1149,14 +1196,14 @@
      "em": "🚀",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-c-s": 2,
        "GP-i-ɪ": 49,
        "GP-p": 23,
        "GP-s-s": 31,
        "GP-sh": 33
       },
-      "max_station": 56,
+      "max_station": 57,
       "syllables": 2,
       "freq_rank": 728
      }
@@ -1169,12 +1216,13 @@
      "em": "🥖",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-b": 0,
+       "GP-er-ə": 82,
        "GP-k": 14,
        "GP-r": 30
       },
-      "max_station": 56,
+      "max_station": 82,
       "syllables": 2,
       "freq_rank": 790
      }
@@ -1187,14 +1235,15 @@
      "em": "🕵️",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
+       "GP-er-ə": 82,
        "GP-g-dʒ": 8,
        "GP-n": 20,
        "GP-r": 30,
        "GP-s-s": 31,
        "GP-t": 34
       },
-      "max_station": 56,
+      "max_station": 82,
       "syllables": 2,
       "freq_rank": 799
      }
@@ -1207,12 +1256,12 @@
      "em": "😋",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-s-s": 31,
        "GP-t": 34,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 56,
+      "max_station": 57,
       "syllables": 2,
       "freq_rank": 816
      }
@@ -1220,7 +1269,7 @@
    ]
   },
   {
-   "index": 78,
+   "index": 80,
    "key": "eo|/iː/",
    "g": "eo",
    "ph": "/iː/",
@@ -1242,13 +1291,13 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 120,
+    "station": 127,
     "example_word": "people"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 120 站才有词（如 people）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 127 站才有词（如 people）凑齐全部模式。"
   },
   {
-   "index": 89,
+   "index": 95,
    "key": "ie|/aɪ/",
    "g": "ie",
    "ph": "/aɪ/",
@@ -1277,12 +1326,12 @@
      "em": "🤫",
      "proof": {
       "pools": {
-       "GP-i-aɪ-open": 86,
-       "GP-ie-aɪ": 89,
+       "GP-i-aɪ-open": 92,
+       "GP-ie-aɪ": 95,
        "GP-qu-kw": 29,
        "GP-t": 34
       },
-      "max_station": 89,
+      "max_station": 95,
       "syllables": 2,
       "freq_rank": 177
      }
@@ -1296,11 +1345,11 @@
      "proof": {
       "pools": {
        "GP-d": 6,
-       "GP-i-aɪ-open": 86,
-       "GP-ie-aɪ": 89,
+       "GP-i-aɪ-open": 92,
+       "GP-ie-aɪ": 95,
        "GP-t": 34
       },
-      "max_station": 89,
+      "max_station": 95,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1308,7 +1357,7 @@
    ]
   },
   {
-   "index": 104,
+   "index": 110,
    "key": "ou|/əʊ/",
    "g": "ou",
    "ph": "/əʊ/",
@@ -1340,9 +1389,9 @@
        "GP-d": 6,
        "GP-l": 16,
        "GP-m": 17,
-       "GP-ou-əʊ": 104
+       "GP-ou-əʊ": 110
       },
-      "max_station": 104,
+      "max_station": 110,
       "syllables": 1,
       "freq_rank": null
      }
@@ -1356,10 +1405,10 @@
      "proof": {
       "pools": {
        "GP-l": 16,
-       "GP-ou-əʊ": 104,
+       "GP-ou-əʊ": 110,
        "GP-s-s": 31
       },
-      "max_station": 104,
+      "max_station": 110,
       "syllables": 1,
       "freq_rank": null
      }
@@ -1367,7 +1416,7 @@
    ]
   },
   {
-   "index": 120,
+   "index": 127,
    "key": "le|/əl/",
    "g": "le",
    "ph": "/əl/",
@@ -1378,12 +1427,12 @@
     "GP-le"
    ],
    "funnel": {
-    "newly": 63,
-    "with_own": 63,
-    "form_ok": 63,
-    "dedup": 63,
+    "newly": 64,
+    "with_own": 64,
+    "form_ok": 64,
+    "dedup": 64,
     "tier1_n": 0,
-    "tier2_n": 23
+    "tier2_n": 22
    },
    "status": "filled",
    "tier": 2,
@@ -1398,10 +1447,10 @@
       "pools": {
        "GP-a-æ": 46,
        "GP-l": 16,
-       "GP-le": 120,
+       "GP-le": 127,
        "GP-p": 23
       },
-      "max_station": 120,
+      "max_station": 127,
       "syllables": 2,
       "freq_rank": 36
      }
@@ -1416,10 +1465,10 @@
       "pools": {
        "GP-c-k": 1,
        "GP-l": 16,
-       "GP-le": 120,
-       "GP-u-ʌ": 52
+       "GP-le": 127,
+       "GP-u-ʌ": 53
       },
-      "max_station": 120,
+      "max_station": 127,
       "syllables": 2,
       "freq_rank": 70
      }
@@ -1433,12 +1482,12 @@
      "proof": {
       "pools": {
        "GP-l": 16,
-       "GP-le": 120,
+       "GP-le": 127,
        "GP-p": 23,
        "GP-r": 30,
-       "GP-ur": 114
+       "GP-ur": 121
       },
-      "max_station": 120,
+      "max_station": 127,
       "syllables": 2,
       "freq_rank": 125
      }
@@ -1453,12 +1502,11 @@
       "pools": {
        "GP-d": 6,
        "GP-l": 16,
-       "GP-le": 120,
        "GP-n": 20,
-       "GP-oo-uː": 99,
+       "GP-oo-uː": 105,
        "GP-s-z": 32
       },
-      "max_station": 120,
+      "max_station": 105,
       "syllables": 2,
       "freq_rank": 208
      }
@@ -1473,11 +1521,11 @@
       "pools": {
        "GP-b": 0,
        "GP-l": 16,
-       "GP-le": 120,
+       "GP-le": 127,
        "GP-o-ɒ": 50,
        "GP-t": 34
       },
-      "max_station": 120,
+      "max_station": 127,
       "syllables": 2,
       "freq_rank": 266
      }
@@ -1491,12 +1539,12 @@
      "proof": {
       "pools": {
        "GP-l": 16,
-       "GP-le": 120,
+       "GP-le": 127,
        "GP-p": 23,
-       "GP-u-ʌ": 52,
+       "GP-u-ʌ": 53,
        "GP-z": 45
       },
-      "max_station": 120,
+      "max_station": 127,
       "syllables": 2,
       "freq_rank": 311
      }
@@ -1509,13 +1557,13 @@
      "em": "🍽️",
      "proof": {
       "pools": {
-       "GP-a-e": 55,
+       "GP-a-e": 56,
        "GP-b": 0,
        "GP-l": 16,
-       "GP-le": 120,
+       "GP-le": 127,
        "GP-t": 34
       },
-      "max_station": 120,
+      "max_station": 127,
       "syllables": 2,
       "freq_rank": 398
      }
@@ -1531,12 +1579,12 @@
        "GP-c-k": 1,
        "GP-c-k-front": 1,
        "GP-c-s": 2,
-       "GP-ir": 92,
+       "GP-ir": 98,
        "GP-l": 16,
-       "GP-le": 120,
+       "GP-le": 127,
        "GP-r": 30
       },
-      "max_station": 120,
+      "max_station": 127,
       "syllables": 2,
       "freq_rank": 401
      }
@@ -1544,7 +1592,7 @@
    ]
   },
   {
-   "index": 123,
+   "index": 130,
    "key": "age|/ɪdʒ/",
    "g": "age",
    "ph": "/ɪdʒ/",
@@ -1555,12 +1603,12 @@
     "GP-age"
    ],
    "funnel": {
-    "newly": 6,
-    "with_own": 6,
-    "form_ok": 6,
-    "dedup": 6,
+    "newly": 7,
+    "with_own": 7,
+    "form_ok": 7,
+    "dedup": 7,
     "tier1_n": 0,
-    "tier2_n": 6
+    "tier2_n": 7
    },
    "status": "filled",
    "tier": 2,
@@ -1573,14 +1621,14 @@
      "em": "🏡",
      "proof": {
       "pools": {
-       "GP-age": 123,
+       "GP-age": 130,
        "GP-g-dʒ": 8,
-       "GP-ge": 119,
+       "GP-ge": 126,
        "GP-i-ɪ": 49,
        "GP-l": 16,
        "GP-v": 37
       },
-      "max_station": 123,
+      "max_station": 130,
       "syllables": 2,
       "freq_rank": 274
      }
@@ -1594,14 +1642,13 @@
      "proof": {
       "pools": {
        "GP-a-æ": 46,
-       "GP-age": 123,
+       "GP-age": 130,
        "GP-b": 0,
        "GP-c-k": 1,
        "GP-g-dʒ": 8,
-       "GP-ge": 119,
-       "GP-i-ɪ": 49
+       "GP-ge": 126
       },
-      "max_station": 123,
+      "max_station": 130,
       "syllables": 2,
       "freq_rank": 8106
      }
@@ -1614,16 +1661,15 @@
      "em": "🧳",
      "proof": {
       "pools": {
-       "GP-age": 123,
+       "GP-age": 130,
        "GP-g-dʒ": 8,
        "GP-g-g": 9,
        "GP-g-g-front": 9,
-       "GP-ge": 119,
-       "GP-i-ɪ": 49,
+       "GP-ge": 126,
        "GP-l": 16,
-       "GP-u-ʌ": 52
+       "GP-u-ʌ": 53
       },
-      "max_station": 123,
+      "max_station": 130,
       "syllables": 2,
       "freq_rank": 8185
      }
@@ -1637,14 +1683,13 @@
      "proof": {
       "pools": {
        "GP-a-æ": 46,
-       "GP-age": 123,
+       "GP-age": 130,
        "GP-g-dʒ": 8,
-       "GP-ge": 119,
-       "GP-i-ɪ": 49,
+       "GP-ge": 126,
        "GP-m": 17,
        "GP-n": 20
       },
-      "max_station": 123,
+      "max_station": 130,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1657,14 +1702,13 @@
      "em": "💬",
      "proof": {
       "pools": {
-       "GP-age": 123,
+       "GP-age": 130,
        "GP-e-e": 48,
        "GP-g-dʒ": 8,
-       "GP-ge": 119,
-       "GP-i-ɪ": 49,
+       "GP-ge": 126,
        "GP-m": 17
       },
-      "max_station": 123,
+      "max_station": 130,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1677,14 +1721,13 @@
      "em": "🚢",
      "proof": {
       "pools": {
-       "GP-age": 123,
+       "GP-age": 130,
        "GP-g-dʒ": 8,
-       "GP-ge": 119,
-       "GP-i-ɪ": 49,
-       "GP-oy": 107,
+       "GP-ge": 126,
+       "GP-oy": 113,
        "GP-v": 37
       },
-      "max_station": 123,
+      "max_station": 130,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1692,7 +1735,7 @@
    ]
   },
   {
-   "index": 124,
+   "index": 131,
    "key": "cian|/ʃən/",
    "g": "cian",
    "ph": "/ʃən/",
@@ -1716,7 +1759,7 @@
    "reason": "有 4 个新达标且含本站模式的词，但全部 ≥3 音节，超出既有 509 个过关词的 ≤2 音节口径，不凑数。"
   },
   {
-   "index": 128,
+   "index": 135,
    "key": "ic|/ɪk/",
    "g": "ic",
    "ph": "/ɪk/",
@@ -1747,11 +1790,11 @@
       "pools": {
        "GP-c-k": 1,
        "GP-i-ɪ": 49,
-       "GP-ic": 128,
+       "GP-ic": 135,
        "GP-n": 20,
        "GP-p": 23
       },
-      "max_station": 128,
+      "max_station": 135,
       "syllables": 2,
       "freq_rank": 277
      }
@@ -1768,11 +1811,11 @@
        "GP-c-k": 1,
        "GP-f": 7,
        "GP-i-ɪ": 49,
-       "GP-ic": 128,
+       "GP-ic": 135,
        "GP-r": 30,
        "GP-t": 34
       },
-      "max_station": 128,
+      "max_station": 135,
       "syllables": 2,
       "freq_rank": 302
      }
@@ -1787,12 +1830,12 @@
       "pools": {
        "GP-c-k": 1,
        "GP-i-ɪ": 49,
-       "GP-ic": 128,
+       "GP-ic": 135,
        "GP-m": 17,
        "GP-s-z": 32,
-       "GP-u-juː": 110
+       "GP-u-juː": 116
       },
-      "max_station": 128,
+      "max_station": 135,
       "syllables": 2,
       "freq_rank": 779
      }
@@ -1809,10 +1852,10 @@
        "GP-c-k": 1,
        "GP-g-dʒ": 8,
        "GP-i-ɪ": 49,
-       "GP-ic": 128,
+       "GP-ic": 135,
        "GP-m": 17
       },
-      "max_station": 128,
+      "max_station": 135,
       "syllables": 2,
       "freq_rank": 781
      }
@@ -1828,13 +1871,13 @@
        "GP-a-æ": 46,
        "GP-c-k": 1,
        "GP-i-ɪ": 49,
-       "GP-ic": 128,
+       "GP-ic": 135,
        "GP-l": 16,
        "GP-p": 23,
        "GP-s-s": 31,
        "GP-t": 34
       },
-      "max_station": 128,
+      "max_station": 135,
       "syllables": 2,
       "freq_rank": 8349
      }
@@ -1850,12 +1893,12 @@
        "GP-c-k": 1,
        "GP-f": 7,
        "GP-i-ɪ": 49,
-       "GP-ic": 128,
+       "GP-ic": 135,
        "GP-l": 16,
        "GP-o-ɒ": 50,
        "GP-r": 30
       },
-      "max_station": 128,
+      "max_station": 135,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1868,15 +1911,15 @@
      "em": "🧄",
      "proof": {
       "pools": {
-       "GP-ar": 61,
+       "GP-ar": 62,
        "GP-c-k": 1,
        "GP-g-g": 9,
        "GP-i-ɪ": 49,
-       "GP-ic": 128,
+       "GP-ic": 135,
        "GP-l": 16,
        "GP-r": 30
       },
-      "max_station": 128,
+      "max_station": 135,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1892,11 +1935,11 @@
        "GP-c-k": 1,
        "GP-g-dʒ": 8,
        "GP-i-ɪ": 49,
-       "GP-ic": 128,
+       "GP-ic": 135,
        "GP-l": 16,
        "GP-o-ɒ": 50
       },
-      "max_station": 128,
+      "max_station": 135,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1904,7 +1947,7 @@
    ]
   },
   {
-   "index": 130,
+   "index": 137,
    "key": "ous|/əs/",
    "g": "ous",
    "ph": "/əs/",
@@ -1926,13 +1969,13 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 148,
+    "station": 155,
     "example_word": "amphibious"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 148 站才有词（如 amphibious）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 155 站才有词（如 amphibious）凑齐全部模式。"
   },
   {
-   "index": 131,
+   "index": 138,
    "key": "sion|/ʃən/",
    "g": "sion",
    "ph": "/ʃən/",
@@ -1964,9 +2007,9 @@
        "GP-e-e": 48,
        "GP-n": 20,
        "GP-p": 23,
-       "GP-sion-ʃ": 131
+       "GP-sion-ʃ": 138
       },
-      "max_station": 131,
+      "max_station": 138,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1981,10 +2024,10 @@
       "pools": {
        "GP-e-e": 48,
        "GP-n": 20,
-       "GP-sion-ʃ": 131,
+       "GP-sion-ʃ": 138,
        "GP-t": 34
       },
-      "max_station": 131,
+      "max_station": 138,
       "syllables": 2,
       "freq_rank": null
      }
@@ -1997,12 +2040,12 @@
      "em": "🔖",
      "proof": {
       "pools": {
-       "GP-er": 79,
+       "GP-er": 81,
        "GP-n": 20,
-       "GP-sion-ʃ": 131,
+       "GP-sion-ʃ": 138,
        "GP-v": 37
       },
-      "max_station": 131,
+      "max_station": 138,
       "syllables": 2,
       "freq_rank": null
      }
@@ -2010,7 +2053,7 @@
    ]
   },
   {
-   "index": 132,
+   "index": 139,
    "key": "sion|/ʒən/",
    "g": "sion",
    "ph": "/ʒən/",
@@ -2041,10 +2084,10 @@
       "pools": {
        "GP-i-ɪ": 49,
        "GP-n": 20,
-       "GP-sion-ʒ": 132,
+       "GP-sion-ʒ": 139,
        "GP-v": 37
       },
-      "max_station": 132,
+      "max_station": 139,
       "syllables": 2,
       "freq_rank": null
      }
@@ -2052,7 +2095,7 @@
    ]
   },
   {
-   "index": 136,
+   "index": 143,
    "key": "ture|/tʃə/",
    "g": "ture",
    "ph": "/tʃə/",
@@ -2063,12 +2106,12 @@
     "GP-ture"
    ],
    "funnel": {
-    "newly": 8,
-    "with_own": 8,
-    "form_ok": 8,
-    "dedup": 8,
+    "newly": 9,
+    "with_own": 9,
+    "form_ok": 9,
+    "dedup": 9,
     "tier1_n": 0,
-    "tier2_n": 5
+    "tier2_n": 6
    },
    "status": "filled",
    "tier": 2,
@@ -2085,9 +2128,9 @@
        "GP-i-ɪ": 49,
        "GP-p": 23,
        "GP-r": 30,
-       "GP-ture": 136
+       "GP-ture": 143
       },
-      "max_station": 136,
+      "max_station": 143,
       "syllables": 2,
       "freq_rank": 170
      }
@@ -2100,12 +2143,12 @@
      "em": "🏞️",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-n": 20,
        "GP-r": 30,
-       "GP-ture": 136
+       "GP-ture": 143
       },
-      "max_station": 136,
+      "max_station": 143,
       "syllables": 2,
       "freq_rank": 657
      }
@@ -2120,10 +2163,10 @@
       "pools": {
        "GP-f": 7,
        "GP-r": 30,
-       "GP-ture": 136,
-       "GP-u-juː": 110
+       "GP-ture": 143,
+       "GP-u-juː": 116
       },
-      "max_station": 136,
+      "max_station": 143,
       "syllables": 2,
       "freq_rank": 8175
      }
@@ -2137,11 +2180,11 @@
      "proof": {
       "pools": {
        "GP-c-k": 1,
-       "GP-ea-iː": 70,
+       "GP-ea-iː": 72,
        "GP-r": 30,
-       "GP-ture": 136
+       "GP-ture": 143
       },
-      "max_station": 136,
+      "max_station": 143,
       "syllables": 2,
       "freq_rank": null
      }
@@ -2157,10 +2200,10 @@
        "GP-c-k": 1,
        "GP-l": 16,
        "GP-r": 30,
-       "GP-ture": 136,
-       "GP-u-ʌ": 52
+       "GP-ture": 143,
+       "GP-u-ʌ": 53
       },
-      "max_station": 136,
+      "max_station": 143,
       "syllables": 2,
       "freq_rank": null
      }
@@ -2168,7 +2211,7 @@
    ]
   },
   {
-   "index": 138,
+   "index": 145,
    "key": "a|/e/",
    "g": "a",
    "ph": "/e/",
@@ -2197,12 +2240,12 @@
      "em": "🔢",
      "proof": {
       "pools": {
-       "GP-a-e-any": 138,
+       "GP-a-e-any": 145,
        "GP-m": 17,
        "GP-n": 20,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 138,
+      "max_station": 145,
       "syllables": 2,
       "freq_rank": 8307
      }
@@ -2215,11 +2258,11 @@
      "em": "❓",
      "proof": {
       "pools": {
-       "GP-a-e-any": 138,
+       "GP-a-e-any": 145,
        "GP-n": 20,
-       "GP-y-i": 53
+       "GP-y-i": 54
       },
-      "max_station": 138,
+      "max_station": 145,
       "syllables": 2,
       "freq_rank": 8310
      }
@@ -2227,7 +2270,7 @@
    ]
   },
   {
-   "index": 140,
+   "index": 147,
    "key": "a|/ɔː/",
    "g": "a",
    "ph": "/ɔː/",
@@ -2238,10 +2281,10 @@
     "GP-a-w-ɔː"
    ],
    "funnel": {
-    "newly": 6,
-    "with_own": 6,
-    "form_ok": 6,
-    "dedup": 6,
+    "newly": 7,
+    "with_own": 7,
+    "form_ok": 7,
+    "dedup": 7,
     "tier1_n": 0,
     "tier2_n": 4
    },
@@ -2256,12 +2299,13 @@
      "em": "💧",
      "proof": {
       "pools": {
-       "GP-a-w-ɔː": 140,
+       "GP-a-w-ɔː": 147,
+       "GP-er-ə": 82,
        "GP-r": 30,
        "GP-t": 34,
        "GP-w": 38
       },
-      "max_station": 140,
+      "max_station": 147,
       "syllables": 2,
       "freq_rank": 51
      }
@@ -2274,15 +2318,15 @@
      "em": "🚸",
      "proof": {
       "pools": {
-       "GP-a-w-ɒ": 139,
-       "GP-a-w-ɔː": 140,
+       "GP-a-w-ɒ": 146,
+       "GP-a-w-ɔː": 147,
        "GP-c-k": 1,
        "GP-k": 14,
        "GP-o-ɒ": 50,
        "GP-r": 30,
        "GP-w": 38
       },
-      "max_station": 140,
+      "max_station": 147,
       "syllables": 2,
       "freq_rank": 741
      }
@@ -2295,13 +2339,13 @@
      "em": "🍂",
      "proof": {
       "pools": {
-       "GP-a-w-ɔː": 140,
-       "GP-all": 60,
+       "GP-a-w-ɔː": 147,
+       "GP-all": 61,
        "GP-f": 7,
        "GP-l": 16,
        "GP-n": 20
       },
-      "max_station": 140,
+      "max_station": 147,
       "syllables": 2,
       "freq_rank": 828
      }
@@ -2314,13 +2358,13 @@
      "em": "😖",
      "proof": {
       "pools": {
-       "GP-a-w-ɔː": 140,
-       "GP-aw": 65,
+       "GP-a-w-ɔː": 147,
+       "GP-aw": 67,
        "GP-f": 7,
        "GP-l": 16,
-       "GP-u-ʊ": 51
+       "GP-u-ʊ": 52
       },
-      "max_station": 140,
+      "max_station": 147,
       "syllables": 2,
       "freq_rank": null
      }
@@ -2328,7 +2372,7 @@
    ]
   },
   {
-   "index": 148,
+   "index": 155,
    "key": "ou|/ə/",
    "g": "ou",
    "ph": "/ə/",
@@ -2339,10 +2383,10 @@
     "GP-ou-ə"
    ],
    "funnel": {
-    "newly": 18,
-    "with_own": 18,
-    "form_ok": 18,
-    "dedup": 18,
+    "newly": 19,
+    "with_own": 19,
+    "form_ok": 19,
+    "dedup": 19,
     "tier1_n": 0,
     "tier2_n": 7
    },
@@ -2359,10 +2403,11 @@
       "pools": {
        "GP-c-k": 1,
        "GP-l": 16,
-       "GP-ou-ə": 148,
+       "GP-o-ʌ": 51,
+       "GP-ou-ə": 155,
        "GP-r": 30
       },
-      "max_station": 148,
+      "max_station": 155,
       "syllables": 2,
       "freq_rank": 477
      }
@@ -2375,14 +2420,14 @@
      "em": "🌟",
      "proof": {
       "pools": {
-       "GP-a-eɪ-open": 56,
+       "GP-a-eɪ-open": 57,
        "GP-f": 7,
        "GP-m": 17,
-       "GP-ou-ə": 148,
-       "GP-ous": 130,
+       "GP-ou-ə": 155,
+       "GP-ous": 137,
        "GP-s-s": 31
       },
-      "max_station": 148,
+      "max_station": 155,
       "syllables": 2,
       "freq_rank": 479
      }
@@ -2396,12 +2441,12 @@
      "proof": {
       "pools": {
        "GP-b": 0,
-       "GP-eigh": 77,
+       "GP-eigh": 79,
        "GP-n": 20,
-       "GP-ou-ə": 148,
+       "GP-ou-ə": 155,
        "GP-r": 30
       },
-      "max_station": 148,
+      "max_station": 155,
       "syllables": 2,
       "freq_rank": 777
      }
@@ -2414,15 +2459,15 @@
      "em": "😰",
      "proof": {
       "pools": {
-       "GP-er": 79,
+       "GP-er": 81,
        "GP-n": 20,
-       "GP-ou-ə": 148,
-       "GP-ous": 130,
+       "GP-ou-ə": 155,
+       "GP-ous": 137,
        "GP-r": 30,
        "GP-s-s": 31,
        "GP-v": 37
       },
-      "max_station": 148,
+      "max_station": 155,
       "syllables": 2,
       "freq_rank": 8353
      }
@@ -2437,11 +2482,11 @@
       "pools": {
        "GP-h": 12,
        "GP-m": 17,
-       "GP-ou-ə": 148,
+       "GP-ou-ə": 155,
        "GP-r": 30,
-       "GP-u-juː": 110
+       "GP-u-juː": 116
       },
-      "max_station": 148,
+      "max_station": 155,
       "syllables": 2,
       "freq_rank": null
      }
@@ -2454,14 +2499,14 @@
      "em": "😒",
      "proof": {
       "pools": {
-       "GP-ea-e": 141,
+       "GP-ea-e": 148,
        "GP-j": 13,
        "GP-l": 16,
-       "GP-ou-ə": 148,
-       "GP-ous": 130,
+       "GP-ou-ə": 155,
+       "GP-ous": 137,
        "GP-s-s": 31
       },
-      "max_station": 148,
+      "max_station": 155,
       "syllables": 2,
       "freq_rank": null
      }
@@ -2474,12 +2519,12 @@
      "em": "📝",
      "proof": {
       "pools": {
-       "GP-ou-ə": 148,
-       "GP-ous": 130,
+       "GP-ou-ə": 155,
+       "GP-ous": 137,
        "GP-p": 23,
        "GP-s-s": 31
       },
-      "max_station": 148,
+      "max_station": 155,
       "syllables": 2,
       "freq_rank": null
      }
@@ -2487,7 +2532,7 @@
    ]
   },
   {
-   "index": 156,
+   "index": 163,
    "key": "ough|/ə/",
    "g": "ough",
    "ph": "/ə/",
@@ -2509,13 +2554,13 @@
    "tier": null,
    "gate": [],
    "earliest_completion": {
-    "station": 157,
+    "station": 164,
     "example_word": "borough"
    },
-   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 157 站才有词（如 borough）凑齐全部模式。"
+   "reason": "累计模式内无词在本本站凑齐：本站模式的成员词均还依赖更晚站位，最早要到第 164 站才有词（如 borough）凑齐全部模式。"
   },
   {
-   "index": 157,
+   "index": 164,
    "key": "ough|/əʊ/",
    "g": "ough",
    "ph": "/əʊ/",
@@ -2545,9 +2590,9 @@
      "proof": {
       "pools": {
        "GP-d": 6,
-       "GP-ough-əʊ": 157
+       "GP-ough-əʊ": 164
       },
-      "max_station": 157,
+      "max_station": 164,
       "syllables": 1,
       "freq_rank": null
      }
@@ -2560,10 +2605,10 @@
      "em": "📝",
      "proof": {
       "pools": {
-       "GP-ough-əʊ": 157,
+       "GP-ough-əʊ": 164,
        "GP-th-ð": 35
       },
-      "max_station": 157,
+      "max_station": 164,
       "syllables": 1,
       "freq_rank": null
      }
@@ -2571,7 +2616,7 @@
    ]
   },
   {
-   "index": 159,
+   "index": 166,
    "key": "ough|/ʌp/",
    "g": "ough",
    "ph": "/ʌp/",
@@ -2603,9 +2648,9 @@
        "GP-c-k": 1,
        "GP-h": 12,
        "GP-i-ɪ": 49,
-       "GP-ough-ʌp": 159
+       "GP-ough-ʌp": 166
       },
-      "max_station": 159,
+      "max_station": 166,
       "syllables": 2,
       "freq_rank": null
      }
