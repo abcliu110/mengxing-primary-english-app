@@ -606,8 +606,25 @@ body.adult .adult{display:block}
 <section class="view" id="v-art-detail"><div class="ar-scope" id="ar-detail"></div></section> <section class="view" id="v-verb">
  <span class="back" data-go="home">← 回首页</span>
  <h2 class="zt">🏃 动词区</h2>
- <p class="sub">动词专区：时态先摆场景再拼形式，词形进衣橱、按家族记，意思先猜再揭晓。内容全部出自项目模型：TA 18 条 · 动词词条 458 + 变化形挂在原形页 · 动词义项网络 279 词 · 短语组合 156 条 · 逐字病例 31 例。查不到就如实标待补，不编。</p>
- <div class="panelGrid">
+ <p class="sub">动词专区：时态先摆场景再拼形式，词形进衣橱、按家族记，意思先猜再揭晓。内容全部出自项目模型：TA 18 条 · 动词词条 458 + 变化形挂在原形页 · 动词义项网络 279 词 · 短语组合 156 条 · 逐字病例 31 例；本波新增：情态光谱 · 句型四分表 · 今日一课 · SRS 复习（句型与情态刻度为通用语法共识，页内注明借鉴出处）。查不到就如实标待补，不编。</p>
+ <div class="vb" id="vb-home">
+<header>
+<h1>🏃 动词专区</h1>
+<p>时态实验室 · 五形式衣橱 · 形式家族 · 多义先猜再揭晓 · 小词扇与转盘 · 身体任务 · 病句医院</p>
+<p class="adult">内容全部出自项目模型：TA 18 条 · 专家目录 V/CO/VB 条 · 词库 2,347 条（动词词条 458 + 变化形 122 挂在原形页；过去式/过去分词已按 OALD 词形表全量核实补齐）· 动词义项网络 279 词 · 短语组合 156 条 · 逐字病例 31 例 · 介词加厚卷宗。查不到就如实标待补，不编。</p>
+</header>
+<div class="panelGrid">
+  <div class="panel hero">
+   <h3>🎓 今日一课</h3>
+   <div class="sub">固定五环：学（讲解站）→ 拼（时间机器）→ 读（跟读）→ 测（站内练习）→ 报告（家长小报告）。一天走完一站，断了也能接着走，进度存本机。课环借鉴斑马英语的固定课环与家长报告。</div>
+   <div id="loopPanelBody"></div>
+  </div>
+  <div class="panel">
+   <h3>⏰ 今日复习（SRS）</h3>
+   <div class="sub">学过的词形、病例、站内题按遗忘曲线回来找你：4 小时 → 12 小时 → 24 小时 → 6 天 → 12 天 → 48 天 → 96 天 → 半年（Memrise 间隔阶梯）；答错回炉重练。</div>
+   <div id="srsPanelBody"></div>
+  </div>
+
   <div class="panel hero">
    <h3>⏱️ 时态实验室（场景机）</h3>
    <div class="sub">先摆场景，再拼形式：把故事摄影机拖到要讲的时间，选一个看法（全景 / 钻进去 / 回头看），再挑动词种类——动词像积木一块一块自己拼出来，并告诉你落在哪一格。另有故事播放器、现在完成时实验室、状语陷阱、未来转盘与总览地图。</div>
@@ -616,7 +633,81 @@ body.adult .adult{display:block}
   <div class="panel">
    <h3>📖 TA 讲解站（18 站）</h3>
    <div class="sub">每站 = 时间机器的一组预设 + TA 条原讲解。练习与病例没登记的如实标待补。</div>
-   <div class="chips"><button class="chip" onclick="VB.openTA('TA-01')">TA-01 时态像两个开关：一个管「<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-02')">TA-02 英语动词变来变去，只有「<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-03')">TA-03 看一件事像看录像：可以站<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-04')">TA-04 「我现在说」只有一眨眼那<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-05')">TA-05 完成时不是说「以前做完了<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-06')">TA-06 完成时的眼睛盯着「现在」<span class="n">病例1</span></button><button class="chip" onclick="VB.openTA('TA-07')">TA-07 动词像不同形状的玩具：r<span class="n">病例1</span></button><button class="chip" onclick="VB.openTA('TA-08')">TA-08 过去时不只说「以前」：想<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-09')">TA-09 讲到过去的某一天时，想再<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-10')">TA-10 will 以前就是「想要<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-11')">TA-11 going to 以前真<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-12')">TA-12 很久以前，I have <span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-13')">TA-13 火车时刻表是早就定死的，<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-14')">TA-14 讲故事讲到紧张处，可以把<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-15')">TA-15 汉语说「昨天、明天」几个<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-16')">TA-16 汉语的「了」是「做成了」<span class="n">病例1</span></button><button class="chip" onclick="VB.openTA('TA-17')">TA-17 先学会说 went、sa<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-18')">TA-18 把完成时讲成「看痕迹」而<span class="n">讲解</span></button></div>
+   <div class="chips" id="taChips"></div>
+  </div>
+  <div class="panel">
+   <h3>👕 五形式衣橱</h3>
+   <div class="sub">任选词库动词：原形 / 三单 / 过去 / 过去分词 / 现在分词一格一格摆开，带出处标记。过去式 / 过去分词已全量补齐（词库登记 + OALD 词形表核实）；can / will 是缺陷动词，没有过去分词那一格。</div>
+   <div style="margin-bottom:9px"><input type="text" id="wSearch" placeholder="搜动词，如 write / play…" oninput="VB.renderWardChips()"></div>
+   <div class="chips" id="wardChips"></div>
+   <div class="chips" style="margin-top:9px"><button class="chip" onclick="VB.show('v-az')">A–Z 全部 458 词条索引 →</button></div>
+   <div class="chips" style="margin-top:9px"><span class="adult" style="align-self:center">缺陷动词（情态）：</span><button class="chip" onclick="VB.openWard('can')">can</button><button class="chip" onclick="VB.openWard('will')">will</button></div>
+  </div>
+  <div class="panel">
+   <h3>🪜 形式家族</h3>
+   <div class="sub">不规则变化不按字母排，按「长相」分家——成组大声念成 chant 才记得住（家族划分由词库形式现算 + 调研登记口径）。</div>
+   <div class="chips" id="famChips"></div>
+  </div>
+  <div class="panel">
+   <h3>🎩 分词的三顶帽子（v4 新）</h3>
+   <div class="sub">过去分词有三份工作：完成（have + V3）、被动（be + V3）、结果状态（V3 当形容词）。带一个可以亲手变形的被动变形器；被动是初中话题，按不分学段口径收在这里，页内有登记。</div>
+   <div class="chips"><button class="chip gold" onclick="VB.openHats()">🎩 打开三顶帽子 →</button></div>
+  </div>
+  <div class="panel">
+   <h3>🌳 多义动词（先猜再揭晓）</h3>
+   <div class="sub">只看义项网络记不住（实证警告）——旗舰词做成预测式：先猜新句里的意思，再揭晓它挂在链子的哪一环。其余 279 词已升级为义项网络页（构式框分组 + 词典逐字例句 + 出处）。</div>
+   <div class="chips" id="polyFlag"></div>
+   <div class="chips" id="polyRest" style="margin-top:8px;max-height:190px;overflow:auto"></div>
+  </div>
+  <div class="panel">
+   <h3>🌀 小词扇 + 转盘</h3>
+   <div class="sub">up / out / off / down 不是乱搭的：每个小词先有一张核心图，再扇形引申（Rudzka-Ostyn 原理多义口径）。转盘只收录有出处的动词×小词组合。</div>
+   <div class="chips" id="fanChips"></div>
+   <div class="chips" style="margin-top:9px"><button class="chip gold" onclick="VB.show('v-dial')">🎡 打开动词 × 小词转盘 →</button></div>
+  </div>
+  <div class="panel">
+   <h3>🏃 身体任务 + 叙述模式</h3>
+   <div class="sub">核心动作词做成身体任务卡（TPR）；叙述模式里拖动小人做动作，机器用你选的时态旁白。</div>
+   <div class="chips"><button class="chip" onclick="VB.show('v-body')">打开身体任务 →</button></div>
+  </div>
+  <div class="panel">
+   <h3>🏥 动词病句医院</h3>
+   <div class="sub">按中国学习者语料研究登记的六类动词错误建页，共 31 例逐字病例（逐例带学段与出处）。公开研究集中于初中以上学段；小学段未检得符合纪律的公开病例，未收录、未编造。</div>
+   <div class="chips" id="hospChips"></div>
+  </div>
+    <div class="panel">
+   <h3>🎚️ 情态光谱</h3>
+   <div class="sub">must 有多确定？should 有多必须？情态词不先背中文，先看它站在量尺哪一格：推测、义务、能力许可，三把尺子换着看（can / could / may / might / must / should / will / would / have to + 了解卡）。</div>
+   <div class="chips"><button class="chip gold" onclick="VB.openModal()">🎚️ 打开情态光谱 →</button></div>
+  </div>
+  <div class="panel">
+   <h3>🧩 动词句型四分表</h3>
+   <div class="sub">动词后面跟 -ing 还是 to do？先自己把词卡归类，再亮出四分表对照：只跟 -ing / 只跟 to do / 两可义同 / 两可义不同（remember、stop 那一组）。</div>
+   <div class="chips"><button class="chip gold" onclick="VB.openPatterns()">🧩 打开句型组件 →</button></div>
+  </div>
+  <div class="panel">
+   <h3>📋 家长小报告</h3>
+   <div class="sub">今天学了哪几站、测验对了几题、复习做了多少、跟读了几次——给家长的一页汇总。数据只存这台设备，不上传。</div>
+   <div class="chips"><button class="chip" onclick="VB.openReport()">📋 打开小报告 →</button></div>
+  </div>
+<div class="panel">
+   <h3>📚 我们向谁学了什么</h3>
+   <div class="sub">本区的每个机关都写明出处：Reasoning School 时间机器、Rudzka-Ostyn 小词扇、Cambridge 转盘、PEG 完成体、BBC 家族 chant……</div>
+   <div class="chips"><button class="chip" onclick="VB.show('v-credits')">看出处 →</button></div>
+  </div>
+ </div>
+<footer>动词原型 v3 · 数据：项目模型（TA/V/CO/VB 条、词库 2,347 条、动词义项网络、短语组合、逐字病例、介词加厚卷宗）· 机关出处：动词学习界面调研（2026-11-01）<br>形式 / 义项 / 组合 / 病例四份数据已按用户裁定全量补齐并回灌；查无与未收入处逐项注明，不自填。</footer>
+</div>
+<div class="panelGrid">
+  <div class="panel hero">
+   <h3>⏱️ 时态实验室（场景机）</h3>
+   <div class="sub">先摆场景，再拼形式：把故事摄影机拖到要讲的时间，选一个看法（全景 / 钻进去 / 回头看），再挑动词种类——动词像积木一块一块自己拼出来，并告诉你落在哪一格。另有故事播放器、现在完成时实验室、状语陷阱、未来转盘与总览地图。</div>
+   <div class="chips"><button class="chip" onclick="VB.show('v-tense')">进入时态实验室 →</button><button class="chip" onclick="VB.openMachinePreset('now','perf','eat')">试一试：现在完成（站在现在回头看）</button></div>
+  </div>
+  <div class="panel">
+   <h3>📖 TA 讲解站（18 站）</h3>
+   <div class="sub">每站 = 时间机器的一组预设 + TA 条原讲解。练习与病例没登记的如实标待补。</div>
+   <div class="chips"><button class="chip" onclick="VB.openTA('TA-01')">TA-01 时态 = 时间 × 看法两个开关，不是十二个要逐个背的格子<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-02')">TA-02 英语形态上只有两个时态：「将来」是借工具谈的<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-03')">TA-03 体是「看事情的方式」：看全景，还是钻进去看中间<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-04')">TA-04 一般现在时装不下「正在发生」<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-05')">TA-05 完成体看的是「过去的事和现在的牵连」：痕迹在，事已远<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-06')">TA-06 现在完成时不能点名过去时间：*I have seen him yesterday 为什么错<span class="n">病例1</span></button><button class="chip" onclick="VB.openTA('TA-07')">TA-07 动词自带「时间形状」：有终点、瞬间、状态，各不一样<span class="n">病例1</span></button><button class="chip" onclick="VB.openTA('TA-08')">TA-08 过去形式还管「距离」：礼貌、假设、转述都是把事情推远<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-09')">TA-09 过去完成时是「锚点搬家」：站在过去回头看更早<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-10')">TA-10 will 说将来带着「我预言」的口气（详见清单条目）<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-11')">TA-11 be going to 是「已经在路上」：从走向某地变成预兆与打算<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-12')">TA-12 完成体的来历：从「手里有一封写好的信」长出来的<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-13')">TA-13 时刻表上的将来用现在时：未来被写成了「已定的事实」<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-14')">TA-14 讲故事可以把过去拉到眼前：历史现在时是「演」不是说错<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-15')">TA-15 汉语靠词和语境表时间，英语靠动词变形：每个句子被迫选时<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-16')">TA-16 「了」与英语完成体的对应与错位（详见清单条目）<span class="n">病例1</span></button><button class="chip" onclick="VB.openTA('TA-17')">TA-17 学时态的顺序：先把高频动词过去式用熟，再回头看系统表<span class="n">讲解</span></button><button class="chip" onclick="VB.openTA('TA-18')">TA-18 「镜头讲法」教时态有实验支持，但低龄证据待验——如实说<span class="n">讲解</span></button></div>
   </div>
   <div class="panel">
    <h3>👕 五形式衣橱</h3>
@@ -1360,72 +1451,8 @@ p2dSetQ();
 <div class="urow" data-law="QI-14"><span class="id">QI-14</span><span class="tt">疑问句是分阶段长出来的：整句模仿 → 换疑问词 → 最后才学会倒装</span><span class="st part">有练习 · 病例待补</span></div>
 <div class="urow" data-law="QI-15"><span class="id">QI-15</span><span class="tt">提问要先有「真缺口」：为不知道而问，形式才记得住</span><span class="st part">有练习 · 病例待补</span></div>
 
-<!-- ============ 动词真模块（面板） ============ -->
-<div class="vb" id="vb-home">
-<header>
-<h1>🏃 动词专区</h1>
-<p>时态实验室 · 五形式衣橱 · 形式家族 · 多义先猜再揭晓 · 小词扇与转盘 · 身体任务 · 病句医院</p>
-<p class="adult">内容全部出自项目模型：TA 18 条 · 专家目录 V/CO/VB 条 · 词库 2,347 条（动词词条 458 + 变化形 122 挂在原形页；过去式/过去分词已按 OALD 词形表全量核实补齐）· 动词义项网络 279 词 · 短语组合 156 条 · 逐字病例 31 例 · 介词加厚卷宗。查不到就如实标待补，不编。</p>
-</header>
-<div class="panelGrid">
-  <div class="panel hero">
-   <h3>⏱️ 时态实验室（场景机）</h3>
-   <div class="sub">先摆场景，再拼形式：把故事摄影机拖到要讲的时间，选一个看法（全景 / 钻进去 / 回头看），再挑动词种类——动词像积木一块一块自己拼出来，并告诉你落在哪一格。另有故事播放器、现在完成时实验室、状语陷阱、未来转盘与总览地图。</div>
-   <div class="chips"><button class="chip" onclick="VB.show('v-tense')">进入时态实验室 →</button><button class="chip" onclick="VB.openMachinePreset('now','perf','eat')">试一试：现在完成（站在现在回头看）</button></div>
-  </div>
-  <div class="panel">
-   <h3>📖 TA 讲解站（18 站）</h3>
-   <div class="sub">每站 = 时间机器的一组预设 + TA 条原讲解。练习与病例没登记的如实标待补。</div>
-   <div class="chips" id="taChips"></div>
-  </div>
-  <div class="panel">
-   <h3>👕 五形式衣橱</h3>
-   <div class="sub">任选词库动词：原形 / 三单 / 过去 / 过去分词 / 现在分词一格一格摆开，带出处标记。过去式 / 过去分词已全量补齐（词库登记 + OALD 词形表核实）；can / will 是缺陷动词，没有过去分词那一格。</div>
-   <div style="margin-bottom:9px"><input type="text" id="wSearch" placeholder="搜动词，如 write / play…" oninput="VB.renderWardChips()"></div>
-   <div class="chips" id="wardChips"></div>
-   <div class="chips" style="margin-top:9px"><button class="chip" onclick="VB.show('v-az')">A–Z 全部 458 词条索引 →</button></div>
-   <div class="chips" style="margin-top:9px"><span class="adult" style="align-self:center">缺陷动词（情态）：</span><button class="chip" onclick="VB.openWard('can')">can</button><button class="chip" onclick="VB.openWard('will')">will</button></div>
-  </div>
-  <div class="panel">
-   <h3>🪜 形式家族</h3>
-   <div class="sub">不规则变化不按字母排，按「长相」分家——成组大声念成 chant 才记得住（家族划分由词库形式现算 + 调研登记口径）。</div>
-   <div class="chips" id="famChips"></div>
-  </div>
-  <div class="panel">
-   <h3>🎩 分词的三顶帽子（v4 新）</h3>
-   <div class="sub">过去分词有三份工作：完成（have + V3）、被动（be + V3）、结果状态（V3 当形容词）。带一个可以亲手变形的被动变形器；被动是初中话题，按不分学段口径收在这里，页内有登记。</div>
-   <div class="chips"><button class="chip gold" onclick="VB.openHats()">🎩 打开三顶帽子 →</button></div>
-  </div>
-  <div class="panel">
-   <h3>🌳 多义动词（先猜再揭晓）</h3>
-   <div class="sub">只看义项网络记不住（实证警告）——旗舰词做成预测式：先猜新句里的意思，再揭晓它挂在链子的哪一环。其余 279 词已升级为义项网络页（构式框分组 + 词典逐字例句 + 出处）。</div>
-   <div class="chips" id="polyFlag"></div>
-   <div class="chips" id="polyRest" style="margin-top:8px;max-height:190px;overflow:auto"></div>
-  </div>
-  <div class="panel">
-   <h3>🌀 小词扇 + 转盘</h3>
-   <div class="sub">up / out / off / down 不是乱搭的：每个小词先有一张核心图，再扇形引申（Rudzka-Ostyn 原理多义口径）。转盘只收录有出处的动词×小词组合。</div>
-   <div class="chips" id="fanChips"></div>
-   <div class="chips" style="margin-top:9px"><button class="chip gold" onclick="VB.show('v-dial')">🎡 打开动词 × 小词转盘 →</button></div>
-  </div>
-  <div class="panel">
-   <h3>🏃 身体任务 + 叙述模式</h3>
-   <div class="sub">核心动作词做成身体任务卡（TPR）；叙述模式里拖动小人做动作，机器用你选的时态旁白。</div>
-   <div class="chips"><button class="chip" onclick="VB.show('v-body')">打开身体任务 →</button></div>
-  </div>
-  <div class="panel">
-   <h3>🏥 动词病句医院</h3>
-   <div class="sub">按中国学习者语料研究登记的六类动词错误建页，共 31 例逐字病例（逐例带学段与出处）。公开研究集中于初中以上学段；小学段未检得符合纪律的公开病例，未收录、未编造。</div>
-   <div class="chips" id="hospChips"></div>
-  </div>
-  <div class="panel">
-   <h3>📚 我们向谁学了什么</h3>
-   <div class="sub">本区的每个机关都写明出处：Reasoning School 时间机器、Rudzka-Ostyn 小词扇、Cambridge 转盘、PEG 完成体、BBC 家族 chant……</div>
-   <div class="chips"><button class="chip" onclick="VB.show('v-credits')">看出处 →</button></div>
-  </div>
- </div>
-<footer>动词原型 v3 · 数据：项目模型（TA/V/CO/VB 条、词库 2,347 条、动词义项网络、短语组合、逐字病例、介词加厚卷宗）· 机关出处：动词学习界面调研（2026-11-01）<br>形式 / 义项 / 组合 / 病例四份数据已按用户裁定全量补齐并回灌；查无与未收入处逐项注明，不自填。</footer>
-</div>
+<!-- ============ 动词区已独立成区（原动词面板已移至菜单动词区主页） ============ -->
+<div class="urow" data-go="verb"><span class="id">🏃</span><span class="tt">动词区已独立成区 → 点此进入（时态实验室、TA 讲解站、五形式衣橱、病句医院都在那边）</span><span class="st deep">新</span></div>
 </section>
 
 <!-- ============ 小系统区（目录页） ============ -->
@@ -1594,6 +1621,10 @@ p2dSetQ();
 <button class="back" onclick="VB.goHome()">← 返回动词专区</button>
  <div class="card"><h2>📚 我们向谁学了什么</h2><div id="credBody" style="margin-top:10px"></div></div>
 </section>
+<section class="view vb" id="v-verb-modal"> <button class="back" onclick="VB.goHome()">← 返回动词专区</button> <div class="card" id="modalBody"></div> </section>
+<section class="view vb" id="v-verb-patterns"> <button class="back" onclick="VB.goHome()">← 返回动词专区</button> <div class="card" id="patBody"></div> </section>
+<section class="view vb" id="v-verb-review"> <button class="back" onclick="VB.goHome()">← 返回动词专区</button> <div class="card" id="reviewBody"></div> </section>
+<section class="view vb" id="v-verb-report"> <button class="back" onclick="VB.goHome()">← 返回动词专区</button> <div class="card" id="reportBody"></div> </section>
 
 <!-- ============ 时态实验室（tn 模块） ============ -->
 
@@ -4943,9 +4974,9 @@ const $=id=>document.getElementById(id);
 const TA_BY={}; DATA.TA.forEach(u=>TA_BY[u.id]=u);
 const POLY_BY={}; DATA.POLY.forEach(p=>POLY_BY[p.w]=p);
 let homeScroll=0;
-const VBMAP={'v-hats':'verb-hats','v-tense':'tense','v-ta':'verb-ta','v-wardrobe':'verb-ward','v-az':'verb-az','v-family':'verb-family','v-poly':'verb-poly','v-fan':'verb-fan','v-dial':'verb-dial','v-body':'verb-body','v-hospital':'verb-hosp','v-credits':'verb-credits'};let vbCur='v-home';
+const VBMAP={'v-hats':'verb-hats','v-tense':'tense','v-ta':'verb-ta','v-wardrobe':'verb-ward','v-az':'verb-az','v-family':'verb-family','v-poly':'verb-poly','v-fan':'verb-fan','v-dial':'verb-dial','v-body':'verb-body','v-hospital':'verb-hosp','v-credits':'verb-credits','v-modal':'verb-modal','v-patterns':'verb-patterns','v-review':'verb-review','v-report':'verb-report'};let vbCur='v-home';
 function show(id){
-  if(id==='v-home'){ vbCur='v-home'; window.show('grammar2'); requestAnimationFrame(function(){window.scrollTo(0,homeScroll);}); return; }
+  if(id==='v-home'){ vbCur='v-home'; window.show('verb'); requestAnimationFrame(function(){window.scrollTo(0,homeScroll);}); return; }
   if(vbCur==='v-home') homeScroll=window.scrollY||0;
   vbCur=id; window.show(VBMAP[id]);
 }
@@ -5004,7 +5035,7 @@ function renderMachine(){
   const ev=curEvent(); const vp=buildVP(ev.subj,ev.verb,M.time,M.aspect,M.gone);
   $('mBlocks').innerHTML=vp.blocks.map((b,i)=>'<span class="blk '+(b.cls||'main')+'" style="animation-delay:'+(i*0.14)+'s"><small>'+esc(b.k)+'</small>'+esc(b.t)+'</span>').join('')+(ev.comp?'<span class="blk comp" style="animation-delay:'+(vp.blocks.length*0.14)+'s">'+esc(ev.comp)+'</span>':'');
   const sentText=cap(ev.subj)+' '+vp.blocks.map(b=>b.cls==='hollow'?'＿＿':b.t).join(' ')+(ev.comp?' '+ev.comp:'')+'.';
-  $('mSent').innerHTML=esc(sentText)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(sentText)+'">🔊</button>';
+  $('mSent').innerHTML=esc(sentText)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(sentText)+'">🔊</button> <button class="say" onclick="VB.readAloud(this)" data-t="'+q(sentText)+'" data-fb="readFb-machine">🎤 跟读</button><span id="readFb-machine"></span>';
   // timeline
   const POS={'past':17,'now':50,'fut':83};
   const bar=$('tlBar'),arr=$('tlArrow'),evx=$('tlEv'),rf=$('tlR');
@@ -5038,22 +5069,27 @@ function mResult(stay){ if(stay){ M.resultNote=''; } else { M.time='past'; M.asp
 function mGone(g){ M.gone=g; renderMachine(); }
 function mEvChange(){ const v=$('mEvent').value; M.ev=v; $('mCustom').style.display=(v==='custom')?'inline':'none'; if(v!=='custom'){ M.resultNote=''; renderMachine(); } }
 function openMachine(){ TN.show('tn-scene'); }
-function openMachinePreset(time,aspect,evId){ TN.loadPreset(time,aspect,evId); }
+function openMachinePreset(time,aspect,evId){
+  try{ for(const tid in DATA.PRESETS){ const p=DATA.PRESETS[tid]; if(p[0]===time&&p[1]===aspect&&p[2]===evId){ vbLoopTouchPreset(tid); break; } } }catch(e){}
+  TN.loadPreset(time,aspect,evId);
+}
+function vbLoopTouchPreset(tid){ loopMark(tid,'machine'); }
 
 /* ================= TA 站 ================= */
 function openTA(id){
   const u=TA_BY[id]; const pr=DATA.PRESETS[id];
   let h='<h2>'+u.id+' · '+esc(u.kid)+'</h2><div class="adult">'+esc(u.head)+'</div>';
+  try{ if(u.id===loopLoad().cur) h+='<div class="sent" id="loopReadTip" style="background:#e6f2e4">🎤 今日一课「读」环在本站：点下面任意例句旁的 🎤，大声读出声，读完这一环就打勾。</div>'; }catch(e){}
   if(pr){ h+='<div class="tagrow"><button class="chip gold" onclick="VB.openMachinePreset(\''+pr[0]+'\',\''+pr[1]+'\',\''+pr[2]+'\')">⏰ 在时间机器上打开本条预设 →</button></div>'; if(DATA.PRESET_NOTES[id]) h+='<div class="adult">'+esc(DATA.PRESET_NOTES[id])+'</div>'; }
   h+='<h4>讲解（机制）</h4>'+u.beats.map(b=>'<p class="kid">'+esc(b.t)+'</p>'+(b.a?'<p class="adult">'+esc(b.a)+'</p>':'')).join('');
-  h+='<h4>例句（模型原例）</h4>'+u.ex.map(x=>'<div class="sent">'+esc(x.s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(x.s)+'">🔊</button>'+(x.n?'<div class="adult">'+esc(x.n)+'</div>':'')+'</div>').join('');
+  h+='<h4>例句（模型原例）</h4>'+u.ex.map((x,xi)=>'<div class="sent">'+esc(x.s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(x.s)+'">🔊</button> <button class="say" onclick="VB.readAloud(this)" data-t="'+q(x.s)+'" data-ta="'+u.id+'" data-fb="readFb-ta-'+u.id+'-'+xi+'">🎤 跟读</button><span id="readFb-ta-'+u.id+'-'+xi+'"></span>'+(x.n?'<div class="adult">'+esc(x.n)+'</div>':'')+'</div>').join('');
   if(u.err.length){ h+='<h4>病例（逐字登记）</h4>'+u.err.map(c=>'<div class="sent"><span class="err">✗ '+esc(c.wrong)+'</span><br><span class="ok">✓ '+esc(c.right)+'</span><div class="adult">错型：'+esc(c.type)+' · 出处：模型病例登记</div></div>').join(''); }
   else h+='<div class="tagrow"><span class="badge b-type">病例待补（模型未登记逐字病例，本站不编）</span></div>';
   if(!u.quiz||!u.quiz.length) h+='<div class="tagrow"><span class="badge b-type">练习待补（TA 条 quiz 字段为空，本站不编题）</span></div>'; else h+=taQuizHTML(u);
   if(u.prb&&u.prb.length) h+='<h4>理解探针（照出「以为懂了、其实没懂」）</h4>'+u.prb.map(function(p){return '<div class="sent"><b>🔍 '+esc(p.title)+'</b><p style="margin:6px 0;line-height:1.7">'+esc(p.task)+'</p><div class="adult">预判误读：'+esc(p.mis)+'<br>判读（教师）：命中——'+esc(p.rubric.hit)+'；部分——'+esc(p.rubric.partial)+'；通过——'+esc(p.rubric.pass)+'<br>回补：'+esc(p.remedy)+'</div></div>'}).join('');
   if(u.pending&&u.pending.length) h+='<details><summary>成人层 · 待补与评审注记（模型原文）</summary><div class="adult">'+u.pending.map(esc).join('<br>')+'</div></details>';
   if(u.rel&&u.rel.length) h+='<h4>亲戚条</h4><div class="chips">'+u.rel.map(r=>{ const rid=(typeof r==='string')?r:r.id; const lab=rid+((typeof r==='object'&&r.rel)?' · '+r.rel:''); return TA_BY[rid]?'<button class="chip" onclick="VB.openTA(\''+rid+'\')">'+esc(lab)+'</button>':'<span class="chip" style="cursor:default">'+esc(lab)+'</span>'; }).join('')+'</div>';
-  $('taBody').innerHTML=h; show('v-ta');
+  $('taBody').innerHTML=h; show('v-ta'); vbLoopTouch(id);
 }
 
 /* ================= 衣橱 ================= */
@@ -5287,16 +5323,19 @@ function taQuizHTML(u){
   return h;
 }
 function taDone(uid,i){
+  const isNew=!(TAQ[uid]&&TAQ[uid].has(i));
   TAQ[uid]=TAQ[uid]||new Set(); TAQ[uid].add(i);
   const u=TA_BY[uid]; const el=$('tqscore-'+uid);
   if(el&&u) el.textContent='已答对 '+TAQ[uid].size+' / '+(u.quiz||[]).length;
+  if(isNew) vbLogQuiz(uid,true);
+  vbLoopQuiz(uid,i);
 }
 function taPick(btn,uid,i,j){
   const it=TA_BY[uid].quiz[i]; if(!it||!it.options) return;
   if(it.options[j]===it.answer){ btn.classList.add('right'); const r=$('tqr-'+uid+'-'+i); if(r) r.style.display='block'; taDone(uid,i); }
-  else { btn.classList.add('wrong'); setTimeout(()=>btn.classList.remove('wrong'),700); }
+  else { btn.classList.add('wrong'); setTimeout(()=>btn.classList.remove('wrong'),700); vbLogQuiz(uid,false); vbSrsTaMiss(uid,i); }
 }
-function taReveal(uid,i){ const r=$('tqr-'+uid+'-'+i); if(r) r.style.display='block'; }
+function taReveal(uid,i){ const r=$('tqr-'+uid+'-'+i); if(r) r.style.display='block'; vbLoopQuiz(uid,i); }
 function taBuildTap(uid,i,j){
   const key=uid+'-'+i; const it=TA_BY[uid].quiz[i]; if(!it||!it.build) return;
   TAB[key]=TAB[key]||[];
@@ -5311,7 +5350,7 @@ function taBuildCheck(uid,i){
   const got=(TAB[key]||[]).map(function(x){ return it.build.blocks[x]; }).join(' ');
   const line=$('tqline-'+key);
   if(got===it.build.answer_order.join(' ')){ if(line) line.textContent='✓ '+it.answer; taReveal(uid,i); taDone(uid,i); }
-  else if(line){ line.style.background='#f6e3e3'; setTimeout(()=>{ line.style.background=''; },700); }
+  else { if(line){ line.style.background='#f6e3e3'; setTimeout(()=>{ line.style.background=''; },700); } vbLogQuiz(uid,false); }
 }
 function taBuildReset(uid,i){
   const key=uid+'-'+i; const it=TA_BY[uid].quiz[i]; if(!it||!it.build) return;
@@ -5575,8 +5614,539 @@ DATA.CREDITS.push(['组合推义 · 分词三顶帽子 · 网络预测流（v4�
 $('credBody').innerHTML = DATA.CREDITS.map(c => '<div class="mini" style="margin-bottom:9px"><h5>' + esc(c[0]) + '</h5><div class="adult">师从：' + esc(c[1]) + '<br>' + esc(c[2]) + '</div></div>').join('');
 
 
+
+/* ================= 本波新增：存储 / 日志 ================= */
+const _MEMSTORE = {};
+function lsGet(k){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; }catch(e){ return (k in _MEMSTORE) ? _MEMSTORE[k] : null; } }
+function lsSet(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){ _MEMSTORE[k] = v; } }
+function vbLogEvt(kind, data){
+  try{
+    const arr = lsGet('mx_vb_log_v1') || [];
+    const ev = {ts: Date.now(), kind: kind}; if(data) for(const k in data) ev[k] = data[k];
+    arr.push(ev); while(arr.length > 600) arr.shift();
+    lsSet('mx_vb_log_v1', arr);
+  }catch(e){}
+}
+function vbLogQuiz(uid, ok){ vbLogEvt('quiz', {ta: uid, ok: ok ? 1 : 0}); }
+function vbHash(s){ let h = 0; for(let i = 0; i < s.length; i++){ h = ((h * 31) + s.charCodeAt(i)) & 0x7fffffff; } return h || 7; }
+function vbRand(seed){ let x = seed % 2147483647; if(x <= 0) x += 2147483646; return function(){ x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+function vbShuffle(arr, seed){ const r = vbRand(seed); const a = arr.slice(); for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(r() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function vbFmtDue(ts){
+  const now = Date.now(); if(ts <= now) return '现在';
+  const h = (ts - now) / 3600000;
+  if(h < 1) return '不到 1 小时后';
+  if(h < 24) return '约 ' + Math.round(h) + ' 小时后';
+  const d = Math.round(h / 24); const dt = new Date(ts);
+  return '约 ' + d + ' 天后（' + (dt.getMonth() + 1) + '月' + dt.getDate() + '日）';
+}
+
+/* ================= 本波新增 1：情态光谱 ================= */
+const MODAL = {
+  lenses: [
+    {id: 'guess', name: '🔮 推测 · 有多确定', desc: '说一件还没证实的事，心里有多大把握'},
+    {id: 'duty', name: '📏 义务 · 有多必须', desc: '该不该做、必须做到什么地步'},
+    {id: 'can', name: '🙌 能力 · 许可', desc: '有没有这个本事、可不可以做'}
+  ],
+  words: [
+    {w: 'must', core: '心里说「一定就是它」；规矩说「非这样不可」', v: {guess: 95, duty: 95}, ex: ['The ground is wet. It must have rained last night.', 'You must wear a helmet when you ride.'], err: 'mustn\'t 是「绝对不许」，不是「不用」；「不用」要说 don\'t have to。'},
+    {w: "can't", core: '「肯定不是、绝对不可能」——确定性的另一头，和 must 正好一对', v: {guess: 95}, neg: true, ex: ["He can't be at school. I have just seen him at home."], err: 'can\'t 猜事情是「肯定没这回事」；mustn\'t 是「不许做」，两件事别混。'},
+    {w: 'will', core: '「我敢说会这样」——对将来最有把握的那一档', v: {guess: 90, can: 40}, ex: ['The train will be on time, I am sure.', 'Will you open the window, please?'], err: 'will 不只管将来：Will you…? 是当场客气地请人帮忙。'},
+    {w: 'have to', core: '不是我定的，是外面的规矩、情况逼着做', v: {duty: 90}, ex: ['I have to get up at six. My school is far away.'], err: 'have to 的「必须」来自外面；must 更多是说话人自己坚持。否定是 don\'t have to（不用），别说 mustn\'t。'},
+    {w: 'should', core: '「按道理应该是这样」——很可能，但不打包票；也是给建议的主力词', v: {guess: 80, duty: 70}, ex: ['The letter should arrive tomorrow.', 'You should drink more water.'], err: 'should 是「按理说」，不是 100%：信按理明天到，不等于保证明天到。'},
+    {w: 'ought to', core: 'should 的双胞胎兄弟，「理应如此」（了解卡：见到认识即可）', v: {guess: 78, duty: 68}, know: true, ex: ['You ought to say sorry to her.'], err: 'ought to 后面的 to 永远不能落下。'},
+    {w: 'may', core: '「可能吧」——五五开；问许可时它最正式、最客气', v: {guess: 50, can: 60}, ex: ['It may rain this afternoon.', 'May I come in, please?'], err: 'may 问许可比 can 更正式：对老师说 May I…? 更得体。'},
+    {w: 'can', core: '「有这个本事」是老家；随口问「我能不能」是它的第二份工作', v: {guess: 45, can: 90}, ex: ['She can swim very fast.', 'Can I go out to play?'], err: 'can 说本事还是问许可，靠场景分：讲能力是「能」，问「我能不能…」多半是许可。'},
+    {w: 'could', core: 'can 的温柔版：小时候能做的事、现在委婉的可能、客气的请求', v: {guess: 40, can: 70}, ex: ['He could read when he was four.', 'Could you pass me the salt, please?'], err: 'Could you…? 不是问过去，是现在很客气地请人帮忙。'},
+    {w: 'might', core: '「也许吧，把握更小」——比 may 还没底', v: {guess: 30, can: 50}, ex: ['He might be at home, but I am not sure.'], err: 'might 不只是 may 的过去式：现在说「更没把握的可能」也用 might。'},
+    {w: 'would', core: '把话放进想象里说：委婉的请求、请人吃喝、假想的结果', v: {can: 45}, ex: ['Would you like some tea?', 'I would help you if I had time.'], err: 'Would you like…? 是请人吃喝的固定问法；后面跟 to do 是「想要做」。'},
+    {w: 'shall', core: '老派词，多活在 Shall I…? / Shall we…? 里（了解卡）', v: {}, know: true, ex: ['Shall we go now?'], err: '日常口语里 shall 越来越少；Shall we…? 是「咱们一起做某事吧」的提议。'}
+  ],
+  zone: [
+    {s: 'The ground is all wet. It ___ have rained last night.', hint: '说话人很有把握', opts: ['must', 'might', 'may', 'could'], ans: 'must', why: 'must 是「一定是」——地全湿了，说话人几乎打包票。might/may/could 都太没把握。'},
+    {s: 'I am not sure where Tom is. He ___ be in the library.', hint: '说话人没什么把握', opts: ['must', 'will', 'should', 'might'], ans: 'might', why: 'might 是「也许吧，把握很小」，正配 I am not sure。should 是「按理说」，把握大得多。'},
+    {s: 'Her eyes are red and she keeps yawning. She ___ be very tired.', hint: '按道理推断，把握不小但没到打包票', opts: ['might', 'should', 'may', "can't"], ans: 'should', why: 'should 表推测是「按理说应该是」：证据很强（眼睛红、打哈欠），又留了一点余地。'},
+    {s: 'It ___ be a cat over there — it is far too big!', hint: '说话人确定「肯定不是」', opts: ['must', "can't", 'may', 'might'], ans: "can't", why: '推测「肯定不是」用 can\'t；must 是「肯定是」，正好相反。'},
+    {s: 'I ___ have left my keys at home, but I really am not sure.', hint: '把握不大，只是猜猜', opts: ['must', 'should', 'could', 'will'], ans: 'could', why: 'could 在推测尺上是「有可能，但把握不大」，和 really not sure 对位。'}
+  ],
+  quiz: [
+    {s: '哪一句里，说话人最有把握？', opts: ['It may rain.', 'It might rain.', 'It must rain.', 'It could rain.'], ans: 'It must rain.', why: 'must 在推测尺上 ≈95%，是四个里最高的。'},
+    {s: 'You ___ stop when the light is red. It is the rule.', opts: ['might', 'must', 'may', 'could'], ans: 'must', why: '交通规则是硬义务，义务尺上最强的 must 才对位。'},
+    {s: 'You ___ bring any food. We have plenty here.（不用带）', opts: ["mustn't", "don't have to", "can't", 'should'], ans: "don't have to", why: 'mustn\'t 是「绝对不许带」，意思反了；「不用」是 don\'t have to。'},
+    {s: '哪一句是现在客气地请人帮忙？', opts: ['Could you help me with this box, please?', 'Must you help me?', 'May you help me?', 'Might you helped me?'], ans: 'Could you help me with this box, please?', why: 'Could you…please? 是最常用的委婉请求；may/might 不能这样请人做事。'},
+    {s: '对老师说哪一句问许可最得体？', opts: ['Can I go to the toilet?', 'May I go to the toilet?', 'Must I go to the toilet?', 'Will I go to the toilet?'], ans: 'May I go to the toilet?', why: 'may 问许可是最正式、最客气的一档；can 也能问，但更随口。'},
+    {s: 'She ___ be hungry. She has just had two big bowls of rice.', opts: ["mustn't", "shouldn't", "can't", 'may not'], ans: "can't", why: '刚吃两大碗，「肯定不饿」是推测否定，用 can\'t；mustn\'t 只管「不许做」。'},
+    {s: 'You look tired. You ___ go to bed early tonight.', opts: ['should', 'might', "can't", 'shall'], ans: 'should', why: '给建议是 should 的主场：语气是「我劝你」，不是命令。'}
+  ],
+  groups: [
+    {name: '💪 说本事（能力）', items: [['can', '有这个本事：She can swim fast.'], ['could', '小时候能 / 现在委婉：He could read at four.']]},
+    {name: '🚪 问许可（客气程度往上爬）', items: [['can', '随口问：Can I go out?'], ['may', '正式问：May I come in?'], ['could / might', '更委婉地试探：Could I use your phone?']]},
+    {name: '📏 必须与建议（义务）', items: [['must', '非这样不可：You must stop.'], ['have to', '外面逼着：I have to get up at six.'], ['should / ought to', '按道理应该：You should rest.']]},
+    {name: '🔮 猜事情（推测）', items: [['must / can\'t', '几乎打包票：是 / 肯定不是'], ['should', '按理说应该是'], ['may / could / might', '可能吧，把握一个比一个小']]}
+  ]
+};
+const MODS = {lens: 'guess', word: 'must', zoneDone: new Set(), quizDone: new Set()};
+function modalWord(w){ for(const x of MODAL.words){ if(x.w === w) return x; } return null; }
+function openModal(){ show('v-modal'); renderModal(); }
+function modalSetLens(l){ MODS.lens = l; renderModal(); }
+function modalSetWord(w){ MODS.word = w; renderModal(); }
+function renderModal(){
+  const body = $('modalBody'); if(!body) return;
+  const lens = MODAL.lenses.find(l => l.id === MODS.lens);
+  const pts = MODAL.words.filter(w => w.v[MODS.lens] != null).sort((a, b) => b.v[MODS.lens] - a.v[MODS.lens]);
+  const off = MODAL.words.filter(w => w.v[MODS.lens] == null);
+  let h = '<h2>🎚️ 情态光谱 · 情态词站哪一格</h2>';
+  h += '<div class="adult">情态词先别背中文：先看它站在量尺的哪一格。换一把尺子（推测 / 义务 / 能力·许可），同一批词站的位置就不一样。确定性刻度按 GrammarBank 情态总表的通行口径（must ≈95%、should ≈80%、may/might <50%）。</div>';
+  h += '<div class="chips" style="margin:10px 0">' + MODAL.lenses.map(l => '<button class="chip' + (l.id === MODS.lens ? ' gold' : '') + '" onclick="VB.modalSetLens(\'' + l.id + '\')">' + esc(l.name) + '</button>').join('') + '</div>';
+  h += '<div class="kid" style="font-size:15px">' + esc(lens.desc) + '</div>';
+  h += '<div style="position:relative;height:86px;margin:16px 6px 4px;background:linear-gradient(90deg,#eef2f7,#fde9b8,#f6c453,#e2703a,#c0392b);border-radius:12px">';
+  h += pts.map(w => '<button class="chip' + (w.w === MODS.word ? ' gold' : '') + '" style="position:absolute;left:' + w.v[MODS.lens] + '%;top:8px;transform:translateX(-50%);white-space:nowrap" onclick="VB.modalSetWord(\'' + q(w.w) + '\')">' + esc(w.w) + ' ' + w.v[MODS.lens] + '%</button>').join('');
+  h += '<span style="position:absolute;left:4px;bottom:4px;font-size:12px;color:#555">0% 没把握 / 不必须</span><span style="position:absolute;right:4px;bottom:4px;font-size:12px;color:#7b241c">100% 打包票 / 非这样不可</span></div>';
+  if(off.length) h += '<div class="adult">这把尺子上暂不站：' + off.map(w => esc(w.w)).join(' / ') + '（换一把尺子看它们）。</div>';
+  const wd = modalWord(MODS.word) || pts[0];
+  if(wd){
+    h += '<div class="sent" style="background:#fdf6e3"><b style="font-size:18px">' + esc(wd.w) + '</b>' + (wd.know ? ' <span class="badge b-type">了解卡</span>' : '') + (wd.neg ? ' <span class="badge b-type">推测否定</span>' : '') + '<div class="kid" style="font-size:15px;margin:6px 0">' + esc(wd.core) + '</div>'
+      + wd.ex.map(s => '<div class="sent">' + esc(s) + ' <button class="say" onclick="VB.say(this.dataset.t)" data-t="' + q(s) + '">🔊</button></div>').join('')
+      + '<div class="adult">⚠️ 中国孩子易错：' + esc(wd.err) + '</div></div>';
+  }
+  h += '<h4>🧩 分组看看（按工作分工）</h4>' + MODAL.groups.map(g => '<div class="sent"><b>' + esc(g.name) + '</b>' + g.items.map(it => '<div style="margin-top:5px"><b>' + esc(it[0]) + '</b> —— ' + esc(it[1]) + '</div>').join('') + '</div>').join('');
+  h += '<h4>🎯 光谱定位练（按提示把词放回尺子上）</h4>' + MODAL.zone.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div class="adult">提示：' + esc(it.hint) + '</div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalZonePick(this,' + i + ',\'' + q(o) + '\')">' + esc(o) + '</button>').join('') + '<div class="rev" id="mzone-' + i + '">' + esc(it.why) + '</div></div>').join('');
+  h += '<h4>站内小测 · ' + MODAL.quiz.length + ' 题</h4>' + MODAL.quiz.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalQuizPick(this,' + i + ',\'' + q(o) + '\')">' + esc(o) + '</button>').join('') + '</div><div class="rev" id="mquiz-' + i + '">' + esc(it.why) + '</div></div>').join('')
+    + '<div class="score" id="mquiz-score">已答对 ' + MODS.quizDone.size + ' / ' + MODAL.quiz.length + '</div>';
+  h += '<div class="adult" style="margin-top:10px">形式借鉴：确定性光谱与总表结构借鉴 GrammarBank 情态总表；词卡「核心义 + 例句 + 易错点」沿用本区病例页口径。例句为本区新编教学例。</div>';
+  body.innerHTML = h;
+}
+function modalZonePick(btn, i, o){
+  const it = MODAL.zone[i]; if(!it) return;
+  if(o === it.ans){ btn.classList.add('right'); const r = $('mzone-' + i); if(r) r.style.display = 'block'; MODS.zoneDone.add(i); }
+  else { btn.classList.add('wrong'); setTimeout(() => btn.classList.remove('wrong'), 700); }
+}
+function modalQuizPick(btn, i, o){
+  const it = MODAL.quiz[i]; if(!it) return;
+  if(o === it.ans){ btn.classList.add('right'); const r = $('mquiz-' + i); if(r) r.style.display = 'block'; if(!MODS.quizDone.has(i)){ MODS.quizDone.add(i); const sc = $('mquiz-score'); if(sc) sc.textContent = '已答对 ' + MODS.quizDone.size + ' / ' + MODAL.quiz.length; } }
+  else { btn.classList.add('wrong'); setTimeout(() => btn.classList.remove('wrong'), 700); }
+}
+
+/* ================= 本波新增 2：动词句型四分表 ================= */
+const PATTERNS = {
+  groups: [
+    {id: 'ing', name: '只跟 -ing', sub: '后面的动作被当成「一件事」：享受它、做完它、躲开它', words: [
+      {w: 'enjoy', cn: '享受', ex: 'I enjoy reading stories.'},
+      {w: 'finish', cn: '做完', ex: 'He finished doing his homework at nine.'},
+      {w: 'mind', cn: '介意', ex: 'Would you mind opening the window?'},
+      {w: 'practise', cn: '练习', ex: 'She practises playing the piano every day.'},
+      {w: 'keep', cn: '一直…', ex: 'Keep trying! You are nearly there.'},
+      {w: 'miss', cn: '想念', ex: 'I miss playing with my old friends.'},
+      {w: 'avoid', cn: '躲开', ex: 'He walked around to avoid meeting the dog.'},
+      {w: 'imagine', cn: '想象', ex: 'Can you imagine living on the moon?'}
+    ]},
+    {id: 'to', name: '只跟 to do', sub: '后面的动作是「还没做的目标」：想去、决定去、答应去', words: [
+      {w: 'want', cn: '想要', ex: 'I want to be a teacher.'},
+      {w: 'hope', cn: '希望', ex: 'We hope to see you again soon.'},
+      {w: 'decide', cn: '决定', ex: 'They decided to take the bus.'},
+      {w: 'learn', cn: '学会', ex: 'She is learning to swim.'},
+      {w: 'agree', cn: '同意', ex: 'He agreed to help us.'},
+      {w: 'plan', cn: '计划', ex: 'We plan to visit the zoo on Sunday.'},
+      {w: 'would like', cn: '想要（客气版）', ex: 'I would like to drink some water.'},
+      {w: 'promise', cn: '答应', ex: 'He promised to come early.'},
+      {w: 'ask', cn: '请求', ex: 'She asked to leave early today.'},
+      {w: 'choose', cn: '选择', ex: 'He chose to stay at home.'}
+    ]},
+    {id: 'same', name: '两可 · 意思差不多', sub: '跟 -ing 或 to do 都行，意思基本不变', words: [
+      {w: 'like', cn: '喜欢', ex: 'I like swimming. = I like to swim.'},
+      {w: 'love', cn: '热爱', ex: 'They love playing football. = They love to play football.'},
+      {w: 'hate', cn: '讨厌', ex: 'He hates getting up early. = He hates to get up early.'},
+      {w: 'start', cn: '开始', ex: 'It started raining. = It started to rain.'},
+      {w: 'begin', cn: '开始', ex: 'She began crying. = She began to cry.'},
+      {w: 'prefer', cn: '更喜欢', ex: 'I prefer walking to school. = I prefer to walk to school.'},
+      {w: 'continue', cn: '继续', ex: 'They continued to talk. = They continued talking.'}
+    ]},
+    {id: 'diff', name: '两可 · 意思不一样', sub: '换一个跟法意思就变——明星组，下方逐词给对照', words: []}
+  ],
+  pairs: [
+    {w: 'remember', ing: {ex: 'I remember locking the door.', cn: '记得「已经做过」——朝回看'}, to: {ex: 'Remember to lock the door when you leave.', cn: '记得「要去做」——朝前看'}},
+    {w: 'forget', ing: {ex: 'I will never forget visiting the Great Wall.', cn: '忘不了「曾经做过」的事'}, to: {ex: 'He forgot to bring his homework.', cn: '忘记「去做」——事情没做成'}},
+    {w: 'stop', ing: {ex: 'He stopped smoking last year.', cn: '停下「正在做的事」——戒掉了'}, to: {ex: 'He stopped to have a rest.', cn: '停下来，「为了去做」另一件事'}},
+    {w: 'try', ing: {ex: 'Try knocking at the back door.', cn: '试一试「这个办法」行不行'}, to: {ex: 'He tried to open the window, but it was stuck.', cn: '努力「尝试去做」，不一定成功'}},
+    {w: 'regret', ing: {ex: 'I regret telling her the bad news.', cn: '后悔「已经做过」的事'}, to: {ex: 'We regret to say that the game is off.', cn: '很抱歉「要宣布」——话还没说出口'}}
+  ],
+  act: ['enjoy', 'want', 'remember', 'finish', 'hope', 'stop', 'like', 'mind', 'decide', 'try', 'keep', 'love', 'forget', 'agree'],
+  hints: {
+    ing: '想想：这个词后面的动作，是被当成「一件正在做/已经在做的事」吗？这类词只收 -ing。',
+    to: '不对——这个词后面跟的是「还没做的目标」，得用 to 把动作领出来。',
+    same: '不对——这个词两种跟法意思差不多，不在「只跟」队里，它在「两可·义同」列。',
+    diff: '不对——小心！这个词换跟法意思就变，它在「两可·义不同」明星组里。'
+  }
+};
+const PATS = {sel: null, placed: {}, tableShown: false, hint: ''};
+function patGroupOf(w){
+  for(const g of PATTERNS.groups){ if(g.id === 'diff') continue; for(const x of g.words){ if(x.w === w) return g.id; } }
+  for(const p of PATTERNS.pairs){ if(p.w === w) return 'diff'; }
+  return null;
+}
+function openPatterns(){ show('v-patterns'); renderPatterns(); }
+function patTap(w){ PATS.sel = (PATS.sel === w) ? null : w; renderPatterns(); }
+function patCol(gid){
+  if(!PATS.sel) return;
+  const w = PATS.sel;
+  if(patGroupOf(w) === gid){ PATS.placed[w] = gid; PATS.sel = null; PATS.hint = ''; }
+  else { PATS.hint = PATTERNS.hints[patGroupOf(w)] || ''; }
+  renderPatterns();
+}
+function patReset(){ PATS.sel = null; PATS.placed = {}; PATS.tableShown = false; PATS.hint = ''; renderPatterns(); }
+function patShowTable(){ PATS.tableShown = true; renderPatterns(); }
+function renderPatterns(){
+  const body = $('patBody'); if(!body) return;
+  const total = PATTERNS.act.length, done = Object.keys(PATS.placed).length;
+  let h = '<h2>🧩 动词句型 · 后面跟什么</h2>';
+  h += '<div class="adult">动词后面跟 -ing 还是 to do，不是随机的：先自己归类，再亮表对照（British Council 的动名词/不定式课型就是先归类、后给表）。四分法是通用语法共识：只跟 -ing / 只跟 to / 两可义同 / 两可义不同。</div>';
+  h += '<h4>第一步 · 先归类（点一张词卡，再点一列把它放进去；放错了给提示）</h4>';
+  h += '<div class="chips">' + PATTERNS.act.filter(w => !PATS.placed[w]).map(w => '<button class="chip' + (PATS.sel === w ? ' gold' : '') + '" onclick="VB.patTap(\'' + q(w) + '\')">' + esc(w) + '</button>').join('') + (done === total ? '<span class="adult">词卡都放完啦！</span>' : '') + '</div>';
+  if(PATS.hint) h += '<div class="sent" style="background:#f6e3e3">' + esc(PATS.hint) + '</div>';
+  h += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">' + PATTERNS.groups.map(g => {
+    const inCol = PATTERNS.act.filter(w => PATS.placed[w] === g.id);
+    return '<div style="flex:1 1 150px;border:2px dashed #b8a888;border-radius:12px;padding:8px;min-height:74px;cursor:pointer" onclick="VB.patCol(\'' + g.id + '\')"><b>' + esc(g.name) + '</b><div>' + inCol.map(w => '<span class="badge b-bank" style="margin:2px">' + esc(w) + '</span>').join('') + '</div></div>';
+  }).join('') + '</div>';
+  h += '<div class="score">已归类 ' + done + ' / ' + total + '</div>';
+  h += '<div class="chips"><button class="chip" onclick="VB.patReset()">重来</button>' + (done === total ? '<button class="chip gold" onclick="VB.patShowTable()">📋 看答案 · 打开完整四分表 →</button>' : '<span class="adult">全部放对后，这里会解锁完整四分表。</span>') + '</div>';
+  if(PATS.tableShown){
+    h += '<h4>第二步 · 完整四分表（对照核对）</h4>';
+    h += PATTERNS.groups.filter(g => g.id !== 'diff').map(g => '<div class="sent"><b>' + esc(g.name) + '</b><div class="adult">' + esc(g.sub) + '</div>' + g.words.map(x => '<div style="margin-top:5px"><b>' + esc(x.w) + '</b>（' + esc(x.cn) + '）：' + esc(x.ex) + '</div>').join('') + '</div>').join('');
+    h += '<div class="sent"><b>两可 · 意思不一样（明星组）</b><div class="adult">' + esc(PATTERNS.groups[3].sub) + '</div>' + PATTERNS.pairs.map(p => '<div style="margin-top:8px"><b>' + esc(p.w) + '</b><br>＋ -ing：' + esc(p.ing.ex) + ' —— ' + esc(p.ing.cn) + '<br>＋ to：' + esc(p.to.ex) + ' —— ' + esc(p.to.cn) + '</div>').join('') + '</div>';
+  }
+  h += '<div class="adult" style="margin-top:10px">形式借鉴：四分表为通用语法共识的标准句型表；「先归类、后亮表」的课型借鉴 British Council 动名词/不定式教案。例句为本区新编教学例。</div>';
+  body.innerHTML = h;
+}
+
+/* ================= 本波新增 3：SRS 复习调度 ================= */
+const SRS_KEY = 'mx_vb_srs_v1';
+const SRS_INT = [4 * 3600e3, 12 * 3600e3, 24 * 3600e3, 6 * 86400e3, 12 * 86400e3, 48 * 86400e3, 96 * 86400e3, 182 * 86400e3];
+const SRS_POOLS = ['form', 'hosp', 'ta', 'fam'];
+function srsLoad(){ const s = lsGet(SRS_KEY); if(s && s.items) return s; return {items: {}, ptr: {form: 0, hosp: 0, ta: 0, fam: 0}}; }
+function srsSave(s){ lsSet(SRS_KEY, s); }
+function srsCandidates(pool){
+  const out = [];
+  if(pool === 'form'){ DATA.VERBS.forEach(v => { const F = DATA.FORMS[v]; if(!F) return; ['past', 'part'].forEach(slot => { if(F[slot] && F[slot].f) out.push(v + ':' + slot); }); }); }
+  else if(pool === 'fam'){ DATA.FAMS.forEach(f => f.members.forEach(m => { const F = DATA.FORMS[m]; if(F && F.past && F.past.f) out.push(f.id + ':' + m); })); }
+  else if(pool === 'hosp'){ DATA.HOSPITAL.forEach(g => g.cases.forEach((c, i) => out.push(g.id + ':' + i))); }
+  else if(pool === 'ta'){ DATA.TA.forEach(u => (u.quiz || []).forEach((it, i) => { if(it.options) out.push(u.id + ':' + i); })); }
+  return out;
+}
+function srsDueList(s){ const now = Date.now(); return Object.keys(s.items).filter(k => s.items[k].due <= now).sort((a, b) => s.items[a].due - s.items[b].due); }
+function srsNewCount(s){
+  let n = 0; SRS_POOLS.forEach(p => { const c = srsCandidates(p); const en = Object.keys(s.items).filter(k => s.items[k].pool === p).length; n += Math.max(0, c.length - en); });
+  return n;
+}
+function vbSrsTaMiss(uid, i){
+  try{
+    const it = (TA_BY[uid] || {}).quiz ? TA_BY[uid].quiz[i] : null;
+    if(!it || !it.options) return;
+    const s = srsLoad(); const key = 'ta|' + uid + ':' + i;
+    if(!s.items[key]){ s.items[key] = {pool: 'ta', id: uid + ':' + i, stage: 0, due: Date.now()}; srsSave(s); }
+  }catch(e){}
+}
+function srsGen(key){
+  const bar = key.indexOf('|'); const pool = key.slice(0, bar), id = key.slice(bar + 1);
+  const seed = vbHash(key);
+  if(pool === 'form'){
+    const ci = id.lastIndexOf(':'); const v = id.slice(0, ci), slot = id.slice(ci + 1);
+    const F = DATA.FORMS[v]; if(!F || !F[slot]) return null;
+    const slotName = slot === 'past' ? '过去式' : '过去分词';
+    const info = DATA.VERBINFO[v] || {};
+    const opts = [F[slot].f];
+    ['third', 'past', 'part', 'ing'].forEach(sl => { if(sl !== slot && F[sl] && F[sl].f && opts.indexOf(F[sl].f) < 0) opts.push(F[sl].f); });
+    const others = vbShuffle(DATA.VERBS.filter(x => x !== v), seed);
+    for(const o of others){ if(opts.length >= 4) break; const OF = DATA.FORMS[o]; if(OF && OF[slot] && OF[slot].f && opts.indexOf(OF[slot].f) < 0) opts.push(OF[slot].f); }
+    return {tag: '👕 词形复习', prompt: '<b>' + esc(v) + '</b>' + (info.m ? '（' + esc(info.m) + '）' : '') + ' 的<b>' + slotName + '</b>是哪个？', opts: vbShuffle(opts, seed + 3), ans: F[slot].f, why: v + ' 五形式：原形 ' + v + ' · 三单 ' + (F.third ? F.third.f : '') + ' · 过去 ' + (F.past ? F.past.f : '') + ' · 过分 ' + (F.part ? F.part.f : '') + ' · 现分 ' + (F.ing ? F.ing.f : '') + '。'};
+  }
+  if(pool === 'fam'){
+    const ci = id.indexOf(':'); const fid = id.slice(0, ci), m = id.slice(ci + 1);
+    const fam = DATA.FAMS.find(f => f.id === fid); const F = DATA.FORMS[m]; if(!fam || !F) return null;
+    const opts = [F.past.f];
+    fam.members.forEach(x => { if(x !== m && opts.length < 3 && DATA.FORMS[x] && opts.indexOf(DATA.FORMS[x].past.f) < 0) opts.push(DATA.FORMS[x].past.f); });
+    const others = vbShuffle(DATA.VERBS.filter(x => fam.members.indexOf(x) < 0), seed);
+    for(const o of others){ if(opts.length >= 4) break; if(DATA.FORMS[o] && opts.indexOf(DATA.FORMS[o].past.f) < 0) opts.push(DATA.FORMS[o].past.f); }
+    return {tag: '🪜 家族复习', prompt: '家族「' + esc(fam.name) + '」里，<b>' + esc(m) + '</b> 的过去式是哪个？', opts: vbShuffle(opts, seed + 5), ans: F.past.f, why: fam.name + '：' + fam.members.slice(0, 6).map(x => x + '–' + (DATA.FORMS[x] ? DATA.FORMS[x].past.f : '')).join(' · ') + (fam.members.length > 6 ? ' …' : '')};
+  }
+  if(pool === 'hosp'){
+    const ci = id.lastIndexOf(':'); const gid = id.slice(0, ci), idx = +id.slice(ci + 1);
+    const g = DATA.HOSPITAL.find(x => x.id === gid); if(!g || !g.cases[idx]) return null;
+    const c = g.cases[idx];
+    const opts = [c.right];
+    const all = []; DATA.HOSPITAL.forEach(gg => gg.cases.forEach(cc => { if(cc.right !== c.right) all.push(cc.right); }));
+    vbShuffle(all, seed).slice(0, 3).forEach(r => { if(opts.indexOf(r) < 0) opts.push(r); });
+    return {tag: '🏥 病例复习 · ' + esc(g.title), prompt: '错句：<span class="err">✗ ' + esc(c.wrong) + '</span><br>哪一句是改对的？', opts: vbShuffle(opts, seed + 7), ans: c.right, why: '对句：' + c.right + (c.note ? '<br>' + esc(String(c.note).slice(0, 120)) : '') + '<div class="adult">出处：' + esc(c.src) + '</div>'};
+  }
+  if(pool === 'ta'){
+    const ci = id.lastIndexOf(':'); const uid = id.slice(0, ci), qi = +id.slice(ci + 1);
+    const u = TA_BY[uid]; if(!u || !u.quiz || !u.quiz[qi] || !u.quiz[qi].options) return null;
+    const it = u.quiz[qi];
+    return {tag: '📖 ' + uid + ' 站内题', prompt: (it.case_error ? '<span class="err">✗ ' + esc(it.case_error) + '</span><br>' : '') + esc(it.prompt), opts: it.options.slice(), ans: it.answer, why: esc(it.reason || '')};
+  }
+  return null;
+}
+const SRSQ = {queue: [], i: 0, right: 0, total: 0, requeued: {}, cur: null, locked: false};
+function srsBuildSession(early){
+  const s = srsLoad();
+  let keys = srsDueList(s).slice(0, 12);
+  const target = early ? 8 : 10;
+  if(keys.length < target){
+    let guard = 0;
+    while(keys.length < target && guard < 400){
+      guard++;
+      let progressed = false;
+      for(const p of SRS_POOLS){
+        if(keys.length >= target) break;
+        const cand = srsCandidates(p);
+        let ptr = s.ptr[p] || 0, tries = 0;
+        while(tries < cand.length){
+          const id = cand[ptr % cand.length]; ptr++; tries++;
+          const key = p + '|' + id;
+          if(!s.items[key]){ s.items[key] = {pool: p, id: id, stage: 0, due: Date.now()}; keys.push(key); progressed = true; break; }
+        }
+        s.ptr[p] = ptr;
+      }
+      if(!progressed) break;
+    }
+    srsSave(s);
+  }
+  return keys.filter(k => srsGen(k));
+}
+function openReview(){ show('v-review'); srsStart(false); }
+function srsEarly(){ srsStart(true); }
+function srsStart(early){
+  const body = $('reviewBody'); if(!body) return;
+  const keys = srsBuildSession(early);
+  SRSQ.queue = keys; SRSQ.i = 0; SRSQ.right = 0; SRSQ.total = 0; SRSQ.requeued = {};
+  if(!keys.length){ body.innerHTML = '<h2>⏰ 今日复习</h2><div class="sent">现在没有到期的题，也没有新题可领——先去衣橱、家族、医院或 TA 讲解站学一点，学完的会自动排进复习。</div><div class="chips"><button class="chip" onclick="VB.goHome()">← 回动词专区</button></div>'; return; }
+  srsNext();
+}
+function srsNext(){
+  const body = $('reviewBody'); if(!body) return;
+  if(SRSQ.i >= SRSQ.queue.length){ srsSummary(); return; }
+  const key = SRSQ.queue[SRSQ.i];
+  const gen = srsGen(key);
+  if(!gen){ SRSQ.i++; srsNext(); return; }
+  SRSQ.cur = {key: key, gen: gen};
+  SRSQ.locked = false;
+  body.innerHTML = '<h2>⏰ 今日复习</h2>'
+    + '<div class="adult">第 ' + (SRSQ.i + 1) + ' / ' + SRSQ.queue.length + ' 题 · 已答对 ' + SRSQ.right + ' · ' + esc(gen.tag) + '</div>'
+    + '<div class="sent" style="font-size:16px;line-height:1.8">' + gen.prompt + '</div>'
+    + '<div>' + gen.opts.map(o => '<button class="opt" onclick="VB.srsPick(this)">' + esc(o) + '</button>').join('') + '</div>'
+    + '<div class="rev" id="srsRev">' + gen.why + '</div>'
+    + '<div class="chips" style="margin-top:8px"><button class="chip" onclick="VB.goHome()">先退出（进度已存本机）</button></div>';
+}
+function srsPick(btn){
+  if(SRSQ.locked || !SRSQ.cur) return;
+  const gen = SRSQ.cur.gen, key = SRSQ.cur.key;
+  const ok = btn.textContent === gen.ans;
+  SRSQ.locked = true; SRSQ.total++;
+  const s = srsLoad(); const item = s.items[key];
+  if(ok){
+    btn.classList.add('right'); SRSQ.right++;
+    if(item){ item.due = Date.now() + SRS_INT[Math.min(item.stage, 7)]; item.stage = Math.min(item.stage + 1, 8); }
+  } else {
+    btn.classList.add('wrong');
+    if(item){ item.stage = 0; item.due = Date.now(); }
+    if(!SRSQ.requeued[key]){ SRSQ.requeued[key] = 1; SRSQ.queue.push(key); }
+    const rev = $('srsRev'); if(rev) rev.style.display = 'block';
+  }
+  srsSave(s);
+  if(ok){ const rev = $('srsRev'); if(rev) rev.style.display = 'block'; }
+  SRSQ.i++;
+  setTimeout(srsNext, ok ? 650 : 1400);
+}
+function srsSummary(){
+  const body = $('reviewBody'); if(!body) return;
+  const s = srsLoad();
+  const dues = Object.keys(s.items).map(k => s.items[k].due).filter(d => d > Date.now()).sort((a, b) => a - b);
+  vbLogEvt('srs_done', {n: SRSQ.total, ok: SRSQ.right});
+  body.innerHTML = '<h2>⏰ 本轮复习小结</h2>'
+    + '<div class="sent" style="font-size:16px">这一轮练了 <b>' + SRSQ.total + '</b> 题，答对 <b>' + SRSQ.right + '</b> 题。</div>'
+    + '<div class="sent">复习池里现有 ' + Object.keys(s.items).length + ' 条；下一次到期：<b>' + (dues.length ? vbFmtDue(dues[0]) : '暂无') + '</b>。答错的条目已经回炉，会优先再来。</div>'
+    + '<div class="chips"><button class="chip gold" onclick="VB.openReview()">再来一轮 →</button><button class="chip" onclick="VB.goHome()">← 回动词专区</button></div>';
+}
+
+/* ================= 本波新增 4a：课环（今日一课） ================= */
+const LOOP_KEY = 'mx_vb_loop_v1';
+const LOOP_STEPS = [['learn', '① 学 · 讲解站'], ['machine', '② 拼 · 时间机器'], ['read', '③ 读 · 跟读例句'], ['quiz', '④ 测 · 站内练习'], ['report', '⑤ 报告 · 家长看']];
+function loopLoad(){ const s = lsGet(LOOP_KEY); if(s && s.done) return s; const n = Math.floor(Date.now() / 86400000); return {cur: DATA.TA[n % DATA.TA.length].id, done: {}, seen: {}}; }
+function loopSave(s){ lsSet(LOOP_KEY, s); }
+function loopMark(ta, step){
+  try{
+    const s = loopLoad(); if(s.cur !== ta) return;
+    s.done[ta] = s.done[ta] || {};
+    if(!s.done[ta][step]){ s.done[ta][step] = Date.now(); loopSave(s); vbLogEvt('loop', {ta: ta, step: step}); renderVBHome(); }
+  }catch(e){}
+}
+function vbLoopTouch(id){ loopMark(id, 'learn'); }
+function vbLoopQuiz(uid, i){
+  try{
+    const s = loopLoad(); if(s.cur !== uid) return;
+    const u = TA_BY[uid]; if(!u) return;
+    s.seen[uid] = s.seen[uid] || {};
+    if(i != null) s.seen[uid][i] = 1;
+    const total = (u.quiz || []).length;
+    loopSave(s);
+    if(total && Object.keys(s.seen[uid]).length >= total) loopMark(uid, 'quiz');
+    if(!total) loopMark(uid, 'quiz');
+  }catch(e){}
+}
+function loopSetTA(v){ const s = loopLoad(); s.cur = v; loopSave(s); renderVBHome(); }
+function loopStep(step){
+  const s = loopLoad(); const ta = s.cur; const pr = DATA.PRESETS[ta];
+  if(step === 'learn'){ loopMark(ta, 'learn'); openTA(ta); }
+  else if(step === 'machine'){ loopMark(ta, 'machine'); if(pr) openMachinePreset(pr[0], pr[1], pr[2]); }
+  else if(step === 'read'){ openTA(ta); setTimeout(function(){ const el = $('loopReadTip'); if(el) el.scrollIntoView(); }, 60); }
+  else if(step === 'quiz'){ openTA(ta); }
+  else if(step === 'report'){ loopMark(ta, 'report'); openReport(); }
+}
+function renderLoopPanel(){
+  const el = $('loopPanelBody'); if(!el) return;
+  const s = loopLoad(); const u = TA_BY[s.cur]; if(!u){ el.innerHTML = ''; return; }
+  const done = s.done[s.cur] || {};
+  const ndone = LOOP_STEPS.filter(st => done[st[0]]).length;
+  let h = '<div class="chips" style="margin-bottom:8px"><span class="adult" style="align-self:center">今天这一站：</span><select id="loopSel" onchange="VB.loopSetTA(this.value)" style="font-size:15px;padding:4px 6px;border-radius:8px">'
+    + DATA.TA.map(x => '<option value="' + x.id + '"' + (x.id === s.cur ? ' selected' : '') + '>' + x.id + ' ' + esc(x.kid.slice(0, 14)) + '…</option>').join('') + '</select></div>';
+  h += '<div style="display:flex;gap:6px;flex-wrap:wrap">' + LOOP_STEPS.map(st => '<button class="chip' + (done[st[0]] ? ' gold' : '') + '" onclick="VB.loopStep(\'' + st[0] + '\')">' + (done[st[0]] ? '✓ ' : '') + st[1] + '</button>').join('') + '</div>';
+  h += '<div class="adult" style="margin-top:6px">进度 ' + ndone + ' / 5 环' + (ndone === 5 ? ' · 🎉 这一站的一课走完啦，换下一站继续！' : ' · 「读」环要点开例句旁的 🎤 真读出声才打勾；「测」环要把本站练习都做过（看答案也算）。') + '</div>';
+  el.innerHTML = h;
+}
+function renderSrsPanel(){
+  const el = $('srsPanelBody'); if(!el) return;
+  const s = srsLoad();
+  const due = srsDueList(s).length, nw = srsNewCount(s);
+  el.innerHTML = '<div class="sent">现在到期 <b>' + due + '</b> 题 · 还可新学 <b>' + nw + '</b> 题（词形 / 家族 / 病例 / 站内题自动出题）</div>'
+    + '<div class="chips"><button class="chip gold" onclick="VB.openReview()">⏰ 开始今日复习 →</button>' + (due === 0 ? '<button class="chip" onclick="VB.srsEarly()">提前练新题</button>' : '') + '</div>';
+}
+function renderVBHome(){ try{ renderLoopPanel(); }catch(e){} try{ renderSrsPanel(); }catch(e){} }
+
+/* ================= 本波新增 4b：跟读 ================= */
+function vbNormSent(s){ return String(s || '').toLowerCase().replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim(); }
+function vbAfterRead(ta){
+  vbLogEvt('read', {ta: ta || ''});
+  if(ta) loopMark(ta, 'read');
+}
+function vbScoreRead(target, said, fb, ta){
+  const t = vbNormSent(target).split(' ').filter(Boolean), s = vbNormSent(said).split(' ').filter(Boolean);
+  const setS = {}; s.forEach(w => { setS[w] = 1; });
+  let hit = 0, firstMiss = '';
+  t.forEach(w => { if(setS[w]) hit++; else if(!firstMiss) firstMiss = w; });
+  const ratio = t.length ? hit / t.length : 0;
+  const stars = ratio >= 0.9 ? '★★★' : (ratio >= 0.6 ? '★★' : '★');
+  let msg = ratio >= 0.9 ? '读得又准又稳！' : (ratio >= 0.6 ? '不错！再读一遍会更稳。' : '慢慢来：先点 🔊 听一遍，再跟读。');
+  if(ratio < 0.9 && firstMiss) msg += ' 小提示：注意「' + firstMiss + '」这个词。';
+  if(fb) fb.innerHTML = ' ' + stars + ' 机器听到的是：「' + esc(said) + '」 ' + msg;
+  vbAfterRead(ta);
+}
+function readAloud(btn){
+  const target = btn.getAttribute('data-t') || '';
+  const fb = btn.getAttribute('data-fb') ? document.getElementById(btn.getAttribute('data-fb')) : null;
+  const ta = btn.getAttribute('data-ta') || '';
+  let fell = false;
+  function fallback(){ if(fell) return; fell = true; vbReadRecord(target, fb, ta, btn); }
+  try{
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(SR){
+      const rec = new SR(); rec.lang = 'en-GB'; rec.interimResults = false; rec.maxAlternatives = 1;
+      let got = false;
+      if(fb) fb.textContent = ' 🎤 在听啦，大声读出来，读完停一下…';
+      rec.onresult = function(ev){ got = true; try{ const said = ev.results[0][0].transcript || ''; vbScoreRead(target, said, fb, ta); }catch(e){ fallback(); } };
+      rec.onerror = function(){ if(!got) fallback(); };
+      rec.onend = function(){ if(!got) fallback(); };
+      rec.start();
+      return;
+    }
+  }catch(e){}
+  fallback();
+}
+function vbReadRecord(target, fb, ta, btn){
+  const md = navigator.mediaDevices;
+  if(!md || !md.getUserMedia || typeof MediaRecorder === 'undefined'){ vbReadCheckin(fb, ta); return; }
+  if(fb) fb.textContent = ' 🎤 正在录音（最多 6 秒），大声读吧…';
+  md.getUserMedia({audio: true}).then(function(stream){
+    let rec;
+    try{ rec = new MediaRecorder(stream); }catch(e){ stream.getTracks().forEach(t => t.stop()); vbReadCheckin(fb, ta); return; }
+    const chunks = [];
+    rec.ondataavailable = function(e){ if(e.data && e.data.size) chunks.push(e.data); };
+    rec.onstop = function(){
+      stream.getTracks().forEach(t => t.stop());
+      try{
+        const url = URL.createObjectURL(new Blob(chunks, {type: 'audio/webm'}));
+        if(fb) fb.innerHTML = ' <audio controls src="' + url + '" style="height:28px;vertical-align:middle"></audio> 听听自己读的：<button class="chip" onclick="VB.readSelf(this)" data-ta="' + q(ta) + '" data-fbid="' + (fb ? fb.id : '') + '">读对了 ✓</button>';
+      }catch(e){ vbReadCheckin(fb, ta); }
+    };
+    rec.start();
+    setTimeout(function(){ try{ if(rec.state !== 'inactive') rec.stop(); }catch(e){} }, 6000);
+  }).catch(function(){ vbReadCheckin(fb, ta); });
+}
+function readSelf(btn){
+  const fb = btn.getAttribute('data-fbid') ? document.getElementById(btn.getAttribute('data-fbid')) : null;
+  if(fb) fb.innerHTML = ' ★★★ 自评通过，跟读完成！';
+  vbAfterRead(btn.getAttribute('data-ta') || '');
+}
+function vbReadCheckin(fb, ta){
+  if(!fb){ vbAfterRead(ta); return; }
+  fb.innerHTML = ' 这个设备暂时不能录音，没关系——大声把这句读三遍，然后打卡：<button class="chip" onclick="VB.readSelf(this)" data-ta="' + q(ta) + '" data-fbid="' + fb.id + '">读完三遍 ✓</button>';
+}
+
+/* ================= 本波新增 4c：家长小报告 ================= */
+function openReport(){ show('v-report'); renderReport(); }
+function renderReport(){
+  const body = $('reportBody'); if(!body) return;
+  const log = lsGet('mx_vb_log_v1') || [];
+  const now = new Date(); const day0 = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  const wk0 = day0 - 6 * 86400000;
+  function agg(from){
+    const evs = log.filter(e => e.ts >= from);
+    const quiz = evs.filter(e => e.kind === 'quiz');
+    const qok = quiz.filter(e => e.ok).length;
+    const reads = evs.filter(e => e.kind === 'read').length;
+    const srs = evs.filter(e => e.kind === 'srs_done');
+    const srsN = srs.reduce((a, e) => a + (e.n || 0), 0), srsOk = srs.reduce((a, e) => a + (e.ok || 0), 0);
+    const tas = {};
+    evs.forEach(e => { if(e.ta) tas[e.ta] = 1; });
+    return {quiz: quiz.length, qok: qok, reads: reads, srsN: srsN, srsOk: srsOk, tas: Object.keys(tas)};
+  }
+  const td = agg(day0), wk = agg(wk0);
+  const loop = loopLoad();
+  const srs = srsLoad();
+  const dueN = srsDueList(srs).length;
+  const dues = Object.keys(srs.items).map(k => srs.items[k].due).filter(d => d > Date.now()).sort((a, b) => a - b);
+  let h = '<h2>📋 家长小报告 · 动词区</h2>';
+  h += '<div class="adult">本报告只读这台设备上的学习记录（localStorage），不上传、不联网。记录来自 TA 讲解站练习、SRS 复习、跟读与今日一课课环。</div>';
+  if(!log.length && !Object.keys(loop.done).length && !Object.keys(srs.items).length){
+    h += '<div class="sent" style="font-size:16px">还没有学习记录。先去走一遍「🎓 今日一课」（学 → 拼 → 读 → 测 → 报告），或做一轮「⏰ 今日复习」，这里就会有内容啦。</div><div class="chips"><button class="chip gold" onclick="VB.goHome()">← 回动词专区</button></div>';
+    body.innerHTML = h; return;
+  }
+  function block(title, a){
+    return '<div class="sent"><b>' + title + '</b><br>站内测验：' + a.quiz + ' 题，答对 ' + a.qok + ' 题' + (a.quiz ? '（正确率 ' + Math.round(a.qok / a.quiz * 100) + '%）' : '')
+      + '<br>SRS 复习：完成 ' + a.srsN + ' 题，答对 ' + a.srsOk + ' 题'
+      + '<br>跟读：' + a.reads + ' 次'
+      + (a.tas.length ? '<br>碰过的讲解站：' + a.tas.map(id => id + (TA_BY[id] ? '（' + esc(TA_BY[id].kid.slice(0, 10)) + '…）' : '')).join('、') : '') + '</div>';
+  }
+  h += block('☀️ 今日', td);
+  h += block('📅 本周（近 7 天）', wk);
+  const loopRows = Object.keys(loop.done).map(ta => {
+    const d = loop.done[ta] || {}; const n = LOOP_STEPS.filter(st => d[st[0]]).length;
+    return '<div style="margin-top:4px">' + ta + '：课环 ' + n + ' / 5' + (n === 5 ? ' 🎉' : '') + '（' + LOOP_STEPS.map(st => (d[st[0]] ? '✓' : '·') + st[1].split(' ')[1]).join(' ') + '）</div>';
+  }).join('');
+  h += '<div class="sent"><b>🎓 今日一课进度</b>' + (loopRows || '<br>还没开始任何一站的课环。') + '</div>';
+  h += '<div class="sent"><b>⏰ 复习池状态</b><br>已入池 ' + Object.keys(srs.items).length + ' 条 · 现在到期 ' + dueN + ' 条 · 下次到期：' + (dues.length ? vbFmtDue(dues[0]) : '暂无') + '</div>';
+  h += '<div class="chips"><button class="chip" onclick="VB.goHome()">← 回动词专区</button></div>';
+  body.innerHTML = h;
+}
+
+/* 主页小部件首刷 + 回到主页时刷新到期数/课环进度 */
+try{ renderVBHome(); }catch(e){}
+try{
+  if(typeof MutationObserver !== 'undefined'){
+    const _vsec = document.getElementById('v-verb');
+    if(_vsec) new MutationObserver(function(){ if(_vsec.classList.contains('on')) renderVBHome(); }).observe(_vsec, {attributes: true, attributeFilter: ['class']});
+  }
+}catch(e){}
+
 init();
-window.VB={show:show,goHome:goHome,say:say,openMachine:openMachine,openMachinePreset:openMachinePreset,openTA:openTA,renderWardChips:renderWardChips,openWard:openWard,openFam:openFam,openPoly:openPoly,predPick:predPick,openFan:openFan,outPick:outPick,setScene:setScene,openHosp:openHosp,mEvChange:mEvChange,mResult:mResult,mGone:mGone,renderMachine:renderMachine,dv:function(x){DV=x;renderDial();},dp:function(x){DP=x;renderDial();},dvdp:function(a,b){DV=a;DP=b;renderDial();window.scrollTo(0,0);},setCMode:setCMode,openHats:openHats,renderHats:renderHats,renderCompose:renderCompose,cPick1:cPick1,cPick2:cPick2,cReset:cReset,v4Pick:v4Pick,netPick:netPick,netOpenAll:netOpenAll,C:C,PF:PF,PT:PT,RS:RS,taPick:taPick,taBuildTap:taBuildTap,taBuildCheck:taBuildCheck,taBuildReset:taBuildReset,taReveal:taReveal};
+window.VB={show:show,goHome:goHome,say:say,openMachine:openMachine,openMachinePreset:openMachinePreset,openTA:openTA,renderWardChips:renderWardChips,openWard:openWard,openFam:openFam,openPoly:openPoly,predPick:predPick,openFan:openFan,outPick:outPick,setScene:setScene,openHosp:openHosp,mEvChange:mEvChange,mResult:mResult,mGone:mGone,renderMachine:renderMachine,dv:function(x){DV=x;renderDial();},dp:function(x){DP=x;renderDial();},dvdp:function(a,b){DV=a;DP=b;renderDial();window.scrollTo(0,0);},setCMode:setCMode,openHats:openHats,renderHats:renderHats,renderCompose:renderCompose,cPick1:cPick1,cPick2:cPick2,cReset:cReset,v4Pick:v4Pick,netPick:netPick,netOpenAll:netOpenAll,C:C,PF:PF,PT:PT,RS:RS,taPick:taPick,taBuildTap:taBuildTap,taBuildCheck:taBuildCheck,taBuildReset:taBuildReset,taReveal:taReveal,openModal,modalSetLens,modalSetWord,modalZonePick,modalQuizPick,openPatterns,patTap,patCol,patReset,patShowTable,openReview,srsEarly,srsPick,openReport,readAloud,readSelf,loopSetTA,loopStep};
 })();
 </script>
 <script>
