@@ -187,3 +187,34 @@
 - 和 02 号报告不重复：02 号覆盖 in / on / at / over 和产品界面；本报告覆盖其余 39 个词的**讲解内容和展示方式**。
 - 05 号报告里 engVid 的 under / below / beneath / underneath、Woodward 的 basic prepositions of place，本报告只引用不展开。
 - 仓库 `laws-prototype/model/` 下已有 `prep_dossiers_a.yaml` / `prep_dossiers_b.yaml` / `prep_family_a.json` / `prep_family_b.json`（这次 pull 下来的，不是本线写的），本报告没有读也没有改；后续把手法库对到这些模型时，需要对一下家族划分是否一致。
+
+---
+
+## 6. 补强（2026-11-02）
+
+本节合并当日的两轮深挖：**文字 / 图示**（`notes/words_deep.md`：新增 88 条来源、实际打开读过 101 页；Tyler & Evans 2003 全文与 GitHub 开源中文介词书已读到）与**视频**（`notes/videos_deep.md`：原采集环境素材不可见、经用户裁定全部重采——YouTube 19 个转写齐全、B站 33 个全部下载，逐个抽帧看图，关键帧存 `notes/shots/`）。原报告 14 个空白词现为：9 个补齐（except / of / about / among / beyond / against / past / since / until）、4 个部分补（upon / like / as / without）、plus 仍空白。中文视频的空白也部分填上：33 个 B站视频覆盖五个家族，时月老师选集的介词分 P 与多支中文辨析课已看帧、10 支已转写。第 4 节「未核实项」之首条（视频画面）至此销项，但看图是抽样（每视频 12 帧联系图 + 6 张候选帧），不是逐帧。
+
+### 1.1 上下纵轴
+- **原型图不再是「只读到目录」**（文字）：Tyler & Evans 2003 全文已读到 17 个词的原型场景图，纵轴四词的 proto-scene 与 A2 的虚线分区互证；Rudzka-Ostyn《Word Power》另有这一组的核心意象插图。（words_deep.md N1、N2）
+- **板书的版面位置本身成了教具**（视频）：engVid Adam 两集把词写在白板的上 / 下位置来证明 same plane，又用双手平伸留空隙演 above 的「有空间」、手掌平覆演 over 的 cover——「接触 / 不接触」有了可直接搬进动画的手势对照。（videos_deep.md 家族 1.1：7jIqZjfx_uM、duMo2VoFAQY）
+- **抽象方块图逐个变量推导**（视频）：B站精讲课用 a/b 方块图依次只改一个条件，从 under（两独立个体相对垂直）推到 below（构成一个整体的上下部分）再到 underneath（窄空间、隐藏），图组全程留在板边回指，是 A2 学术图的课堂版。（videos_deep.md 家族 1.1：BV1ud4y127d2）
+
+### 1.2 路径
+- **Oxford 一集的成色要修正**（视频）：脚本与画面核对后，真正的示意图只有 across 一张（红箭头斜穿蓝横线），其余是口播 + 例句文字（介词标红）+ 实拍；under/below 的对比靠讲师手势。它最可借鉴的版面动作是 along 一节的「等式堆叠」：along = up = down 三句同框。（videos_deep.md 家族 1.2：Rai_E2EjOBw）
+- **「红球 + 箭头」图式三方同源**（视频）：MES 用红球 + 灰立方体 + 粗红箭头做全套闪卡，B站 BV1Hg4y1K7rC 的图式页同款；MES 把 onto 画成弧形翻落顶面、through 画成圆筒直穿——这是路径家族里最接近可直接迁移到参数化场景引擎的图式库存。（videos_deep.md 家族 1.2：j8tFojL0Gnw、BV1Hg4y1K7rC）
+- **中文「先合后分」结构**（视频）：BV1eW4y1q7TQ 先把 across / through / past / over 的共同上位直觉立为「穿过」，再用平面 / 空间 / 一旁 / 越高四条中文定义逐词分工，是本家族唯一的中文合讲结构；与之对照，Arnel's 的 past vs passed 一节是纯口头辨析、没有任何视觉锚点（tip_TNSk6_k）。（videos_deep.md 家族 1.2）
+
+### 1.3 位置
+- **教材画法已有现成范式**（文字）：人教 PEP 五上用「球 + 狗」5 幅图教 in front of / beside / between / behind / above，只改一个变量；开源中文书的统一图式约定（红球 = 对象、灰盒 = 参照物、虚线 = 关系、箭头 = 方向）可整套复用。（words_deep.md N61、N10）
+- **同一主角走遍所有位置**（视频）：时月老师三课用同一只小狗逐个走位（篮中 → 沙发上 → 桌下 → 椅桌之间 → 树前 → 车后），BBC Georgie 真人版用同一人 + 同一纸箱演完六个位置词——主角不变、参照物变，位置词是唯一变量，第 2 节 P2 手法在视频里得到实证。（videos_deep.md 家族 1.3：BV148UKYtEQR_p29–p31、pCoefMybtYc）
+- **between / among 的「先立简规、再当场推翻」英中同构**（视频）：Emma 先教「between 两件 / among 三件以上」，随即用三个三件例句当场证伪、升级为群组 vs 一对一对照表；B站 BV1nT411w7nz 用 The house lies between / among trees 的分支句干讲「两可但侧重不同」，两条升级路径相互印证。（videos_deep.md 家族 1.3：RnJJqfu6i8U、BV1nT411w7nz）
+
+### 1.4 时间
+- **第 3 / 4 节「until vs by 只有口播、没找到动画」的说法要修正，但成色要分清**（视频）：engVid Adam 在白板上画了横向 time map（延续到 noon 的横线表 until、noon 或之前落点表 by，红注定格），时月老师把 from…until 画成 Monday→Friday 的粗箭头时间线——时间图确实存在，但都是手绘 / 课件静态图 + 指点，不是进度条动画；同题材的 BV1wT4y1j7cX 全片只有表格、零图示。（videos_deep.md 家族 1.4：n3JaBrsistk、BV148UKYtEQR_p26、BV1wT4y1j7cX）
+- **时间图示分三型**（视频）：直线轴型（Adam 的时间图、p26 的箭头线、BV1PJ411d7qc 的红笔时间轴——for 的时长义靠轴的横向长度承载，for 2 hours 被括注 time adjunct，与 Murphy 的「绳子」互证）、钟面圆盘型（p39 把 past / to 做成钟面右半蓝 / 左半蓝的镜像涂色）、零图示型（BBC 6 Minute Grammar 全程文字稿，since / for 之别只活在例句里）。（videos_deep.md 家族 1.4）
+- **时间轴图源码与中国学习者实数**（文字）：开源中文书有 since / for / until / by / during / from…to 的成套时间轴矢量图源码；新增的中国学习者数据显示时间类错误中 in/on/at 混淆占 73%，at 3 hours → for 3 hours、since + 时段都有真实错例可引。（words_deep.md N10、N50）
+
+### 1.5 抽象
+- **「抽象词没有画面」的缺口补上一半，plus 仍是全空白**（文字）：开源中文书把 of / for / with / except / besides / about / by 的多义网络都画成了矢量图；except / of / about 已补齐到有图有核心意象，upon / like / as / without 只补到核心意象、无现成图；plus 经两轮检索仍只有词典与数学加号，无任何讲解型材料。（words_deep.md N10、第 0 节汇总）
+- **with 的三义表三方同构**（视频）：Emma 分伴随 / 特征 / 工具，时月老师分和 / 用 / 带有，阿丁分伴随 / 方式 / 特征——结构几乎同一张表，是抽象家族内部一致性最高的一词；Jesse 系列另给身体感觉版（with = 在一起的感觉、at = 把话扔向你），其中 to 的「到」与 Kevin 的 A→B 文氏图互为手势版与图版。（videos_deep.md 家族 1.5：gix9O_sjEzo、BV148UKYtEQR_p32、BV1Nm4y117NL、7RYB8x5jKZw）
+- **as / like 两条讲法线互不重合，且 of / plus / upon 无视频专讲**（视频）：Adam 走句法线（like + 名词 / as + 子句，并明说母语者常混用、like 代 as “wrong, but acceptable”），Greg 走语义线（like = 相似但不是本人 / as = 本人职能），两条线没有任何一条视频调和；本轮 12 条抽象主视频中 of / plus / upon 无一专讲（upon 仅在纵轴的 BV1V34y1s7H1 里作为问答一段出现），except 一系只有 JForrest 一条、办法是给 besides 标 (+)、except 标 (−) 的符号口诀。（videos_deep.md 家族 1.5：6nDEvB5eWDU、50AMlIIsxI8、V8OQDXa_aBM）
