@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>词汇解码区 · 原型</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#f7f3ea;color:#2b2b2b;line-height:1.7}
+.wrap{max-width:1060px;margin:0 auto;padding:16px}
+.view{display:none}.view.active{display:block}
+h1{font-size:28px;margin:8px 0}h2{font-size:22px;margin:6px 0 10px}h3{font-size:17px;margin:14px 0 8px}
+.sub{color:#666}
+.card{background:#fff;border:1px solid #e3dccb;border-radius:14px;padding:18px;margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.entry{background:#fdfbf6;border:1px solid #ddd3ba;border-radius:12px;padding:14px;cursor:pointer}
+.entry:hover{border-color:#b89b4e}
+.entry b{font-size:19px}
+.tag{display:inline-block;background:#efe6cf;border-radius:20px;padding:1px 10px;font-size:12px;color:#6b5a2a;margin:2px 4px 2px 0}
+.btn{background:#4a7fb5;color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:15px}
+.btn:disabled{background:#bbb;cursor:not-allowed}
+.btn.sec{background:#fff;color:#4a7fb5;border:1px solid #4a7fb5}
+.small{font-size:12.5px;color:#777;line-height:1.6}
+.adult{font-size:12.5px;color:#777;border-top:1px dashed #ccc;margin-top:12px;padding-top:8px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+td,th{border:1px solid #e0d9c6;padding:7px 10px;text-align:left;vertical-align:top}
+td:first-child{width:90px;font-weight:bold;background:#faf6ec;white-space:nowrap}
+.pending{color:#a33;font-weight:bold}
+/* sense map */
+.mapflex{display:flex;gap:16px;flex-wrap:wrap}
+.mapscroll{overflow-x:auto;flex:1 1 540px}
+.diagram{position:relative;width:560px;height:340px;background:#fcfaf3;border:1px solid #e6dfca;border-radius:10px}
+.diagram svg{position:absolute;inset:0;width:100%;height:100%}
+.diagram svg line{stroke:#999;stroke-width:2}
+.diagram svg line.dash{stroke-dasharray:6 5;stroke:#aaa}
+.edge-label{position:absolute;font-size:11px;color:#888;background:#fcfaf3;padding:0 3px;transform:translate(-50%,-50%)}
+.node{position:absolute;transform:translate(-50%,-50%);border-radius:10px;padding:6px 10px;font-size:13.5px;text-align:center;cursor:pointer;border:2px solid #fff;color:#fff;min-width:92px;max-width:150px;line-height:1.35;z-index:2}
+.node.pos-n{background:#4a7fb5}.node.pos-v{background:#4d9e6b}.node.pos-adj{background:#e08a3c}.node.pos-core{background:#6b5a2a}
+.node.core{border:3px solid #333;font-weight:bold}
+.node.dim{opacity:.25}
+.node.hl{outline:3px solid #f2c94c;outline-offset:2px}
+.clusterbox{position:absolute;border:2px dashed #999;border-radius:12px;z-index:1}
+.cluster-note{position:absolute;font-size:11.5px;color:#777;z-index:1}
+.senselist{flex:1 1 260px;min-width:240px}
+.sense-item{border:1px solid #e0d9c6;border-radius:8px;padding:7px 10px;margin:6px 0;cursor:pointer;background:#fff;font-size:14.5px}
+.sense-item.hl{background:#fff3c4;border-color:#f2c94c}
+.sense-item .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.excard{background:#f4f8fb;border:1px solid #c9dcee;border-radius:10px;padding:14px;margin-top:12px}
+.relswitch{font-size:14px;margin:6px 0}
+.relswitch label{margin-right:14px;cursor:pointer}
+/* quiz */
+.qopt{display:block;border:1px solid #ddd;border-radius:8px;padding:9px 12px;margin:7px 0;cursor:pointer;background:#fff}
+.qopt.sel{border-color:#4a7fb5;background:#eaf2fa}
+.qopt.right{border-color:#4d9e6b;background:#e6f4ea}
+.qopt.wrong{border-color:#c0392b;background:#fbeaea}
+.reveal{background:#fdf6e0;border:1px solid #e6d193;border-radius:8px;padding:12px;margin:10px 0;display:none}
+.summary{background:#e6f4ea;border:1px solid #4d9e6b;border-radius:10px;padding:14px;display:none}
+.timeline{border-left:3px solid #b89b4e;margin-left:8px;padding-left:16px}
+.timeline div{margin:10px 0}
+.checklist{list-style:none;padding-left:4px}
+.checklist li{margin:5px 0}
+.big{font-size:19px;line-height:1.8}
+@media(max-width:700px){h1{font-size:23px}.diagram{width:560px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HOME -->
+<section class="view active" id="home">
+<h1>词汇解码区 · 原型</h1>
+<p class="sub">词不是逐个背的——靠词源故事、形态拆解和打包对照解码（本区对应 V 组规律）</p>
+
+<div class="card"><h2>分区一「认识一个词」</h2>
+<p><span class="tag">短名单 1 讲解散文</span><span class="tag">短名单 2 义项图</span><span class="tag">短名单 5 九栏词卡</span><span class="tag">短名单 8 义项直达例句</span></p>
+<div class="grid">
+<div class="entry" onclick="show('word-play')"><b>play</b>（动词/名词）<br>一个词干四件事：玩、打球、弹奏、演戏<br><span class="small">对应 V-16 义项有亲缘</span></div>
+<div class="entry" onclick="show('word-charge')"><b>charge</b>（动词/名词）<br>一副担子的四种压法：收费、负责、充电、指控<br><span class="small">对应 V-16（簇式呈现）</span></div>
+<div class="entry" onclick="show('word-light')"><b>light</b>（名词/形容词）<br>「光」和「轻」其实是两个词撞了脸<br><span class="small">对应 V-41 同形异义</span></div>
+<div class="entry" onclick="show('word-school')"><b>school</b>（名词）<br>它的祖先意思竟然是「闲暇」<br><span class="small">对应 V-08 真实来历</span></div>
+</div></div>
+
+<div class="card"><h2>分区二「打包对照单元」</h2>
+<p><span class="tag">短名单 3 未见词达标测</span></p>
+<div class="grid">
+<div class="entry" onclick="show('unit-kai')"><b>单元 A：汉语的「开」× 英语的四个动词</b>（V-40 打包法）<br>学完用没学过的组合现场推</div>
+<div class="entry" onclick="show('unit-spek')"><b>单元 B：「看」的一家人</b>（V-26 词根 *spek-）<br>认了老根，一串词顺带认</div>
+</div></div>
+
+<div class="card"><h2>分区三「词源故事」</h2>
+<p><span class="tag">短名单 4 词源页骨架</span></p>
+<div class="entry" onclick="goEtym()"><b>school 的词源页</b>（跳 school 页 #etym 节）</div>
+<p>说明卡：本区的词源故事只收逐条核到词源词典的词，核不到的不讲——宁缺毋滥。（本原型已核：school、light、play、charge、*spek- 词族，均标出处与接触等级。）</p>
+</div>
+
+<div class="card"><h2>分区四「总论 · 成人层」</h2>
+<p><span class="tag">短名单 9 选词双门</span><span class="tag">短名单 10 九格验收表</span></p>
+<div class="entry" onclick="show('overview')"><b>给老师和家长：词是怎么选出来的、一个词怎样才算教完</b></div>
+</div>
+
+<p class="small">本原型未含（后续批次）：调度透明层（属复习区）、一课多件课型、逐层剥开与裸词检验、文本先行入口。</p>
+</section>
+
+<!-- PLAY -->
+<section class="view" id="word-play">
+<button class="btn sec" onclick="show('home')">← 返回首页</button> <span class="tag">短名单 1 · 讲解散文</span><span class="tag">短名单 2 · 义项图</span><span class="tag">短名单 5 · 九栏词卡</span>
+<h1>play <span style="font-size:18px;color:#666">/pleɪ/　v./n.</span></h1>
+<p class="sub">本页怎么读：先听一段讲解 → 看义项图 → 查九栏卡 → 点义项读例句。</p>
+
+<div class="card"><h2>先听老师讲一讲</h2>
+<p>play 可能是英语里最忙的一个词：小朋友在操场上 play，运动员在球场上 play，钢琴家在音乐会上 play，连舞台上演的戏都叫 a play。</p>
+<p>它的老家是古英语 plegan。这个词当年的意思比今天宽：轻快地动起来、投入地忙活——蹦蹦跳跳、嬉戏锻炼，连「演奏乐器」都已经算在里面。所以今天的四个意思，其实是同一件事的四种样子：投入地动，放在操场上是玩耍，放在球场上是打球比赛，放在乐器上是弹奏；当一场投入的活动被搬上舞台、演给别人看，它就变成了名词「戏剧」——这个意思最迟在 14 世纪初就已经出现了。</p>
+<p>再往上追，plegan 的祖先是谁？专家还没有查清（词源词典明说来源未定）。这个词的故事，我们就讲到有证据的地方为止。</p>
+<p>所以下次在课文里见到 play，先别急着翻译成「玩」：看看它后面跟的是玩具、球、乐器，还是舞台——四个意思，用的是同一双「投入活动」的眼睛。</p>
+<p class="adult">义项与例句出自 Cambridge Dictionary，经词库 verb_sense_networks 登记（逐字）；词源（古英语 plegan 义涵、「戏剧」义 14 世纪初见载、更深来源未定）出自 Etymonline「play」词条，2026-11-02 实测打开，接触等级：词条原文级。连线关系标签为按 V-16 引申机制的教学组装，非词典原文。</p>
+</div>
+
+<div class="card"><h2>义项图</h2>
+<div class="relswitch">关系开关：
+<label><input type="checkbox" class="rel-toggle" data-scope="play" data-rel="direct" checked> 直接延续</label>
+<label><input type="checkbox" class="rel-toggle" data-scope="play" data-rel="scene" checked> 场景定型</label>
+<label><input type="checkbox" class="rel-toggle" data-scope="play" data-rel="conv" checked> 词性转换</label>
+</div>
+<p class="small">连线上的标签是「这个意思是怎么从那个意思长出来的」；成人注见本页出处。</p>
+<div class="mapflex">
+<div class="mapscroll"><div class="diagram" data-scope="play">
+<svg viewBox="0 0 560 340" preserveAspectRatio="none">
+<line class="edge" data-rel="direct" x1="280" y1="170" x2="110" y2="70"/>
+<line class="edge" data-rel="scene" x1="280" y1="170" x2="450" y2="70"/>
+<line class="edge" data-rel="scene" x1="280" y1="170" x2="110" y2="270"/>
+<line class="edge" data-rel="conv" x1="280" y1="170" x2="450" y2="270"/>
+</svg>
+<span class="edge-label" data-rel="direct" style="left:33%;top:32%">直接延续</span>
+<span class="edge-label" data-rel="scene" style="left:67%;top:32%">场景定型</span>
+<span class="edge-label" data-rel="scene" style="left:33%;top:66%">场景定型</span>
+<span class="edge-label" data-rel="conv" style="left:67%;top:66%">词性转换</span>
+<div class="node pos-core core" data-sense="play-core" style="left:50%;top:50%">古英语 plegan<br>「轻快地动 · 投入地忙活」</div>
+<div class="node pos-v" data-sense="play-v1" data-rel-primary="direct" style="left:20%;top:21%">V1 玩耍</div>
+<div class="node pos-v" data-sense="play-v2" data-rel-primary="scene" style="left:80%;top:21%">V2 打（球）；玩（牌类）</div>
+<div class="node pos-v" data-sense="play-v3" data-rel-primary="scene" style="left:20%;top:79%">V3 弹奏（乐器）</div>
+<div class="node pos-n" data-sense="play-n1" data-rel-primary="conv" style="left:80%;top:79%">N1 戏剧</div>
+</div></div>
+<div class="senselist">
+<h3>动词</h3>
+<div class="sense-item" data-sense="play-v1"><span class="dot" style="background:#4d9e6b"></span>V1 玩耍（直接延续）</div>
+<div class="sense-item" data-sense="play-v2"><span class="dot" style="background:#4d9e6b"></span>V2 打（球）；玩（牌类）（场景定型）</div>
+<div class="sense-item" data-sense="play-v3"><span class="dot" style="background:#4d9e6b"></span>V3 弹奏（乐器）（场景定型）</div>
+<h3>名词</h3>
+<div class="sense-item" data-sense="play-n1"><span class="dot" style="background:#4a7fb5"></span>N1 戏剧（词性转换（活动→作品））</div>
+</div>
+</div>
+<div class="excard" id="ex-play"><b>点一个义项看例句</b><br><span class="small">点击图上节点或右侧清单条，这里会显示该义项的例句与出处。</span></div>
+</div>
+
+<div class="card"><h2>九栏卡</h2>
+<table>
+<tr><td>词性</td><td>v. 动词 / n. 名词（词库）</td></tr>
+<tr><td>发音</td><td>/pleɪ/（单音节，整词读；词库 phonetic_gb）</td></tr>
+<tr><td>儿童定义</td><td>投入地玩、打球、弹奏乐器；一出戏（词库义项汇总）</td></tr>
+<tr><td>校园例句</td><td>The children spent the afternoon playing with their new toys.（剑桥词典登记例句）</td></tr>
+<tr><td>搭配</td><td>play with 玩具伙伴一起玩 / play football(cards) 打球（玩牌）/ play the clarinet 吹单簧管（均出自本页登记例句）</td></tr>
+<tr><td>同义</td><td><span class="pending">待补</span></td></tr>
+<tr><td>反义</td><td><span class="pending">待补</span></td></tr>
+<tr><td>押韵</td><td>say /seɪ/、day /deɪ/、way /weɪ/（词库中同韵词，已核音标）</td></tr>
+<tr><td>联想词</td><td>toys、football、clarinet、radio（出自本页登记例句）</td></tr>
+<tr><td>指路</td><td>play 本身不可拆。想学「词怎么拆成零件」→ 词根词缀区。</td></tr>
+</table></div>
+<p class="small">本页事实出处汇总：义项与例句出自 Cambridge Dictionary，经词库 verb_sense_networks 登记（逐字）；词源（古英语 plegan 义涵、「戏剧」义 14 世纪初见载、更深来源未定）出自 Etymonline「play」词条，2026-11-02 实测打开，接触等级：词条原文级。连线关系标签为按 V-16 引申机制的教学组装，非词典原文。</p>
+</section>
+
+<!-- CHARGE -->
+<section class="view" id="word-charge">
+<button class="btn sec" onclick="show('home')">← 返回首页</button> <span class="tag">短名单 1 · 讲解散文</span><span class="tag">短名单 2 · 义项图</span><span class="tag">短名单 5 · 九栏词卡</span>
+<h1>charge <span style="font-size:18px;color:#666">/ˈtʃɑːdʒ/　v./n.</span></h1>
+<p class="sub">本页怎么读：先听一段讲解 → 看义项图 → 查九栏卡 → 点义项读例句。</p>
+
+<div class="card"><h2>先听老师讲一讲</h2>
+<p>charge 一个词干四件大事：理发要收费，班长要负责，手机要充电，做错事会被指控。它们之间有什么关系？</p>
+<p>它的祖先是「往车上装货」。拉丁语 carricare 就是「往二轮货车上装载」；charge 做名词最早的意思是「一车货、一副担子」（约 1200 年）。把担子压到谁身上，谁就担起了事：担起一笔账，是收费；担起一摊事，是负责；往电池里「装」进电，是充电；把罪名「压」到一个人身上，是指控。词源词典登记：托付、命令、指控这些意思，都在中古英语时期长了出来。</p>
+<p>所以 charge 的四个意思不是四件孤立的事，是同一副担子的四种压法。下次见到它，先在心里画一辆小货车：这句话里，是谁把什么担子，压到了谁身上？</p>
+<p class="adult">词源链（carricare ← carrus；名词「担子」义约 1200 年；与 cargo 为同源对）出自 Etymonline「charge」词条，2026-11-02 实测，接触等级：词条原文级。四义项与例句出自 Cambridge Dictionary（词库义项网络登记，逐字）。义项网络原登记为「簇式、无单一核心裁决」；本页以词源核心「装载」组织图谱，「担子」引申边为按 V-16 机制的教学组装，非词典原文。</p>
+</div>
+
+<div class="card"><h2>义项图</h2>
+<div class="relswitch">关系开关：
+<label><input type="checkbox" class="rel-toggle" data-scope="charge" data-rel="derive" checked> 装载引申（全部四边同一类，开关控制全部引申边）</label>
+</div>
+<p class="small">连线上的标签是「这个意思是怎么从那个意思长出来的」；成人注见本页出处。</p>
+<div class="mapflex">
+<div class="mapscroll"><div class="diagram" data-scope="charge">
+<svg viewBox="0 0 560 340" preserveAspectRatio="none">
+<line class="edge" data-rel="derive" x1="280" y1="170" x2="110" y2="70"/>
+<line class="edge" data-rel="derive" x1="280" y1="170" x2="450" y2="70"/>
+<line class="edge" data-rel="derive" x1="280" y1="170" x2="110" y2="270"/>
+<line class="edge" data-rel="derive" x1="280" y1="170" x2="450" y2="270"/>
+</svg>
+<span class="edge-label" data-rel="derive" style="left:33%;top:32%">担子→账目</span>
+<span class="edge-label" data-rel="derive" style="left:67%;top:32%">担起职责</span>
+<span class="edge-label" data-rel="derive" style="left:33%;top:66%">装入</span>
+<span class="edge-label" data-rel="derive" style="left:67%;top:66%">把罪名压上</span>
+<div class="node pos-core core" data-sense="charge-core" style="left:50%;top:50%">装载 · 一副担子<br>（拉丁 carricare「往货车上装」，约 1200 年名词义）</div>
+<div class="node pos-v" data-sense="charge-v1" data-rel-primary="derive" style="left:20%;top:21%">V1 收费</div>
+<div class="node pos-v" data-sense="charge-v2" data-rel-primary="derive" style="left:80%;top:21%">V2 负责</div>
+<div class="node pos-v" data-sense="charge-v3" data-rel-primary="derive" style="left:20%;top:79%">V3 充电</div>
+<div class="node pos-v" data-sense="charge-v4" data-rel-primary="derive" style="left:80%;top:79%">V4 指控</div>
+</div></div>
+<div class="senselist">
+<h3>动词</h3>
+<div class="sense-item" data-sense="charge-v1"><span class="dot" style="background:#4d9e6b"></span>V1 收费（担子→账目（教学组装））</div>
+<div class="sense-item" data-sense="charge-v3"><span class="dot" style="background:#4d9e6b"></span>V3 充电（装入（教学组装））</div>
+<div class="sense-item" data-sense="charge-v4"><span class="dot" style="background:#4d9e6b"></span>V4 指控（把罪名压上（教学组装））</div>
+<h3>动词/名词</h3>
+<div class="sense-item" data-sense="charge-v2"><span class="dot" style="background:#4d9e6b"></span>V2 负责（担起职责（教学组装））</div>
+</div>
+</div>
+<div class="excard" id="ex-charge"><b>点一个义项看例句</b><br><span class="small">点击图上节点或右侧清单条，这里会显示该义项的例句与出处。</span></div>
+</div>
+
+<div class="card"><h2>九栏卡</h2>
+<table>
+<tr><td>词性</td><td>v. 动词 / n. 名词（词库）</td></tr>
+<tr><td>发音</td><td>/ˈtʃɑːdʒ/（词库 phonetic_gb）</td></tr>
+<tr><td>儿童定义</td><td>收费；负责；充电；指控（词库）</td></tr>
+<tr><td>校园例句</td><td>She drove the car round the block to charge (up) its batteries.（剑桥词典登记例句）</td></tr>
+<tr><td>搭配</td><td>in charge of 负责 / be charged with 被指控 / charge for … 收费（出自本页登记例句）</td></tr>
+<tr><td>同义</td><td><span class="pending">待补</span></td></tr>
+<tr><td>反义</td><td><span class="pending">待补</span></td></tr>
+<tr><td>押韵</td><td>large /lɑːdʒ/（词库中同韵词，已核音标）</td></tr>
+<tr><td>联想词</td><td>batteries、haircut（出自本页登记例句）；cargo 货船货物（同源对，见指路）</td></tr>
+<tr><td>指路</td><td>charge 和 cargo 是同源对——同一个拉丁祖先从两条路进了英语（词源词典登记）。词的「亲戚关系」更多例子 → 本区 V-23；拆零件 → 词根词缀区。</td></tr>
+</table></div>
+<p class="small">本页事实出处汇总：词源链（carricare ← carrus；名词「担子」义约 1200 年；与 cargo 为同源对）出自 Etymonline「charge」词条，2026-11-02 实测，接触等级：词条原文级。四义项与例句出自 Cambridge Dictionary（词库义项网络登记，逐字）。义项网络原登记为「簇式、无单一核心裁决」；本页以词源核心「装载」组织图谱，「担子」引申边为按 V-16 机制的教学组装，非词典原文。</p>
+</section>
+
+<!-- LIGHT -->
+<section class="view" id="word-light">
+<button class="btn sec" onclick="show('home')">← 返回首页</button> <span class="tag">短名单 1 · 讲解散文</span><span class="tag">短名单 2 · 义项图</span><span class="tag">短名单 5 · 九栏词卡</span>
+<h1>light <span style="font-size:18px;color:#666">/laɪt/　n./adj.</span></h1>
+<p class="sub">本页怎么读：先听一段讲解 → 看义项图 → 查九栏卡 → 点义项读例句。</p>
+
+<div class="card"><h2>先听老师讲一讲</h2>
+<p>light 有两个看起来毫不相干的意思：一个是「光」，一个是「轻」。This bag is light 是说包轻，Turn on the light 是开灯——它们真的是一个词吗？</p>
+<p>不是。它们是历史上「撞了脸」的两个词。表示「光」的 light，来自原始印欧语词根 *leuk-「明亮」；表示「轻」的 light，来自另一个词根 *legwh-「不重」。两个词在古英语里碰巧都写成 leoht，长得一模一样，就顶着同一个拼写住到了今天。（这正是 V-41 讲的同形异义：长得一样，不一定是一家。）</p>
+<p>还有一个「明亮的」light（a light colour 浅颜色），它和「光」是一家的，是从名词这边长出来的形容词。</p>
+<p>所以记 light 要分两家记：一家管「亮」，一家管「轻」。在课文里见到它，先问一句：这句话在说亮，还是在说重？</p>
+<p class="adult">两条来源链出自 Etymonline「light」词条组——light (n.) ← 原始日耳曼 *leukhtam ← 印欧 *leuk-；light (adj.1)「不重」← *lingkhtaz ← 印欧 *legwh-；light (adj.2)「不暗」与名词同源（*leuhta-）。2026-11-02 实测，接触等级：词条原文级。两条例句出自模型层 vocab.yaml 登记例句（逐字）。词库本词登记词性为 n./adj.，「明亮的」义项在本页以词源证据卡呈现，登记例句待补。</p>
+</div>
+
+<div class="card"><h2>义项图</h2>
+<div class="relswitch">关系开关：
+<label><input type="checkbox" class="rel-toggle" data-scope="light" data-rel="derive" checked> 同源派生</label>
+<label><input type="checkbox" class="rel-toggle" data-scope="light" data-rel="homonym" checked> 同形异义</label>
+</div>
+<p class="small">连线上的标签是「这个意思是怎么从那个意思长出来的」；成人注见本页出处。</p>
+<div class="mapflex">
+<div class="mapscroll"><div class="diagram" data-scope="light">
+<svg viewBox="0 0 560 340" preserveAspectRatio="none">
+<line class="edge" data-rel="derive" x1="150" y1="120" x2="150" y2="230"/>
+<line class="edge dash" data-rel="homonym" x1="240" y1="170" x2="360" y2="170"/>
+</svg>
+<span class="edge-label" data-rel="derive" style="left:27%;top:52%">同源派生</span>
+<span class="edge-label" data-rel="homonym" style="left:54%;top:46%">同形异义（撞脸）</span>
+<div class="clusterbox" style="left:6%;top:12%;width:38%;height:70%"></div>
+<span class="cluster-note" style="left:8%;top:14%">簇 A「亮」家（词根 *leuk-「明亮」）</span>
+<div class="clusterbox" style="left:60%;top:22%;width:34%;height:52%"></div>
+<span class="cluster-note" style="left:62%;top:24%">簇 B「轻」家（词根 *legwh-「不重」）<br>另一个词</span>
+<div class="node pos-n" data-sense="light-a1" style="left:27%;top:35%">A1 光；电灯</div>
+<div class="node pos-adj" data-sense="light-a2" data-rel-primary="derive" style="left:27%;top:68%">A2 明亮的；浅色的</div>
+<div class="node pos-adj" data-sense="light-b1" data-rel-primary="homonym" style="left:77%;top:50%">B1 轻的</div>
+</div></div>
+<div class="senselist">
+<h3>簇 A「亮」家（词根 *leuk-「明亮」）· 名词</h3>
+<div class="sense-item" data-sense="light-a1"><span class="dot" style="background:#4a7fb5"></span>A1 光；电灯</div>
+<h3>簇 A「亮」家 · 形容词</h3>
+<div class="sense-item" data-sense="light-a2"><span class="dot" style="background:#e08a3c"></span>A2 明亮的；浅色的（同源派生（与名词一家））</div>
+<h3>簇 B「轻」家（词根 *legwh-「不重」）· 形容词</h3>
+<div class="sense-item" data-sense="light-b1"><span class="dot" style="background:#e08a3c"></span>B1 轻的</div>
+</div>
+</div>
+<div class="excard" id="ex-light"><b>点一个义项看例句</b><br><span class="small">点击图上节点或右侧清单条，这里会显示该义项的例句与出处。</span></div>
+</div>
+
+<div class="card"><h2>九栏卡</h2>
+<table>
+<tr><td>词性</td><td>n. 名词 / adj. 形容词（词库）</td></tr>
+<tr><td>发音</td><td>/laɪt/（词库 phonetic_gb）</td></tr>
+<tr><td>儿童定义</td><td>光、电灯；轻的（词库）</td></tr>
+<tr><td>校园例句</td><td>Turn on the light. / This bag is light.（均为登记例句）</td></tr>
+<tr><td>搭配</td><td>turn on / turn off the light 开灯/关灯（出自登记例句）</td></tr>
+<tr><td>同义</td><td><span class="pending">待补</span></td></tr>
+<tr><td>反义</td><td><span class="pending">待补</span></td></tr>
+<tr><td>押韵</td><td>night /naɪt/、right /raɪt/、kite /kaɪt/（词库中同韵词，已核音标）</td></tr>
+<tr><td>联想词</td><td>bag（出自登记例句）</td></tr>
+<tr><td>指路</td><td>light 里的 -ight 是拼读区的老朋友（igh 读 /aɪ/，词库拼读模式登记）→ 拼读区。</td></tr>
+</table></div>
+<p class="small">本页事实出处汇总：两条来源链出自 Etymonline「light」词条组——light (n.) ← 原始日耳曼 *leukhtam ← 印欧 *leuk-；light (adj.1)「不重」← *lingkhtaz ← 印欧 *legwh-；light (adj.2)「不暗」与名词同源（*leuhta-）。2026-11-02 实测，接触等级：词条原文级。两条例句出自模型层 vocab.yaml 登记例句（逐字）。词库本词登记词性为 n./adj.，「明亮的」义项在本页以词源证据卡呈现，登记例句待补。</p>
+</section>
+
+<!-- SCHOOL -->
+<section class="view" id="word-school">
+<button class="btn sec" onclick="show('home')">← 返回首页</button> <span class="tag">短名单 1 · 讲解散文</span><span class="tag">短名单 2 · 义项图</span><span class="tag">短名单 4 · 词源页骨架</span><span class="tag">短名单 5 · 九栏词卡</span>
+<h1>school <span style="font-size:18px;color:#666">/skuːl/　n.</span></h1>
+<p class="sub">本页怎么读：先听一段讲解 → 看义项图 → 查九栏卡 → 点义项读例句。</p>
+
+<div class="card"><h2>先听老师讲一讲</h2>
+<p>school 是「学校」，这谁都知道。但它可能是英语里最「名不副实」的词：它的祖先意思，竟然是「闲暇」。</p>
+<p>希腊语 skholē 本来的意思是「空闲、休息」。在古希腊，空闲时间最体面的用法，是聚在一起讨论、辩论——于是 skholē 先变成「用闲暇做的讨论」，再变成「做这种讨论的地方」。拉丁语把它借走，作 schola；古英语再借成 scol；最后成了今天的 school。讨论的地方，慢慢就成了上课的地方。</p>
+<p>所以 school 这个词里藏着一个老想法：学习，是把空闲时间用在动脑子上。你今天坐在教室里，用的正是两千多年前那个「闲暇讨论」的词。它的完整编年在本页下方的词源故事里。</p>
+<p class="adult">词源链与机制句出自 Etymonline「school」词条（2026-11-02 实测全文打开，接触等级：词条原文级）；Merriam-Webster「school」词条 Word History 互证（名词首用：12 世纪前）。例句出自模型层登记例句（逐字，逐条标注）。</p>
+</div>
+
+<div class="card"><h2>义项图</h2>
+<div class="relswitch">关系开关：
+<label><input type="checkbox" class="rel-toggle" data-scope="school" data-rel="metonymy" checked> 转喻</label>
+<label><input type="checkbox" class="rel-toggle" data-scope="school" data-rel="abstract" checked> 抽象延伸</label>
+<label><input type="checkbox" class="rel-toggle" data-scope="school" data-rel="homonym" checked> 同形异义</label>
+</div>
+<p class="small">连线上的标签是「这个意思是怎么从那个意思长出来的」；成人注见本页出处。</p>
+<div class="mapflex">
+<div class="mapscroll"><div class="diagram" data-scope="school" style="height:380px">
+<svg viewBox="0 0 560 380" preserveAspectRatio="none">
+<line class="edge" data-rel="metonymy" x1="200" y1="150" x2="90" y2="60"/>
+<line class="edge" data-rel="metonymy" x1="200" y1="150" x2="90" y2="250"/>
+<line class="edge" data-rel="abstract" x1="200" y1="150" x2="330" y2="70"/>
+<line class="edge dash" data-rel="homonym" x1="290" y1="190" x2="420" y2="250"/>
+</svg>
+<span class="edge-label" data-rel="metonymy" style="left:24%;top:26%">转喻（机构→人）</span>
+<span class="edge-label" data-rel="metonymy" style="left:24%;top:56%">转喻（机构→建筑）</span>
+<span class="edge-label" data-rel="abstract" style="left:48%;top:28%">抽象延伸</span>
+<span class="edge-label" data-rel="homonym" style="left:63%;top:56%">同形异义</span>
+<div class="node pos-n core" data-sense="school-s1" style="left:36%;top:40%">S1 学校（机构）；上学</div>
+<div class="node pos-n" data-sense="school-s2" data-rel-primary="metonymy" style="left:16%;top:16%">S2 全体师生</div>
+<div class="node pos-n" data-sense="school-s3" data-rel-primary="metonymy" style="left:16%;top:66%">S3 校舍，学校建筑</div>
+<div class="node pos-n" data-sense="school-s4" data-rel-primary="abstract" style="left:62%;top:18%">S4 学派</div>
+<div class="clusterbox" style="left:62%;top:52%;width:33%;height:34%"></div>
+<span class="cluster-note" style="left:64%;top:54%">另一个词，只是拼写相同</span>
+<div class="node pos-n" data-sense="school-f1" data-rel-primary="homonym" style="left:78%;top:72%">F1 鱼群</div>
+</div></div>
+<div class="senselist">
+<h3>名词</h3>
+<div class="sense-item" data-sense="school-s1"><span class="dot" style="background:#4a7fb5"></span>S1 学校（机构）；上学</div>
+<div class="sense-item" data-sense="school-s2"><span class="dot" style="background:#4a7fb5"></span>S2 全体师生（转喻（机构→人））</div>
+<div class="sense-item" data-sense="school-s3"><span class="dot" style="background:#4a7fb5"></span>S3 校舍，学校建筑（转喻（机构→建筑））</div>
+<div class="sense-item" data-sense="school-s4"><span class="dot" style="background:#4a7fb5"></span>S4 学派（抽象延伸）</div>
+<h3>独立簇（另一个词，只是拼写相同）· 名词</h3>
+<div class="sense-item" data-sense="school-f1"><span class="dot" style="background:#4a7fb5"></span>F1 鱼群</div>
+</div>
+</div>
+<div class="excard" id="ex-school"><b>点一个义项看例句</b><br><span class="small">点击图上节点或右侧清单条，这里会显示该义项的例句与出处。</span></div>
+</div>
+
+<div class="card" id="etym"><h2>词源故事 · school：从「闲暇」到「学校」</h2>
+<p class="big">希腊语 skholē 的基本义是「闲暇」；它先变成「用闲暇做的讨论」，再变成「做这种讨论的地方」。</p>
+<p>英文原句（成人对照）： "The basic sense of the Greek word is 'leisure,' which passed to 'otiose discussion' (in Athens or Rome, the favorite or proper use of free time), then it came to be used for the place for such discussion." —— Etymonline</p>
+<h3>编年时间线</h3>
+<div class="timeline">
+<div><b>古希腊：</b>skholē —— 闲暇；闲暇中做的讨论、讲学</div>
+<div><b>拉丁语：</b>schola —— 老师与学生聚会讲学的地方；讲学、讨论</div>
+<div><b>古英语：</b>scol —— 教学机构（Merriam-Webster：名词首用于 12 世纪前）</div>
+<div><b>约 1300 年：</b>「在校的学生全体」义见载</div>
+<div><b>15 世纪中：</b>动词 scolen「教育、训导」出现</div>
+<div><b>1590 年代：</b>「学校建筑」义见载</div>
+<div><b>1610 年代：</b>「志同道合的一群人」义见载 → 1848 年 school of thought「思想流派」</div>
+<div><b>1908 年：</b>school-bus「校车」一词出现</div>
+</div>
+<p class="small">（以上年代全部出自 Etymonline「school」词条，逐项对应原文。）</p>
+<h3>Word History</h3>
+<p>school ← 中古英语 scole ← 古英语 scol ← 拉丁 schola ← 希腊 skholē（闲暇）← 印欧词根 *segh-「持有」</p>
+<p>首用年代：名词（学校）—— 12 世纪前（Merriam-Webster, First Known Use）</p>
+<h3>Did you know</h3>
+<p><b>故事一 · 闲暇的正经用法：</b>在雅典和罗马，空闲时间最体面的花法不是躺着，而是聚在一起辩论、讲学。skholē 的词义就沿着「闲暇 → 闲暇中的讨论 → 讨论的场所」一步步走成了学校。（机制见硬链上方引文。）</p>
+<p><b>故事二 · 撞脸的鱼群：</b>英语里还有一个 school，意思是「一大群（鱼）」。它 14 世纪末才从荷兰语那边过来，跟「学校」毫无关系，只是拼写撞了脸——词典里它单独立户：school (n.2)。（对照 V-41：同形异义。）</p>
+<p>亲戚词：scholar（学者）、scholastic（学校的；学术的）与 school 同出拉丁 schola 一源（Etymonline 相关词条登记）。</p>
+<h3>Kids Definition</h3>
+<p>school：你每天去学新东西、和老师同学见面的地方；也指在那里上学的全体师生。</p>
+</div>
+
+<div class="card"><h2>九栏卡</h2>
+<table>
+<tr><td>词性</td><td>n. 名词（词库）</td></tr>
+<tr><td>发音</td><td>/skuːl/（词库 phonetic_gb）</td></tr>
+<tr><td>儿童定义</td><td>学校；上学（词库）</td></tr>
+<tr><td>校园例句</td><td>We go to school by bus.（登记例句）</td></tr>
+<tr><td>搭配</td><td>go to school 上学 / at school 在学校（"I use a computer at school." 为登记例句，vocab.yaml）</td></tr>
+<tr><td>同义</td><td><span class="pending">待补</span></td></tr>
+<tr><td>反义</td><td><span class="pending">待补</span></td></tr>
+<tr><td>押韵</td><td>cool /kuːl/（词库中同韵词，已核音标）</td></tr>
+<tr><td>联想词</td><td>bus、computer、bag（出自本区登记例句："We go to school by bus." / "I use a computer at school." / "He went to school without his bag."（介词卷宗 without 词条登记例句））</td></tr>
+<tr><td>指路</td><td>school 里 ch 读 /k/，是希腊词留下的拼写习惯（词库拼读模式登记 ch_k）→ 拼读区；词源完整版在本页上方词源故事。</td></tr>
+</table></div>
+<p class="small">本页事实出处汇总：词源链与机制句出自 Etymonline「school」词条（2026-11-02 实测全文打开，接触等级：词条原文级）；Merriam-Webster「school」词条 Word History 互证（名词首用：12 世纪前）。例句出自模型层登记例句（逐字，逐条标注）。</p>
+</section>
+
+<!-- UNIT KAI -->
+<section class="view" id="unit-kai">
+<button class="btn sec" onclick="show('home')">← 返回首页</button> <span class="tag">短名单 3 · 未见词达标测</span><span class="tag">V-40 打包法</span>
+<h1>打包单元 A：汉语的「开」× 英语的四个动词</h1>
+<p>汉语一个「开」字能管很多事。英语不看「开」，看你开的是什么东西——对象不同，动词就不同。先看四个登记在案的对照（V-40 规律原文口径）：</p>
+<div class="grid">
+<div class="card"><b>开门 → open the door</b><br>门、窗这类能推开的东西 → open</div>
+<div class="card"><b>开灯 / 开电视 → turn on</b><br>电器、开关 → turn on；规律原文另给 switch on</div>
+<div class="card"><b>开车 → drive</b><br>车辆 → drive</div>
+<div class="card"><b>开会 → have / hold a meeting</b><br>会议、活动 → have / hold</div>
+</div>
+<div class="card"><b>规则一句话：</b>先看对象是什么，再选动词：门窗 → open；电器 → turn on；车辆 → drive；会议活动 → have / hold。</div>
+<div class="card"><b>反向小卡：</b>反过来，英语也有自己的「总管动词」：take 一个词，分管汉语的拿、带走、坐（车）、吃（药）、拍（照）（V-40 登记）。打包的办法不同，不是哪种语言更聪明。</div>
+<div class="card"><h2>达标测</h2>
+<p>下面的组合，上面都没教过。用刚才的规则，现场推一推。</p>
+<div id="quiz-kai"></div>
+</div>
+</section>
+
+<!-- UNIT SPEK -->
+<section class="view" id="unit-spek">
+<button class="btn sec" onclick="show('home')">← 返回首页</button> <span class="tag">短名单 3 · 未见词达标测</span><span class="tag">V-26 词根 *spek-</span>
+<h1>打包单元 B：「看」的一家人</h1>
+<p>四千多年前有一个老词根 *spek-，意思是「看」。它像一颗种子，在不同的语言里长成了一串英语词。先认三个登记在案的家人：</p>
+<div class="grid">
+<div class="card"><b>spy 间谍；偷偷看</b><br>老根经日耳曼语一线传下来的后代（V-26 登记；Etymonline *spek- 词根页同列 spy 为后代）</div>
+<div class="card"><b>inspect 检查</b><br>in-（往里）+ spect（看）= 往里看 → 看清楚、检查（Etymonline「inspect」：1620 年代，拉丁 inspicere = in- + specere「看」）</div>
+<div class="card"><b>respect 尊敬</b><br>re-（回头）+ spect（看）= 回头重看 → 看重 → 尊敬（Etymonline「respect」：拉丁 respicere，本义「回头看的动作」）</div>
+</div>
+<div class="card"><b>规则一句话：</b>认出词里的「看」（spect / spec / spy），就能猜出这个词和「看」有关——先猜，再查证。</div>
+<div class="card"><b>指路卡：</b>这里只做词族打包演示；词根词缀的系统拆解（部件全量表、构词规则）→ 词根词缀区。</div>
+<div class="card"><h2>达标测</h2>
+<p>下面三个词都没教过。先用「看」推一推，再看揭晓。</p>
+<div id="quiz-spek"></div>
+</div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="view" id="overview">
+<button class="btn sec" onclick="show('home')">← 返回首页</button> <span class="tag">短名单 9 · 选词双门</span><span class="tag">短名单 10 · 九格验收表</span>
+<h1>总论 · 给老师和家长（成人层）</h1>
+<p>本区的词是按什么口径选出来的、一个词怎样才算「教完」，两件方法层的事写在这里。儿童页面不呈现本页内容。</p>
+
+<div class="card"><h2>一则 · 选词双门（短名单 9）</h2>
+<p><b>全球门（Beck 三层词 Tier 2 口径）</b>——一个词值不值得显性教，先过三问：</p>
+<ol>
+<li>它跨不跨领域？（在科学、故事、社会课里都可能出现）</li>
+<li>它主要活在哪里？（主要在书面文本里，口语里较少）</li>
+<li>它是不是「已懂概念的更精确说法」？（孩子已经懂那个意思，只是没有这个词——如 saunter 之于 walk）</li>
+</ol>
+<p>再加量化门：任何文本平均约 90% 的词次来自 4,000 个核心词族（TextProject Core Vocabulary）；先保证核心词族内的多义词、打包词被教透。</p>
+<p><b>班级门（Word Aware 口径，教师按本班取舍）：</b></p>
+<ul>
+<li>Anchor 锚点词：孩子已经透彻理解的熟悉词，是讲解新词的起点</li>
+<li>Goldilocks 正好词：很可能在阅读或口语中再遇、又是话题核心的词——教学火力集中在这里</li>
+<li>Step-on 垫脚词：话题专属、较不可能再遇的词，垫一下就过去，不深挖</li>
+</ul>
+<p class="adult">出处与边界：Beck, McKeown &amp; Kucan 三层词模型（《Bringing Words to Life》）；TextProject Core Vocabulary；Parsons &amp; Branagan《Word Aware》。经调研 09（§22–23）核读登记。边界：Word Aware 的效果证据有限，本页只借其分类口径，不宣称疗效；剂量说法（如「12 次遇见」）学界有分歧，不采用。</p>
+</div>
+
+<div class="card"><h2>二则 · 词页九格验收表（短名单 10）</h2>
+<p>一个重点词的页面，交付前逐格验（Shanahan「教一个词」九格）：</p>
+<ul class="checklist">
+<li>□ 释义（儿童口吻）</li>
+<li>□ 同义词</li>
+<li>□ 反义词</li>
+<li>□ 词性</li>
+<li>□ 语义归类</li>
+<li>□ 对比句式（It is like ___, but different because ___.）</li>
+<li>□ 真实生活例</li>
+<li>□ 图示</li>
+<li>□ 演出来（动作呈现）</li>
+</ul>
+<p>缺哪格，页面上如实标「待补」（本原型四张旗舰卡的同义、反义栏即按此标待补——尚未逐词核到登记来源）。</p>
+<p>反规则（同源）：近义词族不要同批新教——逐个学，积累之后再成组回看比较。本区的「打包对照」是回看比较，不是同批灌入。</p>
+<p class="adult">出处：Timothy Shanahan 专栏（Reading Rockets「Shanahan on Literacy」），经调研 09（§24）实测核读。</p>
+</div>
+</section>
+
+</div>
+<script>
+function show(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function goEtym(){
+  show('word-school');
+  setTimeout(()=>{var e=document.getElementById('etym'); if(e) e.scrollIntoView();},50);
+}
+
+/* ---- sense map data ---- */
+var EXAMPLES={
+"play-core":{t:"核心（词源核心，非义项）",b:"古英语 plegan「轻快地动 · 投入地忙活」",s:"出自 Etymonline「play」词条，2026-11-02 实测打开，接触等级：词条原文级。"},
+"play-v1":{t:"V1 玩耍",b:"The children spent the afternoon playing with their new toys.",s:"Cambridge Dictionary，词库义项网络登记"},
+"play-v2":{t:"V2 打（球）；玩（牌类）",b:"Do you want to play cards/football (with us)?",s:"Cambridge Dictionary，词库义项网络登记"},
+"play-v3":{t:"V3 弹奏（乐器）",b:"He learned to play the clarinet at the age of ten.",s:"Cambridge Dictionary，词库义项网络登记；注：古英语 plegan 的义涵里已含「演奏乐器」"},
+"play-n1":{t:"N1 戏剧",b:"a radio play",s:"Cambridge Dictionary，词库义项网络登记，登记为短语例"},
+"charge-core":{t:"核心",b:"装载 · 一副担子（拉丁 carricare「往货车上装」，约 1200 年名词义）",s:"出自 Etymonline「charge」词条，2026-11-02 实测，接触等级：词条原文级。"},
+"charge-v1":{t:"V1 收费",b:"How much/What do you charge for a haircut and blow-dry?",s:"Cambridge，词库登记"},
+"charge-v2":{t:"V2 负责",b:"Her ex-husband has charge of the children during the week and she has them at the weekend.",s:"Cambridge，词库登记；呈现时标注常用搭配 in charge of"},
+"charge-v3":{t:"V3 充电",b:"She drove the car round the block to charge (up) its batteries.",s:"Cambridge，词库登记"},
+"charge-v4":{t:"V4 指控",b:"She's been charged with murder.",s:"Cambridge，词库登记"},
+"light-a1":{t:"A1 光；电灯",b:"Turn on the light.",s:"vocab.yaml 登记例句"},
+"light-a2":{t:"A2 明亮的；浅色的（词源证据卡）",b:"「不暗」义的 light 与名词同出一源（原始日耳曼 *leuhta-）——Etymonline 词条原文级；登记例句：待补",s:"Etymonline「light」词条组"},
+"light-b1":{t:"B1 轻的",b:"This bag is light.",s:"vocab.yaml 登记例句"},
+"school-s1":{t:"S1 学校（机构）；上学",b:"We go to school by bus.",s:"small_systems.yaml 登记例句"},
+"school-s2":{t:"S2 全体师生（年代证据卡）",b:"此义约 1300 年见载（Etymonline 词条原文：\"The meaning 'students attending a school' in English is attested from c. 1300\"）；登记例句待补",s:"Etymonline「school」词条"},
+"school-s3":{t:"S3 校舍，学校建筑",b:"My father goes to the school.",s:"small_systems.yaml 登记例句；注：带 the 时多指具体的建筑"},
+"school-s4":{t:"S4 学派（短语卡）",b:"a school of thought（一种思想流派）；此义（志同道合的群体）自 1610 年代见载，school of thought 至 1848 年",s:"Etymonline「school」词条"},
+"school-f1":{t:"F1 鱼群（短语卡）",b:"a school of fish（一群鱼）；来源：14 世纪末，中古荷兰语 schole，与古英语 scolu「队伍、鱼群」同源，印欧 *skel-「切分」——与「学校」不同源",s:"Etymonline school (n.2)"}
+};
+
+/* bidirectional highlight + click */
+document.querySelectorAll('[data-sense]').forEach(function(el){
+  var id=el.getAttribute('data-sense');
+  function peers(){return document.querySelectorAll('[data-sense="'+id+'"]');}
+  el.addEventListener('mouseenter',function(){peers().forEach(p=>p.classList.add('hl'));});
+  el.addEventListener('mouseleave',function(){peers().forEach(p=>p.classList.remove('hl'));});
+  el.addEventListener('click',function(){
+    var ex=EXAMPLES[id]; if(!ex) return;
+    var view=el.closest('.view'); if(!view) return;
+    var card=view.querySelector('.excard'); if(!card) return;
+    card.innerHTML='<b>'+ex.t+'</b><br>'+ex.b+'<br><span class="small">出处：'+ex.s+'</span>';
+  });
+});
+
+/* relation toggles */
+document.querySelectorAll('.rel-toggle').forEach(function(cb){
+  cb.addEventListener('change',function(){
+    var scope=cb.getAttribute('data-scope'), rel=cb.getAttribute('data-rel'), on=cb.checked;
+    var diag=document.querySelector('.diagram[data-scope="'+scope+'"]');
+    if(!diag) return;
+    diag.querySelectorAll('.edge[data-rel="'+rel+'"]').forEach(function(e){e.style.display=on?'':'none';});
+    diag.querySelectorAll('.edge-label[data-rel="'+rel+'"]').forEach(function(e){e.style.display=on?'':'none';});
+    diag.querySelectorAll('.node[data-rel-primary="'+rel+'"]').forEach(function(n){n.classList.toggle('dim',!on);});
+  });
+});
+
+/* ---- quizzes ---- */
+var QUIZZES={
+kai:{el:'quiz-kai',items:[
+ {q:"Q1 开电脑",opts:["A. open the computer","B. turn on the computer","C. drive the computer"],ans:1,reveal:"电脑是电器，靠开关启动——电器 → turn on。开灯、开电视是同一家。"},
+ {q:"Q2 开窗户",opts:["A. turn on the window","B. open the window","C. have the window"],ans:1,reveal:"窗户是能推开的东西，和门一家——门窗 → open。这题是边界题：别看见「开」就 turn on。"},
+ {q:"Q3 开卡车",opts:["A. open the truck","B. turn on the truck","C. drive the truck"],ans:2,reveal:"卡车是车辆——车辆 → drive，和开车同一家。"},
+ {q:"Q4 开家长会",opts:["A. drive a parents' meeting","B. open a parents' meeting","C. have a parents' meeting"],ans:2,reveal:"家长会是会议活动——会议 → have / hold，和开会同一家。"}
+],closing:"四道题你一个都没学过，全靠规则推出来——这就是打包对照的用法：学的是一组对照，测的是没见过的新组合。（测例组合均为按 V-40 已登记对照模式生成的未见组合，对象词 computer / window / truck / parents 均在词库登记。）"},
+spek:{el:'quiz-spek',items:[
+ {q:"Q1 spectator 是什么意思？",opts:["A. 运动员","B. 观众","C. 裁判"],ans:1,reveal:"spect（看）+ -tor/-ator（做这件事的人）= 看的人 → 观众。它和 spectacle（景象、演出）同族，出自拉丁 spectare「观看」（Etymonline *spek- 词根页同根清单）。"},
+ {q:"Q2 species 是什么意思？",opts:["A. 看出来的样子 → 一类生物（物种）","B. 一种香料","C. 快速的东西"],ans:0,reveal:"拉丁 species 本义是「外观、样子」，来自 specere「看」；它先指「一类东西」，约 1600 年起专指生物的「物种」（Etymonline「species」词条）。这个词的「看」已经藏得很深了——能推个大概，就要查词典确认。"},
+ {q:"Q3（边界题）下面哪个词，今天已经不能靠「看」推出意思、只能整个记住？",opts:["A. inspect","B. respect","C. spice（香料）"],ans:2,reveal:"spice 历史上确实和 species 同源（都出自拉丁 species），但几百年下来意思走得太远，只剩下「化石联系」——同源 ≠ 今天能推（V-26 边界登记；参 V-25：拿词源给现行词义判对错，叫词源谬误）。"}
+],closing:"词族打包的本事是「先推个八九不离十，再查词典落锤」；推不动的词（比如 spice），老老实实整记，不硬套。"}
+};
+function renderQuiz(key){
+  var Q=QUIZZES[key], box=document.getElementById(Q.el);
+  var idx=0, score=0, sel=-1, revealed=false;
+  function draw(){
+    sel=-1; revealed=false;
+    if(idx>=Q.items.length){
+      box.innerHTML='<div class="summary" style="display:block"><b>完成！答对 '+score+' / '+Q.items.length+' 题。</b><br>'+Q.closing+'</div>';
+      return;
+    }
+    var it=Q.items[idx];
+    var h='<p><b>'+it.q+'</b>（第 '+(idx+1)+' / '+Q.items.length+' 题）</p>';
+    it.opts.forEach(function(o,i){h+='<label class="qopt" data-i="'+i+'"><input type="radio" name="'+key+'-q" style="margin-right:8px">'+o+'</label>';});
+    h+='<div class="reveal"></div>';
+    h+='<button class="btn btn-reveal" disabled>看揭晓</button> ';
+    h+='<button class="btn btn-next" style="display:none">'+(idx===Q.items.length-1?'看小结':'下一题')+'</button>';
+    box.innerHTML=h;
+    box.querySelectorAll('.qopt').forEach(function(o){
+      o.addEventListener('click',function(){
+        if(revealed) return;
+        sel=parseInt(o.getAttribute('data-i'));
+        box.querySelectorAll('.qopt').forEach(x=>x.classList.remove('sel'));
+        o.classList.add('sel');
+        box.querySelector('.btn-reveal').disabled=false;
+      });
+    });
+    box.querySelector('.btn-reveal').addEventListener('click',function(){
+      if(sel<0||revealed) return;
+      revealed=true;
+      var ok=(sel===it.ans); if(ok) score++;
+      box.querySelectorAll('.qopt').forEach(function(o){
+        var i=parseInt(o.getAttribute('data-i'));
+        if(i===it.ans) o.classList.add('right');
+        else if(i===sel) o.classList.add('wrong');
+      });
+      var r=box.querySelector('.reveal');
+      r.style.display='block';
+      r.innerHTML='<b>'+(ok?'答对了！':'答错了。')+'</b> 推导揭晓：'+it.reveal;
+      box.querySelector('.btn-reveal').style.display='none';
+      box.querySelector('.btn-next').style.display='';
+    });
+    box.querySelector('.btn-next').addEventListener('click',function(){
+      if(!revealed) return;
+      idx++; draw();
+    });
+  }
+  draw();
+}
+renderQuiz('kai'); renderQuiz('spek');
+</script>
+</body>
+</html>
