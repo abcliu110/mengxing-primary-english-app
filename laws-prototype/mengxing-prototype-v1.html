@@ -6,43 +6,43 @@
 <title>萌星英语 · 规律版原型 v1</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#ece7db;color:#2b2620}
-.app{max-width:760px;margin:0 auto;background:#f7f3ea;min-height:100vh;box-shadow:0 0 28px rgba(60,45,20,.16);padding-bottom:40px}
-header{background:linear-gradient(135deg,#8a5a1e,#b8862e);color:#fff;padding:16px 18px 12px;border-radius:0 0 20px 20px}
-header .tag{font-size:11px;background:rgba(255,255,255,.28);display:inline-block;padding:2px 9px;border-radius:20px;margin-bottom:6px}
-header h1{font-size:23px;letter-spacing:1px}
-header p{font-size:12.5px;opacity:.94;margin-top:4px;line-height:1.55}
+body{font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#C7EDCC;color:#2F3A2C}
+.app{max-width:760px;margin:0 auto;background:#F5F1E6;min-height:100vh;box-shadow:0 0 28px rgba(40,70,45,.12);padding-bottom:40px}
+header{background:linear-gradient(135deg,#6E8B5A,#8FA872);color:#10180C;padding:16px 18px 12px;border-radius:0 0 20px 20px}
+header .tag{font-size:11px;background:transparent;border:1px solid rgba(16,24,12,.4);color:#10180C;display:inline-block;padding:2px 9px;border-radius:20px;margin-bottom:6px}
+header h1{font-size:23px;letter-spacing:1px;color:#10180C}
+header p{font-size:12.5px;color:#10180C;margin-top:4px;line-height:1.55}
 .bar{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px 2px;align-items:center}
-.nbtn{border:1.5px solid #d8cba6;background:#fffdf6;color:#6d5a33;border-radius:16px;padding:5px 11px;font-size:13px;cursor:pointer;font-weight:700}
-.nbtn.on{background:#8a5a1e;border-color:#8a5a1e;color:#fff}
-.tgl{margin-left:auto;font-size:12.5px;color:#6d5a33;font-weight:700;cursor:pointer;border:1.5px solid #cbbd97;background:#fbf7ec;border-radius:16px;padding:4px 10px}
+.nbtn{border:1.5px solid #C9D3B4;background:#EEF3E2;color:#4A5A36;border-radius:16px;padding:5px 11px;font-size:13px;cursor:pointer;font-weight:700}
+.nbtn.on{background:#5E7D4A;border-color:#5E7D4A;color:#fff}
+.tgl{margin-left:auto;font-size:12.5px;color:#4A5A36;font-weight:700;cursor:pointer;border:1.5px solid #C9D3B4;background:#EEF3E2;border-radius:16px;padding:4px 10px}
 .view{display:none;padding:12px 16px 0}
 .view.on{display:block}
-h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
-.sub{font-size:13px;color:#7a6c52;line-height:1.6;margin-bottom:10px}
+h2.zt{font-size:19px;color:#5E6E3A;margin:6px 0 4px}
+.sub{font-size:13px;color:#2F3A2C;line-height:1.6;margin-bottom:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#fffdf6;border:1.5px solid #e3d9c4;border-radius:16px;padding:13px 14px;cursor:pointer}
-.card:hover{border-color:#c9a86a}
+.card{background:#FBF8EF;border:1.5px solid #C9D3B4;border-radius:16px;padding:13px 14px;cursor:pointer}
+.card:hover{border-color:#8FA872}
 .card .ic{font-size:22px}
-.card h3{font-size:16.5px;margin:4px 0 3px;color:#5d4517}
-.card p{font-size:12.5px;color:#7a6c52;line-height:1.55}
-.card .n{font-size:11px;color:#a08c5f;font-weight:700}
+.card h3{font-size:16.5px;margin:4px 0 3px;color:#5E6E3A}
+.card p{font-size:12.5px;color:#2F3A2C;line-height:1.55}
+.card .n{font-size:11px;color:#2F3A2C;font-weight:700}
 .pain{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .pain .card{text-align:center;padding:11px 6px}
 .pain .card h3{font-size:15px}
-.sec-t{font-size:14px;font-weight:800;color:#8a5a1e;margin:16px 0 8px}
-.urow{display:flex;gap:9px;align-items:flex-start;background:#fffdf6;border:1px solid #e7ddc6;border-radius:13px;padding:9px 12px;margin-bottom:7px;cursor:pointer}
-.urow:hover{border-color:#c9a86a}
-.urow .id{flex:none;font-size:11px;font-weight:800;color:#fff;background:#b8862e;border-radius:7px;padding:2px 7px;margin-top:1px}
+.sec-t{font-size:14px;font-weight:800;color:#5E6E3A;margin:16px 0 8px}
+.urow{display:flex;gap:9px;align-items:flex-start;background:#FBF8EF;border:1px solid #C9D3B4;border-radius:13px;padding:9px 12px;margin-bottom:7px;cursor:pointer}
+.urow:hover{border-color:#8FA872}
+.urow .id{flex:none;font-size:11px;font-weight:800;color:#fff;background:#5E7D4A;border-radius:7px;padding:2px 7px;margin-top:1px}
 .urow .tt{font-size:14.5px;line-height:1.5}
 .urow .st{flex:none;font-size:11px;font-weight:700;border-radius:9px;padding:2px 7px;margin-left:auto;white-space:nowrap}
-.st.deep{background:#e5f0dd;color:#4a7028}
-.st.wait{background:#f0ead8;color:#97865f}
+.st.deep{background:#D7EBD4;color:#1E4A2C}
+.st.wait{background:#EFE8D4;color:#5C4A28}
 .urow.flat{cursor:default}
-.urow.flat:hover{border-color:#e7ddc6}
-.gh{font-size:13px;font-weight:800;color:#8a5a1e;margin:13px 0 6px}
-.back{font-size:13px;color:#8a5a1e;cursor:pointer;font-weight:700;margin-bottom:8px;display:inline-block}
-.foot{margin:20px 16px 0;font-size:11.5px;color:#a08c5f;line-height:1.7;border-top:1px dashed #d8cba6;padding-top:10px}
+.urow.flat:hover{border-color:#C9D3B4}
+.gh{font-size:13px;font-weight:800;color:#5E6E3A;margin:13px 0 6px}
+.back{font-size:13px;color:#5E6E3A;cursor:pointer;font-weight:700;margin-bottom:8px;display:inline-block}
+.foot{margin:20px 16px 0;font-size:11.5px;color:#2F3A2C;line-height:1.7;border-top:1px dashed #C9D3B4;padding-top:10px}
 </style>
 
 <style>
@@ -191,6 +191,141 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 .fa-dot.now{background:#f08c1e;border-color:#f08c1e}
 .fa-prog{color:#8a8f7a;font-size:13.5px}
 </style>
+<style>
+/* 平板（768–1199）与桌面（1200+）。手机仍走文末 max-width:680px，这里不改。 */
+@media (min-width:768px){
+  .app{
+    max-width:none;
+    margin:0;
+    min-height:100vh;
+    padding-bottom:36px;
+  }
+  .app>header{
+    padding:22px 28px 18px;
+    border-radius:0 0 22px 22px;
+  }
+  .app>header .tag{font-size:12.5px;padding:4px 12px;margin-bottom:8px}
+  .app>header h1{font-size:30px;letter-spacing:.5px;line-height:1.25}
+  .app>header p{font-size:16px;line-height:1.65;margin-top:8px;max-width:42em}
+  .topbar{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:14px 22px 12px;
+    border-bottom:1px solid #C9D3B4;
+  }
+  #nav{flex:1;min-width:0;padding:0;gap:8px}
+  #nav+.bar{flex:none;padding:0;border:0;justify-content:flex-end}
+  .nbtn,.tgl{
+    font-family:inherit;
+    min-height:44px;
+    padding:8px 14px;
+    font-size:15px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    touch-action:manipulation;
+  }
+  .tgl{padding:8px 16px}
+  .nbtn:focus-visible,.tgl:focus-visible{
+    outline:3px solid #5E7D4A;
+    outline-offset:2px;
+  }
+  #v-home{padding:6px 22px 8px}
+  #v-home .sec-t{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:16px;
+    letter-spacing:.03em;
+    margin:22px 0 12px;
+  }
+  #v-home .sec-t::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#C9D3B4;
+  }
+  #v-home .grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+  }
+  #v-home .card{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:16px 16px 14px;
+    min-height:148px;
+    touch-action:manipulation;
+    transition:border-color .15s ease,box-shadow .15s ease;
+  }
+  #v-home .card:hover{box-shadow:0 6px 16px rgba(40,70,45,.08)}
+  #v-home .card:focus-visible,#v-home .urow:focus-visible{
+    outline:3px solid #5E7D4A;
+    outline-offset:2px;
+  }
+  #v-home .card .ic{font-size:26px;line-height:1.2}
+  #v-home .card h3{font-size:18px;margin:6px 0 4px}
+  #v-home .card p{font-size:15px;line-height:1.6;color:#2F3A2C}
+  #v-home .card .n{font-size:13px;color:#2F3A2C;margin-top:auto;padding-top:10px}
+  #v-home .pain{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+  #v-home .pain .card{
+    align-items:center;
+    text-align:center;
+    min-height:104px;
+    padding:16px 12px;
+    justify-content:center;
+  }
+  #v-home .pain .card h3{font-size:17px;margin:0 0 4px}
+  #v-home .pain .card p{font-size:14px}
+  #v-home .home-units{display:grid;gap:10px}
+  #v-home .urow{
+    margin:0;
+    min-height:52px;
+    padding:12px 14px;
+    align-items:center;
+    gap:10px;
+    touch-action:manipulation;
+  }
+  #v-home .urow .tt{flex:1;min-width:0;font-size:16px;line-height:1.5}
+  #v-home .urow .id,#v-home .urow .st{font-size:12.5px}
+  #v-home .foot{
+    margin:22px 0 0;
+    font-size:14px;
+    line-height:1.75;
+    color:#2F3A2C;
+    max-width:72em;
+  }
+}
+@media (min-width:1024px){
+  .app>header{padding:26px 32px 20px}
+  .app>header h1{font-size:34px}
+  .topbar{padding:16px 28px 14px}
+  #v-home{padding:8px 28px 12px}
+  #v-home .grid,#v-home .pain{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #v-home .home-units{grid-template-columns:1fr 1fr;gap:10px 14px}
+}
+@media (min-width:1200px){
+  body{background:#C7EDCC}
+  .app{
+    max-width:1280px;
+    margin:24px auto 40px;
+    min-height:calc(100vh - 64px);
+    border-radius:24px;
+    overflow:clip;
+    box-shadow:0 16px 48px rgba(40,70,45,.14);
+  }
+  .app>header{border-radius:24px 24px 22px 22px}
+  #v-home .grid,#v-home .pain{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){
+  #v-home .card{transition:none}
+}
+</style>
 
 </head>
 <body>
@@ -200,6 +335,7 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <h1>萌星英语 · 规律版</h1>
 <p>给中国孩子的英语「规律机」：不背清单，学解码——每个知识点都讲清机制、给得出边界、治得了一个真实的病。</p>
 </header>
+<div class="topbar">
 <div class="bar" id="nav">
 <button class="nbtn on" data-v="home">首页</button>
 <button class="nbtn" data-v="phon">拼读区</button>
@@ -219,7 +355,8 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <button class="nbtn" data-v="settings">设置</button>
 </div>
 <div class="bar">
-<span class="tgl" id="atgl">成人层：关</span>
+<span class="tgl" id="atgl" role="switch" aria-checked="false" tabindex="0">成人层：关</span>
+</div>
 </div>
 
 <!-- ============ 首页 ============ -->
@@ -250,6 +387,7 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <div class="card" data-go="review"><h3>错不完</h3><p>病因错题本在这儿</p></div>
 </div>
 <div class="sec-t">旗舰单元（已按六步闭环做深）</div>
+<div class="home-units">
 <div class="urow" data-go="u-s36"><span class="id">S-36</span><span class="tt">长音 /iː/ 的拼法菜单：ee 与 ea 两条大路</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-sr01"><span class="id">SR-01</span><span class="tt">词尾不出声的 e：一个字母干九份工</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-s42"><span class="id">S-42</span><span class="tt">变脸榜：ough 是变脸大王</span><span class="st deep">已做深</span></div>
@@ -257,6 +395,7 @@ h2.zt{font-size:19px;color:#8a5a1e;margin:6px 0 4px}
 <div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词 + get 的五个构造</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-v33"><span class="id">V-33</span><span class="tt">前缀头部定律：20 个管住 97%</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-gr33"><span class="id">GR-33</span><span class="tt">反意疑问三步法：回声机怎么配尾巴</span><span class="st deep">已做深</span></div>
+</div>
 <p class="foot">原型说明：本原型做深不做全——7 个旗舰单元走完六步闭环，其余单元在分区页以目录形态呈现并标「待入模」。七个旗舰单元的动画步已建成可播放的白板课（逐拍绘制 + 预测停顿）；其余规律的分镜规格已按条入模，动画生产按规格推进。全部内容取自《专家规律清单 v6》已核实条目，未自创论断与例句体系。</p>
 </section>
 
@@ -2369,9 +2508,25 @@ document.addEventListener('click',function(e){
     return;
   }
 });
-document.getElementById('atgl').addEventListener('click',function(){
+document.querySelectorAll('#v-home [data-go]').forEach(function(el){
+  el.setAttribute('tabindex','0');
+  el.setAttribute('role','button');
+});
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  var g=e.target.closest&&e.target.closest('#v-home [data-go]');
+  if(!g)return;
+  e.preventDefault();
+  show(g.dataset.go);
+});
+var atgl=document.getElementById('atgl');
+atgl.addEventListener('click',function(){
   var on=document.body.classList.toggle('adult');
   this.textContent=on?'成人层：开':'成人层：关';
+  this.setAttribute('aria-checked',on?'true':'false');
+});
+atgl.addEventListener('keydown',function(e){
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();this.click();}
 });
 show('home');
 </script>
@@ -11017,6 +11172,72 @@ if(window.MutationObserver && arSecI && arSecD){
   .pkmod input[type=range]{width:100%}
   /* P-2 拖拽球：透明描边扩大命中（不改视觉） */
   #drag-ball{stroke:rgba(0,0,0,0);stroke-width:44px;pointer-events:all}
+}
+</style>
+<style id="figma-all">
+/* 定稿配色与平板/桌面栏宽，覆盖各分区自己的白底和窄栏。 */
+.phx .gsec,.phx .wc,.phx .quiz,.phx .board,.phx .brow,.phx .bcard,.phx .btab,.phx .bbtn,.phx .gw,.phx .hchip,.phx .ctile,.phx .slot,.phx .tile.ghoste,
+.box,.opt,.ph-reg,.ph-regbtn,.uhead,
+.lz-kid,.lz-beat,.lz-ex,.lz-q,.lz-chip,.lz-opt,.lz-reveal,.lz-todo,
+.pn-scope .card,.pn-scope .law,.pn-scope .beat,.pn-scope .grp,.pn-scope .quiz,.pn-scope .pic,.pn-scope .navrow button,.pn-scope .abtn,
+.ar-scope .card,.ar-scope .law,.ar-scope .beat,.ar-scope .grp,.ar-scope .quiz,.ar-scope .animbox,.ar-scope .svgbox,.ar-scope .navrow button,.ar-scope .swcol,.ar-scope .rline,.ar-scope .stage .cap,
+.vb .panel,.vb .card,.vb .opt,.vb .sent,.vb .fcell,.vb .back,.vb .chip,.vb input,.vb select,.vb .seg button,
+.mz .card,.tn .card,.tn .sec,
+.fa-board,.fa-capbar,.fa-predict,.pkmod details.conc,.pkmod .station{
+  background:#FBF8EF;
+  color:#2F3A2C;
+}
+.phx,.pn-scope,.ar-scope,.vb,.mz,.tn,.pkmod,.lz-beat,.lz-q{color:#2F3A2C}
+.phx h2,.phx h3,.mz h1,.mz .card h2,.mz .subhead,.tn h2,.tn .card h3,.tn .tntitle,
+.pn-scope header.top h1,.pn-scope .card h3,.pn-scope .gname,.pn-scope h2.big,.pn-scope .tt,
+.ar-scope header.top h1,.ar-scope .card h3,.ar-scope .gname,.ar-scope h2.big,
+.vb header h1,.vb .panel h3,.vb .card h2,.vb .card h4,.vb summary,.pkmod h1,.pkmod .ttl{
+  color:#5E6E3A;
+}
+.phx .btab,.phx .bbtn,.ph-regbtn,.vb .back,.vb .chip,.vb .seg button,.pkmod header.top button,.pkmod .chip,.pn-scope .navrow button,.pn-scope .abtn,.ar-scope .navrow button,.lz-chip,.lz-opt,.lz-reveal{
+  background:#EEF3E2;
+  border-color:#C9D3B4;
+  color:#4A5A36;
+}
+.phx .btab.on,.vb .seg button.on,.vb .chip.on{
+  background:#5E7D4A;
+  border-color:#5E7D4A;
+  color:#fff;
+}
+.opt.right,.vb .opt.right,.lz-opt.right,.phx .opt.yes{background:#E5F2E4;border-color:#7FA388;color:#2F3A2C}
+.opt.wrong,.vb .opt.wrong,.lz-opt.wrong,.phx .opt.no{background:#F8E8E4;border-color:#D9A090;color:#2F3A2C}
+.vb .hero{background:linear-gradient(135deg,#6E8B5A,#8FA872);color:#10180C}
+.vb .hero h3,.vb .hero .sub,.vb .hero .chip{color:#10180C}
+.vb .hero .chip{background:rgba(16,24,12,.08);border-color:rgba(16,24,12,.35)}
+#vb-home>header{background:transparent;color:#2F3A2C;border-radius:0}
+#vb-home>header h1{color:#5E6E3A}
+#vb-home>header p,#vb-home>header p.adult{color:#2F3A2C}
+.pkmod{--paper:#F5F1E6;--card:#FBF8EF;--ink:#2F3A2C;--line:#C9D3B4;background:#F5F1E6;color:#2F3A2C}
+.pkmod header.top{background:#F5F1E6;border-bottom-color:#5E6E3A;color:#2F3A2C}
+.pkmod #mapwrap{background:#FBF8EF;border-color:#C9D3B4}
+.pkmod h2{border-left-color:#5E7D4A;color:#5E6E3A}
+.pn-scope,.ar-scope{background:transparent}
+.fa-board,.pkmod .pv-stgsvg{background:#FBF8EF;border-color:#C9D3B4}
+#drag-svg{max-width:100%!important;background:#FBF8EF!important;border-color:#5E6E3A!important}
+@media (min-width:768px){
+  .pn-scope,.ar-scope,.vb .wrap,.pkmod .pkview,.mz{max-width:none}
+  .pkmod .pv-stgsvg{max-width:100%}
+  .phx .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vb .panelGrid,.tn .panels{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #pn-index,#ar-index,#mz-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px;align-items:start}
+  #pn-index>:not(.law),#ar-index>:not(.law),#mz-index>:not(.card){grid-column:1 / -1}
+  #v-phon-laws.on,#v-vocab.on,#v-grammar.on,#v-grammar2.on,#v-expr.on,#v-expr2.on,#v-tech.on,#v-parents.on{
+    display:grid;grid-template-columns:1fr 1fr;column-gap:14px;align-items:start;
+  }
+  #v-phon-laws.on>:not(.urow),#v-vocab.on>:not(.urow),#v-grammar.on>:not(.urow),#v-grammar2.on>:not(.urow),#v-expr.on>:not(.urow),#v-expr2.on>:not(.urow),#v-tech.on>:not(.urow),#v-parents.on>:not(.urow){grid-column:1 / -1}
+  .vb table,.pkmod table,table.menu{display:block;width:100%;overflow-x:auto}
+  img,canvas,#drag-svg,.pkmod svg,.pv-stgsvg{max-width:100%}
+}
+@media (min-width:1024px){
+  .phx .grid,.vb .panelGrid,.tn .panels,#pn-index,#ar-index,#mz-index,
+  #v-phon-laws.on,#v-vocab.on,#v-grammar.on,#v-grammar2.on,#v-expr.on,#v-expr2.on,#v-tech.on,#v-parents.on{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
 }
 </style>
 </body>
