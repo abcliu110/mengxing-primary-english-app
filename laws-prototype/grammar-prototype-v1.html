@@ -19,6 +19,34 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC"
 .view{display:none}.view.on{display:block}
 .note{font-size:12px;color:var(--grey);line-height:1.7}
 .src{font-size:11.5px;color:var(--grey);line-height:1.7;border-top:1px dashed var(--line);margin-top:14px;padding-top:8px}
+
+/* 学习路径列表首页（分组列表） */
+.hud{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.hud .hi{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px;font-size:15px}
+.hud .hi b{font-size:19px}
+.hud .hi .lab{font-size:12.5px;color:var(--grey)}
+.hud .grow{flex:1;min-width:250px}
+.hbar{flex:1;height:12px;background:#eee3cb;border-radius:999px;overflow:hidden;min-width:110px}
+.hfill{height:100%;background:var(--green);border-radius:999px}
+.unit{margin-top:20px}
+.ubanner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-radius:16px;padding:13px 16px;color:#fff}
+.ubanner .uname{font-size:19px;font-weight:800}
+.ubanner .ugoal{font-size:13.5px;opacity:.93}
+.ubanner .uprog{margin-left:auto;font-size:13px;background:rgba(255,255,255,.25);border-radius:999px;padding:2px 11px;white-space:nowrap}
+.ubanner .gbtn{border:1.5px solid rgba(255,255,255,.65);background:transparent;color:#fff;border-radius:999px;padding:5px 13px;font-size:13px;cursor:pointer;font-family:inherit}
+.uguide{display:none;background:#f7f2e7;border:1.5px solid var(--line);border-radius:14px;padding:10px 16px;font-size:13.5px;line-height:1.8;color:#5c5344;margin-top:8px}
+.lrows{margin-top:8px;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.lrow{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #f0e7d3;cursor:pointer}
+.lrow:last-child{border-bottom:none}
+.lrow:hover{background:#fdf6ea}
+.lrow .ric{font-size:20px;width:30px;text-align:center;flex:none}
+.lrow .rn{font-size:16.5px;font-weight:700}
+.lrow .rp{font-size:13px;color:var(--grey);margin-top:1px;line-height:1.5}
+.lrow .chipst{margin-left:auto;flex:none;font-size:12.5px;border-radius:999px;padding:2px 11px;white-space:nowrap}
+.chipst.done{background:#eef6ee;color:var(--green);border:1px solid #bcdcc4}
+.chipst.later{background:#f1ead9;color:#9a8a63;border:1px solid #e0d3ac}
+.lrow.lock{cursor:default;opacity:.6}
+.lrow.lock:hover{background:transparent}
 /* 工坊台 */
 .bench{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px;margin-top:12px}
 .bench h2{margin:0 0 4px;font-size:20px}
@@ -107,13 +135,86 @@ table.map th{background:#f1e9d8}
 <div class="wrap">
   <div class="topbar">
     <h1>🛠️ 句子工坊</h1>
-    <span class="sub">语法区原型 v1 · 第一批（工坊台 / 扩展包·形容词排队 / 回声机 / 病句医院 / 总论骨架）</span>
+    <span class="sub">语法区原型 v1 · 学习路径首页（第一批做实 5 件）</span>
     <span style="flex:1"></span>
     <button class="btn" data-nav="overview">规律总论（成人层）→</button>
   </div>
 
-  <!-- ============ 首页：工坊台 ============ -->
+  <!-- ============ 首页：学习路径（分组列表） ============ -->
   <section class="view on" id="v-home">
+    <div class="hud">
+      <div class="hi">⭐ <b>5 / 18</b><span class="lab">学习件已做实</span></div>
+      <div class="hi grow"><span class="lab">本区总进度</span><div class="hbar"><div class="hfill" style="width:28%"></div></div><b>28%</b></div>
+      <div class="hi">🏥 <b>9</b><span class="lab">真病例上台</span></div>
+      <div class="hi">🃏 <b>34</b><span class="lab">词卡 · 全部词库登记</span></div>
+    </div>
+    <div class="note" style="margin-top:8px">从站一开始，一站一站往下走。标着「本批做实」的行点进去就能动手；「下一批」的行先占着位，内容做好了再点亮。</div>
+    <div class="unit">
+      <div class="ubanner" style="background:#e8873a"><span class="uname">站一 · 搭骨架</span><span class="ugoal">先把一句话站起来</span><span class="uprog">已做实 1 / 1</span><button class="gbtn" data-guide="g1">📖 指南</button></div>
+      <div class="uguide" id="g1"><b>成人层 · 本站一句话</b>：骨架纲：一切语法操作都发生在一句话里。先回答「谁 / 做什么 / 什么」，句子站起来之后再谈标记与扩展（借 Colourful Semantics 的问题槽画法）。</div>
+      <div class="lrows">
+        <div class="lrow" data-nav="bench"><span class="ric">🧱</span><div><div class="rn">工坊台 · 拼一句话</div><div class="rp">句子站不起来——先把「谁 / 做什么 / 什么」摆对位置，还能顺手发现动词的 -s 帽子。</div></div><span class="chipst done">本批做实 →</span></div>
+      </div>
+    </div>
+    <div class="unit">
+      <div class="ubanner" style="background:#3f9e63"><span class="uname">站二 · 动词标记</span><span class="ugoal">动词身上的标记，只标一次</span><span class="uprog">已做实 0 / 1</span><button class="gbtn" data-guide="g2">📖 指南</button></div>
+      <div class="uguide" id="g2"><b>成人层 · 本站一句话</b>：原则归 GR、操练归动词区 TA：时态系统在动词区学，本站只留原则卡和直达 TA 的门；GR-02 的原则已先在站六病句医院做实（门诊一）。</div>
+      <div class="lrows">
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-03 · 原则卡：do 来替补</div><div class="rp">否定句和疑问句里，动词的标记该交给谁扛？（丙 · 原则卡，做好后指路动词区 TA 站）</div></div><span class="chipst later">下一批</span></div>
+      </div>
+    </div>
+    <div class="unit">
+      <div class="ubanner" style="background:#4a7ec2"><span class="uname">站三 · 扩展包</span><span class="ugoal">给名词装箱、给形容词排队</span><span class="uprog">已做实 1 / 4</span><button class="gbtn" data-guide="g3">📖 指南</button></div>
+      <div class="uguide" id="g3"><b>成人层 · 本站一句话</b>：名词短语内部的装箱规矩（GR-43 / 44 / 45）与复数家族（GR-28）是句子槽位内部的操作，不是词条知识，所以不进词汇区。</div>
+      <div class="lrows">
+        <div class="lrow" data-nav="expand"><span class="ric">🎨</span><div><div class="rn">GR-43 · 形容词排队</div><div class="rp">几个形容词一起修饰一个名词时，谁站前面、谁贴着名词？</div></div><span class="chipst done">本批做实 →</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-44 · 名词短语装箱（一）</div><div class="rp">一个名词前面能装多少东西、按什么顺序装？</div></div><span class="chipst later">下一批</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-45 · 名词短语装箱（二）· 轻重排队</div><div class="rp">装箱之后，长短轻重的短语怎么排先后？</div></div><span class="chipst later">下一批</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-28 · 复数家族宿舍</div><div class="rp">名词变复数，为什么有好几个「变法家族」？</div></div><span class="chipst later">下一批</span></div>
+      </div>
+    </div>
+    <div class="unit">
+      <div class="ubanner" style="background:#8a63b8"><span class="uname">站四 · 连接与从句</span><span class="ugoal">把两句话接起来</span><span class="uprog">已做实 0 / 4</span><button class="gbtn" data-guide="g4">📖 指南</button></div>
+      <div class="uguide" id="g4"><b>成人层 · 本站一句话</b>：句子层面的连接、语序与辖域（GR-11 / 30 / 32 / 35）：把两句话接成一句、认出藏在里面的小句子、管好 only 的地盘。</div>
+      <div class="lrows">
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-11 · 连接口：because—so 二选一</div><div class="rp">原因和结果都有了，两句话怎么接成一句才对？</div></div><span class="chipst later">下一批</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-30 · 从句认人牌</div><div class="rp">一长串句子里，哪一截是藏着的「小句子」？</div></div><span class="chipst later">下一批</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-32 · 关联词成对门</div><div class="rp">both…and、either…or 这类词，为什么总要成对出现？</div></div><span class="chipst later">下一批</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-35 · only 辖域滑杆</div><div class="rp">only 放的位置不同，整句话的意思差多远？</div></div><span class="chipst later">下一批</span></div>
+      </div>
+    </div>
+    <div class="unit">
+      <div class="ubanner" style="background:#d4607e"><span class="uname">站五 · 句子变身</span><span class="ugoal">让句子换个说法</span><span class="uprog">已做实 1 / 4</span><button class="gbtn" data-guide="g5">📖 指南</button></div>
+      <div class="uguide" id="g5"><b>成人层 · 本站一句话</b>：句子换个说法（GR-31 / 36 / 07 / 33）：比较、使役、情态与反意疑问——形式变，骨架不变。</div>
+      <div class="lrows">
+        <div class="lrow" data-nav="transform"><span class="ric">🔊</span><div><div class="rn">GR-33 · 反意疑问回声机</div><div class="rp">句尾的小尾巴（…, isn't it?）是怎么配出来的？</div></div><span class="chipst done">本批做实 →</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-31 · 比较级天平</div><div class="rp">比大小的时候，句子两边怎么摆才平衡？</div></div><span class="chipst later">下一批</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-36 · 使役力气队</div><div class="rp">让别人做事（make / let / have）时，后面的动词为什么要「脱帽」？</div></div><span class="chipst later">下一批</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-07 · 情态力场</div><div class="rp">can / must / may 的「力气」大小，怎么感觉出来？</div></div><span class="chipst later">下一批</span></div>
+      </div>
+    </div>
+    <div class="unit">
+      <div class="ubanner" style="background:#c0392b"><span class="uname">站六 · 病句医院</span><span class="ugoal">给病句看病：错在哪，动手改</span><span class="uprog">已做实 2 / 4</span><button class="gbtn" data-guide="g6">📖 指南</button></div>
+      <div class="uguide" id="g6"><b>成人层 · 本站一句话</b>：病句医院（GR-22 为总纲）：病例全部来自中国学习者真实语料登记、按错型分科；先开哪间门诊，由 GR-25 的中国孩子错误权重决定。</div>
+      <div class="lrows">
+        <div class="lrow" data-nav="hospital" data-dept="gr02"><span class="ric">🏥</span><div><div class="rn">GR-02 · 门诊：标记一次</div><div class="rp">时态、三单的标记在句子里只能出现一次——多了就出事。</div></div><span class="chipst done">本批做实 →</span></div>
+        <div class="lrow" data-nav="hospital" data-dept="gr12"><span class="ric">🏥</span><div><div class="rn">GR-12 · 门诊：主谓一致</div><div class="rp">动词要跟主语对上号：单数对单数，复数对复数。</div></div><span class="chipst done">本批做实 →</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-22 · 病句医院总站：分诊台</div><div class="rp">病句先分科——错在冠词、时态、复数，还是三单？</div></div><span class="chipst later">下一批</span></div>
+        <div class="lrow lock"><span class="ric">🔒</span><div><div class="rn">GR-38 · 标点手术</div><div class="rp">标点放错了位置，句子会不会变味？</div></div><span class="chipst later">下一批</span></div>
+      </div>
+    </div>
+    <div class="unit">
+      <div class="lrows" style="margin-top:0">
+        <div class="lrow" data-nav="overview"><span class="ric">📚</span><div><div class="rn">规律总论（成人层）</div><div class="rp">45 条规律的体系图与归属对账——给老师和家长看的后台，前台一条不落。</div></div><span class="chipst done">进入 →</span></div>
+      </div>
+    </div>
+    <div class="src">首页形态 · 核实与模仿映射（2026-11-02 核实各家现行结构）：<b>Duolingo</b>（官方博客与现行版）——首页剥到本质是纵向路径列表：单元横幅（单元名 + 一句目标）之下，节点逐个纵排，顶部常驻状态栏；本页取其「单元分组 + 顶部状态区」骨架。<b>Khan Academy</b>（官方帮助中心）——课程页就是单元列表，每单元标「已掌握 x / y」与进度条；本页组头进度「已做实 x / y」仿此。<b>Busuu</b>（官网与评测）——Learn 页为章节—课时纵排列表，完成态打勾；本页行式条目与状态标记仿此。<b>Babbel</b>（官网杂志）——新首页是引导式学习路径 + 单元进度条；本页顶部总进度条仿此。按产品口径未采用：蜿蜒偏移排布、圆形节点与吉祥物造型——条目一律行式呈现（与全产品「列表作索引、点击开明细页」的既有标准一致）。</div>
+    <div class="footbar" id="footbar"></div>
+  </section>
+
+  <!-- ============ 站一：工坊台（拼句） ============ -->
+  <section class="view" id="v-bench">
+    <button class="btn" data-nav="home">← 回学习路径</button>
     <div class="bench">
       <h2>先拼一句话</h2>
       <div class="note">点下面的词卡，词就会跳进句子里；点槽里的大词可以把它拿下来。槽的名字是问题，不是术语：先回答「谁？做什么？什么？」，句子就站起来了。</div>
@@ -132,21 +233,11 @@ table.map th{background:#f1e9d8}
       <div class="seatline" id="adjline"></div>
       <div class="src">词卡来源：全部为词库登记词目（构建时逐词断言）；地点短语出自 GR-12 / GR-02 登记例句（on the desk、on the table、under the tree、to the park）；-s 帽子是 GR-02/GR-12 的标记机制演示，不是新词。槽位画法借 Colourful Semantics 的「问题词当槽名」，配色为本原型临时色（形状+问句词区分，不用术语）。</div>
     </div>
-
-    <div class="stations">
-      <div class="st" data-nav="home"><h3>站一 · 搭骨架<span class="badge">本批做实</span></h3><p>谁 / 做什么 / 什么——就是上面这张工坊台。先把句子站起来，再谈别的。</p></div>
-      <div class="st off"><h3>站二 · 动词标记<span class="badge later">下一批</span></h3><p>GR-02 / GR-03 原则卡 + 直达动词区 TA 站的门。本批 GR-02 先以「病句医院」形态出现。</p></div>
-      <div class="st" data-nav="expand"><h3>站三 · 扩展包<span class="badge">GR-43 做实</span></h3><p>给名词装箱、给形容词排队：GR-43 形容词排队（拖拽小件）已做实；GR-44 / GR-45 装箱、GR-28 复数宿舍下一批。</p></div>
-      <div class="st off"><h3>站四 · 连接与从句<span class="badge later">下一批</span></h3><p>GR-11 连接口、GR-30 从句认人牌、GR-32 关联词成对门、GR-35 only 辖域滑杆。</p></div>
-      <div class="st" data-nav="transform"><h3>站五 · 句子变身<span class="badge">GR-33 做实</span></h3><p>GR-33 反意疑问回声机已按工坊样式收编；GR-31 比较级天平、GR-36 使役力气队、GR-07 情态力场下一批。</p></div>
-      <div class="st" data-nav="hospital"><h3>站六 · 病句医院<span class="badge">GR-02 / GR-12 做实</span></h3><p>真病例上手术台：标记一次门诊（GR-02）+ 主谓一致门诊（GR-12）；GR-22 分诊台、GR-38 标点手术下一批。</p></div>
-    </div>
-    <div class="footbar" id="footbar"></div>
   </section>
 
   <!-- ============ 站三：扩展包 GR-43 ============ -->
   <section class="view" id="v-expand">
-    <button class="btn" data-nav="home">← 回工坊台</button>
+    <button class="btn" data-nav="home">← 回学习路径</button>
     <div class="page">
       <h2>扩展包 · 形容词排队（GR-43）</h2>
       <div class="kid" id="gr43-kid"></div>
@@ -169,7 +260,7 @@ table.map th{background:#f1e9d8}
 
   <!-- ============ 站五：GR-33 回声机 ============ -->
   <section class="view" id="v-transform">
-    <button class="btn" data-nav="home">← 回工坊台</button>
+    <button class="btn" data-nav="home">← 回学习路径</button>
     <div class="page">
       <h2>句子变身 · 反意疑问回声机（GR-33）</h2>
       <div class="kid" id="gr33-kid"></div>
@@ -200,7 +291,7 @@ table.map th{background:#f1e9d8}
 
   <!-- ============ 站六：病句医院 ============ -->
   <section class="view" id="v-hospital">
-    <button class="btn" data-nav="home">← 回工坊台</button>
+    <button class="btn" data-nav="home">← 回学习路径</button>
     <div class="page">
       <h2>🏥 病句医院</h2>
       <div class="kid" id="hosp-kid"></div>
@@ -215,7 +306,7 @@ table.map th{background:#f1e9d8}
 
   <!-- ============ 总论（成人层） ============ -->
   <section class="view" id="v-overview">
-    <button class="btn" data-nav="home">← 回工坊台</button>
+    <button class="btn" data-nav="home">← 回学习路径</button>
     <div class="page">
       <h2>规律总论 · 体系图骨架（成人层）</h2>
       <div style="font-size:14.5px;line-height:1.9">
@@ -241,7 +332,10 @@ function show(name){
   document.getElementById('v-'+name).classList.add('on');
   window.scrollTo(0, name==='home' ? lastScroll : 0);
 }
-document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.nav)));
+document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>{
+  if(b.dataset.dept) setDept(b.dataset.dept);
+  show(b.dataset.nav);
+}));
 
 /* ---------- 工坊台 ---------- */
 const CARDS = {"who": ["I", "you", "he", "she", "we", "they", "the cat", "the dog"], "verb": ["play", "eat", "read", "like", "go", "have"], "what": ["football", "a book", "an apple", "a game", "music", "a bag", "a pen", "a flower"], "place": ["on the desk", "on the table", "under the tree", "to the park"], "adj": ["lovely", "big", "small", "new", "old", "red", "black", "green"]};
@@ -314,7 +408,7 @@ function renderBench(){
 }
 renderBench();
 document.getElementById('footbar').textContent =
-  `对账：工坊件 4（工坊台 · GR-43 排队 · GR-33 回声机 · 病句医院）· 本批收编规律 4 条（GR-02 / GR-12 / GR-33 / GR-43，另 GR-22 为医院总纲）· 真病例 ${D.gr02.cases.length + D.gr12.cases.length + D.gr33.cases.length} 条（全部出自模型登记）· 词卡 ${Object.values(CARDS).flat().length} 张（100% 词库登记词）· 其余站点与规律已在总论归属，下一批做实。`;
+  `对账：列表条目 18 行 = 工坊台 1 + 甲类学习件 16（提案 §6.3）+ 丙类原则卡 1（GR-03）· 已做实 5 行（工坊台 / GR-43 / GR-33 / GR-02 门诊 / GR-12 门诊）· 下一批 13 行（甲 12 + 丙 1）· 真病例 ${D.gr02.cases.length + D.gr12.cases.length + D.gr33.cases.length} 条（全部出自模型登记）· 词卡 ${Object.values(CARDS).flat().length} 张（100% 词库登记词）· 归属逐项照提案 §6.3 / §6.4，未新增名目。`;
 
 /* ---------- GR-43 形容词排队 ---------- */
 document.getElementById('gr43-kid').textContent = 'GR-43：' + D.gr43.headline_kid;
@@ -426,6 +520,7 @@ function hospCounts(){
 }
 document.getElementById('dept-gr02').onclick=()=>{ HOSP.dept='gr02'; HOSP.idx=0; HOSP.found=false; renderCase(); };
 document.getElementById('dept-gr12').onclick=()=>{ HOSP.dept='gr12'; HOSP.idx=0; HOSP.found=false; renderCase(); };
+function setDept(d){ HOSP.dept=d; HOSP.idx=0; HOSP.found=false; renderCase(); }
 function renderCase(){
   hospCounts();
   const L = D[HOSP.dept], total = L.cases.length;
@@ -484,6 +579,12 @@ function renderCase(){
   document.getElementById('case-next').onclick=()=>{ HOSP.idx++; HOSP.found=false; renderCase(); };
 }
 renderCase();
+
+/* ---------- 单元指南（成人层一句话） ---------- */
+document.querySelectorAll('[data-guide]').forEach(b=>b.addEventListener('click',()=>{
+  const g=document.getElementById(b.dataset.guide);
+  g.style.display = g.style.display==='block' ? 'none' : 'block';
+}));
 
 /* ---------- 总论归属图 ---------- */
 const MAP = [
