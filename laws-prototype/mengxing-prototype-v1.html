@@ -437,7 +437,7 @@ table.menu th{background:#f4ead0;color:#6d5a33;font-size:12.5px}
 .opt.wrong{border-color:#d98c72;background:#fae9e2;opacity:.75}
 .qhint{display:none;background:#fdf6e0;border:1px dashed #d4880f;border-radius:10px;padding:8px 11px;font-size:13.5px;line-height:1.6;color:#6d5510}
 .qok{display:none;background:#eef5e4;border:1px solid #b9cfa0;border-radius:10px;padding:8px 11px;font-size:13.5px;color:#4a7028;line-height:1.6}
-.adult{display:none;background:#f3efe4;border-left:3.5px solid #b8a888;border-radius:0 10px 10px 0;padding:9px 12px;margin-top:9px;font-size:12px;color:#6f675a;line-height:1.7}
+.adult:not(body){display:none;background:#FBF8EF;border-left:3.5px solid #C9D3B4;border-radius:0 10px 10px 0;padding:9px 12px;margin-top:9px;font-size:13px;color:#55604A;line-height:1.7}
 .adult b{color:#57503f}
 body.adult .adult{display:block}
 .done{background:#eef5e4;border:1.5px solid #b9cfa0;border-radius:14px;padding:12px 14px}
@@ -9348,7 +9348,7 @@ function renderReport(){
 /* ================= 本波（第二波）新增：时间轴符号 / 原型图 / 引申链 / 逐错项 tip / 总览 / 诊断 / 生命线 ================= */
 /* ---- 时间轴符号图例（TEFL 约定符号：一套符号走遍全区） ---- */
 function tlLegendHTML(){
-  return '<div class="sent tlLegend"><b>🗺 时间轴符号（和老师们画的是同一套）</b><div style="margin-top:5px;line-height:2"><span class="tlSym">×</span> 点事件（一瞬间发生）　<span class="tlSym">〰</span> 正在进行（钻进中间看）　<span class="tlSym">▭</span> 持续一段时间（有头有尾的一段）　<span class="tlSym">→</span> 先后顺序（箭头指向后发生的那件）　<span class="tlSym"><span style="color:#c0392b">▬</span><span style="color:#23733a">▬</span></span> 两件事同时（双色并行）</div><div class="adult">符号约定与 TEFL 教师圈的时间轴画法对齐：点事件用 ×、进行用波浪段、持续用长条、先后用箭头、同时用双色。</div></div>';
+  return '<div class="sent tlLegend"><b>🗺 时间轴符号（和老师们画的是同一套）</b><div style="margin-top:5px;line-height:2"><span class="tlSym">×</span> 点事件（一瞬间发生）　<span class="tlSym">〰</span> 正在进行（钻进中间看）　<span class="tlSym">▭</span> 持续一段时间（有头有尾的一段）　<span class="tlSym">→</span> 先后顺序（箭头指向后发生的那件）　<span class="tlSym"><span style="color:#8A5A48">▬</span><span style="color:#3E6B48">▬</span></span> 两件事同时（双色并行）</div><div class="adult">符号约定与 TEFL 教师圈的时间轴画法对齐：点事件用 ×、进行用波浪段、持续用长条、先后用箭头、同时用双色。</div></div>';
 }
 
 /* ---- 小词原型场景图（proto-scene）：一词一张字面图式图 ---- */
@@ -10416,7 +10416,7 @@ var TEC={y:0,cur:null,curFace:'pain',
  face:function(f){
    TEC.curFace=f;
    ['pain','skill','seq'].forEach(function(x){
-     document.getElementById('tec-face-'+x).style.display=(x===f?'block':'none');
+     document.getElementById('tec-face-'+x).style.display=(x===f?'':'none');
    });
    document.querySelectorAll('.tec-fbtn').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-face')===f)});
  },
@@ -14398,9 +14398,71 @@ if(window.MutationObserver && arSecI && arSecD){
 }
 @media (min-width:1024px){
   .phx .grid,.vb .panelGrid,.tn .panels,#pn-index,#ar-index,#mz-index,
-  #v-phon-laws.on,#v-vocab.on,#v-grammar.on,#v-grammar2.on,#v-expr.on,#v-expr2.on,#v-tech.on,#v-parents.on{
+  #v-phon-laws.on,#v-vocab.on,#v-grammar.on,#v-grammar2.on,#v-expr.on,#v-expr2.on,#v-parents.on,
+  #tec-face-pain,#tec-face-skill,#tec-face-seq{
     grid-template-columns:repeat(3,minmax(0,1fr));
   }
+}
+.vcmod,.vcmod h1,.vcmod .wp-word{color:#2F3A2C}
+.vcmod h1,.vcmod h2,.vcmod h3,.vcmod .gtitle,.vcmod .wp-phon,.vcmod .wp-frame{color:#5E6E3A}
+.vcmod .card,.vcmod .subcard,.vcmod .entry,.vcmod .sense-item,.vcmod .qopt,.vcmod .searchbox,.vcmod .pw,.vcmod .peerchip,.vcmod .diagram,.vcmod .excard{background:#FBF8EF;border-color:#C9D3B4;color:#2F3A2C}
+.vcmod .btn,.vcmod .btn.sec,.vc-tnav button,.vcmod .toolchip,.vcmod .anchorbar .toolchip{background:#EEF3E2;border:1.5px solid #C9D3B4;color:#4A5A36}
+.vcmod .sub,.vcmod .small,.vcmod .adult,.vcmod .recount,.vcmod .footline,.vcmod .wrow .wm,.vcmod .wrow .wph,.vcmod .wrow .wpos,.vcmod .hitsub,.vcmod .edge-label,.vcmod .cluster-note{color:#55604A}
+.vcmod .anchorbar{background:#F5F1E6}
+.vcmod .gtitle .cnt,.vcmod .subcard h3 .cnt{background:#5E7D4A;color:#fff}
+.vcmod .wp-pos{background:#EEF3E2;color:#5E6E3A}
+.vcmod td:first-child,.vcmod .wp-fmtable td:first-child{background:#EEF3E2;color:#5E6E3A}
+.et-scope{color:#2F3A2C}
+.et-scope .card,.et-scope .flag,.et-scope .station,.et-scope .pathcard,.et-scope .hero,.et-scope #etPendDetail,.et-scope details.et-adult,.et-scope .vs .old,.et-scope .vs .now{background:#FBF8EF;border-color:#C9D3B4;color:#2F3A2C}
+.et-scope h2,.et-scope h3,.et-scope .flag b,.et-scope .wchip b,.et-scope .station .form,.et-scope .pathcard .m,.et-scope .num,.et-scope .big,.et-scope a{color:#5E6E3A}
+.et-scope .small,.et-scope .flag .mini,.et-scope .wchip span,.et-scope .station .lang,.et-scope .station .per,.et-scope .pathcard .p,.et-scope .arrow,.et-scope .tag{color:#55604A}
+.et-scope .tag{background:#EEF3E2}
+.et-scope .searchrow input,.et-scope .letters button,.et-scope .wchip,.et-scope .navrow button,.et-scope .pchip{background:#EEF3E2;border-color:#C9D3B4;color:#4A5A36}
+.et-scope .letters button.on,.et-scope .pchip.on{background:#5E7D4A;border-color:#5E7D4A;color:#fff}
+.gkmod{--ink:#2F3A2C;--paper:#F5F1E6;--card:#FBF8EF;--line:#C9D3B4;--amber:#5E7D4A;--green:#5E7D4A;--grey:#55604A;--blue:#5E6E3A;--purple:#55604A;--red:#8A5A48;max-width:none;background:transparent;color:#2F3A2C}
+.gkmod .ubanner{background:#8FA872!important;color:#10180C!important}
+.gkmod .ubanner .uname,.gkmod .ubanner .ugoal,.gkmod .ubanner .gbtn,.gkmod .ubanner .uprog{color:#10180C!important;opacity:1}
+.gkmod .ubanner .gbtn{border-color:rgba(16,24,12,.45);background:transparent}
+.gkmod .ubanner .uprog{background:rgba(16,24,12,.08)}
+.gkmod .bench h2,.gkmod .topbar h1,.gkmod h2,.gkmod h3{color:#5E6E3A}
+.gkmod .slot .q,.gkmod .slot .placed{color:#2F3A2C}
+.gkmod .slot .hint{color:#55604A;opacity:1}
+.gkmod .slot-who{background:#F6E6D4;border-color:#C4A574}
+.gkmod .slot-verb{background:#F4EBC8;border-color:#C4B56A}
+.gkmod .slot-what{background:#DCE8D4;border-color:#7FA388}
+.gkmod .lrow,.gkmod .lrows,.gkmod .hud .hi,.gkmod .uguide{background:#FBF8EF}
+.gkmod .btn.primary{background:#5E7D4A;border-color:#5E7D4A;color:#fff}
+.phx .badge,.phx .chip .cnt{background:#5E7D4A;color:#fff}
+.phx .banner{background:#EEF3E2;border-color:#C9D3B4;color:#2F3A2C}
+.phx .banner .bsub{color:#55604A}
+.phx .banner.heart{background:#F3EFE4;border-color:#C9D3B4}
+.vb .tlSym{color:#2F3A2C;background:#EEF3E2}
+.vb .chip.gold{background:#EEF3E2;border-color:#C9D3B4;color:#4A5A36}
+.vb .chip.gold .n{background:#5E7D4A;color:#fff}
+#tec-face-pain,#tec-face-skill,#tec-face-seq{display:grid;gap:8px 12px;align-items:start}
+#tec-face-pain>:not(.urow),#tec-face-skill>:not(.urow),#tec-face-seq>:not(.urow){grid-column:1 / -1}
+@media (min-width:768px){
+  .chip,.tec-fbtn,.ph-regbtn,.phx .btab,.phx .bbtn,.phx .banner,.phx .chip,
+  .pkmod header.top button,.pkmod .chip,#mapbar button,
+  .gkmod .btn,.gkmod .gbtn,.gkmod .lrow,
+  .vb .chip,.vb .back,.vb .seg button,
+  .vcmod .toolchip,.vc-tnav button,.vcmod .btn,.vcmod .wrow,.vcmod .searchbox,
+  .et-scope .letters button,.et-scope .navrow button,.et-scope .wchip,.et-scope .flag,
+  .nbtn,.tgl{min-height:44px;box-sizing:border-box}
+  .chip,.tec-fbtn,.phx .chip,.vcmod .toolchip,.vc-tnav button,.pkmod header.top button,.pkmod .chip,.vb .chip,.gkmod .btn,.et-scope .letters button,.et-scope .navrow button{display:inline-flex;align-items:center;justify-content:center}
+  #tec-face-pain,#tec-face-skill,#tec-face-seq{grid-template-columns:1fr 1fr}
+}
+@media (min-width:1024px){
+  #tec-face-pain,#tec-face-skill,#tec-face-seq{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+.gkmod .dept .dcard,.gkmod .kid,.gkmod .page,.gkmod .st{background:#FBF8EF;border-color:#C9D3B4;color:#2F3A2C}
+.gkmod .chip,.gkmod .tok{background:#EEF3E2;border-color:#C9D3B4;color:#4A5A36}
+.gkmod .readout{background:#5E7D4A;color:#fff}
+.gkmod .readout .ph{color:#fff}
+.gkmod .hook{border-color:#5E6E3A;color:#5E6E3A;background:#EEF3E2}
+.gkmod .note,.gkmod .src,.gkmod .hud .hi .lab,.gkmod .pile .cap{color:#55604A;font-size:13px}
+@media (min-width:768px){
+  .gkmod .chip,.gkmod .tok{min-height:44px;display:inline-flex;align-items:center}
 }
 </style>
 </body>
