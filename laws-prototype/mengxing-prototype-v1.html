@@ -3559,6 +3559,8 @@ if (rg) { var el = document.getElementById('ph-reg'); el.hidden =!el.hidden; ret
 .vb .kid{font-size:16.5px;line-height:1.75}
 .vb .adult{font-size:12.5px;color:#889;line-height:1.65}
 .vb .say{border:none;background:#31449c;color:#fff;border-radius:999px;width:30px;height:30px;cursor:pointer;font-size:14px;vertical-align:middle;margin-left:6px}
+.say.rd{width:auto;padding:0 12px;font-size:13px;white-space:nowrap}
+span[id^="readFb"]:not(:empty){display:block;margin-top:4px}
 .vb .sent{font-size:17px;background:#f4f6ff;border-radius:12px;padding:9px 13px;margin:6px 0;line-height:1.6}
 .vb .sent .src, .vb .src{font-size:11.5px;color:#99a}
 .vb .badge{display:inline-block;font-size:11px;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
@@ -5050,7 +5052,7 @@ function renderMachine(){
   const ev=curEvent(); const vp=buildVP(ev.subj,ev.verb,M.time,M.aspect,M.gone);
   $('mBlocks').innerHTML=vp.blocks.map((b,i)=>'<span class="blk '+(b.cls||'main')+'" style="animation-delay:'+(i*0.14)+'s"><small>'+esc(b.k)+'</small>'+esc(b.t)+'</span>').join('')+(ev.comp?'<span class="blk comp" style="animation-delay:'+(vp.blocks.length*0.14)+'s">'+esc(ev.comp)+'</span>':'');
   const sentText=cap(ev.subj)+' '+vp.blocks.map(b=>b.cls==='hollow'?'＿＿':b.t).join(' ')+(ev.comp?' '+ev.comp:'')+'.';
-  $('mSent').innerHTML=esc(sentText)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(sentText)+'">🔊</button> <button class="say" onclick="VB.readAloud(this)" data-t="'+q(sentText)+'" data-fb="readFb-machine">🎤 跟读</button><span id="readFb-machine"></span>';
+  $('mSent').innerHTML=esc(sentText)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(sentText)+'">🔊</button> <button class="say rd" onclick="VB.readAloud(this)" data-t="'+q(sentText)+'" data-fb="readFb-machine">🎤 跟读</button><span id="readFb-machine"></span>';
   // timeline
   const POS={'past':17,'now':50,'fut':83};
   const bar=$('tlBar'),arr=$('tlArrow'),evx=$('tlEv'),rf=$('tlR');
@@ -5099,7 +5101,7 @@ function openTA(id){
   try{ if(u.id===loopLoad().cur) teach+='<div class="sent" id="loopReadTip" style="background:#e6f2e4">🎤 今日一课「读」环在本站：点下面任意例句旁的 🎤，大声读出声，读完这一环就打勾。</div>'; }catch(e){}
   teach+=tlLegendHTML();
   teach+='<h4>讲解（机制）</h4>'+u.beats.map(b=>'<p class="kid">'+esc(b.t)+'</p>'+(b.a?'<p class="adult">'+esc(b.a)+'</p>':'')).join('');
-  teach+='<h4>例句（模型原例）</h4>'+u.ex.map((x,xi)=>'<div class="sent">'+esc(x.s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(x.s)+'">🔊</button> <button class="say" onclick="VB.readAloud(this)" data-t="'+q(x.s)+'" data-ta="'+u.id+'" data-fb="readFb-ta-'+u.id+'-'+xi+'">🎤 跟读</button><span id="readFb-ta-'+u.id+'-'+xi+'"></span>'+(x.n?'<div class="adult">'+esc(x.n)+'</div>':'')+'</div>').join('');
+  teach+='<h4>例句（模型原例）</h4>'+u.ex.map((x,xi)=>'<div class="sent">'+esc(x.s)+' <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(x.s)+'">🔊</button> <button class="say rd" onclick="VB.readAloud(this)" data-t="'+q(x.s)+'" data-ta="'+u.id+'" data-fb="readFb-ta-'+u.id+'-'+xi+'">🎤 跟读</button><span id="readFb-ta-'+u.id+'-'+xi+'"></span>'+(x.n?'<div class="adult">'+esc(x.n)+'</div>':'')+'</div>').join('');
   let prac='';
   if(u.err.length){ prac+='<h4>病例（逐字登记）</h4>'+u.err.map(c=>'<div class="sent"><span class="err">✗ '+esc(c.wrong)+'</span><br><span class="ok">✓ '+esc(c.right)+'</span><div class="adult">错型：'+esc(c.type)+' · 出处：模型病例登记</div></div>').join(''); }
   else prac+='<div class="tagrow"><span class="badge b-type">病例待补（模型未登记逐字病例，本站不编）</span></div>';
@@ -5291,7 +5293,7 @@ function openHosp(id){
   const x=DATA.HOSPITAL.find(h=>h.id===id);
   let h='<h2>🏥 '+esc(x.title)+' <span class="badge b-case">逐字病例 '+x.cases.length+' 例</span></h2>';
   h+='<div class="sent" style="background:#e8f0fe">'+esc(x.def)+'</div>';
-  h+=x.cases.map(c=>'<div class="sent"><span class="err">✗ '+esc(c.wrong)+'</span> <button class="say" onclick="VB.say(this.dataset.t)" data-t="'+q(c.right)+'">🔊 对句</button><br><span class="ok">✓ '+esc(c.right)+'</span><div class="adult">学段：'+esc(c.stage)+(c.locator?'<br>定位：'+esc(c.locator):'')+'<br>出处：'+esc(c.src)+(c.note?'<br>'+esc(c.note):'')+'</div></div>').join('');
+  h+=x.cases.map(c=>'<div class="sent"><span class="err">✗ '+esc(c.wrong)+'</span> <button class="say rd" onclick="VB.say(this.dataset.t)" data-t="'+q(c.right)+'">🔊 对句</button><br><span class="ok">✓ '+esc(c.right)+'</span><div class="adult">学段：'+esc(c.stage)+(c.locator?'<br>定位：'+esc(c.locator):'')+'<br>出处：'+esc(c.src)+(c.note?'<br>'+esc(c.note):'')+'</div></div>').join('');
   h+='<div class="tagrow"><button class="chip gold" onclick="VB.openMachinePreset(\''+x.preset[0]+'\',\''+x.preset[1]+'\',\''+x.preset[2]+'\')">⏰ 去时间机器上看正形 →</button> <button class="chip" onclick="VB.openTA(\''+x.mech+'\')">📖 '+x.mech+' 原讲解 →</button></div>';
   h+=hospOverviewHTML();
   $('hospBody').innerHTML=h; show('v-hospital');
