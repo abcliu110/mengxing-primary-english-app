@@ -3,1502 +3,555 @@
 ## 一、收词总账
 
 - 词库总词数：2,473 条。
-- **收录进 etymology.json：2278 条**（verified 801 + 待核 1477）。
+- **收录进 etymology.json：2278 条**（verified 1757 + 待核 521；2026-11-02 审计后修复轮次的最新口径，全程见第十节）。
 - **未收（无词源可考/不单独立档）：195 条**，只在本说明里列清单，不进 JSON（用户口径：有则有、无则无，不强行建立）。
-- verified 的来源等级构成：二级双源互证 407 条；一级＋二级双源互证 386 条；一级＋三级互证 8 条。
-- verified 里复用 ETYM_DB 既有已核链作事实底稿的：487 条；本次新核的：314 条。
-- （以上数字为 2026-11-02 同形异词普查订正后的口径：verified 804→801、未收 192→195，订正全程见第九节。）
+- verified 的来源等级构成：二级双源互证 536 条；一级＋二级双源互证 1209 条；一级＋三级互证 12 条。
+- verified 里复用 ETYM_DB 既有已核链作事实底稿的：487 条；其余 1270 条为数据层建设与修复轮次新核。
+- （本节数字为 2026-11-02 修复轮次后的最新口径。此前口径沿革：初建 verified 804（见第八节）→ 同形异词普查订正 801、未收 192→195（第九节）→ 审计后修复轮次 verified 1757、待核 521（第十节）。）
 
-## 二、待核分账（有词源线索、但未达双源互证或关键字段无源可依）
+## 二、待核分账（2026-11-02 主干一致口径重跑后）
 
-- `chain_mismatch`：473 条
-- `fields_unfillable`：254 条
-- `second_source_missing`：233 条
-- `chain_unparsable`：220 条
-- `morph_only`：199 条
-- `chain_too_short`：85 条
-- `single_source`：11 条
-- `sources_conflict`：2 条
+重跑处理 1,234 条：主干一致者 956 条升 verified 并按新标准建档；保持待核 278 条的 pending_reason 已按新口径改写（类别如下）；最低频 C 档 243 条未处理，仍保留原口径原因（chain_unparsable / morph_only / chain_mismatch / chain_too_short），逐字未动，留待后续轮次。
 
-待核全表（词｜原因）：
+- `compositional`：201 条
+- `chain_unparsable`：105 条
+- `morph_only`：98 条
+- `chain_mismatch`：38 条
+- `origin_unknown`：27 条
+- `trunk_unsettled`：15 条
+- `single_source`：13 条
+- `trunk_divergent`：7 条
+- `evidence_gap`：5 条
+- `origin_unconfirmed`：4 条
+- `motivation_unsettled`：2 条
+- `chain_too_short`：2 条
+- `sources_split`：2 条
+- `form_of_be`：1 条
+- `form_of_rise`：1 条
 
-- above｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- accept｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- accessible｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- ache｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- acorn｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- across｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- act｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- active｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- activity｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- actor｜morph_only：构词拆分（act + -or）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- actress｜morph_only：构词拆分（actor + -ess）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- add｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- adjective｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- admissible｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- adverb｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- advice｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- affect｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- affix｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- afternoon｜morph_only：构词拆分（after- + noon）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- again｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+待核全表（词｜原因，以 etymology.json 各条 pending_reason 字段为准）：
+
+- actress｜compositional（主干复核后）：actor + -ess（阴性后缀）透明派生，现代词义「女演员」由构词直接可读（1580 年代「做事的女子」、1700 年舞台义为同一构式的义项定型）；词源叙事在 actor 本词，待核保持
+- afternoon｜compositional（主干复核后）：after + noon 透明复合（约 1300)，现代词义由构词直接可读、无历史漂移；词源叙事归形态层，待核保持
 - against｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- aggravate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- agreement｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- ail｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- air｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - aircraft｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - airline｜morph_only：构词拆分（air + line）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- airmail｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- airmail｜compositional（主干复核后）：构词透明（air + mail），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - airplane｜morph_only：构词拆分（air + plane）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - airport｜morph_only：构词拆分（air + port）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- allot｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- allow｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- alloy｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- alone｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- along｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- alphabet｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - already｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- also｜morph_only：构词拆分（all + so）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- although｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- always｜morph_only：构词拆分（alway + -s）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- ambulance｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- among｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- and｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- angrily｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- angry｜morph_only：构词拆分（anger + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- animal｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- animate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- anniversary｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- annual｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- another｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ant｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- antibiotic｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
+- angrily｜compositional（主干复核后）：构词透明（angry + -ly（angrily 的基词 angry 与 angr 的关系在他档）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- angry｜compositional（主干复核后）：anger + -y 透明派生（14 世纪末），现代词义即「有怒气的」由 anger 直接可读，无独立漂移链；词源叙事在 anger 本词，待核保持
 - antiseptic｜morph_only：构词拆分（anti- + septic）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- antonym｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- anybody｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- anyone｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- anywhere｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- apartment｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- appear｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- apple｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- apply｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- approach｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- aquarium｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- aquatic｜fields_unfillable：来源链已互证，但这个词在英语里最早什么时候出现，来源原文里没有可依据的说法
-- argument｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- armchair｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- around｜morph_only：构词拆分（a- + round）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- arrange｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- arrive｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- artist｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- as｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ascend｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- assign｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- astronomy｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- attach｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- attack｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- attend｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- attract｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- audible｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- august｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- author｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- autobus｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- autumn｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- awful｜morph_only：构词拆分（awe + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- baby｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- bachelor｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- bad｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- badge｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
+- anybody｜compositional（主干复核后）：构词透明（any + body），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- anyone｜compositional（主干复核后）：any + one 复合，古英语以来即两词并用，1844 年才合写；构件自明，本词不单独立档，保持待核
+- anywhere｜compositional（主干复核后）：构词透明（any + where），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- armchair｜compositional（主干复核后）：构词透明（arm + chair），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- autobus｜single_source（主干复核后）：法语 autobus 借入／auto- + bus 构词仅 Wiktionary 一源成录，Etymonline、牛津无词条；未达双源门，保持待核
+- bachelor｜trunk_unsettled（主干复核后）：「a word of uncertain origin」（Etymonline、牛津一致）。三候选并立无定论：中世纪拉丁语 baccalarius「无地佃农」（或出 vacca「牛」，Kitchin 说）、baculum「棍棒」（侍从练棍说）、凯尔特语源说（Wedgwood）；Century Dictionary 谓或为数词混同，保持待核
+- bad｜origin_unknown（主干复核后）：c. 1300 前罕见、1400 年前几无亲属词可寻（Etymonline：It has no apparent relatives in other languages）。古英语贬词 bæddel 缩略说三家皆仅作 perhaps/possibly；Wiktionary 另立古诺尔斯语 *badą「麻烦」借词说，无主干可对，保持待核
+- badge｜origin_unknown（主干复核后）：三源一致认定来源未定——牛津与 Etymonline 同标 unknown origin（盎格鲁-法语 bage／盎格鲁-拉丁语 bagia「徽记」更上无源）；Wiktionary 提出的原始日耳曼语 *baugaz「环」仅属推测（possibly），无可互证主干，保持待核
 - badminton｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- bag｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- baker｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- baker｜compositional（主干复核后）：bake + -er 行为人名词，古英语 bæcere 已成词（日耳曼语 *bakārijaz）；构件自明，本词不单独立档，保持待核
 - bakery｜morph_only：构词拆分（bake + -ery）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- ball｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- ballet｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- balloon｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- bamboo｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- banana｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bank｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bankrupt｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - baseball｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - basketball｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- bat｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- bath｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- bat｜trunk_unsettled（主干复核后）：两词同形须分线——bat「球棒」古英语 batt 或出凯尔特语（威尔士语 bat「杖」），后受古法语 batte 强化；bat「蝙蝠」为 16 世纪末中古英语 bakke（斯堪的纳维亚来源）的改形，其与古诺斯语 blaka「拍打」的关联 Wiktionary 明言 unclear。两线皆未定，保持待核
 - bathroom｜morph_only：构词拆分（bath + room）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- bead｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bean｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- beat｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - beautiful｜morph_only：构词拆分（beauty + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- beauty｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- because｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bed｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bedroom｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- bedroom｜compositional（主干复核后）：构词透明（bed + room，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - bedtime｜morph_only：构词拆分（bed + time）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- bee｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- beef｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- been｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- before｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- beige｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- believe｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bell｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- been｜form_of_be（主干复核后）：been 是 be 的过去分词（古英语 (ġe)bēon），形史本身无争议；但 be 为多词根拼合的异干互补动词（*h₁es-／*bʰuH-／*h₂wes- 三系），本库未收 be 的主干词条，been 的深层谱系无从附着，待 be 立档后随附
+- beige｜origin_unknown（主干复核后）：古法语 bege「未染色羊毛与棉的本色」（13 世纪）两家一致，但终极来源未明（牛津：of unknown ultimate origin；Etymonline：of obscure origin）；Wiktionary 阿尔卑斯语源经 *bysseus「棉灰」一线为推测链，不足作主干，保持待核
+- bell｜origin_unconfirmed（主干复核后）：古英语 belle，日耳曼语内仅见低地一线同源（余皆借词）；Etymonline 拟印欧语拟声根 *bhel-「吼、鸣」（perhaps，与 bellan「吼」相联）；孤证拟声说未获互证，保持待核
 - below｜morph_only：构词拆分（be- + low）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- beside｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- best｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - bet｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- beyond｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- bicycle｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- big｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- big｜origin_unknown（主干复核后）：三源一致认定来源未定——牛津明标 of unknown origin，Etymonline 称 obscure origin、或为斯堪的纳维亚方言来源（挪威语 bugge「大人物」），Wiktionary 仅给出 *bugja-「肿起」的推测链；无可互证的主干，保持待核
 - bike｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- bilingual｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- biography｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- biology｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bird｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- birth｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- birthday｜morph_only：构词拆分（birth + day）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - birthplace｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- biscuit｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- bishop｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bit｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- blackberry｜morph_only：构词拆分（black + berry）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- blackberry｜compositional（主干复核后）：black + berry 透明复合（古英语 blaceberian)，因果色得名，构词理据现代仍透明；词源叙事归形态层，待核保持
 - blackbird｜morph_only：构词拆分（black + bird）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - blackboard｜morph_only：构词拆分（black + board）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- blanket｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- blew｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- blown｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- blue｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - blueberry｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- boil｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- bookcase｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- bookcase｜compositional（主干复核后）：构词透明（book + case），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - bookmark｜morph_only：构词拆分（book + mark）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- bookshop｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- bookshop｜compositional（主干复核后）：构词透明（book + shop），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - bookstore｜morph_only：构词拆分（book + store）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- both｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- bottle｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- bough｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- boy｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- breakfast｜morph_only：构词拆分（break + fast）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- breathe｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- brilliant｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- broken｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- brother｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- brown｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- boy｜origin_unknown（主干复核后）：牛津与 Etymonline 均明标来源未定；Wiktionary 另立日耳曼语 *bōjô「幼弟」一线，余有古法语 embuie「戴镣者」说与 Liberman「拟声词＋昵称」混合说，并存而无主干互证，保持待核
 - brunch｜morph_only：构词拆分（breakfast + lunch）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- brush｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- bubble｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- building｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- bull｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- bus｜morph_only：构词拆分（omnibus）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- bush｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- building｜compositional（主干复核后）：build + -ing 动名词（约 1300 年「建筑物」义、14 世纪晚期「建造过程」义），构件自明，本词不单独立档，保持待核
 - busily｜morph_only：构词拆分（busy + -ly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - businessman｜morph_only：构词拆分（business + -man）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- butcher｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- butterfly｜morph_only：构词拆分（butter + fly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- butterfly｜motivation_unsettled（主干复核后）：切分 butter + fly 自古英语 buttorflēoge 以来无争议，然命名理据三说并存且皆无定论——（女巫化蝶）偷食黄油的旧信、常见种翅色奶黄、排泄物色（荷兰语同源词 boterschijte）；Etymonline 亦言 of obscure signification。切分成立而理据未定（半透明），保持待核
 - buzz｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- by｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- cabbage｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- caffeine｜morph_only：构词拆分（ine）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- cage｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- calf｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- calm｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- camel｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- camouflage｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - campfire｜morph_only：构词拆分（camp + fire）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- can｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- candlelight｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- candlestick｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- candy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- car｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- careful｜morph_only：构词拆分（care + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- carefully｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- carrot｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- carry｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- cat｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- catch｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- cause｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ceiling｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- celebrate｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- candlelight｜compositional（主干复核后）：构词透明（candle + light），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- candlestick｜compositional（主干复核后）：构词透明（candle + stick，古英语 candelsticca 已成词，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - cello｜morph_only：构词拆分（violoncello）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- cent｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- center｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- centigrade｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- centimetre｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- centre｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- chalk｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- centimetre｜single_source（主干复核后）：法语 centimètre 借入（centi- + metre）仅 Wiktionary 一源成录，Etymonline、牛津无词条；未达双源门，保持待核
 - champ｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - champagne｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- change｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- changeable｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- chase｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- changeable｜compositional（主干复核后）：构词透明（change + -able，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - chav｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- check｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- chef｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- chemist｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - chemistry｜morph_only：构词拆分（chemist + -ry）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- chess｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - chick｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- chicken｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- chief｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- chieftain｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- children｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - china｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- chinese｜morph_only：构词拆分（China + -ese）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- chocolate｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- chopstick｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - chosen｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- christmas｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- chronic｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- chronology｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- cigarette｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- cinema｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- city｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - classmate｜morph_only：构词拆分（class + -mate）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - classroom｜morph_only：构词拆分（class + room）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- clean｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- cleaner｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- clear｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- clearly｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- clef｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- clever｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- clickable｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- climb｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- climber｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- climbing｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- close｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- closet｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- cloudy｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- clover｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- club｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- clue｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- coach｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- coat｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- cleaner｜compositional（主干复核后）：构词透明（clean + -er），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- clearly｜compositional（主干复核后）：clear + -ly 副词（约 1300 年「清楚地」，1560 年代生「显然」义），构件自明，本词不单独立档，保持待核
+- clever｜trunk_unsettled（主干复核后）：「手巧」义（1580 年代）与「脑聪」义（1704）三源一致，但祖先词未有定论——东盎格鲁方言 cliver「善抓取」、东弗里斯兰语 klüfer、挪威方言 klover（或经中古低地德语 klever「粘着」一线）诸说并存，另有古诺斯语 kleyfr「易劈」说；无可互证的单一主干，保持待核
+- clickable｜compositional（主干复核后）：构词透明（click + -able（网络时代新构）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- climber｜compositional（主干复核后）：构词透明（climb + -er），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- climbing｜compositional（主干复核后）：构词透明（climb + -ing（动名词常规构成）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - coconut｜morph_only：构词拆分（coco + nut）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- codeine｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- coexist｜morph_only：构词拆分（co- + exist）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- coffee｜fields_unfillable：来源链已互证，但这个词在英语里最早什么时候出现，来源原文里没有可依据的说法
-- cold｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- collaborate｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- collect｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- collection｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- college｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- colour｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
-- colourful｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- combine｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- combustion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- comfortable｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- commerce｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- coexist｜compositional（主干复核后）：co- + exist 透明构词（1670 年代；晚期拉丁语 coexistere 为同构平行），现代词义由构词直接可读、无历史漂移；词源叙事在 exist 本词，待核保持
+- colourful｜compositional（主干复核后）：构词透明（colour + -ful），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - commercial｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- company｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- competition｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- compulsion｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
 - computer｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- conceit｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- conceive｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- concerto｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- confidence｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- confusion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- conquer｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- constellation｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- contemptible｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- conversion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- cookie｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- cooperate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- corn｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- corner｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- correspond｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
 - cosmic｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- cost｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- cot｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- cough｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- count｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- country｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - countryside｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- courageous｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- cousin｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- cover｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- cow｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- crayfish｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- creature｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - crosswalk｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- crown｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- crucial｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- cry｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- crystal｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- cube｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- cuff｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- cup｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- cuff｜origin_unknown（主干复核后）：中古英语 cuffe「手套、连指手套」；牛津两义皆作 of unknown origin，Etymonline 谓或出中世纪拉丁语 cuffia「头巾」（of uncertain origin, perhaps ultimately from Greek)，Wiktionary 作 of obscure origin。无互证主干，保持待核
 - cupcake｜morph_only：构词拆分（cup + cake）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- cushion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- cut｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - cute｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- dad｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - daddy｜morph_only：构词拆分（-y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- daily｜morph_only：构词拆分（day + -ly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- dance｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- dancer｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- dangerous｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- dark｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- darkness｜morph_only：构词拆分（dark + -ness）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- date｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- day｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- daydream｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- daily｜compositional（主干复核后）：day + -ly 透明派生（古英语 dæġlīċ 以来），现代词义由构词直接可读、无历史漂移；词源叙事归形态层，待核保持
+- dance｜origin_unknown（主干复核后）：经古法语 dancier（12 世纪）入英（约 1300)，然法语词本身来历不明——牛津与 Wiktionary 均作 of unknown/uncertain origin；Etymonline 拟低地法兰克语 *dintjan（perhaps，与古弗里斯语 dintje「颤动」相联）仅一家之拟，无第二家互证主干，保持待核
+- dancer｜compositional（主干复核后）：构词透明（dance + -er），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- dark｜origin_unconfirmed（主干复核后）：古英语 deorc 出日耳曼语 *derkaz，深层来历未定——Etymonline 明言 of uncertain etymology，Wiktionary 拟印欧 *dʰerg-「暗淡」作 possibly，牛津作 probably distantly related to German tarnen「隐藏」；拟测未获互证，保持待核
+- darkness｜compositional（主干复核后）：dark + -ness 抽象名词（古英语 deorcnes「无光」），构件自明、本义无转折，本词不单独立档，保持待核
+- day｜trunk_divergent（主干复核后）：古英语 dæg「日间；一生」与日耳曼语 *dagaz 本身确凿；印欧层分歧——Watkins 作 *agh-「一天」且谓日耳曼语 d- 来源 obscure，Boutkan 作 *dʰegʷʰ-「燃烧」；两家主干不合，保持待核
+- daydream｜compositional（主干复核后）：构词透明（day + dream），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - daylight｜morph_only：构词拆分（day + light）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - daytime｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- deceit｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- deceive｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- decide｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- decision｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- deeply｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- define｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- delicious｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- deliver｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- democracy｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- dentist｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- deny｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- depot｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- depth｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
+- deeply｜compositional（主干复核后）：构词透明（deep + -ly，古英语 dēoplīċe 已成词，比喻义为常规引申），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - derby｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- describe｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- description｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- design｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- desk｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- despise｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- destroy｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- detach｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
 - development｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- dictionary｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- die｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- differ｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- different｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- differentiate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- difficult｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- digest｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- digestion｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- direction｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - dirty｜morph_only：构词拆分（dirt + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- disappear｜morph_only：构词拆分（dis- + appear）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- disconnect｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- discuss｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- dislike｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- divide｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- do｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- disappear｜compositional（主干复核后）：dis-（表逆转）+ appear 构成（15 世纪早期），仿法语 disparaître，曾顶替本土 fordwīnan；构件自明，本词不单独立档，保持待核
+- disconnect｜compositional（主干复核后）：构词透明（dis- + connect），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- dislike｜compositional（主干复核后）：dis- + like 混合构词（1540 年代），曾顶替本土词 mislike；构件自明，本词不单独立档，保持待核
 - dodge｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - dodger｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- doe｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- does｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- dog｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- doe｜origin_unknown（主干复核后）：古英语 dā，牛津与 Etymonline 均作来源未明（Etymonline 另拟凯尔特语借词说）；Wiktionary 则上溯日耳曼语 *daihā、印欧根 *dʰeh₁(y)-「哺乳」（母鹿说）。两系处理互不相容，无两家互证主干，保持待核
+- dog｜origin_unknown（主干复核后）：英语词源著名悬案——牛津明标 of unknown origin，Etymonline 称其为「英语词源最大的谜团之一」：古英语 docga 晚出且罕见，本指一种强壮犬种，16 世纪挤走通语 hund（今 hound）成为通名；任何谱系说均无实据，保持待核
 - doll｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- dolphin｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- domicile｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- don't｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- donate｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- done｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- door｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- down｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - downstairs｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - downtown｜morph_only：构词拆分（down + town）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- dragonfly｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- draw｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- drawing｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- drawn｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- dream｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- dress｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- drink｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- dragonfly｜compositional（主干复核后）：构词透明（dragon + fly（比喻命名，构词透明）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- drawing｜compositional（主干复核后）：构词透明（draw + -ing（动名词常规构成）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - driven｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- driver｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- drum｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- driver｜compositional（主干复核后）：drive + -er 行为人名词（14 世纪晚期，最早义「赶牲口的人」），构件自明，本词不单独立档，保持待核
 - drunk｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- duckling｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- duckling｜compositional（主干复核后）：构词透明（duck + -ling），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - dumpling｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- duty｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - dwelling｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- dynamite｜morph_only：构词拆分（ite）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- eagle｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- early｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- earphone｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- earphone｜compositional（主干复核后）：构词透明（ear + phone），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - earthquake｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- earthworm｜morph_only：构词拆分（earth + worm）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- easily｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- easy｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- eaten｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- economic｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- economy｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- editor｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- education｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- effect｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- efficient｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- egg｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- eight｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- eighteen｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- eighth｜morph_only：构词拆分（eight + -th）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- eighty｜morph_only：构词拆分（eight + -ty）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- either｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- earthworm｜compositional（主干复核后）：earth + worm 透明复合（约 1400)，现代词义由构词直接可读（古英语另有 eorðmata、regnwyrm「雨虫」旧名）；词源叙事归形态层，待核保持
+- easily｜compositional（主干复核后）：构词透明（easy + -ly），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- eighteen｜compositional（主干复核后）：eight + -teen（ten 的弱化形）复合数词，古英语 eahtatīene、日耳曼语 *ahtōutehun 两源一致；构件自明，本词不单独立档，保持待核
+- eighth｜compositional（主干复核后）：eight + -th 序数词（古英语 eahtoþa 一线），构件自明，本词不单独立档，保持待核
+- eighty｜compositional（主干复核后）：eight + -ty（「十」组后缀）复合数词（古英语 hundeahtatiġ 一线），构件自明，本词不单独立档，保持待核
 - electrician｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- elephant｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- eliminate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
 - email｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- employee｜morph_only：构词拆分（employ + -ee）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- empty｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - enable｜morph_only：构词拆分（en- + able）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- ending｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- engineer｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- enjoy｜morph_only：构词拆分（en- + joy）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- enjoyable｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- enrich｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- ensue｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- entertain｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- entry｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- environment｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- equal｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- equation｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- equator｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- ending｜compositional（主干复核后）：现代形 end + -ing 完全透明；古英语已有 endung「终结」同源名词，但现代构词透明，词源叙事归形态层，待核保持
+- enjoyable｜compositional（主干复核后）：构词透明（enjoy + -able），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - eraser｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- erupt｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- especial｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- eventful｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- every｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- eventful｜compositional（主干复核后）：构词透明（event + -ful），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - everybody｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- everyone｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- everyone｜compositional（主干复核后）：构词透明（every + one），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - everything｜morph_only：构词拆分（every + thing）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- everywhere｜morph_only：构词拆分（æfre + gehwær）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- evoke｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- exact｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - exactly｜morph_only：构词拆分（exact + -ly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- exam｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
-- except｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- excitement｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- exercise｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- exist｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- expect｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- expedition｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- expensive｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- explain｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- explosion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- export｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- express｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- extension｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- eyebrow｜morph_only：构词拆分（eye + brow）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- eyeglass｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- eyelash｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- eyesight｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- fact｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- factory｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- fail｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- exam｜single_source（主干复核后）：examination 的学生俚语截短（1848）仅 Etymonline 一源成录，牛津词源栏无载、Wiktionary 无语源节；未达双源门，保持待核
+- excitement｜compositional（主干复核后）：构词透明（excite + -ment），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- eyebrow｜compositional（主干复核后）：eye + brow 复合（15 世纪早期；同构的古英语 ēagbrǣw 本指「眼皮」），构件自明，本词不单独立档，保持待核
+- eyeglass｜compositional（主干复核后）：构词透明（eye + glass），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- eyelash｜compositional（主干复核后）：构词透明（eye + lash），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- eyesight｜compositional（主干复核后）：构词透明（eye + sight），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - fairground｜morph_only：构词拆分（fair + ground）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- faith｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- fallen｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- family｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- fan｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - fancy｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- far｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- farm｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- faster｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- father｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- favourite｜fields_unfillable：来源链已互证，但这个词在英语里最早什么时候出现，来源原文里没有可依据的说法
-- feeling｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- feet｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- fell｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- faster｜compositional（主干复核后）：构词透明（fast 的比较级（常规屈折）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- feeling｜compositional（主干复核后）：feel + -ing 动名词（12 世纪晚期「触摸、触觉」义，14 世纪中期生「情感」义，15 世纪中期生「看法」义），构件自明，本词不单独立档，保持待核
 - fence｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- fifteen｜morph_only：构词拆分（five + -teen）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- finally｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- find｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- finish｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- firefighter｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- firefly｜morph_only：构词拆分（fire + fly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- fifteen｜compositional（主干复核后）：five + -teen 的数词构式，古英语 fīftīene 以来构词透明、词义无漂移，现代词仍是「五加十」的活构式（与全数词同一口径）；词源叙事归形态层，待核保持
+- finally｜compositional（主干复核后）：构词透明（final + -ly），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- firefighter｜compositional（主干复核后）：构词透明（fire + fighter），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- firefly｜compositional（主干复核后）：fire + fly 透明描形复合（1650 年代），因虫体发光得名，构词理据现代仍透明；词源叙事归形态层，待核保持
 - fireman｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- fireplace｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- firework｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- first｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- fisherman｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- fishing｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- fireplace｜compositional（主干复核后）：构词透明（fire + place），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- firework｜compositional（主干复核后）：构词透明（fire + work），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- fisherman｜compositional（主干复核后）：构词透明（fisher + man），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- fishing｜compositional（主干复核后）：构词透明（fish + -ing，动名词常规构成，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - fit｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- fizz｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- flag｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- flak｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- flammable｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- flag｜origin_unknown（主干复核后）：牛津与 Etymonline 均标来源未定（OED 谓或为拟声的「飘动」造词，亦有接日耳曼语 *flaką「扁平物」说），无可互证主干，保持待核
 - flashlight｜morph_only：构词拆分（flash + light）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- flew｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- flex｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- flexible｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- flood｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- floor｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- floss｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- flower｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- flown｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
+- floss｜origin_unknown（主干复核后）：1759 年「粗丝」义；Etymonline 作 of uncertain origin——或出法语 floche ← 拉丁语 floccus（本身 of unknown origin），或为未载的古英语/古诺斯语 fleece 词根方言存留；牛津作 of unknown origin。无互证主干，保持待核
 - flu｜morph_only：构词拆分（influenza）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- flute｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- fly｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- fog｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- fog｜trunk_unsettled（主干复核后）：1540 年代「浓雾」义；来源未定——或 foggy 的逆构（foggy 又出 fog「高草、苔沼」一线），或直接借斯堪的纳维亚语（丹麦语 fog「飞沫、雪团」、古诺斯语 fjúka「吹」出日耳曼语 *feukaną）；牛津作 perhaps a back-formation，两路未合，保持待核
 - foggy｜morph_only：构词拆分（fog + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- fold｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
 - football｜morph_only：构词拆分（foot + ball）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- footprint｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- for｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- footprint｜compositional（主干复核后）：构词透明（foot + print，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - forecast｜morph_only：构词拆分（fore- + cast）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- foreign｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - foreigner｜morph_only：构词拆分（foreign + -er）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- forest｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- foreword｜morph_only：构词拆分（fore- + word）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- forfeit｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- forgetful｜morph_only：构词拆分（forget + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- forgetful｜compositional（主干复核后）：forget + -ful 透明派生（14 世纪末 foryetful;Etymonline 称 a curious formation)，现代词义「健忘」由构词直接可读（1550 年代「使人忘却」义仅见于诗）；词源叙事归形态层，待核保持
 - forgotten｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- fourteen｜morph_only：构词拆分（four + -teen）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- fourth｜morph_only：构词拆分（four + -th）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- fridge｜morph_only：构词拆分（refrigerator）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- friendship｜morph_only：构词拆分（friend + -ship）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- frog｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- frolic｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- fourteen｜compositional（主干复核后）：four + -teen 复合数词（古英语 fēowertīene 一线），构件自明，本词不单独立档，保持待核
+- friendship｜compositional（主干复核后）：friend + -ship 透明派生（古英语 frēondsċiepe 以来构式未变），现代词义由构词直接可读；词源叙事在 friend 本词，待核保持
 - fudge｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- fun｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- funny｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- fur｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- future｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- funny｜compositional（主干复核后）：fun + -y 构词透明，1756 年始见（Etymonline），「奇怪」义 1806 年；基词 fun 本身尚在待核，派生词按项目口径随基词处理，不单独立档
 - fuzz｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - gal｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- gamify｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- garden｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- gardener｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- garlic｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- gas｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- gasoline｜morph_only：构词拆分（gas + -ol）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- gate｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- gave｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- gear｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- gecko｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- gamify｜compositional（主干复核后）：构词透明（game + -ify（当代新构）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- gardener｜compositional（主干复核后）：garden 的行为人（或仿古北法语 *gardinier 借/仿造，13 世纪晚期），曾顶替本土 wyrtweard「植物看守」；构件自明，本词不单独立档，保持待核
 - geese｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- gem｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- gentleman｜morph_only：构词拆分（gentle + man）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- geography｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- geology｜morph_only：构词拆分（geo + logy）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- geyser｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- giant｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- giggle｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- gill｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- ginkgo｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ginseng｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- giraffe｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- girl｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- gill｜origin_unknown（主干复核后）：Etymonline 明标 of unknown origin；与斯堪的纳维亚语（古诺斯语 gjǫlnar）的关联及印欧语 *gʰel-「颌」的谱系均为推测（perhaps/said to be）；牛津词源栏无载，保持待核
+- girl｜origin_unknown（主干复核后）：约 1300 年 gyrle「孩子（不分男女）」；Etymonline 明言 of unknown origin；OED 拟未载的古英语 *gyrele 一线被 Liberman 判「音理学上难以接受」，另有 gierela「衣服」说；旧民间说出自拉丁语 garrulus「多嘴的」已被弃置。无互证主干，保持待核
 - given｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- goalkeeper｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- goat｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- going｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- golden｜morph_only：构词拆分（gold + -en）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- goalkeeper｜compositional（主干复核后）：构词透明（goal + keeper），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - goldfish｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- golf｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - gone｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- good｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- goodbye｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- government｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- graduate｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- granddaughter｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- grandfather｜morph_only：构词拆分（grand- + father）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- granddaughter｜compositional（主干复核后）：构词透明（grand- + daughter），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - grandma｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- grandmother｜morph_only：构词拆分（grand- + mother）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - grandpa｜morph_only：构词拆分（grand- + pa）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - grandparent｜morph_only：构词拆分（grand- + parent）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - grandson｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- grape｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - grapefruit｜morph_only：构词拆分（grape + fruit）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- grass｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- grasshopper｜morph_only：构词拆分（grass + hopper）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- grasshopper｜compositional（主干复核后）：grass + hopper 复合（古英语 græshoppa），构件自明，本词不单独立档，保持待核
 - grassy｜morph_only：构词拆分（grass + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - greenhouse｜morph_only：构词拆分（green + house）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- grey｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - grown｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- grown-up｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
-- growth｜morph_only：构词拆分（grow + -th）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- guarantee｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- guard｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- guardian｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- guava｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- guess｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- guest｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- guitar｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- guru｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- gym｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
-- had｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- haiku｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
+- grown-up｜single_source（主干复核后）：grow up 的分词形容词化（14 世纪晚期；名词义 1813）仅 Etymonline 一源成录，余两源无载；未达双源门，保持待核
 - haircut｜morph_only：构词拆分（hair + cut）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- hall｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hamburger｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- hammock｜fields_unfillable：来源链已互证，但这个词在英语里最早什么时候出现，来源原文里没有可依据的说法
-- handbag｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- handmade｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- handsome｜morph_only：构词拆分（hand + -some）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- handbag｜compositional（主干复核后）：构词透明（hand + bag），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- handmade｜compositional（主干复核后）：构词透明（hand + made），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - haphazard｜morph_only：构词拆分（hap + hazard）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- happen｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- happily｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- happily｜compositional（主干复核后）：构词透明（happy + -ly），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - happiness｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- happy｜morph_only：构词拆分（hap + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- has｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hatchet｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- hate｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hawk｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- haystack｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- he｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- haystack｜compositional（主干复核后）：构词透明（hay + stack），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - headmaster｜morph_only：构词拆分（head + master）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - headphone｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- health｜morph_only：构词拆分（whole）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - healthy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- heavily｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- height｜morph_only：构词拆分（high + -t）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- heir｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- hello｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- helmet｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - helpful｜morph_only：构词拆分（help + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- hen｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- heretic｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - hers｜morph_only：构词拆分（her + -s）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- herself｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hi｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- hiccough｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
+- hiccough｜single_source（主干复核后）：hiccup 因误联 cough 而改拼的变体（1620 年代）仅 Etymonline 一源成录；基词 hiccup 本身尚在待核，保持待核
 - hiccup｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - highlight｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- him｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- himself｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- hinge｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- history｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- hit｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hobby｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hock｜morph_only：构词拆分（hockamore）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- hoe｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- hold｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- hole｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
 - hometown｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - homework｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- honest｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- honeybee｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- honeybee｜compositional（主干复核后）：构词透明（honey + bee），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - hopeful｜morph_only：构词拆分（hope + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- hopping｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- hospital｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- host｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- hotel｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- hotter｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- hough｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- hound｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- house｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- housewife｜morph_only：构词拆分（house + wife）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- housework｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- however｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- humour｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- hundred｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hurry｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hurt｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- hutch｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- i｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ice｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- icy｜morph_only：构词拆分（ice + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- illegal｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- illiterate｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- hopping｜compositional（主干复核后）：构词透明（hop + -ing（动名词常规构成）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- hotter｜compositional（主干复核后）：构词透明（hot 的比较级（常规屈折）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- hough｜single_source（主干复核后）：古英语 hōh「踵」一线仅 Wiktionary 成录，Etymonline 仅转指 hock 词条、牛津无载；未达双源门，保持待核
+- housework｜compositional（主干复核后）：构词透明（house + work），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- however｜compositional（主干复核后）：构词透明（how + ever，14 世纪晚期成词），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- hurry｜trunk_unsettled（主干复核后）：1590 年代见载（莎士比亚多用）；两拟并立——或为 harry 的变体，或出中古英语 hurren「急速振动、嗡嗡」（出日耳曼语 *hurza）；牛津作 imitative。路径未定，保持待核
+- hutch｜trunk_divergent（主干复核后）：入英主干两说——Etymonline 与牛津作古法语 huche ← 中世纪拉丁语 hutica（来源未定）借入；Wiktionary 则作本土古英语 hwiċe「箱」一线，仅拼写受 huche 影响、且 huche 出自另一日耳曼词根 *hudjō；词本身出自哪条线未定，保持待核
+- icy｜compositional（主干复核后）：ice + -y 透明派生（古英语 īsiġ 有同构词，现代用法为中古晚期重构），词义由构词直接可读；词源叙事归形态层，待核保持
 - illness｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- illuminate｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- illusion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - imbalance｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- immature｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- immerse｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- immortal｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- impolite｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- import｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- important｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- impossible｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- improv｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- in｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- include｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- income｜morph_only：构词拆分（in- + come）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- incorrect｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- incredible｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- inflammable｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- inform｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- innovation｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- input｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- inquire｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- insect｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- inside｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- inspect｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- instruction｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- interest｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- international｜morph_only：构词拆分（inter- + national）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- impossible｜compositional（主干复核后）：im-（in- 的同化形，义「不」）+ possible，整体出拉丁语 impossibilis 经古法语于 14 世纪晚期入英；否定构件完全透明，本词不单独立档，保持待核
 - internet｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- interrogate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- interrupt｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- introduce｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - invaluable｜morph_only：构词拆分（in- + valuable）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- invent｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- invention｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- inventor｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- invisible｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- invitation｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- invite｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- irregular｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- irresponsible｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- irrigate｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- irritate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- it｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- itch｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- jacket｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- jam｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- irresponsible｜compositional（主干复核后）：构词透明（ir- + responsible），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- jam｜origin_unknown（主干复核后）：动词 jam「挤、塞」1706/1719 年见载，of unknown origin（或为中古英语 cham「咬」的变体）；名词「果酱」（1730 年代）当为动词的转用（压碎成酱），然动词本身来历不明，主干缺失，保持待核
 - jazz｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - job｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- joy｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- judge｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- juicy｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- jump｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- kangaroo｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- juicy｜compositional（主干复核后）：构词透明（juice + -y），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- jump｜trunk_divergent（主干复核后）：Wiktionary 主张源于原始日耳曼语 *gumbōną「蹦跳」（经中古低地德语或古诺斯语传入），Etymonline 与牛津（据 OED）则认为该词 1520 年代才在英语出现、无更早来源、很可能是拟声造词，德语同源关系无据；两说在主干上对立，保持待核
 - karate｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- karma｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - kayak｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- keeper｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- keeper｜compositional（主干复核后）：keep + -er 行为人名词（约 1300 年「看守人」义），构件自明，本词不单独立档，保持待核
 - kept｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ketchup｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- kettle｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- ketchup｜trunk_unsettled（主干复核后）：主流说为马来语 kecap ← 闽南语「膎汁」kê-chiap「鱼卤」（Wiktionary 作 probably，Etymonline 转述现代来源同此说但加 possibly），牛津另作粤语 k'ē chap「番茄汁」（perhaps），Etymonline 另载图卢语 kajipu「咖喱」说；三路皆带保留、无两家无条件互证，且 17-18 世纪此词泛指凤尾鱼/蘑菇/牡蛎等多种酱汁、番茄义晚至 19 世纪末，主干未定，保持待核
 - keyboard｜morph_only：构词拆分（key + board）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- kill｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- kilo｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
-- kind｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- kindness｜morph_only：构词拆分（kind + -ness）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- kingly｜morph_only：构词拆分（king + -ly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- kit｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- kite｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- kitten｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- knee｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- know｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- knowledge｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- known｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- koala｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- koi｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- kowtow｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ladder｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- kill｜trunk_unsettled（主干复核后）：约 1200 年「击打」、约 1300 年「杀死」；来源三拟并立——未载的古英语 *cyllan（出日耳曼语 *kwuljaną ← 印欧语 *gʷelH-「投掷伤人」)、古英语 cwellan「处死」的变体（quell 一线，牛津/Etymonline 所主但作 probably/perhaps)、古诺斯语 kolla「击头」；无两家确立的同一主干，保持待核
+- kindness｜compositional（主干复核后）：kind + -ness 透明派生（约 1300 kyndenesse「礼貌、善行」以来构式未变），现代词义由构词直接可读；词源叙事在 kind 本词，待核保持
+- kingly｜compositional（主干复核后）：king + -ly 透明派生（古英语 *cyninglīċ 已有同构词），现代词义由构词直接可读、无历史漂移；词源叙事在 king 本词，待核保持
+- koi｜evidence_gap（主干复核后）：1727 年借自日语 鯉 koi「鲤鱼」，两家缓存仅有此一线记录，原始义项编年与字段无从填实（汉字 鯉 的语源不在缓存内）；按不降格建档原则保持待核
 - ladybug｜morph_only：构词拆分（lady + bug）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - lain｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- lake｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- lamb｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- lantern｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - laser｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- laugh｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- lay｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- lazy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- lazy｜origin_unconfirmed（主干复核后）：1540 年代 laysy「厌于劳作」；Wiktionary 作 origin uncertain，Etymonline 作 a word of unknown origin——Skeat 主低地德语说（中古低地德语 lasich「软弱」← 印欧语 *(s)leg-「松弛」）为今之通说但仍属拟测；另有 lay 派生说（仿 tipsy）。无互证主干，保持待核
 - leader｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- league｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- learner｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- left｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- leisure｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- lemon｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- let｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- librarian｜morph_only：构词拆分（library + -an）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- lice｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- life｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- lightning｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- limitable｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- lion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- learner｜compositional（主干复核后）：构词透明（learn + -er），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- lice｜single_source（主干复核后）：louse 的复数（古英语 lȳs，元音变音复数）仅 Wiktionary 一源成录，Etymonline（lice 词条为空）、牛津无载；未达双源门，保持待核
+- limitable｜compositional（主干复核后）：构词透明（limit + -able），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - lipstick｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- listen｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- lock｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- log｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- logic｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- log｜origin_unknown（主干复核后）：中古英语 logge，牛津与 Etymonline 均作来源未明（牛津或拟「象征沉重之拟形」）；古诺尔斯语 lág「倒下的树」一线被多位词源学家以语音理由否决，无两家互证主干；「日志」义出航海测程木（log）传统，其源头词本身未定，保持待核
 - lonely｜morph_only：构词拆分（lone + -ly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - lorry｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- lost｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- loudly｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- lough｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- louse｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- lovable｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- loyal｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
+- loudly｜compositional（主干复核后）：构词透明（loud + -ly），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- lovable｜compositional（主干复核后）：构词透明（love + -able），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - luckily｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - lucky｜morph_only：构词拆分（luck + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - luggage｜morph_only：构词拆分（lug + -age）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- luminous｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- lunar｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- lunch｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- lunchtime｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- made｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- magic｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- magician｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- maglev｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- manage｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- manageable｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- mango｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- market｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- marry｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mat｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- lunch｜trunk_unsettled（主干复核后）：lunch「午餐」为 luncheon 的截短（截短年代 Etymonline 作 1786、Wiktionary 梳理作 1829）两源一致；但 luncheon 本身主干未决——OED 谓与「大块（hunk）」旧词（1570 年代）同形、或由 lump 演变，Wiktionary 并存 nuncheon（noon + schench「饮」）改造说与 lunch + -ing 说；上游未定，保持待核
+- lunchtime｜compositional（主干复核后）：构词透明（lunch + time），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- maglev｜compositional（主干复核后）：构词透明（magnetic levitation 的缩合混成（mag- + lev-），当代科技术语造词），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- manageable｜compositional（主干复核后）：构词透明（manage + -able），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - math｜morph_only：构词拆分（mathematics）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- me｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- meant｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- meat｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- medical｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- men｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- menu｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- mess｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - messy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- metaphor｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- metre｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- metro｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- microphone｜morph_only：构词拆分（micro + phone）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- microscope｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- midnight｜morph_only：构词拆分（mid- + night）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- mighty｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- milkshake｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- million｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mimic｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mind｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- midnight｜compositional（主干复核后）：mid- + night 复合（古英语 midniht，日耳曼语 *midjanahts 同构），构件自明，本词不单独立档，保持待核
+- mighty｜compositional（主干复核后）：现代形 might + -y 完全透明（古英语 mihtiġ、日耳曼语 *mahtīgaz 的构词在形态层完整可溯）；词义无历史漂移记录，词源叙事归形态层，待核保持
+- milkshake｜compositional（主干复核后）：构词透明（milk + shake），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - mini｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- mirage｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- mirror｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- misread｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- miss｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- misread｜compositional（主干复核后）：构词透明（mis- + read，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- miss｜evidence_gap（主干复核后）：词库义（对女子的称呼）为 mistress 的 17 世纪缩略，Etymonline（miss n.2：by 1700「未婚年轻女子」）与 Wiktionary（From mistress）一致；但 mistress 不在词库、三套缓存均无其条目原文，链条中段（magister 系）证据缺失，按标准不凭记忆建档，保持待核
 - misunderstand｜morph_only：构词拆分（mis- + understand）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - mitt｜morph_only：构词拆分（mitten）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- mix｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mnemonic｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- model｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- moderate｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- modernize｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- modernize｜compositional（主干复核后）：构词透明（modern + -ize，1680 年代成词，或经法语 moderniser，两说并存于来源），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - mom｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- moment｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- monday｜morph_only：构词拆分（Moon + day）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- monkey｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- month｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mooncake｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- moonlight｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- monkey｜trunk_unsettled（主干复核后）：牛津标来源未定；主流推测为未见载的中古低地德语 *moneke（1498 年《列那狐》中猿猴之子的名字），其本身或出罗曼语 monne 一族、终极或出阿拉伯语 maimun「吉祥的」（Klein 谓系避讳语），链环多为构拟与或然，未成双源互证，保持待核
+- mooncake｜compositional（主干复核后）：构词透明（moon + cake），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- moonlight｜compositional（主干复核后）：moon + light 复合（中古英语 moonelight），构件自明，本词不单独立档，保持待核
 - moose｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- moreover｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- morning｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mortal｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- mother｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- motion｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- motivate｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- moreover｜compositional（主干复核后）：构词透明（more + over（源短语 and yit more ouer），14 世纪晚期写合），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- motivate｜single_source（主干复核后）：motive + -ate（1863，或仿法语 motiver）仅 Etymonline 一源成录，牛津无载、Wiktionary 仅作对照；未达双源门，保持待核
 - motorcycle｜morph_only：构词拆分（motor + cycle）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- mould｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mountain｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mouse｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- movable｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- move｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- movement｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- movie｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- mr｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- mrs｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- much｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- mr｜single_source（主干复核后）：Mister 的缩略仅 Wiktionary 一语成录，Etymonline、牛津无独立词源条；未达双源门，保持待核
 - mum｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- mushroom｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- music｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- mutton｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- my｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- myself｜morph_only：构词拆分（me + self）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- myth｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- napkin｜morph_only：构词拆分（nape + -kin）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- nation｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- national｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- natural｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- navigate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- navy｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- needle｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- neighbour｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- neighbourhood｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- nervous｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- news｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- mushroom｜trunk_unsettled（主干复核后）：中古经盎格鲁-法语 musherun（古法语 mousseron）入英；深层分歧——OED 谓通常作法语 mousse「苔藓」（出日耳曼语）的派生、Weekley 从之，Klein 谓两者「毫无共同之处」、Barnhart 作 of uncertain origin；晚期拉丁语 mussirio 一形或反借自法语。主干未定，保持待核
+- neighbourhood｜compositional（主干复核后）：构词透明（neighbour + -hood（英式拼法）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - newspaper｜morph_only：构词拆分（news + paper）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- nineteen｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ninety｜morph_only：构词拆分（nine + -ty）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- nitrate｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- no｜morph_only：构词拆分（ne + a）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- nobody｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- nineteen｜compositional（主干复核后）：nine + -teen（ten 的弱化形）复合数词，古英语 niġontīene、日耳曼语 *newuntehun 两源一致；构件自明，本词不单独立档，保持待核
+- ninety｜compositional（主干复核后）：nine + -ty 的数词构式，古英语 nigontiġ 以来构词透明、词义无漂移（与全数词同一口径）；词源叙事归形态层，待核保持
+- nobody｜compositional（主干复核后）：no + body 复合，约 1300 年作 no bodi 两词，14—18 世纪分写、后合写；1580 年代另生「小人物」义；构件自明，本词不单独立档，保持待核
 - noisy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- nonfiction｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- nonsense｜morph_only：构词拆分（non- + sense）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- nonstop｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- not｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- notch｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- nonfiction｜compositional（主干复核后）：构词透明（non- + fiction），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- nonsense｜compositional（主干复核后）：non- + sense 透明构词（约 1610)，现代词义由构词直接可读、无历史漂移；词源叙事归形态层，待核保持
+- nonstop｜compositional（主干复核后）：构词透明（non- + stop），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - notebook｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - noticeable｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- now｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- number｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - o'clock｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- obey｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- object｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- occasion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- ocean｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- odd｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - oddity｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- of｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- off｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- often｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - ok｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- old｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- once｜morph_only：构词拆分（one + -s）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- onion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- oppose｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- or｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- orange｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- order｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- ours｜morph_only：构词拆分（our + -s）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- ourselves｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- out｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- outrage｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- ourselves｜compositional（主干复核后）：构词透明（our + selves（反身构成）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - outside｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - overcoat｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- overnight｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
 - overweight｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- oyster｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- page｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - painful｜morph_only：构词拆分（pain + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- paint｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- painter｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- pal｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- palace｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- pancake｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- panda｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- panicky｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- pants｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- paper｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- parachute｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- parallel｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- parent｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- parrot｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- partner｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- passenger｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- passport｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- pancake｜compositional（主干复核后）：构词透明（pan + cake，约 1400 年成词（或仿中古低地德语 pankôke 的同构复合），义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- panicky｜compositional（主干复核后）：构词透明（panic + -y），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - password｜morph_only：构词拆分（pass + word）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - past｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - pat｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- pathology｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- patient｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- payment｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- peaceful｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- peak｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- peanut｜morph_only：构词拆分（pea + nut）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- pedestrian｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- pencil｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- penguin｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- people｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- perceive｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- perform｜sources_conflict：牛津词源栏作“from Anglo-Norman …”，这个来源在 Wiktionary 链与词源原文里都找不到，Etymonline 也未提及；两说并存，不擅自裁定；两说并存，不擅自裁定，整条待核
-- permissible｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- person｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- persuade｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- peaceful｜compositional（主干复核后）：peace + -ful（14 世纪早期），曾顶替古英语 friþsum；构件自明，本词不单独立档，保持待核
+- peanut｜trunk_unsettled（主干复核后）：Etymonline 作 pea + nut 复合（1807)，然 Wiktionary 明注此形 perhaps a folk etymology of pinda/pinder（源出非洲语言的旧名，南美植物经葡萄牙人传播）；构词理据未定，两说未合，保持待核
+- penguin｜origin_unknown（主干复核后）：牛津「of unknown origin」，Etymonline 亦云未明。威尔士语 pen「头」+ gwyn「白」说「常被断言」而未证，拉丁语 pinguis「肥」仅形似，无一家定案；指称转移（1570 年代指北半球大海雀 → 1580 年代南半球企鹅）有据而词形来历无主干可对，保持待核
 - pet｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- philosophy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- phone｜morph_only：构词拆分（telephone）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - photo｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - photocopy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - photograph｜morph_only：构词拆分（photo + graph）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- photographer｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- photographer｜compositional（主干复核后）：构词透明（photograph + -er），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - photographic｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - photography｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- pianist｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- piano｜morph_only：构词拆分（pianoforte）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- pick｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- pickle｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- picnic｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- picture｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- picturesque｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- pie｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- piece｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- pig｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
+- pie｜trunk_unsettled（主干复核后）：约 1300 年「馅饼」，中世纪拉丁语 pie 一线或与 pica「喜鹊」相联（以鹊之杂集喻馅之杂合，牛津/Etymonline 皆作 perhaps/possibly)，或出自姓氏 Pie 的创制者；两拟未定，保持待核
+- piece｜trunk_unsettled（主干复核后）：经古法语 piece ← 通俗拉丁语 *pettia；深层未定——Wiktionary 标注 of uncertain origin，Etymonline 拟高卢语 *pettsi（出凯尔特语 *kwezd-i- ← 印欧语 *kwezd-「部分」）作 probably，牛津作 of obscure ultimate origin。单线拟测未获第二家确立，保持待核
+- pig｜origin_unknown（主干复核后）：中古英语 pigge 本义「小猪」（成年猪旧称 swine），古英语 *picga 仅见于复合词；其深层来历 Etymonline 明言 like dog, its further etymology unknown，OED 记与低地德语 bigge 的关系「音系困难」；牛津另作 picbrēd「猪食」首元说，Pokorny 拟联印欧 *bew-「吹、胀」（并牵 big），三说互不相容且皆带保留，无互证主干，保持待核
 - piglet｜morph_only：构词拆分（pig + -let）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- pilot｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- pineapple｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ping-pong｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
 - pink｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- pitch｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- pitcher｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- pizza｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- playground｜morph_only：构词拆分（play + ground）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- pleasant｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- please｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- plough｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- ploughman｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- plow｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
+- pitch｜origin_unknown（主干复核后）：词库义项为投掷/音高一线（pitch v.1/n.1）；牛津明言此线「或许关联古英语 picung，终极来源未明，词义演变晦暗」（of unknown ultimate origin; sense development obscure），Etymonline 亦称诸义项间关联 obscure，无互证主干。沥青义 pitch（出拉丁语 pix）为同形异词，不属本义项，保持待核
+- pizza｜origin_unknown（主干复核后）：意大利语 pizza 本义「饼」，1845 年入英；其意大利语词源 of uncertain origin——希腊语 pēktḗ/pittakion、拉丁语 pīnsere「捣」与 pinza「夹」诸说并立，无一确立，保持待核
+- playground｜compositional（主干复核后）：play + ground 现代透明复合（1780 年记录），词义即「玩的场地」无历史漂移（古英语另有 plegstow 同义旧构）；词源叙事归形态层，待核保持
+- ploughman｜compositional（主干复核后）：构词透明（plough + man），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- plow｜single_source + 深层未定（主干复核后）：plough 的美式拼法；其谱系仅 Etymonline 成录（古英语 ploh ← 原始日耳曼语 *plōga-，Boutkan 指该词来源未定、或非印欧来源），Wiktionary、牛津无独立词条；且 plough 本词尚在待核，保持待核
 - plus｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- pneumonia｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- pocket｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - policeman｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- policewoman｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- politely｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- policewoman｜compositional（主干复核后）：构词透明（police + woman），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- politely｜compositional（主干复核后）：构词透明（polite + -ly），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - politician｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - popcorn｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- popular｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - posh｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- post｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - postcard｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - postman｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- potato｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- power｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- practise｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
 - prawn｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- predict｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- preheat｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- present｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- preheat｜compositional（主干复核后）：构词透明（pre- + heat），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - preview｜morph_only：构词拆分（pre- + view）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- prey｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- princess｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- print｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- produce｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- product｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- project｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- propose｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- protein｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- provide｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- psalm｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - psychological｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- psychology｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- ptarmigan｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- pull｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- pun｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- puppy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- push｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- pun｜origin_unknown（主干复核后）：1640 年代「双关」义；来源未定——或谓 pundigrion 的截短（pundigrion 本身词源未明），或谓意大利语 puntiglio 的戏谑改形（出拉丁语 punctum「点」），OED 评后说为 pure speculation；牛津作 perhaps。无互证主干，保持待核
 - putt｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - puzzle｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- quarter｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- queue｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- quiche｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- quickly｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- quiet｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- quietly｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- quilt｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- quite｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- quietly｜compositional（主干复核后）：构词透明（quiet + -ly），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - quiz｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- rabbit｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - railway｜morph_only：构词拆分（rail + way）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- rain｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rainbow｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- raincoat｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- raindrop｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- rainstorm｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- rainy｜morph_only：构词拆分（rain + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- rainbow｜compositional（主干复核后）：rain + bow 通用日耳曼复合（古英语 regnboga 以来），现代词义由构词直接可读、无历史漂移；词源叙事归形态层，待核保持
+- raincoat｜compositional（主干复核后）：构词透明（rain + coat），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- raindrop｜compositional（主干复核后）：构词透明（rain + drop，古英语 reġndropa 已成词（原始日耳曼语 *regnadrupô），义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- rainstorm｜compositional（主干复核后）：构词透明（rain + storm），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- rainy｜compositional（主干复核后）：rain + -y 形容词，古英语 reġniġ 已成词（日耳曼语 *regnagaz）；构件自明、词义无转折，本词不单独立档，保持待核
 - readable｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- reader｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- ready｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - really｜morph_only：构词拆分（real + -ly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- reason｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- receipt｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- receive｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - recycle｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- reduce｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- refer｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - refill｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- reflect｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- refuse｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- reign｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rein｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- reject｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - reliable｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- remove｜morph_only：构词拆分（re- + move）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- repeat｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- report｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- reporter｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - reread｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - resentful｜morph_only：构词拆分（resent + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- residence｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rest｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- restaurant｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- restive｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
 - restroom｜morph_only：构词拆分（rest + room）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- retell｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- retrospect｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
+- retell｜compositional（主干复核后）：构词透明（re- + tell），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - rev｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- review｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- revive｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - rewrite｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- rhyme｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rice｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- right｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rime｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- river｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- roach｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- rob｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- robot｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rock｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rocky｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- roach｜single_source（主干复核后）：词库义项「蟑螂」为 cockroach 的误拆截短（1830 年，误以为复合词）——此说仅 Etymonline 一家有完整原文在缓存内；Wiktionary 与牛津缓存均只载「拟鲤鱼」义项（古法语 roche，终极来源未明）一线，蟑螂线（含 cucaracha 阶段的民间重塑）无第二家原文互证，保持待核
+- rock｜trunk_unsettled（主干复核后）：中古英语 rokke 为古英语 *rocc（仅见于复合词 stānrocc，属构拟）与古北法语 roche 的合流；法语一线出中世纪拉丁语 rocca（767 年见载），其终极来源未定（凯尔特语说与通俗拉丁语 *rupica 说并存，后者音形不合），牛津明标 of unknown ultimate origin，保持待核
+- rocky｜compositional（主干复核后）：rock + -y（15 世纪晚期；更早有借法语 roche 的 rochi，约 1300 年）；「不稳」义（1737 年）出自动词 rock；构件自明，本词不单独立档，保持待核
 - rooster｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rose｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- round｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- royal｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- ruler｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- run｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- rung｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- runner｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- runner-up｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
-- rupture｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- sad｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- rose｜form_of_rise（主干复核后）：本条词库义项为 rise 的过去式，属 rise 本词的形变记录（古英语 rās），词源叙事在 rise 条；同形异词 rose「玫瑰」为另一词（拉丁语 rosa ← 希腊语 rhódon ← 伊朗语 *vrda-「花」），不在本条处理范围，待核保持
+- ruler｜compositional（主干复核后）：rule + -er 施事名词，两义（统治者 14 世纪晚期；划线工具约 1400 年）均为基词 rule 两义的常规派生，来源记载一致；词源内容在 rule 词条，本词不单独立档
+- rung｜evidence_gap（主干复核后）：词库义为 ring 的过去分词；现有缓存来源只成段记载名词 rung「梯档」（古英语 hrung「横杆」，与动词形同形异词），ring 动词过去分词 rung 的形史未见成段记载，不凭通例补档，保持待核
+- runner｜compositional（主干复核后）：run + -er 行为人名词（约 1300 年「步行信使」义、14 世纪早期「赛跑者」义），构件自明，本词不单独立档，保持待核
+- runner-up｜compositional（主干复核后）：构词透明（run + -er + up（短语名词）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - sadly｜morph_only：构词拆分（sad + -ly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- sadness｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- safely｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- safety｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- said｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- salad｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- salt｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- sadness｜compositional（主干复核后）：构词透明（sad + -ness），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- safely｜compositional（主干复核后）：构词透明（safe + -ly），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - salty｜morph_only：构词拆分（salt + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- same｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sand｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- sandstorm｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- sandstorm｜compositional（主干复核后）：构词透明（sand + storm），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - sandwich｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- save｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- scarf｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sceptic｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
-- schoolbag｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- schoolwork｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- schoolyard｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- scientist｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- scissors｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- script｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- sea｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- schoolbag｜compositional（主干复核后）：构词透明（school + bag），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- schoolwork｜compositional（主干复核后）：构词透明（school + work），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- schoolyard｜compositional（主干复核后）：构词透明（school + yard），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - seafood｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- seaside｜morph_only：构词拆分（sea + side）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- seat｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- secretary｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sector｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- semicircle｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- semicolon｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- semifinal｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- sentence｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- separate｜single_source：Wiktionary 无词源小节，只有 Etymonline/牛津单方面说法可参考，未达双源互证
-- serve｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- service｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- seventeen｜morph_only：构词拆分（seven + -teen）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- seventh｜morph_only：构词拆分（seven + -th）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- seventy｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- shall｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- shark｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- shave｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- she｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sheath｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- sheep｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- shelf｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- shine｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- seaside｜compositional（主干复核后）：sea + side 透明复合（约 1200)，现代词义由构词直接可读、无历史漂移；词源叙事归形态层，待核保持
+- semicircle｜compositional（主干复核后）：构词透明（semi- + circle，1520 年代，或直接出自拉丁语 semicirculus），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- semifinal｜compositional（主干复核后）：构词透明（semi- + final），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- seventeen｜compositional（主干复核后）：seven + -teen 复合数词（古英语 seofontīene 一线），构件自明，本词不单独立档，保持待核
+- seventh｜compositional（主干复核后）：seven + -th 序数词（古英语 seofoþa 一线），构件自明，本词不单独立档，保持待核
+- shark｜origin_unknown（主干复核后）：牛津明标来源未定；诸说并存——德语 Schurke「恶棍」说（谓人名义先行、后转指鱼）、玛雅语 xoc 旧说、拉丁语 carcharias 说（缺古法语中间形式）——无一获双源互证，保持待核
+- she｜trunk_divergent（主干复核后）：祖先词形两说未决——OED/牛津主古英语阴性人称代词 hēo 的语音演变说（/hjoː/ → /ʃ/，Lass、Fulk）；Etymonline 主阴性指示代词 seo/sio 替代说（hēo 与 he 混同后指示词顶替，如荷兰语 zij、德语 sie 之例）。两家在最近祖先一处主干分歧，保持待核
 - shopkeeper｜morph_only：构词拆分（shop + keeper）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- short｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- shorten｜morph_only：构词拆分（short + -en）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- should｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- shoulder｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- shout｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- shown｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- shorten｜compositional（主干复核后）：现代形 short + -en 完全透明，词义即「使变短」无历史漂移记录（中古英语 shortenen 出 short 一线、古英语 sceortian 另有传承，皆在形态层）；词源叙事归形态层，待核保持
+- shout｜origin_unknown（主干复核后）：c. 1300 shouten「大声呼喊」，Etymonline「a word of unknown origin」，两候选（shoot 词根「掷声而出」说、古诺尔斯语 skúta「嘲讽」说）皆为 perhaps 级，无主干可对，保持待核
+- shown｜single_source（主干复核后）：show 的过去分词（中古英语 schewen 的分词异形）仅 Wiktionary 一源成录，余两源无载；未达双源门，保持待核
 - shyly｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - sidewalk｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- signal｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- signature｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- silly｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- silver｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- simple｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- simplify｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- since｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- singer｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sister｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- six｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- sixteen｜morph_only：构词拆分（six + -teen）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- sixth｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- sixty｜morph_only：构词拆分（six + -ty）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- size｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- skeptic｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- sky｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- sled｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- sleep｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- sleepy｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- slide｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- smell｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
+- singer｜compositional（主干复核后）：sing + -er 行为人名词（约 1300 年），顶替古英语 sangere；构件自明，本词不单独立档，保持待核
+- sixteen｜compositional（主干复核后）：six + -teen 的数词构式，古英语 sixtīene 以来构词透明、词义无漂移，现代词仍是「六加十」的活构式（与全数词同一口径）；词源叙事归形态层，待核保持
+- sixty｜compositional（主干复核后）：six + -ty 的数词构式，古英语 sixtiġ 以来构词透明、词义无漂移（与全数词同一口径）；词源叙事归形态层，待核保持
+- sleepy｜compositional（主干复核后）：构词透明（sleep + -y，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- smell｜origin_unconfirmed（主干复核后）：Wiktionary 构拟原始西日耳曼语 *smallijan「闷燃」← 印欧语 *smel-「燃烧、冒烟」一线；牛津明标 of unknown origin，Etymonline 引 OED 谓「无疑出自古英语但未见记载、同源语无对应」；主干未获互证，保持待核
 - smog｜morph_only：构词拆分（smoke + fog）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- smoke｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- snack｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- snow｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- snowball｜morph_only：构词拆分（snow + ball）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- snowball｜compositional（主干复核后）：snow + ball 现代透明复合（约 1400)，词义即「雪做的球」无历史漂移（德语 Schneeball 等为平行同构）；词源叙事归形态层，待核保持
 - snowflake｜morph_only：构词拆分（snow + flake）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - snowman｜morph_only：构词拆分（snow + -man）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- snowy｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- snowy｜compositional（主干复核后）：构词透明（snow + -y，古英语 snāwiġ 已成词，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - soccer｜morph_only：构词拆分（assoc. + -er）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- sock｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- sofa｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- solitary｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- solo｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
 - somebody｜morph_only：构词拆分（some + body）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - someone｜morph_only：构词拆分（some + one）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- sometimes｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- sometimes｜compositional（主干复核后）：构词透明（some + times），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - somewhere｜morph_only：构词拆分（some + where）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- sort｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- south｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - spacecraft｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - spaceman｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - spaceship｜morph_only：构词拆分（space + ship）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- sparrowgrass｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- speaker｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- special｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- specimen｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- spectator｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- speculate｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- spend｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- spice｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- spider｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- spiv｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- spoke｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- sport｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- spy｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- stamp｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- starfish｜morph_only：构词拆分（star + fish）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- sparrowgrass｜evidence_gap（主干复核后）：缓存来源仅 Wiktionary 给出 sparrow + grass 的字面构词分析，Etymonline、牛津无词条；本词与 asparagus 的历史关系未见缓存来源记载，不凭记忆补档，保持待核
+- spiv｜origin_unknown（主干复核后）：三源同归未定——牛津「perhaps related to spiffy」，Etymonline 引 Ayto 谓或与 spiff 相连，Wiktionary 标 unknown 并存罗姆语 spiv「麻雀」说；无可互证主干，保持待核
+- starfish｜compositional（主干复核后）：star + fish 透明描形复合（1530 年代 starrefyshe)，因五臂星形得名，构词理据现代仍透明；词源叙事归形态层，待核保持
 - starlight｜morph_only：构词拆分（star + light）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- start｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- station｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- stay｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- stellar｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- stomach｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- stomachache｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- stood｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- stop｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- store｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- stormy｜morph_only：构词拆分（storm + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- story｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- storybook｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- straight｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- stranger｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- strawberry｜morph_only：构词拆分（straw + berry）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- streamable｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- street｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- strict｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- stripe｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- stronger｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- study｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- stuff｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- stupidity｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- stomachache｜compositional（主干复核后）：构词透明（stomach + ache），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- stormy｜compositional（主干复核后）：storm + -y 形容词（古英语晚期 *stormiġ；14 世纪中期已生比喻义「动荡的」），构件自明，本词不单独立档，保持待核
+- storybook｜compositional（主干复核后）：构词透明（story + book），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- strawberry｜motivation_unsettled（主干复核后）：straw + berry 复合（古英语 strēawberġe）构件无疑，但 straw 的命名理据未定——果实结于草茎状匍匐茎说、采果穿草茎成串说（2024 年专文并列）、果面籽粒如草屑说并存，无定论，保持待核
+- streamable｜compositional（主干复核后）：构词透明（stream + -able，流媒体时代新构），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- stronger｜compositional（主干复核后）：构词透明（strong 的比较级（常规屈折）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- stuff｜trunk_divergent（主干复核后）：至古法语 estoffe 一致；其来历三家分歧——Wiktionary（引 OED 原典条目）作古高地德语 stoffōn ← 日耳曼语 *stoppōn「填塞」（stop 线），但 Etymonline 转述 OED 对此「有强烈异议」（open to strong objections）、自评 obscure；牛津则作希腊语 stuphein「拉紧」。祖先语言在主干上分歧，保持待核
 - submarine｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- subscribe｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - subway｜morph_only：构词拆分（sub- + way）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- suddenly｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- suffer｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sufficient｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- sugar｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- suggest｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- suggestion｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- suit｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- summon｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sunburn｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- suddenly｜compositional（主干复核后）：构词透明（sudden + -ly，13 世纪晚期成词），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- sunburn｜compositional（主干复核后）：构词透明（sun + burn），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - sunflower｜morph_only：构词拆分（sun + flower）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - sung｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sunlight｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- sunny｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- sunrise｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- sunset｜morph_only：构词拆分（sun + set）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- sunshine｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- superman｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- sunlight｜compositional（主干复核后）：构词透明（sun + light，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- sunny｜compositional（主干复核后）：构词透明（sun + -y，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- sunrise｜compositional（主干复核后）：构词透明（sun + rise，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- sunset｜compositional（主干复核后）：sun + set 透明复合（14 世纪末），现代词义由构词直接可读、无历史漂移（古英语另有 sunnansetlgong 同义旧构）；词源叙事归形态层，待核保持
+- sunshine｜compositional（主干复核后）：构词透明（sun + shine，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - supermarket｜morph_only：构词拆分（super- + market）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - superstar｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- supper｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- supply｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- support｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- surrogate｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- survive｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- suspect｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- sustain｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- sweater｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sweep｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sweetmeat｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- swimmer｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- sword｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- symbol｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- sympathy｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- system｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- swimmer｜compositional（主干复核后）：构词透明（swim + -er），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - t-shirt｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- table｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - tablecloth｜morph_only：构词拆分（table + cloth）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - taken｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- talk｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- tall｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- tap｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- tape｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- tasty｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- taught｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- taxi｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- tea｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- teacher｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- teamwork｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- teeth｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- telephone｜morph_only：构词拆分（tele- + -phone）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- telescope｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- television｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- temperature｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- ten｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- tennis｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- tension｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- tenth｜morph_only：构词拆分（ten + -th）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- territory｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- terror｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
+- tape｜origin_unknown（主干复核后）：古英语 tæppa「窄布条」，来源未明——Etymonline 作 uncertain（Klein 拟出拉丁语 tapete 的回构说），《中古英语大词典》另比弗里西亚语/低地德语「扯、撕」一系，牛津作 perhaps related，两路皆带保留、无互证主干，保持待核
+- tasty｜compositional（主干复核后）：构词透明（taste + -y），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- teacher｜compositional（主干复核后）：teach + -er 行为人名词（14 世纪中期；早期另有「食指」别义），构件自明，本词不单独立档，保持待核
+- teamwork｜compositional（主干复核后）：构词透明（team + work），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - textbook｜morph_only：构词拆分（text + book）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- than｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- theatre｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- their｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - theirs｜morph_only：构词拆分（their + -s）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- them｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- themselves｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- then｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- there｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- thermometer｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- these｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- they｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- thick｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
 - thinner｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- third｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- thirsty｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- thirteen｜morph_only：构词拆分（three + -teen）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- thorough｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- those｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- though｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- three｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- through｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- thirsty｜compositional（主干复核后）：构词透明（thirst + -y，古英语 þurstiġ 已成词，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- thirteen｜compositional（主干复核后）：three + -teen 复合数词（古英语 þrēotīene 一线），构件自明，本词不单独立档，保持待核
 - thrown｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- thursday｜morph_only：构词拆分（Thor + -s- + day）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- thyme｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- ticket｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- tidy｜morph_only：构词拆分（tide + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- timetable｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- tip｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- to｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- today｜morph_only：构词拆分（to + day）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- toe｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- tofu｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- toilet｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- told｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- tomato｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- timetable｜compositional（主干复核后）：构词透明（time + table），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- tip｜origin_unknown（主干复核后）：中古英语 tip「尖端」of obscure and uncertain origin（Wiktionary)；动词 tip「倾倒」（约 1300 tippen）a word of uncertain origin，或出斯堪的纳维亚语；诸义（尖端、轻触、小费、提示）的相互关系亦多属 perhaps。无互证主干，保持待核
 - tomorrow｜morph_only：构词拆分（to- + morrow）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- tongue｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- tonic｜sources_conflict：牛津词源栏作“from French …”，这个来源在 Wiktionary 链与词源原文里都找不到，Etymonline 也未提及；两说并存，不擅自裁定；两说并存，不擅自裁定，整条待核
-- tonight｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- too｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- tooth｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- toothache｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- toothbrush｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- toothpaste｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- toothpick｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- top｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- tour｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- tourist｜morph_only：构词拆分（tour + -ist）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- town｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- toy｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- transform｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- transport｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- travel｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- traveller｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- treelet｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- trek｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- trip｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- trouble｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- trough｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- trousers｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- truck｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- true｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- trust｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- truth｜morph_only：构词拆分（true + -th）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- tub｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- toothache｜compositional（主干复核后）：构词透明（tooth + ache），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- toothbrush｜compositional（主干复核后）：构词透明（tooth + brush），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- toothpaste｜compositional（主干复核后）：构词透明（tooth + paste），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- toothpick｜compositional（主干复核后）：构词透明（tooth + pick，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- tourist｜compositional（主干复核后）：tour + -ist 透明派生（1772 年记录，初指「游记作者」为同一构式的职业定型），现代词义由构词直接可读；词源叙事在 tour 本词，待核保持
+- toy｜sources_split（主干复核后）：牛津与 Etymonline 均标来源未定（Etymonline 谓现代 toy 或为多词合流）；Wiktionary 主张或出中古荷兰语 tuyg「器具」（cf. speeltuig「玩具」）一线，仅单家主推，不成互证，保持待核
+- traveller｜compositional（主干复核后）：构词透明（travel + -er（英式拼法）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- treelet｜compositional（主干复核后）：构词透明（tree + -let），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- trousers｜trunk_unsettled（主干复核后）：出爱尔兰语/苏格兰盖尔语 triubhas「紧身短裤」（1610 年代入英），然盖尔词本身 of uncertain origin；一线谓其反借自诺曼语 trebuz ← 晚期拉丁语 tubruci「腿套」，未获定论；第二个 -r- 或受 drawers 影响，亦无解。主干末端未定，保持待核
+- trust｜trunk_divergent（主干复核后）：词根同属日耳曼语 *traust-／*treuw- 家族无争议，但入英路径真分歧——牛津与 Etymonline 作古诺斯语 traust 借词说，Wiktionary 引 Dance (2014) 谓元音不合、应为未见载古英语本土形式 *trust 的存续；借词与存续未定，保持待核
+- tub｜origin_unknown（主干复核后）：14 世纪末 tubbe，或借自中古低地德语/中古荷兰语 tubbe，但大陆语词「further etymology unknown / words of uncertain origin」；与拉丁语 tubus（tube）无关，两家一致否认。主干止于借入层、再深未明，保持待核
 - tummy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
 - tune｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- turtle｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - tv｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- twentieth｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- twin｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- two｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- typhoon｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- umbrella｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- twentieth｜compositional（主干复核后）：twenty 的序数形（古英语 twēntigoþa 一线），构件自明，本词不单独立档，保持待核
 - unbelievable｜morph_only：构词拆分（un- + believable）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - uncertain｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - unconscious｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- under｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- undertake｜morph_only：构词拆分（under- + take）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- underwater｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- underwater｜compositional（主干复核后）：构词透明（under + water），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - underwear｜morph_only：构词拆分（under + wear）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- unfair｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
 - unfriend｜morph_only：构词拆分（un- + friend）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - unhappy｜morph_only：构词拆分（un- + happy）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- unhealthy｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- uniform｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- unit｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- unkind｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- unlock｜morph_only：构词拆分（un- + lock）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- unlucky｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- unhealthy｜compositional（主干复核后）：构词透明（un- + healthy），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- unlock｜compositional（主干复核后）：现代形 un-（反向）+ lock 完全透明，词义即「开锁」无历史漂移记录（古英语已有 onlūcan/unlucan 同构词，属形态层构词）；词源叙事归形态层，待核保持
+- unlucky｜compositional（主干复核后）：构词透明（un- + lucky），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - unpopular｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- unstable｜morph_only：构词拆分（un- + stable）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- unsubscribe｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- unstable｜compositional（主干复核后）：un- + stable（约 1200）透明构词，诸义（易动、善变、易倒、结构不稳）皆构词直读、无漂移；词源叙事归形态层，待核保持
+- unsubscribe｜compositional（主干复核后）：构词透明（un- + subscribe（数字时代新构）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - untidy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- until｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- unusual｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- uphold｜morph_only：构词拆分（up- + hold）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- upon｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- unusual｜compositional（主干复核后）：构词透明（un- + usual），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- uphold｜compositional（主干复核后）：up + hold（约 1200）透明构词，现代义由构词直接可读；词源叙事归形态层，待核保持
 - upstairs｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- us｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- use｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - useful｜morph_only：构词拆分（use + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- useless｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- usually｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- useless｜compositional（主干复核后）：构词透明（use + -less），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- usually｜compositional（主干复核后）：构词透明（usual + -ly），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - utterly｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- vacation｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - valuable｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- veal｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- verbal｜fields_unfillable：来源链已互证，但这个词在英语里最早什么时候出现，来源原文里没有可依据的说法
-- version｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- village｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
 - villager｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- violin｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- visit｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- visitor｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- voice｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- volleyball｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- vow｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- wait｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- waiter｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- waltz｜fields_unfillable：来源链已互证，但这个词在英语里最早什么时候出现，来源原文里没有可依据的说法
-- war｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- warden｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- volleyball｜compositional（主干复核后）：构词透明（volley + ball），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - warmly｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- warmth｜morph_only：构词拆分（warm + -th）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- warranty｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- washroom｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- watermelon｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- we｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- washroom｜compositional（主干复核后）：构词透明（wash + room），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- watermelon｜compositional（主干复核后）：构词透明（water + melon，义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - weakness｜morph_only：构词拆分（weak + -ness）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- wear｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- wednesday｜morph_only：构词拆分（Woden + -s- + day）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- weekday｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
+- weekday｜compositional（主干复核后）：week + day 复合，古英语 wicdæġ 已成词、义即「一周之日（尤非周日）」，构件自明；词源归 week、day 两词条，保持待核
 - weekend｜morph_only：构词拆分（week + end）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- were｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- west｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- weta｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- wheel｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- wheelchair｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- when｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- which｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- white｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- whiz｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- whose｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- widely｜morph_only：构词拆分（wide + -ly）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
+- weta｜single_source（主干复核后）：毛利语 wētā 借入仅 Wiktionary 一源成录，Etymonline、牛津无词条；未达双源门，保持待核
+- wheelchair｜compositional（主干复核后）：构词透明（wheel + chair），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- whiz｜sources_split（主干复核后）：动词「嗖地飞过」的拟声说仅 Wiktionary 成录；名词「行家里手」（1914）Etymonline 作 whizz 引申与 wizard 截短两说并存；两义项均未达双源一致，保持待核
+- widely｜compositional（主干复核后）：wide + -ly 透明派生（1660 年代），现代词义由构词直接可读；词源叙事归形态层，待核保持
 - widen｜morph_only：构词拆分（wide + -en）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- width｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- wilderness｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- windy｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- winner｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- witch｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- wolf｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- woman｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- women｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- windy｜compositional（主干复核后）：构词透明（wind + -y，古英语 windiġ 已成词，主干义无漂移），两源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- winner｜compositional（主干复核后）：win + -er 行为人名词（14 世纪晚期）；构件自明，本词不单独立档，保持待核
+- witch｜trunk_divergent（主干复核后）：古英语 wicce/wicca/wiccian 一族本身确凿；深层主干三说分歧——Watkins 作日耳曼语 *wikkjaz「唤亡者」出印欧 *weg-「强壮、活跃」；Kroonen/Wiktionary 作 *wikkōną 出 *weyk-「奉献、分离」（与 victima 同根）；Klein/Weekley 另联 wigle「占卜」、wih「神像」、哥特语 weihs「神圣」。OED 作来源未定，Liberman 谓诸说皆有音义之难，无两家互证主干，保持待核
 - won｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- wonderful｜morph_only：构词拆分（wonder + -ful）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - wooden｜morph_only：构词拆分（wood + -en）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - woodpecker｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- woody｜morph_only：构词拆分（wood + -y）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- worker｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- workplace｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- world｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- worst｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- would｜chain_too_short：来源链只对上一站且信息量不足（只到中古英语同形等），不足以立档
-- wrap｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- wreath｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- written｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
-- xylophone｜morph_only：构词拆分（xylo + phone）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- year｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- yes｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- yesterday｜second_source_missing：Wiktionary 有来源链，Etymonline 本次未抓到；牛津词源栏虽有此词，但未能与链逐站对上，互证未达标
-- yogurt｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- your｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
+- woody｜compositional（主干复核后）：wood + -y 透明派生（14 世纪末 wodi)，现代词义由构词直接可读；词源叙事归形态层，待核保持
+- worker｜compositional（主干复核后）：work + -er 行为人名词（14 世纪中期），曾顶替旧词 wright；构件自明，本词不单独立档，保持待核
+- workplace｜compositional（主干复核后）：构词透明（work + place），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
+- wrap｜origin_unknown（主干复核后）：中古英语 wrappen「裹、折」，牛津明言 of unknown origin，Etymonline 作 a word of uncertain origin（Watkins 拟或经斯堪的纳维亚语出印欧 *werp-「转、绕」，或为 lap 的变体）；两拟皆带保留，无互证主干，保持待核
+- written｜evidence_gap（主干复核后）：write 的过去分词仅见 Wiktionary 构词分析（write + -en），三源均无成段形史记载；且 write 本词谱系未在本轮处理范围，保持待核
 - yours｜morph_only：构词拆分（your + -s）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
 - yourself｜morph_only：构词拆分（your + -self）在两源里能对上，但这个词本身的来源链未达逐站互证，不单独立档为已核
-- yourselves｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- yourselves｜compositional（主干复核后）：构词透明（your + selves（反身构成）），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 - yummy｜chain_unparsable：Wiktionary 词源小节里没有能解析的来源链或构词说法（多为散文叙述或来源未定）
-- zebra｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- zero｜fields_unfillable：来源链已互证，但这个词最早的意思在来源原文里没有可依据的说法
-- zoo｜chain_mismatch：Wiktionary 的来源链与 Etymonline/牛津的说法逐站对不上，双源互证未过
-- zookeeper｜second_source_missing：Wiktionary 有来源链，但 Etymonline 本次未抓到、牛津词源栏无此词，缺第二来源互证
+- zookeeper｜compositional（主干复核后）：构词透明（zoo + keeper），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档
 
 ## 三、未收清单（不进 JSON）
 
@@ -2082,3 +1135,30 @@ yard, you
 - verified 等级构成：二级 411 → **407**，一级＋二级 385 → **386**，一级＋三级 8 不变（移出 felt、ground 为二级、saw 为一级＋二级；match、prize 重建后牛津栏明确对齐，各由二级升一级＋二级）。
 - ETYM_DB 复用/新核：489 / 315 → **487 / 314**（felt、saw 原属复用，ground 属新核）。
 - 同步修订：第一节总账、第三节未收清单、第四节 pen / match / lead / slough 四条（原引文系串档词条，已改写并指向本节）。
+
+## 十、审计后修复轮次记录（2026-11-02）
+
+缘起：发包方独立审计判定本数据层「需先修清单再用」——三项系统性问题：① 原义字段成批拿今义/词根义冒充；② 语义路径 how 字段模板化（1,817 步中 5 个套话占 98.2%）；③ 待核双源门过严（逐站全等误杀）。守住的底线：民间词源零混入、链首与首现硬伤率 2.0%（3/149）。以下为修复全程（修复标准全文存于工作区 repair/STANDARDS.md）。
+
+### 10.1 verified 801 条字段修复（四批并行 + 逐批复验 + 合并）
+- 修复标准：原义 = 来源链中最早历史词形的本义，且与 semantic_path 首站逐字一致；禁词根义、今义/后起义、同形异词义入原义；how 逐词写实机制（来源支持才点名机制类别），套话列禁用清单，来源未交代者如实留白；mechanism_sentence 只述核心机制、不罗列站义。
+- 结果：原义改正 429/801 条（53.5%）；语义路径按来源编年重建/调整 602 条；非首站 how 1,057 条全部重写，合并后 1,057 条互异（套话残留 0）；mechanism_sentence 重写 782 条、保留 19 条；机制如实留白 7 处（yellow「胆怯」义、skirt 一步、fleece/hint/kick 各一步等，均系来源明言未明）。
+- 典型病例：school 原义「握住」（词根义）→「闲暇」；circle 原义晚期「圈子」义 →「小圆环」，方向复正；ton 原义「吨」→「大桶」；careless 1560 年代义自原义剔除；june/july 原义系被顶替的古英语旧月名释义（张冠李戴）；headache 原义系 1934 年俚语比喻义；law 原义系词根「躺」。lead 经两轮独立复核确认现行记录干净（审计清单此条多计）。
+
+### 10.2 chain_flags 裁定（四批共标记 63 条）
+39 词实际变更：链站 gloss 订正 16（laundry/mandate/minute/guilt/character/debt/diet 等）；补站/换首站/重立主链 9（sine 补梵语 jyā→阿拉伯语 jaib 误读链、press/discover 重立主链、duck/dinosaur/astronaut/cream 补站、nurse 换 nutrix）；未定论标注 4（april/cap/horse/teethe/strong）；disputes 补登记 15 词次（gnome 格言、ear 麦穗、think þyncan 合流、camp 断裂再借等）；scrub 按双源首选重立 schrobben 链首（未降待核）。24 条经复核保持现状（多为「链首词根站作谱系背景」类，与标准一口径一致）。ton 的 tun 补站因三套缓存无独立词条未执行，改 gloss 订正＋同词登记，不虚构。
+
+### 10.3 待核池主干一致重跑
+- 新口径：两源在 (a) 谱系主干（语言序列与主要词形走向）、(b) 最早历史词形及其 gloss、(c) 词的义项身份 三处一致即互证通过；中间站粒度/记法差异登记于 disputes，不再否决。真分歧保持待核并写明分歧点。
+- 补抓成果并入：Etymonline 缓存 2,201 → 2,447 词条。
+- 结果：处理 1,234/1,477。升 verified 956 条（全部按 10.1 新标准建档）；保持待核并改写 reason 278 条（compositional 透明构词 201 / origin_unknown 27 / trunk_unsettled 15 / single_source 13 / trunk_divergent 7 / evidence_gap 5 / origin_unconfirmed 4 / sources_split 2 / motivation_unsettled 2（butterfly、peanut）/ form_of_be、form_of_rise 各 1）。强制下限全达：near-miss 来源补齐者 240/240、chain_mismatch 词库 freq 前 1000 共 130/130、Dolch 89/89。
+- 未处理：C 档最低频 243 条（doll、classroom、computer、homework 等现代复合词与晚近造词为主），记录与原因逐字未动，名单见 pending_patch 的 accounting，留待后续轮次。
+
+### 10.4 民间词源复筛
+golf、news 本轮升 verified：两词记录均载真实词源（golf ← 荷兰语 colf「球杆」；news ← new 的复数「一堆新事」），且在 folk_etymology_check 中逐字引来源驳斥缩略语伪说（Gentlemen Only… / NEWS 东南西北说）。民间词源在本库中只以「被驳斥对象」身份出现，VETO 口径不变。posh 仍为待核。
+
+### 10.5 修复后总账与覆盖
+- verified 1,757 / 待核 521 / 未收 195；JSON 总记录 2,278。
+- 覆盖（词库 2,473）：全体 71%；高频前 100 词 81%（修复前 43%）；前 500 词 68%；Dolch 174/202（86%）。
+- 全量复验：verified 全部 ≥2 来源；original_meaning 与 semantic_path 首站 100% 一致；禁用套话全库 0 命中；非首站 how 共 2,018 条、互异 2,013 条（余 5 条为同词多步的合法同述）。
+- 第四、五节清单为 801 时代快照，其中个别词条状态已经本轮变更，以本节与各记录字段为准。
