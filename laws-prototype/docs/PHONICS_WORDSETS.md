@@ -1027,4 +1027,4 @@ after、anger、another、answer、baker、better、bigger、brother、butcher�
 
 - `phonics_wordsets.json`：模式 167 → 169；`pending` 14 条全部移入 `pending_adjudicated`（132 → 146 条，状态 resolved_assign，逐条 basis 指向本节）；`overview`：pending_total 14 → 0、total_appearances 10,160 → 10,351、per_category 短元音 9 模式/1,450 词次 → 10/1,507、长音菜单 65/1,404 → 66/1,538，并加 `addendum_2026_11_02` 基线说明；`registrations` 新增 2 条（-or/-ar 残量、oe-does）。
 - **心词注记**（`heart_adjudication` 内，文本更新，心字裁定本身不变）：援引缺口 1 的 -er 部件注记 6 处、援引缺口 2 的 o 部件注记 1 处、some 条注记 1 处，均由「未登记模式」改为「已入册（GP-er-ə / GP-o-ʌ，§12）」。her 条注记中以「弱读 /ə/ 缺口位」作对位语者 1 处经核留置：其语义为重读位与弱读位之别，不因入册改变，不在本轮改动范围。
-- `wordbank.json`：成员回填 `gpc_patterns` 共 183 条条目（o_uh 57 条目、er_uh 134 条目、双挂 8 条目），一律追加于原列表之尾，原有标记零改动；另 define、inflammable 两条 morphemes.note 追加封存标记（属 §2.3 裁定，见 vocab_MODEL §2.4 封存拆分小节）。除此之外词库零变化（逐条比对断言通过）。
+- `wordbank.json`：成员回填 `gpc_patterns` 共 183 条条目（o_uh 57 条目、er_uh 134 条目、双挂 8 条目），一律追加于原列表之尾，原有标记零改动；另 define、inflammable 两条 morphemes.note 追加封存标记（属 §2.3 裁定，见 vocab_MODEL §2.4 封存拆分小节）。（按：封存拆分已于 2026-11-02 取消，两词 note 的封存标记已撤除、改记沿革，见 vocab_MODEL §2.4。）除此之外词库零变化（逐条比对断言通过）。
