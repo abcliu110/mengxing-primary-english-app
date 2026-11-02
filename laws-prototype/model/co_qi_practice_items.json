@@ -988,7 +988,7 @@
      "type": "trap_spotting",
      "prompt": "改错：I want go.",
      "answer": "I want to go.（want 已占用唯一的限定位置，go 必须穿非限定工作服 to go）",
-     "hint": "回机制「一顶帽子」：时态帽子一个分句只有一顶，后面的动词要脱帽穿工作服。",
+     "hint": "回机制「箭头只落一次」：时态箭头一个分句只落一次，后面的动词不落箭头、穿工作服。",
      "source": {
       "kind": "error_case",
       "note": "条目登记病例（error_cases）"
@@ -998,14 +998,14 @@
     {
      "id": "CO13-P2",
      "type": "scene_form_choice",
-     "prompt": "I enjoy swimming. 里，戴时态帽子的是谁？穿工作服的是谁？",
+     "prompt": "I enjoy swimming. 里，落着时态箭头的是谁？穿工作服的是谁？",
      "options": [
-      "enjoy 戴帽，swimming 穿 -ing 工作服",
-      "swimming 戴帽，enjoy 穿工作服",
-      "两个都戴帽"
+      "enjoy 落箭头，swimming 穿 -ing 工作服",
+      "swimming 落箭头，enjoy 穿工作服",
+      "两个都落箭头"
      ],
-     "answer": "enjoy 戴帽，swimming 穿 -ing 工作服",
-     "hint": "回机制「一顶帽子」：限定性只能实现一次，非限定形式依附于主分句。",
+     "answer": "enjoy 落箭头，swimming 穿 -ing 工作服",
+     "hint": "回机制「箭头只落一次」：限定性只能实现一次，非限定形式依附于主分句。",
      "source": {
       "kind": "law_example",
       "note": "条目登记例句"
@@ -1015,8 +1015,8 @@
     {
      "id": "CO13-P3",
      "type": "no_clue",
-     "prompt": "判断：He stopped to smoke. 里 stop 和 smoke 都戴着时态帽子。",
-     "answer": "不对。一个分句只有一顶帽子：stop 戴帽，smoke 穿 to 工作服出现。",
+     "prompt": "判断：He stopped to smoke. 里 stop 和 smoke 都落着时态箭头。",
+     "answer": "不对。一个分句的时态箭头只落一次：stop 落箭头，smoke 穿 to 工作服出现。",
      "hint": "回主张：非限定形式不携带独立时态锚点。",
      "source": {
       "kind": "law_example",
@@ -1034,7 +1034,7 @@
      "type": "form_building",
      "prompt": "给 go 穿上工作服，拼好整句：I want ___ home.",
      "answer": "to go（I want to go home.）",
-     "hint": "回机制「一顶帽子」：want 戴帽在先，go 穿 to 工作服跟随。",
+     "hint": "回机制「箭头只落一次」：want 先落箭头，go 穿 to 工作服跟随。",
      "source": {
       "kind": "law_example",
       "note": "条目登记例句"
@@ -1511,7 +1511,7 @@
      "type": "trap_spotting",
      "prompt": "改错：Does she likes apples?",
      "answer": "Does she like apples.（does 已扛起时态，主动词须回原形）",
-     "hint": "回机制「排头兵出列」：被举到前面的助动词扛起时态，后面的动词脱帽回原形。",
+     "hint": "回机制「排头兵出列」：被举到前面的助动词扛起时态，后面的动词不落箭头、回原形。",
      "source": {
       "kind": "error_case",
       "note": "条目登记病例（error_cases）"

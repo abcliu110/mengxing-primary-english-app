@@ -1019,7 +1019,7 @@ after、anger、another、answer、baker、better、bigger、brother、butcher�
 
 ### 12.4 残量登记与侧发现
 
-- **-or / -ar 词尾弱读残量**：§10.6 缺口 1 原登记含 -or/-ur/-ar，本轮裁定只建 -er 一类。-or 15 词（actor、anchor、author、bachelor、color、doctor、editor、inventor、liquor、metaphor、mirror、motor、spectator、terror、visitor）、-ar 5 词（calendar、irregular、popular、sugar、unpopular）词尾弱读 /ə/ 未裁，已登记入 `registrations` 待裁；-ur 词尾弱读全库无纯例（colour、hour、neighbour 等为 -our 拼法，归 ou 家族，不在此列）。
+- **-or / -ar 词尾弱读残量**：§10.6 缺口 1 原登记含 -or/-ur/-ar，本轮裁定只建 -er 一类。-or 15 词（actor、anchor、author、bachelor、color、doctor、editor、inventor、liquor、metaphor、mirror、motor、spectator、terror、visitor）、-ar 5 词（calendar、irregular、popular、sugar、unpopular）词尾弱读 /ə/ 未裁，已登记入 `registrations` 待裁；-ur 词尾弱读全库无纯例（colour、hour、neighbour 等为 -our 拼法，归 ou 家族，不在此列）。**【销项 2026-11-02 晚】用户裁定照 -er 先例两模式全建，GP-or-ə、GP-ar-ə 已入册，本残量关闭，见 §13。**
 - **oe→/ʌ/**：全库仅 does 一词，不单独立模式，已登记入 `registrations` 备查。
 - **侧发现（既有数据，本轮未改）**：GP-o-ɒ 收录 in front of 的成员归属（由 of 承担 /ɒ/）无误，但其 occ 标为 [5,6)——落在 front 的 o 位；按 gb /ɪn frʌnt ɒv/ 对齐应为 [9,10)（of 的 o 位），坐标疑误，登记待原线复核。本词 front 的 o 已按 GB 入本节 GP-o-ʌ（occ [5,6)），两池著录并存如上。
 
@@ -1028,3 +1028,44 @@ after、anger、another、answer、baker、better、bigger、brother、butcher�
 - `phonics_wordsets.json`：模式 167 → 169；`pending` 14 条全部移入 `pending_adjudicated`（132 → 146 条，状态 resolved_assign，逐条 basis 指向本节）；`overview`：pending_total 14 → 0、total_appearances 10,160 → 10,351、per_category 短元音 9 模式/1,450 词次 → 10/1,507、长音菜单 65/1,404 → 66/1,538，并加 `addendum_2026_11_02` 基线说明；`registrations` 新增 2 条（-or/-ar 残量、oe-does）。
 - **心词注记**（`heart_adjudication` 内，文本更新，心字裁定本身不变）：援引缺口 1 的 -er 部件注记 6 处、援引缺口 2 的 o 部件注记 1 处、some 条注记 1 处，均由「未登记模式」改为「已入册（GP-er-ə / GP-o-ʌ，§12）」。her 条注记中以「弱读 /ə/ 缺口位」作对位语者 1 处经核留置：其语义为重读位与弱读位之别，不因入册改变，不在本轮改动范围。
 - `wordbank.json`：成员回填 `gpc_patterns` 共 183 条条目（o_uh 57 条目、er_uh 134 条目、双挂 8 条目），一律追加于原列表之尾，原有标记零改动；另 define、inflammable 两条 morphemes.note 追加封存标记（属 §2.3 裁定，见 vocab_MODEL §2.4 封存拆分小节）。（按：封存拆分已于 2026-11-02 取消，两词 note 的封存标记已撤除、改记沿革，见 vocab_MODEL §2.4。）除此之外词库零变化（逐条比对断言通过）。
+
+## 13. 三项裁定落地（2026-11-02 晚 · 用户裁定）
+
+### 13.1 裁定与新模式登记
+
+三项裁定：① 词尾弱读 -or/-ar 照 GP-er-ə 先例建模式（§12.4 残量销项）；② 小字素家族按在库成员数分线——多词家族（ui→/ɪ/、eye→/aɪ/、augh→/ɔː/）建模式，单词家族（uy、aigh、gh、-tion→/ʒən/）留例外登记、不立模式；③ sight 口径统一——eigh 已立模式，凡 eigh 读 /eɪ/ 者一律算可平铺。
+
+| 模式 id | 挂接键 | 字母组合 | 读音 | 类别 / group | 规律 | 词数 |
+|---|---|---|---|---|---|---|
+| GP-or-ə | `or_uh` | or（词尾） | /ə/ | 长音菜单 / g-long（r控菜单） | S-40 + S-08（or 拼法的弱读面） | 15 |
+| GP-ar-ə | `ar_uh` | ar（词尾） | /ə/ | 长音菜单 / g-long（r控菜单） | S-40 + S-08（ar 拼法的弱读面） | 5 |
+| GP-ui-ɪ | `ui_i` | ui | /ɪ/ | 变脸多读 / g-face | S-42（ui 的变脸面；主力面 /uː/ 在 GP-ui） | 3 |
+| GP-eye-aɪ | `eye_igh` | eye | /aɪ/ | 长音菜单 / g-long | S-37 | 5 |
+| GP-augh-ɔː | `augh_aw` | augh | /ɔː/ | 长音菜单 / g-long | S-41 | 4 |
+
+成员全表（机读表含 occ 见 phonics_wordsets.json）：
+- **GP-or-ə（15）**：actor、anchor、author、bachelor、color、doctor、editor、inventor、liquor、metaphor、mirror、motor、spectator、terror、visitor（即 §12.4 登记名单，逐词按词尾对齐核定）。
+- **GP-ar-ə（5）**：calendar、irregular、popular、sugar、unpopular。
+- **GP-ui-ɪ（3）**：build、building、built。
+- **GP-eye-aɪ（5）**：eye、eyebrow、eyelash、eyeglass、eyesight（eye 入册后零命中余 you、of 两条）。
+- **GP-augh-ɔː（4）**：daughter、granddaughter、taught、caught。
+
+### 13.2 ui 候选逐词裁定（双条件 + 对齐）
+
+候选 9 词中仅 build 一家 3 词的 ui 是真正的元音组合（ui 整体承担 /ɪ/）。其余 6 词逐词裁定**不入池**，已登记入 `registrations`：guilt、guitar——u 为 g 后哑字母（gu 拼写组合），/ɪ/ 由 i 承担（已归 GP-i-ɪ）；quilt——u 归 qu 组合，/ɪ/ 由 i 承担；linguist、penguin——u 读 /w/，/ɪ/ 由 i 承担；biscuit——ui 读 /ə/，其 /ɪ/ 由首个 i 承担，与 ui→/ɪ/ 不是同一对应。augh 相邻：laugh 的 augh 读 /ɑːf/，不入 GP-augh-ɔː，维持现状。
+
+### 13.3 单词家族例外登记（不立模式）
+
+仿 oe→/ʌ/（does）先例，四条已登记入 `registrations` 备查：uy→/aɪ/（buy；guy 不在库）、aigh→/eɪ/（straight)、gh→/ɡ/（ghost，仍按心词教学）、-tion→/ʒən/（equation)。其中 equation 在 `pending` 中的整词待判定一条以例外登记**销案**，pending 清零。
+
+### 13.4 sight_type 翻定清单（wordbank.json，共 13 条，irregular 186 → 173）
+
+- **eigh 口径统一（5）**：eight、weight、overweight、neighbour、neighbourhood 由 irregular 翻 decodable（eighty、eighth、eighteen 本已 decodable，不动）。
+- **随新模式翻定（7）**：build、building（ui）；eyebrow、eyelash、eyeglass、eyesight（eye）；granddaughter（augh）。
+- **-or 名单内唯一阻断点为词尾弱读者（1）**：liquor 翻 decodable。anchor 不翻——其另有 n→/ŋ/（ch 前鼻音同化）未归属，阻断点不止弱读一处。
+- **不翻并注记**：biscuit（ui 实读 /ə/，非本轮新模式成员，见 §13.2）；eye 本词（已入 GP-eye-aɪ 成员，但本轮 sight 翻定清单未含本词，维持 irregular，留待后续口径）；buy、straight、ghost、equation 维持 irregular（例外登记）。
+
+### 13.5 联动变更清单
+
+- `phonics_wordsets.json`：模式 169 → 174；`pending` 1 → 0（equation 销案）；`zero_hit` 3 → 2（eye 入册，余 you、of）；`overview`：patterns_total 169 → 174、total_appearances 11,343 → 11,375、pending_total 1 → 0、entries_zero_hit 3 → 2、entries_hit_ge1 2,284 → 2,285、units_hit_ge1 2,313 → 2,314、per_category 长音菜单 66 模式/1,643 词次 → 70/1,672、变脸多读 25/171 → 26/174，并加 `addendum_2026_11_02_rulings2`；`registrations` 第 10 条改销项注记，新增 5 条（四个例外登记 + ui/augh 相邻裁定登记）。
+- `wordbank.json`：新模式成员回填 `gpc_patterns` 共 32 条（or_uh 15、ar_uh 5、ui_i 3、eye_igh 5、augh_aw 4），一律追加于原列表之尾；sight_type 翻定 13 条（见 §13.4）。除此之外零变化（逐条深比对断言通过：变更条目恰 37 条 = gpc 32 与翻定 13 的并集，字段仅限 sight_type / gpc_patterns）。

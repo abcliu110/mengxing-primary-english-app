@@ -84,7 +84,7 @@
 - id: GR-02
   order: 2
   headline: 一个句子的时态只标记一次：标在第一个动词上，后面的动词回原形
-  headline_kid: 时态像一顶帽子，一个句子只戴一次；did 出来站岗，后面的动词就脱帽用原形
+  headline_kid: 时态标记像一支向下的箭头，一个句子只落一次；did 出来站岗，后面的动词就不落箭头、用原形
   claim:
     type: rule
     statement: 英语的时态（与人称一致标记）由限定动词链的第一个成分承载：did / does / do 一旦扛起时态，后随实义动词不再重复标记、用原形。
@@ -92,10 +92,10 @@
     - Rodney Huddleston & Geoffrey K. Pullum《The Cambridge Grammar of the English Language》（CGEL，2002）动词短语结构章——限定性只落在首个助动词/动词上的分析
     scope: 同一分句内的动词链；出现第二个分句（如从句）时，新分句重新标记自己的时态
   mechanism:
-  - beat: 帽子只戴一次
-    text_kid: 一个分句里，时态这顶帽子只让站在最前面的那个动词戴：is、did、does 戴上了，后面的动词就光着头用原形。
+  - beat: 箭头只落一次
+    text_kid: 一个分句里，时态这支箭头只落在站在最前面的那个动词上：is、did、does 落上了，后面的动词就不落箭头、用原形。
     text_adult: 限定性（finiteness）落在动词链首个成分上，这是 CGEL 对动词短语结构的分析，与本项目「时态全句只标记一次」的裁定同源同口径。
-    visual: 一排动词排队，第一个戴帽子，后面的把帽子摘下来放回架子
+    visual: 一排动词排队，第一个动词带动词线、线中点落一支向下箭头，后面的动词线下都没有箭头
     anchors:
     - V6_日常_1
   - beat: did 站岗的三种场合
@@ -144,8 +144,8 @@
     diagnosis: "原文分析(转述): does 已标出时态与人称, 学生又在 look 上保留三单 -s, 等于把标记标了两次(原文明言学习者事实上把时态标了两次)。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.1 动词形式错误例 d(原文括注: look); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-002〕"
   quiz:
   - q: Did you ___ to school yesterday? A. go B. went
-    answer: A. go——did 已经扛了过去时，后面的动词脱帽用原形。
-    hint: 回到机制第 1 节「帽子只戴一次」。
+    answer: A. go——did 已经扛了过去时，后面的动词不落箭头、用原形。
+    hint: 回到机制第 1 节「箭头只落一次」。
   relatives:
   - id: GR-03
     rel: 同族

@@ -509,17 +509,17 @@ probes:
 - id: PRB-CO13-1
   for_law: CO-13
   source_ref: 波次一 · CO-13
-  title: '*I want go：两个动词都能戴时态帽子'
+  title: '*I want go：两个动词都能落时态箭头'
   predicted_misreading: 孩子让一个分句里的两个动词平起平坐——I want go.（go 没穿工作服），或反过来给第二个动词也标时态。汉语动词连排无形式变化的习惯被直接搬入。
   cognitive_source: 母语迁移叠加结构盲（不知道限定性在一个分句里只能实现一次，后随动词须以非限定形式出现）
   misreading_type: 母语迁移
-  task: 改错题：I want go. 哪里不合格、怎么改？再接判断：I enjoy swimming. 里 swimming 为什么不戴时态帽子，它的时间听谁的？
+  task: 改错题：I want go. 哪里不合格、怎么改？再接判断：I enjoy swimming. 里 swimming 为什么不落时态箭头，它的时间听谁的？
   rubric:
     hit: 看不出错，或改成 I want went. 一类（给第二个动词标时态）
     partial: 改对（加 to）但第二题答不出「时间听主句的」
-    pass: 两题全对且能说出「一个小句子只有一顶时态帽子，戴在第一个动词头上，后面的要穿 to 或 -ing 工作服」
-  remedy: 回第 2 步机制屏「一顶帽子」卡，再回第 4 步用条目三例（want to go / enjoy swimming / stopped to smoke）逐句指认帽子和工作服复测。
-  source_of_prediction: CO-13 claim（限定性只能实现一次，非限定形式时间依附主分句）+ mechanism[一顶帽子] + error_cases 登记事故例 *I want go
+    pass: 两题全对且能说出「一个小句子里时态箭头只落一次，落在第一个动词上，后面的要穿 to 或 -ing 工作服」
+  remedy: 回第 2 步机制屏「箭头只落一次」卡，再回第 4 步用条目三例（want to go / enjoy swimming / stopped to smoke）逐句指认箭头和工作服复测。
+  source_of_prediction: CO-13 claim（限定性只能实现一次，非限定形式时间依附主分句）+ mechanism[箭头只落一次] + error_cases 登记事故例 *I want go
   error_form_display:
   - I want go
   status: 已入模
@@ -632,7 +632,7 @@ probes:
     hit: 看不出错，或改成 Does she likes apple. 一类（只动名词）
     partial: 改对（like 回原形）但第二题答不出（主语疑问句无倒装对象）
     pass: 两题全对且能说出「does 已经扛起时态，后面的动词回原形；问的正好是主语时，没有可倒装的对象」
-  remedy: 回第 2 步机制屏「排头兵出列」卡，再回第 4 步用条目三例（Has she… / Did you… / Who came…）逐句指认排头兵，并回挂 GR-02「帽子只戴一次」复测。
+  remedy: 回第 2 步机制屏「排头兵出列」卡，再回第 4 步用条目三例（Has she… / Did you… / Who came…）逐句指认排头兵，并回挂 GR-02「箭头只落一次」复测。
   source_of_prediction: QI-04 claim（倒装对象是首个助动词）+ claim.scope（主语疑问句无倒装对象）+ error_cases 登记错型 *Does she likes（教学文献登记错型）
   error_form_display:
   - Does she likes apples
@@ -844,10 +844,10 @@ probes:
   task: 改错题组：① Did you went to the park? ② She doesn't likes apples. 各错在哪儿、怎么改？
   rubric:
     hit: 任一题看不出错
-    partial: 改对一题另一题漏（一顶帽子的账只在一句上算清）
-    pass: 两题全对且能说出「时态像一顶帽子，一个分句只戴一次：did/does 戴上了，后面的动词脱帽用原形」
-  remedy: 回第 2 步机制屏「帽子只戴一次」卡，再接 did 站岗的三种场合（提问/否定/强调）各认一例，回第 4 步用条目四例复测。
-  source_of_prediction: GR-02 claim（时态由限定动词链首成分承载）+ mechanism[帽子只戴一次][did 站岗的三种场合] + examples 四句
+    partial: 改对一题另一题漏（箭头只落一次的账只在一句上算清）
+    pass: 两题全对且能说出「时态箭头一个分句只落一次：did/does 落上了，后面的动词不落箭头、用原形」
+  remedy: 回第 2 步机制屏「箭头只落一次」卡，再接 did 站岗的三种场合（提问/否定/强调）各认一例，回第 4 步用条目四例复测。
+  source_of_prediction: GR-02 claim（时态由限定动词链首成分承载）+ mechanism[箭头只落一次][did 站岗的三种场合] + examples 四句
   status: 已入模
   version: '1'
 - id: PRB-GR03-1
