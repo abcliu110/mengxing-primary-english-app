@@ -299,8 +299,8 @@
 | 4 | 定律类模式以 `direction: encode` 同表登记 | 实现无 `direction` 字段；定律类以 `cat` =「词尾定律」的模式行（15 条）+ SR 组条目承载，`type` 取值 cons / vowel / end | — |
 | 5 | 「菜单屏」（按音位一屏） | 数据层以 `cat` 六类组织：辅音 / 短元音 / 长音菜单 / 变脸多读 / Magic e / 词尾定律，另有 `group`（g-cons / g-short / g-long / g-face / g-law）与 `menu`（音位或组名）字段；呈现层（App）单位为 160 个模式条目（一字素 × 一读音一条） | §5.3 的屏面结构描述保留为呈现规格 |
 | 6 | 变脸榜（S-42 全谱视图） | 数据层类目名 =「变脸多读」（`cat`），模式行以 `face` 字段标所属组（ough / ea / ou / a / oo / ear / ow）；「变脸榜」是条目（S-42）与呈现层的定名，保留 | 两名同指：数据查 `cat` / `face`，呈现称变脸榜 |
-| 7 | 检查点 CP1 – CP3（评估题库 + 达标线） | 实现无 CP 编号对象：`phonics_checkpoints.json` 的对象是拼读主线 160 **站**的「过关组」（`stations` / `gate`），App 的检查点词组与之同源；CP1 – CP3 与达标线只作设计口径登记（§2.4） | 「检查点」（CP）与「站」（station）不得混称 |
-| 8 | 阶段 P0 – P7 | 路径/设计层口径；条目以 `order` / `prereq` 落 `phonics.yaml`；呈现与推导的推进单位是「站」（station，主线 160 站，见 `phonics_checkpoints.json` 的站位口径） | — |
+| 7 | 检查点 CP1 – CP3（评估题库 + 达标线） | 实现无 CP 编号对象：`phonics_checkpoints.json` 的对象是拼读主线 160 **站**的「过关组」（`stations` / `gate`），App 的检查点词组与之同源；CP1 – CP3 与达标线只作设计口径登记（§2.4）。注：该文件的站位推导仍为 160 站时代记录；App 主线已经两次入线为 167 站（见行 8 注），本文件未随之重算，检查点位置锚定阶段末（P3/P5/P6），不随站号变 | 「检查点」（CP）与「站」（station）不得混称 |
+| 8 | 阶段 P0 – P7 | 路径/设计层口径；条目以 `order` / `prereq` 落 `phonics.yaml`；呈现与推导的推进单位是「站」（station，主线 167 站，见 `phonics_checkpoints.json` 的站位口径；站数沿革：160 → 162（2026-11-02，GP-o-ʌ、GP-er-ə 入线）→ 167（2026-11-03，GP-augh-ɔː、GP-or-ə、GP-ar-ə、GP-eye-aɪ、GP-ui-ɪ 按家族就近入线，用户裁定）） | — |
 | 9 | 不规则词 / 直认词（`sight_type` = irregular） | 词库字段仍为 `sight_type`（取值 decodable / irregular）；裁定与呈现层定词为「**心词**」：`phonics_wordsets.json` 的 `heart_adjudication` 三裁（decodable / heart / mixed），不规则部位称「心字部分」（heart part），App 呈现为心词屋 | §3.2 的「不规则词表」在呈现层即心词名单 |
 | 10 | 伪词关 / 冻结伪词库 | 实现无伪词库实体；伪词随题按约束生成（约束见 PHONICS_SOP 步 7 与 §7-Q5 定版），检查点与练习同此口径 | — |
 | 11 | 受控文本 / 主线读物 | 实现无此数据对象（§7-Q6 定版不产出）；阅读材料 = 检查点词组 + 条目例句 | §3.3 只作口径登记 |

@@ -1069,3 +1069,17 @@ after、anger、another、answer、baker、better、bigger、brother、butcher�
 
 - `phonics_wordsets.json`：模式 169 → 174；`pending` 1 → 0（equation 销案）；`zero_hit` 3 → 2（eye 入册，余 you、of）；`overview`：patterns_total 169 → 174、total_appearances 11,343 → 11,375、pending_total 1 → 0、entries_zero_hit 3 → 2、entries_hit_ge1 2,284 → 2,285、units_hit_ge1 2,313 → 2,314、per_category 长音菜单 66 模式/1,643 词次 → 70/1,672、变脸多读 25/171 → 26/174，并加 `addendum_2026_11_02_rulings2`；`registrations` 第 10 条改销项注记，新增 5 条（四个例外登记 + ui/augh 相邻裁定登记）。
 - `wordbank.json`：新模式成员回填 `gpc_patterns` 共 32 条（or_uh 15、ar_uh 5、ui_i 3、eye_igh 5、augh_aw 4），一律追加于原列表之尾；sight_type 翻定 13 条（见 §13.4）。除此之外零变化（逐条深比对断言通过：变更条目恰 37 条 = gpc 32 与翻定 13 的并集，字段仅限 sight_type / gpc_patterns）。
+
+### 13.6 五模式入学习主线（2026-11-03 · 用户裁定）
+
+§13 的五个新模式此前只入拼读菜单、未入学习主线（App `X2.spine`）。用户裁定（2026-11-03）：照 GP-o-ʌ（第 52 站）、GP-er-ə（第 82 站）的入线先例，按家族就近插入，gate 与检查点按原法重算。主线 162 → **167 站**，站位如下（站号为入线后新号）：
+
+| 新站 | 站位 | 紧邻家族 | 依据 |
+|---|---|---|---|
+| GP-augh-ɔː | 67 | au（66）与 aw（68）之间 | 同 S-41、同音 /ɔː/，字素序 au < augh < aw |
+| GP-or-ə | 84 | er-ə（83）之后、ar-ə 之前 | 词尾弱读现象组（-er/-or/-ar 同 S-40+S-08） |
+| GP-ar-ə | 85 | or-ə（84）之后 | 同上；组内序从裁定序与成员数（or 15 > ar 5） |
+| GP-eye-aɪ | 92 | ey 两站（90/91）之后、i 长音组之前 | 字素 ey 家族相邻，且其后即 /aɪ/ 家族（i、i-e、ie、igh） |
+| GP-ui-ɪ | 121 | ui（120）之后 | 同字素变脸面紧邻主力面（S-42 之于 S-39） |
+
+gate 按 `phonics_checkpoints.json` 定版口径重算（资格 = 全部登记模式站位 ≤ 本站且至少一模式 == 本站；成员以 occ 对齐集为准；tier1 单音节按 freq_rank 序、tier2 仅 tier1 为空且词尾弱读类时 ≤2 音节；上限 8）：新站过关组为 augh 站 [taught、caught]、or-ə 站 [doctor、actor、mirror、color、anchor、author、liquor、terror]（tier2 恰 8 词）、ar-ə 站 [sugar]、eye 站 [eye]、ui-ɪ 站 [build、built]。既有过关组迁移 4 条：build（17 → 121）、built（35 → 121）、taught（66 → 67）、caught（66 → 67）；motor 含 or-ə 但其完成站仍为重编号后的原站（100），卡留原地不动。过关卡总数 594 → 604，无一词丢失。其余含新模式的达标词（daughter、granddaughter → er-ə 站；eyesight → igh 站；eyebrow → ow 站；eyeglass → ss 站）因目的站过关组已满 8 张，按上限口径不增补。无过关组站的说明文案按同口径（模板 + 0 基站号，与 checkpoints 推导一致）在 167 站上全量重算，31 条模板文案中 14 条更新（编号随入线平移、个别示例词随现行词池数据修正，如 c|/k/ 站 become → crucial、ng 站 tongue → sang），-cian 站的人工裁定注记原样保留。检查点复核：CP1（P3 末）之前无新站，已教集不变；CP2（P5 末）已教集新增 augh 与 -or/-ar（同属 S-40/S-41 的 P5 内容）；CP3（P6 末）再增 ui-ɪ（S-42）——三条检查点的位置（阶段末）与达标线（16/20、32/40）均不需移动，口径不变。
