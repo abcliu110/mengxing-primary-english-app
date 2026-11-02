@@ -912,4 +912,119 @@
 - `phonics_wordsets.json`：模式池补入 43 词次，涉及 7 个模式——GP-a-ə +21、GP-i-ɪ +14、GP-a-ɑː +3、GP-e-e +2、GP-a-æ +1、GP-le +1、GP-y-aɪ +1；总词次 10,117 → 10,160，各模式 `count` 与 `overview` 已同步重算（pending_total 146 → 14）。§10.2 表中受影响模式的计数以本节为准：GP-a-ə 45 → 66、GP-i-ɪ 408 → 422、GP-a-ɑː 52 → 55、GP-e-e 276 → 278、GP-a-æ 224 → 225、GP-le 66 → 67、GP-y-aɪ 35 → 36。
 - `phonics_wordsets.json` 新增两节：`pending_adjudicated`（132 条逐项裁定记录）与 `heart_adjudication`（38 条心词裁定，含逐成员 tiles）。
 - 新建 `model/phonics_checkpoints.json`：48 站的漏斗数字、16 站补配过关组（逐词证明）与 32 站留空理由；主线文件 `phonics-prototype-v1.html` 本轮未动，补配组待回灌时取用此侧表。
-- 本轮未改任何模式的登记本身（字母—音素对集合不变），未动词库；两个模式缺口（§10.6）的裁定仍待规律层。
+- 本轮未改任何模式的登记本身（字母—音素对集合不变），未动词库；两个模式缺口（§10.6）的裁定仍待规律层。（2026-11-02 更新：两缺口已裁定——两个模式都建，14 条全部销项入册，见 §12；§11.3 表中 14 条「留待缺口裁定」与本条文字自此以 §12 为终局。）
+
+## 12. 两缺口入册（2026-11-02 用户裁定 · 终局）
+
+用户裁定（2026-11-02）：§10.6 两缺口——o→/ʌ/ 与词尾 -er→/ə/——**两个模式都建**；§11.3 留待的 14 条全部销项。本节为两缺口的终局口径：§10.6 登记与 §11.3「留待缺口裁定」文字自此失效，以本节为准。执行范围：`phonics_wordsets.json`（两池入册、待裁销项、心词注记、残量登记）、`wordbank.json`（成员 gpc_patterns 回填，仅此一类改动，另 §2.3 封存注记见 vocab_MODEL §2.4）、本文件。本轮未动 App 与拼读原型文件——App 拼读菜单站数（160→162）由 App 同步线按本节数据呈现。
+
+### 12.1 两模式登记
+
+| 模式 | alias_key | 字素 | 音素 | 类别 / 组 | 挂法 | 成员（词次） |
+|---|---|---|---|---|---|---|
+| GP-o-ʌ | `o_uh` | o | /ʌ/ | 短元音 / g-short | S-34（与 u→/ʌ/ 同条：短元音 /ʌ/ 的 o 拼法面） | 57 |
+| GP-er-ə | `er_uh` | er（词尾） | /ə/ | 长音菜单 / g-long（r控菜单） | S-40 + S-08（er 拼法的弱读面） | 134 |
+
+**推导基数**：当前词库 2,352 条全量逐词判定（非仅 14 条待裁词）。此与 §10–§11 轮次的 2,287 条基线不同基：既有池与覆盖对账（entries_total 等）本轮不重算，差异已登记于 `overview.addendum_2026_11_02`，基线统一刷新待后续轮次；本节数字均为 2,352 基线的实测。
+
+### 12.2 GP-o-ʌ：方法与全表
+
+**对齐规则**：逐词将拼写切为元音块（双字母/多字母组合整体成块：ou/ow/oo/oa/oe/oi/oy/au/aw/ay/ai/ea/ee/ei/ey/eu/ew/ie/ue/ui/ough 等；其余单字母各自成块；r 不并入元音块，单独作辅音），将 `phonetic_gb` 切为音位（长元音、双元音、集中双元音整体记），两列按序对齐；词尾静音 e（前为辅音块）脱落后再对齐，分体 VCe 的元音字母仍记其本块。短语词按词元逐段对齐，occ 为整串坐标；复合词头按成员级口径（§2 第 6 点）。
+
+**入册判据**：某处字母块恰为单字母 `o`（含分体 o-e 的 o），且其对齐音位为 /ʌ/。多 o 词逐处判，逐处记 occ。o 后接 r 时：若音位列为 /ʌ/ + 独立 /r/（r 作下一音节首音），仍入册（worry、borough 型）；若 o 与 r 化合为 /ɜː//ɔː/（word、sorry 型），音位已非 /ʌ/，不入。
+
+**排除判据**（/ʌ/ 由他块承担者不入本池，各归其池）：ou（country、countryside、courage、double、touch、trouble、young、younger → GP-ou-ʌ）、oo（blood、flood → GP-oo-ʌ）、ough（enough、rough、tough、slough、hiccough → ough 家族池）、oe（does，全库仅此一词，登记备查见 §12.4）、u（/ʌ/ 的主池 GP-u-ʌ，133 词次）。o 本身不承担 /ʌ/ 的候选词逐词核毕：instruction（/ʌ/ 由 u 承担，o 属 -tion 读 /ə/）、cousin（ou 承担，且系 S-42 已登记例外族）、mutton（u 承担，o 在音节尾鼻音前不发音）、combustion / compulsion（u 承担，o 读 /ə/）、unconscious（o 读 /ɒ/）、of（GB /ɒv/——其 GA 标音为 /ʌv/，按 RP 统一裁定以 GB 为准，不入；此条与 worry 的 GA/GB 分歧互为镜像，见复算）。
+
+**手工裁定 10 词**（自动对齐因复合静音 e、音节尾辅音、io 合并、y 元音化失败，逐词按 GB 人工对齐入册）：something（some 段 e 静音，o→/ʌ/）、wonderful（ful 为音节尾 l 无元音，o→/ʌ/）、lovely（love 段 e 静音）、sometimes（some/times 两处 e 均静音，只取 some 的 o）、someone（两处 o 皆 /ʌ/，occ 两落点）、somebody（首 o→/ʌ/，次 o→/ɒ/ 只取首处）、somewhere（some 的 o）、tongue（o→/ʌ/，ue 不发音）、onion（io 合并读 /ə/，首 o→/ʌ/）、anyone（y 在此作元音 /ɪ/，one 段 o→/ʌ/，occ [3,4)）。
+
+**复算（三路独立）**：① 音节配对法（以词库 syllables 切分字段对齐）：可裁 14 词与入册表全等，无溢出、无坐标差。② GA 字段交叉法（以 GA `phonetic` + 独立正则分块器重跑全库）：2,101 条全等；分歧仅 3 条——worry/worried（GA /ˈwɜːri/ 为 r 化记法，GB /ˈwʌri/ 为准，入册）与 of（GA /ʌv/、GB /ɒv/，以 GB 为准，不入），均属 RP 统一裁定下的 GA/GB 体系差，已逐条裁定。③ 该法未决 14 词（静音 e 复合族等）即上列手工裁定 10 词 + cousin/mutton/unconscious/everyone 之属，去向已逐词登记（everyone 由主法对齐入册，余三词排除，理由如上）。
+
+**成员全表（57 词次，含词条与 occ；机读表见 phonics_wordsets.json `GP-o-ʌ`）**：
+
+| 词 | 条目 | phonetic_gb | occ |
+|---|---|---|---|
+| above | V6_核心_39 | /əˈbʌv/ | [2,3) |
+| among | V6_核心_45 | /əˈmʌŋ/ | [2,3) |
+| another | ADD_0410 | /ænˈʌðə/ | [2,3) |
+| anyone | G5_0429 | /ˈeniwʌn/ | [3,4) |
+| become | ADD_0018 | /bɪˈkʌm/ | [3,4) |
+| borough | ADD_0337 | /ˈbʌrə/ | [1,2) |
+| brother | G2_061 | /ˈbrʌðə/ | [2,3) |
+| color | V6_颜色_1 | /ˈkʌlə/ | [1,2) |
+| colour | G2_0452 | /ˈkʌlə/ | [1,2) |
+| colourful | G4_0453 | /ˈkʌləfəl/ | [1,2) |
+| come | V6_日常_2 | /kʌm/ | [1,2) |
+| comfortable | G5_0874 | /ˈkʌmfətəbəl/ | [1,2) |
+| company | V6_城市_26 | /ˈkʌmpəni/ | [1,2) |
+| cover | G5_0474 | /ˈkʌvə/ | [1,2) |
+| discover | G6_0473 | /dɪˈskʌvə/ | [4,5) |
+| done | G3_KA05 | /dʌn/ | [1,2) |
+| everyone | G4_0425 | /ˈevriwʌn/ | [5,6) |
+| front | G3_K22 | /frʌnt/ | [2,3) |
+| glove | G4_201 | /ɡlʌv/ | [2,3) |
+| government | ADD_0517 | /ˈɡʌvənmənt/ | [1,2) |
+| grandmother | G2_064 | /ˈɡrænˌmʌðə/ | [6,7) |
+| grandson | G5_0772 | /ˈɡrændsʌn/ | [6,7) |
+| honey | V6_食物_27 | /ˈhʌni/ | [1,2) |
+| honeybee | G3_0765 | /ˈhʌnibiː/ | [1,2) |
+| in front of | V6_核心_42 | /ɪn frʌnt ɒv/ | [5,6) |
+| income | ADD_0156 | /ˈɪnkʌm/ | [3,4) |
+| lovable | ADD_0565 | /ˈlʌvəbəl/ | [1,2) |
+| love | V6_日常_63 | /lʌv/ | [1,2) |
+| lovely | G4_0542 | /ˈlʌvli/ | [1,2) |
+| Monday | G5_210 | /ˈmʌndeɪ/ | [1,2) |
+| money | G4_K03 | /ˈmʌni/ | [1,2) |
+| monkey | G1_018 | /ˈmʌŋki/ | [1,2) |
+| month | V6_节日_2 | /mʌnθ/ | [1,2) |
+| mother | G2_065 | /ˈmʌðə/ | [1,2) |
+| nothing | G5_0435 | /ˈnʌθɪŋ/ | [1,2) |
+| once | G5_0587 | /wʌns/ | [0,1) |
+| one | G1_025 | /wʌn/ | [0,1) |
+| onion | V6_食物_51 | /ˈʌnjən/ | [0,1) |
+| other | ADD_0593 | /ˈʌðə/ | [0,1) |
+| some | V6_数字_47 | /sʌm/ | [1,2) |
+| some / any（成员 some） | G4_P09#0 | /sʌm/ /ˈeni/ | [1,2) |
+| somebody | G5_0428 | /ˈsʌmˌbɒdi/ | [1,2) |
+| someone | G5_0427 | /ˈsʌmwʌn/ | [1,2) [5,6) |
+| something | G4_0432 | /ˈsʌmθɪŋ/ | [1,2) |
+| sometimes | G5_0418 | /ˈsʌmtaɪmz/ | [1,2) |
+| somewhere | G5_0438 | /ˈsʌmweə/ | [1,2) |
+| son | V6_家庭_18 | /sʌn/ | [1,2) |
+| stomach | V6_身体_19 | /ˈstʌmək/ | [2,3) |
+| stomachache | V6_身体_32 | /ˈstʌməkeɪk/ | [2,3) |
+| thorough | ADD_0293 | /ˈθʌrə/ | [2,3) |
+| ton | V6_数字_44 | /tʌn/ | [1,2) |
+| tongue | V6_身体_8 | /tʌŋ/ | [1,2) |
+| won | V6_MORPH_57 | /wʌn/ | [1,2) |
+| wonder | G5_0448 | /ˈwʌndə/ | [1,2) |
+| wonderful | G4_0449 | /ˈwʌndəfl/ | [1,2) |
+| worried | G6_284 | /ˈwʌrid/ | [1,2) |
+| worry | V6_日常_60 | /ˈwʌri/ | [1,2) |
+
+其中 o+r 型 4 词：borough、thorough、worry、worried；双成员并挂（本池与 GP-er-ə 同挂）8 词：another、brother、cover、discover、grandmother、mother、other、wonder；短语条目 1：in front of（front 的 o）；成员级单位 1：some / any 的 some 成员（G4_P09#0）。
+
+### 12.3 GP-er-ə：方法与全表
+
+**入册判据**（三条全合）：① 词尾字母组合为 `er` 且非 `eer`（短语条目以末词元判）；② `phonetic_gb` 词尾音段为 /ə/——含三合/双元音末段（flower /aʊə/、player /eɪə/）与词库的 /əː/ 尾记法（teacher、center、waiter、bigger 四词的 -er 尾在词库记作 əː，按词尾弱读同类入册，记法登记于此）；③ 该词尾元音非重读音节。-ier 比较级条款：easier、happier 在词库记作 i+/ə/、heavier 记作 /ɪə/，三词同属「词干 -i 担一元音、词尾 -er 担 /ə/」的构形，按同一对齐入册，记法差异登记于此（与 -eer 的整块 /ɪə/ 严格区分）。
+
+**排除全表（6 词）**：beer、cheer、deer、engineer（拼法为 -eer 整块，读 /ɪə/，归 GP-eer 等长音菜单）；her /hɜː/、refer /rɪˈfɜː/（er 读重读 /ɜː/，归 GP-er）。
+
+**复算**：以 GA 字段做独立交叉（GA 词尾 -er 读 /ər/ 且 GB 词尾音段为 ə/əː 者入册）：134/134 与入册表全等，零分歧（含 heavier、police officer 均同落）。
+
+**与 §10.6 约数的口径差登记**：§10.6 记「约 230 成员（er 单类约 178）」系 RP 统一裁定前以 GA 标音粗估；本次按 GB 实测：全库词尾 -er/-eer 拼法候选共 140 词，入册 134、排除 6，以实测为准，约数作废。
+
+**成员全表（134 词，A–Z；机读表含条目与 occ 见 phonics_wordsets.json `GP-er-ə`）**：
+
+after、anger、another、answer、baker、better、bigger、brother、butcher、butter、center、character、cleaner、clever、climber、clover、computer、conquer、corner、cover、cucumber、dancer、danger、daughter、December、differ、dinner、discover、dodger、driver、easier、either、eraser、farmer、faster、father、feather、fever、finger、firefighter、flower、foreigner、gardener、geyser、goalkeeper、granddaughter、grandfather、grandmother、grasshopper、hamburger、happier、headmaster、heavier、hotter、however、keeper、ladder、laser、leader、learner、letter、moreover、mother、neither、never、newspaper、November、number、October、offer、officer、older、order、other、over、oyster、painter、paper、partner、passenger、pitcher、player、police officer、power、quarter、reader、remember、reporter、river、rooster、ruler、runner、September、shopkeeper、shorter、shoulder、shower、silver、singer、sister、smaller、soccer、speaker、spider、stranger、stronger、suffer、summer、sunflower、supper、sweater、swimmer、taller、teacher、thinner、thunder、tiger、timber、together、tower、traveller、under、villager、waiter、water、weather、winner、winter、wonder、woodpecker、worker、writer、younger、zookeeper
+
+### 12.4 残量登记与侧发现
+
+- **-or / -ar 词尾弱读残量**：§10.6 缺口 1 原登记含 -or/-ur/-ar，本轮裁定只建 -er 一类。-or 15 词（actor、anchor、author、bachelor、color、doctor、editor、inventor、liquor、metaphor、mirror、motor、spectator、terror、visitor）、-ar 5 词（calendar、irregular、popular、sugar、unpopular）词尾弱读 /ə/ 未裁，已登记入 `registrations` 待裁；-ur 词尾弱读全库无纯例（colour、hour、neighbour 等为 -our 拼法，归 ou 家族，不在此列）。
+- **oe→/ʌ/**：全库仅 does 一词，不单独立模式，已登记入 `registrations` 备查。
+- **侧发现（既有数据，本轮未改）**：GP-o-ɒ 收录 in front of 的成员归属（由 of 承担 /ɒ/）无误，但其 occ 标为 [5,6)——落在 front 的 o 位；按 gb /ɪn frʌnt ɒv/ 对齐应为 [9,10)（of 的 o 位），坐标疑误，登记待原线复核。本词 front 的 o 已按 GB 入本节 GP-o-ʌ（occ [5,6)），两池著录并存如上。
+
+### 12.5 联动变更清单
+
+- `phonics_wordsets.json`：模式 167 → 169；`pending` 14 条全部移入 `pending_adjudicated`（132 → 146 条，状态 resolved_assign，逐条 basis 指向本节）；`overview`：pending_total 14 → 0、total_appearances 10,160 → 10,351、per_category 短元音 9 模式/1,450 词次 → 10/1,507、长音菜单 65/1,404 → 66/1,538，并加 `addendum_2026_11_02` 基线说明；`registrations` 新增 2 条（-or/-ar 残量、oe-does）。
+- **心词注记**（`heart_adjudication` 内，文本更新，心字裁定本身不变）：援引缺口 1 的 -er 部件注记 6 处、援引缺口 2 的 o 部件注记 1 处、some 条注记 1 处，均由「未登记模式」改为「已入册（GP-er-ə / GP-o-ʌ，§12）」。her 条注记中以「弱读 /ə/ 缺口位」作对位语者 1 处经核留置：其语义为重读位与弱读位之别，不因入册改变，不在本轮改动范围。
+- `wordbank.json`：成员回填 `gpc_patterns` 共 183 条条目（o_uh 57 条目、er_uh 134 条目、双挂 8 条目），一律追加于原列表之尾，原有标记零改动；另 define、inflammable 两条 morphemes.note 追加封存标记（属 §2.3 裁定，见 vocab_MODEL §2.4 封存拆分小节）。除此之外词库零变化（逐条比对断言通过）。

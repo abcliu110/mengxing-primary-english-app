@@ -85,10 +85,11 @@ V-32 定版数字即按此对齐：小学生语料中 SEM 3–5 约 18–24%（�
 
 - 假词根型：butter、river（-er 是词干一部分）、corner（非 corn+er）。
 - 整词借入/tricksters：uncle（un- 不是前缀）、reason（re- 不是前缀）、unit（uni- 不是 un-）、ingenious、ingenuous、nonsense 以外的 non- 固化词按条目登记。
-- 假拆分型：define、detail（de- 不是可拆前缀）。
-- 义反型：inflammable（in- 非否定，与 flammable 同义）。
+- 假拆分型：detail（de- 不是可拆前缀）。
 - 组合失效型：understand、undertake（under 取古义，组合不可用——登记历史事实于 note，不登记今义拆分）。
 - 同形防假：illusion、immerse、irrigate（in- 向内义，非否定同化）。
+
+> 2026-11-02 用户裁定：define（原假拆分型）、inflammable（原义反型）移出本名单——两词拆分有 V-21/V-35 出处、词源属实，改为「封存拆分」保留（见 §2.4 封存拆分小节），不作词缀推广例、不进能拆队。义反型判据本身保留，新词再现该型仍入本名单。
 
 ### 2.4 全库分类口径（2026-11-02 补）
 
@@ -104,14 +105,25 @@ V-32 定版数字即按此对齐：小学生语料中 SEM 3–5 约 18–24%（�
 `morph_reason` 代码表：
 
 - whole：`mono` 单语素整词 / `func` 功能词整记 / `phrase` 短语词头 / `proper` 专名
-- nosplit：`fake_root` 假词根 / `loan` 整词借入 / `fake_split` 假拆分 / `opposite` 义反（定义保留；当前 0 条——inflammable 按既有逐条裁定带拆分入账，与 §2.3 字面冲突已登记待裁，见总账 2026-11-02 词素扩充合并条） / `dead_combo` 组合失效 / `homograph_guard` 同形防假 / `opaque` 今义不透明
+- nosplit：`fake_root` 假词根 / `loan` 整词借入 / `fake_split` 假拆分 / `opposite` 义反（定义保留；当前 0 条——inflammable 已按 2026-11-02 用户裁定移出禁拆、改归封存拆分，见 §2.4 封存拆分小节） / `dead_combo` 组合失效 / `homograph_guard` 同形防假 / `opaque` 今义不透明
 - form：`inflection` 屈折形
 
 对账规则：
 
 - 词库每词必有 `morph_class`；新词入模时必须同时裁定分类，未分类数必须为 0。
 - 菜单成员一律由 `morph_class` + `morphemes` 谓词推导：家族页（前缀 / 词根 / 后缀 / 复合）按 morphemes 槽位值取词，整词 / 禁拆 / 词形页按 `morph_class` + `morph_reason` 取词；不许手选名单。
-- define、inflammable 两条属已登记的 §2.3 冲突（现带拆分，源 V-21 / V-35 逐条裁定），维持现状待用户裁定，本口径不变更其归类。
+- define、inflammable 两条属封存拆分（2026-11-02 用户裁定）：morph_class 维持 `split`、拆分数据保留并带封存注记（见下小节），不作词缀推广例、不进能拆队菜单。
+
+### 封存拆分（2026-11-02 用户裁定新增）
+
+定义：拆分有出处、词源属实，但透明度不足或易致误推广的词——其拆分保留在数据层（带警示注），**不作词缀推广例，不进「能拆队」菜单**。封存词 `morph_class` 维持 `split`；词条 `morphemes.note` 末尾带统一标记句：「【封存拆分】（2026-11-02 裁定）本拆分只作词源登记，不作词缀推广例。」
+
+首批成员（2026-11-02 用户裁定）：
+
+- **define**：de- + fin「界限」，不透明，源 V-21。原 §2.3 假拆分型名单成员；因拆分有出处、词源属实，移出禁拆、改归封存。
+- **inflammable**：in-「使燃（非否定）」+ flamm「火焰」+ -able，半透明，源 V-35 名案。原 §2.3 义反型名单成员，同上移出、改归封存。其误读风险（in- 误作否定）由词条 note 原有警示继续承载。
+
+菜单后果：封存词不进能拆队（§3 谓词为 `transparency = 全透明`，两词本不在内）；两词在前缀 / 词根 / 后缀家族页的在册呈现只作词源登记，不作该词缀的推广例——家族页呈现方式由 App 同步线按此口径实现（本裁定的模型层落地不含 App 改动）。
 
 ## 3. 菜单谓词（词汇解码区，WORDBANK 规则 6）
 
