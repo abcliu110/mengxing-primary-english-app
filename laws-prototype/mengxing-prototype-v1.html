@@ -3671,7 +3671,7 @@ function renderMap(){
     }
     pos[w.word]=[x,y];
     const colr={'cite':'#2a9d8f','mixed':'#7fb069','asm':'#e9a13b','partial':'#e76f51','blank':'#9aa5b1'}[w.badge];
-    g+=`<g class="mnode" onclick="PK.show('w-${w.slug}')"><circle cx="${x}" cy="${y}" r="17" fill="${colr}"/><text x="${x}" y="${y+4.5}" text-anchor="middle" fill="#fff" font-size="${w.word.length>6?9.5:12}">${esc(w.word)}</text></g>`;
+    g+=`<g class="mnode" onclick="PK.show('w-${w.slug}')"><circle cx="${x}" cy="${y}" r="34" fill="#000" fill-opacity="0"/><circle cx="${x}" cy="${y}" r="17" fill="${colr}"/><text x="${x}" y="${y+4.5}" text-anchor="middle" fill="#fff" font-size="${w.word.length>6?9.5:12}">${esc(w.word)}</text></g>`;
   });
   $('#mapg').innerHTML=g;
 }
@@ -5572,8 +5572,15 @@ function renderModal(){
   h += '<div class="adult">情态词先别背中文：先看它站在量尺的哪一格。换一把尺子（推测 / 义务 / 能力·许可），同一批词站的位置就不一样。确定性刻度按 GrammarBank 情态总表的通行口径（must ≈95%、should ≈80%、may/might <50%）。</div>';
   h += '<div class="chips" style="margin:10px 0">' + MODAL.lenses.map(l => '<button class="chip' + (l.id === MODS.lens ? ' gold' : '') + '" onclick="VB.modalSetLens(\'' + l.id + '\')">' + esc(l.name) + '</button>').join('') + '</div>';
   h += '<div class="kid" style="font-size:15px">' + esc(lens.desc) + '</div>';
-  h += '<div style="position:relative;height:86px;margin:16px 6px 4px;background:linear-gradient(90deg,#eef2f7,#fde9b8,#f6c453,#e2703a,#c0392b);border-radius:12px">';
-  h += pts.map(w => '<button class="chip' + (w.w === MODS.word ? ' gold' : '') + '" style="position:absolute;left:' + w.v[MODS.lens] + '%;top:8px;transform:translateX(-50%);white-space:nowrap" onclick="VB.modalSetWord(\'' + q(w.w) + '\')">' + esc(w.w) + ' ' + w.v[MODS.lens] + '%</button>').join('');
+  const bsC = getComputedStyle(body); const scW = Math.max(260, (body.clientWidth || 676) - (parseFloat(bsC.paddingLeft) || 0) - (parseFloat(bsC.paddingRight) || 0) - 12);
+  const estW = w => (w.w.length + String(w.v[MODS.lens]).length + 2) * 8.2 + 24;
+  const txOf = p => p >= 88 ? -88 : (p <= 10 ? -12 : -50);
+  const effC = w => { const p = w.v[MODS.lens], ew = estW(w); return p / 100 * scW + ew * (txOf(p) / 100 + 0.5); };
+  const rowLast = [], chipRow = [];
+  pts.forEach(w => { const c = effC(w), ew = estW(w); let r = rowLast.findIndex(L => (L.c - c) >= (L.w + ew) / 2 + 6); if (r < 0) { rowLast.push({ c: c, w: ew }); r = rowLast.length - 1; } else { rowLast[r] = { c: c, w: ew }; } chipRow.push(r); });
+  const nRows = Math.max(1, rowLast.length);
+  h += '<div style="position:relative;height:' + (nRows * 38 + 30) + 'px;margin:16px 6px 4px;background:linear-gradient(90deg,#eef2f7,#fde9b8,#f6c453,#e2703a,#c0392b);border-radius:12px">';
+  h += pts.map((w, ci) => { const p = w.v[MODS.lens]; const tx = txOf(p); return '<button class="chip' + (w.w === MODS.word ? ' gold' : '') + '" style="position:absolute;left:' + p + '%;top:' + (6 + chipRow[ci] * 38) + 'px;transform:translateX(' + tx + '%);white-space:nowrap" onclick="VB.modalSetWord(\'' + q(w.w) + '\')">' + esc(w.w) + ' ' + p + '%</button>'; }).join('');
   h += '<span style="position:absolute;left:4px;bottom:4px;font-size:12px;color:#555">0% 没把握 / 不必须</span><span style="position:absolute;right:4px;bottom:4px;font-size:12px;color:#7b241c">100% 打包票 / 非这样不可</span></div>';
   if(off.length) h += '<div class="adult">这把尺子上暂不站：' + off.map(w => esc(w.w)).join(' / ') + '（换一把尺子看它们）。</div>';
   const wd = modalWord(MODS.word) || pts[0];
@@ -6467,7 +6474,7 @@ function lifeSVG(s){
       + '<text x="' + cx + '" y="' + ly + '" font-size="11.5" fill="#2b2b3a" text-anchor="middle">' + (x.e.born ? '🎂 ' : '') + esc(x.e.label) + '</text>'
       + '<text x="' + cx + '" y="' + ay + '" font-size="10.5" fill="#889" text-anchor="middle">' + x.e.age + ' 岁</text></g>';
   });
-  return '<svg viewBox="0 0 620 118" style="width:100%;min-width:520px" role="img" aria-label="我的生命线">' + g + '</svg>';
+  return '<svg viewBox="0 0 620 118" style="width:100%" role="img" aria-label="我的生命线">' + g + '</svg>';
 }
 function renderLife(){
   const el = $('lifeBody'); if(!el) return;
@@ -6597,7 +6604,7 @@ function smRender(){
   const backType=(V==='back'||V==='backinside');
   if(backType){barX=Math.max(8,camX-22);if(R==='past'){camX=27;barX=9}}
   const bar=document.getElementById('tnSmBar'),cam=document.getElementById('tnSmCam');
-  bar.style.left=barX+'%';cam.style.left=camX+'%';
+  const stgE=bar.parentElement,swE=stgE?stgE.clientWidth:0; if(swE>150){ bar.style.left=Math.min(Math.max(barX/100*swE,66),swE-66)+'px'; } else { bar.style.left=barX+'%'; } cam.style.left=camX+'%';
   bar.textContent=v.emoji+' '+v.base;
   bar.classList.toggle('inside',V==='inside'||V==='backinside');
   const arrow=document.getElementById('tnSmArrow'),star=document.getElementById('tnSmStar');
@@ -10969,5 +10976,48 @@ if(window.MutationObserver && arSecI && arSecD){
 }
 })();
 </script>
+<style>
+/* ==== 移动适配（390px 巡检 22 条修复，2026-11-02）：全部规则收进 680 断点，桌面不变 ==== */
+@media (max-width:680px){
+  /* G-1 顶部导航：标题带压缩 + 药丸单行横滚 */
+  .app>header{padding:12px 12px 8px}
+  .app>header h1{font-size:20px}
+  .app>header p{display:none}
+  .bar{flex-wrap:nowrap;overflow-x:auto;padding:8px 10px 6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .bar::-webkit-scrollbar{display:none}
+  /* G-2 药丸触控高度 */
+  .nbtn{flex:none;white-space:nowrap;min-height:38px;display:inline-flex;align-items:center}
+  /* G-3 全局 chip 触控下限（家长角/技巧/拼读等多区同源） */
+  .chip{min-height:32px}
+  /* 返回条触控（语法规律页/技巧详情等） */
+  .back{display:inline-flex;align-items:center;min-height:32px}
+  /* 语法规律页：读整句钮与逐词 chip */
+  .lz-say{min-height:32px}
+  .lz-chip{min-height:32px}
+  /* 信息类小字下限 12px：技巧/语法行、语法 uid、词根详情、动词徽标与出处、TN 词卡、代词/冠词徽标 */
+  .urow .id,.urow .st{font-size:12px}
+  .uhead .uid{font-size:12px}
+  .mz .wc .tag{font-size:12px}
+  .mz .wc .bid{font-size:12px}
+  .vb .badge{font-size:12px}
+  .vb .src,.vb .sent .src{font-size:12px}
+  .tn .chip small{font-size:12px}
+  .pn-scope .badge,.ar-scope .badge{font-size:12px}
+  .phx .tile small,.phx .slot small,.phx .ctile small{font-size:12px}
+  /* 进度点：视觉略放大 + 透明命中垫（旗舰单元 fa-dot / 白板 wb-dot） */
+  .fa-dot{width:15px;height:15px;position:relative}
+  .fa-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%}
+  .wb-dot,.pn-scope .wb-dot,.ar-scope .wb-dot{width:14px;height:14px;position:relative}
+  .wb-dot::after,.pn-scope .wb-dot::after,.ar-scope .wb-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%}
+  /* D-3 转盘组合表压缩进屏 */
+  .vb #dialGrid th,.vb #dialGrid td{padding:2px;font-size:12px}
+  .vb #dialGrid .chip{padding:1px 5px;font-size:12px;margin:0}
+  /* PK：概念图缩放/复位按钮、时间滑杆拉满 */
+  #mapbar button{min-height:34px;padding:4px 12px}
+  .pkmod input[type=range]{width:100%}
+  /* P-2 拖拽球：透明描边扩大命中（不改视觉） */
+  #drag-ball{stroke:rgba(0,0,0,0);stroke-width:44px;pointer-events:all}
+}
+</style>
 </body>
 </html>
