@@ -1125,3 +1125,13 @@ golf、news 本轮升 verified：两词记录均载真实词源（golf ← 荷�
 - 民间词源：soccer 的「穿厚袜子得名」说（1905 年美国报纸）、quiz 的达利赌约造词说、baseball 的 Doubleday 发明说均只作被否定对象登记，未入正链；本轮 VETO 维持 0 放行。
 - 收尾后总账：verified 1,814 / 待核 464 / 未收 195；JSON 总记录 2,278。覆盖（词库 2,473）：全体 73.4%；高频前 100 词 82%；前 500 词 71.6%（358/500）；Dolch 175/202（86.6%）。
 - 全量复验：verified 全部 ≥2 来源、story_hooks ≥2；original_meaning 与 semantic_path 首站 100% 一致；禁用套话全库 0 命中；非首站 how 共 2,092 条、互异 2,087 条（余 5 条为同词多步的合法同述）。
+
+## 十二、清单二 A 节定点修正记录（2026-11-02，复检 6 词）
+
+- school：删原始西日耳曼语 *skōlu 站（牛津 via Latin、Etymonline 均作拉丁语借入，仅 Wiktionary 拟构，已登记 disputes）；拉丁 schola、古英语 scōl、中古英语 scole 三站补 gloss（scōl 作「学校（教学机构）」，从 Etymonline "institution for instruction"）；「场所」义站 period 收正为拉丁语时期；first_attested 由「约 15 世纪」改为古英语已见载（原 15 世纪系误读牛津 sense 9「群」义的 late Middle English）；modern_meanings_link 与 story_hooks 原引旧原义「握住，有，占有」，已按现行原义「空闲时间，闲暇」重写。
+- voyage：原义「旅途的给养，盘缠」系误修——传入法语的是 viaticum 在晚期拉丁语里已转成的「旅程」义（牛津、Etymonline 均注明 in late Latin "journey"）。链首改晚期拉丁语 viaticum「旅程」，原义与路径首站同步改「旅程」，盘缠义移 disputes 登记；机制句、link、hooks 随之重写。
+- ton：链原只有古法语 tonne 一站，与三源「ton 即 tun 本词」矛盾。补抓 Wiktionary tun 词条后重建链：拉丁 tunna → 原始西日耳曼语 *tunnā → 古英语 tunne → 中古英语 tunne/tonne → ton；古法语 tonne 改登记为拼写影响（非来源）；first_attested、link、hooks 同步改正（旧 hooks 误称「直接来自古法语」「原义是吨」）。
+- half：链内古英语 healf 站 gloss 由「一半」改「一侧；一部分」，与顶层原义对齐（牛津：日耳曼基义为 'side'）；原始西日耳曼语、中古英语两站补 gloss；link 与 hooks 原引旧义「一半」已重写。
+- import：链内中古英语 importen 站 gloss 由「进口」改「意味着；表示」（Etymonline：early 15c. importen "signify"；货物义 1540 年代才见载）。
+- plane：纪年定点核对——plane「飞机」1908 年（Etymonline n.2）与牛津「20 世纪初缩略形」一致，可销；错在 aeroplane 站误系 1907 年（那是 airplane 的年份），aeroplane 本词 1873 年已见载（Etymonline airplane 词条），链 gloss、路径首站 period、机制句已改正，核对结论记入 disputes。
+- 附带发现（未修，待立项）：modern_meanings_link 内嵌「最早的意思「…」」引文与现行 original_meaning 字面不一致者 419 条，多数为同义改写；按字面重合度粗筛约 171 条需逐条判定，已抽见 access、ancient、arm、april、black 等确属实质陈旧（引别义/词根义/未定假说）。与本节同属「顶层已改、旁字段未跟上」一类，建议单独一轮逐条回源修正。
