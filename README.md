@@ -44,6 +44,10 @@
 
 学习进度保存在浏览器 `localStorage` 的 `mengxing_v1_1_state` 键里，换浏览器或清除站点数据会丢失，可在家长门里导出备份。
 
+## 前端 UI 规范
+
+护眼色板、全页面响应式（平板/桌面）与模块皮肤约定见 **`docs/frontend-ui.md`**（Agent 规则：`.cursor/rules/frontend-ui.mdc`）。改 `laws-prototype/mengxing-prototype-v1.html` 样式时以该文档为准，每个 `.view` 都要覆盖，不只首页。
+
 ## 修改注意
 
 - 在 HTML 模板里给 `onclick` 传文本时，用 `attrEscape(JSON.stringify(文本))`，或改用 `data-speak="${attrEscape(文本)}"`，否则句子里的撇号或双引号会让按钮报错。
