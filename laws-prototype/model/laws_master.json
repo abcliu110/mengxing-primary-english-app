@@ -101952,7 +101952,113 @@
        "p": "/bʊk/",
        "m": "书，书本；预订（动词：book a ticket 预订票）"
       }
-     ]
+     ],
+     "grp": "先看全貌：一个词有好几面",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "She can spell the word.",
+     "note": "形这一面：能把这个词拼出来",
+     "words": [
+      {
+       "w": "spell",
+       "p": "/spel/",
+       "m": "拼写"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "形这一面：读得出、拼得出、写得出",
+     "src": {
+      "k": "gen",
+      "f": "spell",
+      "from": "V-01 mech『三面格子』演示框",
+      "slots": {
+       "verb": "V6_学校_64",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "He writes the word on the book.",
+     "note": "形这一面：能把词写下来——写的是词的样子",
+     "words": [
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "形这一面：读得出、拼得出、写得出",
+     "src": {
+      "k": "gen",
+      "f": "write",
+      "from": "V-01 mech『三面格子』演示框",
+      "slots": {
+       "verb": "G3_0487",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "This book is about a dog.",
+     "note": "义这一面：这本书讲的是一只狗——说的是内容",
+     "words": [
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      }
+     ],
+     "grp": "义这一面：知道它在说什么",
+     "src": {
+      "k": "gen",
+      "f": "about",
+      "from": "V-01 exs[0] 句框",
+      "slots": {
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "The book is about my dog.",
+     "note": "还是义这一面：换成我的狗，讲的还是内容",
+     "words": [
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      }
+     ],
+     "grp": "义这一面：知道它在说什么",
+     "src": {
+      "k": "gen",
+      "f": "about-my",
+      "from": "V-01 exs[0] 句框",
+      "slots": {
+       "obj": "G1_015"
+      }
+     }
     },
     {
      "s": "Make a decision.",
@@ -101968,7 +102074,115 @@
        "p": "/dɪˈsɪʒən/",
        "m": "决定；抉择"
       }
-     ]
+     ],
+     "grp": "用这一面：和谁搭、怎么用",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Do your homework.",
+     "note": "用这一面：homework 的伙伴是 do，不是 make",
+     "words": [
+      {
+       "w": "do",
+       "p": "/duː/",
+       "m": "做(过去式did)"
+      },
+      {
+       "w": "homework",
+       "p": "/ˈhoʊmwɜːrk/",
+       "m": "家庭作业（不可数）"
+      }
+     ],
+     "grp": "用这一面：和谁搭、怎么用",
+     "src": {
+      "k": "gen",
+      "f": "do-partner",
+      "from": "V-01 exs[1] 对照框",
+      "slots": {
+       "verb": "V6_日常_3",
+       "obj": "G5_215"
+      }
+     }
+    },
+    {
+     "s": "Take a photo.",
+     "note": "用这一面：photo 的伙伴是 take——搭配要整对记",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "photo",
+       "p": "/ˈfoʊtoʊ/",
+       "m": "照片，相片"
+      }
+     ],
+     "grp": "用这一面：和谁搭、怎么用",
+     "src": {
+      "k": "gen",
+      "f": "take-partner",
+      "from": "V-01 exs[1] 对照框",
+      "slots": {
+       "verb": "V6_日常_6",
+       "obj": "G4_0381"
+      }
+     }
+    },
+    {
+     "s": "He can read the word, but he can't use it.",
+     "note": "只建了形和义，用这一面是空的——开口就卡住",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "边界：只建一面，就在那一面出错",
+     "src": {
+      "k": "gen",
+      "f": "one-face",
+      "from": "V-01 mech『缺面即错面』演示框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "She knows the word, but she can't spell it.",
+     "note": "意思知道、拼写没建好：形这一面缺了，写的时候就出错",
+     "words": [
+      {
+       "w": "know",
+       "p": "/noʊ/",
+       "m": "知道，了解，认识"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "边界：只建一面，就在那一面出错",
+     "src": {
+      "k": "gen",
+      "f": "one-face2",
+      "from": "V-01 mech『缺面即错面』演示框",
+      "slots": {
+       "verb": "G3_0626",
+       "obj": "V6_学校_42"
+      }
+     }
     }
    ],
    "cases": [
@@ -102255,7 +102469,171 @@
        "p": "/dɒɡ/",
        "m": "狗"
       }
-     ]
+     ],
+     "grp": "劳模词：一遍又一遍露脸",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I read a book every day.",
+     "note": "book 天天露脸：先认它，回报最大",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "劳模词：一遍又一遍露脸",
+     "src": {
+      "k": "gen",
+      "f": "everyday",
+      "from": "V-02 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "We see the dog at school.",
+     "note": "dog 也是劳模：在学校、绘本里到处见",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      }
+     ],
+     "grp": "劳模词：一遍又一遍露脸",
+     "src": {
+      "k": "gen",
+      "f": "see-dog",
+      "from": "V-02 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_17",
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "Happy and unhappy are in one family.",
+     "note": "数词按『家』数：happy 一家，学会一个顺带认一个",
+     "words": [
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      },
+      {
+       "w": "unhappy",
+       "p": "/ənˈhæpi/",
+       "m": "不开心的，难过的"
+      },
+      {
+       "w": "family",
+       "p": "/ˈfæməli/",
+       "m": "家，家庭；家人"
+      }
+     ],
+     "grp": "一家人：学一个，顺带认一串",
+     "src": {
+      "k": "gen",
+      "f": "family",
+      "from": "V-02 mech『词族口径』演示框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "She reads books and stories.",
+     "note": "books、stories 都是常露脸的词：先学它们，书就好读",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      }
+     ],
+     "grp": "一家人：学一个，顺带认一串",
+     "src": {
+      "k": "gen",
+      "f": "books-stories",
+      "from": "V-02 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0492"
+      }
+     }
+    },
+    {
+     "s": "This word is new. I see it one time.",
+     "note": "只露一次脸的生词：先放一放，别先背它",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "new",
+       "p": "/nuː/",
+       "m": "新的"
+      }
+     ],
+     "grp": "只露一次脸的词：先放一放",
+     "src": {
+      "k": "gen",
+      "f": "one-time",
+      "from": "V-02 mech『幂律分布』演示框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "A new word is in the book.",
+     "note": "书里只出现一次的词，回报最小，排最后学",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "只露一次脸的词：先放一放",
+     "src": {
+      "k": "gen",
+      "f": "new-in-book",
+      "from": "V-02 exs[0] 对照框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
     },
     {
      "s": "I use a computer at school.",
@@ -102266,7 +102644,62 @@
        "p": "/kəmˈpjuːtə/",
        "m": "计算机，电脑"
       }
-     ]
+     ],
+     "grp": "边界：老词表会漏掉新劳模",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I use a computer every day.",
+     "note": "computer 现在天天露脸：新劳模要补进词表",
+     "words": [
+      {
+       "w": "use",
+       "p": "/juːz/ /juːs/",
+       "m": "使用，利用；用途"
+      },
+      {
+       "w": "computer",
+       "p": "/kəmˈpjuːtər/",
+       "m": "计算机，电脑"
+      }
+     ],
+     "grp": "边界：老词表会漏掉新劳模",
+     "src": {
+      "k": "gen",
+      "f": "computer-now",
+      "from": "V-02 exs[1] 对照框",
+      "slots": {
+       "verb": "G4_0443",
+       "obj": "G4_155"
+      }
+     }
+    },
+    {
+     "s": "Phones are in many homes.",
+     "note": "phone 也是后来才常露脸的词：词表要跟着时代更新",
+     "words": [
+      {
+       "w": "phone",
+       "p": "/foʊn/",
+       "m": "电话，手机；打电话"
+      },
+      {
+       "w": "home",
+       "p": "/hoʊm/",
+       "m": "家(go home不加to)"
+      }
+     ],
+     "grp": "边界：老词表会漏掉新劳模",
+     "src": {
+      "k": "gen",
+      "f": "phone-now",
+      "from": "V-02 exs[1] 对照框",
+      "slots": {
+       "noun": "G4_0378"
+      }
+     }
     }
    ],
    "cases": [],
@@ -102518,7 +102951,68 @@
        "p": "/dɒɡ/",
        "m": "狗"
       }
-     ]
+     ],
+     "grp": "全是熟词：读得顺",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "We play in the park.",
+     "note": "全是认识的词：读起来不用停",
+     "words": [
+      {
+       "w": "play",
+       "p": "/pleɪ/",
+       "m": "玩耍；打（球）；弹奏（乐器）；戏剧"
+      },
+      {
+       "w": "park",
+       "p": "/pɑːrk/",
+       "m": "公园；停车（动词：park the car 停车）"
+      }
+     ],
+     "grp": "全是熟词：读得顺",
+     "src": {
+      "k": "gen",
+      "f": "all-known",
+      "from": "V-03 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0489",
+       "place": "G2_080"
+      }
+     }
+    },
+    {
+     "s": "I read a book with my mother.",
+     "note": "每个词都认识：这样的页读得最顺",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "mother",
+       "p": "/ˈmʌðər/",
+       "m": "母亲，妈妈"
+      }
+     ],
+     "grp": "全是熟词：读得顺",
+     "src": {
+      "k": "gen",
+      "f": "all-known2",
+      "from": "V-03 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "G1_002"
+      }
+     }
     },
     {
      "s": "I read a book.",
@@ -102529,7 +103023,175 @@
        "p": "/bʊk/",
        "m": "书，书本；预订（动词：book a ticket 预订票）"
       }
-     ]
+     ],
+     "grp": "只留一两个生词：靠熟词猜",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I see one new word in the book.",
+     "note": "一页只有一个生词：旁边的熟词全是帮手",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "只留一两个生词：靠熟词猜",
+     "src": {
+      "k": "gen",
+      "f": "one-new",
+      "from": "V-03 exs[1] 句框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "The new word is on this page.",
+     "note": "生词就一个：先猜，再查，都来得及",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "page",
+       "p": "/peɪdʒ/",
+       "m": "页码"
+      }
+     ],
+     "grp": "只留一两个生词：靠熟词猜",
+     "src": {
+      "k": "gen",
+      "f": "one-new2",
+      "from": "V-03 exs[1] 句框",
+      "slots": {
+       "obj": "V6_学校_42",
+       "place": "V6_学校_45"
+      }
+     }
+    },
+    {
+     "s": "Too many new words are on the page.",
+     "note": "生词占了半页：帮手都不在，猜也猜不动",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "page",
+       "p": "/peɪdʒ/",
+       "m": "页码"
+      }
+     ],
+     "grp": "生词太多：拼图缺了太多块",
+     "src": {
+      "k": "gen",
+      "f": "too-many",
+      "from": "V-03 mech『锚点』演示框",
+      "slots": {
+       "obj": "V6_学校_42",
+       "place": "V6_学校_45"
+      }
+     }
+    },
+    {
+     "s": "I can't read this page.",
+     "note": "生词太多时读不下去：不是你笨，是这页太难",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "page",
+       "p": "/peɪdʒ/",
+       "m": "页码"
+      }
+     ],
+     "grp": "生词太多：拼图缺了太多块",
+     "src": {
+      "k": "gen",
+      "f": "cant-read",
+      "from": "V-03 mech『锚点』演示框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "V6_学校_45"
+      }
+     }
+    },
+    {
+     "s": "This book is too hard for me.",
+     "note": "整本都是生词：硬猜没用，先换一本生词少的",
+     "words": [
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "hard",
+       "p": "/hɑːrd/",
+       "m": "困难的；努力地"
+      }
+     ],
+     "grp": "生词太多：拼图缺了太多块",
+     "src": {
+      "k": "gen",
+      "f": "too-hard",
+      "from": "V-03 mech『锚点』演示框",
+      "slots": {
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "I love dogs. This dog book is easy for me.",
+     "note": "我本来就懂狗：有一两个生词，熟话题也能补回来",
+     "words": [
+      {
+       "w": "love",
+       "p": "/lʌv/",
+       "m": "爱/喜爱"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "easy",
+       "p": "/ˈiːzi/",
+       "m": "容易的，不费力的"
+      }
+     ],
+     "grp": "边界：话题熟，能补回一点",
+     "src": {
+      "k": "gen",
+      "f": "topic-help",
+      "from": "V-03 exc 补偿说法演示框",
+      "slots": {
+       "verb": "V6_日常_63",
+       "obj": "G1_015"
+      }
+     }
     }
    ],
    "cases": [],
@@ -102746,7 +103408,37 @@
        "p": "/riːd/",
        "m": "读，阅读，看（书/报）"
       }
-     ]
+     ],
+     "grp": "输入股：听和读，遇见词",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I read a book every day.",
+     "note": "输入股：天天读，词就天天来打招呼",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "输入股：听和读，遇见词",
+     "src": {
+      "k": "gen",
+      "f": "read-daily",
+      "from": "V-04 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "G1_002"
+      }
+     }
     },
     {
      "s": "I speak and write with my words.",
@@ -102762,7 +103454,203 @@
        "p": "/raɪt/",
        "m": "写，写字，写作"
       }
-     ]
+     ],
+     "grp": "输出股：说和写，用出来",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "She writes a sentence in class.",
+     "note": "输出股：把词写进句子里用出来",
+     "words": [
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      },
+      {
+       "w": "sentence",
+       "p": "/ˈsentəns/",
+       "m": "句子"
+      },
+      {
+       "w": "class",
+       "p": "/klæs/",
+       "m": "班级/课"
+      }
+     ],
+     "grp": "输出股：说和写，用出来",
+     "src": {
+      "k": "gen",
+      "f": "write-sentence",
+      "from": "V-04 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0487",
+       "obj": "V6_学校_43"
+      }
+     }
+    },
+    {
+     "s": "I say the new words with my friends.",
+     "note": "输出股：新词要开口说出来，用给别人听",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "friend",
+       "p": "/frend/",
+       "m": "朋友"
+      }
+     ],
+     "grp": "输出股：说和写，用出来",
+     "src": {
+      "k": "gen",
+      "f": "say-words",
+      "from": "V-04 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0625",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "I look at the new word.",
+     "note": "研究股：把生词看仔细——它长什么样、和谁搭",
+     "words": [
+      {
+       "w": "look",
+       "p": "/lʊk/",
+       "m": "看(look at)"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "研究股：把词看仔细",
+     "src": {
+      "k": "gen",
+      "f": "look-at",
+      "from": "V-04 mech『四股分工』演示框",
+      "slots": {
+       "verb": "V6_日常_16",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "We spell the word and say it.",
+     "note": "研究股：拼一拼、说一说，把词看透",
+     "words": [
+      {
+       "w": "spell",
+       "p": "/spel/",
+       "m": "拼写"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "研究股：把词看仔细",
+     "src": {
+      "k": "gen",
+      "f": "spell-say",
+      "from": "V-04 mech『四股分工』演示框",
+      "slots": {
+       "verb": "V6_学校_64",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "I use the word again and again.",
+     "note": "流利股：一个词用很多遍，用到不用想",
+     "words": [
+      {
+       "w": "use",
+       "p": "/juːz/ /juːs/",
+       "m": "使用，利用；用途"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "流利股：反复用，用到熟",
+     "src": {
+      "k": "gen",
+      "f": "again-again",
+      "from": "V-04 mech『四股分工』演示框",
+      "slots": {
+       "verb": "G4_0443",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "He says the word fast now.",
+     "note": "流利股：说得快、说得顺，就是练熟了",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "流利股：反复用，用到熟",
+     "src": {
+      "k": "gen",
+      "f": "fast-now",
+      "from": "V-04 mech『四股分工』演示框",
+      "slots": {
+       "verb": "G3_0625",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "He reads the word list. He doesn't speak.",
+     "note": "只背表、只读词：占了一股，其余三股全空着",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "list",
+       "p": "/lɪst/",
+       "m": "清单；列出"
+      }
+     ],
+     "grp": "边界：只背单词表，只占一股",
+     "src": {
+      "k": "gen",
+      "f": "list-only",
+      "from": "V-04 对照框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "ADD_0182"
+      }
+     }
     }
    ],
    "cases": [],
@@ -103036,7 +103924,11 @@
        "p": "/dɪˈsɪʒən/",
        "m": "决定；抉择"
       }
-     ]
+     ],
+     "grp": "搭配块：整块记住，整块用",
+     "src": {
+      "k": "orig"
+     }
     },
     {
      "s": "Take a photo.",
@@ -103052,7 +103944,203 @@
        "p": "/ˈfəʊtəʊ/",
        "m": "照片，相片"
       }
-     ]
+     ],
+     "grp": "搭配块：整块记住，整块用",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Make a cake.",
+     "note": "又一个整块：make a cake 整个记，不用现拼",
+     "words": [
+      {
+       "w": "make",
+       "p": "/meɪk/",
+       "m": "制作(过去式made)"
+      },
+      {
+       "w": "cake",
+       "p": "/keɪk/",
+       "m": "蛋糕"
+      }
+     ],
+     "grp": "搭配块：整块记住，整块用",
+     "src": {
+      "k": "gen",
+      "f": "make-cake",
+      "from": "V-05 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_4",
+       "obj": "G1_048"
+      }
+     }
+    },
+    {
+     "s": "Do your homework.",
+     "note": "do your homework 也是整块：拿来就用",
+     "words": [
+      {
+       "w": "do",
+       "p": "/duː/",
+       "m": "做(过去式did)"
+      },
+      {
+       "w": "homework",
+       "p": "/ˈhoʊmwɜːrk/",
+       "m": "家庭作业（不可数）"
+      }
+     ],
+     "grp": "搭配块：整块记住，整块用",
+     "src": {
+      "k": "gen",
+      "f": "do-homework",
+      "from": "V-05 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_3",
+       "obj": "G5_215"
+      }
+     }
+    },
+    {
+     "s": "This is my book.",
+     "note": "This is ___ 是整句架子：空里填什么都顺",
+     "words": [
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "句框块：整句话的架子",
+     "src": {
+      "k": "gen",
+      "f": "this-is",
+      "from": "V-05 mech『整块取用』演示框",
+      "slots": {
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "How are you? — I am fine.",
+     "note": "问候也是整块：整句问、整句答",
+     "words": [
+      {
+       "w": "fine",
+       "p": "/faɪn/",
+       "m": "晴朗的/身体好的"
+      }
+     ],
+     "grp": "句框块：整句话的架子",
+     "src": {
+      "k": "gen",
+      "f": "how-are-you",
+      "from": "V-05 mech『整块取用』演示框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "Can I have a pen, please?",
+     "note": "Can I have ___ 也是架子：换个零件就能用",
+     "words": [
+      {
+       "w": "pen",
+       "p": "/pen/",
+       "m": "钢笔，水笔"
+      }
+     ],
+     "grp": "句框块：整句话的架子",
+     "src": {
+      "k": "gen",
+      "f": "can-i-have",
+      "from": "V-05 mech『整块取用』演示框",
+      "slots": {
+       "obj": "G1_003"
+      }
+     }
+    },
+    {
+     "s": "What is this? — It is a pen.",
+     "note": "问和答都是整块：不用现拼，整对拿出来",
+     "words": [
+      {
+       "w": "pen",
+       "p": "/pen/",
+       "m": "钢笔，水笔"
+      }
+     ],
+     "grp": "句框块：整句话的架子",
+     "src": {
+      "k": "gen",
+      "f": "what-this",
+      "from": "V-05 mech『整块取用』演示框",
+      "slots": {
+       "obj": "G1_003"
+      }
+     }
+    },
+    {
+     "s": "Take a photo of my dog.",
+     "note": "整块也能加零件：of my dog 是加上去的",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "photo",
+       "p": "/ˈfoʊtoʊ/",
+       "m": "照片，相片"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      }
+     ],
+     "grp": "边界：整块不是死的，零件能换",
+     "src": {
+      "k": "gen",
+      "f": "chunk-plus",
+      "from": "V-05 exs[1] 对照框",
+      "slots": {
+       "verb": "V6_日常_6",
+       "obj": "G4_0381"
+      }
+     }
+    },
+    {
+     "s": "Make a big cake.",
+     "note": "块里的零件能换：big cake 还是那个整块",
+     "words": [
+      {
+       "w": "make",
+       "p": "/meɪk/",
+       "m": "制作(过去式made)"
+      },
+      {
+       "w": "cake",
+       "p": "/keɪk/",
+       "m": "蛋糕"
+      },
+      {
+       "w": "big",
+       "p": "/bɪɡ/",
+       "m": "大的"
+      }
+     ],
+     "grp": "边界：整块不是死的，零件能换",
+     "src": {
+      "k": "gen",
+      "f": "chunk-swap",
+      "from": "V-05 exs[0] 对照框",
+      "slots": {
+       "verb": "V6_日常_4",
+       "obj": "G1_048"
+      }
+     }
     }
    ],
    "cases": [
@@ -103300,17 +104388,6 @@
    ],
    "exs": [
     {
-     "s": "Take a photo, please.",
-     "note": "整串取用：take a photo 一口气说出",
-     "words": [
-      {
-       "w": "take",
-       "p": "/teɪk/",
-       "m": "带走/乘坐(过去took)"
-      }
-     ]
-    },
-    {
      "s": "This is a book.",
      "note": "整句框架 This is a ___ 也是仓库里的大件",
      "words": [
@@ -103319,7 +104396,242 @@
        "p": "/bʊk/",
        "m": "书，书本；预订（动词：book a ticket 预订票）"
       }
-     ]
+     ],
+     "grp": "整句大件：一口气说出",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "How are you?",
+     "note": "整句大件：不用拼，张口就来",
+     "words": [],
+     "grp": "整句大件：一口气说出",
+     "src": {
+      "k": "gen",
+      "f": "how-are-you",
+      "from": "V-06 exs[1] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "This is a cat.",
+     "note": "整句架子换零件：This is a ___ 里换成 cat",
+     "words": [
+      {
+       "w": "cat",
+       "p": "/kæt/",
+       "m": "猫"
+      }
+     ],
+     "grp": "整句大件：一口气说出",
+     "src": {
+      "k": "gen",
+      "f": "this-is-cat",
+      "from": "V-06 exs[1] 句框",
+      "slots": {
+       "obj": "G1_014"
+      }
+     }
+    },
+    {
+     "s": "Take a photo, please.",
+     "note": "整串取用：take a photo 一口气说出",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      }
+     ],
+     "grp": "词块中件：成串取用",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "In the morning, I read a book.",
+     "note": "in the morning 是成串的中件，后面再接自己的话",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "morning",
+       "p": "/ˈmɔːrnɪŋ/",
+       "m": "早晨，上午"
+      }
+     ],
+     "grp": "词块中件：成串取用",
+     "src": {
+      "k": "gen",
+      "f": "in-the-morning",
+      "from": "V-06 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "Make a decision.",
+     "note": "make a decision 是中件：一串一起拿出来",
+     "words": [
+      {
+       "w": "make",
+       "p": "/meɪk/",
+       "m": "制作(过去式made)"
+      },
+      {
+       "w": "decision",
+       "p": "/dɪˈsɪʒən/",
+       "m": "决定；抉择"
+      }
+     ],
+     "grp": "词块中件：成串取用",
+     "src": {
+      "k": "gen",
+      "f": "make-decision",
+      "from": "V-06 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_4",
+       "obj": "ADD_0070"
+      }
+     }
+    },
+    {
+     "s": "At school, I say 'good morning'.",
+     "note": "good morning 也是中件：成串取用，不用现拼",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "good",
+       "p": "/ɡʊd/",
+       "m": "好的；擅长的"
+      },
+      {
+       "w": "morning",
+       "p": "/ˈmɔːrnɪŋ/",
+       "m": "早晨，上午"
+      },
+      {
+       "w": "school",
+       "p": "/skuːl/",
+       "m": "学校"
+      }
+     ],
+     "grp": "词块中件：成串取用",
+     "src": {
+      "k": "gen",
+      "f": "good-morning",
+      "from": "V-06 exs[0] 句框",
+      "slots": {
+       "verb": "G3_0625"
+      }
+     }
+    },
+    {
+     "s": "I see a butterfly.",
+     "note": "小件也有：单个词 butterfly，从库里单个拿",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "butterfly",
+       "p": "/ˈbʌtərflaɪ/",
+       "m": "蝴蝶"
+      }
+     ],
+     "grp": "词和零件：小件也在库里",
+     "src": {
+      "k": "gen",
+      "f": "one-word",
+      "from": "V-06 mech『双通道』演示框",
+      "slots": {
+       "verb": "V6_日常_17",
+       "obj": "G3_0759"
+      }
+     }
+    },
+    {
+     "s": "Say the word 'dog'.",
+     "note": "说单个词：仓库里最小的件就是一个词",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "词和零件：小件也在库里",
+     "src": {
+      "k": "gen",
+      "f": "say-word",
+      "from": "V-06 mech『双通道』演示框",
+      "slots": {
+       "verb": "G3_0625",
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "She can say 'take a photo', but she can't say 'take a bus'.",
+     "note": "整块没拆开过：换个场合（bus）就接不上——块要拆开看过才灵活",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "photo",
+       "p": "/ˈfoʊtoʊ/",
+       "m": "照片，相片"
+      },
+      {
+       "w": "bus",
+       "p": "/bʌs/",
+       "m": "公共汽车，巴士"
+      }
+     ],
+     "grp": "边界：整块没拆过，换个场合就卡住",
+     "src": {
+      "k": "gen",
+      "f": "fossil",
+      "from": "V-06 exc 化石化说法演示框",
+      "slots": {
+       "verb": "G3_0625"
+      }
+     }
     }
    ],
    "cases": [],
@@ -103581,7 +104893,42 @@
        "p": "/dɪˈsɪʒən/",
        "m": "决定；抉择"
       }
-     ]
+     ],
+     "grp": "make 的名单：decision 在上面",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "We make a decision in class.",
+     "note": "还是 make 配 decision：人换了，伙伴不换",
+     "words": [
+      {
+       "w": "make",
+       "p": "/meɪk/",
+       "m": "制作(过去式made)"
+      },
+      {
+       "w": "decision",
+       "p": "/dɪˈsɪʒən/",
+       "m": "决定；抉择"
+      },
+      {
+       "w": "class",
+       "p": "/klæs/",
+       "m": "班级/课"
+      }
+     ],
+     "grp": "make 的名单：decision 在上面",
+     "src": {
+      "k": "gen",
+      "f": "make-decision-class",
+      "from": "V-07 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_4",
+       "obj": "ADD_0070"
+      }
+     }
     },
     {
      "s": "Take a shower.",
@@ -103597,7 +104944,218 @@
        "p": "/ˈʃaʊə/",
        "m": "淋浴；阵雨；洗淋浴"
       }
-     ]
+     ],
+     "grp": "take 的名单：shower、photo 在上面",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Take a photo.",
+     "note": "take 的名单上还有 photo",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "photo",
+       "p": "/ˈfoʊtoʊ/",
+       "m": "照片，相片"
+      }
+     ],
+     "grp": "take 的名单：shower、photo 在上面",
+     "src": {
+      "k": "gen",
+      "f": "take-photo",
+      "from": "V-07 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_6",
+       "obj": "G4_0381"
+      }
+     }
+    },
+    {
+     "s": "She takes the bus.",
+     "note": "坐车也找 take：名单上的一员",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "bus",
+       "p": "/bʌs/",
+       "m": "公共汽车，巴士"
+      }
+     ],
+     "grp": "take 的名单：shower、photo 在上面",
+     "src": {
+      "k": "gen",
+      "f": "take-bus",
+      "from": "V-07 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_6",
+       "obj": "G2_105"
+      }
+     }
+    },
+    {
+     "s": "Take a bus to school.",
+     "note": "上学坐车也找 take：名单就是这样一条一条记满的",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "bus",
+       "p": "/bʌs/",
+       "m": "公共汽车，巴士"
+      },
+      {
+       "w": "school",
+       "p": "/skuːl/",
+       "m": "学校"
+      }
+     ],
+     "grp": "take 的名单：shower、photo 在上面",
+     "src": {
+      "k": "gen",
+      "f": "take-bus-school",
+      "from": "V-07 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_6",
+       "obj": "G2_105"
+      }
+     }
+    },
+    {
+     "s": "Do your homework.",
+     "note": "homework 的伙伴是 do：换了一张名单",
+     "words": [
+      {
+       "w": "do",
+       "p": "/duː/",
+       "m": "做(过去式did)"
+      },
+      {
+       "w": "homework",
+       "p": "/ˈhoʊmwɜːrk/",
+       "m": "家庭作业（不可数）"
+      }
+     ],
+     "grp": "do 的名单：homework 在上面",
+     "src": {
+      "k": "gen",
+      "f": "do-homework",
+      "from": "V-07 对照框",
+      "slots": {
+       "verb": "V6_日常_3",
+       "obj": "G5_215"
+      }
+     }
+    },
+    {
+     "s": "He does his homework every day.",
+     "note": "第三个人称也一样：does 配 homework",
+     "words": [
+      {
+       "w": "do",
+       "p": "/duː/",
+       "m": "做(过去式did)"
+      },
+      {
+       "w": "homework",
+       "p": "/ˈhoʊmwɜːrk/",
+       "m": "家庭作业（不可数）"
+      }
+     ],
+     "grp": "do 的名单：homework 在上面",
+     "src": {
+      "k": "gen",
+      "f": "does-homework",
+      "from": "V-07 对照框",
+      "slots": {
+       "verb": "V6_日常_3",
+       "obj": "G5_215"
+      }
+     }
+    },
+    {
+     "s": "I make a cake and do my homework.",
+     "note": "一句话两张名单：make 管 cake，do 管 homework——各找各的伙伴",
+     "words": [
+      {
+       "w": "make",
+       "p": "/meɪk/",
+       "m": "制作(过去式made)"
+      },
+      {
+       "w": "cake",
+       "p": "/keɪk/",
+       "m": "蛋糕"
+      },
+      {
+       "w": "do",
+       "p": "/duː/",
+       "m": "做(过去式did)"
+      },
+      {
+       "w": "homework",
+       "p": "/ˈhoʊmwɜːrk/",
+       "m": "家庭作业（不可数）"
+      }
+     ],
+     "grp": "边界：名单没道理，只能记下来",
+     "src": {
+      "k": "gen",
+      "f": "two-lists",
+      "from": "V-07 mech『伙伴名单』演示框",
+      "slots": {
+       "verb": "V6_日常_4",
+       "obj": "G1_048"
+      }
+     }
+    },
+    {
+     "s": "Take a shower and make a decision.",
+     "note": "洗澡找 take、做决定找 make：猜不出来，全靠平时把名单记下来",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "shower",
+       "p": "/ˈʃaʊər/",
+       "m": "淋浴；阵雨；洗淋浴"
+      },
+      {
+       "w": "make",
+       "p": "/meɪk/",
+       "m": "制作(过去式made)"
+      },
+      {
+       "w": "decision",
+       "p": "/dɪˈsɪʒən/",
+       "m": "决定；抉择"
+      }
+     ],
+     "grp": "边界：名单没道理，只能记下来",
+     "src": {
+      "k": "gen",
+      "f": "no-guess",
+      "from": "V-07 mech『伙伴名单』演示框",
+      "slots": {
+       "verb": "V6_日常_6",
+       "obj": "ADD_0638"
+      }
+     }
     }
    ],
    "cases": [
@@ -103854,7 +105412,62 @@
        "p": "/tiː/",
        "m": "茶，茶叶（不可数）"
       }
-     ]
+     ],
+     "grp": "有据可查的来历：tea 出海",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Tea is from China.",
+     "note": "tea 的来历查得到：从中国福建出海（故事见 V-27）",
+     "words": [
+      {
+       "w": "tea",
+       "p": "/tiː/",
+       "m": "茶，茶叶（不可数）"
+      }
+     ],
+     "grp": "有据可查的来历：tea 出海",
+     "src": {
+      "k": "gen",
+      "f": "tea-from-china",
+      "from": "V-08 exs[0] 句框",
+      "slots": {
+       "obj": "G2_0944"
+      }
+     }
+    },
+    {
+     "s": "She drinks tea in the morning.",
+     "note": "每天喝的 tea，背后有一条查得清的路",
+     "words": [
+      {
+       "w": "drink",
+       "p": "/drɪŋk/",
+       "m": "喝(过去式drank)/饮料"
+      },
+      {
+       "w": "tea",
+       "p": "/tiː/",
+       "m": "茶，茶叶（不可数）"
+      },
+      {
+       "w": "morning",
+       "p": "/ˈmɔːrnɪŋ/",
+       "m": "早晨，上午"
+      }
+     ],
+     "grp": "有据可查的来历：tea 出海",
+     "src": {
+      "k": "gen",
+      "f": "drinks-tea",
+      "from": "V-08 exs[0] 句框",
+      "slots": {
+       "verb": "V6_食物_57",
+       "obj": "G2_0944"
+      }
+     }
     },
     {
      "s": "Look, a butterfly!",
@@ -103865,7 +105478,177 @@
        "p": "/ˈbʌtəflaɪ/",
        "m": "蝴蝶"
       }
-     ]
+     ],
+     "grp": "只能说『也许』的来历：butterfly",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "A butterfly is in the garden.",
+     "note": "butterfly 的名字来历只能讲『也许』：讲的时候要带上这两个字",
+     "words": [
+      {
+       "w": "butterfly",
+       "p": "/ˈbʌtərflaɪ/",
+       "m": "蝴蝶"
+      },
+      {
+       "w": "garden",
+       "p": "/ˈɡɑːrdn/",
+       "m": "花园，菜园"
+      }
+     ],
+     "grp": "只能说『也许』的来历：butterfly",
+     "src": {
+      "k": "gen",
+      "f": "butterfly-garden",
+      "from": "V-08 exs[1] 句框",
+      "slots": {
+       "obj": "G3_0759",
+       "place": "G4_183"
+      }
+     }
+    },
+    {
+     "s": "I drink tea and think of the sea.",
+     "note": "想起 tea，就想起它坐船过海的来历：多一条路，就多记一分",
+     "words": [
+      {
+       "w": "drink",
+       "p": "/drɪŋk/",
+       "m": "喝(过去式drank)/饮料"
+      },
+      {
+       "w": "tea",
+       "p": "/tiː/",
+       "m": "茶，茶叶（不可数）"
+      },
+      {
+       "w": "think",
+       "p": "/θɪŋk/",
+       "m": "想，思考，认为"
+      },
+      {
+       "w": "sea",
+       "p": "/siː/",
+       "m": "海，大海，海洋"
+      }
+     ],
+     "grp": "故事挂上词：多一条路想起它",
+     "src": {
+      "k": "gen",
+      "f": "tea-sea",
+      "from": "V-08 mech『双重编码』演示框",
+      "slots": {
+       "verb": "V6_食物_57",
+       "obj": "G2_0944"
+      }
+     }
+    },
+    {
+     "s": "First we guess the story, then we check it.",
+     "note": "先自己猜来历，再去查对不对：猜过的记得更牢",
+     "words": [
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      }
+     ],
+     "grp": "故事挂上词：多一条路想起它",
+     "src": {
+      "k": "gen",
+      "f": "guess-then-check",
+      "from": "V-08 mech『双重编码』演示框",
+      "slots": {
+       "verb": "ADD_0134",
+       "obj": "V6_学校_44"
+      }
+     }
+    },
+    {
+     "s": "The word 'tea' has a true story.",
+     "note": "tea 这个词挂着一张真照片：它的来历故事是查得到的",
+     "words": [
+      {
+       "w": "tea",
+       "p": "/tiː/",
+       "m": "茶，茶叶（不可数）"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "true",
+       "p": "/truː/",
+       "m": "真的，真实的，正确的"
+      }
+     ],
+     "grp": "故事挂上词：多一条路想起它",
+     "src": {
+      "k": "gen",
+      "f": "tea-true-story",
+      "from": "V-08 exs[0] 句框",
+      "slots": {
+       "obj": "G2_0944"
+      }
+     }
+    },
+    {
+     "s": "This word has no story. We learn it as it is.",
+     "note": "有的词查不到来历：老实学它本身，不许编故事",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      }
+     ],
+     "grp": "边界：编的假来历，再好记也不许用",
+     "src": {
+      "k": "gen",
+      "f": "no-story",
+      "from": "V-08 exc 假词源禁令演示框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "We ask: is the story true?",
+     "note": "故事先问一句：是真的吗？查不到据的，只能算猜测",
+     "words": [
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "true",
+       "p": "/truː/",
+       "m": "真的，真实的，正确的"
+      }
+     ],
+     "grp": "边界：编的假来历，再好记也不许用",
+     "src": {
+      "k": "gen",
+      "f": "ask-true",
+      "from": "V-08 对照框",
+      "slots": {}
+     }
     }
    ],
    "cases": [],
@@ -104117,7 +105900,68 @@
        "p": "/wɜːd/",
        "m": "单词/话语"
       }
-     ]
+     ],
+     "grp": "低投入：只读、只抄",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I read the word again.",
+     "note": "只读一遍又一遍：眼睛过了，脑子没动",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "低投入：只读、只抄",
+     "src": {
+      "k": "gen",
+      "f": "read-again",
+      "from": "V-09 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "He writes the word in his book.",
+     "note": "抄在书上：手在动，词没进脑子",
+     "words": [
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "低投入：只读、只抄",
+     "src": {
+      "k": "gen",
+      "f": "write-word",
+      "from": "V-09 exs[0] 句框",
+      "slots": {
+       "verb": "G3_0487",
+       "obj": "V6_学校_42"
+      }
+     }
     },
     {
      "s": "Make a sentence with the word.",
@@ -104128,7 +105972,205 @@
        "p": "/meɪk/",
        "m": "制作(过去式made)"
       }
-     ]
+     ],
+     "grp": "高投入：自己查、自己造句",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I look up the word and use it in a sentence.",
+     "note": "自己查、自己用：需要和评估都点亮了",
+     "words": [
+      {
+       "w": "look",
+       "p": "/lʊk/",
+       "m": "看(look at)"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "sentence",
+       "p": "/ˈsentəns/",
+       "m": "句子"
+      }
+     ],
+     "grp": "高投入：自己查、自己造句",
+     "src": {
+      "k": "gen",
+      "f": "look-up-use",
+      "from": "V-09 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_16",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "She makes a new sentence with 'happy'.",
+     "note": "用新学的词造新句子：造句时词才真的长进脑子",
+     "words": [
+      {
+       "w": "make",
+       "p": "/meɪk/",
+       "m": "制作(过去式made)"
+      },
+      {
+       "w": "sentence",
+       "p": "/ˈsentəns/",
+       "m": "句子"
+      },
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      }
+     ],
+     "grp": "高投入：自己查、自己造句",
+     "src": {
+      "k": "gen",
+      "f": "make-sentence",
+      "from": "V-09 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_4",
+       "obj": "V6_学校_43"
+      }
+     }
+    },
+    {
+     "s": "I need the word, so I look it up.",
+     "note": "先有『真需要』（need），才会自己去查：三成分点亮两个",
+     "words": [
+      {
+       "w": "need",
+       "p": "/niːd/",
+       "m": "需要"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "look",
+       "p": "/lʊk/",
+       "m": "看(look at)"
+      }
+     ],
+     "grp": "高投入：自己查、自己造句",
+     "src": {
+      "k": "gen",
+      "f": "need-look",
+      "from": "V-09 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_67",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "Two words are in my book. I pick the right one.",
+     "note": "两个词比一比，选一个用：比较取舍就是评估那一步",
+     "words": [
+      {
+       "w": "pick",
+       "p": "/pɪk/",
+       "m": "采摘/捡起"
+      },
+      {
+       "w": "right",
+       "p": "/raɪt/",
+       "m": "右边的；正确的；正好"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "要比较、要取舍：脑子动真格",
+     "src": {
+      "k": "gen",
+      "f": "pick-right",
+      "from": "V-09 mech『三成分』演示框",
+      "slots": {
+       "verb": "V6_日常_75"
+      }
+     }
+    },
+    {
+     "s": "I pick 'happy', not 'sad', for my sentence.",
+     "note": "选词时要想：哪个更合这句话——想过的才记得牢",
+     "words": [
+      {
+       "w": "pick",
+       "p": "/pɪk/",
+       "m": "采摘/捡起"
+      },
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      },
+      {
+       "w": "sad",
+       "p": "/sæd/",
+       "m": "难过的，悲伤的"
+      },
+      {
+       "w": "sentence",
+       "p": "/ˈsentəns/",
+       "m": "句子"
+      }
+     ],
+     "grp": "要比较、要取舍：脑子动真格",
+     "src": {
+      "k": "gen",
+      "f": "pick-happy",
+      "from": "V-09 mech『三成分』演示框",
+      "slots": {
+       "verb": "V6_日常_75"
+      }
+     }
+    },
+    {
+     "s": "I see the word in three books.",
+     "note": "遍数也算数：同一个词在三本书里遇见，也会记住",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "边界：遍数也算数，不只拼投入",
+     "src": {
+      "k": "gen",
+      "f": "three-books",
+      "from": "V-09 exc 演示框",
+      "slots": {
+       "verb": "V6_日常_17",
+       "obj": "V6_学校_42"
+      }
+     }
     }
    ],
    "cases": [],
@@ -104386,7 +106428,67 @@
        "p": "/praɪs/",
        "m": "价格；定价"
       }
-     ]
+     ],
+     "grp": "形近词：差一点点，意思差很远",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "The prize is a book.",
+     "note": "prize 是奖品：一本书当奖品——和 price（价格）只差一个字母",
+     "words": [
+      {
+       "w": "prize",
+       "p": "/praɪz/",
+       "m": "奖品，奖赏，奖项"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "形近词：差一点点，意思差很远",
+     "src": {
+      "k": "gen",
+      "f": "prize-book",
+      "from": "V-10 exs[0] 句框",
+      "slots": {
+       "obj": "G5_0992"
+      }
+     }
+    },
+    {
+     "s": "I win a prize at school.",
+     "note": "win a prize 是赢得奖品：读到 prize 先想想它是不是价格",
+     "words": [
+      {
+       "w": "win",
+       "p": "/wɪn/",
+       "m": "赢，获胜，赢得"
+      },
+      {
+       "w": "prize",
+       "p": "/praɪz/",
+       "m": "奖品，奖赏，奖项"
+      },
+      {
+       "w": "school",
+       "p": "/skuːl/",
+       "m": "学校"
+      }
+     ],
+     "grp": "形近词：差一点点，意思差很远",
+     "src": {
+      "k": "gen",
+      "f": "win-prize",
+      "from": "V-10 exs[0] 句框",
+      "slots": {
+       "verb": "G5_0494",
+       "obj": "G5_0992"
+      }
+     }
     },
     {
      "s": "Turn on the light.",
@@ -104397,7 +106499,174 @@
        "p": "/laɪt/",
        "m": "电灯，光线；轻的"
       }
-     ]
+     ],
+     "grp": "多义词：只记得一个意思会误认",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "This bag is light.",
+     "note": "light 在这里是『轻的』：只记得『光』，这句就读错了",
+     "words": [
+      {
+       "w": "bag",
+       "p": "/bæɡ/",
+       "m": "包，书包"
+      },
+      {
+       "w": "light",
+       "p": "/laɪt/",
+       "m": "电灯，光线；轻的"
+      }
+     ],
+     "grp": "多义词：只记得一个意思会误认",
+     "src": {
+      "k": "gen",
+      "f": "light-bag",
+      "from": "V-10 exs[1] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "The light is on. The bag is light.",
+     "note": "同一个 light，两句话两个意思：多看一眼才分得清",
+     "words": [
+      {
+       "w": "light",
+       "p": "/laɪt/",
+       "m": "电灯，光线；轻的"
+      },
+      {
+       "w": "bag",
+       "p": "/bæɡ/",
+       "m": "包，书包"
+      }
+     ],
+     "grp": "多义词：只记得一个意思会误认",
+     "src": {
+      "k": "gen",
+      "f": "light-two",
+      "from": "V-10 exs[1] 对照框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "Please define the word for me.",
+     "note": "define 看着有 de-，其实拆不开：de- 在这里不是前缀",
+     "words": [
+      {
+       "w": "define",
+       "p": "/dɪˈfaɪn/",
+       "m": "给……下定义；说明"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "假拆分：看着能拆，其实拆错",
+     "src": {
+      "k": "gen",
+      "f": "define",
+      "from": "V-10 mech『自动误认』演示框",
+      "slots": {
+       "verb": "ADD_0475",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "The word 'detail' can't break, too.",
+     "note": "detail 也一样：看着有 de-，其实是一个整词",
+     "words": [
+      {
+       "w": "detail",
+       "p": "/ˈditeɪl/",
+       "m": "细节；详情"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "假拆分：看着能拆，其实拆错",
+     "src": {
+      "k": "gen",
+      "f": "detail",
+      "from": "V-10 mech『自动误认』演示框",
+      "slots": {
+       "obj": "ADD_0477"
+      }
+     }
+    },
+    {
+     "s": "Read the word again. Is it 'prize' or 'price'?",
+     "note": "对付假朋友的办法就一句：停一拍，再看一眼",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "prize",
+       "p": "/praɪz/",
+       "m": "奖品，奖赏，奖项"
+      },
+      {
+       "w": "price",
+       "p": "/praɪs/",
+       "m": "价格；定价"
+      }
+     ],
+     "grp": "边界：眼熟不可怕，抢答才可怕",
+     "src": {
+      "k": "gen",
+      "f": "stop-look",
+      "from": "V-10 mech『自动误认』演示框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "He reads fast and gets it wrong.",
+     "note": "读得快、抢着答：错就错在没停那一拍",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "fast",
+       "p": "/fæst/",
+       "m": "快的，迅速的；快地"
+      },
+      {
+       "w": "wrong",
+       "p": "/rɔːŋ/",
+       "m": "错误的；有毛病的"
+      }
+     ],
+     "grp": "边界：眼熟不可怕，抢答才可怕",
+     "src": {
+      "k": "gen",
+      "f": "too-fast",
+      "from": "V-10 对照框",
+      "slots": {
+       "verb": "G2_0492"
+      }
+     }
     }
    ],
    "cases": [
@@ -104658,7 +106927,51 @@
        "p": "/bʊk/",
        "m": "书，书本；预订（动词：book a ticket 预订票）"
       }
-     ]
+     ],
+     "grp": "看图说词：把词调出来",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "What is it? — It is a dog.",
+     "note": "换一张图再提取：调出来一次，路就深一分",
+     "words": [
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      }
+     ],
+     "grp": "看图说词：把词调出来",
+     "src": {
+      "k": "gen",
+      "f": "what-dog",
+      "from": "V-11 exs[0] 句框",
+      "slots": {
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "What is this? — This is a cat.",
+     "note": "指着实物说：眼睛看着图，嘴里调出词",
+     "words": [
+      {
+       "w": "cat",
+       "p": "/kæt/",
+       "m": "猫"
+      }
+     ],
+     "grp": "看图说词：把词调出来",
+     "src": {
+      "k": "gen",
+      "f": "what-cat",
+      "from": "V-11 exs[0] 句框",
+      "slots": {
+       "obj": "G1_014"
+      }
+     }
     },
     {
      "s": "Read it again — from your head.",
@@ -104669,7 +106982,191 @@
        "p": "/riːd/",
        "m": "读，阅读，看（书/报）"
       }
-     ]
+     ],
+     "grp": "合上书：凭记忆复述",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Close the book. Say the word.",
+     "note": "合上书说：没有图帮你，全靠自己调",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "合上书：凭记忆复述",
+     "src": {
+      "k": "gen",
+      "f": "close-say",
+      "from": "V-11 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0625",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "I say the words from my head.",
+     "note": "词从脑子里调出来：这一次提取，顶看三遍",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "head",
+       "p": "/hed/",
+       "m": "头，头部"
+      }
+     ],
+     "grp": "合上书：凭记忆复述",
+     "src": {
+      "k": "gen",
+      "f": "from-head",
+      "from": "V-11 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0625",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "Write the word from your head.",
+     "note": "写也是提取：手写出来，记忆再固化一次",
+     "words": [
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "head",
+       "p": "/hed/",
+       "m": "头，头部"
+      }
+     ],
+     "grp": "写出来：也是提取",
+     "src": {
+      "k": "gen",
+      "f": "write-head",
+      "from": "V-11 mech『提取固化』演示框",
+      "slots": {
+       "verb": "G3_0487",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "She writes a sentence with the new word.",
+     "note": "用新词写句子：提取加运用，一次顶多次看",
+     "words": [
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      },
+      {
+       "w": "sentence",
+       "p": "/ˈsentəns/",
+       "m": "句子"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "写出来：也是提取",
+     "src": {
+      "k": "gen",
+      "f": "write-sentence",
+      "from": "V-11 mech『提取固化』演示框",
+      "slots": {
+       "verb": "G3_0487",
+       "obj": "V6_学校_43"
+      }
+     }
+    },
+    {
+     "s": "He writes the words from his head.",
+     "note": "他把词从脑子里写出来：提取不分你的我的，人人都要练",
+     "words": [
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "head",
+       "p": "/hed/",
+       "m": "头，头部"
+      }
+     ],
+     "grp": "写出来：也是提取",
+     "src": {
+      "k": "gen",
+      "f": "he-writes-head",
+      "from": "V-11 mech『提取固化』演示框",
+      "slots": {
+       "verb": "G3_0487",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "Say it again. This time it is right.",
+     "note": "调错了，当场改对再说一次：纠过的才算提取成功",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "right",
+       "p": "/raɪt/",
+       "m": "右边的；正确的；正好"
+      }
+     ],
+     "grp": "边界：调错了马上纠，错才不会长住",
+     "src": {
+      "k": "gen",
+      "f": "say-again-right",
+      "from": "V-11 exc 反馈说法演示框",
+      "slots": {
+       "verb": "G3_0625"
+      }
+     }
     }
    ],
    "cases": [],
@@ -104932,7 +107429,108 @@
        "p": "/dɒɡ/",
        "m": "狗"
       }
-     ]
+     ],
+     "grp": "线索够：熟词多，猜得动",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I play with my dog in the park.",
+     "note": "全是熟词的句子：生词放在这里，线索用不完",
+     "words": [
+      {
+       "w": "play",
+       "p": "/pleɪ/",
+       "m": "玩耍；打（球）；弹奏（乐器）；戏剧"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "park",
+       "p": "/pɑːrk/",
+       "m": "公园；停车（动词：park the car 停车）"
+      }
+     ],
+     "grp": "线索够：熟词多，猜得动",
+     "src": {
+      "k": "gen",
+      "f": "all-known",
+      "from": "V-12 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0489",
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "She reads a book about dogs.",
+     "note": "话题熟、熟词多：猜词的练习场就长这样",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      }
+     ],
+     "grp": "线索够：熟词多，猜得动",
+     "src": {
+      "k": "gen",
+      "f": "book-dogs",
+      "from": "V-12 exs[0] 句框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "The story is about a dog. I know all the words in it.",
+     "note": "整篇都是熟词：这样的故事里冒出生词，线索才够猜",
+     "words": [
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "know",
+       "p": "/noʊ/",
+       "m": "知道，了解，认识"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "线索够：熟词多，猜得动",
+     "src": {
+      "k": "gen",
+      "f": "story-dog",
+      "from": "V-12 exs[0] 句框",
+      "slots": {
+       "obj": "V6_学校_44"
+      }
+     }
     },
     {
      "s": "Read, guess, then check.",
@@ -104943,7 +107541,153 @@
        "p": "/riːd/",
        "m": "读，阅读，看（书/报）"
       }
-     ]
+     ],
+     "grp": "猜完要验：查字典、回读",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Guess the word, then look it up.",
+     "note": "口令第二遍：猜完去查——查这一步不能省",
+     "words": [
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "look",
+       "p": "/lʊk/",
+       "m": "看(look at)"
+      }
+     ],
+     "grp": "猜完要验：查字典、回读",
+     "src": {
+      "k": "gen",
+      "f": "guess-look",
+      "from": "V-12 exs[1] 句框",
+      "slots": {
+       "verb": "ADD_0134",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "I guess, and then I check in the book.",
+     "note": "先猜后查：猜想对不对，书说了算",
+     "words": [
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "猜完要验：查字典、回读",
+     "src": {
+      "k": "gen",
+      "f": "guess-check",
+      "from": "V-12 exs[1] 句框",
+      "slots": {
+       "verb": "ADD_0134"
+      }
+     }
+    },
+    {
+     "s": "Too many new words. I can't guess.",
+     "note": "生词占了大半页：线索断了，硬猜只会全猜错",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "线索太少：老实查，不硬猜",
+     "src": {
+      "k": "gen",
+      "f": "too-many",
+      "from": "V-12 mech『约束求解』演示框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "I don't know this word. I ask my teacher.",
+     "note": "猜不动就问、就查：这不丢人，是对的做法",
+     "words": [
+      {
+       "w": "ask",
+       "p": "/æsk/",
+       "m": "询问/请求"
+      },
+      {
+       "w": "teacher",
+       "p": "/ˈtiːtʃər/",
+       "m": "教师，老师"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "线索太少：老实查，不硬猜",
+     "src": {
+      "k": "gen",
+      "f": "ask-teacher",
+      "from": "V-12 mech『约束求解』演示框",
+      "slots": {
+       "verb": "V6_学校_69"
+      }
+     }
+    },
+    {
+     "s": "He guesses 'prize' and reads on. Now the story is wrong.",
+     "note": "把 prize 猜成价格还往下读：整段都跟着错——猜完不验的代价",
+     "words": [
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      },
+      {
+       "w": "prize",
+       "p": "/praɪz/",
+       "m": "奖品，奖赏，奖项"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "wrong",
+       "p": "/rɔːŋ/",
+       "m": "错误的；有毛病的"
+      }
+     ],
+     "grp": "边界：看着透明的词，猜了也会错",
+     "src": {
+      "k": "gen",
+      "f": "guess-wrong",
+      "from": "V-12 cases 同案演示框",
+      "slots": {
+       "verb": "ADD_0134",
+       "obj": "G5_0992"
+      }
+     }
     }
    ],
    "cases": [
@@ -105211,7 +107955,130 @@
        "p": "/sel/",
        "m": "卖，出售"
       }
-     ]
+     ],
+     "grp": "对着买的人：buy",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I buy a pen.",
+     "note": "还是 buy：对着掏钱买东西的人说",
+     "words": [
+      {
+       "w": "buy",
+       "p": "/baɪ/",
+       "m": "买，购买"
+      },
+      {
+       "w": "pen",
+       "p": "/pen/",
+       "m": "钢笔，水笔"
+      }
+     ],
+     "grp": "对着买的人：buy",
+     "src": {
+      "k": "gen",
+      "f": "buy-pen",
+      "from": "V-13 exs[0] 句框",
+      "slots": {
+       "verb": "G3_0650",
+       "obj": "G1_003"
+      }
+     }
+    },
+    {
+     "s": "They buy books for school.",
+     "note": "买的人变多，机位不变：还是 buy",
+     "words": [
+      {
+       "w": "buy",
+       "p": "/baɪ/",
+       "m": "买，购买"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "school",
+       "p": "/skuːl/",
+       "m": "学校"
+      }
+     ],
+     "grp": "对着买的人：buy",
+     "src": {
+      "k": "gen",
+      "f": "buy-books",
+      "from": "V-13 exs[0] 句框",
+      "slots": {
+       "verb": "G3_0650",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "She sells flowers in the shop.",
+     "note": "镜头转到卖的人：sell 说的是她",
+     "words": [
+      {
+       "w": "sell",
+       "p": "/sel/",
+       "m": "卖，出售"
+      },
+      {
+       "w": "flower",
+       "p": "/ˈflaʊər/",
+       "m": "花，花朵"
+      },
+      {
+       "w": "shop",
+       "p": "/ʃɑːp/",
+       "m": "商店，店铺；去购物"
+      }
+     ],
+     "grp": "对着卖的人：sell",
+     "src": {
+      "k": "gen",
+      "f": "sell-flowers",
+      "from": "V-13 exs[0] 句框",
+      "slots": {
+       "verb": "G5_0651",
+       "obj": "G2_075"
+      }
+     }
+    },
+    {
+     "s": "The man sells books.",
+     "note": "卖书的人站在 sell 的机位上",
+     "words": [
+      {
+       "w": "sell",
+       "p": "/sel/",
+       "m": "卖，出售"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "man",
+       "p": "/mæn/",
+       "m": "成年男子，男人"
+      }
+     ],
+     "grp": "对着卖的人：sell",
+     "src": {
+      "k": "gen",
+      "f": "sell-books",
+      "from": "V-13 exs[0] 句框",
+      "slots": {
+       "verb": "G5_0651",
+       "obj": "G1_002"
+      }
+     }
     },
     {
      "s": "I pay ten yuan. The book costs ten yuan.",
@@ -105227,7 +108094,125 @@
        "p": "/kɒst/",
        "m": "花费(金钱)"
       }
-     ]
+     ],
+     "grp": "对着钱和标价：pay 与 cost",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I pay for the book.",
+     "note": "钱从我手里出去：对着钱说 pay",
+     "words": [
+      {
+       "w": "pay",
+       "p": "/peɪ/",
+       "m": "付款"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "对着钱和标价：pay 与 cost",
+     "src": {
+      "k": "gen",
+      "f": "pay-for",
+      "from": "V-13 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_33",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "The book costs a lot.",
+     "note": "对着书的标价说 cost：这本书可不便宜",
+     "words": [
+      {
+       "w": "cost",
+       "p": "/kɔːst/",
+       "m": "花费(金钱)"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "lot",
+       "p": "/lɑːt/",
+       "m": "许多（a lot / a lot of）"
+      }
+     ],
+     "grp": "对着钱和标价：pay 与 cost",
+     "src": {
+      "k": "gen",
+      "f": "costs-lot",
+      "from": "V-13 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_34",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "She pays for the books.",
+     "note": "她来付钱：pay 的机位对着付钱的人和钱",
+     "words": [
+      {
+       "w": "pay",
+       "p": "/peɪ/",
+       "m": "付款"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "对着钱和标价：pay 与 cost",
+     "src": {
+      "k": "gen",
+      "f": "she-pays",
+      "from": "V-13 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_33",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "I buy the book from her. She sells it to me.",
+     "note": "一幕戏两个机位同屏：我 buy、她 sell，各说各的位置",
+     "words": [
+      {
+       "w": "buy",
+       "p": "/baɪ/",
+       "m": "买，购买"
+      },
+      {
+       "w": "sell",
+       "p": "/sel/",
+       "m": "卖，出售"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "边界：一幕戏里，四个词各站各位",
+     "src": {
+      "k": "gen",
+      "f": "two-cameras",
+      "from": "V-13 mech『一幕戏四个机位』演示框",
+      "slots": {
+       "verb": "G3_0650",
+       "obj": "G1_002"
+      }
+     }
     }
    ],
    "cases": [],
@@ -105493,7 +108478,73 @@
        "p": "/kɒst/",
        "m": "花费(金钱)"
       }
-     ]
+     ],
+     "grp": "同一幕戏的邻居：角色不同，互相帮",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I buy a book in the shop.",
+     "note": "shop 这条街上的邻居：buy 住在这里",
+     "words": [
+      {
+       "w": "buy",
+       "p": "/baɪ/",
+       "m": "买，购买"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "shop",
+       "p": "/ʃɑːp/",
+       "m": "商店，店铺；去购物"
+      }
+     ],
+     "grp": "同一幕戏的邻居：角色不同，互相帮",
+     "src": {
+      "k": "gen",
+      "f": "buy-shop",
+      "from": "V-14 exs[0] 句框",
+      "slots": {
+       "verb": "G3_0650",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "She sells books in the shop.",
+     "note": "同一个场景里 sell 和 buy 是邻居：想起一个，想起一串",
+     "words": [
+      {
+       "w": "sell",
+       "p": "/sel/",
+       "m": "卖，出售"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "shop",
+       "p": "/ʃɑːp/",
+       "m": "商店，店铺；去购物"
+      }
+     ],
+     "grp": "同一幕戏的邻居：角色不同，互相帮",
+     "src": {
+      "k": "gen",
+      "f": "sell-shop",
+      "from": "V-14 exs[0] 句框",
+      "slots": {
+       "verb": "G5_0651",
+       "obj": "G1_002"
+      }
+     }
     },
     {
      "s": "Take a photo in the park.",
@@ -105509,7 +108560,179 @@
        "p": "/teɪk/",
        "m": "带走/乘坐(过去took)"
       }
-     ]
+     ],
+     "grp": "同一个地方的邻居",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "We play in the park.",
+     "note": "park 这条街上住着 play：场景词互相预热",
+     "words": [
+      {
+       "w": "play",
+       "p": "/pleɪ/",
+       "m": "玩耍；打（球）；弹奏（乐器）；戏剧"
+      },
+      {
+       "w": "park",
+       "p": "/pɑːrk/",
+       "m": "公园；停车（动词：park the car 停车）"
+      }
+     ],
+     "grp": "同一个地方的邻居",
+     "src": {
+      "k": "gen",
+      "f": "play-park",
+      "from": "V-14 exs[1] 句框",
+      "slots": {
+       "verb": "G2_0489",
+       "place": "G2_080"
+      }
+     }
+    },
+    {
+     "s": "The dog is in the park, too.",
+     "note": "dog 也住在 park 这条街：一起学，互相帮着记",
+     "words": [
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "park",
+       "p": "/pɑːrk/",
+       "m": "公园；停车（动词：park the car 停车）"
+      }
+     ],
+     "grp": "同一个地方的邻居",
+     "src": {
+      "k": "gen",
+      "f": "dog-park",
+      "from": "V-14 exs[1] 句框",
+      "slots": {
+       "obj": "G1_015",
+       "place": "G2_080"
+      }
+     }
+    },
+    {
+     "s": "In the morning, I get up and read.",
+     "note": "早晨这件事的邻居：get up 和 read 住在一起",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "morning",
+       "p": "/ˈmɔːrnɪŋ/",
+       "m": "早晨，上午"
+      }
+     ],
+     "grp": "同一件事的邻居",
+     "src": {
+      "k": "gen",
+      "f": "morning",
+      "from": "V-14 mech『邻居互助』演示框",
+      "slots": {
+       "verb": "G2_0492"
+      }
+     }
+    },
+    {
+     "s": "I wash my face and have breakfast.",
+     "note": "洗脸、吃早饭是早晨的邻居：一串一起记",
+     "words": [
+      {
+       "w": "wash",
+       "p": "/wɑːʃ/",
+       "m": "洗(三单washes)"
+      },
+      {
+       "w": "face",
+       "p": "/feɪs/",
+       "m": "脸，面孔"
+      },
+      {
+       "w": "breakfast",
+       "p": "/ˈbrekfəst/",
+       "m": "早餐，早饭"
+      }
+     ],
+     "grp": "同一件事的邻居",
+     "src": {
+      "k": "gen",
+      "f": "morning2",
+      "from": "V-14 mech『邻居互助』演示框",
+      "slots": {
+       "verb": "V6_身体_42",
+       "obj": "G1_010"
+      }
+     }
+    },
+    {
+     "s": "We have breakfast in the morning.",
+     "note": "breakfast 和 morning 也是邻居：一件事里的词一起出现、一起记",
+     "words": [
+      {
+       "w": "breakfast",
+       "p": "/ˈbrekfəst/",
+       "m": "早餐，早饭"
+      },
+      {
+       "w": "morning",
+       "p": "/ˈmɔːrnɪŋ/",
+       "m": "早晨，上午"
+      }
+     ],
+     "grp": "同一件事的邻居",
+     "src": {
+      "k": "gen",
+      "f": "breakfast-morning",
+      "from": "V-14 mech『邻居互助』演示框",
+      "slots": {
+       "obj": "G4_186"
+      }
+     }
+    },
+    {
+     "s": "'Prize' and 'win' are friends. 'Price' is not in this group.",
+     "note": "和 prize 做邻居的是 win，不是长得像的 price：形近扎堆只会互相干扰",
+     "words": [
+      {
+       "w": "prize",
+       "p": "/praɪz/",
+       "m": "奖品，奖赏，奖项"
+      },
+      {
+       "w": "win",
+       "p": "/wɪn/",
+       "m": "赢，获胜，赢得"
+      },
+      {
+       "w": "price",
+       "p": "/praɪs/",
+       "m": "价格；定价"
+      },
+      {
+       "w": "friend",
+       "p": "/frend/",
+       "m": "朋友"
+      }
+     ],
+     "grp": "边界：长得像的词不扎堆",
+     "src": {
+      "k": "gen",
+      "f": "prize-friends",
+      "from": "V-14 exc 形近干扰演示框",
+      "slots": {
+       "obj": "G5_0992"
+      }
+     }
     }
    ],
    "cases": [],
@@ -106076,15 +109299,85 @@
    ],
    "exs": [
     {
-     "s": "Turn on the light. This bag is light.",
-     "note": "同形异源反例同屏：两棵树，不许硬连（例外即教案）",
+     "s": "I open my eyes in the morning.",
+     "note": "eye 的树干是『眼睛』：先学这个",
      "words": [
       {
-       "w": "light",
-       "p": "/laɪt/",
-       "m": "电灯，光线；轻的"
+       "w": "open",
+       "p": "/ˈoʊpən/",
+       "m": "打开/开着的"
+      },
+      {
+       "w": "eye",
+       "p": "/aɪ/",
+       "m": "眼睛"
+      },
+      {
+       "w": "morning",
+       "p": "/ˈmɔːrnɪŋ/",
+       "m": "早晨，上午"
       }
-     ]
+     ],
+     "grp": "树干：最中心的意思先学",
+     "src": {
+      "k": "gen",
+      "f": "eye-trunk",
+      "from": "V-16 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_10",
+       "obj": "G1_009"
+      }
+     }
+    },
+    {
+     "s": "The dog has two eyes.",
+     "note": "还是树干：狗的眼睛——中心义先站稳",
+     "words": [
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "eye",
+       "p": "/aɪ/",
+       "m": "眼睛"
+      }
+     ],
+     "grp": "树干：最中心的意思先学",
+     "src": {
+      "k": "gen",
+      "f": "dog-eyes",
+      "from": "V-16 exs[1] 句框",
+      "slots": {
+       "obj": "G1_009"
+      }
+     }
+    },
+    {
+     "s": "My eyes are big.",
+     "note": "眼睛还是树干义：树干站稳了，树枝才有地方长",
+     "words": [
+      {
+       "w": "eye",
+       "p": "/aɪ/",
+       "m": "眼睛"
+      },
+      {
+       "w": "big",
+       "p": "/bɪɡ/",
+       "m": "大的"
+      }
+     ],
+     "grp": "树干：最中心的意思先学",
+     "src": {
+      "k": "gen",
+      "f": "eyes-big",
+      "from": "V-16 exs[1] 句框",
+      "slots": {
+       "obj": "G1_009"
+      }
+     }
     },
     {
      "s": "I see with my eyes. The needle has an eye.",
@@ -106095,7 +109388,160 @@
        "p": "/aɪ/",
        "m": "眼睛"
       }
-     ]
+     ],
+     "grp": "树枝：从树干长出来的意思",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "The needle has a small eye.",
+     "note": "针眼是树枝：形状和用处都像眼睛的小孔",
+     "words": [
+      {
+       "w": "needle",
+       "p": "/ˈnidəl/",
+       "m": "针；缝衣针；指针"
+      },
+      {
+       "w": "eye",
+       "p": "/aɪ/",
+       "m": "眼睛"
+      },
+      {
+       "w": "small",
+       "p": "/smɔːl/",
+       "m": "小的"
+      }
+     ],
+     "grp": "树枝：从树干长出来的意思",
+     "src": {
+      "k": "gen",
+      "f": "needle-eye",
+      "from": "V-16 exs[1] 句框",
+      "slots": {
+       "obj": "ADD_0585"
+      }
+     }
+    },
+    {
+     "s": "Eyes and needle eyes are family.",
+     "note": "眼睛和针眼是一家：一个树干，长到两个地方",
+     "words": [
+      {
+       "w": "eye",
+       "p": "/aɪ/",
+       "m": "眼睛"
+      },
+      {
+       "w": "needle",
+       "p": "/ˈnidəl/",
+       "m": "针；缝衣针；指针"
+      },
+      {
+       "w": "family",
+       "p": "/ˈfæməli/",
+       "m": "家，家庭；家人"
+      }
+     ],
+     "grp": "树枝：从树干长出来的意思",
+     "src": {
+      "k": "gen",
+      "f": "eyes-family",
+      "from": "V-16 exs[1] 句框",
+      "slots": {
+       "obj": "G1_009"
+      }
+     }
+    },
+    {
+     "s": "Turn on the light. This bag is light.",
+     "note": "同形异源反例同屏：两棵树，不许硬连（例外即教案）",
+     "words": [
+      {
+       "w": "light",
+       "p": "/laɪt/",
+       "m": "电灯，光线；轻的"
+      }
+     ],
+     "grp": "两棵树：同形异源，分别记",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "This box is light.",
+     "note": "light『轻』自成一棵树：和『光』那棵没有亲缘",
+     "words": [
+      {
+       "w": "box",
+       "p": "/bɑːks/",
+       "m": "盒，箱，方框（复数加 es：boxes）"
+      },
+      {
+       "w": "light",
+       "p": "/laɪt/",
+       "m": "电灯，光线；轻的"
+      }
+     ],
+     "grp": "两棵树：同形异源，分别记",
+     "src": {
+      "k": "gen",
+      "f": "light-box",
+      "from": "V-16 exs[0] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "Turn off the light.",
+     "note": "light『光』这一棵：关灯的 light",
+     "words": [
+      {
+       "w": "light",
+       "p": "/laɪt/",
+       "m": "电灯，光线；轻的"
+      }
+     ],
+     "grp": "两棵树：同形异源，分别记",
+     "src": {
+      "k": "gen",
+      "f": "light-off",
+      "from": "V-16 exs[0] 句框",
+      "slots": {
+       "verb": "POLY_TURN",
+       "obj": "G4_157"
+      }
+     }
+    },
+    {
+     "s": "Some words have no family story. We just learn them.",
+     "note": "有的意思推不出亲缘：明说约定俗成，不硬编一家",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "family",
+       "p": "/ˈfæməli/",
+       "m": "家，家庭；家人"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      }
+     ],
+     "grp": "边界：推不出的义项，明说约定俗成",
+     "src": {
+      "k": "gen",
+      "f": "no-story",
+      "from": "V-16 exc 演示框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
     }
    ],
    "cases": [
@@ -106352,7 +109798,73 @@
        "p": "/spiːk/",
        "m": "说（某种语言）；发言，讲话"
       }
-     ]
+     ],
+     "grp": "开口说：缺口马上现形",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Say the word, please.",
+     "note": "把词说出来：说不出的地方就是缺口",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "开口说：缺口马上现形",
+     "src": {
+      "k": "gen",
+      "f": "say-word",
+      "from": "V-17 exs[0] 句框",
+      "slots": {
+       "verb": "G3_0625",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "I say the sentence. One word is hard for me.",
+     "note": "说到难词就卡住：卡住的地方，正是没真学会的地方",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "sentence",
+       "p": "/ˈsentəns/",
+       "m": "句子"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "hard",
+       "p": "/hɑːrd/",
+       "m": "困难的；努力地"
+      }
+     ],
+     "grp": "开口说：缺口马上现形",
+     "src": {
+      "k": "gen",
+      "f": "say-stuck",
+      "from": "V-17 exs[0] 句框",
+      "slots": {
+       "verb": "G3_0625",
+       "obj": "V6_学校_43"
+      }
+     }
     },
     {
      "s": "Write a sentence with the word.",
@@ -106363,7 +109875,178 @@
        "p": "/raɪt/",
        "m": "写，写字，写作"
       }
-     ]
+     ],
+     "grp": "动笔写：搭配缺口现形",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Write a sentence with 'make'.",
+     "note": "换个词写：写不出搭配，缺口就在纸上",
+     "words": [
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      },
+      {
+       "w": "sentence",
+       "p": "/ˈsentəns/",
+       "m": "句子"
+      },
+      {
+       "w": "make",
+       "p": "/meɪk/",
+       "m": "制作(过去式made)"
+      }
+     ],
+     "grp": "动笔写：搭配缺口现形",
+     "src": {
+      "k": "gen",
+      "f": "write-make",
+      "from": "V-17 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0487",
+       "obj": "V6_学校_43"
+      }
+     }
+    },
+    {
+     "s": "She writes, and now she sees the hard word.",
+     "note": "写着写着，难词自己跳出来：这就是探照灯",
+     "words": [
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      },
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "动笔写：搭配缺口现形",
+     "src": {
+      "k": "gen",
+      "f": "write-see",
+      "from": "V-17 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0487"
+      }
+     }
+    },
+    {
+     "s": "I can read it, but I can't say it.",
+     "note": "读得懂、说不出，是两回事：输出才验得出",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      }
+     ],
+     "grp": "听懂读懂，不等于会用",
+     "src": {
+      "k": "gen",
+      "f": "read-not-say",
+      "from": "V-17 mech『缺口探照灯』演示框",
+      "slots": {
+       "verb": "G2_0492"
+      }
+     }
+    },
+    {
+     "s": "He reads the word, but he can't write it.",
+     "note": "还是这个理：听读过关，不代表写得出来",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "write",
+       "p": "/raɪt/",
+       "m": "写，写字，写作"
+      }
+     ],
+     "grp": "听懂读懂，不等于会用",
+     "src": {
+      "k": "gen",
+      "f": "read-not-write",
+      "from": "V-17 mech『缺口探照灯』演示框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "Say it, check it, say it again.",
+     "note": "说完有人纠、正过来再说：错误就不会被练熟",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      }
+     ],
+     "grp": "边界：没人纠的错，会被练熟",
+     "src": {
+      "k": "gen",
+      "f": "say-check-say",
+      "from": "V-17 exc 反馈说法演示框",
+      "slots": {
+       "verb": "G3_0625"
+      }
+     }
+    },
+    {
+     "s": "My teacher hears me and helps me.",
+     "note": "有耳朵听着、纠着说：这才是带反馈的输出",
+     "words": [
+      {
+       "w": "hear",
+       "p": "/hiːr/",
+       "m": "听见，听到"
+      },
+      {
+       "w": "teacher",
+       "p": "/ˈtiːtʃər/",
+       "m": "教师，老师"
+      },
+      {
+       "w": "help",
+       "p": "/help/",
+       "m": "帮助，帮忙"
+      }
+     ],
+     "grp": "边界：没人纠的错，会被练熟",
+     "src": {
+      "k": "gen",
+      "f": "teacher-hears",
+      "from": "V-17 exc 反馈说法演示框",
+      "slots": {
+       "verb": "G3_0641"
+      }
+     }
     }
    ],
    "cases": [],
@@ -106579,7 +110262,63 @@
        "p": "/dɪˈsɪʒən/",
        "m": "决定；抉择"
       }
-     ]
+     ],
+     "grp": "搭配区：动词和名词搭错",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Take a photo.",
+     "note": "搭配区样本：photo 的伙伴是 take，抓错伙伴就摔在这里",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "photo",
+       "p": "/ˈfoʊtoʊ/",
+       "m": "照片，相片"
+      }
+     ],
+     "grp": "搭配区：动词和名词搭错",
+     "src": {
+      "k": "gen",
+      "f": "take-photo",
+      "from": "V-18 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_6",
+       "obj": "G4_0381"
+      }
+     }
+    },
+    {
+     "s": "Do your homework.",
+     "note": "搭配区样本：homework 找 do——动名搭配是高发带",
+     "words": [
+      {
+       "w": "do",
+       "p": "/duː/",
+       "m": "做(过去式did)"
+      },
+      {
+       "w": "homework",
+       "p": "/ˈhoʊmwɜːrk/",
+       "m": "家庭作业（不可数）"
+      }
+     ],
+     "grp": "搭配区：动词和名词搭错",
+     "src": {
+      "k": "gen",
+      "f": "do-homework",
+      "from": "V-18 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_3",
+       "obj": "G5_215"
+      }
+     }
     },
     {
      "s": "I see a dog and an apple.",
@@ -106590,7 +110329,180 @@
        "p": "/ə/ /eɪ/ /ən/ /æn/",
        "m": "一（个）（不定冠词）"
       }
-     ]
+     ],
+     "grp": "缺词赘词区：小词漏掉或多出来",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I see a cat and an orange.",
+     "note": "a 和 an 是最容易漏的小词：一个东西配一个",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "cat",
+       "p": "/kæt/",
+       "m": "猫"
+      },
+      {
+       "w": "orange",
+       "p": "/ˈɔːrɪndʒ/",
+       "m": "橙色的；橙子"
+      }
+     ],
+     "grp": "缺词赘词区：小词漏掉或多出来",
+     "src": {
+      "k": "gen",
+      "f": "cat-orange",
+      "from": "V-18 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_17"
+      }
+     }
+    },
+    {
+     "s": "We go home.",
+     "note": "这句没有 to：go home 本来就不带——多加就是赘词",
+     "words": [
+      {
+       "w": "go",
+       "p": "/ɡoʊ/",
+       "m": "去(过去式went)"
+      },
+      {
+       "w": "home",
+       "p": "/hoʊm/",
+       "m": "家(go home不加to)"
+      }
+     ],
+     "grp": "缺词赘词区：小词漏掉或多出来",
+     "src": {
+      "k": "gen",
+      "f": "go-home",
+      "from": "V-18 exs[1] 对照框",
+      "slots": {
+       "verb": "V6_日常_1"
+      }
+     }
+    },
+    {
+     "s": "I have a book and a pen.",
+     "note": "还是一：一件东西配一个 a，漏了就摔进缺词区",
+     "words": [
+      {
+       "w": "have",
+       "p": "/hæv/",
+       "m": "有/吃(三单has/过去had)"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "pen",
+       "p": "/pen/",
+       "m": "钢笔，水笔"
+      }
+     ],
+     "grp": "缺词赘词区：小词漏掉或多出来",
+     "src": {
+      "k": "gen",
+      "f": "book-pen-a",
+      "from": "V-18 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_5",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "She is unhappy.",
+     "note": "词形区样本：unhappy 是零件拼出来的，零件错位就写错",
+     "words": [
+      {
+       "w": "unhappy",
+       "p": "/ənˈhæpi/",
+       "m": "不开心的，难过的"
+      },
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      }
+     ],
+     "grp": "词形区：拼写和构词出问题",
+     "src": {
+      "k": "gen",
+      "f": "unhappy-form",
+      "from": "V-18 mech『错误地图』演示框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "The word 'happiness' is a long word.",
+     "note": "词形区样本：长词靠零件拼——happiness 是 happy 变来的",
+     "words": [
+      {
+       "w": "happiness",
+       "p": "/ˈhæpinəs/",
+       "m": "幸福，快乐，开心"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "long",
+       "p": "/lɔːŋ/",
+       "m": "长的"
+      }
+     ],
+     "grp": "词形区：拼写和构词出问题",
+     "src": {
+      "k": "gen",
+      "f": "happiness-form",
+      "from": "V-18 mech『错误地图』演示框",
+      "slots": {
+       "obj": "G6_0856"
+      }
+     }
+    },
+    {
+     "s": "Check the word, its friend, and the small words.",
+     "note": "自查口令：先看词形、再看搭配、最后看小词——三区逐个过",
+     "words": [
+      {
+       "w": "check",
+       "p": "/tʃek/",
+       "m": "检查/核对"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "friend",
+       "p": "/frend/",
+       "m": "朋友"
+      }
+     ],
+     "grp": "边界：先对地图，再逐个查",
+     "src": {
+      "k": "gen",
+      "f": "check-three",
+      "from": "V-18 mech『错误地图』演示框",
+      "slots": {
+       "verb": "V6_学校_74"
+      }
+     }
     }
    ],
    "cases": [
@@ -106859,6 +110771,76 @@
    ],
    "exs": [
     {
+     "s": "I ask my mother.",
+     "note": "ask 是本村词：天天说、随口说",
+     "words": [
+      {
+       "w": "ask",
+       "p": "/æsk/",
+       "m": "询问/请求"
+      },
+      {
+       "w": "mother",
+       "p": "/ˈmʌðər/",
+       "m": "母亲，妈妈"
+      }
+     ],
+     "grp": "本村层：老家的词，随口说",
+     "src": {
+      "k": "gen",
+      "f": "ask-mother",
+      "from": "V-19 exs[0] 句框",
+      "slots": {
+       "verb": "V6_学校_69"
+      }
+     }
+    },
+    {
+     "s": "The cow eats grass.",
+     "note": "cow 也是本村词：在田里吃草的就是它",
+     "words": [
+      {
+       "w": "cow",
+       "p": "/kaʊ/",
+       "m": "奶牛，母牛"
+      },
+      {
+       "w": "grass",
+       "p": "/ɡræs/",
+       "m": "草，草地"
+      }
+     ],
+     "grp": "本村层：老家的词，随口说",
+     "src": {
+      "k": "gen",
+      "f": "cow-grass",
+      "from": "V-19 exs[1] 句框",
+      "slots": {
+       "obj": "G4_191"
+      }
+     }
+    },
+    {
+     "s": "Ask me, please.",
+     "note": "问问题先用 ask：本村词最自然",
+     "words": [
+      {
+       "w": "ask",
+       "p": "/æsk/",
+       "m": "询问/请求"
+      }
+     ],
+     "grp": "本村层：老家的词，随口说",
+     "src": {
+      "k": "gen",
+      "f": "ask-me",
+      "from": "V-19 exs[0] 句框",
+      "slots": {
+       "verb": "V6_学校_69"
+      }
+     }
+    },
+    {
      "s": "Ask a question.",
      "note": "ask（本族层）配 question（法语层）：最常同框的一对",
      "words": [
@@ -106872,7 +110854,87 @@
        "p": "/ˈkwestʃən/",
        "m": "问题，疑问；提问"
       }
-     ]
+     ],
+     "grp": "法语层：穿正装的词",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "The question is hard.",
+     "note": "question 是法语层：比 ask 正经一格",
+     "words": [
+      {
+       "w": "question",
+       "p": "/ˈkwestʃən/",
+       "m": "问题，疑问；提问"
+      },
+      {
+       "w": "hard",
+       "p": "/hɑːrd/",
+       "m": "困难的；努力地"
+      }
+     ],
+     "grp": "法语层：穿正装的词",
+     "src": {
+      "k": "gen",
+      "f": "question-hard",
+      "from": "V-19 exs[0] 句框",
+      "slots": {
+       "obj": "G4_0518"
+      }
+     }
+    },
+    {
+     "s": "Beef is on the table.",
+     "note": "beef 穿正装：肉上了桌，就换法语词",
+     "words": [
+      {
+       "w": "beef",
+       "p": "/biːf/",
+       "m": "牛肉（不可数）"
+      },
+      {
+       "w": "table",
+       "p": "/ˈteɪbl/",
+       "m": "桌子，餐桌；表格"
+      }
+     ],
+     "grp": "法语层：穿正装的词",
+     "src": {
+      "k": "gen",
+      "f": "beef-table",
+      "from": "V-19 exs[1] 句框",
+      "slots": {
+       "obj": "G4_0941"
+      }
+     }
+    },
+    {
+     "s": "I have a question.",
+     "note": "我有一个问题：question 穿着正装来上班了",
+     "words": [
+      {
+       "w": "have",
+       "p": "/hæv/",
+       "m": "有/吃(三单has/过去had)"
+      },
+      {
+       "w": "question",
+       "p": "/ˈkwestʃən/",
+       "m": "问题，疑问；提问"
+      }
+     ],
+     "grp": "法语层：穿正装的词",
+     "src": {
+      "k": "gen",
+      "f": "have-question",
+      "from": "V-19 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_5",
+       "obj": "G4_0518"
+      }
+     }
     },
     {
      "s": "The cow is in the field. We eat beef.",
@@ -106888,7 +110950,72 @@
        "p": "/biːf/",
        "m": "牛肉（不可数）"
       }
-     ]
+     ],
+     "grp": "同屏对照：活物用本村词，上桌用法语词",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I see a cow in the field.",
+     "note": "还是那头牛：在田里就叫 cow——和条目句同屏对照",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "cow",
+       "p": "/kaʊ/",
+       "m": "奶牛，母牛"
+      },
+      {
+       "w": "field",
+       "p": "/fiːld/",
+       "m": "田野/运动场"
+      }
+     ],
+     "grp": "同屏对照：活物用本村词，上桌用法语词",
+     "src": {
+      "k": "gen",
+      "f": "cow-field",
+      "from": "V-19 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_17",
+       "obj": "G4_191"
+      }
+     }
+    },
+    {
+     "s": "We ask the teacher in class.",
+     "note": "向老师提问用 ask，不用『审讯』那个词：它已经是审问专用的了",
+     "words": [
+      {
+       "w": "ask",
+       "p": "/æsk/",
+       "m": "询问/请求"
+      },
+      {
+       "w": "teacher",
+       "p": "/ˈtiːtʃər/",
+       "m": "教师，老师"
+      },
+      {
+       "w": "class",
+       "p": "/klæs/",
+       "m": "班级/课"
+      }
+     ],
+     "grp": "边界：三连不是调档，interrogate 已专化成审讯",
+     "src": {
+      "k": "gen",
+      "f": "ask-teacher",
+      "from": "V-19 exc 义项分化演示框",
+      "slots": {
+       "verb": "V6_学校_69"
+      }
+     }
     }
    ],
    "cases": [],
@@ -107946,7 +112073,122 @@
        "p": "/dɒɡ/",
        "m": "狗"
       }
-     ]
+     ],
+     "grp": "搬法一：地盘缩小（meat）",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Meat is on the table.",
+     "note": "今天的 meat 只指桌上这盘肉：面包苹果都不算",
+     "words": [
+      {
+       "w": "meat",
+       "p": "/miːt/",
+       "m": "（猪、牛、羊等的）肉（不可数）"
+      },
+      {
+       "w": "table",
+       "p": "/ˈteɪbl/",
+       "m": "桌子，餐桌；表格"
+      }
+     ],
+     "grp": "搬法一：地盘缩小（meat）",
+     "src": {
+      "k": "gen",
+      "f": "meat-table",
+      "from": "V-22 exs[0] 句框",
+      "slots": {
+       "obj": "G3_0943"
+      }
+     }
+    },
+    {
+     "s": "I eat meat, not bread.",
+     "note": "吃肉说 meat，吃面包说 bread：地盘缩小后各管各的",
+     "words": [
+      {
+       "w": "eat",
+       "p": "/iːt/",
+       "m": "吃(过去式ate)"
+      },
+      {
+       "w": "meat",
+       "p": "/miːt/",
+       "m": "（猪、牛、羊等的）肉（不可数）"
+      },
+      {
+       "w": "bread",
+       "p": "/bred/",
+       "m": "面包"
+      }
+     ],
+     "grp": "搬法一：地盘缩小（meat）",
+     "src": {
+      "k": "gen",
+      "f": "meat-bread",
+      "from": "V-22 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_15",
+       "obj": "G3_0943"
+      }
+     }
+    },
+    {
+     "s": "A dog can be big or small.",
+     "note": "今天的 dog 大狗小狗都算：地盘涨大了",
+     "words": [
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "big",
+       "p": "/bɪɡ/",
+       "m": "大的"
+      },
+      {
+       "w": "small",
+       "p": "/smɔːl/",
+       "m": "小的"
+      }
+     ],
+     "grp": "搬法二：地盘涨大（dog）",
+     "src": {
+      "k": "gen",
+      "f": "dog-big-small",
+      "from": "V-22 exs[0] 句框",
+      "slots": {
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "All dogs are animals.",
+     "note": "所有的狗都进 dog 的地盘：这就是涨大",
+     "words": [
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "animal",
+       "p": "/ˈænɪml/",
+       "m": "动物"
+      }
+     ],
+     "grp": "搬法二：地盘涨大（dog）",
+     "src": {
+      "k": "gen",
+      "f": "all-dogs",
+      "from": "V-22 exs[0] 句框",
+      "slots": {
+       "noun": "G1_015"
+      }
+     }
     },
     {
      "s": "You are nice.",
@@ -107962,7 +112204,108 @@
        "p": "/ˈsɪli/",
        "m": "愚蠢的；傻的"
       }
-     ]
+     ],
+     "grp": "搬法三：坏话变好话（nice）",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "She is a nice teacher.",
+     "note": "nice 今天是夸人的：说老师好，就用它",
+     "words": [
+      {
+       "w": "nice",
+       "p": "/naɪs/",
+       "m": "美好的；友好的"
+      },
+      {
+       "w": "teacher",
+       "p": "/ˈtiːtʃər/",
+       "m": "教师，老师"
+      }
+     ],
+     "grp": "搬法三：坏话变好话（nice）",
+     "src": {
+      "k": "gen",
+      "f": "nice-teacher",
+      "from": "V-22 exs[1] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "It is a nice day.",
+     "note": "天气好也说 nice：夸人夸天都行",
+     "words": [
+      {
+       "w": "nice",
+       "p": "/naɪs/",
+       "m": "美好的；友好的"
+      },
+      {
+       "w": "day",
+       "p": "/deɪ/",
+       "m": "天/白天"
+      }
+     ],
+     "grp": "搬法三：坏话变好话（nice）",
+     "src": {
+      "k": "gen",
+      "f": "nice-day",
+      "from": "V-22 exs[1] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "Don't be silly.",
+     "note": "silly 今天是『傻乎乎』：它从『有福』一路滑到了坏话",
+     "words": [
+      {
+       "w": "silly",
+       "p": "/ˈsɪli/",
+       "m": "愚蠢的；傻的"
+      }
+     ],
+     "grp": "搬法四：好话变坏话（silly）",
+     "src": {
+      "k": "gen",
+      "f": "silly",
+      "from": "V-22 mech『四种搬家』演示框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "Today, 'nice' is a good word. We say it to friends.",
+     "note": "以今天为准：nice 现在是好话，放心夸朋友",
+     "words": [
+      {
+       "w": "nice",
+       "p": "/naɪs/",
+       "m": "美好的；友好的"
+      },
+      {
+       "w": "good",
+       "p": "/ɡʊd/",
+       "m": "好的；擅长的"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "friend",
+       "p": "/frend/",
+       "m": "朋友"
+      }
+     ],
+     "grp": "边界：今天的意思，以今天为准",
+     "src": {
+      "k": "gen",
+      "f": "today-nice",
+      "from": "V-22 bnd 演示框",
+      "slots": {}
+     }
     }
    ],
    "cases": [],
@@ -108237,7 +112580,61 @@
        "p": "/skɜːt/",
        "m": "半身裙，短裙"
       }
-     ]
+     ],
+     "grp": "同源对：一个词走了两条路",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "My shirt is blue.",
+     "note": "shirt 走的是老家路：上身穿的",
+     "words": [
+      {
+       "w": "shirt",
+       "p": "/ʃɜːrt/",
+       "m": "衬衫"
+      },
+      {
+       "w": "blue",
+       "p": "/bluː/",
+       "m": "蓝色的；蓝色"
+      }
+     ],
+     "grp": "同源对：一个词走了两条路",
+     "src": {
+      "k": "gen",
+      "f": "shirt-blue",
+      "from": "V-23 exs[0] 句框",
+      "slots": {
+       "obj": "G1_056"
+      }
+     }
+    },
+    {
+     "s": "Her skirt is red.",
+     "note": "skirt 走的是亲戚家路：下身穿的——一家分两路，各穿各的",
+     "words": [
+      {
+       "w": "skirt",
+       "p": "/skɜːrt/",
+       "m": "半身裙，短裙"
+      },
+      {
+       "w": "red",
+       "p": "/red/",
+       "m": "红色的；红色"
+      }
+     ],
+     "grp": "同源对：一个词走了两条路",
+     "src": {
+      "k": "gen",
+      "f": "skirt-red",
+      "from": "V-23 exs[0] 句框",
+      "slots": {
+       "obj": "G1_058"
+      }
+     }
     },
     {
      "s": "The guard is at the gate.",
@@ -108263,7 +112660,164 @@
        "p": "/ˈɡɑːdɪən/",
        "m": "监护人；守护者"
       }
-     ]
+     ],
+     "grp": "同根扩组：ward 与 guard",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "The guard is at the door.",
+     "note": "guard 还在门口值班：和 ward 是同根",
+     "words": [
+      {
+       "w": "guard",
+       "p": "/ɡɑːrd/",
+       "m": "警卫；守卫"
+      },
+      {
+       "w": "door",
+       "p": "/dɔːr/",
+       "m": "门"
+      }
+     ],
+     "grp": "同根扩组：ward 与 guard",
+     "src": {
+      "k": "gen",
+      "f": "guard-door",
+      "from": "V-23 exs[1] 句框",
+      "slots": {
+       "obj": "ADD_0132"
+      }
+     }
+    },
+    {
+     "s": "A guard stands at the gate.",
+     "note": "站岗的样子：guard 一家都管『守』",
+     "words": [
+      {
+       "w": "guard",
+       "p": "/ɡɑːrd/",
+       "m": "警卫；守卫"
+      },
+      {
+       "w": "gate",
+       "p": "/ɡeɪt/",
+       "m": "大门"
+      }
+     ],
+     "grp": "同根扩组：ward 与 guard",
+     "src": {
+      "k": "gen",
+      "f": "guard-stands",
+      "from": "V-23 exs[1] 句框",
+      "slots": {
+       "obj": "ADD_0132"
+      }
+     }
+    },
+    {
+     "s": "The king has a guard.",
+     "note": "王身边的守卫是 guard：越正式的场合，越用走远路来的词",
+     "words": [
+      {
+       "w": "king",
+       "p": "/kɪŋ/",
+       "m": "国王；大王"
+      },
+      {
+       "w": "guard",
+       "p": "/ɡɑːrd/",
+       "m": "警卫；守卫"
+      }
+     ],
+     "grp": "三兄弟：越排越正式",
+     "src": {
+      "k": "gen",
+      "f": "king-guard",
+      "from": "V-23 mech『两条入境路』演示框",
+      "slots": {
+       "obj": "ADD_0132"
+      }
+     }
+    },
+    {
+     "s": "The guard is for the king.",
+     "note": "守着王的 guard：正式场合的词，走的是远路",
+     "words": [
+      {
+       "w": "guard",
+       "p": "/ɡɑːrd/",
+       "m": "警卫；守卫"
+      },
+      {
+       "w": "king",
+       "p": "/kɪŋ/",
+       "m": "国王；大王"
+      }
+     ],
+     "grp": "三兄弟：越排越正式",
+     "src": {
+      "k": "gen",
+      "f": "guard-for-king",
+      "from": "V-23 mech『两条入境路』演示框",
+      "slots": {
+       "obj": "ADD_0132"
+      }
+     }
+    },
+    {
+     "s": "He wears a shirt, not a skirt.",
+     "note": "同根也不能对调：shirt 是 shirt，skirt 是 skirt",
+     "words": [
+      {
+       "w": "wear",
+       "p": "/wer/",
+       "m": "穿/戴(状态·过去式wore)"
+      },
+      {
+       "w": "shirt",
+       "p": "/ʃɜːrt/",
+       "m": "衬衫"
+      },
+      {
+       "w": "skirt",
+       "p": "/skɜːrt/",
+       "m": "半身裙，短裙"
+      }
+     ],
+     "grp": "边界：同根，只说明为什么像，不能互换",
+     "src": {
+      "k": "gen",
+      "f": "not-swap",
+      "from": "V-23 exc 同源对说法演示框",
+      "slots": {
+       "verb": "V6_服装_29"
+      }
+     }
+    },
+    {
+     "s": "A skirt is not a shirt.",
+     "note": "长得像、是一家，也不能互换着穿",
+     "words": [
+      {
+       "w": "skirt",
+       "p": "/skɜːrt/",
+       "m": "半身裙，短裙"
+      },
+      {
+       "w": "shirt",
+       "p": "/ʃɜːrt/",
+       "m": "衬衫"
+      }
+     ],
+     "grp": "边界：同根，只说明为什么像，不能互换",
+     "src": {
+      "k": "gen",
+      "f": "skirt-not-shirt",
+      "from": "V-23 exc 同源对说法演示框",
+      "slots": {}
+     }
     }
    ],
    "cases": [],
@@ -108531,7 +113085,123 @@
        "p": "/ˈbraɪdɡruːm/",
        "m": "新郎"
       }
-     ]
+     ],
+     "grp": "听错加找补：crayfish 的 fish 是顶上的",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I see a fish in the river.",
+     "note": "fish 本尊在河里：crayfish 里的 fish 是借它来顶上的",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "fish",
+       "p": "/fɪʃ/",
+       "m": "鱼肉；鱼"
+      },
+      {
+       "w": "river",
+       "p": "/ˈrɪvər/",
+       "m": "河，江"
+      }
+     ],
+     "grp": "听错加找补：crayfish 的 fish 是顶上的",
+     "src": {
+      "k": "gen",
+      "f": "fish-river",
+      "from": "V-24 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_17",
+       "obj": "G3_127"
+      }
+     }
+    },
+    {
+     "s": "This fish is small.",
+     "note": "真鱼在这儿：和 crayfish 对照着看",
+     "words": [
+      {
+       "w": "fish",
+       "p": "/fɪʃ/",
+       "m": "鱼肉；鱼"
+      },
+      {
+       "w": "small",
+       "p": "/smɔːl/",
+       "m": "小的"
+      }
+     ],
+     "grp": "听错加找补：crayfish 的 fish 是顶上的",
+     "src": {
+      "k": "gen",
+      "f": "fish-small",
+      "from": "V-24 exs[0] 句框",
+      "slots": {
+       "obj": "G3_127"
+      }
+     }
+    },
+    {
+     "s": "A fish can swim.",
+     "note": "鱼会游泳：crayfish 可不会因为名字里有 fish 就变成鱼",
+     "words": [
+      {
+       "w": "fish",
+       "p": "/fɪʃ/",
+       "m": "鱼肉；鱼"
+      },
+      {
+       "w": "swim",
+       "p": "/swɪm/",
+       "m": "游泳"
+      }
+     ],
+     "grp": "听错加找补：crayfish 的 fish 是顶上的",
+     "src": {
+      "k": "gen",
+      "f": "fish-swim",
+      "from": "V-24 exs[0] 对照框",
+      "slots": {
+       "obj": "G3_127"
+      }
+     }
+    },
+    {
+     "s": "Fish live in the river.",
+     "note": "真鱼住在河里：fish 本尊再和 crayfish 对照一次",
+     "words": [
+      {
+       "w": "live",
+       "p": "/lɪv/",
+       "m": "居住，生活；活着；现场直播的"
+      },
+      {
+       "w": "fish",
+       "p": "/fɪʃ/",
+       "m": "鱼肉；鱼"
+      },
+      {
+       "w": "river",
+       "p": "/ˈrɪvər/",
+       "m": "河，江"
+      }
+     ],
+     "grp": "听错加找补：crayfish 的 fish 是顶上的",
+     "src": {
+      "k": "gen",
+      "f": "fish-live",
+      "from": "V-24 exs[0] 句框",
+      "slots": {
+       "verb": "G3_0653",
+       "obj": "G3_127"
+      }
+     }
     },
     {
      "s": "We go to an island.",
@@ -108542,7 +113212,118 @@
        "p": "/ˈaɪlənd/",
        "m": "岛，岛屿"
       }
-     ]
+     ],
+     "grp": "学者版误靠：island 的 s 是硬加的",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "The island is in the sea.",
+     "note": "island 的 s 不出声：它是学者硬加上去的",
+     "words": [
+      {
+       "w": "island",
+       "p": "/ˈaɪlənd/",
+       "m": "岛，岛屿"
+      },
+      {
+       "w": "sea",
+       "p": "/siː/",
+       "m": "海，大海，海洋"
+      }
+     ],
+     "grp": "学者版误靠：island 的 s 是硬加的",
+     "src": {
+      "k": "gen",
+      "f": "island-sea",
+      "from": "V-24 exs[1] 句框",
+      "slots": {
+       "obj": "G5_235"
+      }
+     }
+    },
+    {
+     "s": "We live on an island.",
+     "note": "住在岛上说 island：s 照写不误，它已经是标准拼法",
+     "words": [
+      {
+       "w": "live",
+       "p": "/lɪv/",
+       "m": "居住，生活；活着；现场直播的"
+      },
+      {
+       "w": "island",
+       "p": "/ˈaɪlənd/",
+       "m": "岛，岛屿"
+      }
+     ],
+     "grp": "学者版误靠：island 的 s 是硬加的",
+     "src": {
+      "k": "gen",
+      "f": "live-island",
+      "from": "V-24 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0653",
+       "obj": "G5_235"
+      }
+     }
+    },
+    {
+     "s": "One letter in 'island' makes no sound.",
+     "note": "多出来的那个字母不出声：找补和误靠，都会在词形上留下痕迹",
+     "words": [
+      {
+       "w": "letter",
+       "p": "/ˈletər/",
+       "m": "字母；信件"
+      },
+      {
+       "w": "island",
+       "p": "/ˈaɪlənd/",
+       "m": "岛，岛屿"
+      },
+      {
+       "w": "sound",
+       "p": "/saʊnd/",
+       "m": "听起来；声音，声响"
+      }
+     ],
+     "grp": "边界：改定的样子就是今天的标准",
+     "src": {
+      "k": "gen",
+      "f": "letter-quiet",
+      "from": "V-24 bnd 演示框",
+      "slots": {
+       "obj": "V6_P14"
+      }
+     }
+    },
+    {
+     "s": "We say the word as it is today.",
+     "note": "词被改成今天这样，就按今天这样用：不许拨回老样子",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "边界：改定的样子就是今天的标准",
+     "src": {
+      "k": "gen",
+      "f": "as-it-is",
+      "from": "V-24 bnd 演示框",
+      "slots": {
+       "verb": "G3_0625",
+       "obj": "V6_学校_42"
+      }
+     }
     }
    ],
    "cases": [],
@@ -108814,7 +113595,57 @@
        "p": "/naɪs/",
        "m": "美好的；友好的"
       }
-     ]
+     ],
+     "grp": "今义归今人管：nice 的古义判不了今天",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "She is nice to her friends.",
+     "note": "今天说 nice 是夸人：没人会把它听成『傻』",
+     "words": [
+      {
+       "w": "nice",
+       "p": "/naɪs/",
+       "m": "美好的；友好的"
+      },
+      {
+       "w": "friend",
+       "p": "/frend/",
+       "m": "朋友"
+      }
+     ],
+     "grp": "今义归今人管：nice 的古义判不了今天",
+     "src": {
+      "k": "gen",
+      "f": "nice-friends",
+      "from": "V-25 exs[0] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "The teacher is nice.",
+     "note": "老师好，我们说 nice：意思归现在用它的人管",
+     "words": [
+      {
+       "w": "nice",
+       "p": "/naɪs/",
+       "m": "美好的；友好的"
+      },
+      {
+       "w": "teacher",
+       "p": "/ˈtiːtʃər/",
+       "m": "教师，老师"
+      }
+     ],
+     "grp": "今义归今人管：nice 的古义判不了今天",
+     "src": {
+      "k": "gen",
+      "f": "nice-teacher",
+      "from": "V-25 exs[0] 句框",
+      "slots": {}
+     }
     },
     {
      "s": "Is the posh story true? — Check the dates.",
@@ -108835,7 +113666,174 @@
        "p": "/ɡɒlf/",
        "m": "高尔夫球运动"
       }
-     ]
+     ],
+     "grp": "侦探第一招：查年代对不对",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "We check the dates first.",
+     "note": "查故事先看年代：那个年代的人，用不用这种造词法",
+     "words": [
+      {
+       "w": "check",
+       "p": "/tʃek/",
+       "m": "检查/核对"
+      },
+      {
+       "w": "date",
+       "p": "/deɪt/",
+       "m": "日期"
+      }
+     ],
+     "grp": "侦探第一招：查年代对不对",
+     "src": {
+      "k": "gen",
+      "f": "check-dates",
+      "from": "V-25 exs[1] 句框",
+      "slots": {
+       "verb": "V6_学校_74",
+       "obj": "V6_节日_6"
+      }
+     }
+    },
+    {
+     "s": "This word is old. Is the story old, too?",
+     "note": "词老、故事新：年代对不上，故事多半是后来编的",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "old",
+       "p": "/oʊld/",
+       "m": "老的，年长的；旧的；…岁的"
+      }
+     ],
+     "grp": "侦探第一招：查年代对不对",
+     "src": {
+      "k": "gen",
+      "f": "old-word",
+      "from": "V-25 mech『侦探两件套』演示框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "We look for the ticket in old books.",
+     "note": "第二招查实物：船票、报纸、老书——找到一样才算数",
+     "words": [
+      {
+       "w": "look",
+       "p": "/lʊk/",
+       "m": "看(look at)"
+      },
+      {
+       "w": "ticket",
+       "p": "/ˈtɪkɪt/",
+       "m": "车票/门票"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "侦探第二招：查有没有真东西留下",
+     "src": {
+      "k": "gen",
+      "f": "look-ticket",
+      "from": "V-25 mech『侦探两件套』演示框",
+      "slots": {
+       "verb": "V6_日常_16",
+       "obj": "V6_交通_24"
+      }
+     }
+    },
+    {
+     "s": "No ticket, no book, no story.",
+     "note": "什么实物都没有：再好听的故事，也只能先放进『存疑』筐",
+     "words": [
+      {
+       "w": "ticket",
+       "p": "/ˈtɪkɪt/",
+       "m": "车票/门票"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      }
+     ],
+     "grp": "侦探第二招：查有没有真东西留下",
+     "src": {
+      "k": "gen",
+      "f": "no-ticket",
+      "from": "V-25 mech『侦探两件套』演示框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "No old book has the ticket.",
+     "note": "老书里也没有那张票：实物这一招查空了，故事就站不住",
+     "words": [
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "ticket",
+       "p": "/ˈtɪkɪt/",
+       "m": "车票/门票"
+      },
+      {
+       "w": "old",
+       "p": "/oʊld/",
+       "m": "老的，年长的；旧的；…岁的"
+      }
+     ],
+     "grp": "侦探第二招：查有没有真东西留下",
+     "src": {
+      "k": "gen",
+      "f": "no-book-ticket",
+      "from": "V-25 mech『侦探两件套』演示框",
+      "slots": {
+       "obj": "V6_交通_24"
+      }
+     }
+    },
+    {
+     "s": "The answer is: we don't know.",
+     "note": "查不到就说不知道：辟谣的产物是存疑，不是新故事",
+     "words": [
+      {
+       "w": "know",
+       "p": "/noʊ/",
+       "m": "知道，了解，认识"
+      }
+     ],
+     "grp": "边界：查不到，就老实写『存疑』",
+     "src": {
+      "k": "gen",
+      "f": "dont-know",
+      "from": "V-25 bnd 演示框",
+      "slots": {}
+     }
     }
    ],
    "cases": [
@@ -109491,7 +114489,113 @@
        "p": "/ˈkɒfi/",
        "m": "咖啡（不可数）"
       }
-     ]
+     ],
+     "grp": "搬声音·出境：茶坐船去欧洲",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I drink tea.",
+     "note": "最短的茶句：tea 就是福建话『茶』的声音变的",
+     "words": [
+      {
+       "w": "drink",
+       "p": "/drɪŋk/",
+       "m": "喝(过去式drank)/饮料"
+      },
+      {
+       "w": "tea",
+       "p": "/tiː/",
+       "m": "茶，茶叶（不可数）"
+      }
+     ],
+     "grp": "搬声音·出境：茶坐船去欧洲",
+     "src": {
+      "k": "gen",
+      "f": "drink-tea",
+      "from": "V-27 exs[0] 句框",
+      "slots": {
+       "verb": "V6_食物_57",
+       "obj": "G2_0944"
+      }
+     }
+    },
+    {
+     "s": "Tea goes to many homes.",
+     "note": "茶坐着商船去了一家又一家：声音先到，词就住下了",
+     "words": [
+      {
+       "w": "tea",
+       "p": "/tiː/",
+       "m": "茶，茶叶（不可数）"
+      },
+      {
+       "w": "home",
+       "p": "/hoʊm/",
+       "m": "家(go home不加to)"
+      }
+     ],
+     "grp": "搬声音·出境：茶坐船去欧洲",
+     "src": {
+      "k": "gen",
+      "f": "tea-goes",
+      "from": "V-27 exs[0] 句框",
+      "slots": {
+       "obj": "G2_0944"
+      }
+     }
+    },
+    {
+     "s": "The sofa is in my home.",
+     "note": "sofa 搬着声音进了中国话，变成『沙发』",
+     "words": [
+      {
+       "w": "sofa",
+       "p": "/ˈsoʊfə/",
+       "m": "沙发"
+      },
+      {
+       "w": "home",
+       "p": "/hoʊm/",
+       "m": "家(go home不加to)"
+      }
+     ],
+     "grp": "搬声音·入境：sofa 坐船来中国",
+     "src": {
+      "k": "gen",
+      "f": "sofa-home",
+      "from": "V-27 mech『两条通道』演示框",
+      "slots": {
+       "obj": "G4_173"
+      }
+     }
+    },
+    {
+     "s": "I sit on the sofa.",
+     "note": "我坐的沙发，名字是坐船来的：这条通道搬的是声音",
+     "words": [
+      {
+       "w": "sit",
+       "p": "/sɪt/",
+       "m": "坐"
+      },
+      {
+       "w": "sofa",
+       "p": "/ˈsoʊfə/",
+       "m": "沙发"
+      }
+     ],
+     "grp": "搬声音·入境：sofa 坐船来中国",
+     "src": {
+      "k": "gen",
+      "f": "sit-sofa",
+      "from": "V-27 mech『两条通道』演示框",
+      "slots": {
+       "verb": "G3_K11",
+       "obj": "G4_173"
+      }
+     }
     },
     {
      "s": "Add oil!",
@@ -109507,7 +114611,119 @@
        "p": "/ɔɪl/",
        "m": "油；石油"
       }
-     ]
+     ],
+     "grp": "搬拼法：一个词一个词对着译",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "We say 'add oil' in class.",
+     "note": "上课给同学喊 add oil：一个词对一个词，搬的是拼法",
+     "words": [
+      {
+       "w": "say",
+       "p": "/seɪ/",
+       "m": "说，讲（强调说出的具体话语）"
+      },
+      {
+       "w": "add",
+       "p": "/æd/",
+       "m": "增加；添加"
+      },
+      {
+       "w": "oil",
+       "p": "/ɔɪl/",
+       "m": "油；石油"
+      },
+      {
+       "w": "class",
+       "p": "/klæs/",
+       "m": "班级/课"
+      }
+     ],
+     "grp": "搬拼法：一个词一个词对着译",
+     "src": {
+      "k": "gen",
+      "f": "add-oil-class",
+      "from": "V-27 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0625"
+      }
+     }
+    },
+    {
+     "s": "Add oil! We can do it.",
+     "note": "给同伴喊加油：这个直译词已经住进英语词典了",
+     "words": [
+      {
+       "w": "add",
+       "p": "/æd/",
+       "m": "增加；添加"
+      },
+      {
+       "w": "oil",
+       "p": "/ɔɪl/",
+       "m": "油；石油"
+      }
+     ],
+     "grp": "搬拼法：一个词一个词对着译",
+     "src": {
+      "k": "gen",
+      "f": "add-oil-can",
+      "from": "V-27 exs[1] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "Tea came by ship.",
+     "note": "茶是坐船来的：带它来的是荷兰商船，它不是英国本土词",
+     "words": [
+      {
+       "w": "tea",
+       "p": "/tiː/",
+       "m": "茶，茶叶（不可数）"
+      },
+      {
+       "w": "ship",
+       "p": "/ʃɪp/",
+       "m": "（大）船，轮船"
+      }
+     ],
+     "grp": "边界：tea 是荷兰人转手的，英语只是中转站",
+     "src": {
+      "k": "gen",
+      "f": "tea-ship",
+      "from": "V-27 exc 演示框",
+      "slots": {
+       "obj": "G2_0944"
+      }
+     }
+    },
+    {
+     "s": "Coffee came by ship, too.",
+     "note": "咖啡也是坐船旅行的词：港口城市先学会它们",
+     "words": [
+      {
+       "w": "coffee",
+       "p": "/ˈkɔːfi/",
+       "m": "咖啡（不可数）"
+      },
+      {
+       "w": "ship",
+       "p": "/ʃɪp/",
+       "m": "（大）船，轮船"
+      }
+     ],
+     "grp": "边界：tea 是荷兰人转手的，英语只是中转站",
+     "src": {
+      "k": "gen",
+      "f": "coffee-ship",
+      "from": "V-27 exc 演示框",
+      "slots": {
+       "obj": "G4_0945"
+      }
+     }
     }
    ],
    "cases": [],
@@ -109791,7 +115007,11 @@
        "p": "/ˈtrilət/",
        "m": "小树；树苗"
       }
-     ]
+     ],
+     "grp": "访谈原案：由 piglet 类推 treelet",
+     "src": {
+      "k": "orig"
+     }
     },
     {
      "s": "A treelet is a small tree.",
@@ -109802,7 +115022,228 @@
        "p": "/triː/",
        "m": "树，树木"
       }
-     ]
+     ],
+     "grp": "访谈原案：由 piglet 类推 treelet",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "A helper helps us.",
+     "note": "help 加 -er 是 helper：零件认识，整词当场懂",
+     "words": [
+      {
+       "w": "help",
+       "p": "/help/",
+       "m": "帮助，帮忙"
+      }
+     ],
+     "grp": "零件帮忙：认识的部分推全词",
+     "src": {
+      "k": "gen",
+      "f": "helper",
+      "from": "V-28 mech『解题引擎』演示框",
+      "slots": {
+       "verb": "G3_0442"
+      }
+     }
+    },
+    {
+     "s": "A farmer is on the farm.",
+     "note": "farmer 是 farm 的亲戚：站在农场上的人，不用背就懂",
+     "words": [
+      {
+       "w": "farm",
+       "p": "/fɑːrm/",
+       "m": "农场，农庄"
+      }
+     ],
+     "grp": "零件帮忙：认识的部分推全词",
+     "src": {
+      "k": "gen",
+      "f": "farmer",
+      "from": "V-28 mech『解题引擎』演示框",
+      "slots": {
+       "obj": "G4_0483"
+      }
+     }
+    },
+    {
+     "s": "A teacher teaches in a school.",
+     "note": "teach 加 -er 是 teacher：拆词解题的日常版",
+     "words": [
+      {
+       "w": "teach",
+       "p": "/tiːtʃ/",
+       "m": "教，讲授，教导"
+      },
+      {
+       "w": "teacher",
+       "p": "/ˈtiːtʃər/",
+       "m": "教师，老师"
+      },
+      {
+       "w": "school",
+       "p": "/skuːl/",
+       "m": "学校"
+      }
+     ],
+     "grp": "零件帮忙：认识的部分推全词",
+     "src": {
+      "k": "gen",
+      "f": "teacher",
+      "from": "V-28 mech『解题引擎』演示框",
+      "slots": {
+       "verb": "G3_0630"
+      }
+     }
+    },
+    {
+     "s": "A singer sings a song.",
+     "note": "sing 加 -er：又一个当场能懂的亲戚词",
+     "words": [
+      {
+       "w": "sing",
+       "p": "/sɪŋ/",
+       "m": "唱歌"
+      },
+      {
+       "w": "song",
+       "p": "/sɔːŋ/",
+       "m": "歌，歌曲"
+      }
+     ],
+     "grp": "零件帮忙：认识的部分推全词",
+     "src": {
+      "k": "gen",
+      "f": "singer",
+      "from": "V-28 mech『解题引擎』演示框",
+      "slots": {
+       "verb": "G2_088",
+       "obj": "G2_0669"
+      }
+     }
+    },
+    {
+     "s": "I know 'happy', so 'unhappy' is easy.",
+     "note": "认识 happy，unhappy 当场解出：零件越熟，词长得越快",
+     "words": [
+      {
+       "w": "know",
+       "p": "/noʊ/",
+       "m": "知道，了解，认识"
+      },
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      },
+      {
+       "w": "unhappy",
+       "p": "/ənˈhæpi/",
+       "m": "不开心的，难过的"
+      },
+      {
+       "w": "easy",
+       "p": "/ˈiːzi/",
+       "m": "容易的，不费力的"
+      }
+     ],
+     "grp": "零件帮忙：认识的部分推全词",
+     "src": {
+      "k": "gen",
+      "f": "know-happy",
+      "from": "V-28 mech『解题引擎』演示框",
+      "slots": {
+       "verb": "G3_0626"
+      }
+     }
+    },
+    {
+     "s": "She can break the long word into small words.",
+     "note": "把长词拆成小词：这就是解题引擎在干活",
+     "words": [
+      {
+       "w": "break",
+       "p": "/breɪk/",
+       "m": "打破；弄坏"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "long",
+       "p": "/lɔːŋ/",
+       "m": "长的"
+      },
+      {
+       "w": "small",
+       "p": "/smɔːl/",
+       "m": "小的"
+      }
+     ],
+     "grp": "零件帮忙：认识的部分推全词",
+     "src": {
+      "k": "gen",
+      "f": "break-long",
+      "from": "V-28 mech『解题引擎』演示框",
+      "slots": {
+       "verb": "ADD_0025",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "Workers help in the shop.",
+     "note": "worker 是 work 的亲戚：干活的人——拆开就懂",
+     "words": [
+      {
+       "w": "work",
+       "p": "/wɜːrk/",
+       "m": "工作(作名词不可数!)"
+      },
+      {
+       "w": "shop",
+       "p": "/ʃɑːp/",
+       "m": "商店，店铺；去购物"
+      },
+      {
+       "w": "help",
+       "p": "/help/",
+       "m": "帮助，帮忙"
+      }
+     ],
+     "grp": "零件帮忙：认识的部分推全词",
+     "src": {
+      "k": "gen",
+      "f": "workers",
+      "from": "V-28 mech『解题引擎』演示框",
+      "slots": {
+       "verb": "G3_0442"
+      }
+     }
+    },
+    {
+     "s": "Some words can't break. We learn them as they are.",
+     "note": "有的词拆不动：老实单独学，不硬拆",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "边界：拆不动的，老实单独学",
+     "src": {
+      "k": "gen",
+      "f": "cant-break",
+      "from": "V-28 bnd 演示框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
     }
    ],
    "cases": [],
@@ -110074,7 +115515,148 @@
        "p": "/ˈhæpinəs/",
        "m": "幸福，快乐，开心"
       }
-     ]
+     ],
+     "grp": "透明亲戚：学会一个，白送一串",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I am happy. She is unhappy.",
+     "note": "一家人两种心情：happy 学会，unhappy 当场算出",
+     "words": [
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      },
+      {
+       "w": "unhappy",
+       "p": "/ənˈhæpi/",
+       "m": "不开心的，难过的"
+      }
+     ],
+     "grp": "透明亲戚：学会一个，白送一串",
+     "src": {
+      "k": "gen",
+      "f": "happy-unhappy",
+      "from": "V-29 exs[0] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "We sing a happy song.",
+     "note": "happy 的亲戚里还有 happiness：都从 happy 长出来",
+     "words": [
+      {
+       "w": "sing",
+       "p": "/sɪŋ/",
+       "m": "唱歌"
+      },
+      {
+       "w": "song",
+       "p": "/sɔːŋ/",
+       "m": "歌，歌曲"
+      },
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      },
+      {
+       "w": "happiness",
+       "p": "/ˈhæpinəs/",
+       "m": "幸福，快乐，开心"
+      }
+     ],
+     "grp": "透明亲戚：学会一个，白送一串",
+     "src": {
+      "k": "gen",
+      "f": "happy-song",
+      "from": "V-29 exs[0] 句框",
+      "slots": {
+       "verb": "G2_088",
+       "obj": "G2_0669"
+      }
+     }
+    },
+    {
+     "s": "A singer sings songs.",
+     "note": "singer 是 sing 的透明亲戚：不用另背",
+     "words": [
+      {
+       "w": "sing",
+       "p": "/sɪŋ/",
+       "m": "唱歌"
+      },
+      {
+       "w": "song",
+       "p": "/sɔːŋ/",
+       "m": "歌，歌曲"
+      }
+     ],
+     "grp": "透明亲戚：学会一个，白送一串",
+     "src": {
+      "k": "gen",
+      "f": "singer",
+      "from": "V-29 mech『透明就不另算』演示框",
+      "slots": {
+       "verb": "G2_088"
+      }
+     }
+    },
+    {
+     "s": "He teaches. He is a teacher.",
+     "note": "teacher 也是透明亲戚：teach 会了，它白送",
+     "words": [
+      {
+       "w": "teach",
+       "p": "/tiːtʃ/",
+       "m": "教，讲授，教导"
+      },
+      {
+       "w": "teacher",
+       "p": "/ˈtiːtʃər/",
+       "m": "教师，老师"
+      }
+     ],
+     "grp": "透明亲戚：学会一个，白送一串",
+     "src": {
+      "k": "gen",
+      "f": "teacher",
+      "from": "V-29 mech『透明就不另算』演示框",
+      "slots": {
+       "verb": "G3_0630"
+      }
+     }
+    },
+    {
+     "s": "Play and player are family, too.",
+     "note": "player 是 play 的亲戚：玩的人——又白送一个",
+     "words": [
+      {
+       "w": "play",
+       "p": "/pleɪ/",
+       "m": "玩耍；打（球）；弹奏（乐器）；戏剧"
+      },
+      {
+       "w": "player",
+       "p": "/ˈpleɪər/",
+       "m": "运动员，选手；播放器"
+      },
+      {
+       "w": "family",
+       "p": "/ˈfæməli/",
+       "m": "家，家庭；家人"
+      }
+     ],
+     "grp": "透明亲戚：学会一个，白送一串",
+     "src": {
+      "k": "gen",
+      "f": "player",
+      "from": "V-29 mech『透明就不另算』演示框",
+      "slots": {}
+     }
     },
     {
      "s": "Predict is a word to learn; its family helps.",
@@ -110085,7 +115667,94 @@
        "p": "/prɪˈdɪkt/",
        "m": "预测，预言"
       }
-     ]
+     ],
+     "grp": "不透明亲戚：根不认识，要另学",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Some family words are hard. We learn them one by one.",
+     "note": "根不认识的亲戚不透明：只能一个一个老实学",
+     "words": [
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "family",
+       "p": "/ˈfæməli/",
+       "m": "家，家庭；家人"
+      },
+      {
+       "w": "hard",
+       "p": "/hɑːrd/",
+       "m": "困难的；努力地"
+      }
+     ],
+     "grp": "不透明亲戚：根不认识，要另学",
+     "src": {
+      "k": "gen",
+      "f": "hard-family",
+      "from": "V-29 exs[1] 句框",
+      "slots": {
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "We count families, not just words.",
+     "note": "算负担要按家数：报大数字的时候，要连『怎么数的』一起说",
+     "words": [
+      {
+       "w": "count",
+       "p": "/kaʊnt/",
+       "m": "数数，计数"
+      },
+      {
+       "w": "family",
+       "p": "/ˈfæməli/",
+       "m": "家，家庭；家人"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "边界：数词要连口径，红利在中低频",
+     "src": {
+      "k": "gen",
+      "f": "count-families",
+      "from": "V-29 bnd 演示框",
+      "slots": {
+       "verb": "G3_0367"
+      }
+     }
+    },
+    {
+     "s": "One family can have many words.",
+     "note": "一家有好几个词：学会词头，亲戚排队来",
+     "words": [
+      {
+       "w": "family",
+       "p": "/ˈfæməli/",
+       "m": "家，家庭；家人"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "边界：数词要连口径，红利在中低频",
+     "src": {
+      "k": "gen",
+      "f": "one-family",
+      "from": "V-29 bnd 演示框",
+      "slots": {}
+     }
     }
    ],
    "cases": [],
@@ -110611,7 +116280,130 @@
        "p": "/ˈhæpinəs/",
        "m": "幸福，快乐，开心"
       }
-     ]
+     ],
+     "grp": "近圈：认词、拼词马上变好",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I can break 'unhappy' into two parts.",
+     "note": "拆词课最近的产出：长词能拆开看了",
+     "words": [
+      {
+       "w": "break",
+       "p": "/breɪk/",
+       "m": "打破；弄坏"
+      },
+      {
+       "w": "unhappy",
+       "p": "/ənˈhæpi/",
+       "m": "不开心的，难过的"
+      }
+     ],
+     "grp": "近圈：认词、拼词马上变好",
+     "src": {
+      "k": "gen",
+      "f": "break-parts",
+      "from": "V-31 exs[0] 句框",
+      "slots": {
+       "verb": "ADD_0025",
+       "obj": "G4_0457"
+      }
+     }
+    },
+    {
+     "s": "She can spell the long word now.",
+     "note": "拼写是近圈：拆过零件，长词拼得出",
+     "words": [
+      {
+       "w": "spell",
+       "p": "/spel/",
+       "m": "拼写"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "long",
+       "p": "/lɔːŋ/",
+       "m": "长的"
+      }
+     ],
+     "grp": "近圈：认词、拼词马上变好",
+     "src": {
+      "k": "gen",
+      "f": "spell-long",
+      "from": "V-31 exs[0] 句框",
+      "slots": {
+       "verb": "V6_学校_64",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "I see a new word. I break it and guess it.",
+     "note": "中圈：碰到生词，先拆再猜——工具用上了",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "break",
+       "p": "/breɪk/",
+       "m": "打破；弄坏"
+      },
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      }
+     ],
+     "grp": "中圈：猜生词变好",
+     "src": {
+      "k": "gen",
+      "f": "break-guess",
+      "from": "V-31 mech『距离衰减』演示框",
+      "slots": {
+       "verb": "V6_日常_17",
+       "obj": "V6_学校_42"
+      }
+     }
+    },
+    {
+     "s": "He guesses the new word from its parts.",
+     "note": "靠零件猜词：这也是拆词课的红利",
+     "words": [
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "中圈：猜生词变好",
+     "src": {
+      "k": "gen",
+      "f": "guess-parts",
+      "from": "V-31 mech『距离衰减』演示框",
+      "slots": {
+       "verb": "ADD_0134",
+       "obj": "V6_学校_42"
+      }
+     }
     },
     {
      "s": "Read more books, too.",
@@ -110622,7 +116414,131 @@
        "p": "/riːd/",
        "m": "读，阅读，看（书/报）"
       }
-     ]
+     ],
+     "grp": "远圈：整篇理解靠多读",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "We read books every day.",
+     "note": "远圈靠量：天天读书，理解才跟上",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "远圈：整篇理解靠多读",
+     "src": {
+      "k": "gen",
+      "f": "read-daily",
+      "from": "V-31 exs[1] 句框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "Reading books helps me with stories.",
+     "note": "故事读得多，读新故事就越来越顺",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "help",
+       "p": "/help/",
+       "m": "帮助，帮忙"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      }
+     ],
+     "grp": "远圈：整篇理解靠多读",
+     "src": {
+      "k": "gen",
+      "f": "reading-helps",
+      "from": "V-31 exs[1] 句框",
+      "slots": {
+       "verb": "G3_0442"
+      }
+     }
+    },
+    {
+     "s": "I read a story about dogs.",
+     "note": "远圈的燃料就是一篇篇故事：读得越多，理解越稳",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      }
+     ],
+     "grp": "远圈：整篇理解靠多读",
+     "src": {
+      "k": "gen",
+      "f": "read-story",
+      "from": "V-31 exs[1] 句框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "V6_学校_44"
+      }
+     }
+    },
+    {
+     "s": "The parts are not the house. We need books, too.",
+     "note": "零件是工具，书才是房子：工具课不能代替读书本身",
+     "words": [
+      {
+       "w": "part",
+       "p": "/pɑːrt/",
+       "m": "部分；角色；零件"
+      },
+      {
+       "w": "house",
+       "p": "/haʊs/",
+       "m": "房子/住宅"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "边界：工具再好，也不能代替读书",
+     "src": {
+      "k": "gen",
+      "f": "parts-house",
+      "from": "V-31 mech『距离衰减』演示框",
+      "slots": {}
+     }
     }
    ],
    "cases": [],
@@ -113584,7 +119500,62 @@
        "p": "/ənˈhæpi/",
        "m": "不开心的，难过的"
       }
-     ]
+     ],
+     "grp": "第一课：先分清真假前缀",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "'Unhappy' can break. 'Uncle' can't.",
+     "note": "unhappy 拆得开，uncle 拆不开：第一课先练这个眼力",
+     "words": [
+      {
+       "w": "unhappy",
+       "p": "/ənˈhæpi/",
+       "m": "不开心的，难过的"
+      },
+      {
+       "w": "uncle",
+       "p": "/ˈʌŋkl/",
+       "m": "叔；伯；舅；姑父；姨父"
+      },
+      {
+       "w": "break",
+       "p": "/breɪk/",
+       "m": "打破；弄坏"
+      }
+     ],
+     "grp": "第一课：先分清真假前缀",
+     "src": {
+      "k": "gen",
+      "f": "can-break",
+      "from": "V-39 exs[0] 句框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "Uncle is one word. Do not break it.",
+     "note": "uncle 是一个整词：看见 un 开头，先停一拍",
+     "words": [
+      {
+       "w": "uncle",
+       "p": "/ˈʌŋkl/",
+       "m": "叔；伯；舅；姑父；姨父"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "第一课：先分清真假前缀",
+     "src": {
+      "k": "gen",
+      "f": "one-word",
+      "from": "V-39 exs[0] 句框",
+      "slots": {}
+     }
     },
     {
      "s": "Incorrect = in- (not) + correct.",
@@ -113610,7 +119581,204 @@
        "p": "/ʌnˈtaɪ/",
        "m": "解开；松开"
       }
-     ]
+     ],
+     "grp": "义项分课：一个意思单独一课",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Incorrect means 'not correct'.",
+     "note": "否定 in- 单独一课：incorrect 就是 not correct",
+     "words": [
+      {
+       "w": "mean",
+       "p": "/min/",
+       "m": "意思是；意味着；刻薄的"
+      },
+      {
+       "w": "incorrect",
+       "p": "/ˌɪnkəˈrekt/",
+       "m": "不正确的；错误的"
+      },
+      {
+       "w": "correct",
+       "p": "/kəˈrɛkt/",
+       "m": "正确的；改正，纠正"
+      }
+     ],
+     "grp": "义项分课：一个意思单独一课",
+     "src": {
+      "k": "gen",
+      "f": "incorrect-not",
+      "from": "V-39 exs[1] 句框",
+      "slots": {
+       "verb": "ADD_0569",
+       "obj": "ADD_0157"
+      }
+     }
+    },
+    {
+     "s": "Input has 'in' and 'put' in it.",
+     "note": "向内的 in- 是另一课：input 里住着 in 和 put",
+     "words": [
+      {
+       "w": "input",
+       "p": "/ˈɪnpʊt/",
+       "m": "输入；输入的数据"
+      },
+      {
+       "w": "put",
+       "p": "/pʊt/",
+       "m": "放(过去式put)"
+      }
+     ],
+     "grp": "义项分课：一个意思单独一课",
+     "src": {
+      "k": "gen",
+      "f": "input-in-put",
+      "from": "V-39 exs[1] 对照框",
+      "slots": {
+       "obj": "ADD_0159"
+      }
+     }
+    },
+    {
+     "s": "I see 'unhappy' in the story. I can guess it.",
+     "note": "学过的零件马上用：故事里碰到 unhappy，当场猜出",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "unhappy",
+       "p": "/ənˈhæpi/",
+       "m": "不开心的，难过的"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      }
+     ],
+     "grp": "学完就用：到句子里猜生词",
+     "src": {
+      "k": "gen",
+      "f": "see-unhappy",
+      "from": "V-39 mech『六课课序』演示框",
+      "slots": {
+       "verb": "V6_日常_17",
+       "obj": "G4_0457"
+      }
+     }
+    },
+    {
+     "s": "She reads the story and guesses the new words.",
+     "note": "词缀要和语境一起学：在故事里猜，才是真本事",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "学完就用：到句子里猜生词",
+     "src": {
+      "k": "gen",
+      "f": "reads-guesses",
+      "from": "V-39 mech『六课课序』演示框",
+      "slots": {
+       "verb": "G2_0492"
+      }
+     }
+    },
+    {
+     "s": "In the story, 'incorrect' is easy now.",
+     "note": "分课学过的义项，回到故事里就认得出：这才是学词缀的用法",
+     "words": [
+      {
+       "w": "incorrect",
+       "p": "/ˌɪnkəˈrekt/",
+       "m": "不正确的；错误的"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      },
+      {
+       "w": "easy",
+       "p": "/ˈiːzi/",
+       "m": "容易的，不费力的"
+      }
+     ],
+     "grp": "学完就用：到句子里猜生词",
+     "src": {
+      "k": "gen",
+      "f": "incorrect-in-story",
+      "from": "V-39 mech『六课课序』演示框",
+      "slots": {
+       "obj": "ADD_0157"
+      }
+     }
+    },
+    {
+     "s": "This word is not in our book. I can break it and guess.",
+     "note": "课本里没有的词才是红利所在：拆得开、猜得出",
+     "words": [
+      {
+       "w": "break",
+       "p": "/breɪk/",
+       "m": "打破；弄坏"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "guess",
+       "p": "/ɡes/",
+       "m": "猜；猜测"
+      }
+     ],
+     "grp": "边界：红利在解新词，不在课本词背得快",
+     "src": {
+      "k": "gen",
+      "f": "not-in-book",
+      "from": "V-39 exc 演示框",
+      "slots": {
+       "verb": "ADD_0025",
+       "obj": "V6_学校_42"
+      }
+     }
     }
    ],
    "cases": [
@@ -113934,7 +120102,114 @@
        "p": "/dɔː/",
        "m": "门"
       }
-     ]
+     ],
+     "grp": "对齐先行：开门、关门两边一个样",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Open the window.",
+     "note": "开窗也是 open：对齐的对子先站稳",
+     "words": [
+      {
+       "w": "open",
+       "p": "/ˈoʊpən/",
+       "m": "打开/开着的"
+      },
+      {
+       "w": "window",
+       "p": "/ˈwɪndoʊ/",
+       "m": "窗户"
+      }
+     ],
+     "grp": "对齐先行：开门、关门两边一个样",
+     "src": {
+      "k": "gen",
+      "f": "open-window",
+      "from": "V-40 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_10",
+       "obj": "G4_159"
+      }
+     }
+    },
+    {
+     "s": "Close the door.",
+     "note": "关门用 close：汉语『关』和英语 close 在这里对齐",
+     "words": [
+      {
+       "w": "close",
+       "p": "/kloʊz/ /kloʊs/",
+       "m": "关，关闭；亲密的，靠近的"
+      },
+      {
+       "w": "door",
+       "p": "/dɔːr/",
+       "m": "门"
+      }
+     ],
+     "grp": "对齐先行：开门、关门两边一个样",
+     "src": {
+      "k": "gen",
+      "f": "close-door",
+      "from": "V-40 exc 对齐说法演示框",
+      "slots": {
+       "verb": "G3_0384",
+       "obj": "G1_0932"
+      }
+     }
+    },
+    {
+     "s": "Turn on the light.",
+     "note": "开灯不用 open：灯的按钮是 turn on",
+     "words": [
+      {
+       "w": "light",
+       "p": "/laɪt/",
+       "m": "电灯，光线；轻的"
+      }
+     ],
+     "grp": "专用按钮：灯和电视用 turn on",
+     "src": {
+      "k": "own",
+      "ref": "lawdata cases[0].right"
+     }
+    },
+    {
+     "s": "Turn off the TV.",
+     "note": "关电视也找 turn：turn on 和 turn off 是一对专用按钮",
+     "words": [],
+     "grp": "专用按钮：灯和电视用 turn on",
+     "src": {
+      "k": "gen",
+      "f": "turn-off-tv",
+      "from": "V-40 cases[0].right 句框",
+      "slots": {
+       "verb": "POLY_TURN"
+      }
+     }
+    },
+    {
+     "s": "Turn on the light, please.",
+     "note": "还是开灯：事情看清了（让灯亮），按钮就挑对了",
+     "words": [
+      {
+       "w": "light",
+       "p": "/laɪt/",
+       "m": "电灯，光线；轻的"
+      }
+     ],
+     "grp": "专用按钮：灯和电视用 turn on",
+     "src": {
+      "k": "gen",
+      "f": "turn-on-please",
+      "from": "V-40 cases[0].right 句框",
+      "slots": {
+       "verb": "POLY_TURN",
+       "obj": "G4_157"
+      }
+     }
     },
     {
      "s": "Take the medicine. Take the bus.",
@@ -113955,7 +120230,89 @@
        "p": "/bʌs/",
        "m": "公共汽车，巴士"
       }
-     ]
+     ],
+     "grp": "take 的万能管：吃药、坐车、拍照",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Take medicine.",
+     "note": "吃药不说 eat：服药这件事打包给 take",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "medicine",
+       "p": "/ˈmedɪsn/",
+       "m": "药(take medicine)"
+      }
+     ],
+     "grp": "take 的万能管：吃药、坐车、拍照",
+     "src": {
+      "k": "own",
+      "ref": "lawdata cases[1].right"
+     }
+    },
+    {
+     "s": "Take a photo.",
+     "note": "拍照也归 take 管：它的万能管里还有这一件",
+     "words": [
+      {
+       "w": "take",
+       "p": "/teɪk/",
+       "m": "带走/乘坐(过去took)"
+      },
+      {
+       "w": "photo",
+       "p": "/ˈfoʊtoʊ/",
+       "m": "照片，相片"
+      }
+     ],
+     "grp": "take 的万能管：吃药、坐车、拍照",
+     "src": {
+      "k": "gen",
+      "f": "take-photo",
+      "from": "V-40 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_6",
+       "obj": "G4_0381"
+      }
+     }
+    },
+    {
+     "s": "Open the book and read.",
+     "note": "开书用 open：这件事和开门一样，两边对齐",
+     "words": [
+      {
+       "w": "open",
+       "p": "/ˈoʊpən/",
+       "m": "打开/开着的"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      }
+     ],
+     "grp": "边界：不是处处错位，对齐的对子也不少",
+     "src": {
+      "k": "gen",
+      "f": "open-book",
+      "from": "V-40 exc 对齐说法演示框",
+      "slots": {
+       "verb": "V6_日常_10",
+       "obj": "G1_002"
+      }
+     }
     }
    ],
    "cases": [
@@ -114227,7 +120584,61 @@
        "p": "/bæŋk/",
        "m": "银行；河岸，岸边"
       }
-     ]
+     ],
+     "grp": "撞脸组：两个 bank 不是一家",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "The bank is near the river.",
+     "note": "河边的 bank 是河岸：和钱那家不是一家",
+     "words": [
+      {
+       "w": "bank",
+       "p": "/bæŋk/",
+       "m": "银行；河岸，岸边"
+      },
+      {
+       "w": "river",
+       "p": "/ˈrɪvər/",
+       "m": "河，江"
+      }
+     ],
+     "grp": "撞脸组：两个 bank 不是一家",
+     "src": {
+      "k": "gen",
+      "f": "bank-river",
+      "from": "V-41 exs[0] 句框",
+      "slots": {
+       "obj": "G5_0987"
+      }
+     }
+    },
+    {
+     "s": "My money is in the bank.",
+     "note": "钱放的 bank 是银行：同名不同家",
+     "words": [
+      {
+       "w": "bank",
+       "p": "/bæŋk/",
+       "m": "银行；河岸，岸边"
+      },
+      {
+       "w": "money",
+       "p": "/ˈmʌni/",
+       "m": "钱"
+      }
+     ],
+     "grp": "撞脸组：两个 bank 不是一家",
+     "src": {
+      "k": "gen",
+      "f": "bank-money",
+      "from": "V-41 exs[0] 句框",
+      "slots": {
+       "obj": "G5_0987"
+      }
+     }
     },
     {
      "s": "An eye and the eye of a needle.",
@@ -114243,7 +120654,178 @@
        "p": "/ˈnidəl/",
        "m": "针；缝衣针；指针"
       }
-     ]
+     ],
+     "grp": "亲戚组：eye 一家",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I see with my eyes.",
+     "note": "eye 一家先认树干：眼睛",
+     "words": [
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      },
+      {
+       "w": "eye",
+       "p": "/aɪ/",
+       "m": "眼睛"
+      }
+     ],
+     "grp": "亲戚组：eye 一家",
+     "src": {
+      "k": "gen",
+      "f": "see-eyes",
+      "from": "V-41 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_17",
+       "obj": "G1_009"
+      }
+     }
+    },
+    {
+     "s": "An eye can see.",
+     "note": "还是眼睛本尊：亲戚组先站稳本义",
+     "words": [
+      {
+       "w": "eye",
+       "p": "/aɪ/",
+       "m": "眼睛"
+      },
+      {
+       "w": "see",
+       "p": "/siː/",
+       "m": "看见(过去式saw)"
+      }
+     ],
+     "grp": "亲戚组：eye 一家",
+     "src": {
+      "k": "gen",
+      "f": "eye-see",
+      "from": "V-41 exs[1] 句框",
+      "slots": {
+       "obj": "G1_009"
+      }
+     }
+    },
+    {
+     "s": "I run in the park.",
+     "note": "run 在儿童书里的样子：跑——一本书一个切法",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "park",
+       "p": "/pɑːrk/",
+       "m": "公园；停车（动词：park the car 停车）"
+      }
+     ],
+     "grp": "义项是切出来的：run 的两本书",
+     "src": {
+      "k": "gen",
+      "f": "run-park",
+      "from": "V-41 quiz 材料句框",
+      "slots": {
+       "verb": "G2_087"
+      }
+     }
+    },
+    {
+     "s": "They run a shop.",
+     "note": "run 换一个场子：开店的『经营』——义项随书而变",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "shop",
+       "p": "/ʃɑːp/",
+       "m": "商店，店铺；去购物"
+      }
+     ],
+     "grp": "义项是切出来的：run 的两本书",
+     "src": {
+      "k": "gen",
+      "f": "run-shop",
+      "from": "V-41 quiz 材料句框",
+      "slots": {
+       "verb": "G2_087",
+       "obj": "G3_0648"
+      }
+     }
+    },
+    {
+     "s": "One book says 'run' has many, many faces.",
+     "note": "一本书一个切法：run 的义项数随书而变，不许背死数",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "face",
+       "p": "/feɪs/",
+       "m": "脸，面孔"
+      }
+     ],
+     "grp": "义项是切出来的：run 的两本书",
+     "src": {
+      "k": "gen",
+      "f": "run-faces",
+      "from": "V-41 quiz 材料句框",
+      "slots": {
+       "obj": "G2_087"
+      }
+     }
+    },
+    {
+     "s": "Some words are hard to tell: family or not?",
+     "note": "有的词两把尺打架：先放进『连续带』，不硬塞抽屉",
+     "words": [
+      {
+       "w": "tell",
+       "p": "/tel/",
+       "m": "告诉，讲述，吩咐"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      },
+      {
+       "w": "family",
+       "p": "/ˈfæməli/",
+       "m": "家，家庭；家人"
+      },
+      {
+       "w": "hard",
+       "p": "/hɑːrd/",
+       "m": "困难的；努力地"
+      }
+     ],
+     "grp": "边界：验亲也会打架，别背义项数",
+     "src": {
+      "k": "gen",
+      "f": "hard-to-tell",
+      "from": "V-41 exc 演示框",
+      "slots": {
+       "verb": "G3_0623"
+      }
+     }
     }
    ],
    "cases": [],
@@ -114497,7 +121079,68 @@
        "p": "/həʊld/",
        "m": "握住/举行"
       }
-     ]
+     ],
+     "grp": "起点：手抓住东西",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Hold the book with two hands.",
+     "note": "手抓牢一本书：hold 的起点就是这个画面",
+     "words": [
+      {
+       "w": "hold",
+       "p": "/hoʊld/",
+       "m": "握住/举行"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "hand",
+       "p": "/hænd/",
+       "m": "手"
+      }
+     ],
+     "grp": "起点：手抓住东西",
+     "src": {
+      "k": "gen",
+      "f": "hold-book",
+      "from": "V-42 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_44",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "She holds a cup.",
+     "note": "她手里抓着杯子：还是起点义",
+     "words": [
+      {
+       "w": "hold",
+       "p": "/hoʊld/",
+       "m": "握住/举行"
+      },
+      {
+       "w": "cup",
+       "p": "/kʌp/",
+       "m": "茶杯，杯子；奖杯"
+      }
+     ],
+     "grp": "起点：手抓住东西",
+     "src": {
+      "k": "gen",
+      "f": "holds-cup",
+      "from": "V-42 exs[0] 句框",
+      "slots": {
+       "verb": "V6_日常_44",
+       "obj": "G2_0936"
+      }
+     }
     },
     {
      "s": "The hall holds 500 people.",
@@ -114518,7 +121161,189 @@
        "p": "/hɔːl/",
        "m": "大厅；会堂；门厅"
       }
-     ]
+     ],
+     "grp": "滚一站：装得下",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "The box holds ten books.",
+     "note": "盒子『抓』得住十本书：这就是装得下",
+     "words": [
+      {
+       "w": "hold",
+       "p": "/hoʊld/",
+       "m": "握住/举行"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "box",
+       "p": "/bɑːks/",
+       "m": "盒，箱，方框（复数加 es：boxes）"
+      }
+     ],
+     "grp": "滚一站：装得下",
+     "src": {
+      "k": "gen",
+      "f": "box-holds",
+      "from": "V-42 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_44",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "This bag holds two books.",
+     "note": "包能装两本书：从『握住』滚到『容纳』",
+     "words": [
+      {
+       "w": "hold",
+       "p": "/hoʊld/",
+       "m": "握住/举行"
+      },
+      {
+       "w": "bag",
+       "p": "/bæɡ/",
+       "m": "包，书包"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "滚一站：装得下",
+     "src": {
+      "k": "gen",
+      "f": "bag-holds",
+      "from": "V-42 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_44",
+       "obj": "G1_001"
+      }
+     }
+    },
+    {
+     "s": "My bag holds my books and my cup.",
+     "note": "我的包『抓』着书和杯子：容纳这一站，东西越多越看得清",
+     "words": [
+      {
+       "w": "hold",
+       "p": "/hoʊld/",
+       "m": "握住/举行"
+      },
+      {
+       "w": "bag",
+       "p": "/bæɡ/",
+       "m": "包，书包"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "cup",
+       "p": "/kʌp/",
+       "m": "茶杯，杯子；奖杯"
+      }
+     ],
+     "grp": "滚一站：装得下",
+     "src": {
+      "k": "gen",
+      "f": "bag-holds-all",
+      "from": "V-42 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_44",
+       "obj": "G1_001"
+      }
+     }
+    },
+    {
+     "s": "We hold a party in the garden.",
+     "note": "把大家的时间抓在一起玩：这就是『举行』",
+     "words": [
+      {
+       "w": "hold",
+       "p": "/hoʊld/",
+       "m": "握住/举行"
+      },
+      {
+       "w": "party",
+       "p": "/ˈpɑːrti/",
+       "m": "聚会，派对"
+      },
+      {
+       "w": "garden",
+       "p": "/ˈɡɑːrdn/",
+       "m": "花园，菜园"
+      }
+     ],
+     "grp": "滚二站：把时间抓在一起（举行）",
+     "src": {
+      "k": "gen",
+      "f": "hold-party",
+      "from": "V-42 mech『滚雪球地图』演示框",
+      "slots": {
+       "verb": "V6_日常_44",
+       "obj": "G3_0361"
+      }
+     }
+    },
+    {
+     "s": "We hold a meeting in class.",
+     "note": "开会也是 hold：抓住大家的时间开会",
+     "words": [
+      {
+       "w": "hold",
+       "p": "/hoʊld/",
+       "m": "握住/举行"
+      },
+      {
+       "w": "meeting",
+       "p": "/ˈmiːtɪŋ/",
+       "m": "会议；集会；会面"
+      },
+      {
+       "w": "class",
+       "p": "/klæs/",
+       "m": "班级/课"
+      }
+     ],
+     "grp": "滚二站：把时间抓在一起（举行）",
+     "src": {
+      "k": "gen",
+      "f": "hold-meeting",
+      "from": "V-42 mech『滚雪球地图』演示框",
+      "slots": {
+       "verb": "V6_日常_44",
+       "obj": "ADD_0782"
+      }
+     }
+    },
+    {
+     "s": "Some uses don't come from 'hold'. We learn them one by one.",
+     "note": "有的用法不是从『抓住』滚出来的：不硬猜，一个个记下来",
+     "words": [
+      {
+       "w": "use",
+       "p": "/juːz/ /juːs/",
+       "m": "使用，利用；用途"
+      }
+     ],
+     "grp": "边界：滚不到的意思，老实一个个记",
+     "src": {
+      "k": "gen",
+      "f": "dont-roll",
+      "from": "V-42 bnd 演示框",
+      "slots": {}
+     }
     }
    ],
    "cases": [],
@@ -114785,7 +121610,109 @@
        "p": "/ˈtrʌbəl/",
        "m": "麻烦；困难；打扰"
       }
-     ]
+     ],
+     "grp": "cause 的坏天气：只跟麻烦一起出现",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Fire can cause a lot of trouble.",
+     "note": "火带来的多半是麻烦：cause 的宾语还是坏事",
+     "words": [
+      {
+       "w": "cause",
+       "p": "/kɔz/",
+       "m": "原因；引起，使发生"
+      },
+      {
+       "w": "trouble",
+       "p": "/ˈtrʌbəl/",
+       "m": "麻烦；困难；打扰"
+      },
+      {
+       "w": "fire",
+       "p": "/ˈfaɪər/",
+       "m": "火，炉火；火灾"
+      }
+     ],
+     "grp": "cause 的坏天气：只跟麻烦一起出现",
+     "src": {
+      "k": "gen",
+      "f": "fire-cause",
+      "from": "V-43 exs[0] 句框",
+      "slots": {
+       "verb": "ADD_0442",
+       "obj": "ADD_0689"
+      }
+     }
+    },
+    {
+     "s": "The rain can cause trouble, too.",
+     "note": "雨也能带来麻烦：cause 后面跟的还是坏事",
+     "words": [
+      {
+       "w": "cause",
+       "p": "/kɔz/",
+       "m": "原因；引起，使发生"
+      },
+      {
+       "w": "trouble",
+       "p": "/ˈtrʌbəl/",
+       "m": "麻烦；困难；打扰"
+      },
+      {
+       "w": "rain",
+       "p": "/reɪn/",
+       "m": "雨；下雨"
+      }
+     ],
+     "grp": "cause 的坏天气：只跟麻烦一起出现",
+     "src": {
+      "k": "gen",
+      "f": "rain-cause",
+      "from": "V-43 exs[0] 句框",
+      "slots": {
+       "verb": "ADD_0442",
+       "obj": "ADD_0689"
+      }
+     }
+    },
+    {
+     "s": "The fire causes trouble in the forest.",
+     "note": "森林里的火带来的还是麻烦：cause 走到哪儿，坏天气跟到哪儿",
+     "words": [
+      {
+       "w": "cause",
+       "p": "/kɔz/",
+       "m": "原因；引起，使发生"
+      },
+      {
+       "w": "trouble",
+       "p": "/ˈtrʌbəl/",
+       "m": "麻烦；困难；打扰"
+      },
+      {
+       "w": "fire",
+       "p": "/ˈfaɪər/",
+       "m": "火，炉火；火灾"
+      },
+      {
+       "w": "forest",
+       "p": "/ˈfɔːrɪst/",
+       "m": "森林，林区"
+      }
+     ],
+     "grp": "cause 的坏天气：只跟麻烦一起出现",
+     "src": {
+      "k": "gen",
+      "f": "fire-forest",
+      "from": "V-43 exs[0] 句框",
+      "slots": {
+       "verb": "ADD_0442",
+       "obj": "ADD_0689"
+      }
+     }
     },
     {
      "s": "They provide information and help.",
@@ -114801,7 +121728,169 @@
        "p": "/prəˈvaɪd/",
        "m": "提供；供给"
       }
-     ]
+     ],
+     "grp": "provide 的好天气：跟帮助、服务一起",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "They provide books and help for schools.",
+     "note": "provide 后面跟书和帮助：好天气的词，跟好事玩",
+     "words": [
+      {
+       "w": "provide",
+       "p": "/prəˈvaɪd/",
+       "m": "提供；供给"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "help",
+       "p": "/help/",
+       "m": "帮助，帮忙"
+      },
+      {
+       "w": "school",
+       "p": "/skuːl/",
+       "m": "学校"
+      }
+     ],
+     "grp": "provide 的好天气：跟帮助、服务一起",
+     "src": {
+      "k": "gen",
+      "f": "provide-books",
+      "from": "V-43 exs[1] 句框",
+      "slots": {
+       "verb": "ADD_0610",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "She provides help for the class.",
+     "note": "她提供帮助：provide 一出场，天气就是晴的",
+     "words": [
+      {
+       "w": "provide",
+       "p": "/prəˈvaɪd/",
+       "m": "提供；供给"
+      },
+      {
+       "w": "help",
+       "p": "/help/",
+       "m": "帮助，帮忙"
+      },
+      {
+       "w": "class",
+       "p": "/klæs/",
+       "m": "班级/课"
+      }
+     ],
+     "grp": "provide 的好天气：跟帮助、服务一起",
+     "src": {
+      "k": "gen",
+      "f": "provides-help",
+      "from": "V-43 exs[1] 句框",
+      "slots": {
+       "verb": "ADD_0610",
+       "obj": "G3_0442"
+      }
+     }
+    },
+    {
+     "s": "The new teacher brings about a happy class.",
+     "note": "好事不用 cause：bring about 带来的，是进步和快乐",
+     "words": [
+      {
+       "w": "bring",
+       "p": "/brɪŋ/",
+       "m": "带来(过去式brought)"
+      },
+      {
+       "w": "class",
+       "p": "/klæs/",
+       "m": "班级/课"
+      },
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      }
+     ],
+     "grp": "换对动词：好事用 bring about",
+     "src": {
+      "k": "gen",
+      "f": "brings-about",
+      "from": "V-43 cases[0].right 句框",
+      "slots": {
+       "verb": "V6_日常_7",
+       "obj": "V6_学校_25"
+      }
+     }
+    },
+    {
+     "s": "Good teachers bring about good changes.",
+     "note": "带来好变化用 bring about：动词选对，味儿才对",
+     "words": [
+      {
+       "w": "bring",
+       "p": "/brɪŋ/",
+       "m": "带来(过去式brought)"
+      },
+      {
+       "w": "teacher",
+       "p": "/ˈtiːtʃər/",
+       "m": "教师，老师"
+      },
+      {
+       "w": "good",
+       "p": "/ɡʊd/",
+       "m": "好的；擅长的"
+      }
+     ],
+     "grp": "换对动词：好事用 bring about",
+     "src": {
+      "k": "gen",
+      "f": "bring-about",
+      "from": "V-43 cases[0].right 句框",
+      "slots": {
+       "verb": "V6_日常_7"
+      }
+     }
+    },
+    {
+     "s": "Cause is not a bad word. Its friends are just bad.",
+     "note": "cause 本身不是坏词：是它的朋友多半是坏事——这叫倾向，不是禁令",
+     "words": [
+      {
+       "w": "cause",
+       "p": "/kɔz/",
+       "m": "原因；引起，使发生"
+      },
+      {
+       "w": "good",
+       "p": "/ɡʊd/",
+       "m": "好的；擅长的"
+      },
+      {
+       "w": "story",
+       "p": "/ˈstɔːri/",
+       "m": "故事"
+      }
+     ],
+     "grp": "边界：天气是倾向，不是禁令",
+     "src": {
+      "k": "gen",
+      "f": "tendency",
+      "from": "V-43 bnd 演示框",
+      "slots": {
+       "verb": "ADD_0442"
+      }
+     }
     }
    ],
    "cases": [
@@ -115074,7 +122163,119 @@
        "p": "/ðeə/",
        "m": "在那里，往那里"
       }
-     ]
+     ],
+     "grp": "their 与 there：后跟东西 vs 指地方",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Their books are on the desk.",
+     "note": "their 后面跟 books：『他们的』后面永远跟东西",
+     "words": [
+      {
+       "w": "their",
+       "p": "/ðer/",
+       "m": "他们的(形物·同音there)"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "desk",
+       "p": "/desk/",
+       "m": "书桌，课桌，办公桌"
+      }
+     ],
+     "grp": "their 与 there：后跟东西 vs 指地方",
+     "src": {
+      "k": "gen",
+      "f": "their-books",
+      "from": "V-44 exs[0] 句框",
+      "slots": {
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "The dog is there, not here.",
+     "note": "there 指地方：狗在那里，不在这里",
+     "words": [
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "there",
+       "p": "/ðer/",
+       "m": "在那里，往那里"
+      },
+      {
+       "w": "here",
+       "p": "/hɪr/",
+       "m": "在这里，向这里"
+      }
+     ],
+     "grp": "their 与 there：后跟东西 vs 指地方",
+     "src": {
+      "k": "gen",
+      "f": "there-not-here",
+      "from": "V-44 exs[0] 句框",
+      "slots": {
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "They are happy.",
+     "note": "they are 是两个词的料：捏起来写，就是 they're",
+     "words": [
+      {
+       "w": "happy",
+       "p": "/ˈhæpi/",
+       "m": "快乐的，高兴的"
+      }
+     ],
+     "grp": "they're：they are 捏成一个",
+     "src": {
+      "k": "gen",
+      "f": "they-are",
+      "from": "V-44 mech『耳朵下班脑子接管』演示框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "They are there with their dog.",
+     "note": "一句里三个词同场：they are（他们是）、there（那里）、their（他们的）——靠位置分",
+     "words": [
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "their",
+       "p": "/ðer/",
+       "m": "他们的(形物·同音there)"
+      },
+      {
+       "w": "there",
+       "p": "/ðer/",
+       "m": "在那里，往那里"
+      }
+     ],
+     "grp": "they're：they are 捏成一个",
+     "src": {
+      "k": "gen",
+      "f": "three-in-one",
+      "from": "V-44 exs[0] 对照框",
+      "slots": {
+       "obj": "G1_015"
+      }
+     }
     },
     {
      "s": "Two boys go to school, too.",
@@ -115095,7 +122296,129 @@
        "p": "/tuː/",
        "m": "二，两个"
       }
-     ]
+     ],
+     "grp": "三胞胎：two、to、too",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "Two cats run to the garden.",
+     "note": "two 是数、to 是去向：一句里各就各位",
+     "words": [
+      {
+       "w": "cat",
+       "p": "/kæt/",
+       "m": "猫"
+      },
+      {
+       "w": "garden",
+       "p": "/ˈɡɑːrdn/",
+       "m": "花园，菜园"
+      }
+     ],
+     "grp": "三胞胎：two、to、too",
+     "src": {
+      "k": "gen",
+      "f": "two-to",
+      "from": "V-44 exs[1] 句框",
+      "slots": {
+       "obj": "G1_014"
+      }
+     }
+    },
+    {
+     "s": "I like the cat, too.",
+     "note": "too 是『也』：站在句尾，说『我也喜欢』",
+     "words": [
+      {
+       "w": "like",
+       "p": "/laɪk/",
+       "m": "喜欢/像…一样"
+      },
+      {
+       "w": "cat",
+       "p": "/kæt/",
+       "m": "猫"
+      }
+     ],
+     "grp": "三胞胎：two、to、too",
+     "src": {
+      "k": "gen",
+      "f": "too-end",
+      "from": "V-44 exs[1] 句框",
+      "slots": {
+       "verb": "V6_日常_64",
+       "obj": "G1_014"
+      }
+     }
+    },
+    {
+     "s": "First learn the two words. Then read the funny book.",
+     "note": "先立对子再读绘本：顺序反了，笑话会把错的钉住",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "funny",
+       "p": "/ˈfʌni/",
+       "m": "滑稽好笑的，逗乐的"
+      },
+      {
+       "w": "word",
+       "p": "/wɜːrd/",
+       "m": "单词/话语"
+      }
+     ],
+     "grp": "边界：先把对子立稳，再读绘本笑话",
+     "src": {
+      "k": "gen",
+      "f": "first-then",
+      "from": "V-44 exc 演示框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "G1_002"
+      }
+     }
+    },
+    {
+     "s": "We read the book and laugh.",
+     "note": "绘本里的笑话就是消歧练习：笑一次，记一对",
+     "words": [
+      {
+       "w": "read",
+       "p": "/riːd/",
+       "m": "读，阅读，看（书/报）"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      },
+      {
+       "w": "laugh",
+       "p": "/læf/",
+       "m": "大笑"
+      }
+     ],
+     "grp": "边界：先把对子立稳，再读绘本笑话",
+     "src": {
+      "k": "gen",
+      "f": "read-laugh",
+      "from": "V-44 mech『耳朵下班脑子接管』演示框",
+      "slots": {
+       "verb": "G2_0492",
+       "obj": "G1_002"
+      }
+     }
     }
    ],
    "cases": [
@@ -115360,7 +122683,98 @@
        "p": "/rʌn/",
        "m": "跑，奔跑"
       }
-     ]
+     ],
+     "grp": "儿童场：两把尺给出同一个答案",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "I run with my dog.",
+     "note": "绘本里 run 还是跑：和小狗一起跑",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      }
+     ],
+     "grp": "儿童场：两把尺给出同一个答案",
+     "src": {
+      "k": "gen",
+      "f": "run-dog",
+      "from": "V-45 exs[0] 句框",
+      "slots": {
+       "verb": "G2_087",
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "The dog runs fast in the park.",
+     "note": "狗跑得快：儿童场里 run 的出镜王就是跑",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "dog",
+       "p": "/dɔːɡ/",
+       "m": "狗"
+      },
+      {
+       "w": "park",
+       "p": "/pɑːrk/",
+       "m": "公园；停车（动词：park the car 停车）"
+      },
+      {
+       "w": "fast",
+       "p": "/fæst/",
+       "m": "快的，迅速的；快地"
+      }
+     ],
+     "grp": "儿童场：两把尺给出同一个答案",
+     "src": {
+      "k": "gen",
+      "f": "dog-runs",
+      "from": "V-45 exs[0] 句框",
+      "slots": {
+       "verb": "G2_087",
+       "obj": "G1_015"
+      }
+     }
+    },
+    {
+     "s": "Children run at school every day.",
+     "note": "小学生的场子里，run 天天以『跑』出镜",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "school",
+       "p": "/skuːl/",
+       "m": "学校"
+      }
+     ],
+     "grp": "儿童场：两把尺给出同一个答案",
+     "src": {
+      "k": "gen",
+      "f": "children-run",
+      "from": "V-45 exs[0] 句框",
+      "slots": {
+       "verb": "G2_087"
+      }
+     }
     },
     {
      "s": "They run a company.",
@@ -115381,7 +122795,140 @@
        "p": "/ˈmænɪdʒ/",
        "m": "管理；设法做到"
       }
-     ]
+     ],
+     "grp": "商务场：频率榜首换人",
+     "src": {
+      "k": "orig"
+     }
+    },
+    {
+     "s": "She runs a company.",
+     "note": "换她来经营：商务场里 run 的榜首是『经营』",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "company",
+       "p": "/ˈkʌmpəni/",
+       "m": "公司"
+      }
+     ],
+     "grp": "商务场：频率榜首换人",
+     "src": {
+      "k": "gen",
+      "f": "she-runs-company",
+      "from": "V-45 exs[1] 句框",
+      "slots": {
+       "verb": "G2_087",
+       "obj": "V6_城市_26"
+      }
+     }
+    },
+    {
+     "s": "They run a big shop.",
+     "note": "开店也是 run：大人文章里，这个意思出镜最多",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "shop",
+       "p": "/ʃɑːp/",
+       "m": "商店，店铺；去购物"
+      },
+      {
+       "w": "big",
+       "p": "/bɪɡ/",
+       "m": "大的"
+      }
+     ],
+     "grp": "商务场：频率榜首换人",
+     "src": {
+      "k": "gen",
+      "f": "run-shop",
+      "from": "V-45 exs[1] 句框",
+      "slots": {
+       "verb": "G2_087",
+       "obj": "G3_0648"
+      }
+     }
+    },
+    {
+     "s": "A company can't run in the park.",
+     "note": "公司不能在公园里跑：『经营』是从『跑』长出来的分支，老大还是跑",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "company",
+       "p": "/ˈkʌmpəni/",
+       "m": "公司"
+      },
+      {
+       "w": "park",
+       "p": "/pɑːrk/",
+       "m": "公园；停车（动词：park the car 停车）"
+      }
+     ],
+     "grp": "中心义不换人：老大还是跑",
+     "src": {
+      "k": "gen",
+      "f": "company-cant-run",
+      "from": "V-45 mech『两把尺』演示框",
+      "slots": {
+       "verb": "G2_087",
+       "obj": "V6_城市_26"
+      }
+     }
+    },
+    {
+     "s": "'Run' is one word with many jobs.",
+     "note": "run 一个词干很多活：活多，不等于老大换人",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      }
+     ],
+     "grp": "中心义不换人：老大还是跑",
+     "src": {
+      "k": "gen",
+      "f": "many-jobs",
+      "from": "V-45 mech『两把尺』演示框",
+      "slots": {}
+     }
+    },
+    {
+     "s": "In our books, 'run' is about legs.",
+     "note": "在我们的书里数票：run 说的是腿——场子决定票数",
+     "words": [
+      {
+       "w": "run",
+       "p": "/rʌn/",
+       "m": "跑，奔跑"
+      },
+      {
+       "w": "book",
+       "p": "/bʊk/",
+       "m": "书，书本；预订（动词：book a ticket 预订票）"
+      }
+     ],
+     "grp": "边界：数票先问场子，再看数字",
+     "src": {
+      "k": "gen",
+      "f": "our-books",
+      "from": "V-45 bnd 演示框",
+      "slots": {}
+     }
     }
    ],
    "cases": [],
