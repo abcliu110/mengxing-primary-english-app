@@ -6485,7 +6485,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <section class="view" id="v-map">
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">🗺️ 学习地图</h2>
-<p class="sub">○ 还没练　✓ 练过了　🏅 已点亮（六成以上的题升到第 3 盒以后）。进度只读这台设备上已有的记录（复习账本、动词复习记录），不新造数据；还没有进度记录的区会如实标「未接入」。</p>
+<p class="sub">○ 还没练　✓ 练过了　🏅 已点亮（六成以上的题升到第 3 盒以后）。进度只读这台设备上已有的记录（复习账本、动词复习记录），不新造数据；还没有练习数据的区会如实标「暂无练习数据」。</p>
 <div id="mxm-root"><div class="box">地图载入中……</div></div>
 </section>
 
@@ -6783,6 +6783,9 @@ renderTrump();renderPit();renderTree();renderWbindex();spwbRender();
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">👨‍👩‍👧 家长角</h2>
 <p class="sub">给家长与教师的成人层总入口：孩子学的每条规律，背后的主张、机制和证据，都能在这里查到。</p><div class="box" style="margin:0 0 12px"><p style="line-height:1.75;margin:0"><b>这里收了什么</b>：教学法（TM）、经典网文（WA）与支撑层五组（LS / YL / CB / CG / VB），共 <b>114 条</b>。<br><b>为什么不上孩子屏</b>：支撑层是孩子层条目背后的证据与原理层，只给大人看。<br><b>每条里有什么</b>：主张、机制、证据与出处、证据等级、专家分歧、边界与还没补上的内容；理解探针的判读标准也在成人层里。<br><b>怎么打开</b>：点开任意条目前，先打开页面顶部的「成人层」开关。</p></div>
+<div class="sec-t">孩子的掌握地图（这台设备上的练习记录）</div>
+<p style="font-size:13px;color:#7a6c52;line-height:1.65">下面这份是按孩子在这台设备上的复习记录逐条推算的：每条规律练得怎么样，分「已稳 / 学习中 / 还没开始」三档。数据只存在这台设备上，不上传；这里只看不改，点任意一条可以跳到那条规律的页面。</p>
+<div id="mxp-root"><div class="box">正在按复习账本推算……</div></div>
 <div class="sec-t">先看两个旗舰单元的成人层全貌</div>
 <p style="font-size:13px;color:#7a6c52;line-height:1.65">下面两块是 V-40 与 GR-33 的成人层原文展示；每个单元的完整页面里还有儿童层六步与练习，成人层在页内用同一开关打开。</p>
 <div class="sec-t">单元 V-40 · 打包错位（成人层全貌）</div>
@@ -12171,6 +12174,14 @@ window.RV={render:render,buildPool:buildPool,buildQueue:buildQueue,answer:answer
 .mx-node .mx-n{display:block;font-weight:400;font-size:.75rem;color:#64748b}
 .mxw-row{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;padding:8px 0;border-bottom:1px dashed #e5ddc8}
 .mxw-row .mxw-main{flex:1;min-width:200px}
+.mxm-bar{display:block;height:8px;background:#e9e2d0;border-radius:5px;overflow:hidden;margin-top:6px}
+.mxm-bar>i{display:block;height:100%;background:#4a7a59}
+.mxp-row{display:flex;gap:8px;align-items:baseline;width:100%;text-align:left;background:#fff;border:1.5px solid #d5dfd0;border-radius:10px;padding:8px 11px;margin:0 0 6px;cursor:pointer;font-family:inherit;font-size:14px;color:#2c3328}
+.mxp-row:hover{border-color:#4a7a59}
+.mxp-row .mxp-id{font-weight:800;color:#3d5a40;white-space:nowrap}
+.mxp-row .mxp-nm{flex:1;line-height:1.5}
+.mxp-row .mxp-pg{white-space:nowrap;font-size:12.5px;color:#6b7566}
+.mxp-st{font-weight:800;white-space:nowrap}
 </style>
 <script>
 /* ===== 借鉴落地：闯关玩法壳（MXR）+ 错题本三分法（MXW）+ 学习地图（MXM）=====
@@ -12484,9 +12495,36 @@ function mRender(){
   var poolName={form:'词形',fam:'家族',hosp:'病例',ta:'时态'};
   var vbSub='SRS 已练 '+vbN+' 项（'+Object.keys(vbPools).map(function(p){return (poolName[p]||p)+' '+vbPools[p];}).join(' · ')+'）· 今日一课完成 '+loopDone+' 站 / 看过 '+loopSeen+' 站';
   h+='<div class="box" style="margin-bottom:10px"><p><b>🏃 动词区（SRS 口径，无总题数分母，只报已练数）</b></p><div>'+mChip('动词 SRS + 今日一课', vbSub, vbSt, 'verb')+'</div></div>';
-  /* 未接入 */
-  var off=[['词根词缀','morph'],['词源区','etym'],['代词区','pron'],['冠词区','art'],['连词区','conj'],['介词区','prep'],['口语区','spoken'],['技巧区','tech']];
-  var oChips=off.map(function(z){ return '<button class="mx-node off" data-go="'+z[1]+'">○ '+esc(z[0])+'<span class="mx-n">未接入进度记录</span></button>'; }).join('');
+  /* 规律掌握（联动阶段4）：RV.mastery 只读推导，按区聚合「有题律」三态。
+     分母只算配了练习的规律，没配练习的规律不算未学；无账本时如实显暂无练习数据。 */
+  var MZONES=[['拼读','phon','拼读区'],['词汇解码','vocab','词汇解码区'],['语法','grammar','语法区'],['时态站','verb','时态站'],['代词','pron','代词区'],['冠词','art','冠词区'],['连词','conj','连词区'],['词根','morph','词根词缀'],['介词','prep','介词区'],['表达写作','expr','表达写作区']];
+  try{
+    var M4=(window.RV&&RV.mastery)?RV.mastery():null;
+    if(M4){
+      var zOfLaw={};
+      pool.forEach(function(it){ if(!it.law) return; var c=zOfLaw[it.law]||(zOfLaw[it.law]={}); c[it.zone]=(c[it.zone]||0)+1; });
+      var zAgg={};
+      Object.keys(M4.laws).forEach(function(id){
+        var zc=zOfLaw[id]||{}, bz='', bn=-1;
+        Object.keys(zc).forEach(function(z){ if(zc[z]>bn){ bn=zc[z]; bz=z; } });
+        if(!bz) return;
+        var a=zAgg[bz]||(zAgg[bz]={'已稳':0,'学习中':0,'未学':0,total:0});
+        a[M4.laws[id].state]++; a.total++;
+      });
+      var hasRec=Object.keys(rItems).length>0, mCards='';
+      MZONES.forEach(function(zp){
+        var a=zAgg[zp[0]];
+        if(!hasRec||!a){ mCards+='<button class="mx-node off" data-go="'+zp[1]+'">○ '+esc(zp[2])+'<span class="mx-n">暂无练习数据</span></button>'; return; }
+        var st=(a['已稳']===a.total)?'gold':((a['学习中']+a['已稳'])>0?'seen':'new');
+        var bar=(a['学习中']+a['已稳'])>0?'<span class="mxm-bar"><i style="width:'+Math.round(a['已稳']/a.total*100)+'%"></i></span>':'';
+        mCards+='<button class="mx-node '+st+'" data-go="'+zp[1]+'">'+MICON[st]+' '+esc(zp[2])+'<span class="mx-n">已稳 '+a['已稳']+' · 学习中 '+a['学习中']+' · 未学 '+a['未学']+'（按有题的 '+a.total+' 条规律计）</span>'+bar+'</button>';
+      });
+      h+='<div class="box" style="margin-bottom:10px"><p><b>📚 各区规律掌握</b>（按每条规律的练习记录推算；进度条只算「已稳」占的比例；分母只算配了练习的规律）</p><div>'+mCards+'</div></div>';
+    }
+  }catch(e){}
+  /* 未接入（其余区已由上方「各区规律掌握」按复习题池口径给出真数据） */
+  var off=[['词源区','etym'],['口语区','spoken'],['技巧区','tech']];
+  var oChips=off.map(function(z){ return '<button class="mx-node off" data-go="'+z[1]+'">○ '+esc(z[0])+'<span class="mx-n">暂无练习数据</span></button>'; }).join('');
   h+='<div class="box" style="margin-bottom:10px"><p><b>🌫️ 还没有进度记录的区</b>（这些区在 App 里还没有会存进度的练习，地图先如实留灰）</p><div>'+oChips+'</div></div>';
   var head='<div class="box" style="margin-bottom:10px"><b>🗺️ 全 App 总地图</b><br>已点亮 🏅 '+golds+' / '+nodes+' 个节点 · 拼读过关词已练 '+stTouched+'/'+stTotal+' · 进度只存在这台设备上，不上传。</div>';
   root.innerHTML=head+h;
@@ -12571,6 +12609,96 @@ if(mxrSec&&window.MutationObserver){
 window.MXW={record:wRecord,render:wRender,counts:wCounts,store:function(){return wstore;}};
 window.MXR={enter:rRenderHome,start:rStart,stop:rStopTimers,best:function(){return rBest;}};
 window.MXM={render:mRender};
+})();
+</script>
+
+<script>
+/* ===== 联动阶段4：家长视图「孩子的掌握地图」（MXP）=====
+   数据全部来自 RV.mastery 只读推导 + RV 账本只读逆推（近 7 天练过）；
+   律名取 LAWDATA.hl / MZLAWS._short；本模块不写任何存储、不新增存储键。 */
+(function(){
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var DAY=86400000, INT=[0,1,3,7,16]; /* 与 RV.answer 写规则同一组常量：上次答题时刻 = due − INT[b−1]·DAY（阶段0规格的恒等式，只读逆推） */
+var FAMS=[['S','拼读'],['SR','拼读进阶'],['V','词汇解码'],['GR','语法'],['TA','时态'],['PR','代词'],['C','冠词'],['QI','提问'],['CO','句型构式'],['PREP','介词'],['E','表达·言语行为'],['W','写作'],['NE','地道说法'],['NEW','新补规律'],['PB','介词·组织法'],['OTH','其他']];
+var FNAME={}; FAMS.forEach(function(f){FNAME[f[0]]=f[1];});
+function famOf(id){
+  if(!/^[A-Z]{1,3}-\d/.test(id)) return 'PREP';
+  var p=id.split('-')[0];
+  return FNAME[p]?p:'OTH';
+}
+function lawName(id){
+  var e=window.LAWDATA&&LAWDATA[id];
+  if(e&&e.hl) return e.hl;
+  var m=window.MZLAWS&&MZLAWS[id];
+  if(m&&(m._short||m.headline)) return m._short||m.headline;
+  return '';
+}
+var SICON={'已稳':'🏅','学习中':'📗','未学':'○'};
+function rowHtml(id,g){
+  var nm=lawName(id);
+  if(!g) return '<button class="mxp-row" data-mxp-law="'+esc(id)+'"><span class="mxp-id">'+esc(id)+'</span><span class="mxp-nm">'+esc(nm||id)+'</span><span class="mxp-pg">暂未配练习</span></button>';
+  return '<button class="mxp-row" data-mxp-law="'+esc(id)+'"><span class="mxp-st">'+SICON[g.state]+' '+g.state+'</span><span class="mxp-id">'+esc(id)+'</span><span class="mxp-nm">'+esc(nm||id)+'</span><span class="mxp-pg">练过 '+g.seen+'/'+g.total+' 题</span></button>';
+}
+function pRender(){
+  var root=document.getElementById('mxp-root'); if(!root) return;
+  var M=null; try{ M=(window.RV&&RV.mastery)?RV.mastery():null; }catch(e){}
+  if(!M){ root.innerHTML='<div class="box">暂时读不到这台设备上的练习记录。</div>'; return; }
+  var now=M.now||Date.now();
+  var items={}; try{ items=(RV.store()||{}).items||{}; }catch(e){}
+  var hasRec=Object.keys(items).length>0;
+  var byKey={}; try{ byKey=RV.byKey()||{}; }catch(e){}
+  var act7={};
+  Object.keys(items).forEach(function(k){
+    var st=items[k], it=byKey[k]; if(!st||!it||!it.law) return;
+    var b=st.b; if(b<1)b=1; if(b>5)b=5;
+    if(now-(st.due-INT[b-1]*DAY)<=7*DAY) act7[it.law]=1;
+  });
+  var total=Object.keys(M.laws).length;
+  var h='<div class="box" style="margin-bottom:10px"><b>总览</b><br>已稳 '+M.counts['已稳']+' 条 · 学习中 '+M.counts['学习中']+' 条 · 还没开始 '+M.counts['未学']+' 条（配有练习的规律共 '+total+' 条）<br>近 7 天练到的规律：'+Object.keys(act7).length+' 条。<br><span style="font-size:13px;color:#7a6c52">「已稳」的算法：一条规律练过的题至少八成、平均升到第 3.75 盒以后、最近还记得牢，而且错题本里这条规律的题都已消错毕业。账本里没有「哪一天变稳」的流水，所以这里只给现在的状态和近 7 天的练习量，不报推不出来的趋势。</span></div>';
+  if(!hasRec) h+='<div class="box" style="margin-bottom:10px">这台设备上还没有练习记录——下面的清单先照全册列出，全部算「还没开始」。孩子在复习区练过之后，回到这里就会看到真实的掌握情况。</div>';
+  var byFam={};
+  Object.keys(M.laws).forEach(function(id){ var f=famOf(id); (byFam[f]=byFam[f]||[]).push(id); });
+  var SORD={'已稳':0,'学习中':1,'未学':2};
+  FAMS.forEach(function(f){
+    var arr=byFam[f[0]]; if(!arr||!arr.length) return;
+    arr.sort(function(a,b){ return (SORD[M.laws[a].state]-SORD[M.laws[b].state])||(a<b?-1:1); });
+    var c={'已稳':0,'学习中':0,'未学':0}; arr.forEach(function(id){ c[M.laws[id].state]++; });
+    h+='<div class="gh">'+esc(f[1])+'（'+arr.length+' 条 · 已稳 '+c['已稳']+' / 学习中 '+c['学习中']+' / 还没开始 '+c['未学']+'）</div>';
+    arr.forEach(function(id){ h+=rowHtml(id,M.laws[id]); });
+  });
+  var extra={};
+  if(window.LAWDATA) Object.keys(LAWDATA).forEach(function(id){ if(LAWDATA[id].zone!=='parents') extra[id]=1; });
+  if(window.MZLAWS) Object.keys(MZLAWS).forEach(function(id){ extra[id]=1; });
+  document.querySelectorAll('[data-law]').forEach(function(r){
+    var id=r.getAttribute('data-law');
+    if(id&&!(window.LAWDATA&&LAWDATA[id]&&LAWDATA[id].zone==='parents')) extra[id]=1;
+  });
+  var noQ=Object.keys(extra).filter(function(id){ return !M.laws[id]; });
+  if(noQ.length){
+    var nf={}; noQ.forEach(function(id){ var f=famOf(id); (nf[f]=nf[f]||[]).push(id); });
+    h+='<div class="sec-t">暂未配练习的规律（'+noQ.length+' 条）</div><p style="font-size:13px;color:#7a6c52;line-height:1.65">这些规律在 App 里有讲解页，但还没有配套的复习题，所以暂时算不出掌握情况。点任意一条可以先去看讲解。</p>';
+    FAMS.forEach(function(f){
+      var arr=nf[f[0]]; if(!arr||!arr.length) return;
+      arr.sort();
+      h+='<div class="gh">'+esc(f[1])+'（'+arr.length+' 条）</div>';
+      arr.forEach(function(id){ h+=rowHtml(id,null); });
+    });
+  }
+  root.innerHTML=h;
+}
+function openLaw(id){
+  if(famOf(id)==='PREP'){ show('prep'); return; }
+  try{ if(window.LINKGO&&LINKGO.openLaw){ LINKGO.openLaw(id); return; } }catch(e){}
+  try{ if(window.LAW&&LAW.open) LAW.open(id,'parents'); }catch(e){}
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest) return;
+  var r=e.target.closest('[data-mxp-law]');
+  if(r){ openLaw(r.getAttribute('data-mxp-law')); return; }
+  var g=e.target.closest('[data-go]');
+  if(g&&g.getAttribute('data-go')==='parents') setTimeout(pRender,40);
+});
+window.MXP={render:pRender};
 })();
 </script>
 
