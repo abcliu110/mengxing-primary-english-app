@@ -1,0 +1,308 @@
+# -*- coding: utf-8 -*-
+import assemble as A
+
+S = {}
+S['goodbye'] = {
+ 'chain': [('English', 'God be with ye', '愿上帝与你同在', '14 世纪晚期'),
+           ('English', 'godbwye', '再见', '1570 年代'),
+           ('English', 'goodbye', '再见', '1590 年代')],
+ 'fa': '1590 年代定型（Etymonline；祝福语 God be with ye 14 世纪晚期已有）',
+ 'orig': '愿上帝与你同在',
+ 'path': [('愿上帝与你同在', '14 世纪晚期', ''),
+          ('再见', '现代', '临别祝福语一路缩：God be with ye → godbwye → goodbye；其中 God 受 good morning、good night 一类短语牵引被换成 good（缩约中的同化替换）')],
+ 'mech': 'goodbye 是「愿上帝与你同在」缩成的：说快了，God 还被 good 顶了包。',
+ 'link': '今天的意思「再见」就是那句临别祝福的缩形，意守恒。',
+ 'disp': '无已知争议',
+ 'folk': '今多误拆为 good + bye：来源明确其为 God be with ye 的缩约，good 系后起的牵引替换，并非本词的构件。', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['gym'] = {
+ 'chain': [('English', 'gymnasium', '体育馆', '19 世纪'),
+           ('English', 'gym', '体育馆', '1871 年')],
+ 'fa': '1871 年见载（Etymonline：美国学生俚语，gymnasium 的截短）',
+ 'orig': '体育馆（gymnasium 的截短）',
+ 'path': [('体育馆（gymnasium 的截短）', '1871 年', ''),
+          ('体育馆', '现代', '词义无变化：长词 gymnasium 在学生口语里截短为 gym（截短词）')],
+ 'mech': 'gym 是 gymnasium 说短了的样子，意思一点没变。',
+ 'link': '今天的 gym 就是 1871 年的截短形，意思守恒。',
+ 'disp': '基词 gymnasium 未收录本库，其希腊谱系（gymnos「裸体的」，古希腊人裸身操练）不在本档范围。',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et'],
+ 'grade': '一级＋二级双源互证（牛津大学出版社词源栏 × Etymonline；Wiktionary 该词条混杂异语同形词，未作旁证）'}
+S['women'] = {
+ 'chain': [('Old English', 'wīfmenn', '女人们', '古英语时期'),
+           ('Middle English', 'wimmen', '女人们', '中古英语时期')],
+ 'fa': '古英语时期就已经有了（wīfmenn 为 wīfmann「女人」的复数）',
+ 'orig': '女人们',
+ 'path': [('女人们', '古英语时期', ''),
+          ('女人们，妇女们', '现代', '词义无变化：wīf（女性）＋ menn（人们）复数构形；拼写里的 o 是受单数 woman 牵引（读音 [wɪmɪn] 却守着老形）——拼写与读音分家的著名例子（复数形史）')],
+ 'mech': 'women 是 woman 的复数：拼法随了单数，读音没跟上。',
+ 'link': '今天的 women 就是古英语 wīfmenn，意思一点没变。',
+ 'disp': 'woman 本词的谱系另见其记录口径，本档只记复数形的形史。',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['inside'] = {
+ 'chain': [('Middle English', 'ynneside', '（身体）内部', '中古英语时期'),
+           ('English', 'inside', '内部；里面', '约 1500 年')],
+ 'fa': '14 世纪晚期见载（Etymonline：late 14c.，义为「身体内部」）',
+ 'orig': '（身体）内部',
+ 'path': [('（身体）内部', '中古英语时期', ''),
+          ('在里面；内部', '现代', 'in ＋ side 拼成的复合词：先专指身体的内里，约 1500 年泛指一切事物的内侧（从身体到万物的泛化）')],
+ 'mech': 'inside 是 in + side：在里面的那一侧，就是内部。',
+ 'link': '今天的意思「里面」从「身体内部」泛化来，核心守恒。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['pants'] = {
+ 'chain': [('Italian', 'Pantalone', '潘塔隆（即兴喜剧人物）', '意大利语时期'),
+           ('French', 'pantalon', '紧身长裤', '法语近现代'),
+           ('English', 'pantaloons', '长裤', '19 世纪'),
+           ('English', 'pants', '裤子', '1840 年')],
+ 'fa': '1840 年见载（Etymonline；pantaloons 的截短）',
+ 'orig': '潘塔隆（穿紧身裤的喜剧人物）',
+ 'path': [('潘塔隆（穿紧身裤的喜剧人物）', '意大利语时期', ''),
+          ('裤子', '现代', '以人名为衣名：意大利即兴喜剧里 Pantalone 总穿紧身长裤，法语借其名为 pantalon「紧身裤」，英语作 pantaloons，再截短为 pants（人名转物名后截短）')],
+ 'mech': 'pants 的名字来自一个喜剧老头：他那条紧身裤太出名，裤子就随了他的名。',
+ 'link': '今天的意思「裤子」从人物名转来：先是他的裤子，后是一切长裤。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['kilo'] = {
+ 'chain': [('French', 'kilogramme', '千克', '法语近现代'),
+           ('English', 'kilo', '千克', '1870 年')],
+ 'fa': '1870 年见载（Etymonline：kilogram 的截短；牛津作法语 kilogramme 的缩略）',
+ 'orig': '千克（kilogram 的截短）',
+ 'path': [('千克（kilogram 的截短）', '1870 年', ''),
+          ('千克', '现代', '词义无变化：公制长词 kilogram 在口语里截短为 kilo（截短词）')],
+ 'mech': 'kilo 是 kilogram 说短了的样子，意思一点没变。',
+ 'link': '今天的 kilo 就是 1870 年的截短形，意思守恒。',
+ 'disp': '基词 kilogram 未收录本库（其构词 kilo-「千」＋ gram 另见公制命名口径），本档只记截短史。',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et'],
+ 'grade': '一级＋二级双源互证（牛津大学出版社词源栏 × Etymonline；Wiktionary 该词条混杂异语借词节，未作旁证）'}
+S['mrs'] = {
+ 'chain': [('English', 'mistress', '太太（旧义：女主人）', '17 世纪初'),
+           ('English', 'Mrs', '太太；夫人', '17 世纪初')],
+ 'fa': '17 世纪早期见载（牛津词源栏：abbreviation of mistress）',
+ 'orig': 'mistress 的缩写',
+ 'path': [('mistress 的缩写', '17 世纪初', ''),
+          ('太太；夫人', '现代', 'Mrs 是 mistress 的书面缩略（读音却走 missus 一线）：mistress 的义项后来分化，Mrs 专守「已婚女士称谓」一格（缩略词的义项守成）')],
+ 'mech': 'Mrs 是 mistress 写短了的称呼：写的是缩略，读的是 missus。',
+ 'link': '今天的意思「太太」就是 mistress 旧义的守成格，意思没变。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'wk'], 'grade': 'ox_wk'}
+S['although'] = {
+ 'chain': [('Middle English', 'all though', '尽管（强调式）', '中古英语时期'),
+           ('Middle English', 'althagh', '虽然', '14 世纪早期')],
+ 'fa': '14 世纪早期见载 althagh（Etymonline，引 OED）',
+ 'orig': '尽管（all ＋ though）',
+ 'path': [('尽管（all ＋ though）', '中古英语时期', ''),
+          ('虽然；尽管', '现代', 'all 在此是加强语气的小词（「全然、纵使」）：all though 本比 though 更重；到 1400 年 all 的独立语气耗尽，短语凝成一个词 although（短语凝合）')],
+ 'mech': 'although 是 all though 凝成的：当年 all 是来加重语气的。',
+ 'link': '今天的意思「虽然」就是 although 的本义，一路没变。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['bubble'] = {
+ 'chain': [('Middle English', 'bobel', '泡泡', '14 世纪早期')],
+ 'fa': '14 世纪早期见载（Etymonline：early 14c.）',
+ 'orig': '泡泡',
+ 'path': [('泡泡', '中古英语时期', ''),
+          ('泡泡；泡沫（经济）', '现代', '拟声造词（或经中古荷兰语 bobbel／中古低地德语 bubbeln，同为拟声）：1590 年代添「虚浮无实」比喻义；1720 年南海泡沫事件后专指投机泡沫——吹得大、破得快（由实物到经济的比喻定型）')],
+ 'mech': 'bubble 是吹泡泡的声音变的词：经济泡沫吹得再大，也是一戳就破。',
+ 'link': '今天的意思「泡沫（经济）」从水泡比喻来：空、薄、易破。',
+ 'disp': '牛津作「部分拟声、部分为 burble 的变体」，与 Etymonline 的荷兰／低地德语拟声说同归拟声一源。',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['fizz'] = {
+ 'chain': [('English', 'fizz', '发嘶嘶声', '1660 年代')],
+ 'fa': '1660 年代见载（Etymonline：1660s，拟声词）',
+ 'orig': '嘶嘶声',
+ 'path': [('嘶嘶声', '1660 年代', ''),
+          ('发嘶嘶声；起泡（饮料）', '现代', '纯拟声词：气泡出水的嘶嘶声；1812 年作名词，1864 年指「起泡的饮料」——听其声，名其物（拟声造词）')],
+ 'mech': 'fizz 是汽水开瓶那声「嘶——」写成的词。',
+ 'link': '今天的意思「起泡」就是那声嘶嘶的凝形，意思守恒。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['giggle'] = {
+ 'chain': [('English', 'giggle', '咯咯地笑', '约 1500 年')],
+ 'fa': '约 1500 年见载（Etymonline：c. 1500；牛津作 16 世纪早期）',
+ 'orig': '咯咯的笑声',
+ 'path': [('咯咯的笑声', '约 1500 年', ''),
+          ('咯咯地笑', '现代', '拟声造词：忍不住的碎笑声；1570 年代兼作名词（拟声造词后守恒）')],
+ 'mech': 'giggle 是笑声本身变的词：咯、咯、咯，憋不住的那种。',
+ 'link': '今天的意思「咯咯地笑」就是拟声的本义，一路没变。',
+ 'disp': '或与方言 gig「吱呀声」的反复构形有关（Wiktionary 并存说），同归拟声一源。',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['centigrade'] = {
+ 'chain': [('French', 'centigrade', '百分度的', '1799 年'),
+           ('English', 'centigrade', '摄氏的', '1799 年')],
+ 'fa': '1799 年进入英语（Etymonline：from French）',
+ 'orig': '分成一百度的',
+ 'path': [('分成一百度的', '1799 年', ''),
+          ('摄氏的', '现代', 'centi-「百」＋ -grade「度、级」（出拉丁语 gradus「步、级」）：冰点到沸点分作一百格，就是百分度温标，后通称摄氏（系统造词）')],
+ 'mech': 'centigrade 是「一百格」：把冰水到沸水切成一百份量温度。',
+ 'link': '今天的意思「摄氏的」就是「分成一百度」的本义，一路没变。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['donate'] = {
+ 'chain': [('Latin', 'dōnāre', '给予', '拉丁语时期'),
+           ('English', 'donation', '捐赠（名词）', '名词先行'),
+           ('English', 'donate', '捐赠（动词）', '1819 年')],
+ 'fa': '1819 年见载（Etymonline：a back-formation from donation）',
+ 'orig': '给予',
+ 'path': [('给予', '拉丁语时期', ''),
+          ('捐赠；献（血）', '现代', '顺序反常的一词：名词 donation 先行，人们按 -ate 动词的模样从它身上逆构出动词 donate——先有「捐赠（名词）」，后补「捐（动词）」（逆构）')],
+ 'mech': 'donate 是从 donation 里「倒推」出来的动词：先有名词，后有动作。',
+ 'link': '今天的意思「捐赠」与 donation 同义，词形是逆构的新作。',
+ 'disp': '成词年代各家小异：牛津作 18 世纪晚期，Etymonline 作 1819 年，Wiktionary 作约 1845 年（多见于美式英语）；逆构机制三家一致。',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['input'] = {
+ 'chain': [('Middle English', 'inputten', '放入', '中古英语时期'),
+           ('English', 'input', '投入（款项）', '1753 年')],
+ 'fa': '1753 年见载名词义「投入的款项」（Etymonline）',
+ 'orig': '放入',
+ 'path': [('放入', '中古英语时期', ''),
+          ('输入；输入的数据', '现代', '短语 put in／in put 的凝合：先指投进去的钱（1753），1902 年指供入机器的能量，1948 年计算机义「喂给机器的数据」定型（从钱款到数据的岗位迁移）')],
+ 'mech': 'input 是「放进去的东西」：先是投的钱，后是喂给计算机的数据。',
+ 'link': '今天的意思「输入」从「投入」一路走来：放进去的，就是 input。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['flew'] = {
+ 'chain': [('Proto-Germanic', '*flaug', '飞（的过去形）', '原始日耳曼语时期'),
+           ('Old English', 'flēag', '飞（fly 的过去式）', '古英语时期'),
+           ('Middle English', 'flew', '飞（过去式）', '中古英语时期')],
+ 'fa': '古英语时期就已经有了（flēag 为 flēogan「飞」的过去式）',
+ 'orig': '飞（fly 的过去式）',
+ 'path': [('飞（fly 的过去式）', '古英语时期', ''),
+          ('飞（过去式）', '现代', '词义无变化：flew 一直是强变化动词 fly 的过去式（元音交替 au 一系的正规律）；fly 本词主干已另档核定（见 fly），本档只记过去形的形史')],
+ 'mech': 'flew 是 fly 的过去式：强变化动词换个元音表过去。',
+ 'link': '今天的 flew 就是古英语 flēag，意思一点没变。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['lost'] = {
+ 'chain': [('Old English', 'losode', '丢（lose 的过去式）', '古英语时期'),
+           ('Middle English', 'loste', '丢失的', '中古英语时期')],
+ 'fa': '古英语时期就已经有了（losode 为 losian「丢」的过去式）',
+ 'orig': '丢（lose 的过去式）',
+ 'path': [('丢（lose 的过去式）', '古英语时期', ''),
+          ('丢失的；输了的', '现代', '词义主干守恒：lost 是 lose 的过去式与过去分词（lose + -t 形）；作形容词约 1300 年「找不回的」，1724 年添「（比赛）输了的」（分词的形容词化）')],
+ 'mech': 'lost 是 lose 的过去形：丢了的东西、输了的比赛，都用它。',
+ 'link': '今天的 lost 就是古英语 losode 的后代，意思主干没变。',
+ 'disp': 'lose 本词的谱系另见其记录口径，本档只记过去形的形史。',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['meant'] = {
+ 'chain': [('Old English', 'mǣnde', '意指（mean 的过去式）', '古英语时期'),
+           ('Middle English', 'ment', '意指（过去式）', '中古英语时期')],
+ 'fa': '古英语时期就已经有了（mǣnde 为 mǣnan「意指」的过去式）',
+ 'orig': '意指（mean 的过去式）',
+ 'path': [('意指（mean 的过去式）', '古英语时期', ''),
+          ('意指（过去式与过去分词）', '现代', '词义无变化：meant 是 mean 的过去形（mean + -t，元音缩短同其他 -t 尾弱变化动词）；mean 本词的谱系另见其记录口径（1897 年另有「命中注定」一支特殊用法，Etymonline 注明）')],
+ 'mech': 'meant 是 mean 的过去式：加 -t、元音缩短，就是它。',
+ 'link': '今天的 meant 就是古英语 mǣnde，意思一点没变。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['stood'] = {
+ 'chain': [('Proto-Germanic', '*stōþ', '站（的过去形）', '原始日耳曼语时期'),
+           ('Old English', 'stōd', '站（stand 的过去式）', '古英语时期'),
+           ('Middle English', 'stod', '站（过去式）', '中古英语时期')],
+ 'fa': '古英语时期就已经有了（stōd 为 standan「站」的过去式）',
+ 'orig': '站（stand 的过去式）',
+ 'path': [('站（stand 的过去式）', '古英语时期', ''),
+          ('站（过去式与过去分词）', '现代', '词义无变化：stood 一直是强变化动词 stand 的过去式（元音交替的正规律）；stand 本词的谱系另见其记录口径，本档只记过去形的形史')],
+ 'mech': 'stood 是 stand 的过去式：a 换 oo，是老强变化的模样。',
+ 'link': '今天的 stood 就是古英语 stōd，意思一点没变。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['semicolon'] = {
+ 'chain': [('English', 'semicolon', '分号', '1640 年代')],
+ 'fa': '1640 年代造词（Etymonline：a hybrid coined from semi- + colon）',
+ 'orig': '分号',
+ 'path': [('分号', '1640 年代', ''),
+          ('分号', '现代', '词义无变化：semi-（拉丁血统）＋ colon（希腊血统）的混血造词——上点下逗的符号，停顿比逗号重、比冒号轻，正是「半个冒号」（混血造词）')],
+ 'mech': 'semicolon 是「半个冒号」：上点下逗，停顿也正好一半。',
+ 'link': '今天的意思「分号」就是 1640 年代造词的本义，一路没变。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['ping-pong'] = {
+ 'chain': [('English', 'Ping-Pong', '乒乓球（商标）', '1900 年')],
+ 'fa': '1900 年作为商标出现（Etymonline：Parker Brothers 的乒乓球器材商标）',
+ 'orig': '乒乓（拟声）',
+ 'path': [('乒乓（拟声）', '1900 年', ''),
+          ('乒乓球', '现代', '球拍击球、球碰桌面的声音 ping、pong 连缀成名（pong 拟声 1823 年已有载）；先是商标，1900—1905 年风靡后通用化为运动名（商标通用化）')],
+ 'mech': 'ping-pong 是击球声变的名：乒、乓、乒、乓，就是这项运动的声音。',
+ 'link': '今天的意思「乒乓球」就是商标名的本义：听声得名。',
+ 'disp': '无已知争议',
+ 'folk': '未见流传假词源', 'srcs': ['ox', 'et', 'wk'], 'grade': 'ox_et'}
+S['improv'] = {
+ 'chain': [('English', 'improvisation', '即兴表演', '20 世纪'),
+           ('English', 'improv', '即兴表演', '1970 年')],
+ 'fa': '1970 年见载（Etymonline：口语截短，源于纽约喜剧俱乐部 The Improvisation 的语境）',
+ 'orig': '即兴表演（improvisation 的截短）',
+ 'path': [('即兴表演（improvisation 的截短）', '1970 年', ''),
+          ('即兴表演', '现代', '词义无变化：improvisation 在喜剧圈口语里截短为 improv（截短词）')],
+ 'mech': 'improv 是 improvisation 说短了的样子，意思一点没变。',
+ 'link': '今天 đích improv 就是 1970 年的截短形，意思守恒。',
+ 'disp': '基词 improvisation 的谱系不在本档范围。',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+S['overnight'] = {
+ 'chain': [('Old English', 'ofer niht', '整夜地', '古英语时期'),
+           ('Middle English', 'overnyght', '一整夜', '中古英语时期')],
+ 'fa': '约 1300 年见载副词（Etymonline：c. 1300；短语 ofer niht 古英语已有）',
+ 'orig': '整夜地',
+ 'path': [('整夜地', '古英语时期', ''),
+          ('一整夜；一夜之间', '现代', '短语 over + night 凝成一词：先指「在刚过去的夜里、整夜」；1939 年添「一夜之间（＝突然）」——睡一觉就变了样（由时长到突变的引申）')],
+ 'mech': 'overnight 是「过一夜」：睡前一个样、醒来一个样，就是「一夜之间」。',
+ 'link': '今天的意思「一夜之间」从「整夜」引申来：夜长被感觉成了突变。',
+ 'disp': '动词用法（过夜）19 世纪晚期，或受德语 übernachten 影响（Wiktionary 并记），副词主干无争议。',
+ 'folk': '未见流传假词源', 'srcs': ['et', 'wk'], 'grade': 'et_wk'}
+
+COMP = 'compositional（主干复核后）：构词透明（%s），来源构词分析一致；其词源内容在基词与构词层，本词不单独立档'
+PARTS = {
+ 'schoolbag': 'school + bag', 'storybook': 'story + book', 'climbing': 'climb + -ing（动名词常规构成）',
+ 'fisherman': 'fisher + man', 'stronger': 'strong 的比较级（常规屈折）', 'earphone': 'ear + phone',
+ 'bookcase': 'book + case', 'housework': 'house + work', 'schoolwork': 'school + work', 'handbag': 'hand + bag',
+ 'toothache': 'tooth + ache', 'toothbrush': 'tooth + brush', 'toothpaste': 'tooth + paste',
+ 'volleyball': 'volley + ball', 'raincoat': 'rain + coat', 'sometimes': 'some + times',
+ 'everyone': 'every + one', 'anybody': 'any + body', 'anywhere': 'any + where', 'useless': 'use + -less',
+ 'colourful': 'colour + -ful', 'unlucky': 'un- + lucky', 'unusual': 'un- + usual', 'unhealthy': 'un- + healthy',
+ 'usually': 'usual + -ly', 'dancer': 'dance + -er', 'cleaner': 'clean + -er', 'quietly': 'quiet + -ly',
+ 'happily': 'happy + -ly', 'easily': 'easy + -ly', 'loudly': 'loud + -ly', 'finally': 'final + -ly',
+ 'faster': 'fast 的比较级（常规屈折）', 'ourselves': 'our + selves（反身构成）', 'yourselves': 'your + selves（反身构成）',
+ 'retell': 're- + tell', 'learner': 'learn + -er', 'traveller': 'travel + -er（英式拼法）',
+ 'bookshop': 'book + shop', 'washroom': 'wash + room', 'schoolyard': 'school + yard', 'workplace': 'work + place',
+ 'teamwork': 'team + work', 'handmade': 'hand + made', 'sunburn': 'sun + burn', 'lunchtime': 'lunch + time',
+ 'timetable': 'time + table', 'mooncake': 'moon + cake', 'milkshake': 'milk + shake', 'airmail': 'air + mail',
+ 'wheelchair': 'wheel + chair', 'armchair': 'arm + chair', 'rainstorm': 'rain + storm', 'sandstorm': 'sand + storm',
+ 'duckling': 'duck + -ling', 'dragonfly': 'dragon + fly（比喻命名，构词透明）', 'honeybee': 'honey + bee',
+ 'granddaughter': 'grand- + daughter', 'neighbourhood': 'neighbour + -hood（英式拼法）', 'drawing': 'draw + -ing（动名词常规构成）',
+ 'swimmer': 'swim + -er', 'climber': 'climb + -er', 'juicy': 'juice + -y', 'tasty': 'taste + -y',
+ 'politely': 'polite + -ly', 'safely': 'safe + -ly', 'angrily': 'angry + -ly（angrily 的基词 angry 与 angr 的关系在他档）',
+ 'sadness': 'sad + -ness', 'excitement': 'excite + -ment', 'enjoyable': 'enjoy + -able',
+ 'runner-up': 'run + -er + up（短语名词）', 'goalkeeper': 'goal + keeper', 'zookeeper': 'zoo + keeper',
+ 'firefighter': 'fire + fighter', 'policewoman': 'police + woman', 'candlelight': 'candle + light',
+ 'firework': 'fire + work', 'fireplace': 'fire + place', 'eyelash': 'eye + lash', 'eyeglass': 'eye + glass',
+ 'eyesight': 'eye + sight', 'daydream': 'day + dream', 'stomachache': 'stomach + ache',
+ 'hotter': 'hot 的比较级（常规屈折）', 'clickable': 'click + -able（网络时代新构）', 'disconnect': 'dis- + connect',
+ 'eventful': 'event + -ful', 'gamify': 'game + -ify（当代新构）', 'haystack': 'hay + stack',
+ 'hopping': 'hop + -ing（动名词常规构成）', 'irresponsible': 'ir- + responsible', 'limitable': 'limit + -able',
+ 'lovable': 'love + -able', 'manageable': 'manage + -able', 'nonfiction': 'non- + fiction', 'nonstop': 'non- + stop',
+ 'panicky': 'panic + -y', 'photographer': 'photograph + -er', 'ploughman': 'plough + man',
+ 'preheat': 'pre- + heat', 'semifinal': 'semi- + final', 'treelet': 'tree + -let',
+ 'underwater': 'under + water', 'unsubscribe': 'un- + subscribe（数字时代新构）', 'however': 'how + ever，14 世纪晚期成词',
+ 'moreover': 'more + over（源短语 and yit more ouer），14 世纪晚期写合', 'suddenly': 'sudden + -ly，13 世纪晚期成词'}
+R = {w: COMP % p for w, p in PARTS.items()}
+R.update({
+ 'smell': 'origin_unconfirmed（主干复核后）：Wiktionary 构拟原始西日耳曼语 *smallijan「闷燃」← 印欧语 *smel-「燃烧、冒烟」一线；牛津明标 of unknown origin，Etymonline 引 OED 谓「无疑出自古英语但未见记载、同源语无对应」；主干未获互证，保持待核',
+ 'exam': 'single_source（主干复核后）：examination 的学生俚语截短（1848）仅 Etymonline 一源成录，牛津词源栏无载、Wiktionary 无语源节；未达双源门，保持待核',
+ 'centimetre': 'single_source（主干复核后）：法语 centimètre 借入（centi- + metre）仅 Wiktionary 一源成录，Etymonline、牛津无词条；未达双源门，保持待核',
+ 'mr': 'single_source（主干复核后）：Mister 的缩略仅 Wiktionary 一语成录，Etymonline、牛津无独立词源条；未达双源门，保持待核',
+ 'hiccough': 'single_source（主干复核后）：hiccup 因误联 cough 而改拼的变体（1620 年代）仅 Etymonline 一源成录；基词 hiccup 本身尚在待核，保持待核',
+ 'plow': 'single_source + 深层未定（主干复核后）：plough 的美式拼法；其谱系仅 Etymonline 成录（古英语 ploh ← 原始日耳曼语 *plōga-，Boutkan 指该词来源未定、或非印欧来源），Wiktionary、牛津无独立词条；且 plough 本词尚在待核，保持待核',
+ 'sparrowgrass': 'evidence_gap（主干复核后）：缓存来源仅 Wiktionary 给出 sparrow + grass 的字面构词分析，Etymonline、牛津无词条；本词与 asparagus 的历史关系未见缓存来源记载，不凭记忆补档，保持待核',
+ 'spiv': 'origin_unknown（主干复核后）：三源同归未定——牛津「perhaps related to spiffy」，Etymonline 引 Ayto 谓或与 spiff 相连，Wiktionary 标 unknown 并存罗姆语 spiv「麻雀」说；无可互证主干，保持待核',
+ 'weta': 'single_source（主干复核后）：毛利语 wētā 借入仅 Wiktionary 一源成录，Etymonline、牛津无词条；未达双源门，保持待核',
+ 'whiz': 'sources_split（主干复核后）：动词「嗖地飞过」的拟声说仅 Wiktionary 成录；名词「行家里手」（1914）Etymonline 作 whizz 引申与 wizard 截短两说并存；两义项均未达双源一致，保持待核',
+ 'hough': 'single_source（主干复核后）：古英语 hōh「踵」一线仅 Wiktionary 成录，Etymonline 仅转指 hock 词条、牛津无载；未达双源门，保持待核',
+ 'autobus': 'single_source（主干复核后）：法语 autobus 借入／auto- + bus 构词仅 Wiktionary 一源成录，Etymonline、牛津无词条；未达双源门，保持待核',
+ 'motivate': 'single_source（主干复核后）：motive + -ate（1863，或仿法语 motiver）仅 Etymonline 一源成录，牛津无载、Wiktionary 仅作对照；未达双源门，保持待核',
+ 'lice': 'single_source（主干复核后）：louse 的复数（古英语 lȳs，元音变音复数）仅 Wiktionary 一源成录，Etymonline（lice 词条为空）、牛津无载；未达双源门，保持待核',
+ 'shown': 'single_source（主干复核后）：show 的过去分词（中古英语 schewen 的分词异形）仅 Wiktionary 一源成录，余两源无载；未达双源门，保持待核',
+ 'written': 'evidence_gap（主干复核后）：write 的过去分词仅见 Wiktionary 构词分析（write + -en），三源均无成段形史记载；且 write 本词谱系未在本轮处理范围，保持待核',
+ 'grown-up': 'single_source（主干复核后）：grow up 的分词形容词化（14 世纪晚期；名词义 1813）仅 Etymonline 一源成录，余两源无载；未达双源门，保持待核'})
+
+if __name__ == '__main__':
+    promoted = {w: A.build(w, s) for w, s in S.items()}
+    A.merge(promoted, R)
+    print('built:', len(promoted), '| reasons:', len(R))

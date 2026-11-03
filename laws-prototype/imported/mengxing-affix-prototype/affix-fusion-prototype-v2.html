@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>融合原型 v2 · 词根词缀专区 × 主 App 构词模块</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f1ea; color: #2d2a26; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 20px 16px 60px; }
+  .proto-note { background: #5b21b6; color: #fff; border-radius: 12px; padding: 12px 16px; font-size: 0.9rem; margin-bottom: 14px; }
+  .screens { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .screens button { border: 2px solid #c9b48a; background: #fffdf7; color: #6b5426; border-radius: 999px; padding: 7px 14px; font-size: 0.92rem; font-weight: 700; cursor: pointer; }
+  .screens button.active { background: #8a6d3b; border-color: #8a6d3b; color: #fff; }
+  .screen { display: none; } .screen.active { display: block; }
+  .law-card-top { background: #fff; border: 1.5px solid #d9c08a; border-radius: 16px; padding: 16px 18px; margin-bottom: 12px; }
+  .law-card-top h2 { font-size: 1.15rem; color: #3d3225; margin-bottom: 8px; }
+  .kidline { background: #fdf6e0; border-radius: 10px; padding: 10px 13px; font-size: 0.97rem; }
+  .src { color: #8b8172; font-size: 0.8rem; margin-top: 8px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; background: #fff; border: 1px solid #e7ddc8; border-radius: 12px; padding: 10px 14px; font-size: 0.88rem; margin-bottom: 14px; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
+  .d-full { background: #4c9a3f; } .d-half { background: #e08a1e; } .d-no { background: #a39e93; }
+  .panel { background: #fff; border: 1px solid #e7ddc8; border-radius: 16px; padding: 16px 18px; margin-bottom: 12px; }
+  .panel h3 { color: #5b4632; margin-bottom: 4px; }
+  .panel .meta { color: #7a6a52; font-size: 0.88rem; margin-bottom: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip { background: #f3efe6; border: 1px solid #ddd0b2; border-radius: 999px; padding: 4px 12px; font-size: 0.88rem; font-weight: 700; cursor: pointer; }
+  .chip small { color: #8a6d3b; font-weight: 800; }
+  .chip.zero { opacity: .55; border-style: dashed; cursor: default; }
+  .chip.go { border-color: #7c3aed; color: #5b21b6; }
+  .detail { background: #fff; border: 1px solid #e7ddc8; border-radius: 16px; padding: 20px; }
+  .detail h2 { color: #5b4632; font-size: 1.3rem; margin: 4px 0; }
+  .detail h3 { color: #8a6d3b; margin: 18px 0 7px; font-size: 1rem; }
+  .quote { border-left: 4px solid #d9c08a; background: #fffdf4; padding: 9px 13px; border-radius: 0 10px 10px 0; font-size: 0.93rem; margin-bottom: 8px; }
+  .quote b { color: #6b5426; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  th, td { border: 1px solid #e7ddc8; padding: 7px 10px; text-align: left; }
+  th { background: #f7ecd4; color: #5b4632; }
+  .hl { color: #b3402e; font-weight: 900; }
+  .opp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 640px) { .opp { grid-template-columns: 1fr; } }
+  .opp div { border-radius: 12px; padding: 12px 14px; font-size: 0.93rem; }
+  .opp .a { background: #eef6ec; border: 1px solid #bfe0b8; }
+  .opp .b { background: #fdf0e2; border: 1px solid #ecd3ae; }
+  .fake { background: #fdeeee; border: 1px solid #f2c1c1; border-radius: 12px; padding: 12px 15px; font-size: 0.92rem; }
+  .quiz { background: #f7f3ec; border-radius: 12px; padding: 14px 16px; font-size: 0.94rem; }
+  .quiz button { margin: 6px 6px 0 0; border: 1.5px solid #c9b48a; background: #fff; border-radius: 8px; padding: 5px 13px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+  .quiz button.ok { background: #49713c; border-color: #49713c; color: #fff; }
+  .quiz button.no { background: #b3402e; border-color: #b3402e; color: #fff; }
+  .stage { font-weight: 900; color: #5b21b6; }
+  .back { color: #8a6d3b; font-weight: 800; cursor: pointer; background: none; border: none; font-size: 0.95rem; padding: 0; }
+  .status-live { background: #e8f3e4; color: #49713c; font-size: 0.72rem; font-weight: 800; border-radius: 6px; padding: 1px 7px; }
+  .status-dead { background: #eceae6; color: #77705f; font-size: 0.72rem; font-weight: 800; border-radius: 6px; padding: 1px 7px; }
+  .wordcard { background: #fff; border: 1.5px solid #a9cfa1; border-radius: 14px; padding: 15px; font-size: 0.93rem; }
+  .slots { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+  .slot { background: #f3efe6; border: 1px dashed #b7a678; border-radius: 8px; padding: 3px 10px; font-weight: 700; font-size: 0.88rem; }
+  .foot { color: #8b8172; font-size: 0.82rem; margin-top: 20px; }
+  .lawstrip { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="proto-note"><b>融合原型 v2 · 未改主文件</b><br>词根词缀专区融进主 App 构词模块后的样子：纪律层（V-15 置顶）→ 规律层（V-33～V-39，只讲一次）→ 索引层（4 主 + 2 辅面板，词表由 morphemes 数据现算）。明细页全区共用一种模板。数字为原型版合并态现算口径（词库基底 159 + 扩充 388 = 可拆 547 条）。</div>
+
+  <div class="screens">
+    <button data-s="home" class="active">① 融合首页（构词模块）</button>
+    <button data-s="prefix">② 明细页 · 前缀 in-</button>
+    <button data-s="root">③ 明细页 · 词根 *spek-</button>
+    <button data-s="suffix">④ 对手页 · -able vs -ible</button>
+    <button data-s="practice">⑤ 练习与单词卡联动</button>
+  </div>
+
+  <!-- ① 融合首页 -->
+  <section class="screen active" id="s-home">
+    <div class="law-card-top">
+      <h2>全区总纪律（V-15）</h2>
+      <div class="kidline"><b>先认零件，再猜全词</b> | 有些词是真积木，能拆开看；有些词看着像积木，其实是一整块石头，硬拆会拆错——拆之前先确认它真的是积木</div>
+      <p style="margin-top:9px;font-size:.93rem"><b>透明度谱</b> | 拆词前先看它站在谱的哪一头：一看就懂的真积木，放心拆；半懂不懂的，拆开只是帮记，要说清；完全是石头的，整块记住它。</p>
+      <p class="src">出处：V-15 · Nation (2001) word parts 章；Bauer &amp; Nation (1993) IJL 6(4): 253–279</p>
+    </div>
+    <div class="legend"><span><span class="dot d-full"></span>全透明（放心拆）</span><span><span class="dot d-half"></span>半透明（拆开只是帮记）</span><span><span class="dot d-no"></span>不透明 / 禁拆（整块记）</span><span style="color:#8b8172">← 每个词在家族表里都带这个点，这是 V-15 落到数据上的样子</span></div>
+
+    <div class="panel">
+      <h3>① 高频前缀面板（V-33 二十前缀，现页签升级）</h3>
+      <p class="meta">逐条点进明细页；计数 = 该前缀名下可拆词数（现算）；空位照列标 0，不拿库外词充数。</p>
+      <div class="chips">
+        <span class="chip">un- <small>16</small></span><span class="chip">re- <small>12</small></span>
+        <span class="chip go" onclick="show('prefix')">in-（否定） <small>10</small> →</span><span class="chip">dis- <small>10</small></span>
+        <span class="chip">sub- <small>13</small></span><span class="chip">in-/im-（向内） <small>9</small></span>
+        <span class="chip">over- <small>3</small></span><span class="chip">inter- <small>3</small></span>
+        <span class="chip zero">fore- <small>0 · 待补词</small></span><span class="chip zero">anti- <small>0 · 待补词</small></span>
+        <span class="chip zero">under- <small>0 · 待补词</small></span>
+      </div>
+      <p class="meta" style="margin-top:10px">辅一 · 同化家族（V-34）：ad- 20 · in- 16 · sub- 13 · con- 10 · ex- 10 … 合计 67 词，挂在本面板内，不另设区。</p>
+    </div>
+
+    <div class="panel">
+      <h3>② 高频后缀面板（V-36 变身机，现页签重组）</h3>
+      <p class="meta">按变身功能分组，每组带营业状态灯；-able vs -ible 做易混对手专页。</p>
+      <div class="chips">
+        <span class="chip">-ly 副词化 <small>28</small></span><span class="chip">-er 施事 <small>28</small></span>
+        <span class="chip go" onclick="show('suffix')">-able <small>15</small> vs -ible <small>11</small> →</span>
+        <span class="chip">-ful <small>13</small></span><span class="chip">-y <small>21</small></span>
+        <span class="chip">-ion 家族 <small>15</small></span><span class="chip">-ness <small>6</small></span><span class="chip">-ment <small>5</small></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>③ 词根家族面板（现「派生词族矩阵」页签扩成）</h3>
+      <p class="meta">黏着根家族 28 家（≥2 成员才上榜），新古典拼装件（tele-/photo-…）并入本面板分组。</p>
+      <div class="chips">
+        <span class="chip go" onclick="show('root')">*spek-「看」 <small>19</small> →</span><span class="chip">fer「带」 <small>5</small></span>
+        <span class="chip">form「形」 <small>4</small></span><span class="chip">vis「看」 <small>4</small></span>
+        <span class="chip">dict「说」 <small>4</small></span><span class="chip">port「搬」 <small>3</small></span>
+        <span class="chip">cept「取」 <small>3</small></span><span class="chip">graph「写」 <small>3</small></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>④ 屈折词尾面板（新增，挂在原矩阵页签旁）</h3>
+      <p class="meta">GR-29 八功能位：名词复数 · 所有格 · 三单 -s · 过去式 -ed · 过去分词 · 现在分词 -ing · 比较级 -er · 最高级 -est。与语法区互链，只在一处计数。拼写让路（V-37）注就地标在形上：babies（y→i）、leaves（f→v）、bigger（双写）。</p>
+    </div>
+
+    <div class="panel">
+      <h3>规律层入口（只讲一次，明细页只引用）</h3>
+      <div class="lawstrip">
+        <span class="chip">V-33 头部定律</span><span class="chip">V-34 变色龙</span><span class="chip">V-35 两个「不」</span>
+        <span class="chip">V-36 通电/封存</span><span class="chip">V-37 拼写让路</span><span class="chip">V-38 假拆分诊室</span><span class="chip">V-39 教学法（家长层）</span>
+      </div>
+      <p class="meta" style="margin-top:8px">辅二 · 复合词面板 = 现有「合成词合体工坊」页签，25 词扩到 124 词（V-20）。</p>
+    </div>
+  </section>
+
+  <!-- ② 明细页 in- -->
+  <section class="screen" id="s-prefix">
+    <button class="back" onclick="show('home')">← 回面板</button>
+    <div class="detail">
+      <h2>in- 家族 · 本页共 19 词（否定 10 + 向内 9）</h2>
+      <h3>📖 讲解（引用规律原文，不另立说法）</h3>
+      <div class="quote"><b>V-34 变色龙前缀</b>：in- 碰到 p 变 im-、碰到 l 变 il-、碰到 r 变 ir-——前缀的尾巴会照着后面字母的样子改，同化处几乎都产生双写字母。</div>
+      <div class="quote"><b>V-35 两个供货商</b>：表示「不」，日耳曼底子用 un-，拉丁底子用 in-；in- 已退休只守老词，不能拿它造新词。</div>
+      <h3>义项分工（词卡数据原文）</h3>
+      <p style="font-size:.93rem">in- 有两份工作，必须分开记：<b>否定</b>（incorrect = 不对的）与<b>向内</b>（inside = 往里面）。同形不同职，混在一起就会拆错。</p>
+      <h3>👨‍👩‍👧 家族词表（节选 · 同化变体分组）</h3>
+      <table>
+        <tr><th>组</th><th>词（变化处标红）</th><th>透明度</th><th>一句话拆解</th></tr>
+        <tr><td>im-（p/m/b 前）</td><td>i<span class="hl">m</span>possible、i<span class="hl">m</span>polite</td><td><span class="dot d-full"></span>全透明</td><td>in- 被双唇音同化成 im-</td></tr>
+        <tr><td>il-（l 前）</td><td>i<span class="hl">ll</span>egal、i<span class="hl">ll</span>ogical</td><td><span class="dot d-full"></span>全透明</td><td>in- 变 il-，留双写 ll</td></tr>
+        <tr><td>ir-（r 前）</td><td>i<span class="hl">rr</span>egular、i<span class="hl">rr</span>esponsible</td><td><span class="dot d-full"></span>全透明</td><td>in- 变 ir-，留双写 rr</td></tr>
+        <tr><td>in- 原形</td><td>incorrect、invisible、inside（向内）</td><td><span class="dot d-full"></span>全透明</td><td>否定 / 向内两职分列</td></tr>
+      </table>
+      <h3>⚔️ 易混对手</h3>
+      <div class="opp">
+        <div class="a"><b>un-</b>（日耳曼 · 活零件）<br>unhappy、unlock，新词 unfriend 还在用它造。</div>
+        <div class="b"><b>in-</b>（拉丁 · 已退休）<br>incredible、invisible，只守老词；选哪个由词的出身决定。</div>
+      </div>
+      <h3>🚫 防假拆（同形防假）</h3>
+      <div class="fake">illusion、immerse、irrigate 里的 in- 是<b>「向内」不是「否定」</b>，别按否定拆；unit、uncle 开头的 un- <b>根本不是前缀</b>，整词记（裁定出处：V-38 / 禁拆名单）。</div>
+      <h3>✏️ 练习（两段式，V-30 口径）</h3>
+      <div class="quiz" id="quiz-in"></div>
+    </div>
+  </section>
+
+  <!-- ③ 明细页 *spek- -->
+  <section class="screen" id="s-root">
+    <button class="back" onclick="show('home')">← 回面板</button>
+    <div class="detail">
+      <h2>*spek-「看」家族 · 本页共 19 词（节选 10）</h2>
+      <h3>📖 讲解（引用规律原文）</h3>
+      <div class="quote"><b>V-26</b>：再往下挖一层，大批词同出一根——原始印欧语 *spek-「看」：inspect 是看进去，respect 是回头重看，species 是看出来的样子。</div>
+      <div class="quote"><b>V-21</b>：拉丁希腊词干在成百上千的词里重复出现，系统学一批，等于给生词装上可分析接口。本家族在词库里分写为 spect / spec / spic / spis / skop 五形，呈现时归一到家族键 *spek-。</div>
+      <h3>👨‍👩‍👧 家族全词表（节选）</h3>
+      <table>
+        <tr><th>词</th><th>透明度</th><th>一句话拆解（零件义 + 根义 → 今义）</th></tr>
+        <tr><td>inspect</td><td><span class="dot d-full"></span>全透明</td><td>in-（向内）+ spect（看）→ 往里面看 = 检查</td></tr>
+        <tr><td>respect</td><td><span class="dot d-half"></span>半透明</td><td>re-（回头）+ spect（看）→ 回头再看 = 重视、尊敬</td></tr>
+        <tr><td>expect</td><td><span class="dot d-half"></span>半透明</td><td>ex-（向外）+ spect（看）→ 向外望 = 期待</td></tr>
+        <tr><td>suspect</td><td><span class="dot d-half"></span>半透明</td><td>sus-（从下）+ spect（看）→ 从下面偷看 = 怀疑</td></tr>
+        <tr><td>prospect</td><td><span class="dot d-half"></span>半透明</td><td>pro-（向前）+ spect（看）→ 向前望 = 前景、指望</td></tr>
+        <tr><td>perspective</td><td><span class="dot d-half"></span>半透明</td><td>per-（穿透）+ spect（看）→ 看穿 = 视角、透视</td></tr>
+        <tr><td>spectator</td><td><span class="dot d-full"></span>全透明</td><td>spect（看）+ -ator（人）→ 看的人 = 观众</td></tr>
+        <tr><td>species</td><td><span class="dot d-no"></span>不透明</td><td>spec（看）→ 看出来的样子 = 物种（义已专化，整记为主）</td></tr>
+        <tr><td>special</td><td><span class="dot d-no"></span>不透明</td><td>与 species 同源，但今义「特别」不可由零件推出，整记</td></tr>
+        <tr><td>telescope</td><td><span class="dot d-full"></span>全透明</td><td>tele-（远）+ skop（看）→ 看远的工具（新古典拼装件）</td></tr>
+      </table>
+      <h3>🚫 假亲缘警告</h3>
+      <div class="fake">speak、spell 只是长得像 *spek- 家族，<b>不是亲戚</b>，不要因为字母像就认亲（家族成员由 morphemes 数据谓词认定，不靠眼缘）。</div>
+    </div>
+  </section>
+
+  <!-- ④ 对手页 -able vs -ible -->
+  <section class="screen" id="s-suffix">
+    <button class="back" onclick="show('home')">← 回面板</button>
+    <div class="detail">
+      <h2>易混对手专页：-able vs -ible</h2>
+      <h3>📖 讲解（引用规律原文）</h3>
+      <div class="quote"><b>V-36 变身机</b>：后缀能把词变身，但每台机器的营业状态不一样：-able 还通电，-ible 已封存。两者意思相同（能够被…的），分工不同。</div>
+      <div class="opp">
+        <div class="a"><b>-able</b> <span class="status-live">通电 · 能造新词</span><br>装在自由词根上：read → readable、comfort → comfortable；新词 googleable 也用它。全表 15 词。</div>
+        <div class="b"><b>-ible</b> <span class="status-dead">封存 · 只守老词</span><br>只跟拉丁黏着根：vis + ible = visible、cred + ible = credible。全表 11 词，<b>不能自己拿来造词</b>。</div>
+      </div>
+      <h3>判据（一句话）</h3>
+      <p style="font-size:.94rem">去掉后缀后，剩下的部分<b>能独立成词</b> → 用 -able（read、comfort）；剩下的<b>不能独立成词</b>（vis-、cred- 是黏着根）→ 多半是 -ible 老词，整词记。例外逐个登记在词表注里，不编口诀糊弄。</p>
+      <p class="foot">主 App 现状是把两者合并成一条「-able/-ible：能够被…的」——融合后按本页拆开，并给每个后缀加营业状态灯。</p>
+    </div>
+  </section>
+
+  <!-- ⑤ 练习与单词卡 -->
+  <section class="screen" id="s-practice">
+    <div class="detail">
+      <h2>练习口径 + 单词卡联动（示意）</h2>
+      <h3>✏️ 两段式拆词练习（V-30）</h3>
+      <div class="quiz" id="quiz-two"></div>
+      <p style="font-size:.9rem;margin-top:8px">设计意图：第一段只给零件，对应 V-30「只靠零件约懂六成」；第二段加上句子，对应「零件 + 语境约懂八成」。两段分开计分，孩子亲身体验这条规律。假拆辨伪题另成一组，题源是禁拆名单（butter、corner、understand…）。</p>
+      <h3>🃏 单词卡随数据自动变（第二/三期效果）</h3>
+      <div class="opp">
+        <div class="wordcard"><b>inspect</b> /ɪnˈspekt/ 检查
+          <div class="slots"><span class="slot">in- 向内</span><span class="slot">spect 看（黏着根）</span></div>
+          <span class="dot d-full"></span>全透明 · 家族：*spek-「看」→ <button class="back" onclick="show('root')">去家族页</button><br>
+          <span style="color:#8b8172;font-size:.85rem">卡面拆分不再是自由文本故事，而是 morphemes 槽位渲染出来的——数据改，卡面自动改。</span></div>
+        <div class="wordcard"><b>butterfly</b> /ˈbʌtəflaɪ/ 蝴蝶
+          <div class="slots"><span class="slot">butter + fly（分割成立）</span><span class="slot">🚫 butter 本身禁拆</span></div>
+          <span class="dot d-half"></span>半透明 · 为什么这么叫<b>没有定论</b>，翅膀像黄油只是助记故事，不是词源。<br>
+          <span style="color:#8b8172;font-size:.85rem">这就是 V-38 在卡面上的落地：透明度点 + 定版注，取代现在的全透明讲法。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">原型说明：面板计数与家族成员为 laws-prototype 合并态口径（MORPH_ZONE_BLUEPRINT §3.2 现算）；明细页词表为节选示意，正式版由谓词对导入后的 morphemes 数据全量生成。配套文字版：《融合方案-词根词缀专区与主App.md》。</p>
+</div>
+
+<script>
+function show(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+name).classList.add('active');
+  document.querySelectorAll('.screens button').forEach(b=>b.classList.toggle('active', b.dataset.s===name));
+  window.scrollTo({top:0});
+}
+document.querySelectorAll('.screens button').forEach(b=>b.onclick=()=>show(b.dataset.s));
+
+/* in- 明细页练习 */
+document.getElementById('quiz-in').innerHTML =
+  `<span class="stage">第一段 · 只给零件</span>：ir-（in- 遇 r 的变体）+ regular（规则的）→ 这个词是什么意思？<br>
+   <button onclick="ans(this,true)">不规则的</button><button onclick="ans(this,false)">很规则的</button>
+   <br><span class="stage">第二段 · 加上语境</span>：English verbs can be regular or <b>irregular</b>. 再确认一遍？<br>
+   <button onclick="ans(this,true)">不规则的</button><button onclick="ans(this,false)">很规则的</button>`;
+
+/* 两段式练习 demo */
+document.getElementById('quiz-two').innerHTML =
+  `<span class="stage">第一段 · 只给零件猜（六成线）</span>：spect = 看。prospect 里 pro- = 向前。prospect 大概和什么有关？<br>
+   <button onclick="ans(this,true)">向前看 → 前景、指望</button><button onclick="ans(this,false)">回头看 → 回忆</button>
+   <br><span class="stage">第二段 · 给句子再猜（八成线）</span>：The <b>prospect</b> of a trip made the children excited. 这次有把握了吗？<br>
+   <button onclick="ans(this,true)">（令人期待的）前景、指望</button><button onclick="ans(this,false)">过去的经历</button>`;
+
+function ans(btn, ok){ btn.className = ok ? 'ok' : 'no'; btn.textContent += ok ? ' ✓' : ' ✗ 回讲解再看'; }
+</script>
+</body>
+</html>

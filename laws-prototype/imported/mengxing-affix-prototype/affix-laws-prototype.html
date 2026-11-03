@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>萌星小学英语 · 构词模块调整原型（V-33～V-39）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f1ea; color: #2d2a26; line-height: 1.6; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 20px 16px 60px; }
+  .proto-note { background: #7c3aed; color: #fff; border-radius: 12px; padding: 12px 16px; font-size: 0.9rem; margin-bottom: 14px; }
+  .proto-note b { font-size: 1rem; }
+  .screens { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .screens button { border: 2px solid #c9b48a; background: #fffdf7; color: #6b5426; border-radius: 999px; padding: 7px 14px; font-size: 0.92rem; font-weight: 700; cursor: pointer; }
+  .screens button.active { background: #8a6d3b; border-color: #8a6d3b; color: #fff; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+  .app-head { background: linear-gradient(135deg, #fdf8ee, #f7ecd4); border: 1px solid #e4d5b3; border-radius: 16px; padding: 18px; margin-bottom: 14px; }
+  .app-head h1 { font-size: 1.35rem; color: #5b4632; }
+  .app-head p { font-size: 0.92rem; color: #7a6a52; margin-top: 4px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .tab { border: 1.5px solid #d8c69c; background: #fff; border-radius: 999px; padding: 6px 13px; font-size: 0.9rem; font-weight: 700; color: #6b5426; }
+  .tab.new { border-color: #7c3aed; color: #7c3aed; box-shadow: 0 0 0 2px #ede9fe; }
+  .tab.on { background: #8a6d3b; border-color: #8a6d3b; color: #fff; }
+  .tab.new.on { background: #7c3aed; border-color: #7c3aed; color: #fff; }
+  .tag-new { background: #7c3aed; color: #fff; font-size: 0.68rem; border-radius: 6px; padding: 1px 6px; margin-left: 6px; vertical-align: 2px; }
+  .guide { background: #ede9fe; border: 1px solid #c4b5fd; border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; font-size: 0.93rem; }
+  .guide b { color: #5b21b6; }
+  .group-title { font-weight: 900; color: #5b4632; margin: 18px 0 8px; font-size: 1.02rem; }
+  .law-card { background: #fff; border: 1px solid #e7ddc8; border-radius: 14px; padding: 13px 15px; margin-bottom: 9px; display: flex; gap: 12px; align-items: flex-start; cursor: pointer; width: 100%; text-align: left; font: inherit; }
+  .law-card:hover { border-color: #8a6d3b; }
+  .law-id { background: #8a6d3b; color: #fff; font-weight: 900; border-radius: 8px; padding: 2px 9px; font-size: 0.85rem; white-space: nowrap; margin-top: 2px; }
+  .law-main { flex: 1; font-size: 0.95rem; }
+  .badge { background: #e8f3e4; color: #49713c; font-size: 0.75rem; font-weight: 700; border-radius: 999px; padding: 2px 9px; white-space: nowrap; margin-top: 4px; }
+  .badge.warn { background: #fdf0e2; color: #9a6212; }
+  /* detail */
+  .detail { background: #fff; border: 1px solid #e7ddc8; border-radius: 16px; padding: 20px; }
+  .detail h2 { color: #5b4632; font-size: 1.25rem; margin: 6px 0 4px; }
+  .kid { background: #fdf6e0; border-radius: 10px; padding: 10px 13px; font-size: 0.96rem; margin: 10px 0; }
+  .detail h3 { color: #8a6d3b; margin: 16px 0 6px; font-size: 1rem; }
+  .detail ul { padding-left: 20px; font-size: 0.94rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip { background: #f3efe6; border: 1px solid #ddd0b2; border-radius: 999px; padding: 4px 12px; font-size: 0.88rem; font-weight: 700; }
+  .case { display: flex; gap: 10px; flex-wrap: wrap; }
+  .case div { flex: 1; min-width: 200px; border-radius: 10px; padding: 10px 13px; font-size: 0.93rem; }
+  .case .wrong { background: #fdeeee; border: 1px solid #f2c1c1; }
+  .case .right { background: #ecf6ea; border: 1px solid #bfe0b8; }
+  .quiz { background: #f7f3ec; border-radius: 10px; padding: 12px 14px; font-size: 0.94rem; }
+  .quiz button { margin: 6px 6px 0 0; border: 1.5px solid #c9b48a; background: #fff; border-radius: 8px; padding: 5px 13px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+  .quiz button.ok { background: #49713c; border-color: #49713c; color: #fff; }
+  .quiz button.no { background: #b3402e; border-color: #b3402e; color: #fff; }
+  .back { color: #8a6d3b; font-weight: 800; cursor: pointer; background: none; border: none; font-size: 0.95rem; padding: 0; }
+  /* coverage */
+  .bar-row { margin: 10px 0; font-size: 0.92rem; }
+  .bar { height: 20px; background: #eee5cf; border-radius: 999px; overflow: hidden; margin-top: 4px; }
+  .bar i { display: block; height: 100%; background: linear-gradient(90deg, #b98a2f, #8a6d3b); }
+  .bar.purple i { background: linear-gradient(90deg, #8b5cf6, #6d28d9); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: #fff; border-radius: 12px; overflow: hidden; }
+  th, td { border: 1px solid #e7ddc8; padding: 8px 10px; text-align: left; }
+  th { background: #f7ecd4; color: #5b4632; }
+  .top4 { background: #b98a2f; color: #fff; font-size: 0.72rem; border-radius: 6px; padding: 1px 6px; font-weight: 800; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .mini { background: #fff; border: 1px solid #e7ddc8; border-radius: 14px; padding: 13px 15px; font-size: 0.92rem; }
+  .mini b.t { font-size: 1.05rem; color: #5b4632; }
+  .live { background: #e8f3e4; color: #49713c; font-size: 0.72rem; font-weight: 800; border-radius: 6px; padding: 1px 7px; }
+  .dead { background: #eceae6; color: #77705f; font-size: 0.72rem; font-weight: 800; border-radius: 6px; padding: 1px 7px; }
+  .strip { background: #fff7e6; border: 1.5px dashed #d9a441; border-radius: 14px; padding: 13px 16px; margin-bottom: 14px; font-size: 0.94rem; }
+  .hl { color: #b3402e; font-weight: 900; }
+  .strike { text-decoration: line-through; color: #b3402e; }
+  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .ba { grid-template-columns: 1fr; } }
+  .ba .col { border-radius: 14px; padding: 15px; font-size: 0.92rem; background: #fff; }
+  .ba .before { border: 1.5px solid #e3b3ab; }
+  .ba .after { border: 1.5px solid #a9cfa1; }
+  .ba h4 { margin-bottom: 8px; }
+  .semi { background: #fdf0e2; color: #9a6212; font-size: 0.75rem; font-weight: 800; border-radius: 6px; padding: 2px 8px; }
+  .foot { color: #8b8172; font-size: 0.82rem; margin-top: 22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="proto-note"><b>调整原型 · 未改主文件</b><br>把原型版词汇解码区的 V-33～V-39 整进主 App 构词模块的效果预览。共 5 个画面：规律列表（新页签）/ 规律详情（点任意一条进入）/ 前缀页改后 / 后缀页改后 / 单词卡纠错。下面按钮切换画面，规律卡片可以点。</div>
+
+  <div class="screens">
+    <button data-s="list" class="active">① 词缀规律列表（新）</button>
+    <button data-s="detail">② 规律详情页</button>
+    <button data-s="prefix">③ 前缀页（改后）</button>
+    <button data-s="suffix">④ 后缀页（改后）</button>
+    <button data-s="card">⑤ 单词卡纠错</button>
+  </div>
+
+  <!-- ① 规律列表 -->
+  <section class="screen active" id="s-list">
+    <div class="app-head">
+      <h1>🤖 词语变形金刚</h1>
+      <p>构词法 · 合成词 / 前后缀 / 派生词族——新增第 5 个页签「词缀规律」，原来的 4 个页签顺序、默认页都不动。</p>
+      <div class="tabs">
+        <span class="tab">🧱 合成词合体工坊</span>
+        <span class="tab">🚀 20 个高频前缀</span>
+        <span class="tab">🎨 12 组词性后缀</span>
+        <span class="tab">📊 派生词族矩阵</span>
+        <span class="tab new on">🧩 词缀规律 7 条<span class="tag-new">NEW</span></span>
+      </div>
+    </div>
+
+    <div class="guide"><b>导学（V-39 压缩版，给孩子）</b>：学词缀有三条规矩——① 先学怎么防「假拆」（不是每个词都能拆）；② 一次只学一小家（如先学表示「不」的一家）；③ 每个词缀都要放到句子里用。完整教学说明在家长门（成人层）。</div>
+
+    <div class="group-title">前缀三条</div>
+    <div id="g1"></div>
+    <div class="group-title">后缀二条</div>
+    <div id="g2"></div>
+    <div class="group-title">防错一条（+ V-37 在后缀页顶部）</div>
+    <div id="g3"></div>
+    <p class="foot">注：V-37 不单独成页，做成后缀页顶部的「拼写让路」提示条，见画面 ④；V-39 做成上面的导学 + 家长门说明，不做儿童规律页。</p>
+  </section>
+
+  <!-- ② 规律详情 -->
+  <section class="screen" id="s-detail">
+    <button class="back" onclick="show('list')">← 回规律列表</button>
+    <div class="detail" id="detailBox"></div>
+  </section>
+
+  <!-- ③ 前缀页改后 -->
+  <section class="screen" id="s-prefix">
+    <div class="app-head">
+      <h1>🚀 20 个高频前缀</h1>
+      <p>调整点：页顶加 V-33 覆盖率横幅；前四位加「头部四将」角标；「im- / in-」一条展开为 V-34 同化家族表。</p>
+    </div>
+    <div class="detail">
+      <h3 style="margin-top:0">📊 为什么只学这 20 个？（V-33 头部定律）</h3>
+      <div class="bar-row">前 4 个前缀（un- / re- / in- / dis-）占了带前缀词的 <b>58%</b>
+        <div class="bar"><i style="width:58%"></i></div></div>
+      <div class="bar-row">这 20 个前缀占了带前缀词的 <b>97%</b>
+        <div class="bar purple"><i style="width:97%"></i></div></div>
+      <p style="font-size:.85rem;color:#8b8172">出处与统计口径在成人层（White, Sowell &amp; Yanagihara 1989），儿童页只给结论。</p>
+
+      <h3>🦎 in- 是变色龙（V-34）——同化家族表（新增）</h3>
+      <table>
+        <tr><th>后面的字母</th><th>in- 变成</th><th>例词</th><th>留下的痕迹</th></tr>
+        <tr><td>b / m / p 前</td><td><b>im-</b></td><td>impossible、impolite、imbalance</td><td>双唇音把 n 同化成 m</td></tr>
+        <tr><td>l 前</td><td><b>il-</b></td><td>illegal、illogical</td><td>双写 <b>ll</b></td></tr>
+        <tr><td>r 前</td><td><b>ir-</b></td><td>irregular、irresponsible</td><td>双写 <b>rr</b></td></tr>
+      </table>
+      <p style="font-size:.9rem;margin-top:8px">记法：in- 为了读得顺口，会变成后面字母的样子，还常常留下一对双写字母当「脚印」。<button class="back" onclick="openLaw('V-34')">看 V-34 规律页 →</button></p>
+
+      <h3>前缀表（节选，示意角标）</h3>
+      <div class="card-grid">
+        <div class="mini"><b class="t">un-</b> <span class="top4">头部四将</span><br>不；做相反动作<br>unhappy、unlock、<b>unfriend</b>（新词也能装 → 它还「活着」，见 V-35）</div>
+        <div class="mini"><b class="t">re-</b> <span class="top4">头部四将</span><br>再一次；往回<br>rewrite、reuse、return</div>
+        <div class="mini"><b class="t">dis-</b> <span class="top4">头部四将</span><br>不；分开<br>dislike、disagree、disappear</div>
+        <div class="mini"><b class="t">im- / in-</b> <span class="top4">头部四将</span><br>不；向内（会变色龙，见上表）<br>impossible、incorrect、inside</div>
+        <div class="mini"><b class="t">mis-</b><br>错误地<br>misunderstand、misspell</div>
+        <div class="mini"><b class="t">pre-</b><br>预先<br>preview、preschool</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 后缀页改后 -->
+  <section class="screen" id="s-suffix">
+    <div class="app-head">
+      <h1>🎨 12 组词性后缀</h1>
+      <p>调整点：顶部加 V-37「拼写让路」条；-able / -ible 拆开；每组加 V-36「通电 / 封存」角标。</p>
+    </div>
+    <div class="strip"><b>✍️ 拼写让路三规（V-37）</b>：后缀一来，词尾要让路——
+      ① 去 e：mak<span class="strike">e</span> + ing → making；
+      ② y 变 i：happ<span class="hl">y</span> → happ<span class="hl">i</span> + ness = happiness；
+      ③ 双写：stop → sto<span class="hl">pp</span> + ed = stopped。
+      （现有单词卡里已有这些例子，调整后在后缀页收成一条，并给例词标出变化的字母。）</div>
+    <div class="card-grid">
+      <div class="mini"><b class="t">-ness</b> <span class="live">通电 · 还能造新词</span><br>性质；状态（名词化）<br>darkness、happiness、kindness</div>
+      <div class="mini"><b class="t">-able</b> <span class="live">通电 · 还能造新词</span><br>能够被…的<br>readable、comfortable、<b>googleable</b></div>
+      <div class="mini"><b class="t">-ible</b> <span class="dead">封存 · 只守老词</span><br>能够被…的（拉丁老词专用，新词不用它）<br>visible、credible、incredible<br><small>⚠️ 原来和 -able 合并成一条，调整后拆开并标明分工（V-36）</small></div>
+      <div class="mini"><b class="t">-ly</b> <span class="live">通电 · 还能造新词</span><br>…地；有…样子的<br>quickly、friendly</div>
+      <div class="mini"><b class="t">-tion</b> <span class="dead">封存 · 只守老词</span><br>行为；状态（名词化）<br>action、invention</div>
+      <div class="mini"><b class="t">-ful / -less</b> <span class="live">通电 · 还能造新词</span><br>充满…的 / 没有…的<br>careful、careless</div>
+    </div>
+    <p class="foot">角标口径（V-36）：通电 = 现在还能装到新词上；封存 = 只出现在历史上已经定型的词里，不能自己拿来造词。</p>
+  </section>
+
+  <!-- ⑤ 单词卡纠错 -->
+  <section class="screen" id="s-card">
+    <div class="app-head">
+      <h1>🦋 单词卡纠错示例：butterfly（V-38 落地）</h1>
+      <p>第二期内容，先在原型里示意改法：左边是主文件现在的讲法，右边是按原型版 V-38 定版口径改后的讲法。</p>
+    </div>
+    <div class="ba">
+      <div class="col before">
+        <h4>❌ 现在（主文件）</h4>
+        <p><b>🧩 积木拆词</b>：butter（奶油黄）+ fly（飞虫）= butterfly（像黄色奶油一样翩翩飞舞的蝴蝶）</p>
+        <p><b>📖 秒懂造词小故事</b>：春天草地上最常见一种翅膀像黄油一样嫩黄的美丽飞虫，人们就给所有蝴蝶取了这个甜蜜的名字——</p>
+        <p style="color:#b3402e"><b>问题</b>：把助记故事讲成了确定的词源事实；孩子会以为 butter 里的 -er、fly 都是可拆零件，迁移到 butter（黄油）本身时会拆错。</p>
+      </div>
+      <div class="col after">
+        <h4>✅ 改后（V-38 定版口径）</h4>
+        <p><b>🧩 积木拆词</b>：butter + fly <span class="semi">半透明 · 拆得开，来历没定论</span></p>
+        <p>这个词在古英语里确实是 butter + fly 拼起来的，但<b>为什么管蝴蝶叫「黄油飞虫」，至今没有定论</b>（有人猜和翅膀颜色有关，只是猜测）。</p>
+        <p><b>📖 助记故事（标注为助记，不是词源）</b>：想象一只黄油色的飞虫——帮你记住拼写就好，别当真。</p>
+        <p><b>🚫 防拆提醒</b>：butter（黄油）本身<b>不能拆</b>，它末尾的 -er 不是「做事的人」；corner、river 同理。这类词进「不能拆队」，和能拆的词分开呈现。</p>
+      </div>
+    </div>
+    <p class="foot">同批要审的词（原型版禁拆名单）：butter、corner、river、uncle、reason、unit、define、detail、understand、undertake、illusion、immerse、irrigate、inflammable。原型阶段只示意 butterfly 一张，其余在第二期全库审计时逐张处理。</p>
+  </section>
+
+</div>
+
+<script>
+const LAWS = {
+ "V-33": {group:1, badge:"有练习", title:"头部定律：20 个前缀管住 97%",
+   kid:"前缀里也有「大明星」：最常用的 20 个管住了几乎全部带前缀的词，前 4 个就占了一多半。先学它们，回报最高。",
+   mech:["词频是陡峭的幂律分布：少数前缀出现在绝大多数带前缀词里（White, Sowell & Yanagihara 1989：20 个前缀覆盖 97%，un-/re-/in-/dis- 四个占 58%，un- 一家占 26%）。","所以前缀页的排列不是按字母，是按「出场率」：头部四将排最前（主文件现表的前四位正好就是它们）。"],
+   ex:["un- unhappy","re- rewrite","in- incorrect","dis- disagree"],
+   wrong:null, right:null,
+   quiz:{q:"下面哪个前缀自己一家就占了带前缀词的四分之一左右？", opts:["un-","tele-","tri-"], a:0}},
+ "V-34": {group:1, badge:"有病例 · 有练习", title:"变色龙前缀 in-：会变成后面字母的样子",
+   kid:"in- 是个变色龙：它后面的字母是什么样，它就跟着变，还留下一对双写字母当脚印。",
+   mech:["同化：in- 遇双唇音 b/m/p 变 im-（读起来顺口）；遇 l 变 il-、遇 r 变 ir-，被吃掉的那个字母变成双写（ll / rr）。","这是全组唯一一条可以判对错的分布规则：变体由后随辅音唯一决定。"],
+   ex:["im- impossible","im- impolite","il- illegal","ir- irregular"],
+   wrong:"inpossible", right:"impossible（in- 遇 p 变 im-）",
+   quiz:{q:"in- + regular（规则的）表示「不规则的」，应该拼成？", opts:["inregular","irregular","imregular"], a:1}},
+ "V-35": {group:1, badge:"有练习", title:"表示「不」的有两个供货商：un- 和 in-",
+   kid:"同样是「不」，un- 是还在上班的活零件，新词也用它；in- 已经退休了，只守着老词。",
+   mech:["un- 来自日耳曼老底子，产出性强：unfriend（删好友）这种新词还在用它造。","in- 来自拉丁语，只出现在历史老词里（incredible、visible 一类），不能拿它去造新词；选哪个由词的「出身」决定，不能自由替换。"],
+   ex:["un- unhappy / unlock / unfriend","in- incredible / incorrect"],
+   wrong:null, right:null,
+   quiz:{q:"新造一个词表示「不好吃的」，应该用哪个？", opts:["in-","un-"], a:1}},
+ "V-36": {group:2, badge:"有练习", title:"后缀是词类变身机，但有的通电、有的封存",
+   kid:"后缀能把词变身（形容词变名词、动词变形容词）。但有的后缀还「通着电」，能装新词；有的已经「封存」，只能认老词。",
+   mech:["通电组：-ness、-able、-ly、-ful、-less 等，现在还能自由造新词。","封存组：-ible、-tion 等，只活在老词里；-able 和 -ible 意思相同但分工不同，必须拆开教（主文件现合并为一条，调整后拆开）。"],
+   ex:["-ness darkness","-able readable","-ible visible（封存）","-tion action（封存）"],
+   wrong:null, right:null,
+   quiz:{q:"哪个后缀已经封存、不能自己拿来造新词？", opts:["-ness","-ible","-ly"], a:1}},
+ "V-37": {group:2, badge:"有病例 · 有练习", title:"拼写让路：后缀一来，词尾要变样",
+   kid:"后缀是个大块头，它一来，词尾要给它让路：e 要走开、y 要变 i、尾巴还要双写。",
+   mech:["去 e：make + ing → making（e 不发音，让路）。","y 变 i：happy + ness → happiness（辅音 + y 才变）。","双写：stop + ed → stopped（短元音 + 单辅音结尾，先双写再加）。","注：在原型里本条不单独成页，做成后缀页顶部的提示条（见画面 ④）；这里为讲解完整保留详情。"],
+   ex:["making（去 e）","happiness（y→i）","stopped（双写）","running（双写）"],
+   wrong:"refered", right:"referred（r 要双写）",
+   quiz:{q:"swim + ing 应该拼成？", opts:["swiming","swimming"], a:1}},
+ "V-38": {group:3, badge:"有病例 · 有练习", title:"假拆分诊室：看着能拆，其实不能拆",
+   kid:"有的词穿着「能拆」的外衣，其实拆开是错的。诊室里分三种病：根本没零件、组合的意思已死、零件的意思变了。",
+   mech:["没零件型：butter 的 -er 不是「做事的人」，corner、river 同理——它们是一个整词。","组合失效型：butterfly 拆得出 butter + fly，但为什么这么叫没有定论，只能当助记，不能当词源讲（单词卡纠错见画面 ⑤）。","零件义已变型：understand 的 under 是古义，按今天的意思拆会拆错。"],
+   ex:["butter（整记）","corner（整记）","butterfly（半透明）","understand（整记）"],
+   wrong:"break + tion = breaktion", right:"break 是整词动词，它的名词是 breakage / breaking，没有 breaktion 这个拆法",
+   quiz:{q:"哪个词不能拆？", opts:["unhappy","butter","rewrite"], a:1}},
+ "V-39": {group:3, badge:"导学 · 家长层", title:"词缀教学法：先防假拆，再小集合 + 语境",
+   kid:"（本条是给老师和家长的教学说明，儿童页只保留规律列表顶部的导学三句。）",
+   mech:["顺序：先立「有的词不能拆」的概念（V-38），再教词缀，避免孩子见词就拆。","分课：按义项把词缀分成小集合教（如先教表示「不」的一家），不一次倒一整张表。","语境：词缀必须和句子、阅读一起教；红利在孩子自己解新词，不在背下课本词。"],
+   ex:["导学三句（规律列表顶部）","家长门完整说明"],
+   wrong:null, right:null,
+   quiz:{q:"教词缀的第一步应该是什么？", opts:["先背 20 个前缀表","先学会防假拆"], a:1}}
+};
+const ORDER = ["V-33","V-34","V-35","V-36","V-37","V-38","V-39"];
+function cardHTML(id){
+  const L = LAWS[id];
+  return `<button class="law-card" onclick="openLaw('${id}')">
+    <span class="law-id">${id}</span>
+    <span class="law-main">${L.title}</span>
+    <span class="badge ${L.badge.includes('家长')?'warn':''}">${L.badge}</span></button>`;
+}
+document.getElementById('g1').innerHTML = ["V-33","V-34","V-35"].map(cardHTML).join('');
+document.getElementById('g2').innerHTML = ["V-36","V-37"].map(cardHTML).join('');
+document.getElementById('g3').innerHTML = ["V-38","V-39"].map(cardHTML).join('');
+
+function openLaw(id){
+  const L = LAWS[id];
+  let h = `<span class="law-id">${id}</span><h2>${L.title}</h2>
+    <div class="kid">🧒 ${L.kid}</div>
+    <h3>机制</h3><ul>${L.mech.map(m=>`<li>${m}</li>`).join('')}</ul>
+    <h3>例词 / 例项</h3><div class="chips">${L.ex.map(e=>`<span class="chip">${e}</span>`).join('')}</div>`;
+  if (L.wrong) h += `<h3>病例</h3><div class="case"><div class="wrong">❌ ${L.wrong}</div><div class="right">✅ ${L.right}</div></div>`;
+  h += `<h3>小测</h3><div class="quiz">${L.quiz.q}<br>${L.quiz.opts.map((o,i)=>`<button onclick="ans(this,${i===L.quiz.a})">${o}</button>`).join('')}</div>
+    <p style="margin-top:14px"><button class="back" onclick="show('prefix')">去前缀页看它怎么落地 →</button> &nbsp; <button class="back" onclick="show('suffix')">去后缀页 →</button></p>`;
+  document.getElementById('detailBox').innerHTML = h;
+  show('detail');
+}
+function ans(btn, ok){ btn.className = ok ? 'ok' : 'no'; btn.textContent += ok ? ' ✓' : ' ✗ 再想想'; }
+function show(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+name).classList.add('active');
+  document.querySelectorAll('.screens button').forEach(b=>b.classList.toggle('active', b.dataset.s===name));
+  window.scrollTo({top:0});
+}
+document.querySelectorAll('.screens button').forEach(b=>b.onclick=()=>show(b.dataset.s));
+openLaw('V-34'); show('list');
+</script>
+</body>
+</html>

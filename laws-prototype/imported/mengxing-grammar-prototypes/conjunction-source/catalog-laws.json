@@ -1,0 +1,423 @@
+{
+ "GR-11": {
+  "id": "GR-11",
+  "order": 11,
+  "headline": "because 和 so 各管一段路：英语一段因果通常只留一个连接点，两个都上是汉语的习惯迁移",
+  "headline_kid": "英语说因果像只搭一座桥：要么站在 because 这头说原因，要么站在 so 那头说结果；两座桥一起搭，是把汉语的习惯带过来了",
+  "claim": {
+   "type": "tendency",
+   "statement": "英语从句连接以形合为常态：一个主从关系由一个从属连词标明即足。同一因果链里 because…so 并用，是汉语「因为…所以」成对关联词的意合习惯迁移到英语的冗余结构。",
+   "evidence": [
+    "连淑能《英汉对比研究》（1993，高等教育出版社；2010 增订本）形合/意合对比专题"
+   ],
+   "scope": "问题只在同一因果链里并用；because 与 so 各自单独使用均合法。口语中偶见的强调性叠用不属小学教学范围",
+   "exceptions": [
+    {
+     "text": "口语中偶见的强调性叠用，不按小学阶段的错误处理",
+     "word_ids": [
+      "G2_0502",
+      "V6_家庭_34"
+     ]
+    }
+   ]
+  },
+  "mechanism": [
+   {
+    "beat": "只搭一座桥",
+    "text_kid": "说因果时选一座桥过河：想先说原因，就走 because；想先说结果，就走 so。一座桥就够过河了。",
+    "text_adult": "形合语言的常态是一个连接点标明一个主从关系；并用两个连接点不增加信息，只添冗余。",
+    "visual": "一条河上只架一座桥，because 桥和 so 桥二选一",
+    "anchors": [
+     "G2_0502",
+     "V6_家庭_34"
+    ]
+   },
+   {
+    "beat": "汉语的成对习惯",
+    "text_kid": "汉语喜欢「因为…所以…」成对出现，这是汉语自己的规矩；搬进英语，两座桥叠在一起，英语听着就别扭。",
+    "text_adult": "连淑能形合/意合对比：中国学习者语料中 because…so 并用是稳定高频的迁移错误类型，与英汉关联词系统的结构差异精确对应。",
+    "visual": "两座桥硬叠在一起，桥面挤得晃动，标着「汉语习惯」",
+    "anchors": []
+   }
+  ],
+  "examples": [
+   {
+    "level": 1,
+    "word_ids": [
+     "V6_家庭_34",
+     "G2_0502"
+    ],
+    "sentence": "I stayed home because it rained.",
+    "scene_note": "下雨天：站在 because 这头说原因",
+    "supports": "claim"
+   },
+   {
+    "level": 1,
+    "word_ids": [
+     "G2_0502",
+     "V6_家庭_34"
+    ],
+    "sentence": "It rained, so I stayed home.",
+    "scene_note": "同一件事：站在 so 那头说结果",
+    "supports": "claim"
+   },
+   {
+    "level": 2,
+    "word_ids": [
+     "G2_081"
+    ],
+    "sentence": "I was late because the bus was late.",
+    "scene_note": "上学迟到：只选 because 一座桥",
+    "supports": "claim"
+   },
+   {
+    "level": 2,
+    "word_ids": [
+     "G2_0489"
+    ],
+    "sentence": "It was sunny, so we played outside.",
+    "scene_note": "放晴出门玩：只选 so 一座桥",
+    "supports": "claim"
+   }
+  ],
+  "error_cases": [
+   {
+    "wrong": "Because it rained, so I stayed home.",
+    "right": "I stayed home because it rained. / It rained, so I stayed home.",
+    "error_type": "母语迁移-连接词并用",
+    "source_type": "真实语料错型",
+    "diagnosis": "清单条目登记：中国学习者语料中 because…so 并用是稳定高频的迁移错误类型（连淑能形合/意合对比）。回补机制第 1 节：一座桥过河。"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "哪句对？A. Because it rained, so I stayed home. B. It rained, so I stayed home.",
+    "answer": "B——一段因果只留一个连接点。",
+    "hint": "回到机制第 1 节「只搭一座桥」。"
+   }
+  ],
+  "relatives": [
+   {
+    "id": "GR-26",
+    "rel": "同族"
+   },
+   {
+    "id": "GR-22",
+    "rel": "同族"
+   },
+   {
+    "id": "GR-38",
+    "rel": "同族"
+   }
+  ],
+  "pain_points": [
+   "错不完"
+  ],
+  "adult": {
+   "sources": [
+    "连淑能《英汉对比研究》（1993，高教社）——接触等级：二手系统论述级（书目经高教社官方产品页核实：1993 年 3 月，ISBN 9787040044508, 221 页；2026-11-02 篇目级核实：目录含「形合与意合」对比专题（p. 8），该章正文——形合（显性接应、作者负责）与意合（语义接应、读者负责）之辨——经公开扫描本核读，与本条引用一致）"
+   ],
+   "boundary": "because 与 so 当然都能用，问题只在同一因果链里并用；口语中偶见的强调性叠用不属小学教学范围。另：旧「语法树会断」伪机制已删除，不得复活。",
+   "disputes": [],
+   "evidence_grade": "二手系统论述级",
+   "pending": [
+    "误解探针待补（入模标准要求 ≥1）"
+   ]
+  },
+  "zone": "语法",
+  "group": "GR",
+  "prereq": [],
+  "probes": [],
+  "status": "入模中",
+  "version": "1.0",
+  "changelog": [
+   {
+    "date": "2026-11-01",
+    "change": "清单 v6 散文入模（数据补齐总攻·波次 C1）",
+    "basis": "专家清单 v6 GR 组原文"
+   }
+  ]
+ },
+ "GR-38": {
+  "id": "GR-38",
+  "order": 38,
+  "headline": "标点是语法的一部分：英语的逗号扛不起两个完整句子，撇号也不是装饰",
+  "headline_kid": "逗号太细，钩不住两节完整的车厢：两个各自能站住的句子之间只放一个逗号，叫「逗号粘连」，是正式错误；汉语能用逗号一路串下去，这个习惯别搬进英语",
+  "claim": {
+   "type": "rule",
+   "statement": "① 逗号粘连：两个独立分句之间只用逗号连接，在标准英语书面语中是句子边界错误；合法连接只有四种——句号分开、分号连接、逗号+并列连词、把一分句降级为从属分句。根源是句法类型差：英语是形合语言，分句关系必须明示层级；汉语是意合语言，流水句靠逗号连排合法。② 撇号二职：表所属（Tom's book）与表省略（it's = it is）；its（所属）无撇号、it's（是）有撇号；普通复数绝不加撇号。",
+   "evidence": [
+    "逗号粘连的定义与四种改法依美国大学写作中心定版材料（Fordham、Utah Valley、Waterloo 三校写作中心讲义，本轮打开互证）；形合/意合对照依连淑能《英汉对比研究》（1993）的通行定版；撇号规则为 Swan《PEU》与各参考语法共同定版"
+   ],
+   "scope": "判据以正式书面语为准；口语转写与非正式写作（短信、日记）中逗号粘连的容忍度高"
+  },
+  "mechanism": [
+   {
+    "beat": "逗号钩不住车厢",
+    "text_kid": "两个完整的句子像两节车厢：中间只挂一个逗号，钩子太细，跑起来就脱钩。要么分开（句号），要么换粗钩（分号、逗号+连词），要么把一节车厢降成挂车（从句）。",
+    "text_adult": "错误本质是把汉语的合法句式平移进英语的标点系统：意合语言靠语义连贯连排，形合语言必须由连接词或标点明示层级——与 GR-22「汉语不标的，英语偏要标」同属一个家族，这次不标的是句界。",
+    "visual": "两节车厢中间一根细逗号钩断开，旁边摆着四种正牌挂钩",
+    "anchors": [
+     "G2_0502",
+     "V6_家庭_34"
+    ]
+   },
+   {
+    "beat": "撇号的两份工作",
+    "text_kid": "撇号有两份工作：Tom's 是「谁的」，it's 是「it is 的缩写」。分不清时展开一读：能展开成 it is 的，就是带撇号的那个。",
+    "text_adult": "its/'s 之别靠「能否展开成 it is」一测即分；普通复数加撇号（*apple's 表复数）是经典 greengrocer's apostrophe 错误，对母语者同样高频，不渲染为中国学习者独有。",
+    "visual": "两个牌子并排：its（无撇号，所属）和 it's（有撇号，是）",
+    "anchors": [
+     "G1_014"
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "level": 1,
+    "word_ids": [
+     "G2_0502",
+     "V6_家庭_34"
+    ],
+    "sentence": "It rained. I stayed home.",
+    "scene_note": "合法连接一：句号分开",
+    "supports": "claim"
+   },
+   {
+    "level": 1,
+    "word_ids": [
+     "G2_0502",
+     "V6_家庭_34"
+    ],
+    "sentence": "It rained, so I stayed home.",
+    "scene_note": "合法连接二：逗号+并列连词（与 GR-11 互挂）",
+    "supports": "claim"
+   },
+   {
+    "level": 2,
+    "word_ids": [
+     "G1_014"
+    ],
+    "sentence": "It's a cat.",
+    "scene_note": "撇号省略职现场：It's = It is",
+    "supports": "claim"
+   },
+   {
+    "level": 2,
+    "word_ids": [
+     "G1_002"
+    ],
+    "sentence": "This is Tom's book.",
+    "scene_note": "撇号所属职现场（人名 Tom 为句中专名，锚词取 book）",
+    "supports": "claim"
+   }
+  ],
+  "error_cases": [
+   {
+    "wrong": "It rained, I stayed home.",
+    "right": "It rained, so I stayed home. / It rained. I stayed home.",
+    "error_type": "逗号粘连",
+    "source_type": "教学定版登记错型",
+    "diagnosis": "美国大学写作中心一致把逗号粘连列为头号句界错误；中国学习者的发生率叠加了意合迁移（连淑能形合/意合对照）。回补机制第 1 节：四种合法连接选一种。"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "两个完整句子之间只放一个逗号，行不行？",
+    "answer": "不行，那是逗号粘连；要用句号、分号、逗号+连词，或把一句降为从句。",
+    "hint": "回到机制第 1 节「逗号钩不住车厢」。"
+   }
+  ],
+  "relatives": [
+   {
+    "id": "GR-11",
+    "rel": "同族"
+   },
+   {
+    "id": "GR-26",
+    "rel": "同族"
+   },
+   {
+    "id": "GR-22",
+    "rel": "同族"
+   }
+  ],
+  "pain_points": [
+   "写不长",
+   "错不完"
+  ],
+  "adult": {
+   "sources": [
+    "Fordham、Utah Valley、Waterloo 三校写作中心讲义（本轮打开互证）；连淑能《英汉对比研究》（1993）；Swan《PEU》——接触等级：教学定版转述级（形合/意合一条经 2026-11-02 篇目级核实，见 pending 销项）"
+   ],
+   "boundary": "① 文学例外：短小平行分句的连排（I came, I saw, I conquered 式）是修辞手法，不判错——学生写作不适用此例外。② 口语转写与非正式写作中容忍度高，本条判据以正式书面语为准。③ 分号连接要求两分句语义密切相关。④ its/it's 对母语者同样高频混淆，不渲染为中国学习者独有。",
+   "disputes": [
+    "无实质分歧。仅定性差：部分写作手册把逗号粘连称「重罪」，语料取向的用法学家（如 Pinker 一线）指出名家写作中不乏此式——登记为教学严格度之争，学校写作口径从严。"
+   ],
+   "evidence_grade": "教学定版转述级",
+   "pending": [
+    "（2026-11-02 销项）形合/意合一条已经篇目级核实：连淑能《英汉对比研究》（高教社，1993 年 3 月，ISBN 9787040044508, 221 页）目录含「形合与意合」对比专题（p. 8），该章正文经公开扫描本核读——形合（显性接应、作者负责）与意合（语义接应、读者负责）之辨与本条引用一致（与 GR-11 销项同源）",
+    "误解探针待补（入模标准要求 ≥1）"
+   ]
+  },
+  "zone": "语法",
+  "group": "GR",
+  "prereq": [],
+  "probes": [],
+  "status": "入模中",
+  "version": "1.0",
+  "changelog": [
+   {
+    "date": "2026-11-01",
+    "change": "清单 v6 散文入模（数据补齐总攻·波次 C1）",
+    "basis": "专家清单 v6 GR 组原文"
+   }
+  ]
+ },
+ "GR-32": {
+  "id": "GR-32",
+  "order": 32,
+  "headline": "关联词成对出门：both…and、either…or 各就其位，并列成分要同形，动词听离它最近的那个主语",
+  "headline_kid": "both 和 and 是一对搭档，搭档不能串门；两个搭档夹着的东西要长得一样；either…or 领着两个主语时，动词听离它最近的那个",
+  "claim": {
+   "type": "rule",
+   "statement": "① 配对纪律：关联并列是封闭配对——both…and…、either…or…、neither…nor…、not only…but also…（also 可省、but 不可省），混搭不成立。② 同形原则：关联词之后紧跟的成分必须同类同形。③ not only 前置句首时后半句主辅倒装。④ 就近原则：either…or / neither…nor 连接数不一致的主语时，谓语与较近的主语一致——就近在一致三原则（语法一致、意义一致、就近一致）中排位最末，只管 or/nor 型并列。",
+   "evidence": [
+    "Purdue OWL 关联并列条；CGEL 一致关系三原则的通行转述；同形原则与 not only 倒装为 Quirk 等参考语法与 Swan《Practical English Usage》的共同定版"
+   ],
+   "scope": "就近只管 or/nor 型并列主语；and 连接的主语永远复数，不适用就近"
+  },
+  "mechanism": [
+   {
+    "beat": "搭档不能串门",
+    "text_kid": "both 的搭档是 and，either 的搭档是 or，neither 的搭档是 nor——每对搭档一起出门，不许跟别人组队。",
+    "text_adult": "封闭配对是形式档案：混搭（*both…and or、*either…nor）在标准英语中不成立；neither…nor 本身已含否定，谓语不再加否定词。",
+    "visual": "三对小伙伴手拉手出门，队服颜色各不相同",
+    "anchors": [
+     "G1_014",
+     "G1_015"
+    ]
+   },
+   {
+    "beat": "夹着的东西要同形",
+    "text_kid": "把关联词分别贴到两边读：I like both swimming and running——两边都是 -ing，长得一样；一头是动作、一头是名词，就别扭了。",
+    "text_adult": "判断法：关联词分别贴到两个被连接成分前朗读，成分必须同类同形；*She both likes music and dancing 的错位源于 both 的辖域只盖住 likes。",
+    "visual": "天平两端各放一个 -ing 词，天平平平的",
+    "anchors": []
+   },
+   {
+    "beat": "动词听最近的那个",
+    "text_kid": "either…or、neither…nor 领着两个数不一样的主语时，动词听离它最近的那个：students 在近处就 were，teacher 在近处就 was。",
+    "text_adult": "就近原则有心理语言学实在性（agreement attraction 实验传统）；但它排位最末：真主语被介词短语隔开时，跟着近处名词走正是经典的「就近错误」（The quality of the mangoes is…）。",
+    "visual": "动词侧着耳朵，听离它最近的那个主语说话",
+    "anchors": [
+     "G1_007",
+     "G3_131"
+    ]
+   }
+  ],
+  "examples": [
+   {
+    "level": 1,
+    "word_ids": [
+     "G1_014",
+     "G1_015"
+    ],
+    "sentence": "I like both cats and dogs.",
+    "scene_note": "配对+同形：both…and 夹着两个名词",
+    "supports": "claim"
+   },
+   {
+    "level": 1,
+    "word_ids": [
+     "G2_0781"
+    ],
+    "sentence": "She likes both music and dancing.",
+    "scene_note": "同形现场：both 移到两个名词短语前面，两边对齐",
+    "supports": "claim"
+   },
+   {
+    "level": 2,
+    "word_ids": [
+     "G1_007",
+     "G3_131"
+    ],
+    "sentence": "Neither the teacher nor the students were late.",
+    "scene_note": "就近现场：动词听近处的 students",
+    "supports": "claim"
+   },
+   {
+    "level": 2,
+    "word_ids": [
+     "G1_007",
+     "G3_131"
+    ],
+    "sentence": "Neither the students nor the teacher was late.",
+    "scene_note": "顺序一换：动词改听近处的 teacher",
+    "supports": "claim"
+   }
+  ],
+  "error_cases": [
+   {
+    "wrong": "She both likes music and dancing.",
+    "right": "She likes both music and dancing.",
+    "error_type": "平行结构错位",
+    "source_type": "条目成人层登记的事故例",
+    "diagnosis": "清单机制栏登记的错位例：both 的辖域只盖住 likes，后半盖不住；把 both 移到两个同形成分之前即对齐。回补机制第 2 节。"
+   },
+   {
+    "wrong": "The teacher and the students was happy.",
+    "right": "The teacher and the students were happy.",
+    "error_type": "就近误用-and 主语",
+    "source_type": "条目成人层登记的事故例",
+    "diagnosis": "清单边界明示：and 连接的主语永远复数，不适用就近（*The teacher and the students was 不成立）。回补机制第 3 节：就近只管 or/nor。"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "both 的搭档是 and 还是 or？",
+    "answer": "and——both…and 是一对，搭档不能串门。",
+    "hint": "回到机制第 1 节「搭档不能串门」。"
+   }
+  ],
+  "relatives": [
+   {
+    "id": "GR-12",
+    "rel": "同族"
+   },
+   {
+    "id": "GR-34",
+    "rel": "同族"
+   }
+  ],
+  "pain_points": [
+   "错不完"
+  ],
+  "adult": {
+   "sources": [
+    "Purdue OWL 关联并列条；CGEL 一致三原则；Swan《PEU》——接触等级：二手系统论述级"
+   ],
+   "boundary": "① 就近原则只管 or/nor 型并列主语；and 连接的主语永远复数。② 就近不是通用许可：The quality of the mangoes is… 中谓语必须跟真正主语 quality，跟着近处走是「就近错误」。③ 混合数主语时把复数放后面更自然，是文体建议非语法强制。④ neither…nor 本身已含否定，谓语不再加否定词。",
+   "disputes": [
+    "就近原则的地位有温和分歧：严格形式语法倾向把它处理为「意义一致」的副产品或口语宽容，CGEL 明列为独立原则之一。教学口径取 CGEL：规则照教，但明确它排位最末，与语法一致冲突时语法一致优先。"
+   ],
+   "evidence_grade": "二手系统论述级",
+   "pending": [
+    "误解探针待补（入模标准要求 ≥1）"
+   ]
+  },
+  "zone": "语法",
+  "group": "GR",
+  "prereq": [],
+  "probes": [],
+  "status": "入模中",
+  "version": "1.0",
+  "changelog": [
+   {
+    "date": "2026-11-01",
+    "change": "清单 v6 散文入模（数据补齐总攻·波次 C1）",
+    "basis": "专家清单 v6 GR 组原文"
+   }
+  ]
+ }
+}

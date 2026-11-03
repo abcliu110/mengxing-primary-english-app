@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>融合原型 v3 · 三级结构（词根词缀专区 × 主 App）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #ece7db; color: #2d2a26; line-height: 1.55; }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 18px 12px 50px; }
+  .proto-note { background: #5b21b6; color: #fff; border-radius: 12px; padding: 12px 15px; font-size: 0.88rem; margin-bottom: 12px; }
+  .phone { background: #f7f3ec; border: 2px solid #cfc4a8; border-radius: 22px; padding: 14px 12px 18px; box-shadow: 0 4px 18px rgba(90,70,30,.12); }
+  .crumb { font-size: 0.82rem; color: #8a6d3b; font-weight: 700; margin-bottom: 10px; }
+  .crumb button { background: none; border: none; color: #8a6d3b; font-weight: 800; cursor: pointer; font-size: 0.82rem; padding: 0; }
+  .view { display: none; } .view.active { display: block; }
+  /* L0 */
+  .discipline { background: #fff; border: 1.5px solid #d9c08a; border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; font-size: 0.9rem; }
+  .discipline b.t { color: #3d3225; }
+  .dots { font-size: 0.8rem; color: #7a6a52; margin-top: 6px; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin: 0 2px 0 8px; }
+  .d-full { background: #4c9a3f; } .d-half { background: #e08a1e; } .d-no { background: #a39e93; }
+  .pcard { display: flex; align-items: center; gap: 12px; width: 100%; background: #fff; border: 1px solid #e7ddc8; border-radius: 16px; padding: 14px; margin-bottom: 9px; cursor: pointer; text-align: left; font: inherit; }
+  .pcard:hover { border-color: #8a6d3b; }
+  .pcard .ic { font-size: 1.7rem; }
+  .pcard .main { flex: 1; }
+  .pcard .name { font-weight: 900; color: #5b4632; font-size: 1.02rem; }
+  .pcard .desc { font-size: 0.82rem; color: #7a6a52; }
+  .pcard .num { text-align: right; font-size: 0.8rem; color: #8a6d3b; font-weight: 800; white-space: nowrap; }
+  .pcard .num b { font-size: 1.15rem; display: block; color: #5b4632; }
+  .pcard.law { border-color: #c4b5fd; background: #fbfaff; }
+  /* L1 */
+  .p-head { margin-bottom: 10px; }
+  .p-head h2 { color: #5b4632; font-size: 1.2rem; }
+  .p-head p { font-size: 0.85rem; color: #7a6a52; }
+  .tools { position: sticky; top: 0; background: #f7f3ec; padding: 6px 0 10px; z-index: 5; }
+  .tools input { width: 100%; border: 1.5px solid #d8c69c; border-radius: 999px; padding: 9px 15px; font-size: 0.92rem; background: #fff; }
+  .filters { display: flex; gap: 6px; margin-top: 8px; }
+  .filters button { border: 1.5px solid #d8c69c; background: #fff; border-radius: 999px; padding: 4px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer; color: #6b5426; }
+  .filters button.on { background: #8a6d3b; color: #fff; border-color: #8a6d3b; }
+  .group { background: #fff; border: 1px solid #e7ddc8; border-radius: 14px; margin-bottom: 9px; overflow: hidden; }
+  .g-head { width: 100%; display: flex; justify-content: space-between; align-items: center; background: #fdf8ec; border: none; padding: 11px 14px; font: inherit; font-weight: 900; color: #5b4632; cursor: pointer; font-size: 0.95rem; }
+  .g-head small { color: #8a6d3b; font-weight: 700; }
+  .g-body { display: none; }
+  .group.open .g-body { display: block; }
+  .group.open .chev { transform: rotate(90deg); }
+  .chev { transition: transform .15s; }
+  .row { display: flex; align-items: center; gap: 9px; width: 100%; padding: 10px 14px; border-top: 1px solid #f0e9d8; background: #fff; font: inherit; text-align: left; cursor: pointer; font-size: 0.93rem; }
+  .row:hover { background: #fffdf4; }
+  .row .nm { font-weight: 800; color: #3d3225; min-width: 86px; }
+  .row .gl { flex: 1; color: #7a6a52; font-size: 0.84rem; }
+  .row .ct { font-weight: 900; color: #8a6d3b; white-space: nowrap; }
+  .row.zero { opacity: .55; cursor: default; }
+  .tag4 { background: #b98a2f; color: #fff; font-size: 0.66rem; border-radius: 5px; padding: 1px 5px; font-weight: 800; white-space: nowrap; }
+  .live { background: #e8f3e4; color: #49713c; font-size: 0.68rem; font-weight: 800; border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
+  .dead { background: #eceae6; color: #77705f; font-size: 0.68rem; font-weight: 800; border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
+  .nores { display: none; text-align: center; color: #8b8172; font-size: 0.88rem; padding: 14px; }
+  .badge { background: #e8f3e4; color: #49713c; font-size: 0.72rem; font-weight: 700; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+  .badge.warn { background: #fdf0e2; color: #9a6212; }
+  .lid { background: #8a6d3b; color: #fff; font-weight: 900; border-radius: 7px; padding: 2px 8px; font-size: 0.82rem; white-space: nowrap; }
+  .chips2 { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip2 { background: #f3efe6; border: 1px solid #ddd0b2; border-radius: 999px; padding: 3px 11px; font-size: 0.85rem; font-weight: 700; }
+  .case { display: flex; gap: 8px; flex-wrap: wrap; }
+  .case div { flex: 1; min-width: 150px; border-radius: 10px; padding: 9px 12px; font-size: 0.89rem; }
+  .case .wrong { background: #fdeeee; border: 1px solid #f2c1c1; }
+  .case .right { background: #ecf6ea; border: 1px solid #bfe0b8; }
+  /* L2 */
+  .detail h2 { color: #5b4632; font-size: 1.22rem; margin: 2px 0 6px; }
+  .detail h3 { color: #8a6d3b; margin: 16px 0 6px; font-size: 0.98rem; }
+  .quote { border-left: 4px solid #d9c08a; background: #fffdf4; padding: 8px 12px; border-radius: 0 10px 10px 0; font-size: 0.9rem; margin-bottom: 7px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; background: #fff; }
+  th, td { border: 1px solid #e7ddc8; padding: 6px 9px; text-align: left; }
+  th { background: #f7ecd4; color: #5b4632; }
+  .hl { color: #b3402e; font-weight: 900; }
+  .fake { background: #fdeeee; border: 1px solid #f2c1c1; border-radius: 12px; padding: 11px 13px; font-size: 0.89rem; }
+  .quiz { background: #fff; border: 1px solid #e7ddc8; border-radius: 12px; padding: 12px 14px; font-size: 0.9rem; }
+  .quiz button { margin: 6px 6px 0 0; border: 1.5px solid #c9b48a; background: #fff; border-radius: 8px; padding: 5px 12px; font-weight: 700; cursor: pointer; font-size: 0.88rem; }
+  .quiz button.ok { background: #49713c; border-color: #49713c; color: #fff; }
+  .quiz button.no { background: #b3402e; border-color: #b3402e; color: #fff; }
+  .stage { font-weight: 900; color: #5b21b6; }
+  .more { width: 100%; margin-top: 8px; border: 1.5px dashed #c9b48a; background: #fffdf7; border-radius: 10px; padding: 8px; font-weight: 800; color: #8a6d3b; cursor: pointer; font-size: 0.88rem; }
+  .toast { display: none; background: #3d3225; color: #fdf6e0; border-radius: 10px; padding: 10px 13px; font-size: 0.85rem; margin-top: 10px; }
+  .foot { color: #8b8172; font-size: 0.8rem; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="proto-note"><b>融合原型 v3 · 三级结构 · 未改主文件</b><br>按手机宽画的（主 App 的孩子多半在手机/平板上用）。第 0 级只有 6 张面板卡 + 规律入口 → 第 1 级面板页/规律列表分组折叠 + 搜索筛选 → 第 2 级明细页/规律页才出现词表。可以点进去验：前缀面板 → in- 明细页；词根面板 → *spek- 明细页；规律入口 → V-33～V-39 列表 → 每条规律页（机制、例词、病例、小测）和面板互相回链。搜索和筛选是能用的。</div>
+
+  <div class="phone">
+    <div class="crumb" id="crumb"><button onclick="goHome()">← 单词大世界</button> · 构词（词语变形金刚）</div>
+
+    <!-- L0 首页 -->
+    <section class="view active" id="v-home">
+      <div class="discipline"><b class="t">全区总纪律（V-15）</b>：先认零件，再猜全词——有些词是真积木，有些是整块石头，硬拆会拆错。
+        <div class="dots">透明度：<span class="dot d-full"></span>全透明放心拆<span class="dot d-half"></span>半透明只是帮记<span class="dot d-no"></span>不透明整块记</div>
+      </div>
+      <div id="panelCards"></div>
+      <button class="pcard law" onclick="openLaws()">
+        <span class="ic">🧩</span>
+        <span class="main"><span class="name">词缀规律</span><br><span class="desc">先学规律，再查零件：头部定律、变色龙、假拆分…</span></span>
+        <span class="num"><b>7</b>条规律</span><span>›</span>
+      </button>
+      <p class="foot">首页就这些：1 张纪律卡 + 6 张面板卡 + 1 个规律入口，约 1.5 屏。95 个条目页一个都不摊在首页。</p>
+    </section>
+
+    <!-- L1 面板页 -->
+    <section class="view" id="v-panel">
+      <div class="p-head"><h2 id="pTitle"></h2><p id="pMeta"></p></div>
+      <div class="tools">
+        <input id="q" type="search" placeholder="🔍 搜这个面板里的条目，如 un、-ly、spek…">
+        <div class="filters">
+          <button data-f="all" class="on">全部</button>
+          <button data-f="has">只看有词的</button>
+          <button data-f="zero">空位待补</button>
+        </div>
+      </div>
+      <div id="groups"></div>
+      <div class="nores" id="nores">这个面板里没有匹配的条目，换个关键词试试。</div>
+    </section>
+
+    <!-- L1 规律列表 -->
+    <section class="view" id="v-laws">
+      <div class="p-head"><h2>🧩 词缀规律 · 7 条</h2><p>规律层：只在这里讲机制，面板明细页只引用不重讲。点任意一条进规律页。</p></div>
+      <div class="discipline" style="margin-bottom:10px"><b class="t">导学（V-39 压缩版）</b>：先学防假拆 → 再按义项一小家一小家学 → 每个词缀都要放到句子里用。完整教学说明在家长门。</div>
+      <div id="lawGroups"></div>
+    </section>
+
+    <!-- L2 明细页 -->
+    <section class="view" id="v-detail"><div class="detail" id="detailBox"></div></section>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <p class="foot">计数口径：laws-prototype 合并态现算（MORPH_ZONE_BLUEPRINT §3.2）。词根面板只列 ≥2 成员的 28 家，40 多个独苗家族不上面板、只在单词卡反链；明细页词表先显示 12 个，其余点「展开全部」。</p>
+</div>
+
+<script>
+/* ---------- 数据：面板 → 分组 → 条目（计数为蓝图现算口径） ---------- */
+const PANELS = {
+ prefix: { icon:"🚀", name:"高频前缀", desc:"二十前缀逐条 + 变体组，按出场率排序，不按字母序", total:"20 条 · 87 词",
+  groups:[
+   {t:"二十前缀（V-33 顺序）", rows:[
+     ["un-","不；做相反动作",16,{top:1}],["re-","再一次；往回",12,{top:1}],["in-（否定）","不，非",10,{top:1,go:"in"}],["dis-","不；分开",10,{top:1}],
+     ["sub-","在…下面",13], ["in-/im-（向内）","向内",9,{go:"in"}], ["over-","过度；在上",3], ["inter-","在…之间",3],
+     ["de-","向下；去除",2], ["trans-","跨越",2], ["mid-","中间",2],
+     ["mis-","错误地",1], ["pre-","预先",1], ["non-","非",1], ["en-/em-","使成为",1], ["super-","超",1],
+     ["fore-","预先（名单内，库内暂无词）",0], ["semi-","一半（名单内，库内暂无词）",0], ["anti-","反对（名单内，库内暂无词）",0], ["under-","在下（名单内，库内暂无词）",0]]},
+   {t:"同化变体组（V-34）", rows:[
+     ["im- / il- / ir-","in- 的变身：遇 p 变 im-、遇 l 变 il-、遇 r 变 ir-",19,{go:"in"}],
+     ["com- / col- / cor-","con- 的变身（collect、correct…）",0,"note"], ["suc- / suf- / sup-","sub- 的变身（support、suffer…）",0,"note"]]},
+   {t:"否定双供货商组（V-35）", rows:[
+     ["un- vs in-","两个「不」怎么分工：活零件 vs 退休零件",0,{go:"in"}]]}
+  ]},
+ suffix: { icon:"🎨", name:"高频后缀", desc:"按变身功能分组，每条带营业状态：通电还能造词，封存只守老词", total:"5 组 · 200+ 词",
+  groups:[
+   {t:"副词化", rows:[["-ly","…地",28,{live:1}]]},
+   {t:"施事（做事的人/物）", rows:[["-er","做…的人/物",28,{live:1}],["-or","做…的人",6,{dead:1}],["-ist","从事…的人",6,{live:1}],["-ian","…方面的人",5,{live:1}]]},
+   {t:"形容词化", rows:[["-y","多…的",21,{live:1}],["-able","能够被…的",15,{live:1,go:"able"}],["-ful","充满…的",13,{live:1}],["-ible","能够被…的（拉丁老词）",11,{dead:1,go:"able"}],["-ous","具有…的",4,{live:1}],["-al","属于…的",3,{live:1}],["-ic","…的",3,{live:1}],["-ive","有…倾向的",2,{live:1}],["-less","没有…的",2,{live:1}],["-en","…制的（材料）",2,{dead:1}]]},
+   {t:"名词化", rows:[["-ion 家族","行为；状态",15,{dead:1}],["-th","性质；序数同形",13,{dead:1}],["-ness","性质；状态",6,{live:1}],["-ment","行为；结果",5,{live:1}],["-ity","性质",4,{dead:1}],["-ence","性质；状态",2,{dead:1}]]},
+   {t:"动词化", rows:[["-ate","使成为",10,{dead:1}],["-en","使变得",6,{live:1}],["-ify","使…化",2,{live:1}],["-ize","使…化",1,{live:1}]]}
+  ]},
+ root: { icon:"🌱", name:"词根家族", desc:"黏着根家族 28 家（≥2 个成员才上榜），点一家看全家族词表", total:"28 家 · 93 词",
+  groups:[
+   {t:"黏着根家族", rows:[
+     ["*spek-","看",19,{go:"spek"}],["fer","带、运",5],["form","形",4],["vis","看",4],["dict","说",4],
+     ["port","搬",3],["cept","取",3],["fect","做",3],["tend","伸",3],["gest","携",3],["ply","折",3],["fin","界限",3],["graph","写",3],["vers","转",3],["mov","移",3],["phon","声",3],
+     ["ced","行",2],["miss","送",2],["nounce","报",2],["logy","学问",2],["rect","直",2],["skept","察",2],["rog","问",2],["tain","持",2],["sci","知",2],["vid","看",2],["sens","感",2],["flamm","火",2]]},
+   {t:"新古典拼装件（并入本面板）", rows:[["tele- / photo- / bio- 等","零件是古的，整词是近代拼装的",14]]}
+  ]},
+ flex: { icon:"🔁", name:"屈折词尾", desc:"一个词尾一份工作：复数、三单、过去式…与语法区互链，只在一处计数", total:"8 个功能位",
+  groups:[
+   {t:"八功能位（GR-29）", rows:[
+     ["名词复数 -s/-es","babies（y→i）、leaves（f→v）拼写注齐",22],["所有格 -'s","独立物主形 hers / ours / theirs…",5],
+     ["动词三单 -s","does / goes / studies + 词形链",7],["过去式 -ed","规则与不规则同链呈现",50],
+     ["过去分词 -en 位","fallen / written…",7],["现在分词 -ing","moving + make 的 -ing 登记",3],
+     ["比较级 -er","bigger（双写）、easier（y→i）",13],["最高级 -est","biggest…",1]]}
+  ]},
+ assim: { icon:"🦎", name:"同化家族", desc:"前缀尾巴照着后面字母改：变体全表（辅一面板，挂靠前缀）", total:"67 词",
+  groups:[
+   {t:"按原形前缀分组", rows:[
+     ["ad- 家族","ac-/af-/ag-/al-/an-/ap-/ar-/as-/at- 都是 ad- 变的",20],
+     ["in- 家族","im-/il-/ir-（点进看明细）",16,{go:"in"}],
+     ["sub- 家族","suc-/suf-/sup- 都是 sub- 变的",13],
+     ["con- 家族","com-/col-/cor- 都是 con- 变的",10],
+     ["ex- 家族","ef- 是 ex- 变的（effect）",10],
+     ["ob- 家族","oc-/of-/op- 都是 ob- 变的",3]]}
+  ]},
+ compound: { icon:"🧱", name:"复合词", desc:"两个词合体成一个新词（辅二面板，现「合成词合体工坊」升级）", total:"124 词",
+  groups:[
+   {t:"按构成方式", rows:[
+     ["名词 + 名词","classroom、sunflower、football…",0,"note"],["形容词 + 名词","blackboard、greenhouse…",0,"note"],
+     ["混合与截短（V-20）","brunch（breakfast+lunch）、smog（smoke+fog）",0,"note"]]}
+  ]}
+};
+const ORDER = ["prefix","suffix","root","flex","assim","compound"];
+
+/* ---------- L0 ---------- */
+document.getElementById('panelCards').innerHTML = ORDER.map(k=>{
+  const p = PANELS[k];
+  return `<button class="pcard" onclick="openPanel('${k}')">
+    <span class="ic">${p.icon}</span>
+    <span class="main"><span class="name">${p.name}</span><br><span class="desc">${p.desc}</span></span>
+    <span class="num"><b>${p.total.split('·')[0].trim()}</b>${p.total.split('·')[1] ? p.total.split('·')[1].trim() : ''}</span><span>›</span></button>`;
+}).join('');
+
+/* ---------- L1 ---------- */
+let curPanel = null, curFilter = 'all';
+function openPanel(k){
+  curPanel = k; curFilter = 'all';
+  document.querySelectorAll('.filters button').forEach(b=>b.classList.toggle('on', b.dataset.f==='all'));
+  document.getElementById('q').value = '';
+  const p = PANELS[k];
+  document.getElementById('pTitle').textContent = p.icon + ' ' + p.name;
+  document.getElementById('pMeta').textContent = p.desc + '（共 ' + p.total + '）';
+  document.getElementById('groups').innerHTML = p.groups.map((g,gi)=>`
+    <div class="group ${gi===0?'open':''}">
+      <button class="g-head" onclick="this.parentNode.classList.toggle('open')"><span>${g.t}</span><small>${g.rows.length} 条 <span class="chev">›</span></small></button>
+      <div class="g-body">${g.rows.map(r=>rowHTML(r)).join('')}</div>
+    </div>`).join('');
+  applyFilter();
+  setCrumb('panel');
+  showView('v-panel');
+}
+function rowHTML(r){
+  const [nm, gl, ct, opt] = r;
+  const o = (typeof opt === 'string') ? {note:1} : (opt || {});
+  const zero = ct === 0 && !o.note;
+  const tags = (o.top ? '<span class="tag4">头部四将</span>' : '') + (o.live ? '<span class="live">通电</span>' : '') + (o.dead ? '<span class="dead">封存</span>' : '');
+  const cnt = o.note ? '<span class="ct">明细页现算</span>' : (zero ? '<span class="ct">0 · 待补词</span>' : `<span class="ct">${ct} 词</span>`);
+  const click = o.go ? `onclick="openDetail('${o.go}')"` : (zero || o.note ? `onclick="toast('该条目的明细页与本模板相同，由数据现算生成；原型只做了 in-、*spek-、-able vs -ible 三页供验。')"` : `onclick="toast('明细页同模板：讲解引用 → 家族词表（透明度点）→ 易混对手 → 假拆名单 → 两段式练习。原型只做了 in-、*spek-、-able vs -ible 三页供验。')"`);
+  return `<button class="row ${zero?'zero':''}" data-nm="${nm.toLowerCase()}" data-gl="${gl}" data-ct="${ct}" ${zero?'':click}>
+    <span class="nm">${nm}</span>${tags}<span class="gl">${gl}</span>${cnt}<span>›</span></button>`;
+}
+function applyFilter(){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  let any = false;
+  document.querySelectorAll('#groups .row').forEach(r=>{
+    const matchQ = !q || r.dataset.nm.includes(q) || r.dataset.gl.includes(q);
+    const ct = +r.dataset.ct;
+    const matchF = curFilter==='all' || (curFilter==='has' && ct>0) || (curFilter==='zero' && ct===0);
+    const vis = matchQ && matchF;
+    r.style.display = vis ? '' : 'none';
+    if (vis) any = true;
+  });
+  document.querySelectorAll('#groups .group').forEach(g=>{
+    const visRows = [...g.querySelectorAll('.row')].some(r=>r.style.display!=='none');
+    g.style.display = visRows ? '' : 'none';
+    if (visRows && q) g.classList.add('open');
+  });
+  document.getElementById('nores').style.display = any ? 'none' : 'block';
+}
+document.getElementById('q').addEventListener('input', applyFilter);
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{
+  curFilter = b.dataset.f;
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on', x===b));
+  applyFilter();
+});
+
+/* ---------- L2 ---------- */
+const DETAILS = {
+ in: `<button class="back" onclick="backPanel()">← 回面板</button>
+  <h2>in- 家族 · 19 词（否定 10 + 向内 9）</h2>
+  <h3>📖 讲解（引用规律原文）</h3>
+  <div class="quote"><b>V-34</b>：in- 碰到 p 变 im-、碰到 l 变 il-、碰到 r 变 ir-，同化处几乎都产生双写字母。</div>
+  <div class="quote"><b>V-35</b>：表示「不」，日耳曼用 un-、拉丁用 in-；in- 已退休只守老词。</div>
+  <h3>👨‍👩‍👧 家族词表（先 4 行示意，正式版全量现算）</h3>
+  <table><tr><th>组</th><th>词</th><th>透明度</th></tr>
+  <tr><td>im-</td><td>i<span class="hl">m</span>possible、i<span class="hl">m</span>polite</td><td><span class="dot d-full"></span>全透明</td></tr>
+  <tr><td>il-</td><td>i<span class="hl">ll</span>egal、i<span class="hl">ll</span>ogical</td><td><span class="dot d-full"></span>全透明</td></tr>
+  <tr><td>ir-</td><td>i<span class="hl">rr</span>egular、i<span class="hl">rr</span>esponsible</td><td><span class="dot d-full"></span>全透明</td></tr>
+  <tr><td>原形</td><td>incorrect、invisible、inside（向内）</td><td><span class="dot d-full"></span>全透明</td></tr></table>
+  <button class="more">展开全部 19 词</button>
+  <h3>🚫 防假拆</h3>
+  <div class="fake">illusion、immerse 的 in- 是「向内」不是「否定」；unit、uncle 的 un- 根本不是前缀，整词记。</div>
+  <h3>✏️ 练习（两段式 · V-30）</h3>
+  <div class="quiz"><span class="stage">第一段 · 只给零件</span>：ir- + regular → 什么意思？<br>
+  <button onclick="ans(this,true)">不规则的</button><button onclick="ans(this,false)">很规则的</button><br>
+  <span class="stage">第二段 · 加语境</span>：English verbs can be regular or <b>irregular</b>.<br>
+  <button onclick="ans(this,true)">不规则的</button><button onclick="ans(this,false)">很规则的</button></div>`,
+ spek: `<button class="back" onclick="backPanel()">← 回面板</button>
+  <h2>*spek-「看」家族 · 19 词（先显示 8 个）</h2>
+  <h3>📖 讲解（引用规律原文）</h3>
+  <div class="quote"><b>V-26</b>：原始印欧语 *spek-「看」：inspect 是看进去，respect 是回头重看，species 是看出来的样子。分写 spect/spec/spic/skop 五形，呈现归一到家族键。</div>
+  <h3>👨‍👩‍👧 家族词表</h3>
+  <table><tr><th>词</th><th>透明度</th><th>一句话拆解</th></tr>
+  <tr><td>inspect</td><td><span class="dot d-full"></span></td><td>in- 向内 + spect 看 → 检查</td></tr>
+  <tr><td>respect</td><td><span class="dot d-half"></span></td><td>re- 回头 + spect 看 → 重视</td></tr>
+  <tr><td>expect</td><td><span class="dot d-half"></span></td><td>ex- 向外 + spect 看 → 期待</td></tr>
+  <tr><td>suspect</td><td><span class="dot d-half"></span></td><td>sus- 从下 + spect 看 → 怀疑</td></tr>
+  <tr><td>prospect</td><td><span class="dot d-half"></span></td><td>pro- 向前 + spect 看 → 前景</td></tr>
+  <tr><td>spectator</td><td><span class="dot d-full"></span></td><td>spect 看 + -ator 人 → 观众</td></tr>
+  <tr><td>species</td><td><span class="dot d-no"></span></td><td>看出来的样子 → 物种（已专化，整记为主）</td></tr>
+  <tr><td>telescope</td><td><span class="dot d-full"></span></td><td>tele- 远 + skop 看 → 望远镜（拼装件）</td></tr></table>
+  <button class="more" onclick="toast('正式版此处展开其余 11 词：perspective、spectacle、specific、special（半/不透明）等，全部由 morphemes 谓词现算。')">展开全部 19 词</button>
+  <h3>🚫 假亲缘警告</h3>
+  <div class="fake">speak、spell 长得像，但不是这家人——认亲靠数据，不靠眼缘。</div>`,
+ able: `<button class="back" onclick="backPanel()">← 回面板</button>
+  <h2>易混对手：-able vs -ible</h2>
+  <h3>📖 讲解（引用规律原文）</h3>
+  <div class="quote"><b>V-36</b>：后缀是变身机，但营业状态不同：-able 还通电，-ible 已封存；意思相同，分工不同。</div>
+  <table><tr><th></th><th>状态</th><th>怎么用</th><th>例词</th></tr>
+  <tr><td><b>-able</b></td><td><span class="live">通电</span></td><td>装在能独立成词的词根上，新词也用它</td><td>readable、comfortable、googleable</td></tr>
+  <tr><td><b>-ible</b></td><td><span class="dead">封存</span></td><td>只跟拉丁黏着根，只守老词，不能自造</td><td>visible、credible、incredible</td></tr></table>
+  <h3>判据（一句话）</h3>
+  <p style="font-size:.92rem">去掉后缀后剩下的部分<b>能独立成词</b> → -able；<b>不能独立成词</b>（vis-、cred-）→ 多半是 -ible 老词，整词记。例外逐个登记，不编口诀。</p>`
+};
+function openDetail(id){
+  document.getElementById('detailBox').innerHTML = DETAILS[id];
+  document.getElementById('detailBox').scrollTop = 0;
+  setCrumb('detail');
+  showView('v-detail');
+}
+function backPanel(){ setCrumb('panel'); showView('v-panel'); }
+
+/* ---------- 规律层：列表 + 详情 ---------- */
+const LAWS = {
+ "V-33": {g:"前缀三条", badge:"有练习", title:"头部定律：20 个前缀管住 97%",
+  kid:"前缀里也有大明星：最常用的 20 个管住了几乎全部带前缀的词，前 4 个就占了一多半。先学它们，回报最高。",
+  mech:["词频是陡峭的幂律：20 个前缀覆盖带前缀词的 97%，un-/re-/in-/dis- 四个占 58%，un- 一家占 26%（White, Sowell & Yanagihara 1989，统计口径在成人层）。","所以前缀面板按出场率排序，不按字母序：头部四将排最前。"],
+  ex:["un- unhappy","re- rewrite","in- incorrect","dis- disagree"], wrong:null,
+  quiz:{q:"哪个前缀自己一家就占了带前缀词的四分之一左右？", opts:["un-","tele-","tri-"], a:0}, link:["prefix","去前缀面板看这 20 个 →"]},
+ "V-34": {g:"前缀三条", badge:"有病例 · 有练习", title:"变色龙前缀 in-：会变成后面字母的样子",
+  kid:"in- 是个变色龙：后面的字母是什么样，它就跟着变，还留下一对双写字母当脚印。",
+  mech:["同化：in- 遇 b/m/p 变 im-，遇 l 变 il-，遇 r 变 ir-，变身处几乎都产生双写（ll / rr）。","这是全组唯一可判对错的分布规则：变体由后随辅音唯一决定。"],
+  ex:["im- impossible","il- illegal","ir- irregular"], wrong:["inpossible","impossible（遇 p 变 im-）"],
+  quiz:{q:"in- + regular 拼「不规则的」应该写？", opts:["inregular","irregular","imregular"], a:1}, link:["in","去 in- 明细页看同化词表 →"]},
+ "V-35": {g:"前缀三条", badge:"有练习", title:"表示「不」的有两个供货商：un- 和 in-",
+  kid:"同样是「不」，un- 是还在上班的活零件，新词也用它；in- 已退休，只守老词。",
+  mech:["un- 来自日耳曼老底子，产出性强：unfriend 这种新词还在用它造。","in- 来自拉丁语，只在老词里（incredible、invisible），选哪个由词的出身决定，不能自由替换。"],
+  ex:["un- unhappy / unfriend","in- incredible / incorrect"], wrong:null,
+  quiz:{q:"新造词表示「不好吃的」，用哪个？", opts:["in-","un-"], a:1}, link:["in","去 in- 明细页看双供货商对手 →"]},
+ "V-36": {g:"后缀二条", badge:"有练习", title:"后缀是变身机，但有的通电、有的封存",
+  kid:"后缀能给词变身。有的还通着电、能装新词；有的已经封存，只能认老词。",
+  mech:["通电组：-ness、-able、-ly、-ful、-less，现在还能自由造新词。","封存组：-ible、-tion 只活在老词里；-able 与 -ible 意思同、分工不同，后缀面板里拆开并加营业状态灯。"],
+  ex:["-ness darkness","-able readable","-ible visible（封存）","-tion action（封存）"], wrong:null,
+  quiz:{q:"哪个后缀已经封存、不能自己拿来造新词？", opts:["-ness","-ible","-ly"], a:1}, link:["able","去 -able vs -ible 对手页 →"]},
+ "V-37": {g:"后缀二条", badge:"有病例 · 有练习", title:"拼写让路：后缀一来，词尾要变样",
+  kid:"后缀是大块头，它一来词尾要让路：e 走开、y 变 i、尾巴双写。",
+  mech:["去 e：make + ing → making。","y 变 i：happy + ness → happiness（辅音 + y 才变）。","双写：stop + ed → stopped。本条在正式版不单独成页——做成后缀面板顶部的提示条 + 例词变化标红；此处为讲解完整保留成页。"],
+  ex:["making（去 e）","happiness（y→i）","stopped（双写）"], wrong:["refered","referred（r 要双写）"],
+  quiz:{q:"swim + ing 应该拼成？", opts:["swiming","swimming"], a:1}, link:["suffix","去后缀面板看让路提示条 →"]},
+ "V-38": {g:"防错", badge:"有病例 · 有练习", title:"假拆分诊室：看着能拆，其实不能拆",
+  kid:"有的词穿着能拆的外衣，其实拆开是错的：根本没零件、组合义已死、零件义已变，三种病分开治。",
+  mech:["没零件型：butter 的 -er 不是「做事的人」，corner、river 同理，整词记。","组合失效型：butterfly 拆得出 butter + fly，但为什么这么叫没有定论，只能当助记。","零件义已变型：understand 的 under 是古义，按今义拆会拆错。"],
+  ex:["butter（整记）","corner（整记）","butterfly（半透明）","understand（整记）"], wrong:["breaktion","break 是整词，没有 break + tion 这种拆法"],
+  quiz:{q:"哪个词不能拆？", opts:["unhappy","butter","rewrite"], a:1}, link:["prefix","去面板看防假拆名单 →"]},
+ "V-39": {g:"防错", badge:"导学 · 家长层", title:"词缀教学法：先防假拆，再小集合 + 语境",
+  kid:"（本条是给老师和家长的说明，儿童侧只保留规律列表顶部的导学三句。）",
+  mech:["顺序：先立「有的词不能拆」的概念，再教词缀。","分课：按义项分小集合教（如先教表示「不」的一家），不一次倒一整张表。","语境：词缀和句子、阅读一起教；红利在孩子自己解新词。"],
+  ex:["导学三句（列表顶部）","家长门完整说明"], wrong:null,
+  quiz:{q:"教词缀的第一步是什么？", opts:["先背 20 个前缀表","先学会防假拆"], a:1}, link:["home","回构词首页看导学落地 →"]}
+};
+const LAW_GROUPS = ["前缀三条","后缀二条","防错"];
+function openLaws(){
+  document.getElementById('lawGroups').innerHTML = LAW_GROUPS.map(g=>`
+   <div class="group open"><div class="g-head"><span>${g}</span></div><div class="g-body" style="display:block">
+   ${Object.keys(LAWS).filter(id=>LAWS[id].g===g).map(id=>{const L=LAWS[id];return `
+     <button class="row" onclick="openLaw('${id}')"><span class="lid">${id}</span>
+     <span class="gl" style="color:#3d3225;font-size:.92rem"><b>${L.title}</b></span>
+     <span class="badge ${L.badge.includes('家长')?'warn':''}">${L.badge}</span><span>›</span></button>`;}).join('')}
+   </div></div>`).join('');
+  document.getElementById('crumb').innerHTML = '<button onclick="goHome()">← 构词首页</button> · 词缀规律';
+  showView('v-laws');
+}
+function openLaw(id){
+  const L = LAWS[id];
+  let h = `<button class="back" onclick="openLaws()">← 回规律列表</button>
+   <h2><span class="lid">${id}</span> ${L.title}</h2>
+   <div class="quote" style="margin-top:10px">🧒 ${L.kid}</div>
+   <h3>机制</h3>${L.mech.map(m=>`<div class="quote">${m}</div>`).join('')}
+   <h3>例词 / 例项</h3><div class="chips2">${L.ex.map(e=>`<span class="chip2">${e}</span>`).join('')}</div>`;
+  if (L.wrong) h += `<h3>病例</h3><div class="case"><div class="wrong">❌ ${L.wrong[0]}</div><div class="right">✅ ${L.wrong[1]}</div></div>`;
+  h += `<h3>小测</h3><div class="quiz">${L.quiz.q}<br>${L.quiz.opts.map((o,i)=>`<button onclick="ans(this,${i===L.quiz.a})">${o}</button>`).join('')}</div>
+   <p style="margin-top:12px"><button class="back" onclick="lawLink('${L.link[0]}')">${L.link[1]}</button></p>`;
+  document.getElementById('detailBox').innerHTML = h;
+  document.getElementById('crumb').innerHTML = '<button onclick="openLaws()">← 词缀规律</button> · ' + id;
+  showView('v-detail');
+}
+function lawLink(target){
+  if (target==='home') { goHome(); return; }
+  if (target==='prefix') { openPanel('prefix'); return; }
+  if (target==='suffix') { openPanel('suffix'); return; }
+  if (target==='in' || target==='able') {
+    if (!curPanel) curPanel = target==='in' ? 'prefix' : 'suffix';
+    openDetail(target);
+  }
+}
+
+/* ---------- 导航 ---------- */
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('toast').style.display = 'none';
+  window.scrollTo({top:0});
+}
+function setCrumb(level){
+  const c = document.getElementById('crumb');
+  if (level==='home') c.innerHTML = '<button onclick="goHome()">← 单词大世界</button> · 构词（词语变形金刚）';
+  if (level==='panel') c.innerHTML = '<button onclick="goHome()">← 构词首页</button> · ' + PANELS[curPanel].name;
+  if (level==='detail') c.innerHTML = '<button onclick="backPanel()">← ' + PANELS[curPanel].name + '</button> · 明细页';
+}
+function goHome(){ setCrumb('home'); showView('v-home'); }
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.display = 'block';
+  t.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+function ans(btn, ok){ btn.className = ok ? 'ok' : 'no'; btn.textContent += ok ? ' ✓' : ' ✗ 回讲解再看'; }
+</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>原型 v4 · 词缀规律双方案对比（默认顺序 vs 默认部位）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #ece7db; color: #2d2a26; line-height: 1.55; }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 18px 12px 50px; }
+  .proto-note { background: #5b21b6; color: #fff; border-radius: 12px; padding: 12px 15px; font-size: 0.88rem; margin-bottom: 12px; }
+  .switch { display: flex; gap: 8px; margin-bottom: 12px; }
+  .switch button { flex: 1; border: 2px solid #5b21b6; background: #fff; color: #5b21b6; border-radius: 12px; padding: 10px 8px; font-weight: 900; cursor: pointer; font-size: 0.92rem; }
+  .switch button.on { background: #5b21b6; color: #fff; }
+  .switch button small { display: block; font-weight: 600; font-size: 0.76rem; opacity: .85; }
+  .diff { background: #fff8e8; border: 1.5px dashed #b98a2f; border-radius: 12px; padding: 10px 13px; font-size: 0.86rem; margin-bottom: 12px; }
+  .phone { background: #f7f3ec; border: 2px solid #cfc4a8; border-radius: 22px; padding: 14px 12px 18px; box-shadow: 0 4px 18px rgba(90,70,30,.12); }
+  .crumb { font-size: 0.82rem; color: #8a6d3b; font-weight: 700; margin-bottom: 10px; }
+  .crumb button { background: none; border: none; color: #8a6d3b; font-weight: 800; cursor: pointer; font-size: 0.82rem; padding: 0; }
+  .view { display: none; } .view.active { display: block; }
+  .discipline { background: #fff; border: 1.5px solid #d9c08a; border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; font-size: 0.9rem; }
+  .pcard { display: flex; align-items: center; gap: 12px; width: 100%; background: #fff; border: 1px solid #e7ddc8; border-radius: 16px; padding: 14px; margin-bottom: 9px; cursor: pointer; text-align: left; font: inherit; }
+  .pcard .ic { font-size: 1.7rem; } .pcard .main { flex: 1; }
+  .pcard .name { font-weight: 900; color: #5b4632; font-size: 1.02rem; }
+  .pcard .desc { font-size: 0.82rem; color: #7a6a52; }
+  .pcard .num { text-align: right; font-size: 0.8rem; color: #8a6d3b; font-weight: 800; white-space: nowrap; }
+  .pcard .num b { font-size: 1.15rem; display: block; color: #5b4632; }
+  .pcard.law { border-color: #c4b5fd; background: #fbfaff; }
+  .pcard.dim { opacity: .55; cursor: default; }
+  .p-head h2 { color: #5b4632; font-size: 1.2rem; }
+  .p-head p { font-size: 0.85rem; color: #7a6a52; margin-bottom: 10px; }
+  .vtoggle { display: flex; gap: 6px; margin-bottom: 10px; }
+  .vtoggle button { border: 1.5px solid #c4b5fd; background: #fff; border-radius: 999px; padding: 4px 13px; font-size: 0.82rem; font-weight: 800; cursor: pointer; color: #5b21b6; }
+  .vtoggle button.on { background: #5b21b6; color: #fff; }
+  .group { background: #fff; border: 1px solid #e7ddc8; border-radius: 14px; margin-bottom: 9px; overflow: hidden; }
+  .g-head { display: flex; justify-content: space-between; align-items: center; background: #fdf8ec; padding: 11px 14px; font-weight: 900; color: #5b4632; font-size: 0.95rem; }
+  .g-head small { color: #8a6d3b; font-weight: 700; }
+  .row { display: flex; align-items: center; gap: 9px; width: 100%; padding: 10px 14px; border: none; border-top: 1px solid #f0e9d8; background: #fff; font: inherit; text-align: left; cursor: pointer; font-size: 0.93rem; }
+  .row:hover { background: #fffdf4; }
+  .row .gl { flex: 1; color: #3d3225; font-size: 0.9rem; }
+  .row .coord { font-size: 0.7rem; color: #8b8172; white-space: nowrap; }
+  .lid { background: #8a6d3b; color: #fff; font-weight: 900; border-radius: 7px; padding: 2px 8px; font-size: 0.8rem; white-space: nowrap; }
+  .lid.new { background: #b3402e; }
+  .badge { background: #e8f3e4; color: #49713c; font-size: 0.7rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+  .station { background: #5b21b6; color: #fff; font-size: 0.7rem; font-weight: 800; border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+  .detail h2 { color: #5b4632; font-size: 1.18rem; margin: 2px 0 8px; }
+  .detail h3 { color: #8a6d3b; margin: 15px 0 6px; font-size: 0.97rem; }
+  .quote { border-left: 4px solid #d9c08a; background: #fffdf4; padding: 8px 12px; border-radius: 0 10px 10px 0; font-size: 0.9rem; margin-bottom: 7px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; background: #fff; margin-bottom: 6px; }
+  th, td { border: 1px solid #e7ddc8; padding: 6px 9px; text-align: left; }
+  th { background: #f7ecd4; color: #5b4632; }
+  .hl { color: #b3402e; font-weight: 900; }
+  .quiz { background: #fff; border: 1px solid #e7ddc8; border-radius: 12px; padding: 12px 14px; font-size: 0.9rem; }
+  .quiz button { margin: 6px 6px 0 0; border: 1.5px solid #c9b48a; background: #fff; border-radius: 8px; padding: 5px 12px; font-weight: 700; cursor: pointer; font-size: 0.88rem; }
+  .quiz button.ok { background: #49713c; border-color: #49713c; color: #fff; }
+  .quiz button.no { background: #b3402e; border-color: #b3402e; color: #fff; }
+  .pn { display: flex; gap: 8px; margin-top: 16px; }
+  .pn button { flex: 1; border: 1.5px solid #c4b5fd; background: #fbfaff; border-radius: 10px; padding: 9px 6px; font-weight: 800; color: #5b21b6; cursor: pointer; font-size: 0.85rem; }
+  .pn button:disabled { opacity: .35; cursor: default; }
+  .pn .lab { display: block; font-size: 0.7rem; font-weight: 600; color: #8b8172; }
+  .back { background: none; border: none; color: #8a6d3b; font-weight: 800; cursor: pointer; font-size: 0.9rem; padding: 0; margin-bottom: 6px; }
+  .foot { color: #8b8172; font-size: 0.8rem; margin-top: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="proto-note"><b>原型 v4 · 双方案对比 · 未改主文件</b><br>上面两个大按钮就是要对比的<b>方案一 / 方案二</b>，随时来回切换看。两个方案共用同一份数据（每条规律带 part 部位 + path 站号两个坐标）、同一个首页、同一批规律页，<b>唯一差别是规律列表的默认组织方式</b>。新搜到的恒常律、三读律也编进来了（红标「新」，编号待与图鉴对账）。</div>
+
+  <div class="switch">
+    <button id="swA" class="on" onclick="setVariant('A')">方案一<small>规律页默认「按学习顺序」· 部位做切换视图</small></button>
+    <button id="swB" onclick="setVariant('B')">方案二<small>规律页默认「按部位」· 顺序只做翻页导航</small></button>
+  </div>
+  <div class="diff" id="diffBox"></div>
+
+  <div class="phone">
+    <div class="crumb" id="crumb">单词大世界 · 构词（词语变形金刚）</div>
+
+    <section class="view active" id="v-home">
+      <div class="discipline"><b>全区总纪律（V-15）</b>：先认零件，再猜全词——有些词是真积木，有些是整块石头，硬拆会拆错。</div>
+      <button class="pcard dim"><span class="ic">🚀</span><span class="main"><span class="name">高频前缀</span><br><span class="desc">面板在两方案中完全相同（旧分类），此处略</span></span><span class="num"><b>20 条</b>87 词</span></button>
+      <button class="pcard dim"><span class="ic">🎨</span><span class="main"><span class="name">高频后缀</span><br><span class="desc">同上，见 v3 原型</span></span><span class="num"><b>5 组</b>200+ 词</span></button>
+      <button class="pcard dim"><span class="ic">🌱</span><span class="main"><span class="name">词根家族 · 屈折 · 同化 · 复合</span><br><span class="desc">其余四个面板同上，两方案无差别</span></span><span class="num"><b>4 个</b>面板</span></button>
+      <button class="pcard law" onclick="openLaws()">
+        <span class="ic">🧩</span>
+        <span class="main"><span class="name">词缀规律</span><br><span class="desc" id="lawCardDesc"></span></span>
+        <span class="num"><b>9</b>条（7+2）</span><span>›</span>
+      </button>
+      <p class="foot">点「词缀规律」进去，对比就从那里开始。</p>
+    </section>
+
+    <section class="view" id="v-laws">
+      <div class="p-head"><h2>🧩 词缀规律 · 9 条</h2><p id="lawsSub"></p></div>
+      <div class="discipline"><b>导学（V-39 压缩版）</b>：先学防假拆 → 再按义项一小家一小家学 → 每个词缀都要放到句子里用。完整教学说明在家长门。</div>
+      <div class="vtoggle" id="vtoggle">
+        <button id="vtPath">按学习顺序</button>
+        <button id="vtPart">按部位</button>
+      </div>
+      <div id="lawGroups"></div>
+      <p class="foot">画框不算画：V-15 在首页顶部、V-30 练习口径在明细页里、V-39 在导学和家长门——两个方案都如此，不进列表当普通条目。</p>
+    </section>
+
+    <section class="view" id="v-detail"><div class="detail" id="detailBox"></div></section>
+  </div>
+
+  <p class="foot">双坐标一览：V-38（横切·第1站）｜ V-33（前缀·第2站）｜ V-36（后缀·第2站）｜ V-34（前缀·第3站）｜ V-37（横切·第3站）｜ 恒常律（横切·第3站）｜ 三读律（屈折·第3站）｜ V-35（前缀·第4站）。V-37 已按讨论从「后缀」挪到「横切」。</p>
+</div>
+
+<script>
+/* ---------- 数据：每条规律带双坐标 part（部位）+ station（学习站序） ---------- */
+const STATIONS = {1:"先防假拆", 2:"先学哪几个", 3:"零件会变样", 4:"零件的分工"};
+const PATH_ORDER = ["V-38","V-33","V-36","V-34","V-37","NEW-C","NEW-T","V-35"];
+const LAWS = {
+ "V-38": {part:"横切", st:1, title:"假拆分诊室：看着能拆，其实不能拆",
+  kid:"有的词穿着能拆的外衣，其实拆开是错的：根本没零件、组合义已死、零件义已变，三种病分开治。",
+  body:`<p>butter 的 -er 不是「做事的人」；butterfly 拆得出 butter + fly，但为什么这么叫没有定论，只能当助记；understand 的 under 是古义。</p>`,
+  quiz:{q:"哪个词不能拆？", opts:["unhappy","butter","rewrite"], a:1}},
+ "V-33": {part:"前缀", st:2, title:"头部定律：20 个前缀管住 97%",
+  kid:"前缀里也有大明星：最常用的 20 个管住了几乎全部带前缀的词，前 4 个就占了一多半。先学它们，回报最高。",
+  body:`<p>20 个前缀覆盖带前缀词的 97%，un-/re-/in-/dis- 四个占 58%，un- 一家占 26%（统计口径在成人层）。所以前缀面板按出场率排，不按字母序。</p>`,
+  quiz:{q:"哪个前缀自己一家就占了带前缀词的四分之一左右？", opts:["un-","tele-"], a:0}},
+ "V-36": {part:"后缀", st:2, title:"后缀是变身机，但有的通电、有的封存",
+  kid:"后缀能给词变身。有的还通着电、能装新词；有的已经封存，只能认老词。",
+  body:`<p>通电组：-ness、-able、-ly、-ful、-less；封存组：-ible、-tion。背后的道理是「类频率」：一个模式见过的不同词越多，越能拿去造新词（Bybee）——补进本条成人层。</p>`,
+  quiz:{q:"哪个后缀已经封存、不能自己拿来造新词？", opts:["-ness","-ible","-ly"], a:1}},
+ "V-34": {part:"前缀", st:3, title:"变色龙前缀 in-：会变成后面字母的样子",
+  kid:"in- 是个变色龙：后面的字母是什么样，它就跟着变，还留下一对双写字母当脚印。",
+  body:`<p>in- 遇 b/m/p 变 im-，遇 l 变 il-，遇 r 变 ir-。这是全组唯一可判对错的分布规则。病例：*inpossible → impossible。</p>`,
+  quiz:{q:"in- + regular 拼「不规则的」应该写？", opts:["inregular","irregular"], a:1}},
+ "V-37": {part:"横切", st:3, title:"拼写让路：后缀一来，词尾要变样",
+  kid:"后缀是大块头，它一来词尾要让路：e 走开、y 变 i、尾巴双写。",
+  body:`<p>去 e：making；y 变 i：happiness；双写：stopped、referred。注意它管的不只是派生后缀，屈折词尾（-ed、比较级 -er）也归它——所以本条在双坐标里 part=横切，不再塞在「后缀」名下。</p>`,
+  quiz:{q:"swim + ing 应该拼成？", opts:["swiming","swimming"], a:1}},
+ "NEW-C": {part:"横切", st:3, isNew:1, title:"恒常律：拼写守词素，不守发音（新 · 编号待对账）",
+  kid:"有的词读音全变了，拼写却死守老样子——因为拼写的任务是告诉你「这是一家人」。",
+  body:`<table><tr><th>一家</th><th>读音变了</th><th>拼写守住</th></tr>
+  <tr><td>sign 家</td><td>sign 里 g 不发音</td><td>signal 里 g 出现，拼写一直留着它</td></tr>
+  <tr><td>heal 家</td><td>heal → health 元音变了</td><td>heal 的拼写骨架不变</td></tr>
+  <tr><td>magic 家</td><td>magic → magician 的 c 读音变了</td><td>还是写 c</td></tr>
+  <tr><td>electric 家</td><td>electric → electricity 尾音变了</td><td>还是写 c</td></tr></table>
+  <p>它和 V-37 正好是一对：V-37 讲加缀后拼写<b>要变</b>的地方，这条讲读音变了拼写<b>偏不变</b>的地方。按音拼字写错的词，一大半是不知道这条。</p>`,
+  quiz:{q:"sign 里的 g 明明不发音，为什么还要写？", opts:["历史习惯，删了也行","为了让 signal 一家看起来是亲戚"], a:1}},
+ "NEW-T": {part:"屈折", st:3, isNew:1, title:"三读律：-s 和 -ed 各有三种读法（新 · 编号待对账）",
+  kid:"同一个词尾有三张脸：读 /s/ 还是 /z/、/t/ 还是 /d/，由前面最后一个音说了算——和变色龙 in- 是同一台机器，只不过那台管拼写，这台管发音。",
+  body:`<table><tr><th>词尾</th><th>前面是清音</th><th>前面是浊音/元音</th><th>前面是「亲戚音」</th></tr>
+  <tr><td>复数/三单 -s</td><td>/s/ cats、books</td><td>/z/ dogs、plays</td><td>/ɪz/ buses、watches（咝音后）</td></tr>
+  <tr><td>过去式 -ed</td><td>/t/ walked、helped</td><td>/d/ played、called</td><td>/ɪd/ wanted、needed（t/d 后）</td></tr></table>
+  <p>/ɪz/ 和 /ɪd/ 这张脸最难学：孩子要多等一拍才掌握（Berko 的 wug 实验），练习里给它单独留位置。本条 part=屈折，正式归属屈折面板，规律页与它互链。</p>`,
+  quiz:{q:"dogs 里的 -s 读哪个？", opts:["/s/","/z/","/ɪz/"], a:1}},
+ "V-35": {part:"前缀", st:4, title:"表示「不」的有两个供货商：un- 和 in-",
+  kid:"同样是「不」，un- 是还在上班的活零件，新词也用它；in- 已退休，只守老词。",
+  body:`<p>un- 是日耳曼老底子（unhappy、unfriend）；in- 是拉丁出身（incredible、incorrect）。选哪个由词的出身决定，不能自由替换。</p>`,
+  quiz:{q:"新造词表示「不好吃的」，用哪个？", opts:["in-","un-"], a:1}}
+};
+const PART_GROUPS = ["前缀","后缀","横切","屈折"];
+
+/* ---------- 方案状态 ---------- */
+let variant = 'A';        // A 默认顺序 / B 默认部位
+let viewMode = 'path';    // 规律列表当前视图（方案二锁定为 part）
+const DIFFS = {
+ A: "<b>方案一</b>：规律列表<b>默认按学习顺序</b>分组（第1站→第4站），孩子打开就是一条学习路径；「按部位」退为可切换的第二视图。规律页底部的上/下一条也按这个顺序。每行右端小字是它的另一个坐标（部位）。",
+ B: "<b>方案二</b>：规律列表<b>默认按部位</b>分组（和全站其他地方同一张地图）；学习顺序不出现在列表里，只藏在规律页底部的「上一条/下一条」里——学完一条，顺着路径滑到下一条。每行右端小字是它的站号。"
+};
+function setVariant(v){
+  variant = v;
+  viewMode = (v === 'A') ? 'path' : 'part';
+  document.getElementById('swA').classList.toggle('on', v==='A');
+  document.getElementById('swB').classList.toggle('on', v==='B');
+  document.getElementById('diffBox').innerHTML = DIFFS[v];
+  document.getElementById('lawCardDesc').textContent = v==='A'
+    ? "先学防假拆 → 清单 → 形 → 义（默认学习顺序，可切换部位）"
+    : "前缀 / 后缀 / 横切 / 屈折（默认部位，顺序在规律页里）";
+  document.getElementById('vtoggle').style.display = v==='A' ? '' : 'none';
+  if (document.getElementById('v-laws').classList.contains('active')) renderLaws();
+}
+
+/* ---------- 规律列表 ---------- */
+function lawRow(id){
+  const L = LAWS[id];
+  const coord = viewMode === 'path' ? `部位：${L.part}` : `第 ${L.st} 站 · ${STATIONS[L.st]}`;
+  return `<button class="row" onclick="openLaw('${id}')">
+    <span class="lid ${L.isNew?'new':''}">${L.isNew ? '新' : id}</span>
+    <span class="gl"><b>${L.title}</b></span>
+    ${viewMode==='path' ? `<span class="station">第 ${L.st} 站</span>` : ''}
+    <span class="coord">${coord}</span><span>›</span></button>`;
+}
+function renderLaws(){
+  document.getElementById('vtPath').classList.toggle('on', viewMode==='path');
+  document.getElementById('vtPart').classList.toggle('on', viewMode==='part');
+  document.getElementById('lawsSub').textContent = viewMode==='path'
+    ? "当前视图：按学习顺序（第 1 站先学）。每条右端标注它住在哪个部位。"
+    : "当前视图：按部位（和面板同一张地图）。每条右端标注它是第几站。";
+  let html = '';
+  if (viewMode === 'path') {
+    for (let s = 1; s <= 4; s++) {
+      const ids = PATH_ORDER.filter(id => LAWS[id].st === s);
+      html += `<div class="group"><div class="g-head"><span>第 ${s} 站 · ${STATIONS[s]}</span><small>${ids.length} 条</small></div>${ids.map(lawRow).join('')}</div>`;
+    }
+  } else {
+    for (const p of PART_GROUPS) {
+      const ids = Object.keys(LAWS).filter(id => LAWS[id].part === p);
+      html += `<div class="group"><div class="g-head"><span>${p}规律</span><small>${ids.length} 条</small></div>${ids.map(lawRow).join('')}</div>`;
+    }
+  }
+  document.getElementById('lawGroups').innerHTML = html;
+}
+document.getElementById('vtPath').onclick = ()=>{ viewMode='path'; renderLaws(); };
+document.getElementById('vtPart').onclick = ()=>{ viewMode='part'; renderLaws(); };
+function openLaws(){
+  renderLaws();
+  document.getElementById('crumb').innerHTML = '<button onclick="goHome()">← 构词首页</button> · 词缀规律';
+  showView('v-laws');
+}
+
+/* ---------- 规律页（两方案共用，底部翻页按 path） ---------- */
+function openLaw(id){
+  const L = LAWS[id];
+  const i = PATH_ORDER.indexOf(id);
+  const prev = i > 0 ? PATH_ORDER[i-1] : null;
+  const next = i < PATH_ORDER.length - 1 ? PATH_ORDER[i+1] : null;
+  document.getElementById('detailBox').innerHTML = `
+   <button class="back" onclick="openLaws()">← 回规律列表</button>
+   <h2><span class="lid ${L.isNew?'new':''}">${L.isNew ? '新条目' : id}</span> ${L.title}</h2>
+   <p style="font-size:.8rem;color:#8b8172">双坐标：部位 = ${L.part} ｜ 学习顺序 = 第 ${L.st} 站 · ${STATIONS[L.st]}</p>
+   <div class="quote" style="margin-top:10px">🧒 ${L.kid}</div>
+   <h3>机制</h3><div style="font-size:.92rem">${L.body}</div>
+   <h3>小测</h3><div class="quiz">${L.quiz.q}<br>${L.quiz.opts.map((o,j)=>`<button onclick="ans(this,${j===L.quiz.a})">${o}</button>`).join('')}</div>
+   <div class="pn">
+     <button ${prev?`onclick="openLaw('${prev}')"`:'disabled'}><span class="lab">‹ 上一条（按学习顺序）</span>${prev ? LAWS[prev].title : '已是第一条'}</button>
+     <button ${next?`onclick="openLaw('${next}')"`:'disabled'}><span class="lab">下一条（按学习顺序）›</span>${next ? LAWS[next].title : '已是最后一条'}</button>
+   </div>`;
+  document.getElementById('crumb').innerHTML = '<button onclick="openLaws()">← 词缀规律</button> · ' + (L.isNew ? '新条目' : id);
+  showView('v-detail');
+}
+
+/* ---------- 导航 ---------- */
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0});
+}
+function goHome(){
+  document.getElementById('crumb').textContent = '单词大世界 · 构词（词语变形金刚）';
+  showView('v-home');
+}
+function ans(btn, ok){ btn.className = ok ? 'ok' : 'no'; btn.textContent += ok ? ' ✓' : ' ✗ 回讲解再看'; }
+setVariant('A');
+</script>
+</body>
+</html>
