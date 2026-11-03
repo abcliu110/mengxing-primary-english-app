@@ -16,6 +16,7 @@
 | 词源 | `model/etymology.json` | 已是单一源；刷新通道 `imported/mengxing-etymology-prototype/refresh_et.py`（带断言） |
 | 动词 | `model/verb_*.json` 等模型文件 | 主文件 VB 模块内嵌为生成副本 |
 | 介词 | `model/laws/prep_*.yaml` + `model/prep_family*.json` | 主文件内嵌为生成副本 |
+| 口语对话与拍手歌 | `model/spoken_data.json` | 2026-11-03 新登记：老 App 口语资产（DAILY_EXPRESSIONS 144 条/16 场景、ORAL_12_SCENES 12 组、GRAMMAR_CHANTS 8 首）按借鉴清单 A1/A3 逐字提取保全；提取通道 `tools/extract_spoken.py`（带计数与逐条深比断言），主文件口语区内嵌为生成副本（`tools/gen_spoken.py`） |
 
 ## 2. 新数据准入
 
