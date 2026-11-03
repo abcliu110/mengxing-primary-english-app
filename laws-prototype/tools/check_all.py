@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+check_all.py — 一键总检（《数据源规范》§6 校验门的统一入口）。
+
+依次运行全部校验并输出汇总表；任一失败则退出码非零：
+  gen_morph.py --check        词根 DATA/LAWREG 两文件再生比对
+  gen_laws.py --check         规律（LAWDATA + 代词/冠词/连词专区）稳态比对
+  gen_phonics.py --check      拼读 DATA 再生比对
+  gen_words.py --check        词页 WLIST/WPAGE 再生比对
+  gen_spoken.py --check       口语 SP_DATA 再生比对
+  gen_et.py --check           词源 ET 载荷 + 计数文案比对
+  check_morph_sync.py         词根三方（事实源 ↔ 主文件 ↔ morphology 文件）深比
+  check_upstream.py           上游 ↔ 总表五条链对账
+
+用法：python3 laws-prototype/tools/check_all.py
+退出码：0=全绿；1=至少一项失败。
+"""
+import subprocess
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+
+CHECKS = [
+    ("gen_morph --check", "gen_morph.py", ["--check"]),
+    ("gen_laws --check", "gen_laws.py", ["--check"]),
+    ("gen_phonics --check", "gen_phonics.py", ["--check"]),
+    ("gen_words --check", "gen_words.py", ["--check"]),
+    ("gen_spoken --check", "gen_spoken.py", ["--check"]),
+    ("gen_et --check", "gen_et.py", ["--check"]),
+    ("check_morph_sync", "check_morph_sync.py", []),
+    ("check_upstream", "check_upstream.py", []),
+]
+
+
+def main():
+    rows = []
+    all_ok = True
+    for label, script, args in CHECKS:
+        r = subprocess.run([sys.executable, str(HERE / script), *args],
+                           capture_output=True, text=True)
+        ok = r.returncode == 0
+        all_ok = all_ok and ok
+        tail = (r.stdout.strip().splitlines() or [""])[-1]
+        if not ok and r.stderr.strip():
+            tail = (tail + " | stderr: " + r.stderr.strip().splitlines()[-1])[:160]
+        rows.append((label, "PASS" if ok else f"FAIL(rc={r.returncode})", tail))
+    print("=" * 78)
+    print("一键总检 check_all")
+    print("=" * 78)
+    for label, status, tail in rows:
+        print(f"{status:>10}  {label:<24} {tail[:100]}")
+    print("-" * 78)
+    print("结论：", "全部通过" if all_ok else "存在失败项（见上）")
+    return 0 if all_ok else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

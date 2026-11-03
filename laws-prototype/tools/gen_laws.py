@@ -54,6 +54,43 @@ CHECK_MORPH = ROOT / "tools" / "check_morph_sync.py"
 JD = lambda o: json.dumps(o, ensure_ascii=False)  # 默认分隔符 — 已验证为各区字面量的字节格式
 JDC = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":"))  # morph_data.json 字节格式
 
+# 生成标记（规范 §3.1）：本生成器管理的字面量前各一行；--check 两侧先剥标记再比
+# （标记不属于生成内容），--write 确保标记存在。
+MARKER = "/* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */"
+MARKER_RE = re.compile(r"^\s*/\* GENERATED: tools/gen_\w+\.py ← model/\S+ · DO NOT EDIT \*/\s*$")
+LAW_MARK_SPOTS = [  # (块签名, 块内锚点)
+    ("var LAWFLAG", "var LAWDATA="),
+    ("window.PN", "var LAWS ="), ("window.PN", "var PN_EXTRA ="),
+    ("window.PN", "var PN_ADULT ="), ("window.PN", "var TOPIC ="),
+    ("window.PN", "var GROUPS ="),
+    ("window.AR", "var LAWS ="), ("window.AR", "var AR_EXTRA ="),
+    ("window.AR", "var AR_ADULT ="),
+    ("window.CJ", "var LAWS ="), ("window.CJ", "var TOPIC ="),
+    ("window.CJ", "var EXTRA_TOP ="), ("window.CJ", "var CJWB_SECTIONS ="),
+]
+
+
+def strip_markers(text):
+    return "\n".join(ln for ln in text.split("\n") if not MARKER_RE.match(ln))
+
+
+def ensure_law_markers(text):
+    idxs = []
+    for sig, anchor in LAW_MARK_SPOTS:
+        s, e = find_block(text, sig)
+        idxs.append(text.index(anchor, s, e))
+    for a in sorted(idxs, reverse=True):
+        ls = text.rfind("\n", 0, a) + 1
+        if ls > 0:
+            prev_start = text.rfind("\n", 0, ls - 1) + 1
+            if text[prev_start:ls - 1].strip() == MARKER:
+                continue
+        indent = text[ls:a]
+        if indent.strip():
+            indent = ""
+        text = text[:ls] + indent + MARKER + "\n" + text[ls:]
+    return text
+
 DIFFS = []  # (范围, 条目, 字段, 旧值, 新值)
 
 
@@ -792,15 +829,16 @@ def main(argv):
     if mode == "--check":
         ok = True
         new_text = apply_code_edits(apply_reps(text, reps))
-        if new_text != text:
+        gen_cmp, cur_cmp = strip_markers(new_text), strip_markers(text)
+        if gen_cmp != cur_cmp:
             ok = False
-            # 定位第一处差异
-            for i, (a, b) in enumerate(zip(new_text, text)):
+            # 定位第一处差异（剥标记后坐标）
+            for i, (a, b) in enumerate(zip(gen_cmp, cur_cmp)):
                 if a != b:
-                    print(f"主文件与生成结果不一致，首差在字符 {i}：\n  生成：{new_text[max(0,i-60):i+60]!r}\n  现行：{text[max(0,i-60):i+60]!r}")
+                    print(f"主文件与生成结果不一致，首差在字符 {i}：\n  生成：{gen_cmp[max(0,i-60):i+60]!r}\n  现行：{cur_cmp[max(0,i-60):i+60]!r}")
                     break
             else:
-                print(f"主文件与生成结果长度不一致：{len(new_text)} vs {len(text)}")
+                print(f"主文件与生成结果长度不一致：{len(gen_cmp)} vs {len(cur_cmp)}")
         md_cur = json.loads(MORPH_DATA.read_text(encoding="utf-8"))
         if not deep_eq(md_new, md_cur):
             ok = False
@@ -844,6 +882,7 @@ def main(argv):
     for label, newt in expect.items():
         if got.get(label) != newt:
             fail(f"写前自检：{label} 组装结果不一致")
+    new_text = ensure_law_markers(new_text)
     MAIN.write_text(new_text, encoding="utf-8")
     print(f"主文件已写回：{len(text2)} → {len(new_text)} 字符")
     print(f"差异记录 {len(DIFFS)} 条（详见 --check 前的构建输出/报告）")

@@ -40,6 +40,25 @@ SEGMENTS = [
     ("LAWREG", "const LAWREG = ", None, "lawreg"),
 ]
 
+MARKER = "/* GENERATED: tools/gen_morph.py ← model/morph_data.json · DO NOT EDIT */"
+
+
+def ensure_marker(src: str, anchor: str, span_start: int) -> str:
+    """确保锚点所在行之前有一行生成标记（规范 §3.1）。anchor 须为紧邻字面量
+    跨度起点之前的那次出现。已存在则原样返回。"""
+    a = src.rfind(anchor, 0, span_start)
+    if a < 0:
+        return src
+    ls = src.rfind("\n", 0, a) + 1
+    if ls > 0:
+        prev_start = src.rfind("\n", 0, ls - 1) + 1
+        if src[prev_start:ls - 1].strip() == MARKER:
+            return src
+    indent = src[ls:a]
+    if indent.strip():
+        indent = ""
+    return src[:ls] + indent + MARKER + "\n" + src[ls:]
+
 MAX_DIFFS = 10
 
 
@@ -224,6 +243,17 @@ def write_file(path: Path, rendered: dict) -> None:
         if out[s0:s1] != text:
             changed.append(label)
         out = out[:s0] + text + out[s1:]
+    # 生成标记（规范 §3.1）：每段字面量前确保一行标记（自后向前插入，偏移不互扰）
+    seg_spans = []
+    for _label, anchor, start_filter, _key in SEGMENTS:
+        s0, _s1 = find_span(out, anchor, start_filter)
+        seg_spans.append((s0, anchor))
+    for s0, anchor in sorted(seg_spans, reverse=True):
+        new_out = ensure_marker(out, anchor, s0)
+        if new_out != out:
+            if "生成标记" not in changed:
+                changed.append("生成标记")
+            out = new_out
     new_raw = out.encode("utf-8")
     if new_raw != raw:
         path.write_bytes(new_raw)

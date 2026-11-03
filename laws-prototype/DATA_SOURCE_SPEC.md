@@ -13,9 +13,9 @@
 | 词根词缀 | `model/morph_data.json` | 词根分组/词缀页/构词分类（Wave 2 由两文件内嵌 DATA 合并建成） |
 | 词汇（词页与各区用词） | `model/words_master.json` | 词页、拼读词卡、词根词表、词源词表的用词并集（Wave 3 建成）；与词库冲突时词库为准 |
 | 拼读 | `model/phonics_master.json` | 模式、成员、检查点的合并总表（Wave 4 建成）；词卡内容（音标、释义）不单独存放，生成时从词汇总表/词库带出 |
-| 词源 | `model/etymology.json` | 已是单一源；刷新通道 `imported/mengxing-etymology-prototype/refresh_et.py`（带断言） |
-| 动词 | `model/verb_*.json` 等模型文件 | 主文件 VB 模块内嵌为生成副本 |
-| 介词 | `model/laws/prep_*.yaml` + `model/prep_family*.json` | 主文件内嵌为生成副本 |
+| 词源 | `model/etymology.json` | 已是单一源；刷新通道 `tools/refresh_et.py`（2026-11-03 自归档区迁回，引擎 `tools/gen_et.py`，带断言与 --check 门禁）；归档区同名脚本仅作历史保留，不作通道 |
+| 动词 | `model/verb_*.json` 等模型文件 | 事实源如左登记；主文件 VB 模块内嵌**尚未生成化**（无 gen_verb，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
+| 介词 | `model/laws/prep_*.yaml` + `model/prep_family*.json` | 事实源如左登记；主文件内嵌与区内静态 HTML **尚未生成化**（无 gen_prep，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
 | 口语对话与拍手歌 | `model/spoken_data.json` | 2026-11-03 新登记：老 App 口语资产（DAILY_EXPRESSIONS 144 条/16 场景、ORAL_12_SCENES 12 组、GRAMMAR_CHANTS 8 首）按借鉴清单 A1/A3 逐字提取保全；提取通道 `tools/extract_spoken.py`（带计数与逐条深比断言），主文件口语区内嵌为生成副本（`tools/gen_spoken.py`） |
 
 ## 2. 新数据准入
@@ -53,6 +53,8 @@
 - 成员类数据验成员也验内容字段（教训：拼读刷新只验成员、漏了内容，4 张错音标卡混入）；
 - 文案中的计数口径与事实源实测一致。
 
+统一入口：`tools/check_all.py`（一键跑全部 gen_* --check + check_morph_sync + check_upstream）。上游对账（`tools/check_upstream.py`）验「上游源头 ↔ 总表分仓」五条链（YAML/wordbank/phonetic_gb/wordsets/checkpoints），与 gen_* 的「总表 ↔ 内嵌」互补，缺一不可。
+
 校验不过，不得提交。
 
 ## 7. 例外登记
@@ -61,6 +63,7 @@
 - 拼读词卡中有 13 个词不在词库（whom、itself、am、is、are、be、a、an、how many/how much/how old/how tall/how heavy 等功能词与疑问短语）：属教学必需的功能词例外，卡面内容以图鉴/词典口径为准，登记备查。
 - C-14 与 GR-15（a/an 两条）为目录内双登记：Stewart 已裁定暂不合并，总表中保持两条并登记关系。
 - V-39 仅有解码区一份（无专区注册）：七条词缀规律待遇不对称系历史形成，登记备查。
+- 拼读检查点 addendum 基线分叉（2026-11-03 销项登记）：phonics_master checkpoints.addendum 自带注记——entries/units 覆盖对账仍为 2,287 条基线，GP-o-ʌ/GP-er-ə 两池按当时词库 2,352 条推导，与现行词库 2,473 条不同基。已核对：分叉来源是两池新建时（2026-11-02 裁定）的推导基数与旧覆盖对账口径不一致，非数据错误；48 站检查点本体已按现行 167 站主线与定版词池全量重算对齐（check_upstream 链 e 常设核对）。处理：接受现状，addendum 注记原文保留作历史记录，不再视为待裁分叉；基线口径如需统一，另行立项。
 
 ## 8. 变更本规范
 

@@ -51,6 +51,25 @@ WM_PATH = BASE / "model" / "words_master.json"
 
 JD = lambda o: json.dumps(o, ensure_ascii=False)
 
+MARKER = "/* GENERATED: tools/gen_words.py ← model/words_master.json · DO NOT EDIT */"
+ANCHORS = {"WLIST": "var WLIST=", "WPAGE": "var WPAGE="}
+
+
+def ensure_marker(src: str, label: str, span_start: int) -> str:
+    """确保指定段字面量锚点所在行之前有一行生成标记（规范 §3.1）。"""
+    a = src.rfind(ANCHORS[label], 0, span_start)
+    if a < 0:
+        return src
+    ls = src.rfind("\n", 0, a) + 1
+    if ls > 0:
+        prev_start = src.rfind("\n", 0, ls - 1) + 1
+        if src[prev_start:ls - 1].strip() == MARKER:
+            return src
+    indent = src[ls:a]
+    if indent.strip():
+        indent = ""
+    return src[:ls] + indent + MARKER + "\n" + src[ls:]
+
 
 def scan_literal(src: str, start: int) -> int:
     """定界扫描（与 gen_morph.py 同逻辑）。"""
@@ -224,7 +243,15 @@ def main(argv) -> int:
     if not ok:
         return 1
     if argv[1] == "--write":
-        print("两段均已与生成结果逐字节一致，文件未改动（稳态）")
+        out = src
+        for label in ("WPAGE", "WLIST"):  # 自后向前（WPAGE 在 WLIST 之后）
+            s0x, _s1x = find_span(out, ANCHORS[label], "[" if label == "WLIST" else "{")
+            out = ensure_marker(out, label, s0x)
+        if out != src:
+            MAIN.write_bytes(out.encode("utf-8"))
+            print("两段均已与生成结果逐字节一致；已补生成标记并写回")
+        else:
+            print("两段均已与生成结果逐字节一致、生成标记在位，文件未改动（稳态）")
     return 0
 
 

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""刷新主文件词源区的内联数据（数据层变更后重跑本脚本即可）。
+"""【归档副本，勿作正式通道】正式版已于 2026-11-03 迁至 laws-prototype/tools/refresh_et.py
+（引擎为 tools/gen_et.py）。本文件仅作历史归档保留（《数据源规范》§5.2：归档不参与生成与引用）。
+
+刷新主文件词源区的内联数据（数据层变更后重跑本脚本即可）。
 只替换 ET script 里的 var D = <payload>; 一行 + 区内 5 处静态计数文案，每处断言唯一命中。
 payload 构造与 build_integration.py 完全一致。"""
 import json, pathlib

@@ -67,6 +67,24 @@ WM_PATH = BASE / "model" / "words_master.json"
 
 JD = lambda o: json.dumps(o, ensure_ascii=False)  # 默认分隔符 = 现行字节格式
 
+MARKER = "/* GENERATED: tools/gen_phonics.py ← model/phonics_master.json · DO NOT EDIT */"
+
+
+def ensure_marker(src: str, span_start: int) -> str:
+    """确保拼读 DATA 字面量锚点所在行之前有一行生成标记（规范 §3.1）。"""
+    a = src.rfind("const DATA = ", 0, span_start)
+    if a < 0:
+        return src
+    ls = src.rfind("\n", 0, a) + 1
+    if ls > 0:
+        prev_start = src.rfind("\n", 0, ls - 1) + 1
+        if src[prev_start:ls - 1].strip() == MARKER:
+            return src
+    indent = src[ls:a]
+    if indent.strip():
+        indent = ""
+    return src[:ls] + indent + MARKER + "\n" + src[ls:]
+
 FIXED4 = {"heard": "/hɜːd/", "gas": "/ɡæs/", "toy": "/tɔɪ/", "math": "/mæθ/"}
 # wordsets 字段 -> embedded 字段映射（描述字段对账用）
 WS_MAP = {"grapheme": "g", "phoneme": "ph", "cat": "cat", "group": "grp",
@@ -309,6 +327,11 @@ def main(argv) -> int:
     gen_text = JD(built)
     if gen_text == cur_text:
         print(f"PASS: DATA 字面量逐字节一致（{len(cur_text)} 字符；已判项均已落盘）")
+        if argv[1] == "--write":
+            out = ensure_marker(src, s0)
+            if out != src:
+                MAIN.write_bytes(out.encode("utf-8"))
+                print("已补生成标记并写回（字面量本身无变化）")
         return 0
     # 逐字节不等 -> 内容差异必须恰为已判项集合
     paths = deep_diff_paths(built, current)
@@ -333,6 +356,8 @@ def main(argv) -> int:
     if argv[1] == "--check":
         return 2
     out = src[:s0] + gen_text + src[s1:]
+    s0b, _s1b = find_span(out, "const DATA = ", '{"patterns"')
+    out = ensure_marker(out, s0b)
     MAIN.write_bytes(out.encode("utf-8"))
     print(f"写回完成：文件 {len(src)} -> {len(out)} 字符（字面量 {len(cur_text)} -> {len(gen_text)}）")
     return 0

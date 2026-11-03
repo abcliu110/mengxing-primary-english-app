@@ -22,6 +22,23 @@ BASE = Path(__file__).resolve().parent.parent  # laws-prototype/
 JSON_PATH = BASE / "model" / "spoken_data.json"
 MAIN = BASE / "mengxing-prototype-v1.html"
 ANCHOR = "var SP_DATA = "
+MARKER = "/* GENERATED: tools/gen_spoken.py ← model/spoken_data.json · DO NOT EDIT */"
+
+
+def ensure_marker(src: str, span_start: int) -> str:
+    """确保字面量锚点所在行之前有一行生成标记（规范 §3.1）。"""
+    a = src.rfind(ANCHOR, 0, span_start)
+    if a < 0:
+        return src
+    ls = src.rfind("\n", 0, a) + 1
+    if ls > 0:
+        prev_start = src.rfind("\n", 0, ls - 1) + 1
+        if src[prev_start:ls - 1].strip() == MARKER:
+            return src
+    indent = src[ls:a]
+    if indent.strip():
+        indent = ""
+    return src[:ls] + indent + MARKER + "\n" + src[ls:]
 
 
 def render(obj) -> str:
@@ -104,11 +121,14 @@ def main(argv) -> int:
         print(f"FAIL: SP_DATA 不一致（再生 {len(rendered)} 字符 / 现行 {len(existing)} 字符；"
               f"内容深相等={same}）")
         return 1
-    if rendered == existing:
-        print("写回完成：SP_DATA 与现行逐字节相同，文件未改动")
+    out = src if rendered == existing else src[:s0] + rendered + src[s1:]
+    s0b, _s1b = find_span(out)
+    out = ensure_marker(out, s0b)
+    if out == src:
+        print("写回完成：SP_DATA 与现行逐字节相同、生成标记在位，文件未改动")
         return 0
-    MAIN.write_text(src[:s0] + rendered + src[s1:], encoding="utf-8")
-    print(f"写回完成：SP_DATA 已由 spoken_data.json 再生（{len(existing)} → {len(rendered)} 字符）")
+    MAIN.write_text(out, encoding="utf-8")
+    print(f"写回完成：SP_DATA 已由 spoken_data.json 再生（{len(existing)} → {len(rendered)} 字符；生成标记已确保）")
     return 0
 
 
