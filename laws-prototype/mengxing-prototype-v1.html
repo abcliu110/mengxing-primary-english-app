@@ -722,27 +722,86 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 </div>
 </div>
 
+<style id="hm-style">
+/* 首页改版（大标题 + 深绿统计横幅 + 线描大卡片网格）—— 全部规则只作用于 #v-home */
+#v-home .hm-hero{text-align:center;padding:20px 0 16px}
+#v-home .hm-title{font-size:34px;font-weight:900;letter-spacing:3px;color:var(--ink);line-height:1.2;margin:0}
+#v-home .hm-sub{color:var(--muted);font-size:15px;margin-top:7px}
+#v-home .hm-banner{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;background:linear-gradient(120deg,var(--accent-deep),var(--accent));color:#fff;border-radius:16px;padding:18px 20px;margin-bottom:16px}
+#v-home .hm-today{flex:none}
+#v-home .hm-today-n{font-size:42px;font-weight:900;line-height:1}
+#v-home .hm-today-l{font-size:13px;opacity:.85;margin-top:5px}
+#v-home .hm-mid{flex:1 1 220px;min-width:200px}
+#v-home .hm-mid-top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:7px}
+#v-home .hm-bar{height:8px;border-radius:4px;background:rgba(255,255,255,.32);overflow:hidden}
+#v-home .hm-bar i{display:block;height:100%;width:0;border-radius:4px;background:#fff;transition:width .5s ease}
+#v-home .hm-hint{font-size:12.5px;opacity:.85;margin-top:7px}
+#v-home .hm-right{flex:none;font-size:14.5px;display:flex;gap:7px;align-items:baseline}
+#v-home .hm-right b{font-size:21px;font-weight:900}
+#v-home .hm-dot{opacity:.6}
+#v-home .hm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:6px}
+#v-home .hm-card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:20px 12px 15px;text-align:center;cursor:pointer;align-self:start}
+#v-home .hm-card:active{transform:scale(.985)}
+#v-home .hm-ic{height:44px;display:flex;align-items:center;justify-content:center}
+#v-home .hm-ic svg{width:40px;height:40px}
+#v-home .hm-name{font-size:18.5px;font-weight:800;color:var(--ink);margin:9px 0 11px}
+#v-home .hm-pbar{height:6px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:0 6px}
+#v-home .hm-pbar i{display:block;height:100%;width:0;border-radius:3px;background:var(--accent);transition:width .5s ease}
+#v-home .hm-cnt{color:var(--muted);font-size:13px;margin-top:8px}
+#v-home .hm-card.sm{padding:15px 10px 12px}
+#v-home .hm-card.sm .hm-ic{height:34px}
+#v-home .hm-card.sm .hm-ic svg{width:30px;height:30px}
+#v-home .hm-card.sm .hm-name{font-size:16px;margin:6px 0 4px}
+@media (min-width:768px){
+#v-home .hm-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+#v-home .hm-title{font-size:38px}
+#v-home .hm-banner{padding:20px 24px}
+}
+@media (min-width:1024px){
+#v-home .hm-grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+#v-home .hm-title{font-size:42px}
+#v-home .hm-card{padding:24px 14px 18px}
+}
+@media (min-width:1440px){
+#v-home .hm-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+}
+@media (prefers-reduced-motion:reduce){
+#v-home .hm-bar i,#v-home .hm-pbar i{transition:none}
+#v-home .hm-card:active{transform:none}
+}
+</style>
 <!-- ============ 首页 ============ -->
 <section class="view on" id="v-home">
-<div class="sec-t">十五区</div>
-<div class="grid">
-<div class="card" data-go="phon"><div class="ic">🔤</div><h3>拼读区</h3><p>拼法菜单、变脸榜、定律区、拼读序列主线、中国孩子难点地图。</p><span class="n">S 组 + SR 组 · 本区全功能样板</span></div>
-<div class="card" data-go="vocab"><div class="ic">🧩</div><h3>词汇解码区</h3><p>词源故事、词根家族、变身机、打包错位对照台、假词源侦探。</p><span class="n">V 组 + CO-17 · 本区全功能样板</span></div>
-<div class="card" data-go="morph"><div class="ic">🌱</div><h3>词根词缀</h3><p>前缀、词根、后缀：拆开词，看懂词。</p><span class="n">926 条拆分 · 真模块</span></div>
-<div class="card" data-go="etym"><div class="ic">📜</div><h3>词源区</h3><p>每个词的身世档案：从哪种语言来、最早是什么意思、怎么一步步变成今天这样。</p><span class="n">1816 词 · 双源核实 · 真模块</span></div>
-<div class="card" data-go="grammar"><div class="ic">🏗️</div><h3>语法区</h3><p>总纲三条置顶（象似性 / 标记性 / 分析语总叙事），反意疑问三步法已做深。</p><span class="n">GR / TA / CO / QI · 95 条 · 目录页</span></div>
-<div class="card" data-go="verb"><div class="ic">🏃</div><h3>动词区</h3><p>时态时间机器、五形式衣橱、多义网络——动词的形和义，全套玩清。</p><span class="n">458 词条 · 279 词义项网络 · 真模块</span></div>
-<div class="card" data-go="pron"><div class="ic">🧑‍🤝‍🧑</div><h3>代词区</h3><p>人称、物主、反身、指示、不定——指人的小词，全套讲清。</p><span class="n">33 条 · 白板动画 · 真模块</span></div>
-<div class="card" data-go="art"><div class="ic">🧢</div><h3>冠词区</h3><p>先数得清，才谈冠词：a、an、the 与零冠词，全套讲清。</p><span class="n">21 条 · 白板动画 · 真模块</span></div>
-<div class="card" data-go="conj"><div class="ic">🔗</div><h3>连词区</h3><p>句子和句子怎么粘：并列、从属、关联连词与连接副词，全套讲清。</p><span class="n">15 条 · 白板动画 · 真模块</span></div>
-<div class="card" data-go="prep"><div class="ic">📍</div><h3>介词区</h3><p>知识地图学介词：一个原型场景，走通 43 个词的义项链。</p><span class="n">43 词 · 地图 + 白板课 + 互动工具 · 真模块</span></div>
-
-
-<div class="card" data-go="spoken"><div class="ic">🗣️</div><h3>口语区</h3><p>16 个生活场景、144 条双人对话：逐句点读、整段连读，还有场景问答与拍手歌。</p><span class="n">144 条对话 · 16 场景 · 真模块</span></div>
-<div class="card" data-go="expr"><div class="ic">✍️</div><h3>表达写作区</h3><p>整块取句、范文先行、语义韵选词、对话的规矩。</p><span class="n">E / W / NE · 59 条 · 目录页</span></div>
-<div class="card" data-go="tech"><div class="ic">🧰</div><h3>技巧区</h3><p>153 条定版学习技巧：按痛点、按技能、按顺序三种找法；每条有做法、自检与用错警告。</p><span class="n">TEC 五路 · 153 条 · 真模块</span></div>
-<div class="card" data-go="review"><div class="ic">🗂️</div><h3>复习区</h3><p>间隔队列 + 病因错题本：错题不按题号归档，按病因归档。</p><span class="n">样板页 · 数据来自旗舰单元病例</span></div>
-<div class="card" data-go="map"><div class="ic">🗺️</div><h3>学习地图</h3><p>全 App 一张图：练过的地方点亮，没练的地方还灰着；点节点直接去那一区。</p><span class="n">跨区进度 · 只读本机记录</span></div>
+<div class="hm-hero"><h1 class="hm-title">萌星英语</h1><p class="hm-sub">护 眼 学 习 · 规 律 版</p></div>
+<div class="hm-banner" id="hmBanner">
+<div class="hm-today"><div class="hm-today-n" id="hmTodayN">0</div><div class="hm-today-l">今日学习</div></div>
+<div class="hm-mid"><div class="hm-mid-top"><span id="hmPct">完成度 0%</span><span id="hmDone">已学 0 / 0</span></div><div class="hm-bar"><i id="hmBarFill"></i></div><div class="hm-hint" id="hmHint">正在读取本机学习记录…</div></div>
+<div class="hm-right"><span><b id="hmWrongN">0</b> 今日错题</span><span class="hm-dot">·</span><span><b id="hmDueN">0</b> 待复习</span></div>
+</div>
+<div class="hm-grid" id="hmZoneGrid">
+<div class="hm-card" data-go="phon" data-hm-zone="拼读"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l5 4V6l-5 4H4z"/><path d="M15.5 9.5a4 4 0 0 1 0 5"/><path d="M18 7a7.5 7.5 0 0 1 0 10"/></svg></div><div class="hm-name">拼读区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>过关词与拼读规律</div></div>
+<div class="hm-card" data-go="vocab" data-hm-zone="词汇解码"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><path d="M17 13.5h3.5V20H14a3 3 0 0 1 3-3z" transform="translate(0,-.5)"/><path d="M13.5 17a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0" opacity="0"/><path d="M17 20.5a3.5 3.5 0 1 1 3.5-3.5"/></svg></div><div class="hm-name">词汇解码区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>词库 2,942 词</div></div>
+<div class="hm-card" data-go="morph" data-hm-zone="词根"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 13c0-3.5-2.8-5.5-7-5.5 0 4 2 6.5 5.5 6.5"/><path d="M12 11c0-3.5 2.8-5.5 7-5.5 0 4-2 6.5-5.5 6.5"/></svg></div><div class="hm-name">词根词缀</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>拆开词，看懂词</div></div>
+<div class="hm-card" data-go="etym"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7"/><path d="M7 4a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/><path d="M7 20a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/><path d="M11 9h6M11 12.5h6"/></svg></div><div class="hm-name">词源区</div><div class="hm-pbar"><i></i></div><div class="hm-cnt"><span class="n">1816 词 · 双源核实 · 真模块</span> · 全区 2,278 条</div></div>
+<div class="hm-card" data-go="grammar" data-hm-zone="语法"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 20V9M12 20V5M18 20V12"/><path d="M4 5.5 12 2l8 3.5"/></svg></div><div class="hm-name">语法区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>456 条规律的一部分</div></div>
+<div class="hm-card" data-go="verb" data-hm-vb="1"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div><div class="hm-name">动词区</div><div class="hm-pbar"><i></i></div><div class="hm-cnt" data-hm-cnt>时态与五形式衣橱</div></div>
+<div class="hm-card" data-go="pron" data-hm-zone="代词"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="3.2"/><path d="M3 20c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 15.2c2.3.2 4 1.8 4.5 4.3"/></svg></div><div class="hm-name">代词区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>33 条规律</div></div>
+<div class="hm-card" data-go="art" data-hm-zone="冠词"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15a8 6.5 0 0 1 16 0"/><path d="M2.5 18.5h19"/></svg></div><div class="hm-name">冠词区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>21 条规律</div></div>
+<div class="hm-card" data-go="conj" data-hm-zone="连词"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></div><div class="hm-name">连词区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>15 条规律</div></div>
+<div class="hm-card" data-go="prep" data-hm-zone="介词"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg></div><div class="hm-name">介词区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>43 词义项链</div></div>
+<div class="hm-card" data-go="spoken"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7a2.5 2.5 0 0 1-2.5 2.5H13l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z"/><path d="M8 9h.01M12 9h.01M16 9h.01" stroke-width="2.6"/></svg></div><div class="hm-name">口语区</div><div class="hm-pbar"><i></i></div><div class="hm-cnt">144 段对话 · 16 场景</div></div>
+<div class="hm-card" data-go="expr" data-hm-zone="表达写作"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M14.5 6.5l3 3"/></svg></div><div class="hm-name">表达写作区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>59 条规律</div></div>
+<div class="hm-card" data-go="tech"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5A2.5 2.5 0 0 1 6.5 7h11A2.5 2.5 0 0 1 20 9.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 7V5.5A2.5 2.5 0 0 1 11.5 3h1A2.5 2.5 0 0 1 15 5.5V7"/><path d="M4 12.5h16"/></svg></div><div class="hm-name">技巧区</div><div class="hm-pbar"><i></i></div><div class="hm-cnt">153 条学习技巧</div></div>
+<div class="hm-card" data-go="review" data-hm-zone="__review"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20.5 3.5v4h-4"/></svg></div><div class="hm-name">复习区</div><div class="hm-pbar"><i data-hm-bar></i></div><div class="hm-cnt" data-hm-cnt>间隔队列 · 错题本</div></div>
+<div class="hm-card" data-go="map"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 4 3 6v14l5.5-2 7 2L21 18V4l-5.5 2z"/><path d="M8.5 4v14M15.5 6v14"/><circle cx="12" cy="10.5" r="1.6"/></svg></div><div class="hm-name">学习地图</div><div class="hm-pbar"><i></i></div><div class="hm-cnt">练过的地方会点亮</div></div>
+</div>
+<div class="sec-t">学习工具</div>
+<div class="hm-grid">
+<div class="hm-card sm" data-go="rush" data-hm-rush="1"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5 4.5 13.5H11L9.8 21.5l8.7-11H12z"/></svg></div><div class="hm-name">闯关模式</div><div class="hm-cnt" data-hm-cnt>闪电战 · 连对加成</div></div>
+<div class="hm-card sm" data-go="wrong" data-hm-wrong="1"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9.5 9l5 5M14.5 9l-5 5"/></svg></div><div class="hm-name">错题本</div><div class="hm-cnt" data-hm-cnt>三分法 · 消错毕业</div></div>
+<div class="hm-card sm" data-go="trump"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 7.2l1.4 2.9 3.1.4-2.3 2.2.6 3.1L12 14.4l-2.8 1.4.6-3.1-2.3-2.2 3.1-.4z"/></svg></div><div class="hm-name">王牌速查</div><div class="hm-cnt">15 张速查卡</div></div>
+<div class="hm-card sm" data-go="decide"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><circle cx="5.5" cy="19" r="2.2"/><circle cx="18.5" cy="19" r="2.2"/><path d="M12 7.2v3M12 10.2 5.5 16.8M12 10.2l6.5 6.6"/></svg></div><div class="hm-name">决策助手</div><div class="hm-cnt">三问决策树 · 天坑榜</div></div>
+<div class="hm-card sm" data-go="wbindex"><div class="hm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2"/><path d="M10 9.2v4.6L14.5 11.5z"/></svg></div><div class="hm-name">白板课索引</div><div class="hm-cnt">全部白板课目录</div></div>
 </div>
 <div class="sec-t">今天哪儿不舒服？（痛点入口）</div>
 <div class="pain">
@@ -762,6 +821,11 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 <div class="urow" data-go="u-co17"><span class="id">CO-17</span><span class="tt">空心动词 + get 的五个构造</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-v33"><span class="id">V-33</span><span class="tt">前缀头部定律：20 个管住 97%</span><span class="st deep">已做深</span></div>
 <div class="urow" data-go="u-gr33"><span class="id">GR-33</span><span class="tt">反意疑问三步法：回声机怎么配尾巴</span><span class="st deep">已做深</span></div>
+</div>
+<div class="sec-t">更多</div>
+<div class="pain">
+<div class="card" data-go="parents"><h3>家长角</h3><p>学情说明与给家长的话</p></div>
+<div class="card" data-go="settings"><h3>设置</h3><p>成人层开关与显示选项</p></div>
 </div>
 <p class="foot">原型说明：本原型做深不做全——7 个旗舰单元走完六步闭环，其余单元在分区页以目录形态呈现并标「待入模」。七个旗舰单元的动画步已建成可播放的白板课（逐拍绘制 + 预测停顿）；其余规律的分镜规格已按条入模，动画生产按规格推进。全部内容取自《专家规律清单 v6》已核实条目，未自创论断与例句体系。</p>
 </section>
@@ -18054,6 +18118,102 @@ if(tpSec && window.MutationObserver){
 mountAll();
 })();
 
+</script>
+<script>
+/* ================= HM：首页统计横幅与卡片进度 =================
+   只读本机记录，口径与复习区/学习地图一致：
+   - 已学/完成度：mxReviewV1 中已进账本的复习池题数 / 池总量（RV.buildPool）。
+   - 待复习：账本中 due <= 今日 23:59 的题数（与复习区 buildQueue 同口径）。
+   - 今日学习：由 due 反推最后练习时刻（due − INT[box−1] 天 == 本次答题时刻，INT 与复习引擎同表），落在今天的题数。
+   - 今日错题：mxReviewV1.wrong 中 ts 落在今天的条数（账本没有「首次练习」时间戳，故不设「新学」，以今日错题代之）。
+   - 卡片进度：按池题 zone 聚合已练/总量；动词卡用 mx_vb_srs_v1 已练项数（无总分母，不画百分比）。 */
+(function(){
+  var INT=[0,1,3,7,16], DAY=86400000;
+  function ls(k){ try{ var r=localStorage.getItem(k); return r?JSON.parse(r):null; }catch(e){ return null; } }
+  function setText(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; }
+  function hmRender(){
+    var banner=document.getElementById('hmBanner'); if(!banner) return;
+    var pool=[]; try{ pool=(window.RV&&RV.buildPool)?RV.buildPool():[]; }catch(e){}
+    var store=ls('mxReviewV1')||{items:{},wrong:{}};
+    var items=store.items||{}, wrong=store.wrong||{};
+    var now=Date.now();
+    var d0=new Date(); d0.setHours(0,0,0,0); var t0=d0.getTime();
+    var dE=new Date(); dE.setHours(23,59,59,999); var eT=dE.getTime();
+    var touched=0, due=0, today=0, wrongToday=0;
+    var agg={};
+    pool.forEach(function(it){
+      var z=it.zone, a=null;
+      if(z){ a=agg[z]||(agg[z]={t:0,n:0}); a.n++; }
+      var st=items[it.key]; if(!st) return;
+      touched++; if(a) a.t++;
+      if(st.due<=eT) due++;
+      var b=st.b||1; if(b<1)b=1; if(b>5)b=5;
+      var last=st.due-(INT[b-1]||0)*DAY;
+      if(last>=t0&&last<=now+60000) today++;
+    });
+    Object.keys(wrong).forEach(function(k){ var w=wrong[k]; if(w&&w.ts>=t0&&w.ts<=now+60000) wrongToday++; });
+    var total=pool.length;
+    var pct=total? (touched/total*100) : 0;
+    var pctTxt=(Math.round(pct*10)/10).toString().replace(/\.0$/,'');
+    setText('hmTodayN', today);
+    setText('hmPct', '完成度 '+pctTxt+'%');
+    setText('hmDone', '已学 '+touched+' / '+total);
+    setText('hmWrongN', wrongToday);
+    setText('hmDueN', due);
+    var fill=document.getElementById('hmBarFill'); if(fill) fill.style.width=(total? Math.min(100,touched/total*100):0)+'%';
+    var hint=document.getElementById('hmHint');
+    if(hint){
+      if(!touched) hint.textContent='还没有练习记录，从任意一区开始吧。';
+      else if(due>0) hint.textContent='有 '+due+' 道题到了复习时间，去复习区趁热练。';
+      else hint.textContent='今天到期的复习都完成了，很棒。';
+    }
+    /* 分区卡片进度（池口径） */
+    var cards=document.querySelectorAll('#v-home [data-hm-zone]');
+    Array.prototype.forEach.call(cards,function(c){
+      var z=c.getAttribute('data-hm-zone');
+      var a = z==='__review' ? {t:touched,n:total} : agg[z];
+      var bar=c.querySelector('[data-hm-bar]'), cnt=c.querySelector('[data-hm-cnt]');
+      if(a&&a.n>0){
+        if(bar) bar.style.width=Math.min(100,a.t/a.n*100)+'%';
+        if(cnt) cnt.textContent='已练 '+a.t+' / '+a.n+' 题';
+      }else{
+        if(bar) bar.style.width='0%';
+        if(cnt&&a) cnt.textContent='共 '+a.n+' 题';
+      }
+    });
+    /* 动词卡：SRS 已练项数（无总分母）与今日一课 */
+    var vbCard=document.querySelector('#v-home [data-hm-vb]');
+    if(vbCard){
+      var srs=ls('mx_vb_srs_v1')||{items:{}};
+      var loop=ls('mx_vb_loop_v1')||{done:{}};
+      var vn=Object.keys(srs.items||{}).length, dn=Object.keys(loop.done||{}).length;
+      var vcnt=vbCard.querySelector('[data-hm-cnt]');
+      if(vcnt) vcnt.textContent = vn? ('SRS 已练 '+vn+' 项 · 今日一课完成 '+dn+' 站') : '时态与五形式衣橱';
+    }
+    /* 闯关卡：历史最佳 */
+    var rCard=document.querySelector('#v-home [data-hm-rush]');
+    if(rCard){
+      var rb=ls('mxRushBestV1');
+      var rcnt=rCard.querySelector('[data-hm-cnt]');
+      if(rcnt&&rb&&typeof rb.best==='number') rcnt.textContent='历史最佳 '+rb.best+' 分';
+    }
+    /* 错题本卡：在册题数 */
+    var wCard=document.querySelector('#v-home [data-hm-wrong]');
+    if(wCard){
+      var wb=ls('mxWrongBookV1')||{recs:{}};
+      var wn=Object.keys(wb.recs||{}).length;
+      var wcnt=wCard.querySelector('[data-hm-cnt]');
+      if(wcnt&&wn>0) wcnt.textContent='在册 '+wn+' 题 · 消错毕业制';
+    }
+  }
+  window.HM={render:hmRender};
+  document.addEventListener('click',function(e){
+    if(!e.target.closest) return;
+    var t=e.target.closest('[data-v="home"],[data-go="home"]');
+    if(t) setTimeout(hmRender,60);
+  });
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmRender); else hmRender();
+})();
 </script>
 </body>
 </html>
