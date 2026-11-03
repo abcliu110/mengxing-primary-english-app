@@ -7,6 +7,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_morph.py --check        词根 DATA/LAWREG 两文件再生比对
   gen_laws.py --check         规律（LAWDATA + 代词/冠词/连词专区）稳态比对
   gen_phonics.py --check      拼读 DATA 再生比对
+  gen_phonics.py --check-letters  拼读按字母查索引 PHX_LETTERS 再生比对
   gen_words.py --check        词页 WLIST/WPAGE 再生比对
   gen_spoken.py --check       口语 SP_DATA 再生比对
   gen_et.py --check           词源 ET 载荷 + 计数文案比对
@@ -35,6 +36,7 @@ CHECKS = [
     ("gen_morph --check", "gen_morph.py", ["--check"]),
     ("gen_laws --check", "gen_laws.py", ["--check"]),
     ("gen_phonics --check", "gen_phonics.py", ["--check"]),
+    ("gen_phonics letters --check", "gen_phonics.py", ["--check-letters"]),
     ("gen_words --check", "gen_words.py", ["--check"]),
     ("gen_spoken --check", "gen_spoken.py", ["--check"]),
     ("gen_et --check", "gen_et.py", ["--check"]),

@@ -13,6 +13,7 @@
 | 词根词缀 | `model/morph_data.json` | 词根分组/词缀页/构词分类（Wave 2 由两文件内嵌 DATA 合并建成）。家族页落位口径（2026-11-04 小件批登记）：新词落位按成分规则机械归属——整词按词性功能/内容分 wh-func/wh-mono、禁拆按 morph_reason 六类归 ns 页、词形归 fm-form、复合词（自由词第二成分）归 cp-main、前缀/绑根/后缀按页与 misc 分节 head 查表归属、屈折 gloss 定 if 页共置；as-main 同化叠加与历史根分节为策展层不机械补；无页无分节的成分（如 kilo-）与口径未定类（如 form 类名词复数的页落位）进待判清单，不擅自判 |
 | 词汇（词页与各区用词） | `model/words_master.json` | 词页、拼读词卡、词根词表、词源词表的用词并集（Wave 3 建成）；与词库冲突时词库为准 |
 | 拼读 | `model/phonics_master.json` | 模式、成员、检查点的合并总表（Wave 4 建成）；词卡内容（音标、释义）不单独存放，生成时从词汇总表/词库带出 |
+| 拼读·按字母查索引（PHX_LETTERS） | `model/phonics_master.json` + `model/wordbank.json`（派生，无独立事实源） | 2026-11-04 按字母查并入波登记：主文件 `const PHX_LETTERS`（26 字母 × 读音索引）由 `tools/gen_phonics.py` 随 DATA 一并生成（`--check-letters` 单独门禁）——字母 L 的模式 = 字素以 L 开头的模式（DATA 展示序即课程序），读音按来源模式首现序全列、不分主次（Stewart 裁定）；词表 = 供词模式成员并集经词库解卡（id 精确命中优先、`#n` 剥后缀命中族条目、按词形去重、逐词标来源字素），直词条卡面运行时取 DATA.bank（生成时断言与词库 GB 面全等）、族条目卡面随索引内嵌。呈现为拼读区模式切换「按课程学 \| 按字母查」三级视图（字母墙 / 字母页 / 读音页，手写渲染器为代码非数据）。不得手改内嵌副本 |
 | 词源 | `model/etymology.json` | 已是单一源；刷新通道 `tools/refresh_et.py`（2026-11-03 自归档区迁回，引擎 `tools/gen_et.py`，带断言与 --check 门禁）；归档区同名脚本仅作历史保留，不作通道 |
 | 动词 | `model/verb_*.json` 等模型文件 | 事实源如左登记；主文件 VB 模块内嵌**尚未生成化**（无 gen_verb，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
 | 介词 | `model/laws/prep_*.yaml` + `model/prep_family*.json` | 事实源如左登记；主文件内嵌与区内静态 HTML **尚未生成化**（无 gen_prep，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
