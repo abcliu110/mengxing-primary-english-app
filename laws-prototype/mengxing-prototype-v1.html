@@ -14259,12 +14259,12 @@ function wbT(x, y, str, size, col, anchor, bold){ // 手写风文字（淡入，
 var WB_INK = '#2b3a55', WB_BLUE = '#3f6fb5', WB_RED = '#e05252', WB_GREEN = '#2e9e5b', WB_ORANGE = '#e8862e';
 var WB_SECTIONS = [
 { id:'PR-12', name:'物主代词', short:'谁的？分两队站', scenes:[
-  { cap:'说「谁的」，有两种站法——先看一本书是谁的。', svg:
+  { pause:3000, cap:'说「谁的」，有两种站法——先看一本书是谁的。', svg:
       wbT(280,58,'谁的？分两队站',34,WB_INK,1,1)
     + '<path class="wbd" d="M150,78 C240,86 330,86 415,76" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbKid(215,190,1.25) + wbBook(268,150,64)
     + wbT(280,300,'这本书，是「我的」',21,WB_BLUE) },
-  { cap:'第一队叫「领队」：my 后面必须领着东西。', svg:
+  { pause:600, cap:'第一队叫「领队」：my 后面必须领着东西。', svg:
       wbT(280,52,'领 队',28,WB_BLUE,1,1)
     + '<path class="wbd" d="M60,84 L500,84" stroke="'+WB_INK+'" stroke-width="2.6" stroke-linecap="round"/>'
     + wbT(105,140,'my',25,WB_INK,1,1) + wbT(175,140,'your',25,WB_INK,1,1) + wbT(248,140,'his',25,WB_INK,1,1) + wbT(318,140,'her',25,WB_INK,1,1) + wbT(388,140,'its',25,WB_INK,1,1) + wbT(462,140,'our',25,WB_INK,1,1)
@@ -14272,7 +14272,7 @@ var WB_SECTIONS = [
     + wbT(330,232,'This is my book.',27,WB_INK)
     + '<path class="wbd" d="M252,246 C285,252 318,252 348,246" stroke="'+WB_RED+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(330,292,'my 一定要带着 book 才站得稳',19,WB_RED) },
-  { cap:'第二队叫「单飞队」：mine 自己就是「我的东西」。', svg:
+  { pause:600, cap:'第二队叫「单飞队」：mine 自己就是「我的东西」。', svg:
       wbT(280,52,'单 飞 队',28,WB_ORANGE,1,1)
     + '<path class="wbd" d="M60,84 L500,84" stroke="'+WB_INK+'" stroke-width="2.6" stroke-linecap="round"/>'
     + wbT(105,140,'mine',25,WB_INK,1,1) + wbT(185,140,'yours',25,WB_INK,1,1) + wbT(262,140,'his',25,WB_INK,1,1) + wbT(338,140,'hers',25,WB_INK,1,1) + wbT(425,140,'theirs',25,WB_INK,1,1)
@@ -14280,7 +14280,7 @@ var WB_SECTIONS = [
     + wbT(345,232,'The book is mine.',27,WB_INK)
     + '<path class="wbd" d="M392,246 C420,252 452,252 478,246" stroke="'+WB_RED+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(345,292,'mine 后面什么都不带，自己站好',19,WB_RED) },
-  { cap:'病例：me 是宾格，不能冒充物主——要用领队 my。', svg:
+  { pause:900, cap:'病例：me 是宾格，不能冒充物主——要用领队 my。', svg:
       '<path class="wbd" d="M84,262 L476,262" stroke="'+WB_INK+'" stroke-width="2.4" stroke-linecap="round"/>'
     + wbT(140,312,'my ↔ mine',23,WB_BLUE,1,1) + wbT(300,312,'your ↔ yours',23,WB_BLUE,1,1) + wbT(448,312,'her ↔ hers',23,WB_BLUE,1,1)
     + wbT(280,348,'两队成对记：一队带东西，一队单飞',18,WB_INK)
@@ -14290,18 +14290,18 @@ var WB_SECTIONS = [
     + wbTickMark(66,190,1.1) + wbT(228,198,'This is my book.',27,WB_GREEN) }
 ]},
 { id:'PR-13', name:'反身代词', short:'动作转个弯，回到自己身上', scenes:[
-  { cap:'动作做出去，又转个弯回到自己身上——这就是反身代词。', svg:
+  { pause:3000, cap:'动作做出去，又转个弯回到自己身上——这就是反身代词。', svg:
       wbT(280,56,'动作转个弯，回到自己身上',30,WB_INK,1,1)
     + wbKid(150,220,1.3)
     + '<path class="wbd" d="M196,168 C280,120 380,128 396,178 C406,210 372,238 330,232 M330,232 l22,-4 M330,232 l4,-21" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.6" stroke-linecap="round"/>'
     + wbT(330,300,'myself · himself · herself …',22,WB_BLUE) },
-  { cap:'他伤到了他自己：伤人的人和受伤的人是同一个。', svg:
+  { pause:1400, cap:'他伤到了他自己：伤人的人和受伤的人是同一个。', svg:
       wbKid(170,205,1.25)
     + '<path class="wbd" d="M214,150 C290,118 356,138 350,186 C346,216 306,228 272,214 M272,214 l23,2 M272,214 l10,-19" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.6" stroke-linecap="round"/>'
     + wbT(330,268,'He hurt himself.',28,WB_INK)
     + '<ellipse class="wbd" cx="408" cy="258" rx="72" ry="24" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(330,322,'箭头绕回来，指的还是他自己',19,WB_RED) },
-  { cap:'拼法分两路：一、二人称用物主格拼，第三人称用宾格拼。', svg:
+  { pause:1400, cap:'拼法分两路：一、二人称用物主格拼，第三人称用宾格拼。', svg:
       '<path class="wbd" d="M48,66 L268,66 L268,196 L48,196 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M292,66 L512,66 L512,196 L292,196 Z" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(158,102,'物主格 + self',21,WB_BLUE,1,1) + wbT(402,102,'宾格 + self',21,WB_ORANGE,1,1)
@@ -14310,7 +14310,7 @@ var WB_SECTIONS = [
     + wbStar(280,262,WB_ORANGE)
     + wbT(280,308,'多个人时 self 变 selves：f → v',20,WB_INK)
     + wbT(280,344,'和 leaf → leaves 一个道理',17,'#8a93a5') },
-  { cap:'病例：I hurt me 是错的——动作回到自己身上，要用 myself。', svg:
+  { pause:2200, cap:'病例：I hurt me 是错的——动作回到自己身上，要用 myself。', svg:
       wbStar(96,286)
     + wbT(300,292,'I did it myself. ——「我亲自做的」',22,WB_BLUE)
     + wbT(300,332,'强调「亲自」时，也派反身代词上场',18,WB_INK)
@@ -14319,14 +14319,14 @@ var WB_SECTIONS = [
     + wbTickMark(66,190,1.1) + wbT(238,198,'I hurt myself.',27,WB_GREEN) }
 ]},
 { id:'PR-14', name:'指示代词', short:'近的 this，远的 that', scenes:[
-  { cap:'伸手能碰到的东西，就在手边——用 this。', svg:
+  { pause:3000, cap:'伸手能碰到的东西，就在手边——用 this。', svg:
       wbT(280,54,'近的 this，远的 that',32,WB_INK,1,1)
     + wbKid(170,225,1.3) + wbBook(232,182,60)
     + '<ellipse class="wbf" cx="205" cy="215" rx="118" ry="86" fill="none" stroke="'+WB_BLUE+'" stroke-width="2.6" stroke-dasharray="7 8"/>'
     + wbT(392,205,'this',30,WB_BLUE,1,1)
     + wbT(392,252,'This is my book.',23,WB_INK)
     + wbT(392,292,'近 · 一个',18,'#8a93a5') },
-  { cap:'远处树上的小鸟，踮起脚才指得到——用 that。', svg:
+  { pause:600, cap:'远处树上的小鸟，踮起脚才指得到——用 that。', svg:
       wbKid(110,235,1.25)
     + '<path class="wbd" d="M150,196 C240,168 330,150 415,138" stroke="'+WB_INK+'" stroke-width="2.4" stroke-dasharray="1 0" fill="none" stroke-linecap="round" opacity="0.45"/>'
     + '<path class="wbd" d="M452,168 C448,128 470,120 474,96 C478,120 502,126 498,152 C494,176 470,182 460,176 C448,182 444,178 452,168 Z" fill="none" stroke="'+WB_GREEN+'" stroke-width="3" stroke-linejoin="round"/>'
@@ -14334,14 +14334,14 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M486,108 C492,100 500,100 504,106 C510,102 516,106 514,112 C508,118 492,118 486,112 Z" fill="none" stroke="'+WB_INK+'" stroke-width="2.6"/>'
     + wbT(300,300,'that',30,WB_ORANGE,1,1)
     + wbT(300,338,'That is a bird in the tree.',22,WB_INK) },
-  { cap:'两个问题定生死：离我近还是远？是一个还是一堆？', svg:
+  { pause:600, cap:'两个问题定生死：离我近还是远？是一个还是一堆？', svg:
       '<path class="wbd" d="M180,88 L180,320 M380,88 L380,320 M80,204 L480,204" stroke="'+WB_INK+'" stroke-width="2.8" stroke-linecap="round"/>'
     + wbT(110,70,'近',22,WB_BLUE,1,1) + wbT(450,70,'远',22,WB_ORANGE,1,1)
     + wbT(36,150,'一个',20,WB_INK) + wbT(36,268,'一堆',20,WB_INK)
     + wbT(280,150,'this',27,WB_BLUE,1,1) + wbT(430,150,'that',27,WB_ORANGE,1,1)
     + wbT(280,268,'these',27,WB_BLUE,1,1) + wbT(430,268,'those',27,WB_ORANGE,1,1)
     + wbBook(120,118,34,WB_BLUE) + wbBook(120,232,30,WB_BLUE) + wbBook(152,240,30,WB_BLUE) + wbBook(136,222,30,WB_BLUE) },
-  { cap:'打电话看不见人：介绍自己要说 This is…，别说 I am…。', svg:
+  { pause:900, cap:'打电话看不见人：介绍自己要说 This is…，别说 I am…。', svg:
       '<path class="wbd" d="M96,120 C84,180 96,238 128,282 C136,292 150,292 162,284 L186,268 C194,262 194,250 186,242 L158,216 C172,178 172,150 158,114 L134,96 C124,88 110,92 104,104 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3.2" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M238,108 C300,84 420,92 470,140 C486,156 484,182 466,196 L452,206 L458,238 L424,212 C360,224 268,206 240,164 C228,144 226,120 238,108 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(330,334,'电话里用 this 把「这头的我」指给对方',18,WB_RED)
@@ -14349,7 +14349,7 @@ var WB_SECTIONS = [
     + wbT(356,148,'Hello,',24,WB_INK) + wbT(356,182,'this is Tom.',24,WB_INK) }
 ]},
 { id:'PR-15', name:'不定代词', short:'some 和 any 分工站岗', scenes:[
-  { cap:'不知道是谁、哪个、什么的时候，请 some 一家和 any 一家出场。', svg:
+  { pause:3000, cap:'不知道是谁、哪个、什么的时候，请 some 一家和 any 一家出场。', svg:
       wbT(280,54,'some 和 any 分工站岗',31,WB_INK,1,1)
     + '<path class="wbd" d="M92,110 L248,110 L248,300 L92,300 Z M248,205 L248,206" fill="none" stroke="'+WB_BLUE+'" stroke-width="3.2" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M312,110 L468,110 L468,300 L312,300 Z" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.2" stroke-linejoin="round"/>'
@@ -14358,7 +14358,7 @@ var WB_SECTIONS = [
     + wbT(170,168,'some 家',26,WB_BLUE,1,1) + wbT(390,168,'any 家',26,WB_ORANGE,1,1)
     + wbT(170,262,'someone',21,WB_INK) + wbT(170,290,'something',21,WB_INK)
     + wbT(390,262,'anyone',21,WB_INK) + wbT(390,290,'anything',21,WB_INK) },
-  { cap:'看句子脸色先派默认活：肯定句多半 some，否定和提问多半 any。', svg:
+  { pause:300, cap:'看句子脸色先派默认活：肯定句多半 some，否定和提问多半 any。', svg:
       wbT(150,84,'I have some friends.',24,WB_INK)
     + '<path class="wbd" d="M84,98 C140,104 205,104 262,96" stroke="'+WB_BLUE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbTickMark(52,76,0.95)
@@ -14367,7 +14367,7 @@ var WB_SECTIONS = [
     + wbT(300,282,'Do you have any?',24,WB_INK)
     + '<path class="wbd" d="M212,296 C268,302 340,302 398,294" stroke="'+WB_ORANGE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(300,344,'默认：some 站肯定，any 站否定和问句',18,'#8a93a5') },
-  { cap:'全家按单数算：哪怕是「所有人」，动词也只用 is。', svg:
+  { pause:300, cap:'全家按单数算：哪怕是「所有人」，动词也只用 is。', svg:
       wbKid(140,190,1.15)
     + '<path class="wbd" d="M196,128 L470,128 L470,196 L196,196 Z" fill="none" stroke="'+WB_INK+'" stroke-width="2.6" stroke-linejoin="round"/>'
     + wbT(333,172,'Someone is at the door.',23,WB_INK)
@@ -14375,7 +14375,7 @@ var WB_SECTIONS = [
     + wbT(280,272,'Everyone is here.',25,WB_INK)
     + wbT(280,318,'everyone、somebody、nothing……',20,WB_BLUE)
     + wbT(280,348,'作主语时，动词一律单数',18,WB_RED) },
-  { cap:'翻牌现场：请人吃喝的问句用 some；病例是 Someone are 的单数错。', svg:
+  { pause:400, cap:'翻牌现场：请人吃喝的问句用 some；病例是 Someone are 的单数错。', svg:
       '<path class="wbd" d="M96,120 C140,108 196,110 224,128 C222,168 198,196 162,198 C126,196 100,166 96,120 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M224,132 C252,124 262,140 252,156 C246,166 232,168 224,160" fill="none" stroke="'+WB_BLUE+'" stroke-width="3"/>'
     + wbT(368,150,'Would you like',24,WB_INK) + wbT(368,186,'some juice?',24,WB_INK)
@@ -14384,7 +14384,7 @@ var WB_SECTIONS = [
     + wbTickMark(66,338,0.95) + wbT(222,346,'Someone is here.',24,WB_GREEN) }
 ]},
 { id:'PR-01', name:'代词是什么', short:'代词先讲关系，再讲代替', scenes:[
-  { cap:'代词一开口，先说的不是「代替谁」，而是「谁跟谁是一伙的」。', svg:
+  { pause:3000, cap:'代词一开口，先说的不是「代替谁」，而是「谁跟谁是一伙的」。', svg:
       wbT(280,56,'代词先讲关系，再讲代替',29,WB_INK,'middle',1)
     + '<path class="wbd" d="M150,78 C240,86 330,86 415,76" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbKid(165,225,1.25)
@@ -14392,7 +14392,7 @@ var WB_SECTIONS = [
     + '<circle class="wbd" cx="392" cy="168" r="17" fill="none" stroke="'+WB_INK+'" stroke-width="3.2"/>'
     + '<ellipse class="wbf" cx="272" cy="205" rx="168" ry="82" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-dasharray="9 8"/>'
     + wbT(280,330,'三个人，被一个圈圈成「一伙的」',20,WB_BLUE) },
-  { cap:'老师说一声 We——全班就被说成一伙的；关系就藏在这个小词里。', svg:
+  { pause:1100, cap:'老师说一声 We——全班就被说成一伙的；关系就藏在这个小词里。', svg:
       wbT(280,52,'一个 we，圈住全班',26,WB_BLUE,'middle',1)
     + wbKid(105,232,1.15)
     + wbT(105,318,'老师',18,WB_INK)
@@ -14403,7 +14403,7 @@ var WB_SECTIONS = [
     + '<circle class="wbd" cx="398" cy="222" r="16" fill="none" stroke="'+WB_INK+'" stroke-width="3.2"/>'
     + '<ellipse class="wbf" cx="360" cy="188" rx="128" ry="80" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-dasharray="9 8"/>'
     + wbT(360,318,'We',30,WB_ORANGE,'middle',1) },
-  { cap:'代替是第二份工作：刚提过的人，回头用小代词接上就行。', svg:
+  { pause:1100, cap:'代替是第二份工作：刚提过的人，回头用小代词接上就行。', svg:
       wbT(158,120,'Tom is here.',26,WB_INK)
     + '<path class="wbd" d="M252,112 C290,104 318,104 348,112 M348,112 l-16,-3 M348,112 l-5,-14" stroke="'+WB_INK+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(438,120,'He is my friend.',26,WB_INK)
@@ -14411,7 +14411,7 @@ var WB_SECTIONS = [
     + wbKid(150,262,1.05)
     + wbT(360,262,'名字说一次，后面 he 接班',20,WB_BLUE)
     + wbT(360,308,'先把关系说清，代替水到渠成',18,'#8a93a5') },
-  { cap:'病例：介绍自己班时说 They，等于把自己划到了圈外。', svg:
+  { pause:1840, cap:'病例：介绍自己班时说 They，等于把自己划到了圈外。', svg:
       wbKid(120,318,0.72)
     + '<ellipse class="wbf" cx="122" cy="300" rx="58" ry="48" fill="none" stroke="'+WB_BLUE+'" stroke-width="2.6" stroke-dasharray="8 7"/>'
     + wbT(330,306,'我是班里的一员，要说 We',19,WB_RED)
@@ -14421,28 +14421,28 @@ var WB_SECTIONS = [
     + wbTickMark(66,190,1.1) + wbT(245,198,'We are Class Two.',26,WB_GREEN) }
 ]},
 { id:'PR-02', name:'换位词', short:'I 永远是「正在说话的人」', scenes:[
-  { cap:'I 是个换位词：谁正在说话，I 就是谁。', svg:
+  { pause:3000, cap:'I 是个换位词：谁正在说话，I 就是谁。', svg:
       wbT(280,56,'I 永远是「正在说话的人」',29,WB_INK,'middle',1)
     + '<path class="wbd" d="M150,78 C240,86 330,86 415,76" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbKid(185,232,1.3)
     + '<path class="wbd" d="M252,148 L252,102 C252,90 262,84 276,84 L418,84 C432,84 440,92 440,104 L440,134 C440,146 432,152 418,152 L302,152 L272,176 L280,150 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(346,130,'I',36,WB_ORANGE,'middle',1)
     + wbT(300,322,'话筒在谁手里，I 就是谁',20,WB_BLUE) },
-  { cap:'跷跷板换位：问的时候 you 是你，答的时候 I 是你——一开口就换位。', svg:
+  { pause:1300, cap:'跷跷板换位：问的时候 you 是你，答的时候 I 是你——一开口就换位。', svg:
       wbKid(140,238,1.2)
     + wbKid(420,238,1.2,1)
     + '<path class="wbd" d="M208,118 C275,92 345,92 398,116 M398,116 l-17,0 M398,116 l-8,-14" stroke="'+WB_BLUE+'" stroke-width="3.2" fill="none" stroke-linecap="round"/>'
     + wbT(290,84,'问：you',22,WB_BLUE,'middle',1)
     + '<path class="wbd" d="M398,308 C330,332 262,332 212,310 M212,310 l17,-1 M212,310 l9,13" stroke="'+WB_ORANGE+'" stroke-width="3.2" fill="none" stroke-linecap="round"/>'
     + wbT(290,360,'答：I',22,WB_ORANGE,'middle',1) },
-  { cap:'还有两件配套的事：I 永远大写，而且每句都要站出来。', svg:
+  { pause:1300, cap:'还有两件配套的事：I 永远大写，而且每句都要站出来。', svg:
       wbT(140,222,'I',104,WB_ORANGE,'middle',1)
     + wbT(140,308,'永远大写',20,WB_RED)
     + '<path class="wbd" d="M252,118 L522,118 L522,192 L252,192 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(387,168,'I am happy.',27,WB_INK)
     + wbKid(322,302,0.82)
     + wbT(448,298,'每句都在岗',19,WB_BLUE) },
-  { cap:'病例：照着妈妈问句回声答，I 和 you 搬错了位。', svg:
+  { pause:2170, cap:'病例：照着妈妈问句回声答，I 和 you 搬错了位。', svg:
       wbKid(132,318,0.72)
     + '<path class="wbd" d="M452,238 L498,238 L490,292 L460,292 Z" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M486,238 C490,222 496,210 504,200" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-linecap="round"/>'
@@ -14453,7 +14453,7 @@ var WB_SECTIONS = [
     + wbTickMark(66,190,1.1) + wbT(232,198,'I want juice.',26,WB_GREEN) }
 ]},
 { id:'PR-03', name:'we 的边界', short:'we 滑溜溜：包不包你靠猜', scenes:[
-  { cap:'we 的圈圈是滑的：包不包你，词里看不出来。', svg:
+  { pause:3000, cap:'we 的圈圈是滑的：包不包你，词里看不出来。', svg:
       wbT(280,56,'we 滑溜溜：包不包你靠猜',29,WB_INK,'middle',1)
     + '<path class="wbd" d="M150,78 C240,86 330,86 415,76" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbKid(215,238,1.25)
@@ -14461,7 +14461,7 @@ var WB_SECTIONS = [
     + '<ellipse class="wbf" cx="262" cy="200" rx="105" ry="80" fill="none" stroke="'+WB_ORANGE+'" stroke-width="2.6" stroke-dasharray="5 9"/>'
     + wbT(448,205,'?',46,WB_ORANGE,'middle',1)
     + wbT(300,330,'圈里到底有没有我？',20,WB_BLUE) },
-  { cap:'同一个 we：老师说明天考试，圈里是你们；老师说开会，圈里可能只有老师。', svg:
+  { pause:1100, cap:'同一个 we：老师说明天考试，圈里是你们；老师说开会，圈里可能只有老师。', svg:
       '<ellipse class="wbf" cx="163" cy="182" rx="118" ry="88" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-dasharray="9 8"/>'
     + wbT(163,106,'We have a test.',21,WB_INK,'middle',1)
     + '<circle class="wbd" cx="118" cy="185" r="15" fill="none" stroke="'+WB_INK+'" stroke-width="3"/>'
@@ -14473,13 +14473,13 @@ var WB_SECTIONS = [
     + '<circle class="wbd" cx="378" cy="185" r="15" fill="none" stroke="'+WB_INK+'" stroke-width="3"/>'
     + '<circle class="wbd" cx="432" cy="185" r="15" fill="none" stroke="'+WB_INK+'" stroke-width="3"/>'
     + wbT(408,308,'也许没你',19,WB_RED,'middle',1) },
-  { cap:'听到 we，先在心里问一句：把我算进去了吗？答案在场合里，不在词里。', svg:
+  { pause:1100, cap:'听到 we，先在心里问一句：把我算进去了吗？答案在场合里，不在词里。', svg:
       wbKid(135,252,1.15)
     + '<path class="wbd" d="M228,196 L228,124 C228,108 240,100 256,100 L472,100 C488,100 496,110 496,124 L496,178 C496,192 488,200 472,200 L296,200 L258,228 L266,198 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(362,158,'把我算进去了吗？',23,WB_ORANGE,'middle',1)
     + wbT(362,248,'先问一句，再行动',19,WB_BLUE)
     + wbT(300,338,'汉语有「咱们」帮忙打包票，we 没有',17,'#8a93a5') },
-  { cap:'病例：这个 we 是对家长说的，没包孩子，别抢着算自己。', svg:
+  { pause:1840, cap:'病例：这个 we 是对家长说的，没包孩子，别抢着算自己。', svg:
       wbKid(112,318,0.72)
     + wbT(330,310,'这个 we 只包老师们',19,WB_RED)
     + wbT(262,110,'I have a meeting, too!',25,WB_INK)
@@ -14488,14 +14488,14 @@ var WB_SECTIONS = [
     + wbTickMark(66,190,1.1) + wbT(282,198,'The teachers have a meeting.',23,WB_GREEN) }
 ]},
 { id:'PR-04', name:'礼貌与代词', short:'英语的礼貌搬家了', scenes:[
-  { cap:'对老师说 you 不是没礼貌——英语的礼貌不住在代词里了。', svg:
+  { pause:3000, cap:'对老师说 you 不是没礼貌——英语的礼貌不住在代词里了。', svg:
       wbT(280,58,'英语的礼貌搬家了',30,WB_INK,'middle',1)
     + wbKid(165,238,1.2)
     + wbKid(395,238,1.2,1)
     + wbT(280,118,'You',32,WB_BLUE,'middle',1)
     + wbT(280,158,'对老师也这样说',19,WB_INK)
     + wbT(280,330,'礼貌去哪儿了？往下看',19,WB_ORANGE) },
-  { cap:'礼貌搬到了三个新住址：称呼、please、Could you…? 的商量口气。', svg:
+  { pause:300, cap:'礼貌搬到了三个新住址：称呼、please、Could you…? 的商量口气。', svg:
       wbT(280,58,'礼貌的三个新住址',26,WB_BLUE,'middle',1)
     + '<path class="wbd" d="M52,212 L538,212" stroke="'+WB_INK+'" stroke-width="2.6" stroke-linecap="round"/>'
     + '<path class="wbd" d="M62,150 L100,112 L138,150 L130,150 L130,210 L70,210 L70,150 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linejoin="round"/>'
@@ -14505,7 +14505,7 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M422,150 L460,112 L498,150 L490,150 L490,210 L430,210 L430,150 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(460,252,'Could you…?',19,WB_INK,'middle',1)
     + wbT(280,318,'三件配齐，比绕开 you 管用',19,WB_RED) },
-  { cap:'汉语有「您」这个现成概念，英语没有对应的词——不是所有概念都有词来装。', svg:
+  { pause:300, cap:'汉语有「您」这个现成概念，英语没有对应的词——不是所有概念都有词来装。', svg:
       '<path class="wbd" d="M66,108 L242,108 L242,232 L66,232 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(154,168,'您',46,WB_BLUE,'middle',1)
     + wbT(154,208,'汉语：有这个格子',17,WB_INK)
@@ -14514,7 +14514,7 @@ var WB_SECTIONS = [
     + wbT(410,178,'?',46,'#8a93a5','middle',1)
     + wbT(410,208,'英语：空着',17,'#8a93a5')
     + wbT(280,300,'想表敬意，靠称呼和 please',19,WB_ORANGE) },
-  { cap:'病例：绕开 you 反而奇怪——直接 you 加 please 就对了。', svg:
+  { pause:410, cap:'病例：绕开 you 反而奇怪——直接 you 加 please 就对了。', svg:
       wbKid(108,318,0.72)
     + wbT(330,310,'礼貌住在 please 里',19,WB_RED)
     + wbT(272,110,'Miss Li, can Miss Li help me?',22,WB_INK)
@@ -14523,7 +14523,7 @@ var WB_SECTIONS = [
     + wbTickMark(66,190,1.1) + wbT(282,198,'Miss Li, can you help me, please?',21,WB_GREEN) }
 ]},
 { id:'PR-05', name:'人称家族', short:'英语的人称是「素颜版」', scenes:[
-  { cap:'先看全景：世界上的人称柜子有很多格，英语只用了最朴素的一排。', svg:
+  { pause:3000, cap:'先看全景：世界上的人称柜子有很多格，英语只用了最朴素的一排。', svg:
       wbT(280,54,'人称家族的全景柜',27,WB_INK,'middle',1)
     + '<path class="wbd" d="M88,88 L472,88 L472,272 L88,272 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M216,88 L216,272 M344,88 L344,272 M88,180 L472,180" fill="none" stroke="'+WB_INK+'" stroke-width="2.4"/>'
@@ -14534,7 +14534,7 @@ var WB_SECTIONS = [
     + wbT(280,234,'you',21,WB_BLUE,'middle',1)
     + wbT(408,234,'he / she',21,WB_BLUE,'middle',1)
     + wbT(280,322,'英语的格子最少，先认全景再看留白',18,'#8a93a5') },
-  { cap:'英语的留白清单：双数、包不包你、敬称都空着；性别只在第三人称露面。', svg:
+  { pause:300, cap:'英语的留白清单：双数、包不包你、敬称都空着；性别只在第三人称露面。', svg:
       wbT(280,58,'英语的留白清单',26,WB_BLUE,'middle',1)
     + '<path class="wbd" d="M104,104 L130,104 L130,130 L104,130 Z" fill="none" stroke="'+WB_INK+'" stroke-width="2.8" stroke-linejoin="round"/>'
     + wbT(148,126,'双数 —— 没有',20,WB_INK,'start')
@@ -14544,7 +14544,7 @@ var WB_SECTIONS = [
     + wbT(148,230,'敬称 —— 没有',20,WB_INK,'start')
     + '<path class="wbd" d="M104,260 L130,260 L130,286 L104,286 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="2.8" stroke-linejoin="round"/>'
     + wbT(148,282,'性别 —— 只在 he / she 露面',20,WB_BLUE,'start') },
-  { cap:'格子少也有红利：不用分咱和我们，省下的力气花在格和指代上。', svg:
+  { pause:300, cap:'格子少也有红利：不用分咱和我们，省下的力气花在格和指代上。', svg:
       wbT(280,56,'素颜的好处',27,WB_INK,'middle',1)
     + '<path class="wbd" d="M280,108 L280,262 M222,272 L338,272 M148,124 L412,124" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linecap="round"/>'
     + '<path class="wbd" d="M148,124 L116,178 L180,178 Z" fill="none" stroke="'+WB_INK+'" stroke-width="2.8" stroke-linejoin="round"/>'
@@ -14552,7 +14552,7 @@ var WB_SECTIONS = [
     + wbT(148,214,'不用记的格子',17,WB_INK)
     + wbT(412,214,'格 · 指代',18,WB_BLUE,'middle',1)
     + wbT(280,326,'力气省下来，花在刀刃上',19,WB_ORANGE) },
-  { cap:'病例：Miss Li 是女老师，第二句的代词要跟上——She，不是 He。', svg:
+  { pause:540, cap:'病例：Miss Li 是女老师，第二句的代词要跟上——She，不是 He。', svg:
       wbKid(108,318,0.72)
     + wbT(340,310,'性别只在第三人称露面，露面就要对',18,WB_RED)
     + wbT(272,110,'Miss Li is our teacher. He is kind.',21,WB_INK)
@@ -14561,7 +14561,7 @@ var WB_SECTIONS = [
     + wbTickMark(66,190,1.1) + wbT(282,198,'Miss Li is our teacher. She is kind.',21,WB_GREEN) }
 ]},
 { id:'PR-06', name:'指代定价', short:'越清楚，词越省', scenes:[
-  { cap:'指人像标价：越清楚，词越省；越含糊，越要把名字说全。', svg:
+  { pause:3000, cap:'指人像标价：越清楚，词越省；越含糊，越要把名字说全。', svg:
       wbT(280,64,'指人的定价牌',27,WB_INK,'middle',1)
     + '<path class="wbd" d="M78,128 L242,128 L242,222 L78,222 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(160,172,'he',31,WB_BLUE,'middle',1)
@@ -14571,7 +14571,7 @@ var WB_SECTIONS = [
     + wbT(400,172,'Tom',29,WB_INK,'middle',1)
     + wbT(400,206,'要说清 · 点名',16,WB_INK)
     + wbT(280,302,'清楚 → 代词；含糊 → 全名',20,WB_ORANGE) },
-  { cap:'定价表：刚说过的人用小代词；换了话题、多人抢镜，就升回完整名字。', svg:
+  { pause:400, cap:'定价表：刚说过的人用小代词；换了话题、多人抢镜，就升回完整名字。', svg:
       wbT(280,58,'定价表',26,WB_BLUE,'middle',1)
     + '<path class="wbd" d="M100,104 L100,268" stroke="'+WB_INK+'" stroke-width="2.6" stroke-linecap="round"/>'
     + '<circle class="wbd" cx="100" cy="122" r="17" fill="none" stroke="'+WB_BLUE+'" stroke-width="3"/>'
@@ -14584,7 +14584,7 @@ var WB_SECTIONS = [
     + wbT(100,258,'3',19,WB_ORANGE,'middle',1)
     + wbT(140,258,'多人竞争 → Tom（点名）',20,WB_INK,'start')
     + wbT(280,330,'越远越贵，越抢越要点名',18,WB_RED) },
-  { cap:'两个人选都在场时，He 就指不清了——作文里也一样，要升回名字点名。', svg:
+  { pause:400, cap:'两个人选都在场时，He 就指不清了——作文里也一样，要升回名字点名。', svg:
       wbKid(138,222,1.15)
     + wbT(138,300,'Tom',20,WB_INK,'middle',1)
     + wbKid(298,222,1.15)
@@ -14594,7 +14594,7 @@ var WB_SECTIONS = [
     + wbT(442,246,'谁给谁？',19,WB_RED)
     + '<path class="wbd" d="M352,140 C330,160 322,180 320,200" fill="none" stroke="'+WB_RED+'" stroke-width="2.6" stroke-dasharray="6 7" stroke-linecap="round"/>'
     + '<path class="wbd" d="M352,140 C300,150 240,155 200,150" fill="none" stroke="'+WB_RED+'" stroke-width="2.6" stroke-dasharray="6 7" stroke-linecap="round"/>' },
-  { cap:'病例：作文里两个 he 打架，读者就迷路——把名字写全，立刻清爽。', svg:
+  { pause:770, cap:'病例：作文里两个 he 打架，读者就迷路——把名字写全，立刻清爽。', svg:
       wbT(300,296,'点名之后，一读就懂',19,WB_RED)
     + wbT(272,106,'Tom met Jack. He gave him a book.',21,WB_INK)
     + wbCross(50,98,1.05)
@@ -14602,7 +14602,7 @@ var WB_SECTIONS = [
     + wbTickMark(66,186,1.1) + wbT(262,196,'Tom gave Jack a book.',24,WB_GREEN) }
 ]},
 { id:'PR-07', name:'主语代词', short:'英语的代词一个都不能少', scenes:[
-  { cap:'「谁在做」只有两处住所：写在动词身上，或写成单独的小词。', svg:
+  { pause:3000, cap:'「谁在做」只有两处住所：写在动词身上，或写成单独的小词。', svg:
       wbT(280,60,'人称标记的两处住所',26,WB_INK,'middle',1)
     + '<path class="wbd" d="M88,152 L128,112 L168,152 L160,152 L160,216 L96,216 L96,152 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(128,192,'动词',21,WB_INK,'middle',1)
@@ -14611,7 +14611,7 @@ var WB_SECTIONS = [
     + wbT(432,192,'小词',21,WB_BLUE,'middle',1)
     + wbT(432,254,'英语住这儿',16,WB_BLUE)
     + wbT(280,322,'住处不同，丢没丢的规矩就不同',18,'#8a93a5') },
-  { cap:'英语选了小词屋：动词上只剩三单 -s 一点残迹，主语代词必须出场。', svg:
+  { pause:1400, cap:'英语选了小词屋：动词上只剩三单 -s 一点残迹，主语代词必须出场。', svg:
       wbT(196,152,'He',31,WB_BLUE,'middle',1)
     + wbT(322,152,'swims',31,WB_INK)
     + '<ellipse class="wbd" cx="404" cy="142" rx="19" ry="25" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
@@ -14619,7 +14619,7 @@ var WB_SECTIONS = [
     + wbT(196,204,'小词不能缺席',17,WB_BLUE)
     + '<path class="wbd" d="M78,262 L482,262" stroke="'+WB_INK+'" stroke-width="2.6" stroke-linecap="round"/>'
     + wbT(280,308,'He swims. —— 主语在岗',21,WB_INK,'middle',1) },
-  { cap:'省掉主语，句子就像没挂牌子的车——动词还在，也认不出谁在开。', svg:
+  { pause:1400, cap:'省掉主语，句子就像没挂牌子的车——动词还在，也认不出谁在开。', svg:
       '<path class="wbd" d="M118,214 L150,164 L412,164 L446,214 L446,248 L118,248 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3.2" stroke-linejoin="round"/>'
     + '<circle class="wbd" cx="186" cy="252" r="17" fill="none" stroke="'+WB_INK+'" stroke-width="3.2"/>'
     + '<circle class="wbd" cx="382" cy="252" r="17" fill="none" stroke="'+WB_INK+'" stroke-width="3.2"/>'
@@ -14627,7 +14627,7 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M254,204 L312,204 L312,228 L254,228 Z" fill="none" stroke="'+WB_RED+'" stroke-width="2.8" stroke-dasharray="7 6" stroke-linejoin="round"/>'
     + wbT(283,221,'没牌子',13,WB_RED,'middle',1)
     + wbT(280,322,'Swims. —— 谁在游？没人知道',20,WB_RED) },
-  { cap:'病例：Swims on Sundays. 少了主语——补上 He 才成句。', svg:
+  { pause:2200, cap:'病例：Swims on Sundays. 少了主语——补上 He 才成句。', svg:
       wbT(300,300,'第一步：先摆主语，再上动词',19,WB_RED)
     + wbT(232,110,'Swims on Sundays.',26,WB_INK)
     + wbCross(52,100,1.1)
@@ -14768,7 +14768,7 @@ var WB_SECTIONS = [
     + wbTickMark(66,190,1.1) + wbT(240,198,'It is sunny today.',26,WB_GREEN) }
 ]},
 { id:'PR-11', name:'第三人称性别', short:'he/she 说混，是「来不及」', scenes:[
-  { cap:'说话像发快递：英语发货前，必须先贴好「男 / 女」标签。', svg:
+  { pause:3000, cap:'说话像发快递：英语发货前，必须先贴好「男 / 女」标签。', svg:
       wbT(280,66,'开口前，先贴标签',27,WB_INK,'middle',1)
     + wbKid(108,246,1.0)
     + '<path class="wbd" d="M172,128 L392,128 L392,252 L172,252 Z" fill="none" stroke="'+WB_INK+'" stroke-width="3.2" stroke-linejoin="round"/>'
@@ -14776,7 +14776,7 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M302,142 L378,142 L378,178 L302,178 Z" fill="none" stroke="'+WB_ORANGE+'" stroke-width="2.8" stroke-linejoin="round"/>'
     + wbT(340,168,'he / she',16,WB_ORANGE,'middle',1)
     + wbT(280,316,'汉语打包不贴，英语必须贴',18,'#8a93a5') },
-  { cap:'说得快，标签就容易贴错；写的时候慢慢贴，就很少错——是来不及，不是不知道。', svg:
+  { pause:800, cap:'说得快，标签就容易贴错；写的时候慢慢贴，就很少错——是来不及，不是不知道。', svg:
       wbKid(128,222,1.1)
     + wbT(128,306,'说得快',18,WB_RED,'middle',1)
     + wbT(318,138,'This is my mother. He…',21,WB_INK)
@@ -14785,7 +14785,7 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M452,216 L452,202 M452,216 L463,222" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linecap="round"/>'
     + wbT(300,240,'写：慢慢贴',20,WB_GREEN,'start')
     + wbT(300,282,'She —— 贴对了',20,WB_GREEN,'start') },
-  { cap:'治法是把选择提前：开口介绍人之前，先在心里预选好 he 还是 she。', svg:
+  { pause:800, cap:'治法是把选择提前：开口介绍人之前，先在心里预选好 he 还是 she。', svg:
       wbT(280,60,'先预选，再开口',25,WB_INK,'middle',1)
     + '<path class="wbd" d="M112,104 L246,104 L246,182 L112,182 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(179,158,'he',29,WB_BLUE,'middle',1)
@@ -14794,7 +14794,7 @@ var WB_SECTIONS = [
     + wbTickMark(381,224,0.95)
     + wbKid(72,308,0.78)
     + wbT(292,302,'This is my grandma. She is 70.',21,WB_GREEN) },
-  { cap:'病例：介绍妈妈时第二句滑回了 He——慢一拍预选，就稳了。', svg:
+  { pause:1200, cap:'病例：介绍妈妈时第二句滑回了 He——慢一拍预选，就稳了。', svg:
       wbT(300,296,'女 → she，先定住再开口',19,WB_RED)
     + wbT(274,106,'This is my mother. He is a teacher.',21,WB_INK)
     + wbCross(50,98,1.05)
@@ -14802,7 +14802,7 @@ var WB_SECTIONS = [
     + wbTickMark(66,186,1.1) + wbT(284,196,'This is my mother. She is a teacher.',21,WB_GREEN) }
 ]},
 { id:'GR-14', name:'代词的格', short:'站哪儿，穿哪件衣裳', scenes:[
-  { cap:'代词有两件衣裳：站到前面穿主格，跟在后面穿宾格。', svg:
+  { pause:3000, cap:'代词有两件衣裳：站到前面穿主格，跟在后面穿宾格。', svg:
       wbT(280,54,'站哪儿，穿哪件衣裳',28,WB_INK,'middle',1)
     + '<path class="wbd" d="M108,292 L108,92 L452,92 L452,292" fill="none" stroke="'+WB_INK+'" stroke-width="3" stroke-linecap="round"/>'
     + '<path class="wbd" d="M168,124 L204,102 L240,124 L228,140 L228,192 L180,192 L180,140 L168,140 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
@@ -14812,7 +14812,7 @@ var WB_SECTIONS = [
     + wbT(356,168,'me',23,WB_ORANGE,'middle',1)
     + wbT(356,232,'宾格',19,WB_ORANGE,'middle',1)
     + wbT(280,330,'跟「是谁」无关，跟「站哪儿」有关',18,'#8a93a5') },
-  { cap:'同一个我：走到句子前面是 I，跟在动词、介词后面就换成 me。', svg:
+  { pause:600, cap:'同一个我：走到句子前面是 I，跟在动词、介词后面就换成 me。', svg:
       '<path class="wbd" d="M58,252 L502,252" stroke="'+WB_INK+'" stroke-width="2.6" stroke-linecap="round"/>'
     + '<path class="wbd" d="M68,138 L172,138 L172,216 L68,216 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-dasharray="9 8" stroke-linejoin="round"/>'
     + wbT(120,190,'I',29,WB_BLUE,'middle',1)
@@ -14822,14 +14822,14 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M388,138 L492,138 L492,216 L388,216 Z" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-dasharray="9 8" stroke-linejoin="round"/>'
     + wbT(440,190,'me',27,WB_ORANGE,'middle',1)
     + wbT(440,278,'宾语位',17,WB_ORANGE,'middle',1) },
-  { cap:'讲究过头也会错：between 后面塞 I，位置不对，体面也错。', svg:
+  { pause:600, cap:'讲究过头也会错：between 后面塞 I，位置不对，体面也错。', svg:
       wbT(238,132,'between you and I',28,WB_INK)
     + '<path class="wbd" d="M368,150 C392,156 420,156 442,150" stroke="'+WB_RED+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbCross(486,122,1.0)
     + wbT(280,222,'这里是宾语位，I 穿错了衣裳',20,WB_RED)
     + wbKid(96,308,0.78)
     + wbT(320,296,'体面，也要讲位置',19,WB_BLUE) },
-  { cap:'一招验格：把搭档拆掉单独念——between me，一听就顺。', svg:
+  { pause:900, cap:'一招验格：把搭档拆掉单独念——between me，一听就顺。', svg:
       wbKid(468,296,0.85)
     + wbT(230,308,'拆开念，顺耳就是对',19,WB_BLUE)
     + '<path class="wbd" d="M316,138 C312,172 272,192 228,200 M228,200 l14,-10 M228,200 l16,4" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-linecap="round"/>'
@@ -14838,7 +14838,7 @@ var WB_SECTIONS = [
     + wbTickMark(336,240,1.05) }
 ]},
 { id:'GR-13', name:'所有格', short:'’s 是小绳子，不是证书', scenes:[
-  { cap:'’s 是一条小绳子：一头拴着人，一头拴着东西。', svg:
+  { pause:3000, cap:'’s 是一条小绳子：一头拴着人，一头拴着东西。', svg:
       wbT(280,54,'’s 是小绳子，不是证书',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbKid(140,215,1.25)
@@ -14846,60 +14846,60 @@ var WB_SECTIONS = [
     + wbBook(330,168,66)
     + wbT(140,300,'Lily',22,WB_INK) + wbT(368,282,'book',22,WB_INK)
     + wbT(245,152,'有关系',21,WB_ORANGE) },
-  { cap:'绳子拴的不只是「谁的」：时间、度量、部分，都是关系。', svg:
+  { pause:2100, cap:'绳子拴的不只是「谁的」：时间、度量、部分，都是关系。', svg:
       wbT(280,58,'’s',40,WB_ORANGE,1,1)
     + '<path class="wbd" d="M280,86 C240,120 180,140 130,158 M280,86 C280,124 280,140 280,158 M280,86 C320,120 380,140 430,158" stroke="'+WB_ORANGE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(130,196,"yesterday's news",22,WB_INK) + wbT(130,228,'时间',20,WB_BLUE)
     + wbT(280,196,"a day's trip",22,WB_INK) + wbT(280,228,'度量',20,WB_BLUE)
     + wbT(430,196,"the car's door",22,WB_INK) + wbT(430,228,'部分—整体',20,WB_BLUE)
     + wbT(280,300,"Lily's book",22,WB_INK) + wbT(280,330,'领有——最常见的一种',19,'#8a93a5') },
-  { cap:'绳子拴在短语的尾巴上；没生命的东西，正式时常改用 of。', svg:
+  { pause:2100, cap:'绳子拴在短语的尾巴上；没生命的东西，正式时常改用 of。', svg:
       wbT(280,104,"the King of England's crown",24,WB_INK)
     + '<path class="wbd" d="M86,124 L474,124 L474,84 L86,84 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="2.8" stroke-linejoin="round"/>'
     + wbT(280,152,'绳子拴的是「英格兰国王」一整串',20,WB_BLUE)
     + wbT(280,238,'the leg of the table',24,WB_INK)
     + '<ellipse class="wbd" cx="252" cy="228" rx="26" ry="20" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(280,292,'没生命的东西，正式场合常让 of 来拴',20,'#8a93a5') },
-  { cap:'病例：这根小绳子不能省。', svg:
+  { pause:3360, cap:'病例：这根小绳子不能省。', svg:
       wbT(238,238,'This book is Lily.',24,'#8a93a5') + wbCross(56,228,1)
     + wbTickMark(70,330,0.95) + wbT(252,338,"This book is Lily's.",24,WB_GREEN)
     + wbT(280,120,'省了 ’s，就成了「这本书是 Lily 本人」',20,WB_RED) }
 ]},
 { id:'GR-10', name:'some 与 any', short:'some/any 看心思举旗', scenes:[
-  { cap:'some 和 any 是两面小旗子：先有心思，再举旗。', svg:
+  { pause:3000, cap:'some 和 any 是两面小旗子：先有心思，再举旗。', svg:
       wbT(280,54,'some/any 看心思举旗',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M170,130 L170,300 M170,130 L238,148 L170,170" fill="none" stroke="'+WB_BLUE+'" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M390,130 L390,300 M390,130 L458,148 L390,170" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>'
     + wbT(205,152,'some',23,WB_BLUE) + wbT(425,152,'any',23,WB_ORANGE)
     + wbT(185,240,'我心里有数',21,WB_INK) + wbT(405,240,'随便哪个都行',21,WB_INK) },
-  { cap:'先学默认：肯定多 some，提问和否定多 any。', svg:
+  { pause:2700, cap:'先学默认：肯定多 some，提问和否定多 any。', svg:
       wbT(230,100,'She has some pens.',24,WB_INK) + wbTickMark(48,92,0.95)
     + '<path class="wbd" d="M120,114 C180,120 280,120 348,112" stroke="'+WB_BLUE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(240,196,'Do you have any pens?',24,WB_INK) + wbTickMark(48,188,0.95)
     + '<path class="wbd" d="M118,210 C190,216 300,216 372,208" stroke="'+WB_ORANGE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(280,300,'这是默认倾向，不是铁律',21,WB_RED) },
-  { cap:'翻牌现场：盼人答应举 some，「任意」也举 any。', svg:
+  { pause:2700, cap:'翻牌现场：盼人答应举 some，「任意」也举 any。', svg:
       '<path class="wbd" d="M84,116 C128,104 184,106 212,124 C210,164 186,192 150,194 C114,192 88,162 84,116 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M212,128 C240,120 250,136 240,152 C234,162 220,164 212,156" fill="none" stroke="'+WB_BLUE+'" stroke-width="3"/>'
     + wbT(378,132,'Would you like',24,WB_INK) + wbT(378,168,'some tea?',24,WB_INK)
     + '<path class="wbd" d="M300,184 C348,190 408,190 456,182" stroke="'+WB_BLUE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(280,272,'Any child can read it.',24,WB_INK)
     + wbT(280,318,'any 在这里是「任意一个」',20,WB_ORANGE) },
-  { cap:'病例：请客举错旗，场面就问冷了。', svg:
+  { pause:4240, cap:'病例：请客举错旗，场面就问冷了。', svg:
       wbT(238,238,'Would you like any tea?',24,'#8a93a5') + wbCross(52,228,1)
     + wbTickMark(66,330,0.95) + wbT(248,338,'Would you like some tea?',24,WB_GREEN)
     + wbT(280,120,'盼着对方答应，要举 some 这面旗',20,WB_RED) }
 ]},
 { id:'QI-01', name:'疑问词分工', short:'缺哪块，派哪个疑问词', scenes:[
-  { cap:'问句像缺了一块的拼图：先看清缺哪块。', svg:
+  { pause:3000, cap:'问句像缺了一块的拼图：先看清缺哪块。', svg:
       wbT(280,54,'缺哪块，派哪个疑问词',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M150,140 L410,140 L410,300 L150,300 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3.2" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M330,210 L410,210 L410,300 L330,300" fill="none" stroke="'+WB_RED+'" stroke-width="3" stroke-dasharray="7 7" stroke-linejoin="round"/>'
     + wbT(240,228,'已知的框架',23,WB_INK) + wbT(370,262,'空缺',21,WB_RED)
     + wbT(280,344,'先看清缺的是哪一块',20,'#8a93a5') },
-  { cap:'缺人派 who，缺地方派 where，缺时间派 when。', svg:
+  { pause:3000, cap:'缺人派 who，缺地方派 where，缺时间派 when。', svg:
       wbT(250,100,'Who is your teacher?',24,WB_INK)
     + '<path class="wbd" d="M96,114 C130,120 168,120 200,113" stroke="'+WB_BLUE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(250,182,'Where is my book?',24,WB_INK)
@@ -14907,19 +14907,19 @@ var WB_SECTIONS = [
     + wbT(258,264,'When is your birthday?',24,WB_INK)
     + '<path class="wbd" d="M96,278 C140,284 196,284 240,277" stroke="'+WB_BLUE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(462,100,'找人',20,WB_ORANGE) + wbT(462,182,'找地方',20,WB_ORANGE) + wbT(462,264,'找时间',20,WB_ORANGE) },
-  { cap:'答语只填缺的那一块，不用整句重说。', svg:
+  { pause:3000, cap:'答语只填缺的那一块，不用整句重说。', svg:
       wbT(280,110,'When is your birthday?',24,WB_INK)
     + '<path class="wbd" d="M280,140 C280,180 280,200 280,228" stroke="'+WB_ORANGE+'" stroke-width="3.2" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M266,214 L280,232 L294,214" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>'
     + wbT(280,292,'In May.',30,WB_GREEN,1,1)
     + wbT(280,336,'只填时间那一块',20,'#8a93a5') },
-  { cap:'病例：生日缺的是时间，派 where 就填不进去。', svg:
+  { pause:4700, cap:'病例：生日缺的是时间，派 where 就填不进去。', svg:
       wbT(240,238,'Where is your birthday?',24,'#8a93a5') + wbCross(48,228,1)
     + wbTickMark(62,330,0.95) + wbT(246,338,'When is your birthday?',24,WB_GREEN)
     + wbT(280,120,'派对词，答语才填得进空缺',20,WB_RED) }
 ]},
 { id:'QI-02', name:'两个词族', short:'wh- 和 th- 是两家人', scenes:[
-  { cap:'疑问词和指示词是两家人，住在两个院子里。', svg:
+  { pause:3000, cap:'疑问词和指示词是两家人，住在两个院子里。', svg:
       wbT(280,54,'wh- 和 th- 是两家人',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M70,190 L170,120 L270,190 M92,190 L92,310 L248,310 L248,190" fill="none" stroke="'+WB_BLUE+'" stroke-width="3.2" stroke-linejoin="round"/>'
@@ -14927,25 +14927,25 @@ var WB_SECTIONS = [
     + wbT(170,168,'hw- 家',23,WB_BLUE,1,1) + wbT(390,168,'þ- 家',23,WB_ORANGE,1,1)
     + wbT(170,238,'where · what',21,WB_INK) + wbT(170,274,'who · when',21,WB_INK)
     + wbT(390,238,'there · that',21,WB_INK) + wbT(390,274,'the',21,WB_INK) },
-  { cap:'两家门牌长得像：where 和 there 只差一点点。', svg:
+  { pause:2700, cap:'两家门牌长得像：where 和 there 只差一点点。', svg:
       wbT(160,150,'where',36,WB_BLUE,1,1) + wbT(400,150,'there',36,WB_ORANGE,1,1)
     + '<ellipse class="wbd" cx="104" cy="140" rx="34" ry="26" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + '<ellipse class="wbd" cx="352" cy="140" rx="26" ry="26" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(280,248,'长得像 ≠ 是一家人',24,WB_RED,1,1)
     + wbT(280,300,'谁也不是谁变出来的',21,'#8a93a5') },
-  { cap:'同一组问答里同框，也还是两家人。', svg:
+  { pause:2700, cap:'同一组问答里同框，也还是两家人。', svg:
       wbT(255,120,'— What is that?',25,WB_INK)
     + '<path class="wbd" d="M104,134 C160,140 240,140 330,133" stroke="'+WB_BLUE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(255,220,'— That is a bird.',25,WB_INK)
     + '<path class="wbd" d="M108,234 C150,240 210,240 262,233" stroke="'+WB_ORANGE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(150,300,'what：hw- 家',20,WB_BLUE) + wbT(400,300,'that：þ- 家',20,WB_ORANGE) },
-  { cap:'病例：there 是答话的词，不能拿它来提问。', svg:
+  { pause:4220, cap:'病例：there 是答话的词，不能拿它来提问。', svg:
       wbT(240,238,'There is your book?',24,'#8a93a5') + wbCross(52,228,1)
     + wbTickMark(64,330,0.95) + wbT(246,338,'Where is your book?',24,WB_GREEN)
     + wbT(280,120,'问地方，要派 hw- 家的 where',20,WB_RED) }
 ]},
 { id:'QI-03', name:'who 的化石', short:'whose 和 why 是两件化石', scenes:[
-  { cap:'很久以前，who 一家是会变形的。', svg:
+  { pause:3000, cap:'很久以前，who 一家是会变形的。', svg:
       wbT(280,54,'whose 和 why 是两件化石',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbT(150,170,'hwā',32,WB_INK,1,1) + wbT(150,206,'who 的老样子',19,'#8a93a5')
@@ -14953,24 +14953,24 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M366,108 L386,117 L368,130 M366,230 L386,240 L368,252" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
     + wbT(452,126,'whose',27,WB_BLUE,1,1) + wbT(452,248,'why',27,WB_ORANGE,1,1)
     + wbStar(96,300) + wbStar(470,320) },
-  { cap:'问「谁的」，who 变成 whose——像 his 是 he 的所有格。', svg:
+  { pause:2300, cap:'问「谁的」，who 变成 whose——像 his 是 he 的所有格。', svg:
       wbT(190,104,'he → his',25,WB_INK) + wbT(392,104,'who → whose',25,WB_BLUE,1,1)
     + '<path class="wbd" d="M84,124 L500,124" stroke="#c9d2e0" stroke-width="2.4" fill="none"/>'
     + wbT(280,216,'Whose book is this?',27,WB_INK)
     + '<path class="wbd" d="M110,230 C170,236 240,236 300,229" stroke="'+WB_BLUE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + wbT(280,296,'whose = who 的「家的」',21,WB_BLUE) },
-  { cap:'问「凭什么」，who 变成 why——原因就是「靠什么造成的」。', svg:
+  { pause:2300, cap:'问「凭什么」，who 变成 why——原因就是「靠什么造成的」。', svg:
       wbKid(130,220,1.2)
     + wbT(330,170,'Why are you crying?',26,WB_INK)
     + wbT(330,238,'老义：凭什么（造成的）',21,WB_ORANGE)
     + wbT(330,286,'问原因，就是问靠什么造成',20,'#8a93a5') },
-  { cap:'病例：whose 才是「谁的」，who\'s 是「谁是」。', svg:
+  { pause:3740, cap:'病例：whose 才是「谁的」，who\'s 是「谁是」。', svg:
       wbT(240,238,"Who's book is this?",24,'#8a93a5') + wbCross(52,228,1)
     + wbTickMark(64,330,0.95) + wbT(246,338,'Whose book is this?',24,WB_GREEN)
     + wbT(280,120,"who's 是 who is 的合体，别混",20,WB_RED) }
 ]},
 { id:'QI-04', name:'倒装提问', short:'排头兵助动词，出列提问', scenes:[
-  { cap:'把陈述句变问句：把排头兵喊到队伍最前面。', svg:
+  { pause:3000, cap:'把陈述句变问句：把排头兵喊到队伍最前面。', svg:
       wbT(280,54,'排头兵助动词，出列提问',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M70,180 L170,180 L170,244 L70,244 Z M205,180 L305,180 L305,244 L205,244 Z M340,180 L470,180 L470,244 L340,244 Z" fill="none" stroke="'+WB_INK+'" stroke-width="2.8" stroke-linejoin="round"/>'
@@ -14978,7 +14978,7 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M255,168 C220,120 130,112 84,138" fill="none" stroke="'+WB_RED+'" stroke-width="3.2" stroke-linecap="round"/>'
     + '<path class="wbd" d="M96,124 L80,142 L102,146" fill="none" stroke="'+WB_RED+'" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>'
     + wbT(280,310,'has 被喊到最前面，问句就成了',20,'#8a93a5') },
-  { cap:'被喊出来的，永远是排第一的那个助动词。', svg:
+  { pause:3600, cap:'被喊出来的，永远是排第一的那个助动词。', svg:
       wbT(255,110,'Has she got a pet?',25,WB_INK)
     + '<ellipse class="wbd" cx="118" cy="100" rx="36" ry="24" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(440,110,'has 出列',20,WB_RED)
@@ -14986,18 +14986,18 @@ var WB_SECTIONS = [
     + '<ellipse class="wbd" cx="116" cy="204" rx="32" ry="24" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(448,214,'do 补位',20,WB_RED)
     + wbT(280,300,'没有助动词时，请 do 来当排头兵',20,'#8a93a5') },
-  { cap:'排头兵扛时态，后面的动词不落箭头、回原形。', svg:
+  { pause:3600, cap:'排头兵扛时态，后面的动词不落箭头、回原形。', svg:
       wbT(280,130,'Does she like apples?',26,WB_INK)
     + '<ellipse class="wbd" cx="132" cy="120" rx="42" ry="26" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(280,220,'does 扛下三单',21,WB_RED)
     + wbT(280,268,'like 就不能再加 s',21,WB_BLUE) },
-  { cap:'病例：时态标了两次，就是标错了。', svg:
+  { pause:5600, cap:'病例：时态标了两次，就是标错了。', svg:
       wbT(240,238,'Does she likes apples?',24,'#8a93a5') + wbCross(44,228,1)
     + wbTickMark(58,330,0.95) + wbT(244,338,'Does she like apples?',24,WB_GREEN)
     + wbT(280,120,'时态只标一次：does 扛了，like 回原形',20,WB_RED) }
 ]},
 { id:'QI-05', name:'信息焦点', short:'新货压轴，句尾重读', scenes:[
-  { cap:'说话像上菜：先上熟悉的，最后上新菜。', svg:
+  { pause:3000, cap:'说话像上菜：先上熟悉的，最后上新菜。', svg:
       wbT(280,54,'新货压轴，句尾重读',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<circle class="wbd" cx="130" cy="220" r="42" fill="none" stroke="'+WB_INK+'" stroke-width="3"/>'
@@ -15005,116 +15005,116 @@ var WB_SECTIONS = [
     + '<circle class="wbd" cx="406" cy="220" r="46" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.4"/>'
     + wbT(130,228,'旧菜',21,WB_INK) + wbT(268,228,'旧菜',21,WB_INK) + wbT(406,228,'新菜',22,WB_ORANGE,1,1)
     + wbStar(406,140) + wbT(280,322,'最后压轴，还要敲一下盘子',20,'#8a93a5') },
-  { cap:'已知在前，新信息在句尾，还要重读敲盘子。', svg:
+  { pause:3800, cap:'已知在前，新信息在句尾，还要重读敲盘子。', svg:
       wbT(280,140,'Dad bought me a new BIKE.',26,WB_INK)
     + '<ellipse class="wbd" cx="424" cy="130" rx="46" ry="27" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(160,240,'已知的铺垫',21,'#8a93a5') + wbT(404,240,'新货 + 重读',21,WB_RED) },
-  { cap:'纠正别人时，重音跑到前面敲对比的那盘菜。', svg:
+  { pause:3800, cap:'纠正别人时，重音跑到前面敲对比的那盘菜。', svg:
       wbT(280,140,'I said GREEN, not blue.',26,WB_INK)
     + '<ellipse class="wbd" cx="222" cy="130" rx="52" ry="27" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(280,238,'重音前移 = 变强调',21,WB_RED)
     + wbT(280,286,'这是正当手段，不是乱放',20,'#8a93a5') },
-  { cap:'病例：新货无故跑到最前，听的人找不到节奏。', svg:
+  { pause:6130, cap:'病例：新货无故跑到最前，听的人找不到节奏。', svg:
       wbT(240,238,'A BIKE Dad bought me new.',23,'#8a93a5') + wbCross(36,228,1)
     + wbTickMark(52,330,0.95) + wbT(248,338,'Dad bought me a new BIKE.',23,WB_GREEN)
     + wbT(280,120,'常态：已知在前，新货压轴',20,WB_RED) }
 ]},
 { id:'QI-06', name:'状语排队', short:'状语排队，不上锁', scenes:[
-  { cap:'状语排队有习惯：先说事儿，再补地点和时间。', svg:
+  { pause:3000, cap:'状语排队有习惯：先说事儿，再补地点和时间。', svg:
       wbT(280,54,'状语排队，不上锁',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M52,186 L172,186 L172,248 L52,248 Z M196,186 L336,186 L336,248 L196,248 Z M360,186 L520,186 L520,248 L360,248 Z" fill="none" stroke="'+WB_INK+'" stroke-width="2.8" stroke-linejoin="round"/>'
     + wbT(112,226,'We play',22,WB_INK) + wbT(266,226,'in the park',22,WB_INK) + wbT(440,226,'in the morning',22,WB_INK)
     + wbT(112,160,'1 · 事情',20,WB_BLUE) + wbT(266,160,'2 · 地点',20,WB_BLUE) + wbT(440,160,'3 · 时间',20,WB_BLUE)
     + wbT(280,312,'这是习惯队形，不是锁死的规矩',20,'#8a93a5') },
-  { cap:'想先交代时间，就把时间搬到队头——先给场景。', svg:
+  { pause:3300, cap:'想先交代时间，就把时间搬到队头——先给场景。', svg:
       wbT(280,120,'In the morning, we play in the park.',24,WB_INK)
     + '<path class="wbd" d="M120,138 C170,144 250,144 320,137" stroke="'+WB_ORANGE+'" stroke-width="3" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M392,190 C330,236 210,240 130,196" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-linecap="round"/>'
     + '<path class="wbd" d="M146,186 L124,200 L148,210" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
     + wbT(280,300,'时间去队头 = 先给场景，合法',21,WB_GREEN) },
-  { cap:'也有不许乱动的座位：频度副词有自己的位置。', svg:
+  { pause:3300, cap:'也有不许乱动的座位：频度副词有自己的位置。', svg:
       wbT(280,120,'He is always happy.',25,WB_INK)
     + '<ellipse class="wbd" cx="258" cy="110" rx="48" ry="26" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(280,210,'always 的座位是固定的（中位）',21,WB_RED)
     + wbT(280,262,'排队不上锁，只放开地点和时间',20,'#8a93a5') },
-  { cap:'病例：状语不能塞进主语和动词的骨架里。', svg:
+  { pause:5200, cap:'病例：状语不能塞进主语和动词的骨架里。', svg:
       wbT(246,238,'We in the park play in the morning.',21,'#8a93a5') + wbCross(30,228,1)
     + wbTickMark(44,330,0.95) + wbT(252,338,'We play in the park in the morning.',21,WB_GREEN)
     + wbT(280,120,'状语排在句尾，或提前到句首',20,WB_RED) }
 ]},
 { id:'QI-07', name:'前置强调', short:'提到句首，就是打追光', scenes:[
-  { cap:'舞台上追光打给谁，谁就是这一眼的主角。', svg:
+  { pause:3000, cap:'舞台上追光打给谁，谁就是这一眼的主角。', svg:
       wbT(280,54,'提到句首，就是打追光',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M280,96 L196,268 M280,96 L364,268" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-linecap="round"/>'
     + '<ellipse class="wbd" cx="280" cy="276" rx="110" ry="18" fill="none" stroke="'+WB_INK+'" stroke-width="2.8"/>'
     + wbKid(280,256,1.15)
     + wbT(280,336,'先给谁打光，先立谁的场景',20,'#8a93a5') },
-  { cap:'把时间提到句首，先让大家站进这个场景。', svg:
+  { pause:3800, cap:'把时间提到句首，先让大家站进这个场景。', svg:
       wbT(280,130,'In the morning, I read a book.',25,WB_INK)
     + '<ellipse class="wbd" cx="168" cy="120" rx="96" ry="28" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3"/>'
     + wbT(168,196,'追光：时间',21,WB_ORANGE)
     + wbT(392,196,'正文随后跟上',20,'#8a93a5') },
-  { cap:'光给了出发点，句尾焦点让给剩下的新信息。', svg:
+  { pause:3800, cap:'光给了出发点，句尾焦点让给剩下的新信息。', svg:
       wbT(280,130,'In the park, children are playing.',25,WB_INK)
     + '<ellipse class="wbd" cx="356" cy="120" rx="128" ry="28" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(140,196,'出发点：公园',21,WB_ORANGE) + wbT(392,196,'焦点：玩耍的场面',21,WB_RED) },
-  { cap:'病例：追光一次只打一位，打满台等于没打。', svg:
+  { pause:6020, cap:'病例：追光一次只打一位，打满台等于没打。', svg:
       wbT(250,238,'In the morning, in the park, on the bench, I sat.',19,'#8a93a5') + wbCross(24,228,1)
     + wbTickMark(36,330,0.95) + wbT(256,338,'In the morning, I sat on the bench in the park.',19,WB_GREEN)
     + wbT(280,120,'前置一次只请一位主角',20,WB_RED) }
 ]},
 { id:'QI-08', name:'语调标记', short:'声音也能提问：尾巴翘不翘', scenes:[
-  { cap:'声音也能提问：句尾往上翘，像在等你答。', svg:
+  { pause:3000, cap:'声音也能提问：句尾往上翘，像在等你答。', svg:
       wbT(280,54,'声音也能提问：尾巴翘不翘',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M76,286 C200,272 330,220 452,128" fill="none" stroke="'+WB_BLUE+'" stroke-width="3.6" stroke-linecap="round"/>'
     + '<path class="wbd" d="M420,122 L456,122 L448,154" fill="none" stroke="'+WB_BLUE+'" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>'
     + wbT(150,330,'句尾 ↗ 升调',22,WB_BLUE) + wbT(392,220,'「我还没说完，等你答」',20,'#8a93a5') },
-  { cap:'一般疑问常升调，特殊疑问常降调。', svg:
+  { pause:3900, cap:'一般疑问常升调，特殊疑问常降调。', svg:
       wbT(160,104,'Are you ready? ↗',23,WB_INK)
     + '<path class="wbd" d="M60,150 C140,142 200,120 262,84" fill="none" stroke="'+WB_BLUE+'" stroke-width="3.2" stroke-linecap="round"/>'
     + wbT(408,104,'Where are you going? ↘',23,WB_INK)
     + '<path class="wbd" d="M316,84 C380,120 440,142 508,150" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.2" stroke-linecap="round"/>'
     + wbT(160,232,'一般疑问：常翘尾巴',20,WB_BLUE) + wbT(408,232,'特殊疑问：常沉尾巴',20,WB_ORANGE)
     + wbT(280,318,'是常态，不是铁律',21,WB_RED) },
-  { cap:'队形不动、只翘尾巴，也能确认——回声问句。', svg:
+  { pause:3900, cap:'队形不动、只翘尾巴，也能确认——回声问句。', svg:
       wbKid(120,220,1.2)
     + wbT(330,170,'You are going home? ↗',25,WB_INK)
     + wbT(330,238,'没听清时，翘起尾巴确认一遍',20,'#8a93a5')
     + wbT(330,284,'语调是问句的第二套标记',20,WB_BLUE) },
-  { cap:'病例：wh- 问句不能只靠语调，倒装要补齐。', svg:
+  { pause:6100, cap:'病例：wh- 问句不能只靠语调，倒装要补齐。', svg:
       wbT(240,238,'Where you are going?',24,'#8a93a5') + wbCross(50,228,1)
     + wbTickMark(62,330,0.95) + wbT(246,338,'Where are you going?',24,WB_GREEN)
     + wbT(280,120,'语调是第二套标记，不能顶替队形',20,WB_RED) }
 ]},
 { id:'QI-09', name:'Why 的答法', short:'Why 不止 Because 一种答法', scenes:[
-  { cap:'Why 有时问原因，有时问目的——先听清是哪一种。', svg:
+  { pause:3000, cap:'Why 有时问原因，有时问目的——先听清是哪一种。', svg:
       wbT(280,54,'Why 不止 Because 一种答法',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbT(130,180,'Why?',30,WB_INK,1,1)
     + '<path class="wbd" d="M190,160 C260,130 320,118 400,112 M190,196 C260,226 320,240 400,246" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linecap="round"/>'
     + wbT(452,118,'原因',22,WB_BLUE) + wbT(452,252,'目的',22,WB_ORANGE)
     + wbT(280,320,'一条问句，两条岔路',20,'#8a93a5') },
-  { cap:'问原因，用 Because 回答。', svg:
+  { pause:4300, cap:'问原因，用 Because 回答。', svg:
       wbT(280,104,'— Why are you wet?',25,WB_INK)
     + '<path class="wbd" d="M120,150 L112,172 M170,150 L162,172 M220,150 L212,172 M390,150 L382,172 M440,150 L432,172" stroke="'+WB_BLUE+'" stroke-width="2.8" fill="none" stroke-linecap="round"/>'
     + wbT(280,238,'— Because it rained.',25,WB_GREEN)
     + wbT(280,300,'原因看向过去：为什么会这样',20,'#8a93a5') },
-  { cap:'问目的，用 To 回答，同样正宗。', svg:
+  { pause:4690, cap:'问目的，用 To 回答，同样正宗。', svg:
       wbT(288,100,'— Why did she go to the library?',23,WB_INK)
     + wbBook(120,190,58)
     + wbT(330,224,'— To get some books.',25,WB_GREEN)
     + wbT(330,276,'目的看向将来：为了干什么',20,'#8a93a5') },
-  { cap:'病例：两条路不能拼成一句。', svg:
+  { pause:6500, cap:'病例：两条路不能拼成一句。', svg:
       wbT(280,110,'— Why did you go there?',23,WB_INK)
     + wbT(248,238,'— Because to see a friend.',23,'#8a93a5') + wbCross(36,228,1)
     + wbTickMark(52,330,0.95) + wbT(240,338,'— To see a friend.',24,WB_GREEN)
     + wbT(280,168,'选一条路走，别把两条拼一起',20,WB_RED) }
 ]},
 { id:'QI-10', name:'How 与 What', short:'What 问东西，How 问办法', scenes:[
-  { cap:'两个侦察兵分工：What 问东西，How 问办法。', svg:
+  { pause:3000, cap:'两个侦察兵分工：What 问东西，How 问办法。', svg:
       wbT(280,54,'What 问东西，How 问办法',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbKid(170,215,1.25) + wbKid(390,215,1.25)
@@ -15122,46 +15122,46 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M248,248 L266,266" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linecap="round"/>'
     + wbT(170,130,'What',27,WB_BLUE,1,1) + wbT(390,130,'How',27,WB_ORANGE,1,1)
     + wbT(170,316,'问东西',21,WB_INK) + wbT(390,316,'问办法',21,WB_INK) },
-  { cap:'想知道「是什么」，派 What。', svg:
+  { pause:3400, cap:'想知道「是什么」，派 What。', svg:
       wbBook(140,170,72)
     + wbT(350,196,'What is this?',27,WB_INK)
     + '<ellipse class="wbd" cx="272" cy="186" rx="44" ry="26" fill="none" stroke="'+WB_BLUE+'" stroke-width="3"/>'
     + wbT(350,262,'辖区：事物身份与类别',20,WB_BLUE) },
-  { cap:'想知道「怎么做、怎么样」，派 How。', svg:
+  { pause:3400, cap:'想知道「怎么做、怎么样」，派 How。', svg:
       wbT(280,110,'How do you go to school?',25,WB_INK)
     + '<ellipse class="wbd" cx="118" cy="100" rx="38" ry="25" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3"/>'
     + wbT(280,200,'How are you?',25,WB_INK)
     + wbT(280,282,'辖区：方式、程度、状态',20,WB_ORANGE) },
-  { cap:'病例：问上学方式派错 What，答案就答非所问。', svg:
+  { pause:5300, cap:'病例：问上学方式派错 What，答案就答非所问。', svg:
       wbT(244,238,'What do you go to school?',24,'#8a93a5') + wbCross(36,228,1)
     + wbTickMark(50,330,0.95) + wbT(248,338,'How do you go to school?',24,WB_GREEN)
     + wbT(280,120,'方式归 How 管，不归 What',20,WB_RED) }
 ]},
 { id:'QI-11', name:'选择问句', short:'给了选项，就选一个', scenes:[
-  { cap:'听到 or，先认图式：是让我选，还是问对不对？', svg:
+  { pause:3000, cap:'听到 or，先认图式：是让我选，还是问对不对？', svg:
       wbT(280,54,'给了选项，就选一个',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M110,150 L190,150 L182,226 L118,226 Z M370,150 L450,150 L442,226 L378,226 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3" stroke-linejoin="round"/>'
     + wbT(150,196,'tea',22,WB_INK) + wbT(410,196,'juice',22,WB_INK)
     + wbT(280,196,'or',24,WB_ORANGE,1,1)
     + wbT(280,282,'选项已经摆上桌了',20,'#8a93a5') },
-  { cap:'极性问句答 Yes/No；选择问句选一个。', svg:
+  { pause:3900, cap:'极性问句答 Yes/No；选择问句选一个。', svg:
       wbT(255,104,'Do you like tea? — Yes.',24,WB_INK)
     + wbT(280,196,'Do you want tea or juice?',24,WB_INK)
     + wbT(280,252,'— Juice, please.',24,WB_GREEN)
     + wbT(280,318,'答法先由图式定',20,'#8a93a5') },
-  { cap:'选项是动作时，同样选一项，可以带完整句。', svg:
+  { pause:3900, cap:'选项是动作时，同样选一项，可以带完整句。', svg:
       wbT(280,110,'Shall we walk or take a bus?',25,WB_INK)
     + wbT(280,216,"— Let's walk.",26,WB_GREEN)
     + wbTickMark(96,206,1)
     + wbT(280,292,'选了「走路」这一项',20,'#8a93a5') },
-  { cap:'病例：给了选项还答 Yes，就像没听清。', svg:
+  { pause:6110, cap:'病例：给了选项还答 Yes，就像没听清。', svg:
       wbT(280,108,'— Do you want tea or juice?',24,WB_INK)
     + wbT(200,238,'— Yes.',24,'#8a93a5') + wbCross(52,228,1)
     + wbTickMark(66,330,0.95) + wbT(230,338,'— Juice, please.',24,WB_GREEN) }
 ]},
 { id:'QI-12', name:'否定问句', short:'答否定问句，跟事实走', scenes:[
-  { cap:'英语的 Yes/No 拴在事实上，汉语常拴在认同上。', svg:
+  { pause:3000, cap:'英语的 Yes/No 拴在事实上，汉语常拴在认同上。', svg:
       wbT(280,54,'答否定问句，跟事实走',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbKid(160,220,1.2) + wbKid(400,220,1.2,1)
@@ -15171,23 +15171,23 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M400,268 L400,286 M386,292 L414,292" stroke="'+WB_ORANGE+'" stroke-width="3" stroke-linecap="round"/>'
     + wbT(160,140,'事实锚',23,WB_BLUE,1,1) + wbT(400,140,'认同锚',23,WB_ORANGE,1,1)
     + wbT(160,338,'喜欢就是 Yes',20,WB_INK) + wbT(400,338,'说对了就点头',20,WB_INK) },
-  { cap:'真不喜欢，按事实答 No——还要把句子补全。', svg:
+  { pause:2800, cap:'真不喜欢，按事实答 No——还要把句子补全。', svg:
       wbT(280,120,"— Don't you like it?",26,WB_INK)
     + wbT(280,232,"— No, I don't.",28,WB_GREEN,1,1)
     + wbTickMark(96,222,1)
     + wbT(280,300,'事实极性 + 补全句，最稳妥',20,'#8a93a5') },
-  { cap:'其实喜欢，就按事实答 Yes——和汉语点头正相反。', svg:
+  { pause:2800, cap:'其实喜欢，就按事实答 Yes——和汉语点头正相反。', svg:
       wbT(280,120,"— Don't you like it?",26,WB_INK)
     + wbT(280,232,'— Yes, I do.',28,WB_GREEN,1,1)
     + wbTickMark(108,222,1)
     + wbT(280,300,'按事实答，不按对方的话答',20,'#8a93a5') },
-  { cap:'病例：按认同式点头答 Yes，对方会听成你喜欢。', svg:
+  { pause:4510, cap:'病例：按认同式点头答 Yes，对方会听成你喜欢。', svg:
       wbT(280,104,"— Don't you like it?",24,WB_INK)
     + wbT(215,238,'— Yes.（想说：对，我不喜欢）',21,'#8a93a5') + wbCross(30,228,1)
     + wbTickMark(48,330,0.95) + wbT(225,338,"— No, I don't.",24,WB_GREEN) }
 ]},
 { id:'QI-13', name:'疑问词移位', short:'疑问词要搬家到句首', scenes:[
-  { cap:'汉语的疑问词坐原地；英语的要搬到最前面。', svg:
+  { pause:3000, cap:'汉语的疑问词坐原地；英语的要搬到最前面。', svg:
       wbT(280,54,'疑问词要搬家到句首',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbT(150,170,'你买什么？',27,WB_INK)
@@ -15195,67 +15195,67 @@ var WB_SECTIONS = [
     + '<path class="wbd" d="M382,144 L402,155 L384,170" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>'
     + wbT(280,262,'What do you want?',27,WB_BLUE)
     + wbT(280,318,'什么 → 跑到最前面，还要倒装',20,'#8a93a5') },
-  { cap:'搬家有两件行李：疑问词前置，助动词倒装。', svg:
+  { pause:3500, cap:'搬家有两件行李：疑问词前置，助动词倒装。', svg:
       '<path class="wbd" d="M80,140 L230,140 L230,220 L80,220 Z M330,140 L480,140 L480,220 L330,220 Z" fill="none" stroke="'+WB_INK+'" stroke-width="2.8" stroke-linejoin="round"/>'
     + '<path class="wbd" d="M130,140 C130,112 180,112 180,140 M380,140 C380,112 430,112 430,140" fill="none" stroke="'+WB_INK+'" stroke-width="2.8" stroke-linecap="round"/>'
     + wbT(155,192,'前置',24,WB_BLUE,1,1) + wbT(405,192,'倒装',24,WB_ORANGE,1,1)
     + wbT(280,296,'What do you want?',25,WB_INK)
     + '<ellipse class="wbd" cx="152" cy="286" rx="42" ry="24" fill="none" stroke="'+WB_BLUE+'" stroke-width="3"/>'
     + '<ellipse class="wbd" cx="252" cy="286" rx="26" ry="24" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3"/>' },
-  { cap:'惊讶时不用搬：回声问句把疑问词留在原地重读。', svg:
+  { pause:3500, cap:'惊讶时不用搬：回声问句把疑问词留在原地重读。', svg:
       wbT(280,140,'You bought WHAT?',28,WB_INK)
     + '<ellipse class="wbd" cx="378" cy="130" rx="56" ry="28" fill="none" stroke="'+WB_RED+'" stroke-width="3"/>'
     + wbT(280,238,'合法特许：没听清、惊讶时用',21,WB_RED)
     + wbT(280,288,'和迁移错误长得像，性质不同',20,'#8a93a5') },
-  { cap:'病例：只搬疑问词、没搬助动词——搬了一半。', svg:
+  { pause:5640, cap:'病例：只搬疑问词、没搬助动词——搬了一半。', svg:
       wbT(230,238,'What you want?',24,'#8a93a5') + wbCross(56,228,1)
     + wbTickMark(70,330,0.95) + wbT(240,338,'What do you want?',24,WB_GREEN)
     + wbT(280,120,'前置 + 倒装，两件行李一起搬',20,WB_RED) }
 ]},
 { id:'QI-14', name:'提问台阶', short:'学提问，像上四级台阶', scenes:[
-  { cap:'学提问像上台阶：一级一级上，急不得。', svg:
+  { pause:3000, cap:'学提问像上台阶：一级一级上，急不得。', svg:
       wbT(280,54,'学提问，像上四级台阶',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + '<path class="wbd" d="M60,320 L160,320 L160,272 L260,272 L260,224 L360,224 L360,176 L500,176" fill="none" stroke="'+WB_INK+'" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>'
     + wbKid(105,306,1.05)
     + wbStar(478,132)
     + wbT(110,352,'一级',19,WB_BLUE) + wbT(210,304,'二级',19,WB_BLUE) + wbT(310,256,'三级',19,WB_BLUE) + wbT(430,208,'四级',19,WB_BLUE) },
-  { cap:'一级整句背，二级换疑问词——倒装还没长好。', svg:
+  { pause:3600, cap:'一级整句背，二级换疑问词——倒装还没长好。', svg:
       wbT(170,140,"What's this?",26,WB_INK)
     + wbT(170,196,'一级 · 整句模仿',20,WB_BLUE)
     + wbT(390,140,'Where the dog?',26,WB_INK)
     + wbT(390,196,'二级 · 换词前置',20,WB_BLUE)
     + wbT(280,292,'第二句不是错句，是台阶上的标本',20,'#8a93a5') },
-  { cap:'三级一般问句倒装，四级特殊问句全倒装。', svg:
+  { pause:3600, cap:'三级一般问句倒装，四级特殊问句全倒装。', svg:
       wbT(170,140,'Can you swim?',26,WB_INK)
     + wbT(170,196,'三级 · 一般问句倒装',20,WB_BLUE)
     + wbT(390,140,'Where is the dog?',26,WB_INK)
     + wbT(390,196,'四级 · 全倒装',20,WB_BLUE)
     + wbStar(280,272) },
-  { cap:'病例处理：台阶上的句子，先肯定，再供料。', svg:
+  { pause:5600, cap:'病例处理：台阶上的句子，先肯定，再供料。', svg:
       wbT(235,238,'Where the dog?（被当成错句）',21,'#8a93a5') + wbCross(28,228,1)
     + wbTickMark(42,330,0.95) + wbT(252,338,'Where is the dog?（顺着台阶教）',21,WB_GREEN)
     + wbT(280,120,'先肯定疑问词已前置，再供倒装的料',20,WB_RED) }
 ]},
 { id:'QI-15', name:'真信息缺口', short:'真想知道，问句才记得牢', scenes:[
-  { cap:'心里真有个问号时，耳朵会自己竖起来。', svg:
+  { pause:3000, cap:'心里真有个问号时，耳朵会自己竖起来。', svg:
       wbT(280,54,'真想知道，问句才记得牢',31,WB_INK,1,1)
     + '<path class="wbd" d="M120,74 C220,82 340,82 445,72" stroke="'+WB_ORANGE+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>'
     + wbKid(170,230,1.3)
     + wbT(360,240,'?',120,WB_ORANGE,1,1)
     + wbT(280,336,'真想知道，形式就记得牢',20,'#8a93a5') },
-  { cap:'真缺口场景：钥匙真丢了，问题不得不问。', svg:
+  { pause:4300, cap:'真缺口场景：钥匙真丢了，问题不得不问。', svg:
       '<circle class="wbd" cx="150" cy="170" r="26" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.4"/>'
     + '<path class="wbd" d="M168,190 L226,248 M206,228 L228,220 M218,240 L240,234" fill="none" stroke="'+WB_ORANGE+'" stroke-width="3.4" stroke-linecap="round"/>'
     + wbT(350,180,'Where is my key?',26,WB_INK)
     + wbT(350,232,"I can't find it!",24,WB_RED)
     + wbT(280,320,'动机和意义都在场，形式记得最牢',20,'#8a93a5') },
-  { cap:'信息差任务：盒子里的东西只有对方知道。', svg:
+  { pause:4570, cap:'信息差任务：盒子里的东西只有对方知道。', svg:
       '<path class="wbd" d="M180,180 L380,180 L380,300 L180,300 Z M168,180 L392,180 L392,152 L168,152 Z" fill="none" stroke="'+WB_BLUE+'" stroke-width="3.2" stroke-linejoin="round"/>'
     + wbT(280,248,'?',54,WB_ORANGE,1,1)
     + wbT(280,110,"What's in the box?",26,WB_INK)
     + wbT(280,340,'不得不真问，问完真听',20,'#8a93a5') },
-  { cap:'病例：明知故问，嘴动了，心没动。', svg:
+  { pause:6500, cap:'病例：明知故问，嘴动了，心没动。', svg:
       wbT(255,238,'Do you like apples?（对着正吃苹果的同桌问）',19,'#8a93a5') + wbCross(22,228,1)
     + wbTickMark(36,330,0.95) + wbT(250,338,"What's in your lunch box today?",21,WB_GREEN)
     + wbT(280,120,'换成真想知道的事，耳朵自己竖起来',20,WB_RED) }
@@ -15370,6 +15370,8 @@ function wbPrepare(){
   var capLen = (wbS.sec && wbS.sec.scenes[wbS.scene]) ? String(wbS.sec.scenes[wbS.scene].cap || '').length : 0;
   var hold = Math.max(2000, Math.min(4800, capLen * 160));
   if(wbS.sec && wbS.scene === wbS.sec.scenes.length - 1) hold += 1200;
+  var scp = wbS.sec ? wbS.sec.scenes[wbS.scene] : null;
+  if(scp && scp.pause) hold += scp.pause; // 停顿拍：pause 字段（预测/想一想/重读），单位 ms，见 docs 报告 qi-film-length
   wbS.hold = hold;
   wbS.total = wbS.drawTotal + hold;
 }
