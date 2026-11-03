@@ -56,6 +56,12 @@ h2.ptitle{font-size:24px;margin:12px 0 2px}
 .countline{color:#7386a0;font-size:13.5px}
 .sec{font-weight:800;color:#33507a;margin:18px 0 4px;font-size:16.5px}
 .hidden{display:none}
+.exbox{background:#f8faf5;border:1.5px dashed #4a7a59;border-radius:14px;padding:12px 14px;margin:14px 0}
+.exbox .ext{font-weight:700;color:#3d5a40;font-size:15.5px}
+.exbox .exgrp{font-size:13px;font-weight:700;color:#4a7a59;margin:10px 0 2px}
+.exbox .ex{font-size:15px;line-height:1.55;padding:3px 0}
+.exbox .ex small{display:block;color:#7a8774;font-size:12.5px}
+.exbox .ex b.extgt{color:#3d5a40;text-decoration:underline;text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -130,6 +136,34 @@ function quizHTML(p){
   h += '<div class="qfin hidden qdone">🎉 全部答对。答错时只提示回讲解，这正是 V-30 的学法：零件先行，语境补强。</div>';
   return h;
 }
+/* 例句呈现位（2026-11-04 Stewart 拍板落地，与主文件 openPage 镜像）：例句数据在 pages[].exs
+   （阶段2第五波落数据层），此处只做呈现：按 grp 分组、目标词（words[0]）加粗下划线标出、note 作小字。exs 为空不渲染。 */
+function mzMarkTarget(s, w) {
+  if (!w) return esc(s);
+  const re = new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+  let out = '', last = 0, m;
+  while ((m = re.exec(s)) !== null) {
+    out += esc(s.slice(last, m.index)) + '<b class="extgt">' + esc(m[0]) + '</b>';
+    last = m.index + m[0].length;
+    if (m[0].length === 0) re.lastIndex++;
+  }
+  return out + esc(s.slice(last));
+}
+function mzExsHTML(p) {
+  const exs = p.exs || [];
+  if (!exs.length) return '';
+  const order = [], by = {};
+  exs.forEach(e => { const g = e.grp || ''; if (!by[g]) { by[g] = []; order.push(g); } by[g].push(e); });
+  let h = '<div class="exbox"><div class="ext">📖 例句 · 在句子里用一用</div>';
+  order.forEach(g => {
+    if (g) h += '<div class="exgrp">' + esc(g) + '</div>';
+    by[g].forEach(e => {
+      const w = (e.words && e.words[0]) ? e.words[0].w : '';
+      h += '<div class="ex">' + mzMarkTarget(e.s, w) + (e.note ? '<small>' + esc(e.note) + '</small>' : '') + '</div>';
+    });
+  });
+  return h + '</div>';
+}
 function openPage(pid){
   savedScroll = window.scrollY || document.documentElement.scrollTop;
   const p = P[pid]; curQuiz = {p: p, done: new Set()};
@@ -167,6 +201,7 @@ function openPage(pid){
          + g.words.map(wordCard).join('') + '</div>';
     });
   }
+  h += mzExsHTML(p);
   h += quizHTML(p);
   v.innerHTML = h;
   document.getElementById('view-index').classList.add('hidden');

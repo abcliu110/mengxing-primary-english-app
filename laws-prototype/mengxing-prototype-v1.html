@@ -81,6 +81,12 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 .phx .opt.ok {border-color: #0e9f6e; background: #e6f9f0;}
 .phx .opt.no {border-color: #e03131; background: #fdecec;}
 .phx .hint {color: #b34700; font-size: 14px; margin-top: 8px; display: none;}
+.phx .exbox {background: var(--card); border: 1.5px dashed var(--accent); border-radius: 14px; padding: 12px 14px; margin: 12px 0;}
+.phx .exbox .ext {font-weight: 700; color: var(--accent-deep); font-size: 15.5px;}
+.phx .exbox .exgrp {font-size: 13px; font-weight: 700; color: var(--accent); margin: 10px 0 2px;}
+.phx .exbox .ex {font-size: 15px; line-height: 1.55; padding: 3px 0;}
+.phx .exbox .ex small {display: block; color: #7a8774; font-size: 12.5px;}
+.phx .exbox .ex b.extgt {color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px;}
 .phx .psc {background: #f1f3f5; border: 1px dashed #adb5bd; border-radius: 12px; padding: 10px 14px; color: #495057; font-size: 14px; margin: 12px 0;}
 .phx .big {font-size: 30px; margin: 2px 0;}
 .phx .sub {color: #5a6482; font-size: 14px;}
@@ -7102,6 +7108,35 @@ function patternPage(id) {
   openGroup(GKEY(p), id);
 }
 
+/* 例句呈现位（2026-11-04 Stewart 拍板落地）：例句数据在 patterns[].exs（阶段2第五波落数据层），
+   此处只做呈现：按 grp 分组、目标词（words[0]）加粗下划线标出、note 作小字。exs 为空不渲染。 */
+function phxMarkTarget(s, w) {
+  if (!w) return esc(s);
+  const re = new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+  let out = '', last = 0, m;
+  while ((m = re.exec(s)) !== null) {
+    out += esc(s.slice(last, m.index)) + '<b class="extgt">' + esc(m[0]) + '</b>';
+    last = m.index + m[0].length;
+    if (m[0].length === 0) re.lastIndex++;
+  }
+  return out + esc(s.slice(last));
+}
+function phxExsHTML(p) {
+  const exs = p.exs || [];
+  if (!exs.length) return '';
+  const order = [], by = {};
+  exs.forEach(e => { const g = e.grp || ''; if (!by[g]) { by[g] = []; order.push(g); } by[g].push(e); });
+  let h = '<div class="exbox"><div class="ext">📖 例句 · 在句子里读一读</div>';
+  order.forEach(g => {
+    if (g) h += '<div class="exgrp">' + esc(g) + '</div>';
+    by[g].forEach(e => {
+      const w = (e.words && e.words[0]) ? e.words[0].w : '';
+      h += '<div class="ex">' + phxMarkTarget(e.s, w) + (e.note ? '<small>' + esc(e.note) + '</small>' : '') + '</div>';
+    });
+  });
+  return h + '</div>';
+}
+
 function openGroup(key, focusPid) {
   const gr = GROUPS[key]; if (!gr) { home(); return; }
   let h = '<button class="back" data-nav="home">← 返回模式菜单</button>';
@@ -7137,6 +7172,7 @@ function openGroup(key, focusPid) {
     h += '<p><span class="badge">本区 ' + p.n + ' 词</span></p>';
     const sw = sortedWords(p);
     h += '<div class="grid">' + sw.map(wid => wordCard(wid, p)).join('') + '</div>';
+    h += phxExsHTML(p);
     const pool = sw.filter(wid => DATA.bank[wid] && DATA.bank[wid][0].length >= 3).filter((wid, i, a) => a.findIndex(x => DATA.bank[x][0] === DATA.bank[wid][0]) === i); // dedupe quiz pool by display form: two bank entries may share one form (who), options must differ visibly
     pools[p.id] = pool;
     if (pool.length >= 3) {
@@ -11489,6 +11525,12 @@ window.TN={show:show,loadPreset:loadPreset,setVerb:setVerb,setR:setR,setV:setV,s
 .mz .countline{color:#6b7566;font-size:13.5px}
 .mz .sec{font-weight:800;color:var(--accent-deep);margin:18px 0 4px;font-size:16.5px}
 .mz .hidden{display:none}
+.mz .exbox{background:var(--card);border:1.5px dashed var(--accent);border-radius:14px;padding:12px 14px;margin:14px 0}
+.mz .exbox .ext{font-weight:700;color:var(--accent-deep);font-size:15.5px}
+.mz .exbox .exgrp{font-size:13px;font-weight:700;color:var(--accent);margin:10px 0 2px}
+.mz .exbox .ex{font-size:15px;line-height:1.55;padding:3px 0}
+.mz .exbox .ex small{display:block;color:#7a8774;font-size:12.5px}
+.mz .exbox .ex b.extgt{color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px}
 </style>
 <script>
 (function(){
@@ -11564,6 +11606,34 @@ function quizHTML(p){
   h += '<div class="qfin hidden qdone">🎉 全部答对。答错时只提示回讲解，这正是 V-30 的学法：零件先行，语境补强。</div>';
   return h;
 }
+/* 例句呈现位（2026-11-04 Stewart 拍板落地）：例句数据在 pages[].exs（阶段2第五波落数据层），
+   此处只做呈现：按 grp 分组、目标词（words[0]）加粗下划线标出、note 作小字。exs 为空不渲染。 */
+function mzMarkTarget(s, w) {
+  if (!w) return esc(s);
+  const re = new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+  let out = '', last = 0, m;
+  while ((m = re.exec(s)) !== null) {
+    out += esc(s.slice(last, m.index)) + '<b class="extgt">' + esc(m[0]) + '</b>';
+    last = m.index + m[0].length;
+    if (m[0].length === 0) re.lastIndex++;
+  }
+  return out + esc(s.slice(last));
+}
+function mzExsHTML(p) {
+  const exs = p.exs || [];
+  if (!exs.length) return '';
+  const order = [], by = {};
+  exs.forEach(e => { const g = e.grp || ''; if (!by[g]) { by[g] = []; order.push(g); } by[g].push(e); });
+  let h = '<div class="exbox"><div class="ext">📖 例句 · 在句子里用一用</div>';
+  order.forEach(g => {
+    if (g) h += '<div class="exgrp">' + esc(g) + '</div>';
+    by[g].forEach(e => {
+      const w = (e.words && e.words[0]) ? e.words[0].w : '';
+      h += '<div class="ex">' + mzMarkTarget(e.s, w) + (e.note ? '<small>' + esc(e.note) + '</small>' : '') + '</div>';
+    });
+  });
+  return h + '</div>';
+}
 function openPage(pid){
   if(!document.getElementById('v-morph-detail').classList.contains('on')) savedScroll = window.scrollY || document.documentElement.scrollTop;
   const p = P[pid]; curQuiz = {p: p, done: new Set()};
@@ -11603,6 +11673,7 @@ function openPage(pid){
          + g.words.map(wordCard).join('') + '</div>';
     });
   }
+  h += mzExsHTML(p);
   h += quizHTML(p);
   v.innerHTML = h;
   show('morph-detail');

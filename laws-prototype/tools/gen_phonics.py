@@ -43,8 +43,10 @@
   4. 模式例句 exs（2026-11-04 学习改善阶段 2 第五波）：patterns 的 embedded
      分仓新增 exs 字段（例词型单元配例句：成员词机械组句，生成脚本
      tools/fill_wordunit_examples.py）——现行文件无此字段、生成侧新增，
-     属已判差异；渲染层暂无例句位，exs 只落数据层（呈现待接，登记于
-     docs 与波次报告 stage2e-wordunits.md）。落盘后稳态 --check 应逐字节一致。
+     属已判差异；exs 落数据层后，呈现位已于 2026-11-04 经 Stewart 拍板
+     落地（openGroup 词卡格后 phxExsHTML 呈现；词缀页 pages[].exs 亦同批
+     在 openPage 落地，见波次报告 exs-slot-impl.md）。落盘后稳态 --check
+     应逐字节一致。
 
 序列化格式（2026-11-03 从现行字面量反推实测）：Python json 默认分隔符
 （", " / ": "）、ensure_ascii=False、UTF-8 原样、无转义——整段字面量可由
