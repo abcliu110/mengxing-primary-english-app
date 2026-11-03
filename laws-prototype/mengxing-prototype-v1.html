@@ -1513,8 +1513,23 @@ document.getElementById('vc-lsearch').addEventListener('input', function(){
   h += '</div>';
   res.innerHTML = h; res.style.display = ''; gl.style.display = 'none'; ab.style.display = 'none';
 });
+/* ---- 词根区反向落点：按词库编号开词页（词根区家族页词卡点入用） ---- */
+var BANK2IDX = null;
+function bankIdx(bid){
+  if (!BANK2IDX) { BANK2IDX = {}; WLIST.forEach(function(r, i){ if (r[20]) BANK2IDX[r[20]] = i; }); }
+  return (bid in BANK2IDX) ? BANK2IDX[bid] : null;
+}
+function hasBank(bid){ return bankIdx(bid) !== null; }
+function openByBank(bid){
+  var i = bankIdx(bid); if (i === null) return false;
+  var pill = document.querySelector('.nbtn[data-v="vocab"]');
+  if (pill) pill.click(); else if (window.show) window.show('vocab');
+  openCard(i);
+  return true;
+}
 window.VC = {show: vcShow, openCard: openCard, backToList: backToList, backToWord: backToWord, goEtym: vcGoEtym,
-             openNavPhon: openNavPhon, goPhon: goPhon, openNavMorph: openNavMorph, goMorphPage: goMorphPage};
+             openNavPhon: openNavPhon, goPhon: goPhon, openNavMorph: openNavMorph, goMorphPage: goMorphPage,
+             hasBank: hasBank, openByBank: openByBank};
 renderList();
 
 })();
@@ -2035,8 +2050,8 @@ renderList();
 <section class="view" id="v-morph">
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">🌱 词根词缀</h2>
-<p class="sub">前缀、词根、后缀：拆开词，看懂词。本区内容与原词汇解码区内的词根词缀专区完全一致，只是独立成区，方便直接进入。</p>
-<div class="gh">词根词缀专区（真模块）</div><div class="mz" id="mz-index"></div>
+<p class="sub">前缀、词根、后缀：拆开词，看懂词。926 条可拆词、126 个家族页，逐词登记拆分、零件义与透明度；点家族页里的词卡，可直达这个词的词页。</p>
+<div class="gh">词根词缀专区</div><div class="mz" id="mz-index"></div>
 <div class="urow" data-go="etym"><span class="id">📜</span><span class="tt">词源区：1816 个词的身世档案——从哪来、最早是什么意思、怎么一步步变成今天这样；拆词看结构，来历看词源</span><span class="st deep">独立成区</span></div>
 </section>
 
@@ -10246,7 +10261,7 @@ window.TN={show:show,loadPreset:loadPreset,setVerb:setVerb,setR:setR,setV:setV,s
 .mz .wc .gb{color:#33507a;font-size:14px;margin-top:4px}
 .mz .wc .mean{font-size:14px;margin-top:2px}
 .mz .wc .note2{color:#8a6d1f;font-size:12px;line-height:1.55;margin-top:4px}
-.mz .wc .bid{color:#a5b4c6;font-size:10.5px;margin-top:5px}
+.mz .wc .bid{color:#a5b4c6;font-size:10.5px;margin-top:5px} .mz .wc.wclink{cursor:pointer} .mz .wc.wclink:hover{border-color:#2563eb;background:#f2f7ff} .mz .wc .golink{color:#2563eb;font-size:12px;font-weight:700;margin-top:5px} .mz .pend.plink{cursor:pointer} .mz .pend.plink:hover{border-color:#2563eb} .mz .pend .golink{color:#2563eb;font-size:12px;font-weight:700;margin-top:5px}
 .mz .wc .tag{display:inline-block;background:#e8eefc;color:#33507a;border-radius:6px;font-size:11px;padding:1px 6px;margin-left:6px;vertical-align:2px}
 .mz .spk{border:1px solid #b9cdea;background:#eef4ff;border-radius:999px;width:30px;height:30px;font-size:15px;cursor:pointer;float:right}
 .mz .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px}
@@ -10292,13 +10307,15 @@ function lawBlock(law, title){
 function wordCard(bid){
   const r = W[bid]; if(!r) return '';
   const dot = r.tr==='全透明' ? '#2e9e5b' : (r.tr==='半透明' ? '#e0a51f' : '#9db1c7');
-  let h = '<div class="wc" data-bid="'+esc(bid)+'"><button class="spk" data-say="'+esc(r.w)+'" title="朗读">🔊</button>'
+  const linked = !!(window.VC && VC.hasBank && VC.hasBank(bid));
+  let h = '<div class="wc'+(linked?' wclink':'')+'" data-bid="'+esc(bid)+'"'+(linked?' title="点开，看这个词的词页"':'')+'><button class="spk" data-say="'+esc(r.w)+'" title="朗读">🔊</button>'
         + '<span class="w">'+esc(r.w)+'</span>' + (r.tag?'<span class="tag">'+esc(r.tag)+'</span>':'')
         + (r.split? '<div class="split">'+esc(r.split)+'</div>' : '')
         + (r.parts? '<div class="parts">'+esc(r.parts)+'</div>' : '')
         + '<div class="gb">'+esc(r.gb)+'</div><div class="mean">'+esc(r.mean)+'</div>';
   if(r.tr) h += '<div class="parts" style="margin-top:4px"><span class="dot" style="background:'+dot+'"></span>'+esc(r.tr)+'</div>';
   if(r.note) h += '<div class="note2">'+esc(r.note)+'</div>';
+  if(linked) h += '<div class="golink">📖 看这个词的词页 →</div>';
   h += '<div class="bid">'+esc(bid)+'</div></div>';
   return h;
 }
@@ -10354,10 +10371,12 @@ function openPage(pid){
   if(p.pending){
     h += '<div class="sec">🚫 假拆名单（每条附裁定理由）</div><div class="grid">';
     p.pending.forEach(it=>{
-      h += '<div class="pend" data-word="'+esc(it.word)+'"><span class="w">'+esc(it.word)+'</span>'
+      const pb = (window.VC && VC.hasBank && VC.hasBank(it.bank_id)) ? it.bank_id : '';
+      h += '<div class="pend'+(pb?' plink':'')+'" data-word="'+esc(it.word)+'"'+(pb?' data-bank="'+esc(pb)+'" title="点开，看这个词的词页"':'')+'><span class="w">'+esc(it.word)+'</span>'
          + '<div class="cand">✗ 想拆成：'+esc(it.candidate)+'</div>'
          + '<div class="rsn">'+esc(it.reason)+'</div>'
-         + '<div class="src">裁定出处：'+esc(it.ref)+' · 词库编号 '+esc(it.bank_id)+'</div></div>';
+         + '<div class="src">裁定出处：'+esc(it.ref)+' · 词库编号 '+esc(it.bank_id)+'</div>'
+         + (pb? '<div class="golink">📖 看这个词的词页 →</div>' : '') + '</div>';
     });
     h += '</div>';
   } else if(p.sections){
@@ -10387,6 +10406,10 @@ document.addEventListener('click', function(e){
   if(!(e.target.closest && e.target.closest('#mz-index, #mz-detail'))) return;
   const sp = e.target.closest('[data-say]');
   if(sp){ speak(sp.getAttribute('data-say')); return; }
+  const wc = e.target.closest('.wc.wclink');
+  if(wc){ if(window.VC && VC.openByBank) VC.openByBank(wc.getAttribute('data-bid')); return; }
+  const pd = e.target.closest('.pend[data-bank]');
+  if(pd){ if(window.VC && VC.openByBank) VC.openByBank(pd.getAttribute('data-bank')); return; }
   const ch = e.target.closest('[data-page]');
   if(ch && !ch.classList.contains('qopt')){ openPage(ch.getAttribute('data-page')); return; }
   const qo = e.target.closest('.qopt');
