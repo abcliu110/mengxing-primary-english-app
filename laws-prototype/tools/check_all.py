@@ -19,6 +19,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_feedback.py --check     选项级反馈 RV_FEEDBACK（错选项↔病例对齐表，阶段3 试点）再生比对
   gen_roster.py --check       全册规律名册 ROSTER（456 条户口×呈现路由）再生比对
   gen_questions.py --check    规律补题 RV_GENQ（S-44 屈折三读，词库音标派生）再生比对
+  gen_schema.py --check       机制图式卡 SCHEMA_TA（TA 18 律，标签逐片段对源断言）再生比对
 
 用法：python3 laws-prototype/tools/check_all.py
 退出码：0=全绿；1=至少一项失败。
@@ -45,6 +46,7 @@ CHECKS = [
     ("gen_feedback --check", "gen_feedback.py", ["--check"]),
     ("gen_roster --check", "gen_roster.py", ["--check"]),
     ("gen_questions --check", "gen_questions.py", ["--check"]),
+    ("gen_schema --check", "gen_schema.py", ["--check"]),
 ]
 
 

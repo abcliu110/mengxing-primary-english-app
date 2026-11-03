@@ -22,6 +22,7 @@
 | 选项级反馈（阶段3 试点） | `model/laws_master.json` + `model/verb_error_cases.json`（派生，无独立事实源） | 2026-11-04 阶段3 登记：主文件 `var RV_FEEDBACK`（错选项↔病例对齐表：试点 13 律 15 题 17 条）由 `tools/gen_feedback.py` 生成——对齐口径 M1 整句等值/M2 填空还原/M3 差分词自动强对齐，M5 句级错形与 M4 弱对齐一律逐条人工核验登记（VERIFIED/EXCLUDED/REWRITES 表在生成器内），why 为病例 diag 的孩子白话改写、无登记者不进表且生成报错；复习区答错时呈现，题池/判答/盒子不动。不得手改内嵌副本 |
 | 全册规律名册（ROSTER） | `model/laws_master.json` + `model/morph_data.json`（派生，无独立事实源） | 2026-11-04 名册波登记：主文件 `var ROSTER`（456 条：显示名/家族/层级/呈现路由/改名合并归一）由 `tools/gen_roster.py` 生成——户口取总表，路由按现行 LAWDATA（基础字面量+PHONLAWS+SUPPDATA 合并口径）与专区在册解析（与 gen_links 同通道）；家长地图与总地图的「暂未配练习」清单改读名册，旧编号由现行条目代表不重复列，App 内无律页的 20 条（P 层 19 + CO-17）如实标「暂无讲解页」。不得手改内嵌副本 |
 | 规律补题（RV_GENQ） | `model/morph_data.json` + `model/wordbank.json`（派生，无独立事实源） | 2026-11-04 补题波登记：主文件 `var RV_GENQ`（S-44 屈折三读选择题 40 道）由 `tools/gen_questions.py` 生成——材料为 S-44 登记页（if-plural/if-past）成员词与词库屈折形条目，答案由词库实证音标尾音决定并与本律规则交叉核对，逐词断言（拼写合规/-ed 规则派生/音标可切分/规则一致）不过即跳过登记；复习引擎 srcGenQ 适配器接 SOURCES 末尾，旧题一字不动、新题只追加。/ɪz/ 类因咝音尾词形未入词库为 0 题，缺口如实登记待词库车道补词形条目 |
+| 机制图式卡（SCHEMA_TA） | `model/laws_master.json`（TA yaml 分仓，内容） + `model/schema_cards.json`（结构规格） | 2026-11-04 学习阶段4 首件登记：主文件 `var SCHEMA_TA`（TA 18 律静态机制图式卡数据：axis 时间轴 / panels 分栏对照 / grid 矩阵 / path 路径四原型）由 `tools/gen_schema.py` 派生——内容（机制/例句/病例）取总表 TA 分仓，结构（原型、几何、内容下标引用）取 schema_cards.json；规格内一切字面量标签逐片段断言 ∈ 该律自有材料，例句/病例正文一律下标拉取不许手抄，后续家族推广沿同一规格文件加条。呈现由主文件手写渲染器 `window['SCHEMA_TA_RENDER']` 绘内联 SVG（sage 色板），VB.openTA 一行钩子在机制段后、例句段前调用；渲染器为代码非数据。不得手改内嵌副本 |
 
 ## 2. 新数据准入
 
