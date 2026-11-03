@@ -331,6 +331,7 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
   .view{padding-left:28px;padding-right:28px}
 }
 @media (min-width:1200px){
+  /* 2026-11-03 裁定：桌面取消左侧栏；同日再裁定取消顶部导航栏——入口收进首页面板，各页以「← 回首页」返回（见 docs/frontend-ui.md 第二次修订注）。本块只保留 .app 居中单栏 */
   body{background:var(--bg)}
   .app{
     max-width:1440px;
@@ -339,49 +340,9 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
     border-radius:24px;
     overflow:clip;
     box-shadow:0 16px 48px rgba(45,80,50,.12);
-    display:grid;
-    grid-template-columns:220px minmax(0,1fr);
-    grid-template-rows:auto auto 1fr;
   }
   .app>header{
-    grid-column:1 / -1;
     border-radius:24px 24px 0 0;
-  }
-  .topbar{
-    grid-column:1;
-    grid-row:2 / span 20;
-    flex-direction:column;
-    align-items:stretch;
-    position:sticky;
-    top:0;
-    height:calc(100vh - 120px);
-    max-height:calc(100vh - 120px);
-    overflow:auto;
-    border-bottom:0;
-    border-right:1px solid var(--line);
-    padding:16px 12px;
-    background:var(--card);
-  }
-  #nav{
-    flex-direction:column;
-    flex-wrap:nowrap;
-    overflow:visible;
-    gap:6px;
-  }
-  #nav .nbtn{
-    width:100%;
-    justify-content:flex-start;
-    border-radius:12px;
-  }
-  #nav+.bar{
-    margin-top:12px;
-    width:100%;
-  }
-  #nav+.bar .tgl{width:100%;justify-content:center;margin-left:0}
-  .view{
-    grid-column:2;
-    padding-left:28px;
-    padding-right:28px;
   }
   #v-home .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   #v-home .pain{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -695,32 +656,6 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 <h1>萌星英语 · 规律版</h1>
 <p>给中国孩子的英语「规律机」：不背清单，学解码——每个知识点都讲清机制、给得出边界、治得了一个真实的病。</p>
 </header>
-<div class="topbar">
-<div class="bar" id="nav">
-<button class="nbtn on" data-v="home">首页</button>
-<button class="nbtn" data-v="phon">拼读区</button>
-<button class="nbtn" data-v="vocab">词汇解码区</button>
-<button class="nbtn" data-v="morph">词根词缀</button>
-<button class="nbtn" data-v="etym">词源区</button>
-<button class="nbtn" data-v="grammar">语法区</button>
-<button class="nbtn" data-v="verb">动词区</button>
-<button class="nbtn" data-v="pron">代词区</button>
-<button class="nbtn" data-v="art">冠词区</button>
-<button class="nbtn" data-v="conj">连词区</button>
-<button class="nbtn" data-v="prep">介词</button>
-<button class="nbtn" data-v="spoken">口语区</button>
-
-
-<button class="nbtn" data-v="expr">表达写作区</button>
-<button class="nbtn" data-v="tech">技巧区</button>
-<button class="nbtn" data-v="review">复习区</button>
-<button class="nbtn" data-v="parents">家长角</button>
-<button class="nbtn" data-v="settings">设置</button>
-</div>
-<div class="bar">
-<span class="tgl" id="atgl" role="switch" aria-checked="false" tabindex="0">成人层：关</span>
-</div>
-</div>
 
 <style id="hm-style">
 /* 首页改版（大标题 + 深绿统计横幅 + 线描大卡片网格）—— 全部规则只作用于 #v-home */
@@ -6738,6 +6673,11 @@ renderTrump();renderPit();renderTree();renderWbindex();spwbRender();
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">⚙️ 设置 · 课程口径开关</h2>
 <p class="sub">两个开关对应《App 原型定义 v1》第七节的裁定项，<b>已于 2026-11-02 逐项裁定定版</b>（裁定 A = A1、裁定 B = B1）；此处保留开关形态作口径对照，<b>切换只改本页呈现，不改数据</b>——条目的机制、边界与分歧登记原样保留。</p>
+<div class="sec-t">显示 · 成人层开关（原顶部导航栏开关，2026-11-03 随导航改版迁入本页）</div>
+<div class="box">
+<span class="tgl" id="atgl" role="switch" aria-checked="false" tabindex="0">成人层：关</span>
+<p style="font-size:13px;color:#7a6c52;margin-top:8px">打开后，各页面的「成人层」内容（机制原文、证据等级与分歧登记）随孩子层一同显示；孩子独立使用时建议关闭。切换只改呈现、不改数据。</p>
+</div>
 <div class="sec-t">裁定 A · 弱读的产出取向（关联 S-09 与 S-13 的分歧）</div>
 <div class="box">
 <button class="opt setopt">A2 · LFC 优先：产出严格按可懂度核心排序，弱读听辨也降为选学</button>

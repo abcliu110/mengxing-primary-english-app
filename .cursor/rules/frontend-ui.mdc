@@ -10,6 +10,6 @@ alwaysApply: false
 
 - 全站鼠尾草绿护眼 token：`--bg #e4eedf`、`--app #f2f6ee`、`--card #f8faf5`、`--ink #2c3328`、`--muted #6b7566`、`--accent #4a7a59`、`--accent-deep #3d5a40`、`--accent-soft #d3e5d6`、`--line #d5dfd0`。
 - 禁止主色再用奶油纸（`#F5F1E6` 等）或亮蓝紫（`#4f7cff` / `#eef2ff` / `#173a6b`）。
-- 每个 `.view` 都要适配，不只 `#v-home`。断点：768 平板 / 1024 / 1200 桌面侧栏 220px。
+- 每个 `.view` 都要适配，不只 `#v-home`。断点：768 平板 / 1024 / 1200 桌面居中单栏（2026-11-03 两次修订：取消左侧栏、取消顶部导航栏；导航模型 = 首页面板目录 + 区页「← 回首页」返回钮，成人层开关在设置页）。
 - 模块作用域（`.phx`、`.pn-scope`、`.gkmod` 等）颜色映射到全局 token；保留 `#mx-eye-care-all-pages` 与 `#mx-eye-care-modules`。
 - 改 `mengxing-prototype-v1.html` 样式时优先改 `<style>`，勿误伤内联 JS/SVG 数据逻辑。
