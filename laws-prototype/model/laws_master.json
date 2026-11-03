@@ -104478,12 +104478,123 @@
   "conflicts": [],
   "relations": [
    {
+    "id": "S-44",
+    "rel": "已裁定立条（Stewart 2026-11-03）：本候选正式成为 S-44"
+   }
+  ],
+  "ruling": {
+   "decision": "正式立条，编号 S-44",
+   "by": "Stewart",
+   "date": "2026-11-03",
+   "status": "promoted:S-44"
+  }
+ },
+ {
+  "id": "S-44",
+  "sources": [
+   "zone"
+  ],
+  "yaml": null,
+  "lawdata": null,
+  "zone": {
+   "zone": "morph",
+   "data": {
+    "id": "NEW-T",
+    "headline": "屈折词尾三读：-s 与 -ed 各有三张脸，由词干最后一个音说了算",
+    "kid": "cats 的 -s 读 /s/，dogs 的读 /z/，buses 的读 /ɪz/；-ed 也一样：walked 读 /t/，played 读 /d/，wanted 读 /ɪd/。前面是清音它就跟着清，前面是浊音它就跟着浊，前面是『亲戚音』就多加一拍。",
+    "beats": [
+     {
+      "beat": "清浊跟随",
+      "kid": "词干最后一个音不振动（清音），-s 读 /s/、-ed 读 /t/；振动（浊音）或元音结尾，读 /z/、/d/。",
+      "adult": "语音同化（voicing assimilation）：与 V-34 同一台机器，作用层不同——V-34 管派生前缀的拼写同化，本条管屈折词尾的发音同化。"
+     },
+     {
+      "beat": "亲戚音加拍",
+      "kid": "词干本来就以咝音（s/z/sh/ch）结尾，-s 要读 /ɪz/；以 t/d 结尾，-ed 要读 /ɪd/。这一拍最难，练习里单独照顾。",
+      "adult": "Berko 1958 年 wug 实验：儿童对 /ɪz/ 一读的掌握最晚，属正常发展顺序，不是错误。"
+     }
+    ],
+    "statement": "复数/三单 -s 与过去式 -ed 的读音由词干末音唯一决定：清音后清化、浊音与元音后浊化、同类音后插入 /ɪ/。",
+    "boundary": "只管规则屈折；不规则变化（men、went 等）不在此列。本条为候选新条，编号待与图鉴对账。",
+    "sources": [
+     "Berko 1958"
+    ],
+    "_role": "candidate",
+    "_pages": [
+     "if-past",
+     "if-plural"
+    ],
+    "_part": "屈折",
+    "_station": 3,
+    "_short": "-s 和 -ed 各有三种读法",
+    "_desc": "读 /s/ 还是 /z/、/t/ 还是 /d/，看词尾最后一个音是清的还是浊的。",
+    "_groups": [
+     {
+      "h": "-s 的三张脸",
+      "items": [
+       {
+        "n": "读 /s/",
+        "g": "清音后面 — cats、books"
+       },
+       {
+        "n": "读 /z/",
+        "g": "浊音和元音后面 — dogs、plays"
+       },
+       {
+        "n": "读 /ɪz/",
+        "g": "咝音后面 — buses、watches（最难，学会得最晚）"
+       }
+      ]
+     },
+     {
+      "h": "-ed 的三张脸",
+      "items": [
+       {
+        "n": "读 /t/",
+        "g": "清音后面 — walked、helped"
+       },
+       {
+        "n": "读 /d/",
+        "g": "浊音和元音后面 — played、called"
+       },
+       {
+        "n": "读 /ɪd/",
+        "g": "t、d 后面 — wanted、needed"
+       }
+      ]
+     }
+    ]
+   },
+   "extra": null,
+   "adult": null
+  },
+  "canonical": {
+   "title": "-s 和 -ed 各有三种读法",
+   "family": "NEW",
+   "headline": "屈折词尾三读：-s 与 -ed 各有三张脸，由词干最后一个音说了算",
+   "kid_headline": "cats 的 -s 读 /s/，dogs 的读 /z/，buses 的读 /ɪz/；-ed 也一样：walked 读 /t/，played 读 /d/，wanted 读 /ɪd/。前面是清音它就跟着清，前面是浊音它就跟着浊，前面是『亲戚音』就多加一拍。",
+   "claim": "复数/三单 -s 与过去式 -ed 的读音由词干末音唯一决定：清音后清化、浊音与元音后浊化、同类音后插入 /ɪ/。",
+   "group": null
+  },
+  "conflicts": [],
+  "established": {
+   "from": "NEW-T",
+   "by": "Stewart",
+   "date": "2026-11-03",
+   "note": "由候选 NEW-T 三读律正式立条；-s 三读与 S-30、垫音机制与 S-18 有分工关系（见 relations），本条的增量为统一屈折三读框架与 -ed 清浊对 /t/~/d/"
+  },
+  "relations": [
+   {
     "id": "S-30",
-    "rel": "对账备忘判定其 -s 三读部分对应 S-30、垫音机制对应 S-18，但 -ed 清浊对为图鉴真空白，建议正式立条 S-44；Stewart 尚未裁定，总表暂保持独立记录"
+    "rel": "分工：-s 三读的字母行为描写在本条（S-30）；S-44 持统一屈折框架并互链"
    },
    {
     "id": "S-18",
-    "rel": "对账备忘判定其垫音/第三读机制对应本条；Stewart 尚未裁定"
+    "rel": "分工：垫音/第三读机制在本条（S-18）；S-44 引用其机制并互链"
+   },
+   {
+    "id": "NEW-T",
+    "rel": "立条来源：候选 NEW-T（词根区 LAWREG 呈现位挂靠本条）"
    }
   ]
  }
