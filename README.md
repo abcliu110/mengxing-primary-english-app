@@ -4,9 +4,9 @@
 
 ## 主文件
 
-`萌星小学英语_最终合并版.html`：当前维护的版本。
+`laws-prototype/mengxing-prototype-v1.html`：当前维护的版本（规律版 App，十五区；配套事实源与生成工具在 `laws-prototype/model/` 与 `laws-prototype/tools/`，数据源规矩见 `laws-prototype/DATA_SOURCE_SPEC.md`）。
 
-仓库里只保留这一个 HTML（旧的 v2 主题大世界、v3 Argon 重写版、v3.7、“- 副本”已在 `3d2b670` 删除，需要时从 git 历史取回）。`code_artifact*.md` 是教研设计文档，`docs/whiteboard/` 是白板动画与新模块的设计、交接文档和源文件（接手先读 `docs/whiteboard/HANDOFF.md`，总设计 `MASTER_DESIGN.md`，历史流水 `CHANGELOG.md`），`docs/home/` 是首页改版脚本和入口清单。
+根目录旧正式版 `萌星小学英语_最终合并版.html` 与规律图鉴 `law-atlas-complete.html` 已于 2026-11-03 删除：图鉴 428 条规律已全量进入 `laws-prototype/model/` 总表，旧正式版的可借鉴内容（口语对话、拍手歌）已搬入现行 App，其余均被覆盖或超越；两文件需要时从 git 历史取回。`code_artifact2.md` 是教研设计文档（v2.1；v2.0 的 code_artifact.md 已删），`docs/whiteboard/` 是白板动画与新模块的设计、交接文档和源文件（接手先读 `docs/whiteboard/HANDOFF.md`，总设计 `MASTER_DESIGN.md`，历史流水 `CHANGELOG.md`），`docs/home/` 是首页改版脚本和入口清单。
 
 ## 怎么运行
 
