@@ -34,6 +34,9 @@ entries:
     word_ids:
     - G2_0492
     - G3_K23
+    grp: 开关组合：时间 × 看法
+    src:
+      k: orig
   - level: 1
     sentence: I read a story yesterday.
     scene_note: 昨天读完的故事——时间=过去，看法=看整件（一般）
@@ -41,6 +44,9 @@ entries:
     word_ids:
     - G2_0492
     - G4_0415
+    grp: 开关组合：时间 × 看法
+    src:
+      k: orig
   - level: 2
     sentence: I have finished my homework.
     scene_note: 作业做完了，痕迹是现在可以出去玩——时间=过去的事，看法=对准现在的牵连（完成）
@@ -48,6 +54,9 @@ entries:
     word_ids:
     - V6_日常_26
     - G5_215
+    grp: 开关组合：时间 × 看法
+    src:
+      k: orig
   - level: 2
     sentence: We were playing football in the afternoon.
     scene_note: 回忆昨天下午踢球踢到一半的画面——时间=过去，看法=钻进中间（过去进行）
@@ -56,6 +65,93 @@ entries:
     - G2_0489
     - G3_0401
     - G2_0893
+    grp: 开关组合：时间 × 看法
+    src:
+      k: orig
+  - level: 1
+    sentence: She is singing now.
+    scene_note: 现在 + 进行：她正在唱——两个开关都拨在「现在、进行」
+    supports: claim
+    word_ids:
+    - G2_088
+    grp: 开关组合：时间 × 看法
+    src:
+      k: gen
+      f: combo-pres-prog
+      from: TA-01 exs[0] 句框
+      slots:
+        verb: G2_088
+  - level: 1
+    sentence: We played football yesterday.
+    scene_note: 过去 + 完整：昨天的球赛，一整件说完
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    grp: 开关组合：时间 × 看法
+    src:
+      k: gen
+      f: combo-past-whole
+      from: TA-01 exs[1] 句框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
+  - level: 1
+    sentence: It rains a lot in summer.
+    scene_note: 现在 + 习惯：夏天总下雨——说的是老样子
+    supports: claim
+    word_ids:
+    - G2_0502
+    grp: 开关组合：时间 × 看法
+    src:
+      k: gen
+      f: combo-pres-habit
+      from: TA-01 句框
+      slots:
+        verb: G2_0502
+  - level: 1
+    sentence: He will play tomorrow.
+    scene_note: 将来要借 will：时间开关拨到明天，看法还是完整一件
+    supports: claim
+    word_ids:
+    - G2_0489
+    grp: 开关组合：时间 × 看法
+    src:
+      k: gen
+      f: combo-future
+      from: TA-01 exs[1] 句框
+      slots:
+        verb: G2_0489
+  - level: 2
+    sentence: I read books every day.
+    scene_note: read 先站完整看法这边：天天读——习惯
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 边界：同一个动词，开关一翻样子就变
+    src:
+      k: gen
+      f: flip-read-habit
+      from: TA-01 对照框
+      slots:
+        verb: G2_0492
+        obj: G1_002
+  - level: 2
+    sentence: I am reading a book now.
+    scene_note: 还是 read：开关翻到进行，样子马上变成 am reading
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 边界：同一个动词，开关一翻样子就变
+    src:
+      k: gen
+      f: flip-read-prog
+      from: TA-01 对照框
+      slots:
+        verb: G2_0492
+        obj: G1_002
   error_cases: []
   relatives:
   - id: TA-02
@@ -114,6 +210,24 @@ entries:
     word_ids:
     - G2_0489
     - G2_0414
+    grp: 现在衣裳
+    src:
+      k: orig
+  - level: 1
+    sentence: She reads books.
+    scene_note: 她平时读书：现在衣裳，she 后面 reads 戴 -s
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 现在衣裳
+    src:
+      k: gen
+      f: pres
+      from: TA-02 exs[0] 句框
+      slots:
+        verb: G2_0492
+        obj: G1_002
   - level: 1
     sentence: We played games yesterday.
     scene_note: 动词的「过去」衣裳
@@ -121,6 +235,36 @@ entries:
     word_ids:
     - G2_0489
     - G4_0415
+    grp: 过去衣裳
+    src:
+      k: orig
+  - level: 1
+    sentence: He went home yesterday.
+    scene_note: 他昨天回家：过去衣裳 went，整个词换了样
+    supports: claim
+    word_ids:
+    - V6_日常_1
+    - V6_家庭_34
+    grp: 过去衣裳
+    src:
+      k: gen
+      f: past
+      from: TA-02 exs[1] 句框
+      slots:
+        verb: V6_日常_1
+  - level: 1
+    sentence: They watched TV last night.
+    scene_note: 昨晚看电视：过去衣裳是规规矩矩的 -ed
+    supports: claim
+    word_ids:
+    - POLY_WATCH
+    grp: 过去衣裳
+    src:
+      k: gen
+      f: past-ed
+      from: TA-02 exs[1] 句框
+      slots:
+        verb: POLY_WATCH
   - level: 2
     sentence: We will visit Grandma tomorrow.
     scene_note: 说将来的事要借 will——will 是帮手，不是动词自己的衣裳
@@ -129,12 +273,59 @@ entries:
     - G6_270
     - V6_家庭_12
     - G6_267
+    grp: 边界：将来没有自己的衣裳，要借小帮手
+    src:
+      k: orig
   - level: 2
     sentence: Look at the clouds! It is going to rain.
-    scene_note: 借 going to 谈将来（此例同 TA-11 登记例）
+    scene_note: 借 going to 谈将来：看云就知道要下雨（TA-11 里还会遇见它）
     supports: claim
     word_ids:
     - G2_0502
+    grp: 边界：将来没有自己的衣裳，要借小帮手
+    src:
+      k: orig
+  - level: 2
+    sentence: We will play football tomorrow.
+    scene_note: 明天的球赛：借 will 的力气说将来
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    grp: 边界：将来没有自己的衣裳，要借小帮手
+    src:
+      k: gen
+      f: will
+      from: TA-02 exs[2] 句框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
+  - level: 2
+    sentence: I am going to read a book.
+    scene_note: 我打算读本书：借 going to 说已经想好的将来
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 边界：将来没有自己的衣裳，要借小帮手
+    src:
+      k: gen
+      f: going-to
+      from: TA-02 exs[3] 句框
+      slots:
+        verb: G2_0492
+        obj: G1_002
+  - level: 2
+    sentence: We are going to have a test tomorrow.
+    scene_note: 明天有考试：这是排好的将来，也用 going to 借力气
+    supports: claim
+    word_ids: []
+    grp: 边界：将来没有自己的衣裳，要借小帮手
+    src:
+      k: gen
+      f: going-to-test
+      from: TA-02 exs[3] 句框
+      slots: {}
   error_cases: []
   relatives:
   - id: TA-01
@@ -198,12 +389,9 @@ entries:
     word_ids:
     - G5_0567
     - V6_家庭_35
-  - level: 1
-    sentence: They were building a house.
-    scene_note: 把镜头推近：只看正在盖的中间一段（钻进去看）
-    supports: claim
-    word_ids:
-    - G5_0567
+    grp: 站远看：一整件
+    src:
+      k: orig
   - level: 2
     sentence: He ran in the park.
     scene_note: 全景看跑步这件事
@@ -211,12 +399,112 @@ entries:
     word_ids:
     - G2_087
     - G2_080
+    grp: 站远看：一整件
+    src:
+      k: orig
+  - level: 1
+    sentence: She cooked dinner.
+    scene_note: 她做晚饭：站远看，做完了整件
+    supports: claim
+    word_ids:
+    - G4_0500
+    grp: 站远看：一整件
+    src:
+      k: gen
+      f: whole-cook
+      from: TA-03 exs[0] 句框
+      slots:
+        verb: G4_0500
+  - level: 1
+    sentence: The boys played football.
+    scene_note: 男孩们踢球：整场说完
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    grp: 站远看：一整件
+    src:
+      k: gen
+      f: whole-play
+      from: TA-03 exs[2] 句框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
+  - level: 1
+    sentence: They were building a house.
+    scene_note: 把镜头推近：只看正在盖的中间一段（钻进去看）
+    supports: claim
+    word_ids:
+    - G5_0567
+    grp: 镜头推进去：只看中间一段
+    src:
+      k: orig
   - level: 2
     sentence: He was running when I saw him.
     scene_note: 我看见他时，他正在跑的中间一段
     supports: claim
     word_ids:
     - G2_087
+    grp: 镜头推进去：只看中间一段
+    src:
+      k: orig
+  - level: 1
+    sentence: She was cooking dinner.
+    scene_note: 还是她做晚饭：镜头推进去，只看正在做的中间一段
+    supports: claim
+    word_ids:
+    - G4_0500
+    grp: 镜头推进去：只看中间一段
+    src:
+      k: gen
+      f: prog-cook
+      from: TA-03 exs[1] 句框
+      slots:
+        verb: G4_0500
+  - level: 1
+    sentence: The boys were playing football.
+    scene_note: 镜头推进去：他们正在踢的那一段
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    grp: 镜头推进去：只看中间一段
+    src:
+      k: gen
+      f: prog-play
+      from: TA-03 exs[3] 句框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
+  - level: 2
+    sentence: We were walking home when it rained.
+    scene_note: 走路是背景（进行），下雨是主线（过去）：两件事分工合作
+    supports: claim
+    word_ids:
+    - V6_交通_52
+    - V6_家庭_34
+    grp: 边界：进行当背景，过去当主线
+    src:
+      k: gen
+      f: bg-main
+      from: TA-03 exs[3] 句框
+      slots:
+        verb: V6_交通_52
+  - level: 2
+    sentence: I was reading a book when he came in.
+    scene_note: 读书是背景，他进来是主线：镜头停在书上，进门的事一闪而过
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 边界：进行当背景，过去当主线
+    src:
+      k: gen
+      f: bg-main2
+      from: TA-03 exs[3] 句框
+      slots:
+        verb: G2_0492
+        obj: G1_002
   error_cases: []
   relatives:
   - id: TA-01
@@ -277,22 +565,9 @@ entries:
     word_ids:
     - V6_日常_15
     - G3_K23
-  - level: 1
-    sentence: I get up at seven every day.
-    scene_note: 天天的习惯——一般现在时的正职
-    supports: claim
-    word_ids:
-    - V6_日常_0
-    - G3_K19
-    - G1_026
-  - level: 2
-    sentence: The sun rises in the east.
-    scene_note: 永远对的老道理——一般现在时
-    supports: claim
-    word_ids:
-    - G2_0501
-    - V6_交通_38
-    - ADD_0629
+    grp: 正在发生：钻进镜头里
+    src:
+      k: orig
   - level: 2
     sentence: Look! They are playing football now.
     scene_note: 眼前正在发生——进行时
@@ -301,6 +576,115 @@ entries:
     - G2_0489
     - G3_0401
     - G3_K23
+    grp: 正在发生：钻进镜头里
+    src:
+      k: orig
+  - level: 1
+    sentence: I am writing now.
+    scene_note: 我正在写：now 一喊，句子就钻进镜头里
+    supports: claim
+    word_ids:
+    - G3_0487
+    grp: 正在发生：钻进镜头里
+    src:
+      k: gen
+      f: now-write
+      from: TA-04 exs[0] 句框
+      slots:
+        verb: G3_0487
+  - level: 1
+    sentence: I get up at seven every day.
+    scene_note: 天天的习惯——一般现在时的正职
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    - G3_K19
+    - G1_026
+    grp: 习惯与老道理：一般现在时
+    src:
+      k: orig
+  - level: 2
+    sentence: The sun rises in the east.
+    scene_note: 永远对的老道理——一般现在时
+    supports: claim
+    word_ids:
+    - G2_0501
+    - V6_交通_38
+    - ADD_0629
+    grp: 习惯与老道理：一般现在时
+    src:
+      k: orig
+  - level: 1
+    sentence: He reads books every day.
+    scene_note: 他天天读书：every day 是习惯的标记，用一般现在时
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 习惯与老道理：一般现在时
+    src:
+      k: gen
+      f: habit-read
+      from: TA-04 exs[1] 句框
+      slots:
+        verb: G2_0492
+        obj: G1_002
+  - level: 1
+    sentence: She teaches English.
+    scene_note: 她教英语：这是她的职业——老道理，也用一般现在时
+    supports: claim
+    word_ids:
+    - G3_0630
+    grp: 习惯与老道理：一般现在时
+    src:
+      k: gen
+      f: truth-job
+      from: TA-04 exs[2] 句框
+      slots:
+        verb: G3_0630
+  - level: 1
+    sentence: They play football on Sundays.
+    scene_note: 他们周日踢球：on Sundays 说的是习惯，不是现在这一场
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    grp: 习惯与老道理：一般现在时
+    src:
+      k: gen
+      f: habit-sundays
+      from: TA-04 exs[1] 句框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
+  - level: 1
+    sentence: Look! She is dancing.
+    scene_note: 看！她正在跳舞：Look 一喊，镜头就推过去了
+    supports: claim
+    word_ids:
+    - G2_083
+    grp: 再认一个正在发生的
+    src:
+      k: gen
+      f: now-dance
+      from: TA-04 exs[3] 句框
+      slots:
+        verb: G2_083
+  - level: 2
+    sentence: I am reading now, but I read books every day.
+    scene_note: 同一句话里两个 read：前半是正在读，后半是天天读——分工很清楚
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 边界：一句话里，正在和习惯同框
+    src:
+      k: gen
+      f: both-now
+      from: TA-04 对照框
+      slots:
+        verb: G2_0492
+        obj: G1_002
   error_cases: []
   relatives:
   - id: TA-14
@@ -354,17 +738,14 @@ entries:
   examples:
   - level: 1
     sentence: I have lost my key.
-    scene_note: 钥匙丢了——印子是现在进不了门（结果用法；清单儿童版登记例）
+    scene_note: 钥匙丢了——印子是现在进不了门（结果用法）
     supports: claim
     word_ids:
     - V6_日常_72
     - G4_0740
-  - level: 1
-    sentence: I have been to Beijing.
-    scene_note: 去过北京——印子是经验本身（经历用法；清单边界登记例）
-    supports: claim
-    word_ids:
-    - G3_K01
+    grp: 结果用法：印子是现在的状态
+    src:
+      k: orig
   - level: 2
     sentence: I have finished my homework.
     scene_note: 作业完成——印子是现在可以玩了（结果用法）
@@ -372,6 +753,57 @@ entries:
     word_ids:
     - V6_日常_26
     - G5_215
+    grp: 结果用法：印子是现在的状态
+    src:
+      k: orig
+  - level: 1
+    sentence: I have eaten breakfast.
+    scene_note: 我吃过早饭了：印子是现在不饿——结果用法
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    grp: 结果用法：印子是现在的状态
+    src:
+      k: gen
+      f: result-eat
+      from: TA-05 exs[2] 句框
+      slots:
+        verb: V6_日常_15
+  - level: 1
+    sentence: I have been to Beijing.
+    scene_note: 去过北京——印子是经验本身（经历用法；这一句站在边界上）
+    supports: claim
+    word_ids:
+    - G3_K01
+    grp: 经历用法：印子是经验本身
+    src:
+      k: orig
+  - level: 1
+    sentence: She has read the book.
+    scene_note: 她读过这本书：印子是她知道里面讲什么
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 经历用法：印子是经验本身
+    src:
+      k: gen
+      f: exp-read
+      from: TA-05 exs[1] 句框
+      slots:
+        verb: G2_0492
+        obj: G1_002
+  - level: 1
+    sentence: Have you ever been to the zoo?
+    scene_note: 问经历用 ever：你去过动物园吗——印子是经验
+    supports: claim
+    word_ids: []
+    grp: 经历用法：印子是经验本身
+    src:
+      k: gen
+      f: exp-ever
+      from: TA-05 exs[1] 句框
+      slots: {}
   - level: 2
     sentence: We have lived here for three years.
     scene_note: 住了三年而且还住着——持续用法，牵连一直连到现在
@@ -380,6 +812,50 @@ entries:
     - G3_0653
     - G2_0595
     - V6_节日_1
+    grp: 持续用法：一直连到现在
+    src:
+      k: orig
+  - level: 1
+    sentence: He has known Tom for two years.
+    scene_note: 他认识 Tom 两年了，而且现在还认识：持续用法
+    supports: claim
+    word_ids:
+    - G3_0626
+    grp: 持续用法：一直连到现在
+    src:
+      k: gen
+      f: persist-know
+      from: TA-05 exs[3] 句框
+      slots:
+        verb: G3_0626
+  - level: 1
+    sentence: I have just had lunch.
+    scene_note: 我刚吃完午饭：just 把事情拉到刚刚——近况用法
+    supports: claim
+    word_ids:
+    - V6_日常_5
+    grp: 近况用法：刚刚发生
+    src:
+      k: gen
+      f: recent-just
+      from: TA-05 句框
+      slots:
+        verb: V6_日常_5
+  - level: 2
+    sentence: She has broken her cup.
+    scene_note: 她的杯子摔坏了：印子就是现在这个坏杯子——先认出它是结果用法
+    supports: claim
+    word_ids:
+    - ADD_0025
+    - G2_0936
+    grp: 边界：先分清是哪种用法
+    src:
+      k: gen
+      f: which-use
+      from: TA-05 exs[0] 句框
+      slots:
+        verb: ADD_0025
+        obj: G2_0936
   error_cases: []
   relatives:
   - id: TA-06
@@ -435,6 +911,57 @@ entries:
     visual: 一只眼睛望向「现在」旗杆，yesterday 的手把视线往回掰、句子裂开的图式
   examples:
   - level: 1
+    sentence: I have seen him.
+    scene_note: 不点名时间，只说与现在有牵连——完成时可用
+    supports: claim
+    word_ids:
+    - V6_日常_17
+    - G2_P03
+    grp: 不点名时刻：完成时
+    src:
+      k: orig
+  - level: 1
+    sentence: I have just eaten.
+    scene_note: just 是「刚刚」：它指着现在，不算点名过去时刻
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    grp: 不点名时刻：完成时
+    src:
+      k: gen
+      f: just
+      from: TA-06 exs[1] 句框
+      slots:
+        verb: V6_日常_15
+  - level: 1
+    sentence: Have you finished?
+    scene_note: 没点名任何时刻，只问现在好没好：用完成时问
+    supports: claim
+    word_ids:
+    - V6_日常_26
+    grp: 不点名时刻：完成时
+    src:
+      k: gen
+      f: ask-perfect
+      from: TA-06 exs[1] 句框
+      slots:
+        verb: V6_日常_26
+  - level: 1
+    sentence: I have never seen snow.
+    scene_note: never 说的是到现在为止一次都没有：完成时管这个
+    supports: claim
+    word_ids:
+    - V6_日常_17
+    - G2_0504
+    grp: 不点名时刻：完成时
+    src:
+      k: gen
+      f: never
+      from: TA-06 exs[1] 句框
+      slots:
+        verb: V6_日常_17
+        obj: G2_0504
+  - level: 1
     sentence: I saw him yesterday.
     scene_note: 点名了昨天——用一般过去时（正形，与病例错形对照）
     supports: claim
@@ -442,13 +969,24 @@ entries:
     - V6_日常_17
     - G2_P03
     - G4_0415
+    grp: 点名过去时刻：用过去时
+    src:
+      k: orig
   - level: 1
-    sentence: I have seen him.
-    scene_note: 不点名时间，只说与现在有牵连——完成时可用
+    sentence: He played football yesterday.
+    scene_note: yesterday 一出现，眼睛被掰回过去：只能用过去时
     supports: claim
     word_ids:
-    - V6_日常_17
-    - G2_P03
+    - G2_0489
+    - G3_0401
+    grp: 点名过去时刻：用过去时
+    src:
+      k: gen
+      f: yesterday-past
+      from: TA-06 exs[0] 句框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
   - level: 2
     sentence: We have lived here since 2021.
     scene_note: since/for 给的是「连到现在的一段」——完成时的合法时间伴侣
@@ -457,6 +995,50 @@ entries:
     - G3_0653
     - G2_0595
     - V6_节日_1
+    grp: since 跟起点，for 跟时段
+    src:
+      k: orig
+  - level: 1
+    sentence: We have known Sam for two years.
+    scene_note: for 后面跟时段（两年）：这段时间一直连到现在
+    supports: claim
+    word_ids:
+    - G3_0626
+    grp: since 跟起点，for 跟时段
+    src:
+      k: gen
+      f: for-period
+      from: TA-06 exs[2] 句框
+      slots:
+        verb: G3_0626
+  - level: 1
+    sentence: She has lived here since 2021.
+    scene_note: since 后面跟起点（2021 年）：从那时一直到现在
+    supports: claim
+    word_ids:
+    - G3_0653
+    grp: since 跟起点，for 跟时段
+    src:
+      k: gen
+      f: since-start
+      from: TA-06 exs[2] 句框
+      slots:
+        verb: G3_0653
+  - level: 2
+    sentence: She has read three books this week.
+    scene_note: this week 还没过完：这段时间连着现在，完成时站得住
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 边界：this week 还没过完，可以用完成时
+    src:
+      k: gen
+      f: this-week
+      from: TA-06 对照框
+      slots:
+        verb: G2_0492
+        obj: G1_002
   error_cases:
   - wrong: I have seen him yesterday.
     right: I saw him yesterday.
@@ -518,12 +1100,56 @@ entries:
     supports: claim
     word_ids:
     - G3_0626
+    grp: 状态：静止的牌子
+    src:
+      k: orig
+  - level: 1
+    sentence: I like music.
+    scene_note: 喜欢是状态：它是一块牌子，不是一个动作
+    supports: claim
+    word_ids:
+    - G2_0781
+    grp: 状态：静止的牌子
+    src:
+      k: gen
+      f: state-like
+      from: TA-07 exs[0] 句框
+      slots: {}
   - level: 1
     sentence: The children run in the park.
     scene_note: 活动——可以一直转的轮子，没有固有终点
     supports: claim
     word_ids:
     - G2_087
+    grp: 活动：可以一直转的轮子
+    src:
+      k: orig
+  - level: 1
+    sentence: She is swimming.
+    scene_note: 游泳是活动：轮子可以一直转，进行时套得上
+    supports: claim
+    word_ids:
+    - G2_089
+    grp: 活动：可以一直转的轮子
+    src:
+      k: gen
+      f: activity-swim
+      from: TA-07 exs[1] 句框
+      slots:
+        verb: G2_089
+  - level: 1
+    sentence: The baby is sleeping.
+    scene_note: 睡觉也是活动：没有明确终点，镜头套得上
+    supports: claim
+    word_ids:
+    - G3_0512
+    grp: 活动：可以一直转的轮子
+    src:
+      k: gen
+      f: activity-sleep
+      from: TA-07 exs[1] 句框
+      slots:
+        verb: G3_0512
   - level: 2
     sentence: She painted a picture.
     scene_note: 完结——有头有尾的一段路，画完为止
@@ -531,6 +1157,9 @@ entries:
     word_ids:
     - G4_0787
     - G4_158
+    grp: 终点：有头有尾的一段路
+    src:
+      k: orig
   - level: 2
     sentence: He found his key.
     scene_note: 达成——瞬间发生，啪的一下
@@ -538,6 +1167,54 @@ entries:
     word_ids:
     - V6_日常_19
     - G4_0740
+    grp: 终点：有头有尾的一段路
+    src:
+      k: orig
+  - level: 1
+    sentence: He wrote a letter.
+    scene_note: 写一封信有头有尾：写完，路就走完了——终点型
+    supports: claim
+    word_ids:
+    - G3_0487
+    - V6_P14
+    grp: 终点：有头有尾的一段路
+    src:
+      k: gen
+      f: telic-write
+      from: TA-07 exs[2] 句框
+      slots:
+        verb: G3_0487
+        obj: V6_P14
+  - level: 1
+    sentence: They made a cake.
+    scene_note: 做蛋糕是终点型：蛋糕出现，事情就完成
+    supports: claim
+    word_ids:
+    - V6_日常_4
+    - G1_048
+    grp: 终点：有头有尾的一段路
+    src:
+      k: gen
+      f: telic-make
+      from: TA-07 exs[2] 句框
+      slots:
+        verb: V6_日常_4
+        obj: G1_048
+  - level: 2
+    sentence: She has a dog.
+    scene_note: 「有」是状态：has a dog 只能这样站着，不能变成 is having
+    supports: claim
+    word_ids:
+    - V6_日常_5
+    - G1_015
+    grp: 边界：状态动词套不上进行时
+    src:
+      k: gen
+      f: state-have
+      from: TA-07 exs[0] 对照框
+      slots:
+        verb: V6_日常_5
+        obj: G1_015
   error_cases:
   - wrong: I am knowing the answer.
     right: I know the answer.
@@ -594,24 +1271,123 @@ entries:
   examples:
   - level: 1
     sentence: I wondered if you could help me.
-    scene_note: 清单儿童版登记的礼貌句型——用 wondered 把请求推远一点，听起来更柔和
+    scene_note: 礼貌句型——用 wondered 把请求推远一点，听起来更柔和
     supports: claim
     word_ids:
     - G5_0448
+    grp: 推远一：客客气气
+    src:
+      k: orig
+  - level: 1
+    sentence: Could you help me?
+    scene_note: could 是 can 推远的样子：问得更客气
+    supports: claim
+    word_ids:
+    - G3_0442
+    grp: 推远一：客客气气
+    src:
+      k: gen
+      f: could
+      from: TA-08 exs[0] 句框
+      slots:
+        verb: G3_0442
+  - level: 1
+    sentence: I wanted to ask a question.
+    scene_note: wanted 把话推远：我想问个问题——软乎乎的开口
+    supports: claim
+    word_ids:
+    - V6_日常_66
+    grp: 推远一：客客气气
+    src:
+      k: gen
+      f: wanted
+      from: TA-08 exs[0] 句框
+      slots:
+        verb: V6_日常_66
+  - level: 1
+    sentence: Would you like some tea?
+    scene_note: Would you like 是最客气的请法：would 也是推远的
+    supports: claim
+    word_ids:
+    - G2_0944
+    grp: 推远一：客客气气
+    src:
+      k: gen
+      f: would-like
+      from: TA-08 exs[0] 句框
+      slots:
+        obj: G2_0944
   - level: 1
     sentence: If I were you, I would say sorry.
-    scene_note: 清单儿童版登记的假设句型——were 是把事情推到「假如」里
+    scene_note: 假设句型——were 是把事情推到「假如」里
     supports: claim
     word_ids:
     - V6_核心_62
     - G1_P02
+    grp: 推远二：假设一下
+    src:
+      k: orig
+  - level: 1
+    sentence: If I had a dog, I would play with it.
+    scene_note: 我其实没有狗：had 把话推到假的世界里
+    supports: claim
+    word_ids:
+    - V6_日常_5
+    - G1_015
+    grp: 推远二：假设一下
+    src:
+      k: gen
+      f: if-had
+      from: TA-08 exs[1] 句框
+      slots:
+        verb: V6_日常_5
+        obj: G1_015
   - level: 2
     sentence: He said he was busy.
-    scene_note: 转述时把 is 推成 was——时态后退也是推远（机制支撑登记用法）
+    scene_note: 转述时把 is 推成 was——时态后退也是推远
     supports: claim
     word_ids:
     - G3_0625
     - G4_K04
+    grp: 推远三：转述别人说的话
+    src:
+      k: orig
+  - level: 1
+    sentence: She said she was tired.
+    scene_note: 她说她累了：转述时 was 跟着前面的 said 一起往过去退
+    supports: claim
+    word_ids: []
+    grp: 推远三：转述别人说的话
+    src:
+      k: gen
+      f: reported-tired
+      from: TA-08 exs[2] 句框
+      slots: {}
+  - level: 1
+    sentence: He told me he was happy.
+    scene_note: 他告诉我他很开心：happy 前面的 is 退成 was
+    supports: claim
+    word_ids:
+    - G6_282
+    grp: 推远三：转述别人说的话
+    src:
+      k: gen
+      f: reported-happy
+      from: TA-08 exs[2] 句框
+      slots: {}
+  - level: 2
+    sentence: I wonder if you can help me.
+    scene_note: 不推远的版本用 can 和 wonder：直来直去，也没错
+    supports: claim
+    word_ids:
+    - G3_0442
+    grp: 边界：不推远的说法长这样
+    src:
+      k: gen
+      f: no-distance
+      from: TA-08 exs[0] 对照框
+      slots:
+        verb: G3_0442
   error_cases: []
   relatives:
   - id: TA-02
@@ -669,6 +1445,9 @@ entries:
     - V6_家庭_6
     - V6_日常_2
     - V6_家庭_34
+    grp: had + 过去分词：比过去还早
+    src:
+      k: orig
   - level: 1
     sentence: We had eaten lunch before we played.
     scene_note: 顺序已由 before 标明时过去完成时可用可省（见 scope）
@@ -678,6 +1457,9 @@ entries:
     - G4_188
     - V6_核心_55
     - G2_0489
+    grp: had + 过去分词：比过去还早
+    src:
+      k: orig
   - level: 2
     sentence: She had never seen snow before that winter.
     scene_note: 站在那个冬天回头看——经历用法搬到过去，与现在完成时共享用法
@@ -687,6 +1469,108 @@ entries:
     - V6_日常_17
     - G2_0504
     - V6_核心_55
+    grp: had + 过去分词：比过去还早
+    src:
+      k: orig
+  - level: 1
+    sentence: The film had started when we came in.
+    scene_note: 电影先开始（had started），我们后进来：旗子插在「进来」这一刻
+    supports: claim
+    word_ids:
+    - V6_日常_24
+    grp: had + 过去分词：比过去还早
+    src:
+      k: gen
+      f: had-started
+      from: TA-09 exs[0] 句框
+      slots:
+        verb: V6_日常_24
+  - level: 1
+    sentence: After I had eaten, I did my homework.
+    scene_note: after 把顺序挑明：先吃完（had eaten），再做作业
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    grp: had + 过去分词：比过去还早
+    src:
+      k: gen
+      f: after-had
+      from: TA-09 exs[1] 句框
+      slots:
+        verb: V6_日常_15
+  - level: 1
+    sentence: She had written three letters before lunch.
+    scene_note: 午饭之前，她已经写完三封信：had written 站在更前面
+    supports: claim
+    word_ids:
+    - G3_0487
+    - V6_P14
+    grp: 换个场景，还是先发生的那件
+    src:
+      k: gen
+      f: had-written
+      from: TA-09 exs[1] 句框
+      slots:
+        verb: G3_0487
+        obj: V6_P14
+  - level: 1
+    sentence: He had never ridden a bike before.
+    scene_note: 在那之前他从没骑过车：had never ridden 说的是更早的经历
+    supports: claim
+    word_ids:
+    - G2_086
+    - G2_0973
+    grp: 换个场景，还是先发生的那件
+    src:
+      k: gen
+      f: had-never
+      from: TA-09 exs[2] 句框
+      slots:
+        verb: G2_086
+        obj: G2_0973
+  - level: 1
+    sentence: Mum had cooked dinner when Dad came home.
+    scene_note: 妈妈先做好饭，爸爸后到家：had cooked 排在 came 前面
+    supports: claim
+    word_ids:
+    - G4_0500
+    grp: 换个场景，还是先发生的那件
+    src:
+      k: gen
+      f: had-cooked
+      from: TA-09 exs[0] 句框
+      slots:
+        verb: G4_0500
+  - level: 1
+    sentence: I had lost my key, so I was very sad.
+    scene_note: 钥匙先丢（had lost），我后来才难过：丢在难过之前
+    supports: claim
+    word_ids:
+    - V6_日常_72
+    - G4_0740
+    grp: 换个场景，还是先发生的那件
+    src:
+      k: gen
+      f: had-lost
+      from: TA-09 exs[2] 句框
+      slots:
+        verb: V6_日常_72
+        obj: G4_0740
+  - level: 2
+    sentence: I finished my homework and went to bed.
+    scene_note: and 把顺序排好了：这时不用 had，过去时自己就够
+    supports: claim
+    word_ids:
+    - V6_日常_26
+    - G5_215
+    grp: 边界：顺序已经说清楚，过去时自己也能干
+    src:
+      k: gen
+      f: and-enough
+      from: TA-09 对照框
+      slots:
+        verb: V6_日常_26
+        obj: G5_215
   error_cases: []
   relatives:
   - id: TA-05
@@ -736,18 +1620,14 @@ entries:
   examples:
   - level: 1
     sentence: I'll get the door!
-    scene_note: 门铃响了当场答应——will 的意愿残影（清单支撑登记例）
+    scene_note: 门铃响了当场答应——will 的意愿味儿还留着
     supports: claim
     word_ids:
     - V6_日常_0
     - G1_0932
-  - level: 1
-    sentence: It will rain tomorrow.
-    scene_note: 天气预报式 will——已高度中性化，只剩预言的味道（见 scope）
-    supports: claim
-    word_ids:
-    - G2_0502
-    - G6_267
+    grp: 当场答应：好，我来
+    src:
+      k: orig
   - level: 2
     sentence: I will help you with your homework.
     scene_note: 当场承诺——「我乐意」的口气最浓的一种用法
@@ -755,6 +1635,109 @@ entries:
     word_ids:
     - G3_0442
     - G1_P02
+    grp: 当场答应：好，我来
+    src:
+      k: orig
+  - level: 1
+    sentence: I will call you.
+    scene_note: 我会打给你的：当场答应下来
+    supports: claim
+    word_ids:
+    - G5_K03
+    grp: 当场答应：好，我来
+    src:
+      k: gen
+      f: promise-call
+      from: TA-10 exs[0] 句框
+      slots:
+        verb: G5_K03
+  - level: 1
+    sentence: It will rain tomorrow.
+    scene_note: 天气预报式 will——已高度中性化，只剩预言的味道（见 scope）
+    supports: claim
+    word_ids:
+    - G2_0502
+    - G6_267
+    grp: 拍胸脯保证与预测
+    src:
+      k: orig
+  - level: 1
+    sentence: I will be careful.
+    scene_note: 我保证小心：will 在这里是拍胸脯
+    supports: claim
+    word_ids: []
+    grp: 拍胸脯保证与预测
+    src:
+      k: gen
+      f: promise
+      from: TA-10 exs[2] 句框
+      slots: {}
+  - level: 1
+    sentence: She will win.
+    scene_note: 她会赢：这是预测——will 的老本行是「我看好」
+    supports: claim
+    word_ids:
+    - G5_0494
+    grp: 拍胸脯保证与预测
+    src:
+      k: gen
+      f: predict-win
+      from: TA-10 exs[1] 句框
+      slots:
+        verb: G5_0494
+  - level: 1
+    sentence: It will be cold tomorrow.
+    scene_note: 明天会冷：预测天气也用 will
+    supports: claim
+    word_ids:
+    - G2_096
+    grp: 拍胸脯保证与预测
+    src:
+      k: gen
+      f: predict-cold
+      from: TA-10 exs[1] 句框
+      slots: {}
+  - level: 1
+    sentence: Will you come?
+    scene_note: 问你愿不愿意来：will 问的是意愿，不只是时间
+    supports: claim
+    word_ids:
+    - V6_日常_2
+    grp: will 借意愿味来请托
+    src:
+      k: gen
+      f: ask-will
+      from: TA-10 exs[0] 句框
+      slots:
+        verb: V6_日常_2
+  - level: 2
+    sentence: Will you hold my bag?
+    scene_note: 请你帮我拿包：will 在这里借的是「你愿意吗」
+    supports: claim
+    word_ids:
+    - V6_日常_44
+    - G1_001
+    grp: will 借意愿味来请托
+    src:
+      k: gen
+      f: request-hold
+      from: TA-10 exs[0] 句框
+      slots:
+        verb: V6_日常_44
+        obj: G1_001
+  - level: 2
+    sentence: I won't go.
+    scene_note: won't 是 will not：我不去——里面有「不愿意」的劲
+    supports: claim
+    word_ids:
+    - V6_日常_1
+    grp: 边界：won't 是「我不愿意」
+    src:
+      k: gen
+      f: wont
+      from: TA-10 对照框
+      slots:
+        verb: V6_日常_1
   error_cases: []
   relatives:
   - id: TA-02
@@ -805,11 +1788,39 @@ entries:
   examples:
   - level: 1
     sentence: Look at the clouds! It is going to rain.
-    scene_note: 眼前有预兆的将来（清单支撑登记例）
+    scene_note: 眼前有预兆的将来：看云识天气
     supports: claim
     word_ids:
     - G3_0505
     - G2_0502
+    grp: 有苗头：看得见证据
+    src:
+      k: orig
+  - level: 1
+    sentence: He is going to be late.
+    scene_note: 他要迟到了：看他跑的样子，苗头已经很明显
+    supports: claim
+    word_ids:
+    - G4_K05
+    grp: 有苗头：看得见证据
+    src:
+      k: gen
+      f: sign-late
+      from: TA-11 exs[0] 句框
+      slots: {}
+  - level: 1
+    sentence: It is going to be a hot day.
+    scene_note: 看这天色，今天要热：going to 后面跟 be，说的是看出来的将来
+    supports: claim
+    word_ids:
+    - G2_098
+    - V6_节日_5
+    grp: 有苗头：看得见证据
+    src:
+      k: gen
+      f: sign-hot
+      from: TA-11 exs[0] 句框
+      slots: {}
   - level: 1
     sentence: We are going to visit Grandma this weekend.
     scene_note: 已经打算好的将来——计划先于说话存在
@@ -818,6 +1829,9 @@ entries:
     - G6_270
     - V6_家庭_12
     - G5_216
+    grp: 有打算：已经想好了
+    src:
+      k: orig
   - level: 2
     sentence: I am going to watch a film tonight.
     scene_note: 打算义；与 will 的临时决定用法对照呈现
@@ -826,6 +1840,82 @@ entries:
     - POLY_WATCH
     - V6_运动_27
     - G6_268
+    grp: 有打算：已经想好了
+    src:
+      k: orig
+  - level: 1
+    sentence: We are going to play football this afternoon.
+    scene_note: 下午踢球是定好的打算：人已经在路上了
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    grp: 有打算：已经想好了
+    src:
+      k: gen
+      f: plan-play
+      from: TA-11 exs[1] 句框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
+  - level: 1
+    sentence: I am going to read this book.
+    scene_note: 我要读这本书：书都拿出来了，打算很明确
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 有打算：已经想好了
+    src:
+      k: gen
+      f: plan-read
+      from: TA-11 exs[2] 句框
+      slots:
+        verb: G2_0492
+        obj: G1_002
+  - level: 1
+    sentence: She is going to visit her friend.
+    scene_note: 她要去看朋友：这是安排好的，不是随便说说
+    supports: claim
+    word_ids:
+    - G6_270
+    - G3_130
+    grp: 有打算：已经想好了
+    src:
+      k: gen
+      f: plan-visit
+      from: TA-11 exs[1] 句框
+      slots:
+        verb: G6_270
+        obj: G3_130
+  - level: 1
+    sentence: They are going to sing a song.
+    scene_note: 他们要唱一首歌：节目已经排上了
+    supports: claim
+    word_ids:
+    - G2_088
+    - G2_0669
+    grp: 有打算：已经想好了
+    src:
+      k: gen
+      f: plan-sing
+      from: TA-11 exs[2] 句框
+      slots:
+        verb: G2_088
+        obj: G2_0669
+  - level: 2
+    sentence: Look! The baby is going to cry.
+    scene_note: 看，宝宝要哭了：眼泪就是证据——苗头指得出来，才用 going to
+    supports: claim
+    word_ids:
+    - V6_日常_58
+    grp: 边界：苗头要指得出证据
+    src:
+      k: gen
+      f: sign-cry
+      from: TA-11 exs[0] 对照框
+      slots:
+        verb: V6_日常_58
   error_cases: []
   relatives:
   - id: TA-10
@@ -878,12 +1968,30 @@ entries:
   examples:
   - level: 1
     sentence: I have the letter written.
-    scene_note: 古义再现（清单儿童版登记的历史句式）：重心在「写好的信在我手里」
+    scene_note: 老句式再现：重心在「写好的信在我手里」
     supports: claim
     word_ids:
     - V6_日常_5
     - V6_P14
     - ADD_0717
+    grp: 老样子：have + 东西 + 分词（重心在东西）
+    src:
+      k: orig
+  - level: 1
+    sentence: He has the letter written.
+    scene_note: 老样子换个人：信还是站在中间——古人先看重「信在我手里」
+    supports: claim
+    word_ids:
+    - G3_0487
+    - V6_P14
+    grp: 老样子：have + 东西 + 分词（重心在东西）
+    src:
+      k: gen
+      f: old-he
+      from: TA-12 exs[0] 句框
+      slots:
+        verb: G3_0487
+        obj: V6_P14
   - level: 1
     sentence: I have written the letter.
     scene_note: 现代完成时：重心在「我写过了」——与上例同框对照
@@ -892,6 +2000,125 @@ entries:
     - G3_0487
     - V6_P14
     - ADD_0717
+    grp: 新样子：have + 分词 + 东西（重心在人）
+    src:
+      k: orig
+  - level: 1
+    sentence: She has written a letter.
+    scene_note: 新样子：written 紧跟着 has，重心回到「她写过」
+    supports: claim
+    word_ids:
+    - G3_0487
+    - V6_P14
+    grp: 新样子：have + 分词 + 东西（重心在人）
+    src:
+      k: gen
+      f: new-she
+      from: TA-12 exs[1] 句框
+      slots:
+        verb: G3_0487
+        obj: V6_P14
+  - level: 1
+    sentence: I have written a letter.
+    scene_note: 还是新样子：写信的人是我
+    supports: claim
+    word_ids:
+    - G3_0487
+    - V6_P14
+    grp: 新样子：have + 分词 + 东西（重心在人）
+    src:
+      k: gen
+      f: new-I
+      from: TA-12 exs[1] 句框
+      slots:
+        verb: G3_0487
+        obj: V6_P14
+  - level: 1
+    sentence: We have written two letters.
+    scene_note: 新样子站稳了：have + written + 东西，这个顺序一直用到今天
+    supports: claim
+    word_ids:
+    - G3_0487
+    - V6_P14
+    grp: 新样子：have + 分词 + 东西（重心在人）
+    src:
+      k: gen
+      f: new-we
+      from: TA-12 exs[1] 句框
+      slots:
+        verb: G3_0487
+        obj: V6_P14
+  - level: 1
+    sentence: I have read the book.
+    scene_note: 换个动词，还是新样子：read 的分词和原形长得一样
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 新样子：have + 分词 + 东西（重心在人）
+    src:
+      k: gen
+      f: new-read
+      from: TA-12 exs[1] 句框
+      slots:
+        verb: G2_0492
+        obj: G1_002
+  - level: 1
+    sentence: I have eaten lunch.
+    scene_note: 吃也一样：have eaten——完成时的现代样子
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    grp: 新样子：have + 分词 + 东西（重心在人）
+    src:
+      k: gen
+      f: new-eat
+      from: TA-12 exs[1] 句框
+      slots:
+        verb: V6_日常_15
+  - level: 1
+    sentence: She has lost her key.
+    scene_note: 今天最常见的完成时：重心全在「她」身上——路走完了
+    supports: claim
+    word_ids:
+    - V6_日常_72
+    - G4_0740
+    grp: 新样子：have + 分词 + 东西（重心在人）
+    src:
+      k: gen
+      f: new-lost
+      from: TA-12 exs[1] 句框
+      slots:
+        verb: V6_日常_72
+        obj: G4_0740
+  - level: 2
+    sentence: The letter is written.
+    scene_note: 这是被动：信是被写的——没有 have，别和老样子认错门
+    supports: claim
+    word_ids:
+    - G3_0487
+    - V6_P14
+    grp: 边界：这两个长得像，意思不一样
+    src:
+      k: gen
+      f: passive
+      from: TA-12 对照框
+      slots:
+        verb: G3_0487
+        obj: V6_P14
+  - level: 2
+    sentence: I have a letter.
+    scene_note: 只有 have、没有分词：这只是「我有一封信」，完成时还没长出来
+    supports: claim
+    word_ids:
+    - V6_P14
+    grp: 边界：这两个长得像，意思不一样
+    src:
+      k: gen
+      f: have-only
+      from: TA-12 对照框
+      slots:
+        obj: V6_P14
   error_cases: []
   relatives:
   - id: TA-05
@@ -939,20 +2166,15 @@ entries:
   examples:
   - level: 1
     sentence: The train leaves at six.
-    scene_note: 清单儿童版登记例——时刻表上的将来用现在时
+    scene_note: 时刻表上的将来用现在时
     supports: claim
     word_ids:
     - G1_047
     - V6_交通_57
     - G1_027
-  - level: 1
-    sentence: Our lesson starts at eight tomorrow.
-    scene_note: 课程表同理：已排定的日程
-    supports: claim
-    word_ids:
-    - V6_学校_26
-    - V6_日常_24
-    - G6_267
+    grp: 时刻表：早就定死的事
+    src:
+      k: orig
   - level: 2
     sentence: The film begins at seven tonight.
     scene_note: 节目单语境——制度化时间表
@@ -961,6 +2183,109 @@ entries:
     - V6_运动_27
     - V6_日常_25
     - G1_026
+    grp: 时刻表：早就定死的事
+    src:
+      k: orig
+  - level: 1
+    sentence: The bus leaves at seven.
+    scene_note: 公交时刻表：七点发车，定死了——用现在时 leaves
+    supports: claim
+    word_ids:
+    - V6_交通_57
+    grp: 时刻表：早就定死的事
+    src:
+      k: gen
+      f: bus
+      from: TA-13 exs[0] 句框
+      slots:
+        verb: V6_交通_57
+  - level: 1
+    sentence: The shop opens at nine.
+    scene_note: 商店九点开门：这是挂出来的营业时间
+    supports: claim
+    word_ids:
+    - V6_日常_10
+    grp: 时刻表：早就定死的事
+    src:
+      k: gen
+      f: shop
+      from: TA-13 exs[0] 句框
+      slots:
+        verb: V6_日常_10
+  - level: 1
+    sentence: The train comes at five.
+    scene_note: 火车五点到：时刻表上印着的
+    supports: claim
+    word_ids:
+    - V6_日常_2
+    grp: 时刻表：早就定死的事
+    src:
+      k: gen
+      f: train-come
+      from: TA-13 exs[0] 句框
+      slots:
+        verb: V6_日常_2
+  - level: 1
+    sentence: The film ends at nine.
+    scene_note: 电影九点散场：场次表上写好的
+    supports: claim
+    word_ids:
+    - ADD_0497
+    grp: 时刻表：早就定死的事
+    src:
+      k: gen
+      f: film-end
+      from: TA-13 exs[2] 句框
+      slots:
+        verb: ADD_0497
+  - level: 1
+    sentence: Our lesson starts at eight tomorrow.
+    scene_note: 课程表同理：已排定的日程
+    supports: claim
+    word_ids:
+    - V6_学校_26
+    - V6_日常_24
+    - G6_267
+    grp: 学校与日程
+    src:
+      k: orig
+  - level: 1
+    sentence: The lesson finishes at four.
+    scene_note: 这节课四点下课：课表定死的结束时间
+    supports: claim
+    word_ids:
+    - V6_日常_26
+    grp: 学校与日程
+    src:
+      k: gen
+      f: lesson
+      from: TA-13 exs[1] 句框
+      slots:
+        verb: V6_日常_26
+  - level: 1
+    sentence: My birthday is tomorrow.
+    scene_note: 我的生日在明天：日子早就定在日历上，也用现在时 is
+    supports: claim
+    word_ids: []
+    grp: 学校与日程
+    src:
+      k: gen
+      f: birthday
+      from: TA-13 exs[1] 句框
+      slots: {}
+  - level: 2
+    sentence: I am going to visit Grandma tomorrow.
+    scene_note: 去看奶奶是我自己的打算，不是时刻表：这时不用 leaves 那一式，要用 going to
+    supports: claim
+    word_ids:
+    - G6_270
+    grp: 边界：自己的打算，要用 going to
+    src:
+      k: gen
+      f: own-plan
+      from: TA-11 exs[1]（App 登记材料）句框
+      slots:
+        verb: G6_270
   error_cases: []
   relatives:
   - id: TA-04
@@ -1014,11 +2339,14 @@ entries:
   examples:
   - level: 1
     sentence: So he opens the door and sees a big dog!
-    scene_note: 清单儿童版登记例型——故事高潮处把过去拉到眼前（opens 的现在时形态是演法标记）
+    scene_note: 故事高潮处把过去拉到眼前：opens 用现在时，是演给你看的标记
     supports: claim
     word_ids:
     - V6_日常_10
     - G1_0932
+    grp: 演现场：过去的事用现在时演
+    src:
+      k: orig
   - level: 1
     sentence: He walked into the room. Suddenly, he hears a noise!
     scene_note: 过去时铺垫 → 现在时高潮：交替切换本身就是分段标记
@@ -1026,6 +2354,119 @@ entries:
     word_ids:
     - V6_交通_52
     - V6_家庭_36
+    grp: 演现场：过去的事用现在时演
+    src:
+      k: orig
+  - level: 1
+    sentence: He runs to the door.
+    scene_note: 他跑向门口：runs 是现在时，听的人像站在门口看
+    supports: claim
+    word_ids:
+    - G2_087
+    - G1_0932
+    grp: 演现场：过去的事用现在时演
+    src:
+      k: gen
+      f: run-door
+      from: TA-14 exs[0] 句框
+      slots:
+        verb: G2_087
+        obj: G1_0932
+  - level: 1
+    sentence: Suddenly, a bird flies in!
+    scene_note: 突然，一只鸟飞进来：flies 也是现在时，吓你一跳
+    supports: claim
+    word_ids:
+    - G2_084
+    grp: 演现场：过去的事用现在时演
+    src:
+      k: gen
+      f: bird-fly
+      from: TA-14 exs[1] 句框
+      slots:
+        verb: G2_084
+  - level: 1
+    sentence: So she says, 'Stop!'
+    scene_note: 她喊道「停」:says 把话也演在现场
+    supports: claim
+    word_ids:
+    - G3_0625
+    grp: 演现场：过去的事用现在时演
+    src:
+      k: gen
+      f: says
+      from: TA-14 exs[1] 句框
+      slots:
+        verb: G3_0625
+  - level: 1
+    sentence: She opens the box and finds a letter!
+    scene_note: 她打开盒子，发现一封信：opens、finds 全是现场直播
+    supports: claim
+    word_ids:
+    - V6_日常_10
+    - G1_0994
+    - V6_P14
+    grp: 接着演：动作连环
+    src:
+      k: gen
+      f: open-find
+      from: TA-14 exs[0] 句框
+      slots:
+        verb: V6_日常_10
+        obj: G1_0994
+  - level: 1
+    sentence: Then the teacher comes in and smiles.
+    scene_note: 老师走进来，笑了：comes、smiles 把画面继续往前推
+    supports: claim
+    word_ids:
+    - V6_日常_2
+    - G1_007
+    grp: 接着演：动作连环
+    src:
+      k: gen
+      f: teacher-come
+      from: TA-14 exs[1] 句框
+      slots:
+        verb: V6_日常_2
+  - level: 1
+    sentence: Mum calls, and the baby cries.
+    scene_note: 妈妈喊，宝宝哭：calls、cries 一起把声音演出来
+    supports: claim
+    word_ids:
+    - G5_K03
+    - V6_日常_58
+    grp: 接着演：动作连环
+    src:
+      k: gen
+      f: call-cry
+      from: TA-14 exs[0] 句框
+      slots:
+        verb: G5_K03
+  - level: 1
+    sentence: He looks back and waves.
+    scene_note: 他回头挥挥手：looks、waves 还是现场
+    supports: claim
+    word_ids:
+    - V6_日常_16
+    grp: 接着演：动作连环
+    src:
+      k: gen
+      f: look-wave
+      from: TA-14 exs[0] 句框
+      slots:
+        verb: V6_日常_16
+  - level: 2
+    sentence: He was happy at last.
+    scene_note: 演完了：was 把故事带回过去时，稳稳落地
+    supports: claim
+    word_ids:
+    - G6_282
+    grp: 边界：演完，回到过去时收尾
+    src:
+      k: gen
+      f: back-past
+      from: TA-14 对照框
+      slots: {}
   error_cases: []
   relatives:
   - id: TA-04
@@ -1080,6 +2521,9 @@ entries:
     - G2_0489
     - G3_0401
     - G4_0415
+    grp: 时间词一换，动词形必须跟着换
+    src:
+      k: orig
   - level: 1
     sentence: I will go to school tomorrow.
     scene_note: 谈将来也要在动词侧做选择（借 will），不能只扔一个 tomorrow
@@ -1088,6 +2532,118 @@ entries:
     - V6_日常_1
     - G2_081
     - G6_267
+    grp: 时间词一换，动词形必须跟着换
+    src:
+      k: orig
+  - level: 1
+    sentence: I play football today.
+    scene_note: 今天：play 用现在形——时间词和形一起出现
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    grp: 时间词一换，动词形必须跟着换
+    src:
+      k: gen
+      f: today-play
+      from: TA-15 exs[0] 对照框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
+  - level: 1
+    sentence: I will play football tomorrow.
+    scene_note: 换到明天：要请 will 来——形还是要变，只不过是借帮手变（和原句的 played 正好凑成一对）
+    supports: claim
+    word_ids:
+    - G2_0489
+    - G3_0401
+    grp: 时间词一换，动词形必须跟着换
+    src:
+      k: gen
+      f: tomorrow-play
+      from: TA-15 exs[1] 句框
+      slots:
+        verb: G2_0489
+        obj: G3_0401
+  - level: 1
+    sentence: We will go to school tomorrow.
+    scene_note: 我们明天去上学：和原句 I will go 是同一家——主语换了，will 不变
+    supports: claim
+    word_ids:
+    - V6_日常_1
+    - G2_081
+    grp: 时间词一换，动词形必须跟着换
+    src:
+      k: gen
+      f: tomorrow-go
+      from: TA-15 exs[1] 句框
+      slots:
+        verb: V6_日常_1
+  - level: 1
+    sentence: We go to school today.
+    scene_note: 我们今天去上学：go 是现在形
+    supports: claim
+    word_ids:
+    - V6_日常_1
+    - G2_081
+    grp: 时间词一换，动词形必须跟着换
+    src:
+      k: gen
+      f: today-go
+      from: TA-15 exs[1] 对照框
+      slots:
+        verb: V6_日常_1
+  - level: 1
+    sentence: We went to school yesterday.
+    scene_note: 换成昨天：go 换成 went，整个词都变了
+    supports: claim
+    word_ids:
+    - V6_日常_1
+    - G2_081
+    grp: 时间词一换，动词形必须跟着换
+    src:
+      k: gen
+      f: yesterday-go
+      from: TA-15 exs[0] 句框
+      slots:
+        verb: V6_日常_1
+  - level: 1
+    sentence: He watches TV every day.
+    scene_note: 天天的事：watches 的形不变，时间靠 every day 说——这种时候词和形分工
+    supports: claim
+    word_ids:
+    - POLY_WATCH
+    grp: 天天如此：形不变，靠 every day
+    src:
+      k: gen
+      f: everyday
+      from: TA-15 对照框
+      slots:
+        verb: POLY_WATCH
+  - level: 2
+    sentence: Yesterday I was at home.
+    scene_note: 昨天：连 be 都要换成 was——藏形的地方一个都跑不掉
+    supports: claim
+    word_ids:
+    - V6_家庭_34
+    grp: 边界：be 的形也要跟着换
+    src:
+      k: gen
+      f: was
+      from: TA-15 exs[0] 对照框
+      slots: {}
+  - level: 2
+    sentence: Tomorrow I will be at home.
+    scene_note: 明天：be 要借 will 变成 will be
+    supports: claim
+    word_ids:
+    - V6_家庭_34
+    grp: 边界：be 的形也要跟着换
+    src:
+      k: gen
+      f: will-be
+      from: TA-15 exs[1] 对照框
+      slots: {}
   error_cases: []
   relatives:
   - id: TA-16
@@ -1144,6 +2700,20 @@ entries:
     supports: claim
     word_ids:
     - G3_K01
+    grp: 「过」对得上的地方：经历
+    src:
+      k: orig
+  - level: 1
+    sentence: She has been to the zoo.
+    scene_note: 她去过动物园：这里和「过」对得上——说的是经历
+    supports: claim
+    word_ids: []
+    grp: 「过」对得上的地方：经历
+    src:
+      k: gen
+      f: guo-zoo
+      from: TA-16 exs[0] 句框
+      slots: {}
   - level: 1
     sentence: I have lost my key.
     scene_note: 「我丢了钥匙」的「了」在此恰与结果完成时同向——但理由是「印子还在」，不是「了=完成时」
@@ -1151,6 +2721,60 @@ entries:
     word_ids:
     - V6_日常_72
     - G4_0740
+    grp: 「了」对得上的地方：结果
+    src:
+      k: orig
+  - level: 2
+    sentence: I did my homework yesterday.
+    scene_note: 这是过去时：我昨天做作业了——点名昨天，就不能用完成时（本条病例的对句）
+    supports: claim
+    word_ids:
+    - G5_215
+    grp: 「了」对得上的地方：结果
+    src:
+      k: own
+      ref: yaml error_cases right
+  - level: 1
+    sentence: I have eaten lunch.
+    scene_note: 我吃过午饭了：这里的完成时和「了」对得上——吃完，结果还在
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    grp: 「了」对得上的地方：结果
+    src:
+      k: gen
+      f: le-eat
+      from: TA-16 exs[1] 句框
+      slots:
+        verb: V6_日常_15
+  - level: 1
+    sentence: He has just finished.
+    scene_note: 他刚做完：just 把「刚刚」说出来，完成时和「了」在这里合作
+    supports: claim
+    word_ids:
+    - V6_日常_26
+    grp: 「了」对得上的地方：结果
+    src:
+      k: gen
+      f: le-just
+      from: TA-16 exs[1] 句框
+      slots:
+        verb: V6_日常_26
+  - level: 1
+    sentence: The rain has stopped.
+    scene_note: 雨停了：停的结果留到现在——完成时在这里和「了」握手
+    supports: claim
+    word_ids:
+    - V6_交通_34
+    - G2_0502
+    grp: 「了」对得上的地方：结果
+    src:
+      k: gen
+      f: le-stop
+      from: TA-16 exs[1] 句框
+      slots:
+        verb: V6_交通_34
+        obj: G2_0502
   - level: 2
     sentence: We have lived here for three years.
     scene_note: 持续义——汉语没有现成的对应格，是错位最深的一格
@@ -1159,6 +2783,50 @@ entries:
     - G3_0653
     - G2_0595
     - V6_节日_1
+    grp: 做成与经历同框
+    src:
+      k: orig
+  - level: 1
+    sentence: We have read the book.
+    scene_note: 我们读过这本书，也读完了：这一句「过」和「了」都沾一点
+    supports: claim
+    word_ids:
+    - G2_0492
+    - G1_002
+    grp: 做成与经历同框
+    src:
+      k: gen
+      f: both-read
+      from: TA-16 exs[0] 句框
+      slots:
+        verb: G2_0492
+        obj: G1_002
+  - level: 2
+    sentence: I have known her for a year.
+    scene_note: 我认识她一年了（现在还认识）：这个「持续」，汉语的「了」说不出来，完成时管
+    supports: claim
+    word_ids:
+    - G3_0626
+    grp: 边界：「了 / 过」管不了的地方
+    src:
+      k: gen
+      f: persist-year
+      from: TA-16 对照框
+      slots:
+        verb: G3_0626
+  - level: 2
+    sentence: She has never eaten noodles.
+    scene_note: 她从来没吃过面条：never 的经历否定，汉语要换一整句说法才行
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    grp: 边界：「了 / 过」管不了的地方
+    src:
+      k: gen
+      f: never-exp
+      from: TA-16 对照框
+      slots:
+        verb: V6_日常_15
   error_cases:
   - wrong: I have done my homework yesterday.
     right: I did my homework yesterday.
@@ -1225,6 +2893,9 @@ entries:
     - V6_日常_1
     - G2_080
     - G4_0415
+    grp: 先学会的：天天用的过去式
+    src:
+      k: orig
   - level: 1
     sentence: I saw a bird in the tree.
     scene_note: saw 同为高频不规则，先用熟
@@ -1232,6 +2903,9 @@ entries:
     word_ids:
     - V6_日常_17
     - G1_013
+    grp: 先学会的：天天用的过去式
+    src:
+      k: orig
   - level: 2
     sentence: She had breakfast at home.
     scene_note: had——三个锚点词凑齐后，过去式图式开始成形
@@ -1239,6 +2913,106 @@ entries:
     word_ids:
     - V6_日常_5
     - G4_186
+    grp: 先学会的：天天用的过去式
+    src:
+      k: orig
+  - level: 1
+    sentence: I got up at seven.
+    scene_note: got 是 get 的过去式：起床天天说，先学会它
+    supports: claim
+    word_ids:
+    - V6_日常_0
+    grp: 先学会的：天天用的过去式
+    src:
+      k: gen
+      f: got-up
+      from: TA-17 exs[2] 句框
+      slots:
+        verb: V6_日常_0
+  - level: 1
+    sentence: They came home late.
+    scene_note: came 也是先行部队：他们很晚才到家
+    supports: claim
+    word_ids:
+    - V6_日常_2
+    - V6_家庭_34
+    grp: 先学会的：天天用的过去式
+    src:
+      k: gen
+      f: came
+      from: TA-17 exs[0] 句框
+      slots:
+        verb: V6_日常_2
+  - level: 1
+    sentence: We ate lunch at school.
+    scene_note: ate 天天用：吃午饭的故事里总有它
+    supports: claim
+    word_ids:
+    - V6_日常_15
+    grp: 讲故事练出来的
+    src:
+      k: gen
+      f: ate
+      from: TA-17 exs[2] 句框
+      slots:
+        verb: V6_日常_15
+  - level: 1
+    sentence: He ran to school.
+    scene_note: ran 也是跑出来的：跑着去上学，嘴里先会说 ran
+    supports: claim
+    word_ids:
+    - G2_087
+    grp: 讲故事练出来的
+    src:
+      k: gen
+      f: ran
+      from: TA-17 exs[0] 句框
+      slots:
+        verb: G2_087
+  - level: 1
+    sentence: She gave me a pen.
+    scene_note: gave 在故事里出场率高：她给了我一支笔
+    supports: claim
+    word_ids:
+    - V6_日常_8
+    - G1_003
+    grp: 讲故事练出来的
+    src:
+      k: gen
+      f: gave
+      from: TA-17 exs[1] 句框
+      slots:
+        verb: V6_日常_8
+        obj: G1_003
+  - level: 2
+    sentence: I went home, ate dinner, and slept.
+    scene_note: 一口气讲完一天：went、ate、slept 排着队来——大表就是这样浮出来的
+    supports: claim
+    word_ids:
+    - V6_日常_1
+    - V6_家庭_34
+    grp: 边界：大表是混着用浮出来的
+    src:
+      k: gen
+      f: chain-day
+      from: TA-17 对照框
+      slots:
+        verb: V6_日常_1
+  - level: 2
+    sentence: The boy took the book and ran.
+    scene_note: 男孩拿了书就跑：took 和 ran 连着用，故事就顺了
+    supports: claim
+    word_ids:
+    - V6_日常_6
+    - G1_002
+    grp: 边界：大表是混着用浮出来的
+    src:
+      k: gen
+      f: chain-took
+      from: TA-17 对照框
+      slots:
+        verb: V6_日常_6
+        obj: G1_002
   error_cases: []
   relatives:
   - id: CO-10
@@ -1296,6 +3070,76 @@ entries:
     word_ids:
     - V6_日常_72
     - G4_0740
+    grp: 标本句：拿完成时家族轮流当标本
+    src:
+      k: orig
+  - level: 1
+    sentence: I have been to Beijing.
+    scene_note: 标本二（经历用法）：讲「看痕迹」时，老师会问——去过北京的印子是什么？是经验本身
+    supports: claim
+    word_ids: []
+    grp: 标本句：拿完成时家族轮流当标本
+    src:
+      k: gen
+      f: specimen-exp
+      from: TA-05 exs[1]（同族登记例）句框
+      slots: {}
+  - level: 1
+    sentence: I have finished my homework.
+    scene_note: 标本三（结果用法）：印子是现在可以玩了——这句最容易看出「痕迹」
+    supports: claim
+    word_ids:
+    - V6_日常_26
+    - G5_215
+    grp: 标本句：拿完成时家族轮流当标本
+    src:
+      k: gen
+      f: specimen-result
+      from: TA-05 exs[2]（同族登记例）句框
+      slots:
+        verb: V6_日常_26
+        obj: G5_215
+  - level: 1
+    sentence: We have lived here for three years.
+    scene_note: 标本四（持续用法）：印子是一直住到现在——牵连看得见
+    supports: claim
+    word_ids:
+    - G3_0653
+    grp: 标本句：拿完成时家族轮流当标本
+    src:
+      k: gen
+      f: specimen-persist
+      from: TA-05 exs[3]（同族登记例）句框
+      slots:
+        verb: G3_0653
+  - level: 2
+    sentence: I have seen him.
+    scene_note: 标本五：这句常被拿来和过去时对照——对照着讲可以，说哪种教法「已经被证明更好」，证据还不够
+    supports: claim
+    word_ids:
+    - V6_日常_17
+    grp: 边界：证据只到青少年与成人，小学生还要继续看
+    src:
+      k: gen
+      f: specimen-contrast
+      from: TA-06 exs[1]（同族登记例）句框
+      slots:
+        verb: V6_日常_17
+  - level: 2
+    sentence: I lost my key yesterday.
+    scene_note: 标本的对照句：它是过去时——研究里比较的是两种讲法，不是两种句子谁对谁错
+    supports: claim
+    word_ids:
+    - V6_日常_72
+    - G4_0740
+    grp: 边界：证据只到青少年与成人，小学生还要继续看
+    src:
+      k: gen
+      f: specimen-past
+      from: TA-05 exs[0] 变式框
+      slots:
+        verb: V6_日常_72
+        obj: G4_0740
   error_cases: []
   relatives:
   - id: TA-03

@@ -281,6 +281,19 @@ def build(text):
     def law(lid):
         return byid[lid]["lawdata"]
 
+    def exs_sent(lid, s):
+        """按句锚定取例（2026-11-04 阶段2首波：例句补量后顺序可变，位置下标不再可靠；
+        原例逐字保留口径保证锚句恒在，找不到即拦截）。"""
+        if not any(x["s"] == s for x in law(lid)["exs"]):
+            fail(f"种子锚句不在 {lid} exs 中：{s}")
+        return s
+
+    def exs_note(lid, s):
+        for x in law(lid)["exs"]:
+            if x["s"] == s:
+                return x["note"]
+        fail(f"种子锚句不在 {lid} exs 中：{s}")
+
     def must(cond, msg):
         if not cond:
             fail(msg)
@@ -332,17 +345,17 @@ def build(text):
         ("TN WINS", "I visited Beijing last year.", "visited", "I"),
         ("VEC-024", vecby["VEC-024"]["corrected"], "go", "She"),          # didn't go home（原形位切分）
         ("GEC-003", G03["cases"][0]["right"], "allow", "She"),           # didn't allow…（原形位切分）
-        ("GR-02 ex1", G02["exs"][0]["s"], "go", "you"),                  # Did you go to the park?
+        ("GR-02 ex1", exs_sent("GR-02", "Did you go to the park?"), "go", "you"),  # Did you go to the park?
     ]
     D6_SEEDS_PRES = [
         ("VEC-013", vecby["VEC-013"]["corrected"], "plays", "He"),
         ("VEC-014", vecby["VEC-014"]["corrected"], "goes", "She"),
         ("VEC-015", vecby["VEC-015"]["corrected"], "likes", "She"),
-        ("GR-02 ex2", G02["exs"][1]["s"], "like", "She"),                # doesn't like apples（原形位）
-        ("GR-03 ex2", G03["exs"][1]["s"], "play", "He"),                 # doesn't play football today
+        ("GR-02 ex2", exs_sent("GR-02", "She doesn't like apples."), "like", "She"),  # doesn't like apples（原形位）
+        ("GR-03 ex2", exs_sent("GR-03", "He doesn't play football today."), "play", "He"),  # doesn't play football today
         ("GEC-001", G02["cases"][0]["right"], "play", "He"),             # doesn't play games
         ("GEC-004", G03["cases"][1]["right"], "like", "He"),             # doesn't like this book
-        ("GR-02 ex3", G02["exs"][2]["s"], "play", "he"),                 # Does he play football?
+        ("GR-02 ex3", exs_sent("GR-02", "Does he play football?"), "play", "he"),  # Does he play football?
         ("VEC-016", vecby["VEC-016"]["corrected"], "attracts", "The Great Wall of China"),
     ]
     PAST_SUBJ_POOL = ["I", "you", "he", "she", "we", "they"]
@@ -467,8 +480,8 @@ def build(text):
         "bench": {
             "kid": G03["mech"][0]["kid"], "kidSrc": "GR-03 mech「动词曾经自己会提问」kid",
             "wrong": None, "right": None, "caseSrc": "GR-03 exs 边界例 note",
-            "detail": G03["exs"][3]["note"], "detailSrc": "GR-03 exs[3] note（Can you swim?）",
-            "detail2": G03["exs"][2]["note"], "detail2Src": "GR-03 exs[2] note（Is she happy?）"},
+            "detail": exs_note("GR-03", "Can you swim?"), "detailSrc": "GR-03 exs[3] note（Can you swim?）",
+            "detail2": exs_note("GR-03", "Is she happy?"), "detail2Src": "GR-03 exs[2] note（Is she happy?）"},
     }
     for k, e in D6_EXPLAIN.items():
         verbatim(e["kid"], f"D6 explain {k} kid")
