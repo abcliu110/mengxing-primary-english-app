@@ -11700,6 +11700,59 @@ function answer(key,ok){
 }
 function boxOf(key){var st=store.items[key];return st?st.b:0}
 
+/* ---------------- 阶段1：掌握度只读推导层 ----------------
+   规格：stage0-mastery-spec.md（2026-11-03 Stewart 拍板通过）。
+   本层只读复习账本 store 与错题本（MXW.store()），不写任何存储、不新增存储键；
+   answer() 的写规则与两本账的结构一字不改。参数集中在 MP 一处（初始值，上线后按真实数据可调）。 */
+var MP={
+  HALF_LIFE_DAYS:[0.5,1.2,3.0,7.0,16.0], // 各盒半衰期 H[b-1]（天）：盒位越高忘得越慢（初始值可调）
+  FORGET_SOON_R:0.85,   // 将忘线：R 低于此值视为「快要忘了」（初始值可调）
+  DECAYED_R:0.50,       // 已稳门③：任一已见题 R 不得低于此值（初始值可调）
+  STABLE_COV:0.80,      // 已稳门①：覆盖率 ≥ 0.80（初始值可调）
+  STABLE_MEANBOX:3.75,  // 已稳门②：已见题平均盒 ≥ 3.75（初始值可调）
+  CAP_TOTAL:20, CAP_DUE:10, CAP_WRONG:5 // 今日队列三段配比上限：到期 / 回炉 / 新学补满（初始值可调）
+};
+function itemR(st,now){ // 逐题提取可能性估计 R=2^(-龄/H)；上次答题时刻由 due 逆推（answer 写规则的恒等式）
+  var b=st.b; if(b<1)b=1; if(b>5)b=5;
+  var last=st.due-INT[b-1]*DAY;
+  var age=Math.max(0,(now-last)/DAY);
+  return Math.pow(2,-age/MP.HALF_LIFE_DAYS[b-1]);
+}
+function wRecs(){ // 错题本只读入口（MXW 脚本在本区之后加载，调用时现取）
+  try{ var ws=(window.MXW&&MXW.store)?MXW.store():null; return (ws&&ws.recs)||{}; }catch(e){ return {}; }
+}
+function deriveMastery(now){
+  now=now||Date.now();
+  var pool=buildPool(), recs=wRecs();
+  var laws={}, itemSt={}, orphan=0;
+  Object.keys(store.items).forEach(function(k){ if(!BYKEY[k]) orphan++; }); // 孤儿键只计数，不入任何律
+  pool.forEach(function(it){
+    var L=it.law||'';
+    var g=laws[L]||(laws[L]={law:L,total:0,seen:0,boxSum:0,minR:1,dueN:0,inWrong:0,wbUngrad:0,forgetSoonN:0});
+    g.total++;
+    var st=store.items[it.key];
+    if(!st){ itemSt[it.key]={seen:false}; return; }
+    var R=itemR(st,now);
+    g.seen++; g.boxSum+=st.b; if(R<g.minR)g.minR=R;
+    if(st.due<=now)g.dueN++;
+    if(R<MP.FORGET_SOON_R)g.forgetSoonN++;
+    if(store.wrong[it.key])g.inWrong++;
+    var rec=recs[it.key]; if(rec&&rec.st!=='mastered')g.wbUngrad++;
+    itemSt[it.key]={seen:true,b:st.b,due:st.due,R:R,inWrong:!!store.wrong[it.key]};
+  });
+  var counts={'未学':0,'学习中':0,'已稳':0};
+  Object.keys(laws).forEach(function(L){
+    var g=laws[L];
+    g.cov=g.total?g.seen/g.total:0;
+    g.meanBox=g.seen?g.boxSum/g.seen:0;
+    if(g.seen===0) g.state='未学';
+    else if(g.cov>=MP.STABLE_COV&&g.meanBox>=MP.STABLE_MEANBOX&&g.minR>=MP.DECAYED_R&&g.inWrong===0&&g.wbUngrad===0) g.state='已稳';
+    else g.state='学习中';
+    counts[g.state]++;
+  });
+  return {laws:laws,items:itemSt,counts:counts,orphan:orphan,now:now};
+}
+
 /* ---------------- 队列 ---------------- */
 var FAMS=[['today','📅 今日队列'],['vocab','🧩 词汇解码'],['grammar','🏗️ 语法'],['pron','👥 代词'],['art','🧢 冠词'],['conj','🔗 连词'],['morph','🌱 词根'],['ta','⏱️ 时态站'],['expr','✍️ 表达写作'],['phon','🔤 拼读'],['prep','📍 介词']];
 var curFam='today', singleKey=null;
@@ -11707,14 +11760,37 @@ function famMatch(it,f){
   if(f==='today')return true;
   return it.famk===f; // 每题在适配器里已定家族键；旧题的 famk 与旧 famMatch 逐项等价（小系统 56 题已按现行户口改归 pron/art）
 }
+var LASTTODAY=null; // 最近一次今日队列的三段构成 {a,b,c}，供 render 诚实出口展示（真实队列计数）
+function buildQueueToday(){
+  var pool=buildPool(), now=Date.now(), eT=endToday(), recs=wRecs(), used={};
+  var A=[]; // A 到期：将忘优先 = R 升序（同 R 时先到期者先）
+  pool.forEach(function(it){ var st=store.items[it.key]; if(st&&st.due<=eT) A.push({it:it,R:itemR(st,now)}); });
+  A.sort(function(x,y){ return (x.R-y.R)||((store.items[x.it.key].due||0)-(store.items[y.it.key].due||0)); });
+  var qA=A.slice(0,MP.CAP_DUE).map(function(x){ return x.it; });
+  qA.forEach(function(it){ used[it.key]=1; });
+  var bKeys=Object.keys(recs).filter(function(k){ return BYKEY[k]&&!used[k]&&recs[k].st!=='mastered'; }); // B 回炉：错题本未毕业 ∩ 池、A 未占
+  bKeys.sort(function(a,b){ return (recs[a].streak||0)-(recs[b].streak||0); }); // 连对最少者优先
+  var qB=bKeys.slice(0,MP.CAP_WRONG).map(function(k){ return BYKEY[k]; });
+  qB.forEach(function(it){ used[it.key]=1; });
+  var qC=[]; // C 新学：未见题按题池顺序（≈教学顺序）补满
+  for(var i=0;i<pool.length;i++){
+    if(qA.length+qB.length+qC.length>=MP.CAP_TOTAL) break;
+    var it=pool[i];
+    if(!store.items[it.key]&&!used[it.key]){ qC.push(it); used[it.key]=1; }
+  }
+  LASTTODAY={a:qA.length,b:qB.length,c:qC.length};
+  return qA.concat(qB).concat(qC);
+}
 function buildQueue(f){
+  if(f==='today') return buildQueueToday();
   var pool=buildPool().filter(function(it){return famMatch(it,f)});
   var due=[],fresh=[];
   pool.forEach(function(it){var st=store.items[it.key]; if(st&&st.due<=endToday())due.push(it); else if(!st)fresh.push(it);});
-  due.sort(function(a,b){return (store.items[a.key].due||0)-(store.items[b.key].due||0)});
+  var now=Date.now(); // 家族队列：仅到期段改按 R 升序（将忘优先），其余口径不变
+  due.sort(function(a,b){return (itemR(store.items[a.key],now)-itemR(store.items[b.key],now))||((store.items[a.key].due||0)-(store.items[b.key].due||0))});
   var seed=daySeed()+f.length*131;
   fresh.sort(function(a,b){return hash(a.key+'#'+seed)-hash(b.key+'#'+seed)});
-  return due.concat(fresh).slice(0,(f==='today')?20:12);
+  return due.concat(fresh).slice(0,12);
 }
 
 /* ---------------- 渲染 ---------------- */
@@ -11799,8 +11875,9 @@ function statsHtml(){
   Object.keys(store.items).forEach(function(k){var b=store.items[k].b; if(b>=1&&b<=5)boxes[b-1]++});
   var byFam={law:0,probe:0,ta:0,gate:0,zone:0,morph:0,prep:0};
   pool.forEach(function(it){byFam[it.fam]++});
+  var stableN=0; try{ stableN=deriveMastery().counts['已稳']||0; }catch(e){} // 阶段1：已稳规律数（只读推导，有真数据才显示）
   return '<b>复习账本（只存在这台设备）</b><br>题库 '+pool.length+' 题（规律练习 '+byFam.law+' · 理解探针 '+byFam.probe+' · 时态站 '+byFam.ta+' · 拼读过关词 '+byFam.gate+' · 专区练习 '+byFam.zone+' · 词根练习 '+byFam.morph+' · 介词练习 '+byFam.prep+'）'+
-    ' · 已建档 '+seen+' 题 · 今日到期 '+dueN+' 题 · 错题本 '+Object.keys(store.wrong).length+' 题 · 已攻克 '+store.fixed+' 题<br>'+
+    ' · 已建档 '+seen+' 题 · 今日到期 '+dueN+' 题 · 错题本 '+Object.keys(store.wrong).length+' 题 · 已攻克 '+store.fixed+' 题'+(stableN>0?' · 已稳规律 '+stableN+' 条':'')+'<br>'+
     '五盒分布：第 1 盒 '+boxes[0]+' · 第 2 盒 '+boxes[1]+' · 第 3 盒 '+boxes[2]+' · 第 4 盒 '+boxes[3]+' · 第 5 盒 '+boxes[4]+
     '（答对升一盒：1 天 → 3 天 → 7 天 → 16 天后再练；答错回第 1 盒并按病因进错题本） '+
     '<button class="chip" data-rv="resetall">清空本地记录</button>';
@@ -11825,11 +11902,16 @@ function wrongHtml(){
 function render(){
   var root=document.getElementById('rv-root'); if(!root) return;
   buildPool();
-  var queue= singleKey&&BYKEY[singleKey] ? [BYKEY[singleKey]] : buildQueue(curFam);
+  var wasSingle=!!(singleKey&&BYKEY[singleKey]);
+  var queue= wasSingle ? [BYKEY[singleKey]] : buildQueue(curFam);
   singleKey=null;
   var h='<div class="box" style="margin-bottom:10px">'+statsHtml()+'</div>';
   h+='<div class="chips" style="margin-bottom:10px">'+FAMS.map(function(f){return '<button class="chip'+(f[0]===curFam?' gold':'')+'" data-rv="fam" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';
-  h+='<div class="sec-t">复习队列（到期优先，新题随后 · 本组 '+queue.length+' 题）</div>';
+  if(curFam==='today'&&!wasSingle&&LASTTODAY){ // 阶段1诚实出口：今日队列三段构成为真实队列计数
+    h+='<div class="sec-t">今日队列（复习 '+LASTTODAY.a+' · 错题 '+LASTTODAY.b+' · 新学 '+LASTTODAY.c+'）</div>';
+  }else{
+    h+='<div class="sec-t">复习队列（将忘优先，新题随后 · 本组 '+queue.length+' 题）</div>';
+  }
   if(!queue.length) h+='<div class="box">这一组暂时没有可练的题——到期题练完后，明天会有新的一批到期。</div>';
   h+=queue.map(cardHtml).join('');
   h+='<div class="sec-t">错题本 · 按病因归档</div><div id="rv-wrong">'+wrongHtml()+'</div>';
@@ -11921,6 +12003,7 @@ document.addEventListener('click',function(e){
   }
 });
 window.RV={render:render,buildPool:buildPool,buildQueue:buildQueue,answer:answer,
+  mastery:deriveMastery,todaySeg:function(){return LASTTODAY},
   store:function(){return store},byKey:function(){return BYKEY},dups:function(){return DUPKEYS}};
 })();
 </script>
@@ -18111,6 +18194,13 @@ mountAll();
       if(!touched) hint.textContent='还没有练习记录，从任意一区开始吧。';
       else if(due>0) hint.textContent='有 '+due+' 道题到了复习时间，去复习区趁热练。';
       else hint.textContent='今天到期的复习都完成了，很棒。';
+      /* 阶段1：已稳规律数（RV 掌握度只读推导层供数，有真数据才显示） */
+      try{
+        if(touched>0&&window.RV&&RV.mastery){
+          var mc=RV.mastery().counts;
+          if(mc&&mc['已稳']>0) hint.textContent+=' · 已稳 '+mc['已稳']+' 条规律';
+        }
+      }catch(e){}
     }
     /* 分区卡片进度（池口径） */
     var cards=document.querySelectorAll('#v-home [data-hm-zone]');
