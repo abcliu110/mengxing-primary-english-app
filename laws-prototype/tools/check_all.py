@@ -17,6 +17,8 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_links.py --check        知识联动 LINKIDX 链接索引再生比对
   gen_interact.py --check     规律互动题集 INTERACT（D6/D2/D24 各 150 题）再生比对
   gen_feedback.py --check     选项级反馈 RV_FEEDBACK（错选项↔病例对齐表，阶段3 试点）再生比对
+  gen_roster.py --check       全册规律名册 ROSTER（456 条户口×呈现路由）再生比对
+  gen_questions.py --check    规律补题 RV_GENQ（S-44 屈折三读，词库音标派生）再生比对
 
 用法：python3 laws-prototype/tools/check_all.py
 退出码：0=全绿；1=至少一项失败。
@@ -41,6 +43,8 @@ CHECKS = [
     ("gen_links --check", "gen_links.py", ["--check"]),
     ("gen_interact --check", "gen_interact.py", ["--check"]),
     ("gen_feedback --check", "gen_feedback.py", ["--check"]),
+    ("gen_roster --check", "gen_roster.py", ["--check"]),
+    ("gen_questions --check", "gen_questions.py", ["--check"]),
 ]
 
 
