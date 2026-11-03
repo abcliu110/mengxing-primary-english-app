@@ -17,6 +17,7 @@
 | 动词 | `model/verb_*.json` 等模型文件 | 事实源如左登记；主文件 VB 模块内嵌**尚未生成化**（无 gen_verb，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
 | 介词 | `model/laws/prep_*.yaml` + `model/prep_family*.json` | 事实源如左登记；主文件内嵌与区内静态 HTML **尚未生成化**（无 gen_prep，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
 | 口语对话与拍手歌 | `model/spoken_data.json` | 2026-11-03 新登记：老 App 口语资产（DAILY_EXPRESSIONS 144 条/16 场景、ORAL_12_SCENES 12 组、GRAMMAR_CHANTS 8 首）按借鉴清单 A1/A3 逐字提取保全；提取通道 `tools/extract_spoken.py`（带计数与逐条深比断言），主文件口语区内嵌为生成副本（`tools/gen_spoken.py`） |
+| 借鉴呈现（王牌/天坑） | `model/laws_master.json`（派生，无独立事实源） | 2026-11-03 借鉴呈现波登记：主文件 `var BORROW`（王牌速查 15 卡 + 十大天坑榜）是规律总表的**派生呈现**，由 `tools/gen_borrow.py` 生成（选条表与聚合规则在生成器内，天坑榜带冻结断言）；词页 WEXTRA（档案卡 + 词级徽章旗）同理由 `tools/gen_words.py` 自 words_master 三分仓派生。两者均不得手改内嵌副本 |
 
 ## 2. 新数据准入
 

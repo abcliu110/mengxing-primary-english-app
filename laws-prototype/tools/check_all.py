@@ -10,6 +10,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_words.py --check        词页 WLIST/WPAGE 再生比对
   gen_spoken.py --check       口语 SP_DATA 再生比对
   gen_et.py --check           词源 ET 载荷 + 计数文案比对
+  gen_borrow.py --check       借鉴呈现 BORROW（王牌 15 / 天坑 10）再生比对
   check_morph_sync.py         词根三方（事实源 ↔ 主文件 ↔ morphology 文件）深比
   check_upstream.py           上游 ↔ 总表五条链对账
   extract_review_data.py      复习池新题源（专区/词根/介词）提取块比对
@@ -30,6 +31,7 @@ CHECKS = [
     ("gen_words --check", "gen_words.py", ["--check"]),
     ("gen_spoken --check", "gen_spoken.py", ["--check"]),
     ("gen_et --check", "gen_et.py", ["--check"]),
+    ("gen_borrow --check", "gen_borrow.py", ["--check"]),
     ("check_morph_sync", "check_morph_sync.py", []),
     ("check_upstream", "check_upstream.py", []),
     ("extract_review --check", "extract_review_data.py", ["--check"]),
