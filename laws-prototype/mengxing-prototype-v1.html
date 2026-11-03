@@ -46,7 +46,7 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 .urow.flat{cursor:default}
 .urow.flat:hover{border-color:var(--line)}
 .gh{font-size:13px;font-weight:800;color:var(--accent-deep);margin:13px 0 6px}
-.back{font-size:13px;color:var(--accent-deep);cursor:pointer;font-weight:700;margin-bottom:8px;display:inline-block}
+.back{font-size:13px;color:var(--accent-deep);cursor:pointer;font-weight:700;margin-bottom:8px;display:inline-flex;align-items:center;min-height:44px;padding:0 10px}
 .foot{margin:20px 16px 0;font-size:11.5px;color:var(--muted);line-height:1.7;border-top:1px dashed var(--line);padding-top:10px}
 </style>
 
@@ -898,6 +898,7 @@ body.adult .adult{display:block}
 .vcmod .btn{background:#4a7fb5;color:#fff;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:15px}
 .vcmod .btn:disabled{background:#bbb;cursor:not-allowed}
 .vcmod .btn.sec{background:#fff;color:#4a7fb5;border:1px solid #4a7fb5}
+.vcmod .btn.sec:not(.navbtn){min-height:44px}
 .vcmod .small{font-size:12.5px;color:#777;line-height:1.6}
 .vcmod .adult{font-size:12.5px;color:#777;border-top:1px dashed #ccc;margin-top:12px;padding-top:8px}
 .vcmod table{width:100%;border-collapse:collapse;font-size:14.5px}
@@ -2217,7 +2218,7 @@ window.LINKGO = (function(){
 .pn-scope .step{background:var(--accent-soft);border:1px solid #b7cbb8;border-radius:12px;padding:9px 12px;font-size:13.5px}
 .pn-scope .step b{color:var(--accent-deep)}
 .pn-scope .arrow{text-align:center;color:#6b7566;font-size:14px;line-height:1.4}
-.pn-scope button.back{background:none;border:none;color:var(--accent-deep);font-size:15px;font-weight:700;cursor:pointer;padding:6px 0;font:inherit}
+.pn-scope button.back{background:none;border:none;color:var(--accent-deep);font-size:15px;font-weight:700;cursor:pointer;padding:6px 0;font:inherit;min-height:44px}
 .pn-scope h2.big{font-size:21px;color:var(--accent-deep);margin:6px 0 4px;line-height:1.35}
 .pn-scope .desc{font-size:14.5px;color:var(--accent-deep)}
 .pn-scope .formal{font-size:12px;color:#8a97a8;margin-top:8px}
@@ -2328,7 +2329,7 @@ window.LINKGO = (function(){
 .ar-scope .step{background:var(--accent-soft);border:1px solid #b7cbb8;border-radius:12px;padding:9px 12px;font-size:13.5px}
 .ar-scope .step b{color:var(--accent-deep)}
 .ar-scope .arrow{ text-align:center;color:#6b7566;font-size:14px;line-height:1.4}
-.ar-scope button.back{background:none;border:none;color:var(--accent-deep);font-size:15px;font-weight:700;cursor:pointer;padding:6px 0;font:inherit}
+.ar-scope button.back{background:none;border:none;color:var(--accent-deep);font-size:15px;font-weight:700;cursor:pointer;padding:6px 0;font:inherit;min-height:44px}
 .ar-scope h2.big{font-size:21px;color:var(--accent-deep);margin:6px 0 4px;line-height:1.35}
 .ar-scope .desc{font-size:14.5px;color:var(--accent-deep)}
 .ar-scope .formal{font-size:12px;color:#8a97a8;margin-top:8px}
@@ -2458,7 +2459,7 @@ window.LINKGO = (function(){
 .cj-scope .step{background:var(--accent-soft);border:1px solid #b7cbb8;border-radius:12px;padding:9px 12px;font-size:13.5px}
 .cj-scope .step b{color:var(--accent-deep)}
 .cj-scope .arrow{text-align:center;color:#6b7566;font-size:14px;line-height:1.4}
-.cj-scope button.back{background:none;border:none;color:var(--accent-deep);font-size:15px;font-weight:700;cursor:pointer;padding:6px 0;font:inherit}
+.cj-scope button.back{background:none;border:none;color:var(--accent-deep);font-size:15px;font-weight:700;cursor:pointer;padding:6px 0;font:inherit;min-height:44px}
 .cj-scope h2.big{font-size:21px;color:var(--accent-deep);margin:6px 0 4px;line-height:1.35}
 .cj-scope .desc{font-size:14.5px;color:var(--accent-deep)}
 .cj-scope .formal{font-size:12px;color:#8a97a8;margin-top:8px}
@@ -2565,7 +2566,7 @@ window.LINKGO = (function(){
 .sp-scope .sp-head{background:#22467c;border-radius:12px;padding:14px;margin-bottom:14px;color:#eaf1fb}
 .sp-scope .sp-head h3{color:#fff;margin:8px 0 4px}
 .sp-scope .sp-head p{font-size:13.5px;color:#c9d9f2}
-.sp-scope .sp-back{border:none;border-radius:8px;padding:7px 14px;font-size:13.5px;font-weight:700;cursor:pointer;background:#ffffff;color:var(--accent-deep)}
+.sp-scope .sp-back{border:none;border-radius:8px;padding:7px 14px;font-size:13.5px;font-weight:700;cursor:pointer;background:#ffffff;color:var(--accent-deep);min-height:44px}
 .sp-scope .sp-btn{border:none;border-radius:8px;padding:7px 15px;font-size:13.5px;font-weight:700;cursor:pointer;background:#e8effa;color:var(--accent-deep);margin-top:10px}
 .sp-scope .sp-btn-main{background:#ffd75e;color:var(--accent-deep)}
 .sp-scope .sp-item{background:#fff;border:1px solid #d7e0ec;border-radius:12px;padding:14px;margin-bottom:12px}
@@ -2819,7 +2820,7 @@ window.LINKGO = (function(){
 .et-scope .srcitem{font-size:13.5px;margin:6px 0}
 .et-scope a{color:#3d5a40}
 .et-scope .navrow{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.et-scope .navrow button{border:1.5px solid #3d5a40;color:#3d5a40;background:#fff;border-radius:9px;padding:7px 14px;font-size:14px;min-height:38px;font:inherit}
+.et-scope .navrow button{border:1.5px solid #3d5a40;color:#3d5a40;background:#fff;border-radius:9px;padding:7px 14px;font-size:14px;min-height:44px;font:inherit}
 .et-scope .hero{background:linear-gradient(135deg,#fdf3e3,#fde9b8);border:1.5px solid #eec27f;border-radius:14px;padding:16px;margin-bottom:14px}
 .et-scope .pendgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:5px;max-height:420px;overflow-y:auto}
 .et-scope .pchip{border:1px solid #ddd;background:#f2f2f0;color:#999;border-radius:8px;padding:5px 6px;font-size:13px;min-height:34px;font:inherit}
@@ -2979,6 +2980,7 @@ if(etSecEl){
 .gkmod .topbar h1{font-size:26px;margin:0}
 .gkmod .topbar .sub{color:var(--grey);font-size:13px}
 .gkmod .btn{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer}
+.gkmod .btn[data-nav="home"]{min-height:44px}
 .gkmod .btn:hover{border-color:var(--amber)}
 .gkmod .btn.primary{background:var(--amber);color:#fff;border-color:var(--amber)}
 .gkmod .btn:disabled{opacity:.45;cursor:default}
@@ -5504,7 +5506,7 @@ window.GK = {show: gkShow};
 
 <!-- ============ HOME ============ -->
 <section class="view tn" id="v-tense">
-<button class="back" onclick="VB.TN.show('tn-home')">← 返回动词专区</button>
+<button class="back" onclick="VB.goHome()">← 返回动词专区</button>
 <h2 class="tntitle">⏱️ 时态实验室</h2>
 <p class="lead">先摆场景，再拼形式：摄影机站在哪里、怎么看、是什么动词 —— 三个决定做完，时态自己长出来。</p>
 
@@ -7974,7 +7976,7 @@ if (rg) { var el = document.getElementById('ph-reg'); el.hidden =!el.hidden; ret
 .pkmod{margin:0;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--paper);color:#2c3328}
 .pkmod header.top{position:static;top:0;z-index:50;background:#fffdf5;border-bottom:2px solid var(--ink);padding:8px 14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .pkmod header.top .ttl{font-weight:800;font-size:18px;margin-right:6px}
-.pkmod header.top button{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 13px;cursor:pointer;font-size:14px}
+.pkmod header.top button{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 13px;cursor:pointer;font-size:14px;min-height:44px}
 .pkmod header.top button:hover{background:#eef3fb}
 .pkmod .pkview{display:none;padding:16px;max-width:1180px;margin:0 auto}
 .pkmod .pkview.on{display:block}
@@ -8042,6 +8044,7 @@ if (rg) { var el = document.getElementById('ph-reg'); el.hidden =!el.hidden; ret
 .pkmod .radnode circle{fill:#fff;stroke:var(--ink);stroke-width:1.5}
 .pkmod .radnode text{font-size:11.5px;font-weight:700;fill:#16324f}
 .pkmod .kbtn{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 14px;cursor:pointer;font-size:14px;margin:3px}
+.pkmod .kbtn[onclick*="goBack()"]{min-height:44px}
 .pkmod input[type=range]{width:220px}
 .pkmod .pv-qs{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}
 .pkmod .pv-note{color:#5a6a7a;font-size:13px}
@@ -8106,7 +8109,7 @@ if (rg) { var el = document.getElementById('ph-reg'); el.hidden =!el.hidden; ret
 .tn .sec{background:#fff;border-radius:14px;padding:18px;box-shadow:0 1px 4px rgba(20,50,90,.10)}
 .tn .sec h2{margin:2px 0 8px;font-size:20px}
 .tn .sec h3{margin:18px 0 8px;font-size:16px}
-.tn .back{background:#eef3f9;border:1px solid #c9d8ea;border-radius:20px;padding:5px 14px;cursor:pointer;font-size:13px;margin-bottom:10px}
+.tn .back{background:var(--accent-soft);border:1px solid #c9d8ea;border-radius:20px;padding:5px 14px;cursor:pointer;font-size:13px;margin-bottom:10px;min-height:44px}
 .tn .lead{font-size:14px;color:#43536a;line-height:1.7}
 .tn .adult{margin-top:16px;background:#f6f8fa;border:1px dashed #b9c6d4;border-radius:10px;padding:10px 12px;font-size:12px;color:#67788c;line-height:1.7}
 .tn .adult b{color:#43536a}
@@ -8198,7 +8201,7 @@ if (rg) { var el = document.getElementById('ph-reg'); el.hidden =!el.hidden; ret
 .vb .wrap{max-width:1060px;margin:0 auto;padding:12px 14px 60px}
 
 #vb-home>header{background:none;border-radius:0}
-.vb .back{margin:4px 0 12px;background:#fff;border:2px solid #3d5a40;color:#3d5a40;border-radius:999px;padding:7px 18px;font-size:15px;cursor:pointer;font-weight:700}
+.vb .back{margin:4px 0 12px;background:#fff;border:2px solid #3d5a40;color:#3d5a40;border-radius:999px;padding:7px 18px;font-size:15px;cursor:pointer;font-weight:700;min-height:44px}
 .vb .panelGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
 .vb .panel{background:#fff;border-radius:18px;padding:16px 16px 12px;box-shadow:0 4px 18px rgba(60,70,140,.10)}
 .vb .panel h3{font-size:18px;color:#3d5a40;margin-bottom:4px}
@@ -11650,7 +11653,7 @@ window.TN={show:show,loadPreset:loadPreset,setVerb:setVerb,setR:setR,setV:setV,s
 .mz .qopt.bad{border-color:#d66;background:#fdeeee}
 .mz .qhint{display:none;color:#8a5a00;font-size:13.5px;margin-top:7px;line-height:1.6}
 .mz .qdone{background:#e9f8ef;border:1px solid #bfe6cd;border-radius:10px;padding:10px 14px;font-weight:700;color:#1e7a43}
-.mz .backbtn{border:1.5px solid #b7cbb8;background:#fff;color:var(--accent-deep);border-radius:999px;padding:7px 15px;font-size:14.5px;cursor:pointer;font-weight:700}
+.mz .backbtn{border:1.5px solid #b7cbb8;background:#fff;color:var(--accent-deep);border-radius:999px;padding:7px 15px;font-size:14.5px;cursor:pointer;font-weight:700;min-height:44px}
 .mz .navchip{border:1.5px solid #f0dfa8;background:#fff8e6;color:#7a5510;border-radius:999px;padding:6px 13px;font-size:14px;cursor:pointer;font-weight:700;margin-top:8px}
 .mz h2.ptitle{font-size:24px;margin:12px 0 2px}
 .mz .countline{color:#6b7566;font-size:13.5px}
@@ -18192,7 +18195,7 @@ document.getElementById('sp-index').innerHTML = vIndex();
   /* G-3 全局 chip 触控下限（家长角/技巧/拼读等多区同源） */
   .chip{min-height:32px}
   /* 返回条触控（语法规律页/技巧详情等） */
-  .back{display:inline-flex;align-items:center;min-height:32px}
+  .back{display:inline-flex;align-items:center;min-height:44px}
   /* 语法规律页：读整句钮与逐词 chip */
   .lz-say{min-height:32px}
   .lz-chip{min-height:32px}
