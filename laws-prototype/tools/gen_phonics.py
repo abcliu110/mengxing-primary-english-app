@@ -40,6 +40,11 @@
      == 冲突记录 canonical == 该词 wordbank.meaning。
   3. 四张音标修正卡（57a9bb5：heard /hɜːd/、gas /ɡæs/、toy /tɔɪ/、
      math /mæθ/）属零差异验证：生成卡面音标与现行逐卡断言一致。
+  4. 模式例句 exs（2026-11-04 学习改善阶段 2 第五波）：patterns 的 embedded
+     分仓新增 exs 字段（例词型单元配例句：成员词机械组句，生成脚本
+     tools/fill_wordunit_examples.py）——现行文件无此字段、生成侧新增，
+     属已判差异；渲染层暂无例句位，exs 只落数据层（呈现待接，登记于
+     docs 与波次报告 stage2e-wordunits.md）。落盘后稳态 --check 应逐字节一致。
 
 序列化格式（2026-11-03 从现行字面量反推实测）：Python json 默认分隔符
 （", " / ": "）、ensure_ascii=False、UTF-8 原样、无转义——整段字面量可由
@@ -207,6 +212,8 @@ def build(pm, wm, current):
         diffs = [k for k in set(obj) | set(cur) if obj.get(k) != cur.get(k)]
         if obj["id"] == "GP-o-ʌ" and diffs == ["menu"]:
             expected[("pattern-menu", "GP-o-ʌ")] = (cur["menu"], obj["menu"])
+        elif diffs == ["exs"] and "exs" not in cur:
+            expected[("pattern-exs", obj["id"])] = (None, f'新增 exs {len(obj["exs"])} 句')
         else:
             fail(f"模式 {obj['id']} 与现行存在清单外差异字段 {diffs}")
 
@@ -340,8 +347,14 @@ def main(argv) -> int:
         if kind == "pattern-menu":
             idx = [p["id"] for p in current["patterns"]].index(key)
             allowed.add(f"$.patterns[{idx}].menu")
+        elif kind == "pattern-exs":
+            idx = [p["id"] for p in current["patterns"]].index(key)
+            allowed.add(f"$.patterns[{idx}].exs")
         else:
-            allowed.add(f"$.bank.{key}[2]")
+            # 已判项 2（bank-meaning）：卡面已落 canonical 的稳态下该项不产生
+            # 差异，不入 allowed（否则与实测 diff 集合对不上而误报）
+            if current["bank"][key][2] != expected[(kind, key)][1]:
+                allowed.add(f"$.bank.{key}[2]")
     got = set(paths)
     if got != allowed:
         print("FAIL: 出现清单外差异路径：")
