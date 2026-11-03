@@ -38052,7 +38052,13 @@
    "claim": "英语疑问词继承印欧词干 *kʷo-（古英语拼作 hw-），指示词继承 *to-（古英语 þ-)，近指 here 一系另属 *ḱe- 词干；三条谱系在词源学上彼此独立，拼写相似是语音演变的表面结果——wh- 与 th- 从未互变。",
    "group": "QI"
   },
-  "conflicts": []
+  "conflicts": [],
+  "relations": [
+   {
+    "id": "PR-14",
+    "rel": "互链（Stewart 2026-11-03 裁定）：指示词的用法系统在 PR-14，本条管词族来历"
+   }
+  ]
  },
  {
   "id": "QI-03",
@@ -102397,7 +102403,19 @@
    "claim": "指示系统是言者中心距离梯度的语法化：近指 this/these、远指 that/those，数对立贯穿其中。that 另有话语指示（回指上文命题）与时间远指（指过去时段）功能。电话自称用 This is… 是英语的约定（指向「线路这端的人」），照汉语「我是…」直译 *I am Tom 是高频迁移错。数一致是显性考点：*this books、*that apples 为中国学习者常见错误。本条为原型新拟，目录 PR 组暂无专条（相关：QI-02 指示词词族），编号待对账。",
    "group": null
   },
-  "conflicts": []
+  "conflicts": [],
+  "ruling": {
+   "decision": "正式立条，编号 PR-14，与 QI-02 互链",
+   "by": "Stewart",
+   "date": "2026-11-03",
+   "status": "promoted:PR-14"
+  },
+  "relations": [
+   {
+    "id": "PR-14",
+    "rel": "已裁定立条（Stewart 2026-11-03）：本候选正式成为 PR-14"
+   }
+  ]
  },
  {
   "id": "NEW-P4",
@@ -104919,6 +104937,148 @@
    {
     "id": "NEW-P2",
     "rel": "立条来源：候选 NEW-P2（代词区呈现位挂靠本条）"
+   }
+  ]
+ },
+ {
+  "id": "PR-14",
+  "sources": [
+   "zone"
+  ],
+  "yaml": null,
+  "lawdata": null,
+  "zone": {
+   "zone": "pron",
+   "data": {
+    "id": "NEW-P3",
+    "cand": true,
+    "short": "近的 this，远的 that",
+    "desc": "先看远近、再看几个：手边是 this/these，远处和过去是 that/those，四格分得清清楚楚。",
+    "formal": "指示代词按距离（近指/远指）与数（单数/复数）构成四格系统；that 兼指上文与过去，打电话自称用 this（新拟条目，待与目录对账）",
+    "kid": "伸手能碰到的用 this（一堆用 these），要踮脚指远处的用 that（一堆用 those）；that 还能指「刚才说的那件事」；打电话介绍自己，要说 This is…。",
+    "claim": "指示系统是言者中心距离梯度的语法化：近指 this/these、远指 that/those，数对立贯穿其中。that 另有话语指示（回指上文命题）与时间远指（指过去时段）功能。电话自称用 This is… 是英语的约定（指向「线路这端的人」），照汉语「我是…」直译 *I am Tom 是高频迁移错。数一致是显性考点：*this books、*that apples 为中国学习者常见错误。本条为原型新拟，目录 PR 组暂无专条（相关：QI-02 指示词词族），编号待对账。",
+    "beats": [
+     {
+      "name": "四格先分好",
+      "text": "两个问题定生死：离我近还是远？是一个还是一堆？近+一个 this、近+一堆 these、远+一个 that、远+一堆 those。"
+     },
+     {
+      "name": "that 还管「刚才」",
+      "text": "that 还能指时间上、话头上「远」的东西：刚才发生的事、过去的那段日子——That was fun.（那会儿真好玩）。"
+     },
+     {
+      "name": "电话里的 this",
+      "text": "打电话看不见人，英语用 This is Tom. 把「这头的我」指给对方；照汉语说 I am Tom，是面对面报名字的说法，电话里会听岔。"
+     }
+    ],
+    "examples": [
+     {
+      "s": "This is my book.",
+      "note": "近 · 一个——书就在手边"
+     },
+     {
+      "s": "These are my books.",
+      "note": "近 · 一堆"
+     },
+     {
+      "s": "That is a bird in the tree.",
+      "note": "远 · 一个——鸟在树上"
+     },
+     {
+      "s": "Hello, this is Tom speaking.",
+      "note": "电话自称的固定说法"
+     },
+     {
+      "s": "Those are stars.",
+      "note": "远 + 复数 — 新拟例句"
+     },
+     {
+      "s": "I like that!",
+      "note": "that 回指刚听到的主意 — 新拟例句"
+     }
+    ],
+    "errors": [
+     {
+      "wrong": "This books are mine.",
+      "right": "These books are mine.",
+      "type": "近指单复数不分（*this books）",
+      "diag": "this 只能带一个东西：一堆书要用 these——后面的 are 也在提醒你：这是复数。"
+     },
+     {
+      "wrong": "Hello, I am Tom.（打电话介绍自己）",
+      "right": "Hello, this is Tom.",
+      "type": "电话自称直译（*I am Tom）",
+      "diag": "电话里对方看不见你，英语用 this 指「线路这头的我」；I am… 是见面时的说法。"
+     }
+    ],
+    "quiz": [
+     {
+      "q": "远处有三只小鸟：___ are birds. A. This B. Those",
+      "ans": "B. Those——又远又是一堆",
+      "hint": null
+     },
+     {
+      "q": "手里拿着两本书说「___ are my books.」A. This B. These",
+      "ans": "B. These（近 + 复数）",
+      "hint": "回到机制第 1 节「四格」"
+     }
+    ],
+    "groups": [
+     {
+      "title": "🧩 分组看看：四格表（近/远 × 单/复）",
+      "items": [
+       {
+        "name": "this —— 近 · 一个",
+        "gloss": "伸手能碰到的单个东西",
+        "ex": "This is my book."
+       },
+       {
+        "name": "these —— 近 · 一堆",
+        "gloss": "手边的一堆东西",
+        "ex": "These are my books."
+       },
+       {
+        "name": "that —— 远 · 一个",
+        "gloss": "远处的单个东西；也指刚才、过去",
+        "ex": "That is a bird. / That was fun."
+       },
+       {
+        "name": "those —— 远 · 一堆",
+        "gloss": "远处的一堆东西",
+        "ex": "Those are stars."
+       }
+      ]
+     }
+    ],
+    "note": "新拟条目（NEW-P3）：近远对照呈现借鉴 British Council 教师课案「近物在手边、远物在教室另一头」的实物演示法。编号待与目录对账。",
+    "group": 5
+   },
+   "extra": null,
+   "adult": null
+  },
+  "canonical": {
+   "title": "近的 this，远的 that",
+   "family": "NEW",
+   "headline": "指示代词按距离（近指/远指）与数（单数/复数）构成四格系统；that 兼指上文与过去，打电话自称用 this（新拟条目，待与目录对账）",
+   "kid_headline": "伸手能碰到的用 this（一堆用 these），要踮脚指远处的用 that（一堆用 those）；that 还能指「刚才说的那件事」；打电话介绍自己，要说 This is…。",
+   "claim": "指示系统是言者中心距离梯度的语法化：近指 this/these、远指 that/those，数对立贯穿其中。that 另有话语指示（回指上文命题）与时间远指（指过去时段）功能。电话自称用 This is… 是英语的约定（指向「线路这端的人」），照汉语「我是…」直译 *I am Tom 是高频迁移错。数一致是显性考点：*this books、*that apples 为中国学习者常见错误。本条为原型新拟，目录 PR 组暂无专条（相关：QI-02 指示词词族），编号待对账。",
+   "group": null
+  },
+  "conflicts": [],
+  "established": {
+   "from": "NEW-P3",
+   "by": "Stewart",
+   "date": "2026-11-03",
+   "note": "由候选 NEW-P3（指示四格）正式立条；对账结论：指示距离×数系统图鉴无条，QI-02 仅词族来历相邻，为真空白立条"
+  },
+  "relations": [
+   {
+    "id": "NEW-P3",
+    "rel": "立条来源：候选 NEW-P3（代词区呈现位挂靠本条）"
+   },
+   {
+    "id": "QI-02",
+    "rel": "互链（Stewart 2026-11-03 裁定）：QI-02 讲 wh-/th- 词族来历，本条讲指示指代系统，相邻互指"
    }
   ]
  }
