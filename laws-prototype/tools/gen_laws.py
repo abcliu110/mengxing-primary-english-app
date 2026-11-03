@@ -321,7 +321,70 @@ CJ_CODE_EDITS = [
      "if(l.id==='NEW-CJ02'){ h += CJ_ILLUS_FANBOYS; }",
      "if(l.id==='GR-46'){ h += CJ_ILLUS_FANBOYS; }"),
 ]
+
+# 白板播放器收尾（2026-11-03，v2 复查）：分段播放（segs）＋ per-section pace ＋ 呈现位徽标呈现。
+CJ_UI_EDITS = [
+    ('呈现位列表徽标',
+     'onclick="CJ.go(\\\'\' + l.id + \'\\\')"><span style="flex:1"><span class="tt">\' + esc(l.short) + \'</span> <span class="badge">\' + l.id + \'</span>\'',
+     'onclick="CJ.go(\\\'\' + l.id + \'\\\')"><span style="flex:1"><span class="tt">\' + esc(l.short) + \'</span> <span class="badge">\' + (l.merged ? l.merged : l.id) + \'</span>\''),
+    ('呈现位页头徽标',
+     '<span class="badge">\' + l.id + \'</span> <span class="badge grey">\' + esc(GROUPS[l.group].name.split(\'·\')[1]||\'\') + \'</span>\' + (l.isNew ?',
+     '<span class="badge">\' + (l.merged ? l.merged : l.id) + \'</span> <span class="badge grey">\' + esc(GROUPS[l.group].name.split(\'·\')[1]||\'\') + \'</span>\' + (l.isNew ?'),
+    ('白板分段条容器',
+     '<span id="cjwbCapText">白板老师正在准备……</span></div>\'\n    + \'<div class="cjwb-ctrl">',
+     '<span id="cjwbCapText">白板老师正在准备……</span></div>\'\n    + \'<div class="cjwb-segs" id="cjwbSegs"></div>\'\n    + \'<div class="cjwb-ctrl">'),
+    ('白板 pace 变量',
+     "var els = cjwbS.stage.querySelectorAll('.cjwbd, .cjwbw, .cjwbf');\n  var t = 120;\n  els.forEach(function(el){",
+     "var els = cjwbS.stage.querySelectorAll('.cjwbd, .cjwbw, .cjwbf');\n  var t = 120;\n  var P = (cjwbS.sec && cjwbS.sec.pace) || 1;\n  els.forEach(function(el){"),
+    ('白板元素时长 pace 缩放',
+     "els.forEach(function(el){\n    var type = el.classList.contains('cjwbd') ? 'd' : (el.classList.contains('cjwbw') ? 'w' : 'f');\n    var len = 0, dur;\n    if(type === 'd'){\n      try { len = el.getTotalLength(); } catch(e){ len = 260; }\n      if(!len || !isFinite(len)) len = 260;\n      el.style.strokeDasharray = len;\n      el.style.strokeDashoffset = len;\n      dur = Math.max(240, Math.min(1700, len * 1.5 * 1.35));\n    } else if(type === 'w'){ el.style.opacity = '0'; dur = Math.round(340 * 1.35); }\n    else { el.style.opacity = '0'; dur = Math.round(420 * 1.35); }\n    cjwbS.items.push({ el: el, type: type, len: len, start: t, dur: dur });",
+     "els.forEach(function(el){\n    var type = el.classList.contains('cjwbd') ? 'd' : (el.classList.contains('cjwbw') ? 'w' : 'f');\n    var len = 0, dur;\n    if(type === 'd'){\n      try { len = el.getTotalLength(); } catch(e){ len = 260; }\n      if(!len || !isFinite(len)) len = 260;\n      el.style.strokeDasharray = len;\n      el.style.strokeDashoffset = len;\n      dur = Math.max(240, Math.min(1700, len * 1.5 * 1.35));\n    } else if(type === 'w'){ el.style.opacity = '0'; dur = Math.round(340 * 1.35); }\n    else { el.style.opacity = '0'; dur = Math.round(420 * 1.35); }\n    dur = Math.round(dur * P);\n    cjwbS.items.push({ el: el, type: type, len: len, start: t, dur: dur });"),
+    ('白板停留 pace 缩放',
+     'cjwbS.hold = hold;\n  cjwbS.total = cjwbS.drawTotal + hold;',
+     'cjwbS.hold = Math.round(hold * P);\n  cjwbS.total = cjwbS.drawTotal + cjwbS.hold;'),
+    ('白板分段停靠',
+     'cjwbApplyAt(cjwbS.total);\n    var n = cjwbS.sec.scenes.length;\n    if(cjwbS.scene < n - 1){ cjwbS.scene++; cjwbRenderScene(); cjwbS.startTs = 0; cjwbS.baseElapsed = 0; cjwbS.raf = requestAnimationFrame(cjwbFrame); return; }',
+     "cjwbApplyAt(cjwbS.total);\n    var n = cjwbS.sec.scenes.length;\n    var segs = cjwbS.sec.segs || [];\n    for(var gi = 0; gi < segs.length - 1; gi++){\n      if(cjwbS.scene === segs[gi].to - 1){ cjwbStop(); cjwbS.segWait = true; if(cjwbS.btn) cjwbS.btn.textContent = '▶ 下一段：' + segs[gi + 1].name; return; }\n    }\n    if(cjwbS.scene < n - 1){ cjwbS.scene++; cjwbRenderScene(); cjwbS.startTs = 0; cjwbS.baseElapsed = 0; cjwbS.raf = requestAnimationFrame(cjwbFrame); return; }"),
+    ('白板下一段续播',
+     'function cjwbTogglePlay(){\n  if(!cjwbS.sec) return;\n  if(cjwbS.playing){',
+     'function cjwbTogglePlay(){\n  if(!cjwbS.sec) return;\n  if(cjwbS.segWait){ cjwbS.segWait = false; cjwbS.scene++; cjwbRenderScene(); cjwbPlayStart(); return; }\n  if(cjwbS.playing){'),
+    ('白板重播清分段等待',
+     'function cjwbReplay(){\n  if(!cjwbS.sec) return;\n  cjwbStop();\n  cjwbS.scene = 0;',
+     'function cjwbReplay(){\n  if(!cjwbS.sec) return;\n  cjwbStop(); cjwbS.segWait = false;\n  cjwbS.scene = 0;'),
+    ('白板分段条渲染',
+     "function cjwbRenderDots(){\n  if(!cjwbS.dots || !cjwbS.sec) return;\n  var n = cjwbS.sec.scenes.length;\n  cjwbS.dots.innerHTML = '';\n  for(var i = 0; i < n; i++){\n    var d = document.createElement('span');\n    d.className = 'cjwb-dot' + (i < cjwbS.scene ? ' done' : (i === cjwbS.scene ? ' now' : ''));\n    cjwbS.dots.appendChild(d);\n  }\n  if(cjwbS.sceneNo) cjwbS.sceneNo.textContent = '第 ' + (cjwbS.scene + 1) + ' / ' + n + ' 镜';\n}\n",
+     "function cjwbRenderDots(){\n  if(!cjwbS.dots || !cjwbS.sec) return;\n  var n = cjwbS.sec.scenes.length;\n  cjwbS.dots.innerHTML = '';\n  for(var i = 0; i < n; i++){\n    var d = document.createElement('span');\n    d.className = 'cjwb-dot' + (i < cjwbS.scene ? ' done' : (i === cjwbS.scene ? ' now' : ''));\n    cjwbS.dots.appendChild(d);\n  }\n  if(cjwbS.sceneNo) cjwbS.sceneNo.textContent = '第 ' + (cjwbS.scene + 1) + ' / ' + n + ' 镜';\n  var sgEl = document.getElementById('cjwbSegs');\n  if(sgEl){\n    sgEl.innerHTML = '';\n    var segs2 = cjwbS.sec.segs || [];\n    segs2.forEach(function(s2, i2){\n      var from = i2 ? segs2[i2 - 1].to : 0;\n      var b = document.createElement('button');\n      b.className = 'cjwb-seg' + ((cjwbS.scene >= from && cjwbS.scene < s2.to) ? ' now' : '');\n      b.textContent = '第 ' + (i2 + 1) + ' 段 · ' + s2.name + '（' + (from + 1) + '–' + s2.to + ' 镜）';\n      b.onclick = (function(idx){ return function(){ CJ.cjwbGoSeg(idx); }; })(i2);\n      sgEl.appendChild(b);\n    });\n  }\n}\n"),
+    ('白板分段跳转与导出',
+     'window.CJ = { go: go, back: back, stepLaw: stepLaw, toggleAdult: toggleAdult, cjwbTogglePlay: cjwbTogglePlay, cjwbReplay: cjwbReplay, cjFilmToggle: cjFilmToggle, cjFilmReplay: cjFilmReplay };',
+     'function cjwbGoSeg(i){\n  if(!cjwbS.sec || !cjwbS.sec.segs || !cjwbS.sec.segs[i]) return;\n  cjwbStop(); cjwbS.segWait = false;\n  cjwbS.scene = i ? cjwbS.sec.segs[i - 1].to : 0;\n  cjwbS.elapsed = 0; cjwbS.baseElapsed = 0;\n  cjwbRenderScene();\n  cjwbPlayStart();\n}\n\nwindow.CJ = { go: go, back: back, stepLaw: stepLaw, toggleAdult: toggleAdult, cjwbTogglePlay: cjwbTogglePlay, cjwbReplay: cjwbReplay, cjwbGoSeg: cjwbGoSeg, cjFilmToggle: cjFilmToggle, cjFilmReplay: cjFilmReplay };'),
+]
 CJWB_MERGED_SCENES = {"GR-48": 9, "GR-49": 8, "GR-50": 9}  # 合并后场景数（基线 CJ05 5+CJ06 4 / CJ10 4+CJ11 4 / CJ07 5+CJ12 4）
+# 白板收尾（2026-11-03，v2 复查新问题）：合并立条后 GR-48/49/50 白板 80–92s 超 30–50s 标准、
+# GR-46/47 与字幕口径残留。处置：合并页按来源子规律分段（segs，播放器段末停靠）、
+# 小幅超标页给 per-section pace（内容一字不删）、GR-46 第 1 镜字幕改已裁定口径。
+CJWB_EDITS = [
+    ("GR-46 pace", "{ id:'GR-46', name:'FANBOYS 七兄弟', scenes:[",
+     "{ id:'GR-46', name:'FANBOYS 七兄弟', pace:0.88, scenes:["),
+    ("GR-46 字幕口径", "cap:'并列连词只有七个，首字母串成 FANBOYS。'",
+     "cap:'小学阶段常用的并列连词就这七个，首字母串成 FANBOYS。'"),
+    ("GR-47 pace", "{ id:'GR-47', name:'从句是挂车', scenes:[",
+     "{ id:'GR-47', name:'从句是挂车', pace:0.93, scenes:["),
+    ("GR-48 分段", "{ id:'GR-48', name:'时间队＋原因队', scenes:[",
+     "{ id:'GR-48', name:'时间队＋原因队', segs:[{name:'时间队',to:5},{name:'原因队',to:9}], scenes:["),
+    ("GR-49 分段", "{ id:'GR-49', name:'连接副词八组功能队＋连接副词会走动', scenes:[",
+     "{ id:'GR-49', name:'连接副词八组功能队＋连接副词会走动', segs:[{name:'八组功能队',to:4},{name:'连接副词会走动',to:8}], scenes:["),
+    ("GR-50 分段", "{ id:'GR-50', name:'条件与让步队＋身兼数职的词', scenes:[",
+     "{ id:'GR-50', name:'条件与让步队＋身兼数职的词', segs:[{name:'条件与让步队',to:5},{name:'身兼数职的词',to:9}], scenes:["),
+]
+# 呈现位命名债收尾（2026-11-03）：CJ 条目正文中以候选编号指称呈现位的跨引用，改呈正条编号＋呈现位。
+CJ_REF_FIXES = [
+    ("NEW-CJ01", "beats[2].text", "（NEW-CJ03、GR-38）", "（GR-38 呈现位、GR-38）"),
+    ("GR-46", "quiz[1].hint", "回到 NEW-CJ03 的逗号规则。", "回到 GR-38 呈现位（逗号加连词）的逗号规则。"),
+    ("GR-32", "groups[0].items[3].gloss", "（专项见 NEW-CJ08）", "（专项见 GR-32 呈现位）"),
+    ("GR-32", "note", "见 NEW-CJ08。", "见 GR-32 呈现位。"),
+    ("GR-38", "note", "NEW-CJ09 的分号公式也回到本条", "分号公式（GR-38 呈现位）也回到本条"),
+    ("GR-49", "errors[0].diag", "回补 NEW-CJ09 机制第 2、3 节", "回补 GR-38 呈现位（连接副词不是连词）第 2、3 节"),
+]
 # 每条候选成人层都有一段「状态：」——对账后按处置逐条改写（合并条含两段，一并改写）
 CJ_STATUS_OLD = "新拟规律，尚未与规律目录对账（待对账）；内容依据下列研究来源，与目录冲突时以目录为准。"
 CJ_STATUS_NEW = {
@@ -467,16 +530,27 @@ def build_cj(by, cur_laws):
     out = [walk_strings(e, sub) for e in out]
     for tok, n in sorted(counts.items()):
         diff("CJ", "(正文指称)", "token " + tok, f"{tok} ×{n}", CJ_TOKEN_MAP[tok])
-    # 目录定版条校验：现行含旧指称（写前）→ 须与总表原样深相等；现行已同步（写后）→ 须与替换后深相等
+    # 呈现位跨引用收尾：正文中以候选编号指称呈现位处，改呈正条编号＋呈现位（CJ_REF_FIXES）
+    out_by_id = {e["id"]: e for e in out}
+    for eid, path, old, new in CJ_REF_FIXES:
+        if eid not in out_by_id:
+            fail(f"CJ 跨引用修正目标 {eid} 不在输出中")
+        apply_text_fix("CJ", eid, out_by_id[eid], path, old, new)
+    # 目录定版条校验：现行须与「总表经指称同步＋跨引用修正」深相等，
+    # 或与修正前形态（把修正逆向还原后）深相等（写前文件），二者居一。
     cur_by = {e["id"]: e for e in cur_laws}
     out_by = {e["id"]: e for e in out}
     for cid, raw in catalog_raw.items():
-        cur_s = json.dumps(cur_by[cid], ensure_ascii=False)
-        if any(tok in cur_s for tok in CJ_TOKEN_MAP):
-            if not deep_eq(raw, cur_by[cid]):
-                fail(f"CJ 目录条 {cid} 与总表不一致（写前形态）")
-        elif not deep_eq(out_by[cid], cur_by[cid]):
-            fail(f"CJ 目录条 {cid} 与总表不一致（写后形态）")
+        if deep_eq(out_by[cid], cur_by[cid]):
+            continue
+        pre = copy.deepcopy(out_by[cid])
+        for eid, path, old, new in CJ_REF_FIXES:
+            if eid == cid:
+                v = get_path(pre, path)
+                if isinstance(v, str) and new in v:
+                    set_path(pre, path, v.replace(new, old))
+        if not deep_eq(pre, cur_by[cid]):
+            fail(f"CJ 目录条 {cid} 与总表不一致（既非跨引用修正后形态、也非修正前形态）")
     # 成人层「状态：」段按处置改写
     for e in out:
         if e["id"] in CJ_STATUS_NEW:
@@ -565,7 +639,18 @@ def build_cjwb(cur_lit):
         for fid, n in CJWB_MERGED_SCENES.items():
             if byid[fid].count("{ cap:") != n:
                 fail(f"CJWB {fid} 场景数异常")
-        return cur_lit, False
+        out, changed = cur_lit, False
+        for label, old, new in CJWB_EDITS:
+            c_old, c_new = out.count(old), out.count(new)
+            if c_old == 1 and c_new == 0:
+                out = out.replace(old, new)
+                changed = True
+                diff("CJWB", label, "稳态手术", old[:56], new[:56])
+            elif c_old == 0 and c_new == 1:
+                pass  # 已应用（稳态）
+            else:
+                fail(f"CJWB 稳态手术 {label} 状态不明（old {c_old} 次 / new {c_new} 次）")
+        return out, changed
     edits = []  # (start, end, new_text)
     indexof = {elem_id(el): j for j, el in enumerate(elems)}
     for fid, part_ids in [("GR-48", ["NEW-CJ05", "NEW-CJ06"]),
@@ -810,7 +895,7 @@ def apply_code_edits(text):
     text = anchored(text, MZ_ANCHOR, MZ_INSERT, "window.MZ 导出", "morph IIFE")
     text = anchored(text, PN_FOOTER[0], PN_FOOTER[1], "页脚", "PN")
     text = anchored(text, CJ_FOOTER[0], CJ_FOOTER[1], "页脚", "CJ")
-    for label, old, new in CJ_CODE_EDITS:
+    for label, old, new in CJ_CODE_EDITS + CJ_UI_EDITS:
         text = anchored(text, old, new, label, "CJ 渲染器")
     for old, new in PN_AUX_EDITS:
         text = anchored(text, old, new, old, "PN 辅助字面量")
