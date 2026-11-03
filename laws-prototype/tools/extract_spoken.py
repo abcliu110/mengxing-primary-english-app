@@ -10,6 +10,9 @@ extract_spoken.py — 老 App 口语资产提取器（借鉴搬运 A1/A3 的唯�
 事实源：laws-prototype/model/spoken_data.json（《数据源规范》§1 登记在册）。
   dialogues / scene_qa / chants 逐条逐字段原文保全（不改写、不润色）；
   scenes 为按 scenario_id 生成的索引（标题/类型/条数/id 列表），不复制正文。
+  scene_qa 的 id（SQ-01…SQ-12）为提取时按源序派生的稳定户口（2026-11-04
+  小件批补，原 ORAL_12_SCENES 无 id）：非源字段、不改源三字段（title/q/a）
+  一字；源序不变则 id 不变，LINKIDX 问答词锚（gen_links 的 q 段）以此为键。
 
 对账断言（任一失败即停，退出码 1）：
   - 计数：对话 144 / 场景 16 / 问答 12 / 拍手歌 8；
@@ -88,6 +91,8 @@ def build(src):
         fail(f"对话条数 {len(dialogues)} != {EXPECT['dialogues']}")
     if len(scene_qa) != EXPECT["scene_qa"]:
         fail(f"场景问答 {len(scene_qa)} != {EXPECT['scene_qa']}")
+    # 稳定户口：按源序派生 id（SQ-01…），置于每组首键；源三字段一字不动。
+    scene_qa = [{"id": f"SQ-{i:02d}", **g} for i, g in enumerate(scene_qa, 1)]
     if len(chants) != EXPECT["chants"]:
         fail(f"拍手歌 {len(chants)} != {EXPECT['chants']}")
 

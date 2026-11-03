@@ -9,14 +9,14 @@
 | 数据类 | 唯一事实源 | 说明 |
 |---|---|---|
 | 词库 | `model/wordbank.json` | 词的拼写、音标（`model/phonetic_gb.json` 为其配套文件）、词义等以此为准（WORDBANK.md 既有纪律） |
-| 规律 | `model/laws_master.json` | 由 YAML 模型 + LAWDATA + 各专区规律合并而成（2026-11-03 Wave 1 建成）；428 图鉴口径以 `model/laws/*.yaml` 为历史源头，合并入总表后以总表为准 |
-| 词根词缀 | `model/morph_data.json` | 词根分组/词缀页/构词分类（Wave 2 由两文件内嵌 DATA 合并建成） |
+| 规律 | `model/laws_master.json` | 由 YAML 模型 + LAWDATA + 各专区规律合并而成（2026-11-03 Wave 1 建成）；428 图鉴口径以 `model/laws/*.yaml` 为历史源头，合并入总表后以总表为准。派生口径（2026-11-04 小件批）：LAWDATA 的 `exc` 由 `tools/gen_laws.py` 生成时双仓并集派生（lawdata 分仓 exc ∪ yaml 分仓 claim.exceptions 文本投影，见 gen_laws.py 头注第 7 条），⚠️「有例外」徽章跟派生后 exc 走（gen_borrow 同口径），yaml 例外不许再逐条手抄进 lawdata 分仓 |
+| 词根词缀 | `model/morph_data.json` | 词根分组/词缀页/构词分类（Wave 2 由两文件内嵌 DATA 合并建成）。家族页落位口径（2026-11-04 小件批登记）：新词落位按成分规则机械归属——整词按词性功能/内容分 wh-func/wh-mono、禁拆按 morph_reason 六类归 ns 页、词形归 fm-form、复合词（自由词第二成分）归 cp-main、前缀/绑根/后缀按页与 misc 分节 head 查表归属、屈折 gloss 定 if 页共置；as-main 同化叠加与历史根分节为策展层不机械补；无页无分节的成分（如 kilo-）与口径未定类（如 form 类名词复数的页落位）进待判清单，不擅自判 |
 | 词汇（词页与各区用词） | `model/words_master.json` | 词页、拼读词卡、词根词表、词源词表的用词并集（Wave 3 建成）；与词库冲突时词库为准 |
 | 拼读 | `model/phonics_master.json` | 模式、成员、检查点的合并总表（Wave 4 建成）；词卡内容（音标、释义）不单独存放，生成时从词汇总表/词库带出 |
 | 词源 | `model/etymology.json` | 已是单一源；刷新通道 `tools/refresh_et.py`（2026-11-03 自归档区迁回，引擎 `tools/gen_et.py`，带断言与 --check 门禁）；归档区同名脚本仅作历史保留，不作通道 |
 | 动词 | `model/verb_*.json` 等模型文件 | 事实源如左登记；主文件 VB 模块内嵌**尚未生成化**（无 gen_verb，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
 | 介词 | `model/laws/prep_*.yaml` + `model/prep_family*.json` | 事实源如左登记；主文件内嵌与区内静态 HTML **尚未生成化**（无 gen_prep，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
-| 口语对话与拍手歌 | `model/spoken_data.json` | 2026-11-03 新登记：老 App 口语资产（DAILY_EXPRESSIONS 144 条/16 场景、ORAL_12_SCENES 12 组、GRAMMAR_CHANTS 8 首）按借鉴清单 A1/A3 逐字提取保全；提取通道 `tools/extract_spoken.py`（带计数与逐条深比断言），主文件口语区内嵌为生成副本（`tools/gen_spoken.py`） |
+| 口语对话与拍手歌 | `model/spoken_data.json` | 2026-11-03 新登记：老 App 口语资产（DAILY_EXPRESSIONS 144 条/16 场景、ORAL_12_SCENES 12 组、GRAMMAR_CHANTS 8 首）按借鉴清单 A1/A3 逐字提取保全；提取通道 `tools/extract_spoken.py`（带计数与逐条深比断言），主文件口语区内嵌为生成副本（`tools/gen_spoken.py`）。2026-11-04 小件批补：scene_qa 12 组带稳定 id（SQ-01…SQ-12，extract_spoken 按源序派生、非源字段），LINKIDX 问答词锚（gen_links 的 q 段）以此为键 |
 | 借鉴呈现（王牌/天坑） | `model/laws_master.json`（派生，无独立事实源） | 2026-11-03 借鉴呈现波登记：主文件 `var BORROW`（王牌速查 15 卡 + 十大天坑榜）是规律总表的**派生呈现**，由 `tools/gen_borrow.py` 生成（选条表与聚合规则在生成器内，天坑榜带冻结断言）；词页 WEXTRA（档案卡 + 词级徽章旗）同理由 `tools/gen_words.py` 自 words_master 三分仓派生。两者均不得手改内嵌副本 |
 | 规律互动题集 | `model/laws_master.json` + `model/verb_forms_completion.json` + `model/verb_error_cases.json` + `model/wordbank.json` + `model/ta_exercises.json`（派生，无独立事实源）＋主文件 TN 内嵌 WINS 段（只读解析通道，见说明） | 2026-11-03 互动集成波登记：主文件 `var INTERACT`（D6 传送带 / D2 时间窗 / D24 拔河三件操作台题集，各 150 题，含错因解析文案与出处字段）由 `tools/gen_interact.py` 生成，组题规则与原型手工工位定版表在生成器内，逐字文案带源内子串断言。其中 TN WINS（现在完成时实验室 5 窗）无 model 事实源文件：时态（TN）模块内嵌**尚未生成化**（同「动词/介词」行口径），生成器按 `extract_review_data.py` 先例只读解析主文件内嵌段，WINS 被改动时逐字断言立即报错，不静默漂移。不得手改内嵌副本 |
 

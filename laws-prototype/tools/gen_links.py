@@ -36,6 +36,11 @@ LINKIDX 结构：
   d: { 对话 id: [[英文词形(小写), bankId]...] } —— 对话词锚（联动阶段 2）：
      对话英文 token 与词库对齐（原形直配 + 下文写明的屈折剥离规则），
      词库 is_function_word 标记者不锚；规则外对不上的一律不锚。
+  q: { 问答组 id(SQ-01…): [[英文词形(小写), bankId]...] } —— 场景问答词锚
+     （2026-11-04 小件批补户口后新增）：scene_qa 的 q/a 英文按与对话完全
+     相同的口径（同 TOKRE、同 lemma_match、同功能词排除）对齐词库；
+     对话侧统计（623/528/2048）独立计算、互不污染。scene_qa 的 id 由
+     extract_spoken 按源序派生（SQ-01…），gen_spoken 透传进 SP_DATA。
 
 边的口径与纪律：
   - 词→规律只取 VC 词行第 12 位（与设计备忘总账同口径：3,618 条引用 /
@@ -549,8 +554,47 @@ def build(text):
     stats["dlg_with_anchors"] = dlg_with
     stats["dlg_anchor_pairs"] = sum(len(v) for v in d.values())
 
+    # ---- 场景问答词锚 q（scene_qa 的 q/a 英文 ↔ 词库；与对话同口径，
+    # 独立统计：对话侧 anchored_surfaces 只读复用——lemma_match 确定性，
+    # 同 token 必同 bankId；问答独有 token 现算现锚，规则与排除全同） ----
+    qa = {}
+    qa_tokens = set()
+    for grp in sp["scene_qa"]:
+        if not grp.get("id"):
+            fail("scene_qa 缺稳定 id（户口未补：先经 extract_spoken 派生 SQ id 并 gen_spoken --write）")
+        for tx in (grp.get("q", ""), grp.get("a", "")):
+            for m in TOKRE.finditer(tx):
+                qa_tokens.add(m.group(0).lower())
+    qa_surfaces = {}
+    for tok in qa_tokens:
+        if tok in anchored_surfaces:
+            qa_surfaces[tok] = anchored_surfaces[tok]
+            continue
+        _rule, lemma = lemma_match(tok, bank_words)
+        if lemma is None:
+            continue
+        bid = bank_words[lemma]
+        if bid in func_bids:
+            continue
+        qa_surfaces[tok] = bid
+    qa_with = 0
+    for grp in sp["scene_qa"]:
+        seen = []
+        for tx in (grp.get("q", ""), grp.get("a", "")):
+            for m in TOKRE.finditer(tx):
+                surf = m.group(0).lower()
+                if surf in qa_surfaces and surf not in [p[0] for p in seen]:
+                    seen.append([surf, qa_surfaces[surf]])
+        if seen:
+            qa[grp["id"]] = seen
+            qa_with += 1
+    stats["qa_tokens_distinct"] = len(qa_tokens)
+    stats["qa_anchored_surfaces"] = len(qa_surfaces)
+    stats["qa_with_anchors"] = qa_with
+    stats["qa_anchor_pairs"] = sum(len(v) for v in qa.values())
+
     idx = {"w": w, "l": dict(law_words), "e": e_map,
-           "g": g, "z": z, "c": canon, "d": d}
+           "g": g, "z": z, "c": canon, "d": d, "q": qa}
     return idx, stats
 
 

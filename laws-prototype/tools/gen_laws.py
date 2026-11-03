@@ -28,6 +28,15 @@ gen_laws.py — 单一数据源「切换」阶段 2 的生成器：规律数据�
      relations_teaching（{id, kind, src}，与裁定型 relations 47 条并列同仓）；
      LAWDATA 全条目、PN/AR/CJ 专区条目与 LAWREG 条目的 rel 字段一律由总表
      relations_teaching 派生（teach_rel），副本不得自留户口外关系。
+  7. 例外并集派生（2026-11-04 小件批）：LAWDATA 的 exc 字段 = 总表 lawdata 分仓
+     exc ∪ yaml 分仓 claim.exceptions 的文本投影（{note|text} → str，分仓原序
+     在前、yaml 独有项按 yaml 序补后），由本生成器在生成 LAWDATA 时派生
+     （lawdata_with_exc，与 rel 派生同构）。口径：总表双仓为准——yaml 例外
+     自此自动流入 LAWDATA，不再逐条手抄；⚠️「有例外」徽章跟渲染记录 exc 走
+     （gen_borrow.badges_of 同口径引用 yaml_exc_texts、CRED.lawBadges 读
+     LAWDATA.exc），三处自动对齐。此前 19 条 GR 律 yaml 例外未入 lawdata.exc
+     致无 ⚠️ 的口径差就此消除；PB-03、C-01 两条双仓都有且 yaml 多 1 项，
+     按并集补入（2026-11-04 报告 small-batch.md 登记）。
 
 纪律
   - 差异有且仅有裁定引起的变化：生成器内含硬断言（冠词区逐字节零差异、未受裁定条目
@@ -779,6 +788,36 @@ def strip_rel(e):
     return {k: v for k, v in e.items() if k != "rel"}
 
 
+# ---------------------------------------------------------------- 例外并集派生（小件批，2026-11-04）
+# 口径（见文件头注第 7 条）：LAWDATA 的 exc 由总表双仓派生——lawdata 分仓 exc
+# 为底，yaml 分仓 claim.exceptions 的独有项补入。gen_borrow.badges_of 引用
+# yaml_exc_texts 同口径判定 ⚠️，不得另写一份投影逻辑。
+def yaml_exc_texts(rec):
+    """总表 yaml 分仓 claim.exceptions 的文本投影（{note|text} → str，
+    与 lawdata.exc 既有条目格式同构；空文本不入列）。"""
+    ex = ((rec.get("yaml") or {}).get("claim") or {}).get("exceptions") or []
+    out = []
+    for e in ex:
+        if isinstance(e, dict):
+            t = e.get("note") or e.get("text") or ""
+        else:
+            t = str(e)
+        if t:
+            out.append(t)
+    return out
+
+
+def lawdata_with_exc(ld, rec):
+    """把 yaml 例外并集派生进 LAWDATA 条目的 exc（原地替换 value，键位不动）。
+    ld[exc] 原序在前，yaml 独有项按 yaml 序补后；无独有项时原样返回。"""
+    cur = ld.get("exc") or []
+    extra = [t for t in yaml_exc_texts(rec) if t not in cur]
+    if not extra:
+        return ld
+    ld["exc"] = list(cur) + extra
+    return ld
+
+
 # ---------------------------------------------------------------- LAWDATA 降指针
 def dual_map(by):
     out = {}
@@ -807,10 +846,14 @@ def build_lawdata(by, cur):
             out[lid] = ptr
         else:
             # 非双户口：条目 = 总表 lawdata 分仓（已无 rel）+ 统一户口派生的 rel
-            expect = lawdata_with_rel(copy.deepcopy(by[lid]["lawdata"]), teach_rel(by, lid))
-            if not deep_eq(entry, expect):
-                fail(f"LAWDATA 非双户口条目 {lid} 与总表不一致（含 rel 派生校验）")
-            out[lid] = entry
+            # + 例外并集派生的 exc；现行条目同做 exc 派生后深比（其余字段漂移仍拦截）
+            expect = lawdata_with_rel(
+                lawdata_with_exc(copy.deepcopy(by[lid]["lawdata"]), by[lid]),
+                teach_rel(by, lid))
+            merged = lawdata_with_exc(copy.deepcopy(entry), by[lid])
+            if not deep_eq(merged, expect):
+                fail(f"LAWDATA 非双户口条目 {lid} 与总表不一致（含 rel/exc 派生校验）")
+            out[lid] = merged
     return out, duals
 
 

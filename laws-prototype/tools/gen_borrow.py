@@ -27,8 +27,12 @@ B2 十大天坑榜：由总表错误诊断字段实测聚合——病例数 = ya
   dispute ❓有争议   —— disp 有不以「无」开头的条目，或 yaml.adult.disputes
                         实质文本（非空且不以「无」开头）
   （📜真实词源 / 💡记忆联想 属词级徽章，数据面在 gen_words.py 的 WEXTRA。）
-  注：GR-12 等条的 yaml 例外未入 lawdata.exc（总表内部口径差，已在借鉴波
-  报告中登记），按本规则其卡面与规律页同为 ✂️，不贴 ⚠️。
+  注（2026-11-04 口径更新）：yaml 例外已由 gen_laws 在生成 LAWDATA 时并集
+  派生进 exc（见 gen_laws.py 头注第 7 条），本生成器的 warn 判定同口径——
+  lawdata.exc 与 yaml 例外投影（gen_laws.yaml_exc_texts）任一非空即贴 ⚠️，
+  与渲染记录（生成后 LAWDATA）的 exc 并集严格一致。此前「GR-12 等条 yaml
+  例外未入 lawdata.exc、只贴 ✂️」的口径差已消除（19 条 GR 律 + PB-03/C-01
+  并集补项，登记见 small-batch.md）。
 
 用法：
   python3 laws-prototype/tools/gen_borrow.py --check   # 稳态校验（逐字节）
@@ -39,6 +43,9 @@ import json
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import gen_laws as _gen_laws  # exc 并集口径的单一实现（yaml_exc_texts），禁止在本文件另写投影
 
 ROOT = Path(__file__).resolve().parents[1]  # laws-prototype/
 MAIN = ROOT / "mengxing-prototype-v1.html"
@@ -135,7 +142,7 @@ def badges_of(r):
     out = []
     ld = r.get("lawdata")
     if ld:
-        if ld.get("exc"):
+        if ld.get("exc") or _gen_laws.yaml_exc_texts(r):
             out.append("warn")
         if ld.get("ctype") == "tendency":
             out.append("cut")
