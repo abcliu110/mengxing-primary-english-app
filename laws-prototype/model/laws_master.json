@@ -18872,7 +18872,13 @@
    "claim": "some 携带说话人的肯定预期/积极立场（故请求、邀请句中用 some 是「预期对方答应」），any 是无预设的自由选择/非断言环境标记；两者的分布由立场与语境决定，不由句类机械决定。",
    "group": "GR"
   },
-  "conflicts": []
+  "conflicts": [],
+  "relations": [
+   {
+    "id": "PR-15",
+    "rel": "分工互链（Stewart 2026-11-03）：不定词族构成与单数一致在 PR-15，本条管 some/any 立场"
+   }
+  ]
  },
  {
   "id": "GR-11",
@@ -102551,7 +102557,19 @@
    "claim": "some/any 的分布是极性敏感现象：some 典型出现在肯定（实指）语境，any 出现在否定、疑问等非实指语境；请求、邀请类问句因预期肯定答复而用 some（Would you like some juice?），是小学阶段需点破的例外。复合不定代词（-one/-body/-thing 三尾 × some/any/every/no 四头）作主语时谓语一律单数，包括语义上涵盖众人的 everyone/everybody。some/any 的语用立场选择另见 GR-10（语法组），本条管词族构成与分工。本条为原型新拟，编号待对账。",
    "group": null
   },
-  "conflicts": []
+  "conflicts": [],
+  "ruling": {
+   "decision": "正式立条 PR-15（收窄版：只辖词族构成+单数一致；some/any 只留默认倾向并互链 GR-10；练习判答口径改为倾向说法）",
+   "by": "Stewart",
+   "date": "2026-11-03",
+   "status": "promoted:PR-15"
+  },
+  "relations": [
+   {
+    "id": "PR-15",
+    "rel": "已裁定立条（Stewart 2026-11-03，收窄版）：本候选正式成为 PR-15"
+   }
+  ]
  },
  {
   "id": "NEW-CJ01",
@@ -105079,6 +105097,166 @@
    {
     "id": "QI-02",
     "rel": "互链（Stewart 2026-11-03 裁定）：QI-02 讲 wh-/th- 词族来历，本条讲指示指代系统，相邻互指"
+   }
+  ]
+ },
+ {
+  "id": "PR-15",
+  "sources": [
+   "zone"
+  ],
+  "yaml": null,
+  "lawdata": null,
+  "zone": {
+   "zone": "pron",
+   "data": {
+    "id": "NEW-P4",
+    "cand": true,
+    "short": "some 和 any 分工站岗",
+    "desc": "肯定句多派 some，否定和提问多派 any；它们和 -one、-thing、-body 拼成一大家子，全家都按单数算。",
+    "formal": "不定代词由 some-/any-/every-/no- 与 -one/-body/-thing 复合而成：some 多用于肯定语境，any 多用于否定与疑问语境，复合不定代词作主语时谓语一律用单数（新拟条目，待与目录对账）",
+    "kid": "不知道是谁、是哪个、是什么的时候，用 someone、anything 这一家：some 一家爱站肯定句，any 一家爱站否定句和问句；它们个个都按「一个人」算，后面的动词要用单数。",
+    "claim": "some/any 的分布是极性敏感现象：some 典型出现在肯定（实指）语境，any 出现在否定、疑问等非实指语境；请求、邀请类问句因预期肯定答复而用 some（Would you like some juice?），是小学阶段需点破的例外。复合不定代词（-one/-body/-thing 三尾 × some/any/every/no 四头）作主语时谓语一律单数，包括语义上涵盖众人的 everyone/everybody。some/any 的语用立场选择另见 GR-10（语法组），本条管词族构成与分工。本条为原型新拟，编号待对账。",
+    "beats": [
+     {
+      "name": "some/any 分工",
+      "text": "先看句子脸色：肯定句先想 some（I have some friends）；有 not 的否定句和一般疑问句先想 any（I don't have any. / Do you have any?）。"
+     },
+     {
+      "name": "一个例外口子",
+      "text": "请人吃喝、盼着对方点头的问句，用 some 把答案往「有」这边引：Would you like some juice?"
+     },
+     {
+      "name": "全家按单数",
+      "text": "someone、everybody、nothing 后面的动词都按单数走：Someone is here. Everybody is happy.——哪怕说的是所有人，语法上也只算一个。"
+     }
+    ],
+    "examples": [
+     {
+      "s": "Someone is at the door.",
+      "note": "某个人——不知道是谁；is 用单数"
+     },
+     {
+      "s": "I can't see anything.",
+      "note": "否定句——any 一家上岗"
+     },
+     {
+      "s": "Everyone is here.",
+      "note": "所有人到齐，动词还是单数 is"
+     },
+     {
+      "s": "Would you like some juice?",
+      "note": "请人喝东西的问句——例外用 some"
+     },
+     {
+      "s": "There is something in my shoe.",
+      "note": "肯定语境用 some- 一家 — 新拟例句"
+     },
+     {
+      "s": "Nobody is in the classroom.",
+      "note": "no- 一家自带否定 — 新拟例句"
+     }
+    ],
+    "errors": [
+     {
+      "wrong": "Someone are at the door.",
+      "right": "Someone is at the door.",
+      "type": "不定代词谓语复数化（*someone are）",
+      "diag": "someone 说的是「某一个人」，动词按单数用 is；复合不定代词全家（everyone、nobody、nothing…）都按单数算。"
+     },
+     {
+      "wrong": "I don't have some money.",
+      "right": "I don't have any money.",
+      "type": "否定句误用 some",
+      "diag": "句子里有 don't，some 要换班给 any；some 留给肯定句，和请人吃东西的问句（Would you like some…?）。"
+     }
+    ],
+    "quiz": [
+     {
+      "q": "There isn't ___ in the box. A. something B. anything",
+      "ans": "B. anything——否定句里 any 上岗",
+      "hint": null
+     },
+     {
+      "q": "「全班没人知道答案」用哪个词起头？",
+      "ans": "Nobody（Nobody knows. — no- 自带否定，不再加 not）",
+      "hint": "回到分组看看「四头 × 三尾」"
+     }
+    ],
+    "groups": [
+     {
+      "title": "🧩 分组看看：四头 × 三尾的复合表",
+      "items": [
+       {
+        "name": "some- 一家（肯定句）",
+        "gloss": "someone/somebody 某个人、something 某个东西",
+        "ex": "Someone is singing. / I have something for you."
+       },
+       {
+        "name": "any- 一家（否定、提问）",
+        "gloss": "anyone/anybody 任何人、anything 任何东西",
+        "ex": "I can't see anything. / Is anyone home?"
+       },
+       {
+        "name": "every- 一家（全部）",
+        "gloss": "everyone/everybody 每个人、everything 一切",
+        "ex": "Everyone likes the story."
+       },
+       {
+        "name": "no- 一家（没有）",
+        "gloss": "no one/nobody 没有人、nothing 什么也没有",
+        "ex": "Nobody is in the classroom. / Nothing is in the bag."
+       }
+      ]
+     },
+     {
+      "title": "🧩 分组看看：动词只认单数",
+      "items": [
+       {
+        "name": "单数铁律",
+        "gloss": "-one/-body/-thing 结尾的词作主语，动词一律单数",
+        "ex": "Somebody is waiting. / Everything is ready."
+       }
+      ]
+     }
+    ],
+    "note": "新拟条目（NEW-P4）：与 GR-10（some/any 立场选择）分工——GR-10 管语用立场，本条管词族构成与单数铁律。编号待与目录对账。",
+    "group": 5
+   },
+   "extra": null,
+   "adult": null
+  },
+  "canonical": {
+   "title": "some 和 any 分工站岗",
+   "family": "NEW",
+   "headline": "不定代词由 some-/any-/every-/no- 与 -one/-body/-thing 复合而成：some 多用于肯定语境，any 多用于否定与疑问语境，复合不定代词作主语时谓语一律用单数（新拟条目，待与目录对账）",
+   "kid_headline": "不知道是谁、是哪个、是什么的时候，用 someone、anything 这一家：some 一家爱站肯定句，any 一家爱站否定句和问句；它们个个都按「一个人」算，后面的动词要用单数。",
+   "claim": "some/any 的分布是极性敏感现象：some 典型出现在肯定（实指）语境，any 出现在否定、疑问等非实指语境；请求、邀请类问句因预期肯定答复而用 some（Would you like some juice?），是小学阶段需点破的例外。复合不定代词（-one/-body/-thing 三尾 × some/any/every/no 四头）作主语时谓语一律单数，包括语义上涵盖众人的 everyone/everybody。some/any 的语用立场选择另见 GR-10（语法组），本条管词族构成与分工。本条为原型新拟，编号待对账。",
+   "group": null
+  },
+  "conflicts": [],
+  "established": {
+   "from": "NEW-P4",
+   "by": "Stewart",
+   "date": "2026-11-03",
+   "note": "由候选 NEW-P4（不定词族）正式立条，收窄版：本条只辖词族构成（四头×三尾）与复合不定代词单数一致；some/any 立场选择归 GR-10，本条只留默认倾向一句并互链"
+  },
+  "scope_ruling": "收窄（Stewart 2026-11-03）：some/any 分布主张以 GR-10 为准，本条不重复立论",
+  "pending_fix": [
+   {
+    "target": "zone.quiz 与错误诊断文案",
+    "fix": "把「否定句→any」无条件判据改为倾向口径，并登记 GR-10「肯定句 any 表任意」例外；与 GR-10 已裁定口径（分布是立场选择、不得以铁律措辞出现）对齐",
+    "status": "待切换波次落到 App 时执行"
+   }
+  ],
+  "relations": [
+   {
+    "id": "NEW-P4",
+    "rel": "立条来源：候选 NEW-P4（代词区呈现位挂靠本条）"
+   },
+   {
+    "id": "GR-10",
+    "rel": "分工互链：some/any 立场选择以 GR-10 为准"
    }
   ]
  }
