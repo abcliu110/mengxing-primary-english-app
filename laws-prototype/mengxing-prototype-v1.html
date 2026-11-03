@@ -2012,7 +2012,7 @@ window.LINKGO = (function(){
   function lawSectionHTML(id, flavor){
     var ws = lawWords(id);
     if (!ws.length) return '';
-    var body = '<p class="linkgo-count">共 ' + ws.length + ' 个词在词库里登记了这条规律（点词看它的词页）：</p>'
+    var body = '<p class="linkgo-count">共 ' + ws.length + ' 个词和这条规律有关（点词看它的词页）：</p>'
       + '<p class="linkgo-words">' + ws.slice(0, MAXW).map(function(x){ return chip(x[0], x[1]); }).join('') + '</p>';
     if (ws.length > MAXW)
       body += '<details class="linkgo-more"><summary>展开全部 ' + ws.length + ' 个词</summary><p class="linkgo-words">'
@@ -2046,6 +2046,7 @@ window.LINKGO = (function(){
   function lawChip(id, label, title){
     return '<button class="linkgo-chip" onclick="LINKGO.openLaw(\'' + id + '\')"' + (title ? ' title="' + esc(title) + '"' : '') + '>' + esc(label || id) + '</button>';
   }
+  function rlab(s){ return String(s==null?'':s).replace(/已裁定/g,'定版').replace(/双登记/g,'双份收录').replace(/裁定/g,'定版').replace(/登记/g,'记录'); }
   function relSectionHTML(id, flavor){
     if (typeof LINKIDX === 'undefined' || !LINKIDX.g) return '';
     var g = LINKIDX.g[id];
@@ -2059,9 +2060,9 @@ window.LINKGO = (function(){
     grp('⚖️ 对照着看', chipsOf(g.c));
     if (g.r || g.s){
       var rc = '';
-      (g.r || []).forEach(function(x){ rc += lawChip(x[0], x[0] + ' · ' + x[1], x[2]); });
-      (g.s || []).forEach(function(x){ rc += lawChip(x[0], x[0] + ' · ' + x[1], x[2]); });
-      grp('📜 裁定关联', rc);
+      (g.r || []).forEach(function(x){ rc += lawChip(x[0], x[0] + ' · ' + rlab(x[1]), rlab(x[2])); });
+(g.s || []).forEach(function(x){ rc += lawChip(x[0], x[0] + ' · ' + rlab(x[1]), rlab(x[2])); });
+      grp('📜 定版关联', rc);
     }
     if (!body) return '';
     if (flavor === 'lz') return '<div class="step"><div class="sh"><h3>🔗 相关规律</h3></div><div>' + body + '</div></div>';
@@ -5729,6 +5730,7 @@ window.GK = {show: gkShow};
 .lz-rel{display:inline-block;margin:4px 6px 0 0;padding:5px 12px;border-radius:999px;border:1.5px solid #c9d4c0;background:#f4f8f0;cursor:pointer;font-size:13px}
 .lz-adult-sec{margin-top:8px}
 .lz-adult-sec b.t{display:block;margin-top:10px;color:#57503f}
+.lz-sub{font-weight:700;color:#3d5a40}
 #v-law-detail .adult{line-height:1.75}
 .lz-frame{padding:12px 14px;border:1.5px solid #c9bfe0;border-radius:12px;background:#f6f3fb;line-height:1.75}
 </style>
@@ -5763,46 +5765,47 @@ var LAW={from:'home',y:0,cur:null,
    h+='<div class="uhead"><span class="uid">'+d.id+' · '+zoneName+' · '+E(d.g)+' 组</span><h2>'+E(d.hl)+'</h2></div>';
    if(window.CRED){var cb=window.CRED.lawBadges(d); if(cb) h+='<p class="cred-line">'+cb+'</p>';}
    if(teacher){
-     h+='<div class="lz-frame">🏫 <b>教师/家长方法层条目</b>——这条登记的是给老师和家长看的方法与依据，不上儿童屏。打开页面顶部的「成人层」开关，就能看到它的完整内容（主张、机制、来源与边界）。</div>';
+     h+='<div class="adult lz-frame">🏫 <b>教师/家长方法层条目</b>——这条登记的是给老师和家长看的方法与依据，不上儿童屏。打开页面顶部的「成人层」开关，就能看到它的完整内容（主张、机制、来源与边界）。</div>';
      if(window.LINKGO){h+=LINKGO.relSectionHTML(d.id,'lz');}
      if(window.LINKGO){h+=LINKGO.lawSectionHTML(d.id,'lz');}
      h+=LAW.adultHtml(d,true);
      document.getElementById('lz-body').innerHTML=h; return;
    }
-   h+='<p class="lz-kid">'+E(d.kid)+'</p>';
+   var cd=LAW.kidView(d);
+   h+='<p class="lz-kid">'+E(cd.kid)+'</p>';
    var n=0;
-   if(d.mech.length){
+   if(cd.mech.length){
      n++; h+='<div class="step"><div class="sh"><span class="no">'+n+'</span><h3>机制 · 它是怎么回事</h3></div>';
-     d.mech.forEach(function(b){h+='<div class="lz-beat"><b>'+E(b.beat)+'</b><p>'+E(b.kid)+'</p>'+(b.vis?'<p class="lz-vis">🎨 画面：'+E(b.vis)+'</p>':'')+'</div>'});
+     cd.mech.forEach(function(b){h+='<div class="lz-beat"><b>'+E(b.beat)+'</b><p>'+E(b.kid)+'</p>'+(b.vis?'<p class="lz-vis">🎨 画面：'+E(b.vis)+'</p>':'')+'</div>'});
      h+='</div>';
    }
+   if(cd.exs.length){
    n++; h+='<div class="step"><div class="sh"><span class="no">'+n+'</span><h3>例句 · 例词</h3></div>';
-   if(d.exs.length){
+   
      var lastGrp='';
-     d.exs.forEach(function(x){
-       if(x.grp&&x.grp!==lastGrp){h+='<div class="lz-grp">'+E(x.grp)+'</div>';lastGrp=x.grp}
+     cd.exs.forEach(function(x){
+if(x.grp&&x.grp!==lastGrp){h+='<div class="lz-grp">'+E(x.grp)+'</div>';lastGrp=x.grp}
        h+='<div class="lz-ex"><span class="s">'+E(x.s)+'</span><button class="lz-say" onclick="LAW.say(this.parentElement.querySelector(\'.s\').textContent)">🔊 读整句</button>';
        if(x.note)h+='<div class="lz-note">'+E(x.note)+'</div>';
        if(x.words&&x.words.length){h+='<div>';x.words.forEach(function(w){h+='<button class="lz-chip" data-say="'+E(w.w)+'"><b>'+E(w.w)+'</b> <span class="ph">'+E(w.p)+'</span> · '+E(w.m)+'</button>'});h+='</div>'}
        h+='</div>';
      });
-   } else h+='<div class="lz-todo">例句待补：清单没有给这条登记例句，按不自编纪律留空，等补例流程补入。</div>';
    h+='</div>';
-   if(d.exc.length){
+   }
+   if(cd.exc.length){
      n++; h+='<div class="step"><div class="sh"><span class="no">'+n+'</span><h3>例外 · 边界</h3></div><div class="box">';
-     d.exc.forEach(function(x){h+='<p>⚠️ '+E(x)+'</p>'});
+     cd.exc.forEach(function(x){h+='<p>⚠️ '+E(x)+'</p>'});
      h+='</div></div>';
    }
-   if(!d.nocase){ n++; h+='<div class="step"><div class="sh"><span class="no">'+n+'</span><h3>病句医院</h3></div>';
-   if(d.cases.length){
-     h+='<div class="hosp">';
-     d.cases.forEach(function(c){h+='<div class="case">❌ <span class="bad">'+E(c.wrong)+'</span><br>✅ '+E(c.right)+(c.type?' <span class="lz-note">［'+E(c.type)+'］</span>':'')+'<br><span class="why">诊断：'+E(c.diag)+'</span></div>'});
-     h+='</div>';
-   } else h+='<div class="lz-todo">病例待补：清单未登记这条的真实错例，按不自编纪律留空，等病例流程补入。</div>';
-   h+='</div>'; }
+   if(!cd.nocase&&cd.cases.length){ n++; h+='<div class="step"><div class="sh"><span class="no">'+n+'</span><h3>病句医院</h3></div>';
+h+='<div class="hosp">';
+cd.cases.forEach(function(c){h+='<div class="case">❌ <span class="bad">'+E(c.wrong)+'</span><br>✅ '+E(c.right)+(c.type?' <span class="lz-note">［'+E(c.type)+'］</span>':'')+'<br><span class="why">诊断：'+E(c.diag)+'</span></div>'});
+h+='</div>';
+h+='</div>'; }
+   var hasPrac=cd.quiz.length>0||cd.prb.length>0;
+   if(hasPrac||cd.pterm){
    n++; h+='<div class="step"><div class="sh"><span class="no">'+n+'</span><h3>检索练习</h3></div>';
-   var hasPrac=false;
-   d.quiz.forEach(function(q,i){
+   cd.quiz.forEach(function(q,i){
      hasPrac=true;
      h+='<div class="lz-q"><div class="qq">✏️ '+E(q.q)+'</div>';
      if(q.opts&&q.opts.length){
@@ -5813,12 +5816,13 @@ var LAW={from:'home',y:0,cur:null,
      }
      h+='</div>';
    });
-   d.prb.forEach(function(p){
-     hasPrac=true;
+   cd.prb.forEach(function(p){
+hasPrac=true;
      h+='<div class="lz-q"><div class="qq">🔍 理解探针 · '+E(p.title)+'</div><p style="line-height:1.75;margin:6px 0">'+E(p.task)+'</p><div class="lz-note">探针 '+E(p.id)+'：不是考试题，是用来照出「以为懂了、其实没懂」的地方——判读标准在成人层。</div></div>';
    });
-   if(!hasPrac)h+=d.pterm?'<div class="lz-todo">这条不设练习题：它登记的是给老师和家长的教学道理，终态登记见成人层。</div>':'<div class="lz-todo">练习待补：这条还没有登记练习题，按不自编纪律留空。</div>';
-   h+='</div>';
+   if(!hasPrac)h+='<div class="lz-beat">这条不设练习题：它讲的是给老师和家长的教学道理，完整内容在成人层。</div>';
+h+='</div>';
+}
    if(window.IX)h+=IX.lawSectionHtml(d.id);
    if(window.LINKGO){h+=LINKGO.relSectionHTML(d.id,'lz');}
    if(window.LINKGO){h+=LINKGO.lawSectionHTML(d.id,'lz');}
@@ -5833,28 +5837,124 @@ var LAW={from:'home',y:0,cur:null,
  },
  reveal:function(btn){var a=btn.parentElement.querySelector('.lz-ans');if(a)a.style.display='block';btn.style.display='none'},
  adultHtml:function(d,teacher){
-   var E=LAW.esc,h='<div class="adult lz-adult-sec"><b>成人层 · 出处与依据</b>';
-   if(d.cstmt)h+='<b class="t">主张（'+E(d.ctype)+'）</b><br>'+E(d.cstmt);
-   if(d.scope)h+='<b class="t">适用范围</b><br>'+E(d.scope);
+   var E=LAW.esc,P=LAW.plain,h='<div class="adult lz-adult-sec"><b>成人层 · 出处与依据</b>';
+   var CT={'tendency':'倾向性结论','rule':'规则','etymology':'词源考订'};
+   if(d.cstmt)h+='<b class="t">主张（'+E(CT[d.ctype]||d.ctype)+'）</b><br>'+E(P(d.cstmt));
+   if(d.scope)h+='<b class="t">适用范围</b><br>'+E(P(d.scope));
    var am=d.mech.filter(function(b){return b.adult&&b.adult!==b.kid});
-   if(am.length){h+='<b class="t">机制（成人版）</b>';am.forEach(function(b){h+='<br>· <b>'+E(b.beat)+'</b>：'+E(b.adult)})}
-   if(teacher&&d.exs.length){h+='<b class="t">登记例句</b>';d.exs.forEach(function(x){h+='<br>· '+E(x.s)+(x.note?'（'+E(x.note)+'）':'')})}
-   if(teacher&&d.cases.length){h+='<b class="t">病例 · 病句医院（逐字错例）</b><div class="hosp">';d.cases.forEach(function(c){h+='<div class="case">❌ <span class="bad">'+E(c.wrong)+'</span><br>✅ '+E(c.right)+(c.type?' <span class="lz-note">［'+E(c.type)+'］</span>':'')+'<br><span class="why">诊断：'+E(c.diag)+'</span></div>'});h+='</div>'}
-   if(d.srcs.length){h+='<b class="t">出处</b>';d.srcs.forEach(function(s){h+='<br>· '+E(s)})}
-   if(d.cev.length){h+='<b class="t">支撑</b>';d.cev.forEach(function(s){h+='<br>· '+E(s)})}
-   if(d.grade)h+='<b class="t">证据等级</b><br>'+E(d.grade);
-   if(d.bnd)h+='<b class="t">边界</b><br>'+E(d.bnd);
-   if(d.nocase)h+='<b class="t">病例核查（终态）</b><br>'+E(d.nocase);
-   if(d.disp.length){h+='<b class="t">专家分歧</b>';d.disp.forEach(function(s){h+='<br>· '+E(s)})}
-   if(d.gate){h+='<b class="t">配置裁定（config gate）</b><br>当前档：'+E(d.gate.cur)+'。'+E(d.gate.note);
-     Object.keys(d.gate.opts||{}).forEach(function(k){h+='<br>· '+k+'：'+E(d.gate.opts[k])})}
+   if(am.length){h+='<b class="t">机制（成人版）</b>';am.forEach(function(b){h+='<br>· <b>'+E(P(b.beat))+'</b>：'+E(P(b.adult))})}
+   if(teacher&&d.exs.length){h+='<b class="t">例句</b>';d.exs.forEach(function(x){h+='<br>· '+E(P(x.s))+(x.note?'（'+E(P(x.note))+'）':'')})}
+   if(teacher&&d.cases.length){h+='<b class="t">病例 · 病句医院（逐字错例）</b><div class="hosp">';d.cases.forEach(function(c){h+='<div class="case">❌ <span class="bad">'+E(P(c.wrong))+'</span><br>✅ '+E(P(c.right))+(c.type?' <span class="lz-note">［'+E(P(c.type))+'］</span>':'')+'<br><span class="why">诊断：'+E(P(c.diag))+'</span></div>'});h+='</div>'}
+   if(d.srcs.length){h+='<b class="t">出处</b>';d.srcs.forEach(function(s){h+='<br>· '+E(P(s))})}
+   if(d.cev.length){h+='<b class="t">支撑</b>';d.cev.forEach(function(s){h+='<br>· '+E(P(s))})}
+   if(d.grade)h+='<b class="t">证据等级</b><br>'+E(P(d.grade));
+   if(d.bnd)h+='<b class="t">边界</b><br>'+E(P(d.bnd));
+   if(d.nocase)h+=LAW.nocaseHtml(d.nocase);
+   if(d.disp.length){h+='<b class="t">专家分歧</b>';d.disp.forEach(function(s){h+='<br>· '+E(P(s))})}
+   if(d.gate){h+='<b class="t">定版说明（这条为什么这样讲）</b><br>现在采用：'+E(P(d.gate.cur))+'。'+E(P(d.gate.note));
+     Object.keys(d.gate.opts||{}).forEach(function(k){h+='<br>· '+k+'：'+E(P(d.gate.opts[k]))})}
    d.prb.forEach(function(p){
-     h+='<b class="t">探针 '+E(p.id)+' 判读（教师）</b><br>预判误读：'+E(p.mis);
-     if(p.rubric){h+='<br>命中：'+E(p.rubric.hit||'')+'<br>部分：'+E(p.rubric.partial||'')+'<br>通过：'+E(p.rubric.pass||'')}
-     if(p.remedy)h+='<br>回补：'+E(p.remedy);
+     h+='<b class="t">探针 '+E(p.id)+' 判读（教师）</b><br>预判误读：'+E(P(p.mis));
+     if(p.rubric){h+='<br>命中：'+E(P(p.rubric.hit||''))+'<br>部分：'+E(P(p.rubric.partial||''))+'<br>通过：'+E(P(p.rubric.pass||''))}
+     if(p.remedy)h+='<br>回补：'+E(P(p.remedy));
    });
-   if(d.pend.length){h+='<b class="t">待补登记</b>';d.pend.forEach(function(s){h+='<br>· '+E(s)})}
+   h+=LAW.pendHtml(d);
    h+='</div>';
+   return h;
+ },
+ plain:function(s){
+   return String(s==null?'':s)
+     .replace(/family_error_cases\.json/g,'家庭病例库')
+     .replace(/gr_error_cases\.json/g,'语法病例库')
+     .replace(/small_systems\.yaml/g,'小系统条目数据')
+     .replace(/expression\.yaml/g,'表达条目数据')
+     .replace(/domains\.yaml/g,'对比域数据')
+     .replace(/配置裁定/g,'定版设置')
+     .replace(/config_gates/g,'定版记录')
+     .replace(/config gate/g,'定版项')
+     .replace(/scene_spec/g,'白板场景设计')
+     .replace(/word_ids/g,'例词编号')
+     .replace(/POLY_TURN/g,'短语动词库')
+     .replace(/law_refs/g,'关联规律')
+     .replace(/disputes/g,'分歧记录');
+ },
+ kidPlain:function(s){
+   var t=String(s==null?'':s),M=[
+     ['登记簿','签到簿'],['登记在案','在案'],['登记口径','的口径'],
+     ['教学文献登记错型','教学文献中的错型'],['登记错型','记下的错型'],['教学文献登记','教学文献'],
+     ['清单条目登记','清单条目'],['清单支撑栏登记','清单支撑栏'],['清单原文登记例','清单原文里的例子'],
+     ['清单登记对照例','清单中的对照例'],['清单登记正例','清单中的正例'],['清单登记求生句','清单中的求生句'],
+     ['清单登记关键词','清单中的关键词'],['清单登记例','清单中的例子'],['清单登记词','清单中的词'],['清单登记式','清单中的说法'],
+     ['回条目登记：','回条目：'],['例外登记','例外记录'],['登记场景','的场景'],['登记搭配','固定搭配'],['镜像登记','镜像记录'],
+     ['登记的','里的'],['已登记','已记下'],['登记','记录'],
+     ['已裁定','已确定'],['裁定','定版'],
+     ['见 pending','见成人层说明'],
+     ['待补词同屏','还没进词库的词同屏'],['待补词','还没进词库']
+   ];
+   M.forEach(function(pr){t=t.split(pr[0]).join(pr[1])});
+   return t;
+ },
+ kidView:function(d){
+   var P=LAW.kidPlain,c=Object.assign({},d);
+   c.kid=P(d.kid);
+   c.mech=(d.mech||[]).map(function(b){var o=Object.assign({},b);o.beat=P(b.beat);o.kid=P(b.kid);if(b.vis)o.vis=P(b.vis);return o});
+   c.exs=(d.exs||[]).map(function(x){var o=Object.assign({},x);o.s=P(x.s);if(x.note)o.note=P(x.note);if(x.grp)o.grp=P(x.grp);if(x.words)o.words=x.words.map(function(w){var q=Object.assign({},w);q.m=P(w.m);return q});return o});
+   c.exc=(d.exc||[]).map(function(x){return P(x)});
+   c.cases=(d.cases||[]).map(function(x){var o=Object.assign({},x);o.wrong=P(x.wrong);o.right=P(x.right);o.diag=P(x.diag);if(x.type)o.type=P(x.type);return o});
+   c.quiz=(d.quiz||[]).map(function(q){var o=Object.assign({},q);o.q=P(q.q);o.a=P(q.a);if(q.h)o.h=P(q.h);if(q.opts)o.opts=q.opts.map(function(z){return P(z)});return o});
+   c.prb=(d.prb||[]).map(function(p){var o=Object.assign({},p);o.title=P(p.title);o.task=P(p.task);return o});
+   return c;
+ },
+ nocaseHtml:function(nc){
+   var E=LAW.esc,t=LAW.plain(nc),srcs=[];
+   t=t.replace(/（查证登记：([^）]+)）(。)?/g,function(m,g){srcs.push(g);return ''});
+   var head='',rest=t,i=t.indexOf('：');
+   if(t.indexOf('已查 · 无逐字病例')===0&&i>0){head=t.slice(0,i);rest=t.slice(i+1)}
+   rest=rest.replace(/\s+$/,'');
+   var h='<b class="t">病例核查结果</b>';
+   if(head)h+='<br><span class="lz-sub">【结论】</span>'+E(head);
+   if(rest)h+='<br><span class="lz-sub">【查过哪些】</span>'+E(rest);
+   if(srcs.length)h+='<br><span class="lz-sub">【查证出处】</span>'+srcs.map(function(s){return E(s)}).join('、');
+   if(!head&&!srcs.length)h='<b class="t">病例核查结果</b><br>'+E(t);
+   return h;
+ },
+ pendPlain:function(t){
+   t=t.replace(/模型缺口登记：(.+)/,function(m,list){
+     var map={'quiz':'练习题','mechanism.visual':'机制画面','examples.sentence':'例句','error_cases':'病例','probes':'理解探针','prereq':'前置规律'};
+     return '整条缺口清单：'+list.split('、').map(function(x){x=x.replace(/^\s+|\s+$/g,'');return map[x]||x}).join('、');
+   });
+   t=t.replace(/error_cases/g,'病例库');
+   return t;
+ },
+ pendGroup:function(t){
+   if(t.indexOf('整条缺口清单')===0)return '缺口总清单';
+   if(/病例|错例/.test(t))return '病例';
+   if(/探针|PRB-/.test(t))return '理解探针';
+   if(/白板场景设计|画面/.test(t))return '白板画面';
+   if(/不设|终态|定版|裁定|入模/.test(t))return '定版口径';
+   if(/补词|例词|例句|例证|examples|词库/.test(t))return '例句与例词';
+   if(/练习|quiz/.test(t))return '练习题';
+   if(/待核|页码|原书|原著|原文|来源|文献|专著|书目/.test(t))return '出处待核对';
+   return '其他';
+ },
+ pendHtml:function(d){
+   var E=LAW.esc,P=LAW.plain,lines=[];
+   if(!d.exs.length)lines.push('例句：还没有——例子库里还没收录这条的例句，宁可先空着，也不自己编。');
+   if(!d.cases.length&&!d.nocase)lines.push('病例：还没有——还没找到这条的真实错例，宁可先空着，也不自己编。');
+   if(!d.quiz.length&&!d.prb.length)lines.push(d.pterm?'练习：这条按定版不设练习题——它讲的是给老师和家长的道理。':'练习：还没有——还没收录这条的练习题。');
+   var groups={},order=['病例','例句与例词','理解探针','白板画面','练习题','缺口总清单','定版口径','出处待核对','其他'];
+   (d.pend||[]).forEach(function(s){
+     var t=LAW.pendPlain(P(s)),g=LAW.pendGroup(t);
+     (groups[g]=groups[g]||[]).push(t);
+   });
+   if(!lines.length&&!Object.keys(groups).length)return '';
+   var h='<b class="t">还缺什么</b>';
+   lines.forEach(function(s){h+='<br>· '+E(s)});
+   order.forEach(function(g){
+     if(!groups[g])return;
+     h+='<br><span class="lz-sub">【'+g+'】</span>';
+     groups[g].forEach(function(s){h+='<br>· '+E(s)});
+   });
    return h;
  }
 };
