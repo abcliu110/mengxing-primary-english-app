@@ -24,6 +24,18 @@ LINKIDX 结构：
      —— 仅收至少有一条边的词；无边词不建条（消费方查无此键即无联系）。
   l: { 规律 id: [bankId...] }   —— w 边第 4 槽的机械反转（TEC-* 除外）。
   e: { 词源词形: bankId }       —— 词源详情页「看词页」回链。
+  g: { 规律 id: {p:[前置·先学], q:[前置·以我为先], k:[同族(双向并集)],
+                 c:[对照(双向并集)], r:[[目标,类签,裁定注记]...](裁定出边),
+                 s:[[来源,类签,裁定注记]...](裁定入边)} }
+     —— 规律↔规律邻接，读总表统一户口（relations 47 条裁定型 +
+        relations_teaching 509 条教学型，联动阶段 2）；空槽不建键。
+  z: { 规律 id: "PN"|"AR"|"CJ"|"MZ" } —— 专区现行页路由（自现行区 LAWS /
+     LAWREG 字面量解析，非总表推断）；LAWDATA 有条目（含指针）的规律不靠它。
+  c: { 候选 id: 正条 id } —— 无现行页的候选 id 归一（自总表裁定关系
+     「立条/并入/立条来源」机械导出），LINKGO.openLaw 仅作落空兜底。
+  d: { 对话 id: [[英文词形(小写), bankId]...] } —— 对话词锚（联动阶段 2）：
+     对话英文 token 与词库对齐（原形直配 + 下文写明的屈折剥离规则），
+     词库 is_function_word 标记者不锚；规则外对不上的一律不锚。
 
 边的口径与纪律：
   - 词→规律只取 VC 词行第 12 位（与设计备忘总账同口径：3,618 条引用 /
@@ -52,6 +64,8 @@ PM = ROOT / "model" / "phonics_master.json"
 MD = ROOT / "model" / "morph_data.json"
 LM = ROOT / "model" / "laws_master.json"
 ET = ROOT / "model" / "etymology.json"
+SP = ROOT / "model" / "spoken_data.json"
+WB = ROOT / "model" / "wordbank.json"
 
 JD = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":"))
 MARKER = "/* GENERATED: tools/gen_links.py ← model/words+phonics+morph+laws+etymology.json · DO NOT EDIT */"
@@ -111,6 +125,96 @@ def find_span(text, anchor, first_char):
         fail(f"锚点 {anchor!r} 命中 {len(hits)} 处（应为 1）")
     s = hits[0]
     return s, scan_literal(text, s)
+
+
+def script_blocks(text):
+    return [(m.start(1), m.end(1)) for m in re.finditer(r"<script>(.*?)</script>", text, re.S)]
+
+
+def find_block(text, signature):
+    for s, e in script_blocks(text):
+        if signature in text[s:e]:
+            return (s, e)
+    fail(f"找不到含签名 {signature!r} 的 script 块")
+
+
+def extract_in(text, block, marker):
+    s, e = block
+    seg = text[s:e]
+    i = seg.index(marker) + len(marker)
+    while seg[i] in " \t\n":
+        i += 1
+    end = scan_literal(seg, i)
+    return seg[i:end]
+
+
+def ruling_tag(note):
+    """裁定注记的类签 = 注记首个 '：' 或 '（' 之前的部分（注记原文机械截取）。"""
+    cut = len(note)
+    for ch in ("：", "（"):
+        j = note.find(ch)
+        if 0 <= j < cut:
+            cut = j
+    return note[:cut].strip()
+
+
+# 对话词锚的屈折剥离规则（联动阶段 2；按序试探，剥离结果必须命中词库才算数，
+# 规则外对不上的词一律不锚——不规则变化如 went→go 不在此列）：
+#   R0 原形直配；R1 缩约取词头（i'm→i、that's→that）或 n't 取干（can't→can）；
+#   R2 -ies→-y；R3 -es 剥离；R4 -s 剥离（-ss 除外）；
+#   R5 -ing 剥离 / +e / 尾双字母去重；R6 -ed 剥离 / 只剥 d（+e 形）/ 去重；
+#   R7 -est / -er 剥离 / 去重。
+def _undouble(s):
+    if len(s) >= 2 and s[-1] == s[-2] and s[-1] not in "aeiou":
+        return s[:-1]
+    return None
+
+
+def lemma_match(tok, bank_words):
+    """返回 (规则名, 词库词形)；对不上返回 (None, None)。"""
+    if tok in bank_words:
+        return ("exact", tok)
+    if "'" in tok:
+        head = tok.split("'")[0]
+        if head in bank_words:
+            return ("contract-head", head)
+        if tok.endswith("n't") and tok[:-3] in bank_words:
+            return ("n't-stem", tok[:-3])
+    cands = []
+    if tok.endswith("ies") and len(tok) > 3:
+        cands.append(("ies→y", tok[:-3] + "y"))
+    if tok.endswith("es"):
+        cands.append(("strip-es", tok[:-2]))
+    if tok.endswith("s") and not tok.endswith("ss"):
+        cands.append(("strip-s", tok[:-1]))
+    if tok.endswith("ing"):
+        b = tok[:-3]
+        cands += [("strip-ing", b), ("ing+e", b + "e")]
+        u = _undouble(b)
+        if u:
+            cands.append(("ing-undouble", u))
+    if tok.endswith("ed"):
+        b = tok[:-2]
+        cands += [("strip-ed", b), ("ed→e", tok[:-1])]
+        u = _undouble(b)
+        if u:
+            cands.append(("ed-undouble", u))
+    if tok.endswith("est"):
+        b = tok[:-3]
+        cands.append(("strip-est", b))
+        u = _undouble(b)
+        if u:
+            cands.append(("est-undouble", u))
+    if tok.endswith("er"):
+        b = tok[:-2]
+        cands.append(("strip-er", b))
+        u = _undouble(b)
+        if u:
+            cands.append(("er-undouble", u))
+    for name, c in cands:
+        if c and c in bank_words:
+            return (name, c)
+    return (None, None)
 
 
 def load(name, path):
@@ -305,7 +409,148 @@ def build(text):
             w[bid] = [r["word"], pats, pages, laws, ste, sts, eword]
     stats["w_entries"] = len(w)
 
-    idx = {"w": w, "l": dict(law_words), "e": e_map}
+    # ---- 规律↔规律邻接（总表统一户口：relations 裁定型 + relations_teaching 教学型） ----
+    lm_by = {r["id"]: r for r in lm}
+    g = {}
+    kin = defaultdict(list)
+    con = defaultdict(list)
+    n_pre = n_kin = n_con = n_rul = 0
+
+    def gadd(lid):
+        return g.setdefault(lid, {})
+
+    def push(lst, v):
+        if v not in lst:
+            lst.append(v)
+
+    for r in lm:
+        f = r["id"]
+        for e in r.get("relations_teaching") or []:
+            t, kind = e["id"], e["kind"]
+            if t not in lm_by:
+                fail(f"教学关系端点 {f}→{t} 不在总表户口")
+            if kind == "前置":
+                push(gadd(f).setdefault("p", []), t)
+                push(gadd(t).setdefault("q", []), f)
+                n_pre += 1
+            elif kind == "同族":
+                push(kin[f], t)
+                push(kin[t], f)
+                n_kin += 1
+            elif kind == "对照":
+                push(con[f], t)
+                push(con[t], f)
+                n_con += 1
+            else:
+                fail(f"教学关系类型未登记：{kind}")
+        for e in r.get("relations") or []:
+            t = e["id"]
+            if t not in lm_by:
+                fail(f"裁定关系端点 {f}→{t} 不在总表户口")
+            tag = ruling_tag(e["rel"])
+            gadd(f).setdefault("r", []).append([t, tag, e["rel"]])
+            gadd(t).setdefault("s", []).append([f, tag, e["rel"]])
+            n_rul += 1
+    for lid, lst in kin.items():
+        gadd(lid)["k"] = lst
+    for lid, lst in con.items():
+        gadd(lid)["c"] = lst
+    if sum(len(v.get("p", [])) for v in g.values()) != n_pre:
+        fail("前置边正反计数不一致")
+    stats["rel_teaching_total"] = n_pre + n_kin + n_con
+    stats["rel_teaching_pre"] = n_pre
+    stats["rel_teaching_kin_directed"] = n_kin
+    stats["rel_teaching_con_directed"] = n_con
+    stats["rel_ruling_total"] = n_rul
+    stats["rel_laws_covered"] = len(g)
+    stats["rel_kin_union_pairs"] = sum(len(v) for v in kin.values()) // 2
+    stats["rel_con_union_pairs"] = sum(len(v) for v in con.values()) // 2
+
+    # ---- 专区现行页路由 z（自现行区 LAWS / LAWREG 字面量解析） ----
+    z = {}
+    for sig, route in [("window.PN", "PN"), ("window.AR", "AR"), ("window.CJ", "CJ")]:
+        blk = find_block(text, sig)
+        laws = json.loads(extract_in(text, blk, "var LAWS ="))
+        for e in laws:
+            if e["id"] in z and z[e["id"]] != route:
+                fail(f"专区路由冲突：{e['id']} 同属 {z[e['id']]} 与 {route}")
+            z[e["id"]] = route
+    for lid in md["lawreg"]:
+        if lid in z and z[lid] != "MZ":
+            fail(f"专区路由冲突：{lid} 同属 {z[lid]} 与 MZ")
+        z[lid] = "MZ"
+    stats["zone_routes"] = len(z)
+
+    # ---- 候选归一 c（自裁定关系机械导出，仅作 openLaw 落空兜底） ----
+    canon = {}
+    for r in lm:
+        for e in r.get("relations") or []:
+            tag = ruling_tag(e["rel"])
+            cand = tgt = None
+            if r["id"].startswith("NEW-") and ("立条" in tag or "并入" in tag):
+                cand, tgt = r["id"], e["id"]
+            elif e["id"].startswith("NEW-") and tag.startswith("立条来源"):
+                cand, tgt = e["id"], r["id"]
+            if cand:
+                if cand in canon and canon[cand] != tgt:
+                    fail(f"候选归一冲突：{cand} → {canon[cand]} 与 {tgt}")
+                canon[cand] = tgt
+    stats["canon_pairs"] = len(canon)
+
+    # ---- 对话词锚 d（spoken_data 对话英文 ↔ 词库；功能词标记不锚） ----
+    sp = load("spoken_data", SP)
+    wbj = load("wordbank", WB)
+    func_bids = {r["id"] for r in wbj if r.get("is_function_word")}
+    bank_words = {}
+    for bid, r in by_bid.items():
+        bank_words.setdefault(r["word"].lower(), bid)
+    TOKRE = re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)?")
+    tok_all = set()
+    anchored_surfaces = {}
+    rule_hits = Counter()
+    func_excl = set()
+    miss = set()
+    for dlg in sp["dialogues"]:
+        texts = [t.get("en", "") for t in dlg.get("dialogue") or []]
+        texts.append(dlg.get("en", ""))
+        for tx in texts:
+            for m in TOKRE.finditer(tx):
+                tok_all.add(m.group(0).lower())
+    for tok in tok_all:
+        rule, lemma = lemma_match(tok, bank_words)
+        if lemma is None:
+            miss.add(tok)
+            continue
+        bid = bank_words[lemma]
+        if bid in func_bids:
+            func_excl.add(tok)
+            continue
+        anchored_surfaces[tok] = bid
+        rule_hits[rule] += 1
+    d = {}
+    dlg_with = 0
+    for dlg in sp["dialogues"]:
+        seen = []
+        texts = [t.get("en", "") for t in dlg.get("dialogue") or []]
+        texts.append(dlg.get("en", ""))
+        for tx in texts:
+            for m in TOKRE.finditer(tx):
+                surf = m.group(0).lower()
+                if surf in anchored_surfaces and surf not in [p[0] for p in seen]:
+                    seen.append([surf, anchored_surfaces[surf]])
+        if seen:
+            d[dlg["id"]] = seen
+            dlg_with += 1
+    stats["dlg_tokens_distinct"] = len(tok_all)
+    stats["dlg_anchored_surfaces"] = len(anchored_surfaces)
+    stats["dlg_rule_hits"] = dict(rule_hits)
+    stats["dlg_function_excluded"] = len(func_excl)
+    stats["dlg_miss_distinct"] = len(miss)
+    stats["dlg_with_anchors"] = dlg_with
+    stats["dlg_anchor_pairs"] = sum(len(v) for v in d.values())
+
+    idx = {"w": w, "l": dict(law_words), "e": e_map,
+           "g": g, "z": z, "c": canon, "d": d}
     return idx, stats
 
 

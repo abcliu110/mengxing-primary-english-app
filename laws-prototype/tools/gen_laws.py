@@ -24,6 +24,10 @@ gen_laws.py — 单一数据源「切换」阶段 2 的生成器：规律数据�
      全部字段（池构成逐项不变），页面渲染字段下线（独有内容已在总表 lawdata 分仓保全）；
      LAW.open 增加 ptr 跳转分支（代词 PN.go / 冠词 AR.go / 连词 CJ.go / 词根 MZ.openLaw），
      词根区 IIFE 末尾补 window.MZ 导出（与 PN/AR/CJ 同构）。
+  6. 统一关系户口（知识联动阶段 2）：教学关系 509 条自 LAWDATA rel 迁入总表
+     relations_teaching（{id, kind, src}，与裁定型 relations 47 条并列同仓）；
+     LAWDATA 全条目、PN/AR/CJ 专区条目与 LAWREG 条目的 rel 字段一律由总表
+     relations_teaching 派生（teach_rel），副本不得自留户口外关系。
 
 纪律
   - 差异有且仅有裁定引起的变化：生成器内含硬断言（冠词区逐字节零差异、未受裁定条目
@@ -444,12 +448,19 @@ def build_pn(by, cur_laws):
             s = json.dumps(data, ensure_ascii=False)
             if "待对账" in s or "NEW-P" in s:
                 fail(f"PN {fid} 转正后仍残留候选标记")
+        rel = teach_rel(by, fid)  # 统一户口派生（联动阶段 2）
+        if rel:
+            data["rel"] = rel
         out.append(data)
-    # 未受裁定条目与现行逐条深相等（硬断言）
+    # 未受裁定条目与现行逐条深相等（硬断言；rel 为派生字段，单独校验）
     cur_by = {e["id"]: e for e in cur_laws}
     for e in out:
-        if e["id"] not in PN_FIXES and not deep_eq(e, cur_by[e["id"]]):
-            fail(f"PN 未受裁定条目 {e['id']} 与现行不一致")
+        if e["id"] not in PN_FIXES:
+            cur = cur_by[e["id"]]
+            if not deep_eq(strip_rel(e), strip_rel(cur)):
+                fail(f"PN 未受裁定条目 {e['id']} 与现行不一致")
+            if "rel" in cur and not deep_eq(cur["rel"], e.get("rel")):
+                fail(f"PN 条目 {e['id']} 现行 rel 与总表派生不一致")
     return out
 
 
@@ -536,12 +547,20 @@ def build_cj(by, cur_laws):
         if eid not in out_by_id:
             fail(f"CJ 跨引用修正目标 {eid} 不在输出中")
         apply_text_fix("CJ", eid, out_by_id[eid], path, old, new)
+    # 统一户口派生（联动阶段 2）：专区条目的 rel 一律来自总表 relations_teaching
+    for e in out:
+        rel = teach_rel(by, e["id"])
+        if rel:
+            e["rel"] = rel
     # 目录定版条校验：现行须与「总表经指称同步＋跨引用修正」深相等，
     # 或与修正前形态（把修正逆向还原后）深相等（写前文件），二者居一。
+    # rel 为派生字段：剥除后比对内容本体，现行 rel 若在场须与派生一致。
     cur_by = {e["id"]: e for e in cur_laws}
     out_by = {e["id"]: e for e in out}
     for cid, raw in catalog_raw.items():
-        if deep_eq(out_by[cid], cur_by[cid]):
+        if "rel" in cur_by[cid] and not deep_eq(cur_by[cid]["rel"], out_by[cid].get("rel")):
+            fail(f"CJ 目录条 {cid} 现行 rel 与总表派生不一致")
+        if deep_eq(strip_rel(out_by[cid]), strip_rel(cur_by[cid])):
             continue
         pre = copy.deepcopy(out_by[cid])
         for eid, path, old, new in CJ_REF_FIXES:
@@ -549,7 +568,7 @@ def build_cj(by, cur_laws):
                 v = get_path(pre, path)
                 if isinstance(v, str) and new in v:
                     set_path(pre, path, v.replace(new, old))
-        if not deep_eq(pre, cur_by[cid]):
+        if not deep_eq(strip_rel(pre), strip_rel(cur_by[cid])):
             fail(f"CJ 目录条 {cid} 与总表不一致（既非跨引用修正后形态、也非修正前形态）")
     # 成人层「状态：」段按处置改写
     for e in out:
@@ -690,7 +709,7 @@ def cjwb_merge(byid, fid, part_ids):
 
 
 # ---------------------------------------------------------------- 词根事实源
-def build_morph_data(md):
+def build_morph_data(md, by):
     raw = MORPH_DATA.read_bytes()
     if JDC(json.loads(raw)).encode() + b"\n" != raw:
         fail("morph_data.json 字节格式漂移（非 compact+换行），拒绝重写")
@@ -715,6 +734,13 @@ def build_morph_data(md):
             new_lr[k] = v
     if set(LAWREG_RENAME) - set(lr):
         pass  # 稳态时 NEW-C/NEW-T 已不在（见 check 分支）
+    # 统一户口派生（联动阶段 2）：LAWREG 条目的 rel 来自总表 relations_teaching
+    for k, e in new_lr.items():
+        rel = teach_rel(by, e["id"])
+        if rel:
+            e["rel"] = rel
+        elif "rel" in e:
+            del e["rel"]  # 总表无此条教学关系时，副本不得自留
     md["lawreg"] = new_lr
     for pid in ["if-past", "if-plural"]:
         laws = md["data"]["pages"][pid]["laws"]
@@ -722,6 +748,35 @@ def build_morph_data(md):
             md["data"]["pages"][pid]["laws"] = ["S-44" if x == "NEW-T" else x for x in laws]
             diff("morph DATA", pid, "laws", "NEW-T", "S-44")
     return md
+
+
+# ---------------------------------------------------------------- 统一关系户口（知识联动阶段 2，2026-11-03 Stewart 拍板）
+# 规律关系户口统一住总表：裁定型 relations（47 条，原文不动）+ 教学型
+# relations_teaching（509 条自 LAWDATA rel 迁入，{id, kind, src}）。本生成器把
+# 教学关系派生成各副本的 rel 字段（LAWDATA 全条目 / 代词·冠词·连词专区 LAWS /
+# 词根 LAWREG）；LAWDATA 与专区数据从此只是生成副本，不再是关系户口。
+def teach_rel(by, rid):
+    """由总表 relations_teaching 派生 rel 字段（[{id, rel:类型}]，LAWDATA 既有格式）。"""
+    rec = by.get(rid) or {}
+    return [{"id": e["id"], "rel": e["kind"]} for e in rec.get("relations_teaching") or []]
+
+
+def lawdata_with_rel(ld, rel):
+    """把派生 rel 插回 LAWDATA 条目（位置在 pend 之后、prb 之前，与既有字节序一致）。"""
+    if not rel:
+        return ld
+    out = {}
+    for k, v in ld.items():
+        out[k] = v
+        if k == "pend":
+            out["rel"] = rel
+    if "rel" not in out:
+        out["rel"] = rel
+    return out
+
+
+def strip_rel(e):
+    return {k: v for k, v in e.items() if k != "rel"}
 
 
 # ---------------------------------------------------------------- LAWDATA 降指针
@@ -751,8 +806,10 @@ def build_lawdata(by, cur):
                     fail(f"LAWDATA {lid} 池字段 {f} 与现行不一致")
             out[lid] = ptr
         else:
-            if not deep_eq(entry, by[lid]["lawdata"]):
-                fail(f"LAWDATA 非双户口条目 {lid} 与总表不一致")
+            # 非双户口：条目 = 总表 lawdata 分仓（已无 rel）+ 统一户口派生的 rel
+            expect = lawdata_with_rel(copy.deepcopy(by[lid]["lawdata"]), teach_rel(by, lid))
+            if not deep_eq(entry, expect):
+                fail(f"LAWDATA 非双户口条目 {lid} 与总表不一致（含 rel 派生校验）")
             out[lid] = entry
     return out, duals
 
@@ -848,8 +905,13 @@ def build_all(text, by):
     ar_laws = []
     for e in w["ar_laws"][2]:
         data = zone_data(by, e["id"])
-        if not deep_eq(data, e):
+        rel = teach_rel(by, e["id"])  # 统一户口派生（联动阶段 2）
+        if rel:
+            data["rel"] = rel
+        if not deep_eq(strip_rel(data), strip_rel(e)):
             fail(f"AR 条目 {e['id']} 与总表不一致")
+        if "rel" in e and not deep_eq(e["rel"], data.get("rel")):
+            fail(f"AR 条目 {e['id']} 现行 rel 与总表派生不一致")
         ar_laws.append(data)
     reps.append((w["ar_laws"][0], w["ar_laws"][1], JD(ar_laws), "AR LAWS"))
     for nm, scope in [("ar_extra", "AR_EXTRA"), ("ar_adult", "AR_ADULT")]:
@@ -880,7 +942,7 @@ def build_all(text, by):
 
     # morph 事实源
     md_cur = json.loads(MORPH_DATA.read_text(encoding="utf-8"))
-    md_new = build_morph_data(md_cur)
+    md_new = build_morph_data(md_cur, by)
     return reps, md_new, duals
 
 
