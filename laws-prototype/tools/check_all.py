@@ -12,6 +12,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_et.py --check           词源 ET 载荷 + 计数文案比对
   check_morph_sync.py         词根三方（事实源 ↔ 主文件 ↔ morphology 文件）深比
   check_upstream.py           上游 ↔ 总表五条链对账
+  extract_review_data.py      复习池新题源（专区/词根/介词）提取块比对
 
 用法：python3 laws-prototype/tools/check_all.py
 退出码：0=全绿；1=至少一项失败。
@@ -31,6 +32,7 @@ CHECKS = [
     ("gen_et --check", "gen_et.py", ["--check"]),
     ("check_morph_sync", "check_morph_sync.py", []),
     ("check_upstream", "check_upstream.py", []),
+    ("extract_review --check", "extract_review_data.py", ["--check"]),
 ]
 
 
