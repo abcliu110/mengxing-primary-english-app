@@ -382,6 +382,7 @@ h2.zt{font-size:19px;color:#5E6E3A;margin:6px 0 4px}
 <div class="card" data-go="expr"><div class="ic">✍️</div><h3>表达写作区</h3><p>整块取句、范文先行、语义韵选词、对话的规矩。</p><span class="n">E / W / NE · 59 条 · 目录页</span></div>
 <div class="card" data-go="tech"><div class="ic">🧰</div><h3>技巧区</h3><p>153 条定版学习技巧：按痛点、按技能、按顺序三种找法；每条有做法、自检与用错警告。</p><span class="n">TEC 五路 · 153 条 · 真模块</span></div>
 <div class="card" data-go="review"><div class="ic">🗂️</div><h3>复习区</h3><p>间隔队列 + 病因错题本：错题不按题号归档，按病因归档。</p><span class="n">样板页 · 数据来自旗舰单元病例</span></div>
+<div class="card" data-go="map"><div class="ic">🗺️</div><h3>学习地图</h3><p>全 App 一张图：练过的地方点亮，没练的地方还灰着；点节点直接去那一区。</p><span class="n">跨区进度 · 只读本机记录</span></div>
 </div>
 <div class="sec-t">今天哪儿不舒服？（痛点入口）</div>
 <div class="pain">
@@ -5719,7 +5720,32 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">🗂️ 复习区</h2>
 <p class="sub">这里的题全部来自你学过的页面——规律页的练习与理解探针、时态站的练习、拼读主线的过关词，一道新题都没有。答对升盒、隔几天再练；答错不按题号堆着，按<b>病因</b>（出自哪条规律、卡在哪个机制）收进错题本，点「回机制」直接回到那条规律的页面重学。进度只保存在这台设备的浏览器里，不上传、没有账号；换设备或清掉浏览器数据，记录就没了。</p>
+<div class="chips" style="margin-bottom:10px"><button class="chip" data-go="rush">⚡ 闯关模式 · 闪电战</button><button class="chip" data-go="wrong">📒 错题本 · 三分法</button><button class="chip" data-go="map">🗺️ 学习地图</button></div>
 <div id="rv-root"><div class="box">复习引擎载入中……</div></div>
+</section>
+
+<!-- ============ 闯关模式（借鉴老 App 闪电战玩法壳：限时 + combo + 过关结算；题源 = 复习题池 buildPool） ============ -->
+<section class="view" id="v-rush">
+<span class="back" data-go="review">← 回复习区</span>
+<h2 class="zt">⚡ 闯关模式 · 闪电战</h2>
+<p class="sub">题目全部来自复习题池（规律练习 + 时态站练习里的选择题），一道新题都没有。每题限时 15 秒，连对有 combo 加分；10 题答对 7 题过关。成绩只记在这台设备上。</p>
+<div id="mxr-root"><div class="box">闯关载入中……</div></div>
+</section>
+
+<!-- ============ 错题本 · 三分法（借鉴老 App my_study：错题本 / 学习中 / 已掌握） ============ -->
+<section class="view" id="v-wrong">
+<span class="back" data-go="review">← 回复习区</span>
+<h2 class="zt">📒 错题本 · 三分法</h2>
+<p class="sub">在复习区和闯关里答错的题会自动收进这里，分三格：<b>错题本</b>（错了还没订正）、<b>学习中</b>（订正中，连对在累计）、<b>已掌握</b>（跨 2 个学习日连对 3 次，消错毕业）。重练时判答照常走复习引擎——盒子进度记在复习账本（mxReviewV1）里，本本只记三分状态，两边各记各的、不互相覆盖。</p>
+<div id="mxw-root"><div class="box">错题本载入中……</div></div>
+</section>
+
+<!-- ============ 学习地图（借鉴老 App 总地图 app_map：学过点亮） ============ -->
+<section class="view" id="v-map">
+<span class="back" data-go="home">← 回首页</span>
+<h2 class="zt">🗺️ 学习地图</h2>
+<p class="sub">○ 还没练　✓ 练过了　🏅 已点亮（六成以上的题升到第 3 盒以后）。进度只读这台设备上已有的记录（复习账本、动词 SRS），不新造数据；还没有进度记录的区会如实标「未接入」。</p>
+<div id="mxm-root"><div class="box">地图载入中……</div></div>
 </section>
 
 <style>
@@ -10959,6 +10985,7 @@ function finalize(card,it,ok){
   if(card.getAttribute('data-final')) return;
   card.setAttribute('data-final', ok?'1':'0');
   answer(it.key, ok);
+  if(window.MXW) MXW.record(it, ok); /* 错题本三分法挂点：复习判答统一出口 */
   var st=card.querySelector('.rv-status');
   if(st) st.innerHTML= ok
     ? '<span style="color:#4a7c2f"><b>✓ 记下了</b>——这道题升到第 '+boxOf(it.key)+' 盒，'+(boxOf(it.key)>=5?'16 天后':(['今天','1 天','3 天','7 天','16 天'][boxOf(it.key)-1])+'后')+'再练。</span>'
@@ -11034,6 +11061,420 @@ document.addEventListener('click',function(e){
 });
 window.RV={render:render,buildPool:buildPool,buildQueue:buildQueue,answer:answer,
   store:function(){return store},byKey:function(){return BYKEY},dups:function(){return DUPKEYS}};
+})();
+</script>
+
+<style>
+.mxr-bar{height:10px;background:#e9e2d0;border-radius:6px;overflow:hidden;margin:8px 0}
+.mxr-bar>i{display:block;height:100%;background:#e8a13a;transition:width .2s linear}
+.mxr-combo{font-weight:900;color:#b3541e}
+.mx-node{text-align:left;border-radius:12px;padding:7px 10px;cursor:pointer;font-weight:800;font-size:.84rem;border:2px solid #e2e8f0;background:#fff;color:#0f172a;margin:0 6px 6px 0}
+.mx-node.gold{border-color:#f59e0b;background:#fef3c7}
+.mx-node.seen{border-color:#86efac;background:#f0fdf4}
+.mx-node.off{border-color:#e2e8f0;background:#f8fafc;color:#94a3b8;cursor:pointer}
+.mx-node .mx-n{display:block;font-weight:400;font-size:.75rem;color:#64748b}
+.mxw-row{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;padding:8px 0;border-bottom:1px dashed #e5ddc8}
+.mxw-row .mxw-main{flex:1;min-width:200px}
+</style>
+<script>
+/* ===== 借鉴落地：闯关玩法壳（MXR）+ 错题本三分法（MXW）+ 学习地图（MXM）=====
+   形态借鉴老 App v6_hub 闪电战三件套 / my_study 三分 / app_map 总地图，按现行 App 规矩重写：
+   题源只调 RV.buildPool()，判答只走 RV.answer()，不新编题、不改 buildPool 本体。 */
+(function(){
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function lsRead(k){try{var r=localStorage.getItem(k);return r?JSON.parse(r):null;}catch(e){return null;}}
+function lsWrite(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function todayStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function say(t){ if(window.LAW&&LAW.say){LAW.say(t);return;} try{var u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=0.85;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){} }
+function poolItems(){ return (window.RV&&RV.buildPool)?RV.buildPool():[]; }
+function itemByKey(k){ var bk=(window.RV&&RV.byKey)?RV.byKey():{}; return bk[k]||null; }
+function mechGo(it){
+  if(!it) return;
+  if(it.fam==='ta'){ if(window.VB&&VB.openTA) VB.openTA(it.law); }
+  else if(it.law&&window.LAW) LAW.open(it.law,'review');
+}
+function labelOf(it){ return it.kind==='gate'?it.word:(it.kind==='probe'?it.title:(it.q||'').slice(0,42)); }
+function ansInner(it){
+  if(it.kind==='probe') return '<b>通过的样子：</b>'+esc(it.rubric.pass||'')+'<div class="adult">预判误读：'+esc(it.mis||'')+'<br>命中：'+esc(it.rubric.hit||'')+'<br>部分：'+esc(it.rubric.partial||'')+'</div>'+(it.remedy?'<div class="lz-hint" style="display:block">回补：'+esc(it.remedy)+'</div>':'');
+  if(it.kind==='gate') return '<b>'+esc(it.word)+'</b> '+esc(it.ph)+' · '+esc(it.mn);
+  return '答案：<b>'+esc(it.a)+'</b>'+(it.reason?'<div class="lz-hint" style="display:block">'+esc(it.reason)+'</div>':'')+(it.h?'<div class="lz-hint" style="display:block">提示（回机制）：'+esc(it.h)+'</div>':'')+(it.note?'<div class="adult">'+esc(it.note)+'</div>':'');
+}
+
+/* ================= MXW：错题本三分法 =================
+   新键 mxWrongBookV1，只收录「答错过」的题；与 mxReviewV1 的关系：
+   盒子/到期由复习引擎记（mxReviewV1），本本只记三分状态与消错进度，互不覆盖；
+   在本本里重练时判答仍走 RV.answer()，两边在同一判答点汇合（RV.finalize 与本模块 judge）。 */
+var WKEY='mxWrongBookV1';
+var wstore=lsRead(WKEY); if(!wstore||!wstore.recs) wstore={recs:{}};
+function wsave(){ lsWrite(WKEY,wstore); }
+function wBucket(rec){ if(rec.st==='mastered') return 'mastered'; return (rec.streak>=1)?'learning':'mistake'; }
+function wRecord(it, ok){
+  if(!it||!it.key) return;
+  var rec=wstore.recs[it.key], now=Date.now(), today=todayStr();
+  if(!ok){
+    if(!rec){ rec=wstore.recs[it.key]={st:'mistake',streak:0,days:[],wrong:0,first:now,lastDay:''}; }
+    rec.st='mistake'; rec.streak=0; rec.days=[]; rec.wrong=(rec.wrong||0)+1; rec.last=now;
+    rec.law=it.law||''; rec.zone=it.zone||''; rec.cause=it.cause||''; rec.fam=it.fam||''; rec.kind=it.kind||'';
+    rec.label=labelOf(it);
+    wsave(); return;
+  }
+  if(!rec) return; /* 只收录错过的题，答对的新题不进本本（那是 mxReviewV1 的账） */
+  if(rec.st==='mastered'){ rec.last=now; wsave(); return; }
+  if(rec.lastDay!==today){ /* 连对按学习日计：同一天多次答对只记 1 次（老 App bumpStreakOnceToday 同规） */
+    rec.streak=(rec.streak||0)+1;
+    if(rec.days.indexOf(today)<0) rec.days.push(today);
+    rec.lastDay=today;
+  }
+  rec.last=now;
+  if(rec.streak>=3&&rec.days.length>=2) rec.st='mastered'; /* 消错：跨 2 个学习日连对 3 次 */
+  wsave();
+}
+var wTab='mistake', wSession=null, wTapped=[];
+var WBUCKETS=[['mistake','📕 错题本'],['learning','📗 学习中'],['mastered','📘 已掌握']];
+function wCounts(){
+  var c={mistake:0,learning:0,mastered:0};
+  Object.keys(wstore.recs).forEach(function(k){ c[wBucket(wstore.recs[k])]++; });
+  return c;
+}
+function wAnsBlock(it){
+  return '<div class="lz-ans mx-ans" style="display:none">'+ansInner(it)+'</div>';
+}
+function wMarkRow(y,n){
+  return '<div class="mx-mark" style="display:none;margin-top:6px"><button class="lz-opt" data-mxw="mark" data-ok="1">'+y+'</button> <button class="lz-opt" data-mxw="mark" data-ok="0">'+n+'</button></div>';
+}
+function wCardHtml(it){
+  var h='<div class="lz-q rv-card" data-key="'+esc(it.key)+'"><div class="rv-tag">'+esc(it.zone||'')+' · '+esc(it.cause||'')+'</div>';
+  if(it.kind==='choice'){
+    h+='<div class="qq">✏️ '+esc(it.q)+'</div>';
+    if(it.caseError)h+='<div class="sent" style="background:#f6e3e3">✗ '+esc(it.caseError)+'</div>';
+    h+=it.opts.map(function(o,j){return '<button class="lz-opt" data-mxw="opt" data-j="'+j+'">'+esc(o)+'</button>';}).join('');
+    h+=wAnsBlock(it);
+  }else if(it.kind==='build'){
+    h+='<div class="qq">🧩 '+esc(it.q)+'</div>';
+    if(it.caseError)h+='<div class="sent" style="background:#f6e3e3">✗ '+esc(it.caseError)+'</div>';
+    var blocks=it.build.blocks.map(function(b,j){return {b:b,j:j};});
+    var seed=0; for(var i=0;i<it.key.length;i++)seed=(seed*31+it.key.charCodeAt(i))|0;
+    blocks.sort(function(x,y){return Math.abs((x.j+1)*2654435761+seed)%97-Math.abs((y.j+1)*2654435761+seed)%97;});
+    h+='<div class="chips">'+blocks.map(function(x){return '<button class="chip" data-mxw="tap" data-j="'+x.j+'">'+esc(x.b)+'</button>';}).join('')+'</div>';
+    h+='<div class="sent mx-line">（点上面的积木，按顺序把句子拼出来）</div>';
+    h+='<div class="chips"><button class="chip" data-mxw="check">检查</button><button class="chip" data-mxw="reset">重来</button><button class="chip" data-mxw="reveal">看答案</button></div>';
+    h+=wAnsBlock(it)+wMarkRow('我拼对了','我还没拼对');
+  }else if(it.kind==='probe'){
+    h+='<div class="qq">🔍 '+esc(it.title)+'</div><p style="line-height:1.75;margin:6px 0">'+esc(it.task)+'</p>';
+    h+='<button class="lz-reveal" data-mxw="reveal">想好了？看判读要点</button>';
+    h+=wAnsBlock(it)+wMarkRow('做到了','还没做到');
+  }else if(it.kind==='gate'){
+    h+='<div class="qq">🔊 读一读这个词（本站过关词 · '+esc(it.g)+' 读 '+esc(it.nph)+'）</div>';
+    h+='<div style="font-size:30px;font-weight:700;margin:8px 0">'+esc(it.em||'')+' '+esc(it.word)+' <button class="lz-say" data-mxw="say">🔊 听一听对不对</button></div>';
+    h+='<button class="lz-reveal" data-mxw="reveal">读完了？对一对</button>';
+    h+=wAnsBlock(it)+wMarkRow('读对了','读错了');
+  }else{
+    h+='<div class="qq">✏️ '+esc(it.q)+'</div>';
+    if(it.caseError)h+='<div class="sent" style="background:#f6e3e3">✗ '+esc(it.caseError)+'</div>';
+    h+='<button class="lz-reveal" data-mxw="reveal">想好了？看答案</button>';
+    h+=wAnsBlock(it)+wMarkRow('我答对了','我答错了');
+  }
+  h+='<div class="mx-status" style="margin-top:6px"></div></div>';
+  return h;
+}
+function wShowAns(card){
+  var a=card.querySelector('.mx-ans'); if(a)a.style.display='block';
+  var m=card.querySelector('.mx-mark'); if(m)m.style.display='block';
+  var r=card.querySelector('[data-mxw="reveal"]'); if(r)r.style.display='none';
+}
+function wJudge(card,it,ok){
+  if(card.getAttribute('data-final')) return;
+  card.setAttribute('data-final',ok?'1':'0');
+  if(window.RV&&RV.answer) RV.answer(it.key,ok);
+  wRecord(it,ok);
+  var rec=wstore.recs[it.key];
+  var st=card.querySelector('.mx-status');
+  if(st){
+    if(ok&&rec&&rec.st==='mastered') st.innerHTML='<span style="color:#4a7c2f"><b>🏅 消错毕业！</b>这道题已从错题本移到「已掌握」。</span>';
+    else if(ok) st.innerHTML='<span style="color:#4a7c2f"><b>✓ 订正对了</b>——连对 '+(rec?rec.streak:0)+'/3 · 跨日 '+(rec?rec.days.length:0)+'/2 天，'+(rec&&rec.streak>=1?'已进「学习中」。':'明天再对一次开始累计。')+'</span>';
+    else st.innerHTML='<span style="color:#b03a2e"><b>✗ 已回错题本</b>——先点「回规律页」把机制看懂，再回来练。</span>';
+  }
+  card.querySelectorAll('[data-mxw="opt"],[data-mxw="mark"]').forEach(function(b){b.disabled=true;});
+  var foot=document.getElementById('mxw-foot');
+  if(foot&&wSession) foot.innerHTML='<button class="chip gold" data-mxw="next">下一道 ➔</button>';
+}
+function wRenderPractice(){
+  var box=document.getElementById('mxw-practice'); if(!box) return;
+  if(!wSession){ box.innerHTML=''; return; }
+  var it=itemByKey(wSession.list[wSession.i]);
+  if(!it){ wSession=null; box.innerHTML=''; wRender(); return; }
+  wTapped=[];
+  box.innerHTML='<div class="box" style="margin-bottom:10px"><b>重练中 · 第 '+(wSession.i+1)+' / '+wSession.list.length+' 道</b> <button class="chip" data-mxw="quit">✕ 退出重练</button>'+
+    '<div id="mxw-card" style="margin-top:8px">'+wCardHtml(it)+'</div><div id="mxw-foot" style="margin-top:6px"></div></div>';
+}
+function wRender(){
+  var root=document.getElementById('mxw-root'); if(!root) return;
+  var c=wCounts();
+  var h='<div class="box" style="margin-bottom:10px"><b>三分账本（只存在这台设备）</b><br>错题本 '+c.mistake+' 道 · 学习中 '+c.learning+' 道 · 已掌握 '+c.mastered+' 道'+
+    '（消错规则：错题在跨 2 个学习日里连对 3 次——同一天答对多次只记 1 次——就毕业进「已掌握」） '+
+    '<button class="chip" data-mxw="clear">清空错题本</button></div>';
+  h+='<div id="mxw-practice"></div>';
+  h+='<div class="chips" style="margin-bottom:10px">'+WBUCKETS.map(function(b){return '<button class="chip'+(b[0]===wTab?' gold':'')+'" data-mxw="tab" data-t="'+b[0]+'">'+b[1]+'（'+c[b[0]]+'）</button>';}).join('')+'</div>';
+  var keys=Object.keys(wstore.recs).filter(function(k){return wBucket(wstore.recs[k])===wTab;});
+  keys.sort(function(a,b){return (wstore.recs[b].last||0)-(wstore.recs[a].last||0);});
+  if(!keys.length){
+    h+='<div class="box">'+(wTab==='mistake'?'还没有错题。在复习区或闯关里答错的题，会自动收进这里。':(wTab==='learning'?'还没有订正中的题。错题重练答对后，会先到这里累计连对。':'还没有毕业的题。错题跨 2 个学习日连对 3 次，就到这里。'))+'</div>';
+  }else{
+    h+='<div style="margin-bottom:8px"><button class="chip gold" data-mxw="drill">▶ 重练这一格（'+keys.length+' 道）</button></div>';
+    var groups={}, order=[];
+    keys.forEach(function(k){ var rec=wstore.recs[k]; var law=rec.law||'（无规律号）'; if(!groups[law]){groups[law]=[];order.push(law);} groups[law].push(k); });
+    order.forEach(function(law){
+      var ks=groups[law]; var first=wstore.recs[ks[0]];
+      h+='<div class="box" style="margin-bottom:10px"><p><b>病因 · '+esc(first.cause||law)+'</b>（'+ks.length+' 道）</p>';
+      ks.forEach(function(k){
+        var rec=wstore.recs[k]; var it=itemByKey(k);
+        var prog= rec.st==='mastered' ? '🏅 已消错' : ('错 '+rec.wrong+' 次 · 连对 '+rec.streak+'/3 · 跨日 '+rec.days.length+'/2 天');
+        h+='<div class="mxw-row"><div class="mxw-main"><b>'+esc(rec.label||(it?labelOf(it):k))+'</b><br><span style="font-size:.82rem;color:#7a6c52">'+prog+'</span></div>'+
+          '<button class="chip" data-mxw="one" data-key="'+esc(k)+'">练这道</button>'+
+          (rec.law?'<button class="chip" data-mxw="mech" data-key="'+esc(k)+'">↩ 回规律页</button>':'')+'</div>';
+      });
+      h+='</div>';
+    });
+  }
+  root.innerHTML=h;
+  wRenderPractice();
+}
+
+/* ================= MXR：闯关玩法壳 =================
+   形态借鉴老 App 闪电战：模式感（快问快答）、即时判分、过关推进；计分按本任务规约：
+   每题限时 15 秒、连对 combo 加分（第 n 连对 +10+(n-1)*2）、10 题答对 7 题过关、最佳成绩存 mxRushBestV1。 */
+var RKEY='mxRushBestV1';
+var rBest=lsRead(RKEY); if(!rBest) rBest={best:0,bestCombo:0,plays:0,wins:0};
+var RQ_N=10, RQ_SECS=15, RQ_PASS=7;
+var rGame=null, rTimer=null, rAdvance=null;
+function rStopTimers(){ if(rTimer){clearInterval(rTimer);rTimer=null;} if(rAdvance){clearTimeout(rAdvance);rAdvance=null;} }
+function rShuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+function rRenderHome(){
+  var root=document.getElementById('mxr-root'); if(!root) return;
+  var nChoice=poolItems().filter(function(it){return it.kind==='choice';}).length;
+  root.innerHTML='<div class="box"><p><b>⚡ 闪电战</b>：从题池里抽 '+RQ_N+' 道选择题（池里现有 '+nChoice+' 道可选），每题 '+RQ_SECS+' 秒，超时算错。</p>'+
+    '<p>计分：答对 +10，连对加成——第 2 连对起每题多 +(连对数-1)×2；答错 combo 清零。答对 '+RQ_PASS+' 题过关。</p>'+
+    '<p>🏆 最佳成绩：<b>'+rBest.best+' 分</b> · 最高连对 '+rBest.bestCombo+' · 已玩 '+rBest.plays+' 局 · 过关 '+rBest.wins+' 次</p>'+
+    '<button class="chip gold" data-mxr="start">▶ 开始闯关</button></div>';
+}
+function rStart(){
+  var qs=rShuffle(poolItems().filter(function(it){return it.kind==='choice';}).slice());
+  qs=qs.slice(0,Math.min(RQ_N,qs.length));
+  if(!qs.length){ var root=document.getElementById('mxr-root'); if(root)root.innerHTML='<div class="box">题池里暂时没有选择题，闯关开不了。</div>'; return; }
+  rGame={qs:qs,i:0,score:0,combo:0,maxCombo:0,right:0,endAt:0,locked:false};
+  rRenderQ();
+}
+function rRenderQ(){
+  var root=document.getElementById('mxr-root'); if(!root||!rGame) return;
+  var it=rGame.qs[rGame.i];
+  rGame.locked=false;
+  root.innerHTML='<div class="box"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><span><b>第 '+(rGame.i+1)+' / '+rGame.qs.length+' 题</b> · '+esc(it.zone||'')+' · '+esc(it.law||'')+'</span>'+
+    '<span>得分 <b>'+rGame.score+'</b> · <span class="mxr-combo">🔥 combo ×'+rGame.combo+'</span> · ⏱ <b class="mxr-left">'+RQ_SECS+'</b> 秒</span></div>'+
+    '<div class="mxr-bar"><i style="width:100%"></i></div>'+
+    '<div class="qq" style="margin-top:6px">✏️ '+esc(it.q)+'</div>'+
+    (it.caseError?'<div class="sent" style="background:#f6e3e3">✗ '+esc(it.caseError)+'</div>':'')+
+    '<div>'+it.opts.map(function(o,j){return '<button class="lz-opt" data-mxr="opt" data-j="'+j+'">'+esc(o)+'</button>';}).join('')+'</div>'+
+    '<div class="mxr-fb" style="margin-top:8px"></div></div>';
+  rGame.endAt=Date.now()+RQ_SECS*1000;
+  rStopTimers();
+  rTimer=setInterval(function(){
+    if(!rGame) { rStopTimers(); return; }
+    var left=Math.max(0,rGame.endAt-Date.now());
+    var bar=root.querySelector('.mxr-bar>i'), lab=root.querySelector('.mxr-left');
+    if(bar)bar.style.width=(left/(RQ_SECS*1000)*100)+'%';
+    if(lab)lab.textContent=Math.ceil(left/1000);
+    if(left<=0) rJudge(-1);
+  },200);
+}
+function rJudge(j){
+  if(!rGame||rGame.locked) return;
+  rGame.locked=true;
+  if(rTimer){clearInterval(rTimer);rTimer=null;}
+  var it=rGame.qs[rGame.i];
+  var ok= j>=0 && String(it.opts[j]).trim()===String(it.a).trim();
+  var gain=0;
+  if(ok){ rGame.combo++; rGame.maxCombo=Math.max(rGame.maxCombo,rGame.combo); gain=10+Math.max(0,rGame.combo-1)*2; rGame.score+=gain; rGame.right++; }
+  else rGame.combo=0;
+  if(window.RV&&RV.answer) RV.answer(it.key,ok);
+  if(window.MXW) MXW.record(it,ok);
+  var root=document.getElementById('mxr-root'); if(!root) return;
+  root.querySelectorAll('[data-mxr="opt"]').forEach(function(b){
+    b.disabled=true;
+    var bj=parseInt(b.getAttribute('data-j'),10);
+    if(String(it.opts[bj]).trim()===String(it.a).trim()) b.classList.add('right');
+    else if(bj===j) b.classList.add('wrong');
+  });
+  var fb=root.querySelector('.mxr-fb');
+  if(fb) fb.innerHTML= ok
+    ? '<span style="color:#4a7c2f"><b>✅ 答对！+'+gain+' 分</b>（combo ×'+rGame.combo+'）</span>'+(it.reason?'<div class="lz-hint" style="display:block">'+esc(it.reason)+'</div>':'')+(it.h?'<div class="lz-hint" style="display:block">'+esc(it.h)+'</div>':'')
+    : '<span style="color:#b03a2e"><b>'+(j<0?'⏱ 超时！':'❌ 答错了')+'</b>正确答案：'+esc(it.a)+'。这道题已收进错题本。</span>'+(it.reason?'<div class="lz-hint" style="display:block">'+esc(it.reason)+'</div>':'')+(it.h?'<div class="lz-hint" style="display:block">'+esc(it.h)+'</div>':'');
+  var comboLab=root.querySelector('.mxr-combo'); if(comboLab)comboLab.textContent='🔥 combo ×'+rGame.combo;
+  rAdvance=setTimeout(function(){
+    if(!rGame) return;
+    rGame.i++;
+    if(rGame.i>=rGame.qs.length) rFinish(); else rRenderQ();
+  },1400);
+}
+function rFinish(){
+  rStopTimers();
+  var g=rGame; rGame=null;
+  var pass=g.right>=RQ_PASS;
+  rBest.plays++; if(pass)rBest.wins++;
+  rBest.best=Math.max(rBest.best,g.score); rBest.bestCombo=Math.max(rBest.bestCombo,g.maxCombo);
+  rBest.lastScore=g.score; rBest.lastRight=g.right;
+  lsWrite(RKEY,rBest);
+  var root=document.getElementById('mxr-root'); if(!root) return;
+  root.innerHTML='<div class="box"><h3 style="margin:4px 0">'+(pass?'🏆 过关！':'💪 还差一点')+'</h3>'+
+    '<p>本局得分 <b>'+g.score+'</b> · 答对 '+g.right+' / '+g.qs.length+' 题 · 最高连对 🔥 ×'+g.maxCombo+'<br>过关线：答对 '+RQ_PASS+' 题。历史最佳：'+rBest.best+' 分。</p>'+
+    '<div class="chips"><button class="chip gold" data-mxr="start">↻ 再来一局</button><button class="chip" data-go="wrong">📒 去看看错题本</button><button class="chip" data-go="review">🗂️ 回复习区</button></div></div>';
+}
+
+/* ================= MXM：学习地图 =================
+   只读聚合：mxReviewV1（复习账本）+ mx_vb_srs_v1 / mx_vb_loop_v1（动词 SRS）。没有进度存储的区如实标未接入。 */
+function mNodeState(total,touched,strong){
+  if(total>0&&strong/total>=0.6) return 'gold';
+  if(touched>0) return 'seen';
+  return 'new';
+}
+var MICON={gold:'🏅',seen:'✓',new:'○'};
+function mChip(title,sub,st,go){
+  return '<button class="mx-node '+st+'" data-go="'+esc(go)+'">'+MICON[st]+' '+esc(title)+'<span class="mx-n">'+esc(sub)+'</span></button>';
+}
+function mRender(){
+  var root=document.getElementById('mxm-root'); if(!root) return;
+  var rvStore=lsRead('mxReviewV1')||{items:{}};
+  var rItems=rvStore.items||{};
+  var vbSrs=lsRead('mx_vb_srs_v1')||{items:{}};
+  var vbLoop=lsRead('mx_vb_loop_v1')||{done:{},seen:{}};
+  var pool=poolItems();
+  function agg(its){
+    var t=0,s=0;
+    its.forEach(function(it){ var st=rItems[it.key]; if(st){t++; if(st.b>=3)s++;} });
+    return {total:its.length,touched:t,strong:s};
+  }
+  var nodes=0, golds=0;
+  function track(st){ nodes++; if(st==='gold')golds++; }
+  var h='';
+  /* 拼读主线：脊柱站（有过关词的站） */
+  var spine=window.RV_SPINE||[];
+  var stChips='', stTotal=0, stTouched=0;
+  spine.forEach(function(n){
+    if(!n.gate||!n.gate.length) return;
+    var its=n.gate.map(function(g){ return {key:'GT:'+n.key+':'+g.id}; });
+    var a=agg(its); stTotal+=a.total; stTouched+=a.touched;
+    var st=mNodeState(a.total,a.touched,a.strong); track(st);
+    stChips+=mChip(n.g+' 读 '+n.ph, a.touched+'/'+a.total+' 过关词', st, 'phon');
+  });
+  var phonLaws=pool.filter(function(it){return it.zone==='拼读'&&it.fam!=='gate';});
+  var pa=agg(pool.filter(function(it){return it.zone==='拼读';}));
+  var pst=mNodeState(pa.total,pa.touched,pa.strong);
+  h+='<div class="box" style="margin-bottom:10px"><p><b>🔤 拼读区</b>（全体 '+pa.touched+'/'+pa.total+' 题练过'+(phonLaws.length?'，含拼读规律题 '+phonLaws.length+' 道':'')+'）</p><div>'+stChips+'</div></div>';
+  /* 规律练习各区（题池口径） */
+  var zoneGo={'词汇解码':'vocab','语法':'grammar','小系统':'grammar2','表达写作':'expr','时态站':'verb'};
+  var zChips='';
+  ['词汇解码','语法','小系统','表达写作','时态站'].forEach(function(z){
+    var its=pool.filter(function(it){return it.zone===z;});
+    if(!its.length) return;
+    var a=agg(its); var st=mNodeState(a.total,a.touched,a.strong); track(st);
+    zChips+=mChip(z, a.touched+'/'+a.total+' 题练过', st, zoneGo[z]||'review');
+  });
+  h+='<div class="box" style="margin-bottom:10px"><p><b>📚 规律练习（复习题池口径）</b></p><div>'+zChips+'</div></div>';
+  /* 动词区 SRS */
+  var vbItems=vbSrs.items||{};
+  var vbPools={}; Object.keys(vbItems).forEach(function(k){ var p=k.split('|')[0]; vbPools[p]=(vbPools[p]||0)+1; });
+  var vbN=Object.keys(vbItems).length;
+  var loopDone=Object.keys(vbLoop.done||{}).length, loopSeen=Object.keys(vbLoop.seen||{}).length;
+  var vbSt= vbN>0?'seen':'new'; track(vbSt);
+  var poolName={form:'词形',fam:'家族',hosp:'病例',ta:'时态'};
+  var vbSub='SRS 已练 '+vbN+' 项（'+Object.keys(vbPools).map(function(p){return (poolName[p]||p)+' '+vbPools[p];}).join(' · ')+'）· 今日一课完成 '+loopDone+' 站 / 看过 '+loopSeen+' 站';
+  h+='<div class="box" style="margin-bottom:10px"><p><b>🏃 动词区（SRS 口径，无总题数分母，只报已练数）</b></p><div>'+mChip('动词 SRS + 今日一课', vbSub, vbSt, 'verb')+'</div></div>';
+  /* 未接入 */
+  var off=[['词根词缀','morph'],['词源区','etym'],['代词区','pron'],['冠词区','art'],['连词区','conj'],['介词区','prep'],['口语区','spoken'],['技巧区','tech']];
+  var oChips=off.map(function(z){ return '<button class="mx-node off" data-go="'+z[1]+'">○ '+esc(z[0])+'<span class="mx-n">未接入进度记录</span></button>'; }).join('');
+  h+='<div class="box" style="margin-bottom:10px"><p><b>🌫️ 还没有进度记录的区</b>（这些区在 App 里还没有会存进度的练习，地图先如实留灰）</p><div>'+oChips+'</div></div>';
+  var head='<div class="box" style="margin-bottom:10px"><b>🗺️ 全 App 总地图</b><br>已点亮 🏅 '+golds+' / '+nodes+' 个节点 · 拼读过关词已练 '+stTouched+'/'+stTotal+' · 进度只存在这台设备上，不上传。</div>';
+  root.innerHTML=head+h;
+}
+
+/* ---------------- 导航与点击委托 ---------------- */
+document.addEventListener('click',function(e){
+  if(!e.target.closest) return;
+  var g=e.target.closest('[data-go]');
+  if(g){
+    var v=g.getAttribute('data-go');
+    if(v==='rush') setTimeout(function(){ if(!rGame) rRenderHome(); },40);
+    if(v==='wrong') setTimeout(wRender,40);
+    if(v==='map') setTimeout(mRender,40);
+  }
+  var rb=e.target.closest('[data-mxr]');
+  if(rb&&document.getElementById('mxr-root').contains(rb)){
+    var ra=rb.getAttribute('data-mxr');
+    if(ra==='start'){ rStart(); return; }
+    if(ra==='opt'&&rGame){ rJudge(parseInt(rb.getAttribute('data-j'),10)); return; }
+  }
+  var wb=e.target.closest('[data-mxw]');
+  if(wb){
+    var wroot=document.getElementById('mxw-root');
+    if(wroot&&wroot.contains(wb)){
+      var wa=wb.getAttribute('data-mxw');
+      if(wa==='tab'){ wTab=wb.getAttribute('data-t'); wSession=null; wRender(); return; }
+      if(wa==='clear'){ if(window.confirm('清空错题本的三分记录？（复习账本 mxReviewV1 不受影响）')){ wstore={recs:{}}; wsave(); wSession=null; wRender(); } return; }
+      if(wa==='drill'){
+        var ks=Object.keys(wstore.recs).filter(function(k){return wBucket(wstore.recs[k])===wTab;});
+        ks.sort(function(a,b){return (wstore.recs[b].last||0)-(wstore.recs[a].last||0);});
+        if(ks.length){ wSession={list:ks,i:0}; wRender(); window.scrollTo(0,0); }
+        return;
+      }
+      if(wa==='one'){ wSession={list:[wb.getAttribute('data-key')],i:0}; wRender(); window.scrollTo(0,0); return; }
+      if(wa==='mech'){ var mit=itemByKey(wb.getAttribute('data-key')); if(mit) mechGo(mit); return; }
+      if(wa==='quit'){ wSession=null; wRender(); return; }
+      if(wa==='next'){
+        if(wSession){ wSession.i++; if(wSession.i>=wSession.list.length){ wSession=null; } }
+        wRender(); window.scrollTo(0,0); return;
+      }
+      var card=wb.closest('.rv-card'); if(!card) return;
+      var it=itemByKey(card.getAttribute('data-key')); if(!it) return;
+      if(wa==='say'){ say(it.word); return; }
+      if(wa==='opt'){
+        if(card.getAttribute('data-final')) return;
+        var j=parseInt(wb.getAttribute('data-j'),10);
+        var ok=String(it.opts[j]).trim()===String(it.a).trim();
+        wb.classList.add(ok?'right':'wrong'); wShowAns(card); wJudge(card,it,ok); return;
+      }
+      if(wa==='reveal'){ wShowAns(card); return; }
+      if(wa==='mark'){ wShowAns(card); wJudge(card,it,wb.getAttribute('data-ok')==='1'); return; }
+      if(wa==='tap'){
+        if(card.getAttribute('data-final')) return;
+        var tj=parseInt(wb.getAttribute('data-j'),10);
+        if(wTapped.indexOf(tj)>=0) return;
+        wTapped.push(tj); wb.classList.add('gold'); wb.disabled=true;
+        var line=card.querySelector('.mx-line');
+        if(line) line.textContent=wTapped.map(function(x){return it.build.blocks[x];}).join(' ');
+        return;
+      }
+      if(wa==='reset'){
+        wTapped=[]; card.querySelectorAll('[data-mxw="tap"]').forEach(function(b){b.classList.remove('gold');b.disabled=false;});
+        var line2=card.querySelector('.mx-line'); if(line2)line2.textContent='（点上面的积木，按顺序把句子拼出来）';
+        return;
+      }
+      if(wa==='check'){
+        if(card.getAttribute('data-final')) return;
+        var got=wTapped.map(function(x){return it.build.blocks[x];}).join(' ');
+        if(got===it.build.answer_order.join(' ')){ var line3=card.querySelector('.mx-line'); if(line3)line3.textContent='✓ '+it.a; wShowAns(card); wJudge(card,it,true); }
+        else { var line4=card.querySelector('.mx-line'); if(line4){line4.style.background='#f6e3e3'; setTimeout(function(){line4.style.background='';},700);} }
+        return;
+      }
+    }
+  }
+});
+/* 离开启关页时停掉计时器（仿 PN/AR 的 MutationObserver 清理） */
+var mxrSec=document.getElementById('v-rush');
+if(mxrSec&&window.MutationObserver){
+  new MutationObserver(function(){ if(!mxrSec.classList.contains('on')){ rStopTimers(); rGame=null; } }).observe(mxrSec,{attributes:true,attributeFilter:['class']});
+}
+window.MXW={record:wRecord,render:wRender,counts:wCounts,store:function(){return wstore;}};
+window.MXR={enter:rRenderHome,start:rStart,stop:rStopTimers,best:function(){return rBest;}};
+window.MXM={render:mRender};
 })();
 </script>
 
