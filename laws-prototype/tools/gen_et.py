@@ -12,7 +12,7 @@ payload 构造与原 refresh_et.py 完全一致（2026-11-03 由 imported/ 归�
   pending  = 其余记录只取 {word, pending_reason} 按 word 排序；
   bank     = ver+pend 各词在词库中的 {phonetic(phonetic_gb 优先), meaning, pos, emoji} 子集；
   flagship = 固定 12 词（须全 verified，硬断言）；bankTotal = 词库总条数；
-  未收（unc）= bankTotal - NV - NP，硬断言 == 195。
+  未收（unc）= bankTotal - NV - NP，硬断言 == 664（2026-11-03 词表普查补入 469 词后更新：195 + 469；新词无词源记录，运行时呈「未收」为预期行为）。
 序列化：json.dumps(ensure_ascii=False) 默认分隔符，后做 '</' -> '<\\/' 转义（与现行行文逐字节同）。
 计数文案：区内 5 处静态计数文案随 NV/NP 派生，--check 一并核对（现行值或派生值须全等），
   --write 时若与派生值不符则按派生值改写（每处断言唯一命中）。
@@ -35,7 +35,7 @@ MAIN = BASE / "mengxing-prototype-v1.html"
 
 FLAG = ['school', 'camp', 'law', 'horse', 'beach', 'gentle', 'magazine',
         'lunatic', 'coin', 'charge', 'doctor', 'light']
-EXPECTED_UNC = 195
+EXPECTED_UNC = 664  # 2026-11-03 词表普查补入 469 词后更新（195+469）
 MARKER = "/* GENERATED: tools/gen_et.py ← model/etymology.json · DO NOT EDIT */"
 
 
