@@ -15,6 +15,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   check_upstream.py           上游 ↔ 总表五条链对账
   extract_review_data.py      复习池新题源（专区/词根/介词）提取块比对
   gen_links.py --check        知识联动 LINKIDX 链接索引再生比对
+  gen_interact.py --check     规律互动题集 INTERACT（D6/D2/D24 各 150 题）再生比对
 
 用法：python3 laws-prototype/tools/check_all.py
 退出码：0=全绿；1=至少一项失败。
@@ -37,6 +38,7 @@ CHECKS = [
     ("check_upstream", "check_upstream.py", []),
     ("extract_review --check", "extract_review_data.py", ["--check"]),
     ("gen_links --check", "gen_links.py", ["--check"]),
+    ("gen_interact --check", "gen_interact.py", ["--check"]),
 ]
 
 

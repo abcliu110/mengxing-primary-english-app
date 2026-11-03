@@ -18,6 +18,7 @@
 | 介词 | `model/laws/prep_*.yaml` + `model/prep_family*.json` | 事实源如左登记；主文件内嵌与区内静态 HTML **尚未生成化**（无 gen_prep，属 Stewart 自有车道，待后续波次），不得视为生成副本 |
 | 口语对话与拍手歌 | `model/spoken_data.json` | 2026-11-03 新登记：老 App 口语资产（DAILY_EXPRESSIONS 144 条/16 场景、ORAL_12_SCENES 12 组、GRAMMAR_CHANTS 8 首）按借鉴清单 A1/A3 逐字提取保全；提取通道 `tools/extract_spoken.py`（带计数与逐条深比断言），主文件口语区内嵌为生成副本（`tools/gen_spoken.py`） |
 | 借鉴呈现（王牌/天坑） | `model/laws_master.json`（派生，无独立事实源） | 2026-11-03 借鉴呈现波登记：主文件 `var BORROW`（王牌速查 15 卡 + 十大天坑榜）是规律总表的**派生呈现**，由 `tools/gen_borrow.py` 生成（选条表与聚合规则在生成器内，天坑榜带冻结断言）；词页 WEXTRA（档案卡 + 词级徽章旗）同理由 `tools/gen_words.py` 自 words_master 三分仓派生。两者均不得手改内嵌副本 |
+| 规律互动题集 | `model/laws_master.json` + `model/verb_forms_completion.json` + `model/verb_error_cases.json` + `model/wordbank.json` + `model/ta_exercises.json`（派生，无独立事实源）＋主文件 TN 内嵌 WINS 段（只读解析通道，见说明） | 2026-11-03 互动集成波登记：主文件 `var INTERACT`（D6 传送带 / D2 时间窗 / D24 拔河三件操作台题集，各 150 题，含错因解析文案与出处字段）由 `tools/gen_interact.py` 生成，组题规则与原型手工工位定版表在生成器内，逐字文案带源内子串断言。其中 TN WINS（现在完成时实验室 5 窗）无 model 事实源文件：时态（TN）模块内嵌**尚未生成化**（同「动词/介词」行口径），生成器按 `extract_review_data.py` 先例只读解析主文件内嵌段，WINS 被改动时逐字断言立即报错，不静默漂移。不得手改内嵌副本 |
 
 ## 2. 新数据准入
 
