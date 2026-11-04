@@ -132,16 +132,11 @@
     scene_note: 强调句：do 扛时态，go 仍用原形
     supports: claim
   error_cases:
-  - wrong: "He doesn't plays games."
-    right: "He doesn't play games."
-    error_type: "标记重复(时态/一致标两次)"
+  - wrong: "She didn't went home."
+    right: "She didn't go home."
+    error_type: "标记重复（助动词后动词未回原形）"
     source_type: "真实语料错型"
-    diagnosis: "原文将此例归入『误加』: 助动词 doesn't 已承载否定与人称标记, 实义动词应回原形 play, 学生又给动词加了 -s —— 同一个标记在一个句子里标了两次。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163；定位：表3「动词误加」典型案例, 学生编号 S33(原文括注: 应为 doesn't play); 语料为重庆万州及周边四所学校初二 150 篇写作；学段：初二；病例号 GEC-001〕"
-  - wrong: "What does my father looks like?"
-    right: "What does my father look like?"
-    error_type: "标记重复(时态/一致标两次)"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析(转述): does 已标出时态与人称, 学生又在 look 上保留三单 -s, 等于把标记标了两次(原文明言学习者事实上把时态标了两次)。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.1 动词形式错误例 d(原文括注: look); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-002〕"
+    diagnosis: "didn't 已经把过去和否定都标好了，后面的 went 又标了一次过去——时态只标一次，助动词后面的动词回原形 go。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：助动词后冗余屈折标记例（经 verb_error_cases 归属回填）；语料为重庆万州及周边四所学校初二 150 篇写作｜学段：初二｜病例号 VEC-024〕"
   quiz:
   - q: Did you ___ to school yesterday? A. go B. went
     answer: A. go——did 已经扛了过去时，后面的动词不落箭头、用原形。
@@ -223,17 +218,7 @@
     sentence: Can you swim?
     scene_note: 边界例：情态动词自己会倒装，不请替补
     supports: claim
-  error_cases:
-  - wrong: "She not allowed me to fool around my time."
-    right: "She didn't allow me to fool around my time."
-    error_type: "否定缺 do 支撑"
-    source_type: "真实语料错型"
-    diagnosis: "原文只标注目标形式 didn't allow, corrected 按最小改动补全整句。否定直接把 not 放在实义动词之前、无 do 支撑 —— 实义动词自己扛不了否定, 须拉替补 do 进场扛时态与否定。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.1 动词形式错误例 e(原文括注: didn't allow); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-003〕"
-  - wrong: "He not likes this book."
-    right: "He doesn't like this book."
-    error_type: "否定缺 do 支撑"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: 受汉语影响将否定词放在实义动词之前; 原文给出的改正句即 He doesn't like this book.。本例在该文中以编号例呈现, 按『教学文献登记错型』等级收录(与 grammar.yaml 既有 GR-29 病例同级)。〔出处：向秋彤. 高中生英语写作中句法负迁移现象与改进策略[J]. 职业教育发展, 2024, 13(6): 2041起；定位：正文句法负迁移现象编号例 1; 样本为重庆市万州某高中三年级学生作文(文本分析法)；学段：高三；病例号 GEC-004〕"
+  error_cases: []
   quiz:
   - q: 哪个句子不用请 do 来帮忙？A. Do you swim? B. Is she happy?
     answer: B——be 保留了自己倒装的老能力，不需要替补。
@@ -316,22 +301,7 @@
     sentence: He goes to school by bus.
     scene_note: 上学路上：goes 的 -s 是特殊拼法，来源相同
     supports: claim
-  error_cases:
-  - wrong: "My friend love me."
-    right: "My friend loves me."
-    error_type: "三单 -s 遗漏(GR 线)"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: 可数名词单数主语之后谓语未用第三人称单数形式; 该文将主谓一致偏误成因归为语际迁移(汉语无主谓一致要求)、语内迁移与结构磨蚀。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.1例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「可数名词做主语」)；学段：初二；病例号 GEC-005〕"
-  - wrong: "She always want to be a musician."
-    right: "She always wants to be a musician."
-    error_type: "三单 -s 遗漏(GR 线)"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: he/she/it 在一般现在时中谓语动词要采用第三人称单数形式, 学生仍将动词原形与其连用, 系母语无屈折形式变化的负迁移。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.5例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「代词做主语」, 原文点明 he、she、it 属第三人称单数)；学段：初二；病例号 GEC-006〕"
-  - wrong: "What cause that question?"
-    right: "What causes that question?"
-    error_type: "三单 -s 遗漏(GR 线)"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: 疑问代词 what 等没有明显的单复数标记, 可能也是学生失误的诱因 —— what 作主语时按第三人称单数处理, 谓语应加 -s。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.8例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「特殊疑问句中疑问词 what 等做主语」)；学段：初二；病例号 GEC-007〕"
+  error_cases: []
   quiz:
   - q: 三单 -s 是从哪个方向的方言来的？A. 北方 B. 南方
     answer: A. 北方——它起源于诺森布里亚，后来南下取代了南方的 -eth。
@@ -417,26 +387,36 @@
     scene_note: pens 的 -s 管「好几支」
     supports: claim
   error_cases:
-  - wrong: "We visits a farm."
-    right: "We visit a farm."
-    error_type: "复数主语误配三单 -s"
+  - wrong: "He play basketball every day."
+    right: "He plays basketball every day."
+    error_type: "三单 -s 遗漏（动词侧）"
     source_type: "真实语料错型"
-    diagnosis: "原文分析: 主语为复数形式, 谓语却用第三人称单数; 研究者课后询问学生, 得到回复是『错误地将第三人称单数和名词复数作了混淆』—— 两个 -s 在学生心里被当成了一家人, 正是本条要拆开的混淆。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第一种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-008〕"
-  - wrong: "They cooks delicious food for us as dinner."
-    right: "They cook delicious food for us as dinner."
-    error_type: "复数主语误配三单 -s"
+    diagnosis: "主语是 He，动词要戴上 -s：plays。汉语动词不随主语变样，这个 -s 又不带新意思、最不起眼，所以最常被漏掉——语料里三单 -s 遗漏 119 例、占动词误用 23.2%，是 -s 错误的主型（与本律后段的误加型病例对照看）。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：三单 -s 遗漏统计正例（经 verb_error_cases 归属回填）；语料为重庆万州及周边四所学校初二 150 篇写作｜学段：初二｜病例号 VEC-013〕"
+  - wrong: "She go to school by bus."
+    right: "She goes to school by bus."
+    error_type: "三单 -s 遗漏（动词侧）"
     source_type: "真实语料错型"
-    diagnosis: "同 GEC-008: 复数主语 they 之后误配三单 cooks。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第一种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-009〕"
-  - wrong: "We takes a long bus ride to the farm."
-    right: "We take a long bus ride to the farm."
-    error_type: "复数主语误配三单 -s"
+    diagnosis: "She 后面的 go 要变 goes。原文专门拿这句讲：这类系统性遗漏要显性纠正加规则提醒，不能只当粗心。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：第5.3节纠正示范例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-014〕"
+  - wrong: "She like reading books."
+    right: "She likes reading books."
+    error_type: "三单 -s 遗漏（动词侧）"
     source_type: "真实语料错型"
-    diagnosis: "同 GEC-008。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第一种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-010〕"
-  - wrong: "We should help stranger."
-    right: "We should help strangers."
-    error_type: "名词复数 -s 遗漏"
+    diagnosis: "like 漏了三单 -s。原文建议把这类高频错句做成双面纠错卡反复认——漏 -s 靠提醒和自动化，不靠把规则重讲一遍。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：第5.4节纠错卡原型句（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-015〕"
+  - wrong: "The Great Wall of China attract millions of tourists every year."
+    right: "The Great Wall of China attracts millions of tourists every year."
+    error_type: "三单 -s 遗漏（动词侧）"
     source_type: "真实语料错型"
-    diagnosis: "名词复数 -s 遗漏。与 GEC-008–010 合看: 该加的(复数 -s)不加, 不该加的(三单 -s)乱加 —— 两个 -s 系统各自独立、互不相干。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.5 名词复数错误例 a(原文括注: strangers); 该节复数形式错误共 84 例次; 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-011〕"
+    diagnosis: "主语是单数的长城，动词照样要加 -s：attracts。主语再长，数只看是一个还是多个。〔出处：杨欢腾. 高中生英语写作中谓语动词错误分析及对策研究[J]. 创新教育研究, 2025, 13(5): 194-203. DOI: 10.12677/ces.2025.135326｜定位：主谓形式语料例（经 verb_error_cases 归属回填）；语料为重庆市万州区两所高中写作文本｜学段：高一、高二｜病例号 VEC-016〕"
+  - wrong: "I think student need to do chores."
+    right: "I think student needs to do chores."
+    error_type: "三单 -s 遗漏（动词侧）"
+    source_type: "真实语料错型"
+    diagnosis: "从句主语 student 是单数，need 要跟上 needs。主语藏在从句里，-s 也一样不能漏。（原文另给出 student 改复数一途，此处取其正文分析的单数修正。）〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151335｜定位：从句主谓偏误例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-017〕"
+  - wrong: "When he study, I must push him."
+    right: "When he studies, I must push him."
+    error_type: "三单 -s 遗漏（动词侧）"
+    source_type: "真实语料错型"
+    diagnosis: "he 后面的 study 要变 studies（y 变 i 再加 es）。原文把这类归为规则自动化不足：知道规则，写的时候监控不到。〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151335｜定位：三单形式偏误例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-018〕"
   quiz:
   - q: 名词复数的 -s 和三单的 -s 是亲戚吗？
     answer: 不是。它们来自两条独立源流，只是后来长成了同一个音。
@@ -524,12 +504,7 @@
     sentence: I saw a big bird.
     scene_note: 杂项：see 的过去式 saw 单记
     supports: claim
-  error_cases:
-  - wrong: I goed to school yesterday.
-    right: I went to school yesterday.
-    error_type: 过度规则化
-    source_type: 教学文献登记错型
-    diagnosis: 清单条目登记：儿童与二语者对低频/未固化形式作 *goed 式过度规则化，是频率保护说的经典证据；went 属杂项单记，不按家族类推。回补机制第 2 节。
+  error_cases: []
   quiz:
   - q: sing 的过去式跟哪个是一家人？A. singed B. sang
     answer: B. sang——sing 属换元音家族。
@@ -692,27 +667,7 @@
     sentence: She can swim.
     scene_note: can 不加 -s：化石残缺的一个现场
     supports: claim
-  error_cases:
-  - wrong: "She must did it."
-    right: "She must do it."
-    error_type: "情态动词后动词形式错误"
-    source_type: "真实语料错型"
-    diagnosis: "情态动词之后误用过去式 did: must 是没有时态屈折变化的化石形式, 后面只能跟动词原形。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：词类误用例 d(原文括注: must do); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-012〕"
-  - wrong: "Do some other things, for example, you can running or watching TV or reading books."
-    right: "Do some other things, for example, you can run or watch TV or read books."
-    error_type: "情态动词后动词形式错误"
-    source_type: "真实语料错型"
-    diagnosis: "原文将此例列为其语料中 can 的典型错误用法之一: 情态动词后误接 -ing 形式。corrected 按最小改动原则, 仅将 can 后三个动词改为原形, 其余照录。〔出处：李晓微, 庄严. 基于自建小型语料库的高二英语写作研究[C]. Proceedings of the 2016 International Symposium on Social Science (ISSS 2016), Atlantis Press, 2016；定位：§3.3.3 情态动词 can 典型错误例(1); 语料为成都某高中高二 100 份月考作文(自建小型语料库)；学段：高二；病例号 GEC-013〕"
-  - wrong: "You don't could give up online games."
-    right: "You couldn't give up online games."
-    error_type: "情态动词叠用/与助动词连排"
-    source_type: "真实语料错型"
-    diagnosis: "原文以此例说明情态动词的误用: don't 与 could 连排 —— 化石情态动词不能与助动词叠床架屋, 否定应直接挂在情态动词本身上。原例第二句另有其他错误, 非本条范围, 只录第一句; corrected 为最小改动。〔出处：李晓微, 庄严. 基于自建小型语料库的高二英语写作研究[C]. Proceedings of the 2016 International Symposium on Social Science (ISSS 2016), Atlantis Press, 2016；定位：§4.1 例(1)第一句; 语料同 GEC-013；学段：高二；病例号 GEC-014〕"
-  - wrong: "You can playing the basketball."
-    right: "You can play basketball."
-    error_type: "情态动词后动词形式错误"
-    source_type: "真实语料错型"
-    diagnosis: "原文行文中以此例说明 can 后动词形式误用(can + playing)。corrected 按最小改动处理情态后动词形式; 原句 the basketball 的冠词误用非本条范围, 一并顺正并在此注明。〔出处：李晓微, 庄严. 基于自建小型语料库的高二英语写作研究[C]. Proceedings of the 2016 International Symposium on Social Science (ISSS 2016), Atlantis Press, 2016；定位：§4.3 行文例; 语料同 GEC-013；学段：高二；病例号 GEC-015〕"
+  error_cases: []
   quiz:
   - q: 为什么不说 will can swim？
     answer: 情态动词是停在半路的化石，彼此互斥，不能连排。
@@ -967,12 +922,7 @@
     sentence: It was sunny, so we played outside.
     scene_note: 放晴出门玩：只选 so 一座桥
     supports: claim
-  error_cases:
-  - wrong: Because it rained, so I stayed home.
-    right: I stayed home because it rained. / It rained, so I stayed home.
-    error_type: 母语迁移-连接词并用
-    source_type: 真实语料错型
-    diagnosis: 清单条目登记：中国学习者语料中 because…so 并用是稳定高频的迁移错误类型（连淑能形合/意合对比）。回补机制第 1 节：一座桥过河。
+  error_cases: []
   quiz:
   - q: 哪句对？A. Because it rained, so I stayed home. B. It rained, so I stayed home.
     answer: B——一段因果只留一个连接点。
@@ -1065,37 +1015,7 @@
     sentence: There are three cats under the tree.
     scene_note: 复数名字在前，用 are
     supports: claim
-  error_cases:
-  - wrong: "People was happy but they felt tired."
-    right: "People were happy but they felt tired."
-    error_type: "一致三力错配"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: people 用作主语、意义上为复数, 谓语动词应该使用复数形式; 学生辨认名词单复数通常只看词尾是否加了 s/es, 无法辨别集合名词 —— 意义一致这股力被词尾形式误导。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第二种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-016〕"
-  - wrong: "I were very happy to the farm."
-    right: "I was very happy to the farm."
-    error_type: "一致三力错配"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: 该篇文本整体为过去时态, 主语 I 的 be 过去式正确的应该是 was; 学生对过去时态运用不熟练、人称与 be 动词的对应不熟悉。corrected 仅按原文改正主谓一致一点, 原句其余部分照录。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第三种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-017〕"
-  - wrong: "The population of this country are very large."
-    right: "The population of this country is very large."
-    error_type: "一致三力错配"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: 不可数名词(物质和抽象名词)做主语, 谓语动词一律用单数。of 短语与『人口众多』的复数直觉把谓语拉向 are, 形式一致(中心词为单数概念)应当胜出。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.2例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「不可数名词做主语」)；学段：初二；病例号 GEC-018〕"
-  - wrong: "there is 3 watermelons."
-    right: "There are 3 watermelons."
-    error_type: "一致三力错配"
-    source_type: "真实语料错型"
-    diagnosis: "原句句首小写 t 为学生原文样貌, 照录。原文分析: there be 中 be 用 is 还是 are 由其后的名词决定 —— 离 be 最近的名词短语 3 watermelons 为复数, 应用 are, 是就近一致的用武之地。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.3例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「存在句 there be 句型」)；学段：初二；病例号 GEC-019〕"
-  - wrong: "The government pay more attention to people's health."
-    right: "The government pays more attention to people's health."
-    error_type: "一致三力错配"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: 集体名词表集体(整体)用法时谓语动词一律用单数; 其根本原因在于汉语没有词的屈折形式变化, 属母语负迁移的语际错误。注: 英式英语中 government 着眼成员时用复数亦可(见 GR-39 并行标准), 本例按原文的整体义口径改正。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.4例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「集体名词和专有名词做主语」, 本例为该节例 1)；学段：初二；病例号 GEC-020〕"
-  - wrong: "Most of the time are wasted."
-    right: "Most of the time is wasted."
-    error_type: "一致三力错配"
-    source_type: "真实语料错型"
-    diagnosis: "原文分析: most 等数量词语的谓语单复数要视它们所修饰的名词情况决定; time 为不可数名词, 谓语应用单数 —— 一致关系看的是短语的实际所指, 而非数量词的表面气势。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.6例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「不定代词和数量词语做主语」)；学段：初二；病例号 GEC-021〕"
+  error_cases: []
   quiz:
   - q: There ___ a pen and two books on the desk. A. is B. are
     answer: A. is——there be 听离它最近的第一个名字 pen。
@@ -1259,12 +1179,7 @@
     sentence: They play with us.
     scene_note: 动词短语后面：us 穿宾格
     supports: claim
-  error_cases:
-  - wrong: between you and I
-    right: between you and me
-    error_type: 过度矫正-格
-    source_type: 真实语料错型
-    diagnosis: 清单条目登记：母语者语料中 between you and I 稳定出现，是把礼貌/正式感误加到宾语位的过度矫正。回补机制第 1 节：格跟着位置走。
+  error_cases: []
   quiz:
   - q: between you and ___ A. I B. me
     answer: B. me——介词后面是宾语位，穿宾格。
@@ -1422,12 +1337,7 @@
     sentence: He plays football every day.
     scene_note: 三单规则进入系统后的产出
     supports: claim
-  error_cases:
-  - wrong: I see two sheeps.
-    right: I see two sheep.
-    error_type: 过度规则化
-    source_type: 教学文献登记错型
-    diagnosis: 清单条目登记：*sheeps、*goed 等过度泛化错误在不同母语背景儿童身上同型出现，是中介语系统按自有规则试单的痕迹。回补机制第 1 节。
+  error_cases: []
   quiz:
   - q: 孩子说 *goed，说明什么？A. 他粗心 B. 他在用自己试出来的规则
     answer: B——这是他的临时系统在试单，是正在学习的证据，不是粗心。
@@ -1761,12 +1671,7 @@
     sentence: Can I have that book, please?
     scene_note: 再换一件：框架不变，表达能力开始长
     supports: claim
-  error_cases:
-  - wrong: "As the development of the society, there are more and more aged people."
-    right: "With the development of the society, there are more and more aged people."
-    error_type: "语块整存整取内部错位"
-    source_type: "真实语料错型"
-    diagnosis: "汉语语块『随着社会的发展』被整块调用: 框架完整无缺, 只有框架首词被 As 顶替了 With。整存整取、内部不拆解 —— 语块先住进来、语法后来拆的典型样貌; 错不在规则运用, 而在整块提取时首词错位。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.3 例 j(原文括注: With); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-022〕"
+  error_cases: []
   quiz:
   - q: 小朋友先会整句 "What's this?"，还是先会造这句的语法规则？
     answer: 先会整句——语块整存先行，语法是后来从里面拆出来的。
@@ -1930,12 +1835,7 @@
     sentence: She played football yesterday.
     scene_note: 集中区现场四：过去式 -ed 要标出来
     supports: claim
-  error_cases:
-  - wrong: I have dog.
-    right: I have a dog.
-    error_type: 母语迁移-冠词缺失
-    source_type: 真实语料错型
-    diagnosis: 清单条目登记：中国学生自由写作语料研究中冠词错误居首（domains.yaml 纲领 basis 引 ERIC EJ1075686）；汉语无冠词系统，漏标是系统差而非粗心。回补机制第 1 节记号地图。
+  error_cases: []
   quiz:
   - q: 中国孩子英语错误里，哪一类排第一？A. 冠词 B. 语序
     answer: A. 冠词——汉语没有冠词系统，它是最大的系统差异点。
@@ -2474,12 +2374,7 @@
     sentence: I see two mice.
     scene_note: 变音宿舍：mouse→mice（mice 在词库为变形条目）
     supports: claim
-  error_cases:
-  - wrong: There are three childs in the park.
-    right: There are three children in the park.
-    error_type: 家族外误用规则
-    source_type: 教学文献登记错型
-    diagnosis: 清单条目登记：儿童与二语者的错误形态正是「家族外误用 -s」（*sheeps、*childs、*foots）与「家族内过度类推」并存。回补机制第 1 节：先认宿舍。
+  error_cases: []
   quiz:
   - q: foot 的复数是哪家宿舍的？A. 零复数 B. 变音
     answer: B——foot→feet 是元音变音家族（七词之一）。
@@ -2566,12 +2461,7 @@
     sentence: The dog's book is here.
     scene_note: 所有格 's 在岗（演示用：小狗的图画书）
     supports: claim
-  error_cases:
-  - wrong: He play football.
-    right: He plays football.
-    error_type: 屈折遗漏-三单
-    source_type: 教学文献登记错型
-    diagnosis: 清单条目登记：中国学习者的屈折错误恰集中在这八个中的几个（三单 -s、过去式 -ed、复数 -s 的遗漏，见 GR-22）。回补机制第 2 节「少而必标」。
+  error_cases: []
   quiz:
   - q: 英语的屈折词尾一共有几个功能位？
     answer: 八个：名词两个、动词四个、形容词两个。
@@ -2662,12 +2552,7 @@
     sentence: The man who called is my uncle.
     scene_note: 不可省现场：who 作主语，删不得
     supports: claim
-  error_cases:
-  - wrong: My car, that is red, is new.
-    right: My car, which is red, is new.
-    error_type: 关系词误用-that 进非限制性
-    source_type: 条目成人层登记的事故例
-    diagnosis: 清单机制栏明示：that 只能进限制性从句，「*My car, that is red… 不成立」。回补机制第 1 节：先看它是补一句的活儿。
+  error_cases: []
   quiz:
   - q: 「补一句」的那种从句，能用 that 开头吗？
     answer: 不能。非限制性从句不用 that，要用 who/which，还要用逗号隔开。
@@ -2760,12 +2645,7 @@
     sentence: This road is narrower. / This road is more narrow.
     scene_note: 两可带现场：narrower 与 more narrow 都对
     supports: claim
-  error_cases:
-  - wrong: This one is more better.
-    right: This one is better.
-    error_type: 比较级叠用
-    source_type: 条目成人层登记的事故例
-    diagnosis: 清单边界明示：more 与 -er 不可叠用（*more better、*more cleverer 均不成立）；good 是不规则组，比较级是 better 本身。回补机制第 1 节。
+  error_cases: []
   quiz:
   - q: quiet 的比较级怎么说？
     answer: quieter 或 more quiet 都对——quiet 在两可带里。
@@ -2856,17 +2736,7 @@
     sentence: Neither the students nor the teacher was late.
     scene_note: 顺序一换：动词改听近处的 teacher
     supports: claim
-  error_cases:
-  - wrong: She both likes music and dancing.
-    right: She likes both music and dancing.
-    error_type: 平行结构错位
-    source_type: 条目成人层登记的事故例
-    diagnosis: 清单机制栏登记的错位例：both 的辖域只盖住 likes，后半盖不住；把 both 移到两个同形成分之前即对齐。回补机制第 2 节。
-  - wrong: The teacher and the students was happy.
-    right: The teacher and the students were happy.
-    error_type: 就近误用-and 主语
-    source_type: 条目成人层登记的事故例
-    diagnosis: 清单边界明示：and 连接的主语永远复数，不适用就近（*The teacher and the students was 不成立）。回补机制第 3 节：就近只管 or/nor。
+  error_cases: []
   quiz:
   - q: both 的搭档是 and 还是 or？
     answer: and——both…and 是一对，搭档不能串门。
@@ -2945,12 +2815,7 @@
     sentence: He never plays football, does he?
     scene_note: 半否定 never 算否定主句：尾巴用肯定
     supports: claim
-  error_cases:
-  - wrong: You went there, isn't it?
-    right: You went there, didn't you?
-    error_type: 尾巴不回指-万能尾巴
-    source_type: 教学界共识级
-    diagnosis: 清单支撑栏登记的典型错误：母语只有一个万能尾巴（如汉语「对吧」）的学习者，面对英语「每句现配」的系统，典型错误是全程统一用 isn't it 与助动词不回指。已如实标注：本轮未检索到针对该错误的 CLEC 级语料计数，不冒充语料定版。回补机制第 1 节。
+  error_cases: []
   probes:
   - PRB-GR33-1
   - PRB-GR33-2
@@ -3045,12 +2910,7 @@
     sentence: Seldom did he speak.
     scene_note: 部分倒装：seldom 前置，无助动词召唤 did（正式语体，认读为主）
     supports: claim
-  error_cases:
-  - wrong: Here comes it.
-    right: Here it comes.
-    error_type: 全倒装代词误用
-    source_type: 条目成人层登记的事故例
-    diagnosis: 清单机制栏明示：代词主语绝不倒装（*Here comes it 不成立）；Quirk §7.59 原文同旨。回补机制第 2 节。
+  error_cases: []
   quiz:
   - q: 主语换成 it：「Here ___ the bus」该怎么接？A. comes it B. it comes
     answer: B——代词主语绝不倒装。
@@ -3231,12 +3091,7 @@
     sentence: He was made to wait.
     scene_note: 被动现场：make 一被动，to 必须回来
     supports: claim
-  error_cases:
-  - wrong: She made me to go.
-    right: She made me go.
-    error_type: 使役形式误加 to
-    source_type: 教学文献登记错型
-    diagnosis: 清单支撑栏登记：中国学习者高频错误与形式档案一一对应——make/let 后误加 to（受汉语「让/叫」后动词无形式变化的迁移与 to 不定式泛化双重作用）、get 后漏 to、被动漏 to，三类均为可预测的档案型错误。回补机制第 2 节。
+  error_cases: []
   quiz:
   - q: I got him ___ the door. A. open B. to open
     answer: B——只有 get 后面的动词要带 to。
@@ -3319,12 +3174,7 @@
     sentence: I have enough money.
     scene_note: enough 前置：站在名词前面
     supports: claim
-  error_cases:
-  - wrong: She is enough old to ride a bike.
-    right: She is old enough to ride a bike.
-    error_type: enough 站位错
-    source_type: 条目成人层登记的事故例
-    diagnosis: 清单支撑栏登记的中国学习者高频错误四类之一：*enough old（另有 *a such、*so a good day、把 too 当 very 用），均属站位与语义档案错误。回补机制第 2 节。
+  error_cases: []
   quiz:
   - q: 「tall enough」还是「enough tall」？
     answer: tall enough——enough 修饰形容词时站在后面。
@@ -3404,12 +3254,7 @@
     sentence: This is Tom's book.
     scene_note: 撇号所属职现场（人名 Tom 为句中专名，锚词取 book）
     supports: claim
-  error_cases:
-  - wrong: It rained, I stayed home.
-    right: It rained, so I stayed home. / It rained. I stayed home.
-    error_type: 逗号粘连
-    source_type: 教学定版登记错型
-    diagnosis: 美国大学写作中心一致把逗号粘连列为头号句界错误；中国学习者的发生率叠加了意合迁移（连淑能形合/意合对照）。回补机制第 1 节：四种合法连接选一种。
+  error_cases: []
   quiz:
   - q: 两个完整句子之间只放一个逗号，行不行？
     answer: 不行，那是逗号粘连；要用句号、分号、逗号+连词，或把一句降为从句。
@@ -3668,12 +3513,7 @@
     sentence: I used to play football every day.
     scene_note: used to 管习惯动作：今昔对照在句外（现在不踢了）
     supports: claim
-  error_cases:
-  - wrong: I am used to get up early.
-    right: I am used to getting up early.
-    error_type: used to 结构混淆
-    source_type: 教学文献登记错型
-    diagnosis: 清单支撑栏登记：used to 与 be used to 字面仅差一个 be，汉语「习惯」一词双覆盖，学习者按字面拼装（*I am used to get up early 式 be 与原形的误配）是可预测的正字法-结构双重陷阱。回补机制第 1 节：be used to 的 to 是介词，后跟 -ing。
+  error_cases: []
   quiz:
   - q: 「以前住在乡下」（状态）能用 would live 吗？
     answer: 不能——would 只回放动作，状态只能用 used to。
@@ -3766,12 +3606,7 @@
     sentence: The cat is black.
     scene_note: 核心四类（颜色）作谓语：仍须 be
     supports: claim
-  error_cases:
-  - wrong: The flower red.
-    right: The flower is red.
-    error_type: 系词缺失
-    source_type: 教学文献登记错型
-    diagnosis: 清单登记的实证记录：Liu Yu（2008）汉英 code-switching 研究专节记录 "Loss of copula verbs"——英语形容词作表语时 be 被省略，根源是汉语性质词可裸作谓语的站法迁移。回补机制第 2 节。
+  error_cases: []
   quiz:
   - q: '"The flower red." 少了什么？'
     answer: 少了 is（be）——英语形容词作谓语必须有 be 扶着。

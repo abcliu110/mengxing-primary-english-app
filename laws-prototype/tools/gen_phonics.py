@@ -20,7 +20,7 @@
     实测全等，生成器硬断言）；**顺序沿用现行文件的模式顺序**——现行顺序是
     按 gorder 分组编排的展示序，与 wordsets 登记序不同（后登记模式在文件
     里被编入所属组内），总表未存展示序，故顺序以现行文件为模板、内容以
-    总表为准；模式 id 集合与总表不一致即停。
+    总表为准；模式 id 集合与总表不一致时走已判项 7（集合变更按 id 对账）。
   - bank：键序取总表 cards 分仓顺序（与现行 bank 键序实测全等，硬断言）；
     卡面四元组 [word, phonetic, meaning, emoji] 取自 words_master 的
     phonics_cards 分仓，并与总表 snapshot 分仓逐卡断言一致（word/phonetic/
@@ -30,7 +30,7 @@
 已判项（有且仅有这些差异允许出现，逐条列出、硬断言核对）
   1. GP-o-ʌ 的 menu 字段：总表 wordsets 分仓为「短元音」、内嵌 embedded 为
      空——Wave 4 已判从 wordsets（源头）。生成时该模式 menu :=「短元音」。
-     （总表内其余 173 模式的 wordsets 描述字段与 embedded 分仓逐字段全等，
+     （总表内其余各模式的 wordsets 描述字段与 embedded 分仓逐字段全等，
      生成器按映射逐项断言，分叉即停。）
   2. 卡面释义裁定（words_master conflicts，other_source = phonics_card:*，
      共 56 张卡）：词条释义以词库（wordbank.meaning）为准——
@@ -70,9 +70,23 @@
      逐词标来源模式 id）；解卡/卡面口径与已判项 5 完全一致（id 精确命
      中优先、#n 剥后缀命中族条目、直词条断言 bank 面 == 词库 GB 面、族
      条目卡面内嵌）。音标墙按音标符号机械分区（单元音/双元音/辅音），
-     区内按词数降序；拼法行按词数降序。硬断言：58 音 / 168 组、/eɪ/ 8
+     区内按词数降序；拼法行按词数降序。硬断言：58 音 / 167 组（原 168 组，
+     2026-11-04 专家对照修复波移除 0 成员空模式 GP-ea-ɑː 后少 1 组）、/eɪ/ 8
      拼法 245 词且 a 系（字素以 a 开头）子集恰 224 词（与字母查镜像对
      账）。例句不内嵌，运行时按来源模式 id 回 DATA.patterns 取 exs。
+
+  7. 模式集合变更（2026-11-04 专家对照修复波）：总表增删模式时（如移除
+     0 成员空模式 GP-ea-ɑː），现行 DATA 的模式集合随总表增删——存续模式
+     顺序不动、新增按总表序追加；差异核对按模式 id 对账（集合恰为已判
+     增删 + 存续模式内容差异仍须落在其他已判项内），不走下标深比。
+     落盘后稳态 --check 应逐字节一致。
+
+  8. GP-th kid 条款修正（2026-11-04 专家对照修复波）：二合字母家族模式
+     （S-32，13 个模式共享同一 kid 句）的 th 分班旧口径「小词读浊班、大词
+     读清班」失真（大小不是分班依据），改为按词类分班：虚词/指示词读
+     /ð/、实词多读 /θ/（反例 three 短而清、although 长而浊）。差异字段
+     恰为 kid 且新旧值恰为该条款替换者，属已判差异；落盘后稳态 --check
+     应逐字节一致。
 
 序列化格式（2026-11-03 从现行字面量反推实测）：Python json 默认分隔符
 （", " / ": "）、ensure_ascii=False、UTF-8 原样、无转义——整段字面量可由
@@ -104,6 +118,9 @@ WM_PATH = BASE / "model" / "words_master.json"
 WB_PATH = BASE / "model" / "wordbank.json"
 
 JD = lambda o: json.dumps(o, ensure_ascii=False)  # 默认分隔符 = 现行字节格式
+
+OLD_KID_CLAUSE = "小词（the、this）读浊班，大词（think、three）读清班"
+NEW_KID_CLAUSE = "分班不看词长短，看词是干什么的——the、this、they 这类虚词和指示词读浊班 /ð/，think、three 这类实词多读清班 /θ/（three 很短也是清班，although 很长也是浊班）"
 
 MARKER = "/* GENERATED: tools/gen_phonics.py ← model/phonics_master.json · DO NOT EDIT */"
 LMARKER = "/* GENERATED: tools/gen_phonics.py ← model/phonics_master.json + model/wordbank.json · DO NOT EDIT */"
@@ -216,12 +233,20 @@ def build(pm, wm, current):
     by_id = {p["id"]: p for p in pm["patterns"]}
     cur_pats = current["patterns"]
     cur_ids = [p["id"] for p in cur_pats]
-    if set(cur_ids) != set(by_id) or len(cur_ids) != len(by_id):
-        fail(f"模式 id 集合与总表不一致：文件 {len(cur_ids)} / 总表 {len(by_id)}")
+    master_ids = [p["id"] for p in pm["patterns"]]
+    removed = [pid for pid in cur_ids if pid not in by_id]
+    added = [pid for pid in master_ids if pid not in set(cur_ids)]
+    if removed or added or len(cur_ids) != len(by_id):
+        # 已判项 7：模式集合变更（总表增删模式）——顺序 = 现行序滤除移除项
+        # + 新增项按总表序追加；差异在 main() 按 id 对账，不走下标深比。
+        if (set(cur_ids) - set(removed)) | set(added) != set(by_id):
+            fail("模式 id 集合差异无法由增删解释")
+        expected[("pattern-set", "membership")] = (removed, added)
+    order = [pid for pid in cur_ids if pid in by_id] + added
 
     # ---- patterns：内容取总表 embedded 分仓，w=members，顺序沿用现行 ----
     patterns = []
-    for pid in cur_ids:
+    for pid in order:
         rec = by_id[pid]
         emb, ws = rec["embedded"], rec["wordsets"]
         if rec["members"] != emb["w"]:
@@ -240,7 +265,9 @@ def build(pm, wm, current):
         patterns.append(obj)
     cur_by_id = {p["id"]: p for p in cur_pats}
     for obj in patterns:
-        cur = cur_by_id[obj["id"]]
+        cur = cur_by_id.get(obj["id"])
+        if cur is None:
+            continue  # 已判项 7 新增模式
         if obj == cur:
             continue
         diffs = [k for k in set(obj) | set(cur) if obj.get(k) != cur.get(k)]
@@ -248,6 +275,10 @@ def build(pm, wm, current):
             expected[("pattern-menu", "GP-o-ʌ")] = (cur["menu"], obj["menu"])
         elif diffs == ["exs"] and "exs" not in cur:
             expected[("pattern-exs", obj["id"])] = (None, f'新增 exs {len(obj["exs"])} 句')
+        elif diffs == ["kid"] and OLD_KID_CLAUSE in (cur.get("kid") or "") \
+                and obj["kid"] == cur["kid"].replace(OLD_KID_CLAUSE, NEW_KID_CLAUSE):
+            # 已判项 8：GP-th kid 条款修正（二合字母家族 13 模式共享 S-32 句）
+            expected[("pattern-kid-th", obj["id"])] = (OLD_KID_CLAUSE, NEW_KID_CLAUSE)
         else:
             fail(f"模式 {obj['id']} 与现行存在清单外差异字段 {diffs}")
 
@@ -519,8 +550,8 @@ def build_sounds(built, wb):
     if len(sounds) != 58:
         fail(f"PHX_SOUNDS: 音素应为 58，实得 {len(sounds)}")
     ngroups = sum(len(d["gs"]) for d in sounds.values())
-    if ngroups != 168:
-        fail(f"PHX_SOUNDS: 拼法组应为 168，实得 {ngroups}")
+    if ngroups != 167:
+        fail(f"PHX_SOUNDS: 拼法组应为 167，实得 {ngroups}")
     ei = sounds.get("/eɪ/")
     if not ei or len(ei["gs"]) != 8 or ei["n"] != 245:
         fail(f"PHX_SOUNDS: /eɪ/ 应为 8 拼法 245 词，实得 "
@@ -649,6 +680,58 @@ def main(argv) -> int:
               f"（PHX_LETTERS {len(letters_text)} 字符 / PHX_SOUNDS {len(sounds_text)} 字符）")
         return 0
     # 逐字节不等 -> 内容差异必须恰为已判项集合
+    if ("pattern-set", "membership") in expected:
+        removed, added = expected[("pattern-set", "membership")]
+        cur_by = {p["id"]: p for p in current["patterns"]}
+        built_by = {p["id"]: p for p in built["patterns"]}
+        problems = []
+        if set(built_by) != (set(cur_by) - set(removed)) | set(added):
+            problems.append("模式集合与已判增删不符")
+        if [p["id"] for p in current["patterns"] if p["id"] not in removed] != \
+           [p["id"] for p in built["patterns"] if p["id"] not in added]:
+            problems.append("存续模式顺序被改动")
+        for pid, obj in built_by.items():
+            if pid in added:
+                continue
+            curp = cur_by[pid]
+            if obj == curp:
+                continue
+            diffs = [k for k in set(obj) | set(curp) if obj.get(k) != curp.get(k)]
+            ok = (pid == "GP-o-ʌ" and diffs == ["menu"] and ("pattern-menu", pid) in expected) or \
+                 (diffs == ["exs"] and "exs" not in curp and ("pattern-exs", pid) in expected) or \
+                 (diffs == ["kid"] and ("pattern-kid-th", pid) in expected)
+            if not ok:
+                problems.append(f"模式 {pid} 清单外差异 {diffs}")
+        rest = [x for x in deep_diff_paths(built, current) if not x.startswith("$.patterns")]
+        allowed_rest = set()
+        for (kind, key) in expected:
+            if kind == "bank-meaning" and current["bank"][key][2] != expected[(kind, key)][1]:
+                allowed_rest.add(f"$.bank.{key}[2]")
+        if set(rest) != allowed_rest:
+            problems.append(f"bank/groups/gorder 差异与已判项不符: {sorted(set(rest) ^ allowed_rest)}")
+        if problems:
+            print("FAIL: 已判项 7（模式集合变更）按 id 对账未过：")
+            for x in problems:
+                print("  ", x)
+            return 1
+        print(f"已判项 7 对账通过：移除 {removed} / 新增 {added}")
+        print(f"已判差异 {len(expected)} 处（清单内，待 --write 落盘）：")
+        for (kind, key), (o, n) in sorted(expected.items()):
+            print(f"  [{kind}] {key}: {o!r} -> {n!r}")
+        if lstat != "ok":
+            print(f"  [pattern-letters] PHX_LETTERS: 状态 {lstat} -> 随本写回一并落盘")
+        if sstat != "ok":
+            print(f"  [pattern-sounds] PHX_SOUNDS: 状态 {sstat} -> 随本写回一并落盘")
+        if argv[1] == "--check":
+            return 2
+        out = src[:s0] + gen_text + src[s1:]
+        out = splice_letters(out, letters_text)
+        out = splice_sounds(out, sounds_text)
+        s0b, _s1b = find_span(out, "const DATA = ", '{"patterns"')
+        out = ensure_marker(out, s0b)
+        MAIN.write_bytes(out.encode("utf-8"))
+        print(f"写回完成：文件 {len(src)} -> {len(out)} 字符（字面量 {len(cur_text)} -> {len(gen_text)}）")
+        return 0
     paths = deep_diff_paths(built, current)
     allowed = set()
     for (kind, key) in expected:
@@ -658,6 +741,9 @@ def main(argv) -> int:
         elif kind == "pattern-exs":
             idx = [p["id"] for p in current["patterns"]].index(key)
             allowed.add(f"$.patterns[{idx}].exs")
+        elif kind == "pattern-kid-th":
+            idx = [p["id"] for p in current["patterns"]].index(key)
+            allowed.add(f"$.patterns[{idx}].kid")
         else:
             # 已判项 2（bank-meaning）：卡面已落 canonical 的稳态下该项不产生
             # 差异，不入 allowed（否则与实测 diff 集合对不上而误报）

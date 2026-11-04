@@ -606,15 +606,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "（被问 Can you open the window? 后只答）Yes, I can.",
-     "right": "（起身把窗打开）Yes. / Sure.",
-     "error_type": "字面理解间接请求",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "把询问能力的外壳按字面回答，没过「他想让我做什么」这一关（回 mechanism『听用意』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "E-01",
@@ -4371,15 +4363,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "（受夸时答）No, no.",
-     "right": "Thank you.",
-     "error_type": "社交-语用迁移",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "把汉语自谦程式迁进英语回夸：英语听者会读作否定对方的判断（回 mechanism『客套出国』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "E-06",
@@ -20862,15 +20846,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "I proposed him to come.",
-     "right": "I asked him to come.（propose 不进此句型）",
-     "error_type": "句型假类推",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "仿 ask 的句型套到 propose 上：词义没错、接法错了（回 mechanism『假类推』）。注：propose 已入词库（ADD_0608）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "NE-07",
@@ -24540,15 +24516,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "（把 shave 说成）safe",
-     "right": "shave（与 safe 保持区别）",
-     "error_type": "音位区别丢失",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "Hancock 登记口径：这不是「对错」问题，是「不起作用」——听者懂成了另一个词（回 mechanism『保持区别』）。注：shave 已入词库（ADD_0636）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "NE-06",
@@ -34165,18 +34133,11 @@
    ],
    "error_cases": [
     {
-     "wrong": "He doesn't plays games.",
-     "right": "He doesn't play games.",
-     "error_type": "标记重复(时态/一致标两次)",
+     "wrong": "She didn't went home.",
+     "right": "She didn't go home.",
+     "error_type": "标记重复（助动词后动词未回原形）",
      "source_type": "真实语料错型",
-     "diagnosis": "原文将此例归入『误加』: 助动词 doesn't 已承载否定与人称标记, 实义动词应回原形 play, 学生又给动词加了 -s —— 同一个标记在一个句子里标了两次。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163；定位：表3「动词误加」典型案例, 学生编号 S33(原文括注: 应为 doesn't play); 语料为重庆万州及周边四所学校初二 150 篇写作；学段：初二；病例号 GEC-001〕"
-    },
-    {
-     "wrong": "What does my father looks like?",
-     "right": "What does my father look like?",
-     "error_type": "标记重复(时态/一致标两次)",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析(转述): does 已标出时态与人称, 学生又在 look 上保留三单 -s, 等于把标记标了两次(原文明言学习者事实上把时态标了两次)。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.1 动词形式错误例 d(原文括注: look); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-002〕"
+     "diagnosis": "didn't 已经把过去和否定都标好了，后面的 went 又标了一次过去——时态只标一次，助动词后面的动词回原形 go。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：助动词后冗余屈折标记例（经 verb_error_cases 归属回填）；语料为重庆万州及周边四所学校初二 150 篇写作｜学段：初二｜病例号 VEC-024〕"
     }
    ],
    "quiz": [
@@ -34502,6 +34463,13 @@
      "type": "标记重复(时态/一致标两次)",
      "diag": "原文分析(转述): does 已标出时态与人称, 学生又在 look 上保留三单 -s, 等于把标记标了两次(原文明言学习者事实上把时态标了两次)。",
      "src": "Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)｜定位：§3.1 动词形式错误例 d(原文括注: look); 语料为广西某高校英语专业二年级 177 篇话题作文｜学段：大学二年级(英语专业)｜病例号 GEC-002"
+    },
+    {
+     "wrong": "She didn't went home.",
+     "right": "She didn't go home.",
+     "type": "标记重复（助动词后动词未回原形）",
+     "diag": "didn't 已经把过去和否定都标好了，后面的 went 又标了一次过去——时态只标一次，助动词后面的动词回原形 go。",
+     "src": "胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：助动词后冗余屈折标记例（经 verb_error_cases 归属回填）；语料为重庆万州及周边四所学校初二 150 篇写作｜学段：初二｜病例号 VEC-024"
     }
    ],
    "quiz": [
@@ -34642,22 +34610,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "She not allowed me to fool around my time.",
-     "right": "She didn't allow me to fool around my time.",
-     "error_type": "否定缺 do 支撑",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文只标注目标形式 didn't allow, corrected 按最小改动补全整句。否定直接把 not 放在实义动词之前、无 do 支撑 —— 实义动词自己扛不了否定, 须拉替补 do 进场扛时态与否定。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.1 动词形式错误例 e(原文括注: didn't allow); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-003〕"
-    },
-    {
-     "wrong": "He not likes this book.",
-     "right": "He doesn't like this book.",
-     "error_type": "否定缺 do 支撑",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: 受汉语影响将否定词放在实义动词之前; 原文给出的改正句即 He doesn't like this book.。本例在该文中以编号例呈现, 按『教学文献登记错型』等级收录(与 grammar.yaml 既有 GR-29 病例同级)。〔出处：向秋彤. 高中生英语写作中句法负迁移现象与改进策略[J]. 职业教育发展, 2024, 13(6): 2041起；定位：正文句法负迁移现象编号例 1; 样本为重庆市万州某高中三年级学生作文(文本分析法)；学段：高三；病例号 GEC-004〕"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "哪个句子不用请 do 来帮忙？A. Do you swim? B. Is she happy?",
@@ -35102,29 +35055,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "My friend love me.",
-     "right": "My friend loves me.",
-     "error_type": "三单 -s 遗漏(GR 线)",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: 可数名词单数主语之后谓语未用第三人称单数形式; 该文将主谓一致偏误成因归为语际迁移(汉语无主谓一致要求)、语内迁移与结构磨蚀。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.1例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「可数名词做主语」)；学段：初二；病例号 GEC-005〕"
-    },
-    {
-     "wrong": "She always want to be a musician.",
-     "right": "She always wants to be a musician.",
-     "error_type": "三单 -s 遗漏(GR 线)",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: he/she/it 在一般现在时中谓语动词要采用第三人称单数形式, 学生仍将动词原形与其连用, 系母语无屈折形式变化的负迁移。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.5例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「代词做主语」, 原文点明 he、she、it 属第三人称单数)；学段：初二；病例号 GEC-006〕"
-    },
-    {
-     "wrong": "What cause that question?",
-     "right": "What causes that question?",
-     "error_type": "三单 -s 遗漏(GR 线)",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: 疑问代词 what 等没有明显的单复数标记, 可能也是学生失误的诱因 —— what 作主语时按第三人称单数处理, 谓语应加 -s。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.8例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「特殊疑问句中疑问词 what 等做主语」)；学段：初二；病例号 GEC-007〕"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "三单 -s 是从哪个方向的方言来的？A. 北方 B. 南方",
@@ -35599,32 +35530,46 @@
    ],
    "error_cases": [
     {
-     "wrong": "We visits a farm.",
-     "right": "We visit a farm.",
-     "error_type": "复数主语误配三单 -s",
+     "wrong": "He play basketball every day.",
+     "right": "He plays basketball every day.",
+     "error_type": "三单 -s 遗漏（动词侧）",
      "source_type": "真实语料错型",
-     "diagnosis": "原文分析: 主语为复数形式, 谓语却用第三人称单数; 研究者课后询问学生, 得到回复是『错误地将第三人称单数和名词复数作了混淆』—— 两个 -s 在学生心里被当成了一家人, 正是本条要拆开的混淆。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第一种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-008〕"
+     "diagnosis": "主语是 He，动词要戴上 -s：plays。汉语动词不随主语变样，这个 -s 又不带新意思、最不起眼，所以最常被漏掉——语料里三单 -s 遗漏 119 例、占动词误用 23.2%，是 -s 错误的主型（与本律后段的误加型病例对照看）。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：三单 -s 遗漏统计正例（经 verb_error_cases 归属回填）；语料为重庆万州及周边四所学校初二 150 篇写作｜学段：初二｜病例号 VEC-013〕"
     },
     {
-     "wrong": "They cooks delicious food for us as dinner.",
-     "right": "They cook delicious food for us as dinner.",
-     "error_type": "复数主语误配三单 -s",
+     "wrong": "She go to school by bus.",
+     "right": "She goes to school by bus.",
+     "error_type": "三单 -s 遗漏（动词侧）",
      "source_type": "真实语料错型",
-     "diagnosis": "同 GEC-008: 复数主语 they 之后误配三单 cooks。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第一种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-009〕"
+     "diagnosis": "She 后面的 go 要变 goes。原文专门拿这句讲：这类系统性遗漏要显性纠正加规则提醒，不能只当粗心。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：第5.3节纠正示范例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-014〕"
     },
     {
-     "wrong": "We takes a long bus ride to the farm.",
-     "right": "We take a long bus ride to the farm.",
-     "error_type": "复数主语误配三单 -s",
+     "wrong": "She like reading books.",
+     "right": "She likes reading books.",
+     "error_type": "三单 -s 遗漏（动词侧）",
      "source_type": "真实语料错型",
-     "diagnosis": "同 GEC-008。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第一种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-010〕"
+     "diagnosis": "like 漏了三单 -s。原文建议把这类高频错句做成双面纠错卡反复认——漏 -s 靠提醒和自动化，不靠把规则重讲一遍。〔出处：胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：第5.4节纠错卡原型句（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-015〕"
     },
     {
-     "wrong": "We should help stranger.",
-     "right": "We should help strangers.",
-     "error_type": "名词复数 -s 遗漏",
+     "wrong": "The Great Wall of China attract millions of tourists every year.",
+     "right": "The Great Wall of China attracts millions of tourists every year.",
+     "error_type": "三单 -s 遗漏（动词侧）",
      "source_type": "真实语料错型",
-     "diagnosis": "名词复数 -s 遗漏。与 GEC-008–010 合看: 该加的(复数 -s)不加, 不该加的(三单 -s)乱加 —— 两个 -s 系统各自独立、互不相干。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.5 名词复数错误例 a(原文括注: strangers); 该节复数形式错误共 84 例次; 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-011〕"
+     "diagnosis": "主语是单数的长城，动词照样要加 -s：attracts。主语再长，数只看是一个还是多个。〔出处：杨欢腾. 高中生英语写作中谓语动词错误分析及对策研究[J]. 创新教育研究, 2025, 13(5): 194-203. DOI: 10.12677/ces.2025.135326｜定位：主谓形式语料例（经 verb_error_cases 归属回填）；语料为重庆市万州区两所高中写作文本｜学段：高一、高二｜病例号 VEC-016〕"
+    },
+    {
+     "wrong": "I think student need to do chores.",
+     "right": "I think student needs to do chores.",
+     "error_type": "三单 -s 遗漏（动词侧）",
+     "source_type": "真实语料错型",
+     "diagnosis": "从句主语 student 是单数，need 要跟上 needs。主语藏在从句里，-s 也一样不能漏。（原文另给出 student 改复数一途，此处取其正文分析的单数修正。）〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151335｜定位：从句主谓偏误例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-017〕"
+    },
+    {
+     "wrong": "When he study, I must push him.",
+     "right": "When he studies, I must push him.",
+     "error_type": "三单 -s 遗漏（动词侧）",
+     "source_type": "真实语料错型",
+     "diagnosis": "he 后面的 study 要变 studies（y 变 i 再加 es）。原文把这类归为规则自动化不足：知道规则，写的时候监控不到。〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151335｜定位：三单形式偏误例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-018〕"
     }
    ],
    "quiz": [
@@ -35685,10 +35630,17 @@
    "cstmt": "名词复数 -s 源自古英语强变化阳性名词复数词尾 -as 的推广；动词三单 -s 源自北方方言词尾；两条独立演化线在中古英语词尾磨损中偶然长成了同一个音。",
    "scope": "现代英语里两者发音规则相同；「源流不同」只用于破除「一个 -s 包打天下」的误解，不影响拼读教学",
    "cev": [
-    "历史语法共识（Jespersen 历史语法传统）；与 GR-04 同源出处"
+    "历史语法共识（Jespersen 历史语法传统）；与 GR-04 同源出处",
+    "错误分布证据（2026-11-04 登记）：三单 -s 遗漏为 -s 错误主型——胡晓、冯姗（2026）语料统计 119 例（占动词误用 23.2%）；-s 遗漏专门研究检验 Wilkins (1972) 混淆假设未获支持，主因定为汉语无屈折 + -s 低显著性；本律混淆型病例（罗宇 2025）为课堂事后自述，证据等级次之"
    ],
    "exc": [],
    "mech": [
+    {
+     "beat": "先认清主要敌人：漏加比认错多得多",
+     "kid": "学这两个 -s，先防的不是认错，是漏加：他/她做事的时候，动词忘了戴 -s——这是中国学生最常犯的（数一数语料里的错句，它排第一）。两个 -s 长得像、偶尔认错，是第二位的毛病。",
+     "adult": "证据等级标注（2026-11-04 专家对照波）：「遗漏为主型」有学习者语料与专门研究支持——胡晓、冯姗（2026）初二 150 篇语料中三单 -s 遗漏 119 例、占其动词误用 23.2%，且遗漏大类占 42.0% 居首；针对中国/台湾学习者的 -s 遗漏专门研究检验 Wilkins (1972)「两个 -s 互相混淆」假设，结论为该混淆在遗漏错误中并不显著，主因是汉语无屈折 + -s 语义空洞、显著性低。本律原有误加型病例（罗宇 2025）的主要证据是单次课堂的事后自述，证据等级低于语料统计，故呈现顺序改为遗漏型在前、混淆型在后，混淆病例不删、其 diag 原文不改。",
+     "vis": "一架天平：左边盘里堆着许多「忘了戴 -s」的句子，沉沉压低；右边盘里几张「认错 -s」的句子，高高翘起"
+    },
     {
      "beat": "两条河汇到一起",
      "kid": "复数的 -s 走的是名词的河，三单的 -s 走的是动词的河；两条河本来不相干，后来水面长成了一个样子。",
@@ -35916,6 +35868,48 @@
    ],
    "cases": [
     {
+     "wrong": "He play basketball every day.",
+     "right": "He plays basketball every day.",
+     "type": "三单 -s 遗漏（动词侧）",
+     "diag": "主语是 He，动词要戴上 -s：plays。汉语动词不随主语变样，这个 -s 又不带新意思、最不起眼，所以最常被漏掉——语料里三单 -s 遗漏 119 例、占动词误用 23.2%，是 -s 错误的主型（与本律后段的误加型病例对照看）。",
+     "src": "胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：三单 -s 遗漏统计正例（经 verb_error_cases 归属回填）；语料为重庆万州及周边四所学校初二 150 篇写作｜学段：初二｜病例号 VEC-013"
+    },
+    {
+     "wrong": "She go to school by bus.",
+     "right": "She goes to school by bus.",
+     "type": "三单 -s 遗漏（动词侧）",
+     "diag": "She 后面的 go 要变 goes。原文专门拿这句讲：这类系统性遗漏要显性纠正加规则提醒，不能只当粗心。",
+     "src": "胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：第5.3节纠正示范例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-014"
+    },
+    {
+     "wrong": "She like reading books.",
+     "right": "She likes reading books.",
+     "type": "三单 -s 遗漏（动词侧）",
+     "diag": "like 漏了三单 -s。原文建议把这类高频错句做成双面纠错卡反复认——漏 -s 靠提醒和自动化，不靠把规则重讲一遍。",
+     "src": "胡晓, 冯姗. 错误分析理论视角下初二写作中动词误用研究[J]. 职业教育发展, 2026, 15(4): 20-32. DOI: 10.12677/ve.2026.154163｜定位：第5.4节纠错卡原型句（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-015"
+    },
+    {
+     "wrong": "The Great Wall of China attract millions of tourists every year.",
+     "right": "The Great Wall of China attracts millions of tourists every year.",
+     "type": "三单 -s 遗漏（动词侧）",
+     "diag": "主语是单数的长城，动词照样要加 -s：attracts。主语再长，数只看是一个还是多个。",
+     "src": "杨欢腾. 高中生英语写作中谓语动词错误分析及对策研究[J]. 创新教育研究, 2025, 13(5): 194-203. DOI: 10.12677/ces.2025.135326｜定位：主谓形式语料例（经 verb_error_cases 归属回填）；语料为重庆市万州区两所高中写作文本｜学段：高一、高二｜病例号 VEC-016"
+    },
+    {
+     "wrong": "I think student need to do chores.",
+     "right": "I think student needs to do chores.",
+     "type": "三单 -s 遗漏（动词侧）",
+     "diag": "从句主语 student 是单数，need 要跟上 needs。主语藏在从句里，-s 也一样不能漏。（原文另给出 student 改复数一途，此处取其正文分析的单数修正。）",
+     "src": "赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151335｜定位：从句主谓偏误例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-017"
+    },
+    {
+     "wrong": "When he study, I must push him.",
+     "right": "When he studies, I must push him.",
+     "type": "三单 -s 遗漏（动词侧）",
+     "diag": "he 后面的 study 要变 studies（y 变 i 再加 es）。原文把这类归为规则自动化不足：知道规则，写的时候监控不到。",
+     "src": "赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151335｜定位：三单形式偏误例（经 verb_error_cases 归属回填）｜学段：初二｜病例号 VEC-018"
+    },
+    {
      "wrong": "We visits a farm.",
      "right": "We visit a farm.",
      "type": "复数主语误配三单 -s",
@@ -35948,7 +35942,7 @@
     {
      "q": "名词复数的 -s 和三单的 -s 是亲戚吗？",
      "a": "不是。它们来自两条独立源流，只是后来长成了同一个音。",
-     "h": "回到机制第 1 节「两条河汇到一起」。"
+     "h": "回到机制第 2 节「两条河汇到一起」。"
     }
    ],
    "srcs": [
@@ -36096,15 +36090,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "I goed to school yesterday.",
-     "right": "I went to school yesterday.",
-     "error_type": "过度规则化",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "清单条目登记：儿童与二语者对低频/未固化形式作 *goed 式过度规则化，是频率保护说的经典证据；went 属杂项单记，不按家族类推。回补机制第 2 节。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "sing 的过去式跟哪个是一家人？A. singed B. sang",
@@ -36989,36 +36975,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "She must did it.",
-     "right": "She must do it.",
-     "error_type": "情态动词后动词形式错误",
-     "source_type": "真实语料错型",
-     "diagnosis": "情态动词之后误用过去式 did: must 是没有时态屈折变化的化石形式, 后面只能跟动词原形。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：词类误用例 d(原文括注: must do); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-012〕"
-    },
-    {
-     "wrong": "Do some other things, for example, you can running or watching TV or reading books.",
-     "right": "Do some other things, for example, you can run or watch TV or read books.",
-     "error_type": "情态动词后动词形式错误",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文将此例列为其语料中 can 的典型错误用法之一: 情态动词后误接 -ing 形式。corrected 按最小改动原则, 仅将 can 后三个动词改为原形, 其余照录。〔出处：李晓微, 庄严. 基于自建小型语料库的高二英语写作研究[C]. Proceedings of the 2016 International Symposium on Social Science (ISSS 2016), Atlantis Press, 2016；定位：§3.3.3 情态动词 can 典型错误例(1); 语料为成都某高中高二 100 份月考作文(自建小型语料库)；学段：高二；病例号 GEC-013〕"
-    },
-    {
-     "wrong": "You don't could give up online games.",
-     "right": "You couldn't give up online games.",
-     "error_type": "情态动词叠用/与助动词连排",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文以此例说明情态动词的误用: don't 与 could 连排 —— 化石情态动词不能与助动词叠床架屋, 否定应直接挂在情态动词本身上。原例第二句另有其他错误, 非本条范围, 只录第一句; corrected 为最小改动。〔出处：李晓微, 庄严. 基于自建小型语料库的高二英语写作研究[C]. Proceedings of the 2016 International Symposium on Social Science (ISSS 2016), Atlantis Press, 2016；定位：§4.1 例(1)第一句; 语料同 GEC-013；学段：高二；病例号 GEC-014〕"
-    },
-    {
-     "wrong": "You can playing the basketball.",
-     "right": "You can play basketball.",
-     "error_type": "情态动词后动词形式错误",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文行文中以此例说明 can 后动词形式误用(can + playing)。corrected 按最小改动处理情态后动词形式; 原句 the basketball 的冠词误用非本条范围, 一并顺正并在此注明。〔出处：李晓微, 庄严. 基于自建小型语料库的高二英语写作研究[C]. Proceedings of the 2016 International Symposium on Social Science (ISSS 2016), Atlantis Press, 2016；定位：§4.3 行文例; 语料同 GEC-013；学段：高二；病例号 GEC-015〕"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "为什么不说 will can swim？",
@@ -38484,15 +38441,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Because it rained, so I stayed home.",
-     "right": "I stayed home because it rained. / It rained, so I stayed home.",
-     "error_type": "母语迁移-连接词并用",
-     "source_type": "真实语料错型",
-     "diagnosis": "清单条目登记：中国学习者语料中 because…so 并用是稳定高频的迁移错误类型（连淑能形合/意合对比）。回补机制第 1 节：一座桥过河。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "哪句对？A. Because it rained, so I stayed home. B. It rained, so I stayed home.",
@@ -38952,12 +38901,6 @@
     ],
     "errors": [
      {
-      "wrong": "Because it rained, so I stayed home.",
-      "right": "I stayed home because it rained. / It rained, so I stayed home.",
-      "type": "母语迁移-连接词并用",
-      "diag": "清单条目登记：中国学习者语料中 because…so 并用是稳定高频的迁移错误类型（连淑能形合/意合对比）。回补机制第 1 节：一座桥过河。"
-     },
-     {
       "wrong": "Because I was hungry, so I ate a sandwich.",
       "right": "I ate a sandwich because I was hungry. / I was hungry, so I ate a sandwich.",
       "type": "母语迁移-连接词并用",
@@ -39153,50 +39096,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "People was happy but they felt tired.",
-     "right": "People were happy but they felt tired.",
-     "error_type": "一致三力错配",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: people 用作主语、意义上为复数, 谓语动词应该使用复数形式; 学生辨认名词单复数通常只看词尾是否加了 s/es, 无法辨别集合名词 —— 意义一致这股力被词尾形式误导。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第二种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-016〕"
-    },
-    {
-     "wrong": "I were very happy to the farm.",
-     "right": "I was very happy to the farm.",
-     "error_type": "一致三力错配",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: 该篇文本整体为过去时态, 主语 I 的 be 过去式正确的应该是 was; 学生对过去时态运用不熟练、人称与 be 动词的对应不熟悉。corrected 仅按原文改正主谓一致一点, 原句其余部分照录。〔出处：罗宇. 初中英语写作中主谓一致偏误现象的研究[J]. 职业教育发展, 2025, 14(4): 30-35. DOI: 10.12677/ve.2025.144150；定位：§5.1 第三种类型案例(p.32); 样本为重庆市万州区某中学初一 54 名学生 54 份同话题写作；学段：初一；病例号 GEC-017〕"
-    },
-    {
-     "wrong": "The population of this country are very large.",
-     "right": "The population of this country is very large.",
-     "error_type": "一致三力错配",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: 不可数名词(物质和抽象名词)做主语, 谓语动词一律用单数。of 短语与『人口众多』的复数直觉把谓语拉向 are, 形式一致(中心词为单数概念)应当胜出。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.2例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「不可数名词做主语」)；学段：初二；病例号 GEC-018〕"
-    },
-    {
-     "wrong": "there is 3 watermelons.",
-     "right": "There are 3 watermelons.",
-     "error_type": "一致三力错配",
-     "source_type": "真实语料错型",
-     "diagnosis": "原句句首小写 t 为学生原文样貌, 照录。原文分析: there be 中 be 用 is 还是 are 由其后的名词决定 —— 离 be 最近的名词短语 3 watermelons 为复数, 应用 are, 是就近一致的用武之地。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.3例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「存在句 there be 句型」)；学段：初二；病例号 GEC-019〕"
-    },
-    {
-     "wrong": "The government pay more attention to people's health.",
-     "right": "The government pays more attention to people's health.",
-     "error_type": "一致三力错配",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: 集体名词表集体(整体)用法时谓语动词一律用单数; 其根本原因在于汉语没有词的屈折形式变化, 属母语负迁移的语际错误。注: 英式英语中 government 着眼成员时用复数亦可(见 GR-39 并行标准), 本例按原文的整体义口径改正。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.4例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「集体名词和专有名词做主语」, 本例为该节例 1)；学段：初二；病例号 GEC-020〕"
-    },
-    {
-     "wrong": "Most of the time are wasted.",
-     "right": "Most of the time is wasted.",
-     "error_type": "一致三力错配",
-     "source_type": "真实语料错型",
-     "diagnosis": "原文分析: most 等数量词语的谓语单复数要视它们所修饰的名词情况决定; time 为不可数名词, 谓语应用单数 —— 一致关系看的是短语的实际所指, 而非数量词的表面气势。〔出处：刘沥沥. 初中生英语写作中的主谓一致偏误研究[J]. 职业教育发展, 2025, 14(4): 133-137. DOI: 10.12677/ve.2025.144166；定位：§3.6例句; 样本为重庆市万州区某中学初二某班 20 份作文(该节题为「不定代词和数量词语做主语」)；学段：初二；病例号 GEC-021〕"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "There ___ a pen and two books on the desk. A. is B. are",
@@ -40313,15 +40213,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "between you and I",
-     "right": "between you and me",
-     "error_type": "过度矫正-格",
-     "source_type": "真实语料错型",
-     "diagnosis": "清单条目登记：母语者语料中 between you and I 稳定出现，是把礼貌/正式感误加到宾语位的过度矫正。回补机制第 1 节：格跟着位置走。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "between you and ___ A. I B. me",
@@ -40742,12 +40634,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "between you and I",
-      "right": "between you and me",
-      "type": "过度矫正-格",
-      "diag": "清单条目登记：母语者语料中 between you and I 稳定出现，是把礼貌/正式感误加到宾语位的过度矫正。回补机制第 1 节：格跟着位置走。"
-     },
      {
       "wrong": "Me and Tom are friends.",
       "right": "Tom and I are friends.",
@@ -41508,15 +41394,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "I see two sheeps.",
-     "right": "I see two sheep.",
-     "error_type": "过度规则化",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "清单条目登记：*sheeps、*goed 等过度泛化错误在不同母语背景儿童身上同型出现，是中介语系统按自有规则试单的痕迹。回补机制第 1 节。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "孩子说 *goed，说明什么？A. 他粗心 B. 他在用自己试出来的规则",
@@ -43208,15 +43086,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "As the development of the society, there are more and more aged people.",
-     "right": "With the development of the society, there are more and more aged people.",
-     "error_type": "语块整存整取内部错位",
-     "source_type": "真实语料错型",
-     "diagnosis": "汉语语块『随着社会的发展』被整块调用: 框架完整无缺, 只有框架首词被 As 顶替了 With。整存整取、内部不拆解 —— 语块先住进来、语法后来拆的典型样貌; 错不在规则运用, 而在整块提取时首词错位。〔出处：Zhan, Huifang. Frequent Errors in Chinese EFL Learners' Topic-Based Writings[J]. English Language Teaching, 2015, 8(5). DOI: 10.5539/elt.v8n5p72 (ERIC EJ1075251)；定位：§3.3 例 j(原文括注: With); 语料为广西某高校英语专业二年级 177 篇话题作文；学段：大学二年级(英语专业)；病例号 GEC-022〕"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "小朋友先会整句 \"What's this?\"，还是先会造这句的语法规则？",
@@ -43977,15 +43847,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "I have dog.",
-     "right": "I have a dog.",
-     "error_type": "母语迁移-冠词缺失",
-     "source_type": "真实语料错型",
-     "diagnosis": "清单条目登记：中国学生自由写作语料研究中冠词错误居首（domains.yaml 纲领 basis 引 ERIC EJ1075686）；汉语无冠词系统，漏标是系统差而非粗心。回补机制第 1 节记号地图。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "中国孩子英语错误里，哪一类排第一？A. 冠词 B. 语序",
@@ -46707,15 +46569,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "There are three childs in the park.",
-     "right": "There are three children in the park.",
-     "error_type": "家族外误用规则",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "清单条目登记：儿童与二语者的错误形态正是「家族外误用 -s」（*sheeps、*childs、*foots）与「家族内过度类推」并存。回补机制第 1 节：先认宿舍。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "foot 的复数是哪家宿舍的？A. 零复数 B. 变音",
@@ -47337,15 +47191,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "He play football.",
-     "right": "He plays football.",
-     "error_type": "屈折遗漏-三单",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "清单条目登记：中国学习者的屈折错误恰集中在这八个中的几个（三单 -s、过去式 -ed、复数 -s 的遗漏，见 GR-22）。回补机制第 2 节「少而必标」。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "英语的屈折词尾一共有几个功能位？",
@@ -47988,15 +47834,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "My car, that is red, is new.",
-     "right": "My car, which is red, is new.",
-     "error_type": "关系词误用-that 进非限制性",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "清单机制栏明示：that 只能进限制性从句，「*My car, that is red… 不成立」。回补机制第 1 节：先看它是补一句的活儿。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "「补一句」的那种从句，能用 that 开头吗？",
@@ -48460,15 +48298,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "This one is more better.",
-     "right": "This one is better.",
-     "error_type": "比较级叠用",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "清单边界明示：more 与 -er 不可叠用（*more better、*more cleverer 均不成立）；good 是不规则组，比较级是 better 本身。回补机制第 1 节。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "quiet 的比较级怎么说？",
@@ -48903,22 +48733,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "She both likes music and dancing.",
-     "right": "She likes both music and dancing.",
-     "error_type": "平行结构错位",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "清单机制栏登记的错位例：both 的辖域只盖住 likes，后半盖不住；把 both 移到两个同形成分之前即对齐。回补机制第 2 节。"
-    },
-    {
-     "wrong": "The teacher and the students was happy.",
-     "right": "The teacher and the students were happy.",
-     "error_type": "就近误用-and 主语",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "清单边界明示：and 连接的主语永远复数，不适用就近（*The teacher and the students was 不成立）。回补机制第 3 节：就近只管 or/nor。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "both 的搭档是 and 还是 or？",
@@ -49387,20 +49202,7 @@
       }
      }
     ],
-    "errors": [
-     {
-      "wrong": "She both likes music and dancing.",
-      "right": "She likes both music and dancing.",
-      "type": "平行结构错位",
-      "diag": "清单机制栏登记的错位例：both 的辖域只盖住 likes，后半盖不住；把 both 移到两个同形成分之前即对齐。回补机制第 2 节。"
-     },
-     {
-      "wrong": "The teacher and the students was happy.",
-      "right": "The teacher and the students were happy.",
-      "type": "就近误用-and 主语",
-      "diag": "清单边界明示：and 连接的主语永远复数，不适用就近（*The teacher and the students was 不成立）。回补机制第 3 节：就近只管 or/nor。"
-     }
-    ],
+    "errors": [],
     "quiz": [
      {
       "q": "both 的搭档是 and 还是 or？",
@@ -49577,15 +49379,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "You went there, isn't it?",
-     "right": "You went there, didn't you?",
-     "error_type": "尾巴不回指-万能尾巴",
-     "source_type": "教学界共识级",
-     "diagnosis": "清单支撑栏登记的典型错误：母语只有一个万能尾巴（如汉语「对吧」）的学习者，面对英语「每句现配」的系统，典型错误是全程统一用 isn't it 与助动词不回指。已如实标注：本轮未检索到针对该错误的 CLEC 级语料计数，不冒充语料定版。回补机制第 1 节。"
-    }
-   ],
+   "error_cases": [],
    "probes": [
     "PRB-GR33-1",
     "PRB-GR33-2",
@@ -50003,15 +49797,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Here comes it.",
-     "right": "Here it comes.",
-     "error_type": "全倒装代词误用",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "清单机制栏明示：代词主语绝不倒装（*Here comes it 不成立）；Quirk §7.59 原文同旨。回补机制第 2 节。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "主语换成 it：「Here ___ the bus」该怎么接？A. comes it B. it comes",
@@ -50938,15 +50724,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "She made me to go.",
-     "right": "She made me go.",
-     "error_type": "使役形式误加 to",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "清单支撑栏登记：中国学习者高频错误与形式档案一一对应——make/let 后误加 to（受汉语「让/叫」后动词无形式变化的迁移与 to 不定式泛化双重作用）、get 后漏 to、被动漏 to，三类均为可预测的档案型错误。回补机制第 2 节。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "I got him ___ the door. A. open B. to open",
@@ -51366,15 +51144,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "She is enough old to ride a bike.",
-     "right": "She is old enough to ride a bike.",
-     "error_type": "enough 站位错",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "清单支撑栏登记的中国学习者高频错误四类之一：*enough old（另有 *a such、*so a good day、把 too 当 very 用），均属站位与语义档案错误。回补机制第 2 节。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "「tall enough」还是「enough tall」？",
@@ -51793,15 +51563,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "It rained, I stayed home.",
-     "right": "It rained, so I stayed home. / It rained. I stayed home.",
-     "error_type": "逗号粘连",
-     "source_type": "教学定版登记错型",
-     "diagnosis": "美国大学写作中心一致把逗号粘连列为头号句界错误；中国学习者的发生率叠加了意合迁移（连淑能形合/意合对照）。回补机制第 1 节：四种合法连接选一种。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "两个完整句子之间只放一个逗号，行不行？",
@@ -52262,12 +52024,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "It rained, I stayed home.",
-      "right": "It rained, so I stayed home. / It rained. I stayed home.",
-      "type": "逗号粘连",
-      "diag": "美国大学写作中心一致把逗号粘连列为头号句界错误；中国学习者的发生率叠加了意合迁移（连淑能形合/意合对照）。回补机制第 1 节：四种合法连接选一种。"
-     },
      {
       "wrong": "The sun came out, we played outside.",
       "right": "The sun came out, so we played outside. / The sun came out. We played outside.",
@@ -53315,15 +53071,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "I am used to get up early.",
-     "right": "I am used to getting up early.",
-     "error_type": "used to 结构混淆",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "清单支撑栏登记：used to 与 be used to 字面仅差一个 be，汉语「习惯」一词双覆盖，学习者按字面拼装（*I am used to get up early 式 be 与原形的误配）是可预测的正字法-结构双重陷阱。回补机制第 1 节：be used to 的 to 是介词，后跟 -ing。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "「以前住在乡下」（状态）能用 would live 吗？",
@@ -53765,15 +53513,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "The flower red.",
-     "right": "The flower is red.",
-     "error_type": "系词缺失",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "清单登记的实证记录：Liu Yu（2008）汉英 code-switching 研究专节记录 \"Loss of copula verbs\"——英语形容词作表语时 be 被省略，根源是汉语性质词可裸作谓语的站法迁移。回补机制第 2 节。"
-    }
-   ],
+   "error_cases": [],
    "quiz": [
     {
      "q": "\"The flower red.\" 少了什么？",
@@ -55962,7 +55702,15 @@
      }
     }
    ],
-   "error_cases": [],
+   "error_cases": [
+    {
+     "wrong": "Tomorrow, I visited my uncle.",
+     "right": "Tomorrow, I will visit my uncle.",
+     "error_type": "时态与将来时间状语不匹配",
+     "source_type": "学习者语料病例",
+     "diagnosis": "Tomorrow 说的是明天，要借 will 来谈将来：will visit。英语没有「将来时」这个词形，过去式 visited 和 tomorrow 放在一起必然打架。〔出处：张迪 2025 语料例；病例 VEC-031〕"
+    }
+   ],
    "relatives": [
     {
      "id": "TA-01",
@@ -56764,7 +56512,29 @@
      }
     }
    ],
-   "error_cases": [],
+   "error_cases": [
+    {
+     "wrong": "He finished his homework.",
+     "right": "He has finished his homework.",
+     "error_type": "完成体助动词遗漏",
+     "source_type": "学习者语料病例",
+     "diagnosis": "这句话的语境要说「已经做完了」：完成体不能只剩分词 finished，助动词 has 不能丢——has 加分词，两个零件都在才叫完成体。〔出处：胡晓、冯姗 2026 归类为助动词缺失；病例 VEC-010〕"
+    },
+    {
+     "wrong": "The number of cars increase rapidly in recent years.",
+     "right": "The number of cars has increased rapidly in recent years.",
+     "error_type": "该用完成时误用一般现在时",
+     "source_type": "学习者语料病例",
+     "diagnosis": "in recent years 说的是从过去延续到现在的变化，要用完成时 has increased；只用 increase，就把这条延续线掐断在今天。〔出处：田彤 2026 高一语料例；病例 VEC-011〕"
+    },
+    {
+     "wrong": "I live here since 2020.",
+     "right": "I have lived here since 2020.",
+     "error_type": "该用完成时误用一般现在时",
+     "source_type": "学习者语料病例",
+     "diagnosis": "从 2020 年一直住到现在，since 拉起的这条线要用完成时 have lived 才接得通。汉语的「住」不用变样，英语的持续线必须靠 have 加分词拉住。〔出处：张辉 2023 语料研究（经张迪 2025 转引）；病例 VEC-012〕"
+    }
+   ],
    "relatives": [
     {
      "id": "TA-06",
@@ -57047,6 +56817,20 @@
      "error_type": "完成时误配过去时间状语",
      "source_type": "教学文献登记错型",
      "diagnosis": "完成时参照点在现在，yesterday 把定位锚回过去，两套定位冲突（回 TA-06 机制节、TA-05 现时相关）"
+    },
+    {
+     "wrong": "I have visited Beijing last year.",
+     "right": "I visited Beijing last year.",
+     "error_type": "完成时误配过去时间状语",
+     "source_type": "学习者语料病例",
+     "diagnosis": "last year 是明确的过去时间，完成时不能和它同现，要改用一般过去时 visited。与本律首例（have seen + yesterday）是同一个错型。〔出处：胡晓、冯姗 2026 初二语料例；病例 VEC-008〕"
+    },
+    {
+     "wrong": "She has played the piano beautifully at the school talent show last month.",
+     "right": "She played the piano beautifully at the school talent show last month.",
+     "error_type": "完成时误配过去时间状语",
+     "source_type": "学习者语料病例",
+     "diagnosis": "事情发生在上个月的才艺表演上，是钉死的过去时刻，要用 played，不用 has played。〔出处：杨欢腾 2025 语料例（以现在完成时替代一般过去时）；病例 VEC-009〕"
     }
    ],
    "relatives": [
@@ -57570,7 +57354,15 @@
      }
     }
    ],
-   "error_cases": [],
+   "error_cases": [
+    {
+     "wrong": "People discovered that traffic jams are caused by narrow roads.",
+     "right": "People discovered that traffic jams were caused by narrow roads.",
+     "error_type": "转述时态未后移",
+     "source_type": "学习者语料病例",
+     "diagnosis": "主句 discovered 已经站在过去，从句也要跟着往后退一步：are caused 要改 were caused。转述里把时态往过去推，正是过去形式表「距离」的用法。〔出处：田彤 2026 高一语料例；病例 VEC-028〕"
+    }
+   ],
    "relatives": [
     {
      "id": "TA-02",
@@ -57839,7 +57631,22 @@
      }
     }
    ],
-   "error_cases": [],
+   "error_cases": [
+    {
+     "wrong": "When I arrived, he already left.",
+     "right": "When I arrived, he had already left.",
+     "error_type": "过去完成时缺失",
+     "source_type": "学习者语料病例",
+     "diagnosis": "到达之前他就已经离开了——站在「我到达」这个过去的点往回看，要用过去完成时 had left 把「更早」标出来。〔出处：张迪 2025 语料例；与 VEC-030 的滥用恰成一缺一滥对照；病例 VEC-029〕"
+    },
+    {
+     "wrong": "Last weekend, my friends and I had climbed to the top of the hill and enjoyed the beautiful view.",
+     "right": "Last weekend, my friends and I climbed to the top of the hill and enjoyed the beautiful view.",
+     "error_type": "过去完成时滥用",
+     "source_type": "学习者语料病例",
+     "diagnosis": "上周末爬山只是一件过去的事，没有「更早一层」要回看，用一般过去时 climbed 就够了；had climbed 是把过去完成时用过了头。〔出处：杨欢腾 2025 语料例；病例 VEC-030〕"
+    }
+   ],
    "relatives": [
     {
      "id": "TA-05",
@@ -59435,7 +59242,71 @@
      }
     }
    ],
-   "error_cases": [],
+   "error_cases": [
+    {
+     "wrong": "Last year, the government build a new subway.",
+     "right": "Last year, the government built a new subway.",
+     "error_type": "裸动词表过去",
+     "source_type": "学习者语料病例",
+     "diagnosis": "句里有 last year 把时间说清了，动词却忘了跟着变过去式。汉语靠时间词交代时间、动词不变样，这习惯搬过来就会这样；英语里时间词在场，动词也必须变形。〔出处：田彤 2026 高一写作统计，此类「过去时遗漏」占过去时偏误 40% 居首位；病例 VEC-001〕"
+    },
+    {
+     "wrong": "I go to Hainan last winter holiday.",
+     "right": "I went to Hainan last winter holiday.",
+     "error_type": "裸动词表过去",
+     "source_type": "学习者语料病例",
+     "diagnosis": "时间词 last winter holiday 已经把事钉在过去，go 却没有变成 went。先看时间词、再给动词换过去式，是英语每句必做的动作。〔出处：杨欢腾 2025 高中写作语料例；病例 VEC-002〕"
+    },
+    {
+     "wrong": "Last month, my family go to the beach.",
+     "right": "Last month, my family went to the beach.",
+     "error_type": "裸动词表过去",
+     "source_type": "学习者语料病例",
+     "diagnosis": "Last month 说的是上个月的事，go 要变成 went 才对。原文统计：这类「过去时与现在时混淆」占时态错误 42.3%，是最常见的一类。〔出处：张迪 2025 三所高中 1,800 篇作文；病例 VEC-003〕"
+    },
+    {
+     "wrong": "I hang out with my friends the day before yesterday.",
+     "right": "I hung out with my friends the day before yesterday.",
+     "error_type": "裸动词表过去",
+     "source_type": "学习者语料病例",
+     "diagnosis": "前天（the day before yesterday）发生的事，hang 要用过去式 hung。hang 的过去式不带 -ed，要整词记住（高频不规则动词的过去式整存，参 TA-17）。〔出处：吴金双 2025 初三作文例；病例 VEC-004〕"
+    },
+    {
+     "wrong": "Yesterday I watch a movie.",
+     "right": "Yesterday I watched a movie.",
+     "error_type": "规则动词 -ed 遗漏",
+     "source_type": "学习者语料病例",
+     "diagnosis": "Yesterday 的事，watch 少了尾巴 -ed。规则动词的过去式要靠 -ed 标出来，汉语动词没有这个尾巴，最容易漏。〔出处：胡晓、冯姗 2026 初二语料，遗漏类占其动词误用 42.0% 居首；病例 VEC-005〕"
+    },
+    {
+     "wrong": "They visit the museum last week.",
+     "right": "They visited the museum last week.",
+     "error_type": "规则动词 -ed 遗漏",
+     "source_type": "学习者语料病例",
+     "diagnosis": "上周（last week）去参观，visit 要写成 visited。原文统计：「一般过去时形态缺失」共 141 例，占其动词误用 27.5%，是最高频的错误点。〔出处：胡晓、冯姗 2026；病例 VEC-006〕"
+    },
+    {
+     "wrong": "During my trip in Europe, I saw some Chinese people in bad manners. They speak and laugh loudly. They throw rubbish everywhere and some of them write their names on the buildings.",
+     "right": "During my trip in Europe, I saw some Chinese people in bad manners. They spoke and laughed loudly. They threw rubbish everywhere and some of them wrote their names on the buildings.",
+     "error_type": "叙事时态漂移",
+     "source_type": "学习者语料病例",
+     "diagnosis": "讲一次过去的旅行，第一句 saw 把基调定在过去，后面的 speak、throw、write 却一个个漂回现在时。英语叙事要一句一句守住过去式，框架定了也不能松。〔出处：杨欢腾 2025 语料整段例；病例 VEC-025〕"
+    },
+    {
+     "wrong": "Then a teenager found me and ask me for my mom's telephone number.",
+     "right": "Then a teenager found me and asked me for my mom's telephone number.",
+     "error_type": "同句时态漂移",
+     "source_type": "学习者语料病例",
+     "diagnosis": "found 已经是过去式，并排的 ask 也要跟着变 asked。同一个句子里，时态要从头守到尾。〔出处：赵柳棚 2026 初二语料例；病例 VEC-026〕"
+    },
+    {
+     "wrong": "When I am 13 years old, I don't like to help others.",
+     "right": "When I was 13 years old, I didn't like to help others.",
+     "error_type": "过去语境误用现在时",
+     "source_type": "学习者语料病例",
+     "diagnosis": "说的是 13 岁那年的事，am 和 don't 都要改成 was 和 didn't。汉语讲过去靠语境，英语讲过去靠每个动词都变形。〔出处：赵柳棚 2026 初二语料例；病例 VEC-027〕"
+    }
+   ],
    "relatives": [
     {
      "id": "TA-16",
@@ -59993,7 +59864,36 @@
      }
     }
    ],
-   "error_cases": [],
+   "error_cases": [
+    {
+     "wrong": "He goed to school.",
+     "right": "He went to school.",
+     "error_type": "不规则动词过去式过度规则化",
+     "source_type": "学习者语料病例",
+     "diagnosis": "go 的过去式是 went，要整个记住，不能按规则加上 -ed 变成 goed。-ed 的规则只管规则动词，高频不规则动词的过去式是整存的。〔出处：胡晓、冯姗 2026 统计，此错点 65 例占误加类 67.7%；病例 VEC-019〕"
+    },
+    {
+     "wrong": "I eated an apple.",
+     "right": "I ate an apple.",
+     "error_type": "不规则动词过去式过度规则化",
+     "source_type": "学习者语料病例",
+     "diagnosis": "eat 的过去式是 ate，不是 eated。先把高频不规则动词的过去式用熟，-ed 的图式就不会乱套到它们头上。〔出处：胡晓、冯姗 2026；病例 VEC-020〕"
+    },
+    {
+     "wrong": "He goed home early.",
+     "right": "He went home early.",
+     "error_type": "不规则动词过去式过度规则化",
+     "source_type": "学习者语料病例",
+     "diagnosis": "与 goed to school 同型：go 的过去式整存为 went。〔出处：胡晓、冯姗 2026 另一学生原句；病例 VEC-021〕"
+    },
+    {
+     "wrong": "The government builded more roads last year.",
+     "right": "The government built more roads last year.",
+     "error_type": "不规则动词过去式过度规则化",
+     "source_type": "学习者语料病例",
+     "diagnosis": "build 的过去式是 built，不是 builded。不规则动词学得零散时，大脑就拿 -ed 规则来补空——补得越勤，越说明这批词要整存整练。〔出处：田彤 2026 高一语料例；病例 VEC-022〕"
+    }
+   ],
    "relatives": [
     {
      "id": "CO-10",
@@ -61388,15 +61288,7 @@
      ]
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Explain me this.",
-     "right": "Explain this to me.",
-     "error_type": "言说类动词误入双宾构式",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "explain 不含「致使拥有转移」义，过不了宽域关；纲领 coreView 与本条目共同登记此错形（回 CO-03 机制节）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "CO-02",
@@ -61929,15 +61821,7 @@
      ]
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "He knew the ball over the fence.",
-     "right": "（无此说法：know 是状态动词，进不了致使移动模具）",
-     "error_type": "状态动词误入致使移动构式",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "know 没有可识解的物理致使链，与构式义不相容（条目边界登记的星号例；回 CO-04 机制节）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "CO-01",
@@ -63581,15 +63465,7 @@
      ]
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "There has a book on the desk.",
-     "right": "There is a book on the desk.",
-     "error_type": "存现与领有两戏混演（there be 误用 has）",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "把 have 的领有戏码搬进存现模具；There be 管出场介绍，have 管领有（条目支撑登记 *There has a book；回 CO-07 机制节）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "QI-05",
@@ -66607,15 +66483,7 @@
      ]
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "I want go.",
-     "right": "I want to go.",
-     "error_type": "第二动词漏穿工作服（漏 to）",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "want 已占用唯一的限定位置，go 必须以非限定形式（to go）出现（条目儿童版登记此错形；回 CO-13 机制节）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "CO-14",
@@ -70450,15 +70318,7 @@
      ]
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Does she likes apples?",
-     "right": "Does she like apples?",
-     "error_type": "倒装后主动词未恢复原形（时态重复标记）",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "does 已扛起时态，主动词须回原形（条目支撑登记此错型，叠加 GR-02 单次标记；回 QI-04 机制节）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "QI-01",
@@ -70794,12 +70654,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "Does she likes apples?",
-      "right": "Does she like apples?",
-      "type": "倒装后主动词未恢复原形（时态重复标记）",
-      "diag": "does 已扛起时态，主动词须回原形（条目支撑登记此错型，叠加 GR-02 单次标记；回 QI-04 机制节）"
-     },
      {
       "wrong": "Did you saw the film?",
       "right": "Did you see the film?",
@@ -73406,15 +73260,7 @@
      ]
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "What do you go to school?",
-     "right": "How do you go to school?",
-     "error_type": "疑问词辖域错位（方式误派 What）",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "问的是上学方式，属 how 的辖域；按词翻译（什么→what）导致答非所问（条目支撑登记此典型偏误；回 QI-10 机制节）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "QI-01",
@@ -73767,12 +73613,6 @@
     ],
     "errors": [
      {
-      "wrong": "What do you go to school?",
-      "right": "How do you go to school?",
-      "type": "疑问词辖域错位（方式误派 What）",
-      "diag": "问的是上学方式，属 how 的辖域；按词翻译（什么→what）导致答非所问（条目支撑登记此典型偏误；回 QI-10 机制节）"
-     },
-     {
       "wrong": "How is this?（想问「这是什么」）",
       "right": "What is this?",
       "type": "疑问词辖域错位（身份误派 How）",
@@ -73910,15 +73750,7 @@
      ]
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "— Do you want tea or juice? — Yes.",
-     "right": "— Do you want tea or juice? — Juice, please.",
-     "error_type": "选择问句误用极性答语（答非所问）",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "or-问句是选择图式，答语须从选项中选取；答 Yes 是把选择图式误当极性图式（条目支撑登记此类偏误稳定出现；回 QI-11 机制节）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "QI-01",
@@ -74230,12 +74062,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "— Do you want tea or juice? — Yes.",
-      "right": "— Do you want tea or juice? — Juice, please.",
-      "type": "选择问句误用极性答语（答非所问）",
-      "diag": "or-问句是选择图式，答语须从选项中选取；答 Yes 是把选择图式误当极性图式（条目支撑登记此类偏误稳定出现；回 QI-11 机制节）"
-     },
      {
       "wrong": "— Shall we walk or take a bus? — Yes.",
       "right": "— Shall we walk or take a bus? — Let's walk.",
@@ -74811,22 +74637,7 @@
      ]
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "What you want?",
-     "right": "What do you want?",
-     "error_type": "疑问词已前置但漏倒装（原位系统残留）",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "只搬了疑问词、没搬助动词——汉语「原位 + 无倒装」系统搬了一半（条目支撑登记此错型；回 QI-13 机制节与 QI-04 倒装节）"
-    },
-    {
-     "wrong": "You want what?",
-     "right": "What do you want?",
-     "error_type": "疑问词原位未前置（非回声语境）",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "在非回声语境把汉语原位结构整套搬入英语；须与合法回声问句区分（条目支撑登记此错型）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "QI-04",
@@ -75154,20 +74965,7 @@
       }
      }
     ],
-    "errors": [
-     {
-      "wrong": "What you want?",
-      "right": "What do you want?",
-      "type": "疑问词已前置但漏倒装（原位系统残留）",
-      "diag": "只搬了疑问词、没搬助动词——汉语「原位 + 无倒装」系统搬了一半（条目支撑登记此错型；回 QI-13 机制节与 QI-04 倒装节）"
-     },
-     {
-      "wrong": "You want what?",
-      "right": "What do you want?",
-      "type": "疑问词原位未前置（非回声语境）",
-      "diag": "在非回声语境把汉语原位结构整套搬入英语；须与合法回声问句区分（条目支撑登记此错型）"
-     }
-    ],
+    "errors": [],
     "quiz": [
      {
       "q": "改错：What you want?",
@@ -79933,7 +79731,7 @@
    "group": "S",
    "order": 32,
    "headline": "两字母抱团发一个音：辅音二合字母大多守规矩，只有 ch 有三个音、th 分清浊两班——而这两位的分班依据都是「词从哪来、词是干什么的」",
-   "headline_kid": "两个字母抱团发一个音，叫组合音。大多数组合很乖，只有 ch 是三面派，th 分清嗓和浊嗓两班：小词（the、this）读浊班，大词（think、three）读清班。",
+   "headline_kid": "两个字母抱团发一个音，叫组合音。大多数组合很乖，只有 ch 是三面派，th 分清嗓和浊嗓两班：分班不看词长短，看词是干什么的——the、this、they 这类虚词和指示词读浊班 /ð/，think、three 这类实词多读清班 /θ/（three 很短也是清班，although 很长也是浊班）。",
    "claim": {
     "type": "rule",
     "statement": "辅音二合字母的读音按地层与词类分工：sh 恒 /ʃ/；ch 三音（本族 /tʃ/、希腊源 /k/、法语源 /ʃ/）；th 清浊按词类（虚词浊 /ð/、实词清 /θ/）；ph 为希腊层 /f/；wh 多并入 /w/；ng /ŋ/、qu /kw/ 各有分工细则。",
@@ -79969,7 +79767,7 @@
        "champagne",
        "Chicago"
       ],
-      "text_kid": "两个字母抱团发一个音，叫组合音。大多数组合很乖，只有 ch 是三面派，th 分清嗓和浊嗓两班：小词（the、this）读浊班，大词（think、three）读清班。"
+      "text_kid": "两个字母抱团发一个音，叫组合音。大多数组合很乖，只有 ch 是三面派，th 分清嗓和浊嗓两班：分班不看词长短，看词是干什么的——the、this、they 这类虚词和指示词读浊班 /ð/，think、three 这类实词多读清班 /θ/（three 很短也是清班，although 很长也是浊班）。"
      },
      {
       "beat": "th 清浊分班",
@@ -80233,7 +80031,7 @@
    "title": null,
    "family": "S",
    "headline": "两字母抱团发一个音：辅音二合字母大多守规矩，只有 ch 有三个音、th 分清浊两班——而这两位的分班依据都是「词从哪来、词是干什么的」",
-   "kid_headline": "两个字母抱团发一个音，叫组合音。大多数组合很乖，只有 ch 是三面派，th 分清嗓和浊嗓两班：小词（the、this）读浊班，大词（think、three）读清班。",
+   "kid_headline": "两个字母抱团发一个音，叫组合音。大多数组合很乖，只有 ch 是三面派，th 分清嗓和浊嗓两班：分班不看词长短，看词是干什么的——the、this、they 这类虚词和指示词读浊班 /ð/，think、three 这类实词多读清班 /θ/（three 很短也是清班，although 很长也是浊班）。",
    "claim": "辅音二合字母的读音按地层与词类分工：sh 恒 /ʃ/；ch 三音（本族 /tʃ/、希腊源 /k/、法语源 /ʃ/）；th 清浊按词类（虚词浊 /ð/、实词清 /θ/）；ph 为希腊层 /f/；wh 多并入 /w/；ng /ŋ/、qu /kw/ 各有分工细则。",
    "group": "S"
   },
@@ -94115,15 +93913,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "*an information",
-     "right": "some information / a piece of information",
-     "error_type": "抽象料误加 a（自创可数）",
-     "source_type": "条目成人层登记的事故例（清单 C-03 边界明载的星号形式）",
-     "diagnosis": "学习者把「模糊有界」误推成「任意可数」；information 的归属由习惯用法裁定，走 C-15 的一类事路径加借单位。"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "C-01",
@@ -94435,12 +94225,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "*an information",
-      "right": "some information / a piece of information",
-      "type": "抽象料误加 a（自创可数）",
-      "diag": "学习者把「模糊有界」误推成「任意可数」；information 的归属由习惯用法裁定，走 C-15 的一类事路径加借单位。（目录登记病例）"
-     },
      {
       "wrong": "I have an advice for you.",
       "right": "I have a piece of advice for you.",
@@ -97653,15 +97437,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "I saw the dog yesterday.",
-     "right": "I saw a dog yesterday.",
-     "error_type": "the 滥用（按具体性选词）",
-     "source_type": "条目成人层登记的事故例（清单 C-09 标题句下明载的特征性错误）",
-     "diagnosis": "说话人心里有具体所指（昨天见到的那只），误以为够格用 the；英语的判据是听者能否定位——对方没见过、没提过，只能用 a。回补：C-07 定位判据 + 本条两套切分。"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "C-07",
@@ -97985,12 +97761,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "I saw the dog yesterday.",
-      "right": "I saw a dog yesterday.",
-      "type": "the 滥用（按具体性选词）",
-      "diag": "说话人心里有具体所指（昨天见到的那只），误以为够格用 the；英语的判据是听者能否定位——对方没见过、没提过，只能用 a。回补：C-07 定位判据 + 本条两套切分。"
-     },
      {
       "wrong": "I have the new bike. Look!",
       "right": "I have a new bike. Look!",
@@ -100044,15 +99814,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "*A tiger is endangered.",
-     "right": "The tiger is endangered.",
-     "error_type": "类指形式与谓词不匹配",
-     "source_type": "条目成人层登记的事故例（清单 C-13 支撑明载的星号形式）",
-     "diagnosis": "endangered（濒危）是物种整体的属性，不是任一样本的属性；a 的取景是「任取一只样本」，与整体谓词冲突，须改用把物种个体化的 the 类指。"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "C-06",
@@ -100363,12 +100125,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "*A tiger is endangered.",
-      "right": "The tiger is endangered.",
-      "type": "类指形式与谓词不匹配",
-      "diag": "endangered（濒危）是物种整体的属性，不是任一样本的属性；a 的取景是「任取一只样本」，与整体谓词冲突，须改用把物种个体化的 the 类指。"
-     },
      {
       "wrong": "Pandas is a big animal.",
       "right": "Pandas are big animals.",
@@ -101245,15 +101001,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "*an information",
-     "right": "some information / a piece of information",
-     "error_type": "抽象料误加 a",
-     "source_type": "条目成人层登记的事故例（清单 C-03 边界明载的星号形式，与 C-03 共案）",
-     "diagnosis": "把抽象名词按普通可数名词处理；information 被整类打包成「一类事」，要计数先借 piece。与 C-18 的 *informations 型同源（-s 落点问题）。"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "C-02",
@@ -101559,12 +101307,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "*an information",
-      "right": "some information / a piece of information",
-      "type": "抽象料误加 a",
-      "diag": "把抽象名词按普通可数名词处理；information 被整类打包成「一类事」，要计数先借 piece。与 C-18 的 *informations 型同源。（目录登记病例，与 C-03 共案）"
-     },
      {
       "wrong": "I have many homeworks today.",
       "right": "I have much homework today.",
@@ -104140,15 +103882,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "I saw the dog yesterday.",
-     "right": "I saw a dog yesterday.",
-     "error_type": "the 滥用（按具体性选词）",
-     "source_type": "条目成人层登记的事故例（清单 C-09 明载，与 C-09 共案；本条为其分型归档）",
-     "diagnosis": "在本条分型中属「滥用型」：药不是多背 the 的用法，而是把判据从「我心里有没有」换成「对方能否定位」（C-07/C-19）。漏用与替换两型的逐字病例待补（见 pending）。"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "C-09",
@@ -104458,12 +104192,6 @@
      }
     ],
     "errors": [
-     {
-      "wrong": "I saw the dog yesterday.",
-      "right": "I saw a dog yesterday.",
-      "type": "the 滥用（按具体性选词）",
-      "diag": "在本条分型中属「滥用型」：药不是多背 the 的用法，而是把判据从「我心里有没有」换成「对方能否定位」（C-07/C-19）。漏用、替换两型的正形对照见本页例句与下方分组。"
-     },
      {
       "wrong": "She is teacher and he is doctor.",
       "right": "She is a teacher and he is a doctor.",
@@ -123741,15 +123469,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Do a decision.",
-     "right": "Make a decision.",
-     "error_type": "搭配迁移",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "只建了 decision 的义，没建它的搭配面（回 mechanism『缺面即错面』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-07",
@@ -125703,15 +125423,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Do a decision.",
-     "right": "Make a decision.",
-     "error_type": "搭配迁移",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "逐词拼装而非整块取用（回 mechanism『整块取用』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-06",
@@ -126676,15 +126388,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Do a decision.",
-     "right": "Make a decision.",
-     "error_type": "搭配迁移",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "按语义推理选动词，没按约定选伙伴（回 mechanism『伙伴名单』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-01",
@@ -128214,15 +127918,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "（把 prize 读成『价格』，整句理解跑偏而不自知）",
-     "right": "prize = 奖品；price = 价格——形近词先停一拍再确认",
-     "error_type": "形近误认",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "自动误认跳过了查核流程（回 mechanism『自动误认』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-32",
@@ -129213,15 +128909,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "（把 prize 猜成『价格』后继续往下读，整段理解跑偏）",
-     "right": "猜测只是假设，须查字典或回读验证后才算数",
-     "error_type": "猜义不验",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "约束被形近误认误导且未验证（回 mechanism『约束求解』；与 V-10 同案）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-03",
@@ -130784,15 +130472,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "watch = 注视着的手表（按假词源硬拆 watch 的来历）",
-     "right": "watch 整词记；假词源故事不许冒充词的历史",
-     "error_type": "假词源",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "把不透明词当积木硬拆，给记忆挂错误故事（回 mechanism『透明度谱』；旧库事故，VF 系列裁定）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-32",
@@ -131200,15 +130880,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "（把 light『轻』说成是 light『光』变出来的意思）",
-     "right": "两个 light 是同形异源的两棵树，分别记",
-     "error_type": "义项硬连",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "把同形异义当多义网络硬连（回 mechanism『树干与树枝』；VF-003 裁定）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-41",
@@ -132194,15 +131866,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Do a decision.",
-     "right": "Make a decision.",
-     "error_type": "搭配迁移",
-     "source_type": "真实语料错型",
-     "diagnosis": "CLEC 搭配聚集区的典型形态：动名搭配按母语切分迁移（回 mechanism『错误地图』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-07",
@@ -133632,15 +133296,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "corner = corn + er（把形似字母串当真词根硬拆）",
-     "right": "corner 不是构词拆分对象——拆前先确认是真构词（V-15 纪律）",
-     "error_type": "假拆分",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "形似误认成词根（回 mechanism『零件接口』的例外同屏）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-08",
@@ -135678,15 +135334,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "posh = Port Out, Starboard Home（轮船舱位首字母说）",
-     "right": "缩略说被年代学否决且无文献（船票从未被找到）；posh 真实来源无定案，登记存疑",
-     "error_type": "假词源",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "backronym：先有词，再倒编首字母故事（回 mechanism『侦探两件套』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-22",
@@ -139092,15 +138740,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "invaluable = 没有价值的（按 in- 否定硬拆）",
-     "right": "invaluable = 贵重得无法估价；此词的关系不透明，整词记",
-     "error_type": "假拆分",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "把加强义 in- 当否定 in-（回 mechanism『两种拆不动』之关系不透明型）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-29",
@@ -139582,15 +139222,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "uncle = un- + cle（看见 un- 就拆）",
-     "right": "uncle 是整词，un- 在此不是前缀（tricksters 辨假）",
-     "error_type": "假拆分",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "把词首字母串当前缀（回 mechanism『头部小集合』例外同屏；探针 PRB-V33-1 同案）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-30",
@@ -140089,15 +139721,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "*inpossible / *inlegal（按原形 in- 硬拼）",
-     "right": "impossible / illegal——前缀尾巴已按同化改形，双写是规则不是笔误",
-     "error_type": "拼写规则误用",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "不知道同化变体，按未变形的 in- 拼写（回 mechanism『嘴巴偷懒』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-35",
@@ -140584,15 +140208,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "*inhappy（按地层规则给日耳曼词基装 in-）",
-     "right": "unhappy——in- 不接日耳曼词基，此形式在词典与语料中不存在",
-     "error_type": "前缀选配误用",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "只记『拉丁用 in-』没记『in- 是封闭存量』（回 mechanism『活零件与退休零件』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-19",
@@ -141058,15 +140674,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "*breaktion（拿封存的 -tion 套新词基造词）",
-     "right": "-tion 不是活后缀：它随拉丁词干整词进入，英语内部不拿它造新词",
-     "error_type": "词缀选配误用",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "把封存机器当通电机器用（回 mechanism『四台变身机』营业状态牌）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-20",
@@ -141571,15 +141179,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "*refered / *visitted",
-     "right": "referred（重音在尾，双写）/ visited（重音在前，不双写）",
-     "error_type": "拼写规则误用",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "双写规则的重音条件没掌握——两类镜像错误（回 mechanism『为语音让路』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-36",
@@ -142047,15 +141647,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "butter = butt + er，『一个叫 butt 的人』（把借词词干残段当施事后缀）",
-     "right": "butter 整词记：-er 是希腊—拉丁借词词干的一部分，与 teacher 的 -er 只是同形",
-     "error_type": "假拆分",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "伪词缀型假拆（回 mechanism『三型诊室』一号室）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-15",
@@ -142514,15 +142106,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "uncle 里有 un-，所以 uncle 和『不』有关系（未辨假先套义）",
-     "right": "uncle 是整词，无前缀——辨真伪是拆词的第一课",
-     "error_type": "假拆分",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "跳过立概念环节直接套前缀义（回 mechanism『六课课序』第一课）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-33",
@@ -143062,22 +142646,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "Open the light.",
-     "right": "Turn on the light.",
-     "error_type": "打包直译",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "把汉语『开』的打包图原样套给英语的灯（回 mechanism『万能遥控与专用按钮』；探针 PRB-V40-1 同案）"
-    },
-    {
-     "wrong": "Eat medicine.",
-     "right": "Take medicine.",
-     "error_type": "打包直译",
-     "source_type": "条目成人层登记的事故例",
-     "diagnosis": "『吃药』逐词直译；英语把『服药』打包给 take（探针 PRB-V40-2 同案）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-07",
@@ -144592,15 +144161,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "The new teacher caused progress in our class.（按『引起』字面义选词）",
-     "right": "The new teacher brought about progress in our class.——cause 的语义韵是负面的，正面结果不用它",
-     "error_type": "语义韵误选",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "只查词义不看搭配氛围（回 mechanism『染上的天气』；cause progress 是清单登记的对照形）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-07",
@@ -145146,15 +144707,7 @@
      "supports": "claim"
     }
    ],
-   "error_cases": [
-    {
-     "wrong": "There dog is cute.（their/there 混用）",
-     "right": "Their dog is cute.——『他们的』后跟名词用 their，读音帮不上忙，靠位置选字",
-     "error_type": "同音选字",
-     "source_type": "教学文献登记错型",
-     "diagnosis": "语音通道失效时仍按声音选字（回 mechanism『耳朵下班脑子接管』）"
-    }
-   ],
+   "error_cases": [],
    "relatives": [
     {
      "id": "V-41",

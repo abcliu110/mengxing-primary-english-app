@@ -326,7 +326,12 @@ entries:
       f: going-to-test
       from: TA-02 exs[3] 句框
       slots: {}
-  error_cases: []
+  error_cases:
+  - wrong: Tomorrow, I visited my uncle.
+    right: Tomorrow, I will visit my uncle.
+    error_type: 时态与将来时间状语不匹配
+    source_type: 学习者语料病例
+    diagnosis: Tomorrow 说的是明天，要借 will 来谈将来：will visit。英语没有「将来时」这个词形，过去式 visited 和 tomorrow 放在一起必然打架。〔出处：张迪 2025 语料例；病例 VEC-031〕
   relatives:
   - id: TA-01
     rel: 同族
@@ -856,7 +861,22 @@ entries:
       slots:
         verb: ADD_0025
         obj: G2_0936
-  error_cases: []
+  error_cases:
+  - wrong: He finished his homework.
+    right: He has finished his homework.
+    error_type: 完成体助动词遗漏
+    source_type: 学习者语料病例
+    diagnosis: 这句话的语境要说「已经做完了」：完成体不能只剩分词 finished，助动词 has 不能丢——has 加分词，两个零件都在才叫完成体。〔出处：胡晓、冯姗 2026 归类为助动词缺失；病例 VEC-010〕
+  - wrong: The number of cars increase rapidly in recent years.
+    right: The number of cars has increased rapidly in recent years.
+    error_type: 该用完成时误用一般现在时
+    source_type: 学习者语料病例
+    diagnosis: in recent years 说的是从过去延续到现在的变化，要用完成时 has increased；只用 increase，就把这条延续线掐断在今天。〔出处：田彤 2026 高一语料例；病例 VEC-011〕
+  - wrong: I live here since 2020.
+    right: I have lived here since 2020.
+    error_type: 该用完成时误用一般现在时
+    source_type: 学习者语料病例
+    diagnosis: 从 2020 年一直住到现在，since 拉起的这条线要用完成时 have lived 才接得通。汉语的「住」不用变样，英语的持续线必须靠 have 加分词拉住。〔出处：张辉 2023 语料研究（经张迪 2025 转引）；病例 VEC-012〕
   relatives:
   - id: TA-06
     rel: 同族
@@ -1045,6 +1065,16 @@ entries:
     error_type: 完成时误配过去时间状语
     source_type: 教学文献登记错型
     diagnosis: 完成时参照点在现在，yesterday 把定位锚回过去，两套定位冲突（回 TA-06 机制节、TA-05 现时相关）
+  - wrong: I have visited Beijing last year.
+    right: I visited Beijing last year.
+    error_type: 完成时误配过去时间状语
+    source_type: 学习者语料病例
+    diagnosis: last year 是明确的过去时间，完成时不能和它同现，要改用一般过去时 visited。与本律首例（have seen + yesterday）是同一个错型。〔出处：胡晓、冯姗 2026 初二语料例；病例 VEC-008〕
+  - wrong: She has played the piano beautifully at the school talent show last month.
+    right: She played the piano beautifully at the school talent show last month.
+    error_type: 完成时误配过去时间状语
+    source_type: 学习者语料病例
+    diagnosis: 事情发生在上个月的才艺表演上，是钉死的过去时刻，要用 played，不用 has played。〔出处：杨欢腾 2025 语料例（以现在完成时替代一般过去时）；病例 VEC-009〕
   relatives:
   - id: TA-05
     rel: 前置
@@ -1388,7 +1418,12 @@ entries:
       from: TA-08 exs[0] 对照框
       slots:
         verb: G3_0442
-  error_cases: []
+  error_cases:
+  - wrong: People discovered that traffic jams are caused by narrow roads.
+    right: People discovered that traffic jams were caused by narrow roads.
+    error_type: 转述时态未后移
+    source_type: 学习者语料病例
+    diagnosis: 主句 discovered 已经站在过去，从句也要跟着往后退一步：are caused 要改 were caused。转述里把时态往过去推，正是过去形式表「距离」的用法。〔出处：田彤 2026 高一语料例；病例 VEC-028〕
   relatives:
   - id: TA-02
     rel: 同族
@@ -1571,7 +1606,17 @@ entries:
       slots:
         verb: V6_日常_26
         obj: G5_215
-  error_cases: []
+  error_cases:
+  - wrong: When I arrived, he already left.
+    right: When I arrived, he had already left.
+    error_type: 过去完成时缺失
+    source_type: 学习者语料病例
+    diagnosis: 到达之前他就已经离开了——站在「我到达」这个过去的点往回看，要用过去完成时 had left 把「更早」标出来。〔出处：张迪 2025 语料例；与 VEC-030 的滥用恰成一缺一滥对照；病例 VEC-029〕
+  - wrong: Last weekend, my friends and I had climbed to the top of the hill and enjoyed the beautiful view.
+    right: Last weekend, my friends and I climbed to the top of the hill and enjoyed the beautiful view.
+    error_type: 过去完成时滥用
+    source_type: 学习者语料病例
+    diagnosis: 上周末爬山只是一件过去的事，没有「更早一层」要回看，用一般过去时 climbed 就够了；had climbed 是把过去完成时用过了头。〔出处：杨欢腾 2025 语料例；病例 VEC-030〕
   relatives:
   - id: TA-05
     rel: 前置
@@ -2644,7 +2689,52 @@ entries:
       f: will-be
       from: TA-15 exs[1] 对照框
       slots: {}
-  error_cases: []
+  error_cases:
+  - wrong: Last year, the government build a new subway.
+    right: Last year, the government built a new subway.
+    error_type: 裸动词表过去
+    source_type: 学习者语料病例
+    diagnosis: 句里有 last year 把时间说清了，动词却忘了跟着变过去式。汉语靠时间词交代时间、动词不变样，这习惯搬过来就会这样；英语里时间词在场，动词也必须变形。〔出处：田彤 2026 高一写作统计，此类「过去时遗漏」占过去时偏误 40% 居首位；病例 VEC-001〕
+  - wrong: I go to Hainan last winter holiday.
+    right: I went to Hainan last winter holiday.
+    error_type: 裸动词表过去
+    source_type: 学习者语料病例
+    diagnosis: 时间词 last winter holiday 已经把事钉在过去，go 却没有变成 went。先看时间词、再给动词换过去式，是英语每句必做的动作。〔出处：杨欢腾 2025 高中写作语料例；病例 VEC-002〕
+  - wrong: Last month, my family go to the beach.
+    right: Last month, my family went to the beach.
+    error_type: 裸动词表过去
+    source_type: 学习者语料病例
+    diagnosis: Last month 说的是上个月的事，go 要变成 went 才对。原文统计：这类「过去时与现在时混淆」占时态错误 42.3%，是最常见的一类。〔出处：张迪 2025 三所高中 1,800 篇作文；病例 VEC-003〕
+  - wrong: I hang out with my friends the day before yesterday.
+    right: I hung out with my friends the day before yesterday.
+    error_type: 裸动词表过去
+    source_type: 学习者语料病例
+    diagnosis: 前天（the day before yesterday）发生的事，hang 要用过去式 hung。hang 的过去式不带 -ed，要整词记住（高频不规则动词的过去式整存，参 TA-17）。〔出处：吴金双 2025 初三作文例；病例 VEC-004〕
+  - wrong: Yesterday I watch a movie.
+    right: Yesterday I watched a movie.
+    error_type: 规则动词 -ed 遗漏
+    source_type: 学习者语料病例
+    diagnosis: Yesterday 的事，watch 少了尾巴 -ed。规则动词的过去式要靠 -ed 标出来，汉语动词没有这个尾巴，最容易漏。〔出处：胡晓、冯姗 2026 初二语料，遗漏类占其动词误用 42.0% 居首；病例 VEC-005〕
+  - wrong: They visit the museum last week.
+    right: They visited the museum last week.
+    error_type: 规则动词 -ed 遗漏
+    source_type: 学习者语料病例
+    diagnosis: 上周（last week）去参观，visit 要写成 visited。原文统计：「一般过去时形态缺失」共 141 例，占其动词误用 27.5%，是最高频的错误点。〔出处：胡晓、冯姗 2026；病例 VEC-006〕
+  - wrong: During my trip in Europe, I saw some Chinese people in bad manners. They speak and laugh loudly. They throw rubbish everywhere and some of them write their names on the buildings.
+    right: During my trip in Europe, I saw some Chinese people in bad manners. They spoke and laughed loudly. They threw rubbish everywhere and some of them wrote their names on the buildings.
+    error_type: 叙事时态漂移
+    source_type: 学习者语料病例
+    diagnosis: 讲一次过去的旅行，第一句 saw 把基调定在过去，后面的 speak、throw、write 却一个个漂回现在时。英语叙事要一句一句守住过去式，框架定了也不能松。〔出处：杨欢腾 2025 语料整段例；病例 VEC-025〕
+  - wrong: Then a teenager found me and ask me for my mom's telephone number.
+    right: Then a teenager found me and asked me for my mom's telephone number.
+    error_type: 同句时态漂移
+    source_type: 学习者语料病例
+    diagnosis: found 已经是过去式，并排的 ask 也要跟着变 asked。同一个句子里，时态要从头守到尾。〔出处：赵柳棚 2026 初二语料例；病例 VEC-026〕
+  - wrong: When I am 13 years old, I don't like to help others.
+    right: When I was 13 years old, I didn't like to help others.
+    error_type: 过去语境误用现在时
+    source_type: 学习者语料病例
+    diagnosis: 说的是 13 岁那年的事，am 和 don't 都要改成 was 和 didn't。汉语讲过去靠语境，英语讲过去靠每个动词都变形。〔出处：赵柳棚 2026 初二语料例；病例 VEC-027〕
   relatives:
   - id: TA-16
     rel: 同族
@@ -3013,7 +3103,27 @@ entries:
       slots:
         verb: V6_日常_6
         obj: G1_002
-  error_cases: []
+  error_cases:
+  - wrong: He goed to school.
+    right: He went to school.
+    error_type: 不规则动词过去式过度规则化
+    source_type: 学习者语料病例
+    diagnosis: go 的过去式是 went，要整个记住，不能按规则加上 -ed 变成 goed。-ed 的规则只管规则动词，高频不规则动词的过去式是整存的。〔出处：胡晓、冯姗 2026 统计，此错点 65 例占误加类 67.7%；病例 VEC-019〕
+  - wrong: I eated an apple.
+    right: I ate an apple.
+    error_type: 不规则动词过去式过度规则化
+    source_type: 学习者语料病例
+    diagnosis: eat 的过去式是 ate，不是 eated。先把高频不规则动词的过去式用熟，-ed 的图式就不会乱套到它们头上。〔出处：胡晓、冯姗 2026；病例 VEC-020〕
+  - wrong: He goed home early.
+    right: He went home early.
+    error_type: 不规则动词过去式过度规则化
+    source_type: 学习者语料病例
+    diagnosis: 与 goed to school 同型：go 的过去式整存为 went。〔出处：胡晓、冯姗 2026 另一学生原句；病例 VEC-021〕
+  - wrong: The government builded more roads last year.
+    right: The government built more roads last year.
+    error_type: 不规则动词过去式过度规则化
+    source_type: 学习者语料病例
+    diagnosis: build 的过去式是 built，不是 builded。不规则动词学得零散时，大脑就拿 -ed 规则来补空——补得越勤，越说明这批词要整存整练。〔出处：田彤 2026 高一语料例；病例 VEC-022〕
   relatives:
   - id: CO-10
     rel: 同族
@@ -3402,12 +3512,7 @@ entries:
     - G1_002
     - G2_081
     - ADD_0484
-  error_cases:
-  - wrong: Explain me this.
-    right: Explain this to me.
-    error_type: 言说类动词误入双宾构式
-    source_type: 条目成人层登记的事故例
-    diagnosis: explain 不含「致使拥有转移」义，过不了宽域关；纲领 coreView 与本条目共同登记此错形（回 CO-03 机制节）
+  error_cases: []
   relatives:
   - id: CO-02
     rel: 前置
@@ -3496,12 +3601,7 @@ entries:
     - V6_天气_39
     - V6_学校_20
     - G3_0933
-  error_cases:
-  - wrong: He knew the ball over the fence.
-    right: （无此说法：know 是状态动词，进不了致使移动模具）
-    error_type: 状态动词误入致使移动构式
-    source_type: 教学文献登记错型
-    diagnosis: know 没有可识解的物理致使链，与构式义不相容（条目边界登记的星号例；回 CO-04 机制节）
+  error_cases: []
   relatives:
   - id: CO-01
     rel: 前置
@@ -3770,12 +3870,7 @@ entries:
     supports: claim
     word_ids:
     - G2_105
-  error_cases:
-  - wrong: There has a book on the desk.
-    right: There is a book on the desk.
-    error_type: 存现与领有两戏混演（there be 误用 has）
-    source_type: 教学文献登记错型
-    diagnosis: 把 have 的领有戏码搬进存现模具；There be 管出场介绍，have 管领有（条目支撑登记 *There has a book；回 CO-07 机制节）
+  error_cases: []
   relatives:
   - id: QI-05
     rel: 同族
@@ -4302,12 +4397,7 @@ entries:
     word_ids:
     - V6_交通_34
     - V6_自然_25
-  error_cases:
-  - wrong: I want go.
-    right: I want to go.
-    error_type: 第二动词漏穿工作服（漏 to）
-    source_type: 条目成人层登记的事故例
-    diagnosis: want 已占用唯一的限定位置，go 必须以非限定形式（to go）出现（条目儿童版登记此错形；回 CO-13 机制节）
+  error_cases: []
   relatives:
   - id: CO-14
     rel: 同族
@@ -5076,12 +5166,7 @@ entries:
     word_ids:
     - G3_Q02
     - V6_日常_2
-  error_cases:
-  - wrong: Does she likes apples?
-    right: Does she like apples?
-    error_type: 倒装后主动词未恢复原形（时态重复标记）
-    source_type: 教学文献登记错型
-    diagnosis: does 已扛起时态，主动词须回原形（条目支撑登记此错型，叠加 GR-02 单次标记；回 QI-04 机制节）
+  error_cases: []
   relatives:
   - id: QI-01
     rel: 前置
@@ -5617,12 +5702,7 @@ entries:
     - G3_Q01
     - G4_189
     - V6_日常_64
-  error_cases:
-  - wrong: What do you go to school?
-    right: How do you go to school?
-    error_type: 疑问词辖域错位（方式误派 What）
-    source_type: 教学文献登记错型
-    diagnosis: 问的是上学方式，属 how 的辖域；按词翻译（什么→what）导致答非所问（条目支撑登记此典型偏误；回 QI-10 机制节）
+  error_cases: []
   relatives:
   - id: QI-01
     rel: 前置
@@ -5703,12 +5783,7 @@ entries:
     word_ids:
     - V6_交通_52
     - G2_105
-  error_cases:
-  - wrong: — Do you want tea or juice? — Yes.
-    right: — Do you want tea or juice? — Juice, please.
-    error_type: 选择问句误用极性答语（答非所问）
-    source_type: 教学文献登记错型
-    diagnosis: or-问句是选择图式，答语须从选项中选取；答 Yes 是把选择图式误当极性图式（条目支撑登记此类偏误稳定出现；回 QI-11 机制节）
+  error_cases: []
   relatives:
   - id: QI-01
     rel: 同族
@@ -5863,17 +5938,7 @@ entries:
     word_ids:
     - G3_0650
     - G3_Q01
-  error_cases:
-  - wrong: What you want?
-    right: What do you want?
-    error_type: 疑问词已前置但漏倒装（原位系统残留）
-    source_type: 教学文献登记错型
-    diagnosis: 只搬了疑问词、没搬助动词——汉语「原位 + 无倒装」系统搬了一半（条目支撑登记此错型；回 QI-13 机制节与 QI-04 倒装节）
-  - wrong: You want what?
-    right: What do you want?
-    error_type: 疑问词原位未前置（非回声语境）
-    source_type: 教学文献登记错型
-    diagnosis: 在非回声语境把汉语原位结构整套搬入英语；须与合法回声问句区分（条目支撑登记此错型）
+  error_cases: []
   relatives:
   - id: QI-04
     rel: 同族

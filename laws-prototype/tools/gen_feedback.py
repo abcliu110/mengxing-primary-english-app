@@ -135,6 +135,7 @@ REWRITES = {
     ("TA:TA16-E4", "We live here for three years."): {"why": "『住了三年、还住着』这条线从过去一直拉到现在，要用完成时 have lived 把线拉通；只说 live，线就断在今天。真实病例里 I live here since 2020 错在同一个地方。"},
 }
 REWRITES_REVEAL = {
+    "LQ:GR-02:0": {"why": "did 已经把『过去』扛在自己身上，后面的动词就卸下担子、用原形 go——一句话里过去只标一次。真实病例里有人写 didn't went，就是多标了一次。"},
     "LQ:GR-11:0": {"why": "because 和 so 是同一座桥的两头——一段因果只搭一座桥，留一个就行。"},
     "LQ:GR-12:0": {"why": "there be 里的 be，听离它最近的那个名字：pen 只有一个，所以用 is。真实病例里有人给 3 个西瓜配了 is，也是没听最近的名字。"},
     "LQ:GR-14:0": {"why": "位置决定穿哪件：between 后面是宾语的位置，要穿宾格 me。用 I 是把『正式感』加错了地方——连母语者也常犯这个错。"},
