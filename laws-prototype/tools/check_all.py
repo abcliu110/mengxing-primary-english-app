@@ -8,7 +8,10 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_laws.py --check         规律（LAWDATA + 代词/冠词/连词专区）稳态比对
   gen_phonics.py --check      拼读 DATA 再生比对
   gen_phonics.py --check-letters  拼读按字母查索引 PHX_LETTERS 再生比对
+  gen_phonics.py --check-sounds   拼读按读音查索引 PHX_SOUNDS 再生比对
   gen_words.py --check        词页 WLIST/WPAGE 再生比对
+  gen_vocab.py --check        词汇维度索引 VOCAB_DIM（主题/级别）再生比对
+  gen_errors.py --check       错句反查索引 ERRIDX（334 条病例）再生比对
   gen_spoken.py --check       口语 SP_DATA 再生比对
   gen_et.py --check           词源 ET 载荷 + 计数文案比对
   gen_borrow.py --check       借鉴呈现 BORROW（王牌 15 / 天坑 10）再生比对
@@ -37,7 +40,10 @@ CHECKS = [
     ("gen_laws --check", "gen_laws.py", ["--check"]),
     ("gen_phonics --check", "gen_phonics.py", ["--check"]),
     ("gen_phonics letters --check", "gen_phonics.py", ["--check-letters"]),
+    ("gen_phonics sounds --check", "gen_phonics.py", ["--check-sounds"]),
     ("gen_words --check", "gen_words.py", ["--check"]),
+    ("gen_vocab --check", "gen_vocab.py", ["--check"]),
+    ("gen_errors --check", "gen_errors.py", ["--check"]),
     ("gen_spoken --check", "gen_spoken.py", ["--check"]),
     ("gen_et --check", "gen_et.py", ["--check"]),
     ("gen_borrow --check", "gen_borrow.py", ["--check"]),

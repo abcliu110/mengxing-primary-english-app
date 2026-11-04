@@ -62,6 +62,17 @@
      为词库族条目整面（word/phonetic_gb/meaning/emoji），随索引内嵌。
      读音白话标签机械派生：取供词最多模式的 name 剥「读 /音标/」片段
      （并列取课程序在前者），不手写。
+  6. 按读音查索引 PHX_SOUNDS（2026-11-04 Stewart 拍板并入，呈现为拼读区
+     「按课程学 | 按字母查 | 按读音查」三段切换的第三段）：主文件原无此
+     块，生成侧新增，属已判差异；落盘后稳态 --check 应逐字节一致
+     （--check-sounds 单独验此块）。与 PHX_LETTERS 同源镜像：分组键反转
+     为音素 -> 字素组（同字素同读音的多模式聚合为一组，词表并集去重、
+     逐词标来源模式 id）；解卡/卡面口径与已判项 5 完全一致（id 精确命
+     中优先、#n 剥后缀命中族条目、直词条断言 bank 面 == 词库 GB 面、族
+     条目卡面内嵌）。音标墙按音标符号机械分区（单元音/双元音/辅音），
+     区内按词数降序；拼法行按词数降序。硬断言：58 音 / 168 组、/eɪ/ 8
+     拼法 245 词且 a 系（字素以 a 开头）子集恰 224 词（与字母查镜像对
+     账）。例句不内嵌，运行时按来源模式 id 回 DATA.patterns 取 exs。
 
 序列化格式（2026-11-03 从现行字面量反推实测）：Python json 默认分隔符
 （", " / ": "）、ensure_ascii=False、UTF-8 原样、无转义——整段字面量可由
@@ -72,9 +83,10 @@
 开头，命中数 != 1 拒绝）定界扫描得到的字面量跨度，其余字节原样不动。
 
 用法
-  python3 laws-prototype/tools/gen_phonics.py --check   # 稳态校验（DATA + PHX_LETTERS）
+  python3 laws-prototype/tools/gen_phonics.py --check   # 稳态校验（DATA + PHX_LETTERS + PHX_SOUNDS）
   python3 laws-prototype/tools/gen_phonics.py --write   # 生成并写回主文件
   python3 laws-prototype/tools/gen_phonics.py --check-letters  # 只验 PHX_LETTERS 块
+  python3 laws-prototype/tools/gen_phonics.py --check-sounds   # 只验 PHX_SOUNDS 块
 --check 退出码：0=逐字节一致（稳态）；2=差异存在但全部为已判项（待 --write）；
 1=出现清单外差异或断言失败。
 """
@@ -416,6 +428,140 @@ def letters_status(src, letters_text):
     return "ok" if src[span[0]:span[1]] == letters_text else "stale"
 
 
+DIPHTHONGS = {"aɪ", "aʊ", "ɔɪ", "eɪ", "əʊ", "eə", "ɪə", "ʊə", "aɪə", "aʊə", "ɔɪə"}
+VOWEL_CHARS = set("æɑeəɜɪiɒɔʊuʌ")
+
+
+def ph_section(ph):
+    """音标墙分区（已判项 6）：按音标符号本身机械分类（与原型构建脚本同函数）。"""
+    core = ph.strip("/")
+    if core in DIPHTHONGS:
+        return "双元音"
+    if core and all(c in VOWEL_CHARS or c == "ː" for c in core):
+        return "单元音"
+    return "辅音"
+
+
+def build_sounds(built, wb):
+    """按读音查索引（已判项 6）：PHX_LETTERS 的同源镜像，分组键反转为音素。
+
+    返回 {"secs": [{"name", "phs"}], "sounds": {ph: {"n", "gs": [...]}}}：
+      gs 项 = {"g", "label", "rep", "pats": [{"pid", "name", "n"}],
+               "w": [[键, [来源模式 id, ...]] 或 [键, [...], 卡面], ...]}
+      —— 词条编码与 build_letters 完全一致（直词条键 = bank 键、运行时取
+      bank 面；族条目键 = 词库族条目 id、第三项为内嵌卡面）。
+    """
+    bank = built["bank"]
+    by_id = {w["id"]: w for w in wb}
+
+    def resolve(wid):
+        if wid in by_id:
+            return wid, by_id[wid]
+        base = wid.split("#")[0]
+        if base in by_id:
+            return base, by_id[base]
+        fail(f"PHX_SOUNDS: 成员词 {wid} 在词库中无解（零丢词断言失败）")
+
+    def form_of(ent):
+        return ent[2][0] if len(ent) == 3 else bank[ent[0]][0]
+
+    byph = {}
+    for idx, p in enumerate(built["patterns"]):
+        byph.setdefault(p["ph"], {}).setdefault(p["g"], []).append((idx, p))
+    sounds = {}
+    for ph, byg in byph.items():
+        grows, allforms = [], set()
+        for g, gps in byg.items():
+            gps_sorted = sorted(gps, key=lambda t: (-len(t[1]["w"]), t[0]))
+            seen, words, forms = {}, [], []
+            for _idx, p in gps_sorted:
+                for wid in p["w"]:
+                    rid, entry = resolve(wid)
+                    key = entry["word"]
+                    if key in seen:
+                        ent = seen[key]
+                        if (rid != wid) != (len(ent) == 3):
+                            fail(f"PHX_SOUNDS: 词形 {key!r} 混入直词条与族条目两类来源，口径外")
+                        if p["id"] not in ent[1]:
+                            ent[1].append(p["id"])
+                        continue
+                    face = [entry["word"], entry.get("phonetic_gb") or entry.get("phonetic", ""),
+                            entry.get("meaning", ""), entry.get("emoji", "") or ""]
+                    if rid != wid:
+                        ent = [rid, [p["id"]], face]  # 族条目：卡面内嵌
+                    else:
+                        if bank.get(wid) != face:
+                            fail(f"PHX_SOUNDS: {wid} 的 bank 卡面与词库 GB 面不一致")
+                        ent = [wid, [p["id"]]]
+                    seen[key] = ent
+                    words.append(ent)
+                    forms.append(key)
+            allforms |= set(seen.keys())
+            grows.append({
+                "g": g,
+                "label": derive_label(gps_sorted[0][1]["name"]),
+                "rep": forms[:3],
+                "pats": [{"pid": p["id"], "name": p["name"], "n": len(p["w"])}
+                         for _i, p in gps_sorted],
+                "w": words,
+            })
+        grows.sort(key=lambda d: (-len(d["w"]), d["g"]))
+        sounds[ph] = {"n": len(allforms), "gs": grows}
+    secs = []
+    secmap = {}
+    for ph in sounds:
+        secmap.setdefault(ph_section(ph), []).append(ph)
+    for name in ("单元音", "双元音", "辅音"):
+        if name in secmap:
+            secs.append({"name": name,
+                         "phs": sorted(secmap[name], key=lambda ph: (-sounds[ph]["n"], ph))})
+    # ---- 镜像对账硬断言（与原型盘点/字母查逐项对账） ----
+    if len(sounds) != 58:
+        fail(f"PHX_SOUNDS: 音素应为 58，实得 {len(sounds)}")
+    ngroups = sum(len(d["gs"]) for d in sounds.values())
+    if ngroups != 168:
+        fail(f"PHX_SOUNDS: 拼法组应为 168，实得 {ngroups}")
+    ei = sounds.get("/eɪ/")
+    if not ei or len(ei["gs"]) != 8 or ei["n"] != 245:
+        fail(f"PHX_SOUNDS: /eɪ/ 应为 8 拼法 245 词，实得 "
+             f"{len(ei['gs']) if ei else 0} 拼法 {ei['n'] if ei else 0} 词")
+    aforms = set()
+    for gr in ei["gs"]:
+        if gr["g"].startswith("a"):
+            for ent in gr["w"]:
+                aforms.add(form_of(ent))
+    if len(aforms) != 224:
+        fail(f"PHX_SOUNDS: /eɪ/ 的 a 系子集应为 224 词（字母查镜像），实得 {len(aforms)}")
+    return {"secs": secs, "sounds": sounds}
+
+
+def find_sounds_span(src):
+    try:
+        return find_span(src, "const PHX_SOUNDS = ", "{")
+    except ValueError:
+        return None
+
+
+def splice_sounds(src, sounds_text):
+    """把 PHX_SOUNDS 字面量写入 src：已有块则替换，缺失则插在 PHX_LETTERS 之后。"""
+    span = find_sounds_span(src)
+    if span:
+        l0, l1 = span
+        return src[:l0] + sounds_text + src[l1:]
+    lspan = find_letters_span(src)
+    if not lspan:
+        raise ValueError("PHX_LETTERS 块缺失，无法定位 PHX_SOUNDS 插入点")
+    ins = lspan[1] + 1 if src[lspan[1]:lspan[1] + 1] == ";" else lspan[1]
+    return src[:ins] + "\n" + LMARKER + "\nconst PHX_SOUNDS = " + sounds_text + ";" + src[ins:]
+
+
+def sounds_status(src, sounds_text):
+    span = find_sounds_span(src)
+    if not span:
+        return "missing"
+    return "ok" if src[span[0]:span[1]] == sounds_text else "stale"
+
+
 def deep_diff_paths(a, b, path="$", out=None):
     if out is None:
         out = []
@@ -442,7 +588,7 @@ def deep_diff_paths(a, b, path="$", out=None):
 
 
 def main(argv) -> int:
-    if len(argv) != 2 or argv[1] not in ("--check", "--write", "--check-letters"):
+    if len(argv) != 2 or argv[1] not in ("--check", "--write", "--check-letters", "--check-sounds"):
         print(__doc__)
         return 64
     pm = json.loads(PM_PATH.read_text(encoding="utf-8"))
@@ -455,21 +601,30 @@ def main(argv) -> int:
     try:
         built, expected = build(pm, wm, current)
         letters_text = JD(build_letters(built, wb))
+        sounds_text = JD(build_sounds(built, wb))
     except AssertionError as e:
         print(f"FAIL: {e}")
         return 1
     lstat = letters_status(src, letters_text)
+    sstat = sounds_status(src, sounds_text)
     if argv[1] == "--check-letters":
         if lstat == "ok":
             print(f"PASS: PHX_LETTERS 字面量逐字节一致（{len(letters_text)} 字符）")
             return 0
         print(f"PHX_LETTERS 状态：{lstat}（待 --write 落盘）")
         return 2
+    if argv[1] == "--check-sounds":
+        if sstat == "ok":
+            print(f"PASS: PHX_SOUNDS 字面量逐字节一致（{len(sounds_text)} 字符）")
+            return 0
+        print(f"PHX_SOUNDS 状态：{sstat}（待 --write 落盘）")
+        return 2
     gen_text = JD(built)
     if gen_text == cur_text:
         print(f"PASS: DATA 字面量逐字节一致（{len(cur_text)} 字符；已判项均已落盘）")
-        if lstat == "ok":
+        if lstat == "ok" and sstat == "ok":
             print(f"PASS: PHX_LETTERS 字面量逐字节一致（{len(letters_text)} 字符）")
+            print(f"PASS: PHX_SOUNDS 字面量逐字节一致（{len(sounds_text)} 字符）")
             if argv[1] == "--write":
                 out = ensure_marker(src, s0)
                 if out != src:
@@ -477,13 +632,21 @@ def main(argv) -> int:
                     print("已补生成标记并写回（字面量本身无变化）")
             return 0
         if argv[1] == "--check":
-            print(f"PHX_LETTERS 状态：{lstat}（已判项 5，待 --write 落盘）")
+            if lstat != "ok":
+                print(f"PHX_LETTERS 状态：{lstat}（已判项 5，待 --write 落盘）")
+            if sstat != "ok":
+                print(f"PHX_SOUNDS 状态：{sstat}（已判项 6，待 --write 落盘）")
             return 2
-        out = splice_letters(src, letters_text)
+        out = src
+        if lstat != "ok":
+            out = splice_letters(out, letters_text)
+        if sstat != "ok":
+            out = splice_sounds(out, sounds_text)
         s0b, _s1b = find_span(out, "const DATA = ", '{"patterns"')
         out = ensure_marker(out, s0b)
         MAIN.write_bytes(out.encode("utf-8"))
-        print(f"PHX_LETTERS 写回完成：文件 {len(src)} -> {len(out)} 字符（索引 {len(letters_text)} 字符）")
+        print(f"索引写回完成：文件 {len(src)} -> {len(out)} 字符"
+              f"（PHX_LETTERS {len(letters_text)} 字符 / PHX_SOUNDS {len(sounds_text)} 字符）")
         return 0
     # 逐字节不等 -> 内容差异必须恰为已判项集合
     paths = deep_diff_paths(built, current)
@@ -513,10 +676,13 @@ def main(argv) -> int:
         print(f"  [{kind}] {key}: {old!r} -> {new!r}")
     if lstat != "ok":
         print(f"  [pattern-letters] PHX_LETTERS: 状态 {lstat} -> 随本写回一并落盘")
+    if sstat != "ok":
+        print(f"  [pattern-sounds] PHX_SOUNDS: 状态 {sstat} -> 随本写回一并落盘")
     if argv[1] == "--check":
         return 2
     out = src[:s0] + gen_text + src[s1:]
     out = splice_letters(out, letters_text)
+    out = splice_sounds(out, sounds_text)
     s0b, _s1b = find_span(out, "const DATA = ", '{"patterns"')
     out = ensure_marker(out, s0b)
     MAIN.write_bytes(out.encode("utf-8"))
