@@ -15,10 +15,14 @@
 
 构成规则（与维度原型构建脚本 build_error_lookup.py 同口径，原型为验证
 工具、口径以本生成器为准落盘）
-  - 逐律三路汇合（先到先得 lawdata > yaml > zone），律内按 norm(wrong)
-    归一去重（阶段 3 同款归一：全角引号转半角、小写、标点转空格、空白
-    折叠）。硬断言对账盘点：总数 363 / 覆盖 212 律 / 来源 lawdata
-    116、yaml 111、zone 136（首版 334/206/109/89/136；2026-11-04 专家
+  - 逐律四路汇合（先到先得 lawdata > yaml > zone.data > zone.parts），
+    律内按 norm(wrong) 归一去重（阶段 3 同款归一：全角引号转半角、
+    小写、标点转空格、空白折叠）。硬断言对账盘点：总数 381 / 覆盖
+    217 律 / 来源 lawdata 116、yaml 111、zone 154（2026-11-04 动画集成
+    波 B 第 0 步：第四路汇入合并律 zone.parts 面——仅 GR-46–GR-50 五律
+    的部件病例 18 条（2/2/8/4/2），此前三路均未读此面，五律病例自此
+    进索引；parts 病例无 diag_kid 字段，孩子版回落 diag 原文。上一版
+    363/212/116/111/136；首版 334/206/109/89/136；2026-11-04 专家
     对照修复波：verb_error_cases 31 条归属回填 TA/GR 律 +22 yaml、
     +7 lawdata，另病例卫生删三源跨仓影子副本 95 条——先到先得口径下
     保留集不变，故 zone 136 与教学法 55 不变）。
@@ -173,6 +177,14 @@ def build(master, contrast):
             raw.append(("yaml", c.get("wrong"), c.get("right"), c.get("diagnosis"), c.get("diagnosis_kid")))
         for c in zd.get("errors") or []:
             raw.append(("zone", c.get("wrong"), c.get("right"), c.get("diag"), c.get("diag_kid")))
+        # 第四路（2026-11-04 动画集成波 B 第 0 步）：合并律的 zone.parts 面
+        # （仅 GR-46–GR-50 五律，parts[*] 为 {部件律 id: {data: {errors}}}），
+        # 病例归属合并律 id，来源计数并入 zone；无 diag_kid 者孩子版回落 diag。
+        for part in (e.get("zone") or {}).get("parts") or []:
+            for pobj in (part or {}).values():
+                pd = (pobj or {}).get("data") or {}
+                for c in pd.get("errors") or []:
+                    raw.append(("zone", c.get("wrong"), c.get("right"), c.get("diag"), c.get("diag_kid")))
         can = e.get("canonical") or {}
         fam = can.get("family") or lid.split("-")[0]
         name = can.get("headline") or ld.get("hl") or zd.get("short") or lid
@@ -212,12 +224,15 @@ def build(master, contrast):
     laws_child = len({c[0] for c in cases if not c[7]})
     cx_in = len({c[0] for c in cases if c[6]})
     # ---- 硬断言：与原型盘点逐项对账 ----
-    if len(cases) != 363:
-        fail(f"病例总数应为 363，实得 {len(cases)}")
-    if len(per_law) != 212:
-        fail(f"覆盖律应为 212，实得 {len(per_law)}")
-    if src_counts != {"lawdata": 116, "yaml": 111, "zone": 136}:
-        fail(f"来源构成对账失败：{src_counts} != lawdata 116 / yaml 111 / zone 136")
+    # 2026-11-04 动画集成波 B 第 0 步：汇入 zone.parts 面（GR-46:2/47:2/48:8/
+    # 49:4/50:2 共 18 条，律内去重后全为新增）→ 总数 381、覆盖 217 律、
+    # zone 来源 136→154；教学法 55、辨析标记 11、diag_kid 改写 216 均不变。
+    if len(cases) != 381:
+        fail(f"病例总数应为 381，实得 {len(cases)}")
+    if len(per_law) != 217:
+        fail(f"覆盖律应为 217，实得 {len(per_law)}")
+    if src_counts != {"lawdata": 116, "yaml": 111, "zone": 154}:
+        fail(f"来源构成对账失败：{src_counts} != lawdata 116 / yaml 111 / zone 154")
     if n_teach != 55:
         fail(f"教学法条目应为 55，实得 {n_teach}")
     if cx_in != 11:
