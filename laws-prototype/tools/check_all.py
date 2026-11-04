@@ -12,7 +12,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_words.py --check        词页 WLIST/WPAGE 再生比对
   gen_vocab.py --check        词汇维度索引 VOCAB_DIM（主题/级别）再生比对
   gen_levels.py --check       统一级别 WORD_LEVELS（全词级别+来源标签，覆盖 2942/2942）再生比对
-  gen_errors.py --check       错句反查索引 ERRIDX（334 条病例）再生比对
+  gen_errors.py --check       错句反查索引 ERRIDX 再生比对
   gen_spoken.py --check       口语 SP_DATA 再生比对
   gen_et.py --check           词源 ET 载荷 + 计数文案比对
   gen_borrow.py --check       借鉴呈现 BORROW（王牌 15 / 天坑 10）再生比对
