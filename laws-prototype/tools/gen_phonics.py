@@ -88,6 +88,14 @@
      恰为 kid 且新旧值恰为该条款替换者，属已判差异；落盘后稳态 --check
      应逐字节一致。
 
+  9. GB 音标归一化 27 词（2026-11-04 Stewart 拍板安全版规格；专家采集
+     发音路缺口 5 的修正版）：wordbank phonetic_gb 中非标准写法 əː 按音节
+     重读位置归一——非重读（词尾弱读等 7 词）-> ə、重读音节内（20 词）
+     -> ɜː。DATA 侧差异恰为：受影响模式 exs 例词的 p 旧->新（gb27_exs_ok
+     逐项断言，除此之外 exs 深等）与 bank 卡面音标位 [1] 旧->新（词/义/
+     emoji 不动）；PHX_LETTERS/PHX_SOUNDS 的内嵌族卡面随之同变（与词库
+     GB 面断言一致）。落盘后稳态 --check 应逐字节一致。
+
 序列化格式（2026-11-03 从现行字面量反推实测）：Python json 默认分隔符
 （", " / ": "）、ensure_ascii=False、UTF-8 原样、无转义——整段字面量可由
 解析后对象 json.dumps 逐字节复现（DATA/WLIST/WPAGE 三段实测全等）。
@@ -142,6 +150,42 @@ def ensure_marker(src: str, span_start: int) -> str:
     return src[:ls] + indent + MARKER + "\n" + src[ls:]
 
 FIXED4 = {"heard": "/hɜːd/", "gas": "/ɡæs/", "toy": "/tɔɪ/", "math": "/mæθ/"}
+# 已判项 9：GB 音标归一化 27 词（word -> (旧 GB 面, 新 GB 面)），与 wordbank
+# phonetic_gb 归一同表（Stewart 2026-11-04 拍板安全版规格）。
+GB27 = {
+    "teacher": ("/ˈtiːtʃəː/", "/ˈtiːtʃə/"), "actor": ("/ˈæktəː/", "/ˈæktə/"),
+    "centre": ("/ˈsentəː/", "/ˈsentə/"), "center": ("/ˈsentəː/", "/ˈsentə/"),
+    "waiter": ("/ˈweɪtəː/", "/ˈweɪtə/"), "bigger": ("/ˈbɪɡəː/", "/ˈbɪɡə/"),
+    "yoghurt": ("/ˈjəʊgəːt/", "/ˈjəʊɡət/"),
+    "blackbird": ("/ˈblækbəːd/", "/ˈblækbɜːd/"), "burger": ("/ˈbəːɡə/", "/ˈbɜːɡə/"),
+    "burn": ("/bəːn/", "/bɜːn/"), "burning": ("/ˈbəːniŋ/", "/ˈbɜːniŋ/"),
+    "certain": ("/ˈsəːtən/", "/ˈsɜːtən/"), "church": ("/tʃəːtʃ/", "/tʃɜːtʃ/"),
+    "curly": ("/ˈkəːli/", "/ˈkɜːli/"), "determine": ("/diˈtəːmin/", "/diˈtɜːmin/"),
+    "furry": ("/ˈfəːri/", "/ˈfɜːri/"), "journalist": ("/ˈdʒəːnəlist/", "/ˈdʒɜːnəlist/"),
+    "journey": ("/ˈdʒəːni/", "/ˈdʒɜːni/"), "observe": ("/əbˈzəːv/", "/əbˈzɜːv/"),
+    "per": ("/pəː/", "/pɜː/"), "prefer": ("/priˈfəː/", "/priˈfɜː/"),
+    "search": ("/səːtʃ/", "/sɜːtʃ/"), "sir": ("/səː/", "/sɜː/"),
+    "squirrel": ("/ˈskwəːrəl/", "/ˈskwɜːrəl/"), "surface": ("/ˈsəːfis/", "/ˈsɜːfis/"),
+    "surname": ("/ˈsəːneɪm/", "/ˈsɜːneɪm/"), "terms": ("/təːmz/", "/tɜːmz/"),
+}
+
+
+def gb27_exs_ok(cur, new):
+    """已判项 9 断言：两份 exs 仅允许 GB27 词条的 p 旧->新差异，其余深等。"""
+    if isinstance(cur, dict) and isinstance(new, dict):
+        if set(cur) != set(new):
+            return False
+        w = cur.get("w")
+        for k in cur:
+            if k == "p" and isinstance(w, str) and w in GB27:
+                if (cur[k], new[k]) != GB27[w] and cur[k] != new[k]:
+                    return False
+            elif not gb27_exs_ok(cur[k], new[k]):
+                return False
+        return True
+    if isinstance(cur, list) and isinstance(new, list):
+        return len(cur) == len(new) and all(gb27_exs_ok(a, b) for a, b in zip(cur, new))
+    return cur == new
 # wordsets 字段 -> embedded 字段映射（描述字段对账用）
 WS_MAP = {"grapheme": "g", "phoneme": "ph", "cat": "cat", "group": "grp",
           "name": "name", "laws": "laws", "menu": "menu", "face": "face",
@@ -279,6 +323,9 @@ def build(pm, wm, current):
                 and obj["kid"] == cur["kid"].replace(OLD_KID_CLAUSE, NEW_KID_CLAUSE):
             # 已判项 8：GP-th kid 条款修正（二合字母家族 13 模式共享 S-32 句）
             expected[("pattern-kid-th", obj["id"])] = (OLD_KID_CLAUSE, NEW_KID_CLAUSE)
+        elif diffs == ["exs"] and "exs" in cur and gb27_exs_ok(cur["exs"], obj["exs"]):
+            # 已判项 9：GB 音标归一化 27 词——exs 例词 p 仅 GB27 旧->新差异
+            expected[("pattern-exs-gb27", obj["id"])] = ("GB27 p 归一", obj["id"])
         else:
             fail(f"模式 {obj['id']} 与现行存在清单外差异字段 {diffs}")
 
@@ -335,6 +382,12 @@ def build(pm, wm, current):
     for key, face in bank.items():
         cur = current["bank"][key]
         if face != cur and ("bank-meaning", key) not in expected:
+            # 已判项 9：GB 音标归一化 27 词——卡面仅音标位 [1] 旧->新差异
+            w = face[0]
+            if (len(face) == len(cur) and w in GB27 and (cur[1], face[1]) == GB27[w]
+                    and all(face[i] == cur[i] for i in range(len(cur)) if i != 1)):
+                expected[("bank-gb27", key)] = (cur[1], face[1])
+                continue
             fail(f"卡 {key} 与现行存在清单外差异：{cur} -> {face}")
     # 已判项 3：四张修正卡音标零差异断言
     seen4 = set()
@@ -744,6 +797,13 @@ def main(argv) -> int:
         elif kind == "pattern-kid-th":
             idx = [p["id"] for p in current["patterns"]].index(key)
             allowed.add(f"$.patterns[{idx}].kid")
+        elif kind == "pattern-exs-gb27":
+            idx = [p["id"] for p in current["patterns"]].index(key)
+            for dp in deep_diff_paths(current["patterns"][idx]["exs"],
+                                      built["patterns"][idx]["exs"]):
+                allowed.add(f"$.patterns[{idx}].exs" + dp[1:])
+        elif kind == "bank-gb27":
+            allowed.add(f"$.bank.{key}[1]")
         else:
             # 已判项 2（bank-meaning）：卡面已落 canonical 的稳态下该项不产生
             # 差异，不入 allowed（否则与实测 diff 集合对不上而误报）
