@@ -1038,7 +1038,7 @@ body.adult .adult{display:block}
 <div class="vc-topbar"><span class="back" data-go="home">← 回首页</span><span class="vc-tnav"><button type="button" onclick="VC.show('list')">📋 词表</button><button type="button" onclick="VC.show('map')">📦 打包学</button><button type="button" onclick="VC.show('overview')">🧭 总论</button><button type="button" onclick="VC.show('laws')">📜 规律总论</button></span></div>
 <div class="vcview on" id="vcv-list">
 <h1>词汇解码区</h1>
-<p class="sub">词库全量 2,942 词 · 本表按主题分类列 2,351 词 · 点词进词页</p>
+<p class="sub">词库全量 2,942 词 · 本表按主题分类列 <span id="vc-list-n">2,584</span> 词 · 点词进词页</p>
 <div class="toolrow">
 <span class="toolchip" onclick="VC.show('map')">📦 打包学</span>
 <span class="toolchip" onclick="VC.show('overview')">🧭 猜词工具（总论内）</span>
@@ -1658,6 +1658,7 @@ function renderList(){
   ab.innerHTML = abh; gl.innerHTML = gh;
   var dq = 0;
   GROUPS.forEach(function(g){ if(g.name === '待归类') g.subs.forEach(function(s){ dq += s.idxs.length; }); });
+  var vln = document.getElementById('vc-list-n'); if (vln) vln.textContent = WLIST.length;
   document.getElementById('vc-footline').textContent =
     '核对：已列 ' + total + ' · 本表 ' + WLIST.length + ' 词 · 词库全量 2,942 词 · 还没进这张表的 ' + (2942 - WLIST.length) + ' 词（动词变形 158 词挂在原形词页里，其余是还没归类的词）' +
     '；「待归类」' + dq + ' 词是现在的分类里还没有对应类目的词，每个词归不了类的理由都记着';
@@ -7157,7 +7158,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <section class="view" id="v-decide"><div class="bw-scope">
 <span class="back" data-go="tech">← 回技巧区</span> <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">🧭 选时态决策树 · 十大天坑榜</h2>
-<p class="sub">选时态，先走下面这棵决策树；避坑，看再下面的十大天坑榜。</p><div class="box" style="margin:0 0 12px"><p style="line-height:1.75;margin:0"><b>决策树怎么来的</b>：先把现有的决策工具看了一遍——冠词区已有「三步选冠词」决策卡、代词区有判定步，缺的是时态；这棵树按 GR-02 / GR-04 / GR-08 三条规律的判断标准组装，叶子直达动词区时态模块。<br><b>天坑榜怎么排的</b>：把每条规律的全部错误病例数出来从多到少排（病例库里的病例和规律页里的病例都算；并列时先比题量、再按编号）——是数出来的，不是手编的，照同样的数法可以复算。</p></div>
+<p class="sub">选时态，先走下面这棵决策树；避坑，看再下面的十大天坑榜。</p><div class="box" style="margin:0 0 12px"><p style="line-height:1.75;margin:0"><b>决策树怎么来的</b>：先把现有的决策工具看了一遍——冠词区已有「三步选冠词」决策卡、代词区有判定步，缺的是时态；这棵树按 GR-02 / GR-04 / GR-08 三条规律的判断标准组装，叶子直达动词区时态模块。<br><b>天坑榜怎么排的</b>：把错句反查病例库里每条规律的孩子面病例数出来，从多到少排（并列时按规律编号排）——是数出来的，不是手编的，照同样的数法可以复算。</p></div>
 <h3 style="margin:16px 0 4px">🌳 选时态决策树</h3>
 <div id="bw-tree"></div>
 <p class="small" style="margin-top:10px">冠词怎么选：冠词区首页有现成的「三步选冠词」决策卡（<a href="javascript:void(0)" onclick="show('art')">去冠词区 →</a>），本页不重复造。</p>
@@ -9668,7 +9669,7 @@ const PHX_SROOTS = { wall: document.getElementById('phx-swall'), sph: document.g
 function openSWall() {
   let h = '<span class="back" data-go="home">← 回首页</span>';
   h += phxModebarHTML('sounds');
-  h += '<div class="big">点一个读音</div><div class="sub">看看这个音一共有几种拼法。共 58 个读音（来自 174 个模式），按单元音 / 双元音 / 辅音分区，区内按词数从多到少排。</div>';
+  h += '<div class="big">点一个读音</div><div class="sub">看看这个音一共有几种拼法。共 58 个读音（来自 ' + DATA.patterns.length + ' 个模式），按单元音 / 双元音 / 辅音分区，区内按词数从多到少排。</div>';
   PHX_SOUNDS.secs.forEach(function(sec) {
     h += '<div class="sec">' + esc(sec.name) + ' · ' + sec.phs.length + ' 个</div><div class="lgrid">';
     sec.phs.forEach(function(ph) {
