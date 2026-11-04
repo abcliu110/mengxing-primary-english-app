@@ -7,10 +7,11 @@
 行与 WPAGE 页原文、wordbank 骨架、conflicts 裁定记录）。
 
 生成目标：mengxing-prototype-v1.html block 0（VC 词汇解码模块）的
-  var WLIST = [[...], ...];      （2,351 行 × 22 列）
+  var WLIST = [[...], ...];      （2,584 行 × 22 列；2026-11-04 第三波 B
+      追加无阻塞 233 行，行号域 0..2583，另 236 行主题阻塞行待裁未写）
   var WPAGE = {"<wlist_index>": {...}, ...};   （2,204 条）
   var WEXTRA = {"<wlist_index>": [课标, Dolch, 词频序, 音标口径, 音标来源, 争议旗, 民间词源旗], ...};
-      （2,238 条；B4 词页「档案卡」数据面，2026-11-03 借鉴波新增——由
+      （2,471 条；B4 词页「档案卡」数据面，2026-11-03 借鉴波新增——由
       wordbank / phonetic_gb / etym 三分仓现算：kebiao_level、dolch、
       freq_rank、gb basis、gb source，以及 B3 词级徽章旗：争议旗 = etym
       disputes 实质文本（非空且不以「无已知争议」「同形异词登记」开头，
@@ -18,7 +19,7 @@
       （非空且不以「未见」开头，冻结 53）。至少一字段非空才建条，无数据不设位。）
 
 构成规则
-  - WLIST：行序 = vc.wlist_index（0..2350 连续唯一，硬断言），行内容取
+  - WLIST：行序 = vc.wlist_index（0..2583 连续唯一，硬断言），行内容取
     vc.wlist 原文；逐行断言第 21 列（idx20）== 该词 wordbank_id、行宽 22。
   - WPAGE：值取 vc.wpage 原文（按 wlist_index 键控）；**键序沿用现行文件**
     ——WPAGE 键为整数型字符串，JS 对象迭代恒按数值序，文本序无语义；总表
@@ -166,11 +167,11 @@ def build(wm, cur_wpage):
         if idx in byidx:
             fail(f"wlist_index 重复：{idx}")
         byidx[idx] = rec
-    if sorted(byidx) != list(range(2351)):
-        fail(f"wlist_index 应为 0..2350 连续，实得 {len(byidx)} 个")
+    if sorted(byidx) != list(range(2584)):
+        fail(f"wlist_index 应为 0..2583 连续，实得 {len(byidx)} 个")
 
     wlist = []
-    for i in range(2351):
+    for i in range(2584):
         rec = byidx[i]
         row = rec["vc"]["wlist"]
         if len(row) != 22:
@@ -180,7 +181,7 @@ def build(wm, cur_wpage):
         wlist.append(row)
 
     # WPAGE：键集合以总表为准，键序沿用现行
-    wp_src = {str(i): byidx[i]["vc"]["wpage"] for i in range(2351) if byidx[i]["vc"].get("wpage")}
+    wp_src = {str(i): byidx[i]["vc"]["wpage"] for i in range(2584) if byidx[i]["vc"].get("wpage")}
     if set(wp_src) != set(cur_wpage):
         fail(f"WPAGE 键集合与现行不一致：总表 {len(wp_src)} / 现行 {len(cur_wpage)}")
     wpage = {k: wp_src[k] for k in cur_wpage}
@@ -217,7 +218,7 @@ def build(wm, cur_wpage):
     # ---- WEXTRA（B4 档案卡数据面；字段口径见文件头） ----
     wextra = {}
     n_kb = n_dl = n_dsp = n_folk = 0
-    for i in range(2351):
+    for i in range(2584):
         rec = byidx[i]
         wb = rec.get("wordbank") or {}
         pg = rec.get("phonetic_gb") or {}
@@ -237,8 +238,8 @@ def build(wm, cur_wpage):
     if (n_kb, n_dl, n_dsp, n_folk) != (60, 180, 607, 53):
         fail(f"WEXTRA 普查漂移：课标 {n_kb}/Dolch {n_dl}/争议 {n_dsp}/民间词源 {n_folk}"
              f" != 冻结 (60, 180, 607, 53)")
-    if len(wextra) != 2238:
-        fail(f"WEXTRA 条数 {len(wextra)} != 冻结 2238")
+    if len(wextra) != 2471:
+        fail(f"WEXTRA 条数 {len(wextra)} != 冻结 2471")
 
     stats = {"canon_checked": n_canon_checked, "novc_conflict_words": len(n_novc_conflict_words),
              "wextra": len(wextra)}

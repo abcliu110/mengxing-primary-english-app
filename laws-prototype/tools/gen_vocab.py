@@ -18,9 +18,11 @@
 构成规则（与四份维度原型构建脚本逐字同口径，原型为验证工具、口径以本
 生成器为准落盘）
   - 主题 topic：分类只用 wordbank.theme_sub 字段原值。15 个 theme_sub 值
-    是补入波次/来源标签（非主题，PROV_SUB 集合与原型脚本一致），其 694
+    是补入波次/来源标签（非主题，PROV_SUB 集合与原型脚本一致），其 355
     词归「暂未分主题」、按原标签分组如实呈现，不改名、不归并、不猜补；
-    其余 25 个为真主题共 2,248 词。主题墙分区 = theme_macro 三大主题
+    其余 25 个为真主题共 2,587 词（2026-11-04 第三波 B：波次标签词经
+    链继承 + 编辑裁定回填高置信 339 词，低置信 355 词仍留波次标签待裁，
+    断言计数按新口径重登记）。主题墙分区 = theme_macro 三大主题
     （人与自我/人与社会/人与自然），断言每个真主题的词其真 macro 值唯
     一；macro 全为来源标签的主题（核心语法功能词）单列「其他主题」。
     词卡 = [wordbank_id, 词, 英式音标（phonetic_gb 优先）, 词性首项,
@@ -37,9 +39,11 @@
     义, 有词页 0/1, aliases 命中 0/1]；名单内未收录词只列词形（miss）。
   - 有词页：words_master 中该词条 vc 非 null（与原型 vc_by_word 同口
     径：按词条 word 小写查表）。硬断言对账原型命中表：Dolch 315/315/
-    287、Fry 962/962/640、YLE 1179/1179/964；主题 25 主题 / 2,248 词 /
-    未分 694 词，抽查主题词数（食物与饮品 128、交通与出行 79、家庭与
-    亲友 42）。
+    290、Fry 962/962/771、YLE 1179/1179/1070（有词页数原 287/640/964，
+    2026-11-04 第三波 B 补 WLIST 233 行后 +3/+131/+106 按实测重登记，
+    名单/收录两数不变）；主题 25 主题 / 2,587 词 /
+    未分 355 词，抽查主题词数（食物与饮品 145、交通与出行 93、家庭与
+    亲友 45）。
 
 序列化格式：同 gen_phonics.py——Python json 默认分隔符、ensure_ascii=False。
 
@@ -245,12 +249,12 @@ def build(wb, wm, snap):
                 for k, v in sorted(unc.items(), key=lambda kv: -len(kv[1]))]
     n_gen = sum(len(t["words"]) for t in theme_list)
     n_unc = sum(len(g["w"]) for g in unc_list)
-    if not (n_gen == 2248 and n_unc == 694 and n_gen + n_unc == len(wb) == 2942):
-        fail(f"主题对账失败：真主题 {n_gen} / 未分 {n_unc} / 词库 {len(wb)}（应 2248/694/2942）")
+    if not (n_gen == 2587 and n_unc == 355 and n_gen + n_unc == len(wb) == 2942):
+        fail(f"主题对账失败：真主题 {n_gen} / 未分 {n_unc} / 词库 {len(wb)}（应 2587/355/2942）")
     if len(theme_list) != 25:
         fail(f"主题数应为 25，实得 {len(theme_list)}")
     by_theme = {t["name"]: len(t["words"]) for t in theme_list}
-    for name, want in (("食物与饮品", 128), ("交通与出行", 79), ("家庭与亲友", 42)):
+    for name, want in (("食物与饮品", 145), ("交通与出行", 93), ("家庭与亲友", 45)):
         if by_theme.get(name) != want:
             fail(f"主题 {name} 词数应为 {want}，实得 {by_theme.get(name)}")
     topic = {"tot": len(wb), "ng": n_gen, "nu": n_unc, "secs": secs, "unc": unc_list}
@@ -345,12 +349,12 @@ def build(wb, wm, snap):
     d_ids = ['dolch-' + lv for lv in DOLCH_ORDER + ['noun']]
     f_ids = [f'fry-{h}' for h in range(1, 11)]
     y_ids = ['yle-starters', 'yle-movers', 'yle-flyers']
-    if tot(d_ids) != (315, 315, 287):
-        fail(f"Dolch 命中表对账失败：{tot(d_ids)} != (315, 315, 287)")
-    if tot(f_ids) != (962, 962, 640):
-        fail(f"Fry 命中表对账失败：{tot(f_ids)} != (962, 962, 640)")
-    if tot(y_ids) != (1179, 1179, 964):
-        fail(f"YLE 命中表对账失败：{tot(y_ids)} != (1179, 1179, 964)")
+    if tot(d_ids) != (315, 315, 290):
+        fail(f"Dolch 命中表对账失败：{tot(d_ids)} != (315, 315, 290)")
+    if tot(f_ids) != (962, 962, 771):
+        fail(f"Fry 命中表对账失败：{tot(f_ids)} != (962, 962, 771)")
+    if tot(y_ids) != (1179, 1179, 1070):
+        fail(f"YLE 命中表对账失败：{tot(y_ids)} != (1179, 1179, 1070)")
     union = set(dolch_map) | set(fry_map) | set(yle_map)
     ungraded = sorted((set(bank) | set(alias_hit)) - union)
     if len(ungraded) != 1300:
@@ -381,7 +385,7 @@ def main(argv) -> int:
         print(f"FAIL: {e}")
         return 1
     gen_text = JD(built)
-    print(f"对账：主题 25 个 / 真主题 2248 词 / 未分 694 词；级别 Dolch {stats['dolch']}、"
+    print(f"对账：主题 25 个 / 真主题 2587 词 / 未分 355 词；级别 Dolch {stats['dolch']}、"
           f"Fry {stats['fry']}、YLE {stats['yle']}（名单/收录/有词页）；未归级 {stats['ungraded']} 词")
     if gen_text == cur_text:
         print(f"PASS: VOCAB_DIM 字面量逐字节一致（{len(cur_text)} 字符）")

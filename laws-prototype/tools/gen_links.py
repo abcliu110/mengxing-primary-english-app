@@ -7,7 +7,8 @@ knowledge-linkage-design.md 阶段 1。
 
 事实源（全部为已登记数据源，零新编内容）：
   model/words_master.json    词枢纽：VC 词行（law_refs 第 12 位）、etym 分仓
-  model/phonics_master.json  拼读模式成员（wordsets 正本，11,375 对）
+  model/phonics_master.json  拼读模式成员（wordsets 正本，12,995 对；
+                             2026-11-04 第三波 B 回填确合 1,620 对后）
   model/morph_data.json      词素家族页成员（words+sections+pending+kin）
   model/laws_master.json     规律户口（校验引用落点用）
   model/etymology.json       词源记录（2,278 条，与 words_master.etym 对账）

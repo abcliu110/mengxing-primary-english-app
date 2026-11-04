@@ -72,8 +72,10 @@
      条目卡面内嵌）。音标墙按音标符号机械分区（单元音/双元音/辅音），
      区内按词数降序；拼法行按词数降序。硬断言：58 音 / 167 组（原 168 组，
      2026-11-04 专家对照修复波移除 0 成员空模式 GP-ea-ɑː 后少 1 组）、/eɪ/ 8
-     拼法 245 词且 a 系（字素以 a 开头）子集恰 224 词（与字母查镜像对
-     账）。例句不内嵌，运行时按来源模式 id 回 DATA.patterns 取 exs。
+     拼法 284 词且 a 系（字素以 a 开头）子集恰 263 词（与字母查镜像对
+     账；原 245/224，2026-11-04 第三波 B 成员回填新增 /eɪ/ 成员 39 词
+     后按实测重登记，见已判项 10）。例句不内嵌，运行时按来源模式 id
+     回 DATA.patterns 取 exs。
 
   7. 模式集合变更（2026-11-04 专家对照修复波）：总表增删模式时（如移除
      0 成员空模式 GP-ea-ɑː），现行 DATA 的模式集合随总表增删——存续模式
@@ -95,6 +97,19 @@
      逐项断言，除此之外 exs 深等）与 bank 卡面音标位 [1] 旧->新（词/义/
      emoji 不动）；PHX_LETTERS/PHX_SOUNDS 的内嵌族卡面随之同变（与词库
      GB 面断言一致）。落盘后稳态 --check 应逐字节一致。
+
+  10. 拼读成员回填 + 配套建卡（2026-11-04 第三波 B，Stewart 批准波次）：
+      词库缺口补入的 469 词经对齐器三档判定（备料 wave3b-phonics-
+      membership.json，确合档抽验 30/30），仅确合 1,620 对并入各模式
+      成员（存疑 596 / 确不合 567 不写）。DATA 侧差异恰为：受影响模式
+      的 w 只许尾部追加（旧成员序列为新序列的严格前缀——不删、不改序、
+      不动存续成员）、n 同步为 len(w)；370 个新成员词配套新建 bank 卡
+      （此前无卡——字母查/读音查的解卡断言要求成员必有卡），新卡只许
+      追加于 bank 键序尾部、存续键相对序不变、卡面须与 words_master
+      词库骨架面 [word, phonetic_gb, meaning, emoji] 逐项一致且其键须
+      为某模式成员；删除键/改序/改存续卡面一律清单外。PHX_SOUNDS 的
+      /eɪ/ 冻结计数随新成员按实测重登记（见 build_sounds）。落盘后
+      稳态 --check 应逐字节一致。
 
 序列化格式（2026-11-03 从现行字面量反推实测）：Python json 默认分隔符
 （", " / ": "）、ensure_ascii=False、UTF-8 原样、无转义——整段字面量可由
@@ -326,6 +341,11 @@ def build(pm, wm, current):
         elif diffs == ["exs"] and "exs" in cur and gb27_exs_ok(cur["exs"], obj["exs"]):
             # 已判项 9：GB 音标归一化 27 词——exs 例词 p 仅 GB27 旧->新差异
             expected[("pattern-exs-gb27", obj["id"])] = ("GB27 p 归一", obj["id"])
+        elif set(diffs) <= {"w", "n"} and len(obj["w"]) > len(cur["w"]) \
+                and obj["w"][:len(cur["w"])] == cur["w"] \
+                and obj["n"] == len(obj["w"]) and cur["n"] == len(cur["w"]):
+            # 已判项 10：成员回填——w 只许尾部追加（旧序列为严格前缀），n 同步
+            expected[("pattern-members", obj["id"])] = (len(cur["w"]), len(obj["w"]))
         else:
             fail(f"模式 {obj['id']} 与现行存在清单外差异字段 {diffs}")
 
@@ -375,12 +395,31 @@ def build(pm, wm, current):
                     fail(f"卡 {key} 无裁定但两总表卡面释义不一致")
                 meaning = wmc["meaning"]
             bank[key] = [wmc["word"], wmc["phonetic"], meaning, wmc["emoji"]]
-    if set(bank) != set(current["bank"]):
-        fail("bank 键集合与现行不一致")
-    if list(bank) != list(current["bank"]):
-        fail("bank 键序与现行不一致（总表 cards 分仓序应与现行全等）")
+    cur_bank = current["bank"]
+    bank_added = [k for k in bank if k not in cur_bank]
+    if any(k not in bank for k in cur_bank):
+        fail("bank 键集合出现删除（清单外）")
+    if [k for k in bank if k in cur_bank] != list(cur_bank):
+        fail("bank 存续键序与现行不一致（总表 cards 分仓序应与现行全等）")
+    if bank_added:
+        # 已判项 10：新成员词配套建卡——键须为已生成模式的成员、卡面须与
+        # words_master 词库骨架面逐项一致，否则清单外。
+        member_ids = set()
+        for _obj in patterns:
+            member_ids.update(_obj["w"])
+        skel = {r["wordbank_id"]: r.get("wordbank") or {} for r in wm["words"]}
+        for k in bank_added:
+            if k not in member_ids:
+                fail(f"bank 新增卡 {k} 不是任何模式的成员（已判项 10 口径外）")
+            sk = skel.get(k) or {}
+            want = [sk.get("word"), sk.get("phonetic_gb"), sk.get("meaning"), sk.get("emoji")]
+            if bank[k] != want:
+                fail(f"bank 新增卡 {k} 卡面 {bank[k]!r} != 词库骨架面 {want!r}（已判项 10 口径外）")
+            expected[("bank-add", k)] = (None, bank[k])
     for key, face in bank.items():
-        cur = current["bank"][key]
+        if key in bank_added:
+            continue  # 已判项 10 已登记，不与现行比面
+        cur = cur_bank[key]
         if face != cur and ("bank-meaning", key) not in expected:
             # 已判项 9：GB 音标归一化 27 词——卡面仅音标位 [1] 旧->新差异
             w = face[0]
@@ -606,16 +645,16 @@ def build_sounds(built, wb):
     if ngroups != 167:
         fail(f"PHX_SOUNDS: 拼法组应为 167，实得 {ngroups}")
     ei = sounds.get("/eɪ/")
-    if not ei or len(ei["gs"]) != 8 or ei["n"] != 245:
-        fail(f"PHX_SOUNDS: /eɪ/ 应为 8 拼法 245 词，实得 "
+    if not ei or len(ei["gs"]) != 8 or ei["n"] != 284:
+        fail(f"PHX_SOUNDS: /eɪ/ 应为 8 拼法 284 词，实得 "
              f"{len(ei['gs']) if ei else 0} 拼法 {ei['n'] if ei else 0} 词")
     aforms = set()
     for gr in ei["gs"]:
         if gr["g"].startswith("a"):
             for ent in gr["w"]:
                 aforms.add(form_of(ent))
-    if len(aforms) != 224:
-        fail(f"PHX_SOUNDS: /eɪ/ 的 a 系子集应为 224 词（字母查镜像），实得 {len(aforms)}")
+    if len(aforms) != 263:
+        fail(f"PHX_SOUNDS: /eɪ/ 的 a 系子集应为 263 词（字母查镜像），实得 {len(aforms)}")
     return {"secs": secs, "sounds": sounds}
 
 
@@ -804,6 +843,12 @@ def main(argv) -> int:
                 allowed.add(f"$.patterns[{idx}].exs" + dp[1:])
         elif kind == "bank-gb27":
             allowed.add(f"$.bank.{key}[1]")
+        elif kind == "pattern-members":
+            idx = [p["id"] for p in current["patterns"]].index(key)
+            allowed.add(f"$.patterns[{idx}].w.length")
+            allowed.add(f"$.patterns[{idx}].n")
+        elif kind == "bank-add":
+            allowed.add(f"$.bank.{key}")
         else:
             # 已判项 2（bank-meaning）：卡面已落 canonical 的稳态下该项不产生
             # 差异，不入 allowed（否则与实测 diff 集合对不上而误报）
