@@ -11,6 +11,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_phonics.py --check-sounds   拼读按读音查索引 PHX_SOUNDS 再生比对
   gen_words.py --check        词页 WLIST/WPAGE 再生比对
   gen_vocab.py --check        词汇维度索引 VOCAB_DIM（主题/级别）再生比对
+  gen_levels.py --check       统一级别 WORD_LEVELS（全词级别+来源标签，覆盖 2942/2942）再生比对
   gen_errors.py --check       错句反查索引 ERRIDX（334 条病例）再生比对
   gen_spoken.py --check       口语 SP_DATA 再生比对
   gen_et.py --check           词源 ET 载荷 + 计数文案比对
@@ -43,6 +44,7 @@ CHECKS = [
     ("gen_phonics sounds --check", "gen_phonics.py", ["--check-sounds"]),
     ("gen_words --check", "gen_words.py", ["--check"]),
     ("gen_vocab --check", "gen_vocab.py", ["--check"]),
+    ("gen_levels --check", "gen_levels.py", ["--check"]),
     ("gen_errors --check", "gen_errors.py", ["--check"]),
     ("gen_spoken --check", "gen_spoken.py", ["--check"]),
     ("gen_et --check", "gen_et.py", ["--check"]),
