@@ -274,6 +274,12 @@ PN_FIXES = {
         ("claim", "本条为原型新拟，编号待对账。", "本条已于 2026-11-03 立条为 PR-15。"),
         ("quiz[0].ans", "B. anything——否定句里 any 上岗", "B. anything——否定句里多半派 any 上岗（倾向，不是铁律）"),
     ],
+    # GR-14 note 状态文案转正（2026-11-04 落地批第 5 项）：四家已立条 PR-12～PR-15（2026-11-03），
+    # note 中「新拟规律 NEW-P1～NEW-P4（编号待与目录对账）」为立条前旧文案，生成时换定版。
+    "GR-14": [
+        ("note", "四家已在第 6 组补成新拟规律 NEW-P1～NEW-P4（编号待与目录对账）",
+         "四家已在第 6 组补成规律 PR-12～PR-15（2026-11-03 立条）"),
+    ],
 }
 PN_TOPIC_SUB = (
     "33 条规律 · 29 条定版（目录 PR 组 + GR-14 + GR-10/GR-13 + QI 全组）+ 4 条新拟（NEW-P1～NEW-P4 · 编号待对账）",
@@ -485,6 +491,25 @@ def build_pn(by, cur_laws):
                 fail(f"PN 条目 {e['id']} 现行 exc 与总表派生不一致")
     return out
 
+
+# PR-12～PR-15 成人层补齐（2026-11-04 落地批第 2 项，Stewart 裁定）：四律总表 zone.adult
+# 只有 claim 一项——逐字取自各律 zone.data.claim 经 PN_FIXES 转正的成人层论断（定版文本）；
+# beats/sources/boundary 总表无定版文本，如实留缺、不生成。PN_EXTRA 不在补齐范围。
+PN_ADULT_ADD = ["PR-12", "PR-13", "PR-14", "PR-15"]
+
+def pn_adult_with_new(obj, by, pn_laws):
+    out = dict(obj)
+    for fid in PN_ADULT_ADD:
+        ad = (by[fid].get("zone") or {}).get("adult")
+        if ad is None:
+            fail(f"总表 {fid} 无 zone.adult 分仓（成人层补齐）")
+        if fid in out and not deep_eq(out[fid], ad):
+            fail(f"PN_ADULT {fid} 现行与总表不一致")
+        out[fid] = copy.deepcopy(ad)
+    order = [e["id"] for e in pn_laws]
+    if not set(out) <= set(order):
+        fail("PN_ADULT 键超出 PN LAWS 范围")
+    return {k: out[k] for k in order if k in out}
 
 def build_from_master_map(by, cur_map, scope):
     """EXTRA/ADULT 类字典字面量：按现行键序从总表分仓重建，须与现行深相等。"""
@@ -965,6 +990,8 @@ def build_all(text, by):
     reps.append((w["pn_laws"][0], w["pn_laws"][1], JD(new_pn), "PN LAWS"))
     for nm, scope in [("pn_extra", "PN_EXTRA"), ("pn_adult", "PN_ADULT")]:
         obj = build_from_master_map(by, w[nm][2], scope)
+        if nm == "pn_adult":
+            obj = pn_adult_with_new(obj, by, w["pn_laws"][2])
         reps.append((w[nm][0], w[nm][1], JD(obj), scope))
     topic = copy.deepcopy(w["pn_topic"][2])
     if topic["sub"] == PN_TOPIC_SUB[0]:

@@ -48,6 +48,7 @@ CHECKS = [
     ("gen_errors --check", "gen_errors.py", ["--check"]),
     ("gen_spoken --check", "gen_spoken.py", ["--check"]),
     ("gen_et --check", "gen_et.py", ["--check"]),
+    ("gen_ar_films --check", "gen_ar_films.py", ["--check"]),
     ("gen_borrow --check", "gen_borrow.py", ["--check"]),
     ("check_morph_sync", "check_morph_sync.py", []),
     ("check_upstream", "check_upstream.py", []),

@@ -1148,3 +1148,7 @@ golf、news 本轮升 verified：两词记录均载真实词源（golf ← 荷�
 ## 十四、引文陈旧清理轮（2026-11-02 夜，Stewart「有问题直接修」；与 §十三 B/C 轮交叉合并）
 
 §12 挂账的同族缺陷（link/钩子内嵌「最早的意思「X」」引文未随修复轮更新）已清。朴素扫描标出 431 词，四批逐词判定**实修 428 词**：link 只换引文约 284 词、整句重写 136 词（引文为别义/词根义/未定假说者，如 access「进攻，猛攻」、black「烧过的」、july 串档、april 维纳斯假说当事实）；钩子第 3 条 428 词全修（引文对齐 + 断言逐词复核：模板误报「差得挺远」大量翻正、「变了 N 次」按相邻站实质变化重算）。主会话补修：**mild**（朴素正则漏检的空引文，link/钩子按 mechanism 重写）。误报 3 词（date/parrot/tennis，嵌套引号假阳性）未动。本轮与 Stewart 侧 §十三 B/C 轮（基底 7cc2cea→057491f，verified 1814→1816）交叉：以 057491f 为基底移植本轮 427 词（palm/paragraph 除外，彼由 B/C 轮重建）；合并时顺带对齐 B/C 轮 4 条记录的同族残留——**paragraph** link/钩子引文对齐其新原义「行边标示分段的短划（段落符号）」；**palm** link/钩子引文收窄为「手掌」（与顶层原义一致，拉丁兼义保留在 chain gloss 与 disputes 注文），钩子断言与 link 统一为「没变」；**sadly/spaceship** 升格时 link 与 story_hooks 留空，已按各自 mechanism_sentence/path 补齐（sadly 钩子 4 条、spaceship 钩子 4 条），spaceship 的 semantic_path 首站与顶层原义对齐。**终验**：全文「最早的意思「…」」引文以严格子串法（引文后须紧跟 」，兼容嵌套引号）逐条比对，**不一致归零**；不变量全过（已核验 1,816 / 待核 462、original==path[0] 100%、来源 ≥2 与钩子 ≥2 与 link 非空均 1,816/1,816、禁用套话 0）。另有 4 处「本义「…」」散文式同义转述（restroom/review/safety/straight）语义属实，不属本缺陷类，未动。
+
+## 十五、证据等级注记清理（2026-11-04 落地批第 5 项，Stewart 逐条拍板）
+
+词页 et.d 与 etymology record 的 evidence_grade 中「；待 OED 复核」类尾注（主模板「一级＋二级双源互证（牛津大学出版社词源栏 × Etymonline，Wiktionary 旁证；待 OED 复核）」及 5 个变体模板，共 words_master 2,476 处、etymology.json 1,245 处）属内部 QA 状态注记，已自用户面文本移除，等级表述本体（双源/三源互证口径）保留不变。**状态登记：OED 三级复核仍未做**——本节即该状态的登记处，后续复核进度记于此，不再写回词条文本。另 spaceship 条 et.d 中「见 disputes」字段指针一并移除，其首现年代裁定全文在该条 disputes 与 §十三，不丢失。

@@ -238,8 +238,11 @@ def build(master, contrast):
     if cx_in != 11:
         fail(f"索引内有辨析页的律应为 11，实得 {cx_in}")
     n_kid_rw = sum(1 for c in cases if c[8] != c[5])
-    if n_kid_rw != 216:
-        fail(f"diag_kid 改写条数应为 216（另同文 146 + 保留登记 1），实得 {n_kid_rw}")
+    # 2026-11-04 落地批第 5 项（diag_kid 残漏补扫）：GR-05 #1/#2/#7/#8、C-08 #1、
+    # C-10 #0/#1 共 7 条原同文 diag_kid 属残漏（内部编号互引/半成品备忘/原文转述腔），
+    # 已按白话口径从病例原文改写 → 改写 216→223、同文 146→139、保留登记 1 不变。
+    if n_kid_rw != 223:
+        fail(f"diag_kid 改写条数应为 223（另同文 139 + 保留登记 1），实得 {n_kid_rw}")
     if any(not c[8] for c in cases):
         fail("存在 diag_kid 为空的病例行（孩子版全量覆盖口径）")
     built = {"tot": len(cases), "nt": n_teach, "laws": len(per_law),
