@@ -21,15 +21,21 @@
                      "byWord": {词面原形: bank_id}};
 
 定级口径（分层顺序，先到先得；每词级别必带来源标签，推导永不冒充权威）
-  1. 课标二级（ord 10）：词面斜杠分拆形命中二级表普查词集。普查归一逐字沿用
-     课标侦察 census 口径（kebiao-scout/census_intersect.py 的 census_words：
-     条目取括号前词头、按 / 分拆、小写纯 [a-z] 单字才算「词」，专名/短语/
-     非纯形剔除并计数）。对账：普查词形命中 492（另剔除专名/短语/非纯形共
-     14 形：China、Chinese、English、Internet、Miss、Mr、Mrs、Ms、OK、PE、
-     TV、ice cream、o'clock、ping-pong），落到词库条目 502 条（部分词形
-     对应多条同形条目），与三级合计覆盖 1,349
-     条 == 词库全量 − 普查未覆盖 1,593（kebiao-uncovered.json 地面真值对账）。
-  2. 课标三级（ord 20）：同法命中三级新增词集（普查词形命中 849，落条目 847）。
+  1. 课标二级（ord 10）：词面命中二级表词形集。普查归一逐字沿用课标侦察
+     census 口径（kebiao-scout/census_intersect.py 的 census_words：条目取
+     括号前词头、按 / 分拆，分桶 word/proper/phrase/nonpure）。
+     【口径登记（2026-11-04 R5-01 修复）：分桶只作普查统计，匹配用全量词形
+     ——专名/短语/非纯形与纯词同权参与权威匹配：先按词面原形（含 '/' 分拆
+     原形）大小写敏感精确匹配全量词形集，纯 [a-z] 词再走小写归一回退命中
+     word 桶（保旧口径既有命中）。旧版只取 word 桶匹配，静默丢弃 14 个专名/
+     短语/非纯形（China、Chinese、English、Internet、Miss、Mr、Mrs、Ms、OK、
+     PE、TV、ice cream、o'clock、ping-pong），且小写 miss 在三级表内致 Miss
+     被大小写不敏感误配三级——16 词标签错，R5-01 确诊后改为现行口径。】
+     对账：二级表展开全量词形 506（word 492 + proper 11 + phrase 1 +
+     nonpure 2），506/506 全部按上口径命中词库，落到词库条目 516 条（部分
+     词形对应多条同形条目），与三级合计覆盖 1,364 条。
+  2. 课标三级（ord 20）：同法命中三级新增词集（全量词形 1,103，命中 851，
+     落条目 848）。
   3. 课标数词（ord 15）：数词闭集（基数 one–twenty/整十/hundred/thousand +
      序数 first–twelfth，共命中 40 条）——数词在原书数词分表单独立出、未并入
      505 主表普查，故单独成层并在来源标签中注明，不冒充主表词。
@@ -47,12 +53,12 @@
      「推导」，来源如实写明无数据。
 
 旧字段对账：wordbank.kebiao_level（60 条，旧波次手填「二级」）与新口径冲突
-冻结 8 条，逐条原因登记在本脚本 OLD_CONFLICTS 并在 --check 时断言集合相等：
-OK/TV/Mr/Mrs/Ms/China 为专名/缩略形（普查归一剔除，旧字段按条目原形计）、
-Miss 为大小写口径差（原书 Miss 为二级旧词、新词 miss 为三级新增，普查按
-小写分拆形命中三级）、cream 为旧字段无主表依据（505 只有短语 ice cream，
-普查按短语剔除）。新口径以普查归一为准，旧字段保留原样不改（WEXTRA 档案卡
-仍读旧字段，属既有呈现，本波不动）。
+冻结 1 条，登记在本脚本 OLD_CONFLICTS 并在 --check 时断言集合相等：仅
+cream——旧字段无主表依据（505 只有短语 ice cream，ice cream 本身经短语
+精确匹配已归二级，cream 单列不在表内）。其余 7 条（OK/TV/Mr/Mrs/Ms/China
+专名/缩略形、Miss 大小写口径差）已于 R5-01 修复后与旧字段一致（均归二级），
+退出冻结表。旧字段保留原样不改（WEXTRA 档案卡仍读旧字段，属既有呈现，
+本波不动）。
 
 序列化格式：同 gen_vocab.py——Python json 默认分隔符、ensure_ascii=False。
 写回安全边界：只替换唯一定位锚（"var WORD_LEVELS="，命中 != 1 拒绝）定界
@@ -95,15 +101,10 @@ NUMSET = {'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'
           'ninth', 'tenth', 'eleventh', 'twelfth'}
 
 # 旧 kebiao_level 字段冲突冻结表（id: 原因），与新口径对账的登记面，见头注。
+# R5-01 修复后仅剩 cream 1 条：OK/TV/Mr/Mrs/Ms/China/Miss 已按全量词形匹配
+# 归二级，与旧字段一致，退出冻结（历史原因见头注旧字段对账段）。
 OLD_CONFLICTS = {
-    'G3_K06': 'OK：缩略形，普查归一按专名/非纯形剔除（旧字段按条目原形计二级）',
-    'G3_K32': 'TV：缩略形，同上',
-    'G3_K33': 'Mr：专名形，同上',
-    'G3_K34': 'Mrs：专名形，同上',
-    'G3_K35': 'Ms：专名形，同上',
-    'G4_K08': 'China：专名，普查归一剔除（旧字段按条目原形计二级）',
-    'G3_K36': 'Miss：大小写口径差——原书 Miss 为二级旧词、miss 为三级新词，普查小写分拆命中三级',
-    'G3_K39': 'cream：旧字段无主表依据（505 仅有短语 ice cream，普查按短语剔除）',
+    'G3_K39': 'cream：旧字段无主表依据（505 仅有短语 ice cream；ice cream 经短语精确匹配归二级，cream 单列不在表内）',
 }
 
 
@@ -275,29 +276,55 @@ def build(wb, snap, ec):
                 bank_keys.setdefault(p.strip().lower(), item['id'])
 
     # ---- 1/2 课标 ----
-    l2_words = {w for k, w in census_words(kebiao_forms(KB2_PATH)) if k == 'word'}
-    l3_words = {w for k, w in census_words(kebiao_forms(KB3_PATH)) if k == 'word'}
-    h2 = {w for w in l2_words if w in bank_keys}
-    h3 = {w for w in l3_words if w in bank_keys}
-    if len(h2) != 492:
-        fail(f"课标二级普查词形命中应为 492，实得 {len(h2)}")
-    if len(h3) != 849:
-        fail(f"课标三级新增普查词形命中应为 849，实得 {len(h3)}")
+    # 口径（R5-01 修复登记）：分桶（word/proper/phrase/nonpure）只作普查统计，
+    # 权威匹配用全量词形集——先按词面原形大小写敏感精确匹配，再以小写归一
+    # 回退命中 word 桶。旧版只取 word 桶，专名/短语/非纯形在匹配前被丢弃。
+    l2_census = census_words(kebiao_forms(KB2_PATH))
+    l3_census = census_words(kebiao_forms(KB3_PATH))
+    l2_forms = {w for k, w in l2_census}
+    l3_forms = {w for k, w in l3_census}
+    l2_words = {w for k, w in l2_census if k == 'word'}
+    l3_words = {w for k, w in l3_census if k == 'word'}
+    bank_exact = set()
+    for e in wb:
+        w0 = e['word'].strip()
+        bank_exact.add(w0)
+        for p0 in w0.split('/'):
+            bank_exact.add(p0.strip())
+
+    def census_hit(forms_all, forms_word):
+        # 词形命中词库：原形精确命中，或 word 桶词形经小写键命中（同匹配口径）
+        return {f for f in forms_all if f in bank_exact or (f in forms_word and f in bank_keys)}
+
+    h2 = census_hit(l2_forms, l2_words)
+    h3 = census_hit(l3_forms, l3_words)
+    if len(l2_forms) != 506 or len(h2) != 506:
+        fail(f"课标二级全量词形应为 506 且全部命中词库，实得词形 {len(l2_forms)} / 命中 {len(h2)}")
+    if len(l3_forms) != 1103 or len(h3) != 851:
+        fail(f"课标三级全量词形应为 1103、命中 851，实得词形 {len(l3_forms)} / 命中 {len(h3)}")
 
     lv = {}  # id -> [ord, tag, src]
 
     def put(item, o, tag, src):
         lv[item['id']] = [o, tag, src]
 
+    def orig_parts(item):
+        w = item['word'].strip()
+        return [p.strip() for p in w.split('/')] if '/' in w else [w]
+
+    def kb_match(item, forms_all, forms_word):
+        if any(p in forms_all for p in orig_parts(item)):
+            return True
+        return any(p in forms_word for p in parts_of(item))
+
     for item in wb:
-        ps = parts_of(item)
-        if any(p in l2_words for p in ps):
+        if kb_match(item, l2_forms, l2_words):
             put(item, 10, '课标二级', '课标二级 · 2022 课标附录3 二级表')
-        elif any(p in l3_words for p in ps):
+        elif kb_match(item, l3_forms, l3_words):
             put(item, 20, '课标三级', '课标三级 · 2022 课标附录3 三级表新增词')
     n_kb = len(lv)
-    if n_kb != 1349:
-        fail(f"课标二级+三级覆盖词库条目应为 1349（全量 2942 − 普查未覆盖 1593），实得 {n_kb}")
+    if n_kb != 1364:
+        fail(f"课标二级+三级覆盖词库条目应为 1364（全量 2942 − 未覆盖 1578），实得 {n_kb}")
 
     # ---- 3 数词 ----
     n_num = 0
@@ -455,8 +482,10 @@ def build(wb, snap, ec):
              "kb3_entries": sum(1 for v in lv.values() if v[1] == '课标三级'),
              "num": n_num, "list": n_list,
              "freq": dict(n_freq), "form": n_form, "morph": n_morph}
-    # 全层计数冻结（2026-11-04 首建实测；源表或口径变更须同步改此表并在报告中说明）
-    if not (stats["list"] == 488 and stats["freq"] == {41: 134, 42: 181, 43: 251, 44: 409}
+    # 全层计数冻结（2026-11-04 首建实测；2026-11-04 R5-01 修复后重登记：
+    # 名单层 −1（Internet 归课标二级）、词频层 −14（14 词归课标二/三级，
+    # 分档 {41:−8, 42:−3, 43:−1, 44:−2}）；源表或口径变更须同步改此表并在报告中说明）
+    if not (stats["list"] == 487 and stats["freq"] == {41: 126, 42: 178, 43: 250, 44: 407}
             and stats["form"] == 72 and stats["morph"] == 18):
         fail(f"分层计数与冻结表不符：{stats}")
     return {"tags": TAGS, "byId": byId, "byWord": byWord}, stats
@@ -482,10 +511,10 @@ def main(argv) -> int:
         print(f"FAIL: {e}")
         return 1
     gen_text = JD(built)
-    print(f"对账：覆盖 2942/2942；课标二级 {stats['kb2_entries']} 条（普查词形 492）、"
-          f"课标三级 {stats['kb3_entries']} 条（普查词形 849）、数词 {stats['num']}、"
+    print(f"对账：覆盖 2942/2942；课标二级 {stats['kb2_entries']} 条（全量词形 506/506 命中）、"
+          f"课标三级 {stats['kb3_entries']} 条（全量词形命中 851/1103）、数词 {stats['num']}、"
           f"词表收录 {stats['list']}、词频推导 {sum(stats['freq'].values())}（分档 {stats['freq']}）、"
-          f"随基形 {stats['form']}、形态末段 {stats['morph']}；旧字段冲突冻结 8 条逐条登记")
+          f"随基形 {stats['form']}、形态末段 {stats['morph']}；旧字段冲突冻结 1 条（cream）登记在案")
     if gen_text == cur_text:
         print(f"PASS: WORD_LEVELS 字面量逐字节一致（{len(cur_text)} 字符）")
         return 0
