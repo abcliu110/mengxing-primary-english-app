@@ -7241,6 +7241,8 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 @keyframes anxBlink{50%{opacity:0}}
 .anx-tense-axis{position:relative;height:64px;margin:26px 6px 4px;border-bottom:3px solid #9db89f}
 .anx-tense-zone{position:absolute;bottom:8px;transform:translateX(-50%);font-size:12.5px;color:#5c6a58;text-align:center}
+.anx-tense-axis.narrow{height:88px}
+.anx-tense-axis.narrow .anx-tense-zone{bottom:auto;top:2px}
 .anx-tense-now{position:absolute;bottom:0;transform:translateX(-50%);text-align:center}
 .anx-tense-now .pin{font-size:20px}
 .anx-tense-now .lab{font-size:12.5px;font-weight:700;color:#a33b2e;white-space:nowrap}
@@ -7324,6 +7326,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 .anx-dot{position:absolute;top:14px;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;background:#f8faf5;border:3px solid #4a7a59;cursor:pointer;z-index:2;padding:0}
 .anx-dot.on{background:#4a7a59;border-color:#3d5a40}
 .anx-dotlab{position:absolute;top:30px;transform:translateX(-50%);font-size:11.5px;color:#5c6a58;text-align:center;width:104px;line-height:1.35;cursor:pointer}
+.anx-dotlead{position:absolute;width:2px;margin-left:-1px;background:#c3d2c0;border-radius:1px}
 .anx-dotlab.on{color:#3d5a40;font-weight:700}
 .anx-scrub{width:100%;height:44px;accent-color:#4a7a59;cursor:pointer}
 .anx-infocard{margin-top:8px;background:#fff;border:1.5px solid #d5dfd0;border-radius:14px;padding:12px 16px;min-height:88px}
@@ -7883,9 +7886,56 @@ function etTimeline(mount, rec){
   mount.appendChild(box);
   var idx=0, timerId=null;
   function pos(i){ return stops.length===1?50:(i/(stops.length-1))*100; }
+  /* 词源站点标签排布（重叠修复批）：按实测文字宽贪心分行——同一行内标签左右缘恒留 6px 间隔，
+     行高按实测（隐藏时以画布估算行数代替），行数随冲突增长；无冲突时保持单行原貌。 */
+  var labCtx=null, labSeenW=0, leads=[];
+  function labTextW(txt, bold){
+    if(!labCtx) labCtx=document.createElement('canvas').getContext('2d');
+    labCtx.font=(bold?'700 ':'')+'11.5px sans-serif';
+    return labCtx.measureText(txt||'').width;
+  }
+  function layoutLabs(){
+    var W=axiswrap.clientWidth;
+    if(!W || W===labSeenW) return;
+    labSeenW=W;
+    var n=stops.length, rows=[], placed=[];
+    stops.forEach(function(s2, j){
+      var c=pos(j)/100*W + (j===0?45.76:(j===n-1?-45.76:0));
+      var tw=Math.max(labTextW(s2.form, true), labTextW(s2.period, false));
+      var h=labs[j].offsetHeight||0;
+      if(!h){ var ln=Math.max(1,Math.ceil(labTextW(s2.form,false)/100))+((s2.period)?Math.max(1,Math.ceil(labTextW(s2.period,false)/100)):0); h=ln*15.5; }
+      var sp=[c-tw/2, c+tw/2], row=null;
+      for(var r=0;r<rows.length;r++){ if(sp[0]>=rows[r].lastRight+6){ row=rows[r]; break; } }
+      if(!row){ var top=rows.length?(rows[rows.length-1].top+rows[rows.length-1].maxH+6):30; row={lastRight:-1e9, top:top, maxH:0}; rows.push(row); }
+      row.lastRight=Math.max(row.lastRight, sp[1]); row.maxH=Math.max(row.maxH, h);
+      placed.push({row:row, j:j});
+    });
+    while(leads.length<labs.length){ var ld=el('div','anx-dotlead'); ld.style.display='none'; axiswrap.appendChild(ld); leads.push(ld); }
+    placed.forEach(function(p2){
+      var l=labs[p2.j], ld=leads[p2.j];
+      if(rows.length>1){
+        l.style.top=p2.row.top+'px';
+        if(p2.row.top>30){ ld.style.display=''; ld.style.left=pos(p2.j)+'%'; ld.style.top='25px'; ld.style.height=(p2.row.top-25)+'px'; }
+        else ld.style.display='none';
+      } else { l.style.top=''; ld.style.display='none'; }
+    });
+    if(rows.length>1){ var last=rows[rows.length-1]; axiswrap.style.height=(last.top+last.maxH+3)+'px'; }
+    else axiswrap.style.height='';
+  }
+  /* 旅行卡高度守卫（H-2）：卡内容实测高超过旅行区可用高（110px）时才逐档收小词形字号，
+     卡内文字一字不改；测不到高度（隐藏/jsdom）时不动作。 */
+  function fitCard(){
+    wform.style.fontSize='';
+    var ch=card.offsetHeight;
+    if(!ch || ch<=110) return;
+    var size=(parseFloat(window.getComputedStyle(wform).fontSize)||33);
+    while(ch>110 && size>19){ size-=2; wform.style.fontSize=size+'px'; ch=card.offsetHeight; }
+  }
+  function setForm(s2){ wform.textContent=s2.form; wlang.textContent=s2.lang; fitCard(); }
   function stopTimer(){ if(timerId!=null){ rt.clearTimer(timerId); timerId=null; } }
   function goto(i, anim){
     idx=Math.max(0, Math.min(stops.length-1, i));
+    layoutLabs();
     var s=stops[idx];
     card.style.right='auto'; card.style.transform='translateX(-50%)';
     var tw=travel.clientWidth, cw=card.offsetWidth;
@@ -7904,11 +7954,11 @@ function etTimeline(mount, rec){
       var tx=(card.style.transform.indexOf('translateX(0)')===0)?'0':'-50%';
       var half=rt.anim(card,[{transform:'translateX('+tx+') rotateX(0deg)',opacity:1},{transform:'translateX('+tx+') rotateX(88deg)',opacity:.25}],{duration:230, fill:'forwards'});
       half.finished.catch(function(){}).then(function(){
-        if(!rtOnScreen(rt)){ wform.textContent=s.form; wlang.textContent=s.lang; return; } /* 离场：只落字，不再补建回翻动画（R4-01） */
-        wform.textContent=s.form; wlang.textContent=s.lang;
+        if(!rtOnScreen(rt)){ setForm(s); return; } /* 离场：只落字，不再补建回翻动画（R4-01） */
+        setForm(s);
         rt.anim(card,[{transform:'translateX('+tx+') rotateX(88deg)',opacity:.25},{transform:'translateX('+tx+') rotateX(0deg)',opacity:1}],{duration:230, fill:'forwards'});
       });
-    } else { wform.textContent=s.form; wlang.textContent=s.lang; }
+    } else { setForm(s); }
     iper.textContent='第 '+(idx+1)+' 站 / 共 '+stops.length+' 站'+(s.period?' · '+s.period:'')+(s.lang?' · '+s.lang:'');
     imean.textContent=s.mean||'';
     imean.style.display=s.mean?'':'none';
@@ -8191,18 +8241,36 @@ function tenseLink(mount, cfg){
   var btnRow=el('div','anx-rack');
   var axis=el('div','anx-tense-axis');
   (cfg.zones||[]).forEach(function(z){
-    var ze=el('div','anx-tense-zone', z.lab); ze.style.left=z.at+'%'; axis.appendChild(ze);
+    var ze=el('div','anx-tense-zone', z.lab); ze.style.left=z.at+'%'; ze.setAttribute('data-at', z.at); axis.appendChild(ze);
   });
   var dot=el('div','anx-tense-dot'); axis.appendChild(dot);
   var nowEl=el('div','anx-tense-now');
-  nowEl.style.left=(cfg.nowAt||82)+'%';
+  nowEl.style.left=(cfg.nowAt||82)+'%'; nowEl.setAttribute('data-at', cfg.nowAt||82);
   nowEl.innerHTML='<div class="pin">🚩</div><div class="lab">现在 · NOW</div>';
   axis.appendChild(nowEl);
   var formEl=el('div','anx-tense-form');
   var sentEl=el('div','anx-tense-sent');
   var noteEl=el('div','anx-tense-note'); noteEl.style.display='none';
+  /* 轴标签防撞（重叠修复批）：窄轴（<560px）时区标签移至轴顶带（与 NOW 旗、圆点垂直错开），
+     并按实测宽把区标签与 NOW 旗的中心夹回轴内；宽轴恢复百分比原位。测不到尺寸时不动作。 */
+  function clampOne(e, pct){
+    var W=axis.clientWidth, w=e.offsetWidth;
+    if(!W || !w) return;
+    if(W>=560){ e.style.left=pct+'%'; return; }
+    var c=pct/100*W, half=w/2;
+    var cc=Math.max(half+2, Math.min(W-half-2, c));
+    e.style.left=cc+'px';
+  }
+  function clampLabels(){
+    if(!axis.clientWidth) return;
+    axis.classList.toggle('narrow', axis.clientWidth<560);
+    axis.querySelectorAll('.anx-tense-zone').forEach(function(ze){ clampOne(ze, parseFloat(ze.getAttribute('data-at'))||0); });
+    clampOne(nowEl, parseFloat(nowEl.getAttribute('data-at'))||82);
+  }
+  window.addEventListener('resize', clampLabels);
   var cur=-1;
   function setSlot(i, instant){
+    clampLabels();
     if(i===cur && !instant) return;
     cur=i;
     var sl=cfg.slots[i];
@@ -8237,6 +8305,7 @@ function tenseLink(mount, cfg){
   });
   box.appendChild(btnRow); box.appendChild(axis); box.appendChild(formEl); box.appendChild(sentEl); box.appendChild(noteEl); box.appendChild(ctl.box);
   mount.appendChild(box);
+  clampLabels();
   setSlot(0, true);
   return {runtime:rt, setSlot:setSlot};
 }
@@ -8505,8 +8574,8 @@ renderTrump();renderPit();renderTree();renderWbindex();spwbRender();
 <!-- ============ 设置 ============ -->
 <section class="view" id="v-settings">
 <span class="back" data-go="home">← 回首页</span>
-<h2 class="zt">⚙️ 设置 · 课程决定开关</h2>
-<p class="sub">两个开关对应《App 原型定义 v1》第七节里定下来的课程决定，<b>已于 2026-11-02 逐项定版</b>（决定 A 采用 A1、决定 B 采用 B1）；此处保留开关形态作对照，<b>切换只改本页呈现，不改数据</b>——条目的机制、边界与分歧记录原样保留。</p>
+<h2 class="zt">⚙️ 设置</h2>
+<p class="sub">《App 原型定义 v1》第七节的两个课程决定，<b>已于 2026-11-02 逐项定版</b>（决定 A 采用 A1、决定 B 采用 B1）；定版开关已撤，本页留此结论备查——条目的机制、边界与分歧记录原样保留。</p>
 <div class="sec-t">显示 · 成人层开关（原顶部导航栏开关，2026-11-03 随导航改版迁入本页）</div>
 <div class="box">
 <span class="tgl" id="atgl" role="switch" aria-checked="false" tabindex="0">成人层：关</span>
@@ -18616,7 +18685,7 @@ var WB_SECTIONS = [
    },
    {
     "cap": "病例：没提过的书用 the，五路皆无。",
-    "svg": "<text class=\"wbw\" x=\"280\" y=\"108\" font-size=\"23\" fill=\"#2b3a55\" text-anchor=\"middle\" font-weight=\"600\">I read the book yesterday.</text><path class=\"wbd\" d=\"M36.55,86.55 L55.45,105.45 M55.45,86.55 L36.55,105.45\" stroke=\"#e05252\" stroke-width=\"4\" stroke-linecap=\"round\" fill=\"none\"/><path class=\"wbd\" d=\"M150,150 C224,168 336,168 406,148 M406,148 l-17,-2 M406,148 l-5,-15\" stroke=\"#2b3a55\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\"/><path class=\"wbd\" d=\"M34.45,201.05 L42.85,209.45 L58.6,190.55\" stroke=\"#2e9e5b\" stroke-width=\"4\" stroke-linecap=\"round\" fill=\"none\"/><text class=\"wbw\" x=\"290\" y=\"208\" font-size=\"23\" fill=\"#2e9e5b\" text-anchor=\"middle\" font-weight=\"600\">I read a book yesterday.</text><g transform=\"translate(120,272)\"><path class=\"wbd\" d=\"M2,3 C-4,14.4 2,32 4,36 L46,36 C48,31 53,12.6 48,2 C27.500000000000004,-4 20,-3 2,3 Z\" fill=\"none\" stroke=\"#3f6fb5\" stroke-width=\"3.2\" stroke-linecap=\"round\"/><path class=\"wbd\" d=\"M10,14 L38,14 M10,24 L34,24\" stroke=\"#3f6fb5\" stroke-width=\"2.4\" stroke-linecap=\"round\"/></g><text class=\"wbw\" x=\"330\" y=\"292\" font-size=\"19\" fill=\"#2b3a55\" text-anchor=\"middle\" font-weight=\"600\">从没提过 → 先用 a 介绍</text><path class=\"wbd\" d=\"M238,222 L282,222\" stroke=\"#2e9e5b\" stroke-width=\"3.2\" stroke-linecap=\"round\"/><text class=\"wbw\" x=\"452\" y=\"292\" font-size=\"16\" fill=\"#8a93a5\" text-anchor=\"middle\" font-weight=\"600\">先介绍，再回指</text>"
+    "svg": "<text class=\"wbw\" x=\"280\" y=\"108\" font-size=\"23\" fill=\"#2b3a55\" text-anchor=\"middle\" font-weight=\"600\">I read the book yesterday.</text><path class=\"wbd\" d=\"M36.55,86.55 L55.45,105.45 M55.45,86.55 L36.55,105.45\" stroke=\"#e05252\" stroke-width=\"4\" stroke-linecap=\"round\" fill=\"none\"/><path class=\"wbd\" d=\"M150,150 C224,168 336,168 406,148 M406,148 l-17,-2 M406,148 l-5,-15\" stroke=\"#2b3a55\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\"/><path class=\"wbd\" d=\"M34.45,201.05 L42.85,209.45 L58.6,190.55\" stroke=\"#2e9e5b\" stroke-width=\"4\" stroke-linecap=\"round\" fill=\"none\"/><text class=\"wbw\" x=\"290\" y=\"208\" font-size=\"23\" fill=\"#2e9e5b\" text-anchor=\"middle\" font-weight=\"600\">I read a book yesterday.</text><g transform=\"translate(120,272)\"><path class=\"wbd\" d=\"M2,3 C-4,14.4 2,32 4,36 L46,36 C48,31 53,12.6 48,2 C27.500000000000004,-4 20,-3 2,3 Z\" fill=\"none\" stroke=\"#3f6fb5\" stroke-width=\"3.2\" stroke-linecap=\"round\"/><path class=\"wbd\" d=\"M10,14 L38,14 M10,24 L34,24\" stroke=\"#3f6fb5\" stroke-width=\"2.4\" stroke-linecap=\"round\"/></g><text class=\"wbw\" x=\"330\" y=\"292\" font-size=\"19\" fill=\"#2b3a55\" text-anchor=\"middle\" font-weight=\"600\">从没提过 → 先用 a 介绍</text><path class=\"wbd\" d=\"M238,222 L282,222\" stroke=\"#2e9e5b\" stroke-width=\"3.2\" stroke-linecap=\"round\"/><text class=\"wbw\" x=\"452\" y=\"252\" font-size=\"16\" fill=\"#8a93a5\" text-anchor=\"middle\" font-weight=\"600\">先介绍，再回指</text>"
    },
    {
     "cap": "小结：五条线索，一条就够——记牢它，再往下细看。",
@@ -18720,7 +18789,7 @@ var WB_SECTIONS = [
    },
    {
     "cap": "乐器一串都加 the：整串记。",
-    "svg": "<path class=\"wbd\" d=\"M96,140 L224,140 L224,196 L96,196 Z M110,154 L110,182 M124,154 L124,182 M138,154 L138,182 M152,154 L152,182 M166,154 L166,182 M180,154 L180,182 M194,154 L194,182\" fill=\"none\" stroke=\"#2b3a55\" stroke-width=\"2.8\" stroke-linejoin=\"round\"/><text class=\"wbw\" x=\"160\" y=\"240\" font-size=\"21\" fill=\"#3f6fb5\" text-anchor=\"middle\" font-weight=\"800\">the piano</text><text class=\"wbw\" x=\"320\" y=\"168\" font-size=\"21\" fill=\"#3f6fb5\" text-anchor=\"middle\" font-weight=\"600\">the guitar</text><text class=\"wbw\" x=\"320\" y=\"214\" font-size=\"21\" fill=\"#3f6fb5\" text-anchor=\"middle\" font-weight=\"600\">the violin</text><path class=\"wbd\" d=\"M240,160 C280,150 300,152 318,160 M240,206 C280,196 300,198 318,206\" fill=\"none\" stroke=\"#e8862e\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><text class=\"wbw\" x=\"280\" y=\"300\" font-size=\"19\" fill=\"#2e9e5b\" text-anchor=\"middle\" font-weight=\"600\">乐器串：一个 the 都不能少</text><text class=\"wbw\" x=\"452\" y=\"150\" font-size=\"26\" fill=\"#e8862e\" text-anchor=\"middle\" font-weight=\"600\">♪</text><text class=\"wbw\" x=\"486\" y=\"196\" font-size=\"22\" fill=\"#e8862e\" text-anchor=\"middle\" font-weight=\"600\">♪</text><circle class=\"wbd\" cx=\"96\" cy=\"292\" r=\"17\" fill=\"none\" stroke=\"#2b3a55\" stroke-width=\"2.8\"/><path class=\"wbd\" d=\"M110,282 L150,246\" stroke=\"#2b3a55\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><text class=\"wbw\" x=\"196\" y=\"292\" font-size=\"16\" fill=\"#8a93a5\" text-anchor=\"middle\" font-weight=\"600\">guitar 也一样</text>"
+    "svg": "<path class=\"wbd\" d=\"M96,140 L224,140 L224,196 L96,196 Z M110,154 L110,182 M124,154 L124,182 M138,154 L138,182 M152,154 L152,182 M166,154 L166,182 M180,154 L180,182 M194,154 L194,182\" fill=\"none\" stroke=\"#2b3a55\" stroke-width=\"2.8\" stroke-linejoin=\"round\"/><text class=\"wbw\" x=\"160\" y=\"240\" font-size=\"21\" fill=\"#3f6fb5\" text-anchor=\"middle\" font-weight=\"800\">the piano</text><text class=\"wbw\" x=\"320\" y=\"168\" font-size=\"21\" fill=\"#3f6fb5\" text-anchor=\"middle\" font-weight=\"600\">the guitar</text><text class=\"wbw\" x=\"320\" y=\"214\" font-size=\"21\" fill=\"#3f6fb5\" text-anchor=\"middle\" font-weight=\"600\">the violin</text><path class=\"wbd\" d=\"M240,160 C280,150 300,152 318,160 M240,206 C280,196 300,198 318,206\" fill=\"none\" stroke=\"#e8862e\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><text class=\"wbw\" x=\"280\" y=\"300\" font-size=\"19\" fill=\"#2e9e5b\" text-anchor=\"middle\" font-weight=\"600\">乐器串：一个 the 都不能少</text><text class=\"wbw\" x=\"452\" y=\"150\" font-size=\"26\" fill=\"#e8862e\" text-anchor=\"middle\" font-weight=\"600\">♪</text><text class=\"wbw\" x=\"486\" y=\"196\" font-size=\"22\" fill=\"#e8862e\" text-anchor=\"middle\" font-weight=\"600\">♪</text><circle class=\"wbd\" cx=\"96\" cy=\"292\" r=\"17\" fill=\"none\" stroke=\"#2b3a55\" stroke-width=\"2.8\"/><path class=\"wbd\" d=\"M110,282 L150,246\" stroke=\"#2b3a55\" stroke-width=\"2.8\" stroke-linecap=\"round\"/><text class=\"wbw\" x=\"320\" y=\"256\" font-size=\"16\" fill=\"#8a93a5\" text-anchor=\"middle\" font-weight=\"600\">guitar 也一样</text>"
    },
    {
     "cap": "球类一串都不加：整串记。",
