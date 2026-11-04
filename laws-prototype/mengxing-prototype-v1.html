@@ -2927,6 +2927,7 @@ window.LINKGO = (function(){
 <div class="sp-scope" id="sp-index"></div>
 </section>
 <section class="view" id="v-spoken-detail"><div class="sp-scope" id="sp-detail"></div></section> <section class="view" id="v-verb">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ah-vb" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0 0 L6 2.5 L0 5 z" fill="#23733a"/></marker></defs></svg>
  <span class="back" data-go="home">← 回首页</span>
  <h2 class="zt">🏃 动词区</h2>
  <p class="sub">动词专区：时态先摆场景再拼形式，词形进衣橱、按家族记，意思先猜再揭晓。</p><div class="box" style="margin:0 0 12px"><p style="line-height:1.75;margin:0"><b>内容从哪来</b>：全部出自本 App 的条目总表——TA 18 条 · 动词词条 458 + 变化形挂在原形页 · 动词义项网络 289 词 · 短语组合 156 条 · 真实病例 31 例。<br><b>新添的机关</b>：情态光谱 · 句型四分表 · 今日一课 · 间隔复习（句型与情态刻度是通用语法共识，页内注明借鉴出处）。<br><b>一句实话</b>：查不到的会如实标出来，不编。</p></div>
@@ -5342,7 +5343,7 @@ window.GK = {show: gkShow};
 <section class="view" id="v-prep">
 <div class="pkmod">
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#e63946"/></marker></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ah-pk" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#e63946"/></marker></defs></svg>
 <header class="top"><span class="ttl">介词知识地图</span>
 <button onclick="PK.show('home')">知识地图</button><button onclick="PK.show('overview')">总论 · 这套抽象</button>
 <button onclick="PK.show('lesson-ball')">课1 球和盒子</button><button onclick="PK.show('lesson-dim')">课2 in/on/at</button>
@@ -7351,9 +7352,20 @@ document.addEventListener('keydown',function(e){
   e.preventDefault();
   show(g.dataset.go);
 });
+/* 成人层开关的四区联动（BUG-05）：PN/AR/ET 的成人层是各自 <details> 折叠、CJ 是 .adultbody 自有折叠，
+   都不吃 body.adult 规则；开关动作时由这一处中央函数按统一选择器同步展开/收起，与 body.adult 并行不冲突。 */
+function applyAdultZones(on){
+  document.querySelectorAll('details.pn-adult,details.ar-adult,details.et-adult').forEach(function(d){d.open=!!on;});
+  document.querySelectorAll('.cj-scope .adultbody').forEach(function(el){
+    el.style.display=on?'block':'none';
+    var par=el.parentNode, arr=par?par.querySelector('.adultbtn .arr,.arr'):null;
+    if(arr) arr.textContent=on?'▴':'▾';
+  });
+}
 var atgl=document.getElementById('atgl');
 atgl.addEventListener('click',function(){
   var on=document.body.classList.toggle('adult');
+  applyAdultZones(on);
   this.textContent=on?'成人层：开':'成人层：关';
   this.setAttribute('aria-checked',on?'true':'false');
 });
@@ -8739,8 +8751,8 @@ const BALL=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r||11}" fill="${RED}"/><ci
 const BOX=(x,y,w,h)=>`<path d="M${x},${y} L${x},${y+h} L${x+w},${y+h} L${x+w},${y}" fill="#eaf1f8" stroke="${INK}" stroke-width="2.5"/>`;
 const GND=(y)=>`<line x1="25" y1="${y}" x2="275" y2="${y}" stroke="${INK}" stroke-width="2"/>`;
 const DASH=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${GRAY}" stroke-width="1.6" stroke-dasharray="5 4"/>`;
-const ARR=(d)=>`<path d="${d}" fill="none" stroke="${RED}" stroke-width="2.4" marker-end="url(#ah)"/>`;
-const DEFS=`<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="${RED}"/></marker></defs>`;
+const ARR=(d)=>`<path d="${d}" fill="none" stroke="${RED}" stroke-width="2.4" marker-end="url(#ah-pk)"/>`;
+/* 箭头 marker 定义在介词区静态 defs（#v-prep 内 ah-pk，全文档唯一一份，BUG-03）；本区图形只引用 url(#ah-pk)。原此处同名 const DEFS 从未被插入 DOM（死定义），已移除。 */
 function sceneSVG(t){
   const S=(inner)=>`<svg viewBox="0 0 300 210" style="width:100%;max-width:330px">${inner}</svg>`;
   switch(t){
@@ -8760,8 +8772,8 @@ function sceneSVG(t){
    case 'throughTunnel': return S(`<path d="M70,180 L70,80 Q150,30 230,80 L230,180" fill="none" stroke="${INK}" stroke-width="3"/><path d="M105,180 L105,100 Q150,66 195,100 L195,180" fill="none" stroke="${GRAY}" stroke-width="1.6" stroke-dasharray="4 3"/>${ARR('M45,140 L140,140')}${BALL(215,140)}${GND(182)}`);
    case 'aroundCircle': return S(`<rect x="128" y="88" width="44" height="36" fill="#eaf1f8" stroke="${INK}" stroke-width="2.2"/><circle cx="150" cy="106" r="62" fill="none" stroke="${RED}" stroke-width="2.2" stroke-dasharray="6 4"/>${BALL(212,106)}`);
    case 'pastPoint': return S(`<circle cx="215" cy="95" r="36" fill="#fff" stroke="${INK}" stroke-width="2.4"/><line x1="215" y1="95" x2="215" y2="70" stroke="${INK}" stroke-width="2.2"/><line x1="215" y1="95" x2="233" y2="103" stroke="${INK}" stroke-width="2.2"/>${ARR('M35,150 L140,150')}${BALL(95,150)}<path d="M150,150 L262,150" stroke="${RED}" stroke-width="2" stroke-dasharray="5 4"/>${GND(182)}`);
-   case 'intoBox': return S(`${BOX(105,85,100,85)}<path d="M52,40 Q95,35 128,80" fill="none" stroke="${RED}" stroke-width="2.4" marker-end="url(#ah)"/>${BALL(152,142)}${GND(182)}`);
-   case 'offEdge': return S(`<rect x="35" y="95" width="160" height="11" fill="#cfe0f0" stroke="${INK}" stroke-width="2"/><path d="M205,92 Q245,110 238,158" fill="none" stroke="${RED}" stroke-width="2.4" marker-end="url(#ah)"/>${BALL(238,168)}${GND(184)}`);
+   case 'intoBox': return S(`${BOX(105,85,100,85)}<path d="M52,40 Q95,35 128,80" fill="none" stroke="${RED}" stroke-width="2.4" marker-end="url(#ah-pk)"/>${BALL(152,142)}${GND(182)}`);
+   case 'offEdge': return S(`<rect x="35" y="95" width="160" height="11" fill="#cfe0f0" stroke="${INK}" stroke-width="2"/><path d="M205,92 Q245,110 238,158" fill="none" stroke="${RED}" stroke-width="2.4" marker-end="url(#ah-pk)"/>${BALL(238,168)}${GND(184)}`);
    case 'fromPoint': return S(`<path d="M72,138 l-11,-18 a13,13 0 1,1 22,0 Z" fill="${RED}"/><circle cx="72" cy="140" r="5" fill="${INK}"/>${ARR('M95,140 L235,140')}${BALL(120,140)}${GND(172)}`);
    case 'toPoint': return S(`${ARR('M45,140 L205,140')}${BALL(75,140)}<path d="M232,138 l-11,-18 a13,13 0 1,1 22,0 Z" fill="${RED}"/><circle cx="232" cy="140" r="5" fill="${INK}"/>${GND(172)}`);
    case 'behindBox': return S(`${BALL(150,96,13)}${BOX(108,92,84,80)}${GND(180)}`);
@@ -10077,6 +10089,7 @@ function goHome(){show('v-home');}
 function say(t){try{const u=new SpeechSynthesisUtterance(t); u.lang='en-GB'; u.rate=0.85; speechSynthesis.cancel(); speechSynthesis.speak(u);}catch(e){}}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 function q(s){return esc(s).replace(/"/g,'&quot;');}
+function qj(s){return q(s).replace(/'/g,"\\'");} /* 单引号 JS 参数语境专用：在 q 之上把撇号转义为 \'；data-t 双引号属性语境仍用 q（撇号原样才对，见 BUG-01/02 修复登记） */
 function srcBadge(src){const m={bank:['词库登记','b-bank'],rule:['规则形','b-rule'],none:['未单列','b-none'],dict:['词典核实','b-ta'],defect:['缺陷动词','b-none'],na:['非基形','b-type'],ta:['例句已证','b-ta'],research:['调研登记','b-res']}; const x=m[src]||[src,'b-rule']; return '<span class="badge '+x[1]+'">'+x[0]+'</span>';}
 function extText(e){ if(!e) return ''; if(typeof e==='string') return e; return (e.text||'') + (e.basis? '（'+e.basis+(e.ref?'：'+e.ref:'')+'）':''); }
 
@@ -10196,7 +10209,7 @@ function renderWardChips(){
   const q=($('wSearch').value||'').trim().toLowerCase();
   const list=DATA.VERBS.filter(v=>!q||v.toLowerCase().indexOf(q)===0);
   const showList=list.slice(0,160);
-  $('wardChips').innerHTML=showList.map(v=>'<button class="chip" onclick="VB.openWard(\''+v+'\')">'+v+'</button>').join('')+(list.length>160?'<span class="adult">共 '+list.length+' 个，输入开头字母缩小范围…</span>':'')+(q&&!list.length?'<span class="adult">词库里没有这个动词词条。</span>':'');
+  $('wardChips').innerHTML=showList.map(v=>'<button class="chip" onclick="VB.openWard(\''+qj(v)+'\')">'+v+'</button>').join('')+(list.length>160?'<span class="adult">共 '+list.length+' 个，输入开头字母缩小范围…</span>':'')+(q&&!list.length?'<span class="adult">词库里没有这个动词词条。</span>':'');
 }
 function famOf(v){ for(const f of DATA.FAMS){ if(f.members.indexOf(v)>=0) return f; } return null; }
 function cellShow(c){ if(c[1]) return esc(c[1]); if(c[2]==='defect') return '无此格'; if(c[2]==='na') return '不适用'; return '词库未单列'; }
@@ -10382,7 +10395,7 @@ function init(){
   document.querySelectorAll('#nTime button').forEach(b=>b.onclick=()=>{N.time=b.dataset.t; renderNarr();});
   document.querySelectorAll('#nAspect button').forEach(b=>b.onclick=()=>{N.aspect=b.dataset.a; renderNarr();});
   renderWardChips();
-  $('azChips').innerHTML=DATA.VERBS.map(v=>'<button class="chip" onclick="VB.openWard(\''+v+'\')">'+v+'</button>').join('');
+  $('azChips').innerHTML=DATA.VERBS.map(v=>'<button class="chip" onclick="VB.openWard(\''+qj(v)+'\')">'+v+'</button>').join('');
   $('famChips').innerHTML=DATA.FAMS.map(f=>'<button class="chip" onclick="VB.openFam(\''+f.id+'\')">'+esc(f.name)+'<span class="n">'+f.members.length+'</span></button>').join('');
   const flag=DATA.POLY.filter(p=>p.laws&&p.laws.length), rest=DATA.POLY.filter(p=>!(p.laws&&p.laws.length));
   $('polyFlag').innerHTML=flag.map(p=>'<button class="chip gold" onclick="VB.openPoly(\''+p.w+'\')">'+p.w+'<span class="n">'+p.laws.join('+')+'</span></button>').join('');
@@ -10814,7 +10827,7 @@ function renderModal(){
   pts.forEach(w => { const c = effC(w), ew = estW(w); let r = rowLast.findIndex(L => (L.c - c) >= (L.w + ew) / 2 + 6); if (r < 0) { rowLast.push({ c: c, w: ew }); r = rowLast.length - 1; } else { rowLast[r] = { c: c, w: ew }; } chipRow.push(r); });
   const nRows = Math.max(1, rowLast.length);
   h += '<div style="position:relative;height:' + (nRows * 38 + 30) + 'px;margin:16px 6px 4px;background:linear-gradient(90deg,#eef2f7,#fde9b8,#f6c453,#e2703a,#c0392b);border-radius:12px">';
-  h += pts.map((w, ci) => { const p = w.v[MODS.lens]; const tx = txOf(p); return '<button class="chip' + (w.w === MODS.word ? ' gold' : '') + '" style="position:absolute;left:' + p + '%;top:' + (6 + chipRow[ci] * 38) + 'px;transform:translateX(' + tx + '%);white-space:nowrap" onclick="VB.modalSetWord(\'' + q(w.w) + '\')">' + esc(w.w) + ' ' + p + '%</button>'; }).join('');
+  h += pts.map((w, ci) => { const p = w.v[MODS.lens]; const tx = txOf(p); return '<button class="chip' + (w.w === MODS.word ? ' gold' : '') + '" style="position:absolute;left:' + p + '%;top:' + (6 + chipRow[ci] * 38) + 'px;transform:translateX(' + tx + '%);white-space:nowrap" onclick="VB.modalSetWord(\'' + qj(w.w) + '\')">' + esc(w.w) + ' ' + p + '%</button>'; }).join('');
   h += '<span style="position:absolute;left:4px;bottom:4px;font-size:12px;color:#555">0% 没把握 / 不必须</span><span style="position:absolute;right:4px;bottom:4px;font-size:12px;color:#7b241c">100% 打包票 / 非这样不可</span></div>';
   if(off.length) h += '<div class="adult">这把尺子上暂不站：' + off.map(w => esc(w.w)).join(' / ') + '（换一把尺子看它们）。</div>';
   const wd = modalWord(MODS.word) || pts[0];
@@ -10824,8 +10837,8 @@ function renderModal(){
       + '<div class="adult">⚠️ 中国孩子易错：' + esc(wd.err) + '</div></div>';
   }
   h += '<h4>🧩 分组看看（按工作分工）</h4>' + MODAL.groups.map(g => '<div class="sent"><b>' + esc(g.name) + '</b>' + g.items.map(it => '<div style="margin-top:5px"><b>' + esc(it[0]) + '</b> —— ' + esc(it[1]) + '</div>').join('') + '</div>').join('');
-  h += '<h4>🎯 光谱定位练（按提示把词放回尺子上）</h4>' + MODAL.zone.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div class="adult">提示：' + esc(it.hint) + '</div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalZonePick(this,' + i + ',\'' + q(o) + '\')">' + esc(o) + '</button>').join('') + '<div class="rev" id="mzone-' + i + '">' + esc(it.why) + '</div></div>').join('');
-  h += '<h4>站内小测 · ' + MODAL.quiz.length + ' 题</h4>' + MODAL.quiz.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalQuizPick(this,' + i + ',\'' + q(o) + '\')">' + esc(o) + '</button>').join('') + '</div><div class="rev" id="mquiz-' + i + '">' + esc(it.why) + '</div><div class="tip" id="mqtip-' + i + '"></div></div>').join('')
+  h += '<h4>🎯 光谱定位练（按提示把词放回尺子上）</h4>' + MODAL.zone.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div class="adult">提示：' + esc(it.hint) + '</div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalZonePick(this,' + i + ',\'' + qj(o) + '\')">' + esc(o) + '</button>').join('') + '<div class="rev" id="mzone-' + i + '">' + esc(it.why) + '</div></div>').join('');
+  h += '<h4>站内小测 · ' + MODAL.quiz.length + ' 题</h4>' + MODAL.quiz.map((it, i) => '<div class="sent"><b>' + esc(it.s) + '</b><div>' + it.opts.map(o => '<button class="opt" onclick="VB.modalQuizPick(this,' + i + ',\'' + qj(o) + '\')">' + esc(o) + '</button>').join('') + '</div><div class="rev" id="mquiz-' + i + '">' + esc(it.why) + '</div><div class="tip" id="mqtip-' + i + '"></div></div>').join('')
     + '<div class="score" id="mquiz-score">已答对 ' + MODS.quizDone.size + ' / ' + MODAL.quiz.length + '</div>';
   h += '<div class="adult" style="margin-top:10px">形式借鉴：确定性光谱与总表结构借鉴 GrammarBank 情态总表；词卡「核心义 + 例句 + 易错点」沿用本区病例页口径。例句为本区新编教学例。</div>';
   body.innerHTML = h;
@@ -10916,7 +10929,7 @@ function renderPatterns(){
   let h = '<h2>🧩 动词句型 · 后面跟什么</h2>';
   h += '<div class="adult">动词后面跟 -ing 还是 to do，不是随机的：先自己归类，再亮表对照（British Council 的动名词/不定式课型就是先归类、后给表）。四分法是通用语法共识：只跟 -ing / 只跟 to / 两可义同 / 两可义不同。</div>';
   h += '<h4>第一步 · 先归类（点一张词卡，再点一列把它放进去；放错了给提示）</h4>';
-  h += '<div class="chips">' + PATTERNS.act.filter(w => !PATS.placed[w]).map(w => '<button class="chip' + (PATS.sel === w ? ' gold' : '') + '" onclick="VB.patTap(\'' + q(w) + '\')">' + esc(w) + '</button>').join('') + (done === total ? '<span class="adult">词卡都放完啦！</span>' : '') + '</div>';
+  h += '<div class="chips">' + PATTERNS.act.filter(w => !PATS.placed[w]).map(w => '<button class="chip' + (PATS.sel === w ? ' gold' : '') + '" onclick="VB.patTap(\'' + qj(w) + '\')">' + esc(w) + '</button>').join('') + (done === total ? '<span class="adult">词卡都放完啦！</span>' : '') + '</div>';
   if(PATS.hint) h += '<div class="sent" style="background:#f6e3e3">' + esc(PATS.hint) + '</div>';
   h += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">' + PATTERNS.groups.map(g => {
     const inCol = PATTERNS.act.filter(w => PATS.placed[w] === g.id);
@@ -11274,25 +11287,25 @@ const PARTCAP = {
   into: '进到容器里面去', back: '回到原来的地方', away: '离开原地，越走越远'
 };
 function partSVG(p){
-  const defs = '<defs><marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0 0 L6 2.5 L0 5 z" fill="#23733a"/></marker></defs>';
+  /* 箭头 marker 定义已提升为动词区静态 defs（#v-verb 内 ah-vb，全文档唯一一份，BUG-03）；此处只引用 url(#ah-vb) */
   const B = '<circle cx="X" cy="Y" r="7" fill="#e2703a"/>';
   const ball = (x, y) => B.replace('X', x).replace('Y', y);
   const ghost = (x, y) => '<circle cx="' + x + '" cy="' + y + '" r="6" fill="#e2703a" opacity=".3"/>';
   const box = '<rect x="38" y="20" width="46" height="46" fill="#d3e5d6" stroke="#3d5a40" stroke-width="2"/>';
   const inner = {
     'in': box + ball(61, 43),
-    'out': '<path d="M84 20 H38 V66 H84" fill="#d3e5d6" stroke="#3d5a40" stroke-width="2"/>' + ghost(55, 43) + '<path d="M58 43 H90" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(99, 43),
-    'into': '<path d="M84 20 H38 M84 66 H38 M84 20 V66" stroke="#3d5a40" stroke-width="2" fill="none"/>' + ghost(15, 43) + '<path d="M24 43 H52" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(63, 43),
-    'up': '<line x1="12" y1="70" x2="108" y2="70" stroke="#99a" stroke-width="2"/><path d="M60 62 V36" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(60, 25),
-    'down': '<line x1="10" y1="22" x2="66" y2="22" stroke="#99a" stroke-width="2"/><path d="M64 26 Q84 34 88 50" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah)"/>' + ball(90, 59),
-    'off': '<rect x="18" y="54" width="84" height="7" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/>' + ghost(46, 47) + '<path d="M58 42 L82 26" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(89, 22),
+    'out': '<path d="M84 20 H38 V66 H84" fill="#d3e5d6" stroke="#3d5a40" stroke-width="2"/>' + ghost(55, 43) + '<path d="M58 43 H90" stroke="#23733a" stroke-width="2" marker-end="url(#ah-vb)"/>' + ball(99, 43),
+    'into': '<path d="M84 20 H38 M84 66 H38 M84 20 V66" stroke="#3d5a40" stroke-width="2" fill="none"/>' + ghost(15, 43) + '<path d="M24 43 H52" stroke="#23733a" stroke-width="2" marker-end="url(#ah-vb)"/>' + ball(63, 43),
+    'up': '<line x1="12" y1="70" x2="108" y2="70" stroke="#99a" stroke-width="2"/><path d="M60 62 V36" stroke="#23733a" stroke-width="2" marker-end="url(#ah-vb)"/>' + ball(60, 25),
+    'down': '<line x1="10" y1="22" x2="66" y2="22" stroke="#99a" stroke-width="2"/><path d="M64 26 Q84 34 88 50" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah-vb)"/>' + ball(90, 59),
+    'off': '<rect x="18" y="54" width="84" height="7" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/>' + ghost(46, 47) + '<path d="M58 42 L82 26" stroke="#23733a" stroke-width="2" marker-end="url(#ah-vb)"/>' + ball(89, 22),
     'on': '<rect x="18" y="54" width="84" height="7" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/>' + ball(60, 47),
-    'over': '<rect x="54" y="36" width="12" height="34" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/><path d="M16 62 Q60 2 104 62" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah)"/>' + ball(60, 16),
-    'through': '<rect x="42" y="14" width="10" height="56" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/><rect x="68" y="14" width="10" height="56" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/><path d="M12 42 H100" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(60, 42),
-    'back': '<circle cx="28" cy="58" r="4" fill="#3d5a40"/><line x1="28" y1="58" x2="86" y2="28" stroke="#99a" stroke-width="2" stroke-dasharray="4 4"/><path d="M88 26 Q62 58 40 55" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah)"/>' + ball(88, 26),
-    'away': '<circle cx="22" cy="60" r="4" fill="#3d5a40"/><line x1="22" y1="60" x2="84" y2="32" stroke="#99a" stroke-width="2" stroke-dasharray="4 4"/><path d="M50 46 L82 33" stroke="#23733a" stroke-width="2" marker-end="url(#ah)"/>' + ball(93, 29)
+    'over': '<rect x="54" y="36" width="12" height="34" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/><path d="M16 62 Q60 2 104 62" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah-vb)"/>' + ball(60, 16),
+    'through': '<rect x="42" y="14" width="10" height="56" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/><rect x="68" y="14" width="10" height="56" fill="#dfe6ff" stroke="#3d5a40" stroke-width="2"/><path d="M12 42 H100" stroke="#23733a" stroke-width="2" marker-end="url(#ah-vb)"/>' + ball(60, 42),
+    'back': '<circle cx="28" cy="58" r="4" fill="#3d5a40"/><line x1="28" y1="58" x2="86" y2="28" stroke="#99a" stroke-width="2" stroke-dasharray="4 4"/><path d="M88 26 Q62 58 40 55" stroke="#23733a" stroke-width="2" fill="none" marker-end="url(#ah-vb)"/>' + ball(88, 26),
+    'away': '<circle cx="22" cy="60" r="4" fill="#3d5a40"/><line x1="22" y1="60" x2="84" y2="32" stroke="#99a" stroke-width="2" stroke-dasharray="4 4"/><path d="M50 46 L82 33" stroke="#23733a" stroke-width="2" marker-end="url(#ah-vb)"/>' + ball(93, 29)
   };
-  return '<svg viewBox="0 0 120 84" width="150" height="105" role="img" aria-label="' + esc(p) + ' 核心图">' + defs + (inner[p] || '') + '</svg>';
+  return '<svg viewBox="0 0 120 84" width="150" height="105" role="img" aria-label="' + esc(p) + ' 核心图">' + (inner[p] || '') + '</svg>';
 }
 function partSceneHTML(p){
   return '<div class="mini" style="margin:9px 0"><h5>🎯 核心图（原型场景）</h5><div style="text-align:center">' + partSVG(p) + '</div><div class="kid" style="font-size:14.5px;text-align:center">核心图：' + esc(PARTCAP[p] || '') + '——这个小词的每个意思，都是从这张图长出来的。</div><div class="adult" style="text-align:center">画法借鉴 Tyler &amp; Evans 的原型场景（proto-scene）与 Rudzka-Ostyn 的小词图式句；图为教学示意。</div></div>';
@@ -11592,14 +11605,14 @@ function diagRecHTML(f){
     const uid = missed[0] || 'TA-01';
     b = '<button class="chip" onclick="VB.openTA(\'' + uid + '\')">📖 去 ' + uid + ' 讲解站补这一课</button> <button class="chip" onclick="VB.openMachine()">⏱ 去时间机器（场景机）摆一摆</button>';
   } else if(f.id === 'form'){
-    b = (missed[0] ? '<button class="chip" onclick="VB.openWard(\'' + missed[0] + '\')">👕 看 ' + esc(missed[0]) + ' 的五形式衣橱</button> ' : '') + '<button class="chip" onclick="VB.openFam(\'fa\')">🪜 去形式家族</button> <button class="chip" onclick="VB.openReview()">⏰ 去今日复习</button>';
+    b = (missed[0] ? '<button class="chip" onclick="VB.openWard(\'' + qj(missed[0]) + '\')">👕 看 ' + esc(missed[0]) + ' 的五形式衣橱</button> ' : '') + '<button class="chip" onclick="VB.openFam(\'fa\')">🪜 去形式家族</button> <button class="chip" onclick="VB.openReview()">⏰ 去今日复习</button>';
   } else if(f.id === 'pat'){
     b = '<button class="chip" onclick="VB.openPatterns()">🧩 去句型四分表（先归类、再亮表）</button>';
   } else if(f.id === 'modal'){
     b = '<button class="chip" onclick="VB.openModal()">🎚 去情态光谱</button>';
   } else if(f.id === 'poly'){
     const w = missed[0] || 'get';
-    b = '<button class="chip" onclick="VB.openPoly(\'' + w + '\')">🌳 去 ' + esc(w) + ' 的多义页</button> <button class="chip" onclick="VB.openFan(\'out\')">🌀 看小词扇 out</button>';
+    b = '<button class="chip" onclick="VB.openPoly(\'' + qj(w) + '\')">🌳 去 ' + esc(w) + ' 的多义页</button> <button class="chip" onclick="VB.openFan(\'out\')">🌀 看小词扇 out</button>';
   }
   return '<div class="chips" style="margin-top:5px">' + b + '</div>';
 }
@@ -19640,7 +19653,9 @@ mountAll();
     if(rCard){
       var rb=ls('mxRushBestV1');
       var rcnt=rCard.querySelector('[data-hm-cnt]');
-      if(rcnt&&rb&&typeof rb.best==='number') rcnt.textContent='历史最佳 '+rb.best+' 分';
+      /* 成绩口径与闯关存档对齐：现行只记答对数 bestRight；旧存档只有分数口径 best 时不显示分数语义（不换算造数），有局数则只报局数 */
+      if(rcnt&&rb&&typeof rb.bestRight==='number'&&rb.plays>0) rcnt.textContent='历史最佳：答对 '+rb.bestRight+' 题';
+      else if(rcnt&&rb&&typeof rb.plays==='number'&&rb.plays>0) rcnt.textContent='已玩 '+rb.plays+' 局';
     }
     /* 错题本卡：在册题数 */
     var wCard=document.querySelector('#v-home [data-hm-wrong]');
