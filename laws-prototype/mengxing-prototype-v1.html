@@ -6547,7 +6547,13 @@ document.addEventListener('click',function(e){
   var r=e.target.closest('[data-law]');
   if(r){var sec=r.closest('section.view');LAW.open(r.getAttribute('data-law'),sec?sec.id.replace(/^v-/,''):'home');return}
   var c=e.target.closest('[data-say]');
-  if(c){LAW.say(c.getAttribute('data-say'))}
+  if(c){
+    /* 区界守卫（例句双响根治，音频批 2026-11-04）：拼读 .phx 与词根区 #mz-index/#mz-detail
+       各有自己的 [data-say] 委托处理器——LAW 全局委托只兜底其余各区，
+       否则同一次点击被两个处理器各读一遍（拼读 1,670 例句与词卡、词根区例句与词卡均中招）。 */
+    if(c.closest('.phx')||c.closest('#mz-index, #mz-detail'))return;
+    LAW.say(c.getAttribute('data-say'));
+  }
 });
 </script>
 <script>
@@ -7365,8 +7371,9 @@ function Runtime(mount){
   this.mount=mount; this.token=0; this.anims=[]; this.timers=[]; this.paused=false; this.dead=false; this.live=false; this.speechMode='pause';
   for(var i=rts.length-1;i>=0;i--){ if(rts[i].mount===mount) rts[i].stop(); }
   rts.push(this);
+  armViewObserver();
 }
-Runtime.prototype.alive=function(tok){ return !this.dead && tok===this.token && !!this.mount && !!this.mount.isConnected; };
+Runtime.prototype.alive=function(tok){ return !this.dead && tok===this.token && rtOnScreen(this); };
 Runtime.prototype.anim=function(node, frames, opts){
   var a=null;
   try{ a=node.animate(frames, opts); }catch(e){ a=null; }
@@ -7379,7 +7386,7 @@ Runtime.prototype.every=function(ms, fn){
   var self=this;
   var id=setInterval(function(){
     if(self.dead){ clearInterval(id); return; }
-    if(!self.mount || !self.mount.isConnected){ self.stop(); return; }
+    if(!rtOnScreen(self)){ self.park(); return; } /* 离场（含类隐藏）即停表，与下方视图生命周期收口同口径 */
     if(self.paused) return;
     fn();
   }, ms);
@@ -7406,6 +7413,47 @@ Runtime.prototype.stop=function(){
   this.timers.forEach(function(id){ clearInterval(id); });
   var i=rts.indexOf(this); if(i>=0) rts.splice(i,1);
 };
+/* ---- 视图生命周期收口（R4-01 修复，音频批 2026-11-04）：App 靠 .view.on 类切换显隐，
+   隐藏页 DOM 仍连通，isConnected 守卫对「类隐藏」失明——挂载点所在 .view 失去 .on 即离场。
+   离场处理分两层：① 注册表观察器（仿 PN/AR/CJ/MXR/IX 的 MutationObserver 离场清理）：
+   任一 .view 失去 .on 时，其内全部 Runtime 一律 park + 全局 stopSpeak；
+   ② alive/every 内建在屏判定，观察回调到达前已先行截断。
+   park 与 stop 的区别：park 只中止当前播放（令牌作废、动画取消、计时器清、朗读停），
+   运行时保留可复用——P7 时间轴是静态挂载（tnInit 只建一次），回页须能再播，不能永久 stop。 ---- */
+function viewOf(m){ try{ return (m && m.closest) ? m.closest('.view') : null; }catch(e){ return null; } }
+function rtOnScreen(rt){
+  var m=rt.mount;
+  if(!m || !m.isConnected) return false;
+  var v=viewOf(m);
+  if(!v) return true;
+  if(v.classList.contains('on')) return true;
+  return !document.querySelector('.view.on'); /* 宿主先渲染后 show 的过渡瞬间，全站暂无 .on 视图时不误杀 */
+}
+Runtime.prototype.park=function(){
+  if(this.dead) return;
+  this.token++; this.live=false; this.paused=false;
+  this.anims.forEach(function(a){ try{a.cancel();}catch(e){} }); this.anims.length=0;
+  this.timers.forEach(function(id){ clearInterval(id); }); this.timers.length=0;
+};
+function parkHiddenRts(){
+  var any=false;
+  rts.slice().forEach(function(rt){
+    if(!rt.mount || !rt.mount.isConnected){ rt.stop(); any=true; return; } /* 挂载已被重渲染摘除：彻底注销防注册表堆积 */
+    if(!rtOnScreen(rt)){ rt.park(); any=true; }
+  });
+  if(any) stopSpeak();
+}
+var viewObsArmed=false;
+function armViewObserver(){
+  if(viewObsArmed || !window.MutationObserver) return; viewObsArmed=true;
+  var arm=function(){
+    document.querySelectorAll('.view').forEach(function(v){
+      new MutationObserver(function(){ parkHiddenRts(); }).observe(v,{attributes:true,attributeFilter:['class']});
+    });
+  };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', arm);
+  else arm();
+}
 function controls(rt, onPlay){
   var box=el('div','anx-controls');
   var bPlay=el('button','anx-btn','▶ 播放'); bPlay.type='button';
@@ -7856,6 +7904,7 @@ function etTimeline(mount, rec){
       var tx=(card.style.transform.indexOf('translateX(0)')===0)?'0':'-50%';
       var half=rt.anim(card,[{transform:'translateX('+tx+') rotateX(0deg)',opacity:1},{transform:'translateX('+tx+') rotateX(88deg)',opacity:.25}],{duration:230, fill:'forwards'});
       half.finished.catch(function(){}).then(function(){
+        if(!rtOnScreen(rt)){ wform.textContent=s.form; wlang.textContent=s.lang; return; } /* 离场：只落字，不再补建回翻动画（R4-01） */
         wform.textContent=s.form; wlang.textContent=s.lang;
         rt.anim(card,[{transform:'translateX('+tx+') rotateX(88deg)',opacity:.25},{transform:'translateX('+tx+') rotateX(0deg)',opacity:1}],{duration:230, fill:'forwards'});
       });
@@ -8015,6 +8064,7 @@ function partsSwap(mount, racks){
       noteSpan.textContent='主语换了，be 还是 '+newBe+'——这个主语和刚才那个用同一个 be。';
       noteEl.style.opacity=1;
     }
+    if(!rt.alive(tok)) return; /* 离场守卫（R4-01）：be 变身的等待被离页/切律打断时不再补读整句 */
     speak(curSent(), 0.85);
   }
   /* R3-03：真 FIFO 队列（原型定版口径）——busy 期点击逐个入队、依次执行；
@@ -8023,6 +8073,7 @@ function partsSwap(mount, racks){
   function tailState(){ return queue.length ? queue[queue.length-1] : {si:si, ti:ti}; }
   function pumpQueue(){
     if(busy || !queue.length) return;
+    if(!rtOnScreen(rt)){ queue.length=0; return; } /* 离场即弃队列（R4-01）：切律/离页后不再整队排空朗读 */
     busy=true;
     var st=queue.shift();
     var tok=rt.beginRun(); ctl0.resetPause();
