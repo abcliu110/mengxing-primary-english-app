@@ -37,6 +37,13 @@ gen_laws.py — 单一数据源「切换」阶段 2 的生成器：规律数据�
      LAWDATA.exc），三处自动对齐。此前 19 条 GR 律 yaml 例外未入 lawdata.exc
      致无 ⚠️ 的口径差就此消除；PB-03、C-01 两条双仓都有且 yaml 多 1 项，
      按并集补入（2026-11-04 报告 small-batch.md 登记）。
+  8. 专区 ⚠️ 派生（2026-11-04「全部修改」第一波第 6 项）：同一并集口径
+     （zone_exc）派生进 PN/CJ 专区 LAWS 条目的 exc 字段——专区页此前无
+     例外呈现位（PN 渲染器只读 PN_EXTRA，EXTRA 仅覆盖 PR-01–PR-11；
+     CJ 无 EXTRA 机制），GR-10/GR-13/QI-05/06/08/09/14/15（PN）与
+     GR-11（CJ）的例外在专区页不可见。AR 区不派生（AR_EXTRA 已全量
+     覆盖本区并集，守冠词区逐字节纪律）；渲染器侧 PN 以 l.exc 为 EXTRA
+     缺位回退源、CJ vLaw 直读 l.exc，呈现位样式与 LAW 页一致。
 
 纪律
   - 差异有且仅有裁定引起的变化：生成器内含硬断言（冠词区逐字节零差异、未受裁定条目
@@ -460,16 +467,21 @@ def build_pn(by, cur_laws):
         rel = teach_rel(by, fid)  # 统一户口派生（联动阶段 2）
         if rel:
             data["rel"] = rel
+        excu = zone_exc(by, fid)  # 专区 ⚠️ 派生（全部修改第一波第 6 项）
+        if excu and not data.get("exc"):
+            data["exc"] = excu
         out.append(data)
-    # 未受裁定条目与现行逐条深相等（硬断言；rel 为派生字段，单独校验）
+    # 未受裁定条目与现行逐条深相等（硬断言；rel/exc 为派生字段，单独校验）
     cur_by = {e["id"]: e for e in cur_laws}
     for e in out:
         if e["id"] not in PN_FIXES:
             cur = cur_by[e["id"]]
-            if not deep_eq(strip_rel(e), strip_rel(cur)):
+            if not deep_eq(strip_derived(e), strip_derived(cur)):
                 fail(f"PN 未受裁定条目 {e['id']} 与现行不一致")
             if "rel" in cur and not deep_eq(cur["rel"], e.get("rel")):
                 fail(f"PN 条目 {e['id']} 现行 rel 与总表派生不一致")
+            if "exc" in cur and not deep_eq(cur["exc"], e.get("exc")):
+                fail(f"PN 条目 {e['id']} 现行 exc 与总表派生不一致")
     return out
 
 
@@ -557,19 +569,25 @@ def build_cj(by, cur_laws):
             fail(f"CJ 跨引用修正目标 {eid} 不在输出中")
         apply_text_fix("CJ", eid, out_by_id[eid], path, old, new)
     # 统一户口派生（联动阶段 2）：专区条目的 rel 一律来自总表 relations_teaching
+    # 专区 ⚠️ 派生（全部修改第一波第 6 项）：exc 并集同口径派生，口径见 zone_exc。
     for e in out:
         rel = teach_rel(by, e["id"])
         if rel:
             e["rel"] = rel
+        excu = zone_exc(by, e["id"])
+        if excu and not e.get("exc"):
+            e["exc"] = excu
     # 目录定版条校验：现行须与「总表经指称同步＋跨引用修正」深相等，
     # 或与修正前形态（把修正逆向还原后）深相等（写前文件），二者居一。
-    # rel 为派生字段：剥除后比对内容本体，现行 rel 若在场须与派生一致。
+    # rel/exc 为派生字段：剥除后比对内容本体，现行派生字段若在场须与派生一致。
     cur_by = {e["id"]: e for e in cur_laws}
     out_by = {e["id"]: e for e in out}
     for cid, raw in catalog_raw.items():
         if "rel" in cur_by[cid] and not deep_eq(cur_by[cid]["rel"], out_by[cid].get("rel")):
             fail(f"CJ 目录条 {cid} 现行 rel 与总表派生不一致")
-        if deep_eq(strip_rel(out_by[cid]), strip_rel(cur_by[cid])):
+        if "exc" in cur_by[cid] and not deep_eq(cur_by[cid]["exc"], out_by[cid].get("exc")):
+            fail(f"CJ 目录条 {cid} 现行 exc 与总表派生不一致")
+        if deep_eq(strip_derived(out_by[cid]), strip_derived(cur_by[cid])):
             continue
         pre = copy.deepcopy(out_by[cid])
         for eid, path, old, new in CJ_REF_FIXES:
@@ -577,7 +595,7 @@ def build_cj(by, cur_laws):
                 v = get_path(pre, path)
                 if isinstance(v, str) and new in v:
                     set_path(pre, path, v.replace(new, old))
-        if not deep_eq(strip_rel(pre), strip_rel(cur_by[cid])):
+        if not deep_eq(strip_derived(pre), strip_derived(cur_by[cid])):
             fail(f"CJ 目录条 {cid} 与总表不一致（既非跨引用修正后形态、也非修正前形态）")
     # 成人层「状态：」段按处置改写
     for e in out:
@@ -788,6 +806,11 @@ def strip_rel(e):
     return {k: v for k, v in e.items() if k != "rel"}
 
 
+def strip_derived(e):
+    """剥除派生字段（rel + 专区 exc）后比对内容本体。"""
+    return {k: v for k, v in e.items() if k not in ("rel", "exc")}
+
+
 # ---------------------------------------------------------------- 例外并集派生（小件批，2026-11-04）
 # 口径（见文件头注第 7 条）：LAWDATA 的 exc 由总表双仓派生——lawdata 分仓 exc
 # 为底，yaml 分仓 claim.exceptions 的独有项补入。gen_borrow.badges_of 引用
@@ -805,6 +828,19 @@ def yaml_exc_texts(rec):
         if t:
             out.append(t)
     return out
+
+
+def zone_exc(by, rid):
+    """专区条目的 exc 派生（「全部修改」第一波第 6 项，2026-11-04）：与
+    lawdata_with_exc 同口径——lawdata 分仓 exc 为底 ∪ yaml 例外独有项。
+    PN/CJ 专区 LAWS 条目原本无 exc 字段、专区页无从呈现 ⚠️（PN 页渲染器
+    只读 PN_EXTRA，而 EXTRA 仅覆盖 PR-01–PR-11；CJ 区无 EXTRA 机制），
+    故把并集派生进 PN/CJ 的 zone 条目 exc 字段（渲染器侧 PN 以 l.exc 为
+    EXTRA 缺位时的回退源、CJ vLaw 直读 l.exc）。AR 区不派生：AR_EXTRA
+    已全量覆盖本区并集，守冠词区逐字节纪律。"""
+    rec = by.get(rid) or {}
+    cur = list((rec.get("lawdata") or {}).get("exc") or [])
+    return cur + [t for t in yaml_exc_texts(rec) if t not in cur]
 
 
 def lawdata_with_exc(ld, rec):

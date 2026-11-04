@@ -188,6 +188,18 @@ def first_example(r):
     return ""
 
 
+# 王牌卡面例句钉选（2026-11-04「全部修改」第一波第 7 项）：卡面例句默认取
+# first_example（总表首例），下表条目按裁定钉死卡面，不随总表例句组序漂移。
+# V-16（一词多义）：卡面 = eye 树干句——stage2b-v 登记项 4 记录其由来（例句
+# 分组重排后首例由 light 反例变为 eye 树干句，评估为更代表本律核心），晨报
+# 待拍项经 Stewart 2026-11-04 全权授权拍板「把卡面换成 eye 主干句」，现钉选。
+# 可复原：原反例「Turn on the light. This bag is light.」仍逐字保留在 V-16
+# 规律页内；恢复其为卡面只需把下表 V-16 的值改成该句（一行调整）。
+TRUMP_EX_PIN = {
+    "V-16": "I open my eyes in the morning.",
+}
+
+
 def first_beat(r):
     ld = r.get("lawdata") or {}
     mech = ld.get("mech") or []
@@ -261,6 +273,8 @@ def build(master):
         ex = first_example(r)
         if not ex:
             fail(f"{lid} 取不到例句/例词")
+        if lid in TRUMP_EX_PIN:
+            ex = TRUMP_EX_PIN[lid]
         if route_of(r) != link:
             fail(f"{lid} 选条表回链 {link} != 计算路由 {route_of(r)}（落点已变，须复核）")
         trump.append({

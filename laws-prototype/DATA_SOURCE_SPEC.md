@@ -9,7 +9,7 @@
 | 数据类 | 唯一事实源 | 说明 |
 |---|---|---|
 | 词库 | `model/wordbank.json` | 词的拼写、音标（`model/phonetic_gb.json` 为其配套文件）、词义等以此为准（WORDBANK.md 既有纪律） |
-| 规律 | `model/laws_master.json` | 由 YAML 模型 + LAWDATA + 各专区规律合并而成（2026-11-03 Wave 1 建成）；428 图鉴口径以 `model/laws/*.yaml` 为历史源头，合并入总表后以总表为准。派生口径（2026-11-04 小件批）：LAWDATA 的 `exc` 由 `tools/gen_laws.py` 生成时双仓并集派生（lawdata 分仓 exc ∪ yaml 分仓 claim.exceptions 文本投影，见 gen_laws.py 头注第 7 条），⚠️「有例外」徽章跟派生后 exc 走（gen_borrow 同口径），yaml 例外不许再逐条手抄进 lawdata 分仓 |
+| 规律 | `model/laws_master.json` | 由 YAML 模型 + LAWDATA + 各专区规律合并而成（2026-11-03 Wave 1 建成）；428 图鉴口径以 `model/laws/*.yaml` 为历史源头，合并入总表后以总表为准。派生口径（2026-11-04 小件批）：LAWDATA 的 `exc` 由 `tools/gen_laws.py` 生成时双仓并集派生（lawdata 分仓 exc ∪ yaml 分仓 claim.exceptions 文本投影，见 gen_laws.py 头注第 7 条），⚠️「有例外」徽章跟派生后 exc 走（gen_borrow 同口径），yaml 例外不许再逐条手抄进 lawdata 分仓。专区呈现位派生（2026-11-04「全部修改」第一波第 6 项）：同一并集（gen_laws.py `zone_exc`，头注第 8 条）派生进 PN/CJ 专区 LAWS 条目的 `exc` 字段供专区页 ⚠️ 呈现（PN 渲染器以 LAWS.exc 为 PN_EXTRA 缺位回退源、CJ vLaw 直读）；AR 区不派生（AR_EXTRA 已全量覆盖） |
 | 词根词缀 | `model/morph_data.json` | 词根分组/词缀页/构词分类（Wave 2 由两文件内嵌 DATA 合并建成）。家族页落位口径（2026-11-04 小件批登记）：新词落位按成分规则机械归属——整词按词性功能/内容分 wh-func/wh-mono、禁拆按 morph_reason 六类归 ns 页、词形归 fm-form、复合词（自由词第二成分）归 cp-main、前缀/绑根/后缀按页与 misc 分节 head 查表归属、屈折 gloss 定 if 页共置；as-main 同化叠加与历史根分节为策展层不机械补；无页无分节的成分（如 kilo-）与口径未定类（如 form 类名词复数的页落位）进待判清单，不擅自判 |
 | 词汇（词页与各区用词） | `model/words_master.json` | 词页、拼读词卡、词根词表、词源词表的用词并集（Wave 3 建成）；与词库冲突时词库为准 |
 | 拼读 | `model/phonics_master.json` | 模式、成员、检查点的合并总表（Wave 4 建成）；词卡内容（音标、释义）不单独存放，生成时从词汇总表/词库带出 |
