@@ -8431,16 +8431,56 @@ function renderTrump(){
  box.innerHTML=h+'</div>';
 }
 /* ---------- B2 天坑榜 ---------- */
+/* R6-01（2026-11-04 第 6 轮确诊）：计数与排名改渲染时按 ERRIDX 重算。
+   BORROW.pit 是 gen_borrow 按总表两仓（yaml+lawdata）聚合的冻结快照，与现行
+   病例库（错句反查 ERRIDX，含专区病例面）口径不同且随语料变更漂移（榜上
+   GR-05 16 例 vs 现行 10 例、GR-48 现行 8 例整榜无名）。与错句反查页首
+   fillHead 同口径：每律孩子面病例（teach=0）计数，降序取前 10；并列按律 id
+   升序（gen_borrow 的并列次键 quiz+prb 数运行时无同源数据可算，登记用 id 序）。
+   样例病例取该律 ERRIDX 首条孩子面病例（wrong/right/diag_kid）。
+   BORROW.pit 字面量保留为 ERRIDX 未就绪时的回退占位，并继续供在榜律的卡面
+   文案（kid 一句话/徽章）来源；新上榜律的 kid 取 ERRIDX.briefs 机制孩子句，
+   无结构化徽章记录则不贴（与 gen_borrow B3 口径同）。
+   跳规律页统一走 LINKGO.openLaw（与错句反查同口径，可达专区律如 GR-48；
+   对快照在榜 10 律的落点与原 BW.openLaw 逐一实测一致），缺位时回退 BW。 */
+function pitLiveRows(){
+ var E=window['ERRIDX'];
+ if(!E||!E.cases||!E.cases.length)return null;
+ var by={},seq=[];
+ E.cases.forEach(function(c){
+  if(c[7])return;
+  var r=by[c[0]];
+  if(!r){r=by[c[0]]={law:c[0],cnt:0,firstCase:{wrong:c[3],right:c[4],diag:c[8]}};seq.push(r);}
+  r.cnt++;
+ });
+ seq.sort(function(a,b){return b.cnt-a.cnt||(a.law<b.law?-1:a.law>b.law?1:0);});
+ return seq.slice(0,10);
+}
+function pitBtn(id){
+ return '<button class="btn sec" onclick="if(window.LINKGO&&LINKGO.openLaw){LINKGO.openLaw(\''+id+'\')}else{BW.openLaw(\''+id+'\',\'law\')}">看规律页 →</button>';
+}
 function renderPit(){
  var box=document.getElementById('bw-pit');if(!box)return;
+ var live=pitLiveRows(),rows;
+ if(live){
+  var oldBy={},briefs=(window['ERRIDX']||{}).briefs||{};
+  (BORROW.pit||[]).forEach(function(p){oldBy[p.law]=p;});
+  rows=live.map(function(r,i){
+   var o=oldBy[r.law],b=briefs[r.law];
+   return {rank:i+1,law:r.law,kid:o?o.kid:((b&&b[1])||''),cnt:r.cnt,
+    'case':r.firstCase,badges:o?o.badges:[]};
+  });
+ }else{
+  rows=BORROW.pit||[];
+ }
  var h='';
- (BORROW.pit||[]).forEach(function(p){
+ rows.forEach(function(p){
   h+='<div class="bw-pitrow"><div class="bw-rank">'+p.rank+'</div><div class="bw-pitmain">'
    +'<p class="bw-kid"><b>'+BWE(p.law)+'</b> · '+BWE(p.kid)+' <span class="bw-cnt">病例 '+p.cnt+' 例</span></p>'
    +(p.badges&&p.badges.length?'<p class="cred-line">'+credChips(p.badges)+'</p>':'')
    +'<p class="bw-case"><span class="bw-wrong">✗ '+BWE(p.case.wrong)+'</span> → <span class="bw-right">✓ '+BWE(p.case.right)+'</span></p>'
    +(p.case.diag?'<p class="bw-diag">'+BWE(p.case.diag)+'</p>':'')
-   +'</div><div>'+lawBtn(p.law,'看规律页')+'</div></div>';});
+   +'</div><div>'+pitBtn(p.law)+'</div></div>';});
  box.innerHTML=h;
 }
 /* ---------- B2 时态决策树（判定口径出自 GR-02 / GR-04 / GR-08 与动词区时态模块） ---------- */
@@ -8534,6 +8574,13 @@ window.BW={openLaw:openLaw,
  treePick:function(i){var node=treeStack[treeStack.length-1];var o=node.opts[i];treeCrumbs.push(o.t);treeStack.push(o.next||{leaf:o.leaf});renderTree();},
  treeReset:function(){treeStack=[TENSE_TREE];treeCrumbs=[];renderTree();}};
 renderTrump();renderPit();renderTree();renderWbindex();spwbRender();
+/* R6-01：decide 页每次进入（.view 取得 .on）时按现行 ERRIDX 重渲天坑榜，
+   与 ANIMX/PN 等区视图观察者同口径——运行时数据变更后无需重载即跟随。 */
+var bwDecView=document.getElementById('v-decide');
+if(bwDecView&&window.MutationObserver){
+ new MutationObserver(function(){if(bwDecView.classList.contains('on'))renderPit();})
+  .observe(bwDecView,{attributes:true,attributeFilter:['class']});
+}
 })();
 </script>
 
