@@ -14241,10 +14241,18 @@ function statsHtml(){
   var dueN=pool.filter(function(it){var st=store.items[it.key];return st&&st.due<=endToday()}).length;
   var boxes=[0,0,0,0,0];
   Object.keys(store.items).forEach(function(k){var b=store.items[k].b; if(b>=1&&b<=5)boxes[b-1]++});
-  var byFam={law:0,probe:0,ta:0,gate:0,zone:0,morph:0,prep:0};
-  pool.forEach(function(it){byFam[it.fam]++});
+  var byFam={};
+  pool.forEach(function(it){byFam[it.fam]=(byFam[it.fam]||0)+1});
+  // 题库构成句：分项由 byFam 实际键集程序化生成（新来源家族自动入句，不再静默吞数）；显示名未登记者以 fam 键本身为名
+  var FAMN={law:'规律练习',probe:'理解探针',ta:'时态站',gate:'拼读过关词',zone:'专区练习',morph:'词根练习',prep:'介词练习',gen:'规律补题'};
+  var famKeys=Object.keys(FAMN).concat(Object.keys(byFam).filter(function(f){return !(f in FAMN)}));
+  var famSegs=[], famSum=0;
+  famKeys.forEach(function(f){var n=byFam[f]||0; famSegs.push((FAMN[f]||f)+' '+n); famSum+=n;});
+  var famPart='';
+  if(famSegs.length&&famSum===pool.length){ famPart='（'+famSegs.join(' · ')+'）'; }
+  else{ try{console.warn('[RV] 题库构成句自洽守卫：分项和 '+famSum+' ≠ 题库总数 '+pool.length+'，已回退为只显总数');}catch(e){} } // 分项和≠总数时不渲染矛盾句
   var stableN=0; try{ stableN=deriveMastery().counts['已稳']||0; }catch(e){} // 阶段1：已稳规律数（只读推导，有真数据才显示）
-  return '<b>复习账本（只存在这台设备）</b><br>题库 '+pool.length+' 题（规律练习 '+byFam.law+' · 理解探针 '+byFam.probe+' · 时态站 '+byFam.ta+' · 拼读过关词 '+byFam.gate+' · 专区练习 '+byFam.zone+' · 词根练习 '+byFam.morph+' · 介词练习 '+byFam.prep+'）'+
+  return '<b>复习账本（只存在这台设备）</b><br>题库 '+pool.length+' 题'+famPart+
     ' · 已建档 '+seen+' 题 · 今日到期 '+dueN+' 题 · 错题本 '+Object.keys(store.wrong).length+' 题 · 已攻克 '+store.fixed+' 题'+(stableN>0?' · 已稳规律 '+stableN+' 条':'')+'<br>'+
     '五盒分布：第 1 盒 '+boxes[0]+' · 第 2 盒 '+boxes[1]+' · 第 3 盒 '+boxes[2]+' · 第 4 盒 '+boxes[3]+' · 第 5 盒 '+boxes[4]+
     '（答对升一盒：1 天 → 3 天 → 7 天 → 16 天后再练；答错回第 1 盒并按病因进错题本） '+
