@@ -24,8 +24,9 @@ gen_laws.py — 单一数据源「切换」阶段 2 的生成器：规律数据�
      全部字段（池构成逐项不变），页面渲染字段下线（独有内容已在总表 lawdata 分仓保全）；
      LAW.open 增加 ptr 跳转分支（代词 PN.go / 冠词 AR.go / 连词 CJ.go / 词根 MZ.openLaw），
      词根区 IIFE 末尾补 window.MZ 导出（与 PN/AR/CJ 同构）。
-  6. 统一关系户口（知识联动阶段 2）：教学关系 509 条自 LAWDATA rel 迁入总表
-     relations_teaching（{id, kind, src}，与裁定型 relations 47 条并列同仓）；
+  6. 统一关系户口（知识联动阶段 2）：教学关系自 LAWDATA rel 迁入总表
+     relations_teaching（{id, kind, src}，与裁定型 relations 47 条并列同仓；
+     首批 509 条，2026-11-05 R11-01 补迁 PHONLAWS/SUPPDATA 户口外 376 条后共 885 条）；
      LAWDATA 全条目、PN/AR/CJ 专区条目与 LAWREG 条目的 rel 字段一律由总表
      relations_teaching 派生（teach_rel），副本不得自留户口外关系。
   7. 例外并集派生（2026-11-04 小件批）：LAWDATA 的 exc 字段 = 总表 lawdata 分仓
@@ -807,7 +808,7 @@ def build_morph_data(md, by):
 
 # ---------------------------------------------------------------- 统一关系户口（知识联动阶段 2，2026-11-03 Stewart 拍板）
 # 规律关系户口统一住总表：裁定型 relations（47 条，原文不动）+ 教学型
-# relations_teaching（509 条自 LAWDATA rel 迁入，{id, kind, src}）。本生成器把
+# relations_teaching（885 条自 LAWDATA rel 迁入＝首批 509＋R11-01 补迁 376，{id, kind, src}）。本生成器把
 # 教学关系派生成各副本的 rel 字段（LAWDATA 全条目 / 代词·冠词·连词专区 LAWS /
 # 词根 LAWREG）；LAWDATA 与专区数据从此只是生成副本，不再是关系户口。
 def teach_rel(by, rid):

@@ -68,6 +68,8 @@
 
 统一入口：`tools/check_all.py`（一键跑全部 gen_* --check + check_morph_sync + check_upstream）。上游对账（`tools/check_upstream.py`）验「上游源头 ↔ 总表分仓」五条链（YAML/wordbank/phonetic_gb/wordsets/checkpoints），与 gen_* 的「总表 ↔ 内嵌」互补，缺一不可。
 
+关系户口门禁（2026-11-05，Bug 第 11 轮 R11-01 修复登记）：`tools/check_rel_coverage.py`（check_all 第 24 项）断言运行时 LAWDATA.rel（基础字面量 + PHONLAWS + SUPPDATA 合并口径）全部有向边 (a,b) ⊆ LINKIDX.g 边集、且 kind 落对应槽（前置→p / 同族→k / 对照→c）。规律关系只许住总表 `relations`（裁定型）+ `relations_teaching`（教学型，R11-01 补迁后共 885 条 = 首批 509 + 补迁 376）；任何字面量中的 rel 与总表派生口径不一致、或有边未入 LINKIDX.g，一律报红，不得提交。
+
 校验不过，不得提交。
 
 ## 7. 例外登记
