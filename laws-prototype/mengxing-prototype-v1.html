@@ -1635,7 +1635,7 @@ function rowHTML(i){
   h += '<span class="wph">' + esc(r[1]) + '</span>';
   h += '<span class="wm"><span class="wpos">' + esc(r[2]) + '</span> ' + esc(r[3]) + '</span>';
   if (r[7]) h += '<span class="bdg poly">多义</span>';
-  if (r[8]) h += '<span class="bdg morph navchip" data-nav="morph" data-i="' + i + '" title="去词根词缀区看它一家">可拆</span>';
+  if (r[8]) h += morphLand(r).length ? '<span class="bdg morph navchip" data-nav="morph" data-i="' + i + '" title="去词根词缀区看它一家">可拆</span>' : '<span class="bdg morph">可拆</span>';
   if (r[19] && r[19].length) h += '<span class="bdg phon navchip" data-nav="phon" data-i="' + i + '" title="去自然拼读区看它命中的规律">拼读</span>';
   if (r[14]) h += '<span class="bdg ety">词源</span>';
   h += '<span class="tier">' + (r[13] ? '词页' : '词卡') + '</span>';
@@ -1711,7 +1711,7 @@ function morphHTML(r, i){
     if (mm.clipping_of) h += '<p>缩略自：' + esc(mm.clipping_of) + '</p>';
     if (mm.transparency) h += '<p class="small">透明度（拆开后意思还对得上多少）：' + esc(mm.transparency) + '</p>';
     if (mm.note) h += '<p class="small">' + esc(mm.note) + '</p>';
-    h += '<p><button class="btn sec navbtn" onclick="VC.openNavMorph(' + i + ')">去词根区看它一家 →</button></p>';
+    if (morphLand(r).length) h += '<p><button class="btn sec navbtn" onclick="VC.openNavMorph(' + i + ')">去词根区看它一家 →</button></p>';
   } else if (r[9]) {
     h += '<p>' + esc(r[9]) + '</p>';
   }
@@ -1785,7 +1785,7 @@ function openCard(i){
     '<p class="small">音节：' + esc(r[4]) + ' · 主题分类：' + esc(r[5]) + ' · ' + esc(r[6]) + '</p>';
   var nav = '';
   if (r[19] && r[19].length) nav += '<button class="btn sec navbtn" onclick="VC.openNavPhon(' + i + ')">🔤 去拼读区看它命中的规律 →</button> ';
-  if (r[15]) nav += '<button class="btn sec navbtn" onclick="VC.openNavMorph(' + i + ')">🧩 去词根区看它一家 →</button>';
+  if (r[15] && morphLand(r).length) nav += '<button class="btn sec navbtn" onclick="VC.openNavMorph(' + i + ')">🧩 去词根区看它一家 →</button>';
   if (nav) h += '<p class="wp-nav">' + nav + '</p>';
   h += '<p class="small">本页每一栏都来自词库里这个词的记录；词库里没有的栏，就如实标「待补」，不编造。</p></div>';
   var WX = (typeof WEXTRA !== 'undefined' && WEXTRA[i]) || null;
@@ -1936,10 +1936,11 @@ function focusPhonWord(r, G){
   }
 }
 /* ---- 词根落点（真页）：MZ 词族页 ---- */
+function morphLand(r){ return (typeof MZLAND !== 'undefined' && MZLAND[r[20]]) || []; }
 function openNavMorph(i){
   var r = WLIST[i]; if (!r || !r[15]) return;
   saveListScroll();
-  var pages = (typeof MZLAND !== 'undefined' && MZLAND[r[20]]) || [];
+  var pages = morphLand(r);
   if (!pages.length) return;
   if (pages.length === 1) { NP_I = i; goMorph(pages[0], r); return; }
   NP_I = i;
