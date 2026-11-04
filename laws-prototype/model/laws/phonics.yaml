@@ -823,11 +823,13 @@ entries:
     error_type: 母语顶替
     source_type: 教学文献登记错型
     diagnosis: 汉语无 /θ/，以最近邻 /s/ 或 /f/ 顶替；组合层处方见 S-43 难点①。
+    diagnosis_kid: "汉语无 /θ/，以最近邻 /s/ 或 /f/ 顶替；组合层处方见 S-43 难点①。"
   - wrong: word 尾巴吞音
     right: word 词尾辅音完整发出
     error_type: 词尾削减
     source_type: 教学文献登记错型
     diagnosis: 汉语无词尾辅音丛与浊尾，尾音被清化或吞掉；见 S-43 难点⑥。
+    diagnosis_kid: "汉语无词尾辅音丛与浊尾，尾音被清化或吞掉；见 S-43 难点⑥。"
   probes: []
   quiz: []
   relatives:
@@ -2048,7 +2050,7 @@ entries:
     exceptions:
     - h 在 hour、honest、heir 里不发音
     - w 在 two、sword、answer 里缺席
-    - RP 口径下 r 只在元音前发音（car 词尾不响，GA 则响）
+    - 按 RP 的读法，r 只在元音前发音（car 词尾不响，GA 则响）
     - this 的 s 是清的、is 的 s 是浊的（高频词逐词认）
   mechanism:
     beats:
@@ -2166,7 +2168,7 @@ entries:
     exceptions:
     - 硬 g 例外队：get、give、girl、gift、gear、geese、giggle、girdle、gill（鱼鳃）、begin、together；借词：geyser（冰岛语）、gecko（马来语拟声）、ginkgo
     - gill 一词两读：鱼鳃读 /ɡ/、量器读 /dʒ/
-    - c 的例外：sceptic（英式读 /sk/）、Celtic（学界多读 /k/、足球俱乐部名读 /s/，双读登记）、意大利语层 cello、concerto 里 c + e 读 /tʃ/
+    - c 的例外：sceptic（英式读 /sk/）、Celtic（学界多读 /k/、足球俱乐部名读 /s/，两种读法都有）、意大利语层 cello、concerto 里 c + e 读 /tʃ/
   mechanism:
     beats:
     - beat: 软化机制
@@ -4015,7 +4017,7 @@ entries:
     - slough 一词三读（/slʌf/ 蜕皮、/sluː/ 泥沼（主美）、/slaʊ/），是单字层面的变脸，不重复计入组合读法数
   mechanism:
     beats:
-    - beat: 排序口径
+    - beat: 按什么排序
       text_adult: 按「读法数 × 不可预测度」加权（读法多、且位置/重音/词源都给不出线索者居前），不是单纯数读音个数。本榜与 S-06 的关系：S-06 立「统计倾向 + 变脸名单」的原则，本榜给出名单的成员、排序与每组的全谱词例；与 S-35–S-41 各菜单条的关系是「菜单给主场、本榜收全谱」。
       anchors: []
       text_kid: 有几个字母组合是「变脸大王」：ough 一个组合有八到十种读法，ea 有四种（带上 ear 家族有七种），ou 有六七种——这些组合没有规则可猜，办法是把每个组合的词按读法分组，一组一组记住。本榜就是变脸名单的正式版。
@@ -4478,36 +4480,43 @@ entries:
     error_type: 母语顶替
     source_type: 真实语料错型
     diagnosis: 汉语无齿间擦音 /θ/，以 /s/ 顶替（Deterding 2006 与 ICILLP 2025 综述著录）；回指机制小节「音段顶替四项」①。
+    diagnosis_kid: "汉语里没有 /θ/ 这个齿间音，所以容易拿 /s/ 来顶替。three 要让舌尖探出齿缝来读。"
   - wrong: very → wery
     right: very /ˈveri/（上齿咬下唇）
     error_type: 母语顶替
     source_type: 真实语料错型
     diagnosis: 汉语有 /w/ 无 /v/，以 /w/ 顶替 /v/；回指机制小节「音段顶替四项」②。
+    diagnosis_kid: "汉语有 /w/ 无 /v/，以 /w/ 顶替 /v/；回指机制小节「音段顶替四项」②。"
   - wrong: ship / sheep 读成一个音
     right: ship /ʃɪp/ 短而紧、sheep /ʃiːp/ 长而松
     error_type: 长短合流
     source_type: 真实语料错型
     diagnosis: 汉语 /i/ 一类独大，紧松对立与时长线索双缺；回指机制小节「音段顶替四项」③，处方听辨先行。
+    diagnosis_kid: "汉语 /i/ 一类独大，紧松对立与时长线索双缺；回指机制小节「音段顶替四项」③，处方听辨先行。"
   - wrong: banana 三个音节一样响
     right: ba-NA-na（弱读音节读 /ə/、小声快速滑过）
     error_type: 弱读缺席
     source_type: 真实语料错型
     diagnosis: 汉语音节元音不弱化，弱读 /ə/ 系统性缺席、以全元音代之（Deterding 2006 著录）；回指机制小节「弱读、词尾与音节结构四项」⑤。
+    diagnosis_kid: "banana 的三个音节不是一样响：中间的弱读音节要读 /ə/，小声快速滑过。汉语的音节元音不弱化，容易把弱读的 /ə/ 读成满满的全元音。"
   - wrong: bed → bet；cat、map 尾音脱落
     right: bed /bed/（浊尾咬住，前面元音更长）；cat、map 尾塞音收住
     error_type: 词尾削减
     source_type: 真实语料错型
     diagnosis: 汉语韵尾只有 -n、-ng，词尾浊塞音被清化、尾塞音被吞掉；回指机制小节「弱读、词尾与音节结构四项」⑥。
+    diagnosis_kid: "汉语韵尾只有 -n、-ng，词尾浊塞音被清化、尾塞音被吞掉；回指机制小节「弱读、词尾与音节结构四项」⑥。"
   - wrong: blue → buh-loo（丛中塞元音）
     right: blue（由尾及首连滑 ue→lue→blue，丛中不停顿不加塞）
     error_type: 丛中插元音
     source_type: 真实语料错型
     diagnosis: 汉语无辅音丛，词首丛被塞入元音拆散（Deterding 2006 附加元音著录）；回指机制小节「弱读、词尾与音节结构四项」⑧。
+    diagnosis_kid: "汉语里没有辅音丛，词首两个辅音连在一起时，容易往中间塞一个元音，把 blue 拆成 buh-loo。练法：由尾及首连着滑，ue→lue→blue，中间不停顿、不加塞。"
   - wrong: sing → sin
     right: sing /sɪŋ/（鼻腔共鸣、嗡嗡尾延长）
     error_type: 母语顶替
     source_type: 教学文献登记错型
     diagnosis: 部分汉语方言区普通话自身 -n/-ŋ 不分，迁移至英语 -ng；回指机制小节「弱读、词尾与音节结构四项」⑦。
+    diagnosis_kid: "有些汉语方言区的人，普通话里 -n 和 -ŋ 本来就不分，这个习惯带到英语里，sing 的 -ng 就读成了 -n。sing 要读出鼻腔共鸣，把嗡嗡的尾巴延长。"
   probes: []
   quiz: []
   relatives:
@@ -4562,7 +4571,7 @@ entries:
     - 支撑：第①职的实测坐标——Clymer (1963）对小学词表的检验中，「词尾有 e 时首元音读长、e 不发音」这条概括的命中率只有 63%，所以第①职是五职里最需要配合变脸名单使用的一职（详见 SR-08）。第③职的近孤例：Hickey 教学法的规则卡片直言词尾 v 规则「英语中唯一的例外是 spiv（英式俚语）」——可见其在本土词层面的覆盖率。
     scope: 第③职只对本土核心词近乎无例外（外来词与截短词可破，见例外）；第④职适用面很小，仅限 bath/bathe 等少数同源词对与 -the 结尾的动词族；被本条略去的另三职（防像复数、给短词凑长度、无职之 e）登记在成人层边界，不作本条 claim。
     exceptions:
-    - 第③职的外来/截短破例：u 收尾——menu、emu、guru、haiku、tofu、flu（influenza 的截短）；v 收尾——improv、rev（截短）、chav、maglev；词尾 v 规则在本土词层面的近孤例为 spiv（英式俚语，Hickey 规则卡片著录）
+    - 第③职的外来/截短破例：u 收尾——menu、emu、guru、haiku、tofu、flu（influenza 的截短）；v 收尾——improv、rev（截短）、chav、maglev；词尾 v 规则在本土词层面的近孤例为 spiv（英式俚语）
     - 第④职不可反推：名词侧 wreath、sheath 的动词 sheathe 才带 e；lithe、blithe 本身即读 /ð/ 且无对立名词——「带 e 必浊」不成立于其他 th 词
   mechanism:
     beats:
@@ -5099,8 +5108,8 @@ entries:
     scope: 儿童面只取词首+词尾两段，教师层存完整版（含多音节 c 与加后缀 k 插入）。c 的反向例外（soccer、sceptic、Celtic）归软 c 条（S-31）处理，此处只登记。
     exceptions:
     - 借词例外成串：kangaroo、koala、karate、kayak、karma 等借词把 k 带到了 a/o/u 之前（LETRS 材料直标 “Exceptions due to etymology”）——违反的是词首分工，须按词源整词记
-    - c 的反向例外（镜像登记）：soccer（cc 在 e 前读 /k/）、sceptic（英式，/ˈskeptɪk/）、Celtic（常读 /ˈkeltɪk/）是 c 在软化区仍读 /k/ 的小名单
-    - 边缘变体：arcing（arc 的 -ing 形式，两式并存），登记不展开
+    - c 的反向例外（正好相反的一组）：soccer（cc 在 e 前读 /k/）、sceptic（英式，/ˈskeptɪk/）、Celtic（常读 /ˈkeltɪk/）是 c 在软化区仍读 /k/ 的小名单
+    - 边缘变体：arcing（arc 的 -ing 形式，两种拼法并存），这里不展开
   mechanism:
     beats:
     - beat: /k/ 的位置分工系统
@@ -5220,6 +5229,7 @@ entries:
     error_type: 后缀拼写
     source_type: 教学文献登记错型
     diagnosis: 清单著录「中国学生常写 *paniced」——c 结尾词加 e/i 开头后缀须插 k 保 /k/，否则 ci 被读软；回指机制小节「加后缀时的 k 插入」。
+    diagnosis_kid: "以 c 结尾的词，加 e、i 开头的后缀时，要先插入一个 k：panicked、picnicking。不插 k，ci 会被读软，/k/ 的音就保不住了。中国学生常写成 paniced。"
   probes: []
   quiz: []
   relatives:
@@ -5693,7 +5703,7 @@ entries:
     exceptions:
     - (a) ei 读 /iː/ 却不在 c 后（真例外名单）：seize、protein、caffeine、codeine（词源与借词各有来历）
     - (c) ei 不读 /iː/ 的大队（射程外、非例外）：their、eight、neighbour、vein、height、foreign、leisure、forfeit——服从的是别的格局（/eɪ/ 的 ei 拼法等），用口诀去套是射程误用
-    - weird 的元音是 /ɪə/（英）/ɪr/（美），不在 /iː/ 射程内——它只是裸口诀的反例、不是限定版的反例
+    - weird 的元音是 /ɪə/（英）/ɪr/（美），不在 /iː/ 的范围内——它只是那句不带条件的口诀的反例，不是带上限定条件的完整版口诀的反例
   mechanism:
     beats:
     - beat: 三层验货
@@ -5835,7 +5845,7 @@ entries:
     - 支撑：Johnston (2001）的再检验给本条留了必要的另一面：把聚合拆开看，单个组合的可靠度天差地别——ay、ee 近乎无例外地服从「第一字母长音」式读法，aw、oy、oi 则稳定地读它们自己的双元音（只是不符合顺口溜的字面而已）。所以正确的教学替代不是「元音组合不可教」，而是「逐个组合教、按组合标可靠度」——这正是 S-33 拼法菜单的存在理由，本条为它提供证据基座。
     scope: 45% 的口径：它是「全部相邻元音对」在 1960 年代小学词表（四套小学基础读本＋Gates 初级词表，2,600 词）上的整体符合率（含 oo、ou、oi 等根本不该由该顺口溜管辖的组合）；用它去否定某个具体组合（如 ee）的教学价值，是拿聚合数字打单点。本条只辟「两元音同行」这一句；不适用于评价 VCe（SR-01)、位置规则（SR-05）等有条件限定的格局。
     exceptions:
-    - 口诀反例组（儿童版著录）：bread、head、said、great、friend——ea/said 等不在「第一元音长读」格局内
+    - 口诀的反例组（给孩子看的）：bread、head、said、great、friend——ea、said 等不在「第一元音长读」的格局内
   mechanism:
     beats:
     - beat: 聚合错误与实测

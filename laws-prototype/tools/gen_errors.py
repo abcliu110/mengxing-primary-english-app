@@ -23,8 +23,12 @@
     +7 lawdata，另病例卫生删三源跨仓影子副本 95 条——先到先得口径下
     保留集不变，故 zone 136 与教学法 55 不变）。
   - cases 行 = [律 id, 家族, 律名, wrong, right, diag, 有辨析页 0/1,
-    教学法条目 0/1]：diag 一律原文照录（白话改写不在本波，原型 10 条示
-    意改写不进数据）。
+    教学法条目 0/1, diag_kid]：diag 一律原文照录；diag_kid 为孩子版
+    解说（2026-11-04「全部修改」第二波·孩子面文字波：成人腔 217 条中
+    改写 216 条、转述必失真保留登记 1 条（VB-08 簿记回指），已是白话
+    的 146 条同文；字段在事实源为 lawdata.cases.diag_kid /
+    yaml.error_cases.diagnosis_kid / zone.data.errors.diag_kid，规范
+    §1 登记；呈现规则：孩子层显示 diag_kid、成人层并显原文 diag）。
   - 教学法条目标记：wrong 不含英文字母（原型盘点口径，恰 55 条——多为
     yaml 里的教法病例，非孩子错句）；呈现层只在成人层显示（分流）。
   - briefs：每律简要卡 [律名, 机制一句话, 例句 1, 例句 2]，取 lawdata
@@ -164,16 +168,16 @@ def build(master, contrast):
         zd = (e.get("zone") or {}).get("data") or {}
         raw = []
         for c in ld.get("cases") or []:
-            raw.append(("lawdata", c.get("wrong"), c.get("right"), c.get("diag")))
+            raw.append(("lawdata", c.get("wrong"), c.get("right"), c.get("diag"), c.get("diag_kid")))
         for c in ym.get("error_cases") or []:
-            raw.append(("yaml", c.get("wrong"), c.get("right"), c.get("diagnosis")))
+            raw.append(("yaml", c.get("wrong"), c.get("right"), c.get("diagnosis"), c.get("diagnosis_kid")))
         for c in zd.get("errors") or []:
-            raw.append(("zone", c.get("wrong"), c.get("right"), c.get("diag")))
+            raw.append(("zone", c.get("wrong"), c.get("right"), c.get("diag"), c.get("diag_kid")))
         can = e.get("canonical") or {}
         fam = can.get("family") or lid.split("-")[0]
         name = can.get("headline") or ld.get("hl") or zd.get("short") or lid
         seen = set()
-        for tag, w, r, dg in raw:
+        for tag, w, r, dg, dk in raw:
             if not w:
                 continue
             n = norm(w)
@@ -183,7 +187,7 @@ def build(master, contrast):
             src_counts[tag] += 1
             teach = 0 if re.search(r"[A-Za-z]", w) else 1
             entry = [lid, fam, name, w, r or "", dg or "",
-                     1 if lid in cx_laws else 0, teach]
+                     1 if lid in cx_laws else 0, teach, dk or dg or ""]
             cases.append(entry)
             per_law.setdefault(lid, []).append(entry)
     briefs = {}
@@ -218,6 +222,11 @@ def build(master, contrast):
         fail(f"教学法条目应为 55，实得 {n_teach}")
     if cx_in != 11:
         fail(f"索引内有辨析页的律应为 11，实得 {cx_in}")
+    n_kid_rw = sum(1 for c in cases if c[8] != c[5])
+    if n_kid_rw != 216:
+        fail(f"diag_kid 改写条数应为 216（另同文 146 + 保留登记 1），实得 {n_kid_rw}")
+    if any(not c[8] for c in cases):
+        fail("存在 diag_kid 为空的病例行（孩子版全量覆盖口径）")
     built = {"tot": len(cases), "nt": n_teach, "laws": len(per_law),
              "lawsc": laws_child, "cases": cases, "briefs": briefs}
     stats = {"src": src_counts, "laws_child": laws_child, "cx_laws": cx_in}
