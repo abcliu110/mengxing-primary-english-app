@@ -372,9 +372,11 @@ CJ_UI_EDITS = [
     ('白板分段停靠',
      'cjwbApplyAt(cjwbS.total);\n    var n = cjwbS.sec.scenes.length;\n    if(cjwbS.scene < n - 1){ cjwbS.scene++; cjwbRenderScene(); cjwbS.startTs = 0; cjwbS.baseElapsed = 0; cjwbS.raf = requestAnimationFrame(cjwbFrame); return; }',
      "cjwbApplyAt(cjwbS.total);\n    var n = cjwbS.sec.scenes.length;\n    if(cjwbS.range && cjwbS.scene >= cjwbS.range[1]){ cjwbStop(); if(cjwbS.btn) cjwbS.btn.textContent = '↻ 再看一遍'; return; }\n    var segs = cjwbS.sec.segs || [];\n    for(var gi = 0; gi < segs.length - 1; gi++){\n      if(cjwbS.scene === segs[gi].to - 1){ cjwbStop(); cjwbS.segWait = true; if(cjwbS.btn) cjwbS.btn.textContent = '▶ 下一段：' + segs[gi + 1].name; return; }\n    }\n    if(cjwbS.scene < n - 1){ cjwbS.scene++; cjwbRenderScene(); cjwbS.startTs = 0; cjwbS.baseElapsed = 0; cjwbS.raf = requestAnimationFrame(cjwbFrame); return; }"),
+    # R9-01 修复（2026-11-05）：segWait 支路 scene++ 加上限守卫——陈旧 segWait（跨律残留）停在末镜时
+    # 不再越界推进，改为落回常规 toggle 逻辑（再看一遍从 home 重播）；old = 上一版 new（锚点演进）。
     ('白板下一段续播',
-     'function cjwbTogglePlay(){\n  if(!cjwbS.sec) return;\n  if(cjwbS.playing){',
-     'function cjwbTogglePlay(){\n  if(!cjwbS.sec) return;\n  if(cjwbS.segWait){ cjwbS.segWait = false; cjwbS.scene++; cjwbRenderScene(); cjwbPlayStart(); return; }\n  if(cjwbS.playing){'),
+     'function cjwbTogglePlay(){\n  if(!cjwbS.sec) return;\n  if(cjwbS.segWait){ cjwbS.segWait = false; cjwbS.scene++; cjwbRenderScene(); cjwbPlayStart(); return; }\n  if(cjwbS.playing){',
+     'function cjwbTogglePlay(){\n  if(!cjwbS.sec) return;\n  if(cjwbS.segWait){ cjwbS.segWait = false; if(cjwbS.scene < cjwbS.sec.scenes.length - 1){ cjwbS.scene++; cjwbRenderScene(); cjwbPlayStart(); return; } }\n  if(cjwbS.playing){'),
     ('白板重播清分段等待',
      'function cjwbReplay(){\n  if(!cjwbS.sec) return;\n  cjwbStop();\n  cjwbS.scene = 0;',
      'function cjwbReplay(){\n  if(!cjwbS.sec) return;\n  cjwbStop(); cjwbS.segWait = false;\n  cjwbS.scene = cjwbS.home || 0;'),

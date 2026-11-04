@@ -20061,7 +20061,7 @@ function cjwbInit(){
   var top = stack[stack.length - 1];
   var sec = (top && top.view === 'law') ? CJWB_BY_ID[top.id] : null;
   if(!sec){ cjwbS.sec = null; return; }
-  cjwbS.sec = sec; cjwbS.scene = 0; cjwbS.elapsed = 0; cjwbS.baseElapsed = 0; cjwbS.range = null; cjwbS.home = 0;
+  cjwbS.sec = sec; cjwbS.scene = 0; cjwbS.segWait = false; cjwbS.elapsed = 0; cjwbS.baseElapsed = 0; cjwbS.range = null; cjwbS.home = 0;
   cjwbS.stage = stage;
   cjwbS.hand = document.getElementById('cjwbHand');
   cjwbS.board = document.getElementById('cjwbBoard');
@@ -20156,6 +20156,8 @@ function cjwbMoveHand(it){
   } catch(e){ cjwbS.hand.style.opacity = '0'; }
 }
 function cjwbRenderScene(){
+  if(!cjwbS.sec || !cjwbS.sec.scenes || !cjwbS.sec.scenes.length){ cjwbStop(); return; }
+  if(!(cjwbS.scene >= 0 && cjwbS.scene < cjwbS.sec.scenes.length)) cjwbS.scene = 0;
   var sc = cjwbS.sec.scenes[cjwbS.scene];
   cjwbS.stage.innerHTML = sc.svg;
   if(cjwbS.capText) cjwbS.capText.textContent = sc.cap;
@@ -20191,7 +20193,7 @@ function cjwbPlayStart(){
 }
 function cjwbTogglePlay(){
   if(!cjwbS.sec) return;
-  if(cjwbS.segWait){ cjwbS.segWait = false; cjwbS.scene++; cjwbRenderScene(); cjwbPlayStart(); return; }
+  if(cjwbS.segWait){ cjwbS.segWait = false; if(cjwbS.scene < cjwbS.sec.scenes.length - 1){ cjwbS.scene++; cjwbRenderScene(); cjwbPlayStart(); return; } }
   if(cjwbS.playing){
     cjwbS.playing = false;
     if(cjwbS.raf){ cancelAnimationFrame(cjwbS.raf); cjwbS.raf = 0; }
