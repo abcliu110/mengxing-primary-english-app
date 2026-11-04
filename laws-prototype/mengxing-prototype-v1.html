@@ -7764,7 +7764,7 @@ function caseClash(mount, cfg){
       for(var i=0;i<wToks.length;i++){
         if(!rt.alive(tok)) return;
         renderSent(wToks.slice(0,i+1), wSeg, 'bad');
-        var tkEl=sentEl.children[sentEl.children.length-2];
+        var tkEl=sentEl.children[sentEl.children.length-1]; /* R3-04：入场落在刚写出的那个词（原 length-2 错位一格、首词永不弹入） */
         if(tkEl) rt.anim(tkEl,[{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:220,fill:'forwards'});
         await step(rt.hold(per), rt, tok);
       }
@@ -7835,7 +7835,7 @@ function partsSwap(mount, racks){
   var noteEl=el('div','anx-note'); var noteSpan=el('span'); noteEl.appendChild(noteSpan);
   var rackS=el('div','anx-rack'); rackS.appendChild(el('div','lab','主语架 · 点一个换主语'));
   var rackT=el('div','anx-rack'); rackT.appendChild(el('div','lab','句尾架 · 点一个换句尾'));
-  var si=0, ti=0, busy=false, pending=null;
+  var si=0, ti=0, busy=false, queue=[];
   function curSent(){ return racks.subjects[si].s+' '+racks.subjects[si].be+' '+racks.tails[ti]+'.'; }
   function paint(){
     bSubj.textContent=racks.subjects[si].s; bBe.textContent=racks.subjects[si].be; bTail.textContent=racks.tails[ti];
@@ -7860,24 +7860,31 @@ function partsSwap(mount, racks){
     }
     speak(curSent(), 0.85);
   }
-  function requestSwap(nsi, nti){
-    var tok=rt.beginRun(); ctl0.resetPause();
-    if(busy){ pending={si:nsi, ti:nti, tok:tok}; return; }
+  /* R3-03：真 FIFO 队列（原型定版口径）——busy 期点击逐个入队、依次执行；
+     每次点击的意图按「队列末态」合成：主语点击只换主语分量、句尾点击只换句尾分量，
+     连点不互相覆盖（原单槽 pending 会把中间一次点击静默吞掉）。 */
+  function tailState(){ return queue.length ? queue[queue.length-1] : {si:si, ti:ti}; }
+  function pumpQueue(){
+    if(busy || !queue.length) return;
     busy=true;
-    var done=function(){
-      busy=false;
-      if(pending){ var p=pending; pending=null; requestSwap(p.si, p.ti); }
-    };
-    applySwap(nsi, nti, tok).then(done, done);
+    var st=queue.shift();
+    var tok=rt.beginRun(); ctl0.resetPause();
+    var done=function(){ busy=false; pumpQueue(); };
+    applySwap(st.si, st.ti, tok).then(done, done);
+  }
+  function requestSwap(nsi, nti){
+    var t=tailState();
+    queue.push({si:(nsi==null?t.si:nsi), ti:(nti==null?t.ti:nti)});
+    pumpQueue();
   }
   racks.subjects.forEach(function(x,i){
     var b=el('button','anx-pick', x.s); b.type='button';
-    b.onclick=function(){ requestSwap(i, ti); };
+    b.onclick=function(){ requestSwap(i, null); };
     rackS.appendChild(b);
   });
   racks.tails.forEach(function(t,i){
     var b=el('button','anx-pick', t); b.type='button';
-    b.onclick=function(){ requestSwap(si, i); };
+    b.onclick=function(){ requestSwap(null, i); };
     rackT.appendChild(b);
   });
   var tourTimer=null;
@@ -7888,7 +7895,7 @@ function partsSwap(mount, racks){
     if(tourTimer) rt.clearTimer(tourTimer);
     tourTimer=rt.every(1900, function(){
       if(k>=order.length){ rt.clearTimer(tourTimer); tourTimer=null; rt.endRun(); return; }
-      requestSwap(order[k], ti); k++;
+      requestSwap(order[k], null); k++;
     });
   });
   box.appendChild(stage); box.appendChild(rackS); box.appendChild(rackT); box.appendChild(noteEl); box.appendChild(ctl0.box);
@@ -8005,12 +8012,14 @@ function tenseLink(mount, cfg){
     if(sl.note){ noteEl.innerHTML=sl.note; noteEl.style.display='block'; } else noteEl.style.display='none';
     if(sl.sent) speak(sl.sent, 0.88);
   }
+  var tour=null;
+  function stopTour(){ if(tour){ rt.clearTimer(tour); tour=null; } }
   cfg.slots.forEach(function(sl, i){
     var b=el('button','anx-pick', sl.label); b.type='button';
-    b.onclick=function(){ rt.beginRun(); ctl.resetPause(); setSlot(i, false); };
+    /* R3-02：手动点选立即停巡演（与 P2 stopTimer 同族口径），不再被下一拍抢走 */
+    b.onclick=function(){ stopTour(); rt.beginRun(); ctl.resetPause(); setSlot(i, false); };
     btnRow.appendChild(b);
   });
-  var tour=null;
   var ctl=controls(rt, function(){
     var k=0; if(tour) rt.clearTimer(tour);
     tour=rt.every(2400, function(){
@@ -14673,7 +14682,7 @@ function faState(law){
     clash.className = 'cut-clashbox'; clash.style.display = 'none';
     mnt.parentNode.insertBefore(bar, mnt.nextSibling);
     mnt.parentNode.insertBefore(clash, bar.nextSibling);
-    cur['FA:' + law] = { law: law, version: defaultFor(law), bar: bar, clash: clash, applied: false };
+    cur['FA:' + law] = { law: law, version: defaultFor(law), bar: bar, clash: clash, applied: false, dApplied: false };
     paintFATabs(law);
   }
   return cur['FA:' + law];
@@ -14716,7 +14725,7 @@ function faSetVersion(law, v, autoplay){
   var f = FILMS[law];
   if(v === 'review' && !f.canReview) v = 'first';
   if(v === 'wrong' && !(f.canWrong && casesOf(law).length)) v = 'first';
-  st.version = v; st.applied = false;
+  st.version = v; st.applied = false; st.dApplied = true; /* 任一显式应用（点标签/CUT.open/默认补应用）后，补装轮询不再重复应用 */
   faWrapAll();
   if(v === 'wrong'){
     st.clash.style.display = 'block';
@@ -14727,6 +14736,34 @@ function faSetVersion(law, v, autoplay){
     st.clash.style.display = 'none'; st.clash.innerHTML = '';
   }
   paintFATabs(law);
+}
+/* R3-01：FA 播放器由 FA 自己的 init 在 DOMContentLoaded 时创建，CUT.init 注册在前、
+   执行在先——faWrapAll 扑空（_cutWrapped 永不落），且 faState 只画标签不应用默认版，
+   直达进页时非首学默认版形同虚设。补装轮询：播放器一出现就装包装，并把非首学默认版
+   真正应用一次（错题版只挂件 + reset 原课、不自动播，避免课页未打开时隐藏页误播；
+   复习版靠包装在播放键按下时预演生效）。手动切版经 faSetVersion 置 dApplied，轮询不打架。 */
+function faApplyDefault(law){
+  var st = cur['FA:' + law]; if(!st || st.dApplied) return;
+  var pl = window['FA'] && FA.players ? FA.players[FA_KEY[law]] : null;
+  if(!pl) return; /* 等播放器出现再应用，保证包装与 reset 都落在真播放器上 */
+  if(st.version === 'first'){ st.dApplied = true; return; }
+  faSetVersion(law, st.version, false);
+}
+function faArmDefaults(){
+  var tries = 0;
+  var iv = setInterval(function(){
+    tries++;
+    faWrapAll();
+    var pending = false;
+    Object.keys(FA_KEY).forEach(function(law){
+      var pl = window['FA'] && FA.players ? FA.players[FA_KEY[law]] : null;
+      if(pl && !pl._cutWrapped) pending = true;
+      faApplyDefault(law);
+      var st = cur['FA:' + law];
+      if(pl && st && !st.dApplied) pending = true;
+    });
+    if(!pending || tries > 80) clearInterval(iv);
+  }, 150);
 }
 /* ---------- 入口：RV 队列 / 错题本 / 直达 ---------- */
 function queueBtn(law){
@@ -14779,6 +14816,7 @@ function tnInit(){
 function init(){
   Object.keys(FA_KEY).forEach(function(law){ faState(law); });
   faWrapAll();
+  faArmDefaults();
   var tpSec = document.getElementById('v-tense-perfect');
   if(tpSec && window.MutationObserver){
     new MutationObserver(function(){ if(tpSec.classList.contains('on')) tnInit(); }).observe(tpSec, { attributes: true, attributeFilter: ['class'] });
