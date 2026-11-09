@@ -27,7 +27,8 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_schema.py --check       机制图式卡 SCHEMA_TA（TA 18 律，标签逐片段对源断言）再生比对
   gen_contrast.py --check     辨析对照页 CONTRAST（种子批 9 页，律对关系/短名对源断言）再生比对
   check_rel_coverage.py       关系户口门禁（R11-01 修复登记）：LAWDATA.rel 全部边 ⊆ LINKIDX.g
-  check_badge_erridx.py       静态徽标 × ERRIDX 对账（NE/E/W 59 行，儿童行徽标 vs 再生 ERRIDX）
+  check_badge_erridx.py       静态徽标 × ERRIDX 对账（全部 299 行：ERRIDX 区 133 行徽标 vs 再生 ERRIDX、
+                             拼读区 52 行 vs 本律 cases/prb、家长区 114 行计数 vs prb/ERRIDX/quiz）
   check_js_syntax.py          jscheck node --check（41 内联脚本；anchorcheck 基线不计入）
 
 用法：python3 laws-prototype/tools/check_all.py
