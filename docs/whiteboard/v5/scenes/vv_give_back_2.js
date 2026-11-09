@@ -25,7 +25,7 @@ const ITEMS = [
   ['w', 'Give the book back.'],
   ['m', '书 回到 图书馆'],
   ['m', '把书还回去。'],
-  ['w', '共同点：BACK = 回到原来的地方（give 没有常用的 down）'],
+  ['w', '共同点：BACK = 回到原来的地方'],
   ['s', 'Please give back my ruler after class.', '下课后请把尺子还给我。']
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · give back ②', items: ITEMS, acts: ACTS }); }
