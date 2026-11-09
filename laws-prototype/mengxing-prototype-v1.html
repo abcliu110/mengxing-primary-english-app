@@ -26,28 +26,50 @@ header p{font-size:12.5px;color:rgba(244,250,245,.92);margin-top:4px;line-height
 h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 .sub{font-size:13px;color:var(--ink);line-height:1.6;margin-bottom:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:13px 14px;cursor:pointer}
-.card:hover{border-color:var(--accent)}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:13px 14px;cursor:pointer;
+  transition:border-color .18s,box-shadow .18s,transform .18s}
+.card:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(61,90,64,.10);transform:translateY(-1px)}
+.card:active{transform:translateY(0);box-shadow:none}
 .card .ic{font-size:22px}
 .card h3{font-size:16.5px;margin:4px 0 3px;color:var(--accent-deep)}
 .card p{font-size:12.5px;color:var(--ink);line-height:1.55}
 .card .n{font-size:11px;color:var(--muted);font-weight:700}
+/* 痛点卡片：左侧细彩线，区分视觉层级 */
 .pain{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.pain .card{text-align:center;padding:11px 6px}
-.pain .card h3{font-size:15px}
-.sec-t{font-size:14px;font-weight:800;color:var(--accent-deep);margin:16px 0 8px}
-.urow{display:flex;gap:9px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:9px 12px;margin-bottom:7px;cursor:pointer}
-.urow:hover{border-color:var(--accent)}
-.urow .id{flex:none;font-size:11px;font-weight:800;color:#fff;background:var(--accent);border-radius:7px;padding:2px 7px;margin-top:1px}
+.pain .card{text-align:left;padding:11px 12px 11px 14px;border-left:3px solid var(--accent-soft);position:relative;overflow:hidden}
+.pain .card:hover{border-left-color:var(--accent)}
+.pain .card h3{font-size:14.5px;color:var(--accent-deep);margin:0 0 3px}
+.pain .card p{font-size:12px;color:var(--muted)}
+/* 分节标题：左侧装饰竖线 */
+.sec-t{font-size:13.5px;font-weight:800;color:var(--accent-deep);margin:20px 0 9px;
+  display:flex;align-items:center;gap:8px}
+.sec-t::before{content:'';flex:none;width:3px;height:1.1em;background:var(--accent);border-radius:2px;display:inline-block}
+/* 规律行 */
+.urow{display:flex;gap:9px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:9px 12px;margin-bottom:7px;cursor:pointer;
+  transition:border-color .15s,box-shadow .15s,transform .15s}
+.urow:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(61,90,64,.08);transform:translateY(-1px)}
+.urow:active{transform:translateY(0)}
+.urow .id{flex:none;font-size:11px;font-weight:800;color:#fff;background:var(--accent);border-radius:999px;padding:2px 8px;margin-top:1px;letter-spacing:.3px}
 .urow .tt{font-size:14.5px;line-height:1.5}
-.urow .st{flex:none;font-size:11px;font-weight:700;border-radius:9px;padding:2px 7px;margin-left:auto;white-space:nowrap}
+.urow .st{flex:none;font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;margin-left:auto;white-space:nowrap}
 .st.deep{background:var(--accent-soft);color:var(--accent-deep)}
 .st.wait{background:#e8edd8;color:#5c6648}
 .urow.flat{cursor:default}
-.urow.flat:hover{border-color:var(--line)}
-.gh{font-size:13px;font-weight:800;color:var(--accent-deep);margin:13px 0 6px}
-.back{font-size:13px;color:var(--accent-deep);cursor:pointer;font-weight:700;margin-bottom:8px;display:inline-flex;align-items:center;min-height:44px;padding:0 10px}
-.foot{margin:20px 16px 0;font-size:11.5px;color:var(--muted);line-height:1.7;border-top:1px dashed var(--line);padding-top:10px}
+.urow.flat:hover{border-color:var(--line);box-shadow:none;transform:none}
+.gh{font-size:13px;font-weight:800;color:var(--accent-deep);margin:13px 0 6px;
+  padding-left:8px;border-left:2px solid var(--leaf)}
+/* 返回按钮：pill 风格，与顶栏一致 */
+.back{font-size:13px;color:var(--accent-deep);cursor:pointer;font-weight:700;
+  margin-bottom:10px;display:inline-flex;align-items:center;min-height:36px;
+  padding:0 12px;border-radius:999px;background:var(--accent-soft);
+  border:1px solid var(--line);gap:4px;transition:background .15s,border-color .15s}
+.back:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.foot{margin:24px 16px 0;font-size:11.5px;color:var(--muted);line-height:1.7;
+  border-top:1px solid var(--line);padding-top:12px;opacity:.85}
+@media (prefers-reduced-motion:reduce){
+  .card,.urow{transition:none}
+  .card:hover,.urow:hover{transform:none}
+}
 </style>
 
 <style>
@@ -212,33 +234,11 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
     padding-bottom:36px;
     background:var(--app);
   }
-  .app>header{
-    padding:20px 28px 16px;
-    border-radius:0 0 22px 22px;
-  }
-  .app>header .tag{font-size:12.5px;padding:4px 12px;margin-bottom:8px}
-  .app>header h1{font-size:28px;letter-spacing:.5px;line-height:1.25}
-  .app>header p{font-size:15px;line-height:1.65;margin-top:8px;max-width:48em}
-  .topbar{
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-    padding:12px 22px 10px;
-    border-bottom:1px solid var(--line);
-    background:var(--card);
-    position:sticky;
-    top:0;
-    z-index:40;
-  }
-  #nav{
-    flex:1;min-width:0;padding:0;gap:8px;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    scrollbar-width:thin;
-    -webkit-overflow-scrolling:touch;
-  }
-  #nav+.bar{flex:none;padding:0;border:0;justify-content:flex-end}
-  .nbtn,.tgl{
+  /* .app>header 已删（R14-01：<header> 元素随 R14 移除，原全局 header 仅在首页 hm-hero 内呈现） */
+  /* 2026-11-03 裁定：桌面取消左侧栏；同日再裁定取消顶部导航栏——入口收进首页面板，各页以「← 回首页」返回（见 docs/frontend-ui.md 第二次修订注）。
+     2026-11-09 R14-01：原裸 show() 改为「页面逻辑导航」（MX_NAV 栈 + history.pushState/popstate），顶栏改用 #mx-topnav（首页隐藏、子页面显示当前位置 + 智能返回）。
+     下方 .topbar / #nav / #nav+.bar / .nbtn 死 CSS（无对应 HTML 元素，仅 show() 旧版 toggle 用过）已删；保留 .tgl（成人层开关仍在用）。 */
+  .tgl{
     font-family:inherit;
     min-height:42px;
     padding:8px 14px;
@@ -252,7 +252,7 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
     flex:none;
   }
   .tgl{padding:8px 16px}
-  .nbtn:focus-visible,.tgl:focus-visible{
+  .tgl:focus-visible{
     outline:3px solid var(--accent);
     outline-offset:2px;
   }
@@ -298,14 +298,11 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
     gap:12px;
   }
   #v-home .pain .card{
-    align-items:center;
-    text-align:center;
     min-height:0;
-    padding:14px 12px;
-    justify-content:center;
+    padding:14px 14px 14px 16px;
   }
-  #v-home .pain .card h3{font-size:16px;margin:0 0 4px}
-  #v-home .pain .card p{font-size:13px}
+  #v-home .pain .card h3{font-size:15px;margin:0 0 3px}
+  #v-home .pain .card p{font-size:12.5px}
   #v-home .home-units{display:grid;gap:10px;grid-template-columns:1fr 1fr}
   #v-home .urow{
     margin:0;
@@ -327,9 +324,7 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
   .view{padding-left:22px;padding-right:22px}
 }
 @media (min-width:1024px){
-  .app>header{padding:24px 32px 18px}
-  .app>header h1{font-size:32px}
-  .topbar{padding:14px 28px 12px}
+  /* .app>header R14-01 已删，媒体查询残留一并清掉 */
   #v-home{padding:8px 28px 12px}
   #v-home .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   #v-home .pain{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -594,6 +589,19 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 .view a.back,
 .view .back{
   color:var(--accent-deep) !important;
+  background:var(--accent-soft);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:4px 12px;
+  min-height:34px;
+  font-size:13px;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.view a.back:hover,
+.view .back:hover{
+  background:var(--accent) !important;
+  color:#fff !important;
+  border-color:var(--accent) !important;
 }
 .view h2,
 .view h3,
@@ -657,42 +665,76 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 </head>
 <body>
 <div class="app">
-<header>
-<span class="tag">独立原型 v1 · 按《App 原型定义 v1》</span>
-<h1>萌星英语 · 规律版</h1>
-<p>给中国孩子的英语「规律机」：不背清单，学解码——每个知识点都讲清机制、给得出边界、治得了一个真实的病。</p>
-</header>
+
+<!-- 全站轻量顶栏：首页隐藏，子页面显示「← 返回 / 当前位置 / 🏠 首页」。基于页面逻辑的导航（history.pushState + popstate）替代裸 CSS 切换。 -->
+<style id="mx-nav-style">
+#mx-topnav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:8px;
+  background:linear-gradient(120deg,var(--header-a),var(--header-b));color:#fff;
+  padding:9px 12px;border-radius:0 0 16px 16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);overflow:hidden;
+  max-height:80px;
+  transition:max-height .22s ease,opacity .22s ease,box-shadow .22s,padding .22s}
+#mx-topnav .mx-nav-back,#mx-topnav .mx-nav-home{font-family:inherit;font-size:13.5px;font-weight:700;
+  min-height:36px;padding:5px 12px;border-radius:999px;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:4px;
+  background:rgba(255,255,255,.18);color:#fff;flex:none;
+  transition:background .15s}
+#mx-topnav .mx-nav-back:hover,#mx-topnav .mx-nav-home:hover{background:rgba(255,255,255,.32)}
+#mx-topnav .mx-nav-back:focus-visible,#mx-topnav .mx-nav-home:focus-visible{outline:3px solid #fff;outline-offset:2px}
+#mx-topnav .mx-nav-back[disabled]{opacity:.38;cursor:default;background:rgba(255,255,255,.08);pointer-events:none}
+#mx-topnav .mx-nav-title{flex:1 1 auto;min-width:0;font-size:14.5px;font-weight:800;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;text-align:center;letter-spacing:.3px}
+#mx-topnav .mx-nav-home{margin-left:auto}
+#mx-topnav.hidden{max-height:0;opacity:0;padding-top:0;padding-bottom:0;pointer-events:none;box-shadow:none}
+@media (prefers-reduced-motion:reduce){#mx-topnav,#mx-topnav.hidden{transition:none}}
+</style>
+<div id="mx-topnav" class="hidden" role="navigation" aria-label="页面导航">
+  <button type="button" class="mx-nav-back" id="mx-nav-back" disabled>← 返回</button>
+  <span class="mx-nav-title" id="mx-nav-title">萌星英语</span>
+  <button type="button" class="mx-nav-home" id="mx-nav-home" data-go="home">🏠 首页</button>
+</div>
 
 <style id="hm-style">
 /* 首页改版（大标题 + 深绿统计横幅 + 线描大卡片网格）—— 全部规则只作用于 #v-home */
-#v-home .hm-hero{text-align:center;padding:20px 0 16px}
-#v-home .hm-title{font-size:34px;font-weight:900;letter-spacing:3px;color:var(--ink);line-height:1.2;margin:0}
-#v-home .hm-sub{color:var(--muted);font-size:15px;margin-top:7px}
-#v-home .hm-banner{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;background:linear-gradient(120deg,var(--accent-deep),var(--accent));color:#fff;border-radius:16px;padding:18px 20px;margin-bottom:16px}
+#v-home .hm-hero{text-align:center;padding:24px 16px 18px;position:relative}
+#v-home .hm-title{font-size:34px;font-weight:900;letter-spacing:4px;color:var(--accent-deep);line-height:1.2;margin:0}
+#v-home .hm-sub{color:var(--muted);font-size:14.5px;margin-top:8px;letter-spacing:1px}
+#v-home .hm-tag{color:var(--muted);font-size:11px;margin-top:10px;opacity:.65;letter-spacing:.5px}
+/* 统计横幅：加内阴影装饰 */
+#v-home .hm-banner{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;
+  background:linear-gradient(120deg,var(--accent-deep),var(--accent));
+  color:#fff;border-radius:18px;padding:18px 20px;margin-bottom:18px;
+  box-shadow:0 4px 16px rgba(61,90,64,.18)}
 #v-home .hm-today{flex:none}
 #v-home .hm-today-n{font-size:42px;font-weight:900;line-height:1}
-#v-home .hm-today-l{font-size:13px;opacity:.85;margin-top:5px}
+#v-home .hm-today-l{font-size:12.5px;opacity:.8;margin-top:5px;letter-spacing:.5px}
 #v-home .hm-mid{flex:1 1 220px;min-width:200px}
-#v-home .hm-mid-top{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:7px}
-#v-home .hm-bar{height:8px;border-radius:4px;background:rgba(255,255,255,.32);overflow:hidden}
-#v-home .hm-bar i{display:block;height:100%;width:0;border-radius:4px;background:#fff;transition:width .5s ease}
-#v-home .hm-hint{font-size:12.5px;opacity:.85;margin-top:7px}
-#v-home .hm-right{flex:none;font-size:14.5px;display:flex;gap:7px;align-items:baseline}
-#v-home .hm-right b{font-size:21px;font-weight:900}
-#v-home .hm-dot{opacity:.6}
-#v-home .hm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:6px}
-#v-home .hm-card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:20px 12px 15px;text-align:center;cursor:pointer;align-self:start}
-#v-home .hm-card:active{transform:scale(.985)}
+#v-home .hm-mid-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px;opacity:.9}
+#v-home .hm-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.25);overflow:hidden}
+#v-home .hm-bar i{display:block;height:100%;width:0;border-radius:3px;background:#fff;transition:width .5s ease}
+#v-home .hm-hint{font-size:12px;opacity:.78;margin-top:6px}
+#v-home .hm-right{flex:none;font-size:13.5px;display:flex;gap:7px;align-items:baseline}
+#v-home .hm-right b{font-size:20px;font-weight:900}
+#v-home .hm-dot{opacity:.5}
+/* 大区卡片网格 */
+#v-home .hm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:8px}
+#v-home .hm-card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;
+  padding:20px 12px 16px;text-align:center;cursor:pointer;align-self:start;
+  transition:border-color .18s,box-shadow .18s,transform .18s;position:relative;overflow:hidden}
+#v-home .hm-card::after{content:'';position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(135deg,rgba(74,122,89,.04),transparent 60%);pointer-events:none}
+#v-home .hm-card:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(61,90,64,.10);transform:translateY(-2px)}
+#v-home .hm-card:active{transform:translateY(0);box-shadow:none}
 #v-home .hm-ic{height:44px;display:flex;align-items:center;justify-content:center}
-#v-home .hm-ic svg{width:40px;height:40px}
-#v-home .hm-name{font-size:18.5px;font-weight:800;color:var(--ink);margin:9px 0 11px}
-#v-home .hm-pbar{height:6px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:0 6px}
+#v-home .hm-ic svg{width:38px;height:38px}
+#v-home .hm-name{font-size:17.5px;font-weight:800;color:var(--ink);margin:10px 0 10px;letter-spacing:.2px}
+#v-home .hm-pbar{height:5px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:0 8px}
 #v-home .hm-pbar i{display:block;height:100%;width:0;border-radius:3px;background:var(--accent);transition:width .5s ease}
-#v-home .hm-cnt{color:var(--muted);font-size:13px;margin-top:8px}
-#v-home .hm-card.sm{padding:15px 10px 12px}
-#v-home .hm-card.sm .hm-ic{height:34px}
-#v-home .hm-card.sm .hm-ic svg{width:30px;height:30px}
-#v-home .hm-card.sm .hm-name{font-size:16px;margin:6px 0 4px}
+#v-home .hm-cnt{color:var(--muted);font-size:12.5px;margin-top:8px}
+#v-home .hm-card.sm{padding:14px 10px 12px}
+#v-home .hm-card.sm .hm-ic{height:32px}
+#v-home .hm-card.sm .hm-ic svg{width:28px;height:28px}
+#v-home .hm-card.sm .hm-name{font-size:15px;margin:6px 0 3px}
 @media (min-width:768px){
 #v-home .hm-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
 #v-home .hm-title{font-size:38px}
@@ -708,12 +750,13 @@ h2.zt{font-size:19px;color:var(--accent-deep);margin:6px 0 4px}
 }
 @media (prefers-reduced-motion:reduce){
 #v-home .hm-bar i,#v-home .hm-pbar i{transition:none}
-#v-home .hm-card:active{transform:none}
+#v-home .hm-card{transition:none}
+#v-home .hm-card:hover,#v-home .hm-card:active{transform:none}
 }
 </style>
 <!-- ============ 首页 ============ -->
 <section class="view on" id="v-home">
-<div class="hm-hero"><h1 class="hm-title">萌星英语</h1><p class="hm-sub">护 眼 学 习 · 规 律 版</p></div>
+<div class="hm-hero"><h1 class="hm-title">萌星英语</h1><p class="hm-sub">护 眼 学 习 · 规 律 版</p><p class="hm-tag">独立原型 v1 · 按《App 原型定义 v1》</p></div>
 <div class="hm-banner" id="hmBanner">
 <div class="hm-today"><div class="hm-today-n" id="hmTodayN">0</div><div class="hm-today-l">今日学习</div></div>
 <div class="hm-mid"><div class="hm-mid-top"><span id="hmPct">完成度 0%</span><span id="hmDone">已学 0 / 0</span></div><div class="hm-bar"><i id="hmBarFill"></i></div><div class="hm-hint" id="hmHint">正在读取本机学习记录…</div></div>
@@ -8678,14 +8721,92 @@ if(bwDecView&&window.MutationObserver){
 </div><!-- /.app -->
 
 <script>
-function show(go){
+/* ===== 基于页面逻辑的导航（R14-01）：替换原裸 CSS 切换的 show()。
+   全部导航历史由 JS 栈 + history.pushState 维护；浏览器回退/前进经 popstate 在 App 内部消化，
+   不会离开页面。mini 顶栏（#mx-topnav）显示当前位置 + 智能「返回」（回上一页而非硬跳首页）。
+   保留旧 show(go) 调用点全部不变；新增可选第二参 _isPop 仅供 popstate 回调使用。 ===== */
+var MX_NAV = {
+  stack: ['home'],      // 页面内导航栈，栈底恒为 home
+  cur: 'home',
+  names: {              // 视图 id → 显示名（用于面包屑标题）
+    home:'萌星英语', phon:'拼读区', vocab:'词汇解码区', morph:'词根词缀', etym:'词源区',
+    grammar:'语法区', verb:'动词区', pron:'代词区', art:'冠词区', conj:'连词区', prep:'介词区',
+    spoken:'口语区', expr:'表达写作区', expr2:'表达写作区', tech:'技巧区', review:'复习区',
+    map:'学习地图', rush:'闯关模式', wrong:'错题本', trump:'王牌速查', decide:'决策助手',
+    wbindex:'白板课索引', errfind:'错句查规律', parents:'家长角', settings:'设置',
+    'phon-laws':'拼读规律目录', 'phon-detail':'拼读规律详情', 'phon-letter':'字母与拼读',
+    'phon-letters':'字母与拼读', 'phon-sgrp':'拼读分组', 'phon-sound':'音与拼读', 'phon-sph':'拼读拼法',
+    'phon-spine':'拼读主干', 'phon-swall':'拼读吞音', 'phon-heart':'拼读核心', 'law-detail':'规律详情',
+    'morph-detail':'词根详情', 'etym-detail':'词源详情', 'art-detail':'冠词详情',
+    'conj-detail':'连词详情', 'contrast':'规律对比', 'contrast-detail':'对比详情',
+    'pron-detail':'代词详情', 'tech-detail':'技巧详情', 'spoken-detail':'口语详情',
+    'u-s36':'S-36 长音 /iː/', 'u-sr01':'SR-01 词尾不出声的 e', 'u-s42':'S-42 变脸榜 ough',
+    'u-v40':'V-40 打包错位', 'u-co17':'CO-17 空心动词', 'u-v33':'V-33 前缀头部定律',
+    'u-gr33':'GR-33 反意疑问三步法', tense:'时态', 'verb-az':'动词 A–Z', 'verb-body':'动词身段',
+    'verb-credits':'动词致谢', 'verb-diag':'动词诊断', 'verb-dial':'动词对话',
+    'verb-family':'动词家族', 'verb-fan':'动词扇形', 'verb-hats':'动词帽子',
+    'verb-hosp':'动词医院', 'verb-modal':'动词情态', 'verb-patterns':'动词句型',
+    'verb-poly':'动词多义', 'verb-report':'动词报告', 'verb-review':'动词复习',
+    'verb-ta':'动词时态站', 'verb-ward':'动词病房'
+  },
+  canBack: function(){ return this.stack.length > 1; },
+  prevName: function(){
+    if (this.stack.length < 2) return null;
+    var p = this.stack[this.stack.length - 2];
+    return this.names[p] || p;
+  }
+};
+function _mxUpdateTopnav(go){
+  var bar = document.getElementById('mx-topnav');
+  if (!bar) return;
+  if (go === 'home') { bar.classList.add('hidden'); return; }
+  bar.classList.remove('hidden');
+  var t = document.getElementById('mx-nav-title');
+  var b = document.getElementById('mx-nav-back');
+  if (t) t.textContent = MX_NAV.names[go] || go;
+  if (b){
+    var prev = MX_NAV.prevName();
+    b.disabled = !MX_NAV.canBack();
+    b.textContent = prev ? ('← ' + prev) : '← 返回';
+    b.title = MX_NAV.canBack() ? ('返回上一页：' + (MX_NAV.names[MX_NAV.stack[MX_NAV.stack.length-2]] || '')) : '';
+  }
+}
+function show(go, _isPop){
   var id='v-'+go;
   document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});
   var el=document.getElementById(id);
   if(el){el.classList.add('on')}
   document.querySelectorAll('.nbtn').forEach(function(b){b.classList.toggle('on',b.dataset.v===go)});
   window.scrollTo(0,0);
+  MX_NAV.cur = go;
+  /* 导航栈：popstate 触发时浏览器历史已变化，这里只对齐栈不去 push；
+     正向导航才推入栈与 history。 */
+  if (_isPop){
+    var idx = MX_NAV.stack.lastIndexOf(go);
+    if (idx >= 0){ MX_NAV.stack.length = idx + 1; }
+    else { MX_NAV.stack.push(go); }
+  } else {
+    MX_NAV.stack.push(go);
+    try { history.pushState({v: go}, ''); } catch(e){}
+  }
+  _mxUpdateTopnav(go);
 }
+/* 浏览器回退/前进 → 在 App 内消化，按 e.state.v 切视图（标记 _isPop 避免二次 pushState） */
+window.addEventListener('popstate', function(e){
+  var v = (e.state && e.state.v) || 'home';
+  show(v, true);
+});
+/* 初始把当前 home 写入 history，保证后续 pushState/popstate 对称 */
+try { history.replaceState({v:'home'}, ''); } catch(e){}
+/* mini 顶栏「← 返回」按钮：优先回上一页，回不了再回首页 */
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('#mx-nav-back') : null;
+  if (b && !b.disabled){
+    e.preventDefault();
+    if (MX_NAV.canBack()){ try { history.back(); } catch(err){ show('home'); } }
+    else { show('home'); }
+  }
+});
 document.addEventListener('click',function(e){
   var g=e.target.closest('[data-go]');
   if(g){show(g.dataset.go);return}
