@@ -2738,8 +2738,8 @@ window.LINKGO = (function(){
   }
   /* ===== 2.2 先修提示（只提示，不强制）：读 LINKIDX.g[id].p（直接先修，总表 relations_teaching kind="前置"经 gen_links.py 生成）；
      不读行内 LAWDATA.rel 等字面量，不递归，无先修时三处整块不渲染。标题取合并后 LAWDATA[先修id].hl
-     按冒号/破折号截断；LAWDATA 无该律条目时（如 TA 站）回落取全册名册 ROSTER[先修id][0]，再无标题只写编号；
-     LAWDATA 有条目时只取其 hl（无 hl 仍只写编号，与改前一致）。先修目标为成人层时文案末尾追加「（给爸爸妈妈看的）」。===== */
+     按冒号/破折号截断；LAWDATA 无 hl 时（如 TA 站、ptr 条目）回落取全册名册 ROSTER[先修id][0]，再无标题只写编号；
+     LAWDATA 有 hl 时只取其 hl（已核对与 ROSTER[0] 一字相同）。先修目标为成人层时文案末尾追加「（给爸爸妈妈看的）」。===== */
   function preList(id){
     if (typeof LINKIDX === 'undefined' || !LINKIDX.g) return null;
     var g = LINKIDX.g[id];
@@ -2759,11 +2759,12 @@ window.LINKGO = (function(){
     var e = window.LAWDATA && LAWDATA[t];
     return !!(e && (e.aud === '教师/设计层' || e.zone === 'parents'));
   }
-  /* 先修芯片全标题回落（第四波第 5 项）：LAWDATA 有条目时只取其 hl（无 hl 返回 ''，与改前一致）；
-     LAWDATA 无条目时（如 TA 站）取 ROSTER[先修id][0]——已核对与 DATA.TA 的 head 18/18 相同；再无返回 ''。 */
+  /* 先修芯片全标题回落（第四波第 5 项立、第五波第 7 项改按 hl 值回落）：LAWDATA 有 hl 即取其 hl；
+     无 hl 时（如 TA 站、ptr 条目）取 ROSTER[先修id][0]——已核对与 DATA.TA 的 head 18/18 相同，
+     14 个 ptr 条目标题与 ROSTER[0] 逐条一字相同；再无返回 ''。 */
   function preLawTitle(t){
     var e = window.LAWDATA && LAWDATA[t];
-    if (e) return e.hl || '';
+    if (e && e.hl) return e.hl;
     var r = window.ROSTER && ROSTER[t];
     return (r && r[0]) || '';
   }
