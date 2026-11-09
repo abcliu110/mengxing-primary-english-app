@@ -3,10 +3,12 @@
 输入：docs/whiteboard/src/wb13/wb13_phrasal.json（短语动词 84 页）
       docs/whiteboard/src/wb13/wb13_poly_laws.json（一词多义 V-16/V-41/V-42）
 输出：docs/whiteboard/v5/scenes/
-      - vv_<动词>_<小品词>_1.js / _2.js（32 格 × 2，共 64；其中 10 格超长拆 ② 为 ②+③，另 +10）
+      - vv_<动词>_<小品词>_1.js / _2.js（首次生成 32 格 × 2，共 64；其中 10 格超长拆 ② 为 ②+③，另 +10）
       - hd_poly_law_v16_1.js / hd_poly_law_v41_1.js / hd_poly_law_v42_1.js（3）
       - vv_<动词>_core_1.js（12 动词核心义，单独 12 幕）
-      合计 89 个新场景文件。
+      首次合计 89 个新场景文件。2026-11-09 实测：wb13_phrasal.json 的 50 格 attested
+      已全部覆盖（50/50），待新建格为 0；32 只是首次生成时的待新建数（其余 18 格
+      由原有 vv 场景覆盖），现 --check-only 校验 32 格生成内容 + 18 格原有场景在盘。
 
 口径（保守，见 whiteboard_1.3_note.md §3 三处待决策）：
 1. 英文例句一律照 wb13/phrasal_combos.json 的词典引证逐字照录，不编造、
@@ -367,31 +369,61 @@ def main():
     phrasal = json.load(open(os.path.join(WB13, 'wb13_phrasal.json'), encoding='utf-8'))
     pages = phrasal['pages']
     core_meaning = {p['verb']: p['core_meaning_cn'] for p in pages if p['kind'] == 'verb_core'}
-    missing = [p for p in pages if p['kind'] == 'grid_cell' and p['status'] == 'attested' and not p['covered_by_vv']]
-    assert len(missing) == 32, f'待新建格应为 32，实得 {len(missing)}'
+    attested = [p for p in pages if p['kind'] == 'grid_cell' and p['status'] == 'attested']
+    missing = [p for p in attested if not p['covered_by_vv']]
+    # 2026-11-09 实测：50 格 attested 已全部覆盖（50/50），待新建格为 0；
+    # 32 是本脚本首次生成时的待新建格数（其余 18 格由原有 vv 场景覆盖），已过时。
+    # 断言改为“无未覆盖格”（从源数据推导），不再硬编码 32。
+    assert not missing, f'仍有未覆盖格 {len(missing)}/{len(attested)}：{[p["phrasal"] for p in missing]}'
     assert len(core_meaning) == 12, f'核心义页应为 12，实得 {len(core_meaning)}'
     # 不建 checked_absent 格；give down / give on 已下线，场景与 units 登记均已删除
-    assert not any(p['phrasal'] in ('give down', 'give on') for p in missing)
+    assert not any(p['phrasal'] in ('give down', 'give on') for p in attested)
+    # 32 / 18 分工（2026-11-09 实测）：本脚本只生成 ZH 译文表覆盖的 32 格
+    # （其词典例句逐字落场景，见下）；其余 18 格（get/give/turn/take 各 5/3/5/5）
+    # 由原有 vv 场景覆盖，例句来自旧剧场、与 wb13 引证不同句，本脚本不生成、
+    # 不校验例句，只校验场景文件在盘上。
+    generated = [p for p in attested if all(e['example'] in ZH for e in p['entries'])]
+    precovered = [p for p in attested if p not in generated]
+    assert len(generated) + len(precovered) == len(attested)
+    for p in precovered:
+        for n in (1, 2):
+            assert os.path.exists(os.path.join(SCENES, f"vv_{p['verb']}_{p['particle']}_{n}.js")), \
+                f"原有场景缺失：vv_{p['verb']}_{p['particle']}_{n}.js"
+    # 生成内容校验（首次生成的 89 个文件由 32 格 ×2 + 10 拆 ③ + 3 规律页
+    # + 12 核心义组成，见 docstring；文件数按源数据推导，不再硬编码 89）。
     files = []
-    for p in missing:
-        files += vv_scenes(p, core_meaning[p['verb']])
-    files += poly_scenes()
-    files += core_scenes(phrasal)
-    assert len(files) == 89, f'场景文件应为 89（79 + 10 格拆出的 ③），实得 {len(files)}'
+    n_split = 0
+    for p in generated:
+        f = vv_scenes(p, core_meaning[p['verb']])
+        assert len(f) in (2, 3), f'{p["phrasal"]} 场景数异常：{len(f)}'
+        if len(f) == 3:
+            n_split += 1
+        files += f
+    poly_files = poly_scenes()
+    core_files = core_scenes(phrasal)
+    files += poly_files + core_files
+    assert n_split == len(SPLIT_3), f'拆 ③ 格数应为 {len(SPLIT_3)}，实得 {n_split}'
+    expect_files = 2 * len(generated) + n_split + len(poly_files) + len(core_files)
+    assert len(files) == expect_files, \
+        f'场景文件数应为 {expect_files}（{len(generated)} 格 ×2 + {n_split} 拆 ③ + {len(poly_files)} 规律页 + {len(core_files)} 核心义），实得 {len(files)}'
     # 自查：每条词典例句逐字出现在场景里（场景文件是 JS 转义形式，先反转义再比对）
     blob = '\n'.join(t for _, t in files).replace("\\'", "'").replace('\\\\', '\\')
     n_ex = 0
-    for p in missing:
+    for p in generated:
         for e in p['entries']:
             assert e['example'] in blob, f"例句未落场景：{e['example']!r}"
             n_ex += 1
     for p in pages:
         if p['kind'] == 'grid_cell' and p['status'] == 'checked_absent':
             assert f"vv_{p['verb']}_{p['particle']}_1.js" not in [f for f, _ in files], p['phrasal']
-    print(f'32 格 {n_ex} 条词典例句全部逐字落场景；场景文件 {len(files)} 个')
+    print(f'{len(attested)} 格已全部覆盖（本脚本 {len(generated)} 格 + 原有 vv {len(precovered)} 格）；'
+          f'{n_ex} 条词典例句全部逐字落场景；场景文件 {len(files)} 个（首次生成 89 个）')
     if check_only:
         print('check-only：未写文件')
         return
+    # 首次生成已完成：目标场景均已存在，拒绝覆盖（用 --check-only 校验）。
+    existing = [n for n, _ in files if os.path.exists(os.path.join(SCENES, n))]
+    assert not existing, f'场景已存在 {len(existing)} 个，拒绝覆盖（首次生成已完成；用 --check-only 校验）'
     for name, txt in files:
         path = os.path.join(SCENES, name)
         assert not os.path.exists(path), f'场景已存在，拒绝覆盖：{path}'

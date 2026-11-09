@@ -48,13 +48,46 @@ def main():
     raw = open(UNITS, encoding='utf-8').read()
     U = json.loads(raw)
     assert json.dumps(U, ensure_ascii=False, indent=1) == raw, 'units.json 格式已漂移，先人工核对'
-    assert len(U) == 186, f'页签基线应为 186，实得 {len(U)}'
+    if check_only:
+        # 校验模式（2026-11-09 第四波）：首次生成已完成，本脚本不再重跑；
+        # --check-only 改为校验当前 units.json 与源数据一致，不写文件。
+        # 页签总数以第四波 vv_give_on 合入后为准，2026-11-09 实测 234；构成：
+        # 186 基线 + 32 格 + 12 核心义 + 3 规律页 + 1 导图
+        # − 2（give_down / give_on 下线）+ 1（give_back 手工）+ 1（give_on 手工恢复）。
+        # 本分支合入前为 233（缺 vv_give_on），差 1 属预期合并顺序问题，总协调人合入后重跑。
+        phrasal_co = json.load(open(os.path.join(WB13, 'wb13_phrasal.json'), encoding='utf-8'))
+        pages_co = phrasal_co['pages']
+        attested_co = [p for p in pages_co if p['kind'] == 'grid_cell' and p['status'] == 'attested']
+        cores_co = [p for p in pages_co if p['kind'] == 'verb_core']
+        poly_co = json.load(open(os.path.join(WB13, 'wb13_poly_laws.json'), encoding='utf-8'))
+        for p in attested_co:
+            assert f"vv_{p['verb']}_{p['particle']}" in U, f"缺页签：vv_{p['verb']}_{p['particle']}"
+        for c in cores_co:
+            assert f"vv_{c['verb']}_core" in U, f"缺核心义页签：vv_{c['verb']}_core"
+        for pg in poly_co['pages']:
+            assert pg['v5_scene_id'] in U, f"缺规律页签：{pg['v5_scene_id']}"
+        assert 'hd_mindmap' in U, '缺页签：hd_mindmap'
+        assert 'vv_give_back' in U, '缺手工页签：vv_give_back'
+        assert list(U.keys()).index('hd_mindmap') == list(U.keys()).index('hd_phonics') + 1
+        assert list(U.keys()).index('hd_poly_law_v16') == list(U.keys()).index('hd_poly_v6_p14') + 1
+        assert len(U) == 234, f'页签总数应为 234（vv_give_on 合入后），实得 {len(U)}'
+        assert 'vv_give_on' in U, '缺手工页签：vv_give_on（第四波恢复）'
+        print(f'check-only：页签 {len(U)}（{len(attested_co)} 格 + {len(cores_co)} 核心义 + '
+              f'{len(poly_co["pages"])} 规律页 + 1 导图 + 手工 give_back/give_on）；未写文件')
+        return
+    # 首次生成前的基线（186 页签）；生成后 units.json 已含新增页签，勿直接重跑，
+    # 用 --check-only 校验（见上）。2026-11-09 实测：合入 vv_give_on 后 234，
+    # 合入前 233，差 1 属预期合并顺序问题。
+    assert len(U) == 186, f'页签基线应为 186（首次生成前），实得 {len(U)}'
     phrasal = json.load(open(os.path.join(WB13, 'wb13_phrasal.json'), encoding='utf-8'))
     pages = phrasal['pages']
     missing = [p for p in pages if p['kind'] == 'grid_cell' and p['status'] == 'attested' and not p['covered_by_vv']]
     assert len(missing) == 32
     cores = [p for p in pages if p['kind'] == 'verb_core']
     assert len(cores) == 12
+    # 首次生成已完成时 missing 为 0：拒绝重跑（用 --check-only 校验），
+    # 避免在 `tab 已存在` 处含糊失败。
+    assert missing, '待新建格为 0：首次生成已完成，拒绝重跑（用 --check-only 校验）'
 
     # 1+2. 32 格 + 12 核心义页签（单独 12 幕，已转正）
     vv_new = {}
@@ -126,13 +159,16 @@ def main():
             out['hd_mindmap'] = mm_new
         elif k == 'hd_poly_v6_p14':
             out.update(poly_new)
-    assert len(out) == 186 + 32 + 12 + 3 + 1, f'页签总数应为 234，实得 {len(out)}'
+    # 总数按本轮实际构成推导（首次生成时：基线 186 + 44 格/核心义 + 3 规律页 + 1 导图 = 234），
+    # 不再硬编码 186 + 32 + 12 + 3 + 1。
+    assert len(out) == len(U) + len(vv_new) + len(poly_new) + 1, \
+        f'页签总数应为 {len(U) + len(vv_new) + len(poly_new) + 1}（基线 {len(U)} + {len(vv_new)} 格/核心义 + {len(poly_new)} 规律页 + 1 导图），实得 {len(out)}'
     assert list(out.keys()).index('hd_mindmap') == list(out.keys()).index('hd_phonics') + 1
     assert list(out.keys()).index('hd_poly_law_v16') == list(out.keys()).index('hd_poly_v6_p14') + 1
 
     new_raw = json.dumps(out, ensure_ascii=False, indent=1)
     assert json.dumps(json.loads(new_raw), ensure_ascii=False, indent=1) == new_raw
-    print(f'页签 186 → {len(out)}（+32 格 +12 核心义 +3 规律页 +1 导图）；'
+    print(f'页签 {len(U)} → {len(out)}（+{len(missing)} 格 +{len(cores)} 核心义 +{len(poly_new)} 规律页 +1 导图）；'
           f'补登记 ze 3 幕；标注 checked_absent 2 处')
     if check_only:
         print('check-only：未写文件')
