@@ -1860,7 +1860,7 @@ function goMorphPid(i, pid){ NP_I = i; goMorphPage(pid); }
    两条渲染路径（动态模板 openCard 与 4 张手工旗舰卡）共用同一查表渲染函数；卡面不存第二份清单。
    只呈现 SYNANT 数组里实际列出的关系（本批 6 条在库已核关系）；checked_none 与待核不进展示层；
    无已核关系的格写「暂无已核同义 / 反义」，不留「待补」。伙伴词只以数字下标进 onclick（VC.openCard(idx)），
-   不传文本。---- */
+   不传文本。scope=adult_only 的关系（本批仅 compete）只在成人层呈现，儿童层由 synAntLineHTML 统一过滤。---- */
 function synAntRec(bid){
   if (typeof SYNANT === 'undefined') return null;
   for (var k = 0; k < SYNANT.length; k++) if (SYNANT[k].bank_id === bid) return SYNANT[k];
@@ -1872,9 +1872,12 @@ function synAntPartnerChip(pr){
   return '<button class="peerchip" onclick="VC.openCard(' + idx + ')">' + esc(pr.word) + '</button>';
 }
 function synAntLineHTML(rec, kind){
+  /* 第二波第 6 项：scope=adult_only 的关系只在成人层呈现；儿童层（body 无 .adult）过滤掉，
+     成人层全量。两条渲染路径（旗舰卡 synAntCellHTML / 动态词页 synAntCardHTML）共用本函数。 */
+  var adult = !!(window.mxAdultOn && mxAdultOn());
   var parts = [];
   rec.senses.forEach(function(s){
-    var rels = s[kind] || [];
+    var rels = (s[kind] || []).filter(function(pr){ return adult || pr.scope !== 'adult_only'; });
     if (!rels.length) return;
     parts.push(esc(s.sense_ref.gloss_cn) + '：' + rels.map(synAntPartnerChip).join('、'));
   });
@@ -2145,7 +2148,8 @@ function openByBank(bid){
 window.VC = {show: vcShow, openCard: openCard, backToList: backToList, backToWord: backToWord, goEtym: vcGoEtym,
              openNavPhon: openNavPhon, goPhon: goPhon, openNavMorph: openNavMorph, goMorphPage: goMorphPage,
              goPhonPid: goPhonPid, goMorphPid: goMorphPid,
-             hasBank: hasBank, openByBank: openByBank};
+             hasBank: hasBank, openByBank: openByBank,
+             fillFlagshipSynAnt: fillFlagshipSynAnt};
   fillFlagshipSynAnt();
 renderList();
 
@@ -9066,6 +9070,10 @@ function applyAdultZones(on){
     var par=el.parentNode, arr=par?par.querySelector('.adultbtn .arr,.arr'):null;
     if(arr) arr.textContent=on?'▴':'▾';
   });
+  /* 第二波第 6 项：成人层开关拨动时重填旗舰卡同义/反义格（synAntLineHTML 内按层过滤），
+     否则旗舰卡会停留在拨动前的层。fillFlagshipSynAnt 在词汇 IIFE 内，故经 window.VC 对外暴露调用；
+     动态词页 openCard 每次打开时现算，不受影响。 */
+  if (window.VC && VC.fillFlagshipSynAnt) VC.fillFlagshipSynAnt();
 }
 /* R16-01：页面加载时立即以关闭态初始化，确保 CJ 成人层不会在开关关闭时闪现 */
 applyAdultZones(false);

@@ -33,7 +33,7 @@
 - 无已核关系的格写「暂无已核同义」/「暂无已核反义」，不留「待补」字样；无记录的词（本批之外）同样处理。
 - 义项级红线：heavy 只挂 light「轻的」义、discharge 只挂 charge「充电」义（discharge 本批待核，不进展示层）。
 - 伙伴词一律渲染为可点芯片（`VC.openCard(<WLIST 下标>)`，数字下标，不在 onclick 里传文本）；伙伴词在词库中无词页时只列词形、不出死按钮（`bankIdx` 查不到时退为 off 芯片）。
-- scope 提醒：6 条中 compete 为 `adult_only`（按 notes §7.3 的机械判定：ADD 系伙伴词 freq_rank 为空），其余 5 条为 `primary_ok`。本次按 1.2 验收结论 6 条全量呈现；compete 是否只在成人层呈现，待 Priya 裁定（见下「待裁定」）。
+- scope 提醒：6 条中 compete 为 `adult_only`（按 notes §7.3 的机械判定：ADD 系伙伴词 freq_rank 为空），其余 5 条为 `primary_ok`。2026-11-09 第二波第 6 项裁定：compete 只在成人层呈现，儿童层不展示（渲染层 `synAntLineHTML` 按 `mxAdultOn()` 统一过滤；旗舰卡随成人层开关重填）。
 
 ## 生成口径
 
@@ -49,9 +49,10 @@
 3. scope 机械判定规则（Dolch→primary_ok；课标一级→primary_ok、二级→junior_ok；其余按 freq_rank ≤3000 primary_ok、3001–10000 junior_ok、＞10000 或无值 adult_only）：ADD 系伙伴词一律落 adult_only，建议补 ADD 系频次数据或另定阈值。
 4. status 口径：若要求「有已核关系即 verified」，则 play、light 应改标 verified 并另列待核项——请裁定。
 5. Longman 本次仅 dark、bright、pale 三条反向条目可查；charge、play、light、school 的 Longman 主条目未能打开核对。
-6. compete（adult_only）是否只在成人层呈现，待 Priya 裁定；本次 6 条全量呈现。
+6. compete（adult_only）只在成人层呈现（2026-11-09 第二波第 6 项已裁定并落地，见上「scope 提醒」）。
 7. 库外已核 7 条（academy、institute、faction、brightness、illumination、pale、accuse）须先补词入词库再补挂；另有 4 条未达标候选（discharge、lightweight、frolic、drama）见 notes §2.2。
 
 ## 变更日志
 
 - 2026-11-09 第一批入模：4 词 17 义项 6 条已核关系（play 2、light 4；school、charge 本批无可展示关系）；生成器 `gen_synonym.py` 新建，主文件 `var SYNANT` + 共享渲染函数 + 旗舰卡回填 + 动态模板接线。
+- 2026-11-09 第二波第 6 项：compete（adult_only）只在成人层呈现——渲染层 `synAntLineHTML` 按层过滤（儿童层 5 条、成人层 6 条），`applyAdultZones` 拨动开关时重填旗舰卡；模型 `synonym_antonym.json` 与内嵌 `SYNANT` 未动（compete 的 `adult_only` 标记第一批已在）。
