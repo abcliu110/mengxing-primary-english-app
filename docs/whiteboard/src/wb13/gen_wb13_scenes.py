@@ -17,6 +17,9 @@
 2. 动作帧 ACTS 一律 {}：wb13 未给任何帧登记（actionWords 的 act 均为
    “待核对”，note 缺-7），不编造帧映射；后补帧只改 ACTS 与 units 登记。
    先例：ze_link / ze_pronoun / ze_yesno 三幕同样 ACTS={}。
+   例外（2026-11-10 第六波第 2 项）：ACTS_REG 登记的 8 幕已补帧（仓库已有
+   先例或场景自带规格 + 帧实物核对过，见 docs/work-2026-11-09/
+   wave6_item2_acts_empty.md）；其余 81 幕仍为 {}，缺-7 未闭合。
 3. give down / give on 已下线（2026-11-09 第二波定夺）：场景文件与 units 登记均删除，
    不新建；checked_absent 记录保留在 laws-prototype/model/phrasal_combos.json 与
    wb13_phrasal.json（本脚本不管数据文件）。
@@ -172,14 +175,51 @@ CORE_READALOUD = {
 def q(s):
     return "'" + s.replace('\\', '\\\\').replace("'", "\\'") + "'"
 
-def scene_file(title, src_note, lib, items):
+# --- 动作帧登记（2026-11-10 第六波第 2 项补；其余幕仍为 {}，见缺-7）---
+# 口径（见 docs/work-2026-11-09/wave6_item2_acts_empty.md §2）：
+# 只登记同时满足三条的映射——① 键是朗读句里实际出现的动词原形/词形
+# （autoBuild 精确匹配，死键会进 v5check R4-F2 FAIL）；② 帧在 cast/ 里
+# 且实物核对过确实画的就是这个动作（l_fall 是骑车摔、l_cake1 是吹蜡烛、
+# l_goout 是抱球跑出门、plane 在 AH=470 下宽 1207px 出画布，都不算）；
+# ③ 有仓库已有先例（同一动词→同一帧在他幕已实际演出）或场景自带规格
+# （如 fly out 义项明写“乘飞机出发”）。抽象义/隐喻义/无帧动词一律不登记。
+# 本表是场景文件再生的唯一来源：再生单幕（import 方式）以本表为准。
+ACTS_REG = {
+    # turn on：fp_vectors_2 先例（同句 "Turn on the light."）→ l_switch（开灯帧）
+    'hd_poly_law_v16_1.js': {'turn on': ['l_switch']},
+    # fly：five_patterns_p2_1 先例（"Birds fly happily in the blue sky."）
+    # → bird_up / bird_down（飞鸟帧；注：bird_down 在 AH=470 下宽 628px，
+    # 右缘 2008 超出 1920 画布约 88px，与先例幕现状相同，见底稿 §2）
+    'vv_fly_core_1.js': {'fly': ['bird_up', 'bird_down']},
+    # speak：aux_transformer_2 先例（"Leo can speak English very well."）
+    # → l_speak（说话帧）；up_2 另有过去式 spoke 同帧
+    'vv_speak_core_1.js': {'speak': ['l_speak']},
+    'vv_speak_out_1.js': {'speak': ['l_speak']},
+    'vv_speak_out_2.js': {'speak': ['l_speak']},
+    'vv_speak_up_1.js': {'speak': ['l_speak']},
+    'vv_speak_up_2.js': {'speak': ['l_speak'], 'spoke': ['l_speak']},
+    # stand up：phrasal_key_1 先例（同型祈使句 "Stand up, please."）
+    # → l_sit → l_stand（坐→站起身的过渡帧）
+    'vv_stand_up_1.js': {'stand up': ['l_sit', 'l_stand']},
+}
+
+def scene_file(title, src_note, lib, items, acts=None):
+    acts = acts or {}
+    if acts:
+        acts_note = '；'.join(f"{k} → {', '.join(v)}" for k, v in acts.items())
+        hdr = (f"// 角色关键帧：sprites/{lib}.js（{acts_note}；第六波 2026-11-10 补，"
+               f"依据见 docs/work-2026-11-09/wave6_item2_acts_empty.md）")
+        acts_line = 'const ACTS = ' + json.dumps(acts, ensure_ascii=False) + ';'
+    else:
+        hdr = "// 角色关键帧：ACTS 待配（wb13 未给动作帧登记，见 whiteboard_1.3_note.md 缺-7；不编造帧映射；后补帧只改 ACTS 与 units 登记）"
+        acts_line = "const ACTS = {};"
     lines = [
         f"// {title} —— v5.1 标准画法（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）",
         f"// 内容来源：{src_note}",
-        "// 角色关键帧：ACTS 待配（wb13 未给动作帧登记，见 whiteboard_1.3_note.md 缺-7；不编造帧映射；后补帧只改 ACTS 与 units 登记）",
+        hdr,
         "import { autoBuild } from './auto.js';",
         f"import * as SP from '../sprites/{lib}.js';",
-        "const ACTS = {};",
+        acts_line,
         "const ITEMS = [",
     ]
     for it in items:
@@ -224,7 +264,8 @@ def vv_scenes(page, core_meaning):
         ['m', P],
         ['m', pm],
     ]
-    f1 = scene_file(f"🎬 万能动词 · {combo} ①", src, lib + '1', items1)
+    f1 = scene_file(f"🎬 万能动词 · {combo} ①", src, lib + '1', items1,
+                    acts=ACTS_REG.get(f"vv_{verb}_{part}_1.js"))
     # ---- ②（次义 + 动词/小品词拆解）----
     if len(entries) >= 2:
         items2 = [
@@ -261,10 +302,13 @@ def vv_scenes(page, core_meaning):
             ['n', f"{combo}：全格回顾" if k == 0 else f"{combo}：义项回顾（续）"],
             ['w', f"{combo} ③"],
         ] + tail[2 * k:]
-        f2 = scene_file(f"🎬 万能动词 · {combo} ②", src, lib + '2', items2b)
-        f3 = scene_file(f"🎬 万能动词 · {combo} ③", src, lib + '3', items3)
+        f2 = scene_file(f"🎬 万能动词 · {combo} ②", src, lib + '2', items2b,
+                        acts=ACTS_REG.get(f"vv_{verb}_{part}_2.js"))
+        f3 = scene_file(f"🎬 万能动词 · {combo} ③", src, lib + '3', items3,
+                        acts=ACTS_REG.get(f"vv_{verb}_{part}_3.js"))
         return [(f"vv_{verb}_{part}_1.js", f1), (f"vv_{verb}_{part}_2.js", f2), (f"vv_{verb}_{part}_3.js", f3)]
-    f2b = scene_file(f"🎬 万能动词 · {combo} ②", src, lib + '2', items2 + tail)
+    f2b = scene_file(f"🎬 万能动词 · {combo} ②", src, lib + '2', items2 + tail,
+                     acts=ACTS_REG.get(f"vv_{verb}_{part}_2.js"))
     return [(f"vv_{verb}_{part}_1.js", f1), (f"vv_{verb}_{part}_2.js", f2b)]
 
 def poly_scenes():
@@ -288,7 +332,8 @@ def poly_scenes():
         ['w', '💡 一句话洞见'],
         ['w', v16['kid_line']],
     ]
-    out.append(('hd_poly_law_v16_1.js', scene_file('多义词像一棵树', src, 'hdplv161', items)))
+    out.append(('hd_poly_law_v16_1.js', scene_file('多义词像一棵树', src, 'hdplv161', items,
+                                                   acts=ACTS_REG.get('hd_poly_law_v16_1.js'))))
     # ---- V-41（actionWords 为空是有意的：例句无动作动词，SOP §17 决策 38 第 16 条）----
     items = [
         ['n', 'bank 两张词卡——河岸 bank、银行 bank，长得一模一样，是一个词吗？'],
@@ -306,7 +351,8 @@ def poly_scenes():
         ['w', '💡 一句话洞见'],
         ['w', '塞进同一句只是验亲的直觉工具，不是判决机。'],
     ]
-    out.append(('hd_poly_law_v41_1.js', scene_file('撞脸还是亲戚？塞进一句话验一验', src, 'hdplv411', items)))
+    out.append(('hd_poly_law_v41_1.js', scene_file('撞脸还是亲戚？塞进一句话验一验', src, 'hdplv411', items,
+                                                   acts=ACTS_REG.get('hd_poly_law_v41_1.js'))))
     # ---- V-42（缺-1 已闭合：控制住 / hold a meeting 两站例句为 OALD hold_1 原句）----
     items = [
         ['n', '一个词的意思怎么越滚越多？'],
@@ -325,7 +371,8 @@ def poly_scenes():
         ['w', '💡 一句话洞见'],
         ['w', v42['kid_line']],
     ]
-    txt = scene_file('词的意思像滚雪球：hold', src, 'hdplv421', items)
+    txt = scene_file('词的意思像滚雪球：hold', src, 'hdplv421', items,
+                     acts=ACTS_REG.get('hd_poly_law_v42_1.js'))
     out.append(('hd_poly_law_v42_1.js', txt))
     return out
 
@@ -361,7 +408,8 @@ def core_scenes(phrasal):
                f"六格总览：有引证 {len(attested)}/6）——单独 12 幕之一（2026-11-09 第二波定夺转正）；"
                f"朗读句：{src_oald}（2026-11-09 第三波补，中文译文为本幕所加）")
         out.append((f"vv_{verb}_core_1.js",
-                    scene_file(f"🎬 万能动词 · {verb} 核心义", src, f"vv{verb}core1", items)))
+                    scene_file(f"🎬 万能动词 · {verb} 核心义", src, f"vv{verb}core1", items,
+                               acts=ACTS_REG.get(f"vv_{verb}_core_1.js"))))
     return out
 
 def main():

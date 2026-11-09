@@ -23,6 +23,11 @@
 9. vv_give_on（2026-11-09 第四波）：give on (onto) 另立页签，场景系已下线 vv_give_on
    原文手写恢复（非 72 格），units.json 手工登记（插在 vv_give_back 之后），
    不在本脚本生成范围。
+10. 动作帧补登记（2026-11-10 第六波第 2 项）：8 个 cases 的 acts 在 units.json
+    里已由 {} 改为场景 ACTS（登记来源 gen_wb13_scenes.py 的 ACTS_REG）：
+    hd_poly_law_v16/1、vv_fly_core/1、vv_speak_core/1、vv_speak_out/1/2、
+    vv_speak_up/1/2、vv_stand_up/1；本脚本写盘路径是一次性的（基线 186 断言），
+    上面第 1–3 条的 'acts': {} 是首次生成时的历史写法，不代表现值。
 
 用法：python3 docs/whiteboard/src/wb13/gen_wb13_units.py [--check-only]
 """
