@@ -1,7 +1,12 @@
 // 打包一幕为单文件 HTML：node v5/build.mjs <scene.js> <out.html> "<标题>"
 // 字体：从场景源码收集用到的字（含讲解字幕），pyftsubset 子集化 LXGW WenKai / Kalam → woff data URI 内嵌。
+// lib 分支（2026-11-09 第五波第 6 项）：共享 lib（无 export default，如 cmp_lib.js）
+// 天生打不进包——这类文件只走 node --check，打印 LIB-NODE-CHECK 行后退出 0，
+// 不跑字体子集化、不写 out。4 个引擎模块（auto/adj_train/oral/poly）同样无
+// export default，走同一分支（以前经 shared 插件空打也通过，是空洞的通过）。
+// 扫测口径见 v5/sweep_scenes.py（10 个文件报“已检查”，不再是 N/A）。
 import { build } from 'esbuild';
-import { writeFileSync, readFileSync, mkdirSync, existsSync, copyFileSync, renameSync } from 'fs';
+import { writeFileSync, readFileSync, mkdirSync, existsSync, copyFileSync, renameSync, unlinkSync } from 'fs';
 import { createHash } from 'crypto';
 import { execFileSync } from 'child_process';
 import path from 'path';
@@ -9,6 +14,14 @@ const [scenePath, outPath, title = '白板动画 v5'] = process.argv.slice(2);
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const FONT_DIR = process.env.WB_FONTS || '/workspace/work/fonts';     // wk.ttf = LXGW WenKai Regular（OFL），kalam.ttf = Kalam Regular（OFL）
 const src = readFileSync(scenePath, 'utf8');
+// lib 判定：去掉注释（字符串感知：'//' 出现在字符串里不算注释，如 cmp_lib.js
+// 首行注释就写着“无 export default”）后再找 export default 语句。
+const stripComments = s => { let out = '', i = 0, q = null; while (i < s.length) { const c = s[i]; if (q) { out += c; if (c === '\\') { out += s[i + 1] || ''; i += 2; continue; } if (c === q) q = null; i++; } else if (c === '"' || c === "'" || c === '`') { q = c; out += c; i++; } else if (c === '/' && s[i + 1] === '/') { while (i < s.length && s[i] !== '\n') i++; } else if (c === '/' && s[i + 1] === '*') { i += 2; while (i < s.length && !(s[i] === '*' && s[i + 1] === '/')) i++; i += 2; } else { out += c; i++; } } return out; };
+if (!/^\s*export\s+default\b/m.test(stripComments(src))) {
+  execFileSync(process.execPath, ['--check', path.resolve(scenePath)], { stdio: 'inherit' });
+  console.log(`${scenePath} LIB-NODE-CHECK OK (no default export; node --check only, not bundled)`);
+  process.exit(0);
+}
 // 字体共用：先用全 App 字表 font_chars.txt（gen_font_chars.py 从所有场景收集），这一幕若有新字再并进去（那一幕就会多一份字体，重跑 gen_font_chars.py 后全部重建即可共用）
 const GLOBAL = path.join(HERE, 'font_chars.txt');
 const chars = new Set([...(existsSync(GLOBAL) ? readFileSync(GLOBAL, 'utf8') : '')].filter(ch => ch.charCodeAt(0) > 127));
@@ -23,6 +36,10 @@ const sub = (ttf, out, extra) => {
   return 'data:font/woff2;base64,' + readFileSync(hit).toString('base64'); };
 const wk = sub(path.join(FONT_DIR, 'wk.ttf'), `/tmp/wb5_wk_${process.pid}.woff2`, []);
 const kalam = sub(path.join(FONT_DIR, 'kalam.ttf'), `/tmp/wb5_kalam_${process.pid}.woff2`, []);
+// 2026-11-09 第五波第 6 项：子集化产物已进内存（data URI），删本次的临时文件——
+// /tmp 是 512M tmpfs，每幕留 ~1.2MB woff2 会在全量扫测（967 幕）时写满磁盘
+// （ENOSPC 实测）。字体缓存 /tmp/wb5_fontcache 本身保留。
+for (const f of [txt, `/tmp/wb5_wk_${process.pid}.woff2`, `/tmp/wb5_kalam_${process.pid}.woff2`]) { try { unlinkSync(f); } catch {} }
 // 引擎（全 App 一份，内容与幕无关）+ 场景（只有这一幕的数据；wb5 / auto / adj_train 从引擎的 globalThis.__WB5__ 取）
 const common = { bundle: true, minify: true, write: false, format: 'iife', legalComments: 'none', nodePaths: [path.join(HERE, 'node_modules')] };
 const eng = await build({ ...common, entryPoints: [path.join(HERE, 'engine.js')], define: { __FONTS__: JSON.stringify({ wk, kalam }) } });
