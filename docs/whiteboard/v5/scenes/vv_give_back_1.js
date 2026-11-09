@@ -6,7 +6,7 @@ import { autoBuild } from './auto.js';
 import * as SP from '../sprites/vvgiveback1.js';
 const ACTS = {"*": ["l_pencil", "m_lost", "pencil_back"]};
 const ITEMS = [
-  ['n', 'give back：give 没有常用的 down 搭配，这一格换成 give back：把东西递回原主手里'],
+  ['n', 'give back 是 give 的常用搭配，意思是‘归还’。'],
   ['w', 'Amy'],
   ['w', 'give back ①'],
   ['w', '归还'],
