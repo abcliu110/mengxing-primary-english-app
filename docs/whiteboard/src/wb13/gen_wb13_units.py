@@ -14,6 +14,9 @@
    checked_absent 记录保留在 laws-prototype/model/phrasal_combos.json 与 wb13_phrasal.json（数据文件，本脚本不管）。
 7. 第一性原理：不改（22 幕 canonical 已登记；另 fp_economy_p2_1 为 parts 机制幕，
    不在 units 口径内；fp_one_king_1 / fp_zoom_focus_1 已迁中英对照）。
+8. vv_give_back（2026-11-09 第三波）：give back 另立页签，场景系已下线 vv_give_down
+   原文手写恢复（非 72 格），units.json 手工登记（插在 vv_give_over 之后），
+   不在本脚本生成范围；本脚本基线断言（186 页签）已过时，勿直接重跑。
 
 用法：python3 docs/whiteboard/src/wb13/gen_wb13_units.py [--check-only]
 """
