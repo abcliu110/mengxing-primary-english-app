@@ -30,6 +30,7 @@
 | 16 | 动词义项网络（c 册 · 六词补建） | `verb_sense_networks_c.json` | 本账变更日志（2026-11-02 补词清零波条） | 6 条记录 / 18 义项（model 5 / mould 3 / outrage 2 / quiz 2 / waltz 2 / tip 4），逐项带构式框、词典逐字例句与出处（Cambridge / Collins COBUILD / Collins English Dictionary）；排除义逐条登记于各记录 excluded_note（名词义项与超范围动词义），无自编引申链 | 已交付（待回灌动词原型六词页） |
 | 17 | CO/QI 规律检索练习 | `co_qi_practice_items.json` | 本账变更日志（2026-11-02 练习收口条）；题目本体回写 `laws/grammar_ext.yaml` 各条 quiz 字段（单一事实源），本文件存题源与校验记录 | 31 条规律 / 123 题（CO-01..16 各 4 题、QI-01..07 与 QI-09..15 各 4 题、CO-17 旗舰页既有 3 题回写）；场景选形 58 / 无提示判断 37 / 拼形 19 / 病例找错 9，纯命名题 0；病例题只用条目登记病例与探针登记错形；全部英文经词库（2,352 条）+ 形式表程序校验 | 已回灌（模型 quiz 字段 + App 规律页） |
 | 18 | 词根库存（学校级黏着根） | `root_inventory.json` | 本账变更日志（2026-11-02 收尾合并条）；`laws/vocab_MODEL.md` §2.4 词根库存指针 | 69 户（逐根词源核实，41 户有成员）+ 归一方案（normalization_schemes）与假根审计（fake_root_audit）2 节；库存成员口径（词源属实且根形可辨）与词库拆分家族口径（morphemes 谓词）分开，互不替代 | 已入模（归一 44 条、假根改判 3 条已于 2026-11-02 并入词库） |
+| 19 | 同义 / 反义数据层（第一批） | `synonym_antonym.json` | `SYNONYM_ANTONYM.md`（活文档） | 4 词 / 17 义项 / 6 条在库已核关系（play 2、light 4；school、charge 本批无可展示关系）；查无 23 位、待核 5 位、库外已核 7 条待补词入；生成器 `tools/gen_synonym.py` → 主文件 `var SYNANT` | 第一批入模（2026-11-09） |
 
 ## 变更日志
 
@@ -74,3 +75,5 @@
 
 - 词库建模：`WORDBANK_MODEL.md` 已交外部 AI 评审（2026-11-01），意见回来后先修结构、再锁入模 schema。
 - 后续每份数据集定版前，按同一格式出建模/内容说明文档交评审，结论与采纳情况记回本账。
+
+- 2026-11-09 同义／反义数据层第一批入模（TODO 1.2）：新建 `synonym_antonym.json`（4 词 17 义项，6 条在库已核关系按义项挂接；23 位 checked_none、5 位待核、库外已核 7 条只登记不挂），活文档 `SYNONYM_ANTONYM.md`，生成器 `tools/gen_synonym.py`（--check/--write，伙伴词须在词库解析、带出处），主文件 `var SYNANT` + 共享渲染函数（动态词页与 4 张旗舰卡共用，只呈现已核关系）。
