@@ -27,6 +27,8 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_schema.py --check       机制图式卡 SCHEMA_TA（TA 18 律，标签逐片段对源断言）再生比对
   gen_contrast.py --check     辨析对照页 CONTRAST（种子批 9 页，律对关系/短名对源断言）再生比对
   check_rel_coverage.py       关系户口门禁（R11-01 修复登记）：LAWDATA.rel 全部边 ⊆ LINKIDX.g
+  check_lawdata_roster.py     LAWDATA 对账（字面量 224 + PHONLAWS 52 + SUPPDATA 114 = 运行时 390；
+                              hl == ROSTER[0]，无 hl ⟺ ptr）
   check_badge_erridx.py       静态徽标 × ERRIDX 对账（全部 299 行：ERRIDX 区 133 行徽标 vs 再生 ERRIDX、
                              拼读区 52 行 vs 本律 cases/prb、家长区 114 行计数 vs prb/ERRIDX/quiz）
   check_js_syntax.py          jscheck node --check（41 内联脚本；anchorcheck 基线不计入）
@@ -65,6 +67,7 @@ CHECKS = [
     ("gen_schema --check", "gen_schema.py", ["--check"]),
     ("gen_contrast --check", "gen_contrast.py", ["--check"]),
     ("check_rel_coverage", "check_rel_coverage.py", []),
+    ("check_lawdata_roster", "check_lawdata_roster.py", []),
     ("check_badge_erridx", "check_badge_erridx.py", []),
     ("jscheck node --check", "check_js_syntax.py", []),
 ]
