@@ -2732,6 +2732,62 @@ window.LINKGO = (function(){
       return '<span class="linkgo-chip off" title="本 App 无独立规律页，这里只列编号">' + esc(label || id) + '</span>';
     return '<button class="linkgo-chip" onclick="LINKGO.openLaw(\'' + id + '\')"' + (title ? ' title="' + esc(title) + '"' : '') + '>' + esc(label || id) + '</button>';
   }
+  /* ===== 2.2 先修提示（只提示，不强制）：读 LINKIDX.g[id].p（直接先修，总表 relations_teaching kind="前置"经 gen_links.py 生成）；
+     不读行内 LAWDATA.rel 等字面量，不递归，无先修时三处整块不渲染。标题取合并后 LAWDATA[先修id].hl
+     按冒号/破折号截断，无标题只写编号；先修目标为成人层时文案末尾追加「（给爸爸妈妈看的）」。===== */
+  function preList(id){
+    if (typeof LINKIDX === 'undefined' || !LINKIDX.g) return null;
+    var g = LINKIDX.g[id];
+    if (!g || !g.p || !g.p.length) return null;
+    return g.p.slice();
+  }
+  function preShortTitle(hl){
+    var s = String(hl == null ? '' : hl);
+    if (!s) return '';
+    var cut = s.search(/[：——]/);
+    if (cut > 0) return s.slice(0, cut);
+    return s.length > 12 ? s.slice(0, 12) + '…' : s;
+  }
+  function preIsAdult(id){
+    var t = resolveLaw(id);
+    if (window.ROSTER && ROSTER[t] && ROSTER[t][2] === 'T') return true;
+    var e = window.LAWDATA && LAWDATA[t];
+    return !!(e && (e.aud === '教师/设计层' || e.zone === 'parents'));
+  }
+  function preBarHTML(id){
+    var ps = preList(id);
+    if (!ps) return '';
+    var chips = ps.map(function(pid){
+      var t = resolveLaw(pid);
+      var e = window.LAWDATA && LAWDATA[t];
+      var title = preShortTitle(e && e.hl);
+      var label = title ? '《' + pid + ' ' + title + '》' : pid;
+      return lawChip(pid, label, e && e.hl ? e.hl : '');
+    });
+    var adult = ps.some(function(pid){ return preIsAdult(pid); });
+    return '<div class="lz-prebar">⏳ 建议先学' + chips.join('、') + '，再学这一条。' + (adult ? '（给爸爸妈妈看的）' : '') + '</div>';
+  }
+  function preMarkHTML(id){
+    var ps = preList(id);
+    if (!ps) return '';
+    return '<span class="lz-pre">⏳ 先修 ' + esc(ps.map(function(pid){ return resolveLaw(pid); }).join('、')) + '</span>';
+  }
+  function decorateIndexRows(){
+    if (typeof document === 'undefined') return;
+    var rows = document.querySelectorAll('.urow[data-law]');
+    for (var i = 0; i < rows.length; i++){
+      var row = rows[i];
+      if (row.querySelector('.lz-pre')) continue;
+      var mark = preMarkHTML(row.getAttribute('data-law'));
+      if (!mark) continue;
+      var tt = row.querySelector('.tt');
+      if (tt) tt.insertAdjacentHTML('afterend', mark);
+    }
+  }
+  if (typeof document !== 'undefined'){
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', decorateIndexRows);
+    else decorateIndexRows();
+  }
   function rlab(s){ return String(s==null?'':s).replace(/已裁定/g,'定版').replace(/双登记/g,'双份收录').replace(/裁定/g,'定版').replace(/登记/g,'记录'); }
   function relSectionHTML(id, flavor){
     if (typeof LINKIDX === 'undefined' || !LINKIDX.g) return '';
@@ -2845,7 +2901,7 @@ window.LINKGO = (function(){
     }
     return h + '</div>';
   }
-  return { lawWords: lawWords, lawSectionHTML: lawSectionHTML, etBid: etBid, etToWord: etToWord, station: station, openLaw: openLaw, hasLawPage: hasLawPage, relSectionHTML: relSectionHTML, wordGo: wordGo, anchorHTML: anchorHTML, spWordsHTML: spWordsHTML, anchorQHTML: anchorQHTML, spQWordsHTML: spQWordsHTML };
+  return { lawWords: lawWords, lawSectionHTML: lawSectionHTML, etBid: etBid, etToWord: etToWord, station: station, openLaw: openLaw, hasLawPage: hasLawPage, relSectionHTML: relSectionHTML, wordGo: wordGo, anchorHTML: anchorHTML, spWordsHTML: spWordsHTML, anchorQHTML: anchorQHTML, spQWordsHTML: spQWordsHTML, preBarHTML: preBarHTML, preMarkHTML: preMarkHTML, decorateIndexRows: decorateIndexRows };
 })();
 </script>
 
@@ -6493,6 +6549,8 @@ body:not(.adult) .gh.adult-row{display:none}
 .lz-sub{font-weight:700;color:#3d5a40}
 #v-law-detail .adult{line-height:1.75}
 .lz-frame{padding:12px 14px;border:1.5px solid #c9bfe0;border-radius:12px;background:#f6f3fb;line-height:1.75}
+.lz-prebar{margin:10px 0;padding:10px 12px;border:1.5px solid #d9b96a;border-radius:12px;background:#fff8ea;line-height:1.9;font-size:15px}
+.lz-pre{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:#f7ecd2;color:#8a6a1f;font-size:12px;font-weight:700;white-space:nowrap}
 </style>
 <!-- ============ 规律页（四区入模·通用明细页） ============ -->
 <section class="view" id="v-law-detail"><div id="lz-body"></div></section>
@@ -6526,12 +6584,14 @@ var LAW={from:'home',y:0,cur:null,
    if(window.CRED){var cb=window.CRED.lawBadges(d); if(cb) h+='<p class="cred-line">'+cb+'</p>';}
    if(teacher){
      h+='<div class="adult lz-frame">🏫 <b>教师/家长方法层条目</b>——这条登记的是给老师和家长看的方法与依据，不上儿童屏。打开页面顶部的「成人层」开关，就能看到它的完整内容（主张、机制、来源与边界）。</div>';
+     if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(d.id);}
      if(window.LINKGO){h+=LINKGO.relSectionHTML(d.id,'lz');}
      if(window.LINKGO){h+=LINKGO.lawSectionHTML(d.id,'lz');}
      h+=LAW.adultHtml(d,true);
      document.getElementById('lz-body').innerHTML=h; return;
    }
    var cd=LAW.kidView(d);
+    if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(d.id);}
    h+='<p class="lz-kid">'+E(cd.kid)+'</p>';
    if(d.zone==='phon')h+='<p><span class="lz-chip" data-go="phon" style="cursor:pointer">📖 拼读区还有这条的模式页：按字母组合摆例词，去拼读区首页的模式菜单看 →</span></p>';
    if(window.MZ && window.MZLAWS && MZLAWS[d.id])h+='<p><span class="lz-chip" style="cursor:pointer" onclick="MZ.openLaw(\''+d.id+'\')">🧩 词根词缀区有这条的专页（家族页与分组看看）→</span></p>';
@@ -14189,7 +14249,7 @@ function lawRowHTML(id){
   const L = LAWREG[id];
   const tag = L._role==='candidate' ? '<span class="newtag">新 · 待对账</span>' : '';
   return '<button class="lawrow" data-law="'+id+'">'
-    + '<span class="lr-top"><span class="lr-title">'+id+' '+esc(L._short)+'</span>'+tag+'<span class="lr-bdg">在 '+L._pages.length+' 页</span></span>'
+    + '<span class="lr-top"><span class="lr-title">'+id+' '+esc(L._short)+'</span>' + (window.LINKGO&&LINKGO.preMarkHTML?LINKGO.preMarkHTML(id):'')+tag+'<span class="lr-bdg">在 '+L._pages.length+' 页</span></span>'
     + '<span class="lr-desc">'+esc(L._desc)+'</span></button>';
 }
 function lawsCard(){
@@ -14223,6 +14283,7 @@ function lawBodyHTML(id){
   let h = '<h2 class="ptitle">🧩 '+id+' '+esc(L._short)+(L._role==='candidate'?'（新 · 编号待对账）':'')+'</h2>';
   h += '<div class="meta" style="font-size:.95em">'+esc(L._desc)+'</div>';
   h += '<div class="meta">正式说法：'+esc(L.headline)+'（部位：'+L._part+' ｜ 学习顺序：'+(L._station? STN[L._station] : '框架')+'）</div>';
+  if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(id);}
   h += '<div class="sec">机制 · 它是怎么回事</div>';
   h += lawBlock(L, null, true);
   h += groupsHTML(id);
@@ -17060,7 +17121,7 @@ function vIndex(){
   GROUPS.forEach(function(g, gi){
     h += '<div class="gname">' + esc(g.name) + '</div><div class="gsub">' + esc(g.sub) + '</div>';
     LAWS.filter(function(l){return l.group===gi}).forEach(function(l){
-      h += '<button class="law" onclick="PN.go(\'' + l.id + '\')"><span style="flex:1"><span class="tt">' + esc(l.short) + '</span> <span class="badge">' + l.id + '</span>' + (l.cand ? ' <span class="badge amber">新拟 · 待对账</span>' : '') + '<div class="ds">' + esc(l.desc) + '</div></span><span class="chev">›</span></button>';
+      h += '<button class="law" onclick="PN.go(\'' + l.id + '\')"><span style="flex:1"><span class="tt">' + esc(l.short) + '</span>' + (window.LINKGO&&LINKGO.preMarkHTML?LINKGO.preMarkHTML(l.id):'') + ' <span class="badge">' + l.id + '</span>' + (l.cand ? ' <span class="badge amber">新拟 · 待对账</span>' : '') + '<div class="ds">' + esc(l.desc) + '</div></span><span class="chev">›</span></button>';
     });
   });
   h += EXTRA_BOTTOM;
@@ -17104,6 +17165,7 @@ function vLaw(id){
   h += '<h2 class="big">' + esc(l.short) + '</h2><div class="desc">' + esc(l.desc) + '</div>';
   if(WB_BY_ID[l.id]){ h += wbCardHTML(l.id); }
   h += '<div class="formal">正式说法（目录原文）：' + esc(l.formal) + '</div>';
+  if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(l.id);}
   h += '<div class="kidbox"><span class="lab">' + (l.cand ? '孩子版说法（新拟）' : '目录里的孩子版说法') + '</span>' + esc(l.kid) + '</div>';
   var dm = DEMOS[l.id]; if(dm){ h += demoHTML(dm); }
   if(l.beats.length){
@@ -18609,7 +18671,7 @@ function vIndex(){
   GROUPS.forEach(function(g, gi){
     h += '<div class="gname">' + esc(g.name) + '</div><div class="gsub">' + esc(g.sub) + '</div>';
     LAWS.filter(function(l){return l.group===gi}).forEach(function(l){
-      h += '<button class="law" onclick="AR.go(\'' + l.id + '\')"><span style="flex:1"><span class="tt">' + esc(l.short) + '</span> <span class="badge">' + l.id + '</span><div class="ds">' + esc(l.desc) + '</div></span><span class="chev">›</span></button>';
+      h += '<button class="law" onclick="AR.go(\'' + l.id + '\')"><span style="flex:1"><span class="tt">' + esc(l.short) + '</span>' + (window.LINKGO&&LINKGO.preMarkHTML?LINKGO.preMarkHTML(l.id):'') + ' <span class="badge">' + l.id + '</span><div class="ds">' + esc(l.desc) + '</div></span><span class="chev">›</span></button>';
     });
   });
   h += EXTRA_BOTTOM;
@@ -18653,6 +18715,7 @@ function vLaw(id){
   h += '<h2 class="big">' + esc(l.short) + '</h2><div class="desc">' + esc(l.desc) + '</div>';
   if(WB_BY_ID[l.id]){ h += wbCardHTML(l.id); }
   h += '<div class="formal">正式说法（目录原文）：' + esc(l.formal) + '</div>';
+  if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(l.id);}
   h += '<div class="kidbox"><span class="lab">目录里的孩子版说法</span>' + esc(l.kid) + '</div>';
   if(l.beats.length){
     h += '<div class="sec"><h4>📖 机制 · 它是怎么回事</h4>';
