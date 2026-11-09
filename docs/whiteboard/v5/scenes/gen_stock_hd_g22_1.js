@@ -7,6 +7,8 @@
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/hdg22_1.js';
 const ACTS = {"*": ["l_write0", "l_speak", "l_think"]};
+// R2SKIP（第六波第 1 项）：板上故意展示的错误形式 eated（常错行），按 SOP §7.3 不读。（goed 同行，但 go 已读到，检查口径下已覆盖，不列。）
+const R2SKIP = ['eated'];
 const ITEMS = [
   ['w', 'G22 底层原理'],
   ['w', '一般过去时不规则动词高频榜 (go→went / see→saw) —— 小学阶段最常考的 24 个“不加 ed、直接换马甲”的超级动词'],

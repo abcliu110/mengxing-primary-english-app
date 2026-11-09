@@ -7,6 +7,8 @@
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/hdg21_1.js';
 const ACTS = {"*": ["l_write0", "l_speak", "l_think"]};
+// R2SKIP（第六波第 1 项）：板上故意展示的错误形式 stoped / studyed（常错行），按 SOP §7.3 不读。
+const R2SKIP = ['stoped', 'studyed'];
 const ITEMS = [
   ['w', 'G21 底层原理'],
   ['w', '一般过去时规则变化 (-ed 变形与发音) —— 给过去发生的动作盖上“-ed 历史印章”'],

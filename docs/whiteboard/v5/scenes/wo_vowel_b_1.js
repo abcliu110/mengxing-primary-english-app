@@ -4,6 +4,8 @@
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wovb1.js';
 const ACTS = {};
+// R2SKIP（第六波第 1 项）：板上故意展示的错误形式 longth（long+th），按 SOP §7.3 不读。
+const R2SKIP = ['longth'];
 const ITEMS = [
   ['n', 'long 是「长的」，「长度」为什么不是 longth，而是 length？'],
   ['w', '元音变异 ②：long → length'],

@@ -83,7 +83,7 @@
   - `node --check`：`python3 docs/whiteboard/src/jscheck.py`（抽出主文件全部直接执行的 `<script>` + 按需加载模块 `wbmod-*`，拼起来检查并逐个检查；末尾自动跑 `anchorcheck.py`，核对补丁锚点 / 插入标记没有静默丢失）；
   - 实验室 `appwb.py <页签> <目录>`；第一性原理 `appfp.py <0-5> <目录>`；单词身世 `appwo.py <目录>`：每幕 `mounted: True`、`bad: None`、`errors: []`、无 NaN / undefined；
   - 回归：`appwb.py bamboo_tree`、`appfp.py 0`、`appwo.py` 都要过；
-  - **朗读覆盖检查（R2）**：`python3 docs/whiteboard/src/v5check.py --only <幕前缀>`（v5 原生静态检查：每幕 `'s'` 朗读句在位、白板词有句读；全库基线 782 项 FAIL / 596 幕，见 `docs/work-2026-11-09/wave5_item4_v5check_baseline.json`；新改的幕逐幕过，不过的不合入）；
+  - **朗读覆盖检查（R2）**：`python3 docs/whiteboard/src/v5check.py --only <幕前缀>`（v5 原生静态检查：每幕 `'s'` 朗读句在位、白板词有句读；全库基线 526 项 FAIL / 498 幕，见 `docs/work-2026-11-09/wave6_item1_v5check_baseline.json`（第六波豁免后重定；第五波基线 782 项 / 596 幕见 `wave5_item4_v5check_baseline.json`）；新改的幕逐幕过，不过的不合入）；
   - **动作覆盖检查（R4）**：同一个脚本（`ACTS` 键挂在朗读句上、演出帧在精灵包 `FI` 里；`ACTS` 为空只警告，由内容方判断该幕有无动作词）；
   - **现行五步验证管线**（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`；旧验收行 `r2check.py … --strict` 一律改按这五步）：① 打包 `WB_FONTS=~/workspace/wbfonts PATH=~/workspace/wbfonts/bin:$PATH node docs/whiteboard/v5/build.mjs <幕>.js <out.html> "<标题>"` ② grep 打包产物（预期朗读句/关键例句逐字命中）③ 探针时长 `python3 docs/whiteboard/src/durcheck.py --scan <幕前缀>`（读打包 `out/` 的 `window.__dur`；>120 秒且不在 `dur_allow.json` 白名单 → 不合格）④ 文字检查 `python3 docs/whiteboard/src/wbtextcheck.py` ⑤ 语法检查 `python3 docs/whiteboard/src/jscheck.py`（`node --check`；`anchorcheck` 116 项基线不列入门禁）；
   - **引擎回归**：改引擎后，旧幕在新旧引擎下渲染结果要逐字节一致：`reg_render.py 旧.html old.json` → `reg_render.py 新.html new.json` → `reg_render.py --diff old.json new.json`（diff=0 才算过；旧版本用 `git show HEAD:萌星小学英语_最终合并版.html > 旧.html` 取）；
@@ -205,7 +205,7 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 
 ## 13. 补充（2026-10-29，格林定律章）
 - **共用小工具文件**：几幕共用的局部工具（如元音变异三幕的 `VW_KIT`）放 `cases/<名>_kit.js`，在 `insert_wb.py` 的 `WO_KITS` 登记（`{'wo_vowel_kit': ['wo_vowel_a', …]}`），打包时作为依赖先执行；`preview.html` 按前缀载入。用 `var` 声明，避免和别的模块的 `const` 冲突。
-- **r2skip**：案例对象可写 `r2skip: ["longth"]`，列出画面上**故意展示的错误形式**（被划掉的 longth、字幕里的反例 foots），r2check 不计入 R2（§7 第 3 条：错误形式不读）。只能用于错误形式或字母名，不能拿来躲朗读。（注：r2check 已废止，见 `src/r2check.RETIRED.md`；v5check.py 暂未实现 r2skip，v5 场景目前 0 处使用该字段。）
+- **r2skip**：案例对象可写 `r2skip: ["longth"]`，列出画面上**故意展示的错误形式**（被划掉的 longth、字幕里的反例 foots），r2check 不计入 R2（§7 第 3 条：错误形式不读）。只能用于错误形式或字母名，不能拿来躲朗读。（注：r2check 已废止，见 `src/r2check.RETIRED.md`；v5check.py 已实现 r2skip（第六波第 1 项）：全局清单 `src/r2skip.json`（对比标记/词性标签/句型代码/出处名/占位符/词族前缀/序数词尾/框架角色名/框架名 9 类）+ 逐幕 `const R2SKIP = [...]`（只用于错误形式；v5 场景目前 3 处：wo_vowel_b_1 的 longth、hd_g21_1 的 stoped/studyed、hd_g22_1 的 eated，gen 副本由模板继承再生）。）
 - **搬旧页签进新幕（R1）**：先导出内容清单（`export_inventory.py`），新幕里把每条字幕 / 白板字 / 术语 / 朗读都搬过去；讲错的改正后保留「原讲法」一行小字说明改了什么；清单逐条打勾写新位置。
 
 ## 14. 老动画 / HD 剧场 / 语法白板化（决策 23、24、27）
