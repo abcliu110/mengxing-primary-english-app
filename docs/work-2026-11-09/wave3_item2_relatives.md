@@ -176,5 +176,20 @@
 - 迁后 yaml-only 仅剩 3 条易混（TA-05→TA-16、TA-06→TA-16、TA-16→TA-06），与 §5 一致。
 - 未动：上游 yaml 文件、总表 yaml 分仓、sync_lawdata.py（无事可做，见 §4）。
 
-### 6.2 LINKIDX 再生与验证（待补）
+### 6.2 LINKIDX 再生与验证
+
+- `gen_links.py --write`：LINKIDX 字面量 444161 → **445442** 字符；g p 槽 75→**92**、q 槽 75→**92**、k 条目 888→**944**（并集 444→472 对）、c 条目 254→**274**（并集 127→137 对）、覆盖律数 439→**453**（新增 P-07、P-10、P-13、P-14、P-16、P-18、P-19、TA-02、TA-04、TA-10、TA-11、TA-12、TA-13、TA-14 共 14 律，无律掉出）。以上与 §4 仿真预测逐项一致。
+- `gen_laws.py --check`：PASS（LAWDATA 无变化，符合 §4 预期：持有律不在 LAWDATA/专区内，rel 无落点）。
+- `check_rel_coverage.py`：PASS（LAWDATA.rel 727 条有向边全部 ⊆ LINKIDX.g，覆盖 320 律）。
+- `check_upstream.py`：五条链全部 PASS（无未登记漂移）。
+- `check_all.py`：**24/24 PASS**。
+- `jscheck.py`：node --check OK（41 inline）；anchorcheck 116 项失败，均为白板锚点标记遗留，与 HEAD 基线逐项一致（见 §6.3），与本项无关。
+- jsdom（`/tmp/domtest/wave3_item2_verify.js`）：**32 项 OK，ALL PASS**——g 各槽计数、14 律新入 g、抽查边（P-01 p/k/c、TA-02 k、TA-05 c/k、CO-17 p/k、TA-03/TA-16 补边）全部对位；易混 3 对在 p/k/c 任一方向均无边；TA-05↔TA-06 的同族/前置与 TA-16→TA-05 前置等合法边完好。
+
+### 6.3 重要发现（已解决）：远端 HEAD 主文件曾含一处 JS 语法错误
+
+- 在 e31dc96（当时的 origin/master）主文件上跑 jscheck：**node --check FAIL**——`SyntaxError: missing ) after argument list`，定位到第 13 个 inline script（R16-01 adult-row 代码，`.gh` forEach 块）多一个 `}`：块 13 括号深度终值 -1。
+- 根因（另一实施员已查实并修复，提交 **4edcc4f**「Bug：删 8c7c133 误删 if(allAdult){ 后残留的多余 }（第 13 内联脚本解析失败，整站 show/导航失效）」）：8c7c133 误删了 `if(allAdult){` 一行，残留的 `}` 成了多余闭合。该错误在远端 HEAD 期间真实存在（整站 show/导航失效），**不是本项引入的**；我的 LINKIDX 再生与之无关。
+- 过程记录：该 `}` 删除是在我跑校验期间由另一实施员在共享 checkout 中提交（4edcc4f）；此前我一度观察到它以未提交改动形式出现，当时删除者不明，现已由该提交的说明对上号。本项提交以 4edcc4f 为父提交，故本项提交树已含此修复；jscheck 在本项提交树上应为 node --check OK + anchorcheck 116 项（白板锚点遗留，与基线逐项一致）。
+- jsdom 运行噪音（非问题）：jsdom 下 `gkMeasure` 报 canvas `getContext` 未实现 TypeError，属 jsdom 无 canvas 的固有限制，与本项无关；真机未核实。
 
