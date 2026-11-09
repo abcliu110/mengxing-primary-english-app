@@ -10,13 +10,17 @@
    插在 hd_poly_v6_p14 之后。
 4. 新增 hd_mindmap 页签（25 幕，标题/ACTS 从场景文件取），插在 hd_phonics 之后。
 5. 补登记 ze_link / ze_pronoun / ze_yesno 第 1 幕（场景已存在，cases 原为空）。
-6. vv_give_down / vv_give_on 已下线（2026-11-09 第二波定夺）：场景文件删除、units 登记删除；
+6. vv_give_down 已下线（2026-11-09 第二波定夺）：场景文件删除、units 登记删除；
+   vv_give_on 同批下线后于 2026-11-09 第四波恢复另立（见第 9 条）；
    checked_absent 记录保留在 laws-prototype/model/phrasal_combos.json 与 wb13_phrasal.json（数据文件，本脚本不管）。
 7. 第一性原理：不改（22 幕 canonical 已登记；另 fp_economy_p2_1 为 parts 机制幕，
    不在 units 口径内；fp_one_king_1 / fp_zoom_focus_1 已迁中英对照）。
 8. vv_give_back（2026-11-09 第三波）：give back 另立页签，场景系已下线 vv_give_down
    原文手写恢复（非 72 格），units.json 手工登记（插在 vv_give_over 之后），
    不在本脚本生成范围；本脚本基线断言（186 页签）已过时，勿直接重跑。
+9. vv_give_on（2026-11-09 第四波）：give on (onto) 另立页签，场景系已下线 vv_give_on
+   原文手写恢复（非 72 格），units.json 手工登记（插在 vv_give_back 之后），
+   不在本脚本生成范围。
 
 用法：python3 docs/whiteboard/src/wb13/gen_wb13_units.py [--check-only]
 """
