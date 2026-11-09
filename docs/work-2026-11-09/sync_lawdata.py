@@ -3,7 +3,9 @@
 LAWDATA 字面量的非双户口条目；双户口条目只校验池字段、不动。
 gen_laws.py 的 build_lawdata 是 fail-closed 校验门，不做传播，故需本脚本先同步，
 再跑 gen_laws --check/--write 验收。
-2026-11-09 V-42 两句例句补入：exs 字段亦纳入同步范围（例句新增 + grp 按四站重标）。"""
+2026-11-09 V-42 两句例句补入：exs 字段亦纳入同步范围（例句新增 + grp 按四站重标）。
+2026-11-09 第二波第 2 项：aud 字段亦纳入同步范围（NE-09/24/25 由“教师/设计层”
+改回“双层”；aud 属 lawdata 分仓内容字段，非派生字段，改动只许来自总表）。"""
 import copy, json, sys
 sys.path.insert(0, "/home/hatch/workspace/mengxing-primary-english-app/laws-prototype/tools")
 import gen_laws as gl
@@ -37,8 +39,8 @@ for lid, entry in cur.items():
 print("LAWDATA 条目总数:", len(cur), "| 双户口:", len(duals), "| 需同步条目:", len(changed))
 for lid, diffs in sorted(changed.items()):
     print(" ", lid, "->", diffs)
-bad = {lid: d for lid, d in changed.items() if set(d) - {"cases", "nocase", "exs"}}
-assert not bad, f"同步涉及 cases/nocase/exs 之外的字段：{bad}"
+bad = {lid: d for lid, d in changed.items() if set(d) - {"cases", "nocase", "exs", "aud"}}
+assert not bad, f"同步涉及 cases/nocase/exs/aud 之外的字段：{bad}"
 new_text = text[:s] + gl.JD(new_ld) + text[e:]
 MAIN.write_text(new_text, encoding="utf-8")
 print("写回完成：", MAIN)
