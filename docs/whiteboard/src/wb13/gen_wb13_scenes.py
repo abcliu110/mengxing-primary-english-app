@@ -22,8 +22,8 @@
    原句，Priya 定用牛津原句）：控制住 *The rebels held the radio station.*；
    举行 *Each month she holds a meeting with her entire staff.*。缺-1 已闭合。
 5. 12 动词核心义页为单独 12 幕（2026-11-09 第二波定夺：转正为单独幕，一词一页，
-   不并入各动词首格；内容为动词核心义（词库原义）+ 六格总览（能说的 / 查过没有的），
-   无朗读句）。
+   不并入各动词首格；内容为动词核心义（词库原义）+ 六格总览（能说的 / 查过没有的）；
+   朗读句：每幕 1 句 OALD 动词词条义项原句，2026-11-09 第三波补，见 CORE_READALOUD）。
 
 小品词核心义取自仓库已有策展数据（verbs-prototype-v1.html 小品词卷宗）：
   up 向上（空间「向上」为源头义）/ out 从里面出来；往外 /
@@ -132,6 +132,39 @@ PARTICLE_MEANING = {
     'down': '向下',
     'over': '在……正上方 / 越过 / 结束',
     'on': '在……上面（有接触）',
+}
+
+# --- 12 核心义幕朗读句（2026-11-09 第三波补；R2 缺口）---
+# 口径：每幕 1 句牛津高阶学习者词典（OALD, oxfordlearnersdictionaries.com）动词词条
+# 义项原句，逐字照录（2026-11-09 当天打开词条页核对；与 V-42「Priya 定用牛津原句」
+# 同一口径）；中文译文为本幕所加；不编造。12/12 均核到，无留空。
+# 句长 3–8 词；先读词 = 动词原形（'s' 项第 4 元），autoBuild 的 K.say 先读词再读句。
+CORE_READALOUD = {
+    # 动词：(英文原句， 中文译文， OALD 义项出处）
+    'climb': ("Don't climb too high.", "别爬得太高。",
+              "OALD climb_1 义项 1（go up）Extra Examples"),
+    'eat': ("I don't eat meat.", "我不吃肉。",
+            "OALD eat 义项 1（to put food in your mouth, bite it and swallow it）"),
+    'fall': ("The leaves were falling from the trees.", "树叶正从树上落下来。",
+             "OALD fall_1 义项 1（drop down）"),
+    'fly': ("Geese fly south in the fall.", "大雁秋天往南飞。",
+            "OALD fly_1 义项 1（of bird/insect）"),
+    'get': ("What did you get for your birthday?", "你生日收到了什么礼物？",
+            "OALD get 义项 1（receive/obtain）"),
+    'give': ("Give your mother the letter.", "把这封信给你妈妈。",
+             "OALD give_1 义项 1（hand/provide）"),
+    'go': ("He goes to work by bus.", "他坐公交车去上班。",
+           "OALD American go_1 义项 1（move/travel）"),
+    'play': ("Let's play a different game.", "我们换个游戏玩吧。",
+             "OALD play_1 义项 1（of children）"),
+    'speak': ("Do you speak English?", "你会说英语吗？",
+              "OALD American speak_1 义项 4（a language）"),
+    'stand': ("She was too weak to stand.", "她虚弱得站不起来。",
+              "OALD stand_1 义项 1（on feet/be vertical）"),
+    'take': ("Remember to take your coat when you leave.", "走的时候记得带上外套。",
+             "OALD take_1 义项 1（carry/lead）"),
+    'turn': ("The wheels of the car began to turn.", "汽车的轮子开始转动了。",
+             "OALD turn 义项 1（move round）"),
 }
 
 def q(s):
@@ -296,19 +329,23 @@ def poly_scenes():
 
 def core_scenes(phrasal):
     """12 动词核心义页：单独 12 幕（2026-11-09 第二波定夺转正，一词一页）；
-    同款 autoBuild 格子形态；只放核心义 + 六格总览，无朗读句。"""
+    同款 autoBuild 格子形态；核心义 + 六格总览 + 朗读句（CORE_READALOUD，
+    2026-11-09 第三波补，12/12 均核到，无留空）。"""
     pages = phrasal['pages']
     cores = [p for p in pages if p['kind'] == 'verb_core']
     cells = {(p['verb'], p['particle']): p for p in pages if p['kind'] == 'grid_cell'}
     out = []
     for c in cores:
         verb = c['verb']
+        assert verb in CORE_READALOUD, f'核心义幕缺朗读句：{verb}'
         attested = [g for g in c['grid_row'] if cells[(verb, g.split(' ', 1)[1])]['status'] == 'attested']
         absent = [g for g in c['grid_row'] if cells[(verb, g.split(' ', 1)[1])]['status'] == 'checked_absent']
+        en, zh, src_oald = CORE_READALOUD[verb]
         items = [
             ['n', f"{verb}：{c['core_meaning_cn']}"],
             ['w', f"{verb} {c['phonetic']}"],
             ['w', c['core_meaning_cn']],
+            ['s', en, zh, verb],
         ]
         if attested:
             items.append(['w', '能说的搭配：'])
@@ -319,8 +356,8 @@ def core_scenes(phrasal):
             for g in absent:
                 items.append(['m', g])
         src = (f"docs/whiteboard/src/wb13/wb13_phrasal.json 动词核心义页（词库原义 {c['wordbank_id']}；"
-               f"六格总览：有引证 {len(attested)}/6）——单独 12 幕之一（2026-11-09 第二波定夺转正），"
-               f"无朗读句")
+               f"六格总览：有引证 {len(attested)}/6）——单独 12 幕之一（2026-11-09 第二波定夺转正）；"
+               f"朗读句：{src_oald}（2026-11-09 第三波补，中文译文为本幕所加）")
         out.append((f"vv_{verb}_core_1.js",
                     scene_file(f"🎬 万能动词 · {verb} 核心义", src, f"vv{verb}core1", items)))
     return out
