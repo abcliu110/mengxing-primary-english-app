@@ -2738,7 +2738,8 @@ window.LINKGO = (function(){
   }
   /* ===== 2.2 先修提示（只提示，不强制）：读 LINKIDX.g[id].p（直接先修，总表 relations_teaching kind="前置"经 gen_links.py 生成）；
      不读行内 LAWDATA.rel 等字面量，不递归，无先修时三处整块不渲染。标题取合并后 LAWDATA[先修id].hl
-     按冒号/破折号截断，无标题只写编号；先修目标为成人层时文案末尾追加「（给爸爸妈妈看的）」。===== */
+     按冒号/破折号截断；LAWDATA 无该律条目时（如 TA 站）回落取全册名册 ROSTER[先修id][0]，再无标题只写编号；
+     LAWDATA 有条目时只取其 hl（无 hl 仍只写编号，与改前一致）。先修目标为成人层时文案末尾追加「（给爸爸妈妈看的）」。===== */
   function preList(id){
     if (typeof LINKIDX === 'undefined' || !LINKIDX.g) return null;
     var g = LINKIDX.g[id];
@@ -2758,15 +2759,23 @@ window.LINKGO = (function(){
     var e = window.LAWDATA && LAWDATA[t];
     return !!(e && (e.aud === '教师/设计层' || e.zone === 'parents'));
   }
+  /* 先修芯片全标题回落（第四波第 5 项）：LAWDATA 有条目时只取其 hl（无 hl 返回 ''，与改前一致）；
+     LAWDATA 无条目时（如 TA 站）取 ROSTER[先修id][0]——已核对与 DATA.TA 的 head 18/18 相同；再无返回 ''。 */
+  function preLawTitle(t){
+    var e = window.LAWDATA && LAWDATA[t];
+    if (e) return e.hl || '';
+    var r = window.ROSTER && ROSTER[t];
+    return (r && r[0]) || '';
+  }
   function preBarHTML(id){
     var ps = preList(id);
     if (!ps) return '';
     var chips = ps.map(function(pid){
       var t = resolveLaw(pid);
-      var e = window.LAWDATA && LAWDATA[t];
-      var title = preShortTitle(e && e.hl);
+      var full = preLawTitle(t);
+      var title = preShortTitle(full);
       var label = title ? '《' + pid + ' ' + title + '》' : pid;
-      return lawChip(pid, label, e && e.hl ? e.hl : '');
+      return lawChip(pid, label, full);
     });
     var adult = ps.some(function(pid){ return preIsAdult(pid); });
     return '<div class="lz-prebar">⏳ 建议先学' + chips.join('、') + '，再学这一条。' + (adult ? '（给爸爸妈妈看的）' : '') + '</div>';
