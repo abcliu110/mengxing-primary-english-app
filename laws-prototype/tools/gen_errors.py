@@ -17,8 +17,13 @@
 工具、口径以本生成器为准落盘）
   - 逐律四路汇合（先到先得 lawdata > yaml > zone.data > zone.parts），
     律内按 norm(wrong) 归一去重（阶段 3 同款归一：全角引号转半角、
-    小写、标点转空格、空白折叠）。硬断言对账盘点：总数 381 / 覆盖
-    217 律 / 来源 lawdata 116、yaml 111、zone 154（2026-11-04 动画集成
+    小写、标点转空格、空白折叠）。硬断言对账盘点：总数 524 / 覆盖
+    311 律 / 来源 lawdata 259、yaml 111、zone 154（2026-11-09 人工处理
+    清单 1.1 病例补齐波：三批 143 例并入 lawdata.cases——拼读拼写 56、
+    词汇解码构式疑问 68、表达写作自然英语 19；覆盖 +94 律，
+    其中 QI 10 律此前已有专区病例故覆盖只 +30；辨析标记 11→16，
+    新增 E-07/V-08/V-14/V-24/V-30；diag_kid 改写 223→366。
+    2026-11-04 动画集成
     波 B 第 0 步：第四路汇入合并律 zone.parts 面——仅 GR-46–GR-50 五律
     的部件病例 18 条（2/2/8/4/2），此前三路均未读此面，五律病例自此
     进索引；parts 病例无 diag_kid 字段，孩子版回落 diag 原文。上一版
@@ -224,25 +229,33 @@ def build(master, contrast):
     laws_child = len({c[0] for c in cases if not c[7]})
     cx_in = len({c[0] for c in cases if c[6]})
     # ---- 硬断言：与原型盘点逐项对账 ----
+    # 2026-11-09 人工处理清单 1.1 病例补齐波：三批 143 例并入 lawdata.cases
+    # （拼读拼写 56、词汇解码构式疑问 68、表达写作自然英语 19）
+    # → 总数 381→524、覆盖 217→311 律、lawdata 来源 116→259；
+    # 教学法 55、yaml 111、zone 154 不变；辨析标记 11→16
+    # （新增 E-07、V-08、V-14、V-24、V-30）；diag_kid 改写 223→366、
+    # 同文 139→157、保留登记 1 不变。
     # 2026-11-04 动画集成波 B 第 0 步：汇入 zone.parts 面（GR-46:2/47:2/48:8/
     # 49:4/50:2 共 18 条，律内去重后全为新增）→ 总数 381、覆盖 217 律、
     # zone 来源 136→154；教学法 55、辨析标记 11、diag_kid 改写 216 均不变。
-    if len(cases) != 381:
-        fail(f"病例总数应为 381，实得 {len(cases)}")
-    if len(per_law) != 217:
-        fail(f"覆盖律应为 217，实得 {len(per_law)}")
-    if src_counts != {"lawdata": 116, "yaml": 111, "zone": 154}:
-        fail(f"来源构成对账失败：{src_counts} != lawdata 116 / yaml 111 / zone 154")
+    if len(cases) != 524:
+        fail(f"病例总数应为 524，实得 {len(cases)}")
+    if len(per_law) != 311:
+        fail(f"覆盖律应为 311，实得 {len(per_law)}")
+    if src_counts != {"lawdata": 259, "yaml": 111, "zone": 154}:
+        fail(f"来源构成对账失败：{src_counts} != lawdata 259 / yaml 111 / zone 154")
     if n_teach != 55:
         fail(f"教学法条目应为 55，实得 {n_teach}")
-    if cx_in != 11:
-        fail(f"索引内有辨析页的律应为 11，实得 {cx_in}")
+    if cx_in != 16:
+        fail(f"索引内有辨析页的律应为 16，实得 {cx_in}")
     n_kid_rw = sum(1 for c in cases if c[8] != c[5])
     # 2026-11-04 落地批第 5 项（diag_kid 残漏补扫）：GR-05 #1/#2/#7/#8、C-08 #1、
     # C-10 #0/#1 共 7 条原同文 diag_kid 属残漏（内部编号互引/半成品备忘/原文转述腔），
     # 已按白话口径从病例原文改写 → 改写 216→223、同文 146→139、保留登记 1 不变。
-    if n_kid_rw != 223:
-        fail(f"diag_kid 改写条数应为 223（另同文 139 + 保留登记 1），实得 {n_kid_rw}")
+    # 2026-11-09 病例补齐波：新增 143 例均带与 diag 不同的 diag_kid
+    # → 改写 223→366、同文 139→157、保留登记 1 不变。
+    if n_kid_rw != 366:
+        fail(f"diag_kid 改写条数应为 366（另同文 157 + 保留登记 1），实得 {n_kid_rw}")
     if any(not c[8] for c in cases):
         fail("存在 diag_kid 为空的病例行（孩子版全量覆盖口径）")
     built = {"tot": len(cases), "nt": n_teach, "laws": len(per_law),
