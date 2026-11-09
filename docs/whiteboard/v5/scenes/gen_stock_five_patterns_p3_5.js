@@ -13,7 +13,7 @@ const ITEMS = [
   ['s', 'Ask, tell, want, invite. Ask us to read! Do it now.', '请求、告诉、想要、邀请。叫我们来读吧！现在就做。', 'ask tell want invite do'],
   ['n', '使役动词后面用原形：Let\'s go! Make him laugh!'],
   ['w', 'make / let / have + sb. + do（不带 to）   Let\'s go! · Make him laugh!'],
-  ['s', 'Make, let, have. Let\'s go! Make him laugh!', '让。我们走吧！让他笑！', 'make let have Let\'s go him laugh do'],
+  ['s', 'Make, let, have. Let\'s go! Make him laugh!', '让。我们走吧！让他笑！', 'make let have Let\'s go him laugh'],
   ['w', 'S + V + O（宾语）+ OC（宾补：形容词 / 名词 / to do / do）'],
   ['w', '读书让我变聪明。  make / let / have 后面不带 to！'],
   ['n', '口诀：make、let、have 不带 to；ask、tell、want 要带 to。'],

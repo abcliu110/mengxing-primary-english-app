@@ -36,7 +36,7 @@ const ITEMS = [
   ['w', 'Saturday'],
   ['w', '= Saturn\'s day'],
   ['w', '土星的日子'],
-  ['s', 'Saturn is a big planet.', '土星是一颗大行星。', 'Saturday Saturn'],
+  ['s', 'Saturn is a big planet.', '土星是一颗大行星。', 'Saturn'],
   ['s', 'I sleep late on Saturday.', '星期六我睡懒觉。', 'Saturday'],
   ['s', 'Tuesday is Tiw\'s day. Wednesday is Woden\'s day.', '星期二是提尔的日子，星期三是沃登的日子。', 'Tiw\'s Woden\'s'],
   ['s', 'Friday is Friga\'s day. Saturday is Saturn\'s day.', '星期五是弗丽嘉的日子，星期六是土星的日子。', 'Friga\'s Saturn\'s'],

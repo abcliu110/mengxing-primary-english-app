@@ -339,7 +339,15 @@ def pre_word_ok(pre, sent_tokens, pre_list_first):
         return True
     if token_covered(pre, sent_tokens):
         return True
-    if any((pre in t or t in pre) for t in sent_tokens if len(t) >= 2):
+    # 词块：本句某词包含先读词（如 im- ← Import），或先读词包含本句某词
+    # （如 toothbrush ← brush）；前一方向只认 ≥2 字母的先读词（'s' 是复数
+    # 标记，特许 1 字母），否则 'I' ⊂ 'with' 之类的 1 字母短词会误判通过；
+    # 后一方向只认 ≥3 字母的词块，否则 'on' ⊂ 'moon' 之类的 2 字母短词
+    # 会误判通过。
+    if len(pre) >= 2 or pre == 's':
+        if any(pre in t for t in sent_tokens if len(t) >= 2):
+            return True
+    if any(t in pre for t in sent_tokens if len(t) >= 3):
         return True
     if pre in PLACEHOLDERS:
         return True

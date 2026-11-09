@@ -34,7 +34,7 @@ const ITEMS = [
   ['w', '升调 ↗：一般疑问句（答 Yes / No）'],
   ['w', 'Are you OK?'],
   ['w', 'Do you like to jump?'],
-  ['s', 'Are you OK?', '你还好吗？', 'are you OK yes no'],
+  ['s', 'Are you OK?', '你还好吗？', 'are you OK'],
   ['s', 'Yes or no?', '是还是不是？', 'yes no'],
   ['s', 'Do you like to jump?', '你喜欢跳吗？', 'to jump'],
   ['w', '✂️ 大多数'],

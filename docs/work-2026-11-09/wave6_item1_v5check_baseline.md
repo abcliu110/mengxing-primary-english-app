@@ -15,7 +15,7 @@
 | R2-W1 | 572 项（auto 446 / oral 90 / poly 36） | **486 项**（auto 391 / oral 89 / poly 6） | −86 项 |
 | R4-F2 | 210 项（均为 auto） | **40 项**（均为 auto） | −170 项 |
 | R2-S1 / R4-F3 FAIL | 0 / 0 | 0 / 0 | 0 |
-| WARN | 268 项（R2-P1 161 + ACTS 为空 107） | **133 项**（R2-P1 26 + ACTS 为空 107） | −135 项 |
+| WARN | 268 项（R2-P1 161 + ACTS 为空 107） | **135 项**（R2-P1 28 + ACTS 为空 107） | −133 项 |
 | UNKNOWN（R4-F3） | 780 项 | 780 项 | 0（精灵包 stub/缺失未变） |
 | 未覆盖 | 87 幕 | 87 幕（同） | 0 |
 | 豁免跳过（白板词出现次数） | — | **746 处**（全局 r2skip.json + 逐幕 R2SKIP） | — |
@@ -30,6 +30,14 @@
 `make_sprite_stubs.py`（补 567 个 stub）再跑 `rebuild_highfreq_sprites.py`
 （重建 47 个高频真实包，与第五波清单逐包一致）后重跑得到的；精灵包是
 gitignored 本地产物，不入库。
+
+订正（2026-11-10，第 4 项实施中发现）：本底稿初版 WARN 记为 133 项
+（R2-P1 26），是提交时 checker 的“1 字母先读词按子串算合规”误判所致
+（`'on' ⊂ 'moon'` 让 wo_time_week_p2_1 的 `moon` 误判通过；见第 4 项
+底稿 `wave6_item4_p1.md` §1）。修正 checker 后（先读词 1 字母只认 `s`
+复数标记、2 字母短词不认 `t in pre` 方向），同一基线状态重算为 WARN
+135 项（R2-P1 28），FAIL 不变。`wave6_item1_v5check_baseline.json` 的
+`counts.warn['R2-P1']` 已同步改为 28；fails 列表不受影响。
 
 ## 1. (a) r2skip 豁免机制
 
@@ -186,7 +194,7 @@ ex 句，不能加 `'s'` 项（polyBuild 只读最后一个 `'s'`）。
 
 | 验证 | 结果 |
 |---|---|
-| `python3 docs/whiteboard/src/v5check.py --json wave6_item1_v5check_baseline.json` | FAIL 526 / 498 幕；WARN 133；UNKNOWN 780；与第五波基线逐项比对：FAIL 项清掉 256 项，（幕，检查）组合清掉 144 组，新增 0 项 |
+| `python3 docs/whiteboard/src/v5check.py --json wave6_item1_v5check_baseline.json` | FAIL 526 / 498 幕；WARN 135；UNKNOWN 780；与第五波基线逐项比对：FAIL 项清掉 256 项，（幕，检查）组合清掉 144 组，新增 0 项 |
 | 新旧基线逐项 diff（scene, code） | 仅减少，无新增、无改动 |
 | `node --check`（3 个手改场景 + 3 个再生场景） | 全部通过 |
 | `git show` 逐行核对（本提交） | v5check.py 机制改动 + r2skip.json + 3 手改场景 + 3 再生场景 + SOP 两行 + 本底稿 + 基线 json；精灵包/事实表无入库改动 |
