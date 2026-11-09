@@ -6383,6 +6383,9 @@ window.GK = {show: gkShow};
 .st.ok{background:#e2efdc;color:#3c6b35}
 .st.part{background:#f7ecd2;color:#8a6a1f}
 .st.tchr{background:#e8e4f2;color:#5a4d80}
+/* R16-01 成人层默认折叠：成人层规律目录行在开关关闭时隐藏 */
+body:not(.adult) .urow.adult-row{display:none}
+body:not(.adult) .gh.adult-row{display:none}
 .lz-kid{font-size:16px;line-height:1.75;background:#fffdf4;border:1.5px solid #e8dfba;border-radius:12px;padding:12px 14px}
 .lz-beat{margin:10px 0;padding:10px 12px;background:#fbfaf6;border-radius:10px;border:1px solid #eee7d3}
 .lz-beat b{color:#7a641f}
@@ -8887,6 +8890,32 @@ show('home');
    applyAdultZones 管拨动时已在 DOM 的节点，后渲染的页面读本 helper，两者并行不冲突。 */
 function mxAdultOn(){ return !!(document.body && document.body.classList.contains('adult')); }
 window.mxAdultOn = mxAdultOn;
+/* R16-01：给所有成人层目录行（含 .st.tchr 的 .urow[data-law]）标记 adult-row，
+   配合 CSS body:not(.adult) .urow.adult-row{display:none} 实现默认折叠 */
+document.querySelectorAll('.urow[data-law]').forEach(function(row){
+  if(row.querySelector('.st.tchr')) row.classList.add('adult-row');
+});
+/* R16-01：若某个 .gh 分组标题后紧跟的全是 .adult-row 条目（即整组为成人层），
+   该 .gh 也加 adult-row，与条目一同折叠，避免标题孤立 */
+document.querySelectorAll('.gh').forEach(function(gh){
+  var nxt = gh.nextElementElement || gh.nextElementSibling, allAdult = !!nxt;
+  while(nxt && nxt.classList.contains('urow') && nxt.classList.contains('adult-row')){
+    nxt = nxt.nextElementSibling;
+  }
+  /* 若紧跟 .gh 的下一个非空元素不是 .urow（说明该组无条目或全被跳过），保守不标记 */
+  if(allAdult){
+    /* 检查从该 gh 到下一个 gh 之间是否全是 adult-row */
+    var sib = gh.nextElementSibling, onlyAdult = true, hasAny = false;
+    while(sib && !sib.classList.contains('gh')){
+      if(sib.classList && sib.classList.contains('urow')){
+        hasAny = true;
+        if(!sib.classList.contains('adult-row')){ onlyAdult = false; break; }
+      }
+      sib = sib.nextElementSibling;
+    }
+    if(hasAny && onlyAdult) gh.classList.add('adult-row');
+  }
+});
 function applyAdultZones(on){
   document.querySelectorAll('details.pn-adult,details.ar-adult,details.et-adult').forEach(function(d){d.open=!!on;});
   document.querySelectorAll('.cj-scope .adultbody').forEach(function(el){
@@ -8895,6 +8924,8 @@ function applyAdultZones(on){
     if(arr) arr.textContent=on?'▴':'▾';
   });
 }
+/* R16-01：页面加载时立即以关闭态初始化，确保 CJ 成人层不会在开关关闭时闪现 */
+applyAdultZones(false);
 var atgl=document.getElementById('atgl');
 atgl.addEventListener('click',function(){
   var on=document.body.classList.toggle('adult');
