@@ -31,7 +31,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
                               hl == ROSTER[0]，无 hl ⟺ ptr）
   check_badge_erridx.py       静态徽标 × ERRIDX 对账（全部 299 行：ERRIDX 区 133 行徽标 vs 再生 ERRIDX、
                              拼读区 52 行 vs 本律 cases/prb、家长区 114 行计数 vs prb/ERRIDX/quiz）
-  check_js_syntax.py          jscheck node --check（41 内联脚本；anchorcheck 基线不计入）
+  check_js_syntax.py          jscheck node --check（41 内联脚本；anchorcheck 已于 2026-11-09 第六波废止）
 
 用法：python3 laws-prototype/tools/check_all.py
 退出码：0=全绿；1=至少一项失败。
