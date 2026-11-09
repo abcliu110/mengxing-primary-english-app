@@ -17,8 +17,9 @@
    先例：ze_link / ze_pronoun / ze_yesno 三幕同样 ACTS={}。
 3. give down / give on 不新建、不删除：已有 vv_ 场景保留，只在 units.json
    标注 checked_absent（本脚本不管 units，见 gen_wb13_units.py 的配套改动）。
-4. V-42「控制住」「hold a meeting」两站例句缺（缺-1）：只上站名，不编例句，
-   缺口写在场景文件头注释里。
+4. V-42「控制住」「hold a meeting」两站例句已补（2026-11-09，牛津高阶学习者词典 OALD hold_1
+   原句，Priya 定用牛津原句）：控制住 *The rebels held the radio station.*；
+   举行 *Each month she holds a meeting with her entire staff.*。缺-1 已闭合。
 5. 12 动词核心义页为占位页：同款 autoBuild 格子形态，只放动词核心义
    （词库原义）+ 六格总览（能说的 / 查过没有的），无朗读句（待形态定稿后补）。
 
@@ -243,15 +244,17 @@ def poly_scenes():
         ['w', '塞进同一句只是验亲的直觉工具，不是判决机。'],
     ]
     out.append(('hd_poly_law_v41_1.js', scene_file('撞脸还是亲戚？塞进一句话验一验', src, 'hdplv411', items)))
-    # ---- V-42（缺-1：控制住 / hold a meeting 两站例句缺，只上站名，不编例句）----
+    # ---- V-42（缺-1 已闭合：控制住 / hold a meeting 两站例句为 OALD hold_1 原句）----
     items = [
         ['n', '一个词的意思怎么越滚越多？'],
         ['w', 'hold'],
         ['s', 'Hold my hand.', '握住我的手。', 'hold'],
         ['w', '控制住'],
+        ['s', 'The rebels held the radio station.', '反抗军控制了广播电台。', 'hold'],
         ['w', '装得下'],
         ['s', 'The hall holds 500 people.', '这个大厅能容纳 500 人。', 'hold'],
         ['w', 'hold a meeting'],
+        ['s', 'Each month she holds a meeting with her entire staff.', '她每个月和全体员工开一次会。', 'hold'],
         ['n', '去 P-10 看介词版。'],
         ['n', v42['claim_kid']],
         ['w', '顺路能猜出大半'],
@@ -259,10 +262,7 @@ def poly_scenes():
         ['w', '💡 一句话洞见'],
         ['w', v42['kid_line']],
     ]
-    head = ("// 缺口（wb13 缺-1）：V-42 mechanism 提到 hold「控制住」「举行」两站，但 laws_master 只有 "
-            "Hold my hand. 与 The hall holds 500 people. 两句；两站例句须从词典/教材核实后补，不得现编。\n")
     txt = scene_file('词的意思像滚雪球：hold', src, 'hdplv421', items)
-    txt = txt.replace("// 角色关键帧：", head + "// 角色关键帧：", 1)
     out.append(('hd_poly_law_v42_1.js', txt))
     return out
 
