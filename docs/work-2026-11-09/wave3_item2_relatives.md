@@ -166,5 +166,15 @@
 
 以后若要纳入总表：先在 gen_links.py 登记这个 kind（定 p/k/c 之外的槽位与呈现语义，属呈现口径改动，须另行定夺），再按本项做法迁移。本次不改 gen_links 的 kind 登记。
 
-## 六、迁移实施与验证（待补）
+## 六、迁移实施与验证
+
+### 6.1 迁移（commit 2）
+
+- 实施脚本：`docs/work-2026-11-09/apply_wave3_item2_relatives.py`（演练断言 + `--apply` 写回，写回自检通过）。
+- 迁入 88 条已登记 kind 边（同族 52、前置 17、对照 19），src 均记 `yaml-relatives`，顺序与各持有律的 yaml.relatives 一致；TA-03/TA-16 在已有前置边后追加。TA-07、TA-09 无余边，未动。
+- 总表 `relations_teaching`：890 → **978**（前置 75→92、同族 656→708、对照 159→178），与 §4 仿真预测一致。
+- 迁后 yaml-only 仅剩 3 条易混（TA-05→TA-16、TA-06→TA-16、TA-16→TA-06），与 §5 一致。
+- 未动：上游 yaml 文件、总表 yaml 分仓、sync_lawdata.py（无事可做，见 §4）。
+
+### 6.2 LINKIDX 再生与验证（待补）
 
