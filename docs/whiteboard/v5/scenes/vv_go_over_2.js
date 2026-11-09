@@ -13,13 +13,5 @@ const ITEMS = [
   ['m', '在……正上方 / 越过 / 结束'],
   ['w', 'go：去(过去式went)'],
   ['m', '+'],
-  ['w', 'I had gone over and over what happened in my mind.'],
-  ['m', 'go over something：仔细考虑；反复想'],
-  ['w', 'In the competition, the judge goes over each dog and assesses it.'],
-  ['m', 'go over something：仔细检查；查看'],
-  ['w', 'Once again I went over exactly what I needed to say.'],
-  ['m', 'go over something：再讲一遍；复习'],
-  ['w', '共同点：OVER = 在……正上方 / 越过 / 结束'],
-  ['s', 'I had gone over and over what happened in my mind.', '那件事在我脑子里翻来覆去想了好多遍。', 'go over something'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · go over ②', items: ITEMS, acts: ACTS }); }

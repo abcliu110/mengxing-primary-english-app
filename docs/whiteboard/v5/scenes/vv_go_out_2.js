@@ -13,17 +13,5 @@ const ITEMS = [
   ['m', '从里面出来；往外'],
   ['w', 'go：去(过去式went)'],
   ['m', '+'],
-  ['w', 'Are you going out tonight?'],
-  ['m', 'go out：出门（玩乐、吃饭等）'],
-  ['w', 'Suddenly the candle went out.'],
-  ['m', 'go out：（火、光）熄灭'],
-  ['w', 'They\'ve been going out for two years now.'],
-  ['m', 'go out (with somebody)：谈恋爱；交往'],
-  ['w', 'Hats like that went out years ago.'],
-  ['m', 'go out：不再流行；过时'],
-  ['w', 'The magazine goes out to all members at the end of the month.'],
-  ['m', 'go out：被寄出；被发出'],
-  ['w', '共同点：OUT = 从里面出来；往外'],
-  ['s', 'Are you going out tonight?', '你今晚要出去玩吗？', 'go out'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · go out ②', items: ITEMS, acts: ACTS }); }

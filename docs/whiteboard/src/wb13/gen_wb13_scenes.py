@@ -3,10 +3,10 @@
 输入：docs/whiteboard/src/wb13/wb13_phrasal.json（短语动词 84 页）
       docs/whiteboard/src/wb13/wb13_poly_laws.json（一词多义 V-16/V-41/V-42）
 输出：docs/whiteboard/v5/scenes/
-      - vv_<动词>_<小品词>_1.js / _2.js（32 格 × 2，共 64）
+      - vv_<动词>_<小品词>_1.js / _2.js（32 格 × 2，共 64；其中 10 格超长拆 ② 为 ②+③，另 +10）
       - hd_poly_law_v16_1.js / hd_poly_law_v41_1.js / hd_poly_law_v42_1.js（3）
-      - vv_<动词>_core_1.js（12 动词核心义占位页，共 12）
-      合计 79 个新场景文件。
+      - vv_<动词>_core_1.js（12 动词核心义，单独 12 幕）
+      合计 89 个新场景文件。
 
 口径（保守，见 whiteboard_1.3_note.md §3 三处待决策）：
 1. 英文例句一律照 wb13/phrasal_combos.json 的词典引证逐字照录，不编造、
@@ -158,8 +158,22 @@ def s_item(entry):
     assert en in ZH, f'缺译文：{en!r}'
     return ['s', en, ZH[en], entry['phrasal']]
 
+# 超长拆分名单（第二波定夺 4；见 vv_scenes 文档串，实测时长出处同前）
+SPLIT_3 = {'get over', 'go down', 'go on', 'go off', 'go up', 'go out', 'go over',
+           'turn over', 'play up', 'play out'}
+# 再平衡：③ 只放回顾对子仍超 60 秒的两格，把前 k 对回顾留在 ②（内容一字不减）——
+# get over ③ 72.5 秒、go down ③ 62.3 秒（拆分首版实测 2026-11-09）；其余 8 格 ③ ≤60 秒，k=0。
+SPLIT_3_MOVE = {'get over': 3, 'go down': 2}
+
 def vv_scenes(page, core_meaning):
-    """一格两幕：① 首义 + 例句；② 次义（或合成）+ 全格合成卡。板式仿 vv_give_off / vv_take_on。"""
+    """一格两幕：① 首义 + 例句；② 次义（或合成）+ 全格合成卡。板式仿 vv_give_off / vv_take_on。
+    超长拆分（2026-11-09 第二波定夺 4）：② 实测超 60 秒（SOP §1 实验室 40–60 秒指引）
+    的 10 格拆 ② 为 ②+③，不缩内容——② 留次义 + 动词/小品词拆解，③ 为全格回顾
+    （义项回顾 + 共同点 + 重读①句）。拆分名单按实测时长定（探针 2026-11-09，out/ 打包）：
+    get over 89.0、go down 75.9、go on 68.7、go off 68.4、go up 66.0、go out 63.8、
+    go over 62.4、turn over 62.3、play up 61.1、play out 60.9 秒；其余 22 格 ② 均 ≤60 秒，不拆。
+    再平衡（SPLIT_3_MOVE）：③ 仍超 60 秒的 get over（72.5 秒）、go down（62.3 秒），
+    把前 3 / 2 对义项回顾留在 ②，③ 开场改称「义项回顾（续）」，内容一字不减。"""
     verb, part, combo = page['verb'], page['particle'], page['phrasal']
     entries = page['entries']
     pm = PARTICLE_MEANING[part]
@@ -176,7 +190,7 @@ def vv_scenes(page, core_meaning):
         ['m', pm],
     ]
     f1 = scene_file(f"🎬 万能动词 · {combo} ①", src, lib + '1', items1)
-    # ---- ② ----
+    # ---- ②（次义 + 动词/小品词拆解）----
     if len(entries) >= 2:
         items2 = [
             ['n', f"{combo}：{entries[1]['meaning_cn']}"],
@@ -189,22 +203,34 @@ def vv_scenes(page, core_meaning):
             ['n', f"{combo}：{entries[0]['meaning_cn']}（合成）"],
             ['w', f"{combo} ②"],
         ]
-    # 合成卡：动词 + 小品词 + 全格义项回顾 + 共同点 + 重读①句（仿 vv_take_on_2 / vv_give_off_2）
     items2 += [
         ['m', verb.upper()],
         ['m', pm],
         ['w', f"{verb}：{core_meaning}"],
         ['m', '+'],
     ]
+    # ---- 合成卡（全格义项回顾 + 共同点 + 重读①句）：超长格移入 ③，其余留在 ② ----
+    tail = []
     for e in entries:
-        items2.append(['w', e['example']])
-        items2.append(['m', f"{e['phrasal']}：{e['meaning_cn']}"])
-    items2 += [
+        tail.append(['w', e['example']])
+        tail.append(['m', f"{e['phrasal']}：{e['meaning_cn']}"])
+    tail += [
         ['w', f"共同点：{P} = {pm}"],
         s_item(entries[0]),
     ]
     f2 = scene_file(f"🎬 万能动词 · {combo} ②", src, lib + '2', items2)
-    return [(f"vv_{verb}_{part}_1.js", f1), (f"vv_{verb}_{part}_2.js", f2)]
+    if combo in SPLIT_3:
+        k = SPLIT_3_MOVE.get(combo, 0)  # 留在 ② 的回顾对子数（再平衡用，见文件头）
+        items2b = items2 + tail[:2 * k]
+        items3 = [
+            ['n', f"{combo}：全格回顾" if k == 0 else f"{combo}：义项回顾（续）"],
+            ['w', f"{combo} ③"],
+        ] + tail[2 * k:]
+        f2 = scene_file(f"🎬 万能动词 · {combo} ②", src, lib + '2', items2b)
+        f3 = scene_file(f"🎬 万能动词 · {combo} ③", src, lib + '3', items3)
+        return [(f"vv_{verb}_{part}_1.js", f1), (f"vv_{verb}_{part}_2.js", f2), (f"vv_{verb}_{part}_3.js", f3)]
+    f2b = scene_file(f"🎬 万能动词 · {combo} ②", src, lib + '2', items2 + tail)
+    return [(f"vv_{verb}_{part}_1.js", f1), (f"vv_{verb}_{part}_2.js", f2b)]
 
 def poly_scenes():
     d = json.load(open(os.path.join(WB13, 'wb13_poly_laws.json'), encoding='utf-8'))
@@ -314,7 +340,7 @@ def main():
         files += vv_scenes(p, core_meaning[p['verb']])
     files += poly_scenes()
     files += core_scenes(phrasal)
-    assert len(files) == 79, f'场景文件应为 79，实得 {len(files)}'
+    assert len(files) == 89, f'场景文件应为 89（79 + 10 格拆出的 ③），实得 {len(files)}'
     # 自查：每条词典例句逐字出现在场景里（场景文件是 JS 转义形式，先反转义再比对）
     blob = '\n'.join(t for _, t in files).replace("\\'", "'").replace('\\\\', '\\')
     n_ex = 0

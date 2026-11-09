@@ -13,13 +13,5 @@ const ITEMS = [
   ['m', '在……正上方 / 越过 / 结束'],
   ['w', 'turn：转弯，转动；变成（颜色/天气变化） / （轮到的）顺序，机会（take turns 轮流）'],
   ['m', '+'],
-  ['w', 'He\'ll turn the shop over to his son when he retires.'],
-  ['m', 'turn something over to somebody：移交；让（某人）接管'],
-  ['w', 'Turn over and look at the next page.'],
-  ['m', 'turn over：翻（页）（英式）'],
-  ['w', 'You may turn over your exam papers now.'],
-  ['m', 'turn something over：把……翻到另一面'],
-  ['w', '共同点：OVER = 在……正上方 / 越过 / 结束'],
-  ['s', 'He\'ll turn the shop over to his son when he retires.', '他退休后会把店交给儿子接管。', 'turn something over to somebody'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · turn over ②', items: ITEMS, acts: ACTS }); }

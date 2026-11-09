@@ -17,15 +17,5 @@ const ITEMS = [
   ['m', 'go down：下降；降低'],
   ['w', 'The movie went down very well in America.'],
   ['m', 'go down well/badly：受到（好/坏的）反应；受欢迎（程度）'],
-  ['w', 'Ten men died when the ship went down.'],
-  ['m', 'go down：（船）沉没'],
-  ['w', 'Your tyre\'s gone down.'],
-  ['m', 'go down：（充气物）瘪掉；漏气变小'],
-  ['w', 'If one of the file servers goes down, you lose the whole network.'],
-  ['m', 'go down：（电脑系统）瘫痪；停止工作'],
-  ['w', 'The lights went down and the curtain rose on an empty stage.'],
-  ['m', 'go down：（灯光）变暗'],
-  ['w', '共同点：DOWN = 向下'],
-  ['s', 'Computers have gone down in price.', '电脑降价了。', 'go down'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · go down ②', items: ITEMS, acts: ACTS }); }

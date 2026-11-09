@@ -13,17 +13,5 @@ const ITEMS = [
   ['m', '向上'],
   ['w', 'go：去(过去式went)'],
   ['m', '+'],
-  ['w', 'Train fares have gone up.'],
-  ['m', 'go up：上升；上涨'],
-  ['w', 'It was a lovely place before all these new houses went up.'],
-  ['m', 'go up：（建筑、标志）被建起；竖立'],
-  ['w', 'The whole building went up in flames.'],
-  ['m', 'go up：爆炸；起火烧毁'],
-  ['w', 'A great cheer went up from the audience.'],
-  ['m', 'go up：（喊声、欢呼声）响起'],
-  ['w', 'We\'re going up to Scotland next weekend.'],
-  ['m', 'go up：去（北方、城镇）（英式）'],
-  ['w', '共同点：UP = 向上'],
-  ['s', 'Train fares have gone up.', '火车票涨价了。', 'go up'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · go up ②', items: ITEMS, acts: ACTS }); }

@@ -13,11 +13,5 @@ const ITEMS = [
   ['m', '从里面出来；往外'],
   ['w', 'play：玩耍；打（球）；弹奏（乐器）；戏剧'],
   ['m', '+'],
-  ['w', 'The debate will play out in the media over the next week or two.'],
-  ['m', 'play out：（事态）发展；演变'],
-  ['w', 'We were forced to stand back and let the crisis play itself out.'],
-  ['m', 'play itself out：（事态）发展直至结束；自行了结'],
-  ['w', '共同点：OUT = 从里面出来；往外'],
-  ['s', 'The debate will play out in the media over the next week or two.', '这场辩论会在接下来一两周里通过媒体展开。', 'play out'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · play out ②', items: ITEMS, acts: ACTS }); }
