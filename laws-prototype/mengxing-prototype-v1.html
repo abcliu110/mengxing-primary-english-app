@@ -2740,16 +2740,20 @@ window.LINKGO = (function(){
   /* ===== 2.2 先修提示（只提示，不强制）：读 LINKIDX.g[id].p（直接先修，总表 relations_teaching kind="前置"经 gen_links.py 生成）；
      不读行内 LAWDATA.rel 等字面量，不递归，无先修时三处整块不渲染。标题取合并后 LAWDATA[先修id].hl
      按冒号/破折号截断；LAWDATA 无 hl 时（如 TA 站、ptr 条目）回落取全册名册 ROSTER[先修id][0]，再无标题只写编号；
-     LAWDATA 有 hl 时只取其 hl（已核对与 ROSTER[0] 一字相同）。先修目标为成人层时文案末尾追加「（给爸爸妈妈看的）」。===== */
+     LAWDATA 有 hl 时只取其 hl（已核对与 ROSTER[0] 一字相同）。先修目标为成人层时文案末尾追加「（给爸爸妈妈看的）」。C-06/C-07 例外见 preShortTitle（全标题不过短）。===== */
   function preList(id){
     if (typeof LINKIDX === 'undefined' || !LINKIDX.g) return null;
     var g = LINKIDX.g[id];
     if (!g || !g.p || !g.p.length) return null;
     return g.p.slice();
   }
-  function preShortTitle(hl){
+  function preShortTitle(hl, id){
     var s = String(hl == null ? '' : hl);
     if (!s) return '';
+    /* 第六波第 10 项：C-06/C-07 例外——全标题不过短（冒号不截断），
+       芯片显示「a：认出是哪一类就行」「the：就是那一个」；其余律仍按
+       冒号/破折号截断，全局截断逻辑不动。 */
+    if (id === 'C-06' || id === 'C-07') return s;
     var cut = s.search(/[：——]/);
     if (cut > 0) return s.slice(0, cut);
     return s.length > 12 ? s.slice(0, 12) + '…' : s;
@@ -2775,7 +2779,7 @@ window.LINKGO = (function(){
     var chips = ps.map(function(pid){
       var t = resolveLaw(pid);
       var full = preLawTitle(t);
-      var title = preShortTitle(full);
+      var title = preShortTitle(full, t);
       var label = title ? '《' + pid + ' ' + title + '》' : pid;
       return lawChip(pid, label, full);
     });
