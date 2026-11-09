@@ -2487,7 +2487,7 @@ var WORD_LEVELS={"tags": ["课标二级", "课标数词", "课标三级", "词�
 <div class="efx">
 <span class="back" data-go="home">← 回首页</span>
 <h2 class="zt">🔍 错句查规律</h2>
-<p class="sub">把写错的句子拿来对一对：点开任意一句，看对的说法、错在哪，还能跳到讲这件事的规律。共 <span id="efx-n-tot">381</span> 条病例：错句 <span id="efx-n-main">326</span> 条、覆盖 <span id="efx-n-laws">163</span> 条规律；另有 <span id="efx-n-nt">55</span> 条是给老师看的教法病例，打开成人层才显示。</p>
+<p class="sub">把写错的句子拿来对一对：点开任意一句，看对的说法、错在哪，还能跳到讲这件事的规律。共 <span id="efx-n-tot">524</span> 条病例：错句 <span id="efx-n-main">469</span> 条、覆盖 <span id="efx-n-laws">311</span> 条规律；另有 <span id="efx-n-nt">55</span> 条是给老师看的教法病例，打开成人层才显示。</p>
 <div id="efx-main">
 <input class="efx-search" id="efx-q" type="search" placeholder="输入关键词过滤错句，如 saw / sheep / some…">
 <div id="efx-list"></div>
@@ -9045,18 +9045,12 @@ document.querySelectorAll('.urow[data-law]').forEach(function(row){
 /* R16-01：若某个 .gh 分组标题后紧跟的全是 .adult-row 条目（即整组为成人层），
    该 .gh 也加 adult-row，与条目一同折叠，避免标题孤立 */
 document.querySelectorAll('.gh').forEach(function(gh){
-  var nxt = gh.nextElementElement || gh.nextElementSibling, allAdult = !!nxt;
-  while(nxt && nxt.classList.contains('urow') && nxt.classList.contains('adult-row')){
-    nxt = nxt.nextElementSibling;
-  }
-  /* 若紧跟 .gh 的下一个非空元素不是 .urow（说明该组无条目或全被跳过），保守不标记 */
-  if(allAdult){
-    /* 检查从该 gh 到下一个 gh 之间是否全是 adult-row */
-    var sib = gh.nextElementSibling, onlyAdult = true, hasAny = false;
-    while(sib && !sib.classList.contains('gh')){
-      if(sib.classList && sib.classList.contains('urow')){
-        hasAny = true;
-        if(!sib.classList.contains('adult-row')){ onlyAdult = false; break; }
+  /* 检查从该 gh 到下一个 gh 之间是否全是 adult-row */
+  var sib = gh.nextElementSibling, onlyAdult = true, hasAny = false;
+  while(sib && !sib.classList.contains('gh')){
+    if(sib.classList && sib.classList.contains('urow')){
+      hasAny = true;
+      if(!sib.classList.contains('adult-row')){ onlyAdult = false; break; }
       }
       sib = sib.nextElementSibling;
     }
@@ -12642,7 +12636,7 @@ var MXSTORE = (function(){
   }
   probe();
   if(state.ok){ try{ migrateAll(); }catch(e){} }
-  else { notice('blocked'); }
+  else { notice(state.reason==='quota'?'quota':'blocked'); }
   return {SCHEMA_V:SCHEMA_V, KEYS:KEYS, state:state, wrap:wrap, unwrap:unwrap,
     get:get, set:set, probe:probe, notice:notice, txPair:txPair, migrateAll:migrateAll,
     dismissNotice:function(){ var b=document.getElementById('mx-store-notice'); if(b) b.style.display='none'; },
