@@ -5,7 +5,7 @@
 
 改动：
 1. 新增 32 个 vv_<动词>_<小品词> 页签（cases 1/2，acts {}），插在 vv_give_out 之后。
-2. 新增 12 个 vv_<动词>_core 占位页签（placeholder 标记），跟在 32 格之后。
+2. 新增 12 个 vv_<动词>_core 页签（单独 12 幕，2026-11-09 第二波定夺转正，无 placeholder 标记），跟在 32 格之后。
 3. 新增 hd_poly_law_v16 / v41 / v42 三个页签（各 1 幕，enter 走 openLaw），
    插在 hd_poly_v6_p14 之后。
 4. 新增 hd_mindmap 页签（25 幕，标题/ACTS 从场景文件取），插在 hd_phonics 之后。
@@ -48,7 +48,7 @@ def main():
     cores = [p for p in pages if p['kind'] == 'verb_core']
     assert len(cores) == 12
 
-    # 1+2. 32 格 + 12 核心义占位页签
+    # 1+2. 32 格 + 12 核心义页签（单独 12 幕，已转正）
     vv_new = {}
     for p in missing:
         verb, part, combo = p['verb'], p['particle'], p['phrasal']
@@ -72,7 +72,6 @@ def main():
         vv_new[tab] = {
             'field': 'vv', 'lib': 'vv' + verb + 'core',
             'name': f'🎬 万能动词 · {verb} 核心义',
-            'placeholder': '核心义页形态待定（并入各动词首格或单独 12 幕）；占位页（1.3 保守口径），内容仅动词核心义 + 六格总览，无朗读句',
             'cases': {'1': {'title': f'🎬 万能动词 · {verb} 核心义', 'acts': {}}},
         }
 
@@ -127,7 +126,7 @@ def main():
 
     new_raw = json.dumps(out, ensure_ascii=False, indent=1)
     assert json.dumps(json.loads(new_raw), ensure_ascii=False, indent=1) == new_raw
-    print(f'页签 186 → {len(out)}（+32 格 +12 核心义占位 +3 规律页 +1 导图）；'
+    print(f'页签 186 → {len(out)}（+32 格 +12 核心义 +3 规律页 +1 导图）；'
           f'补登记 ze 3 幕；标注 checked_absent 2 处')
     if check_only:
         print('check-only：未写文件')

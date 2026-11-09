@@ -20,8 +20,9 @@
 4. V-42「控制住」「hold a meeting」两站例句已补（2026-11-09，牛津高阶学习者词典 OALD hold_1
    原句，Priya 定用牛津原句）：控制住 *The rebels held the radio station.*；
    举行 *Each month she holds a meeting with her entire staff.*。缺-1 已闭合。
-5. 12 动词核心义页为占位页：同款 autoBuild 格子形态，只放动词核心义
-   （词库原义）+ 六格总览（能说的 / 查过没有的），无朗读句（待形态定稿后补）。
+5. 12 动词核心义页为单独 12 幕（2026-11-09 第二波定夺：转正为单独幕，一词一页，
+   不并入各动词首格；内容为动词核心义（词库原义）+ 六格总览（能说的 / 查过没有的），
+   无朗读句）。
 
 小品词核心义取自仓库已有策展数据（verbs-prototype-v1.html 小品词卷宗）：
   up 向上（空间「向上」为源头义）/ out 从里面出来；往外 /
@@ -267,7 +268,8 @@ def poly_scenes():
     return out
 
 def core_scenes(phrasal):
-    """12 动词核心义占位页：同款 autoBuild 格子形态；只放核心义 + 六格总览，无朗读句。"""
+    """12 动词核心义页：单独 12 幕（2026-11-09 第二波定夺转正，一词一页）；
+    同款 autoBuild 格子形态；只放核心义 + 六格总览，无朗读句。"""
     pages = phrasal['pages']
     cores = [p for p in pages if p['kind'] == 'verb_core']
     cells = {(p['verb'], p['particle']): p for p in pages if p['kind'] == 'grid_cell'}
@@ -290,8 +292,8 @@ def core_scenes(phrasal):
             for g in absent:
                 items.append(['m', g])
         src = (f"docs/whiteboard/src/wb13/wb13_phrasal.json 动词核心义页（词库原义 {c['wordbank_id']}；"
-               f"六格总览：有引证 {len(attested)}/6）——占位页：形态待定（并入各动词首格或单独 12 幕，"
-               f"见 whiteboard_1.3_note.md §3 定夺 1），无朗读句，待形态定稿后补")
+               f"六格总览：有引证 {len(attested)}/6）——单独 12 幕之一（2026-11-09 第二波定夺转正），"
+               f"无朗读句")
         out.append((f"vv_{verb}_core_1.js",
                     scene_file(f"🎬 万能动词 · {verb} 核心义", src, f"vv{verb}core1", items)))
     return out
