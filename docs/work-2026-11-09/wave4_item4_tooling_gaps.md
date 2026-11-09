@@ -207,9 +207,9 @@ stub 后同幕打包通过（1,115,978 字节）。
 - 依赖已死（与任务所说一致，且有据可查）：
   - `insert_wb.py`：2026-10-30 停用（`HANDOFF.md:62`；`v5/retire_old_wb.py`，
     提交 `92ea6e3`“删除旧 SVG 白板兜底……insert_wb.py 停用”）。
-  - 旧主文件（`萌星小学英语_最终合并版.html`）：不在仓库里（现主文件是
+  - 旧主文件（`萌星小学英语_最终合并版.html`）：已从工作树删除，但 git 历史可找回（`d1c946f`，提交信息注明“git 历史可整文件找回”；现主文件是
     `laws-prototype/mengxing-prototype-v1.html`）；旧白板 `cases/`、`wb_actor.js`、
-    `wb_app.js`、`preview.html` 同样不在仓库里。
+    `wb_app.js`、`preview.html` 同样已从工作树删除（`7f7ecce` / `92ea6e3`）。真正不可恢复的只有 r2check.py / insert_wb.py 本身（从未入库，见上）。
   - r2check 当年的做法：先 `insert_wb.py` 把白板模块嵌进旧主文件，再从主文件
     抽词/句/`say` 登记做 R2（每词有单读+例句、每句有朗读）与 R4（`actionWords` 对照
     `k.act`/`k.actFx` 登记 + 与朗读重叠）检查；`--strict` 缺项返回 1。

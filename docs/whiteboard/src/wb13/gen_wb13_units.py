@@ -17,7 +17,9 @@
    不在 units 口径内；fp_one_king_1 / fp_zoom_focus_1 已迁中英对照）。
 8. vv_give_back（2026-11-09 第三波）：give back 另立页签，场景系已下线 vv_give_down
    原文手写恢复（非 72 格），units.json 手工登记（插在 vv_give_over 之后），
-   不在本脚本生成范围；本脚本基线断言（186 页签）已过时，勿直接重跑。
+   不在本脚本生成范围；本脚本基线断言（186 页签）已过时；2026-11-09 第四波
+   已恢复 --check-only 为校验模式（见 wave4_item4_tooling_gaps.md §2），
+   直接运行仍拒绝写盘。
 9. vv_give_on（2026-11-09 第四波）：give on (onto) 另立页签，场景系已下线 vv_give_on
    原文手写恢复（非 72 格），units.json 手工登记（插在 vv_give_back 之后），
    不在本脚本生成范围。

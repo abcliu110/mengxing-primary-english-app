@@ -12,8 +12,8 @@
 2. **依赖已死**：它先跑 `insert_wb.py` 把白板模块嵌进旧主文件再查。
    `insert_wb.py` 已于 2026-10-30 停用（`docs/whiteboard/HANDOFF.md:62`；
    `docs/whiteboard/v5/retire_old_wb.py`，提交 `92ea6e3` 删旧 SVG 白板兜底）；
-   旧主文件（`萌星小学英语_最终合并版.html`）也不在仓库里。旧白板
-   `cases/`、`wb_actor.js`、`wb_app.js`、`preview.html` 同样不在仓库里。
+   旧主文件（`萌星小学英语_最终合并版.html`）已从工作树删除，但 git 历史可找回（`d1c946f`）。旧白板
+   `cases/`、`wb_actor.js`、`wb_app.js`、`preview.html` 同样已从工作树删除（`7f7ecce` / `92ea6e3`）。
 3. **改造成本过大**：按 v5 重写等于新写一个工具——要解析 v5 场景格式
    （`ITEMS` 的 `w`/`s`/`m`/`n` 项、`ACTS`、精灵 `FI` 帧表），还要定义
    v5 下 R2/R4 的判定口径；且 v5 里 `s` 项朗读是结构性的（见下），
