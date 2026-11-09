@@ -27,6 +27,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_schema.py --check       机制图式卡 SCHEMA_TA（TA 18 律，标签逐片段对源断言）再生比对
   gen_contrast.py --check     辨析对照页 CONTRAST（种子批 9 页，律对关系/短名对源断言）再生比对
   check_rel_coverage.py       关系户口门禁（R11-01 修复登记）：LAWDATA.rel 全部边 ⊆ LINKIDX.g
+  check_badge_erridx.py       静态徽标 × ERRIDX 对账（NE/E/W 59 行，儿童行徽标 vs 再生 ERRIDX）
 
 用法：python3 laws-prototype/tools/check_all.py
 退出码：0=全绿；1=至少一项失败。
@@ -62,6 +63,7 @@ CHECKS = [
     ("gen_schema --check", "gen_schema.py", ["--check"]),
     ("gen_contrast --check", "gen_contrast.py", ["--check"]),
     ("check_rel_coverage", "check_rel_coverage.py", []),
+    ("check_badge_erridx", "check_badge_erridx.py", []),
 ]
 
 
