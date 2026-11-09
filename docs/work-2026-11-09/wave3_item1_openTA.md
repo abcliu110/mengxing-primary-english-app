@@ -98,6 +98,12 @@ jsdom（`~/workspace/domtest/node_modules` 的 jsdom，脚本见
 与 e97aaec 基线逐项一致（集合比对：only-in-current 与 only-in-e97aaec
 均为空），为基线遗留，非本项引入。
 
+补记（顺序修复后重跑，工作树 = 已提交树 + 第 5 项未提交改动）：
+jsdom 第 1 项验证 `ALL 18 STATIONS OK`（18 站逐站核对 + TA-03 p/q 对位 +
+顶部条芯片点击落地 TA-01）；check_all 24/24、jscheck node --check OK、
+anchorcheck 116 项（与 e97aaec 基线逐项一致）——均与修复前一致，顺序
+修正未引入回归。
+
 ---
 
 ## 五、改动文件与提交
@@ -108,7 +114,7 @@ jsdom（`~/workspace/domtest/node_modules` 的 jsdom，脚本见
   （演练/写回、openTA 体内重复插入防护、顺序自检）。
 - 本文件 `docs/work-2026-11-09/wave3_item1_openTA.md`。
 
-提交（待填）：brace 修复 commit ______；第 1 项 commit ______。
+提交：brace 修复 4edcc4f；第 1 项 dc17474；顺序修复见本文件 §八。
 
 提交时注意：工作树里另有同一实施员未提交的 LINKIDX 再生成行（主文件
 约 2656 行，第 2 项 88 边迁入后的再生）与白板场景文件改动——本项提交
@@ -141,3 +147,18 @@ jsdom（`~/workspace/domtest/node_modules` 的 jsdom，脚本见
    不含 jscheck，未能拦住本次回归）。
 3. **TA-02 等 13 站的相关规律块只有同族/对照、无前置**：属数据现状
    （总表 relations_teaching 如此），不在本项范围；是否补前置边是数据议题。
+
+## 八、更正记录：dc17474 的底部块位置错位（按 hunk 暂存时行号错位）
+
+- 手术脚本写回的工作树顺序是对的（亲戚条 → 相关规律块 → 页尾注记），
+  jsdom 验证也是在该工作树上跑的、结论属实。
+- 但 dc17474 提交时，为避开另一实施员未提交的 LINKIDX 再生成行，改用
+  `git diff -U0` 按 hunk 拆分暂存；relSection hunk 的插入点被 git diff
+  对齐到了页尾注记行之后（`@@ -11971,0 +11972 @@`），提交后文件里
+  顺序变成亲戚条 → 页尾注记 → 相关规律块，与 §二设计、§四验证不符。
+  preBar 行不受影响（位置正确）。
+- 本修复 commit 把页尾注记行移回相关规律块之后，恢复 §二顺序；修复后
+  jsdom 第 1 项验证重跑，18 站仍全部通过（见 §四末尾补记）。
+- 教训：-U0 hunk 只含改动行、无上下文锚点，插入点行号在多次提交交错时
+  极易错位；以后按 hunk 暂存后，提交前必须用 `git show <commit>` 逐行
+  核对落点，不能只看 `git diff --cached --stat` 的行数。

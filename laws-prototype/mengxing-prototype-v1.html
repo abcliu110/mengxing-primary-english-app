@@ -11969,8 +11969,8 @@ function openTA(id){
   h+='<div class="taCols"><div class="taCol taTeach">'+teach+'</div><div class="taCol taPrac">'+prac+'</div></div>';
   if(u.pending&&u.pending.length) h+='<details><summary>成人层 · 待补与评审注记（模型原文）</summary><div class="adult">'+u.pending.map(esc).join('<br>')+'</div></details>';
   if(u.rel&&u.rel.length) h+='<h4>亲戚条</h4><div class="chips">'+u.rel.map(r=>{ const rid=(typeof r==='string')?r:r.id; const lab=rid+((typeof r==='object'&&r.rel)?' · '+r.rel:''); return TA_BY[rid]?'<button class="chip" onclick="VB.openTA(\''+rid+'\')">'+esc(lab)+'</button>':'<span class="chip" style="cursor:default">'+esc(lab)+'</span>'; }).join('')+'</div>';
-  h+='<div class="adult" style="margin-top:10px">版式借鉴 Murphy《English Grammar in Use》的对页结构：左讲右练——左栏讲机制与例句，右栏立刻练（病例 + 站内练习 + 理解探针），不跳页。</div>';
   if(window.LINKGO){h+=LINKGO.relSectionHTML(id,'sec');}
+  h+='<div class="adult" style="margin-top:10px">版式借鉴 Murphy《English Grammar in Use》的对页结构：左讲右练——左栏讲机制与例句，右栏立刻练（病例 + 站内练习 + 理解探针），不跳页。</div>';
   $('taBody').innerHTML=h; show('v-ta'); vbLoopTouch(id);
 }
 
