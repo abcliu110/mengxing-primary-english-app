@@ -149,12 +149,12 @@
   - 日常用语小剧场：`startOralSituationalCanvas`（16 个场景）。
 - **R4 加强**：只要描述的是动作（buy / sell / pay / give / come / go / bring / take / put on / look / cut / tell / ride……），就必须由讲解员或场景角色把动作演出来，并与朗读同步；角色不能只站在两侧不动。
 - **数据驱动的做模板，不逐个手写**：单词卡、框架语义、40 个语法点、16 个口语场景 = 白板模板 + 「动词 → `k.act` 动作」映射表；映射表里缺的动作扩充进 `wb_actor.js` 动作库（只加不改，旧幕回归不变）。
-- **R1 零丢失**：每个入口先导出内容清单（旧文字 / 例句 / 小测），白板版验收（清单 ❌0、r2check --strict、R4 全覆盖）后才拆旧 canvas 代码；拆之前旧 canvas 保留可回退。
+- **R1 零丢失**：每个入口先导出内容清单（旧文字 / 例句 / 小测），白板版验收（清单 ❌0、v5check R2/R4 全覆盖 + 现行五步验证管线）后才拆旧 canvas 代码；拆之前旧 canvas 保留可回退。（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`；五步管线 = ① build 打包 ② grep 打包产物 ③ 探针时长 ④ wbtextcheck ⑤ jscheck，见 SOP §5。）
 - **顺序**（和「老白板 58 幕升级」一起排）：① 框架语义 FR01 买卖小剧场做试点（动作最密集），与 fp_economy 第 1 幕试点一起出前后对比给用户审；② 用户认可后：框架语义其余 → 易混词 → 自然拼读 → 构词 → 单词卡模板 → 语法 40 点 → 口语 16 场景。每步一提交推 master。
 
 ### 决策 24　老白板 58 幕全部升 v2（用户 2026-10-30 00:46）
 - 仍是旧引擎的 15 个案例文件约 58 幕（实验室 bamboo_tree、aux_transformer、five_patterns、tense_matrix、writing_alchemist、past_clans、metaphor_code、adj_order、stress_rhythm；第一性原理 6 条留下的 22 幕；共用 `fp_props`）全部升引擎 v2 + 讲解员 + V3 四色 + R4 `actionWords` + 片头 / 板擦转场 / 金句卡。
-- 做法同 ze_be / ze_modifier：升级前存 `*_classic.js`；`check_upgrade.py` 对照 ❌0；r2check --strict；渲染回归只有被升级的幕变化；一个文件一提交。
+- 做法同 ze_be / ze_modifier：升级前存 `*_classic.js`；`check_upgrade.py` 对照 ❌0；v5check + 现行五步验证管线（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`）；渲染回归只有被升级的幕变化；一个文件一提交。
 - 试点：fp_economy 第 1 幕先出前后对比，用户认可后按 第一性原理 → bamboo_tree → aux_transformer → five_patterns → tense_matrix → past_clans → adj_order → metaphor_code → stress_rhythm → writing_alchemist 铺开。
 
 ---
@@ -222,7 +222,7 @@
 | O6 ✅ 2026-10-31（`src/deadcode.py` + `src/patch_deadcode.py`） | 旧 CSS keyframes 与死代码 | 11 个 `@keyframes`（火车、剪刀、火箭等）；HD 剧场系统在白板化后变成死代码 | 白板化完成后删除无引用代码 | 每拆一个 HD 入口，同提交删其专用函数；全局引用扫描脚本 `deadcode.py` 列出零引用函数 | `deadcode.py` 报告；全入口挂载测试 |
 | O7 | 全局变量 / 事件泄漏 | 227 个顶层函数；`addEventListener` 9 处、`removeEventListener` 0 处；`setTimeout` 24 处 | 切页时清理计时器和监听 | 统一 `pageScope`：登记监听 / 计时器，切页释放 | `leakcheck.py`：进出 20 次后监听数不增长 |
 | O8 | 构建与补丁脚本 | 已加 `anchorcheck.py`（63b7be4）；`docs/home/step*.py` 是一次性补丁 | 所有写主文件的脚本写前校验锚点、写后跑 `jscheck` | `docs/home/step*.py` 标记为历史脚本（只读）；`insert_wb.py` 保持唯一入口 | `jscheck.py` 含 anchorcheck |
-| O9 | 自动化测试与回归 | 沙箱曾缺 Playwright；回归靠 `reg_render.py` / `app*.py` 分散脚本 | 一条命令跑全套：`node --check`、anchorcheck、r2check 全部、渲染回归、入口挂载、fps 抽测 | `src/runall.py` 汇总；环境安装写进 SOP | `runall.py` 全绿才提交 |
+| O9 | 自动化测试与回归 | 沙箱曾缺 Playwright；回归靠 `reg_render.py` / `app*.py` 分散脚本 | 一条命令跑全套：`node --check`、anchorcheck、v5check 全部 + 现行五步验证管线（build 打包、grep 产物、探针时长、wbtextcheck、jscheck）、渲染回归、入口挂载、fps 抽测（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`） | `src/runall.py` 汇总；环境安装写进 SOP | `runall.py` 全绿才提交 |
 
 **实施时机（用户 2026-10-30 01:09 更正）：软件优化放在最后，等决策 23–28 的全部功能做完后再做。** 届时顺序：O9（测试基座）→ O8 → O2 / O7（调度器 + 泄漏）→ O3 → O1 → O4 → O6 → O5，每项一个或几个小提交。
 
@@ -244,7 +244,7 @@
 2. **骨架 v2（D2）**：加手掌 + **握持点**（左右手各一个，道具 / 牵绳 / 杯把挂在握持点上，跟手走）；加**躯干转动**（yaw）和**头转动**；**正面 / 侧面两种视角**（走路、搬东西用侧面，打招呼、讲解用正面，可在动作内过渡）。旧 17 个动作保留并适配（只加不改，旧幕渲染不变由 `reg_render.py` 保证）。
 3. **互动道具和动物（D3）**：狗、猫、鸟、鱼、球、门、牵绳、杯子、书包、碗、牙刷、自行车……；支持三种关系：**被手抓住**（挂到握持点）、**跟着走**（动物 / 被牵物沿演员路径带滞后跟随）、**被作用**（门被推开、球被踢飞、杯子被喝空）。动物有自己的小动作库（走、跑、坐、摇尾巴、叫）。
 4. **简笔场景（D4）**：房子 / 门口、教室、公园、厨房、街道（地面线 + 少量参照物），保持白板单色线条风格（V3 调色板，只用浅色填充），作为场景底图组随镜头擦除；门有开 / 关状态，用来表达 in / out。
-5. **R4v2 新验收（D5）**：每句例句的**主动词**都必须登记为该动词的专属动作（`r2check` 用「动词 → 专属动作」表核对语义，讲解员手势和别的动作不算）；**禁止空的 `actionWords`**（静态动词 be / have / like / want 等也要列出，用「状态画面」演：have = 手里拿着 / 身边放着该东西，like = 抱着 / 冒爱心）；每个动作词出 **3 帧截图序列（预备 / 发力 / 结果）** 拼成动作联络表，人工抽查；adj_order 等的豁免取消，回头补上。
+5. **R4v2 新验收（D5）**：每句例句的**主动词**都必须登记为该动词的专属动作（`v5check.py` 核对静态部分：动作词登记在 `ACTS` 里且挂在朗读句上、演出帧在精灵包 `FI` 里；动词 → 专属动作的语义对应与朗读重叠仍按动作联络表人工看，不由脚本代劳；讲解员手势和别的动作不算）；**禁止空的 `actionWords`**（静态动词 be / have / like / want 等也要列出，用「状态画面」演：have = 手里拿着 / 身边放着该东西，like = 抱着 / 冒爱心）；每个动作词出 **3 帧截图序列（预备 / 发力 / 结果）** 拼成动作联络表，人工抽查；adj_order 等的豁免取消，回头补上。（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`。）
 6. **先做样板（D6）**：用「He takes the dog out.」做白板版（男孩在门内 → 拿起牵绳扣上狗 → 开门 → 牵狗走出门，狗跟着），和用户的参考插画对照截图；**达标后**再批量回改已完成单元（tense_matrix、past_clans、adj_order，其后是更早升 v2 的单元），之后再按原顺序继续（metaphor_code → stress_rhythm → writing_alchemist → 三大厅 …）。
 
 **任务顺序（用户 09:14 定）**：① 设计文档（本条 + §2.8 + SOP §16 + HANDOFF）→ ② 动作系统重建 + 样板 → ③ 回改已完成单元 → ④ 原顺序剩余单元。metaphor_code 已在 `cf2e967` 提交升级准备（classic 快照），v2 暂停，等 ② ③ 完成后按新动作系统做。
@@ -609,7 +609,7 @@ G18 一般现在时（与进行时对比、时间圆环、He go / Does he goes�
 
 | # | 决策 | 范围 | 判定 / 硬规则 | 验收 | 顺序 |
 |---|---|---|---|---|---|
-| ① | 23 + 24：全 App 动画白板化 + 动作必须画出 | 三大厅 HD 剧场全部入口 + 老白板 15 文件约 58 幕 + CSS keyframes 小动画 | 引擎 v2 + 讲解员（port 样板）；R4 加强：描述动作就要人演、与朗读同步 | SOP §14 验收清单（清单 ❌0、r2check、R4 全覆盖、回归、挂载、截图） | 试点 fp_economy 第 1 幕 + FR01 买卖 → 用户审 → 批量 |
+| ① | 23 + 24：全 App 动画白板化 + 动作必须画出 | 三大厅 HD 剧场全部入口 + 老白板 15 文件约 58 幕 + CSS keyframes 小动画 | 引擎 v2 + 讲解员（port 样板）；R4 加强：描述动作就要人演、与朗读同步 | SOP §14 验收清单（清单 ❌0、v5check + 现行五步验证管线、R4 全覆盖、回归、挂载、截图；`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`） | 试点 fp_economy 第 1 幕 + FR01 买卖 → 用户审 → 批量 |
 | ② | 27：语法以白板动画为主体 | `GRAMMAR_DB` 40 点 + 总结枢纽 + 感叹句舞台 | 规则用画面推导；大段文字 → 旁白 + 字幕高亮，页面只留要点卡 | SOP §14 + 每点原文字清单 ❌0 | 试点一般过去时 / 现在进行时 → 审 → 模板批量 |
 | ③ | 28：思维导图白板化 | 主题导图、语法总结枢纽、词源树、疑问词雷达、总枢关系图 | 中心起逐枝画、边画边读、一次一枝、分幕转场、缩放总览 | 节点清单 ❌0、跳转保留 | 试点 1 张主题导图 → 审 → 模板批量 |
 | ④ | 26：单词全部维度全量覆盖 | 1487 词 × 全部维度菜单 | 有出处就入库，不看难度；模板充数单列并替换 / 标注 | SOP §15 验收清单；`word_origins/COVERAGE.md` | 审计表 → 用户 → 按维度分批 |
