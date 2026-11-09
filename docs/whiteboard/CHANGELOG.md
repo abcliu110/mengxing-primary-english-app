@@ -107,17 +107,21 @@
 - 顺手补了 ef118fd 留下的截图回归：小人放大到 1.15 后，金句卡、护照、托举、词卡镜头都没压住内容（托举镜头小人笔尖贴近绿框右边，不挡字）。
 - 还没分块的大数据：`VOCAB_DB` 等词库数据首页就要用（词卡、搜索），本轮不动；以后新模块的大数据按同样方式写成 `wbmod-*`。
 
-**朗读覆盖检查用法**（主文件里有全部词库数据，所以先 `insert_wb.py` 再查）：
+**朗读 / 动作覆盖检查用法**（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`；下为现行五步验证管线 + v5 原生静态检查）：
 ```
-python3 docs/whiteboard/src/r2check.py wo_port            # 只列缺的项
-python3 docs/whiteboard/src/r2check.py wo_port --all-items # 列出这一幕全部英文词 / 词块 / 句子 / 动作词
-python3 docs/whiteboard/src/r2check.py all|lab|fp|wo [--strict] [--json out.json]
+python3 docs/whiteboard/src/v5check.py --only <幕前缀>   # v5 原生 R2/R4 静态检查（逐幕验收用；有 FAIL 返回 1）
+python3 docs/whiteboard/src/v5check.py [--json out.json]  # 全库基线（2026-11-09：870 幕覆盖，FAIL 782 项 / 596 幕）
+# 现行五步验证管线（旧验收行 r2check.py … --strict 的替代）：
+# ① 打包：WB_FONTS=~/workspace/wbfonts PATH=~/workspace/wbfonts/bin:$PATH node docs/whiteboard/v5/build.mjs <幕>.js <out.html> "<标题>"
+# ② grep 打包产物：预期朗读句 / 关键例句逐字命中
+# ③ 探针时长：python3 docs/whiteboard/src/durcheck.py --scan <幕前缀>
+# ④ 文字检查：python3 docs/whiteboard/src/wbtextcheck.py
+# ⑤ 语法检查：python3 docs/whiteboard/src/jscheck.py（node --check；anchorcheck 116 项基线不列入门禁）
 ```
-- 抽取范围：白板文字（`T`，含 chip、mono、final 等）+ 讲解字幕（`N`）；音标 `/…/` 和单字母标签（S V O）不算。
-- 每个词：✔读 = 出现在某句 `say` 的 `word` 里（或整句只读这个词）；✔句 = 某句 `say` 英文里有这个词（-s/-es/-ed/-ing 算）。词块（`im-`、`-ed` 这类带连字符的，或 `say(…, { blocks: ["medi"] })` 登记过的）出现在例句某个词里面也算有例句。
-- 白板上连续 ≥3 个英文词的句子必须被朗读。
-- R4：案例对象写 `actionWords: [{ word: "import", act: "carry" }, …]`（分镜动作词清单），脚本逐个对照 `k.act(…, { words: ["import"] })` 登记，并检查动作时间和含这个词的朗读重叠；例句里出现常见动作动词但没列进清单的，只提示。
-- `--strict` 有缺项返回 1（验收用）。
+- v5check 抽取范围：`ITEMS` 的 `'w'` 白板词 + `'s'` 朗读句（auto/oral/poly 三类幕；mindmap/手写幕无统一约定，不覆盖，见该脚本 docstring）。
+- 每个词：✔句读 = 出现在某句被朗读的句子里（-s/-es/-ed/-ing/-d 屈折算覆盖；`'…ing'`、`im-` 类词块按子串算覆盖）；先读词（`'s'` 第 4 元）由 `K.say` 的 `word:` 参数先单独读，计入已读。
+- R4：`ACTS` 每个键（`'*'` 除外）须挂在某句朗读句上、演出帧须在精灵包 `FI` 里；精灵包是 stub（`FI` 为空）时帧在库与否记 UNKNOWN，不算失败。
+- `v5check.py` 有 FAIL 返回 1（逐幕验收用）；全库基线不列入门禁（2026-11-09 基线见 `docs/work-2026-11-09/wave5_item4_v5check_baseline.json`）。
 - **全 App 基线（2026-10-29，升级前）**：64 幕，英文词 / 词块 1618 个，缺 1479；白板句子 324 句，缺朗读 195。旧幕按「持续」待办逐步补，本阶段只补 port。
 - **复算（2026-10-29 21:20，`r2check.py all --summary`）**〔按 git log 更正：2026-10-29 21:08 JST，`2c2a51a`〕：66 幕（多了 europe、bluetooth），英文词 / 词块 1641 个，缺 1462；白板句子 324 句，缺朗读 195；R4 只有 3 个新幕列了动作词清单（19 个，缺 0），旧幕都还没列。`--summary` 是本次新增的「按页签汇总」（原来只有逐幕行和总计，没有按页签的汇总，拿来排推广顺序不方便）。
 

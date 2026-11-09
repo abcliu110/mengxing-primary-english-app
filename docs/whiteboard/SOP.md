@@ -83,8 +83,9 @@
   - `node --check`：`python3 docs/whiteboard/src/jscheck.py`（抽出主文件全部直接执行的 `<script>` + 按需加载模块 `wbmod-*`，拼起来检查并逐个检查；末尾自动跑 `anchorcheck.py`，核对补丁锚点 / 插入标记没有静默丢失）；
   - 实验室 `appwb.py <页签> <目录>`；第一性原理 `appfp.py <0-5> <目录>`；单词身世 `appwo.py <目录>`：每幕 `mounted: True`、`bad: None`、`errors: []`、无 NaN / undefined；
   - 回归：`appwb.py bamboo_tree`、`appfp.py 0`、`appwo.py` 都要过；
-  - **朗读覆盖检查（R2）**：`python3 docs/whiteboard/src/r2check.py <幕 id> [--all-items] [--strict]`（先 `insert_wb.py`）：抽出画面上全部英文词 / 词块 / 句子，对照 `say` 登记，报「缺单独朗读 / 缺例句 / 句子缺朗读」；
-  - **动作覆盖检查（R4）**：同一个脚本；案例写 `actionWords: [{ word, act }]`，逐个对照 `k.act(…, { words })` / `k.actFx(words, …)` 登记，并检查动作和含该词的朗读时间重叠；
+  - **朗读覆盖检查（R2）**：`python3 docs/whiteboard/src/v5check.py --only <幕前缀>`（v5 原生静态检查：每幕 `'s'` 朗读句在位、白板词有句读；全库基线 782 项 FAIL / 596 幕，见 `docs/work-2026-11-09/wave5_item4_v5check_baseline.json`；新改的幕逐幕过，不过的不合入）；
+  - **动作覆盖检查（R4）**：同一个脚本（`ACTS` 键挂在朗读句上、演出帧在精灵包 `FI` 里；`ACTS` 为空只警告，由内容方判断该幕有无动作词）；
+  - **现行五步验证管线**（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`；旧验收行 `r2check.py … --strict` 一律改按这五步）：① 打包 `WB_FONTS=~/workspace/wbfonts PATH=~/workspace/wbfonts/bin:$PATH node docs/whiteboard/v5/build.mjs <幕>.js <out.html> "<标题>"` ② grep 打包产物（预期朗读句/关键例句逐字命中）③ 探针时长 `python3 docs/whiteboard/src/durcheck.py --scan <幕前缀>`（读打包 `out/` 的 `window.__dur`；>120 秒且不在 `dur_allow.json` 白名单 → 不合格）④ 文字检查 `python3 docs/whiteboard/src/wbtextcheck.py` ⑤ 语法检查 `python3 docs/whiteboard/src/jscheck.py`（`node --check`；`anchorcheck` 116 项基线不列入门禁）；
   - **引擎回归**：改引擎后，旧幕在新旧引擎下渲染结果要逐字节一致：`reg_render.py 旧.html old.json` → `reg_render.py 新.html new.json` → `reg_render.py --diff old.json new.json`（diff=0 才算过；旧版本用 `git show HEAD:萌星小学英语_最终合并版.html > 旧.html` 取）；
   - **首屏耗时**（按需加载，决策 13）：`measure_load.py 旧.html 新.html --n 12`，首页可交互（ready）不能变差；
   - **商业动画指标**：`measure_sync.py`（朗读同步误差 ≤0.2 秒）、`measure_fps.py`（fps，和升级前对比不能变差）、`measure_seek.py`（拖动 / 重播三种路径状态一致）；
@@ -204,7 +205,7 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 
 ## 13. 补充（2026-10-29，格林定律章）
 - **共用小工具文件**：几幕共用的局部工具（如元音变异三幕的 `VW_KIT`）放 `cases/<名>_kit.js`，在 `insert_wb.py` 的 `WO_KITS` 登记（`{'wo_vowel_kit': ['wo_vowel_a', …]}`），打包时作为依赖先执行；`preview.html` 按前缀载入。用 `var` 声明，避免和别的模块的 `const` 冲突。
-- **r2skip**：案例对象可写 `r2skip: ["longth"]`，列出画面上**故意展示的错误形式**（被划掉的 longth、字幕里的反例 foots），r2check 不计入 R2（§7 第 3 条：错误形式不读）。只能用于错误形式或字母名，不能拿来躲朗读。
+- **r2skip**：案例对象可写 `r2skip: ["longth"]`，列出画面上**故意展示的错误形式**（被划掉的 longth、字幕里的反例 foots），r2check 不计入 R2（§7 第 3 条：错误形式不读）。只能用于错误形式或字母名，不能拿来躲朗读。（注：r2check 已废止，见 `src/r2check.RETIRED.md`；v5check.py 暂未实现 r2skip，v5 场景目前 0 处使用该字段。）
 - **搬旧页签进新幕（R1）**：先导出内容清单（`export_inventory.py`），新幕里把每条字幕 / 白板字 / 术语 / 朗读都搬过去；讲错的改正后保留「原讲法」一行小字说明改了什么；清单逐条打勾写新位置。
 
 ## 14. 老动画 / HD 剧场 / 语法白板化（决策 23、24、27）
@@ -221,7 +222,7 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 
 ### 验收清单（任何一条不过 = 返工）
 - [ ] 旧内容清单对照 ❌0（`check_upgrade.py` 或模块自己的对照脚本；有意改动逐条写原因）
-- [ ] `r2check.py <id> --strict`：每个英文词有朗读，句子有朗读
+- [ ] `python3 docs/whiteboard/src/v5check.py --only <幕前缀>`：每幕有朗读句、白板词有句读（R2；旧 `r2check.py <id> --strict` 已废止，见 `src/r2check.RETIRED.md`）
 - [ ] R4：所有动作词都有动作，`actionWords` 全覆盖；角色没有「站着不动」的段落
 - [ ] `jscheck.py`（含 `anchorcheck`）通过；`node --check` 通过
 - [ ] 渲染回归：只有被改的幕 / 入口变化（`reg_render.py --diff`）
@@ -262,7 +263,7 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 4. **讲解员**：只在旁边讲解（指、看、点头），**不再代替场景角色演句子里的动词**（例外：主语是 I / we 且画面里没有别的角色时）。
 
 ### R4v2 验收
-- [ ] `r2check.py <id> --strict`：每个主动词登记了**对应的专属动作**（动词 → 动作表核对语义，不再接受任意动作）、和朗读重叠；`actionWords` 为空或缺失 = 不通过。
+- [ ] `python3 docs/whiteboard/src/v5check.py --only <幕前缀>`：每个动作词登记在 `ACTS` 里且挂在朗读句上、演出帧在精灵包 `FI` 里（R4 静态部分；旧 `r2check.py <id> --strict` 已废止，见 `src/r2check.RETIRED.md`）。动词 → 专属动作的语义对应与朗读重叠仍按下一条动作联络表人工看，不由脚本代劳；`ACTS` 为空或缺失 = 不通过。
 - [ ] `actsheet.py <id>`（新脚本）：每个动作词渲染 3 帧（预备 / 发力 / 结果）拼成动作联络表，存 `work/shots/<id>_<n>_动作表.png`，**逐张人工看**：看得出谁、做什么、对谁、在哪。
 - [ ] 骨架 v2 / 新道具不改变旧幕渲染：`reg_render.py` 只有本次改的页签变。
 - [ ] 样板（He takes the dog out.）与用户参考插画并排对照图存 `work/shots/sample_take_dog_out_对照.png`。
@@ -299,7 +300,7 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 | 9 | 控制台 0 报错：普通打开、`file://`、**sandbox iframe（无 allow-same-origin）** 三种都测 | Playwright `srcdoc` + `sandbox="allow-scripts"` |
 | 10 | 单文件 ≤ 650 KB；不带 React / Remotion Player | `ls -l` |
 | 11 | 静音盲测：不听声音、不看字幕，能说出「谁对什么做了什么」 | 找人或自己遮字幕看一遍 |
-| 12 | R2：每个英文词都有例句和朗读；R4v2：`actionWords` 非空且语义对得上 | `r2check.py` |
+| 12 | R2：每个英文词都有例句和朗读；R4v2：`actionWords` 非空且语义对得上 | `python3 docs/whiteboard/src/v5check.py --only <幕前缀>`（旧 `r2check.py` 已废止，见 `src/r2check.RETIRED.md`） |
 | 13 | **决策 38 啊哈卡**：分镜第 0 步写「孩子先看到什么 → 猜什么 → 揭晓什么 → 最后才出规则名」（`lab/audit38/aha/NN_<幕>.md`），场景里 `C.aha({…})` 四项齐；写不出来就不做动画，改要点卡 | `src/insightcheck.py` |
 | 14 | **决策 38 预测停顿**：讲规则之前 ≥1 个 ≥3 秒的 `C.predict`；`C.rule` 记的规则命名时刻不早于第一个停顿结束 | `src/insightcheck.py` |
 | 15 | **决策 38 遮字幕测**：不看字幕、不听旁白，只看画面，孩子能说出规律（取代 / 加严第 11 条）；板上文字面积 ≤ 40%（讲解 / 朗读字幕不算），规则句进字幕或要点卡 | 390 px 联络表目视 + `insightcheck.py` |
