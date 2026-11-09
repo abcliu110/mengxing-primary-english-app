@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 """
 check_badge_erridx.py — 静态徽标 × ERRIDX 对账门禁（2026-11-09 第四波第 7 项立，
-2026-11-09 第五波第 8 项扩面至全部 299 行静态索引行）。
+2026-11-09 第五波第 8 项扩面至全部 299 行静态索引行，2026-11-09 第六波
+第 11 项再扩面至全部 829 行：+ v-tech 区 530 行 data-tec 行）。
 
-断言：主文件全部 6 个静态索引区（#v-expr、#v-expr2、#v-vocab、#v-grammar2、
-#v-phon-laws、#v-parents）共 299 行静态索引行（`<div class="urow"
-data-law="…">`），其徽标必须与现行权威源一致（不做生成化，只对账）。
+断言：主文件全部 7 个静态索引区（#v-expr、#v-expr2、#v-vocab、#v-grammar2、
+#v-phon-laws、#v-parents、#v-tech）共 829 行静态索引行（`<div class="urow"
+data-law="…">` 299 行 + `<div class="urow" data-tec="…">` 530 行），其徽标必须
+与现行权威源一致（不做生成化，只对账）。
 
 分区口径（见 docs/work-2026-11-09/wave5_item8_other_badges.md §二；各区
 徽标写法不同，不得跨区硬套）：
@@ -44,17 +46,42 @@ data-law="…">`），其徽标必须与现行权威源一致（不做生成化�
     再生 ERRIDX 病例数（>0 才出现），练习×N = 运行时 LAWDATA 该律 quiz
     题数（>0 才出现）；三数皆为 0 时徽标就是光秃的「成人层」。
     运行时 ERRIDX 须与再生逐律相等（与 ERRIDX 区同口径）。
+  技巧区（#v-tech TEC-*，共 530 行）：三本子索引，徽标口径各不相同，
+    **不套 ERRIDX**——TEC-* 为外部 id 空间，不入 laws_master（见《数据源
+    规范》§7），ERRIDX 对 TEC 无病例；徽标的权威源是主文件内 `var TECDAT=`
+    字面量（技巧区详情数据，153 条，全为「定版」）与同文件内 TEC 详情
+    渲染器的 famName 映射（门禁从文件内正取该映射，不另抄一份）：
+      按痛点组（记不住/读不快/听不懂/说不出/写不长/错不完，224 行）：
+        徽标 = 该条所属的路名，class ok：
+        <span class="st ok">词汇与构词路 / 语法与句法路 / 听说读写技能路 /
+        学习方法路 / 小系统与指称路</span>（fam TEC-V/G/S/L/P → 路名）。
+      按路组（五路，153 行）：徽标 = 该条所属的区名，class ok：
+        <span class="st ok">拼读区 / 词汇解码区 / 语法区 / 小系统区 /
+        表达写作区 / 复习区 / 家长角</span>（TECDATA zone）。
+      按区组（七区，153 行）：徽标 = 该条的先行/进阶定位，class part：
+        hint 以“先行”开头 → <span class="st part">先行</span>（108 条）；
+        hint 以“进阶”开头 → <span class="st part">进阶</span>（4 条）；
+        其余 hint（全程适用/前置说明/顺序说明等，41 条）→
+        <span class="st part">顺序见页内</span>（顺序在详情页 hint 内文交代，
+        索引行只标“顺序见页内”，不把 hint 全文搬上索引行）。
+    三组另核对：每行标题 tt 须与 TECDAT name 一字相同；痛点组行集合须与
+    TECDAT 的 (pain, tec) 对集恰相等（224 对，无多、无少、无重）；路组与
+    区组各 153 条 id 须与 TECDAT id 集恰相等（每条恰出现 1 次）；18 个
+    分组头计数（“N 条”/“N 条次”）须与实有行数一致。v-tech 行只在 #v-tech
+    区内出现（全文件 data-tec 行 530 行皆在该区）。
 
-覆盖面：299 行（E 15 + W 15 + NE 29 + V 43 + CO/QI 31 + S/SR 52 +
-家长区 114），行集合须与 laws_master 的对应律集合恰相等（不多、不少、
-不重），以下 4 条除外——它们不在本区 data-law 行，但各有明确去处，
-门禁显式排除并核对去处在位（见 main() 内注释）：V-33（ptr 指 morph 区，
-v-vocab 里为 data-go 深研行 u-v33）、V-40（v-vocab 里为 data-go 深研行
-u-v40，打包对照单元）、CO-17（无 LAWDATA 条目、无独立规律页，v-vocab /
-v-grammar2 里为 data-go 深研行 u-co17）、S-44（LINKIDX z='MZ'，内容在
-morph 区）。其中 ERRIDX 区儿童行 112 行逐行比对徽标（原 59 行门禁的
-儿童行 38 行 + 本波新增 V/CO/QI 74 行），教师行 21 行只核对在位；
-拼读区 52 行、家长区 114 行按各自口径逐行比对。
+覆盖面：829 行（E 15 + W 15 + NE 29 + V 43 + CO/QI 31 + S/SR 52 +
+家长区 114 + v-tech 530：痛点组 224 + 路组 153 + 区组 153），行集合须与
+laws_master 的对应律集合恰相等（不多、不少、不重），以下 4 条除外——它们
+不在本区 data-law 行，但各有明确去处，门禁显式排除并核对去处在位
+（见 main() 内注释）：V-33（ptr 指 morph 区，v-vocab 里为 data-go 深研行
+u-v33）、V-40（v-vocab 里为 data-go 深研行 u-v40，打包对照单元）、
+CO-17（无 LAWDATA 条目、无独立规律页，v-vocab / v-grammar2 里为 data-go
+深研行 u-co17）、S-44（LINKIDX z='MZ'，内容在 morph 区）。其中 ERRIDX 区
+儿童行 112 行逐行比对徽标（原 59 行门禁的儿童行 38 行 + 本波新增
+V/CO/QI 74 行），教师行 21 行只核对在位；拼读区 52 行、家长区 114 行按各
+自口径逐行比对；v-tech 530 行按三组口径逐行比对（标题、徽标、分组归属、
+分组头计数、行集合五项全核）。
 
 用法：
   python3 tools/check_badge_erridx.py            # 校验主文件
@@ -89,6 +116,8 @@ ERRIDX_PART_TEXT = {"v-expr": "有练习 · 查过·没有病例",
                     "v-grammar2": "有练习 · 还没有病例"}
 PHON_SECTION = "v-phon-laws"
 PARENTS_SECTION = "v-parents"
+TECH_SECTION = "v-tech"
+TECH_PAINS = ("记不住", "读不快", "听不懂", "说不出", "写不长", "错不完")
 SECTIONS = ERRIDX_SECTIONS + (PHON_SECTION, PARENTS_SECTION)
 
 sys.path.insert(0, str(HERE))
@@ -201,6 +230,64 @@ def parse_static_rows(text):
                 raise ValueError(f"{sec} 区 {lid} 行徽标 span 出现 {len(badges)} 个（应为 1）")
             rows.append((sec, lid, badges[0][0], badges[0][1]))
     return rows
+
+
+def parse_famname_map(text):
+    """从主文件内 TEC 详情渲染器正取 fam → 路名映射（不另抄一份）。"""
+    m = re.search(r"var famName=\{([^}]*)\}", text)
+    if not m:
+        raise ValueError("未找到 TEC 详情渲染器的 famName 映射")
+    mapping = dict(re.findall(r"'([^']+)':'([^']+)'", m.group(1)))
+    if sorted(mapping) != ["TEC-G", "TEC-L", "TEC-P", "TEC-S", "TEC-V"]:
+        raise ValueError(f"famName 映射不全：{sorted(mapping)}（应为 TEC-V/G/S/L/P 五路）")
+    return mapping
+
+
+def tech_hint_badge(hint):
+    """区组徽标的先行/进阶定位（见 docstring 技巧区口径）。"""
+    if hint.startswith("先行"):
+        return "先行"
+    if hint.startswith("进阶"):
+        return "进阶"
+    return "顺序见页内"
+
+
+def parse_tech_rows(text):
+    """解析 #v-tech 区全部 data-tec 行。
+
+    返回 (rows, 全文件 data-tec 出现次数, [(组名, 组头标数, 组内实有行数)])；
+    组按 <div class="gh"> 分组头切分，行须为“id + 标题 + 1 个徽标 span”的
+    严格格式。每组内 data-tec 出现次数须与严格行正则命中数相等，否则行
+    格式有变体，拒绝静默漏查。rows 每项为（组名, 组头标数, tec id,
+    id span, 标题, 徽标 class, 徽标文本）。
+    """
+    anchor = f'<section class="view" id="{TECH_SECTION}">'
+    s = text.find(anchor)
+    if s < 0:
+        raise ValueError(f"未找到区段 {anchor}")
+    e = text.find("<section", s + len(anchor))
+    seg = text[s:None if e < 0 else e]
+    parts = re.split(r'<div class="gh">([^<]*)</div>', seg)
+    rows = []
+    headers = []
+    for k in range(1, len(parts), 2):
+        gh, body = parts[k], parts[k + 1] if k + 1 < len(parts) else ""
+        n_raw = body.count('data-tec="')
+        found = re.findall(
+            r'<div class="urow" data-tec="([^"]+)"><span class="id">([^<]*)</span>'
+            r'<span class="tt">([^<]*)</span><span class="st ([^"]+)">([^<]*)</span></div>',
+            body)
+        if len(found) != n_raw:
+            raise ValueError(f"v-tech 组 {gh!r}：data-tec 行 {n_raw} 处只解析出"
+                             f" {len(found)} 行（行格式有变体，拒绝漏查）")
+        hm = re.search(r"(\d+) 条", gh)
+        if hm is None:
+            raise ValueError(f"v-tech 组头无计数：{gh!r}")
+        gname = gh.split("（")[0].strip()
+        headers.append((gname, int(hm.group(1)), len(found)))
+        for tid, idspan, title, cls, btxt in found:
+            rows.append((gname, int(hm.group(1)), tid, idspan, title, cls, btxt))
+    return rows, text.count('data-tec="'), headers
 
 
 def parents_expected(prb_n, err_n, quiz_n):
@@ -346,16 +433,99 @@ def main(argv):
                 problems.append(f"{lid}（{sec}）：家长区徽标应为 {want_txt!r}，"
                                 f"现为 {btxt!r}——{src}")
 
+    # ---- v-tech 区（第六波第 11 项扩面）：530 行 data-tec 行，三组口径 ----
+    try:
+        tecdata = get_literal(text, "var TECDATA=")
+        famname = parse_famname_map(text)
+        tech_rows, tech_total, tech_headers = parse_tech_rows(text)
+    except (ValueError, json.JSONDecodeError) as ex:
+        print(f"FAIL: 解析失败：{ex}")
+        return 2
+    if tech_total != len(tech_rows):
+        problems.append(f"v-tech 区外另有 {tech_total - len(tech_rows)} 行 data-tec 行"
+                        f"（全文件 {tech_total} 行，区内 {len(tech_rows)} 行）")
+    n_pain = n_road = n_zone = 0
+    pain_seen = Counter()
+    road_seen = Counter()
+    zone_seen = Counter()
+    for gname, _hdr_n, tid, idspan, title, cls, btxt in tech_rows:
+        entry = tecdata.get(tid)
+        if entry is None:
+            problems.append(f"{tid}（v-tech/{gname}）：TECDATA 缺该条目，无法核对")
+            continue
+        if idspan != tid:
+            problems.append(f"{tid}（v-tech/{gname}）：id span 为 {idspan!r}")
+        if title != entry.get("name"):
+            problems.append(f"{tid}（v-tech/{gname}）：标题应为 {entry.get('name')!r}，"
+                            f"现为 {title!r}")
+        fam = entry.get("fam")
+        if fam not in famname:
+            problems.append(f"{tid}（v-tech/{gname}）：TECDATA fam 为 {fam!r}"
+                            f"（不在五路映射中）")
+            continue
+        if gname in TECH_PAINS:
+            n_pain += 1
+            pain_seen[(gname, tid)] += 1
+            if gname not in (entry.get("pain") or []):
+                problems.append(f"{tid}（v-tech/{gname}）：该条 pain="
+                                f"{entry.get('pain')}，不应列在痛点组 {gname}")
+            if cls != "ok" or btxt != famname[fam]:
+                problems.append(f"{tid}（v-tech/{gname}）：痛点组徽标应为 ok"
+                                f"（{famname[fam]}），现为 {cls}（{btxt}）")
+        elif gname in set(famname.values()):
+            n_road += 1
+            road_seen[tid] += 1
+            if famname[fam] != gname:
+                problems.append(f"{tid}（v-tech/{gname}）：该条 fam={fam}，"
+                                f"不应列在路组 {gname}")
+            if cls != "ok" or btxt != entry.get("zone"):
+                problems.append(f"{tid}（v-tech/{gname}）：路组徽标应为 ok"
+                                f"（{entry.get('zone')}），现为 {cls}（{btxt}）")
+        else:
+            n_zone += 1
+            zone_seen[tid] += 1
+            if entry.get("zone") != gname:
+                problems.append(f"{tid}（v-tech/{gname}）：该条 zone="
+                                f"{entry.get('zone')}，不应列在区组 {gname}")
+            want = tech_hint_badge(entry.get("hint") or "")
+            if cls != "part" or btxt != want:
+                problems.append(f"{tid}（v-tech/{gname}）：区组徽标应为 part"
+                                f"（{want}），现为 {cls}（{btxt}）")
+    # 分组头计数：每组标数须与实有行数一致
+    for gname, hdr_n, actual_n in tech_headers:
+        if hdr_n != actual_n:
+            problems.append(f"v-tech 分组头 {gname}：标 {hdr_n} 条，实有 {actual_n} 行")
+    # 行集合核对：痛点对集与 TECDAT (pain, tec) 对集恰相等；路组/区组 id 集
+    # 与 TECDAT id 集恰相等（每条恰出现 1 次）
+    want_pain = Counter((p, t) for t, v in tecdata.items()
+                        for p in (v.get("pain") or []))
+    if pain_seen != want_pain:
+        extra = sorted(k for k in pain_seen if k not in want_pain)
+        missing = sorted(k for k in want_pain if k not in pain_seen)
+        dup = sorted(k for k, n in pain_seen.items() if n != 1)
+        problems.append(f"v-tech 痛点组行集合不符：多出 {extra}、缺失 {missing}、"
+                        f"重复 {dup}")
+    for label, seen in (("路组", road_seen), ("区组", zone_seen)):
+        missing = sorted(set(tecdata) - set(seen))
+        extra = sorted(set(seen) - set(tecdata))
+        dup = sorted(t for t, n in seen.items() if n != 1)
+        if missing or extra or dup:
+            problems.append(f"v-tech {label}行集合不符：缺失 {missing}、多出 {extra}、"
+                            f"重复 {dup}")
+
     if problems:
         for p in problems:
             print("FAIL:", p)
         print(f"FAIL: 静态徽标 × ERRIDX 对账失败：{len(problems)} 行不符"
-              f"（共 {len(rows)} 行：ERRIDX 区儿童行 {n_child}、教师行 {n_tchr}、"
-              f"拼读区 {n_phon}、家长区 {n_parents}）")
+              f"（共 {len(rows) + len(tech_rows)} 行：ERRIDX 区儿童行 {n_child}、教师行 {n_tchr}、"
+              f"拼读区 {n_phon}、家长区 {n_parents}、v-tech {len(tech_rows)} 行："
+              f"痛点组 {n_pain}、路组 {n_road}、区组 {n_zone}）")
         return 1
-    print(f"PASS: 静态徽标 × ERRIDX 对账通过（{len(rows)} 行：ERRIDX 区儿童行"
+    print(f"PASS: 静态徽标 × ERRIDX 对账通过（{len(rows) + len(tech_rows)} 行：ERRIDX 区儿童行"
           f" {n_child} 行徽标全对、教师行 {n_tchr} 行在位，拼读区 {n_phon} 行"
-          f"、家长区 {n_parents} 行按各自口径全对；ERRIDX {built['tot']} 条 /"
+          f"、家长区 {n_parents} 行按各自口径全对；v-tech {len(tech_rows)} 行"
+          f"（痛点组 {n_pain}、路组 {n_road}、区组 {n_zone}）按各自口径全对；"
+          f"ERRIDX {built['tot']} 条 /"
           f"覆盖 {built['laws']} 律，运行时与再生逐律一致）")
     return 0
 
