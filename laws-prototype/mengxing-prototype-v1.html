@@ -11954,6 +11954,7 @@ function openTA(id){
   const u=TA_BY[id]; const pr=DATA.PRESETS[id];
   let h='<h2>'+u.id+' · '+esc(u.kid)+'</h2><div class="adult">'+esc(u.head)+'</div>';
   if(pr){ h+='<div class="tagrow"><button class="chip gold" onclick="VB.openMachinePreset(\''+pr[0]+'\',\''+pr[1]+'\',\''+pr[2]+'\')">⏰ 在时间机器上打开本条预设 →</button></div>'; if(DATA.PRESET_NOTES[id]) h+='<div class="adult">'+esc(DATA.PRESET_NOTES[id])+'</div>'; }
+  if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(id);}
   let teach='';
   try{ if(u.id===loopLoad().cur) teach+='<div class="sent" id="loopReadTip" style="background:#e6f2e4">🎤 今日一课「读」环在本站：点下面任意例句旁的 🎤，大声读出声，读完这一环就打勾。</div>'; }catch(e){}
   teach+=tlLegendHTML();
@@ -11969,6 +11970,7 @@ function openTA(id){
   if(u.pending&&u.pending.length) h+='<details><summary>成人层 · 待补与评审注记（模型原文）</summary><div class="adult">'+u.pending.map(esc).join('<br>')+'</div></details>';
   if(u.rel&&u.rel.length) h+='<h4>亲戚条</h4><div class="chips">'+u.rel.map(r=>{ const rid=(typeof r==='string')?r:r.id; const lab=rid+((typeof r==='object'&&r.rel)?' · '+r.rel:''); return TA_BY[rid]?'<button class="chip" onclick="VB.openTA(\''+rid+'\')">'+esc(lab)+'</button>':'<span class="chip" style="cursor:default">'+esc(lab)+'</span>'; }).join('')+'</div>';
   h+='<div class="adult" style="margin-top:10px">版式借鉴 Murphy《English Grammar in Use》的对页结构：左讲右练——左栏讲机制与例句，右栏立刻练（病例 + 站内练习 + 理解探针），不跳页。</div>';
+  if(window.LINKGO){h+=LINKGO.relSectionHTML(id,'sec');}
   $('taBody').innerHTML=h; show('v-ta'); vbLoopTouch(id);
 }
 
