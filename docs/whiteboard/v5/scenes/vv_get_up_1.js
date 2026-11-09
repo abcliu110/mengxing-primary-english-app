@@ -13,6 +13,7 @@ const ITEMS = [
   ['s', 'I usually get up at 6:30 every morning.', '我每天早上通常六点半起床。'],
   ['m', 'UP'],
   ['m', '身体从床上升起来'],
-  ['w', 'Good morning!']
+  ['w', 'Good morning!'],
+  ['s', 'Good morning!', '早上好！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get up ①', items: ITEMS, acts: ACTS }); }

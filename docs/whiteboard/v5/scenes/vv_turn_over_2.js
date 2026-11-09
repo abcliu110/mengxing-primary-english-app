@@ -13,5 +13,6 @@ const ITEMS = [
   ['m', '在……正上方 / 越过 / 结束'],
   ['w', 'turn：转弯，转动；变成（颜色/天气变化） / （轮到的）顺序，机会（take turns 轮流）'],
   ['m', '+'],
+  ['s', 'Take turns!', '轮流！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · turn over ②', items: ITEMS, acts: ACTS }); }

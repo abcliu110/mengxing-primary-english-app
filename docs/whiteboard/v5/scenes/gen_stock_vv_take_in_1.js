@@ -15,5 +15,6 @@ const ITEMS = [
   ['m', 'IN'],
   ['m', '空气进入身体'],
   ['w', 'Ahh~'],
+  ['s', 'Ahh~', '啊~'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · take in ①', items: ITEMS, acts: ACTS }); }

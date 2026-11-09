@@ -20,6 +20,7 @@ const ITEMS = [
   ['m', '花散发香味。'],
   ['m', '香味 离开 花朵'],
   ['w', 'The fire gives off heat.'],
+  ['s', 'The fire gives off heat.', '火散发热量。'],
   ['m', '火散发热量。'],
   ['m', '热量 离开 火堆'],
   ['w', '共同点：OFF = 从源头散发出去'],

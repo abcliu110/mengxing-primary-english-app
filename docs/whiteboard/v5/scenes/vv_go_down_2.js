@@ -14,6 +14,7 @@ const ITEMS = [
   ['w', 'go：去(过去式went)'],
   ['m', '+'],
   ['w', 'Computers have gone down in price.'],
+  ['s', 'Computers have gone down in price.', '电脑降价了。', 'computers price'],
   ['m', 'go down：下降；降低'],
   ['w', 'The movie went down very well in America.'],
   ['m', 'go down well/badly：受到（好/坏的）反应；受欢迎（程度）'],

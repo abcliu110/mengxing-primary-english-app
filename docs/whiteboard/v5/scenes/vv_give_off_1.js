@@ -11,6 +11,7 @@ const ITEMS = [
   ['m', 'OFF'],
   ['m', '香味离开花朵'],
   ['s', 'The flowers give off a sweet smell.', '花朵散发出甜美的香气。'],
-  ['w', 'Mmm, sweet!']
+  ['w', 'Mmm, sweet!'],
+  ['s', 'Mmm, sweet!', '嗯，真甜！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · give off ①', items: ITEMS, acts: ACTS }); }

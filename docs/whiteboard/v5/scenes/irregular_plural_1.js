@@ -36,7 +36,7 @@ const ITEMS = [
   ['m', '→'],
   ['m', 'geese'],
   ['m', '鹅'],
-  ['s', 'Foot, feet. Tooth, teeth. Goose, geese.', '一只脚，两只脚。一颗牙，好多牙。一只鹅，好多鹅。', 'foot feet tooth teeth goose geese'],
+  ['s', 'Foot, feet. Tooth, teeth. Goose, geese.', '一只脚，两只脚。一颗牙，好多牙。一只鹅，好多鹅。', 'foot feet tooth teeth goose geese oo ee'],
   ['s', 'I stand on my two feet.', '我用两只脚站着。', 'stand on my two'],
   ['n', 'a → e：man 变 men，woman 变 women（women 的第一个音读 /ɪ/，像 wimin）。'],
   ['m', 'man'],

@@ -16,5 +16,6 @@ const ITEMS = [
   ['s', 'Look in the box! What\'s inside?', '往盒子里看！里面有什么？'],
   ['w', 'What\'s inside?'],
   ['w', 'A puppy!'],
+  ['s', 'A puppy!', '一只小狗！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · look in ①', items: ITEMS, acts: ACTS }); }

@@ -30,6 +30,6 @@ const ITEMS = [
   ['w', '词根不变，方向前缀一换，就是一个新词'],
   ['n', '关卡：旅客要从港口出入国境，得先拿文书给守卫看、盖个章。'],
   ['w', '港口关卡'],
-  ['s', 'Show me your passport, please.', '请出示你的护照。', 'passport'],
+  ['s', 'Show me your passport, please.', '请出示你的护照。', 'passport port'],
 ];
 export default function build() { return autoBuild(SP, { title: '📖 单词身世 · port · 1 · 第 3 节', items: ITEMS, acts: ACTS }); }

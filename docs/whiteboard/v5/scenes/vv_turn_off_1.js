@@ -14,6 +14,7 @@ const ITEMS = [
   ['m', '触点断开'],
   ['m', 'OFF'],
   ['m', '画面断开'],
-  ['w', 'Bedtime~']
+  ['w', 'Bedtime~'],
+  ['s', 'Bedtime~', '该睡觉了~'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · turn off ①', items: ITEMS, acts: ACTS }); }

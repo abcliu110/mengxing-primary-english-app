@@ -29,6 +29,7 @@ const ITEMS = [
   ['w', '= Thor\'s day'],
   ['w', '雷神的日子'],
   ['s', 'Thursday is after Wednesday.', '星期四在星期三后面。', 'Thursday'],
+  ['s', 'Thursday is Thor\'s day.', '星期四是雷神的日子。', 'Thor\'s'],
   ['w', 'Friday'],
   ['w', '= Friga\'s day'],
   ['w', '弗丽嘉的日子'],

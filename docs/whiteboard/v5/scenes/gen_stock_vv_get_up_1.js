@@ -16,5 +16,6 @@ const ITEMS = [
   ['m', 'UP'],
   ['m', '身体从床上升起来'],
   ['w', 'Good morning!'],
+  ['s', 'Good morning!', '早上好！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get up ①', items: ITEMS, acts: ACTS }); }

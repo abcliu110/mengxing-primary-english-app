@@ -13,6 +13,7 @@ const ITEMS = [
   ['s', 'Put down your pencil and look at me.', '放下铅笔看着我。'],
   ['m', 'DOWN'],
   ['m', '放到桌面上'],
-  ['w', 'Good!']
+  ['w', 'Good!'],
+  ['s', 'Good!', '好！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · put down ①', items: ITEMS, acts: ACTS }); }

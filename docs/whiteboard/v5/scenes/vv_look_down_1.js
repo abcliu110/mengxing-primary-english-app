@@ -11,6 +11,7 @@ const ITEMS = [
   ['m', 'DOWN'],
   ['m', '往下看'],
   ['s', 'Look down from the top of the mountain!', '从山顶往下看！'],
-  ['w', 'So high!']
+  ['w', 'So high!'],
+  ['s', 'So high!', '这么高！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · look down ①', items: ITEMS, acts: ACTS }); }

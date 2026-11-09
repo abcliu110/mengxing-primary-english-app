@@ -12,6 +12,7 @@ const ITEMS = [
   ['w', '车厢 = 盒子'],
   ['m', 'IN'],
   ['m', '钻进车厢'],
-  ['w', 'Beep!']
+  ['w', 'Beep!'],
+  ['s', 'Beep!', '哔！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get in ①', items: ITEMS, acts: ACTS }); }

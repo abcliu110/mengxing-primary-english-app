@@ -16,5 +16,6 @@ const ITEMS = [
   ['m', 'turn down'],
   ['m', 'turn over'],
   ['m', 'turn on'],
+  ['s', 'Take turns!', '轮流！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · turn 核心义', items: ITEMS, acts: ACTS }); }

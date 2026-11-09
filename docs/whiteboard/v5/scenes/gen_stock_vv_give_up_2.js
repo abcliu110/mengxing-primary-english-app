@@ -14,6 +14,7 @@ const ITEMS = [
   ['w', '彻底放手不要了'],
   ['s', 'He gave up sweets for his teeth.', '为了牙齿，他戒掉了糖果。'],
   ['w', 'Healthy teeth!'],
+  ['s', 'Healthy teeth!', '健康的牙齿！'],
   ['m', 'GIVE'],
   ['m', '向上 / 填满'],
   ['m', '给、交出'],

@@ -14,6 +14,7 @@ const ITEMS = [
   ['s', 'He got out of the taxi at the gate.', '他在大门口下了出租车。'],
   ['m', 'OUT'],
   ['m', '从车厢里出来'],
-  ['w', 'Thank you!']
+  ['w', 'Thank you!'],
+  ['s', 'Thank you!', '谢谢你！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get out ①', items: ITEMS, acts: ACTS }); }

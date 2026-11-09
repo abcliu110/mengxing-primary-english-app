@@ -37,6 +37,7 @@ const ITEMS = [
   ['w', '② 否定句'],
   ['n', '否定句：大将军 can 后面直接加 not，写成 cannot 或 can\'t。'],
   ['w', 'Leo cannot (can\'t) speak English very well.'],
+  ['s', 'Leo cannot speak English very well.', '里奥英语说得不太好。'],
   ['s', 'Leo can\'t speak English very well.', '里奥英语说得不太好。', 'can\'t'],
 ];
 export default function build() { return autoBuild(SP, { title: '🪞 助动词照妖镜 · ② 情态动词大将军', items: ITEMS, acts: ACTS }); }

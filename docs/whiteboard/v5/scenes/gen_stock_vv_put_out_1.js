@@ -15,5 +15,6 @@ const ITEMS = [
   ['m', 'OUT'],
   ['m', '火苗熄灭了'],
   ['w', 'Happy birthday!'],
+  ['s', 'Happy birthday!', '生日快乐！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · put out ①', items: ITEMS, acts: ACTS }); }

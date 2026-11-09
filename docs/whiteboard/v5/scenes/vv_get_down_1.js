@@ -10,6 +10,7 @@ const ITEMS = [
   ['m', '从高处下来'],
   ['m', '树上高处'],
   ['w', 'Come down!'],
+  ['s', 'Come down!', '下来！'],
   ['m', 'DOWN'],
   ['m', '从树上下来'],
   ['s', 'The cat got down from the tall tree.', '小猫从高树上爬了下来。']

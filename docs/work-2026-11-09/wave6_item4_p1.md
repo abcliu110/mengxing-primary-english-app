@@ -124,7 +124,7 @@
 | `python3 docs/whiteboard/src/v5check.py` 全库 | FAIL 526 / 498 幕（R2-W1 486、R4-F2 40），与豁免后基线逐项比对：0 新增、0 清掉；WARN 135 → **113**（R2-P1 28 → **6**；ACTS 为空 107 未动）；UNKNOWN 780 未变 |
 | `node --check`（13 个手改场景 + 9 个再生场景） | 全部通过 |
 | `build.mjs` 打包抽查（4 幕） | writing_alchemist_1、fp_economy_3、aux_transformer_p3_2、gen_phonology_2 均 exit 0（产物 1.11–1.12 MB）；注：工作树初无 `v5/node_modules`（gitignored），从主仓库 `docs/whiteboard/v5/node_modules` 软链后才通过 |
-| 探针时长（durcheck --scan，4 幕） | **未核实**：本机 Playwright 的 chromium_headless_shell 缺失（已装的 -1248 与驱动要的 -1254 版本不一致；`python3 -m playwright install chromium` 后台下载中，至本底稿写成时未完成；探针 4 幕全部 skip，durations.json 未写入新值）。下表是**改前已入库旧值**（非本次实测）：writing_alchemist_1 252.2s、fp_economy_3 169.4s、aux_transformer_p3_2 108.0s（均 >120s 线，是旧账，见 §5 第 3 条）；gen_phonology_2 无旧值。理论影响：本次只动先读词表，按 sayLen 口径（每词约 0.42s）writing_alchemist_1 净 -1 词、其余 3 幕净 0 词，时长变化 ≤1s；须在有浏览器的环境重跑探针确认 |
+| 探针时长（durcheck 思路，实测 4 幕） | **已核实（2026-11-10）**：`python3 -m playwright install chromium` 下载失败（Chrome for Testing 158.0.8127.18 下载失败，code=1），改用本机已装的 chromium_headless_shell-1248（`executable_path` 直指该二进制）实测 `window.__dur`：writing_alchemist_1 **260.1s**、fp_economy_3 **173.4s**、aux_transformer_p3_2 **108.5s**、gen_phonology_2 **163.0s**。对照实验：同一环境重测 788f0bd 基线版 writing_alchemist_1 = 259.2s、fp_economy_3 = 173.4s——本次改动只带来 **+0.9s / +0.0s**；与已入库旧值（252.2s / 169.4s / 108.0s）的差是测量环境不同所致，不是改动所致。4 幕仍 >120s 线，是旧账（见 §5 第 3 条），本波未动 |
 | `git show` 逐行核对（本提交） | v5check.py 口径修正 + 13 手改场景 + 9 spec + 9 再生场景 + 第 1 项底稿订正 + 本底稿；无其他文件 |
 
 ## 5. 新发现的待定夺（均未擅自做）

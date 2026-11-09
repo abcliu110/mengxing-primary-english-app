@@ -16,5 +16,6 @@ const ITEMS = [
   ['m', 'get down'],
   ['m', 'get over'],
   ['m', 'get on'],
+  ['s', 'Get up!', '起床！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get 核心义', items: ITEMS, acts: ACTS }); }

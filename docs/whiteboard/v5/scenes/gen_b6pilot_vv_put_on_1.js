@@ -17,5 +17,6 @@ const ITEMS = [
   ['m', '贴合在身体表面'],
   ['w', '双手'],
   ['w', 'So warm!'],
+  ['s', 'So warm!', '真暖和！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · put on ①', items: ITEMS, acts: ACTS }); }

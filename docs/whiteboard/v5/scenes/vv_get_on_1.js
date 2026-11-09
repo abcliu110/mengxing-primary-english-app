@@ -13,6 +13,7 @@ const ITEMS = [
   ['w', '车厢地板'],
   ['m', 'ON'],
   ['m', '站上车厢地板'],
-  ['w', 'Bye-bye!']
+  ['w', 'Bye-bye!'],
+  ['s', 'Bye-bye!', '再见！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get on ①', items: ITEMS, acts: ACTS }); }

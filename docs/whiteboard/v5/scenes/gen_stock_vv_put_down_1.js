@@ -16,5 +16,6 @@ const ITEMS = [
   ['m', 'DOWN'],
   ['m', '放到桌面上'],
   ['w', 'Good!'],
+  ['s', 'Good!', '好！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · put down ①', items: ITEMS, acts: ACTS }); }

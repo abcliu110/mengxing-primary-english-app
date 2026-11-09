@@ -20,6 +20,7 @@ const ITEMS = [
   ['m', '我们在旁边看。'],
   ['m', '目光 落在 场上'],
   ['w', 'Look on her as a friend.'],
+  ['s', 'Look on her as a friend.', '把她看作朋友。'],
   ['m', '把她看作朋友。'],
   ['m', '眼光 落在 她身上'],
   ['w', '共同点：ON = 目光落在表面上'],

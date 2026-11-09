@@ -14,6 +14,7 @@ const ITEMS = [
   ['s', 'He falls down, but he gets up again.', '他摔倒了，但又自己站了起来。'],
   ['w', '从地上站起来'],
   ['w', 'I\'m OK!'],
+  ['s', 'I\'m OK!', '我很好！'],
   ['m', 'GET'],
   ['m', '到达 / 进入'],
   ['m', '向上 / 填满'],

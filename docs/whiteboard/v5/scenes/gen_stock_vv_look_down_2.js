@@ -20,6 +20,7 @@ const ITEMS = [
   ['m', '从山顶往下看。'],
   ['m', '目光 往下'],
   ['w', 'Look down at your shoes.'],
+  ['s', 'Look down at your shoes.', '低头看鞋子。'],
   ['m', '低头看鞋子。'],
   ['m', '目光 落到 脚下'],
   ['w', '共同点：DOWN = 目光往下落'],

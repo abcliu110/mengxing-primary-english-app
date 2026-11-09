@@ -17,5 +17,6 @@ const ITEMS = [
   ['m', 'IN'],
   ['m', '放进箱子'],
   ['w', 'All clean!'],
+  ['s', 'All clean!', '全干净了！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · put in ①', items: ITEMS, acts: ACTS }); }

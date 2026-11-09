@@ -11,6 +11,7 @@ const ITEMS = [
   ['w', 'turn down ①'],
   ['w', '调小（音量）'],
   ['w', 'Waa!'],
+  ['s', 'Waa!', '哇！'],
   ['s', 'Please turn down the TV. Baby is sleeping.', '请把电视声音调小点，宝宝在睡觉。'],
   ['m', 'DOWN'],
   ['m', '音量往下拧'],

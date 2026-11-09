@@ -21,6 +21,7 @@ const ITEMS = [
   ['m', '看'],
   ['m', '+'],
   ['w', 'Look up at the sky.'],
+  ['s', 'Look up at the sky.', '抬头看天空。'],
   ['m', '抬头看天空。'],
   ['m', '目光 往上'],
   ['w', 'Look up the word.'],

@@ -14,6 +14,7 @@ const ITEMS = [
   ['s', 'Tom turned up at the party at last!', '汤姆终于在派对上露面了！'],
   ['w', '冒出来'],
   ['w', 'Tom is here!'],
+  ['s', 'Tom is here!', '汤姆在这里！'],
   ['m', 'TURN'],
   ['m', '向上 / 填满'],
   ['m', '转动'],

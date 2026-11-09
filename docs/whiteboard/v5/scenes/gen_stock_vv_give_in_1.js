@@ -13,6 +13,7 @@ const ITEMS = [
   ['m', 'give in ①'],
   ['m', '交上（考卷）'],
   ['w', 'Time\'s up!'],
+  ['s', 'Time\'s up!', '时间到！'],
   ['s', 'Please give in your test papers now.', '现在请把试卷交上来。'],
   ['m', 'IN'],
   ['m', '交进老师手里'],

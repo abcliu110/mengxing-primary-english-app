@@ -25,6 +25,7 @@ const ITEMS = [
   ['s', 'Thirteen ends with teen.', 'thirteen 以 teen 结尾。', 'teen'],
   ['n', '✂️ 小秘密：eleven、twelve 本来应该是「十几」家族的头两个，只是长得不一样。'],
   ['w', 'eleven、twelve：本该是十几家族的老大、老二'],
+  ['s', 'Eleven, twelve.', '十一，十二。'],
   ['w', '✂️ 简化说法'],
   ['n', 'dozen：一打（12 个）叫 dozen。它来自拉丁语 duodecim：duo（二）+ decem（十）。'],
   ['w', 'dozen（一打 = 12 个）'],

@@ -11,6 +11,7 @@ const ITEMS = [
   ['m', 'get off ②'],
   ['m', '下（自行车）'],
   ['w', 'Stop!'],
+  ['s', 'Stop!', '停下！'],
   ['s', 'He gets off his bike.', '他从自行车上下来。'],
   ['w', '离开车座'],
   ['m', 'GET'],

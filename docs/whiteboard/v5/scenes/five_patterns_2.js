@@ -32,6 +32,7 @@ const ITEMS = [
   ['w', 'so delicious!'],
   ['n', '形容词：描述样子、味道、心情的词，比如 delicious（美味的）、sweet（甜的）。'],
   ['s', 'The chicken soup smells so delicious.', '鸡汤闻起来太香了。', 'The chicken soup smells so delicious'],
+  ['s', 'The chicken soup tastes so delicious.', '鸡汤尝起来太好吃了。', 'tastes'],
   ['n', '状态天平：系动词两边一样重：鸡汤 = 很好吃，说的是同一个东西。'],
   ['w', '鸡汤 = 很好吃（两边平衡）'],
 ];

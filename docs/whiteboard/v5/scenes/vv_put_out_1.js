@@ -12,6 +12,7 @@ const ITEMS = [
   ['s', 'Put out the candles and make a wish!', '吹灭蜡烛，许个愿吧！'],
   ['m', 'OUT'],
   ['m', '火苗熄灭了'],
-  ['w', 'Happy birthday!']
+  ['w', 'Happy birthday!'],
+  ['s', 'Happy birthday!', '生日快乐！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · put out ①', items: ITEMS, acts: ACTS }); }

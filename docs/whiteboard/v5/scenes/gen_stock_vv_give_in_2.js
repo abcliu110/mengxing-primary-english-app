@@ -13,6 +13,7 @@ const ITEMS = [
   ['m', '让步，屈服'],
   ['s', 'He was tired, so he gave in.', '他累了，就认输了。'],
   ['w', 'OK, you win!'],
+  ['s', 'OK, you win!', '好吧，你赢了！'],
   ['w', '让步，服输'],
   ['m', 'GIVE'],
   ['m', '给、交出'],

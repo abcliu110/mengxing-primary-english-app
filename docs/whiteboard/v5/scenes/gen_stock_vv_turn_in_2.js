@@ -12,6 +12,7 @@ const ITEMS = [
   ['m', 'turn in ②'],
   ['m', '上床睡觉'],
   ['w', 'So sleepy…'],
+  ['s', 'So sleepy…', '好困……'],
   ['s', 'It\'s late. Time to turn in.', '很晚了，该上床睡觉了。'],
   ['w', '钻进被窝'],
   ['w', 'z'],

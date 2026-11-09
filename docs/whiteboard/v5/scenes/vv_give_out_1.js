@@ -9,6 +9,7 @@ const ITEMS = [
   ['w', 'give out ①'],
   ['w', '分发'],
   ['w', 'One for you!'],
+  ['s', 'One for you!', '给你一个！'],
   ['m', 'OUT'],
   ['m', '从手里往外分发'],
   ['s', 'Can you help me give out the notebooks?', '你能帮我把笔记本分发给大家吗？']

@@ -14,5 +14,6 @@ const ITEMS = [
   ['m', '抬头往上看'],
   ['s', 'Look up! A shooting star!', '抬头看！一颗流星！'],
   ['w', 'Wow, look!'],
+  ['s', 'Wow, look!', '哇，快看！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · look up ①', items: ITEMS, acts: ACTS }); }

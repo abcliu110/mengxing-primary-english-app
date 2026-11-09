@@ -9,6 +9,7 @@ const ITEMS = [
   ['m', 'take up ①'],
   ['m', '开始从事（爱好）'],
   ['w', 'What to do?'],
+  ['s', 'What to do?', '怎么办？'],
   ['m', 'UP'],
   ['m', '拿起来'],
   ['s', 'He took up painting last summer.', '他去年夏天开始学画画。'],

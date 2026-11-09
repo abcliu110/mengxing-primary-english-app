@@ -17,5 +17,6 @@ const ITEMS = [
   ['m', 'OUT'],
   ['m', '从车厢里出来'],
   ['w', 'Thank you!'],
+  ['s', 'Thank you!', '谢谢你！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get out ①', items: ITEMS, acts: ACTS }); }

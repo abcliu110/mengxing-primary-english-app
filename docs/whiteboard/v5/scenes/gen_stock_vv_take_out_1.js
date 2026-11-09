@@ -16,5 +16,6 @@ const ITEMS = [
   ['m', 'OUT'],
   ['m', '从书包里拿出来'],
   ['w', 'Here it is!'],
+  ['s', 'Here it is!', '在这里！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · take out ①', items: ITEMS, acts: ACTS }); }
