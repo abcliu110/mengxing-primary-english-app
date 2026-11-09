@@ -10,7 +10,8 @@
    插在 hd_poly_v6_p14 之后。
 4. 新增 hd_mindmap 页签（25 幕，标题/ACTS 从场景文件取），插在 hd_phonics 之后。
 5. 补登记 ze_link / ze_pronoun / ze_yesno 第 1 幕（场景已存在，cases 原为空）。
-6. vv_give_down / vv_give_on 加 checked_absent: true（场景保留，不删除）。
+6. vv_give_down / vv_give_on 已下线（2026-11-09 第二波定夺）：场景文件删除、units 登记删除；
+   checked_absent 记录保留在 laws-prototype/model/phrasal_combos.json 与 wb13_phrasal.json（数据文件，本脚本不管）。
 7. 第一性原理：不改（22 幕 canonical 已登记；另 fp_economy_p2_1 为 parts 机制幕，
    不在 units 口径内；fp_one_king_1 / fp_zoom_focus_1 已迁中英对照）。
 
@@ -105,10 +106,8 @@ def main():
         assert U[tab]['cases'] == {}, f'{tab} cases 不为空：{U[tab]["cases"]}'
         U[tab]['cases'] = {'1': {'title': scene_title(f'{tab}_1.js'), 'acts': scene_acts(f'{tab}_1.js')}}
 
-    # 6. give down / give on 标注 checked_absent（场景保留）
-    for tab in ('vv_give_down', 'vv_give_on'):
-        assert 'checked_absent' not in U[tab]
-        U[tab]['checked_absent'] = True
+    # 6. give down / give on 已下线（2026-11-09 第二波定夺）：场景文件与 units 登记均已删除，
+    #    本脚本不再向 units 写 checked_absent 标注；checked_absent 记录留在数据文件里。
 
     # 按锚点插入新页签
     out = {}

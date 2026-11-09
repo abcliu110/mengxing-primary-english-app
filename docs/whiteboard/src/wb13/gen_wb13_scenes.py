@@ -15,8 +15,9 @@
 2. 动作帧 ACTS 一律 {}：wb13 未给任何帧登记（actionWords 的 act 均为
    “待核对”，note 缺-7），不编造帧映射；后补帧只改 ACTS 与 units 登记。
    先例：ze_link / ze_pronoun / ze_yesno 三幕同样 ACTS={}。
-3. give down / give on 不新建、不删除：已有 vv_ 场景保留，只在 units.json
-   标注 checked_absent（本脚本不管 units，见 gen_wb13_units.py 的配套改动）。
+3. give down / give on 已下线（2026-11-09 第二波定夺）：场景文件与 units 登记均删除，
+   不新建；checked_absent 记录保留在 laws-prototype/model/phrasal_combos.json 与
+   wb13_phrasal.json（本脚本不管数据文件）。
 4. V-42「控制住」「hold a meeting」两站例句已补（2026-11-09，牛津高阶学习者词典 OALD hold_1
    原句，Priya 定用牛津原句）：控制住 *The rebels held the radio station.*；
    举行 *Each month she holds a meeting with her entire staff.*。缺-1 已闭合。
@@ -306,7 +307,7 @@ def main():
     missing = [p for p in pages if p['kind'] == 'grid_cell' and p['status'] == 'attested' and not p['covered_by_vv']]
     assert len(missing) == 32, f'待新建格应为 32，实得 {len(missing)}'
     assert len(core_meaning) == 12, f'核心义页应为 12，实得 {len(core_meaning)}'
-    # 不建 checked_absent 格；give down / give on 已有场景，不动
+    # 不建 checked_absent 格；give down / give on 已下线，场景与 units 登记均已删除
     assert not any(p['phrasal'] in ('give down', 'give on') for p in missing)
     files = []
     for p in missing:
@@ -323,7 +324,7 @@ def main():
             n_ex += 1
     for p in pages:
         if p['kind'] == 'grid_cell' and p['status'] == 'checked_absent':
-            assert f"vv_{p['verb']}_{p['particle']}_1.js" not in [f for f, _ in files] or p['phrasal'] in ('give down', 'give on'), p['phrasal']
+            assert f"vv_{p['verb']}_{p['particle']}_1.js" not in [f for f, _ in files], p['phrasal']
     print(f'32 格 {n_ex} 条词典例句全部逐字落场景；场景文件 {len(files)} 个')
     if check_only:
         print('check-only：未写文件')
