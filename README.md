@@ -13,6 +13,7 @@
 - 直接用浏览器（推荐 Chrome、Edge、Safari 最新版）双击打开 `萌星小学英语_最终合并版.html`。
 - 或在仓库目录起一个静态服务器后访问，例如 `python3 -m http.server 8000`，再打开 `http://localhost:8000/萌星小学英语_最终合并版.html`。
 - 点读使用浏览器自带的语音合成（Web Speech API）。首次进入需点一下“开启语音”；设备没有英文语音包时会提示改看文字。
+- 文件夹须完整保留，分享请打包 zip：图片和视频已外置到 `laws-prototype/assets/`，只发 HTML 会丢图和视频。
 
 ## 页面结构
 
