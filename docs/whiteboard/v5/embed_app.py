@@ -9,7 +9,7 @@
 体积（2026-10-30 起）：幕内 ≥2 KB 的图片 / 字体 data URI 按内容哈希抽成共享块 wb5blob-<hash>（同一帧、同一字体全 App 只存一份），其余 HTML gzip 后 base64 存放，挂载时 DecompressionStream 解压再拼回。"""
 import re, sys, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[3]
-APP = ROOT / '萌星小学英语_最终合并版.html'
+APP = ROOT / 'laws-prototype/mengxing-prototype-v1.html'
 tab, pairs = sys.argv[1], sys.argv[2:]
 s = APP.read_text(encoding='utf-8')
 
