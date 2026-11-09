@@ -3,7 +3,8 @@
 """
 check_badge_erridx.py — 静态徽标 × ERRIDX 对账门禁（2026-11-09 第四波第 7 项立，
 2026-11-09 第五波第 8 项扩面至全部 299 行静态索引行，2026-11-09 第六波
-第 11 项再扩面至全部 829 行：+ v-tech 区 530 行 data-tec 行）。
+第 11 项再扩面至全部 829 行（+ v-tech 区 530 行 data-tec 行），2026-11-10
+第六波第 8 项 + CO-17 深研行 1 行，共 830 行）。
 
 断言：主文件全部 7 个静态索引区（#v-expr、#v-expr2、#v-vocab、#v-grammar2、
 #v-phon-laws、#v-parents、#v-tech）共 829 行静态索引行（`<div class="urow"
@@ -70,17 +71,20 @@ data-law="…">` 299 行 + `<div class="urow" data-tec="…">` 530 行），其�
     分组头计数（“N 条”/“N 条次”）须与实有行数一致。v-tech 行只在 #v-tech
     区内出现（全文件 data-tec 行 530 行皆在该区）。
 
-覆盖面：829 行（E 15 + W 15 + NE 29 + V 43 + CO/QI 31 + S/SR 52 +
-家长区 114 + v-tech 530：痛点组 224 + 路组 153 + 区组 153），行集合须与
-laws_master 的对应律集合恰相等（不多、不少、不重），以下 4 条除外——它们
+覆盖面：830 行（E 15 + W 15 + NE 29 + V 43 + CO/QI 31 + S/SR 52 +
+家长区 114 + v-tech 530：痛点组 224 + 路组 153 + 区组 153 + CO-17 深研行 1），行集合须与
+laws_master 的对应律集合恰相等（不多、不少、不重），以下 3 条除外——它们
 不在本区 data-law 行，但各有明确去处，门禁显式排除并核对去处在位
 （见 main() 内注释）：V-33（ptr 指 morph 区，v-vocab 里为 data-go 深研行
 u-v33）、V-40（v-vocab 里为 data-go 深研行 u-v40，打包对照单元）、
-CO-17（无 LAWDATA 条目、无独立规律页，v-vocab / v-grammar2 里为 data-go
-深研行 u-co17）、S-44（LINKIDX z='MZ'，内容在 morph 区）。其中 ERRIDX 区
-儿童行 112 行逐行比对徽标（原 59 行门禁的儿童行 38 行 + 本波新增
-V/CO/QI 74 行），教师行 21 行只核对在位；拼读区 52 行、家长区 114 行按各
-自口径逐行比对；v-tech 530 行按三组口径逐行比对（标题、徽标、分组归属、
+S-44（LINKIDX z='MZ'，内容在 morph 区）。
+另有 1 条特殊行：CO-17（无 LAWDATA 条目、无独立规律页，内容在深研单元
+u-co17）自第六波第 8 项起在 v-grammar2 里有 data-law 行，徽标为 st deep
+「已做深」，不套 ERRIDX 口径（无 LAWDATA、无 quiz），门禁只核对徽标、
+LAWFLAG 落点（CO-17 → u-co17）与运行时 ERRIDX 和再生一致；其 data-go
+深研行仍在位（去处未变）。其中 ERRIDX 区儿童行 112 行逐行比对徽标
+（原 59 行门禁的儿童行 38 行 + 本波新增 V/CO/QI 74 行），教师行 21 行只
+核对在位；拼读区 52 行、家长区 114 行按各自口径逐行比对；v-tech 530 行按三组口径逐行比对（标题、徽标、分组归属、
 分组头计数、行集合五项全核）。
 
 用法：
@@ -316,6 +320,11 @@ def main(argv):
         rt_err = get_literal(text, "var ERRIDX=")
         rt_n = Counter(c[0] for c in rt_err["cases"])
         lawdata = get_runtime_lawdata(text)
+        # LAWFLAG 是单引号 JS 字面量（非 JSON）：只在 var LAWFLAG={...} 内
+        # 核对 CO-17 → u-co17，全文搜会误中 relSectionHTML 的另一张同名映射表。
+        mflag = re.search(r"var LAWFLAG=\{([^}]*)\}", text)
+        lawflag_co17 = bool(mflag and re.search(r"'CO-17'\s*:\s*'u-co17'",
+                                                mflag.group(1)))
         lm_n = {e["id"]: len((e.get("lawdata") or {}).get("cases") or [])
                 for e in master}
         rows = parse_static_rows(text)
@@ -329,12 +338,13 @@ def main(argv):
     problems = []
 
     # 行集合核对：每区 data-law 行须与 laws_master 对应律集恰相等，
-    # 但以下 4 条有明确的“不在本区 data-law 行”理由，显式排除（见 docstring）：
+    # 但以下 3 条有明确的“不在本区 data-law 行”理由，显式排除（见 docstring）：
     #   V-33：ptr 指向 morph 区（LINKIDX z='MZ'），v-vocab 里只有 data-go 深研行 u-v33；
     #   V-40：v-vocab 里只有 data-go 深研行 u-v40（打包对照单元），徽标为 st deep「已做深」；
-    #   CO-17：无 LAWDATA 条目、无独立规律页（ROSTER route=''），v-vocab/v-grammar2 里
-    #     只有 data-go 深研行 u-co17（一词多义 V-40–V-45 + CO-17 组）；
     #   S-44：LINKIDX z='MZ'，内容在 morph 区（RV_GENQ S-44 屈折三读），不在拼读索引行。
+    # CO-17 不再排除：自第六波第 8 项起在 v-grammar2 里有 data-law 行
+    # （徽标 st deep「已做深」，见行循环内的特殊处理）；其 data-go 深研行
+    # 仍须在位（内容落点未变）。
     want_by_sec = {}
     for sec in SECTIONS:
         fams = {"v-expr": ("E", "W"), "v-expr2": ("NE",),
@@ -345,8 +355,8 @@ def main(argv):
                                   if e["id"].split("-")[0] in fams)
     for lid in ("V-33", "V-40"):
         want_by_sec["v-vocab"].remove(lid)
-    want_by_sec["v-grammar2"].remove("CO-17")
     want_by_sec["v-phon-laws"].remove("S-44")
+    # CO-17 不再从 v-grammar2 剔除：第六波第 8 项起它有 data-law 行。
     # 排除项须有去处，否则不是“另有落点”而是真缺失：V-33/V-40/CO-17 须有
     # data-go 深研行；S-44 须落在 morph 区（LINKIDX z='MZ'）。
     for lid, go in (("V-33", "u-v33"), ("V-40", "u-v40"), ("CO-17", "u-co17")):
@@ -370,7 +380,26 @@ def main(argv):
             problems.append(f"{sec} 静态行多出 {len(extra)} 条（不在该区律集）：{extra}")
 
     n_child = n_tchr = n_phon = n_parents = 0
+    n_co17 = 0
     for sec, lid, cls, btxt in rows:
+        if sec == "v-grammar2" and lid == "CO-17":
+            # CO-17 深研行（第六波第 8 项）：无 LAWDATA 条目、无独立规律页，
+            # 内容在深研单元 u-co17；徽标为 st deep「已做深」，不套 ERRIDX
+            # 口径（无 LAWDATA、无 quiz）。只核对徽标、LAWFLAG 落点与运行时
+            # ERRIDX 和再生一致（索引本身未陈旧）。
+            if cls != "deep" or btxt != "已做深":
+                problems.append(f"CO-17（v-grammar2）：深研行徽标应为 deep"
+                                f"（已做深），现为 {cls}（{btxt}）")
+            elif not lawflag_co17:
+                problems.append("CO-17（v-grammar2）：LAWFLAG 未指向 u-co17，"
+                                "点行无落点")
+            elif rt_n.get(lid, 0) != gen_n.get(lid, 0):
+                problems.append(f"CO-17（v-grammar2）：ERRIDX 运行时与再生不"
+                                f"一致（再生 {gen_n.get(lid, 0)} / 运行时"
+                                f" {rt_n.get(lid, 0)}）")
+            else:
+                n_co17 += 1
+            continue
         if cls not in ("ok", "part", "tchr"):
             problems.append(f"{lid}（{sec}）：未知徽标 class {cls!r}")
             continue
@@ -518,12 +547,12 @@ def main(argv):
             print("FAIL:", p)
         print(f"FAIL: 静态徽标 × ERRIDX 对账失败：{len(problems)} 行不符"
               f"（共 {len(rows) + len(tech_rows)} 行：ERRIDX 区儿童行 {n_child}、教师行 {n_tchr}、"
-              f"拼读区 {n_phon}、家长区 {n_parents}、v-tech {len(tech_rows)} 行："
+              f"拼读区 {n_phon}、家长区 {n_parents}、CO-17 深研行 {n_co17}、v-tech {len(tech_rows)} 行："
               f"痛点组 {n_pain}、路组 {n_road}、区组 {n_zone}）")
         return 1
     print(f"PASS: 静态徽标 × ERRIDX 对账通过（{len(rows) + len(tech_rows)} 行：ERRIDX 区儿童行"
           f" {n_child} 行徽标全对、教师行 {n_tchr} 行在位，拼读区 {n_phon} 行"
-          f"、家长区 {n_parents} 行按各自口径全对；v-tech {len(tech_rows)} 行"
+          f"、家长区 {n_parents} 行按各自口径全对、CO-17 深研行 {n_co17} 行在位；v-tech {len(tech_rows)} 行"
           f"（痛点组 {n_pain}、路组 {n_road}、区组 {n_zone}）按各自口径全对；"
           f"ERRIDX {built['tot']} 条 /"
           f"覆盖 {built['laws']} 律，运行时与再生逐律一致）")
