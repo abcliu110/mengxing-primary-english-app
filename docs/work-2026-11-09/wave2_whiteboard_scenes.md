@@ -140,3 +140,19 @@
 - 本机 Playwright Python 原未安装，`pip install --break-system-packages playwright` 后可用（Chromium 缓存 `~/.cache/ms-playwright/chromium-1248` 已有）。
 - 打包字体不在默认 `/workspace/work/fonts`，在 `~/workspace/wbfonts`（`WB_FONTS` 环境变量 + `PATH` 加 `~/workspace/wbfonts/bin` 取 pyftsubset）。
 - 工作区同时有并行同事的未提交改动（主文件、laws_master、expression.yaml、sync_lawdata.py、apply_wave2_item2_ne_dual.py），本次三提交均只加了自己的文件，未碰他人改动。
+
+## 7. 3(b) 收尾（总协调人补记，2026-11-09）
+
+### 7.1 wb13_phrasal.json 覆盖标记同步（gen_wb13_data.py 重跑）
+- 收尾核查发现 `wb13_phrasal.json` 的 `covered_by_vv`/`v5_scene` 是 `gen_wb13_data.py` 按磁盘上 `vv_*_?.js` 文件存在性算出的派生字段；3(b) 删场景后未重跑，give down/on 两格仍 `covered_by_vv: true`、指向已删文件（悬空指针）。
+- 重跑后 give down/on 两格 `covered: false`、`v5_scene: []`；其余字段（entries/content_gap）一字未动，mindmap/poly-words 两输出逐字节一致。
+- 附带发现：该文件自第一波 79 幕建成后从未重跑，一直是旧状态——`vv_scenes_cover_cells` 20、`missing_attested_cells` 32；重跑后恢复真实值：覆盖 50（全部 50 个 attested 格）、缺 attested 0、缺 absent 22。第一波遗留的陈旧口径本次一并纠正。
+
+### 7.2 下线源头清理（防重生）
+- `gen_scene.py`（`docs/whiteboard/model/gen_scene.py`）按 `model/specs/<scene>.yaml` 生成 `v5/scenes/<scene>.js` 并写出对应事实表；4 个 stock spec 仍在，重跑即再生已删的 gen_stock 场景。已删 4 个 spec（`stock_vv_give_down_1/2.yaml`、`stock_vv_give_on_1/2.yaml`）及 4 张对应事实表（生成物，随源头同删）。`gen_scene.py` 只接受显式 spec 路径、不遍历 specs/，无批量脚本引用；其余 7 个 `stock_vv_give_*` spec（in/off/out/up，均为成立搭配）原样保留。specs 总数 360→356。
+
+### 7.3 下线带走的有效内容（留待定夺，不在本次定夺内）
+- 被删的 8 幕实际讲的并非不存在的搭配，而是借格讲的成立搭配，内容现已无场景承载：
+  - **give back（归还）**：give down 4 幕讲的内容。BACK = 回到原来的地方；例句 "Please give back my ruler after class."（下课后请把尺子还给我）、"Give the book back to the library."（把书还给图书馆）。小学常用搭配，全 App 现无 give back 场景；MASTER_DESIGN ①5 曾写“give back 独立”——如要保留须另立 `vv_give_back` 场景。
+  - **give on (onto)（门窗）朝向/通向**：give on 4 幕讲的内容。ON = 正对着、通到那一面；例句 "The window gives on the green park."（这扇窗户朝向绿色的公园）、"The back door gives onto the garden."（后门通向花园）。属正式/书面用法，小学阶段是否值得单独立幕待定。
+- 上述两段内容原文已从被删事实表照录于此；事实表原件已随源头删除，git 历史（d62026c 之前）可查。
