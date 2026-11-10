@@ -17,6 +17,7 @@ const ITEMS = [
   ['w', '一年有十二个月，十二月是第十二个月。我们的美术室在三楼。今天是十月二十一日。'],
   ['w', '② 核心结构规律：① 1~3 独立变形：one ➔ first (1st), two ➔ second (2nd), three ➔ third (3rd)'],
   ['w', '③ 进阶要点：② 易错四大金刚：five ➔ fifth, eight ➔ eighth, nine ➔ ninth（去e！）, twelve ➔ twelfth（ve变f！）'],
+  ['s', 'One, first. Two, second. Three, third. Five, fifth. Eight, eighth. Nine, ninth.', '一，第一。二，第二。三，第三。五，第五。八，第八。九，第九。', 'one first two second three third five fifth eight eighth nine ninth ve'],
   ['w', 'G13 第1幕'],
   ['s', 'There are twelve months in a year, and December is the twelfth month.', '一年有十二个月，十二月是第十二个月。'],
   ['n', '🎵 口诀：基变序，有规律：一二三特殊记（first/second/third）；八去t（eighth），九去e（ninth）；ve要用f替（fifth/twelfth）；整十y变ie再加th（twentieth）；若是遇到几十几，只变个位就可以（twenty-first）！'],

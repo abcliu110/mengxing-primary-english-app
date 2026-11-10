@@ -12,6 +12,7 @@ const ITEMS = [
   ['w', '-us → -i：cactus → cacti'],
   ['w', 'fungus → fungi 真菌'],
   ['w', '-is → -es：crisis → crises 危机'],
+  ['s', 'Cactus, cacti. Fungus, fungi. Crisis, crises.', '仙人掌，复数 cacti。真菌，复数 fungi。危机，复数 crises。', 'cactus cacti fungus fungi crisis crises es us is'],
   ['n', '日常说话里，cactuses 也有人用；两种复数都见于词典。'],
   ['w', '⚠️ cactus 也可以说 cactuses'],
   ['n', '出处：Wiktionary 列了这些复数；规律见 Wikipedia「English plurals」。'],

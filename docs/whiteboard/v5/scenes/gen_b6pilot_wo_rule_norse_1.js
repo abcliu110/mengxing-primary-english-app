@@ -17,6 +17,7 @@ const ITEMS = [
   ['w', 'church ↔ kirk（古诺斯语 kirkja）'],
   ['n', 'ditch 和 dike 也是一对，都和挖出来的沟、堆起来的堤有关。'],
   ['w', 'ditch（沟）↔ dike（堤）'],
+  ['s', 'Church, kirk, kirkja. Ditch, dike. Skirt, skyrta.', '教堂，kirk，kirkja。沟，堤。裙子，skyrta。', 'church kirk kirkja ditch dike skirt skyrta'],
   ['n', '出处：Etymonline 和 Wiktionary 都写了这几对词的关系。'],
   ['w', '出处：Etymonline · Wiktionary'],
 ];
