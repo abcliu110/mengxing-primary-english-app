@@ -46,6 +46,8 @@ const ITEMS = [
   ['w', '不能说 Does he plays? / She can swims.'],
   ['n', '小提醒：be 动词自带助动词身份，不请 do 帮忙——Is she happy? 就够了。'],
   ['w', 'be 不请 do：Is she happy?'],
+  ['s', 'She does not like tea.', '她不喜欢茶。', 'not tea'],
+  ['s', 'Is she happy?', '她开心吗？', 'be happy'],
   ['s', 'He plays football. They went home.', '他踢足球。他们回家了。', 'He plays football They'],
   ['s', 'Does he play? He doesn\'t play. Did they go?', '他踢吗？他不踢。他们去了吗？', 'Does play doesn\'t'],
   ['s', 'She can swim.', '她会游泳。', 'swim'],

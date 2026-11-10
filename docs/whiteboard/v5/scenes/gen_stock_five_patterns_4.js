@@ -44,5 +44,8 @@ const ITEMS = [
   ['n', '双宾语：一个动词带两个宾语：人在前，物在后。'],
   ['s', 'Mum gave me a birthday gift.', '妈妈送了我一份生日礼物。', 'Mum me a birthday gift a birthday gift'],
   ['s', 'Somebody, something. Somebody gave me something.', '某人，某物。有人给了我一样东西。', 'somebody something'],
+  ['s', 'Mum gave a birthday gift to me.', '妈妈把一份生日礼物给了我。', 'to'],
+  ['s', 'Mum bought me a birthday gift.', '妈妈给我买了一份生日礼物。', 'bought'],
+  ['s', 'Mum bought a birthday gift for me.', '妈妈为我买了一份生日礼物。', 'for'],
 ];
 export default function build() { return autoBuild(SP, { title: '🧱 五大基本句型 · ④ SVOO 双手递礼型', items: ITEMS, acts: ACTS }); }
