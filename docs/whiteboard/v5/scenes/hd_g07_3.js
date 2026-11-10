@@ -8,6 +8,7 @@ const ITEMS = [
   ['w', 'G07 底层原理'],
   ['w', '人称代词主格与宾格 (I vs me / he vs him) —— 动词前作主语用“主格”，动词和介词后面作宾语必须换“宾格”！'],
   ['w', '【为什么汉语都是“我”，英语却要分 I 和 me？】英语给代词穿上了“位置制服”：站在句首指挥动作的主人穿“主格礼服'],
+  ['s', 'He likes me, and I like him.', '他喜欢我，我也喜欢他。'],
   ['w', '🔬 深度机制 3：指示代词『距离远近 × 单复数』空间雷达四宫格'],
   ['w', '👉 近处 + 单数(1个)'],
   ['w', 'this is 🍎'],
@@ -17,6 +18,8 @@ const ITEMS = [
   ['w', 'that is 🐦'],
   ['w', '🔭 远处 + 复数(多个)'],
   ['w', 'those are 🐦🐦'],
+  ['s', 'This is an apple. These are apples.', '这是苹果。这些是苹果。'],
+  ['s', 'That is a bird. Those are birds.', '那是鸟。那些是鸟。'],
   ['w', 'G07 第3幕'],
   ['s', 'I like Miss White, and she likes me too.', '动前主格动后宾，介词后面也用宾！I变me，we变us，he变him，she变her，they变them要记准，只有you和it主宾长相不改变！']
 ];

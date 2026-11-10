@@ -20,6 +20,8 @@ const ITEMS = [
   ['w', 'that is 🐦'],
   ['w', '🔭 远处 + 复数(多个)'],
   ['w', 'those are 🐦🐦'],
+  ['s', 'This is an apple. These are apples.', '这是苹果。这些是苹果。'],
+  ['s', 'That is a bird. Those are birds.', '那是鸟。那些是鸟。'],
   ['w', 'G09 第3幕'],
   ['s', 'This is a red apple here, and that is a pear over there.', '这儿这个是个红苹果，那儿那个是个梨。'],
   ['n', '🎵 口诀：近指单数 this is，远指单数 that is；近指复数 these are，远指复数 those are；问句 This/That 回答用 it，问句 These/Those 回答用 they！']

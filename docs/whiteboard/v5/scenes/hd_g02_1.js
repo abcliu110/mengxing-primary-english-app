@@ -14,7 +14,9 @@ const ITEMS = [
   ['w', '① 典型语境：Two men and three women are in the park.'],
   ['w', '两个男人和三个女人在公园里。五个孩子正在洗脚、刷牙。看！十只白绵羊和六条鱼！'],
   ['w', '② 核心结构规律：① 元音大变身：man ➔ men, woman ➔ women (/ˈwɪmɪn/), foot ➔ feet, tooth ➔ teeth, goose ➔ geese'],
+  ['s', 'Man, men. Woman, women. Foot, feet. Tooth, teeth. Goose, geese.', 'man、men。woman、women。foot、feet。tooth、teeth。goose、geese。'],
   ['w', '③ 进阶要点：② 特殊变形：child（孩子）➔ children, mouse（老鼠）➔ mice'],
+  ['s', 'Child, children. Mouse, mice. Sheep.', 'child、children。mouse、mice。sheep。'],
   ['w', 'G02 第1幕'],
   ['s', 'Two men and three women are in the park.', '两个男人和三个女人在公园里。'],
   ['n', '🎵 口诀：男女脚牙鹅变 e（man→men, foot→feet, tooth→teeth）；老鼠 mouse 变 mice；孩子 child 变 children；绵羊 sheep 小鹿 deer 小鱼 fish 单复数长一样！']
