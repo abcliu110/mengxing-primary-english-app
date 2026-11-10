@@ -1,4 +1,5 @@
 // ✍️ 写作炼金术 · 1 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
+// 决策 36-② 长幕拆分：本幕只留第 1 节（共 3 节，其余在 scenes/writing_alchemist_p2_1.js … 由 v5/split_auto.py 生成）
 // 内容来源（R1 零丢失）：src/cases/writing_alchemist.js 案例 1；对照清单 lab/INVENTORY_WRITING_ALCHEMIST_1_V5.md
 // 角色关键帧：sprites/wa1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
@@ -22,38 +23,5 @@ const ITEMS = [
   ['s', 'I am crazy about English, and I really enjoy reading English stories in my free time!', '我超爱英语，空闲时特别喜欢读英语故事！', 'am and really stories'],
   ['n', 'enjoy doing：喜欢做某事，后面动词加 ing：enjoy reading。也可以用 be fond of。'],
   ['n', '时间状语：说明「什么时候」的词组。in my free time 就是「在我的空闲时间」。'],
-  ['n', '第二条公式：写开心的事，别只会说 very happy。'],
-  ['w', 'What a ...!'],
-  ['w', 'How ...!'],
-  ['w', '60分'],
-  ['w', 'We were very happy yesterday.'],
-  ['n', '感叹句：表达强烈感情的句子，用 What 或 How 开头，句末用感叹号「!」。'],
-  ['w', '100分'],
-  ['w', 'What a wonderful and unforgettable day we had!'],
-  ['w', 'How excited we were!'],
-  ['s', 'What a wonderful and unforgettable day we had! How excited we were!', '那天真美好、真难忘！我们多兴奋啊！', 'unforgettable had'],
-  ['n', 'What a + 形容词 + 名词：多么美好的一天！What a wonderful … day，后面跟 we had。'],
-  ['n', 'How + 形容词：How excited we were! 我们多么激动啊！形容词紧跟在 How 后面。'],
-  ['n', '第三条公式：说读书有好处，别只写 is good for us。'],
-  ['w', 'not only'],
-  ['w', 'but also'],
-  ['w', '60分'],
-  ['w', 'Reading books is good for us.'],
-  ['n', '连接词：把句子连起来的词。not only… but also… 意思是「不仅……而且……」。'],
-  ['w', '100分'],
-  ['w', 'Reading books is not only good for our study, but also'],
-  ['w', 'opens a window to the world for us!'],
-  ['s', 'Reading books is not only good for our study, but also opens a window to the world for us!', '读书不仅对学习有益，还为我们打开一扇看世界的窗！', 'books not only our study but also'],
-  ['n', '隐喻：打比方：读书 opens a window to the world，给你打开一扇看世界的窗。'],
-  ['n', '五感法则：还有一条：眼睛看 look、鼻子闻 smell、耳朵听 singing，把春天写活。'],
-  ['s', 'I like English very much.', '我非常喜欢英语。', 'I like English very much'],
-  ['s', 'Be crazy about, be fond of, enjoy doing. I enjoy reading in my free time.', '超爱、喜欢、喜欢做。我空闲时喜欢读书。', 'be crazy about fond of enjoy doing reading in my free time be crazy about be fond of'],
-  ['s', 'We were very happy yesterday. What a wonderful day! How excited we were!', '我们昨天很开心。多美好的一天！我们多兴奋啊！', 'We were happy What a How wonderful day excited'],
-  ['s', 'Reading books is good for us. It opens a window to the world.', '读书对我们有好处。它打开一扇看世界的窗。', 'is good for us opens window to the world'],
-  ['s', 'The park is very nice in spring.', '春天的公园很美。', 'The park is very nice in spring'],
-  ['s', 'Look, smell. The flowers look beautiful and smell sweet. Birds are singing.', '看、闻。花儿看起来很美，闻起来很香。鸟儿在唱歌。', 'look smell are singing singing ing'],
-  ['w', '口诀：换掉老词 like，加上时间状语，用感叹句和 not only… but also…'],
-  ['w', '还有一条 · 五感法则：视觉 look + 嗅觉 smell + 听觉 are singing（The park is very nice in spring. 的升级）'],
-  ['n', '口诀：换掉老词加状语，感叹句和连接词用得好，作文更出彩！（句式只是评分的一面：内容对题、句子写对更重要。这句是加油口号，不是分数保证。）']
 ];
 export default function build() { return autoBuild(SP, { title: '✍️ 写作炼金术 · 1', items: ITEMS, acts: ACTS }); }
