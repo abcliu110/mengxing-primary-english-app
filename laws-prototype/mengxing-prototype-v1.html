@@ -18693,10 +18693,12 @@ function wbTogglePlay(){
     wbS.baseElapsed = wbS.elapsed; wbS.startTs = 0;
     if(wbS.btn) wbS.btn.textContent = '▶ 继续';
     if(wbS.hand) wbS.hand.style.opacity = '0';
+    if(window.wbCapCancel) wbCapCancel();
     return;
   }
   if(wbS.btn && wbS.btn.textContent.indexOf('再看') >= 0){ wbS.scene = wbS.home || 0; wbRenderScene(); }
   wbPlayStart();
+  if(window.wbCapSpeak) wbCapSpeak();
 }
 function wbReplay(){
   if(!wbS.sec) return;
@@ -18704,6 +18706,7 @@ function wbReplay(){
   wbS.scene = wbS.home || 0; wbS.elapsed = 0; wbS.baseElapsed = 0;
   wbRenderScene();
   wbPlayStart();
+  if(window.wbCapSpeak) wbCapSpeak();
 }
 /* CUT 选版器接口（波 B）：区间播/全片/停播/信息；range=null 为原行为 */
 function wbCutRange(a, b){ if(!wbS.sec) return; wbS.range = [a, b]; wbS.home = a; wbStop(); wbS.scene = a; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
@@ -19865,10 +19868,12 @@ function wbTogglePlay(){
     wbS.baseElapsed = wbS.elapsed; wbS.startTs = 0;
     if(wbS.btn) wbS.btn.textContent = '▶ 继续';
     if(wbS.hand) wbS.hand.style.opacity = '0';
+    if(window.wbCapCancel) wbCapCancel();
     return;
   }
   if(wbS.btn && wbS.btn.textContent.indexOf('再看') >= 0){ wbS.scene = wbS.home || 0; wbRenderScene(); }
   wbPlayStart();
+  if(window.wbCapSpeak) wbCapSpeak();
 }
 function wbReplay(){
   if(!wbS.sec) return;
@@ -19876,6 +19881,7 @@ function wbReplay(){
   wbS.scene = wbS.home || 0; wbS.elapsed = 0; wbS.baseElapsed = 0;
   wbRenderScene();
   wbPlayStart();
+  if(window.wbCapSpeak) wbCapSpeak();
 }
 /* CUT 选版器接口（波 B）：区间播/全片/停播/信息；range=null 为原行为 */
 function wbCutRange(a, b){ if(!wbS.sec) return; wbS.range = [a, b]; wbS.home = a; wbStop(); wbS.scene = a; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
@@ -22707,6 +22713,7 @@ mountAll();
 (function(){
   var _utt = null;
   var _cap = null;
+  var _pendingCap = null;
   var _hasBoundary = false;
 
   /* 把 cap 文本切成 ~3 字段落，每段一个 <span class="wbc"> */
@@ -22740,13 +22747,24 @@ mountAll();
     hiAt(el, idx);
   };
 
-  window.wbCapSync = function(cap, el, wbs){
-    wbCapCancel();
+  /* wbCapSet: 只切分字幕 DOM，不触发 TTS（从 rAF 链调用） */
+  window.wbCapSet = function(cap, el){
+    if(window.wbCapCancel) wbCapCancel();
     _cap = el;
     _hasBoundary = false;
-    var segs = splitCap(cap, el);
-    if(!('speechSynthesis' in window)){ return; }
-    // 尝试找中文语音
+    _pendingCap = cap;
+    splitCap(cap, el);
+  };
+
+  /* wbCapSpeak: 在用户手势链里调用，触发 TTS + boundary 高亮 */
+  window.wbCapSpeak = function(){
+    if(!_cap || !_pendingCap) return;
+    if(!('speechSynthesis' in window)) return;
+    var cap = _pendingCap;
+    var el = _cap;
+    var segs = Array.from(el.querySelectorAll('.wbc')).map(function(s){ return s.textContent; });
+    if(!segs.length) return;
+    _hasBoundary = false;
     var voices = window.speechSynthesis.getVoices();
     var zhVoice = null;
     for(var i=0;i<voices.length;i++){
@@ -22761,7 +22779,6 @@ mountAll();
     u.onboundary = function(ev){
       if(ev.name!=='word') return;
       _hasBoundary = true;
-      // 找对应段落
       var ci = ev.charIndex, pos = 0;
       for(var i=0;i<segs.length;i++){
         pos += segs[i].length;
@@ -22771,8 +22788,11 @@ mountAll();
     u.onend = function(){ hiAt(el, segs.length-1); };
     u.onerror = function(){ _hasBoundary = false; };
     _utt = u;
-    try{ window.speechSynthesis.speak(u); } catch(e){}
+    try{ window.speechSynthesis.cancel(); window.speechSynthesis.speak(u); } catch(e){}
   };
+
+  /* 保留 wbCapSync 兼容旧调用（只做 set，不 speak） */
+  window.wbCapSync = window.wbCapSet;
 
   window.wbCapCancel = function(){
     _hasBoundary = false;
