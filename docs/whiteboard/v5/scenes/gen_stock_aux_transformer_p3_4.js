@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at4.js';
-const ACTS = {"flew": ["plane"]};
+const ACTS = {"went": ["l_goout"], "flew": ["plane"], "go": ["l_w0", "l_w1", "l_w2"]};
 const ITEMS = [
   ['n', '黄金三步：换 How → 提过去助动词 did → 主语后 went 还原为 go。'],
   ['w', '① 交通方式用 How ➔ ② 提过去助动词 did ➔ ③ 主语后 went 还原为 go'],
@@ -23,6 +23,11 @@ const ITEMS = [
   ['w', '② They did not (didn\'t) go to Sanya by plane last winter.'],
   ['w', '③ Did they go to Sanya by plane last winter?'],
   ['w', '④ How did they go to Sanya last winter?'],
+  ['s', 'They went to Sanya by plane last winter.', '他们去年冬天坐飞机去了三亚。', 'went'],
+  ['s', 'They did not go to Sanya by plane last winter.', '他们去年冬天没有坐飞机去三亚。', 'did not go'],
+  ['s', 'They didn\'t go to Sanya by plane last winter.', '他们去年冬天没有坐飞机去三亚。', 'didn\'t go'],
+  ['s', 'Did they go to Sanya by plane last winter?', '他们去年冬天是坐飞机去三亚的吗？', 'did go'],
+  ['s', 'How did they go to Sanya last winter?', '他们去年冬天是怎么去三亚的？', 'how did go'],
   ['w', '过去请 did：过去时被照妖镜吸走，went 打回原形 go！'],
   ['n', '口诀：看到 did / didn\'t，后面动词一律打回原形！'],
 ];

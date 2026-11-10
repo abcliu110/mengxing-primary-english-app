@@ -6,13 +6,18 @@
 // 角色关键帧：sprites/at1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at1.js';
-const ACTS = {"reading": ["l_read"]};
+const ACTS = {"taking": ["m_photo"], "reading": ["l_read"]};
 const ITEMS = [
   ['n', '五种句子都变出来了！be 动词自己就是护卫，不用请外援 do / does / did。'],
   ['w', '① She is taking photos in the park now.'],
   ['w', '② She is not (isn\'t) taking photos in the park now.'],
   ['w', '③ Is she taking photos in the park now?'],
   ['w', '④ Where is she taking photos now?'],
+  ['s', 'She is taking photos in the park now.', '她现在正在公园里拍照。', 'she taking photos in the park now'],
+  ['s', 'She is not taking photos in the park now.', '她现在没有在公园里拍照。', 'she not taking photos in the park now'],
+  ['s', 'She isn\'t taking photos in the park now.', '她现在没有在公园里拍照。', 'she isn\'t taking photos in the park now'],
+  ['s', 'Is she taking photos in the park now?', '她现在正在公园里拍照吗？', 'is she taking photos in the park now'],
+  ['s', 'Where is she taking photos in the park now?', '她现在在哪里拍照？', 'where she taking photos now'],
   ['s', 'Do, does, did. Do you like it?', 'do、does、did。你喜欢它吗？', 'do does did'],
   ['w', '有 be 就用 be：not 贴身后，提问跳句首，不请 do / does / did！'],
   ['n', '口诀：有 be 就用 be：not 贴在身后，提问跳到句首。'],

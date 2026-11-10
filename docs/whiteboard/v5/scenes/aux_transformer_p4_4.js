@@ -17,6 +17,8 @@ const ITEMS = [
   ['n', '英语变否定、变疑问，全靠一个「操作词」：be、can、will，或者 do / does / did。'],
   ['w', '英语的否定和疑问都靠「操作词」：be / can / will / do / does / did'],
   ['w', '句子里有操作词：直接加 not、直接提到句首（He can swim. → Can he swim?）'],
+  ['s', 'He can swim.', '他会游泳。', 'can swim'],
+  ['s', 'Can he swim?', '他会游泳吗？', 'can swim'],
   ['w', '句子里没有：就请 do / does / did 出来当操作词，动词回原形'],
   ['w', '🔬 助动词/情态动词『能量吸收器』与动词变形还原实验'],
   ['w', '🧲 强力能量磁铁'],

@@ -11,6 +11,7 @@ const ITEMS = [
   ['n', '特殊疑问句：用疑问词开头、问具体信息的问句，不能只答 Yes / No。'],
   ['w', 'Where is she taking photos now?'],
   ['s', 'Where is she taking photos now?', '她现在在哪里拍照？'],
+  ['s', 'She is taking photos in the park now.', '她现在正在公园里拍照。', 'she taking photos in the park now'],
   ['n', '疑问词：Where 问地点。三步：换 Where → 提护卫 is → 擦掉 in the park。'],
   ['w', '对地点提问 → 擦掉'],
   ['w', 'in the park'],
