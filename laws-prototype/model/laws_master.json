@@ -154956,7 +154956,117 @@
   "sources": [
    "zone"
   ],
-  "yaml": null,
+  "yaml_file": "phonics.yaml",
+  "yaml": {
+   "id": "S-44",
+   "zone": "拼读",
+   "group": "S",
+   "order": 44,
+   "headline": "屈折词尾三读：-s 与 -ed 各有三张脸，由词干最后一个音说了算",
+   "headline_kid": "cats 的 -s 读 /s/，dogs 的读 /z/，buses 的读 /ɪz/；-ed 也一样：walked 读 /t/，played 读 /d/，wanted 读 /ɪd/。前面是清音它就跟着清，前面是浊音它就跟着浊，前面是『亲戚音』就多加一拍。",
+   "claim": {
+    "type": "rule",
+    "statement": "复数/三单 -s 与过去式 -ed 的读音由词干末音唯一决定：清音后清化、浊音与元音后浊化、同类音后插入 /ɪ/。",
+    "evidence": [
+     "Berko 1958 年 wug 实验（总表 zone 分仓 sources：Berko 1958）：儿童对 /ɪz/ 一读的掌握最晚，属正常发展顺序，不是错误。"
+    ],
+    "scope": "只管规则屈折；不规则变化（men、went 等）不在此列。",
+    "exceptions": []
+   },
+   "mechanism": {
+    "beats": [
+     {
+      "beat": "清浊跟随",
+      "text_adult": "语音同化（voicing assimilation）：与 V-34 同一台机器，作用层不同——V-34 管派生前缀的拼写同化，本条管屈折词尾的发音同化。",
+      "anchors": [],
+      "text_kid": "词干最后一个音不振动（清音），-s 读 /s/、-ed 读 /t/；振动（浊音）或元音结尾，读 /z/、/d/。"
+     },
+     {
+      "beat": "亲戚音加拍",
+      "text_adult": "Berko 1958 年 wug 实验：儿童对 /ɪz/ 一读的掌握最晚，属正常发展顺序，不是错误。",
+      "anchors": [],
+      "text_kid": "词干本来就以咝音（s/z/sh/ch）结尾，-s 要读 /ɪz/；以 t/d 结尾，-ed 要读 /ɪd/。这一拍最难，练习里单独照顾。"
+     }
+    ]
+   },
+   "examples": [
+    {
+     "level": 1,
+     "group": "-s 的三张脸",
+     "words": [
+      "boots",
+      "birds",
+      "branches"
+     ],
+     "supports": "claim"
+    },
+    {
+     "level": 1,
+     "group": "-ed 的三张脸",
+     "words": [
+      "walked",
+      "called",
+      "decided"
+     ],
+     "supports": "claim"
+    }
+   ],
+   "error_cases": [],
+   "probes": [],
+   "quiz": [
+    {
+     "q": "walked 的 -ed 读什么？A. /t/ B. /d/",
+     "answer": "A. /t/——walk 以清音 /k/ 结尾，-ed 跟着清，读 /t/。",
+     "hint": "回到机制第 1 节「清浊跟随」：词干最后一个音不振动（清音），-ed 读 /t/。"
+    },
+    {
+     "q": "birds 的 -s 读什么？A. /z/ B. /s/",
+     "answer": "A. /z/——bird 以浊音 /d/ 结尾，-s 跟着浊，读 /z/。",
+     "hint": "回到机制第 1 节「清浊跟随」：词干最后一个音振动（浊音），-s 读 /z/。"
+    }
+   ],
+   "relatives": [
+    {
+     "id": "S-30",
+     "rel": "分工：-s 三读的字母行为描写在本条（S-30）；S-44 持统一屈折框架并互链"
+    },
+    {
+     "id": "S-18",
+     "rel": "分工：垫音/第三读机制在本条（S-18）；S-44 引用其机制并互链"
+    }
+   ],
+   "prereq": [],
+   "pain_points": [
+    "听不懂",
+    "说不出"
+   ],
+   "adult": {
+    "sources": [
+     "Berko (1958) wug 实验（总表 zone 分仓 sources：Berko 1958）。"
+    ],
+    "boundary": "只管规则屈折；不规则变化（men、went 等）不在此列。",
+    "disputes": [],
+    "evidence_grade": "一手论文（wug 实验）",
+    "pending": []
+   },
+   "corrections": [],
+   "gaps": [
+    "scene_spec",
+    "mechanism.visual",
+    "examples.sentence",
+    "error_cases",
+    "probes",
+    "prereq"
+   ],
+   "status": "入模中",
+   "version": "1.0",
+   "changelog": [
+    {
+     "date": "2026-11-10",
+     "change": "由总表 zone 分仓（Stewart 2026-11-03 自 NEW-T 裁定立条）入模补登：S 组第 44 条；例词取词库实有词形（boots/birds/branches/walked/called/decided，音标已核对）；quiz 2 道（walked/birds，与运行时 RV_GENQ 40 题零重词）；运行时已由 RV_GENQ 覆盖，本条只补事实源 yaml，不新增运行时通道。"
+    }
+   ]
+  },
   "lawdata": null,
   "zone": {
    "zone": "morph",
