@@ -4,7 +4,7 @@
 
 | 子目录 | 是什么 | 性质 |
 |---|---|---|
-| `mengxing-etymology-prototype/` | 词源工具链：refresh_et.py（ET 载荷刷新，带断言）、build.py、build_integration.py、patch_grouping.py + 独立词源原型 | **工具（现行）**：刷新主文件词源载荷就用 refresh_et.py |
+| `mengxing-etymology-prototype/` | 词源工具链：refresh_et.py（ET 载荷刷新，带断言）、build.py、build_integration.py、patch_grouping.py（待核面板分组补丁，一次性，已执行，2026-11-10 第八波第 25 项退役删除）+ 独立词源原型 | **工具（现行）**：刷新主文件词源载荷就用 refresh_et.py |
 | `etym-work/` | 词源数据工场：三源缓存（etymo/ox/wikt，共 7,355 个证据文件）、repair/（含 STANDARDS.md 修复标准与各批补丁）、草稿与解析中间产物、抓取脚本与日志 | **证据与工场档案**：双源互证的证据底子在此；真源仍是 `../model/etymology.json` |
 | `etymology-delivery/` | 旧一代词源交付快照（804 verified / 1,477 待核） | ⚠️ **过期归档，绝不是数据源**：内容比现行源落后一代，误用会重演载荷回退事故；仅留档备查 |
 | `mengxing-grammar-prototypes/` | 代词/冠词/连词原型全系（pronoun v1–v5、article v1–v3、conjunction v1–v2、白板原型、连词目录源 JSON） | 历史原型：集成进主文件的中转版本，已冻结；现行内容以主文件为准 |
