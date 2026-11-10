@@ -17,5 +17,7 @@ const ITEMS = [
   ['w', '厨师用刀切开苹果。（注意英语把“用刀 with a knife”放在句尾！） （句型公式：Agent + V + Patient + with + Instrument）'],
   ['w', '视角 1·第1幕'],
   ['s', 'The cook cuts the apple with a knife.', '厨师用刀切开苹果。（注意英语把“用刀 with a knife”放在句尾！） ｜ Agent + V + Patient + with + Instrument'],
+  ['s', 'The cook opens the door with a key.', '厨师用钥匙开门。'],
+  ['s', 'The cook breaks the egg with a spoon.', '厨师用勺子打碎鸡蛋。'],
 ];
 export default function build() { return autoBuild(SP, { title: '🔨 动作改变与工具小剧场 · 视角 1 cut / clean / open / break + Patient + with Instrument', items: ITEMS, acts: ACTS }); }

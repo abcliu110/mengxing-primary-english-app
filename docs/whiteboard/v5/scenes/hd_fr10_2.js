@@ -7,6 +7,7 @@ const ACTS = {"*": ["l_laugh"]};
 const ITEMS = [
   ['w', '框架语义学原理'],
   ['w', '🤩 情感触发小剧场 (Emotion: -ed vs -ing) — 同一客观事件，切换主语视角即切换动词 (-ed 形容词 (修饰体验者人：感到…的))'],
+  ['s', 'Ed, ing.', '-ed、-ing。'],
   ['w', '当前视角流向：人接收到刺激后，内心感到某种情绪 ｜ 句法结构公式：Experiencer (人) + be + excited / interested / tired'],
   ['w', '🎬 视角 2 动态角色流向图：-ed 形容词 (修饰体验者人：感到…的)'],
   ['w', '⚡ -ed 形容词 (修饰体验者人：感到…的)'],
@@ -14,6 +15,8 @@ const ITEMS = [
   ['w', '🗣️ The children are very excited about the game!'],
   ['w', '孩子们对这场比赛感到非常兴奋！ （句型公式：Experiencer (人) + be + excited / interested / tired）'],
   ['w', '视角 2·第1幕'],
-  ['s', 'The children are very excited about the game!', '孩子们对这场比赛感到非常兴奋！ ｜ Experiencer (人) + be + excited / interested / tired']
+  ['s', 'The children are very excited about the game!', '孩子们对这场比赛感到非常兴奋！ ｜ Experiencer (人) + be + excited / interested / tired'],
+  ['s', 'The children are very interested in the game!', '孩子们对这场比赛很感兴趣！'],
+  ['s', 'The children are very tired after the game!', '孩子们比赛后很累！']
 ];
 export default function build() { return autoBuild(SP, { title: '🤩 情感触发小剧场 · 视角 2 -ed 形容词 (修饰体验者人：感到…的)', items: ITEMS, acts: ACTS }); }

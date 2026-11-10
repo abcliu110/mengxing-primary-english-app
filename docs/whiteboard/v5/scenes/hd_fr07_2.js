@@ -14,6 +14,7 @@ const ITEMS = [
   ['w', '🗣️ I know his name. I think he is very clever.'],
   ['w', '我知道他的名字。我认为他很聪明。 （句型公式：know + n. / I think (that)...）'],
   ['w', '视角 2·第1幕'],
-  ['s', 'I know his name. I think he is very clever.', '我知道他的名字。我认为他很聪明。 ｜ know + n. / I think (that)...']
+  ['s', 'I know his name. I think he is very clever.', '我知道他的名字。我认为他很聪明。 ｜ know + n. / I think (that)...'],
+  ['s', 'I think that he is very clever.', '我认为他很聪明。']
 ];
 export default function build() { return autoBuild(SP, { title: '🧠 认知与思维小剧场 · 视角 2 know / think (知道 / 认为)', items: ITEMS, acts: ACTS }); }

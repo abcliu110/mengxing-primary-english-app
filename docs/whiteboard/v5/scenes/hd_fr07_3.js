@@ -14,6 +14,8 @@ const ITEMS = [
   ['w', '🗣️ Remember to turn off the light!'],
   ['w', '记得去关灯！（灯还没关） （句型公式：remember / forget to do sth）'],
   ['w', '视角 3·第1幕'],
-  ['s', 'Remember to turn off the light!', '记得去关灯！（灯还没关） ｜ remember / forget to do sth']
+  ['s', 'Remember to turn off the light!', '记得去关灯！（灯还没关） ｜ remember / forget to do sth'],
+  ['s', 'Don\'t forget to turn off the light!', '别忘了关灯！'],
+  ['s', 'Don\'t forget to do your homework.', '别忘了做作业。']
 ];
 export default function build() { return autoBuild(SP, { title: '🧠 认知与思维小剧场 · 视角 3 remember ↔ forget (记住 ↔ 忘记)', items: ITEMS, acts: ACTS }); }

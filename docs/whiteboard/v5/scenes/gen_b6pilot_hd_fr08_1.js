@@ -17,5 +17,8 @@ const ITEMS = [
   ['w', '怀特老师给学生们讲了一个有趣的故事。 （句型公式：Speaker + tell + Addressee + Message）'],
   ['w', '视角 1·第1幕'],
   ['s', 'Miss White tells the students an interesting story.', '怀特老师给学生们讲了一个有趣的故事。 ｜ Speaker + tell + Addressee + Message'],
+  ['s', 'Miss White tells the students to read the story.', '怀特老师让学生们读这个故事。'],
+  ['s', 'Miss White tells the students to do their homework.', '怀特老师让学生们做作业。'],
+  ['s', 'Miss White tells the students the message.', '怀特老师把这个消息告诉学生们。'],
 ];
 export default function build() { return autoBuild(SP, { title: '💬 言语交流小剧场 · 视角 1 tell sb sth / tell sb to do', items: ITEMS, acts: ACTS }); }

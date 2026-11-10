@@ -14,6 +14,7 @@ const ITEMS = [
   ['w', '🗣️ You can ask me questions, and I will answer you.'],
   ['w', '你们可以问我问题，我会回答你们。 （句型公式：ask a question ↔ answer the question）'],
   ['w', '视角 2·第1幕'],
-  ['s', 'You can ask me questions, and I will answer you.', '你们可以问我问题，我会回答你们。 ｜ ask a question ↔ answer the question']
+  ['s', 'You can ask me questions, and I will answer you.', '你们可以问我问题，我会回答你们。 ｜ ask a question ↔ answer the question'],
+  ['s', 'Ask a question. Answer the question.', '问一个问题。回答那个问题。']
 ];
 export default function build() { return autoBuild(SP, { title: '💬 言语交流小剧场 · 视角 2 ask ↔ answer', items: ITEMS, acts: ACTS }); }

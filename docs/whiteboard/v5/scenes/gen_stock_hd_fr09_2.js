@@ -17,5 +17,6 @@ const ITEMS = [
   ['w', '张鹏乘坐公交车（/骑自行车/走路）去学校。 （句型公式：Traveler + take a bus / ride a bike + to Destination）'],
   ['w', '视角 2·第1幕'],
   ['s', 'Zhang Peng takes a bus ( / rides a bike / walks) to school.', '张鹏乘坐公交车（/骑自行车/走路）去学校。 ｜ Traveler + take a bus / ride a bike + to Destination'],
+  ['s', 'Take the bus. Ride my bike.', '坐公交车。骑我的自行车。'],
 ];
 export default function build() { return autoBuild(SP, { title: '🚌 交通出行小剧场 · 视角 2 方式二：动词短语作谓语 (take a... / ride a... / walk)', items: ITEMS, acts: ACTS }); }

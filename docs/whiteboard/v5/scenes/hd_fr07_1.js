@@ -15,6 +15,7 @@ const ITEMS = [
   ['w', '艾米在夏天学会游泳。 （句型公式：learn + n. / learn to do sth）'],
   ['w', 'Amy learns to swim in summer. ｜ 艾米在夏天学会游泳。 ｜ learn + n. / learn to do sth'],
   ['w', '视角 1·第1幕'],
-  ['s', 'Amy learns to swim in summer.', '艾米在夏天学会游泳。 ｜ learn + n. / learn to do sth']
+  ['s', 'Amy learns to swim in summer.', '艾米在夏天学会游泳。 ｜ learn + n. / learn to do sth'],
+  ['s', 'Amy learns to do it herself.', '艾米学会自己做。']
 ];
 export default function build() { return autoBuild(SP, { title: '🧠 认知与思维小剧场 · 视角 1 learn (学习：从不会到会)', items: ITEMS, acts: ACTS }); }
