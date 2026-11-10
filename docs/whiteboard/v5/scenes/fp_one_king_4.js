@@ -75,4 +75,4 @@ const ITEMS = [
   ['w', '口诀：先搭骨架再挂花。'],
   ['w', '🧠 第一性原理 ④ 一山不容二虎单核谓语律']
 ];
-export default function build() { return autoBuild(SP, { title: '👑 第一性原理 · 一句一王 · 4', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '👑 第一性原理 · 一句一王 · 4', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

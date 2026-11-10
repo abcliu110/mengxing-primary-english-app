@@ -18,4 +18,4 @@ const ITEMS = [
   ['m', 'fly over'],
   ['m', 'fly on'],
 ];
-export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · fly 核心义', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · fly 核心义', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

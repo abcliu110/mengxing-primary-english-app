@@ -75,4 +75,4 @@ const ITEMS = [
   ['w', '口诀：元音前面搭座桥，双唇前面 n 变 m。'],
   ['w', '🧠 第一性原理 ① 口腔省力同化律']
 ];
-export default function build() { return autoBuild(SP, { title: '⚙️ 第一性原理 · 经济原则 · 3', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '⚙️ 第一性原理 · 经济原则 · 3', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

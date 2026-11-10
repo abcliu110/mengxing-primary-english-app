@@ -75,4 +75,4 @@ const ITEMS = [
   ['w', '口诀：fl 飞，gl 亮，sl 滑下来。'],
   ['w', '🧠 第一性原理 ② 字母象形与音义同源簇']
 ];
-export default function build() { return autoBuild(SP, { title: '🔤 第一性原理 · 象似性 · 2', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🔤 第一性原理 · 象似性 · 2', items: ITEMS, acts: ACTS, actorFitW: 500 }); }
