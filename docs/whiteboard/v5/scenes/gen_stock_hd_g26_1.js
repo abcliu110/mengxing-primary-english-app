@@ -15,14 +15,16 @@ const ITEMS = [
   ['w', '🔬 can 的两种意思'],
   ['w', '能力（会）：I can swim.'],
   ['w', '许可（可以）：Can I use your pen? — Yes, you can. / Sorry, you can\'t.'],
+  ['s', 'Sorry, you can\'t.', '对不起，你不可以。'],
   ['s', 'Can I use your pen? Yes, you can.', '我可以用你的钢笔吗？可以。'],
   ['w', '公式：主语 + can + 动词原形；否定 can\'t；疑问 Can + 主语 + 动词原形？'],
   ['w', '🧲 can 后面动词回原形：He can swims. ✗ → He can swim. ✓'],
+  ['s', 'He can swim.', '他会游泳。'],
   ['w', '常错：Can you to swim? ✗ → Can you swim? ✓'],
   ['w', '🗣️ 语境实证：Birds can fly, and fish can swim.'],
   ['w', '🎵 口诀：情态动词小能手 can，会做某事本领强；主语是谁它不变，后面动词用原形；否定直接变 ca'],
   ['w', 'G26 第1幕'],
-  ['s', 'Birds can fly, and fish can swim.', '鸟儿会飞，鱼儿会游泳。'],
+  ['s', 'Birds can fly, and fish can swim.', '鸟儿会飞，鱼儿会游泳。', 'ca'],
   ['n', '🎵 口诀：情态动词小能手 can，会做某事本领强；主语是谁它不变，后面动词用原形；否定直接变 can\'t，疑问把 can 提句首！'],
 ];
 export default function build() { return autoBuild(SP, { title: '📘 G26 底层原理', items: ITEMS, acts: ACTS }); }

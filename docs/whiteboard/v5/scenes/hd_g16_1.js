@@ -13,9 +13,16 @@ const ITEMS = [
   ['w', '🔬 G16 · be 动词现在时三剑客 (am / is / are) 底层结构拆解与汉英思维对比'],
   ['w', '① 典型语境：I am ten years old.'],
   ['w', '我十岁了。你是我最好的朋友，我们在1班。他很高，她很亲切，水很温。'],
+  ['s', 'You are my best friend.', '你是我最好的朋友。'],
+  ['s', 'We are in Class 1.', '我们在1班。'],
+  ['s', 'He is tall. She is kind. The water is warm.', '他很高。她很亲切。水很温。'],
   ['w', '② 核心结构规律：① 三剑客分工：I ➔ am；he / she / it / 单数名词 / 不可数名词 ➔ is；'],
   ['w', 'you / we / they / 复数名词 / A and B ➔ are'],
+  ['s', 'Tom and Jim are in Class 1.', 'Tom 和 Jim 在 1 班。']
   ['w', '③ 进阶要点：② 缩略形式：I\'m = I am, he\'s = he is, isn\'t = is not, aren\'t = are not（am not 无缩写）'],
+  ['s', "I'm ten years old. He's tall.", '我十岁了。他很高。'],
+  ['s', "It isn't cold. They aren't here.", '它不冷。他们不在这儿。'],
+  ['s', 'It is not cold. They are not here.', '它不冷。他们不在这儿。'],
   ['w', 'G16 第1幕'],
   ['s', 'I am ten years old.', '我十岁了。'],
   ['n', '🎵 口诀：我(I)用 am，你(you)用 are，is 连着他(he)她(she)它(it)；单数不可数全用 is，复数主语一律 are！']
