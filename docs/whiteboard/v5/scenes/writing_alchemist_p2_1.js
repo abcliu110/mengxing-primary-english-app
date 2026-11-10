@@ -4,7 +4,7 @@
 // 角色关键帧：sprites/wa1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wa1.js';
-const ACTS = {"piano": ["linda_piano"], "sweeping": ["m_sweep"], "strawberries": ["m_berry"], "sheep": ["l_sheep"], "helps": ["linda_help"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '第二条公式：写开心的事，别只会说 very happy。'],
   ['w', 'What a ...!'],

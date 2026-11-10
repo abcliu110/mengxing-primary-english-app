@@ -4,7 +4,7 @@
 // 角色关键帧：sprites/wa1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wa1.js';
-const ACTS = {"piano": ["linda_piano"], "sweeping": ["m_sweep"], "strawberries": ["m_berry"], "sheep": ["l_sheep"], "helps": ["linda_help"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '隐喻：打比方：读书 opens a window to the world，给你打开一扇看世界的窗。'],
   ['n', '五感法则：还有一条：眼睛看 look、鼻子闻 smell、耳朵听 singing，把春天写活。'],
