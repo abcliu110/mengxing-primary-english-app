@@ -32,9 +32,11 @@ gen_phonlaws.py — 拼读律页运行时记录 PHONLAWS 的 quiz 注入生成�
   - 生成前后逐路径深比：差异路径必须全部落在 $.<id>.quiz 之内，
     任一非 quiz 字段差异即停（见 build() 末尾断言）。其余 22 个字段
     以现行字面量为模板原样保留，不从事实源重算。
-  - S-44 不在 PHONLAWS 内：其 yaml 为 null（zone 条目，内容在 morph
-    区，见 check_badge_erridx.py 排除登记），故 PHONLAWS 52 条 =
-    S-01..S-43（43 条）+ SR-01..SR-09（9 条）。
+  - S-44 不在 PHONLAWS 内：2026-11-10 收尾线已补 yaml（含 2 道 quiz），
+    但 PHONLAWS 字面量仍无 S-44 行（本生成器只替换既有行的 quiz，
+    不加行；加行须生成器支持行新增 + roster 门禁复核，另立项），故
+    PHONLAWS 52 条 = S-01..S-43（43 条）+ SR-01..SR-09（9 条）；
+    S-44 的 2 道 quiz 只在 yaml/总表，不进运行时。
 
 冻结断言（任一失败即停，退出码 1）
   - S 组 quiz 86 题（43 条 × 2）、SR 组 18 题（9 条 × 2），合计 104 题。
@@ -151,10 +153,24 @@ def load_quiz():
     byid = {r["id"]: r for r in recs if isinstance(r, dict)}
     doc = yaml.safe_load(PHONICS_YAML.read_text(encoding="utf-8"))
     ybyid = {e["id"]: e for e in doc["entries"]}
-    # S-44 例外登记：yaml 为 null 的 zone 条目，不在 PHONLAWS 内
+    # S-44 例外登记：有 yaml（2026-11-10 收尾线补齐，2 道 quiz）但无
+    # PHONLAWS 行，quiz 不注入；行新增须生成器支持加行 + roster 门禁
+    # 复核，另立项。冻结：yaml 有且 quiz 恰 2 题（键形同 52 行），且
+    # phonics.yaml 与总表分仓一致，且 S-44 不进 EXPECTED_IDS。
     s44 = byid.get("S-44")
-    if not s44 or s44.get("yaml") is not None:
-        fail("S-44 应为 yaml=null 的 zone 条目（内容在 morph 区），实测不符")
+    if not s44 or not isinstance(s44.get("yaml"), dict):
+        fail("S-44 应已有 yaml（2026-11-10 收尾线补齐），实测缺失")
+    s44q = s44["yaml"].get("quiz")
+    if not isinstance(s44q, list) or len(s44q) != 2:
+        fail(f"S-44 yaml quiz 应恰为 2 题，实得 {len(s44q) if isinstance(s44q, list) else type(s44q)}")
+    for qi, q in enumerate(s44q):
+        if not isinstance(q, dict) or set(q.keys()) != {"q", "answer", "hint"}:
+            fail(f"S-44 第 {qi + 1} 题键应恰为 {{q, answer, hint}}")
+    s44y = ybyid.get("S-44")
+    if s44y is None or (s44y.get("quiz") or []) != s44q:
+        fail("S-44 phonics.yaml 缺失或 quiz 与总表 yaml 分仓不一致")
+    if "S-44" in EXPECTED_IDS:
+        fail("S-44 不在 PHONLAWS 内，不得进 EXPECTED_IDS")
     out = {}
     for lid in EXPECTED_IDS:
         rec = byid.get(lid)
