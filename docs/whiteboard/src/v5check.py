@@ -49,6 +49,9 @@ R2/R4 在 v5 下的规格依据（SOP.md §0 / §7 / §8；引擎实测）：
           down 的不定式标记）；
           (4) 二选一：'/' 连接的备选（如 well/badly），任一备选合规
           即合规。
+          单字母词（I / a）只认句中原形，不走屈折口径（第七波第 2 项：
+          I + s = is、a + s = as 不再算覆盖）。's' 是复数标记，特许
+          1 字母。
           其余一律视为错位（多句词表串到一句上、答案词、拼写碎片等），
           须把词移到它所属的那句的词表里或删掉。只提醒，不作门禁。
   R4-F1  ACTS 在位：const ACTS 存在（三类幕实测 870/870 在位）。
@@ -330,13 +333,19 @@ def sprite_fi(lib):
 
 
 def pre_word_ok(pre, sent_tokens, pre_list_first):
-    """R2-P1 统一口径（第六波第 4 项）：先读词表中一个词合规，当且仅当满足
+    """R2-P1 统一口径（第六波第 4 项；第七波第 2 项收紧单字母词）：先读词表中一个词合规，当且仅当满足
     以下任一：(1) 屈折一致（原形/屈折形/不规则同族在本句中）；
     (2) 词块（本句某词的子串，或包含本句某词）；(3) 词条占位
     （something/somebody/someone，或词条首的 be）。'/' 备选由调用方拆开，
-    任一备选合规即合规。"""
+    任一备选合规即合规。
+    单字母词（I / a）只认句中原形：旧 token_covered 会把 I + s = is、
+    a + s = as 算成覆盖，让句中没有 I/a 的词表蒙混过关（如
+    writing_alchemist_3 的词表尾 'I'，句中有 is、无 I）。's' 是复数
+    标记，特许 1 字母（走下方的子串分支，如 books 里的 s）。"""
     if not pre:
         return True
+    if len(pre) == 1 and pre != 's':
+        return pre in sent_tokens
     if token_covered(pre, sent_tokens):
         return True
     # 词块：本句某词包含先读词（如 im- ← Import），或先读词包含本句某词
