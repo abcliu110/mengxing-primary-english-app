@@ -55,11 +55,12 @@ const ITEMS = [
   ['w', 'n. 出口商品'],
   ['w', 'ex-ˈport'],
   ['w', 'v. 把商品出口到国外'],
+  ['s', 'Record, desert, export, import.', 'record、desert、export、import。', 're cord de sert ex port'],
   ['n', 'export：名词「出口商品」前重；动词「出口」后重。import 也一样。'],
   ['n', '放进句子里听一听：前一个 present 是礼物，后一个 present 是送。'],
   ['w', 'Here is a ˈpresent for you! Let me preˈsent it to you.'],
   ['w', '这是送你的礼物！让我把它送给你。  名词前重，动词后重！'],
-  ['s', 'Here is a present for you! Let me present it to you.', '这是送你的礼物！让我把它送给你。'],
+  ['s', 'Here is a present for you! Let me present it to you.', '这是送你的礼物！让我把它送给你。', 'pre sent'],
   ['n', '口诀：名前动后：东西稳在头，动作冲到尾。'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎯 重音与弱读 · 1', items: ITEMS, acts: ACTS }); }
