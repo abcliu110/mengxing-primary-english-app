@@ -919,7 +919,13 @@ entries:
     sentence: I don't know this word. It is long and thin, and we eat with it.
     scene_note: 卡住时自救（策略能力）：说不出那个词，就绕着样子说（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "Firstly, it's useful and convenient to buy things, it's necessary for you."
+    right: "Firstly, it's useful and convenient to buy things, so it's necessary for you."
+    error_type: "逻辑关系未标记（语篇能力：因果未显性连接）"
+    source_type: "真实语料错型"
+    diagnosis: "两句话之间是因果关系，学习者却只用逗号连着，没有标出 so：话要连成篇，因果、转折这些逻辑关系必须显性标记出来，读者才跟得上。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-052〕"
+    diagnosis_kid: "前一句是原因，后一句是结果，中间要加上 so，读者才知道这两句话是什么关系。"
   relatives:
   - id: E-08
     rel: 同族
@@ -1020,7 +1026,13 @@ entries:
     sentence: It's like a ...
     scene_note: 说不出名字时用比方绕过去（清单登记求生句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "I hope students can happy."
+    right: "I hope students can feel happy."
+    error_type: "动词缺失（卡住时无自救策略：直接丢掉动词）"
+    source_type: "真实语料错型"
+    diagnosis: "can 后面缺了动词，学习者卡住就直接把动词丢了，没有换个说法绕过去：策略能力是能力本身，卡住时要会迂回、换述、求助，而不是把不会的部分空着。〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151045｜定位：文中动词缺失（can 后缺 feel）偏误例｜语料为某中学初二两个班 81 名学生 46 篇作文中的 53 处动词偏误之一｜学段：初二｜病例号 VEC-053〕"
+    diagnosis_kid: "can 后面不能直接跟 happy，中间要加 feel：can feel happy。卡住了要换个说法，别把词丢了。"
   relatives:
   - id: E-10
     rel: 同族
@@ -1115,7 +1127,13 @@ entries:
     sentence: Could you open the window, please?
     scene_note: 显性教过场合规矩之后：同一个请求换上情态问句——得体是专门教出来的（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "Could you possibly help me with this heavy luggage?"
+    right: "Could you help me with this heavy luggage?"
+    error_type: "语用失误（语法全对、场合错：对好朋友过度委婉）"
+    source_type: "真实语料错型"
+    diagnosis: "这句话语法全对，错在场合：could possibly 是非常委婉客气的说法，用在不太熟的人之间；对好朋友这样说就显得见外。80 名大学生中有 29 人误判这句话对好朋友也得体——语法过关不等于语用过关，得体必须专门教。〔出处：邬颖祺, 陈国华. 中国大学生英语语用语言能力：调查与分析[J]. 外语界, 2010（刊期页码待核）｜定位：判断题第 3 题（请好朋友帮忙搬运东西）｜语料为80 名中国大学生（英专与非英专各 40 名）的请求行为与语用惯例语调查｜学段：大学｜病例号 VEC-054〕"
+    diagnosis_kid: "对好朋友帮忙搬东西，说 Could you help me 就够了；Could you possibly 太客气了，听起来像对陌生人说话。"
   relatives:
   - id: E-05
     rel: 同族
@@ -1275,7 +1293,13 @@ entries:
     visual: 聚光灯图：对比呈现把光打在规矩处
     anchors: []
   examples: []
-  error_cases: []
+  error_cases:
+  - wrong: "For example, we are in the college far away from home, our parents can give us money at home when we have credit cards."
+    right: "For example, if we are in the college far away from home, our parents can give us money at home when we have credit cards."
+    error_type: "条件标记缺失（noticing：if 藏在语境里未被注意）"
+    source_type: "真实语料错型"
+    diagnosis: "条件关系藏在语境里，学习者一百遍也没看见 if：输入只有被注意到才变成摄入，条件标记这种隐蔽的语用信息尤其需要显性提醒——看见了，才能写出来。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-055〕"
+    diagnosis_kid: "这句话是说「如果我们在外地上大学」，开头要加上 if，不然读者不知道这是个条件。"
   relatives:
   - id: E-12
     rel: 同族
@@ -1448,7 +1472,13 @@ entries:
     sentence: Yesterday I went to the zoo with my friend. We saw the pandas there.
     scene_note: 交代清楚的写法：何时、去哪儿、和谁、看见什么，一样样亲手交到读者眼前（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "In the life, have many disabled people."
+    right: "In life, there are many disabled people."
+    error_type: "无主语句（以写者为中心：指代与框架缺失）"
+    source_type: "真实语料错型"
+    diagnosis: "这句话没有主语、没有地点框架：读者不知道「在哪儿」「是谁」，只有写作者自己知道自己在说什么——典型的以写者为中心的句子；英语要用 there be 搭出「有……」的框架，In the life 也要去掉 the。〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151045｜定位：文中 There be 与 Have 区分论述例｜语料为某中学初二两个班 81 名学生 46 篇作文中的 53 处动词偏误之一｜学段：初二｜病例号 VEC-040〕"
+    diagnosis_kid: "写句子要让读者看得懂：谁、在哪儿，都得写出来。英语说「有很多人」要用 there are，不能直接写 have。"
   relatives:
   - id: W-02
     rel: 同族
@@ -1550,7 +1580,13 @@ entries:
     sentence: My small dog runs to me every morning and waits at the door.
     scene_note: 改着重写出的句子：回环一圈，句子长出了细节（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "Different people have different views, have different choices."
+    right: "Views and choices vary from people to people."
+    error_type: "句式重复堆叠（想写改三过程未切换：无回头重组）"
+    source_type: "真实语料错型"
+    diagnosis: "学习者按想到的顺序把两个 have 句并排写到底，没有回头改计划、重组句子：两个并列主语其实说的是同一件事（因人而异），回头重组一次就能并成一句 Views and choices vary from people to people。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-041〕"
+    diagnosis_kid: "写完要回头看看：两句话说的是同一件事，就能并成一句，别一口气写到底不回头。"
   relatives:
   - id: W-01
     rel: 同族
@@ -1645,7 +1681,13 @@ entries:
     sentence: I was tired this morning because I went to bed late.
     scene_note: 知识转化的一小步：写的时候把「为什么」也想清楚、写出来（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "We can buy clothes, pay for tuition, go travel with it."
+    right: "We can buy clothes, pay for tuition, and go traveling with it."
+    error_type: "知识讲述式罗列（按检索顺序写下，无加工重组）"
+    source_type: "真实语料错型"
+    diagnosis: "学习者按脑子里检索到的顺序把三个动作顺次写下（buy、pay、go travel），没有加工重组：并列的动作要补 and、go travel 要改成与前面平行的 go traveling，罗列不等于成篇。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-042〕"
+    diagnosis_kid: "把几个动作排在一起写，要记得加 and，最后一个动作也要和前面一个样子：go traveling。"
   relatives:
   - id: W-04
     rel: 同族
@@ -1738,7 +1780,13 @@ entries:
     sentence: The dog ran to me. It was very happy.
     scene_note: 先改意思层（跑向我、它是开心的），再改字词层：run 改 ran、I 改 me、补上 was（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "Credit cards have many advantages and disadvantages."
+    right: "There are many advantages and disadvantages of having credit cards."
+    error_type: "主谓搭配错（意思层问题：行为者不能执行 have）"
+    source_type: "真实语料错型"
+    diagnosis: "信用卡自己不会「拥有」优点和缺点，have 的主语错了：这是意思层、结构层的问题，不是表面改一两个词能救的，要回头改句子的主干，改成 there be 结构。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-043〕"
+    diagnosis_kid: "信用卡自己不会「有」优点缺点，这句话主语用错了，要换个说法：There are many advantages..."
   relatives:
   - id: W-02
     rel: 同族
@@ -1834,7 +1882,13 @@ entries:
     sentence: Day after day, it tried and tried. One morning, it flew up to a tree.
     scene_note: 接着写：读过的 fly、looked at 悄悄跑进笔下——理解把产出拉平（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "On the one hand, Frank helped Sheila; on the other hand, he ran a successful gallery."
+    right: "While running a successful gallery, Frank helped Sheila."
+    error_type: "模板机械套用（读后续写：无对比关系的两句硬套 on the one hand）"
+    source_type: "真实语料错型"
+    diagnosis: "两句说的是同一个人的两件并列事实，之间没有对比关系，学习者却机械套用了 on the one hand…on the other hand 的对比模板：读后续写要先理解情节关系再选连接词，模板不能先行。〔出处：秦榛嘉. 高一学生英语读后续写中逻辑连接词偏误分析[J]. 职业教育发展, 2026, 15(3): 217-227. DOI: 10.12677/ve.2026.153145｜定位：文中转折类连接词误用例及改正｜语料为万州高级中学高一 53 名学生读后续写中的 401 个连接词、86 处偏误之一｜学段：高一｜病例号 VEC-044〕"
+    diagnosis_kid: "on the one hand 是用来讲两件相反的事的。这两句没有相反，只是两件并列的事，不能硬套这个模板。"
   relatives:
   - id: W-06
     rel: 同族
@@ -1925,7 +1979,13 @@ entries:
     sentence: In the morning, I get up at seven. Then I have breakfast with Mum and Dad.
     scene_note: 说法借现成（日常句型整块取用），写的是自己的早上（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "In addition, I think use credit card to pay for goods is a fashionable style."
+    right: "In addition, I think using a credit card to pay for goods is a fashionable style."
+    error_type: "动名词形式错（内容自创、语言未借现成块）"
+    source_type: "真实语料错型"
+    diagnosis: "内容是学习者自己的想法，语言却要借现成块：think 后面接动名词作主语要用 using a credit card，学习者自己拼了一个 use credit card 的错形——句式要托管给范文里的现成块，不要现拼。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-045〕"
+    diagnosis_kid: "think 后面说「用信用卡」这件事，要用 using a credit card，这个是现成的说法，照着用就行。"
   relatives:
   - id: W-05
     rel: 同族
@@ -2020,7 +2080,13 @@ entries:
     sentence: I can read 'beautiful' in a book. When I write it, I stop and think.
     scene_note: 读时认得、写时卡住——输出把缺口照出来：接下来要学的，就是它（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "It has become a fashion, and we can happy to have a credit card."
+    right: "It has become a fashion, and we can be happy to have a credit card."
+    error_type: "系动词缺失（输出暴露缺口：can 后缺 be）"
+    source_type: "真实语料错型"
+    diagnosis: "只在心里想，缺 be 的问题藏得住；一动笔写出来，缺口就暴露了：can 后面跟形容词 happy，中间必须有系动词 be——输出的意义正在于让缺口现形，再补上它。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-046〕"
+    diagnosis_kid: "can 后面跟 happy，中间少了 be：we can be happy。写出来才发现少了东西，这就是动笔的好处。"
   relatives:
   - id: E-14
     rel: 同族
@@ -2103,7 +2169,13 @@ entries:
     visual: 标签图：每条推荐挂证据等级牌（强/中/较弱）
     anchors: []
   examples: []
-  error_cases: []
+  error_cases:
+  - wrong: "They hard the news of important events in history."
+    right: "They heard the news of important events in history."
+    error_type: "拼写错误（基本功不自动化：漏写字母 e）"
+    source_type: "真实语料错型"
+    diagnosis: "heard 被写成 hard，漏了一个字母 e：拼写基本功没有自动化，写内容的时候还要分神想拼法，内容表达就被堵住了——基本功要练到不用想。〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151045｜定位：文中动词拼写偏误例｜语料为某中学初二两个班 81 名学生 46 篇作文中的 53 处动词偏误之一｜学段：初二｜病例号 VEC-047〕"
+    diagnosis_kid: "heard 里面有个 e，别写成 hard 了。拼写要练熟，写的时候不用想，内容才写得顺。"
   relatives:
   - id: W-04
     rel: 同族
@@ -2172,7 +2244,13 @@ entries:
     visual: 天平图：一套策略压过一摞作文本
     anchors: []
   examples: []
-  error_cases: []
+  error_cases:
+  - wrong: "I have a credit card, it makes me happy."
+    right: "I have a credit card, which makes me happy."
+    error_type: "逗号拼接（两短句错误拼接：句子合并靶子）"
+    source_type: "真实语料错型"
+    diagnosis: "两个短句用一个逗号硬拼在一起，是典型的逗号拼接：后一句其实是修饰 credit card 的定语从句，要用 which 接起来——句子合并是少数实测有效的单项训练，靶子就是这种拼接。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-048〕"
+    diagnosis_kid: "两个句子不能只用一个逗号连起来。后一句是说信用卡的，要用 which 把它接上去。"
   relatives:
   - id: W-08
     rel: 同族
@@ -2253,7 +2331,13 @@ entries:
     sentence: I like autumn because the leaves turn red and gold, and the days are cool.
     scene_note: 撤掉句框还能写：说法开始是自己的了——这才算学会（自建例句）
     supports: claim
-  error_cases: []
+  error_cases:
+  - wrong: "I was good at singed and danced."
+    right: "I was good at singing and dancing."
+    error_type: "-ing 形式塌回 -ed（支架撤后句式未真正拥有）"
+    source_type: "真实语料错型"
+    diagnosis: "be good at 后面要跟动名词 -ing，学习者写成了过去式 -ed：示范和共构的时候会写，支架一撤就塌回老样子，说明这个句式还没有真正变成自己的——要练到撤掉支架也能写对。〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151045｜定位：文中介词后动词形式偏误例｜语料为某中学初二两个班 81 名学生 46 篇作文中的 53 处动词偏误之一｜学段：初二｜病例号 VEC-049〕"
+    diagnosis_kid: "good at 后面要跟 singing、dancing 这种 -ing 的样子，不能写成 singed、danced。"
   relatives:
   - id: W-06
     rel: 同族
@@ -2334,7 +2418,13 @@ entries:
     visual: 漏斗图：全部输入先过『缺口』筛，只留相关的进入深加工
     anchors: []
   examples: []
-  error_cases: []
+  error_cases:
+  - wrong: "I don't parents should push their children to take after-school classes."
+    right: "I don't think parents should push their children to take after-school classes."
+    error_type: "动词缺失（先试产出撞见缺口：缺 think）"
+    source_type: "真实语料错型"
+    diagnosis: "先给真实产出任务，学习者一写就撞见了缺口：don't 后面直接跟了 parents，中间少了一个 think——缺口是写出来的，不是讲出来的；撞见之后再给输入，think 就补上了。〔出处：赵柳棚. 初二学生英语写作动词偏误实证分析[J]. 职业教育发展, 2026, 15(1): 335-344. DOI: 10.12677/ve.2026.151045｜定位：文中动词缺失偏误例｜语料为某中学初二两个班 81 名学生 46 篇作文中的 53 处动词偏误之一｜学段：初二｜病例号 VEC-050〕"
+    diagnosis_kid: "I don't 后面要先说 think，再说 parents 怎么样：I don't think parents should...，中间不能少 think。"
   relatives:
   - id: W-07
     rel: 同族
@@ -2709,7 +2799,13 @@ entries:
     visual: 红灯图：保分广告牌被打上「无研究支持」印章
     anchors: []
   examples: []
-  error_cases: []
+  error_cases:
+  - wrong: "On the one hand, using credit cards brings us convenience, we needn't take much cash any longer."
+    right: "On the one hand, using credit cards brings us convenience, because we don't have to take much cash any longer."
+    error_type: "模板套用无真实对比（套公式≠分数：逻辑关系未标记）"
+    source_type: "真实语料错型"
+    diagnosis: "这句套了 on the one hand 的公式，却没有第二手、没有真实对比，后半句与前半句的因果关系也没有标出来（缺 because）：套公式保不了满分，只有策略加练习量加反馈的组合才管用。〔出处：Sun, F. Negative Transfer of Chinese Sentence Patterns on Students' English Writing[J]. Journal of Language Teaching and Research, 2013, 4(6): 1298-1302. DOI: 10.4304/jltr.4.6.1298-1302｜定位：文中汉语直译型错句及改正｜语料为青岛科技大学学生信用卡话题写作样本｜学段：大学｜病例号 VEC-051〕"
+    diagnosis_kid: "on the one hand 要配一个相反的说法才完整；后半句说原因，要加上 because。光套句式拿不到分。"
   relatives:
   - id: W-10
     rel: 同族
