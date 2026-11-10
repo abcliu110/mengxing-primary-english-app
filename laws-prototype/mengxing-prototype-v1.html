@@ -18636,7 +18636,7 @@ function wbApplyAt(ms){
   else wbMoveHand(current);
   if(window.wbCapProgress && wbS.capText){
     var _n=wbS.capText.querySelectorAll('.wbc').length;
-    wbCapProgress(wbS.capText, _n, ms, wbS.drawTotal);
+    wbCapProgress(wbS.capText, _n, ms, wbS.total);
   }
 }
 function wbMoveHand(it){
@@ -19808,7 +19808,7 @@ function wbApplyAt(ms){
   wbMoveHand(current);
   if(window.wbCapProgress && wbS.capText){
     var _n=wbS.capText.querySelectorAll('.wbc').length;
-    wbCapProgress(wbS.capText, _n, ms, wbS.drawTotal);
+    wbCapProgress(wbS.capText, _n, ms, wbS.total);
   }
 }
 function wbMoveHand(it){
@@ -22734,9 +22734,9 @@ mountAll();
   function hiClear(el){ if(el) el.querySelectorAll('.wbc').forEach(function(s){ s.classList.remove('wbc-on'); }); }
 
   /* 供 wbApplyAt 调用：按绘制进度高亮（boundary 有时则不走这里） */
-  window.wbCapProgress = function(el, n, ms, drawTotal){
+  window.wbCapProgress = function(el, n, ms, total){
     if(_hasBoundary || !el || !n) return;
-    var idx = Math.min(Math.floor((ms/(drawTotal||1))*n), n-1);
+    var idx = Math.min(Math.floor((ms / Math.max(total, 1)) * n), n - 1);
     hiAt(el, idx);
   };
 
@@ -22782,15 +22782,18 @@ mountAll();
 })();
 </script>
 <style>
-/* 字幕跟读高亮 */
-.pn-scope .wb-capbar .wbc,
-.ar-scope .wb-capbar .wbc{
-  color: rgba(253,246,221,0.35);
-  transition: color 0.25s;
+/* 字幕跟读高亮 — 卡拉OK 风格：当前片段橙色，其余白色略暗 */
+.pn-scope .wb-capbar span#pnwbCapText .wbc,
+.ar-scope .wb-capbar span#arwbCapText .wbc,
+.wb-capbar .wbc {
+  color: rgba(253,246,221,0.6);
+  transition: color 0.2s, font-weight 0.2s;
 }
 .pn-scope .wb-capbar .wbc.wbc-on,
-.ar-scope .wb-capbar .wbc.wbc-on{
-  color: #fdf6dd;
+.ar-scope .wb-capbar .wbc.wbc-on,
+.wb-capbar .wbc.wbc-on {
+  color: #f2b138;
+  font-weight: 800;
 }
 </style>
 </body>
