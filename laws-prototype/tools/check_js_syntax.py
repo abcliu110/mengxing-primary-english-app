@@ -45,7 +45,7 @@ def main(argv):
         print(f"FAIL: 未找到 jscheck.py：{JSCHECK}")
         return 2
     r = subprocess.run([sys.executable, str(JSCHECK), str(path)],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding='utf-8', errors='replace')
     out = (r.stdout or "") + (r.stderr or "")
     # 只保留 node --check 相关行：FAIL 块（不含 "FAIL anchor"）与汇总行；
     # anchorcheck 行与 jscheck 退出码一律忽略。

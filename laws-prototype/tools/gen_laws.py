@@ -1100,7 +1100,7 @@ def main(argv):
         if not deep_eq(md_new, md_cur):
             ok = False
             print("morph_data.json 与裁定生成结果不一致（LAWREG/页引用未同步）")
-        r = subprocess.run([sys.executable, str(GEN_MORPH), "--check"], capture_output=True, text=True)
+        r = subprocess.run([sys.executable, str(GEN_MORPH), "--check"], capture_output=True, text=True, encoding='utf-8', errors='replace')
         print(r.stdout.strip()[-500:])
         if r.returncode != 0:
             ok = False
@@ -1114,7 +1114,7 @@ def main(argv):
         MORPH_DATA.write_bytes(md_bytes)
         print("morph_data.json 已更新（LAWREG 改号 + 页引用）")
     for target in (MAIN, MORPH_PAGE):
-        r = subprocess.run([sys.executable, str(GEN_MORPH), "--write", str(target)], capture_output=True, text=True)
+        r = subprocess.run([sys.executable, str(GEN_MORPH), "--write", str(target)], capture_output=True, text=True, encoding='utf-8', errors='replace')
         if r.returncode != 0:
             print(r.stdout, r.stderr)
             fail(f"gen_morph --write {target.name} 失败")

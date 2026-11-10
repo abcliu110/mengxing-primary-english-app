@@ -17358,6 +17358,8 @@ function demoHTML(dm){
   var h = '<div class="sec"><h4>' + dm.title + '</h4>';
   if(dm.svg){ h += '<div class="pic">' + dm.svg + '</div>'; }
   if(dm.frames){ h += '<div class="stage" data-int="' + (dm.int || 1800) + '">' + framesHTML(dm.frames) + '</div>' + ctrlHTML(); }
+  if(dm.canvas){ h += '<canvas id="' + dm.canvas + '" class="pn-canvas-demo" width="560" height="280" style="display:block;width:100%;border-radius:12px;border:1.5px solid #d5dfd0;background:#f8faf5" aria-label="' + dm.title + '"></canvas>'
+    + '<div class="pn-canvas-ctrl"><button class="pn-canvas-btn" onclick="PR02MIC&&PR02MIC.replay()">↺ 重播</button></div>'; }
   if(dm.src){ h += '<div class="srcnote">' + dm.src + '</div>'; }
   return h + '</div>';
 }
@@ -17382,6 +17384,7 @@ var DEMOS = {
     '<div style="text-align:center;font-size:34px">🧑&nbsp;&nbsp;🧒&nbsp;&nbsp;👧</div><div class="sent" style="text-align:center"><span class="pchip">I</span> <span class="pchip">you</span> <span class="pchip">she</span></div><div class="cap" style="text-align:center">三个人各说各的——还只是三个人。</div>',
     '<div style="text-align:center"><span style="display:inline-block;border:2px dashed #4a7a59;border-radius:16px;padding:8px 16px;font-size:30px">🧑🧒👧</span></div><div class="sent" style="text-align:center"><span class="pchip" style="font-size:18px">We</span></div><div class="cap" style="text-align:center">老师说一声 <b>We</b>——大家就被说成「一伙的」。代词先办的是关系！</div>'
   ]},
+  'PR-02': {title: '🎞️ 动画演示：话筒传给谁，谁就是 I', int: 0, canvas: 'pr02mic', src: '形式借鉴：Duolingo 对话气泡 + 换位词跷跷板概念。'},
   'PR-06': {title: '🎞️ 动画演示：名字划掉，代词滑入', int: 2100, src: '形式借鉴：Duolingo 官方博文的「名字重复 → 代词替换」对照句（Junior loves ice cream, and if Junior had… → he / his）+ ESL 课堂游戏 Pronoun Surgery（划掉名词、换上代词）。', frames: [
     '<div class="sent">Tom is my friend. Tom is tall. Tom plays football.</div><div class="cap">名字一连说三遍——好啰嗦 😮‍💨</div>',
     '<div class="sent">Tom is my friend. <s class="old">Tom</s> is tall. <s class="old">Tom</s> plays football.</div><div class="cap">刚提过的人，后面两遍可以划掉——大家都知道说的是谁。</div>',
@@ -22192,7 +22195,260 @@ mountAll();
 </script>
 
 <script>
-/* ===== GR-33 三步法动画演示器 ===== */
+/* ===== PR-02 "话筒传给谁，谁就是 I" Canvas 动画 ===== */
+/* 知识点：I 是换位词——话筒在谁手里，谁就是 I；听话的人是 you。
+   动画设计：两个小人面对面，话筒在它们之间平滑飞行，
+   同时 I / you 标签跟着话筒方向切换，配字幕朗读。
+   三轮对话，逐轮加深：普通对话 → 质疑「I 大写」→ 病例纠错 */
+(function(){
+  var C, ctx, W, H, raf=0, t=0, phase=0, done=false;
+
+  /* ---- 颜色 ---- */
+  var INK='#2b3a55', BLUE='#3f6fb5', ORG='#e8862e', GRN='#2e9e5b', RED='#e05252', BG='#f8faf5';
+
+  /* ---- easing ---- */
+  function easeInOut(p){ return p<0.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2; }
+  function lerp(a,b,p){ return a+(b-a)*p; }
+  function clamp(v,a,b){ return v<a?a:v>b?b:v; }
+
+  /* ---- 人物绘制（简笔） ---- */
+  function drawPerson(x, y, label, chipTxt, chipCol, flip){
+    ctx.save();
+    ctx.translate(x, y);
+    if(flip) ctx.scale(-1,1);
+    ctx.strokeStyle=INK; ctx.lineWidth=2.8; ctx.lineCap='round';
+    // 头
+    ctx.beginPath(); ctx.arc(0,-38,13,0,Math.PI*2); ctx.stroke();
+    // 身
+    ctx.beginPath(); ctx.moveTo(0,-25); ctx.lineTo(0,10); ctx.stroke();
+    // 臂
+    ctx.beginPath(); ctx.moveTo(0,-15); ctx.lineTo(-18,2); ctx.moveTo(0,-15); ctx.lineTo(18,2); ctx.stroke();
+    // 腿
+    ctx.beginPath(); ctx.moveTo(0,10); ctx.lineTo(-14,38); ctx.moveTo(0,10); ctx.lineTo(14,38); ctx.stroke();
+    ctx.restore();
+    // 名字标签
+    ctx.font='bold 13px system-ui,sans-serif';
+    ctx.fillStyle=INK; ctx.textAlign='center';
+    ctx.fillText(label, x, y+58);
+    // 代词芯片
+    if(chipTxt){
+      var tw=ctx.measureText(chipTxt).width+22;
+      var cx2=flip?x+34:x-34, cy=y-56;
+      roundRect(ctx, cx2-tw/2, cy-14, tw, 26, 8, chipCol||BLUE, '#fff');
+      ctx.font='bold 15px system-ui,sans-serif';
+      ctx.fillStyle='#fff'; ctx.textAlign='center';
+      ctx.fillText(chipTxt, cx2, cy+5);
+    }
+  }
+
+  function roundRect(c, x, y, w, h, r, fill, stroke){
+    c.beginPath();
+    c.moveTo(x+r,y); c.lineTo(x+w-r,y); c.quadraticCurveTo(x+w,y,x+w,y+r);
+    c.lineTo(x+w,y+h-r); c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    c.lineTo(x+r,y+h); c.quadraticCurveTo(x,y+h,x,y+h-r);
+    c.lineTo(x,y+r); c.quadraticCurveTo(x,y,x+r,y);
+    c.closePath();
+    if(fill){ c.fillStyle=fill; c.fill(); }
+    if(stroke){ c.strokeStyle=stroke; c.lineWidth=1.5; c.stroke(); }
+  }
+
+  /* ---- 话筒绘制 ---- */
+  function drawMic(x, y, angle){
+    ctx.save(); ctx.translate(x,y); ctx.rotate(angle||0);
+    ctx.strokeStyle=INK; ctx.lineWidth=2.5; ctx.lineCap='round';
+    // 头
+    roundRect(ctx,-9,-22,18,20,5,'#2b3a55');
+    // 杆
+    ctx.beginPath(); ctx.moveTo(0,-2); ctx.lineTo(0,16); ctx.stroke();
+    // 底座弧
+    ctx.beginPath(); ctx.arc(0,16,8,Math.PI,0,false); ctx.stroke();
+    ctx.restore();
+  }
+
+  /* ---- 气泡绘制 ---- */
+  function drawBubble(x, y, txt, col, flip){
+    var maxW=130, lh=20, pad=10;
+    ctx.font='13px system-ui,sans-serif';
+    // 简单换行
+    var words=txt.split(' '), lines=[], cur='';
+    words.forEach(function(w){
+      var test=cur?(cur+' '+w):w;
+      if(ctx.measureText(test).width>maxW-pad*2){ if(cur)lines.push(cur); cur=w; } else cur=test;
+    });
+    if(cur)lines.push(cur);
+    // 中文字符不按空格分割：直接整行
+    if(!txt.match(/[a-zA-Z]/)){lines=[txt];}
+    var bw=0; lines.forEach(function(l){ bw=Math.max(bw,ctx.measureText(l).width+pad*2); });
+    var bh=lines.length*lh+pad*2;
+    var bx=flip?(x-bw-14):x+14, by=y-bh/2;
+    roundRect(ctx,bx,by,bw,bh,10,col||'#fff','#d5dfd0');
+    // 尖角
+    ctx.beginPath();
+    if(flip){ ctx.moveTo(bx+bw,by+bh/2-6); ctx.lineTo(bx+bw+10,by+bh/2); ctx.lineTo(bx+bw,by+bh/2+6); }
+    else { ctx.moveTo(bx,by+bh/2-6); ctx.lineTo(bx-10,by+bh/2); ctx.lineTo(bx,by+bh/2+6); }
+    ctx.fillStyle=col||'#fff'; ctx.fill();
+    ctx.font='bold 13px system-ui,sans-serif';
+    ctx.fillStyle=INK; ctx.textAlign=flip?'right':'left';
+    lines.forEach(function(l,i){ ctx.fillText(l, flip?bx+bw-pad:bx+pad, by+pad+lh*(i+0.75)); });
+  }
+
+  /* ---- 字幕 ---- */
+  function drawCaption(txt, hi){
+    ctx.save();
+    roundRect(ctx, 10, H-46, W-20, 36, 10, 'rgba(43,58,85,0.88)');
+    ctx.font=(hi?'bold ':'')+'14px system-ui,sans-serif';
+    ctx.fillStyle='#fff'; ctx.textAlign='center';
+    ctx.fillText(txt, W/2, H-23);
+    ctx.restore();
+  }
+
+  /* ---- 场景序列 ---- */
+  /*  micX: 话筒 x 位置（0=左人手上 1=右人手上，插值）
+      leftChip / rightChip: 代词标签
+      caption: 字幕文字
+      bubble: { left/right: text }
+      dur: 秒
+  */
+  var LX=W*0.28||90, RX=W*0.72||250; // 在 init 里算
+  var SEQ; // 在 init 里建
+
+  /* ---- 插值状态 ---- */
+  var state={ micT:0, lt:0, startT:null, si:0 };
+
+  function buildSeq(){
+    LX=W*0.27; RX=W*0.73;
+    SEQ=[
+      // 0 开场：两人面对面，话筒在左人手中，字幕介绍
+      {micT:0, lChip:'I', rChip:'you', bL:'Are you happy?', bR:'', cap:'话筒在 A 手里——A 说话，A 是 I', dur:2.8},
+      // 1 话筒飞向右边
+      {micT:1, lChip:'you', rChip:'I', bL:'', bR:'Yes, I am!', cap:'话筒传给 B——B 回答，B 变成了 I', dur:2.8},
+      // 2 话筒飞回左边
+      {micT:0, lChip:'I', rChip:'you', bL:'I like English!', bR:'', cap:'话筒回到 A——A 又是 I 了', dur:2.6},
+      // 3 强调 I 大写
+      {micT:0, lChip:'I', rChip:'you', bL:null, bR:null, cap:'英语规定：I 永远大写，不管在句子哪里', bigI:true, dur:2.8},
+      // 4 病例：you want juice（照搬妈妈的话）
+      {micT:1, lChip:'you', rChip:'I', bL:null, bR:'you want juice.', cap:'❌ 孩子照妈妈的话重复说——you 没换过来！', rErr:true, dur:2.8},
+      // 5 纠错
+      {micT:1, lChip:'you', rChip:'I', bL:null, bR:'I want juice.', cap:'✅ 话筒在你手里，你是 I，不是 you', rOk:true, dur:2.6}
+    ];
+  }
+
+  function init(){
+    C=document.getElementById('pr02mic');
+    if(!C) return;
+    ctx=C.getContext('2d');
+    W=C.width; H=C.height;
+    buildSeq();
+    state.si=0; state.startT=null; state.micT=0;
+    if(raf) cancelAnimationFrame(raf);
+    done=false;
+    raf=requestAnimationFrame(loop);
+  }
+
+  function loop(ts){
+    if(!C||!ctx){ done=true; return; }
+    if(!state.startT) state.startT=ts;
+    var sc=SEQ[state.si];
+    if(!sc){ done=true; drawFinal(); return; }
+
+    var elapsed=(ts-state.startT)/1000;
+    var p=clamp(elapsed/0.6,0,1); // 0.6s 过渡
+    var ep=easeInOut(p);
+
+    // 插值 micT
+    var prevMicT=(state.si>0?SEQ[state.si-1].micT:0);
+    var curMicT=sc.micT;
+    var micT=lerp(prevMicT,curMicT,ep);
+
+    draw(sc, micT, ep);
+
+    if(elapsed>=sc.dur){
+      state.si++;
+      state.startT=ts;
+      if(state.si>=SEQ.length){ done=true; drawFinal(); return; }
+    }
+    raf=requestAnimationFrame(loop);
+  }
+
+  function draw(sc, micT, transP){
+    ctx.clearRect(0,0,W,H);
+    // 背景
+    ctx.fillStyle=BG; ctx.fillRect(0,0,W,H);
+
+    var lx=LX, rx=RX, py=H*0.42;
+
+    // 左人
+    var lChip=transP>0.5?sc.lChip:(state.si>0?SEQ[state.si-1].lChip:sc.lChip);
+    drawPerson(lx, py, 'A', lChip, BLUE, false);
+    // 右人（翻转朝左）
+    var rChip=transP>0.5?sc.rChip:(state.si>0?SEQ[state.si-1].rChip:sc.rChip);
+    var rErrCol=sc.rErr?'#c0392b':null;
+    var rOkCol=sc.rOk?GRN:null;
+    drawPerson(rx, py, 'B', rChip, rErrCol||rOkCol||BLUE, true);
+
+    // 话筒位置
+    var mx=lerp(lx, rx, micT);
+    var my=py-30;
+    // 话筒在飞行中画个弧
+    var arcY=my - Math.sin(micT*(1-micT)*4)*30;
+    var angle=lerp(-0.3, 0.3, micT);
+    drawMic(mx, arcY, angle);
+
+    // 气泡
+    if(sc.bL) drawBubble(lx, py-70, sc.bL, '#e8f4ec', false);
+    if(sc.bR) drawBubble(rx, py-70, sc.bR, sc.rErr?'#fce8e8':sc.rOk?'#e8f4ec':'#e8f0fc', true);
+
+    // 大 I 强调
+    if(sc.bigI){
+      ctx.save();
+      ctx.font='bold 72px system-ui,sans-serif';
+      ctx.fillStyle=ORG;
+      ctx.textAlign='center';
+      ctx.globalAlpha=0.15+transP*0.85;
+      ctx.fillText('I', W/2, H*0.45);
+      ctx.restore();
+    }
+
+    // 字幕
+    drawCaption(sc.cap, sc.rErr);
+  }
+
+  function drawFinal(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=BG; ctx.fillRect(0,0,W,H);
+    var py=H*0.42;
+    drawPerson(LX,py,'A','you',BLUE,false);
+    drawPerson(RX,py,'B','I',GRN,true);
+    drawMic(RX,py-30,0.3);
+    drawBubble(RX,py-70,'I want juice.',  '#e8f4ec', true);
+    drawCaption('✅ 谁手里有话筒，谁就是 I');
+  }
+
+  /* ---- 对外接口 ---- */
+  window.PR02MIC={ replay: function(){
+    if(raf) cancelAnimationFrame(raf);
+    state.si=0; state.startT=null; done=false;
+    raf=requestAnimationFrame(loop);
+  }};
+
+  /* ---- PN 渲染后挂载（PN.go 会渲染 vLaw，之后 canvas 才存在） ---- */
+  document.addEventListener('click', function(e){
+    setTimeout(function(){
+      var c=document.getElementById('pr02mic');
+      if(c && !c._pr02init){ c._pr02init=true; C=c; ctx=c.getContext('2d'); W=c.width; H=c.height; buildSeq(); init(); }
+    }, 80);
+  });
+})();
+</script>
+
+<style>
+.pn-canvas-ctrl{margin-top:6px;display:flex;gap:8px}
+.pn-canvas-btn{font:inherit;font-size:13px;font-weight:700;border:1.5px solid #b9cfa0;border-radius:999px;padding:5px 14px;background:#fff;color:#3d5a40;cursor:pointer;min-height:36px}
+.pn-canvas-btn:hover{background:#e8f4ec}
+</style>
+
+<script>
+/* GR-33 三步法动画演示器 */
 (function(){
   /* 三个例句：主语、助动词/be/替补、主句正文、极性、目标尾巴 */
   var EXES = [

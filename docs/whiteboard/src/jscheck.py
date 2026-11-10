@@ -5,6 +5,8 @@
 anchorcheck（补丁锚点 / 插入标记）已于 2026-11-09 第六波第 9 项正式废止，不再跑，
 见 docs/whiteboard/src/anchorcheck.RETIRED.md。"""
 import os, re, subprocess, sys, tempfile
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 HERE = os.path.dirname(os.path.abspath(__file__))
 MAIN = sys.argv[1] if len(sys.argv) > 1 else os.path.abspath(os.path.join(HERE, '..', '..', '..', '萌星小学英语_最终合并版.html'))
 s = open(MAIN, encoding='utf-8').read()
@@ -13,7 +15,7 @@ inline = [m.group(2) for m in tags if 'type=' not in m.group(1) and 'src=' not i
 mods = [(re.search(r'id="([^"]+)"', m.group(1)).group(1), m.group(2)) for m in tags if re.search(r'id="wbmod-[a-z_]+"', m.group(1))]   # 旧模块 2026-10-30 已退役，通常为 0 个
 def check(code, name):
     with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False, encoding='utf-8') as f: f.write(code)
-    r = subprocess.run(['node', '--check', f.name], capture_output=True, text=True); os.unlink(f.name)
+    r = subprocess.run(['node', '--check', f.name], capture_output=True, text=True, encoding='utf-8', errors='replace'); os.unlink(f.name)
     if r.returncode: print('FAIL', name, r.stderr[:800])
     return r.returncode == 0
 ok = check('\n;\n'.join(inline + [c for _, c in mods]), f'all ({len(inline)} inline + {len(mods)} modules)')
