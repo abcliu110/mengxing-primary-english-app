@@ -905,6 +905,24 @@ body.adult .adult{display:block}
 </style>
 
 <style>
+/* GR-33 三步法动画演示器 */
+.gr33-demo{background:#f5f9f3;border:1.5px solid #b9cfa0;border-radius:14px;padding:12px 14px;margin-top:12px}
+.gr33-dcap{font-size:13px;font-weight:800;color:#3d5a40;margin-bottom:8px}
+.gr33-dstage{background:#fff;border:1.5px solid #d5dfd0;border-radius:10px;overflow:hidden;margin-bottom:10px}
+.gr33-dctrl{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:8px}
+.gr33-btn{font:inherit;font-size:13px;font-weight:700;border:1.5px solid #b9cfa0;border-radius:999px;padding:5px 13px;background:#fff;color:#3d5a40;cursor:pointer;min-height:36px;transition:background .15s,border-color .15s}
+.gr33-btn:hover{background:#e8f4ec;border-color:#7c9a52}
+.gr33-btn:active{background:#d3e5d6}
+.gr33-btn.gr33-go{background:#3d5a40;color:#fff;border-color:#3d5a40}
+.gr33-btn.gr33-go:hover{background:#4a7a59}
+.gr33-btn.gr33-ex.on{background:#d3e5d6;border-color:#7c9a52;color:#3d5a40}
+.gr33-btn:disabled{opacity:.45;cursor:not-allowed}
+.gr33-exlab{font-size:12px;color:#7a6c52;font-weight:700;padding-left:4px}
+.gr33-dnote{font-size:13.5px;color:#4a7a59;line-height:1.6;min-height:20px;font-weight:600}
+/* SVG text 过渡（通过 style attribute 控制，不用 CSS transition） */
+
+
+<style>
 .ph-regbar{margin:10px 0}.ph-trust{background:#eef5e4;border:1.5px solid #b9cfa0;border-radius:12px;padding:9px 12px;font-size:13.5px;color:#3d5a40;line-height:1.65;margin:10px 0 4px}.ph-regnote{font-size:13px;color:#6d5a33;line-height:1.65;margin:0 0 6px}
 .ph-regbtn{border:1.5px solid #d8cba6;background:#fffdf6;color:#6d5a33;border-radius:12px;padding:7px 12px;font-size:13px;cursor:pointer;font-weight:700}
 .ph-reg{background:#fffdf6;border:1px solid #e7ddc6;border-radius:12px;padding:10px 14px;font-size:12.5px;color:#5d4c2c;line-height:1.65;margin-bottom:10px}
@@ -7229,6 +7247,39 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <div class="chips">特例组（整组单记）：<span class="chip">I am → aren't I</span><span class="chip">Let's → shall we</span><span class="chip">祈使句 → will you / won't you</span><span class="chip">everybody / somebody → they</span><span class="chip">nothing / something → it</span></div>
 <p style="margin-top:8px">🎵 <b>语调分工</b>：尾巴<b>升调</b> = 真问（我不确定，在求证）；尾巴<b>降调</b> = 非问（我已经确定，只求你点头）。</p>
 <div class="fa" data-fa="gr33"></div>
+
+<!-- GR-33 三步法动画演示器 -->
+<div class="gr33-demo" id="gr33Demo">
+  <div class="gr33-dcap">🎥 动画演示：三步现配尾巴</div>
+  <div class="gr33-dstage" id="gr33Stage">
+    <svg id="gr33Svg" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto" aria-label="反意疑问句三步法动画">
+      <!-- 主句区 -->
+      <text class="g33-label" x="280" y="34" font-size="13" fill="#7a6c52" text-anchor="middle">主句</text>
+      <text id="g33-main" x="280" y="72" font-size="26" font-weight="700" fill="#2c3328" text-anchor="middle">She is happy,</text>
+      <!-- 尾巴区 -->
+      <text class="g33-label" x="280" y="120" font-size="13" fill="#7a6c52" text-anchor="middle">尾巴（现配）</text>
+      <text id="g33-tag" x="280" y="158" font-size="26" font-weight="700" fill="#2c3328" text-anchor="middle" opacity="0.25">___?</text>
+      <!-- 步骤指示器（左侧三个圆点） -->
+      <circle id="g33-d1" cx="22" cy="72" r="7" fill="#d5dfd0"/>
+      <circle id="g33-d2" cx="22" cy="100" r="7" fill="#d5dfd0"/>
+      <circle id="g33-d3" cx="22" cy="128" r="7" fill="#d5dfd0"/>
+      <!-- 步骤说明文字 -->
+      <text id="g33-step-txt" x="44" y="76" font-size="12.5" fill="#8a5a1e" font-weight="700">点「演示」开始</text>
+      <!-- 复制飞行的助动词（隐藏，动画时显示） -->
+      <text id="g33-fly" x="280" y="72" font-size="22" font-weight="800" fill="#e8862e" text-anchor="middle" opacity="0">is</text>
+    </svg>
+  </div>
+  <div class="gr33-dctrl">
+    <button class="gr33-btn gr33-go" id="gr33Play" type="button">▶ 演示三步</button>
+    <button class="gr33-btn" id="gr33Reset" type="button">↺ 重置</button>
+    <span class="gr33-exlab">换一句：</span>
+    <button class="gr33-btn gr33-ex on" data-gr33ex="0" type="button">She is happy</button>
+    <button class="gr33-btn gr33-ex" data-gr33ex="1" type="button">You went there</button>
+    <button class="gr33-btn gr33-ex" data-gr33ex="2" type="button">He can swim</button>
+  </div>
+  <div class="gr33-dnote" id="gr33Note">点「演示三步」看尾巴怎么现配出来。</div>
+</div>
+
 <div class="adult"><b>成人层 · 出处与证据等级</b>：形式规则与语调分工依 Swan《Practical English Usage》第 3 版 question tags 条（§487–488 及 p. 503「meaning and intonation」），本轮打开影印页核对——接触等级：<b>章节影印页级（本簇最高）</b>。「尾巴的 do/does/did 与 GR-03『do 替补』是同一机制」为清单内互挂。<b>难点定位的等级</b>：中国学习者全程统一用 isn't it、助动词不回指，是多国「不变尾巴」母语者（法语 n'est-ce pas、德语 nicht wahr、汉语「对吧」）的共同难点，教材与教师文献一致报告——但本轮未检索到针对该错误的 CLEC 级语料计数，按纪律标为<b>教学界共识级</b>，不冒充语料定版（此项即本条的待核记录）。<b>边界</b>：主句是 I think / believe + 从句时，尾巴跟从句走（I think he's coming, isn't he?)；美式口语中反意疑问使用频率低于英式，标准教学系统仍以翻转-回指为正；降调尾巴在英式口语里大量作会话润滑，不逐句译成「对吧」。<b>分歧</b>：同极性尾巴（肯定 + 肯定，如 So you're French, are you?）表惊讶 / 讽刺 / 推断，其语用定性各参考语法措辞不一，记为语用层分歧，不影响形式教学；语调与意义的对应是倾向而非铁律，Swan 本人即以倾向性说法表述。</div>
 </div></div>
 
@@ -22137,6 +22188,190 @@ mountAll();
     if(t) setTimeout(hmRender,60);
   });
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hmRender); else hmRender();
+})();
+</script>
+
+<script>
+/* ===== GR-33 三步法动画演示器 ===== */
+(function(){
+  /* 三个例句：主语、助动词/be/替补、主句正文、极性、目标尾巴 */
+  var EXES = [
+    { main:'She is happy,', subj:'She', aux:'is', needs_do:false, pos:true,
+      tag:"isn't she?", pronoun:'she',
+      steps:[
+        '① 找到主句里的助动词：is（be 动词，就是它）',
+        '② 主句是肯定句 → 尾巴用否定：isn\'t',
+        '③ 主语 She → 换成代词 she，拼出来：isn\'t she?'
+      ]
+    },
+    { main:'You went there,', subj:'You', aux:'did', needs_do:true, pos:true,
+      tag:"didn't you?", pronoun:'you',
+      steps:[
+        '① 主句没有助动词，went 是过去时 → 召唤替补队员 did',
+        '② 主句是肯定句 → 尾巴用否定：didn\'t',
+        '③ 主语 You → 换成代词 you，拼出来：didn\'t you?'
+      ]
+    },
+    { main:'He can swim,', subj:'He', aux:'can', needs_do:false, pos:true,
+      tag:"can't he?", pronoun:'he',
+      steps:[
+        '① 找到主句里的情态动词：can（情态词，就是它）',
+        '② 主句是肯定句 → 尾巴用否定：can\'t',
+        '③ 主语 He → 换成代词 he，拼出来：can\'t he?'
+      ]
+    }
+  ];
+
+  var cur = 0, phase = 0, running = false, timer = null;
+
+  function $(id){ return document.getElementById(id); }
+  function setText(id, txt, fill, opacity){
+    var el = $(id); if(!el) return;
+    if(txt !== undefined) el.textContent = txt;
+    if(fill !== undefined) el.setAttribute('fill', fill);
+    if(opacity !== undefined) el.setAttribute('opacity', opacity);
+  }
+  function setDot(n, active){
+    var el = $('g33-d'+n); if(!el) return;
+    el.setAttribute('fill', active ? '#4a7a59' : '#d5dfd0');
+    el.setAttribute('r', active ? '9' : '7');
+  }
+  function setNote(txt){ var el=$('gr33Note'); if(el) el.textContent=txt; }
+
+  /* SVG 内元素动画：用 requestAnimationFrame 插值 */
+  function animateAttr(el, attr, from, to, dur, ease, cb){
+    var start = null;
+    function frame(ts){
+      if(!start) start = ts;
+      var p = Math.min(1,(ts-start)/dur);
+      var q = ease==='out' ? 1-Math.pow(1-p,2) : ease==='inout' ? p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2 : p;
+      el.setAttribute(attr, from + (to-from)*q);
+      if(p<1) requestAnimationFrame(frame); else { el.setAttribute(attr,to); if(cb) cb(); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* 朗读（复用 App 已有的 speak 函数） */
+  function say(txt, rate){
+    if(typeof speak === 'function') speak(txt, rate||0.85);
+  }
+
+  function resetDemo(){
+    if(timer){ clearTimeout(timer); timer=null; }
+    running = false; phase = 0;
+    var ex = EXES[cur];
+    setText('g33-main', ex.main, '#2c3328', '1');
+    setText('g33-tag', '___?', '#2c3328', '0.25');
+    setText('g33-fly', ex.aux, '#e8862e', '0');
+    setText('g33-step-txt', '点「演示」开始', '#8a5a1e');
+    for(var i=1;i<=3;i++) setDot(i,false);
+    setNote('点「演示三步」看尾巴怎么现配出来。');
+    var pb=$('gr33Play'); if(pb){ pb.disabled=false; pb.textContent='▶ 演示三步'; }
+    /* 重置 fly 位置 */
+    var fly=$('g33-fly'); if(fly){ fly.setAttribute('x','280'); fly.setAttribute('y','72'); fly.setAttribute('font-size','22'); }
+  }
+
+  /* 步骤序列：三步各 1.8s，步骤间 0.6s 间隔 */
+  function runStep(n){
+    phase = n;
+    var ex = EXES[cur];
+    setDot(n, true);
+    setText('g33-step-txt', ex.steps[n-1], '#7a5c1e');
+
+    if(n===1){
+      /* 第①步：高亮主句中的助动词，然后复制一份飞到尾巴位置 */
+      setNote(ex.needs_do ? '①  主句没有助动词 → 召唤替补 '+ex.aux : '①  找到主句助动词：'+ex.aux);
+      var fly = $('g33-fly');
+      /* 先把 fly 文字设成助动词并显示在主句位置 */
+      if(fly){
+        fly.textContent = ex.aux;
+        fly.setAttribute('x','280'); fly.setAttribute('y','72');
+        fly.setAttribute('opacity','0');
+      }
+      /* 主句颜色变化表示找到助动词 */
+      setText('g33-main', ex.main, '#e8862e');
+      say(ex.needs_do ? 'No auxiliary verb. Calling ' + ex.aux : ex.aux, 0.9);
+      timer = setTimeout(function(){
+        /* fly 出现，从主句位置飞向尾巴位置 */
+        if(fly){
+          fly.setAttribute('opacity','1');
+          animateAttr(fly, 'y', 72, 148, 700, 'inout', null);
+        }
+        setText('g33-main', ex.main, '#2c3328');
+        setText('g33-tag', '', '#e8862e', '1'); /* 尾巴区出现占位 */
+        timer = setTimeout(function(){
+          if(fly) fly.setAttribute('opacity','0');
+          setText('g33-tag', ex.aux, '#e8862e', '1');
+          timer = setTimeout(function(){ runStep(2); }, 1000);
+        }, 750);
+      }, 900);
+    } else if(n===2){
+      /* 第②步：极性翻转 — 在尾巴上加 n't */
+      setNote('②  肯定 → 否定：'+ex.aux+' → '+ex.aux.replace('can','can\'t').replace('did','didn\'t').replace('is','isn\'t'));
+      var neg = ex.tag.split(' ')[0]; /* 取 isn't / didn't / can't */
+      say('negative: ' + neg, 0.9);
+      /* 视觉上先抖动一下再变色 */
+      var tagEl = $('g33-tag'); if(!tagEl){ timer=setTimeout(function(){runStep(3);},1800); return; }
+      animateAttr(tagEl, 'x', 280, 270, 120, 'out', function(){
+        animateAttr(tagEl, 'x', 270, 290, 120, 'out', function(){
+          animateAttr(tagEl, 'x', 290, 280, 100, 'out', function(){
+            setText('g33-tag', neg, '#c8440a', '1');
+            timer = setTimeout(function(){ runStep(3); }, 1000);
+          });
+        });
+      });
+    } else if(n===3){
+      /* 第③步：代词对位 — 完成完整尾巴 */
+      setNote('③  主语 '+ex.subj+' → 代词 '+ex.pronoun+'，拼出完整尾巴：'+ex.tag);
+      say(ex.tag, 0.85);
+      var tagEl2 = $('g33-tag');
+      if(tagEl2){
+        animateAttr(tagEl2, 'opacity', 1, 0.3, 200, 'out', function(){
+          setText('g33-tag', ex.tag, '#3d5a40');
+          animateAttr(tagEl2, 'opacity', 0.3, 1, 300, 'out', function(){
+            /* 完成 */
+            setNote('✅ 完成！三步法配出的尾巴是：' + ex.tag);
+            var pb=$('gr33Play'); if(pb){ pb.disabled=false; pb.textContent='▶ 再演示一遍'; }
+            running = false;
+          });
+        });
+      }
+    }
+  }
+
+  function startDemo(){
+    if(running) return;
+    running = true;
+    phase = 0;
+    resetDemo();
+    /* 给 resetDemo 一帧时间完成 DOM 更新 */
+    requestAnimationFrame(function(){
+      var pb=$('gr33Play'); if(pb) pb.disabled=true;
+      setNote('正在演示……');
+      timer = setTimeout(function(){ runStep(1); }, 300);
+    });
+  }
+
+  /* 切换例句 */
+  function switchEx(idx){
+    cur = idx;
+    var btns = document.querySelectorAll('.gr33-ex');
+    for(var i=0;i<btns.length;i++){
+      btns[i].classList.toggle('on', parseInt(btns[i].getAttribute('data-gr33ex'))===idx);
+    }
+    resetDemo();
+  }
+
+  /* 事件绑定（延迟到 DOM ready） */
+  function bindEvents(){
+    var pb=$('gr33Play'); if(pb) pb.addEventListener('click',startDemo);
+    var rb=$('gr33Reset'); if(rb) rb.addEventListener('click',resetDemo);
+    document.querySelectorAll('.gr33-ex').forEach(function(b){
+      b.addEventListener('click',function(){ switchEx(parseInt(b.getAttribute('data-gr33ex'))||0); });
+    });
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bindEvents); else bindEvents();
 })();
 </script>
 </body>
