@@ -4,10 +4,11 @@
    都找不到名字（整词）的 = 零引用。反复迭代：删掉零引用函数后，只被它们调用的函数也算零引用（--json 输出带轮次）。
    动态拼名调用（window[name]()、'fn' + x）扫不出来，所以白名单 KEEP 里的不报。
 ② CSS：@keyframes 名字没有任何 animation 引用的；以及浏览器里实际不生效的 @keyframes（见 O6 记录：`.method-hub @keyframes x` 前缀写法整条被丢弃）。
-只报告不改；删除曾由 src/patch_deadcode.py 做（该脚本已于 2026-11-10 第七波退役，见底稿 docs/work-2026-11-09/wave7_mainb_retire.md）。"""
+只报告不改；删除曾由 src/patch_deadcode.py 做（该脚本已于 2026-11-10 第七波退役，见底稿 docs/work-2026-11-09/wave7_mainb_retire.md）。
+目标：现主文件 laws-prototype/mengxing-prototype-v1.html（第八波第 23 项由已删老合并版改指；试跑 3.8 秒，顶层函数 2 个零引用 0、@keyframes 21 个全有引用）；已入 runall.py 仅提示档（动态拼名调用可能误报，只报不判）。"""
 import json, re, subprocess, sys, pathlib, base64, gzip
 HERE = pathlib.Path(__file__).resolve().parent
-APP = HERE.parents[2] / '萌星小学英语_最终合并版.html'
+APP = HERE.parents[2] / 'laws-prototype' / 'mengxing-prototype-v1.html'
 KEEP = set()
 def blobs(s):
     out = []
