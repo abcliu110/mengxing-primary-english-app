@@ -18,7 +18,7 @@ const ITEMS = [
   ['s', 'He is tall. She is kind. The water is warm.', '他很高。她很亲切。水很温。'],
   ['w', '② 核心结构规律：① 三剑客分工：I ➔ am；he / she / it / 单数名词 / 不可数名词 ➔ is；'],
   ['w', 'you / we / they / 复数名词 / A and B ➔ are'],
-  ['s', 'Tom and Jim are in Class 1.', 'Tom 和 Jim 在 1 班。']
+  ['s', 'Tom and Jim are in Class 1.', 'Tom 和 Jim 在 1 班。'],
   ['w', '③ 进阶要点：② 缩略形式：I\'m = I am, he\'s = he is, isn\'t = is not, aren\'t = are not（am not 无缩写）'],
   ['s', "I'm ten years old. He's tall.", '我十岁了。他很高。'],
   ['s', "It isn't cold. They aren't here.", '它不冷。他们不在这儿。'],

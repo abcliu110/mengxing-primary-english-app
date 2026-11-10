@@ -25,7 +25,7 @@ const ITEMS = [
   ['s', 'He likes it. He doesn\'t like it.', '他喜欢它。他不喜欢它。'],
   ['w', '常错：I am not like it. ✗ → I don\'t like it. ✓；He doesn\'t likes it. ✗'],
   ['w', '🗣️ 语境实证：She isn\'t a doctor. He can\'t swim.'],
-  ['s', 'He can swim.', '他会游泳。']
+  ['s', 'He can swim.', '他会游泳。'],
   ['w', '🎵 口诀：变否定分两路：句中有 be 或情态(can/will)，后面直接加上 not；若是只有实'],
   ['w', 'G29 第1幕'],
   ['s', 'She isn\'t a doctor. He can\'t swim.', '她不是医生。他不会游泳。'],

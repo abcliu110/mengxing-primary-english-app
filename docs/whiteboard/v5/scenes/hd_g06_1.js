@@ -22,7 +22,7 @@ const ITEMS = [
   ['w', '序数词与最高级前（the first/tallest）；play + the + 西洋乐器'],
   ['s', 'The first. The tallest.', '第一。最高。'],
   ['w', '③ 进阶要点：② 零冠词场景：play + 球类/棋类；have + 三餐；星期月份季节前；学科语言前；by + 交通工具'],
-  ['s', 'I have lunch at school.', '我在学校吃午饭。']
+  ['s', 'I have lunch at school.', '我在学校吃午饭。'],
   ['s', 'I go to school by bus.', '我坐公交车去学校。'],
   ['w', 'G06 第1幕'],
   ['s', 'I see a dog. The dog is very cute.', '我看见一只狗。这只狗很可爱。'],

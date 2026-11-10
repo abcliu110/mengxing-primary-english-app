@@ -21,7 +21,7 @@ const ITEMS = [
   ['w', '③ 进阶要点：② 不加 -ly 特例：fast, early, late, hard 形副同形；'],
   ['s', 'Fast, early, late, hard.', '快、早、晚、努力。'],
   ['w', 'good 变副词是 well（play football well）！'],
-  ['s', 'Good becomes well.', 'good 的副词形式是 well。']
+  ['s', 'Good becomes well.', 'good 的副词形式是 well。'],
   ['s', 'I play football well.', '我踢足球踢得很好。'],
   ['w', 'G12 第1幕'],
   ['s', 'The old turtle walks slowly, but the rabbit runs fast.', '老乌龟走得很慢，但兔子跑得很快。'],
