@@ -61,4 +61,4 @@ const ITEMS = [
   ['w', '口诀：贴上 on，分开 off。'],
   ['w', '🧠 第一性原理 ⑤ 三维几何向量时空律']
 ];
-export default function build() { return autoBuild(SP, { title: '🧭 第一性原理 · 方向向量 · 2', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🧭 第一性原理 · 方向向量 · 2', items: ITEMS, acts: ACTS, actorFitW: 440 }); }

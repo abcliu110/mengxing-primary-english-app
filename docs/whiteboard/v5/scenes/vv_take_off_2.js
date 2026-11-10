@@ -24,4 +24,4 @@ const ITEMS = [
   ['w', '共同点：OFF = 离开原来贴着的表面'],
   ['s', 'Take off your coat! The plane is taking off!', '脱下外套！飞机正在脱离地面起飞！']
 ];
-export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · take off ②', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · take off ②', items: ITEMS, acts: ACTS, actorFitW: 440 }); }
