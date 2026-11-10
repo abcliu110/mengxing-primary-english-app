@@ -40,6 +40,8 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
 """
 import subprocess
 import sys
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -80,7 +82,8 @@ def main():
     all_ok = True
     for label, script, args in CHECKS:
         r = subprocess.run([sys.executable, str(HERE / script), *args],
-                           capture_output=True, text=True)
+                           capture_output=True, text=True,
+                           encoding='utf-8', errors='replace')
         ok = r.returncode == 0
         all_ok = all_ok and ok
         tail = (r.stdout.strip().splitlines() or [""])[-1]

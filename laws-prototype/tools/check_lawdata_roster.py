@@ -28,6 +28,8 @@ check_lawdata_roster.py — LAWDATA 对账检查（2026-11-09，第五波第 11 
 """
 import json
 import sys
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent

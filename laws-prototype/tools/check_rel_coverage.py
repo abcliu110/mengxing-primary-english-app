@@ -26,6 +26,8 @@ rel 复发——凡 rel 边在 g 中无对位即报红。
 """
 import json
 import sys
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
