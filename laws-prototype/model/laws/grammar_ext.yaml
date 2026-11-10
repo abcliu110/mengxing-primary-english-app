@@ -22,7 +22,7 @@ entries:
   - beat: 两个开关
     text_kid: 一个开关管「什么时候」（现在还是过去），一个开关管「怎么看」（看整件、看中间、看痕迹）。两个开关一组合，时态的样子就定了。
     text_adult: tense 把情境定位到时间上，aspect 决定观看情境内部时间构成的方式；两维独立组合是英语动词系统的实际结构，而非教学简化。本域纲领 coreView 同此口径。
-    visual: 两个拨动开关的图式：时间开关（现在/过去）× 看法开关（全景/进行/完成），组合格亮起
+    visual: 两个拨动开关的图式：时间开关（现在/过去）× 看法开关（全景/进行/完成），组合格亮起；时间开关旁另立一个灰色外接档「将来」，标注「借 will / going to，不在开关上」
   - beat: 组合不是背诵
     text_kid: 先想「这件事在什么时候、我要怎么看它」，再去选样子——顺序反过来，表背得再熟也会选错。
     text_adult: 跨语言类型学（Comrie 调查）表明时/体两维在语言中普遍可分离；两维组合式讲法降低初学负荷（domains.yaml 本域 basis，ERIC EJ1511004）。
@@ -112,7 +112,7 @@ entries:
         verb: G2_0502
   - level: 1
     sentence: He will play tomorrow.
-    scene_note: 将来要借 will：时间开关拨到明天，看法还是完整一件
+    scene_note: 将来要借 will：时间开关只有现在/过去两档，will 从开关外借来一个将来的帮手，看法还是完整一件
     supports: claim
     word_ids:
     - G2_0489
@@ -5372,19 +5372,19 @@ entries:
   zone: 语法
   group: QI
   headline: whose 是 who 的「家的」，why 是「用什么」的变身：两个真词源
-  headline_kid: whose 就是 who 的所有格，像 his 是 he 的所有格一样天经地义；why 的老祖宗是「凭什么工具」——问原因，就是问「靠什么造成的」
+  headline_kid: whose 就是 who 的所有格，像 his 是 he 的所有格一样天经地义；why 的老祖宗是 what 的工具格——问原因，就是问「靠什么造成的」
   claim:
     type: etymology
-    statement: 古英语疑问词有完整的格变化：hwā（主格）的属格是 hwæs（→ whose），工具格是 hwȳ（→ why）；现代英语只剩这两件化石还保留着格词尾的痕迹。
+    statement: 古英语疑问词有完整的格变化：hwā（主格）的属格是 hwæs（→ whose），工具格 hwȳ（→ why）出自 hwæt（what）一族；现代英语只剩这两件化石还保留着格词尾的痕迹。
     evidence:
     - Mitchell & Robinson《A Guide to Old English》第8版 (2012, Wiley-Blackwell, ISBN 978-0-470-67107-8) §20, p.19 的 hwā 格变表——属格 hwæs、工具格 hwȳ 均在表内（2026-11-01 打开核实）；代词范式总置于 §§15–21 (pp.18–19)
-    source: hwā 属格 hwæs → whose；hwā 工具格 hwȳ → why；与 hu（how，hwū 的弱化）共同构成 hw- 词族格变残存全图
+    source: hwā 属格 hwæs → whose；hwā what 一族的工具格 hwȳ → why；与 hu（how，hwū 的弱化）共同构成 hw- 词族格变残存全图
     scope: 真词源只用于满足好奇心与破除假拆字，不要求小学生记忆格变术语；讲述时只说「老时候的变形」
   mechanism:
   - beat: 两件化石
-    text_kid: 很久以前，who 一家是会变形的：问「谁的」时它变成 whose，问「凭什么」时它变成 why。现在别的变形都没了，只剩这两件「化石」还在用。
+    text_kid: 很久以前，疑问词会变形：问「谁的」时 who 变成 whose；问「凭什么」时用的 why，老家其实在 what 那一族，是 what 的一个工具格。现在大多数变形都没了，只剩 whose 和 why 两件「化石」还在用。
     text_adult: hwæs/hwȳ 形式在古英语文本中可直接查证；domains.yaml 本域 basis 与 INTERROGATIVE_RADAR 定版均点名此二例为真词源（与 QI-02 的假规律裁定正反成对）。
-    visual: hwā 的变形表化石陈列：主格 hwā、属格 hwæs → whose、工具格 hwȳ → why
+    visual: hwā 的变形表化石陈列：主格 hwā、属格 hwæs → whose、what 一族的工具格 hwȳ → why
   examples:
   - level: 1
     sentence: Whose book is this?
@@ -5415,7 +5415,7 @@ entries:
     answer: whose 是 who 的「家的」（所有格）
     hint: 回机制「两件化石」：问「谁的」时，who 变成 whose，就像 his 是 he 的所有格。
   - q: 判断：why 跟 who 一点关系都没有。
-    answer: 不对。why 是 who 一家的工具格化石，老义是「凭什么（造成的）」——问原因，就是问靠什么造成的。
+    answer: 不对。why 是 what 一族的工具格化石，老义是「凭什么（造成的）」——问原因，就是问靠什么造成的。
     hint: 回机制「两件化石」：现代英语只剩 whose 与 why 两件还留着格词尾的痕迹。
   - q: his 是 he 的所有格。同理，who 的所有格是哪个？
     options:
