@@ -1,5 +1,5 @@
 // ✍️ 写作炼金术 · 1 · 第 2 节 —— v5.1 标准画法重画（决策 32，MASTER_DESIGN §2.9 / SOP §17；通用版面引擎 scenes/auto.js）
-// 决策 36-② 长幕拆分：原 writing_alchemist_1（252 s）的第 2 节（共 3 节，由 v5/split_auto.py 生成；App 白板下「第 2 节」按钮）
+// 决策 36-② 长幕拆分：原 writing_alchemist_1（252 s）的第 2 节（共 3 节，由 v5/split_auto.py 生成；独立播放页「第 2 节」跳转（build.mjs 产物模板））
 // 内容来源（R1 零丢失）：src/cases/writing_alchemist.js 案例 1；对照清单 lab/INVENTORY_WRITING_ALCHEMIST_1_V5.md
 // 角色关键帧：sprites/wa1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
