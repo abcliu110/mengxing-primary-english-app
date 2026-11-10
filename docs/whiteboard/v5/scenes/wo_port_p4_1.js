@@ -28,14 +28,18 @@ const ITEMS = [
   ['n', '总结：港口是罗马世界的大门；一个 port 长出了进、出、穿越、带回、机会。'],
   ['w', 'port'],
   ['w', '港口线：portus（港口）'],
+  ['s', 'Portus, port.', 'portus、port。'],
   ['w', '📜 真实词源'],
   ['w', 'port 港口 · airport 机场'],
   ['w', 'passport 护照'],
   ['w', 'opportunity 机会'],
+  ['s', 'Airport, passport, opportunity.', 'airport、passport、opportunity。'],
   ['w', '搬运线：portare（搬运）'],
   ['w', '📜 真实词源'],
   ['w', 'import 进口 · export 出口'],
   ['w', 'transport 运输 · report 报告'],
+  ['s', 'Portare, import, export, transport, report.', 'portare、import、export、transport、report。'],
   ['w', 'sup + port = ？（考考你）'],
+  ['s', 'Sup, port.', 'sup、port。'],
 ];
 export default function build() { return autoBuild(SP, { title: '📖 单词身世 · port · 1 · 第 4 节', items: ITEMS, acts: ACTS }); }
