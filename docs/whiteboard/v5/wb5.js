@@ -105,15 +105,20 @@ export function scene({ sprites = { FR: {}, FI: {} }, font = 'Kalam, WK', stretc
     return k;
   }
   function rectOf(a, key, x) {
-    const f = FI[key], s = a.h / (a.ref ? FI[a.ref].bottom : f.bottom);
+    const f = FI[key];
+    if (!f) return null;   // 守卫（wbguard）：空 stub 精灵包（FR/FI 为空）时缺帧——返回 null 让调用方跳过，不抛错；只把崩溃变缺角，缺帧本身仍待美术重建精灵包
+    const ref = a.ref ? FI[a.ref] : null;
+    if (a.ref && !ref) return null;   // 守卫：a.ref 指向的帧也不在 FI 里时同样回落
+    const s = a.h / (a.ref ? ref.bottom : f.bottom);
     const axv = a.anchor === 'center' ? f.w / 2 : (f.ax ?? f.w / 2);
     const ax = a.flip ? f.w - axv : axv;
     return { x: x - ax * s, y: (a.ground - (a.lift ? a.lift : 0)) - f.bottom * s, w: f.w * s, h: f.h * s, s, f };
   }
-  K.anchorOf = (a, t, name) => { const key = frameAt(a, t), x = K.actorPos(a, t), r = rectOf(a, key, x); const p = r.f[name]; const px = a.flip ? r.f.w - p[0] : p[0]; return [r.x + px * r.s, r.y + p[1] * r.s]; };
+  K.anchorOf = (a, t, name) => { const key = frameAt(a, t), x = K.actorPos(a, t), r = rectOf(a, key, x); if (!r) return [x, a.ground ?? 0]; const p = r.f[name]; if (!p) return [r.x + r.w / 2, r.y + r.h]; const px = a.flip ? r.f.w - p[0] : p[0]; return [r.x + px * r.s, r.y + p[1] * r.s]; };
   function drawActor(g, a, t) {
     if (t < (a.reveal ?? a.from ?? 0) || t >= (a.until ?? 1e9)) return;
     const key = frameAt(a, t), x = K.actorPos(a, t), r = rectOf(a, key, x), im = IMG[key];
+    if (!r || !im) return;   // 守卫（wbguard）：缺帧（FI/IMG 无此 key）时跳过该演员继续播，不中断整幕
     const bob = (a.bob ? Math.abs(Math.sin(t * a.bob)) * -6 : 0) + (a.dy ? a.dy(t) : 0);   // dy(t)：跳起等竖直位移（只由 t 决定）
     const fade = a.fadeOut ? 1 - clamp((t - a.fadeOut[0]) / (a.fadeOut[1] - a.fadeOut[0])) : 1; if (fade <= 0) return;
     g.save(); g.globalAlpha = fade;
