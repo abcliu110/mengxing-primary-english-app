@@ -27,6 +27,9 @@
     PB-04/05/06/07/11 因无已发表语料原文错句留空）→ 总数 524→548、
     覆盖 311→335 律、yaml 来源 111→135；diag_kid 改写 366→390、
     同文 157 不变。
+    2026-11-10 PB 深挖线：PB-11 补 1 例（李欣/刘文静 2022 CLEC 例(13)，
+    VEC-056）→ 总数 548→549、覆盖 335→336 律、yaml 来源 135→136；
+    diag_kid 改写 390→391、同文 157 不变；PB-04/05/06/07 仍留空。
     2026-11-04 动画集成
     波 B 第 0 步：第四路汇入合并律 zone.parts 面——仅 GR-46–GR-50 五律
     的部件病例 18 条（2/2/8/4/2），此前三路均未读此面，五律病例自此
@@ -233,6 +236,11 @@ def build(master, contrast):
     laws_child = len({c[0] for c in cases if not c[7]})
     cx_in = len({c[0] for c in cases if c[6]})
     # ---- 硬断言：与原型盘点逐项对账 ----
+    # 2026-11-10 PB 深挖线：PB-11 补 1 例（李欣/刘文静 2022 CLEC 例(13)，
+    # VEC-056；PB-04/05/06/07 仍因无已发表语料原文错句留空）
+    # → 总数 548→549、覆盖 335→336 律、yaml 来源 135→136；
+    # 教学法 55、zone 154、辨析标记 16 不变；diag_kid 改写 390→391、
+    # 同文 157、保留登记 1 不变。
     # 2026-11-10 PB/W/E 组病例补齐波：yaml 新增 24 例（PB 8、W 12、E 4；
     # PB-04/05/06/07/11 因无已发表语料原文错句留空）
     # → 总数 524→548、覆盖 311→335 律、yaml 来源 111→135；
@@ -247,12 +255,12 @@ def build(master, contrast):
     # 2026-11-04 动画集成波 B 第 0 步：汇入 zone.parts 面（GR-46:2/47:2/48:8/
     # 49:4/50:2 共 18 条，律内去重后全为新增）→ 总数 381、覆盖 217 律、
     # zone 来源 136→154；教学法 55、辨析标记 11、diag_kid 改写 216 均不变。
-    if len(cases) != 548:
-        fail(f"病例总数应为 548，实得 {len(cases)}")
-    if len(per_law) != 335:
-        fail(f"覆盖律应为 335，实得 {len(per_law)}")
-    if src_counts != {"lawdata": 259, "yaml": 135, "zone": 154}:
-        fail(f"来源构成对账失败：{src_counts} != lawdata 259 / yaml 135 / zone 154")
+    if len(cases) != 549:
+        fail(f"病例总数应为 549，实得 {len(cases)}")
+    if len(per_law) != 336:
+        fail(f"覆盖律应为 336，实得 {len(per_law)}")
+    if src_counts != {"lawdata": 259, "yaml": 136, "zone": 154}:
+        fail(f"来源构成对账失败：{src_counts} != lawdata 259 / yaml 136 / zone 154")
     if n_teach != 55:
         fail(f"教学法条目应为 55，实得 {n_teach}")
     if cx_in != 16:
@@ -261,12 +269,14 @@ def build(master, contrast):
     # 2026-11-04 落地批第 5 项（diag_kid 残漏补扫）：GR-05 #1/#2/#7/#8、C-08 #1、
     # C-10 #0/#1 共 7 条原同文 diag_kid 属残漏（内部编号互引/半成品备忘/原文转述腔），
     # 已按白话口径从病例原文改写 → 改写 216→223、同文 146→139、保留登记 1 不变。
+    # 2026-11-10 PB 深挖线：新增 1 例带与 diag 不同的 diag_kid
+    # → 改写 390→391、同文 157、保留登记 1 不变。
     # 2026-11-10 PB/W/E 组病例补齐波：新增 24 例均带与 diag 不同的 diag_kid
     # → 改写 366→390、同文 157、保留登记 1 不变。
     # 2026-11-09 病例补齐波：新增 143 例均带与 diag 不同的 diag_kid
     # → 改写 223→366、同文 139→157、保留登记 1 不变。
-    if n_kid_rw != 390:
-        fail(f"diag_kid 改写条数应为 390（另同文 157 + 保留登记 1），实得 {n_kid_rw}")
+    if n_kid_rw != 391:
+        fail(f"diag_kid 改写条数应为 391（另同文 157 + 保留登记 1），实得 {n_kid_rw}")
     if any(not c[8] for c in cases):
         fail("存在 diag_kid 为空的病例行（孩子版全量覆盖口径）")
     built = {"tot": len(cases), "nt": n_teach, "laws": len(per_law),

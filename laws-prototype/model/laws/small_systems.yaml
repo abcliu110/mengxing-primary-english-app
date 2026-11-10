@@ -2067,9 +2067,12 @@ entries:
         scene_note: "书装箱——松放也归 in（词形经 book 归一）"
         supports: claim
     error_cases:
-      - status: 待补
-        error_type: "母语范畴刀口迁移（预测型）"
-        note: "本条为习得研究登记；对中国孩子的具体错位图见 PB-12，逐字病例待补，不自编。"
+      - wrong: "people could see her strolling on the sky gracefully"
+        right: "people could see her strolling in the sky gracefully"
+        error_type: "介词选择错误（母语概念刀口迁移：汉语「上」→ on）"
+        source_type: "真实语料错型"
+        diagnosis: "汉语「上」的概念范畴比英语 on 宽——「上」可以是不接触的、被半包围的；学习者按汉语「在天空上」机械选了 on，但英语里天空是三维空间、人在其中，只能用 in；原文点明「人不可能与天空相接触，更无法脚踩天空漫步」，on 已超出其概念范畴。这正是母语刀口（上/里）与英语刀口（接触面 vs 容器）错位的一例。〔出处：李欣, 刘文静. 概念迁移视角下中国英语学习者介词误用及分析——以介词 at, on, in 为例[J]. 现代语言学, 2022, 10(6): 1228-1235. DOI: 10.12677/ML.2022.106164｜定位：§4.2.2 例(13)（on 空间概念负迁移实例）｜语料为 CLEC 四个大学生子库中 on 概念负迁移 78 例之一｜学段：大学｜病例号 VEC-056〕"
+        diagnosis_kid: "天空不是一张能踩上去的纸，人在天空里面，要说 in the sky；汉语说「在天上」，英语要说「在天里面」。"
     relatives:
       - {id: PB-12, rel: 同族}
       - {id: P-11, rel: 同族}
