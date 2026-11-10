@@ -29,6 +29,7 @@
 7. bird_down 超约 88px ✅ — 根因：帧 684×515，AH=470 下右缘 2008（+88）。5 幕加 `actorFitW: 500`（five_patterns_p2_1、fp_economy_3、fp_iconicity_2、fp_one_king_4、vv_fly_core_1），浏览器实测修后最右像素 ≤1878。代价：演员高 80%。
 8. fp_vectors_2 plane0/1/2 超宽 ✅ — 真值右缘 2436（+516）；`actorFitW=500` 修不好（AH=250.7 时三帧 AX 区间无交集），取 440（AH=220.6，右缘 1876）；修后浏览器 1834/1873。代价：飞机演员高 47%。
 9. wo_rule eat → l_cake1 错配 ❌ **未改成** — 第一手核实：`l_cake1` 是男孩吹生日蛋糕蜡烛；两幕的 eat 句是吃奶酪 / 吃牛肉猪肉；盘上 343 帧无一张“正在吃”，候选 `m_bread`、`dad_apple` 均已看图否决。错配仍留在两幕，待美术画通用吃帧或内容方删 eat 键。`vv_put_out_1` 的蛋糕幕本身是对的，未动。
+> **2026-11-10 补记（已决）**：Priya 说“你自己决定”，Muse 定夺**删 eat 键**——错配是儿童可见的内容错误，画帧不在本波能力内，删键清错最干净。两幕（wo_rule_c_ch_1、wo_rule_register_1）模板 ACTS 清空、例句保留，gen_stock 两文件同步重生成；`l_cake1` 帧本身留给吹蜡烛幕（`vv_put_out_1` 未动）；待美术画通用吃帧后再登记。验证：v5check FAIL 仍 138（R4-F2 0）、打包探针两幕 55.8/84.9 秒 0 报错、check_all 27/27。
 10. 死键清理 ✅ — 并入第 4 项，不另立项。
 11. wbtextcheck.py ✅ — 修前启动即 `FileNotFoundError`（写死 2026-11-04 已删的老 App）；现接受路径参数、缺省现主文件；②③ 需 `GRAMMAR_DB`，全仓库核实该表已不存在，故无表时只跑 ① 并打印跳过说明。SOP 第 ④ 步恢复可执行。
 12. fly out plane 帧 ✅（参数已加，当前 dormant）— 两幕 `ACTS = {}`，根本没有 plane 帧可附着（`flew → plane` 是死键，未补映射）；两幕各加 `actorFitW: 440`，当前无视觉变化，将来登记 plane0/1/2 即生效。打包 + 探针 22.1/33.0 秒、0 报错。
@@ -83,7 +84,7 @@ R2-W1 按幕查（v5check.py 设计；R4-F2 按课查，`family_key` 把 `_pN_` 
 9. durations.json 待 `--scan` 刷新（三节新值 76.4/90.1/96.6 已探针实测；刷新被 Chromium 1254 未装上卡住，durcheck 默认启动仍会失败）。
 10. 生成幕同缺陷未修（gen_spacetime_2 等）：须 `gen_scene.py` 支持 actorFitW。
 11. fly out 飞机映射未定（`fly out → plane0/1/2` 是否登记）。
-12. wo_rule eat 映射仍错：画吃帧或删键。
+12. wo_rule eat 映射仍错：画吃帧或删键。→ **已决：删键（2026-11-10，见上第 9 项补记）。**
 13. grammarcheck.py 与修前 wbtextcheck 同病（写死已删老 App）。
 14. writing_alchemist_2（267.8 秒）/_3（298.6 秒）仍是长幕。
 15. fp_economy_3（173.4 秒）/fp_iconicity_2（152.7 秒）/fp_one_king_4（162.1 秒）仍 >120 秒。

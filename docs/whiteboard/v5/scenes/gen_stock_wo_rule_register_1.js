@@ -5,7 +5,9 @@
 // 角色关键帧：sprites/rg1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/rg1.js';
-const ACTS = {"eat": ["l_cake1"]};
+// eat 键已删（2026-11-10，Priya 说“你自己决定”，Muse 定夺删键）：l_cake1 是男孩吹生日蛋糕蜡烛的帧，
+// 盘上无“正在吃”的帧，eat 句配吹蜡烛是儿童可见的内容错误；待美术画通用吃帧后再登记。
+const ACTS = {};
 const ITEMS = [
   ['n', '英语里活的动物和它的肉，常常是两个词：动物用古英语留下来的词，肉用从法语借来的词。'],
   ['w', '🔬 规律 9：本族词 ↔ 法语借词（两层词汇）'],

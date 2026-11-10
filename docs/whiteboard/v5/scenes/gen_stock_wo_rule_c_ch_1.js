@@ -5,7 +5,9 @@
 // 角色关键帧：sprites/cc1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/cc1.js';
-const ACTS = {"eat": ["l_cake1"]};
+// eat 键已删（2026-11-10，Priya 说“你自己决定”，Muse 定夺删键）：l_cake1 是男孩吹生日蛋糕蜡烛的帧，
+// 盘上无“正在吃”的帧，eat 句配吹蜡烛是儿童可见的内容错误；待美术画通用吃帧后再登记。
+const ACTS = {};
 const ITEMS = [
   ['n', '古英语里有一部分 c，后来读成了 ch。德语没有这样变，所以英语的 ch 有时对上德语的 k。'],
   ['w', '🔬 规律 18：古英语 c → ch（腭化）'],
