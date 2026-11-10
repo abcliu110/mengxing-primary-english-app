@@ -47,9 +47,10 @@
   不再输出 anchorcheck 行，忽略分支成防御性代码）；docstring 与通过注记
   改写为“anchorcheck 已废止”。`check_all.py` 的 jscheck 行 docstring 同步
   改写。check_all 项数不变（27 项）。
-- `anchorcheck.py` 本体**保留、未删除**：`docs/whiteboard/src/appwrite.py`
+- `anchorcheck.py` 本体**第六波时保留、未删除**：当时 `docs/whiteboard/src/appwrite.py`
   的 `save()` 仍 `import anchorcheck`（见下）；删文件会让该 import 报错，
-  故只立标记、不删文件。
+  故只立标记、不删文件。**2026-11-10 第八波第 22 项已删本体**（appwrite.py
+  已于第七波删除，import 障碍已消失；git 历史可找回）。
 - 不补锚点、不改期望值、不列入门禁（第五波第 10 项推荐处置的①②③皆不做）。
 
 ## 仍调用 / 仍提及 anchorcheck 的残留（本项未动）
