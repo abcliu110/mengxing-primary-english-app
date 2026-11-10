@@ -16,4 +16,4 @@ const ITEMS = [
   ['w', '共同点：OUT = 从里面出来；往外'],
   ['s', 'He is scheduled to fly out on Friday.', '他定于周五乘飞机出发。', 'fly out'],
 ];
-export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · fly out ②', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · fly out ②', items: ITEMS, acts: ACTS, actorFitW: 440 }); }

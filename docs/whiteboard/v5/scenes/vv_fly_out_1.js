@@ -12,4 +12,4 @@ const ITEMS = [
   ['m', 'OUT'],
   ['m', '从里面出来；往外'],
 ];
-export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · fly out ①', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · fly out ①', items: ITEMS, acts: ACTS, actorFitW: 440 }); }
