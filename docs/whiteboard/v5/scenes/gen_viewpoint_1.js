@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/zmo1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/zmo1.js';
-const ACTS = {"see": ["l_point"], "tell": ["whisper"]};
+const ACTS = {"see": ["l_point"]};
 const ITEMS = [
   ['n', '这一幕：形容词站在名词前面还是后面？看它的「重量」。'],
   ['p', 'a red apple'],

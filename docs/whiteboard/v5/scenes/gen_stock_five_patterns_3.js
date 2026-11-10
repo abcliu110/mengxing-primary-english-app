@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat3.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat3.js';
-const ACTS = {"reading": ["l_read"], "planted": ["plant"], "go": ["l_w0", "l_w1", "l_w2"], "read": ["l_read"]};
+const ACTS = {"reading": ["l_read"], "read": ["l_read"]};
 const ITEMS = [
   ['n', '句型 ③：最常见的句型！动作像射出去的箭，一定要射中一个目标。'],
   ['w', '句型 ③ SVO'],

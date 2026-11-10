@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/wop1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wop1.js';
-const ACTS = {"takes": ["ship"], "carry": ["porter"], "import": ["porter"], "export": ["porter"], "transport": ["porter"], "report": ["l_report"], "reports": ["l_report"], "pass": ["l_passport"], "take": ["ship"], "hold": ["l_lift1"], "support": ["dad_strong"]};
+const ACTS = {"takes": ["ship"], "carry": ["porter"], "import": ["porter"], "take": ["ship"]};
 const ITEMS = [
   ['n', '四周都是陆地，船从哪儿都能到 → 港口就特别重要。'],
   ['w', '四周都是陆地 → 船来船往 → 港口最重要'],

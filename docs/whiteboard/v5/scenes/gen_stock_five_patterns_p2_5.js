@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat5.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat5.js';
-const ACTS = {"reading": ["m_aloud"], "read": ["m_aloud"], "play": ["kick0", "kick1", "kick2"], "go": ["l_w0", "l_w1", "l_w2"], "laugh": ["l_laugh"]};
+const ACTS = {"reading": ["m_aloud"], "read": ["m_aloud"], "play": ["kick0", "kick1", "kick2"]};
 const ITEMS = [
   ['n', '形容词作宾补：make / keep + 宾语 + 形容词，不能写成 -ly 的 happily。'],
   ['w', 'makes me happily'],

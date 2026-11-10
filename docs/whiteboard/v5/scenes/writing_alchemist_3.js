@@ -3,7 +3,7 @@
 // 角色关键帧：sprites/wa3.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wa3.js';
-const ACTS = {"piano": ["linda_piano"], "sweeping": ["m_sweep"], "strawberries": ["m_berry"], "sheep": ["l_sheep"], "helps": ["linda_help"]};
+const ACTS = {"piano": ["linda_piano"], "strawberries": ["m_berry"], "sheep": ["l_sheep"], "helps": ["linda_help"]};
 const ITEMS = [
   ['n', '小学考场作文，95% 都逃不出三大母题：写人、写过去的经历、写计划。'],
   ['w', '满分作文炼金炉'],

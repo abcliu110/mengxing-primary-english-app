@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/wop1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wop1.js';
-const ACTS = {"takes": ["ship"], "carry": ["porter"], "import": ["porter"], "export": ["porter"], "transport": ["porter"], "report": ["l_report"], "reports": ["l_report"], "pass": ["l_passport"], "take": ["ship"], "hold": ["l_lift1"], "support": ["dad_strong"]};
+const ACTS = {"hold": ["l_lift1"], "support": ["dad_strong"]};
 const ITEMS = [
   ['n', '亲戚词：portus 和 portare 是同一个古老词根长出的亲戚，不是同一个词。'],
   ['w', '💡 记忆联想'],

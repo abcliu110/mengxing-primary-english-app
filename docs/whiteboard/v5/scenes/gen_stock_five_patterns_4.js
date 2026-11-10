@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat4.js';
-const ACTS = {"gave": ["mom_gift"], "give": ["l_pen"], "show": ["l_pen"], "pass": ["m_pass"]};
+const ACTS = {"gave": ["mom_gift"], "give": ["l_pen"]};
 const ITEMS = [
   ['n', '句型 ④：有些动词天生就是「把东西递给人」，所以要带两个宾语。'],
   ['p', '🖊️'],

@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/wow1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wow1.js';
-const ACTS = {"go": ["l_w0", "l_w1", "l_w2"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '后来：后来罗马人在前面加了一月、二月，名字没改——所以「七月」跑到了第九个位置。'],
   ['w', '后来前面加了一月、二月，名字没改 → 往后挪了两格'],

@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/won1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/won1.js';
-const ACTS = {"carries": ["m_eggs"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '这一幕：eleven、twelve 为什么不叫 oneteen、twoteen？一万、一亿用英语怎么说？'],
   ['w', '数字的秘密'],

@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/fk4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fk4.js';
-const ACTS = {"fly": ["bird_up", "bird_down"], "pass": ["m_pass"], "reading": ["l_read"], "gives": ["mom_gift"]};
+const ACTS = {"gives": ["mom_gift"]};
 const ITEMS = [
   ['n', '这一幕：再长的句子，拆掉装饰，只剩 5 副骨骼。'],
   ['p', 'apple'],

@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at4.js';
-const ACTS = {"went": ["l_goout"], "flew": ["plane"], "go": ["l_w0", "l_w1", "l_w2"]};
+const ACTS = {"went": ["l_goout"], "go": ["l_w0", "l_w1", "l_w2"]};
 const ITEMS = [
   ['n', '预测：「她坐公交车去上学了」变成一般疑问句：句首请谁来？went 要变成什么？先想 3 秒！'],
   ['w', '🔮 她坐公交车去上学了。She went to school by bus.'],

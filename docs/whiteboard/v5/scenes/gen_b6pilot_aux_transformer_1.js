@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at1.js';
-const ACTS = {"taking": ["m_photo"], "reading": ["l_read"]};
+const ACTS = {"taking": ["m_photo"]};
 const ITEMS = [
   ['n', '这节课：一句话怎么一键变成否定句、疑问句、感叹句？秘密在「护卫」身上。'],
   ['p', '📷'],

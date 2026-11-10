@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at2.js';
-const ACTS = {"speak": ["l_speak"], "read": ["l_read"], "jump": ["l_jc", "l_ja"]};
+const ACTS = {"speak": ["l_speak"]};
 const ITEMS = [
   ['n', '注意 can + not 要连写成 cannot。后面的 speak 还是原形。'],
   ['w', '直接在大将军 can 后加 not（cannot / can\'t），后面 speak 保持原形'],

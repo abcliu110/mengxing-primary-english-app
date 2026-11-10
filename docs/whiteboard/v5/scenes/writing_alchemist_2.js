@@ -3,7 +3,7 @@
 // 角色关键帧：sprites/wa2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wa2.js';
-const ACTS = {"piano": ["linda_piano"], "sweeping": ["m_sweep"], "strawberries": ["m_berry"], "sheep": ["l_sheep"], "helps": ["linda_help"]};
+const ACTS = {"sweeping": ["m_sweep"], "helps": ["linda_help"]};
 const ITEMS = [
   ['n', '为什么有的作文读起来像一盘散沙？因为句子和句子之间没有「路标」。'],
   ['w', '满分作文炼金炉'],

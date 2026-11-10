@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/fz4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fz4.js';
-const ACTS = {"play": ["kick0", "kick1", "kick2"], "reading": ["l_read"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '这一幕：现在完成时，到底在说什么？是「做完了」吗？'],
   ['w', '完成时：和现在有关系'],

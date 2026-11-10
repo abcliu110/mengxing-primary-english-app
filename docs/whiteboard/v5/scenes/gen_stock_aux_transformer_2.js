@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at2.js';
-const ACTS = {"speak": ["l_speak"], "read": ["l_read"], "jump": ["l_jc", "l_ja"]};
+const ACTS = {"speak": ["l_speak"], "read": ["l_read"]};
 const ITEMS = [
   ['n', '这一类句子里住着一位「大将军」，变形全靠它一个人。'],
   ['w', '助动词照妖镜'],

@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/fv4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fv4.js';
-const ACTS = {"walk to": ["l_w0", "l_w1", "l_w2"], "look for": ["l_search"], "look at": ["l_point"], "go to": ["l_w0", "l_w1", "l_w2"]};
+const ACTS = {"walk to": ["l_w0", "l_w1", "l_w2"], "go to": ["l_w0", "l_w1", "l_w2"]};
 const ITEMS = [
   ['n', '这一幕：to、for、from，三个小词各管一段路。'],
   ['w', 'to · for · from'],

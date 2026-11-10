@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/wop1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wop1.js';
-const ACTS = {"takes": ["ship"], "carry": ["porter"], "import": ["porter"], "export": ["porter"], "transport": ["porter"], "report": ["l_report"], "reports": ["l_report"], "pass": ["l_passport"], "take": ["ship"], "hold": ["l_lift1"], "support": ["dad_strong"]};
+const ACTS = {"takes": ["ship"], "pass": ["l_passport"], "take": ["ship"]};
 const ITEMS = [
   ['n', '盖章：啪！章盖上了：可以通过港口了。'],
   ['s', 'OK! You can pass now.', '好了！你现在可以通过了。', 'OK pass'],

@@ -3,7 +3,7 @@
 // 角色关键帧：sprites/as1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/as1.js';
-const ACTS = {"think": ["l_think"]};
+const ACTS = {};
 const ITEMS = [
   ['n', 'in- 有两个：表示「不」的（incorrect）和表示「入」的（import 进口）。两个 in- 碰到 p、l、r 的时候，都会变成和后面一样的音，读起来更顺口：impossible、illegal、irregular，还有 import 的 im-。这叫前缀同化。'],
   ['w', '🔬 规律 10：前缀同化 in- → im- / il- / ir-'],

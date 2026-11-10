@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at2.js';
-const ACTS = {"speak": ["l_speak"], "read": ["l_read"], "jump": ["l_jc", "l_ja"]};
+const ACTS = {"speak": ["l_speak"], "jump": ["l_jc", "l_ja"]};
 const ITEMS = [
   ['n', '副词：说明动作「怎么样」的词，比如 well（好）。感叹副词要用 How。'],
   ['w', 'How well Leo can speak English!'],

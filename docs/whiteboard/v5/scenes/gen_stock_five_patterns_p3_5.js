@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat5.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat5.js';
-const ACTS = {"reading": ["m_aloud"], "read": ["m_aloud"], "play": ["kick0", "kick1", "kick2"], "go": ["l_w0", "l_w1", "l_w2"], "laugh": ["l_laugh"]};
+const ACTS = {"reading": ["m_aloud"], "read": ["m_aloud"], "go": ["l_w0", "l_w1", "l_w2"], "laugh": ["l_laugh"]};
 const ITEMS = [
   ['n', '一般动词 ask、tell、want、invite 要带 to：ask us to read。'],
   ['w', 'ask / tell / want / invite + sb. + to do'],

@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at1.js';
-const ACTS = {"taking": ["m_photo"], "reading": ["l_read"]};
+const ACTS = {"taking": ["m_photo"]};
 const ITEMS = [
   ['n', '否定句：说「不」的句子。not 直接贴在护卫 is 身后：is not = isn\'t。'],
   ['w', 'She is not (isn\'t) taking photos in the park now.'],

@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/im2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/im2.js';
-const ACTS = {"look": ["l_point"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '这一幕：一句英语里，哪些词读得重、哪些词读得轻？像打鼓一样找节拍！'],
   ['p', 'RED'],

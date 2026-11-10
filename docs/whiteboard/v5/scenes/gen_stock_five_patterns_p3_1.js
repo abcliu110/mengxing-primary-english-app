@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat1.js';
-const ACTS = {"rises": ["sunny"], "run": ["l_r0", "l_r1", "l_r2"], "fly": ["bird_up", "bird_down"], "look": ["l_point"], "play": ["kick0", "kick1", "kick2"], "sleep": ["baby"]};
+const ACTS = {"look": ["l_point"], "play": ["kick0", "kick1", "kick2"]};
 const ITEMS = [
   ['n', '铁律：一定要守的规矩：listen to、look at、wait for，钩子不能丢！'],
   ['w', '必考：'],

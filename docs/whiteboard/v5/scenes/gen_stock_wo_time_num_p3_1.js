@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/won1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/won1.js';
-const ACTS = {"carries": ["m_eggs"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '大数：中文四位一节：万、亿。英文三位一节：thousand（千）、million（百万）。'],
   ['w', '中文：四位一节'],

@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat1.js';
-const ACTS = {"rises": ["sunny"], "run": ["l_r0", "l_r1", "l_r2"], "fly": ["bird_up", "bird_down"], "look": ["l_point"], "play": ["kick0", "kick1", "kick2"], "sleep": ["baby"]};
+const ACTS = {"rises": ["sunny"], "run": ["l_r0", "l_r1", "l_r2"], "fly": ["bird_up", "bird_down"], "look": ["l_point"], "sleep": ["baby"]};
 const ITEMS = [
   ['n', '不及物动词 Vi：主语自己就能完成的动作，力气不用传给别人，后面不用接对象。'],
   ['w', '自己就能完成：rise 升起 · fly 飞 · sleep 睡 · run 跑 · smile 笑'],

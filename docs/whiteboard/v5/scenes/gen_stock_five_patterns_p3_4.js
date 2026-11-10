@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat4.js';
-const ACTS = {"gave": ["mom_gift"], "give": ["l_pen"], "show": ["l_pen"], "pass": ["m_pass"]};
+const ACTS = {"pass": ["m_pass"]};
 const ITEMS = [
   ['n', 'for 心意：花心思替别人买、做、准备，像送出一颗爱心，就用 for。'],
   ['w', 'Dad bought me a new bike. = Dad bought a new bike FOR me.'],

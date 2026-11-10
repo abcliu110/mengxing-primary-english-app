@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/fi3.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fi3.js';
-const ACTS = {"walk": ["l_w0", "l_w1", "l_w2"], "come": ["l_back"], "look": ["l_point"]};
+const ACTS = {"walk": ["l_w0", "l_w1", "l_w2"]};
 const ITEMS = [
   ['n', '这一幕：str- 和 sp- 的词，好像都带着同一种感觉。先说清：这是联想归纳，帮猜意思的，不是词源！'],
   ['w', 'str- 拉紧的线 · sp- 往外冒'],

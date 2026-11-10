@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at1.js';
-const ACTS = {"taking": ["m_photo"], "reading": ["l_read"]};
+const ACTS = {"taking": ["m_photo"]};
 const ITEMS = [
   ['n', '特殊疑问句：用疑问词开头、问具体信息的问句，不能只答 Yes / No。'],
   ['w', 'Where is she taking photos now?'],

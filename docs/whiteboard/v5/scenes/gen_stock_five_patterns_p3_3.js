@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat3.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat3.js';
-const ACTS = {"reading": ["l_read"], "planted": ["plant"], "go": ["l_w0", "l_w1", "l_w2"], "read": ["l_read"]};
+const ACTS = {"reading": ["l_read"], "read": ["l_read"]};
 const ITEMS = [
   ['n', 'doing：享受、完成、练习常做的事用 doing，比如 enjoy doing。'],
   ['w', '享受常做 → enjoy / finish / practice / mind + doing'],

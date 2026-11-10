@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/im3.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/im3.js';
-const ACTS = {"jump": ["l_jc", "l_ja"], "look": ["l_point"]};
+const ACTS = {"look": ["l_point"]};
 const ITEMS = [
   ['n', '这一幕：blackboard 和 black board，写法差一个空格，重音一换，意思就变了！'],
   ['w', '合成词重音'],

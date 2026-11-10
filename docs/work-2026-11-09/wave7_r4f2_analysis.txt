@@ -1,0 +1,163 @@
+====================================================================================================
+SCENE gen_letters_1.js  family=letters_1.js members=['gen_letters_1.js']
+  KEY 'open'
+    gen_letters_1.js: ACTS-has=True frames=['m_door'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'swims'
+    gen_letters_1.js: ACTS-has=True frames=['snake'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'put'
+    gen_letters_1.js: ACTS-has=True frames=['l_put'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'catch'
+    gen_letters_1.js: ACTS-has=True frames=['l_catch'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_letters_2.js  family=letters_2.js members=['gen_letters_2.js']
+  KEY 'flies'
+    gen_letters_2.js: ACTS-has=True frames=['bird_up', 'bird_down'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'go'
+    gen_letters_2.js: ACTS-has=True frames=['l_w0', 'l_w1', 'l_w2'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_letters_3.js  family=letters_3.js members=['gen_letters_3.js']
+  KEY 'come'
+    gen_letters_3.js: ACTS-has=True frames=['l_back'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'look'
+    gen_letters_3.js: ACTS-has=True frames=['l_point'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_sentence_4.js  family=sentence_4.js members=['gen_sentence_4.js']
+  KEY 'fly'
+    gen_sentence_4.js: ACTS-has=True frames=['bird_up', 'bird_down'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'pass'
+    gen_sentence_4.js: ACTS-has=True frames=['m_pass'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'reading'
+    gen_sentence_4.js: ACTS-has=True frames=['l_read'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_spacetime_2.js  family=spacetime_2.js members=['gen_spacetime_2.js']
+  KEY 'get on'
+    gen_spacetime_2.js: ACTS-has=True frames=['l_bike0', 'l_bike1', 'l_bike2'] | board-w-mentions=['on'] | s-mentions=['on']
+    W@gen_spacetime_2.js: 'on 贴上 · off 离开'
+    W@gen_spacetime_2.js: 'on 贴上 · off 离开'
+    W@gen_spacetime_2.js: 'ON：贴上、接通'
+    W@gen_spacetime_2.js: 'put on your coat'
+    W@gen_spacetime_2.js: 'turn on the light'
+    W@gen_spacetime_2.js: 'put off 推迟 · on fire 着火'
+    W@gen_spacetime_2.js: '口诀：on 是贴上，off 是离开，go off 响起来单记'
+    W@gen_spacetime_2.js: '🔮 turn ___ the TV（打开）→ on 还是 off'
+    W@gen_spacetime_2.js: 'turn on the TV —— 接通 = on'
+    W@gen_spacetime_2.js: 'on、off 先猜贴和离：'
+    W@gen_spacetime_2.js: 'on 是贴上，off 是离开，go off 响起来单记'
+====================================================================================================
+SCENE gen_spacetime_4.js  family=spacetime_4.js members=['gen_spacetime_4.js']
+  KEY 'look for'
+    gen_spacetime_4.js: ACTS-has=True frames=['l_search'] | board-w-mentions=['for'] | s-mentions=['for']
+    W@gen_spacetime_4.js: 'to · for · from'
+    W@gen_spacetime_4.js: 'to · for · from'
+    W@gen_spacetime_4.js: 'for 三站'
+    W@gen_spacetime_4.js: 'a gift for you'
+    W@gen_spacetime_4.js: 'leave for Beijing'
+    W@gen_spacetime_4.js: 'for two hours'
+    W@gen_spacetime_4.js: '口诀：to 到终点，from 离起点；for 三站：为了谁，奔着哪儿，持续多久'
+    W@gen_spacetime_4.js: '🔮 I go ___ the park\u3000→\u3000to、for 还是 from'
+    W@gen_spacetime_4.js: 'for 三站合起来看'
+    W@gen_spacetime_4.js: 'for 三站：为了谁，奔着哪儿，持续多久'
+  KEY 'look at'
+    gen_spacetime_4.js: ACTS-has=True frames=['l_point'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_stock_intonation_map_2.js  family=intonation_map_2.js members=['gen_stock_intonation_map_2.js', 'intonation_map_2.js']
+  KEY 'look'
+    gen_stock_intonation_map_2.js: ACTS-has=True frames=['l_point'] | board-w-mentions=[] | s-mentions=[]
+    intonation_map_2.js: ACTS-has=True frames=['l_point'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_stock_intonation_map_3.js  family=intonation_map_3.js members=['gen_stock_intonation_map_3.js', 'intonation_map_3.js']
+  KEY 'jump'
+    gen_stock_intonation_map_3.js: ACTS-has=True frames=['l_jc', 'l_ja'] | board-w-mentions=[] | s-mentions=[]
+    intonation_map_3.js: ACTS-has=True frames=['l_jc', 'l_ja'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_stock_irregular_plural_2.js  family=irregular_plural_2.js members=['gen_stock_irregular_plural_2.js', 'irregular_plural_2.js']
+  KEY 'postmen'
+    gen_stock_irregular_plural_2.js: ACTS-has=True frames=['postman'] | board-w-mentions=[] | s-mentions=[]
+    irregular_plural_2.js: ACTS-has=True frames=['postman'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_stock_pron_map_3.js  family=pron_map_3.js members=['gen_stock_pron_map_3.js', 'pron_map_3.js']
+  KEY 'think'
+    gen_stock_pron_map_3.js: ACTS-has=True frames=['l_think'] | board-w-mentions=[] | s-mentions=[]
+    pron_map_3.js: ACTS-has=True frames=['l_think'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_stock_writing_alchemist_2.js  family=writing_alchemist_2.js members=['gen_stock_writing_alchemist_2.js', 'writing_alchemist_2.js']
+  KEY 'piano'
+    gen_stock_writing_alchemist_2.js: ACTS-has=True frames=['linda_piano'] | board-w-mentions=[] | s-mentions=[]
+    writing_alchemist_2.js: ACTS-has=True frames=['linda_piano'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'strawberries'
+    gen_stock_writing_alchemist_2.js: ACTS-has=True frames=['m_berry'] | board-w-mentions=[] | s-mentions=[]
+    writing_alchemist_2.js: ACTS-has=True frames=['m_berry'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'sheep'
+    gen_stock_writing_alchemist_2.js: ACTS-has=True frames=['l_sheep'] | board-w-mentions=[] | s-mentions=[]
+    writing_alchemist_2.js: ACTS-has=True frames=['l_sheep'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_stock_writing_alchemist_3.js  family=writing_alchemist_3.js members=['gen_stock_writing_alchemist_3.js', 'writing_alchemist_3.js']
+  KEY 'sweeping'
+    gen_stock_writing_alchemist_3.js: ACTS-has=True frames=['m_sweep'] | board-w-mentions=[] | s-mentions=[]
+    writing_alchemist_3.js: ACTS-has=True frames=['m_sweep'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_viewpoint_1.js  family=viewpoint_1.js members=['gen_viewpoint_1.js']
+  KEY 'tell'
+    gen_viewpoint_1.js: ACTS-has=True frames=['whisper'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_viewpoint_2.js  family=viewpoint_2.js members=['gen_viewpoint_2.js']
+  KEY 'runs'
+    gen_viewpoint_2.js: ACTS-has=True frames=['l_r0', 'l_r1', 'l_r2'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE gen_viewpoint_4.js  family=viewpoint_4.js members=['gen_viewpoint_4.js']
+  KEY 'play'
+    gen_viewpoint_4.js: ACTS-has=True frames=['kick0', 'kick1', 'kick2'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'reading'
+    gen_viewpoint_4.js: ACTS-has=True frames=['l_read'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE intonation_map_2.js  family=intonation_map_2.js members=['gen_stock_intonation_map_2.js', 'intonation_map_2.js']
+  KEY 'look'
+    gen_stock_intonation_map_2.js: ACTS-has=True frames=['l_point'] | board-w-mentions=[] | s-mentions=[]
+    intonation_map_2.js: ACTS-has=True frames=['l_point'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE intonation_map_3.js  family=intonation_map_3.js members=['gen_stock_intonation_map_3.js', 'intonation_map_3.js']
+  KEY 'jump'
+    gen_stock_intonation_map_3.js: ACTS-has=True frames=['l_jc', 'l_ja'] | board-w-mentions=[] | s-mentions=[]
+    intonation_map_3.js: ACTS-has=True frames=['l_jc', 'l_ja'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE irregular_plural_2.js  family=irregular_plural_2.js members=['gen_stock_irregular_plural_2.js', 'irregular_plural_2.js']
+  KEY 'postmen'
+    gen_stock_irregular_plural_2.js: ACTS-has=True frames=['postman'] | board-w-mentions=[] | s-mentions=[]
+    irregular_plural_2.js: ACTS-has=True frames=['postman'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE pron_map_3.js  family=pron_map_3.js members=['gen_stock_pron_map_3.js', 'pron_map_3.js']
+  KEY 'think'
+    gen_stock_pron_map_3.js: ACTS-has=True frames=['l_think'] | board-w-mentions=[] | s-mentions=[]
+    pron_map_3.js: ACTS-has=True frames=['l_think'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE wo_rule_assim_1.js  family=wo_rule_assim_1.js members=['wo_rule_assim_1.js']
+  KEY 'think'
+    wo_rule_assim_1.js: ACTS-has=True frames=['l_think'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE writing_alchemist_1.js  family=writing_alchemist_1.js members=['writing_alchemist_1.js']
+  KEY 'piano'
+    writing_alchemist_1.js: ACTS-has=True frames=['linda_piano'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'sweeping'
+    writing_alchemist_1.js: ACTS-has=True frames=['m_sweep'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'strawberries'
+    writing_alchemist_1.js: ACTS-has=True frames=['m_berry'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'sheep'
+    writing_alchemist_1.js: ACTS-has=True frames=['l_sheep'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'helps'
+    writing_alchemist_1.js: ACTS-has=True frames=['linda_help'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE writing_alchemist_2.js  family=writing_alchemist_2.js members=['gen_stock_writing_alchemist_2.js', 'writing_alchemist_2.js']
+  KEY 'piano'
+    gen_stock_writing_alchemist_2.js: ACTS-has=True frames=['linda_piano'] | board-w-mentions=[] | s-mentions=[]
+    writing_alchemist_2.js: ACTS-has=True frames=['linda_piano'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'strawberries'
+    gen_stock_writing_alchemist_2.js: ACTS-has=True frames=['m_berry'] | board-w-mentions=[] | s-mentions=[]
+    writing_alchemist_2.js: ACTS-has=True frames=['m_berry'] | board-w-mentions=[] | s-mentions=[]
+  KEY 'sheep'
+    gen_stock_writing_alchemist_2.js: ACTS-has=True frames=['l_sheep'] | board-w-mentions=[] | s-mentions=[]
+    writing_alchemist_2.js: ACTS-has=True frames=['l_sheep'] | board-w-mentions=[] | s-mentions=[]
+====================================================================================================
+SCENE writing_alchemist_3.js  family=writing_alchemist_3.js members=['gen_stock_writing_alchemist_3.js', 'writing_alchemist_3.js']
+  KEY 'sweeping'
+    gen_stock_writing_alchemist_3.js: ACTS-has=True frames=['m_sweep'] | board-w-mentions=[] | s-mentions=[]
+    writing_alchemist_3.js: ACTS-has=True frames=['m_sweep'] | board-w-mentions=[] | s-mentions=[]

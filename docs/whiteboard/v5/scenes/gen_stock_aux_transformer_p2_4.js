@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at4.js';
-const ACTS = {"went": ["l_goout"], "flew": ["plane"], "go": ["l_w0", "l_w1", "l_w2"]};
+const ACTS = {"went": ["l_goout"], "go": ["l_w0", "l_w1", "l_w2"]};
 const ITEMS = [
   ['n', '否定句：照妖镜 didn\'t 出场，吸走过去时：went 瞬间变回 go。'],
   ['w', 'They did not (didn\'t) go to Sanya by plane last winter.'],

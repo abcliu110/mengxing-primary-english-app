@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/fv2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fv2.js';
-const ACTS = {"put on": ["l_coat1", "l_coat2", "l_coat3"], "turn on": ["l_switch"], "get on": ["l_bike0", "l_bike1", "l_bike2"], "take off": ["l_coff0", "l_coff1", "l_coff2"], "takes off": ["plane0", "plane1", "plane2"], "fall off": ["l_fall"]};
+const ACTS = {"put on": ["l_coat1", "l_coat2", "l_coat3"], "turn on": ["l_switch"], "take off": ["l_coff0", "l_coff1", "l_coff2"], "takes off": ["plane0", "plane1", "plane2"], "fall off": ["l_fall"]};
 const ITEMS = [
   ['n', '这一幕：take off 为什么既是「脱衣服」，又是「飞机起飞」？'],
   ['p', '🧥'],

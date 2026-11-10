@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/ip2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/ip2.js';
-const ACTS = {"children": ["child"], "postmen": ["postman"]};
+const ACTS = {"children": ["child"]};
 const ITEMS = [
   ['n', '这一幕：除了换元音，还有四种不加 s 的复数。一个一个认识！'],
   ['w', '另外四种不规则复数'],

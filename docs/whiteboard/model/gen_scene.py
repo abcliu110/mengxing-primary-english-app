@@ -4,10 +4,60 @@
 - know 行: text 直用 / chant 引用模型口诀 / claim_say 引用模型主张的 say 字段
 - aha / title / 要点卡: 取自规格; 要点卡口诀行由模型 ch-cut 直供
 - 编排（布局/时间轴/动效）来自规格指定的 template 场景文件（模式实现，家族共用）
+- items 模式：ACTS 按生成幕裁剪，只保留在本幕朗读句里实际出现的键（第七波第 4 项）
 """
-import sys, re, yaml, pathlib
+import sys, re, yaml, pathlib, json
 
 MODEL = pathlib.Path(__file__).parent
+
+def crop_acts_to_sentences(out):
+    """按生成幕裁剪 ACTS（第七波第 4 项）：模板的 ACTS 是为模板幕配的，
+    生成幕台词不同时，未在本幕朗读句里出现的键是死键（R4-F2），
+    生成时直接去掉，只保留本幕实际有的键（'*' 通配键保留）。
+    匹配口径与 v5check R4-F2 / autoBuild 相同（单字按屈折口径，
+    多字键按句中连续出现），复用 src/v5check.py 的 extract_* /
+    token_covered，不另抄一份口径（口径改动只改 v5check 一处）。
+    只用于 items 模式（有 ITEMS 朗读句的幕）；know 模式不裁剪。
+    若 keep 为空，ACTS 写成 {}（该幕本来静态，v5check 记 R4-WARN）。"""
+    sys.path.insert(0, str(MODEL.parent / "src"))
+    try:
+        import v5check as vc
+    except Exception as e:
+        raise SystemExit(f"裁剪 ACTS 需导入 src/v5check.py，失败：{e}")
+    items = vc.extract_items(out)
+    acts = vc.extract_acts(out)
+    if not items or not acts:
+        return out
+    sents = [[vc.norm_word(t) for t in re.findall(r"[A-Za-z']+", it[1])]
+             for it in items if it and it[0] == 's' and len(it) > 1]
+    keep = {}
+    for key, frames in acts.items():
+        if key == '*':
+            keep[key] = frames
+            continue
+        key_words = [vc.norm_word(t) for t in key.split()]
+        hit = False
+        for toks in sents:
+            for i in range(len(toks) - len(key_words) + 1):
+                if all(vc.token_covered(kw, {toks[i + j]})
+                       for j, kw in enumerate(key_words)):
+                    hit = True
+                    break
+            if hit:
+                break
+        if hit:
+            keep[key] = frames
+    if keep == acts:
+        return out
+    new_acts = '{' + ', '.join(
+        json.dumps(k, ensure_ascii=False) + ': ' + json.dumps(v, ensure_ascii=False)
+        for k, v in keep.items()) + '}'
+    out2, n = re.subn(r"const ACTS = \{.*?\};",
+                      "const ACTS = " + new_acts + ";", out, count=1, flags=re.S)
+    assert n == 1, "ACTS 块替换失败"
+    dropped = [k for k in acts if k not in keep]
+    print(f"  （裁剪 ACTS：去掉本幕朗读句里没有的死键 {dropped}）")
+    return out2
 
 def js_str(s):
     return "'" + s.replace("\\", "\\\\").replace("'", "\\'") + "'"
@@ -128,6 +178,8 @@ def gen_items(spec, spec_path, tpl, v5):
     for old_frag, new_text in spec.get("replace", []):
         assert old_frag in out, f"replace 旧文案未找到: {old_frag}"
         out = out.replace(old_frag, new_text)
+    # 第七波第 4 项：按生成幕裁剪 ACTS（只保留本幕朗读句里实际有的键）。
+    out = crop_acts_to_sentences(out)
     prov = '、'.join(spec.get("teaches", [])) or '—'
     header = (f"// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：{fam_hint(spec)}；"
               f"改本幕台词/结构：model/specs/{pathlib.Path(spec_path).name}；改编排：模板 {spec['template']}（家族共用）。\n"

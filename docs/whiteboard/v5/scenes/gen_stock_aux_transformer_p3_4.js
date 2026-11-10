@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at4.js';
-const ACTS = {"went": ["l_goout"], "flew": ["plane"], "go": ["l_w0", "l_w1", "l_w2"]};
+const ACTS = {"flew": ["plane"]};
 const ITEMS = [
   ['n', '黄金三步：换 How → 提过去助动词 did → 主语后 went 还原为 go。'],
   ['w', '① 交通方式用 How ➔ ② 提过去助动词 did ➔ ③ 主语后 went 还原为 go'],

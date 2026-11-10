@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/fi2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fi2.js';
-const ACTS = {"flies": ["bird_up", "bird_down"], "fly": ["bird_up", "bird_down"], "go": ["l_w0", "l_w1", "l_w2"]};
+const ACTS = {"fly": ["bird_up", "bird_down"]};
 const ITEMS = [
   ['n', '这一幕：fly、flow 开头都是 fl-，是巧合吗？'],
   ['w', 'fl- 多半飞 · gl- 多半光 · sl- 多半滑'],

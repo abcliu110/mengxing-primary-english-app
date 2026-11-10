@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat1.js';
-const ACTS = {"rises": ["sunny"], "run": ["l_r0", "l_r1", "l_r2"], "fly": ["bird_up", "bird_down"], "look": ["l_point"], "play": ["kick0", "kick1", "kick2"], "sleep": ["baby"]};
+const ACTS = {"rises": ["sunny"]};
 const ITEMS = [
   ['n', '这节课：拍一张英语句子的「X 光片」，看清它的骨头！'],
   ['w', '句型 ① SV'],

@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/fpat5.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fpat5.js';
-const ACTS = {"reading": ["m_aloud"], "read": ["m_aloud"], "play": ["kick0", "kick1", "kick2"], "go": ["l_w0", "l_w1", "l_w2"], "laugh": ["l_laugh"]};
+const ACTS = {"reading": ["m_aloud"], "read": ["m_aloud"]};
 const ITEMS = [
   ['n', '句型 ⑤：光有主谓宾还不够，还要说宾语「变成什么样」或「去做什么」。'],
   ['w', '句型 ⑤ SVOC'],

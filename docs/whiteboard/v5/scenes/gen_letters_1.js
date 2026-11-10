@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/fi1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fi1.js';
-const ACTS = {"look": ["l_point"], "open": ["m_door"], "swims": ["snake"], "put": ["l_put"], "catch": ["l_catch"]};
+const ACTS = {"look": ["l_point"]};
 const ITEMS = [
   ['n', '这一幕：字母最早真是画出来的！可有些画是查得到的真来历，有些只是我们编的钩子。'],
   ['p', 'Aa'],

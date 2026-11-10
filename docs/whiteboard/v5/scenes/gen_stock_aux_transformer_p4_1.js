@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at1.js';
-const ACTS = {"taking": ["m_photo"], "reading": ["l_read"]};
+const ACTS = {"reading": ["l_read"]};
 const ITEMS = [
   ['n', '五种句子都变出来了！be 动词自己就是护卫，不用请外援 do / does / did。'],
   ['w', '① She is taking photos in the park now.'],

@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/wow1.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/wow1.js';
-const ACTS = {"go": ["l_w0", "l_w1", "l_w2"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '只有一个没换：Saturday 还是罗马的土星（Saturn），没换成日耳曼的神。'],
   ['w', 'Saturday 没换：还是罗马的土星'],

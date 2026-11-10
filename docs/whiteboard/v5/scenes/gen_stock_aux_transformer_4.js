@@ -6,7 +6,7 @@
 // 角色关键帧：sprites/at4.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/at4.js';
-const ACTS = {"went": ["l_goout"], "flew": ["plane"], "go": ["l_w0", "l_w1", "l_w2"]};
+const ACTS = {"went": ["l_goout"], "go": ["l_w0", "l_w1", "l_w2"]};
 const ITEMS = [
   ['n', '这一句也没有护卫，动词还是过去式，要请过去式照妖镜 did。'],
   ['w', '助动词照妖镜'],

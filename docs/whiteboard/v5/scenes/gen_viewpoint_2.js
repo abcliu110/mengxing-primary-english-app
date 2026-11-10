@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/fz2.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/fz2.js';
-const ACTS = {"going": ["l_w0", "l_w1", "l_w2"], "get up": ["l_bed0", "l_bed1", "l_bed2"], "runs": ["l_r0", "l_r1", "l_r2"]};
+const ACTS = {"going": ["l_w0", "l_w1", "l_w2"], "get up": ["l_bed0", "l_bed1", "l_bed2"]};
 const ITEMS = [
   ['n', '这一幕：为什么英语的疑问词总是放在句子第一个？'],
   ['w', '疑问词站第一'],

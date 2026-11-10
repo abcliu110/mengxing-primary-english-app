@@ -5,7 +5,7 @@
 // 角色关键帧：sprites/pm3.js（人物先行帧库 cast/）
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/pm3.js';
-const ACTS = {"think": ["l_think"]};
+const ACTS = {};
 const ITEMS = [
   ['n', '这一幕：元音不靠「挡」，靠舌头的高低、前后，加上嘴唇圆不圆。画一张舌位地图！'],
   ['w', '元音舌位地图'],
