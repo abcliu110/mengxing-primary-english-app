@@ -10,6 +10,7 @@ const ITEMS = [
   ['w', 'How vs What 原理'],
   ['w', 'What 是【疑问代词】专门填补名词/宾语坑位；How 是【疑问副词】专门当激光尺测量形容词/方式！'],
   ['w', '看中央实验台：为什么 What is it like 用 What（填介词 like 的宾语坑），How old/tall 用 How（副词量形容词）！'],
+  ['s', 'What is it like? How tall are you?', '它像什么样？你多高？'],
   ['w', '🔬 深度机制 1：为什么有介词 like 必用 What？（代词填补宾语空缺）'],
   ['w', 'The weather is like (介词:像)'],
   ['w', '【缺介词宾语(名词坑)】'],

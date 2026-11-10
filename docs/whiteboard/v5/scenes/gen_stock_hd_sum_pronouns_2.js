@@ -9,11 +9,13 @@ const ACTS = {"*": ["l_books", "tom_book", "l_pen"]};
 const ITEMS = [
   ['w', '代词全局原理'],
   ['w', '代词随句法位置变格：主语用主格(I/he)，动介后用宾格(me/him)，形物+名词=名物(my book=mine)'],
+  ['s', 'Give it to him.', '把它给他。'],
   ['w', '看中央实验台：直观演示主宾格过门换装与 my+book 吞噬合体为 mine！'],
   ['w', '🔬 深度机制 2：『形物代 + 名词 = 名词性物主代词』吞噬合体实验'],
   ['w', '💎 mine / hers (名物代词)'],
   ['w', '已把 book 吞进肚里，后面绝不再接名词！'],
   ['w', '📐 黄金等式：my + book = mine ｜ your + pen = yours ｜ her + bag = hers'],
+  ['s', 'My book is mine. Your pen is yours. Her bag is hers.', '我的书是我的。你的钢笔是你的。她的包是她的。'],
   ['w', '做题口诀：空格后有名词选 my/your/her；空格后无名词选 mine/yours/hers！'],
   ['w', 'my / her (形物)'],
   ['w', '带钩子，必接名词'],

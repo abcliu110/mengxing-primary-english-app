@@ -18,6 +18,9 @@ const ITEMS = [
   ['w', '❓ what (什么)'],
   ['w', '👉 that (那个)'],
   ['w', '📦 this (这个)'],
+  ['s', 'Where, there, here.', '哪里、那里、这里。'],
+  ['s', 'When, then, now.', '何时、那时、现在。'],
+  ['s', 'What, that, this.', '什么、那个、这个。'],
   ['w', '疑问第1幕'],
   ['s', 'Where is it? Over there! Whose bag is this? It\'s mine.', 'where/there/here 共享地点词根 -ere；when/then 共享时间词根 -en；what/that 共享事物词根 -at！']
 ];

@@ -7,6 +7,7 @@ const ACTS = {"*": ["m_berry", "bird_up", "l_point"]};
 const ITEMS = [
   ['w', '代词全局原理'],
   ['w', '代词随句法位置变格：主语用主格(I/he)，动介后用宾格(me/him)，形物+名词=名物(my book=mine)'],
+  ['s', 'Give it to him.', '把它给他。'],
   ['w', '看中央实验台：直观演示主宾格过门换装与 my+book 吞噬合体为 mine！'],
   ['w', '🔬 深度机制 3：指示代词『距离远近 × 单复数』空间雷达四宫格'],
   ['w', '👉 近处 + 单数(1个)'],
@@ -17,6 +18,8 @@ const ITEMS = [
   ['w', 'that is 🐦'],
   ['w', '🔭 远处 + 复数(多个)'],
   ['w', 'those are 🐦🐦'],
+  ['s', 'This is an apple. These are apples.', '这是苹果。这些是苹果。'],
+  ['s', 'That is a bird. Those are birds.', '那是鸟。那些是鸟。'],
   ['w', '代词第3幕'],
   ['s', 'I like my book. Give it to me. This book is mine!', '主格站句首，宾格站动介后；形容词性物主代词必须带名词，名词性物主代词独立顶包！']
 ];

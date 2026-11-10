@@ -9,6 +9,7 @@ const ITEMS = [
   ['w', 'eye'],
   ['s', 'I see with my eyes.', '我用眼睛看。', 'eye'],
   ['w', 'the eye of a needle'],
+  ['s', 'The eye of a needle.', '针眼。'],
   ['s', 'The needle has an eye.', '针上有个针眼。', 'eye'],
   ['n', '同形异源是两棵树，不许硬连。'],
   ['w', 'light'],

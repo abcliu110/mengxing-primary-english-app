@@ -20,6 +20,9 @@ const ITEMS = [
   ['w', '❓ what (什么)'],
   ['w', '👉 that (那个)'],
   ['w', '📦 this (这个)'],
+  ['s', 'Where, there, here.', '哪里、那里、这里。', 'ere'],
+  ['s', 'When, then, now.', '何时、那时、现在。', 'en'],
+  ['s', 'What, that, this.', '什么、那个、这个。', 'at'],
   ['w', '疑问第1幕'],
   ['s', 'Where is it? Over there! Whose bag is this? It\'s mine.', 'where/there/here、when/then、what/that 看着像「换个字母」——其实是两个家族穿了同款词尾（-ere、-en、-at）：问词家族姓 *kʷ-（古英语写 hw-），指示词家族姓 *to-（古英语写 þ-），近指 here 一家姓 *ḱe-。'],
 ];

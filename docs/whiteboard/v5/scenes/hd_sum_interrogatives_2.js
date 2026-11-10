@@ -7,17 +7,20 @@ const ACTS = {"*": ["l_bag0", "l_bag1", "l_think"]};
 const ITEMS = [
   ['w', '疑问词词源雷达'],
   ['w', '古英语 wh-(提问头) ↔ th-(远指回答头) ↔ h-(近指头) 完美对称：where↔there↔here, when↔then'],
+  ['s', 'Where, there, here. When, then.', '哪里、那里、这里。何时、那时。'],
   ['w', '看中央实验台：旋转词头密码锁，一眼看懂 9 大疑问词的造词规律与句首倒装语序！'],
   ['w', '🔬 精准靶心：Who(人) vs Whose(谁的包) vs Which(有限范围二选一)'],
   ['w', '🧒'],
   ['w', 'Who (问人身份)'],
   ['w', 'Who is he? — Mike.'],
+  ['s', 'Who is he? Mike.', '他是谁？迈克。'],
   ['w', '🎒🏷️'],
   ['w', 'Whose (问所属主人)'],
   ['w', 'Whose bag? — Mine.'],
   ['w', '🍎🍏'],
   ['w', 'Which (有范围挑选)'],
   ['w', 'Which one, red or green?'],
+  ['s', 'Which one, red or green?', '哪一个，红色还是绿色？'],
   ['w', '疑问第2幕'],
   ['s', 'Where is it? Over there! Whose bag is this? It\'s mine.', 'where/there/here 共享地点词根 -ere；when/then 共享时间词根 -en；what/that 共享事物词根 -at！']
 ];

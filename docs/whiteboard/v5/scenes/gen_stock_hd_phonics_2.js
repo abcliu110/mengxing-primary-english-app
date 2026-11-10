@@ -9,12 +9,14 @@ const ACTS = {"*": ["l_cap1", "l_cap2", "l_idea1"]};
 const ITEMS = [
   ['w', '自然拼读原理'],
   ['w', 'Magic E 魔法棒原理：词尾 e 静音不说话，把能量传给前面的元音读出字母本名！'],
+  ['s', 'Magic E.', '魔法 E。'],
   ['w', '看中央实验台：直观观察音素滑块碰撞合体与元音能量传递轨迹！'],
   ['w', '🪄 Magic E 跨越辅音传能量实验 (cap ➔ cape)'],
   ['w', 'cap /kæp/ 🧢'],
   ['w', 'c a p e /keɪp/ 🦸'],
   ['w', '⚡不发音e把能量传给a读/eɪ/'],
   ['w', '📐 四大 Magic E 公式：a_e(/eɪ/ cake) · i_e(/aɪ/ kite) · o_e(/əʊ/ nose) · u_e(/juː/ cute)'],
+  ['s', 'Cake, kite, nose, cute.', 'cake、kite、nose、cute。'],
   ['w', '拼读第2幕'],
   ['s', 'c-at -> cat! cap -> cape! sheep vs ship!', '见词能读、听音能写：掌握 CVC 闭音节、Magic E 开音节与字母组合规律！'],
 ];

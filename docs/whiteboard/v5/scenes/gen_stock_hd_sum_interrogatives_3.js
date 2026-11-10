@@ -9,11 +9,15 @@ const ACTS = {"*": ["l_speak", "l_idea0", "l_hand0"]};
 const ITEMS = [
   ['w', '疑问词词源雷达'],
   ['w', '古英语两大家族：wh- 问词一家 ↔ th- 指示词一家，here 是近指一家；两家穿同款词尾（-ere、-en、-at）：where↔there、when↔then'],
+  ['s', 'Where, there, here. When, then.', '哪里、那里、这里。何时、那时。', 'ere en'],
+  ['s', 'What, that, this.', '什么、那个、这个。', 'at'],
   ['w', '看中央实验台：旋转词头密码锁，一眼看懂 9 大疑问词的家族出身与句首倒装语序！'],
   ['w', '🔬 汉英语序反转：汉语疑问词留句尾 vs 英语疑问词冲到句首当火车头'],
   ['w', '🇨🇳 汉语疑问词留在句尾原位：你 住在 【哪里 (where)】？'],
   ['w', '🇬🇧 英语疑问词提拔到句首当火车头 + 一般疑问倒装（在特殊疑问句里站第一位；藏在长句子中间也可以——Tell me what you want.）：'],
+  ['s', 'Tell me what you want.', '告诉我你想要什么。'],
   ['w', '🚂 [Where (句首车头)] + [do (助动词)] + [you live] ?'],
+  ['s', 'Where do you live?', '你住在哪里？'],
   ['w', '疑问第3幕'],
   ['s', 'Where is it? Over there! Whose bag is this? It\'s mine.', 'where/there/here、when/then、what/that 看着像「换个字母」——其实是两个家族穿了同款词尾（-ere、-en、-at）：问词家族姓 *kʷ-（古英语写 hw-），指示词家族姓 *to-（古英语写 þ-），近指 here 一家姓 *ḱe-。'],
 ];
