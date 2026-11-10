@@ -9,6 +9,7 @@ const ACTS = {"*": ["l_wave", "l_speak", "l_laugh"]};
 const ITEMS = [
   ['w', 'G31 底层原理'],
   ['w', '特殊疑问词全家福 (5W1H 精准分工) —— what / who / whose / where / when / why / which / how —— 缺什么信息就派谁站句首！'],
+  ['s', 'What, who, whose, where, when, why, which, how.', 'what、who、whose、where、when、why、which、how。'],
   ['w', '【为什么英语疑问词几乎都以 wh- 开头，而且必须放在句首第一个词？】'],
   ['w', '英语把疑问词放在句首第一位（焦点前置），就像给听话人大脑发送一条检索指令：“请立刻去搜索【地点 Where / 时间 When / 人物 Who / 原因 Why】！”'],
   ['w', '🔬 Why 和 Because 锁死配对'],
@@ -16,6 +17,7 @@ const ITEMS = [
   ['w', 'Which 哪一个：在几样里挑一个'],
   ['s', 'Why do you like spring? Because there are beautiful flowers.', '你为什么喜欢春天？因为有美丽的花。'],
   ['w', '例：— Which season do you like best, and why? — Winter, because I can make a snowman!'],
+  ['s', 'Which season do you like best, and why?', '你最喜欢哪个季节，为什么？'],
   ['s', 'Which season do you like best? Winter, because I can make a snowman!', '你最喜欢哪个季节？冬天，因为我可以堆雪人！'],
   ['w', 'G31 第3幕'],
   ['n', '🎵 口诀：什么 what 谁是 who，谁的东西用 whose；哪里 where 何时 when，哪一个用 which 选；为什么 why 用 because 答，怎样程度全归 how！']

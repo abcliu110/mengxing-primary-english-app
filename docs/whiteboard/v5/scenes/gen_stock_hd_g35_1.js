@@ -13,6 +13,7 @@ const ITEMS = [
   ['w', 'There be 存现句与“就近原则” —— 表示“某处存在某物”——be 动词是个近视眼，谁紧挨着它就听谁的！'],
   ['w', '【为什么英语喜欢说 There is a book on the desk？】英语先用引导词 There 打头阵，再引出存在的新事物！'],
   ['w', '而且 be 动词只看紧挨着它的第一个名词是单是复（就近原则）——就近是考试与正式写作的约定，不是英语唯一的说法：日常口语里 There\'s 后跟复数非常常见！'],
+  ['s', 'There\'s two books on the desk.', '桌上有两本书。（口语）'],
   ['w', '🔬 be 是近视眼：只看紧挨着它的第一个名词'],
   ['w', 'There is + 单数 / 不可数 ｜ There are + 复数'],
   ['w', '例：There is a computer and two books on the desk.（紧挨 a computer → is）'],
@@ -22,6 +23,7 @@ const ITEMS = [
   ['w', '不可数也用 is：There is some milk in the glass.'],
   ['s', 'There is some milk in the glass.', '玻璃杯里有一些牛奶。'],
   ['w', '常错：There are an apple and three pears on the plate. ✗ → There is an apple ... ✓'],
+  ['s', 'There is an apple and three pears on the plate.', '盘子上有一个苹果和三个梨。'],
   ['w', 'G35 第1幕'],
   ['n', '🎵 口诀：There be 句型表存在，“某地有某物”记心怀；be 动词是个近视眼，只看身后第一个名：单数不可数用 is，复数紧挨就用 are！'],
 ];

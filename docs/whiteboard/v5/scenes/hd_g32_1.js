@@ -12,6 +12,7 @@ const ITEMS = [
   ['w', '• What 的本质是【疑问代词（替身名词）】：填补名词空缺！'],
   ['w', '在 What is the weather like? 里，like 是介词“像……”，后面缺一个宾语名词，所以必须派代词 What 去当 like 的宾语！'],
   ['w', '• How 的本质是【疑问副词（方式与程度探针）】：修饰动词（问方式 How do you go?）或修饰形容词/副词（问状态程度 How is the weather? / How old / How tall）！'],
+  ['s', 'How do you go? How old are you? How tall are you?', '你怎么去？你多大了？你多高？'],
   ['w', '没有介词 like 时，直接问状态形容词，必须派副词 How 出场！'],
   ['w', '🔬 深度机制 1：为什么有介词 like 必用 What？（代词填补宾语空缺）'],
   ['w', 'The weather is like (介词:像)'],

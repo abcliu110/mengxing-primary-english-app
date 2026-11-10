@@ -9,10 +9,12 @@ const ACTS = {"*": ["l_point", "l_idea2", "m_pass"]};
 const ITEMS = [
   ['w', 'G31 底层原理'],
   ['w', '特殊疑问词全家福 (5W1H 精准分工) —— what / who / whose / where / when / why / which / how —— 缺什么信息就派谁站句首！'],
+  ['s', 'What, who, whose, where, when, why, which, how.', 'what、who、whose、where、when、why、which、how。'],
   ['w', '【为什么英语疑问词几乎都以 wh- 开头，而且必须放在句首第一个词？】'],
   ['w', '英语把疑问词放在句首第一位（焦点前置），就像给听话人大脑发送一条检索指令：“请立刻去搜索【地点 Where / 时间 When / 人物 Who / 原因 Why】！”'],
   ['w', '🔬 Where 哪里 · When 何时 · What time 几点'],
   ['w', 'When 问任何时间；What time 专问钟表上的几点几分'],
+  ['s', "What time is it? It is three o'clock.", '现在几点？三点。'],
   ['w', '例：Where are you going, and when will you come back?'],
   ['s', 'Where are you going, and when will you come back?', '你要去哪里？什么时候回来？'],
   ['w', '常错：Where is your birthday? ✗ → When is your birthday? ✓ — It\'s in May.'],

@@ -20,6 +20,7 @@ const ITEMS = [
   ['w', '不可数也用 is：There is some milk in the glass.'],
   ['s', 'There is some milk in the glass.', '玻璃杯里有一些牛奶。'],
   ['w', '常错：There are an apple and three pears on the plate. ✗ → There is an apple ... ✓'],
+  ['s', 'There is an apple and three pears on the plate.', '盘子上有一个苹果和三个梨。'],
   ['w', 'G35 第1幕'],
   ['n', '🎵 口诀：There be 句型表存在，“某地有某物”记心怀；be 动词是个近视眼，只看身后第一个名：单数不可数用 is，复数紧挨就用 are！']
 ];
