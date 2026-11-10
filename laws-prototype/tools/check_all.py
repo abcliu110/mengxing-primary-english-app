@@ -9,6 +9,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_phonics.py --check      拼读 DATA 再生比对
   gen_phonics.py --check-letters  拼读按字母查索引 PHX_LETTERS 再生比对
   gen_phonics.py --check-sounds   拼读按读音查索引 PHX_SOUNDS 再生比对
+  gen_phonlaws.py --check     拼读律页运行时记录 PHONLAWS（S/SR quiz 104 题）再生比对
   gen_words.py --check        词页 WLIST/WPAGE 再生比对
   gen_vocab.py --check        词汇维度索引 VOCAB_DIM（主题/级别）再生比对
   gen_levels.py --check       统一级别 WORD_LEVELS（全词级别+来源标签，覆盖 2942/2942）再生比对
@@ -52,6 +53,7 @@ CHECKS = [
     ("gen_phonics --check", "gen_phonics.py", ["--check"]),
     ("gen_phonics letters --check", "gen_phonics.py", ["--check-letters"]),
     ("gen_phonics sounds --check", "gen_phonics.py", ["--check-sounds"]),
+    ("gen_phonlaws --check", "gen_phonlaws.py", ["--check"]),
     ("gen_words --check", "gen_words.py", ["--check"]),
     ("gen_vocab --check", "gen_vocab.py", ["--check"]),
     ("gen_levels --check", "gen_levels.py", ["--check"]),
