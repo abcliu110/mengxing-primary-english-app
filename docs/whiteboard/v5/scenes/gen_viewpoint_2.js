@@ -45,6 +45,7 @@ const ITEMS = [
   ['s', 'How much is this shirt?', '这件衬衫多少钱？', 'How much shirt this'],
   ['n', '例外一：回声问句——没听清、反问确认时，疑问词可以留在原地：You bought what?'],
   ['w', '⚠️ 回声问句：You bought what?'],
+  ['s', 'You bought what?', '你买了什么？', 'bought what'],
   ['n', '例外二：疑问词藏进长句子中间，就不站句首：Tell me what you want。'],
   ['w', '⚠️ 从句居中：Tell me what you want。'],
   ['w', '两个例外：见过即可，不硬套'],

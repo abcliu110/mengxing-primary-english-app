@@ -10,11 +10,13 @@ const ACTS = {};
 const ITEMS = [
   ['n', '只有一个没换：Saturday 还是罗马的土星（Saturn），没换成日耳曼的神。'],
   ['w', 'Saturday 没换：还是罗马的土星'],
+  ['s', 'Saturday is Saturn\'s day.', '星期六是土星的日子。', 'saturday'],
   ['n', '老样子：一千多年前，Thursday 写作 þunresdæg：雷神（Thunor）的日子。'],
   ['w', '古英语：þunresdæg'],
   ['w', '= 雷神（Thunor / Thor）+ 日子'],
   ['w', '📜 真实词源'],
   ['w', '→ Thuresday → Thursday'],
+  ['s', 'þunresdæg, Thuresday, Thursday.', '古英语 þunresdæg，Thuresday，星期四。', 'thuresday thursday'],
   ['s', 'Thursday is Thor\'s day.', '星期四是雷神的日子。', 'Thursday Thor\'s'],
   ['s', 'Thunor is the old English name of Thor.', 'Thunor 是 Thor 在古英语里的名字。', 'Thunor'],
   ['n', '月份：September 里藏着拉丁语 septem（七），可它是 9 月？'],

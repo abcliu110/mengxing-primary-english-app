@@ -8,12 +8,16 @@ const ITEMS = [
   ['n', 'in- 有两个：表示「不」的（incorrect）和表示「入」的（import 进口）。两个 in- 碰到 p、l、r 的时候，都会变成和后面一样的音，读起来更顺口：impossible、illegal、irregular，还有 import 的 im-。这叫前缀同化。'],
   ['w', '🔬 规律 10：前缀同化 in- → im- / il- / ir-'],
   ['w', '📜 有出处 💡 拆开就认识'],
-  ['s', 'It is impossible.', '这不可能。', 'impossible'],
+  ['s', 'In, im, il, ir.', 'in-、im-、il-、ir-。', 'in im il ir'],
+  ['s', 'It is impossible.', '这不可能。', 'possible impossible'],
+  ['s', 'It is illegal.', '这不合法。', 'legal illegal'],
+  ['s', 'It is irregular.', '这不规则。', 'regular irregular'],
   ['w', 'in + possible → impossible（碰到 p 变 im）'],
   ['w', 'in + legal → illegal 不合法的（碰到 l 变 il）'],
   ['w', 'in + regular → irregular 不规则的（碰到 r 变 ir）'],
   ['n', '另一个前缀 ad，意思是「到」，也会变：arrive 就是「到岸边」。'],
   ['w', 'arrive ← 拉丁语 ad（到）+ ripa（岸）'],
+  ['s', 'Arrive, ad, ripa.', 'arrive，拉丁语 ad（到），ripa（岸）。', 'arrive ad ripa'],
   ['n', '出处：Etymonline 写明 illegal、irregular 是 in- 的同化形式；Wiktionary 同样把它们拆成 il- 、ir- 加词根。'],
   ['w', '出处：Etymonline · Wiktionary']
 ];

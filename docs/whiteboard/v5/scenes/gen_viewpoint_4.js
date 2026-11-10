@@ -26,6 +26,7 @@ const ITEMS = [
   ['m', '过去'],
   ['m', '现在'],
   ['w', 'have / has + 过去分词（done）'],
+  ['s', 'I have done my homework.', '我做完作业了。', 'have done homework'],
   ['n', '第一支——结果留到现在：I have lost my key。钥匙是过去丢的，可「没找到」这个结果，一直摆到现在。'],
   ['w', 'I have lost my key.'],
   ['w', '结果：钥匙现在还没找到'],
