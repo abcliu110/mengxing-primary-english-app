@@ -29,4 +29,4 @@ const ITEMS = [
   ['w', 'V'],
   ['w', '对象'],
 ];
-export default function build() { return autoBuild(SP, { title: '🧱 五大基本句型 · ① SV 自给自足型 · 第 2 节', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '🧱 五大基本句型 · ① SV 自给自足型 · 第 2 节', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

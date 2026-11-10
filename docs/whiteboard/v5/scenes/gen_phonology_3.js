@@ -80,4 +80,4 @@ const ITEMS = [
   ['w', '口诀：看音不看字母；不字头碰唇音变 m。'],
   ['w', '🧠 第一性原理 ① 看音选冠词 · 前缀同化'],
 ];
-export default function build() { return autoBuild(SP, { title: '⚙️ 第一性原理 · 口腔小机关 · 3', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '⚙️ 第一性原理 · 口腔小机关 · 3', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

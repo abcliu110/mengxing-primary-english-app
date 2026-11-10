@@ -76,4 +76,4 @@ const ITEMS = [
   ['w', '口诀：五种骨架搭句子，动词决定带几个成分。'],
   ['w', '🧠 第一性原理 ④ 单核谓语'],
 ];
-export default function build() { return autoBuild(SP, { title: '五副骨架搭句子', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: '五副骨架搭句子', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

@@ -5,6 +5,8 @@
 - aha / title / 要点卡: 取自规格; 要点卡口诀行由模型 ch-cut 直供
 - 编排（布局/时间轴/动效）来自规格指定的 template 场景文件（模式实现，家族共用）
 - items 模式：ACTS 按生成幕裁剪，只保留在本幕朗读句里实际出现的键（第七波第 4 项）
+- items 模式：spec 可声明 actorFitW（超宽演员帧收界，见 v5/scenes/auto.js P2 分镜收界）；
+  模板自带时继承模板值，spec 声明时以 spec 为准（插入或覆盖）；第八波第 10 项。
 """
 import sys, re, yaml, pathlib, json
 
@@ -58,6 +60,20 @@ def crop_acts_to_sentences(out):
     dropped = [k for k in acts if k not in keep]
     print(f"  （裁剪 ACTS：去掉本幕朗读句里没有的死键 {dropped}）")
     return out2
+
+def apply_actor_fit_w(out, w):
+    """第八波第 10 项：把 spec 的 actorFitW 写进 (auto|oral|poly)Build 调用。
+    调用里已有 actorFitW 则覆盖数值，没有则在末尾插入；模板自带且 spec 未声明时
+    不调用本函数、继承模板值。只用于 items 模式。"""
+    m = re.search(r"((?:auto|oral|poly)Build\(SP, \{ .*? \}\))", out)
+    assert m, "Build 调用未找到，actorFitW 无处可写"
+    call = m.group(1)
+    if re.search(r"actorFitW: \d+", call):
+        new_call = re.sub(r"actorFitW: \d+", f"actorFitW: {w}", call, count=1)
+    else:
+        assert call.endswith(" })"), f"Build 调用尾部异常：{call[-60:]}"
+        new_call = call[:-3] + f", actorFitW: {w}" + " })"
+    return out[:m.start(1)] + new_call + out[m.end(1):]
 
 def js_str(s):
     return "'" + s.replace("\\", "\\\\").replace("'", "\\'") + "'"
@@ -180,6 +196,11 @@ def gen_items(spec, spec_path, tpl, v5):
         out = out.replace(old_frag, new_text)
     # 第七波第 4 项：按生成幕裁剪 ACTS（只保留本幕朗读句里实际有的键）。
     out = crop_acts_to_sentences(out)
+    # 第八波第 10 项：spec 声明 actorFitW 时以 spec 为准（插入或覆盖）；未声明继承模板值。
+    if "actorFitW" in spec:
+        w = spec["actorFitW"]
+        assert isinstance(w, int) and not isinstance(w, bool) and w > 0, f"actorFitW 须为正整数: {w!r}"
+        out = apply_actor_fit_w(out, w)
     prov = '、'.join(spec.get("teaches", [])) or '—'
     header = (f"// ⚙️ GENERATED — 由知识模型生成，禁止手改。改内容：{fam_hint(spec)}；"
               f"改本幕台词/结构：model/specs/{pathlib.Path(spec_path).name}；改编排：模板 {spec['template']}（家族共用）。\n"

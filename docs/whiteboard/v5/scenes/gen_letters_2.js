@@ -57,4 +57,4 @@ const ITEMS = [
   ['w', 'fl 多半在飞，gl 多半在发光，sl 多半往下滑——是多半，不是全部'],
   ['w', '📦 联想工具箱 ② 字母看图记词'],
 ];
-export default function build() { return autoBuild(SP, { title: 'fl-、gl-、sl-：多半是这样', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: 'fl-、gl-、sl-：多半是这样', items: ITEMS, acts: ACTS, actorFitW: 500 }); }

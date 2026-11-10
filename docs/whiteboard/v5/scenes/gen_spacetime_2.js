@@ -62,4 +62,4 @@ const ITEMS = [
   ['w', 'on 是贴上，off 是离开，go off 响起来单记'],
   ['w', '📦 联想工具箱 ⑤ 介词看图猜'],
 ];
-export default function build() { return autoBuild(SP, { title: 'on 贴上 · off 离开', items: ITEMS, acts: ACTS }); }
+export default function build() { return autoBuild(SP, { title: 'on 贴上 · off 离开', items: ITEMS, acts: ACTS, actorFitW: 440 }); }
