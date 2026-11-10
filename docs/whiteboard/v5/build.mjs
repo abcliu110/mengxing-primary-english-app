@@ -51,13 +51,25 @@ const shared = { name: 'wb5-shared', setup(b) {
 const scn = await build({ ...common, stdin: { contents: `import b from ${JSON.stringify(path.resolve(scenePath))}; globalThis.__WB5_SCENE__ = b;`, resolveDir: HERE, loader: 'js' }, plugins: [shared] });
 const esc = t => t.replace(/<\/script/g, '<\\/script');
 const js = esc(eng.outputFiles[0].text), sjs = esc(scn.outputFiles[0].text);
+// 第八波跟进 #6(b)：写作炼金术三节在独立播放页内互跳。白板线独立、不嵌入
+// 主文件（第二波定 C）；导航只挂 build.mjs 产物页，不动主文件、不动场景文件。
+// 仅 writing_alchemist(_p2/_p3)_<n> 九幕有导航，其他幕产物逐字节不变。
+const stem = path.basename(scenePath, '.js');
+const alm = stem.match(/^writing_alchemist(?:_p([23]))?_([123])$/);
+let secnav = '', navStyle = '';
+if (alm) {
+  const lesson = alm[2], cur = alm[1] ? +alm[1] : 1;
+  const secs = [[1, `writing_alchemist_${lesson}`], [2, `writing_alchemist_p2_${lesson}`], [3, `writing_alchemist_p3_${lesson}`]];
+  secnav = `<div id="secnav">${secs.map(([n, s]) => n === cur ? `<b aria-current="page">第 ${n} 节</b>` : `<a href="${s}.html">第 ${n} 节</a>`).join(' <span aria-hidden="true">·</span> ')}</div>`;
+  navStyle = `<style>#secnav{margin-top:10px;font-size:15px;color:#555}#secnav a{color:#0A0503}#secnav b{color:#0A0503}</style>`;
+}
 const html = `<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
 <style>html,body{margin:0;background:#eceae6;font:15px system-ui}#wrap{max-width:1200px;margin:16px auto;padding:0 12px}
 canvas{width:100%;aspect-ratio:16/9;display:block;background:#FBFBFB;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.12);cursor:pointer}
 #ctl{display:flex;gap:10px;align-items:center;margin-top:8px}#play{width:44px;height:32px;border:0;border-radius:8px;background:#0A0503;color:#fff;font-size:15px;cursor:pointer}
-#voice{width:44px;height:32px;border:0;border-radius:8px;background:#fff;font-size:16px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.15)}#bar{flex:1;accent-color:#EF7226}#time{font-variant-numeric:tabular-nums;color:#555;min-width:110px;text-align:right}</style></head>
-<body><div id="wrap"><canvas id="stage"></canvas><div id="ctl"><button id="play">▶</button><button id="voice"></button><input id="bar" type="range" min="0" value="0"><span id="time"></span></div></div>
+#voice{width:44px;height:32px;border:0;border-radius:8px;background:#fff;font-size:16px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.15)}#bar{flex:1;accent-color:#EF7226}#time{font-variant-numeric:tabular-nums;color:#555;min-width:110px;text-align:right}</style>${navStyle}</head>
+<body><div id="wrap"><canvas id="stage"></canvas><div id="ctl"><button id="play">▶</button><button id="voice"></button><input id="bar" type="range" min="0" value="0"><span id="time"></span></div>${secnav}</div>
 <script data-wb5-engine>${js}</script><script>${sjs}</script></body></html>`;
 mkdirSync(path.dirname(path.resolve(outPath)), { recursive: true });
 writeFileSync(outPath, html);
