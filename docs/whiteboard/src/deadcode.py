@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """deadcode.py [--json] —— 决策 29 O6：列出主文件里无引用的代码。
-① JS：直接执行的 <script> 里顶层 function 声明（src/fnranges.js，需要 acorn），在「整个主文件去掉它自己的函数体」+「全部 wb5 共享块解压后」
+① JS：直接执行的 <script> 里顶层 function 声明（src/fnranges.js，acorn 已随仓库进 src/vendor/acorn.js，见 fnranges.js 头注——2026-11-10 收尾线第 (c) 项修，不再依赖易失的 /tmp/acorn），在「整个主文件去掉它自己的函数体」+「全部 wb5 共享块解压后」
    都找不到名字（整词）的 = 零引用。反复迭代：删掉零引用函数后，只被它们调用的函数也算零引用（--json 输出带轮次）。
    动态拼名调用（window[name]()、'fn' + x）扫不出来，所以白名单 KEEP 里的不报。
 ② CSS：@keyframes 名字没有任何 animation 引用的；以及浏览器里实际不生效的 @keyframes（见 O6 记录：`.method-hub @keyframes x` 前缀写法整条被丢弃）。
@@ -19,7 +19,7 @@ def blobs(s):
         except Exception: pass
     return '\n'.join(out)
 def scan(s):
-    fns = json.loads(subprocess.run(['node', str(HERE / 'fnranges.js'), str(APP)], capture_output=True, text=True, check=True, env={'NODE_PATH': '/tmp/acorn/node_modules', 'PATH': '/usr/local/bin:/usr/bin:/bin'}).stdout)
+    fns = json.loads(subprocess.run(['node', str(HERE / 'fnranges.js'), str(APP)], capture_output=True, text=True, check=True, env={'PATH': '/usr/local/bin:/usr/bin:/bin'}).stdout)
     extra = blobs(s)
     from collections import Counter
     ID = re.compile(r'(?<![\w$])[A-Za-z_$][\w$]*')
