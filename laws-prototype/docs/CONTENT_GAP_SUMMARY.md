@@ -77,6 +77,11 @@
 4. **TA / WA quiz 的运行时到达情况如实记录。**TA 的 87 题在运行时经 `gen_interact.py` 生成块（源自 `ta_exercises.json`）已接入 TA 站，本次 yaml 回灌是事实源补全；WA 的 9 条 lawdata 为 null，不在 LAWDATA 里，quiz 只活在 yaml/总表，运行时未到达（与 TA、S/SR 同类问题，见“六”）。
 5. **S-44 不动。**S 组 yaml 实有 43 条（S-01..S-43）；S-44 只存在于总表（zone 来源条目，yaml 为 null，2026-11-03 由 Stewart 自 NEW-T 提升，内容在 morph 区），无法经 yaml 补 quiz，不擅自扩大范围。
 
+> **补记（2026-11-10 “全部收尾”波，以下三条取代上文对应决定，原文保留作历史记录）：**
+> - §四.3 已取代：`tools/gen_phonlaws.py` 已建（--check/--write），S/SR 104 题已注入运行时 PHONLAWS（52 行 quiz 全空→104 题），check_all 第 28 项门禁。
+> - §四.5 已取代：S-44 yaml 已补（phonics.yaml 第 44 条 + quiz 2 道，总表同步）；但其 quiz 不进运行时 PHONLAWS（字面量无 S-44 行；加行须生成器支持行新增 + roster 门禁复核，另立项）。
+> - §五.9 已推翻：TA form_building 积木块实测已在（`ta_exercises.json` 18 道全带 `build.blocks`、运行时 RV_TA 1:1、渲染分支齐全），不是缺口，无需修。
+
 ## 五、规格文档断言与实测不符（已按实测做，记入此）
 
 1. W 组有病例的是 W-12/13/14，不是文档所称 W-01/02/07（实测 0 条；本次 W-01/02/07 已补上）。
