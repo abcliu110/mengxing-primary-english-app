@@ -80,12 +80,12 @@
 ### ⑤ 验收脚本
 - 写进主文件：`python3 docs/whiteboard/src/insert_wb.py`（登记列表：实验室 `READY`、第一性原理 `FP_READY`、单词身世 `WO_READY`）。登记的模块写成按需加载的 `<script type="text/plain" id="wbmod-<id>">`，第一次进入时才执行（决策 13）；案例文件里不能出现 `</script` 和 `<!--`（脚本会报错拦下）。
 - 脚本：
-  - `node --check`：`python3 docs/whiteboard/src/jscheck.py`（抽出主文件全部直接执行的 `<script>` + 按需加载模块 `wbmod-*`，拼起来检查并逐个检查；末尾自动跑 `anchorcheck.py`，核对补丁锚点 / 插入标记没有静默丢失）；
+  - `node --check`：`python3 docs/whiteboard/src/jscheck.py`（抽出主文件全部直接执行的 `<script>` + 按需加载模块 `wbmod-*`，拼起来检查并逐个检查；末尾不再跑 `anchorcheck.py`，已于 2026-11-09 第六波废止，见 `docs/whiteboard/src/anchorcheck.RETIRED.md`）；
   - 实验室 `appwb.py <页签> <目录>`；第一性原理 `appfp.py <0-5> <目录>`；单词身世 `appwo.py <目录>`：每幕 `mounted: True`、`bad: None`、`errors: []`、无 NaN / undefined；
   - 回归：`appwb.py bamboo_tree`、`appfp.py 0`、`appwo.py` 都要过；
   - **朗读覆盖检查（R2）**：`python3 docs/whiteboard/src/v5check.py --only <幕前缀>`（v5 原生静态检查：每幕 `'s'` 朗读句在位、白板词有句读；全库基线 526 项 FAIL / 498 幕，见 `docs/work-2026-11-09/wave6_item1_v5check_baseline.json`（第六波豁免后重定；第五波基线 782 项 / 596 幕见 `wave5_item4_v5check_baseline.json`）；新改的幕逐幕过，不过的不合入）；
   - **动作覆盖检查（R4）**：同一个脚本（`ACTS` 键挂在朗读句上、演出帧在精灵包 `FI` 里；`ACTS` 为空只警告，由内容方判断该幕有无动作词）；
-  - **现行五步验证管线**（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`；旧验收行 `r2check.py … --strict` 一律改按这五步）：① 打包 `WB_FONTS=~/workspace/wbfonts PATH=~/workspace/wbfonts/bin:$PATH node docs/whiteboard/v5/build.mjs <幕>.js <out.html> "<标题>"` ② grep 打包产物（预期朗读句/关键例句逐字命中）③ 探针时长 `python3 docs/whiteboard/src/durcheck.py --scan <幕前缀>`（读打包 `out/` 的 `window.__dur`；>120 秒且不在 `dur_allow.json` 白名单 → 不合格）④ 文字检查 `python3 docs/whiteboard/src/wbtextcheck.py` ⑤ 语法检查 `python3 docs/whiteboard/src/jscheck.py`（`node --check`；`anchorcheck` 116 项基线不列入门禁）；
+  - **现行五步验证管线**（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`；旧验收行 `r2check.py … --strict` 一律改按这五步）：① 打包 `WB_FONTS=~/workspace/wbfonts PATH=~/workspace/wbfonts/bin:$PATH node docs/whiteboard/v5/build.mjs <幕>.js <out.html> "<标题>"` ② grep 打包产物（预期朗读句/关键例句逐字命中）③ 探针时长 `python3 docs/whiteboard/src/durcheck.py --scan <幕前缀>`（读打包 `out/` 的 `window.__dur`；>120 秒且不在 `dur_allow.json` 白名单 → 不合格）④ 文字检查 `python3 docs/whiteboard/src/wbtextcheck.py` ⑤ 语法检查 `python3 docs/whiteboard/src/jscheck.py`（`node --check`；`anchorcheck` 已废止，见 `docs/whiteboard/src/anchorcheck.RETIRED.md`）；
   - **引擎回归**：改引擎后，旧幕在新旧引擎下渲染结果要逐字节一致：`reg_render.py 旧.html old.json` → `reg_render.py 新.html new.json` → `reg_render.py --diff old.json new.json`（diff=0 才算过；旧版本用 `git show HEAD:萌星小学英语_最终合并版.html > 旧.html` 取）；
   - **首屏耗时**（按需加载，决策 13）：`measure_load.py 旧.html 新.html --n 12`，首页可交互（ready）不能变差；
   - **商业动画指标**：`measure_sync.py`（朗读同步误差 ≤0.2 秒）、`measure_fps.py`（fps，和升级前对比不能变差）、`measure_seek.py`（拖动 / 重播三种路径状态一致）；
@@ -224,7 +224,7 @@ k.say("This is a good opportunity.", { zh: "这是一个好机会。", word: "op
 - [ ] 旧内容清单对照 ❌0（`check_upgrade.py` 或模块自己的对照脚本；有意改动逐条写原因）
 - [ ] `python3 docs/whiteboard/src/v5check.py --only <幕前缀>`：每幕有朗读句、白板词有句读（R2；旧 `r2check.py <id> --strict` 已废止，见 `src/r2check.RETIRED.md`）
 - [ ] R4：所有动作词都有动作，`actionWords` 全覆盖；角色没有「站着不动」的段落
-- [ ] `jscheck.py`（含 `anchorcheck`）通过；`node --check` 通过
+- [ ] `jscheck.py`（`node --check`；`anchorcheck` 已废止）通过
 - [ ] 渲染回归：只有被改的幕 / 入口变化（`reg_render.py --diff`）
 - [ ] App 内挂载测试（`appfp.py` 或对应入口），控制台无 error、画面无 NaN / undefined
 - [ ] 截图逐张看：不挡字、不越界、四色、片头 / 转场 / 金句卡齐全

@@ -78,7 +78,7 @@
 - `embed_app.py` 插入新块必须锚在第一个 `<script type="text/plain" id="wb5html-` 前；主脚本注释里也有 `id="wbmod-<id>"` 字样，曾因锚错位置破坏主脚本（已修）。旧引擎删除时误删过通用函数 `stopActiveCanvasLoops`，已从 `92ea6e3` 主文件恢复后重新嵌入。
 - **VOCAB_DB 已拆分（O1）**：主文件里 `const VOCAB_DB` 只剩轻字段，`senses / etymology / memory_tip / example_en …` 等 10 个重字段在 `<script type="application/json" id="VOCAB_HEAVY_JSON">`，词对象原型上的 getter 按需解析。离线工具取全量一律用 `node src/vocab_extract.js <主文件>`（或已改好的合并片段），**不要再直接 eval `const VOCAB_DB`**，否则拿不到重字段。
 - 决策 33 ③：闯关厅「感叹句快刀手 / 考场捉虫」仍是手写题，没改成从语法题库出题（语法题库没有现成的四选一格式）；方法论教室「维度八 情景交际 8 大母题」原来就只有标题、内容空，未补。
-- 补丁脚本靠字符串锚点改主文件：新补丁先 `assert s.count(锚点) == 1`，并登记进 `src/anchorcheck.py`。
+- 补丁脚本靠字符串锚点改主文件：新补丁先 `assert s.count(锚点) == 1`。旧登记通道 `src/anchorcheck.py` 已于 2026-11-09 第六波废止（见 `src/anchorcheck.RETIRED.md`），旧写入通道 `src/appwrite.py` 已于 2026-11-10 第七波退役（见底稿 `docs/work-2026-11-09/wave7_mainb_retire.md`）。
 
 ## 5. 下一步（按顺序）
 
@@ -162,7 +162,7 @@
 | ① | `src/gen_mindmap_inventory.py` → `lab/INVENTORY_HD_MINDMAP_EXPORT.md`（R1 清单，25 幕 994 条）；`v5/gen_mindmap_groups.py` → `v5/mindmap_groups.json`（规则分组，已自审） | ✅ 本阶段提交 |
 | ② | `scenes/auto.js` 新增 `mindmapBuild` 版式 + `v5/gen_mindmap.py`；引擎变了 → `rebuild_all.py` 全量重建（484 幕，主 App 共享引擎块仍只 1 份）；`embed_app.py` 装导图舞台挂钩（无幕时舞台为空、不报错）；主文件 15.47 MB；抽样回归 tense_matrix / hd_formation / fp_economy / 单词卡模板 55 词全过、0 报错 | ✅ 本阶段提交 |
 | ③ | 25 幕分 3 批生成 → R1 → 联络表 → 嵌入（1–8 / 9–16 / 17–25），每批一提交 | 第 1 批 幕 1–8（学校与学习 … 服装与穿戴） ✅；第 2 批 幕 9–16（语法功能与指代 … 交通与出行） ✅；第 3 批 幕 17–25（交际与礼仪 … 核心语法功能词） ✅ |
-| ④ | `v5/app_check6.py` 全量 App 回归：25/25 合格（讲解幕在导图上方、幕号对、时长 65–116 s；16 节点可点开卡、➕/➖/滚轮缩放、拖拽、复位正常），0 报错；`jscheck` / `anchorcheck` OK；第一性原理总枢 24 幕仍正常 | ✅ 本阶段提交 |
+| ④ | `v5/app_check6.py` 全量 App 回归：25/25 合格（讲解幕在导图上方、幕号对、时长 65–116 s；16 节点可点开卡、➕/➖/滚轮缩放、拖拽、复位正常），0 报错；`jscheck` / `anchorcheck` OK（当时；anchorcheck 已于 2026-11-09 第六波废止，见 `src/anchorcheck.RETIRED.md`）；第一性原理总枢 24 幕仍正常 | ✅ 本阶段提交 |
 | ⑤ | 第一性原理总枢余下旧 canvas 核查：`v5/app_check7.py` 6 原理 × 4 幕——22 幕 v5 iframe、2 幕（fp_one_king ①、fp_zoom_focus ①）是迁去中英对照的跳转，页面上已无任何旧 canvas，0 报错。旧 canvas 代码（`startFirstPrinciplesCanvasLoop` 的 canvas 分支、`wbStageHtml` 的 `firstPrinciplesCanvas` 兜底）只在缺 v5 幕时才会用到，2026-10-31 已退役（§5.2 第 3 项） | ✅ 本阶段提交（无需改 App） |
 | ⑥ | 词源 / 格林定律 / 词根词缀 + 12+6 条规律（逐条核实） | 🟡 已转到 §5.2 第 1 项执行（下面 ⑥a–⑥g 只留作历史对照）。原记录（2026-10-30 22:30）：原审计用的 Wiktionary 抓取缓存 `work/etym` 随沙箱重置丢失，要重抓 1487 词（API 可用，已试 foot）；之后每条都要对照 Etymonline / Wiktionary 人工核实，是多轮的研究工作量，按下面 ⑥a–⑥g 分阶段做，每阶段一提交 |
 | ⑥a | ✅ 见 §5.2 1a。`src/fetch_etym.py`：按 VOCAB_DB 抓 Wiktionary wikitext（限速、断点续抓）→ `work/etym/`（缓存不进仓库）；`src/parse_etym.py` 解析词源 / 同源 / 构词模板 → 候选表 `word_origins/CANDIDATES_*.md`（进仓库，标「候选，未核」） | ✅ |

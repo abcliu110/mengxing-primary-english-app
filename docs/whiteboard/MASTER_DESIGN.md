@@ -221,8 +221,8 @@
 | O5 | 离线可用 | 单文件双击即用（已满足）；无 Service Worker（`file://` 下也用不了） | 保持单文件离线；不引外部资源 | 加检查：主文件不得出现 `http(s)://` 资源加载（链接除外） | `offlinecheck.py` 0 违规 |
 | O6 ✅ 2026-10-31（`src/deadcode.py` + `src/patch_deadcode.py`） | 旧 CSS keyframes 与死代码 | 11 个 `@keyframes`（火车、剪刀、火箭等）；HD 剧场系统在白板化后变成死代码 | 白板化完成后删除无引用代码 | 每拆一个 HD 入口，同提交删其专用函数；全局引用扫描脚本 `deadcode.py` 列出零引用函数 | `deadcode.py` 报告；全入口挂载测试 |
 | O7 | 全局变量 / 事件泄漏 | 227 个顶层函数；`addEventListener` 9 处、`removeEventListener` 0 处；`setTimeout` 24 处 | 切页时清理计时器和监听 | 统一 `pageScope`：登记监听 / 计时器，切页释放 | `leakcheck.py`：进出 20 次后监听数不增长 |
-| O8 | 构建与补丁脚本 | 已加 `anchorcheck.py`（63b7be4）；`docs/home/step*.py` 是一次性补丁 | 所有写主文件的脚本写前校验锚点、写后跑 `jscheck` | `docs/home/step*.py` 标记为历史脚本（只读）；`insert_wb.py` 保持唯一入口 | `jscheck.py` 含 anchorcheck |
-| O9 | 自动化测试与回归 | 沙箱曾缺 Playwright；回归靠 `reg_render.py` / `app*.py` 分散脚本 | 一条命令跑全套：`node --check`、anchorcheck、v5check 全部 + 现行五步验证管线（build 打包、grep 产物、探针时长、wbtextcheck、jscheck）、渲染回归、入口挂载、fps 抽测（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`） | `src/runall.py` 汇总；环境安装写进 SOP | `runall.py` 全绿才提交 |
+| O8 | 构建与补丁脚本 | 已加 `anchorcheck.py`（63b7be4）；`docs/home/step*.py` 是一次性补丁 | 所有写主文件的脚本写前校验锚点、写后跑 `jscheck` | `docs/home/step*.py` 标记为历史脚本（只读）；`insert_wb.py` 保持唯一入口 | `jscheck.py`（anchorcheck 已废止，见 `src/anchorcheck.RETIRED.md`） |
+| O9 | 自动化测试与回归 | 沙箱曾缺 Playwright；回归靠 `reg_render.py` / `app*.py` 分散脚本 | 一条命令跑全套：`node --check`、anchorcheck（已废止，见 `docs/whiteboard/src/anchorcheck.RETIRED.md`）、v5check 全部 + 现行五步验证管线（build 打包、grep 产物、探针时长、wbtextcheck、jscheck）、渲染回归、入口挂载、fps 抽测（`r2check.py` 已废止，见 `docs/whiteboard/src/r2check.RETIRED.md`） | `src/runall.py` 汇总；环境安装写进 SOP | `runall.py` 全绿才提交 |
 
 **实施时机（用户 2026-10-30 01:09 更正）：软件优化放在最后，等决策 23–28 的全部功能做完后再做。** 届时顺序：O9（测试基座）→ O8 → O2 / O7（调度器 + 泄漏）→ O3 → O1 → O4 → O6 → O5，每项一个或几个小提交。
 
@@ -343,7 +343,7 @@
 - **先搬后删**：每项先逐段对比；完全相同只留一份，不同的部分并入保留那份。`method_hub`「十五大王炸」尚未逐幕读完，删前必须确认无独有内容。
 - **主题相近但有独立教学价值的保留**，互相加「另见 →」链接。
 - **旧入口不断**：旧 screen 名留重定向（`renderCurrentView` 分支改指新位置），总地图、错题本、学习记录（localStorage 键）、跳转全部照常可用。
-- **分 5 步，各自提交**：① 档案与自测合一 → ② 首页与实验室卡 → ③ 方法论与闯关厅 → ④ 语法总结表、歌谣、纠偏 → ⑤ 单词表合一。每步跑 `runall.py --full`，更新 `HANDOFF.md` / `CHANGELOG.md`，用 appwrite / 锚点检查改主 HTML。
+- **分 5 步，各自提交**：① 档案与自测合一 → ② 首页与实验室卡 → ③ 方法论与闯关厅 → ④ 语法总结表、歌谣、纠偏 → ⑤ 单词表合一。每步跑 `runall.py --full`，更新 `HANDOFF.md` / `CHANGELOG.md`，用 appwrite（已退役，见底稿 `docs/work-2026-11-09/wave7_mainb_retire.md`）/ 锚点检查（anchorcheck 已废止，见 `src/anchorcheck.RETIRED.md`）改主 HTML。
 - 与已下达的词卡去重（`etymology == memory_tip` 只显示一份、模板巧记改标签）、英美拼写 / 变形词合并显示（保留旧 ID 别名）、`units.json` 残文名与同名幕改唯一名称、白板重复句只出清单一起推进；白板重复句不重建场景，等用户再定。
 - 完成后改写 §1「App 总体结构」为新形态。
 
@@ -366,7 +366,7 @@
 
 #### C. 执行规矩
 - 不与决策 33 第 ① 步同时改主 HTML：第 ① 步提交后再做。
-- 词缀、语法各自一个提交；改主 HTML 走 `appwrite.py` + `anchorcheck` 登记；跑 `runall.py --full`；更新 `HANDOFF.md` / `CHANGELOG.md`。
+- 词缀、语法各自一个提交；改主 HTML 走 `appwrite.py`（已退役，见底稿 `docs/work-2026-11-09/wave7_mainb_retire.md`）+ `anchorcheck`（已废止，见 `src/anchorcheck.RETIRED.md`）登记；跑 `runall.py --full`；更新 `HANDOFF.md` / `CHANGELOG.md`。
 - 菜单重构 ②–⑤ 仍暂停（用户 2026-10-31 02:35：等修订后的决策 33）。
 
 ### 决策 35　业务缺陷修复 + 课本同步（用户 2026-10-31 10:25，优先级最高）
@@ -376,7 +376,7 @@
 **审计来源**：业务审计报告（只读审计，HEAD `125c6fc`；明细与中间数据在仓库外 `/workspace/work/audit/`：`BIZ_AUDIT.md`、`kebiao_missing.json` 课标缺词 60、`pep_missing.json` 人教缺词、`fake_phon.json` 假音标 566、`shots/`）。外部对照：课标 =《义务教育英语课程标准（2022 年版）》附录 3 二级词汇表 505 词（教育部原件 http://www.moe.gov.cn/srcsite/A26/s8001/202204/W020220420582349487953.pdf ）；人教词表 = GitHub 社区整理 https://github.com/billyjr/pep-english-vocabulary （版本未标，**只作参考，每个词入库前要核实**）。本决策开工时把审计用到的清单拷进仓库 `lab/audit35/`（只拷清单 JSON 与报告，不拷 PDF / 截图）。
 
 **通用规矩**：
-- 顺序 A → B → C → D → E；每项（下表一行）一个或几个提交，commit + push `master`，同步 `HANDOFF.md` / `CHANGELOG.md`；改主 HTML 走 `appwrite.py` + `anchorcheck`；跑 `runall.py`（动单词卡 / 导图 / 原理的跑 `--full`）。
+- 顺序 A → B → C → D → E；每项（下表一行）一个或几个提交，commit + push `master`，同步 `HANDOFF.md` / `CHANGELOG.md`；改主 HTML 走 `appwrite.py`（已退役，见底稿 `docs/work-2026-11-09/wave7_mainb_retire.md`）+ `anchorcheck`（已废止，见 `src/anchorcheck.RETIRED.md`）；跑 `runall.py`（动单词卡 / 导图 / 原理的跑 `--full`）。
 - 数据改动先出「改前 → 改后」对照表进 `lab/audit35/`，再改主文件；新增检查脚本一律入 runall，防止回退。
 - 改了白板里出现的句子 / 词，按 HANDOFF §2 重建受影响的幕（R1 基线随之更新，对照表里写明哪些是「纠错删改」）。
 - 界面改动后 390 px 截图给用户；同一问题卡两次 → 记 HANDOFF 风险，跳下一项。
@@ -453,7 +453,7 @@
 **与决策 35 重叠的项合并处理，不重复做**：钟点 / 日期 / 年份 / 价钱读法 → 35-D8；字母四线三格书写 → 并入 35-D7（书写与标点）；礼貌请求、Would you mind 应答 → 35-D5；G05 a/an 讲反的历史 → 35-B2；口语第 3 轮接不上 → 35-B1；单词卡与思维导图的 a X / the X / my X 模板 → 35-A4；短语词条缺失 → 35-A2；How many / How much 与可数性 → 和 35-A8 / D3 一起做；空间介词全集 → 35-D4；语序 → 35-D1。下面各表里标「⇄35-xx」的只做 36 独有的那部分。
 
 **通用规矩**（同决策 35）：
-- 顺序 ① → ② → ③ → ④ → ⑤；每行一个或几个提交，commit + push `master`，同步 `HANDOFF.md` / `CHANGELOG.md`；改主 HTML 走 `appwrite.py` + `anchorcheck`；跑 `runall.py`（动白板 / 词卡 / 导图的跑 `--full`）。
+- 顺序 ① → ② → ③ → ④ → ⑤；每行一个或几个提交，commit + push `master`，同步 `HANDOFF.md` / `CHANGELOG.md`；改主 HTML 走 `appwrite.py`（已退役，见底稿 `docs/work-2026-11-09/wave7_mainb_retire.md`）+ `anchorcheck`（已废止，见 `src/anchorcheck.RETIRED.md`）；跑 `runall.py`（动白板 / 词卡 / 导图的跑 `--full`）。
 - 改幕按 HANDOFF §2：改 `v5/scenes/*.js` → `rebuild_all.py --tabs=…` → R1 基线同步（对照表写明「纠错删改」）→ 截图核对。
 - 新增的检查一律入 runall；界面 / 画面改动后 390 px 截图给用户。
 - 白板新幕按 §2.9 v5.1：一句一幕约 12 s，「立场景 → 动词重音 → 运动 / 跨边界 → 总结」四拍，句子里出现的物件必须画出来，动作和动词一致（决策 19 / 30）。
