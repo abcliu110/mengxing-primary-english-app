@@ -120,3 +120,11 @@ a71316b  Content: 内容缺口波再生（ERRIDX 548 条落盘 + BORROW 天坑�
 ```
 
 工作树：`~/workspace/gap-ta`、`~/workspace/gap-ssr`、`~/workspace/gap-wa`、`~/workspace/gap-cases`（各区的分叉工作树，合入后保留备查，未删除）。
+
+## 补记（2026-11-10 PB 深挖线，分支 `finish/pbcases`，工作树 `~/workspace/finish-pbcases`，未推送）
+
+- **PB-11 已补 1 例（VEC-056）**：`people could see her strolling on the sky gracefully` → `people could see her strolling in the sky gracefully`。出处：李欣, 刘文静. 概念迁移视角下中国英语学习者介词误用及分析——以介词 at, on, in 为例[J]. 现代语言学, 2022, 10(6): 1228-1235. DOI: 10.12677/ML.2022.106164（§4.2.2 例(13)，on 空间概念负迁移实例；CLEC 四个大学生子库 on 概念负迁移 78 例之一；学段大学）。全文已读（Scribd 转载全文与 Hans 题录页互证），原文分析「人不可能与天空相接触，更无法脚踩天空漫步」在案；另有 Zhang & Luo（概念迁移与介词使用研究，Semantic Scholar 全文）独立报告 `on the sky` 不可接受、正解为 `in the sky`，可作旁证。ERRIDX 548→549、覆盖 335→336、yaml 来源 135→136、diag_kid 改写 390→391。
+- **郭佳佳 2023 已独立核实**（原“未及独立复核”销项）：Hans 官方页题录（郭佳佳. 英语介词“on”使用的数据驱动研究[J]. 国外英语考试教学与研究, 2023, 5(3): 146-159. DOI: 10.12677/OETPR.2023.53015；东北大学外国语学院；300 篇作文、27 例 on 错误、五分法含选择错误）与全文 PDF 表 8 原文逐字相符——PB-01 `on my opinion`（表 8 序号 5）、PB-02 `people can be on car`（序号 2）、PB-03 `go on bus`（序号 20）均为表 8 选择错误例，27 例总数相符。PB-01/02/03 病例原文不动。
+- **E-12 刊期页码仍未核实**：全文已读（sinoss.net PDF，全文 1279 行，含 80 名大学生、判断题第 3 题 29 人误判等数据，与 E-12 病例一致），但该版本无刊头印记、未见期号页码；另经通用检索与英文题名检索，只命中同一全文，未见其他著录。diagnosis 里「刊期页码待核」原样保留，E-12 不动。
+- **PB-04/05/06/07 仍留空**（核不到原文错句，不写无出处病例）：已全文读过谢世君 2026（450 例，无 through/against/over 例）、王倩 2026（184 例，无 through/against/over 例）、郑丽佳 2025（60 例，无逐字错句）、吴媛媛/焦新平 2025 FCE 语料研究（in/on 混淆计数，无 through/against/over 例）；程焕福/李媛媛 2016（BISU 学报 over 教学实验，试题为正确用句加访谈解读，无学习者原文错句）、马书红 2007（现代外语，IN/ON/OVER 选词填空测试研究，全文未取到，仅见二手转述，无逐字错句在案）、Finkbeiner 1998（over 习得假说，理论）、Chang 2012（Chula 博士论文，60 题空间关系选择测验，测验型数据、无语料原文错句）均不能提供符合格式的原文错句；另对 through/against 的中英文定向检索只命中词典与教学网站的“常见错误”例（非学习者语料研究，按本波口径不用）。后续可沿线索：马书红 2007 全文、Chang 2012 全文（测验题项）、CLEC 原始语料检索。
+- 验证：`gen_laws.py --check` PASS、`gen_errors.py --check` PASS、`check_all.py` 27/27 全部通过。`gen_laws.py --write` 本波无改动（PB 病例只走 ERRIDX 通道，不进 LAWDATA 字面量）。
