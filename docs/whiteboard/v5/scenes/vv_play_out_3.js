@@ -11,6 +11,7 @@ const ITEMS = [
   ['m', 'play out：（事态）发展；演变'],
   ['w', 'We were forced to stand back and let the crisis play itself out.'],
   ['m', 'play itself out：（事态）发展直至结束；自行了结'],
+  ['s', 'We were forced to stand back and let the crisis play itself out.', '我们被迫退后一步，让危机自行发展下去。', 'play itself out'],
   ['w', '共同点：OUT = 从里面出来；往外'],
   ['s', 'The debate will play out in the media over the next week or two.', '这场辩论会在接下来一两周里通过媒体展开。', 'play out'],
 ];

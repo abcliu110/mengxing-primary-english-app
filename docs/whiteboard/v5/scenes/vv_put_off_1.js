@@ -15,9 +15,11 @@ const ITEMS = [
   ['m', '推迟，拖延'],
   ['m', '明天 Tue'],
   ['w', 'Later~'],
+  ['s', 'Later!', '以后再说！'],
   ['s', 'Don\'t put off your homework until tomorrow.', '不要把你的作业推迟到明天。'],
   ['m', 'OFF'],
   ['m', '推离今天'],
-  ['w', 'Do it today!']
+  ['w', 'Do it today!'],
+  ['s', 'Do it today!', '今天就做！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · put off ①', items: ITEMS, acts: ACTS }); }

@@ -19,6 +19,7 @@ const ITEMS = [
   ['m', 'stand up：经得起（检验、考验）'],
   ['w', 'I was supposed to go to a concert with Kyle on Friday, but he stood me up.'],
   ['m', 'stand somebody up：爽约；放（约好见面的人）鸽子'],
+  ['s', 'I was supposed to go to a concert with Kyle on Friday, but he stood me up.', '我本该周五和凯尔去听音乐会，可他放了我鸽子。', 'stood up'],
   ['w', '共同点：UP = 向上'],
   ['s', 'Stand up straight and don\'t slouch!', '站直，别驼背！', 'stand up'],
 ];

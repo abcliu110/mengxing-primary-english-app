@@ -27,6 +27,7 @@ const ITEMS = [
   ['m', '玩具放进箱子。'],
   ['w', 'Put in time.'],
   ['m', '投入时间。'],
+  ['s', 'Put in time.', '投入时间。'],
   ['m', '时间 投进 练琴罐'],
   ['w', '共同点：IN = 放进容器里'],
   ['s', 'Put your toys in the toy box.', '把你的玩具放进玩具箱里。'],

@@ -9,10 +9,12 @@ const ITEMS = [
   ['m', 'take on ①'],
   ['m', '拿上肩 → 承担'],
   ['w', 'So heavy!'],
+  ['s', 'So heavy!', '好重！'],
   ['s', 'He takes on the heavy bag.', '他把沉重的书包扛上肩。'],
   ['w', '肩膀表面'],
   ['m', 'ON'],
   ['m', '书包贴在肩上'],
-  ['w', 'Ready!']
+  ['w', 'Ready!'],
+  ['s', 'Ready!', '准备好了！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · take on ①', items: ITEMS, acts: ACTS }); }

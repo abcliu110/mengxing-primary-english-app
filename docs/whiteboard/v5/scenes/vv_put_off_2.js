@@ -18,6 +18,7 @@ const ITEMS = [
   ['m', '离开表面'],
   ['m', '+'],
   ['w', 'Don\'t put it off.'],
+  ['s', 'Don\'t put it off.', '别拖延。'],
   ['m', '作业 推离 今天'],
   ['m', '别拖到明天。'],
   ['w', 'Sports Day is put off.'],

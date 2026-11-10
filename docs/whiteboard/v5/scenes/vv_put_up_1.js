@@ -10,9 +10,11 @@ const ITEMS = [
   ['m', 'put up ①'],
   ['m', '举起（手）'],
   ['w', 'Who knows?'],
+  ['s', 'Who knows?', '谁知道？'],
   ['s', 'Put up your hand!', '请举手！'],
   ['m', 'UP'],
   ['m', '手往上举'],
-  ['w', 'Me! 5!']
+  ['w', 'Me! 5!'],
+  ['s', 'Me! 5!', '我！五！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · put up ①', items: ITEMS, acts: ACTS }); }

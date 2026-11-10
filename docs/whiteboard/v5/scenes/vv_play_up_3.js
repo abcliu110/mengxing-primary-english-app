@@ -11,8 +11,10 @@ const ITEMS = [
   ['m', 'play up / play somebody up：（机器、身体部位）出毛病；不对劲（英式，非正式）'],
   ['w', 'Patrick often plays up when he knows I\'m in a hurry.'],
   ['m', 'play up：（孩子）调皮捣乱；折腾人（英式，非正式）'],
+  ['s', "Patrick often plays up when he knows I'm in a hurry.", '帕特里克知道我赶时间时，常常调皮捣乱。', 'plays up'],
   ['w', 'The schools are playing up their science programs'],
   ['m', 'play something up：强调；渲染（重要性）'],
+  ['s', 'The schools are playing up their science programs.', '学校正在大力宣传他们的科学课程。', 'playing up'],
   ['w', '共同点：UP = 向上'],
   ['s', 'Her back is playing up again.', '她的背又出毛病了。', 'play up / play somebody up'],
 ];

@@ -11,8 +11,10 @@ const ITEMS = [
   ['m', 'go over something：仔细考虑；反复想'],
   ['w', 'In the competition, the judge goes over each dog and assesses it.'],
   ['m', 'go over something：仔细检查；查看'],
+  ['s', 'In the competition, the judge goes over each dog and assesses it.', '在比赛中，裁判逐一检查每只狗并打分。', 'goes over'],
   ['w', 'Once again I went over exactly what I needed to say.'],
   ['m', 'go over something：再讲一遍；复习'],
+  ['s', 'Once again I went over exactly what I needed to say.', '我又把要说的话仔仔细细过了一遍。', 'went over'],
   ['w', '共同点：OVER = 在……正上方 / 越过 / 结束'],
   ['s', 'I had gone over and over what happened in my mind.', '那件事在我脑子里翻来覆去想了好多遍。', 'go over something'],
 ];

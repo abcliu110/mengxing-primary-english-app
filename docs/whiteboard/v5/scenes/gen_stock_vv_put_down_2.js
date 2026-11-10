@@ -17,6 +17,7 @@ const ITEMS = [
   ['s', 'Put down your name here.', '在这里写下你的名字。'],
   ['w', 'To'],
   ['w', 'Tom'],
+  ['s', 'To Tom.', '给汤姆。'],
   ['m', 'PUT'],
   ['m', '向下落定'],
   ['m', '放、摆'],

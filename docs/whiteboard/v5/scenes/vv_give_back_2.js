@@ -15,6 +15,7 @@ const ITEMS = [
   ['m', '还书箱'],
   ['w', '还回图书馆'],
   ['s', 'Give the book back to the library.', '把书还给图书馆。'],
+  ['s', 'Return the English book to the library.', '把这本英语书还给图书馆。'],
   ['m', 'GIVE'],
   ['m', '回到原处'],
   ['m', '给、交出'],

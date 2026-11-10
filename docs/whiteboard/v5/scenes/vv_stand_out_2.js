@@ -19,6 +19,7 @@ const ITEMS = [
   ['m', 'stand out：出众；杰出'],
   ['w', 'The veins stood out on his throat and temples.'],
   ['m', 'stand out：凸出；鼓出'],
+  ['s', 'The veins stood out on his throat and temples.', '他喉咙和太阳穴上的青筋都鼓了出来。', 'stood out'],
   ['w', '共同点：OUT = 从里面出来；往外'],
   ['s', 'The outlines of rooftops and chimneys stood out against the pale sky.', '屋顶和烟囱的轮廓在苍白的天空映衬下格外显眼。', 'stand out'],
 ];

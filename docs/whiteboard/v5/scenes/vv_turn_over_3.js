@@ -11,8 +11,10 @@ const ITEMS = [
   ['m', 'turn something over to somebody：移交；让（某人）接管'],
   ['w', 'Turn over and look at the next page.'],
   ['m', 'turn over：翻（页）（英式）'],
+  ['s', 'Turn over and look at the next page.', '翻过去，看下一页。', 'turn over look next page'],
   ['w', 'You may turn over your exam papers now.'],
   ['m', 'turn something over：把……翻到另一面'],
+  ['s', 'You may turn over your exam papers now.', '现在可以翻开你们的试卷了。', 'turn over exam papers now'],
   ['w', '共同点：OVER = 在……正上方 / 越过 / 结束'],
   ['s', 'He\'ll turn the shop over to his son when he retires.', '他退休后会把店交给儿子接管。', 'turn something over to somebody'],
 ];

@@ -9,10 +9,13 @@ const ITEMS = [
   ['w', 'get over ③'],
   ['w', 'I\'ll be in touch once I\'ve got my exams over.'],
   ['m', 'get something over (with)：做完（不愉快或困难的事）'],
+  ['s', "I'll be in touch once I've got my exams over.", '等我考完试，我会和你联系。', 'get something over'],
   ['w', 'I don\'t know how we\'re going to get over this problem.'],
   ['m', 'get over something：克服（问题、困难）'],
+  ['s', "I don't know how we're going to get over this problem.", '我不知道我们要怎么克服这个问题。', 'get over something'],
   ['w', 'I can\'t get over how well you look.'],
   ['m', 'can\'t get over something：对……感到非常惊讶；不敢相信'],
+  ['s', "I can't get over how well you look.", '我简直不敢相信你看起来这么好。', "can't get over"],
   ['w', '共同点：OVER = 在……正上方 / 越过 / 结束'],
   ['s', 'It\'s taken me ages to get over the flu.', '我花了好久才从流感中恢复过来。', 'get over something'],
 ];

@@ -19,6 +19,7 @@ const ITEMS = [
   ['m', 'speak up：发表意见；大胆说'],
   ['w', 'He is willing to speak up for the rights of women.'],
   ['m', 'speak up for somebody：为（某人）说话；维护'],
+  ['s', 'He is willing to speak up for the rights of women.', '他愿意为女性的权利发声。', 'speak up for'],
   ['w', '共同点：UP = 向上'],
   ['s', 'Could you speak up, please?', '请你大声一点说，好吗？', 'speak up'],
 ];

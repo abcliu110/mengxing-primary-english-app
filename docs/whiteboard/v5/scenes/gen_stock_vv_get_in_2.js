@@ -26,6 +26,7 @@ const ITEMS = [
   ['m', '火车 进入 车站'],
   ['m', '火车进站了。'],
   ['w', '共同点：IN = 钻进盒子（小车用 in，大车用 on）'],
+  ['s', 'Get on the bus.', '上公交车。'],
   ['s', 'Get in the car quickly! It\'s raining.', '快钻进小汽车里！下雨了。'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get in ②', items: ITEMS, acts: ACTS }); }

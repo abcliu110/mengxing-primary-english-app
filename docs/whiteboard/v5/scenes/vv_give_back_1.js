@@ -14,6 +14,7 @@ const ITEMS = [
   ['m', 'BACK'],
   ['m', '还回去'],
   ['w', '回到原主那里'],
-  ['w', 'Thanks!']
+  ['w', 'Thanks!'],
+  ['s', 'Thanks!', '谢谢！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · give back ①', items: ITEMS, acts: ACTS }); }

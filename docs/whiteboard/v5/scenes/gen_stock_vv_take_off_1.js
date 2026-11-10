@@ -12,6 +12,7 @@ const ITEMS = [
   ['w', 'take off ①'],
   ['w', '脱下（衣物）'],
   ['w', 'So hot!'],
+  ['s', 'So hot!', '好热！'],
   ['s', 'He takes off his jacket.', '他脱下了外套。'],
   ['w', '身体表面'],
   ['m', 'OFF'],

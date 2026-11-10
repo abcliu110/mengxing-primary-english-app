@@ -12,12 +12,15 @@ const ITEMS = [
   ['m', 'GET'],
   ['m', '在……正上方 / 越过 / 结束'],
   ['w', 'get：得到/变得(get up起床)'],
+  ['s', 'Get up!', '起床！'],
   ['m', '+'],
   ['w', 'It\'s taken me ages to get over the flu.'],
   ['m', 'get over something：（病后）痊愈；恢复健康'],
+  ['s', "It's taken me ages to get over the flu.", '我花了好久才从流感中恢复过来。', 'get over something'],
   ['w', 'She never got over the death of her son.'],
   ['m', 'get over something：（从不快经历中）恢复过来'],
   ['w', 'It\'s important that we get this message over to young people.'],
   ['m', 'get something over：传达；讲清（信息、想法）'],
+  ['s', "It's important that we get this message over to young people.", '重要的是我们要把这个信息传达给年轻人。', 'get something over'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · get over ②', items: ITEMS, acts: ACTS }); }

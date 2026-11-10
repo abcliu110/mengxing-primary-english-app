@@ -16,5 +16,6 @@ const ITEMS = [
   ['m', 'DOWN'],
   ['m', '从高处拿下来'],
   ['w', 'Got it!'],
+  ['s', 'Got it!', '明白了！'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎬 万能动词 · take down ①', items: ITEMS, acts: ACTS }); }

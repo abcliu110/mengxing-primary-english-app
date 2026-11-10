@@ -11,8 +11,10 @@ const ITEMS = [
   ['w', '🔄 排雷 2：两个『借』(borrow 借入 vs lend 借出) 方向箭头'],
   ['w', '📥 borrow (往自己手里借入)：borrow sth. FROM sb.'],
   ['w', '例：May I borrow a ruler from you? (向你借进一把尺子)'],
+  ['s', 'May I borrow a ruler from you?', '我可以向你借一把尺子吗？'],
   ['w', '📤 lend (从自己手里借给别人)：lend sth. TO sb.'],
   ['w', '例：Can you lend your pen to me? (把你的笔借出给我)'],
+  ['s', 'Can you lend your pen to me?', '你能把你的笔借给我吗？'],
   ['w', '辨析第2幕'],
   ['s', 'Look at the tree, I can see a bird! Borrow from vs Lend to!', '搞清动作过程与结果、方向与状态，彻底告别汉语负迁移丢分！']
 ];
