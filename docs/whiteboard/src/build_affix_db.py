@@ -5,7 +5,7 @@
   word_origins/AFFIX_REVIEW.md —— 每个词缀的词数表、0 词词缀、待定与排除。
 收录口径：分解经 Wiktionary 词源模板或 Etymonline 原句核实；现代英语透明可分（含「整词借入但现代可按词缀分析」的 waiter / leader 类）；
   不收「历史拆分 ⚠️」（but = be- + out、any = one + -y 这类小学生看不出关系的，待用户定）和屈折形式（复数 / 比较级 / 过去分词，不算派生）。
-build_etym_db.py morph 会把这里的派生词并进 MORPH_DB（MORPH_DB 已有的词不覆盖）。"""
+build_etym_db.py morph 已把这里的派生词并进 MORPH_DB（该脚本已于 2026-11-10 第七波退役；MORPH_DB 已有的词不覆盖）。"""
 import json, pathlib, sys, collections
 ROOT = pathlib.Path(__file__).resolve().parents[3]; WO = ROOT / 'docs/whiteboard/word_origins'
 SRC = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '/workspace/work/d34/affix.json')

@@ -1,5 +1,5 @@
 // fnranges.js <主文件> —— 打印主文件里所有直接执行的 <script> 中顶层 function 声明的位置（JSON：name, start, end, bodyStmts）。
-// 供 retire_canvas.py 用：截掉旧 canvas 兜底、找出因此变成无人调用的绘图函数。需要 acorn（npm i acorn，放 /tmp/acorn 或 NODE_PATH）。
+// 供 deadcode.py 用（原 retire_canvas.py 已于 2026-11-10 第七波退役）：截掉旧 canvas 兜底、找出因此变成无人调用的绘图函数。需要 acorn（npm i acorn，放 /tmp/acorn 或 NODE_PATH）。
 const fs = require('fs');
 let acorn; try { acorn = require('acorn'); } catch (e) { acorn = require('/tmp/acorn/node_modules/acorn'); }
 const s = fs.readFileSync(process.argv[2], 'utf8');

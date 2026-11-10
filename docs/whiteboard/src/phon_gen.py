@@ -4,7 +4,7 @@
 交叉核对：Wiktionary 英语词条的 {{IPA|en|…}}（优先 US / GenAm），缓存 /workspace/work/etym/wikt_ipa/（不进仓库）。
 用法：python3 phon_gen.py fetch   # 抓 Wiktionary（单连接 1 秒间隔，断点续抓）
       python3 phon_gen.py report  # 生成 lab/audit35/PHON_FIX.md + phon_fix.json（改前 → 改后、两处是否一致）
-数据进主文件由 patch_phon.py 做。"""
+数据进主文件曾由 patch_phon.py 做（该脚本已于 2026-11-10 第七波退役，见底稿 docs/work-2026-11-09/wave7_mainb_retire.md）。"""
 import json, re, sys, time, pathlib, urllib.request, urllib.parse, unicodedata
 HERE = pathlib.Path(__file__).resolve().parent
 LAB = HERE.parent / 'lab' / 'audit35'
