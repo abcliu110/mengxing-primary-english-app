@@ -10,10 +10,13 @@ const ITEMS = [
   ['w', '📜 有出处 💡 英语 ch ↔ 德语 k'],
   ['s', 'I like to eat cheese.', '我喜欢吃奶酪。', 'cheese'],
   ['w', 'cheese ← 古英语 cyse ↔ 德语 Käse'],
+  ['s', 'Cheese, cyse.', 'cheese、古英语 cyse。', 'ch se'],
   ['w', 'chin ← 古英语 cin（下巴）'],
+  ['s', 'Chin, cin.', 'chin、古英语 cin。'],
   ['w', 'church ← 古英语 cirice'],
   ['n', '还记得规律 6 吗？church 在维京人那里是 kirk，正好没变。'],
   ['w', 'church ↔ kirk：变了的和没变的'],
+  ['s', 'Church, cirice, kirk.', 'church、古英语 cirice、kirk。'],
   ['n', '出处：Etymonline 和 Wiktionary 都写了这些古英语词形和德语同源词。'],
   ['w', '出处：Etymonline · Wiktionary']
 ];

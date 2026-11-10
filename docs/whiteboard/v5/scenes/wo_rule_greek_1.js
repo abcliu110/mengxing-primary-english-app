@@ -10,10 +10,13 @@ const ITEMS = [
   ['w', '📜 有出处 💡 看到 ph 就想到希腊'],
   ['s', 'Can I use your phone?', '我可以用你的电话吗？', 'phone'],
   ['w', 'phone ← 希腊语 phōnē（声音） ph = /f/'],
+  ['s', 'Phone, phōnē.', 'phone、希腊语 phōnē。'],
   ['s', 'I go to school.', '我去上学。', 'school'],
   ['w', 'school ← 希腊语 skholē ch = /k/'],
+  ['s', 'School, skholē.', 'school、希腊语 skholē。', 'ch'],
   ['s', 'We play in the gym.', '我们在体育馆玩。', 'gym'],
   ['w', 'gym ← gymnasium y = /ɪ/'],
+  ['s', 'Gym, gymnasium.', 'gym、gymnasium。'],
   ['n', '出处：Etymonline 和 Wiktionary 都写了这些词的希腊来路。'],
   ['w', '出处：Etymonline · Wiktionary']
 ];
