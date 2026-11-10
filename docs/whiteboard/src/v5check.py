@@ -31,7 +31,10 @@ R2/R4 在 v5 下的规格依据（SOP.md §0 / §7 / §8；引擎实测）：
   R2-W1  白板词有句读：'w' 项里的每个英文词（去音标、去 1 字母标签）
           都出现在某句被朗读的句子里（词形按旧 r2check 口径：-s/-es/
           -ed/-ing/-d 屈折算覆盖；'…ing'、'im-' 类词块按子串算覆盖；
-          不规则动词按同族算覆盖，见 IRREGULAR）。以下两类不计入：
+          不规则动词按同族算覆盖，见 IRREGULAR）。auto 幕按“课”查：
+          同课各节的朗读句都算（与 R4-F2 同口径，第八波第 5 项；长幕
+          拆节后词在同课他节读到即覆盖，本幕先读词仍计入已读语料）；
+          oral/poly 不拆节，仍按单幕查。以下两类不计入：
           (a) 全局豁免 `r2skip.json`（板上有字但按 SOP 不应读的标记、
           标签、占位符、框架名等，每类有豁免理由，见该文件）；
           (b) 逐幕豁免 `const R2SKIP = [...]`（旧 r2skip 语义，只用于
@@ -367,7 +370,7 @@ def pre_word_ok(pre, sent_tokens, pre_list_first):
 
 def check_scene(path, name, fam_sents=None):
     """返回 (builder, fails, warns, unknowns, stats)。
-    fam_sents：同课各节的朗读句 token 表（R4-F2 按课查；无则只查本幕）。"""
+    fam_sents：同课各节的朗读句 token 表（R2-W1 与 R4-F2 按课查；无则只查本幕）。"""
     src = open(path, encoding='utf-8', errors='replace').read()
     builder = None
     for b, pat in BUILDERS:
@@ -426,6 +429,19 @@ def check_scene(path, name, fam_sents=None):
             if len(it) > 3 and it[3]:
                 read_tokens.update(norm_word(t) for t in re.findall(r"[A-Za-z']+", it[3]))
     # ---- R2-W1：白板词有句读（豁免：全局 r2skip.json + 逐幕 R2SKIP）----
+    # auto 按课查（第八波第 5 项，与 R4-F2 同口径）：已读语料取同课各节
+    # 朗读句 token 的并集，再并上本幕先读词（先读词由 K.say 的 word:
+    # 参数先单独读，本来就计入已读语料）；oral/poly 不拆节，仍按单幕查。
+    # 并集 ⊇ 本幕已读语料，故按课查只会清掉跨节假阳性，不会新增 FAIL。
+    if builder == 'auto' and fam_sents is not None:
+        w1_tokens = set()
+        for toks in fam_sents:
+            w1_tokens.update(toks)
+        for it in s_items:
+            if len(it) > 3 and it[3]:
+                w1_tokens.update(norm_word(t) for t in re.findall(r"[A-Za-z']+", it[3]))
+    else:
+        w1_tokens = read_tokens
     scene_skip = extract_r2skip(src)
     uncovered = Counter()
     n_exempted = 0
@@ -436,7 +452,7 @@ def check_scene(path, name, fam_sents=None):
             if w in EXEMPT or w in scene_skip:
                 n_exempted += 1
                 continue
-            if not token_covered(w, read_tokens):
+            if not token_covered(w, w1_tokens):
                 uncovered[w] += 1
     if uncovered:
         fails.append(('R2-W1', '白板词未被任何朗读句读到：' +
@@ -511,7 +527,7 @@ def check_scene(path, name, fam_sents=None):
 
 def family_sentences():
     """同课朗读句 token 表：{family_key: [[token, ...], ...]}（仅 auto 幕，
-    R4-F2 按课查用；oral/poly 的 ACTS 不按句挂接，不参与）。"""
+    R2-W1 与 R4-F2 按课查用；oral/poly 的 ACTS 不按句挂接，不参与）。"""
     fams = {}
     for name in sorted(os.listdir(SCENES)):
         if not name.endswith('.js') or name in LIB_ENGINE:
