@@ -6,6 +6,8 @@
 import { autoBuild } from './auto.js';
 import * as SP from '../sprites/pm1.js';
 const ACTS = {"think": ["l_think"]};
+// R2SKIP（第七波第 5 项）：板上故意展示的错误读音拼写 zis / wery（❌ 行），按 SOP §7.3 不读。
+const R2SKIP = ['zis', 'wery'];
 const ITEMS = [
   ['n', '这一幕：中国孩子说英语，最容易掉进 5 个发音坑。一个一个填平它！'],
   ['w', '发音五大坑'],
