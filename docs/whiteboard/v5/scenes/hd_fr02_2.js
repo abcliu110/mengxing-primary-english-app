@@ -14,6 +14,8 @@ const ITEMS = [
   ['w', '🗣️ Mum gives a birthday gift to Duoduo.'],
   ['w', '妈妈把一份生日礼物递给朵朵。 （句型公式：Giver + V + Theme + to + Recipient）'],
   ['w', '视角 2·第1幕'],
-  ['s', 'Mum gives a birthday gift to Duoduo.', '妈妈把一份生日礼物递给朵朵。 ｜ Giver + V + Theme + to + Recipient']
+  ['s', 'Mum gives a birthday gift to Duoduo.', '妈妈把一份生日礼物递给朵朵。 ｜ Giver + V + Theme + to + Recipient'],
+  ['s', 'Mum passes a birthday gift to Duoduo.', '妈妈把一份生日礼物递给朵朵。'],
+  ['s', 'Mum shows a birthday gift to Duoduo.', '妈妈把一份生日礼物拿给朵朵看。']
 ];
 export default function build() { return autoBuild(SP, { title: '🎁 给予传递小剧场 · 视角 2 give / send / pass / show sth to sb', items: ITEMS, acts: ACTS }); }

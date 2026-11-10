@@ -11,7 +11,9 @@ const ITEMS = [
   ['w', '🚀 机制 2：前缀戴头顶 —— 改变词义方向（不改词性）'],
   ['w', '【un- / dis- / im-】🔄 否定反方向：happy ➔ unhappy ｜ like ➔ dislike ｜ polite ➔ impolite'],
   ['w', '【re- (再一次/往回)】🔁 重复/返回：write ➔ rewrite(重写) ｜ view ➔ review(复习) ｜ turn ➔ return'],
+  ['s', 'Happy, unhappy. Like, dislike. Polite, impolite. Rewrite, review, return.', 'happy、unhappy。like、dislike。polite、impolite。rewrite、review、return。', 'un im re write view turn'],
   ['w', '【sub-(下) / super-(超)】↕️ 空间上下级：subway(地下铁) ｜ supermarket(超级市场) ｜ superman'],
+  ['s', 'Subway, supermarket, superman.', 'subway、supermarket、superman。', 'sub super'],
   ['w', '构词第2幕'],
   ['s', 'sunflower, unhappy, careful, carefully, friendly', '构词法公式：前缀改变词义方向，后缀决定词性角色！']
 ];

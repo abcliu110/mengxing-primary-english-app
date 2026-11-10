@@ -13,6 +13,7 @@ const ITEMS = [
   ['w', 'flower 🌸'],
   ['w', '🌻 sun(太阳) + flower(花) = sunflower(向日葵)'],
   ['w', '同理：water+melon=西瓜 ｜ rain+bow=彩虹 ｜ foot+ball=足球 ｜ class+room=教室'],
+  ['s', 'Sunflower, watermelon, rainbow, football, classroom.', '向日葵、西瓜、彩虹、足球、教室。', 'sun flower water melon rain bow foot ball class room'],
   ['w', '构词第1幕'],
   ['s', 'sunflower, unhappy, careful, carefully, friendly', '构词法公式：前缀改变词义方向，后缀决定词性角色！']
 ];

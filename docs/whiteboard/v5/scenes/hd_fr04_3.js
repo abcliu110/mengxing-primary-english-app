@@ -14,6 +14,7 @@ const ITEMS = [
   ['w', '🗣️ It\'s warm in the room. Take off your coat.'],
   ['w', '屋里很暖和，把外套脱了吧。 （句型公式：Wearer + take off + Clothing）'],
   ['w', '视角 3·第1幕'],
-  ['s', 'It\'s warm in the room. Take off your coat.', '屋里很暖和，把外套脱了吧。 ｜ Wearer + take off + Clothing']
+  ['s', 'It\'s warm in the room. Take off your coat.', '屋里很暖和，把外套脱了吧。 ｜ Wearer + take off + Clothing'],
+  ['s', 'Put on your coat.', '穿上你的外套。']
 ];
 export default function build() { return autoBuild(SP, { title: '🧥 穿戴变化小剧场 · 视角 3 take off (脱下的瞬间动作)', items: ITEMS, acts: ACTS }); }

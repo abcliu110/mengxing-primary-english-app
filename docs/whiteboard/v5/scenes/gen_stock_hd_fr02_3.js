@@ -17,5 +17,7 @@ const ITEMS = [
   ['w', '妈妈为朵朵做了一个大蛋糕。 （句型公式：Giver + V + Theme + for + Recipient）'],
   ['w', '视角 3·第1幕'],
   ['s', 'Mum makes a big cake for Duoduo.', '妈妈为朵朵做了一个大蛋糕。 ｜ Giver + V + Theme + for + Recipient'],
+  ['s', 'Mum buys a big cake for Duoduo.', '妈妈为朵朵买了一个大蛋糕。'],
+  ['s', 'Mum cooks a big cake for Duoduo.', '妈妈为朵朵做了一个大蛋糕。'],
 ];
 export default function build() { return autoBuild(SP, { title: '🎁 给予传递小剧场 · 视角 3 buy / make / cook sth for sb', items: ITEMS, acts: ACTS }); }

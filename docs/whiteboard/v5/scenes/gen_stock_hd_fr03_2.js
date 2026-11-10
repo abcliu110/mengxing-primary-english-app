@@ -17,5 +17,6 @@ const ITEMS = [
   ['w', '去操场吧，把球随身带走。 （句型公式：go there / take sth there）'],
   ['w', '视角 2·第1幕'],
   ['s', 'Go to the playground and take the ball with you.', '去操场吧，把球随身带走。 ｜ go there / take sth there'],
+  ['s', 'Go there. Take the ball there.', '去那里。把球带到那里。'],
 ];
 export default function build() { return autoBuild(SP, { title: '🧭 位移方向小剧场 · 视角 2 go & take (离开说话人)', items: ITEMS, acts: ACTS }); }

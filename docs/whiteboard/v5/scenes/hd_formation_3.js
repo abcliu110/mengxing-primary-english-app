@@ -11,8 +11,11 @@ const ITEMS = [
   ['w', '🎨 机制 3：后缀挂词尾 —— 自由切换名词/形容词/副词衣服'],
   ['w', '🌱 词根 care (关心) 的四件词性衣服：'],
   ['w', '+ful ➔ careful (adj.细心的) ｜ +less ➔ careless (adj.粗心的) ｜ +fully ➔ carefully (adv.)'],
+  ['s', 'Careful, careless, carefully.', 'careful、careless、carefully。', 'care ful less fully ly'],
   ['w', '🎨 高频词性后缀：动词+er/or=人(teacher/doctor) ｜ 天气名词+y=形容词(sunny/rainy)'],
+  ['s', 'Teacher, doctor, sunny, rainy.', 'teacher、doctor、sunny、rainy。'],
   ['w', '⚠️ 防坑特例：形容词+ly=副词(slowly)，但【名词+ly=形容词(friendly 友好的 / lovely 可爱的)】！'],
+  ['s', 'Slowly, friendly, lovely.', 'slowly、friendly、lovely。'],
   ['w', '构词第3幕'],
   ['s', 'sunflower, unhappy, careful, carefully, friendly', '构词法公式：前缀改变词义方向，后缀决定词性角色！']
 ];
