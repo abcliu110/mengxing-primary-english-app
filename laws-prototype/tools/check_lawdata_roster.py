@@ -5,13 +5,13 @@ check_lawdata_roster.py — LAWDATA 对账检查（2026-11-09，第五波第 11 
 
 断言（主文件 laws-prototype/mengxing-prototype-v1.html）：
   1) 字面量 + 合并源 = 运行时条数：基础字面量 `var LAWDATA=`（224 条）
-     + `var PHONLAWS=`（52 条）+ `var SUPPDATA=`（114 条），三者键集合
+     + `var PHONLAWS=`（53 条）+ `var SUPPDATA=`（114 条），三者键集合
      无重叠，按 App 的合并顺序（基础 ← PHONLAWS 覆写 ← SUPPDATA 覆写，
      见主文件 `Object.keys(PHONLAWS).forEach(...)` /
      `Object.keys(SUPPDATA).forEach(...)` 与 check_rel_coverage.py
-     同通道）合并后共 390 条。静态只数字面量（224）会误判覆盖面——
+     同通道）合并后共 391 条。静态只数字面量（224）会误判覆盖面——
      第四波第 5 项初版统计即因此走偏，已纠正。
-  2) hl == ROSTER[0]（重叠条目）：运行时 LAWDATA 全部 390 条都在
+  2) hl == ROSTER[0]（重叠条目）：运行时 LAWDATA 全部 391 条都在
      ROSTER（456 条）中；其中 323 条有 hl 的，hl 与 ROSTER[k][0]
      逐条一字相同。先修芯片的标题回落（preLawTitle：LAWDATA.hl →
      ROSTER[0]，第五波第 7 项改按 hl 值回落）依赖两者一致；一处改名

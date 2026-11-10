@@ -80,6 +80,7 @@
 > **补记（2026-11-10 “全部收尾”波，以下三条取代上文对应决定，原文保留作历史记录）：**
 > - §四.3 已取代：`tools/gen_phonlaws.py` 已建（--check/--write），S/SR 104 题已注入运行时 PHONLAWS（52 行 quiz 全空→104 题），check_all 第 28 项门禁。
 > - §四.5 已取代：S-44 yaml 已补（phonics.yaml 第 44 条 + quiz 2 道，总表同步）；但其 quiz 不进运行时 PHONLAWS（字面量无 S-44 行；加行须生成器支持行新增 + roster 门禁复核，另立项）。
+> - §四.5 补记（2026-11-11 S-44 运行时线，分支 `left4/s44`）：S-44 的 2 道 quiz 已进运行时 PHONLAWS（`tools/gen_phonlaws.py` 扩展支持行新增，S-44 整行派生；53 条/106 题，check_all 28/28；ROSTER 路由 M→L）。上文「不进运行时」一句就此作废，原文保留作历史记录。
 > - §五.9 已推翻：TA form_building 积木块实测已在（`ta_exercises.json` 18 道全带 `build.blocks`、运行时 RV_TA 1:1、渲染分支齐全），不是缺口，无需修。
 
 ## 五、规格文档断言与实测不符（已按实测做，记入此）

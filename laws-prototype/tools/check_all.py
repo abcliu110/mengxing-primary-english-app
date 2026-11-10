@@ -9,7 +9,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_phonics.py --check      拼读 DATA 再生比对
   gen_phonics.py --check-letters  拼读按字母查索引 PHX_LETTERS 再生比对
   gen_phonics.py --check-sounds   拼读按读音查索引 PHX_SOUNDS 再生比对
-  gen_phonlaws.py --check     拼读律页运行时记录 PHONLAWS（S/SR quiz 104 题）再生比对
+  gen_phonlaws.py --check     拼读律页运行时记录 PHONLAWS（S/SR quiz 106 题）再生比对
   gen_words.py --check        词页 WLIST/WPAGE 再生比对
   gen_vocab.py --check        词汇维度索引 VOCAB_DIM（主题/级别）再生比对
   gen_levels.py --check       统一级别 WORD_LEVELS（全词级别+来源标签，覆盖 2942/2942）再生比对
@@ -28,7 +28,7 @@ check_all.py — 一键总检（《数据源规范》§6 校验门的统一入�
   gen_schema.py --check       机制图式卡 SCHEMA_TA（TA 18 律，标签逐片段对源断言）再生比对
   gen_contrast.py --check     辨析对照页 CONTRAST（种子批 9 页，律对关系/短名对源断言）再生比对
   check_rel_coverage.py       关系户口门禁（R11-01 修复登记）：LAWDATA.rel 全部边 ⊆ LINKIDX.g
-  check_lawdata_roster.py     LAWDATA 对账（字面量 224 + PHONLAWS 52 + SUPPDATA 114 = 运行时 390；
+  check_lawdata_roster.py     LAWDATA 对账（字面量 224 + PHONLAWS 53 + SUPPDATA 114 = 运行时 391；
                               hl == ROSTER[0]，无 hl ⟺ ptr）
   check_badge_erridx.py       静态徽标 × ERRIDX 对账（全部 830 行：ERRIDX 区 133 行徽标 vs 再生 ERRIDX、
                              CO-17 深研行 1 行「已做深」、拼读区 52 行 vs 本律 cases/prb、
