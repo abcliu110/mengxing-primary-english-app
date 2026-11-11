@@ -733,6 +733,8 @@ function wbRoughify(stage) {
 </script>
 <style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}</style><style>html.bg-hidden *{animation-play-state:paused !important}</style>
 <script>document.addEventListener('visibilitychange',function(){document.documentElement.classList.toggle('bg-hidden',document.hidden);});</script>
+<style>.js-offscreen{animation-play-state:paused !important}</style>
+<script>(function(){if(!('IntersectionObserver' in window))return;var sel='.pn-scope .rain line,.pn-scope .pulse,.ar-scope .step.fstep,.cj-scope .step.fstep,.cj-scope .cjf-move,.cj-scope .cjf-glow,.anx-type-caret';var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('js-offscreen',!e.isIntersecting);});});var seen=new WeakSet();function scan(){document.querySelectorAll(sel).forEach(function(el){if(!seen.has(el)){seen.add(el);io.observe(el);}});}scan();new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});})();</script>
 </head>
 <body>
 <div class="app">
