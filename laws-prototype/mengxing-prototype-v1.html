@@ -17268,7 +17268,7 @@ function wbT(x, y, str, size, col, anchor, bold){ // 手写风文字（淡入，
 }
 
 function wbStop(){
-  if(window.wbCapCancel) wbCapCancel();
+  if(C.capHooks && window.wbCapCancel) wbCapCancel();
   S.wbS.playing = false;
   if(S.wbS.raf){ cancelAnimationFrame(S.wbS.raf); S.wbS.raf = 0; }
   S.wbS.startTs = 0;
@@ -17285,6 +17285,7 @@ function wbRenderDots(){
     S.wbS.dots.appendChild(d);
   }
   if(S.wbS.sceneNo) S.wbS.sceneNo.textContent = '第 ' + (S.wbS.scene + 1) + ' / ' + n + ' 镜';
+  if(C.segDots) C.segDots();
 }
 
 function wbMoveHand(it){
@@ -17306,9 +17307,10 @@ function wbMoveHand(it){
 }
 
 function wbRenderScene(){
+  if(C.segs && !(S.wbS.scene >= 0 && S.wbS.scene < S.wbS.sec.scenes.length)) S.wbS.scene = 0;
   var sc = S.wbS.sec.scenes[S.wbS.scene];
   S.wbS.stage.innerHTML = sc.svg;
-  if(S.wbS.capText && window.wbCapSync) wbCapSync(sc.cap, S.wbS.capText, S.wbS); else if(S.wbS.capText) S.wbS.capText.textContent = sc.cap;
+  if(S.wbS.capText && C.capHooks && window.wbCapSync) wbCapSync(sc.cap, S.wbS.capText, S.wbS); else if(S.wbS.capText) S.wbS.capText.textContent = sc.cap;
   if(S.wbS.capNo) S.wbS.capNo.textContent = '第 ' + (S.wbS.scene + 1) + ' 镜';
   wbRenderDots();
   wbPrepare();
@@ -17324,27 +17326,29 @@ function wbPlayStart(){
 
 function wbTogglePlay(){
   if(!S.wbS.sec) return;
+  if(C.segs && S.wbS.segWait){ S.wbS.segWait = false; if(S.wbS.scene < S.wbS.sec.scenes.length - 1){ S.wbS.scene++; wbRenderScene(); wbPlayStart(); if(C.capHooks && window.wbCapSpeak) wbCapSpeak(); return; } }
   if(S.wbS.playing){
     S.wbS.playing = false;
     if(S.wbS.raf){ cancelAnimationFrame(S.wbS.raf); S.wbS.raf = 0; }
     S.wbS.baseElapsed = S.wbS.elapsed; S.wbS.startTs = 0;
     if(S.wbS.btn) S.wbS.btn.textContent = '▶ 继续';
     if(S.wbS.hand) S.wbS.hand.style.opacity = '0';
-    if(window.wbCapCancel) wbCapCancel();
+    if(C.capHooks && window.wbCapCancel) wbCapCancel();
     return;
   }
   if(S.wbS.btn && S.wbS.btn.textContent.indexOf('再看') >= 0){ S.wbS.scene = S.wbS.home || 0; wbRenderScene(); }
   wbPlayStart();
-  if(window.wbCapSpeak) wbCapSpeak();
+  if(C.capHooks && window.wbCapSpeak) wbCapSpeak();
 }
 
 function wbReplay(){
   if(!S.wbS.sec) return;
   wbStop();
+  if(C.segs) S.wbS.segWait = false;
   S.wbS.scene = S.wbS.home || 0; S.wbS.elapsed = 0; S.wbS.baseElapsed = 0;
   wbRenderScene();
   wbPlayStart();
-  if(window.wbCapSpeak) wbCapSpeak();
+  if(C.capHooks && window.wbCapSpeak) wbCapSpeak();
 }
 
 function extraOf(id){ return C.extra()[id] || null; }
@@ -17373,17 +17377,18 @@ function wbApplyAt(ms){
   } else {
     wbMoveHand(current);
   }
-  if(window.wbCapProgress && S.wbS.capText){
+  if(C.capHooks && window.wbCapProgress && S.wbS.capText){
     var _n=S.wbS.capText.querySelectorAll('.wbc').length;
     wbCapProgress(S.wbS.capText, _n, ms, S.wbS.total);
   }
 }
 
 function wbPrepare(){
-  if(window.wbRoughify) wbRoughify(S.wbS.stage);
+  if(C.roughify && window.wbRoughify) wbRoughify(S.wbS.stage);
   S.wbS.items = [];
   var els = S.wbS.stage.querySelectorAll('.wbd, .wbw, .wbf');
   var t = 120;
+  var P = (C.pace && S.wbS.sec && S.wbS.sec.pace) || 1;
   els.forEach(function(el){
     var type = el.classList.contains('wbd') ? 'd' : (el.classList.contains('wbw') ? 'w' : 'f');
     var len = 0, dur;
@@ -17395,6 +17400,7 @@ function wbPrepare(){
       dur = Math.max(240, Math.min(1700, len * 1.5 * 1.35));
     } else if(type === 'w'){ el.style.opacity = '0'; dur = Math.round(340 * 1.35); }
     else { el.style.opacity = '0'; dur = Math.round(420 * 1.35); }
+    if(C.pace) dur = Math.round(dur * P);
     S.wbS.items.push({ el: el, type: type, len: len, start: t, dur: dur });
     t += dur * 0.88 + 40;
   });
@@ -17403,7 +17409,8 @@ function wbPrepare(){
   var hold = Math.max(2000, Math.min(4800, capLen * 160));
   if(S.wbS.sec && S.wbS.scene === S.wbS.sec.scenes.length - 1) hold += 1200;
   var scp = S.wbS.sec ? S.wbS.sec.scenes[S.wbS.scene] : null;
-  if(scp && scp.pause) hold += scp.pause; // 停顿拍：pause 字段（预测/想一想/重读），单位 ms，见 docs 报告 qi-film-length
+  if(C.pause && scp && scp.pause) hold += scp.pause; // 停顿拍：pause 字段（预测/想一想/重读），单位 ms，见 docs 报告 qi-film-length
+  if(C.pace) hold = Math.round(hold * P);
   S.wbS.hold = hold;
   S.wbS.total = S.wbS.drawTotal + hold;
 }
@@ -17415,6 +17422,7 @@ function wbFrame(ts){
   S.wbS.elapsed = S.wbS.baseElapsed + (ts - S.wbS.startTs);
   if(S.wbS.elapsed >= S.wbS.total){
     wbApplyAt(S.wbS.total);
+    if(C.frameEnd && C.frameEnd()) return;
     var n = S.wbS.sec.scenes.length;
     if(S.wbS.scene < (S.wbS.range ? S.wbS.range[1] : n - 1)){ S.wbS.scene++; wbRenderScene(); S.wbS.startTs = 0; S.wbS.baseElapsed = 0; S.wbS.raf = requestAnimationFrame(wbFrame); return; }
     wbStop(); if(S.wbS.btn) S.wbS.btn.textContent = '↻ 再看一遍'; return;
@@ -17430,7 +17438,7 @@ function wbInit(){
   var top = S.stack[S.stack.length - 1];
   var sec = (top && top.view === 'law') ? S.WB_BY_ID[top.id] : null;
   if(!sec){ S.wbS.sec = null; return; }
-  S.wbS.sec = sec; S.wbS.scene = 0; S.wbS.elapsed = 0; S.wbS.baseElapsed = 0; S.wbS.range = null; S.wbS.home = 0;
+  S.wbS.sec = sec; S.wbS.scene = 0; if(C.segs) S.wbS.segWait = false; S.wbS.elapsed = 0; S.wbS.baseElapsed = 0; S.wbS.range = null; S.wbS.home = 0;
   S.wbS.stage = stage;
   S.wbS.hand = document.getElementById('' + C.p + 'wbHand');
   S.wbS.board = document.getElementById('' + C.p + 'wbBoard');
@@ -17545,16 +17553,16 @@ function wbCardHTML(id){
   return '<div class="sec"><h4>🎬 白板动画 · 先看一遍</h4>'
     + '<div class="wb-board" id="' + C.p + 'wbBoard"><svg class="wb-stage" id="' + C.p + 'wbStage" viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg"></svg><div class="wb-hand" id="' + C.p + 'wbHand">✏️</div></div>'
     + '<div class="wb-capbar"><span class="wb-no" id="' + C.p + 'wbCapNo">第 1 镜</span><span id="' + C.p + 'wbCapText">白板老师正在准备……</span></div>'
-    + '<div class="wb-ctrl"><button class="wb-btn wb-main" id="' + C.p + 'wbBtnPlay" onclick="' + C.name + '.wbTogglePlay()">⏸ 暂停</button>'
+    + (C.segsHTML ? C.segsHTML(id) : '') + '<div class="wb-ctrl"><button class="wb-btn wb-main" id="' + C.p + 'wbBtnPlay" onclick="' + C.name + '.wbTogglePlay()">⏸ 暂停</button>'
     + '<button class="wb-btn" onclick="' + C.name + '.wbReplay()">↻ 重播</button>'
     + '<span class="wb-sceneno" id="' + C.p + 'wbSceneNo"></span><div class="wb-dots" id="' + C.p + 'wbDots"></div></div>'
-    + '<div class="cutbar" id="' + C.p + 'cutbar" style="display:none"></div><div class="cut-clashbox" id="' + C.p + 'cutclash" style="display:none"></div>'
+    + '<div class="cutbar" id="' + (C.cutP || C.p) + 'cutbar" style="display:none"></div><div class="cut-clashbox" id="' + (C.cutP || C.p) + 'cutclash" style="display:none"></div>'
     + C.tail(id) + '</div>';
 }
   return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay, extraOf:extraOf, wbApplyAt:wbApplyAt, wbPrepare:wbPrepare, wbFrame:wbFrame, wbInit:wbInit, vIndex:vIndex, vLaw:vLaw, wbCardHTML:wbCardHTML};
 }
 (function(){
-  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},render:render,esc:esc},{p:'pn',name:'PN',extra:function(){return PN_EXTRA;},top:function(){return showHTML();},candUI:true,footer:'<footer>原型 · PR/GR/QI 条目正文出自仓库规律目录（laws-prototype/model/laws）；原 NEW-P1～NEW-P4 已于 2026-11-03 立条为 PR-12～PR-15，新配的病例句均已标「新拟例句」；呈现层（短标题/分组/动画演示）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:false,hideHandAfterDraw:true,excFallback:true,gap:'目录只登记了错型。',ansPre:'ans_',demo:function(l){var dm=DEMOS[l.id]; return dm?demoHTML(dm):'';},anim:function(l){return '';},adult:function(id){var pnAd=PN_ADULT[id]; if(pnAd||PN_EXTRA[id]){return pnAdultHTML(pnAd,PN_EXTRA[id]);} return '';},tail:function(id){return '<div class="srcnote">白板动画：一镜只讲一个意思，跟着笔尖一笔一笔画出来；画完会停一会儿，慢慢读字幕。</div>' + '<div class="srcnote">形式借鉴：' + (WB_CREDIT[id] || '通用白板范式（RSA / VideoScribe 逐笔揭示）') + '</div>';}});
+  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},render:render,esc:esc},{p:'pn',name:'PN',segs:false,pace:false,roughify:true,pause:true,capHooks:true,extra:function(){return PN_EXTRA;},top:function(){return showHTML();},candUI:true,footer:'<footer>原型 · PR/GR/QI 条目正文出自仓库规律目录（laws-prototype/model/laws）；原 NEW-P1～NEW-P4 已于 2026-11-03 立条为 PR-12～PR-15，新配的病例句均已标「新拟例句」；呈现层（短标题/分组/动画演示）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:false,hideHandAfterDraw:true,excFallback:true,gap:'目录只登记了错型。',ansPre:'ans_',demo:function(l){var dm=DEMOS[l.id]; return dm?demoHTML(dm):'';},anim:function(l){return '';},adult:function(id){var pnAd=PN_ADULT[id]; if(pnAd||PN_EXTRA[id]){return pnAdultHTML(pnAd,PN_EXTRA[id]);} return '';},tail:function(id){return '<div class="srcnote">白板动画：一镜只讲一个意思，跟着笔尖一笔一笔画出来；画完会停一会儿，慢慢读字幕。</div>' + '<div class="srcnote">形式借鉴：' + (WB_CREDIT[id] || '通用白板范式（RSA / VideoScribe 逐笔揭示）') + '</div>';}});
   function go(){return _wcPN.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcPN.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcPN.xpick.apply(this,arguments);}
@@ -18952,7 +18960,7 @@ if(window.MutationObserver && pnSecI && pnSecD){
 </script>
 <script>
 (function(){
-  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},render:render,esc:esc},{p:'ar',name:'AR',extra:function(){return AR_EXTRA;},top:function(){return EXTRA_TOP;},candUI:false,footer:'<footer>原型 · 规律正文均出自仓库规律目录（laws-prototype/model/laws）；呈现层文案（短标题/一句话/分组）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:true,hideHandAfterDraw:false,excFallback:false,gap:'目录只登记了错型，未给逐字病例。',ansPre:'arans_',demo:function(l){return '';},anim:function(l){var h='';
+  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},render:render,esc:esc},{p:'ar',name:'AR',segs:false,pace:false,roughify:true,pause:true,capHooks:true,extra:function(){return AR_EXTRA;},top:function(){return EXTRA_TOP;},candUI:false,footer:'<footer>原型 · 规律正文均出自仓库规律目录（laws-prototype/model/laws）；呈现层文案（短标题/一句话/分组）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:true,hideHandAfterDraw:false,excFallback:false,gap:'目录只登记了错型，未给逐字病例。',ansPre:'arans_',demo:function(l){return '';},anim:function(l){var h='';
   if(l.anim){ h += '<div class="sec"><h4>🎬 看一看</h4>' + animHTML(l.anim) + '</div>'; }
   if(l.svg && SVGS[l.svg]){ h += '<div class="sec"><div class="svgbox"><div class="at">🖼️ 图解</div>' + SVGS[l.svg] + '</div></div>'; }
 return h;},adult:function(id){var arAd=AR_ADULT[id]; if(arAd||AR_EXTRA[id]){return arAdultHTML(arAd,AR_EXTRA[id]);} return '';},tail:function(id){return '<div class="wb-src">形式借鉴：' + ((WB_BY_ID[id] && WB_BY_ID[id].src) ? WB_BY_ID[id].src : '通用白板范式。') + '</div>';}});
