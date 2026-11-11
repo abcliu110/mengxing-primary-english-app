@@ -9440,7 +9440,7 @@ function runQuiz(p, pool) {
     qz.innerHTML = '<p>第 ' + (qi + 1) + ' / ' + total + ' 题：' + esc(b[3]) + ' ' + esc(b[1]) + ' ' + esc(b[2]) + ' —— 是哪个词？</p><div class="opts">' +
       opts.map(wid => '<span class="optrow"><button class="opt" data-w="' + wid + '">' + esc(DATA.bank[wid][0]) + '</button><button class="spk" data-say="' + esc(DATA.bank[wid][0]) + '" aria-label="朗读">🔊</button></span>').join('') + '</div>';
     qz.querySelectorAll('.opt').forEach(btn => btn.addEventListener('click', () => {
-      if (btn.dataset.w === target) { btn.classList.add('ok'); score++; qi++; later(ask, 450); }
+      if (btn.dataset.w === target) { btn.classList.add('ok'); score++; qi++; later(ask, 800); }
       else { btn.classList.add('no'); const hint = document.getElementById('hint-' + p.id); if (hint) hint.style.display = 'block'; }
     }));
   }
@@ -9789,7 +9789,7 @@ runQuiz = function (p, pool) {
       if (btn.dataset.w === target) {
         btn.classList.add('ok');
         if (!afterDrill) score++;
-        qi++; later(ask, 450);
+        qi++; later(ask, 800);
       } else {
         btn.classList.add('no');
         stepDown(target, () => askChoice(target, true));
@@ -9825,7 +9825,7 @@ runQuiz = function (p, pool) {
           if (placed >= tiles.length) {
             box.querySelector('[data-dmsg]').innerHTML = '🎉 拼出来了：<b>' + esc(b[0]) + '</b>。回到上面的题再选一次。';
             speak(b[0]);
-            setTimeout(back, 900);
+            setTimeout(back, 800);
           }
         } else {
           btn.classList.add('shake'); later(() => btn.classList.remove('shake'), SHAKE_MS);
@@ -9846,7 +9846,7 @@ runQuiz = function (p, pool) {
         if (units.join('') === b[0].toLowerCase()) {
           box.querySelector('[data-dmsg]').innerHTML = '🎉 拼出来了：<b>' + esc(b[0]) + '</b>。回到上面的题再选一次。';
           speak(b[0]);
-          setTimeout(back, 900);
+          setTimeout(back, 800);
         }
       };
       box.querySelectorAll('[data-dlet]').forEach(btn => btn.addEventListener('click', () => {
@@ -13118,7 +13118,7 @@ function srsPick(btn){
   srsSave(s);
   if(ok){ const rev = $('srsRev'); if(rev) rev.style.display = 'block'; }
   SRSQ.i++;
-  later(srsNext, ok ? 650 : 1400);
+  later(srsNext, 800);
 }
 function srsSummary(){
   const body = $('reviewBody'); if(!body) return;
@@ -15339,7 +15339,7 @@ function rJudge(j){
     if(!rGame) return;
     rGame.i++;
     if(rGame.i>=rGame.qs.length) rFinish(); else rRenderQ();
-  },1400);
+  },800);
 }
 function rFinish(){
   rStopTimers();
@@ -19880,7 +19880,6 @@ function wbPrepare(){
   wbS.items = [];
   var els = wbS.stage.querySelectorAll('.wbd, .wbw, .wbf');
   var t = 120;
-  var _P = (wbS.sec && wbS.sec.pace) || 1;
   els.forEach(function(el){
     var type = el.classList.contains('wbd') ? 'd' : (el.classList.contains('wbw') ? 'w' : 'f');
     var len = 0, dur;
@@ -19892,16 +19891,17 @@ function wbPrepare(){
       dur = Math.max(240, Math.min(1700, len * 1.5 * 1.35));
     } else if(type === 'w'){ el.style.opacity = '0'; dur = Math.round(340 * 1.35); }
     else { el.style.opacity = '0'; dur = Math.round(420 * 1.35); }
-    dur = Math.round(dur * _P);
     wbS.items.push({ el: el, type: type, len: len, start: t, dur: dur });
     t += dur * 0.88 + 40;
   });
   wbS.drawTotal = t + 260;
-  var _cap = (wbS.sec && wbS.sec.scenes[wbS.scene]) ? wbS.sec.scenes[wbS.scene].cap : '';
-  var _hold = Math.max(2000, Math.min(4800, _cap.length * 160));
-  if(wbS.sec && wbS.scene === wbS.sec.scenes.length - 1) _hold += 1200;
-  wbS.hold = Math.round(_hold * _P);
-  wbS.total = wbS.drawTotal + wbS.hold;
+  var capLen = (wbS.sec && wbS.sec.scenes[wbS.scene]) ? String(wbS.sec.scenes[wbS.scene].cap || '').length : 0;
+  var hold = Math.max(2000, Math.min(4800, capLen * 160));
+  if(wbS.sec && wbS.scene === wbS.sec.scenes.length - 1) hold += 1200;
+  var scp = wbS.sec ? wbS.sec.scenes[wbS.scene] : null;
+  if(scp && scp.pause) hold += scp.pause; // 停顿拍：pause 字段（预测/想一想/重读），单位 ms，见 docs 报告 qi-film-length
+  wbS.hold = hold;
+  wbS.total = wbS.drawTotal + hold;
 }
 function wbApplyAt(ms){
   if(wbS.drawTotal && ms >= wbS.drawTotal){
