@@ -17200,7 +17200,172 @@ return { players: players, LESSONS: LESSONS };
 </script>
 
 <script>
+/* ===== P2 工厂：16 个 PN/AR 共享函数（原为两份逐字相同副本）。依赖经 S 注入：stack / wbS 以 getter 读取，其余为 IIFE 内提升函数。 ===== */
+function makeWbCore(S){
+  var render=S.render, esc=S.esc, extraOf=S.extraOf, wbApplyAt=S.wbApplyAt, wbPrepare=S.wbPrepare, wbFrame=S.wbFrame;
+function go(id){S.stack.push({view:'law',id:id});render()}
+
+function extraCaseHTML(c){
+  var h = '<div class="errc">';
+  h += '<div style="font-size:12px;color:#8a6d1f;margin-bottom:4px">📚 真病例 · 目录登记（逐字）</div>';
+  h += '<div>❌ <span class="wrong">' + esc(c.wrong) + '</span></div><div>✅ <span class="right">' + esc(c.right || '') + '</span></div>';
+  if(c.type){ h += '<div style="margin-top:4px">错型：' + esc(c.type) + '</div>'; }
+  if(c.diag){ h += '<div style="margin-top:4px">诊断：' + esc(c.diag_kid || c.diag) + '</div>'; if(c.diag_kid && c.diag_kid !== c.diag){ h += '<div class="adult" style="margin-top:4px">诊断原文：' + esc(c.diag) + '</div>'; } }
+  if(c.src){ h += '<div style="margin-top:4px;font-size:12px;color:var(--muted)">出处：' + esc(c.src) + '</div>'; }
+  return h + '</div>';
+}
+
+function xpick(btn, id, qi, oi){
+  var ex = extraOf(id); if(!ex || !ex.quiz || !ex.quiz[qi]) return;
+  var q = ex.quiz[qi];
+  if(q.opts[oi] === q.a){
+    btn.style.background = '#cfe8cf'; btn.style.borderColor = '#5da35d';
+    var box = btn.parentNode;
+    while(box && ((box.className || '').toString().split(' ').indexOf('quiz') < 0)){ box = box.parentNode; }
+    if(box){ var a = box.querySelector('.ans'); if(a) a.style.display = 'block'; }
+  } else {
+    btn.style.background = '#f6d5d5'; btn.style.borderColor = '#c06666';
+  }
+}
+
+function wbKid(x, y, s, flip){ // 简笔小人：头+身+臂+腿，s=缩放
+  s = s || 1;
+  return '<g transform="translate('+x+','+y+') scale('+(flip?-s:s)+','+s+')">'
+    + '<circle class="wbd" cx="0" cy="-34" r="11" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
+    + '<path class="wbd" d="M0,-23 C1,-8 0,4 -1,16" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
+    + '<path class="wbd" d="M0,-14 C-12,-8 -17,-2 -19,3 M0,-14 C11,-10 17,-6 21,-3" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
+    + '<path class="wbd" d="M-1,16 C-7,28 -11,36 -13,44 M-1,16 C5,28 9,36 12,44" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
+    + '</g>';
+}
+
+function wbBook(x, y, w, col){ // 一本摊开/合上的书
+  w = w || 54; col = col || '#3f6fb5';
+  var h = Math.round(w*0.72);
+  return '<g transform="translate('+x+','+y+')">'
+    + '<path class="wbd" d="M2,3 C-4,'+(h*0.4)+' 2,'+(h-4)+' 4,'+h+' L'+(w-4)+','+h+' C'+(w-2)+','+(h-5)+' '+(w+3)+','+(h*0.35)+' '+(w-2)+',2 C'+(w*0.55)+',-4 '+ (w*0.4)+',-3 2,3 Z" fill="none" stroke="'+col+'" stroke-width="3.2" stroke-linecap="round"/>'
+    + '<path class="wbd" d="M10,14 L'+(w-12)+',14 M10,24 L'+(w-16)+',24" stroke="'+col+'" stroke-width="2.4" stroke-linecap="round"/>'
+    + '</g>';
+}
+
+function wbStar(x, y, col){
+  col = col || '#f2b138';
+  return '<path class="wbd" d="M'+x+','+(y-13)+' L'+(x+3.4)+','+(y-4)+' L'+(x+13)+','+(y-3.4)+' L'+(x+5.4)+','+(y+2.6)+' L'+(x+8)+','+(y+12)+' L'+x+','+(y+6.4)+' L'+(x-8)+','+(y+12)+' L'+(x-5.4)+','+(y+2.6)+' L'+(x-13)+','+(y-3.4)+' L'+(x-3.4)+','+(y-4)+' Z" fill="none" stroke="'+col+'" stroke-width="2.8" stroke-linejoin="round"/>';
+}
+
+function wbCross(x, y, s){ // 红叉
+  s = s || 1;
+  return '<path class="wbd" d="M'+(x-9*s)+','+(y-9*s)+' L'+(x+9*s)+','+(y+9*s)+' M'+(x+9*s)+','+(y-9*s)+' L'+(x-9*s)+','+(y+9*s)+'" stroke="#e05252" stroke-width="4" stroke-linecap="round" fill="none"/>';
+}
+
+function wbTickMark(x, y, s){ // 绿勾
+  s = s || 1;
+  return '<path class="wbd" d="M'+(x-11*s)+','+(y+1*s)+' L'+(x-3*s)+','+(y+9*s)+' L'+(x+12*s)+','+(y-9*s)+'" stroke="#2e9e5b" stroke-width="4" stroke-linecap="round" fill="none"/>';
+}
+
+function wbT(x, y, str, size, col, anchor, bold){ // 手写风文字（淡入，不逐笔）
+  if(anchor!=='start'&&anchor!=='middle'&&anchor!=='end') anchor='middle'; // 锚点消毒：历史调用误传 1 等非法值一律回退居中本意，防文字出幕（2026-11-04 出幕普查修复）
+  return '<text class="wbw" x="'+x+'" y="'+y+'" font-size="'+(size||22)+'" fill="'+(col||'#2b3a55')+'" text-anchor="'+(anchor||'middle')+'" font-weight="'+(bold?800:600)+'">'+str+'</text>';
+}
+
+function wbStop(){
+  if(window.wbCapCancel) wbCapCancel();
+  S.wbS.playing = false;
+  if(S.wbS.raf){ cancelAnimationFrame(S.wbS.raf); S.wbS.raf = 0; }
+  S.wbS.startTs = 0;
+  if(S.wbS.hand){ try { S.wbS.hand.style.opacity = '0'; } catch(e){} }
+}
+
+function wbRenderDots(){
+  if(!S.wbS.dots || !S.wbS.sec) return;
+  var n = S.wbS.sec.scenes.length;
+  S.wbS.dots.innerHTML = '';
+  for(var i = 0; i < n; i++){
+    var d = document.createElement('span');
+    d.className = 'wb-dot' + (i < S.wbS.scene ? ' done' : (i === S.wbS.scene ? ' now' : '')) + (S.wbS.range && (i < S.wbS.range[0] || i > S.wbS.range[1]) ? ' cut-out' : '');
+    S.wbS.dots.appendChild(d);
+  }
+  if(S.wbS.sceneNo) S.wbS.sceneNo.textContent = '第 ' + (S.wbS.scene + 1) + ' / ' + n + ' 镜';
+}
+
+function wbMoveHand(it){
+  if(!S.wbS.hand) return;
+  if(!it){ S.wbS.hand.style.opacity = '0'; return; }
+  try {
+    var pt = null, el = it.el;
+    if(it.type === 'd' && el.getPointAtLength){
+      var p = Math.max(0, Math.min(1, (S.wbS.elapsed - it.start) / it.dur));
+      pt = el.getPointAtLength(it.len * p);
+    } else {
+      var bb = el.getBBox(); pt = { x: bb.x + bb.width, y: bb.y + bb.height };
+    }
+    var r = S.wbS.stage.getBoundingClientRect(), br = S.wbS.board.getBoundingClientRect();
+    S.wbS.hand.style.left = ((pt.x / 560) * r.width + (r.left - br.left) - 4) + 'px';
+    S.wbS.hand.style.top = ((pt.y / 380) * r.height + (r.top - br.top) - 22) + 'px';
+    S.wbS.hand.style.opacity = '1';
+  } catch(e){ S.wbS.hand.style.opacity = '0'; }
+}
+
+function wbRenderScene(){
+  var sc = S.wbS.sec.scenes[S.wbS.scene];
+  S.wbS.stage.innerHTML = sc.svg;
+  if(S.wbS.capText && window.wbCapSync) wbCapSync(sc.cap, S.wbS.capText, S.wbS); else if(S.wbS.capText) S.wbS.capText.textContent = sc.cap;
+  if(S.wbS.capNo) S.wbS.capNo.textContent = '第 ' + (S.wbS.scene + 1) + ' 镜';
+  wbRenderDots();
+  wbPrepare();
+  S.wbS.elapsed = 0;
+  wbApplyAt(0);
+}
+
+function wbPlayStart(){
+  S.wbS.playing = true; S.wbS.startTs = 0; S.wbS.baseElapsed = S.wbS.elapsed || 0;
+  if(S.wbS.btn) S.wbS.btn.textContent = '⏸ 暂停';
+  S.wbS.raf = requestAnimationFrame(wbFrame);
+}
+
+function wbTogglePlay(){
+  if(!S.wbS.sec) return;
+  if(S.wbS.playing){
+    S.wbS.playing = false;
+    if(S.wbS.raf){ cancelAnimationFrame(S.wbS.raf); S.wbS.raf = 0; }
+    S.wbS.baseElapsed = S.wbS.elapsed; S.wbS.startTs = 0;
+    if(S.wbS.btn) S.wbS.btn.textContent = '▶ 继续';
+    if(S.wbS.hand) S.wbS.hand.style.opacity = '0';
+    if(window.wbCapCancel) wbCapCancel();
+    return;
+  }
+  if(S.wbS.btn && S.wbS.btn.textContent.indexOf('再看') >= 0){ S.wbS.scene = S.wbS.home || 0; wbRenderScene(); }
+  wbPlayStart();
+  if(window.wbCapSpeak) wbCapSpeak();
+}
+
+function wbReplay(){
+  if(!S.wbS.sec) return;
+  wbStop();
+  S.wbS.scene = S.wbS.home || 0; S.wbS.elapsed = 0; S.wbS.baseElapsed = 0;
+  wbRenderScene();
+  wbPlayStart();
+  if(window.wbCapSpeak) wbCapSpeak();
+}
+  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay};
+}
 (function(){
+  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},render:render,esc:esc,extraOf:extraOf,wbApplyAt:wbApplyAt,wbPrepare:wbPrepare,wbFrame:wbFrame});
+  function go(){return _wcPN.go.apply(this,arguments);}
+  function extraCaseHTML(){return _wcPN.extraCaseHTML.apply(this,arguments);}
+  function xpick(){return _wcPN.xpick.apply(this,arguments);}
+  function wbKid(){return _wcPN.wbKid.apply(this,arguments);}
+  function wbBook(){return _wcPN.wbBook.apply(this,arguments);}
+  function wbStar(){return _wcPN.wbStar.apply(this,arguments);}
+  function wbCross(){return _wcPN.wbCross.apply(this,arguments);}
+  function wbTickMark(){return _wcPN.wbTickMark.apply(this,arguments);}
+  function wbT(){return _wcPN.wbT.apply(this,arguments);}
+  function wbStop(){return _wcPN.wbStop.apply(this,arguments);}
+  function wbRenderDots(){return _wcPN.wbRenderDots.apply(this,arguments);}
+  function wbMoveHand(){return _wcPN.wbMoveHand.apply(this,arguments);}
+  function wbRenderScene(){return _wcPN.wbRenderScene.apply(this,arguments);}
+  function wbPlayStart(){return _wcPN.wbPlayStart.apply(this,arguments);}
+  function wbTogglePlay(){return _wcPN.wbTogglePlay.apply(this,arguments);}
+  function wbReplay(){return _wcPN.wbReplay.apply(this,arguments);}
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
 var GROUPS = [{"name": "第 1 组 · 代词到底是什么", "sub": "先别背表——先搞清代词在干什么活"}, {"name": "第 2 组 · 格：站在哪儿，穿哪件", "sub": "全家福总表在这一条里"}, {"name": "第 3 组 · 指人的边界和礼貌", "sub": "we 包不包你、礼貌住哪儿、天气里的 it"}, {"name": "第 4 组 · 中国孩子的三个坑", "sub": "漏主语、there be 滥用、he/she 说混——都是有原因的"}, {"name": "第 5 组 · 写作文时怎么指人", "sub": "用代词还是说全名，看「清不清楚」定价"}, {"name": "第 6 组 · 一家子的其他成员", "sub": "物主、反身、指示、不定四家（PR-12～PR-15），另收目录定版两条：所有格 's（GR-13，紧跟物主）、some/any 立场（GR-10，紧跟不定）"}, {"name": "第 7 组 · ❓ 提问的一家：疑问词与问句", "sub": "QI-01 – QI-15 全组收编——疑问词各管一块，问句有搭法也有答法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -17239,7 +17404,6 @@ function render(){
   }
   if(pnBooted){ window.scrollTo(0,0); pnStartDemos(); }
 }
-function go(id){stack.push({view:'law',id:id});render()}
 function back(){if(stack.length>1)stack.pop();render()}
 function stepLaw(d){
   var cur = stack[stack.length-1].id;
@@ -17267,27 +17431,6 @@ function extraExn(id, s){ var ex = extraOf(id); return (ex && ex.exn && ex.exn[s
 function extraCases(l){
   var ex = extraOf(l.id); if(!ex || !ex.cases) return [];
   return ex.cases.filter(function(c){ return !l.errors.some(function(e){ return e.wrong === c.wrong; }); });
-}
-function extraCaseHTML(c){
-  var h = '<div class="errc">';
-  h += '<div style="font-size:12px;color:#8a6d1f;margin-bottom:4px">📚 真病例 · 目录登记（逐字）</div>';
-  h += '<div>❌ <span class="wrong">' + esc(c.wrong) + '</span></div><div>✅ <span class="right">' + esc(c.right || '') + '</span></div>';
-  if(c.type){ h += '<div style="margin-top:4px">错型：' + esc(c.type) + '</div>'; }
-  if(c.diag){ h += '<div style="margin-top:4px">诊断：' + esc(c.diag_kid || c.diag) + '</div>'; if(c.diag_kid && c.diag_kid !== c.diag){ h += '<div class="adult" style="margin-top:4px">诊断原文：' + esc(c.diag) + '</div>'; } }
-  if(c.src){ h += '<div style="margin-top:4px;font-size:12px;color:var(--muted)">出处：' + esc(c.src) + '</div>'; }
-  return h + '</div>';
-}
-function xpick(btn, id, qi, oi){
-  var ex = extraOf(id); if(!ex || !ex.quiz || !ex.quiz[qi]) return;
-  var q = ex.quiz[qi];
-  if(q.opts[oi] === q.a){
-    btn.style.background = '#cfe8cf'; btn.style.borderColor = '#5da35d';
-    var box = btn.parentNode;
-    while(box && ((box.className || '').toString().split(' ').indexOf('quiz') < 0)){ box = box.parentNode; }
-    if(box){ var a = box.querySelector('.ans'); if(a) a.style.display = 'block'; }
-  } else {
-    btn.style.background = '#f6d5d5'; btn.style.borderColor = '#c06666';
-  }
 }
 
 function vLaw(id){
@@ -17467,39 +17610,6 @@ var DEMOS = {
   'PR-14': {title: '🖼️ 静态图：近和远', src: '形式借鉴：British Council 教师课案的实物演示——近物放在手边、远物放在教室另一头，距离一眼看清。', svg: '<svg viewBox="0 0 340 168" width="100%" role="img"><line x1="8" y1="128" x2="332" y2="128" stroke="#b7cbb8" stroke-width="2"/><text x="26" y="122" font-size="34">🧒</text><text x="86" y="120" font-size="26">📕</text><text x="84" y="147" font-size="13" font-weight="700" fill="#4a7a59">this</text><text x="80" y="162" font-size="10.5" fill="#4f5a4c">近 · 一个</text><text x="140" y="120" font-size="26">📚</text><text x="136" y="147" font-size="13" font-weight="700" fill="#4a7a59">these</text><text x="134" y="162" font-size="10.5" fill="#4f5a4c">近 · 一堆</text><line x1="198" y1="110" x2="246" y2="110" stroke="#8a97a8" stroke-width="2" stroke-dasharray="5 4"/><text x="222" y="100" text-anchor="middle" font-size="10.5" fill="#8a97a8">距离</text><text x="260" y="122" font-size="30">🌳</text><text x="262" y="147" font-size="13" font-weight="700" fill="#4a7a59">that</text><text x="258" y="162" font-size="10.5" fill="#4f5a4c">远 · 一个</text><text x="304" y="50" font-size="22">✨</text><text x="296" y="74" font-size="13" font-weight="700" fill="#4a7a59">those</text><text x="294" y="89" font-size="10.5" fill="#4f5a4c">远 · 一堆</text></svg>'}
 };
 /* ============ 画布小工具：人物/书/箭头的手绘片段（字符串拼装） ============ */
-function wbKid(x, y, s, flip){ // 简笔小人：头+身+臂+腿，s=缩放
-  s = s || 1;
-  return '<g transform="translate('+x+','+y+') scale('+(flip?-s:s)+','+s+')">'
-    + '<circle class="wbd" cx="0" cy="-34" r="11" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
-    + '<path class="wbd" d="M0,-23 C1,-8 0,4 -1,16" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
-    + '<path class="wbd" d="M0,-14 C-12,-8 -17,-2 -19,3 M0,-14 C11,-10 17,-6 21,-3" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
-    + '<path class="wbd" d="M-1,16 C-7,28 -11,36 -13,44 M-1,16 C5,28 9,36 12,44" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
-    + '</g>';
-}
-function wbBook(x, y, w, col){ // 一本摊开/合上的书
-  w = w || 54; col = col || '#3f6fb5';
-  var h = Math.round(w*0.72);
-  return '<g transform="translate('+x+','+y+')">'
-    + '<path class="wbd" d="M2,3 C-4,'+(h*0.4)+' 2,'+(h-4)+' 4,'+h+' L'+(w-4)+','+h+' C'+(w-2)+','+(h-5)+' '+(w+3)+','+(h*0.35)+' '+(w-2)+',2 C'+(w*0.55)+',-4 '+ (w*0.4)+',-3 2,3 Z" fill="none" stroke="'+col+'" stroke-width="3.2" stroke-linecap="round"/>'
-    + '<path class="wbd" d="M10,14 L'+(w-12)+',14 M10,24 L'+(w-16)+',24" stroke="'+col+'" stroke-width="2.4" stroke-linecap="round"/>'
-    + '</g>';
-}
-function wbStar(x, y, col){
-  col = col || '#f2b138';
-  return '<path class="wbd" d="M'+x+','+(y-13)+' L'+(x+3.4)+','+(y-4)+' L'+(x+13)+','+(y-3.4)+' L'+(x+5.4)+','+(y+2.6)+' L'+(x+8)+','+(y+12)+' L'+x+','+(y+6.4)+' L'+(x-8)+','+(y+12)+' L'+(x-5.4)+','+(y+2.6)+' L'+(x-13)+','+(y-3.4)+' L'+(x-3.4)+','+(y-4)+' Z" fill="none" stroke="'+col+'" stroke-width="2.8" stroke-linejoin="round"/>';
-}
-function wbCross(x, y, s){ // 红叉
-  s = s || 1;
-  return '<path class="wbd" d="M'+(x-9*s)+','+(y-9*s)+' L'+(x+9*s)+','+(y+9*s)+' M'+(x+9*s)+','+(y-9*s)+' L'+(x-9*s)+','+(y+9*s)+'" stroke="#e05252" stroke-width="4" stroke-linecap="round" fill="none"/>';
-}
-function wbTickMark(x, y, s){ // 绿勾
-  s = s || 1;
-  return '<path class="wbd" d="M'+(x-11*s)+','+(y+1*s)+' L'+(x-3*s)+','+(y+9*s)+' L'+(x+12*s)+','+(y-9*s)+'" stroke="#2e9e5b" stroke-width="4" stroke-linecap="round" fill="none"/>';
-}
-function wbT(x, y, str, size, col, anchor, bold){ // 手写风文字（淡入，不逐笔）
-  if(anchor!=='start'&&anchor!=='middle'&&anchor!=='end') anchor='middle'; // 锚点消毒：历史调用误传 1 等非法值一律回退居中本意，防文字出幕（2026-11-04 出幕普查修复）
-  return '<text class="wbw" x="'+x+'" y="'+y+'" font-size="'+(size||22)+'" fill="'+(col||'#2b3a55')+'" text-anchor="'+(anchor||'middle')+'" font-weight="'+(bold?800:600)+'">'+str+'</text>';
-}
 
 /* ============ 分镜数据：每条规律 4 镜 ============ */
 var WB_INK = '#2b3a55', WB_BLUE = '#3f6fb5', WB_RED = '#e05252', WB_GREEN = '#2e9e5b', WB_ORANGE = '#e8862e';
@@ -18688,13 +18798,6 @@ function wbCardHTML(id){
     + '<div class="srcnote">白板动画：一镜只讲一个意思，跟着笔尖一笔一笔画出来；画完会停一会儿，慢慢读字幕。</div>'
     + '<div class="srcnote">形式借鉴：' + (WB_CREDIT[id] || '通用白板范式（RSA / VideoScribe 逐笔揭示）') + '</div></div>';
 }
-function wbStop(){
-  if(window.wbCapCancel) wbCapCancel();
-  wbS.playing = false;
-  if(wbS.raf){ cancelAnimationFrame(wbS.raf); wbS.raf = 0; }
-  wbS.startTs = 0;
-  if(wbS.hand){ try { wbS.hand.style.opacity = '0'; } catch(e){} }
-}
 function wbInit(){
   wbStop();
   var stage = document.getElementById('pnwbStage');
@@ -18714,17 +18817,6 @@ function wbInit(){
   wbRenderScene();
   wbPlayStart();
   if(window.CUT && CUT.mount) CUT.mount('PN');
-}
-function wbRenderDots(){
-  if(!wbS.dots || !wbS.sec) return;
-  var n = wbS.sec.scenes.length;
-  wbS.dots.innerHTML = '';
-  for(var i = 0; i < n; i++){
-    var d = document.createElement('span');
-    d.className = 'wb-dot' + (i < wbS.scene ? ' done' : (i === wbS.scene ? ' now' : '')) + (wbS.range && (i < wbS.range[0] || i > wbS.range[1]) ? ' cut-out' : '');
-    wbS.dots.appendChild(d);
-  }
-  if(wbS.sceneNo) wbS.sceneNo.textContent = '第 ' + (wbS.scene + 1) + ' / ' + n + ' 镜';
 }
 function wbPrepare(){
   if(window.wbRoughify) wbRoughify(wbS.stage);
@@ -18771,33 +18863,6 @@ function wbApplyAt(ms){
     wbCapProgress(wbS.capText, _n, ms, wbS.total);
   }
 }
-function wbMoveHand(it){
-  if(!wbS.hand) return;
-  if(!it){ wbS.hand.style.opacity = '0'; return; }
-  try {
-    var pt = null, el = it.el;
-    if(it.type === 'd' && el.getPointAtLength){
-      var p = Math.max(0, Math.min(1, (wbS.elapsed - it.start) / it.dur));
-      pt = el.getPointAtLength(it.len * p);
-    } else {
-      var bb = el.getBBox(); pt = { x: bb.x + bb.width, y: bb.y + bb.height };
-    }
-    var r = wbS.stage.getBoundingClientRect(), br = wbS.board.getBoundingClientRect();
-    wbS.hand.style.left = ((pt.x / 560) * r.width + (r.left - br.left) - 4) + 'px';
-    wbS.hand.style.top = ((pt.y / 380) * r.height + (r.top - br.top) - 22) + 'px';
-    wbS.hand.style.opacity = '1';
-  } catch(e){ wbS.hand.style.opacity = '0'; }
-}
-function wbRenderScene(){
-  var sc = wbS.sec.scenes[wbS.scene];
-  wbS.stage.innerHTML = sc.svg;
-  if(wbS.capText && window.wbCapSync) wbCapSync(sc.cap, wbS.capText, wbS); else if(wbS.capText) wbS.capText.textContent = sc.cap;
-  if(wbS.capNo) wbS.capNo.textContent = '第 ' + (wbS.scene + 1) + ' 镜';
-  wbRenderDots();
-  wbPrepare();
-  wbS.elapsed = 0;
-  wbApplyAt(0);
-}
 function wbFrame(ts){
   if(!wbS.playing) return;
   if(!wbS.stage || document.getElementById('pnwbStage') !== wbS.stage){ wbStop(); return; }
@@ -18811,34 +18876,6 @@ function wbFrame(ts){
   }
   wbApplyAt(wbS.elapsed);
   wbS.raf = requestAnimationFrame(wbFrame);
-}
-function wbPlayStart(){
-  wbS.playing = true; wbS.startTs = 0; wbS.baseElapsed = wbS.elapsed || 0;
-  if(wbS.btn) wbS.btn.textContent = '⏸ 暂停';
-  wbS.raf = requestAnimationFrame(wbFrame);
-}
-function wbTogglePlay(){
-  if(!wbS.sec) return;
-  if(wbS.playing){
-    wbS.playing = false;
-    if(wbS.raf){ cancelAnimationFrame(wbS.raf); wbS.raf = 0; }
-    wbS.baseElapsed = wbS.elapsed; wbS.startTs = 0;
-    if(wbS.btn) wbS.btn.textContent = '▶ 继续';
-    if(wbS.hand) wbS.hand.style.opacity = '0';
-    if(window.wbCapCancel) wbCapCancel();
-    return;
-  }
-  if(wbS.btn && wbS.btn.textContent.indexOf('再看') >= 0){ wbS.scene = wbS.home || 0; wbRenderScene(); }
-  wbPlayStart();
-  if(window.wbCapSpeak) wbCapSpeak();
-}
-function wbReplay(){
-  if(!wbS.sec) return;
-  wbStop();
-  wbS.scene = wbS.home || 0; wbS.elapsed = 0; wbS.baseElapsed = 0;
-  wbRenderScene();
-  wbPlayStart();
-  if(window.wbCapSpeak) wbCapSpeak();
 }
 /* CUT 选版器接口（波 B）：区间播/全片/停播/信息；range=null 为原行为 */
 function wbCutRange(a, b){ if(!wbS.sec) return; wbS.range = [a, b]; wbS.home = a; wbStop(); wbS.scene = a; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
@@ -18888,6 +18925,23 @@ if(window.MutationObserver && pnSecI && pnSecD){
 </script>
 <script>
 (function(){
+  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},render:render,esc:esc,extraOf:extraOf,wbApplyAt:wbApplyAt,wbPrepare:wbPrepare,wbFrame:wbFrame});
+  function go(){return _wcAR.go.apply(this,arguments);}
+  function extraCaseHTML(){return _wcAR.extraCaseHTML.apply(this,arguments);}
+  function xpick(){return _wcAR.xpick.apply(this,arguments);}
+  function wbKid(){return _wcAR.wbKid.apply(this,arguments);}
+  function wbBook(){return _wcAR.wbBook.apply(this,arguments);}
+  function wbStar(){return _wcAR.wbStar.apply(this,arguments);}
+  function wbCross(){return _wcAR.wbCross.apply(this,arguments);}
+  function wbTickMark(){return _wcAR.wbTickMark.apply(this,arguments);}
+  function wbT(){return _wcAR.wbT.apply(this,arguments);}
+  function wbStop(){return _wcAR.wbStop.apply(this,arguments);}
+  function wbRenderDots(){return _wcAR.wbRenderDots.apply(this,arguments);}
+  function wbMoveHand(){return _wcAR.wbMoveHand.apply(this,arguments);}
+  function wbRenderScene(){return _wcAR.wbRenderScene.apply(this,arguments);}
+  function wbPlayStart(){return _wcAR.wbPlayStart.apply(this,arguments);}
+  function wbTogglePlay(){return _wcAR.wbTogglePlay.apply(this,arguments);}
+  function wbReplay(){return _wcAR.wbReplay.apply(this,arguments);}
 
 var GROUPS = [{"name": "🧱 前置组 · 先数得清，才谈冠词", "sub": "冠词的地基：先决定东西是「一个个」还是「一摊」，后面的 a / the / -s / many 才有着落（本组已按深度规格补齐）"}, {"name": "第 1 组 · a 和 the 各干什么", "sub": "一个管「认类别」，一个管「找到那一个」"}, {"name": "第 2 组 · 用 the 之前先找线索", "sub": "五条路，占一条才能用 the"}, {"name": "第 3 组 · a 还是 an，听声音", "sub": "同题两条：C-14 与 GR-15，目录里两个版本都在"}, {"name": "第 4 组 · 不加冠词，和约定搭配", "sub": "做事还是去楼、约定存货、介绍物种的三种拍法"}, {"name": "第 5 组 · 为什么总选错", "sub": "给家长和老师：错的系统原因和分型纠法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -18930,7 +18984,6 @@ function render(){
   }
   if(arBooted){ window.scrollTo(0,0); arStartDemos(); }
 }
-function go(id){stack.push({view:'law',id:id});render()}
 function back(){if(stack.length>1)stack.pop();render()}
 function stepLaw(d){
   var cur = stack[stack.length-1].id;
@@ -18958,27 +19011,6 @@ function extraExn(id, s){ var ex = extraOf(id); return (ex && ex.exn && ex.exn[s
 function extraCases(l){
   var ex = extraOf(l.id); if(!ex || !ex.cases) return [];
   return ex.cases.filter(function(c){ return !l.errors.some(function(e){ return e.wrong === c.wrong; }); });
-}
-function extraCaseHTML(c){
-  var h = '<div class="errc">';
-  h += '<div style="font-size:12px;color:#8a6d1f;margin-bottom:4px">📚 真病例 · 目录登记（逐字）</div>';
-  h += '<div>❌ <span class="wrong">' + esc(c.wrong) + '</span></div><div>✅ <span class="right">' + esc(c.right || '') + '</span></div>';
-  if(c.type){ h += '<div style="margin-top:4px">错型：' + esc(c.type) + '</div>'; }
-  if(c.diag){ h += '<div style="margin-top:4px">诊断：' + esc(c.diag_kid || c.diag) + '</div>'; if(c.diag_kid && c.diag_kid !== c.diag){ h += '<div class="adult" style="margin-top:4px">诊断原文：' + esc(c.diag) + '</div>'; } }
-  if(c.src){ h += '<div style="margin-top:4px;font-size:12px;color:var(--muted)">出处：' + esc(c.src) + '</div>'; }
-  return h + '</div>';
-}
-function xpick(btn, id, qi, oi){
-  var ex = extraOf(id); if(!ex || !ex.quiz || !ex.quiz[qi]) return;
-  var q = ex.quiz[qi];
-  if(q.opts[oi] === q.a){
-    btn.style.background = '#cfe8cf'; btn.style.borderColor = '#5da35d';
-    var box = btn.parentNode;
-    while(box && ((box.className || '').toString().split(' ').indexOf('quiz') < 0)){ box = box.parentNode; }
-    if(box){ var a = box.querySelector('.ans'); if(a) a.style.display = 'block'; }
-  } else {
-    btn.style.background = '#f6d5d5'; btn.style.borderColor = '#c06666';
-  }
 }
 
 function vLaw(id){
@@ -19140,39 +19172,6 @@ function playCinema(){
 
 /* ===== 白板动画（移植自代词版已验证引擎，节奏为修正参数：笔速×1.35、间隔0.88、每镜阅读停留） ===== */
 /* ============ 画布小工具：人物/书/箭头的手绘片段（字符串拼装） ============ */
-function wbKid(x, y, s, flip){ // 简笔小人：头+身+臂+腿，s=缩放
-  s = s || 1;
-  return '<g transform="translate('+x+','+y+') scale('+(flip?-s:s)+','+s+')">'
-    + '<circle class="wbd" cx="0" cy="-34" r="11" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
-    + '<path class="wbd" d="M0,-23 C1,-8 0,4 -1,16" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
-    + '<path class="wbd" d="M0,-14 C-12,-8 -17,-2 -19,3 M0,-14 C11,-10 17,-6 21,-3" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
-    + '<path class="wbd" d="M-1,16 C-7,28 -11,36 -13,44 M-1,16 C5,28 9,36 12,44" fill="none" stroke="#2b3a55" stroke-width="3.4" stroke-linecap="round"/>'
-    + '</g>';
-}
-function wbBook(x, y, w, col){ // 一本摊开/合上的书
-  w = w || 54; col = col || '#3f6fb5';
-  var h = Math.round(w*0.72);
-  return '<g transform="translate('+x+','+y+')">'
-    + '<path class="wbd" d="M2,3 C-4,'+(h*0.4)+' 2,'+(h-4)+' 4,'+h+' L'+(w-4)+','+h+' C'+(w-2)+','+(h-5)+' '+(w+3)+','+(h*0.35)+' '+(w-2)+',2 C'+(w*0.55)+',-4 '+ (w*0.4)+',-3 2,3 Z" fill="none" stroke="'+col+'" stroke-width="3.2" stroke-linecap="round"/>'
-    + '<path class="wbd" d="M10,14 L'+(w-12)+',14 M10,24 L'+(w-16)+',24" stroke="'+col+'" stroke-width="2.4" stroke-linecap="round"/>'
-    + '</g>';
-}
-function wbStar(x, y, col){
-  col = col || '#f2b138';
-  return '<path class="wbd" d="M'+x+','+(y-13)+' L'+(x+3.4)+','+(y-4)+' L'+(x+13)+','+(y-3.4)+' L'+(x+5.4)+','+(y+2.6)+' L'+(x+8)+','+(y+12)+' L'+x+','+(y+6.4)+' L'+(x-8)+','+(y+12)+' L'+(x-5.4)+','+(y+2.6)+' L'+(x-13)+','+(y-3.4)+' L'+(x-3.4)+','+(y-4)+' Z" fill="none" stroke="'+col+'" stroke-width="2.8" stroke-linejoin="round"/>';
-}
-function wbCross(x, y, s){ // 红叉
-  s = s || 1;
-  return '<path class="wbd" d="M'+(x-9*s)+','+(y-9*s)+' L'+(x+9*s)+','+(y+9*s)+' M'+(x+9*s)+','+(y-9*s)+' L'+(x-9*s)+','+(y+9*s)+'" stroke="#e05252" stroke-width="4" stroke-linecap="round" fill="none"/>';
-}
-function wbTickMark(x, y, s){ // 绿勾
-  s = s || 1;
-  return '<path class="wbd" d="M'+(x-11*s)+','+(y+1*s)+' L'+(x-3*s)+','+(y+9*s)+' L'+(x+12*s)+','+(y-9*s)+'" stroke="#2e9e5b" stroke-width="4" stroke-linecap="round" fill="none"/>';
-}
-function wbT(x, y, str, size, col, anchor, bold){ // 手写风文字（淡入，不逐笔）
-  if(anchor!=='start'&&anchor!=='middle'&&anchor!=='end') anchor='middle'; // 锚点消毒：历史调用误传 1 等非法值一律回退居中本意，防文字出幕（2026-11-04 出幕普查修复）
-  return '<text class="wbw" x="'+x+'" y="'+y+'" font-size="'+(size||22)+'" fill="'+(col||'#2b3a55')+'" text-anchor="'+(anchor||'middle')+'" font-weight="'+(bold?800:600)+'">'+str+'</text>';
-}
 
 /* ============ 分镜数据：每条规律 4 镜 ============ */
 var WB_INK = '#2b3a55', WB_BLUE = '#3f6fb5', WB_RED = '#e05252', WB_GREEN = '#2e9e5b', WB_ORANGE = '#e8862e';
@@ -19856,13 +19855,6 @@ function wbCardHTML(id){
     + '<div class="cutbar" id="arcutbar" style="display:none"></div><div class="cut-clashbox" id="arcutclash" style="display:none"></div>'
     + '<div class="wb-src">形式借鉴：' + ((WB_BY_ID[id] && WB_BY_ID[id].src) ? WB_BY_ID[id].src : '通用白板范式。') + '</div></div>';
 }
-function wbStop(){
-  if(window.wbCapCancel) wbCapCancel();
-  wbS.playing = false;
-  if(wbS.raf){ cancelAnimationFrame(wbS.raf); wbS.raf = 0; }
-  wbS.startTs = 0;
-  if(wbS.hand){ try { wbS.hand.style.opacity = '0'; } catch(e){} }
-}
 function wbInit(){
   wbStop();
   var stage = document.getElementById('arwbStage');
@@ -19882,17 +19874,6 @@ function wbInit(){
   wbRenderScene();
   wbPlayStart();
   if(window.CUT && CUT.mount) CUT.mount('AR');
-}
-function wbRenderDots(){
-  if(!wbS.dots || !wbS.sec) return;
-  var n = wbS.sec.scenes.length;
-  wbS.dots.innerHTML = '';
-  for(var i = 0; i < n; i++){
-    var d = document.createElement('span');
-    d.className = 'wb-dot' + (i < wbS.scene ? ' done' : (i === wbS.scene ? ' now' : '')) + (wbS.range && (i < wbS.range[0] || i > wbS.range[1]) ? ' cut-out' : '');
-    wbS.dots.appendChild(d);
-  }
-  if(wbS.sceneNo) wbS.sceneNo.textContent = '第 ' + (wbS.scene + 1) + ' / ' + n + ' 镜';
 }
 function wbPrepare(){
   if(window.wbRoughify) wbRoughify(wbS.stage);
@@ -19946,33 +19927,6 @@ function wbApplyAt(ms){
     wbCapProgress(wbS.capText, _n, ms, wbS.total);
   }
 }
-function wbMoveHand(it){
-  if(!wbS.hand) return;
-  if(!it){ wbS.hand.style.opacity = '0'; return; }
-  try {
-    var pt = null, el = it.el;
-    if(it.type === 'd' && el.getPointAtLength){
-      var p = Math.max(0, Math.min(1, (wbS.elapsed - it.start) / it.dur));
-      pt = el.getPointAtLength(it.len * p);
-    } else {
-      var bb = el.getBBox(); pt = { x: bb.x + bb.width, y: bb.y + bb.height };
-    }
-    var r = wbS.stage.getBoundingClientRect(), br = wbS.board.getBoundingClientRect();
-    wbS.hand.style.left = ((pt.x / 560) * r.width + (r.left - br.left) - 4) + 'px';
-    wbS.hand.style.top = ((pt.y / 380) * r.height + (r.top - br.top) - 22) + 'px';
-    wbS.hand.style.opacity = '1';
-  } catch(e){ wbS.hand.style.opacity = '0'; }
-}
-function wbRenderScene(){
-  var sc = wbS.sec.scenes[wbS.scene];
-  wbS.stage.innerHTML = sc.svg;
-  if(wbS.capText && window.wbCapSync) wbCapSync(sc.cap, wbS.capText, wbS); else if(wbS.capText) wbS.capText.textContent = sc.cap;
-  if(wbS.capNo) wbS.capNo.textContent = '第 ' + (wbS.scene + 1) + ' 镜';
-  wbRenderDots();
-  wbPrepare();
-  wbS.elapsed = 0;
-  wbApplyAt(0);
-}
 function wbFrame(ts){
   if(!wbS.playing) return;
   if(!wbS.stage || document.getElementById('arwbStage') !== wbS.stage){ wbStop(); return; }
@@ -19986,34 +19940,6 @@ function wbFrame(ts){
   }
   wbApplyAt(wbS.elapsed);
   wbS.raf = requestAnimationFrame(wbFrame);
-}
-function wbPlayStart(){
-  wbS.playing = true; wbS.startTs = 0; wbS.baseElapsed = wbS.elapsed || 0;
-  if(wbS.btn) wbS.btn.textContent = '⏸ 暂停';
-  wbS.raf = requestAnimationFrame(wbFrame);
-}
-function wbTogglePlay(){
-  if(!wbS.sec) return;
-  if(wbS.playing){
-    wbS.playing = false;
-    if(wbS.raf){ cancelAnimationFrame(wbS.raf); wbS.raf = 0; }
-    wbS.baseElapsed = wbS.elapsed; wbS.startTs = 0;
-    if(wbS.btn) wbS.btn.textContent = '▶ 继续';
-    if(wbS.hand) wbS.hand.style.opacity = '0';
-    if(window.wbCapCancel) wbCapCancel();
-    return;
-  }
-  if(wbS.btn && wbS.btn.textContent.indexOf('再看') >= 0){ wbS.scene = wbS.home || 0; wbRenderScene(); }
-  wbPlayStart();
-  if(window.wbCapSpeak) wbCapSpeak();
-}
-function wbReplay(){
-  if(!wbS.sec) return;
-  wbStop();
-  wbS.scene = wbS.home || 0; wbS.elapsed = 0; wbS.baseElapsed = 0;
-  wbRenderScene();
-  wbPlayStart();
-  if(window.wbCapSpeak) wbCapSpeak();
 }
 /* CUT 选版器接口（波 B）：区间播/全片/停播/信息；range=null 为原行为 */
 function wbCutRange(a, b){ if(!wbS.sec) return; wbS.range = [a, b]; wbS.home = a; wbStop(); wbS.scene = a; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
