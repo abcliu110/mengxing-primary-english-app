@@ -17457,13 +17457,14 @@ function vIndex(){
   h += C.footer;
   return h;
 }
+
 function vLaw(id){
   var l = S.lawById(id); if(!l) return vIndex();
   var i = S.LAWS.indexOf(l);
   var h = '<button class="back" onclick="' + C.name + '.back()">‹ 返回列表</button>';
   h += '<div style="margin-top:4px"><span class="badge">' + l.id + '</span> <span class="badge grey">' + esc(S.GROUPS[l.group].name.split('·')[1]||'') + '</span>' + (C.candUI && l.cand ? ' <span class="badge amber">新拟 · 待对账</span>' : '') + '</div>';
   h += '<h2 class="big">' + esc(l.short) + '</h2><div class="desc">' + esc(l.desc) + '</div>';
-  if(S.WB_BY_ID[l.id]){ h += S.wbCardHTML(l.id); }
+  if(S.WB_BY_ID[l.id]){ h += wbCardHTML(l.id); }
   h += '<div class="formal">正式说法（目录原文）：' + esc(l.formal) + '</div>';
   if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(l.id);}
   h += '<div class="kidbox"><span class="lab">' + (C.candUI && l.cand ? '孩子版说法（新拟）' : '目录里的孩子版说法') + '</span>' + esc(l.kid) + '</div>';
@@ -17540,10 +17541,20 @@ function vLaw(id){
   h += '<div class="navrow"><button ' + (i<=0?'disabled':'') + ' onclick="' + C.name + '.stepLaw(-1)">‹ 上一条</button><button ' + (i>=S.LAWS.length-1?'disabled':'') + ' onclick="' + C.name + '.stepLaw(1)">下一条 ›</button></div>';
   return h;
 }
-  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay, extraOf:extraOf, wbApplyAt:wbApplyAt, wbPrepare:wbPrepare, wbFrame:wbFrame, wbInit:wbInit, vIndex:vIndex, vLaw:vLaw};
+function wbCardHTML(id){
+  return '<div class="sec"><h4>🎬 白板动画 · 先看一遍</h4>'
+    + '<div class="wb-board" id="' + C.p + 'wbBoard"><svg class="wb-stage" id="' + C.p + 'wbStage" viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg"></svg><div class="wb-hand" id="' + C.p + 'wbHand">✏️</div></div>'
+    + '<div class="wb-capbar"><span class="wb-no" id="' + C.p + 'wbCapNo">第 1 镜</span><span id="' + C.p + 'wbCapText">白板老师正在准备……</span></div>'
+    + '<div class="wb-ctrl"><button class="wb-btn wb-main" id="' + C.p + 'wbBtnPlay" onclick="' + C.name + '.wbTogglePlay()">⏸ 暂停</button>'
+    + '<button class="wb-btn" onclick="' + C.name + '.wbReplay()">↻ 重播</button>'
+    + '<span class="wb-sceneno" id="' + C.p + 'wbSceneNo"></span><div class="wb-dots" id="' + C.p + 'wbDots"></div></div>'
+    + '<div class="cutbar" id="' + C.p + 'cutbar" style="display:none"></div><div class="cut-clashbox" id="' + C.p + 'cutclash" style="display:none"></div>'
+    + C.tail(id) + '</div>';
+}
+  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay, extraOf:extraOf, wbApplyAt:wbApplyAt, wbPrepare:wbPrepare, wbFrame:wbFrame, wbInit:wbInit, vIndex:vIndex, vLaw:vLaw, wbCardHTML:wbCardHTML};
 }
 (function(){
-  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},get wbCardHTML(){return wbCardHTML;},render:render,esc:esc},{p:'pn',name:'PN',extra:function(){return PN_EXTRA;},top:function(){return showHTML();},candUI:true,footer:'<footer>原型 · PR/GR/QI 条目正文出自仓库规律目录（laws-prototype/model/laws）；原 NEW-P1～NEW-P4 已于 2026-11-03 立条为 PR-12～PR-15，新配的病例句均已标「新拟例句」；呈现层（短标题/分组/动画演示）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:false,hideHandAfterDraw:true,excFallback:true,gap:'目录只登记了错型。',ansPre:'ans_',demo:function(l){var dm=DEMOS[l.id]; return dm?demoHTML(dm):'';},anim:function(l){return '';},adult:function(id){var pnAd=PN_ADULT[id]; if(pnAd||PN_EXTRA[id]){return pnAdultHTML(pnAd,PN_EXTRA[id]);} return '';}});
+  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},render:render,esc:esc},{p:'pn',name:'PN',extra:function(){return PN_EXTRA;},top:function(){return showHTML();},candUI:true,footer:'<footer>原型 · PR/GR/QI 条目正文出自仓库规律目录（laws-prototype/model/laws）；原 NEW-P1～NEW-P4 已于 2026-11-03 立条为 PR-12～PR-15，新配的病例句均已标「新拟例句」；呈现层（短标题/分组/动画演示）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:false,hideHandAfterDraw:true,excFallback:true,gap:'目录只登记了错型。',ansPre:'ans_',demo:function(l){var dm=DEMOS[l.id]; return dm?demoHTML(dm):'';},anim:function(l){return '';},adult:function(id){var pnAd=PN_ADULT[id]; if(pnAd||PN_EXTRA[id]){return pnAdultHTML(pnAd,PN_EXTRA[id]);} return '';},tail:function(id){return '<div class="srcnote">白板动画：一镜只讲一个意思，跟着笔尖一笔一笔画出来；画完会停一会儿，慢慢读字幕。</div>' + '<div class="srcnote">形式借鉴：' + (WB_CREDIT[id] || '通用白板范式（RSA / VideoScribe 逐笔揭示）') + '</div>';}});
   function go(){return _wcPN.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcPN.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcPN.xpick.apply(this,arguments);}
@@ -17567,6 +17578,7 @@ function vLaw(id){
   function wbInit(){return _wcPN.wbInit.apply(this,arguments);}
   function vIndex(){return _wcPN.vIndex.apply(this,arguments);}
   function vLaw(){return _wcPN.vLaw.apply(this,arguments);}
+  function wbCardHTML(){return _wcPN.wbCardHTML.apply(this,arguments);}
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
 var GROUPS = [{"name": "第 1 组 · 代词到底是什么", "sub": "先别背表——先搞清代词在干什么活"}, {"name": "第 2 组 · 格：站在哪儿，穿哪件", "sub": "全家福总表在这一条里"}, {"name": "第 3 组 · 指人的边界和礼貌", "sub": "we 包不包你、礼貌住哪儿、天气里的 it"}, {"name": "第 4 组 · 中国孩子的三个坑", "sub": "漏主语、there be 滥用、he/she 说混——都是有原因的"}, {"name": "第 5 组 · 写作文时怎么指人", "sub": "用代词还是说全名，看「清不清楚」定价"}, {"name": "第 6 组 · 一家子的其他成员", "sub": "物主、反身、指示、不定四家（PR-12～PR-15），另收目录定版两条：所有格 's（GR-13，紧跟物主）、some/any 立场（GR-10，紧跟不定）"}, {"name": "第 7 组 · ❓ 提问的一家：疑问词与问句", "sub": "QI-01 – QI-15 全组收编——疑问词各管一块，问句有搭法也有答法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -18892,17 +18904,6 @@ var WB_CREDIT = {
   'QI-14': '通用白板范式（RSA / VideoScribe 逐笔揭示）——四级台阶逐级登上、形态逐句对照',
   'QI-15': '通用白板范式（RSA / VideoScribe 逐笔揭示）——问号逐笔放大、信息差逐幕摆明'
 };
-function wbCardHTML(id){
-  return '<div class="sec"><h4>🎬 白板动画 · 先看一遍</h4>'
-    + '<div class="wb-board" id="pnwbBoard"><svg class="wb-stage" id="pnwbStage" viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg"></svg><div class="wb-hand" id="pnwbHand">✏️</div></div>'
-    + '<div class="wb-capbar"><span class="wb-no" id="pnwbCapNo">第 1 镜</span><span id="pnwbCapText">白板老师正在准备……</span></div>'
-    + '<div class="wb-ctrl"><button class="wb-btn wb-main" id="pnwbBtnPlay" onclick="PN.wbTogglePlay()">⏸ 暂停</button>'
-    + '<button class="wb-btn" onclick="PN.wbReplay()">↻ 重播</button>'
-    + '<span class="wb-sceneno" id="pnwbSceneNo"></span><div class="wb-dots" id="pnwbDots"></div></div>'
-    + '<div class="cutbar" id="pncutbar" style="display:none"></div><div class="cut-clashbox" id="pncutclash" style="display:none"></div>'
-    + '<div class="srcnote">白板动画：一镜只讲一个意思，跟着笔尖一笔一笔画出来；画完会停一会儿，慢慢读字幕。</div>'
-    + '<div class="srcnote">形式借鉴：' + (WB_CREDIT[id] || '通用白板范式（RSA / VideoScribe 逐笔揭示）') + '</div></div>';
-}
 /* CUT 选版器接口（波 B）：区间播/全片/停播/信息；range=null 为原行为 */
 function wbCutRange(a, b){ if(!wbS.sec) return; wbS.range = [a, b]; wbS.home = a; wbStop(); wbS.scene = a; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
 function wbCutFull(){ if(!wbS.sec) return; wbS.range = null; wbS.home = 0; wbStop(); wbS.scene = 0; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
@@ -18951,10 +18952,10 @@ if(window.MutationObserver && pnSecI && pnSecD){
 </script>
 <script>
 (function(){
-  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},get wbCardHTML(){return wbCardHTML;},render:render,esc:esc},{p:'ar',name:'AR',extra:function(){return AR_EXTRA;},top:function(){return EXTRA_TOP;},candUI:false,footer:'<footer>原型 · 规律正文均出自仓库规律目录（laws-prototype/model/laws）；呈现层文案（短标题/一句话/分组）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:true,hideHandAfterDraw:false,excFallback:false,gap:'目录只登记了错型，未给逐字病例。',ansPre:'arans_',demo:function(l){return '';},anim:function(l){var h='';
+  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},render:render,esc:esc},{p:'ar',name:'AR',extra:function(){return AR_EXTRA;},top:function(){return EXTRA_TOP;},candUI:false,footer:'<footer>原型 · 规律正文均出自仓库规律目录（laws-prototype/model/laws）；呈现层文案（短标题/一句话/分组）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:true,hideHandAfterDraw:false,excFallback:false,gap:'目录只登记了错型，未给逐字病例。',ansPre:'arans_',demo:function(l){return '';},anim:function(l){var h='';
   if(l.anim){ h += '<div class="sec"><h4>🎬 看一看</h4>' + animHTML(l.anim) + '</div>'; }
   if(l.svg && SVGS[l.svg]){ h += '<div class="sec"><div class="svgbox"><div class="at">🖼️ 图解</div>' + SVGS[l.svg] + '</div></div>'; }
-return h;},adult:function(id){var arAd=AR_ADULT[id]; if(arAd||AR_EXTRA[id]){return arAdultHTML(arAd,AR_EXTRA[id]);} return '';}});
+return h;},adult:function(id){var arAd=AR_ADULT[id]; if(arAd||AR_EXTRA[id]){return arAdultHTML(arAd,AR_EXTRA[id]);} return '';},tail:function(id){return '<div class="wb-src">形式借鉴：' + ((WB_BY_ID[id] && WB_BY_ID[id].src) ? WB_BY_ID[id].src : '通用白板范式。') + '</div>';}});
   function go(){return _wcAR.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcAR.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcAR.xpick.apply(this,arguments);}
@@ -18978,6 +18979,7 @@ return h;},adult:function(id){var arAd=AR_ADULT[id]; if(arAd||AR_EXTRA[id]){retu
   function wbInit(){return _wcAR.wbInit.apply(this,arguments);}
   function vIndex(){return _wcAR.vIndex.apply(this,arguments);}
   function vLaw(){return _wcAR.vLaw.apply(this,arguments);}
+  function wbCardHTML(){return _wcAR.wbCardHTML.apply(this,arguments);}
 
 var GROUPS = [{"name": "🧱 前置组 · 先数得清，才谈冠词", "sub": "冠词的地基：先决定东西是「一个个」还是「一摊」，后面的 a / the / -s / many 才有着落（本组已按深度规格补齐）"}, {"name": "第 1 组 · a 和 the 各干什么", "sub": "一个管「认类别」，一个管「找到那一个」"}, {"name": "第 2 组 · 用 the 之前先找线索", "sub": "五条路，占一条才能用 the"}, {"name": "第 3 组 · a 还是 an，听声音", "sub": "同题两条：C-14 与 GR-15，目录里两个版本都在"}, {"name": "第 4 组 · 不加冠词，和约定搭配", "sub": "做事还是去楼、约定存货、介绍物种的三种拍法"}, {"name": "第 5 组 · 为什么总选错", "sub": "给家长和老师：错的系统原因和分型纠法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -19785,16 +19787,6 @@ var WB_BY_ID = {};
 WB_SECTIONS.forEach(function(s){ WB_BY_ID[s.id] = s; });
 var wbS = { sec:null, scene:0, playing:false, raf:0, items:[], total:0, elapsed:0, baseElapsed:0, startTs:0, range:null, home:0,
             stage:null, hand:null, board:null, capText:null, capNo:null, dots:null, sceneNo:null, btn:null };
-function wbCardHTML(id){
-  return '<div class="sec"><h4>🎬 白板动画 · 先看一遍</h4>'
-    + '<div class="wb-board" id="arwbBoard"><svg class="wb-stage" id="arwbStage" viewBox="0 0 560 380" xmlns="http://www.w3.org/2000/svg"></svg><div class="wb-hand" id="arwbHand">✏️</div></div>'
-    + '<div class="wb-capbar"><span class="wb-no" id="arwbCapNo">第 1 镜</span><span id="arwbCapText">白板老师正在准备……</span></div>'
-    + '<div class="wb-ctrl"><button class="wb-btn wb-main" id="arwbBtnPlay" onclick="AR.wbTogglePlay()">⏸ 暂停</button>'
-    + '<button class="wb-btn" onclick="AR.wbReplay()">↻ 重播</button>'
-    + '<span class="wb-sceneno" id="arwbSceneNo"></span><div class="wb-dots" id="arwbDots"></div></div>'
-    + '<div class="cutbar" id="arcutbar" style="display:none"></div><div class="cut-clashbox" id="arcutclash" style="display:none"></div>'
-    + '<div class="wb-src">形式借鉴：' + ((WB_BY_ID[id] && WB_BY_ID[id].src) ? WB_BY_ID[id].src : '通用白板范式。') + '</div></div>';
-}
 /* CUT 选版器接口（波 B）：区间播/全片/停播/信息；range=null 为原行为 */
 function wbCutRange(a, b){ if(!wbS.sec) return; wbS.range = [a, b]; wbS.home = a; wbStop(); wbS.scene = a; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
 function wbCutFull(){ if(!wbS.sec) return; wbS.range = null; wbS.home = 0; wbStop(); wbS.scene = 0; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
