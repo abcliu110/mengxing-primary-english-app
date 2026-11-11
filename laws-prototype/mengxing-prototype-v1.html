@@ -17200,9 +17200,9 @@ return { players: players, LESSONS: LESSONS };
 </script>
 
 <script>
-/* ===== P2 工厂：16 个 PN/AR 共享函数（原为两份逐字相同副本）。依赖经 S 注入：stack / wbS 以 getter 读取，其余为 IIFE 内提升函数。 ===== */
-function makeWbCore(S){
-  var render=S.render, esc=S.esc, extraOf=S.extraOf, wbApplyAt=S.wbApplyAt, wbPrepare=S.wbPrepare, wbFrame=S.wbFrame;
+/* ===== P2 工厂：17 个 PN/AR 共享函数（原为两份副本）。S 注入 stack/wbS（getter）与 render/esc；C 注入引擎配置（DOM 前缀 p、extra 钩子、时序/隐藏手开关）。 ===== */
+function makeWbCore(S, C){
+  var render=S.render, esc=S.esc;
 function go(id){S.stack.push({view:'law',id:id});render()}
 
 function extraCaseHTML(c){
@@ -17346,10 +17346,106 @@ function wbReplay(){
   wbPlayStart();
   if(window.wbCapSpeak) wbCapSpeak();
 }
-  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay};
+function extraOf(id){ return C.extra()[id] || null; }
+
+function wbApplyAt(ms){
+  if(C.earlyFinish && S.wbS.drawTotal && ms >= S.wbS.drawTotal){
+    S.wbS.items.forEach(function(it){
+      if(it.type === 'd'){ it.el.style.strokeDashoffset = '0'; }
+      else { it.el.style.opacity = '1'; if(it.type === 'w') it.el.style.transform = 'translateY(0px)'; }
+    });
+    wbMoveHand(null);
+    return;
+  }
+  var current = null;
+  S.wbS.items.forEach(function(it){
+    var p = (ms - it.start) / it.dur;
+    p = p < 0 ? 0 : (p > 1 ? 1 : p);
+    if(it.type === 'd'){ it.el.style.strokeDashoffset = String(it.len * (1 - p)); }
+    else { it.el.style.opacity = String(p); if(it.type === 'w') it.el.style.transform = 'translateY(' + ((1 - p) * 5) + 'px)'; }
+    if(p > 0 && p < 1) current = it;
+    else if(p >= 1 && !current) current = it;
+  });
+  if(C.hideHandAfterDraw){
+    if(ms >= S.wbS.drawTotal){ if(S.wbS.hand) S.wbS.hand.style.opacity = '0'; }
+    else wbMoveHand(current);
+  } else {
+    wbMoveHand(current);
+  }
+  if(window.wbCapProgress && S.wbS.capText){
+    var _n=S.wbS.capText.querySelectorAll('.wbc').length;
+    wbCapProgress(S.wbS.capText, _n, ms, S.wbS.total);
+  }
+}
+
+function wbPrepare(){
+  if(window.wbRoughify) wbRoughify(S.wbS.stage);
+  S.wbS.items = [];
+  var els = S.wbS.stage.querySelectorAll('.wbd, .wbw, .wbf');
+  var t = 120;
+  els.forEach(function(el){
+    var type = el.classList.contains('wbd') ? 'd' : (el.classList.contains('wbw') ? 'w' : 'f');
+    var len = 0, dur;
+    if(type === 'd'){
+      try { len = el.getTotalLength(); } catch(e){ len = 260; }
+      if(!len || !isFinite(len)) len = 260;
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+      dur = Math.max(240, Math.min(1700, len * 1.5 * 1.35));
+    } else if(type === 'w'){ el.style.opacity = '0'; dur = Math.round(340 * 1.35); }
+    else { el.style.opacity = '0'; dur = Math.round(420 * 1.35); }
+    S.wbS.items.push({ el: el, type: type, len: len, start: t, dur: dur });
+    t += dur * 0.88 + 40;
+  });
+  S.wbS.drawTotal = t + 260;
+  var capLen = (S.wbS.sec && S.wbS.sec.scenes[S.wbS.scene]) ? String(S.wbS.sec.scenes[S.wbS.scene].cap || '').length : 0;
+  var hold = Math.max(2000, Math.min(4800, capLen * 160));
+  if(S.wbS.sec && S.wbS.scene === S.wbS.sec.scenes.length - 1) hold += 1200;
+  var scp = S.wbS.sec ? S.wbS.sec.scenes[S.wbS.scene] : null;
+  if(scp && scp.pause) hold += scp.pause; // 停顿拍：pause 字段（预测/想一想/重读），单位 ms，见 docs 报告 qi-film-length
+  S.wbS.hold = hold;
+  S.wbS.total = S.wbS.drawTotal + hold;
+}
+
+function wbFrame(ts){
+  if(!S.wbS.playing) return;
+  if(!S.wbS.stage || document.getElementById('' + C.p + 'wbStage') !== S.wbS.stage){ wbStop(); return; }
+  if(!S.wbS.startTs) S.wbS.startTs = ts;
+  S.wbS.elapsed = S.wbS.baseElapsed + (ts - S.wbS.startTs);
+  if(S.wbS.elapsed >= S.wbS.total){
+    wbApplyAt(S.wbS.total);
+    var n = S.wbS.sec.scenes.length;
+    if(S.wbS.scene < (S.wbS.range ? S.wbS.range[1] : n - 1)){ S.wbS.scene++; wbRenderScene(); S.wbS.startTs = 0; S.wbS.baseElapsed = 0; S.wbS.raf = requestAnimationFrame(wbFrame); return; }
+    wbStop(); if(S.wbS.btn) S.wbS.btn.textContent = '↻ 再看一遍'; return;
+  }
+  wbApplyAt(S.wbS.elapsed);
+  S.wbS.raf = requestAnimationFrame(wbFrame);
+}
+
+function wbInit(){
+  wbStop();
+  var stage = document.getElementById('' + C.p + 'wbStage');
+  if(!stage){ S.wbS.sec = null; return; }
+  var top = S.stack[S.stack.length - 1];
+  var sec = (top && top.view === 'law') ? S.WB_BY_ID[top.id] : null;
+  if(!sec){ S.wbS.sec = null; return; }
+  S.wbS.sec = sec; S.wbS.scene = 0; S.wbS.elapsed = 0; S.wbS.baseElapsed = 0; S.wbS.range = null; S.wbS.home = 0;
+  S.wbS.stage = stage;
+  S.wbS.hand = document.getElementById('' + C.p + 'wbHand');
+  S.wbS.board = document.getElementById('' + C.p + 'wbBoard');
+  S.wbS.capText = document.getElementById('' + C.p + 'wbCapText');
+  S.wbS.capNo = document.getElementById('' + C.p + 'wbCapNo');
+  S.wbS.dots = document.getElementById('' + C.p + 'wbDots');
+  S.wbS.sceneNo = document.getElementById('' + C.p + 'wbSceneNo');
+  S.wbS.btn = document.getElementById('' + C.p + 'wbBtnPlay');
+  wbRenderScene();
+  wbPlayStart();
+  if(window.CUT && CUT.mount) CUT.mount(C.name);
+}
+  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay, wbPrepare:wbPrepare, wbFrame:wbFrame, wbInit:wbInit, wbApplyAt:wbApplyAt, extraOf:extraOf};
 }
 (function(){
-  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},render:render,esc:esc,extraOf:extraOf,wbApplyAt:wbApplyAt,wbPrepare:wbPrepare,wbFrame:wbFrame});
+  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},render:render,esc:esc},{p:'pn',name:'PN',extra:function(){return PN_EXTRA;},earlyFinish:false,hideHandAfterDraw:true});
   function go(){return _wcPN.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcPN.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcPN.xpick.apply(this,arguments);}
@@ -17366,6 +17462,11 @@ function wbReplay(){
   function wbPlayStart(){return _wcPN.wbPlayStart.apply(this,arguments);}
   function wbTogglePlay(){return _wcPN.wbTogglePlay.apply(this,arguments);}
   function wbReplay(){return _wcPN.wbReplay.apply(this,arguments);}
+  function wbPrepare(){return _wcPN.wbPrepare.apply(this,arguments);}
+  function wbFrame(){return _wcPN.wbFrame.apply(this,arguments);}
+  function wbInit(){return _wcPN.wbInit.apply(this,arguments);}
+  function wbApplyAt(){return _wcPN.wbApplyAt.apply(this,arguments);}
+  function extraOf(){return _wcPN.extraOf.apply(this,arguments);}
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
 var GROUPS = [{"name": "第 1 组 · 代词到底是什么", "sub": "先别背表——先搞清代词在干什么活"}, {"name": "第 2 组 · 格：站在哪儿，穿哪件", "sub": "全家福总表在这一条里"}, {"name": "第 3 组 · 指人的边界和礼貌", "sub": "we 包不包你、礼貌住哪儿、天气里的 it"}, {"name": "第 4 组 · 中国孩子的三个坑", "sub": "漏主语、there be 滥用、he/she 说混——都是有原因的"}, {"name": "第 5 组 · 写作文时怎么指人", "sub": "用代词还是说全名，看「清不清楚」定价"}, {"name": "第 6 组 · 一家子的其他成员", "sub": "物主、反身、指示、不定四家（PR-12～PR-15），另收目录定版两条：所有格 's（GR-13，紧跟物主）、some/any 立场（GR-10，紧跟不定）"}, {"name": "第 7 组 · ❓ 提问的一家：疑问词与问句", "sub": "QI-01 – QI-15 全组收编——疑问词各管一块，问句有搭法也有答法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -17426,7 +17527,6 @@ function vIndex(){
   return h;
 }
 
-function extraOf(id){ return PN_EXTRA[id] || null; }
 function extraExn(id, s){ var ex = extraOf(id); return (ex && ex.exn && ex.exn[s]) || null; }
 function extraCases(l){
   var ex = extraOf(l.id); if(!ex || !ex.cases) return [];
@@ -18798,85 +18898,6 @@ function wbCardHTML(id){
     + '<div class="srcnote">白板动画：一镜只讲一个意思，跟着笔尖一笔一笔画出来；画完会停一会儿，慢慢读字幕。</div>'
     + '<div class="srcnote">形式借鉴：' + (WB_CREDIT[id] || '通用白板范式（RSA / VideoScribe 逐笔揭示）') + '</div></div>';
 }
-function wbInit(){
-  wbStop();
-  var stage = document.getElementById('pnwbStage');
-  if(!stage){ wbS.sec = null; return; }
-  var top = stack[stack.length - 1];
-  var sec = (top && top.view === 'law') ? WB_BY_ID[top.id] : null;
-  if(!sec){ wbS.sec = null; return; }
-  wbS.sec = sec; wbS.scene = 0; wbS.elapsed = 0; wbS.baseElapsed = 0; wbS.range = null; wbS.home = 0;
-  wbS.stage = stage;
-  wbS.hand = document.getElementById('pnwbHand');
-  wbS.board = document.getElementById('pnwbBoard');
-  wbS.capText = document.getElementById('pnwbCapText');
-  wbS.capNo = document.getElementById('pnwbCapNo');
-  wbS.dots = document.getElementById('pnwbDots');
-  wbS.sceneNo = document.getElementById('pnwbSceneNo');
-  wbS.btn = document.getElementById('pnwbBtnPlay');
-  wbRenderScene();
-  wbPlayStart();
-  if(window.CUT && CUT.mount) CUT.mount('PN');
-}
-function wbPrepare(){
-  if(window.wbRoughify) wbRoughify(wbS.stage);
-  wbS.items = [];
-  var els = wbS.stage.querySelectorAll('.wbd, .wbw, .wbf');
-  var t = 120;
-  els.forEach(function(el){
-    var type = el.classList.contains('wbd') ? 'd' : (el.classList.contains('wbw') ? 'w' : 'f');
-    var len = 0, dur;
-    if(type === 'd'){
-      try { len = el.getTotalLength(); } catch(e){ len = 260; }
-      if(!len || !isFinite(len)) len = 260;
-      el.style.strokeDasharray = len;
-      el.style.strokeDashoffset = len;
-      dur = Math.max(240, Math.min(1700, len * 1.5 * 1.35));
-    } else if(type === 'w'){ el.style.opacity = '0'; dur = Math.round(340 * 1.35); }
-    else { el.style.opacity = '0'; dur = Math.round(420 * 1.35); }
-    wbS.items.push({ el: el, type: type, len: len, start: t, dur: dur });
-    t += dur * 0.88 + 40;
-  });
-  wbS.drawTotal = t + 260;
-  var capLen = (wbS.sec && wbS.sec.scenes[wbS.scene]) ? String(wbS.sec.scenes[wbS.scene].cap || '').length : 0;
-  var hold = Math.max(2000, Math.min(4800, capLen * 160));
-  if(wbS.sec && wbS.scene === wbS.sec.scenes.length - 1) hold += 1200;
-  var scp = wbS.sec ? wbS.sec.scenes[wbS.scene] : null;
-  if(scp && scp.pause) hold += scp.pause; // 停顿拍：pause 字段（预测/想一想/重读），单位 ms，见 docs 报告 qi-film-length
-  wbS.hold = hold;
-  wbS.total = wbS.drawTotal + hold;
-}
-function wbApplyAt(ms){
-  var current = null;
-  wbS.items.forEach(function(it){
-    var p = (ms - it.start) / it.dur;
-    p = p < 0 ? 0 : (p > 1 ? 1 : p);
-    if(it.type === 'd'){ it.el.style.strokeDashoffset = String(it.len * (1 - p)); }
-    else { it.el.style.opacity = String(p); if(it.type === 'w') it.el.style.transform = 'translateY(' + ((1 - p) * 5) + 'px)'; }
-    if(p > 0 && p < 1) current = it;
-    else if(p >= 1 && !current) current = it;
-  });
-  if(ms >= wbS.drawTotal){ if(wbS.hand) wbS.hand.style.opacity = '0'; }
-  else wbMoveHand(current);
-  if(window.wbCapProgress && wbS.capText){
-    var _n=wbS.capText.querySelectorAll('.wbc').length;
-    wbCapProgress(wbS.capText, _n, ms, wbS.total);
-  }
-}
-function wbFrame(ts){
-  if(!wbS.playing) return;
-  if(!wbS.stage || document.getElementById('pnwbStage') !== wbS.stage){ wbStop(); return; }
-  if(!wbS.startTs) wbS.startTs = ts;
-  wbS.elapsed = wbS.baseElapsed + (ts - wbS.startTs);
-  if(wbS.elapsed >= wbS.total){
-    wbApplyAt(wbS.total);
-    var n = wbS.sec.scenes.length;
-    if(wbS.scene < (wbS.range ? wbS.range[1] : n - 1)){ wbS.scene++; wbRenderScene(); wbS.startTs = 0; wbS.baseElapsed = 0; wbS.raf = requestAnimationFrame(wbFrame); return; }
-    wbStop(); if(wbS.btn) wbS.btn.textContent = '↻ 再看一遍'; return;
-  }
-  wbApplyAt(wbS.elapsed);
-  wbS.raf = requestAnimationFrame(wbFrame);
-}
 /* CUT 选版器接口（波 B）：区间播/全片/停播/信息；range=null 为原行为 */
 function wbCutRange(a, b){ if(!wbS.sec) return; wbS.range = [a, b]; wbS.home = a; wbStop(); wbS.scene = a; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
 function wbCutFull(){ if(!wbS.sec) return; wbS.range = null; wbS.home = 0; wbStop(); wbS.scene = 0; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
@@ -18925,7 +18946,7 @@ if(window.MutationObserver && pnSecI && pnSecD){
 </script>
 <script>
 (function(){
-  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},render:render,esc:esc,extraOf:extraOf,wbApplyAt:wbApplyAt,wbPrepare:wbPrepare,wbFrame:wbFrame});
+  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},render:render,esc:esc},{p:'ar',name:'AR',extra:function(){return AR_EXTRA;},earlyFinish:true,hideHandAfterDraw:false});
   function go(){return _wcAR.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcAR.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcAR.xpick.apply(this,arguments);}
@@ -18942,6 +18963,11 @@ if(window.MutationObserver && pnSecI && pnSecD){
   function wbPlayStart(){return _wcAR.wbPlayStart.apply(this,arguments);}
   function wbTogglePlay(){return _wcAR.wbTogglePlay.apply(this,arguments);}
   function wbReplay(){return _wcAR.wbReplay.apply(this,arguments);}
+  function wbPrepare(){return _wcAR.wbPrepare.apply(this,arguments);}
+  function wbFrame(){return _wcAR.wbFrame.apply(this,arguments);}
+  function wbInit(){return _wcAR.wbInit.apply(this,arguments);}
+  function wbApplyAt(){return _wcAR.wbApplyAt.apply(this,arguments);}
+  function extraOf(){return _wcAR.extraOf.apply(this,arguments);}
 
 var GROUPS = [{"name": "🧱 前置组 · 先数得清，才谈冠词", "sub": "冠词的地基：先决定东西是「一个个」还是「一摊」，后面的 a / the / -s / many 才有着落（本组已按深度规格补齐）"}, {"name": "第 1 组 · a 和 the 各干什么", "sub": "一个管「认类别」，一个管「找到那一个」"}, {"name": "第 2 组 · 用 the 之前先找线索", "sub": "五条路，占一条才能用 the"}, {"name": "第 3 组 · a 还是 an，听声音", "sub": "同题两条：C-14 与 GR-15，目录里两个版本都在"}, {"name": "第 4 组 · 不加冠词，和约定搭配", "sub": "做事还是去楼、约定存货、介绍物种的三种拍法"}, {"name": "第 5 组 · 为什么总选错", "sub": "给家长和老师：错的系统原因和分型纠法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -19006,7 +19032,6 @@ function vIndex(){
   return h;
 }
 
-function extraOf(id){ return AR_EXTRA[id] || null; }
 function extraExn(id, s){ var ex = extraOf(id); return (ex && ex.exn && ex.exn[s]) || null; }
 function extraCases(l){
   var ex = extraOf(l.id); if(!ex || !ex.cases) return [];
@@ -19854,92 +19879,6 @@ function wbCardHTML(id){
     + '<span class="wb-sceneno" id="arwbSceneNo"></span><div class="wb-dots" id="arwbDots"></div></div>'
     + '<div class="cutbar" id="arcutbar" style="display:none"></div><div class="cut-clashbox" id="arcutclash" style="display:none"></div>'
     + '<div class="wb-src">形式借鉴：' + ((WB_BY_ID[id] && WB_BY_ID[id].src) ? WB_BY_ID[id].src : '通用白板范式。') + '</div></div>';
-}
-function wbInit(){
-  wbStop();
-  var stage = document.getElementById('arwbStage');
-  if(!stage){ wbS.sec = null; return; }
-  var top = stack[stack.length - 1];
-  var sec = (top && top.view === 'law') ? WB_BY_ID[top.id] : null;
-  if(!sec){ wbS.sec = null; return; }
-  wbS.sec = sec; wbS.scene = 0; wbS.elapsed = 0; wbS.baseElapsed = 0; wbS.range = null; wbS.home = 0;
-  wbS.stage = stage;
-  wbS.hand = document.getElementById('arwbHand');
-  wbS.board = document.getElementById('arwbBoard');
-  wbS.capText = document.getElementById('arwbCapText');
-  wbS.capNo = document.getElementById('arwbCapNo');
-  wbS.dots = document.getElementById('arwbDots');
-  wbS.sceneNo = document.getElementById('arwbSceneNo');
-  wbS.btn = document.getElementById('arwbBtnPlay');
-  wbRenderScene();
-  wbPlayStart();
-  if(window.CUT && CUT.mount) CUT.mount('AR');
-}
-function wbPrepare(){
-  if(window.wbRoughify) wbRoughify(wbS.stage);
-  wbS.items = [];
-  var els = wbS.stage.querySelectorAll('.wbd, .wbw, .wbf');
-  var t = 120;
-  els.forEach(function(el){
-    var type = el.classList.contains('wbd') ? 'd' : (el.classList.contains('wbw') ? 'w' : 'f');
-    var len = 0, dur;
-    if(type === 'd'){
-      try { len = el.getTotalLength(); } catch(e){ len = 260; }
-      if(!len || !isFinite(len)) len = 260;
-      el.style.strokeDasharray = len;
-      el.style.strokeDashoffset = len;
-      dur = Math.max(240, Math.min(1700, len * 1.5 * 1.35));
-    } else if(type === 'w'){ el.style.opacity = '0'; dur = Math.round(340 * 1.35); }
-    else { el.style.opacity = '0'; dur = Math.round(420 * 1.35); }
-    wbS.items.push({ el: el, type: type, len: len, start: t, dur: dur });
-    t += dur * 0.88 + 40;
-  });
-  wbS.drawTotal = t + 260;
-  var capLen = (wbS.sec && wbS.sec.scenes[wbS.scene]) ? String(wbS.sec.scenes[wbS.scene].cap || '').length : 0;
-  var hold = Math.max(2000, Math.min(4800, capLen * 160));
-  if(wbS.sec && wbS.scene === wbS.sec.scenes.length - 1) hold += 1200;
-  var scp = wbS.sec ? wbS.sec.scenes[wbS.scene] : null;
-  if(scp && scp.pause) hold += scp.pause; // 停顿拍：pause 字段（预测/想一想/重读），单位 ms，见 docs 报告 qi-film-length
-  wbS.hold = hold;
-  wbS.total = wbS.drawTotal + hold;
-}
-function wbApplyAt(ms){
-  if(wbS.drawTotal && ms >= wbS.drawTotal){
-    wbS.items.forEach(function(it){
-      if(it.type === 'd'){ it.el.style.strokeDashoffset = '0'; }
-      else { it.el.style.opacity = '1'; if(it.type === 'w') it.el.style.transform = 'translateY(0px)'; }
-    });
-    wbMoveHand(null);
-    return;
-  }
-  var current = null;
-  wbS.items.forEach(function(it){
-    var p = (ms - it.start) / it.dur;
-    p = p < 0 ? 0 : (p > 1 ? 1 : p);
-    if(it.type === 'd'){ it.el.style.strokeDashoffset = String(it.len * (1 - p)); }
-    else { it.el.style.opacity = String(p); if(it.type === 'w') it.el.style.transform = 'translateY(' + ((1 - p) * 5) + 'px)'; }
-    if(p > 0 && p < 1) current = it;
-    else if(p >= 1 && !current) current = it;
-  });
-  wbMoveHand(current);
-  if(window.wbCapProgress && wbS.capText){
-    var _n=wbS.capText.querySelectorAll('.wbc').length;
-    wbCapProgress(wbS.capText, _n, ms, wbS.total);
-  }
-}
-function wbFrame(ts){
-  if(!wbS.playing) return;
-  if(!wbS.stage || document.getElementById('arwbStage') !== wbS.stage){ wbStop(); return; }
-  if(!wbS.startTs) wbS.startTs = ts;
-  wbS.elapsed = wbS.baseElapsed + (ts - wbS.startTs);
-  if(wbS.elapsed >= wbS.total){
-    wbApplyAt(wbS.total);
-    var n = wbS.sec.scenes.length;
-    if(wbS.scene < (wbS.range ? wbS.range[1] : n - 1)){ wbS.scene++; wbRenderScene(); wbS.startTs = 0; wbS.baseElapsed = 0; wbS.raf = requestAnimationFrame(wbFrame); return; }
-    wbStop(); if(wbS.btn) wbS.btn.textContent = '↻ 再看一遍'; return;
-  }
-  wbApplyAt(wbS.elapsed);
-  wbS.raf = requestAnimationFrame(wbFrame);
 }
 /* CUT 选版器接口（波 B）：区间播/全片/停播/信息；range=null 为原行为 */
 function wbCutRange(a, b){ if(!wbS.sec) return; wbS.range = [a, b]; wbS.home = a; wbStop(); wbS.scene = a; wbS.elapsed = 0; wbS.baseElapsed = 0; wbRenderScene(); wbPlayStart(); }
