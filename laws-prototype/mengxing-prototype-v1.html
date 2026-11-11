@@ -17200,7 +17200,7 @@ return { players: players, LESSONS: LESSONS };
 </script>
 
 <script>
-/* ===== P2 工厂：17 个 PN/AR 共享函数（原为两份副本）。S 注入 stack/wbS（getter）与 render/esc；C 注入引擎配置（DOM 前缀 p、extra 钩子、时序/隐藏手开关）。 ===== */
+/* ===== P2 工厂：18 个 PN/AR 共享函数（原为两份副本）。S 注入 stack/wbS 与引擎共享变量（getter）以及 render/esc；C 注入引擎配置（DOM 前缀 p、name、extra/top/footer 钩子、candUI 与时序开关）。 ===== */
 function makeWbCore(S, C){
   var render=S.render, esc=S.esc;
 function go(id){S.stack.push({view:'law',id:id});render()}
@@ -17346,6 +17346,7 @@ function wbReplay(){
   wbPlayStart();
   if(window.wbCapSpeak) wbCapSpeak();
 }
+
 function extraOf(id){ return C.extra()[id] || null; }
 
 function wbApplyAt(ms){
@@ -17442,10 +17443,23 @@ function wbInit(){
   wbPlayStart();
   if(window.CUT && CUT.mount) CUT.mount(C.name);
 }
-  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay, wbPrepare:wbPrepare, wbFrame:wbFrame, wbInit:wbInit, wbApplyAt:wbApplyAt, extraOf:extraOf};
+function vIndex(){
+  var h = '<header class="top"><h1>' + S.TOPIC.title + '</h1><p>' + S.TOPIC.sub + '</p></header>';
+  h += C.top();
+  S.GROUPS.forEach(function(g, gi){
+    h += '<div class="gname">' + esc(g.name) + '</div><div class="gsub">' + esc(g.sub) + '</div>';
+    S.LAWS.filter(function(l){return l.group===gi}).forEach(function(l){
+      h += '<button class="law" onclick="' + C.name + '.go(\'' + l.id + '\')"><span style="flex:1"><span class="tt">' + esc(l.short) + '</span>' + (window.LINKGO&&LINKGO.preMarkHTML?LINKGO.preMarkHTML(l.id):'') + ' <span class="badge">' + l.id + '</span>' + (C.candUI && l.cand ? ' <span class="badge amber">新拟 · 待对账</span>' : '') + '<div class="ds">' + esc(l.desc) + '</div></span><span class="chev">›</span></button>';
+    });
+  });
+  h += S.EXTRA_BOTTOM;
+  h += C.footer;
+  return h;
+}
+  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay, extraOf:extraOf, wbApplyAt:wbApplyAt, wbPrepare:wbPrepare, wbFrame:wbFrame, wbInit:wbInit, vIndex:vIndex};
 }
 (function(){
-  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},render:render,esc:esc},{p:'pn',name:'PN',extra:function(){return PN_EXTRA;},earlyFinish:false,hideHandAfterDraw:true});
+  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},render:render,esc:esc},{p:'pn',name:'PN',extra:function(){return PN_EXTRA;},top:function(){return showHTML();},candUI:true,footer:'<footer>原型 · PR/GR/QI 条目正文出自仓库规律目录（laws-prototype/model/laws）；原 NEW-P1～NEW-P4 已于 2026-11-03 立条为 PR-12～PR-15，新配的病例句均已标「新拟例句」；呈现层（短标题/分组/动画演示）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:false,hideHandAfterDraw:true});
   function go(){return _wcPN.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcPN.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcPN.xpick.apply(this,arguments);}
@@ -17462,11 +17476,12 @@ function wbInit(){
   function wbPlayStart(){return _wcPN.wbPlayStart.apply(this,arguments);}
   function wbTogglePlay(){return _wcPN.wbTogglePlay.apply(this,arguments);}
   function wbReplay(){return _wcPN.wbReplay.apply(this,arguments);}
+  function extraOf(){return _wcPN.extraOf.apply(this,arguments);}
+  function wbApplyAt(){return _wcPN.wbApplyAt.apply(this,arguments);}
   function wbPrepare(){return _wcPN.wbPrepare.apply(this,arguments);}
   function wbFrame(){return _wcPN.wbFrame.apply(this,arguments);}
   function wbInit(){return _wcPN.wbInit.apply(this,arguments);}
-  function wbApplyAt(){return _wcPN.wbApplyAt.apply(this,arguments);}
-  function extraOf(){return _wcPN.extraOf.apply(this,arguments);}
+  function vIndex(){return _wcPN.vIndex.apply(this,arguments);}
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
 var GROUPS = [{"name": "第 1 组 · 代词到底是什么", "sub": "先别背表——先搞清代词在干什么活"}, {"name": "第 2 组 · 格：站在哪儿，穿哪件", "sub": "全家福总表在这一条里"}, {"name": "第 3 组 · 指人的边界和礼貌", "sub": "we 包不包你、礼貌住哪儿、天气里的 it"}, {"name": "第 4 组 · 中国孩子的三个坑", "sub": "漏主语、there be 滥用、he/she 说混——都是有原因的"}, {"name": "第 5 组 · 写作文时怎么指人", "sub": "用代词还是说全名，看「清不清楚」定价"}, {"name": "第 6 组 · 一家子的其他成员", "sub": "物主、反身、指示、不定四家（PR-12～PR-15），另收目录定版两条：所有格 's（GR-13，紧跟物主）、some/any 立场（GR-10，紧跟不定）"}, {"name": "第 7 组 · ❓ 提问的一家：疑问词与问句", "sub": "QI-01 – QI-15 全组收编——疑问词各管一块，问句有搭法也有答法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -17512,19 +17527,6 @@ function stepLaw(d){
   var n = i + d;
   if(n<0||n>=LAWS.length)return;
   stack[stack.length-1] = {view:'law', id: LAWS[n].id}; render();
-}
-function vIndex(){
-  var h = '<header class="top"><h1>' + TOPIC.title + '</h1><p>' + TOPIC.sub + '</p></header>';
-  h += showHTML();
-  GROUPS.forEach(function(g, gi){
-    h += '<div class="gname">' + esc(g.name) + '</div><div class="gsub">' + esc(g.sub) + '</div>';
-    LAWS.filter(function(l){return l.group===gi}).forEach(function(l){
-      h += '<button class="law" onclick="PN.go(\'' + l.id + '\')"><span style="flex:1"><span class="tt">' + esc(l.short) + '</span>' + (window.LINKGO&&LINKGO.preMarkHTML?LINKGO.preMarkHTML(l.id):'') + ' <span class="badge">' + l.id + '</span>' + (l.cand ? ' <span class="badge amber">新拟 · 待对账</span>' : '') + '<div class="ds">' + esc(l.desc) + '</div></span><span class="chev">›</span></button>';
-    });
-  });
-  h += EXTRA_BOTTOM;
-  h += '<footer>原型 · PR/GR/QI 条目正文出自仓库规律目录（laws-prototype/model/laws）；原 NEW-P1～NEW-P4 已于 2026-11-03 立条为 PR-12～PR-15，新配的病例句均已标「新拟例句」；呈现层（短标题/分组/动画演示）为原型加工，与目录冲突时以目录为准。</footer>';
-  return h;
 }
 
 function extraExn(id, s){ var ex = extraOf(id); return (ex && ex.exn && ex.exn[s]) || null; }
@@ -18946,7 +18948,7 @@ if(window.MutationObserver && pnSecI && pnSecD){
 </script>
 <script>
 (function(){
-  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},render:render,esc:esc},{p:'ar',name:'AR',extra:function(){return AR_EXTRA;},earlyFinish:true,hideHandAfterDraw:false});
+  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},render:render,esc:esc},{p:'ar',name:'AR',extra:function(){return AR_EXTRA;},top:function(){return EXTRA_TOP;},candUI:false,footer:'<footer>原型 · 规律正文均出自仓库规律目录（laws-prototype/model/laws）；呈现层文案（短标题/一句话/分组）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:true,hideHandAfterDraw:false});
   function go(){return _wcAR.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcAR.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcAR.xpick.apply(this,arguments);}
@@ -18963,11 +18965,12 @@ if(window.MutationObserver && pnSecI && pnSecD){
   function wbPlayStart(){return _wcAR.wbPlayStart.apply(this,arguments);}
   function wbTogglePlay(){return _wcAR.wbTogglePlay.apply(this,arguments);}
   function wbReplay(){return _wcAR.wbReplay.apply(this,arguments);}
+  function extraOf(){return _wcAR.extraOf.apply(this,arguments);}
+  function wbApplyAt(){return _wcAR.wbApplyAt.apply(this,arguments);}
   function wbPrepare(){return _wcAR.wbPrepare.apply(this,arguments);}
   function wbFrame(){return _wcAR.wbFrame.apply(this,arguments);}
   function wbInit(){return _wcAR.wbInit.apply(this,arguments);}
-  function wbApplyAt(){return _wcAR.wbApplyAt.apply(this,arguments);}
-  function extraOf(){return _wcAR.extraOf.apply(this,arguments);}
+  function vIndex(){return _wcAR.vIndex.apply(this,arguments);}
 
 var GROUPS = [{"name": "🧱 前置组 · 先数得清，才谈冠词", "sub": "冠词的地基：先决定东西是「一个个」还是「一摊」，后面的 a / the / -s / many 才有着落（本组已按深度规格补齐）"}, {"name": "第 1 组 · a 和 the 各干什么", "sub": "一个管「认类别」，一个管「找到那一个」"}, {"name": "第 2 组 · 用 the 之前先找线索", "sub": "五条路，占一条才能用 the"}, {"name": "第 3 组 · a 还是 an，听声音", "sub": "同题两条：C-14 与 GR-15，目录里两个版本都在"}, {"name": "第 4 组 · 不加冠词，和约定搭配", "sub": "做事还是去楼、约定存货、介绍物种的三种拍法"}, {"name": "第 5 组 · 为什么总选错", "sub": "给家长和老师：错的系统原因和分型纠法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -19017,19 +19020,6 @@ function stepLaw(d){
   var n = i + d;
   if(n<0||n>=LAWS.length)return;
   stack[stack.length-1] = {view:'law', id: LAWS[n].id}; render();
-}
-function vIndex(){
-  var h = '<header class="top"><h1>' + TOPIC.title + '</h1><p>' + TOPIC.sub + '</p></header>';
-  h += EXTRA_TOP;
-  GROUPS.forEach(function(g, gi){
-    h += '<div class="gname">' + esc(g.name) + '</div><div class="gsub">' + esc(g.sub) + '</div>';
-    LAWS.filter(function(l){return l.group===gi}).forEach(function(l){
-      h += '<button class="law" onclick="AR.go(\'' + l.id + '\')"><span style="flex:1"><span class="tt">' + esc(l.short) + '</span>' + (window.LINKGO&&LINKGO.preMarkHTML?LINKGO.preMarkHTML(l.id):'') + ' <span class="badge">' + l.id + '</span><div class="ds">' + esc(l.desc) + '</div></span><span class="chev">›</span></button>';
-    });
-  });
-  h += EXTRA_BOTTOM;
-  h += '<footer>原型 · 规律正文均出自仓库规律目录（laws-prototype/model/laws）；呈现层文案（短标题/一句话/分组）为原型加工，与目录冲突时以目录为准。</footer>';
-  return h;
 }
 
 function extraExn(id, s){ var ex = extraOf(id); return (ex && ex.exn && ex.exn[s]) || null; }
