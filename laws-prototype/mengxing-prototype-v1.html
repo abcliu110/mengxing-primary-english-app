@@ -17443,6 +17443,7 @@ function wbInit(){
   wbPlayStart();
   if(window.CUT && CUT.mount) CUT.mount(C.name);
 }
+
 function vIndex(){
   var h = '<header class="top"><h1>' + S.TOPIC.title + '</h1><p>' + S.TOPIC.sub + '</p></header>';
   h += C.top();
@@ -17456,10 +17457,93 @@ function vIndex(){
   h += C.footer;
   return h;
 }
-  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay, extraOf:extraOf, wbApplyAt:wbApplyAt, wbPrepare:wbPrepare, wbFrame:wbFrame, wbInit:wbInit, vIndex:vIndex};
+function vLaw(id){
+  var l = S.lawById(id); if(!l) return vIndex();
+  var i = S.LAWS.indexOf(l);
+  var h = '<button class="back" onclick="' + C.name + '.back()">‹ 返回列表</button>';
+  h += '<div style="margin-top:4px"><span class="badge">' + l.id + '</span> <span class="badge grey">' + esc(S.GROUPS[l.group].name.split('·')[1]||'') + '</span>' + (C.candUI && l.cand ? ' <span class="badge amber">新拟 · 待对账</span>' : '') + '</div>';
+  h += '<h2 class="big">' + esc(l.short) + '</h2><div class="desc">' + esc(l.desc) + '</div>';
+  if(S.WB_BY_ID[l.id]){ h += S.wbCardHTML(l.id); }
+  h += '<div class="formal">正式说法（目录原文）：' + esc(l.formal) + '</div>';
+  if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(l.id);}
+  h += '<div class="kidbox"><span class="lab">' + (C.candUI && l.cand ? '孩子版说法（新拟）' : '目录里的孩子版说法') + '</span>' + esc(l.kid) + '</div>';
+  h += C.demo(l);
+  if(l.beats.length){
+    h += '<div class="sec"><h4>📖 机制 · 它是怎么回事</h4>';
+    l.beats.forEach(function(b, bi){ h += '<div class="beat"><span class="bn">' + esc(b.name) + '</span><p>' + esc(b.text) + '</p>'; var exv = extraOf(l.id); if(exv && exv.vis && exv.vis[bi]){ h += '<div style="font-size:12px;color:var(--muted);margin-top:4px">🎨 画面：' + esc(exv.vis[bi]) + '</div>'; } h += '</div>'; });
+    h += '</div>';
+  }
+  h += C.anim(l);
+  l.groups.forEach(function(g){
+    h += '<div class="sec"><div class="grp"><div class="gt">' + esc(g.title) + '</div>';
+    g.items.forEach(function(it){ h += '<div class="gitem"><span class="gn">' + esc(it.name) + '</span><div class="gg">' + esc(it.gloss) + '</div><span class="ge">' + esc(it.ex) + '</span></div>'; });
+    h += '</div></div>';
+  });
+  if(l.examples.length){
+    h += '<div class="sec"><h4>✏️ 例句 · 例词' + (C.candUI && l.cand ? '（新拟）' : '（目录原文）') + '</h4>';
+    l.examples.forEach(function(x){ h += '<div class="ex"><div class="es">' + esc(x.s) + '</div>' + (x.note ? '<div class="en">' + esc(x.note) + '</div>' : ''); var xn = S.extraExn(l.id, x.s); if(xn){ if(xn.note && xn.note !== x.note){ h += '<div class="en" style="color:var(--muted)">' + esc(xn.note) + '</div>'; } if(xn.words && xn.words.length){ h += '<div style="margin-top:4px">' + xn.words.map(function(w){ return '<span style="display:inline-block;border:1px solid #d8c9a8;background:#fffdf6;border-radius:999px;padding:1px 8px;margin:2px 4px 2px 0;font-size:12px"><b>' + esc(w[0]) + '</b> ' + esc(w[1]) + ' · ' + esc(w[2]) + '</span>'; }).join('') + '</div>'; } } h += '</div>'; });
+    h += '</div>';
+  }
+  var exx = extraOf(l.id);
+  var excList = (exx && exx.exc && exx.exc.length) ? exx.exc : (C.excFallback ? (l.exc || []) : []);
+  if(excList.length){
+    h += '<div class="sec"><h4>⚠️ 例外 · 边界</h4><div style="background:#fff8e6;border:1px solid #ecd9a0;border-radius:10px;padding:10px 12px">';
+    excList.forEach(function(x){ h += '<p style="margin:4px 0">⚠️ ' + esc(x) + '</p>'; });
+    h += '</div></div>';
+  }
+  h += '<div class="sec"><h4>🩺 病句医院</h4>';
+  var xc = S.extraCases(l);
+  if(xc.length || l.errors.length){
+    xc.forEach(function(c){ h += extraCaseHTML(c); });
+    l.errors.forEach(function(e){
+      h += '<div class="errc">';
+      if(e.wrong){ h += '<div>❌ <span class="wrong">' + esc(e.wrong) + '</span></div><div>✅ <span class="right">' + esc(e.right||'') + '</span></div>'; }
+      if(e.type){ h += '<div style="margin-top:4px">错型：' + esc(e.type) + '</div>'; }
+      if(e.diag){ h += '<div style="margin-top:4px">' + esc(e.diag_kid || e.diag) + '</div>'; if(e.diag_kid && e.diag_kid !== e.diag){ h += '<div class="adult" style="margin-top:4px">原文：' + esc(e.diag) + '</div>'; } }
+      if(!e.wrong){ h += '<div class="gap">' + C.gap + '</div>'; }
+      h += '</div>';
+    });
+  } else {
+    h += '<div class="errc"><span class="gap">目录未登记本条病例。</span></div>';
+  }
+  h += '</div>';
+  if(l.quiz.length){
+    h += '<div class="sec"><h4>🎯 检索练习</h4>';
+    l.quiz.forEach(function(q, qi){
+      var aid = C.ansPre + l.id.replace('-','_') + '_' + qi;
+      h += '<div class="quiz"><div class="qq">' + esc(q.q) + '</div><button onclick="document.getElementById(\'' + aid + '\').style.display=\'block\'">看答案</button><div class="ans" id="' + aid + '">' + esc(q.ans) + (q.hint ? '<div class="hint">提示：' + esc(q.hint) + '</div>' : '') + '</div></div>';
+    });
+    h += '</div>';
+  }
+  var exp = extraOf(l.id);
+  if(exp && exp.prb && exp.prb.length){
+    h += '<div class="sec"><h4>🔍 理解探针</h4>';
+    exp.prb.forEach(function(p){
+      h += '<div class="quiz"><div style="font-weight:700">🔍 ' + esc(p.title) + '</div><p style="line-height:1.75;margin:6px 0">' + esc(p.task) + '</p><div style="font-size:12px;color:var(--muted)">探针 ' + esc(p.id) + '：不是考试题，是用来照出「以为懂了、其实没懂」的地方——判读标准在页底「给大人的说明」里。</div></div>';
+    });
+    h += '</div>';
+  }
+  if(exp && exp.quiz && exp.quiz.length){
+    h += '<div class="sec"><h4>📚 检索练习 · 目录原题</h4>';
+    exp.quiz.forEach(function(q, qi){
+      h += '<div class="quiz"><div style="font-weight:700">' + esc(q.q) + '</div>';
+      q.opts.forEach(function(o, oi){ h += '<button style="display:block;width:100%;text-align:left;margin-top:6px" onclick="' + C.name + '.xpick(this,\'' + l.id + '\',' + qi + ',' + oi + ')">' + esc(o) + '</button>'; });
+      h += '<div class="ans" style="display:none;margin-top:8px">答案：' + esc(q.a) + '</div></div>';
+    });
+    h += '</div>';
+  }
+  if(l.note){ h += '<div class="note">' + esc(l.note) + '</div>'; }
+  h += '<div class="claim">成人层论断' + (C.candUI && l.cand ? '（新拟）' : '（目录原文）') + '：' + esc(l.claim) + '</div>';
+  h += C.adult(l.id);
+  if(window.LINKGO){ h += LINKGO.relSectionHTML(l.id,'sec'); }
+  if(window.LINKGO){ h += LINKGO.lawSectionHTML(l.id,'sec'); }
+  h += '<div class="navrow"><button ' + (i<=0?'disabled':'') + ' onclick="' + C.name + '.stepLaw(-1)">‹ 上一条</button><button ' + (i>=S.LAWS.length-1?'disabled':'') + ' onclick="' + C.name + '.stepLaw(1)">下一条 ›</button></div>';
+  return h;
+}
+  return {go:go, extraCaseHTML:extraCaseHTML, xpick:xpick, wbKid:wbKid, wbBook:wbBook, wbStar:wbStar, wbCross:wbCross, wbTickMark:wbTickMark, wbT:wbT, wbStop:wbStop, wbRenderDots:wbRenderDots, wbMoveHand:wbMoveHand, wbRenderScene:wbRenderScene, wbPlayStart:wbPlayStart, wbTogglePlay:wbTogglePlay, wbReplay:wbReplay, extraOf:extraOf, wbApplyAt:wbApplyAt, wbPrepare:wbPrepare, wbFrame:wbFrame, wbInit:wbInit, vIndex:vIndex, vLaw:vLaw};
 }
 (function(){
-  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},render:render,esc:esc},{p:'pn',name:'PN',extra:function(){return PN_EXTRA;},top:function(){return showHTML();},candUI:true,footer:'<footer>原型 · PR/GR/QI 条目正文出自仓库规律目录（laws-prototype/model/laws）；原 NEW-P1～NEW-P4 已于 2026-11-03 立条为 PR-12～PR-15，新配的病例句均已标「新拟例句」；呈现层（短标题/分组/动画演示）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:false,hideHandAfterDraw:true});
+  var _wcPN=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},get wbCardHTML(){return wbCardHTML;},render:render,esc:esc},{p:'pn',name:'PN',extra:function(){return PN_EXTRA;},top:function(){return showHTML();},candUI:true,footer:'<footer>原型 · PR/GR/QI 条目正文出自仓库规律目录（laws-prototype/model/laws）；原 NEW-P1～NEW-P4 已于 2026-11-03 立条为 PR-12～PR-15，新配的病例句均已标「新拟例句」；呈现层（短标题/分组/动画演示）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:false,hideHandAfterDraw:true,excFallback:true,gap:'目录只登记了错型。',ansPre:'ans_',demo:function(l){var dm=DEMOS[l.id]; return dm?demoHTML(dm):'';},anim:function(l){return '';},adult:function(id){var pnAd=PN_ADULT[id]; if(pnAd||PN_EXTRA[id]){return pnAdultHTML(pnAd,PN_EXTRA[id]);} return '';}});
   function go(){return _wcPN.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcPN.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcPN.xpick.apply(this,arguments);}
@@ -17482,6 +17566,7 @@ function vIndex(){
   function wbFrame(){return _wcPN.wbFrame.apply(this,arguments);}
   function wbInit(){return _wcPN.wbInit.apply(this,arguments);}
   function vIndex(){return _wcPN.vIndex.apply(this,arguments);}
+  function vLaw(){return _wcPN.vLaw.apply(this,arguments);}
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
 var GROUPS = [{"name": "第 1 组 · 代词到底是什么", "sub": "先别背表——先搞清代词在干什么活"}, {"name": "第 2 组 · 格：站在哪儿，穿哪件", "sub": "全家福总表在这一条里"}, {"name": "第 3 组 · 指人的边界和礼貌", "sub": "we 包不包你、礼貌住哪儿、天气里的 it"}, {"name": "第 4 组 · 中国孩子的三个坑", "sub": "漏主语、there be 滥用、he/she 说混——都是有原因的"}, {"name": "第 5 组 · 写作文时怎么指人", "sub": "用代词还是说全名，看「清不清楚」定价"}, {"name": "第 6 组 · 一家子的其他成员", "sub": "物主、反身、指示、不定四家（PR-12～PR-15），另收目录定版两条：所有格 's（GR-13，紧跟物主）、some/any 立场（GR-10，紧跟不定）"}, {"name": "第 7 组 · ❓ 提问的一家：疑问词与问句", "sub": "QI-01 – QI-15 全组收编——疑问词各管一块，问句有搭法也有答法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -17535,88 +17620,6 @@ function extraCases(l){
   return ex.cases.filter(function(c){ return !l.errors.some(function(e){ return e.wrong === c.wrong; }); });
 }
 
-function vLaw(id){
-  var l = lawById(id); if(!l) return vIndex();
-  var i = LAWS.indexOf(l);
-  var h = '<button class="back" onclick="PN.back()">‹ 返回列表</button>';
-  h += '<div style="margin-top:4px"><span class="badge">' + l.id + '</span> <span class="badge grey">' + esc(GROUPS[l.group].name.split('·')[1]||'') + '</span>' + (l.cand ? ' <span class="badge amber">新拟 · 待对账</span>' : '') + '</div>';
-  h += '<h2 class="big">' + esc(l.short) + '</h2><div class="desc">' + esc(l.desc) + '</div>';
-  if(WB_BY_ID[l.id]){ h += wbCardHTML(l.id); }
-  h += '<div class="formal">正式说法（目录原文）：' + esc(l.formal) + '</div>';
-  if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(l.id);}
-  h += '<div class="kidbox"><span class="lab">' + (l.cand ? '孩子版说法（新拟）' : '目录里的孩子版说法') + '</span>' + esc(l.kid) + '</div>';
-  var dm = DEMOS[l.id]; if(dm){ h += demoHTML(dm); }
-  if(l.beats.length){
-    h += '<div class="sec"><h4>📖 机制 · 它是怎么回事</h4>';
-    l.beats.forEach(function(b, bi){ h += '<div class="beat"><span class="bn">' + esc(b.name) + '</span><p>' + esc(b.text) + '</p>'; var exv = extraOf(l.id); if(exv && exv.vis && exv.vis[bi]){ h += '<div style="font-size:12px;color:var(--muted);margin-top:4px">🎨 画面：' + esc(exv.vis[bi]) + '</div>'; } h += '</div>'; });
-    h += '</div>';
-  }
-  l.groups.forEach(function(g){
-    h += '<div class="sec"><div class="grp"><div class="gt">' + esc(g.title) + '</div>';
-    g.items.forEach(function(it){ h += '<div class="gitem"><span class="gn">' + esc(it.name) + '</span><div class="gg">' + esc(it.gloss) + '</div><span class="ge">' + esc(it.ex) + '</span></div>'; });
-    h += '</div></div>';
-  });
-  if(l.examples.length){
-    h += '<div class="sec"><h4>✏️ 例句 · 例词' + (l.cand ? '（新拟）' : '（目录原文）') + '</h4>';
-    l.examples.forEach(function(x){ h += '<div class="ex"><div class="es">' + esc(x.s) + '</div>' + (x.note ? '<div class="en">' + esc(x.note) + '</div>' : ''); var xn = extraExn(l.id, x.s); if(xn){ if(xn.note && xn.note !== x.note){ h += '<div class="en" style="color:var(--muted)">' + esc(xn.note) + '</div>'; } if(xn.words && xn.words.length){ h += '<div style="margin-top:4px">' + xn.words.map(function(w){ return '<span style="display:inline-block;border:1px solid #d8c9a8;background:#fffdf6;border-radius:999px;padding:1px 8px;margin:2px 4px 2px 0;font-size:12px"><b>' + esc(w[0]) + '</b> ' + esc(w[1]) + ' · ' + esc(w[2]) + '</span>'; }).join('') + '</div>'; } } h += '</div>'; });
-    h += '</div>';
-  }
-  var exx = extraOf(l.id);
-  var excList = (exx && exx.exc && exx.exc.length) ? exx.exc : (l.exc || []);
-  if(excList.length){
-    h += '<div class="sec"><h4>⚠️ 例外 · 边界</h4><div style="background:#fff8e6;border:1px solid #ecd9a0;border-radius:10px;padding:10px 12px">';
-    excList.forEach(function(x){ h += '<p style="margin:4px 0">⚠️ ' + esc(x) + '</p>'; });
-    h += '</div></div>';
-  }
-  h += '<div class="sec"><h4>🩺 病句医院</h4>';
-  var xc = extraCases(l);
-  if(xc.length || l.errors.length){
-    xc.forEach(function(c){ h += extraCaseHTML(c); });
-    l.errors.forEach(function(e){
-      h += '<div class="errc">';
-      if(e.wrong){ h += '<div>❌ <span class="wrong">' + esc(e.wrong) + '</span></div><div>✅ <span class="right">' + esc(e.right||'') + '</span></div>'; }
-      if(e.type){ h += '<div style="margin-top:4px">错型：' + esc(e.type) + '</div>'; }
-      if(e.diag){ h += '<div style="margin-top:4px">' + esc(e.diag_kid || e.diag) + '</div>'; if(e.diag_kid && e.diag_kid !== e.diag){ h += '<div class="adult" style="margin-top:4px">原文：' + esc(e.diag) + '</div>'; } }
-      if(!e.wrong){ h += '<div class="gap">目录只登记了错型。</div>'; }
-      h += '</div>';
-    });
-  } else {
-    h += '<div class="errc"><span class="gap">目录未登记本条病例。</span></div>';
-  }
-  h += '</div>';
-  if(l.quiz.length){
-    h += '<div class="sec"><h4>🎯 检索练习</h4>';
-    l.quiz.forEach(function(q, qi){
-      var aid = 'ans_' + l.id.replace('-','_') + '_' + qi;
-      h += '<div class="quiz"><div class="qq">' + esc(q.q) + '</div><button onclick="document.getElementById(\'' + aid + '\').style.display=\'block\'">看答案</button><div class="ans" id="' + aid + '">' + esc(q.ans) + (q.hint ? '<div class="hint">提示：' + esc(q.hint) + '</div>' : '') + '</div></div>';
-    });
-    h += '</div>';
-  }
-  var exp = extraOf(l.id);
-  if(exp && exp.prb && exp.prb.length){
-    h += '<div class="sec"><h4>🔍 理解探针</h4>';
-    exp.prb.forEach(function(p){
-      h += '<div class="quiz"><div style="font-weight:700">🔍 ' + esc(p.title) + '</div><p style="line-height:1.75;margin:6px 0">' + esc(p.task) + '</p><div style="font-size:12px;color:var(--muted)">探针 ' + esc(p.id) + '：不是考试题，是用来照出「以为懂了、其实没懂」的地方——判读标准在页底「给大人的说明」里。</div></div>';
-    });
-    h += '</div>';
-  }
-  if(exp && exp.quiz && exp.quiz.length){
-    h += '<div class="sec"><h4>📚 检索练习 · 目录原题</h4>';
-    exp.quiz.forEach(function(q, qi){
-      h += '<div class="quiz"><div style="font-weight:700">' + esc(q.q) + '</div>';
-      q.opts.forEach(function(o, oi){ h += '<button style="display:block;width:100%;text-align:left;margin-top:6px" onclick="PN.xpick(this,\'' + l.id + '\',' + qi + ',' + oi + ')">' + esc(o) + '</button>'; });
-      h += '<div class="ans" style="display:none;margin-top:8px">答案：' + esc(q.a) + '</div></div>';
-    });
-    h += '</div>';
-  }
-  if(l.note){ h += '<div class="note">' + esc(l.note) + '</div>'; }
-  h += '<div class="claim">成人层论断' + (l.cand ? '（新拟）' : '（目录原文）') + '：' + esc(l.claim) + '</div>';
-  var pnAd = PN_ADULT[l.id]; if(pnAd || PN_EXTRA[l.id]){ h += pnAdultHTML(pnAd, PN_EXTRA[l.id]); }
-  if(window.LINKGO){ h += LINKGO.relSectionHTML(l.id,'sec'); }
-  if(window.LINKGO){ h += LINKGO.lawSectionHTML(l.id,'sec'); }
-  h += '<div class="navrow"><button ' + (i<=0?'disabled':'') + ' onclick="PN.stepLaw(-1)">‹ 上一条</button><button ' + (i>=LAWS.length-1?'disabled':'') + ' onclick="PN.stepLaw(1)">下一条 ›</button></div>';
-  return h;
-}
 /* ===== 呈现升级：分镜动画引擎（CSS/JS 驱动，单文件内自动播放） ===== */
 var _timers = [];
 function stageTimer(st){
@@ -18948,7 +18951,10 @@ if(window.MutationObserver && pnSecI && pnSecD){
 </script>
 <script>
 (function(){
-  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},render:render,esc:esc},{p:'ar',name:'AR',extra:function(){return AR_EXTRA;},top:function(){return EXTRA_TOP;},candUI:false,footer:'<footer>原型 · 规律正文均出自仓库规律目录（laws-prototype/model/laws）；呈现层文案（短标题/一句话/分组）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:true,hideHandAfterDraw:false});
+  var _wcAR=makeWbCore({get stack(){return stack;},get wbS(){return wbS;},get WB_BY_ID(){return WB_BY_ID;},get EXTRA_BOTTOM(){return EXTRA_BOTTOM;},get GROUPS(){return GROUPS;},get LAWS(){return LAWS;},get TOPIC(){return TOPIC;},get extraCases(){return extraCases;},get extraExn(){return extraExn;},get lawById(){return lawById;},get wbCardHTML(){return wbCardHTML;},render:render,esc:esc},{p:'ar',name:'AR',extra:function(){return AR_EXTRA;},top:function(){return EXTRA_TOP;},candUI:false,footer:'<footer>原型 · 规律正文均出自仓库规律目录（laws-prototype/model/laws）；呈现层文案（短标题/一句话/分组）为原型加工，与目录冲突时以目录为准。</footer>',earlyFinish:true,hideHandAfterDraw:false,excFallback:false,gap:'目录只登记了错型，未给逐字病例。',ansPre:'arans_',demo:function(l){return '';},anim:function(l){var h='';
+  if(l.anim){ h += '<div class="sec"><h4>🎬 看一看</h4>' + animHTML(l.anim) + '</div>'; }
+  if(l.svg && SVGS[l.svg]){ h += '<div class="sec"><div class="svgbox"><div class="at">🖼️ 图解</div>' + SVGS[l.svg] + '</div></div>'; }
+return h;},adult:function(id){var arAd=AR_ADULT[id]; if(arAd||AR_EXTRA[id]){return arAdultHTML(arAd,AR_EXTRA[id]);} return '';}});
   function go(){return _wcAR.go.apply(this,arguments);}
   function extraCaseHTML(){return _wcAR.extraCaseHTML.apply(this,arguments);}
   function xpick(){return _wcAR.xpick.apply(this,arguments);}
@@ -18971,6 +18977,7 @@ if(window.MutationObserver && pnSecI && pnSecD){
   function wbFrame(){return _wcAR.wbFrame.apply(this,arguments);}
   function wbInit(){return _wcAR.wbInit.apply(this,arguments);}
   function vIndex(){return _wcAR.vIndex.apply(this,arguments);}
+  function vLaw(){return _wcAR.vLaw.apply(this,arguments);}
 
 var GROUPS = [{"name": "🧱 前置组 · 先数得清，才谈冠词", "sub": "冠词的地基：先决定东西是「一个个」还是「一摊」，后面的 a / the / -s / many 才有着落（本组已按深度规格补齐）"}, {"name": "第 1 组 · a 和 the 各干什么", "sub": "一个管「认类别」，一个管「找到那一个」"}, {"name": "第 2 组 · 用 the 之前先找线索", "sub": "五条路，占一条才能用 the"}, {"name": "第 3 组 · a 还是 an，听声音", "sub": "同题两条：C-14 与 GR-15，目录里两个版本都在"}, {"name": "第 4 组 · 不加冠词，和约定搭配", "sub": "做事还是去楼、约定存货、介绍物种的三种拍法"}, {"name": "第 5 组 · 为什么总选错", "sub": "给家长和老师：错的系统原因和分型纠法"}];
 /* GENERATED: tools/gen_laws.py ← model/laws_master.json · DO NOT EDIT */
@@ -19028,88 +19035,6 @@ function extraCases(l){
   return ex.cases.filter(function(c){ return !l.errors.some(function(e){ return e.wrong === c.wrong; }); });
 }
 
-function vLaw(id){
-  var l = lawById(id); if(!l) return vIndex();
-  var i = LAWS.indexOf(l);
-  var h = '<button class="back" onclick="AR.back()">‹ 返回列表</button>';
-  h += '<div style="margin-top:4px"><span class="badge">' + l.id + '</span> <span class="badge grey">' + esc(GROUPS[l.group].name.split('·')[1]||'') + '</span></div>';
-  h += '<h2 class="big">' + esc(l.short) + '</h2><div class="desc">' + esc(l.desc) + '</div>';
-  if(WB_BY_ID[l.id]){ h += wbCardHTML(l.id); }
-  h += '<div class="formal">正式说法（目录原文）：' + esc(l.formal) + '</div>';
-  if(window.LINKGO&&LINKGO.preBarHTML){h+=LINKGO.preBarHTML(l.id);}
-  h += '<div class="kidbox"><span class="lab">目录里的孩子版说法</span>' + esc(l.kid) + '</div>';
-  if(l.beats.length){
-    h += '<div class="sec"><h4>📖 机制 · 它是怎么回事</h4>';
-    l.beats.forEach(function(b, bi){ h += '<div class="beat"><span class="bn">' + esc(b.name) + '</span><p>' + esc(b.text) + '</p>'; var exv = extraOf(l.id); if(exv && exv.vis && exv.vis[bi]){ h += '<div style="font-size:12px;color:var(--muted);margin-top:4px">🎨 画面：' + esc(exv.vis[bi]) + '</div>'; } h += '</div>'; });
-    h += '</div>';
-  }
-  if(l.anim){ h += '<div class="sec"><h4>🎬 看一看</h4>' + animHTML(l.anim) + '</div>'; }
-  if(l.svg && SVGS[l.svg]){ h += '<div class="sec"><div class="svgbox"><div class="at">🖼️ 图解</div>' + SVGS[l.svg] + '</div></div>'; }
-  l.groups.forEach(function(g){
-    h += '<div class="sec"><div class="grp"><div class="gt">' + esc(g.title) + '</div>';
-    g.items.forEach(function(it){ h += '<div class="gitem"><span class="gn">' + esc(it.name) + '</span><div class="gg">' + esc(it.gloss) + '</div><span class="ge">' + esc(it.ex) + '</span></div>'; });
-    h += '</div></div>';
-  });
-  if(l.examples.length){
-    h += '<div class="sec"><h4>✏️ 例句 · 例词（目录原文）</h4>';
-    l.examples.forEach(function(x){ h += '<div class="ex"><div class="es">' + esc(x.s) + '</div>' + (x.note ? '<div class="en">' + esc(x.note) + '</div>' : ''); var xn = extraExn(l.id, x.s); if(xn){ if(xn.note && xn.note !== x.note){ h += '<div class="en" style="color:var(--muted)">' + esc(xn.note) + '</div>'; } if(xn.words && xn.words.length){ h += '<div style="margin-top:4px">' + xn.words.map(function(w){ return '<span style="display:inline-block;border:1px solid #d8c9a8;background:#fffdf6;border-radius:999px;padding:1px 8px;margin:2px 4px 2px 0;font-size:12px"><b>' + esc(w[0]) + '</b> ' + esc(w[1]) + ' · ' + esc(w[2]) + '</span>'; }).join('') + '</div>'; } } h += '</div>'; });
-    h += '</div>';
-  }
-  var exx = extraOf(l.id);
-  if(exx && exx.exc && exx.exc.length){
-    h += '<div class="sec"><h4>⚠️ 例外 · 边界</h4><div style="background:#fff8e6;border:1px solid #ecd9a0;border-radius:10px;padding:10px 12px">';
-    exx.exc.forEach(function(x){ h += '<p style="margin:4px 0">⚠️ ' + esc(x) + '</p>'; });
-    h += '</div></div>';
-  }
-  h += '<div class="sec"><h4>🩺 病句医院</h4>';
-  var xc = extraCases(l);
-  if(xc.length || l.errors.length){
-    xc.forEach(function(c){ h += extraCaseHTML(c); });
-    l.errors.forEach(function(e){
-      h += '<div class="errc">';
-      if(e.wrong){ h += '<div>❌ <span class="wrong">' + esc(e.wrong) + '</span></div><div>✅ <span class="right">' + esc(e.right||'') + '</span></div>'; }
-      if(e.type){ h += '<div style="margin-top:4px">错型：' + esc(e.type) + '</div>'; }
-      if(e.diag){ h += '<div style="margin-top:4px">' + esc(e.diag_kid || e.diag) + '</div>'; if(e.diag_kid && e.diag_kid !== e.diag){ h += '<div class="adult" style="margin-top:4px">原文：' + esc(e.diag) + '</div>'; } }
-      if(!e.wrong){ h += '<div class="gap">目录只登记了错型，未给逐字病例。</div>'; }
-      h += '</div>';
-    });
-  } else {
-    h += '<div class="errc"><span class="gap">目录未登记本条病例。</span></div>';
-  }
-  h += '</div>';
-  if(l.quiz.length){
-    h += '<div class="sec"><h4>🎯 检索练习</h4>';
-    l.quiz.forEach(function(q, qi){
-      var aid = 'arans_' + l.id.replace('-','_') + '_' + qi;
-      h += '<div class="quiz"><div class="qq">' + esc(q.q) + '</div><button onclick="document.getElementById(\'' + aid + '\').style.display=\'block\'">看答案</button><div class="ans" id="' + aid + '">' + esc(q.ans) + (q.hint ? '<div class="hint">提示：' + esc(q.hint) + '</div>' : '') + '</div></div>';
-    });
-    h += '</div>';
-  }
-  var exp = extraOf(l.id);
-  if(exp && exp.prb && exp.prb.length){
-    h += '<div class="sec"><h4>🔍 理解探针</h4>';
-    exp.prb.forEach(function(p){
-      h += '<div class="quiz"><div style="font-weight:700">🔍 ' + esc(p.title) + '</div><p style="line-height:1.75;margin:6px 0">' + esc(p.task) + '</p><div style="font-size:12px;color:var(--muted)">探针 ' + esc(p.id) + '：不是考试题，是用来照出「以为懂了、其实没懂」的地方——判读标准在页底「给大人的说明」里。</div></div>';
-    });
-    h += '</div>';
-  }
-  if(exp && exp.quiz && exp.quiz.length){
-    h += '<div class="sec"><h4>📚 检索练习 · 目录原题</h4>';
-    exp.quiz.forEach(function(q, qi){
-      h += '<div class="quiz"><div style="font-weight:700">' + esc(q.q) + '</div>';
-      q.opts.forEach(function(o, oi){ h += '<button style="display:block;width:100%;text-align:left;margin-top:6px" onclick="AR.xpick(this,\'' + l.id + '\',' + qi + ',' + oi + ')">' + esc(o) + '</button>'; });
-      h += '<div class="ans" style="display:none;margin-top:8px">答案：' + esc(q.a) + '</div></div>';
-    });
-    h += '</div>';
-  }
-  if(l.note){ h += '<div class="note">' + esc(l.note) + '</div>'; }
-  h += '<div class="claim">成人层论断（目录原文）：' + esc(l.claim) + '</div>';
-  var arAd = AR_ADULT[l.id]; if(arAd || AR_EXTRA[l.id]){ h += arAdultHTML(arAd, AR_EXTRA[l.id]); }
-  if(window.LINKGO){ h += LINKGO.relSectionHTML(l.id,'sec'); }
-  if(window.LINKGO){ h += LINKGO.lawSectionHTML(l.id,'sec'); }
-  h += '<div class="navrow"><button ' + (i<=0?'disabled':'') + ' onclick="AR.stepLaw(-1)">‹ 上一条</button><button ' + (i>=LAWS.length-1?'disabled':'') + ' onclick="AR.stepLaw(1)">下一条 ›</button></div>';
-  return h;
-}
 
 var SVGS = {
 countview: '<svg viewBox="0 0 300 120" width="100%"><rect x="6" y="8" width="140" height="104" rx="10" fill="#d3e5d6"/><text x="76" y="26" font-size="12" fill="#4a7a59" text-anchor="middle" font-weight="700">一个个 · 能数</text><text x="40" y="62" font-size="26" text-anchor="middle">🍎</text><text x="76" y="62" font-size="26" text-anchor="middle">🍎</text><text x="112" y="62" font-size="26" text-anchor="middle">🍎</text><text x="76" y="92" font-size="12" fill="#3d5a40" text-anchor="middle">1 · 2 · 3 …</text><rect x="154" y="8" width="140" height="104" rx="10" fill="#fff8e6"/><text x="224" y="26" font-size="12" fill="#8a5a00" text-anchor="middle" font-weight="700">一摊 · 借碗数</text><text x="224" y="66" font-size="30" text-anchor="middle">🍚</text><text x="224" y="94" font-size="12" fill="#3d5a40" text-anchor="middle">a bowl of rice</text></svg>',
