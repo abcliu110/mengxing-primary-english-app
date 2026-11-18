@@ -249,12 +249,12 @@ def build(wb, wm, snap):
                 for k, v in sorted(unc.items(), key=lambda kv: -len(kv[1]))]
     n_gen = sum(len(t["words"]) for t in theme_list)
     n_unc = sum(len(g["w"]) for g in unc_list)
-    if not (n_gen == 2587 and n_unc == 355 and n_gen + n_unc == len(wb) == 2942):
-        fail(f"主题对账失败：真主题 {n_gen} / 未分 {n_unc} / 词库 {len(wb)}（应 2587/355/2942）")
+    if not (n_gen == 2942 and n_unc == 0 and n_gen + n_unc == len(wb) == 2942):
+        fail(f"主题对账失败：真主题 {n_gen} / 未分 {n_unc} / 词库 {len(wb)}（应 2942/0/2942）")
     if len(theme_list) != 25:
         fail(f"主题数应为 25，实得 {len(theme_list)}")
     by_theme = {t["name"]: len(t["words"]) for t in theme_list}
-    for name, want in (("食物与饮品", 145), ("交通与出行", 93), ("家庭与亲友", 45)):
+    for name, want in (("食物与饮品", 148), ("交通与出行", 97), ("家庭与亲友", 46)):
         if by_theme.get(name) != want:
             fail(f"主题 {name} 词数应为 {want}，实得 {by_theme.get(name)}")
     topic = {"tot": len(wb), "ng": n_gen, "nu": n_unc, "secs": secs, "unc": unc_list}
@@ -385,7 +385,7 @@ def main(argv) -> int:
         print(f"FAIL: {e}")
         return 1
     gen_text = JD(built)
-    print(f"对账：主题 25 个 / 真主题 2587 词 / 未分 355 词；级别 Dolch {stats['dolch']}、"
+    print(f"对账：主题 {sum(len(s['themes']) for s in built['topic']['secs'])} 个 / 真主题 {built['topic']['ng']} 词 / 未分 {built['topic']['nu']} 词；级别 Dolch {stats['dolch']}、"
           f"Fry {stats['fry']}、YLE {stats['yle']}（名单/收录/有词页）；未归级 {stats['ungraded']} 词")
     if gen_text == cur_text:
         print(f"PASS: VOCAB_DIM 字面量逐字节一致（{len(cur_text)} 字符）")

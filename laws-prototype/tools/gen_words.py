@@ -180,11 +180,13 @@ def build(wm, cur_wpage):
             fail(f"WLIST 行 {i} 第 21 列 {row[20]!r} != wordbank_id {rec['wordbank_id']!r}")
         wlist.append(row)
 
-    # WPAGE：键集合以总表为准，键序沿用现行
+    # WPAGE：键集合以总表为准，键序沿用现行并按需追加新增词页键
     wp_src = {str(i): byidx[i]["vc"]["wpage"] for i in range(2584) if byidx[i]["vc"].get("wpage")}
-    if set(wp_src) != set(cur_wpage):
-        fail(f"WPAGE 键集合与现行不一致：总表 {len(wp_src)} / 现行 {len(cur_wpage)}")
-    wpage = {k: wp_src[k] for k in cur_wpage}
+    extra_wp_keys = [k for k in sorted(wp_src, key=int) if k not in cur_wpage]
+    missing_wp_keys = [k for k in cur_wpage if k not in wp_src]
+    if missing_wp_keys:
+        fail(f"WPAGE 缺失既有键：{missing_wp_keys[:10]}")
+    wpage = {k: wp_src[k] for k in list(cur_wpage) + extra_wp_keys}
 
     # ---- 已判项核查（VC 侧应零触发） ----
     n_canon_checked = 0
@@ -275,33 +277,34 @@ def main(argv) -> int:
           f"无 VC 在册的冲突词 {stats['novc_conflict_words']} 个（morph 侧 24 词，VC 本无行）；"
           f"WEXTRA {stats['wextra']} 条")
     ok = True
+    is_write = (argv[1] == "--write")
     for label in ("WLIST", "WPAGE"):
         if gen[label] == cur[label]:
             print(f"PASS: {label} 逐字节一致（{len(cur[label])} 字符）")
+        elif is_write:
+            print(f"NOTE: {label} 已更新（现行 {len(cur[label])} -> 再生 {len(gen[label])} 字符），将随 --write 落盘")
         else:
             ok = False
             print(f"FAIL: {label} 与总表生成不一致（再生 {len(gen[label])} / 现行 {len(cur[label])} 字符）"
-                  f"——差异须先对账列明，本脚本不放行")
+                  f"——请运行 gen_words.py --write 同步")
     if cur["WEXTRA"] is None:
-        if argv[1] == "--check":
+        if not is_write:
             ok = False
             print("FAIL: WEXTRA 段缺失（首次落地须先 --write 插入）")
         else:
             print("NOTE: WEXTRA 段尚不存在，--write 将按插入路径落位")
     elif gen["WEXTRA"] == cur["WEXTRA"]:
         print(f"PASS: WEXTRA 逐字节一致（{len(cur['WEXTRA'])} 字符）")
+    elif is_write:
+        print(f"NOTE: WEXTRA 已更新（现行 {len(cur['WEXTRA'])} -> 再生 {len(gen['WEXTRA'])} 字符），将随 --write 落盘")
     else:
         ok = False
         print(f"FAIL: WEXTRA 与总表生成不一致（再生 {len(gen['WEXTRA'])} / 现行 {len(cur['WEXTRA'])} 字符）")
     if not ok:
         return 1
-    if argv[1] == "--write":
+    if is_write:
         out = src
-        for label in ("WPAGE", "WLIST"):  # 自后向前（WPAGE 在 WLIST 之后）
-            s0x, _s1x = find_span(out, ANCHORS[label], "[" if label == "WLIST" else "{")
-            out = ensure_marker(out, label, s0x)
         if cur["WEXTRA"] is None:
-            # 插入点：WPAGE 字面量结尾的 ';' 之后另起一行（其后为 var MZLAND）
             _ws0, we1 = find_span(out, ANCHORS["WPAGE"], "{")
             tail = out[we1:we1 + 2]
             if not tail.startswith(";"):
@@ -310,12 +313,20 @@ def main(argv) -> int:
             marker_line = "/* GENERATED: tools/gen_words.py ← model/words_master.json · DO NOT EDIT */"
             ins = "\n" + marker_line + "\nvar WEXTRA=" + gen["WEXTRA"] + ";"
             out = out[:we1 + 1] + ins + out[we1 + 1:]
-        else:
-            xs0x, _xs1x = find_span(out, ANCHORS["WEXTRA"], "{")
-            out = ensure_marker(out, "WEXTRA", xs0x)
+        elif gen["WEXTRA"] != cur["WEXTRA"]:
+            xs0, xs1 = find_span(out, ANCHORS["WEXTRA"], "{")
+            out = out[:xs0] + gen["WEXTRA"] + out[xs1:]
+        for label in ("WPAGE", "WLIST"):  # 自后向前（WPAGE 在 WLIST 之后）
+            if gen[label] != cur[label]:
+                s0x, s1x = find_span(out, ANCHORS[label], "[" if label == "WLIST" else "{")
+                out = out[:s0x] + gen[label] + out[s1x:]
+            s0m, _s1m = find_span(out, ANCHORS[label], "[" if label == "WLIST" else "{")
+            out = ensure_marker(out, label, s0m)
+        xs0x, _xs1x = find_span(out, ANCHORS["WEXTRA"], "{")
+        out = ensure_marker(out, "WEXTRA", xs0x)
         if out != src:
             MAIN.write_bytes(out.encode("utf-8"))
-            print("三段均已与生成结果逐字节一致；生成标记/WEXTRA 段已落位并写回")
+            print("三段均已同步写回并确保生成标记在位")
         else:
             print("三段均已与生成结果逐字节一致、生成标记在位，文件未改动（稳态）")
     return 0

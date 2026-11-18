@@ -46,6 +46,11 @@ _spec = importlib.util.spec_from_file_location("xr", ROOT / "tools/extract_revie
 XR = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(XR)
 
+_spec_pd = importlib.util.spec_from_file_location("fp", ROOT / "tools/feedback_pedagogic.py")
+_FP = importlib.util.module_from_spec(_spec_pd)
+_spec_pd.loader.exec_module(_FP)
+PEDAGOGIC_FEEDBACK = _FP.PEDAGOGIC_FEEDBACK
+
 PUNCT = set(".,!?;:'\"()") | set("（）「」、，【】")
 
 def norm(s):
@@ -211,6 +216,7 @@ def build_feedback(text):
     items = rebuild_items(text)
     fb = {}
     accounted = set()
+    ped_hit = set()
     pending_weak = []
     errors = []
 
@@ -237,6 +243,10 @@ def build_feedback(text):
                 kk = (it["key"], opt)
                 if kk in excluded:
                     accounted.add(kk)
+                    if kk in PEDAGOGIC_FEEDBACK:
+                        ped_hit.add(kk)
+                        pd = PEDAGOGIC_FEEDBACK[kk]
+                        fb.setdefault(it["key"], {}).setdefault("opts", {})[opt] = {"why": pd["why"], "right": pd.get("right") or it["a"], "ref": pd["ref"]}
                     continue
                 status, method, case = align(opt, it["q"], cases)
                 if kk in verified:
@@ -254,8 +264,16 @@ def build_feedback(text):
                         accounted.add(kk)
                         why, right = why_for(it["key"], opt, case)
                         fb.setdefault(it["key"], {}).setdefault("opts", {})[opt] = {"why": why, "right": right, "ref": case["ref"]}
+                    elif kk in PEDAGOGIC_FEEDBACK:
+                        ped_hit.add(kk)
+                        pd = PEDAGOGIC_FEEDBACK[kk]
+                        fb.setdefault(it["key"], {}).setdefault("opts", {})[opt] = {"why": pd["why"], "right": pd.get("right") or it["a"], "ref": pd["ref"]}
                     else:
                         pending_weak.append(kk)
+                elif kk in PEDAGOGIC_FEEDBACK:
+                    ped_hit.add(kk)
+                    pd = PEDAGOGIC_FEEDBACK[kk]
+                    fb.setdefault(it["key"], {}).setdefault("opts", {})[opt] = {"why": pd["why"], "right": pd.get("right") or it["a"], "ref": pd["ref"]}
         elif it["kind"] == "reveal" and it["fam"] == "law":
             m = AB_PAT.search(it["q"])
             if not m:
@@ -289,6 +307,9 @@ def build_feedback(text):
     for kk in list(REWRITES) + list(verified):
         if kk not in accounted:
             errors.append(f"登记条目 {kk} 未命中任何对齐（题面或病例已变，需复核登记）")
+    for kk in PEDAGOGIC_FEEDBACK:
+        if kk not in ped_hit:
+            errors.append(f"PEDAGOGIC_FEEDBACK 登记条目 {kk} 未命中任何干扰选项（题面或选项已变，需复核）")
     for k in REWRITES_REVEAL:
         if k not in fb:
             errors.append(f"REWRITES_REVEAL 登记 {k} 未产出条目（题面或病例已变，需复核登记）")
