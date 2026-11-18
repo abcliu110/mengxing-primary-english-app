@@ -8466,7 +8466,7 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 .ess-tab{min-height:44px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
 .ess-tab.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .ess-stage-wrap{background:#FBFBF9;border:2px solid #CFD9C4;border-radius:18px;padding:10px;box-shadow:0 4px 14px rgba(74,90,54,.07)}
-.ess-stage-svg{width:100%;height:auto;display:block;border-radius:12px;background:#F6F8F2}
+.ess-stage-canvas{width:100%;aspect-ratio:580/300;display:block;border-radius:12px;background:#F5F7F0}
 .ess-capbar{margin-top:10px;padding:10px 14px;background:#EEF4E6;border-radius:12px;border-left:4px solid var(--accent);font-size:14.5px;line-height:1.65;color:#2F362C}
 .ess-step-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .ess-sbtn{min-height:44px;padding:6px 12px;border-radius:10px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
@@ -8503,12 +8503,10 @@ Object.keys(PHONLAWS).forEach(function(k){LAWDATA[k]=PHONLAWS[k]});
 <script>
 (function(){
 "use strict";
-var DATA=null, loading=false, waiters=[], curId='bridge', curStep=0, playing=false, timer=null, rate=0.85, iState={};
+var DATA=null, loading=false, waiters=[], curId='bridge', curStep=0, playing=false, timer=null, rafId=null, animStart=0, rate=0.85, iState={};
 var ESS_LAW_MAP={"PR-08":"bridge","CO-13":"bridge","GR-01":"bridge","PR-07":"bridge","GR-02":"magnet","GR-03":"magnet","TA-15":"magnet","GR-04":"magnet","C-01":"boundary","C-02":"boundary","C-04":"boundary","C-05":"boundary","C-06":"boundary","C-07":"boundary","V-40":"space","P-01":"space","P-02":"space","P-03":"space"};
 var ESS_LAW_META={"bridge":"🌉 英文钢架桥：为什么下雨也要带 It？","magnet":"🧲 didn't 磁铁：为什么不说 didn't went？","boundary":"📦 边界框与探照灯：Two coffees 与 a / the","space":"📍 三维空间场：in / on / at 与动作开关"};
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function tx(x,y,s,sz,c,w){return '<text x="'+x+'" y="'+y+'" font-size="'+(sz||16)+'" font-weight="'+(w||700)+'" fill="'+(c||'#2F362C')+'" text-anchor="middle">'+esc(s)+'</text>';}
-function bx(x,y,w,h,s,bg,bd,col){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="12" fill="'+bg+'" stroke="'+bd+'" stroke-width="2"/>'+tx(x+w/2,y+h/2+6,s,15.5,col||'#2F362C',800);}
 function ensureData(cb){
   if(DATA || window.__MX_ESSENCE_DATA){ DATA = DATA || window.__MX_ESSENCE_DATA; if(cb) cb(); return; }
   if(cb) waiters.push(cb);
@@ -8520,6 +8518,7 @@ function ensureData(cb){
   s.onerror = function(){ loading=false; waiters=[]; var r=document.getElementById('ess-root'); if(r) r.innerHTML='<div class="box">未能读取 assets/data/essence_wb.js，请确认资源目录完整。</div>'; };
   document.head.appendChild(s);
 }
+function stopLoop(){ if(rafId){cancelAnimationFrame(rafId);rafId=null;} }
 function stopPlay(){ playing=false; if(timer){clearTimeout(timer);timer=null;} }
 function sayText(t){
   if(!t) return;
@@ -8534,61 +8533,21 @@ function initInteractiveState(sc){
     else { iState[c.id]=!!c.defaultOn; }
   });
 }
-function interactiveSvg(mode){
-  var h='<rect x="18" y="18" width="524" height="270" rx="16" fill="#FBFBF9" stroke="#DCE2D5" stroke-width="1.5"/>';
-  if(mode==='bridge'){
-    var hasIt=!!iState.it, hasVest=!!iState.vest;
-    var ok1=hasIt, ok2=hasVest;
-    h+=tx(280,46,'动手搭桥实验室：点击下方开关看桥梁状态',{sz:15,c:'#4A5A36'});
-    h+='<g class="'+(ok1?'':'ess-wobble')+'">';
-    h+=bx(40,68,224,96,ok1?'✅ It is raining.':'❌ Is raining. (缺主语塌了!)',ok1?'#EEF4E8':'#FDECEC',ok1?'#5F7448':'#B85A52',ok1?'#2D4D1A':'#B85A52');
-    h+=tx(152,188,ok1?'替身 It 稳稳顶住左桥墩':'没有主语，左桥墩空悬！',{sz:13,c:ok1?'#4A5A36':'#B85A52'});
-    h+='</g><g class="'+(ok2?'':'ess-wobble')+'">';
-    h+=bx(296,68,224,96,ok2?'✅ I enjoy swimming.':'❌ I enjoy swim. (动词打架!)',ok2?'#EEF4E8':'#FDECEC',ok2?'#5F7448':'#B85A52',ok2?'#2D4D1A':'#B85A52');
-    h+=tx(408,188,ok2?'二号动词穿上 -ing 工作服':'两个原形动词抢同一个王座！',{sz:13,c:ok2?'#4A5A36':'#B85A52'});
-    h+='</g>';
-    h+=tx(280,248,(ok1&&ok2)?'🎉 整座英文钢架桥稳稳通车！':'👇 点击下面黄色开关把缺零件补上看看',{sz:14.5,c:(ok1&&ok2)?'#2E7D32':'#8A5A1E'});
-  } else if(mode==='magnet'){
-    var neg=!!iState.neg, doesOn=!!iState.does;
-    h+=tx(280,46,'🧲 磁铁徽章实验台：开关助动词保镖',{sz:15,c:'#4A5A36'});
-    h+=bx(40,70,224,108,neg?"✅ She didn't go.":"She went home.",neg?'#EEF4E8':'#FFF8E6',neg?'#5F7448':'#D6A548',neg?'#2D4D1A':'#7A5410');
-    h+=tx(152,202,neg?'PAST 徽章被 didn\'t 吸走 → go':'无助动词时 PAST 贴在 went 上',{sz:13,c:neg?'#4A5A36':'#8A5A1E'});
-    h+=bx(296,70,224,108,doesOn?"✅ He doesn't like it.":"He likes it.",doesOn?'#EEF4E8':'#FFF8E6',doesOn?'#5F7448':'#D6A548',doesOn?'#2D4D1A':'#7A5410');
-    h+=tx(408,202,doesOn?'-s 徽章被 doesn\'t 吸走 → like':'无助动词时 -s 挂在 likes 上',{sz:13,c:doesOn?'#4A5A36':'#8A5A1E'});
-    h+=tx(280,250,'一条铁律：过去标记与三单标记整句只落一次！',{sz:14,c:'#5F7448'});
-  } else if(mode==='boundary'){
-    var cup=!!iState.cup, spot=!!iState.spot;
-    h+=tx(280,46,'边界框与探照灯实验室',{sz:15,c:'#4A5A36'});
-    h+=bx(40,72,224,104,cup?'✅ two bowls of rice':'∞ rice (一锅没边界的米饭)',cup?'#EEF4E8':'#FFF8E6',cup?'#5F7448':'#D6A548',cup?'#2D4D1A':'#7A5410');
-    h+=tx(152,200,cup?'-s 稳稳长在边界容器 bowl 上':'光着说 rice 无法直接加 -s',{sz:13,c:cup?'#4A5A36':'#8A5A1E'});
-    h+='<rect x="296" y="72" width="224" height="104" rx="12" fill="'+(spot?'#232B21':'#EFF3EC')+'" stroke="'+(spot?'#D6A548':'#8FA37E')+'" stroke-width="2"/>';
-    if(spot){
-      h+='<polygon points="408,76 346,168 470,168" fill="#FFF3B8" opacity="0.28"/>';
-      h+=tx(408,132,'🔦 the cat on the chair',{sz:15,c:'#FFF3C4'});
-    } else {
-      h+=tx(408,132,'🐱 a cat (随便哪一只都行)',{sz:15,c:'#2F362C'});
-    }
-    h+=tx(408,200,spot?'双方一眼锁定唯一那只 → the':'只说类别不定位 → a / an',{sz:13,c:'#4A5A36'});
-    h+=tx(280,250,'点下面机关自由切换有框/无框、随机抓/唯一照亮',{sz:13.5,c:'#66705E'});
-  } else {
-    var loc=iState.loc||'in', lamp=!!iState.lamp;
-    h+=tx(280,46,'空间几何 & 物理动作开关实验室',{sz:15,c:'#4A5A36'});
-    if(loc==='in'){
-      h+='<rect x="64" y="76" width="160" height="122" rx="12" fill="#EBF4E4" stroke="#5F7448" stroke-width="2.5"/>';
-      h+='<circle cx="144" cy="138" r="24" fill="#D6A548" class="ess-float"/>'+tx(144,144,'IN',14,'#FFF')+tx(144,224,'in the box（关进盒子里）',13.5,'#4A5A36');
-    } else if(loc==='on'){
-      h+='<line x1="60" y1="166" x2="228" y2="166" stroke="#5F7448" stroke-width="5" stroke-linecap="round"/>';
-      h+='<circle cx="144" cy="138" r="24" fill="#5F7448" class="ess-pulse"/>'+tx(144,144,'ON',14,'#FFF')+tx(144,224,'on the desk（贴在平表面）',13.5,'#4A5A36');
-    } else {
-      h+='<circle cx="144" cy="158" r="10" fill="#B85A52"/><path d="M144,86 L144,142" stroke="#B85A52" stroke-width="3.5" stroke-linecap="round"/>';
-      h+=tx(144,78,'AT 📍',15,'#B85A52')+tx(144,224,'at the door（精确钉一点）',13.5,'#B85A52');
-    }
-    h+='<rect x="292" y="76" width="224" height="122" rx="14" fill="'+(lamp?'#FFFBE0':'#EDEFEA')+'" stroke="'+(lamp?'#D6A548':'#B8C2B0')+'" stroke-width="2.5"/>';
-    h+=tx(404,132,lamp?'💡 灯亮了：turn on the light':'🌑 熄灭：turn off the light',{sz:15,c:lamp?'#8A5A1E':'#6B7265'});
-    h+=tx(404,166,'（翻开书页才用 open the book）',{sz:12.5,c:'#707A68'});
-    h+=tx(404,224,lamp?'接通电闸要用 turn on！':'断开电源要用 turn off！',{sz:13.5,c:lamp?'#8A5A1E':'#6B7265'});
+function startCanvasLoop(){
+  stopLoop();
+  var cvs=document.getElementById('ess-canvas');
+  var rnd=window.__MX_ESSENCE_RENDERER;
+  if(!cvs || !rnd || !rnd.render) return;
+  animStart = performance.now ? performance.now() : Date.now();
+  function frame(now){
+    var v=document.getElementById('v-essence');
+    if(!v || !v.classList.contains('on')){ stopLoop(); return; }
+    var elapsed = ((now || Date.now()) - animStart) / 1000;
+    rnd.render(cvs, curId, curStep, elapsed, iState);
+    rafId = requestAnimationFrame(frame);
   }
-  return h;
+  rnd.render(cvs, curId, curStep, 0.35, iState);
+  rafId = requestAnimationFrame(frame);
 }
 function findLesson(idOrLaw){
   if(!DATA) return null;
@@ -8612,8 +8571,7 @@ function renderTheater(){
   h+='<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px">'
     +'<b style="color:var(--accent-deep);font-size:15.5px">'+esc(L.title)+'</b>'
     +'<span class="tag">'+esc(L.tag)+'</span></div>';
-  h+='<svg class="ess-stage-svg" viewBox="0 0 560 296" xmlns="http://www.w3.org/2000/svg">'
-    +(sc.interactive?interactiveSvg(sc.interactive.mode):sc.svg)+'</svg>';
+  h+='<canvas id="ess-canvas" class="ess-stage-canvas" data-ess-id="'+esc(L.id)+'" data-ess-step="'+curStep+'" data-ess-state="'+esc(JSON.stringify(iState))+'"></canvas>';
   if(sc.interactive){
     h+='<div class="ess-ictrls">';
     sc.interactive.controls.forEach(function(c){
@@ -8639,6 +8597,7 @@ function renderTheater(){
   });
   h+='</div></div>';
   root.innerHTML=h;
+  startCanvasLoop();
 }
 function tickAuto(){
   if(!playing || !DATA) return;
@@ -8651,20 +8610,20 @@ function tickAuto(){
     curStep++; iState={};
     renderTheater();
     tickAuto();
-  }, 5200);
+  }, 5400);
 }
 function hydrateHooks(){
   document.querySelectorAll('.ess-inline-hook[data-ess-law]').forEach(function(el){
     var law=el.getAttribute('data-ess-law');
     var eid=ESS_LAW_MAP[law];
     if(!eid){ el.innerHTML=''; return; }
-    el.innerHTML='<div class="ess-banner"><div class="ess-banner-info"><b>✨ 推荐先看：'+esc(ESS_LAW_META[eid])+'</b><span>45 秒互动矢量本质微动画（不影响下方既有讲解与原版白板）</span></div>'
-      +'<button type="button" class="ess-btn main" onclick="ESSENCE.open(\''+esc(law)+'\')">▶ 打开互动本质动画 →</button></div>';
+    el.innerHTML='<div class="ess-banner"><div class="ess-banner-info"><b>✨ 推荐先看：'+esc(ESS_LAW_META[eid])+'</b><span>60fps 物理交互微动画（不影响下方既有讲解与原版白板）</span></div>'
+      +'<button type="button" class="ess-btn main" onclick="ESSENCE.open(\''+esc(law)+'\')">▶ 打开物理本质动画 →</button></div>';
   });
 }
 window.ESSENCE={
   open:function(idOrLaw){
-    stopPlay();
+    stopPlay(); stopLoop();
     var target=ESS_LAW_MAP[idOrLaw] || idOrLaw || 'bridge';
     curId=target; curStep=0; iState={};
     if(window.show) show('essence');
@@ -8690,7 +8649,8 @@ window.ESSENCE={
   hydrateHooks:hydrateHooks
 };
 window.addEventListener('mx:viewchange', function(e){
-  if(e && e.detail && e.detail.view !== 'essence') stopPlay();
+  if(e && e.detail && e.detail.view !== 'essence'){ stopPlay(); stopLoop(); }
+  else if(e && e.detail && e.detail.view === 'essence' && DATA){ startCanvasLoop(); }
   setTimeout(hydrateHooks, 40);
 });
 })();
