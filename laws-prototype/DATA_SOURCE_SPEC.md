@@ -1,4 +1,4 @@
-# 数据源规范（单一事实源）
+﻿# 数据源规范（单一事实源）
 
 生效：2026-11-03，Stewart 指示设立。本规范约束 laws-prototype 全部数据资产：任何人（包括各开发线与助手）在本项目内新建、复制、修改数据，先查本规范。
 
@@ -59,7 +59,7 @@
 ## 5. 命名与归档
 
 1. 快照、交付件、旧版本必须在文件名或所在目录名中标明「归档/快照 + 日期或版本」，**禁止与现行事实源同名**（教训：旧词源交付快照与真源同名，一度构成回退陷阱，现已入仓 `imported/etymology-delivery/` 并在该区 README 明标过期）。
-2. 归档区：`imported/`（2026-11-03 全量入仓的 workspace 资产）。归档内容不参与任何生成与引用。
+2. 外部资产区：`imported/`（2026-11-03 全量入仓的 workspace 资产）。其中已在 §1 登记为事实源的子目录（如 `wordlist-snapshots-*`、`kebiao-standards-*`）参与生成；其余子目录为纯归档，不参与任何生成与引用。
 
 ## 6. 校验门
 
@@ -72,7 +72,7 @@
 
 关系户口门禁（2026-11-05，Bug 第 11 轮 R11-01 修复登记）：`tools/check_rel_coverage.py`（check_all 第 24 项）断言运行时 LAWDATA.rel（基础字面量 + PHONLAWS + SUPPDATA 合并口径）全部有向边 (a,b) ⊆ LINKIDX.g 边集、且 kind 落对应槽（前置→p / 同族→k / 对照→c）。规律关系只许住总表 `relations`（裁定型）+ `relations_teaching`（教学型，R11-01 补迁后共 885 条 = 首批 509 + 补迁 376）；任何字面量中的 rel 与总表派生口径不一致、或有边未入 LINKIDX.g，一律报红，不得提交。
 
-静态徽标门禁（2026-11-09 第四波第 7 项立、第五波第 8 项扩面至全部 299 行、2026-11-09 第六波第 11 项再扩面至全部 829 行、2026-11-10 第六波第 8 项 + CO-17 深研行 1 行，共 830 行）：`tools/check_badge_erridx.py`（check_all 第 26 项）断言主文件 7 个静态索引区共 830 行徽标与权威源一致——ERRIDX 区（E/W/NE/V/CO/QI，133 行）徽标以再生 ERRIDX 为准；另 CO-17 深研行 1 行（徽标「已做深」，内容在深研单元 u-co17，不套 ERRIDX 口径）（有病例 + 有练习 → ok，否则 part；教师行只核对在位）；拼读区（S/SR，52 行）徽标以本律 PHONLAWS 条目自身的 cases/prb 为准，不套 ERRIDX；家长区（TM/WA/LS/YL/CB/CG/VB，114 行）计数式徽标逐数对账（探针 = 运行时 LAWDATA prb 数、病例 = 再生 ERRIDX 数、练习 = 运行时 LAWDATA quiz 数）；技巧区（TEC-*，530 行）徽标以主文件内 TECDAT 字面量与 TEC 渲染器 famName 映射为准，不套 ERRIDX。按区组 153 行徽标三分法（2026-11-10 第七波第 20 项成文）：hint 以「先行」开头→「先行」（108 行）、以「进阶」开头→「进阶」（4 行）、其余 hint→「顺序见页内」（41 行）为兜底档，顺序关系在详情页 hint 内文交代，索引行不搬全文；41 条 hint 一字不动。已知风险（2026-11-10 第七波第 22 项登记，不做 model 化）：TECDAT 为主文件内手写字面量，无 model 事实源与生成器；门禁是对同一文件内索引行 vs 详情字面量的交叉核对，TECDAT 本身若有错门禁查不出。LAWDATA 对账检查（2026-11-09 第五波第 11 项）：`tools/check_lawdata_roster.py`（check_all 第 25 项）断言基础字面量 224 + PHONLAWS 53 + SUPPDATA 114 = 运行时 391 条（无重叠）、hl == ROSTER[0]、无 hl ⟺ ptr。
+静态徽标门禁（2026-11-09 第四波第 7 项立、第五波第 8 项扩面至全部 299 行、2026-11-09 第六波第 11 项再扩面至全部 829 行、2026-11-10 第六波第 8 项 + CO-17 深研行 1 行，共 830 行）：`tools/check_badge_erridx.py`（check_all 第 26 项）断言主文件 7 个静态索引区共 830 行徽标与权威源一致——ERRIDX 区（E/W/NE/V/CO/QI，133 行）徽标以再生 ERRIDX 为准；另 CO-17 深研行 1 行（徽标「已做深」，内容在深研单元 u-co17，不套 ERRIDX 口径）（有病例 + 有练习 → ok，否则 part；教师行只核对在位）；拼读区（S/SR，52 行）徽标以本律 PHONLAWS 条目自身的 cases/prb 为准，不套 ERRIDX；家长区（TM/WA/LS/YL/CB/CG/VB，114 行）计数式徽标逐数对账（探针 = 运行时 LAWDATA prb 数、病例 = 再生 ERRIDX 数、练习 = 运行时 LAWDATA quiz 数）；技巧区（TEC-*，530 行）徽标以主文件内 TECDATA 字面量与 TEC 渲染器 famName 映射为准，不套 ERRIDX。按区组 153 行徽标三分法（2026-11-10 第七波第 20 项成文）：hint 以「先行」开头→「先行」（108 行）、以「进阶」开头→「进阶」（4 行）、其余 hint→「顺序见页内」（41 行）为兜底档，顺序关系在详情页 hint 内文交代，索引行不搬全文；41 条 hint 一字不动。已知风险（2026-11-10 第七波第 22 项登记，不做 model 化）：TECDATA 为主文件内手写字面量，无 model 事实源与生成器；门禁是对同一文件内索引行 vs 详情字面量的交叉核对，TECDATA 本身若有错门禁查不出。LAWDATA 对账检查（2026-11-09 第五波第 11 项）：`tools/check_lawdata_roster.py`（check_all 第 25 项）断言基础字面量 224 + PHONLAWS 53 + SUPPDATA 114 = 运行时 391 条（无重叠）、hl == ROSTER[0]、无 hl ⟺ ptr。
 
 校验不过，不得提交。
 
